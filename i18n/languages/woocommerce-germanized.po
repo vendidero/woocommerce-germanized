@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce Germanized\n"
-"POT-Creation-Date: 2014-09-02 16:12+0100\n"
-"PO-Revision-Date: 2014-09-02 16:13+0100\n"
+"POT-Creation-Date: 2014-09-10 11:30+0100\n"
+"PO-Revision-Date: 2014-09-10 11:31+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en_US\n"
@@ -60,6 +60,17 @@ msgstr ""
 msgid "l"
 msgstr ""
 
+#: /Users/dennis/Dropbox/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/abstracts/abstract-wc-gzd-product.php:62
+#: /Users/dennis/Dropbox/localhost/vendidero/wp-content/plugins/woocommerce-germanized/woocommerce-germanized.php:516
+#, php-format
+msgid "incl. %s VAT"
+msgstr ""
+
+#: /Users/dennis/Dropbox/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/abstracts/abstract-wc-gzd-product.php:62
+#, php-format
+msgid "excl. %s VAT"
+msgstr ""
+
 #: /Users/dennis/Dropbox/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/class-wc-gzd-admin-welcome.php:53
 msgid "About WooCommerce Germanized"
 msgstr ""
@@ -89,12 +100,12 @@ msgid ""
 msgstr ""
 
 #: /Users/dennis/Dropbox/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/class-wc-gzd-admin-welcome.php:117
-#: /Users/dennis/Dropbox/localhost/vendidero/wp-content/plugins/woocommerce-germanized/woocommerce-germanized.php:382
+#: /Users/dennis/Dropbox/localhost/vendidero/wp-content/plugins/woocommerce-germanized/woocommerce-germanized.php:385
 msgid "Settings"
 msgstr ""
 
 #: /Users/dennis/Dropbox/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/class-wc-gzd-admin-welcome.php:118
-#: /Users/dennis/Dropbox/localhost/vendidero/wp-content/plugins/woocommerce-germanized/woocommerce-germanized.php:384
+#: /Users/dennis/Dropbox/localhost/vendidero/wp-content/plugins/woocommerce-germanized/woocommerce-germanized.php:387
 msgid "Premium Support"
 msgstr ""
 
@@ -404,12 +415,12 @@ msgid "Shipping Costs notice"
 msgstr ""
 
 #: /Users/dennis/Dropbox/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:293
-#: /Users/dennis/Dropbox/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:318
+#: /Users/dennis/Dropbox/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:326
 msgid "Unit Price"
 msgstr ""
 
 #: /Users/dennis/Dropbox/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:301
-#: /Users/dennis/Dropbox/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:326
+#: /Users/dennis/Dropbox/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:334
 msgid "Delivery Time Notice"
 msgstr ""
 
@@ -417,47 +428,51 @@ msgstr ""
 msgid "Show on Product Detail Page"
 msgstr ""
 
-#: /Users/dennis/Dropbox/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:334
+#: /Users/dennis/Dropbox/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:318
+msgid "Tax Info"
+msgstr ""
+
+#: /Users/dennis/Dropbox/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:342
 msgid "Notice Footer"
 msgstr ""
 
-#: /Users/dennis/Dropbox/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:335
+#: /Users/dennis/Dropbox/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:343
 msgid "Show a global VAT notice within footer"
 msgstr ""
 
-#: /Users/dennis/Dropbox/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:343
+#: /Users/dennis/Dropbox/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:351
 msgid "Show a global sale price notice within footer"
 msgstr ""
 
-#: /Users/dennis/Dropbox/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:351
+#: /Users/dennis/Dropbox/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:359
 msgid "Checkout Legal Display"
 msgstr ""
 
-#: /Users/dennis/Dropbox/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:352
+#: /Users/dennis/Dropbox/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:360
 msgid ""
 "Use Plain Text as legal notice (terms, data security statement, revocation)"
 msgstr ""
 
-#: /Users/dennis/Dropbox/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:354
+#: /Users/dennis/Dropbox/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:362
 msgid ""
 "This version will remove checkboxes from Checkout and display a text "
 "instead. This seems to be legally compliant (Zalando & Co are using this "
 "option)."
 msgstr ""
 
-#: /Users/dennis/Dropbox/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:360
+#: /Users/dennis/Dropbox/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:368
 msgid "Checkout Legal"
 msgstr ""
 
-#: /Users/dennis/Dropbox/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:361
+#: /Users/dennis/Dropbox/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:369
 msgid "Show Terms and Conditions"
 msgstr ""
 
-#: /Users/dennis/Dropbox/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:369
+#: /Users/dennis/Dropbox/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:377
 msgid "Show Data Security Statement"
 msgstr ""
 
-#: /Users/dennis/Dropbox/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:377
+#: /Users/dennis/Dropbox/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:385
 msgid "Show Power of Revocation"
 msgstr ""
 
@@ -520,59 +535,59 @@ msgstr ""
 msgid "eKomi Customer"
 msgstr ""
 
-#: /Users/dennis/Dropbox/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-ekomi.php:308
+#: /Users/dennis/Dropbox/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-ekomi.php:312
 msgid "Ekomi Integration"
 msgstr ""
 
-#: /Users/dennis/Dropbox/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-ekomi.php:311
+#: /Users/dennis/Dropbox/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-ekomi.php:315
 #: /Users/dennis/Dropbox/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-trusted-shops.php:251
 msgid "Shop ID"
 msgstr ""
 
-#: /Users/dennis/Dropbox/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-ekomi.php:312
+#: /Users/dennis/Dropbox/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-ekomi.php:316
 #: /Users/dennis/Dropbox/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-trusted-shops.php:252
 msgid "Insert your Shop ID here."
 msgstr ""
 
-#: /Users/dennis/Dropbox/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-ekomi.php:320
+#: /Users/dennis/Dropbox/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-ekomi.php:324
 msgid "Link to Certificate"
 msgstr ""
 
-#: /Users/dennis/Dropbox/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-ekomi.php:321
+#: /Users/dennis/Dropbox/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-ekomi.php:325
 msgid "Insert the link to your Certificate"
 msgstr ""
 
-#: /Users/dennis/Dropbox/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-ekomi.php:329
+#: /Users/dennis/Dropbox/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-ekomi.php:333
 msgid "Partner ID"
 msgstr ""
 
-#: /Users/dennis/Dropbox/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-ekomi.php:330
+#: /Users/dennis/Dropbox/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-ekomi.php:334
 msgid ""
 "Insert your Partner ID here (you may find that ID on your certificate "
 "website)"
 msgstr ""
 
-#: /Users/dennis/Dropbox/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-ekomi.php:338
+#: /Users/dennis/Dropbox/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-ekomi.php:342
 msgid "Interface ID"
 msgstr ""
 
-#: /Users/dennis/Dropbox/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-ekomi.php:339
+#: /Users/dennis/Dropbox/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-ekomi.php:343
 msgid "Insert your Interface ID here."
 msgstr ""
 
-#: /Users/dennis/Dropbox/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-ekomi.php:347
+#: /Users/dennis/Dropbox/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-ekomi.php:351
 msgid "Interface Password"
 msgstr ""
 
-#: /Users/dennis/Dropbox/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-ekomi.php:348
+#: /Users/dennis/Dropbox/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-ekomi.php:352
 msgid "Insert your Interface Password here."
 msgstr ""
 
-#: /Users/dennis/Dropbox/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-ekomi.php:356
+#: /Users/dennis/Dropbox/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-ekomi.php:360
 msgid "Days until Email"
 msgstr ""
 
-#: /Users/dennis/Dropbox/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-ekomi.php:357
+#: /Users/dennis/Dropbox/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-ekomi.php:361
 msgid ""
 "Number of days between an order being marked as completed and review email "
 "to customer."
@@ -857,53 +872,58 @@ msgstr ""
 msgid "Your Revocation"
 msgstr ""
 
-#: /Users/dennis/Dropbox/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/wc-gzd-template-functions.php:118
-msgid "Edit Order"
+#: /Users/dennis/Dropbox/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/wc-gzd-cart-functions.php:58
+#, php-format
+msgid "incl. %s%% VAT"
 msgstr ""
 
 #: /Users/dennis/Dropbox/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/wc-gzd-template-functions.php:129
+msgid "Edit Order"
+msgstr ""
+
+#: /Users/dennis/Dropbox/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/wc-gzd-template-functions.php:140
 msgid "Choose a Payment Gateway"
 msgstr ""
 
-#: /Users/dennis/Dropbox/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/wc-gzd-template-functions.php:141
-#: /Users/dennis/Dropbox/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/wc-gzd-template-functions.php:175
+#: /Users/dennis/Dropbox/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/wc-gzd-template-functions.php:152
+#: /Users/dennis/Dropbox/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/wc-gzd-template-functions.php:186
 #, php-format
 msgid ""
 "I&rsquo;ve read and accept the <a href=\"%s\" target=\"_blank\">data privacy "
 "statement</a>"
 msgstr ""
 
-#: /Users/dennis/Dropbox/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/wc-gzd-template-functions.php:155
-#: /Users/dennis/Dropbox/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/wc-gzd-template-functions.php:179
+#: /Users/dennis/Dropbox/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/wc-gzd-template-functions.php:166
+#: /Users/dennis/Dropbox/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/wc-gzd-template-functions.php:190
 #, php-format
 msgid ""
 "I&rsquo;ve read and accept the <a href=\"%s\" target=\"_blank\">power of "
 "revocation</a>"
 msgstr ""
 
-#: /Users/dennis/Dropbox/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/wc-gzd-template-functions.php:172
-#: /Users/dennis/Dropbox/localhost/vendidero/wp-content/plugins/woocommerce-germanized/templates/checkout/review-order.php:218
+#: /Users/dennis/Dropbox/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/wc-gzd-template-functions.php:183
+#: /Users/dennis/Dropbox/localhost/vendidero/wp-content/plugins/woocommerce-germanized/templates/checkout/review-order.php:220
 #, php-format
 msgid ""
 "I&rsquo;ve read and accept the <a href=\"%s\" target=\"_blank\">terms &amp; "
 "conditions</a>"
 msgstr ""
 
-#: /Users/dennis/Dropbox/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/wc-gzd-template-functions.php:175
+#: /Users/dennis/Dropbox/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/wc-gzd-template-functions.php:186
 #, php-format
 msgid "<a href=\"%s\" target=\"_blank\">data privacy statement</a>"
 msgstr ""
 
-#: /Users/dennis/Dropbox/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/wc-gzd-template-functions.php:179
+#: /Users/dennis/Dropbox/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/wc-gzd-template-functions.php:190
 #, php-format
 msgid "<a href=\"%s\" target=\"_blank\">power of revocation</a>"
 msgstr ""
 
-#: /Users/dennis/Dropbox/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/wc-gzd-template-functions.php:193
+#: /Users/dennis/Dropbox/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/wc-gzd-template-functions.php:204
 msgid "You must accept our Data Privacy Statement."
 msgstr ""
 
-#: /Users/dennis/Dropbox/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/wc-gzd-template-functions.php:195
+#: /Users/dennis/Dropbox/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/wc-gzd-template-functions.php:206
 msgid "You must accept the Power of Revocation."
 msgstr ""
 
@@ -915,6 +935,32 @@ msgstr ""
 #: /Users/dennis/Dropbox/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/widgets/class-wc-gzd-widget-trusted-shops-reviews.php:26
 #: /Users/dennis/Dropbox/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/widgets/class-wc-gzd-widget-trusted-shops-reviews.php:48
 msgid "Trusted Shops Reviews"
+msgstr ""
+
+#: /Users/dennis/Dropbox/localhost/vendidero/wp-content/plugins/woocommerce-germanized/templates/cart/cart-totals.php:16
+msgid "Cart Totals"
+msgstr ""
+
+#: /Users/dennis/Dropbox/localhost/vendidero/wp-content/plugins/woocommerce-germanized/templates/cart/cart-totals.php:21
+#: /Users/dennis/Dropbox/localhost/vendidero/wp-content/plugins/woocommerce-germanized/templates/checkout/review-order.php:144
+msgid "Cart Subtotal"
+msgstr ""
+
+#: /Users/dennis/Dropbox/localhost/vendidero/wp-content/plugins/woocommerce-germanized/templates/cart/cart-totals.php:75
+#: /Users/dennis/Dropbox/localhost/vendidero/wp-content/plugins/woocommerce-germanized/templates/checkout/review-order.php:198
+msgid "Order Total"
+msgstr ""
+
+#: /Users/dennis/Dropbox/localhost/vendidero/wp-content/plugins/woocommerce-germanized/templates/cart/cart-totals.php:90
+#, php-format
+msgid " (taxes estimated for %s)"
+msgstr ""
+
+#: /Users/dennis/Dropbox/localhost/vendidero/wp-content/plugins/woocommerce-germanized/templates/cart/cart-totals.php:93
+#, php-format
+msgid ""
+"Note: Shipping and taxes are estimated%s and will be updated during checkout "
+"based on your billing and shipping information."
 msgstr ""
 
 #: /Users/dennis/Dropbox/localhost/vendidero/wp-content/plugins/woocommerce-germanized/templates/cart/cart.php:27
@@ -985,15 +1031,7 @@ msgstr ""
 msgid "Your order"
 msgstr ""
 
-#: /Users/dennis/Dropbox/localhost/vendidero/wp-content/plugins/woocommerce-germanized/templates/checkout/review-order.php:144
-msgid "Cart Subtotal"
-msgstr ""
-
-#: /Users/dennis/Dropbox/localhost/vendidero/wp-content/plugins/woocommerce-germanized/templates/checkout/review-order.php:198
-msgid "Order Total"
-msgstr ""
-
-#: /Users/dennis/Dropbox/localhost/vendidero/wp-content/plugins/woocommerce-germanized/templates/checkout/review-order.php:210
+#: /Users/dennis/Dropbox/localhost/vendidero/wp-content/plugins/woocommerce-germanized/templates/checkout/review-order.php:212
 msgid ""
 "Since your browser does not support JavaScript, or it is disabled, please "
 "ensure you click the <em>Update Totals</em> button before placing your "
@@ -1001,11 +1039,11 @@ msgid ""
 "do so."
 msgstr ""
 
-#: /Users/dennis/Dropbox/localhost/vendidero/wp-content/plugins/woocommerce-germanized/templates/checkout/review-order.php:210
+#: /Users/dennis/Dropbox/localhost/vendidero/wp-content/plugins/woocommerce-germanized/templates/checkout/review-order.php:212
 msgid "Update totals"
 msgstr ""
 
-#: /Users/dennis/Dropbox/localhost/vendidero/wp-content/plugins/woocommerce-germanized/templates/checkout/review-order.php:226
+#: /Users/dennis/Dropbox/localhost/vendidero/wp-content/plugins/woocommerce-germanized/templates/checkout/review-order.php:228
 msgid "Place order"
 msgstr ""
 
@@ -1121,6 +1159,10 @@ msgstr ""
 msgid "Cheatin&#8217; huh?"
 msgstr ""
 
-#: /Users/dennis/Dropbox/localhost/vendidero/wp-content/plugins/woocommerce-germanized/woocommerce-germanized.php:383
+#: /Users/dennis/Dropbox/localhost/vendidero/wp-content/plugins/woocommerce-germanized/woocommerce-germanized.php:386
 msgid "Docs"
+msgstr ""
+
+#: /Users/dennis/Dropbox/localhost/vendidero/wp-content/plugins/woocommerce-germanized/woocommerce-germanized.php:494
+msgid "Order Total:"
 msgstr ""

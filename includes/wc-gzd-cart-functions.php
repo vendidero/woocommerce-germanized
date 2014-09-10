@@ -62,3 +62,23 @@ function wc_gzd_cart_totals_order_total_tax_html() {
 		}
 	}
 }
+
+function wc_gzd_get_legal_plain_text() {
+	$plain_text = '';
+	if ( get_option( 'woocommerce_gzd_checkout_plain_text' ) ) {
+		$plain_text = get_option( 'woocommerce_gzd_checkout_plain_text' );
+		$plain_text = str_replace( 
+			array( '{term_link}', '{data_security_link}', '{revocation_link}', '{/term_link}', '{/data_security_link}', '{/revocation_link}' ), 
+			array( 
+				'<a href="' . esc_url( get_permalink( wc_get_page_id( 'terms' ) ) ) . '" target="_blank">',
+				'<a href="' . esc_url( get_permalink( wc_get_page_id( 'data_security' ) ) ) . '" target="_blank">', 
+				'<a href="' . esc_url( get_permalink( wc_get_page_id( 'revocation' ) ) ) . '" target="_blank">', 
+				'</a>',
+				'</a>',
+				'</a>', 
+			), 
+			$plain_text 
+		);
+	}
+	return $plain_text;
+}

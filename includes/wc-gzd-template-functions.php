@@ -177,19 +177,7 @@ if ( ! function_exists( 'woocommerce_gzd_template_checkout_legal_combined' ) ) {
 	 */
 	function woocommerce_gzd_template_checkout_legal_combined() {
 		$first = true;
-		echo '<p class="form-row terms">';
-		if ( get_option( 'woocommerce_gzd_display_checkout_terms' ) == 'yes' ) {
-			$first = false; 
-			echo sprintf( __( 'I&rsquo;ve read and accept the <a href="%s" target="_blank">terms &amp; conditions</a>', 'woocommerce-germanized' ), esc_url( get_permalink( wc_get_page_id( 'terms' ) ) ) );
-		}
-		if ( get_option( 'woocommerce_gzd_display_checkout_legal_data_security' ) == 'yes' ) {
-			echo ( ! $first ) ? ', ' . sprintf( __( '<a href="%s" target="_blank">data privacy statement</a>', 'woocommerce-germanized' ), esc_url( get_permalink( wc_get_page_id( 'data_security' ) ) ) ) : sprintf( __( 'I&rsquo;ve read and accept the <a href="%s" target="_blank">data privacy statement</a>', 'woocommerce-germanized' ), esc_url( get_permalink( wc_get_page_id( 'data_security' ) ) ) ); 
-			$first = false; 
-		}
-		if ( get_option( 'woocommerce_gzd_display_checkout_legal_revocation' ) == 'yes' ) {
-			echo ( ! $first ) ? ', ' . sprintf( __( '<a href="%s" target="_blank">power of revocation</a>', 'woocommerce-germanized' ), esc_url( get_permalink( wc_get_page_id( 'revocation' ) ) ) ) : sprintf( __( 'I&rsquo;ve read and accept the <a href="%s" target="_blank">power of revocation</a>', 'woocommerce-germanized' ), esc_url( get_permalink( wc_get_page_id( 'revocation' ) ) ) ); 
-		}
-		echo '</p>';
+		echo '<p class="form-row terms">' . wc_gzd_get_legal_plain_text() . '</p>';
 	}
 
 }

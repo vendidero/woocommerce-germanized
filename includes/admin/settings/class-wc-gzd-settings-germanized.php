@@ -357,11 +357,21 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 
 			array(
 				'title' 	=> __( 'Checkout Legal Display', 'woocommerce-germanized' ),
-				'desc' 		=> __( 'Use Plain Text as legal notice (terms, data security statement, revocation)', 'woocommerce-germanized' ),
+				'desc' 		=> __( 'Use Plain Text as legal notice', 'woocommerce-germanized' ),
 				'id' 		=> 'woocommerce_gzd_display_checkout_legal_plain',
 				'desc_tip'	=> __( 'This version will remove checkboxes from Checkout and display a text instead. This seems to be legally compliant (Zalando & Co are using this option).', 'woocommerce-germanized' ),
 				'default'	=> 'no',
 				'type' 		=> 'checkbox',
+			),
+
+			array(
+				'title' 	=> __( 'Legal Plain Text', 'woocommerce-germanized' ),
+				'desc' 		=> __( 'Choose a Plain Text which will be shown instead of checkboxes. Use {term_link}{/term_link}, {data_security_link}{/data_security_link}, {revocation_link}{/revocation_link} as Placeholders for the links to legal pages.', 'woocommerce-germanized' ),
+				'desc_tip'	=> true,
+				'default'   =>  __( 'With your order, you agree to have read and understood our {term_link}Terms and Conditions{/term_link}, {data_security_link}Data Security Statement{/data_security_link} and your {revocation_link}Right of Recission{/revocation_link}.', 'woocommerce-germanized' ),
+				'css' 		=> 'width:100%; height: 65px;',
+				'id' 		=> 'woocommerce_gzd_checkout_plain_text',
+				'type' 		=> 'textarea',
 			),
 
 			array(
