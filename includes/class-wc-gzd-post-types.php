@@ -1,0 +1,59 @@
+<?php
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly
+}
+
+/**
+ * Registers delivery time taxonomy
+ *
+ * @class 		WC_GZD_Post_Types
+ * @version		1.0.0
+ * @author 		Vendidero
+ */
+class WC_GZD_Post_Types {
+
+	/**
+	 * Hook in methods
+	 */
+	public static function init() {
+		add_action( 'init', array( __CLASS__, 'register_taxonomies' ), 11 );
+	}
+
+	/**
+	 * Register Delivery Time Taxonomy
+	 */
+	public static function register_taxonomies() {
+		register_taxonomy( 'product_delivery_time',
+			apply_filters( 'woocommerce_germanized_taxonomy_objects_product_delivery_time', array( 'product' ) ),
+			apply_filters( 'woocommerce_germanized_taxonomy_args_product_delivery_time', array(
+				'hierarchical'          => false,
+				'update_count_callback' => '_wc_term_recount',
+				'label'                 => __( 'Product Delivery Times', 'woocommerce-germanized' ),
+				'labels' => array(
+						'name'              => __( 'Product Delivery Times', 'woocommerce-germanized' ),
+						'singular_name'     => __( 'Product Delivery Time', 'woocommerce-germanized' ),
+						'menu_name'         => _x( 'Delivery Time', 'Admin menu name', 'woocommerce-germanized' ),
+						'search_items'      => __( 'Search Delivery Times', 'woocommerce-germanized' ),
+						'all_items'         => __( 'All Product Delivery Times', 'woocommerce-germanized' ),
+						'edit_item'         => __( 'Edit Product Delivery Time', 'woocommerce-germanized' ),
+						'update_item'       => __( 'Update Product Delivery Time', 'woocommerce-germanized' ),
+						'add_new_item'      => __( 'Add New Product Delivery Time', 'woocommerce-germanized' ),
+						'new_item_name'     => __( 'New Product Delivery Time Name', 'woocommerce-germanized' )
+					),
+				'show_ui'				=> true,
+				'query_var'             => true,
+				'public'				=> false,
+				'capabilities'          => array(
+					'manage_terms' => 'manage_product_terms',
+					'edit_terms'   => 'edit_product_terms',
+					'delete_terms' => 'delete_product_terms',
+					'assign_terms' => 'assign_product_terms',
+				),
+				'rewrite'           	=> false,
+			) )
+		);
+	}
+}
+
+WC_GZD_Post_types::init();

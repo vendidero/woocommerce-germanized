@@ -1,0 +1,27 @@
+ ☐ Kleinunternehmerregelung §19 UStG
+ ☐ Grundpreise (z.B. 1l = 10 €)
+ ☐ Versandkostenhinweis in unmittelbarer Nähe zum Preis (§312e BGB)
+ ☐ Lieferzeiten: z.B. 1-3 Werktage
+ ☐ Trusted Shops Implementierung
+ ☐ Standard-Seiten anlegen: Widerrufsrecht, AGB, Impressum, Versandkosten
+ ☐ Anzeigen welche Schritte zur rechtssicherheit noch fehlen
+Cart:
+  ☐ Produktbeschreibung (wesentliche Mermale)
+  ☐ Gesamtpreis
+  ☐ Versand- und Zusatzkosten
+Checkout/Abschluss:
+ ☐ Eingabefehler-Überprüfung vor Abschluss der Bestellung
+ ☐ Bestellbestätigung / Annahme des Vertrags (entweder durch 2. Mail oder Zustellung der Ware)
+ ☐ AGB abruf- und speicherbar
+Informationspflichten:
+ ☐ Identität Unternehmer: Anschrift, Telefonnummer, E-Mail-Adresse 
+ ☐ Zahlungs-, Liefer-, und Leistungsbedingungen und den Liefertermin 
+ ☐ Verfahren des Onlinehändlers beim Umgang mit Beschwerden 
+ ☐ Widerrufsrecht einschließlich Bedingungen, Fristen und das Verfahren mit Muster-Widerrufsformular 
+ ☐ Ggf. Belehrung darüber, dass der Verbraucher im Falle des Widerrufs die Kosten für die Rücksendung trägt 
+Payment-Schnittstellen:
+ ☐ Billpay
+ ☐ Billsafe
+ ☐ RatePay
+ ☐ Sofortüberweisung
+ ☐ Giropay

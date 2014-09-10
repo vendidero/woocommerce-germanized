@@ -1,0 +1,37 @@
+.wc-gzd-logo {
+	display: inline-block;
+	text-indent: -9999px;
+	width: 298px;
+	vertical-align: top;
+	margin-top: 2rem;
+	height: 89px;
+	background: url(../images/wc-germanized.svg) no-repeat;
+	background-size: 298px auto;
+}
+.about-text {
+	display: inline-block;
+	padding: 0;
+	max-width: 50%;
+	width: 50%;
+	margin: 0;
+	margin-top: 2rem;
+	margin-left: 5%;
+}
+p.wc-gzd-actions a.button-primary, .woocommerce-gzd-message .button-primary {
+	background-color: #262626 !important;
+	border: 1px solid #000 !important;
+}
+p.wc-gzd-actions a.button-primary:hover, .woocommerce-gzd-message .button-primary:hover {
+	background-color: #363636 !important;
+	border: 1px solid #000 !important;
+}
+.woocommerce-gzd-message .form-table tr td, .woocommerce-gzd-message .form-table tr th {
+	padding: 0.7rem 0;
+	margin: 0;
+}
+.woocommerce-gzd-message a.wc-gzd-skip {
+	opacity: .7;
+}
+.woocommerce-gzd-message {
+	border-left: 4px solid #bb2525 !important;
+}
