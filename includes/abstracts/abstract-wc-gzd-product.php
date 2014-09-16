@@ -47,6 +47,12 @@ class WC_GZD_Product extends WC_Product {
 		return $value;
 	}
 
+	public function get_mini_desc() {
+		if ( $this->mini_desc )
+			return apply_filters( 'the_content', $this->mini_desc );
+		return false;
+	}
+
 	/**
 	 * Gets a product's tax description (if is taxable)
 	 *  

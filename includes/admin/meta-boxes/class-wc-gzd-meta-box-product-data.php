@@ -47,6 +47,9 @@ class WC_Germanized_Meta_Box_Product_Data {
 				update_post_meta( $post_id, '_unit_price', ( $_POST['_unit_price_sale'] === '' ) ? '' : wc_format_decimal( $_POST['_unit_price_sale'] ) );
 			}
 		}
+		if ( isset( $_POST[ '_mini_desc' ] ) ) {
+			update_post_meta( $post_id, '_mini_desc', $_POST[ '_mini_desc' ] );
+		}
 	}
 
 }

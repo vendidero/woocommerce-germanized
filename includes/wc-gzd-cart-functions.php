@@ -16,7 +16,14 @@ function wc_gzd_get_tax_rate( $tax_rate_id ) {
 	if ( ! empty( $rate ) )
 		return $rate[0];
 	return false; 
-} 
+}
+
+function wc_gzd_product_item_desc( $title, $item ) {
+	$new = $title;
+	if ( isset( $item[ 'product_id' ] ) && get_post_meta( $item[ 'product_id' ], '_mini_desc', true ) )
+		$new .= '<div class="wc-gzd-item-desc item-desc">' . apply_filters( 'the_content', get_post_meta( $item[ 'product_id' ], '_mini_desc', true ) ) . '</div>';
+	return $new;
+}
 
 /**
  * Get order total html
@@ -54,7 +61,7 @@ function wc_gzd_cart_totals_order_total_tax_html() {
 		if ( ! empty( $tax_array ) ) {	
 			foreach ( $tax_array as $tax ) {
 				echo '
-					<tr class="small tax">
+					<tr class="order-tax">
 						<th>' . sprintf( __( 'incl. %s%% VAT', 'woocommerce-germanized' ), $tax[ 'tax' ]->rate ) . '</th> 
 						<td>' . $tax[ 'amount' ] . '</td>
 					</tr>';

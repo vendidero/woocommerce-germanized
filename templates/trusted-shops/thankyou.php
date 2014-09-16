@@ -9,7 +9,7 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-$order = get_order( $order_id );
+$order = wc_get_order( $order_id );
 
 ?>
 <h2><?php echo _x( 'Buyer Protection', 'trusted-shops', 'woocommerce-germanized' ); ?></h2>

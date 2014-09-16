@@ -27,7 +27,7 @@ class WC_GZD_Emails {
 		);
 
 		add_action( 'woocommerce_email_footer', array( $this, 'add_template_footers' ) );
-		add_action( 'woocommerce_order_item_name', array( $this, 'add_item_title_desc' ), 0, 2 );
+		add_action( 'woocommerce_order_item_name', 'wc_gzd_product_item_desc', 0, 2 );
 
 		$mails = WC()->mailer()->get_emails();
 
@@ -38,16 +38,9 @@ class WC_GZD_Emails {
 		}
 	}
 
-	/**
-	 * Adds the product description beneath the item title within Order emails
-	 *  
-	 * @param string $item_name 
-	 * @param mixed $item      
-	 */
-	public function add_item_title_desc( $item_name, $item ) {
-		return $item_name . '<div class="wc-gzd-product-small-desc">' . apply_filters( 'woocommerce_short_description', get_post_field( 'post_excerpt', $item['product_id'] ) ) . '</div>';
+	public function order_item_desc( $item_name, $item ) {
+		return wc_gzd_product_item_desc( $item_name, $item );
 	}
-
 	/**
 	 * Hook into Email Footer and attach legal page content if necessary
 	 *  

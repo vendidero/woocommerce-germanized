@@ -110,7 +110,7 @@ p.footer-info {
 table.order_details td.product-name {
 	width: 60%;
 }
-.order_item .product-name a, .order_item .product-name .wc-gzd-product-small-desc {
+.order_item .product-name a, .order_item .product-name .wc-gzd-item-desc {
 	float: left;
 	width: 90%;
 }

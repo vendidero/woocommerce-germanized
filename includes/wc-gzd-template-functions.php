@@ -271,4 +271,12 @@ if ( ! function_exists( 'woocommerce_gzd_add_variation_options' ) ) {
 
 }
 
+if ( ! function_exists( 'woocommerce_gzd_template_order_success_text' ) ) {
+
+	function woocommerce_gzd_template_order_success_text( $text ) {
+		return ( get_option( 'woocommerce_gzd_order_success_text' ) ? get_option( 'woocommerce_gzd_order_success_text' ) : $text );
+	}
+
+}
+
 ?>

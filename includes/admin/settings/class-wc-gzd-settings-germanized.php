@@ -35,6 +35,7 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 	public function get_sections() {
 		$sections = array(
 			''   		 	=> __( 'General Options', 'woocommerce-germanized' ),
+			'display'       => __( 'Display Options', 'woocommerce-germanized' ),
 			'trusted_shops' => _x( 'Trusted Shops Options', 'trusted-shops', 'woocommerce-germanized' ),
 			'ekomi'         => _x( 'eKomi Options', 'ekomi', 'woocommerce-germanized' ),
 		);
@@ -88,6 +89,14 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 				'type' 		=> 'text',
 				'css' 		=> 'min-width:300px;',
 				'default'	=> __( 'Buy Now', 'woocommerce-germanized' ),
+			),
+
+			array(
+				'title' 	=> __( 'Phone as required field', 'woocommerce-germanized' ),
+				'desc' 		=> __( 'Should phone number be a required field within checkout?', 'woocommerce-germanized' ),
+				'id' 		=> 'woocommerce_gzd_checkout_phone_required',
+				'type' 		=> 'checkbox',
+				'default'	=> 'no',
 			),
 
 			array( 'type' => 'sectionend', 'id' => 'general_options' ),
@@ -269,7 +278,14 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 
 			array( 'type' => 'sectionend', 'id' => 'email_options' ),
 
-			array(	'title' => __( 'Display', 'woocommerce-germanized' ), 'type' => 'title', 'id' => 'display_options' ),
+		) ); // End general settings
+	}
+
+	public function get_display_settings() {
+
+		return array(
+
+			array(	'title' => __( 'General', 'woocommerce-germanized' ), 'type' => 'title', 'id' => 'general_options' ),
 
 			array(
 				'title' 	=> __( 'Add to Cart', 'woocommerce-germanized' ),
@@ -279,6 +295,27 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 				'type' 		=> 'checkbox',
 				'desc_tip'	=> sprintf( __( 'unset this option if you don\'t want to show the add to cart button within the product listings', 'woocommerce-germanized' ), esc_url( 'http://www.gesetze-im-internet.de/ustg_1980/__19.html' ) )
 			),
+
+			array(
+				'title' 	=> __( 'Notice Footer', 'woocommerce-germanized' ),
+				'desc' 		=> __( 'Show a global VAT notice within footer', 'woocommerce-germanized' ),
+				'id' 		=> 'woocommerce_gzd_display_footer_vat_notice',
+				'default'	=> 'no',
+				'type' 		=> 'checkbox',
+				'checkboxgroup'	=> 'start'
+			),
+
+			array(
+				'desc' 		=> __( 'Show a global sale price notice within footer', 'woocommerce-germanized' ),
+				'id' 		=> 'woocommerce_gzd_display_footer_sale_price_notice',
+				'type' 		=> 'checkbox',
+				'default'	=> 'no',
+				'checkboxgroup'		=> 'end',
+			),
+
+			array( 'type' => 'sectionend', 'id' => 'general_options' ),
+
+			array(	'title' => __( 'Products', 'woocommerce-germanized' ), 'type' => 'title', 'id' => 'product_options' ),
 
 			array(
 				'title' 	=> __( 'Show within Product Listings', 'woocommerce-germanized' ),
@@ -338,22 +375,9 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 				'checkboxgroup'		=> 'end',
 			),
 
-			array(
-				'title' 	=> __( 'Notice Footer', 'woocommerce-germanized' ),
-				'desc' 		=> __( 'Show a global VAT notice within footer', 'woocommerce-germanized' ),
-				'id' 		=> 'woocommerce_gzd_display_footer_vat_notice',
-				'default'	=> 'no',
-				'type' 		=> 'checkbox',
-				'checkboxgroup'	=> 'start'
-			),
+			array( 'type' => 'sectionend', 'id' => 'product_options' ),
 
-			array(
-				'desc' 		=> __( 'Show a global sale price notice within footer', 'woocommerce-germanized' ),
-				'id' 		=> 'woocommerce_gzd_display_footer_sale_price_notice',
-				'type' 		=> 'checkbox',
-				'default'	=> 'no',
-				'checkboxgroup'		=> 'end',
-			),
+			array(	'title' => __( 'Checkout & Cart', 'woocommerce-germanized' ), 'type' => 'title', 'id' => 'checkout_options' ),
 
 			array(
 				'title' 	=> __( 'Checkout Legal Display', 'woocommerce-germanized' ),
@@ -399,9 +423,27 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 				'checkboxgroup'		=> 'end',
 			),
 
-			array( 'type' => 'sectionend', 'id' => 'display_options' ),
+			array(
+				'title' 	=> __( 'Order Success Text', 'woocommerce-germanized' ),
+				'desc' 		=> __( 'Choose a custom text to display on order success page.', 'woocommerce-germanized' ),
+				'desc_tip'	=> true,
+				'css' 		=> 'width:100%; height: 65px;',
+				'id' 		=> 'woocommerce_gzd_order_success_text',
+				'type' 		=> 'textarea',
+			),
 
-		) ); // End general settings
+			array(
+				'title' 	=> __( 'Order Success Data', 'woocommerce-germanized' ),
+				'desc' 		=> __( 'Hide product table and customer data on order success page', 'woocommerce-germanized' ),
+				'id' 		=> 'woocommerce_gzd_hide_order_success_details',
+				'type' 		=> 'checkbox',
+				'default'	=> 'no',
+			),
+
+			array( 'type' => 'sectionend', 'id' => 'checkout_options' ),
+
+		);
+
 	}
 
 	public function output() {
@@ -411,6 +453,8 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 				$settings = WC_germanized()->trusted_shops->get_settings();
 			else if ( $current_section == 'ekomi' )
 				$settings = WC_germanized()->ekomi->get_settings();
+			else if ( $current_section == 'display' )
+				$settings = $this->get_display_settings();
  		} else {
 			$settings = $this->get_settings();
 		}
@@ -429,6 +473,8 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 				$settings = WC_germanized()->trusted_shops->get_settings();
 			else if ( $current_section == 'ekomi' )
 				$settings = WC_germanized()->ekomi->get_settings();
+			else if ( $current_section == 'display' )
+				$settings = $this->get_display_settings();
  		} else {
 			$settings = $this->get_settings();
 		}

@@ -17,7 +17,19 @@ setup_postdata( $GLOBALS['post'] =& $post_attach );
 
 	<h4><?php the_title();?></h4>
 
-	<?php the_content();?>
+	<div class="wc-gzd-email-attached-content">
+
+		<?php if (  ! has_excerpt( $post->ID ) ) : ?>
+
+			<?php the_content();?>
+
+		<?php else : ?>
+
+			<?php the_excerpt(); ?>
+
+		<?php endif; ?>
+
+	</div>
 
 </div>
 

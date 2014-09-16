@@ -228,6 +228,7 @@ final class WooCommerceGermanized {
 	private function includes() {
 
 		if ( is_admin() ) {
+			include_once 'includes/admin/class-wc-gzd-admin.php';
 			include_once 'includes/admin/class-wc-gzd-admin-welcome.php';
 			include_once 'includes/admin/class-wc-gzd-admin-notices.php';
 			include_once 'includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php';
@@ -247,6 +248,9 @@ final class WooCommerceGermanized {
 
 		// Abstracts
 		include_once 'includes/abstracts/abstract-wc-gzd-product.php';
+
+		include_once 'includes/wc-gzd-cart-functions.php';
+		include_once 'includes/class-wc-gzd-checkout.php';
 	}
 
 	/**
@@ -260,7 +264,6 @@ final class WooCommerceGermanized {
 	 * Include required frontend files.
 	 */
 	public function frontend_includes() {
-		include_once 'includes/wc-gzd-cart-functions.php';
 		include_once 'includes/wc-gzd-template-hooks.php';
 	}
 

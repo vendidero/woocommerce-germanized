@@ -2,3 +2,7 @@ table.data_table tr td p.form-field {
 	margin: 0 !important;
 	padding: 0 !important;
 }
+
+#wp-wc_gzd_product_mini_desc-wrap {
+	margin-top: -2em;
+}
