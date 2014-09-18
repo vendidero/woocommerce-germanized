@@ -180,7 +180,7 @@ class WC_GZD_Trusted_Shops {
 		$html = '';
 		if ( !empty( $rating ) && $this->is_enabled() && $this->is_rateable() ) {
 			$html = '
-				<span itemscope itemtype="http://data-vocabulary.org/Review-aggregate" class="wc-gzd-trusted-shops-rating-widget">
+				<div itemscope itemtype="http://data-vocabulary.org/Review-aggregate" class="wc-gzd-trusted-shops-rating-widget">
 					<a href="' . $this->get_certificate_link() . '" target="_blank"><span itemprop="itemreviewed"><strong>' . get_bloginfo( 'name' ) . '</strong></span></a>
 					<div class="star-rating" title="' . sprintf( _x( 'Rated %s out of %s', 'trusted-shops', 'woocommerce-germanized' ), $rating['avg'], (int) $rating['max'] ) . '">
 						<span style="width:' . ( ( $rating['avg'] / 5 ) * 100 ) . '%">
@@ -191,7 +191,7 @@ class WC_GZD_Trusted_Shops {
 					<span itemprop="rating" itemscope itemtype="http://data-vocabulary.org/Rating">
 		         		' . sprintf( _x( '&#216; <span itemprop="average">%s</span> of <span itemprop="best">%s</span> based on <span class="count">%s</span> <a href="%s" target="_blank">ratings</a>.', 'trusted-shops', 'woocommerce-germanized' ), $rating['avg'], (int) $rating['max'], $rating['count'], $this->get_rating_link() ) . '
 		    		</span>
-		   		</span>
+		   		</div>
 		   	';
 		}
 		return $html;

@@ -73,7 +73,6 @@ class WC_GZD_Shortcodes {
 		ob_start();
 		woocommerce_get_template( 'trusted-shops/rating.php' );
 		$html = ob_get_clean();
-		ob_end_clean();
 		return WC_germanized()->trusted_shops->is_enabled() ? '<div class="woocommerce woocommerce-gzd">' . $html . '</div>' : '';
 	
 	}

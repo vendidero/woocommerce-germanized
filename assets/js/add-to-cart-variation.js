@@ -22,7 +22,6 @@
 		$form = this
 
 		.on( 'found_variation', function( event, variation ) {
-			$('.single_variation .price').hide();
 			if ( ! $('.product .summary p.price').hasClass('variation_modified') ) {
 				$('.product .summary').append( '<div class="org_price org_product_info">' + $('.product .summary p.price').html() + '</div>' );
 				if ( $( '.product .summary .delivery-time-info' ).length > 0 ) {
@@ -32,7 +31,10 @@
 					$('.product .summary').append( '<div class="org_unit_price org_product_info">' + $('.product .summary p.price-unit').html() + '</div>' );
 				$('.org_product_info').hide();
 			}
-			$('.product .summary p.price').html( variation.price_html ).addClass('variation_modified');
+			if ( variation.price_html != '' ) {
+				$('.single_variation .price').hide();
+				$('.product .summary p.price').html( variation.price_html ).addClass('variation_modified');
+			}
 			$('.product .summary p.delivery-time-info').hide();
 			$('.product .summary .price-unit').hide();
 			if ( variation.delivery_time != '' )
