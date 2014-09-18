@@ -190,7 +190,7 @@ class WC_GZD_Product extends WC_Product {
 			array_values( $delivery_time );
 			$delivery_time = $delivery_time[0];
 		}
-		return ( ! is_wp_error( $delivery_time ) && ! empty( $delivery_time ) ) ? array_values( $delivery_time )[0] : false;
+		return ( ! is_wp_error( $delivery_time ) && ! empty( $delivery_time ) ) ? $delivery_time : false;
 	}
 
 	/**
