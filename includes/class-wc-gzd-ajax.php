@@ -53,8 +53,10 @@ class WC_GZD_AJAX {
 							wc_add_notice( '<strong>' . $field['label'] . '</strong> ' . _x( 'is not valid.', 'revocation-form', 'woocommerce-germanized' ), 'error' );
 					}
 					if ( !empty( $_POST[ $key ] ) ) {
-						if ( $field['type'] == 'country' )
-							$data[ $key ] = WC()->countries->get_countries()[sanitize_text_field( $_POST[ $key ] )];
+						if ( $field['type'] == 'country' ) {
+							$countries = WC()->countries->get_countries();
+							$data[ $key ] = $countries[sanitize_text_field( $_POST[ $key ] )];
+						}
 						else
 							$data[ $key ] = sanitize_text_field( $_POST[ $key ] );
 					}
