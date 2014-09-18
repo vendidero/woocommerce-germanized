@@ -222,10 +222,13 @@ class WC_GZD_Trusted_Shops {
 
 					$xml = new SimpleXMLElement( $output );
 					$xPath = '/shop/ratings/result[@name="average"]';
-					$update['avg'] = ( float ) $xml -> xpath( $xPath )[0];
-					$update['max'] = '5.00';
-					$update['count'] = ( string ) $xml->ratings["amount"][0];
-
+					$avg = $xml->xpath( $xPath );
+					if ( ! empty( $avg[0] ) ) {
+						$update['avg'] = ( float ) $avg[0];
+						$update['max'] = '5.00';
+						$update['count'] = ( string ) $xml->ratings["amount"][0];
+					}
+					
 				}
 
 			}
