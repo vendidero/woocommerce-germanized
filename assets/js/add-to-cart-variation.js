@@ -41,7 +41,7 @@
 				$('p.delivery-time-info').html( variation.delivery_time ).addClass('variation_modified').show();
 			if ( variation.unit_price != '' ) {
 				$('.product .summary .price-unit').remove();
-				$('.wc-gzd-additional-info:first').before('<p class="price price-unit smaller variation_modified">' + variation.unit_price + '</p>').show();
+				$('.summary .offer').after('<p class="price price-unit smaller variation_modified">' + variation.unit_price + '</p>').show();
 			}
 		})
 
