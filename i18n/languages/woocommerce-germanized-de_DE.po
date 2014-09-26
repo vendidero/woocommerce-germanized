@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce Germanized\n"
-"POT-Creation-Date: 2014-09-16 11:46+0100\n"
-"PO-Revision-Date: 2014-09-16 11:47+0100\n"
+"POT-Creation-Date: 2014-09-25 13:12+0100\n"
+"PO-Revision-Date: 2014-09-25 13:17+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -60,13 +60,13 @@ msgstr "ml"
 msgid "l"
 msgstr "l"
 
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/abstracts/abstract-wc-gzd-product.php:68
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/abstracts/abstract-wc-gzd-product.php:72
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/woocommerce-germanized.php:519
 #, php-format
 msgid "incl. %s VAT"
 msgstr "inkl. %s MwSt."
 
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/abstracts/abstract-wc-gzd-product.php:68
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/abstracts/abstract-wc-gzd-product.php:72
 #, php-format
 msgid "excl. %s VAT"
 msgstr "exkl. %s MwSt."
@@ -76,43 +76,10 @@ msgid "About WooCommerce Germanized"
 msgstr "Über WooCommerce Germanized"
 
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/class-wc-gzd-admin-welcome.php:54
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/class-wc-gzd-admin-welcome.php:102
 msgid "Welcome to WooCommerce Germanized"
 msgstr "Willkommen bei WooCommerce Germanized"
 
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/class-wc-gzd-admin-welcome.php:107
-msgid "Thanks, all done!"
-msgstr "Danke, alles erledigt!"
-
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/class-wc-gzd-admin-welcome.php:109
-msgid "Thank you for updating to the latest version!"
-msgstr "Danke, dass Sie die neueste Version installiert haben!"
-
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/class-wc-gzd-admin-welcome.php:111
-msgid "Thanks for installing!"
-msgstr "Danke fürs installieren!"
-
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/class-wc-gzd-admin-welcome.php:113
-#, php-format
-msgid ""
-"%s<br/>WooCommerce Germanized %s upgrades WooCommerce to a legally compliant "
-"german Webshop for WordPress."
-msgstr ""
-"%s<br/>WooCommerce Germanized %s erweitert Ihre WooCommerce Installation um "
-"rechtlich relevante Spezifikationen für den Betrieb eines Online-Shops in "
-"Deutschland."
-
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/class-wc-gzd-admin-welcome.php:117
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/woocommerce-germanized.php:388
-msgid "Settings"
-msgstr "Einstellungen"
-
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/class-wc-gzd-admin-welcome.php:118
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/woocommerce-germanized.php:390
-msgid "Premium Support"
-msgstr "Professionelle Hilfe"
-
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/class-wc-gzd-admin-welcome.php:170
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/class-wc-gzd-admin-welcome.php:204
 msgid "Go to WooCommerce Germanized Settings"
 msgstr "zu den WooCommerce Germanized Einstellungen"
 
@@ -155,7 +122,7 @@ msgstr "Einheit"
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:36
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:64
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:52
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-trusted-shops.php:244
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-trusted-shops.php:247
 msgid "None"
 msgstr "Keine"
 
@@ -540,8 +507,8 @@ msgid "Checkout Legal Display"
 msgstr "Checkbox oder Text"
 
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:384
-msgid "Use Plain Text as legal notice"
-msgstr "Text anstatt Checkboxen im Checkout anzeigen."
+msgid "Use Text without Checkbox"
+msgstr "Rechtshinweis ohne Checkbox"
 
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:386
 msgid ""
@@ -554,13 +521,13 @@ msgstr ""
 "diese Form)"
 
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:392
-msgid "Legal Plain Text"
+msgid "Legal Text"
 msgstr "Rechtlicher Hinweistext"
 
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:393
 msgid ""
-"Choose a Plain Text which will be shown instead of checkboxes. Use "
-"{term_link}{/term_link}, {data_security_link}{/data_security_link}, "
+"Choose a Plain Text which will be shown right above checkout submit button. "
+"Use {term_link}{/term_link}, {data_security_link}{/data_security_link}, "
 "{revocation_link}{/revocation_link} as Placeholders for the links to legal "
 "pages."
 msgstr ""
@@ -582,36 +549,49 @@ msgstr ""
 "Widerrufsbestimmungen{/revocation_link} einverstanden."
 
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:402
-msgid "Checkout Legal"
-msgstr "Checkboxen"
+msgid "Legal Text Error"
+msgstr "Fehlermeldung der Checkbox"
 
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:403
-msgid "Show Terms and Conditions"
-msgstr "AGB bestätigen"
+msgid ""
+"If you have chosen to use checkbox validation please choose a error message "
+"which will be shown if the user doesn't check checkbox. Use {term_link}{/"
+"term_link}, {data_security_link}{/data_security_link}, {revocation_link}{/"
+"revocation_link} as Placeholders for the links to legal pages."
+msgstr ""
+"Falls Sie sich dazu entschieden haben, eine Checkbox zu nutzen, können Sie "
+"hier die Fehlermeldung eingeben, die angezeigt wird, wenn ein Benutzer die "
+"Checkbox nicht aktiviert hat. Nutzen Sie die Platzhalter um Links zu den "
+"jeweiligen Hinweisseiten einzufügen: {term_link}{/term_link}, "
+"{data_security_link}{/data_security_link}, {revocation_link}{/"
+"revocation_link}"
 
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:411
-msgid "Show Data Security Statement"
-msgstr "Datenschutzbelehrung bestätigen"
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:405
+msgid ""
+"To finish the order you have to accept to our {term_link}Terms and "
+"Conditions{/term_link}, {data_security_link}Data Security Statement{/"
+"data_security_link} and {revocation_link}Right of Recission{/"
+"revocation_link}."
+msgstr ""
+"Bitte akzeptieren Sie unsere {term_link}Allgemeinen Geschäftsbedingungen{/"
+"term_link}, {data_security_link}Datenschutzbestimmungen{/data_security_link} "
+"und {revocation_link}Widerrufsbestimmungen{/revocation_link}."
 
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:419
-msgid "Show Power of Revocation"
-msgstr "Widerrufsbelehrung bestätigen"
-
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:427
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:412
 msgid "Order Success Text"
 msgstr "Bestellung eingegangen"
 
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:428
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:413
 msgid "Choose a custom text to display on order success page."
 msgstr ""
 "Hier können Sie einen individuellen kurzen Text eingeben, der nach der "
 "Bestellung ausgegeben wird."
 
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:436
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:421
 msgid "Order Success Data"
 msgstr "Bestellbestätigungs-Daten"
 
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:437
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:422
 msgid "Hide product table and customer data on order success page"
 msgstr ""
 "Zusätzliche Produktdetails (Tabelle, Kundeninformationen) von der "
@@ -673,7 +653,7 @@ msgctxt "revocation-form"
 msgid "is not valid."
 msgstr "ist leider nicht korrekt."
 
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-ajax.php:66
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-ajax.php:68
 msgctxt "revocation-form"
 msgid ""
 "Thank you. We have received your Revocation Request. You will receive a "
@@ -1035,27 +1015,27 @@ msgstr ""
 "span> basierend auf <span class=\"count\">%s</span> <a href=\"%s\" target="
 "\"_blank\">Bewertungen</a>."
 
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-trusted-shops.php:248
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-trusted-shops.php:251
 msgctxt "trusted-shops"
 msgid "Trusted Shops Integration"
 msgstr "Trusted Shops Integration"
 
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-trusted-shops.php:251
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-trusted-shops.php:254
 msgctxt "trusted-shops"
 msgid "Shop ID"
 msgstr "Shop ID"
 
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-trusted-shops.php:252
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-trusted-shops.php:255
 msgctxt "trusted-shops"
 msgid "Insert your Shop ID here."
 msgstr "Fügen Sie hier ihre Shop ID ein."
 
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-trusted-shops.php:260
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-trusted-shops.php:263
 msgctxt "trusted-shops"
 msgid "Enable Reviews?"
 msgstr "Bewertungen aktivieren?"
 
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-trusted-shops.php:261
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-trusted-shops.php:264
 msgctxt "trusted-shops"
 msgid ""
 "Enable this option if you want to let your customers rate your Shop via "
@@ -1064,12 +1044,12 @@ msgstr ""
 "Aktivieren Sie diese Option, wenn Sie Ihre Kunden über die Trusted Shops "
 "Schnittstelle Ihren Shop bewerten lassen möchten"
 
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-trusted-shops.php:269
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-trusted-shops.php:272
 msgctxt "trusted-shops"
 msgid "Show Badge?"
 msgstr "Widget anzeigen?"
 
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-trusted-shops.php:270
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-trusted-shops.php:273
 #, php-format
 msgctxt "trusted-shops"
 msgid ""
@@ -1080,42 +1060,42 @@ msgstr ""
 "Mehr Informationen dazu finden Sie bei <a href=\"%s\" target=\"_blank"
 "\">Trusted Shops</a>"
 
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-trusted-shops.php:278
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-trusted-shops.php:281
 msgctxt "trusted-shops"
 msgid "Badge Variant"
 msgstr "Widget Variante"
 
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-trusted-shops.php:279
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-trusted-shops.php:282
 msgctxt "trusted-shops"
 msgid "Choose a Badge Variant"
 msgstr "Eine Widget Variante auswählen"
 
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-trusted-shops.php:286
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-trusted-shops.php:289
 msgctxt "trusted-shops"
 msgid "Default"
 msgstr "Standard"
 
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-trusted-shops.php:287
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-trusted-shops.php:290
 msgctxt "trusted-shops"
 msgid "Text"
 msgstr "Text"
 
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-trusted-shops.php:288
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-trusted-shops.php:291
 msgctxt "trusted-shops"
 msgid "Small"
 msgstr "Klein"
 
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-trusted-shops.php:289
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-trusted-shops.php:292
 msgctxt "trusted-shops"
 msgid "Reviews"
 msgstr "Bewertungen"
 
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-trusted-shops.php:295
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-trusted-shops.php:298
 msgctxt "trusted-shops"
 msgid "Review Reminder after"
 msgstr "Bewertungserinnerung nach"
 
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-trusted-shops.php:296
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-trusted-shops.php:299
 msgctxt "trusted-shops"
 msgid ""
 "If a customer chooses to rate your Shop later, how many days should be gone "
@@ -1125,7 +1105,7 @@ msgstr ""
 "erhält er nach x Tagen eine E-Mail von Trusted Shops in der er an die "
 "Bewertung noch einmal erinnert wird."
 
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-trusted-shops.php:333
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-trusted-shops.php:336
 #, php-format
 msgctxt "trusted-shops"
 msgid ""
@@ -1186,32 +1166,6 @@ msgstr "Bestellung bearbeiten"
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/wc-gzd-template-functions.php:140
 msgid "Choose a Payment Gateway"
 msgstr "Zahlungsmethode auswählen"
-
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/wc-gzd-template-functions.php:152
-#, php-format
-msgid ""
-"I&rsquo;ve read and accept the <a href=\"%s\" target=\"_blank\">data privacy "
-"statement</a>"
-msgstr ""
-"Ich habe die <a href=\"%s\" target=\"_blank\">Datenschutzbelehrung</a> "
-"gelesen und akzeptiert."
-
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/wc-gzd-template-functions.php:166
-#, php-format
-msgid ""
-"I&rsquo;ve read and accept the <a href=\"%s\" target=\"_blank\">power of "
-"revocation</a>"
-msgstr ""
-"Ich habe die <a href=\"%s\" target=\"_blank\">Widerrufsbelehrung</a> gelesen "
-"und akzeptiert."
-
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/wc-gzd-template-functions.php:192
-msgid "You must accept our Data Privacy Statement."
-msgstr "Bitte bestätigen Sie unsere Dateschutzbelehrung"
-
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/wc-gzd-template-functions.php:194
-msgid "You must accept the Power of Revocation."
-msgstr "Bitte bestätigen Sie unsere Widerrufsbelehrung"
 
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/widgets/class-wc-gzd-widget-trusted-shops-reviews.php:20
 msgctxt "trusted-shops"
@@ -1494,13 +1448,76 @@ msgstr ""
 "In unserer <a href=\"%s\" target=\"_blank\">Datenschutzbelehrung</a> finden "
 "Sie dazu weiterführende Informationen."
 
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/woocommerce-germanized.php:388
+msgid "Settings"
+msgstr "Einstellungen"
+
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/woocommerce-germanized.php:389
-msgid "Docs"
-msgstr "Dokumentation"
+msgid "Premium Support"
+msgstr "Professionelle Hilfe"
+
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/woocommerce-germanized.php:390
+msgid "VendiPro"
+msgstr "VendiPro"
 
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/woocommerce-germanized.php:497
 msgid "Order Total:"
 msgstr "Gesamtsumme"
+
+#~ msgid "Thanks, all done!"
+#~ msgstr "Danke, alles erledigt!"
+
+#~ msgid "Thank you for updating to the latest version!"
+#~ msgstr "Danke, dass Sie die neueste Version installiert haben!"
+
+#~ msgid "Thanks for installing!"
+#~ msgstr "Danke fürs installieren!"
+
+#~ msgid ""
+#~ "%s<br/>WooCommerce Germanized %s upgrades WooCommerce to a legally "
+#~ "compliant german Webshop for WordPress."
+#~ msgstr ""
+#~ "%s<br/>WooCommerce Germanized %s erweitert Ihre WooCommerce Installation "
+#~ "um rechtlich relevante Spezifikationen für den Betrieb eines Online-Shops "
+#~ "in Deutschland."
+
+#~ msgid "Use Plain Text as legal notice"
+#~ msgstr "Text anstatt Checkboxen im Checkout anzeigen."
+
+#~ msgid "Checkout Legal"
+#~ msgstr "Checkboxen"
+
+#~ msgid "Show Terms and Conditions"
+#~ msgstr "AGB bestätigen"
+
+#~ msgid "Show Data Security Statement"
+#~ msgstr "Datenschutzbelehrung bestätigen"
+
+#~ msgid "Show Power of Revocation"
+#~ msgstr "Widerrufsbelehrung bestätigen"
+
+#~ msgid ""
+#~ "I&rsquo;ve read and accept the <a href=\"%s\" target=\"_blank\">data "
+#~ "privacy statement</a>"
+#~ msgstr ""
+#~ "Ich habe die <a href=\"%s\" target=\"_blank\">Datenschutzbelehrung</a> "
+#~ "gelesen und akzeptiert."
+
+#~ msgid ""
+#~ "I&rsquo;ve read and accept the <a href=\"%s\" target=\"_blank\">power of "
+#~ "revocation</a>"
+#~ msgstr ""
+#~ "Ich habe die <a href=\"%s\" target=\"_blank\">Widerrufsbelehrung</a> "
+#~ "gelesen und akzeptiert."
+
+#~ msgid "You must accept our Data Privacy Statement."
+#~ msgstr "Bitte bestätigen Sie unsere Dateschutzbelehrung"
+
+#~ msgid "You must accept the Power of Revocation."
+#~ msgstr "Bitte bestätigen Sie unsere Widerrufsbelehrung"
+
+#~ msgid "Docs"
+#~ msgstr "Dokumentation"
 
 #~ msgid "Display"
 #~ msgstr "Anzeige"

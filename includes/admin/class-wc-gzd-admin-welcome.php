@@ -68,6 +68,7 @@ class WC_GZD_Admin_Welcome {
 	 * @return void
 	 */
 	public function admin_css() {
+		wp_enqueue_style( 'fontawesome', plugins_url(  '/assets/css/font-awesome.min.css', WC_GERMANIZED_PLUGIN_FILE ), array(), '4.2.0' );
 		wp_enqueue_style( 'woocommerce-activation', plugins_url(  '/assets/css/activation.css', WC_PLUGIN_FILE ), array(), WC_VERSION );
 		wp_enqueue_style( 'woocommerce-gzd-activation', plugins_url(  '/assets/css/woocommerce-gzd-activation.css', WC_GERMANIZED_PLUGIN_FILE ), array(), WC_GERMANIZED_VERSION );
 	}
@@ -99,48 +100,81 @@ class WC_GZD_Admin_Welcome {
 		// Drop minor version if 0
 		$major_version = substr( WC_germanized()->version, 0, 3 );
 		?>
-		<h1><?php _e( 'Welcome to WooCommerce Germanized', 'woocommerce-germanized' ); ?></h1>
+		<h1>Willkommen bei WooCommerce Germanized</h1>
 		<a class="wc-gzd-logo" href="" target="_blank"></a>
 		<div class="about-text woocommerce-about-text">
 			<?php
-				if ( ! empty( $_GET['wc-installed'] ) )
-					$message = __( 'Thanks, all done!', 'woocommerce' );
-				elseif ( ! empty( $_GET['wc-updated'] ) )
-					$message = __( 'Thank you for updating to the latest version!', 'woocommerce' );
+				if ( ! empty( $_GET['wc-gzd-installed'] ) )
+					$message = 'Super, alles erledigt!';
+				elseif ( ! empty( $_GET['wc-gzd-updated'] ) )
+					$message = 'Danke, dass du auf die neueste Version aktualisiert hast!';
 				else
-					$message = __( 'Thanks for installing!', 'woocommerce' );
-
-				printf( __( '%s<br/>WooCommerce Germanized %s upgrades WooCommerce to a legally compliant german Webshop for WordPress.', 'woocommerce-germanized' ), $message, $major_version );
+					$message = 'Danke für die Installation!';
+				echo $message . '<br/>';
 			?>
+			WooCommerce Germanized <?php echo $major_version; ?> erweitert deine WooCommerce Installation um wichtige Funktionen für den deutschen Markt.</p>
 		</div>
 		<p class="woocommerce-actions wc-gzd-actions">
-			<a href="<?php echo admin_url('admin.php?page=wc-settings&tab=germanized'); ?>" class="button button-primary"><?php _e( 'Settings', 'woocommerce' ); ?></a>
-			<a class="vendidero button button-primary" href="<?php echo esc_url( 'http://vendidero.de/woocommerce-germanized', 'woocommerce-germanized' ); ?>"><?php _e( 'Premium Support', 'woocommerce-germanized' ); ?></a>
+			<a href="<?php echo admin_url('admin.php?page=wc-settings&tab=germanized'); ?>" class="button button-primary">Einstellungen</a>
+			<a class="vendidero button button-primary" href="<?php echo esc_url( 'http://vendidero.de/support', 'woocommerce-germanized' ); ?>">Hilfe & Support</a>
 			<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://vendidero.de/woocommerce-germanized" data-text="WooCommerce Germanized passt deinen Online-Shop an deutsche Rechtsgrundlagen an. Wir helfen Dir Abmahnungen zu verhindern. Kostenlos!" data-via="Vendidero" data-size="large" data-hashtags="WooCommerce Germanized">Tweet</a>
 			<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 		</p>
+		<div class="changelog vendipro">
+			<h3>VendiPro - Das WooCommerce Theme für den deutschen Markt</h3>
+			<div class="left">
+				<a href="http://vendidero.de/vendipro" target="_blank"><img src="<?php echo WC_germanized()->plugin_url();?>/assets/images/vendidero.jpg" /></a>
+			</div>
+			<div class="right">
+				<p>Endlich ist es soweit - Ein WooCommerce Theme, perfekt auf den deutschen Markt abgestimmt.
+				Mit <a href="http://vendidero.de/vendipro" target="_blank">VendiPro</a> wirken alle WooCommerce & WooCommerce Germanized Inhalte einfach noch professioneller.</p>
+				<div class="wc-feature wc-vendipro-features feature-section col two-col">
+					<div>
+						<h4><i class="fa fa-mobile"></i> Responsive Layout</h4>
+						<p>VendiPro hinterlässt sowohl auf Desktop- als auch auf Mobilgeräten einen klasse Eindruck!</p>
+					</div>
+					<div class="last-feature">
+						<h4><i class="fa fa-pencil"></i> Individualität</h4>
+						<p>Passe VendiPro einfach per WordPress Theme Customizer an deine Bedürfnisse an.</p>
+					</div>
+					<div>
+						<h4><i class="fa fa-font"></i> Typisch deutsch</h4>
+						<p>Gemacht für den deutschen Markt - und das merkt man sofort.</p>
+					</div>
+					<div class="last-feature">
+						<h4><i class="fa fa-play-circle"></i> Slideshow</h4>
+						<p>Einfach per Shortcode Slideshows und Produkt Carousels erstellen.</p>
+					</div>
+				</div>
+				<div class="vendipro-buttons">
+					<a href="http://vendidero.de/vendipro" target="_blank" class="button button-primary wc-gzd-button">mehr erfahren</a>
+					<p class="price smaller">ab 49,95 € inkl. Mwst. - inkl. 1 Jahr Updates & Premium Support!</p>
+				</div>
+			</div>
+		</div>
 		<div class="changelog">
+			<h3>WooCommerce Germanized - Funktionsübersicht</h3>
 			<div class="wc-feature feature-section col three-col">
 				<div>
-					<h4>Kleinunternehmerregelung</h4>
+					<h4><i class="fa fa-child"></i> Kleinunternehmerregelung</h4>
 					<p>Mit nur einem Klick wird Dein Online-Shop §19 UStG - kompatibel! Einfach die Häkchen innerhalb der WooCommerce Germanized Einstellungen setzen und schon geht es los.</p>
 				</div>
 				<div>
-					<h4>Lieferzeiten</h4>
+					<h4><i class="fa fa-truck"></i> Lieferzeiten</h4>
 					<p>Erstelle einfach neue Lieferzeiten für deine Produkte. Die Lieferzeiten werden dann sowohl auf der Produktseite als auch im Bestellvorgang dargestellt.
 					Die Bearbeitung der Lieferzeiten erfolgt ganz bequem per WordPress Taxonomy.</p>
 				</div>
 				<div class="last-feature">
-					<h4>Darstellungsoptionen</h4>
+					<h4><i class="fa fa-laptop"></i> Darstellungsoptionen</h4>
 					<p>Wir haben die Darstellung des Warenkorbs und des Bezahlvorgangs für Dich an deutsche Rechtsgrundlagen angepasst. Zusätzlich kannst Du selbst entscheiden, welche rechtlich relevanten Seiten Du wo und wie verlinken willst.</p>
 				</div>
 				<div>
-					<h4>Rechtlich relevante Seiten</h4>
+					<h4><i class="fa fa-legal"></i> Rechtlich relevante Seiten</h4>
 					<p>Erstelle ganz einfach alle rechtlich relevanten Seiten (z.B. Datenschutz, Widerrufsbelehrung).
 					Wir setzen den Inhalt automatisch in die von Dir ausgewählten E-Mail-Templates ein und fügen auf Wunsch auch Checkboxen zum Bezahlvorgang hinzu.</p>
 				</div>
 				<div>
-					<h4>Trusted Shops</h4>
+					<h4><i class="fa fa-certificate"></i> Trusted Shops</h4>
 					<p>Du möchtest deine Trusted Shops Mitgliedschaft in WooCommerce nutzen? Kein Problem. WooCommerce Germanized hat die Schnittstelle zu Trusted Shops bereits implementiert.
 					Klicke <a href="<?php echo esc_url( admin_url( add_query_arg( array( 'page' => 'wc-settings&tab=germanized&section=trusted_shops' ), 'admin.php' ) ) ); ?>">hier</a> um die nötigen Einstellungen vorzunehmen.</p>
 				</div>

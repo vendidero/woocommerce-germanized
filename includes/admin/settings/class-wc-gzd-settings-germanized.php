@@ -381,46 +381,31 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 
 			array(
 				'title' 	=> __( 'Checkout Legal Display', 'woocommerce-germanized' ),
-				'desc' 		=> __( 'Use Plain Text as legal notice', 'woocommerce-germanized' ),
-				'id' 		=> 'woocommerce_gzd_display_checkout_legal_plain',
+				'desc' 		=> __( 'Use Text without Checkbox', 'woocommerce-germanized' ),
+				'id' 		=> 'woocommerce_gzd_display_checkout_legal_no_checkbox',
 				'desc_tip'	=> __( 'This version will remove checkboxes from Checkout and display a text instead. This seems to be legally compliant (Zalando & Co are using this option).', 'woocommerce-germanized' ),
 				'default'	=> 'no',
 				'type' 		=> 'checkbox',
 			),
 
 			array(
-				'title' 	=> __( 'Legal Plain Text', 'woocommerce-germanized' ),
-				'desc' 		=> __( 'Choose a Plain Text which will be shown instead of checkboxes. Use {term_link}{/term_link}, {data_security_link}{/data_security_link}, {revocation_link}{/revocation_link} as Placeholders for the links to legal pages.', 'woocommerce-germanized' ),
+				'title' 	=> __( 'Legal Text', 'woocommerce-germanized' ),
+				'desc' 		=> __( 'Choose a Plain Text which will be shown right above checkout submit button. Use {term_link}{/term_link}, {data_security_link}{/data_security_link}, {revocation_link}{/revocation_link} as Placeholders for the links to legal pages.', 'woocommerce-germanized' ),
 				'desc_tip'	=> true,
 				'default'   =>  __( 'With your order, you agree to have read and understood our {term_link}Terms and Conditions{/term_link}, {data_security_link}Data Security Statement{/data_security_link} and your {revocation_link}Right of Recission{/revocation_link}.', 'woocommerce-germanized' ),
 				'css' 		=> 'width:100%; height: 65px;',
-				'id' 		=> 'woocommerce_gzd_checkout_plain_text',
+				'id' 		=> 'woocommerce_gzd_checkout_legal_text',
 				'type' 		=> 'textarea',
 			),
 
 			array(
-				'title' 	=> __( 'Checkout Legal', 'woocommerce-germanized' ),
-				'desc' 		=> __( 'Show Terms and Conditions', 'woocommerce-germanized' ),
-				'id' 		=> 'woocommerce_gzd_display_checkout_terms',
-				'type' 		=> 'checkbox',
-				'default'	=> 'yes',
-				'checkboxgroup'		=> 'start',
-			),
-
-			array(
-				'desc' 		=> __( 'Show Data Security Statement', 'woocommerce-germanized' ),
-				'id' 		=> 'woocommerce_gzd_display_checkout_legal_data_security',
-				'default'	=> 'yes',
-				'type' 		=> 'checkbox',
-				'checkboxgroup'		=> '',
-			),
-
-			array(
-				'desc' 		=> __( 'Show Power of Revocation', 'woocommerce-germanized' ),
-				'id' 		=> 'woocommerce_gzd_display_checkout_legal_revocation',
-				'type' 		=> 'checkbox',
-				'default'	=> 'yes',
-				'checkboxgroup'		=> 'end',
+				'title' 	=> __( 'Legal Text Error', 'woocommerce-germanized' ),
+				'desc' 		=> __( 'If you have chosen to use checkbox validation please choose a error message which will be shown if the user doesn\'t check checkbox. Use {term_link}{/term_link}, {data_security_link}{/data_security_link}, {revocation_link}{/revocation_link} as Placeholders for the links to legal pages.', 'woocommerce-germanized' ),
+				'desc_tip'	=> true,
+				'default'   =>  __( 'To finish the order you have to accept to our {term_link}Terms and Conditions{/term_link}, {data_security_link}Data Security Statement{/data_security_link} and {revocation_link}Right of Recission{/revocation_link}.', 'woocommerce-germanized' ),
+				'css' 		=> 'width:100%; height: 65px;',
+				'id' 		=> 'woocommerce_gzd_checkout_legal_text_error',
+				'type' 		=> 'textarea',
 			),
 
 			array(
@@ -448,6 +433,7 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 
 	public function output() {
 		global $current_section;
+		$sidebar = $this->get_sidebar();
 		if ( $current_section ) {
 			if ( $current_section == 'trusted_shops' )
 				$settings = WC_germanized()->trusted_shops->get_settings();
@@ -458,7 +444,27 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
  		} else {
 			$settings = $this->get_settings();
 		}
+		echo '<div class="wc-gzd-admin-settings">';
 		WC_Admin_Settings::output_fields( $settings );
+		echo '</div>';
+		echo $sidebar;
+	}
+
+	public function get_sidebar() {
+		$html = '
+			<div class="wc-gzd-admin-settings-sidebar">
+				<h3>VendiPro - Typisch deutsch!</h3>
+				<div class="wc-gzd-sidebar-img">
+					<a href="http://vendidero.de/vendipro" target="_blank"><img class="browser" src="' . WC_germanized()->plugin_url() . '/assets/images/vendidero.jpg" /></a>
+				</div>
+				<p>VendiPro ist ein für den deutschen Markt entwickeltes WooCommerce Theme. Mit VendiPro sind alle WooCommerce und WooCommerce Germanized Einstellungen auch optisch perfekt auf den deutschen Markt abgestimmt.</p>
+				<div class="wc-gzd-sidebar-action">
+					<a class="button button-primary wc-gzd-button" href="http://vendidero.de/vendipro" target="_blank">jetzt entdecken</a>
+					<span class="small">ab 49,95 € inkl. Mwst. und 1 Jahr Updates & Support!</span>
+				</div>
+			</div>
+		';
+		return $html;
 	}
 
 	/**

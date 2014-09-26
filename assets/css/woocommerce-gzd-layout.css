@@ -54,8 +54,12 @@ tr.order-total strong {
 .entry-content .woocommerce .place-order .form-row, .entry-content .woocommerce .place-order .form-row input[type="checkbox"] {
 	padding: 0;
 }
-.entry-content .woocommerce .place-order .form-row input[type="checkbox"] {
-	margin: 0 0 0 0.5rem;
+.woocommerce-checkout p.terms {
+	text-align: left;
+}
+.woocommerce-checkout p.terms label.checkbox, .woocommerce-checkout p.terms input[type="checkbox"] {
+	display: inline;
+	width: auto;
 }
 .products .wc-gzd-additional-info {
 	font-size: 0.8em;
@@ -138,6 +142,7 @@ table.order_details tr th:last-child, table.order_details tr td:last-child, tabl
 	line-height: 0.9em;
 	color: #848484;
 }
+
 @media only screen and (-webkit-min-device-pixel-ratio: 1.5),
 only screen and (-o-min-device-pixel-ratio: 3/2),
 only screen and (min--moz-device-pixel-ratio: 1.5),

@@ -386,8 +386,8 @@ final class WooCommerceGermanized {
 	public function action_links( $links ) {
 		return array_merge( array(
 				'<a href="' . admin_url( 'admin.php?page=wc-settings&tab=wc-germanized' ) . '">' . __( 'Settings', 'woocommerce' ) . '</a>',
-				'<a href="' . esc_url( 'http://vendidero.de/documentation' ) . '">' . __( 'Docs', 'woocommerce-germanized' ) . '</a>',
 				'<a href="' . esc_url( 'http://vendidero.de/support' ) . '">' . __( 'Premium Support', 'woocommerce-germanized' ) . '</a>',
+				'<a href="' . esc_url( 'http://vendidero.de/vendipro' ) . '">' . __( 'VendiPro', 'woocommerce-germanized' ) . '</a>',
 			), $links );
 	}
 

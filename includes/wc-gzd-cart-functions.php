@@ -70,10 +70,9 @@ function wc_gzd_cart_totals_order_total_tax_html() {
 	}
 }
 
-function wc_gzd_get_legal_plain_text() {
-	$plain_text = '';
-	if ( get_option( 'woocommerce_gzd_checkout_plain_text' ) ) {
-		$plain_text = get_option( 'woocommerce_gzd_checkout_plain_text' );
+function wc_gzd_get_legal_text( $text = '' ) {
+	$plain_text = ( $text == '' ? get_option( 'woocommerce_gzd_checkout_legal_text' ) : $text );
+	if ( ! empty( $plain_text ) ) {
 		$plain_text = str_replace( 
 			array( '{term_link}', '{data_security_link}', '{revocation_link}', '{/term_link}', '{/data_security_link}', '{/revocation_link}' ), 
 			array( 
@@ -87,5 +86,12 @@ function wc_gzd_get_legal_plain_text() {
 			$plain_text 
 		);
 	}
+	return $plain_text;
+}
+
+function wc_gzd_get_legal_text_error() {
+	$plain_text = '';
+	if ( get_option( 'woocommerce_gzd_checkout_legal_text_error' ) )
+		$plain_text = wc_gzd_get_legal_text( get_option( 'woocommerce_gzd_checkout_legal_text_error' ) );
 	return $plain_text;
 }

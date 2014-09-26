@@ -10,14 +10,14 @@ if ( ! defined( 'ABSPATH' ) )
  */
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-if ( ! function_exists( 'woocommerce_gzd_template_single_tax_info' ) ) {
+if ( ! function_exists( 'woocommerce_gzd_template_single_legal_info' ) ) {
 
 	/**
 	 * Single Product price per unit.
 	 */
-	function woocommerce_gzd_template_single_tax_info() {
+	function woocommerce_gzd_template_single_legal_info() {
 		global $product;
-		wc_get_template( 'single-product/tax-info.php' );
+		wc_get_template( 'single-product/legal-info.php' );
 	}
 }
 
@@ -142,42 +142,13 @@ if ( ! function_exists( 'woocommerce_gzd_template_checkout_payment_title' ) ) {
 
 }
 
-if ( ! function_exists( 'woocommerce_gzd_template_checkout_legal_data_security_checkbox' ) ) {
+if ( ! function_exists( 'woocommerce_gzd_template_checkout_legal' ) ) {
 
 	/**
-	 * Data security statement checkbox
+	 * text legal info within checkout (may contain checkbox)
 	 */
-	function woocommerce_gzd_template_checkout_legal_data_security_checkbox() {
-		echo '<p class="form-row data-privacy">
-			<label for="data-privacy" class="checkbox">' . sprintf( __( 'I&rsquo;ve read and accept the <a href="%s" target="_blank">data privacy statement</a>', 'woocommerce-germanized' ), esc_url( get_permalink( wc_get_page_id( 'data_security' ) ) ) ) . '</label>
-			<input type="checkbox" class="input-checkbox" name="data-privacy" id="data-privacy" />
-		</p>';
-	}
-
-}
-
-if ( ! function_exists( 'woocommerce_gzd_template_checkout_revocation_checkbox' ) ) {
-
-	/**
-	 * Revocation checkbox
-	 */
-	function woocommerce_gzd_template_checkout_revocation_checkbox() {
-		echo '<p class="form-row revocation">
-			<label for="revocation" class="checkbox">' . sprintf( __( 'I&rsquo;ve read and accept the <a href="%s" target="_blank">power of revocation</a>', 'woocommerce-germanized' ), esc_url( get_permalink( wc_get_page_id( 'revocation' ) ) ) ) . '</label>
-			<input type="checkbox" class="input-checkbox" name="revocation" id="revocation" />
-		</p>';
-	}
-
-}
-
-if ( ! function_exists( 'woocommerce_gzd_template_checkout_legal_combined' ) ) {
-
-	/**
-	 * Plain text legal info within checkout
-	 */
-	function woocommerce_gzd_template_checkout_legal_combined() {
-		$first = true;
-		echo '<p class="form-row terms">' . wc_gzd_get_legal_plain_text() . '</p>';
+	function woocommerce_gzd_template_checkout_legal() {
+		echo '<p class="form-row legal terms">' . ( get_option( 'woocommerce_gzd_display_checkout_legal_no_checkbox' ) == 'no' ? '<input type="checkbox" class="input-checkbox" name="legal" id="legal" />' : '' ) . ' <label class="checkbox" for="terms">' . wc_gzd_get_legal_text() . '</label></p>';
 	}
 
 }
@@ -188,16 +159,17 @@ if ( ! function_exists( 'woocommerce_gzd_checkout_validation' ) ) {
 	 * Validate checkbox data
 	 */
 	function woocommerce_gzd_checkout_validation( $posted ) {
-		if ( ! isset( $_POST['woocommerce_checkout_update_totals'] ) && ! isset( $_POST['data-privacy'] ) && get_option( 'woocommerce_gzd_display_checkout_legal_data_security' ) == 'yes' )
-			wc_add_notice( __( 'You must accept our Data Privacy Statement.', 'woocommerce-germanized' ), 'error' );
-		if ( ! isset( $_POST['woocommerce_checkout_update_totals'] ) && ! isset( $_POST['revocation'] ) && get_option( 'woocommerce_gzd_display_checkout_legal_revocation' ) == 'yes' )
-			wc_add_notice( __( 'You must accept the Power of Revocation.', 'woocommerce-germanized' ), 'error' );
+		if ( ! isset( $_POST['woocommerce_checkout_update_totals'] ) && ! isset( $_POST['legal'] ) && get_option( 'woocommerce_gzd_display_checkout_legal_no_checkbox' ) == 'no' )
+			wc_add_notice( wc_gzd_get_legal_text_error(), 'error' );
 	}
 
 }
 
 if ( ! function_exists( 'woocommerce_gzd_remove_term_checkbox' ) ) {
 
+	/**
+	 * Removes default term checkbox
+	 */
 	function woocommerce_gzd_remove_term_checkbox() {
 		return false;
 	}
@@ -207,7 +179,7 @@ if ( ! function_exists( 'woocommerce_gzd_remove_term_checkbox' ) ) {
 if ( ! function_exists( 'woocommerce_gzd_template_checkout_set_terms_manually' ) ) {
 
 	/**
-	 * Set terms manually (if plain text legal notice is enabled)
+	 * Set terms checkbox manually
 	 */
 	function woocommerce_gzd_template_checkout_set_terms_manually() {
 		echo '<input type="hidden" name="terms" value="1" />';
