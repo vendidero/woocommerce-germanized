@@ -179,6 +179,17 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 				'desc_tip'	=> true,
 			),
 
+			array(
+				'title' 	=> __( 'Shipping Methods', 'woocommerce-germanized' ),
+				'desc' 		=> __( 'This page should contain information regarding shipping methods that are chooseable during checkout.', 'woocommerce-germanized' ),
+				'id' 		=> 'woocommerce_shipping_methods_page_id',
+				'type' 		=> 'single_select_page',
+				'default'	=> '',
+				'class'		=> 'chosen_select_nostd',
+				'css' 		=> 'min-width:300px;',
+				'desc_tip'	=> true,
+			),
+
 			array( 'type' => 'sectionend', 'id' => 'legal_pages_options' ),
 
 			array( 'title' => __( 'Delivery Times', 'woocommerce-germanized' ), 'type' => 'title', 'desc' => '', 'id' => 'delivery_times_options' ),
@@ -264,6 +275,7 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 				'class'		=> 'chosen_select',
 				'desc_tip'	=> true,
 				'options'	=> $email_select,
+				'default'	=> array( 'customer_processing_order' ),
 			),
 
 			array(
@@ -392,7 +404,7 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 				'title' 	=> __( 'Legal Text', 'woocommerce-germanized' ),
 				'desc' 		=> __( 'Choose a Plain Text which will be shown right above checkout submit button. Use {term_link}{/term_link}, {data_security_link}{/data_security_link}, {revocation_link}{/revocation_link} as Placeholders for the links to legal pages.', 'woocommerce-germanized' ),
 				'desc_tip'	=> true,
-				'default'   =>  __( 'With your order, you agree to have read and understood our {term_link}Terms and Conditions{/term_link}, {data_security_link}Data Security Statement{/data_security_link} and your {revocation_link}Right of Recission{/revocation_link}.', 'woocommerce-germanized' ),
+				'default'   =>  __( 'With your order, you agree to have read and understood our {term_link}Terms and Conditions{/term_link} and your {revocation_link}Right of Recission{/revocation_link}.', 'woocommerce-germanized' ),
 				'css' 		=> 'width:100%; height: 65px;',
 				'id' 		=> 'woocommerce_gzd_checkout_legal_text',
 				'type' 		=> 'textarea',
@@ -402,7 +414,7 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 				'title' 	=> __( 'Legal Text Error', 'woocommerce-germanized' ),
 				'desc' 		=> __( 'If you have chosen to use checkbox validation please choose a error message which will be shown if the user doesn\'t check checkbox. Use {term_link}{/term_link}, {data_security_link}{/data_security_link}, {revocation_link}{/revocation_link} as Placeholders for the links to legal pages.', 'woocommerce-germanized' ),
 				'desc_tip'	=> true,
-				'default'   =>  __( 'To finish the order you have to accept to our {term_link}Terms and Conditions{/term_link}, {data_security_link}Data Security Statement{/data_security_link} and {revocation_link}Right of Recission{/revocation_link}.', 'woocommerce-germanized' ),
+				'default'   =>  __( 'To finish the order you have to accept to our {term_link}Terms and Conditions{/term_link} and {revocation_link}Right of Recission{/revocation_link}.', 'woocommerce-germanized' ),
 				'css' 		=> 'width:100%; height: 65px;',
 				'id' 		=> 'woocommerce_gzd_checkout_legal_text_error',
 				'type' 		=> 'textarea',

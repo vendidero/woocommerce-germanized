@@ -147,16 +147,18 @@ class WC_GZD_Install {
 		global $wpdb;
 
 		$options = array(
-			'woocommerce_default_country' 		=> 'DE',
-			'woocommerce_currency' 				=> 'EUR',
-			'woocommerce_price_thousand_sep' 	=> '.',
-			'woocommerce_price_decimal_sep'     => ',',
-			'woocommerce_price_num_decimals'	=> 2,
-			'woocommerce_weight_unit'			=> 'kg',
-			'woocommerce_dimension_unit'		=> 'cm',
-			'woocommerce_calc_taxes'			=> 1,
-			'woocommerce_prices_include_tax'	=> 'yes',
-			'woocommerce_tax_display_cart'		=> 'incl',
+			'woocommerce_default_country' 			 => 'DE',
+			'woocommerce_currency' 					 => 'EUR',
+			'woocommerce_price_thousand_sep' 	     => '.',
+			'woocommerce_price_decimal_sep'     	 => ',',
+			'woocommerce_price_num_decimals'		 => 2,
+			'woocommerce_weight_unit'				 => 'kg',
+			'woocommerce_dimension_unit'			 => 'cm',
+			'woocommerce_calc_taxes'				 => 1,
+			'woocommerce_prices_include_tax'		 => 'yes',
+			'woocommerce_tax_display_cart'			 => 'incl',
+			'woocommerce_allowed_countries'	    	 => 'specific',
+			'woocommerce_specific_allowed_countries' => 'DE',
 		);
 		if ( !empty($options ) ) {
 			foreach ( $options as $key => $option ) {
@@ -226,11 +228,17 @@ class WC_GZD_Install {
 				'title'   => _x( 'Payment Methods', 'Page title', 'woocommerce' ),
 				'content' => '[' . apply_filters( 'woocommerce_gzd_payment_methods_shortcode_tag', 'woocommerce_gzd_payment_methods' ) . ']'
 			),
+			'shipping_methods' => array(
+				'name'    => _x( 'shipping-methods', 'Page slug', 'woocommerce-germanized' ),
+				'title'   => _x( 'Shipping Methods', 'Page title', 'woocommerce' ),
+				'content' => ''
+			),
 		) );
 
 		foreach ( $pages as $key => $page ) {
 			wc_create_page( esc_sql( $page['name'] ), 'woocommerce_gzd_' . $key . '_page_id', $page['title'], $page['content'], ! empty( $page['parent'] ) ? wc_get_page_id( $page['parent'] ) : '' );
 		}
+
 	}
 
 	/**

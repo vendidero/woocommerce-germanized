@@ -153,14 +153,50 @@ if ( ! function_exists( 'woocommerce_gzd_template_checkout_legal' ) ) {
 
 }
 
+if ( ! function_exists( 'woocommerce_gzd_digital_checkbox' ) ) {
+
+	function woocommerce_gzd_digital_checkbox() {
+		$items = WC()->cart->get_cart();
+		$is_downloadable = false;
+		if ( ! empty( $items ) ) {
+			foreach ( $items as $cart_item_key => $values ) {
+				$_product = $values['data'];
+				if ( $_product->is_downloadable() )
+					$is_downloadable = true;
+			}
+		}
+		if ( $is_downloadable ) {
+			echo '<p class="form-row data-download terms">
+				<input type="checkbox" class="input-checkbox" name="download-revocate" id="data-download" />
+				<label for="data-download" class="checkbox">' . __( 'I want immediate access to the digital content and I acknowledge that thereby I lose my right to cancel once the service has begun.', 'woocommerce-germanized' ) . '</label>
+			</p>';
+		}
+	}
+
+}
+
 if ( ! function_exists( 'woocommerce_gzd_checkout_validation' ) ) {
 
 	/**
 	 * Validate checkbox data
 	 */
 	function woocommerce_gzd_checkout_validation( $posted ) {
-		if ( ! isset( $_POST['woocommerce_checkout_update_totals'] ) && ! isset( $_POST['legal'] ) && get_option( 'woocommerce_gzd_display_checkout_legal_no_checkbox' ) == 'no' )
-			wc_add_notice( wc_gzd_get_legal_text_error(), 'error' );
+		if ( ! isset( $_POST['woocommerce_checkout_update_totals'] ) ) {
+			if ( ! isset( $_POST[ 'legal' ] ) && get_option( 'woocommerce_gzd_display_checkout_legal_no_checkbox' ) == 'no' )
+				wc_add_notice( wc_gzd_get_legal_text_error(), 'error' );
+			// Check if cart contains downloadable product
+			$items = WC()->cart->get_cart();
+			$is_downloadable = false;
+			if ( ! empty( $items ) ) {
+				foreach ( $items as $cart_item_key => $values ) {
+					$_product = $values['data'];
+					if ( $_product->is_downloadable() )
+						$is_downloadable = true;
+				}
+			}
+			if ( $is_downloadable && ! isset( $_POST[ 'download-revocate' ] ) )
+				wc_add_notice( __( 'To get immediate access to digital content you have to agree to the losal of your right to cancel.', 'woocommerce-germanized' ), 'error' );
+		}
 	}
 
 }

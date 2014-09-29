@@ -188,7 +188,7 @@ class WC_GZD_Product extends WC_Product {
 	 */
 	public function get_delivery_time_term() {
 		$delivery_time = $this->delivery_time;
-		if ( empty( $delivery_time ) && get_option( 'woocommerce_gzd_default_delivery_time' ) ) {
+		if ( empty( $delivery_time ) && get_option( 'woocommerce_gzd_default_delivery_time' ) && ! $this->is_downloadable() ) {
 			$delivery_time = array( get_term_by( 'id', get_option( 'woocommerce_gzd_default_delivery_time' ), 'product_delivery_time' ) );
 			if ( is_array( $delivery_time ) ) {
 				array_values( $delivery_time );

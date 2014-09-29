@@ -150,20 +150,29 @@ final class WooCommerceGermanized {
 			add_filter( 'woocommerce_email_classes', array( $this, 'add_emails' ) );
 			add_filter( 'woocommerce_locate_core_template', array( $this, 'email_templates' ), 0, 3 );
 			add_action( 'woocommerce_email_order_meta', array( $this, 'email_small_business_notice' ), 1 );
+			// Payment Gateway BACS
+			add_filter( 'woocommerce_payment_gateways', array( $this, 'payment_gateway_filter' ) );
 			// Add better tax display to order totals
 			add_filter( 'woocommerce_get_order_item_totals', array( $this, 'order_item_totals' ), 0, 2 );
-			// Set up localisation
+			add_action( 'woocommerce_cart_calculate_fees', array( $this, 'add_fee_cart' ), 0 );
 
-			$this->units         = new WC_GZD_Units();
+			$this->units          = new WC_GZD_Units();
 			$this->trusted_shops  = new WC_GZD_Trusted_Shops();
-			$this->ekomi    = new WC_GZD_Ekomi();
-			$this->emails    = new WC_GZD_Emails();
+			$this->ekomi    	  = new WC_GZD_Ekomi();
+			$this->emails    	  = new WC_GZD_Emails();
 
 			//$this->ekomi->send_mails();
 
 			// Init action
 			do_action( 'woocommerce_germanized_init' );
 
+		}
+	}
+
+	public function add_fee_cart() {
+		if ( WC()->session->get('chosen_payment_method') == 'cod' ) {
+			$cod = new WC_GZD_Gateway_COD();
+			$cod->add_fee();
 		}
 	}
 
@@ -180,6 +189,8 @@ final class WooCommerceGermanized {
 
 		if ( strpos( $class, 'wc_gzd_shipping_' ) === 0 )
 			$path = $this->plugin_path() . '/includes/shipping/' . trailingslashit( substr( str_replace( '_', '-', $class ), 16 ) );
+		else if ( strpos( $class, 'wc_gzd_gateway_' ) === 0 )
+			$path = $this->plugin_path() . '/includes/gateways/' . trailingslashit( substr( str_replace( '_', '-', $class ), 15 ) );
 
 		if ( $path && is_readable( $path . $file ) ) {
 			include_once $path . $file;
@@ -312,6 +323,24 @@ final class WooCommerceGermanized {
 	}
 
 	/**
+	 * Filter payment gateway classes to load WC_GZD_Gateway_BACS.
+	 *  
+	 * @param  array $gateways 
+	 * @return array filtered gateway array
+	 */
+	public function payment_gateway_filter( $gateways ) {
+		if ( ! empty( $gateways ) ) {
+			foreach ( $gateways as $key => $gateway ) {
+				if ( $gateway == 'WC_Gateway_BACS' )
+					$gateways[ $key ] = 'WC_GZD_Gateway_BACS';
+				else if ( $gateway == 'WC_Gateway_COD' )
+					$gateways[ $key ] = 'WC_GZD_Gateway_COD';
+			}
+		}
+		return $gateways;
+	}
+
+	/**
 	 * Load WooCommerce Germanized Product Classes instead of WooCommerce builtin Product Classes
 	 *
 	 * @param string  $classname
@@ -423,6 +452,8 @@ final class WooCommerceGermanized {
 		$frontend_script_path = $assets_path . 'js/';
 		if ( isset( $post ) && $post->ID == woocommerce_get_page_id( 'revocation' ) )
 			wp_enqueue_script( 'wc-gzd-revocation', $frontend_script_path . 'revocation.js', array( 'jquery', 'woocommerce', 'wc-country-select', 'wc-address-i18n' ), WC_GERMANIZED_VERSION, true );
+		if ( is_checkout() )
+			wp_enqueue_script( 'wc-gzd-checkout', $frontend_script_path . 'checkout.js', array( 'jquery', 'wc-checkout' ), WC_GERMANIZED_VERSION, true );
 	}
 
 	/**
