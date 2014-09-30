@@ -7,7 +7,7 @@
  * Author: Vendidero
  * Author URI: http://vendidero.de
  * Requires at least: 3.8
- * Tested up to: 3.9
+ * Tested up to: 4.0
  *
  * Text Domain: woocommerce-germanized
  * Domain Path: /i18n/languages/
