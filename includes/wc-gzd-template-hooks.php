@@ -54,7 +54,7 @@ add_action( 'woocommerce_review_order_before_submit', 'woocommerce_gzd_template_
 add_action( 'woocommerce_review_order_before_submit', 'woocommerce_gzd_digital_checkbox', 1 );
 if ( get_option( 'woocommerce_gzd_trusted_shops_id' ) )
 	add_action( 'woocommerce_thankyou', 'woocommerce_gzd_template_checkout_thankyou_trusted_shops', 10, 1 );
-add_filter( 'woocommerce_order_button_text', 'woocommerce_gzd_template_order_button_text', 0 );
+add_filter( 'woocommerce_order_button_text', 'woocommerce_gzd_template_order_button_text', 50 );
 remove_action( 'woocommerce_order_details_after_order_table', 'woocommerce_order_again_button' );
 add_action( 'woocommerce_thankyou_order_received_text', 'woocommerce_gzd_template_order_success_text', 0, 1 );
 if ( get_option( 'woocommerce_gzd_hide_order_success_details' ) == 'yes' )
