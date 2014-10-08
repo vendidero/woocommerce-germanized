@@ -227,7 +227,7 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 				'id' 		=> 'woocommerce_gzd_shipping_costs_text',
 				'type' 		=> 'text',
 				'css' 		=> 'min-width:300px;',
-				'default'	=> __( 'plus {link}Shipping Costs{/link}' ),
+				'default'	=> __( 'plus {link}Shipping Costs{/link}', 'woocommerce-germanized' ),
 			),
 
 			array( 'type' => 'sectionend', 'id' => 'shipping_costs_options' ),

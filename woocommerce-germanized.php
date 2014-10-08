@@ -155,6 +155,8 @@ final class WooCommerceGermanized {
 			// Add better tax display to order totals
 			add_filter( 'woocommerce_get_order_item_totals', array( $this, 'order_item_totals' ), 0, 2 );
 			add_action( 'woocommerce_cart_calculate_fees', array( $this, 'add_fee_cart' ), 0 );
+			// Send order notice directly after new order is being added
+			add_action( 'woocommerce_checkout_update_order_meta', array( $this, 'update_initial_order_status' ), 0, 2 );
 
 			$this->units          = new WC_GZD_Units();
 			$this->trusted_shops  = new WC_GZD_Trusted_Shops();
@@ -166,13 +168,6 @@ final class WooCommerceGermanized {
 			// Init action
 			do_action( 'woocommerce_germanized_init' );
 
-		}
-	}
-
-	public function add_fee_cart() {
-		if ( WC()->session->get('chosen_payment_method') == 'cod' ) {
-			$cod = new WC_GZD_Gateway_COD();
-			$cod->add_fee();
 		}
 	}
 
@@ -514,6 +509,27 @@ final class WooCommerceGermanized {
 		if ( ! file_exists( $template_base . $template ) && file_exists( $this->plugin_path() . '/templates/' . $template ) )
 			$core_file = $this->plugin_path() . '/templates/' . $template;
 		return apply_filters( 'woocommerce_germanized_email_template_hook', $core_file, $template, $template_base );
+	}
+
+	/**
+	 * Set initial order status to processing - even if paypal is being used (email affirmation has to be sent directly after order submit)
+	 *  	
+	 * @param  int 	  $order_id 	 the order id	
+	 * @param  array  $post_data  meta data
+	 */
+	public function update_initial_order_status( $order_id, $post_data ) {
+		$order = wc_get_order( $order_id );
+		$order->update_status( 'processing' );
+	}
+
+	/**
+	 * Update fee for cart if cod has been selected as payment method
+	 */
+	public function add_fee_cart() {
+		if ( WC()->session->get('chosen_payment_method') == 'cod' ) {
+			$cod = new WC_GZD_Gateway_COD();
+			$cod->add_fee();
+		}
 	}
 
 	/**

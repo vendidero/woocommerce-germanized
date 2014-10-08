@@ -45,7 +45,7 @@ class WC_GZD_Widget_Trusted_Shops_Reviews extends WC_Widget {
 
 		if ( is_cart() || is_checkout() ) return;
 
-		$title = apply_filters('widget_title', empty( $instance['title'] ) ? __( 'Trusted Shops Reviews', 'trusted-shops', 'woocommerce-germanized' ) : $instance['title'], $instance, $this->id_base );
+		$title = apply_filters('widget_title', empty( $instance['title'] ) ? _x( 'Trusted Shops Reviews', 'trusted-shops', 'woocommerce-germanized' ) : $instance['title'], $instance, $this->id_base );
 
 		echo $before_widget;
 

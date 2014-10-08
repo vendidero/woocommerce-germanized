@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: WooCommerce Germanized v1.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-29 12:26+0100\n"
-"PO-Revision-Date: 2014-09-29 11:21:30+0000\n"
+"PO-Revision-Date: 2014-10-07 16:32:32+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -407,7 +407,7 @@ msgid "This text will be used to inform the customer about shipping costs. Use {
 msgstr "Dieser Text wird genutzt um die Kunden im Frontend über u.U. anfallende Lieferkosten zu informieren. Nutzen Sie die Platzhalter {link}{/link} um den Link zur Versandkosten-Seite einzufügen."
 
 #: includes/admin/settings/class-wc-gzd-settings-germanized.php:230
-#@ default
+#@ woocommerce-germanized
 msgid "plus {link}Shipping Costs{/link}"
 msgstr "zzgl. {link}Versandkosten{/link}"
 
@@ -935,7 +935,7 @@ msgstr "Hinweis: Bitte Unzutreffendes streichen und um Ihren Text ergänzen."
 #@ woocommerce-germanized
 msgctxt "revocation-form"
 msgid "I/We hereby give notice that I/We withdraw from my/our contract of sale of the following goods/provision of the following service: "
-msgstr "Hiermit widerrufe(n) ich/wir den von mir/uns abgeschlossenen Vertrag über den Kauf der folgenden Waren / die Erringung der folgenden Dienstleistung:"
+msgstr "Hiermit widerrufe(n) ich/wir den von mir/uns abgeschlossenen Vertrag über den Kauf der folgenden Waren / die Erringung der folgenden Dienstleistung: "
 
 #: includes/class-wc-gzd-revocation.php:29
 #@ woocommerce-germanized
@@ -1292,13 +1292,9 @@ msgstr "Die Trusted Shops Bewertung als Rich Snippets einfügen"
 
 #: includes/widgets/class-wc-gzd-widget-trusted-shops-reviews.php:22
 #: includes/widgets/class-wc-gzd-widget-trusted-shops-reviews.php:26
+#: includes/widgets/class-wc-gzd-widget-trusted-shops-reviews.php:48
 #@ woocommerce-germanized
 msgctxt "trusted-shops"
-msgid "Trusted Shops Reviews"
-msgstr "Trusted Shops Bewertung"
-
-#: includes/widgets/class-wc-gzd-widget-trusted-shops-reviews.php:48
-#@ trusted-shops
 msgid "Trusted Shops Reviews"
 msgstr "Trusted Shops Bewertung"
 
@@ -1332,6 +1328,7 @@ msgid "Note: Shipping and taxes are estimated%s and will be updated during check
 msgstr "Hinweis: Versandkosten sind geschätzt%s und werden während des Bezahlvorgangs anhand Ihrer Adresse aktualisiert."
 
 #: templates/cart/cart.php:27
+#: templates/checkout/form-pay.php:20
 #: templates/checkout/review-order.php:70
 #@ woocommerce
 msgid "Product"
@@ -1385,11 +1382,6 @@ msgstr "Gutschein einlösen"
 #@ woocommerce
 msgid "Update Cart"
 msgstr "Warenkorb aktualisieren"
-
-#: templates/cart/cart.php:137
-#@ woocommerce
-msgid "Proceed to Checkout"
-msgstr "Bestellung fortsetzen"
 
 #: templates/checkout/form-checkout.php:20
 #@ woocommerce
@@ -1617,4 +1609,29 @@ msgstr "http://vendidero.de"
 #@ woocommerce-germanized
 msgid "1.0"
 msgstr "1.0"
+
+#: templates/checkout/form-pay.php:21
+#@ woocommerce
+msgid "Qty"
+msgstr ""
+
+#: templates/checkout/form-pay.php:22
+#@ woocommerce
+msgid "Totals"
+msgstr ""
+
+#: templates/checkout/form-pay.php:55
+#@ woocommerce
+msgid "Payment"
+msgstr ""
+
+#: templates/checkout/form-pay.php:80
+#@ woocommerce
+msgid "Sorry, it seems that there are no available payment methods for your location. Please contact us if you require assistance or wish to make alternate arrangements."
+msgstr ""
+
+#: templates/checkout/form-pay.php:90
+#@ woocommerce
+msgid "Pay for order"
+msgstr ""
 
