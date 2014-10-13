@@ -42,6 +42,8 @@ if ( get_option( 'woocommerce_gzd_display_listings_add_to_cart' ) == 'no' )
 add_action( 'woocommerce_after_cart_table', 'woocommerce_cart_totals', 1 );
 add_filter( 'woocommerce_cart_item_name', 'woocommerce_gzd_template_cart_product_delivery_time', 0, 3 );
 add_filter( 'woocommerce_cart_item_name', 'wc_gzd_product_item_desc', 0, 2 );
+if ( WC_VERSION < '2.3' )
+	add_action( 'woocommerce_proceed_to_checkout', 'woocommerce_gzd_proceed_to_checkout_fallback' );
 
 /**
  * Checkout

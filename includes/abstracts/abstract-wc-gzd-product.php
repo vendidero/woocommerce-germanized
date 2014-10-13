@@ -44,7 +44,7 @@ class WC_GZD_Product extends WC_Product {
 			if ( $this->child->product_type == 'variation' )
 				$value = $this->child->$key;
 			if ( is_array( $value ) ) {
-				array_values( $value );
+				$value = array_values( $value );
 				$value = $value[0];
 			}
 		}

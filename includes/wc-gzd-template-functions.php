@@ -120,6 +120,21 @@ if ( ! function_exists( 'woocommerce_gzd_template_cart_product_delivery_time' ) 
 	}
 }
 
+if ( ! function_exists( 'woocommerce_gzd_proceed_to_checkout_fallback' ) ) {
+
+	/**
+	 * Display proceed to checkout for older version of WooCommerce
+	 */
+	function woocommerce_gzd_proceed_to_checkout_fallback() {
+		$checkout_url = WC()->cart->get_checkout_url();
+
+		?>
+		<a href="<?php echo $checkout_url; ?>" class="checkout-button button alt wc-forward"><?php _e( 'Proceed to Checkout', 'woocommerce' ); ?></a>
+		<?php
+	}
+
+}
+
 if ( ! function_exists( 'woocommerce_gzd_template_checkout_back_to_cart' ) ) {
 
 	/**

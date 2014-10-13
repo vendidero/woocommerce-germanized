@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: WooCommerce Germanized v1.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-29 12:26+0100\n"
-"PO-Revision-Date: 2014-10-07 16:32:32+0000\n"
+"PO-Revision-Date: 2014-10-13 12:03:18+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -76,7 +76,7 @@ msgid "l"
 msgstr "l"
 
 #: includes/abstracts/abstract-wc-gzd-product.php:72
-#: woocommerce-germanized.php:550
+#: woocommerce-germanized.php:566
 #, php-format
 #@ woocommerce-germanized
 msgid "incl. %s VAT"
@@ -479,7 +479,7 @@ msgstr "Zum Warenkorb Button"
 #: includes/admin/settings/class-wc-gzd-settings-germanized.php:304
 #@ woocommerce-germanized
 msgid "Show add to cart button on listings?"
-msgstr "Den zum Warenkorb Button in Produktlisten darstellen?"
+msgstr "Den zum Warenkorb Button nicht in Produktlisten darstellen?"
 
 #: includes/admin/settings/class-wc-gzd-settings-germanized.php:308
 #@ woocommerce-germanized
@@ -782,92 +782,92 @@ msgctxt "revocation-form"
 msgid "Forward your Revocation online"
 msgstr "Ihren Widerruf online erklären"
 
-#: includes/class-wc-gzd-install.php:92
+#: includes/class-wc-gzd-install.php:98
 #, php-format
 #@ woocommerce-germanized
 msgid "Please install <a href=\"%s\" target=\"_blank\">WooCommerce</a> before installing WooCommerce Germanized. Thank you!"
 msgstr "Bitte installieren Sie <a href=\"%s\" target=\"_blank\">WooCommerce</a> bevor Sie WooCommerce Germanized installieren. Vielen Dank!"
 
-#: includes/class-wc-gzd-install.php:202
+#: includes/class-wc-gzd-install.php:208
 #@ woocommerce-germanized
 msgctxt "Page slug"
 msgid "data-security"
 msgstr "datenschutzbelehrung"
 
-#: includes/class-wc-gzd-install.php:203
+#: includes/class-wc-gzd-install.php:209
 #@ woocommerce-germanized
 msgctxt "Page title"
 msgid "Data Security Statement"
 msgstr "Datenschutzbelehrung"
 
-#: includes/class-wc-gzd-install.php:207
+#: includes/class-wc-gzd-install.php:213
 #@ woocommerce-germanized
 msgctxt "Page slug"
 msgid "imprint"
 msgstr "impressum"
 
-#: includes/class-wc-gzd-install.php:208
+#: includes/class-wc-gzd-install.php:214
 #@ woocommerce-germanized
 msgctxt "Page title"
 msgid "Imprint"
 msgstr "Impressum"
 
-#: includes/class-wc-gzd-install.php:212
+#: includes/class-wc-gzd-install.php:218
 #@ woocommerce-germanized
 msgctxt "Page slug"
 msgid "terms"
 msgstr "agb"
 
-#: includes/class-wc-gzd-install.php:213
+#: includes/class-wc-gzd-install.php:219
 #@ woocommerce-germanized
 msgctxt "Page title"
 msgid "Terms & Conditions"
 msgstr "AGB"
 
-#: includes/class-wc-gzd-install.php:217
+#: includes/class-wc-gzd-install.php:223
 #@ woocommerce-germanized
 msgctxt "Page slug"
 msgid "revocation"
 msgstr "widerrufsbelehrung"
 
-#: includes/class-wc-gzd-install.php:218
+#: includes/class-wc-gzd-install.php:224
 #@ woocommerce-germanized
 msgctxt "Page title"
 msgid "Power of Revocation"
 msgstr "Widerrufsbelehrung"
 
-#: includes/class-wc-gzd-install.php:222
+#: includes/class-wc-gzd-install.php:228
 #@ woocommerce-germanized
 msgctxt "Page slug"
 msgid "shipping-costs"
 msgstr "versandkosten"
 
-#: includes/class-wc-gzd-install.php:223
+#: includes/class-wc-gzd-install.php:229
 #@ woocommerce-germanized
 msgctxt "Page title"
 msgid "Shipping Costs"
 msgstr "Versandkosten"
 
-#: includes/class-wc-gzd-install.php:227
+#: includes/class-wc-gzd-install.php:233
 #@ woocommerce-germanized
 msgctxt "Page slug"
 msgid "payment-methods"
 msgstr "bezahlmoeglichkeiten"
 
-#: includes/class-wc-gzd-install.php:228
-#@ woocommerce
+#: includes/class-wc-gzd-install.php:234
+#@ woocommerce-germanized
 msgctxt "Page title"
 msgid "Payment Methods"
 msgstr "Zahlungsmethoden"
 
-#: includes/class-wc-gzd-install.php:232
+#: includes/class-wc-gzd-install.php:238
 #@ woocommerce-germanized
 msgctxt "Page slug"
 msgid "shipping-methods"
 msgstr "versandmethoden"
 
-#: includes/class-wc-gzd-install.php:233
-#@ woocommerce
+#: includes/class-wc-gzd-install.php:239
+#@ woocommerce-germanized
 msgctxt "Page title"
 msgid "Shipping Methods"
 msgstr "Versandmethoden"
@@ -1554,22 +1554,22 @@ msgctxt "trusted-shops"
 msgid "See <a href=\"%s\" target=\"_blank\">data security statement</a> for further information."
 msgstr "In unserer <a href=\"%s\" target=\"_blank\">Datenschutzbelehrung</a> finden Sie dazu weiterführende Informationen."
 
-#: woocommerce-germanized.php:417
+#: woocommerce-germanized.php:412
 #@ woocommerce
 msgid "Settings"
 msgstr "Einstellungen"
 
-#: woocommerce-germanized.php:418
+#: woocommerce-germanized.php:413
 #@ woocommerce-germanized
 msgid "Premium Support"
 msgstr "Professionelle Hilfe"
 
-#: woocommerce-germanized.php:419
+#: woocommerce-germanized.php:414
 #@ woocommerce-germanized
 msgid "VendiPro"
 msgstr "VendiPro"
 
-#: woocommerce-germanized.php:528
+#: woocommerce-germanized.php:544
 #@ woocommerce
 msgid "Order Total:"
 msgstr "Gesamtsumme"

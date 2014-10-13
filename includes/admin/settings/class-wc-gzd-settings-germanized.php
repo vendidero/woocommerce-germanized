@@ -109,7 +109,7 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 				'type' 		=> 'checkbox',
 				'desc' 		=> __( 'Translate WooCommerce to German.', 'woocommerce-germanized' ),
 				'desc_tip'	=> sprintf( __( 'Translation Files provided by <a href="%s" target="_blank">WooCommerce German (de_DE)</a> by <a href="%s" target="_blank">deckerweb</a>. For more option please install this Plugin.', 'woocommerce-germanized' ), 'http://wordpress.org/plugins/woocommerce-de/', 'http://profiles.wordpress.org/deckerweb/' ),
-				'default'	=> 'yes',
+				'default'	=> 'no',
 			),
 
 			array(
@@ -128,17 +128,6 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 				'title' 	=> __( 'Imprint', 'woocommerce-germanized' ),
 				'desc' 		=> __( 'This page should contain an imprint with your company\'s information.', 'woocommerce-germanized' ),
 				'id' 		=> 'woocommerce_imprint_page_id',
-				'type' 		=> 'single_select_page',
-				'default'	=> '',
-				'class'		=> 'chosen_select_nostd',
-				'css' 		=> 'min-width:300px;',
-				'desc_tip'	=> true,
-			),
-
-			array(
-				'title' 	=> __( 'Shipping Costs', 'woocommerce-germanized' ),
-				'desc' 		=> __( 'This page should contain information regarding shipping costs', 'woocommerce-germanized' ),
-				'id' 		=> 'woocommerce_shipping_costs_page_id',
 				'type' 		=> 'single_select_page',
 				'default'	=> '',
 				'class'		=> 'chosen_select_nostd',
@@ -182,7 +171,7 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 			array(
 				'title' 	=> __( 'Shipping Methods', 'woocommerce-germanized' ),
 				'desc' 		=> __( 'This page should contain information regarding shipping methods that are chooseable during checkout.', 'woocommerce-germanized' ),
-				'id' 		=> 'woocommerce_shipping_methods_page_id',
+				'id' 		=> 'woocommerce_shipping_costs_page_id',
 				'type' 		=> 'single_select_page',
 				'default'	=> '',
 				'class'		=> 'chosen_select_nostd',

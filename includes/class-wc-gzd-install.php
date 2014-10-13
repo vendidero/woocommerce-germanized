@@ -87,6 +87,12 @@ class WC_GZD_Install {
 	 * Install WC_Germanized
 	 */
 	public function install() {
+		// Load Translation for default options
+		$locale = apply_filters( 'plugin_locale', get_locale(), $domain );
+		$mofile = WC_germanized()->plugin_path() . '/i18n/languages/woocommerce-germanized.mo';
+		if ( file_exists( WC_germanized()->plugin_path() . '/i18n/languages/woocommerce-germanized-' . $locale . '.mo' ) )
+			$mofile = WC_germanized()->plugin_path() . '/i18n/languages/woocommerce-germanized-' . $locale . '.mo';
+		load_textdomain( 'woocommerce-germanized', $mofile );
 		if ( ! in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
 			deactivate_plugins( WC_GERMANIZED_PLUGIN_FILE );
 			wp_die( sprintf( __( 'Please install <a href="%s" target="_blank">WooCommerce</a> before installing WooCommerce Germanized. Thank you!', 'woocommerce-germanized' ), 'http://wordpress.org/plugins/woocommerce/' ) );
@@ -149,16 +155,18 @@ class WC_GZD_Install {
 		$options = array(
 			'woocommerce_default_country' 			 => 'DE',
 			'woocommerce_currency' 					 => 'EUR',
+			'woocommerce_currency_pos'				 => 'right_space',
 			'woocommerce_price_thousand_sep' 	     => '.',
 			'woocommerce_price_decimal_sep'     	 => ',',
 			'woocommerce_price_num_decimals'		 => 2,
 			'woocommerce_weight_unit'				 => 'kg',
 			'woocommerce_dimension_unit'			 => 'cm',
-			'woocommerce_calc_taxes'				 => 1,
+			'woocommerce_calc_taxes'				 => 'yes',
 			'woocommerce_prices_include_tax'		 => 'yes',
 			'woocommerce_tax_display_cart'			 => 'incl',
+			'woocommerce_tax_display_shop'			 => 'incl',
 			'woocommerce_allowed_countries'	    	 => 'specific',
-			'woocommerce_specific_allowed_countries' => 'DE',
+			'woocommerce_specific_allowed_countries' => array( 'DE' ),
 		);
 		if ( !empty($options ) ) {
 			foreach ( $options as $key => $option ) {
@@ -170,7 +178,7 @@ class WC_GZD_Install {
 			'tax_rate_country'  => 'DE',
 			'tax_rate_state'    => '',
 			'tax_rate'          => 19.0,
-			'tax_rate_name'     => 'Mwst.',
+			'tax_rate_name'     => 'MwSt.',
 			'tax_rate_priority' => 1,
 			'tax_rate_compound' => '',
 			'tax_rate_shipping' => '1',
@@ -183,7 +191,7 @@ class WC_GZD_Install {
 
 		$_tax_rate[ 'tax_rate' ] = 7.0;
 		$_tax_rate[ 'tax_rate_class' ] = 'reduced-rate';
-		$_tax_rate[ 'tax_rate_name' ] = 'Mwst. 7%';
+		$_tax_rate[ 'tax_rate_name' ] = 'MwSt. 7%';
 
 		$exists = $wpdb->get_results ( 'SELECT tax_rate_id FROM ' . $wpdb->prefix . 'woocommerce_tax_rates' . ' WHERE tax_rate = 7' );
 		if ( empty( $exists ) )
@@ -219,24 +227,19 @@ class WC_GZD_Install {
 				'content' => ''
 			),
 			'shipping_costs' => array(
-				'name'    => _x( 'shipping-costs', 'Page slug', 'woocommerce-germanized' ),
-				'title'   => _x( 'Shipping Costs', 'Page title', 'woocommerce-germanized' ),
-				'content' => '[' . apply_filters( 'woocommerce_gzd_shipping_costs_shortcode_tag', 'woocommerce_gzd_shipping_costs' ) . ']'
+				'name'    => _x( 'shipping-methods', 'Page slug', 'woocommerce-germanized' ),
+				'title'   => _x( 'Shipping Methods', 'Page title', 'woocommerce-germanized' ),
+				'content' => ''
 			),
 			'payment_methods' => array(
 				'name'    => _x( 'payment-methods', 'Page slug', 'woocommerce-germanized' ),
-				'title'   => _x( 'Payment Methods', 'Page title', 'woocommerce' ),
+				'title'   => _x( 'Payment Methods', 'Page title', 'woocommerce-germanized' ),
 				'content' => '[' . apply_filters( 'woocommerce_gzd_payment_methods_shortcode_tag', 'woocommerce_gzd_payment_methods' ) . ']'
-			),
-			'shipping_methods' => array(
-				'name'    => _x( 'shipping-methods', 'Page slug', 'woocommerce-germanized' ),
-				'title'   => _x( 'Shipping Methods', 'Page title', 'woocommerce' ),
-				'content' => ''
 			),
 		) );
 
 		foreach ( $pages as $key => $page ) {
-			wc_create_page( esc_sql( $page['name'] ), 'woocommerce_gzd_' . $key . '_page_id', $page['title'], $page['content'], ! empty( $page['parent'] ) ? wc_get_page_id( $page['parent'] ) : '' );
+			wc_create_page( esc_sql( $page['name'] ), 'woocommerce_' . $key . '_page_id', $page['title'], $page['content'], ! empty( $page['parent'] ) ? wc_get_page_id( $page['parent'] ) : '' );
 		}
 
 	}
@@ -254,8 +257,9 @@ class WC_GZD_Install {
 		include_once( 'admin/settings/class-wc-gzd-settings-germanized.php' );
 
 		$settings = new WC_GZD_Settings_Germanized();
+		$options = array_merge( $settings->get_settings(), $settings->get_display_settings() );
 
-		foreach ( $settings->get_settings() as $value ) {
+		foreach ( $options as $value ) {
 			if ( isset( $value['default'] ) && isset( $value['id'] ) ) {
 				$autoload = isset( $value['autoload'] ) ? (bool) $value['autoload'] : true;
 				add_option( $value['id'], $value['default'], '', ( $autoload ? 'yes' : 'no' ) );
