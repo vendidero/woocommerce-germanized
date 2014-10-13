@@ -6,6 +6,9 @@
 	border-bottom-right-radius: 5px;
 	margin-bottom: 1em;
 }
+.cart_totals table tr td {
+	max-width: 250px;
+}
 .cart_totals p:last-child {
 	margin-bottom: 0;
 }
