@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: WooCommerce Germanized v1.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-29 12:26+0100\n"
-"PO-Revision-Date: 2014-10-23 11:44:33+0000\n"
+"PO-Revision-Date: 2014-10-23 12:47:58+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -142,7 +142,7 @@ msgstr "Einheit"
 #: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:36
 #: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:64
 #: includes/admin/settings/class-wc-gzd-settings-germanized.php:52
-#: includes/class-wc-gzd-trusted-shops.php:302
+#: includes/class-wc-gzd-trusted-shops.php:295
 #@ woocommerce-germanized
 msgid "None"
 msgstr "Keine"
@@ -1061,13 +1061,13 @@ msgctxt "trusted-shops"
 msgid "&#216; <span itemprop=\"average\">%s</span> of <span itemprop=\"best\">%s</span> based on <span class=\"count\">%s</span> <a href=\"%s\" target=\"_blank\">ratings</a>."
 msgstr "&#216; <span itemprop=\"average\">%s</span> von <span itemprop=\"best\">%s</span> basierend auf <span class=\"count\">%s</span> <a href=\"%s\" target=\"_blank\">Bewertungen</a>."
 
-#: includes/class-wc-gzd-trusted-shops.php:306
+#: includes/class-wc-gzd-trusted-shops.php:299
 #@ woocommerce-germanized
 msgctxt "trusted-shops"
 msgid "Trusted Shops Integration"
 msgstr "Trusted Shops Integration"
 
-#: includes/class-wc-gzd-trusted-shops.php:384
+#: includes/class-wc-gzd-trusted-shops.php:377
 #, php-format
 #@ woocommerce-germanized
 msgctxt "trusted-shops"
@@ -1497,97 +1497,97 @@ msgctxt "trusted-shops"
 msgid "Show customer reviews"
 msgstr "Kundenmeinungen ansehen"
 
-#: includes/class-wc-gzd-trusted-shops.php:276
+#: includes/class-wc-gzd-trusted-shops.php:269
 #@ woocommerce-germanized
 msgctxt "trusted-shops"
 msgid "Trusted Shops Customer Reviews"
 msgstr "Trusted Shops Kundenbewertungen"
 
-#: includes/class-wc-gzd-trusted-shops.php:309
+#: includes/class-wc-gzd-trusted-shops.php:302
 #@ woocommerce-germanized
 msgctxt "trusted-shops"
 msgid "TS-ID"
 msgstr "TS-ID"
 
-#: includes/class-wc-gzd-trusted-shops.php:310
+#: includes/class-wc-gzd-trusted-shops.php:303
 #@ woocommerce-germanized
 msgctxt "trusted-shops"
 msgid "Insert your Trusted Shops ID here."
 msgstr "Füge hier deine Trusted Shops ID ein."
 
-#: includes/class-wc-gzd-trusted-shops.php:319
+#: includes/class-wc-gzd-trusted-shops.php:312
 #@ woocommerce-germanized
 msgctxt "trusted-shops"
 msgid "Configure the Trustbadge for your shop"
 msgstr "Konfiguriere dein Trustbadge"
 
-#: includes/class-wc-gzd-trusted-shops.php:319
+#: includes/class-wc-gzd-trusted-shops.php:312
 #, php-format
 #@ woocommerce-germanized
 msgctxt "trusted-shops"
 msgid "You'll find a step-by-step instruction for your shopsoftware in our integration center. <a href=\"%s\" target=\"_blank\">Click here</a>"
 msgstr "In unserem Integration Center findest du eine Schritt-für-Schritt Anleitung. Klicke  <a href=\"%s\" target=\"_blank\">hier</a>."
 
-#: includes/class-wc-gzd-trusted-shops.php:322
+#: includes/class-wc-gzd-trusted-shops.php:315
 #@ woocommerce-germanized
 msgctxt "trusted-shops"
 msgid "Trustbadge code"
 msgstr "Trustbadge Code"
 
-#: includes/class-wc-gzd-trusted-shops.php:325
+#: includes/class-wc-gzd-trusted-shops.php:318
 #@ woocommerce-germanized
 msgctxt "trusted-shops"
 msgid "Fill in your trustbadge code here"
 msgstr "Trustbadge Code hier einfügen"
 
-#: includes/class-wc-gzd-trusted-shops.php:325
+#: includes/class-wc-gzd-trusted-shops.php:318
 #@ woocommerce-germanized
 msgctxt "trusted-shops"
 msgid "If no further steps were required in the integration center, the Trustbadge is already displayed in your shop."
 msgstr "Sofern keine weiteren Installationsschritte im Integration Center beschrieben wurden, wird das Trustbadge jetzt im Frontend deines Shops angezeigt."
 
-#: includes/class-wc-gzd-trusted-shops.php:332
+#: includes/class-wc-gzd-trusted-shops.php:325
 #@ woocommerce-germanized
 msgctxt "trusted-shops"
 msgid "Configure Customer Reviews"
 msgstr "Kundenbewertungen konfigurieren"
 
-#: includes/class-wc-gzd-trusted-shops.php:335
+#: includes/class-wc-gzd-trusted-shops.php:328
 #@ woocommerce-germanized
 msgctxt "trusted-shops"
 msgid "Enable Review Widget"
 msgstr "Kundenbewertungswidget aktiveren"
 
-#: includes/class-wc-gzd-trusted-shops.php:336
+#: includes/class-wc-gzd-trusted-shops.php:329
 #, php-format
 #@ woocommerce-germanized
 msgctxt "trusted-shops"
 msgid "This option will enable a Widget which shows your Trusted Shops Reviews as a graphic. You may configure your Widgets <a href=\"%s\">here</a>."
 msgstr "Diese Option aktiviert ein Widget, mit dem du das Trusted Shops Review Widget in deinem Shop platzieren kannst. <a href=\"%s\">Hier</a> kannst du deine Widgets zuweisen."
 
-#: includes/class-wc-gzd-trusted-shops.php:344
+#: includes/class-wc-gzd-trusted-shops.php:337
 #@ woocommerce-germanized
 msgctxt "trusted-shops"
 msgid "Enable Rich Snippets for Google"
 msgstr "Rich Snippets Anzeige in Google aktivieren"
 
-#: includes/class-wc-gzd-trusted-shops.php:345
+#: includes/class-wc-gzd-trusted-shops.php:338
 #@ woocommerce-germanized
 msgctxt "trusted-shops"
 msgid "This option will update your reviews received via Trusted Shops once per day and enables a Widget to show your reviews as Rich Snippets."
 msgstr "Diese Option bewirkt, dass deine über Trusted Shops empfangenen Bewertungen als Rich Snippets im Shop als Widget verfügbar sind. "
 
-#: includes/class-wc-gzd-trusted-shops.php:354
+#: includes/class-wc-gzd-trusted-shops.php:347
 #@ woocommerce-germanized
 msgctxt "trusted-shops"
 msgid "Assign payment methods"
 msgstr "Zahlungsmethoden zuweisen"
 
-#: includes/class-wc-gzd-trusted-shops.php:403
-#@ woocommmerce-germanized
+#: includes/class-wc-gzd-trusted-shops.php:396
+#@ woocommerce-germanized
 msgctxt "trusted-shops"
 msgid "About Trusted Shops"
-msgstr ""
+msgstr "Über Trusted Shops"
 
 #: includes/wc-gzd-template-functions.php:132
 #@ woocommerce
