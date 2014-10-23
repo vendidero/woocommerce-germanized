@@ -224,24 +224,20 @@ class WC_GZD_Trusted_Shops {
 	 */
 	public function update_reviews() {
 		$update = array();
-
-		if ( WC_germanized()->trusted_shops->is_enabled() ) {
-
+		if ( $this->is_enabled() ) {
 			if ( function_exists( 'curl_version' ) ) {
 				$success = false;
 				$ch = curl_init();
 				curl_setopt( $ch, CURLOPT_HEADER, false );
 				curl_setopt( $ch, CURLOPT_RETURNTRANSFER, 1 );
 				curl_setopt( $ch, CURLOPT_POST, false );
-				curl_setopt( $ch, CURLOPT_URL, WC_germanized()->trusted_shops->api_url );
+				curl_setopt( $ch, CURLOPT_URL, $this->api_url );
 				$output = curl_exec( $ch );
 				$httpcode = curl_getinfo( $ch, CURLINFO_HTTP_CODE );
 				if ( !curl_errno( $ch ) && $httpcode != 503 )
 					$success = true;
 				curl_close( $ch );
-
 				if ( $success ) {
-
 					$xml = new SimpleXMLElement( $output );
 					$xPath = '/shop/ratings/result[@name="average"]';
 					$avg = $xml->xpath( $xPath );
@@ -249,12 +245,9 @@ class WC_GZD_Trusted_Shops {
 						$update['avg'] = ( float ) $avg[0];
 						$update['max'] = '5.00';
 						$update['count'] = ( string ) $xml->ratings["amount"][0];
-					}
-					
+					}	
 				}
-
 			}
-
 		}
 		update_option( 'woocommerce_gzd_trusted_shops_reviews_cache', $update );
 	}
@@ -281,7 +274,7 @@ class WC_GZD_Trusted_Shops {
 			$attachment_id = wp_insert_attachment( $attachment , $filepath );
 			update_option( 'woocommerce_gzd_trusted_shops_review_widget_attachment', $attachment_id );
 		} else {
-			$attachment_id =  $this->get_review_widget_attachment();
+			$attachment_id = $this->get_review_widget_attachment();
 			update_attached_file( $attachment_id, $filepath );
 			$attachment[ 'ID' ] = $attachment_id;
 			wp_update_post( $attachment );
