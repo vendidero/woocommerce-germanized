@@ -436,8 +436,10 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 		global $current_section;
 		$sidebar = $this->get_sidebar();
 		if ( $current_section ) {
-			if ( $current_section == 'trusted_shops' )
+			if ( $current_section == 'trusted_shops' ) {
 				$settings = WC_germanized()->trusted_shops->get_settings();
+				$sidebar = WC_germanized()->trusted_shops->get_sidebar();
+			}
 			else if ( $current_section == 'ekomi' )
 				$settings = WC_germanized()->ekomi->get_settings();
 			else if ( $current_section == 'display' )
@@ -486,7 +488,10 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 			$settings = $this->get_settings();
 		}
 
-		if ( !empty( $settings ) && ! $current_section ) {
+		$update_rich_snippets = false;
+		$update_reviews = false;
+
+		if ( !empty( $settings ) ) {
 			foreach ( $settings as $setting ) {
 				if ( $setting[ 'id' ] == 'woocommerce_gzd_small_enterprise' ) {
 					if ( get_option('woocommerce_gzd_small_enterprise') == 'no' && !empty( $_POST['woocommerce_gzd_small_enterprise'] ) ) {
@@ -502,12 +507,26 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 						update_option( 'woocommerce_prices_include_tax', 'yes' );
 					}
 					break;
+				} else if ( $setting[ 'id' ] == 'woocommerce_gzd_trusted_shops_review_widget_enable' ) {
+					if ( ! empty( $_POST[ 'woocommerce_gzd_trusted_shops_review_widget_enable' ] ) && ! WC_germanized()->trusted_shops->is_review_widget_enabled() )
+						$update_reviews = true;
+				} else if ( $setting[ 'id' ] == 'woocommerce_gzd_trusted_shops_rich_snippets_enable' ) {
+					if ( ! empty( $_POST[ 'woocommerce_gzd_trusted_shops_rich_snippets_enable' ] ) && ! WC_germanized()->trusted_shops->is_rich_snippets_enabled() )
+						$update_rich_snippets = true;
 				}
 			}
 		}
 
 		WC_Admin_Settings::save_fields( $settings );
 
+		// Trusted Shops API
+		if ( $update_rich_snippets || $update_reviews ) {
+			$trusted_shops = new WC_GZD_Trusted_Shops();
+			if ( $update_rich_snippets )
+				$trusted_shops->update_reviews();
+			if ( $update_reviews )
+				$trusted_shops->update_review_widget();
+		}
 	}
 
 }

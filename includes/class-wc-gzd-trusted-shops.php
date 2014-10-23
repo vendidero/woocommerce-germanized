@@ -22,6 +22,18 @@ class WC_GZD_Trusted_Shops {
 	 *
 	 * @var array
 	 */
+	/**
+	 * Trusted Shops Partner ID of WooCommerce Germanized
+	 * @var string
+	 */
+	public $partner_id;
+	public $et_cid = '';
+	public $et_lid = '';
+	/**
+	 * Trusted Shops Plugin Version
+	 * @var string
+	 */
+	public $version = '1.0';
 	public $gateways;
 	/**
 	 * API URL for review collection
@@ -34,6 +46,7 @@ class WC_GZD_Trusted_Shops {
 	 * Sets Trusted Shops payment gateways and establishes hooks
 	 */
 	public function __construct() {
+		$this->partner_id = 'WooCommerceGermanized';
 		$this->id = get_option( 'woocommerce_gzd_trusted_shops_id' );
 		$this->gateways = apply_filters( 'woocommerce_trusted_shops_gateways', array(
 				'prepayment' => _x( 'Prepayment', 'trusted-shops', 'woocommerce-germanized' ),
@@ -47,10 +60,13 @@ class WC_GZD_Trusted_Shops {
 		);
 		$this->api_url = 'http://www.trustedshops.com/api/ratings/v1/'. $this->id .'.xml';
 		// Schedule
-		if ( $this->is_enabled() )
+		if ( $this->is_rich_snippets_enabled() )
 			add_action( 'woocommerce_gzd_trusted_shops_reviews', array( $this, 'update_reviews' ) );
+		if ( $this->is_review_widget_enabled() )
+			add_action( 'woocommerce_gzd_trusted_shops_reviews', array( $this, 'update_review_widget' ) );
+		//add_action( 'init', array( $this, 'update_review_widget' ) );
 		// Add Badge to Footer
-		if ( $this->enable_badge() )
+		if ( $this->is_enabled() && $this->get_badge_js() )
 			add_action( 'wp_footer', array( $this, 'add_badge' ), 5 );
 	}
 
@@ -84,6 +100,24 @@ class WC_GZD_Trusted_Shops {
 	}
 
 	/**
+	 * Checks whether Trusted Shops Rich Snippets are enabled
+	 * 
+	 * @return boolean
+	 */
+	public function is_rich_snippets_enabled() {
+		return ( $this->rich_snippets_enable == 'yes' && $this->is_enabled() ? true : false );
+	}
+
+	/**
+	 * Checks whether review widget is enabled
+	 *  
+	 * @return boolean
+	 */
+	public function is_review_widget_enabled() {
+		return ( $this->review_widget_enable == 'yes' && $this->is_enabled() ? true : false );
+	}
+
+	/**
 	 * Gets Trusted Shops payment gateway by woocommerce payment id
 	 *
 	 * @param integer $payment_method_id
@@ -94,21 +128,12 @@ class WC_GZD_Trusted_Shops {
 	}
 
 	/**
-	 * Checks whether current Shop is rateable via Trusted Shops
-	 *
-	 * @return boolean
-	 */
-	public function is_rateable() {
-		return ( $this->review_enable == 'yes' ) ? true : false;
-	}
-
-	/**
 	 * Returns the average rating by grabbing the rating from the cache
 	 *
 	 * @return array
 	 */
 	public function get_average_rating() {
-		return ( get_option( 'woocommerce_gzd_trusted_shops_reviews_cache' ) ) ? get_option( 'woocommerce_gzd_trusted_shops_reviews_cache' ) : array();
+		return ( $this->reviews_cache ? $this->reviews_cache : array() );
 	}
 
 	/**
@@ -130,21 +155,12 @@ class WC_GZD_Trusted_Shops {
 	}
 
 	/**
-	 * Checks whether a badge should be inserted
-	 *
-	 * @return boolean
-	 */
-	public function enable_badge() {
-		return ( get_option( 'woocommerce_gzd_trusted_shops_badge_show' ) == 'yes' ) ? true : false;
-	}
-
-	/**
-	 * Returns the badge display variant
-	 *
+	 * Returs badge js code
+	 * 
 	 * @return string
 	 */
-	public function get_badge_variant() {
-		return get_option( 'woocommerce_gzd_trusted_shops_badge_variant' );
+	public function get_badge_js() {
+		return ( $this->badge_code ? $this->badge_code : false );
 	}
 
 	/**
@@ -153,21 +169,18 @@ class WC_GZD_Trusted_Shops {
 	public function add_badge() {
 		if ( $this->is_enabled() ) {
 			echo "<script type='text/javascript'>
-			    (function () {
-			    var _tsid = '" . $this->id . "';
-			    _tsConfig = {
-			        'yOffset': '10', //offset from page bottom
-			        'variant': '" . $this->get_badge_variant() . "' //text, default, small, reviews
-			    };
-			    var _ts = document.createElement('script');
-			    _ts.type = 'text/javascript';
-			    _ts.charset = 'utf-8';
-			    _ts.src = '//widgets.trustedshops.com/js/' + _tsid + '.js';
-			    var __ts = document.getElementsByTagName('script')[0];
-			    __ts.parentNode.insertBefore(_ts, __ts);
-			    })();
+			    " . $this->get_badge_js() . "
 			</script>";
 		}
+	}
+
+	/**
+	 * Gets the attachment id of review widget graphic
+	 *  
+	 * @return mixed
+	 */
+	public function get_review_widget_attachment() {
+		return ( ! $this->review_widget_attachment ? false : $this->review_widget_attachment );
 	}
 
 	/**
@@ -178,10 +191,10 @@ class WC_GZD_Trusted_Shops {
 	public function get_average_rating_html() {
 		$rating = $this->get_average_rating();
 		$html = '';
-		if ( !empty( $rating ) && $this->is_enabled() && $this->is_rateable() ) {
+		if ( !empty( $rating ) && $this->is_rich_snippets_enabled() ) {
 			$html = '
 				<div itemscope itemtype="http://data-vocabulary.org/Review-aggregate" class="wc-gzd-trusted-shops-rating-widget">
-					<a href="' . $this->get_certificate_link() . '" target="_blank"><span itemprop="itemreviewed"><strong>' . get_bloginfo( 'name' ) . '</strong></span></a>
+					<a href="' . $this->get_rating_link() . '" target="_blank" title="' . sprintf( _x( '%s ratings', 'trusted-shops', 'woocommerce-germanized' ), get_bloginfo( 'name' ) ) . '"><span itemprop="itemreviewed"><strong>' . get_bloginfo( 'name' ) . '</strong></span></a>
 					<div class="star-rating" title="' . sprintf( _x( 'Rated %s out of %s', 'trusted-shops', 'woocommerce-germanized' ), $rating['avg'], (int) $rating['max'] ) . '">
 						<span style="width:' . ( ( $rating['avg'] / 5 ) * 100 ) . '%">
 							<strong class="rating">' . esc_html( $rating['avg'] ) . '</strong> ' . sprintf( _x( 'out of %s', 'trusted-shops', 'woocommerce-germanized' ), (int) $rating[ 'max' ] ) . '
@@ -195,6 +208,15 @@ class WC_GZD_Trusted_Shops {
 		   	';
 		}
 		return $html;
+	}
+
+	/**
+	 * Returns the review widget html
+	 *  
+	 * @return string 
+	 */
+	public function get_review_widget_html() {
+		return ( $this->get_review_widget_attachment() ? '<a href="' . $this->get_rating_link() . '" target="_blank" title="' . _x( 'Show customer reviews', 'trusted-shops', 'woocommerce-germanized' ) . '">' . wp_get_attachment_image( $this->get_review_widget_attachment(), 'full' ) . '</a>' : false );
 	}
 
 	/**
@@ -238,6 +260,39 @@ class WC_GZD_Trusted_Shops {
 	}
 
 	/**
+	 * Updates the review widget graphic and saves it as an attachment
+	 */
+	public function update_review_widget() {
+		$filename = $this->id . '.gif';
+		$raw_data = file_get_contents( 'https://www.trustedshops.com/bewertung/widget/widgets/' . $filename );
+		$uploads = wp_upload_dir( date( 'Y-m' ) );
+		if ( is_wp_error( $uploads ) )
+			return;
+		$filepath = $uploads['path'] . '/' . $filename;
+  		file_put_contents( $filepath, $raw_data );
+  		$attachment = array(
+  			'guid' => $uploads[ 'url' ] . '/' . basename( $filepath ),
+  			'post_mime_type' => 'image/gif',
+  			'post_title' => _x( 'Trusted Shops Customer Reviews', 'trusted-shops', 'woocommerce-germanized' ),
+  			'post_content' => '',
+  			'post_status' => 'publish',
+  		);
+		if ( ! $this->get_review_widget_attachment() ) {
+			$attachment_id = wp_insert_attachment( $attachment , $filepath );
+			update_option( 'woocommerce_gzd_trusted_shops_review_widget_attachment', $attachment_id );
+		} else {
+			$attachment_id =  $this->get_review_widget_attachment();
+			update_attached_file( $attachment_id, $filepath );
+			$attachment[ 'ID' ] = $attachment_id;
+			wp_update_post( $attachment );
+		}
+		require_once( ABSPATH . 'wp-admin/includes/image.php' );
+		// Generate the metadata for the attachment, and update the database record.
+		$attach_data = wp_generate_attachment_metadata( $attachment_id, $filepath );
+		wp_update_attachment_metadata( $attachment_id, $attach_data );
+	}
+
+	/**
 	 * Get Trusted Shops related Settings for Admin Interface
 	 *
 	 * @return array
@@ -251,58 +306,52 @@ class WC_GZD_Trusted_Shops {
 			array( 'title' => _x( 'Trusted Shops Integration', 'trusted-shops', 'woocommerce-germanized' ), 'type' => 'title', 'id' => 'trusted_shops_options' ),
 
 			array(
-				'title'  => _x( 'Shop ID', 'trusted-shops', 'woocommerce-germanized' ),
-				'desc'   => _x( 'Insert your Shop ID here.', 'trusted-shops', 'woocommerce-germanized' ),
+				'title'  => _x( 'TS-ID', 'trusted-shops', 'woocommerce-germanized' ),
+				'desc'   => _x( 'Insert your Trusted Shops ID here.', 'trusted-shops', 'woocommerce-germanized' ),
 				'desc_tip' => true,
 				'id'   => 'woocommerce_gzd_trusted_shops_id',
 				'type'   => 'text',
 				'css'   => 'min-width:300px;',
 			),
 
+			array( 'type' => 'sectionend', 'id' => 'trusted_shops_options' ),
+
+			array(	'title' => _x( 'Configure the Trustbadge for your shop', 'trusted-shops', 'woocommerce-germanized' ), 'type' => 'title', 'id' => 'trusted_shops_badge_options', 'desc' => sprintf( _x( 'You\'ll find a step-by-step instruction for your shopsoftware in our integration center. <a href="%s" target="_blank">Click here</a>', 'trusted-shops', 'woocommerce-germanized' ), 'https://www.trustedshops.com/integration/?shop_id=' . esc_attr( $this->id ) . '&backend_language=' . esc_attr( substr( get_bloginfo( 'language' ), 0, 2) ) . '&shopsw=' . esc_attr( $this->partner_id ) . '&shopsw_version=' . esc_attr( WC_GERMANIZED_VERSION ) . '&plugin_version=' . esc_attr( $this->version ) . 'context=trustbadge' ) ),
+
 			array(
-				'title'  => _x( 'Enable Reviews?', 'trusted-shops', 'woocommerce-germanized' ),
-				'desc'   => _x( 'Enable this option if you want to let your customers rate your Shop via Trusted Shops', 'trusted-shops', 'woocommerce-germanized' ),
-				'id'   => 'woocommerce_gzd_trusted_shops_review_enable',
+				'title'  => _x( 'Trustbadge code', 'trusted-shops', 'woocommerce-germanized' ),
+				'id'     => 'woocommerce_gzd_trusted_shops_badge_code',
+				'type'   => 'textarea',
+				'custom_attributes'  => array( 'placeholder' => _x( 'Fill in your trustbadge code here', 'trusted-shops', 'woocommerce-germanized' ), 'data-after' => _x( 'If no further steps were required in the integration center, the Trustbadge is already displayed in your shop.', 'trusted-shops', 'woocommerce-germanized' ) ),
+				'css' => 'width: 100%; min-height: 80px',
+				'autoload'  => false
+			),
+
+			array( 'type' => 'sectionend', 'id' => 'trusted_shops_badge_options' ),
+
+			array(	'title' => _x( 'Configure Customer Reviews', 'trusted-shops', 'woocommerce-germanized' ), 'type' => 'title', 'id' => 'trusted_shops_reviews_options' ),
+
+			array(
+				'title'  => _x( 'Enable Review Widget', 'trusted-shops', 'woocommerce-germanized' ),
+				'desc'   => sprintf( _x( 'This option will enable a Widget which shows your Trusted Shops Reviews as a graphic. You may configure your Widgets <a href="%s">here</a>.', 'trusted-shops', 'woocommerce-germanized' ), admin_url( 'widgets.php' ) ),
+				'id'   => 'woocommerce_gzd_trusted_shops_review_widget_enable',
 				'type'   => 'checkbox',
 				'default' => 'yes',
 				'autoload'  => false
 			),
 
 			array(
-				'title'  => _x( 'Show Badge?', 'trusted-shops', 'woocommerce-germanized' ),
-				'desc'   => sprintf( _x( 'Show a Trusted Shops Badge on the right side of your Website. For more info please visit <a href="%s" target="_blank">Trusted Shops</a>', 'trusted-shops', 'woocommerce-germanized' ), 'http://www.trustedshops.de/shopbetreiber/integration/trustbadge.html' ),
-				'id'   => 'woocommerce_gzd_trusted_shops_badge_show',
+				'title'  => _x( 'Enable Rich Snippets for Google', 'trusted-shops', 'woocommerce-germanized' ),
+				'desc'   => _x( 'This option will update your reviews received via Trusted Shops once per day and enables a Widget to show your reviews as Rich Snippets.', 'trusted-shops', 'woocommerce-germanized' ),
+				'id'   => 'woocommerce_gzd_trusted_shops_rich_snippets_enable',
 				'type'   => 'checkbox',
-				'default' => 'no',
+				'default' => 'yes',
 				'autoload'  => false
 			),
 
-			array(
-				'title'  => _x( 'Badge Variant', 'trusted-shops', 'woocommerce-germanized' ),
-				'desc'   => _x( 'Choose a Badge Variant', 'trusted-shops', 'woocommerce-germanized' ),
-				'id'   => 'woocommerce_gzd_trusted_shops_badge_variant',
-				'css'   => 'min-width:250px;',
-				'default' => 'default',
-				'type'   => 'select',
-				'class'  => 'chosen_select',
-				'options' => array(
-					'default'  => _x( 'Default', 'trusted-shops', 'woocommerce-germanized' ),
-					'text'   => _x( 'Text', 'trusted-shops', 'woocommerce-germanized' ),
-					'small'  => _x( 'Small', 'trusted-shops', 'woocommerce-germanized' ),
-					'reviews'  => _x( 'Reviews', 'trusted-shops', 'woocommerce-germanized' )
-				),
-				'desc_tip' =>  true,
-			),
+			array( 'type' => 'sectionend', 'id' => 'trusted_shops_reviews_options' ),
 
-			array(
-				'title'  => _x( 'Review Reminder after', 'trusted-shops', 'woocommerce-germanized' ),
-				'desc'   => _x( 'If a customer chooses to rate your Shop later, how many days should be gone until customer receives an reminder email sent by Trusted Shops?', 'trusted-shops', 'woocommerce-germanized' ),
-				'desc_tip' => true,
-				'id'   => 'woocommerce_gzd_trusted_shops_review_reminder_days',
-				'type'   => 'number',
-				'default' => 7,
-				'autoload'      => false
-			),
+			array(	'title' => _x( 'Assign payment methods', 'trusted-shops', 'woocommerce-germanized' ), 'type' => 'title', 'id' => 'trusted_shops_payment_options' ),
 
 		);
 
@@ -330,25 +379,28 @@ class WC_GZD_Trusted_Shops {
 				break;
 			}
 
-
 			array_push( $options, array(
-					'title'  => empty( $gateway->method_title ) ? ucfirst( $gateway->id ) : $gateway->method_title,
-					'desc'   => sprintf( _x( 'Choose a Trusted Shops Payment Gateway linked to WooCommerce Payment Gateway %s', 'trusted-shops', 'woocommerce-germanized' ), empty( $gateway->method_title ) ? ucfirst( $gateway->id ) : $gateway->method_title ),
-					'desc_tip' => true,
-					'id'   => 'woocommerce_gzd_trusted_shops_gateway_' . $gateway->id,
-					'css'   => 'min-width:250px;',
-					'default' => $default,
-					'type'   => 'select',
-					'class'  => 'chosen_select',
-					'options' => $payment_options,
-					'autoload'      => false
-				) );
+				'title'  => empty( $gateway->method_title ) ? ucfirst( $gateway->id ) : $gateway->method_title,
+				'desc'   => sprintf( _x( 'Choose a Trusted Shops Payment Gateway linked to WooCommerce Payment Gateway %s', 'trusted-shops', 'woocommerce-germanized' ), empty( $gateway->method_title ) ? ucfirst( $gateway->id ) : $gateway->method_title ),
+				'desc_tip' => true,
+				'id'   => 'woocommerce_gzd_trusted_shops_gateway_' . $gateway->id,
+				'css'   => 'min-width:250px;',
+				'default' => $default,
+				'type'   => 'select',
+				'class'  => 'chosen_select',
+				'options' => $payment_options,
+				'autoload'      => false
+			) );
 		}
 
 		array_push( $options, array( 'type' => 'sectionend', 'id' => 'trusted_shops_options' ) );
 
 		return $options;
 
+	}
+
+	public function get_sidebar() {
+		return '<div class="wc-gzd-admin-settings-sidebar"><h3>' . _x( 'About Trusted Shops', 'trusted-shops', 'woocommmerce-germanized' ) . '</h3><a href="https://www.trustedshops.com/integration/?backend_language=' . esc_attr( substr( get_bloginfo( 'language' ), 0, 2) ) . '&shopsw=' . esc_attr( $this->partner_id ) . '&shopsw_version=' . esc_attr( WC_GERMANIZED_VERSION ) . '&plugin_version=' . esc_attr( $this->version ) . '&context=membership&et_cid=' . esc_attr( $this->et_cid ) . '&et_lid=' . esc_attr( $this->et_lid ) . '" target="_blank"><img style="width: 100%; height: auto" src="' . WC_germanized()->plugin_url() . '/assets/images/trusted-shops-b.png" /></a></div>';
 	}
 
 }

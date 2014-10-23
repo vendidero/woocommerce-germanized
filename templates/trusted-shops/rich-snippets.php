@@ -1,6 +1,6 @@
 <?php
 /**
- * Single Product Shipping Time Info
+ * Trusted Shops Rich Snippets HTML
  *
  * @author 		Vendidero
  * @package 	WooCommerceGermanized/Templates

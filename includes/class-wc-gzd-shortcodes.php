@@ -19,7 +19,8 @@ class WC_GZD_Shortcodes {
 		$shortcodes = array(
 			'revocation_form'            => __CLASS__ . '::revocation_form',
 			'payment_methods_info'		 => __CLASS__ . '::payment_methods_info',
-			'trusted_shops_rating'		 => __CLASS__ . '::trusted_shops_rating',
+			'trusted_shops_rich_snippets'=> __CLASS__ . '::trusted_shops_rich_snippets',
+			'trusted_shops_reviews'		 => __CLASS__ . '::trusted_shops_reviews',
 			'trusted_shops_badge'		 => __CLASS__ . '::trusted_shops_badge',
 			'ekomi_badge'				 => __CLASS__ . '::ekomi_badge',
 			'ekomi_widget'				 => __CLASS__ . '::ekomi_widget',
@@ -68,10 +69,25 @@ class WC_GZD_Shortcodes {
 	 * @param  array $atts 
 	 * @return string       
 	 */
-	public static function trusted_shops_rating( $atts ) {
+	public static function trusted_shops_rich_snippets( $atts ) {
 		
 		ob_start();
-		woocommerce_get_template( 'trusted-shops/rating.php' );
+		woocommerce_get_template( 'trusted-shops/rich-snippets.php' );
+		$html = ob_get_clean();
+		return WC_germanized()->trusted_shops->is_enabled() ? '<div class="woocommerce woocommerce-gzd">' . $html . '</div>' : '';
+	
+	}
+
+	/**
+	 * Returns Trusted Shops reviews graphic
+	 *  
+	 * @param  array $atts 
+	 * @return string       
+	 */
+	public static function trusted_shops_reviews( $atts ) {
+		
+		ob_start();
+		woocommerce_get_template( 'trusted-shops/reviews.php' );
 		$html = ob_get_clean();
 		return WC_germanized()->trusted_shops->is_enabled() ? '<div class="woocommerce woocommerce-gzd">' . $html . '</div>' : '';
 	
