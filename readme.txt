@@ -23,25 +23,25 @@ Bei der Entwicklung von VendiPro haben wir besonders auf deutsche Benutzer-Erfah
 WooCommerce + VendiPro - zusammen die optimale Wahl für deinen deutschen WooCommerce Shop.
 
 = Deutsche Rechtsgrundlagen =
-WooCommerce Germanized unterstützt eine Vielzahl typisch deutscher Funktionalitäten: Lieferzeiten, Einheitspreise, Versandkosten- und Mehrwertsteuer-Hinweise, rechtlich relevante Hinweisseiten (z.B. AGB, Widerrufsbelehrung usw.) - auch in E-Mails, Kleinuternehmerreglung und noch vieles mehr.
+WooCommerce Germanized unterstützt eine Vielzahl typisch deutscher Funktionalitäten: Lieferzeiten, Einheitspreise, Versandkosten- und Mehrwertsteuer-Hinweise, rechtlich relevante Hinweisseiten (z.B. AGB, Widerrufsbelehrung usw.) - auch in E-Mails, Kleinuternehmerregelung und noch vieles mehr.
 Zudem haben wir einige Anpassungen am Bezahlvorgang vorgenommen, damit dieser den rechtlichen Ansprüchen eines deutschen Online-Shops entspricht. Eine ausführliche Liste der Funktionalitäten sowie weitere Informationen findest du auf [vendidero.de](http://vendidero.de/woocommerce-germanized "WooCommerce Germanized - WooCommerce Plugin für den deutschen Markt")
 
 = Trusted Shops vorzertifiziert =
 WooCommerce Germanized wurde von Trusted Shops vorzertifiziert und bietet damit die optimalen technischen Voraussetzungen für einen rechtssicheren Online-Shop mit WooCommerce in Deutschland.
 Trusted Shops zertifiziert Online-Shops nach sorgfältig ausgewählten Qualitätskriterien und hat WooCommerce Germanized genau unter die Lupe genommen.
-Selbstverständlich können Trusted Shops Kunden mit nur wenigen Einstellungen das Gütesiegel und die Trusted Shops Produkte in WooCommerce Germanized integrieren.
+Selbstverständlich können Trusted Shops Kunden mit nur wenigen Einstellungen das Gütesiegel und die Trusted Shops Produkte mit WooCommerce Germanized nutzen.
 
 = Sauber implementiert =
-Bei der Entwicklung von WooCommerce Germanized haben wir besonders Augenmerk auf die nahtlose Integration in WooCommerce gelegt.
-Die meisten Änderungen erfolgen über Hooks & Filter - nur im Notfall wird ein Template überschrieben, falls es keine andere Möglichkeit der Umsetzung gibt.
+Bei der Entwicklung von WooCommerce Germanized haben wir besonderes Augenmerk auf die nahtlose Integration in WooCommerce gelegt.
+Die meisten Änderungen erfolgen über Hooks & Filter - nur im äußersten Notfall wird ein Template direkt überschrieben.
 
 = eKomi Integration =
 Mit nur wenigen Klicks lässt sich eKomi als Bewertungsmanagement-Dienstleister in WooCommerce Germanized einstellen. 
 Damit kann dein Online-Shop ganz einfach von den Vorteilen des externen Dienstleisters profitieren und unabhängige Kundenbewertungen veröffentlichen.
 
 = Premium Support =
-Kunden von VendiPro genießen einen kompetenten Ticket-Support zu Fragen rund um VendiPro und WooCommerce Germanized. Natürlich versuchen wir hier über das WordPress Support-Forum auch einen guten Support zu ermöglichen.
-Gerne übernehmen wir die Individualisierungen und Anpassungen an WordPress, WooCommerce und WooCommerce Germanized - gerne machen wir dir ein [individuelles Angebot](http://vendidero.de/individualisierung) basierend auf deinen Vorstellungen.
+Kunden von VendiPro genießen einen kompetenten Ticket-Support zu Fragen rund um VendiPro und WooCommerce Germanized. Natürlich versuchen wir über das WordPress Support-Forum auch einen guten Support zu gewährleisten.
+Gerne übernehmen wir die von dir gewünschten Individualisierungen und Anpassungen an WordPress, WooCommerce und WooCommerce Germanized - und unterbreiten dir gerne ein [individuelles Angebot](http://vendidero.de/individualisierung) basierend auf deinen Vorstellungen.
 
 = About WooCommerce Germanized =
 WooCommerce Germanized extends WooCommerce to become a legally compliant Online-Shop for the german market. This does not replace legal advice - we do only offer technical implementations to meet german law.
@@ -82,6 +82,12 @@ Sehr nützlich für die Zahlungsmethoden-Hinweisseite - Fügt eine Übersicht ü
 Falls du Trusted Shops nutzen solltest, kannst du mit diesem Shortcode das Trusted Shops Badge an beliebiger Stelle einfügen.
 Mit dem Parameter width=55 (wobei 55 für 55px Breite/Höhe steht) kannst du optional die Breite des Badges anpassen.
 
+`[trusted_shops_rich_snippets]`
+Falls du die Bewertungsfunktion von Trusted Shops nutzen solltest, kannst du mit diesem Shortcode ganz einfach für Google optimierte Rich Snippets deines aktuellen Bewertungsstatus einfügen.
+
+`[trusted_shops_reviews]`
+Mit diesem Shortcode fügst du eine aktuelle Trusted Shops Bewertungsgrafik an einer beliebigen Stelle ein.
+
 `[ekomi_badge]`
 Falls du eKomi nutzen solltest, kannst du mit diesem Shortcode das eKomi Badge an beliebiger Stelle einfügen.
 Mit dem Parameter width=55 (wobei 55 für 55px Breite/Höhe steht) kannst du optional die Breite des Badges anpassen.
@@ -89,7 +95,7 @@ Mit dem Parameter width=55 (wobei 55 für 55px Breite/Höhe steht) kannst du opt
 = Updating =
 
 Vor dem Update von WooCommerce sollte unbedingt geprüft werden ob auch WooCommerce Germanized schon für die neueste Version von WooCommerce vorliegt.
-Wir bemühen uns immer schnellstmöglich auf Updates von WooCommerce zu reagieren. Anschließend kann WooCommerce Germanized ganz einfach per WordPress Backend geupdated werden.
+Wir bemühen uns immer schnellstmöglich auf Updates von WooCommerce zu reagieren. Anschließend kann WooCommerce Germanized ganz einfach im WordPress Backend geupdated werden.
 
 == Frequently Asked Questions ==
 

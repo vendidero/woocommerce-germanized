@@ -70,9 +70,12 @@ add_action( 'woocommerce_after_checkout_validation', 'woocommerce_gzd_checkout_v
 /**
  * Footer
  */
-add_action ( 'woocommerce_gzd_footer_msg', 'woocommerce_gzd_template_footer_vat_info', 0 );
-add_action ( 'woocommerce_gzd_footer_msg', 'woocommerce_gzd_template_footer_sale_info', 0 );
-add_action ( 'wp_footer', 'woocommerce_gzd_template_footer_vat_info', 5 );
-add_action ( 'wp_footer', 'woocommerce_gzd_template_footer_sale_info', 5 );
-
+if ( get_option( 'woocommerce_gzd_display_footer_vat_notice' ) == 'yes' ) {
+	add_action ( 'woocommerce_gzd_footer_msg', 'woocommerce_gzd_template_footer_vat_info', 0 );
+	add_action ( 'wp_footer', 'woocommerce_gzd_template_footer_vat_info', 5 );
+}
+if ( get_option( 'woocommerce_gzd_display_footer_sale_price_notice' ) == 'yes' ) {
+	add_action ( 'woocommerce_gzd_footer_msg', 'woocommerce_gzd_template_footer_sale_info', 0 );
+	add_action ( 'wp_footer', 'woocommerce_gzd_template_footer_sale_info', 5 );
+}
 ?>
