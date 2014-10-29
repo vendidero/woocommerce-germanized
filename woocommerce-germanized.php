@@ -17,9 +17,9 @@
 if ( ! defined( 'ABSPATH' ) )
 	exit; // Exit if accessed directly
 
-if ( ! class_exists( 'WooCommerceGermanized' ) ) :
+if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 
-final class WooCommerceGermanized {
+final class WooCommerce_Germanized {
 
 	/**
 	 * Current WooCommerce Germanized Version
@@ -412,9 +412,7 @@ final class WooCommerceGermanized {
 	 */
 	public function action_links( $links ) {
 		return array_merge( array(
-				'<a href="' . admin_url( 'admin.php?page=wc-settings&tab=wc-germanized' ) . '">' . __( 'Settings', 'woocommerce' ) . '</a>',
-				'<a href="' . esc_url( 'http://vendidero.de/support' ) . '">' . __( 'Premium Support', 'woocommerce-germanized' ) . '</a>',
-				'<a href="' . esc_url( 'http://vendidero.de/vendipro' ) . '">' . __( 'VendiPro', 'woocommerce-germanized' ) . '</a>',
+				'<a href="' . admin_url( 'admin.php?page=wc-settings&tab=germanized' ) . '">' . __( 'Settings', 'woocommerce' ) . '</a>',
 			), $links );
 	}
 
@@ -583,7 +581,7 @@ endif;
  * Returns the global instance of WooCommerce Germanized
  */
 function WC_germanized() {
-	return WooCommerceGermanized::instance();
+	return WooCommerce_Germanized::instance();
 }
 
 $GLOBALS['woocommerce_germanized'] = WC_germanized();

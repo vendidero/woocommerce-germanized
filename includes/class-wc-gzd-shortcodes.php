@@ -102,7 +102,7 @@ class WC_GZD_Shortcodes {
 	public static function trusted_shops_badge( $atts ) {
 
 		extract( shortcode_atts( array('width' => ''), $atts ) );
-		return WC_germanized()->trusted_shops->is_enabled() ? '<a class="trusted-shops-badge" style="' . ( $width ? 'background-size:' . $width . 'px auto; width: ' . $width . 'px; height: ' . $width . 'px;' : '' ) . '" href="' . WC_germanized()->trusted_shops->get_certificate_link() . '" target="_blank"></a>' : '';
+		return WC_germanized()->trusted_shops->is_enabled() ? '<a class="trusted-shops-badge" style="' . ( $width ? 'background-size:' . ( $width - 1 ) . 'px auto; width: ' . $width . 'px; height: ' . $width . 'px;' : '' ) . '" href="' . WC_germanized()->trusted_shops->get_certificate_link() . '" target="_blank"></a>' : '';
 	
 	}
 
