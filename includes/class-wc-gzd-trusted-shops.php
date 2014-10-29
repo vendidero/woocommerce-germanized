@@ -202,7 +202,7 @@ class WC_GZD_Trusted_Shops {
 					</div>
 					<br/>
 					<span itemprop="rating" itemscope itemtype="http://data-vocabulary.org/Rating">
-		         		' . sprintf( _x( '&#216; <span itemprop="average">%s</span> of <span itemprop="best">%s</span> based on <span class="count">%s</span> <a href="%s" target="_blank">ratings</a>.', 'trusted-shops', 'woocommerce-germanized' ), $rating['avg'], (int) $rating['max'], $rating['count'], $this->get_rating_link() ) . '
+		         		' . sprintf( _x( '&#216; <span itemprop="average">%s</span> of <span itemprop="best">%s</span> based on <span class="count" itemprop="votes">%s</span> <a href="%s" target="_blank">ratings</a>.', 'trusted-shops', 'woocommerce-germanized' ), $rating['avg'], (int) $rating['max'], $rating['count'], $this->get_rating_link() ) . '
 		    		</span>
 		   		</div>
 		   	';
