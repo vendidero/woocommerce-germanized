@@ -27,8 +27,7 @@ class WC_GZD_Trusted_Shops {
 	 * @var string
 	 */
 	public $partner_id;
-	public $et_cid = '';
-	public $et_lid = '';
+	public $et_params = array();
 	/**
 	 * Trusted Shops Plugin Version
 	 * @var string
@@ -58,6 +57,7 @@ class WC_GZD_Trusted_Shops {
 				'financing' =>  _x( 'Financing', 'trusted-shops', 'woocommerce-germanized' ),
 			)
 		);
+		$this->et_params = array( 'etcc_med' => 'part', 'etcc_cmp' => 'sofpar', 'etcc_par' => 'woo', 'etcc_mon' => 11 );
 		$this->api_url = 'http://www.trustedshops.com/api/ratings/v1/'. $this->id .'.xml';
 		// Schedule
 		if ( $this->is_rich_snippets_enabled() )
@@ -309,7 +309,7 @@ class WC_GZD_Trusted_Shops {
 
 			array( 'type' => 'sectionend', 'id' => 'trusted_shops_options' ),
 
-			array(	'title' => _x( 'Configure the Trustbadge for your shop', 'trusted-shops', 'woocommerce-germanized' ), 'type' => 'title', 'id' => 'trusted_shops_badge_options', 'desc' => sprintf( _x( 'You\'ll find a step-by-step instruction for your shopsoftware in our integration center. <a href="%s" target="_blank">Click here</a>', 'trusted-shops', 'woocommerce-germanized' ), 'https://www.trustedshops.com/integration/?shop_id=' . esc_attr( $this->id ) . '&backend_language=' . esc_attr( substr( get_bloginfo( 'language' ), 0, 2) ) . '&shopsw=' . esc_attr( $this->partner_id ) . '&shopsw_version=' . esc_attr( WC_GERMANIZED_VERSION ) . '&plugin_version=' . esc_attr( $this->version ) . 'context=trustbadge' ) ),
+			array(	'title' => _x( 'Configure the Trustbadge for your shop', 'trusted-shops', 'woocommerce-germanized' ), 'type' => 'title', 'id' => 'trusted_shops_badge_options', 'desc' => sprintf( _x( 'You\'ll find a step-by-step instruction for your shopsoftware in our integration center. <a href="%s" target="_blank">Click here</a>', 'trusted-shops', 'woocommerce-germanized' ), $this->get_trusted_url( 'integration/', 'trustbadge' ) ) ),
 
 			array(
 				'title'  => _x( 'Trustbadge code', 'trusted-shops', 'woocommerce-germanized' ),
@@ -393,7 +393,16 @@ class WC_GZD_Trusted_Shops {
 	}
 
 	public function get_sidebar() {
-		return '<div class="wc-gzd-admin-settings-sidebar"><h3>' . _x( 'About Trusted Shops', 'trusted-shops', 'woocommerce-germanized' ) . '</h3><a href="https://www.trustedshops.com/integration/?backend_language=' . esc_attr( substr( get_bloginfo( 'language' ), 0, 2) ) . '&shopsw=' . esc_attr( $this->partner_id ) . '&shopsw_version=' . esc_attr( WC_GERMANIZED_VERSION ) . '&plugin_version=' . esc_attr( $this->version ) . '&context=membership&et_cid=' . esc_attr( $this->et_cid ) . '&et_lid=' . esc_attr( $this->et_lid ) . '" target="_blank"><img style="width: 100%; height: auto" src="' . WC_germanized()->plugin_url() . '/assets/images/trusted-shops-b.png" /></a></div>';
+		return '<div class="wc-gzd-admin-settings-sidebar"><h3>' . _x( 'About Trusted Shops', 'trusted-shops', 'woocommerce-germanized' ) . '</h3><a href="' . $this->get_trusted_url( 'integration/', 'membership' ) . '" target="_blank"><img style="width: 100%; height: auto" src="' . WC_germanized()->plugin_url() . '/assets/images/trusted-shops-b.png" /></a></div>';
+	}
+
+	private function get_trusted_url( $base = 'integration/', $context = 'trustbadge' ) {
+		$url = 'https://www.trustedshops.com/' . $base . '?shop_id=' . esc_attr( $this->id ) . '&backend_language=' . esc_attr( substr( get_bloginfo( 'language' ), 0, 2) ) . '&shopsw=' . esc_attr( $this->partner_id ) . '&shopsw_version=' . esc_attr( WC_GERMANIZED_VERSION ) . '&plugin_version=' . esc_attr( $this->version ) . 'context=' . esc_attr( $context );
+		if ( ! empty( $this->et_params ) ) {
+			foreach ( $this->et_params as $key => $param )
+				$url .= '&' . esc_attr( $key ) . '=' . esc_attr( $param );
+		}
+		return $url;
 	}
 
 }
