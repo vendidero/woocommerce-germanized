@@ -11,7 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * @class 		WC_GZD_Gateway_BACS
  * @extends		WC_Gateway_BACS
- * @version		2.1.0
+ * @version		1.0.0
  * @author 		Vendidero
  */
 class WC_GZD_Gateway_BACS extends WC_Gateway_BACS {

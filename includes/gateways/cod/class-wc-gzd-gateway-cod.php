@@ -7,22 +7,34 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Cash on Delivery Gateway
  *
- * Provides a Cash on Delivery Payment Gateway.
+ * Provides a Cash on Delivery Payment Gateway. Extends base class to enable payment fee.
  *
- * @class 		WC_Gateway_COD
- * @extends		WC_Payment_Gateway
- * @version		2.1.0
- * @package		WooCommerce/Classes/Payment
- * @author 		WooThemes
+ * @class 		WC_GZD_Gateway_COD
+ * @extends		WC_Gateway_COD
+ * @version		1.0.0
+ * @author 		Vendidero
  */
 class WC_GZD_Gateway_COD extends WC_Gateway_COD {
 
 	public function __construct() {
 		parent::__construct();
 		if ( $this->get_option( 'fee' ) ) {
-			$this->title .= ' <span class="small">(' . sprintf( __( 'plus %s payment charge', 'woocommerce-germanized' ), wc_price( $this->get_option( 'fee' ) ) ) . ')</span>';
+			add_filter( 'woocommerce_gateway_title', array( $this, 'manipulate_title' ), 0, 2 );
 			$this->description .= ' ' . sprintf( __( 'Plus %s payment charge.', 'woocommerce-germanized' ), wc_price( $this->get_option( 'fee' ) ) );
 		}
+	}
+
+	/**
+	 * Manipulate title if is within svn_checkout
+	 *  
+	 * @param  string $title
+	 * @param  payment gateway $id 
+	 * @return string
+	 */
+	public function manipulate_title( $title, $id ) {
+		if ( $id == $this->id && $this->get_option( 'fee' ) && ( is_checkout() || ( defined( 'DOING_AJAX' ) && isset( $_POST[ 'action' ] ) && $_POST[ 'action' ] == 'woocommerce_update_order_review' ) ) )
+			$title = __( 'Cash on Delivery', 'woocommerce' ) . ' <span class="small">(' . sprintf( __( 'plus %s payment charge', 'woocommerce-germanized' ), wc_price( $this->get_option( 'fee' ) ) ) . ')</span>';
+		return $title;
 	}
 
 	public function init_form_fields() {

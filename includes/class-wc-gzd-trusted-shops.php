@@ -32,7 +32,7 @@ class WC_GZD_Trusted_Shops {
 	 * Trusted Shops Plugin Version
 	 * @var string
 	 */
-	public $version = '1.0';
+	public $version = '1.0.0';
 	public $gateways;
 	/**
 	 * API URL for review collection

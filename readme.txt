@@ -14,13 +14,12 @@ Extends WooCommerce to become a legally compliant shop for german market. WooCom
 
 (see below for english version)
 
-WooCommerce Germanized erweitert WooCommerce um alle technisch relevanten Funktionen um einen rechtssicheren Online-Shop in Deutschland betreiben zu können und von einem WordPress-erfahrenen, deutschem Team aktiv (weiter-)entwickelt - auf Updates von WooCommerce wird schnell und kompetent reagiert. 
+WooCommerce Germanized erweitert WooCommerce um alle technisch relevanten Funktionen für den Betrieb eines rechtssicheren Online-Shops in Deutschland. Das Plugin wird von einem WordPress-erfahrenen, deutschen Team aktiv (weiter-)entwickelt - auf Updates von WooCommerce reagieren wir schnell und zuverlässig. 
 
-Natürlich können wir mit unserem Plugin keine ausführliche Rechtsberatung ersetzen. Wir möchten lediglich die technischen Voraussetzungen zur Verfügung stellen.
+Natürlich können wir mit unserem Plugin keine ausführliche Rechtsberatung ersetzen. Wir möchten lediglich die technischen Voraussetzungen für den Betrieb eines rechtssicheren Shops in Deutschland zur Verfügung stellen.
 
 Damit WooCommerce Germanized noch schicker aussieht haben wir ein komplett auf den deutschen Markt abgestimmtes WooCommerce Template entwickelt: [VendiPro](http://vendidero.de/vendipro "WordPress E-Commerce & WooCommerce Theme für den deutschen Markt").
-Bei der Entwicklung von VendiPro haben wir besonders auf deutsche Benutzer-Erfahrungen im Umgang mit Online-Shops Rücksicht genommen. 
-WooCommerce + VendiPro - zusammen die optimale Wahl für deinen deutschen WooCommerce Shop.
+Bei der Entwicklung von VendiPro haben wir besonders auf die Einhaltung deutscher Shop-Design-Prinzipien Wert gelegt. WooCommerce Germanized + VendiPro - zusammen die optimale Wahl für deinen deutschen WooCommerce Shop.
 
 = Deutsche Rechtsgrundlagen =
 WooCommerce Germanized unterstützt eine Vielzahl typisch deutscher Funktionalitäten: Lieferzeiten, Einheitspreise, Versandkosten- und Mehrwertsteuer-Hinweise, rechtlich relevante Hinweisseiten (z.B. AGB, Widerrufsbelehrung usw.) - auch in E-Mails, Kleinuternehmerregelung und noch vieles mehr.
@@ -119,7 +118,7 @@ Bugs sowie Hilfe bei der Arbeit an WooCommerce Germanized werden gerne über uns
 
 == Changelog ==
 
-= 1.0 =
+= 1.0.0 =
 * Feature - shipping costs notice
 * Feature - vat notice
 * Feature - unit price
@@ -134,5 +133,5 @@ Bugs sowie Hilfe bei der Arbeit an WooCommerce Germanized werden gerne über uns
 
 == Upgrade Notice ==
 
-= 1.0 =
+= 1.0.0 =
 no upgrade - just install :)
