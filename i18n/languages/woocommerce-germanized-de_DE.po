@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: WooCommerce Germanized v1.0\n"
+"Project-Id-Version: WooCommerce Germanized v1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-29 12:26+0100\n"
-"PO-Revision-Date: 2014-10-23 15:02:57+0000\n"
+"PO-Revision-Date: 2014-11-05 10:39:27+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -76,7 +76,7 @@ msgid "l"
 msgstr "l"
 
 #: includes/abstracts/abstract-wc-gzd-product.php:72
-#: woocommerce-germanized.php:569
+#: woocommerce-germanized.php:567
 #, php-format
 #@ woocommerce-germanized
 msgid "incl. %s VAT"
@@ -998,43 +998,43 @@ msgctxt "revocation-form"
 msgid "Mail"
 msgstr "E-Mail Adresse"
 
-#: includes/class-wc-gzd-trusted-shops.php:52
+#: includes/class-wc-gzd-trusted-shops.php:51
 #@ woocommerce-germanized
 msgctxt "trusted-shops"
 msgid "Prepayment"
 msgstr "Überweisung"
 
-#: includes/class-wc-gzd-trusted-shops.php:53
+#: includes/class-wc-gzd-trusted-shops.php:52
 #@ woocommerce-germanized
 msgctxt "trusted-shops"
 msgid "Cash On Delivery"
 msgstr "Bar bei Lieferung"
 
-#: includes/class-wc-gzd-trusted-shops.php:54
+#: includes/class-wc-gzd-trusted-shops.php:53
 #@ woocommerce-germanized
 msgctxt "trusted-shops"
 msgid "Credit Card"
 msgstr "Kreditkarte"
 
-#: includes/class-wc-gzd-trusted-shops.php:55
+#: includes/class-wc-gzd-trusted-shops.php:54
 #@ woocommerce-germanized
 msgctxt "trusted-shops"
 msgid "Paypal"
 msgstr "Paypal"
 
-#: includes/class-wc-gzd-trusted-shops.php:56
+#: includes/class-wc-gzd-trusted-shops.php:55
 #@ woocommerce-germanized
 msgctxt "trusted-shops"
 msgid "Invoice"
 msgstr "Rechnung"
 
-#: includes/class-wc-gzd-trusted-shops.php:57
+#: includes/class-wc-gzd-trusted-shops.php:56
 #@ woocommerce-germanized
 msgctxt "trusted-shops"
 msgid "Direct Debit"
 msgstr "Bankeinzug"
 
-#: includes/class-wc-gzd-trusted-shops.php:58
+#: includes/class-wc-gzd-trusted-shops.php:57
 #@ woocommerce-germanized
 msgctxt "trusted-shops"
 msgid "Financing"
@@ -1053,13 +1053,6 @@ msgstr "Bewertet mit %s von %s"
 msgctxt "trusted-shops"
 msgid "out of %s"
 msgstr "von %s"
-
-#: includes/class-wc-gzd-trusted-shops.php:205
-#, php-format
-#@ woocommerce-germanized
-msgctxt "trusted-shops"
-msgid "&#216; <span itemprop=\"average\">%s</span> of <span itemprop=\"best\">%s</span> based on <span class=\"count\">%s</span> <a href=\"%s\" target=\"_blank\">ratings</a>."
-msgstr "&#216; <span itemprop=\"average\">%s</span> von <span itemprop=\"best\">%s</span> basierend auf <span class=\"count\">%s</span> <a href=\"%s\" target=\"_blank\">Bewertungen</a>."
 
 #: includes/class-wc-gzd-trusted-shops.php:299
 #@ woocommerce-germanized
@@ -1124,34 +1117,34 @@ msgstr "Instruktionen ausgeben?"
 msgid "Show instructions"
 msgstr "Instruktionen ausgeben"
 
-#: includes/gateways/cod/class-wc-gzd-gateway-cod.php:23
+#: includes/gateways/cod/class-wc-gzd-gateway-cod.php:36
 #, php-format
 #@ woocommerce-germanized
 msgid "plus %s payment charge"
 msgstr "zzgl. %s Nachnahmegebühr"
 
-#: includes/gateways/cod/class-wc-gzd-gateway-cod.php:24
+#: includes/gateways/cod/class-wc-gzd-gateway-cod.php:23
 #, php-format
 #@ woocommerce-germanized
 msgid "Plus %s payment charge."
 msgstr "Zzgl. %s Nachnahmegebühr."
 
-#: includes/gateways/cod/class-wc-gzd-gateway-cod.php:31
+#: includes/gateways/cod/class-wc-gzd-gateway-cod.php:43
 #@ woocommerce-germanized
 msgid "Fee"
 msgstr "Nachnahmegebühr"
 
-#: includes/gateways/cod/class-wc-gzd-gateway-cod.php:33
+#: includes/gateways/cod/class-wc-gzd-gateway-cod.php:45
 #@ woocommerce-germanized
 msgid "This fee is being added if customer selects payment method within checkout."
 msgstr "Diese Gebühr wird während der Bestellung hinzugefügt, falls der Kunde Nachnahme auswählt."
 
-#: includes/gateways/cod/class-wc-gzd-gateway-cod.php:38
+#: includes/gateways/cod/class-wc-gzd-gateway-cod.php:50
 #@ woocommerce-germanized
 msgid "Fee is taxable?"
 msgstr "Mwst. berechnen?"
 
-#: includes/gateways/cod/class-wc-gzd-gateway-cod.php:48
+#: includes/gateways/cod/class-wc-gzd-gateway-cod.php:60
 #@ woocommerce-germanized
 msgid "Payment charge"
 msgstr "Nachnahmegebühr"
@@ -1408,17 +1401,7 @@ msgstr "Umsatzsteuerbefreit nach &#167;19 UStG"
 msgid "Settings"
 msgstr "Einstellungen"
 
-#: woocommerce-germanized.php:416
-#@ woocommerce-germanized
-msgid "Premium Support"
-msgstr "Professionelle Hilfe"
-
-#: woocommerce-germanized.php:417
-#@ woocommerce-germanized
-msgid "VendiPro"
-msgstr "VendiPro"
-
-#: woocommerce-germanized.php:547
+#: woocommerce-germanized.php:545
 #@ woocommerce
 msgid "Order Total:"
 msgstr "Gesamtsumme"
@@ -1452,12 +1435,6 @@ msgstr "Vendidero"
 #@ woocommerce-germanized
 msgid "http://vendidero.de"
 msgstr "http://vendidero.de"
-
-#. translators: plugin header field 'Version'
-#: woocommerce-germanized.php:0
-#@ woocommerce-germanized
-msgid "1.0"
-msgstr "1.0"
 
 #: templates/checkout/form-pay.php:21
 #@ woocommerce
@@ -1606,4 +1583,22 @@ msgstr "Zeigt deine Trusted Shops Bewertungen als Grafik an."
 msgctxt "trusted-shops"
 msgid "Trusted Shops Rich Snippets"
 msgstr "Trusted Shops Rich Snippets"
+
+#: includes/gateways/cod/class-wc-gzd-gateway-cod.php:36
+#@ woocommerce
+msgid "Cash on Delivery"
+msgstr ""
+
+#. translators: plugin header field 'Version'
+#: woocommerce-germanized.php:0
+#@ woocommerce-germanized
+msgid "1.0.0"
+msgstr "1.0.0"
+
+#: includes/class-wc-gzd-trusted-shops.php:205
+#, php-format
+#@ woocommerce-germanized
+msgctxt "trusted-shops"
+msgid "%s of %s based on %s <a href=\"%s\" target=\"_blank\">ratings</a>."
+msgstr "%s von %s basierend auf %s <a href=\"%s\" target=\"_blank\">Bewertungen</a>."
 
