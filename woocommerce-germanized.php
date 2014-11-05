@@ -131,6 +131,11 @@ final class WooCommerce_Germanized {
 		do_action( 'woocommerce_germanized_loaded' );
 	}
 
+	public function deactivate() {
+		if ( current_user_can( 'activate_plugins' ) )
+			deactivate_plugins( plugin_basename( __FILE__ ) );
+	}
+
 	/**
 	 * Init WooCommerceGermanized when WordPress initializes.
 	 */
@@ -163,11 +168,10 @@ final class WooCommerce_Germanized {
 			$this->ekomi    	  = new WC_GZD_Ekomi();
 			$this->emails    	  = new WC_GZD_Emails();
 
-			//$this->ekomi->send_mails();
-
 			// Init action
 			do_action( 'woocommerce_germanized_init' );
-
+		} else {
+			add_action( 'admin_init', array( $this, 'deactivate' ), 0 );
 		}
 	}
 
@@ -460,9 +464,9 @@ final class WooCommerce_Germanized {
 		$assets_path = str_replace( array( 'http:', 'https:' ), '', WC()->plugin_url() ) . '/assets/';
 		if ( wp_script_is( 'wc-gzd-revocation' ) ) {
 			wp_localize_script( 'wc-gzd-revocation', 'wc_gzd_revocation_params', apply_filters( 'wc_gzd_revocation_params', array(
-						'ajax_url'                  => WC()->ajax_url(),
-						'ajax_loader_url'           => apply_filters( 'woocommerce_ajax_loader_url', $assets_path . 'images/ajax-loader@2x.gif' ),
-					) ) );
+				'ajax_url'                  => WC()->ajax_url(),
+				'ajax_loader_url'           => apply_filters( 'woocommerce_ajax_loader_url', $assets_path . 'images/ajax-loader@2x.gif' ),
+			) ) );
 		}
 	}
 
