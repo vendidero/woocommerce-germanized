@@ -398,9 +398,9 @@ final class WooCommerce_Germanized {
 	 * Include WooCommerce Germanized Widgets
 	 */
 	public function include_widgets() {
-		if ( $this->trusted_shops->is_rich_snippets_enabled() )
+		if ( is_object( $this->trusted_shops) && $this->trusted_shops->is_rich_snippets_enabled() )
 			include_once 'includes/widgets/class-wc-gzd-widget-trusted-shops-rich-snippets.php';
-		if ( $this->trusted_shops->is_review_widget_enabled() )
+		if ( is_object( $this->trusted_shops) && $this->trusted_shops->is_review_widget_enabled() )
 			include_once 'includes/widgets/class-wc-gzd-widget-trusted-shops-reviews.php';
 	}
 
