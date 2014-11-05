@@ -53,7 +53,7 @@ function wc_gzd_cart_totals_order_total_tax_html() {
 				$tax_array[] = array( 'tax' => $tax, 'amount' => $tax->formatted_amount );
 			}
 		} else {
-			$base_rate = array_values( $_tax::get_shop_base_rate() );
+			$base_rate = array_values( WC_Tax::get_shop_base_rate() );
 			$base_rate = (object) $base_rate[0];
 			$base_rate->rate = $base_rate->rate;
 			$tax_array[] = array( 'tax' => $base_rate, 'amount' => wc_price( WC()->cart->get_taxes_total( true, true ) ) );
