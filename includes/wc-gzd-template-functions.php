@@ -260,27 +260,6 @@ if ( ! function_exists( 'woocommerce_gzd_template_checkout_thankyou_trusted_shop
 
 }
 
-/**
- * Overwrite variable add to cart function
- */
-function woocommerce_variable_add_to_cart() {
-	global $product;
-	
-	$assets_path          = str_replace( array( 'http:', 'https:' ), '', WC_germanized()->plugin_url() ) . '/assets/';
-	$frontend_script_path = $assets_path . 'js/';
-
-	// Enqueue variation scripts
-	wp_enqueue_script( 'wc-add-to-cart-variation' );
-	wp_enqueue_script( 'wc-gzd-add-to-cart-variation', $frontend_script_path . 'add-to-cart-variation.js', array( 'jquery', 'woocommerce' ), WC_GERMANIZED_VERSION, true );
-
-	// Load the template
-	wc_get_template( 'single-product/add-to-cart/variable.php', array(
-		'available_variations'  => $product->get_available_variations(),
-		'attributes'   			=> $product->get_variation_attributes(),
-		'selected_attributes' 	=> $product->get_variation_default_attributes()
-	) );
-}
-
 if ( ! function_exists( 'woocommerce_gzd_add_variation_options' ) ) {
 
 	/**
