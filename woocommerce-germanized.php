@@ -455,9 +455,12 @@ final class WooCommerce_Germanized {
 		if ( is_checkout() )
 			wp_enqueue_script( 'wc-gzd-checkout', $frontend_script_path . 'checkout.js', array( 'jquery', 'wc-checkout' ), WC_GERMANIZED_VERSION, true );
 		if ( is_singular( 'product' ) ) {
-			// Enqueue variation scripts
-			wp_enqueue_script( 'wc-add-to-cart-variation' );
-			wp_enqueue_script( 'wc-gzd-add-to-cart-variation', $frontend_script_path . 'add-to-cart-variation.js', array( 'jquery', 'woocommerce' ), WC_GERMANIZED_VERSION, true );
+			$product = wc_get_product( $post->ID );
+			if ( $product && $product->is_type( 'variable' ) ) {
+				// Enqueue variation scripts
+				wp_enqueue_script( 'wc-add-to-cart-variation' );
+				wp_enqueue_script( 'wc-gzd-add-to-cart-variation', $frontend_script_path . 'add-to-cart-variation.js', array( 'jquery', 'woocommerce' ), WC_GERMANIZED_VERSION, true );
+			}
 		} 
 	}
 
