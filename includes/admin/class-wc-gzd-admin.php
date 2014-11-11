@@ -40,6 +40,14 @@ class WC_GZD_Admin {
 	public function __construct() {
 		add_action( 'add_meta_boxes', array( $this, 'add_legal_page_metabox' ) );
 		add_action( 'add_meta_boxes', array( $this, 'add_product_mini_desc' ) );
+		add_action( 'admin_enqueue_scripts', array( $this, 'settings_page_scroll_top' ) );
+	}
+
+	public function settings_page_scroll_top() {
+		$assets_path = str_replace( array( 'http:', 'https:' ), '', WC_germanized()->plugin_url() ) . '/assets/';
+		$admin_script_path = $assets_path . 'js/admin/';
+		if ( isset( $_GET[ 'tab' ] ) && $_GET[ 'tab' ] == 'germanized' )
+			wp_enqueue_script( 'wc-gzd-admin', $admin_script_path . 'settings.js', array( 'jquery', 'woocommerce_settings' ), WC_GERMANIZED_VERSION, true );
 	}
 
 	public function add_legal_page_metabox() {

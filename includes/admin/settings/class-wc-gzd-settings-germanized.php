@@ -101,27 +101,6 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 
 			array( 'type' => 'sectionend', 'id' => 'general_options' ),
 
-			array(	'title' => __( 'Translation', 'woocommerce-germanized' ), 'type' => 'title', 'id' => 'translation_options' ),
-
-			array(
-				'title' 	=> __( 'WooCommerce to German', 'woocommerce-germanized' ),
-				'id' 		=> 'woocommerce_gzd_translate',
-				'type' 		=> 'checkbox',
-				'desc' 		=> __( 'Translate WooCommerce to German.', 'woocommerce-germanized' ),
-				'desc_tip'	=> sprintf( __( 'Translation Files provided by <a href="%s" target="_blank">WooCommerce German (de_DE)</a> by <a href="%s" target="_blank">deckerweb</a>. For more option please install this Plugin.', 'woocommerce-germanized' ), 'http://wordpress.org/plugins/woocommerce-de/', 'http://profiles.wordpress.org/deckerweb/' ),
-				'default'	=> 'no',
-			),
-
-			array(
-				'title' 	=> __( 'German (informal)', 'woocommerce-germanized' ),
-				'desc' 		=> __( 'Activate german informal translation (use "Du" instead of "Sie")', 'woocommerce-germanized' ),
-				'id' 		=> 'woocommerce_gzd_translate_informal',
-				'type' 		=> 'checkbox',
-				'default'	=> 'no',
-			),
-
-			array( 'type' => 'sectionend', 'id' => 'translation_options' ),
-
 			array(	'title' => __( 'Legal Pages', 'woocommerce-germanized' ), 'type' => 'title', 'id' => 'legal_pages_options' ),
 
 			array(
@@ -379,6 +358,14 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 			array( 'type' => 'sectionend', 'id' => 'product_options' ),
 
 			array(	'title' => __( 'Checkout & Cart', 'woocommerce-germanized' ), 'type' => 'title', 'id' => 'checkout_options' ),
+
+			array(
+				'title' 	=> __( 'Checkout Table Color', 'woocommerce-germanized' ),
+				'id' 		=> 'woocommerce_gzd_display_checkout_table_color',
+				'desc_tip'	=> __( 'Choose the color of your checkout product table. This table should be highlighted within your checkout page.', 'woocommerce-germanized' ),
+				'default'	=> '#eeeeee',
+				'type' 		=> 'color',
+			),
 
 			array(
 				'title' 	=> __( 'Checkout Legal Display', 'woocommerce-germanized' ),

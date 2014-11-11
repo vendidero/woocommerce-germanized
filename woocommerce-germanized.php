@@ -3,7 +3,7 @@
  * Plugin Name: WooCommerce Germanized
  * Plugin URI: http://www.vendidero.de/woocommerce-germanized
  * Description: Extends WooCommerce to become a legally compliant store for the german market.
- * Version: 1.0.0
+ * Version: 1.0.1
  * Author: Vendidero
  * Author URI: http://vendidero.de
  * Requires at least: 3.8
@@ -26,7 +26,7 @@ final class WooCommerce_Germanized {
 	 *
 	 * @var string
 	 */
-	public $version = '1.0.0';
+	public $version = '1.0.1';
 
 	/**
 	 * Single instance of WooCommerce Germanized Main Class
@@ -124,7 +124,6 @@ final class WooCommerce_Germanized {
 		add_action( 'init', array( $this, 'init' ), 1 );
 		add_action( 'init', array( 'WC_GZD_Shortcodes', 'init' ), 2 );
 		add_action( 'widgets_init', array( $this, 'include_widgets' ), 25 );
-		add_action( 'plugins_loaded', array( $this, 'translate_woocommerce' ) );
 		add_action( 'plugins_loaded', array( $this, 'load_plugin_textdomain' ) );
 
 		// Loaded action
@@ -150,6 +149,7 @@ final class WooCommerce_Germanized {
 			add_filter( 'woocommerce_get_settings_pages', array( $this, 'add_settings' ) );
 			add_filter( 'woocommerce_enqueue_styles', array( $this, 'add_styles' ) );
 			add_action( 'wp_enqueue_scripts', array( $this, 'add_scripts' ) );
+			add_action( 'wp_enqueue_scripts', array( $this, 'add_inline_styles' ) );
 			add_action( 'admin_enqueue_scripts', array( $this, 'add_admin_styles' ) );
 			add_action( 'wp_print_scripts', array( $this, 'localize_scripts' ), 5 );
 			add_filter( 'woocommerce_email_classes', array( $this, 'add_emails' ) );
@@ -303,7 +303,6 @@ final class WooCommerce_Germanized {
 		if ( empty( $GLOBALS[ 'template_name' ] ) )
 			$GLOBALS['template_name'] = array();
 		$GLOBALS['template_name'][] = $template_name;
-
 		// Check Theme
 		$theme_template = locate_template(
 			array(
@@ -311,6 +310,8 @@ final class WooCommerce_Germanized {
 				$template_name
 			)
 		);
+		if ( ! $this->is_theme_template_compatible( $template_name, $theme_template ) ) 
+			$theme_template = false;
 		// Load Default
 		if ( ! $theme_template ) {
 			if ( file_exists( $this->plugin_path() . '/templates/' . $template_name ) )
@@ -319,6 +320,24 @@ final class WooCommerce_Germanized {
 			$template = $theme_template;
 
 		return apply_filters( 'woocommerce_germanized_filter_template', $template, $template_name, $template_path );
+	}
+
+	/**
+	 * Checks if a template from a theme is woocommerce germanized compatible
+	 *  
+	 * @param  string  $template template's file name
+	 * @param  string  $path     path to template file
+	 * @return boolean          
+	 */
+	public function is_theme_template_compatible( $template, $path = '' ) {
+		$templates_to_check = apply_filters( 'woocommerce_gzd_important_templates', array( 'checkout/form-pay.php', 'checkout/review-order.php' ) );
+		if ( in_array( $template, $templates_to_check ) && ! empty( $path ) ) {
+			// Check if theme may overwrite files
+			$data = get_file_data( $path, array( 'wc_gzd_compatible' => 'wc_gzd_compatible' ) );
+			if ( ! $data[ 'wc_gzd_compatible' ] )
+				return false;
+		}
+		return true;
 	}
 
 	/**
@@ -359,31 +378,11 @@ final class WooCommerce_Germanized {
 	 * Load Localisation files for WooCommerce Germanized.
 	 */
 	public function load_plugin_textdomain() {
-
 		$domain = 'woocommerce-germanized';
 		$locale = apply_filters( 'plugin_locale', get_locale(), $domain );
 
 		load_textdomain( $domain, trailingslashit( WP_LANG_DIR ) . $domain . '/' . $domain . '-' . $locale . '.mo' );
 		load_plugin_textdomain( $domain, FALSE, basename( dirname( __FILE__ ) ) . '/i18n/languages/' );
-
-	}
-
-	/**
-	 * Translate WooCommerce to German. Translation files used from http://wordpress.org/plugins/woocommerce-de/.
-	 */
-	public function translate_woocommerce() {
-		if ( get_option( 'woocommerce_gzd_translate' ) == 'yes' && ! in_array( 'woocommerce-de/woocommerce-de.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
-			$variant_slug = 'sie';
-			if ( get_option( 'woocommerce_gzd_translate_informal' ) == 'yes' )
-				$variant_slug = 'du';
-			$wc_translation_path = apply_filters( 'woocommerce_germanized_wc_translate_mo', WC_germanized()->language_path() . '/woocommerce/' . $variant_slug . '/' );
-			if ( is_admin() ) {
-				$this->load_translation( $wc_translation_path, 'woocommerce', 'woocommerce-admin' );
-				$this->load_translation( $wc_translation_path, 'woocommerce', 'woocommerce-fixes-admin' );
-			}
-			$this->load_translation( $wc_translation_path, 'woocommerce', 'woocommerce' );
-			$this->load_translation( $wc_translation_path, 'woocommerce', 'woocommerce-fixes-global' );
-		}
 	}
 
 	/**
@@ -444,11 +443,20 @@ final class WooCommerce_Germanized {
 	}
 
 	/**
+	 * Adds woocommerce checkout table background highlight color as inline css
+	 */
+	public function add_inline_styles() {
+		$color = ( get_option( 'woocommerce_gzd_display_checkout_table_color' ) ? get_option( 'woocommerce_gzd_display_checkout_table_color' ) : '#eee' );
+        $custom_css = ".woocommerce-checkout .shop_table { background-color: $color; }";
+        wp_add_inline_style( 'woocommerce-gzd-layout', $custom_css );
+	}
+
+	/**
 	 * Add Scripts to frontend
 	 */
 	public function add_scripts() {
 		global $post;
-		$assets_path          = str_replace( array( 'http:', 'https:' ), '', WC_germanized()->plugin_url() ) . '/assets/';
+		$assets_path = str_replace( array( 'http:', 'https:' ), '', WC_germanized()->plugin_url() ) . '/assets/';
 		$frontend_script_path = $assets_path . 'js/';
 		if ( isset( $post ) && $post->ID == woocommerce_get_page_id( 'revocation' ) )
 			wp_enqueue_script( 'wc-gzd-revocation', $frontend_script_path . 'revocation.js', array( 'jquery', 'woocommerce', 'wc-country-select', 'wc-address-i18n' ), WC_GERMANIZED_VERSION, true );
