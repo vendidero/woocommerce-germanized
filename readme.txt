@@ -4,7 +4,7 @@ Tags: woocommerce, woocommerce for german market, woocommerce deutsch, woocommer
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=info@vendidero.de&item_name=Donation+for+WooCommerce+Germanized
 Requires at least: 3.8
 Tested up to: 4.0
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -18,7 +18,7 @@ WooCommerce Germanized erweitert WooCommerce um alle technisch relevanten Funkti
 
 Natürlich können wir mit unserem Plugin keine ausführliche Rechtsberatung ersetzen. Wir möchten lediglich die technischen Voraussetzungen für den Betrieb eines rechtssicheren Shops in Deutschland zur Verfügung stellen.
 
-Damit WooCommerce Germanized noch schicker aussieht haben wir ein komplett auf den deutschen Markt abgestimmtes WooCommerce Template entwickelt: [VendiPro](http://vendidero.de/vendipro "WordPress E-Commerce & WooCommerce Theme für den deutschen Markt").
+Damit WooCommerce Germanized noch schicker aussieht haben wir ein komplett auf den deutschen Markt abgestimmtes WooCommerce Theme entwickelt: [VendiPro](http://vendidero.de/vendipro "WordPress E-Commerce & WooCommerce Theme für den deutschen Markt").
 Bei der Entwicklung von VendiPro haben wir besonders auf die Einhaltung deutscher Shop-Design-Prinzipien Wert gelegt. WooCommerce Germanized + VendiPro - zusammen die optimale Wahl für deinen deutschen WooCommerce Shop.
 
 = Deutsche Rechtsgrundlagen =
@@ -117,6 +117,11 @@ Bugs sowie Hilfe bei der Arbeit an WooCommerce Germanized werden gerne über uns
 1. Einstellungsmöglichkeiten für WooCommerce Germanized.
 
 == Changelog ==
+
+= 1.0.1 =
+* Fix - Better theme compatibility
+* Fix - By default don't let themes override legally relevant templates (e.g. checkout/review-order.php, checkout/form-pay.php)
+* Fix - Legal notice within checkout is now located before product cart table (Button-Loesung)
 
 = 1.0.0 =
 * Feature - shipping costs notice

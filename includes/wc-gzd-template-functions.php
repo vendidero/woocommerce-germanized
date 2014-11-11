@@ -135,6 +135,14 @@ if ( ! function_exists( 'woocommerce_gzd_proceed_to_checkout_fallback' ) ) {
 
 }
 
+if ( ! function_exists( 'woocommerce_gzd_template_cart_total_tax' ) ) {
+
+	function woocommerce_gzd_template_cart_total_tax() {
+		wc_gzd_cart_totals_order_total_tax_html();
+	}
+
+}
+
 if ( ! function_exists( 'woocommerce_gzd_template_checkout_back_to_cart' ) ) {
 
 	/**
