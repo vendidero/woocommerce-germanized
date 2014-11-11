@@ -15,7 +15,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<form name="wc-gzd-hide-theme-incompatible-notice" method="get">
 		<p>
 			<a class="button button-primary" style="margin-right: 1em" href="http://vendidero.de/vendipro" target="_blank"><?php _e( 'Get VendiPro now', 'woocommerce-germanized' ); ?></a>
-			<input type="hidden" name="wc-gzd-hide-theme-notice" value="1" /><button class="button button-secondary" type="submit"><?php _e( 'Hide this notice', 'woocommerce-germanized' ); ?></button>
+			<input type="hidden" name="wc-gzd-hide-theme-notice" value="1" />
+			<?php if ( ! empty( $_GET ) ) : ?>
+				<?php foreach ( $_GET as $key => $val ) : ?>
+					<input type="hidden" name="<?php echo sanitize_text_field( $key ); ?>" value="<?php echo esc_attr( sanitize_text_field( $val ) ); ?>" />
+				<?php endforeach; ?>
+			<?php endif; ?>
+			<button class="button button-secondary" type="submit"><?php _e( 'Hide this notice', 'woocommerce-germanized' ); ?></button>
 		</p>
 	</form>
 </div>
