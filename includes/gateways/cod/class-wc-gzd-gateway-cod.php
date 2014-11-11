@@ -49,7 +49,7 @@ class WC_GZD_Gateway_COD extends WC_Gateway_COD {
 		$this->form_fields[ 'fee_is_taxable' ] = array(
 			'title'       => __( 'Fee is taxable?', 'woocommerce-germanized' ),
 			'type'        => 'checkbox',
-			'label' 	  => 'Check if fee is taxable.',
+			'label' 	  => __( 'Check if fee is taxable.', 'woocommerce-germanized' ),
 			'default'     => 'no',
 		);
 	}
