@@ -1,6 +1,6 @@
 === WooCommerce Germanized ===
 Contributors: vendidero
-Tags: woocommerce, woocommerce for german market, woocommerce deutsch, woocommerce german, shop, commerce, e-commerce, woocommerce deutsche rechtsgrundlagen
+Tags: woocommerce, woocommerce german market, woocommerce deutsch, woocommerce de, woocommerce german, shop, commerce, e-commerce, woocommerce deutsche rechtsgrundlagen
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=info@vendidero.de&item_name=Donation+for+WooCommerce+Germanized
 Requires at least: 3.8
 Tested up to: 4.0
