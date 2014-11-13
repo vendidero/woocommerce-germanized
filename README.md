@@ -17,7 +17,7 @@ Das Plugin fügt automatisch einen Hinweis zu Widerrufsbelehrung und AGB in den 
 ### Einheitspreise, Hinweis-Seiten in E-Mails uvm.
 WooCommerce Germanized bietet natürlich noch vieles mehr. Weitere Informationen, wie du deinen WooCommerce Shop mit WooCommerce Germanized rechtssicher machen kannst findest du im [WordPress Plugin Repository](https://wordpress.org/plugins/woocommerce-germanized/) bzw. auf [vendidero.de](http://vendidero.de/woocommerce-germanized).
 
-## VendiPro - WooCommerce Theme für den deutschen Markt
+## WooCommerce Theme für den deutschen Markt
 Neben WooCommerce Germanized bietet wir auch noch ein perfekt auf den deutschen Markt abgestimmtes [WooCommerce Theme](http://vendidero.de/vendipro) an. VendiPro ist komplett responsive und bietet jede Menge Möglichkeiten zur Individualisierung deines WooCommerce Shops.
 Das Theme bietet natürlich volle WooCommerce und WooCommerce Germanized Unterstützung!
 
