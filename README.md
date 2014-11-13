@@ -25,19 +25,25 @@ Das Theme bietet natürlich volle WooCommerce und WooCommerce Germanized Unterst
 WooCommerce Germanized hat ein paar nützliche Shortcodes um gewisse Inhalte und Funktionen einzufügen. Dazu einfach folgende Shortcodes in die jeweilige Seite bzw. in den Post einfügen.
 
 **Online Widerrufsformular einbetten**
+
 [revocation_form]
 
 **Informationen zu den angebotenen Zahlungsmethoden einfügen**
+
 [payment_methods_info]
 
 **Trusted Shops Badge einfügen (falls aktiviert)**
+
 [trusted_shops_badge width="50"]
 
 **Trusted Shops Google Rich Snippets einfügen (falls aktiviert)**
+
 [trusted_shops_rich_snippets]
 
 **Trusted Shops Reviews einbetten (Grafik-Datei, falls aktiviert)**
+
 [trusted_shops_reviews]
 
 **eKomi-Badge einfügen (falls aktiviert)**
+
 [ekomi_badge]
