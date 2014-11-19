@@ -120,7 +120,7 @@ final class WooCommerce_Germanized {
 
 		// Hooks
 		add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), array( $this, 'action_links' ) );
-		add_action( 'after_setup_theme', array( $this, 'include_template_functions' ), 11 );
+		add_action( 'after_setup_theme', array( $this, 'include_template_functions' ), 12 );
 		add_action( 'init', array( $this, 'init' ), 1 );
 		add_action( 'init', array( 'WC_GZD_Shortcodes', 'init' ), 2 );
 		add_action( 'widgets_init', array( $this, 'include_widgets' ), 25 );
@@ -144,7 +144,7 @@ final class WooCommerce_Germanized {
 			do_action( 'before_woocommerce_germanized_init' );
 			// Include required files
 			$this->includes();
-			add_filter( 'woocommerce_locate_template', array( $this, 'filter_templates' ), 0, 3 );
+			add_filter( 'woocommerce_locate_template', array( $this, 'filter_templates' ), 0, PHP_INT_MAX );
 			add_filter( 'woocommerce_product_class', array( $this, 'filter_product_classes' ), 0, 4 );
 			add_filter( 'woocommerce_get_settings_pages', array( $this, 'add_settings' ) );
 			add_filter( 'woocommerce_enqueue_styles', array( $this, 'add_styles' ) );

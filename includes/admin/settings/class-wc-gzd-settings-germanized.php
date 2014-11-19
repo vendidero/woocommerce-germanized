@@ -273,7 +273,25 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 				'id' 		=> 'woocommerce_gzd_display_listings_add_to_cart',
 				'default'	=> 'yes',
 				'type' 		=> 'checkbox',
-				'desc_tip'	=> sprintf( __( 'unset this option if you don\'t want to show the add to cart button within the product listings', 'woocommerce-germanized' ), esc_url( 'http://www.gesetze-im-internet.de/ustg_1980/__19.html' ) )
+				'desc_tip'	=> __( 'unset this option if you don\'t want to show the add to cart button within the product listings', 'woocommerce-germanized' ),
+			),
+
+			array(
+				'title' 	=> __( 'Link to Details', 'woocommerce-germanized' ),
+				'desc' 		=> __( 'Want to link to product details page instead of add to cart within listings?', 'woocommerce-germanized' ),
+				'id' 		=> 'woocommerce_gzd_display_listings_link_details',
+				'default'	=> 'no',
+				'type' 		=> 'checkbox',
+				'desc_tip'	=> __( 'Decide whether you like to link to your product\'s details page instead of displaying an add to cart button within product listings.', 'woocommerce-germanized' ),
+			),
+
+			array(
+				'title' 	=> __( 'Product Details Text', 'woocommerce-germanized' ),
+				'id' 		=> 'woocommerce_gzd_display_listings_link_details_text',
+				'default'	=> __( 'Details', 'woocommerce-germanized' ),
+				'type' 		=> 'text',
+				'desc_tip'	=> __( 'If you have chosen to link to product details page instead of add to cart URL you may want to change the button text.', 'woocommerce-germanized' ),
+				'css' 		=> 'min-width:300px;',
 			),
 
 			array(
@@ -393,6 +411,16 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 				'default'   =>  __( 'To finish the order you have to accept to our {term_link}Terms and Conditions{/term_link} and {revocation_link}Right of Recission{/revocation_link}.', 'woocommerce-germanized' ),
 				'css' 		=> 'width:100%; height: 65px;',
 				'id' 		=> 'woocommerce_gzd_checkout_legal_text_error',
+				'type' 		=> 'textarea',
+			),
+
+			array(
+				'title' 	=> __( 'Legal Digital Text', 'woocommerce-germanized' ),
+				'desc' 		=> __( 'Choose a Plain Text which will be shown right above checkout submit button if a user has picked a digital product. See legal text option for possible placeholders.', 'woocommerce-germanized' ),
+				'desc_tip'	=> true,
+				'default'   =>  __( 'I want immediate access to the digital content and I acknowledge that thereby I lose my right to cancel once the service has begun.', 'woocommerce-germanized' ),
+				'css' 		=> 'width:100%; height: 65px;',
+				'id' 		=> 'woocommerce_gzd_checkout_legal_text_digital',
 				'type' 		=> 'textarea',
 			),
 

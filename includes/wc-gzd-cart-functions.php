@@ -86,12 +86,19 @@ function wc_gzd_get_legal_text( $text = '' ) {
 			$plain_text 
 		);
 	}
-	return $plain_text;
+	return  $plain_text;
 }
 
 function wc_gzd_get_legal_text_error() {
 	$plain_text = '';
 	if ( get_option( 'woocommerce_gzd_checkout_legal_text_error' ) )
 		$plain_text = wc_gzd_get_legal_text( get_option( 'woocommerce_gzd_checkout_legal_text_error' ) );
+	return $plain_text;
+}
+
+function wc_gzd_get_legal_text_digital() {
+	$plain_text = __( 'I want immediate access to the digital content and I acknowledge that thereby I lose my right to cancel once the service has begun.', 'woocommerce-germanized' );
+	if ( get_option( 'woocommerce_gzd_checkout_legal_text_digital' ) )
+		$plain_text = wc_gzd_get_legal_text( get_option( 'woocommerce_gzd_checkout_legal_text_digital' ) );
 	return $plain_text;
 }
