@@ -136,10 +136,25 @@ final class WooCommerce_Germanized {
 	}
 
 	/**
+	 * Checks if WooCommerce is activated
+	 *  
+	 * @return boolean true if WooCommerce is activated
+	 */
+	public function is_woocommerce_activated() {
+		if ( is_multisite() )
+			require_once( ABSPATH . '/wp-admin/includes/plugin.php' );
+		if ( is_multisite() && ! is_plugin_active_for_network( 'woocommerce/woocommerce.php' ) )
+			return false;
+		else if ( ! is_multisite() && ! in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) )
+			return false;
+		return true;
+	}
+
+	/**
 	 * Init WooCommerceGermanized when WordPress initializes.
 	 */
 	public function init() {
-		if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
+		if ( $this->is_woocommerce_activated() ) {
 			// Before init action
 			do_action( 'before_woocommerce_germanized_init' );
 			// Include required files
