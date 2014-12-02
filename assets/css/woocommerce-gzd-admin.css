@@ -53,3 +53,7 @@ table.data_table tr td p.form-field {
 	border: 1px solid #557020 !important;
 	box-shadow: inset 0 1px 0 rgba(255,255,255,.25),0 1px 0 rgba(0,0,0,.15) !important;
 }
+
+.wc-gzd-button-wrapper .button {
+	margin-right: 1em;
+}

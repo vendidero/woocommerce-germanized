@@ -64,7 +64,9 @@ class WC_GZD_Trusted_Shops {
 			add_action( 'woocommerce_gzd_trusted_shops_reviews', array( $this, 'update_reviews' ) );
 		if ( $this->is_review_widget_enabled() )
 			add_action( 'woocommerce_gzd_trusted_shops_reviews', array( $this, 'update_review_widget' ) );
-		//add_action( 'init', array( $this, 'update_review_widget' ) );
+		if ( $this->is_review_reminder_enabled() )
+			add_action( 'woocommerce_gzd_trusted_shops_reviews', array( $this, 'send_mails' ) );
+		// add_action( 'init', array( $this, 'send_mails' ) );
 		// Add Badge to Footer
 		if ( $this->is_enabled() && $this->get_badge_js() )
 			add_action( 'wp_footer', array( $this, 'add_badge' ), 5 );
@@ -117,6 +119,10 @@ class WC_GZD_Trusted_Shops {
 		return ( $this->review_widget_enable == 'yes' && $this->is_enabled() ? true : false );
 	}
 
+	public function is_review_reminder_enabled() {
+		return ( $this->review_reminder_enable == 'yes' && $this->is_enabled() ? true : false );
+	}
+
 	/**
 	 * Gets Trusted Shops payment gateway by woocommerce payment id
 	 *
@@ -143,6 +149,15 @@ class WC_GZD_Trusted_Shops {
 	 */
 	public function get_certificate_link() {
 		return 'https://www.trustedshops.com/shop/certificate.php?shop_id=' . $this->id;
+	}
+
+	/**
+	 * Returns add new rating link
+	 * 
+	 * @return string
+	 */
+	public function get_new_review_link() {
+		return 'https://www.trustedshops.de/bewertung/bewerten_' . $this->id . '.html';
 	}
 
 	/**
@@ -286,6 +301,40 @@ class WC_GZD_Trusted_Shops {
 	}
 
 	/**
+	 * Send review reminder mails after x days
+	 */
+	public function send_mails() {
+		$order_query = new WP_Query(
+			array( 'post_type' => 'shop_order', 'post_status' => array( 'wc-completed' ), 'meta_query' =>
+				array(
+					array(
+						'key'     => '_trusted_shops_review_mail_sent',
+						'compare' => 'NOT EXISTS',
+					),
+				),
+			)
+		);
+		while ( $order_query->have_posts() ) {
+			$order_query->next_post();
+			$order = wc_get_order( $order_query->post->ID );
+			$completed_date = new DateTime( date( 'Y-m-d', strtotime( $order->completed_date ) ) );
+			$current_date = new DateTime( date( 'Y-m-d' ) );
+			$day_diff = $current_date->diff( $completed_date );
+			if ( $day_diff->d >= (int) 0 ) {
+				$mails = WC()->mailer()->get_emails();
+				if ( !empty( $mails ) ) {
+					foreach ( $mails as $mail ) {
+						if ( $mail->id == 'customer_trusted_shops' ) {
+							$mail->trigger( $order->id );
+							update_post_meta( $order->id, '_trusted_shops_review_mail_sent', 1 );
+						}
+					}
+				}
+			}
+		}
+	}
+
+	/**
 	 * Get Trusted Shops related Settings for Admin Interface
 	 *
 	 * @return array
@@ -340,6 +389,24 @@ class WC_GZD_Trusted_Shops {
 				'type'   => 'checkbox',
 				'default' => 'yes',
 				'autoload'  => false
+			),
+
+			array(
+				'title'  => _x( 'Enable Review Reminder', 'trusted-shops', 'woocommerce-germanized' ),
+				'desc'   => sprintf( _x( 'This option will enable a one-time email review reminder being sent to your customer.', 'trusted-shops', 'woocommerce-germanized' ), admin_url( 'widgets.php' ) ),
+				'id'   => 'woocommerce_gzd_trusted_shops_review_reminder_enable',
+				'type'   => 'checkbox',
+				'default' => 'no',
+				'autoload'  => false
+			),
+
+			array(
+				'title'  => _x( 'Days until reminder', 'trusted-shops', 'woocommerce-germanized' ),
+				'desc'   => _x( 'Decide how many days after an order the email review reminder will be sent.', 'trusted-shops', 'woocommerce-germanized' ),
+				'desc_tip' => true,
+				'default' => 7,
+				'id'   => 'woocommerce_gzd_trusted_review_reminder_days',
+				'type'   => 'number',
 			),
 
 			array( 'type' => 'sectionend', 'id' => 'trusted_shops_reviews_options' ),

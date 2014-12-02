@@ -191,7 +191,7 @@ if ( ! function_exists( 'woocommerce_gzd_digital_checkbox' ) ) {
 		if ( $is_downloadable ) {
 			echo '<p class="form-row data-download terms">
 				<input type="checkbox" class="input-checkbox" name="download-revocate" id="data-download" />
-				<label for="data-download" class="checkbox">' . __( 'I want immediate access to the digital content and I acknowledge that thereby I lose my right to cancel once the service has begun.', 'woocommerce-germanized' ) . '</label>
+				<label for="data-download" class="checkbox">' . wc_gzd_get_legal_text_digital() . '</label>
 			</p>';
 		}
 	}
@@ -285,6 +285,18 @@ if ( ! function_exists( 'woocommerce_gzd_template_order_success_text' ) ) {
 
 	function woocommerce_gzd_template_order_success_text( $text ) {
 		return ( get_option( 'woocommerce_gzd_order_success_text' ) ? get_option( 'woocommerce_gzd_order_success_text' ) : $text );
+	}
+
+}
+
+if ( ! function_exists( 'woocommerce_gzd_template_loop_add_to_cart' ) ) {
+
+	function woocommerce_gzd_template_loop_add_to_cart( $text, $product ) {
+		return sprintf( 
+			'<a href="%s" class="button">%s</a>',
+			esc_attr( $product->get_permalink() ),
+			esc_html( get_option( 'woocommerce_gzd_display_listings_link_details_text' ) )
+		);
 	}
 
 }

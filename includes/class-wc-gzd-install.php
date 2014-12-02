@@ -93,7 +93,7 @@ class WC_GZD_Install {
 		if ( file_exists( WC_germanized()->plugin_path() . '/i18n/languages/woocommerce-germanized-' . $locale . '.mo' ) )
 			$mofile = WC_germanized()->plugin_path() . '/i18n/languages/woocommerce-germanized-' . $locale . '.mo';
 		load_textdomain( 'woocommerce-germanized', $mofile );
-		if ( ! in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
+		if ( ! WC_germanized()->is_woocommerce_activated() ) {
 			deactivate_plugins( WC_GERMANIZED_PLUGIN_FILE );
 			wp_die( sprintf( __( 'Please install <a href="%s" target="_blank">WooCommerce</a> before installing WooCommerce Germanized. Thank you!', 'woocommerce-germanized' ), 'http://wordpress.org/plugins/woocommerce/' ) );
 		}
@@ -113,8 +113,13 @@ class WC_GZD_Install {
 		// Update version
 		update_option( 'woocommerce_gzd_version', WC_germanized()->version );
 
+		// Update activation date
+		update_option( 'woocommerce_gzd_activation_date', date( 'Y-m-d' ) );
+
 		// Add theme compatibility check
 		delete_option( '_wc_gzd_hide_theme_notice' );
+
+		delete_option( '_wc_gzd_hide_review_notice' );
 
 		// Check if pages are needed
 		if ( wc_get_page_id( 'revocation' ) < 1 ) {

@@ -35,6 +35,8 @@ if ( get_option( 'woocommerce_gzd_display_listings_delivery_time' ) == 'yes' )
 	add_action( 'woocommerce_after_shop_loop_item', 'woocommerce_gzd_template_single_delivery_time_info', 7 );
 if ( get_option( 'woocommerce_gzd_display_listings_add_to_cart' ) == 'no' )
 	remove_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart' );
+if ( get_option( 'woocommerce_gzd_display_listings_link_details' ) == 'yes' )
+	add_filter( 'woocommerce_loop_add_to_cart_link', 'woocommerce_gzd_template_loop_add_to_cart', 99, 2 );
 
 /**
  * Cart

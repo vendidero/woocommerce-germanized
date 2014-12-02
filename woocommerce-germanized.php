@@ -3,7 +3,7 @@
  * Plugin Name: WooCommerce Germanized
  * Plugin URI: http://www.vendidero.de/woocommerce-germanized
  * Description: Extends WooCommerce to become a legally compliant store for the german market.
- * Version: 1.0.1
+ * Version: 1.0.2
  * Author: Vendidero
  * Author URI: http://vendidero.de
  * Requires at least: 3.8
@@ -120,7 +120,7 @@ final class WooCommerce_Germanized {
 
 		// Hooks
 		add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), array( $this, 'action_links' ) );
-		add_action( 'after_setup_theme', array( $this, 'include_template_functions' ), 11 );
+		add_action( 'after_setup_theme', array( $this, 'include_template_functions' ), 12 );
 		add_action( 'init', array( $this, 'init' ), 1 );
 		add_action( 'init', array( 'WC_GZD_Shortcodes', 'init' ), 2 );
 		add_action( 'widgets_init', array( $this, 'include_widgets' ), 25 );
@@ -136,16 +136,31 @@ final class WooCommerce_Germanized {
 	}
 
 	/**
+	 * Checks if WooCommerce is activated
+	 *  
+	 * @return boolean true if WooCommerce is activated
+	 */
+	public function is_woocommerce_activated() {
+		if ( is_multisite() )
+			require_once( ABSPATH . '/wp-admin/includes/plugin.php' );
+		if ( is_multisite() && ! is_plugin_active_for_network( 'woocommerce/woocommerce.php' ) )
+			return false;
+		else if ( ! is_multisite() && ! in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) )
+			return false;
+		return true;
+	}
+
+	/**
 	 * Init WooCommerceGermanized when WordPress initializes.
 	 */
 	public function init() {
-		if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
+		if ( $this->is_woocommerce_activated() ) {
 			// Before init action
 			do_action( 'before_woocommerce_germanized_init' );
 			// Include required files
 			$this->includes();
-			add_filter( 'woocommerce_locate_template', array( $this, 'filter_templates' ), 0, 3 );
-			add_filter( 'woocommerce_product_class', array( $this, 'filter_product_classes' ), 0, 4 );
+			add_filter( 'woocommerce_locate_template', array( $this, 'filter_templates' ), 0, PHP_INT_MAX );
+			add_filter( 'woocommerce_product_class', array( $this, 'filter_product_classes' ), 0, PHP_INT_MAX );
 			add_filter( 'woocommerce_get_settings_pages', array( $this, 'add_settings' ) );
 			add_filter( 'woocommerce_enqueue_styles', array( $this, 'add_styles' ) );
 			add_action( 'wp_enqueue_scripts', array( $this, 'add_scripts' ) );
@@ -245,19 +260,18 @@ final class WooCommerce_Germanized {
 			include_once 'includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php';
 		}
 
-		if ( defined( 'DOING_AJAX' ) ) {
+		if ( defined( 'DOING_AJAX' ) )
 			$this->ajax_includes();
-		}
 
-		if ( ! is_admin() || defined( 'DOING_AJAX' ) ) {
+		if ( ! is_admin() || defined( 'DOING_AJAX' ) )
 			$this->frontend_includes();
-		}
 
 		// Post types
 		include_once 'includes/class-wc-gzd-post-types.php';
 
 		// Abstracts
 		include_once 'includes/abstracts/abstract-wc-gzd-product.php';
+		include_once 'includes/abstracts/abstract-wc-gzd-payment-gateway.php';
 
 		include_once 'includes/wc-gzd-cart-functions.php';
 		include_once 'includes/class-wc-gzd-checkout.php';
@@ -281,9 +295,8 @@ final class WooCommerce_Germanized {
 	 * Function used to Init WooCommerceGermanized Template Functions - This makes them pluggable by plugins and themes.
 	 */
 	public function include_template_functions() {
-		if ( ! is_admin() || defined( 'DOING_AJAX' ) ) {
+		if ( ! is_admin() || defined( 'DOING_AJAX' ) )
 			include_once 'includes/wc-gzd-template-functions.php';
-		}
 	}
 
 	/**
@@ -353,9 +366,15 @@ final class WooCommerce_Germanized {
 					$gateways[ $key ] = 'WC_GZD_Gateway_BACS';
 				else if ( $gateway == 'WC_Gateway_COD' )
 					$gateways[ $key ] = 'WC_GZD_Gateway_COD';
+				else if ( $gateway == 'WC_Gateway_Paypal' )
+					$gateways[ $key ] = 'WC_GZD_Gateway_Paypal';
 			}
 		}
 		return $gateways;
+	}
+
+	public function get_payment_gateways_feeable() {
+		return apply_filters( 'wc_gzd_payment_gateways_feeable', array( 'bacs', 'paypal', 'cod' ) );
 	}
 
 	/**
@@ -515,6 +534,7 @@ final class WooCommerce_Germanized {
 	public function add_emails( $mails ) {
 		$mails[] = include 'includes/emails/class-wc-gzd-email-customer-revocation.php';
 		$mails[] = include 'includes/emails/class-wc-gzd-email-customer-ekomi.php';
+		$mails[] = include 'includes/emails/class-wc-gzd-email-customer-trusted-shops.php';
 		return $mails;
 	}
 
@@ -544,12 +564,17 @@ final class WooCommerce_Germanized {
 	}
 
 	/**
-	 * Update fee for cart if cod has been selected as payment method
+	 * Update fee for cart if feeable gateway has been selected as payment method
 	 */
 	public function add_fee_cart() {
-		if ( WC()->session->get('chosen_payment_method') == 'cod' ) {
-			$cod = new WC_GZD_Gateway_COD();
-			$cod->add_fee();
+		if ( in_array( WC()->session->get('chosen_payment_method'), $this->get_payment_gateways_feeable() ) ) {
+			$key = WC()->session->get('chosen_payment_method');
+			$gateways = WC()->payment_gateways()->get_available_payment_gateways();
+			if ( isset( $gateways[ $key ] ) ) {
+				$gateway = $gateways[ $key ];
+				if ( is_callable( array( $gateway, 'add_fee' ) ) )
+					$gateway->add_fee();
+			}
 		}
 	}
 

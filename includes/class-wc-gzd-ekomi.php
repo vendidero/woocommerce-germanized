@@ -145,7 +145,7 @@ class WC_GZD_Ekomi {
 	 * @return boolean
 	 */
 	public function put_order( $order_id ) {
-		$order = get_order( $order_id );
+		$order = wc_get_order( $order_id );
 		if ( ! isset( $order->ekomi_review_link ) ) {
 			$items = $order->get_items();
 			$product_ids = array();

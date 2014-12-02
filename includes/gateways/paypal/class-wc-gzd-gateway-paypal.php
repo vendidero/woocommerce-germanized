@@ -5,16 +5,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Cash on Delivery Gateway
+ * PayPal Standard Payment Gateway
  *
- * Provides a Cash on Delivery Payment Gateway. Extends base class to enable payment fee.
+ * Provides a PayPal Standard Payment Gateway.
  *
- * @class 		WC_GZD_Gateway_COD
- * @extends		WC_Gateway_COD
- * @version		1.0.0
- * @author 		Vendidero
+ * @class 		WC_Paypal
+ * @extends		WC_Gateway_Paypal
+ * @version		2.0.0
+ * @package		WooCommerce/Classes/Payment
+ * @author 		WooThemes
  */
-class WC_GZD_Gateway_COD extends WC_Gateway_COD {
+class WC_GZD_Gateway_Paypal extends WC_Gateway_Paypal {
 
 	public $parent;
 
@@ -31,10 +32,6 @@ class WC_GZD_Gateway_COD extends WC_Gateway_COD {
 	public function __get( $key ) {
 		if ( isset( $this->parent->$key ) )
 			return $this->parent->$key;
-	}
-
-	public function init_form_fields() {
-		parent::init_form_fields();
 	}
 
 }
