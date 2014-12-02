@@ -16,10 +16,23 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 class WC_GZD_Gateway_BACS extends WC_Gateway_BACS {
 
+	public $parent;
+
 	public function __construct() {
 		parent::__construct();
 		if ( $this->get_option( 'has_instructions' ) == 'no' )
 			$this->instructions = '';
+		$this->parent = new WC_GZD_Payment_Gateway( $this );
+	}
+
+	public function __call( $method, $arguments ) {
+		if ( method_exists( $this->parent, $method ) )
+			return call_user_func_array( array( $this->parent, $method), $arguments );
+	}
+
+	public function __get( $key ) {
+		if ( isset( $this->parent->$key ) )
+			return $this->parent->$key;
 	}
 
 	public function init_form_fields() {

@@ -23,15 +23,15 @@ class WC_GZD_Email_Customer_Revocation extends WC_Email {
 	 */
 	function __construct() {
 
-		$this->id     = 'customer_revocation';
-		$this->title    = __( 'Revocation', 'woocommerce-germanized' );
-		$this->description  = __( 'Email being sent if a customer fills out the revocation form.', 'woocommerce-germanized' );
+		$this->id     		 	= 'customer_revocation';
+		$this->title    	 	= __( 'Revocation', 'woocommerce-germanized' );
+		$this->description   	= __( 'Email being sent if a customer fills out the revocation form.', 'woocommerce-germanized' );
 
-		$this->template_html  = 'emails/customer-revocation.php';
-		$this->template_plain  = 'emails/plain/customer-revocation.php';
+		$this->template_html  	= 'emails/customer-revocation.php';
+		$this->template_plain  	= 'emails/plain/customer-revocation.php';
 
-		$this->subject    = __( 'Your Revocation', 'woocommerce-germanized' );
-		$this->heading       = __( 'Your Revocation', 'woocommerce-germanized' );
+		$this->subject    		= __( 'Your Revocation', 'woocommerce-germanized' );
+		$this->heading       	= __( 'Your Revocation', 'woocommerce-germanized' );
 
 		// Call parent constuctor
 		parent::__construct();
@@ -68,11 +68,11 @@ class WC_GZD_Email_Customer_Revocation extends WC_Email {
 	function get_content_html() {
 		ob_start();
 		wc_get_template( $this->template_html, array(
-				'user'      => $this->object,
-				'email_heading'      => $this->get_heading(),
-				'blogname'           => $this->get_blogname(),
-				'sent_to_admin'   => false,
-				'plain_text'      => false
+				'user'      	 => $this->object,
+				'email_heading'  => $this->get_heading(),
+				'blogname'       => $this->get_blogname(),
+				'sent_to_admin'  => false,
+				'plain_text'     => false
 			) );
 		return ob_get_clean();
 	}
@@ -86,11 +86,11 @@ class WC_GZD_Email_Customer_Revocation extends WC_Email {
 	function get_content_plain() {
 		ob_start();
 		wc_get_template( $this->template_plain, array(
-				'user'      => $this->object,
-				'email_heading'      => $this->get_heading(),
-				'blogname'           => $this->get_blogname(),
-				'sent_to_admin'   => false,
-				'plain_text'      => true
+				'user'      	 => $this->object,
+				'email_heading'  => $this->get_heading(),
+				'blogname'       => $this->get_blogname(),
+				'sent_to_admin'  => false,
+				'plain_text'     => true
 			) );
 		return ob_get_clean();
 	}

@@ -113,8 +113,13 @@ class WC_GZD_Install {
 		// Update version
 		update_option( 'woocommerce_gzd_version', WC_germanized()->version );
 
+		// Update activation date
+		update_option( 'woocommerce_gzd_activation_date', date( 'Y-m-d' ) );
+
 		// Add theme compatibility check
 		delete_option( '_wc_gzd_hide_theme_notice' );
+
+		delete_option( '_wc_gzd_hide_review_notice' );
 
 		// Check if pages are needed
 		if ( wc_get_page_id( 'revocation' ) < 1 ) {

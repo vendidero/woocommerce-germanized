@@ -20,7 +20,7 @@ if ( ! class_exists( 'WC_GZD_Admin_Notices' ) ) :
 class WC_GZD_Admin_Notices {
 
 	public function __construct() {
-		add_action( 'admin_print_styles', array( $this, 'check_theme_notice_hide' ), 0 );
+		add_action( 'admin_init', array( $this, 'check_notice_hide' ) );
 		add_action( 'admin_print_styles', array( $this, 'add_notices' ), 1 );
 	}
 
@@ -37,7 +37,8 @@ class WC_GZD_Admin_Notices {
 			add_action( 'admin_notices', array( $this, 'theme_incompatibility_notice' ) );
 		else if ( ! $this->is_theme_ready() && ! get_option( '_wc_gzd_hide_theme_notice' ) )
 			add_action( 'admin_notices', array( $this, 'theme_not_ready_notice' ) );
-		// delete_option( '_wc_gzd_hide_theme_notice' );
+		if ( ! get_option( '_wc_gzd_hide_review_notice' ) )
+			add_action( 'admin_notices', array( $this, 'add_review_notice' ) );
 		if ( isset( $_GET[ 'page' ] ) && $_GET[ 'page' ] == 'wc-gzd-about' || get_option( '_wc_gzd_needs_pages' ) ) {
 			remove_action( 'admin_notices', array( $this, 'theme_incompatibility_notice' ) );
 			remove_action( 'admin_notices', array( $this, 'theme_not_ready_notice' ) );
@@ -58,11 +59,20 @@ class WC_GZD_Admin_Notices {
 		}
 	}
 
-	public function check_theme_notice_hide() {
+	public function check_notice_hide() {
+		$notices = array( 'wc-gzd-hide-theme-notice', 'wc-gzd-hide-review-notice' );
 		if ( isset( $_GET[ 'activated' ] ) )
 			delete_option( '_wc_gzd_hide_theme_notice' );
-		if ( isset( $_GET[ 'wc-gzd-hide-theme-notice' ] ) )
-			update_option( '_wc_gzd_hide_theme_notice', true );
+		if ( ! empty( $notices ) ) {
+			foreach ( $notices as $notice ) {
+				if ( isset( $_GET[ 'notice' ] ) && $_GET[ 'notice' ] == $notice && isset( $_GET['nonce'] ) && check_admin_referer( $notice, 'nonce' ) ) {
+					update_option( '_' . str_replace( '-', '_', $notice ) , true );
+					$redirect_url = remove_query_arg( 'notice', remove_query_arg( 'nonce', $_SERVER['REQUEST_URI'] ) );
+					wp_safe_redirect( $redirect_url );
+					exit();
+				}
+			}
+		}
 	}
 
 	public function theme_incompatibility_notice() {
@@ -79,6 +89,16 @@ class WC_GZD_Admin_Notices {
 		if ( ! $data[ 'wc_gzd_compatible' ] )
 			return false;
 		return true;
+	}
+
+	public function add_review_notice() {
+		if ( get_option( 'woocommerce_gzd_activation_date' ) ) {
+			$activation_date = new DateTime( get_option( 'woocommerce_gzd_activation_date' ) );
+			$today = new DateTime();
+			$diff = $activation_date->diff( $today );
+			if ( $diff->d >= 7 )
+				include( 'views/html-notice-review.php' );
+		}
 	}
 
 	/**

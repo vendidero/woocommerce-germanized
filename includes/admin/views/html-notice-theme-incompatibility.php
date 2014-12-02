@@ -7,21 +7,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
 
+$dismiss_url = add_query_arg( 'notice', 'wc-gzd-hide-theme-notice', add_query_arg( 'nonce', wp_create_nonce( 'wc-gzd-hide-theme-notice' ) ) );
 ?>
 
-<div class="error">
+<div class="error fade">
 	<h3><?php _e( 'Theme incompatibility found', 'woocommerce-germanized' ); ?></h3>
 	<p><?php printf( __( 'It seems like your theme tries to overwrite legally relevant templates. Please review your checkout page. Some things might look weird because WooCommerce Germanized had to stop template overriding for legal purposes. See <a href="%s" target="_blank">making your theme compatible</a> or check out our Theme <a href="%s" target="_blank">VendiPro</a> for 100&#37; compatibility.', 'woocommerce-germanized' ), 'http://vendidero.de/dokument/woocommerce-germanized-theme-kompatibilitaet', 'http://vendidero.de/vendipro' ); ?></p>
-	<form name="wc-gzd-hide-theme-incompatible-notice" method="get">
-		<p>
-			<a class="button button-primary" style="margin-right: 1em" href="http://vendidero.de/vendipro" target="_blank"><?php _e( 'Get VendiPro now', 'woocommerce-germanized' ); ?></a>
-			<input type="hidden" name="wc-gzd-hide-theme-notice" value="1" />
-			<?php if ( ! empty( $_GET ) ) : ?>
-				<?php foreach ( $_GET as $key => $val ) : ?>
-					<input type="hidden" name="<?php echo sanitize_text_field( $key ); ?>" value="<?php echo esc_attr( sanitize_text_field( $val ) ); ?>" />
-				<?php endforeach; ?>
-			<?php endif; ?>
-			<button class="button button-secondary" type="submit"><?php _e( 'Hide this notice', 'woocommerce-germanized' ); ?></button>
-		</p>
-	</form>
+	<p class="alignleft wc-gzd-button-wrapper">
+		<a class="button button-primary" href="http://vendidero.de/vendipro" target="_blank"><?php _e( 'Get VendiPro now', 'woocommerce-germanized' ); ?></a>
+	</p>
+	<p class="alignright">
+		<a href="<?php echo esc_url( $dismiss_url );?>"><?php _e( 'Hide this notice', 'woocommerce-germanized' ); ?></a>
+	</p>
+	<div class="clear"></div>
 </div>

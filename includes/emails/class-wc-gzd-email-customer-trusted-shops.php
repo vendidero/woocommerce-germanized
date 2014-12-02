@@ -2,7 +2,7 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-if ( ! class_exists( 'WC_GZD_Email_Customer_Ekomi' ) ) :
+if ( ! class_exists( 'WC_GZD_Email_Customer_Trusted_Shops' ) ) :
 
 /**
  * eKomi Review Reminder Email
@@ -13,25 +13,24 @@ if ( ! class_exists( 'WC_GZD_Email_Customer_Ekomi' ) ) :
  * @version		1.0.0
  * @author 		Vendidero
  */
-class WC_GZD_Email_Customer_Ekomi extends WC_Email {
+class WC_GZD_Email_Customer_Trusted_Shops extends WC_Email {
 
 	/**
 	 * Constructor
 	 */
 	function __construct() {
 
-		$this->id 				= 'customer_ekomi';
-		$this->title 			= _x( 'eKomi Review Reminder', 'ekomi', 'woocommerce-germanized' );
-		$this->description		= _x( 'This E-Mail is being sent to a customer to transfer eKomi order review link to a customer.', 'ekomi', 'woocommerce-germanized' );
+		$this->id 				= 'customer_trusted_shops';
+		$this->title 			= _x( 'Trusted Shops Review Reminder', 'trusted-shops', 'woocommerce-germanized' );
+		$this->description		= _x( 'This E-Mail is being sent to a customer to remind him about the possibility to leave a review at Trusted Shops.', 'trusted-shops', 'woocommerce-germanized' );
 
-		$this->heading 			= _x( 'Please rate your Order', 'ekomi', 'woocommerce-germanized' );
-		$this->subject      	= _x( 'Please rate your {site_title} order from {order_date}', 'ekomi', 'woocommerce-germanized' );
+		$this->heading 			= _x( 'Please rate your Order', 'trusted-shops', 'woocommerce-germanized' );
+		$this->subject      	= _x( 'Please rate your {site_title} order from {order_date}', 'trusted-shops', 'woocommerce-germanized' );
 
-		$this->template_html 	= 'emails/customer-ekomi.php';
-		$this->template_plain 	= 'emails/plain/customer-ekomi.php';
+		$this->template_html 	= 'emails/customer-trusted-shops.php';
 
 		// Triggers for this email
-		add_action( 'woocommerce_germanized_ekomi_review_notification', array( $this, 'trigger' ) );
+		add_action( 'woocommerce_germanized_trusted_shops_review_notification', array( $this, 'trigger' ) );
 
 		// Call parent constuctor
 		parent::__construct();
@@ -80,25 +79,8 @@ class WC_GZD_Email_Customer_Ekomi extends WC_Email {
 		return ob_get_clean();
 	}
 
-	/**
-	 * get_content_plain function.
-	 *
-	 * @access public
-	 * @return string
-	 */
-	function get_content_plain() {
-		ob_start();
-		wc_get_template( $this->template_plain, array(
-			'order' 		=> $this->object,
-			'email_heading' => $this->get_heading(),
-			'sent_to_admin' => false,
-			'plain_text'    => true
-		) );
-		return ob_get_clean();
-	}
-
 }
 
 endif;
 
-return new WC_GZD_Email_Customer_Ekomi();
+return new WC_GZD_Email_Customer_Trusted_Shops();
