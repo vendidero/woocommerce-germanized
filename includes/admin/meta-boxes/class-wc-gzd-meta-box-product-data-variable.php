@@ -71,6 +71,12 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 				?>
 			</td>
 		</tr>
+		<tr>
+			<td colspan="2">
+				<label for="variable_product_mini_desc"><?php echo __( 'Optional Mini Description', 'woocommerce-germanized' ); ?>:</label>
+				<?php wp_editor( ( isset( $variation_data['_mini_desc'][0] ) ? $variation_data['_mini_desc'][0] : '' ), 'wc_gzd_product_mini_desc_' . $loop, array( 'textarea_name' => 'variable_product_mini_desc[' . $loop . ']', 'textarea_rows' => 5, 'media_buttons' => false, 'teeny' => true ) ); ?>
+			</td>
+		</tr>
 		<?php
   	}
 
@@ -83,10 +89,11 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 			$variable_unit_price_regular = $_POST['variable_unit_price_regular'];
 			$variable_unit_price_sale = $_POST['variable_unit_price_sale'];
 			$variable_delivery_time = $_POST['variable_delivery_time'];
+			$variable_product_desc = $_POST['variable_product_mini_desc'];
 			for ( $i = 0; $i < sizeof( $variable_post_id ); $i++ ) {
 				$variation_id = (int) $variable_post_id[$i];
 				if ( isset( $variable_unit[$i] ) ) {
-					update_post_meta( $variation_id, '_unit', esc_attr( $variable_unit[$i] ) );
+					update_post_meta( $variation_id, '_unit', sanitize_text_field( $variable_unit[$i] ) );
 				}
 				if ( isset( $variable_unit_base[$i] ) ) {
 					update_post_meta( $variation_id, '_unit_base', ( $variable_unit_base[$i] === '' ) ? '' : wc_format_decimal( $variable_unit_base[$i] ) );
@@ -94,6 +101,9 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 				if ( isset( $variable_unit_price_regular[$i] ) ) {
 					update_post_meta( $variation_id, '_unit_price_regular', ( $variable_unit_price_regular[$i] === '' ) ? '' : wc_format_decimal( $variable_unit_price_regular[$i] ) );
 					update_post_meta( $variation_id, '_unit_price', ( $variable_unit_price_regular[$i] === '' ) ? '' : wc_format_decimal( $variable_unit_price_regular[$i] ) );
+				}
+				if ( isset( $variable_product_desc[$i] ) ) {
+					update_post_meta( $variation_id, '_mini_desc', esc_html( $variable_product_desc[$i] ) );
 				}
 				if ( isset( $variable_unit_price_sale[$i] ) ) {
 					update_post_meta( $variation_id, '_unit_price_sale', '' );

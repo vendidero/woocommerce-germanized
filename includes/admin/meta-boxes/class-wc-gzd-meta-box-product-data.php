@@ -30,7 +30,7 @@ class WC_Germanized_Meta_Box_Product_Data {
 
 	public static function save($post_id) {
 		if ( isset( $_POST['_unit'] ) ) {
-			update_post_meta( $post_id, '_unit', esc_attr( $_POST['_unit'] ) );
+			update_post_meta( $post_id, '_unit', sanitize_text_field( $_POST['_unit'] ) );
 		}
 		if ( isset( $_POST['_unit_base'] ) ) {
 			update_post_meta( $post_id, '_unit_base', ( $_POST['_unit_base'] === '' ) ? '' : wc_format_decimal( $_POST['_unit_base'] ) );
@@ -48,7 +48,7 @@ class WC_Germanized_Meta_Box_Product_Data {
 			}
 		}
 		if ( isset( $_POST[ '_mini_desc' ] ) ) {
-			update_post_meta( $post_id, '_mini_desc', $_POST[ '_mini_desc' ] );
+			update_post_meta( $post_id, '_mini_desc', esc_html( $_POST[ '_mini_desc' ] ) );
 		}
 	}
 

@@ -53,6 +53,16 @@ if ( ! function_exists( 'woocommerce_gzd_template_single_delivery_time_info' ) )
 	}
 }
 
+if ( ! function_exists( 'woocommerce_gzd_template_single_tax_info' ) ) {
+
+	/**
+	 * Single Product delivery time info
+	 */
+	function woocommerce_gzd_template_single_tax_info() {
+		wc_get_template( 'single-product/tax-info.php' );
+	}
+}
+
 if ( ! function_exists( 'woocommerce_gzd_template_single_small_business_info' ) ) {
 
 	/**
