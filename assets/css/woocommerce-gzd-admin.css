@@ -1,0 +1,59 @@
+table.data_table tr td p.form-field {
+	margin: 0 !important;
+	padding: 0 !important;
+}
+
+#wp-wc_gzd_product_mini_desc-wrap {
+	margin-top: -2em;
+}
+
+.wc-gzd-admin-settings {
+	display: inline-block;
+	width: 70%;
+	box-sizing: border-box;
+	vertical-align: top;
+	border-right: 1px solid #CCC;
+	padding-right: 2%;
+}
+
+.wc-gzd-admin-settings-sidebar {
+	display: inline-block;
+	box-sizing: border-box;
+	padding-left: 2%;
+	vertical-align: top;
+	margin-left: -4px;
+	width: 30%;
+}
+
+.wc-gzd-admin-settings-sidebar img {
+	width: 100%;
+}
+
+.wc-gzd-admin-settings-sidebar .browser {
+	border: 1px solid #CCC;
+	border-radius: 3px;
+}
+
+.wc-gzd-sidebar-action {
+}
+
+.wc-gzd-admin-settings-sidebar .small {
+	font-size: 0.9em;
+	display: block;
+	margin-top: 0.5em;
+}
+
+.wc-gzd-button {
+	background-color: #7b9f35 !important;
+	border: 1px solid #557020 !important;
+	box-shadow: inset 0 1px 0 rgba(255,255,255,.25),0 1px 0 rgba(0,0,0,.15) !important;
+}
+.wc-gzd-button:hover {
+	background-color: #73982a !important;
+	border: 1px solid #557020 !important;
+	box-shadow: inset 0 1px 0 rgba(255,255,255,.25),0 1px 0 rgba(0,0,0,.15) !important;
+}
+
+.wc-gzd-button-wrapper .button {
+	margin-right: 1em;
+}
