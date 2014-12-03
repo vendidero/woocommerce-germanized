@@ -193,7 +193,7 @@ class WC_GZD_Install {
 			'tax_rate_order'    => 1,
 			'tax_rate_class'    => ''
 		);
-		$exists = $wpdb->get_results ( 'SELECT tax_rate_id FROM ' . $wpdb->prefix . 'woocommerce_tax_rates' . ' WHERE tax_rate = 19' );
+		$exists = $wpdb->get_results ( 'SELECT tax_rate_id FROM ' . $wpdb->prefix . 'woocommerce_tax_rates' . ' WHERE tax_rate LIKE "19%"' );
 		if ( empty( $exists ) )
 			$wpdb->insert( $wpdb->prefix . 'woocommerce_tax_rates', $_tax_rate );
 
@@ -201,7 +201,7 @@ class WC_GZD_Install {
 		$_tax_rate[ 'tax_rate_class' ] = 'reduced-rate';
 		$_tax_rate[ 'tax_rate_name' ] = 'MwSt. 7%';
 
-		$exists = $wpdb->get_results ( 'SELECT tax_rate_id FROM ' . $wpdb->prefix . 'woocommerce_tax_rates' . ' WHERE tax_rate = 7' );
+		$exists = $wpdb->get_results ( 'SELECT tax_rate_id FROM ' . $wpdb->prefix . 'woocommerce_tax_rates' . ' WHERE tax_rate LIKE "7%"' );
 		if ( empty( $exists ) )
 			$wpdb->insert( $wpdb->prefix . 'woocommerce_tax_rates', $_tax_rate );
  	}

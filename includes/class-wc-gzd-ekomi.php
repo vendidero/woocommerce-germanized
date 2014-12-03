@@ -185,10 +185,8 @@ class WC_GZD_Ekomi {
 		while ( $order_query->have_posts() ) {
 			$order_query->next_post();
 			$order = wc_get_order( $order_query->post->ID );
-			$completed_date = new DateTime( date( 'Y-m-d', strtotime( $order->completed_date ) ) );
-			$current_date = new DateTime( date( 'Y-m-d' ) );
-			$day_diff = $current_date->diff( $completed_date );
-			if ( $day_diff->d >= (int) get_option( 'woocommerce_gzd_ekomi_day_diff' ) ) {
+			$diff = WC_germanized()->get_date_diff( $order->completed_date, date( 'Y-m-d H:i:s' ) );
+			if ( $diff[ 'd' ] >= (int) get_option( 'woocommerce_gzd_ekomi_day_diff' ) ) {
 				$mails = WC()->mailer()->get_emails();
 				if ( !empty( $mails ) ) {
 					foreach ( $mails as $mail ) {

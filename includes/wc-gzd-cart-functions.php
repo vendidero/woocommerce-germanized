@@ -20,8 +20,12 @@ function wc_gzd_get_tax_rate( $tax_rate_id ) {
 
 function wc_gzd_product_item_desc( $title, $item ) {
 	$new = $title;
-	if ( isset( $item[ 'product_id' ] ) && get_post_meta( $item[ 'product_id' ], '_mini_desc', true ) )
-		$new .= '<div class="wc-gzd-item-desc item-desc">' . apply_filters( 'the_content', get_post_meta( $item[ 'product_id' ], '_mini_desc', true ) ) . '</div>';
+	if ( isset( $item[ 'product_id' ] ) ) {
+		$product_id = ( ! empty( $item[ 'variation_id' ] ) ? $item[ 'variation_id' ] : $item[ 'product_id' ] );
+		$product = wc_get_product( $product_id );
+		if ( $product->get_mini_desc() )
+			$new .= '<div class="wc-gzd-item-desc item-desc">' . $product->get_mini_desc() . '</div>';
+	}
 	return $new;
 }
 

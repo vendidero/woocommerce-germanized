@@ -32,6 +32,7 @@ class WC_GZD_Product_Variation extends WC_Product_Variation {
 		$this->variation_level_meta_data[ 'unit_base' ] = '';
 		$this->variation_level_meta_data[ 'unit_price_regular' ] = 0;
 		$this->variation_level_meta_data[ 'unit_price_sale' ] = 0;
+		$this->variation_level_meta_data[ 'mini_desc' ] = '';
 	}
 
 	/**

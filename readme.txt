@@ -4,7 +4,7 @@ Tags: woocommerce, woocommerce german market, woocommerce deutsch, woocommerce d
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=info@vendidero.de&item_name=Donation+for+WooCommerce+Germanized
 Requires at least: 3.8
 Tested up to: 4.0
-Stable tag: 1.0.2
+Stable tag: 1.0.3
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -117,6 +117,12 @@ Bugs sowie Hilfe bei der Arbeit an WooCommerce Germanized werden gerne über uns
 1. Einstellungsmöglichkeiten für WooCommerce Germanized.
 
 == Changelog ==
+
+= 1.0.3 =
+* Fix - PHP 5.3 date diff backward compatibility
+* Fix - Trusted Shops review email days ignore fix
+* Feature - By default hide shipping costs notice for virtual products
+* Feature - Added product cart description for variations
 
 = 1.0.2 =
 * Feature - Added WP multisite support

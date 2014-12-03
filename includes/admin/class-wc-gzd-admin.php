@@ -65,7 +65,12 @@ class WC_GZD_Admin {
 	}
 
 	public function add_product_mini_desc() {
-		add_meta_box( 'wc-gzd-product-mini-desc', __( 'Optional Mini Description', 'woocommerce-germanized' ), array( $this, 'init_product_mini_desc' ), 'product', 'advanced', 'high' );
+		global $post;
+		if ( isset( $post ) ) {
+			$product = wc_get_product( $post );
+			if ( ! $product->is_type( 'variable' ) )
+				add_meta_box( 'wc-gzd-product-mini-desc', __( 'Optional Mini Description', 'woocommerce-germanized' ), array( $this, 'init_product_mini_desc' ), 'product', 'advanced', 'high' );
+		}
 	}
 
 	public function init_product_mini_desc( $post ) {

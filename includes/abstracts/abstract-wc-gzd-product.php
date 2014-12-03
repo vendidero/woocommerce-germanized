@@ -52,8 +52,8 @@ class WC_GZD_Product extends WC_Product {
 	}
 
 	public function get_mini_desc() {
-		if ( $this->mini_desc )
-			return apply_filters( 'the_content', $this->mini_desc );
+		if ( $this->child->mini_desc )
+			return apply_filters( 'the_content', $this->child->mini_desc );
 		return false;
 	}
 
@@ -67,7 +67,7 @@ class WC_GZD_Product extends WC_Product {
 		if ( $this->is_taxable() ) {
 			$tax_display_mode = get_option( 'woocommerce_tax_display_shop' );
 			$tax_rates  = $_tax->get_rates( $this->get_tax_class() );
-			if ( !empty( $tax_rates ) ) {
+			if ( ! empty( $tax_rates ) ) {
 				$tax_rates = array_values( $tax_rates );
 				return ( $tax_display_mode == 'incl' ? sprintf( __( 'incl. %s VAT', 'woocommerce-germanized' ), ( (int) $tax_rates[0][ 'rate' ] ) . '%' ) : sprintf( __( 'excl. %s VAT', 'woocommerce-germanized' ), ( (int) $tax_rates[0][ 'rate' ] ) . '%' ) );
 			}
@@ -213,6 +213,8 @@ class WC_GZD_Product extends WC_Product {
 	 * @return string 
 	 */
 	public function get_shipping_costs_html() {
+		if ( $this->is_virtual() && get_option( 'woocommerce_gzd_display_shipping_costs_virtual' ) != 'yes' )
+			return false;
 		$find = array(
 			'{link}',
 			'{/link}'
