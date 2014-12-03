@@ -118,6 +118,12 @@ Bugs sowie Hilfe bei der Arbeit an WooCommerce Germanized werden gerne über uns
 
 == Changelog ==
 
+= 1.0.3 =
+* Fix - PHP 5.3 date diff backward compatibility
+* Fix - Trusted Shops review email days ignore fix
+* Feature - By default hide shipping costs notice for virtual products
+* Feature - Added product cart description for variations
+
 = 1.0.2 =
 * Feature - Added WP multisite support
 * Feature - Added optional payment charge for PayPal, COD, Prepayment

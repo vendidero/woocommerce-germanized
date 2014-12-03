@@ -66,7 +66,7 @@ class WC_GZD_Trusted_Shops {
 			add_action( 'woocommerce_gzd_trusted_shops_reviews', array( $this, 'update_review_widget' ) );
 		if ( $this->is_review_reminder_enabled() )
 			add_action( 'woocommerce_gzd_trusted_shops_reviews', array( $this, 'send_mails' ) );
-		// add_action( 'init', array( $this, 'send_mails' ) );
+		//add_action( 'init', array( $this, 'send_mails' ) );
 		// Add Badge to Footer
 		if ( $this->is_enabled() && $this->get_badge_js() )
 			add_action( 'wp_footer', array( $this, 'add_badge' ), 5 );
@@ -317,10 +317,8 @@ class WC_GZD_Trusted_Shops {
 		while ( $order_query->have_posts() ) {
 			$order_query->next_post();
 			$order = wc_get_order( $order_query->post->ID );
-			$completed_date = new DateTime( date( 'Y-m-d', strtotime( $order->completed_date ) ) );
-			$current_date = new DateTime( date( 'Y-m-d' ) );
-			$day_diff = $current_date->diff( $completed_date );
-			if ( $day_diff->d >= (int) 0 ) {
+			$diff = WC_germanized()->get_date_diff( $order->completed_date, date( 'Y-m-d H:i:s' ) );
+			if ( $diff[ 'd' ] >= (int) $this->review_reminder_days ) {
 				$mails = WC()->mailer()->get_emails();
 				if ( !empty( $mails ) ) {
 					foreach ( $mails as $mail ) {

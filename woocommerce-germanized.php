@@ -170,7 +170,7 @@ final class WooCommerce_Germanized {
 			add_filter( 'woocommerce_email_classes', array( $this, 'add_emails' ) );
 			add_filter( 'woocommerce_locate_core_template', array( $this, 'email_templates' ), 0, 3 );
 			add_action( 'woocommerce_email_order_meta', array( $this, 'email_small_business_notice' ), 1 );
-			// Payment Gateway BACS
+			// Payment Gateway Filter
 			add_filter( 'woocommerce_payment_gateways', array( $this, 'payment_gateway_filter' ) );
 			// Add better tax display to order totals
 			add_filter( 'woocommerce_get_order_item_totals', array( $this, 'order_item_totals' ), 0, 2 );
@@ -523,6 +523,21 @@ final class WooCommerce_Germanized {
 	public function email_small_business_notice() {
 		if ( get_option( 'woocommerce_gzd_small_enterprise' ) == 'yes' )
 			woocommerce_get_template( 'global/small-business-info.php' );
+	}
+
+	/**
+	 * PHP 5.3 backwards compatibility for getting date diff
+	 *  
+	 * @param  string $from date from
+	 * @param  string $to   date to
+	 * @return array  array containing year, month, date diff
+	 */
+	public function get_date_diff( $from, $to ) {
+		$diff = abs( strtotime( $to ) - strtotime( $from ) );
+		$years = floor( $diff / (365*60*60*24) );
+		$months = floor( ( $diff - $years * 365*60*60*24 ) / ( 30*60*60*24 ) );
+		$days = floor( ( $diff - $years * 365*60*60*24 - $months*30*60*60*24 ) / ( 60*60*24 ) );
+		return array( 'y' => $years, 'm' => $months, 'd' => $days );
 	}
 
 	/**

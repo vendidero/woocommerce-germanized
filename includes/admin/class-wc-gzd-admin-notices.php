@@ -93,10 +93,9 @@ class WC_GZD_Admin_Notices {
 
 	public function add_review_notice() {
 		if ( get_option( 'woocommerce_gzd_activation_date' ) ) {
-			$activation_date = new DateTime( get_option( 'woocommerce_gzd_activation_date' ) );
-			$today = new DateTime();
-			$diff = $activation_date->diff( $today );
-			if ( $diff->d >= 7 )
+			$activation_date = ( get_option( 'woocommerce_gzd_activation_date' ) ? get_option( 'woocommerce_gzd_activation_date' ) : date( 'Y-m-d' ) );
+			$diff = WC_germanized()->get_date_diff( $activation_date, date( 'Y-m-d' ) );
+			if ( $diff[ 'd' ] >= 7 )
 				include( 'views/html-notice-review.php' );
 		}
 	}
