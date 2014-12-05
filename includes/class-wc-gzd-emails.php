@@ -49,11 +49,10 @@ class WC_GZD_Emails {
 	public function hook_mail_footer( $mail ) {
 		if ( !empty( $this->footer_attachments ) ) {
 			foreach ( $this->footer_attachments as $option_key => $option ) {
-				if ( $option != -1 ) {
-					if ( in_array( $mail->id, get_option( $option_key ) ) ) {
-						$this->attach_page_content( $option );
-					}
-				}
+				if ( $option == -1 || ! get_option( $option_key ) )
+					continue;
+				if ( in_array( $mail->id, get_option( $option_key ) ) )
+					$this->attach_page_content( $option );
 			}
 		}
 	}
