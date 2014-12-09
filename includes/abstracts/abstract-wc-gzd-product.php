@@ -69,7 +69,7 @@ class WC_GZD_Product extends WC_Product {
 			$tax_rates  = $_tax->get_rates( $this->get_tax_class() );
 			if ( ! empty( $tax_rates ) ) {
 				$tax_rates = array_values( $tax_rates );
-				return ( $tax_display_mode == 'incl' ? sprintf( __( 'incl. %s VAT', 'woocommerce-germanized' ), ( (int) $tax_rates[0][ 'rate' ] ) . '%' ) : sprintf( __( 'excl. %s VAT', 'woocommerce-germanized' ), ( (int) $tax_rates[0][ 'rate' ] ) . '%' ) );
+				return ( $tax_display_mode == 'incl' ? sprintf( __( 'incl. %s VAT', 'woocommerce-germanized' ), ( filter_var( $tax_rates[0][ 'rate' ], FILTER_VALIDATE_FLOAT ) ) . '%' ) : sprintf( __( 'excl. %s VAT', 'woocommerce-germanized' ), ( filter_var( $tax_rates[0][ 'rate' ], FILTER_VALIDATE_FLOAT ) ) . '%' ) );
 			}
 		} 
 		return false;
