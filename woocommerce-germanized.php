@@ -575,7 +575,7 @@ final class WooCommerce_Germanized {
 	 */
 	public function update_initial_order_status( $order_id, $post_data ) {
 		$order = wc_get_order( $order_id );
-		$order->update_status( 'processing' );
+		$order->update_status( 'on-hold' );
 	}
 
 	/**
