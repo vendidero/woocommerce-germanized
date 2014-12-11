@@ -176,10 +176,20 @@ final class WooCommerce_Germanized {
 			// Add better tax display to order totals
 			add_filter( 'woocommerce_get_order_item_totals', array( $this, 'order_item_totals' ), 0, 2 );
 			add_action( 'woocommerce_cart_calculate_fees', array( $this, 'add_fee_cart' ), 0 );
-			// Send order notice directly after new order is being added
-			add_action( 'woocommerce_checkout_update_order_meta', array( $this, 'update_initial_order_status' ), 0, 2 );
 			// Adjust virtual Product Price and tax class
 			add_filter( 'woocommerce_get_price_including_tax', array( $this, 'set_virtual_product_price' ), PHP_INT_MAX, 3 );
+
+			// Send order notice directly after new order is being added - use these filters because order status has to be updated already
+			add_filter( 'woocommerce_payment_successful_result', array( $this, 'send_order_confirmation_mails' ), 0, 2 );
+			add_filter( 'woocommerce_checkout_no_payment_needed_redirect', array( $this, 'send_order_confirmation_mails' ), 0, 2 );
+			
+			// Remove processing + on-hold default order confirmation mails
+			$mailer = WC()->mailer();
+			$mails = $mailer->get_emails();
+			remove_action( 'woocommerce_order_status_pending_to_processing_notification', array( $mails[ 'WC_Email_Customer_Processing_Order' ], 'trigger' ) );
+			remove_action( 'woocommerce_order_status_pending_to_on-hold_notification', array( $mails[ 'WC_Email_Customer_Processing_Order' ], 'trigger' ) );
+			remove_action( 'woocommerce_order_status_pending_to_processing_notification', array( $mails[ 'WC_Email_New_Order' ], 'trigger' ) );
+			remove_action( 'woocommerce_order_status_pending_to_on-hold_notification', array( $mails[ 'WC_Email_New_Order' ], 'trigger' ) );
 
 			$this->units          = new WC_GZD_Units();
 			$this->trusted_shops  = new WC_GZD_Trusted_Shops();
@@ -583,9 +593,15 @@ final class WooCommerce_Germanized {
 	 * @param  int 	  $order_id 	 the order id	
 	 * @param  array  $post_data  meta data
 	 */
-	public function update_initial_order_status( $order_id, $post_data ) {
-		$order = wc_get_order( $order_id );
-		$order->update_status( 'on-hold' );
+	public function send_order_confirmation_mails( $return, $order ) {
+		if ( ! is_object( $order ) )
+			$order = wc_get_order( $order );
+		// Send order processing mail
+		$mailer = WC()->mailer();
+		$mails = $mailer->get_emails();
+		$mails[ 'WC_Email_Customer_Processing_Order' ]->trigger( $order->id );
+		$mails[ 'WC_Email_New_Order' ]->trigger( $order->id );
+		return $return;
 	}
 
 	/**
