@@ -58,6 +58,15 @@ class WC_GZD_Product extends WC_Product {
 	}
 
 	/**
+	 * Checks whether current product applies for a virtual VAT exception (downloadable or virtual)
+	 *  
+	 * @return boolean
+	 */
+	public function is_virtual_vat_exception() {
+		return ( ( get_option( 'woocommerce_gzd_enable_virtual_vat' ) == 'yes' ) && ( $this->is_downloadable() || $this->is_virtual() ) ? true : false );
+	}
+
+	/**
 	 * Gets a product's tax description (if is taxable)
 	 *  
 	 * @return mixed string if is taxable else returns false
@@ -69,6 +78,8 @@ class WC_GZD_Product extends WC_Product {
 			$tax_rates  = $_tax->get_rates( $this->get_tax_class() );
 			if ( ! empty( $tax_rates ) ) {
 				$tax_rates = array_values( $tax_rates );
+				if ( $this->is_virtual_vat_exception() )
+					return ( $tax_display_mode == 'incl' ? __( 'incl. VAT', 'woocommerce-germanized' ) : __( 'excl. VAT', 'woocommerce-germanized' ) );
 				return ( $tax_display_mode == 'incl' ? sprintf( __( 'incl. %s VAT', 'woocommerce-germanized' ), ( (int) $tax_rates[0][ 'rate' ] ) . '%' ) : sprintf( __( 'excl. %s VAT', 'woocommerce-germanized' ), ( (int) $tax_rates[0][ 'rate' ] ) . '%' ) );
 			}
 		} 

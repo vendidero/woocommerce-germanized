@@ -258,6 +258,19 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 
 			array( 'type' => 'sectionend', 'id' => 'email_options' ),
 
+			array(	'title' => __( 'Virtual VAT', 'woocommerce-germanized' ), 'type' => 'title', 'id' => 'virtual_vat_options' ),
+
+			array(
+				'title' 	=> __( 'Enable Virtual VAT', 'woocommerce-germanized' ),
+				'desc' 		=> __( 'Enable if you want to charge your customer\'s countries\' VAT for virtual products.', 'woocommerce-germanized' ),
+				'id' 		=> 'woocommerce_gzd_enable_virtual_vat',
+				'default'	=> 'no',
+				'type' 		=> 'checkbox',
+				'desc_tip'	=> sprintf( __( 'New EU VAT rule applies on 01.01.2015. Make sure that every digital or virtual product has chosen the right tax class (Virtual Rate or Virtual Reduced Rate). Gross prices will not differ from the prices you have chosen for affected products. In fact the net price will differ depending on the VAT rate of your customers\' country. Shop settings will be adjusted to show prices including tax. More information can be found <a href="%s" target="_blank">here</a>.', 'woocommerce-germanized' ), 'http://ec.europa.eu/taxation_customs/taxation/vat/how_vat_works/telecom/index_de.htm#new_rules' ),
+			),
+
+			array( 'type' => 'sectionend', 'id' => 'virtual_vat_options' ),
+
 		) ); // End general settings
 	}
 
@@ -537,13 +550,20 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 						update_option( 'woocommerce_calc_taxes', 'yes' );
 						update_option( 'woocommerce_prices_include_tax', 'yes' );
 					}
-					break;
 				} else if ( $setting[ 'id' ] == 'woocommerce_gzd_trusted_shops_review_widget_enable' ) {
 					if ( ! empty( $_POST[ 'woocommerce_gzd_trusted_shops_review_widget_enable' ] ) && ! WC_germanized()->trusted_shops->is_review_widget_enabled() )
 						$update_reviews = true;
 				} else if ( $setting[ 'id' ] == 'woocommerce_gzd_trusted_shops_rich_snippets_enable' ) {
 					if ( ! empty( $_POST[ 'woocommerce_gzd_trusted_shops_rich_snippets_enable' ] ) && ! WC_germanized()->trusted_shops->is_rich_snippets_enabled() )
 						$update_rich_snippets = true;
+				} else if ( $setting[ 'id' ] == 'woocommerce_gzd_enable_virtual_vat' ) {
+					if ( get_option( 'woocommerce_gzd_enable_virtual_vat' ) != 'yes' && ! empty( $_POST[ 'woocommerce_gzd_enable_virtual_vat' ] ) ) {
+						// Update WooCommerce options to show prices including taxes
+						update_option( 'woocommerce_prices_include_tax', 'yes' );
+						update_option( 'woocommerce_tax_display_shop', 'incl' );
+						update_option( 'woocommerce_tax_display_cart', 'incl' );
+						update_option( 'woocommerce_tax_total_display', 'itemized' );
+					}
 				}
 			}
 		}

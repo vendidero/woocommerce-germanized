@@ -125,6 +125,7 @@ final class WooCommerce_Germanized {
 		add_action( 'init', array( 'WC_GZD_Shortcodes', 'init' ), 2 );
 		add_action( 'widgets_init', array( $this, 'include_widgets' ), 25 );
 		add_action( 'plugins_loaded', array( $this, 'load_plugin_textdomain' ) );
+		add_action( 'woocommerce_init', array( $this, 'replace_woocommerce_cart' ), 0 );
 
 		// Loaded action
 		do_action( 'woocommerce_germanized_loaded' );
@@ -177,6 +178,8 @@ final class WooCommerce_Germanized {
 			add_action( 'woocommerce_cart_calculate_fees', array( $this, 'add_fee_cart' ), 0 );
 			// Send order notice directly after new order is being added
 			add_action( 'woocommerce_checkout_update_order_meta', array( $this, 'update_initial_order_status' ), 0, 2 );
+			// Adjust virtual Product Price and tax class
+			add_filter( 'woocommerce_get_price_including_tax', array( $this, 'set_virtual_product_price' ), PHP_INT_MAX, 3 );
 
 			$this->units          = new WC_GZD_Units();
 			$this->trusted_shops  = new WC_GZD_Trusted_Shops();
@@ -187,6 +190,12 @@ final class WooCommerce_Germanized {
 			do_action( 'woocommerce_germanized_init' );
 		} else {
 			add_action( 'admin_init', array( $this, 'deactivate' ), 0 );
+		}
+	}
+
+	public function replace_woocommerce_cart() {
+		if ( ! is_admin() || defined( 'DOING_AJAX' ) ) {
+			WC()->cart = new WC_GZD_Cart();
 		}
 	}
 
@@ -275,6 +284,7 @@ final class WooCommerce_Germanized {
 
 		include_once 'includes/wc-gzd-cart-functions.php';
 		include_once 'includes/class-wc-gzd-checkout.php';
+
 	}
 
 	/**
@@ -578,6 +588,22 @@ final class WooCommerce_Germanized {
 		$order->update_status( 'on-hold' );
 	}
 
+	/**
+	 * Stop WooCommerce from adding additional VAT to virtual products within Checkout.
+	 *  
+	 * @param float $price  
+	 * @param int $qty    
+	 * @param object $product
+	 * @return adjusted price
+	 */
+	public function set_virtual_product_price( $price, $qty, $product ) {
+		if ( ! $product->is_virtual_vat_exception() || ! isset( WC()->cart ) || ! WC()->cart->is_virtual_taxable() )
+			return $price;
+		if ( get_option('woocommerce_prices_include_tax') === 'yes' )
+			return $product->get_price() * $qty;
+		return $price;
+	}
+ 
 	/**
 	 * Update fee for cart if feeable gateway has been selected as payment method
 	 */
