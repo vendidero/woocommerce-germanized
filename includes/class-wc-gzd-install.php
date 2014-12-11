@@ -80,6 +80,18 @@ class WC_GZD_Install {
 			// What's new redirect
 			wp_redirect( admin_url( 'index.php?page=wc-gzd-about&wc-gzd-updated=true' ) );
 			exit;
+
+		} elseif ( ! empty( $_GET['skip_update_woocommerce_gzd'] ) ) {
+
+			// We no longer need to install pages
+			delete_option( '_wc_gzd_needs_update' );
+			delete_option( '_wc_gzd_needs_pages' );
+			delete_transient( '_wc_gzd_activation_redirect' );
+
+			// What's new redirect
+			wp_redirect( admin_url( 'index.php?page=wc-gzd-about&wc-gzd-updated=true' ) );
+			exit;
+
 		}
 	}
 
