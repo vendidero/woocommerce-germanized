@@ -143,9 +143,9 @@ final class WooCommerce_Germanized {
 	public function is_woocommerce_activated() {
 		if ( is_multisite() )
 			require_once( ABSPATH . '/wp-admin/includes/plugin.php' );
-		if ( is_multisite() && ! is_plugin_active_for_network( 'woocommerce/woocommerce.php' ) )
+		if ( is_multisite() && ! ( is_plugin_active_for_network( 'woocommerce/woocommerce.php' ) || in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) )
 			return false;
-		else if ( ! is_multisite() && ! in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) )
+		if ( ! is_multisite() && ! in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) )
 			return false;
 		return true;
 	}
