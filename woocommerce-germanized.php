@@ -588,10 +588,10 @@ final class WooCommerce_Germanized {
 	}
 
 	/**
-	 * Set initial order status to processing - even if paypal is being used (email affirmation has to be sent directly after order submit)
+	 * Send order confirmation mail directly after order is being sent
 	 *  	
-	 * @param  int 	  $order_id 	 the order id	
-	 * @param  array  $post_data  meta data
+	 * @param  mixed 	  $return 	
+	 * @param  mixed  	  $order
 	 */
 	public function send_order_confirmation_mails( $return, $order ) {
 		if ( ! is_object( $order ) )
