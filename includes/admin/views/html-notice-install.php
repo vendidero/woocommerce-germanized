@@ -34,11 +34,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 					</td>
 				</tr>
 				<tr>
-					<th scope="row"><?php _e( 'Generate Digital EU VAT Rates', 'woocommerce-germanized' );?></th>
+					<th scope="row"><?php _e( 'Generate EU VAT Rates', 'woocommerce-germanized' );?></th>
 					<td>
 						<label for="install_woocommerce_gzd_tax_rates">
 							<input id="install_woocommerce_gzd_tax_rates" type="checkbox" value="true" name="install_woocommerce_gzd_tax_rates">
-							<?php _e( 'We will automatically insert EU VAT Rates for selling digital products.', 'woocommerce-germanized' );?>
+							<?php _e( 'We will automatically insert EU VAT Rates for selling virtual products.', 'woocommerce-germanized' );?>
 						</label>
 					</td>
 				</tr>

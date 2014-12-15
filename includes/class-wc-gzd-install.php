@@ -48,6 +48,9 @@ class WC_GZD_Install {
 			if ( ! empty( $_GET['install_woocommerce_gzd_settings'] ) )
 				self::set_default_settings();
 
+			if ( ! empty( $_GET['install_woocommerce_gzd_tax_rates'] ) )
+				self::create_tax_rates();
+
 			// We no longer need to install pages
 			delete_option( '_wc_gzd_needs_pages' );
 			delete_transient( '_wc_gzd_activation_redirect' );
