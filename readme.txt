@@ -3,7 +3,7 @@ Contributors: vendidero
 Tags: woocommerce, woocommerce german market, woocommerce deutsch, woocommerce de, woocommerce german, shop, commerce, e-commerce, woocommerce deutsche rechtsgrundlagen
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=info@vendidero.de&item_name=Donation+for+WooCommerce+Germanized
 Requires at least: 3.8
-Tested up to: 4.0
+Tested up to: 4.1
 Stable tag: 1.0.3
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
