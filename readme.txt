@@ -1,10 +1,10 @@
 === WooCommerce Germanized ===
 Contributors: vendidero
-Tags: woocommerce, woocommerce german market, woocommerce deutsch, woocommerce de, woocommerce german, shop, commerce, e-commerce, woocommerce deutsche rechtsgrundlagen
+Tags: woocommerce, german market, german, germany, deutsch, deutschland, de, de_DE, shop, commerce, e-commerce, ecommerce, woothemes
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=info@vendidero.de&item_name=Donation+for+WooCommerce+Germanized
 Requires at least: 3.8
 Tested up to: 4.1
-Stable tag: 1.0.3
+Stable tag: 1.0.4
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -33,6 +33,11 @@ Selbstverständlich können Trusted Shops Kunden mit nur wenigen Einstellungen d
 = Sauber implementiert =
 Bei der Entwicklung von WooCommerce Germanized haben wir besonderes Augenmerk auf die nahtlose Integration in WooCommerce gelegt.
 Die meisten Änderungen erfolgen über Hooks & Filter - nur im äußersten Notfall wird ein Template direkt überschrieben.
+
+= Neue Umsatzsteuer-Regelung für virtuelle Produkte =
+Mit der neuesten Version unterstützt WooCommerce Germanized die neuen Umsatzsteuer-Regelungen (B2C-Geschäfte, gültig ab 01.01.2015) zum Verkauf von virtuellen Produkten in die Europäische Union.
+Dabei wird bei virtuellen Produkten der Brutto-Preis beibehalten und lediglich der Netto-Preis, je nach Herkunftsland des Dienstleistungsempfängers, angepasst. 
+Insofern du von den Regelungen betroffen sein solltest, empfehlen wir dir unbedingt mit deinem Steuerberater Rücksprache zu halten.
 
 = eKomi Integration =
 Mit nur wenigen Klicks lässt sich eKomi als Bewertungsmanagement-Dienstleister in WooCommerce Germanized einstellen. 
@@ -117,6 +122,12 @@ Bugs sowie Hilfe bei der Arbeit an WooCommerce Germanized werden gerne über uns
 1. Einstellungsmöglichkeiten für WooCommerce Germanized.
 
 == Changelog ==
+
+= 1.0.4 =
+* Feature - Applying new VAT rules for selling virtual products to EU countries
+* Feature - Added option to set a label for displaying unit price
+* Fix - Stop updating default order status to send order confirmation. Using (in)appropriate hooks instead
+* Fix - Filter priority bug fix
 
 = 1.0.3 =
 * Fix - PHP 5.3 date diff backward compatibility

@@ -84,18 +84,8 @@ class WC_GZD_Install {
 			wp_redirect( admin_url( 'index.php?page=wc-gzd-about&wc-gzd-updated=true' ) );
 			exit;
 
-		} elseif ( ! empty( $_GET['skip_update_woocommerce_gzd'] ) ) {
-
-			// We no longer need to install pages
-			delete_option( '_wc_gzd_needs_update' );
-			delete_option( '_wc_gzd_needs_pages' );
-			delete_transient( '_wc_gzd_activation_redirect' );
-
-			// What's new redirect
-			wp_redirect( admin_url( 'index.php?page=wc-gzd-about&wc-gzd-updated=true' ) );
-			exit;
-
 		}
+		
 	}
 
 	/**
@@ -136,8 +126,8 @@ class WC_GZD_Install {
 
 		if ( version_compare( $current_db_version, '1.0.4', '<' ) && null !== $current_db_version )
 			update_option( '_wc_gzd_needs_update', 1 );
-		else
-			update_option( 'woocommerce_gzd_db_version', WC_germanized()->version );
+		
+		update_option( 'woocommerce_gzd_db_version', WC_germanized()->version );
 
 		// Update version
 		update_option( 'woocommerce_gzd_version', WC_germanized()->version );
@@ -151,9 +141,8 @@ class WC_GZD_Install {
 		delete_option( '_wc_gzd_hide_review_notice' );
 
 		// Check if pages are needed
-		if ( wc_get_page_id( 'revocation' ) < 1 ) {
+		if ( wc_get_page_id( 'revocation' ) < 1 )
 			update_option( '_wc_gzd_needs_pages', 1 );
-		}
 
 		// Flush rules after install
 		flush_rewrite_rules();

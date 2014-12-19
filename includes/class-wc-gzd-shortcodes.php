@@ -42,7 +42,7 @@ class WC_GZD_Shortcodes {
 	public static function revocation_form( $atts ) {
 		
 		ob_start();
-		woocommerce_get_template( 'forms/revocation-form.php' );
+		wc_get_template( 'forms/revocation-form.php' );
 		$return = '<div class="woocommerce woocommerce-gzd">' . ob_get_clean() . '</div>';
 		return $return;
 	
@@ -57,7 +57,7 @@ class WC_GZD_Shortcodes {
 	public static function payment_methods_info( $atts ) {
 		
 		ob_start();
-		woocommerce_get_template( 'global/payment-methods.php' );
+		wc_get_template( 'global/payment-methods.php' );
 		$return = '<div class="woocommerce woocommerce-gzd">' . ob_get_clean() . '</div>';
 		return $return;
 	
@@ -72,7 +72,7 @@ class WC_GZD_Shortcodes {
 	public static function trusted_shops_rich_snippets( $atts ) {
 		
 		ob_start();
-		woocommerce_get_template( 'trusted-shops/rich-snippets.php' );
+		wc_get_template( 'trusted-shops/rich-snippets.php' );
 		$html = ob_get_clean();
 		return WC_germanized()->trusted_shops->is_enabled() ? '<div class="woocommerce woocommerce-gzd">' . $html . '</div>' : '';
 	
@@ -87,7 +87,7 @@ class WC_GZD_Shortcodes {
 	public static function trusted_shops_reviews( $atts ) {
 		
 		ob_start();
-		woocommerce_get_template( 'trusted-shops/reviews.php' );
+		wc_get_template( 'trusted-shops/reviews.php' );
 		$html = ob_get_clean();
 		return WC_germanized()->trusted_shops->is_enabled() ? '<div class="woocommerce woocommerce-gzd">' . $html . '</div>' : '';
 	

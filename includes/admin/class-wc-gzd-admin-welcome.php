@@ -101,7 +101,7 @@ class WC_GZD_Admin_Welcome {
 		$major_version = substr( WC_germanized()->version, 0, 3 );
 		?>
 		<h1>Willkommen bei WooCommerce Germanized</h1>
-		<a class="wc-gzd-logo" href="" target="_blank"></a>
+		<a class="wc-gzd-logo" href="" target="_blank" style="margin-right: 1em"></a>
 		<div class="about-text woocommerce-about-text">
 			<?php
 				if ( ! empty( $_GET['wc-gzd-installed'] ) )
@@ -149,6 +149,19 @@ class WC_GZD_Admin_Welcome {
 				<div class="vendipro-buttons">
 					<a href="http://vendidero.de/vendipro" target="_blank" class="button button-primary wc-gzd-button">mehr erfahren</a>
 					<p class="price smaller">ab 49,95 € inkl. Mwst. - inkl. 1 Jahr Updates & Premium Support!</p>
+				</div>
+			</div>
+		</div>
+		<div class="changelog">
+			<h3>Neu in WooCommerce Germanized 1.0.4</h3>
+			<div class="wc-feature feature-section col one-col">
+				<div>
+					<h4><i class="fa fa-exclamation"></i> Neue USt. Regelungen 2015</h4>
+					<p>
+					Mit 1.0.4 haben wir auf die neuen USt.-Regelungen für virtuelle Produkte gültig ab 01.01.2015 reagiert (<a href="http://ec.europa.eu/taxation_customs/taxation/vat/how_vat_works/telecom/index_de.htm#new_rules" target="_blank">mehr erfahren</a>).
+					Ab dieser Version wird die im Brutto-Preis enthaltene MwSt. bei virtuellen Produkten automatisch an den MwSt.-Satz des Empfängers angepasst. Daraus folgt ein variierender Netto-Preis (je nach Herkunftsland). Andere Verfahren (z.B. das Erkennen des Herkunftslandes anhand der IP-Adresse) halten wir für nicht praktikabel,
+					da das Land des Rechnungsempfängers davon abweichen kann. Wir bitten dich dieses neue Verfahren unbedingt mit deinem Steuerberater bzw. Rechtsanwalt durchzusprechen.
+					</p>
 				</div>
 			</div>
 		</div>

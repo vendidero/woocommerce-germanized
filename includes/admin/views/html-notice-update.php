@@ -28,6 +28,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<input type="hidden" name="do_update_woocommerce_gzd" value="true" />
 		</table>
 		<p class="submit">
-			<input type="submit" class="button-primary" value="<?php _e( 'Update WooCommerce Germanized', 'woocommerce-germanized' );?>" /> <a class="wc-gzd-skip button-primary" href="<?php echo add_query_arg( 'skip_update_woocommerce_gzd', 'true', admin_url( 'admin.php?page=wc-settings' ) ); ?>"><?php _e( 'Skip setup', 'woocommerce-germanized' ); ?></a></p>
+			<input type="submit" class="button-primary" value="<?php _e( 'Update WooCommerce Germanized', 'woocommerce-germanized' );?>" /> </p>
 	</form>
 </div>

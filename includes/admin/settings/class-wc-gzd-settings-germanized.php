@@ -200,6 +200,20 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 
 			array( 'type' => 'sectionend', 'id' => 'shipping_costs_options' ),
 
+			array(	'title' => __( 'Unit Price', 'woocommerce-germanized' ), 'type' => 'title', 'id' => 'unit_price_options' ),
+
+			array(
+				'title' 	=> __( 'Unit Price Text', 'woocommerce-germanized' ),
+				'desc' 		=> __( 'This text will be used to display the unit price. Use {price} to insert the price.', 'woocommerce-germanized' ),
+				'desc_tip'	=> true,
+				'id' 		=> 'woocommerce_gzd_unit_price_text',
+				'type' 		=> 'text',
+				'css' 		=> 'min-width:300px;',
+				'default'	=> __( '{price}', 'woocommerce-germanized' ),
+			),
+
+			array( 'type' => 'sectionend', 'id' => 'unit_price_options' ),
+
 			array(	'title' => __( 'Right of Recission', 'woocommerce-germanized' ), 'type' => 'title', 'id' => 'recission_options' ),
 
 			array(
@@ -558,7 +572,10 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 						$update_rich_snippets = true;
 				} else if ( $setting[ 'id' ] == 'woocommerce_gzd_enable_virtual_vat' ) {
 					if ( get_option( 'woocommerce_gzd_enable_virtual_vat' ) != 'yes' && ! empty( $_POST[ 'woocommerce_gzd_enable_virtual_vat' ] ) ) {
+						if ( ! empty( $_POST[ 'woocommerce_gzd_small_enterprise' ] ) )
+							continue;
 						// Update WooCommerce options to show prices including taxes
+						// Check if is small business
 						update_option( 'woocommerce_prices_include_tax', 'yes' );
 						update_option( 'woocommerce_tax_display_shop', 'incl' );
 						update_option( 'woocommerce_tax_display_cart', 'incl' );
@@ -569,6 +586,11 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 		}
 
 		WC_Admin_Settings::save_fields( $settings );
+
+		if ( ! empty( $_POST[ 'woocommerce_gzd_small_enterprise' ] ) && ! empty( $_POST[ 'woocommerce_gzd_enable_virtual_vat' ] ) ) {
+			update_option( 'woocommerce_gzd_enable_virtual_vat', 'no' );
+			WC_Admin_Settings::add_error( __( 'Sorry, but the new Virtual VAT rules cannot be applied to small business.', 'woocommerce-germanized' ) );
+		}
 
 		// Trusted Shops API
 		if ( $update_rich_snippets || $update_reviews ) {
