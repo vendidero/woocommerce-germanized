@@ -19,7 +19,26 @@ if ( ! class_exists( 'WC_GZD_Admin_Notices' ) ) :
  */
 class WC_GZD_Admin_Notices {
 
-	public function __construct() {
+	/**
+	 * Single instance current class
+	 *
+	 * @var object
+	 */
+	protected static $_instance = null;
+
+	/**
+	 * Ensures that only one instance of this class is loaded or can be loaded.
+	 *
+	 * @static
+	 */
+	public static function instance() {
+		if ( is_null( self::$_instance ) ) {
+			self::$_instance = new self();
+		}
+		return self::$_instance;
+	}
+
+	protected function __construct() {
 		add_action( 'admin_init', array( $this, 'check_notice_hide' ) );
 		add_action( 'admin_print_styles', array( $this, 'add_notices' ), 1 );
 	}
@@ -124,4 +143,4 @@ class WC_GZD_Admin_Notices {
 
 endif;
 
-return new WC_GZD_Admin_Notices();
+return WC_GZD_Admin_Notices::instance();

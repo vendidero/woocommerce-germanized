@@ -48,6 +48,9 @@ class WC_GZD_Install {
 			if ( ! empty( $_GET['install_woocommerce_gzd_settings'] ) )
 				self::set_default_settings();
 
+			if ( ! empty( $_GET['install_woocommerce_gzd_tax_rates'] ) )
+				self::create_tax_rates();
+
 			// We no longer need to install pages
 			delete_option( '_wc_gzd_needs_pages' );
 			delete_transient( '_wc_gzd_activation_redirect' );
@@ -80,7 +83,9 @@ class WC_GZD_Install {
 			// What's new redirect
 			wp_redirect( admin_url( 'index.php?page=wc-gzd-about&wc-gzd-updated=true' ) );
 			exit;
+
 		}
+		
 	}
 
 	/**
@@ -104,10 +109,24 @@ class WC_GZD_Install {
 
 		$this->create_cron_jobs();
 
+		// Virtual Tax Classes
+		$tax_classes = array_filter( array_map( 'trim', explode( "\n", get_option('woocommerce_tax_classes' ) ) ) );
+		if ( ! in_array( 'Virtual Rate', $tax_classes ) || ! in_array( 'Virtual Reduced Rate', $tax_classes ) ) {
+			update_option( '_wc_gzd_needs_pages', 1 );
+			if ( ! in_array( 'Virtual Rate', $tax_classes ) )
+				array_push( $tax_classes, 'Virtual Rate' );
+			if ( ! in_array( 'Virtual Reduced Rate', $tax_classes ) )
+				array_push( $tax_classes, 'Virtual Reduced Rate' );
+			update_option( 'woocommerce_tax_classes', implode( "\n", $tax_classes ) );
+		}
+
 		// Queue upgrades
 		$current_version    = get_option( 'woocommerce_gzd_version', null );
 		$current_db_version = get_option( 'woocommerce_gzd_db_version', null );
 
+		if ( version_compare( $current_db_version, '1.0.4', '<' ) && null !== $current_db_version )
+			update_option( '_wc_gzd_needs_update', 1 );
+		
 		update_option( 'woocommerce_gzd_db_version', WC_germanized()->version );
 
 		// Update version
@@ -122,9 +141,8 @@ class WC_GZD_Install {
 		delete_option( '_wc_gzd_hide_review_notice' );
 
 		// Check if pages are needed
-		if ( wc_get_page_id( 'revocation' ) < 1 ) {
+		if ( wc_get_page_id( 'revocation' ) < 1 )
 			update_option( '_wc_gzd_needs_pages', 1 );
-		}
 
 		// Flush rules after install
 		flush_rewrite_rules();
@@ -138,6 +156,9 @@ class WC_GZD_Install {
 	 */
 	public function update() {
 		// Do updates
+		if ( ! empty( $_GET['install_woocommerce_gzd_tax_rates'] ) )
+			self::create_tax_rates();
+
 		$current_db_version = get_option( 'woocommerce_gzd_db_version' );
 		update_option( 'woocommerce_gzd_db_version', WC_germanized()->version );
 	}
@@ -152,6 +173,75 @@ class WC_GZD_Install {
 		
 		wp_clear_scheduled_hook( 'woocommerce_gzd_ekomi' );
 		wp_schedule_event( time(), 'daily', 'woocommerce_gzd_ekomi' );
+	}
+
+	public static function create_tax_rates() {
+
+		global $wpdb;
+
+		// Delete digital rates
+		$wpdb->delete( $wpdb->prefix . 'woocommerce_tax_rates', array( 'tax_rate_class' => 'virtual-rate' ), array( '%s' ) );
+
+		$rates = array(
+			'BE' => 21,
+			'BG' => 20,
+			'CZ' => 21,
+			'DK' => 25,
+			'DE' => 19,
+			'EE' => 20,
+			'EL' => 23,
+			'ES' => 21,
+			'FR' => 20,
+			'HR' => 25,
+			'IE' => 23,
+			'IT' => 22,
+			'CY' => 19,
+			'LV' => 21,
+			'LT' => 21,
+			'LU' => 15,
+			'HU' => 27,
+			'MT' => 18,
+			'NL' => 21,
+			'AT' => 20,
+			'PL' => 23,
+			'PT' => 23,
+			'RO' => 24,
+			'SI' => 22,
+			'SK' => 20,
+			'FI' => 24,
+			'SE' => 25,
+			'UK' => 20,
+		);
+
+		if ( ! empty( $rates ) ) {
+			$count = 0;
+			foreach ( $rates as $iso => $rate ) {
+				$_tax_rate = array(
+					'tax_rate_country'  => $iso,
+					'tax_rate_state'    => '',
+					'tax_rate'          => (string) number_format( (double) wc_clean( $rate ), 4, '.', '' ),
+					'tax_rate_name'     => 'MwSt. ' . $iso . ' virtual',
+					'tax_rate_priority' => 1,
+					'tax_rate_compound' => 0,
+					'tax_rate_shipping' => 0,
+					'tax_rate_order'    => $count++,
+					'tax_rate_class'    => 'virtual-rate'
+				);
+				// Check if standard rate exists
+				if ( WC()->countries->get_base_country() == $iso ) {
+					$base_rate = WC_Tax::get_shop_base_rate();
+					$base_rate = reset( $base_rate );
+					if ( ! empty( $base_rate ) )
+						$_tax_rate[ 'tax_rate_name' ] = $base_rate[ 'label' ];
+				}
+				$wpdb->insert( $wpdb->prefix . 'woocommerce_tax_rates', $_tax_rate );
+				$tax_rate_id = $wpdb->insert_id;
+				do_action( 'woocommerce_tax_rate_added', $tax_rate_id, $_tax_rate );
+			}
+		}
+		// Clear tax transients
+		$wpdb->query( $wpdb->prepare( "DELETE FROM {$wpdb->prefix}options WHERE option_name LIKE %s;", '_transient_wc_tax_rates%' ) );
+		$wpdb->query( $wpdb->prepare( "DELETE FROM {$wpdb->prefix}options WHERE option_name LIKE %s;", '_transient_timeout_wc_tax_rates%' ) );
 	}
 
 	/**
@@ -185,7 +275,7 @@ class WC_GZD_Install {
 		$_tax_rate = array(
 			'tax_rate_country'  => 'DE',
 			'tax_rate_state'    => '',
-			'tax_rate'          => 19.0,
+			'tax_rate'          => number_format( (double) wc_clean( 19.0 ), 4, '.', '' ),
 			'tax_rate_name'     => 'MwSt.',
 			'tax_rate_priority' => 1,
 			'tax_rate_compound' => '',
@@ -197,13 +287,17 @@ class WC_GZD_Install {
 		if ( empty( $exists ) )
 			$wpdb->insert( $wpdb->prefix . 'woocommerce_tax_rates', $_tax_rate );
 
-		$_tax_rate[ 'tax_rate' ] = 7.0;
+		$_tax_rate[ 'tax_rate' ] = number_format( (double) wc_clean( 7.0 ), 4, '.', '' );
 		$_tax_rate[ 'tax_rate_class' ] = 'reduced-rate';
 		$_tax_rate[ 'tax_rate_name' ] = 'MwSt. 7%';
 
 		$exists = $wpdb->get_results ( 'SELECT tax_rate_id FROM ' . $wpdb->prefix . 'woocommerce_tax_rates' . ' WHERE tax_rate LIKE "7%"' );
 		if ( empty( $exists ) )
 			$wpdb->insert( $wpdb->prefix . 'woocommerce_tax_rates', $_tax_rate );
+
+		// Clear tax transients
+		$wpdb->query( $wpdb->prepare( "DELETE FROM {$wpdb->prefix}options WHERE option_name LIKE %s;", '_transient_wc_tax_rates%' ) );
+		$wpdb->query( $wpdb->prepare( "DELETE FROM {$wpdb->prefix}options WHERE option_name LIKE %s;", '_transient_timeout_wc_tax_rates%' ) );
  	}
 
 	/**

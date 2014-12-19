@@ -200,6 +200,20 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 
 			array( 'type' => 'sectionend', 'id' => 'shipping_costs_options' ),
 
+			array(	'title' => __( 'Unit Price', 'woocommerce-germanized' ), 'type' => 'title', 'id' => 'unit_price_options' ),
+
+			array(
+				'title' 	=> __( 'Unit Price Text', 'woocommerce-germanized' ),
+				'desc' 		=> __( 'This text will be used to display the unit price. Use {price} to insert the price.', 'woocommerce-germanized' ),
+				'desc_tip'	=> true,
+				'id' 		=> 'woocommerce_gzd_unit_price_text',
+				'type' 		=> 'text',
+				'css' 		=> 'min-width:300px;',
+				'default'	=> __( '{price}', 'woocommerce-germanized' ),
+			),
+
+			array( 'type' => 'sectionend', 'id' => 'unit_price_options' ),
+
 			array(	'title' => __( 'Right of Recission', 'woocommerce-germanized' ), 'type' => 'title', 'id' => 'recission_options' ),
 
 			array(
@@ -257,6 +271,19 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 			),
 
 			array( 'type' => 'sectionend', 'id' => 'email_options' ),
+
+			array(	'title' => __( 'Virtual VAT', 'woocommerce-germanized' ), 'type' => 'title', 'id' => 'virtual_vat_options' ),
+
+			array(
+				'title' 	=> __( 'Enable Virtual VAT', 'woocommerce-germanized' ),
+				'desc' 		=> __( 'Enable if you want to charge your customer\'s countries\' VAT for virtual products.', 'woocommerce-germanized' ),
+				'id' 		=> 'woocommerce_gzd_enable_virtual_vat',
+				'default'	=> 'no',
+				'type' 		=> 'checkbox',
+				'desc_tip'	=> sprintf( __( 'New EU VAT rule applies on 01.01.2015. Make sure that every digital or virtual product has chosen the right tax class (Virtual Rate or Virtual Reduced Rate). Gross prices will not differ from the prices you have chosen for affected products. In fact the net price will differ depending on the VAT rate of your customers\' country. Shop settings will be adjusted to show prices including tax. More information can be found <a href="%s" target="_blank">here</a>.', 'woocommerce-germanized' ), 'http://ec.europa.eu/taxation_customs/taxation/vat/how_vat_works/telecom/index_de.htm#new_rules' ),
+			),
+
+			array( 'type' => 'sectionend', 'id' => 'virtual_vat_options' ),
 
 		) ); // End general settings
 	}
@@ -537,18 +564,33 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 						update_option( 'woocommerce_calc_taxes', 'yes' );
 						update_option( 'woocommerce_prices_include_tax', 'yes' );
 					}
-					break;
 				} else if ( $setting[ 'id' ] == 'woocommerce_gzd_trusted_shops_review_widget_enable' ) {
 					if ( ! empty( $_POST[ 'woocommerce_gzd_trusted_shops_review_widget_enable' ] ) && ! WC_germanized()->trusted_shops->is_review_widget_enabled() )
 						$update_reviews = true;
 				} else if ( $setting[ 'id' ] == 'woocommerce_gzd_trusted_shops_rich_snippets_enable' ) {
 					if ( ! empty( $_POST[ 'woocommerce_gzd_trusted_shops_rich_snippets_enable' ] ) && ! WC_germanized()->trusted_shops->is_rich_snippets_enabled() )
 						$update_rich_snippets = true;
+				} else if ( $setting[ 'id' ] == 'woocommerce_gzd_enable_virtual_vat' ) {
+					if ( get_option( 'woocommerce_gzd_enable_virtual_vat' ) != 'yes' && ! empty( $_POST[ 'woocommerce_gzd_enable_virtual_vat' ] ) ) {
+						if ( ! empty( $_POST[ 'woocommerce_gzd_small_enterprise' ] ) )
+							continue;
+						// Update WooCommerce options to show prices including taxes
+						// Check if is small business
+						update_option( 'woocommerce_prices_include_tax', 'yes' );
+						update_option( 'woocommerce_tax_display_shop', 'incl' );
+						update_option( 'woocommerce_tax_display_cart', 'incl' );
+						update_option( 'woocommerce_tax_total_display', 'itemized' );
+					}
 				}
 			}
 		}
 
 		WC_Admin_Settings::save_fields( $settings );
+
+		if ( ! empty( $_POST[ 'woocommerce_gzd_small_enterprise' ] ) && ! empty( $_POST[ 'woocommerce_gzd_enable_virtual_vat' ] ) ) {
+			update_option( 'woocommerce_gzd_enable_virtual_vat', 'no' );
+			WC_Admin_Settings::add_error( __( 'Sorry, but the new Virtual VAT rules cannot be applied to small business.', 'woocommerce-germanized' ) );
+		}
 
 		// Trusted Shops API
 		if ( $update_rich_snippets || $update_reviews ) {

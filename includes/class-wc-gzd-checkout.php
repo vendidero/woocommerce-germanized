@@ -73,6 +73,12 @@ class WC_GZD_Checkout {
 		add_filter( 'woocommerce_order_formatted_billing_address', array( $this, 'set_formatted_billing_address' ), 0, 2 );
 		add_filter( 'woocommerce_order_formatted_shipping_address', array( $this, 'set_formatted_shipping_address' ), 0, 2 );
 		add_filter( 'woocommerce_formatted_address_replacements', array( $this, 'set_formatted_address' ), 0, 2 );
+		// Add item desc to order
+		add_action( 'woocommerce_order_add_product', array( $this, 'set_item_desc_order_meta' ), 0, 5 );
+	}
+
+	public function set_item_desc_order_meta( $order_id, $item_id, $product, $qty, $args ) {
+		wc_add_order_item_meta( $item_id, '_product_desc', $product->get_mini_desc() );
 	}
 
 	public function set_formatted_billing_address( $fields = array(), $order ) {

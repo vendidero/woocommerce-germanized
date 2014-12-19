@@ -26,7 +26,8 @@ class WC_GZD_Emails {
 			'woocommerce_gzd_mail_attach_imprint' => woocommerce_get_page_id ( 'imprint' ),
 		);
 
-		add_action( 'woocommerce_email_footer', array( $this, 'add_template_footers' ) );
+		// Hook before WooCommerce Footer is applied
+		add_action( 'woocommerce_email_footer', array( $this, 'add_template_footers' ), -1 );
 		add_action( 'woocommerce_order_item_name', 'wc_gzd_product_item_desc', 0, 2 );
 
 		$mails = WC()->mailer()->get_emails();
@@ -47,13 +48,12 @@ class WC_GZD_Emails {
 	 * @param  object $mail
 	 */
 	public function hook_mail_footer( $mail ) {
-		if ( !empty( $this->footer_attachments ) ) {
+		if ( ! empty( $this->footer_attachments ) ) {
 			foreach ( $this->footer_attachments as $option_key => $option ) {
-				if ( $option != -1 ) {
-					if ( in_array( $mail->id, get_option( $option_key ) ) ) {
-						$this->attach_page_content( $option );
-					}
-				}
+				if ( $option == -1 || ! get_option( $option_key ) )
+					continue;
+				if ( in_array( $mail->id, get_option( $option_key ) ) )
+					$this->attach_page_content( $option );
 			}
 		}
 	}
@@ -94,8 +94,8 @@ class WC_GZD_Emails {
 		remove_shortcode( 'revocation_form' );
 		add_shortcode( 'revocation_form', array( $this, 'revocation_form_replacement' ) );
 		wc_get_template( 'emails/email-footer-attachment.php', array(
-				'post_attach'  => get_post( $page_id ),
-			) );
+			'post_attach'  => get_post( $page_id ),
+		) );
 		add_shortcode( 'revocation_form', 'WC_GZD_Shortcodes::revocation_form' );
 	}
 

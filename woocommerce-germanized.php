@@ -3,7 +3,7 @@
  * Plugin Name: WooCommerce Germanized
  * Plugin URI: http://www.vendidero.de/woocommerce-germanized
  * Description: Extends WooCommerce to become a legally compliant store for the german market.
- * Version: 1.0.3
+ * Version: 1.0.4
  * Author: Vendidero
  * Author URI: http://vendidero.de
  * Requires at least: 3.8
@@ -26,7 +26,7 @@ final class WooCommerce_Germanized {
 	 *
 	 * @var string
 	 */
-	public $version = '1.0.3';
+	public $version = '1.0.4';
 
 	/**
 	 * Single instance of WooCommerce Germanized Main Class
@@ -125,6 +125,7 @@ final class WooCommerce_Germanized {
 		add_action( 'init', array( 'WC_GZD_Shortcodes', 'init' ), 2 );
 		add_action( 'widgets_init', array( $this, 'include_widgets' ), 25 );
 		add_action( 'plugins_loaded', array( $this, 'load_plugin_textdomain' ) );
+		add_action( 'woocommerce_init', array( $this, 'replace_woocommerce_cart' ), 0 );
 
 		// Loaded action
 		do_action( 'woocommerce_germanized_loaded' );
@@ -159,8 +160,8 @@ final class WooCommerce_Germanized {
 			do_action( 'before_woocommerce_germanized_init' );
 			// Include required files
 			$this->includes();
-			add_filter( 'woocommerce_locate_template', array( $this, 'filter_templates' ), 0, PHP_INT_MAX );
-			add_filter( 'woocommerce_product_class', array( $this, 'filter_product_classes' ), 0, PHP_INT_MAX );
+			add_filter( 'woocommerce_locate_template', array( $this, 'filter_templates' ), PHP_INT_MAX, 3 );
+			add_filter( 'woocommerce_product_class', array( $this, 'filter_product_classes' ), PHP_INT_MAX, 4 );
 			add_filter( 'woocommerce_get_settings_pages', array( $this, 'add_settings' ) );
 			add_filter( 'woocommerce_enqueue_styles', array( $this, 'add_styles' ) );
 			add_action( 'wp_enqueue_scripts', array( $this, 'add_scripts' ) );
@@ -175,7 +176,9 @@ final class WooCommerce_Germanized {
 			// Add better tax display to order totals
 			add_filter( 'woocommerce_get_order_item_totals', array( $this, 'order_item_totals' ), 0, 2 );
 			add_action( 'woocommerce_cart_calculate_fees', array( $this, 'add_fee_cart' ), 0 );
-			
+			// Adjust virtual Product Price and tax class
+			add_filter( 'woocommerce_get_price_including_tax', array( $this, 'set_virtual_product_price' ), PHP_INT_MAX, 3 );
+
 			// Send order notice directly after new order is being added - use these filters because order status has to be updated already
 			add_filter( 'woocommerce_payment_successful_result', array( $this, 'send_order_confirmation_mails' ), 0, 2 );
 			add_filter( 'woocommerce_checkout_no_payment_needed_redirect', array( $this, 'send_order_confirmation_mails' ), 0, 2 );
@@ -198,6 +201,14 @@ final class WooCommerce_Germanized {
 		} else {
 			add_action( 'admin_init', array( $this, 'deactivate' ), 0 );
 		}
+	}
+
+	/**
+	 * Replace the default WC_Cart by WC_GZD_Cart for EU virtual VAT rules.
+	 */
+	public function replace_woocommerce_cart() {
+		if ( ! is_admin() || defined( 'DOING_AJAX' ) && get_option( 'woocommerce_gzd_enable_virtual_vat' ) == 'yes' )
+			WC()->cart = new WC_GZD_Cart();
 	}
 
 	/**
@@ -285,6 +296,7 @@ final class WooCommerce_Germanized {
 
 		include_once 'includes/wc-gzd-cart-functions.php';
 		include_once 'includes/class-wc-gzd-checkout.php';
+
 	}
 
 	/**
@@ -383,6 +395,11 @@ final class WooCommerce_Germanized {
 		return $gateways;
 	}
 
+	/**
+	 * Gets payment gateways which are ready to accept fees.
+	 *  
+	 * @return array
+	 */
 	public function get_payment_gateways_feeable() {
 		return apply_filters( 'wc_gzd_payment_gateways_feeable', array( 'bacs', 'paypal', 'cod' ) );
 	}
@@ -444,8 +461,8 @@ final class WooCommerce_Germanized {
 	 */
 	public function action_links( $links ) {
 		return array_merge( array(
-				'<a href="' . admin_url( 'admin.php?page=wc-settings&tab=germanized' ) . '">' . __( 'Settings', 'woocommerce' ) . '</a>',
-			), $links );
+			'<a href="' . admin_url( 'admin.php?page=wc-settings&tab=germanized' ) . '">' . __( 'Settings', 'woocommerce' ) . '</a>',
+		), $links );
 	}
 
 	/**
@@ -532,7 +549,7 @@ final class WooCommerce_Germanized {
 	 */
 	public function email_small_business_notice() {
 		if ( get_option( 'woocommerce_gzd_small_enterprise' ) == 'yes' )
-			woocommerce_get_template( 'global/small-business-info.php' );
+			wc_get_template( 'global/small-business-info.php' );
 	}
 
 	/**
@@ -557,9 +574,9 @@ final class WooCommerce_Germanized {
 	 * @return array
 	 */
 	public function add_emails( $mails ) {
-		$mails[] = include 'includes/emails/class-wc-gzd-email-customer-revocation.php';
-		$mails[] = include 'includes/emails/class-wc-gzd-email-customer-ekomi.php';
-		$mails[] = include 'includes/emails/class-wc-gzd-email-customer-trusted-shops.php';
+		$mails[ 'WC_GZD_Email_Customer_Revocation' ] 	= include 'includes/emails/class-wc-gzd-email-customer-revocation.php';
+		$mails[ 'WC_GZD_Email_Customer_Ekomi' ] 	 	= include 'includes/emails/class-wc-gzd-email-customer-ekomi.php';
+		$mails[ 'WC_GZD_Email_Customer_Trusted_Shops' ] = include 'includes/emails/class-wc-gzd-email-customer-trusted-shops.php';
 		return $mails;
 	}
 
@@ -594,6 +611,22 @@ final class WooCommerce_Germanized {
 		return $return;
 	}
 
+	/**
+	 * Stop WooCommerce from adding additional VAT to virtual products within Checkout.
+	 *  
+	 * @param float $price  
+	 * @param int $qty    
+	 * @param object $product
+	 * @return adjusted price
+	 */
+	public function set_virtual_product_price( $price, $qty, $product ) {
+		if ( ! $product->is_virtual_vat_exception() || ! isset( WC()->cart ) || ! WC()->cart->is_virtual_taxable() )
+			return $price;
+		if ( get_option('woocommerce_prices_include_tax') === 'yes' )
+			return $product->get_price() * $qty;
+		return $price;
+	}
+ 
 	/**
 	 * Update fee for cart if feeable gateway has been selected as payment method
 	 */
