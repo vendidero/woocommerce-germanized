@@ -53,6 +53,9 @@ class WC_GZD_Ekomi {
 			add_action( 'wp_footer', array( $this, 'add_scripts' ), 10 );
 		}
 		//add_action( 'init', array( $this, 'get_reviews' ) );
+		// Register sections
+		add_filter( 'woocommerce_gzd_settings_sections', array( $this, 'register_section' ), 2 );
+		add_filter( 'woocommerce_gzd_get_settings_ekomi', array( $this, 'get_settings' ) );
 	}
 
 	/**
@@ -367,6 +370,11 @@ class WC_GZD_Ekomi {
 
 		);
 
+	}
+
+	public function register_section( $sections ) {
+		$sections[ 'ekomi' ] = _x( 'eKomi Options', 'ekomi', 'woocommerce-germanized' );
+		return $sections;
 	}
 
 }

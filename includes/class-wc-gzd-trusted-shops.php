@@ -70,6 +70,12 @@ class WC_GZD_Trusted_Shops {
 		// Add Badge to Footer
 		if ( $this->is_enabled() && $this->get_badge_js() )
 			add_action( 'wp_footer', array( $this, 'add_badge' ), 5 );
+		// Register Section
+		add_filter( 'woocommerce_gzd_settings_sections', array( $this, 'register_section' ), 1 );
+		add_filter( 'woocommerce_gzd_get_settings_trusted_shops', array( $this, 'get_settings' ) );
+		add_filter( 'woocommerce_gzd_get_sidebar_trusted_shops', array( $this, 'get_sidebar' ) );
+		add_action( 'woocommerce_gzd_before_save_section_trusted_shops', array( $this, 'before_save' ), 0, 1 );
+		add_action( 'woocommerce_gzd_before_save_section_trusted_shops', array( $this, 'after_save' ), 0, 1 );
 	}
 
 	/**
@@ -459,6 +465,34 @@ class WC_GZD_Trusted_Shops {
 
 	public function get_sidebar() {
 		return '<div class="wc-gzd-admin-settings-sidebar"><h3>' . _x( 'About Trusted Shops', 'trusted-shops', 'woocommerce-germanized' ) . '</h3><a href="' . $this->get_trusted_url( 'integration/', 'membership' ) . '" target="_blank"><img style="width: 100%; height: auto" src="' . WC_germanized()->plugin_url() . '/assets/images/trusted-shops-b.png" /></a></div>';
+	}
+
+	public function before_save( $settings ) {
+		if ( !empty( $settings ) ) {
+			foreach ( $settings as $setting ) {
+				if ( $setting[ 'id' ] == 'woocommerce_gzd_trusted_shops_review_widget_enable' ) {
+					if ( ! empty( $_POST[ 'woocommerce_gzd_trusted_shops_review_widget_enable' ] ) && ! $this->is_review_widget_enabled() )
+						update_option( '_woocommerce_gzd_trusted_shops_update_reviews', 1 );
+				} else if ( $setting[ 'id' ] == 'woocommerce_gzd_trusted_shops_rich_snippets_enable' ) {
+					if ( ! empty( $_POST[ 'woocommerce_gzd_trusted_shops_rich_snippets_enable' ] ) && ! $this->is_rich_snippets_enabled() )
+						update_option( '_woocommerce_gzd_trusted_shops_update_snippets', 1 );
+				}
+			}
+		}
+	}
+
+	public function after_save( $settings ) {
+		if ( get_option( '_woocommerce_gzd_trusted_shops_update_reviews' ) )
+			$this->update_reviews();
+		if ( get_option( '_woocommerce_gzd_trusted_shops_update_snippets' ) )
+			$this->update_review_widget();
+		delete_option( '_woocommerce_gzd_trusted_shops_update_reviews' );
+		delete_option( '_woocommerce_gzd_trusted_shops_update_snippets' );
+	}
+
+	public function register_section( $sections ) {
+		$sections[ 'trusted_shops' ] = _x( 'Trusted Shops Options', 'trusted-shops', 'woocommerce-germanized' );
+		return $sections;
 	}
 
 	private function get_trusted_url( $base = 'integration/', $context = 'trustbadge' ) {
