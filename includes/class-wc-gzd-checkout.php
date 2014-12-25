@@ -34,14 +34,26 @@ class WC_GZD_Checkout {
 
 	public function __construct() {
 
-		$this->custom_fields[ 'title' ] = array(
-			'type' 	   => 'select',
-			'required' => 1,
-			'label'    => __( 'Title', 'woocommerce-germanized' ),
-			'options'  => array( 1 => __( 'Sir', 'woocommerce-germanized' ), 2 => __( 'Madam', 'woocommerce-germanized' ) ),
-			'before'   => 'first_name',
-			'group'    => array( 'billing', 'shipping' ),
-		);
+		if ( get_option( 'woocommerce_gzd_checkout_address_field' ) == 'yes' ) {
+
+			$this->custom_fields[ 'title' ] = array(
+				'type' 	   => 'select',
+				'required' => 1,
+				'label'    => __( 'Title', 'woocommerce-germanized' ),
+				'options'  => array( 1 => __( 'Sir', 'woocommerce-germanized' ), 2 => __( 'Madam', 'woocommerce-germanized' ) ),
+				'before'   => 'first_name',
+				'group'    => array( 'billing', 'shipping' ),
+			);
+
+			$this->custom_fields_admin[ 'title' ] = array(
+				'before'   => 'first_name',
+				'type'     => 'select',
+				'options'  => array( 1 => __( 'Sir', 'woocommerce-germanized' ), 2 => __( 'Madam', 'woocommerce-germanized' ) ),
+				'show'     => false,
+				'label'    => __( 'Title', 'woocommerce-germanized' ),
+			);
+
+		}
 
 		if ( get_option( 'woocommerce_gzd_checkout_phone_required' ) == 'no' ) {
 
@@ -53,14 +65,6 @@ class WC_GZD_Checkout {
 			);
 
 		}
-
-		$this->custom_fields_admin[ 'title' ] = array(
-			'before'   => 'first_name',
-			'type'     => 'select',
-			'options'  => array( 1 => __( 'Sir', 'woocommerce-germanized' ), 2 => __( 'Madam', 'woocommerce-germanized' ) ),
-			'show'     => false,
-			'label'    => __( 'Title', 'woocommerce-germanized' ),
-		);
 
 		add_filter( 'woocommerce_billing_fields', array( $this, 'set_custom_fields' ), 0, 1 );
 		add_filter( 'woocommerce_shipping_fields', array( $this, 'set_custom_fields_shipping' ), 0, 1 );
@@ -75,10 +79,16 @@ class WC_GZD_Checkout {
 		add_filter( 'woocommerce_formatted_address_replacements', array( $this, 'set_formatted_address' ), 0, 2 );
 		// Add item desc to order
 		add_action( 'woocommerce_order_add_product', array( $this, 'set_item_desc_order_meta' ), 0, 5 );
+		add_filter( 'woocommerce_hidden_order_itemmeta', array( $this, 'set_item_desc_order_meta_hidden' ), 0 );
 	}
 
 	public function set_item_desc_order_meta( $order_id, $item_id, $product, $qty, $args ) {
 		wc_add_order_item_meta( $item_id, '_product_desc', $product->get_mini_desc() );
+	}
+
+	public function set_item_desc_order_meta_hidden( $metas ) {
+		array_push( $metas, '_product_desc' );
+		return $metas;
 	}
 
 	public function set_formatted_billing_address( $fields = array(), $order ) {
@@ -94,7 +104,7 @@ class WC_GZD_Checkout {
 	}
 
 	public function get_customer_title( $option = 1 ) {
-		return $this->custom_fields[ 'title' ][ 'options' ][ $option ];
+		return ( isset( $this->custom_fields[ 'title' ][ 'options' ][ $option ] ) ? $this->custom_fields[ 'title' ][ 'options' ][ $option ] : false );
 	}
 
 	public function set_formatted_address( $placeholder, $args ) {

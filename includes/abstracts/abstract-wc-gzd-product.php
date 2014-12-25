@@ -40,7 +40,7 @@ class WC_GZD_Product extends WC_Product {
 	public function __get( $key ) {
 		$value = parent::__get( $key );
 		if ( $key == 'delivery_time' ) {
-			$value = get_the_terms( $this->post->ID, 'product_delivery_time' );
+			$value = get_the_terms( $this->id, 'product_delivery_time' );
 			if ( $this->child->product_type == 'variation' )
 				$value = $this->child->$key;
 			if ( is_array( $value ) ) {

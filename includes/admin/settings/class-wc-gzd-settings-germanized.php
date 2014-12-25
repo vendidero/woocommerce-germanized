@@ -26,6 +26,9 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 		add_action( 'woocommerce_sections_' . $this->id, array( $this, 'output_sections' ) );
 		add_action( 'woocommerce_settings_' . $this->id, array( $this, 'output' ) );
 		add_action( 'woocommerce_settings_save_' . $this->id, array( $this, 'save' ) );
+		add_filter( 'woocommerce_gzd_get_settings_display', array( $this, 'get_display_settings' ) );
+		add_action( 'woocommerce_gzd_before_save_section_', array( $this, 'before_save' ), 0, 1 );
+		add_action( 'woocommerce_gzd_after_save_section_', array( $this, 'after_save' ), 0, 1 );
 
 	}
 
@@ -33,12 +36,10 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 	 * Gets setting sections
 	 */
 	public function get_sections() {
-		$sections = array(
+		$sections = apply_filters( 'woocommerce_gzd_settings_sections', array(
 			''   		 	=> __( 'General Options', 'woocommerce-germanized' ),
 			'display'       => __( 'Display Options', 'woocommerce-germanized' ),
-			'trusted_shops' => _x( 'Trusted Shops Options', 'trusted-shops', 'woocommerce-germanized' ),
-			'ekomi'         => _x( 'eKomi Options', 'ekomi', 'woocommerce-germanized' ),
-		);
+		) );
 		return $sections;
 	}
 
@@ -97,6 +98,14 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 				'id' 		=> 'woocommerce_gzd_checkout_phone_required',
 				'type' 		=> 'checkbox',
 				'default'	=> 'no',
+			),
+
+			array(
+				'title' 	=> __( 'Add title field', 'woocommerce-germanized' ),
+				'desc' 		=> __( 'Add a title field to the address within checkout?', 'woocommerce-germanized' ),
+				'id' 		=> 'woocommerce_gzd_checkout_address_field',
+				'type' 		=> 'checkbox',
+				'default'	=> 'yes',
 			),
 
 			array( 'type' => 'sectionend', 'id' => 'general_options' ),
@@ -492,23 +501,24 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 
 	public function output() {
 		global $current_section;
+		$settings = $this->get_settings();
 		$sidebar = $this->get_sidebar();
-		if ( $current_section ) {
-			if ( $current_section == 'trusted_shops' ) {
-				$settings = WC_germanized()->trusted_shops->get_settings();
-				$sidebar = WC_germanized()->trusted_shops->get_sidebar();
+
+		if ( $this->get_sections() ) {
+			foreach ( $this->get_sections() as $section => $name ) {
+				if ( $section == $current_section ) {
+					$settings = apply_filters( 'woocommerce_gzd_get_settings_' . $section, $this->get_settings() );
+					$sidebar = apply_filters( 'woocommerce_gzd_get_sidebar_' . $section, $this->get_sidebar() );
+				}
 			}
-			else if ( $current_section == 'ekomi' )
-				$settings = WC_germanized()->ekomi->get_settings();
-			else if ( $current_section == 'display' )
-				$settings = $this->get_display_settings();
- 		} else {
-			$settings = $this->get_settings();
 		}
-		echo '<div class="wc-gzd-admin-settings">';
-		WC_Admin_Settings::output_fields( $settings );
-		echo '</div>';
-		echo $sidebar;
+
+		?>
+		<div class="wc-gzd-admin-settings">
+			<?php WC_Admin_Settings::output_fields( $settings ); ?>
+		</div>
+		<?php echo $sidebar; ?>
+		<?php
 	}
 
 	public function get_sidebar() {
@@ -535,20 +545,26 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 
 		global $current_section;
 
-		if ( $current_section ) {
-			if ( $current_section == 'trusted_shops' )
-				$settings = WC_germanized()->trusted_shops->get_settings();
-			else if ( $current_section == 'ekomi' )
-				$settings = WC_germanized()->ekomi->get_settings();
-			else if ( $current_section == 'display' )
-				$settings = $this->get_display_settings();
- 		} else {
-			$settings = $this->get_settings();
+		$settings = array();
+
+		if ( $this->get_sections() ) {
+			foreach ( $this->get_sections() as $section => $name ) {
+				if ( $section == $current_section ) {
+					$settings = apply_filters( 'woocommerce_gzd_get_settings_' . $section, $this->get_settings() );
+				}
+			}
 		}
+		if ( empty( $settings ) )
+			return;
 
-		$update_rich_snippets = false;
-		$update_reviews = false;
+		do_action( 'woocommerce_gzd_before_save_section_' . $current_section, $settings );
 
+		WC_Admin_Settings::save_fields( $settings );
+
+		do_action( 'woocommerce_gzd_after_save_section_' . $current_section, $settings );
+	}
+
+	public function before_save( $settings ) {
 		if ( !empty( $settings ) ) {
 			foreach ( $settings as $setting ) {
 				if ( $setting[ 'id' ] == 'woocommerce_gzd_small_enterprise' ) {
@@ -564,12 +580,6 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 						update_option( 'woocommerce_calc_taxes', 'yes' );
 						update_option( 'woocommerce_prices_include_tax', 'yes' );
 					}
-				} else if ( $setting[ 'id' ] == 'woocommerce_gzd_trusted_shops_review_widget_enable' ) {
-					if ( ! empty( $_POST[ 'woocommerce_gzd_trusted_shops_review_widget_enable' ] ) && ! WC_germanized()->trusted_shops->is_review_widget_enabled() )
-						$update_reviews = true;
-				} else if ( $setting[ 'id' ] == 'woocommerce_gzd_trusted_shops_rich_snippets_enable' ) {
-					if ( ! empty( $_POST[ 'woocommerce_gzd_trusted_shops_rich_snippets_enable' ] ) && ! WC_germanized()->trusted_shops->is_rich_snippets_enabled() )
-						$update_rich_snippets = true;
 				} else if ( $setting[ 'id' ] == 'woocommerce_gzd_enable_virtual_vat' ) {
 					if ( get_option( 'woocommerce_gzd_enable_virtual_vat' ) != 'yes' && ! empty( $_POST[ 'woocommerce_gzd_enable_virtual_vat' ] ) ) {
 						if ( ! empty( $_POST[ 'woocommerce_gzd_small_enterprise' ] ) )
@@ -584,21 +594,12 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 				}
 			}
 		}
+	}
 
-		WC_Admin_Settings::save_fields( $settings );
-
+	public function after_save( $settings ) {
 		if ( ! empty( $_POST[ 'woocommerce_gzd_small_enterprise' ] ) && ! empty( $_POST[ 'woocommerce_gzd_enable_virtual_vat' ] ) ) {
 			update_option( 'woocommerce_gzd_enable_virtual_vat', 'no' );
 			WC_Admin_Settings::add_error( __( 'Sorry, but the new Virtual VAT rules cannot be applied to small business.', 'woocommerce-germanized' ) );
-		}
-
-		// Trusted Shops API
-		if ( $update_rich_snippets || $update_reviews ) {
-			$trusted_shops = new WC_GZD_Trusted_Shops();
-			if ( $update_rich_snippets )
-				$trusted_shops->update_reviews();
-			if ( $update_reviews )
-				$trusted_shops->update_review_widget();
 		}
 	}
 
