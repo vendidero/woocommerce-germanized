@@ -37,15 +37,14 @@ class WC_GZD_Ekomi {
 	public function __construct() {
 		$this->version = 'cust-1.0.0';
 		$this->id = $this->shop_id;
-		if ( ! username_exists( 'ekomi' ) ) {
+		if ( ! username_exists( 'ekomi' ) && $this->is_enabled() ) {
 			wp_create_user( __( 'eKomi Customer', 'woocommerce-germanized' ), wp_generate_password(), 'ekomi@loremipsumdolorom.com' );
 			$this->user = get_user_by( 'email', 'ekomi@loremipsumdolorom.com' );
 			wp_update_user( array( 'ID' => $this->user->ID, 'role' => 'customer' ) );
-		} else {
-			$this->user = get_user_by( 'email', 'ekomi@loremipsumdolorom.com' );
 		}
 		// Cronjobs & Hooks
 		if ( $this->is_enabled() ) {
+			$this->user = get_user_by( 'email', 'ekomi@loremipsumdolorom.com' );
 			add_action( 'woocommerce_gzd_ekomi', array( $this, 'get_reviews' ) );
 			add_action( 'woocommerce_gzd_ekomi', array( $this, 'put_products' ) );
 			add_action( 'woocommerce_gzd_ekomi', array( $this, 'send_mails' ) );

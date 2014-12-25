@@ -34,14 +34,26 @@ class WC_GZD_Checkout {
 
 	public function __construct() {
 
-		$this->custom_fields[ 'title' ] = array(
-			'type' 	   => 'select',
-			'required' => 1,
-			'label'    => __( 'Title', 'woocommerce-germanized' ),
-			'options'  => array( 1 => __( 'Sir', 'woocommerce-germanized' ), 2 => __( 'Madam', 'woocommerce-germanized' ) ),
-			'before'   => 'first_name',
-			'group'    => array( 'billing', 'shipping' ),
-		);
+		if ( get_option( 'woocommerce_gzd_checkout_address_field' ) == 'yes' ) {
+
+			$this->custom_fields[ 'title' ] = array(
+				'type' 	   => 'select',
+				'required' => 1,
+				'label'    => __( 'Title', 'woocommerce-germanized' ),
+				'options'  => array( 1 => __( 'Sir', 'woocommerce-germanized' ), 2 => __( 'Madam', 'woocommerce-germanized' ) ),
+				'before'   => 'first_name',
+				'group'    => array( 'billing', 'shipping' ),
+			);
+
+			$this->custom_fields_admin[ 'title' ] = array(
+				'before'   => 'first_name',
+				'type'     => 'select',
+				'options'  => array( 1 => __( 'Sir', 'woocommerce-germanized' ), 2 => __( 'Madam', 'woocommerce-germanized' ) ),
+				'show'     => false,
+				'label'    => __( 'Title', 'woocommerce-germanized' ),
+			);
+
+		}
 
 		if ( get_option( 'woocommerce_gzd_checkout_phone_required' ) == 'no' ) {
 
@@ -53,14 +65,6 @@ class WC_GZD_Checkout {
 			);
 
 		}
-
-		$this->custom_fields_admin[ 'title' ] = array(
-			'before'   => 'first_name',
-			'type'     => 'select',
-			'options'  => array( 1 => __( 'Sir', 'woocommerce-germanized' ), 2 => __( 'Madam', 'woocommerce-germanized' ) ),
-			'show'     => false,
-			'label'    => __( 'Title', 'woocommerce-germanized' ),
-		);
 
 		add_filter( 'woocommerce_billing_fields', array( $this, 'set_custom_fields' ), 0, 1 );
 		add_filter( 'woocommerce_shipping_fields', array( $this, 'set_custom_fields_shipping' ), 0, 1 );
@@ -100,7 +104,7 @@ class WC_GZD_Checkout {
 	}
 
 	public function get_customer_title( $option = 1 ) {
-		return $this->custom_fields[ 'title' ][ 'options' ][ $option ];
+		return ( isset( $this->custom_fields[ 'title' ][ 'options' ][ $option ] ) ? $this->custom_fields[ 'title' ][ 'options' ][ $option ] : false );
 	}
 
 	public function set_formatted_address( $placeholder, $args ) {

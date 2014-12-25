@@ -100,6 +100,14 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 				'default'	=> 'no',
 			),
 
+			array(
+				'title' 	=> __( 'Add title field', 'woocommerce-germanized' ),
+				'desc' 		=> __( 'Add a title field to the address within checkout?', 'woocommerce-germanized' ),
+				'id' 		=> 'woocommerce_gzd_checkout_address_field',
+				'type' 		=> 'checkbox',
+				'default'	=> 'yes',
+			),
+
 			array( 'type' => 'sectionend', 'id' => 'general_options' ),
 
 			array(	'title' => __( 'Legal Pages', 'woocommerce-germanized' ), 'type' => 'title', 'id' => 'legal_pages_options' ),
