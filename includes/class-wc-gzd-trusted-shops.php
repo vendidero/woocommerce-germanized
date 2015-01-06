@@ -162,8 +162,8 @@ class WC_GZD_Trusted_Shops {
 	 * 
 	 * @return string
 	 */
-	public function get_new_review_link() {
-		return 'https://www.trustedshops.de/bewertung/bewerten_' . $this->id . '.html';
+	public function get_new_review_link( $email, $order_id ) {
+		return 'https://www.trustedshops.de/bewertung/bewerten_' . $this->id . '.html&buyerEmail=' . urlencode( base64_encode( $email ) ) . '&shopOrderID=' . urlencode( base64_encode( $order_id ) );
 	}
 
 	/**
