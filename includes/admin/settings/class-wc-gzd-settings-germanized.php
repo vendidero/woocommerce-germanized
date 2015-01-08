@@ -524,7 +524,9 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 
 		?>
 		<div class="wc-gzd-admin-settings">
+			<?php do_action( 'wc_germanized_settings_section_before_' . sanitize_title( $current_section ) ); ?>
 			<?php WC_Admin_Settings::output_fields( $settings ); ?>
+			<?php do_action( 'wc_germanized_settings_section_after_' . sanitize_title( $current_section ) ); ?>
 		</div>
 		<?php echo $sidebar; ?>
 		<?php

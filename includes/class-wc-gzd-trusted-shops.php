@@ -60,10 +60,16 @@ class WC_GZD_Trusted_Shops {
 		$this->et_params = array( 'etcc_med' => 'part', 'etcc_cmp' => 'sofpar', 'etcc_par' => 'woo', 'etcc_mon' => 11 );
 		$this->api_url = 'http://www.trustedshops.com/api/ratings/v1/'. $this->id .'.xml';
 		// Schedule
-		if ( $this->is_rich_snippets_enabled() )
+		if ( $this->is_rich_snippets_enabled() ) {
 			add_action( 'woocommerce_gzd_trusted_shops_reviews', array( $this, 'update_reviews' ) );
-		if ( $this->is_review_widget_enabled() )
+			if ( empty( $this->reviews_cache ) )
+				add_action( 'init', array( $this, 'update_reviews' ) );
+		}
+		if ( $this->is_review_widget_enabled() ) {
 			add_action( 'woocommerce_gzd_trusted_shops_reviews', array( $this, 'update_review_widget' ) );
+			if ( empty( $this->review_widget_attachment ) )
+				add_action( 'init', array( $this, 'update_review_widget' ) );
+		}
 		if ( $this->is_review_reminder_enabled() )
 			add_action( 'woocommerce_gzd_trusted_shops_reviews', array( $this, 'send_mails' ) );
 		//add_action( 'init', array( $this, 'send_mails' ) );
