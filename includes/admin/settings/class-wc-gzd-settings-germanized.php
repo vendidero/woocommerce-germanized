@@ -467,6 +467,15 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 			),
 
 			array(
+				'title' 	=> __( 'Show digital notice', 'woocommerce-germanized' ),
+				'desc' 		=> __( 'Show checkbox for digital products.', 'woocommerce-germanized' ),
+				'desc_tip'	=> __( 'Disable this option if you want your customers to obtain their right of recission even if digital products are being bought.', 'woocommerce-germanized' ),
+				'id' 		=> 'woocommerce_gzd_checkout_legal_digital_checkbox',
+				'default'	=> 'yes',
+				'type' 		=> 'checkbox',
+			),
+
+			array(
 				'title' 	=> __( 'Legal Digital Text', 'woocommerce-germanized' ),
 				'desc' 		=> __( 'Choose a Plain Text which will be shown right above checkout submit button if a user has picked a digital product. See legal text option for possible placeholders.', 'woocommerce-germanized' ),
 				'desc_tip'	=> true,

@@ -56,7 +56,8 @@ add_action( 'woocommerce_review_order_before_payment', 'woocommerce_gzd_template
 add_action( 'woocommerce_gzd_before_shop_table', 'woocommerce_gzd_template_checkout_legal' );
 add_filter( 'woocommerce_checkout_show_terms', 'woocommerce_gzd_remove_term_checkbox' );
 add_action( 'woocommerce_gzd_before_shop_table', 'woocommerce_gzd_template_checkout_set_terms_manually' );
-add_action( 'woocommerce_gzd_before_shop_table', 'woocommerce_gzd_digital_checkbox', 1 );
+if ( get_option( 'woocommerce_gzd_checkout_legal_digital_checkbox' ) == 'yes' )
+	add_action( 'woocommerce_gzd_before_shop_table', 'woocommerce_gzd_digital_checkbox', 1 );
 if ( get_option( 'woocommerce_gzd_trusted_shops_id' ) )
 	add_action( 'woocommerce_thankyou', 'woocommerce_gzd_template_checkout_thankyou_trusted_shops', 10, 1 );
 add_filter( 'woocommerce_order_button_text', 'woocommerce_gzd_template_order_button_text', 50 );

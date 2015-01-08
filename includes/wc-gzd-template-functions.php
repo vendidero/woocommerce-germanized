@@ -220,7 +220,7 @@ if ( ! function_exists( 'woocommerce_gzd_checkout_validation' ) ) {
 			// Check if cart contains downloadable product
 			$items = WC()->cart->get_cart();
 			$is_downloadable = false;
-			if ( ! empty( $items ) ) {
+			if ( ! empty( $items ) && get_option( 'woocommerce_gzd_checkout_legal_digital_checkbox' ) == 'yes' ) {
 				foreach ( $items as $cart_item_key => $values ) {
 					$_product = $values['data'];
 					if ( $_product->is_downloadable() )
