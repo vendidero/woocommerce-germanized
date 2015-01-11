@@ -35,7 +35,7 @@ class WC_GZD_Emails {
 
 		$mails = WC()->mailer()->get_emails();
 
-		if ( !empty( $mails ) ) {
+		if ( ! empty( $mails ) ) {
 			foreach ( $mails as $mail ) {
 				add_action( 'woocommerce_germanized_email_footer_' . $mail->id, array( $this, 'hook_mail_footer' ), 10, 1 );
 			}
@@ -55,8 +55,9 @@ class WC_GZD_Emails {
 			foreach ( $this->footer_attachments as $option_key => $option ) {
 				if ( $option == -1 || ! get_option( $option_key ) )
 					continue;
-				if ( in_array( $mail->id, get_option( $option_key ) ) )
+				if ( in_array( $mail->id, get_option( $option_key ) ) ) {
 					$this->attach_page_content( $option );
+				}
 			}
 		}
 	}
@@ -65,8 +66,8 @@ class WC_GZD_Emails {
 	 * Add global footer Hooks to Email templates
 	 */
 	public function add_template_footers() {
-		$type = ( !empty( $GLOBALS['template_name'] ) ) ? $this->get_email_instance_by_tpl( $GLOBALS['template_name'][0] ) : '';
-		if ( !empty( $type ) )
+		$type = ( ! empty( $GLOBALS['template_name'] ) ) ? $this->get_email_instance_by_tpl( $GLOBALS['template_name'] ) : '';
+		if ( ! empty( $type ) )
 			do_action( 'woocommerce_germanized_email_footer_' . $type->id, $type );
 	}
 
@@ -76,15 +77,20 @@ class WC_GZD_Emails {
 	 * @param  string $tpl 
 	 * @return mixed      
 	 */
-	private function get_email_instance_by_tpl( $tpl ) {
-		$tpl = str_replace( array( 'admin-', '-' ), array( '', '_' ), basename( $tpl, '.php' ) );
-		$mails = WC()->mailer()->get_emails();
-		if ( !empty( $mails ) ) {
-			foreach ( $mails as $mail ) {
-				if ( $mail->id == $tpl )
-					return $mail;
+	private function get_email_instance_by_tpl( $tpls = array() ) {
+		$found_mails = array();
+		foreach ( $tpls as $tpl ) {
+			$tpl = apply_filters( 'woocommerce_germanized_email_template_name',  str_replace( array( 'admin-', '-' ), array( '', '_' ), basename( $tpl, '.php' ) ), $tpl );
+			$mails = WC()->mailer()->get_emails();
+			if ( !empty( $mails ) ) {
+				foreach ( $mails as $mail ) {
+					if ( $mail->id == $tpl )
+						array_push( $found_mails, $mail );
+				}
 			}
 		}
+		if ( ! empty( $found_mails ) )
+			return $found_mails[ sizeof( $found_mails ) - 1 ];
 		return null;
 	}
 

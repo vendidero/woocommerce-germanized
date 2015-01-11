@@ -609,6 +609,7 @@ final class WooCommerce_Germanized {
 		$mails = $mailer->get_emails();
 		$mails[ 'WC_Email_Customer_Processing_Order' ]->trigger( $order->id );
 		$mails[ 'WC_Email_New_Order' ]->trigger( $order->id );
+		do_action( 'woocommerce_germanized_order_confirmation_sent', $order->id );
 		return $return;
 	}
 
