@@ -53,7 +53,7 @@ class WC_GZD_Product extends WC_Product {
 
 	public function get_mini_desc() {
 		if ( $this->child->mini_desc )
-			return apply_filters( 'the_content', $this->child->mini_desc );
+			return apply_filters( 'the_content', htmlspecialchars_decode( $this->child->mini_desc ) );
 		return false;
 	}
 

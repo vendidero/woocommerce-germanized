@@ -74,7 +74,7 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 		<tr>
 			<td colspan="2">
 				<label for="variable_product_mini_desc"><?php echo __( 'Optional Mini Description', 'woocommerce-germanized' ); ?>:</label>
-				<?php wp_editor( ( isset( $variation_data['_mini_desc'][0] ) ? $variation_data['_mini_desc'][0] : '' ), 'wc_gzd_product_mini_desc_' . $loop, array( 'textarea_name' => 'variable_product_mini_desc[' . $loop . ']', 'textarea_rows' => 5, 'media_buttons' => false, 'teeny' => true ) ); ?>
+				<?php wp_editor( htmlspecialchars_decode( ( isset( $variation_data['_mini_desc'][0] ) ? $variation_data['_mini_desc'][0] : '' ) ), 'wc_gzd_product_mini_desc_' . $loop, array( 'textarea_name' => 'variable_product_mini_desc[' . $loop . ']', 'textarea_rows' => 5, 'media_buttons' => false, 'teeny' => true ) ); ?>
 			</td>
 		</tr>
 		<?php
