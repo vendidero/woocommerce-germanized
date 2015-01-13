@@ -126,6 +126,7 @@ final class WooCommerce_Germanized {
 		add_action( 'widgets_init', array( $this, 'include_widgets' ), 25 );
 		add_action( 'plugins_loaded', array( $this, 'load_plugin_textdomain' ) );
 		add_action( 'woocommerce_init', array( $this, 'replace_woocommerce_cart' ), 0 );
+		add_action( 'woocommerce_init', array( $this, 'set_order_button_gateway_text' ), 1 );
 
 		// Loaded action
 		do_action( 'woocommerce_germanized_loaded' );
@@ -202,14 +203,6 @@ final class WooCommerce_Germanized {
 		} else {
 			add_action( 'admin_init', array( $this, 'deactivate' ), 0 );
 		}
-	}
-
-	/**
-	 * Replace the default WC_Cart by WC_GZD_Cart for EU virtual VAT rules.
-	 */
-	public function replace_woocommerce_cart() {
-		if ( ! is_admin() || defined( 'DOING_AJAX' ) && get_option( 'woocommerce_gzd_enable_virtual_vat' ) == 'yes' )
-			WC()->cart = new WC_GZD_Cart();
 	}
 
 	/**
@@ -394,6 +387,26 @@ final class WooCommerce_Germanized {
 			}
 		}
 		return $gateways;
+	}
+
+	/**
+	 * Replace the default WC_Cart by WC_GZD_Cart for EU virtual VAT rules.
+	 */
+	public function replace_woocommerce_cart() {
+		if ( ! is_admin() || defined( 'DOING_AJAX' ) && get_option( 'woocommerce_gzd_enable_virtual_vat' ) == 'yes' )
+			WC()->cart = new WC_GZD_Cart();
+	}
+
+	/**
+	 * Set default order button text instead of the button text defined by each payment gateway.
+	 * Can be overriden by setting force_order_button_text within payment gateway class
+	 */
+	public function set_order_button_gateway_text() {
+		$gateways = WC()->payment_gateways->get_available_payment_gateways();
+		foreach( $gateways as $gateway ) {
+			if ( ! isset( $gateway->force_order_button_text ) || ! $gateway->force_order_button_text )
+				$gateway->order_button_text = woocommerce_gzd_template_order_button_text();
+		}
 	}
 
 	/**
