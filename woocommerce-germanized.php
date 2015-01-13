@@ -405,7 +405,7 @@ final class WooCommerce_Germanized {
 		$gateways = WC()->payment_gateways->get_available_payment_gateways();
 		foreach( $gateways as $gateway ) {
 			if ( ! isset( $gateway->force_order_button_text ) || ! $gateway->force_order_button_text )
-				$gateway->order_button_text = woocommerce_gzd_template_order_button_text();
+				$gateway->order_button_text = __( get_option( 'woocommerce_gzd_order_submit_btn_text' ), 'woocommerce-germanized' );
 		}
 	}
 

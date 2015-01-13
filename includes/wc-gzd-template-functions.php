@@ -260,7 +260,7 @@ if ( ! function_exists( 'woocommerce_gzd_template_order_button_text' ) ) {
 	/**
 	 * Manipulate the order submit button text
 	 */
-	function woocommerce_gzd_template_order_button_text( $text = '' ) {
+	function woocommerce_gzd_template_order_button_text( $text ) {
 		return __( get_option( 'woocommerce_gzd_order_submit_btn_text' ), 'woocommerce-germanized' );
 	}
 
