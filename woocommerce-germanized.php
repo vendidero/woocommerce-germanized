@@ -710,4 +710,3 @@ function WC_germanized() {
 
 $GLOBALS['woocommerce_germanized'] = WC_germanized();
 
-?>
