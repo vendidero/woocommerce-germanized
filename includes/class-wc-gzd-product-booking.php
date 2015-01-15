@@ -3,9 +3,9 @@
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 /**
- * Product Simple Class
+ * Product Booking Class
  *
- * @class 		WC_GZD_Product_Simple
+ * @class 		WC_GZD_Product_Booking
  * @version		1.0.0
  * @author 		Vendidero
  */
