@@ -58,7 +58,7 @@ class WC_GZD_Trusted_Shops {
 			)
 		);
 		$this->et_params = array( 'etcc_med' => 'part', 'etcc_cmp' => 'sofpar', 'etcc_par' => 'woo', 'etcc_mon' => 11 );
-		$this->api_url = 'http://www.trustedshops.com/api/ratings/v1/'. $this->id .'.xml';
+		$this->api_url = 'http://api.trustedshops.com/rest/public/v2/shops/'. $this->id .'/quality.json';
 		// Schedule
 		if ( $this->is_rich_snippets_enabled() ) {
 			add_action( 'woocommerce_gzd_trusted_shops_reviews', array( $this, 'update_reviews' ) );
@@ -72,7 +72,6 @@ class WC_GZD_Trusted_Shops {
 		}
 		if ( $this->is_review_reminder_enabled() )
 			add_action( 'woocommerce_gzd_trusted_shops_reviews', array( $this, 'send_mails' ) );
-		//add_action( 'init', array( $this, 'send_mails' ) );
 		// Add Badge to Footer
 		if ( $this->is_enabled() && $this->get_badge_js() )
 			add_action( 'wp_footer', array( $this, 'add_badge' ), 5 );
@@ -265,14 +264,11 @@ class WC_GZD_Trusted_Shops {
 					$success = true;
 				curl_close( $ch );
 				if ( $success ) {
-					$xml = new SimpleXMLElement( $output );
-					$xPath = '/shop/ratings/result[@name="average"]';
-					$avg = $xml->xpath( $xPath );
-					if ( ! empty( $avg[0] ) ) {
-						$update['avg'] = ( float ) $avg[0];
-						$update['max'] = '5.00';
-						$update['count'] = ( string ) $xml->ratings["amount"][0];
-					}	
+					$output = json_decode( $output, true );
+					$reviews = $output[ 'response' ][ 'data' ][ 'shop' ][ 'qualityIndicators' ][ 'reviewIndicator' ];
+					$update[ 'count' ] = (string) $reviews[ 'activeReviewCount' ];
+					$update[ 'avg' ] = (float) $reviews[ 'overallMark' ];
+					$update[ 'max' ] = '5.00';
 				}
 			}
 		}
