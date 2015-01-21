@@ -9,7 +9,6 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-global $product;
 ?>
 
 <p class="wc-gzd-additional-info small-business-info"><?php _e( 'VAT free based on &#167;19 UStG', 'woocommerce-germanized' );?></p>

@@ -112,7 +112,7 @@ class WC_GZD_Checkout {
 	 * @param array $args     
 	 */
 	public function set_item_desc_order_meta( $order_id, $item_id, $product, $qty, $args ) {
-		wc_add_order_item_meta( $item_id, '_product_desc', $product->get_mini_desc() );
+		wc_add_order_item_meta( $item_id, '_product_desc', $product->gzd_product->get_mini_desc() );
 	}
 
 	/**

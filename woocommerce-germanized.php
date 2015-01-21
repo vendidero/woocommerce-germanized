@@ -127,6 +127,7 @@ final class WooCommerce_Germanized {
 		add_action( 'plugins_loaded', array( $this, 'load_plugin_textdomain' ) );
 		add_action( 'woocommerce_init', array( $this, 'replace_woocommerce_cart' ), 0 );
 		add_action( 'woocommerce_init', array( $this, 'set_order_button_gateway_text' ), 1 );
+
 		// Payment Gateway Filter
 		add_filter( 'woocommerce_payment_gateways', array( $this, 'payment_gateway_filter' ), PHP_INT_MAX, 1 );
 
@@ -179,6 +180,7 @@ final class WooCommerce_Germanized {
 			add_action( 'woocommerce_cart_calculate_fees', array( $this, 'add_fee_cart' ), 0 );
 			// Adjust virtual Product Price and tax class
 			add_filter( 'woocommerce_get_price_including_tax', array( $this, 'set_virtual_product_price' ), PHP_INT_MAX, 3 );
+			add_filter( 'get_post_metadata', array( $this, 'inject_gzd_product' ), 0, 4 );
 
 			// Send order notice directly after new order is being added - use these filters because order status has to be updated already
 			add_filter( 'woocommerce_payment_successful_result', array( $this, 'send_order_confirmation_mails' ), 0, 2 );
@@ -288,6 +290,7 @@ final class WooCommerce_Germanized {
 		include_once 'includes/abstracts/abstract-wc-gzd-product.php';
 		include_once 'includes/abstracts/abstract-wc-gzd-payment-gateway.php';
 
+		include_once 'includes/wc-gzd-core-functions.php';
 		include_once 'includes/wc-gzd-cart-functions.php';
 		include_once 'includes/class-wc-gzd-checkout.php';
 
@@ -389,6 +392,21 @@ final class WooCommerce_Germanized {
 			}
 		}
 		return $gateways;
+	}
+
+	/**
+	 * Inject WC_GZD_Product into WC_Product by filtering postmeta
+	 *  
+	 * @param  mixed $metadata 
+	 * @param  int $object_id 
+	 * @param  string $meta_key  
+	 * @param  boolean $single    
+	 * @return mixed
+	 */
+	public function inject_gzd_product( $metadata, $object_id, $meta_key, $single ) {
+		if ( $meta_key == '_gzd_product' && in_array( get_post_type( $object_id ), array( 'product', 'product_variation' ) ) )
+			return wc_gzd_get_product( $object_id );
+		return $metadata;
 	}
 
 	/**
@@ -637,7 +655,7 @@ final class WooCommerce_Germanized {
 	 * @return adjusted price
 	 */
 	public function set_virtual_product_price( $price, $qty, $product ) {
-		if ( ! $product->is_virtual_vat_exception() || ! isset( WC()->cart ) || ! WC()->cart->is_virtual_taxable() )
+		if ( ! $product->gzd_product->is_virtual_vat_exception() || ! isset( WC()->cart ) || ! WC()->cart->is_virtual_taxable() )
 			return $price;
 		if ( get_option('woocommerce_prices_include_tax') === 'yes' )
 			return $product->get_price() * $qty;

@@ -122,9 +122,9 @@ if ( ! function_exists( 'woocommerce_gzd_template_cart_product_delivery_time' ) 
 	 */
 	function woocommerce_gzd_template_cart_product_delivery_time( $title, $cart_item, $cart_item_key ) {
 		if ( isset($cart_item["data"]) ) {
-			$product = $cart_item["data"];
-			if ( $product->get_delivery_time_term() )
-				$title .= '<p class="price-shipping-costs-info">' . $product->get_delivery_time_html() . '</p>';
+			$product = wc_gzd_get_product( $cart_item["data"] );
+			if ( $product->gzd_product->get_delivery_time_term() )
+				$title .= '<p class="price-shipping-costs-info">' . $product->gzd_product->get_delivery_time_html() . '</p>';
 		}
 		return $title;
 	}
@@ -283,8 +283,8 @@ if ( ! function_exists( 'woocommerce_gzd_add_variation_options' ) ) {
 	 * Add delivery time and unit price to variations
 	 */
 	function woocommerce_gzd_add_variation_options( $options, $product, $variation ) {
-		$options[ 'delivery_time' ] = $variation->get_delivery_time_html();
-		$options[ 'unit_price' ] = $variation->get_unit_html();
+		$options[ 'delivery_time' ] = $variation->gzd_product->get_delivery_time_html();
+		$options[ 'unit_price' ] = $variation->gzd_product->get_unit_html();
 		return $options;
 	}
 

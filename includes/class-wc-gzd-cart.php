@@ -102,7 +102,7 @@ class WC_GZD_Cart extends WC_Cart {
 					$taxes                 = $this->tax->calc_tax( $line_price, $base_tax_rates, true, true );
 
 					// Digital VAT exception
-					if ( $this->is_virtual_taxable() && $_product->is_virtual_vat_exception() )
+					if ( $this->is_virtual_taxable() && $_product->gzd_product->is_virtual_vat_exception() )
 						$taxes 		   		= $this->tax->calc_tax( $line_price, $item_tax_rates, true, true );
 
 					// Now we have a new item price (excluding TAX)
@@ -193,7 +193,7 @@ class WC_GZD_Cart extends WC_Cart {
 					$taxes             = $this->tax->calc_tax( $line_price, $base_tax_rates, true, true );
 
 					// Digital tax exception
-					if ( $this->is_virtual_taxable() && $_product->is_virtual_vat_exception() )
+					if ( $this->is_virtual_taxable() && $_product->gzd_product->is_virtual_vat_exception() )
 						$taxes 		   = $this->tax->calc_tax( $line_price, $item_tax_rates, true, true );
 
 					// Now we have a new item price (excluding TAX)
