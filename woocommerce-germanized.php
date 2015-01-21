@@ -395,7 +395,7 @@ final class WooCommerce_Germanized {
 	 * Replace the default WC_Cart by WC_GZD_Cart for EU virtual VAT rules.
 	 */
 	public function replace_woocommerce_cart() {
-		if ( ! is_admin() || defined( 'DOING_AJAX' ) && get_option( 'woocommerce_gzd_enable_virtual_vat' ) == 'yes' )
+		if ( get_option( 'woocommerce_gzd_enable_virtual_vat' ) == 'yes' && ( ! is_admin() || defined( 'DOING_AJAX' ) ) )
 			WC()->cart = new WC_GZD_Cart();
 	}
 
