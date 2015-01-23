@@ -126,7 +126,7 @@ Bugs sowie Hilfe bei der Arbeit an WooCommerce Germanized werden gerne über uns
 = 1.0.5 =
 * Feature - Optionally remove address field from checkout
 * Fix - Shipping time bug within checkout
-* Fix - Better theme compatibility for variable products
+* Fix - Better theme compatibility for variations
 
 = 1.0.4 =
 * Feature - Applying new VAT rules for selling virtual products to EU countries
