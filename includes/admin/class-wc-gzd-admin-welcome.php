@@ -153,14 +153,27 @@ class WC_GZD_Admin_Welcome {
 			</div>
 		</div>
 		<div class="changelog">
-			<h3>Neu in WooCommerce Germanized 1.0.4</h3>
-			<div class="wc-feature feature-section col one-col">
+			<h3>Neu in WooCommerce Germanized 1.1</h3>
+			<div class="wc-feature feature-section col three-col" style="margin-bottom: -30px">
 				<div>
-					<h4><i class="fa fa-exclamation"></i> Neue USt. Regelungen 2015</h4>
+					<h4><i class="fa fa-image"></i> Thumbnails im Checkout</h4>
 					<p>
-					Mit 1.0.4 haben wir auf die neuen USt.-Regelungen für virtuelle Produkte gültig ab 01.01.2015 reagiert (<a href="http://ec.europa.eu/taxation_customs/taxation/vat/how_vat_works/telecom/index_de.htm#new_rules" target="_blank">mehr erfahren</a>).
-					Ab dieser Version wird die im Brutto-Preis enthaltene MwSt. bei virtuellen Produkten automatisch an den MwSt.-Satz des Empfängers angepasst. Daraus folgt ein variierender Netto-Preis (je nach Herkunftsland). Andere Verfahren (z.B. das Erkennen des Herkunftslandes anhand der IP-Adresse) halten wir für nicht praktikabel,
-					da das Land des Rechnungsempfängers davon abweichen kann. Wir bitten dich dieses neue Verfahren unbedingt mit deinem Steuerberater bzw. Rechtsanwalt durchzusprechen.
+					Von nun an können auch auf der Kasse-Seite wieder Thumbnails in der Tabelle dargestellt werden.
+					Ein Update von WooCommerce hatte diese (rechtlich relevante) Funktion standardmäßig deaktiviert.
+					</p>
+				</div>
+				<div>
+					<h4><i class="fa fa-truck"></i> Versandmethoden-Auswahl</h4>
+					<p>
+					Die Versandmethoden-Auswahl kann normalerweise auch noch auf der Kasse-Seite erfolgen. 
+					Wir haben nun die Funktion eingebettet, die Auswahl optional nur auf der Warenkorb-Seite zu erlauben.
+					</p>
+				</div>
+				<div class="last-feature">
+					<h4><i class="fa fa-check"></i> Plugin Kompatibilität</h4>
+					<p>
+					Mit der neuen Version bieten wir eine noch bessere Kompatibilität zu anderen WooCommerce Plugins
+					ohne dabei gänzlich auf die Vorteile von OOP zu verzichten.
 					</p>
 				</div>
 			</div>
