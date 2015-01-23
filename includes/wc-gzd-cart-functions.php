@@ -23,8 +23,8 @@ function wc_gzd_product_item_desc( $title, $item ) {
 	if ( isset( $item[ 'product_id' ] ) ) {
 		$product_id = ( ! empty( $item[ 'variation_id' ] ) ? $item[ 'variation_id' ] : $item[ 'product_id' ] );
 		$product = wc_get_product( $product_id );
-		if ( $product->get_mini_desc() )
-			$new .= '<div class="wc-gzd-item-desc item-desc">' . $product->get_mini_desc() . '</div>';
+		if ( $product->gzd_product->get_mini_desc() )
+			$new .= '<div class="wc-gzd-item-desc item-desc">' . $product->gzd_product->get_mini_desc() . '</div>';
 	}
 	return $new;
 }

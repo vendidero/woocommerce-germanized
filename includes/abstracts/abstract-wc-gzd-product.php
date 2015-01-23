@@ -12,25 +12,36 @@ if ( ! defined( 'ABSPATH' ) )
  * @version		1.0.0
  * @author 		Vendidero
  */
-class WC_GZD_Product extends WC_Product {
+class WC_GZD_Product {
 
 	/**
 	 * The actual Product object (e.g. simple, variable)
 	 * @var object
 	 */
 	private $child;
+	protected static $_instance = null;
 
 	/**
-	 * Sets the actual product implementation and constructs the abstract WC_Product class.
-	 *  
-	 * @param object $product
+	 * Main Instance
+	 *
+	 * @static
+	 * @return WC_GZD_Product instance
 	 */
-	public function __construct( $product ) {
-		// Post types
-		$this->child = $product;
-		parent::__construct( $product );
+	public static function instance( $product ) {
+		if ( is_null( self::$_instance ) || self::$_instance->product !== $product )
+			self::$_instance = new self( $product );
+		return self::$_instance;
 	}
 
+	/**
+	 * Construct new WC_GZD_Product
+	 *  
+	 * @param WC_Product $product 
+	 */
+	public function __construct( $product ) {
+		$this->child = $product;
+	}
+ 
 	/**
 	 * Redirects __get calls to WC_Product Class.
 	 *  
@@ -38,22 +49,19 @@ class WC_GZD_Product extends WC_Product {
 	 * @return mixed     
 	 */
 	public function __get( $key ) {
-		$value = parent::__get( $key );
-		if ( $key == 'delivery_time' ) {
-			$value = get_the_terms( $this->id, 'product_delivery_time' );
-			if ( $this->child->product_type == 'variation' )
-				$value = $this->child->$key;
-			if ( is_array( $value ) ) {
-				$value = array_values( $value );
-				$value = $value[0];
-			}
-		}
-		return $value;
+		if ( $this->child->$key )
+			return $this->child->$key;
+		return false;
 	}
 
+	/**
+	 * Get a product's cart description
+	 * 
+	 * @return boolean|string
+	 */
 	public function get_mini_desc() {
 		if ( $this->child->mini_desc )
-			return apply_filters( 'the_content', $this->child->mini_desc );
+			return apply_filters( 'the_content', htmlspecialchars_decode( $this->child->mini_desc ) );
 		return false;
 	}
 
@@ -63,7 +71,7 @@ class WC_GZD_Product extends WC_Product {
 	 * @return boolean
 	 */
 	public function is_virtual_vat_exception() {
-		return ( ( get_option( 'woocommerce_gzd_enable_virtual_vat' ) == 'yes' ) && ( $this->is_downloadable() || $this->is_virtual() ) ? true : false );
+		return ( ( get_option( 'woocommerce_gzd_enable_virtual_vat' ) == 'yes' ) && ( $this->child->is_downloadable() || $this->child->is_virtual() ) ? true : false );
 	}
 
 	/**
@@ -73,9 +81,9 @@ class WC_GZD_Product extends WC_Product {
 	 */
 	public function get_tax_info() {
 		$_tax  = new WC_Tax();
-		if ( $this->is_taxable() ) {
+		if ( $this->child->is_taxable() ) {
 			$tax_display_mode = get_option( 'woocommerce_tax_display_shop' );
-			$tax_rates  = $_tax->get_rates( $this->get_tax_class() );
+			$tax_rates  = $_tax->get_rates( $this->child->get_tax_class() );
 			if ( ! empty( $tax_rates ) ) {
 				$tax_rates = array_values( $tax_rates );
 				if ( $this->is_virtual_vat_exception() )
@@ -155,7 +163,7 @@ class WC_GZD_Product extends WC_Product {
 	 */
 	public function get_unit_price_including_tax( $qty = 1, $price = '' ) {
 		$price = ( $price == '' ) ? $this->child->unit_price : $price;
-		return $this->get_price_including_tax( $qty, $price );
+		return $this->child->get_price_including_tax( $qty, $price );
 	}
 
 	/**
@@ -167,7 +175,7 @@ class WC_GZD_Product extends WC_Product {
 	 */
 	public function get_unit_price_excluding_tax( $qty = 1, $price = '' ) {
 		$price = ( $price == '' ) ? $this->child->unit_price : $price;
-		return ( $price == '' ) ? '' : $this->get_price_excluding_tax( $qty, $price );
+		return ( $price == '' ) ? '' : $this->child->get_price_excluding_tax( $qty, $price );
 	}
 
 	/**
@@ -188,8 +196,8 @@ class WC_GZD_Product extends WC_Product {
 		$display_price         = $this->get_unit_price();
 		$display_regular_price = $this->get_unit_price( 1, $this->get_unit_regular_price() );
 		$display_sale_price    = $this->get_unit_price( 1, $this->get_unit_sale_price() );
-		$price_html 		   = ( $this->is_on_unit_sale() ? $this->get_price_html_from_to( $display_regular_price, $display_sale_price ) : wc_price( $display_price ) );
-		return ( $this->has_unit() ) ? str_replace( '{price}', $price_html . $this->get_price_suffix() . apply_filters( 'wc_gzd_unit_price_seperator', ' / ' ) . $this->get_unit_base(), get_option( 'woocommerce_gzd_unit_price_text' ) ) : '';
+		$price_html 		   = ( $this->is_on_unit_sale() ? $this->child->get_price_html_from_to( $display_regular_price, $display_sale_price ) : wc_price( $display_price ) );
+		return ( $this->has_unit() ) ? str_replace( '{price}', $price_html . $this->child->get_price_suffix() . apply_filters( 'wc_gzd_unit_price_seperator', ' / ' ) . $this->get_unit_base(), get_option( 'woocommerce_gzd_unit_price_text' ) ) : '';
 	}
 
 	/**
@@ -198,14 +206,16 @@ class WC_GZD_Product extends WC_Product {
 	 * @return object
 	 */
 	public function get_delivery_time_term() {
-		$delivery_time = $this->delivery_time;
-		if ( empty( $delivery_time ) && get_option( 'woocommerce_gzd_default_delivery_time' ) && ! $this->is_downloadable() ) {
+		$delivery_time = $this->child->delivery_time;
+		if ( empty( $delivery_time ) && get_option( 'woocommerce_gzd_default_delivery_time' ) && ! $this->child->is_downloadable() ) {
 			$delivery_time = array( get_term_by( 'id', get_option( 'woocommerce_gzd_default_delivery_time' ), 'product_delivery_time' ) );
 			if ( is_array( $delivery_time ) ) {
 				array_values( $delivery_time );
 				$delivery_time = $delivery_time[0];
 			}
 		}
+		if ( is_array( $delivery_time ) )
+			$delivery_time = $delivery_time[0];
 		return ( ! is_wp_error( $delivery_time ) && ! empty( $delivery_time ) ) ? $delivery_time : false;
 	}
 
@@ -224,7 +234,7 @@ class WC_GZD_Product extends WC_Product {
 	 * @return string 
 	 */
 	public function get_shipping_costs_html() {
-		if ( $this->is_virtual() && get_option( 'woocommerce_gzd_display_shipping_costs_virtual' ) != 'yes' )
+		if ( $this->child->is_virtual() && get_option( 'woocommerce_gzd_display_shipping_costs_virtual' ) != 'yes' )
 			return false;
 		$find = array(
 			'{link}',
@@ -236,7 +246,5 @@ class WC_GZD_Product extends WC_Product {
 		);
 		return str_replace( $find, $replace, get_option( 'woocommerce_gzd_shipping_costs_text' ) );
 	}
-
 }
-
 ?>

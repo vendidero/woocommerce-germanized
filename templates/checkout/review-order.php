@@ -33,7 +33,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 					foreach ( $available_gateways as $gateway ) {
 						?>
 						<li class="payment_method_<?php echo $gateway->id; ?>">
-							<input id="payment_method_<?php echo $gateway->id; ?>" type="radio" class="input-radio" name="payment_method" value="<?php echo esc_attr( $gateway->id ); ?>" <?php checked( $gateway->chosen, true ); ?> />
+							<input id="payment_method_<?php echo $gateway->id; ?>" type="radio" class="input-radio" name="payment_method" value="<?php echo esc_attr( $gateway->id ); ?>" <?php checked( $gateway->chosen, true ); ?> data-order_button_text="<?php echo esc_attr( $gateway->order_button_text ); ?>" />
 							<label for="payment_method_<?php echo $gateway->id; ?>"><?php echo $gateway->get_title(); ?> <?php echo $gateway->get_icon(); ?></label>
 							<?php
 								if ( $gateway->has_fields() || $gateway->get_description() ) :
@@ -84,11 +84,16 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 							<td class="product-name">
 								<table class="product-name-inner">
 									<tr>
-										<td>
+										<?php if ( get_option( 'woocommerce_gzd_display_checkout_thumbnails' ) == 'yes' ) : ?>
+											<td class="product-thumbnail">
+												<?php echo apply_filters( 'woocommerce_cart_item_thumbnail', $_product->get_image(), $cart_item, $cart_item_key ); ?>
+											</td>
+										<?php endif; ?>
+										<td class="product-name">
 											<?php echo apply_filters( 'woocommerce_cart_item_name', $_product->get_title(), $cart_item, $cart_item_key ); ?>
 											<?php echo WC()->cart->get_item_data( $cart_item ); ?>
 										</td>
-										<td>
+										<td class="product-quantity">
 											<?php echo apply_filters( 'woocommerce_checkout_cart_item_quantity', ' <strong class="product-quantity">' . sprintf( '&times; %s', $cart_item['quantity'] ) . '</strong>', $cart_item, $cart_item_key ); ?>
 										</td>
 									</tr>

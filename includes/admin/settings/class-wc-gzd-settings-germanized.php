@@ -430,6 +430,24 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 			array(	'title' => __( 'Checkout & Cart', 'woocommerce-germanized' ), 'type' => 'title', 'id' => 'checkout_options' ),
 
 			array(
+				'title' 	=> __( 'Show Thumbnails', 'woocommerce-germanized' ),
+				'desc' 		=> __( 'Show product thumbnails on checkout page?', 'woocommerce-germanized' ),
+				'id' 		=> 'woocommerce_gzd_display_checkout_thumbnails',
+				'default'	=> 'yes',
+				'type' 		=> 'checkbox',
+				'desc_tip'	=> __( 'Uncheck if you don\'t want to show your product thumbnails within checkout table.', 'woocommerce-germanized' ),
+			),
+
+			array(
+				'title' 	=> __( 'Hide Shipping Select', 'woocommerce-germanized' ),
+				'desc' 		=> __( 'Hide shipping rate selection from checkout?', 'woocommerce-germanized' ),
+				'id' 		=> 'woocommerce_gzd_display_checkout_shipping_rate_select',
+				'default'	=> 'yes',
+				'type' 		=> 'checkbox',
+				'desc_tip'	=> __( 'This option will hide shipping rate selection from checkout. By then customers will only be able to change their shipping rate on cart page.', 'woocommerce-germanized' ),
+			),
+
+			array(
 				'title' 	=> __( 'Checkout Table Color', 'woocommerce-germanized' ),
 				'id' 		=> 'woocommerce_gzd_display_checkout_table_color',
 				'desc_tip'	=> __( 'Choose the color of your checkout product table. This table should be highlighted within your checkout page.', 'woocommerce-germanized' ),
@@ -464,6 +482,15 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 				'css' 		=> 'width:100%; height: 65px;',
 				'id' 		=> 'woocommerce_gzd_checkout_legal_text_error',
 				'type' 		=> 'textarea',
+			),
+
+			array(
+				'title' 	=> __( 'Show digital notice', 'woocommerce-germanized' ),
+				'desc' 		=> __( 'Show checkbox for digital products.', 'woocommerce-germanized' ),
+				'desc_tip'	=> __( 'Disable this option if you want your customers to obtain their right of recission even if digital products are being bought.', 'woocommerce-germanized' ),
+				'id' 		=> 'woocommerce_gzd_checkout_legal_digital_checkbox',
+				'default'	=> 'yes',
+				'type' 		=> 'checkbox',
 			),
 
 			array(
@@ -515,7 +542,9 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 
 		?>
 		<div class="wc-gzd-admin-settings">
+			<?php do_action( 'wc_germanized_settings_section_before_' . sanitize_title( $current_section ) ); ?>
 			<?php WC_Admin_Settings::output_fields( $settings ); ?>
+			<?php do_action( 'wc_germanized_settings_section_after_' . sanitize_title( $current_section ) ); ?>
 		</div>
 		<?php echo $sidebar; ?>
 		<?php

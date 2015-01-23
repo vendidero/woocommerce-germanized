@@ -8,10 +8,11 @@
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly 
 
 global $post;
+$post = $post_attach;
 
-setup_postdata( $GLOBALS['post'] =& $post_attach );
+setup_postdata( $post );
 
-$content = ( empty( $GLOBALS['post']->post_excerpt ) ? $GLOBALS['post']->post_content : $GLOBALS['post']->post_excerpt );
+$content = ( empty( $post->post_excerpt ) ? $post->post_content : $post->post_excerpt );
 $print_title = true;
 if ( substr( trim( $content ), 0, 2 ) == '<h' )
 	$print_title = false;
@@ -25,7 +26,7 @@ if ( substr( trim( $content ), 0, 2 ) == '<h' )
 
 	<div class="wc-gzd-email-attached-content">
 
-		<?php if ( empty( $GLOBALS['post']->post_excerpt ) ) : ?>
+		<?php if ( empty( $post->post_excerpt ) ) : ?>
 
 			<?php the_content();?>
 

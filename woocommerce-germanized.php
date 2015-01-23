@@ -126,6 +126,10 @@ final class WooCommerce_Germanized {
 		add_action( 'widgets_init', array( $this, 'include_widgets' ), 25 );
 		add_action( 'plugins_loaded', array( $this, 'load_plugin_textdomain' ) );
 		add_action( 'woocommerce_init', array( $this, 'replace_woocommerce_cart' ), 0 );
+		add_action( 'woocommerce_init', array( $this, 'set_order_button_gateway_text' ), 1 );
+
+		// Payment Gateway Filter
+		add_filter( 'woocommerce_payment_gateways', array( $this, 'payment_gateway_filter' ), PHP_INT_MAX, 1 );
 
 		// Loaded action
 		do_action( 'woocommerce_germanized_loaded' );
@@ -171,18 +175,17 @@ final class WooCommerce_Germanized {
 			add_filter( 'woocommerce_email_classes', array( $this, 'add_emails' ) );
 			add_filter( 'woocommerce_locate_core_template', array( $this, 'email_templates' ), 0, 3 );
 			add_action( 'woocommerce_email_order_meta', array( $this, 'email_small_business_notice' ), 1 );
-			// Payment Gateway Filter
-			add_filter( 'woocommerce_payment_gateways', array( $this, 'payment_gateway_filter' ) );
 			// Add better tax display to order totals
 			add_filter( 'woocommerce_get_order_item_totals', array( $this, 'order_item_totals' ), 0, 2 );
 			add_action( 'woocommerce_cart_calculate_fees', array( $this, 'add_fee_cart' ), 0 );
 			// Adjust virtual Product Price and tax class
 			add_filter( 'woocommerce_get_price_including_tax', array( $this, 'set_virtual_product_price' ), PHP_INT_MAX, 3 );
+			add_filter( 'get_post_metadata', array( $this, 'inject_gzd_product' ), 0, 4 );
 
 			// Send order notice directly after new order is being added - use these filters because order status has to be updated already
 			add_filter( 'woocommerce_payment_successful_result', array( $this, 'send_order_confirmation_mails' ), 0, 2 );
 			add_filter( 'woocommerce_checkout_no_payment_needed_redirect', array( $this, 'send_order_confirmation_mails' ), 0, 2 );
-			
+
 			// Remove processing + on-hold default order confirmation mails
 			$mailer = WC()->mailer();
 			$mails = $mailer->get_emails();
@@ -190,6 +193,7 @@ final class WooCommerce_Germanized {
 			remove_action( 'woocommerce_order_status_pending_to_on-hold_notification', array( $mails[ 'WC_Email_Customer_Processing_Order' ], 'trigger' ) );
 			remove_action( 'woocommerce_order_status_pending_to_processing_notification', array( $mails[ 'WC_Email_New_Order' ], 'trigger' ) );
 			remove_action( 'woocommerce_order_status_pending_to_on-hold_notification', array( $mails[ 'WC_Email_New_Order' ], 'trigger' ) );
+			remove_action( 'woocommerce_order_status_pending_to_completed_notification', array( $mails[ 'WC_Email_New_Order' ], 'trigger' ) );
 
 			$this->units          = new WC_GZD_Units();
 			$this->trusted_shops  = new WC_GZD_Trusted_Shops();
@@ -201,14 +205,6 @@ final class WooCommerce_Germanized {
 		} else {
 			add_action( 'admin_init', array( $this, 'deactivate' ), 0 );
 		}
-	}
-
-	/**
-	 * Replace the default WC_Cart by WC_GZD_Cart for EU virtual VAT rules.
-	 */
-	public function replace_woocommerce_cart() {
-		if ( ! is_admin() || defined( 'DOING_AJAX' ) && get_option( 'woocommerce_gzd_enable_virtual_vat' ) == 'yes' )
-			WC()->cart = new WC_GZD_Cart();
 	}
 
 	/**
@@ -294,6 +290,7 @@ final class WooCommerce_Germanized {
 		include_once 'includes/abstracts/abstract-wc-gzd-product.php';
 		include_once 'includes/abstracts/abstract-wc-gzd-payment-gateway.php';
 
+		include_once 'includes/wc-gzd-core-functions.php';
 		include_once 'includes/wc-gzd-cart-functions.php';
 		include_once 'includes/class-wc-gzd-checkout.php';
 
@@ -382,6 +379,8 @@ final class WooCommerce_Germanized {
 	 * @return array filtered gateway array
 	 */
 	public function payment_gateway_filter( $gateways ) {
+		// Needs to be included because filter is applied before WC_Germanized load
+		include_once 'includes/abstracts/abstract-wc-gzd-payment-gateway.php';
 		if ( ! empty( $gateways ) ) {
 			foreach ( $gateways as $key => $gateway ) {
 				if ( $gateway == 'WC_Gateway_BACS' )
@@ -393,6 +392,41 @@ final class WooCommerce_Germanized {
 			}
 		}
 		return $gateways;
+	}
+
+	/**
+	 * Inject WC_GZD_Product into WC_Product by filtering postmeta
+	 *  
+	 * @param  mixed $metadata 
+	 * @param  int $object_id 
+	 * @param  string $meta_key  
+	 * @param  boolean $single    
+	 * @return mixed
+	 */
+	public function inject_gzd_product( $metadata, $object_id, $meta_key, $single ) {
+		if ( $meta_key == '_gzd_product' && in_array( get_post_type( $object_id ), array( 'product', 'product_variation' ) ) )
+			return wc_gzd_get_product( $object_id );
+		return $metadata;
+	}
+
+	/**
+	 * Replace the default WC_Cart by WC_GZD_Cart for EU virtual VAT rules.
+	 */
+	public function replace_woocommerce_cart() {
+		if ( get_option( 'woocommerce_gzd_enable_virtual_vat' ) == 'yes' && ( ! is_admin() || defined( 'DOING_AJAX' ) ) )
+			WC()->cart = new WC_GZD_Cart();
+	}
+
+	/**
+	 * Set default order button text instead of the button text defined by each payment gateway.
+	 * Can be overriden by setting force_order_button_text within payment gateway class
+	 */
+	public function set_order_button_gateway_text() {
+		$gateways = WC()->payment_gateways->get_available_payment_gateways();
+		foreach( $gateways as $gateway ) {
+			if ( ! isset( $gateway->force_order_button_text ) || ! $gateway->force_order_button_text )
+				$gateway->order_button_text = __( get_option( 'woocommerce_gzd_order_submit_btn_text' ), 'woocommerce-germanized' );
+		}
 	}
 
 	/**
@@ -608,6 +642,7 @@ final class WooCommerce_Germanized {
 		$mails = $mailer->get_emails();
 		$mails[ 'WC_Email_Customer_Processing_Order' ]->trigger( $order->id );
 		$mails[ 'WC_Email_New_Order' ]->trigger( $order->id );
+		do_action( 'woocommerce_germanized_order_confirmation_sent', $order->id );
 		return $return;
 	}
 
@@ -620,7 +655,7 @@ final class WooCommerce_Germanized {
 	 * @return adjusted price
 	 */
 	public function set_virtual_product_price( $price, $qty, $product ) {
-		if ( ! $product->is_virtual_vat_exception() || ! isset( WC()->cart ) || ! WC()->cart->is_virtual_taxable() )
+		if ( ! $product->gzd_product->is_virtual_vat_exception() || ! isset( WC()->cart ) || ! WC()->cart->is_virtual_taxable() )
 			return $price;
 		if ( get_option('woocommerce_prices_include_tax') === 'yes' )
 			return $product->get_price() * $qty;

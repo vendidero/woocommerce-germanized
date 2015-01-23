@@ -80,12 +80,46 @@ class WC_GZD_Checkout {
 		// Add item desc to order
 		add_action( 'woocommerce_order_add_product', array( $this, 'set_item_desc_order_meta' ), 0, 5 );
 		add_filter( 'woocommerce_hidden_order_itemmeta', array( $this, 'set_item_desc_order_meta_hidden' ), 0 );
+		// Deactivate checkout shipping selection
+		add_action( 'woocommerce_review_order_before_shipping', array( $this, 'remove_shipping_rates' ), 0 );
 	}
 
+	/**
+	 * Temporarily removes all shipping rates (except chosen one) from packages to only show chosen package within checkout. 
+	 */
+	public function remove_shipping_rates() {
+		if ( get_option( 'woocommerce_gzd_display_checkout_shipping_rate_select' ) == 'no' )
+			return;
+		$packages = WC()->shipping->get_packages();
+		foreach ( $packages as $i => $package ) {
+			$chosen_method = isset( WC()->session->chosen_shipping_methods[ $i ] ) ? WC()->session->chosen_shipping_methods[ $i ] : '';
+			if ( ! empty( $package[ 'rates' ] ) ) {
+				foreach ( $package[ 'rates' ] as $key => $rate ) {
+					if ( $key != $chosen_method )
+						unset( WC()->shipping->packages[ $i ][ 'rates' ][ $key ] );
+				}
+			}	
+		}
+	}
+
+	/**
+	 * Adds product description to order meta
+	 *  
+	 * @param int $order_id 
+	 * @param int $item_id  
+	 * @param object $product  
+	 * @param int $qty      
+	 * @param array $args     
+	 */
 	public function set_item_desc_order_meta( $order_id, $item_id, $product, $qty, $args ) {
-		wc_add_order_item_meta( $item_id, '_product_desc', $product->get_mini_desc() );
+		wc_add_order_item_meta( $item_id, '_product_desc', $product->gzd_product->get_mini_desc() );
 	}
 
+	/**
+	 * Hide product description from order meta default output
+	 *  
+	 * @param array $metas
+	 */
 	public function set_item_desc_order_meta_hidden( $metas ) {
 		array_push( $metas, '_product_desc' );
 		return $metas;
