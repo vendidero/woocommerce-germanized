@@ -124,8 +124,8 @@ Bugs sowie Hilfe bei der Arbeit an WooCommerce Germanized werden gerne über uns
 == Changelog ==
 
 = 1.0.5 =
-* Feature - Optionally remove address field from checkouts
-* Fix - Shipping time bug within checkouts
+* Feature - Optionally remove address field from checkout
+* Fix - Shipping time bug within checkout
 * Fix - Better theme compatibility for variations
 
 = 1.0.4 =
