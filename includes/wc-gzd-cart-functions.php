@@ -66,7 +66,7 @@ function wc_gzd_cart_totals_order_total_tax_html() {
 				$rate = (int) $tax[ 'tax' ]->rate;
 				echo '
 					<tr class="order-tax">
-						<th>' . sprintf( __( 'incl. %s%% VAT', 'woocommerce-germanized' ), $rate ) . '</th> 
+						<th>' . ( get_option( 'woocommerce_tax_total_display' ) == 'itemized' ? sprintf( __( 'incl. %s%% VAT', 'woocommerce-germanized' ), $rate ) : __( 'incl. VAT', 'woocommerce-germanized' ) ) . '</th> 
 						<td>' . $tax[ 'amount' ] . '</td>
 					</tr>';
 			}

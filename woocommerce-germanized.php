@@ -3,7 +3,7 @@
  * Plugin Name: WooCommerce Germanized
  * Plugin URI: http://www.vendidero.de/woocommerce-germanized
  * Description: Extends WooCommerce to become a legally compliant store for the german market.
- * Version: 1.0.5
+ * Version: 1.1.0
  * Author: Vendidero
  * Author URI: http://vendidero.de
  * Requires at least: 3.8
@@ -26,7 +26,7 @@ final class WooCommerce_Germanized {
 	 *
 	 * @var string
 	 */
-	public $version = '1.0.5';
+	public $version = '1.1.0';
 
 	/**
 	 * Single instance of WooCommerce Germanized Main Class
@@ -181,6 +181,9 @@ final class WooCommerce_Germanized {
 			// Adjust virtual Product Price and tax class
 			add_filter( 'woocommerce_get_price_including_tax', array( $this, 'set_virtual_product_price' ), PHP_INT_MAX, 3 );
 			add_filter( 'get_post_metadata', array( $this, 'inject_gzd_product' ), 0, 4 );
+			// Hide cart estimated text if chosen
+			add_action( 'woocommerce_cart_totals_after_order_total', array( $this, 'hide_cart_estimated_text' ) );
+			add_action( 'woocommerce_after_cart_totals', array( $this, 'remove_cart_tax_zero_filter' ) );
 
 			// Send order notice directly after new order is being added - use these filters because order status has to be updated already
 			add_filter( 'woocommerce_payment_successful_result', array( $this, 'send_order_confirmation_mails' ), 0, 2 );
@@ -427,6 +430,33 @@ final class WooCommerce_Germanized {
 			if ( ! isset( $gateway->force_order_button_text ) || ! $gateway->force_order_button_text )
 				$gateway->order_button_text = __( get_option( 'woocommerce_gzd_order_submit_btn_text' ), 'woocommerce-germanized' );
 		}
+	}
+
+	/**
+	 * Calls a filter to temporarily set cart tax to zero. This is only done to hide the cart tax estimated text.
+	 * Filter is being remove right after get_cart_tax - check has been finished within cart-totals.php
+	 */
+	public function hide_cart_estimated_text() {
+		if ( get_option( 'woocommerce_gzd_display_hide_cart_tax_estimated' ) == 'yes' )
+			add_filter( 'woocommerce_get_cart_tax', array( $this, 'set_cart_tax_zero' ) );
+	}
+
+	/**
+	 * This will set the cart tax to zero
+	 *  
+	 * @param float $tax current's cart tax
+	 * @return int
+	 */
+	public function set_cart_tax_zero( $tax ) {
+		return 0;
+	}
+
+	/**
+	 * Removes the zero cart tax filter after get_cart_tax has been finished
+	 */
+	public function remove_cart_tax_zero_filter() {
+		if ( get_option( 'woocommerce_gzd_display_hide_cart_tax_estimated' ) == 'yes' )
+			remove_filter( 'woocommerce_get_cart_tax', array( $this, 'set_cart_tax_zero' ) );
 	}
 
 	/**

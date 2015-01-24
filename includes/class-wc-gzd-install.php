@@ -263,6 +263,7 @@ class WC_GZD_Install {
 			'woocommerce_prices_include_tax'		 => 'yes',
 			'woocommerce_tax_display_cart'			 => 'incl',
 			'woocommerce_tax_display_shop'			 => 'incl',
+			'woocommerce_tax_total_display'			 => 'itemized',
 			'woocommerce_allowed_countries'	    	 => 'specific',
 			'woocommerce_specific_allowed_countries' => array( 'DE' ),
 		);
