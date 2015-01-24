@@ -4,7 +4,7 @@ Tags: woocommerce, german market, german, germany, deutsch, deutschland, de, de_
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=info@vendidero.de&item_name=Donation+for+WooCommerce+Germanized
 Requires at least: 3.8
 Tested up to: 4.1
-Stable tag: 1.0.5
+Stable tag: 1.1.0
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -122,6 +122,14 @@ Bugs sowie Hilfe bei der Arbeit an WooCommerce Germanized werden gerne über uns
 1. Einstellungsmöglichkeiten für WooCommerce Germanized.
 
 == Changelog ==
+
+= 1.1 =
+* Feature - Hide shipping method select from checkout
+* Feature - Hide "taxes and shipping estimated" from cart
+* Feature - Show thumbnails within checkout table
+* Feature - Implemented Trusted Shops API v2
+* Fix - Sending wrong email text attachments
+* Fix - Much better third party compatibility
 
 = 1.0.5 =
 * Feature - Optionally remove address field from checkout

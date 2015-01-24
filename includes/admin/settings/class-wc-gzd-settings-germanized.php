@@ -430,6 +430,15 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 			array(	'title' => __( 'Checkout & Cart', 'woocommerce-germanized' ), 'type' => 'title', 'id' => 'checkout_options' ),
 
 			array(
+				'title' 	=> __( 'Hide taxes estimated', 'woocommerce-germanized' ),
+				'desc' 		=> __( 'Do you want to hide the "taxes and shipping estimated" text from your cart?', 'woocommerce-germanized' ),
+				'id' 		=> 'woocommerce_gzd_display_hide_cart_tax_estimated',
+				'default'	=> 'yes',
+				'type' 		=> 'checkbox',
+				'desc_tip'	=> __( 'By default WooCommerce adds a "taxes and shipping estimated" text to your cart. This might puzzle your customers and may not meet german law.', 'woocommerce-germanized' ),
+			),
+
+			array(
 				'title' 	=> __( 'Show Thumbnails', 'woocommerce-germanized' ),
 				'desc' 		=> __( 'Show product thumbnails on checkout page?', 'woocommerce-germanized' ),
 				'id' 		=> 'woocommerce_gzd_display_checkout_thumbnails',
