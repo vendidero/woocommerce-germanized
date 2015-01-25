@@ -214,7 +214,7 @@ msgstr "Kleinunternehmerregelung"
 #: includes/admin/settings/class-wc-gzd-settings-germanized.php:70
 #@ woocommerce-germanized
 msgid "VAT based on &#167;19 UStG"
-msgstr "Umsatzsteuerbefreit nach &#167;19 UStG"
+msgstr "Kein Mehrwertsteuerausweis, da Kleinunternehmer nach &#167;19 (1) UStG."
 
 #: includes/admin/settings/class-wc-gzd-settings-germanized.php:74
 #, php-format
@@ -1265,7 +1265,7 @@ msgstr "Alle Preise exkl. der gesetzlichen MwSt."
 #: templates/global/small-business-info.php:13
 #@ woocommerce-germanized
 msgid "Because of the small business owner state according to &#167;19 UStG the seller charge no sales tax, and therefore do not show it."
-msgstr "Als Kleinunternehmer im Sinne von § 19 Abs. 1 UStG wird die Umsatzsteuer nicht berechnet."
+msgstr "Kein Mehrwertsteuerausweis, da Kleinunternehmer nach &#167;19 (1) UStG."
 
 #: templates/forms/revocation-form.php:18
 #@ woocommerce-germanized
@@ -1282,7 +1282,7 @@ msgstr "Widerruf erklären"
 #: templates/single-product/small-business-info.php:14
 #@ woocommerce-germanized
 msgid "VAT free based on &#167;19 UStG"
-msgstr "Umsatzsteuerbefreit nach &#167;19 UStG"
+msgstr "Kein Mehrwertsteuerausweis, da Kleinunternehmer nach &#167;19 (1) UStG."
 
 #: woocommerce-germanized.php:528
 #@ woocommerce
