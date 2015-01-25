@@ -108,15 +108,19 @@ final class WooCommerce_Germanized {
 	public function __construct() {
 
 		// Auto-load classes on demand
-		if ( function_exists( "__autoload" ) ) {
+		if ( function_exists( "__autoload" ) )
 			spl_autoload_register( "__autoload" );
-		}
 		spl_autoload_register( array( $this, 'autoload' ) );
+
+		if ( ! $this->is_woocommerce_activated() ) {
+			add_action( 'admin_init', array( $this, 'deactivate' ), 0 );
+			return;
+		}
 
 		// Define constants
 		$this->define_constants();
 
-		include_once( 'includes/class-wc-gzd-install.php' );
+		$this->includes();
 
 		// Hooks
 		add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), array( $this, 'action_links' ) );
@@ -127,12 +131,11 @@ final class WooCommerce_Germanized {
 		add_action( 'plugins_loaded', array( $this, 'load_plugin_textdomain' ) );
 		add_action( 'woocommerce_init', array( $this, 'replace_woocommerce_cart' ), 0 );
 		add_action( 'woocommerce_init', array( $this, 'set_order_button_gateway_text' ), 1 );
-
-		// Payment Gateway Filter
 		add_filter( 'woocommerce_payment_gateways', array( $this, 'payment_gateway_filter' ), PHP_INT_MAX, 1 );
 
 		// Loaded action
 		do_action( 'woocommerce_germanized_loaded' );
+
 	}
 
 	public function deactivate() {
@@ -159,61 +162,56 @@ final class WooCommerce_Germanized {
 	 * Init WooCommerceGermanized when WordPress initializes.
 	 */
 	public function init() {
-		if ( $this->is_woocommerce_activated() ) {
-			// Before init action
-			do_action( 'before_woocommerce_germanized_init' );
-			// Include required files
-			$this->includes();
-			add_filter( 'woocommerce_locate_template', array( $this, 'filter_templates' ), PHP_INT_MAX, 3 );
-			add_filter( 'woocommerce_product_class', array( $this, 'filter_product_classes' ), PHP_INT_MAX, 4 );
-			add_filter( 'woocommerce_get_settings_pages', array( $this, 'add_settings' ) );
-			add_filter( 'woocommerce_enqueue_styles', array( $this, 'add_styles' ) );
-			add_action( 'wp_enqueue_scripts', array( $this, 'add_scripts' ) );
-			add_action( 'wp_enqueue_scripts', array( $this, 'add_inline_styles' ) );
-			add_action( 'admin_enqueue_scripts', array( $this, 'add_admin_styles' ) );
-			add_action( 'wp_print_scripts', array( $this, 'localize_scripts' ), 5 );
-			add_filter( 'woocommerce_email_classes', array( $this, 'add_emails' ) );
-			add_filter( 'woocommerce_locate_core_template', array( $this, 'email_templates' ), 0, 3 );
-			add_action( 'woocommerce_email_order_meta', array( $this, 'email_small_business_notice' ), 1 );
-			
-			// Add better tax display to order totals
-			add_filter( 'woocommerce_get_order_item_totals', array( $this, 'order_item_totals' ), 0, 2 );
-			add_action( 'woocommerce_cart_calculate_fees', array( $this, 'add_fee_cart' ), 0 );
-			
-			// Adjust virtual Product Price and tax class
-			add_filter( 'woocommerce_get_price_including_tax', array( $this, 'set_virtual_product_price' ), PHP_INT_MAX, 3 );
-			add_filter( 'get_post_metadata', array( $this, 'inject_gzd_product' ), 0, 4 );
-			
-			// Hide cart estimated text if chosen
-			add_action( 'woocommerce_cart_totals_after_order_total', array( $this, 'hide_cart_estimated_text' ) );
-			add_action( 'woocommerce_after_cart_totals', array( $this, 'remove_cart_tax_zero_filter' ) );
+		// Before init action
+		do_action( 'before_woocommerce_germanized_init' );
 
-			// Add better WooCommerce shipping taxation
-			add_filter( 'woocommerce_package_rates', array( $this, 'replace_shipping_rate_class' ), 0, 2 );
+		add_filter( 'woocommerce_locate_template', array( $this, 'filter_templates' ), PHP_INT_MAX, 3 );
+		add_filter( 'woocommerce_product_class', array( $this, 'filter_product_classes' ), PHP_INT_MAX, 4 );
+		add_filter( 'woocommerce_get_settings_pages', array( $this, 'add_settings' ) );
+		add_filter( 'woocommerce_enqueue_styles', array( $this, 'add_styles' ) );
+		add_action( 'wp_enqueue_scripts', array( $this, 'add_scripts' ) );
+		add_action( 'wp_enqueue_scripts', array( $this, 'add_inline_styles' ) );
+		add_action( 'admin_enqueue_scripts', array( $this, 'add_admin_styles' ) );
+		add_action( 'wp_print_scripts', array( $this, 'localize_scripts' ), 5 );
+		add_filter( 'woocommerce_email_classes', array( $this, 'add_emails' ) );
+		add_filter( 'woocommerce_locate_core_template', array( $this, 'email_templates' ), 0, 3 );
+		add_action( 'woocommerce_email_order_meta', array( $this, 'email_small_business_notice' ), 1 );
+		
+		// Add better tax display to order totals
+		add_filter( 'woocommerce_get_order_item_totals', array( $this, 'order_item_totals' ), 0, 2 );
+		add_action( 'woocommerce_cart_calculate_fees', array( $this, 'add_fee_cart' ), 0 );
+		
+		// Adjust virtual Product Price and tax class
+		add_filter( 'woocommerce_get_price_including_tax', array( $this, 'set_virtual_product_price' ), PHP_INT_MAX, 3 );
+		add_filter( 'get_post_metadata', array( $this, 'inject_gzd_product' ), 0, 4 );
+		
+		// Hide cart estimated text if chosen
+		add_action( 'woocommerce_cart_totals_after_order_total', array( $this, 'hide_cart_estimated_text' ) );
+		add_action( 'woocommerce_after_cart_totals', array( $this, 'remove_cart_tax_zero_filter' ) );
 
-			// Send order notice directly after new order is being added - use these filters because order status has to be updated already
-			add_filter( 'woocommerce_payment_successful_result', array( $this, 'send_order_confirmation_mails' ), 0, 2 );
-			add_filter( 'woocommerce_checkout_no_payment_needed_redirect', array( $this, 'send_order_confirmation_mails' ), 0, 2 );
+		// Add better WooCommerce shipping taxation
+		add_filter( 'woocommerce_package_rates', array( $this, 'replace_shipping_rate_class' ), 0, 2 );
 
-			// Remove processing + on-hold default order confirmation mails
-			$mailer = WC()->mailer();
-			$mails = $mailer->get_emails();
-			remove_action( 'woocommerce_order_status_pending_to_processing_notification', array( $mails[ 'WC_Email_Customer_Processing_Order' ], 'trigger' ) );
-			remove_action( 'woocommerce_order_status_pending_to_on-hold_notification', array( $mails[ 'WC_Email_Customer_Processing_Order' ], 'trigger' ) );
-			remove_action( 'woocommerce_order_status_pending_to_processing_notification', array( $mails[ 'WC_Email_New_Order' ], 'trigger' ) );
-			remove_action( 'woocommerce_order_status_pending_to_on-hold_notification', array( $mails[ 'WC_Email_New_Order' ], 'trigger' ) );
-			remove_action( 'woocommerce_order_status_pending_to_completed_notification', array( $mails[ 'WC_Email_New_Order' ], 'trigger' ) );
+		// Send order notice directly after new order is being added - use these filters because order status has to be updated already
+		add_filter( 'woocommerce_payment_successful_result', array( $this, 'send_order_confirmation_mails' ), 0, 2 );
+		add_filter( 'woocommerce_checkout_no_payment_needed_redirect', array( $this, 'send_order_confirmation_mails' ), 0, 2 );
 
-			$this->units          = new WC_GZD_Units();
-			$this->trusted_shops  = new WC_GZD_Trusted_Shops();
-			$this->ekomi    	  = new WC_GZD_Ekomi();
-			$this->emails    	  = new WC_GZD_Emails();
+		// Remove processing + on-hold default order confirmation mails
+		$mailer = WC()->mailer();
+		$mails = $mailer->get_emails();
+		remove_action( 'woocommerce_order_status_pending_to_processing_notification', array( $mails[ 'WC_Email_Customer_Processing_Order' ], 'trigger' ) );
+		remove_action( 'woocommerce_order_status_pending_to_on-hold_notification', array( $mails[ 'WC_Email_Customer_Processing_Order' ], 'trigger' ) );
+		remove_action( 'woocommerce_order_status_pending_to_processing_notification', array( $mails[ 'WC_Email_New_Order' ], 'trigger' ) );
+		remove_action( 'woocommerce_order_status_pending_to_on-hold_notification', array( $mails[ 'WC_Email_New_Order' ], 'trigger' ) );
+		remove_action( 'woocommerce_order_status_pending_to_completed_notification', array( $mails[ 'WC_Email_New_Order' ], 'trigger' ) );
 
-			// Init action
-			do_action( 'woocommerce_germanized_init' );
-		} else {
-			add_action( 'admin_init', array( $this, 'deactivate' ), 0 );
-		}
+		$this->units          = new WC_GZD_Units();
+		$this->trusted_shops  = new WC_GZD_Trusted_Shops();
+		$this->ekomi    	  = new WC_GZD_Ekomi();
+		$this->emails    	  = new WC_GZD_Emails();
+
+		// Init action
+		do_action( 'woocommerce_germanized_init' );
 	}
 
 	/**
@@ -289,6 +287,9 @@ final class WooCommerce_Germanized {
 	 */
 	private function includes() {
 
+		include_once ( 'includes/wc-gzd-core-functions.php' );
+		include_once ( 'includes/class-wc-gzd-install.php' );
+
 		if ( is_admin() ) {
 			include_once( 'includes/admin/class-wc-gzd-admin.php' );
 			include_once( 'includes/admin/class-wc-gzd-admin-welcome.php' );
@@ -301,7 +302,7 @@ final class WooCommerce_Germanized {
 			$this->ajax_includes();
 
 		if ( ! is_admin() || defined( 'DOING_AJAX' ) )
-			$this->frontend_includes();
+			add_action( 'init', array( $this, 'frontend_includes' ) );
 
 		// Post types
 		include_once ( 'includes/class-wc-gzd-post-types.php' );
@@ -310,7 +311,6 @@ final class WooCommerce_Germanized {
 		include_once ( 'includes/abstracts/abstract-wc-gzd-product.php' );
 		include_once ( 'includes/abstracts/abstract-wc-gzd-payment-gateway.php' );
 
-		include_once ( 'includes/wc-gzd-core-functions.php' );
 		include_once ( 'includes/wc-gzd-cart-functions.php' );
 		include_once ( 'includes/class-wc-gzd-checkout.php' );
 
@@ -400,7 +400,7 @@ final class WooCommerce_Germanized {
 	 */
 	public function payment_gateway_filter( $gateways ) {
 		// Needs to be included because filter is applied before WC_Germanized load
-		include_once ( $this->plugin_path() . '/includes/abstracts/abstract-wc-gzd-payment-gateway.php' );
+		// include_once ( $this->plugin_path() . '/includes/abstracts/abstract-wc-gzd-payment-gateway.php' );
 		if ( ! empty( $gateways ) ) {
 			foreach ( $gateways as $key => $gateway ) {
 				if ( $gateway == 'WC_Gateway_BACS' )

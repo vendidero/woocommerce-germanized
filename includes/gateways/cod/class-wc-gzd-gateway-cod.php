@@ -33,8 +33,4 @@ class WC_GZD_Gateway_COD extends WC_Gateway_COD {
 			return $this->parent->$key;
 	}
 
-	public function init_form_fields() {
-		parent::init_form_fields();
-	}
-
 }
