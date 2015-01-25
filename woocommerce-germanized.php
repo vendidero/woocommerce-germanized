@@ -116,7 +116,7 @@ final class WooCommerce_Germanized {
 		// Define constants
 		$this->define_constants();
 
-		include_once 'includes/class-wc-gzd-install.php';
+		include_once( 'includes/class-wc-gzd-install.php' );
 
 		// Hooks
 		add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), array( $this, 'action_links' ) );
@@ -244,7 +244,7 @@ final class WooCommerce_Germanized {
 			$path = $this->plugin_path() . '/includes/gateways/' . trailingslashit( substr( str_replace( '_', '-', $class ), 15 ) );
 
 		if ( $path && is_readable( $path . $file ) ) {
-			include_once $path . $file;
+			include_once( $path . $file );
 			return;
 		}
 	}
@@ -290,11 +290,11 @@ final class WooCommerce_Germanized {
 	private function includes() {
 
 		if ( is_admin() ) {
-			include_once 'includes/admin/class-wc-gzd-admin.php';
-			include_once 'includes/admin/class-wc-gzd-admin-welcome.php';
-			include_once 'includes/admin/class-wc-gzd-admin-notices.php';
-			include_once 'includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php';
-			include_once 'includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php';
+			include_once( 'includes/admin/class-wc-gzd-admin.php' );
+			include_once( 'includes/admin/class-wc-gzd-admin-welcome.php' );
+			include_once( 'includes/admin/class-wc-gzd-admin-notices.php' );
+			include_once( 'includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php' );
+			include_once( 'includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php' );
 		}
 
 		if ( defined( 'DOING_AJAX' ) )
@@ -304,15 +304,15 @@ final class WooCommerce_Germanized {
 			$this->frontend_includes();
 
 		// Post types
-		include_once 'includes/class-wc-gzd-post-types.php';
+		include_once ( 'includes/class-wc-gzd-post-types.php' );
 
 		// Abstracts
-		include_once 'includes/abstracts/abstract-wc-gzd-product.php';
-		include_once 'includes/abstracts/abstract-wc-gzd-payment-gateway.php';
+		include_once ( 'includes/abstracts/abstract-wc-gzd-product.php' );
+		include_once ( 'includes/abstracts/abstract-wc-gzd-payment-gateway.php' );
 
-		include_once 'includes/wc-gzd-core-functions.php';
-		include_once 'includes/wc-gzd-cart-functions.php';
-		include_once 'includes/class-wc-gzd-checkout.php';
+		include_once ( 'includes/wc-gzd-core-functions.php' );
+		include_once ( 'includes/wc-gzd-cart-functions.php' );
+		include_once ( 'includes/class-wc-gzd-checkout.php' );
 
 	}
 
@@ -320,14 +320,14 @@ final class WooCommerce_Germanized {
 	 * Include required ajax files.
 	 */
 	public function ajax_includes() {
-		include_once 'includes/class-wc-gzd-ajax.php';
+		include_once( 'includes/class-wc-gzd-ajax.php' );
 	}
 
 	/**
 	 * Include required frontend files.
 	 */
 	public function frontend_includes() {
-		include_once 'includes/wc-gzd-template-hooks.php';
+		include_once( 'includes/wc-gzd-template-hooks.php' );
 	}
 
 	/**
@@ -335,7 +335,7 @@ final class WooCommerce_Germanized {
 	 */
 	public function include_template_functions() {
 		if ( ! is_admin() || defined( 'DOING_AJAX' ) )
-			include_once 'includes/wc-gzd-template-functions.php';
+			include_once( 'includes/wc-gzd-template-functions.php' );
 	}
 
 	/**
@@ -400,7 +400,7 @@ final class WooCommerce_Germanized {
 	 */
 	public function payment_gateway_filter( $gateways ) {
 		// Needs to be included because filter is applied before WC_Germanized load
-		include_once 'includes/abstracts/abstract-wc-gzd-payment-gateway.php';
+		include_once ( $this->plugin_path() . '/includes/abstracts/abstract-wc-gzd-payment-gateway.php' );
 		if ( ! empty( $gateways ) ) {
 			foreach ( $gateways as $key => $gateway ) {
 				if ( $gateway == 'WC_Gateway_BACS' )
@@ -529,9 +529,9 @@ final class WooCommerce_Germanized {
 	 */
 	public function include_widgets() {
 		if ( is_object( $this->trusted_shops) && $this->trusted_shops->is_rich_snippets_enabled() )
-			include_once 'includes/widgets/class-wc-gzd-widget-trusted-shops-rich-snippets.php';
+			include_once( 'includes/widgets/class-wc-gzd-widget-trusted-shops-rich-snippets.php' );
 		if ( is_object( $this->trusted_shops) && $this->trusted_shops->is_review_widget_enabled() )
-			include_once 'includes/widgets/class-wc-gzd-widget-trusted-shops-reviews.php';
+			include_once( 'includes/widgets/class-wc-gzd-widget-trusted-shops-reviews.php' );
 	}
 
 	/**
@@ -620,7 +620,7 @@ final class WooCommerce_Germanized {
 	 * @return array
 	 */
 	public function add_settings( $integrations ) {
-		include_once 'includes/admin/settings/class-wc-gzd-settings-germanized.php';
+		include_once( 'includes/admin/settings/class-wc-gzd-settings-germanized.php' );
 		$integrations[] = new WC_GZD_Settings_Germanized();
 		return $integrations;
 	}
