@@ -175,15 +175,21 @@ final class WooCommerce_Germanized {
 			add_filter( 'woocommerce_email_classes', array( $this, 'add_emails' ) );
 			add_filter( 'woocommerce_locate_core_template', array( $this, 'email_templates' ), 0, 3 );
 			add_action( 'woocommerce_email_order_meta', array( $this, 'email_small_business_notice' ), 1 );
+			
 			// Add better tax display to order totals
 			add_filter( 'woocommerce_get_order_item_totals', array( $this, 'order_item_totals' ), 0, 2 );
 			add_action( 'woocommerce_cart_calculate_fees', array( $this, 'add_fee_cart' ), 0 );
+			
 			// Adjust virtual Product Price and tax class
 			add_filter( 'woocommerce_get_price_including_tax', array( $this, 'set_virtual_product_price' ), PHP_INT_MAX, 3 );
 			add_filter( 'get_post_metadata', array( $this, 'inject_gzd_product' ), 0, 4 );
+			
 			// Hide cart estimated text if chosen
 			add_action( 'woocommerce_cart_totals_after_order_total', array( $this, 'hide_cart_estimated_text' ) );
 			add_action( 'woocommerce_after_cart_totals', array( $this, 'remove_cart_tax_zero_filter' ) );
+
+			// Add better WooCommerce shipping taxation
+			add_filter( 'woocommerce_package_rates', array( $this, 'replace_shipping_rate_class' ), 0, 2 );
 
 			// Send order notice directly after new order is being added - use these filters because order status has to be updated already
 			add_filter( 'woocommerce_payment_successful_result', array( $this, 'send_order_confirmation_mails' ), 0, 2 );
@@ -211,6 +217,19 @@ final class WooCommerce_Germanized {
 	}
 
 	/**
+	 * Replace default WC_Shipping_Rate to enable exact taxation for shipping costs
+	 *  
+	 * @param  array $rates containing WC_Shipping_Rate objects
+	 * @param  WC_Shipping_Rate $rate current object
+	 * @return array 
+	 */
+	public function replace_shipping_rate_class( $rates, $rate ) {
+		foreach ( $rates as $key => $rate )
+			$rates[ $key ] = new WC_GZD_Shipping_Rate( $rate );
+		return $rates;
+	}
+
+	/**
 	 * Auto-load WC_Germanized classes on demand to reduce memory consumption.
 	 *
 	 * @param mixed   $class
@@ -221,9 +240,7 @@ final class WooCommerce_Germanized {
 		$class = strtolower( $class );
 		$file = 'class-' . str_replace( '_', '-', $class ) . '.php';
 
-		if ( strpos( $class, 'wc_gzd_shipping_' ) === 0 )
-			$path = $this->plugin_path() . '/includes/shipping/' . trailingslashit( substr( str_replace( '_', '-', $class ), 16 ) );
-		else if ( strpos( $class, 'wc_gzd_gateway_' ) === 0 )
+		if ( strpos( $class, 'wc_gzd_gateway_' ) === 0 )
 			$path = $this->plugin_path() . '/includes/gateways/' . trailingslashit( substr( str_replace( '_', '-', $class ), 15 ) );
 
 		if ( $path && is_readable( $path . $file ) ) {
