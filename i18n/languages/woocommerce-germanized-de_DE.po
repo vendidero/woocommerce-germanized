@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: WooCommerce Germanized v1.0.5\n"
+"Project-Id-Version: WooCommerce Germanized v1.1.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-29 12:26+0100\n"
-"PO-Revision-Date: 2015-01-24 16:31:30+0000\n"
+"PO-Revision-Date: 2015-01-25 09:45:11+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -74,19 +74,6 @@ msgstr "ml"
 #@ woocommerce-germanized
 msgid "l"
 msgstr "l"
-
-#: includes/abstracts/abstract-wc-gzd-product.php:91
-#: woocommerce-germanized.php:741
-#, php-format
-#@ woocommerce-germanized
-msgid "incl. %s VAT"
-msgstr "inkl. %s MwSt."
-
-#: includes/abstracts/abstract-wc-gzd-product.php:91
-#, php-format
-#@ woocommerce-germanized
-msgid "excl. %s VAT"
-msgstr "exkl. %s MwSt."
 
 #: includes/admin/class-wc-gzd-admin-welcome.php:53
 #@ woocommerce-germanized
@@ -1115,7 +1102,9 @@ msgstr "Mwst. berechnen?"
 msgid "Payment charge"
 msgstr "Zahlungsgebühr"
 
-#: includes/wc-gzd-cart-functions.php:69
+#: includes/abstracts/abstract-wc-gzd-product.php:91
+#: includes/wc-gzd-cart-functions.php:68
+#: woocommerce-germanized.php:741
 #, php-format
 #@ woocommerce-germanized
 msgid "incl. %s%% VAT"
@@ -1132,7 +1121,7 @@ msgid "Choose a Payment Gateway"
 msgstr "Zahlungsmethode auswählen"
 
 #: includes/admin/settings/class-wc-gzd-settings-germanized.php:509
-#: includes/wc-gzd-cart-functions.php:104
+#: includes/wc-gzd-cart-functions.php:103
 #@ woocommerce-germanized
 msgid "I want immediate access to the digital content and I acknowledge that thereby I lose my right to cancel once the service has begun."
 msgstr "Ja, ich möchte sofort Zugang zu dem digitalen Inhalt und weiß, dass mein Widerrufsrecht mit dem Zugang erlischt."
@@ -1685,7 +1674,8 @@ msgid "Select this option if you want to display shipping costs notice for virtu
 msgstr "Versandkosten-Hinweis auch für virtuelle Produkte aktivieren?"
 
 #: includes/abstracts/abstract-wc-gzd-product.php:90
-#: includes/wc-gzd-cart-functions.php:69
+#: includes/wc-gzd-cart-functions.php:68
+#: woocommerce-germanized.php:741
 #@ woocommerce-germanized
 msgid "incl. VAT"
 msgstr "inkl. MwSt."
@@ -1773,12 +1763,6 @@ msgstr "Anrede im Checkout"
 msgid "Add a title field to the address within checkout?"
 msgstr "Fügt ein Feld \"Anrede\" im Checkout hinzu."
 
-#. translators: plugin header field 'Version'
-#: woocommerce-germanized.php:0
-#@ woocommerce-germanized
-msgid "1.0.5"
-msgstr "1.0.5"
-
 #: includes/admin/settings/class-wc-gzd-settings-germanized.php:497
 #@ woocommerce-germanized
 msgid "Show digital notice"
@@ -1838,4 +1822,16 @@ msgstr "Den Hinweis \"Versandkosten und Steuern werden geschätzt\" entfernen?"
 #@ woocommerce-germanized
 msgid "By default WooCommerce adds a \"taxes and shipping estimated\" text to your cart. This might puzzle your customers and may not meet german law."
 msgstr "Der Hinweistext im Warenkorb zur Schätzung von Steuern und Versandkosten kann für Verwirrung beim Kunden sorgen und scheint nicht für den deutschen Markt geeignet."
+
+#: includes/abstracts/abstract-wc-gzd-product.php:91
+#, php-format
+#@ woocommerce-germanized
+msgid "excl. %s%% VAT"
+msgstr "exkl. %s%% MwSt."
+
+#. translators: plugin header field 'Version'
+#: woocommerce-germanized.php:0
+#@ woocommerce-germanized
+msgid "1.1.0"
+msgstr "1.1.0"
 
