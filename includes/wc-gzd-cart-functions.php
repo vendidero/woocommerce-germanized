@@ -63,10 +63,9 @@ function wc_gzd_cart_totals_order_total_tax_html() {
 		}
 		if ( ! empty( $tax_array ) ) {	
 			foreach ( $tax_array as $tax ) {
-				$rate = (int) $tax[ 'tax' ]->rate;
 				echo '
 					<tr class="order-tax">
-						<th>' . ( get_option( 'woocommerce_tax_total_display' ) == 'itemized' ? sprintf( __( 'incl. %s%% VAT', 'woocommerce-germanized' ), $rate ) : __( 'incl. VAT', 'woocommerce-germanized' ) ) . '</th> 
+						<th>' . ( get_option( 'woocommerce_tax_total_display' ) == 'itemized' ? sprintf( __( 'incl. %s%% VAT', 'woocommerce-germanized' ), wc_gzd_format_tax_rate_percentage( $tax[ 'tax' ]->rate ) ) : __( 'incl. VAT', 'woocommerce-germanized' ) ) . '</th> 
 						<td>' . $tax[ 'amount' ] . '</td>
 					</tr>';
 			}

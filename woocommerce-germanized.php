@@ -731,14 +731,14 @@ final class WooCommerce_Germanized {
 			} else {
 				$base_rate = array_values( WC_Tax::get_shop_base_rate() );
 				$base_rate = (object) $base_rate[0];
-				$base_rate->rate = $base_rate->rate . '%';
+				$base_rate->rate = $base_rate->rate;
 				$tax_array[] = array( 'tax' => $base_rate, 'amount' => wc_price( $order->get_total_tax() ) );
 			}
 
 			if ( ! empty( $tax_array ) ) {
 				foreach ( $tax_array as $tax ) {
 					$order_totals['tax_' . $tax['tax']->label] = array(
-						'label' => '<span class="tax small tax-label">' . ( get_option( 'woocommerce_tax_total_display' ) == 'itemized' ? sprintf( __( 'incl. %s VAT', 'woocommerce-germanized' ), $tax[ 'tax' ]->rate ) : __( 'incl. VAT', 'woocommerce-germanized' ) ) . '</span>',
+						'label' => '<span class="tax small tax-label">' . ( get_option( 'woocommerce_tax_total_display' ) == 'itemized' ? sprintf( __( 'incl. %s%% VAT', 'woocommerce-germanized' ), wc_gzd_format_tax_rate_percentage( $tax[ 'tax' ]->rate ) ) : __( 'incl. VAT', 'woocommerce-germanized' ) ) . '</span>',
 						'value' => '<span class="tax small tax-value">' . $tax[ 'amount' ] . '</span>'
 					);
 				}
