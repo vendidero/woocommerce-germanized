@@ -88,7 +88,7 @@ class WC_GZD_Product {
 				$tax_rates = array_values( $tax_rates );
 				if ( $this->is_virtual_vat_exception() )
 					return ( $tax_display_mode == 'incl' ? __( 'incl. VAT', 'woocommerce-germanized' ) : __( 'excl. VAT', 'woocommerce-germanized' ) );
-				return ( $tax_display_mode == 'incl' ? sprintf( __( 'incl. %s VAT', 'woocommerce-germanized' ), ( wc_gzd_format_tax_rate_percentage( $tax_rates[0][ 'rate' ] ) ) . '%' ) : sprintf( __( 'excl. %s VAT', 'woocommerce-germanized' ), ( (int) $tax_rates[0][ 'rate' ] ) . '%' ) );
+				return ( $tax_display_mode == 'incl' ? sprintf( __( 'incl. %s%% VAT', 'woocommerce-germanized' ), ( wc_gzd_format_tax_rate_percentage( $tax_rates[0][ 'rate' ] ) ) ) : sprintf( __( 'excl. %s%% VAT', 'woocommerce-germanized' ), ( wc_gzd_format_tax_rate_percentage( $tax_rates[0][ 'rate' ] ) ) ) );
 			}
 		} 
 		return false;
