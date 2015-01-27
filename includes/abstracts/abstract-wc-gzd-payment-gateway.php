@@ -1,6 +1,6 @@
 <?php
 /**
- * Adds payment method fee to applicable payment methods
+ * Adds payment method fee to WC_Payment_Gateway
  *
  * @class 		WC_GZD_Payment_Gateway
  * @version		1.0.0
@@ -19,6 +19,8 @@ class WC_GZD_Payment_Gateway {
 			$this->description .= ' ' . sprintf( __( 'Plus %s payment charge.', 'woocommerce-germanized' ), wc_price( $this->get_option( 'fee' ) ) );
 		}
 		add_action( 'woocommerce_update_options_payment_gateways_' . $this->id, array( $this->gateway, 'process_admin_options' ), PHP_INT_MAX );
+		if ( ! isset( $this->gateway->force_order_button_text ) || ! $this->gateway->force_order_button_text )
+			$this->gateway->order_button_text = __( get_option( 'woocommerce_gzd_order_submit_btn_text' ), 'woocommerce-germanized' );
 	}
 
 	public function __get( $key ) {
