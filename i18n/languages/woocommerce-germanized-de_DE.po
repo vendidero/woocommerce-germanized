@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: WooCommerce Germanized v1.1.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-29 12:26+0100\n"
-"PO-Revision-Date: 2015-01-25 09:45:11+0000\n"
+"PO-Revision-Date: 2015-01-27 13:48:18+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -1265,7 +1265,7 @@ msgstr "Alle Preise exkl. der gesetzlichen MwSt."
 #: templates/global/small-business-info.php:13
 #@ woocommerce-germanized
 msgid "Because of the small business owner state according to &#167;19 UStG the seller charge no sales tax, and therefore do not show it."
-msgstr "Als Kleinunternehmer im Sinne von § 19 Abs. 1 UStG wird die Umsatzsteuer nicht berechnet."
+msgstr "Kein Mehrwertsteuerausweis, da Kleinunternehmer nach §19 (1) UStG."
 
 #: templates/forms/revocation-form.php:18
 #@ woocommerce-germanized

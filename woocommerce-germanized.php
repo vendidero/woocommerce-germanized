@@ -130,8 +130,7 @@ final class WooCommerce_Germanized {
 		add_action( 'widgets_init', array( $this, 'include_widgets' ), 25 );
 		add_action( 'plugins_loaded', array( $this, 'load_plugin_textdomain' ) );
 		add_action( 'woocommerce_init', array( $this, 'replace_woocommerce_cart' ), 0 );
-		add_action( 'woocommerce_init', array( $this, 'set_order_button_gateway_text' ), 1 );
-		add_filter( 'woocommerce_payment_gateways', array( $this, 'payment_gateway_filter' ), PHP_INT_MAX, 1 );
+		add_action( 'woocommerce_init', array( $this, 'replace_woocommerce_payment_gateways' ), 0 );
 
 		// Loaded action
 		do_action( 'woocommerce_germanized_loaded' );
@@ -176,7 +175,7 @@ final class WooCommerce_Germanized {
 		add_filter( 'woocommerce_email_classes', array( $this, 'add_emails' ) );
 		add_filter( 'woocommerce_locate_core_template', array( $this, 'email_templates' ), 0, 3 );
 		add_action( 'woocommerce_email_order_meta', array( $this, 'email_small_business_notice' ), 1 );
-		
+
 		// Add better tax display to order totals
 		add_filter( 'woocommerce_get_order_item_totals', array( $this, 'order_item_totals' ), 0, 2 );
 		add_action( 'woocommerce_cart_calculate_fees', array( $this, 'add_fee_cart' ), 0 );
@@ -188,6 +187,9 @@ final class WooCommerce_Germanized {
 		// Hide cart estimated text if chosen
 		add_action( 'woocommerce_cart_totals_after_order_total', array( $this, 'hide_cart_estimated_text' ) );
 		add_action( 'woocommerce_after_cart_totals', array( $this, 'remove_cart_tax_zero_filter' ) );
+
+		// Force order button text for every payment gateway
+		add_action( 'woocommerce_before_calculate_totals', array( $this, 'set_order_button_gateway_text' ), 1 );
 
 		// Add better WooCommerce shipping taxation
 		add_filter( 'woocommerce_package_rates', array( $this, 'replace_shipping_rate_class' ), 0, 2 );
@@ -212,6 +214,13 @@ final class WooCommerce_Germanized {
 
 		// Init action
 		do_action( 'woocommerce_germanized_init' );
+	}
+
+	/**
+	 * Replaces default WC_Payment_Gateways to enable dependency injection
+	 */
+	public function replace_woocommerce_payment_gateways() {
+		WC()->payment_gateways = WC_GZD_Payment_Gateways::instance();
 	}
 
 	/**
@@ -390,28 +399,6 @@ final class WooCommerce_Germanized {
 				return false;
 		}
 		return true;
-	}
-
-	/**
-	 * Filter payment gateway classes to load WC_GZD_Gateway_BACS.
-	 *  
-	 * @param  array $gateways 
-	 * @return array filtered gateway array
-	 */
-	public function payment_gateway_filter( $gateways ) {
-		// Needs to be included because filter is applied before WC_Germanized load
-		// include_once ( $this->plugin_path() . '/includes/abstracts/abstract-wc-gzd-payment-gateway.php' );
-		if ( ! empty( $gateways ) ) {
-			foreach ( $gateways as $key => $gateway ) {
-				if ( $gateway == 'WC_Gateway_BACS' )
-					$gateways[ $key ] = 'WC_GZD_Gateway_BACS';
-				else if ( $gateway == 'WC_Gateway_COD' )
-					$gateways[ $key ] = 'WC_GZD_Gateway_COD';
-				else if ( $gateway == 'WC_Gateway_Paypal' )
-					$gateways[ $key ] = 'WC_GZD_Gateway_Paypal';
-			}
-		}
-		return $gateways;
 	}
 
 	/**
@@ -708,20 +695,17 @@ final class WooCommerce_Germanized {
 			return $product->get_price() * $qty;
 		return $price;
 	}
- 
+
 	/**
 	 * Update fee for cart if feeable gateway has been selected as payment method
 	 */
 	public function add_fee_cart() {
-		if ( in_array( WC()->session->get('chosen_payment_method'), $this->get_payment_gateways_feeable() ) ) {
-			$key = WC()->session->get('chosen_payment_method');
-			$gateways = WC()->payment_gateways()->get_available_payment_gateways();
-			if ( isset( $gateways[ $key ] ) ) {
-				$gateway = $gateways[ $key ];
-				if ( is_callable( array( $gateway, 'add_fee' ) ) )
-					$gateway->add_fee();
-			}
-		}
+		$gateways = WC()->payment_gateways()->get_available_payment_gateways();
+		if ( ! ( $key = WC()->session->get('chosen_payment_method') ) || ! isset( $gateways[ $key ] ) )
+			return;
+		$gateway = $gateways[ $key ];
+		if ( isset( $gateway->parent ) && is_callable( array( $gateway->parent, 'add_fee' ) ) )
+			$gateway->parent->add_fee();
 	}
 
 	/**
