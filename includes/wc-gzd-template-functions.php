@@ -61,16 +61,6 @@ if ( ! function_exists( 'woocommerce_gzd_template_single_tax_info' ) ) {
 	function woocommerce_gzd_template_single_tax_info() {
 		wc_get_template( 'single-product/tax-info.php' );
 	}
-}
-
-if ( ! function_exists( 'woocommerce_gzd_template_single_small_business_info' ) ) {
-
-	/**
-	 * Single Product small business info
-	 */
-	function woocommerce_gzd_template_single_small_business_info() {
-		wc_get_template( 'single-product/small-business-info.php' );
-	}
 } 
 
 if ( ! function_exists( 'woocommerce_gzd_template_small_business_info' ) ) {

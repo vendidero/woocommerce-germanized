@@ -3,7 +3,7 @@
  * Plugin Name: WooCommerce Germanized
  * Plugin URI: http://www.vendidero.de/woocommerce-germanized
  * Description: Extends WooCommerce to become a legally compliant store for the german market.
- * Version: 1.1.0
+ * Version: 1.1.1
  * Author: Vendidero
  * Author URI: http://vendidero.de
  * Requires at least: 3.8
@@ -26,7 +26,7 @@ final class WooCommerce_Germanized {
 	 *
 	 * @var string
 	 */
-	public $version = '1.1.0';
+	public $version = '1.1.1';
 
 	/**
 	 * Single instance of WooCommerce Germanized Main Class
@@ -68,9 +68,8 @@ final class WooCommerce_Germanized {
 	 * @return WooCommerceGermanized - Main instance
 	 */
 	public static function instance() {
-		if ( is_null( self::$_instance ) ) {
+		if ( is_null( self::$_instance ) )
 			self::$_instance = new self();
-		}
 		return self::$_instance;
 	}
 
@@ -189,7 +188,7 @@ final class WooCommerce_Germanized {
 		add_action( 'woocommerce_after_cart_totals', array( $this, 'remove_cart_tax_zero_filter' ) );
 
 		// Add better WooCommerce shipping taxation
-		add_filter( 'woocommerce_package_rates', array( $this, 'replace_shipping_rate_class' ), 0, 2 );
+		// add_filter( 'woocommerce_package_rates', array( $this, 'replace_shipping_rate_class' ), 0, 2 );
 
 		// Send order notice directly after new order is being added - use these filters because order status has to be updated already
 		add_filter( 'woocommerce_payment_successful_result', array( $this, 'send_order_confirmation_mails' ), 0, 2 );
@@ -308,7 +307,7 @@ final class WooCommerce_Germanized {
 			$this->ajax_includes();
 
 		if ( ! is_admin() || defined( 'DOING_AJAX' ) )
-			add_action( 'init', array( $this, 'frontend_includes' ) );
+			add_action( 'init', array( $this, 'frontend_includes' ), 5 );
 
 		// Post types
 		include_once ( 'includes/class-wc-gzd-post-types.php' );

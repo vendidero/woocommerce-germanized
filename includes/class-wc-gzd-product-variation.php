@@ -19,7 +19,6 @@ class WC_GZD_Product_Variation extends WC_Product_Variation {
 	 */
 	public function __construct( $product ) {
 		parent::__construct( $product );
-		$this->variation_level_meta_data[ 'delivery_time' ] = '';
 		$this->variation_level_meta_data[ 'unit' ] = 0;
 		$this->variation_level_meta_data[ 'unit_price' ] = 0;
 		$this->variation_level_meta_data[ 'unit_base' ] = '';
@@ -30,16 +29,27 @@ class WC_GZD_Product_Variation extends WC_Product_Variation {
 	}
 
 	/**
+	 * Returns the current products delivery time term without falling back to default terms
+	 * 
+	 * @return bool|object false returns false if term does not exist otherwise returns term object
+	 */
+	public function get_delivery_time() {
+		$terms = wp_get_post_terms( $this->variation_id, 'product_delivery_time' );
+		if ( is_wp_error( $terms ) || empty( $terms ) )
+			return false;
+		return $terms[ 0 ];
+	}
+
+	/**
 	 * Implement getter to grab delivery time
 	 *  
 	 * @param  string $key
 	 * @return mixed
 	 */
 	public function __get( $key ) {
-		$value = parent::__get($key);
 		if ( $key == 'delivery_time' )
-			$value = get_the_terms( $this->variation_id, 'product_delivery_time' );
-		return $value;
+			return $this->get_delivery_time();
+		return parent::__get( $key );
 	}
 
 }

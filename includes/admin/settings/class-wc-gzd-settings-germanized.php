@@ -457,6 +457,15 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 			),
 
 			array(
+				'title' 	=> __( 'Show back to cart button', 'woocommerce-germanized' ),
+				'desc' 		=> __( 'Show back to cart button within your checkout table?', 'woocommerce-germanized' ),
+				'id' 		=> 'woocommerce_gzd_display_checkout_back_to_cart_button',
+				'default'	=> 'no',
+				'type' 		=> 'checkbox',
+				'desc_tip'	=> __( 'This button may let your customer edit their order before submitting. Some people state that this button should be hidden to avoid legal problems.', 'woocommerce-germanized' ),
+			),
+
+			array(
 				'title' 	=> __( 'Checkout Table Color', 'woocommerce-germanized' ),
 				'id' 		=> 'woocommerce_gzd_display_checkout_table_color',
 				'desc_tip'	=> __( 'Choose the color of your checkout product table. This table should be highlighted within your checkout page.', 'woocommerce-germanized' ),

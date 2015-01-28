@@ -8,9 +8,8 @@ class WC_GZD_Checkout {
 	protected static $_instance = null;
 
 	public static function instance() {
-		if ( is_null( self::$_instance ) ) {
+		if ( is_null( self::$_instance ) )
 			self::$_instance = new self();
-		}
 		return self::$_instance;
 	}
 
@@ -33,7 +32,26 @@ class WC_GZD_Checkout {
 	}
 
 	public function __construct() {
+		add_action( 'init', array( $this, 'init_fields' ) );
+		add_filter( 'woocommerce_billing_fields', array( $this, 'set_custom_fields' ), 0, 1 );
+		add_filter( 'woocommerce_shipping_fields', array( $this, 'set_custom_fields_shipping' ), 0, 1 );
+		// Add Fields to Order Edit Page
+		add_filter( 'woocommerce_admin_billing_fields', array( $this, 'set_custom_fields_admin' ), 0, 1 );
+		add_filter( 'woocommerce_admin_shipping_fields', array( $this, 'set_custom_fields_admin' ), 0, 1 );
+		// Save Fields on order
+		add_action( 'woocommerce_checkout_update_order_meta', array( $this, 'save_fields' ) );
+		// Add Title to billing address format
+		add_filter( 'woocommerce_order_formatted_billing_address', array( $this, 'set_formatted_billing_address' ), 0, 2 );
+		add_filter( 'woocommerce_order_formatted_shipping_address', array( $this, 'set_formatted_shipping_address' ), 0, 2 );
+		add_filter( 'woocommerce_formatted_address_replacements', array( $this, 'set_formatted_address' ), 0, 2 );
+		// Add item desc to order
+		add_action( 'woocommerce_order_add_product', array( $this, 'set_item_desc_order_meta' ), 0, 5 );
+		add_filter( 'woocommerce_hidden_order_itemmeta', array( $this, 'set_item_desc_order_meta_hidden' ), 0 );
+		// Deactivate checkout shipping selection
+		add_action( 'woocommerce_review_order_before_shipping', array( $this, 'remove_shipping_rates' ), 0 );
+	}
 
+	public function init_fields() {
 		if ( get_option( 'woocommerce_gzd_checkout_address_field' ) == 'yes' ) {
 
 			$this->custom_fields[ 'title' ] = array(
@@ -65,23 +83,6 @@ class WC_GZD_Checkout {
 			);
 
 		}
-
-		add_filter( 'woocommerce_billing_fields', array( $this, 'set_custom_fields' ), 0, 1 );
-		add_filter( 'woocommerce_shipping_fields', array( $this, 'set_custom_fields_shipping' ), 0, 1 );
-		// Add Fields to Order Edit Page
-		add_filter( 'woocommerce_admin_billing_fields', array( $this, 'set_custom_fields_admin' ), 0, 1 );
-		add_filter( 'woocommerce_admin_shipping_fields', array( $this, 'set_custom_fields_admin' ), 0, 1 );
-		// Save Fields on order
-		add_action( 'woocommerce_checkout_update_order_meta', array( $this, 'save_fields' ) );
-		// Add Title to billing address format
-		add_filter( 'woocommerce_order_formatted_billing_address', array( $this, 'set_formatted_billing_address' ), 0, 2 );
-		add_filter( 'woocommerce_order_formatted_shipping_address', array( $this, 'set_formatted_shipping_address' ), 0, 2 );
-		add_filter( 'woocommerce_formatted_address_replacements', array( $this, 'set_formatted_address' ), 0, 2 );
-		// Add item desc to order
-		add_action( 'woocommerce_order_add_product', array( $this, 'set_item_desc_order_meta' ), 0, 5 );
-		add_filter( 'woocommerce_hidden_order_itemmeta', array( $this, 'set_item_desc_order_meta_hidden' ), 0 );
-		// Deactivate checkout shipping selection
-		add_action( 'woocommerce_review_order_before_shipping', array( $this, 'remove_shipping_rates' ), 0 );
 	}
 
 	/**

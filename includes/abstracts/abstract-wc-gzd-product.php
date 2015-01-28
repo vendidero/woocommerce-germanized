@@ -51,6 +51,8 @@ class WC_GZD_Product {
 	public function __get( $key ) {
 		if ( $this->child->$key )
 			return $this->child->$key;
+		else if ( $key == 'delivery_time' )
+			return $this->get_delivery_time();
 		return false;
 	}
 
@@ -201,12 +203,24 @@ class WC_GZD_Product {
 	}
 
 	/**
+	 * Returns the current products delivery time term without falling back to default term
+	 *  
+	 * @return bool|object false returns false if term does not exist otherwise returns term object
+	 */
+	public function get_delivery_time() {
+		$terms = wp_get_post_terms( $this->id, 'product_delivery_time' );
+		if ( is_wp_error( $terms ) || empty( $terms ) )
+			return false;
+		return $terms[ 0 ];
+	}
+
+	/**
 	 * Returns current product's delivery time term. If none has been set and a default delivery time has been set, returns that instead.
 	 *  
 	 * @return object
 	 */
 	public function get_delivery_time_term() {
-		$delivery_time = $this->child->delivery_time;
+		$delivery_time = $this->delivery_time;
 		if ( empty( $delivery_time ) && get_option( 'woocommerce_gzd_default_delivery_time' ) && ! $this->child->is_downloadable() ) {
 			$delivery_time = array( get_term_by( 'id', get_option( 'woocommerce_gzd_default_delivery_time' ), 'product_delivery_time' ) );
 			if ( is_array( $delivery_time ) ) {
@@ -214,8 +228,6 @@ class WC_GZD_Product {
 				$delivery_time = $delivery_time[0];
 			}
 		}
-		if ( is_array( $delivery_time ) )
-			$delivery_time = $delivery_time[0];
 		return ( ! is_wp_error( $delivery_time ) && ! empty( $delivery_time ) ) ? $delivery_time : false;
 	}
 

@@ -17,8 +17,6 @@ if ( get_option( 'woocommerce_gzd_display_product_detail_tax_info' ) == 'yes' ||
 if ( get_option( 'woocommerce_gzd_display_product_detail_delivery_time' ) == 'yes' )
 	add_action( 'woocommerce_single_product_summary', 'woocommerce_gzd_template_single_delivery_time_info', 27 );
 if ( get_option( 'woocommerce_gzd_small_enterprise' ) == 'yes' ) {
-	if ( get_option( 'woocommerce_gzd_display_product_detail_small_enterprise' ) == 'yes' )
-		add_action( 'woocommerce_single_product_summary', 'woocommerce_gzd_template_single_small_business_info', 28 );
 	add_action( 'woocommerce_after_cart_totals', 'woocommerce_gzd_template_small_business_info' );
 	add_action( 'woocommerce_review_order_after_order_total', 'woocommerce_gzd_template_checkout_small_business_info', 25 );
 }
@@ -51,7 +49,8 @@ add_filter( 'woocommerce_cart_item_name', 'wc_gzd_product_item_desc', 0, 2 );
 /**
  * Checkout
  */
-add_action( 'woocommerce_review_order_after_cart_contents', 'woocommerce_gzd_template_checkout_back_to_cart' );
+if ( get_option( 'woocommerce_gzd_display_checkout_back_to_cart_button' ) == 'yes' )
+	add_action( 'woocommerce_review_order_after_cart_contents', 'woocommerce_gzd_template_checkout_back_to_cart' );
 add_action( 'woocommerce_review_order_before_payment', 'woocommerce_gzd_template_checkout_payment_title' );
 add_action( 'woocommerce_gzd_before_shop_table', 'woocommerce_gzd_template_checkout_legal' );
 add_filter( 'woocommerce_checkout_show_terms', 'woocommerce_gzd_remove_term_checkbox' );

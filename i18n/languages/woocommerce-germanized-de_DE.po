@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: WooCommerce Germanized v1.1.0\n"
+"Project-Id-Version: WooCommerce Germanized v1.1.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-29 12:26+0100\n"
-"PO-Revision-Date: 2015-01-27 13:48:18+0000\n"
+"PO-Revision-Date: 2015-01-28 19:08:37+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -92,8 +92,8 @@ msgstr "zu den WooCommerce Germanized Einstellungen"
 
 #: includes/admin/class-wc-gzd-admin.php:28
 #: includes/admin/class-wc-gzd-admin.php:37
-#: includes/class-wc-gzd-checkout.php:23
-#: includes/class-wc-gzd-checkout.php:32
+#: includes/class-wc-gzd-checkout.php:22
+#: includes/class-wc-gzd-checkout.php:31
 #: woocommerce-germanized.php:83
 #: woocommerce-germanized.php:92
 #@ woocommerce-germanized
@@ -497,67 +497,67 @@ msgstr "MwSt. Hinweis"
 msgid "Checkout & Cart"
 msgstr "Checkout & Warenkorb"
 
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:468
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:477
 #@ woocommerce-germanized
 msgid "Checkout Legal Display"
 msgstr "Checkbox oder Text"
 
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:469
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:478
 #@ woocommerce-germanized
 msgid "Use Text without Checkbox"
 msgstr "Rechtshinweis ohne Checkbox"
 
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:471
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:480
 #@ woocommerce-germanized
 msgid "This version will remove checkboxes from Checkout and display a text instead. This seems to be legally compliant (Zalando & Co are using this option)."
 msgstr "Diese Option nutzt anstatt einer Checkbox einen ausformulierten Text direkt überhalb des Kauf abschließen Buttons (Zalando und Andere Shops verwenden diese Form)"
 
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:477
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:486
 #@ woocommerce-germanized
 msgid "Legal Text"
 msgstr "Rechtlicher Hinweistext"
 
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:478
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:487
 #@ woocommerce-germanized
 msgid "Choose a Plain Text which will be shown right above checkout submit button. Use {term_link}{/term_link}, {data_security_link}{/data_security_link}, {revocation_link}{/revocation_link} as Placeholders for the links to legal pages."
 msgstr "Geben Sie hier den Text ein, den Sie als Hinweistext überhalb des \"Kaufen\" - Buttons darstellen möchten. Nutzen Sie die Platzhalter {term_link}{/term_link}, {data_security_link}{/data_security_link}, {revocation_link}{/revocation_link} um die jeweiligen Links zu den Seiten einzufügen."
 
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:480
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:489
 #@ woocommerce-germanized
 msgid "With your order, you agree to have read and understood our {term_link}Terms and Conditions{/term_link} and your {revocation_link}Right of Recission{/revocation_link}."
 msgstr "Mit Ihrer Bestellung erklären Sie sich mit unseren {term_link}Allgemeinen Geschäftsbedingungen{/term_link} und {revocation_link}Widerrufsbestimmungen{/revocation_link} einverstanden."
 
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:487
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:496
 #@ woocommerce-germanized
 msgid "Legal Text Error"
 msgstr "Fehlermeldung der Checkbox"
 
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:488
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:497
 #@ woocommerce-germanized
 msgid "If you have chosen to use checkbox validation please choose a error message which will be shown if the user doesn't check checkbox. Use {term_link}{/term_link}, {data_security_link}{/data_security_link}, {revocation_link}{/revocation_link} as Placeholders for the links to legal pages."
 msgstr "Falls Sie sich dazu entschieden haben, eine Checkbox zu nutzen, können Sie hier die Fehlermeldung eingeben, die angezeigt wird, wenn ein Benutzer die Checkbox nicht aktiviert hat. Nutzen Sie die Platzhalter um Links zu den jeweiligen Hinweisseiten einzufügen: {term_link}{/term_link}, {data_security_link}{/data_security_link}, {revocation_link}{/revocation_link}"
 
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:490
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:499
 #@ woocommerce-germanized
 msgid "To finish the order you have to accept to our {term_link}Terms and Conditions{/term_link} and {revocation_link}Right of Recission{/revocation_link}."
 msgstr "Bitte akzeptieren Sie unsere {term_link}Allgemeinen Geschäftsbedingungen{/term_link} und {revocation_link}Widerrufsbestimmungen{/revocation_link}."
 
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:516
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:525
 #@ woocommerce-germanized
 msgid "Order Success Text"
 msgstr "Bestellung eingegangen"
 
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:517
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:526
 #@ woocommerce-germanized
 msgid "Choose a custom text to display on order success page."
 msgstr "Hier können Sie einen individuellen kurzen Text eingeben, der nach der Bestellung ausgegeben wird."
 
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:525
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:534
 #@ woocommerce-germanized
 msgid "Order Success Data"
 msgstr "Bestellbestätigungs-Daten"
 
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:526
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:535
 #@ woocommerce-germanized
 msgid "Hide product table and customer data on order success page"
 msgstr "Zusätzliche Produktdetails (Tabelle, Kundeninformationen) von der Bestellbestätigungs-Seite entfernen"
@@ -626,8 +626,8 @@ msgctxt "revocation-form"
 msgid "Thank you. We have received your Revocation Request. You will receive a conformation email within a few minutes."
 msgstr "Vielen Dank. Wir haben Ihre Widerruf erhalten. Sie bekommen in Kürze eine E-Mail mit Ihre Daten als Bestätigung."
 
-#: includes/class-wc-gzd-checkout.php:42
-#: includes/class-wc-gzd-checkout.php:53
+#: includes/class-wc-gzd-checkout.php:60
+#: includes/class-wc-gzd-checkout.php:71
 #: includes/widgets/class-wc-gzd-widget-trusted-shops-reviews.php:26
 #: includes/widgets/class-wc-gzd-widget-trusted-shops-rich-snippets.php:26
 #@ woocommerce-germanized
@@ -635,14 +635,14 @@ msgstr "Vielen Dank. Wir haben Ihre Widerruf erhalten. Sie bekommen in Kürze ei
 msgid "Title"
 msgstr "Anrede"
 
-#: includes/class-wc-gzd-checkout.php:43
-#: includes/class-wc-gzd-checkout.php:51
+#: includes/class-wc-gzd-checkout.php:61
+#: includes/class-wc-gzd-checkout.php:69
 #@ woocommerce-germanized
 msgid "Sir"
 msgstr "Herr"
 
-#: includes/class-wc-gzd-checkout.php:43
-#: includes/class-wc-gzd-checkout.php:51
+#: includes/class-wc-gzd-checkout.php:61
+#: includes/class-wc-gzd-checkout.php:69
 #@ woocommerce-germanized
 msgid "Madam"
 msgstr "Frau"
@@ -1060,73 +1060,63 @@ msgstr "Diese E-Mail wird als Bestätigung an den Kunden weitergeleitet, sobald 
 msgid "Your Revocation"
 msgstr "Ihr Widerruf"
 
-#: includes/gateways/bacs/class-wc-gzd-gateway-bacs.php:41
-#@ woocommerce-germanized
-msgid "Print instructions?"
-msgstr "Instruktionen ausgeben?"
-
-#: includes/gateways/bacs/class-wc-gzd-gateway-bacs.php:43
-#@ woocommerce-germanized
-msgid "Show instructions"
-msgstr "Instruktionen ausgeben"
-
-#: includes/abstracts/abstract-wc-gzd-payment-gateway.php:78
+#: includes/abstracts/abstract-wc-gzd-payment-gateway.php:84
 #, php-format
 #@ woocommerce-germanized
 msgid "plus %s payment charge"
 msgstr "zzgl. %s Zahlungsgebühr"
 
-#: includes/abstracts/abstract-wc-gzd-payment-gateway.php:18
+#: includes/abstracts/abstract-wc-gzd-payment-gateway.php:19
 #, php-format
 #@ woocommerce-germanized
 msgid "Plus %s payment charge."
 msgstr "Zzgl. %s Zahlungsgebühr."
 
-#: includes/abstracts/abstract-wc-gzd-payment-gateway.php:40
+#: includes/abstracts/abstract-wc-gzd-payment-gateway.php:44
 #@ woocommerce-germanized
 msgid "Fee"
 msgstr "Zahlungsgebühr"
 
-#: includes/abstracts/abstract-wc-gzd-payment-gateway.php:42
+#: includes/abstracts/abstract-wc-gzd-payment-gateway.php:46
 #@ woocommerce-germanized
 msgid "This fee is being added if customer selects payment method within checkout."
 msgstr "Diese Gebühr wird während der Bestellung hinzugefügt, falls der Kunde diese Zahlungsart aktiviert."
 
-#: includes/abstracts/abstract-wc-gzd-payment-gateway.php:47
+#: includes/abstracts/abstract-wc-gzd-payment-gateway.php:51
 #@ woocommerce-germanized
 msgid "Fee is taxable?"
 msgstr "Mwst. berechnen?"
 
-#: includes/abstracts/abstract-wc-gzd-payment-gateway.php:66
+#: includes/abstracts/abstract-wc-gzd-payment-gateway.php:72
 #@ woocommerce-germanized
 msgid "Payment charge"
 msgstr "Zahlungsgebühr"
 
 #: includes/abstracts/abstract-wc-gzd-product.php:91
 #: includes/wc-gzd-cart-functions.php:68
-#: woocommerce-germanized.php:741
+#: woocommerce-germanized.php:739
 #, php-format
 #@ woocommerce-germanized
 msgid "incl. %s%% VAT"
 msgstr "inkl. %s%% MwSt."
 
-#: includes/wc-gzd-template-functions.php:161
+#: includes/wc-gzd-template-functions.php:151
 #@ woocommerce-germanized
 msgid "Edit Order"
 msgstr "Bestellung bearbeiten"
 
-#: includes/wc-gzd-template-functions.php:172
+#: includes/wc-gzd-template-functions.php:162
 #@ woocommerce-germanized
 msgid "Choose a Payment Gateway"
 msgstr "Zahlungsmethode auswählen"
 
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:509
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:518
 #: includes/wc-gzd-cart-functions.php:103
 #@ woocommerce-germanized
 msgid "I want immediate access to the digital content and I acknowledge that thereby I lose my right to cancel once the service has begun."
 msgstr "Ja, ich möchte sofort Zugang zu dem digitalen Inhalt und weiß, dass mein Widerrufsrecht mit dem Zugang erlischt."
 
-#: includes/wc-gzd-template-functions.php:230
+#: includes/wc-gzd-template-functions.php:220
 #@ woocommerce-germanized
 msgid "To get immediate access to digital content you have to agree to the losal of your right to cancel."
 msgstr "Um direkten Zugang zu den digitalen Inhalte zu erhalten, müssen Sie auf das Widerrufsrecht verzichten."
@@ -1279,17 +1269,18 @@ msgctxt "revocation-form"
 msgid "Forward Revocation"
 msgstr "Widerruf erklären"
 
+#: templates/single-product/legal-info.php:19
 #: templates/single-product/small-business-info.php:14
 #@ woocommerce-germanized
 msgid "VAT free based on &#167;19 UStG"
-msgstr "Umsatzsteuerbefreit nach &#167;19 UStG"
+msgstr "Kein Mehrwertsteuerausweis, da Kleinunternehmer nach §19 (1) UStG."
 
-#: woocommerce-germanized.php:528
+#: woocommerce-germanized.php:529
 #@ woocommerce
 msgid "Settings"
 msgstr "Einstellungen"
 
-#: woocommerce-germanized.php:719
+#: woocommerce-germanized.php:717
 #@ woocommerce
 msgid "Order Total:"
 msgstr "Gesamtsumme"
@@ -1454,7 +1445,7 @@ msgctxt "trusted-shops"
 msgid "About Trusted Shops"
 msgstr "Über Trusted Shops"
 
-#: includes/wc-gzd-template-functions.php:141
+#: includes/wc-gzd-template-functions.php:131
 #@ woocommerce
 msgid "Proceed to Checkout"
 msgstr ""
@@ -1479,12 +1470,12 @@ msgctxt "trusted-shops"
 msgid "%s of %s based on %s <a href=\"%s\" target=\"_blank\">ratings</a>."
 msgstr "%s von %s basierend auf %s <a href=\"%s\" target=\"_blank\">Bewertungen</a>."
 
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:460
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:469
 #@ woocommerce-germanized
 msgid "Checkout Table Color"
 msgstr "Hintergrundfarbe der Tabelle"
 
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:462
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:471
 #@ woocommerce-germanized
 msgid "Choose the color of your checkout product table. This table should be highlighted within your checkout page."
 msgstr "Wähle die Farbe des Hintergrundes deiner Produkt-Tabelle im Checkout. Die Tabelle sollte sich farblich vom Rest des Inhalts abheben."
@@ -1524,17 +1515,17 @@ msgstr "Theme ist noch für WooCommerce Germanized optimiert"
 msgid "It seems like your theme is not yet ready for WooCommerce Germanized. Please check your theme's styles. Some things might look weird - WooCommerce Germanized can only offer basic styles. See <a href=\"%s\" target=\"_blank\">making your theme compatible</a> or check out our Theme <a href=\"%s\" target=\"_blank\">VendiPro</a> for 100&#37; compatibility."
 msgstr "Wir haben festgestellt, dass dein Theme scheinbar noch nicht für WooCommerce Germanized optimiert ist. Bitte überprüfe die Style-Angaben deines Themes bzw. das Aussehen deines Shops. Manche Elemente werden möglicherweise falsch dargestellt - WooCommerce Germanized kann nur grundlegende Style-Angaben machen. Lies dir dazu <a href=\"%s\" target=\"_blank\">wie mache ich mein Theme kompatibel</a> durch oder nutze das von uns entwickelte Theme <a href=\"%s\" target=\"_blank\">VendiPro</a> für 100&#37; Kompatibilität."
 
-#: includes/abstracts/abstract-wc-gzd-payment-gateway.php:49
+#: includes/abstracts/abstract-wc-gzd-payment-gateway.php:53
 #@ woocommerce-germanized
 msgid "Check if fee is taxable."
 msgstr "MwSt.-Berechnung für Gebühr aktivieren."
 
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:506
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:515
 #@ woocommerce-germanized
 msgid "Legal Digital Text"
 msgstr "Hinweis Digital"
 
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:507
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:516
 #@ woocommerce-germanized
 msgid "Choose a Plain Text which will be shown right above checkout submit button if a user has picked a digital product. See legal text option for possible placeholders."
 msgstr "Passen Sie hier optional den Hinweistext an, der angezeigt wird, wenn ein Kunde ein digitales Produkt im Warenkorb hat. Sie können hier die gleichen Platzhalter verwenden wie beim Rechtlichen Hinweistext"
@@ -1675,7 +1666,7 @@ msgstr "Versandkosten-Hinweis auch für virtuelle Produkte aktivieren?"
 
 #: includes/abstracts/abstract-wc-gzd-product.php:90
 #: includes/wc-gzd-cart-functions.php:68
-#: woocommerce-germanized.php:741
+#: woocommerce-germanized.php:739
 #@ woocommerce-germanized
 msgid "incl. VAT"
 msgstr "inkl. MwSt."
@@ -1748,7 +1739,7 @@ msgstr "Dieser Text wird verwendet um den Einheitspreis darzustellen. Nutze {pri
 msgid "{price}"
 msgstr "{price}"
 
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:640
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:649
 #@ woocommerce-germanized
 msgid "Sorry, but the new Virtual VAT rules cannot be applied to small business."
 msgstr "Sorry aber die neuen USt-Regelungen für virtuelle Produkte lassen sich leider nicht mit dem Kleinunternehmer vereinbaren. Bitte kontaktiere deinen Steuerberater für weitere Informationen."
@@ -1763,17 +1754,17 @@ msgstr "Anrede im Checkout"
 msgid "Add a title field to the address within checkout?"
 msgstr "Fügt ein Feld \"Anrede\" im Checkout hinzu."
 
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:497
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:506
 #@ woocommerce-germanized
 msgid "Show digital notice"
 msgstr "Checkbox digitale Produkte"
 
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:498
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:507
 #@ woocommerce-germanized
 msgid "Show checkbox for digital products."
 msgstr "Checkbox bei digitalen Produkten anzeigen"
 
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:499
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:508
 #@ woocommerce-germanized
 msgid "Disable this option if you want your customers to obtain their right of recission even if digital products are being bought."
 msgstr "Diese Option setzt im Checkout eine Checkbox falls sich im Warenkorb digitale Produkte befinden. Hier können Kunden darauf aufmerksam gemacht werden, dass im Falle von digitalen Produkten das Widerrufsrecht erlischt."
@@ -1829,9 +1820,24 @@ msgstr "Der Hinweistext im Warenkorb zur Schätzung von Steuern und Versandkoste
 msgid "excl. %s%% VAT"
 msgstr "exkl. %s%% MwSt."
 
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:460
+#@ woocommerce-germanized
+msgid "Show back to cart button"
+msgstr "Bestellung bearbeiten"
+
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:461
+#@ woocommerce-germanized
+msgid "Show back to cart button within your checkout table?"
+msgstr "Einen \"Bestellung bearbeiten\" Button in der Bestellübersicht anzeigen?"
+
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:465
+#@ woocommerce-germanized
+msgid "This button may let your customer edit their order before submitting. Some people state that this button should be hidden to avoid legal problems."
+msgstr "Dieser Button ermöglicht es deinen Kunden etwaige Falscheingaben (d.h. fälschlich ausgewählte Produkte) zu korrigieren und zurück zum Warenkorb zu gelangen. Je nach Darstellung in deinem Theme könnte es allerdings auch das Risiko für Abmahnungen erhöhen, da zwischen Pflichtangaben und Kaufen-Button keine weitere Informationen abgedruckt werden sollten."
+
 #. translators: plugin header field 'Version'
 #: woocommerce-germanized.php:0
 #@ woocommerce-germanized
-msgid "1.1.0"
-msgstr "1.1.0"
+msgid "1.1.1"
+msgstr ""
 
