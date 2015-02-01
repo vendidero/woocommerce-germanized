@@ -337,7 +337,7 @@ class WC_GZD_Install {
 			'payment_methods' => array(
 				'name'    => _x( 'payment-methods', 'Page slug', 'woocommerce-germanized' ),
 				'title'   => _x( 'Payment Methods', 'Page title', 'woocommerce-germanized' ),
-				'content' => '[' . apply_filters( 'woocommerce_gzd_payment_methods_shortcode_tag', 'woocommerce_gzd_payment_methods' ) . ']'
+				'content' => '[' . apply_filters( 'woocommerce_gzd_payment_methods_shortcode_tag', 'payment_methods_info' ) . ']'
 			),
 		) );
 
