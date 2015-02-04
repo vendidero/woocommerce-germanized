@@ -188,7 +188,7 @@ final class WooCommerce_Germanized {
 		add_action( 'woocommerce_after_cart_totals', array( $this, 'remove_cart_tax_zero_filter' ) );
 
 		// Add better WooCommerce shipping taxation
-		// add_filter( 'woocommerce_package_rates', array( $this, 'replace_shipping_rate_class' ), 0, 2 );
+		add_filter( 'woocommerce_package_rates', array( $this, 'replace_shipping_rate_class' ), 0, 2 );
 
 		// Send order notice directly after new order is being added - use these filters because order status has to be updated already
 		add_filter( 'woocommerce_payment_successful_result', array( $this, 'send_order_confirmation_mails' ), 0, 2 );

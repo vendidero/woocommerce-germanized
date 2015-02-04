@@ -23,9 +23,9 @@ class WC_GZD_Shipping_Rate extends WC_Shipping_Rate {
 					$this->tax_shares[ $class ][ 'total' ] = 0;
 					$this->tax_shares[ $class ][ 'key' ] = '';
 				}
-				$this->tax_shares[ $class ][ 'total' ] += $item[ 'line_total' ];
+				$this->tax_shares[ $class ][ 'total' ] += ( $item[ 'line_total' ] + $item[ 'line_tax' ] ); 
 				$this->tax_shares[ $class ][ 'key' ] = key( $item[ 'line_tax_data' ][ 'total' ] );
-				$item_totals += $item[ 'line_total' ];
+				$item_totals += ( $item[ 'line_total' ] + $item[ 'line_tax' ] ); 
 			}
 		}
 		// Calculate tax class share

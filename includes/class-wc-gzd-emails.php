@@ -31,7 +31,7 @@ class WC_GZD_Emails {
 		add_action( 'woocommerce_email_footer', array( $this, 'add_template_footers' ), 0 );
 		add_action( 'woocommerce_email_footer', array( WC()->mailer(), 'email_footer' ), 1 );
 		
-		add_action( 'woocommerce_order_item_name', 'wc_gzd_product_item_desc', 0, 2 );
+		add_action( 'woocommerce_order_item_name', array( $this, 'order_item_desc' ), 0, 2 );
 
 		$mails = WC()->mailer()->get_emails();
 
@@ -42,8 +42,17 @@ class WC_GZD_Emails {
 		}
 	}
 
+	/**
+	 * Adds product description to order item if available
+	 *  
+	 * @param  string $item_name product name
+	 * @param  array $item     
+	 * @return string the item name containing product description if available
+	 */
 	public function order_item_desc( $item_name, $item ) {
-		return wc_gzd_product_item_desc( $item_name, $item );
+		if ( isset( $item[ 'product_desc' ] ) )
+			$item_name .= '<div class="wc-gzd-item-desc item-desc">' . $item[ 'product_desc' ] . '</div>';
+		return $item_name;
 	}
 	/**
 	 * Hook into Email Footer and attach legal page content if necessary
