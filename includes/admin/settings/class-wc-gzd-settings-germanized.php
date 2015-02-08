@@ -207,7 +207,47 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 				'default'	=> __( 'plus {link}Shipping Costs{/link}', 'woocommerce-germanized' ),
 			),
 
+			array(
+				'title' 	=> __( 'Shipping Costs Tax', 'woocommerce-germanized' ),
+				'desc' 		=> __( 'Enable better taxation for shpping costs?', 'woocommerce-germanized' ),
+				'id' 		=> 'woocommerce_gzd_shipping_tax',
+				'default'	=> 'yes',
+				'type' 		=> 'checkbox',
+				'desc_tip'	=> sprintf( __( 'By choosing this option shipping cost taxation will be calculated based on tax rates within cart. Imagine the following example. Further information can be found <a href="%s" target="_blank">here</a>. %s', 'woocommerce-germanized' ), 'http://www.it-recht-kanzlei.de/umsatzsteuer-versandkosten-mehrwertsteuer.html', '<table class="wc-gzd-tax-example"><thead><tr><th>Produkt</th><th>Preis</th><th>MwSt.-Satz</th><th>Anteil</th><th>MwSt.</th></tr></thead><tbody><tr><td>Buch</td><td>' . wc_price( 40 ) . '</td><td>7%</td><td>40%</td><td>' . wc_price( 2.62 ) . '</td></tr><tr><td>DVD</td><td>' . wc_price( 60 ) . '</td><td>19%</td><td>60%</td><td>' . wc_price( 9.58 ) . '</td></tr><tr><td>Versand</td><td>' . wc_price( 5 ) . '</td><td>7% | 19%</td><td>40% | 60%</td><td>' . wc_price( 0.13 ) . ' | ' . wc_price( 0.48 ) . '</td></tr></tbody></table>' ),
+			),
+
+			array(
+				'title' 	=> __( 'Force Tax Calculation', 'woocommerce-germanized' ),
+				'desc' 		=> __( 'Force shipping costs tax calculation for every method?', 'woocommerce-germanized' ),
+				'id' 		=> 'woocommerce_gzd_shipping_tax_force',
+				'default'	=> 'yes',
+				'type' 		=> 'checkbox',
+				'desc_tip'	=> __( 'This option will overwrite settings for each individual shipping method to force tax calculation (instead of only calculating tax for those methods which are taxeable).', 'woocommerce-germanized' ),
+			),
+
 			array( 'type' => 'sectionend', 'id' => 'shipping_costs_options' ),
+
+			array(	'title' => __( 'Fees', 'woocommerce-germanized' ), 'type' => 'title', 'id' => 'fees_options' ),
+
+			array(
+				'title' 	=> __( 'Fee Tax', 'woocommerce-germanized' ),
+				'desc' 		=> __( 'Enable better taxation for fees?', 'woocommerce-germanized' ),
+				'id' 		=> 'woocommerce_gzd_fee_tax',
+				'default'	=> 'yes',
+				'type' 		=> 'checkbox',
+				'desc_tip'  => __( 'By choosing this option fee taxation will be calculated based on tax rates within cart. See shipping costs taxation for more information.', 'woocommerce-germanized' ),
+			),
+
+			array(
+				'title' 	=> __( 'Force Tax Calculation', 'woocommerce-germanized' ),
+				'desc' 		=> __( 'Force fee tax calculation for every fee?', 'woocommerce-germanized' ),
+				'id' 		=> 'woocommerce_gzd_fee_tax_force',
+				'default'	=> 'yes',
+				'type' 		=> 'checkbox',
+				'desc_tip'	=> __( 'This option will overwrite settings for each individual fee to force tax calculation (instead of only calculating tax for those fees which are taxeable).', 'woocommerce-germanized' ),
+			),
+
+			array( 'type' => 'sectionend', 'id' => 'fees_options' ),
 
 			array(	'title' => __( 'Unit Price', 'woocommerce-germanized' ), 'type' => 'title', 'id' => 'unit_price_options' ),
 
@@ -644,9 +684,15 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 	}
 
 	public function after_save( $settings ) {
-		if ( ! empty( $_POST[ 'woocommerce_gzd_small_enterprise' ] ) && ! empty( $_POST[ 'woocommerce_gzd_enable_virtual_vat' ] ) ) {
-			update_option( 'woocommerce_gzd_enable_virtual_vat', 'no' );
-			WC_Admin_Settings::add_error( __( 'Sorry, but the new Virtual VAT rules cannot be applied to small business.', 'woocommerce-germanized' ) );
+		if ( ! empty( $_POST[ 'woocommerce_gzd_small_enterprise' ] ) ) {
+			update_option( 'woocommerce_gzd_shipping_tax', 'no' );
+			update_option( 'woocommerce_gzd_shipping_tax_force', 'no' );
+			update_option( 'woocommerce_gzd_fee_tax', 'no' );
+			update_option( 'woocommerce_gzd_fee_tax_force', 'no' );
+			if ( ! empty( $_POST[ 'woocommerce_gzd_enable_virtual_vat' ] ) ) {
+				update_option( 'woocommerce_gzd_enable_virtual_vat', 'no' );
+				WC_Admin_Settings::add_error( __( 'Sorry, but the new Virtual VAT rules cannot be applied to small business.', 'woocommerce-germanized' ) );
+			}
 		}
 	}
 

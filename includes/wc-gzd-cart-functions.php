@@ -29,6 +29,31 @@ function wc_gzd_product_item_desc( $title, $item ) {
 	return $new;
 }
 
+function wc_gzd_get_cart_tax_share() {
+	$cart = WC()->cart->get_cart();
+	$tax_shares = array();
+	$item_totals = 0;
+	// Get tax classes and tax amounts
+	if ( ! empty( $cart ) ) {
+		foreach ( $cart as $key => $item ) {
+			$class = $item['data']->get_tax_class();
+			if ( ! isset( $tax_shares[ $class ] ) ) {
+				$tax_shares[ $class ] = array();
+				$tax_shares[ $class ][ 'total' ] = 0;
+				$tax_shares[ $class ][ 'key' ] = '';
+			}
+			$tax_shares[ $class ][ 'total' ] += ( $item[ 'line_total' ] + $item[ 'line_tax' ] ); 
+			$tax_shares[ $class ][ 'key' ] = key( $item[ 'line_tax_data' ][ 'total' ] );
+			$item_totals += ( $item[ 'line_total' ] + $item[ 'line_tax' ] ); 
+		}
+	}
+	if ( ! empty( $tax_shares ) ) {
+		foreach ( $tax_shares as $key => $class )
+			$tax_shares[ $key ][ 'share' ] = $class[ 'total' ] / $item_totals;
+	}
+	return $tax_shares;
+}
+
 /**
  * Get order total html
  *

@@ -6,32 +6,16 @@ class WC_GZD_Shipping_Rate extends WC_Shipping_Rate {
 
 	public function __construct( WC_Shipping_Rate $rate ) {
 		parent::__construct( $rate->id, $rate->label, $rate->cost, $rate->taxes, $rate->method_id );
-		if ( ! get_option( 'woocommerce_shipping_tax_class' ) )
+		if ( get_option( 'woocommerce_gzd_shipping_tax' ) == 'yes' && ( ! empty( $rate->taxes ) || get_option( 'woocommerce_gzd_shipping_tax_force' ) == 'yes' ) )
 			$this->set_taxes();
 		$this->set_costs();
 	}
 
 	public function set_taxes() {
-		$cart = WC()->cart->get_cart();
-		$item_totals = 0;
-		// Get tax classes and tax amounts
-		if ( ! empty( $cart ) ) {
-			foreach ( $cart as $key => $item ) {
-				$class = $item['data']->get_tax_class();
-				if ( ! isset( $this->tax_shares[ $class ] ) ) {
-					$this->tax_shares[ $class ] = array();
-					$this->tax_shares[ $class ][ 'total' ] = 0;
-					$this->tax_shares[ $class ][ 'key' ] = '';
-				}
-				$this->tax_shares[ $class ][ 'total' ] += ( $item[ 'line_total' ] + $item[ 'line_tax' ] ); 
-				$this->tax_shares[ $class ][ 'key' ] = key( $item[ 'line_tax_data' ][ 'total' ] );
-				$item_totals += ( $item[ 'line_total' ] + $item[ 'line_tax' ] ); 
-			}
-		}
+		$cart = WC()->cart;
+		$this->tax_shares = wc_gzd_get_cart_tax_share();
 		// Calculate tax class share
 		if ( ! empty( $this->tax_shares ) ) {
-			foreach ( $this->tax_shares as $key => $class )
-				$this->tax_shares[ $key ][ 'share' ] = $class[ 'total' ] / $item_totals;
 			foreach ( $this->tax_shares as $rate => $class ) {
 				$tax_rates  = WC_Tax::get_rates( $rate );
 				$this->tax_shares[ $rate ][ 'shipping_tax_share' ] = $this->cost * $class[ 'share' ];

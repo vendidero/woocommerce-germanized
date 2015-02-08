@@ -61,3 +61,12 @@ table.data_table tr td p.form-field {
 .wc-gzd-button-wrapper .button {
 	margin-right: 1em;
 }
+
+table.wc-gzd-tax-example tr th, table.wc-gzd-tax-example tr td {
+	padding: 5px;
+	font-size: 0.9em;
+}
+
+table.wc-gzd-tax-example tr th:first-child, table.wc-gzd-tax-example tr td:first-child {
+	padding-left: 0;
+}

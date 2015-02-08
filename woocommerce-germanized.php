@@ -3,7 +3,7 @@
  * Plugin Name: WooCommerce Germanized
  * Plugin URI: http://www.vendidero.de/woocommerce-germanized
  * Description: Extends WooCommerce to become a legally compliant store for the german market.
- * Version: 1.1.1
+ * Version: 1.1.2
  * Author: Vendidero
  * Author URI: http://vendidero.de
  * Requires at least: 3.8
@@ -26,7 +26,7 @@ final class WooCommerce_Germanized {
 	 *
 	 * @var string
 	 */
-	public $version = '1.1.1';
+	public $version = '1.1.2';
 
 	/**
 	 * Single instance of WooCommerce Germanized Main Class
@@ -271,6 +271,15 @@ final class WooCommerce_Germanized {
 	}
 
 	/**
+	 * Get WC Germanized template path
+	 *  
+	 * @return string
+	 */
+	public function template_path() {
+		return apply_filters( 'woocommerce_gzd_template_path', 'woocommerce-germanized/' );
+	}
+
+	/**
 	 * Get the language path
 	 *
 	 * @return string
@@ -352,14 +361,12 @@ final class WooCommerce_Germanized {
 	 * @return string
 	 */
 	public function filter_templates( $template, $template_name, $template_path ) {
-
-		if ( ! $template_path ) {
-			$template_path = WC()->template_path();
-		}
+		$template_path = $this->template_path();
 
 		if ( empty( $GLOBALS[ 'template_name' ] ) )
 			$GLOBALS['template_name'] = array();
 		$GLOBALS['template_name'][] = $template_name;
+
 		// Check Theme
 		$theme_template = locate_template(
 			array(
@@ -367,34 +374,23 @@ final class WooCommerce_Germanized {
 				$template_name
 			)
 		);
-		if ( ! $this->is_theme_template_compatible( $template_name, $theme_template ) ) 
-			$theme_template = false;
-		// Load Default
-		if ( ! $theme_template ) {
-			if ( file_exists( $this->plugin_path() . '/templates/' . $template_name ) )
-				$template = $this->plugin_path() . '/templates/' . $template_name;
-		} else
-			$template = $theme_template;
 
+		// Load Default
+		if ( ! $theme_template && file_exists( $this->plugin_path() . '/templates/' . $template_name ) )
+			return $this->plugin_path() . '/templates/' . $template_name;
+		else if ( $theme_template )
+			$template = $theme_template;
+		
 		return apply_filters( 'woocommerce_germanized_filter_template', $template, $template_name, $template_path );
 	}
 
 	/**
-	 * Checks if a template from a theme is woocommerce germanized compatible
+	 * Get templates which are legally critical
 	 *  
-	 * @param  string  $template template's file name
-	 * @param  string  $path     path to template file
-	 * @return boolean          
+	 * @return array
 	 */
-	public function is_theme_template_compatible( $template, $path = '' ) {
-		$templates_to_check = apply_filters( 'woocommerce_gzd_important_templates', array( 'checkout/form-pay.php', 'checkout/review-order.php' ) );
-		if ( in_array( $template, $templates_to_check ) && ! empty( $path ) ) {
-			// Check if theme may overwrite files
-			$data = get_file_data( $path, array( 'wc_gzd_compatible' => 'wc_gzd_compatible' ) );
-			if ( ! $data[ 'wc_gzd_compatible' ] )
-				return false;
-		}
-		return true;
+	public function get_critical_templates() {
+		return apply_filters( 'woocommerce_gzd_important_templates', array( 'checkout/form-pay.php', 'checkout/review-order.php' ) );
 	}
 
 	/**
