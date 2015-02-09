@@ -112,7 +112,7 @@ if ( ! function_exists( 'woocommerce_gzd_template_cart_product_delivery_time' ) 
 	 */
 	function woocommerce_gzd_template_cart_product_delivery_time( $title, $cart_item, $cart_item_key ) {
 		if ( isset($cart_item["data"]) ) {
-			$product = wc_gzd_get_product( $cart_item["data"] );
+			$product = $cart_item["data"];
 			if ( $product->gzd_product->get_delivery_time_term() )
 				$title .= '<p class="price-shipping-costs-info">' . $product->gzd_product->get_delivery_time_html() . '</p>';
 		}

@@ -130,6 +130,7 @@ final class WooCommerce_Germanized {
 		add_action( 'plugins_loaded', array( $this, 'load_plugin_textdomain' ) );
 		add_action( 'woocommerce_init', array( $this, 'replace_woocommerce_cart' ), 0 );
 		add_action( 'woocommerce_init', array( $this, 'replace_woocommerce_payment_gateways' ), 0 );
+		add_action( 'woocommerce_init', array( $this, 'replace_woocommerce_product_factory' ), PHP_INT_MAX );
 
 		// Loaded action
 		do_action( 'woocommerce_germanized_loaded' );
@@ -185,7 +186,6 @@ final class WooCommerce_Germanized {
 		
 		// Adjust virtual Product Price and tax class
 		add_filter( 'woocommerce_get_price_including_tax', array( $this, 'set_virtual_product_price' ), PHP_INT_MAX, 3 );
-		add_filter( 'get_post_metadata', array( $this, 'inject_gzd_product' ), 0, 4 );
 		
 		// Hide cart estimated text if chosen
 		add_action( 'woocommerce_cart_totals_after_order_total', array( $this, 'hide_cart_estimated_text' ) );
@@ -221,6 +221,13 @@ final class WooCommerce_Germanized {
 	 */
 	public function replace_woocommerce_payment_gateways() {
 		WC()->payment_gateways = WC_GZD_Payment_Gateways::instance();
+	}
+
+	/**
+	 * Overload product factory to inject gzd_product
+	 */
+	public function replace_woocommerce_product_factory() {
+		WC()->product_factory = new WC_GZD_Product_Factory();
 	}
 
 	/**
@@ -425,21 +432,6 @@ final class WooCommerce_Germanized {
 	public function set_critical_templates_new_version( $templates ) {
 		array_push( $templates, 'checkout/payment.php' );
 		return $templates;
-	}
-
-	/**
-	 * Inject WC_GZD_Product into WC_Product by filtering postmeta
-	 *  
-	 * @param  mixed $metadata 
-	 * @param  int $object_id 
-	 * @param  string $meta_key  
-	 * @param  boolean $single    
-	 * @return mixed
-	 */
-	public function inject_gzd_product( $metadata, $object_id, $meta_key, $single ) {
-		if ( $meta_key == '_gzd_product' && in_array( get_post_type( $object_id ), array( 'product', 'product_variation' ) ) )
-			return wc_gzd_get_product( $object_id );
-		return $metadata;
 	}
 
 	/**

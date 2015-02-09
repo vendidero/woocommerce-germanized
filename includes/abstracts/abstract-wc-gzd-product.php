@@ -19,19 +19,6 @@ class WC_GZD_Product {
 	 * @var object
 	 */
 	private $child;
-	protected static $_instance = null;
-
-	/**
-	 * Main Instance
-	 *
-	 * @static
-	 * @return WC_GZD_Product instance
-	 */
-	public static function instance( $product ) {
-		if ( is_null( self::$_instance ) || self::$_instance->product !== $product )
-			self::$_instance = new self( $product );
-		return self::$_instance;
-	}
 
 	/**
 	 * Construct new WC_GZD_Product
