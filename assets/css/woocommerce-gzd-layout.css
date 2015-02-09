@@ -83,6 +83,18 @@ p.footer-info {
 .wc-gzd-item-desc p {
 	font-size: 0.9em;
 }
+table.product-details-inner {
+	table-layout:fixed;
+}
+table.product-details-inner, table.product-details-inner tr, table.product-details-inner td {
+	padding: 0;
+	margin: 0;
+	border: none;
+	background: transparent;
+}
+table.product-details-inner tr td:last-child {
+	text-align: right;
+}
 .wc-gzd-trusted-shops-rating-widget {
 	line-height: 1.5rem;
 }

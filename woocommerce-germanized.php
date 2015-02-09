@@ -3,7 +3,7 @@
  * Plugin Name: WooCommerce Germanized
  * Plugin URI: http://www.vendidero.de/woocommerce-germanized
  * Description: Extends WooCommerce to become a legally compliant store for the german market.
- * Version: 1.1.2
+ * Version: 1.2.0
  * Author: Vendidero
  * Author URI: http://vendidero.de
  * Requires at least: 3.8
@@ -26,7 +26,7 @@ final class WooCommerce_Germanized {
 	 *
 	 * @var string
 	 */
-	public $version = '1.1.2';
+	public $version = '1.2.0';
 
 	/**
 	 * Single instance of WooCommerce Germanized Main Class
@@ -164,6 +164,10 @@ final class WooCommerce_Germanized {
 		do_action( 'before_woocommerce_germanized_init' );
 
 		add_filter( 'woocommerce_locate_template', array( $this, 'filter_templates' ), PHP_INT_MAX, 3 );
+		if ( version_compare( WC()->version, '2.3', '<' ) )
+			add_filter( 'woocommerce_gzd_default_plugin_template', array( $this, 'filter_templates_old_version' ), 0, 2 );
+		else
+			add_filter( 'woocommerce_gzd_important_templates', array( $this, 'set_critical_templates_new_version' ), 0 );
 		add_filter( 'woocommerce_product_class', array( $this, 'filter_product_classes' ), PHP_INT_MAX, 4 );
 		add_filter( 'woocommerce_get_settings_pages', array( $this, 'add_settings' ) );
 		add_filter( 'woocommerce_enqueue_styles', array( $this, 'add_styles' ) );
@@ -245,6 +249,12 @@ final class WooCommerce_Germanized {
 
 		if ( strpos( $class, 'wc_gzd_gateway_' ) === 0 )
 			$path = $this->plugin_path() . '/includes/gateways/' . trailingslashit( substr( str_replace( '_', '-', $class ), 15 ) );
+
+		if ( version_compare( get_option( 'woocommerce_version' ), '2.3', '<' ) ) {
+			$old_file = str_replace( '.php', '-2-2.php', $file );
+			if ( $path && is_readable( $path . $old_file ) )
+				$file = $old_file;
+		}
 
 		if ( $path && is_readable( $path . $file ) ) {
 			include_once( $path . $file );
@@ -376,12 +386,26 @@ final class WooCommerce_Germanized {
 		);
 
 		// Load Default
-		if ( ! $theme_template && file_exists( $this->plugin_path() . '/templates/' . $template_name ) )
-			return $this->plugin_path() . '/templates/' . $template_name;
+		if ( ! $theme_template && file_exists( apply_filters( 'woocommerce_gzd_default_plugin_template', $this->plugin_path() . '/templates/' . $template_name, $template_name ) ) )
+			return apply_filters( 'woocommerce_gzd_default_plugin_template', $this->plugin_path() . '/templates/' . $template_name, $template_name );
 		else if ( $theme_template )
 			$template = $theme_template;
 		
 		return apply_filters( 'woocommerce_germanized_filter_template', $template, $template_name, $template_path );
+	}
+
+	/**
+	 * Filter templates for WooCommerce 2.2 specific template files
+	 *  
+	 * @param  string $path          
+	 * @param  string $template_name 
+	 * @return string                
+	 */
+	public function filter_templates_old_version( $path, $template_name ) {
+		$old_path = str_replace( '.php', '-2-2.php', $path );
+		if ( file_exists( $old_path ) )
+			return $old_path;
+		return $path;
 	}
 
 	/**
@@ -391,6 +415,16 @@ final class WooCommerce_Germanized {
 	 */
 	public function get_critical_templates() {
 		return apply_filters( 'woocommerce_gzd_important_templates', array( 'checkout/form-pay.php', 'checkout/review-order.php' ) );
+	}
+
+	/**
+	 * Add payment.php template to critical if Woo 2.3 is acticated
+	 *  
+	 * @param array $templates 
+	 */
+	public function set_critical_templates_new_version( $templates ) {
+		array_push( $templates, 'checkout/payment.php' );
+		return $templates;
 	}
 
 	/**
@@ -719,20 +753,25 @@ final class WooCommerce_Germanized {
 			if ( 'itemized' == get_option( 'woocommerce_tax_total_display' ) ) {
 				foreach ( $order->get_tax_totals() as $code => $tax ) {
 					$tax->rate = WC_Tax::get_rate_percent( $tax->rate_id );
-					$tax_array[] = array( 'tax' => $tax, 'amount' => $tax->formatted_amount );
+					if ( ! isset( $tax_array[ $tax->rate ] ) )
+						$tax_array[ $tax->rate ] = array( 'tax' => $tax, 'amount' => $tax->amount, 'contains' => array( $tax ) );
+					else {
+						array_push( $tax_array[ $tax->rate ][ 'contains' ], $tax );
+						$tax_array[ $tax->rate ][ 'amount' ] += $tax->amount;
+					}
 				}
 			} else {
 				$base_rate = array_values( WC_Tax::get_shop_base_rate() );
 				$base_rate = (object) $base_rate[0];
 				$base_rate->rate = $base_rate->rate;
-				$tax_array[] = array( 'tax' => $base_rate, 'amount' => wc_price( $order->get_total_tax() ) );
+				$tax_array[] = array( 'tax' => $base_rate, 'contains' => array( $base_rate ), 'amount' => $order->get_total_tax() );
 			}
 
 			if ( ! empty( $tax_array ) ) {
 				foreach ( $tax_array as $tax ) {
 					$order_totals['tax_' . $tax['tax']->label] = array(
 						'label' => '<span class="tax small tax-label">' . ( get_option( 'woocommerce_tax_total_display' ) == 'itemized' ? sprintf( __( 'incl. %s%% VAT', 'woocommerce-germanized' ), wc_gzd_format_tax_rate_percentage( $tax[ 'tax' ]->rate ) ) : __( 'incl. VAT', 'woocommerce-germanized' ) ) . '</span>',
-						'value' => '<span class="tax small tax-value">' . $tax[ 'amount' ] . '</span>'
+						'value' => '<span class="tax small tax-value">' . wc_price( $tax[ 'amount' ] ) . '</span>'
 					);
 				}
 			}

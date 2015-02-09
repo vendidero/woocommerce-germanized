@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: WooCommerce Germanized v1.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-29 12:26+0100\n"
-"PO-Revision-Date: 2015-02-08 18:09:53+0000\n"
+"PO-Revision-Date: 2015-02-09 13:56:16+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -1093,8 +1093,8 @@ msgid "Payment charge"
 msgstr "Zahlungsgebühr"
 
 #: includes/abstracts/abstract-wc-gzd-product.php:93
-#: includes/wc-gzd-cart-functions.php:93
-#: woocommerce-germanized.php:734
+#: includes/wc-gzd-cart-functions.php:102
+#: woocommerce-germanized.php:773
 #, php-format
 #@ woocommerce-germanized
 msgid "incl. %s%% VAT"
@@ -1111,7 +1111,7 @@ msgid "Choose a Payment Gateway"
 msgstr "Zahlungsmethode auswählen"
 
 #: includes/admin/settings/class-wc-gzd-settings-germanized.php:558
-#: includes/wc-gzd-cart-functions.php:128
+#: includes/wc-gzd-cart-functions.php:137
 #@ woocommerce-germanized
 msgid "I want immediate access to the digital content and I acknowledge that thereby I lose my right to cancel once the service has begun."
 msgstr "Ja, ich möchte sofort Zugang zu dem digitalen Inhalt und weiß, dass mein Widerrufsrecht mit dem Zugang erlischt."
@@ -1136,60 +1136,68 @@ msgctxt "trusted-shops"
 msgid "Trusted Shops Reviews"
 msgstr "Trusted Shops Bewertung"
 
-#: templates/checkout/review-order.php:116
+#: templates/checkout/review-order-2-2.php:116
+#: templates/checkout/review-order.php:66
 #@ woocommerce
 msgid "Cart Subtotal"
 msgstr "Zwischensumme"
 
-#: templates/checkout/review-order.php:170
+#: templates/checkout/review-order-2-2.php:170
+#: templates/checkout/review-order.php:113
 #@ woocommerce
 msgid "Order Total"
 msgstr "Gesamtsumme"
 
-#: templates/checkout/form-pay.php:57
-#: templates/checkout/review-order.php:70
+#: templates/checkout/form-pay-2-2.php:57
+#: templates/checkout/form-pay.php:58
+#: templates/checkout/review-order-2-2.php:70
+#: templates/checkout/review-order.php:20
 #@ woocommerce
 msgid "Product"
 msgstr "Produkt"
 
-#: templates/checkout/review-order.php:71
-#@ woocommerce
-msgid "Total"
-msgstr "gesamt"
-
-#: templates/checkout/review-order.php:51
+#: templates/checkout/payment.php:29
+#: templates/checkout/review-order-2-2.php:51
 #@ woocommerce
 msgid "Please fill in your details above to see available payment methods."
 msgstr "Bitte geben Sie Ihre Informationen ein, damit Sie die zu Verfügung stehenden Zahlungsmethoden sehen können."
 
-#: templates/checkout/review-order.php:53
+#: templates/checkout/payment.php:31
+#: templates/checkout/review-order-2-2.php:53
 #@ woocommerce
 msgid "Sorry, it seems that there are no available payment methods for your state. Please contact us if you require assistance or wish to make alternate arrangements."
 msgstr "Es tut uns Leid! Leider gibt es für Sie aktuell keine passende Zahlungsmethode. Bitte nehmen Sie mit uns Kontakt auf, damit wir Ihnen eine individuelle Lösung anbieten können."
 
-#: templates/checkout/form-pay.php:52
-#: templates/checkout/review-order.php:63
+#: includes/wc-gzd-template-functions.php:317
+#: templates/checkout/form-pay-2-2.php:52
+#: templates/checkout/form-pay.php:53
+#: templates/checkout/review-order-2-2.php:63
 #@ woocommerce
 msgid "Your order"
 msgstr "Ihre Bestellung"
 
-#: templates/checkout/review-order.php:181
+#: templates/checkout/order-submit.php:4
+#: templates/checkout/review-order-2-2.php:181
 #@ woocommerce
 msgid "Since your browser does not support JavaScript, or it is disabled, please ensure you click the <em>Update Totals</em> button before placing your order. You may be charged more than the amount stated above if you fail to do so."
 msgstr "Da Ihr Browser kein JavaScript erlaubt, denken Sie bitte daran, auf \"Gesamtsumme aktualisieren\" zu klicken, bevor Sie den Auftrag absenden. "
 
-#: templates/checkout/review-order.php:181
+#: templates/checkout/order-submit.php:4
+#: templates/checkout/review-order-2-2.php:181
 #@ woocommerce
 msgid "Update totals"
 msgstr "Gesamtsumme aktualisieren"
 
-#: templates/checkout/review-order.php:197
+#: templates/checkout/order-submit.php:14
+#: templates/checkout/review-order-2-2.php:197
 #, php-format
 #@ woocommerce
 msgid "I&rsquo;ve read and accept the <a href=\"%s\" target=\"_blank\">terms &amp; conditions</a>"
 msgstr "Ich habe die <a href=\"%s\" target=\"_blank\">Allgemeinen Geschäftsbedingungen</a> gelesen und akzeptiert."
 
-#: templates/checkout/review-order.php:188
+#: includes/wc-gzd-template-functions.php:308
+#: templates/checkout/order-submit.php:10
+#: templates/checkout/review-order-2-2.php:188
 #@ woocommerce
 msgid "Place order"
 msgstr "Jetzt kaufen"
@@ -1275,12 +1283,12 @@ msgstr "Widerruf erklären"
 msgid "VAT free based on &#167;19 UStG"
 msgstr "Kein Mehrwertsteuerausweis, da Kleinunternehmer nach §19 (1) UStG."
 
-#: woocommerce-germanized.php:524
+#: woocommerce-germanized.php:558
 #@ woocommerce
 msgid "Settings"
 msgstr "Einstellungen"
 
-#: woocommerce-germanized.php:712
+#: woocommerce-germanized.php:746
 #@ woocommerce
 msgid "Order Total:"
 msgstr "Gesamtsumme"
@@ -1315,27 +1323,32 @@ msgstr "Vendidero"
 msgid "http://vendidero.de"
 msgstr "http://vendidero.de"
 
-#: templates/checkout/form-pay.php:58
+#: templates/checkout/form-pay-2-2.php:58
+#: templates/checkout/form-pay.php:59
 #@ woocommerce
 msgid "Qty"
 msgstr ""
 
-#: templates/checkout/form-pay.php:59
+#: templates/checkout/form-pay-2-2.php:59
+#: templates/checkout/form-pay.php:60
 #@ woocommerce
 msgid "Totals"
 msgstr ""
 
+#: templates/checkout/form-pay-2-2.php:19
 #: templates/checkout/form-pay.php:19
 #@ woocommerce
 msgid "Payment"
 msgstr ""
 
+#: templates/checkout/form-pay-2-2.php:44
 #: templates/checkout/form-pay.php:44
 #@ woocommerce
 msgid "Sorry, it seems that there are no available payment methods for your location. Please contact us if you require assistance or wish to make alternate arrangements."
 msgstr ""
 
-#: templates/checkout/form-pay.php:93
+#: templates/checkout/form-pay-2-2.php:93
+#: templates/checkout/form-pay.php:94
 #@ woocommerce
 msgid "Pay for order"
 msgstr ""
@@ -1484,12 +1497,6 @@ msgstr "Wähle die Farbe des Hintergrundes deiner Produkt-Tabelle im Checkout. D
 #@ woocommerce-germanized
 msgid "Theme incompatibility found"
 msgstr "Theme Inkompatibilität entdeckt"
-
-#: includes/admin/views/html-notice-theme-incompatibility.php:15
-#, php-format
-#@ woocommerce-germanized
-msgid "It seems like your theme tries to overwrite legally relevant templates. Please review your checkout page. Some things might look weird because WooCommerce Germanized had to stop template overriding for legal purposes. See <a href=\"%s\" target=\"_blank\">making your theme compatible</a> or check out our Theme <a href=\"%s\" target=\"_blank\">VendiPro</a> for 100&#37; compatibility."
-msgstr "Es sieht so aus als wenn dein aktuelles Theme versucht rechtlich relevante Templates (review-order.php oder form-pay.php) zu überschreiben. Bitte überprüfe deinen Shop und insbesondere den Bezahlvorgang. WooCommerce Germanized musste das Überschreiben dieser Templates verhindern um für Rechtssicherheit sorgen zu können. Bitte lies dazu <a href=\"%s\" target=\"_blank\">mein Theme kompatibel machen</a> oder schau dir das von uns entwickelte Theme <a href=\"%s\" target=\"_blank\">VendiPro</a> für 100&#37; Kompatibilität an."
 
 #: includes/admin/views/html-notice-theme-incompatibility.php:17
 #: includes/admin/views/html-notice-theme-not-ready.php:17
@@ -1665,8 +1672,8 @@ msgid "Select this option if you want to display shipping costs notice for virtu
 msgstr "Versandkosten-Hinweis auch für virtuelle Produkte aktivieren?"
 
 #: includes/abstracts/abstract-wc-gzd-product.php:92
-#: includes/wc-gzd-cart-functions.php:93
-#: woocommerce-germanized.php:734
+#: includes/wc-gzd-cart-functions.php:102
+#: woocommerce-germanized.php:773
 #@ woocommerce-germanized
 msgid "incl. VAT"
 msgstr "inkl. MwSt."
@@ -1739,7 +1746,7 @@ msgstr "Dieser Text wird verwendet um den Einheitspreis darzustellen. Nutze {pri
 msgid "{price}"
 msgstr "{price}"
 
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:689
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:694
 #@ woocommerce-germanized
 msgid "Sorry, but the new Virtual VAT rules cannot be applied to small business."
 msgstr "Sorry aber die neuen USt-Regelungen für virtuelle Produkte lassen sich leider nicht mit dem Kleinunternehmer vereinbaren. Bitte kontaktiere deinen Steuerberater für weitere Informationen."
@@ -1849,7 +1856,7 @@ msgstr "Genauere Steuerberechnung für Versandkosten aktivieren?"
 #, php-format
 #@ woocommerce-germanized
 msgid "By choosing this option shipping cost taxation will be calculated based on tax rates within cart. Imagine the following example. Further information can be found <a href=\"%s\" target=\"_blank\">here</a>. %s"
-msgstr "Mit der Auswahl dieser Option werden die Steuern für Versandkosten basierend auf den Anteilen der Steuersätze der Artikel im Warenkorb berechnet. Weitere Informationen findest du <a href=\"%s\" target=\"_blank\">hier</a>. Hier ein kleines Beispiel: %s"
+msgstr "Mit der Auswahl dieser Option werden die Steuern für Versandkosten basierend auf den Anteilen der Steuersätze der Artikel im Warenkorb berechnet. Weitere Informationen findest du <a href=\"%s\" target=\"_blank\">hier</a>. Falls du vorher mit Nettobeträgen gearbeitet hast, ändere die Versandkosten bitte in Bruttobeträge. Hier ein kleines Beispiel: %s"
 
 #: includes/admin/settings/class-wc-gzd-settings-germanized.php:220
 #: includes/admin/settings/class-wc-gzd-settings-germanized.php:242
@@ -1885,7 +1892,7 @@ msgstr "Genauere Steuerberechnung für Gebühren aktivieren?"
 #: includes/admin/settings/class-wc-gzd-settings-germanized.php:238
 #@ woocommerce-germanized
 msgid "By choosing this option fee taxation will be calculated based on tax rates within cart. See shipping costs taxation for more information."
-msgstr "Mit Hilfe dieser Option werden die Steuern für Gebühren basierend auf den Steuersätzen der Artikel im Warenkorb berechnet (siehe Steuern für Versandkosten für weitere Informationen)."
+msgstr "Mit Hilfe dieser Option werden die Steuern für Gebühren basierend auf den Steuersätzen der Artikel im Warenkorb berechnet (siehe Steuern für Versandkosten für weitere Informationen). Bitte passe auch hier etwaige Nettobeträge in Bruttobeträge an."
 
 #: includes/admin/settings/class-wc-gzd-settings-germanized.php:243
 #@ woocommerce-germanized
@@ -1895,11 +1902,27 @@ msgstr "Berechnung der Steuern für Gebühren erzwingen?"
 #: includes/admin/settings/class-wc-gzd-settings-germanized.php:247
 #@ woocommerce-germanized
 msgid "This option will overwrite settings for each individual fee to force tax calculation (instead of only calculating tax for those fees which are taxeable)."
-msgstr "Diese Option überschreibt die Einstellungen aller Gebühren und erzwingt die Steuer-Berechnung."
+msgstr "Diese Option überschreibt die Einstellungen aller Gebühren und erzwingt die Steuerberechnung."
 
 #. translators: plugin header field 'Version'
 #: woocommerce-germanized.php:0
 #@ woocommerce-germanized
 msgid "1.1.2"
 msgstr "1.1.2"
+
+#: templates/checkout/review-order.php:21
+#@ woocommerce-germanized
+msgid "Total Sum"
+msgstr "Gesamtsumme"
+
+#: includes/admin/views/html-notice-theme-incompatibility.php:15
+#, php-format
+#@ woocommerce-germanized
+msgid "It seems like your theme tries to overwrite legally relevant templates. Please review your checkout page. Some things might look weird because WooCommerce Germanized had to stop template overriding for legal purposes (Critical templates: %s). See <a href=\"%s\" target=\"_blank\">making your theme compatible</a> or check out our Theme <a href=\"%s\" target=\"_blank\">VendiPro</a> for 100&#37; compatibility."
+msgstr "Es sieht so aus als wenn dein aktuelles Theme versucht rechtlich relevante Templates (kritische Templates: %s) zu überschreiben. Bitte überprüfe deinen Shop und insbesondere den Bezahlvorgang. WooCommerce Germanized musste das Überschreiben dieser Templates verhindern um für Rechtssicherheit sorgen zu können. Bitte lies dazu <a href=\"%s\" target=\"_blank\">mein Theme kompatibel machen</a> oder schau dir das von uns entwickelte Theme <a href=\"%s\" target=\"_blank\">VendiPro</a> für 100&#37; Kompatibilität an."
+
+#: templates/checkout/review-order-2-2.php:71
+#@ woocommerce
+msgid "Total"
+msgstr ""
 

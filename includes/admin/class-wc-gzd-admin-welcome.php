@@ -153,27 +153,28 @@ class WC_GZD_Admin_Welcome {
 			</div>
 		</div>
 		<div class="changelog">
-			<h3>Neu in WooCommerce Germanized 1.1</h3>
+			<h3>Neu in WooCommerce Germanized 1.2</h3>
 			<div class="wc-feature feature-section col three-col" style="margin-bottom: -30px">
 				<div>
-					<h4><i class="fa fa-image"></i> Thumbnails im Checkout</h4>
+					<h4><i class="fa fa-truck"></i> Steuern für Versandkosten</h4>
 					<p>
-					Von nun an können auch auf der Kasse-Seite wieder Thumbnails in der Tabelle dargestellt werden.
-					Ein Update von WooCommerce hatte diese (rechtlich relevante) Funktion standardmäßig deaktiviert.
+					Die Besteuerung von Versandkosten und Gebühren ist in Deutschland ziemlich kompliziert. 
+					Auf Wunsch passt WooCommerce Germanized die Besteuerung nun automatisiert an und berechnet die Steuern
+					für Versandkosten und Gebühren basierend auf den MwSt.-Anteilen im Warenkorb. Hier findest du mehr <a href="http://www.it-recht-kanzlei.de/umsatzsteuer-versandkosten-mehrwertsteuer.html" target="_blank">Informationen</a>.
 					</p>
 				</div>
 				<div>
-					<h4><i class="fa fa-truck"></i> Versandmethoden-Auswahl</h4>
+					<h4><i class="fa fa-hand-o-up"></i> WC 2.3 - Kompatibilität</h4>
 					<p>
-					Die Versandmethoden-Auswahl kann normalerweise auch noch auf der Kasse-Seite erfolgen. 
-					Wir haben nun die Funktion eingebettet, die Auswahl optional nur auf der Warenkorb-Seite zu erlauben.
+					Mit dieser Version unterstützt WC Germanized auch die neueste WooCommerce Version (2.3), die in Kürze erscheint.
+					WC Germanized bleibt aber vorerst auch rückwärtskompatibel und unterstützt weiterhin 2.2.
 					</p>
 				</div>
 				<div class="last-feature">
 					<h4><i class="fa fa-check"></i> Plugin Kompatibilität</h4>
 					<p>
-					Mit der neuen Version bieten wir eine noch bessere Kompatibilität zu anderen WooCommerce Plugins
-					ohne dabei gänzlich auf die Vorteile von OOP zu verzichten.
+					Mit dieser Version unterstützen wir noch besser Plugins von Drittanbietern. Templates von WooCommerce Germanized
+					können nun in einem Theme-Ordner überschrieben werden (mein-theme/woocommerce-germanized).
 					</p>
 				</div>
 			</div>

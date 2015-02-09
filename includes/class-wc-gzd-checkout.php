@@ -96,32 +96,37 @@ class WC_GZD_Checkout {
 		if ( get_option( 'woocommerce_gzd_fee_tax' ) != 'yes' )
 			return;
 		if ( ! empty( $cart->fees ) ) {
-			$tax_shares = wc_gzd_get_cart_tax_share();
+			$tax_shares = wc_gzd_get_cart_tax_share( 'fee' );
 			foreach ( $cart->fees as $key => $fee ) {
 				if ( ! $fee->taxable && get_option( 'woocommerce_gzd_fee_tax_force' ) != 'yes' )
-					continue;
-				$fee_amount = $fee->amount;
-				$fee_tax_rates = WC_Tax::get_rates( $fee->tax_class );
+					continue;	
+				// Calculate gross price if necessary
 				if ( $fee->taxable ) {
-					// Calculate fee price including VAT
+					$fee_tax_rates = WC_Tax::get_rates( $fee->tax_class );
 					$fee_tax = WC_Tax::calc_tax( $fee->amount, $fee_tax_rates, false );
-					$fee_amount = $fee_amount + array_sum( $fee_tax );
-				} else {
-					// Calculate net price
-					$fee_tax = WC_Tax::calc_tax( $fee->amount, $fee_tax_rates, true );
-					$fee->amount = $fee->amount - array_sum( $fee_tax );
+					$fee->amount += array_sum( $fee_tax );
 				}
-				$fee->taxable = true;
+				// Set fee to nontaxable to avoid WooCommerce default tax calculation
+				$fee->taxable = false;
 				// Calculate tax class share
 				if ( ! empty( $tax_shares ) ) {
+					$fee_taxes = array();
 					foreach ( $tax_shares as $rate => $class ) {
 						$tax_rates = WC_Tax::get_rates( $rate );
-						$tax_shares[ $rate ][ 'fee_tax_share' ] = $fee_amount * $class[ 'share' ];
-						$tax_shares[ $rate ][ 'fee_tax' ] = WC_Tax::calc_tax( ( $fee_amount * $class[ 'share' ] ), $tax_rates, true );
+						$tax_shares[ $rate ][ 'fee_tax_share' ] = $fee->amount * $class[ 'share' ];
+						$tax_shares[ $rate ][ 'fee_tax' ] = WC_Tax::calc_tax( ( $fee->amount * $class[ 'share' ] ), $tax_rates, true );
+						$fee_taxes += $tax_shares[ $rate ][ 'fee_tax' ];
 					}
 					foreach ( $tax_shares as $rate => $class ) {
 						$cart->fees[ $key ]->tax_data = $cart->fees[ $key ]->tax_data + $class[ 'fee_tax' ];
 					}
+					// Add fee taxes to cart taxes
+					foreach ( array_keys( $cart->taxes + $fee_taxes ) as $sub ) {
+						$cart->taxes[ $sub ] = ( isset( $fee_taxes[ $sub ] ) ? $fee_taxes[ $sub ] : 0 ) + ( isset( $cart->taxes[ $sub ] ) ? $cart->taxes[ $sub ] : 0 );
+					}
+					// Update fee
+					$cart->fees[ $key ]->tax = array_sum( $cart->fees[ $key ]->tax_data );
+					$cart->fees[ $key ]->amount = $cart->fees[ $key ]->amount - $cart->fees[ $key ]->tax;
 				}
 			}
 		}

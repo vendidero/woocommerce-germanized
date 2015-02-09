@@ -29,14 +29,18 @@ function wc_gzd_product_item_desc( $title, $item ) {
 	return $new;
 }
 
-function wc_gzd_get_cart_tax_share() {
+function wc_gzd_get_cart_tax_share( $type = 'shipping' ) {
 	$cart = WC()->cart->get_cart();
 	$tax_shares = array();
 	$item_totals = 0;
 	// Get tax classes and tax amounts
 	if ( ! empty( $cart ) ) {
 		foreach ( $cart as $key => $item ) {
-			$class = $item['data']->get_tax_class();
+			$_product = $item['data'];
+			// Dont calculate share if is shipping and product is virtual or vat exception
+			if ( $type == 'shipping' && $_product->is_virtual() || ( $_product->gzd_product->is_virtual_vat_exception() && $type == 'shipping' ) )
+				continue;
+			$class = $_product->get_tax_class();
 			if ( ! isset( $tax_shares[ $class ] ) ) {
 				$tax_shares[ $class ] = array();
 				$tax_shares[ $class ][ 'total' ] = 0;
@@ -78,20 +82,25 @@ function wc_gzd_cart_totals_order_total_tax_html() {
 				$rate = wc_gzd_get_tax_rate( $tax->tax_rate_id );
 				if ( ! empty( $rate ) && isset( $rate->tax_rate ) )
 					$tax->rate = $rate->tax_rate;
-				$tax_array[] = array( 'tax' => $tax, 'amount' => $tax->formatted_amount );
+				if ( ! isset( $tax_array[ $tax->rate ] ) )
+					$tax_array[ $tax->rate ] = array( 'tax' => $tax, 'amount' => $tax->amount, 'contains' => array( $tax ) );
+				else {
+					array_push( $tax_array[ $tax->rate ][ 'contains' ], $tax );
+					$tax_array[ $tax->rate ][ 'amount' ] += $tax->amount;
+				}
 			}
 		} else {
 			$base_rate = array_values( WC_Tax::get_shop_base_rate() );
 			$base_rate = (object) $base_rate[0];
 			$base_rate->rate = $base_rate->rate;
-			$tax_array[] = array( 'tax' => $base_rate, 'amount' => wc_price( WC()->cart->get_taxes_total( true, true ) ) );
+			$tax_array[] = array( 'tax' => $base_rate, 'contains' => array( $base_rate ), 'amount' => WC()->cart->get_taxes_total( true, true ) );
 		}
 		if ( ! empty( $tax_array ) ) {	
 			foreach ( $tax_array as $tax ) {
 				echo '
 					<tr class="order-tax">
 						<th>' . ( get_option( 'woocommerce_tax_total_display' ) == 'itemized' ? sprintf( __( 'incl. %s%% VAT', 'woocommerce-germanized' ), wc_gzd_format_tax_rate_percentage( $tax[ 'tax' ]->rate ) ) : __( 'incl. VAT', 'woocommerce-germanized' ) ) . '</th> 
-						<td>' . $tax[ 'amount' ] . '</td>
+						<td>' . wc_price( $tax[ 'amount' ] ) . '</td>
 					</tr>';
 			}
 		}

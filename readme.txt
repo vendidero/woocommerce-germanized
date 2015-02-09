@@ -4,7 +4,7 @@ Tags: woocommerce, german market, german, germany, deutsch, deutschland, de, de_
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=info@vendidero.de&item_name=Donation+for+WooCommerce+Germanized
 Requires at least: 3.8
 Tested up to: 4.1
-Stable tag: 1.1.1
+Stable tag: 1.2.0
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -25,6 +25,9 @@ Bei der Entwicklung von VendiPro haben wir besonders auf die Einhaltung deutsche
 WooCommerce Germanized unterstützt eine Vielzahl typisch deutscher Funktionalitäten: Lieferzeiten, Einheitspreise, Versandkosten- und Mehrwertsteuer-Hinweise, rechtlich relevante Hinweisseiten (z.B. AGB, Widerrufsbelehrung usw.) - auch in E-Mails, Kleinuternehmerregelung, Gebühren für Zahlungsmethoden und noch vieles mehr.
 Zudem haben wir einige Anpassungen am Bezahlvorgang vorgenommen, damit dieser den rechtlichen Ansprüchen eines deutschen Online-Shops entspricht. Eine ausführliche Liste der Funktionalitäten sowie weitere Informationen findest du auf [vendidero.de](http://vendidero.de/woocommerce-germanized "WooCommerce Germanized - WooCommerce Plugin für den deutschen Markt")
 
+= WooCommerce 2.3 kompatibel =
+Mit der neuesten Version unterstützt WC Germanized von nun an die in Kürze erscheinende Version 2.3 von WooCommerce. Vorerst ist WC Germanized weiterhin rückwärtskompatibel und unterstützt zusätzlich die alte Version (2.2).
+
 = Trusted Shops vorzertifiziert =
 WooCommerce Germanized wurde von Trusted Shops vorzertifiziert und bietet damit die optimalen technischen Voraussetzungen für einen rechtssicheren Online-Shop mit WooCommerce in Deutschland.
 Trusted Shops zertifiziert Online-Shops nach sorgfältig ausgewählten Qualitätskriterien und hat WooCommerce Germanized genau unter die Lupe genommen.
@@ -34,7 +37,11 @@ Selbstverständlich können Trusted Shops Kunden mit nur wenigen Einstellungen d
 Bei der Entwicklung von WooCommerce Germanized haben wir besonderes Augenmerk auf die nahtlose Integration in WooCommerce gelegt.
 Die meisten Änderungen erfolgen über Hooks & Filter - nur im äußersten Notfall wird ein Template direkt überschrieben.
 
-= Neue Umsatzsteuer-Regelung für virtuelle Produkte =
+= Steuern für Versandkosten und Gebühren = 
+WC Germanized unterstützt mit der aktuellen Version die komplizierte Besteuerung von Versandkosten bei "gemischten" Warenkörben (d.h. es befinden sich unterschiedliche MwSt.-Sätze im Warenkorb).
+In diesem Fall muss die Mehrwertsteuer der Versandkosten anteilig (basierend auf den Anteil der jeweiligen MwSt.-Rate an der Gesamtbestellung), basierend auf den unterschiedlichen MwSt.-Raten berechnet werden.
+
+= Neue Umsatzsteuer-Regelung 2015 für virtuelle Produkte =
 Mit der neuesten Version unterstützt WooCommerce Germanized die neuen Umsatzsteuer-Regelungen (B2C-Geschäfte, gültig ab 01.01.2015) zum Verkauf von virtuellen Produkten in die Europäische Union.
 Dabei wird bei virtuellen Produkten der Brutto-Preis beibehalten und lediglich der Netto-Preis, je nach Herkunftsland des Dienstleistungsempfängers, angepasst. 
 Insofern du von den Regelungen betroffen sein solltest, empfehlen wir dir unbedingt mit deinem Steuerberater Rücksprache zu halten.
@@ -122,6 +129,11 @@ Bugs sowie Hilfe bei der Arbeit an WooCommerce Germanized werden gerne über uns
 1. Einstellungsmöglichkeiten für WooCommerce Germanized.
 
 == Changelog ==
+
+= 1.2.0 =
+* Feature - Better shipping and fee taxation
+* Feature - Now supporting WooCommerce 2.3
+* Fix - Template location improvement
 
 = 1.1.1 =
 * Feature - Optionally choose to hide the edit order button on checkout
