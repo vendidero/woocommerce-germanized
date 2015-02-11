@@ -26,6 +26,8 @@ class WC_GZD_Product {
 	 * @param WC_Product $product 
 	 */
 	public function __construct( $product ) {
+		if ( is_numeric( $product ) )
+			$product = WC()->product_factory->get_product_standalone( get_post( $product ) );
 		$this->child = $product;
 	}
  

@@ -186,6 +186,8 @@ final class WooCommerce_Germanized {
 		
 		// Adjust virtual Product Price and tax class
 		add_filter( 'woocommerce_get_price_including_tax', array( $this, 'set_virtual_product_price' ), PHP_INT_MAX, 3 );
+		// Fallback gzd_product injection if not using wc_get_product
+		add_filter( 'get_post_metadata', array( $this, 'inject_gzd_product' ), 0, 4 );
 		
 		// Hide cart estimated text if chosen
 		add_action( 'woocommerce_cart_totals_after_order_total', array( $this, 'hide_cart_estimated_text' ) );
@@ -432,6 +434,21 @@ final class WooCommerce_Germanized {
 	public function set_critical_templates_new_version( $templates ) {
 		array_push( $templates, 'checkout/payment.php' );
 		return $templates;
+	}
+
+	/**
+	 * Inject WC_GZD_Product into WC_Product by filtering postmeta - fallback if not using wc_get_product
+	 *  
+	 * @param  mixed $metadata 
+	 * @param  int $object_id 
+	 * @param  string $meta_key  
+	 * @param  boolean $single    
+	 * @return mixed
+	 */
+	public function inject_gzd_product( $metadata, $object_id, $meta_key, $single ) {
+		if ( $meta_key == '_gzd_product' && in_array( get_post_type( $object_id ), array( 'product', 'product_variation' ) ) ) 
+			return new WC_GZD_Product( $object_id );
+		return $metadata;
 	}
 
 	/**
