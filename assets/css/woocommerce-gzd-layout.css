@@ -85,10 +85,14 @@ p.footer-info {
 }
 table.product-details-inner {
 	table-layout:fixed;
+	margin: 0;
+	padding: 0;
 }
 table.product-details-inner, table.product-details-inner tr, table.product-details-inner td {
-	padding: 0;
-	margin: 0;
+	padding-top: 0;
+	padding-bottom: 0;
+	margin-top: 0;
+	margin-bottom: 0;
 	border: none;
 	background: transparent;
 }
