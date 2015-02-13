@@ -3,7 +3,11 @@ table.data_table tr td p.form-field {
 	padding: 0 !important;
 }
 
-#wp-wc_gzd_product_mini_desc-wrap {
+.variable_cart_mini_desc .wp-editor-tools {
+	margin-top: -3em;
+}
+
+.variable_cart_mini_desc_pre .wp-editor-tools {
 	margin-top: -2em;
 }
 

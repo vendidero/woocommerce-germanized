@@ -28,6 +28,10 @@ class WC_GZD_Product_Variation extends WC_Product_Variation {
 		$this->variation_level_meta_data[ 'gzd_product' ] = NULL;
 	}
 
+	public function get_level_meta_data() {
+		return $this->variation_level_meta_data;
+	}
+
 	/**
 	 * Returns the current products delivery time term without falling back to default terms
 	 * 
