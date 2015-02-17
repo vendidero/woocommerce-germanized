@@ -156,6 +156,13 @@ class WC_GZD_Admin_Welcome {
 			<h3>Neu in WooCommerce Germanized 1.2</h3>
 			<div class="wc-feature feature-section col three-col" style="margin-bottom: -30px">
 				<div>
+					<h4><i class="fa fa-envelope"></i> Double Opt-In</h4>
+					<p>
+					Von nun an kannst du optional das Double Opt-In Verfahren für Benutzerkonten aktivieren.
+					Dazu gab es vor kurzem ein Urteil des Amtsgericht Berlin Pankow/Weißensee. Mehr dazu <a href="http://t3n.de/news/urteil-anmeldebestatigungen-double-opt-in-pflicht-592304/" target="_blank">hier</a>.
+					</p>
+				</div>
+				<div>
 					<h4><i class="fa fa-truck"></i> Steuern für Versandkosten</h4>
 					<p>
 					Die Besteuerung von Versandkosten und Gebühren ist in Deutschland ziemlich kompliziert. 
@@ -163,18 +170,11 @@ class WC_GZD_Admin_Welcome {
 					für Versandkosten und Gebühren basierend auf den MwSt.-Anteilen im Warenkorb. Hier findest du mehr <a href="http://www.it-recht-kanzlei.de/umsatzsteuer-versandkosten-mehrwertsteuer.html" target="_blank">Informationen</a>.
 					</p>
 				</div>
-				<div>
+				<div class="last-feature">
 					<h4><i class="fa fa-hand-o-up"></i> WC 2.3 - Kompatibilität</h4>
 					<p>
 					Mit dieser Version unterstützt WC Germanized auch die neueste WooCommerce Version (2.3), die in Kürze erscheint.
 					WC Germanized bleibt aber vorerst auch rückwärtskompatibel und unterstützt weiterhin 2.2.
-					</p>
-				</div>
-				<div class="last-feature">
-					<h4><i class="fa fa-check"></i> Plugin Kompatibilität</h4>
-					<p>
-					Mit dieser Version unterstützen wir noch besser Plugins von Drittanbietern. Templates von WooCommerce Germanized
-					können nun in einem Theme-Ordner überschrieben werden (mein-theme/woocommerce-germanized).
 					</p>
 				</div>
 			</div>

@@ -413,6 +413,7 @@ class WC_GZD_Trusted_Shops {
 				'default' => 7,
 				'id'   => 'woocommerce_gzd_trusted_review_reminder_days',
 				'type'   => 'number',
+				'custom_attributes' => array( 'min' => 0, 'step' => 1 ),
 			),
 
 			array( 'type' => 'sectionend', 'id' => 'trusted_shops_reviews_options' ),

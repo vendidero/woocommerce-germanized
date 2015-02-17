@@ -3,7 +3,7 @@
  * Plugin Name: WooCommerce Germanized
  * Plugin URI: http://www.vendidero.de/woocommerce-germanized
  * Description: Extends WooCommerce to become a legally compliant store for the german market.
- * Version: 1.2.1
+ * Version: 1.2.2
  * Author: Vendidero
  * Author URI: http://vendidero.de
  * Requires at least: 3.8
@@ -167,8 +167,6 @@ final class WooCommerce_Germanized {
 		add_filter( 'woocommerce_locate_template', array( $this, 'filter_templates' ), PHP_INT_MAX, 3 );
 		if ( version_compare( WC()->version, '2.3', '<' ) )
 			add_filter( 'woocommerce_gzd_default_plugin_template', array( $this, 'filter_templates_old_version' ), 0, 2 );
-		else
-			add_filter( 'woocommerce_gzd_important_templates', array( $this, 'set_critical_templates_new_version' ), 0 );
 		add_filter( 'woocommerce_product_class', array( $this, 'filter_product_classes' ), PHP_INT_MAX, 4 );
 		add_filter( 'woocommerce_get_settings_pages', array( $this, 'add_settings' ) );
 		add_filter( 'woocommerce_enqueue_styles', array( $this, 'add_styles' ) );
@@ -199,6 +197,12 @@ final class WooCommerce_Germanized {
 		// Send order notice directly after new order is being added - use these filters because order status has to be updated already
 		add_filter( 'woocommerce_payment_successful_result', array( $this, 'send_order_confirmation_mails' ), 0, 2 );
 		add_filter( 'woocommerce_checkout_no_payment_needed_redirect', array( $this, 'send_order_confirmation_mails' ), 0, 2 );
+
+		// Check for customer activation
+		add_action( 'template_redirect', array( $this, 'customer_account_activation_check' ) );
+		// Test
+		add_action( 'init', array( WC_GZD_Admin_Customer::instance(), 'account_cleanup' ) );
+		add_action( 'woocommerce_gzd_customer_cleanup', array( WC_GZD_Admin_Customer::instance(), 'account_cleanup' ) );
 
 		// Remove processing + on-hold default order confirmation mails
 		$mailer = WC()->mailer();
@@ -258,6 +262,8 @@ final class WooCommerce_Germanized {
 
 		if ( strpos( $class, 'wc_gzd_gateway_' ) === 0 )
 			$path = $this->plugin_path() . '/includes/gateways/' . trailingslashit( substr( str_replace( '_', '-', $class ), 15 ) );
+		else if ( strpos( $class, 'wc_gzd_admin_' ) === 0 )
+			$path = $this->plugin_path() . '/includes/admin/';
 
 		if ( version_compare( get_option( 'woocommerce_version' ), '2.3', '<' ) ) {
 			$old_file = str_replace( '.php', '-2-2.php', $file );
@@ -327,6 +333,7 @@ final class WooCommerce_Germanized {
 			include_once( 'includes/admin/class-wc-gzd-admin.php' );
 			include_once( 'includes/admin/class-wc-gzd-admin-welcome.php' );
 			include_once( 'includes/admin/class-wc-gzd-admin-notices.php' );
+			include_once( 'includes/admin/class-wc-gzd-admin-customer.php' );
 			include_once( 'includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php' );
 			include_once( 'includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php' );
 		}
@@ -424,16 +431,6 @@ final class WooCommerce_Germanized {
 	 */
 	public function get_critical_templates() {
 		return apply_filters( 'woocommerce_gzd_important_templates', array( 'checkout/form-pay.php', 'checkout/review-order.php' ) );
-	}
-
-	/**
-	 * Add payment.php template to critical if Woo 2.3 is acticated
-	 *  
-	 * @param array $templates 
-	 */
-	public function set_critical_templates_new_version( $templates ) {
-		array_push( $templates, 'checkout/payment.php' );
-		return $templates;
 	}
 
 	/**
@@ -677,9 +674,10 @@ final class WooCommerce_Germanized {
 	 * @return array
 	 */
 	public function add_emails( $mails ) {
-		$mails[ 'WC_GZD_Email_Customer_Revocation' ] 	= include 'includes/emails/class-wc-gzd-email-customer-revocation.php';
-		$mails[ 'WC_GZD_Email_Customer_Ekomi' ] 	 	= include 'includes/emails/class-wc-gzd-email-customer-ekomi.php';
-		$mails[ 'WC_GZD_Email_Customer_Trusted_Shops' ] = include 'includes/emails/class-wc-gzd-email-customer-trusted-shops.php';
+		$mails[ 'WC_GZD_Email_Customer_New_Account_Activation' ] 	= include 'includes/emails/class-wc-gzd-email-customer-new-account-activation.php';
+		$mails[ 'WC_GZD_Email_Customer_Revocation' ] 				= include 'includes/emails/class-wc-gzd-email-customer-revocation.php';
+		$mails[ 'WC_GZD_Email_Customer_Ekomi' ] 	 				= include 'includes/emails/class-wc-gzd-email-customer-ekomi.php';
+		$mails[ 'WC_GZD_Email_Customer_Trusted_Shops' ] 			= include 'includes/emails/class-wc-gzd-email-customer-trusted-shops.php';
 		return $mails;
 	}
 
@@ -713,6 +711,53 @@ final class WooCommerce_Germanized {
 		$mails[ 'WC_Email_New_Order' ]->trigger( $order->id );
 		do_action( 'woocommerce_germanized_order_confirmation_sent', $order->id );
 		return $return;
+	}
+
+	/**
+	 * Check for activation codes on my account page
+	 */
+	public function customer_account_activation_check() {
+		if ( is_account_page() ) {
+			if ( isset( $_GET[ 'activate' ] ) ) {
+				$activation_code = sanitize_text_field( $_GET[ 'activate' ] );
+				if ( ! empty( $activation_code ) ) {
+					if ( $this->customer_account_activate( $activation_code ) ) {
+						wc_add_notice( __( 'Thank you. You have successfully activated your account.', 'woocommerce-germanized' ) );
+						return;
+					}
+				}
+				wc_add_notice( __( 'Sorry, but this activation code cannot be found.', 'woocommerce-germanized' ), 'error' );
+			}
+		}
+	}
+
+	/**
+	 * Activate customer account based on activation code
+	 *  
+	 * @param  string $activation_code hashed activation code
+	 * @return boolean                  
+	 */
+	public function customer_account_activate( $activation_code ) {
+		$user_query = new WP_User_Query(
+			array( 'role' => 'Customer', 'number' => 1, 'meta_query' =>
+				array(
+					array(
+						'key'     => '_woocommerce_activation',
+						'value'   => $activation_code,
+						'compare' => '=',
+					),
+				),
+			)
+		);
+		if ( ! empty( $user_query->results ) ) {
+			foreach ( $user_query->results as $user ) {
+				do_action( 'woocommerce_gzd_customer_opted_in', $user );
+				delete_user_meta( $user->ID, '_woocommerce_activation' );
+				WC()->mailer()->customer_new_account( $user->ID );
+				return true;
+			}
+		}
+		return false;
 	}
 
 	/**

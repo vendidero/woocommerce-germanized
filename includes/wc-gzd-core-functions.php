@@ -20,3 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 function wc_gzd_format_tax_rate_percentage( $rate, $percent = false ) {
 	return str_replace( '.', ',', wc_format_decimal( str_replace( '%', '', $rate ), true, true ) ) . ( $percent ? '%' : '' );
 }
+
+function wc_gzd_is_customer_activated( $user_id ) {
+	return ( get_user_meta( $user_id, '_woocommerce_activation' ) ? false : true );
+}

@@ -249,6 +249,29 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 
 			array( 'type' => 'sectionend', 'id' => 'fees_options' ),
 
+			array( 'title' => __( 'Customers', 'woocommerce-germanized' ), 'type' => 'title', 'desc' => '', 'id' => 'customer_options' ),
+
+			array(
+				'title' 	=> __( 'Customer Double Opt In', 'woocommerce-germanized' ),
+				'desc' 		=> __( 'Enable customer double opt in on registration?', 'woocommerce-germanized' ),
+				'desc_tip'  => sprintf( __( 'If customer chooses to create a customer account an email with an activation link will be sent by mail. Customer account will be marked as activated if user clicks on the link within the email. More information on this topic can be found <a href="%s" target="_blank">here</a>.', 'woocommerce-germanized' ), 'http://t3n.de/news/urteil-anmeldebestatigungen-double-opt-in-pflicht-592304/' ),
+				'id' 		=> 'woocommerce_gzd_customer_activation',
+				'default'	=> 'yes',
+				'type' 		=> 'checkbox',
+			),
+
+			array(
+				'title' 	=> __( 'Delete Unactivated After', 'woocommerce-germanized' ),
+				'desc_tip' 	=> __( 'This will make sure unactivated customer accounts will be deleted after X days. Set to 0 if you don\'t want to automatically delete unactivated customers.', 'woocommerce-germanized' ),
+				'desc'		=> __( 'days', 'woocommerce-germanized' ),
+				'id' 		=> 'woocommerce_gzd_customer_cleanup_interval',
+				'type' 		=> 'number',
+				'custom_attributes' => array( 'min' => 0, 'step' => 1 ),
+				'default'	=> 7,
+			),
+
+			array( 'type' => 'sectionend', 'id' => 'customer_options' ),
+
 			array(	'title' => __( 'Unit Price', 'woocommerce-germanized' ), 'type' => 'title', 'id' => 'unit_price_options' ),
 
 			array(

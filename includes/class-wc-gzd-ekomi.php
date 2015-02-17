@@ -362,6 +362,7 @@ class WC_GZD_Ekomi {
 				'desc_tip' => true,
 				'id'   => 'woocommerce_gzd_ekomi_day_diff',
 				'type'   => 'number',
+				'custom_attributes' => array( 'min' => 0, 'step' => 1 ),
 				'default' => 7,
 			),
 

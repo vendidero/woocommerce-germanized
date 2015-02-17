@@ -4,7 +4,7 @@ Tags: woocommerce, german market, german, germany, deutsch, deutschland, de, de_
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=info@vendidero.de&item_name=Donation+for+WooCommerce+Germanized
 Requires at least: 3.8
 Tested up to: 4.1
-Stable tag: 1.2.1
+Stable tag: 1.2.2
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -29,33 +29,37 @@ Zudem haben wir einige Anpassungen am Bezahlvorgang vorgenommen, damit dieser de
 Mit der neuesten Version unterstützt WC Germanized von nun an die in Kürze erscheinende Version 2.3 von WooCommerce. Vorerst ist WC Germanized weiterhin rückwärtskompatibel und unterstützt zusätzlich die alte Version (2.2).
 
 = Trusted Shops vorzertifiziert =
-WooCommerce Germanized wurde von Trusted Shops vorzertifiziert und bietet damit die optimalen technischen Voraussetzungen für einen rechtssicheren Online-Shop mit WooCommerce in Deutschland.
-Trusted Shops zertifiziert Online-Shops nach sorgfältig ausgewählten Qualitätskriterien und hat WooCommerce Germanized genau unter die Lupe genommen.
-Selbstverständlich können Trusted Shops Kunden mit nur wenigen Einstellungen das Gütesiegel und die Trusted Shops Produkte mit WooCommerce Germanized nutzen.
+WC Germanized wurde von Trusted Shops vorzertifiziert und bietet damit die optimalen technischen Voraussetzungen für einen rechtssicheren Online-Shop mit WooCommerce in Deutschland.
+Trusted Shops zertifiziert Online-Shops nach sorgfältig ausgewählten Qualitätskriterien und hat WC Germanized genau unter die Lupe genommen.
+Selbstverständlich können Trusted Shops Kunden mit nur wenigen Einstellungen das Gütesiegel und die Trusted Shops Produkte mit WC Germanized nutzen.
 
 = Sauber implementiert =
-Bei der Entwicklung von WooCommerce Germanized haben wir besonderes Augenmerk auf die nahtlose Integration in WooCommerce gelegt.
+Bei der Entwicklung von WC Germanized haben wir besonderes Augenmerk auf die nahtlose Integration in WooCommerce gelegt.
 Die meisten Änderungen erfolgen über Hooks & Filter - nur im äußersten Notfall wird ein Template direkt überschrieben.
 
 = Steuern für Versandkosten und Gebühren = 
 WC Germanized unterstützt mit der aktuellen Version die komplizierte Besteuerung von Versandkosten bei "gemischten" Warenkörben (d.h. es befinden sich unterschiedliche MwSt.-Sätze im Warenkorb).
 In diesem Fall muss die Mehrwertsteuer der Versandkosten anteilig (basierend auf den Anteil der jeweiligen MwSt.-Rate an der Gesamtbestellung), basierend auf den unterschiedlichen MwSt.-Raten berechnet werden.
 
+= Double Opt-In Verfahren für Benutzerkonten =
+Ein Urteil des Amtsgerichts Berlin Pankow/Weißensee macht das Double Opt-In Verfahren für die Erstellung von Benutzerkonten in Online-Shops zur "Pflichtsache". In WC Germanized ist das kein Problem.
+Nach Erstellung eines Kontos wird automatisch eine Bestätigungsmail mit Bestätigungslink an den Kunden versendet. Unaktivierte Konten können nach einem bestimmten Interval automatisch gelöscht werden.
+
 = Neue Umsatzsteuer-Regelung 2015 für virtuelle Produkte =
-Mit der neuesten Version unterstützt WooCommerce Germanized die neuen Umsatzsteuer-Regelungen (B2C-Geschäfte, gültig ab 01.01.2015) zum Verkauf von virtuellen Produkten in die Europäische Union.
+Mit der neuesten Version unterstützt WC Germanized die neuen Umsatzsteuer-Regelungen (B2C-Geschäfte, gültig ab 01.01.2015) zum Verkauf von virtuellen Produkten in die Europäische Union.
 Dabei wird bei virtuellen Produkten der Brutto-Preis beibehalten und lediglich der Netto-Preis, je nach Herkunftsland des Dienstleistungsempfängers, angepasst. 
 Insofern du von den Regelungen betroffen sein solltest, empfehlen wir dir unbedingt mit deinem Steuerberater Rücksprache zu halten.
 
 = eKomi Integration =
-Mit nur wenigen Klicks lässt sich eKomi als Bewertungsmanagement-Dienstleister in WooCommerce Germanized einstellen. 
+Mit nur wenigen Klicks lässt sich eKomi als Bewertungsmanagement-Dienstleister in WC Germanized einstellen. 
 Damit kann dein Online-Shop ganz einfach von den Vorteilen des externen Dienstleisters profitieren und unabhängige Kundenbewertungen veröffentlichen.
 
 = Premium Support =
-Kunden von VendiPro genießen einen kompetenten Ticket-Support zu Fragen rund um VendiPro und WooCommerce Germanized. Natürlich versuchen wir über das WordPress Support-Forum auch einen guten Support zu gewährleisten.
-Gerne übernehmen wir die von dir gewünschten Individualisierungen und Anpassungen an WordPress, WooCommerce und WooCommerce Germanized - und unterbreiten dir gerne ein [individuelles Angebot](http://vendidero.de/individualisierung) basierend auf deinen Vorstellungen.
+Kunden von VendiPro genießen einen kompetenten Ticket-Support zu Fragen rund um VendiPro und WC Germanized. Natürlich versuchen wir über das WordPress Support-Forum auch einen guten Support zu gewährleisten.
+Gerne übernehmen wir die von dir gewünschten Individualisierungen und Anpassungen an WordPress, WooCommerce und WC Germanized - und unterbreiten dir gerne ein [individuelles Angebot](http://vendidero.de/individualisierung) basierend auf deinen Vorstellungen.
 
 = About WooCommerce Germanized =
-WooCommerce Germanized extends WooCommerce to become a legally compliant Online-Shop for the german market. This does not replace legal advice - we do only offer technical implementations to meet german law.
+WC Germanized extends WooCommerce to become a legally compliant Online-Shop for the german market. This does not replace legal advice - we do only offer technical implementations to meet german law.
 Overview of what WooCommerce Germanized offers:
 
 * small-enterprise regulation (§19 UStG)
@@ -129,6 +133,10 @@ Bugs sowie Hilfe bei der Arbeit an WooCommerce Germanized werden gerne über uns
 1. Einstellungsmöglichkeiten für WooCommerce Germanized.
 
 == Changelog ==
+
+= 1.2.2 =
+* Feature - Double Opt-In for customer accounts
+* Fix - No need to override payment.php any longer (WC 2.3)
 
 = 1.2.1 =
 * Fix - Variations admin edit custom attributes (unit price etc.)

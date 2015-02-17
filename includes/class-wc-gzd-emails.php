@@ -26,6 +26,12 @@ class WC_GZD_Emails {
 			'woocommerce_gzd_mail_attach_imprint' => woocommerce_get_page_id ( 'imprint' ),
 		);
 
+		// Add new customer activation
+		if ( get_option( 'woocommerce_gzd_customer_activation' ) == 'yes' ) {
+			remove_action( 'woocommerce_created_customer_notification', array( WC()->mailer(), 'customer_new_account' ), 10 );
+			add_action( 'woocommerce_created_customer_notification', array( $this, 'customer_new_account_activation' ), 9, 3 );
+		}
+
 		// Hook before WooCommerce Footer is applied
 		remove_action( 'woocommerce_email_footer', array( WC()->mailer(), 'email_footer' ) );
 		add_action( 'woocommerce_email_footer', array( $this, 'add_template_footers' ), 0 );
@@ -40,6 +46,32 @@ class WC_GZD_Emails {
 				add_action( 'woocommerce_germanized_email_footer_' . $mail->id, array( $this, 'hook_mail_footer' ), 10, 1 );
 			}
 		}
+	}
+
+	/**
+	 * Customer new account activation email.
+	 *
+	 * @param int $customer_id
+	 * @param array $new_customer_data
+	 */
+	public function customer_new_account_activation( $customer_id, $new_customer_data = array(), $password_generated = false ) {
+		global $wp_hasher;
+
+		if ( ! $customer_id )
+			return;
+
+		$user_pass = ! empty( $new_customer_data['user_pass'] ) ? $new_customer_data['user_pass'] : '';
+		
+		if ( empty( $wp_hasher ) ) {
+			require_once ABSPATH . WPINC . '/class-phpass.php';
+			$wp_hasher = new PasswordHash( 8, true );
+		}
+		$user_activation = $wp_hasher->HashPassword( wp_generate_password( 20 ) );
+		$user_activation_url = apply_filters( 'woocommerce_gzd_customer_activation_url', add_query_arg( 'activate', $user_activation, get_permalink( wc_get_page_id( 'myaccount' ) ) ) ); 
+		add_user_meta( $customer_id, '_woocommerce_activation', $user_activation );
+
+		$email = WC()->mailer()->emails['WC_GZD_Email_Customer_New_Account_Activation'];
+		$email->trigger( $customer_id, $user_activation, $user_activation_url, $user_pass, $password_generated );
 	}
 
 	/**

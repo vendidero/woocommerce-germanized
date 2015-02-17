@@ -282,6 +282,9 @@ if ( ! function_exists( 'woocommerce_gzd_add_variation_options' ) ) {
 
 if ( ! function_exists( 'woocommerce_gzd_template_order_success_text' ) ) {
 
+	/**
+	 * Manipulate order success text
+	 */
 	function woocommerce_gzd_template_order_success_text( $text ) {
 		return ( get_option( 'woocommerce_gzd_order_success_text' ) ? get_option( 'woocommerce_gzd_order_success_text' ) : $text );
 	}
@@ -290,6 +293,9 @@ if ( ! function_exists( 'woocommerce_gzd_template_order_success_text' ) ) {
 
 if ( ! function_exists( 'woocommerce_gzd_template_loop_add_to_cart' ) ) {
 
+	/**
+	 * Custom add to cart button
+	 */
 	function woocommerce_gzd_template_loop_add_to_cart( $text, $product ) {
 		return sprintf( 
 			'<a href="%s" class="button">%s</a>',
@@ -302,6 +308,9 @@ if ( ! function_exists( 'woocommerce_gzd_template_loop_add_to_cart' ) ) {
 
 if ( ! function_exists( 'woocommerce_gzd_template_order_submit' ) ) {
 
+	/**
+	 * Adds custom order submit template (at the end of checkout)
+	 */
 	function woocommerce_gzd_template_order_submit() {
 		wc_get_template( 'checkout/order-submit.php', array(
 			'checkout'           => WC()->checkout(),
@@ -313,9 +322,45 @@ if ( ! function_exists( 'woocommerce_gzd_template_order_submit' ) ) {
 
 if ( ! function_exists( 'woocommerce_gzd_template_checkout_review_title' ) ) {
 
+	/**
+	 * Add order review heading
+	 */
 	function woocommerce_gzd_template_checkout_review_title() { ?>
 		<h3 id="wc_gzd_order_review_heading"><?php _e( 'Your order', 'woocommerce' ); ?></h3>
 	<?php }
+
+}
+
+if ( ! function_exists( 'woocommerce_gzd_template_set_order_button_remove_filter' ) ) {
+	
+	/**
+	 * Temporarily add a filter which removes order button html (that's how we get the order button at the end of checkout since WC 2.3)
+	 */
+	function woocommerce_gzd_template_set_order_button_remove_filter() {
+		add_filter( 'woocommerce_order_button_html', 'woocommerce_gzd_template_button_temporary_hide', PHP_INT_MAX );
+	}
+
+}
+
+if ( ! function_exists( 'woocommerce_gzd_template_button_temporary_hide' ) ) {
+
+	/**
+	 * Filter which temporarily sets order button html to false (stop displaying)
+	 */
+	function woocommerce_gzd_template_button_temporary_hide( $text ) {
+		return false;
+	}
+
+}
+
+if ( ! function_exists( 'woocommerce_gzd_template_set_order_button_show_filter' ) ) {
+	
+	/**
+	 * Remove the order button html filter after payment.php has been parsed
+	 */
+	function woocommerce_gzd_template_set_order_button_show_filter() {
+		remove_filter( 'woocommerce_order_button_html', 'woocommerce_gzd_template_button_temporary_hide', PHP_INT_MAX );
+	}
 
 }
 

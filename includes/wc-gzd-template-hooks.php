@@ -58,6 +58,10 @@ if ( version_compare( WC()->version, '2.3', '>=' ) ) {
 	add_action( 'woocommerce_review_order_after_payment', 'woocommerce_gzd_template_checkout_review_title', 1 );
 	add_action( 'woocommerce_review_order_after_payment', 'woocommerce_gzd_template_checkout_legal', 2 );
 	add_action( 'woocommerce_review_order_after_payment', 'woocommerce_gzd_template_checkout_set_terms_manually', 3 );
+	// Temporarily remove order button from payment.php - then add again to show after product table
+	add_action( 'woocommerce_review_order_before_submit', 'woocommerce_gzd_template_set_order_button_remove_filter', PHP_INT_MAX );
+	add_action( 'woocommerce_review_order_after_submit', 'woocommerce_gzd_template_set_order_button_show_filter', PHP_INT_MAX );
+	add_action( 'woocommerce_gzd_review_order_before_submit', 'woocommerce_gzd_template_set_order_button_show_filter', PHP_INT_MAX );
 	if ( get_option( 'woocommerce_gzd_checkout_legal_digital_checkbox' ) == 'yes' )
 		add_action( 'woocommerce_review_order_after_payment', 'woocommerce_gzd_digital_checkbox', 4 );
 } else {
