@@ -117,8 +117,13 @@ class WC_GZD_Admin_Welcome {
 		<p class="woocommerce-actions wc-gzd-actions">
 			<a href="<?php echo admin_url('admin.php?page=wc-settings&tab=germanized'); ?>" class="button button-primary">Einstellungen</a>
 			<a class="vendidero button button-primary" href="<?php echo esc_url( 'http://vendidero.de/support', 'woocommerce-germanized' ); ?>">Hilfe & Support</a>
-			<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://vendidero.de/woocommerce-germanized" data-text="WooCommerce Germanized passt deinen Online-Shop an deutsche Rechtsgrundlagen an. Wir helfen Dir Abmahnungen zu verhindern. Kostenlos!" data-via="Vendidero" data-size="large" data-hashtags="WooCommerce Germanized">Tweet</a>
-			<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+			<span class="wc-gzd-twitter">
+				<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://vendidero.de/woocommerce-germanized" data-text="WooCommerce Germanized passt deinen Online-Shop an deutsche Rechtsgrundlagen an. Wir helfen Dir Abmahnungen zu verhindern. Kostenlos!" data-via="Vendidero" data-size="large" data-hashtags="WooCommerce Germanized">Tweet</a>
+				<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+			</span>
+			<span class="wc-gzd-fb">
+			<iframe src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Fvendidero.de%2Fwoocommerce-germanized&amp;width&amp;layout=button&amp;action=recommend&amp;show_faces=false&amp;share=false&amp;height=20" scrolling="no" frameborder="0" style="border:none; overflow:hidden; height:20px;" allowTransparency="true"></iframe>
+			</span>
 		</p>
 		<div class="changelog vendipro">
 			<h3>VendiPro - Das WooCommerce Theme für den deutschen Markt</h3>

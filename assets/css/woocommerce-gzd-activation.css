@@ -18,6 +18,17 @@
 	margin-top: 2rem;
 	margin-left: 5%;
 }
+.wc-gzd-twitter, .wc-gzd-fb {
+	display: inline-block;
+}
+.wc-gzd-twitter iframe {
+	width: 130px !important;
+}
+.wc-gzd-fb iframe {
+	position: relative;
+	top: 5px;
+	display: inline-block;
+}
 .dashboard_page_wc-gzd-about h1 {
 	width: 100%;
 	margin-right: 0;
