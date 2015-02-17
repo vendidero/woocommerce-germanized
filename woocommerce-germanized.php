@@ -26,7 +26,7 @@ final class WooCommerce_Germanized {
 	 *
 	 * @var string
 	 */
-	public $version = '1.2.1';
+	public $version = '1.2.2';
 
 	/**
 	 * Single instance of WooCommerce Germanized Main Class
