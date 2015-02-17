@@ -3,6 +3,7 @@ jQuery( function( $ ) {
 		$( 'body' ).trigger( 'update_checkout' );
 	});
 	$( 'body' ).bind( 'updated_checkout', function() {
-		$( '.place-order:not(.wc-gzd-place-order)' ).remove();
+		if ( $( '.wc-gzd-place-order' ).length > 0 )
+			$( '.place-order:not(.wc-gzd-place-order)' ).remove();
 	});
 });
