@@ -200,8 +200,6 @@ final class WooCommerce_Germanized {
 
 		// Check for customer activation
 		add_action( 'template_redirect', array( $this, 'customer_account_activation_check' ) );
-		// Test
-		add_action( 'init', array( WC_GZD_Admin_Customer::instance(), 'account_cleanup' ) );
 		add_action( 'woocommerce_gzd_customer_cleanup', array( WC_GZD_Admin_Customer::instance(), 'account_cleanup' ) );
 
 		// Remove processing + on-hold default order confirmation mails
