@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: WooCommerce Germanized v1.2.1\n"
+"Project-Id-Version: WooCommerce Germanized v1.2.3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-29 12:26+0100\n"
-"PO-Revision-Date: 2015-02-17 13:28:26+0000\n"
+"PO-Revision-Date: 2015-02-18 17:11:33+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -85,7 +85,7 @@ msgstr "Über WooCommerce Germanized"
 msgid "Welcome to WooCommerce Germanized"
 msgstr "Willkommen bei WooCommerce Germanized"
 
-#: includes/admin/class-wc-gzd-admin-welcome.php:231
+#: includes/admin/class-wc-gzd-admin-welcome.php:236
 #@ woocommerce-germanized
 msgid "Go to WooCommerce Germanized Settings"
 msgstr "zu den WooCommerce Germanized Einstellungen"
@@ -1102,7 +1102,7 @@ msgstr "Zahlungsgebühr"
 
 #: includes/abstracts/abstract-wc-gzd-product.php:82
 #: includes/wc-gzd-cart-functions.php:102
-#: woocommerce-germanized.php:827
+#: woocommerce-germanized.php:825
 #, php-format
 #@ woocommerce-germanized
 msgid "incl. %s%% VAT"
@@ -1289,12 +1289,12 @@ msgstr "Widerruf erklären"
 msgid "VAT free based on &#167;19 UStG"
 msgstr "Kein Mehrwertsteuerausweis, da Kleinunternehmer nach §19 (1) UStG."
 
-#: woocommerce-germanized.php:564
+#: woocommerce-germanized.php:562
 #@ woocommerce
 msgid "Settings"
 msgstr "Einstellungen"
 
-#: woocommerce-germanized.php:800
+#: woocommerce-germanized.php:798
 #@ woocommerce
 msgid "Order Total:"
 msgstr "Gesamtsumme"
@@ -1679,7 +1679,7 @@ msgstr "Versandkosten-Hinweis auch für virtuelle Produkte aktivieren?"
 
 #: includes/abstracts/abstract-wc-gzd-product.php:81
 #: includes/wc-gzd-cart-functions.php:102
-#: woocommerce-germanized.php:827
+#: woocommerce-germanized.php:825
 #@ woocommerce-germanized
 msgid "incl. VAT"
 msgstr "inkl. MwSt."
@@ -1955,7 +1955,7 @@ msgstr "Double Opt-In Verfahren für Kundenkonten aktivieren?"
 #, php-format
 #@ woocommerce-germanized
 msgid "If customer chooses to create a customer account an email with an activation link will be sent by mail. Customer account will be marked as activated if user clicks on the link within the email. More information on this topic can be found <a href=\"%s\" target=\"_blank\">here</a>."
-msgstr "Wenn ein Kunde sich dazu entscheidet ein Benutzerkonto zu erstellen, erhält dieser eine E-Mail mit einem Bestätigungslink. Insofern der Kunde diesen Bestätigungslink anklickt, wird das Konto als bestätigt markiert. Dieses Verfahren ist laut Amtsgericht Berlin Pankow/Weißensee notwendig. Mehr Informationen findest du <a href=\\\"%s\\\" target=\\\"_blank\\\">hier</a>."
+msgstr "Wenn ein Kunde sich dazu entscheidet ein Benutzerkonto zu erstellen, erhält dieser eine E-Mail mit einem Bestätigungslink. Insofern der Kunde diesen Bestätigungslink anklickt, wird das Konto als bestätigt markiert. Dieses Verfahren ist laut Amtsgericht Berlin Pankow/Weißensee notwendig. Mehr Informationen findest du <a href=\"%s\" target=\"_blank\">hier</a>."
 
 #: includes/admin/settings/class-wc-gzd-settings-germanized.php:264
 #@ woocommerce-germanized
@@ -2016,18 +2016,12 @@ msgstr "Wenn Sie bei %s kein Benutzerkonto eröffnet haben, ignorieren Sie diese
 msgid "If you cannot follow the link above please copy this url and paste it to your browser bar: %s"
 msgstr "Falls Sie dem Link nicht folgen können, kopieren Sie bitte folgende URL in die Adresszeile Ihres Browsers: %s"
 
-#. translators: plugin header field 'Version'
-#: woocommerce-germanized.php:0
-#@ woocommerce-germanized
-msgid "1.2.1"
-msgstr "1.2.1"
-
-#: woocommerce-germanized.php:725
+#: woocommerce-germanized.php:723
 #@ woocommerce-germanized
 msgid "Thank you. You have successfully activated your account."
 msgstr "Vielen Dank. Ihr Benutzerkonto wurde erfolgreich aktiviert."
 
-#: woocommerce-germanized.php:729
+#: woocommerce-germanized.php:727
 #@ woocommerce-germanized
 msgid "Sorry, but this activation code cannot be found."
 msgstr "Sorry, dieser Aktivierungscode ist uns leider nicht bekannt."
@@ -2036,4 +2030,10 @@ msgstr "Sorry, dieser Aktivierungscode ist uns leider nicht bekannt."
 #@ woocommerce-germanized
 msgid "days"
 msgstr "Tagen"
+
+#. translators: plugin header field 'Version'
+#: woocommerce-germanized.php:0
+#@ woocommerce-germanized
+msgid "1.2.3"
+msgstr ""
 
