@@ -937,7 +937,7 @@ msgstr "Straße"
 #@ woocommerce-germanized
 msgctxt "revocation-form"
 msgid "Postal Code"
-msgstr "Postleitahl"
+msgstr "Postleitzahl"
 
 #: includes/class-wc-gzd-revocation.php:68
 #@ woocommerce-germanized
