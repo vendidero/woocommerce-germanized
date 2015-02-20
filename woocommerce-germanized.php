@@ -181,6 +181,8 @@ final class WooCommerce_Germanized {
 		// Add better tax display to order totals
 		add_filter( 'woocommerce_get_order_item_totals', array( $this, 'order_item_totals' ), 0, 2 );
 		add_action( 'woocommerce_cart_calculate_fees', array( $this, 'add_fee_cart' ), 0 );
+		// Unsure wether this could lead to future problems - tax classes with same name wont be merged anylonger
+		//add_filter( 'woocommerce_rate_code', array( $this, 'prevent_tax_name_merge' ), PHP_INT_MAX, 2 );
 		
 		// Adjust virtual Product Price and tax class
 		add_filter( 'woocommerce_get_price_including_tax', array( $this, 'set_virtual_product_price' ), PHP_INT_MAX, 3 );
@@ -829,6 +831,17 @@ final class WooCommerce_Germanized {
 			}
 		}
 		return $order_totals;
+	}
+
+	/**
+	 * Prevent tax class merging. Could lead to future problems - not yet implemented
+	 *  
+	 * @param  string $code    tax class code
+	 * @param  int $rate_id 
+	 * @return string          unique tax class code
+	 */
+	public function prevent_tax_name_merge( $code, $rate_id ) {
+		return $code . '-' . $rate_id;
 	}
 
 }

@@ -160,6 +160,8 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 			$variable_delivery_time = $_POST['variable_delivery_time'];
 			$variable_product_desc = $_POST['variable_product_mini_desc'];
 			for ( $i = 0; $i < sizeof( $variable_post_id ); $i++ ) {
+				if ( ! isset( $variable_post_id[ $i ] ) )
+					continue;
 				$variation_id = (int) $variable_post_id[$i];
 				if ( isset( $variable_unit[$i] ) ) {
 					update_post_meta( $variation_id, '_unit', sanitize_text_field( $variable_unit[$i] ) );

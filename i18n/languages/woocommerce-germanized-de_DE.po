@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: WooCommerce Germanized v1.2.3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-29 12:26+0100\n"
-"PO-Revision-Date: 2015-02-18 17:11:33+0000\n"
+"PO-Revision-Date: 2015-02-20 22:31:24+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -837,7 +837,7 @@ msgstr "Lieferzeit"
 #@ woocommerce-germanized
 msgctxt "Admin menu name"
 msgid "Delivery Time"
-msgstr "Lieferzeit"
+msgstr "Lieferzeiten"
 
 #: includes/class-wc-gzd-post-types.php:37
 #@ woocommerce-germanized
@@ -945,7 +945,7 @@ msgstr "Straße"
 #@ woocommerce-germanized
 msgctxt "revocation-form"
 msgid "Postal Code"
-msgstr "Postleitahl"
+msgstr "Postleitzahl"
 
 #: includes/class-wc-gzd-revocation.php:68
 #@ woocommerce-germanized
@@ -1102,7 +1102,7 @@ msgstr "Zahlungsgebühr"
 
 #: includes/abstracts/abstract-wc-gzd-product.php:82
 #: includes/wc-gzd-cart-functions.php:102
-#: woocommerce-germanized.php:825
+#: woocommerce-germanized.php:827
 #, php-format
 #@ woocommerce-germanized
 msgid "incl. %s%% VAT"
@@ -1289,12 +1289,12 @@ msgstr "Widerruf erklären"
 msgid "VAT free based on &#167;19 UStG"
 msgstr "Kein Mehrwertsteuerausweis, da Kleinunternehmer nach §19 (1) UStG."
 
-#: woocommerce-germanized.php:562
+#: woocommerce-germanized.php:564
 #@ woocommerce
 msgid "Settings"
 msgstr "Einstellungen"
 
-#: woocommerce-germanized.php:798
+#: woocommerce-germanized.php:800
 #@ woocommerce
 msgid "Order Total:"
 msgstr "Gesamtsumme"
@@ -1679,7 +1679,7 @@ msgstr "Versandkosten-Hinweis auch für virtuelle Produkte aktivieren?"
 
 #: includes/abstracts/abstract-wc-gzd-product.php:81
 #: includes/wc-gzd-cart-functions.php:102
-#: woocommerce-germanized.php:825
+#: woocommerce-germanized.php:827
 #@ woocommerce-germanized
 msgid "incl. VAT"
 msgstr "inkl. MwSt."
@@ -2016,12 +2016,12 @@ msgstr "Wenn Sie bei %s kein Benutzerkonto eröffnet haben, ignorieren Sie diese
 msgid "If you cannot follow the link above please copy this url and paste it to your browser bar: %s"
 msgstr "Falls Sie dem Link nicht folgen können, kopieren Sie bitte folgende URL in die Adresszeile Ihres Browsers: %s"
 
-#: woocommerce-germanized.php:723
+#: woocommerce-germanized.php:725
 #@ woocommerce-germanized
 msgid "Thank you. You have successfully activated your account."
 msgstr "Vielen Dank. Ihr Benutzerkonto wurde erfolgreich aktiviert."
 
-#: woocommerce-germanized.php:727
+#: woocommerce-germanized.php:729
 #@ woocommerce-germanized
 msgid "Sorry, but this activation code cannot be found."
 msgstr "Sorry, dieser Aktivierungscode ist uns leider nicht bekannt."
@@ -2035,5 +2035,5 @@ msgstr "Tagen"
 #: woocommerce-germanized.php:0
 #@ woocommerce-germanized
 msgid "1.2.3"
-msgstr ""
+msgstr "1.2.3"
 
