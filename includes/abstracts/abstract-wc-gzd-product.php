@@ -226,7 +226,7 @@ class WC_GZD_Product {
 	 * @return string 
 	 */
 	public function get_delivery_time_html() {
-		return ( $this->get_delivery_time_term() ) ? apply_filters( 'woocommerce_germanized_delivery_time_html', str_replace( '{delivery_time}', $this->get_delivery_time_term()->name, get_option( 'woocommerce_gzd_delivery_time_text' ) ), $this->get_delivery_time_term()->name ) : '';
+		return ( $this->get_delivery_time_term() ) ? apply_filters( 'woocommerce_germanized_delivery_time_html', str_replace( '{delivery_time}', $this->get_delivery_time_term()->name, __( get_option( 'woocommerce_gzd_delivery_time_text' ), 'woocommerce-germanized' ) ), $this->get_delivery_time_term()->name ) : '';
 	}
 
 	/**
@@ -245,7 +245,7 @@ class WC_GZD_Product {
 			'<a href="' . esc_url( get_permalink( wc_get_page_id( 'shipping_costs' ) ) ) . '" target="_blank">',
 			'</a>'
 		);
-		return str_replace( $find, $replace, get_option( 'woocommerce_gzd_shipping_costs_text' ) );
+		return str_replace( $find, $replace, __( get_option( 'woocommerce_gzd_shipping_costs_text' ), 'woocommerce-germanized' ) );
 	}
 }
 ?>
