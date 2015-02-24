@@ -20,6 +20,8 @@ class WC_GZD_Product {
 	 */
 	private $child;
 
+	protected $gzd_variation_level_meta = array();
+
 	/**
 	 * Construct new WC_GZD_Product
 	 *  
@@ -28,7 +30,20 @@ class WC_GZD_Product {
 	public function __construct( $product ) {
 		if ( is_numeric( $product ) )
 			$product = WC()->product_factory->get_product_standalone( get_post( $product ) );
+		$this->gzd_variation_level_meta = array(
+			'unit' 				 => 0,
+			'unit_price' 		 => 0,
+			'unit_base' 		 => 0,
+			'unit_price_regular' => 0,
+			'unit_price_sale' 	 => 0,
+			'mini_desc' 		 => '',
+			'gzd_product' 		 => NULL,
+		);
 		$this->child = $product;
+	}
+
+	public function is_variation() {
+		return ( $this->variation_id ? true : false );
 	}
  
 	/**
@@ -38,10 +53,39 @@ class WC_GZD_Product {
 	 * @return mixed     
 	 */
 	public function __get( $key ) {
-		if ( $this->child->$key )
-			return $this->child->$key;
-		else if ( $key == 'delivery_time' )
-			return $this->get_delivery_time();
+
+		if ( $this->child->variation_id && in_array( $key, array_keys( $this->gzd_variation_level_meta ) ) ) {
+			$value = get_post_meta( $this->child->variation_id, '_' . $key, true );
+			if ( '' === $value )
+				$value = $this->gzd_variation_level_meta[ $key ];
+		} else if ( $key == 'delivery_time' ) {
+			$value = $this->get_delivery_time();
+		} else {
+			$value = $this->child->$key;
+		}
+
+		return $value;
+	}
+
+	/**
+	 * Redirect issets to WC_Product Class
+	 *  
+	 * @param  string  $key 
+	 * @return boolean      
+	 */
+	public function __isset( $key ) {
+
+		if ( $this->child->variation_id && in_array( $key, array_keys( $this->gzd_variation_level_meta ) ) ) {
+			return metadata_exists( 'post', $this->child->variation_id, '_' . $key );
+		} else {
+			return isset( $this->child->$key );
+		}
+
+	}
+
+	public function __call( $method, $args ) {
+		if ( method_exists( $this->child, $method ) )
+			return call_user_func_array( array( $this->child, $method ), $args );
 		return false;
 	}
 
@@ -91,7 +135,7 @@ class WC_GZD_Product {
 	 * @return boolean
 	 */
 	public function has_unit() {
-		if ( $this->child->unit && $this->child->unit_price_regular && $this->child->unit_base )
+		if ( $this->unit && $this->unit_price_regular && $this->unit_base )
 			return true;
 		return false;
 	}
@@ -102,7 +146,7 @@ class WC_GZD_Product {
 	 * @return string
 	 */
 	public function get_unit_base() {
-		return ( $this->child->unit_base ) ? '<span class="unit-base">' . $this->child->unit_base . '</span>' . apply_filters( 'wc_gzd_unit_price_base_seperator', ' ' ) . '<span class="unit">' . $this->get_unit() . '</span>' : '';
+		return ( $this->unit_base ) ? '<span class="unit-base">' . $this->unit_base . '</span>' . apply_filters( 'wc_gzd_unit_price_base_seperator', ' ' ) . '<span class="unit">' . $this->get_unit() . '</span>' : '';
 	}
 
 	/**
@@ -111,7 +155,7 @@ class WC_GZD_Product {
 	 * @return string
 	 */
 	public function get_unit() {
-		$unit = $this->child->unit;
+		$unit = $this->unit;
 		return WC_germanized()->units->$unit;
 	}
 
@@ -121,7 +165,7 @@ class WC_GZD_Product {
 	 * @return string the regular price
 	 */
 	public function get_unit_regular_price() {
-		return apply_filters( 'woocommerce_gzd_get_unit_regular_price', $this->child->unit_price_regular, $this );
+		return apply_filters( 'woocommerce_gzd_get_unit_regular_price', $this->unit_price_regular, $this );
 	}
 
 	/**
@@ -130,7 +174,7 @@ class WC_GZD_Product {
 	 * @return string the sale price 
 	 */
 	public function get_unit_sale_price() {
-		return apply_filters( 'woocommerce_gzd_get_unit_sale_price', $this->child->unit_price_sale, $this );
+		return apply_filters( 'woocommerce_gzd_get_unit_sale_price', $this->unit_price_sale, $this );
 	}
 
 	/**
@@ -153,7 +197,7 @@ class WC_GZD_Product {
 	 * @return string  unit price including tax
 	 */
 	public function get_unit_price_including_tax( $qty = 1, $price = '' ) {
-		$price = ( $price == '' ) ? $this->child->unit_price : $price;
+		$price = ( $price == '' ) ? $this->unit_price : $price;
 		return $this->child->get_price_including_tax( $qty, $price );
 	}
 
@@ -165,8 +209,8 @@ class WC_GZD_Product {
 	 * @return string  unit price excluding tax
 	 */
 	public function get_unit_price_excluding_tax( $qty = 1, $price = '' ) {
-		$price = ( $price == '' ) ? $this->child->unit_price : $price;
-		return ( $price == '' ) ? '' : $this->child->get_price_excluding_tax( $qty, $price );
+		$price = ( $price == '' ) ? $this->unit_price : $price;
+		return ( $price == '' ) ? '' : $this->get_price_excluding_tax( $qty, $price );
 	}
 
 	/**
@@ -187,8 +231,8 @@ class WC_GZD_Product {
 		$display_price         = $this->get_unit_price();
 		$display_regular_price = $this->get_unit_price( 1, $this->get_unit_regular_price() );
 		$display_sale_price    = $this->get_unit_price( 1, $this->get_unit_sale_price() );
-		$price_html 		   = ( $this->is_on_unit_sale() ? $this->child->get_price_html_from_to( $display_regular_price, $display_sale_price ) : wc_price( $display_price ) );
-		return ( $this->has_unit() ) ? str_replace( '{price}', $price_html . $this->child->get_price_suffix() . apply_filters( 'wc_gzd_unit_price_seperator', ' / ' ) . $this->get_unit_base(), get_option( 'woocommerce_gzd_unit_price_text' ) ) : '';
+		$price_html 		   = ( $this->is_on_unit_sale() ? $this->get_price_html_from_to( $display_regular_price, $display_sale_price ) : wc_price( $display_price ) );
+		return ( $this->has_unit() ) ? str_replace( '{price}', $price_html . $this->get_price_suffix() . apply_filters( 'wc_gzd_unit_price_seperator', ' / ' ) . $this->get_unit_base(), get_option( 'woocommerce_gzd_unit_price_text' ) ) : '';
 	}
 
 	/**
@@ -197,7 +241,7 @@ class WC_GZD_Product {
 	 * @return bool|object false returns false if term does not exist otherwise returns term object
 	 */
 	public function get_delivery_time() {
-		$terms = wp_get_post_terms( ( $this->variation_id ? $this->variation_id : $this->id ), 'product_delivery_time' );
+		$terms = wp_get_post_terms( ( $this->is_variation() ? $this->variation_id : $this->id ), 'product_delivery_time' );
 		if ( is_wp_error( $terms ) || empty( $terms ) )
 			return false;
 		return $terms[ 0 ];
@@ -210,7 +254,7 @@ class WC_GZD_Product {
 	 */
 	public function get_delivery_time_term() {
 		$delivery_time = $this->delivery_time;
-		if ( empty( $delivery_time ) && get_option( 'woocommerce_gzd_default_delivery_time' ) && ! $this->child->is_downloadable() ) {
+		if ( empty( $delivery_time ) && get_option( 'woocommerce_gzd_default_delivery_time' ) && ! $this->is_downloadable() ) {
 			$delivery_time = array( get_term_by( 'id', get_option( 'woocommerce_gzd_default_delivery_time' ), 'product_delivery_time' ) );
 			if ( is_array( $delivery_time ) ) {
 				array_values( $delivery_time );
@@ -235,7 +279,7 @@ class WC_GZD_Product {
 	 * @return string 
 	 */
 	public function get_shipping_costs_html() {
-		if ( $this->child->is_virtual() && get_option( 'woocommerce_gzd_display_shipping_costs_virtual' ) != 'yes' )
+		if ( $this->is_virtual() && get_option( 'woocommerce_gzd_display_shipping_costs_virtual' ) != 'yes' )
 			return false;
 		$find = array(
 			'{link}',
