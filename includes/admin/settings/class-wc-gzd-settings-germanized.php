@@ -622,12 +622,16 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 		}
 
 		?>
-		<div class="wc-gzd-admin-settings">
+		<div class="wc-gzd-admin-settings wc-gzd-admin-settings-<?php echo sanitize_title( $current_section ); ?>">
 			<?php do_action( 'wc_germanized_settings_section_before_' . sanitize_title( $current_section ) ); ?>
-			<?php WC_Admin_Settings::output_fields( $settings ); ?>
+			<?php if ( apply_filters( 'wc_germanized_show_settings_' . sanitize_title( $current_section ), true ) ) : ?>
+				<?php WC_Admin_Settings::output_fields( $settings ); ?>
+			<?php endif; ?>
 			<?php do_action( 'wc_germanized_settings_section_after_' . sanitize_title( $current_section ) ); ?>
 		</div>
+
 		<?php echo $sidebar; ?>
+		
 		<?php
 	}
 
@@ -669,7 +673,8 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 
 		do_action( 'woocommerce_gzd_before_save_section_' . $current_section, $settings );
 
-		WC_Admin_Settings::save_fields( $settings );
+		if ( apply_filters( 'wc_germanized_show_settings_' . $current_section, true ) )
+			WC_Admin_Settings::save_fields( $settings );
 
 		do_action( 'woocommerce_gzd_after_save_section_' . $current_section, $settings );
 	}

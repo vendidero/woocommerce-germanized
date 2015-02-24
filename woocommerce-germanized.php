@@ -129,7 +129,6 @@ final class WooCommerce_Germanized {
 		add_action( 'widgets_init', array( $this, 'include_widgets' ), 25 );
 		add_action( 'plugins_loaded', array( $this, 'load_plugin_textdomain' ) );
 		add_action( 'woocommerce_init', array( $this, 'replace_woocommerce_cart' ), 0 );
-		add_action( 'woocommerce_init', array( $this, 'replace_woocommerce_payment_gateways' ), 0 );
 		add_action( 'woocommerce_init', array( $this, 'replace_woocommerce_product_factory' ), PHP_INT_MAX );
 
 		// Loaded action
@@ -180,7 +179,6 @@ final class WooCommerce_Germanized {
 
 		// Add better tax display to order totals
 		add_filter( 'woocommerce_get_order_item_totals', array( $this, 'order_item_totals' ), 0, 2 );
-		add_action( 'woocommerce_cart_calculate_fees', array( $this, 'add_fee_cart' ), 0 );
 		// Unsure wether this could lead to future problems - tax classes with same name wont be merged anylonger
 		//add_filter( 'woocommerce_rate_code', array( $this, 'prevent_tax_name_merge' ), PHP_INT_MAX, 2 );
 		
@@ -220,13 +218,6 @@ final class WooCommerce_Germanized {
 
 		// Init action
 		do_action( 'woocommerce_germanized_init' );
-	}
-
-	/**
-	 * Replaces default WC_Payment_Gateways to enable dependency injection
-	 */
-	public function replace_woocommerce_payment_gateways() {
-		WC()->payment_gateways = WC_GZD_Payment_Gateways::instance();
 	}
 
 	/**
@@ -346,10 +337,11 @@ final class WooCommerce_Germanized {
 
 		// Post types
 		include_once ( 'includes/class-wc-gzd-post-types.php' );
+		// Gateway manipulation
+		include_once ( 'includes/class-wc-gzd-payment-gateways.php' );
 
 		// Abstracts
 		include_once ( 'includes/abstracts/abstract-wc-gzd-product.php' );
-		include_once ( 'includes/abstracts/abstract-wc-gzd-payment-gateway.php' );
 
 		include_once ( 'includes/wc-gzd-cart-functions.php' );
 		include_once ( 'includes/class-wc-gzd-checkout.php' );
@@ -457,18 +449,6 @@ final class WooCommerce_Germanized {
 	}
 
 	/**
-	 * Set default order button text instead of the button text defined by each payment gateway.
-	 * Can be overriden by setting force_order_button_text within payment gateway class
-	 */
-	public function set_order_button_gateway_text() {
-		$gateways = WC()->payment_gateways->get_available_payment_gateways();
-		foreach( $gateways as $gateway ) {
-			if ( ! isset( $gateway->force_order_button_text ) || ! $gateway->force_order_button_text )
-				$gateway->order_button_text = __( get_option( 'woocommerce_gzd_order_submit_btn_text' ), 'woocommerce-germanized' );
-		}
-	}
-
-	/**
 	 * Calls a filter to temporarily set cart tax to zero. This is only done to hide the cart tax estimated text.
 	 * Filter is being remove right after get_cart_tax - check has been finished within cart-totals.php
 	 */
@@ -493,15 +473,6 @@ final class WooCommerce_Germanized {
 	public function remove_cart_tax_zero_filter() {
 		if ( get_option( 'woocommerce_gzd_display_hide_cart_tax_estimated' ) == 'yes' )
 			remove_filter( 'woocommerce_get_cart_tax', array( $this, 'set_cart_tax_zero' ) );
-	}
-
-	/**
-	 * Gets payment gateways which are ready to accept fees.
-	 *  
-	 * @return array
-	 */
-	public function get_payment_gateways_feeable() {
-		return apply_filters( 'wc_gzd_payment_gateways_feeable', array( 'bacs', 'paypal', 'cod' ) );
 	}
 
 	/**
@@ -774,18 +745,6 @@ final class WooCommerce_Germanized {
 		if ( get_option('woocommerce_prices_include_tax') === 'yes' )
 			return $product->get_price() * $qty;
 		return $price;
-	}
-
-	/**
-	 * Update fee for cart if feeable gateway has been selected as payment method
-	 */
-	public function add_fee_cart() {
-		$gateways = WC()->payment_gateways()->get_available_payment_gateways();
-		if ( ! ( $key = WC()->session->get('chosen_payment_method') ) || ! isset( $gateways[ $key ] ) )
-			return;
-		$gateway = $gateways[ $key ];
-		if ( isset( $gateway->parent ) && is_callable( array( $gateway->parent, 'add_fee' ) ) )
-			$gateway->parent->add_fee();
 	}
 
 	/**
