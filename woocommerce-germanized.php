@@ -166,7 +166,6 @@ final class WooCommerce_Germanized {
 		add_filter( 'woocommerce_locate_template', array( $this, 'filter_templates' ), PHP_INT_MAX, 3 );
 		if ( version_compare( WC()->version, '2.3', '<' ) )
 			add_filter( 'woocommerce_gzd_default_plugin_template', array( $this, 'filter_templates_old_version' ), 0, 2 );
-		add_filter( 'woocommerce_product_class', array( $this, 'filter_product_classes' ), PHP_INT_MAX, 4 );
 		add_filter( 'woocommerce_get_settings_pages', array( $this, 'add_settings' ) );
 		add_filter( 'woocommerce_enqueue_styles', array( $this, 'add_styles' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'add_scripts' ) );

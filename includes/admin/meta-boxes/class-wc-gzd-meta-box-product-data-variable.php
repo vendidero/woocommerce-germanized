@@ -29,15 +29,6 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 			return self::output_pre( $loop, $variation_data );
 		$_product = wc_get_product( $variation );
 		$variation_id = $_product->variation_id;
-		$variation_meta = get_post_meta( $variation_id );
-		$variation_meta_level = $_product->get_level_meta_data();
-		if ( ! empty( $variation_meta_level ) ) {
-			foreach ( $variation_meta_level as $key => $value ) {
-				$key = '_' . $key;
-				if ( ! isset( $variation_data[ $key ] ) )
-					$variation_data[ $key ] = isset( $variation_meta[ $key ][0] ) ? maybe_unserialize( $variation_meta[ $key ][0] ) : $value;
-			}
-		}
 		$delivery_times = get_the_terms( $variation_id, 'product_delivery_time' );
 		$delivery_time = ( $delivery_times && ! is_wp_error( $delivery_times ) ) ? current( $delivery_times )->term_id : '';
 		?>
@@ -45,23 +36,23 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 			<p class="form-row form-row-first">
 				<label><?php _e( 'Unit', 'woocommerce-germanized' ); ?>:</label>
 				<select name="variable_unit[<?php echo $loop; ?>]">
-					<option value="parent" <?php selected( is_null( isset( $variation_data['_unit'] ) ? $variation_data['_unit'] : null ), true ); ?>><?php _e( 'None', 'woocommerce-germanized' ); ?></option>
+					<option value="parent" <?php selected( is_null( isset( $_product->unit ) ? $_product->unit : null ), true ); ?>><?php _e( 'None', 'woocommerce-germanized' ); ?></option>
 					<?php
 					foreach ( WC_germanized()->units->get_units() as $key => $value )
-						echo '<option value="' . esc_attr( $key ) . '" ' . selected( $key === ( isset( $variation_data['_unit'] ) ? $variation_data['_unit'] : '' ) , true, false ) . '>' . esc_html( $value ) . '</option>';
+						echo '<option value="' . esc_attr( $key ) . '" ' . selected( $key === ( isset( $_product->unit ) ? $_product->unit : '' ) , true, false ) . '>' . esc_html( $value ) . '</option>';
 				?></select>
 			</p>
 			<p class="form-row form-row-last">
 				<label for="variable_unit_base"><?php echo __( 'Unit Base', 'woocommerce-germanized' );?>:</label>
-				<input class="input-text wc_input_decimal" size="6" type="text" name="variable_unit_base[<?php echo $loop; ?>]" value="<?php echo ( isset( $variation_data['_unit_base'] ) ? esc_attr( wc_format_localized_decimal( $variation_data['_unit_base'] ) ) : '' );?>" placeholder="" />
+				<input class="input-text wc_input_decimal" size="6" type="text" name="variable_unit_base[<?php echo $loop; ?>]" value="<?php echo ( isset( $_product->unit_base ) ? esc_attr( wc_format_localized_decimal( $_product->unit_base ) ) : '' );?>" placeholder="" />
 			</p>
 			<p class="form-row form-row-first">
 				<label for="variable_unit_price_regular"><?php echo __( 'Regular Unit Price', 'woocommerce-germanized' ) . ' (' . get_woocommerce_currency_symbol() . ')'; ?>:</label>
-				<input class="input-text wc_input_price" size="5" type="text" name="variable_unit_price_regular[<?php echo $loop; ?>]" value="<?php echo ( isset( $variation_data['_unit_price_regular'] ) ? esc_attr( wc_format_localized_price( $variation_data['_unit_price_regular'] ) ) : '' );?>" placeholder="" />
+				<input class="input-text wc_input_price" size="5" type="text" name="variable_unit_price_regular[<?php echo $loop; ?>]" value="<?php echo ( isset( $_product->unit_price_regular ) ? esc_attr( wc_format_localized_price( $_product->unit_price_regular ) ) : '' );?>" placeholder="" />
 			</p>
 			<p class="form-row form-row-last">
 				<label for="variable_unit_price_sale"><?php echo __( 'Sale Unit Price', 'woocommerce-germanized' ) . ' (' . get_woocommerce_currency_symbol() . ')'; ?>:</label>
-				<input class="input-text wc_input_price" size="5" type="text" name="variable_unit_price_sale[<?php echo $loop; ?>]" value="<?php echo ( isset( $variation_data['_unit_price_sale'] ) ? esc_attr( wc_format_localized_price( $variation_data['_unit_price_sale'] ) ) : '' );?>" placeholder="" />
+				<input class="input-text wc_input_price" size="5" type="text" name="variable_unit_price_sale[<?php echo $loop; ?>]" value="<?php echo ( isset( $_product->unit_price_sale ) ? esc_attr( wc_format_localized_price( $_product->unit_price_sale ) ) : '' );?>" placeholder="" />
 			</p>
 		</div>
 		<div class="variable_shipping_time hide_if_variation_virtual">
@@ -84,7 +75,7 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 		<div class="variable_cart_mini_desc">
 			<p class="form-row form-row-full">
 				<label for="variable_product_mini_desc"><?php echo __( 'Optional Mini Description', 'woocommerce-germanized' ); ?>:</label>
-				<?php wp_editor( htmlspecialchars_decode( ( isset( $variation_data['_mini_desc'] ) ? $variation_data['_mini_desc'] : '' ) ), 'wc_gzd_product_mini_desc_' . $loop, array( 'textarea_name' => 'variable_product_mini_desc[' . $loop . ']', 'textarea_rows' => 5, 'media_buttons' => false, 'teeny' => true ) ); ?>
+				<?php wp_editor( htmlspecialchars_decode( ( isset( $_product->mini_desc ) ? $_product->mini_desc : '' ) ), 'wc_gzd_product_mini_desc_' . $loop, array( 'textarea_name' => 'variable_product_mini_desc[' . $loop . ']', 'textarea_rows' => 5, 'media_buttons' => false, 'teeny' => true ) ); ?>
 			</p>
 		</div>
 		<?php
