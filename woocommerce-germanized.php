@@ -111,10 +111,8 @@ final class WooCommerce_Germanized {
 			spl_autoload_register( "__autoload" );
 		spl_autoload_register( array( $this, 'autoload' ) );
 
-		if ( ! $this->is_woocommerce_activated() ) {
-			add_action( 'admin_init', array( $this, 'deactivate' ), 0 );
+		if ( ! $this->is_woocommerce_activated() )
 			return;
-		}
 
 		// Define constants
 		$this->define_constants();
@@ -134,11 +132,6 @@ final class WooCommerce_Germanized {
 		// Loaded action
 		do_action( 'woocommerce_germanized_loaded' );
 
-	}
-
-	public function deactivate() {
-		if ( current_user_can( 'activate_plugins' ) )
-			deactivate_plugins( plugin_basename( __FILE__ ) );
 	}
 
 	/**
