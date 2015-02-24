@@ -22,10 +22,29 @@ class WC_Germanized_Meta_Box_Product_Data {
 	}
 
 	public static function output() {
+		global $post, $thepostid;
+
+		$thepostid = $post->ID;
+		$_product = wc_get_product( $thepostid );
+		$terms = array();
+
+		$delivery_time = $_product->gzd_product->delivery_time;
+
 		woocommerce_wp_select( array( 'id' => '_unit', 'label' => __( 'Unit', 'woocommerce-germanized' ), 'options' => array_merge( array( 'none' => __( 'Select unit', 'woocommerce-germanized' ) ), WC_germanized()->units->get_units() ), 'desc_tip' => true, 'description' => __( 'Needed if selling on a per unit basis', 'woocommerce-germanized' ) ) );
 		woocommerce_wp_text_input( array( 'id' => '_unit_base', 'label' => __( 'Unit Base', 'woocommerce-germanized' ), 'data_type' => 'decimal', 'desc_tip' => true, 'description' => __( 'Unit price per amount (e.g. 100)', 'woocommerce-germanized' ) ) );
 		woocommerce_wp_text_input( array( 'id' => '_unit_price_regular', 'label' => __( 'Regular Unit Price', 'woocommerce-germanized' ) . ' (' . get_woocommerce_currency_symbol() . ')', 'data_type' => 'price' ) );
 		woocommerce_wp_text_input( array( 'id' => '_unit_price_sale', 'label' => __( 'Sale Unit Price', 'woocommerce-germanized' ) . ' (' . get_woocommerce_currency_symbol() . ')', 'data_type' => 'price' ) );
+		
+		if ( version_compare( WC()->version, '2.3', '<' ) )
+			return;
+		?>
+		
+		<p class="form-field">
+			<label for="delivery_time"><?php _e( 'Delivery Time', 'woocommerce-germanized' ); ?></label>
+			<input type="hidden" class="wc-product-search wc-gzd-delivery-time-search" style="width: 50%" id="delivery_time" name="delivery_time" data-minimum_input_length="1" data-allow_clear="true" data-placeholder="<?php _e( 'Search for a delivery time&hellip;', 'woocommerce-germanized' ); ?>" data-action="woocommerce_gzd_json_search_delivery_time" data-multiple="false" data-selected="<?php echo ( $delivery_time ? $delivery_time->name : '' ); ?>" value="<?php echo ( $delivery_time ? $delivery_time->term_id : '' ); ?>" />
+		</p>
+		
+		<?php
 	}
 
 	public static function save($post_id) {
@@ -50,6 +69,8 @@ class WC_Germanized_Meta_Box_Product_Data {
 		if ( isset( $_POST[ '_mini_desc' ] ) ) {
 			update_post_meta( $post_id, '_mini_desc', esc_html( $_POST[ '_mini_desc' ] ) );
 		}
+
+		wp_set_object_terms( $post_id, absint( $_POST[ 'delivery_time' ] ) , 'product_delivery_time' );
 	}
 
 }

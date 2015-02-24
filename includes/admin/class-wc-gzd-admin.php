@@ -44,10 +44,19 @@ class WC_GZD_Admin {
 	}
 
 	public function settings_page_scroll_top() {
+		
 		$assets_path = str_replace( array( 'http:', 'https:' ), '', WC_germanized()->plugin_url() ) . '/assets/';
+		wp_register_style( 'woocommerce-gzd-admin', $assets_path . 'css/woocommerce-gzd-admin.css', false, WC_germanized()->version );
+		wp_enqueue_style( 'woocommerce-gzd-admin' );
+		
 		$admin_script_path = $assets_path . 'js/admin/';
+		
 		if ( isset( $_GET[ 'tab' ] ) && $_GET[ 'tab' ] == 'germanized' )
 			wp_enqueue_script( 'wc-gzd-admin', $admin_script_path . 'settings.js', array( 'jquery', 'woocommerce_settings' ), WC_GERMANIZED_VERSION, true );
+		
+		// Hide delivery time tagsdiv
+		if ( version_compare( WC()->version, '2.3', '>=' ) )
+			wp_add_inline_style( 'woocommerce-gzd-admin', '#tagsdiv-product_delivery_time {display: none}' );
 	}
 
 	public function add_legal_page_metabox() {

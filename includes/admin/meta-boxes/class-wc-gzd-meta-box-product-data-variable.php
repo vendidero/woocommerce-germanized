@@ -29,8 +29,7 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 			return self::output_pre( $loop, $variation_data );
 		$_product = wc_get_product( $variation );
 		$variation_id = $_product->variation_id;
-		$delivery_times = get_the_terms( $variation_id, 'product_delivery_time' );
-		$delivery_time = ( $delivery_times && ! is_wp_error( $delivery_times ) ) ? current( $delivery_times )->term_id : '';
+		$delivery_time = $_product->gzd_product->delivery_time;
 		?>
 		<div class="variable_pricing_unit">
 			<p class="form-row form-row-first">
@@ -56,21 +55,11 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 			</p>
 		</div>
 		<div class="variable_shipping_time hide_if_variation_virtual">
-			<p class="form-row form-row-full">
-				<label><?php _e( 'Delivery Time', 'woocommerce-germanized' ); ?>:</label> 
-				<?php
-				$args = array(
-					'taxonomy' 			=> 'product_delivery_time',
-					'hide_empty'		=> 0,
-					'show_option_none' 	=> __( 'None', 'woocommerce-germanized' ),
-					'name' 				=> 'variable_delivery_time[' . $loop . ']',
-					'id'				=> '',
-					'selected'			=> isset( $delivery_time ) ? esc_attr( $delivery_time ) : '',
-					'echo'				=> 0
-				);
-				echo wp_dropdown_categories( $args );
-				?>
+			<p class="form-row form-row-first">
+				<label for="delivery_time"><?php _e( 'Delivery Time', 'woocommerce-germanized' ); ?></label>
+				<input type="hidden" class="wc-product-search wc-gzd-delivery-time-search" style="width: 100%" id="variable_delivery_time_<?php echo $loop; ?>" name="variable_delivery_time[<?php echo $loop; ?>]" data-minimum_input_length="1" data-allow_clear="true" data-placeholder="<?php _e( 'Search for a delivery time&hellip;', 'woocommerce-germanized' ); ?>" data-action="woocommerce_gzd_json_search_delivery_time" data-multiple="false" data-selected="<?php echo ( $delivery_time ? $delivery_time->name : '' ); ?>" value="<?php echo ( $delivery_time ? $delivery_time->term_id : '' ); ?>" />
 			</p>
+			
 		</div>
 		<div class="variable_cart_mini_desc">
 			<p class="form-row form-row-full">

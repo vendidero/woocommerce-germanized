@@ -19,6 +19,7 @@ class WC_GZD_AJAX {
 	public static function init() {
 		$ajax_events = array(
 			'gzd_revocation' => true,
+			'gzd_json_search_delivery_time' => false,
 		);
 		foreach ( $ajax_events as $ajax_event => $nopriv ) {
 			add_action( 'wp_ajax_woocommerce_' . $ajax_event, array( __CLASS__, $ajax_event ) );
@@ -26,6 +27,35 @@ class WC_GZD_AJAX {
 				add_action( 'wp_ajax_nopriv_woocommerce_' . $ajax_event, array( __CLASS__, $ajax_event ) );
 			}
 		}
+	}
+
+	public static function gzd_json_search_delivery_time() {
+		ob_start();
+
+		check_ajax_referer( 'search-products', 'security' );
+		$term = (string) wc_clean( stripslashes( $_GET['term'] ) );
+		$terms = array();
+
+		if ( empty( $term ) )
+			die();
+
+		$args = array(
+			'hide_empty' => false,
+		);
+
+		if ( is_numeric( $term ) ) {
+			$args[ 'include' ] = array( absint( $term ) ); 
+		} else {
+			$args[ 'name__like' ] = (string) $term;
+ 		}
+
+ 		$query = get_terms( 'product_delivery_time', $args );
+ 		if ( ! empty( $query ) ) {
+ 			foreach ( $query as $term ) {
+ 				$terms[ $term->term_id ] = rawurldecode( $term->name );
+ 			}
+ 		}
+ 		wp_send_json( $terms );
 	}
 
 	/**

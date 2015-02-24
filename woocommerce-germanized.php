@@ -163,7 +163,6 @@ final class WooCommerce_Germanized {
 		add_filter( 'woocommerce_enqueue_styles', array( $this, 'add_styles' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'add_scripts' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'add_inline_styles' ) );
-		add_action( 'admin_enqueue_scripts', array( $this, 'add_admin_styles' ) );
 		add_action( 'wp_print_scripts', array( $this, 'localize_scripts' ), 5 );
 		add_filter( 'woocommerce_email_classes', array( $this, 'add_emails' ) );
 		add_filter( 'woocommerce_locate_core_template', array( $this, 'email_templates' ), 0, 3 );
@@ -526,14 +525,6 @@ final class WooCommerce_Germanized {
 		return array_merge( array(
 			'<a href="' . admin_url( 'admin.php?page=wc-settings&tab=germanized' ) . '">' . __( 'Settings', 'woocommerce' ) . '</a>',
 		), $links );
-	}
-
-	/**
-	 * Add custom styles to Admin
-	 */
-	public function add_admin_styles() {
-		wp_register_style( 'woocommerce-gzd-admin', WC_germanized()->plugin_url() . '/assets/css/woocommerce-gzd-admin.css', false, WC_germanized()->version );
-		wp_enqueue_style( 'woocommerce-gzd-admin' );
 	}
 
 	/**
