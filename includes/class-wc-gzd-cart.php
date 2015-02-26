@@ -335,7 +335,7 @@ class WC_GZD_Cart extends WC_Cart {
 	public function is_virtual_taxable() {
 		if ( get_option( 'woocommerce_gzd_enable_virtual_vat' ) != 'yes' )
 			return false;
-		if ( ( ! empty( WC()->customer ) ) && ( is_checkout() || defined('WOOCOMMERCE_CHECKOUT') ) ) {
+		if ( ( ! empty( WC()->customer ) ) ) {
 			$taxable_address = WC()->customer->get_taxable_address();
 			$base_country =  WC()->countries->get_base_country();
 			if ( isset( $taxable_address[0] ) && $taxable_address[0] != $base_country && in_array( $taxable_address[0], WC()->countries->get_european_union_countries() ) )
