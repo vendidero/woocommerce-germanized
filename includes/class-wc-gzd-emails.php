@@ -107,7 +107,7 @@ class WC_GZD_Emails {
 	 * Add global footer Hooks to Email templates
 	 */
 	public function add_template_footers() {
-		$type = ( ! empty( $GLOBALS['template_name'] ) ) ? $this->get_email_instance_by_tpl( $GLOBALS['template_name'] ) : '';
+		$type = ( ! empty( $GLOBALS[ 'wc_gzd_template_name' ] ) ) ? $this->get_email_instance_by_tpl( $GLOBALS[ 'wc_gzd_template_name' ] ) : '';
 		if ( ! empty( $type ) )
 			do_action( 'woocommerce_germanized_email_footer_' . $type->id, $type );
 	}

@@ -372,9 +372,9 @@ final class WooCommerce_Germanized {
 	public function filter_templates( $template, $template_name, $template_path ) {
 		$template_path = $this->template_path();
 
-		if ( empty( $GLOBALS[ 'template_name' ] ) )
-			$GLOBALS['template_name'] = array();
-		$GLOBALS['template_name'][] = $template_name;
+		if ( ! isset( $GLOBALS[ 'wc_gzd_template_name' ] ) || empty( $GLOBALS[ 'wc_gzd_template_name' ] ) || ! is_array( $GLOBALS[ 'wc_gzd_template_name' ] ) )
+			$GLOBALS['wc_gzd_template_name'] = array();
+		$GLOBALS['wc_gzd_template_name'][] = $template_name;
 
 		// Check Theme
 		$theme_template = locate_template(
