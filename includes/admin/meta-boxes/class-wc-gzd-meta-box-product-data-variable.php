@@ -164,8 +164,10 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 						update_post_meta( $variation_id, '_unit_price', ( $variable_unit_price_sale[$i] === '' ) ? '' : wc_format_decimal( $variable_unit_price_sale[$i] ) );
 					}
 				}
-				$variable_delivery_time[$i] = ! empty( $variable_delivery_time[$i] ) ? (int) $variable_delivery_time[$i] : '';
-				wp_set_object_terms( $variation_id, $variable_delivery_time[$i], 'product_delivery_time' );
+				if ( isset( $variable_delivery_time[$i] ) && ! empty( $variable_delivery_time[$i] ) && ! is_numeric( $variable_delivery_time[$i] ) )
+					wp_set_post_terms( $variation_id, sanitize_text_field( $variable_delivery_time[$i] ), 'product_delivery_time' );
+				else
+					wp_set_object_terms( $variation_id, absint( $variable_delivery_time[$i] ), 'product_delivery_time' );
 			}
 		}
 	}

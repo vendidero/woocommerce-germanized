@@ -69,8 +69,11 @@ class WC_Germanized_Meta_Box_Product_Data {
 		if ( isset( $_POST[ '_mini_desc' ] ) ) {
 			update_post_meta( $post_id, '_mini_desc', esc_html( $_POST[ '_mini_desc' ] ) );
 		}
-
-		wp_set_object_terms( $post_id, absint( $_POST[ 'delivery_time' ] ) , 'product_delivery_time' );
+		
+		if ( isset( $_POST[ 'delivery_time' ] ) && ! is_numeric( $_POST[ 'delivery_time' ] ) )
+			wp_set_post_terms( $post_id, sanitize_text_field( $_POST[ 'delivery_time' ] ), 'product_delivery_time' );
+		else
+			wp_set_object_terms( $post_id, absint( $_POST[ 'delivery_time' ] ) , 'product_delivery_time' );
 	}
 
 }

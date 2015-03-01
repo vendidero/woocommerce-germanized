@@ -54,6 +54,8 @@ class WC_GZD_AJAX {
  			foreach ( $query as $term ) {
  				$terms[ $term->term_id ] = rawurldecode( $term->name );
  			}
+ 		} else {
+ 			$terms[ rawurldecode( $term ) ] = rawurldecode( sprintf( __( "%s [new]", "woocommerce-germanized" ), $term ) );
  		}
  		wp_send_json( $terms );
 	}
