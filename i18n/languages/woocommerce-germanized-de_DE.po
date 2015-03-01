@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: WooCommerce Germanized v1.2.3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-29 12:26+0100\n"
-"PO-Revision-Date: 2015-02-24 16:12:21+0000\n"
+"PO-Revision-Date: 2015-03-01 14:27:34+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -100,24 +100,24 @@ msgstr "zu den WooCommerce Germanized Einstellungen"
 msgid "Cheatin&#8217; huh?"
 msgstr "So geht das leider nicht.."
 
-#: includes/admin/class-wc-gzd-admin.php:54
+#: includes/admin/class-wc-gzd-admin.php:63
 #@ woocommerce-germanized
 msgid "Optional Email Content"
 msgstr "Optionaler E-Mail Inhalt"
 
-#: includes/admin/class-wc-gzd-admin.php:63
+#: includes/admin/class-wc-gzd-admin.php:72
 #@ woocommerce-germanized
 msgid "Add content which will be replacing default page content within emails."
 msgstr "Füllen Sie dieses Feld aus um einen abweichenden E-Mail Anhangstext für diese Seite zu bestimmen."
 
-#: includes/admin/class-wc-gzd-admin.php:72
+#: includes/admin/class-wc-gzd-admin.php:81
 #: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:66
 #: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:125
 #@ woocommerce-germanized
 msgid "Optional Mini Description"
 msgstr "Warenkorb Kurzbeschreibung"
 
-#: includes/admin/class-wc-gzd-admin.php:77
+#: includes/admin/class-wc-gzd-admin.php:86
 #@ woocommerce-germanized
 msgid "This content will be shown as short product description within checkout and emails."
 msgstr "Dieser Inhalt wird während des Bezahlvorganges und in den E-Mails als Produkt Kurzbeschreibung angezeigt."
@@ -610,25 +610,25 @@ msgstr "WooCommerce Germanized installieren"
 msgid "Skip setup"
 msgstr "Setup überspringen"
 
-#: includes/class-wc-gzd-ajax.php:77
+#: includes/class-wc-gzd-ajax.php:79
 #@ woocommerce-germanized
 msgctxt "revocation-form"
 msgid "is not a valid email address."
 msgstr "ist leider keine valide E-Mail Adresse."
 
-#: includes/class-wc-gzd-ajax.php:80
+#: includes/class-wc-gzd-ajax.php:82
 #@ woocommerce-germanized
 msgctxt "revocation-form"
 msgid "Please enter a valid postcode/ZIP"
 msgstr "Bitte geben Sie eine echte Postleitzahl ein"
 
-#: includes/class-wc-gzd-ajax.php:83
+#: includes/class-wc-gzd-ajax.php:85
 #@ woocommerce-germanized
 msgctxt "revocation-form"
 msgid "is not valid."
 msgstr "ist leider nicht korrekt."
 
-#: includes/class-wc-gzd-ajax.php:98
+#: includes/class-wc-gzd-ajax.php:100
 #@ woocommerce-germanized
 msgctxt "revocation-form"
 msgid "Thank you. We have received your Revocation Request. You will receive a conformation email within a few minutes."
@@ -1102,7 +1102,7 @@ msgstr "Zahlungsgebühr"
 
 #: includes/abstracts/abstract-wc-gzd-product.php:126
 #: includes/wc-gzd-cart-functions.php:102
-#: woocommerce-germanized.php:778
+#: woocommerce-germanized.php:769
 #, php-format
 #@ woocommerce-germanized
 msgid "incl. %s%% VAT"
@@ -1289,12 +1289,12 @@ msgstr "Widerruf erklären"
 msgid "VAT free based on &#167;19 UStG"
 msgstr "Kein Mehrwertsteuerausweis, da Kleinunternehmer nach §19 (1) UStG."
 
-#: woocommerce-germanized.php:527
+#: woocommerce-germanized.php:526
 #@ woocommerce
 msgid "Settings"
 msgstr "Einstellungen"
 
-#: woocommerce-germanized.php:751
+#: woocommerce-germanized.php:742
 #@ woocommerce
 msgid "Order Total:"
 msgstr "Gesamtsumme"
@@ -1679,7 +1679,7 @@ msgstr "Versandkosten-Hinweis auch für virtuelle Produkte aktivieren?"
 
 #: includes/abstracts/abstract-wc-gzd-product.php:125
 #: includes/wc-gzd-cart-functions.php:102
-#: woocommerce-germanized.php:778
+#: woocommerce-germanized.php:769
 #@ woocommerce-germanized
 msgid "incl. VAT"
 msgstr "inkl. MwSt."
@@ -2016,12 +2016,12 @@ msgstr "Wenn Sie bei %s kein Benutzerkonto eröffnet haben, ignorieren Sie diese
 msgid "If you cannot follow the link above please copy this url and paste it to your browser bar: %s"
 msgstr "Falls Sie dem Link nicht folgen können, kopieren Sie bitte folgende URL in die Adresszeile Ihres Browsers: %s"
 
-#: woocommerce-germanized.php:688
+#: woocommerce-germanized.php:679
 #@ woocommerce-germanized
 msgid "Thank you. You have successfully activated your account."
 msgstr "Vielen Dank. Ihr Benutzerkonto wurde erfolgreich aktiviert."
 
-#: woocommerce-germanized.php:692
+#: woocommerce-germanized.php:683
 #@ woocommerce-germanized
 msgid "Sorry, but this activation code cannot be found."
 msgstr "Sorry, dieser Aktivierungscode ist uns leider nicht bekannt."
@@ -2042,4 +2042,10 @@ msgstr "1.2.3"
 #@ woocommerce-germanized
 msgid "Search for a delivery time&hellip;"
 msgstr "Lieferzeit suchen&hellip;"
+
+#: includes/class-wc-gzd-ajax.php:58
+#, php-format
+#@ woocommerce-germanized
+msgid "%s [new]"
+msgstr "%s [neu]"
 
