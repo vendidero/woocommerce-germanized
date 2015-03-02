@@ -53,7 +53,7 @@ function wc_gzd_get_cart_tax_share( $type = 'shipping' ) {
 	}
 	if ( ! empty( $tax_shares ) ) {
 		foreach ( $tax_shares as $key => $class )
-			$tax_shares[ $key ][ 'share' ] = $class[ 'total' ] / $item_totals;
+			$tax_shares[ $key ][ 'share' ] = ( $item_totals > 0 ? $class[ 'total' ] / $item_totals : 0 );
 	}
 	return $tax_shares;
 }
