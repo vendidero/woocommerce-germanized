@@ -116,9 +116,9 @@ class WC_GZD_Admin_Welcome {
 		</div>
 		<p class="woocommerce-actions wc-gzd-actions">
 			<a href="<?php echo admin_url('admin.php?page=wc-settings&tab=germanized'); ?>" class="button button-primary">Einstellungen</a>
-			<a class="vendidero button button-primary" href="<?php echo esc_url( 'http://vendidero.de/support', 'woocommerce-germanized' ); ?>">Hilfe & Support</a>
+			<a class="vendidero button button-primary" href="<?php echo esc_url( 'https://vendidero.de/support', 'woocommerce-germanized' ); ?>">Hilfe & Support</a>
 			<span class="wc-gzd-twitter">
-				<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://vendidero.de/woocommerce-germanized" data-text="WooCommerce Germanized passt deinen Online-Shop an deutsche Rechtsgrundlagen an. Wir helfen Dir Abmahnungen zu verhindern. Kostenlos!" data-via="Vendidero" data-size="large" data-hashtags="WooCommerce Germanized">Tweet</a>
+				<a href="https://twitter.com/share" class="twitter-share-button" data-url="https://vendidero.de/woocommerce-germanized" data-text="WooCommerce Germanized passt deinen Online-Shop an deutsche Rechtsgrundlagen an. Wir helfen Dir Abmahnungen zu verhindern. Kostenlos!" data-via="Vendidero" data-size="large" data-hashtags="WooCommerce Germanized">Tweet</a>
 				<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 			</span>
 			<span class="wc-gzd-fb">
@@ -128,11 +128,11 @@ class WC_GZD_Admin_Welcome {
 		<div class="changelog vendipro">
 			<h3>VendiPro - Das WooCommerce Theme für den deutschen Markt</h3>
 			<div class="left">
-				<a href="http://vendidero.de/vendipro" target="_blank"><img src="<?php echo WC_germanized()->plugin_url();?>/assets/images/vendidero.jpg" /></a>
+				<a href="https://vendidero.de/vendipro" target="_blank"><img src="<?php echo WC_germanized()->plugin_url();?>/assets/images/vendidero.jpg" /></a>
 			</div>
 			<div class="right">
 				<p>Endlich ist es soweit - Ein WooCommerce Theme, perfekt auf den deutschen Markt abgestimmt.
-				Mit <a href="http://vendidero.de/vendipro" target="_blank">VendiPro</a> wirken alle WooCommerce & WooCommerce Germanized Inhalte einfach noch professioneller.</p>
+				Mit <a href="https://vendidero.de/vendipro" target="_blank">VendiPro</a> wirken alle WooCommerce & WooCommerce Germanized Inhalte einfach noch professioneller.</p>
 				<div class="wc-feature wc-vendipro-features feature-section col two-col">
 					<div>
 						<h4><i class="fa fa-mobile"></i> Responsive Layout</h4>
@@ -152,7 +152,7 @@ class WC_GZD_Admin_Welcome {
 					</div>
 				</div>
 				<div class="vendipro-buttons">
-					<a href="http://vendidero.de/vendipro" target="_blank" class="button button-primary wc-gzd-button">mehr erfahren</a>
+					<a href="https://vendidero.de/vendipro" target="_blank" class="button button-primary wc-gzd-button">mehr erfahren</a>
 					<p class="price smaller">ab 49,95 € inkl. Mwst. - inkl. 1 Jahr Updates & Premium Support!</p>
 				</div>
 			</div>

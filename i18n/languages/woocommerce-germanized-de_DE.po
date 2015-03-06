@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: WooCommerce Germanized v1.2.3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-29 12:26+0100\n"
-"PO-Revision-Date: 2015-03-01 14:27:34+0000\n"
+"PO-Revision-Date: 2015-03-06 13:16:20+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -1101,7 +1101,7 @@ msgid "Payment charge"
 msgstr "Zahlungsgebühr"
 
 #: includes/abstracts/abstract-wc-gzd-product.php:126
-#: includes/wc-gzd-cart-functions.php:102
+#: includes/wc-gzd-cart-functions.php:104
 #: woocommerce-germanized.php:769
 #, php-format
 #@ woocommerce-germanized
@@ -1119,7 +1119,7 @@ msgid "Choose a Payment Gateway"
 msgstr "Zahlungsmethode auswählen"
 
 #: includes/admin/settings/class-wc-gzd-settings-germanized.php:581
-#: includes/wc-gzd-cart-functions.php:137
+#: includes/wc-gzd-cart-functions.php:139
 #@ woocommerce-germanized
 msgid "I want immediate access to the digital content and I acknowledge that thereby I lose my right to cancel once the service has begun."
 msgstr "Ja, ich möchte sofort Zugang zu dem digitalen Inhalt und weiß, dass mein Widerrufsrecht mit dem Zugang erlischt."
@@ -1305,12 +1305,6 @@ msgstr "Gesamtsumme"
 msgid "WooCommerce Germanized"
 msgstr "WooCommerce Germanized"
 
-#. translators: plugin header field 'PluginURI'
-#: woocommerce-germanized.php:0
-#@ woocommerce-germanized
-msgid "http://www.vendidero.de/woocommerce-germanized"
-msgstr "http://www.vendidero.de/woocommerce-germanized"
-
 #. translators: plugin header field 'Description'
 #: woocommerce-germanized.php:0
 #@ woocommerce-germanized
@@ -1322,12 +1316,6 @@ msgstr "Erweitert WooCommerce zu einem rechtskonformen Shop für den deutschen M
 #@ woocommerce-germanized
 msgid "Vendidero"
 msgstr "Vendidero"
-
-#. translators: plugin header field 'AuthorURI'
-#: woocommerce-germanized.php:0
-#@ woocommerce-germanized
-msgid "http://vendidero.de"
-msgstr "http://vendidero.de"
 
 #: templates/checkout/form-pay-2-2.php:58
 #: templates/checkout/form-pay.php:59
@@ -1520,7 +1508,7 @@ msgstr "Diese Nachricht ausblenden"
 #: includes/admin/views/html-notice-theme-not-ready.php:14
 #@ woocommerce-germanized
 msgid "Theme not yet ready"
-msgstr "Theme ist noch für WooCommerce Germanized optimiert"
+msgstr "Theme ist noch nicht für WooCommerce Germanized optimiert"
 
 #: includes/admin/views/html-notice-theme-not-ready.php:15
 #, php-format
@@ -1678,7 +1666,7 @@ msgid "Select this option if you want to display shipping costs notice for virtu
 msgstr "Versandkosten-Hinweis auch für virtuelle Produkte aktivieren?"
 
 #: includes/abstracts/abstract-wc-gzd-product.php:125
-#: includes/wc-gzd-cart-functions.php:102
+#: includes/wc-gzd-cart-functions.php:104
 #: woocommerce-germanized.php:769
 #@ woocommerce-germanized
 msgid "incl. VAT"
@@ -2048,4 +2036,16 @@ msgstr "Lieferzeit suchen&hellip;"
 #@ woocommerce-germanized
 msgid "%s [new]"
 msgstr "%s [neu]"
+
+#. translators: plugin header field 'PluginURI'
+#: woocommerce-germanized.php:0
+#@ woocommerce-germanized
+msgid "https://www.vendidero.de/woocommerce-germanized"
+msgstr "https://www.vendidero.de/woocommerce-germanized"
+
+#. translators: plugin header field 'AuthorURI'
+#: woocommerce-germanized.php:0
+#@ woocommerce-germanized
+msgid "https://vendidero.de"
+msgstr "https://vendidero.de"
 

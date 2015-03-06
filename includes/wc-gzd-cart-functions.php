@@ -80,6 +80,8 @@ function wc_gzd_cart_totals_order_total_tax_html() {
 		if ( get_option( 'woocommerce_tax_total_display' ) == 'itemized' ) {
 			foreach ( WC()->cart->get_tax_totals() as $code => $tax ) {
 				$rate = wc_gzd_get_tax_rate( $tax->tax_rate_id );
+				if ( ! $rate )
+					continue;
 				if ( ! empty( $rate ) && isset( $rate->tax_rate ) )
 					$tax->rate = $rate->tax_rate;
 				if ( ! isset( $tax_array[ $tax->rate ] ) )

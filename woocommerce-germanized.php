@@ -1,11 +1,11 @@
 <?php
 /**
  * Plugin Name: WooCommerce Germanized
- * Plugin URI: http://www.vendidero.de/woocommerce-germanized
+ * Plugin URI: https://www.vendidero.de/woocommerce-germanized
  * Description: Extends WooCommerce to become a legally compliant store for the german market.
  * Version: 1.2.3
  * Author: Vendidero
- * Author URI: http://vendidero.de
+ * Author URI: https://vendidero.de
  * Requires at least: 3.8
  * Tested up to: 4.1
  *
@@ -725,7 +725,7 @@ final class WooCommerce_Germanized {
 	public function set_virtual_product_price( $price, $qty, $product ) {
 		if ( ! $product->gzd_product->is_virtual_vat_exception() || ! isset( WC()->cart ) || ! WC()->cart->is_virtual_taxable() )
 			return $price;
-		if ( get_option('woocommerce_prices_include_tax') === 'yes' )
+		if ( get_option( 'woocommerce_prices_include_tax' ) === 'yes' )
 			return $product->get_price() * $qty;
 		return $price;
 	}
