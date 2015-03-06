@@ -18,12 +18,12 @@ WooCommerce Germanized erweitert WooCommerce um alle technisch relevanten Funkti
 
 Natürlich können wir mit unserem Plugin keine ausführliche Rechtsberatung ersetzen. Wir möchten lediglich die technischen Voraussetzungen für den Betrieb eines rechtssicheren Shops in Deutschland zur Verfügung stellen.
 
-Damit WooCommerce Germanized noch schicker aussieht haben wir ein komplett auf den deutschen Markt abgestimmtes [WooCommerce Theme](http://vendidero.de/vendipro "WooCommerce Theme für den deutschen Markt"): VendiPro.
+Damit WooCommerce Germanized noch schicker aussieht haben wir ein komplett auf den deutschen Markt abgestimmtes [WooCommerce Theme](https://vendidero.de/vendipro "WooCommerce Theme für den deutschen Markt"): VendiPro.
 Bei der Entwicklung von VendiPro haben wir besonders auf die Einhaltung deutscher Shop-Design-Prinzipien Wert gelegt. WooCommerce Germanized + VendiPro - zusammen die optimale Wahl für deinen deutschen WooCommerce Shop.
 
 = WooCommerce rechtssicher für den deutschen Markt =
 WooCommerce Germanized unterstützt eine Vielzahl typisch deutscher Funktionalitäten: Lieferzeiten, Einheitspreise, Versandkosten- und Mehrwertsteuer-Hinweise, rechtlich relevante Hinweisseiten (z.B. AGB, Widerrufsbelehrung usw.) - auch in E-Mails, Kleinuternehmerregelung, Gebühren für Zahlungsmethoden und noch vieles mehr.
-Zudem haben wir einige Anpassungen am Bezahlvorgang vorgenommen, damit dieser den rechtlichen Ansprüchen eines deutschen Online-Shops entspricht. Eine ausführliche Liste der Funktionalitäten sowie weitere Informationen findest du auf [vendidero.de](http://vendidero.de/woocommerce-germanized "WooCommerce Germanized - WooCommerce Plugin für den deutschen Markt")
+Zudem haben wir einige Anpassungen am Bezahlvorgang vorgenommen, damit dieser den rechtlichen Ansprüchen eines deutschen Online-Shops entspricht. Eine ausführliche Liste der Funktionalitäten sowie weitere Informationen findest du auf [vendidero.de](https://vendidero.de/woocommerce-germanized "WooCommerce Germanized - WooCommerce Plugin für den deutschen Markt")
 
 = WooCommerce 2.3 kompatibel =
 Mit der neuesten Version unterstützt WC Germanized von nun an die in Kürze erscheinende Version 2.3 von WooCommerce. Vorerst ist WC Germanized weiterhin rückwärtskompatibel und unterstützt zusätzlich die alte Version (2.2).
@@ -56,7 +56,7 @@ Damit kann dein Online-Shop ganz einfach von den Vorteilen des externen Dienstle
 
 = Premium Support =
 Kunden von VendiPro genießen einen kompetenten Ticket-Support zu Fragen rund um VendiPro und WC Germanized. Natürlich versuchen wir über das WordPress Support-Forum auch einen guten Support zu gewährleisten.
-Gerne übernehmen wir die von dir gewünschten Individualisierungen und Anpassungen an WordPress, WooCommerce und WC Germanized - und unterbreiten dir gerne ein [individuelles Angebot](http://vendidero.de/individualisierung) basierend auf deinen Vorstellungen.
+Gerne übernehmen wir die von dir gewünschten Individualisierungen und Anpassungen an WordPress, WooCommerce und WC Germanized - und unterbreiten dir gerne ein [individuelles Angebot](https://vendidero.de/individualisierung) basierend auf deinen Vorstellungen.
 
 = About WooCommerce Germanized =
 WC Germanized extends WooCommerce to become a legally compliant Online-Shop for the german market. This does not replace legal advice - we do only offer technical implementations to meet german law.
@@ -122,7 +122,7 @@ professionell einsetzen könnt. Zusätzlich dazu bieten wir Support über die Wo
 = Nicht alle Einstellungen sehen in meinem Theme ansprechend aus =
 
 Wir können natürlich nicht gewähren, dass jedes Theme die nötigen Styles implementiert, damit jede WooCommerce Germanized Einstellung schick aussieht.
-Aus diesem Grund haben wir unser eigenes, für den deutschen Markt entwickeltes WooCommerce Theme - [VendiPro](http://vendidero.de/vendipro) - entwickelt.
+Aus diesem Grund haben wir unser eigenes, für den deutschen Markt entwickeltes WooCommerce Theme - [VendiPro](https://vendidero.de/vendipro) - entwickelt.
 
 = Du möchtest Bugs melden oder mithelfen WooCommerce Germanized zu verbessern? =
 
