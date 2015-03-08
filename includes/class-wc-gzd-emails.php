@@ -45,6 +45,7 @@ class WC_GZD_Emails {
 			}
 		}
 
+		// Add email order item name filter (if frontend filters are not loaded)
 		if ( is_admin() ) {
 			add_action( 'woocommerce_order_item_name', 'wc_gzd_cart_product_delivery_time', 0, 2 );
 			add_action( 'woocommerce_order_item_name', 'wc_gzd_cart_product_item_desc', 0, 2 );
