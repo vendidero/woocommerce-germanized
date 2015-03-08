@@ -44,6 +44,12 @@ class WC_GZD_Emails {
 				add_action( 'woocommerce_germanized_email_footer_' . $mail->id, array( $this, 'hook_mail_footer' ), 10, 1 );
 			}
 		}
+
+		if ( is_admin() ) {
+			add_action( 'woocommerce_order_item_name', 'wc_gzd_cart_product_delivery_time', 0, 2 );
+			add_action( 'woocommerce_order_item_name', 'wc_gzd_cart_product_item_desc', 0, 2 );
+		}
+
 	}
 
 	/**

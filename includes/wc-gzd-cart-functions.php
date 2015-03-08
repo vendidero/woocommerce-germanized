@@ -25,7 +25,7 @@ function wc_gzd_get_tax_rate( $tax_rate_id ) {
  * @param  array $cart_item 
  * @return string
  */
-function wc_gzd_product_item_desc( $title, $cart_item ) {
+function wc_gzd_cart_product_item_desc( $title, $cart_item ) {
 	$product_desc = "";
 	if ( isset( $cart_item[ 'data' ] ) ) {
 		$product = $cart_item[ 'data' ];
@@ -35,6 +35,19 @@ function wc_gzd_product_item_desc( $title, $cart_item ) {
 		$product_desc = $cart_item[ 'item_desc' ];
 	if ( ! empty( $product_desc ) )
 		$title .= '<div class="wc-gzd-item-desc item-desc">' . $product_desc . '</div>';
+	return $title;
+}
+
+function wc_gzd_cart_product_delivery_time( $title, $cart_item ) {
+	$delivery_time = "";
+	if ( isset( $cart_item[ 'data' ] ) ) {
+		$product = $cart_item[ 'data' ];
+		if ( $product->gzd_product->get_delivery_time_term() )
+			$delivery_time = $product->gzd_product->get_delivery_time_html();
+	} else if ( isset( $cart_item[ 'delivery_time' ] ) )
+		$delivery_time = $cart_item[ 'delivery_time' ];
+	if ( ! empty( $delivery_time ) )
+		$title .= '<p class="price-shipping-costs-info">' . $delivery_time . '</p>';
 	return $title;
 }
 

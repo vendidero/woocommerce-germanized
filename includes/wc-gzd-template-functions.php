@@ -105,25 +105,6 @@ if ( ! function_exists( 'woocommerce_gzd_template_footer_sale_info' ) ) {
 	}
 }
 
-if ( ! function_exists( 'woocommerce_gzd_template_cart_product_delivery_time' ) ) {
-
-	/**
-	 * Delivery time within cart
-	 */
-	function woocommerce_gzd_template_cart_product_delivery_time( $title, $cart_item ) {
-		$delivery_time = "";
-		if ( isset( $cart_item[ 'data' ] ) ) {
-			$product = $cart_item[ 'data' ];
-			if ( $product->gzd_product->get_delivery_time_term() )
-				$delivery_time = $product->gzd_product->get_delivery_time_html();
-		} else if ( isset( $cart_item[ 'delivery_time' ] ) )
-			$delivery_time = $cart_item[ 'delivery_time' ];
-		if ( ! empty( $delivery_time ) )
-			$title .= '<p class="price-shipping-costs-info">' . $delivery_time . '</p>';
-		return $title;
-	}
-}
-
 if ( ! function_exists( 'woocommerce_gzd_proceed_to_checkout_fallback' ) ) {
 
 	/**
