@@ -95,8 +95,8 @@ class WC_GZD_Product {
 	 * @return boolean|string
 	 */
 	public function get_mini_desc() {
-		if ( $this->child->mini_desc )
-			return apply_filters( 'the_content', htmlspecialchars_decode( $this->child->mini_desc ) );
+		if ( $this->mini_desc && ! empty( $this->mini_desc ) )
+			return apply_filters( 'the_content', htmlspecialchars_decode( $this->mini_desc ) );
 		return false;
 	}
 
@@ -106,7 +106,7 @@ class WC_GZD_Product {
 	 * @return boolean
 	 */
 	public function is_virtual_vat_exception() {
-		return ( ( get_option( 'woocommerce_gzd_enable_virtual_vat' ) == 'yes' ) && ( $this->child->is_downloadable() || $this->child->is_virtual() ) ? true : false );
+		return ( ( get_option( 'woocommerce_gzd_enable_virtual_vat' ) == 'yes' ) && ( $this->is_downloadable() || $this->is_virtual() ) ? true : false );
 	}
 
 	/**
@@ -116,9 +116,9 @@ class WC_GZD_Product {
 	 */
 	public function get_tax_info() {
 		$_tax  = new WC_Tax();
-		if ( $this->child->is_taxable() ) {
+		if ( $this->is_taxable() ) {
 			$tax_display_mode = get_option( 'woocommerce_tax_display_shop' );
-			$tax_rates  = $_tax->get_rates( $this->child->get_tax_class() );
+			$tax_rates  = $_tax->get_rates( $this->get_tax_class() );
 			if ( ! empty( $tax_rates ) ) {
 				$tax_rates = array_values( $tax_rates );
 				if ( $this->is_virtual_vat_exception() )

@@ -73,13 +73,6 @@ p.footer-info {
 	display: inline-block;
 	background: transparent url(../images/trusted-shops-badge.png) no-repeat;
 }
-.order_details li:first-child {
-	padding-left: 0;
-	margin-left: 0;
-}
-.woocommerce dl.customer_details {
-	margin-left: 0;
-}
 .wc-gzd-item-desc p {
 	font-size: 0.9em;
 }

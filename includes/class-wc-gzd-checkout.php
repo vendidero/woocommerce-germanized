@@ -45,8 +45,8 @@ class WC_GZD_Checkout {
 		add_filter( 'woocommerce_order_formatted_shipping_address', array( $this, 'set_formatted_shipping_address' ), 0, 2 );
 		add_filter( 'woocommerce_formatted_address_replacements', array( $this, 'set_formatted_address' ), 0, 2 );
 		// Add item desc to order
-		add_action( 'woocommerce_order_add_product', array( $this, 'set_item_desc_order_meta' ), 0, 5 );
-		add_filter( 'woocommerce_hidden_order_itemmeta', array( $this, 'set_item_desc_order_meta_hidden' ), 0 );
+		add_action( 'woocommerce_order_add_product', array( $this, 'set_order_meta' ), 0, 5 );
+		add_filter( 'woocommerce_hidden_order_itemmeta', array( $this, 'set_order_meta_hidden' ), 0 );
 		// Deactivate checkout shipping selection
 		add_action( 'woocommerce_review_order_before_shipping', array( $this, 'remove_shipping_rates' ), 0 );
 		// Add better fee taxation
@@ -159,8 +159,9 @@ class WC_GZD_Checkout {
 	 * @param int $qty      
 	 * @param array $args     
 	 */
-	public function set_item_desc_order_meta( $order_id, $item_id, $product, $qty, $args ) {
-		wc_add_order_item_meta( $item_id, '_product_desc', $product->gzd_product->get_mini_desc() );
+	public function set_order_meta( $order_id, $item_id, $product, $qty, $args ) {
+		wc_add_order_item_meta( $item_id, '_delivery_time', $product->gzd_product->get_delivery_time_html() );
+		wc_add_order_item_meta( $item_id, '_item_desc', $product->gzd_product->get_mini_desc() );
 	}
 
 	/**
@@ -168,8 +169,9 @@ class WC_GZD_Checkout {
 	 *  
 	 * @param array $metas
 	 */
-	public function set_item_desc_order_meta_hidden( $metas ) {
-		array_push( $metas, '_product_desc' );
+	public function set_order_meta_hidden( $metas ) {
+		array_push( $metas, '_item_desc' );
+		array_push( $metas, '_delivery_time' );
 		return $metas;
 	}
 

@@ -18,15 +18,24 @@ function wc_gzd_get_tax_rate( $tax_rate_id ) {
 	return false; 
 }
 
-function wc_gzd_product_item_desc( $title, $item ) {
-	$new = $title;
-	if ( isset( $item[ 'product_id' ] ) ) {
-		$product_id = ( ! empty( $item[ 'variation_id' ] ) ? $item[ 'variation_id' ] : $item[ 'product_id' ] );
-		$product = wc_get_product( $product_id );
+/**
+ * Appends product item desc live data (while checkout) or order meta to product name
+ *  
+ * @param  string $title    
+ * @param  array $cart_item 
+ * @return string
+ */
+function wc_gzd_product_item_desc( $title, $cart_item ) {
+	$product_desc = "";
+	if ( isset( $cart_item[ 'data' ] ) ) {
+		$product = $cart_item[ 'data' ];
 		if ( $product->gzd_product->get_mini_desc() )
-			$new .= '<div class="wc-gzd-item-desc item-desc">' . $product->gzd_product->get_mini_desc() . '</div>';
-	}
-	return $new;
+			$product_desc = $product->gzd_product->get_mini_desc();
+	} else if ( isset( $cart_item[ 'item_desc' ] ) )
+		$product_desc = $cart_item[ 'item_desc' ];
+	if ( ! empty( $product_desc ) )
+		$title .= '<div class="wc-gzd-item-desc item-desc">' . $product_desc . '</div>';
+	return $title;
 }
 
 function wc_gzd_get_cart_tax_share( $type = 'shipping' ) {

@@ -36,8 +36,6 @@ class WC_GZD_Emails {
 		remove_action( 'woocommerce_email_footer', array( WC()->mailer(), 'email_footer' ) );
 		add_action( 'woocommerce_email_footer', array( $this, 'add_template_footers' ), 0 );
 		add_action( 'woocommerce_email_footer', array( WC()->mailer(), 'email_footer' ), 1 );
-		
-		add_action( 'woocommerce_order_item_name', array( $this, 'order_item_desc' ), 0, 2 );
 
 		$mails = WC()->mailer()->get_emails();
 
