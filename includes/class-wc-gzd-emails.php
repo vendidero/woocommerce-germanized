@@ -37,6 +37,8 @@ class WC_GZD_Emails {
 		add_action( 'woocommerce_email_footer', array( $this, 'add_template_footers' ), 0 );
 		add_action( 'woocommerce_email_footer', array( WC()->mailer(), 'email_footer' ), 1 );
 
+		add_filter( 'woocommerce_email_styles', array( $this, 'styles' ) );
+
 		$mails = WC()->mailer()->get_emails();
 
 		if ( ! empty( $mails ) ) {
@@ -45,12 +47,28 @@ class WC_GZD_Emails {
 			}
 		}
 
-		// Add email order item name filter (if frontend filters are not loaded)
+		// Add email order item name/price filter (if frontend filters are not loaded)
 		if ( is_admin() ) {
 			add_action( 'woocommerce_order_item_name', 'wc_gzd_cart_product_delivery_time', 0, 2 );
 			add_action( 'woocommerce_order_item_name', 'wc_gzd_cart_product_item_desc', 0, 2 );
+			add_filter( 'woocommerce_order_formatted_line_subtotal', 'wc_gzd_cart_product_unit_price', 0, 2 );
 		}
 
+	}
+
+	/**
+	 * Add email styles
+	 *  
+	 * @param  string $css 
+	 * @return string      
+	 */
+	public function styles( $css ) {
+		return $css .= '
+			.unit-price-cart {
+				display: block;
+				font-size: 0.9em;
+			}
+		';
 	}
 
 	/**

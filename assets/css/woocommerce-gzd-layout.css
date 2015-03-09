@@ -47,6 +47,11 @@
 	display: inline;
 	width: auto;
 }
+.unit-price-cart {
+	font-size: 0.9em;
+	display: block;
+	margin-top: 5px;
+}
 .products .wc-gzd-additional-info {
 	font-size: 0.8em;
 	margin: 0.7rem 0 0.7rem 0;

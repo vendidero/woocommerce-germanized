@@ -43,6 +43,9 @@ if ( get_option( 'woocommerce_gzd_display_listings_link_details' ) == 'yes' )
  */
 add_action( 'woocommerce_cart_totals_after_order_total', 'woocommerce_gzd_template_cart_total_tax', 1 );
 add_action( 'woocommerce_review_order_after_order_total', 'woocommerce_gzd_template_cart_total_tax', 1 );
+add_filter( 'woocommerce_cart_item_price', 'wc_gzd_cart_product_unit_price', 0, 2 );
+add_filter( 'woocommerce_cart_item_subtotal', 'wc_gzd_cart_product_unit_price', 0, 2 );
+add_filter( 'woocommerce_order_formatted_line_subtotal', 'wc_gzd_cart_product_unit_price', 0, 2 );
 add_filter( 'woocommerce_cart_item_name', 'wc_gzd_cart_product_delivery_time', 0, 2 );
 add_filter( 'woocommerce_cart_item_name', 'wc_gzd_cart_product_item_desc', 0, 2 );
 add_action( 'woocommerce_order_item_name', 'wc_gzd_cart_product_delivery_time', 0, 2 );

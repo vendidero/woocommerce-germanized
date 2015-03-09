@@ -193,6 +193,9 @@ final class WooCommerce_Germanized {
 		add_action( 'template_redirect', array( $this, 'customer_account_activation_check' ) );
 		add_action( 'woocommerce_gzd_customer_cleanup', array( WC_GZD_Admin_Customer::instance(), 'account_cleanup' ) );
 
+		// Remove cart subtotal filter
+		add_action( 'template_redirect', array( $this, 'remove_cart_unit_price_filter' ) );
+
 		// Remove processing + on-hold default order confirmation mails
 		$mailer = WC()->mailer();
 		$mails = $mailer->get_emails();
@@ -773,6 +776,14 @@ final class WooCommerce_Germanized {
 			}
 		}
 		return $order_totals;
+	}
+
+	/**
+	 * Remove cart unit price subtotal filter
+	 */
+	public function remove_cart_unit_price_filter() {
+		if ( is_cart() )
+			remove_filter( 'woocommerce_cart_item_subtotal', 'wc_gzd_cart_product_unit_price', 0, 2 );
 	}
 
 	/**

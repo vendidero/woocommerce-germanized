@@ -38,6 +38,13 @@ function wc_gzd_cart_product_item_desc( $title, $cart_item ) {
 	return $title;
 }
 
+/**
+ * Appends delivery time live data (while checkout) or order meta to product name
+ *  
+ * @param  string $title    
+ * @param  array $cart_item 
+ * @return string
+ */
 function wc_gzd_cart_product_delivery_time( $title, $cart_item ) {
 	$delivery_time = "";
 	if ( isset( $cart_item[ 'data' ] ) ) {
@@ -51,6 +58,32 @@ function wc_gzd_cart_product_delivery_time( $title, $cart_item ) {
 	return $title;
 }
 
+/**
+ * Appends unit price to product price live data (while checkout) or order meta to product price
+ *  
+ * @param  string $price     
+ * @param  array $cart_item 
+ * @return string            
+ */
+function wc_gzd_cart_product_unit_price( $price, $cart_item ) {
+	$unit_price = "";
+	if ( isset( $cart_item[ 'data' ] ) ) {
+		$product = $cart_item[ 'data' ];
+		if ( $product->gzd_product->has_unit() )
+			$unit_price = $product->gzd_product->get_unit_html( false );
+	} else if ( isset( $cart_item[ 'unit_price' ] ) )
+		$unit_price = $cart_item[ 'unit_price' ];
+	if ( ! empty( $unit_price ) )
+		$price .= ' <span class="unit-price unit-price-cart">' . $unit_price . '</span>';
+	return $price;
+}
+
+/**
+ * Calculates tax share for shipping/fees
+ *  
+ * @param  string $type 
+ * @return array       
+ */
 function wc_gzd_get_cart_tax_share( $type = 'shipping' ) {
 	$cart = WC()->cart->get_cart();
 	$tax_shares = array();
