@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: WooCommerce Germanized v1.2.3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-29 12:26+0100\n"
-"PO-Revision-Date: 2015-03-06 13:16:20+0000\n"
+"PO-Revision-Date: 2015-03-09 08:46:37+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -308,7 +308,7 @@ msgstr "Diese Seite sollte Ihre Widerrufsbelehrung enthalten. Nutzen Sie folgend
 #: includes/admin/settings/class-wc-gzd-settings-germanized.php:149
 #@ woocommerce-germanized
 msgid "Payment Methods"
-msgstr "Zahlungsmethoden"
+msgstr "Zahlungarten"
 
 #: includes/admin/settings/class-wc-gzd-settings-germanized.php:150
 #@ woocommerce-germanized
@@ -318,12 +318,12 @@ msgstr "Diese Seite sollte Informationen zu den von Ihnen zur Verfügung gestell
 #: includes/admin/settings/class-wc-gzd-settings-germanized.php:160
 #@ woocommerce-germanized
 msgid "Shipping Methods"
-msgstr "Versandmethoden"
+msgstr "Versandarten"
 
 #: includes/admin/settings/class-wc-gzd-settings-germanized.php:161
 #@ woocommerce-germanized
 msgid "This page should contain information regarding shipping methods that are chooseable during checkout."
-msgstr "Diese Seite sollte Informationen zu den von Ihnen zur Verfügung gestellten Versandmethoden bereitstellen."
+msgstr "Diese Seite sollte Informationen zu den von Ihnen zur Verfügung gestellten Versandarten bereitstellen."
 
 #: includes/admin/settings/class-wc-gzd-settings-germanized.php:172
 #@ woocommerce-germanized
@@ -738,7 +738,7 @@ msgctxt "ekomi"
 msgid "Number of days between an order being marked as completed and review email to customer."
 msgstr "Anzahl der Tage zwischen dem Datum an dem die Bestellung als \"abgeschlossen\" (completed) markiert wurde und dem Absenden der Bewertungseinladung an den Kunden"
 
-#: includes/class-wc-gzd-emails.php:159
+#: includes/class-wc-gzd-emails.php:182
 #@ woocommerce-germanized
 msgctxt "revocation-form"
 msgid "Forward your Revocation online"
@@ -808,19 +808,19 @@ msgstr "bezahlmoeglichkeiten"
 #@ woocommerce-germanized
 msgctxt "Page title"
 msgid "Payment Methods"
-msgstr "Zahlungsmethoden"
+msgstr "Zahlungsarten"
 
 #: includes/class-wc-gzd-install.php:336
 #@ woocommerce-germanized
 msgctxt "Page slug"
 msgid "shipping-methods"
-msgstr "versandmethoden"
+msgstr "versandarten"
 
 #: includes/class-wc-gzd-install.php:337
 #@ woocommerce-germanized
 msgctxt "Page title"
 msgid "Shipping Methods"
-msgstr "Versandmethoden"
+msgstr "Versandarten"
 
 #: includes/class-wc-gzd-post-types.php:32
 #: includes/class-wc-gzd-post-types.php:34
@@ -1032,7 +1032,7 @@ msgstr "Trusted Shops Integration"
 #@ woocommerce-germanized
 msgctxt "trusted-shops"
 msgid "Choose a Trusted Shops Payment Gateway linked to WooCommerce Payment Gateway %s"
-msgstr "Wählen Sie für die Zahlungsmöglichkeit %s eine von Trusted Shops vorgegebene Zahlungsmöglichkeit aus."
+msgstr "Wählen Sie für die Zahlungsart %s eine von Trusted Shops vorgegebene Zahlungsarten aus."
 
 #: includes/emails/class-wc-gzd-email-customer-ekomi.php:25
 #@ woocommerce-germanized
@@ -1101,30 +1101,30 @@ msgid "Payment charge"
 msgstr "Zahlungsgebühr"
 
 #: includes/abstracts/abstract-wc-gzd-product.php:126
-#: includes/wc-gzd-cart-functions.php:104
-#: woocommerce-germanized.php:769
+#: includes/wc-gzd-cart-functions.php:159
+#: woocommerce-germanized.php:772
 #, php-format
 #@ woocommerce-germanized
 msgid "incl. %s%% VAT"
 msgstr "inkl. %s%% MwSt."
 
-#: includes/wc-gzd-template-functions.php:151
+#: includes/wc-gzd-template-functions.php:136
 #@ woocommerce-germanized
 msgid "Edit Order"
 msgstr "Bestellung bearbeiten"
 
-#: includes/wc-gzd-template-functions.php:162
+#: includes/wc-gzd-template-functions.php:147
 #@ woocommerce-germanized
 msgid "Choose a Payment Gateway"
-msgstr "Zahlungsmethode auswählen"
+msgstr "Zahlungsart auswählen"
 
 #: includes/admin/settings/class-wc-gzd-settings-germanized.php:581
-#: includes/wc-gzd-cart-functions.php:139
+#: includes/wc-gzd-cart-functions.php:194
 #@ woocommerce-germanized
 msgid "I want immediate access to the digital content and I acknowledge that thereby I lose my right to cancel once the service has begun."
 msgstr "Ja, ich möchte sofort Zugang zu dem digitalen Inhalt und weiß, dass mein Widerrufsrecht mit dem Zugang erlischt."
 
-#: includes/wc-gzd-template-functions.php:220
+#: includes/wc-gzd-template-functions.php:205
 #@ woocommerce-germanized
 msgid "To get immediate access to digital content you have to agree to the losal of your right to cancel."
 msgstr "Um direkten Zugang zu den digitalen Inhalte zu erhalten, müssen Sie auf das Widerrufsrecht verzichten."
@@ -1174,7 +1174,7 @@ msgstr "Bitte geben Sie Ihre Informationen ein, damit Sie die zu Verfügung steh
 msgid "Sorry, it seems that there are no available payment methods for your state. Please contact us if you require assistance or wish to make alternate arrangements."
 msgstr "Es tut uns Leid! Leider gibt es für Sie aktuell keine passende Zahlungsmethode. Bitte nehmen Sie mit uns Kontakt auf, damit wir Ihnen eine individuelle Lösung anbieten können."
 
-#: includes/wc-gzd-template-functions.php:329
+#: includes/wc-gzd-template-functions.php:314
 #: templates/checkout/form-pay-2-2.php:52
 #: templates/checkout/form-pay.php:53
 #: templates/checkout/review-order-2-2.php:63
@@ -1201,7 +1201,7 @@ msgstr "Gesamtsumme aktualisieren"
 msgid "I&rsquo;ve read and accept the <a href=\"%s\" target=\"_blank\">terms &amp; conditions</a>"
 msgstr "Ich habe die <a href=\"%s\" target=\"_blank\">Allgemeinen Geschäftsbedingungen</a> gelesen und akzeptiert."
 
-#: includes/wc-gzd-template-functions.php:317
+#: includes/wc-gzd-template-functions.php:302
 #: templates/checkout/order-submit.php:24
 #: templates/checkout/review-order-2-2.php:188
 #@ woocommerce
@@ -1234,18 +1234,18 @@ msgctxt "revocation-form"
 msgid "By sending you this email we confirm your Revocation. Please review your data."
 msgstr "Mit der Zustellung dieser E-Mail bestätigen wir Ihren Widerruf. Bitte prüfen Sie Ihre Daten."
 
-#: templates/emails/email-order-items.php:25
+#: templates/emails/email-order-items-2-2.php:25
 #@ woocommerce
 msgid "Product Image"
 msgstr "Produktbild"
 
-#: templates/emails/email-order-items.php:46
+#: templates/emails/email-order-items-2-2.php:46
 #, php-format
 #@ woocommerce
 msgid "Download %d"
 msgstr "Download %d"
 
-#: templates/emails/email-order-items.php:48
+#: templates/emails/email-order-items-2-2.php:48
 #@ woocommerce
 msgid "Download"
 msgstr "Download"
@@ -1289,12 +1289,12 @@ msgstr "Widerruf erklären"
 msgid "VAT free based on &#167;19 UStG"
 msgstr "Kein Mehrwertsteuerausweis, da Kleinunternehmer nach §19 (1) UStG."
 
-#: woocommerce-germanized.php:526
+#: woocommerce-germanized.php:529
 #@ woocommerce
 msgid "Settings"
 msgstr "Einstellungen"
 
-#: woocommerce-germanized.php:742
+#: woocommerce-germanized.php:745
 #@ woocommerce
 msgid "Order Total:"
 msgstr "Gesamtsumme"
@@ -1444,7 +1444,7 @@ msgstr "Diese Option bewirkt, dass deine über Trusted Shops empfangenen Bewertu
 #@ woocommerce-germanized
 msgctxt "trusted-shops"
 msgid "Assign payment methods"
-msgstr "Zahlungsmethoden zuweisen"
+msgstr "Zahlungsarten zuweisen"
 
 #: includes/class-wc-gzd-trusted-shops.php:470
 #@ woocommerce-germanized
@@ -1452,7 +1452,7 @@ msgctxt "trusted-shops"
 msgid "About Trusted Shops"
 msgstr "Über Trusted Shops"
 
-#: includes/wc-gzd-template-functions.php:131
+#: includes/wc-gzd-template-functions.php:116
 #@ woocommerce
 msgid "Proceed to Checkout"
 msgstr ""
@@ -1666,8 +1666,8 @@ msgid "Select this option if you want to display shipping costs notice for virtu
 msgstr "Versandkosten-Hinweis auch für virtuelle Produkte aktivieren?"
 
 #: includes/abstracts/abstract-wc-gzd-product.php:125
-#: includes/wc-gzd-cart-functions.php:104
-#: woocommerce-germanized.php:769
+#: includes/wc-gzd-cart-functions.php:159
+#: woocommerce-germanized.php:772
 #@ woocommerce-germanized
 msgid "incl. VAT"
 msgstr "inkl. MwSt."
@@ -1788,17 +1788,17 @@ msgstr "Deaktiviere diese Option, wenn du keine Produkbilder im Checkout angezei
 #: includes/admin/settings/class-wc-gzd-settings-germanized.php:514
 #@ woocommerce-germanized
 msgid "Hide Shipping Select"
-msgstr "Versandmethoden Auswahl"
+msgstr "Versandarten Auswahl"
 
 #: includes/admin/settings/class-wc-gzd-settings-germanized.php:515
 #@ woocommerce-germanized
 msgid "Hide shipping rate selection from checkout?"
-msgstr "Die Auswahl von Versandmethoden im Checkout deaktivieren?"
+msgstr "Die Auswahl von Versandarten im Checkout deaktivieren?"
 
 #: includes/admin/settings/class-wc-gzd-settings-germanized.php:519
 #@ woocommerce-germanized
 msgid "This option will hide shipping rate selection from checkout. By then customers will only be able to change their shipping rate on cart page."
-msgstr "Diese Option deaktiviert die Darstellung der Versandmethoden Auswahl im Checkout. Kunden können von nun an nur noch über den Warenkorb die Versandmethode ändern."
+msgstr "Diese Option deaktiviert die Darstellung der Versandarten Auswahl im Checkout. Kunden können von nun an nur noch über den Warenkorb die Versandmethode ändern."
 
 #: includes/admin/settings/class-wc-gzd-settings-germanized.php:496
 #@ woocommerce-germanized
@@ -1861,12 +1861,12 @@ msgstr "Steuerberechnung erzwingen"
 #: includes/admin/settings/class-wc-gzd-settings-germanized.php:221
 #@ woocommerce-germanized
 msgid "Force shipping costs tax calculation for every method?"
-msgstr "Erzwinge die Besteuerung für Versandkosten für jede Versandmethode?"
+msgstr "Erzwinge die Besteuerung für Versandkosten für jede Versandart?"
 
 #: includes/admin/settings/class-wc-gzd-settings-germanized.php:225
 #@ woocommerce-germanized
 msgid "This option will overwrite settings for each individual shipping method to force tax calculation (instead of only calculating tax for those methods which are taxeable)."
-msgstr "Diese Option überschreibt alle abweichenden Einstellungen verschiedener Versandmethoden und erzwingt die Steuerberechnung."
+msgstr "Diese Option überschreibt alle abweichenden Einstellungen verschiedener Versandarten und erzwingt die Steuerberechnung."
 
 #: includes/admin/settings/class-wc-gzd-settings-germanized.php:230
 #@ woocommerce-germanized
@@ -2004,12 +2004,12 @@ msgstr "Wenn Sie bei %s kein Benutzerkonto eröffnet haben, ignorieren Sie diese
 msgid "If you cannot follow the link above please copy this url and paste it to your browser bar: %s"
 msgstr "Falls Sie dem Link nicht folgen können, kopieren Sie bitte folgende URL in die Adresszeile Ihres Browsers: %s"
 
-#: woocommerce-germanized.php:679
+#: woocommerce-germanized.php:682
 #@ woocommerce-germanized
 msgid "Thank you. You have successfully activated your account."
 msgstr "Vielen Dank. Ihr Benutzerkonto wurde erfolgreich aktiviert."
 
-#: woocommerce-germanized.php:683
+#: woocommerce-germanized.php:686
 #@ woocommerce-germanized
 msgid "Sorry, but this activation code cannot be found."
 msgstr "Sorry, dieser Aktivierungscode ist uns leider nicht bekannt."
