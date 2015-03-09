@@ -536,12 +536,15 @@ final class WooCommerce_Germanized {
 	 * @param array   $styles
 	 */
 	public function add_styles( $styles ) {
+		$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
+		
 		$styles['woocommerce-gzd-layout'] = array(
-			'src'     => str_replace( array( 'http:', 'https:' ), '', WC_germanized()->plugin_url() ) . '/assets/css/woocommerce-gzd-layout.css',
+			'src'     => str_replace( array( 'http:', 'https:' ), '', WC_germanized()->plugin_url() ) . '/assets/css/woocommerce-gzd-layout' . $suffix . '.css',
 			'deps'    => '',
 			'version' => WC_GERMANIZED_VERSION,
 			'media'   => 'all'
 		);
+		
 		return $styles;
 	}
 
@@ -559,18 +562,23 @@ final class WooCommerce_Germanized {
 	 */
 	public function add_scripts() {
 		global $post;
+		
+		$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 		$assets_path = str_replace( array( 'http:', 'https:' ), '', WC_germanized()->plugin_url() ) . '/assets/';
 		$frontend_script_path = $assets_path . 'js/';
+		
 		if ( isset( $post ) && $post->ID == woocommerce_get_page_id( 'revocation' ) )
-			wp_enqueue_script( 'wc-gzd-revocation', $frontend_script_path . 'revocation.js', array( 'jquery', 'woocommerce', 'wc-country-select', 'wc-address-i18n' ), WC_GERMANIZED_VERSION, true );
+			wp_enqueue_script( 'wc-gzd-revocation', $frontend_script_path . 'revocation' . $suffix . '.js', array( 'jquery', 'woocommerce', 'wc-country-select', 'wc-address-i18n' ), WC_GERMANIZED_VERSION, true );
+		
 		if ( is_checkout() )
-			wp_enqueue_script( 'wc-gzd-checkout', $frontend_script_path . 'checkout.js', array( 'jquery', 'wc-checkout' ), WC_GERMANIZED_VERSION, true );
+			wp_enqueue_script( 'wc-gzd-checkout', $frontend_script_path . 'checkout' . $suffix . '.js', array( 'jquery', 'wc-checkout' ), WC_GERMANIZED_VERSION, true );
+		
 		if ( is_singular( 'product' ) ) {
 			$product = wc_get_product( $post->ID );
 			if ( $product && $product->is_type( 'variable' ) ) {
 				// Enqueue variation scripts
 				wp_enqueue_script( 'wc-add-to-cart-variation' );
-				wp_enqueue_script( 'wc-gzd-add-to-cart-variation', $frontend_script_path . 'add-to-cart-variation.js', array( 'jquery', 'woocommerce' ), WC_GERMANIZED_VERSION, true );
+				wp_enqueue_script( 'wc-gzd-add-to-cart-variation', $frontend_script_path . 'add-to-cart-variation' . $suffix . '.js', array( 'jquery', 'woocommerce' ), WC_GERMANIZED_VERSION, true );
 			}
 		} 
 	}
