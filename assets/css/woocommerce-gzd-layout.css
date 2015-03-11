@@ -105,6 +105,13 @@ table.product-details-inner tr td:last-child {
 	float: none;
 	margin-left: 0.5rem;
 }
+.wc-gzd-product-name-left, .wc-gzd-product-name-right {
+	float: left;
+}
+.wc-gzd-product-name-left {
+	max-width: 15%;
+	margin-right: 1em;
+}
 #eKomiSeal_default img {
 	width: 100% !important;
 	height: 100% !important;

@@ -492,6 +492,19 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 
 			array(	'title' => __( 'Checkout & Cart', 'woocommerce-germanized' ), 'type' => 'title', 'id' => 'checkout_options' ),
 
+			( version_compare( WC()->version, '2.3', '>=' ) ?
+
+				array(
+					'title' 	=> __( 'Fallback Mode', 'woocommerce-germanized' ),
+					'desc' 		=> __( 'Enable to make sure default review-order.php is not being overriden by theme.', 'woocommerce-germanized' ),
+					'id' 		=> 'woocommerce_gzd_display_checkout_fallback',
+					'default'	=> 'no',
+					'type' 		=> 'checkbox',
+					'desc_tip'	=> __( 'If you are facing problems within your checkout e.g. legally relevant data is not showing (terms, delivery time, unit price etc.) your theme seems to be incompatible (not using default WooCommerce hooks and filters). As a workaround you may use this fallback which ensures default review-order.php is used.', 'woocommerce-germanized' ),
+				)
+
+			: array() ),
+
 			array(
 				'title' 	=> __( 'Hide taxes estimated', 'woocommerce-germanized' ),
 				'desc' 		=> __( 'Do you want to hide the "taxes and shipping estimated" text from your cart?', 'woocommerce-germanized' ),

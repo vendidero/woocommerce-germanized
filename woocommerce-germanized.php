@@ -157,8 +157,15 @@ final class WooCommerce_Germanized {
 		do_action( 'before_woocommerce_germanized_init' );
 
 		add_filter( 'woocommerce_locate_template', array( $this, 'filter_templates' ), PHP_INT_MAX, 3 );
-		if ( version_compare( WC()->version, '2.3', '<' ) )
+		
+		if ( version_compare( WC()->version, '2.3', '<' ) ) {
 			add_filter( 'woocommerce_gzd_default_plugin_template', array( $this, 'filter_templates_old_version' ), 0, 2 );
+		} else {
+			add_filter( 'woocommerce_gzd_important_templates', array( $this, 'set_critical_templates_2_3' ) );
+			if ( get_option( 'woocommerce_gzd_display_checkout_fallback' ) == 'yes' )
+				add_filter( 'woocommerce_gzd_template_name', array( $this, 'set_review_order_fallback' ) );
+		}
+		
 		add_filter( 'woocommerce_get_settings_pages', array( $this, 'add_settings' ) );
 		add_filter( 'woocommerce_enqueue_styles', array( $this, 'add_styles' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'add_scripts' ) );
@@ -387,6 +394,8 @@ final class WooCommerce_Germanized {
 			)
 		);
 
+		$template_name = apply_filters( 'woocommerce_gzd_template_name', $template_name );
+
 		// Load Default
 		if ( ! $theme_template && file_exists( apply_filters( 'woocommerce_gzd_default_plugin_template', $this->plugin_path() . '/templates/' . $template_name, $template_name ) ) )
 			return apply_filters( 'woocommerce_gzd_default_plugin_template', $this->plugin_path() . '/templates/' . $template_name, $template_name );
@@ -417,6 +426,31 @@ final class WooCommerce_Germanized {
 	 */
 	public function get_critical_templates() {
 		return apply_filters( 'woocommerce_gzd_important_templates', array( 'checkout/form-pay.php', 'checkout/review-order.php' ) );
+	}
+
+	/**
+	 * Sets WC 2.3 critical templates (if fallback mode is used don't remove review-order.php)
+	 *  
+	 * @param array $templates
+	 * @return array
+	 */
+	public function set_critical_templates_2_3( $templates ) {
+		$templates = array_diff( $templates, array( 'checkout/form-pay.php' ) );
+		if ( get_option( 'woocommerce_gzd_display_checkout_fallback' ) != 'yes' )
+			$templates = array_diff( $templates, array( 'checkout/review-order.php' ) );
+		return $templates;
+	}
+
+	/**
+	 * Sets review-order.php fallback (if activated) by filtering template name.
+	 *  
+	 * @param string $template_name
+	 * @return string
+	 */
+	public function set_review_order_fallback( $template_name ) {
+		if ( strstr( $template_name, "review-order.php" ) )
+			return 'checkout/review-order-fallback.php';
+		return $template_name;
 	}
 
 	/**
@@ -567,7 +601,7 @@ final class WooCommerce_Germanized {
 		$assets_path = str_replace( array( 'http:', 'https:' ), '', WC_germanized()->plugin_url() ) . '/assets/';
 		$frontend_script_path = $assets_path . 'js/';
 		
-		if ( isset( $post ) && $post->ID == woocommerce_get_page_id( 'revocation' ) )
+		if ( is_page() )
 			wp_enqueue_script( 'wc-gzd-revocation', $frontend_script_path . 'revocation' . $suffix . '.js', array( 'jquery', 'woocommerce', 'wc-country-select', 'wc-address-i18n' ), WC_GERMANIZED_VERSION, true );
 		
 		if ( is_checkout() )

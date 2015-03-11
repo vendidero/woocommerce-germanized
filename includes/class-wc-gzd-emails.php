@@ -47,13 +47,17 @@ class WC_GZD_Emails {
 			}
 		}
 
-		// Add email order item name/price filter (if frontend filters are not loaded)
-		if ( is_admin() ) {
-			add_action( 'woocommerce_order_item_name', 'wc_gzd_cart_product_delivery_time', 0, 2 );
-			add_action( 'woocommerce_order_item_name', 'wc_gzd_cart_product_item_desc', 0, 2 );
-			add_filter( 'woocommerce_order_formatted_line_subtotal', 'wc_gzd_cart_product_unit_price', 0, 2 );
-		}
+		add_filter( 'woocommerce_order_item_product', array( $this, 'set_order_email_filters' ), 0, 1 );
+	}
 
+	public function set_order_email_filters( $product ) {
+		if ( is_wc_endpoint_url( 'order-received' ) )
+			return;
+		// Add order item name actions
+		add_action( 'woocommerce_order_item_name', 'wc_gzd_cart_product_delivery_time', 0, 2 );
+		add_action( 'woocommerce_order_item_name', 'wc_gzd_cart_product_item_desc', 0, 2 );
+		add_filter( 'woocommerce_order_formatted_line_subtotal', 'wc_gzd_cart_product_unit_price', 0, 2 );
+		return $product;
 	}
 
 	/**
@@ -97,18 +101,6 @@ class WC_GZD_Emails {
 		$email->trigger( $customer_id, $user_activation, $user_activation_url, $user_pass, $password_generated );
 	}
 
-	/**
-	 * Adds product description to order item if available
-	 *  
-	 * @param  string $item_name product name
-	 * @param  array $item     
-	 * @return string the item name containing product description if available
-	 */
-	public function order_item_desc( $item_name, $item ) {
-		if ( isset( $item[ 'product_desc' ] ) )
-			$item_name .= '<div class="wc-gzd-item-desc item-desc">' . $item[ 'product_desc' ] . '</div>';
-		return $item_name;
-	}
 	/**
 	 * Hook into Email Footer and attach legal page content if necessary
 	 *  

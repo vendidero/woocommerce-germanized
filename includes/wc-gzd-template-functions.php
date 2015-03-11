@@ -230,6 +230,54 @@ if ( ! function_exists( 'woocommerce_gzd_template_checkout_set_terms_manually' )
 
 }
 
+if ( ! function_exists( 'woocommerce_gzd_template_checkout_table_content_replacement' ) ) {
+
+	/**
+	 * Replaces default review-order.php product table by gzd product table template (checkout/review-order-product-table.php).
+	 * Adds filter to hide default review order product table output.
+	 */
+	function woocommerce_gzd_template_checkout_table_content_replacement() {
+		wc_get_template( 'checkout/review-order-product-table.php' );
+		add_filter( 'woocommerce_checkout_cart_item_visible', 'woocommerce_gzd_template_checkout_table_product_hide', PHP_INT_MAX );
+	}
+
+}
+
+if ( ! function_exists( 'woocommerce_gzd_template_checkout_table_product_hide' ) ) {
+
+	/**
+	 * Returns false to make sure default review order product table output is suppressed.
+	 *  
+	 * @return boolean 
+	 */
+	function woocommerce_gzd_template_checkout_table_product_hide() {
+		return false;
+	}
+
+}
+
+if ( ! function_exists( 'woocommerce_gzd_template_checkout_table_product_hide_filter_removal' ) ) {
+
+	/**
+	 * Remove review order product table cart item visibility filter after output has been suppressed.
+	 */
+	function woocommerce_gzd_template_checkout_table_product_hide_filter_removal() {
+		remove_filter( 'woocommerce_checkout_cart_item_visible', 'woocommerce_gzd_template_checkout_table_product_hide', PHP_INT_MAX );
+	}
+
+}
+
+if ( ! function_exists( 'woocommerce_gzd_template_checkout_remove_cart_name_filter' ) ) {
+
+	/**
+	 * Removes the cart item name filter (using checkout quantity html) if within checkout
+	 */
+	function woocommerce_gzd_template_checkout_remove_cart_name_filter() {
+		remove_filter( 'woocommerce_cart_item_name', 'wc_gzd_cart_product_delivery_time', 0, 2 );
+	}
+
+}
+
 if ( ! function_exists( 'woocommerce_gzd_template_order_button_text' ) ) {
 
 	/**
@@ -302,17 +350,6 @@ if ( ! function_exists( 'woocommerce_gzd_template_order_submit' ) ) {
 			'order_button_text'  => apply_filters( 'woocommerce_order_button_text', __( 'Place order', 'woocommerce' ) )
 		) );
 	}
-
-}
-
-if ( ! function_exists( 'woocommerce_gzd_template_checkout_review_title' ) ) {
-
-	/**
-	 * Add order review heading
-	 */
-	function woocommerce_gzd_template_checkout_review_title() { ?>
-		<h3 id="wc_gzd_order_review_heading"><?php _e( 'Your order', 'woocommerce' ); ?></h3>
-	<?php }
 
 }
 
