@@ -81,6 +81,8 @@ class WC_GZD_Trusted_Shops {
 		add_filter( 'woocommerce_gzd_get_sidebar_trusted_shops', array( $this, 'get_sidebar' ) );
 		add_action( 'woocommerce_gzd_before_save_section_trusted_shops', array( $this, 'before_save' ), 0, 1 );
 		add_action( 'woocommerce_gzd_before_save_section_trusted_shops', array( $this, 'after_save' ), 0, 1 );
+		add_action( 'wc_germanized_settings_section_after_trusted_shops', array( $this, 'review_collector_export' ), 0 );
+		add_action( 'admin_init', array( $this, 'review_collector_export_csv' ) );
 	}
 
 	/**
@@ -313,8 +315,11 @@ class WC_GZD_Trusted_Shops {
 	 */
 	public function send_mails() {
 		$order_query = new WP_Query(
-			array( 'post_type' => 'shop_order', 'post_status' => array( 'wc-completed' ), 'meta_query' =>
-				array(
+			array( 
+				'post_type'   => 'shop_order', 
+				'post_status' => array( 'wc-completed' ), 
+				'showposts'   => -1,
+				'meta_query'  => array(
 					array(
 						'key'     => '_trusted_shops_review_mail_sent',
 						'compare' => 'NOT EXISTS',
@@ -338,6 +343,87 @@ class WC_GZD_Trusted_Shops {
 				}
 			}
 		}
+	}
+
+	public function review_collector_export_csv() {
+		if ( ! isset( $_GET[ 'action' ] ) || $_GET[ 'action' ] != 'wc-gzd-trusted-shops-export' || ( isset( $_GET[ 'action' ] ) && $_GET[ 'action' ] == 'wc-gzd-trusted-shops-export' && ! wp_verify_nonce( $_REQUEST['_wpnonce'], 'wc-gzd-trusted-shops-export' ) ) )
+			return;
+		
+		$interval_d = ( ( isset( $_GET[ 'interval' ] ) && ! empty( $_GET[ 'interval' ] ) ) ? absint( $_GET[ 'interval' ] ) : 30 );
+
+		header( 'Content-Description: File Transfer' );
+		header( 'Content-Disposition: attachment; filename=review-collector.csv' );
+		header( 'Content-Type: text/csv; charset=' . get_option( 'blog_charset' ), true );
+		header( 'Cache-Control: no-cache, no-store, must-revalidate' ); 
+		header( 'Pragma: no-cache' );
+		header( 'Expires: 0' );	
+
+		$date = date( 'Y-m-d', strtotime( '-' . $interval_d . ' days') );
+		$order_query = new WP_Query(
+			array( 
+				'post_type'   => 'shop_order', 
+				'post_status' => array( 'wc-completed' ), 
+				'showposts'   => -1,
+				'date_query'  => array(
+					array(
+						'after' => $date,
+					),
+				),
+			)
+		);
+
+		$data = array();
+		
+		while ( $order_query->have_posts() ) {
+			$order_query->next_post();
+			$order = wc_get_order( $order_query->post->ID );
+			array_push( $data, array( $order->billing_email, $order->id, $order->billing_first_name, $order->billing_last_name ) );
+		}
+
+		$write = $this->prepare_csv_data( $data );
+	   	$df = fopen( "php://output", 'w' );
+		foreach ( $write as $row )
+			fwrite( $df, $row );
+	    fclose( $df );
+	    
+	    exit();
+	}
+
+	public function prepare_csv_data( $row ) {
+		foreach ( $row as $key => $row_data ) {
+			foreach ( $row_data as $rkey => $rvalue )
+				$row[ $key ][ $rkey ] = $this->encode_csv_data( '"'. str_replace('"', '\"', $rvalue ) .'"' );
+			$row[ $key ] = implode( ",", $row[ $key ] ) . "\n";
+		}
+		return $row;
+	}
+
+	public function encode_csv_data( $string ) {
+		return iconv( get_option( 'blog_charset' ), 'Windows-1252', $string );
+	}
+
+	public function review_collector_export() {
+		?>
+		<h3>Review Collector</h3>
+		<table class="form-table">
+			<tbody>
+				<tr valign="top">
+					<th scope="row" class="titledesc">
+						<label for="woocommerce_gzd_trusted_shops_review_collector"><?php echo _x( 'Export customer data', 'trusted-shops', 'woocommerce-germanized' ); ?></label>
+					</th>
+					<td class="forminp forminp-select">
+						<select name="woocommerce_gzd_trusted_shops_review_collector" id="woocommerce_gzd_trusted_shops_review_collector" class="chosen_select">
+							<option value="30"><?php echo _x( '30 days', 'trusted-shops', 'woocommerce-germanized' ); ?></option>
+							<option value="60"><?php echo _x( '60 days', 'trusted-shops', 'woocommerce-germanized' ); ?></option>
+							<option value="90"><?php echo _x( '90 days', 'trusted-shops', 'woocommerce-germanized' ); ?></option>
+						</select>
+						<p><a class="button button-secondary" id="wc-gzd-trusted-shops-export" data-href-org="<?php echo admin_url( '?action=wc-gzd-trusted-shops-export&_wpnonce=' . wp_create_nonce( 'wc-gzd-trusted-shops-export' ) ); ?>" href="#"><?php echo _x( 'Start export', 'trusted-shops', 'woocommerce-germanized' ); ?></a></p>
+						<p class="description"><?php echo _x( 'Export your customer data for the <a href="%s" target="_blank"></a>', 'trusted-shops', 'woocommerce-germanized' ); ?></p>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<?php
 	}
 
 	/**
