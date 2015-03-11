@@ -404,7 +404,7 @@ class WC_GZD_Trusted_Shops {
 
 	public function review_collector_export() {
 		?>
-		<h3>Review Collector</h3>
+		<h3><?php echo _x( 'Review Collector', 'trusted-shops', 'woocommerce-germanized' ); ?></h3>
 		<table class="form-table">
 			<tbody>
 				<tr valign="top">
@@ -418,7 +418,7 @@ class WC_GZD_Trusted_Shops {
 							<option value="90"><?php echo _x( '90 days', 'trusted-shops', 'woocommerce-germanized' ); ?></option>
 						</select>
 						<p><a class="button button-secondary" id="wc-gzd-trusted-shops-export" data-href-org="<?php echo admin_url( '?action=wc-gzd-trusted-shops-export&_wpnonce=' . wp_create_nonce( 'wc-gzd-trusted-shops-export' ) ); ?>" href="#"><?php echo _x( 'Start export', 'trusted-shops', 'woocommerce-germanized' ); ?></a></p>
-						<p class="description"><?php echo _x( 'Export your customer data for the <a href="%s" target="_blank"></a>', 'trusted-shops', 'woocommerce-germanized' ); ?></p>
+						<p class="description"><?php printf( _x( 'Export your customer data and ask consumers for a review with the Trusted Shops <a href="%s" target="_blank">Review Collector</a>.', 'trusted-shops', 'woocommerce-germanized' ), 'https://www.trustedshops.com/tsb2b/sa/ratings/batchRatingRequest.seam?prefLang=' . substr( get_bloginfo( 'language' ), 0, 2 ) ); ?></p>
 					</td>
 				</tr>
 			</tbody>
