@@ -68,6 +68,7 @@
 			return false;
 		$( '.variations_form' ).wc_gzd_variation_form();
 		$( '.variations_form .variations select' ).change();
+		$( '.variations_form .variations input:radio:checked' ).change();
 	});
 
 })( jQuery, window, document );
