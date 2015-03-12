@@ -46,7 +46,7 @@ class WC_GZD_Trusted_Shops {
 	 */
 	public function __construct() {
 		$this->partner_id = 'WooCommerceGermanized';
-		$this->id = get_option( 'woocommerce_gzd_trusted_shops_id' );
+		$this->refresh();
 		$this->gateways = apply_filters( 'woocommerce_trusted_shops_gateways', array(
 				'prepayment' => _x( 'Prepayment', 'trusted-shops', 'woocommerce-germanized' ),
 				'cash_on_delivery' => _x( 'Cash On Delivery', 'trusted-shops', 'woocommerce-germanized' ),
@@ -58,7 +58,6 @@ class WC_GZD_Trusted_Shops {
 			)
 		);
 		$this->et_params = array( 'etcc_med' => 'part', 'etcc_cmp' => 'sofpar', 'etcc_par' => 'woo', 'etcc_mon' => 11 );
-		$this->api_url = 'http://api.trustedshops.com/rest/public/v2/shops/'. $this->id .'/quality.json';
 		// Schedule
 		if ( $this->is_rich_snippets_enabled() ) {
 			add_action( 'woocommerce_gzd_trusted_shops_reviews', array( $this, 'update_reviews' ) );
@@ -80,9 +79,14 @@ class WC_GZD_Trusted_Shops {
 		add_filter( 'woocommerce_gzd_get_settings_trusted_shops', array( $this, 'get_settings' ) );
 		add_filter( 'woocommerce_gzd_get_sidebar_trusted_shops', array( $this, 'get_sidebar' ) );
 		add_action( 'woocommerce_gzd_before_save_section_trusted_shops', array( $this, 'before_save' ), 0, 1 );
-		add_action( 'woocommerce_gzd_before_save_section_trusted_shops', array( $this, 'after_save' ), 0, 1 );
+		add_action( 'woocommerce_gzd_after_save_section_trusted_shops', array( $this, 'after_save' ), 0, 1 );
 		add_action( 'wc_germanized_settings_section_after_trusted_shops', array( $this, 'review_collector_export' ), 0 );
 		add_action( 'admin_init', array( $this, 'review_collector_export_csv' ) );
+	}
+
+	public function refresh() {
+		$this->id = get_option( 'woocommerce_gzd_trusted_shops_id' );
+		$this->api_url = 'http://api.trustedshops.com/rest/public/v2/shops/'. $this->id .'/quality.json';
 	}
 
 	/**
@@ -262,7 +266,7 @@ class WC_GZD_Trusted_Shops {
 				curl_setopt( $ch, CURLOPT_URL, $this->api_url );
 				$output = curl_exec( $ch );
 				$httpcode = curl_getinfo( $ch, CURLINFO_HTTP_CODE );
-				if ( !curl_errno( $ch ) && $httpcode != 503 )
+				if ( ! curl_errno( $ch ) && $httpcode != 503 )
 					$success = true;
 				curl_close( $ch );
 				if ( $success ) {
@@ -392,7 +396,7 @@ class WC_GZD_Trusted_Shops {
 	public function prepare_csv_data( $row ) {
 		foreach ( $row as $key => $row_data ) {
 			foreach ( $row_data as $rkey => $rvalue )
-				$row[ $key ][ $rkey ] = $this->encode_csv_data( '"'. str_replace('"', '\"', $rvalue ) .'"' );
+				$row[ $key ][ $rkey ] = $this->encode_csv_data( str_replace( '"', '\"', $rvalue ) );
 			$row[ $key ] = implode( ",", $row[ $key ] ) . "\n";
 		}
 		return $row;
@@ -559,6 +563,11 @@ class WC_GZD_Trusted_Shops {
 	public function before_save( $settings ) {
 		if ( !empty( $settings ) ) {
 			foreach ( $settings as $setting ) {
+				// Update reviews & snippets if new ts id has been inserted
+				if ( isset( $_POST[ 'woocommerce_gzd_trusted_shops_id' ] ) && $_POST[ 'woocommerce_gzd_trusted_shops_id' ] != $this->id ) {
+					update_option( '_woocommerce_gzd_trusted_shops_update_snippets', 1 );
+					update_option( '_woocommerce_gzd_trusted_shops_update_reviews', 1 );
+				}
 				if ( $setting[ 'id' ] == 'woocommerce_gzd_trusted_shops_review_widget_enable' ) {
 					if ( ! empty( $_POST[ 'woocommerce_gzd_trusted_shops_review_widget_enable' ] ) && ! $this->is_review_widget_enabled() )
 						update_option( '_woocommerce_gzd_trusted_shops_update_reviews', 1 );
@@ -571,6 +580,7 @@ class WC_GZD_Trusted_Shops {
 	}
 
 	public function after_save( $settings ) {
+		$this->refresh();
 		if ( get_option( '_woocommerce_gzd_trusted_shops_update_reviews' ) )
 			$this->update_reviews();
 		if ( get_option( '_woocommerce_gzd_trusted_shops_update_snippets' ) )
