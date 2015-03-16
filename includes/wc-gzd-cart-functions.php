@@ -91,7 +91,7 @@ function wc_gzd_get_cart_tax_share( $type = 'shipping' ) {
 	// Get tax classes and tax amounts
 	if ( ! empty( $cart ) ) {
 		foreach ( $cart as $key => $item ) {
-			$_product = $item['data'];
+			$_product = wc_get_product( $item['data'] );
 			// Dont calculate share if is shipping and product is virtual or vat exception
 			if ( $type == 'shipping' && $_product->is_virtual() || ( $_product->gzd_product->is_virtual_vat_exception() && $type == 'shipping' ) )
 				continue;
