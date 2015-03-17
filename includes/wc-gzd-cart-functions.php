@@ -28,7 +28,7 @@ function wc_gzd_get_tax_rate( $tax_rate_id ) {
 function wc_gzd_cart_product_item_desc( $title, $cart_item ) {
 	$product_desc = "";
 	if ( isset( $cart_item[ 'data' ] ) ) {
-		$product = $cart_item[ 'data' ];
+		$product = wc_get_product( $cart_item[ 'data' ] );
 		if ( $product->gzd_product->get_mini_desc() )
 			$product_desc = $product->gzd_product->get_mini_desc();
 	} else if ( isset( $cart_item[ 'item_desc' ] ) )
@@ -48,7 +48,7 @@ function wc_gzd_cart_product_item_desc( $title, $cart_item ) {
 function wc_gzd_cart_product_delivery_time( $title, $cart_item ) {
 	$delivery_time = "";
 	if ( isset( $cart_item[ 'data' ] ) ) {
-		$product = $cart_item[ 'data' ];
+		$product = wc_get_product( $cart_item[ 'data' ] );
 		if ( $product->gzd_product->get_delivery_time_term() )
 			$delivery_time = $product->gzd_product->get_delivery_time_html();
 	} else if ( isset( $cart_item[ 'delivery_time' ] ) )
@@ -68,7 +68,7 @@ function wc_gzd_cart_product_delivery_time( $title, $cart_item ) {
 function wc_gzd_cart_product_unit_price( $price, $cart_item ) {
 	$unit_price = "";
 	if ( isset( $cart_item[ 'data' ] ) ) {
-		$product = $cart_item[ 'data' ];
+		$product = wc_get_product( $cart_item[ 'data' ] );
 		if ( $product->gzd_product->has_unit() )
 			$unit_price = $product->gzd_product->get_unit_html( false );
 	} else if ( isset( $cart_item[ 'unit_price' ] ) )

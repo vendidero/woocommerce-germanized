@@ -48,6 +48,7 @@ add_filter( 'woocommerce_cart_item_subtotal', 'wc_gzd_cart_product_unit_price', 
 add_action( 'woocommerce_review_order_before_cart_contents', 'woocommerce_gzd_template_checkout_remove_cart_name_filter' );
 // Add item name filter within cart
 add_filter( 'woocommerce_cart_item_name', 'wc_gzd_cart_product_delivery_time', 0, 2 );
+add_filter( 'woocommerce_cart_item_name', 'wc_gzd_cart_product_item_desc', 0, 3 );
 
 /**
  * Checkout

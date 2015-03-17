@@ -274,6 +274,7 @@ if ( ! function_exists( 'woocommerce_gzd_template_checkout_remove_cart_name_filt
 	 */
 	function woocommerce_gzd_template_checkout_remove_cart_name_filter() {
 		remove_filter( 'woocommerce_cart_item_name', 'wc_gzd_cart_product_delivery_time', 0, 2 );
+		remove_filter( 'woocommerce_cart_item_name', 'wc_gzd_cart_product_item_desc', 0, 2 );
 	}
 
 }
