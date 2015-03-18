@@ -14,7 +14,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 <?php if ( ! is_ajax() ) : ?>
 	<?php do_action( 'woocommerce_gzd_before_shop_table' ); ?>
 <?php endif; ?>
-jaaaaa
 <table class="shop_table woocommerce-checkout-review-order-table">
 	<thead>
 		<tr>
