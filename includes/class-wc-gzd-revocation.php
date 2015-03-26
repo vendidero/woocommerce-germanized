@@ -31,7 +31,6 @@ class WC_GZD_Revocation {
 			'order_date' 	  => array(
 				'type' 		  => 'text',
 				'label'       => _x( 'Order Date', 'revocation-form', 'woocommerce-germanized' ),
-				'required' 	  => true,
 			),
 			'sep'			  => _x( 'Customer Data', 'revocation-form', 'woocommerce-germanized' ),
 			'address_title'   => array(
@@ -71,7 +70,6 @@ class WC_GZD_Revocation {
 			'address_country'  => array(
 				'type' 		  => 'country',
 				'label' 	  => _x( 'Country', 'revocation-form', 'woocommerce-germanized' ),
-				'required'    => true,
 				'default'	  => 'DE',
 			),
 			'address_mail'  => array(
