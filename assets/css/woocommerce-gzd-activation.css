@@ -1,5 +1,5 @@
 .wc-gzd-logo {
-	display: inline-block;
+	display: inline-block !important;
 	text-indent: -9999px;
 	width: 298px;
 	vertical-align: top;
