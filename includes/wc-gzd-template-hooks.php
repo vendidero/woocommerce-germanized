@@ -43,12 +43,12 @@ if ( get_option( 'woocommerce_gzd_display_listings_link_details' ) == 'yes' )
  * Cart
  */
 add_action( 'woocommerce_cart_totals_after_order_total', 'woocommerce_gzd_template_cart_total_tax', 1 );
-add_filter( 'woocommerce_cart_item_price', 'wc_gzd_cart_product_unit_price', 0, 2 );
-add_filter( 'woocommerce_cart_item_subtotal', 'wc_gzd_cart_product_unit_price', 0, 2 );
+add_filter( 'woocommerce_cart_item_price', 'wc_gzd_cart_product_unit_price', 0, 3 );
+add_filter( 'woocommerce_cart_item_subtotal', 'wc_gzd_cart_product_unit_price', 0, 3 );
 // Remove cart item name filter within checkout
 add_action( 'woocommerce_review_order_before_cart_contents', 'woocommerce_gzd_template_checkout_remove_cart_name_filter' );
 // Add item name filter within cart
-add_filter( 'woocommerce_cart_item_name', 'wc_gzd_cart_product_delivery_time', 0, 2 );
+add_filter( 'woocommerce_cart_item_name', 'wc_gzd_cart_product_delivery_time', 0, 3 );
 add_filter( 'woocommerce_cart_item_name', 'wc_gzd_cart_product_item_desc', 0, 3 );
 // Small enterprises
 if ( get_option( 'woocommerce_gzd_small_enterprise' ) == 'yes' ) {
@@ -124,9 +124,9 @@ add_action( 'woocommerce_after_checkout_validation', 'woocommerce_gzd_checkout_v
 // Remove order again button (legally incompliant)
 remove_action( 'woocommerce_order_details_after_order_table', 'woocommerce_order_again_button' );
 add_action( 'woocommerce_thankyou_order_received_text', 'woocommerce_gzd_template_order_success_text', 0, 1 );
-add_action( 'woocommerce_order_item_quantity_html', 'wc_gzd_cart_product_delivery_time', 0, 2 );
-add_action( 'woocommerce_order_item_quantity_html', 'wc_gzd_cart_product_item_desc', 0, 2 );
-add_filter( 'woocommerce_order_formatted_line_subtotal', 'wc_gzd_cart_product_unit_price', 0, 2 );
+add_action( 'woocommerce_order_item_quantity_html', 'wc_gzd_cart_product_delivery_time', 0, 3 );
+add_action( 'woocommerce_order_item_quantity_html', 'wc_gzd_cart_product_item_desc', 0, 3 );
+add_filter( 'woocommerce_order_formatted_line_subtotal', 'wc_gzd_cart_product_unit_price', 0, 3 );
 if ( get_option( 'woocommerce_gzd_hide_order_success_details' ) == 'yes' )
 	remove_action( 'woocommerce_thankyou', 'woocommerce_order_details_table', 10 );
 if ( get_option( 'woocommerce_gzd_trusted_shops_id' ) )

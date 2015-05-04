@@ -178,7 +178,7 @@ if ( ! function_exists( 'woocommerce_gzd_digital_checkbox' ) ) {
 		$is_downloadable = false;
 		if ( ! empty( $items ) ) {
 			foreach ( $items as $cart_item_key => $values ) {
-				$_product = wc_get_product( $values['data'] );
+				$_product = apply_filters( 'woocommerce_cart_item_product', $values[ 'data' ], $values, $cart_item_key );
 				if ( $_product->is_downloadable() )
 					$is_downloadable = true;
 			}
@@ -207,7 +207,7 @@ if ( ! function_exists( 'woocommerce_gzd_checkout_validation' ) ) {
 			$is_downloadable = false;
 			if ( ! empty( $items ) && get_option( 'woocommerce_gzd_checkout_legal_digital_checkbox' ) == 'yes' ) {
 				foreach ( $items as $cart_item_key => $values ) {
-					$_product = wc_get_product( $values['data'] );
+					$_product = apply_filters( 'woocommerce_cart_item_product', $values[ 'data' ], $values, $cart_item_key );
 					if ( $_product->is_downloadable() )
 						$is_downloadable = true;
 				}
