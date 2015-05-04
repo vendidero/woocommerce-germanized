@@ -81,6 +81,15 @@ p.footer-info {
 .wc-gzd-item-desc p {
 	font-size: 0.9em;
 }
+.wc-gzd-edit-data-notice {
+	background: #EEE;
+	display: inline-block;
+	padding: 1em;
+}
+.wc-gzd-edit-data-notice p.wc-gzd-info {
+	margin: 0;
+	padding: 0;
+}
 table.product-details-inner {
 	table-layout:fixed;
 	margin: 0;

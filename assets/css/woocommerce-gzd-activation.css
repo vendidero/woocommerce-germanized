@@ -34,6 +34,7 @@
 }
 .dashboard_page_wc-gzd-about .wc-vendipro-features {
 	margin-top: 0;
+	border: none;
 }
 .dashboard_page_wc-gzd-about .wc-vendipro-features div h4 {
 	margin-top: 0.5em;
@@ -52,6 +53,9 @@
 	margin-top: 3em;
 	border-top: 1px solid #CCC;
 	padding-top: 0;
+}
+.dashboard_page_wc-gzd-about .feature-section {
+	border: none;
 }
 .dashboard_page_wc-gzd-about .vendipro .left {
 	display: inline-block;

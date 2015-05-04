@@ -1,0 +1,5 @@
+<wpml-config>
+    <admin-texts>
+    	<key name="woocommerce_gzd_*_text*" />
+    </admin-texts>
+</wpml-config>

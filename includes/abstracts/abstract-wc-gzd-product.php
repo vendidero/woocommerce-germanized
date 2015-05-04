@@ -121,7 +121,8 @@ class WC_GZD_Product {
 			$tax_rates  = $_tax->get_rates( $this->get_tax_class() );
 			if ( ! empty( $tax_rates ) ) {
 				$tax_rates = array_values( $tax_rates );
-				if ( $this->is_virtual_vat_exception() )
+				// If is variable or is virtual vat exception dont show exact tax rate
+				if ( $this->is_virtual_vat_exception() || $this->is_type( 'variable' ) )
 					return ( $tax_display_mode == 'incl' ? __( 'incl. VAT', 'woocommerce-germanized' ) : __( 'excl. VAT', 'woocommerce-germanized' ) );
 				return ( $tax_display_mode == 'incl' ? sprintf( __( 'incl. %s%% VAT', 'woocommerce-germanized' ), ( wc_gzd_format_tax_rate_percentage( $tax_rates[0][ 'rate' ] ) ) ) : sprintf( __( 'excl. %s%% VAT', 'woocommerce-germanized' ), ( wc_gzd_format_tax_rate_percentage( $tax_rates[0][ 'rate' ] ) ) ) );
 			}
@@ -232,7 +233,7 @@ class WC_GZD_Product {
 		$display_regular_price = $this->get_unit_price( 1, $this->get_unit_regular_price() );
 		$display_sale_price    = $this->get_unit_price( 1, $this->get_unit_sale_price() );
 		$price_html 		   = ( ( $this->is_on_unit_sale() && $show_sale ) ? $this->get_price_html_from_to( $display_regular_price, $display_sale_price ) : wc_price( $display_price ) );
-		return ( $this->has_unit() ) ? str_replace( '{price}', $price_html . $this->get_price_suffix() . apply_filters( 'wc_gzd_unit_price_seperator', ' / ' ) . $this->get_unit_base(), get_option( 'woocommerce_gzd_unit_price_text' ) ) : '';
+		return ( $this->has_unit() ) ? str_replace( '{price}', $price_html . apply_filters( 'wc_gzd_unit_price_seperator', ' / ' ) . $this->get_unit_base(), get_option( 'woocommerce_gzd_unit_price_text' ) ) : '';
 	}
 
 	/**

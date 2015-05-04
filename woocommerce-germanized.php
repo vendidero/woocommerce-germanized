@@ -3,11 +3,11 @@
  * Plugin Name: WooCommerce Germanized
  * Plugin URI: https://www.vendidero.de/woocommerce-germanized
  * Description: Extends WooCommerce to become a legally compliant store for the german market.
- * Version: 1.2.3
+ * Version: 1.3.0
  * Author: Vendidero
  * Author URI: https://vendidero.de
  * Requires at least: 3.8
- * Tested up to: 4.1
+ * Tested up to: 4.2
  *
  * Text Domain: woocommerce-germanized
  * Domain Path: /i18n/languages/
@@ -26,7 +26,7 @@ final class WooCommerce_Germanized {
 	 *
 	 * @var string
 	 */
-	public $version = '1.2.3';
+	public $version = '1.3.0';
 
 	/**
 	 * Single instance of WooCommerce Germanized Main Class
@@ -111,8 +111,10 @@ final class WooCommerce_Germanized {
 			spl_autoload_register( "__autoload" );
 		spl_autoload_register( array( $this, 'autoload' ) );
 
-		if ( ! $this->is_woocommerce_activated() )
-			return;
+		// Check if dependecies are installed
+		$init = WC_GZD_Dependencies::instance();
+		if ( ! $init->is_loadable() )
+			return; 
 
 		// Define constants
 		$this->define_constants();
@@ -135,18 +137,12 @@ final class WooCommerce_Germanized {
 	}
 
 	/**
-	 * Checks if WooCommerce is activated
+	 * Checks if is pro user
 	 *  
-	 * @return boolean true if WooCommerce is activated
+	 * @return boolean
 	 */
-	public function is_woocommerce_activated() {
-		if ( is_multisite() )
-			require_once( ABSPATH . '/wp-admin/includes/plugin.php' );
-		if ( is_multisite() && ! ( is_plugin_active_for_network( 'woocommerce/woocommerce.php' ) || in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) )
-			return false;
-		if ( ! is_multisite() && ! in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) )
-			return false;
-		return true;
+	public function is_pro() {
+		return WC_GZD_Dependencies::instance()->is_plugin_activated( 'woocommerce-germanized-pro/woocommerce-germanized-pro.php' );
 	}
 
 	/**
@@ -252,9 +248,7 @@ final class WooCommerce_Germanized {
 		$class = strtolower( $class );
 		$file = 'class-' . str_replace( '_', '-', $class ) . '.php';
 
-		if ( strpos( $class, 'wc_gzd_gateway_' ) === 0 )
-			$path = $this->plugin_path() . '/includes/gateways/' . trailingslashit( substr( str_replace( '_', '-', $class ), 15 ) );
-		else if ( strpos( $class, 'wc_gzd_admin_' ) === 0 )
+		if ( strpos( $class, 'wc_gzd_admin_' ) === 0 )
 			$path = $this->plugin_path() . '/includes/admin/';
 
 		if ( version_compare( get_option( 'woocommerce_version' ), '2.3', '<' ) ) {
@@ -343,6 +337,8 @@ final class WooCommerce_Germanized {
 
 		// Abstracts
 		include_once ( 'includes/abstracts/abstract-wc-gzd-product.php' );
+
+		include_once ( 'includes/class-wc-gzd-wpml-helper.php' );
 
 		include_once ( 'includes/wc-gzd-cart-functions.php' );
 		include_once ( 'includes/class-wc-gzd-checkout.php' );
@@ -783,10 +779,10 @@ final class WooCommerce_Germanized {
 	 * @return array               
 	 */
 	public function order_item_totals( $order_totals, $order ) {
-		$order_totals['order_total'] = array(
-			'label' => __( 'Order Total:', 'woocommerce' ),
-			'value'	=> $order->get_formatted_order_total()
-		);
+
+		// Set to formatted total without displaying tax info behind the price
+		$order_totals['order_total']['value'] = $order->get_formatted_order_total();
+
 		// Tax for inclusive prices
 		if ( 'yes' == get_option( 'woocommerce_calc_taxes' ) && 'incl' == $order->tax_display_cart ) {
 			

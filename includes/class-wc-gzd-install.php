@@ -92,25 +92,33 @@ class WC_GZD_Install {
 	 * Install WC_Germanized
 	 */
 	public function install() {
+		
 		// Load Translation for default options
 		$locale = apply_filters( 'plugin_locale', get_locale() );
 		$mofile = WC_germanized()->plugin_path() . '/i18n/languages/woocommerce-germanized.mo';
+		
 		if ( file_exists( WC_germanized()->plugin_path() . '/i18n/languages/woocommerce-germanized-' . $locale . '.mo' ) )
 			$mofile = WC_germanized()->plugin_path() . '/i18n/languages/woocommerce-germanized-' . $locale . '.mo';
+		
 		load_textdomain( 'woocommerce-germanized', $mofile );
+		
 		if ( ! WC_germanized()->is_woocommerce_activated() ) {
 			deactivate_plugins( WC_GERMANIZED_PLUGIN_FILE );
 			wp_die( sprintf( __( 'Please install <a href="%s" target="_blank">WooCommerce</a> before installing WooCommerce Germanized. Thank you!', 'woocommerce-germanized' ), 'http://wordpress.org/plugins/woocommerce/' ) );
 		}
+
 		$this->create_options();
+		
 		// Register post types
 		include_once( 'class-wc-gzd-post-types.php' );
 		WC_GZD_Post_types::register_taxonomies();
 
 		$this->create_cron_jobs();
+		$this->create_units();
 
 		// Virtual Tax Classes
 		$tax_classes = array_filter( array_map( 'trim', explode( "\n", get_option('woocommerce_tax_classes' ) ) ) );
+		
 		if ( ! in_array( 'Virtual Rate', $tax_classes ) || ! in_array( 'Virtual Reduced Rate', $tax_classes ) ) {
 			update_option( '_wc_gzd_needs_pages', 1 );
 			if ( ! in_array( 'Virtual Rate', $tax_classes ) )
@@ -176,6 +184,14 @@ class WC_GZD_Install {
 		
 		wp_clear_scheduled_hook( 'woocommerce_gzd_ekomi' );
 		wp_schedule_event( time(), 'daily', 'woocommerce_gzd_ekomi' );
+	}
+
+	private function create_units() {
+		$units = include_once( WC_Germanized()->plugin_path() . '/i18n/units.php' );
+		if ( ! empty( $units ) ) {
+			foreach ( $units as $slug => $unit )
+				wp_insert_term( $unit, 'product_unit', array( 'slug' => $slug ) );
+		}
 	}
 
 	public static function create_tax_rates() {

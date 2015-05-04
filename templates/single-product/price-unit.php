@@ -14,4 +14,4 @@ global $product;
 
 <?php if ( $product->gzd_product->has_unit() ) : ?>
 	<p class="price price-unit smaller"><?php echo $product->gzd_product->get_unit_html(); ?></p>
-<?php endif ;?>
+<?php endif; ?>

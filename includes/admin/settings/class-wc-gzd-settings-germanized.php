@@ -15,6 +15,8 @@ if ( ! class_exists( 'WC_GZD_Settings_Germanized' ) ) :
  */
 class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 
+	public $premium_sections = array();
+
 	/**
 	 * Adds Hooks to output and save settings
 	 */
@@ -29,7 +31,33 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 		add_filter( 'woocommerce_gzd_get_settings_display', array( $this, 'get_display_settings' ) );
 		add_action( 'woocommerce_gzd_before_save_section_', array( $this, 'before_save' ), 0, 1 );
 		add_action( 'woocommerce_gzd_after_save_section_', array( $this, 'after_save' ), 0, 1 );
+		add_action( 'woocommerce_admin_field_image', array( $this, 'image_field' ), 0, 1 );
 
+		if ( ! WC_Germanized()->is_pro() ) {
+			// Premium sections
+			$this->premium_sections = array(
+				'invoices' => sprintf( __( 'Invoice Options %s', 'woocommerce-germanized' ), '<span class="wc-gzd-premium-section-tab">pro</span>' ),
+				'agbs'     => sprintf( __( 'Terms & Conditions generator %s', 'woocommerce-germanized' ), '<span class="wc-gzd-premium-section-tab">pro</span>' ),
+				'widerruf' => sprintf( __( 'Revocation generator %s', 'woocommerce-germanized' ), '<span class="wc-gzd-premium-section-tab">pro</span>' ),
+			);
+
+			add_filter( 'woocommerce_gzd_settings_sections', array( $this, 'set_premium_sections' ), 0 );
+			foreach ( $this->premium_sections as $key => $section ) {
+				add_filter( 'woocommerce_gzd_get_settings_' . $key, array( $this, 'get_premium_settings' ), 0 );
+				add_filter( 'wc_germanized_settings_section_before_' . $key, array( $this, 'output_premium_section' ), 0 );
+				add_filter( 'woocommerce_gzd_get_sidebar_' . $key, array( $this, 'get_premium_sidebar' ), 0 );
+			}
+		}
+	}
+
+	public function image_field( $value ) {
+		?>
+		<tr valign="top">
+			<th class="forminp forminp-image">
+				<a href="<?php echo $value[ 'href' ]; ?>" target="_blank"><img src="<?php echo $value[ 'img' ]; ?>" /></a>
+			</th>
+		</tr>
+		<?php
 	}
 
 	/**
@@ -61,7 +89,7 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 		foreach ( $email_templates as $email )
 			$email_select[ $email->id ] = empty( $email->title ) ? ucfirst( $email->id ) : ucfirst( $email->title );
 
-		return apply_filters( 'woocommerce_germanized_settings', array(
+		$settings = apply_filters( 'woocommerce_germanized_settings', array(
 
 			array(	'title' => __( 'General', 'woocommerce-germanized' ), 'type' => 'title', 'id' => 'general_options' ),
 
@@ -109,6 +137,18 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 			),
 
 			array( 'type' => 'sectionend', 'id' => 'general_options' ),
+
+			array(	'title' => __( 'Contract', 'woocommerce-germanized' ), 'type' => 'title', 'id' => 'contract_options', 'desc' => '<div class="notice inline notice-warning"><p>' . sprintf( __( '%sUpgrade to %spro%s%s to unlock this feature and get premium support.', 'woocommerce-germanized' ), '<a href="https://vendidero.de/woocommerce-germanized" class="button">', '<span class="wc-gzd-pro">', '</span>', '</a>' ) . '</p></div>' ),
+
+			array(
+				'title' 	=> '',
+				'id' 		=> 'woocommerce_gzdp_contract_after_confirmation',
+				'img'		=> WC_Germanized()->plugin_url() . '/assets/images/pro/settings-inline-contract.png',
+				'href'      => 'https://vendidero.de/woocommerce-germanized#contract',
+				'type' 		=> 'image',
+			),
+
+			array( 'type' => 'sectionend', 'id' => 'contract_options' ),
 
 			array(	'title' => __( 'Legal Pages', 'woocommerce-germanized' ), 'type' => 'title', 'id' => 'legal_pages_options' ),
 
@@ -357,7 +397,34 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 
 			array( 'type' => 'sectionend', 'id' => 'virtual_vat_options' ),
 
+			array(	'title' => _x( 'Invoices', 'invoices', 'woocommerce-germanized' ), 'type' => 'title', 'id' => 'invoice_options', 'desc' => '<div class="notice inline notice-warning"><p>' . sprintf( __( '%sUpgrade to %spro%s%s to unlock this feature and get premium support.', 'woocommerce-germanized' ), '<a href="https://vendidero.de/woocommerce-germanized" class="button">', '<span class="wc-gzd-pro">', '</span>', '</a>' ) . '</p></div>' ),
+
+			array(
+				'title' 	=> '',
+				'id' 		=> 'woocommerce_gzdp_contract_after_confirmation',
+				'img'		=> WC_Germanized()->plugin_url() . '/assets/images/pro/settings-inline-invoices.png',
+				'href'      => 'https://vendidero.de/woocommerce-germanized#accounting',
+				'type' 		=> 'image',
+			),
+
+			array( 'type' => 'sectionend', 'id' => 'invoice_options' ),
+
+			array(	'title' => __( 'VAT', 'woocommerce-germanized' ), 'type' => 'title', 'id' => 'vat_options', 'desc' => '<div class="notice inline notice-warning"><p>' . sprintf( __( '%sUpgrade to %spro%s%s to unlock this feature and get premium support.', 'woocommerce-germanized' ), '<a href="https://vendidero.de/woocommerce-germanized" class="button">', '<span class="wc-gzd-pro">', '</span>', '</a>' ) . '</p></div>' ),
+
+			array(
+				'title' 	=> '',
+				'id' 		=> 'woocommerce_gzdp_contract_after_confirmation',
+				'img'		=> WC_Germanized()->plugin_url() . '/assets/images/pro/settings-inline-vat.png',
+				'href'      => 'https://vendidero.de/woocommerce-germanized#vat',
+				'type' 		=> 'image',
+			),
+
+			array( 'type' => 'sectionend', 'id' => 'vat_options' ),
+
 		) ); // End general settings
+
+		return $settings;
+
 	}
 
 	public function get_display_settings() {
@@ -542,6 +609,15 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 			),
 
 			array(
+				'title' 	=> __( 'Show edit data notice', 'woocommerce-germanized' ),
+				'desc' 		=> __( 'Show a "check-your-entries" notice to the user?', 'woocommerce-germanized' ),
+				'id' 		=> 'woocommerce_gzd_display_checkout_edit_data_notice',
+				'default'	=> 'no',
+				'type' 		=> 'checkbox',
+				'desc_tip'	=> __( 'This notice will be added right before the order comments field.', 'woocommerce-germanized' ),
+			),
+
+			array(
 				'title' 	=> __( 'Checkout Table Color', 'woocommerce-germanized' ),
 				'id' 		=> 'woocommerce_gzd_display_checkout_table_color',
 				'desc_tip'	=> __( 'Choose the color of your checkout product table. This table should be highlighted within your checkout page.', 'woocommerce-germanized' ),
@@ -624,45 +700,22 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 		global $current_section;
 		$settings = $this->get_settings();
 		$sidebar = $this->get_sidebar();
-
 		if ( $this->get_sections() ) {
 			foreach ( $this->get_sections() as $section => $name ) {
 				if ( $section == $current_section ) {
 					$settings = apply_filters( 'woocommerce_gzd_get_settings_' . $section, $this->get_settings() );
-					$sidebar = apply_filters( 'woocommerce_gzd_get_sidebar_' . $section, $this->get_sidebar() );
+					$sidebar = apply_filters( 'woocommerce_gzd_get_sidebar_' . $section, $sidebar );
 				}
 			}
 		}
-
-		?>
-		<div class="wc-gzd-admin-settings wc-gzd-admin-settings-<?php echo sanitize_title( $current_section ); ?> <?php echo apply_filters( 'woocommerce_gzd_settings_wrapper_' . $current_section, '' ); ?>">
-			<?php do_action( 'wc_germanized_settings_section_before_' . sanitize_title( $current_section ) ); ?>
-			<?php if ( apply_filters( 'wc_germanized_show_settings_' . sanitize_title( $current_section ), true ) ) : ?>
-				<?php WC_Admin_Settings::output_fields( $settings ); ?>
-			<?php endif; ?>
-			<?php do_action( 'wc_germanized_settings_section_after_' . sanitize_title( $current_section ) ); ?>
-		</div>
-
-		<?php echo $sidebar; ?>
-		
-		<?php
+		include_once( WC_Germanized()->plugin_path() . '/includes/admin/views/html-settings-section.php' );
 	}
 
 	public function get_sidebar() {
-		$html = '
-			<div class="wc-gzd-admin-settings-sidebar">
-				<h3>VendiPro - Typisch deutsch!</h3>
-				<div class="wc-gzd-sidebar-img">
-					<a href="https://vendidero.de/vendipro" target="_blank"><img class="browser" src="' . WC_germanized()->plugin_url() . '/assets/images/vendidero.jpg" /></a>
-				</div>
-				<p>VendiPro ist ein für den deutschen Markt entwickeltes WooCommerce Theme. Mit VendiPro sind alle WooCommerce und WooCommerce Germanized Einstellungen auch optisch perfekt auf den deutschen Markt abgestimmt.</p>
-				<div class="wc-gzd-sidebar-action">
-					<a class="button button-primary wc-gzd-button" href="https://vendidero.de/vendipro" target="_blank">jetzt entdecken</a>
-					<span class="small">ab 49,95 € inkl. Mwst. und 1 Jahr Updates & Support!</span>
-				</div>
-			</div>
-		';
-		return $html;
+		ob_start();
+		include_once( WC_Germanized()->plugin_path() . '/includes/admin/views/html-settings-sidebar.php' );
+		$content = ob_get_clean();
+		return $content;
 	}
 
 	/**
@@ -735,6 +788,27 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 				WC_Admin_Settings::add_error( __( 'Sorry, but the new Virtual VAT rules cannot be applied to small business.', 'woocommerce-germanized' ) );
 			}
 		}
+	}
+
+	public function output_premium_section() {
+		global $current_section;
+		if ( ! isset( $this->premium_sections[ $current_section ] ) )
+			return;
+		$GLOBALS[ 'hide_save_button' ] = true;
+		$section_title = $this->premium_sections[ $current_section ];
+		include_once( WC_Germanized()->plugin_path() . '/includes/admin/views/html-settings-pro.php' );
+	}
+
+	public function set_premium_sections( $sections ) {
+		return $sections + $this->premium_sections;
+	}
+
+	public function get_premium_settings() {
+		return array();
+	}
+
+	public function get_premium_sidebar() {
+		return '';
 	}
 
 }

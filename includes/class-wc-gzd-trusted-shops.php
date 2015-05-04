@@ -582,9 +582,9 @@ class WC_GZD_Trusted_Shops {
 	public function after_save( $settings ) {
 		$this->refresh();
 		if ( get_option( '_woocommerce_gzd_trusted_shops_update_reviews' ) )
-			$this->update_reviews();
-		if ( get_option( '_woocommerce_gzd_trusted_shops_update_snippets' ) )
 			$this->update_review_widget();
+		if ( get_option( '_woocommerce_gzd_trusted_shops_update_snippets' ) )
+			$this->update_reviews();
 		delete_option( '_woocommerce_gzd_trusted_shops_update_reviews' );
 		delete_option( '_woocommerce_gzd_trusted_shops_update_snippets' );
 	}

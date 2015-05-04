@@ -127,6 +127,17 @@ if ( ! function_exists( 'woocommerce_gzd_template_cart_total_tax' ) ) {
 
 }
 
+if ( ! function_exists( 'woocommerce_gzd_template_checkout_edit_data_notice' ) ) {
+
+	/**
+	 * Display edit data notice
+	 */
+	function woocommerce_gzd_template_checkout_edit_data_notice() {
+		wc_get_template( 'checkout/edit-data-notice.php' );
+	}
+
+}
+
 if ( ! function_exists( 'woocommerce_gzd_template_checkout_back_to_cart' ) ) {
 
 	/**
@@ -309,6 +320,7 @@ if ( ! function_exists( 'woocommerce_gzd_add_variation_options' ) ) {
 	function woocommerce_gzd_add_variation_options( $options, $product, $variation ) {
 		$options[ 'delivery_time' ] = $variation->gzd_product->get_delivery_time_html();
 		$options[ 'unit_price' ] = $variation->gzd_product->get_unit_html();
+		$options[ 'tax_info' ] = $variation->gzd_product->get_tax_info();
 		return $options;
 	}
 

@@ -24,6 +24,7 @@ class WC_GZD_Post_Types {
 	 * Register Delivery Time Taxonomy
 	 */
 	public static function register_taxonomies() {
+		// Delivery time
 		register_taxonomy( 'product_delivery_time',
 			apply_filters( 'woocommerce_germanized_taxonomy_objects_product_delivery_time', array( 'product' ) ),
 			apply_filters( 'woocommerce_germanized_taxonomy_args_product_delivery_time', array(
@@ -40,6 +41,36 @@ class WC_GZD_Post_Types {
 						'update_item'       => __( 'Update Product Delivery Time', 'woocommerce-germanized' ),
 						'add_new_item'      => __( 'Add New Product Delivery Time', 'woocommerce-germanized' ),
 						'new_item_name'     => __( 'New Product Delivery Time Name', 'woocommerce-germanized' )
+					),
+				'show_ui'				=> true,
+				'query_var'             => true,
+				'public'				=> false,
+				'capabilities'          => array(
+					'manage_terms' => 'manage_product_terms',
+					'edit_terms'   => 'edit_product_terms',
+					'delete_terms' => 'delete_product_terms',
+					'assign_terms' => 'assign_product_terms',
+				),
+				'rewrite'           	=> false,
+			) )
+		);
+		// Units
+		register_taxonomy( 'product_unit',
+			apply_filters( 'woocommerce_germanized_taxonomy_objects_product_unit', array( 'product' ) ),
+			apply_filters( 'woocommerce_germanized_taxonomy_args_product_unit', array(
+				'hierarchical'          => false,
+				'update_count_callback' => '_wc_term_recount',
+				'label'                 => __( 'Units', 'woocommerce-germanized' ),
+				'labels' => array(
+						'name'              => __( 'Units', 'woocommerce-germanized' ),
+						'singular_name'     => __( 'Unit', 'woocommerce-germanized' ),
+						'menu_name'         => _x( 'Units', 'Admin menu name', 'woocommerce-germanized' ),
+						'search_items'      => __( 'Search Units', 'woocommerce-germanized' ),
+						'all_items'         => __( 'All Units', 'woocommerce-germanized' ),
+						'edit_item'         => __( 'Edit Unit', 'woocommerce-germanized' ),
+						'update_item'       => __( 'Update Unit', 'woocommerce-germanized' ),
+						'add_new_item'      => __( 'Add New Unit', 'woocommerce-germanized' ),
+						'new_item_name'     => __( 'New Unit Name', 'woocommerce-germanized' )
 					),
 				'show_ui'				=> true,
 				'query_var'             => true,

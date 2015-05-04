@@ -29,6 +29,10 @@ table.data_table tr td p.form-field {
 	width: 30%;
 }
 
+.wc-gzd-admin-settings-agbs, .wc-gzd-admin-settings-widerruf {
+	width: 100%;
+} 
+
 .wc-gzd-admin-settings-sidebar img {
 	width: 100%;
 }
@@ -64,6 +68,42 @@ table.data_table tr td p.form-field {
 
 .wc-gzd-button-wrapper .button {
 	margin-right: 1em;
+}
+
+.wc-gzd-premium-section-tab, .wc-gzd-pro {
+	font-size: 9px;
+	background: #0074a2;
+	border-radius: 3px;
+	line-height: 9px;
+	color: #FFF;
+	text-align: center;
+	text-transform: uppercase;
+	padding: 1px 3px;
+	position: relative;
+	top: -1px;
+}
+
+.wc-gzd-pro {
+	background: #222;
+	text-decoration: none;
+}
+
+.wc-gzd-pro:hover {
+	color: #FFF;
+}
+
+.subsubsub li a:hover .wc-gzd-premium-section-tab {
+	background: #2ea2cc;
+}
+
+.subsubsub li a.current .wc-gzd-premium-section-tab {
+	background: #222;
+}
+
+.wc-gzd-premium img, .forminp-image img {
+	width: 100%;
+	height: auto;
+	opacity: 0.5;
 }
 
 table.wc-gzd-tax-example tr th, table.wc-gzd-tax-example tr td {
