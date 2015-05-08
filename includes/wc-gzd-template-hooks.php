@@ -8,20 +8,16 @@
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 /**
- * Product Summary Box
- * Lazyload actions to retrieve custom priorities by themes
+ * Default single_price_unit priority = 11
+ * Default single_legal_info priority = 12
  */
-add_action( 'woocommerce_before_main_content', 'woocommerce_gzd_single_product_hooks' );
-function woocommerce_gzd_single_product_hooks() {
-	$price_prio = ( ( $prio = wc_gzd_get_hook_priority( 'woocommerce_single_product_summary', 'woocommerce_template_single_price' ) ) ? $prio : 10 );
-	if ( get_option( 'woocommerce_gzd_display_product_detail_unit_price' ) == 'yes' )
-		add_action( 'woocommerce_single_product_summary', 'woocommerce_gzd_template_single_price_unit', $price_prio );
-	if ( get_option( 'woocommerce_gzd_display_product_detail_tax_info' ) == 'yes' || get_option( 'woocommerce_gzd_display_product_detail_shipping_costs' ) == 'yes' )
-		add_action( 'woocommerce_single_product_summary', 'woocommerce_gzd_template_single_legal_info', $price_prio + 1 );
-	if ( get_option( 'woocommerce_gzd_display_product_detail_delivery_time' ) == 'yes' )
-		add_action( 'woocommerce_single_product_summary', 'woocommerce_gzd_template_single_delivery_time_info', 27 );
-	add_filter( 'woocommerce_available_variation', 'woocommerce_gzd_add_variation_options', 0, 3 );
-}
+if ( get_option( 'woocommerce_gzd_display_product_detail_unit_price' ) == 'yes' )
+	add_action( 'woocommerce_single_product_summary', 'woocommerce_gzd_template_single_price_unit', wc_gzd_get_hook_priority( 'single_price_unit' ) );
+if ( get_option( 'woocommerce_gzd_display_product_detail_tax_info' ) == 'yes' || get_option( 'woocommerce_gzd_display_product_detail_shipping_costs' ) == 'yes' )
+	add_action( 'woocommerce_single_product_summary', 'woocommerce_gzd_template_single_legal_info', wc_gzd_get_hook_priority( 'single_legal_info' ) );
+if ( get_option( 'woocommerce_gzd_display_product_detail_delivery_time' ) == 'yes' )
+	add_action( 'woocommerce_single_product_summary', 'woocommerce_gzd_template_single_delivery_time_info', 27 );
+add_filter( 'woocommerce_available_variation', 'woocommerce_gzd_add_variation_options', 0, 3 );
 
 /**
  * Product Loop Items

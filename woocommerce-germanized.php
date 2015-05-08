@@ -328,12 +328,14 @@ final class WooCommerce_Germanized {
 			$this->ajax_includes();
 
 		if ( ! is_admin() || defined( 'DOING_AJAX' ) )
-			add_action( 'init', array( $this, 'frontend_includes' ), 5 );
+			add_action( 'woocommerce_loaded', array( $this, 'frontend_includes' ), 5 );
 
 		// Post types
 		include_once ( 'includes/class-wc-gzd-post-types.php' );
 		// Gateway manipulation
 		include_once ( 'includes/class-wc-gzd-payment-gateways.php' );
+		// Template priority
+		include_once ( 'includes/class-wc-gzd-hook-priorities.php' );
 
 		// Abstracts
 		include_once ( 'includes/abstracts/abstract-wc-gzd-product.php' );

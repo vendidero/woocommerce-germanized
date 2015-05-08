@@ -25,13 +25,6 @@ function wc_gzd_is_customer_activated( $user_id ) {
 	return ( get_user_meta( $user_id, '_woocommerce_activation' ) ? false : true );
 }
 
-function wc_gzd_get_hook_priority( $hook, $function ) {
-	global $wp_filter;
-	if ( isset( $wp_filter[ $hook ] ) ) {
-		foreach ( $wp_filter[ $hook ] as $prio => $func_array ) {
-			if ( isset( $func_array[ $function ] ) )
-				return $prio;
-		}
-	}
-	return false;
+function wc_gzd_get_hook_priority( $hook ) {
+	return WC_GZD_Hook_Priorities::instance()->get_hook_priority( $hook );
 }
