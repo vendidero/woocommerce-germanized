@@ -64,7 +64,7 @@ if ( get_option( 'woocommerce_gzd_display_checkout_edit_data_notice' ) == 'yes' 
 	add_action( 'woocommerce_before_order_notes', 'woocommerce_gzd_template_checkout_edit_data_notice', 0, 1 );
 
 // Do only hook if is no ajax request - fallback if theme misses no-ajax-check before applying hooks & filters
-if ( ! is_ajax() && version_compare( WC()->version, '2.3', '>=' ) ) {
+if ( ! is_ajax() && version_compare( WC_VERSION, '2.3', '>=' ) ) {
 
 	remove_action( 'woocommerce_checkout_order_review', 'woocommerce_order_review', 10 );
 	remove_action( 'woocommerce_checkout_order_review', 'woocommerce_checkout_payment', 20 );
@@ -88,7 +88,7 @@ if ( ! is_ajax() && version_compare( WC()->version, '2.3', '>=' ) ) {
 }
 
 // Before 2.3
-if ( version_compare( WC()->version, '2.3', '<' ) ) {
+if ( version_compare( WC_VERSION, '2.3', '<' ) ) {
 
 	add_action( 'woocommerce_gzd_before_shop_table', 'woocommerce_gzd_template_checkout_legal', 2 );
 	add_action( 'woocommerce_gzd_before_shop_table', 'woocommerce_gzd_template_checkout_set_terms_manually' );
