@@ -47,7 +47,7 @@ class WC_GZD_Hook_Priorities {
 		$this->init();
 		
 		add_action( 'after_setup_theme', array( $this, 'renew_cache' ), 1 );
-		add_action( 'after_setup_theme', array( $this, 'change_hook_priority_queue' ), 2 );
+		add_action( 'after_setup_theme', array( $this, 'change_priority_queue' ), 2 );
 	}
 
 	public function init() {
@@ -129,7 +129,7 @@ class WC_GZD_Hook_Priorities {
 	/**
 	 * This changes the hook priority by overriding customizations made by the theme
 	 */
-	public function change_hook_priority( $hook, $function, $new_prio ) {
+	public function change_priority( $hook, $function, $new_prio ) {
 		if ( ! $this->get_priority( $hook, $function ) )
 			return false;
 		$this->queue[] = array( 'hook' => $hook, 'function' => $function, 'new_prio' => $new_prio );
@@ -138,7 +138,7 @@ class WC_GZD_Hook_Priorities {
 	/**
 	 * Hooked by after_setup_theme. Not to be called directly
 	 */
-	public function change_hook_priority_queue() {
+	public function change_priority_queue() {
 		if ( empty( $this->queue ) )
 			return false;
 		foreach ( $this->queue as $queue ) {
@@ -151,26 +151,22 @@ class WC_GZD_Hook_Priorities {
 	 * Regenerates the hook priority cache (checks for theme customizations)
 	 */
 	public function renew_cache() {
-		global $wp_filter;
-
 		$this->priorities = $this->default_priorities;
 
 		if ( ! empty( $this->priorities ) ) {
 			
 			foreach ( $this->priorities as $hook => $functions ) {
 
-				if ( ! is_array( $functions ) || ! isset( $wp_filter[ $hook ] ) )
-					continue;
-
-				foreach ( $wp_filter[ $hook ] as $prio => $func ) {
+				foreach ( $functions as $function => $old_prio ) {
 					
-					foreach ( $functions as $function => $old_prio ) {
-						
-						if ( isset( $func[ $function ] ) )
-							$this->priorities[ $hook ][ $function ] = $prio;
-
-					}
-				}
+					$prio = has_action( $hook, $function );
+					
+					if ( ! $prio )
+						$prio = has_filter( $hook, $function );
+					
+					if ( $prio )
+						$this->priorities[ $hook ][ $function ] = $prio;
+				}				
 			} 
 		}
 

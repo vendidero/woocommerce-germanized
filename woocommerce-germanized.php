@@ -328,7 +328,7 @@ final class WooCommerce_Germanized {
 			$this->ajax_includes();
 
 		if ( ( ! is_admin() || defined( 'DOING_AJAX' ) ) && ! defined( 'DOING_CRON' ) )
-			add_action( 'woocommerce_loaded', array( $this, 'frontend_includes' ), 0 );
+			add_action( 'woocommerce_loaded', array( $this, 'frontend_includes' ), 5 );
 
 		// Post types
 		include_once ( 'includes/class-wc-gzd-post-types.php' );
@@ -396,7 +396,7 @@ final class WooCommerce_Germanized {
 
 		// Load Default
 		if ( ! $theme_template && file_exists( apply_filters( 'woocommerce_gzd_default_plugin_template', $this->plugin_path() . '/templates/' . $template_name, $template_name ) ) )
-			return apply_filters( 'woocommerce_gzd_default_plugin_template', $this->plugin_path() . '/templates/' . $template_name, $template_name );
+			$template = apply_filters( 'woocommerce_gzd_default_plugin_template', $this->plugin_path() . '/templates/' . $template_name, $template_name );
 		else if ( $theme_template )
 			$template = $theme_template;
 		

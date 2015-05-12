@@ -25,6 +25,8 @@ class WC_GZD_Shortcodes {
 			'ekomi_badge'				 => __CLASS__ . '::ekomi_badge',
 			'ekomi_widget'				 => __CLASS__ . '::ekomi_widget',
 			'gzd_feature'				 => __CLASS__ . '::gzd_feature',
+			'gzd_vat_info'				 => __CLASS__ . '::gzd_vat_info',
+			'gzd_sale_info'				 => __CLASS__ . '::gzd_sale_info',
 		);
 
 		foreach ( $shortcodes as $shortcode => $function ) {
@@ -141,6 +143,36 @@ class WC_GZD_Shortcodes {
 
 		extract( shortcode_atts( array('icon' => ''), $atts ) );
 		return ( !empty( $icon ) ? '<i class="fa fa-' . $icon . '"></i> ' : '' ) . $content;
+	
+	}
+
+	/**
+	 * Returns VAT info
+	 *  
+	 * @param  array $atts    
+	 * @param  string $content 
+	 * @return string          
+	 */
+	public static function gzd_vat_info( $atts, $content = '' ) {
+
+		ob_start();
+		wc_get_template( 'footer/vat-info.php' );
+		return ob_get_clean();
+	
+	}
+
+	/**
+	 * Returns Sale info
+	 *  
+	 * @param  array $atts    
+	 * @param  string $content 
+	 * @return string          
+	 */
+	public static function gzd_sale_info( $atts, $content = '' ) {
+
+		ob_start();
+		wc_get_template( 'footer/sale-info.php' );
+		return ob_get_clean();
 	
 	}
 
