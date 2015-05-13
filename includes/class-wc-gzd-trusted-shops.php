@@ -71,6 +71,7 @@ class WC_GZD_Trusted_Shops {
 		}
 		if ( $this->is_review_reminder_enabled() )
 			add_action( 'woocommerce_gzd_trusted_shops_reviews', array( $this, 'send_mails' ) );
+
 		// Add Badge to Footer
 		if ( $this->is_enabled() && $this->get_badge_js() )
 			add_action( 'wp_footer', array( $this, 'add_badge' ), 5 );

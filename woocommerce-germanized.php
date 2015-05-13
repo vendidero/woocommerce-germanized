@@ -650,18 +650,15 @@ final class WooCommerce_Germanized {
 	}
 
 	/**
-	 * PHP 5.3 backwards compatibility for getting date diff
+	 * PHP 5.3 backwards compatibility for getting date diff in days
 	 *  
 	 * @param  string $from date from
 	 * @param  string $to   date to
-	 * @return array  array containing year, month, date diff
+	 * @return array
 	 */
 	public function get_date_diff( $from, $to ) {
 		$diff = abs( strtotime( $to ) - strtotime( $from ) );
-		$years = floor( $diff / (365*60*60*24) );
-		$months = floor( ( $diff - $years * 365*60*60*24 ) / ( 30*60*60*24 ) );
-		$days = floor( ( $diff - $years * 365*60*60*24 - $months*30*60*60*24 ) / ( 60*60*24 ) );
-		return array( 'y' => $years, 'm' => $months, 'd' => $days );
+		return array( 'd' => floor( $diff / ( 60*60*24 ) ) );
 	}
 
 	/**
