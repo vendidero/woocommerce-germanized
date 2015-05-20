@@ -54,7 +54,7 @@ function wc_gzd_cart_product_delivery_time( $title, $cart_item, $cart_item_key =
 	} else if ( isset( $cart_item[ 'delivery_time' ] ) )
 		$delivery_time = $cart_item[ 'delivery_time' ];
 	if ( ! empty( $delivery_time ) )
-		$title .= '<p class="price-shipping-costs-info">' . $delivery_time . '</p>';
+		$title .= '<p class="delivery-time-info">' . $delivery_time . '</p>';
 	return $title;
 }
 

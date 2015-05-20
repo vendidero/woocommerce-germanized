@@ -47,20 +47,30 @@ class WC_GZD_Admin_Notices {
 	 * Add notices + styles if needed.
 	 */
 	public function add_notices() {
+		
 		if ( get_option( '_wc_gzd_needs_update' ) == 1 || get_option( '_wc_gzd_needs_pages' ) == 1 ) {
 			wp_enqueue_style( 'woocommerce-activation', plugins_url(  '/assets/css/activation.css', WC_PLUGIN_FILE ) );
 			wp_enqueue_style( 'woocommerce-gzd-activation', plugins_url(  '/assets/css/woocommerce-gzd-activation.css', WC_GERMANIZED_PLUGIN_FILE ) );
 			add_action( 'admin_notices', array( $this, 'install_notice' ) );
 		}
-		if ( ! $this->is_theme_compatible() && ! get_option( '_wc_gzd_hide_theme_notice' ) )
-			add_action( 'admin_notices', array( $this, 'theme_incompatibility_notice' ) );
-		else if ( ! $this->is_theme_ready() && ! get_option( '_wc_gzd_hide_theme_notice' ) )
-			add_action( 'admin_notices', array( $this, 'theme_not_ready_notice' ) );
+		
+		if ( ! get_option( '_wc_gzd_hide_theme_notice' ) ) {
+
+			if ( ! $this->is_theme_compatible() )
+				add_action( 'admin_notices', array( $this, 'theme_incompatibility_notice' ) );
+			else if ( $this->is_theme_supported_by_pro() && ! WC_germanized()->is_pro() )
+				add_action( 'admin_notices', array( $this, 'theme_supported_notice' ) );
+			else if ( ! $this->is_theme_ready() )
+				add_action( 'admin_notices', array( $this, 'theme_not_ready_notice' ) );
+		}
+		
 		if ( ! get_option( '_wc_gzd_hide_review_notice' ) )
 			add_action( 'admin_notices', array( $this, 'add_review_notice' ) );
+		
 		if ( isset( $_GET[ 'page' ] ) && $_GET[ 'page' ] == 'wc-gzd-about' || get_option( '_wc_gzd_needs_pages' ) ) {
 			remove_action( 'admin_notices', array( $this, 'theme_incompatibility_notice' ) );
 			remove_action( 'admin_notices', array( $this, 'theme_not_ready_notice' ) );
+			remove_action( 'admin_notices', array( $this, 'theme_supported_notice' ) );
 		}
 	}
 
@@ -99,15 +109,37 @@ class WC_GZD_Admin_Notices {
 	}
 
 	public function theme_not_ready_notice() {
+		$current_theme = wp_get_theme();
 		include( 'views/html-notice-theme-not-ready.php' );
+	}
+
+	public function theme_supported_notice() {
+		$current_theme = wp_get_theme();
+		include( 'views/html-notice-theme-supported.php' );
 	}
 
 	public function is_theme_ready() {
 		$stylesheet = get_stylesheet_directory() . '/style.css';
 		$data = get_file_data( $stylesheet, array( 'wc_gzd_compatible' => 'wc_gzd_compatible' ) );
-		if ( ! $data[ 'wc_gzd_compatible' ] )
+		if ( ! $data[ 'wc_gzd_compatible' ] && ! current_theme_supports( 'woocommerce-germanized' ) )
 			return false;
 		return true;
+	}
+
+	public function is_theme_supported_by_pro() {
+		
+		$supporting = array(
+			'enfold',
+			'flatsome',
+			'storefront',
+			'virtue',
+		);
+
+		$current = wp_get_theme();
+		if ( in_array( $current->get_template(), $supporting ) )
+			return true;
+
+		return false;
 	}
 
 	public function add_review_notice() {

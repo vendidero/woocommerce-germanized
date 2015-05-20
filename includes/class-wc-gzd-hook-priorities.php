@@ -120,10 +120,14 @@ class WC_GZD_Hook_Priorities {
 	/**
 	 * Returns the priority for a custom wc germanized frontend hook
 	 */
-	public function get_hook_priority( $hook ) {
+	public function get_hook_priority( $hook, $suppress_filters = false ) {
 		if ( isset( $this->hooks[ $hook ] ) )
-			return apply_filters( 'wc_gzd_frontend_hook_priority', $this->hooks[ $hook ], $hook, $this );
+			return ( ! $suppress_filters ? apply_filters( 'wc_gzd_frontend_hook_priority', $this->hooks[ $hook ], $hook, $this ) : $this->hooks[ $hook ] );
 		return false;
+	}
+
+	public function get_hook_priorities() {
+		return $this->hooks;
 	}
 
 	/**
