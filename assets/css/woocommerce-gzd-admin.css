@@ -114,3 +114,7 @@ table.wc-gzd-tax-example tr th, table.wc-gzd-tax-example tr td {
 table.wc-gzd-tax-example tr th:first-child, table.wc-gzd-tax-example tr td:first-child {
 	padding-left: 0;
 }
+
+.wc-gzd-admin-settings tbody.ui-sortable tr:hover {
+	cursor: move;
+}

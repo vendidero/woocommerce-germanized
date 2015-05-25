@@ -19,12 +19,13 @@ class WC_GZD_Emails {
 	 */
 	public function __construct() {
 
-		$this->footer_attachments = array(
-			'woocommerce_gzd_mail_attach_revocation' => woocommerce_get_page_id ( 'revocation' ),
-			'woocommerce_gzd_mail_attach_terms' => woocommerce_get_page_id ( 'terms' ),
-			'woocommerce_gzd_mail_attach_data_security' => woocommerce_get_page_id ( 'data_security' ),
-			'woocommerce_gzd_mail_attach_imprint' => woocommerce_get_page_id ( 'imprint' ),
-		);
+		// Order attachments
+		$attachment_order = wc_gzd_get_email_attachment_order();
+		$this->footer_attachments = array();
+
+		foreach ( $attachment_order as $key => $order ) {
+			$this->footer_attachments[ 'woocommerce_gzd_mail_attach_' . $key ] = woocommerce_get_page_id ( $key );
+		}
 
 		// Add new customer activation
 		if ( get_option( 'woocommerce_gzd_customer_activation' ) == 'yes' ) {

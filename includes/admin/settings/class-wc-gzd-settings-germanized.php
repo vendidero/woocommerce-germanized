@@ -32,11 +32,12 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 		add_action( 'woocommerce_gzd_before_save_section_', array( $this, 'before_save' ), 0, 1 );
 		add_action( 'woocommerce_gzd_after_save_section_', array( $this, 'after_save' ), 0, 1 );
 		add_action( 'woocommerce_admin_field_image', array( $this, 'image_field' ), 0, 1 );
+		add_action( 'woocommerce_admin_field_hidden', array( $this, 'hidden_field' ), 0, 1 );
 
 		if ( ! WC_Germanized()->is_pro() ) {
 			// Premium sections
 			$this->premium_sections = array(
-				'invoices' => sprintf( __( 'Invoice Options %s', 'woocommerce-germanized' ), '<span class="wc-gzd-premium-section-tab">pro</span>' ),
+				'invoices' => sprintf( __( 'Invoices & Packing Slips %s', 'woocommerce-germanized' ), '<span class="wc-gzd-premium-section-tab">pro</span>' ),
 				'agbs'     => sprintf( __( 'Terms & Conditions generator %s', 'woocommerce-germanized' ), '<span class="wc-gzd-premium-section-tab">pro</span>' ),
 				'widerruf' => sprintf( __( 'Revocation generator %s', 'woocommerce-germanized' ), '<span class="wc-gzd-premium-section-tab">pro</span>' ),
 			);
@@ -55,6 +56,17 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 		<tr valign="top">
 			<th class="forminp forminp-image">
 				<a href="<?php echo $value[ 'href' ]; ?>" target="_blank"><img src="<?php echo $value[ 'img' ]; ?>" /></a>
+			</th>
+		</tr>
+		<?php
+	}
+
+	public function hidden_field( $value ) {
+		$option_value = WC_Admin_Settings::get_option( $value[ 'id' ], $value[ 'default' ] );
+		?>
+		<tr valign="top" style="display: none">
+			<th class="forminp forminp-image">
+				 <input type="hidden" id="<?php echo esc_attr( $value['id'] ); ?>" value="<?php echo esc_attr( $option_value ); ?>" name="<?php echo esc_attr( $value['id'] ); ?>" />
 			</th>
 		</tr>
 		<?php
@@ -86,10 +98,31 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 		$mailer 			= WC()->mailer();
 		$email_templates 	= $mailer->get_emails();
 		$email_select 		= array();
+
 		foreach ( $email_templates as $email )
 			$email_select[ $email->id ] = empty( $email->title ) ? ucfirst( $email->id ) : ucfirst( $email->title );
 
-		$settings = apply_filters( 'woocommerce_germanized_settings', array(
+		$email_order = wc_gzd_get_email_attachment_order();
+
+		$email_settings = array();
+
+		foreach ( $email_order as $key => $order ) {
+
+			array_push( $email_settings, array(
+
+				'title' 	=> sprintf( __( 'Attach %s', 'woocommerce-germanized' ), $order ),
+				'desc' 		=> sprintf( __( 'Attach %s to the following email templates', 'woocommerce-germanized' ), $order ),
+				'id' 		=> 'woocommerce_gzd_mail_attach_' . $key,
+				'type' 		=> 'multiselect',
+				'class'		=> 'chosen_select',
+				'desc_tip'	=> true,
+				'options'	=> $email_select,
+
+			) );
+
+		}
+
+		$settings = array(
 
 			array(	'title' => __( 'General', 'woocommerce-germanized' ), 'type' => 'title', 'id' => 'general_options' ),
 
@@ -153,6 +186,28 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 			array(	'title' => __( 'Legal Pages', 'woocommerce-germanized' ), 'type' => 'title', 'id' => 'legal_pages_options' ),
 
 			array(
+				'title' 	=> __( 'Terms & Conditions', 'woocommerce-germanized' ),
+				'desc_tip' 	=> __( 'This page should contain your terms & conditions.', 'woocommerce-germanized' ),
+				'id' 		=> 'woocommerce_terms_page_id',
+				'type' 		=> 'single_select_page',
+				'default'	=> '',
+				'class'		=> 'chosen_select_nostd',
+				'css' 		=> 'min-width:300px;',
+				'desc'		=> ( ! get_option( 'woocommerce_terms_page_id' ) ? sprintf( __( 'Don\'t have terms & conditions yet? <a href="%s">Generate now</a>!', 'woocommerce-germanized' ), admin_url( 'admin.php?page=wc-settings&tab=germanized&section=agbs' ) ) : '' ),
+			),
+
+			array(
+				'title' 	=> __( 'Power of Revocation', 'woocommerce-germanized' ),
+				'desc_tip' 	=> __( 'This page should contain information regarding your customer\'s Right of Revocation.', 'woocommerce-germanized' ),
+				'id' 		=> 'woocommerce_revocation_page_id',
+				'type' 		=> 'single_select_page',
+				'default'	=> '',
+				'class'		=> 'chosen_select_nostd',
+				'css' 		=> 'min-width:300px;',
+				'desc'		=> ( ! get_option( 'woocommerce_revocation_page_id' ) ? sprintf( __( 'Don\'t have a revocation page yet? <a href="%s">Generate now</a>!', 'woocommerce-germanized' ), admin_url( 'admin.php?page=wc-settings&tab=germanized&section=widerruf' ) ) : '' ),
+			),
+
+			array(
 				'title' 	=> __( 'Imprint', 'woocommerce-germanized' ),
 				'desc' 		=> __( 'This page should contain an imprint with your company\'s information.', 'woocommerce-germanized' ),
 				'id' 		=> 'woocommerce_imprint_page_id',
@@ -167,17 +222,6 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 				'title' 	=> __( 'Data Security Statement', 'woocommerce-germanized' ),
 				'desc' 		=> __( 'This page should contain information regarding your data security policy.', 'woocommerce-germanized' ),
 				'id' 		=> 'woocommerce_data_security_page_id',
-				'type' 		=> 'single_select_page',
-				'default'	=> '',
-				'class'		=> 'chosen_select_nostd',
-				'css' 		=> 'min-width:300px;',
-				'desc_tip'	=> true,
-			),
-
-			array(
-				'title' 	=> __( 'Power of Revocation', 'woocommerce-germanized' ),
-				'desc' 		=> __( 'This page should contain information regarding your customer\'s Right of Revocation.', 'woocommerce-germanized' ),
-				'id' 		=> 'woocommerce_revocation_page_id',
 				'type' 		=> 'single_select_page',
 				'default'	=> '',
 				'class'		=> 'chosen_select_nostd',
@@ -341,45 +385,17 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 
 			array(	'title' => __( 'E-Mails', 'woocommerce-germanized' ), 'type' => 'title', 'id' => 'email_options' ),
 
-			array(
-				'title' 	=> __( 'Attach Imprint', 'woocommerce-germanized' ),
-				'desc' 		=> __( 'Attach Imprint to the following email templates', 'woocommerce-germanized' ),
-				'id' 		=> 'woocommerce_gzd_mail_attach_imprint',
-				'type' 		=> 'multiselect',
-				'class'		=> 'chosen_select',
-				'desc_tip'	=> true,
-				'options'	=> $email_select,
-			),
+		);
+
+		$settings = array_merge( $settings, $email_settings );
+
+		$settings = array_merge( $settings, array( 
 
 			array(
-				'title' 	=> __( 'Attach Terms & Conditions', 'woocommerce-germanized' ),
-				'desc' 		=> __( 'Attach Terms & Conditions to the following email templates', 'woocommerce-germanized' ),
-				'id' 		=> 'woocommerce_gzd_mail_attach_terms',
-				'type' 		=> 'multiselect',
-				'class'		=> 'chosen_select',
-				'desc_tip'	=> true,
-				'options'	=> $email_select,
-			),
-
-			array(
-				'title' 	=> __( 'Attach Power of Recission', 'woocommerce-germanized' ),
-				'desc' 		=> __( 'Attach Power of Recission to the following email templates', 'woocommerce-germanized' ),
-				'id' 		=> 'woocommerce_gzd_mail_attach_revocation',
-				'type' 		=> 'multiselect',
-				'class'		=> 'chosen_select',
-				'desc_tip'	=> true,
-				'options'	=> $email_select,
-				'default'	=> array( 'customer_processing_order' ),
-			),
-
-			array(
-				'title' 	=> __( 'Attach Data Security', 'woocommerce-germanized' ),
-				'desc' 		=> __( 'Attach Data Security Statement to the following email templates', 'woocommerce-germanized' ),
-				'id' 		=> 'woocommerce_gzd_mail_attach_data_security',
-				'type' 		=> 'multiselect',
-				'class'		=> 'chosen_select',
-				'desc_tip'	=> true,
-				'options'	=> $email_select,
+				'title' 	=> '',
+				'id' 		=> 'woocommerce_gzd_mail_attach_order',
+				'type' 		=> 'hidden',
+				'default'	=> 'terms,revocation,data_security,imprint',
 			),
 
 			array( 'type' => 'sectionend', 'id' => 'email_options' ),
@@ -422,8 +438,8 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 			array( 'type' => 'sectionend', 'id' => 'vat_options' ),
 
 		) ); // End general settings
-
-		return $settings;
+	
+		return apply_filters( 'woocommerce_germanized_settings', $settings );
 
 	}
 

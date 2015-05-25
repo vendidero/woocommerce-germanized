@@ -28,3 +28,30 @@ function wc_gzd_is_customer_activated( $user_id ) {
 function wc_gzd_get_hook_priority( $hook ) {
 	return WC_GZD_Hook_Priorities::instance()->get_hook_priority( $hook );
 }
+
+function wc_gzd_get_email_attachment_order() {
+	$order = explode( ',', get_option( 'woocommerce_gzd_mail_attach_order', 'terms,revocation,data_security,imprint' ) );
+	$items = array();
+
+	foreach ( $order as $key => $item ) {
+		$title = '';
+		switch( $item ) {
+			case "terms":
+				$title = __( 'Terms & Conditions', 'woocommerce-germanized' );
+			break;
+			case "revocation":
+				$title = __( 'Right of Recission', 'woocommerce-germanized' );
+			break;
+			case "imprint":
+				$title = __( 'Imprint', 'woocommerce-germanized' );
+			break;
+			case "data_security":
+				$title = __( 'Data Security', 'woocommerce-germanized' );
+			break;
+		}
+
+		$items[ $item ] = $title;
+	}
+	
+	return $items;	
+}
