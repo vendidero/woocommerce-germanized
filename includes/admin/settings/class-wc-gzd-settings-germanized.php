@@ -383,7 +383,7 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 
 			array( 'type' => 'sectionend', 'id' => 'recission_options' ),
 
-			array(	'title' => __( 'E-Mails', 'woocommerce-germanized' ), 'type' => 'title', 'id' => 'email_options' ),
+			array(	'title' => __( 'E-Mails', 'woocommerce-germanized' ), 'type' => 'title', 'id' => 'email_options', 'desc' => __( 'Use drag & drop to customize attachment order. Don\'t forget to save your changes.', 'woocommerce-germanized' ) ),
 
 		);
 

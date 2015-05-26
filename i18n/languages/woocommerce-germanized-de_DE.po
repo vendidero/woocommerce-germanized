@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: WooCommerce Germanized v1.3.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-29 12:26+0100\n"
-"PO-Revision-Date: 2015-05-25 10:04:01+0000\n"
+"PO-Revision-Date: 2015-05-26 06:44:13+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -853,7 +853,7 @@ msgstr "Hinweis: Bitte Unzutreffendes streichen und um Ihren Text ergänzen."
 #@ woocommerce-germanized
 msgctxt "revocation-form"
 msgid "I/We hereby give notice that I/We withdraw from my/our contract of sale of the following goods/provision of the following service: "
-msgstr "Hiermit widerrufe(n) ich/wir den von mir/uns abgeschlossenen Vertrag über den Kauf der folgenden Waren / die Erbringung der folgenden Dienstleistung: "
+msgstr "Hiermit widerrufe(n) ich/wir den von mir/uns abgeschlossenen Vertrag über den Kauf der folgenden Waren / die Erbringung der folgenden Dienstleistung:"
 
 #: includes/class-wc-gzd-revocation.php:29
 #@ woocommerce-germanized
@@ -2256,4 +2256,9 @@ msgstr "%s an die folgenden E-Mail Templates anfügen"
 #@ woocommerce-germanized
 msgid "Data Security"
 msgstr "Datenschutzbelehrung"
+
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:386
+#@ woocommerce-germanized
+msgid "Use drag & drop to customize attachment order. Don't forget to save your changes."
+msgstr "Verwende Drag & Drop um die Reihenfolge der Texte in den E-Mails zu beeinflussen und speichere anschließend deine Änderungen."
 
