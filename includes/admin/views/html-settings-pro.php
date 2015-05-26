@@ -25,7 +25,7 @@ global $current_section;
 			<p><a class="button button-primary" href="https://vendidero.de/woocommerce-germanized" target="_blank"><?php _e( 'Upgrade now', 'woocommerce-germanized' ); ?></a></p>
 		</div>
 		<a href="https://vendidero.de/woocommerce-germanized" target="_blank">
-			<img src="<?php echo WC_Germanized()->plugin_url();?>/assets/images/pro/settings-<?php echo $current_section;?>.png" />
+			<img src="<?php echo WC_Germanized()->plugin_url();?>/assets/images/pro/settings-<?php echo $current_section;?>.png?v=<?php echo WC_germanized()->version;?>" />
 		</a>
 	</div>
 </div>

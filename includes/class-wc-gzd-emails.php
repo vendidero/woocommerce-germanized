@@ -23,32 +23,39 @@ class WC_GZD_Emails {
 		$attachment_order = wc_gzd_get_email_attachment_order();
 		$this->footer_attachments = array();
 
-		foreach ( $attachment_order as $key => $order ) {
+		foreach ( $attachment_order as $key => $order )
 			$this->footer_attachments[ 'woocommerce_gzd_mail_attach_' . $key ] = woocommerce_get_page_id ( $key );
-		}
+
+		add_action( 'woocommerce_email', array( $this, 'email_hooks' ), 0, 1 );
+	}
+
+	public function email_hooks( $mailer ) {
 
 		// Add new customer activation
 		if ( get_option( 'woocommerce_gzd_customer_activation' ) == 'yes' ) {
-			remove_action( 'woocommerce_created_customer_notification', array( WC()->mailer(), 'customer_new_account' ), 10 );
+			
+			remove_action( 'woocommerce_created_customer_notification', array( $mailer, 'customer_new_account' ), 10 );
 			add_action( 'woocommerce_created_customer_notification', array( $this, 'customer_new_account_activation' ), 9, 3 );
+		
 		}
 
 		// Hook before WooCommerce Footer is applied
-		remove_action( 'woocommerce_email_footer', array( WC()->mailer(), 'email_footer' ) );
+		remove_action( 'woocommerce_email_footer', array( $mailer, 'email_footer' ) );
 		add_action( 'woocommerce_email_footer', array( $this, 'add_template_footers' ), 0 );
-		add_action( 'woocommerce_email_footer', array( WC()->mailer(), 'email_footer' ), 1 );
+		add_action( 'woocommerce_email_footer', array( $mailer, 'email_footer' ), 1 );
 
 		add_filter( 'woocommerce_email_styles', array( $this, 'styles' ) );
 
-		$mails = WC()->mailer()->get_emails();
+		$mails = $mailer->get_emails();
 
 		if ( ! empty( $mails ) ) {
-			foreach ( $mails as $mail ) {
+
+			foreach ( $mails as $mail )
 				add_action( 'woocommerce_germanized_email_footer_' . $mail->id, array( $this, 'hook_mail_footer' ), 10, 1 );
-			}
 		}
 
 		add_filter( 'woocommerce_order_item_product', array( $this, 'set_order_email_filters' ), 0, 1 );
+
 	}
 
 	public function set_order_email_filters( $product ) {

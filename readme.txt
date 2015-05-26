@@ -47,8 +47,8 @@ Selbstverständlich können Trusted Shops Kunden mit nur wenigen Einstellungen d
 Bei der Entwicklung von WC Germanized haben wir besonderes Augenmerk auf die nahtlose Integration in WooCommerce gelegt.
 Die meisten Änderungen erfolgen über Hooks & Filter - nur im äußersten Notfall wird ein Template direkt überschrieben.
 
-= Pro: PDF Rechnungen = 
-Als Nutzer der Pro Version von WooCommerce Germanized erstellst du automatisiert oder manuell PDF-Rechnungen zu deinen Bestellungen. Dabei hast du volle Kontrolle über das Layout deiner Rechnungen.
+= Pro: PDF Rechnungen & Lieferscheine = 
+Als Nutzer der Pro Version von WooCommerce Germanized erstellst du automatisiert oder manuell PDF-Rechnungen und Lieferscheine zu deinen Bestellungen. Dabei hast du volle Kontrolle über das Layout deiner PDF-Dokumente.
 Lade beispielsweise einfach ein PDF-Template hoch, das als "Hintergrund" für deine Rechnungen fungiert. Mit wenigen Klicks exportierst du deine Rechnungen (CSV, zip) für deine Buchhaltung oder deinen Steuerberater.
 Mehr Informationen? [PDF Rechnungen für WooCommerce](https://vendidero.de/woocommerce-germanized#accounting "WooCommerce PDF Rechnungen")
 
@@ -65,6 +65,19 @@ Anschließend kannst du in deinem WooCommerce Backend über einen Button die Bes
 Ein Urteil des Amtsgerichts Berlin Pankow/Weißensee macht das Double Opt-In Verfahren für die Erstellung von Benutzerkonten in Online-Shops zur "Pflichtsache". In WC Germanized ist das kein Problem.
 Nach Erstellung eines Kontos wird automatisch eine Bestätigungsmail mit Bestätigungslink an den Kunden versendet. Unaktivierte Konten können nach einem bestimmten Interval automatisch gelöscht werden.
 
+= Pro: Premium Support =
+Kunden von WooCommerce Germanized Pro genießen einen kompetenten Ticket-Support zu Fragen rund um WooCommerce Germanized. Natürlich versuchen wir über das WordPress Support-Forum auch einen guten Support zu gewährleisten.
+Gerne übernehmen wir die von dir gewünschten Individualisierungen und Anpassungen an WordPress, WooCommerce und WC Germanized - und unterbreiten dir ein [individuelles Angebot](https://vendidero.de/individualisierung) basierend auf deinen Vorstellungen.
+
+= Pro: Theme Support =
+Für Nutzer der Pro-Version arbeiten wir kontinuierlich am Support weiterer Themes für WooCommerce Germanized. Dabei stellen wir sicher, dass alle WooCommerce Germanized Optionen im jeweiligen Theme sichtbar und optisch ansprechend gestaltet sind.
+Aktuell unterstützt die Pro-Version folgende Themes: 
+
+* Enfold
+* Flatsome
+* Storefront
+* Virtue
+
 = Neue Umsatzsteuer-Regelung 2015 für virtuelle Produkte =
 Mit der neuesten Version unterstützt WooCommerce Germanized die neuen Umsatzsteuer-Regelungen (B2C-Geschäfte, gültig ab 01.01.2015) zum Verkauf von virtuellen Produkten in die Europäische Union.
 Dabei wird bei virtuellen Produkten der Brutto-Preis beibehalten und lediglich der Netto-Preis, je nach Herkunftsland des Dienstleistungsempfängers, angepasst. 
@@ -73,10 +86,6 @@ Insofern du von den Regelungen betroffen sein solltest, empfehlen wir dir unbedi
 = eKomi Integration =
 Mit nur wenigen Klicks lässt sich eKomi als Bewertungsmanagement-Dienstleister in WooCommerce Germanized einstellen. 
 Damit kann dein Online-Shop ganz einfach von den Vorteilen des externen Dienstleisters profitieren und unabhängige Kundenbewertungen veröffentlichen.
-
-= Pro: Premium Support =
-Kunden von WooCommerce Germanized Pro genießen einen kompetenten Ticket-Support zu Fragen rund um WooCommerce Germanized. Natürlich versuchen wir über das WordPress Support-Forum auch einen guten Support zu gewährleisten.
-Gerne übernehmen wir die von dir gewünschten Individualisierungen und Anpassungen an WordPress, WooCommerce und WC Germanized - und unterbreiten dir ein [individuelles Angebot](https://vendidero.de/individualisierung) basierend auf deinen Vorstellungen.
 
 = About WooCommerce Germanized =
 WC Germanized extends WooCommerce to become a legally compliant Online-Shop for the german market. This does not replace legal advice - we do only offer technical implementations to meet german law.
