@@ -21,7 +21,7 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 	
 	public static function init() {
 		add_action( 'woocommerce_product_after_variable_attributes', array( __CLASS__, 'output' ), 20, 3 );
-		add_action( 'woocommerce_process_product_meta_variable', array( __CLASS__, 'save' ) , 10, 1 );
+		add_action( 'woocommerce_save_product_variation', array( __CLASS__, 'save' ) , 0, 2 );
 	}
 
 	public static function output( $loop, $variation_data, $variation ) {
@@ -35,23 +35,23 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 			<p class="form-row form-row-first">
 				<label><?php _e( 'Unit', 'woocommerce-germanized' ); ?>:</label>
 				<select name="variable_unit[<?php echo $loop; ?>]">
-					<option value="parent" <?php selected( is_null( isset( $_product->unit ) ? $_product->unit : null ), true ); ?>><?php _e( 'None', 'woocommerce-germanized' ); ?></option>
+					<option value="parent" <?php selected( is_null( isset( $_product->gzd_product->unit ) ? $_product->gzd_product->unit : null ), true ); ?>><?php _e( 'None', 'woocommerce-germanized' ); ?></option>
 					<?php
 					foreach ( WC_germanized()->units->get_units() as $key => $value )
-						echo '<option value="' . esc_attr( $key ) . '" ' . selected( $key === ( isset( $_product->unit ) ? $_product->unit : '' ) , true, false ) . '>' . esc_html( $value ) . '</option>';
+						echo '<option value="' . esc_attr( $key ) . '" ' . selected( $key === ( isset( $_product->gzd_product->unit ) ? $_product->gzd_product->unit : '' ) , true, false ) . '>' . esc_html( $value ) . '</option>';
 				?></select>
 			</p>
 			<p class="form-row form-row-last">
 				<label for="variable_unit_base"><?php echo __( 'Unit Base', 'woocommerce-germanized' );?>:</label>
-				<input class="input-text wc_input_decimal" size="6" type="text" name="variable_unit_base[<?php echo $loop; ?>]" value="<?php echo ( isset( $_product->unit_base ) ? esc_attr( wc_format_localized_decimal( $_product->unit_base ) ) : '' );?>" placeholder="" />
+				<input class="input-text wc_input_decimal" size="6" type="text" name="variable_unit_base[<?php echo $loop; ?>]" value="<?php echo ( isset( $_product->gzd_product->unit_base ) ? esc_attr( wc_format_localized_decimal( $_product->gzd_product->unit_base ) ) : '' );?>" placeholder="" />
 			</p>
 			<p class="form-row form-row-first">
 				<label for="variable_unit_price_regular"><?php echo __( 'Regular Unit Price', 'woocommerce-germanized' ) . ' (' . get_woocommerce_currency_symbol() . ')'; ?>:</label>
-				<input class="input-text wc_input_price" size="5" type="text" name="variable_unit_price_regular[<?php echo $loop; ?>]" value="<?php echo ( isset( $_product->unit_price_regular ) ? esc_attr( wc_format_localized_price( $_product->unit_price_regular ) ) : '' );?>" placeholder="" />
+				<input class="input-text wc_input_price" size="5" type="text" name="variable_unit_price_regular[<?php echo $loop; ?>]" value="<?php echo ( isset( $_product->gzd_product->unit_price_regular ) ? esc_attr( wc_format_localized_price( $_product->gzd_product->unit_price_regular ) ) : '' );?>" placeholder="" />
 			</p>
 			<p class="form-row form-row-last">
 				<label for="variable_unit_price_sale"><?php echo __( 'Sale Unit Price', 'woocommerce-germanized' ) . ' (' . get_woocommerce_currency_symbol() . ')'; ?>:</label>
-				<input class="input-text wc_input_price" size="5" type="text" name="variable_unit_price_sale[<?php echo $loop; ?>]" value="<?php echo ( isset( $_product->unit_price_sale ) ? esc_attr( wc_format_localized_price( $_product->unit_price_sale ) ) : '' );?>" placeholder="" />
+				<input class="input-text wc_input_price" size="5" type="text" name="variable_unit_price_sale[<?php echo $loop; ?>]" value="<?php echo ( isset( $_product->gzd_product->unit_price_sale ) ? esc_attr( wc_format_localized_price( $_product->gzd_product->unit_price_sale ) ) : '' );?>" placeholder="" />
 			</p>
 		</div>
 		<div class="variable_shipping_time hide_if_variation_virtual">
@@ -64,7 +64,7 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 		<div class="variable_cart_mini_desc">
 			<p class="form-row form-row-full">
 				<label for="variable_product_mini_desc"><?php echo __( 'Optional Mini Description', 'woocommerce-germanized' ); ?>:</label>
-				<?php wp_editor( htmlspecialchars_decode( $_product->mini_desc ), 'wc_gzd_product_mini_desc_' . $loop, array( 'textarea_name' => 'variable_product_mini_desc[' . $loop . ']', 'textarea_rows' => 5, 'media_buttons' => false, 'teeny' => true ) ); ?>
+				<?php wp_editor( htmlspecialchars_decode( $_product->gzd_product->mini_desc ), 'wc_gzd_product_mini_desc_' . $loop, array( 'textarea_name' => 'variable_product_mini_desc[' . $loop . ']', 'textarea_rows' => 5, 'media_buttons' => false, 'teeny' => true ) ); ?>
 			</p>
 		</div>
 		<?php
@@ -129,47 +129,40 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 		<?php
   	}
 
-	public static function save( $post_id ) {
-		if ( isset( $_POST[ 'variable_post_id' ] ) ) {
-			$variable_post_id = $_POST['variable_post_id'];
-			$variable_sku = $_POST['variable_sku'];
-			$variable_unit = $_POST['variable_unit'];
-			$variable_unit_base = $_POST['variable_unit_base'];
-			$variable_unit_price_regular = $_POST['variable_unit_price_regular'];
-			$variable_unit_price_sale = $_POST['variable_unit_price_sale'];
-			$variable_delivery_time = $_POST['variable_delivery_time'];
-			$variable_product_desc = $_POST['variable_product_mini_desc'];
-			for ( $i = 0; $i < sizeof( $variable_post_id ); $i++ ) {
-				if ( ! isset( $variable_post_id[ $i ] ) )
-					continue;
-				$variation_id = (int) $variable_post_id[$i];
-				if ( isset( $variable_unit[$i] ) ) {
-					update_post_meta( $variation_id, '_unit', sanitize_text_field( $variable_unit[$i] ) );
-				}
-				if ( isset( $variable_unit_base[$i] ) ) {
-					update_post_meta( $variation_id, '_unit_base', ( $variable_unit_base[$i] === '' ) ? '' : wc_format_decimal( $variable_unit_base[$i] ) );
-				}
-				if ( isset( $variable_unit_price_regular[$i] ) ) {
-					update_post_meta( $variation_id, '_unit_price_regular', ( $variable_unit_price_regular[$i] === '' ) ? '' : wc_format_decimal( $variable_unit_price_regular[$i] ) );
-					update_post_meta( $variation_id, '_unit_price', ( $variable_unit_price_regular[$i] === '' ) ? '' : wc_format_decimal( $variable_unit_price_regular[$i] ) );
-				}
-				if ( isset( $variable_product_desc[$i] ) ) {
-					update_post_meta( $variation_id, '_mini_desc', esc_html( $variable_product_desc[$i] ) );
-				}
-				if ( isset( $variable_unit_price_sale[$i] ) ) {
-					update_post_meta( $variation_id, '_unit_price_sale', '' );
-					// Update Sale Price only if is on sale (Cron?!)
-					if ( get_post_meta( $variation_id, '_unit_price', true ) != $variable_unit_price_regular[$i] && $variable_unit_price_sale[$i] !== '' ) {
-						update_post_meta( $variation_id, '_unit_price_sale', ( $variable_unit_price_sale[$i] === '' ) ? '' : wc_format_decimal( $variable_unit_price_sale[$i] ) );
-						update_post_meta( $variation_id, '_unit_price', ( $variable_unit_price_sale[$i] === '' ) ? '' : wc_format_decimal( $variable_unit_price_sale[$i] ) );
-					}
-				}
-				if ( isset( $variable_delivery_time[$i] ) && ! empty( $variable_delivery_time[$i] ) && ! is_numeric( $variable_delivery_time[$i] ) )
-					wp_set_post_terms( $variation_id, sanitize_text_field( $variable_delivery_time[$i] ), 'product_delivery_time' );
-				else
-					wp_set_object_terms( $variation_id, absint( $variable_delivery_time[$i] ), 'product_delivery_time' );
+	public static function save( $variation_id, $i ) {
+		
+		$variable_unit = ( isset( $_POST[ 'variable_unit' ] ) ? $_POST[ 'variable_unit' ] : array() );
+		$variable_unit_base = ( isset( $_POST[ 'variable_unit_base' ] ) ? $_POST[ 'variable_unit_base' ] : array() );
+		$variable_unit_price_regular = ( isset( $_POST[ 'variable_unit_price_regular' ] ) ? $_POST[ 'variable_unit_price_regular' ] : array() );
+		$variable_unit_price_sale = ( isset( $_POST[ 'variable_unit_price_sale' ] ) ? $_POST[ 'variable_unit_price_sale' ] : array() );
+		$variable_delivery_time = ( isset( $_POST[ 'variable_delivery_time' ] ) ? $_POST[ 'variable_delivery_time' ] : array() );
+		$variable_product_desc = ( isset( $_POST[ 'variable_product_mini_desc' ] ) ? $_POST[ 'variable_product_mini_desc' ] : array() );
+
+		if ( isset( $variable_unit[ $i ] ) ) {
+			update_post_meta( $variation_id, '_unit', sanitize_text_field( $variable_unit[ $i ] ) );
+		}
+		if ( isset( $variable_unit_base[ $i ] ) ) {
+			update_post_meta( $variation_id, '_unit_base', ( $variable_unit_base[ $i ] === '' ) ? '' : wc_format_decimal( $variable_unit_base[ $i ] ) );
+		}
+		if ( isset( $variable_unit_price_regular[ $i ] ) ) {
+			update_post_meta( $variation_id, '_unit_price_regular', ( $variable_unit_price_regular[ $i ] === '' ) ? '' : wc_format_decimal( $variable_unit_price_regular[ $i ] ) );
+			update_post_meta( $variation_id, '_unit_price', ( $variable_unit_price_regular[ $i ] === '' ) ? '' : wc_format_decimal( $variable_unit_price_regular[ $i ] ) );
+		}
+		if ( isset( $variable_product_desc[ $i ] ) ) {
+			update_post_meta( $variation_id, '_mini_desc', esc_html( $variable_product_desc[ $i ] ) );
+		}
+		if ( isset( $variable_unit_price_sale[ $i ] ) ) {
+			update_post_meta( $variation_id, '_unit_price_sale', '' );
+			// Update Sale Price only if is on sale (Cron?!)
+			if ( $variable_unit_price_sale[ $i ] !== '' ) {
+				update_post_meta( $variation_id, '_unit_price_sale', wc_format_decimal( $variable_unit_price_sale[ $i ] ) );
+				update_post_meta( $variation_id, '_unit_price', wc_format_decimal( $variable_unit_price_sale[ $i ] ) );
 			}
 		}
+		if ( isset( $variable_delivery_time[ $i ] ) && ! empty( $variable_delivery_time[ $i ] ) && ! is_numeric( $variable_delivery_time[ $i ] ) )
+			wp_set_post_terms( $variation_id, sanitize_text_field( $variable_delivery_time[ $i ] ), 'product_delivery_time' );
+		else
+			wp_set_object_terms( $variation_id, absint( $variable_delivery_time[ $i ] ), 'product_delivery_time' );
 	}
 
 }
