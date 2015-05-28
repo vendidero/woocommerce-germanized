@@ -44,6 +44,8 @@ class WC_GZD_Emails {
 		add_action( 'woocommerce_email_footer', array( $this, 'add_template_footers' ), 0 );
 		add_action( 'woocommerce_email_footer', array( $mailer, 'email_footer' ), 1 );
 
+		add_filter( 'woocommerce_email_footer_text', array( $this, 'email_footer_plain' ), 0 );
+
 		add_filter( 'woocommerce_email_styles', array( $this, 'styles' ) );
 
 		$mails = $mailer->get_emails();
@@ -58,6 +60,15 @@ class WC_GZD_Emails {
 
 	}
 
+	public function email_footer_plain( $text ) {
+
+		$type = ( ! empty( $GLOBALS[ 'wc_gzd_template_name' ] ) ) ? $this->get_email_instance_by_tpl( $GLOBALS[ 'wc_gzd_template_name' ] ) : '';
+		
+		if ( ! empty( $type ) && $type->get_email_type() == 'plain' )
+			$this->add_template_footers();
+
+	}
+ 
 	public function set_order_email_filters( $product ) {
 		if ( is_wc_endpoint_url()  )
 			return $product;
@@ -120,7 +131,7 @@ class WC_GZD_Emails {
 				if ( $option == -1 || ! get_option( $option_key ) )
 					continue;
 				if ( in_array( $mail->id, get_option( $option_key ) ) ) {
-					$this->attach_page_content( $option );
+					$this->attach_page_content( $option, $mail->get_email_type() );
 				}
 			}
 		}
@@ -163,12 +174,19 @@ class WC_GZD_Emails {
 	 *  
 	 * @param  integer $page_id 
 	 */
-	public function attach_page_content( $page_id ) {
+	public function attach_page_content( $page_id, $email_type = 'html' ) {
+		
 		remove_shortcode( 'revocation_form' );
 		add_shortcode( 'revocation_form', array( $this, 'revocation_form_replacement' ) );
-		wc_get_template( 'emails/email-footer-attachment.php', array(
+		
+		$template = 'emails/email-footer-attachment.php';
+		if ( $email_type == 'plain' )
+			$template = 'emails/plain/email-footer-attachment.php';
+		
+		wc_get_template( $template, array(
 			'post_attach'  => get_post( $page_id ),
 		) );
+		
 		add_shortcode( 'revocation_form', 'WC_GZD_Shortcodes::revocation_form' );
 	}
 

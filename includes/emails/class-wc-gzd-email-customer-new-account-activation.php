@@ -39,7 +39,7 @@ class WC_GZD_Email_Customer_New_Account_Activation extends WC_Email {
 		$this->description		= __( 'Customer "new account activation" emails are sent to the customer when a customer signs up via checkout or account pages. This mail is being used as double opt in for new customer accounts.', 'woocommerce-germanized' );
 
 		$this->template_html 	= 'emails/customer-new-account-activation.php';
-		//$this->template_plain 	= 'emails/plain/customer-new-account-activation.php';
+		$this->template_plain 	= 'emails/plain/customer-new-account-activation.php';
 
 		$this->subject 			= __( 'Activate your account on {site_title}', 'woocommerce-germanized');
 		$this->heading      	= __( 'Account activation {site_title}', 'woocommerce-germanized');

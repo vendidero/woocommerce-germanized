@@ -28,6 +28,8 @@ class WC_GZD_Email_Customer_Trusted_Shops extends WC_Email {
 		$this->subject      	= _x( 'Please rate your {site_title} order from {order_date}', 'trusted-shops', 'woocommerce-germanized' );
 
 		$this->template_html 	= 'emails/customer-trusted-shops.php';
+		$this->template_plain  	= 'emails/plain/customer-trusted-shops.php';
+
 
 		// Triggers for this email
 		add_action( 'woocommerce_germanized_trusted_shops_review_notification', array( $this, 'trigger' ) );
