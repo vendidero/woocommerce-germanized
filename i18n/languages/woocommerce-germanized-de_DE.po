@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: WooCommerce Germanized v1.3.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-29 12:26+0100\n"
-"PO-Revision-Date: 2015-05-26 06:44:13+0000\n"
+"PO-Revision-Date: 2015-05-29 12:49:00+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -105,24 +105,24 @@ msgstr "zu den WooCommerce Germanized Einstellungen"
 msgid "Cheatin&#8217; huh?"
 msgstr "So geht das leider nicht.."
 
-#: includes/admin/class-wc-gzd-admin.php:64
+#: includes/admin/class-wc-gzd-admin.php:67
 #@ woocommerce-germanized
 msgid "Optional Email Content"
 msgstr "Optionaler E-Mail Inhalt"
 
-#: includes/admin/class-wc-gzd-admin.php:73
+#: includes/admin/class-wc-gzd-admin.php:76
 #@ woocommerce-germanized
 msgid "Add content which will be replacing default page content within emails."
 msgstr "Füllen Sie dieses Feld aus um einen abweichenden E-Mail Anhangstext für diese Seite zu bestimmen."
 
-#: includes/admin/class-wc-gzd-admin.php:82
+#: includes/admin/class-wc-gzd-admin.php:85
 #: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:66
 #: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:125
 #@ woocommerce-germanized
 msgid "Optional Mini Description"
 msgstr "Warenkorb Kurzbeschreibung"
 
-#: includes/admin/class-wc-gzd-admin.php:87
+#: includes/admin/class-wc-gzd-admin.php:90
 #@ woocommerce-germanized
 msgid "This content will be shown as short product description within checkout and emails."
 msgstr "Dieser Inhalt wird während des Bezahlvorganges und in den E-Mails als Produkt Kurzbeschreibung angezeigt."
@@ -163,7 +163,7 @@ msgstr "Einheitspreis"
 #: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:36
 #@ woocommerce-germanized
 msgid "Sale Unit Price"
-msgstr "Aktions-Einheitspreis"
+msgstr "Angebots-Einheitspreis"
 
 #: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:59
 #: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:108
@@ -706,7 +706,7 @@ msgctxt "ekomi"
 msgid "Number of days between an order being marked as completed and review email to customer."
 msgstr "Anzahl der Tage zwischen dem Datum an dem die Bestellung als \"abgeschlossen\" (completed) markiert wurde und dem Absenden der Bewertungseinladung an den Kunden"
 
-#: includes/class-wc-gzd-emails.php:175
+#: includes/class-wc-gzd-emails.php:200
 #@ woocommerce-germanized
 msgctxt "revocation-form"
 msgid "Forward your Revocation online"
@@ -1070,7 +1070,7 @@ msgstr "Zahlungsgebühr"
 
 #: includes/abstracts/abstract-wc-gzd-product.php:127
 #: includes/wc-gzd-cart-functions.php:159
-#: woocommerce-germanized.php:809
+#: woocommerce-germanized.php:814
 #, php-format
 #@ woocommerce-germanized
 msgid "incl. %s%% VAT"
@@ -1173,6 +1173,7 @@ msgid "Place order"
 msgstr "Jetzt kaufen"
 
 #: templates/emails/customer-ekomi.php:18
+#: templates/emails/plain/customer-ekomi.php:19
 #, php-format
 #@ woocommerce-germanized
 msgctxt "ekomi"
@@ -1180,6 +1181,7 @@ msgid "Dear %s %s,"
 msgstr "Sehr geehrte(r) %s %s,"
 
 #: templates/emails/customer-ekomi.php:19
+#: templates/emails/plain/customer-ekomi.php:21
 #, php-format
 #@ woocommerce-germanized
 msgctxt "ekomi"
@@ -1193,6 +1195,7 @@ msgid "Rate Order now"
 msgstr "Einkauf jetzt bewerten"
 
 #: templates/emails/customer-revocation.php:16
+#: templates/emails/plain/customer-revocation.php:14
 #@ woocommerce-germanized
 msgctxt "revocation-form"
 msgid "By sending you this email we confirm your Revocation. Please review your data."
@@ -1252,7 +1255,7 @@ msgstr "Widerruf erklären"
 msgid "VAT free based on &#167;19 UStG"
 msgstr "Kein Mehrwertsteuerausweis, da Kleinunternehmer nach §19 (1) UStG."
 
-#: woocommerce-germanized.php:561
+#: woocommerce-germanized.php:566
 #@ woocommerce
 msgid "Settings"
 msgstr "Einstellungen"
@@ -1571,6 +1574,7 @@ msgid "Please rate your {site_title} order from {order_date}"
 msgstr "Bitte bewerten Sie Ihre Bestellung bei {site_title} vom {order_date}"
 
 #: templates/emails/customer-trusted-shops.php:18
+#: templates/emails/plain/customer-trusted-shops.php:12
 #, php-format
 #@ woocommerce-germanized
 msgctxt "trusted-shops"
@@ -1578,6 +1582,7 @@ msgid "Dear %s %s,"
 msgstr "Hallo %s %s,"
 
 #: templates/emails/customer-trusted-shops.php:19
+#: templates/emails/plain/customer-trusted-shops.php:14
 #, php-format
 #@ woocommerce-germanized
 msgctxt "trusted-shops"
@@ -1622,7 +1627,7 @@ msgstr "Versandkosten-Hinweis auch für virtuelle Produkte aktivieren?"
 
 #: includes/abstracts/abstract-wc-gzd-product.php:126
 #: includes/wc-gzd-cart-functions.php:159
-#: woocommerce-germanized.php:809
+#: woocommerce-germanized.php:814
 #@ woocommerce-germanized
 msgid "incl. VAT"
 msgstr "inkl. MwSt."
@@ -1927,24 +1932,20 @@ msgstr "Aktivieren Sie Ihr Benutzerkonto auf {site_title}"
 msgid "Account activation {site_title}"
 msgstr "Ihr Konto bei {site_title}"
 
-#: templates/emails/customer-new-account-activation.php:18
-#, php-format
-#@ woocommerce-germanized
-msgid "Thanks for creating an account on %s. Your username is <strong>%s</strong>. Please follow the activation link to activate your account:"
-msgstr "Es wurde für Sie ein Benutzerkonto bei %s angelegt. Ihr Benutzername lautet <strong>%s</strong>. Bitte folgen Sie dem Link, um Ihr Benutzerkonto zu bestätigen:"
-
 #: templates/emails/customer-new-account-activation.php:20
 #@ woocommerce-germanized
 msgid "Activate your account"
 msgstr "Benutzerkonto aktivieren"
 
 #: templates/emails/customer-new-account-activation.php:24
+#: templates/emails/plain/customer-new-account-activation.php:26
 #, php-format
 #@ woocommerce
 msgid "Your password has been automatically generated: <strong>%s</strong>"
 msgstr ""
 
 #: templates/emails/customer-new-account-activation.php:28
+#: templates/emails/plain/customer-new-account-activation.php:30
 #, php-format
 #@ woocommerce-germanized
 msgid "If you haven't created an account on %s please ignore this email."
@@ -1956,12 +1957,12 @@ msgstr "Wenn Sie bei %s kein Benutzerkonto eröffnet haben, ignorieren Sie diese
 msgid "If you cannot follow the link above please copy this url and paste it to your browser bar: %s"
 msgstr "Falls Sie dem Link nicht folgen können, kopieren Sie bitte folgende URL in die Adresszeile Ihres Browsers: %s"
 
-#: woocommerce-germanized.php:719
+#: woocommerce-germanized.php:724
 #@ woocommerce-germanized
 msgid "Thank you. You have successfully activated your account."
 msgstr "Vielen Dank. Ihr Benutzerkonto wurde erfolgreich aktiviert."
 
-#: woocommerce-germanized.php:723
+#: woocommerce-germanized.php:728
 #@ woocommerce-germanized
 msgid "Sorry, but this activation code cannot be found."
 msgstr "Sorry, dieser Aktivierungscode ist uns leider nicht bekannt."
@@ -2261,4 +2262,11 @@ msgstr "Datenschutzbelehrung"
 #@ woocommerce-germanized
 msgid "Use drag & drop to customize attachment order. Don't forget to save your changes."
 msgstr "Verwende Drag & Drop um die Reihenfolge der Texte in den E-Mails zu beeinflussen und speichere anschließend deine Änderungen."
+
+#: templates/emails/customer-new-account-activation.php:18
+#: templates/emails/plain/customer-new-account-activation.php:16
+#, php-format
+#@ woocommerce-germanized
+msgid "Thanks for creating an account on %s. Your username is %s. Please follow the activation link to activate your account:"
+msgstr "Es wurde für Sie ein Benutzerkonto bei %s angelegt. Ihr Benutzername lautet %s. Bitte folgen Sie dem Link, um Ihr Benutzerkonto zu bestätigen:"
 

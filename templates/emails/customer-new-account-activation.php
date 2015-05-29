@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <?php do_action( 'woocommerce_email_header', $email_heading ); ?>
 
-<p><?php printf( __( "Thanks for creating an account on %s. Your username is <strong>%s</strong>. Please follow the activation link to activate your account:", 'woocommerce-germanized' ), esc_html( $blogname ), esc_html( $user_login ) ); ?></p>
+<p><?php printf( __( "Thanks for creating an account on %s. Your username is %s. Please follow the activation link to activate your account:", 'woocommerce-germanized' ), esc_html( $blogname ), '<strong>' . esc_html( $user_login ) . '</strong>' ); ?></p>
 
 <p><a class="wc-button button" href="<?php echo esc_attr( $user_activation_url );?>"><?php _e( 'Activate your account', 'woocommerce-germanized' );?></a></p>
 

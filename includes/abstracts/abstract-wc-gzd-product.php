@@ -147,7 +147,7 @@ class WC_GZD_Product {
 	 * @return string
 	 */
 	public function get_unit_base() {
-		return ( $this->unit_base ) ? '<span class="unit-base">' . $this->unit_base . '</span>' . apply_filters( 'wc_gzd_unit_price_base_seperator', ' ' ) . '<span class="unit">' . $this->get_unit() . '</span>' : '';
+		return ( $this->unit_base ) ? ( $this->unit_base > apply_filters( 'wc_gzd_unit_base_min_amount_to_show', 1 ) ? '<span class="unit-base">' . $this->unit_base . '</span>' . apply_filters( 'wc_gzd_unit_price_base_seperator', ' ' ) : '' ) . '<span class="unit">' . $this->get_unit() . '</span>' : '';
 	}
 
 	/**
