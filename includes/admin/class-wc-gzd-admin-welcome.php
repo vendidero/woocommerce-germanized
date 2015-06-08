@@ -123,6 +123,41 @@ class WC_GZD_Admin_Welcome {
 			<iframe src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Fvendidero.de%2Fwoocommerce-germanized&amp;width&amp;layout=button&amp;action=recommend&amp;show_faces=false&amp;share=false&amp;height=20" scrolling="no" frameborder="0" style="border:none; overflow:hidden; height:20px;" allowTransparency="true"></iframe>
 			</span>
 		</p>
+		<div class="changelog vendipro new-feature">
+			<h3>Neu: Mehrstufige Kasse mit Datenüberprüfung <span class="wc-gzd-pro">pro</span></h3>
+			<div class="left">
+				<a href="https://vendidero.de/woocommerce-germanized#multistep-checkout" target="_blank"><img src="<?php echo WC_germanized()->plugin_url();?>/assets/images/multistep-checkout.png" /></a>
+			</div>
+			<div class="right">
+				<p>
+					Du möchtest deinen Checkout in mehrere Stufen aufteilen? Mit diesem neuen Feature ist das kein Problem mehr.
+					Nutze ähnlich wie andere große deutsche Shops die Schritte Persönliche Daten, Zahlungsart und Bestätigen. Im Bestätigungs-Schritt
+					werden dem Kunden alle Eingaben noch einmal aufgeführt.
+				</p>
+				<div class="wc-feature wc-vendipro-features feature-section col two-col">
+					<div>
+						<h4><i class="fa fa-paint-brush"></i> Läuft mit deinem Theme</h4>
+						<p>Die mehrstufige Kasse kommt ganz ohne Überschreiben von WooCommerce Templates aus.</p>
+					</div>
+					<div class="last-feature">
+						<h4><i class="fa fa-adjust"></i> Farben & Optionen</h4>
+						<p>Passe sowohl Farben als auch Beschriftungen einfach in den Einstellungen an.</p>
+					</div>
+					<div>
+						<h4><i class="fa fa-check"></i> Daten Prüfen</h4>
+						<p>Lasse deine Kunden im letzten Schritt ihre Daten vor Bestellabschluss prüfen und u.U. korrigieren.</p>
+					</div>
+					<div class="last-feature">
+						<h4><i class="fa fa-refresh"></i> Kein Neuladen</h4>
+						<p>Die Mehrstufige Kasse funktioniert komplett per Javascript. Inhalte werden asynchron nachgeladen.</p>
+					</div>
+				</div>
+				<div class="vendipro-buttons">
+					<a href="https://vendidero.de/woocommerce-germanized-pro#multistep-checkout" target="_blank" class="button button-primary wc-gzd-button">Pro Version entdecken</a>
+					<p class="price smaller">ab 69,95 € inkl. Mwst. - inkl. 1 Jahr Updates & Premium Support!</p>
+				</div>
+			</div>
+		</div>
 		<div class="changelog vendipro">
 			<h3>VendiPro - Das WooCommerce Theme für den deutschen Markt</h3>
 			<div class="left">
@@ -159,20 +194,26 @@ class WC_GZD_Admin_Welcome {
 			<h3>Neu in WooCommerce Germanized 1.3</h3>
 			<div class="wc-feature feature-section col three-col" style="margin-bottom: -30px">
 				<div>
-					<h4><i class="fa fa-file-pdf-o"></i> PDF Rechnungen <a class="wc-gzd-pro" target="_blank" href="https://vendidero.de/woocommerce-germanized#accounting">Pro</a></h4>
+					<h4><i class="fa fa-file-pdf-o"></i> PDF Rechnungen & Lieferscheine <a class="wc-gzd-pro" target="_blank" href="https://vendidero.de/woocommerce-germanized#accounting">Pro</a></h4>
 					<p>
-					Als glücklicker Pro-User kannst du mit wenigen Klicks PDF Rechnungen und Stornierungen zu deinen Bestellungen erzeugen.
+					Als glücklicker Pro-User kannst du mit wenigen Klicks PDF Rechnungen, Lieferscheine und Stornierungen zu deinen Bestellungen erzeugen.
 					Natürlich wurden auch die Rechnungen optimal an die Bedürfnisse des deutschen Marktes angepasst.
 					</p>
 				</div>
 				<div>
-					<h4><i class="fa fa-file-text-o"></i> Mustertexte API <a class="wc-gzd-pro" target="_blank" href="https://vendidero.de/woocommerce-germanized#generator">Pro</a></h4>
+					<h4><i class="fa fa-list-ol"></i> Mehrstufige Kasse <a class="wc-gzd-pro" target="_blank" href="https://vendidero.de/woocommerce-germanized#multistep-checkout">Pro</a></h4>
 					<p>
-					Generiere über die Schnittstelle zu vendidero.de in deinem Backend einfach wichtige Mustertexte für AGB & Widerrufsbelehrung.
-					Fülle einfach den Fragebogen aus und erhalte einen Mustertext, den du mit einem Klick in die entsprechende Seite übernehmen kannst.
+					Nutze den beliebten Multistep-Checkout und biete deinen Kunden die Möglichkeit ihre eingegeben Daten vor dem Kauf noch einmal zu überprüfen und etwaige Falscheingaben zu korrigieren.
 					</p>
 				</div>
 				<div class="last-feature">
+					<h4><i class="fa fa-file-text-o"></i> Mustertexte API <a class="wc-gzd-pro" target="_blank" href="https://vendidero.de/woocommerce-germanized#generator">Pro</a></h4>
+					<p>
+					Generiere über die Schnittstelle zu vendidero.de in deinem Backend einfach Mustertexte für AGB & Widerrufsbelehrung.
+					Fragen ausfüllen, Mustertext erhalten und mit einem Klick in die entsprechende Seite übernehmen.
+					</p>
+				</div>
+				<div style="clear: both">
 					<h4><i class="fa fa-clock-o"></i> Vertragsschluss <a class="wc-gzd-pro" target="_blank" href="https://vendidero.de/woocommerce-germanized#contract">Pro</a></h4>
 					<p>
 					Du möchtest den Zeitpunkt des Vertragsschlusses aktiv bestimmen und deine Bestellungen manuell prüfen?
@@ -186,18 +227,25 @@ class WC_GZD_Admin_Welcome {
 					Damit sollte es mit deinem Theme keine Probleme mehr während des Bezahlvorganges geben.
 					</p>
 				</div>
-				<div>
+				<div class="last-feature">
 					<h4><i class="fa fa-arrows-h"></i> Einheiten anlegen</h4>
 					<p>
 					Du verkaufst basierend auf Einheitspreisen? Dann möchtest du vielleicht neue Einheiten (z.B. "Stück") hinzufügen.
 					Alles kein Problem mehr mit dem <a href="<?php echo admin_url('edit-tags.php?taxonomy=product_unit&post_type=product'); ?>">Einheiten-Editor</a>. Füge neue Einheiten hinzu oder passe die Bezeichnung an.
 					</p>
 				</div>
-				<div class="last-feature">
+				<div style="clear: both">
 					<h4><i class="fa fa-language"></i> WPML Kompatibilität</h4>
 					<p>
 					Einige von euch betreiben Multi-Sprachen-Shops. Um auch die Optionen (Kaufen-Button-Text etc.) von WooCommerce Germanized übersetzen zu können, haben wir 
 					eine wpml-confix.xml Datei angelegt, die euch dabei hilft die Strings zu übersetzen.
+					</p>
+				</div>
+				<div>
+					<h4><i class="fa fa-reorder"></i> E-Mail Anhänge sortieren</h4>
+					<p>
+					Sortiere in deinen WooCommerce Germanized Einstellungen per Drag & Drop die E-Mail Anhänge (z.B. AGB, Widerrufsbelehrung, Impressum). So kannst du ganz einfach
+					die Reihenfolge der Inhalte in deinen E-Mails beeinflussen.
 					</p>
 				</div>
 			</div>

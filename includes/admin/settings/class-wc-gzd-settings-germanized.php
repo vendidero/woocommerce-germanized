@@ -38,6 +38,7 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 			// Premium sections
 			$this->premium_sections = array(
 				'invoices' => sprintf( __( 'Invoices & Packing Slips %s', 'woocommerce-germanized' ), '<span class="wc-gzd-premium-section-tab">pro</span>' ),
+				'checkout' => sprintf( __( 'Multistep Checkout %s', 'woocommerce-germanized' ), '<span class="wc-gzd-premium-section-tab">pro</span>' ),
 				'agbs'     => sprintf( __( 'Terms & Conditions generator %s', 'woocommerce-germanized' ), '<span class="wc-gzd-premium-section-tab">pro</span>' ),
 				'widerruf' => sprintf( __( 'Revocation generator %s', 'woocommerce-germanized' ), '<span class="wc-gzd-premium-section-tab">pro</span>' ),
 			);

@@ -4,7 +4,7 @@ Tags: woocommerce, german market, german, germany, deutsch, deutschland, de, de_
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=info@vendidero.de&item_name=Donation+for+WooCommerce+Germanized
 Requires at least: 3.8
 Tested up to: 4.2
-Stable tag: 1.3.2
+Stable tag: 1.3.3
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -14,7 +14,7 @@ Extends WooCommerce to become a legally compliant shop for german market. WooCom
 
 (see below for english version)
 
-WooCommerce Germanized erweitert WooCommerce um alle technisch relevanten Funktionen für den Betrieb eines rechtssicheren Online-Shops mit WooCommerce in Deutschland. Das Ziel des Plugins ist es, WooCommerce optimal an die Bedürfnisse des deutschen Marktes anzupassen. WooCommerce Germanized wird von einem WordPress-erfahrenen, deutschen Team aktiv (weiter-)entwickelt - bei Updates von WooCommerce ziehen wir innerhalb kürzester Zeit mit. 
+WooCommerce Germanized erweitert WooCommerce um alle technisch relevanten Funktionen für den Betrieb eines rechtssicheren Online-Shops mit WooCommerce in Deutschland. Das Ziel des Plugins ist es, WooCommerce optimal an die Bedürfnisse des deutschen Marktes anzupassen. WC Germanized wird von einem WordPress-erfahrenen, deutschen Team aktiv (weiter-)entwickelt - bei Updates von WooCommerce ziehen wir innerhalb kürzester Zeit mit. 
 
 Nutzer von [WooCommerce Germanized Pro](https://vendidero.de/woocommerce-germanized "WooCommerce optimiert für den deutschen Markt") profitieren von vielen weiterführenden Features z.B. PDF-Rechnungen, Mustertexte-Generator für AGB und Widerrufsbelehrung, Premium Support und vielem mehr!
 
@@ -23,7 +23,7 @@ Bei der Entwicklung von VendiPro haben wir besonders auf die Einhaltung deutsche
 
 = WooCommerce rechtssicher für den deutschen Markt =
 WooCommerce Germanized unterstützt eine Vielzahl typisch deutscher Funktionalitäten: Lieferzeiten, Einheitspreise, Versandkosten- und Mehrwertsteuer-Hinweise, rechtlich relevante Hinweisseiten (z.B. AGB, Widerrufsbelehrung usw.) - auch in E-Mails, Kleinuternehmerregelung, Gebühren für Zahlungsmethoden und noch vieles mehr.
-Zudem haben wir einige Anpassungen am Bezahlvorgang vorgenommen, damit dieser den rechtlichen Ansprüchen eines deutschen Online-Shops entspricht. Eine ausführliche Liste der Funktionalitäten sowie weitere Informationen zu WooCommerce Germanized findest du bei vendidero.de.
+Zudem haben wir einige Anpassungen am Bezahlvorgang vorgenommen, damit dein WooCommerce Shop den rechtlichen Ansprüchen eines deutschen Online-Shops entspricht. Eine ausführliche Liste der Funktionalitäten sowie weitere Informationen zu WooCommerce Germanized findest du unter vendidero.de.
 
 * Lieferzeiten
 * Kleinunternehmerregelung
@@ -40,7 +40,7 @@ Zudem haben wir einige Anpassungen am Bezahlvorgang vorgenommen, damit dieser de
 
 = Trusted Shops vorzertifiziert =
 WC Germanized wurde von Trusted Shops vorzertifiziert und bietet damit die optimalen technischen Voraussetzungen für einen rechtssicheren Online-Shop mit WooCommerce in Deutschland.
-Trusted Shops zertifiziert Online-Shops nach sorgfältig ausgewählten Qualitätskriterien und hat WooCommerce Germanized genau unter die Lupe genommen.
+Trusted Shops zertifiziert Online-Shops nach sorgfältig ausgewählten Qualitätskriterien und hat das WooCommerce Plugin genau unter die Lupe genommen.
 Selbstverständlich können Trusted Shops Kunden mit nur wenigen Einstellungen das Gütesiegel und die Trusted Shops Produkte mit WC Germanized nutzen.
 
 = Sauber implementiert =
@@ -53,21 +53,8 @@ Lade beispielsweise einfach ein PDF-Template hoch, das als "Hintergrund" für de
 Mehr Informationen? [PDF Rechnungen für WooCommerce](https://vendidero.de/woocommerce-germanized#accounting "WooCommerce PDF Rechnungen")
 
 = Steuern für Versandkosten und Gebühren =
-WooCommerce Germanized unterstützt mit der aktuellen Version die komplizierte Besteuerung von Versandkosten bei "gemischten" Warenkörben (d.h. es befinden sich unterschiedliche MwSt.-Sätze im Warenkorb).
+Das WooCommerce Plugin für den deutschen Markt unterstützt mit der aktuellen Version die komplizierte Besteuerung von Versandkosten bei "gemischten" Warenkörben (d.h. es befinden sich unterschiedliche MwSt.-Sätze im Warenkorb).
 In diesem Fall muss die Mehrwertsteuer der Versandkosten anteilig (basierend auf den Anteil der jeweiligen MwSt.-Rate an der Gesamtbestellung), anhand der unterschiedlichen MwSt.-Raten berechnet werden.
-
-= Pro: Zeitpunkt für den Vertragsschluss bestimmen = 
-In WooCommerce ist es standardmäßig nicht vorgesehen, den Vertragsschluss erst nach einer manuellen Prüfung einzuleiten. Im Normalfall wird der Kaufvertrag direkt mit der E-Mail "Bestätigung der Bestellung" geschlossen.
-Als Pro User kannst du optional entscheiden, ob du Bestellungen vorab manuell prüfen möchtest. Der Kunde wird dann nach der Bestellung nicht automatisch zur Bezahlschnittstelle (z.B. Paypal) weitergeleitet und erhält eine abweichende E-Mail in der auf die manuelle Prüfung aufmerksam gemacht wird.
-Anschließend kannst du in deinem WooCommerce Backend über einen Button die Bestellung nach einer Prüfung ganz einfach bestätigen.
-
-= Double Opt-In Verfahren für Benutzerkonten =
-Ein Urteil des Amtsgerichts Berlin Pankow/Weißensee macht das Double Opt-In Verfahren für die Erstellung von Benutzerkonten in Online-Shops zur "Pflichtsache". In WC Germanized ist das kein Problem.
-Nach Erstellung eines Kontos wird automatisch eine Bestätigungsmail mit Bestätigungslink an den Kunden versendet. Unaktivierte Konten können nach einem bestimmten Interval automatisch gelöscht werden.
-
-= Pro: Premium Support =
-Kunden von WooCommerce Germanized Pro genießen einen kompetenten Ticket-Support zu Fragen rund um WooCommerce Germanized. Natürlich versuchen wir über das WordPress Support-Forum auch einen guten Support zu gewährleisten.
-Gerne übernehmen wir die von dir gewünschten Individualisierungen und Anpassungen an WordPress, WooCommerce und WC Germanized - und unterbreiten dir ein [individuelles Angebot](https://vendidero.de/individualisierung) basierend auf deinen Vorstellungen.
 
 = Pro: Theme Support =
 Für Nutzer der Pro-Version arbeiten wir kontinuierlich am Support weiterer Themes für WooCommerce Germanized. Dabei stellen wir sicher, dass alle WooCommerce Germanized Optionen im jeweiligen Theme sichtbar und optisch ansprechend gestaltet sind.
@@ -78,10 +65,23 @@ Aktuell unterstützt die Pro-Version folgende Themes:
 * Storefront
 * Virtue
 
+= Pro: Premium Support =
+Kunden von WC Germanized Pro genießen einen kompetenten Ticket-Support zu Fragen rund um WC Germanized. Natürlich versuchen wir über das WordPress Support-Forum auch einen guten Support zu gewährleisten.
+Gerne übernehmen wir die von dir gewünschten Individualisierungen und Anpassungen an WordPress, WooCommerce und WC Germanized - und unterbreiten dir ein [individuelles Angebot](https://vendidero.de/individualisierung) basierend auf deinen Vorstellungen.
+
+= Double Opt-In Verfahren für Benutzerkonten =
+Ein Urteil des Amtsgerichts Berlin Pankow/Weißensee macht das Double Opt-In Verfahren für die Erstellung von Benutzerkonten in Online-Shops zur "Pflichtsache". In WC Germanized ist das kein Problem.
+Nach Erstellung eines Kontos wird automatisch eine Bestätigungsmail mit Bestätigungslink an den Kunden versendet. Unaktivierte Konten können nach einem bestimmten Interval automatisch gelöscht werden.
+
 = Neue Umsatzsteuer-Regelung 2015 für virtuelle Produkte =
 Mit der neuesten Version unterstützt WooCommerce Germanized die neuen Umsatzsteuer-Regelungen (B2C-Geschäfte, gültig ab 01.01.2015) zum Verkauf von virtuellen Produkten in die Europäische Union.
 Dabei wird bei virtuellen Produkten der Brutto-Preis beibehalten und lediglich der Netto-Preis, je nach Herkunftsland des Dienstleistungsempfängers, angepasst. 
 Insofern du von den Regelungen betroffen sein solltest, empfehlen wir dir unbedingt mit deinem Steuerberater Rücksprache zu halten.
+
+= Pro: Zeitpunkt für den Vertragsschluss bestimmen = 
+In WooCommerce ist es standardmäßig nicht vorgesehen, den Vertragsschluss erst nach einer manuellen Prüfung einzuleiten. Im Normalfall wird der Kaufvertrag direkt mit der E-Mail "Bestätigung der Bestellung" geschlossen.
+Als Pro User kannst du optional entscheiden, ob du Bestellungen vorab manuell prüfen möchtest. Der Kunde wird dann nach der Bestellung nicht automatisch zur Bezahlschnittstelle (z.B. Paypal) weitergeleitet und erhält eine abweichende E-Mail in der auf die manuelle Prüfung aufmerksam gemacht wird.
+Anschließend kannst du in deinem WooCommerce Backend über einen Button die Bestellung nach einer Prüfung ganz einfach bestätigen.
 
 = eKomi Integration =
 Mit nur wenigen Klicks lässt sich eKomi als Bewertungsmanagement-Dienstleister in WooCommerce Germanized einstellen. 
@@ -162,6 +162,14 @@ Bugs sowie Hilfe bei der Arbeit an WooCommerce Germanized werden gerne über uns
 1. Einstellungsmöglichkeiten für WooCommerce Germanized.
 
 == Changelog ==
+
+= 1.3.3 = 
+* Feature - email attachment drag & drop ordering
+* Feature - email plain text support
+* Fix - saving variation data
+* Fix - email template override notice (copy to woocommerce-germanized-pro instead of woocommerce)
+* Fix - unit base display fix (hide number if base = 1)
+* Fix - typo fixes
 
 = 1.3.2 = 
 * Feature - Better hook priority management

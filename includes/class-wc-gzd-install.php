@@ -148,6 +148,8 @@ class WC_GZD_Install {
 
 		delete_option( '_wc_gzd_hide_review_notice' );
 
+		delete_option( '_wc_gzd_hide_pro_notice' );
+
 		// Check if pages are needed
 		if ( wc_get_page_id( 'revocation' ) < 1 )
 			update_option( '_wc_gzd_needs_pages', 1 );

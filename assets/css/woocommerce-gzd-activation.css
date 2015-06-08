@@ -32,9 +32,14 @@
 	width: 100%;
 	margin-right: 0;
 }
+.dashboard_page_wc-gzd-about h3 .wc-gzd-pro {
+	font-size: 0.7em;
+	margin-left: 1em;
+}
 .dashboard_page_wc-gzd-about .wc-vendipro-features {
 	margin-top: 0;
 	border: none;
+	padding-bottom: 15px;
 }
 .dashboard_page_wc-gzd-about .wc-vendipro-features div h4 {
 	margin-top: 0.5em;
