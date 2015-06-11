@@ -153,7 +153,7 @@ class WC_GZD_Admin_Welcome {
 					</div>
 				</div>
 				<div class="vendipro-buttons">
-					<a href="https://vendidero.de/woocommerce-germanized-pro#multistep-checkout" target="_blank" class="button button-primary wc-gzd-button">Pro Version entdecken</a>
+					<a href="https://vendidero.de/woocommerce-germanized#pro" target="_blank" class="button button-primary wc-gzd-button">Pro Version entdecken</a>
 					<p class="price smaller">ab 69,95 € inkl. Mwst. - inkl. 1 Jahr Updates & Premium Support!</p>
 				</div>
 			</div>

@@ -41,6 +41,7 @@ class WC_GZD_Admin {
 		add_action( 'add_meta_boxes', array( $this, 'add_legal_page_metabox' ) );
 		add_action( 'add_meta_boxes', array( $this, 'add_product_mini_desc' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'settings_page_scroll_top' ) );
+		add_action( 'save_post', array( $this, 'save_legal_page_content' ), 10, 3 );
 	}
 
 	public function settings_page_scroll_top() {
@@ -74,7 +75,7 @@ class WC_GZD_Admin {
 			return;
 		}
 		echo '<p class="small">' . __( 'Add content which will be replacing default page content within emails.', 'woocommerce-germanized' ) . '</p>';
-		wp_editor( get_the_excerpt(), 'legal_page_email_content', array( 'textarea_name' => 'excerpt', 'textarea_rows' => 5 ) );
+		wp_editor( htmlspecialchars_decode( get_post_meta( $post->ID, '_legal_text', true ) ), 'legal_page_email_content', array( 'textarea_name' => '_legal_text', 'textarea_rows' => 5 ) );
 	}
 
 	public function add_product_mini_desc() {
@@ -84,6 +85,18 @@ class WC_GZD_Admin {
 			if ( ! $product->is_type( 'variable' ) )
 				add_meta_box( 'wc-gzd-product-mini-desc', __( 'Optional Mini Description', 'woocommerce-germanized' ), array( $this, 'init_product_mini_desc' ), 'product', 'advanced', 'high' );
 		}
+	}
+
+	public function save_legal_page_content( $post_id, $post, $update ) {
+
+		if ( $post->post_type != 'page' )
+			return;
+
+		if ( isset( $_POST[ '_legal_text' ] ) && ! empty( $_POST[ '_legal_text' ] ) )
+			update_post_meta( $post_id, '_legal_text', esc_html( $_POST[ '_legal_text' ] ) );
+		else
+			delete_post_meta( $post_id, '_legal_text' );
+		
 	}
 
 	public function init_product_mini_desc( $post ) {

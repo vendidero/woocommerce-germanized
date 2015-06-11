@@ -12,10 +12,13 @@ $post = $post_attach;
 
 setup_postdata( $post );
 
-$content = ( empty( $post->post_excerpt ) ? $post->post_content : $post->post_excerpt );
+$content = ( get_post_meta( $post->ID, '_legal_text' ) ? htmlspecialchars_decode( get_post_meta( '_legal_text' ) ) : $post->post_content );
+
 $print_title = true;
+
 if ( substr( trim( $content ), 0, 2 ) == '<h' )
 	$print_title = false;
+
 ?>
 
 <div class="wc-gzd-email-attach-post smaller" id="wc-gzd-email-attach-post-<?php the_id();?>">
@@ -26,13 +29,13 @@ if ( substr( trim( $content ), 0, 2 ) == '<h' )
 
 	<div class="wc-gzd-email-attached-content">
 
-		<?php if ( empty( $post->post_excerpt ) ) : ?>
+		<?php if ( ! get_post_meta( $post->ID, '_legal_text', true ) ) : ?>
 
 			<?php the_content();?>
 
 		<?php else : ?>
 
-			<?php the_excerpt(); ?>
+			<?php echo apply_filters( 'the_content', htmlspecialchars_decode( get_post_meta( $post->ID, '_legal_text', true ) ) ) ?>
 
 		<?php endif; ?>
 
