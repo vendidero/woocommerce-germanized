@@ -66,6 +66,8 @@ class WC_GZD_Emails {
 		
 		if ( ! empty( $type ) && $type->get_email_type() == 'plain' )
 			$this->add_template_footers();
+		
+		return $text;
 
 	}
  

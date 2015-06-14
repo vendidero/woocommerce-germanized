@@ -131,38 +131,72 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 
 	public static function save( $variation_id, $i ) {
 		
-		$variable_unit = ( isset( $_POST[ 'variable_unit' ] ) ? $_POST[ 'variable_unit' ] : array() );
-		$variable_unit_base = ( isset( $_POST[ 'variable_unit_base' ] ) ? $_POST[ 'variable_unit_base' ] : array() );
-		$variable_unit_price_regular = ( isset( $_POST[ 'variable_unit_price_regular' ] ) ? $_POST[ 'variable_unit_price_regular' ] : array() );
-		$variable_unit_price_sale = ( isset( $_POST[ 'variable_unit_price_sale' ] ) ? $_POST[ 'variable_unit_price_sale' ] : array() );
-		$variable_delivery_time = ( isset( $_POST[ 'variable_delivery_time' ] ) ? $_POST[ 'variable_delivery_time' ] : array() );
-		$variable_product_desc = ( isset( $_POST[ 'variable_product_mini_desc' ] ) ? $_POST[ 'variable_product_mini_desc' ] : array() );
+		$saveable = array(
+			'unit' 				 => ( isset( $_POST[ 'variable_unit' ] ) ? $_POST[ 'variable_unit' ] : array() ),
+			'unit_base' 		 => ( isset( $_POST[ 'variable_unit_base' ] ) ? $_POST[ 'variable_unit_base' ] : array() ),
+			'unit_price_regular' => ( isset( $_POST[ 'variable_unit_price_regular' ] ) ? $_POST[ 'variable_unit_price_regular' ] : array() ),
+			'unit_price_sale' 	 => ( isset( $_POST[ 'variable_unit_price_sale' ] ) ? $_POST[ 'variable_unit_price_sale' ] : array() ),
+			'delivery_time' 	 => ( isset( $_POST[ 'variable_delivery_time' ] ) ? $_POST[ 'variable_delivery_time' ] : array() ),
+			'product_desc'		 => ( isset( $_POST[ 'variable_product_mini_desc' ] ) ? $_POST[ 'variable_product_mini_desc' ] : array() ),
+		);
 
-		if ( isset( $variable_unit[ $i ] ) ) {
-			update_post_meta( $variation_id, '_unit', sanitize_text_field( $variable_unit[ $i ] ) );
-		}
-		if ( isset( $variable_unit_base[ $i ] ) ) {
-			update_post_meta( $variation_id, '_unit_base', ( $variable_unit_base[ $i ] === '' ) ? '' : wc_format_decimal( $variable_unit_base[ $i ] ) );
-		}
-		if ( isset( $variable_unit_price_regular[ $i ] ) ) {
-			update_post_meta( $variation_id, '_unit_price_regular', ( $variable_unit_price_regular[ $i ] === '' ) ? '' : wc_format_decimal( $variable_unit_price_regular[ $i ] ) );
-			update_post_meta( $variation_id, '_unit_price', ( $variable_unit_price_regular[ $i ] === '' ) ? '' : wc_format_decimal( $variable_unit_price_regular[ $i ] ) );
-		}
-		if ( isset( $variable_product_desc[ $i ] ) ) {
-			update_post_meta( $variation_id, '_mini_desc', esc_html( $variable_product_desc[ $i ] ) );
-		}
-		if ( isset( $variable_unit_price_sale[ $i ] ) ) {
-			update_post_meta( $variation_id, '_unit_price_sale', '' );
-			// Update Sale Price only if is on sale (Cron?!)
-			if ( $variable_unit_price_sale[ $i ] !== '' ) {
-				update_post_meta( $variation_id, '_unit_price_sale', wc_format_decimal( $variable_unit_price_sale[ $i ] ) );
-				update_post_meta( $variation_id, '_unit_price', wc_format_decimal( $variable_unit_price_sale[ $i ] ) );
+		foreach ( $saveable as $key => $item ) {
+			
+			if ( ! isset( $item[ $i ] ) || empty( $item[ $i ] ) ) {
+				
+				unset( $saveable[ $key ][ $i ] );
+				delete_post_meta( $variation_id, '_' . $key );
+			
 			}
+
+		} 
+
+		if ( isset( $saveable[ 'unit' ][ $i ] ) ) {
+			update_post_meta( $variation_id, '_unit', sanitize_text_field( $saveable[ 'unit' ][ $i ] ) );
 		}
-		if ( isset( $variable_delivery_time[ $i ] ) && ! empty( $variable_delivery_time[ $i ] ) && ! is_numeric( $variable_delivery_time[ $i ] ) )
-			wp_set_post_terms( $variation_id, sanitize_text_field( $variable_delivery_time[ $i ] ), 'product_delivery_time' );
-		else
-			wp_set_object_terms( $variation_id, absint( $variable_delivery_time[ $i ] ), 'product_delivery_time' );
+
+		if ( isset( $saveable[ 'unit_base' ][ $i ] ) ) {
+			update_post_meta( $variation_id, '_unit_base', wc_format_decimal( $saveable[ 'unit_base' ][ $i ] ) );
+		}
+		
+		if ( isset( $saveable[ 'unit_price_regular' ][ $i ] ) ) {
+			update_post_meta( $variation_id, '_unit_price_regular', wc_format_decimal( $saveable[ 'unit_price_regular' ][ $i ] ) );
+			update_post_meta( $variation_id, '_unit_price', wc_format_decimal( $saveable[ 'unit_price_regular' ][ $i ] ) );
+		}
+		
+		if ( isset( $saveable[ 'product_desc' ][ $i ] ) ) {
+			update_post_meta( $variation_id, '_mini_desc', esc_html( $saveable[ 'product_desc' ][ $i ] ) );
+		}
+		
+		if ( isset( $saveable[ 'unit_price_sale' ][ $i ] ) ) {
+			
+			update_post_meta( $variation_id, '_unit_price_sale', wc_format_decimal( $saveable[ 'unit_price_sale' ][ $i ] ) );
+			update_post_meta( $variation_id, '_unit_price', wc_format_decimal( $saveable[ 'unit_price_sale' ][ $i ] ) );
+			
+		} else {
+
+			if ( isset( $saveable[ 'unit_price_regular' ][ $i ] ) ) {
+			
+				update_post_meta( $variation_id, '_unit_price_regular', wc_format_decimal( $saveable[ 'unit_price_regular' ][ $i ] ) );
+				update_post_meta( $variation_id, '_unit_price', wc_format_decimal( $saveable[ 'unit_price_regular' ][ $i ] ) );
+			
+			}
+
+		}
+
+		if ( isset( $saveable[ 'delivery_time' ][ $i ] ) ) {
+			
+			if ( ! is_numeric( $saveable[ 'delivery_time' ][ $i ] ) )
+				wp_set_post_terms( $variation_id, sanitize_text_field( $saveable[ 'delivery_time' ][ $i ] ), 'product_delivery_time' );
+			else
+				wp_set_object_terms( $variation_id, absint( $saveable[ 'delivery_time' ][ $i ] ), 'product_delivery_time' );
+		
+		} else {
+		
+			wp_delete_object_term_relationships( $variation_id, 'product_delivery_time' );
+		
+		}
+	
 	}
 
 }
