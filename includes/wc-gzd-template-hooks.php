@@ -120,6 +120,7 @@ add_action( 'woocommerce_after_checkout_validation', 'woocommerce_gzd_checkout_v
  */
 remove_action( 'woocommerce_order_details_after_order_table', 'woocommerce_order_again_button' );
 add_action( 'woocommerce_thankyou_order_received_text', 'woocommerce_gzd_template_order_success_text', 0, 1 );
+add_action( 'woocommerce_thankyou', 'woocommerce_gzd_template_order_pay_now_button', wc_gzd_get_hook_priority( 'order_pay_now_button' ), 1 );
 add_action( 'woocommerce_order_item_quantity_html', 'wc_gzd_cart_product_delivery_time', wc_gzd_get_hook_priority( 'order_product_delivery_time' ), 3 );
 add_action( 'woocommerce_order_item_quantity_html', 'wc_gzd_cart_product_item_desc', wc_gzd_get_hook_priority( 'order_product_item_desc' ), 3 );
 add_filter( 'woocommerce_order_formatted_line_subtotal', 'wc_gzd_cart_product_unit_price', wc_gzd_get_hook_priority( 'order_product_unit_price' ), 3 );
@@ -127,6 +128,14 @@ if ( get_option( 'woocommerce_gzd_hide_order_success_details' ) == 'yes' )
 	remove_action( 'woocommerce_thankyou', 'woocommerce_order_details_table', WC_GZD_Hook_Priorities::instance()->get_priority( 'woocommerce_thankyou', 'woocommerce_order_details_table' ) );
 if ( get_option( 'woocommerce_gzd_trusted_shops_id' ) )
 	add_action( 'woocommerce_thankyou', 'woocommerce_gzd_template_checkout_thankyou_trusted_shops', 10, 1 );
+
+/**
+ * Customer Account Creation
+ */
+if ( get_option( 'woocommerce_gzd_customer_account_checkbox' ) == 'yes' ) {
+	add_action( 'woocommerce_register_form', 'woocommerce_gzd_template_customer_account_checkbox', PHP_INT_MAX );
+	add_filter( 'woocommerce_process_registration_errors', 'woocommerce_gzd_template_customer_account_checkbox_error', 10, 4 ); 
+}
 
 /**
  * Footer

@@ -3,7 +3,7 @@
  * Plugin Name: WooCommerce Germanized
  * Plugin URI: https://www.vendidero.de/woocommerce-germanized
  * Description: Extends WooCommerce to become a legally compliant store for the german market.
- * Version: 1.3.3
+ * Version: 1.3.4
  * Author: Vendidero
  * Author URI: https://vendidero.de
  * Requires at least: 3.8
@@ -26,7 +26,7 @@ final class WooCommerce_Germanized {
 	 *
 	 * @var string
 	 */
-	public $version = '1.3.3';
+	public $version = '1.3.4';
 
 	/**
 	 * Single instance of WooCommerce Germanized Main Class
@@ -700,16 +700,24 @@ final class WooCommerce_Germanized {
 	 * @param  mixed 	  $return 	
 	 * @param  mixed  	  $order
 	 */
-	public function send_order_confirmation_mails( $return, $order ) {
+	public function send_order_confirmation_mails( $result, $order ) {
+		
 		if ( ! is_object( $order ) )
 			$order = wc_get_order( $order );
+		
+		// Save payment link
+		if ( isset( $result[ 'redirect' ] ) && $result[ 'redirect' ] != $order->get_checkout_order_received_url() )
+			update_post_meta( $order->id, '_order_payment_info', $result[ 'redirect' ] );		
+
 		// Send order processing mail
 		$mailer = WC()->mailer();
 		$mails = $mailer->get_emails();
 		$mails[ 'WC_Email_Customer_Processing_Order' ]->trigger( $order->id );
 		$mails[ 'WC_Email_New_Order' ]->trigger( $order->id );
+
 		do_action( 'woocommerce_germanized_order_confirmation_sent', $order->id );
-		return $return;
+
+		return $result;
 	}
 
 	/**

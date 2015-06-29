@@ -4,7 +4,7 @@ Tags: woocommerce, german market, german, germany, deutsch, deutschland, de, de_
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=info@vendidero.de&item_name=Donation+for+WooCommerce+Germanized
 Requires at least: 3.8
 Tested up to: 4.2
-Stable tag: 1.3.3
+Stable tag: 1.3.4
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -162,6 +162,14 @@ Bugs sowie Hilfe bei der Arbeit an WooCommerce Germanized werden gerne über uns
 1. Einstellungsmöglichkeiten für WooCommerce Germanized.
 
 == Changelog ==
+
+= 1.3.4 = 
+* Feature - optionally stop customers from manually cancelling orders (paypal etc.)
+* Feature - optionally show pay now button in confirmation email and success page
+* Feature - optionally customize default customer account creation checkbox text
+* Feature - optionally set checkbox for customer registration form
+* Fix - wpml string compatibility
+* Fix - unit price saving (sale price = 0 fix)
 
 = 1.3.3 = 
 * Feature - email attachment drag & drop ordering

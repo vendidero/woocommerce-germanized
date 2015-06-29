@@ -366,6 +366,17 @@ if ( ! function_exists( 'woocommerce_gzd_template_order_submit' ) ) {
 
 }
 
+if ( ! function_exists( 'woocommerce_gzd_template_order_pay_now_button' ) ) {
+	
+	/**
+	 * Pay now button on success page
+	 */
+	function woocommerce_gzd_template_order_pay_now_button( $order_id ) {
+		WC_GZD_Checkout::instance()->add_payment_link( $order_id );
+	}
+
+}
+
 if ( ! function_exists( 'woocommerce_gzd_template_set_order_button_remove_filter' ) ) {
 	
 	/**
@@ -395,6 +406,26 @@ if ( ! function_exists( 'woocommerce_gzd_template_set_order_button_show_filter' 
 	 */
 	function woocommerce_gzd_template_set_order_button_show_filter() {
 		remove_filter( 'woocommerce_order_button_html', 'woocommerce_gzd_template_button_temporary_hide', PHP_INT_MAX );
+	}
+
+}
+
+if ( ! function_exists( 'woocommerce_gzd_template_customer_account_checkbox' ) ) {
+
+	function woocommerce_gzd_template_customer_account_checkbox() {
+		wc_get_template( 'myaccount/form-register-checkbox.php' );
+	}
+
+}
+
+if ( ! function_exists( 'woocommerce_gzd_template_customer_account_checkbox_error' ) ) {
+
+	function woocommerce_gzd_template_customer_account_checkbox_error( $validation_error, $username, $password, $email ) {
+		
+		if ( ! isset( $_POST[ 'privacy' ] ) && empty( $_POST[ 'privacy' ] ) )
+			return new WP_Error( 'privacy', __( 'Please accept the creation of a new customer account', 'woocommerce-germanized' ) );
+
+		return $validation_error;
 	}
 
 }

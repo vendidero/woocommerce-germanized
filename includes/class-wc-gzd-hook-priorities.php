@@ -97,6 +97,7 @@ class WC_GZD_Hook_Priorities {
 			'order_product_delivery_time'	 => 0,
 			'order_product_item_desc'		 => 0,
 			'order_product_unit_price' 		 => 0,
+			'order_pay_now_button'			 => 0,
 			'email_product_unit_price'		 => 0,
 			'email_product_delivery_time'	 => 1,
 			'email_product_item_desc'		 => 2,

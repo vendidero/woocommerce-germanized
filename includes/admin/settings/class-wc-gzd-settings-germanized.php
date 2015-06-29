@@ -170,6 +170,15 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 				'default'	=> 'yes',
 			),
 
+			array(
+				'title' 	=> __( 'Disallow cancellations', 'woocommerce-germanized' ),
+				'desc' 		=> __( 'Don’t allow customers to manually cancel orders.', 'woocommerce-germanized' ),
+				'desc_tip'	=> __( 'By default payment methods like PayPal allow order cancellation by clicking the abort link. This option will stop customers from manually cancel orders.', 'woocommerce-germanized' ),
+				'id' 		=> 'woocommerce_gzd_checkout_stop_order_cancellation',
+				'type' 		=> 'checkbox',
+				'default'	=> 'yes',
+			),
+
 			array( 'type' => 'sectionend', 'id' => 'general_options' ),
 
 			array(	'title' => __( 'Contract', 'woocommerce-germanized' ), 'type' => 'title', 'id' => 'contract_options', 'desc' => '<div class="notice inline notice-warning"><p>' . sprintf( __( '%sUpgrade to %spro%s%s to unlock this feature and get premium support.', 'woocommerce-germanized' ), '<a href="https://vendidero.de/woocommerce-germanized" class="button">', '<span class="wc-gzd-pro">', '</span>', '</a>' ) . '</p></div>' ),
@@ -335,6 +344,33 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 			array( 'type' => 'sectionend', 'id' => 'fees_options' ),
 
 			array( 'title' => __( 'Customers', 'woocommerce-germanized' ), 'type' => 'title', 'desc' => '', 'id' => 'customer_options' ),
+
+			array(
+				'title' 	=> __( 'Checkbox', 'woocommerce-germanized' ),
+				'desc' 		=> __( 'Add a checkbox to customer registration form.', 'woocommerce-germanized' ),
+				'id' 		=> 'woocommerce_gzd_customer_account_checkbox',
+				'type' 		=> 'checkbox',
+				'default'	=> 'yes',
+			),
+
+			array(
+				'title' 	=> __( 'Checkbox text', 'woocommerce-germanized' ),
+				'desc' 		=> __( 'Choose a Plain Text which will be shown as checkbox text for customer account creation. Use {term_link}{/term_link}, {data_security_link}{/data_security_link}, {revocation_link}{/revocation_link} as Placeholders for the links to legal pages.', 'woocommerce-germanized' ),
+				'desc_tip'	=> true,
+				'default'   =>  __( 'Yes, I’d like create a new account and have read and understood the {data_security_link}data privacy statement{/data_security_link}.', 'woocommerce-germanized' ),
+				'css' 		=> 'width:100%; height: 65px;',
+				'id' 		=> 'woocommerce_gzd_customer_account_text',
+				'type' 		=> 'textarea',
+			),
+
+			array(
+				'title' 	=> __( 'Checkout', 'woocommerce-germanized' ),
+				'desc' 		=> __( 'Replace default WooCommerce text regarding account creation during checkout.', 'woocommerce-germanized' ),
+				'desc_tip'	=> __( 'Use the text from above instead of the default WooCommerce text regarding account creation during checkout. This checkbox is only show if you have activated guest accounts.', 'woocommerce-germanized' ),
+				'id' 		=> 'woocommerce_gzd_customer_account_checkout_checkbox',
+				'type' 		=> 'checkbox',
+				'default'	=> 'yes',
+			),
 
 			array(
 				'title' 	=> __( 'Customer Double Opt In', 'woocommerce-germanized' ),
@@ -688,6 +724,15 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 				'css' 		=> 'width:100%; height: 65px;',
 				'id' 		=> 'woocommerce_gzd_checkout_legal_text_digital',
 				'type' 		=> 'textarea',
+			),
+
+			array(
+				'title' 	=> __( 'Pay now Button', 'woocommerce-germanized' ),
+				'desc' 		=> __( 'Add a pay now button to emails and order success page.', 'woocommerce-germanized' ),
+				'desc_tip' 	=> __( 'Add a pay now button to order confirmation email and order success page if the order awaits payment (PayPal etc).', 'woocommerce-germanized' ),
+				'id' 		=> 'woocommerce_gzd_order_pay_now_button',
+				'type' 		=> 'checkbox',
+				'default'	=> 'yes',
 			),
 
 			array(

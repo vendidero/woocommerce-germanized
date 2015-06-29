@@ -51,6 +51,74 @@ class WC_GZD_Checkout {
 		add_action( 'woocommerce_review_order_before_shipping', array( $this, 'remove_shipping_rates' ), 0 );
 		// Add better fee taxation
 		add_action( 'woocommerce_cart_calculate_fees', array( $this, 'do_fee_tax_calculation' ), PHP_INT_MAX, 1 );
+		// Disallow user order cancellation
+		if ( get_option( 'woocommerce_gzd_checkout_stop_order_cancellation' ) == 'yes' ) {
+			add_filter( 'woocommerce_get_cancel_order_url', array( $this, 'cancel_order_url' ), PHP_INT_MAX, 1 );
+			add_filter( 'woocommerce_get_cancel_order_url_raw', array( $this, 'cancel_order_url' ), PHP_INT_MAX, 1 );
+			add_filter( 'user_has_cap', array( $this, 'disallow_user_order_cancellation' ), 15, 3 );
+		}
+		// Customer account checkbox text
+		if ( get_option( 'woocommerce_gzd_customer_account_checkout_checkbox' ) == 'yes' )
+			add_filter( 'gettext', array( $this, 'set_customer_account_checkbox_text' ), 10, 3 );
+	}
+
+	public function set_customer_account_checkbox_text( $translated, $original, $domain ) {
+		$search = "Create an account?";
+		if ( $domain == 'woocommerce' && $original == $search )
+			return wc_gzd_get_legal_text( get_option( 'woocommerce_gzd_customer_account_text' ) );
+		return $translated;
+	}
+
+	public function get_order_payment_url( $order_id ) {
+		
+		$order = wc_get_order( $order_id );
+		
+		if ( $order->order_payment_info )
+			return $order->order_payment_info;
+		
+		return false;
+	}
+
+	public function add_payment_link( $order_id ) {
+
+		if ( get_option( 'woocommerce_gzd_order_pay_now_button' ) == 'no' )
+			return false;
+		
+		$order = wc_get_order( $order_id );
+		
+		if ( ! $order->needs_payment() )
+			return;
+		
+		if ( $url = $this->get_order_payment_url( $order_id ) )
+			wc_get_template( 'order/order-pay-now-button.php', array( 'url' => $url, 'order_id' => $order_id ) );
+	}
+
+	public function disallow_user_order_cancellation( $allcaps, $caps, $args ) {
+		if ( isset( $caps[0] ) ) {
+			switch ( $caps[0] ) {
+				case 'cancel_order' :
+					$allcaps['cancel_order'] = false;
+				break;
+			}
+		}
+		return $allcaps;
+	}
+
+	public function cancel_order_url( $url ) {
+		
+		// Default to home url
+		$return = get_permalink( wc_get_page_id( 'shop' ) );
+
+		// Extract order id and use order success page as return url
+		$search = preg_match( '/order_id=([0-9]+)/', $url, $matches );
+		
+		if ( $search && isset( $matches[1] ) ) {
+			$order_id = absint( $matches[1] );
+			$order = wc_get_order( $order_id );
+			$return = $order->get_checkout_order_received_url();
+		}
+		
+		return $return;
 	}
 
 	public function init_fields() {

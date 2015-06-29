@@ -58,13 +58,24 @@ class WC_GZD_Emails {
 
 		add_filter( 'woocommerce_order_item_product', array( $this, 'set_order_email_filters' ), 0, 1 );
 
+		// Pay now button
+		add_action( 'woocommerce_email_before_order_table', array( $this, 'email_pay_now_button' ), 0, 1 );
+
+	}
+
+	public function email_pay_now_button( $order ) {
+
+		$type = $this->get_current_email_object();
+
+		if ( $type && $type->id == 'customer_processing_order' )
+			WC_GZD_Checkout::instance()->add_payment_link( $order->id );
 	}
 
 	public function email_footer_plain( $text ) {
 
-		$type = ( ! empty( $GLOBALS[ 'wc_gzd_template_name' ] ) ) ? $this->get_email_instance_by_tpl( $GLOBALS[ 'wc_gzd_template_name' ] ) : '';
+		$type = $this->get_current_email_object();
 		
-		if ( ! empty( $type ) && $type->get_email_type() == 'plain' )
+		if ( $type && $type->get_email_type() == 'plain' )
 			$this->add_template_footers();
 		
 		return $text;
@@ -143,9 +154,21 @@ class WC_GZD_Emails {
 	 * Add global footer Hooks to Email templates
 	 */
 	public function add_template_footers() {
-		$type = ( ! empty( $GLOBALS[ 'wc_gzd_template_name' ] ) ) ? $this->get_email_instance_by_tpl( $GLOBALS[ 'wc_gzd_template_name' ] ) : '';
-		if ( ! empty( $type ) )
+		$type = $this->get_current_email_object();
+		if ( $type )
 			do_action( 'woocommerce_germanized_email_footer_' . $type->id, $type );
+	}
+
+	public function get_current_email_object() {
+		
+		if ( isset( $GLOBALS[ 'wc_gzd_template_name' ] ) && ! empty( $GLOBALS[ 'wc_gzd_template_name' ] ) ) {
+			
+			$object = $this->get_email_instance_by_tpl( $GLOBALS[ 'wc_gzd_template_name' ] );
+			if ( is_object( $object ) )
+				return $object;
+		}
+
+		return false;
 	}
 
 	/**
