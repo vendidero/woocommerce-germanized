@@ -46,7 +46,7 @@ class WC_GZD_WPML_Helper {
         global $pagenow;
         if( is_admin() && $pagenow == 'options-permalink.php' )
             return $id;
-        return icl_object_id( $id, 'page', true );
+        return apply_filters( 'translate_object_id', $id, 'page', true );
     }
 
 }

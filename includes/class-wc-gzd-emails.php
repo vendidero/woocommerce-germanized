@@ -12,7 +12,7 @@ class WC_GZD_Emails {
 	 * contains options and page ids
 	 * @var array
 	 */
-	private $footer_attachments;
+	private $footer_attachments = array();
 
 	/**
 	 * Adds legal page ids to different options and adds a hook to the email footer
@@ -24,7 +24,7 @@ class WC_GZD_Emails {
 		$this->footer_attachments = array();
 
 		foreach ( $attachment_order as $key => $order )
-			$this->footer_attachments[ 'woocommerce_gzd_mail_attach_' . $key ] = woocommerce_get_page_id ( $key );
+			$this->footer_attachments[ 'woocommerce_gzd_mail_attach_' . $key ] = $key;
 
 		add_action( 'woocommerce_email', array( $this, 'email_hooks' ), 0, 1 );
 	}
@@ -140,7 +140,8 @@ class WC_GZD_Emails {
 	 */
 	public function hook_mail_footer( $mail ) {
 		if ( ! empty( $this->footer_attachments ) ) {
-			foreach ( $this->footer_attachments as $option_key => $option ) {
+			foreach ( $this->footer_attachments as $option_key => $page_option ) {
+				$option = woocommerce_get_page_id ( $page_option );
 				if ( $option == -1 || ! get_option( $option_key ) )
 					continue;
 				if ( in_array( $mail->id, get_option( $option_key ) ) ) {
