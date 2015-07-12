@@ -137,13 +137,13 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 			'unit_price_regular' => ( isset( $_POST[ 'variable_unit_price_regular' ] ) ? $_POST[ 'variable_unit_price_regular' ] : array() ),
 			'unit_price_sale' 	 => ( isset( $_POST[ 'variable_unit_price_sale' ] ) ? $_POST[ 'variable_unit_price_sale' ] : array() ),
 			'delivery_time' 	 => ( isset( $_POST[ 'variable_delivery_time' ] ) ? $_POST[ 'variable_delivery_time' ] : array() ),
-			'product_desc'		 => ( isset( $_POST[ 'variable_product_mini_desc' ] ) ? $_POST[ 'variable_product_mini_desc' ] : array() ),
+			'mini_desc'		 	 => ( isset( $_POST[ 'variable_product_mini_desc' ] ) ? $_POST[ 'variable_product_mini_desc' ] : array() ),
 		);
 
 		foreach ( $saveable as $key => $item ) {
 			
 			if ( ! isset( $item[ $i ] ) || empty( $item[ $i ] ) ) {
-				
+
 				unset( $saveable[ $key ][ $i ] );
 				delete_post_meta( $variation_id, '_' . $key );
 			
@@ -164,8 +164,8 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 			update_post_meta( $variation_id, '_unit_price', wc_format_decimal( $saveable[ 'unit_price_regular' ][ $i ] ) );
 		}
 		
-		if ( isset( $saveable[ 'product_desc' ][ $i ] ) ) {
-			update_post_meta( $variation_id, '_mini_desc', esc_html( $saveable[ 'product_desc' ][ $i ] ) );
+		if ( isset( $saveable[ 'mini_desc' ][ $i ] ) ) {
+			update_post_meta( $variation_id, '_mini_desc', esc_html( $saveable[ 'mini_desc' ][ $i ] ) );
 		}
 		
 		if ( isset( $saveable[ 'unit_price_sale' ][ $i ] ) ) {
