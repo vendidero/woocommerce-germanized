@@ -10,6 +10,8 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
+include( 'wc-gzd-product-functions.php' );
+
 /**
  * Format tax rate percentage for output in frontend
  *  

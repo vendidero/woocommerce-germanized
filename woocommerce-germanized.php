@@ -357,8 +357,9 @@ final class WooCommerce_Germanized {
 		include_once ( 'includes/abstracts/abstract-wc-gzd-product.php' );
 
 		include_once ( 'includes/class-wc-gzd-wpml-helper.php' );
-
+		
 		include_once ( 'includes/wc-gzd-cart-functions.php' );
+
 		include_once ( 'includes/class-wc-gzd-checkout.php' );
 
 	}

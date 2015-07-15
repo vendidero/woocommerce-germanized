@@ -31,11 +31,11 @@ class WC_GZD_Product {
 		if ( is_numeric( $product ) )
 			$product = WC()->product_factory->get_product_standalone( get_post( $product ) );
 		$this->gzd_variation_level_meta = array(
-			'unit' 				 => 0,
-			'unit_price' 		 => 0,
-			'unit_base' 		 => 0,
-			'unit_price_regular' => 0,
-			'unit_price_sale' 	 => 0,
+			'unit' 				 => '',
+			'unit_price' 		 => '',
+			'unit_base' 		 => '',
+			'unit_price_regular' => '',
+			'unit_price_sale' 	 => '',
 			'mini_desc' 		 => '',
 			'gzd_product' 		 => NULL,
 		);
@@ -201,7 +201,7 @@ class WC_GZD_Product {
 	 */
 	public function get_unit_price_including_tax( $qty = 1, $price = '' ) {
 		$price = ( $price == '' ) ? $this->unit_price : $price;
-		return $this->child->get_price_including_tax( $qty, $price );
+		return $this->get_price_including_tax( $qty, $price );
 	}
 
 	/**
@@ -222,7 +222,7 @@ class WC_GZD_Product {
 	 * @return boolean 
 	 */
 	public function is_on_unit_sale() {
-		return ( $this->get_unit_sale_price() ) ? true : false;
+		return apply_filters( 'woocommerce_gzd_product_is_on_unit_sale', ( $this->get_unit_sale_price() !== $this->get_unit_regular_price() && $this->get_unit_sale_price() == $this->get_unit_price() ), $this );
 	}
 
 	/**
