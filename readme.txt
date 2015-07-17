@@ -4,7 +4,7 @@ Tags: woocommerce, german market, german, germany, deutsch, deutschland, de, de_
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=info@vendidero.de&item_name=Donation+for+WooCommerce+Germanized
 Requires at least: 3.8
 Tested up to: 4.2
-Stable tag: 1.3.4
+Stable tag: 1.3.5
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -162,6 +162,15 @@ Bugs sowie Hilfe bei der Arbeit an WooCommerce Germanized werden gerne über uns
 1. Einstellungsmöglichkeiten für WooCommerce Germanized.
 
 == Changelog ==
+
+= 1.3.5 = 
+* Feature - force free shipping method if available (optional)
+* Feature - unit price sale scheduling (based on price schedules)
+* Fix - product description removal
+* Fix - better product data saving
+* Fix - better email confirmation hooks
+* Fix - wpml email attachment translation fix
+* Fix - performance improvements
 
 = 1.3.4 = 
 * Feature - optionally stop customers from manually cancelling orders (paypal etc.)
