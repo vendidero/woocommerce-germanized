@@ -626,6 +626,15 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 			: array() ),
 
 			array(
+				'title' 	=> __( 'Force free shipping', 'woocommerce-germanized' ),
+				'desc' 		=> __( 'Force free shipping method if available?', 'woocommerce-germanized' ),
+				'id' 		=> 'woocommerce_gzd_display_checkout_free_shipping_select',
+				'default'	=> 'no',
+				'type' 		=> 'checkbox',
+				'desc_tip'	=> __( 'By default WooCommerce will let customers choose other shipping methods than free shipping (if available). This option will force free shipping if available.', 'woocommerce-germanized' ),
+			),
+
+			array(
 				'title' 	=> __( 'Hide taxes estimated', 'woocommerce-germanized' ),
 				'desc' 		=> __( 'Do you want to hide the "taxes and shipping estimated" text from your cart?', 'woocommerce-germanized' ),
 				'id' 		=> 'woocommerce_gzd_display_hide_cart_tax_estimated',

@@ -58,6 +58,19 @@ class WC_GZD_Checkout {
 			add_filter( 'user_has_cap', array( $this, 'disallow_user_order_cancellation' ), 15, 3 );
 		}
 		add_action( 'template_redirect', array( $this, 'init_gettext_replacement' ) );
+		// Free Shipping auto select
+		if ( get_option( 'woocommerce_gzd_display_checkout_free_shipping_select' ) == 'yes' )
+			add_filter( 'woocommerce_package_rates', array( $this, 'free_shipping_auto_select' ) );
+	}
+
+	public function free_shipping_auto_select( $rates ) {
+		if ( ( is_checkout() || is_cart() ) && isset( $rates['free_shipping'] ) ) {
+			foreach ( $rates as $key => $value ) {
+				if ( 'free_shipping' !== $key )
+					unset( $rates[ $key ] );
+			}
+		}
+		return $rates;
 	}
 
 	public function init_gettext_replacement() {
