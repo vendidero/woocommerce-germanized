@@ -49,6 +49,14 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 				<label for="variable_unit_base"><?php echo __( 'Unit Base', 'woocommerce-germanized' );?>:</label>
 				<input class="input-text wc_input_decimal" size="6" type="text" name="variable_unit_base[<?php echo $loop; ?>]" value="<?php echo ( ! empty( $_product->gzd_product->unit_base  ) ? esc_attr( wc_format_localized_decimal( $_product->gzd_product->unit_base ) ) : '' );?>" placeholder="" />
 			</p>
+			<p class="form-row form-row-full _unit_price_auto_field">
+				<label for="variable_unit_price_auto_<?php echo $loop; ?>"><?php echo __( 'Calculation', 'woocommerce-germanized' ); ?>:</label>
+				<input class="input-text wc_input_price" id="variable_unit_price_auto_<?php echo $loop; ?>" type="checkbox" name="variable_unit_price_auto[<?php echo $loop; ?>]" value="yes" <?php checked( 'yes', get_post_meta( $variation_id, '_unit_price_auto', true ) );?> />
+				<span class="description">
+					<span class="wc-gzd-premium-desc"><?php echo __( 'Calculate unit prices automatically based on product price', 'woocommerce-germanized' ); ?></span>
+					<a href="https://vendidero.de/woocommerce-germanized#buy" target="_blank" class="wc-gzd-pro">pro</a>
+				</span>
+			</p>
 			<p class="form-row form-row-first">
 				<label for="variable_unit_price_regular"><?php echo __( 'Regular Unit Price', 'woocommerce-germanized' ) . ' (' . get_woocommerce_currency_symbol() . ')'; ?>:</label>
 				<input class="input-text wc_input_price" size="5" type="text" name="variable_unit_price_regular[<?php echo $loop; ?>]" value="<?php echo ( ! empty( $_product->gzd_product->unit_price_regular ) ? esc_attr( wc_format_localized_price( $_product->gzd_product->unit_price_regular ) ) : '' );?>" placeholder="" />
@@ -138,6 +146,7 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 		$data = array(
 			'_unit' => '',
 			'_unit_base' => '',
+			'_unit_price_auto' => '',
 			'_unit_price_regular' => '',
 			'_unit_price_sale' => '',
 			'_mini_desc' => '',
@@ -152,6 +161,7 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 		$data[ 'product-type' ] = $_POST[ 'product-type' ];
 		$data[ '_sale_price_dates_from' ] = $_POST['variable_sale_price_dates_from'][$i];
 		$data[ '_sale_price_dates_to' ] = $_POST['variable_sale_price_dates_to'][$i];
+		$data[ '_sale_price' ] = $_POST['variable_sale_price'][$i];
 
 		WC_Germanized_Meta_Box_Product_Data::save_product_data( $variation_id, $data, true );
 		

@@ -32,6 +32,8 @@ class WC_Germanized_Meta_Box_Product_Data {
 
 		woocommerce_wp_select( array( 'id' => '_unit', 'label' => __( 'Unit', 'woocommerce-germanized' ), 'options' => array_merge( array( 'none' => __( 'Select unit', 'woocommerce-germanized' ) ), WC_germanized()->units->get_units() ), 'desc_tip' => true, 'description' => __( 'Needed if selling on a per unit basis', 'woocommerce-germanized' ) ) );
 		woocommerce_wp_text_input( array( 'id' => '_unit_base', 'label' => __( 'Unit Base', 'woocommerce-germanized' ), 'data_type' => 'decimal', 'desc_tip' => true, 'description' => __( 'Unit price per amount (e.g. 100)', 'woocommerce-germanized' ) ) );
+		woocommerce_wp_checkbox( array( 'id' => '_unit_price_auto', 'label' => __( 'Calculation', 'woocommerce-germanized' ), 'description' => '<span class="wc-gzd-premium-desc">' . __( 'Calculate unit prices automatically based on product price', 'woocommerce-germanized' ) . '</span> <a href="https://vendidero.de/woocommerce-germanized#buy" target="_blank" class="wc-gzd-pro">pro</a>' ) );
+
 		woocommerce_wp_text_input( array( 'id' => '_unit_price_regular', 'label' => __( 'Regular Unit Price', 'woocommerce-germanized' ) . ' (' . get_woocommerce_currency_symbol() . ')', 'data_type' => 'price' ) );
 		woocommerce_wp_text_input( array( 'id' => '_unit_price_sale', 'label' => __( 'Sale Unit Price', 'woocommerce-germanized' ) . ' (' . get_woocommerce_currency_symbol() . ')', 'data_type' => 'price' ) );
 		
@@ -53,12 +55,14 @@ class WC_Germanized_Meta_Box_Product_Data {
 			'product-type' => '',
 			'_unit' => '',
 			'_unit_base' => '',
+			'_unit_price_auto' => '',
 			'_unit_price_regular' => '',
 			'_unit_price_sale' => '',
 			'_mini_desc' => '',
 			'delivery_time' => '',
 			'_sale_price_dates_from' => '',
 			'_sale_price_dates_to' => '',
+			'_sale_price' => '',
 		);
 
 		foreach ( $data as $k => $v ) {
@@ -74,12 +78,14 @@ class WC_Germanized_Meta_Box_Product_Data {
 		$product_type    = empty( $data['product-type'] ) ? 'simple' : sanitize_title( stripslashes( $data['product-type'] ) );
 		
 		if ( isset( $data['_unit'] ) ) {
-			update_post_meta( $post_id, '_unit', ( $data['unit'] === '' ? '' : sanitize_text_field( $data['_unit'] ) ) );
+			update_post_meta( $post_id, '_unit', ( $data['_unit'] === '' ? '' : sanitize_text_field( $data['_unit'] ) ) );
 		}
 		
 		if ( isset( $data['_unit_base'] ) ) {
 			update_post_meta( $post_id, '_unit_base', ( $data['_unit_base'] === '' ) ? '' : wc_format_decimal( $data['_unit_base'] ) );
 		}
+
+		update_post_meta( $post_id, '_unit_price_auto', ( isset( $data['_unit_price_auto'] ) ) ? 'yes' : '' );
 		
 		if ( isset( $data['_unit_price_regular'] ) ) {
 			update_post_meta( $post_id, '_unit_price_regular', ( $data['_unit_price_regular'] === '' ) ? '' : wc_format_decimal( $data['_unit_price_regular'] ) );
@@ -87,6 +93,11 @@ class WC_Germanized_Meta_Box_Product_Data {
 		}
 		
 		if ( isset( $data['_unit_price_sale'] ) ) {
+
+			// Unset unit price sale if no product sale price has been defined
+			if ( ! isset( $data['_sale_price'] ) || $data['_sale_price'] === '' )
+				$data['_unit_price_sale'] = '';
+
 			update_post_meta( $post_id, '_unit_price_sale', ( $data['_unit_price_sale'] === '' ) ? '' : wc_format_decimal( $data['_unit_price_sale'] ) );
 		}
 		

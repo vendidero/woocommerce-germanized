@@ -85,7 +85,13 @@ table.data_table tr td p.form-field {
 
 .wc-gzd-pro {
 	background: #222;
+	font-style: normal;
+	opacity: 1 !important;
 	text-decoration: none;
+}
+
+.wc-gzd-pro:visited {
+	color: #FFF;
 }
 
 .wc-gzd-pro:hover {
@@ -104,6 +110,10 @@ table.data_table tr td p.form-field {
 	width: 100%;
 	height: auto;
 	opacity: 0.7;
+}
+
+._unit_price_auto_field label, ._unit_price_auto_field input, ._unit_price_auto_field .wc-gzd-premium-desc {
+	opacity: 0.6;
 }
 
 table.wc-gzd-tax-example tr th, table.wc-gzd-tax-example tr td {
