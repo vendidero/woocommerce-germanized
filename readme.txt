@@ -167,6 +167,7 @@ Bugs sowie Hilfe bei der Arbeit an WooCommerce Germanized werden gerne über uns
 * Feature - force free shipping method if available (optional)
 * Feature - unit price sale scheduling (based on price schedules)
 * Feature - unit price auto calculation (pro)
+* Feature - system status for better error reporting
 * Fix - product description removal
 * Fix - better product data saving
 * Fix - better email confirmation hooks
