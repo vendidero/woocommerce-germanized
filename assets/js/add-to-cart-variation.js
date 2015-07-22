@@ -3,25 +3,25 @@
  */
 ;(function ( $, window, document, undefined ) {
 
-	function reset_variation() {
-
-		if ( $('.type-product').find('.org_price').length > 0 ) {
-			$( '.type-product .price.variation_modified:not(.price-unit)' ).html( $('.type-product').find('.org_price').html() ).removeClass('variation_modified').show();
-		}
-		if ( $('.type-product').find('.org_delivery_time').length > 0 ) {
-			$( '.type-product .delivery-time-info' ).html( $('.type-product').find('.org_delivery_time').html() ).removeClass('variation_modified').show();
-		}
-		if ( $('.type-product').find('.org_unit_price').length > 0 ) {
-			$( '.type-product .unit-price' ).html( $('.product').find('.org_unit_price').html() ).removeClass('variation_modified').show();
-		}
-		if ( $('.type-product').find('.org_tax_info').length > 0 ) {
-			$( '.type-product .tax-info' ).html( $('.product').find('.org_tax_info').html() ).removeClass('variation_modified').show();
-		}
-		$('.org_product_info').remove();
-		$('.variation_modified').remove();
-	}
-
 	$.fn.wc_gzd_variation_form = function () {
+
+		$.fn.wc_gzd_variation_form.reset_variation = function() {
+
+			if ( $('.type-product').find('.org_price').length > 0 ) {
+				$( '.type-product .price.variation_modified:not(.price-unit)' ).html( $('.type-product').find('.org_price').html() ).removeClass('variation_modified').show();
+			}
+			if ( $('.type-product').find('.org_delivery_time').length > 0 ) {
+				$( '.type-product .delivery-time-info' ).html( $('.type-product').find('.org_delivery_time').html() ).removeClass('variation_modified').show();
+			}
+			if ( $('.type-product').find('.org_unit_price').length > 0 ) {
+				$( '.type-product .unit-price' ).html( $('.product').find('.org_unit_price').html() ).removeClass('variation_modified').show();
+			}
+			if ( $('.type-product').find('.org_tax_info').length > 0 ) {
+				$( '.type-product .tax-info' ).html( $('.product').find('.org_tax_info').html() ).removeClass('variation_modified').show();
+			}
+			$('.org_product_info').remove();
+			$('.variation_modified').remove();
+		}
 
 		$form = this
 		$wrapper = $form.parents( '.type-product' )
@@ -59,13 +59,13 @@
 		.on( 'update_variation_values', function( event, matching_variations ) {
 			setTimeout(function() {
        		 	if ( ! $('.single_variation_wrap').is(':visible') ) {
-       		 		reset_variation();
+       		 		$.fn.wc_gzd_variation_form.reset_variation();
        		 	}
        		 }, 250);	
 		})
 
 		.on( 'click', '.reset_variations', function( event ) {
-			reset_variation();
+			$.fn.wc_gzd_variation_form.reset_variation();
 		});
 
 	};
