@@ -91,7 +91,7 @@ class WC_GZD_Admin {
 		if ( isset( $_GET[ 'tab' ] ) && $_GET[ 'tab' ] == 'germanized' )
 			wp_enqueue_script( 'wc-gzd-admin' );
 		
-		if ( isset( $_GET[ 'section' ] ) && ! empty( $_GET[ 'section' ] ) && strpos( $_GET[ 'section' ], 'gzd' ) !== false )
+		if ( isset( $_GET[ 'section' ] ) && ! empty( $_GET[ 'section' ] ) && strpos( $_GET[ 'section' ], 'gzd_' ) !== false )
 			wp_enqueue_script( 'wc-gzd-admin-emails' );
 
 		// Hide delivery time and unit tagsdiv
