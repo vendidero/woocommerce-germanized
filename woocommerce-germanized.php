@@ -249,6 +249,10 @@ final class WooCommerce_Germanized {
 	 * @return array 
 	 */
 	public function replace_shipping_rate_class( $rates, $rate ) {
+
+		if ( get_option( 'woocommerce_gzd_shipping_tax' ) != 'yes' )
+			return $rates;
+
 		foreach ( $rates as $key => $rate )
 			$rates[ $key ] = new WC_GZD_Shipping_Rate( $rate );
 		return $rates;
