@@ -605,7 +605,7 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 				'desc' 		=> __( 'Select this option if you want to display shipping costs notice for virtual products.', 'woocommerce-germanized' ),
 				'id' 		=> 'woocommerce_gzd_display_shipping_costs_virtual',
 				'type' 		=> 'checkbox',
-				'default'	=> 'false',
+				'default'	=> 'no',
 			),
 
 			array( 'type' => 'sectionend', 'id' => 'product_options' ),

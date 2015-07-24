@@ -273,6 +273,8 @@ class WC_GZD_Product {
 	 * @return string 
 	 */
 	public function get_delivery_time_html() {
+		if ( $this->is_virtual() )
+			return false;
 		return ( $this->get_delivery_time_term() ) ? apply_filters( 'woocommerce_germanized_delivery_time_html', str_replace( '{delivery_time}', $this->get_delivery_time_term()->name, get_option( 'woocommerce_gzd_delivery_time_text' ) ), $this->get_delivery_time_term()->name ) : '';
 	}
 
