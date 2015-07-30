@@ -158,7 +158,8 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 			$data[ $k ] = ( isset( $_POST[ $data_k ][$i] ) ? $_POST[ $data_k ][$i] : null );
 		}
 
-		$data[ 'product-type' ] = $_POST[ 'product-type' ];
+		$product = wc_get_product( $variation_id );
+		$data[ 'product-type' ] = ( isset( $product->parent ) ? $product->parent->product_type : $product->type );
 		$data[ '_sale_price_dates_from' ] = $_POST['variable_sale_price_dates_from'][$i];
 		$data[ '_sale_price_dates_to' ] = $_POST['variable_sale_price_dates_to'][$i];
 		$data[ '_sale_price' ] = $_POST['variable_sale_price'][$i];
