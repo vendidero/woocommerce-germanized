@@ -95,6 +95,8 @@ class WC_Germanized_Meta_Box_Product_Data {
 
 	public static function save_product_data( $post_id, $data, $is_variation = false ) {
 
+		$data = apply_filters( 'woocommerce_gzd_product_saveable_data', $data, $post_id );
+
 		$product_type    = empty( $data['product-type'] ) ? 'simple' : sanitize_title( stripslashes( $data['product-type'] ) );
 		
 		if ( isset( $data['_unit'] ) ) {
