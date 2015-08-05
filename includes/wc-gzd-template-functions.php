@@ -166,7 +166,7 @@ if ( ! function_exists( 'woocommerce_gzd_template_checkout_legal' ) ) {
 	 * text legal info within checkout (may contain checkbox)
 	 */
 	function woocommerce_gzd_template_checkout_legal() {
-		echo '<p class="form-row legal terms">' . ( get_option( 'woocommerce_gzd_display_checkout_legal_no_checkbox' ) == 'no' ? '<input type="checkbox" class="input-checkbox" name="legal" id="legal" />' : '' ) . ' <label class="checkbox" for="legal">' . wc_gzd_get_legal_text() . '</label></p>';
+		echo '<p class="form-row legal terms"><label class="checkbox" for="legal">' . ( get_option( 'woocommerce_gzd_display_checkout_legal_no_checkbox' ) == 'no' ? '<input type="checkbox" class="input-checkbox" name="legal" id="legal" />' : '' ) . ' ' . wc_gzd_get_legal_text() . '</label></p>';
 	}
 
 }
