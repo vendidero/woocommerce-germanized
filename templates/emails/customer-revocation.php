@@ -21,7 +21,7 @@ $fields = WC_GZD_Revocation::get_fields();
 
 		<?php foreach ( $fields as $name => $field ) : ?>
 
-			<?php if ( !empty( $user[ $name ] ) ) : ?>
+			<?php if ( isset( $user ) && is_array( $user ) && ! empty( $user[ $name ] ) ) : ?>
 
 				<tr>
 
