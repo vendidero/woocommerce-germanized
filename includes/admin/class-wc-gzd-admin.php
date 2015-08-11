@@ -40,7 +40,7 @@ class WC_GZD_Admin {
 	public function __construct() {
 		add_action( 'add_meta_boxes', array( $this, 'add_legal_page_metabox' ) );
 		add_action( 'add_meta_boxes', array( $this, 'add_product_mini_desc' ) );
-		add_action( 'admin_enqueue_scripts', array( $this, 'settings_page_scroll_top' ) );
+		add_action( 'admin_enqueue_scripts', array( $this, 'add_scripts' ) );
 		add_action( 'save_post', array( $this, 'save_legal_page_content' ), 10, 3 );
 		add_action( 'admin_menu', array( $this, 'remove_status_page_hooks' ), 0 );
 		add_action( 'admin_menu', array( $this, 'set_status_page' ), 1 );
@@ -75,7 +75,7 @@ class WC_GZD_Admin {
 		WC_GZD_Admin_Status::output();
 	}
 
-	public function settings_page_scroll_top() {
+	public function add_scripts() {
 		
 		$screen = get_current_screen();
 		$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
