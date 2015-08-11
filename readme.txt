@@ -163,6 +163,15 @@ Bugs sowie Hilfe bei der Arbeit an WooCommerce Germanized werden gerne über uns
 
 == Changelog ==
 
+= 1.3.6 =
+* Feature - WC 2.4 compatibility
+* Fix - better checkbox html syntax
+* Fix - tax notice vat exempt check
+* Fix - FontAwesome Admin update
+* Fix - better theme compatibility
+* Fix - unforce shipping calculation
+* Fix - better script loading
+
 = 1.3.5 = 
 * Feature - force free shipping method if available (optional)
 * Feature - unit price sale scheduling (based on price schedules)
