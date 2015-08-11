@@ -59,12 +59,17 @@ class WC_GZD_Admin_Notices {
 		
 		if ( ! get_option( '_wc_gzd_hide_theme_notice' ) ) {
 
-			if ( ! $this->is_theme_compatible() )
-				add_action( 'admin_notices', array( $this, 'theme_incompatibility_notice' ) );
-			else if ( $this->is_theme_supported_by_pro() && ! WC_germanized()->is_pro() )
-				add_action( 'admin_notices', array( $this, 'theme_supported_notice' ) );
-			else if ( ! $this->is_theme_ready() )
-				add_action( 'admin_notices', array( $this, 'theme_not_ready_notice' ) );
+			if ( ! WC_germanized()->is_pro() ) {
+
+				if ( ! $this->is_theme_compatible() )
+					add_action( 'admin_notices', array( $this, 'theme_incompatibility_notice' ) );
+				else if ( $this->is_theme_supported_by_pro() )
+					add_action( 'admin_notices', array( $this, 'theme_supported_notice' ) );
+				else if ( ! $this->is_theme_ready() )
+					add_action( 'admin_notices', array( $this, 'theme_not_ready_notice' ) );
+
+			}
+			
 		}
 		
 		if ( ! get_option( '_wc_gzd_hide_review_notice' ) )
