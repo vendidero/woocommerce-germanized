@@ -410,6 +410,14 @@ if ( ! function_exists( 'woocommerce_gzd_template_set_order_button_show_filter' 
 
 }
 
+if ( ! function_exists( 'woocommerce_gzd_template_set_wc_terms_hide' ) ) {
+
+	function woocommerce_gzd_template_set_wc_terms_hide( $show ) {
+		return false;
+	}
+
+}
+
 if ( ! function_exists( 'woocommerce_gzd_template_customer_account_checkbox' ) ) {
 
 	function woocommerce_gzd_template_customer_account_checkbox() {

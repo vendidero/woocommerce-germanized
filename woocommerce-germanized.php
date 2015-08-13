@@ -154,12 +154,16 @@ final class WooCommerce_Germanized {
 
 		add_filter( 'woocommerce_locate_template', array( $this, 'filter_templates' ), PHP_INT_MAX, 3 );
 		
-		if ( version_compare( WC()->version, '2.3', '<' ) ) {
+		if ( version_compare( get_option( 'woocommerce_version' ), '2.3', '<' ) ) {
+			
 			add_filter( 'woocommerce_gzd_default_plugin_template', array( $this, 'filter_templates_old_version' ), 0, 2 );
+		
 		} else {
+			
 			add_filter( 'woocommerce_gzd_important_templates', array( $this, 'set_critical_templates_2_3' ) );
+			
 			if ( get_option( 'woocommerce_gzd_display_checkout_fallback' ) == 'yes' )
-				add_filter( 'woocommerce_gzd_template_name', array( $this, 'set_review_order_fallback' ) );
+				add_filter( 'woocommerce_germanized_filter_template', array( $this, 'set_checkout_fallback' ), 10, 3 );
 		}
 		
 		add_filter( 'woocommerce_get_settings_pages', array( $this, 'add_settings' ) );
@@ -176,7 +180,7 @@ final class WooCommerce_Germanized {
 		add_filter( 'woocommerce_get_order_item_totals', array( $this, 'order_item_totals' ), 0, 2 );
 		// Unsure wether this could lead to future problems - tax classes with same name wont be merged anylonger
 		//add_filter( 'woocommerce_rate_code', array( $this, 'prevent_tax_name_merge' ), PHP_INT_MAX, 2 );
-		
+
 		// Adjust virtual Product Price and tax class
 		add_filter( 'woocommerce_get_price_including_tax', array( $this, 'set_virtual_product_price' ), PHP_INT_MAX, 3 );
 		// Fallback gzd_product injection if not using wc_get_product
@@ -467,10 +471,16 @@ final class WooCommerce_Germanized {
 	 * @param string $template_name
 	 * @return string
 	 */
-	public function set_review_order_fallback( $template_name ) {
-		if ( strstr( $template_name, "review-order.php" ) )
-			return 'checkout/review-order-fallback.php';
-		return $template_name;
+	public function set_checkout_fallback( $template, $template_name, $template_path ) {
+		
+		$path = WC()->plugin_path() . '/templates/';	
+
+		if ( strstr( $template_name, 'review-order.php' ) )
+			return trailingslashit( $path ) . 'checkout/review-order.php';
+		else if ( strstr( $template_name, 'form-checkout.php' ) )
+			return trailingslashit( $path ) . 'checkout/form-checkout.php';
+		
+		return $template;
 	}
 
 	/**
@@ -792,10 +802,16 @@ final class WooCommerce_Germanized {
 	 * @return adjusted price
 	 */
 	public function set_virtual_product_price( $price, $qty, $product ) {
-		if ( ! $product->gzd_product->is_virtual_vat_exception() || ! isset( WC()->cart ) || ! WC()->cart->is_virtual_taxable() )
+
+		if ( ! is_object( $product ) )
 			return $price;
+
+		if ( ! $product || ! $product->gzd_product->is_virtual_vat_exception() || ! isset( WC()->cart ) || ! WC()->cart->is_virtual_taxable() )
+			return $price;
+
 		if ( get_option( 'woocommerce_prices_include_tax' ) === 'yes' )
 			return $product->get_price() * $qty;
+		
 		return $price;
 	}
 

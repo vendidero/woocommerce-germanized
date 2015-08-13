@@ -616,11 +616,11 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 
 				array(
 					'title' 	=> __( 'Fallback Mode', 'woocommerce-germanized' ),
-					'desc' 		=> __( 'Enable to make sure default review-order.php is not being overriden by theme.', 'woocommerce-germanized' ),
+					'desc' 		=> __( 'Enable to make sure default checkout template is not being overriden by theme.', 'woocommerce-germanized' ),
 					'id' 		=> 'woocommerce_gzd_display_checkout_fallback',
 					'default'	=> 'no',
 					'type' 		=> 'checkbox',
-					'desc_tip'	=> __( 'If you are facing problems within your checkout e.g. legally relevant data is not showing (terms, delivery time, unit price etc.) your theme seems to be incompatible (not using default WooCommerce hooks and filters). As a workaround you may use this fallback which ensures default review-order.php is used.', 'woocommerce-germanized' ),
+					'desc_tip'	=> __( 'If you are facing problems within your checkout e.g. legally relevant data is not showing (terms, delivery time, unit price etc.) your theme seems to be incompatible (not using default WooCommerce hooks and filters). As a workaround you may use this fallback which ensures default review-order.php and form-checkout.php is used.', 'woocommerce-germanized' ),
 				)
 
 			: array() ),
