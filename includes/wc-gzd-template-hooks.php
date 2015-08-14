@@ -65,7 +65,7 @@ if ( get_option( 'woocommerce_gzd_display_checkout_edit_data_notice' ) == 'yes' 
 	add_action( 'woocommerce_before_order_notes', 'woocommerce_gzd_template_checkout_edit_data_notice', wc_gzd_get_hook_priority( 'checkout_edit_data_notice' ), 1 );
 
 // Do only hook if is no ajax request - fallback if theme misses no-ajax-check before applying hooks & filters
-if ( ! is_ajax() && version_compare( WC_VERSION, '2.3', '>=' ) ) {
+if ( version_compare( WC_VERSION, '2.3', '>=' ) ) {
 	
 	// Remove default priorities
 	remove_action( 'woocommerce_checkout_order_review', 'woocommerce_order_review', 10 );
@@ -75,22 +75,33 @@ if ( ! is_ajax() && version_compare( WC_VERSION, '2.3', '>=' ) ) {
 	WC_GZD_Hook_Priorities::instance()->change_priority( 'woocommerce_checkout_order_review', 'woocommerce_order_review', wc_gzd_get_hook_priority( 'checkout_order_review' ) );
 	WC_GZD_Hook_Priorities::instance()->change_priority( 'woocommerce_checkout_order_review', 'woocommerce_checkout_payment', wc_gzd_get_hook_priority( 'checkout_payment' ) );
 
-	add_action( 'woocommerce_checkout_order_review', 'woocommerce_gzd_template_order_submit', wc_gzd_get_hook_priority( 'checkout_order_submit' ) );
-	add_action( 'woocommerce_review_order_after_payment', 'woocommerce_gzd_template_checkout_legal', wc_gzd_get_hook_priority( 'checkout_legal' ) );
-	add_action( 'woocommerce_review_order_after_payment', 'woocommerce_gzd_template_checkout_set_terms_manually', wc_gzd_get_hook_priority( 'checkout_set_terms' ) );
+	// Load ajax relevant hooks
+	add_action( 'init', 'woocommerce_gzd_checkout_load_ajax_relevant_hooks' );
+
 	// Remove WooCommerce Terms checkbox
 	add_filter( 'woocommerce_checkout_show_terms', 'woocommerce_gzd_template_set_wc_terms_hide', 100 );
+	
 	// Temporarily remove order button from payment.php - then add again to show after product table
 	add_action( 'woocommerce_review_order_before_submit', 'woocommerce_gzd_template_set_order_button_remove_filter', PHP_INT_MAX );
 	add_action( 'woocommerce_review_order_after_submit', 'woocommerce_gzd_template_set_order_button_show_filter', PHP_INT_MAX );
 	add_action( 'woocommerce_gzd_review_order_before_submit', 'woocommerce_gzd_template_set_order_button_show_filter', PHP_INT_MAX );
+	
+}
+
+function woocommerce_gzd_checkout_load_ajax_relevant_hooks() {
+
+	if ( is_ajax() )
+		return;
+
+	add_action( 'woocommerce_checkout_order_review', 'woocommerce_gzd_template_order_submit', wc_gzd_get_hook_priority( 'checkout_order_submit' ) );
+	add_action( 'woocommerce_review_order_after_payment', 'woocommerce_gzd_template_checkout_legal', wc_gzd_get_hook_priority( 'checkout_legal' ) );
+	add_action( 'woocommerce_review_order_after_payment', 'woocommerce_gzd_template_checkout_set_terms_manually', wc_gzd_get_hook_priority( 'checkout_set_terms' ) );
+
 	if ( get_option( 'woocommerce_gzd_checkout_legal_digital_checkbox' ) == 'yes' )
 		add_action( 'woocommerce_review_order_after_payment', 'woocommerce_gzd_digital_checkbox', wc_gzd_get_hook_priority( 'checkout_digital_checkbox' ) );
 	
 	// Add payment title heading
 	add_action( 'woocommerce_review_order_before_payment', 'woocommerce_gzd_template_checkout_payment_title' );
-	// Remove default term box
-	add_filter( 'woocommerce_checkout_show_terms', 'woocommerce_gzd_remove_term_checkbox' );
 
 }
 
