@@ -4,7 +4,7 @@ Tags: woocommerce, german market, german, germany, deutsch, deutschland, de, de_
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=info@vendidero.de&item_name=Donation+for+WooCommerce+Germanized
 Requires at least: 3.8
 Tested up to: 4.3
-Stable tag: 1.3.6
+Stable tag: 1.3.7
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -162,6 +162,11 @@ Bugs sowie Hilfe bei der Arbeit an WooCommerce Germanized werden gerne über uns
 1. Einstellungsmöglichkeiten für WooCommerce Germanized.
 
 == Changelog ==
+
+= 1.3.7 =
+* Feature - is_ajax double-check for nasty themes
+* Fix - better checkout fallback mode
+* Fix - digital checkbox markup
 
 = 1.3.6 =
 * Feature - WC 2.4 compatibility
