@@ -40,6 +40,9 @@
 .entry-content .woocommerce .place-order .form-row, .entry-content .woocommerce .place-order .form-row input[type="checkbox"] {
 	padding: 0;
 }
+.legal label input[type=checkbox] {
+	vertical-align: middle;
+}
 .woocommerce-checkout p.terms {
 	text-align: left;
 }

@@ -13,6 +13,6 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 <p class="form-row form-row-wide">
 	<label for="reg_data_privacy" class="inline">
 		<input type="checkbox" class="input-checkbox" value="1" name="privacy" id="reg_data_privacy" />
-		 <?php echo wc_gzd_get_legal_text( get_option( 'woocommerce_gzd_customer_account_text' ) ); ?><span class="required">*</span>
+		<?php echo wc_gzd_get_legal_text( get_option( 'woocommerce_gzd_customer_account_text' ) ); ?><span class="required">*</span>
 	</label>
 </p>
