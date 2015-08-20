@@ -37,24 +37,26 @@ class WC_GZD_Ekomi {
 	public function __construct() {
 		$this->version = 'cust-1.0.0';
 		$this->id = $this->shop_id;
-		if ( ! username_exists( 'ekomi' ) && $this->is_enabled() ) {
+		if ( $this->is_enabled() )
+			add_action( 'init', array( $this, 'init' ) );
+		// Register sections
+		add_filter( 'woocommerce_gzd_settings_sections', array( $this, 'register_section' ), 2 );
+		add_filter( 'woocommerce_gzd_get_settings_ekomi', array( $this, 'get_settings' ) );
+	}
+
+	public function init() {
+		if ( ! username_exists( 'ekomi' ) ) {
 			wp_create_user( __( 'eKomi Customer', 'woocommerce-germanized' ), wp_generate_password(), 'ekomi@loremipsumdolorom.com' );
 			$this->user = get_user_by( 'email', 'ekomi@loremipsumdolorom.com' );
 			wp_update_user( array( 'ID' => $this->user->ID, 'role' => 'customer' ) );
 		}
 		// Cronjobs & Hooks
-		if ( $this->is_enabled() ) {
-			$this->user = get_user_by( 'email', 'ekomi@loremipsumdolorom.com' );
-			add_action( 'woocommerce_gzd_ekomi', array( $this, 'get_reviews' ) );
-			add_action( 'woocommerce_gzd_ekomi', array( $this, 'put_products' ) );
-			add_action( 'woocommerce_gzd_ekomi', array( $this, 'send_mails' ) );
-			add_action( 'woocommerce_order_status_completed', array( $this, 'put_order' ), 0, 1 );
-			add_action( 'wp_footer', array( $this, 'add_scripts' ), 10 );
-		}
-		//add_action( 'init', array( $this, 'get_reviews' ) );
-		// Register sections
-		add_filter( 'woocommerce_gzd_settings_sections', array( $this, 'register_section' ), 2 );
-		add_filter( 'woocommerce_gzd_get_settings_ekomi', array( $this, 'get_settings' ) );
+		$this->user = get_user_by( 'email', 'ekomi@loremipsumdolorom.com' );
+		add_action( 'woocommerce_gzd_ekomi', array( $this, 'get_reviews' ) );
+		add_action( 'woocommerce_gzd_ekomi', array( $this, 'put_products' ) );
+		add_action( 'woocommerce_gzd_ekomi', array( $this, 'send_mails' ) );
+		add_action( 'woocommerce_order_status_completed', array( $this, 'put_order' ), 0, 1 );
+		add_action( 'wp_footer', array( $this, 'add_scripts' ), 10 );
 	}
 
 	/**

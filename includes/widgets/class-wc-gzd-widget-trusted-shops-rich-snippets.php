@@ -59,6 +59,4 @@ class WC_GZD_Widget_Trusted_Shops_Rich_Snippets extends WC_Widget {
 	}
 }
 
-register_widget( 'WC_GZD_Widget_Trusted_Shops_Rich_Snippets' );
-
 ?>

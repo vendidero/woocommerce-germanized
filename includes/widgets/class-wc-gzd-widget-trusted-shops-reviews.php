@@ -61,6 +61,4 @@ class WC_GZD_Widget_Trusted_Shops_Reviews extends WC_Widget {
 	}
 }
 
-register_widget( 'WC_GZD_Widget_Trusted_Shops_Reviews' );
-
 ?>

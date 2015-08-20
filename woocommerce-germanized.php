@@ -207,8 +207,6 @@ final class WooCommerce_Germanized {
 		$this->unregister_order_confirmation_hooks();
 
 		$this->units          = new WC_GZD_Units();
-		$this->trusted_shops  = new WC_GZD_Trusted_Shops();
-		$this->ekomi    	  = new WC_GZD_Ekomi();
 		$this->emails    	  = new WC_GZD_Emails();
 
 		// Init action
@@ -366,10 +364,11 @@ final class WooCommerce_Germanized {
 		include_once ( 'includes/abstracts/abstract-wc-gzd-product.php' );
 
 		include_once ( 'includes/class-wc-gzd-wpml-helper.php' );
-		
 		include_once ( 'includes/wc-gzd-cart-functions.php' );
-
 		include_once ( 'includes/class-wc-gzd-checkout.php' );
+
+		$this->trusted_shops  = new WC_GZD_Trusted_Shops();
+		$this->ekomi    	  = new WC_GZD_Ekomi();
 
 	}
 
@@ -576,10 +575,14 @@ final class WooCommerce_Germanized {
 	 * Include WooCommerce Germanized Widgets
 	 */
 	public function include_widgets() {
-		if ( is_object( $this->trusted_shops) && $this->trusted_shops->is_rich_snippets_enabled() )
+		if ( is_object( $this->trusted_shops) && $this->trusted_shops->is_rich_snippets_enabled() ) {
 			include_once( 'includes/widgets/class-wc-gzd-widget-trusted-shops-rich-snippets.php' );
-		if ( is_object( $this->trusted_shops) && $this->trusted_shops->is_review_widget_enabled() )
+			register_widget( 'WC_GZD_Widget_Trusted_Shops_Rich_Snippets' );
+		}
+		if ( is_object( $this->trusted_shops) && $this->trusted_shops->is_review_widget_enabled() ) {
 			include_once( 'includes/widgets/class-wc-gzd-widget-trusted-shops-reviews.php' );
+			register_widget( 'WC_GZD_Widget_Trusted_Shops_Reviews' );
+		}
 	}
 
 	/**
