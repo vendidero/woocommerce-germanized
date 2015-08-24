@@ -23,6 +23,8 @@ module.exports = function( grunt ) {
 				'!<%= dirs.js %>/admin/*.min.js',
 				'<%= dirs.js %>/*.js',
 				'!<%= dirs.js %>/*.min.js',
+				'includes/gateways/direct-debit/assets/js/*.js',
+				'!includes/gateways/direct-debit/assets/js/*.min.js'
 			]
 		},
 
@@ -56,6 +58,18 @@ module.exports = function( grunt ) {
 					ext: '.min.js'
 				}]
 			},
+			direct_debit: {
+				files: [{
+					expand: true,
+					cwd: 'includes/gateways/direct-debit/assets/js/',
+					src: [
+						'*.js',
+						'!*.min.js'
+					],
+					dest: 'includes/gateways/direct-debit/assets/js/',
+					ext: '.min.js'
+				}]
+			}
 		},
 
 		// Minify all .css files.

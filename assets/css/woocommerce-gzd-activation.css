@@ -1,3 +1,21 @@
+.wc-gzd-news .wc-feature {
+
+}
+
+.wc-gzd-news .wc-feature > div {
+	float: left;
+}
+
+.wc-gzd-news .two-col > div {
+	width: 45%;
+	padding-right: 5%;
+}
+
+.wc-gzd-news .three-col > div {
+	width: 30%;
+	padding-right: 3%;
+}
+
 .wc-gzd-logo {
 	display: inline-block !important;
 	text-indent: -9999px;

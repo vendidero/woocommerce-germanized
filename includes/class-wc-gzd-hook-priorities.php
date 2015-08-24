@@ -94,6 +94,7 @@ class WC_GZD_Hook_Priorities {
 			'checkout_legal'				 => 2,
 			'checkout_set_terms'			 => 3,
 			'checkout_digital_checkbox'		 => 4,
+			'checkout_direct_debit'			 => 5,
 			'order_product_delivery_time'	 => 0,
 			'order_product_item_desc'		 => 0,
 			'order_product_unit_price' 		 => 0,

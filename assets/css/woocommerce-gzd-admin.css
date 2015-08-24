@@ -128,3 +128,12 @@ table.wc-gzd-tax-example tr th:first-child, table.wc-gzd-tax-example tr td:first
 .wc-gzd-admin-settings tbody.ui-sortable tr:hover {
 	cursor: move;
 }
+
+#order_data .order_data_column ._direct_debit_holder_field, #order_data .order_data_column ._direct_debit_iban_field, #order_data .order_data_column ._direct_debit_bic_field, #order_data .order_data_column ._direct_debit_reference_field {
+    clear: left;
+    width: 100% !important;
+}
+
+#order_data .order_data_column ._direct_debit_holder_field input, #order_data .order_data_column ._direct_debit_iban_field input, #order_data .order_data_column ._direct_debit_bic_field input, #order_data .order_data_column ._direct_debit_reference_field input {
+    width: 100%;
+}

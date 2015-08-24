@@ -183,7 +183,7 @@ class WC_GZD_Emails {
 		foreach ( $tpls as $tpl ) {
 			$tpl = apply_filters( 'woocommerce_germanized_email_template_name',  str_replace( array( 'admin-', '-' ), array( '', '_' ), basename( $tpl, '.php' ) ), $tpl );
 			$mails = WC()->mailer()->get_emails();
-			if ( !empty( $mails ) ) {
+			if ( ! empty( $mails ) ) {
 				foreach ( $mails as $mail ) {
 					if ( $mail->id == $tpl )
 						array_push( $found_mails, $mail );

@@ -46,6 +46,9 @@
 .woocommerce-checkout p.terms {
 	text-align: left;
 }
+.woocommerce-checkout p.direct-debit-checkbox {
+	display: none;
+}
 .unit-price-cart {
 	font-size: 0.9em;
 	display: block;

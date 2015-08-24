@@ -3,7 +3,7 @@
  * Plugin Name: WooCommerce Germanized
  * Plugin URI: https://www.vendidero.de/woocommerce-germanized
  * Description: Extends WooCommerce to become a legally compliant store for the german market.
- * Version: 1.3.7
+ * Version: 1.4.0
  * Author: Vendidero
  * Author URI: https://vendidero.de
  * Requires at least: 3.8
@@ -26,7 +26,7 @@ final class WooCommerce_Germanized {
 	 *
 	 * @var string
 	 */
-	public $version = '1.3.7';
+	public $version = '1.4.0';
 
 	/**
 	 * Single instance of WooCommerce Germanized Main Class
@@ -197,6 +197,9 @@ final class WooCommerce_Germanized {
 		add_filter( 'woocommerce_payment_successful_result', array( $this, 'send_order_confirmation_mails' ), 0, 2 );
 		add_filter( 'woocommerce_checkout_no_payment_needed_redirect', array( $this, 'send_order_confirmation_mails' ), 0, 2 );
 
+		// Payment gateways
+		add_filter( 'woocommerce_payment_gateways', array( $this, 'register_gateways' ) );
+
 		// Check for customer activation
 		add_action( 'template_redirect', array( $this, 'customer_account_activation_check' ) );
 		add_action( 'woocommerce_gzd_customer_cleanup', array( WC_GZD_Admin_Customer::instance(), 'account_cleanup' ) );
@@ -211,6 +214,15 @@ final class WooCommerce_Germanized {
 
 		// Init action
 		do_action( 'woocommerce_germanized_init' );
+	}
+
+	public function register_gateways( $gateways ) {
+
+		$gateways[] = 'WC_GZD_Gateway_Direct_Debit';
+		$gateways[] = 'WC_GZD_Gateway_Invoice';
+
+		return $gateways;
+
 	}
 
 	public function unregister_order_confirmation_hooks() {
@@ -273,6 +285,8 @@ final class WooCommerce_Germanized {
 
 		if ( strpos( $class, 'wc_gzd_admin_' ) === 0 )
 			$path = $this->plugin_path() . '/includes/admin/';
+		elseif ( strpos( $class, 'wc_gzd_gateway_' ) === 0 )
+			$path = $this->plugin_path() . '/includes/gateways/' . substr( str_replace( '_', '-', $class ), 15 ) . '/';
 
 		if ( version_compare( get_option( 'woocommerce_version' ), '2.3', '<' ) ) {
 			$old_file = str_replace( '.php', '-2-2.php', $file );
