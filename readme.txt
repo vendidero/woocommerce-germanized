@@ -49,7 +49,7 @@ Selbstverständlich können Trusted Shops Kunden mit nur wenigen Einstellungen d
 Bei der Entwicklung von WC Germanized haben wir besonderes Augenmerk auf die nahtlose Integration in WooCommerce gelegt.
 Die meisten Änderungen erfolgen über Hooks & Filter - nur im äußersten Notfall wird ein Template direkt überschrieben.
 
-= SEPA Lastschriftverfahren & Kauf auf Rechnung = 
+= SEPA Lastschrift & Kauf auf Rechnung = 
 Mit WooCommerce Germanized 1.4 kannst du deinen Kunden ganz einfach den Kauf per Bankeinzug und per Rechnung ermöglichen.
 Beim SEPA Lastschriftverfahren werden entsprechende Felder für IBAN, BIC und Kontoinhaber zum Checkout hinzugefügt und überprüft.
 Zudem kann der Kunde eine Vorschau des Mandates per Link abrufen und vor dem Kauf einsehen. Den Kauf auf Rechnung kannst du auf Wunsch

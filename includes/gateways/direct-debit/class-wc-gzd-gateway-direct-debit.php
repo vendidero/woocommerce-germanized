@@ -349,6 +349,9 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 
 	public function validate_checkbox( $posted ) {
 
+		if ( ! isset( $_POST[ 'payment_method' ] ) || $_POST[ 'payment_method' ] != $this->id )
+			return;
+
 		if ( ! isset( $_POST[ 'woocommerce_checkout_update_totals' ] ) ) {
 
 			if ( ! isset( $_POST[ 'direct_debit_legal' ] ) && empty( $_POST[ 'direct_debit_legal' ] ) )
