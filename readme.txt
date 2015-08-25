@@ -1,6 +1,6 @@
 === WooCommerce Germanized ===
 Contributors: vendidero
-Tags: woocommerce, german market, german, germany, deutsch, deutschland, de, de_DE, shop, commerce, e-commerce, ecommerce, woothemes
+Tags: woocommerce, german market, german, germany, deutsch, deutschland, de, de_DE, shop, commerce, e-commerce, ecommerce, woothemes, sepa, invoice
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=info@vendidero.de&item_name=Donation+for+WooCommerce+Germanized
 Requires at least: 3.8
 Tested up to: 4.3
@@ -35,6 +35,8 @@ Zudem haben wir einige Anpassungen am Bezahlvorgang vorgenommen, damit dein WooC
 * Double-Opt-In für Benutzerkonten
 * Steuern für Versandkosten und Gebühren
 * AGB, Widerrufsbelehrung etc. in ausgewählten E-Mails
+* Zahlungsart: SEPA Lastschriftverfahren/Bankeinzug
+* Zahlungsart: Kauf auf Rechnung
 * Zahlungsgebühren festlegen
 * Online Widerrufsformular per Shortcode
 
@@ -46,6 +48,12 @@ Selbstverständlich können Trusted Shops Kunden mit nur wenigen Einstellungen d
 = Sauber implementiert =
 Bei der Entwicklung von WC Germanized haben wir besonderes Augenmerk auf die nahtlose Integration in WooCommerce gelegt.
 Die meisten Änderungen erfolgen über Hooks & Filter - nur im äußersten Notfall wird ein Template direkt überschrieben.
+
+= SEPA Lastschriftverfahren & Kauf auf Rechnung = 
+Mit WooCommerce Germanized 1.4 kannst du deinen Kunden ganz einfach den Kauf per Bankeinzug und per Rechnung ermöglichen.
+Beim SEPA Lastschriftverfahren werden entsprechende Felder für IBAN, BIC und Kontoinhaber zum Checkout hinzugefügt und überprüft.
+Zudem kann der Kunde eine Vorschau des Mandates per Link abrufen und vor dem Kauf einsehen. Den Kauf auf Rechnung kannst du auf Wunsch
+in den Einstellungen so einschränken, dass von dieser Zahlungsart nur Bestandskunden Gebrauch machen können.
 
 = Pro: PDF Rechnungen & Lieferscheine = 
 Als Nutzer der Pro Version von WooCommerce Germanized erstellst du automatisiert oder manuell PDF-Rechnungen und Lieferscheine zu deinen Bestellungen. Dabei hast du volle Kontrolle über das Layout deiner PDF-Dokumente.
@@ -99,6 +107,8 @@ Overview of what WooCommerce Germanized offers:
 * buy now button description
 * trusted shops integration
 * ekomi integration
+* SEPA Payment gateway
+* Pay by Invoice gateway
 
 == Installation ==
 
