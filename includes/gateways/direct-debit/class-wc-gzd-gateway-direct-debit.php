@@ -161,6 +161,9 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 
     public function generate_mandate() {
 
+    	if ( ! $this->is_available() )
+    		exit();
+
     	if ( ! isset( $_GET[ '_wpnonce' ] ) || ! wp_verify_nonce( $_GET[ '_wpnonce' ], 'show_direct_debit' ) )
     		exit();
 
@@ -349,7 +352,7 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 
 	public function validate_checkbox( $posted ) {
 
-		if ( ! isset( $_POST[ 'payment_method' ] ) || $_POST[ 'payment_method' ] != $this->id )
+		if ( ! $this->is_available() || $this->enable_checkbox !== 'yes' || ! isset( $_POST[ 'payment_method' ] ) || $_POST[ 'payment_method' ] != $this->id )
 			return;
 
 		if ( ! isset( $_POST[ 'woocommerce_checkout_update_totals' ] ) ) {
@@ -363,7 +366,7 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 
 	public function validate_fields() { 
 		
-		if ( ! isset( $_POST[ 'payment_method' ] ) || $_POST[ 'payment_method' ] != $this->id )
+		if ( ! $this->is_available() || ! isset( $_POST[ 'payment_method' ] ) || $_POST[ 'payment_method' ] != $this->id )
 			return;
 
 		$iban = ( isset( $_POST[ 'direct_debit_account_iban' ] ) ? wc_clean( $_POST[ 'direct_debit_account_iban' ] ) : '' );
