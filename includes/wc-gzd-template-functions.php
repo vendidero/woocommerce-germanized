@@ -200,7 +200,7 @@ if ( ! function_exists( 'woocommerce_gzd_checkout_validation' ) ) {
 	 * Validate checkbox data
 	 */
 	function woocommerce_gzd_checkout_validation( $posted ) {
-		if ( ! isset( $_POST['woocommerce_checkout_update_totals'] ) ) {
+		if ( ! isset( $_POST[ 'woocommerce_checkout_update_totals' ] ) ) {
 			if ( ! isset( $_POST[ 'legal' ] ) && get_option( 'woocommerce_gzd_display_checkout_legal_no_checkbox' ) == 'no' )
 				wc_add_notice( wc_gzd_get_legal_text_error(), 'error' );
 			// Check if cart contains downloadable product

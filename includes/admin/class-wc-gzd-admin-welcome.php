@@ -210,6 +210,9 @@ class WC_GZD_Admin_Welcome {
 						</p>
 					</div>
 				</div>
+				<div class="return-to-dashboard">
+					<a href="<?php echo admin_url( 'admin.php?page=wc-settings&tab=checkout' ); ?>">Neue Zahlungsarten jetzt entdecken</a>
+				</div>
 			</div>
 			<div class="changelog">
 				<h3>WooCommerce Germanized - Funktionsübersicht</h3>

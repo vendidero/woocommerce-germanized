@@ -79,6 +79,9 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 		add_action( 'wp_ajax_nopriv_show_direct_debit', array( $this, 'generate_mandate' ) );
 		add_filter( 'woocommerce_email_classes', array( $this, 'add_email_template' ) );
 
+		// Checkbox check
+		add_action( 'woocommerce_after_checkout_validation', array( $this, 'validate_checkbox' ), 10, 1 );
+
 		// Order Meta
     	add_action( 'woocommerce_checkout_update_order_meta', array( $this, 'set_order_meta' ), 10, 2 );
 
@@ -309,6 +312,10 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 	 */
 	public function payment_fields() {
 
+		if ( $description = $this->get_description() ) {
+			echo wpautop( wptexturize( $description ) );
+		}
+
 		$fields = array(
 			'account-holder' => '<p class="form-row form-row-wide">
 				<label for="' . esc_attr( $this->id ) . '-account-holder">' . __( 'Account Holder', 'woocommerce-germanized' ) . ' <span class="required">*</span></label>
@@ -339,6 +346,17 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 
 	}
 
+	public function validate_checkbox( $posted ) {
+
+		if ( ! isset( $_POST[ 'woocommerce_checkout_update_totals' ] ) ) {
+
+			if ( ! isset( $_POST[ 'direct_debit_legal' ] ) && empty( $_POST[ 'direct_debit_legal' ] ) )
+				wc_add_notice( __( 'Please accept the direct debit mandate.', 'woocommerce-germanized' ), 'error' );
+
+		}
+
+	}
+
 	public function validate_fields() { 
 		
 		if ( ! isset( $_POST[ 'payment_method' ] ) || $_POST[ 'payment_method' ] != $this->id )
@@ -353,9 +371,6 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 			wc_add_notice( __( 'Please insert your SEPA account data.', 'woocommerce-germanized' ), 'error' );
 			return false;
 		}
-
-		if ( ! isset( $_POST[ 'direct_debit_legal' ] ) || empty( $_POST[ 'direct_debit_legal' ] ) )
-			wc_add_notice( __( 'Please accept the direct debit mandate.', 'woocommerce-germanized' ), 'error' );
 
 		// Validate IBAN
 		include_once( WC_germanized()->plugin_path() . '/includes/libraries/iban/oophp-iban.php' );
