@@ -4,16 +4,21 @@
 
 .wc-gzd-news .wc-feature > div {
 	float: left;
-}
-
-.wc-gzd-news .two-col > div {
-	width: 45%;
-	padding-right: 5%;
+	margin-right: 0;
 }
 
 .wc-gzd-news .three-col > div {
-	width: 30%;
+	width: 31%;
 	padding-right: 3%;
+}
+
+.wc-gzd-news .two-col > div {
+	width: 47.5%;
+	padding-right: 5%;
+}
+
+.wc-gzd-news .wc-feature > div.last-feature {
+	padding-right: 0;
 }
 
 .wc-gzd-logo {

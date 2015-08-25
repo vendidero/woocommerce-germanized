@@ -12,21 +12,28 @@
 
 	$( function () {
 
-		$( 'form.checkout, form#order_review' ).on( 'blur change', '#direct-debit-form input#direct-debit-account-iban', function() {
+		$( 'form.checkout, form#order_review' ).on( 'blur input change', '#direct-debit-form input#direct-debit-account-holder', function() {
+			if ( ! $( this ).val() ) {
+				$( this ).parents( 'p.form-row' ).removeClass( 'woocommerce-validated' );
+				$( this ).parents( 'p.form-row' ).addClass( 'woocommerce-invalid woocommerce-invalid-required-field' );
+			}
+		});
+
+		$( 'form.checkout, form#order_review' ).on( 'blur input change', '#direct-debit-form input#direct-debit-account-iban', function() {
 			if ( ! directDebitValidateIBAN( $( this ).val() ) ) {
 				$( this ).parents( 'p.form-row' ).removeClass( 'woocommerce-validated' );
 				$( this ).parents( 'p.form-row' ).addClass( 'woocommerce-invalid woocommerce-invalid-required-field' );
 			}
 		});
 
-		$( 'form.checkout, form#order_review' ).on( 'blur change', '#direct-debit-form input#direct-debit-account-bic', function() {
+		$( 'form.checkout, form#order_review' ).on( 'blur input change', '#direct-debit-form input#direct-debit-account-bic', function() {
 			if ( ! directDebitValidateSWIFT( $( this ).val() ) ) {
 				$( this ).parents( 'p.form-row' ).removeClass( 'woocommerce-validated' );
 				$( this ).parents( 'p.form-row' ).addClass( 'woocommerce-invalid woocommerce-invalid-required-field' );
 			}
 		});
 
-		$( 'form.checkout, form#order_review' ).on( 'blur change', 'input, select', function() {
+		$( 'form.checkout, form#order_review' ).on( 'blur input change', 'input, select', function() {
 
 			if ( $( '#direct-debit-form' ).length ) {
 

@@ -293,6 +293,7 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 			),
 			'enable_checkbox' => array(
 				'title'       => __( 'Checkbox', 'woocommerce-germanized' ),
+				'label'		  => __( 'Enable "agree to SEPA mandate" checkbox', 'woocommerce-germanized' ),
 				'type'        => 'checkbox',
 				'description' => __( 'Enable a checkbox linking to a SEPA direct debit mandate preview.', 'woocommerce-germanized' ),
 				'default'     => 'yes',
