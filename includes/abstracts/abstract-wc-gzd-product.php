@@ -96,7 +96,7 @@ class WC_GZD_Product {
 	 */
 	public function get_mini_desc() {
 		if ( $this->mini_desc && ! empty( $this->mini_desc ) )
-			return apply_filters( 'the_content', htmlspecialchars_decode( $this->mini_desc ) );
+			return wpautop( htmlspecialchars_decode( $this->mini_desc ) );
 		return false;
 	}
 

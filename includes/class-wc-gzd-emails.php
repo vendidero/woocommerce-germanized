@@ -83,8 +83,10 @@ class WC_GZD_Emails {
 	}
  
 	public function set_order_email_filters( $product ) {
+
 		if ( is_wc_endpoint_url()  )
 			return $product;
+
 		// Add order item name actions
 		add_action( 'woocommerce_order_item_name', 'wc_gzd_cart_product_delivery_time', wc_gzd_get_hook_priority( 'email_product_delivery_time' ), 2 );
 		add_action( 'woocommerce_order_item_name', 'wc_gzd_cart_product_item_desc', wc_gzd_get_hook_priority( 'email_product_item_desc' ), 2 );
