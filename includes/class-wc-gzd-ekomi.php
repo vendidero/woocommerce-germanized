@@ -52,11 +52,12 @@ class WC_GZD_Ekomi {
 		}
 		// Cronjobs & Hooks
 		$this->user = get_user_by( 'email', 'ekomi@loremipsumdolorom.com' );
-		add_action( 'woocommerce_gzd_ekomi', array( $this, 'get_reviews' ) );
-		add_action( 'woocommerce_gzd_ekomi', array( $this, 'put_products' ) );
-		add_action( 'woocommerce_gzd_ekomi', array( $this, 'send_mails' ) );
+		add_action( 'woocommerce_gzd_ekomi', array( $this, 'put_products' ), 5 );
+		add_action( 'woocommerce_gzd_ekomi', array( $this, 'send_mails' ), 10 );
+		add_action( 'woocommerce_gzd_ekomi', array( $this, 'get_reviews' ), 15 );
 		add_action( 'woocommerce_order_status_completed', array( $this, 'put_order' ), 0, 1 );
 		add_action( 'wp_footer', array( $this, 'add_scripts' ), 10 );
+		// add_action( 'admin_init', array( $this, 'get_reviews' ) );
 	}
 
 	/**
@@ -191,16 +192,10 @@ class WC_GZD_Ekomi {
 			$order = wc_get_order( $order_query->post->ID );
 			$diff = WC_germanized()->get_date_diff( $order->completed_date, date( 'Y-m-d H:i:s' ) );
 			if ( $diff[ 'd' ] >= (int) get_option( 'woocommerce_gzd_ekomi_day_diff' ) ) {
-				$mails = WC()->mailer()->get_emails();
-				if ( !empty( $mails ) ) {
-					foreach ( $mails as $mail ) {
-						if ( $mail->id == 'customer_ekomi' ) {
-							$mail->trigger( $order->id );
-							update_post_meta( $order->id, '_ekomi_review_mail_sent', 1 );
-							update_post_meta( $order->id, '_ekomi_review_link', '' );
-						}
-					}
-				}
+				$mail = WC()->mailer()->emails['WC_GZD_Email_Customer_Ekomi'];
+				$mail->trigger( $order->id );
+				update_post_meta( $order->id, '_ekomi_review_mail_sent', 1 );
+				update_post_meta( $order->id, '_ekomi_review_link', '' );
 			}
 		}
 	}
@@ -215,14 +210,19 @@ class WC_GZD_Ekomi {
 		$response = file_get_contents(
 			'https://api.ekomi.de/get_productfeedback.php?interface_id=' . $this->interface_id . '&interface_pw=' . $this->interface_password . '&version=' . $this->version . '&type=csv&product=all'
 		);
-		if ( !empty( $response ) ) {
+		if ( ! empty( $response ) ) {
 			$reviews = explode( PHP_EOL, $response );
-			if ( !empty( $reviews ) ) {
+			
+			if ( ! empty( $reviews ) ) {
+				
 				foreach ( $reviews as $review ) {
 					$review = str_getcsv( $review );
-					if ( !empty( $review[0] ) ) {
+					if ( ! empty( $review[0] ) ) {
+						
 						if ( ! $this->review_exists( $review[1] ) && $this->is_product( (int) esc_attr( $review[2] ) ) ) {
-							$product = get_product( (int) esc_attr( $review[2] ) );
+							
+							$product = wc_get_product( (int) esc_attr( $review[2] ) );
+							
 							$data = array(
 								'comment_post_ID' => $product->id,
 								'comment_author' => $this->user->user_login,
@@ -231,7 +231,9 @@ class WC_GZD_Ekomi {
 								'comment_date' => date( 'Y-m-d H:i:s', (int) esc_attr( $review[0] ) ),
 								'comment_approved' => 1,
 							);
+
 							$comment_id = wp_insert_comment( $data );
+							
 							if ( $comment_id ) {
 								add_comment_meta( $comment_id, 'rating', (int) esc_attr( $review[3] ), true );
 								add_comment_meta( $comment_id, 'order_id', esc_attr( $review[1] ), true );
@@ -245,7 +247,7 @@ class WC_GZD_Ekomi {
 	}
 
 	public function is_product( $id ) {
-		return ( get_post_status( $id ) == 'publish' && ( get_post_type( $id ) == 'product' || get_post_type( $id ) == 'product_variation' ) ) ? true : false;
+		return ( get_post_status( $id ) == 'publish' ) ? true : false;
 	}
 
 	/**

@@ -132,8 +132,12 @@ class WC_GZD_Install {
 		$current_version    = get_option( 'woocommerce_gzd_version', null );
 		$current_db_version = get_option( 'woocommerce_gzd_db_version', null );
 
+		// Updates
 		if ( version_compare( $current_db_version, '1.0.4', '<' ) && null !== $current_db_version )
 			update_option( '_wc_gzd_needs_update', 1 );
+		
+		if ( version_compare( $current_db_version, '1.4.2', '<' ) && null !== $current_db_version )
+			$this->update_trusted_shops();
 		
 		update_option( 'woocommerce_gzd_db_version', WC_germanized()->version );
 
@@ -171,6 +175,15 @@ class WC_GZD_Install {
 
 		$current_db_version = get_option( 'woocommerce_gzd_db_version' );
 		update_option( 'woocommerce_gzd_db_version', WC_germanized()->version );
+	}
+	
+	public function update_trusted_shops() {
+
+		if ( get_option( 'woocommerce_gzd_trusted_review_reminder_days' ) ) {
+			update_option( 'woocommerce_gzd_trusted_shops_review_reminder_days', get_option( 'woocommerce_gzd_trusted_review_reminder_days' ) );
+			delete_option( 'woocommerce_gzd_trusted_review_reminder_days' );
+		}
+
 	}
 
 	/**

@@ -337,15 +337,9 @@ class WC_GZD_Trusted_Shops {
 			$order = wc_get_order( $order_query->post->ID );
 			$diff = WC_germanized()->get_date_diff( $order->completed_date, date( 'Y-m-d H:i:s' ) );
 			if ( $diff[ 'd' ] >= (int) $this->review_reminder_days ) {
-				$mails = WC()->mailer()->get_emails();
-				if ( !empty( $mails ) ) {
-					foreach ( $mails as $mail ) {
-						if ( $mail->id == 'customer_trusted_shops' ) {
-							$mail->trigger( $order->id );
-							update_post_meta( $order->id, '_trusted_shops_review_mail_sent', 1 );
-						}
-					}
-				}
+				$mail = WC()->mailer()->emails['WC_GZD_Email_Customer_Trusted_Shops'];
+				$mail->trigger( $order->id );
+				update_post_meta( $order->id, '_trusted_shops_review_mail_sent', 1 );
 			}
 		}
 	}
@@ -502,7 +496,7 @@ class WC_GZD_Trusted_Shops {
 				'desc'   => _x( 'Decide how many days after an order the email review reminder will be sent.', 'trusted-shops', 'woocommerce-germanized' ),
 				'desc_tip' => true,
 				'default' => 7,
-				'id'   => 'woocommerce_gzd_trusted_review_reminder_days',
+				'id'   => 'woocommerce_gzd_trusted_shops_review_reminder_days',
 				'type'   => 'number',
 				'custom_attributes' => array( 'min' => 0, 'step' => 1 ),
 			),

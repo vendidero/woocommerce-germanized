@@ -196,3 +196,18 @@ function wc_gzd_get_legal_text_digital() {
 		$plain_text = wc_gzd_get_legal_text( get_option( 'woocommerce_gzd_checkout_legal_text_digital' ) );
 	return $plain_text;
 }
+
+function wc_gzd_get_legal_text_digital_email_notice() {
+	$text = get_option( 'woocommerce_gzd_order_confirmation_legal_digital_notice' );
+	if ( $text ) {
+		$text = str_replace( 
+			array( '{link}', '{/link}' ), 
+			array( 
+				'<a href="' . esc_url( get_permalink( wc_get_page_id( 'revocation' ) ) ) . '" target="_blank">',
+				'</a>'
+			),
+			$text
+		);
+	}
+	return $text;
+}

@@ -736,6 +736,16 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 			),
 
 			array(
+				'title' 	=> __( 'Digital Confirmation Notice', 'woocommerce-germanized' ),
+				'desc' 		=> __( 'This text will be appended to your order processing email if the order contains digital products. Use placeholders {link}{/link} to insert link to right of withdrawal page.', 'woocommerce-germanized' ),
+				'desc_tip'	=> true,
+				'id' 		=> 'woocommerce_gzd_order_confirmation_legal_digital_notice',
+				'default'	=> __( 'Furthermore you have expressly agreed to start the performance of the contract for digital items (e.g. downloads) before expiry of the withdrawal period. I have noted to lose my {link}right of withdrawal{/link} with the beginning of the performance of the contract.', 'woocommerce-germanized' ),
+				'type' 		=> 'textarea',
+				'css' 		=> 'width:100%; height: 65px;',
+			),
+
+			array(
 				'title' 	=> __( 'Pay now Button', 'woocommerce-germanized' ),
 				'desc' 		=> __( 'Add a pay now button to emails and order success page.', 'woocommerce-germanized' ),
 				'desc_tip' 	=> __( 'Add a pay now button to order confirmation email and order success page if the order awaits payment (PayPal etc).', 'woocommerce-germanized' ),

@@ -61,6 +61,34 @@ class WC_GZD_Emails {
 		// Pay now button
 		add_action( 'woocommerce_email_before_order_table', array( $this, 'email_pay_now_button' ), 0, 1 );
 
+		add_action( 'woocommerce_email_after_order_table', array( $this, 'email_digital_revocation_notice' ), 0, 3 );
+
+	}
+
+	public function email_digital_revocation_notice( $order, $sent_to_admin, $plain_text ) {
+			
+		if ( get_option( 'woocommerce_gzd_checkout_legal_digital_checkbox' ) !== 'yes' )
+			return;
+
+		$type = $this->get_current_email_object();
+		
+		if ( $type->id == 'customer_processing_order' ) {
+
+			// Check if order contains digital products
+			$items = $order->get_items();
+			$is_downloadable = false;
+			
+			if ( ! empty( $items ) ) {
+				foreach ( $items as $item ) {
+					$_product = apply_filters( 'woocommerce_order_item_product', $order->get_product_from_item( $item ), $item );
+					if ( $_product->is_downloadable() || apply_filters( 'woocommerce_gzd_product_is_revocation_exception', false, $_product ) )
+						$is_downloadable = true;
+				}
+			}
+
+			if ( $is_downloadable && $text = wc_gzd_get_legal_text_digital_email_notice() )
+				echo wpautop( apply_filters( 'woocommerce_gzd_order_confirmation_digital_notice', '<div class="gzd-digital-notice-text">' . $text . '</div>', $order ) );
+		}
 	}
 
 	public function email_pay_now_button( $order ) {
@@ -106,6 +134,9 @@ class WC_GZD_Emails {
 				display: block;
 				font-size: 0.9em;
 			}
+			.gzd-digital-notice-text {
+				margin-top: 16px;
+			}
 		';
 	}
 
@@ -146,7 +177,7 @@ class WC_GZD_Emails {
 				$option = woocommerce_get_page_id ( $page_option );
 				if ( $option == -1 || ! get_option( $option_key ) )
 					continue;
-				if ( in_array( $mail->id, get_option( $option_key ) ) ) {
+				if ( in_array( $mail->id, get_option( $option_key ) ) && apply_filters( 'woocommerce_gzd_attach_email_footer', true, $mail, $page_option ) ) {
 					$this->attach_page_content( $option, $mail->get_email_type() );
 				}
 			}
