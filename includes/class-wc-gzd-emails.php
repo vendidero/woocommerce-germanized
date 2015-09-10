@@ -112,7 +112,7 @@ class WC_GZD_Emails {
  
 	public function set_order_email_filters( $product ) {
 
-		if ( is_wc_endpoint_url()  )
+		if ( is_wc_endpoint_url() || is_admin() )
 			return $product;
 
 		// Add order item name actions

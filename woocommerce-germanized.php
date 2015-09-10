@@ -537,7 +537,14 @@ final class WooCommerce_Germanized {
 	}
 
 	/**
-	 * Load Localisation files for WooCommerce Germanized.
+	 * Load Localisation files.
+	 *
+	 * Note: the first-loaded translation file overrides any following ones if the same translation is present.
+	 *
+	 * Frontend/global Locales found in:
+	 * 		- WP_LANG_DIR/woocommerce-germanized/woocommerce-germanized-LOCALE.mo
+	 * 	 	- woocommerce-germanized/i18n/languages/woocommerce-germanized-LOCALE.mo (which if not found falls back to:)
+	 * 	 	- WP_LANG_DIR/plugins/woocommerce-germanized-LOCALE.mo
 	 */
 	public function load_plugin_textdomain() {
 		$domain = 'woocommerce-germanized';
