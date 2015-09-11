@@ -192,10 +192,13 @@ class WC_GZD_Ekomi {
 			$order = wc_get_order( $order_query->post->ID );
 			$diff = WC_germanized()->get_date_diff( $order->completed_date, date( 'Y-m-d H:i:s' ) );
 			if ( $diff[ 'd' ] >= (int) get_option( 'woocommerce_gzd_ekomi_day_diff' ) ) {
-				$mail = WC()->mailer()->emails['WC_GZD_Email_Customer_Ekomi'];
-				$mail->trigger( $order->id );
-				update_post_meta( $order->id, '_ekomi_review_mail_sent', 1 );
-				update_post_meta( $order->id, '_ekomi_review_link', '' );
+
+				if ( $mail = WC_germanized()->emails->get_email_instance_by_id( 'customer_ekomi' ) ) {
+					$mail->trigger( $order->id );
+					update_post_meta( $order->id, '_ekomi_review_mail_sent', 1 );
+					update_post_meta( $order->id, '_ekomi_review_link', '' );
+				}
+
 			}
 		}
 	}

@@ -97,19 +97,19 @@ class WC_GZD_AJAX {
 		}
 		$error = false;
 		if ( wc_notice_count( 'error' ) == 0 ) {
+			
 			wc_add_notice( _x( 'Thank you. We have received your Revocation Request. You will receive a conformation email within a few minutes.', 'revocation-form', 'woocommerce-germanized' ), 'success' );
+			
 			// Send Mail
-			$mails = WC()->mailer()->get_emails();
-			if ( !empty( $mails ) ) {
-				foreach ( $mails as $mail ) {
-					if ( $mail->id == 'customer_revocation' ) {
-						$mail->trigger( $data );
-						// Send to Admin
-						$data[ 'mail' ] = get_bloginfo('admin_email');
-						$mail->trigger( $data );
-					}
-				}
+			if ( $mail = WC_germanized()->emails->get_email_instance_by_id( 'customer_revocation' ) ) {
+
+				$mail->trigger( $data );
+				
+				// Send to Admin
+				$data[ 'mail' ] = get_bloginfo('admin_email');
+				$mail->trigger( $data );
 			}
+	
 		}
 		else
 			$error = true;

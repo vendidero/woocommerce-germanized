@@ -46,8 +46,12 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 				?></select>
 			</p>
 			<p class="form-row form-row-last">
-				<label for="variable_unit_base"><?php echo __( 'Unit Base', 'woocommerce-germanized' );?>:</label>
-				<input class="input-text wc_input_decimal" size="6" type="text" name="variable_unit_base[<?php echo $loop; ?>]" value="<?php echo ( ! empty( $_product->gzd_product->unit_base  ) ? esc_attr( wc_format_localized_decimal( $_product->gzd_product->unit_base ) ) : '' );?>" placeholder="" />
+				<label for="variable_unit_product"><?php echo __( 'Product Units', 'woocommerce-germanized' );?>: <a class="tips" data-tip="<?php esc_attr_e( 'Number of units included per default product price. Example: 1000 ml. Needed to automatically calculate unit price.', 'woocommerce-germanized' ); ?>" href="#">[?]</a></label>
+				<input class="input-text wc_input_decimal" size="6" type="text" name="variable_unit_product[<?php echo $loop; ?>]" value="<?php echo ( ! empty( $_product->gzd_product->unit_product ) ? esc_attr( wc_format_localized_decimal( $_product->gzd_product->unit_product ) ) : '' );?>" placeholder="" />
+			</p>
+			<p class="form-row form-row-first">
+				<label for="variable_unit_base"><?php echo __( 'Base Price Units', 'woocommerce-germanized' );?>: <a class="tips" data-tip="<?php esc_attr_e( 'Base price units. Example base price: 0,99 € / 100 ml. Insert 100 as base price unit amount.', 'woocommerce-germanized' ); ?>" href="#">[?]</a></label>
+				<input class="input-text wc_input_decimal" size="6" type="text" name="variable_unit_base[<?php echo $loop; ?>]" value="<?php echo ( ! empty( $_product->gzd_product->unit_base ) ? esc_attr( wc_format_localized_decimal( $_product->gzd_product->unit_base ) ) : '' );?>" placeholder="" />
 			</p>
 			<p class="form-row form-row-full _unit_price_auto_field">
 				<label for="variable_unit_price_auto_<?php echo $loop; ?>"><?php echo __( 'Calculation', 'woocommerce-germanized' ); ?>:</label>

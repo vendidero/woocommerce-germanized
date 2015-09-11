@@ -126,7 +126,33 @@ class WC_GZD_Admin_Welcome {
 				</span>
 			</p>
 			<div class="changelog vendipro new-feature">
-				<h3>Neu: Mehrstufige Kasse mit Datenüberprüfung <span class="wc-gzd-pro">pro</span></h3>
+				<h3>Neu: Rechtliche Hinweistexte als PDF-Anhang <span class="wc-gzd-pro">pro</span></h3>
+				<div class="left">
+					<a href="https://vendidero.de/woocommerce-germanized#legal-page" target="_blank"><img src="<?php echo WC_germanized()->plugin_url();?>/assets/images/legal-page.png" style="border: none" /></a>
+				</div>
+				<div class="right">
+					<p>
+						Deine E-Mails sind aufgrund deiner AGB und Widerrufsbelehrung ziemlich lang? Große und bekannte Shops senden die rechtlichen Hinweistexte einfach als PDF-Anhang.
+						Für <span class="wc-gzd-pro">pro</span> User haben wir diese Funktionalität nun auch implementiert. Generiere entweder automatisch PDF-Dateien auf Basis deiner rechtlichen Hinweisseiten oder lade manuell eine PDF-Datei hoch, die als Anhang verwendet werden soll.
+					</p>
+					<div class="wc-feature wc-vendipro-features feature-section col two-col">
+						<div>
+							<h4><i class="fa fa-magic"></i> Layout Einstellungen</h4>
+							<p>Flexibles PDF-Layout für automatisch erstellte PDF-Anhänge - ähnlich wie bei Rechnungen & Lieferscheinen.</p>
+						</div>
+						<div class="last-feature">
+							<h4><i class="fa fa-refresh"></i> Aktualisierung</h4>
+							<p>Sobald du eine Hinweisseite speicherst, wird deine PDF-Datei automatisch aktualisiert.</p>
+						</div>
+					</div>
+					<div class="vendipro-buttons">
+						<a href="https://vendidero.de/woocommerce-germanized#pro" target="_blank" class="button button-primary wc-gzd-button">Pro Version entdecken</a>
+						<p class="price smaller">ab 69,95 € inkl. Mwst. - inkl. 1 Jahr Updates & Premium Support!</p>
+					</div>
+				</div>
+			</div>
+			<div class="changelog vendipro new-feature">
+				<h3>Mehrstufige Kasse mit Datenüberprüfung <span class="wc-gzd-pro">pro</span></h3>
 				<div class="left">
 					<a href="https://vendidero.de/woocommerce-germanized#multistep-checkout" target="_blank"><img src="<?php echo WC_germanized()->plugin_url();?>/assets/images/multistep-checkout.png" /></a>
 				</div>

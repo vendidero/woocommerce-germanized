@@ -109,6 +109,19 @@ class WC_GZD_Emails {
 		return $text;
 
 	}
+
+	public function get_email_instance_by_id( $id ) {
+		
+		$mailer = WC()->mailer();
+		$mails = $mailer->get_emails();
+		
+		foreach ( $mails as $mail ) {
+			if ( $id === $mail->id )
+				return $mail;
+		}
+		
+		return false;
+	}
  
 	public function set_order_email_filters( $product ) {
 
@@ -162,8 +175,8 @@ class WC_GZD_Emails {
 		$user_activation_url = apply_filters( 'woocommerce_gzd_customer_activation_url', add_query_arg( 'activate', $user_activation, get_permalink( wc_get_page_id( 'myaccount' ) ) ) ); 
 		add_user_meta( $customer_id, '_woocommerce_activation', $user_activation );
 
-		$email = WC()->mailer()->emails['WC_GZD_Email_Customer_New_Account_Activation'];
-		$email->trigger( $customer_id, $user_activation, $user_activation_url, $user_pass, $password_generated );
+		if ( $email = $this->get_email_instance_by_id( 'customer_new_account_activation' ) )
+			$email->trigger( $customer_id, $user_activation, $user_activation_url, $user_pass, $password_generated );
 	}
 
 	/**

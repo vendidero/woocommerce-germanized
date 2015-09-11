@@ -136,8 +136,10 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 
     	$order = wc_get_order( $order_id );
 
-    	if ( $order->payment_method == $this->id )
-    		WC()->mailer()->emails[ 'WC_GZD_Email_Customer_SEPA_Direct_Debit_Mandate' ]->trigger( $order );
+    	if ( $order->payment_method == $this->id ) {
+    		if ( $mail = WC_germanized()->emails->get_email_instance_by_id( 'customer_sepa_direct_debit_mandate' ) )
+    			$mail->trigger( $order );
+    	}
 
     }
 

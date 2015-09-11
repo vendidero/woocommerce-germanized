@@ -83,6 +83,13 @@ table.data_table tr td p.form-field {
 	top: -1px;
 }
 
+.wc-gzd-premium-section-tab {
+	background: #e4e4e4;
+	border: 1px solid #CCC;
+	color: #555;
+	padding: 0 3px;
+}
+
 .wc-gzd-pro {
 	background: #222;
 	font-style: normal;
@@ -96,14 +103,6 @@ table.data_table tr td p.form-field {
 
 .wc-gzd-pro:hover {
 	color: #FFF;
-}
-
-.subsubsub li a:hover .wc-gzd-premium-section-tab {
-	background: #2ea2cc;
-}
-
-.subsubsub li a.current .wc-gzd-premium-section-tab {
-	background: #222;
 }
 
 .wc-gzd-premium img, .forminp-image img {

@@ -13,13 +13,19 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
  */
 class WC_GZD_Install {
 
+	/** @var array DB updates that need to be run */
+	private static $db_updates = array(
+		'1.0.4' => 'updates/woocommerce-gzd-update-1.0.4.php',
+		'1.4.2' => 'updates/woocommerce-gzd-update-1.4.2.php'
+	);
+
 	/**
 	 * Hook in tabs.
 	 */
 	public function __construct() {
-		register_activation_hook( WC_GERMANIZED_PLUGIN_FILE, array( $this, 'install' ) );
-		add_action( 'admin_init', array( $this, 'install_actions' ) );
-		add_action( 'admin_init', array( $this, 'check_version' ), 5 );
+		add_action( 'admin_init', array( __CLASS__, 'check_version' ), 5 );
+		add_action( 'admin_init', array( __CLASS__, 'install_actions' ) );
+		add_action( 'in_plugin_update_message-woocommerce-germanized/woocommerce-germanized.php', array( __CLASS__, 'in_plugin_update_message' ) );
 	}
 
 	/**
@@ -28,9 +34,9 @@ class WC_GZD_Install {
 	 * @access public
 	 * @return void
 	 */
-	public function check_version() {
-		if ( ! defined( 'IFRAME_REQUEST' ) && ( get_option( 'woocommerce_gzd_version' ) != WC_germanized()->version || get_option( 'woocommerce_gzd_db_version' ) != WC_germanized()->version ) ) {
-			$this->install();
+	public static function check_version() {
+		if ( ! defined( 'IFRAME_REQUEST' ) && ( get_option( 'woocommerce_gzd_version' ) != WC_germanized()->version ) ) {
+			self::install();
 			do_action( 'woocommerce_gzd_updated' );
 		}
 	}
@@ -38,7 +44,7 @@ class WC_GZD_Install {
 	/**
 	 * Install actions such as installing pages when a button is clicked.
 	 */
-	public function install_actions() {
+	public static function install_actions() {
 		// Install - Add pages button
 		if ( ! empty( $_GET['install_woocommerce_gzd'] ) ) {
 
@@ -73,7 +79,7 @@ class WC_GZD_Install {
 		// Update button
 		} elseif ( ! empty( $_GET['do_update_woocommerce_gzd'] ) ) {
 
-			$this->update();
+			self::update();
 
 			// Update complete
 			delete_option( '_wc_gzd_needs_pages' );
@@ -91,7 +97,13 @@ class WC_GZD_Install {
 	/**
 	 * Install WC_Germanized
 	 */
-	public function install() {
+	public static function install() {
+
+		global $wpdb;
+
+		if ( ! defined( 'WC_GZD_INSTALLING' ) ) {
+			define( 'WC_GZD_INSTALLING', true );
+		}
 		
 		// Load Translation for default options
 		$locale = apply_filters( 'plugin_locale', get_locale() );
@@ -107,14 +119,14 @@ class WC_GZD_Install {
 			wp_die( sprintf( __( 'Please install <a href="%s" target="_blank">WooCommerce</a> before installing WooCommerce Germanized. Thank you!', 'woocommerce-germanized' ), 'http://wordpress.org/plugins/woocommerce/' ) );
 		}
 
-		$this->create_options();
+		self::create_options();
 		
 		// Register post types
 		include_once( 'class-wc-gzd-post-types.php' );
 		WC_GZD_Post_types::register_taxonomies();
 
-		$this->create_cron_jobs();
-		$this->create_units();
+		self::create_cron_jobs();
+		self::create_units();
 
 		// Virtual Tax Classes
 		$tax_classes = array_filter( array_map( 'trim', explode( "\n", get_option('woocommerce_tax_classes' ) ) ) );
@@ -131,27 +143,21 @@ class WC_GZD_Install {
 		// Queue upgrades
 		$current_version    = get_option( 'woocommerce_gzd_version', null );
 		$current_db_version = get_option( 'woocommerce_gzd_db_version', null );
-
-		// Updates
-		if ( version_compare( $current_db_version, '1.0.4', '<' ) && null !== $current_db_version )
+		
+		if ( ! is_null( $current_db_version ) && version_compare( $current_db_version, max( array_keys( self::$db_updates ) ), '<' ) ) {
 			update_option( '_wc_gzd_needs_update', 1 );
-		
-		if ( version_compare( $current_db_version, '1.4.2', '<' ) && null !== $current_db_version )
-			$this->update_trusted_shops();
-		
-		update_option( 'woocommerce_gzd_db_version', WC_germanized()->version );
+		} else {
+			self::update_db_version();
+		}
 
-		// Update version
-		update_option( 'woocommerce_gzd_version', WC_germanized()->version );
+		self::update_wc_gzd_version();
 
 		// Update activation date
 		update_option( 'woocommerce_gzd_activation_date', date( 'Y-m-d' ) );
 
 		// Add theme compatibility check
 		delete_option( '_wc_gzd_hide_theme_notice' );
-
 		delete_option( '_wc_gzd_hide_review_notice' );
-
 		delete_option( '_wc_gzd_hide_pro_notice' );
 
 		// Check if pages are needed
@@ -166,30 +172,89 @@ class WC_GZD_Install {
 	}
 
 	/**
+	 * Update WC version to current
+	 */
+	private static function update_wc_gzd_version() {
+		delete_option( 'woocommerce_gzd_version' );
+		add_option( 'woocommerce_gzd_version', WC_germanized()->version );
+	}
+
+	/**
+	 * Update DB version to current
+	 */
+	private static function update_db_version( $version = null ) {
+		delete_option( 'woocommerce_gzd_db_version' );
+		add_option( 'woocommerce_gzd_db_version', is_null( $version ) ? WC_germanized()->version : $version );
+	}
+
+	/**
 	 * Handle updates
 	 */
-	public function update() {
-		// Do updates
-		if ( ! empty( $_GET['install_woocommerce_gzd_tax_rates'] ) )
-			self::create_tax_rates();
-
+	private static function update() {
 		$current_db_version = get_option( 'woocommerce_gzd_db_version' );
-		update_option( 'woocommerce_gzd_db_version', WC_germanized()->version );
-	}
-	
-	public function update_trusted_shops() {
 
-		if ( get_option( 'woocommerce_gzd_trusted_review_reminder_days' ) ) {
-			update_option( 'woocommerce_gzd_trusted_shops_review_reminder_days', get_option( 'woocommerce_gzd_trusted_review_reminder_days' ) );
-			delete_option( 'woocommerce_gzd_trusted_review_reminder_days' );
+		foreach ( self::$db_updates as $version => $updater ) {
+			if ( version_compare( $current_db_version, $version, '<' ) ) {
+				include( $updater );
+				self::update_db_version( $version );
+			}
 		}
 
+		self::update_db_version();
+	}
+
+	/**
+	 * Show plugin changes. Code adapted from W3 Total Cache.
+	 */
+	public static function in_plugin_update_message( $args ) {
+		$transient_name = 'wc_gzd_upgrade_notice_' . $args['Version'];
+
+		if ( false === ( $upgrade_notice = get_transient( $transient_name ) ) ) {
+			$response = wp_safe_remote_get( 'https://plugins.svn.wordpress.org/woocommerce-germanized/trunk/readme.txt' );
+
+			if ( ! is_wp_error( $response ) && ! empty( $response['body'] ) ) {
+				$upgrade_notice = self::parse_update_notice( $response['body'] );
+				set_transient( $transient_name, $upgrade_notice, DAY_IN_SECONDS );
+			}
+		}
+
+		echo wp_kses_post( $upgrade_notice );
+	}
+
+	/**
+	 * Parse update notice from readme file
+	 * @param  string $content
+	 * @return string
+	 */
+	private static function parse_update_notice( $content ) {
+		// Output Upgrade Notice
+		$matches        = null;
+		$regexp         = '~==\s*Upgrade Notice\s*==\s*=\s*(.*)\s*=(.*)(=\s*' . preg_quote( WC_GERMANIZED_VERSION ) . '\s*=|$)~Uis';
+		$upgrade_notice = '';
+
+		if ( preg_match( $regexp, $content, $matches ) ) {
+			$version = trim( $matches[1] );
+			$notices = (array) preg_split('~[\r\n]+~', trim( $matches[2] ) );
+
+			if ( version_compare( WC_GERMANIZED_VERSION, $version, '<' ) ) {
+
+				$upgrade_notice .= '<div class="wc_plugin_upgrade_notice">';
+
+				foreach ( $notices as $index => $line ) {
+					$upgrade_notice .= wp_kses_post( preg_replace( '~\[([^\]]*)\]\(([^\)]*)\)~', '<a href="${2}">${1}</a>', $line ) );
+				}
+
+				$upgrade_notice .= '</div> ';
+			}
+		}
+
+		return wp_kses_post( $upgrade_notice );
 	}
 
 	/**
 	 * Create cron jobs (clear them first)
 	 */
-	private function create_cron_jobs() {
+	private static function create_cron_jobs() {
 		// Cron jobs
 		wp_clear_scheduled_hook( 'woocommerce_gzd_customer_cleanup' );
 		wp_schedule_event( time(), 'daily', 'woocommerce_gzd_customer_cleanup' );
@@ -201,7 +266,7 @@ class WC_GZD_Install {
 		wp_schedule_event( time(), 'daily', 'woocommerce_gzd_ekomi' );
 	}
 
-	private function create_units() {
+	private static function create_units() {
 		$units = include_once( WC_Germanized()->plugin_path() . '/i18n/units.php' );
 		if ( ! empty( $units ) ) {
 			foreach ( $units as $slug => $unit )
@@ -388,7 +453,7 @@ class WC_GZD_Install {
 	 *
 	 * @access public
 	 */
-	function create_options() {
+	public static function create_options() {
 		// Include settings so that we can run through defaults
 		include_once( WC()->plugin_path() . '/includes/admin/settings/class-wc-settings-page.php' );
 		include_once( 'admin/settings/class-wc-gzd-settings-germanized.php' );

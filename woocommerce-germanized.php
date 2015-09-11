@@ -122,6 +122,7 @@ final class WooCommerce_Germanized {
 		$this->includes();
 
 		// Hooks
+		register_activation_hook( __FILE__, array( 'WC_GZD_Install', 'install' ) );
 		add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), array( $this, 'action_links' ) );
 		add_action( 'after_setup_theme', array( $this, 'include_template_functions' ), 12 );
 		add_action( 'init', array( $this, 'init' ), 1 );
@@ -204,7 +205,7 @@ final class WooCommerce_Germanized {
 		add_action( 'template_redirect', array( $this, 'remove_cart_unit_price_filter' ) );
 
 		// Let third party apps disable instant order confirmation
-		if ( apply_filters( 'woocommerce_gzd_instant_order_confirmation', true ) ) {
+		if ( apply_filters( 'woocommerce_gzd_instant_order_confirmation', true ) && ( 'yes' !== get_option( 'woocommerce_gzd_disable_instant_order_confirmation' ) ) ) {
 
 			// Unregister WooCommerce default order confirmation mails
 			$this->unregister_order_confirmation_hooks();
@@ -729,15 +730,11 @@ final class WooCommerce_Germanized {
 
 	public function remove_order_email_hooks() {
 
-		$mailer = WC()->mailer();
-
-		$mails = $mailer->get_emails();
-		
-		remove_action( 'woocommerce_order_status_pending_to_processing_notification', array( $mails[ 'WC_Email_Customer_Processing_Order' ], 'trigger' ) );
-		remove_action( 'woocommerce_order_status_pending_to_on-hold_notification', array( $mails[ 'WC_Email_Customer_Processing_Order' ], 'trigger' ) );
-		remove_action( 'woocommerce_order_status_pending_to_processing_notification', array( $mails[ 'WC_Email_New_Order' ], 'trigger' ) );
-		remove_action( 'woocommerce_order_status_pending_to_on-hold_notification', array( $mails[ 'WC_Email_New_Order' ], 'trigger' ) );
-		remove_action( 'woocommerce_order_status_pending_to_completed_notification', array( $mails[ 'WC_Email_New_Order' ], 'trigger' ) );
+		remove_action( 'woocommerce_order_status_pending_to_processing_notification', array( $this->emails->get_email_instance_by_id( 'customer_processing_order' ), 'trigger' ) );
+		remove_action( 'woocommerce_order_status_pending_to_on-hold_notification', array( $this->emails->get_email_instance_by_id( 'customer_processing_order' ), 'trigger' ) );
+		remove_action( 'woocommerce_order_status_pending_to_processing_notification', array( $this->emails->get_email_instance_by_id( 'new_order' ), 'trigger' ) );
+		remove_action( 'woocommerce_order_status_pending_to_on-hold_notification', array( $this->emails->get_email_instance_by_id( 'new_order' ), 'trigger' ) );
+		remove_action( 'woocommerce_order_status_pending_to_completed_notification', array( $this->emails->get_email_instance_by_id( 'new_order' ), 'trigger' ) );
 
 	}
 
@@ -757,10 +754,12 @@ final class WooCommerce_Germanized {
 			update_post_meta( $order->id, '_order_payment_info', $result[ 'redirect' ] );		
 
 		// Send order processing mail
-		$mailer = WC()->mailer();
-		$mails = $mailer->get_emails();
-		$mails[ 'WC_Email_Customer_Processing_Order' ]->trigger( $order->id );
-		$mails[ 'WC_Email_New_Order' ]->trigger( $order->id );
+		if ( $processing = $this->emails->get_email_instance_by_id( 'customer_processing_order' ) )
+			$processing->trigger( $order->id );
+
+		// Send admin mail
+		if ( $new_order = $this->emails->get_email_instance_by_id( 'new_order' ) )
+			$new_order->trigger( $order->id );
 
 		do_action( 'woocommerce_germanized_order_confirmation_sent', $order->id );
 

@@ -337,9 +337,12 @@ class WC_GZD_Trusted_Shops {
 			$order = wc_get_order( $order_query->post->ID );
 			$diff = WC_germanized()->get_date_diff( $order->completed_date, date( 'Y-m-d H:i:s' ) );
 			if ( $diff[ 'd' ] >= (int) $this->review_reminder_days ) {
-				$mail = WC()->mailer()->emails['WC_GZD_Email_Customer_Trusted_Shops'];
-				$mail->trigger( $order->id );
-				update_post_meta( $order->id, '_trusted_shops_review_mail_sent', 1 );
+
+				if ( $mail = WC_germanized()->emails->get_email_instance_by_id( 'customer_trusted_shops' ) ) {
+					$mail->trigger( $order->id );
+					update_post_meta( $order->id, '_trusted_shops_review_mail_sent', 1 );
+				}
+				
 			}
 		}
 	}

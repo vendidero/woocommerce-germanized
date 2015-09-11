@@ -35,12 +35,12 @@ class WC_Germanized_Meta_Box_Product_Data {
 		$terms = array();
 
 		woocommerce_wp_select( array( 'id' => '_unit', 'label' => __( 'Unit', 'woocommerce-germanized' ), 'options' => array_merge( array( 'none' => __( 'Select unit', 'woocommerce-germanized' ) ), WC_germanized()->units->get_units() ), 'desc_tip' => true, 'description' => __( 'Needed if selling on a per unit basis', 'woocommerce-germanized' ) ) );
-		woocommerce_wp_text_input( array( 'id' => '_unit_base', 'label' => __( 'Unit Base', 'woocommerce-germanized' ), 'data_type' => 'decimal', 'desc_tip' => true, 'description' => __( 'Unit price per amount (e.g. 100)', 'woocommerce-germanized' ) ) );
-		woocommerce_wp_checkbox( array( 'id' => '_unit_price_auto', 'label' => __( 'Calculation', 'woocommerce-germanized' ), 'description' => '<span class="wc-gzd-premium-desc">' . __( 'Calculate unit prices automatically based on product price', 'woocommerce-germanized' ) . '</span> <a href="https://vendidero.de/woocommerce-germanized#buy" target="_blank" class="wc-gzd-pro">pro</a>' ) );
+		woocommerce_wp_text_input( array( 'id' => '_unit_product', 'label' => __( 'Product Units', 'woocommerce-germanized' ), 'data_type' => 'decimal', 'desc_tip' => true, 'description' => __( 'Number of units included per default product price. Example: 1000 ml. Needed to automatically calculate unit price.', 'woocommerce-germanized' ) ) );
+		woocommerce_wp_text_input( array( 'id' => '_unit_base', 'label' => __( 'Base Price Units', 'woocommerce-germanized' ), 'data_type' => 'decimal', 'desc_tip' => true, 'description' => __( 'Base price units. Example base price: 0,99 € / 100 ml. Insert 100 as base price unit amount.', 'woocommerce-germanized' ) ) );
+		woocommerce_wp_checkbox( array( 'id' => '_unit_price_auto', 'label' => __( 'Calculation', 'woocommerce-germanized' ), 'description' => '<span class="wc-gzd-premium-desc">' . __( 'Calculate base prices automatically.', 'woocommerce-germanized' ) . '</span> <a href="https://vendidero.de/woocommerce-germanized#buy" target="_blank" class="wc-gzd-pro">pro</a>' ) );
 
-		woocommerce_wp_text_input( array( 'id' => '_unit_price_regular', 'label' => __( 'Regular Unit Price', 'woocommerce-germanized' ) . ' (' . get_woocommerce_currency_symbol() . ')', 'data_type' => 'price' ) );
-		woocommerce_wp_text_input( array( 'id' => '_unit_price_sale', 'label' => __( 'Sale Unit Price', 'woocommerce-germanized' ) . ' (' . get_woocommerce_currency_symbol() . ')', 'data_type' => 'price' ) );
-		
+		woocommerce_wp_text_input( array( 'id' => '_unit_price_regular', 'label' => __( 'Regular Base Price', 'woocommerce-germanized' ) . ' (' . get_woocommerce_currency_symbol() . ')', 'data_type' => 'price' ) );
+		woocommerce_wp_text_input( array( 'id' => '_unit_price_sale', 'label' => __( 'Sale Base Price', 'woocommerce-germanized' ) . ' (' . get_woocommerce_currency_symbol() . ')', 'data_type' => 'price' ) );
 		
 	}
 
@@ -75,6 +75,7 @@ class WC_Germanized_Meta_Box_Product_Data {
 			'product-type' => '',
 			'_unit' => '',
 			'_unit_base' => '',
+			'_unit_product' => '',
 			'_unit_price_auto' => '',
 			'_unit_price_regular' => '',
 			'_unit_price_sale' => '',
@@ -105,6 +106,10 @@ class WC_Germanized_Meta_Box_Product_Data {
 		
 		if ( isset( $data['_unit_base'] ) ) {
 			update_post_meta( $post_id, '_unit_base', ( $data['_unit_base'] === '' ) ? '' : wc_format_decimal( $data['_unit_base'] ) );
+		}
+
+		if ( isset( $data['_unit_product'] ) ) {
+			update_post_meta( $post_id, '_unit_product', ( $data['_unit_product'] === '' ) ? '' : wc_format_decimal( $data['_unit_product'] ) );
 		}
 
 		update_post_meta( $post_id, '_unit_price_auto', ( isset( $data['_unit_price_auto'] ) ) ? 'yes' : '' );
