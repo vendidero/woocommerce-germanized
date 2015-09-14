@@ -46,7 +46,7 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 				?></select>
 			</p>
 			<p class="form-row form-row-last">
-				<label for="variable_unit_product"><?php echo __( 'Product Units', 'woocommerce-germanized' );?>: <a class="tips" data-tip="<?php esc_attr_e( 'Number of units included per default product price. Example: 1000 ml. Needed to automatically calculate unit price.', 'woocommerce-germanized' ); ?>" href="#">[?]</a></label>
+				<label for="variable_unit_product"><?php echo __( 'Product Units', 'woocommerce-germanized' );?>: <a class="tips" data-tip="<?php esc_attr_e( 'Number of units included per default product price. Example: 1000 ml.', 'woocommerce-germanized' ); ?>" href="#">[?]</a></label>
 				<input class="input-text wc_input_decimal" size="6" type="text" name="variable_unit_product[<?php echo $loop; ?>]" value="<?php echo ( ! empty( $_product->gzd_product->unit_product ) ? esc_attr( wc_format_localized_decimal( $_product->gzd_product->unit_product ) ) : '' );?>" placeholder="" />
 			</p>
 			<p class="form-row form-row-first">
@@ -150,6 +150,7 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 		$data = array(
 			'_unit' => '',
 			'_unit_base' => '',
+			'_unit_product' => '',
 			'_unit_price_auto' => '',
 			'_unit_price_regular' => '',
 			'_unit_price_sale' => '',

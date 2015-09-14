@@ -235,6 +235,12 @@ class WC_GZD_Admin_Welcome {
 							Als <a class="wc-gzd-pro" style="display: inline !important" href="https://vendidero.de/woocommerce-germanized#accounting" target="_blank">pro</a> User kannst du automatisiert PDF-Rechnungen erstellen.
 						</p>
 					</div>
+					<div class="last-feature">
+						<h4><i class="fa fa-arrows-h"></i> Produkteinheiten</h4>
+						<p>
+							Hinterlege zusätzlich zum Grundpreis, Produkteinheiten für deine Produkte. Beispiel: Du verkaufst 250ml Parfum für 39,95 €. Hinterlege 250 als Produkteinheiten und lasse dir die Daten optional auf der Produktseite ausgeben.
+						</p>
+					</div>
 				</div>
 				<div class="return-to-dashboard">
 					<a href="<?php echo admin_url( 'admin.php?page=wc-settings&tab=checkout' ); ?>">Neue Zahlungsarten jetzt entdecken</a>

@@ -244,7 +244,7 @@ class WC_GZD_Product {
 
 			if ( strpos( $text, '{price}' ) !== false ) {
 
-				$html = str_replace( '{price}', $price_html . apply_filters( 'wc_gzd_unit_price_seperator', ' / ' ) . $this->get_unit_base(), get_option( 'woocommerce_gzd_unit_price_text' ) );
+				$html = str_replace( '{price}', $price_html . apply_filters( 'wc_gzd_unit_price_seperator', ' / ' ) . $this->get_unit_base(), $text );
 
 			} else {
 
@@ -255,6 +255,27 @@ class WC_GZD_Product {
 		}
 
 		return apply_filters( 'woocommerce_gzd_unit_price_html', $html, $this );
+	}
+
+	public function has_product_units() {
+		return ( $this->unit_product && ! empty( $this->unit_product ) && $this->get_unit() );
+	}
+
+	/**
+	 * Formats the amount of product units
+	 *  
+	 * @return string 
+	 */
+	public function get_product_units_html() {
+
+		$html = '';
+		$text = get_option( 'woocommerce_gzd_product_units_text' );
+
+		if ( $this->has_product_units() )
+			$html = str_replace( array( '{product_units}', '{unit}', '{unit_price}' ), array( $this->unit_product, $this->get_unit(), $this->get_unit_html() ), $text );
+
+		return apply_filters( 'woocommerce_gzd_product_units_html', $html, $this );
+
 	}
 
 	/**

@@ -19,6 +19,9 @@
 			if ( $('.type-product').find('.org_tax_info').length > 0 ) {
 				$( '.type-product .tax-info' ).html( $('.product').find('.org_tax_info').html() ).removeClass('variation_modified').show();
 			}
+			if ( $('.type-product').find('.org_product_units').length > 0 ) {
+				$( '.type-product .product-units' ).html( $('.product').find('.org_product_units').html() ).removeClass('variation_modified').show();
+			}
 			$('.org_product_info').remove();
 			$('.variation_modified').remove();
 		}
@@ -35,6 +38,8 @@
 					$wrapper.append( '<div class="org_tax_info org_product_info">' + $wrapper.find( '.tax-info:first' ).html() + '</div>' );
 				if ( $wrapper.find( '.price-unit:first' ).length > 0 )
 					$wrapper.append( '<div class="org_unit_price org_product_info">' + $wrapper.find( '.price-unit:first' ).html() + '</div>' );
+				if ( $wrapper.find( '.product-units:first' ).length > 0 )
+					$wrapper.append( '<div class="org_product_units org_product_info">' + $wrapper.find( '.product-units:first' ).html() + '</div>' );
 				$( '.org_product_info' ).hide();
 			}
 			if ( variation.price_html != '' ) {
@@ -44,6 +49,7 @@
 			$wrapper.find( '.delivery-time-info:first' ).hide();
 			$wrapper.find( '.price-unit:first' ).hide();
 			$wrapper.find( '.tax-info:first' ).hide();
+			$wrapper.find( '.product-units:first' ).hide();
 
 			if ( variation.delivery_time != '' )
 				$wrapper.find( 'p.delivery-time-info:first' ).html( variation.delivery_time ).addClass('variation_modified').show();
@@ -52,6 +58,10 @@
 			if ( variation.unit_price != '' ) {
 				$wrapper.find( '.price-unit:first' ).remove();
 				$wrapper.find( 'div[itemprop="offers"]:first' ).after('<p class="price price-unit smaller variation_modified">' + variation.unit_price + '</p>').show();
+			}
+			if ( variation.product_units != '' ) {
+				$wrapper.find( '.product-units:first' ).remove();
+				$wrapper.find( '.product_meta' ).prepend('<span class="product-units-wrapper product-units variation_modified">' + variation.product_units + '</span>').show();
 			}
 		})
 

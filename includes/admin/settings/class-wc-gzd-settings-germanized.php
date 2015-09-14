@@ -194,9 +194,7 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 
 			array( 'type' => 'sectionend', 'id' => 'contract_options' ),
 
-			array(	'title' => __( 'Legal Pages', 'woocommerce-germanized' ), 'type' => 'title', 'id' => 'legal_pages_options' ),
-
-			array(	'title' => '', 'type' => 'title', 'id' => 'legal_page_pdf', 'desc' => '<div class="notice inline notice-warning"><p>' . sprintf( __( 'Want to attach automatically generated PDF files to emails instead of plain text? %sUpgrade to %spro%s%s', 'woocommerce-germanized' ), '<a style="margin-left: 1em" href="https://vendidero.de/woocommerce-germanized" class="button">', '<span class="wc-gzd-pro">', '</span>', '</a>' ) . '</p></div>' ),
+			array(	'title' => __( 'Legal Pages', 'woocommerce-germanized' ), 'type' => 'title', 'id' => 'legal_pages_options', 'desc' => ( ! WC_germanized()->is_pro() ? '<div class="notice inline notice-warning"><p>' . sprintf( __( 'Want to attach automatically generated PDF files to emails instead of plain text? %sUpgrade to %spro%s%s', 'woocommerce-germanized' ), '<a style="margin-left: 1em" href="https://vendidero.de/woocommerce-germanized" class="button">', '<span class="wc-gzd-pro">', '</span>', '</a>' ) . '</p></div>' : '' ) ),
 
 			array(
 				'title' 	=> __( 'Terms & Conditions', 'woocommerce-germanized' ),
@@ -633,6 +631,25 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 				'type' 		=> 'checkbox',
 				'default'	=> 'yes',
 				'checkboxgroup'		=> 'end',
+			),
+
+			array(
+				'title' 	=> __( 'Show product units', 'woocommerce-germanized' ),
+				'desc' 		=> __( 'Display amount of product units on product detail page.', 'woocommerce-germanized' ),
+				'desc_tip'	=> __( 'Product units will be shown right above your SKU (if available) within the product meta section.', 'woocommerce-germanized' ),
+				'id' 		=> 'woocommerce_gzd_display_product_units',
+				'type' 		=> 'checkbox',
+				'default'	=> 'no',
+			),
+
+			array(
+				'title' 	=> __( 'Product Units Text', 'woocommerce-germanized' ),
+				'desc' 		=> __( 'This text will be used to display the product units. Use {product_units} to insert the amount of product units. Use {unit} to insert the unit. Optionally display the formatted unit price with {unit_price}.', 'woocommerce-germanized' ),
+				'desc_tip'	=> true,
+				'id' 		=> 'woocommerce_gzd_product_units_text',
+				'type' 		=> 'text',
+				'css' 		=> 'min-width:300px;',
+				'default'	=> __( 'Product contains: {product_units} {unit}', 'woocommerce-germanized' ),
 			),
 
 			array(
