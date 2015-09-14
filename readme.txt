@@ -4,7 +4,7 @@ Tags: woocommerce, german market, german, germany, deutsch, deutschland, de, de_
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=info@vendidero.de&item_name=Donation+for+WooCommerce+Germanized
 Requires at least: 3.8
 Tested up to: 4.3
-Stable tag: 1.4.1
+Stable tag: 1.4.2
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -172,6 +172,16 @@ Bugs sowie Hilfe bei der Arbeit an WooCommerce Germanized werden gerne über uns
 1. Einstellungsmöglichkeiten für WooCommerce Germanized.
 
 == Changelog ==
+
+= 1.4.2 =
+* Feature - product units
+* Feature - digital product notice (loss of right of withdrawal) in order confirmation
+* Feature - turn off direct order confirmation by hidden option or filter
+* Feature - WooCommerce style updates
+* Fix - better base price
+* Fix - send mails by id not by classname
+* Fix - Trusted Shops review reminder days option
+* Fix - order item name filter fix
 
 = 1.4.1 =
 * Fix - Direct Debit SEPA checkbox validation
