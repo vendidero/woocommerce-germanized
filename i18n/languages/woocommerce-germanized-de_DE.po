@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: WooCommerce Germanized v1.4.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-29 12:26+0100\n"
-"PO-Revision-Date: 2015-09-14 09:28:47+0000\n"
+"PO-Revision-Date: 2015-09-14 10:21:05+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -85,7 +85,7 @@ msgstr "Über WooCommerce Germanized"
 msgid "Welcome to WooCommerce Germanized"
 msgstr "Willkommen bei WooCommerce Germanized"
 
-#: includes/admin/class-wc-gzd-admin-welcome.php:293
+#: includes/admin/class-wc-gzd-admin-welcome.php:299
 #@ woocommerce-germanized
 msgid "Go to WooCommerce Germanized Settings"
 msgstr "zu den WooCommerce Germanized Einstellungen"
@@ -2853,7 +2853,7 @@ msgstr "PDF %s"
 #, php-format
 #@ woocommerce-germanized
 msgid "Want to attach automatically generated PDF files to emails instead of plain text? %sUpgrade to %spro%s%s"
-msgstr "Möchtest du deine Hinweistexte als PDF-Dateien an die E-Mails anhängen? %sUpgrade zur %spro%s%s"
+msgstr "Möchtest du deine Hinweistexte als PDF-Dateien an die E-Mails anhängen? %sUpgrade zur %spro%s Version%s"
 
 #. translators: plugin header field 'Version'
 #: woocommerce-germanized.php:0
