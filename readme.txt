@@ -60,6 +60,8 @@ Als Nutzer der Pro Version von WooCommerce Germanized erstellst du automatisiert
 Lade beispielsweise einfach ein PDF-Template hoch, das als "Hintergrund" für deine Rechnungen fungiert. Mit wenigen Klicks exportierst du deine Rechnungen (CSV, zip) für deine Buchhaltung oder deinen Steuerberater.
 Mehr Informationen? [PDF Rechnungen für WooCommerce](https://vendidero.de/woocommerce-germanized#accounting "WooCommerce PDF Rechnungen")
 
+Neu: Rechtliche Hinweisseiten (AGB, Widerrufsbelehrung) können nun auch als PDF-Anhang an die Transaktionsmails angehängt werden.
+
 = Steuern für Versandkosten und Gebühren =
 Das WooCommerce Plugin für den deutschen Markt unterstützt mit der aktuellen Version die komplizierte Besteuerung von Versandkosten bei "gemischten" Warenkörben (d.h. es befinden sich unterschiedliche MwSt.-Sätze im Warenkorb).
 In diesem Fall muss die Mehrwertsteuer der Versandkosten anteilig (basierend auf den Anteil der jeweiligen MwSt.-Rate an der Gesamtbestellung), anhand der unterschiedlichen MwSt.-Raten berechnet werden.
@@ -109,6 +111,7 @@ Overview of what WooCommerce Germanized offers:
 * ekomi integration
 * SEPA Payment gateway
 * Pay by Invoice gateway
+* double opt-in for customers
 
 == Installation ==
 
