@@ -68,8 +68,9 @@ class WC_Germanized_Meta_Box_Product_Data {
 
 		$product = wc_get_product( $post_id );
 
-		if ( $product->is_type( 'variable' ) )
+		/*if ( $product->is_type( 'variable' ) )
 			return;
+			*/
 
 		$data = array(
 			'product-type' => '',
@@ -139,12 +140,17 @@ class WC_Germanized_Meta_Box_Product_Data {
 		else
 			wp_delete_object_term_relationships( $post_id, 'product_delivery_time' );
 
-		// Sale prices
+		// Ignore variable data
 		if ( in_array( $product_type, array( 'variable', 'grouped' ) ) && ! $is_variation ) {
 
+			update_post_meta( $post_id, '_unit', '' );
+			update_post_meta( $post_id, '_unit_base', '' );
+			update_post_meta( $post_id, '_unit_product', '' );
 			update_post_meta( $post_id, '_unit_price_regular', '' );
 			update_post_meta( $post_id, '_unit_price_sale', '' );
 			update_post_meta( $post_id, '_unit_price', '' );
+			update_post_meta( $post_id, '_unit_price_auto', '' );
+			update_post_meta( $post_id, '_mini_desc', '' );
 
 		} else {
 
