@@ -29,10 +29,12 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 		add_action( 'woocommerce_settings_' . $this->id, array( $this, 'output' ) );
 		add_action( 'woocommerce_settings_save_' . $this->id, array( $this, 'save' ) );
 		add_filter( 'woocommerce_gzd_get_settings_display', array( $this, 'get_display_settings' ) );
+		add_filter( 'woocommerce_gzd_get_settings_email', array( $this, 'get_email_settings' ) );
 		add_action( 'woocommerce_gzd_before_save_section_', array( $this, 'before_save' ), 0, 1 );
 		add_action( 'woocommerce_gzd_after_save_section_', array( $this, 'after_save' ), 0, 1 );
 		add_action( 'woocommerce_admin_field_image', array( $this, 'image_field' ), 0, 1 );
 		add_action( 'woocommerce_admin_field_hidden', array( $this, 'hidden_field' ), 0, 1 );
+		add_action( 'woocommerce_gzd_before_section_output', array( $this, 'init_tour_data' ), 0, 1 );
 
 		if ( ! WC_Germanized()->is_pro() ) {
 			// Premium sections
@@ -44,7 +46,8 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 				'widerruf' => sprintf( __( 'Revocation generator %s', 'woocommerce-germanized' ), '<span class="wc-gzd-premium-section-tab">pro</span>' ),
 			);
 
-			add_filter( 'woocommerce_gzd_settings_sections', array( $this, 'set_premium_sections' ), 0 );
+			add_filter( 'woocommerce_gzd_settings_sections', array( $this, 'set_premium_sections' ), 4 );
+
 			foreach ( $this->premium_sections as $key => $section ) {
 				add_filter( 'woocommerce_gzd_get_settings_' . $key, array( $this, 'get_premium_settings' ), 0 );
 				add_filter( 'wc_germanized_settings_section_before_' . $key, array( $this, 'output_premium_section' ), 0 );
@@ -56,7 +59,7 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 	public function image_field( $value ) {
 		?>
 		<tr valign="top">
-			<th class="forminp forminp-image" colspan="2">
+			<th class="forminp forminp-image" colspan="2" id="<?php echo $value[ 'id' ]; ?>">
 				<a href="<?php echo $value[ 'href' ]; ?>" target="_blank"><img src="<?php echo $value[ 'img' ]; ?>" /></a>
 			</th>
 		</tr>
@@ -81,8 +84,24 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 		$sections = apply_filters( 'woocommerce_gzd_settings_sections', array(
 			''   		 	=> __( 'General Options', 'woocommerce-germanized' ),
 			'display'       => __( 'Display Options', 'woocommerce-germanized' ),
+			'email'			=> __( 'Email Options', 'woocommerce-germanized' ),
 		) );
 		return $sections;
+	}
+
+	public function init_tour_data( $section = 'general' ) {
+
+		if ( empty( $section ) )
+			$section = 'general';
+
+		if ( get_option( 'woocommerce_gzd_hide_tour_' . $section ) )
+			return;
+
+		$tour = WC_germanized()->plugin_path() . '/includes/admin/views/html-tour-' . $section . '.php';
+
+		if ( file_exists( $tour ) )
+			include( $tour );
+
 	}
 
 	/**
@@ -94,35 +113,8 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 		
 		$delivery_terms = array('' => __( 'None', 'woocommerce-germanized' ));
 		$terms = get_terms( 'product_delivery_time', array('fields' => 'id=>name', 'hide_empty' => false) );
-		if ( !is_wp_error( $terms ) )
+		if ( ! is_wp_error( $terms ) )
 			$delivery_terms = $delivery_terms + $terms;
-
-		$mailer 			= WC()->mailer();
-		$email_templates 	= $mailer->get_emails();
-		$email_select 		= array();
-
-		foreach ( $email_templates as $email )
-			$email_select[ $email->id ] = empty( $email->title ) ? ucfirst( $email->id ) : ucfirst( $email->title );
-
-		$email_order = wc_gzd_get_email_attachment_order();
-
-		$email_settings = array();
-
-		foreach ( $email_order as $key => $order ) {
-
-			array_push( $email_settings, array(
-
-				'title' 	=> sprintf( __( 'Attach %s', 'woocommerce-germanized' ), $order ),
-				'desc' 		=> sprintf( __( 'Attach %s to the following email templates', 'woocommerce-germanized' ), $order ),
-				'id' 		=> 'woocommerce_gzd_mail_attach_' . $key,
-				'type' 		=> 'multiselect',
-				'class'		=> 'chosen_select',
-				'desc_tip'	=> true,
-				'options'	=> $email_select,
-
-			) );
-
-		}
 
 		$settings = array(
 
@@ -194,7 +186,7 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 
 			array( 'type' => 'sectionend', 'id' => 'contract_options' ),
 
-			array(	'title' => __( 'Legal Pages', 'woocommerce-germanized' ), 'type' => 'title', 'id' => 'legal_pages_options', 'desc' => ( ! WC_germanized()->is_pro() ? '<div class="notice inline notice-warning"><p>' . sprintf( __( 'Want to attach automatically generated PDF files to emails instead of plain text? %sUpgrade to %spro%s%s', 'woocommerce-germanized' ), '<a style="margin-left: 1em" href="https://vendidero.de/woocommerce-germanized" class="button">', '<span class="wc-gzd-pro">', '</span>', '</a>' ) . '</p></div>' : '' ) ),
+			array(	'title' => __( 'Legal Pages', 'woocommerce-germanized' ), 'type' => 'title', 'id' => 'legal_pages_options' ),
 
 			array(
 				'title' 	=> __( 'Terms & Conditions', 'woocommerce-germanized' ),
@@ -205,14 +197,6 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 				'class'		=> 'chosen_select_nostd',
 				'css' 		=> 'min-width:300px;',
 				'desc'		=> ( ! get_option( 'woocommerce_terms_page_id' ) ? sprintf( __( 'Don\'t have terms & conditions yet? <a href="%s">Generate now</a>!', 'woocommerce-germanized' ), admin_url( 'admin.php?page=wc-settings&tab=germanized&section=agbs' ) ) : '' ),
-			),
-
-			array(
-				'title' 	=> '',
-				'id' 		=> 'woocommerce_gzdp_legal_page_terms',
-				'img'		=> WC_Germanized()->plugin_url() . '/assets/images/pro/settings-inline-legal-page.png',
-				'href'      => 'https://vendidero.de/woocommerce-germanized#legal-page',
-				'type' 		=> 'image',
 			),
 
 			array(
@@ -227,14 +211,6 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 			),
 
 			array(
-				'title' 	=> '',
-				'id' 		=> 'woocommerce_gzdp_legal_page_terms',
-				'img'		=> WC_Germanized()->plugin_url() . '/assets/images/pro/settings-inline-legal-page.png',
-				'href'      => 'https://vendidero.de/woocommerce-germanized#legal-page',
-				'type' 		=> 'image',
-			),
-
-			array(
 				'title' 	=> __( 'Imprint', 'woocommerce-germanized' ),
 				'desc' 		=> __( 'This page should contain an imprint with your company\'s information.', 'woocommerce-germanized' ),
 				'id' 		=> 'woocommerce_imprint_page_id',
@@ -246,14 +222,6 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 			),
 
 			array(
-				'title' 	=> '',
-				'id' 		=> 'woocommerce_gzdp_legal_page_terms',
-				'img'		=> WC_Germanized()->plugin_url() . '/assets/images/pro/settings-inline-legal-page.png',
-				'href'      => 'https://vendidero.de/woocommerce-germanized#legal-page',
-				'type' 		=> 'image',
-			),
-
-			array(
 				'title' 	=> __( 'Data Security Statement', 'woocommerce-germanized' ),
 				'desc' 		=> __( 'This page should contain information regarding your data security policy.', 'woocommerce-germanized' ),
 				'id' 		=> 'woocommerce_data_security_page_id',
@@ -262,14 +230,6 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 				'class'		=> 'chosen_select_nostd',
 				'css' 		=> 'min-width:300px;',
 				'desc_tip'	=> true,
-			),
-
-			array(
-				'title' 	=> '',
-				'id' 		=> 'woocommerce_gzdp_legal_page_terms',
-				'img'		=> WC_Germanized()->plugin_url() . '/assets/images/pro/settings-inline-legal-page.png',
-				'href'      => 'https://vendidero.de/woocommerce-germanized#legal-page',
-				'type' 		=> 'image',
 			),
 
 			array(
@@ -426,20 +386,6 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 
 			array( 'type' => 'sectionend', 'id' => 'customer_options' ),
 
-			array(	'title' => __( 'Base Price', 'woocommerce-germanized' ), 'type' => 'title', 'id' => 'unit_price_options' ),
-
-			array(
-				'title' 	=> __( 'Base Price Text', 'woocommerce-germanized' ),
-				'desc' 		=> __( 'This text will be used to display the base price. Use {price} to insert the price. If you want to specifically format base price output use {base}, {unit} and {base_price} as placeholders.', 'woocommerce-germanized' ),
-				'desc_tip'	=> true,
-				'id' 		=> 'woocommerce_gzd_unit_price_text',
-				'type' 		=> 'text',
-				'css' 		=> 'min-width:300px;',
-				'default'	=> __( '{price}', 'woocommerce-germanized' ),
-			),
-
-			array( 'type' => 'sectionend', 'id' => 'unit_price_options' ),
-
 			array(	'title' => __( 'Right of Recission', 'woocommerce-germanized' ), 'type' => 'title', 'id' => 'recission_options' ),
 
 			array(
@@ -452,23 +398,6 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 			),
 
 			array( 'type' => 'sectionend', 'id' => 'recission_options' ),
-
-			array(	'title' => __( 'E-Mails', 'woocommerce-germanized' ), 'type' => 'title', 'id' => 'email_options', 'desc' => __( 'Use drag & drop to customize attachment order. Don\'t forget to save your changes.', 'woocommerce-germanized' ) ),
-
-		);
-
-		$settings = array_merge( $settings, $email_settings );
-
-		$settings = array_merge( $settings, array( 
-
-			array(
-				'title' 	=> '',
-				'id' 		=> 'woocommerce_gzd_mail_attach_order',
-				'type' 		=> 'hidden',
-				'default'	=> 'terms,revocation,data_security,imprint',
-			),
-
-			array( 'type' => 'sectionend', 'id' => 'email_options' ),
 
 			array(	'title' => __( 'Virtual VAT', 'woocommerce-germanized' ), 'type' => 'title', 'id' => 'virtual_vat_options' ),
 
@@ -487,7 +416,7 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 
 			array(
 				'title' 	=> '',
-				'id' 		=> 'woocommerce_gzdp_contract_after_confirmation',
+				'id' 		=> 'woocommerce_gzdp_invoice_settings',
 				'img'		=> WC_Germanized()->plugin_url() . '/assets/images/pro/settings-inline-invoices.png',
 				'href'      => 'https://vendidero.de/woocommerce-germanized#accounting',
 				'type' 		=> 'image',
@@ -499,7 +428,7 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 
 			array(
 				'title' 	=> '',
-				'id' 		=> 'woocommerce_gzdp_contract_after_confirmation',
+				'id' 		=> 'woocommerce_gzdp_vat_settings',
 				'img'		=> WC_Germanized()->plugin_url() . '/assets/images/pro/settings-inline-vat.png',
 				'href'      => 'https://vendidero.de/woocommerce-germanized#vat',
 				'type' 		=> 'image',
@@ -507,15 +436,81 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 
 			array( 'type' => 'sectionend', 'id' => 'vat_options' ),
 
-		) ); // End general settings
+		); // End general settings
 	
 		return apply_filters( 'woocommerce_germanized_settings', $settings );
 
 	}
 
+	public function get_email_settings() {
+
+		$mailer 			= WC()->mailer();
+		$email_templates 	= $mailer->get_emails();
+		$email_select 		= array();
+
+		foreach ( $email_templates as $email )
+			$email_select[ $email->id ] = empty( $email->title ) ? ucfirst( $email->id ) : ucfirst( $email->title );
+
+		$email_order = wc_gzd_get_email_attachment_order();
+
+		$email_settings = array();
+
+		foreach ( $email_order as $key => $order ) {
+
+			array_push( $email_settings, array(
+
+				'title' 	=> sprintf( __( 'Attach %s', 'woocommerce-germanized' ), $order ),
+				'desc' 		=> sprintf( __( 'Attach %s to the following email templates', 'woocommerce-germanized' ), $order ),
+				'id' 		=> 'woocommerce_gzd_mail_attach_' . $key,
+				'type' 		=> 'multiselect',
+				'class'		=> 'chosen_select',
+				'desc_tip'	=> true,
+				'options'	=> $email_select,
+
+			) );
+
+		}
+
+		$settings = array(
+
+			array(	'title' => __( 'E-Mails', 'woocommerce-germanized' ), 'type' => 'title', 'id' => 'email_options', 'desc' => __( 'Use drag & drop to customize attachment order. Don\'t forget to save your changes.', 'woocommerce-germanized' ) ),
+
+			array(
+				'title' 	=> '',
+				'id' 		=> 'woocommerce_gzd_mail_attach_order',
+				'type' 		=> 'hidden',
+				'default'	=> 'terms,revocation,data_security,imprint',
+			),
+
+		);
+
+		$settings = array_merge( $settings, $email_settings );
+
+		$settings = array_merge( $settings, array(
+
+			array( 'type' => 'sectionend', 'id' => 'email_options' ),
+
+			array(	'title' => __( 'Email Attachment Options', 'woocommerce-germanized' ), 'type' => 'title', 'id' => 'email_attachment_options', 'desc' => '<div class="notice inline notice-warning"><p>' . sprintf( __( 'Want to attach automatically generated PDF files to emails instead of plain text? %sUpgrade to %spro%s%s', 'woocommerce-germanized' ), '<a style="margin-left: 1em" href="https://vendidero.de/woocommerce-germanized" class="button">', '<span class="wc-gzd-pro">', '</span>', '</a>' ) . '</p></div>' ),
+
+			array(
+				'title' 	=> '',
+				'id' 		=> 'woocommerce_gzdp_email_attachment_pdf',
+				'img'		=> WC_Germanized()->plugin_url() . '/assets/images/pro/settings-inline-legal-page.png',
+				'href'      => 'https://vendidero.de/woocommerce-germanized#legal-page',
+				'type' 		=> 'image',
+			),
+
+			array( 'type' => 'sectionend', 'id' => 'email_attachment_options' ),
+
+		) );
+
+		return apply_filters( 'woocommerce_germanized_settings_email', $settings );
+
+	}
+
 	public function get_display_settings() {
 
-		return array(
+		$settings = array(
 
 			array(	'title' => __( 'General', 'woocommerce-germanized' ), 'type' => 'title', 'id' => 'general_options' ),
 
@@ -634,6 +629,28 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 			),
 
 			array(
+				'title' 	=> __( 'Shipping Costs for Virtual', 'woocommerce-germanized' ),
+				'desc' 		=> __( 'Select this option if you want to display shipping costs notice for virtual products.', 'woocommerce-germanized' ),
+				'id' 		=> 'woocommerce_gzd_display_shipping_costs_virtual',
+				'type' 		=> 'checkbox',
+				'default'	=> 'no',
+			),
+
+			array( 'type' => 'sectionend', 'id' => 'product_options' ),
+
+			array(	'title' => __( 'Base Price', 'woocommerce-germanized' ), 'type' => 'title', 'id' => 'unit_price_options' ),
+
+			array(
+				'title' 	=> __( 'Base Price Text', 'woocommerce-germanized' ),
+				'desc' 		=> __( 'This text will be used to display the base price. Use {price} to insert the price. If you want to specifically format base price output use {base}, {unit} and {base_price} as placeholders.', 'woocommerce-germanized' ),
+				'desc_tip'	=> true,
+				'id' 		=> 'woocommerce_gzd_unit_price_text',
+				'type' 		=> 'text',
+				'css' 		=> 'min-width:300px;',
+				'default'	=> __( '{price}', 'woocommerce-germanized' ),
+			),
+
+			array(
 				'title' 	=> __( 'Show product units', 'woocommerce-germanized' ),
 				'desc' 		=> __( 'Display amount of product units on product detail page.', 'woocommerce-germanized' ),
 				'desc_tip'	=> __( 'Product units will be shown right above your SKU (if available) within the product meta section.', 'woocommerce-germanized' ),
@@ -652,15 +669,7 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 				'default'	=> __( 'Product contains: {product_units} {unit}', 'woocommerce-germanized' ),
 			),
 
-			array(
-				'title' 	=> __( 'Shipping Costs for Virtual', 'woocommerce-germanized' ),
-				'desc' 		=> __( 'Select this option if you want to display shipping costs notice for virtual products.', 'woocommerce-germanized' ),
-				'id' 		=> 'woocommerce_gzd_display_shipping_costs_virtual',
-				'type' 		=> 'checkbox',
-				'default'	=> 'no',
-			),
-
-			array( 'type' => 'sectionend', 'id' => 'product_options' ),
+			array( 'type' => 'sectionend', 'id' => 'unit_price_options' ),
 
 			array(	'title' => __( 'Checkout & Cart', 'woocommerce-germanized' ), 'type' => 'title', 'id' => 'checkout_options' ),
 
@@ -827,12 +836,16 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 
 		);
 
+		return apply_filters( 'woocommerce_germanized_settings_display', $settings );
+
 	}
 
 	public function output() {
+		
 		global $current_section;
 		$settings = $this->get_settings();
 		$sidebar = $this->get_sidebar();
+		
 		if ( $this->get_sections() ) {
 			foreach ( $this->get_sections() as $section => $name ) {
 				if ( $section == $current_section ) {
@@ -841,6 +854,9 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 				}
 			}
 		}
+
+		do_action( 'woocommerce_gzd_before_section_output', $current_section );
+
 		include_once( WC_Germanized()->plugin_path() . '/includes/admin/views/html-settings-section.php' );
 	}
 

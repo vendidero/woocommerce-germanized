@@ -105,6 +105,10 @@ table.data_table tr td p.form-field {
 	color: #FFF;
 }
 
+.tourbus-leg-inner .wc-gzd-pro {
+	top: -3px;
+}
+
 .wc-gzd-premium img, .forminp-image img {
 	width: 100%;
 	height: auto;

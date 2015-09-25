@@ -44,6 +44,7 @@ class WC_GZD_Admin {
 		add_action( 'save_post', array( $this, 'save_legal_page_content' ), 10, 3 );
 		add_action( 'admin_menu', array( $this, 'remove_status_page_hooks' ), 0 );
 		add_action( 'admin_menu', array( $this, 'set_status_page' ), 1 );
+		add_action( 'admin_init', array( $this, 'check_tour_hide' ) );
 	}
 
 	/**
@@ -82,17 +83,28 @@ class WC_GZD_Admin {
 		$assets_path = WC_germanized()->plugin_url() . '/assets/';
 		$admin_script_path = $assets_path . 'js/admin/';
 
-		wp_register_style( 'woocommerce-gzd-admin', $assets_path . 'css/woocommerce-gzd-admin' . $suffix . '.css', false, WC_germanized()->version );
+		wp_register_style( 'woocommerce-gzd-admin', $assets_path . 'css/woocommerce-gzd-admin' . $suffix . '.css', false, WC_GERMANIZED_VERSION );
 		wp_enqueue_style( 'woocommerce-gzd-admin' );
+
+		wp_register_style( 'jquery-tourbus', $assets_path . 'css/tourbus' . $suffix . '.css', false, WC_GERMANIZED_VERSION );
 
 		wp_register_script( 'wc-gzd-admin', $admin_script_path . 'settings' . $suffix . '.js', array( 'jquery', 'woocommerce_settings' ), WC_GERMANIZED_VERSION, true );
 		wp_register_script( 'wc-gzd-admin-emails', $admin_script_path . 'emails' . $suffix . '.js', array( 'jquery', 'woocommerce_settings' ), WC_GERMANIZED_VERSION, true );
-		
-		if ( isset( $_GET[ 'tab' ] ) && $_GET[ 'tab' ] == 'germanized' )
+		wp_register_script( 'jquery-scrollto', $admin_script_path . 'jquery.scrollTo' . $suffix . '.js', array( 'jquery' ), WC_GERMANIZED_VERSION, true );
+		wp_register_script( 'jquery-tourbus', $admin_script_path . 'jquery.tourbus' . $suffix . '.js', array( 'jquery' ), WC_GERMANIZED_VERSION, true );
+		wp_register_script( 'wc-gzd-admin-tour', $admin_script_path . 'tour' . $suffix . '.js', array( 'jquery', 'woocommerce_settings', 'jquery-tourbus' ), WC_GERMANIZED_VERSION, true );
+
+		if ( isset( $_GET[ 'tab' ] ) && $_GET[ 'tab' ] == 'germanized' ) {
 			wp_enqueue_script( 'wc-gzd-admin' );
-		
-		if ( isset( $_GET[ 'section' ] ) && ! empty( $_GET[ 'section' ] ) && strpos( $_GET[ 'section' ], 'gzd_' ) !== false )
+			wp_enqueue_script( 'jquery-scrollto' );
+			wp_enqueue_script( 'jquery-tourbus' );
+			wp_enqueue_script( 'wc-gzd-admin-tour' );
+			wp_enqueue_style( 'jquery-tourbus' );
+		}
+
+		if ( isset( $_GET[ 'section' ] ) && ! empty( $_GET[ 'section' ] ) && strpos( $_GET[ 'section' ], 'gzd_' ) !== false ) {
 			wp_enqueue_script( 'wc-gzd-admin-emails' );
+		}
 
 		// Hide delivery time and unit tagsdiv
 		if ( version_compare( WC()->version, '2.3', '>=' ) )
@@ -138,6 +150,15 @@ class WC_GZD_Admin {
 		echo '<p class="small">' . __( 'This content will be shown as short product description within checkout and emails.', 'woocommerce-germanized' ) . '</p>';
 		wp_editor( htmlspecialchars_decode( get_post_meta( $post->ID, '_mini_desc', true ) ), 'wc_gzd_product_mini_desc', array( 'textarea_name' => '_mini_desc', 'textarea_rows' => 5, 'media_buttons' => false ) );
 	}
+
+	public function disable_tour_link( $type ) {
+		return wp_nonce_url( add_query_arg( array( 'tour' => $type, 'hide' => true ) ), 'wc-gzd-tour-hide' );
+	}
+
+	public function check_tour_hide() {
+		if ( isset( $_GET[ 'tour' ] ) && isset( $_GET[ 'hide' ] ) && isset( $_GET[ '_wpnonce' ] ) && check_admin_referer( 'wc-gzd-tour-hide' ) )
+			update_option( 'woocommerce_gzd_hide_tour_' . sanitize_text_field( $_GET[ 'tour' ] ), true );
+ 	}
 
 }
 

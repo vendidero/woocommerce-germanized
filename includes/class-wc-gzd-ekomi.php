@@ -40,7 +40,7 @@ class WC_GZD_Ekomi {
 		if ( $this->is_enabled() )
 			add_action( 'init', array( $this, 'init' ) );
 		// Register sections
-		add_filter( 'woocommerce_gzd_settings_sections', array( $this, 'register_section' ), 2 );
+		add_filter( 'woocommerce_gzd_settings_sections', array( $this, 'register_section' ), 5 );
 		add_filter( 'woocommerce_gzd_get_settings_ekomi', array( $this, 'get_settings' ) );
 	}
 
