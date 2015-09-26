@@ -96,10 +96,20 @@ class WC_GZD_Admin {
 
 		if ( isset( $_GET[ 'tab' ] ) && $_GET[ 'tab' ] == 'germanized' ) {
 			wp_enqueue_script( 'wc-gzd-admin' );
-			wp_enqueue_script( 'jquery-scrollto' );
-			wp_enqueue_script( 'jquery-tourbus' );
-			wp_enqueue_script( 'wc-gzd-admin-tour' );
-			wp_enqueue_style( 'jquery-tourbus' );
+
+			$section = 'general';
+
+			if ( isset( $_GET[ 'section' ] ) )
+				$section = sanitize_text_field( $_GET[ 'section' ] );
+
+			if ( ! get_option( 'woocommerce_gzd_hide_tour_' . $section ) ) {
+				
+				wp_enqueue_script( 'jquery-scrollto' );
+				wp_enqueue_script( 'jquery-tourbus' );
+				wp_enqueue_script( 'wc-gzd-admin-tour' );
+				wp_enqueue_style( 'jquery-tourbus' );
+
+			}
 		}
 
 		if ( isset( $_GET[ 'section' ] ) && ! empty( $_GET[ 'section' ] ) && strpos( $_GET[ 'section' ], 'gzd_' ) !== false ) {

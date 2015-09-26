@@ -40,8 +40,8 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 			// Premium sections
 			$this->premium_sections = array(
 				'invoices' => sprintf( __( 'Invoices & Packing Slips %s', 'woocommerce-germanized' ), '<span class="wc-gzd-premium-section-tab">pro</span>' ),
-				'checkout' => sprintf( __( 'Multistep Checkout %s', 'woocommerce-germanized' ), '<span class="wc-gzd-premium-section-tab">pro</span>' ),
 				'pdf' 	   => sprintf( __( 'PDF %s', 'woocommerce-germanized' ), '<span class="wc-gzd-premium-section-tab">pro</span>' ),
+				'checkout' => sprintf( __( 'Multistep Checkout %s', 'woocommerce-germanized' ), '<span class="wc-gzd-premium-section-tab">pro</span>' ),
 				'agbs'     => sprintf( __( 'Terms & Conditions generator %s', 'woocommerce-germanized' ), '<span class="wc-gzd-premium-section-tab">pro</span>' ),
 				'widerruf' => sprintf( __( 'Revocation generator %s', 'woocommerce-germanized' ), '<span class="wc-gzd-premium-section-tab">pro</span>' ),
 			);
@@ -495,7 +495,7 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 			array(
 				'title' 	=> '',
 				'id' 		=> 'woocommerce_gzdp_email_attachment_pdf',
-				'img'		=> WC_Germanized()->plugin_url() . '/assets/images/pro/settings-inline-legal-page.png',
+				'img'		=> WC_Germanized()->plugin_url() . '/assets/images/pro/settings-inline-emails.png',
 				'href'      => 'https://vendidero.de/woocommerce-germanized#legal-page',
 				'type' 		=> 'image',
 			),
