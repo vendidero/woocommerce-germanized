@@ -86,13 +86,13 @@ class WC_GZD_Admin {
 		wp_register_style( 'woocommerce-gzd-admin', $assets_path . 'css/woocommerce-gzd-admin' . $suffix . '.css', false, WC_GERMANIZED_VERSION );
 		wp_enqueue_style( 'woocommerce-gzd-admin' );
 
-		wp_register_style( 'jquery-tourbus', $assets_path . 'css/tourbus' . $suffix . '.css', false, WC_GERMANIZED_VERSION );
+		wp_register_style( 'tourbus', $assets_path . 'css/tourbus' . $suffix . '.css', false, WC_GERMANIZED_VERSION );
 
 		wp_register_script( 'wc-gzd-admin', $admin_script_path . 'settings' . $suffix . '.js', array( 'jquery', 'woocommerce_settings' ), WC_GERMANIZED_VERSION, true );
 		wp_register_script( 'wc-gzd-admin-emails', $admin_script_path . 'emails' . $suffix . '.js', array( 'jquery', 'woocommerce_settings' ), WC_GERMANIZED_VERSION, true );
-		wp_register_script( 'jquery-scrollto', $admin_script_path . 'jquery.scrollTo' . $suffix . '.js', array( 'jquery' ), WC_GERMANIZED_VERSION, true );
-		wp_register_script( 'jquery-tourbus', $admin_script_path . 'jquery.tourbus' . $suffix . '.js', array( 'jquery' ), WC_GERMANIZED_VERSION, true );
-		wp_register_script( 'wc-gzd-admin-tour', $admin_script_path . 'tour' . $suffix . '.js', array( 'jquery', 'woocommerce_settings', 'jquery-tourbus' ), WC_GERMANIZED_VERSION, true );
+		wp_register_script( 'scrollto', $admin_script_path . 'scrollTo' . $suffix . '.js', array( 'jquery' ), WC_GERMANIZED_VERSION, true );
+		wp_register_script( 'tourbus', $admin_script_path . 'tourbus' . $suffix . '.js', array( 'jquery' ), WC_GERMANIZED_VERSION, true );
+		wp_register_script( 'wc-gzd-admin-tour', $admin_script_path . 'tour' . $suffix . '.js', array( 'jquery', 'woocommerce_settings', 'tourbus' ), WC_GERMANIZED_VERSION, true );
 
 		if ( isset( $_GET[ 'tab' ] ) && $_GET[ 'tab' ] == 'germanized' ) {
 			wp_enqueue_script( 'wc-gzd-admin' );
@@ -104,10 +104,10 @@ class WC_GZD_Admin {
 
 			if ( ! get_option( 'woocommerce_gzd_hide_tour_' . $section ) ) {
 				
-				wp_enqueue_script( 'jquery-scrollto' );
-				wp_enqueue_script( 'jquery-tourbus' );
+				wp_enqueue_script( 'scrollto' );
+				wp_enqueue_script( 'tourbus' );
 				wp_enqueue_script( 'wc-gzd-admin-tour' );
-				wp_enqueue_style( 'jquery-tourbus' );
+				wp_enqueue_style( 'tourbus' );
 
 			}
 		}
