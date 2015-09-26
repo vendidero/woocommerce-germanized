@@ -102,7 +102,7 @@ class WC_GZD_Admin {
 			if ( isset( $_GET[ 'section' ] ) )
 				$section = sanitize_text_field( $_GET[ 'section' ] );
 
-			if ( ! get_option( 'woocommerce_gzd_hide_tour_' . $section ) ) {
+			if ( $this->is_tour_enabled( $section ) ) {
 				
 				wp_enqueue_script( 'scrollto' );
 				wp_enqueue_script( 'tourbus' );
@@ -165,9 +165,17 @@ class WC_GZD_Admin {
 		return wp_nonce_url( add_query_arg( array( 'tour' => $type, 'hide' => true ) ), 'wc-gzd-tour-hide' );
 	}
 
+	public function is_tour_enabled( $type = '' ) {
+		return ( ! get_option( 'woocommerce_gzd_hide_tour' ) && ! get_option( 'woocommerce_gzd_hide_tour_' . $type ) );
+	}
+
 	public function check_tour_hide() {
-		if ( isset( $_GET[ 'tour' ] ) && isset( $_GET[ 'hide' ] ) && isset( $_GET[ '_wpnonce' ] ) && check_admin_referer( 'wc-gzd-tour-hide' ) )
-			update_option( 'woocommerce_gzd_hide_tour_' . sanitize_text_field( $_GET[ 'tour' ] ), true );
+		if ( isset( $_GET[ 'tour' ] ) && isset( $_GET[ 'hide' ] ) && isset( $_GET[ '_wpnonce' ] ) && check_admin_referer( 'wc-gzd-tour-hide' ) ) {
+			if ( ! empty( $_GET[ 'tour' ] ) )
+				update_option( 'woocommerce_gzd_hide_tour_' . sanitize_text_field( $_GET[ 'tour' ] ), true );
+			else 
+				update_option( 'woocommerce_gzd_hide_tour', true );
+		}
  	}
 
 }

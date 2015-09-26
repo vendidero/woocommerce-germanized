@@ -94,7 +94,7 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 		if ( empty( $section ) )
 			$section = 'general';
 
-		if ( get_option( 'woocommerce_gzd_hide_tour_' . $section ) )
+		if ( ! WC_GZD_Admin::instance()->is_tour_enabled( $section ) )
 			return;
 
 		$tour = WC_germanized()->plugin_path() . '/includes/admin/views/html-tour-' . $section . '.php';
@@ -416,7 +416,7 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 
 			array(
 				'title' 	=> '',
-				'id' 		=> 'woocommerce_gzdp_invoice_settings',
+				'id' 		=> 'woocommerce_gzdp_invoice_enable',
 				'img'		=> WC_Germanized()->plugin_url() . '/assets/images/pro/settings-inline-invoices.png',
 				'href'      => 'https://vendidero.de/woocommerce-germanized#accounting',
 				'type' 		=> 'image',
@@ -428,7 +428,7 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 
 			array(
 				'title' 	=> '',
-				'id' 		=> 'woocommerce_gzdp_vat_settings',
+				'id' 		=> 'woocommerce_gzdp_enable_vat_check',
 				'img'		=> WC_Germanized()->plugin_url() . '/assets/images/pro/settings-inline-vat.png',
 				'href'      => 'https://vendidero.de/woocommerce-germanized#vat',
 				'type' 		=> 'image',
@@ -494,7 +494,7 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 
 			array(
 				'title' 	=> '',
-				'id' 		=> 'woocommerce_gzdp_email_attachment_pdf',
+				'id' 		=> 'woocommerce_gzdp_legal_page_terms_enabled',
 				'img'		=> WC_Germanized()->plugin_url() . '/assets/images/pro/settings-inline-emails.png',
 				'href'      => 'https://vendidero.de/woocommerce-germanized#legal-page',
 				'type' 		=> 'image',

@@ -44,7 +44,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 			Standardmäßig erfolgt die Vertragsbestätigung bei WooCommerce direkt nach der Bestellung. Mit dieser Option kannst du dieses Verhalten verhindern.
 		</p>
 		<a class="button button-primary tourbus-next" href="javascript:void(0);">weiter</a>
-		<a class="button button-secondary" style="float:right" href="https://vendidero.de/woocommerce-germanized#contract" target="_blank">mehr erfahren</a>
+		<?php if ( ! WC_germanized()->is_pro() ) : ?>
+			<a class="button button-secondary" style="float:right" href="https://vendidero.de/woocommerce-germanized#contract" target="_blank">mehr erfahren</a>
+		<?php endif; ?>
 	</li>
 
 	<li data-el="#s2id_woocommerce_terms_page_id" data-orientation="top">
@@ -86,17 +88,19 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<a class="button button-primary tourbus-next" href="javascript:void(0);">weiter</a>
 	</li>
 
-	<li class="wc-gzd-tour-pro" data-el="#woocommerce_gzdp_invoice_settings" data-orientation="top" data-width="500">
+	<li class="wc-gzd-tour-pro" data-el="#woocommerce_gzdp_invoice_enable" data-orientation="top" data-width="500">
 		<h2><span class="wc-gzd-pro">pro</span> Rechnungen & Lieferscheine</h2>
 		<p>
 			Als Nutzer der Pro-Version kannst du über diese Option das Erzeugen von PDF-Rechnungen zu Bestellungen aktivieren.
 			Dieses Feature haben wir in Germanized Pro besonders ausgeklügelt implementiert, sodass du dich voll und ganz auf das Verkaufen konzentrieren kannst.
 		</p>
 		<a class="button button-primary tourbus-next" href="javascript:void(0);">weiter</a>
-		<a class="button button-secondary" style="float:right" href="https://vendidero.de/woocommerce-germanized#accounting" target="_blank">mehr erfahren</a>
+		<?php if ( ! WC_germanized()->is_pro() ) : ?>
+			<a class="button button-secondary" style="float:right" href="https://vendidero.de/woocommerce-germanized#accounting" target="_blank">mehr erfahren</a>
+		<?php endif; ?>
 	</li>
 
-	<li class="wc-gzd-tour-pro" data-el="#woocommerce_gzdp_vat_settings" data-orientation="top" data-width="500">
+	<li class="wc-gzd-tour-pro" data-el="#woocommerce_gzdp_enable_vat_check" data-orientation="top" data-width="500">
 		<h2><span class="wc-gzd-pro">pro</span> Umsatzsteuer ID prüfen</h2>
 		<p>
 			Verkäufer, die an gewerbliche Käufer im europäischen Ausland verkaufen kennen das: Die Umsatzsteuer soll bei Eingabe
@@ -104,7 +108,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 			anhand der europäischen Schnittstelle, ob die ID valide ist und entfernt die USt. in der Kasse.
 		</p>
 		<a class="button button-primary tourbus-next" href="javascript:void(0);">weiter</a>
-		<a class="button button-secondary" style="float:right" href="https://vendidero.de/woocommerce-germanized#vat" target="_blank">mehr erfahren</a>
+		<?php if ( ! WC_germanized()->is_pro() ) : ?>
+			<a class="button button-secondary" style="float:right" href="https://vendidero.de/woocommerce-germanized#vat" target="_blank">mehr erfahren</a>
+		<?php endif; ?>
 	</li>
 
 	<li data-el=".submit" data-orientation="top">

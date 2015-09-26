@@ -26,14 +26,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<a class="button button-primary tourbus-next" href="javascript:void(0);">weiter</a>
 	</li>
 
-	<li class="wc-gzd-tour-pro" data-el="#woocommerce_gzdp_email_attachment_pdf" data-orientation="top" data-width="500">
+	<li class="wc-gzd-tour-pro" data-el="#woocommerce_gzdp_legal_page_terms_enabled" data-orientation="top" data-width="500">
 		<h2><span class="wc-gzd-pro">pro</span> PDF Anhänge in E-Mails</h2>
 		<p>
 			Nutzer der Pro-Version von WooCommerce Germanized können optional PDF-Dateien anstatt reinem Text an die WooCommerce E-Mails anhängen.
 			Die PDF-Dateien können automatisch, basierend auf dem Inhalt der jeweiligen Seite erzeugt oder manuell hinterlegt werden.
 		</p>
-		<a class="button button-primary tourbus-disable" href="<?php echo WC_GZD_Admin::instance()->disable_tour_link( 'email' ); ?>">Tour beenden</a>
-		<a class="button button-secondary" style="float:right" href="https://vendidero.de/woocommerce-germanized#pro" target="_blank">mehr zur <span class="wc-gzd-pro">pro</span> Version</a>
+		<a class="button button-primary tourbus-disable" href="<?php echo WC_GZD_Admin::instance()->disable_tour_link( '' ); ?>">Tour beenden</a>
+		<?php if ( ! WC_germanized()->is_pro() ) : ?>
+			<a class="button button-secondary" style="float:right" href="https://vendidero.de/woocommerce-germanized#pro" target="_blank">mehr zur <span class="wc-gzd-pro">pro</span> Version</a>
+		<?php endif; ?>
 	</li>
 
 </ol>
