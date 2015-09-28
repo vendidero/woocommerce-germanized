@@ -145,6 +145,7 @@ class WC_GZD_Install {
 		$current_db_version = get_option( 'woocommerce_gzd_db_version', null );
 		
 		if ( ! is_null( $current_db_version ) && version_compare( $current_db_version, max( array_keys( self::$db_updates ) ), '<' ) ) {
+			// Update
 			update_option( '_wc_gzd_needs_update', 1 );
 		} else {
 			self::update_db_version();
@@ -161,8 +162,12 @@ class WC_GZD_Install {
 		delete_option( '_wc_gzd_hide_pro_notice' );
 
 		// Check if pages are needed
-		if ( wc_get_page_id( 'revocation' ) < 1 )
+		if ( wc_get_page_id( 'revocation' ) < 1 ) {
 			update_option( '_wc_gzd_needs_pages', 1 );
+		} else {
+			// Show tour for new installs only
+			update_option( 'woocommerce_gzd_hide_tour', 1 );
+		}
 
 		// Flush rules after install
 		flush_rewrite_rules();

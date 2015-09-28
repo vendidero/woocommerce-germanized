@@ -510,6 +510,11 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 
 	public function get_display_settings() {
 
+		$digital_type_options = array_merge( array(
+			'downloadable'  => __( 'Downloadable Product', 'woocommerce-germanized' ),
+			'virtual'		=> __( 'Virtual Product', 'woocommerce-germanized' ),
+		), wc_get_product_types() );
+
 		$settings = array(
 
 			array(	'title' => __( 'General', 'woocommerce-germanized' ), 'type' => 'title', 'id' => 'general_options' ),
@@ -784,6 +789,17 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 				'id' 		=> 'woocommerce_gzd_checkout_legal_digital_checkbox',
 				'default'	=> 'yes',
 				'type' 		=> 'checkbox',
+			),
+
+			array(
+				'title' 	=> __( 'Digital Product types', 'woocommerce-germanized' ),
+				'desc' 		=> __( 'Select product types for which the loss of recission notice is shown. Product types like "simple product" may be redudant because they include virtual and downloadable products.', 'woocommerce-germanized' ),
+				'desc_tip'	=> true,
+				'id' 		=> 'woocommerce_gzd_checkout_legal_digital_types',
+				'default'	=> 'downloadable',
+				'class'		=> 'chosen_select',
+				'options'	=> $digital_type_options,
+				'type' 		=> 'multiselect',
 			),
 
 			array(

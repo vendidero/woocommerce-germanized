@@ -175,6 +175,18 @@ class WC_GZD_Admin {
 				update_option( 'woocommerce_gzd_hide_tour_' . sanitize_text_field( $_GET[ 'tour' ] ), true );
 			else 
 				update_option( 'woocommerce_gzd_hide_tour', true );
+		} else if ( isset( $_GET[ 'tour' ] ) && isset( $_GET[ 'enable' ] ) && isset( $_GET[ '_wpnonce' ] ) && check_admin_referer( 'wc-gzd-tour-enable' ) ) {
+			
+			$setting_sections = array_merge( array( 
+				'general' => '', 
+				'display' => '', 
+				'emails' => '' ), 
+			apply_filters( 'woocommerce_gzd_settings_sections', array() ) );
+			
+			delete_option( 'woocommerce_gzd_hide_tour' );
+			
+			foreach ( $setting_sections as $section => $name )
+				delete_option( 'woocommerce_gzd_hide_tour_' . $section );
 		}
  	}
 

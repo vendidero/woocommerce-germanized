@@ -176,6 +176,13 @@ Bugs sowie Hilfe bei der Arbeit an WooCommerce Germanized werden gerne über uns
 
 == Changelog ==
 
+= 1.4.3 =
+* Feature - intro settings tour
+* Feature - better settings overview (new section: emails)
+* Feature - set variation delivery time based on parent
+* Feature - select product types (e.g. virtual) for digital loss of revocation notice
+* Fix - variable delivery time saving
+
 = 1.4.2 =
 * Feature - product units
 * Feature - digital product notice (loss of right of withdrawal) in order confirmation

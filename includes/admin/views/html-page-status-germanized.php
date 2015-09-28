@@ -155,6 +155,26 @@ if ( ! defined( 'ABSPATH' ) )
 	</tbody>
 </table>
 
+<table class="wc_status_table widefat" cellspacing="0">
+	<thead>
+		<tr>
+			<th colspan="3"><?php _e( 'Tools', 'woocommerce-germanized' ); ?></th>
+		</tr>
+	</thead>
+	<tbody class="tools">
+		<tr>
+			<td><?php _e( 'Settings Tour', 'woocommerce-germanized' ); ?></td>
+			<td>
+				<p>
+					<a href="<?php echo wp_nonce_url( add_query_arg( array( 'tour' => '', 'enable' => true ) ), 'wc-gzd-tour-enable' ); ?>" class="button button-secondary"><?php _e( 'Reenable Tour', 'woocommerce-germanized' ); ?></a>
+					<span class="description"><?php _e( 'This will delete every option which prevents the Germanized settings tour from starting.', 'woocommerce-germanized' ); ?></span>
+				</p>
+			</td>
+		</tr>
+		<?php do_action( 'woocommerce_gzd_status_after_tools' ); ?>
+	</tbody>
+</table>
+
 <table class="wc_status_table widefat" cellspacing="0" id="status">
 	<thead>
 		<tr>
