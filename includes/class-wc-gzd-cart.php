@@ -28,6 +28,21 @@ class WC_GZD_Cart extends WC_Cart {
 	}
 
 	/**
+	 * Sort by subtotal
+	 * @param  array $a
+	 * @param  array $b
+	 * @return int
+	 */
+	private function sort_by_subtotal( $a, $b ) {
+		$first_item_subtotal  = isset( $a['line_subtotal'] ) ? $a['line_subtotal'] : 0;
+		$second_item_subtotal = isset( $b['line_subtotal'] ) ? $b['line_subtotal'] : 0;
+		if ( $first_item_subtotal === $second_item_subtotal ) {
+			return 0;
+		}
+		return ( $first_item_subtotal < $second_item_subtotal ) ? 1 : -1;
+	}
+
+	/**
 	 * Calculate totals for cart. Implements vat exception for digital products.
 	 */
 	public function calculate_totals() {
@@ -44,11 +59,12 @@ class WC_GZD_Cart extends WC_Cart {
 
 		$tax_rates      = array();
 		$shop_tax_rates = array();
+		$cart           = $this->get_cart();
 
 		/**
 		 * Calculate subtotals for items. This is done first so that discount logic can use the values.
 		 */
-		foreach ( $this->get_cart() as $cart_item_key => $values ) {
+		foreach ( $cart as $cart_item_key => $values ) {
 
 			$_product = $values['data'];
 
@@ -100,8 +116,12 @@ class WC_GZD_Cart extends WC_Cart {
 
 				/**
 				 * ADJUST TAX - Calculations when base tax is not equal to the item tax
+				 *
+				 * The woocommerce_adjust_non_base_location_prices filter can stop base taxes being taken off when dealing with out of base locations.
+				 * e.g. If a product costs 10 including tax, all users will pay 10 regardless of location and taxes.
+				 * This feature is experimental @since 2.4.7 and may change in the future. Use at your risk.
 				 */
-				if ( $item_tax_rates !== $base_tax_rates ) {
+				if ( $item_tax_rates !== $base_tax_rates && apply_filters( 'woocommerce_adjust_non_base_location_prices', true ) ) {
 
 					// Work out a new base price without the shop's base tax
 					$taxes                 = WC_Tax::calc_tax( $line_price, $base_tax_rates, true, true );
@@ -153,10 +173,13 @@ class WC_GZD_Cart extends WC_Cart {
 			$this->subtotal_ex_tax += $line_subtotal;
 		}
 
+		// Order cart items by price so coupon logic is 'fair' for customers and not based on order added to cart.
+		uasort( $cart, array( $this, 'sort_by_subtotal' ) );
+
 		/**
 		 * Calculate totals for items
 		 */
-		foreach ( $this->get_cart() as $cart_item_key => $values ) {
+		foreach ( $cart as $cart_item_key => $values ) {
 
 			$_product = $values['data'];
 
@@ -190,8 +213,12 @@ class WC_GZD_Cart extends WC_Cart {
 
 				/**
 				 * ADJUST TAX - Calculations when base tax is not equal to the item tax
+				 *
+				 * The woocommerce_adjust_non_base_location_prices filter can stop base taxes being taken off when dealing with out of base locations.
+				 * e.g. If a product costs 10 including tax, all users will pay 10 regardless of location and taxes.
+				 * This feature is experimental @since 2.4.7 and may change in the future. Use at your risk.
 				 */
-				if ( $item_tax_rates !== $base_tax_rates ) {
+				if ( $item_tax_rates !== $base_tax_rates && apply_filters( 'woocommerce_adjust_non_base_location_prices', true ) ) {
 
 					// Work out a new base price without the shop's base tax
 					$taxes             = WC_Tax::calc_tax( $line_price, $base_tax_rates, true, true );
@@ -323,7 +350,7 @@ class WC_GZD_Cart extends WC_Cart {
 		}
 
 		do_action( 'woocommerce_after_calculate_totals', $this );
-		//print_r($this->taxes);
+
 		$this->set_session();
 	}
 

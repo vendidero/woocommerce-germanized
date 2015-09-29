@@ -107,7 +107,7 @@ class WC_GZD_Product {
 	 * @return boolean
 	 */
 	public function is_virtual_vat_exception() {
-		return ( ( get_option( 'woocommerce_gzd_enable_virtual_vat' ) == 'yes' ) && ( $this->is_downloadable() || $this->is_virtual() ) ? true : false );
+		return apply_filters( 'woocommerce_gzd_product_virtual_vat_exception', ( ( get_option( 'woocommerce_gzd_enable_virtual_vat' ) == 'yes' ) && ( $this->is_downloadable() || $this->is_virtual() ) ? true : false ), $this );
 	}
 
 	/**
