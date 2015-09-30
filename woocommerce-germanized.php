@@ -835,7 +835,7 @@ final class WooCommerce_Germanized {
 		if ( ! is_object( $product ) )
 			return $price;
 
-		if ( ! $product || ! $product->gzd_product->is_virtual_vat_exception() || ! isset( WC()->cart ) || ! WC()->cart->is_virtual_taxable() )
+		if ( ( ! is_checkout() && ! is_cart() ) || ! $product || ! $product->gzd_product->is_virtual_vat_exception() || ! isset( WC()->cart ) || ! WC()->cart->is_virtual_taxable() )
 			return $price;
 
 		if ( get_option( 'woocommerce_prices_include_tax' ) === 'yes' )
