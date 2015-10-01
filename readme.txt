@@ -182,6 +182,9 @@ Bugs sowie Hilfe bei der Arbeit an WooCommerce Germanized werden gerne über uns
 * Feature - set variation delivery time based on parent
 * Feature - select product types (e.g. virtual) for digital loss of revocation notice
 * Fix - variable delivery time saving
+* Fix - stop unregistering prettyPhoto for direct debit
+* Fix - virtual price filter only on checkout/cart
+* Fix - adjusted class-wc-gzd-cart.php to newest version
 
 = 1.4.2 =
 * Feature - product units
