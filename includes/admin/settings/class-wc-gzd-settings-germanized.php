@@ -796,7 +796,7 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 				'desc' 		=> __( 'Select product types for which the loss of recission notice is shown. Product types like "simple product" may be redudant because they include virtual and downloadable products.', 'woocommerce-germanized' ),
 				'desc_tip'	=> true,
 				'id' 		=> 'woocommerce_gzd_checkout_legal_digital_types',
-				'default'	=> 'downloadable',
+				'default'	=> array( 'downloadable' ),
 				'class'		=> 'chosen_select',
 				'options'	=> $digital_type_options,
 				'type' 		=> 'multiselect',

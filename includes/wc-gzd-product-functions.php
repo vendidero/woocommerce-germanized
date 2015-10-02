@@ -47,7 +47,13 @@ function wc_gzd_check_price_update( $meta_id, $post_id, $meta_key, $meta_value )
 }
 
 function wc_gzd_is_revocation_exempt( $product ) {
+	
 	$digital_types = apply_filters( 'woocommerce_gzd_digital_product_types', get_option( 'woocommerce_gzd_checkout_legal_digital_types', array( 'downloadable' ) ) );
+	if ( empty( $digital_types ) )
+		return false;
+	else if ( ! is_array( $digital_types ) )
+		$digital_types = array( $digital_types );
+	
 	if ( in_array( 'downloadable', $digital_types ) && $product->is_downloadable() )
 		return true;
 	else if ( in_array( 'virtual', $digital_types ) && $product->is_virtual() )
@@ -56,5 +62,6 @@ function wc_gzd_is_revocation_exempt( $product ) {
 		return true;
 	else if ( apply_filters( 'woocommerce_gzd_product_is_revocation_exception', false, $product ) )
 		return true;
+
 	return false;
 }
