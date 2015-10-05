@@ -127,8 +127,9 @@ class WC_GZD_Cart extends WC_Cart {
 					$taxes                 = WC_Tax::calc_tax( $line_price, $base_tax_rates, true, true );
 
 					// Digital VAT exception
-					if ( $this->is_virtual_taxable() && $_product->gzd_product->is_virtual_vat_exception() )
+					if ( $this->is_virtual_taxable() && $_product->gzd_product->is_virtual_vat_exception() ) {
 						$taxes 		   		= WC_Tax::calc_tax( $line_price, $item_tax_rates, true, true );
+					}
 
 					// Now we have a new item price (excluding TAX)
 					$line_subtotal         = $line_price - array_sum( $taxes );
@@ -360,15 +361,21 @@ class WC_GZD_Cart extends WC_Cart {
 	 * @return boolean
 	 */
 	public function is_virtual_taxable() {
-		if ( get_option( 'woocommerce_gzd_enable_virtual_vat' ) != 'yes' )
-			return false;
-		if ( ( ! empty( WC()->customer ) ) && ! WC()->customer->is_vat_exempt() ) {
+
+		$is_taxable = false;
+
+		if ( get_option( 'woocommerce_gzd_enable_virtual_vat' ) === 'yes' && ( ! empty( WC()->customer ) ) ) {
+
 			$taxable_address = WC()->customer->get_taxable_address();
 			$base_country =  WC()->countries->get_base_country();
+
 			if ( isset( $taxable_address[0] ) && $taxable_address[0] != $base_country && in_array( $taxable_address[0], WC()->countries->get_european_union_countries() ) )
-				return true;
+				$is_taxable = true;
+
 		}
-		return false;
+
+		return apply_filters( 'woocommerce_gzd_is_virtual_taxable', $is_taxable, $this );
+
 	}
 
 }
