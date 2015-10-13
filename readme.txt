@@ -22,7 +22,7 @@ Damit WooCommerce Germanized noch schicker aussieht haben wir ein komplett auf d
 Bei der Entwicklung von VendiPro haben wir besonders auf die Einhaltung deutscher Shop-Design-Prinzipien Wert gelegt. WooCommerce Germanized + VendiPro - zusammen die optimale Wahl für deinen deutschen WooCommerce Shop.
 
 = WooCommerce rechtssicher für den deutschen Markt =
-WooCommerce Germanized unterstützt eine Vielzahl typisch deutscher Funktionalitäten: Lieferzeiten, Einheitspreise, Versandkosten- und Mehrwertsteuer-Hinweise, rechtlich relevante Hinweisseiten (z.B. AGB, Widerrufsbelehrung usw.) - auch in E-Mails, Kleinuternehmerregelung, Gebühren für Zahlungsmethoden und noch vieles mehr.
+WooCommerce Germanized unterstützt eine Vielzahl typisch deutscher Funktionalitäten: Lieferzeiten, Grundpreise, Versandkosten- und Mehrwertsteuer-Hinweise, rechtlich relevante Hinweisseiten (z.B. AGB, Widerrufsbelehrung usw.) - auch in E-Mails, Kleinuternehmerregelung, Gebühren für Zahlungsmethoden und noch vieles mehr.
 Zudem haben wir einige Anpassungen am Bezahlvorgang vorgenommen, damit dein WooCommerce Shop den rechtlichen Ansprüchen eines deutschen Online-Shops entspricht. Eine ausführliche Liste der Funktionalitäten sowie weitere Informationen zu WooCommerce Germanized findest du unter vendidero.de.
 
 * Lieferzeiten
@@ -34,7 +34,7 @@ Zudem haben wir einige Anpassungen am Bezahlvorgang vorgenommen, damit dein WooC
 * Kompatibilität zur Button-Lösung
 * Double-Opt-In für Benutzerkonten
 * Steuern für Versandkosten und Gebühren
-* AGB, Widerrufsbelehrung etc. in ausgewählten E-Mails
+* AGB, Widerrufsbelehrung etc. in ausgewählten E-Mail-Templates
 * Zahlungsart: SEPA Lastschriftverfahren/Bankeinzug
 * Zahlungsart: Kauf auf Rechnung
 * Zahlungsgebühren festlegen

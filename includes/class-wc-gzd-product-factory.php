@@ -22,7 +22,7 @@ class WC_GZD_Product_Factory extends WC_Product_Factory {
 	public function get_product( $the_product = false, $args = array() ) {
 		$product = $this->get_product_standalone( $the_product, $args );
 		if ( is_object( $product ) )
-			$product->gzd_product = new WC_GZD_Product( $product );
+			$product->gzd_product = $this->get_gzd_product( $product );
 		return $product;
 	}
 
@@ -35,6 +35,24 @@ class WC_GZD_Product_Factory extends WC_Product_Factory {
 	*/
 	public function get_product_standalone( $the_product = false, $args = array() ) {
 		return parent::get_product( $the_product, $args );
+	}
+
+	/**
+	 * Returns and locates the WC_GZD_Product Object based on product type. 
+	 *  
+	 * @param  object $product WC_Product
+	 * @return object WC_GZD_Product
+	 */
+	public function get_gzd_product( $product ) {
+
+		$type = $product->product_type;
+		$classname = 'WC_GZD_Product_' . ucfirst( $type );
+
+		if ( class_exists( $classname ) )
+			return new $classname( $product );
+
+		return new WC_GZD_Product( $product );
+
 	}
 
 }

@@ -342,5 +342,6 @@ class WC_GZD_Product {
 		);
 		return str_replace( $find, $replace, get_option( 'woocommerce_gzd_shipping_costs_text' ) );
 	}
+
 }
 ?>
