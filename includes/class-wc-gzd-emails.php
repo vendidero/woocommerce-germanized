@@ -72,7 +72,7 @@ class WC_GZD_Emails {
 
 		$type = $this->get_current_email_object();
 		
-		if ( $type->id == 'customer_processing_order' ) {
+		if ( $type && $type->id == 'customer_processing_order' ) {
 
 			// Check if order contains digital products
 			$items = $order->get_items();
