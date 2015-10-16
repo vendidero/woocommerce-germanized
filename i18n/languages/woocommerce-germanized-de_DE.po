@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: WooCommerce Germanized v1.4.3\n"
+"Project-Id-Version: WooCommerce Germanized v1.4.4\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-29 12:26+0100\n"
-"PO-Revision-Date: 2015-09-28 08:04:24+0000\n"
+"PO-Revision-Date: 2015-10-16 08:02:48+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -1065,7 +1065,7 @@ msgstr "Zahlungsgebühr"
 
 #: includes/abstracts/abstract-wc-gzd-product.php:130
 #: includes/wc-gzd-cart-functions.php:159
-#: woocommerce-germanized.php:883
+#: woocommerce-germanized.php:944
 #, php-format
 #@ woocommerce-germanized
 msgid "incl. %s%% VAT"
@@ -1244,7 +1244,7 @@ msgid "VAT free based on &#167;19 UStG"
 msgstr "Kein Mehrwertsteuerausweis, da Kleinunternehmer nach §19 (1) UStG."
 
 #: includes/gateways/invoice/class-wc-gzd-gateway-invoice.php:50
-#: woocommerce-germanized.php:592
+#: woocommerce-germanized.php:594
 #@ woocommerce
 msgid "Settings"
 msgstr "Einstellungen"
@@ -1618,7 +1618,7 @@ msgstr "Versandkosten-Hinweis auch für virtuelle Produkte aktivieren?"
 
 #: includes/abstracts/abstract-wc-gzd-product.php:128
 #: includes/wc-gzd-cart-functions.php:159
-#: woocommerce-germanized.php:883
+#: woocommerce-germanized.php:944
 #@ woocommerce-germanized
 msgid "incl. VAT"
 msgstr "inkl. MwSt."
@@ -1920,12 +1920,12 @@ msgstr "Wenn Sie bei %s kein Benutzerkonto eröffnet haben, ignorieren Sie diese
 msgid "If you cannot follow the link above please copy this url and paste it to your browser bar: %s"
 msgstr "Falls Sie dem Link nicht folgen können, kopieren Sie bitte folgende URL in die Adresszeile Ihres Browsers: %s"
 
-#: woocommerce-germanized.php:787
+#: woocommerce-germanized.php:789
 #@ woocommerce-germanized
 msgid "Thank you. You have successfully activated your account."
 msgstr "Vielen Dank. Ihr Benutzerkonto wurde erfolgreich aktiviert."
 
-#: woocommerce-germanized.php:791
+#: woocommerce-germanized.php:793
 #@ woocommerce-germanized
 msgid "Sorry, but this activation code cannot be found."
 msgstr "Sorry, dieser Aktivierungscode ist uns leider nicht bekannt."
@@ -2593,14 +2593,14 @@ msgstr "Kontoinhaber"
 
 #: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:114
 #: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:331
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:422
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:425
 #@ woocommerce-germanized
 msgid "IBAN"
 msgstr "IBAN"
 
 #: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:120
 #: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:335
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:423
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:426
 #@ woocommerce-germanized
 msgid "BIC/SWIFT"
 msgstr "BIC/SWIFT"
@@ -2727,12 +2727,12 @@ msgstr "Der Ländercode des IBANs stimmt nicht mit dem Rechnungsland überein."
 msgid "Your BIC seems to be invalid."
 msgstr "Ihr BIC/SWIFT scheint nicht gültig zu sein."
 
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:424
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:427
 #@ woocommerce
 msgid "is invalid"
 msgstr ""
 
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:462
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:465
 #@ woocommerce-germanized
 msgid "Processing direct debit"
 msgstr "Lastschriftverfahren vorbereiten"
@@ -3015,6 +3015,6 @@ msgstr "Diese Option löscht alle Einstellungen, die dazu führen, dass die Tour
 #. translators: plugin header field 'Version'
 #: woocommerce-germanized.php:0
 #@ woocommerce-germanized
-msgid "1.4.3"
-msgstr "1.4.3"
+msgid "1.4.4"
+msgstr "1.4.4"
 
