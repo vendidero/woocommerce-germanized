@@ -4,9 +4,9 @@ if ( ! defined( 'ABSPATH' ) )
 	exit; // Exit if accessed directly
 
 /**
- * WooCommerce Germanized Abstract Product
+ * WooCommerce Germanized Product Variable
  *
- * The WC_GZD_Product Class is used to offer additional functionality for every product type.
+ * The WC_GZD_Product_Variable Class is used to offer additional functionality for every variable product.
  *
  * @class 		WC_GZD_Product
  * @version		1.0.0
@@ -15,39 +15,39 @@ if ( ! defined( 'ABSPATH' ) )
 class WC_GZD_Product_Variable extends WC_GZD_Product {
 
 	/**
-	 * Get the min or max variation regular price.
+	 * Get the min or max variation unit regular price.
 	 * @param  string $min_or_max - min or max
 	 * @param  boolean  $display Whether the value is going to be displayed
 	 * @return string
 	 */
-	public function get_variation_regular_price( $min_or_max = 'min', $display = false ) {
-		$prices = $this->get_variation_prices( $display );
+	public function get_variation_unit_regular_price( $min_or_max = 'min', $display = false ) {
+		$prices = $this->get_variation_unit_prices( $display );
 		$price  = 'min' === $min_or_max ? current( $prices['regular_price'] ) : end( $prices['regular_price'] );
-		return apply_filters( 'woocommerce_get_variation_regular_price', $price, $this, $min_or_max, $display );
+		return apply_filters( 'woocommerce_gzd_get_variation_unit_regular_price', $price, $this, $min_or_max, $display );
 	}
 
 	/**
-	 * Get the min or max variation sale price.
+	 * Get the min or max variation unit sale price.
 	 * @param  string $min_or_max - min or max
 	 * @param  boolean  $display Whether the value is going to be displayed
 	 * @return string
 	 */
-	public function get_variation_sale_price( $min_or_max = 'min', $display = false ) {
-		$prices = $this->get_variation_prices( $display );
+	public function get_variation_unit_sale_price( $min_or_max = 'min', $display = false ) {
+		$prices = $this->get_variation_unit_prices( $display );
 		$price  = 'min' === $min_or_max ? current( $prices['sale_price'] ) : end( $prices['sale_price'] );
-		return apply_filters( 'woocommerce_get_variation_sale_price', $price, $this, $min_or_max, $display );
+		return apply_filters( 'woocommerce_gzd_get_variation_unit_sale_price', $price, $this, $min_or_max, $display );
 	}
 
 	/**
-	 * Get the min or max variation (active) price.
+	 * Get the min or max variation (active) unit price.
 	 * @param  string $min_or_max - min or max
 	 * @param  boolean  $display Whether the value is going to be displayed
 	 * @return string
 	 */
-	public function get_variation_price( $min_or_max = 'min', $display = false ) {
-		$prices = $this->get_variation_prices( $display );
+	public function get_variation_unit_price( $min_or_max = 'min', $display = false ) {
+		$prices = $this->get_variation_unit_prices( $display );
 		$price  = 'min' === $min_or_max ? current( $prices['price'] ) : end( $prices['price'] );
-		return apply_filters( 'woocommerce_get_variation_price', $price, $this, $min_or_max, $display );
+		return apply_filters( 'woocommerce_gzd_get_variation_unit_price', $price, $this, $min_or_max, $display );
 	}
 
 	/**

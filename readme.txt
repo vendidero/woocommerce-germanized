@@ -176,6 +176,11 @@ Bugs sowie Hilfe bei der Arbeit an WooCommerce Germanized werden gerne über uns
 
 == Changelog ==
 
+= 1.4.5 = 
+* Feature - WC_GZD_Product_Variable object containing get_variation_unit_price with min max option
+* Fix - virtual vat calculation (vat exempt compatibility)
+* Fix - email object $type check
+
 = 1.4.4 =
 * Fix - in_array default option checkout
 
