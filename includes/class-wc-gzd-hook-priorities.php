@@ -75,6 +75,7 @@ class WC_GZD_Hook_Priorities {
 			'single_price_unit' 		     => $this->get_priority( 'woocommerce_single_product_summary', 'woocommerce_template_single_price' ) + 1,
 			'single_legal_info' 		     => $this->get_priority( 'woocommerce_single_product_summary', 'woocommerce_template_single_price' ) + 2,
 			'single_delivery_time_info'      => 27,
+			'single_small_business_info'     => 30,
 			'single_product_units'      	 => 5,
 			'loop_price_unit'			     => 10,
 			'loop_tax_info'				     => 6,

@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: WooCommerce Germanized v1.4.4\n"
+"Project-Id-Version: WooCommerce Germanized v1.4.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-29 12:26+0100\n"
-"PO-Revision-Date: 2015-10-16 08:02:48+0000\n"
+"PO-Revision-Date: 2015-10-20 09:50:49+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -1237,12 +1237,6 @@ msgctxt "revocation-form"
 msgid "Forward Revocation"
 msgstr "Widerruf erklären"
 
-#: templates/single-product/legal-info.php:19
-#: templates/single-product/tax-info.php:18
-#@ woocommerce-germanized
-msgid "VAT free based on &#167;19 UStG"
-msgstr "Kein Mehrwertsteuerausweis, da Kleinunternehmer nach §19 (1) UStG."
-
 #: includes/gateways/invoice/class-wc-gzd-gateway-invoice.php:50
 #: woocommerce-germanized.php:594
 #@ woocommerce
@@ -1618,6 +1612,8 @@ msgstr "Versandkosten-Hinweis auch für virtuelle Produkte aktivieren?"
 
 #: includes/abstracts/abstract-wc-gzd-product.php:128
 #: includes/wc-gzd-cart-functions.php:159
+#: templates/single-product/legal-info.php:19
+#: templates/single-product/tax-info.php:18
 #: woocommerce-germanized.php:944
 #@ woocommerce-germanized
 msgid "incl. VAT"
@@ -2076,11 +2072,6 @@ msgstr "Neue Einheit anlegen"
 #@ woocommerce-germanized
 msgid "New Unit Name"
 msgstr "Name der neuen Einheit"
-
-#: templates/global/small-business-info.php:15
-#@ woocommerce-germanized
-msgid "Because of the small business owner state according to &#167;19 UstG the seller does not levy nor state the German value added tax."
-msgstr "Kein Mehrwertsteuerausweis, da Kleinunternehmer nach &#167;19 (1) UStG."
 
 #: includes/admin/settings/class-wc-gzd-settings-germanized.php:740
 #@ woocommerce-germanized
@@ -3012,9 +3003,14 @@ msgstr "Tour aktivieren"
 msgid "This will delete every option which prevents the Germanized settings tour from starting."
 msgstr "Diese Option löscht alle Einstellungen, die dazu führen, dass die Tour nicht angezeigt wird."
 
+#: templates/global/small-business-info.php:15
+#@ woocommerce-germanized
+msgid "Prices include tax. Because of the small business owner state according to &#167;19 UstG the seller does not levy nor state the German value added tax."
+msgstr "Preise inkl. MwSt. Kein Mehrwertsteuerausweis, da Kleinunternehmer nach §19 (1) UStG."
+
 #. translators: plugin header field 'Version'
 #: woocommerce-germanized.php:0
 #@ woocommerce-germanized
-msgid "1.4.4"
-msgstr "1.4.4"
+msgid "1.4.5"
+msgstr "1.4.5"
 

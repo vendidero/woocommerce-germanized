@@ -15,5 +15,5 @@ global $product;
 <?php if ( $product->gzd_product->get_tax_info() ) : ?>
 	<p class="wc-gzd-additional-info tax-info"><?php echo $product->gzd_product->get_tax_info(); ?></p>
 <?php elseif ( get_option( 'woocommerce_gzd_small_enterprise' ) == 'yes' ) : ?>
-	<p class="wc-gzd-additional-info small-business-info"><?php _e( 'VAT free based on &#167;19 UStG', 'woocommerce-germanized' );?></p>
+	<p class="wc-gzd-additional-info small-business-info"><?php _e( 'incl. VAT', 'woocommerce-germanized' );?></p>
 <?php endif; ?>
