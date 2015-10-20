@@ -941,8 +941,8 @@ final class WooCommerce_Germanized {
 			if ( ! empty( $tax_array ) ) {
 				foreach ( $tax_array as $tax ) {
 					$order_totals['tax_' . $tax['tax']->label] = array(
-						'label' => '<span class="tax small tax-label">' . ( get_option( 'woocommerce_tax_total_display' ) == 'itemized' ? sprintf( __( 'incl. %s%% VAT', 'woocommerce-germanized' ), wc_gzd_format_tax_rate_percentage( $tax[ 'tax' ]->rate ) ) : __( 'incl. VAT', 'woocommerce-germanized' ) ) . '</span>',
-						'value' => '<span class="tax small tax-value">' . wc_price( $tax[ 'amount' ] ) . '</span>'
+						'label' => ( get_option( 'woocommerce_tax_total_display' ) == 'itemized' ? sprintf( __( 'incl. %s%% VAT', 'woocommerce-germanized' ), wc_gzd_format_tax_rate_percentage( $tax[ 'tax' ]->rate ) ) : __( 'incl. VAT', 'woocommerce-germanized' ) ),
+						'value' => wc_price( $tax[ 'amount' ] )
 					);
 				}
 			}
