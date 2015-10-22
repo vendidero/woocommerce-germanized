@@ -437,4 +437,22 @@ if ( ! function_exists( 'woocommerce_gzd_template_customer_account_checkbox_erro
 
 }
 
+if ( ! function_exists( 'woocommerce_gzd_template_checkout_forwarding_fee_notice' ) ) {
+
+	function woocommerce_gzd_template_checkout_forwarding_fee_notice() {
+
+		$gateways = WC()->payment_gateways()->get_available_payment_gateways();
+		
+		if ( ! ( $key = WC()->session->get('chosen_payment_method') ) || ! isset( $gateways[ $key ] ) )
+			return;
+		
+		$gateway = $gateways[ $key ];
+
+		if ( $gateway->get_option( 'forwarding_fee' ) )
+			echo apply_filters( 'woocommerce_gzd_forwarding_fee_checkout_text', '<tr><td colspan="2">' . sprintf( __( 'Plus %s forwarding fee (charged by the transport agent)', 'woocommerce-germanized' ), wc_price( $gateway->get_option( 'forwarding_fee' ) ) ) . '</td></tr>' );
+	
+	}
+
+}
+
 ?>

@@ -58,6 +58,8 @@ class WC_GZD_Shortcodes {
 	 */
 	public static function payment_methods_info( $atts ) {
 		
+		WC_GZD_Payment_Gateways::instance()->manipulate_gateways();
+
 		ob_start();
 		wc_get_template( 'global/payment-methods.php' );
 		$return = '<div class="woocommerce woocommerce-gzd">' . ob_get_clean() . '</div>';

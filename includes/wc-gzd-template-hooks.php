@@ -130,6 +130,9 @@ if ( get_option( 'woocommerce_gzd_display_checkout_back_to_cart_button' ) == 'ye
 // Force order button text
 add_filter( 'woocommerce_order_button_text', 'woocommerce_gzd_template_order_button_text', PHP_INT_MAX );
 
+// Forwarding fee
+add_action( 'woocommerce_review_order_after_order_total', 'woocommerce_gzd_template_checkout_forwarding_fee_notice' );
+
 /**
  * Checkout Validation
 */

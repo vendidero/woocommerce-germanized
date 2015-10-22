@@ -21,7 +21,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 				<label for="payment_method_<?php echo $gateway->id; ?>"><?php echo $gateway->get_title(); ?> <?php echo $gateway->get_icon(); ?></label>
 				<?php if ( $gateway->has_fields() || $gateway->get_description() ) : ?>
 					<div class="payment_box payment_method_<?php echo $gateway->id; ?>">
-						<?php echo $gateway->payment_fields(); ?>
+						<p><?php echo $gateway->get_description(); ?></p>
 					</div>
 				<?php endif;?>
 			</li>

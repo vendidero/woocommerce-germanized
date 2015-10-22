@@ -30,15 +30,31 @@ class WC_GZD_Payment_Gateways {
 	 * Manipulate payment gateway description if has a fee and init gateway title filter
 	 */
 	public function checkout() {
+		$this->manipulate_gateways();
+	}
+
+	public function manipulate_gateways() {
+
 		$gateways = WC()->payment_gateways->get_available_payment_gateways();
+		
 		foreach( $gateways as $gateway ) {
+			
 			if ( ! isset( $gateway->force_order_button_text ) || ! $gateway->force_order_button_text )
 				$gateway->order_button_text = __( get_option( 'woocommerce_gzd_order_submit_btn_text' ), 'woocommerce-germanized' );
-			if ( $gateway->get_option( 'fee' ) ) {
-				add_filter( 'woocommerce_gateway_title', array( $this, 'set_title' ), 0, 2 );
-				$gateway->description .= ' ' . sprintf( __( 'Plus %s payment charge.', 'woocommerce-germanized' ), wc_price( $gateway->get_option( 'fee' ) ) );
+			
+			if ( $gateway->get_option( 'fee' ) ) {	
+
+				$desc = sprintf( __( '%s payment charge', 'woocommerce-germanized' ), wc_price( $gateway->get_option( 'fee' ) ) ) . '.';
+				
+				if ( $gateway->get_option( 'forwarding_fee' ) )
+					$desc .= ' ' . sprintf( __( 'Plus %s forwarding fee (charged by the transport agent)', 'woocommerce-germanized' ), wc_price( $gateway->get_option( 'forwarding_fee' ) ) );
+			
+				$gateway->description .= apply_filters( 'woocommerce_gzd_payment_gateway_description', ' ' . $desc, $gateway );
+
 			}
+
 		}
+
 	}
 
 	/**
@@ -53,8 +69,8 @@ class WC_GZD_Payment_Gateways {
 			if ( $gateway->id != $id )
 				continue;
 			$title = $gateway->title;
-			if ( $gateway->get_option( 'fee' ) && ( is_checkout() || ( defined( 'DOING_AJAX' ) && isset( $_POST[ 'action' ] ) && $_POST[ 'action' ] == 'woocommerce_update_order_review' ) ) )
-				$title = $title . ' <span class="small">(' . sprintf( __( 'plus %s payment charge', 'woocommerce-germanized' ), wc_price( $gateway->get_option( 'fee' ) ) ) . ')</span>';
+			if ( $gateway->get_option( 'fee' ) && ( is_payment_methods() || ( is_checkout() || ( defined( 'DOING_AJAX' ) && isset( $_POST[ 'action' ] ) && $_POST[ 'action' ] == 'woocommerce_update_order_review' ) ) ) )
+				$title = $title . ' <span class="small">(' . sprintf( __( '%s payment charge', 'woocommerce-germanized' ), wc_price( $gateway->get_option( 'fee' ) ) ) . ')</span>';
 			return $title;
 		}
 	}
@@ -77,6 +93,9 @@ class WC_GZD_Payment_Gateways {
 	 * @param array $fields 
 	 */
 	public function set_fields( $fields ) {
+
+		$gateway = isset( $_GET[ 'section' ] ) ? wc_clean( $_GET[ 'section' ] ) : '';
+
 		$fields[ 'fee' ] = array(
 			'title'       => __( 'Fee', 'woocommerce-germanized' ),
 			'type'        => 'decimal',
@@ -90,6 +109,19 @@ class WC_GZD_Payment_Gateways {
 			'label' 	  => __( 'Check if fee is taxable.', 'woocommerce-germanized' ),
 			'default'     => 'no',
 		);
+
+		if ( 'wc_gateway_cod' === $gateway ) {
+
+			$fields[ 'forwarding_fee' ] = array(
+				'title'       => __( 'Forwarding Fee', 'woocommerce-germanized' ),
+				'type'        => 'decimal',
+				'desc_tip' 	  => true,
+				'description' => __( 'Forwarding fee will be charged by the transport agent in addition to the cash of delivery fee e.g. DHL - tax free.', 'woocommerce-germanized' ),
+				'default'     => 0,
+			);
+
+		}
+
 		return $fields;
 	}
 

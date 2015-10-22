@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: WooCommerce Germanized v1.4.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-29 12:26+0100\n"
-"PO-Revision-Date: 2015-10-20 09:50:49+0000\n"
+"PO-Revision-Date: 2015-10-22 08:41:52+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -1031,41 +1031,29 @@ msgstr "Diese E-Mail wird als Bestätigung an den Kunden weitergeleitet, sobald 
 msgid "Your Revocation"
 msgstr "Ihr Widerruf"
 
-#: includes/class-wc-gzd-payment-gateways.php:57
-#, php-format
-#@ woocommerce-germanized
-msgid "plus %s payment charge"
-msgstr "zzgl. %s Zahlungsgebühr"
-
-#: includes/class-wc-gzd-payment-gateways.php:39
-#, php-format
-#@ woocommerce-germanized
-msgid "Plus %s payment charge."
-msgstr "Zzgl. %s Zahlungsgebühr."
-
-#: includes/class-wc-gzd-payment-gateways.php:81
+#: includes/class-wc-gzd-payment-gateways.php:100
 #@ woocommerce-germanized
 msgid "Fee"
 msgstr "Zahlungsgebühr"
 
-#: includes/class-wc-gzd-payment-gateways.php:83
+#: includes/class-wc-gzd-payment-gateways.php:102
 #@ woocommerce-germanized
 msgid "This fee is being added if customer selects payment method within checkout."
 msgstr "Diese Gebühr wird während der Bestellung hinzugefügt, falls der Kunde diese Zahlungsart aktiviert."
 
-#: includes/class-wc-gzd-payment-gateways.php:88
+#: includes/class-wc-gzd-payment-gateways.php:107
 #@ woocommerce-germanized
 msgid "Fee is taxable?"
 msgstr "Mwst. berechnen?"
 
-#: includes/class-wc-gzd-payment-gateways.php:121
+#: includes/class-wc-gzd-payment-gateways.php:153
 #@ woocommerce-germanized
 msgid "Payment charge"
 msgstr "Zahlungsgebühr"
 
 #: includes/abstracts/abstract-wc-gzd-product.php:130
 #: includes/wc-gzd-cart-functions.php:159
-#: woocommerce-germanized.php:944
+#: woocommerce-germanized.php:965
 #, php-format
 #@ woocommerce-germanized
 msgid "incl. %s%% VAT"
@@ -1220,11 +1208,6 @@ msgstr "Alle Preise inkl. der gesetzlichen MwSt."
 msgid "All prices excl. VAT."
 msgstr "Alle Preise exkl. der gesetzlichen MwSt."
 
-#: templates/footer/vat-info.php:15
-#@ woocommerce-germanized
-msgid "Because of the small business owner state according to &#167;19 UStG the seller charge no sales tax, and therefore do not show it."
-msgstr "Kein Mehrwertsteuerausweis, da Kleinunternehmer nach §19 (1) UStG."
-
 #: templates/forms/revocation-form.php:18
 #@ woocommerce-germanized
 msgctxt "revocation-form"
@@ -1238,7 +1221,7 @@ msgid "Forward Revocation"
 msgstr "Widerruf erklären"
 
 #: includes/gateways/invoice/class-wc-gzd-gateway-invoice.php:50
-#: woocommerce-germanized.php:594
+#: woocommerce-germanized.php:596
 #@ woocommerce
 msgid "Settings"
 msgstr "Einstellungen"
@@ -1459,7 +1442,7 @@ msgstr "Theme ist noch nicht für WooCommerce Germanized optimiert"
 msgid "It seems like your theme is not yet ready for WooCommerce Germanized. Please check your theme's styles. Some things might look weird - WooCommerce Germanized can only offer basic styles. See <a href=\"%s\" target=\"_blank\">making your theme compatible</a> or check out our Theme <a href=\"%s\" target=\"_blank\">VendiPro</a> for 100&#37; compatibility."
 msgstr "Wir haben festgestellt, dass dein Theme scheinbar noch nicht für WooCommerce Germanized optimiert ist. Bitte überprüfe die Style-Angaben deines Themes bzw. das Aussehen deines Shops. Manche Elemente werden möglicherweise falsch dargestellt - WooCommerce Germanized kann nur grundlegende Style-Angaben machen. Lies dir dazu <a href=\"%s\" target=\"_blank\">wie mache ich mein Theme kompatibel</a> durch oder nutze das von uns entwickelte Theme <a href=\"%s\" target=\"_blank\">VendiPro</a> für 100&#37; Kompatibilität."
 
-#: includes/class-wc-gzd-payment-gateways.php:90
+#: includes/class-wc-gzd-payment-gateways.php:109
 #@ woocommerce-germanized
 msgid "Check if fee is taxable."
 msgstr "MwSt.-Berechnung für Gebühr aktivieren."
@@ -1614,7 +1597,7 @@ msgstr "Versandkosten-Hinweis auch für virtuelle Produkte aktivieren?"
 #: includes/wc-gzd-cart-functions.php:159
 #: templates/single-product/legal-info.php:19
 #: templates/single-product/tax-info.php:18
-#: woocommerce-germanized.php:944
+#: woocommerce-germanized.php:965
 #@ woocommerce-germanized
 msgid "incl. VAT"
 msgstr "inkl. MwSt."
@@ -1916,12 +1899,12 @@ msgstr "Wenn Sie bei %s kein Benutzerkonto eröffnet haben, ignorieren Sie diese
 msgid "If you cannot follow the link above please copy this url and paste it to your browser bar: %s"
 msgstr "Falls Sie dem Link nicht folgen können, kopieren Sie bitte folgende URL in die Adresszeile Ihres Browsers: %s"
 
-#: woocommerce-germanized.php:789
+#: woocommerce-germanized.php:810
 #@ woocommerce-germanized
 msgid "Thank you. You have successfully activated your account."
 msgstr "Vielen Dank. Ihr Benutzerkonto wurde erfolgreich aktiviert."
 
-#: woocommerce-germanized.php:793
+#: woocommerce-germanized.php:814
 #@ woocommerce-germanized
 msgid "Sorry, but this activation code cannot be found."
 msgstr "Sorry, dieser Aktivierungscode ist uns leider nicht bekannt."
@@ -3003,6 +2986,7 @@ msgstr "Tour aktivieren"
 msgid "This will delete every option which prevents the Germanized settings tour from starting."
 msgstr "Diese Option löscht alle Einstellungen, die dazu führen, dass die Tour nicht angezeigt wird."
 
+#: templates/footer/vat-info.php:15
 #: templates/global/small-business-info.php:15
 #@ woocommerce-germanized
 msgid "Prices include tax. Because of the small business owner state according to &#167;19 UstG the seller does not levy nor state the German value added tax."
@@ -3013,4 +2997,28 @@ msgstr "Preise inkl. MwSt. Kein Mehrwertsteuerausweis, da Kleinunternehmer nach 
 #@ woocommerce-germanized
 msgid "1.4.5"
 msgstr "1.4.5"
+
+#: includes/class-wc-gzd-payment-gateways.php:50
+#: includes/wc-gzd-template-functions.php:452
+#, php-format
+#@ woocommerce-germanized
+msgid "Plus %s forwarding fee (charged by the transport agent)"
+msgstr "zzgl. %s Übermittlungsentgelt (direkt an den Zusteller)"
+
+#: includes/class-wc-gzd-payment-gateways.php:47
+#: includes/class-wc-gzd-payment-gateways.php:73
+#, php-format
+#@ woocommerce-germanized
+msgid "%s payment charge"
+msgstr "%s Zahlungsgebühr"
+
+#: includes/class-wc-gzd-payment-gateways.php:116
+#@ woocommerce-germanized
+msgid "Forwarding Fee"
+msgstr "Übermittlungsentgelt"
+
+#: includes/class-wc-gzd-payment-gateways.php:119
+#@ woocommerce-germanized
+msgid "Forwarding fee will be charged by the transport agent in addition to the cash of delivery fee e.g. DHL - tax free."
+msgstr "Übermittlungsentgelt wird zusätzlich zum Nachnahmebetrag vom Paketzusteller kassiert - z.B. DHL (steuerfrei)."
 

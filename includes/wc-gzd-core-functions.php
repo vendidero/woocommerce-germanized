@@ -57,3 +57,14 @@ function wc_gzd_get_email_attachment_order() {
 	
 	return $items;	
 }
+
+if ( ! function_exists( 'is_payment_methods' ) ) {
+
+	/**
+	 * is_checkout - Returns true when viewing the checkout page.
+	 * @return bool
+	 */
+	function is_payment_methods() {
+		return is_page( wc_get_page_id( 'payment_methods' ) ) || apply_filters( 'woocommerce_gzd_is_payment_methods', false ) ? true : false;
+	}
+}
