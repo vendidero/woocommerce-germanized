@@ -215,8 +215,6 @@ final class WooCommerce_Germanized {
 			// Send order notice directly after new order is being added - use these filters because order status has to be updated already
 			add_filter( 'woocommerce_payment_successful_result', array( $this, 'send_order_confirmation_mails' ), 0, 2 );
 			add_filter( 'woocommerce_checkout_no_payment_needed_redirect', array( $this, 'send_order_confirmation_mails' ), 0, 2 );
-			// Subscriptions
-			// add_action( 'wcs_new_order_created', array( $this, 'order_confirmation_subscriptions' ), 0, 2 );
 
 		}
 
@@ -768,25 +766,6 @@ final class WooCommerce_Germanized {
 		do_action( 'woocommerce_germanized_order_confirmation_sent', $order->id );
 
 		return $result;
-	}
-
-	public function order_confirmation_subscriptions( $order, $subscription ) {
-
-		$this->remove_order_email_hooks();
-
-		if ( ! is_object( $order ) )
-			$order = wc_get_order( $order );
-
-		// Send order processing mail
-		if ( $processing = $this->emails->get_email_instance_by_id( 'customer_processing_order' ) )
-			$processing->trigger( $order->id );
-
-		// Send admin mail
-		if ( $new_order = $this->emails->get_email_instance_by_id( 'new_order' ) )
-			$new_order->trigger( $order->id );
-
-		do_action( 'woocommerce_germanized_order_confirmation_sent', $order->id );
-
 	}
 
 	public function register_gateways( $gateways ) {
