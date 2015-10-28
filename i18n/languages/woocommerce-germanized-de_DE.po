@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: WooCommerce Germanized v1.4.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-29 12:26+0100\n"
-"PO-Revision-Date: 2015-10-22 08:41:52+0000\n"
+"PO-Revision-Date: 2015-10-28 14:41:21+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -713,73 +713,73 @@ msgstr "Ihren Widerruf online erklären"
 msgid "Please install <a href=\"%s\" target=\"_blank\">WooCommerce</a> before installing WooCommerce Germanized. Thank you!"
 msgstr "Bitte installieren Sie <a href=\"%s\" target=\"_blank\">WooCommerce</a> bevor Sie WooCommerce Germanized installieren. Vielen Dank!"
 
-#: includes/class-wc-gzd-install.php:417
+#: includes/class-wc-gzd-install.php:429
 #@ woocommerce-germanized
 msgctxt "Page slug"
 msgid "data-security"
 msgstr "datenschutzbelehrung"
 
-#: includes/class-wc-gzd-install.php:418
+#: includes/class-wc-gzd-install.php:430
 #@ woocommerce-germanized
 msgctxt "Page title"
 msgid "Data Security Statement"
 msgstr "Datenschutzbelehrung"
 
-#: includes/class-wc-gzd-install.php:422
+#: includes/class-wc-gzd-install.php:434
 #@ woocommerce-germanized
 msgctxt "Page slug"
 msgid "imprint"
 msgstr "impressum"
 
-#: includes/class-wc-gzd-install.php:423
+#: includes/class-wc-gzd-install.php:435
 #@ woocommerce-germanized
 msgctxt "Page title"
 msgid "Imprint"
 msgstr "Impressum"
 
-#: includes/class-wc-gzd-install.php:427
+#: includes/class-wc-gzd-install.php:439
 #@ woocommerce-germanized
 msgctxt "Page slug"
 msgid "terms"
 msgstr "agb"
 
-#: includes/class-wc-gzd-install.php:428
+#: includes/class-wc-gzd-install.php:440
 #@ woocommerce-germanized
 msgctxt "Page title"
 msgid "Terms & Conditions"
 msgstr "AGB"
 
-#: includes/class-wc-gzd-install.php:432
+#: includes/class-wc-gzd-install.php:444
 #@ woocommerce-germanized
 msgctxt "Page slug"
 msgid "revocation"
 msgstr "widerrufsbelehrung"
 
-#: includes/class-wc-gzd-install.php:433
+#: includes/class-wc-gzd-install.php:445
 #@ woocommerce-germanized
 msgctxt "Page title"
 msgid "Power of Revocation"
 msgstr "Widerrufsbelehrung"
 
-#: includes/class-wc-gzd-install.php:442
+#: includes/class-wc-gzd-install.php:454
 #@ woocommerce-germanized
 msgctxt "Page slug"
 msgid "payment-methods"
 msgstr "bezahlmoeglichkeiten"
 
-#: includes/class-wc-gzd-install.php:443
+#: includes/class-wc-gzd-install.php:455
 #@ woocommerce-germanized
 msgctxt "Page title"
 msgid "Payment Methods"
 msgstr "Zahlungsarten"
 
-#: includes/class-wc-gzd-install.php:437
+#: includes/class-wc-gzd-install.php:449
 #@ woocommerce-germanized
 msgctxt "Page slug"
 msgid "shipping-methods"
 msgstr "versandarten"
 
-#: includes/class-wc-gzd-install.php:438
+#: includes/class-wc-gzd-install.php:450
 #@ woocommerce-germanized
 msgctxt "Page title"
 msgid "Shipping Methods"
@@ -1053,7 +1053,7 @@ msgstr "Zahlungsgebühr"
 
 #: includes/abstracts/abstract-wc-gzd-product.php:130
 #: includes/wc-gzd-cart-functions.php:159
-#: woocommerce-germanized.php:965
+#: woocommerce-germanized.php:945
 #, php-format
 #@ woocommerce-germanized
 msgid "incl. %s%% VAT"
@@ -1221,7 +1221,7 @@ msgid "Forward Revocation"
 msgstr "Widerruf erklären"
 
 #: includes/gateways/invoice/class-wc-gzd-gateway-invoice.php:50
-#: woocommerce-germanized.php:596
+#: woocommerce-germanized.php:595
 #@ woocommerce
 msgid "Settings"
 msgstr "Einstellungen"
@@ -1597,7 +1597,7 @@ msgstr "Versandkosten-Hinweis auch für virtuelle Produkte aktivieren?"
 #: includes/wc-gzd-cart-functions.php:159
 #: templates/single-product/legal-info.php:19
 #: templates/single-product/tax-info.php:18
-#: woocommerce-germanized.php:965
+#: woocommerce-germanized.php:945
 #@ woocommerce-germanized
 msgid "incl. VAT"
 msgstr "inkl. MwSt."
@@ -1899,12 +1899,12 @@ msgstr "Wenn Sie bei %s kein Benutzerkonto eröffnet haben, ignorieren Sie diese
 msgid "If you cannot follow the link above please copy this url and paste it to your browser bar: %s"
 msgstr "Falls Sie dem Link nicht folgen können, kopieren Sie bitte folgende URL in die Adresszeile Ihres Browsers: %s"
 
-#: woocommerce-germanized.php:810
+#: woocommerce-germanized.php:790
 #@ woocommerce-germanized
 msgid "Thank you. You have successfully activated your account."
 msgstr "Vielen Dank. Ihr Benutzerkonto wurde erfolgreich aktiviert."
 
-#: woocommerce-germanized.php:814
+#: woocommerce-germanized.php:794
 #@ woocommerce-germanized
 msgid "Sorry, but this activation code cannot be found."
 msgstr "Sorry, dieser Aktivierungscode ist uns leider nicht bekannt."
@@ -2998,14 +2998,13 @@ msgstr "Preise inkl. MwSt. Kein Mehrwertsteuerausweis, da Kleinunternehmer nach 
 msgid "1.4.5"
 msgstr "1.4.5"
 
-#: includes/class-wc-gzd-payment-gateways.php:50
+#: includes/wc-gzd-order-functions.php:21
 #: includes/wc-gzd-template-functions.php:452
 #, php-format
 #@ woocommerce-germanized
 msgid "Plus %s forwarding fee (charged by the transport agent)"
 msgstr "zzgl. %s Übermittlungsentgelt (direkt an den Zusteller)"
 
-#: includes/class-wc-gzd-payment-gateways.php:47
 #: includes/class-wc-gzd-payment-gateways.php:73
 #, php-format
 #@ woocommerce-germanized
@@ -3021,4 +3020,16 @@ msgstr "Übermittlungsentgelt"
 #@ woocommerce-germanized
 msgid "Forwarding fee will be charged by the transport agent in addition to the cash of delivery fee e.g. DHL - tax free."
 msgstr "Übermittlungsentgelt wird zusätzlich zum Nachnahmebetrag vom Paketzusteller kassiert - z.B. DHL (steuerfrei)."
+
+#: includes/class-wc-gzd-payment-gateways.php:47
+#, php-format
+#@ woocommerce-germanized
+msgid "%s payment charge."
+msgstr ""
+
+#: includes/class-wc-gzd-payment-gateways.php:50
+#, php-format
+#@ woocommerce-germanized
+msgid "Plus %s forwarding fee (charged by the transport agent)."
+msgstr ""
 
