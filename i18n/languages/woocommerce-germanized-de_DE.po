@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: WooCommerce Germanized v1.4.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-29 12:26+0100\n"
-"PO-Revision-Date: 2015-10-28 14:41:21+0000\n"
+"PO-Revision-Date: 2015-10-28 14:50:09+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -1595,8 +1595,6 @@ msgstr "Versandkosten-Hinweis auch für virtuelle Produkte aktivieren?"
 
 #: includes/abstracts/abstract-wc-gzd-product.php:128
 #: includes/wc-gzd-cart-functions.php:159
-#: templates/single-product/legal-info.php:19
-#: templates/single-product/tax-info.php:18
 #: woocommerce-germanized.php:945
 #@ woocommerce-germanized
 msgid "incl. VAT"
@@ -2986,18 +2984,13 @@ msgstr "Tour aktivieren"
 msgid "This will delete every option which prevents the Germanized settings tour from starting."
 msgstr "Diese Option löscht alle Einstellungen, die dazu führen, dass die Tour nicht angezeigt wird."
 
-#: templates/footer/vat-info.php:15
-#: templates/global/small-business-info.php:15
-#@ woocommerce-germanized
-msgid "Prices include tax. Because of the small business owner state according to &#167;19 UstG the seller does not levy nor state the German value added tax."
-msgstr "Preise inkl. MwSt. Kein Mehrwertsteuerausweis, da Kleinunternehmer nach §19 (1) UStG."
-
 #. translators: plugin header field 'Version'
 #: woocommerce-germanized.php:0
 #@ woocommerce-germanized
 msgid "1.4.5"
 msgstr "1.4.5"
 
+#: includes/class-wc-gzd-payment-gateways.php:50
 #: includes/wc-gzd-order-functions.php:21
 #: includes/wc-gzd-template-functions.php:452
 #, php-format
@@ -3005,6 +2998,7 @@ msgstr "1.4.5"
 msgid "Plus %s forwarding fee (charged by the transport agent)"
 msgstr "zzgl. %s Übermittlungsentgelt (direkt an den Zusteller)"
 
+#: includes/class-wc-gzd-payment-gateways.php:47
 #: includes/class-wc-gzd-payment-gateways.php:73
 #, php-format
 #@ woocommerce-germanized
@@ -3021,15 +3015,19 @@ msgstr "Übermittlungsentgelt"
 msgid "Forwarding fee will be charged by the transport agent in addition to the cash of delivery fee e.g. DHL - tax free."
 msgstr "Übermittlungsentgelt wird zusätzlich zum Nachnahmebetrag vom Paketzusteller kassiert - z.B. DHL (steuerfrei)."
 
-#: includes/class-wc-gzd-payment-gateways.php:47
-#, php-format
+#: templates/footer/vat-info.php:15
 #@ woocommerce-germanized
-msgid "%s payment charge."
-msgstr ""
+msgid "Because of the small business owner state according to &#167;19 UStG the seller charge no sales tax, and therefore do not show it."
+msgstr "Kein Mehrwertsteuerausweis, da Kleinunternehmer nach §19 (1) UStG."
 
-#: includes/class-wc-gzd-payment-gateways.php:50
-#, php-format
+#: templates/global/small-business-info.php:15
 #@ woocommerce-germanized
-msgid "Plus %s forwarding fee (charged by the transport agent)."
-msgstr ""
+msgid "Because of the small business owner state according to &#167;19 UstG the seller does not levy nor state the German value added tax."
+msgstr "Kein Mehrwertsteuerausweis, da Kleinunternehmer nach &#167;19 (1) UStG."
+
+#: templates/single-product/legal-info.php:19
+#: templates/single-product/tax-info.php:18
+#@ woocommerce-germanized
+msgid "VAT free based on &#167;19 UStG"
+msgstr "Kein Mehrwertsteuerausweis, da Kleinunternehmer nach §19 (1) UStG."
 
