@@ -295,6 +295,16 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 			),
 
 			array(
+				'title' 	=> __( 'Free Shipping Text', 'woocommerce-germanized' ),
+				'desc' 		=> __( 'This text will be used to inform the customer about free shipping. Leave empty to disable notice. Use {link}{/link} to insert link to shipping costs page.', 'woocommerce-germanized' ),
+				'desc_tip'	=> true,
+				'id' 		=> 'woocommerce_gzd_free_shipping_text',
+				'type' 		=> 'text',
+				'css' 		=> 'min-width:300px;',
+				'default'	=> __( '', 'woocommerce-germanized' ),
+			),
+
+			array(
 				'title' 	=> __( 'Shipping Costs Tax', 'woocommerce-germanized' ),
 				'desc' 		=> __( 'Enable better taxation for shpping costs?', 'woocommerce-germanized' ),
 				'id' 		=> 'woocommerce_gzd_shipping_tax',

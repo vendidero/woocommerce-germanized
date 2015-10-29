@@ -1,6 +1,7 @@
 <wpml-config>
     <admin-texts>
     	<key name="woocommerce_gzd_shipping_costs_text" />
+        <key name="woocommerce_gzd_free_shipping_text" />
     	<key name="woocommerce_gzd_order_submit_btn_text" />
     	<key name="woocommerce_gzd_delivery_time_text" />
     	<key name="woocommerce_gzd_unit_price_text" />

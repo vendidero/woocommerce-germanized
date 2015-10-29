@@ -324,23 +324,31 @@ class WC_GZD_Product {
 		return ( $this->get_delivery_time_term() ) ? apply_filters( 'woocommerce_germanized_delivery_time_html', str_replace( '{delivery_time}', $this->get_delivery_time_term()->name, get_option( 'woocommerce_gzd_delivery_time_text' ) ), $this->get_delivery_time_term()->name ) : '';
 	}
 
+	public function has_free_shipping() {
+		return ( apply_filters( 'woocommerce_germanized_product_has_free_shipping', ( $this->is_virtual() || $this->free_shipping === 'yes' ? true : false ), $this ) );
+	}
+
 	/**
 	 * Returns the shipping costs notice html output
 	 *  
 	 * @return string 
 	 */
 	public function get_shipping_costs_html() {
-		if ( $this->is_virtual() && get_option( 'woocommerce_gzd_display_shipping_costs_virtual' ) != 'yes' )
-			return false;
+		
+		if ( ( $this->is_virtual() && get_option( 'woocommerce_gzd_display_shipping_costs_virtual' ) != 'yes' ) )
+			return apply_filters( 'woocommerce_gzd_virtual_shipping_text', '', $this );
+		
 		$find = array(
 			'{link}',
 			'{/link}'
 		);
+		
 		$replace = array(
 			'<a href="' . esc_url( get_permalink( wc_get_page_id( 'shipping_costs' ) ) ) . '" target="_blank">',
 			'</a>'
 		);
-		return str_replace( $find, $replace, get_option( 'woocommerce_gzd_shipping_costs_text' ) );
+		
+		return apply_filters( 'woocommerce_gzd_shipping_costs_text', str_replace( $find, $replace, ( $this->has_free_shipping() ? get_option( 'woocommerce_gzd_free_shipping_text' ) : get_option( 'woocommerce_gzd_shipping_costs_text' ) ) ), $this );
 	}
 
 }
