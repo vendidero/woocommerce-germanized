@@ -764,6 +764,10 @@ final class WooCommerce_Germanized {
 		if ( $new_order = $this->emails->get_email_instance_by_id( 'new_order' ) )
 			$new_order->trigger( $order->id );
 
+		// Always clear cart after order success
+		if ( get_option( 'woocommerce_gzd_checkout_stop_order_cancellation' ) === 'yes' )
+			WC()->cart->empty_cart();
+
 		do_action( 'woocommerce_germanized_order_confirmation_sent', $order->id );
 
 		return $result;
