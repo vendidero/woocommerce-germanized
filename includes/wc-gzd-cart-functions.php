@@ -34,7 +34,7 @@ function wc_gzd_cart_product_item_desc( $title, $cart_item, $cart_item_key = '' 
 	} else if ( isset( $cart_item[ 'item_desc' ] ) )
 		$product_desc = $cart_item[ 'item_desc' ];
 	if ( ! empty( $product_desc ) )
-		$title .= '<div class="wc-gzd-item-desc item-desc">' . $product_desc . '</div>';
+		$title .= '<div class="wc-gzd-item-desc item-desc">' . do_shortcode( $product_desc ) . '</div>';
 	return $title;
 }
 

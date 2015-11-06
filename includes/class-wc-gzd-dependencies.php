@@ -70,8 +70,9 @@ class WC_GZD_Dependencies {
 	}
 
 	public function is_wpml_activated() {
-		return $this->is_plugin_activated( 'sitepress-multilingual-cms/sitepress.php' );
+		return ( $this->is_plugin_activated( 'sitepress-multilingual-cms/sitepress.php' ) && $this->is_plugin_activated( 'woocommerce-multilingual/wpml-woocommerce.php' ) );
 	}
+
 
 	public function is_loadable() {
 		return $this->loadable;

@@ -276,7 +276,7 @@ class WC_GZD_Checkout {
 	}
 
 	public function get_customer_title( $option = 1 ) {
-		return ( isset( $this->custom_fields[ 'title' ][ 'options' ][ $option ] ) ? $this->custom_fields[ 'title' ][ 'options' ][ $option ] : false );
+		return ( 1 == $option ? __( 'Sir', 'woocommerce-germanized' ) : __( 'Madam', 'woocommerce-germanized' ) );
 	}
 
 	public function set_formatted_address( $placeholder, $args ) {
