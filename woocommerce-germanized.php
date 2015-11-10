@@ -129,7 +129,6 @@ final class WooCommerce_Germanized {
 		add_action( 'init', array( 'WC_GZD_Shortcodes', 'init' ), 2 );
 		add_action( 'widgets_init', array( $this, 'include_widgets' ), 25 );
 		add_action( 'plugins_loaded', array( $this, 'load_plugin_textdomain' ) );
-		add_action( 'woocommerce_init', array( $this, 'replace_woocommerce_cart' ), 0 );
 		add_action( 'woocommerce_init', array( $this, 'replace_woocommerce_product_factory' ), PHP_INT_MAX );
 
 		// Loaded action
@@ -460,14 +459,6 @@ final class WooCommerce_Germanized {
 		if ( $meta_key == '_gzd_product' && in_array( get_post_type( $object_id ), array( 'product', 'product_variation' ) ) ) 
 			return new WC_GZD_Product( $object_id );
 		return $metadata;
-	}
-
-	/**
-	 * Replace the default WC_Cart by WC_GZD_Cart for EU virtual VAT rules.
-	 */
-	public function replace_woocommerce_cart() {
-		if ( get_option( 'woocommerce_gzd_enable_virtual_vat' ) == 'yes' && ( ! is_admin() || defined( 'DOING_AJAX' ) ) && ! defined( 'DOING_CRON' ) )
-			WC()->cart = new WC_GZD_Cart();
 	}
 
 	/**
