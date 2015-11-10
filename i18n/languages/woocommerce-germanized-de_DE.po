@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: WooCommerce Germanized v1.4.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-29 12:26+0100\n"
-"PO-Revision-Date: 2015-11-09 10:52:43+0000\n"
+"PO-Revision-Date: 2015-11-10 09:39:07+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -1055,7 +1055,7 @@ msgstr "Zahlungsgebühr"
 
 #: includes/abstracts/abstract-wc-gzd-product.php:130
 #: includes/wc-gzd-cart-functions.php:159
-#: woocommerce-germanized.php:865
+#: woocommerce-germanized.php:856
 #, php-format
 #@ woocommerce-germanized
 msgid "incl. %s%% VAT"
@@ -1072,7 +1072,6 @@ msgstr "Bestellung bearbeiten"
 msgid "Choose a Payment Gateway"
 msgstr "Zahlungsart auswählen"
 
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:819
 #: includes/wc-gzd-cart-functions.php:194
 #@ woocommerce-germanized
 msgid "I want immediate access to the digital content and I acknowledge that thereby I lose my right to cancel once the service has begun."
@@ -1223,7 +1222,7 @@ msgid "Forward Revocation"
 msgstr "Widerruf erklären"
 
 #: includes/gateways/invoice/class-wc-gzd-gateway-invoice.php:50
-#: woocommerce-germanized.php:592
+#: woocommerce-germanized.php:583
 #@ woocommerce
 msgid "Settings"
 msgstr "Einstellungen"
@@ -1597,7 +1596,7 @@ msgstr "Versandkosten-Hinweis auch für virtuelle Produkte aktivieren?"
 
 #: includes/abstracts/abstract-wc-gzd-product.php:128
 #: includes/wc-gzd-cart-functions.php:159
-#: woocommerce-germanized.php:865
+#: woocommerce-germanized.php:856
 #@ woocommerce-germanized
 msgid "incl. VAT"
 msgstr "inkl. MwSt."
@@ -1899,12 +1898,12 @@ msgstr "Wenn Sie bei %s kein Benutzerkonto eröffnet haben, ignorieren Sie diese
 msgid "If you cannot follow the link above please copy this url and paste it to your browser bar: %s"
 msgstr "Falls Sie dem Link nicht folgen können, kopieren Sie bitte folgende URL in die Adresszeile Ihres Browsers: %s"
 
-#: woocommerce-germanized.php:791
+#: woocommerce-germanized.php:782
 #@ woocommerce-germanized
 msgid "Thank you. You have successfully activated your account."
 msgstr "Vielen Dank. Ihr Benutzerkonto wurde erfolgreich aktiviert."
 
-#: woocommerce-germanized.php:795
+#: woocommerce-germanized.php:786
 #@ woocommerce-germanized
 msgid "Sorry, but this activation code cannot be found."
 msgstr "Sorry, dieser Aktivierungscode ist uns leider nicht bekannt."
@@ -3052,4 +3051,9 @@ msgstr "Kostenloser Versand Text"
 #@ woocommerce-germanized
 msgid "This text will be used to inform the customer about free shipping. Leave empty to disable notice. Use {link}{/link} to insert link to shipping costs page."
 msgstr "Dieser Text wird genutzt um die Kunden im Frontend über einen kostenlosen Versand zu informieren. Nutze den Platzhalter {link}{/link} um den Link zur Versandkosten-Seite einzufügen."
+
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:819
+#@ woocommerce-germanized
+msgid "For digital products: I strongly agree that the execution of the agreement starts before the revocation period has expired. I am aware that my right of withdrawal ceases with the beginning of the agreement."
+msgstr "Für digitale Produkte: Ich stimme ausdrücklich zu, dass vor Ablauf der Widerrufsfrist mit der Ausführung des Vertrags begonnen wird. Mir ist bekannt, dass mit Beginn der Ausführung mein Widerrufsrecht erlischt."
 
