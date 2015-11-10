@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: WooCommerce Germanized v1.4.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-29 12:26+0100\n"
-"PO-Revision-Date: 2015-10-29 12:17:22+0000\n"
+"PO-Revision-Date: 2015-11-09 10:52:43+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -608,12 +608,14 @@ msgstr "Anrede"
 
 #: includes/class-wc-gzd-checkout.php:149
 #: includes/class-wc-gzd-checkout.php:157
+#: includes/class-wc-gzd-checkout.php:279
 #@ woocommerce-germanized
 msgid "Sir"
 msgstr "Herr"
 
 #: includes/class-wc-gzd-checkout.php:149
 #: includes/class-wc-gzd-checkout.php:157
+#: includes/class-wc-gzd-checkout.php:279
 #@ woocommerce-germanized
 msgid "Madam"
 msgstr "Frau"
@@ -1053,7 +1055,7 @@ msgstr "Zahlungsgebühr"
 
 #: includes/abstracts/abstract-wc-gzd-product.php:130
 #: includes/wc-gzd-cart-functions.php:159
-#: woocommerce-germanized.php:945
+#: woocommerce-germanized.php:865
 #, php-format
 #@ woocommerce-germanized
 msgid "incl. %s%% VAT"
@@ -1221,7 +1223,7 @@ msgid "Forward Revocation"
 msgstr "Widerruf erklären"
 
 #: includes/gateways/invoice/class-wc-gzd-gateway-invoice.php:50
-#: woocommerce-germanized.php:595
+#: woocommerce-germanized.php:592
 #@ woocommerce
 msgid "Settings"
 msgstr "Einstellungen"
@@ -1595,7 +1597,7 @@ msgstr "Versandkosten-Hinweis auch für virtuelle Produkte aktivieren?"
 
 #: includes/abstracts/abstract-wc-gzd-product.php:128
 #: includes/wc-gzd-cart-functions.php:159
-#: woocommerce-germanized.php:945
+#: woocommerce-germanized.php:865
 #@ woocommerce-germanized
 msgid "incl. VAT"
 msgstr "inkl. MwSt."
@@ -1897,12 +1899,12 @@ msgstr "Wenn Sie bei %s kein Benutzerkonto eröffnet haben, ignorieren Sie diese
 msgid "If you cannot follow the link above please copy this url and paste it to your browser bar: %s"
 msgstr "Falls Sie dem Link nicht folgen können, kopieren Sie bitte folgende URL in die Adresszeile Ihres Browsers: %s"
 
-#: woocommerce-germanized.php:790
+#: woocommerce-germanized.php:791
 #@ woocommerce-germanized
 msgid "Thank you. You have successfully activated your account."
 msgstr "Vielen Dank. Ihr Benutzerkonto wurde erfolgreich aktiviert."
 
-#: woocommerce-germanized.php:794
+#: woocommerce-germanized.php:795
 #@ woocommerce-germanized
 msgid "Sorry, but this activation code cannot be found."
 msgstr "Sorry, dieser Aktivierungscode ist uns leider nicht bekannt."

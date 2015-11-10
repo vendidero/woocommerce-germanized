@@ -146,7 +146,7 @@ class WC_GZD_Checkout {
 				'type' 	   => 'select',
 				'required' => 1,
 				'label'    => __( 'Title', 'woocommerce-germanized' ),
-				'options'  => array( 1 => __( 'Sir', 'woocommerce-germanized' ), 2 => __( 'Madam', 'woocommerce-germanized' ) ),
+				'options'  => apply_filters( 'woocommerce_gzd_title_options', array( 1 => __( 'Sir', 'woocommerce-germanized' ), 2 => __( 'Madam', 'woocommerce-germanized' ) ) ),
 				'before'   => 'first_name',
 				'group'    => array( 'billing', 'shipping' ),
 			);
