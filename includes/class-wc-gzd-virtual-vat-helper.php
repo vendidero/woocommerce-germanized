@@ -22,7 +22,7 @@ class WC_GZD_Virtual_VAT_Helper {
 	}
 
 	public function init() {
-		// Calculate taxes based on customer address if available
+		// Calculate taxes for virtual vat rates based on customer address if available
 		add_filter( 'woocommerce_base_tax_rates', array( $this, 'set_base_tax_rates' ), 10, 2 );
 	}
 
