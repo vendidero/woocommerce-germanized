@@ -963,6 +963,11 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 				WC_Admin_Settings::add_error( __( 'Sorry, but the new Virtual VAT rules cannot be applied to small business.', 'woocommerce-germanized' ) );
 			}
 		}
+		if ( 'yes' === get_option( 'woocommerce_gzd_enable_virtual_vat' ) ) {
+			// Make sure that tax based location is set to billing address
+			if ( 'base' === get_option( 'woocommerce_tax_based_on' ) )
+				update_option( 'woocommerce_tax_based_on', 'billing' );
+		}
 	}
 
 	public function output_premium_section() {
