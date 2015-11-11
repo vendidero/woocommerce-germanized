@@ -37,6 +37,7 @@ class WC_GZD_Product {
 			'unit_product'		 => '',
 			'unit_price_regular' => '',
 			'unit_price_sale' 	 => '',
+			'unit_price_auto'	 => '',
 			'mini_desc' 		 => '',
 			'gzd_product' 		 => NULL,
 		);

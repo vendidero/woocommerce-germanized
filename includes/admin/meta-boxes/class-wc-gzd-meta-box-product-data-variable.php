@@ -31,8 +31,12 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 		
 		$_product = wc_get_product( $variation );
 		$variation_id = $_product->variation_id;
-		$delivery_time = $_product->gzd_product->delivery_time;
+
+		$delivery_time = wp_get_post_terms( $variation_id, 'product_delivery_time' );
 		
+		if ( $delivery_time && ! empty( $delivery_time ) && is_array( $delivery_time ) )
+			$delivery_time = $delivery_time[0];
+
 		?>
 
 		<div class="variable_pricing_unit">
