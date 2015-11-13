@@ -42,7 +42,7 @@ class WC_GZD_WPML_Helper {
 
 		if ( 'shop_order' === $post_after->post_type ) {
 
-			do_action( 'woocommerce_gzdp_before_order_post_status', $post_id );
+			do_action( 'woocommerce_gzd_before_order_post_status', $post_id );
 
 			$order = wc_get_order( $post_id );
 			$lang = null;
