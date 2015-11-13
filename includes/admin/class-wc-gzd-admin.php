@@ -175,8 +175,8 @@ class WC_GZD_Admin {
 				update_option( 'woocommerce_gzd_hide_tour_' . sanitize_text_field( $_GET[ 'tour' ] ), true );
 			else 
 				update_option( 'woocommerce_gzd_hide_tour', true );
+			wp_safe_redirect( remove_query_arg( array( 'hide', 'tour', '_wpnonce' ) ) );
 		} else if ( isset( $_GET[ 'tour' ] ) && isset( $_GET[ 'enable' ] ) && isset( $_GET[ '_wpnonce' ] ) && check_admin_referer( 'wc-gzd-tour-enable' ) ) {
-			
 			$setting_sections = array_merge( array( 
 				'general' => '', 
 				'display' => '', 

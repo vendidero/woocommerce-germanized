@@ -93,7 +93,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<h2>Einstellungen speichern</h2>
 		<p>Wenn du deine Einstellungen angepasst hast, dann speichere sie über diesen Button.
 		</p>
-		<a class="button button-primary" href="<?php echo admin_url( 'admin.php?page=wc-settings&tab=germanized&section=email' ); ?>">Weiter zu den E-Mails</a>
+		<a class="button button-primary" href="<?php echo add_query_arg( array( 'section' => 'email' ), WC_GZD_Admin::instance()->disable_tour_link( 'display' ) ); ?>">Weiter zu den E-Mails</a>
 	</li>
 
 </ol>

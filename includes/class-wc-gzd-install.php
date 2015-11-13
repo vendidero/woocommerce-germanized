@@ -16,7 +16,8 @@ class WC_GZD_Install {
 	/** @var array DB updates that need to be run */
 	private static $db_updates = array(
 		'1.0.4' => 'updates/woocommerce-gzd-update-1.0.4.php',
-		'1.4.2' => 'updates/woocommerce-gzd-update-1.4.2.php'
+		'1.4.2' => 'updates/woocommerce-gzd-update-1.4.2.php',
+		'1.4.6' => 'updates/woocommerce-gzd-update-1.4.6.php'
 	);
 
 	/**
