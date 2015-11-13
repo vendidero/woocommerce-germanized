@@ -12,8 +12,6 @@ Extends WooCommerce to become a legally compliant shop for german market. WooCom
 
 == Description ==
 
-(see below for english version)
-
 WooCommerce Germanized erweitert WooCommerce um alle technisch relevanten Funktionen für den Betrieb eines rechtssicheren Online-Shops mit WooCommerce in Deutschland. Das Ziel des Plugins ist es, WooCommerce optimal an die Bedürfnisse des deutschen Marktes anzupassen. WC Germanized wird von einem WordPress-erfahrenen, deutschen Team aktiv (weiter-)entwickelt - bei Updates von WooCommerce ziehen wir innerhalb kürzester Zeit mit. 
 
 Nutzer von [WooCommerce Germanized Pro](https://vendidero.de/woocommerce-germanized "WooCommerce optimiert für den deutschen Markt") profitieren von vielen weiterführenden Features z.B. PDF-Rechnungen, Mustertexte-Generator für AGB und Widerrufsbelehrung, Premium Support und vielem mehr!
@@ -49,14 +47,14 @@ Selbstverständlich können Trusted Shops Kunden mit nur wenigen Einstellungen d
 Bei der Entwicklung von WC Germanized haben wir besonderes Augenmerk auf die nahtlose Integration in WooCommerce gelegt.
 Die meisten Änderungen erfolgen über Hooks & Filter - nur im äußersten Notfall wird ein Template direkt überschrieben.
 
-= SEPA Lastschrift & Kauf auf Rechnung = 
+= SEPA Lastschrift & Kauf auf Rechnung für WooCommerce = 
 Mit WooCommerce Germanized 1.4 kannst du deinen Kunden ganz einfach den Kauf per Bankeinzug und per Rechnung ermöglichen.
 Beim SEPA Lastschriftverfahren werden entsprechende Felder für IBAN, BIC und Kontoinhaber zum Checkout hinzugefügt und überprüft.
 Zudem kann der Kunde eine Vorschau des Mandates per Link abrufen und vor dem Kauf einsehen. Den Kauf auf Rechnung kannst du auf Wunsch
 in den Einstellungen so einschränken, dass von dieser Zahlungsart nur Bestandskunden Gebrauch machen können.
 
-= Pro: PDF Rechnungen & Lieferscheine = 
-Als Nutzer der Pro Version von WooCommerce Germanized erstellst du automatisiert oder manuell PDF-Rechnungen und Lieferscheine zu deinen Bestellungen. Dabei hast du volle Kontrolle über das Layout deiner PDF-Dokumente.
+= Pro: WooCommerce PDF Rechnungen & Lieferscheine = 
+Als Nutzer der Pro Version von WC Germanized erstellst du automatisiert oder manuell PDF-Rechnungen und Lieferscheine zu deinen Bestellungen. Dabei hast du volle Kontrolle über das Layout deiner PDF-Dokumente.
 Lade beispielsweise einfach ein PDF-Template hoch, das als "Hintergrund" für deine Rechnungen fungiert. Mit wenigen Klicks exportierst du deine Rechnungen (CSV, zip) für deine Buchhaltung oder deinen Steuerberater.
 Mehr Informationen? [PDF Rechnungen für WooCommerce](https://vendidero.de/woocommerce-germanized#accounting "WooCommerce PDF Rechnungen")
 
@@ -79,7 +77,7 @@ Aktuell unterstützt die Pro-Version folgende Themes:
 Kunden von WC Germanized Pro genießen einen kompetenten Ticket-Support zu Fragen rund um WC Germanized. Natürlich versuchen wir über das WordPress Support-Forum auch einen guten Support zu gewährleisten.
 Gerne übernehmen wir die von dir gewünschten Individualisierungen und Anpassungen an WordPress, WooCommerce und WC Germanized - und unterbreiten dir ein [individuelles Angebot](https://vendidero.de/individualisierung) basierend auf deinen Vorstellungen.
 
-= Double Opt-In Verfahren für Benutzerkonten =
+= Double Opt-In Verfahren für WooCommerce Benutzerkonten =
 Ein Urteil des Amtsgerichts Berlin Pankow/Weißensee macht das Double Opt-In Verfahren für die Erstellung von Benutzerkonten in Online-Shops zur "Pflichtsache". In WC Germanized ist das kein Problem.
 Nach Erstellung eines Kontos wird automatisch eine Bestätigungsmail mit Bestätigungslink an den Kunden versendet. Unaktivierte Konten können nach einem bestimmten Interval automatisch gelöscht werden.
 
