@@ -186,6 +186,7 @@ Bugs sowie Hilfe bei der Arbeit an WooCommerce Germanized werden gerne über uns
 * Fix - show notices (theme, pro) in backend only after major releases
 * Fix - clear cart after order (if customer cancellations of orders has been disabled)
 * Fix - variable products delivery time removal (admin screen)
+* Fix - tour hide referer improvement
 
 = 1.4.5 = 
 * Feature - WC_GZD_Product_Variable object containing get_variation_unit_price with min max option
