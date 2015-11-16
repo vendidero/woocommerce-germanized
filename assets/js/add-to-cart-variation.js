@@ -45,6 +45,7 @@
 			if ( variation.price_html != '' ) {
 				$( '.single_variation .price' ).hide();
 				$wrapper.find( '.price:not(.price-unit):first' ).html( variation.price_html ).addClass( 'variation_modified' );
+				$wrapper.find( '.price:not(.price-unit):first' ).find( ".price" ).contents().unwrap();
 			}
 			$wrapper.find( '.delivery-time-info:first' ).hide();
 			$wrapper.find( '.price-unit:first' ).hide();

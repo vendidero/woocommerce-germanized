@@ -30,6 +30,10 @@ class WC_GZD_Payment_Gateways {
 	 * Manipulate payment gateway description if has a fee and init gateway title filter
 	 */
 	public function checkout() {
+
+		if ( is_admin() )
+			return;
+
 		$this->manipulate_gateways();
 	}
 
