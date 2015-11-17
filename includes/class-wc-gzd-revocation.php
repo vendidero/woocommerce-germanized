@@ -38,9 +38,9 @@ class WC_GZD_Revocation {
 				'label'       => _x( 'Title', 'revocation-form', 'woocommerce-germanized' ),
 				'required' 	  => true,
 				'options'	  => array( 
-									_x( 'Sir', 'revocation-form', 'woocommerce-germanized' ) =>  _x( 'Sir', 'revocation-form', 'woocommerce-germanized' ),
-									 _x( 'Madam', 'revocation-form', 'woocommerce-germanized' ) =>  _x( 'Madam', 'revocation-form', 'woocommerce-germanized' )
-								),
+					__( 'Mr.', 'woocommerce-germanized' ) => __( 'Mr.', 'woocommerce-germanized' ),
+					__( 'Ms.', 'woocommerce-germanized' ) => __( 'Ms.', 'woocommerce-germanized' )
+				),
 			),
 			'address_firstname'  => array(
 				'type' 		  => 'text',

@@ -40,8 +40,14 @@ jQuery( function( $ ) {
 
 		if ( $form.is( '.processing' ) ) return false;
 
-		$form.addClass( 'processing' ).block({ message: null, overlayCSS: {background: '#fff url(' + wc_gzd_revocation_params.ajax_loader_url + ') no-repeat center', backgroundSize: '16px 16px', opacity: 0.6 } });
-
+		$form.addClass( 'processing' ).block({
+			message: null,
+			overlayCSS: {
+				background: '#fff',
+				opacity: 0.6
+			}
+		});
+		
 		var form_data = $form.serialize() + '&action=woocommerce_gzd_revocation';
 
 		$.ajax({

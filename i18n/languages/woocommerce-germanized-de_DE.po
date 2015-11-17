@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: WooCommerce Germanized v1.4.5\n"
+"Project-Id-Version: WooCommerce Germanized v1.4.6\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-29 12:26+0100\n"
-"PO-Revision-Date: 2015-11-10 09:39:07+0000\n"
+"PO-Revision-Date: 2015-11-17 08:24:56+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -116,8 +116,8 @@ msgid "Add content which will be replacing default page content within emails."
 msgstr "Füllen Sie dieses Feld aus um einen abweichenden E-Mail Anhangstext für diese Seite zu bestimmen."
 
 #: includes/admin/class-wc-gzd-admin.php:143
-#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:81
-#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:141
+#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:85
+#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:145
 #@ woocommerce-germanized
 msgid "Optional Mini Description"
 msgstr "Warenkorb Kurzbeschreibung"
@@ -127,42 +127,42 @@ msgstr "Warenkorb Kurzbeschreibung"
 msgid "This content will be shown as short product description within checkout and emails."
 msgstr "Dieser Inhalt wird während des Bezahlvorganges und in den E-Mails als Produkt Kurzbeschreibung angezeigt."
 
-#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:40
-#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:99
+#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:44
+#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:103
 #: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:37
 #: includes/class-wc-gzd-post-types.php:66
 #@ woocommerce-germanized
 msgid "Unit"
 msgstr "Einheit"
 
-#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:42
-#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:101
-#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:129
+#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:46
+#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:105
+#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:133
 #: includes/admin/settings/class-wc-gzd-settings-germanized.php:114
 #: includes/class-wc-gzd-trusted-shops.php:438
 #@ woocommerce-germanized
 msgid "None"
 msgstr "Keine"
 
-#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:108
+#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:112
 #@ woocommerce-germanized
 msgid "Unit Base"
 msgstr "Anzahl Einheiten"
 
-#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:65
-#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:114
+#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:69
+#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:118
 #@ woocommerce-germanized
 msgid "Regular Unit Price"
 msgstr "Einheitspreis"
 
-#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:69
-#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:118
+#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:73
+#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:122
 #@ woocommerce-germanized
 msgid "Sale Unit Price"
 msgstr "Angebots-Einheitspreis"
 
-#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:75
-#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:124
+#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:79
+#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:128
 #: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:62
 #@ woocommerce-germanized
 msgid "Delivery Time"
@@ -589,7 +589,7 @@ msgctxt "revocation-form"
 msgid "is not valid."
 msgstr "ist leider nicht korrekt."
 
-#: includes/class-wc-gzd-ajax.php:101
+#: includes/class-wc-gzd-ajax.php:102
 #@ woocommerce-germanized
 msgctxt "revocation-form"
 msgid "Thank you. We have received your Revocation Request. You will receive a conformation email within a few minutes."
@@ -605,20 +605,6 @@ msgstr "Vielen Dank. Wir haben Ihre Widerruf erhalten. Sie bekommen in Kürze ei
 #@ woocommerce
 msgid "Title"
 msgstr "Anrede"
-
-#: includes/class-wc-gzd-checkout.php:149
-#: includes/class-wc-gzd-checkout.php:157
-#: includes/class-wc-gzd-checkout.php:279
-#@ woocommerce-germanized
-msgid "Sir"
-msgstr "Herr"
-
-#: includes/class-wc-gzd-checkout.php:149
-#: includes/class-wc-gzd-checkout.php:157
-#: includes/class-wc-gzd-checkout.php:279
-#@ woocommerce-germanized
-msgid "Madam"
-msgstr "Frau"
 
 #: includes/class-wc-gzd-ekomi.php:49
 #@ woocommerce-germanized
@@ -709,79 +695,79 @@ msgctxt "revocation-form"
 msgid "Forward your Revocation online"
 msgstr "Ihren Widerruf online erklären"
 
-#: includes/class-wc-gzd-install.php:119
+#: includes/class-wc-gzd-install.php:120
 #, php-format
 #@ woocommerce-germanized
 msgid "Please install <a href=\"%s\" target=\"_blank\">WooCommerce</a> before installing WooCommerce Germanized. Thank you!"
 msgstr "Bitte installieren Sie <a href=\"%s\" target=\"_blank\">WooCommerce</a> bevor Sie WooCommerce Germanized installieren. Vielen Dank!"
 
-#: includes/class-wc-gzd-install.php:429
+#: includes/class-wc-gzd-install.php:430
 #@ woocommerce-germanized
 msgctxt "Page slug"
 msgid "data-security"
 msgstr "datenschutzbelehrung"
 
-#: includes/class-wc-gzd-install.php:430
+#: includes/class-wc-gzd-install.php:431
 #@ woocommerce-germanized
 msgctxt "Page title"
 msgid "Data Security Statement"
 msgstr "Datenschutzbelehrung"
 
-#: includes/class-wc-gzd-install.php:434
+#: includes/class-wc-gzd-install.php:435
 #@ woocommerce-germanized
 msgctxt "Page slug"
 msgid "imprint"
 msgstr "impressum"
 
-#: includes/class-wc-gzd-install.php:435
+#: includes/class-wc-gzd-install.php:436
 #@ woocommerce-germanized
 msgctxt "Page title"
 msgid "Imprint"
 msgstr "Impressum"
 
-#: includes/class-wc-gzd-install.php:439
+#: includes/class-wc-gzd-install.php:440
 #@ woocommerce-germanized
 msgctxt "Page slug"
 msgid "terms"
 msgstr "agb"
 
-#: includes/class-wc-gzd-install.php:440
+#: includes/class-wc-gzd-install.php:441
 #@ woocommerce-germanized
 msgctxt "Page title"
 msgid "Terms & Conditions"
 msgstr "AGB"
 
-#: includes/class-wc-gzd-install.php:444
+#: includes/class-wc-gzd-install.php:445
 #@ woocommerce-germanized
 msgctxt "Page slug"
 msgid "revocation"
 msgstr "widerrufsbelehrung"
 
-#: includes/class-wc-gzd-install.php:445
+#: includes/class-wc-gzd-install.php:446
 #@ woocommerce-germanized
 msgctxt "Page title"
 msgid "Power of Revocation"
 msgstr "Widerrufsbelehrung"
 
-#: includes/class-wc-gzd-install.php:454
+#: includes/class-wc-gzd-install.php:455
 #@ woocommerce-germanized
 msgctxt "Page slug"
 msgid "payment-methods"
 msgstr "bezahlmoeglichkeiten"
 
-#: includes/class-wc-gzd-install.php:455
+#: includes/class-wc-gzd-install.php:456
 #@ woocommerce-germanized
 msgctxt "Page title"
 msgid "Payment Methods"
 msgstr "Zahlungsarten"
 
-#: includes/class-wc-gzd-install.php:449
+#: includes/class-wc-gzd-install.php:450
 #@ woocommerce-germanized
 msgctxt "Page slug"
 msgid "shipping-methods"
 msgstr "versandarten"
 
-#: includes/class-wc-gzd-install.php:450
+#: includes/class-wc-gzd-install.php:451
 #@ woocommerce-germanized
 msgctxt "Page title"
 msgid "Shipping Methods"
@@ -875,18 +861,6 @@ msgstr "Kundeninformationen"
 msgctxt "revocation-form"
 msgid "Title"
 msgstr "Anrede"
-
-#: includes/class-wc-gzd-revocation.php:41
-#@ woocommerce-germanized
-msgctxt "revocation-form"
-msgid "Sir"
-msgstr "Herr"
-
-#: includes/class-wc-gzd-revocation.php:42
-#@ woocommerce-germanized
-msgctxt "revocation-form"
-msgid "Madam"
-msgstr "Frau"
 
 #: includes/class-wc-gzd-revocation.php:47
 #@ woocommerce-germanized
@@ -1033,28 +1007,28 @@ msgstr "Diese E-Mail wird als Bestätigung an den Kunden weitergeleitet, sobald 
 msgid "Your Revocation"
 msgstr "Ihr Widerruf"
 
-#: includes/class-wc-gzd-payment-gateways.php:100
+#: includes/class-wc-gzd-payment-gateways.php:104
 #@ woocommerce-germanized
 msgid "Fee"
 msgstr "Zahlungsgebühr"
 
-#: includes/class-wc-gzd-payment-gateways.php:102
+#: includes/class-wc-gzd-payment-gateways.php:106
 #@ woocommerce-germanized
 msgid "This fee is being added if customer selects payment method within checkout."
 msgstr "Diese Gebühr wird während der Bestellung hinzugefügt, falls der Kunde diese Zahlungsart aktiviert."
 
-#: includes/class-wc-gzd-payment-gateways.php:107
+#: includes/class-wc-gzd-payment-gateways.php:111
 #@ woocommerce-germanized
 msgid "Fee is taxable?"
 msgstr "Mwst. berechnen?"
 
-#: includes/class-wc-gzd-payment-gateways.php:153
+#: includes/class-wc-gzd-payment-gateways.php:157
 #@ woocommerce-germanized
 msgid "Payment charge"
 msgstr "Zahlungsgebühr"
 
-#: includes/abstracts/abstract-wc-gzd-product.php:130
-#: includes/wc-gzd-cart-functions.php:159
+#: includes/abstracts/abstract-wc-gzd-product.php:131
+#: includes/wc-gzd-cart-functions.php:173
 #: woocommerce-germanized.php:856
 #, php-format
 #@ woocommerce-germanized
@@ -1072,7 +1046,7 @@ msgstr "Bestellung bearbeiten"
 msgid "Choose a Payment Gateway"
 msgstr "Zahlungsart auswählen"
 
-#: includes/wc-gzd-cart-functions.php:194
+#: includes/wc-gzd-cart-functions.php:208
 #@ woocommerce-germanized
 msgid "I want immediate access to the digital content and I acknowledge that thereby I lose my right to cancel once the service has begun."
 msgstr "Ja, ich möchte sofort Zugang zu dem digitalen Inhalt und weiß, dass mein Widerrufsrecht mit dem Zugang erlischt."
@@ -1443,7 +1417,7 @@ msgstr "Theme ist noch nicht für WooCommerce Germanized optimiert"
 msgid "It seems like your theme is not yet ready for WooCommerce Germanized. Please check your theme's styles. Some things might look weird - WooCommerce Germanized can only offer basic styles. See <a href=\"%s\" target=\"_blank\">making your theme compatible</a> or check out our Theme <a href=\"%s\" target=\"_blank\">VendiPro</a> for 100&#37; compatibility."
 msgstr "Wir haben festgestellt, dass dein Theme scheinbar noch nicht für WooCommerce Germanized optimiert ist. Bitte überprüfe die Style-Angaben deines Themes bzw. das Aussehen deines Shops. Manche Elemente werden möglicherweise falsch dargestellt - WooCommerce Germanized kann nur grundlegende Style-Angaben machen. Lies dir dazu <a href=\"%s\" target=\"_blank\">wie mache ich mein Theme kompatibel</a> durch oder nutze das von uns entwickelte Theme <a href=\"%s\" target=\"_blank\">VendiPro</a> für 100&#37; Kompatibilität."
 
-#: includes/class-wc-gzd-payment-gateways.php:109
+#: includes/class-wc-gzd-payment-gateways.php:113
 #@ woocommerce-germanized
 msgid "Check if fee is taxable."
 msgstr "MwSt.-Berechnung für Gebühr aktivieren."
@@ -1594,14 +1568,14 @@ msgstr "Versandkosten virtuell"
 msgid "Select this option if you want to display shipping costs notice for virtual products."
 msgstr "Versandkosten-Hinweis auch für virtuelle Produkte aktivieren?"
 
-#: includes/abstracts/abstract-wc-gzd-product.php:128
-#: includes/wc-gzd-cart-functions.php:159
+#: includes/abstracts/abstract-wc-gzd-product.php:129
+#: includes/wc-gzd-cart-functions.php:173
 #: woocommerce-germanized.php:856
 #@ woocommerce-germanized
 msgid "incl. VAT"
 msgstr "inkl. MwSt."
 
-#: includes/abstracts/abstract-wc-gzd-product.php:128
+#: includes/abstracts/abstract-wc-gzd-product.php:129
 #@ woocommerce-germanized
 msgid "excl. VAT"
 msgstr "exkl. MwSt."
@@ -1718,7 +1692,7 @@ msgstr "Den Hinweis \"Versandkosten und Steuern werden geschätzt\" entfernen?"
 msgid "By default WooCommerce adds a \"taxes and shipping estimated\" text to your cart. This might puzzle your customers and may not meet german law."
 msgstr "Der Hinweistext im Warenkorb zur Schätzung von Steuern und Versandkosten kann für Verwirrung beim Kunden sorgen und scheint nicht für den deutschen Markt geeignet."
 
-#: includes/abstracts/abstract-wc-gzd-product.php:130
+#: includes/abstracts/abstract-wc-gzd-product.php:131
 #, php-format
 #@ woocommerce-germanized
 msgid "excl. %s%% VAT"
@@ -2457,13 +2431,13 @@ msgstr "Kostenlosen Versand erzwingen wenn die Methode zur Verfügung steht?"
 msgid "By default WooCommerce will let customers choose other shipping methods than free shipping (if available). This option will force free shipping if available."
 msgstr "Standardmäßig erlaubt WooCommerce die Auswahl anderer Versandmethoden, auch wenn kostenloser Versand möglich ist. Diese Option erzwingt den kostenlosen Versand, sobald dieser verfügbar ist."
 
-#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:57
+#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:61
 #: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:40
 #@ woocommerce-germanized
 msgid "Calculation"
 msgstr "Berechnung"
 
-#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:60
+#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:64
 #@ woocommerce-germanized
 msgid "Calculate unit prices automatically based on product price"
 msgstr "Einheitspreise basierend auf dem Produktpreis automatisch berechnen"
@@ -2829,19 +2803,19 @@ msgstr "PDF %s"
 msgid "Want to attach automatically generated PDF files to emails instead of plain text? %sUpgrade to %spro%s%s"
 msgstr "Möchtest du deine Hinweistexte als PDF-Dateien an die E-Mails anhängen? %sUpgrade zur %spro%s Version%s"
 
-#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:49
+#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:53
 #: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:38
 #@ woocommerce-germanized
 msgid "Product Units"
 msgstr "Produkteinheiten"
 
-#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:53
+#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:57
 #: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:39
 #@ woocommerce-germanized
 msgid "Base Price Units"
 msgstr "Grundpreiseinheiten"
 
-#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:53
+#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:57
 #: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:39
 #@ woocommerce-germanized
 msgid "Base price units. Example base price: 0,99 € / 100 ml. Insert 100 as base price unit amount."
@@ -2894,7 +2868,7 @@ msgstr "Update starten"
 msgid "It is strongly recommended that you backup your database before proceeding. Are you sure you wish to run the updater now?"
 msgstr "Du solltest vor einem Update immer ein Backup deiner Datenbank anlegen. Bist du sicher das Update jetzt zu installieren?"
 
-#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:49
+#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:53
 #: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:38
 #@ woocommerce-germanized
 msgid "Number of units included per default product price. Example: 1000 ml."
@@ -2945,7 +2919,7 @@ msgstr "E-Mails"
 msgid "Email Attachment Options"
 msgstr "PDF Anhang"
 
-#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:76
+#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:80
 #@ woocommerce-germanized
 msgid "Same as parent"
 msgstr "Gleiche wie übergeordnet"
@@ -2985,13 +2959,7 @@ msgstr "Tour aktivieren"
 msgid "This will delete every option which prevents the Germanized settings tour from starting."
 msgstr "Diese Option löscht alle Einstellungen, die dazu führen, dass die Tour nicht angezeigt wird."
 
-#. translators: plugin header field 'Version'
-#: woocommerce-germanized.php:0
-#@ woocommerce-germanized
-msgid "1.4.5"
-msgstr "1.4.5"
-
-#: includes/class-wc-gzd-payment-gateways.php:50
+#: includes/class-wc-gzd-payment-gateways.php:54
 #: includes/wc-gzd-order-functions.php:21
 #: includes/wc-gzd-template-functions.php:452
 #, php-format
@@ -2999,19 +2967,19 @@ msgstr "1.4.5"
 msgid "Plus %s forwarding fee (charged by the transport agent)"
 msgstr "zzgl. %s Übermittlungsentgelt (direkt an den Zusteller)"
 
-#: includes/class-wc-gzd-payment-gateways.php:47
-#: includes/class-wc-gzd-payment-gateways.php:73
+#: includes/class-wc-gzd-payment-gateways.php:51
+#: includes/class-wc-gzd-payment-gateways.php:77
 #, php-format
 #@ woocommerce-germanized
 msgid "%s payment charge"
 msgstr "%s Zahlungsgebühr"
 
-#: includes/class-wc-gzd-payment-gateways.php:116
+#: includes/class-wc-gzd-payment-gateways.php:120
 #@ woocommerce-germanized
 msgid "Forwarding Fee"
 msgstr "Übermittlungsentgelt"
 
-#: includes/class-wc-gzd-payment-gateways.php:119
+#: includes/class-wc-gzd-payment-gateways.php:123
 #@ woocommerce-germanized
 msgid "Forwarding fee will be charged by the transport agent in addition to the cash of delivery fee e.g. DHL - tax free."
 msgstr "Übermittlungsentgelt wird zusätzlich zum Nachnahmebetrag vom Paketzusteller kassiert - z.B. DHL (steuerfrei)."
@@ -3056,4 +3024,26 @@ msgstr "Dieser Text wird genutzt um die Kunden im Frontend über einen kostenlos
 #@ woocommerce-germanized
 msgid "For digital products: I strongly agree that the execution of the agreement starts before the revocation period has expired. I am aware that my right of withdrawal ceases with the beginning of the agreement."
 msgstr "Für digitale Produkte: Ich stimme ausdrücklich zu, dass vor Ablauf der Widerrufsfrist mit der Ausführung des Vertrags begonnen wird. Mir ist bekannt, dass mit Beginn der Ausführung mein Widerrufsrecht erlischt."
+
+#: includes/class-wc-gzd-checkout.php:149
+#: includes/class-wc-gzd-checkout.php:157
+#: includes/class-wc-gzd-checkout.php:287
+#: includes/class-wc-gzd-revocation.php:41
+#@ woocommerce-germanized
+msgid "Mr."
+msgstr "Herr"
+
+#: includes/class-wc-gzd-checkout.php:149
+#: includes/class-wc-gzd-checkout.php:157
+#: includes/class-wc-gzd-checkout.php:287
+#: includes/class-wc-gzd-revocation.php:42
+#@ woocommerce-germanized
+msgid "Ms."
+msgstr "Frau"
+
+#. translators: plugin header field 'Version'
+#: woocommerce-germanized.php:0
+#@ woocommerce-germanized
+msgid "1.4.6"
+msgstr "1.4.6"
 

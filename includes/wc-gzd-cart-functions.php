@@ -85,31 +85,45 @@ function wc_gzd_cart_product_unit_price( $price, $cart_item, $cart_item_key = ''
  * @return array       
  */
 function wc_gzd_get_cart_tax_share( $type = 'shipping' ) {
+	
 	$cart = WC()->cart->get_cart();
 	$tax_shares = array();
 	$item_totals = 0;
+	
 	// Get tax classes and tax amounts
 	if ( ! empty( $cart ) ) {
+		
 		foreach ( $cart as $key => $item ) {
+			
 			$_product = apply_filters( 'woocommerce_cart_item_product', $item[ 'data' ], $item, $key );
+			
 			// Dont calculate share if is shipping and product is virtual or vat exception
 			if ( $type == 'shipping' && $_product->is_virtual() || ( $_product->gzd_product->is_virtual_vat_exception() && $type == 'shipping' ) )
 				continue;
+			
 			$class = $_product->get_tax_class();
+			
 			if ( ! isset( $tax_shares[ $class ] ) ) {
 				$tax_shares[ $class ] = array();
 				$tax_shares[ $class ][ 'total' ] = 0;
 				$tax_shares[ $class ][ 'key' ] = '';
 			}
+			
 			$tax_shares[ $class ][ 'total' ] += ( $item[ 'line_total' ] + $item[ 'line_tax' ] ); 
 			$tax_shares[ $class ][ 'key' ] = key( $item[ 'line_tax_data' ][ 'total' ] );
 			$item_totals += ( $item[ 'line_total' ] + $item[ 'line_tax' ] ); 
 		}
 	}
+	
 	if ( ! empty( $tax_shares ) ) {
+
+		$default = ( $item_totals == 0 ? 1 / sizeof( $tax_shares ) : 0 );
+
 		foreach ( $tax_shares as $key => $class )
-			$tax_shares[ $key ][ 'share' ] = ( $item_totals > 0 ? $class[ 'total' ] / $item_totals : 0 );
+			$tax_shares[ $key ][ 'share' ] = ( $item_totals > 0 ? $class[ 'total' ] / $item_totals : $default );
+
 	}
+
 	return $tax_shares;
 }
 

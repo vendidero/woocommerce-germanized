@@ -71,11 +71,11 @@ class WC_GZD_AJAX {
 		$data = array();
 		$fields = WC_GZD_Revocation::get_fields();
 
-		if ( !empty( $fields ) ) {
+		if ( ! empty( $fields ) ) {
 			foreach ( $fields as $key => $field ) {
-				if ( $key != 'sep' ) {
+				if ( 'sep' !== $key ) {
 					if ( $key == 'address_mail' ) {
-						if ( !is_email( $_POST[ $key ] ) )
+						if ( ! is_email( $_POST[ $key ] ) )
 							wc_add_notice( '<strong>' . $field['label'] . '</strong> ' . _x( 'is not a valid email address.', 'revocation-form', 'woocommerce-germanized' ), 'error' );
 					} elseif ( $key == 'address_postal' ) {
 						if ( ! WC_Validation::is_postcode( $_POST[ $key ], $_POST[ 'address_country' ] ) || empty( $_POST[ $key ] ) )
@@ -87,10 +87,11 @@ class WC_GZD_AJAX {
 					if ( !empty( $_POST[ $key ] ) ) {
 						if ( $field['type'] == 'country' ) {
 							$countries = WC()->countries->get_countries();
-							$data[ $key ] = $countries[sanitize_text_field( $_POST[ $key ] )];
+							$country = wc_clean( $_POST[ $key ] );
+							$data[ $key ] = ( isset( $countries[ $country ] ) ? $countries[ $country ] : '' );
 						}
 						else
-							$data[ $key ] = sanitize_text_field( $_POST[ $key ] );
+							$data[ $key ] = wc_clean( $_POST[ $key ] );
 					}
 				}
 			}
