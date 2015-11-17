@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: WooCommerce Germanized v1.4.6\n"
+"Project-Id-Version: WooCommerce Germanized v1.4.7\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-29 12:26+0100\n"
-"PO-Revision-Date: 2015-11-17 08:24:56+0000\n"
+"PO-Revision-Date: 2015-11-17 11:49:01+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -81,6 +81,7 @@ msgid "About WooCommerce Germanized"
 msgstr "Über WooCommerce Germanized"
 
 #: includes/admin/class-wc-gzd-admin-welcome.php:54
+#: includes/admin/views/html-notice-install.php:13
 #@ woocommerce-germanized
 msgid "Welcome to WooCommerce Germanized"
 msgstr "Willkommen bei WooCommerce Germanized"
@@ -90,6 +91,8 @@ msgstr "Willkommen bei WooCommerce Germanized"
 msgid "Go to WooCommerce Germanized Settings"
 msgstr "zu den WooCommerce Germanized Einstellungen"
 
+#: includes/admin/class-wc-gzd-admin-importer.php:35
+#: includes/admin/class-wc-gzd-admin-importer.php:44
 #: includes/admin/class-wc-gzd-admin.php:28
 #: includes/admin/class-wc-gzd-admin.php:37
 #: includes/class-wc-gzd-checkout.php:22
@@ -100,8 +103,8 @@ msgstr "zu den WooCommerce Germanized Einstellungen"
 #: includes/class-wc-gzd-hook-priorities.php:42
 #: woocommerce-germanized.php:82
 #: woocommerce-germanized.php:91
-#@ woocommerce-germanized
 #@ woocommerce-germanized-pro
+#@ woocommerce-germanized
 msgid "Cheatin&#8217; huh?"
 msgstr "So geht das leider nicht.."
 
@@ -531,11 +534,6 @@ msgstr "Bestellbestätigungs-Daten"
 msgid "Hide product table and customer data on order success page"
 msgstr "Produktdetails (Tabelle, Kundeninfos) von der Bestätigungsseite entfernen."
 
-#: includes/admin/views/html-notice-install.php:13
-#@ woocommerce-germanized
-msgid "<strong>Welcome to WooCommerce Germanized</strong>"
-msgstr "<strong>Willkommen bei WooCommerce Germanized</strong>"
-
 #: includes/admin/views/html-notice-install.php:14
 #@ woocommerce-germanized
 msgid "Just a few more steps and your Online-Shop will become legally compliant:"
@@ -551,22 +549,22 @@ msgstr "WooCommerce anpassen"
 msgid "We will adjust WooCommerce Settings for you e.g.: EUR, German Price Format etc."
 msgstr "Wir passen die WooCommerce Einstellungen automatisch an (z.B. Währung, Preisformat usw.)"
 
-#: includes/admin/views/html-notice-install.php:28
+#: includes/admin/views/html-notice-install.php:31
 #@ woocommerce-germanized
 msgid "Generate Legal Pages"
 msgstr "Rechtliche Hinweisseiten"
 
-#: includes/admin/views/html-notice-install.php:32
+#: includes/admin/views/html-notice-install.php:35
 #@ woocommerce-germanized
 msgid "We will automatically add legal pages such as Data Privacy Statement, Power of Revocation, Terms & Conditions etc."
 msgstr "Wir legen die rechtlich relevanten Seiten z.B. Datenschutzbelehrung, Widerrufsbelehrung und AGB automatisch für Sie an."
 
-#: includes/admin/views/html-notice-install.php:49
+#: includes/admin/views/html-notice-install.php:55
 #@ woocommerce-germanized
 msgid "Install WooCommerce Germanized"
 msgstr "WooCommerce Germanized installieren"
 
-#: includes/admin/views/html-notice-install.php:49
+#: includes/admin/views/html-notice-install.php:55
 #@ woocommerce-germanized
 msgid "Skip setup"
 msgstr "Setup überspringen"
@@ -701,73 +699,73 @@ msgstr "Ihren Widerruf online erklären"
 msgid "Please install <a href=\"%s\" target=\"_blank\">WooCommerce</a> before installing WooCommerce Germanized. Thank you!"
 msgstr "Bitte installieren Sie <a href=\"%s\" target=\"_blank\">WooCommerce</a> bevor Sie WooCommerce Germanized installieren. Vielen Dank!"
 
-#: includes/class-wc-gzd-install.php:430
+#: includes/class-wc-gzd-install.php:440
 #@ woocommerce-germanized
 msgctxt "Page slug"
 msgid "data-security"
 msgstr "datenschutzbelehrung"
 
-#: includes/class-wc-gzd-install.php:431
+#: includes/class-wc-gzd-install.php:441
 #@ woocommerce-germanized
 msgctxt "Page title"
 msgid "Data Security Statement"
 msgstr "Datenschutzbelehrung"
 
-#: includes/class-wc-gzd-install.php:435
+#: includes/class-wc-gzd-install.php:445
 #@ woocommerce-germanized
 msgctxt "Page slug"
 msgid "imprint"
 msgstr "impressum"
 
-#: includes/class-wc-gzd-install.php:436
+#: includes/class-wc-gzd-install.php:446
 #@ woocommerce-germanized
 msgctxt "Page title"
 msgid "Imprint"
 msgstr "Impressum"
 
-#: includes/class-wc-gzd-install.php:440
+#: includes/class-wc-gzd-install.php:450
 #@ woocommerce-germanized
 msgctxt "Page slug"
 msgid "terms"
 msgstr "agb"
 
-#: includes/class-wc-gzd-install.php:441
+#: includes/class-wc-gzd-install.php:451
 #@ woocommerce-germanized
 msgctxt "Page title"
 msgid "Terms & Conditions"
 msgstr "AGB"
 
-#: includes/class-wc-gzd-install.php:445
+#: includes/class-wc-gzd-install.php:455
 #@ woocommerce-germanized
 msgctxt "Page slug"
 msgid "revocation"
 msgstr "widerrufsbelehrung"
 
-#: includes/class-wc-gzd-install.php:446
+#: includes/class-wc-gzd-install.php:456
 #@ woocommerce-germanized
 msgctxt "Page title"
 msgid "Power of Revocation"
 msgstr "Widerrufsbelehrung"
 
-#: includes/class-wc-gzd-install.php:455
+#: includes/class-wc-gzd-install.php:465
 #@ woocommerce-germanized
 msgctxt "Page slug"
 msgid "payment-methods"
 msgstr "bezahlmoeglichkeiten"
 
-#: includes/class-wc-gzd-install.php:456
+#: includes/class-wc-gzd-install.php:466
 #@ woocommerce-germanized
 msgctxt "Page title"
 msgid "Payment Methods"
 msgstr "Zahlungsarten"
 
-#: includes/class-wc-gzd-install.php:450
+#: includes/class-wc-gzd-install.php:460
 #@ woocommerce-germanized
 msgctxt "Page slug"
 msgid "shipping-methods"
 msgstr "versandarten"
 
-#: includes/class-wc-gzd-install.php:451
+#: includes/class-wc-gzd-install.php:461
 #@ woocommerce-germanized
 msgctxt "Page title"
 msgid "Shipping Methods"
@@ -1029,7 +1027,7 @@ msgstr "Zahlungsgebühr"
 
 #: includes/abstracts/abstract-wc-gzd-product.php:131
 #: includes/wc-gzd-cart-functions.php:173
-#: woocommerce-germanized.php:856
+#: woocommerce-germanized.php:857
 #, php-format
 #@ woocommerce-germanized
 msgid "incl. %s%% VAT"
@@ -1196,7 +1194,7 @@ msgid "Forward Revocation"
 msgstr "Widerruf erklären"
 
 #: includes/gateways/invoice/class-wc-gzd-gateway-invoice.php:50
-#: woocommerce-germanized.php:583
+#: woocommerce-germanized.php:584
 #@ woocommerce
 msgid "Settings"
 msgstr "Einstellungen"
@@ -1570,7 +1568,7 @@ msgstr "Versandkosten-Hinweis auch für virtuelle Produkte aktivieren?"
 
 #: includes/abstracts/abstract-wc-gzd-product.php:129
 #: includes/wc-gzd-cart-functions.php:173
-#: woocommerce-germanized.php:856
+#: woocommerce-germanized.php:857
 #@ woocommerce-germanized
 msgid "incl. VAT"
 msgstr "inkl. MwSt."
@@ -1602,12 +1600,12 @@ msgstr "Aktiviere diese Option um für virtuelle Produkte den USt.-Satz des Dien
 msgid "New EU VAT rule applies on 01.01.2015. Make sure that every digital or virtual product has chosen the right tax class (Virtual Rate or Virtual Reduced Rate). Gross prices will not differ from the prices you have chosen for affected products. In fact the net price will differ depending on the VAT rate of your customers' country. Shop settings will be adjusted to show prices including tax. More information can be found <a href=\"%s\" target=\"_blank\">here</a>."
 msgstr "Aktiviert die Änderungen der EU-Umsatzsteuerberechnung ab dem 01.01.2015. Von diesem Zeitpunkt an, muss beim Verkauf von Dienstleistungen (virtuelle, digitale Produkte z.B. e-Books) der USt.-Satz des Landes des Dienstleistungsempfängers berechnet werden (z.B. 20%% für Käufer aus AT). Diese Regel gilt für B2C Geschäfte. Mit dieser Einstellung bleiben die im Shop hinterlegten Brutto-Preise erhalten. Es gibt jedoch Schwankungen beim Netto-Preis (je nach Herkunftsland wird eine unterschiedlich hohe MwSt. berechnet). Die Shop-Einstellungen werden so angepasst, dass alle Preise im Shop inkl. MwSt. angezeigt werden und hinterlegt sind. Mehr Informationen dazu findest du <a href=\"%s\" target=\"_blank\">hier</a>."
 
-#: includes/admin/views/html-notice-install.php:37
+#: includes/admin/views/html-notice-install.php:43
 #@ woocommerce-germanized
 msgid "Generate EU VAT Rates"
 msgstr "EU MwSt.-Sätze anlegen"
 
-#: includes/admin/views/html-notice-install.php:41
+#: includes/admin/views/html-notice-install.php:47
 #@ woocommerce-germanized
 msgid "We will automatically insert EU VAT Rates for selling virtual products."
 msgstr "Wir übernehmen das Einfügen der unterschiedlichen EU MwSt.-Sätze für dich."
@@ -1872,12 +1870,12 @@ msgstr "Wenn Sie bei %s kein Benutzerkonto eröffnet haben, ignorieren Sie diese
 msgid "If you cannot follow the link above please copy this url and paste it to your browser bar: %s"
 msgstr "Falls Sie dem Link nicht folgen können, kopieren Sie bitte folgende URL in die Adresszeile Ihres Browsers: %s"
 
-#: woocommerce-germanized.php:782
+#: woocommerce-germanized.php:783
 #@ woocommerce-germanized
 msgid "Thank you. You have successfully activated your account."
 msgstr "Vielen Dank. Ihr Benutzerkonto wurde erfolgreich aktiviert."
 
-#: woocommerce-germanized.php:786
+#: woocommerce-germanized.php:787
 #@ woocommerce-germanized
 msgid "Sorry, but this activation code cannot be found."
 msgstr "Sorry, dieser Aktivierungscode ist uns leider nicht bekannt."
@@ -3041,9 +3039,29 @@ msgstr "Herr"
 msgid "Ms."
 msgstr "Frau"
 
+#: includes/admin/views/html-notice-import.php:14
+#@ woocommerce-germanized
+msgid "It seems like as if you already had a german market extension for WooCommerce installed. Do you want to import some data? This may take a while depending on the number of products."
+msgstr "Es scheint als sei bereits einmal eine andere WooCommerce Erweiterung für den deutschen Markt installiert gewesen. Möchtest du die Daten importieren? Je nachdem, wie viele Produkte du hast, kann das einen Moment dauern. Wir importieren Einheitspreise, Lieferzeiten und einige Einstellungen für dich."
+
+#: includes/admin/views/html-notice-import.php:16
+#@ woocommerce-germanized
+msgid "Import data"
+msgstr "Daten importieren"
+
+#: includes/admin/views/html-notice-import.php:17
+#@ woocommerce-germanized
+msgid "Skip import"
+msgstr "Import überspringen"
+
 #. translators: plugin header field 'Version'
 #: woocommerce-germanized.php:0
 #@ woocommerce-germanized
-msgid "1.4.6"
-msgstr "1.4.6"
+msgid "1.4.7"
+msgstr "1.4.7"
+
+#: includes/admin/views/html-notice-import.php:13
+#@ woocommerce-germanized
+msgid "Data import available"
+msgstr "Datenimport verfügbar"
 

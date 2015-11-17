@@ -24,7 +24,7 @@ class WC_GZD_Install {
 	 * Hook in tabs.
 	 */
 	public function __construct() {
-		add_action( 'admin_init', array( __CLASS__, 'check_version' ), 5 );
+		add_action( 'admin_init', array( __CLASS__, 'check_version' ), 10 );
 		add_action( 'admin_init', array( __CLASS__, 'install_actions' ) );
 		add_action( 'in_plugin_update_message-woocommerce-germanized/woocommerce-germanized.php', array( __CLASS__, 'in_plugin_update_message' ) );
 	}
@@ -133,11 +133,15 @@ class WC_GZD_Install {
 		$tax_classes = array_filter( array_map( 'trim', explode( "\n", get_option('woocommerce_tax_classes' ) ) ) );
 		
 		if ( ! in_array( 'Virtual Rate', $tax_classes ) || ! in_array( 'Virtual Reduced Rate', $tax_classes ) ) {
+			
 			update_option( '_wc_gzd_needs_pages', 1 );
+			
 			if ( ! in_array( 'Virtual Rate', $tax_classes ) )
 				array_push( $tax_classes, 'Virtual Rate' );
+			
 			if ( ! in_array( 'Virtual Reduced Rate', $tax_classes ) )
 				array_push( $tax_classes, 'Virtual Reduced Rate' );
+			
 			update_option( 'woocommerce_tax_classes', implode( "\n", $tax_classes ) );
 		}
 
@@ -147,6 +151,9 @@ class WC_GZD_Install {
 
 		// Queue messages and notices
 		if ( ! is_null( $current_version ) ) {
+
+			// Show tour for new installs only
+			update_option( 'woocommerce_gzd_hide_tour', 1 );
 			
 			$major_version = substr( $current_version, 0, 3 );
 			$new_major_version = substr( WC_germanized()->version, 0, 3 );
@@ -156,6 +163,12 @@ class WC_GZD_Install {
 				delete_option( '_wc_gzd_hide_theme_notice' );
 				delete_option( '_wc_gzd_hide_pro_notice' );
 			}
+
+		} else {
+
+			// Fresh install - Check if some german market plugin was installed before
+			if ( WC_GZD_Admin_Importer::instance()->is_available() )
+				update_option( '_wc_gzd_import_available', 1 );
 
 		}
 		
@@ -177,9 +190,6 @@ class WC_GZD_Install {
 		// Check if pages are needed
 		if ( wc_get_page_id( 'revocation' ) < 1 ) {
 			update_option( '_wc_gzd_needs_pages', 1 );
-		} else {
-			// Show tour for new installs only
-			update_option( 'woocommerce_gzd_hide_tour', 1 );
 		}
 
 		// Flush rules after install
@@ -425,6 +435,10 @@ class WC_GZD_Install {
 	 * @return void
 	 */
 	public static function create_pages() {
+
+		if ( ! function_exists( 'wc_create_page' ) )
+			include_once( WC()->plugin_path() . '/includes/admin/wc-admin-functions.php' );
+
 		$pages = apply_filters( 'woocommerce_gzd_create_pages', array(
 			'data_security' => array(
 				'name'    => _x( 'data-security', 'Page slug', 'woocommerce-germanized' ),
