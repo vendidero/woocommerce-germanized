@@ -264,12 +264,20 @@ class WC_GZD_Checkout {
 	}
 
 	public function set_formatted_billing_address( $fields = array(), $order ) {
+
+		if ( 'yes' !== get_option( 'woocommerce_gzd_checkout_address_field' ) )
+			return $fields;
+
 		if ( $order->billing_title )
 			$fields[ 'title' ] = $this->get_customer_title( $order->billing_title );
 		return $fields;
 	}
 
 	public function set_formatted_shipping_address( $fields = array(), $order ) {
+
+		if ( 'yes' !== get_option( 'woocommerce_gzd_checkout_address_field' ) )
+			return $fields;
+		
 		if ( $order->shipping_title )
 			$fields[ 'title' ] = $this->get_customer_title( $order->shipping_title );
 		return $fields;
