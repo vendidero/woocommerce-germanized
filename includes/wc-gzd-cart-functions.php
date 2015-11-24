@@ -29,8 +29,8 @@ function wc_gzd_cart_product_item_desc( $title, $cart_item, $cart_item_key = '' 
 	$product_desc = "";
 	if ( isset( $cart_item[ 'data' ] ) ) {
 		$product = apply_filters( 'woocommerce_cart_item_product', $cart_item[ 'data' ], $cart_item, $cart_item_key );
-		if ( $product->gzd_product->get_mini_desc() )
-			$product_desc = $product->gzd_product->get_mini_desc();
+		if ( wc_gzd_get_gzd_product( $product )->get_mini_desc() )
+			$product_desc = wc_gzd_get_gzd_product( $product )->get_mini_desc();
 	} else if ( isset( $cart_item[ 'item_desc' ] ) )
 		$product_desc = $cart_item[ 'item_desc' ];
 	if ( ! empty( $product_desc ) )
@@ -49,8 +49,8 @@ function wc_gzd_cart_product_delivery_time( $title, $cart_item, $cart_item_key =
 	$delivery_time = "";
 	if ( isset( $cart_item[ 'data' ] ) ) {
 		$product = apply_filters( 'woocommerce_cart_item_product', $cart_item[ 'data' ], $cart_item, $cart_item_key );
-		if ( $product->gzd_product->get_delivery_time_term() )
-			$delivery_time = $product->gzd_product->get_delivery_time_html();
+		if ( wc_gzd_get_gzd_product( $product )->get_delivery_time_term() )
+			$delivery_time = wc_gzd_get_gzd_product( $product )->get_delivery_time_html();
 	} else if ( isset( $cart_item[ 'delivery_time' ] ) )
 		$delivery_time = $cart_item[ 'delivery_time' ];
 	if ( ! empty( $delivery_time ) )
@@ -69,8 +69,8 @@ function wc_gzd_cart_product_unit_price( $price, $cart_item, $cart_item_key = ''
 	$unit_price = "";
 	if ( isset( $cart_item[ 'data' ] ) ) {
 		$product = apply_filters( 'woocommerce_cart_item_product', $cart_item[ 'data' ], $cart_item, $cart_item_key );
-		if ( $product->gzd_product->has_unit() )
-			$unit_price = $product->gzd_product->get_unit_html( false );
+		if ( wc_gzd_get_gzd_product( $product )->has_unit() )
+			$unit_price = wc_gzd_get_gzd_product( $product )->get_unit_html( false );
 	} else if ( isset( $cart_item[ 'unit_price' ] ) )
 		$unit_price = $cart_item[ 'unit_price' ];
 	if ( ! empty( $unit_price ) )
@@ -98,7 +98,7 @@ function wc_gzd_get_cart_tax_share( $type = 'shipping' ) {
 			$_product = apply_filters( 'woocommerce_cart_item_product', $item[ 'data' ], $item, $key );
 			
 			// Dont calculate share if is shipping and product is virtual or vat exception
-			if ( $type == 'shipping' && $_product->is_virtual() || ( $_product->gzd_product->is_virtual_vat_exception() && $type == 'shipping' ) )
+			if ( $type == 'shipping' && $_product->is_virtual() || ( wc_gzd_get_gzd_product( $_product )->is_virtual_vat_exception() && $type == 'shipping' ) )
 				continue;
 			
 			$class = $_product->get_tax_class();

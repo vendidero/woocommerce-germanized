@@ -54,7 +54,7 @@ class WC_Germanized_Meta_Box_Product_Data {
 		$thepostid = $post->ID;
 		$_product = wc_get_product( $thepostid );
 
-		$delivery_time = $_product->gzd_product->delivery_time;
+		$delivery_time = wc_gzd_get_gzd_product( $_product )->delivery_time;
 
 		?>	
 

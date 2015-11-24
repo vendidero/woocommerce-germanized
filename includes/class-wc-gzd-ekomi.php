@@ -35,10 +35,13 @@ class WC_GZD_Ekomi {
 	 * Creates a new User if the eKomi user does not already exist. Adds hooks to schedules to manage review updates and Email notifications
 	 */
 	public function __construct() {
+		
 		$this->version = 'cust-1.0.0';
 		$this->id = $this->shop_id;
+		
 		if ( $this->is_enabled() )
 			add_action( 'init', array( $this, 'init' ) );
+		
 		// Register sections
 		add_filter( 'woocommerce_gzd_settings_sections', array( $this, 'register_section' ), 5 );
 		add_filter( 'woocommerce_gzd_get_settings_ekomi', array( $this, 'get_settings' ) );

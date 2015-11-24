@@ -12,6 +12,6 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 global $product;
 ?>
 
-<?php if ( $product->gzd_product->has_product_units() ) : ?>
-	<span class="product-units-wrapper product-units"><?php echo $product->gzd_product->get_product_units_html(); ?></span>
+<?php if ( wc_gzd_get_gzd_product( $product )->has_product_units() ) : ?>
+	<span class="product-units-wrapper product-units"><?php echo wc_gzd_get_gzd_product( $product )->get_product_units_html(); ?></span>
 <?php endif; ?>

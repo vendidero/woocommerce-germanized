@@ -4,7 +4,7 @@ Tags: woocommerce, german market, german, germany, deutsch, deutschland, de, de_
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=info@vendidero.de&item_name=Donation+for+WooCommerce+Germanized
 Requires at least: 3.8
 Tested up to: 4.4
-Stable tag: 1.4.6
+Stable tag: 1.5.0
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -173,6 +173,13 @@ Bugs sowie Hilfe bei der Arbeit an WooCommerce Germanized werden gerne über uns
 1. Einstellungsmöglichkeiten für WooCommerce Germanized.
 
 == Changelog ==
+
+= 1.5.0 =
+* Feature - Import data from previously installed German Plugins
+* Feature - Performance Improvements
+* Fix - Variation HTML syntax
+* Fix - Title address field (+ better english translation)
+* Fix - Coupons tax share calculation (for total = 0)
 
 = 1.4.6 =
 * Feature - set free shipping option for products do disable "plus shipping costs" notice

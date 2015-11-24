@@ -45,8 +45,11 @@ class WC_GZD_Trusted_Shops {
 	 * Sets Trusted Shops payment gateways and establishes hooks
 	 */
 	public function __construct() {
+		
 		$this->partner_id = 'WooCommerceGermanized';
+		
 		$this->refresh();
+		
 		$this->gateways = apply_filters( 'woocommerce_trusted_shops_gateways', array(
 				'prepayment' => _x( 'Prepayment', 'trusted-shops', 'woocommerce-germanized' ),
 				'cash_on_delivery' => _x( 'Cash On Delivery', 'trusted-shops', 'woocommerce-germanized' ),
@@ -57,24 +60,29 @@ class WC_GZD_Trusted_Shops {
 				'financing' =>  _x( 'Financing', 'trusted-shops', 'woocommerce-germanized' ),
 			)
 		);
+
 		$this->et_params = array( 'etcc_med' => 'part', 'etcc_cmp' => 'sofpar', 'etcc_par' => 'woo', 'etcc_mon' => 11 );
+		
 		// Schedule
 		if ( $this->is_rich_snippets_enabled() ) {
 			add_action( 'woocommerce_gzd_trusted_shops_reviews', array( $this, 'update_reviews' ) );
 			if ( empty( $this->reviews_cache ) )
 				add_action( 'init', array( $this, 'update_reviews' ) );
 		}
+		
 		if ( $this->is_review_widget_enabled() ) {
 			add_action( 'woocommerce_gzd_trusted_shops_reviews', array( $this, 'update_review_widget' ) );
 			if ( empty( $this->review_widget_attachment ) )
 				add_action( 'init', array( $this, 'update_review_widget' ) );
 		}
+		
 		if ( $this->is_review_reminder_enabled() )
 			add_action( 'woocommerce_gzd_trusted_shops_reviews', array( $this, 'send_mails' ) );
 
 		// Add Badge to Footer
 		if ( $this->is_enabled() && $this->get_badge_js() )
 			add_action( 'wp_footer', array( $this, 'add_badge' ), 5 );
+		
 		// Register Section
 		add_filter( 'woocommerce_gzd_settings_sections', array( $this, 'register_section' ), 1 );
 		add_filter( 'woocommerce_gzd_get_settings_trusted_shops', array( $this, 'get_settings' ) );
@@ -83,6 +91,7 @@ class WC_GZD_Trusted_Shops {
 		add_action( 'woocommerce_gzd_after_save_section_trusted_shops', array( $this, 'after_save' ), 0, 1 );
 		add_action( 'wc_germanized_settings_section_after_trusted_shops', array( $this, 'review_collector_export' ), 0 );
 		add_action( 'admin_init', array( $this, 'review_collector_export_csv' ) );
+	
 	}
 
 	public function refresh() {
@@ -348,6 +357,7 @@ class WC_GZD_Trusted_Shops {
 	}
 
 	public function review_collector_export_csv() {
+		
 		if ( ! isset( $_GET[ 'action' ] ) || $_GET[ 'action' ] != 'wc-gzd-trusted-shops-export' || ( isset( $_GET[ 'action' ] ) && $_GET[ 'action' ] == 'wc-gzd-trusted-shops-export' && ! wp_verify_nonce( $_REQUEST['_wpnonce'], 'wc-gzd-trusted-shops-export' ) ) )
 			return;
 		

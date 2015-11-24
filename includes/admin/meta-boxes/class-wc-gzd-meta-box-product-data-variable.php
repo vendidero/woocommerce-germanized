@@ -43,19 +43,19 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 			<p class="form-row form-row-first">
 				<label><?php _e( 'Unit', 'woocommerce-germanized' ); ?>:</label>
 				<select name="variable_unit[<?php echo $loop; ?>]">
-					<option value="parent" <?php selected( is_null( ! empty( $_product->gzd_product->unit ) ? $_product->gzd_product->unit : null ), true ); ?>><?php _e( 'None', 'woocommerce-germanized' ); ?></option>
+					<option value="parent" <?php selected( is_null( ! empty( wc_gzd_get_gzd_product( $_product )->unit ) ? wc_gzd_get_gzd_product( $_product )->unit : null ), true ); ?>><?php _e( 'None', 'woocommerce-germanized' ); ?></option>
 					<?php
 					foreach ( WC_germanized()->units->get_units() as $key => $value )
-						echo '<option value="' . esc_attr( $key ) . '" ' . selected( $key === ( ! empty( $_product->gzd_product->unit ) ? $_product->gzd_product->unit : '' ) , true, false ) . '>' . esc_html( $value ) . '</option>';
+						echo '<option value="' . esc_attr( $key ) . '" ' . selected( $key === ( ! empty( wc_gzd_get_gzd_product( $_product )->unit ) ? wc_gzd_get_gzd_product( $_product )->unit : '' ) , true, false ) . '>' . esc_html( $value ) . '</option>';
 				?></select>
 			</p>
 			<p class="form-row form-row-last">
 				<label for="variable_unit_product"><?php echo __( 'Product Units', 'woocommerce-germanized' );?>: <a class="tips" data-tip="<?php esc_attr_e( 'Number of units included per default product price. Example: 1000 ml.', 'woocommerce-germanized' ); ?>" href="#">[?]</a></label>
-				<input class="input-text wc_input_decimal" size="6" type="text" name="variable_unit_product[<?php echo $loop; ?>]" value="<?php echo ( ! empty( $_product->gzd_product->unit_product ) ? esc_attr( wc_format_localized_decimal( $_product->gzd_product->unit_product ) ) : '' );?>" placeholder="" />
+				<input class="input-text wc_input_decimal" size="6" type="text" name="variable_unit_product[<?php echo $loop; ?>]" value="<?php echo ( ! empty( wc_gzd_get_gzd_product( $_product )->unit_product ) ? esc_attr( wc_format_localized_decimal( wc_gzd_get_gzd_product( $_product )->unit_product ) ) : '' );?>" placeholder="" />
 			</p>
 			<p class="form-row form-row-first">
 				<label for="variable_unit_base"><?php echo __( 'Base Price Units', 'woocommerce-germanized' );?>: <a class="tips" data-tip="<?php esc_attr_e( 'Base price units. Example base price: 0,99 € / 100 ml. Insert 100 as base price unit amount.', 'woocommerce-germanized' ); ?>" href="#">[?]</a></label>
-				<input class="input-text wc_input_decimal" size="6" type="text" name="variable_unit_base[<?php echo $loop; ?>]" value="<?php echo ( ! empty( $_product->gzd_product->unit_base ) ? esc_attr( wc_format_localized_decimal( $_product->gzd_product->unit_base ) ) : '' );?>" placeholder="" />
+				<input class="input-text wc_input_decimal" size="6" type="text" name="variable_unit_base[<?php echo $loop; ?>]" value="<?php echo ( ! empty( wc_gzd_get_gzd_product( $_product )->unit_base ) ? esc_attr( wc_format_localized_decimal( wc_gzd_get_gzd_product( $_product )->unit_base ) ) : '' );?>" placeholder="" />
 			</p>
 			<p class="form-row form-row-full _unit_price_auto_field">
 				<label for="variable_unit_price_auto_<?php echo $loop; ?>"><?php echo __( 'Calculation', 'woocommerce-germanized' ); ?>:</label>
@@ -67,11 +67,11 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 			</p>
 			<p class="form-row form-row-first">
 				<label for="variable_unit_price_regular"><?php echo __( 'Regular Unit Price', 'woocommerce-germanized' ) . ' (' . get_woocommerce_currency_symbol() . ')'; ?>:</label>
-				<input class="input-text wc_input_price" size="5" type="text" name="variable_unit_price_regular[<?php echo $loop; ?>]" value="<?php echo ( ! empty( $_product->gzd_product->unit_price_regular ) ? esc_attr( wc_format_localized_price( $_product->gzd_product->unit_price_regular ) ) : '' );?>" placeholder="" />
+				<input class="input-text wc_input_price" size="5" type="text" name="variable_unit_price_regular[<?php echo $loop; ?>]" value="<?php echo ( ! empty( wc_gzd_get_gzd_product( $_product )->unit_price_regular ) ? esc_attr( wc_format_localized_price( wc_gzd_get_gzd_product( $_product )->unit_price_regular ) ) : '' );?>" placeholder="" />
 			</p>
 			<p class="form-row form-row-last">
 				<label for="variable_unit_price_sale"><?php echo __( 'Sale Unit Price', 'woocommerce-germanized' ) . ' (' . get_woocommerce_currency_symbol() . ')'; ?>:</label>
-				<input class="input-text wc_input_price" size="5" type="text" name="variable_unit_price_sale[<?php echo $loop; ?>]" value="<?php echo ( ! empty( $_product->gzd_product->unit_price_sale ) ? esc_attr( wc_format_localized_price( $_product->gzd_product->unit_price_sale ) ) : '' );?>" placeholder="" />
+				<input class="input-text wc_input_price" size="5" type="text" name="variable_unit_price_sale[<?php echo $loop; ?>]" value="<?php echo ( ! empty( wc_gzd_get_gzd_product( $_product )->unit_price_sale ) ? esc_attr( wc_format_localized_price( wc_gzd_get_gzd_product( $_product )->unit_price_sale ) ) : '' );?>" placeholder="" />
 			</p>
 		</div>
 		<div class="variable_shipping_time hide_if_variation_virtual">
@@ -83,8 +83,8 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 		<div class="variable_cart_mini_desc">
 			<p class="form-row form-row-full">
 				<label for="variable_mini_desc"><?php echo __( 'Optional Mini Description', 'woocommerce-germanized' ); ?>:</label>
-				<textarea rows="3" style="width: 100%" name="variable_mini_desc[<?php echo $loop;?>]" id="variable_mini_desc_<?php echo $loop;?>" class="variable_mini_desc"><?php echo htmlspecialchars_decode( $_product->gzd_product->mini_desc ); ?></textarea>
-				<?php // wp_editor( htmlspecialchars_decode( $_product->gzd_product->mini_desc ), 'wc_gzd_product_mini_desc_' . $loop, array( 'textarea_name' => 'variable_mini_desc[' . $loop . ']', 'textarea_rows' => 5, 'media_buttons' => false, 'teeny' => true ) ); ?>
+				<textarea rows="3" style="width: 100%" name="variable_mini_desc[<?php echo $loop;?>]" id="variable_mini_desc_<?php echo $loop;?>" class="variable_mini_desc"><?php echo htmlspecialchars_decode( wc_gzd_get_gzd_product( $_product )->mini_desc ); ?></textarea>
+				<?php // wp_editor( htmlspecialchars_decode( wc_gzd_get_gzd_product( $_product )->mini_desc ), 'wc_gzd_product_mini_desc_' . $loop, array( 'textarea_name' => 'variable_mini_desc[' . $loop . ']', 'textarea_rows' => 5, 'media_buttons' => false, 'teeny' => true ) ); ?>
 			</p>
 		</div>
 		<?php

@@ -18,6 +18,14 @@ function wc_gzd_register_scheduled_unit_sales() {
 }
 add_action( 'woocommerce_scheduled_sales', 'wc_gzd_register_scheduled_unit_sales', 0 );
 
+function wc_gzd_get_gzd_product( $product ) {
+	
+	if ( ! isset( $product->gzd_product ) || ! is_object( $product->gzd_product ) )
+		$product->gzd_product = WC()->product_factory->get_gzd_product( $product );
+
+	return $product->gzd_product;
+}
+
 /**
  * Unregister unit price update hook
  */

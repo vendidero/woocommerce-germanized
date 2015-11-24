@@ -12,6 +12,6 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 global $product;
 ?>
 
-<?php if ( $product->gzd_product->get_shipping_costs_html() ) : ?>
-	<p class="wc-gzd-additional-info shipping-costs-info"><?php echo $product->gzd_product->get_shipping_costs_html();?></p>
+<?php if ( wc_gzd_get_gzd_product( $product )->get_shipping_costs_html() ) : ?>
+	<p class="wc-gzd-additional-info shipping-costs-info"><?php echo wc_gzd_get_gzd_product( $product )->get_shipping_costs_html();?></p>
 <?php endif; ?>

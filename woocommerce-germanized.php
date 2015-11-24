@@ -3,7 +3,7 @@
  * Plugin Name: WooCommerce Germanized
  * Plugin URI: https://www.vendidero.de/woocommerce-germanized
  * Description: Extends WooCommerce to become a legally compliant store for the german market.
- * Version: 1.4.7
+ * Version: 1.5.0
  * Author: Vendidero
  * Author URI: https://vendidero.de
  * Requires at least: 3.8
@@ -26,7 +26,7 @@ final class WooCommerce_Germanized {
 	 *
 	 * @var string
 	 */
-	public $version = '1.4.7';
+	public $version = '1.5.0';
 
 	/**
 	 * Single instance of WooCommerce Germanized Main Class
@@ -167,6 +167,7 @@ final class WooCommerce_Germanized {
 		}
 		
 		add_filter( 'woocommerce_get_settings_pages', array( $this, 'add_settings' ) );
+		
 		add_filter( 'woocommerce_enqueue_styles', array( $this, 'add_styles' ) );
 		// Load after WooCommerce Frontend scripts
 		add_action( 'wp_enqueue_scripts', array( $this, 'add_scripts' ), 15 );
@@ -180,9 +181,6 @@ final class WooCommerce_Germanized {
 		add_filter( 'woocommerce_get_order_item_totals', array( $this, 'order_item_totals' ), 0, 2 );
 		// Unsure wether this could lead to future problems - tax classes with same name wont be merged anylonger
 		//add_filter( 'woocommerce_rate_code', array( $this, 'prevent_tax_name_merge' ), PHP_INT_MAX, 2 );
-		
-		// Fallback gzd_product injection if not using wc_get_product
-		add_filter( 'get_post_metadata', array( $this, 'inject_gzd_product' ), 0, 4 );
 		
 		// Hide cart estimated text if chosen
 		add_action( 'woocommerce_cart_totals_after_order_total', array( $this, 'hide_cart_estimated_text' ) );
@@ -445,21 +443,6 @@ final class WooCommerce_Germanized {
 			return trailingslashit( $path ) . 'checkout/form-checkout.php';
 		
 		return $template;
-	}
-
-	/**
-	 * Inject WC_GZD_Product into WC_Product by filtering postmeta - fallback if not using wc_get_product
-	 *  
-	 * @param  mixed $metadata 
-	 * @param  int $object_id 
-	 * @param  string $meta_key  
-	 * @param  boolean $single    
-	 * @return mixed
-	 */
-	public function inject_gzd_product( $metadata, $object_id, $meta_key, $single ) {
-		if ( $meta_key == '_gzd_product' && in_array( get_post_type( $object_id ), array( 'product', 'product_variation' ) ) ) 
-			return new WC_GZD_Product( $object_id );
-		return $metadata;
 	}
 
 	/**
