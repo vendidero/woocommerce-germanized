@@ -219,31 +219,24 @@ class WC_GZD_Admin_Welcome {
 				</div>
 			</div>
 			<div class="changelog">
-				<h3>Neu in WooCommerce Germanized 1.4</h3>
+				<h3>Neu in WooCommerce Germanized 1.5</h3>
 				<div class="wc-feature feature-section col three-col" style="margin-bottom: -30px">
 					<div>
-						<h4><i class="fa fa-euro"></i> SEPA Lastschrift</h4>
+						<h4><i class="fa fa-line-chart"></i> Verbesserte Performance</h4>
 						<p>
-							Ermögliche deinen Kunden die Bezahlung via SEPA Lastschrift - ganz ohne Payment Anbieter.
-							Die entsprechenden Felder werden automatisch im Checkout hinzugefügt und validiert. Der Kunde erhält eine Kopie des Mandats per Mail.
+							Wir haben für dich weiter an der Performance des Plugins gearbeitet und konnte die Ladezeiten um 50% reduzieren.
 						</p>
 					</div>
 					<div>
-						<h4><i class="fa fa-file-pdf-o"></i> Bezahlung per Rechnung</h4>
+						<h4><i class="fa fa-database"></i> Einstellungen importieren</h4>
 						<p>
-							Biete deinen Kunden die beliebte Zahlungsart "Kauf auf Rechnung" an. Du kannst zusätzlich einschränken, ob nur registrierte Kunden die Zahlungsart nutzen dürften.
-							Als <a class="wc-gzd-pro" style="display: inline !important" href="https://vendidero.de/woocommerce-germanized#accounting" target="_blank">pro</a> User kannst du automatisiert PDF-Rechnungen erstellen.
-						</p>
-					</div>
-					<div class="last-feature">
-						<h4><i class="fa fa-arrows-h"></i> Produkteinheiten</h4>
-						<p>
-							Hinterlege zusätzlich zum Grundpreis, Produkteinheiten für deine Produkte. Beispiel: Du verkaufst 250ml Parfum für 39,95 €. Hinterlege 250 als Produkteinheiten und lasse dir die Daten optional auf der Produktseite ausgeben.
+							Solltest du ein anderes Plugin für den deutschen Markt installiert haben, versuchen wir diese Einstellungen & Optionen zu übernehmen.
+							Dieses Feature ist allerdings nur nach der Erstinstallation des Plugins verfügbar.
 						</p>
 					</div>
 				</div>
 				<div class="return-to-dashboard">
-					<a href="<?php echo admin_url( 'admin.php?page=wc-settings&tab=checkout' ); ?>">Neue Zahlungsarten jetzt entdecken</a>
+					<a href="<?php echo admin_url( 'admin.php?page=wc-settings&tab=germanized' ); ?>">zu den Einstellungen</a>
 				</div>
 			</div>
 			<div class="changelog">

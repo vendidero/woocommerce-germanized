@@ -65,6 +65,7 @@
 .product p.wc-gzd-additional-info {
 	margin-bottom: 0.5rem;
 	font-size: 0.9em;
+	clear: left;
 }
 .product .product_meta {
 	margin-top: 1rem;

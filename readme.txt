@@ -175,7 +175,7 @@ Bugs sowie Hilfe bei der Arbeit an WooCommerce Germanized werden gerne über uns
 == Changelog ==
 
 = 1.5.0 =
-* Feature - Import data from previously installed German Plugins
+* Feature - Import data from previously installed German Market Plugins
 * Feature - Performance Improvements
 * Fix - Variation HTML syntax
 * Fix - Title address field (+ better english translation)
