@@ -222,7 +222,7 @@ if ( ! function_exists( 'woocommerce_gzd_checkout_validation' ) ) {
 				}
 			}
 			if ( $is_downloadable && ! isset( $_POST[ 'download-revocate' ] ) )
-				wc_add_notice( __( 'To retrieve direct access to digital content you have to agree to the loss of your right of withdrawal.', 'woocommerce-germanized' ), 'error' );
+				wc_add_notice( wc_gzd_get_legal_text_digital_error(), 'error' );
 		}
 	}
 

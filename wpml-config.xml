@@ -10,6 +10,7 @@
     	<key name="woocommerce_gzd_checkout_legal_text" />
     	<key name="woocommerce_gzd_checkout_legal_text_error" />
     	<key name="woocommerce_gzd_checkout_legal_text_digital" />
+        <key name="woocommerce_gzd_checkout_legal_text_digital_error" />
     	<key name="woocommerce_gzd_order_success_text" />
         <key name="woocommerce_gzd_customer_account_text" />
         <key name="woocommerce_direct-debit_company_info" />

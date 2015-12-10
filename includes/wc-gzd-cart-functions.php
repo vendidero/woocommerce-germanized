@@ -211,6 +211,13 @@ function wc_gzd_get_legal_text_digital() {
 	return $plain_text;
 }
 
+function wc_gzd_get_legal_text_digital_error() {
+	$plain_text = __( 'To retrieve direct access to digital content you have to agree to the loss of your right of withdrawal.', 'woocommerce-germanized' );
+	if ( get_option( 'woocommerce_gzd_checkout_legal_text_digital_error' ) )
+		$plain_text = wc_gzd_get_legal_text( get_option( 'woocommerce_gzd_checkout_legal_text_digital_error' ) );
+	return $plain_text;
+}
+
 function wc_gzd_get_legal_text_digital_email_notice() {
 	$text = get_option( 'woocommerce_gzd_order_confirmation_legal_digital_notice' );
 	if ( $text ) {

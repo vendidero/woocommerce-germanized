@@ -823,6 +823,16 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 			),
 
 			array(
+				'title' 	=> __( 'Legal Digital Error', 'woocommerce-germanized' ),
+				'desc' 		=> __( 'This text will be shown as error message if customer has not checked the corresponding checkbox. See legal text option for possible placeholders.', 'woocommerce-germanized' ),
+				'desc_tip'	=> true,
+				'default'   =>  __( 'To retrieve direct access to digital content you have to agree to the loss of your right of withdrawal.', 'woocommerce-germanized' ),
+				'css' 		=> 'width:100%; height: 65px;',
+				'id' 		=> 'woocommerce_gzd_checkout_legal_text_digital_error',
+				'type' 		=> 'textarea',
+			),
+
+			array(
 				'title' 	=> __( 'Digital Confirmation Notice', 'woocommerce-germanized' ),
 				'desc' 		=> __( 'This text will be appended to your order processing email if the order contains digital products. Use placeholders {link}{/link} to insert link to right of withdrawal page.', 'woocommerce-germanized' ),
 				'desc_tip'	=> true,

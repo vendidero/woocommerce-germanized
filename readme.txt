@@ -177,6 +177,7 @@ Bugs sowie Hilfe bei der Arbeit an WooCommerce Germanized werden gerne über uns
 = 1.5.0 =
 * Feature - Import data from previously installed German Market Plugins
 * Feature - Performance Improvements
+* Feature - Set digital revocation notice error message
 * Fix - Variation HTML syntax
 * Fix - Title address field (+ better english translation)
 * Fix - Coupons tax share calculation (for total = 0)
