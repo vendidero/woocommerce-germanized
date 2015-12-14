@@ -88,7 +88,7 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
     	// Customer Emails
     	add_action( 'woocommerce_email_before_order_table', array( $this, 'email_instructions' ), 10, 3 );
     	add_action( 'woocommerce_germanized_order_confirmation_sent', array( $this, 'send_mail' ) );
-    	add_filter( 'woocommerce_email_customer_details', array( $this, 'email_sepa' ), 15, 3 );
+    	add_action( 'woocommerce_email_customer_details', array( $this, 'email_sepa' ), 15, 3 );
 
     	// Order admin
     	add_filter( 'woocommerce_admin_billing_fields', array( $this, 'set_debit_fields' ) ); 
@@ -98,7 +98,7 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
     public function email_sepa( $order, $sent_to_admin, $plain_text ) {
 
     	if ( $this->id !== $order->payment_method )
-    		return $fields;
+    		return;
 
     	$sepa_fields = array(
     		__( 'Account Holder', 'woocommerce-germanized' ) 	=> $order->direct_debit_holder,
