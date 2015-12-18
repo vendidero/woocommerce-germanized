@@ -79,6 +79,26 @@ function wc_gzd_cart_product_unit_price( $price, $cart_item, $cart_item_key = ''
 }
 
 /**
+ * Appends product units live data (while checkout) or order meta to product name
+ *  
+ * @param  string $title    
+ * @param  array $cart_item 
+ * @return string
+ */
+function wc_gzd_cart_product_units( $title, $cart_item, $cart_item_key = '' ) {
+	$units = "";
+	if ( isset( $cart_item[ 'data' ] ) ) {
+		$product = apply_filters( 'woocommerce_cart_item_product', $cart_item[ 'data' ], $cart_item, $cart_item_key );
+		if ( wc_gzd_get_gzd_product( $product )->has_product_units() )
+			$units = wc_gzd_get_gzd_product( $product )->get_product_units_html();
+	} else if ( isset( $cart_item[ 'units' ] ) )
+		$units = $cart_item[ 'units' ];
+	if ( ! empty( $units ) )
+		$title .= '<p class="units-info">' . $units . '</p>';
+	return $title;
+}
+
+/**
  * Calculates tax share for shipping/fees
  *  
  * @param  string $type 

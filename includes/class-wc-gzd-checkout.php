@@ -246,6 +246,7 @@ class WC_GZD_Checkout {
 	 * @param array $args     
 	 */
 	public function set_order_meta( $order_id, $item_id, $product, $qty, $args ) {
+		wc_add_order_item_meta( $item_id, '_units', wc_gzd_get_gzd_product( $product )->get_product_units_html() );
 		wc_add_order_item_meta( $item_id, '_delivery_time', wc_gzd_get_gzd_product( $product )->get_delivery_time_html() );
 		wc_add_order_item_meta( $item_id, '_item_desc', wc_gzd_get_gzd_product( $product )->get_mini_desc() );
 		wc_add_order_item_meta( $item_id, '_unit_price', wc_gzd_get_gzd_product( $product )->get_unit_html( false ) );
@@ -258,6 +259,7 @@ class WC_GZD_Checkout {
 	 */
 	public function set_order_meta_hidden( $metas ) {
 		array_push( $metas, '_item_desc' );
+		array_push( $metas, '_units' );
 		array_push( $metas, '_delivery_time' );
 		array_push( $metas, '_unit_price' );
 		return $metas;

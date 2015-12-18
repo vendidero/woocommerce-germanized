@@ -603,6 +603,14 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 			),
 
 			array(
+				'desc' 		=> __( 'Product Units', 'woocommerce-germanized' ),
+				'id' 		=> 'woocommerce_gzd_display_listings_product_units',
+				'type' 		=> 'checkbox',
+				'default'	=> 'no',
+				'checkboxgroup'		=> '',
+			),
+
+			array(
 				'desc' 		=> __( 'Delivery Time Notice', 'woocommerce-germanized' ),
 				'id' 		=> 'woocommerce_gzd_display_listings_delivery_time',
 				'type' 		=> 'checkbox',
@@ -636,6 +644,14 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 			),
 
 			array(
+				'desc' 		=> __( 'Product Units', 'woocommerce-germanized' ),
+				'id' 		=> 'woocommerce_gzd_display_product_detail_product_units',
+				'type' 		=> 'checkbox',
+				'default'	=> 'no',
+				'checkboxgroup'		=> '',
+			),
+
+			array(
 				'desc' 		=> __( 'Delivery Time Notice', 'woocommerce-germanized' ),
 				'id' 		=> 'woocommerce_gzd_display_product_detail_delivery_time',
 				'type' 		=> 'checkbox',
@@ -663,15 +679,6 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 				'type' 		=> 'text',
 				'css' 		=> 'min-width:300px;',
 				'default'	=> __( '{price}', 'woocommerce-germanized' ),
-			),
-
-			array(
-				'title' 	=> __( 'Show product units', 'woocommerce-germanized' ),
-				'desc' 		=> __( 'Display amount of product units on product detail page.', 'woocommerce-germanized' ),
-				'desc_tip'	=> __( 'Product units will be shown right above your SKU (if available) within the product meta section.', 'woocommerce-germanized' ),
-				'id' 		=> 'woocommerce_gzd_display_product_units',
-				'type' 		=> 'checkbox',
-				'default'	=> 'no',
 			),
 
 			array(
