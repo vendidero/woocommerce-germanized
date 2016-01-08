@@ -125,6 +125,13 @@ class WC_GZD_Admin_Welcome {
 				<iframe src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Fvendidero.de%2Fwoocommerce-germanized&amp;width&amp;layout=button&amp;action=recommend&amp;show_faces=false&amp;share=false&amp;height=20" scrolling="no" frameborder="0" style="border:none; overflow:hidden; height:20px;" allowTransparency="true"></iframe>
 				</span>
 			</p>
+			<div class="changelog new-feature">
+				<h3>Link auf EU-Online-Schlichtungs-Plattform ab 9.1.2016</h3>
+				<p>Viele Shop-Betreiber haben sicherlich schon mitbekommen, dass ab dem 9.1.2016 ein Link auf die von der EU in Kürze bereitgestellte Online-Schlichtungsplattform "leicht zugänglich" platziert werden muss.</p>
+				<p>Basierend auf dem <a href="http://shop.trustedshops.com/de/rechtstipps/jetzt-handeln-link-auf-eu-online-schlichtungs-plattform-ab-9.1.2016" target="_blank">Artikel von Trusted Shops</a>, fügt Germanized in das Impressum (insofern in den Einstellungen hinterlegt) automatisch den Shortcode [gzd_complaints] ein, der den von Trusted Shops empfohlenen Text platziert.
+				Der Text kann in den Einstellungen angepasst werden.</p>
+				<p>In den <a href="<?php echo admin_url( 'admin.php?page=wc-settings&tab=germanized&section' ); ?>">Einstellungen</a> kannst du auch prüfen, ob der Shortcode korrekt in deinem Impressum hinterlegt wurde.</p>
+			</div>
 			<div class="changelog vendipro new-feature">
 				<h3>Neu: Rechtliche Hinweistexte als PDF-Anhang <span class="wc-gzd-pro">pro</span></h3>
 				<div class="left">

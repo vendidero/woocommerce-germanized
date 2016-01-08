@@ -33,6 +33,7 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 		add_action( 'woocommerce_gzd_before_save_section_', array( $this, 'before_save' ), 0, 1 );
 		add_action( 'woocommerce_gzd_after_save_section_', array( $this, 'after_save' ), 0, 1 );
 		add_action( 'woocommerce_admin_field_image', array( $this, 'image_field' ), 0, 1 );
+		add_action( 'woocommerce_admin_field_html', array( $this, 'html_field' ), 0, 1 );
 		add_action( 'woocommerce_admin_field_hidden', array( $this, 'hidden_field' ), 0, 1 );
 		add_action( 'woocommerce_gzd_before_section_output', array( $this, 'init_tour_data' ), 0, 1 );
 
@@ -66,12 +67,21 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 		<?php
 	}
 
+	public function html_field( $value ) {
+		?>
+		<tr valign="top">
+			<th class="forminp forminp-html" id="<?php echo $value[ 'id' ]; ?>"><?php echo $value[ 'title' ]; ?></th>
+			<td class="forminp"><?php echo $value[ 'html' ]; ?></td>
+		</tr>
+		<?php
+	}
+
 	public function hidden_field( $value ) {
 		$option_value = WC_Admin_Settings::get_option( $value[ 'id' ], $value[ 'default' ] );
 		?>
 		<tr valign="top" style="display: none">
 			<th class="forminp forminp-image">
-				 <input type="hidden" id="<?php echo esc_attr( $value['id'] ); ?>" value="<?php echo esc_attr( $option_value ); ?>" name="<?php echo esc_attr( $value['id'] ); ?>" />
+				<input type="hidden" id="<?php echo esc_attr( $value['id'] ); ?>" value="<?php echo esc_attr( $option_value ); ?>" name="<?php echo esc_attr( $value['id'] ); ?>" />
 			</th>
 		</tr>
 		<?php
@@ -113,8 +123,11 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 		
 		$delivery_terms = array('' => __( 'None', 'woocommerce-germanized' ));
 		$terms = get_terms( 'product_delivery_time', array('fields' => 'id=>name', 'hide_empty' => false) );
+		
 		if ( ! is_wp_error( $terms ) )
 			$delivery_terms = $delivery_terms + $terms;
+
+		$is_complaints_shortcode_inserted = WC_GZD_Admin::instance()->is_complaints_shortcode_inserted();
 
 		$settings = array(
 
@@ -255,6 +268,27 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 			),
 
 			array( 'type' => 'sectionend', 'id' => 'legal_pages_options' ),
+
+			array( 'title' => __( 'Complaints', 'woocommerce-germanized' ), 'type' => 'title', 'desc' => sprintf( __( 'Options regarding new EU online dispute resolution platform (OS). Read more about this topic <a href="%s" target="_blank">here</a>.', 'woocommerce-germanized' ), 'http://shop.trustedshops.com/de/rechtstipps/jetzt-handeln-link-auf-eu-online-schlichtungs-plattform-ab-9.1.2016' ), 'id' => 'complaints_options' ),
+
+			array(
+				'title' 	=> __( 'Complaints Procedure Text', 'woocommerce-germanized' ),
+				'desc' 		=> __( 'Customize the text produced by the shortcode [gzd_complaints] to your needs. This text is to be meant to inform your customer about the existance of a platform for dispute settlement provided by the EU. You may place this shortcode within your imprint.', 'woocommerce-germanized' ),
+				'desc_tip'	=> true,
+				'default'   =>  __( 'Online dispute resolution in accordance with Art. 14 (1) ODR-VO: The european commission provides a platform for online dispute resolution (OS) which is accessible at http://ec.europa.eu/consumers/odr/.', 'woocommerce-germanized' ),
+				'css' 		=> 'width:100%; height: 65px;',
+				'id' 		=> 'woocommerce_gzd_complaints_procedure_text',
+				'type' 		=> 'textarea',
+			),
+
+			array(
+				'title' 	=> __( 'Shortcode Status', 'woocommerce-germanized' ),
+				'id' 		=> 'woocommerce_gzd_complaints_procedure_status',
+				'type' 		=> 'html',
+				'html' 		=> '<p>' . ( wc_get_page_id( 'imprint' ) == -1 ? '<span class="wc-gzd-status-text wc-gzd-text-red">' . __( 'Please choose a page as your imprint first.', 'woocommerce-germanized' ) . '</span>' : '<span class="wc-gzd-status-text wc-gzd-text-' . ( $is_complaints_shortcode_inserted ? 'green' : 'red' ) . '"> ' . ( $is_complaints_shortcode_inserted ? __( 'Found', 'woocommerce-germanized' ) : __( 'Not found within your imprint', 'woocommerce-germanized' ) ) . '</span> ' . ( ! $is_complaints_shortcode_inserted ? '<a class="button button-secondary" style="margin-left: 1em" href="' . wp_nonce_url( add_query_arg( array( 'complaints' => 'add' ) ), 'append-complaints-shortcode' ). '" target="_blank">' . __( 'Append it now', 'woocommerce-germanized' ) . '</a></p>' : '' ) ),
+			),
+
+			array( 'type' => 'sectionend', 'id' => 'complaints_options' ),
 
 			array( 'title' => __( 'Delivery Times', 'woocommerce-germanized' ), 'type' => 'title', 'desc' => '', 'id' => 'delivery_times_options' ),
 

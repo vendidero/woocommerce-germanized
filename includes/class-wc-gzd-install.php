@@ -17,7 +17,8 @@ class WC_GZD_Install {
 	private static $db_updates = array(
 		'1.0.4' => 'updates/woocommerce-gzd-update-1.0.4.php',
 		'1.4.2' => 'updates/woocommerce-gzd-update-1.4.2.php',
-		'1.4.6' => 'updates/woocommerce-gzd-update-1.4.6.php'
+		'1.4.6' => 'updates/woocommerce-gzd-update-1.4.6.php',
+		'1.5.0' => 'updates/woocommerce-gzd-update-1.5.0.php'
 	);
 
 	/**
@@ -448,7 +449,7 @@ class WC_GZD_Install {
 			'imprint' => array(
 				'name'    => _x( 'imprint', 'Page slug', 'woocommerce-germanized' ),
 				'title'   => _x( 'Imprint', 'Page title', 'woocommerce-germanized' ),
-				'content' => ''
+				'content' => '[gzd_complaints]'
 			),
 			'terms' => array(
 				'name'    => _x( 'terms', 'Page slug', 'woocommerce-germanized' ),

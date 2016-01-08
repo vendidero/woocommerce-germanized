@@ -27,12 +27,17 @@ class WC_GZD_Shortcodes {
 			'gzd_feature'				 => __CLASS__ . '::gzd_feature',
 			'gzd_vat_info'				 => __CLASS__ . '::gzd_vat_info',
 			'gzd_sale_info'				 => __CLASS__ . '::gzd_sale_info',
+			'gzd_complaints'			 => __CLASS__ . '::gzd_complaints',
 		);
 
 		foreach ( $shortcodes as $shortcode => $function ) {
 			add_shortcode( apply_filters( "{$shortcode}_shortcode_tag", $shortcode ), $function );
 		}
 
+	}
+
+	public static function gzd_complaints( $atts ) {
+		return wpautop( str_replace( 'http://ec.europa.eu/consumers/odr/', '<a href="http://ec.europa.eu/consumers/odr/" target="_blank">http://ec.europa.eu/consumers/odr/</a>', get_option( 'woocommerce_gzd_complaints_procedure_text' ) ) );
 	}
 
 	/**

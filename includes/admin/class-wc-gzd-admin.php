@@ -45,6 +45,7 @@ class WC_GZD_Admin {
 		add_action( 'admin_menu', array( $this, 'remove_status_page_hooks' ), 0 );
 		add_action( 'admin_menu', array( $this, 'set_status_page' ), 1 );
 		add_action( 'admin_init', array( $this, 'check_tour_hide' ) );
+		add_action( 'admin_init', array( $this, 'check_complaints_shortcode_append' ) );
 	}
 
 	/**
@@ -188,6 +189,35 @@ class WC_GZD_Admin {
 			foreach ( $setting_sections as $section => $name )
 				delete_option( 'woocommerce_gzd_hide_tour_' . $section );
 		}
+ 	}
+
+ 	public function is_complaints_shortcode_inserted() {
+ 		$imprint = wc_get_page_id( 'imprint' );
+ 		if ( $imprint != -1 ) {
+ 			$post = get_post( $imprint );
+ 			return ( strpos( $post->post_content, '[gzd_complaints]' ) !== false ? true : false );
+ 		}
+ 		return false;
+ 	}
+
+ 	public function check_complaints_shortcode_append() {
+ 		if ( isset( $_GET[ 'complaints' ] ) && 'add' === $_GET[ 'complaints' ] && isset( $_GET[ '_wpnonce' ] ) && check_admin_referer( 'append-complaints-shortcode' ) ) {
+ 			if ( wc_get_page_id( 'imprint' ) != 1 ) {
+ 				$page_id = wc_get_page_id( 'imprint' );
+ 				$this->insert_complaints_shortcode( $page_id );
+ 				wp_safe_redirect( admin_url( 'post.php?post=' . $page_id . '&action=edit' ) );
+ 			}
+ 		}
+ 	}
+
+ 	public function insert_complaints_shortcode( $page_id ) {
+ 		$page = get_post( $page_id );
+ 		wp_update_post(
+ 			array(
+ 				'ID' => $page_id,
+ 				'post_content' => $page->post_content . "\n<h3>" . __( 'Complaints Procedure', 'woocommerce-germanized' ) . "</h3>\n[gzd_complaints]",
+ 			)
+ 		);
  	}
 
 }

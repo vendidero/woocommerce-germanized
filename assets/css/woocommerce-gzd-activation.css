@@ -107,10 +107,12 @@
 p.wc-gzd-actions a.button-primary, .woocommerce-gzd-message .button-primary {
 	background-color: #262626 !important;
 	border: 1px solid #000 !important;
+	text-shadow: none !important;
 }
 p.wc-gzd-actions a.button-primary:hover, .woocommerce-gzd-message .button-primary:hover {
 	background-color: #363636 !important;
 	border: 1px solid #000 !important;
+	text-shadow: none !important;
 }
 .woocommerce-gzd-message .form-table tr td, .woocommerce-gzd-message .form-table tr th {
 	padding: 0.7rem 0;

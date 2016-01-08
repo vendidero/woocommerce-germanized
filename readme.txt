@@ -133,6 +133,9 @@ Fügt an der jeweiligen Stelle ein Online-Widerrufsformular ein. Sowohl der Kund
 `[payment_methods_info]`
 Sehr nützlich für die Zahlungsmethoden-Hinweisseite - Fügt eine Übersicht über alle aktivierten Zahlungsmethoden (samt Hinweise) ein.
 
+`[gzd_complaints]`
+Dieser Shortcode fügt einen Text ein, der auf die EU-Online-Schlichtungs-Plattform verweist - der Shortcode sollte in das Impressum eingebunden werden. [Hier](http://shop.trustedshops.com/de/rechtstipps/jetzt-handeln-link-auf-eu-online-schlichtungs-plattform-ab-9.1.2016) gibt es dazu weitere Informationen.
+
 `[trusted_shops_badge]`
 Falls du Trusted Shops nutzen solltest, kannst du mit diesem Shortcode das Trusted Shops Badge an beliebiger Stelle einfügen.
 Mit dem Parameter width=55 (wobei 55 für 55px Breite/Höhe steht) kannst du optional die Breite des Badges anpassen.
@@ -176,6 +179,7 @@ Bugs sowie Hilfe bei der Arbeit an WooCommerce Germanized werden gerne über uns
 
 = 1.5.0 =
 * Feature - Import data from previously installed German Market Plugins
+* Feature - New Shortcode [gzd_complaints] within imprint to inform customers about new EU online dispute resolution platform
 * Feature - Performance Improvements
 * Feature - Set digital revocation notice error message
 * Fix - Variation HTML syntax
