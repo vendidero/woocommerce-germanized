@@ -249,7 +249,7 @@ class WC_GZD_Product {
 
 			} else {
 
-				$html = str_replace( array( '{base_price}', '{unit}', '{base}' ), array( $price_html, '<span class="unit">' . $this->get_unit() . '</span>', ( $this->unit_base > apply_filters( 'wc_gzd_unit_base_min_amount_to_show', 1 ) ? '<span class="unit-base">' . $this->unit_base . '</span>' : '' ) ), $text );
+				$html = str_replace( array( '{base_price}', '{unit}', '{base}' ), array( $price_html, '<span class="unit">' . $this->get_unit() . '</span>', ( $this->unit_base == apply_filters( 'wc_gzd_unit_base_min_amount_to_show', 1 ) ? '<span class="unit-base">' . $this->unit_base . '</span>' : '' ) ), $text );
 
 			}
 
