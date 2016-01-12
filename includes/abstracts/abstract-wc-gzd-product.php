@@ -273,7 +273,7 @@ class WC_GZD_Product {
 		$text = get_option( 'woocommerce_gzd_product_units_text' );
 
 		if ( $this->has_product_units() )
-			$html = str_replace( array( '{product_units}', '{unit}', '{unit_price}' ), array( $this->unit_product, $this->get_unit(), $this->get_unit_html() ), $text );
+			$html = str_replace( array( '{product_units}', '{unit}', '{unit_price}' ), array( str_replace( '.', ',', $this->unit_product ), $this->get_unit(), $this->get_unit_html() ), $text );
 
 		return apply_filters( 'woocommerce_gzd_product_units_html', $html, $this );
 
