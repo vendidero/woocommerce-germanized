@@ -229,7 +229,7 @@ final class WooCommerce_Germanized {
 		$class = strtolower( $class );
 		$file = 'class-' . str_replace( '_', '-', $class ) . '.php';
 
-		if ( strpos( $class, 'wc_gzd_admin_' ) === 0 )
+		if ( strpos( $class, 'wc_gzd_admin' ) === 0 )
 			$path = $this->plugin_path() . '/includes/admin/';
 		elseif ( strpos( $class, 'wc_gzd_gateway_' ) === 0 )
 			$path = $this->plugin_path() . '/includes/gateways/' . substr( str_replace( '_', '-', $class ), 15 ) . '/';
