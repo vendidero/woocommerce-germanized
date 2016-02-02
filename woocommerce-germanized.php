@@ -225,13 +225,14 @@ final class WooCommerce_Germanized {
 	 * @return void
 	 */
 	public function autoload( $class ) {
+		
 		$path = $this->plugin_path() . '/includes/';
 		$class = strtolower( $class );
 		$file = 'class-' . str_replace( '_', '-', $class ) . '.php';
 
-		if ( strpos( $class, 'wc_gzd_admin' ) === 0 )
+		if ( strpos( $class, 'wc_gzd_admin' ) !== false )
 			$path = $this->plugin_path() . '/includes/admin/';
-		elseif ( strpos( $class, 'wc_gzd_gateway_' ) === 0 )
+		elseif ( strpos( $class, 'wc_gzd_gateway_' ) !== false )
 			$path = $this->plugin_path() . '/includes/gateways/' . substr( str_replace( '_', '-', $class ), 15 ) . '/';
 
 		if ( version_compare( get_option( 'woocommerce_version' ), '2.3', '<' ) ) {
@@ -244,6 +245,7 @@ final class WooCommerce_Germanized {
 			include_once( $path . $file );
 			return;
 		}
+
 	}
 
 	/**

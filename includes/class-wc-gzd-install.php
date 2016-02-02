@@ -395,7 +395,7 @@ class WC_GZD_Install {
 			'woocommerce_allowed_countries'	    	 => 'specific',
 			'woocommerce_specific_allowed_countries' => array( 'DE' ),
 		);
-		if ( !empty($options ) ) {
+		if ( ! empty($options ) ) {
 			foreach ( $options as $key => $option ) {
 				update_option( $key, $option );
 			}
