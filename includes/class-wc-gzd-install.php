@@ -487,12 +487,13 @@ class WC_GZD_Install {
 	 * @access public
 	 */
 	public static function create_options() {
+
 		// Include settings so that we can run through defaults
 		include_once( WC()->plugin_path() . '/includes/admin/settings/class-wc-settings-page.php' );
 		include_once( 'admin/settings/class-wc-gzd-settings-germanized.php' );
 
 		$settings = new WC_GZD_Settings_Germanized();
-		$options = array_merge( $settings->get_settings(), $settings->get_display_settings() );
+		$options = array_merge( $settings->get_settings(), $settings->get_display_settings(), $settings->get_email_settings() );
 
 		foreach ( $options as $value ) {
 			if ( isset( $value['default'] ) && isset( $value['id'] ) ) {
@@ -500,6 +501,7 @@ class WC_GZD_Install {
 				add_option( $value['id'], $value['default'], '', ( $autoload ? 'yes' : 'no' ) );
 			}
 		}
+
 	}
 
 }
