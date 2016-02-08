@@ -235,12 +235,6 @@ final class WooCommerce_Germanized {
 		elseif ( strpos( $class, 'wc_gzd_gateway_' ) !== false )
 			$path = $this->plugin_path() . '/includes/gateways/' . substr( str_replace( '_', '-', $class ), 15 ) . '/';
 
-		if ( version_compare( get_option( 'woocommerce_version' ), '2.3', '<' ) ) {
-			$old_file = str_replace( '.php', '-2-2.php', $file );
-			if ( $path && is_readable( $path . $old_file ) )
-				$file = $old_file;
-		}
-
 		if ( $path && is_readable( $path . $file ) ) {
 			include_once( $path . $file );
 			return;

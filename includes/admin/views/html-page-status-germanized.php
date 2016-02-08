@@ -8,11 +8,11 @@ if ( ! defined( 'ABSPATH' ) )
 
 ?>
 <div class="updated woocommerce-message">
-	<p><?php _e( 'Please copy and paste this information in your ticket when contacting support:', 'woocommerce' ); ?> </p>
-	<p class="submit"><a href="#" class="button-primary debug-report"><?php _e( 'Get System Report', 'woocommerce' ); ?></a>
+	<p><?php _e( 'Please copy and paste this information in your ticket when contacting support:', 'woocommerce-germanized' ); ?> </p>
+	<p class="submit"><a href="#" class="button-primary debug-report"><?php _e( 'Get System Report', 'woocommerce-germanized' ); ?></a>
 	<div id="debug-report">
 		<textarea readonly="readonly"></textarea>
-		<p class="submit"><button id="copy-for-support" class="button-primary" href="#" data-tip="<?php _e( 'Copied!', 'woocommerce' ); ?>"><?php _e( 'Copy for Support', 'woocommerce' ); ?></button></p>
+		<p class="submit"><button id="copy-for-support" class="button-primary" href="#" data-tip="<?php _e( 'Copied!', 'woocommerce-germanized' ); ?>"><?php _e( 'Copy for Support', 'woocommerce-germanized' ); ?></button></p>
 	</div>
 </div>
 <br/>
@@ -178,7 +178,7 @@ if ( ! defined( 'ABSPATH' ) )
 <table class="wc_status_table widefat" cellspacing="0" id="status">
 	<thead>
 		<tr>
-			<th colspan="3" data-export-label="Templates"><?php _e( 'Templates', 'woocommerce' ); ?></th>
+			<th colspan="3" data-export-label="Templates"><?php _e( 'Templates', 'woocommerce-germanized' ); ?></th>
 		</tr>
 	</thead>
 	<tbody>
@@ -223,7 +223,7 @@ if ( ! defined( 'ABSPATH' ) )
 							if ( ! $outdated_templates ) {
 								$outdated_templates = true;
 							}
-							$found_files[ $plugin_name ][] = sprintf( __( '<code>%s</code> version <strong style="color:red">%s</strong> is out of date. The core version is %s', 'woocommerce' ), str_replace( WP_CONTENT_DIR . '/themes/', '', $theme_file ), $theme_version ? $theme_version : '-', $core_version );
+							$found_files[ $plugin_name ][] = sprintf( __( '<code>%s</code> version <strong style="color:red">%s</strong> is out of date. The core version is %s', 'woocommerce-germanized' ), str_replace( WP_CONTENT_DIR . '/themes/', '', $theme_file ), $theme_version ? $theme_version : '-', $core_version );
 						} else {
 							$found_files[ $plugin_name ][] = sprintf( '<code>%s</code>', str_replace( WP_CONTENT_DIR . '/themes/', '', $theme_file ) );
 						}
@@ -235,7 +235,7 @@ if ( ! defined( 'ABSPATH' ) )
 				foreach ( $found_files as $plugin_name => $found_plugin_files ) {
 					?>
 					<tr>
-						<td data-export-label="Overrides"><?php _e( 'Overrides', 'woocommerce' ); ?> (<?php echo $plugin_name; ?>):</td>
+						<td data-export-label="Overrides"><?php _e( 'Overrides', 'woocommerce-germanized' ); ?> (<?php echo $plugin_name; ?>):</td>
 						<td class="help">&nbsp;</td>
 						<td><?php echo implode( ', <br/>', $found_plugin_files ); ?></td>
 					</tr>
@@ -244,7 +244,7 @@ if ( ! defined( 'ABSPATH' ) )
 			} else {
 				?>
 				<tr>
-					<td data-export-label="Overrides"><?php _e( 'Overrides', 'woocommerce' ); ?>:</td>
+					<td data-export-label="Overrides"><?php _e( 'Overrides', 'woocommerce-germanized' ); ?>:</td>
 					<td class="help">&nbsp;</td>
 					<td>&ndash;</td>
 				</tr>
@@ -255,7 +255,7 @@ if ( ! defined( 'ABSPATH' ) )
 				?>
 				<tr>
 					<td>&nbsp;</td>
-					<td><a href="http://speakinginbytes.com/2014/02/woocommerce-2-1-outdated-templates/" target="_blank"><?php _e( 'Learn how to update outdated templates', 'woocommerce' ) ?></a></td>
+					<td><a href="http://speakinginbytes.com/2014/02/woocommerce-2-1-outdated-templates/" target="_blank"><?php _e( 'Learn how to update outdated templates', 'woocommerce-germanized' ) ?></a></td>
 				</tr>
 				<?php
 			}

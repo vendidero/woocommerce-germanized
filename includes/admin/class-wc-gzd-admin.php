@@ -69,7 +69,7 @@ class WC_GZD_Admin {
 	}
 
 	public function status_menu() {
-		add_submenu_page( 'woocommerce', __( 'WooCommerce Status', 'woocommerce' ),  __( 'System Status', 'woocommerce' ) , 'manage_woocommerce', 'wc-status', array( $this, 'status_page' ) );
+		add_submenu_page( 'woocommerce', __( 'WooCommerce Status', 'woocommerce-germanized' ),  __( 'System Status', 'woocommerce-germanized' ) , 'manage_woocommerce', 'wc-status', array( $this, 'status_page' ) );
 		register_setting( 'woocommerce_status_settings_fields', 'woocommerce_status_options' );
 	}
 

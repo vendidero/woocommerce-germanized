@@ -23,7 +23,7 @@ echo "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n\n"
 
 if ( get_option( 'woocommerce_registration_generate_password' ) == 'yes' && $password_generated ) {
 
-	echo sprintf( __( "Your password has been automatically generated: <strong>%s</strong>", 'woocommerce' ), esc_html( $user_pass ) );
+	echo sprintf( __( "Your password has been automatically generated: <strong>%s</strong>", 'woocommerce-germanized' ), esc_html( $user_pass ) );
 
 }
 

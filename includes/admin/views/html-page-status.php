@@ -13,9 +13,9 @@ $current_tab = ! empty( $_REQUEST['tab'] ) ? sanitize_title( $_REQUEST['tab'] ) 
 	<div class="icon32 icon32-woocommerce-status" id="icon-woocommerce"><br /></div><h2 class="nav-tab-wrapper woo-nav-tab-wrapper">
 		<?php
 			$tabs = apply_filters( 'woocommerce_gzd_admin_status_tabs', array(
-				'status' 	 => __( 'System Status', 'woocommerce' ),
-				'tools'  	 => __( 'Tools', 'woocommerce' ),
-				'logs'   	 => __( 'Logs', 'woocommerce' ),
+				'status' 	 => __( 'System Status', 'woocommerce-germanized' ),
+				'tools'  	 => __( 'Tools', 'woocommerce-germanized' ),
+				'logs'   	 => __( 'Logs', 'woocommerce-germanized' ),
 				'germanized' => __( 'Germanized', 'woocommerce-germanized' ),
 			) );
 			foreach ( $tabs as $name => $label ) {

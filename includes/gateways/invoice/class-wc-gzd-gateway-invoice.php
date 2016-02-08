@@ -47,7 +47,7 @@ class WC_GZD_Gateway_Invoice extends WC_Payment_Gateway {
 
     public function admin_options() { ?>
 
-		<h3><?php echo ( ! empty( $this->method_title ) ) ? $this->method_title : __( 'Settings', 'woocommerce' ) ; ?></h3>
+		<h3><?php echo ( ! empty( $this->method_title ) ) ? $this->method_title : __( 'Settings', 'woocommerce-germanized' ) ; ?></h3>
 
 		<?php echo ( ! empty( $this->method_description ) ) ? wpautop( $this->method_description ) : ''; ?>
 
@@ -76,29 +76,29 @@ class WC_GZD_Gateway_Invoice extends WC_Payment_Gateway {
 
     	$this->form_fields = array(
 			'enabled' => array(
-				'title'   => __( 'Enable/Disable', 'woocommerce' ),
+				'title'   => __( 'Enable/Disable', 'woocommerce-germanized' ),
 				'type'    => 'checkbox',
 				'label'   => __( 'Enable Pay by Invoice', 'woocommerce-germanized' ),
 				'default' => 'no'
 			),
 			'title' => array(
-				'title'       => __( 'Title', 'woocommerce' ),
+				'title'       => __( 'Title', 'woocommerce-germanized' ),
 				'type'        => 'text',
-				'description' => __( 'This controls the title which the user sees during checkout.', 'woocommerce' ),
+				'description' => __( 'This controls the title which the user sees during checkout.', 'woocommerce-germanized' ),
 				'default'     => __( 'Pay by Invoice', 'woocommerce-germanized' ),
 				'desc_tip'    => true,
 			),
 			'description' => array(
-				'title'       => __( 'Description', 'woocommerce' ),
+				'title'       => __( 'Description', 'woocommerce-germanized' ),
 				'type'        => 'textarea',
-				'description' => __( 'Payment method description that the customer will see on your checkout.', 'woocommerce' ),
+				'description' => __( 'Payment method description that the customer will see on your checkout.', 'woocommerce-germanized' ),
 				'default'     => __( 'You\'ll receive an invoice after your order. Please transfer the order amount to our bank account within 14 days.', 'woocommerce-germanized' ),
 				'desc_tip'    => true,
 			),
 			'instructions' => array(
-				'title'       => __( 'Instructions', 'woocommerce' ),
+				'title'       => __( 'Instructions', 'woocommerce-germanized' ),
 				'type'        => 'textarea',
-				'description' => __( 'Instructions that will be added to the thank you page and emails.', 'woocommerce' ),
+				'description' => __( 'Instructions that will be added to the thank you page and emails.', 'woocommerce-germanized' ),
 				'default'     => '',
 				'desc_tip'    => true,
 			),

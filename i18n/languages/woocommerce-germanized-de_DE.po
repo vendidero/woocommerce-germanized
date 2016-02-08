@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: WooCommerce Germanized v1.5.0\n"
+"Project-Id-Version: WooCommerce Germanized v1.5.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-29 12:26+0100\n"
-"PO-Revision-Date: 2016-01-08 15:25:39+0000\n"
+"PO-Revision-Date: 2016-02-08 11:21:33+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -1027,19 +1027,19 @@ msgstr "Zahlungsgebühr"
 
 #: includes/abstracts/abstract-wc-gzd-product.php:131
 #: includes/wc-gzd-cart-functions.php:193
-#: woocommerce-germanized.php:840
+#: woocommerce-germanized.php:836
 #, php-format
 #@ woocommerce-germanized
 msgid "incl. %s%% VAT"
 msgstr "inkl. %s%% MwSt."
 
-#: includes/wc-gzd-template-functions.php:155
+#: includes/wc-gzd-template-functions.php:141
 #: templates/checkout/edit-data-notice.php:16
 #@ woocommerce-germanized
 msgid "Edit Order"
 msgstr "Bestellung bearbeiten"
 
-#: includes/wc-gzd-template-functions.php:166
+#: includes/wc-gzd-template-functions.php:152
 #@ woocommerce-germanized
 msgid "Choose a Payment Gateway"
 msgstr "Zahlungsart auswählen"
@@ -1064,59 +1064,17 @@ msgctxt "trusted-shops"
 msgid "Trusted Shops Reviews"
 msgstr "Trusted Shops Bewertung"
 
-#: templates/checkout/review-order-2-2.php:103
-#@ woocommerce
-msgid "Cart Subtotal"
-msgstr "Zwischensumme"
-
-#: templates/checkout/review-order-2-2.php:157
-#@ woocommerce
-msgid "Order Total"
-msgstr "Gesamtsumme"
-
-#: templates/checkout/form-pay-2-2.php:57
-#: templates/checkout/review-order-2-2.php:70
-#@ woocommerce
-msgid "Product"
-msgstr "Produkt"
-
-#: templates/checkout/review-order-2-2.php:51
-#@ woocommerce
-msgid "Please fill in your details above to see available payment methods."
-msgstr "Bitte geben Sie Ihre Informationen ein, damit Sie die zu Verfügung stehenden Zahlungsmethoden sehen können."
-
-#: templates/checkout/review-order-2-2.php:53
-#@ woocommerce
-msgid "Sorry, it seems that there are no available payment methods for your state. Please contact us if you require assistance or wish to make alternate arrangements."
-msgstr "Es tut uns Leid! Leider gibt es für Sie aktuell keine passende Zahlungsmethode. Bitte nehmen Sie mit uns Kontakt auf, damit wir Ihnen eine individuelle Lösung anbieten können."
-
-#: templates/checkout/form-pay-2-2.php:52
-#: templates/checkout/review-order-2-2.php:63
-#@ woocommerce
-msgid "Your order"
-msgstr "Ihre Bestellung"
-
-#: templates/checkout/order-submit.php:18
-#: templates/checkout/review-order-2-2.php:168
+#: templates/checkout/order-submit.php:19
 #@ woocommerce
 msgid "Since your browser does not support JavaScript, or it is disabled, please ensure you click the <em>Update Totals</em> button before placing your order. You may be charged more than the amount stated above if you fail to do so."
 msgstr "Da Ihr Browser kein JavaScript erlaubt, denken Sie bitte daran, auf \"Gesamtsumme aktualisieren\" zu klicken, bevor Sie den Auftrag absenden. "
 
-#: templates/checkout/order-submit.php:18
-#: templates/checkout/review-order-2-2.php:168
+#: templates/checkout/order-submit.php:20
 #@ woocommerce
 msgid "Update totals"
 msgstr "Gesamtsumme aktualisieren"
 
-#: templates/checkout/review-order-2-2.php:184
-#, php-format
-#@ woocommerce
-msgid "I&rsquo;ve read and accept the <a href=\"%s\" target=\"_blank\">terms &amp; conditions</a>"
-msgstr "Ich habe die <a href=\"%s\" target=\"_blank\">Allgemeinen Geschäftsbedingungen</a> gelesen und akzeptiert."
-
-#: includes/wc-gzd-template-functions.php:363
-#: templates/checkout/order-submit.php:25
-#: templates/checkout/review-order-2-2.php:175
+#: includes/wc-gzd-template-functions.php:349
 #@ woocommerce
 msgid "Place order"
 msgstr "Jetzt kaufen"
@@ -1194,7 +1152,8 @@ msgid "Forward Revocation"
 msgstr "Widerruf erklären"
 
 #: includes/gateways/invoice/class-wc-gzd-gateway-invoice.php:50
-#: woocommerce-germanized.php:567
+#: woocommerce-germanized.php:563
+#@ woocommerce-germanized
 #@ woocommerce
 msgid "Settings"
 msgstr "Einstellungen"
@@ -1217,31 +1176,6 @@ msgstr "Erweitert WooCommerce zu einem rechtskonformen Shop für den deutschen M
 #@ woocommerce-germanized
 msgid "Vendidero"
 msgstr "Vendidero"
-
-#: templates/checkout/form-pay-2-2.php:58
-#@ woocommerce
-msgid "Qty"
-msgstr ""
-
-#: templates/checkout/form-pay-2-2.php:59
-#@ woocommerce
-msgid "Totals"
-msgstr ""
-
-#: templates/checkout/form-pay-2-2.php:19
-#@ woocommerce
-msgid "Payment"
-msgstr ""
-
-#: templates/checkout/form-pay-2-2.php:44
-#@ woocommerce
-msgid "Sorry, it seems that there are no available payment methods for your location. Please contact us if you require assistance or wish to make alternate arrangements."
-msgstr ""
-
-#: templates/checkout/form-pay-2-2.php:93
-#@ woocommerce
-msgid "Pay for order"
-msgstr ""
 
 #: includes/class-wc-gzd-trusted-shops.php:239
 #, php-format
@@ -1347,11 +1281,6 @@ msgstr "Zahlungsarten zuweisen"
 msgctxt "trusted-shops"
 msgid "About Trusted Shops"
 msgstr "Über Trusted Shops"
-
-#: includes/wc-gzd-template-functions.php:124
-#@ woocommerce
-msgid "Proceed to Checkout"
-msgstr ""
 
 #: includes/widgets/class-wc-gzd-widget-trusted-shops-reviews.php:19
 #@ woocommerce-germanized
@@ -1568,7 +1497,7 @@ msgstr "Versandkosten-Hinweis auch für virtuelle Produkte aktivieren?"
 
 #: includes/abstracts/abstract-wc-gzd-product.php:129
 #: includes/wc-gzd-cart-functions.php:193
-#: woocommerce-germanized.php:840
+#: woocommerce-germanized.php:836
 #@ woocommerce-germanized
 msgid "incl. VAT"
 msgstr "inkl. MwSt."
@@ -1779,11 +1708,6 @@ msgstr "Diese Option überschreibt die Einstellungen aller Gebühren und erzwing
 msgid "It seems like your theme tries to overwrite legally relevant templates. Please review your checkout page. Some things might look weird because WooCommerce Germanized had to stop template overriding for legal purposes (Critical templates: %s). See <a href=\"%s\" target=\"_blank\">making your theme compatible</a> or check out our Theme <a href=\"%s\" target=\"_blank\">VendiPro</a> for 100&#37; compatibility."
 msgstr "Es sieht so aus als wenn dein aktuelles Theme versucht rechtlich relevante Templates (kritische Templates: %s) zu überschreiben. Bitte überprüfe deinen Shop und insbesondere den Bezahlvorgang. WooCommerce Germanized musste das Überschreiben dieser Templates verhindern um für Rechtssicherheit sorgen zu können. Bitte lies dazu <a href=\"%s\" target=\"_blank\">mein Theme kompatibel machen</a> oder schau dir das von uns entwickelte Theme <a href=\"%s\" target=\"_blank\">VendiPro</a> für 100&#37; Kompatibilität an."
 
-#: templates/checkout/review-order-2-2.php:71
-#@ woocommerce
-msgid "Total"
-msgstr ""
-
 #: includes/admin/class-wc-gzd-admin-customer.php:46
 #@ woocommerce-germanized
 msgid "Double opt in"
@@ -1853,9 +1777,9 @@ msgstr "Benutzerkonto aktivieren"
 #: templates/emails/customer-new-account-activation.php:24
 #: templates/emails/plain/customer-new-account-activation.php:26
 #, php-format
-#@ woocommerce
+#@ woocommerce-germanized
 msgid "Your password has been automatically generated: <strong>%s</strong>"
-msgstr ""
+msgstr "Dein Password wurde automatisch generiert: <strong>%s</strong>"
 
 #: templates/emails/customer-new-account-activation.php:28
 #: templates/emails/plain/customer-new-account-activation.php:30
@@ -1870,12 +1794,12 @@ msgstr "Wenn Sie bei %s kein Benutzerkonto eröffnet haben, ignorieren Sie diese
 msgid "If you cannot follow the link above please copy this url and paste it to your browser bar: %s"
 msgstr "Falls Sie dem Link nicht folgen können, kopieren Sie bitte folgende URL in die Adresszeile Ihres Browsers: %s"
 
-#: woocommerce-germanized.php:766
+#: woocommerce-germanized.php:762
 #@ woocommerce-germanized
 msgid "Thank you. You have successfully activated your account."
 msgstr "Vielen Dank. Ihr Benutzerkonto wurde erfolgreich aktiviert."
 
-#: woocommerce-germanized.php:770
+#: woocommerce-germanized.php:766
 #@ woocommerce-germanized
 msgid "Sorry, but this activation code cannot be found."
 msgstr "Sorry, dieser Aktivierungscode ist uns leider nicht bekannt."
@@ -2256,7 +2180,7 @@ msgstr "Füge einen jetzt bezahlen - Button zur E-Mail und der Bestätigungs-Sei
 msgid "Add a pay now button to order confirmation email and order success page if the order awaits payment (PayPal etc)."
 msgstr "Füge einen jetzt bezahlen - Button zur Bestellbestätigungs-Email sowie zur Bestätigungs-Seite hinzu insofern die Bestellung eine automatisierte Zahlung benötigt (z.B. per PayPal)."
 
-#: includes/wc-gzd-template-functions.php:434
+#: includes/wc-gzd-template-functions.php:420
 #@ woocommerce-germanized
 msgid "Please accept the creation of a new customer account"
 msgstr "Bitte akzeptieren Sie die Erstellung eines neuen Kundenkontos"
@@ -2283,35 +2207,35 @@ msgid "By default payment methods like PayPal allow order cancellation by clicki
 msgstr "Standardmäßig lassen sich Bestellungen per PayPal stornieren, indem der Kunden den Abbrechen-Link verwendet. Diese Option verhindert den manuellen Abbruch einer Bestellung durch den Kunden."
 
 #: includes/admin/class-wc-gzd-admin.php:72
-#@ woocommerce
+#@ woocommerce-germanized
 msgid "WooCommerce Status"
-msgstr ""
+msgstr "WooCommerce Status"
 
 #: includes/admin/class-wc-gzd-admin.php:72
 #: includes/admin/views/html-page-status.php:16
-#@ woocommerce
+#@ woocommerce-germanized
 msgid "System Status"
-msgstr ""
+msgstr "Systemstatus"
 
 #: includes/admin/views/html-page-status-germanized.php:11
-#@ woocommerce
+#@ woocommerce-germanized
 msgid "Please copy and paste this information in your ticket when contacting support:"
-msgstr ""
+msgstr "Bitte kopiere diese Informationen in dein Ticket, wenn du den Support kontaktierst:"
 
 #: includes/admin/views/html-page-status-germanized.php:12
-#@ woocommerce
+#@ woocommerce-germanized
 msgid "Get System Report"
-msgstr ""
+msgstr "Den Systemreport holen"
 
 #: includes/admin/views/html-page-status-germanized.php:15
-#@ woocommerce
+#@ woocommerce-germanized
 msgid "Copied!"
-msgstr ""
+msgstr "Kopiert!"
 
 #: includes/admin/views/html-page-status-germanized.php:15
-#@ woocommerce
+#@ woocommerce-germanized
 msgid "Copy for Support"
-msgstr ""
+msgstr "Für Supportanfrage kopieren"
 
 #: includes/admin/views/html-page-status-germanized.php:27
 #@ woocommerce-germanized
@@ -2381,38 +2305,37 @@ msgid "Page doesn’t exist"
 msgstr "Seite existiert nicht"
 
 #: includes/admin/views/html-page-status-germanized.php:181
-#@ woocommerce
+#@ woocommerce-germanized
 msgid "Templates"
-msgstr ""
+msgstr "Templates"
 
 #: includes/admin/views/html-page-status-germanized.php:226
 #, php-format
-#@ woocommerce
+#@ woocommerce-germanized
 msgid "<code>%s</code> version <strong style=\"color:red\">%s</strong> is out of date. The core version is %s"
-msgstr ""
+msgstr "<code>%s</code> Version <strong style=\"color:red\">%s</strong> ist veraltet. Die Hauptversion ist %s"
 
 #: includes/admin/views/html-page-status-germanized.php:238
 #: includes/admin/views/html-page-status-germanized.php:247
-#@ woocommerce
+#@ woocommerce-germanized
 msgid "Overrides"
-msgstr ""
+msgstr "Überschreibt"
 
 #: includes/admin/views/html-page-status-germanized.php:258
-#@ woocommerce
+#@ woocommerce-germanized
 msgid "Learn how to update outdated templates"
-msgstr ""
+msgstr "Erfahre, wie du veraltete Templates aktualisierst"
 
 #: includes/admin/views/html-page-status-germanized.php:161
 #: includes/admin/views/html-page-status.php:17
 #@ woocommerce-germanized
-#@ woocommerce
 msgid "Tools"
 msgstr "Tools"
 
 #: includes/admin/views/html-page-status.php:18
-#@ woocommerce
+#@ woocommerce-germanized
 msgid "Logs"
-msgstr ""
+msgstr "Log-Dateien"
 
 #: includes/admin/settings/class-wc-gzd-settings-germanized.php:746
 #@ woocommerce-germanized
@@ -2560,9 +2483,9 @@ msgstr "Mandat-Referenznummer"
 
 #: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:267
 #: includes/gateways/invoice/class-wc-gzd-gateway-invoice.php:79
-#@ woocommerce
+#@ woocommerce-germanized
 msgid "Enable/Disable"
-msgstr ""
+msgstr "Aktivieren/Deaktivieren"
 
 #: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:269
 #@ woocommerce-germanized
@@ -2571,21 +2494,21 @@ msgstr "Bezahlung per Lastschrift aktivieren"
 
 #: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:275
 #: includes/gateways/invoice/class-wc-gzd-gateway-invoice.php:87
-#@ woocommerce
+#@ woocommerce-germanized
 msgid "This controls the title which the user sees during checkout."
-msgstr ""
+msgstr "Beschreibungstext, den Benutzer bei der Auswahl dieser Zahlungsart sehen."
 
 #: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:280
 #: includes/gateways/invoice/class-wc-gzd-gateway-invoice.php:92
-#@ woocommerce
+#@ woocommerce-germanized
 msgid "Description"
-msgstr ""
+msgstr "Beschreibung"
 
 #: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:282
 #: includes/gateways/invoice/class-wc-gzd-gateway-invoice.php:94
-#@ woocommerce
+#@ woocommerce-germanized
 msgid "Payment method description that the customer will see on your checkout."
-msgstr ""
+msgstr "Beschreibung der Zahlungsart, die Kunden auf deiner Website sehen."
 
 #: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:283
 #@ woocommerce-germanized
@@ -2594,15 +2517,15 @@ msgstr "Der Gesamtbestellbetrag wird per SEPA-Lastschrift direkt von Ihrem Konto
 
 #: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:287
 #: includes/gateways/invoice/class-wc-gzd-gateway-invoice.php:99
-#@ woocommerce
+#@ woocommerce-germanized
 msgid "Instructions"
-msgstr ""
+msgstr "Anweisungen"
 
 #: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:289
 #: includes/gateways/invoice/class-wc-gzd-gateway-invoice.php:101
-#@ woocommerce
+#@ woocommerce-germanized
 msgid "Instructions that will be added to the thank you page and emails."
-msgstr ""
+msgstr "Anweisung, die zur „Danke“-Seite und zu E-Mails hinzugefügt werden."
 
 #: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:294
 #@ woocommerce-germanized
@@ -2676,9 +2599,9 @@ msgid "Your BIC seems to be invalid."
 msgstr "Ihr BIC/SWIFT scheint nicht gültig zu sein."
 
 #: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:443
-#@ woocommerce
+#@ woocommerce-germanized
 msgid "is invalid"
-msgstr ""
+msgstr "ist ungültig"
 
 #: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:481
 #@ woocommerce-germanized
@@ -2950,7 +2873,7 @@ msgstr "Diese Option löscht alle Einstellungen, die dazu führen, dass die Tour
 
 #: includes/class-wc-gzd-payment-gateways.php:54
 #: includes/wc-gzd-order-functions.php:21
-#: includes/wc-gzd-template-functions.php:453
+#: includes/wc-gzd-template-functions.php:439
 #, php-format
 #@ woocommerce-germanized
 msgid "Plus %s forwarding fee (charged by the transport agent)"
@@ -3065,12 +2988,6 @@ msgstr "Dieser Text wird als Fehlermeldung angezeigt, wenn der Kunde die Checkbo
 msgid "SEPA Data"
 msgstr "SEPA Daten"
 
-#. translators: plugin header field 'Version'
-#: woocommerce-germanized.php:0
-#@ woocommerce-germanized
-msgid "1.5.0"
-msgstr "1.5.0"
-
 #: includes/admin/class-wc-gzd-admin.php:218
 #@ woocommerce-germanized
 msgid "Complaints Procedure"
@@ -3126,4 +3043,10 @@ msgstr "Jetzt hinzufügen"
 #@ woocommerce-germanized
 msgid "Customize the text produced by the shortcode [gzd_complaints] to your needs. This text is to be meant to inform your customer about the existance of a platform for dispute settlement provided by the EU. You may place this shortcode within your imprint."
 msgstr "Passe den Text des Shortcodes [gzd_complaints] an deine Bedürfnisse an. Dieser Text soll Verbraucher über die EU-Online-Schlichtungs-Plattform informieren. Du solltest diesen Shortcode z.B. in deinem Impressum einbinden."
+
+#. translators: plugin header field 'Version'
+#: woocommerce-germanized.php:0
+#@ woocommerce-germanized
+msgid "1.5.1"
+msgstr "1.5.1"
 

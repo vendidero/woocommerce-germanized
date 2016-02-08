@@ -264,29 +264,29 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 
     	$this->form_fields = array(
 			'enabled' => array(
-				'title'   => __( 'Enable/Disable', 'woocommerce' ),
+				'title'   => __( 'Enable/Disable', 'woocommerce-germanized' ),
 				'type'    => 'checkbox',
 				'label'   => __( 'Enable Direct Debit Payment', 'woocommerce-germanized' ),
 				'default' => 'no'
 			),
 			'title' => array(
-				'title'       => __( 'Title', 'woocommerce' ),
+				'title'       => __( 'Title', 'woocommerce-germanized' ),
 				'type'        => 'text',
-				'description' => __( 'This controls the title which the user sees during checkout.', 'woocommerce' ),
+				'description' => __( 'This controls the title which the user sees during checkout.', 'woocommerce-germanized' ),
 				'default'     => __( 'Direct Debit', 'woocommerce-germanized' ),
 				'desc_tip'    => true,
 			),
 			'description' => array(
-				'title'       => __( 'Description', 'woocommerce' ),
+				'title'       => __( 'Description', 'woocommerce-germanized' ),
 				'type'        => 'textarea',
-				'description' => __( 'Payment method description that the customer will see on your checkout.', 'woocommerce' ),
+				'description' => __( 'Payment method description that the customer will see on your checkout.', 'woocommerce-germanized' ),
 				'default'     => __( 'The order amount will be debited directly from your bank account.', 'woocommerce-germanized' ),
 				'desc_tip'    => true,
 			),
 			'instructions' => array(
-				'title'       => __( 'Instructions', 'woocommerce' ),
+				'title'       => __( 'Instructions', 'woocommerce-germanized' ),
 				'type'        => 'textarea',
-				'description' => __( 'Instructions that will be added to the thank you page and emails.', 'woocommerce' ),
+				'description' => __( 'Instructions that will be added to the thank you page and emails.', 'woocommerce-germanized' ),
 				'default'     => '',
 				'desc_tip'    => true,
 			),
@@ -440,7 +440,7 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 		wp_localize_script( 'wc-gzd-direct-debit', 'direct_debit_params', array(
 			'iban'   		=> __( 'IBAN', 'woocommerce-germanized' ),
 			'swift' 		=> __( 'BIC/SWIFT', 'woocommerce-germanized' ),
-			'is_invalid'    => __( 'is invalid', 'woocommerce' ),
+			'is_invalid'    => __( 'is invalid', 'woocommerce-germanized' ),
 		) );
 		wp_enqueue_script( 'wc-gzd-direct-debit' );
 	}
