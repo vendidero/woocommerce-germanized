@@ -18,7 +18,8 @@ class WC_GZD_Install {
 		'1.0.4' => 'updates/woocommerce-gzd-update-1.0.4.php',
 		'1.4.2' => 'updates/woocommerce-gzd-update-1.4.2.php',
 		'1.4.6' => 'updates/woocommerce-gzd-update-1.4.6.php',
-		'1.5.0' => 'updates/woocommerce-gzd-update-1.5.0.php'
+		'1.5.0' => 'updates/woocommerce-gzd-update-1.5.0.php',
+		'1.6.0' => 'updates/woocommerce-gzd-update-1.6.0.php'
 	);
 
 	/**

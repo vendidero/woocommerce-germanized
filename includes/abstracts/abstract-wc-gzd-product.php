@@ -20,7 +20,20 @@ class WC_GZD_Product {
 	 */
 	private $child;
 
-	protected $gzd_variation_level_meta = array();
+	protected $gzd_variation_level_meta = array(
+		'unit_price' 		 => '',
+		'unit_price_regular' => '',
+		'unit_price_sale' 	 => '',
+		'unit_price_auto'	 => '',
+		'mini_desc' 		 => '',
+		'gzd_product' 		 => NULL,
+	);
+
+	protected $gzd_variation_inherited_meta_data = array(
+		'unit',
+		'unit_base',
+		'unit_product',
+	);
 
 	/**
 	 * Construct new WC_GZD_Product
@@ -28,19 +41,10 @@ class WC_GZD_Product {
 	 * @param WC_Product $product 
 	 */
 	public function __construct( $product ) {
+		
 		if ( is_numeric( $product ) )
 			$product = WC()->product_factory->get_product_standalone( get_post( $product ) );
-		$this->gzd_variation_level_meta = array(
-			'unit' 				 => '',
-			'unit_price' 		 => '',
-			'unit_base' 		 => '',
-			'unit_product'		 => '',
-			'unit_price_regular' => '',
-			'unit_price_sale' 	 => '',
-			'unit_price_auto'	 => '',
-			'mini_desc' 		 => '',
-			'gzd_product' 		 => NULL,
-		);
+		
 		$this->child = $product;
 	}
 
@@ -57,13 +61,28 @@ class WC_GZD_Product {
 	public function __get( $key ) {
 
 		if ( $this->child->variation_id && in_array( $key, array_keys( $this->gzd_variation_level_meta ) ) ) {
+			
 			$value = get_post_meta( $this->child->variation_id, '_' . $key, true );
 			if ( '' === $value )
 				$value = $this->gzd_variation_level_meta[ $key ];
+		
+		} else if ( $this->child->variation_id && in_array( $key, array_keys( $this->gzd_variation_inherited_meta_data ) ) ) {
+			
+			$value = metadata_exists( 'post', $this->child->variation_id, '_' . $key ) ? get_post_meta( $this->child->variation_id, '_' . $key, true ) : get_post_meta( $this->child->parent->id, '_' . $key, true );
+
+			// Handle meta data keys which can be empty at variation level to cause inheritance
+			if ( '' === $value ) {
+				$value = get_post_meta( $this->child->parent->id, '_' . $key, true );
+			}
+		
 		} else if ( $key == 'delivery_time' ) {
+		
 			$value = $this->get_delivery_time();
+		
 		} else {
+		
 			$value = $this->child->$key;
+		
 		}
 
 		return $value;
@@ -79,6 +98,8 @@ class WC_GZD_Product {
 
 		if ( $this->child->variation_id && in_array( $key, array_keys( $this->gzd_variation_level_meta ) ) ) {
 			return metadata_exists( 'post', $this->child->variation_id, '_' . $key );
+		} else if ( $this->child->variation_id && in_array( $key, array_keys( $this->gzd_variation_inherited_meta_data ) ) ) {
+			return metadata_exists( 'post', $this->child->parent->id, '_' . $key );
 		} else {
 			return isset( $this->child->$key );
 		}
@@ -151,7 +172,7 @@ class WC_GZD_Product {
 	 * @return string
 	 */
 	public function get_unit_base() {
-		return ( $this->unit_base ) ? ( $this->unit_base > apply_filters( 'wc_gzd_unit_base_min_amount_to_show', 1 ) ? '<span class="unit-base">' . $this->unit_base . '</span>' . apply_filters( 'wc_gzd_unit_price_base_seperator', ' ' ) : '' ) . '<span class="unit">' . $this->get_unit() . '</span>' : '';
+		return ( $this->unit_base ) ? ( $this->unit_base != apply_filters( 'woocommerce_gzd_unit_base_hide_amount', 1 ) ? '<span class="unit-base">' . $this->unit_base . '</span>' . apply_filters( 'wc_gzd_unit_price_base_seperator', ' ' ) : '' ) . '<span class="unit">' . $this->get_unit() . '</span>' : '';
 	}
 
 	/**
@@ -249,7 +270,7 @@ class WC_GZD_Product {
 
 			} else {
 
-				$html = str_replace( array( '{base_price}', '{unit}', '{base}' ), array( $price_html, '<span class="unit">' . $this->get_unit() . '</span>', ( $this->unit_base == apply_filters( 'wc_gzd_unit_base_min_amount_to_show', 1 ) ? '<span class="unit-base">' . $this->unit_base . '</span>' : '' ) ), $text );
+				$html = str_replace( array( '{base_price}', '{unit}', '{base}' ), array( $price_html, '<span class="unit">' . $this->get_unit() . '</span>', ( $this->unit_base != apply_filters( 'woocommerce_gzd_unit_base_hide_amount', 1 ) ? '<span class="unit-base">' . $this->unit_base . '</span>' : '' ) ), $text );
 
 			}
 

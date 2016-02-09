@@ -37,6 +37,8 @@ class WC_GZD_Email_Customer_SEPA_Direct_Debit_Mandate extends WC_Email {
 
 		// Call parent constuctor
 		parent::__construct();
+
+		$this->customer_email = true;
 	}
 
 	/**

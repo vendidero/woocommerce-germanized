@@ -1,3 +1,11 @@
+#order_review .legal {
+	text-align: left;
+	padding: 0 1em 0 0;
+	float: left;
+}
+#order_review .legal label {
+	display: inline;
+}
 .woocommerce-checkout .shop_table {
 	background-color: #EEE;
 }
@@ -36,15 +44,6 @@
 }
 .entry-content .woocommerce .checkout-btn-wrap {
 	text-align: right;
-}
-.entry-content .woocommerce .place-order .form-row, .entry-content .woocommerce .place-order .form-row input[type="checkbox"] {
-	padding: 0;
-}
-.legal label input[type=checkbox] {
-	vertical-align: middle;
-}
-.woocommerce-checkout p.terms {
-	text-align: left;
 }
 .woocommerce-checkout p.direct-debit-checkbox {
 	display: none;

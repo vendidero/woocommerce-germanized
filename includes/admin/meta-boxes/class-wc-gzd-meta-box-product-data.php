@@ -28,13 +28,14 @@ class WC_Germanized_Meta_Box_Product_Data {
 	}
 
 	public static function output() {
+		
 		global $post, $thepostid;
 
 		$thepostid = $post->ID;
 		$_product = wc_get_product( $thepostid );
 		$terms = array();
 
-		woocommerce_wp_select( array( 'id' => '_unit', 'label' => __( 'Unit', 'woocommerce-germanized' ), 'options' => array_merge( array( 'none' => __( 'Select unit', 'woocommerce-germanized' ) ), WC_germanized()->units->get_units() ), 'desc_tip' => true, 'description' => __( 'Needed if selling on a per unit basis', 'woocommerce-germanized' ) ) );
+		woocommerce_wp_select( array( 'id' => '_unit', 'label' => __( 'Unit', 'woocommerce-germanized' ), 'options' => array_merge( array( "-1" => __( 'Select unit', 'woocommerce-germanized' ) ), WC_germanized()->units->get_units() ), 'desc_tip' => true, 'description' => __( 'Needed if selling on a per unit basis', 'woocommerce-germanized' ) ) );
 		woocommerce_wp_text_input( array( 'id' => '_unit_product', 'label' => __( 'Product Units', 'woocommerce-germanized' ), 'data_type' => 'decimal', 'desc_tip' => true, 'description' => __( 'Number of units included per default product price. Example: 1000 ml.', 'woocommerce-germanized' ) ) );
 		woocommerce_wp_text_input( array( 'id' => '_unit_base', 'label' => __( 'Base Price Units', 'woocommerce-germanized' ), 'data_type' => 'decimal', 'desc_tip' => true, 'description' => __( 'Base price units. Example base price: 0,99 € / 100 ml. Insert 100 as base price unit amount.', 'woocommerce-germanized' ) ) );
 		woocommerce_wp_checkbox( array( 'id' => '_unit_price_auto', 'label' => __( 'Calculation', 'woocommerce-germanized' ), 'description' => '<span class="wc-gzd-premium-desc">' . __( 'Calculate base prices automatically.', 'woocommerce-germanized' ) . '</span> <a href="https://vendidero.de/woocommerce-germanized#buy" target="_blank" class="wc-gzd-pro">pro</a>' ) );
@@ -74,10 +75,6 @@ class WC_Germanized_Meta_Box_Product_Data {
 
 		$product = wc_get_product( $post_id );
 
-		/*if ( $product->is_type( 'variable' ) )
-			return;
-			*/
-
 		$data = array(
 			'product-type' => '',
 			'_unit' => '',
@@ -106,10 +103,15 @@ class WC_Germanized_Meta_Box_Product_Data {
 
 		$data = apply_filters( 'woocommerce_gzd_product_saveable_data', $data, $post_id );
 
-		$product_type    = ( ! isset( $data['product-type'] ) || empty( $data['product-type'] ) ) ? 'simple' : sanitize_title( stripslashes( $data['product-type'] ) );
-		
+		$product_type = ( ! isset( $data['product-type'] ) || empty( $data['product-type'] ) ) ? 'simple' : sanitize_title( stripslashes( $data['product-type'] ) );
+
 		if ( isset( $data['_unit'] ) ) {
-			update_post_meta( $post_id, '_unit', ( $data['_unit'] === '' ? '' : sanitize_text_field( $data['_unit'] ) ) );
+
+			if ( empty( $data['_unit'] ) || in_array( $data['_unit'], array( 'none', '-1' ) ) )
+				delete_post_meta( $post_id, '_unit' );
+			else
+				update_post_meta( $post_id, '_unit', sanitize_text_field( $data['_unit'] ) );
+
 		}
 		
 		if ( isset( $data['_unit_base'] ) ) {
@@ -155,9 +157,6 @@ class WC_Germanized_Meta_Box_Product_Data {
 		// Ignore variable data
 		if ( in_array( $product_type, array( 'variable', 'grouped' ) ) && ! $is_variation ) {
 
-			update_post_meta( $post_id, '_unit', '' );
-			update_post_meta( $post_id, '_unit_base', '' );
-			update_post_meta( $post_id, '_unit_product', '' );
 			update_post_meta( $post_id, '_unit_price_regular', '' );
 			update_post_meta( $post_id, '_unit_price_sale', '' );
 			update_post_meta( $post_id, '_unit_price', '' );

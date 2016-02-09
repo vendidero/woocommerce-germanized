@@ -50,6 +50,64 @@ class WC_GZD_Product_Variable extends WC_GZD_Product {
 		return apply_filters( 'woocommerce_gzd_get_variation_unit_price', $price, $this, $min_or_max, $display );
 	}
 
+	public function is_on_unit_sale() {
+		$is_on_sale = false;
+		$prices     = $this->get_variation_unit_prices();
+		if ( $prices['regular_price'] !== $prices['sale_price'] && $prices['sale_price'] === $prices['price'] ) {
+			$is_on_sale = true;
+		}
+		return apply_filters( 'woocommerce_gzd_product_is_on_unit_sale', $is_on_sale, $this );
+	}
+
+	public function has_unit() {
+		$prices = $this->get_variation_unit_prices();
+		if ( $this->unit && $prices['regular_price'] && $this->unit_base )
+			return true;
+		return false;
+	}
+
+	/**
+	 * Returns the price in html format.
+	 *
+	 * @access public
+	 * @param string $price (default: '')
+	 * @return string
+	 */
+	public function get_unit_html( $price = '' ) {
+		
+		$prices = $this->get_variation_unit_prices( true );
+		$text = get_option( 'woocommerce_gzd_unit_price_text' );
+
+		if ( $this->has_unit() ) {
+
+			$min_price = current( $prices['price'] );
+			$max_price = end( $prices['price'] );
+			$price = $min_price !== $max_price ? sprintf( _x( '%1$s&ndash;%2$s', 'Price range: from-to', 'woocommerce-germanized' ), wc_price( $min_price ), wc_price( $max_price ) ) : wc_price( $min_price );
+
+			if ( $this->is_on_sale() ) {
+				$min_regular_price = current( $prices['regular_price'] );
+				$max_regular_price = end( $prices['regular_price'] );
+				$regular_price     = $min_regular_price !== $max_regular_price ? sprintf( _x( '%1$s&ndash;%2$s', 'Price range: from-to', 'woocommerce-germanized' ), wc_price( $min_regular_price ), wc_price( $max_regular_price ) ) : wc_price( $min_regular_price );
+				$price        	   = apply_filters( 'woocommerce_gzd_variable_unit_sale_price_html', $this->get_price_html_from_to( $regular_price, $price ), $this );
+			} else {
+				$price 	   		   = apply_filters( 'woocommerce_gzd_variable_unit_price_html', $price, $this );
+			}
+
+			if ( strpos( $text, '{price}' ) !== false ) {
+
+				$price = str_replace( '{price}', $price . apply_filters( 'wc_gzd_unit_price_seperator', ' / ' ) . $this->get_unit_base(), $text );
+
+			} else {
+
+				$price = str_replace( array( '{base_price}', '{unit}', '{base}' ), array( $price, '<span class="unit">' . $this->get_unit() . '</span>', ( $this->unit_base != apply_filters( 'wc_gzd_unit_base_min_amount_to_show', 1 ) ? '<span class="unit-base">' . $this->unit_base . '</span>' : '' ) ), $text );
+
+			}
+
+		}
+
+		return apply_filters( 'woocommerce_gzd_unit_price_html', $price, $this );
+	}
+
 	/**
 	 * Get an array of all sale and regular unit prices from all variations. This is used for example when displaying the price range at variable product level or seeing if the variable product is on sale.
 	 *
@@ -66,84 +124,104 @@ class WC_GZD_Product_Variable extends WC_GZD_Product {
 
 		global $wp_filter;
 
-		if ( ! empty( $this->unit_prices_array ) ) {
-			return $this->unit_prices_array;
-		}
+		$transient_name = 'wc_gzd_var_unit_prices_' . $this->id;
 
 		/**
 		 * Create unique cache key based on the tax location (affects displayed/cached prices), product version and active price filters.
-		 * Max transient length is 45, -10 for get_transient_version.
+		 * DEVELOPERS should filter this hash if offering conditonal pricing to keep it unique.
 		 * @var string
 		 */
-		$hash = array( $this->id, $display, $display ? WC_Tax::get_rates() : array() );
-
-		foreach ( $wp_filter as $key => $val ) {
-			if ( in_array( $key, array( 'woocommerce_gzd_variation_unit_prices_price', 'woocommerce_gzd_variation_unit_prices_regular_price', 'woocommerce_gzd_variation_unit_prices_sale_price' ) ) ) {
-				$hash[ $key ] = $val;
-			}
+		if ( $display ) {
+			$price_hash = array( get_option( 'woocommerce_tax_display_shop', 'excl' ), WC_Tax::get_rates() );
+		} else {
+			$price_hash = array( false );
 		}
 
-		/**
-		 * DEVELOPERS should filter this hash if offering conditonal pricing to keep it unique.
-		 */
-		$hash               	 = apply_filters( 'woocommerce_gzd_get_variation_unit_prices_hash', $hash, $this, $display );
-		$cache_key          	 = 'wc_gzd_var_unit_prices' . substr( md5( json_encode( $hash ) ), 0, 22 ) . WC_Cache_Helper::get_transient_version( 'product' );
-		$this->unit_prices_array = get_transient( $cache_key );
+		$filter_names = array( 'woocommerce_gzd_variation_unit_prices_price', 'woocommerce_gzd_variation_unit_prices_regular_price', 'woocommerce_gzd_variation_unit_prices_sale_price' );
 
-		if ( empty( $this->unit_prices_array ) ) {
-			$prices           = array();
-			$regular_prices   = array();
-			$sale_prices      = array();
-			$tax_display_mode = get_option( 'woocommerce_tax_display_shop' );
-			$variation_ids    = $this->get_children( true );
+		foreach ( $filter_names as $filter_name ) {
+			if ( ! empty( $wp_filter[ $filter_name ] ) ) {
+				$price_hash[ $filter_name ] = array();
 
-			foreach ( $variation_ids as $variation_id ) {
-				if ( $variation = $this->get_child( $variation_id ) ) {
-					$price         = apply_filters( 'woocommerce_gzd_variation_unit_prices_price', $variation->unit_price, $variation, $this );
-					$regular_price = apply_filters( 'woocommerce_gzd_variation_unit_prices_regular_price', $variation->unit_price_regular, $variation, $this );
-					$sale_price    = apply_filters( 'woocommerce_gzd_variation_unit_prices_sale_price', $variation->unit_price_sale, $variation, $this );
-
-					// If sale price does not equal price, the product is not yet on sale
-					if ( $sale_price === $regular_price || $sale_price !== $price ) {
-						$sale_price = $regular_price;
-					}
-
-					// If we are getting prices for display, we need to account for taxes
-					if ( $display ) {
-						if ( 'incl' === $tax_display_mode ) {
-							$price         = '' === $price ? ''         : $variation->get_price_including_tax( 1, $price );
-							$regular_price = '' === $regular_price ? '' : $variation->get_price_including_tax( 1, $regular_price );
-							$sale_price    = '' === $sale_price ? ''    : $variation->get_price_including_tax( 1, $sale_price );
-						} else {
-							$price         = '' === $price ? ''         : $variation->get_price_excluding_tax( 1, $price );
-							$regular_price = '' === $regular_price ? '' : $variation->get_price_excluding_tax( 1, $regular_price );
-							$sale_price    = '' === $sale_price ? ''    : $variation->get_price_excluding_tax( 1, $sale_price );
-						}
-					}
-
-					$prices[ $variation_id ]         = $price;
-					$regular_prices[ $variation_id ] = $regular_price;
-					$sale_prices[ $variation_id ]    = $sale_price;
+				foreach ( $wp_filter[ $filter_name ] as $priority => $callbacks ) {
+					$price_hash[ $filter_name ][] = array_values( wp_list_pluck( $callbacks, 'function' ) );
 				}
 			}
-
-			asort( $prices );
-			asort( $regular_prices );
-			asort( $sale_prices );
-
-			$this->unit_prices_array = array(
-				'price'         => $prices,
-				'regular_price' => $regular_prices,
-				'sale_price'    => $sale_prices
-			);
-
-			set_transient( $cache_key, $this->unit_prices_array, DAY_IN_SECONDS * 30 );
 		}
 
-		/**
-		 * Give plugins one last chance to filter the variation prices array.
-		 */
-		return $this->unit_prices_array = apply_filters( 'woocommerce_gzd_variation_unit_prices', $this->unit_prices_array, $this, $display );
+		$price_hash = md5( json_encode( apply_filters( 'woocommerce_gzd_get_variation_unit_prices_hash', $price_hash, $this, $display ) ) );
+
+		// If the value has already been generated, we don't need to grab the values again.
+		if ( empty( $this->unit_prices_array[ $price_hash ] ) ) {
+
+			// Get value of transient
+			$this->unit_prices_array = array_filter( (array) json_decode( strval( get_transient( $transient_name ) ), true ) );
+
+			// If the product version has changed, reset cache
+			if ( empty( $this->unit_prices_array['version'] ) || $this->unit_prices_array['version'] !== WC_Cache_Helper::get_transient_version( 'product' ) ) {
+				$this->unit_prices_array = array( 'version' => WC_Cache_Helper::get_transient_version( 'product' ) );
+			}
+
+			// If the prices are not stored for this hash, generate them
+			if ( empty( $this->unit_prices_array[ $price_hash ] ) ) {
+
+				$prices           = array();
+				$regular_prices   = array();
+				$sale_prices      = array();
+				$variation_ids    = $this->get_children( true );
+
+				foreach ( $variation_ids as $variation_id ) {
+					
+					if ( $variation = $this->get_child( $variation_id ) ) {
+					
+						$price         = apply_filters( 'woocommerce_gzd_variation_unit_prices_price', $variation->unit_price, $variation, $this );
+						$regular_price = apply_filters( 'woocommerce_gzd_variation_unit_prices_regular_price', $variation->unit_price_regular, $variation, $this );
+						$sale_price    = apply_filters( 'woocommerce_gzd_variation_unit_prices_sale_price', $variation->unit_price_sale, $variation, $this );
+
+						// If sale price does not equal price, the product is not yet on sale
+						if ( $sale_price === $regular_price || $sale_price !== $price ) {
+							$sale_price = $regular_price;
+						}
+
+						// If we are getting prices for display, we need to account for taxes
+						if ( $display ) {
+							if ( 'incl' === get_option( 'woocommerce_tax_display_shop' ) ) {
+								$price         = '' === $price ? ''         : $variation->get_price_including_tax( 1, $price );
+								$regular_price = '' === $regular_price ? '' : $variation->get_price_including_tax( 1, $regular_price );
+								$sale_price    = '' === $sale_price ? ''    : $variation->get_price_including_tax( 1, $sale_price );
+							} else {
+								$price         = '' === $price ? ''         : $variation->get_price_excluding_tax( 1, $price );
+								$regular_price = '' === $regular_price ? '' : $variation->get_price_excluding_tax( 1, $regular_price );
+								$sale_price    = '' === $sale_price ? ''    : $variation->get_price_excluding_tax( 1, $sale_price );
+							}
+						}
+
+						$prices[ $variation_id ]         = $price;
+						$regular_prices[ $variation_id ] = $regular_price;
+						$sale_prices[ $variation_id ]    = $sale_price;
+					}
+				}
+
+				asort( $prices );
+				asort( $regular_prices );
+				asort( $sale_prices );
+
+				$this->unit_prices_array[ $price_hash ] = array(
+					'price'         => $prices,
+					'regular_price' => $regular_prices,
+					'sale_price'    => $sale_prices
+				);
+
+				set_transient( $transient_name, json_encode( $this->unit_prices_array ), DAY_IN_SECONDS * 30 );
+
+			}
+
+			$this->unit_prices_array[ $price_hash ] = apply_filters( 'woocommerce_gzd_variation_unit_prices', $this->unit_prices_array[ $price_hash ], $this, $display );
+
+		}
+
+		return $this->unit_prices_array[ $price_hash ];
+
 	}
 
 }

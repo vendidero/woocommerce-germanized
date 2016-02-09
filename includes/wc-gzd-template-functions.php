@@ -28,7 +28,7 @@ if ( ! function_exists( 'woocommerce_gzd_template_single_price_unit' ) ) {
 	 */
 	function woocommerce_gzd_template_single_price_unit() {
 		global $product;
-		if ( in_array( $product->product_type, array( 'simple', 'external' ) ) )
+		if ( in_array( $product->product_type, apply_filters( 'woocommerce_gzd_product_types_supporting_unit_prices', array( 'simple', 'external', 'variable' ) ) ) )
 			wc_get_template( 'single-product/price-unit.php' );
 	}
 }
@@ -160,7 +160,7 @@ if ( ! function_exists( 'woocommerce_gzd_template_checkout_legal' ) ) {
 	 * text legal info within checkout (may contain checkbox)
 	 */
 	function woocommerce_gzd_template_checkout_legal() {
-		echo '<p class="form-row legal terms"><label class="checkbox" for="legal">' . ( get_option( 'woocommerce_gzd_display_checkout_legal_no_checkbox' ) == 'no' ? '<input type="checkbox" class="input-checkbox" name="legal" id="legal" />' : '' ) . ' ' . wc_gzd_get_legal_text() . '</label></p>';
+		wc_get_template( 'checkout/terms.php' );
 	}
 
 }
@@ -177,13 +177,8 @@ if ( ! function_exists( 'woocommerce_gzd_digital_checkbox' ) ) {
 					$is_downloadable = true;
 			}
 		}
-		if ( $is_downloadable ) {
-			echo '<p class="form-row data-download terms legal">
-				<label for="data-download" class="checkbox">
-					<input type="checkbox" class="input-checkbox" name="download-revocate" id="data-download" /> ' . wc_gzd_get_legal_text_digital() . '
-				</label>
-			</p>';
-		}
+		if ( $is_downloadable )
+			wc_get_template( 'checkout/terms-digital.php' );
 	}
 
 }

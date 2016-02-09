@@ -242,11 +242,14 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
     	if ( $this->is_available() && $this->enable_checkbox === 'yes' ) : ?>
     	
     		<p class="form-row legal direct-debit-checkbox">
+
+    			<input type="checkbox" class="input-checkbox" name="direct_debit_legal" id="direct-debit-checkbox" />
+
     			<label class="checkbox" for="direct-debit-checkbox">
-    				<input type="checkbox" class="input-checkbox" name="direct_debit_legal" id="direct-debit-checkbox" />
     				<?php echo $this->get_checkbox_label(); ?>
     				<a href="" rel="prettyPhoto" id="show-direct-debit-pretty" class="hidden"></a>
     			</label>
+    			
     		</p>
     	
     	<?php endif; 
