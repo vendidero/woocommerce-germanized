@@ -88,7 +88,8 @@ class WC_GZD_Email_Customer_SEPA_Direct_Debit_Mandate extends WC_Email {
 			'email_heading'  => $this->get_heading(),
 			'blogname'       => $this->get_blogname(),
 			'sent_to_admin'  => false,
-			'plain_text'     => false
+			'plain_text'     => false,
+			'email'			=> $this
 		) );
 		return ob_get_clean();
 	}
@@ -107,7 +108,8 @@ class WC_GZD_Email_Customer_SEPA_Direct_Debit_Mandate extends WC_Email {
 			'email_heading'  => $this->get_heading(),
 			'blogname'       => $this->get_blogname(),
 			'sent_to_admin'  => false,
-			'plain_text'     => true
+			'plain_text'     => true,
+			'email'			=> $this
 		) );
 		return ob_get_clean();
 	}

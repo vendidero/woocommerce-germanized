@@ -57,7 +57,6 @@ class WC_GZD_Checkout {
 			add_filter( 'woocommerce_get_cancel_order_url_raw', array( $this, 'cancel_order_url' ), PHP_INT_MAX, 1 );
 			add_filter( 'user_has_cap', array( $this, 'disallow_user_order_cancellation' ), 15, 3 );
 		}
-		add_action( 'template_redirect', array( $this, 'init_gettext_replacement' ) );
 		// Free Shipping auto select
 		if ( get_option( 'woocommerce_gzd_display_checkout_free_shipping_select' ) == 'yes' )
 			add_filter( 'woocommerce_package_rates', array( $this, 'free_shipping_auto_select' ) );
@@ -73,19 +72,7 @@ class WC_GZD_Checkout {
 		return $rates;
 	}
 
-	public function init_gettext_replacement() {
-		if ( is_checkout() && get_option( 'woocommerce_gzd_customer_account_checkout_checkbox' ) == 'yes' )
-			add_filter( 'gettext', array( $this, 'set_customer_account_checkbox_text' ), 10, 3 );
-	}
-
-	public function set_customer_account_checkbox_text( $translated, $original, $domain ) {
-		$search = "Create an account?";
-		if ( $domain === 'woocommerce' && $original === $search ) {
-			remove_filter( 'gettext', array( $this, 'set_customer_account_checkbox_text' ), 10, 3 );
-			return wc_gzd_get_legal_text( get_option( 'woocommerce_gzd_customer_account_text' ) );
-		}
-		return $translated;
-	}
+	
 
 	public function get_order_payment_url( $order_id ) {
 		

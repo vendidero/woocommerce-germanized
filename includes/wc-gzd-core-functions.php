@@ -23,7 +23,13 @@ function wc_gzd_format_tax_rate_percentage( $rate, $percent = false ) {
 	return str_replace( '.', ',', wc_format_decimal( str_replace( '%', '', $rate ), true, true ) ) . ( $percent ? '%' : '' );
 }
 
-function wc_gzd_is_customer_activated( $user_id ) {
+function wc_gzd_is_customer_activated( $user_id = '' ) {
+	
+	if ( empty( $user_id ) && is_user_logged_in() )
+		$user_id = get_current_user_id();
+	else
+		return false;
+
 	return ( get_user_meta( $user_id, '_woocommerce_activation' ) ? false : true );
 }
 
@@ -56,6 +62,12 @@ function wc_gzd_get_email_attachment_order() {
 	}
 	
 	return $items;	
+}
+
+function wc_gzd_get_page_permalink( $page ) {
+	$page_id   = wc_get_page_id( $page );
+	$permalink = $page_id ? get_permalink( $page_id ) : '';
+	return apply_filters( 'woocommerce_get_' . $page . '_page_permalink', $permalink );
 }
 
 if ( ! function_exists( 'is_payment_methods' ) ) {

@@ -66,32 +66,28 @@ add_action( 'woocommerce_review_order_after_cart_contents', 'woocommerce_gzd_tem
 add_filter( 'woocommerce_checkout_cart_item_quantity', 'wc_gzd_cart_product_units', wc_gzd_get_hook_priority( 'checkout_product_units' ), 2 );
 add_filter( 'woocommerce_checkout_cart_item_quantity', 'wc_gzd_cart_product_delivery_time', wc_gzd_get_hook_priority( 'checkout_product_delivery_time' ), 2 );
 add_filter( 'woocommerce_checkout_cart_item_quantity', 'wc_gzd_cart_product_item_desc', wc_gzd_get_hook_priority( 'checkout_product_item_desc' ), 2 );
+
 if ( get_option( 'woocommerce_gzd_display_checkout_edit_data_notice' ) == 'yes' )
 	add_action( 'woocommerce_before_order_notes', 'woocommerce_gzd_template_checkout_edit_data_notice', wc_gzd_get_hook_priority( 'checkout_edit_data_notice' ), 1 );
 
-// Do only hook if is no ajax request - fallback if theme misses no-ajax-check before applying hooks & filters
-if ( version_compare( WC_VERSION, '2.3', '>=' ) ) {
-	
-	// Remove default priorities
-	remove_action( 'woocommerce_checkout_order_review', 'woocommerce_order_review', 10 );
-	remove_action( 'woocommerce_checkout_order_review', 'woocommerce_checkout_payment', 20 );
+// Remove default priorities
+remove_action( 'woocommerce_checkout_order_review', 'woocommerce_order_review', 10 );
+remove_action( 'woocommerce_checkout_order_review', 'woocommerce_checkout_payment', 20 );
 
-	// Make sure payment form goes before order review
-	WC_GZD_Hook_Priorities::instance()->change_priority( 'woocommerce_checkout_order_review', 'woocommerce_order_review', wc_gzd_get_hook_priority( 'checkout_order_review' ) );
-	WC_GZD_Hook_Priorities::instance()->change_priority( 'woocommerce_checkout_order_review', 'woocommerce_checkout_payment', wc_gzd_get_hook_priority( 'checkout_payment' ) );
+// Make sure payment form goes before order review
+WC_GZD_Hook_Priorities::instance()->change_priority( 'woocommerce_checkout_order_review', 'woocommerce_order_review', wc_gzd_get_hook_priority( 'checkout_order_review' ) );
+WC_GZD_Hook_Priorities::instance()->change_priority( 'woocommerce_checkout_order_review', 'woocommerce_checkout_payment', wc_gzd_get_hook_priority( 'checkout_payment' ) );
 
-	// Load ajax relevant hooks
-	add_action( 'init', 'woocommerce_gzd_checkout_load_ajax_relevant_hooks' );
+// Load ajax relevant hooks
+add_action( 'init', 'woocommerce_gzd_checkout_load_ajax_relevant_hooks' );
 
-	// Remove WooCommerce Terms checkbox
-	add_filter( 'woocommerce_checkout_show_terms', 'woocommerce_gzd_template_set_wc_terms_hide', 100 );
-	
-	// Temporarily remove order button from payment.php - then add again to show after product table
-	add_action( 'woocommerce_review_order_before_submit', 'woocommerce_gzd_template_set_order_button_remove_filter', PHP_INT_MAX );
-	add_action( 'woocommerce_review_order_after_submit', 'woocommerce_gzd_template_set_order_button_show_filter', PHP_INT_MAX );
-	add_action( 'woocommerce_gzd_review_order_before_submit', 'woocommerce_gzd_template_set_order_button_show_filter', PHP_INT_MAX );
-	
-}
+// Remove WooCommerce Terms checkbox
+add_filter( 'woocommerce_checkout_show_terms', 'woocommerce_gzd_template_set_wc_terms_hide', 100 );
+
+// Temporarily remove order button from payment.php - then add again to show after product table
+add_action( 'woocommerce_review_order_before_submit', 'woocommerce_gzd_template_set_order_button_remove_filter', PHP_INT_MAX );
+add_action( 'woocommerce_review_order_after_submit', 'woocommerce_gzd_template_set_order_button_show_filter', PHP_INT_MAX );
+add_action( 'woocommerce_gzd_review_order_before_submit', 'woocommerce_gzd_template_set_order_button_show_filter', PHP_INT_MAX );
 
 function woocommerce_gzd_checkout_load_ajax_relevant_hooks() {
 
@@ -107,21 +103,6 @@ function woocommerce_gzd_checkout_load_ajax_relevant_hooks() {
 	
 	// Add payment title heading
 	add_action( 'woocommerce_review_order_before_payment', 'woocommerce_gzd_template_checkout_payment_title' );
-
-}
-
-// Before 2.3
-if ( version_compare( WC_VERSION, '2.3', '<' ) ) {
-
-	add_action( 'woocommerce_gzd_before_shop_table', 'woocommerce_gzd_template_checkout_legal', 2 );
-	add_action( 'woocommerce_gzd_before_shop_table', 'woocommerce_gzd_template_checkout_set_terms_manually' );
-	if ( get_option( 'woocommerce_gzd_checkout_legal_digital_checkbox' ) == 'yes' )
-		add_action( 'woocommerce_gzd_before_shop_table', 'woocommerce_gzd_digital_checkbox', 1 );
-
-	// Add payment title heading
-	add_action( 'woocommerce_review_order_before_payment', 'woocommerce_gzd_template_checkout_payment_title' );
-	// Remove default term box
-	add_filter( 'woocommerce_checkout_show_terms', 'woocommerce_gzd_remove_term_checkbox' );
 
 }
 

@@ -78,7 +78,8 @@ class WC_GZD_Email_Customer_Trusted_Shops extends WC_Email {
 			'order' 		=> $this->object,
 			'email_heading' => $this->get_heading(),
 			'sent_to_admin' => false,
-			'plain_text'    => false
+			'plain_text'    => false,
+			'email'			=> $this
 		) );
 		return ob_get_clean();
 	}

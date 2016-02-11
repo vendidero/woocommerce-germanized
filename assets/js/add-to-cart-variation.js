@@ -14,7 +14,7 @@
 				$( '.type-product .delivery-time-info' ).html( $('.type-product').find('.org_delivery_time').html() ).removeClass('variation_modified').show();
 			}
 			if ( $('.type-product').find('.org_unit_price').length > 0 ) {
-				$( '.type-product .unit-price' ).html( $('.product').find('.org_unit_price').html() ).removeClass('variation_modified').show();
+				$( '.type-product .price-unit' ).html( $('.product').find('.org_unit_price').html() ).removeClass('variation_modified').show();
 			}
 			if ( $('.type-product').find('.org_tax_info').length > 0 ) {
 				$( '.type-product .tax-info' ).html( $('.product').find('.org_tax_info').html() ).removeClass('variation_modified').show();
@@ -69,7 +69,7 @@
 		// Check variations
 		.on( 'update_variation_values', function( event, matching_variations ) {
 			setTimeout(function() {
-       		 	if ( ! $('.single_variation_wrap').is(':visible') ) {
+       		 	if ( ! $('.single_variation_wrap').is(':visible') || $( '.single_add_to_cart_button' ).is( '[disabled]' ) ) {
        		 		$.fn.wc_gzd_variation_form.reset_variation();
        		 	}
        		 }, 250);	

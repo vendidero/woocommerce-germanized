@@ -47,10 +47,6 @@ class WC_GZD_Product {
 		
 		$this->child = $product;
 	}
-
-	public function is_variation() {
-		return ( $this->variation_id ? true : false );
-	}
  
 	/**
 	 * Redirects __get calls to WC_Product Class.
@@ -60,13 +56,14 @@ class WC_GZD_Product {
 	 */
 	public function __get( $key ) {
 
-		if ( $this->child->variation_id && in_array( $key, array_keys( $this->gzd_variation_level_meta ) ) ) {
+		if ( $this->child->is_type( 'variation' ) && in_array( $key, array_keys( $this->gzd_variation_level_meta ) ) ) {
 			
 			$value = get_post_meta( $this->child->variation_id, '_' . $key, true );
+
 			if ( '' === $value )
 				$value = $this->gzd_variation_level_meta[ $key ];
 		
-		} else if ( $this->child->variation_id && in_array( $key, array_keys( $this->gzd_variation_inherited_meta_data ) ) ) {
+		} else if ( $this->child->is_type( 'variation' ) && in_array( $key, $this->gzd_variation_inherited_meta_data ) ) {
 			
 			$value = metadata_exists( 'post', $this->child->variation_id, '_' . $key ) ? get_post_meta( $this->child->variation_id, '_' . $key, true ) : get_post_meta( $this->child->parent->id, '_' . $key, true );
 
@@ -76,11 +73,11 @@ class WC_GZD_Product {
 			}
 		
 		} else if ( $key == 'delivery_time' ) {
-		
+			
 			$value = $this->get_delivery_time();
 		
 		} else {
-		
+			
 			$value = $this->child->$key;
 		
 		}
@@ -96,9 +93,9 @@ class WC_GZD_Product {
 	 */
 	public function __isset( $key ) {
 
-		if ( $this->child->variation_id && in_array( $key, array_keys( $this->gzd_variation_level_meta ) ) ) {
+		if ( $this->child->is_type( 'variation' ) && in_array( $key, array_keys( $this->gzd_variation_level_meta ) ) ) {
 			return metadata_exists( 'post', $this->child->variation_id, '_' . $key );
-		} else if ( $this->child->variation_id && in_array( $key, array_keys( $this->gzd_variation_inherited_meta_data ) ) ) {
+		} else if ( $this->child->is_type( 'variation' ) && in_array( $key, array_keys( $this->gzd_variation_inherited_meta_data ) ) ) {
 			return metadata_exists( 'post', $this->child->parent->id, '_' . $key );
 		} else {
 			return isset( $this->child->$key );
@@ -306,15 +303,18 @@ class WC_GZD_Product {
 	 * @return bool|object false returns false if term does not exist otherwise returns term object
 	 */
 	public function get_delivery_time() {
+		
 		$terms = wp_get_post_terms( $this->id, 'product_delivery_time' );
-		// Check for variation
-		if ( $this->is_variation() ) {
-			$variation_terms = wp_get_post_terms( $this->variation_id , 'product_delivery_time' );
+		
+		if ( $this->child->is_type( 'variation' ) ) {
+			$variation_terms = wp_get_post_terms( $this->child->variation_id , 'product_delivery_time' );
 			if ( ! empty( $variation_terms ) && ! is_wp_error( $variation_terms ) )
 				$terms = $variation_terms;
 		}
+
 		if ( is_wp_error( $terms ) || empty( $terms ) )
 			return false;
+		
 		return $terms[ 0 ];
 	}
 
@@ -324,13 +324,17 @@ class WC_GZD_Product {
 	 * @return object
 	 */
 	public function get_delivery_time_term() {
+		
 		$delivery_time = $this->delivery_time;
+
 		if ( empty( $delivery_time ) && get_option( 'woocommerce_gzd_default_delivery_time' ) && ! $this->is_downloadable() ) {
+			
 			$delivery_time = array( get_term_by( 'id', get_option( 'woocommerce_gzd_default_delivery_time' ), 'product_delivery_time' ) );
 			if ( is_array( $delivery_time ) ) {
 				array_values( $delivery_time );
 				$delivery_time = $delivery_time[0];
 			}
+			
 		}
 		return ( ! is_wp_error( $delivery_time ) && ! empty( $delivery_time ) ) ? $delivery_time : false;
 	}
@@ -341,8 +345,10 @@ class WC_GZD_Product {
 	 * @return string 
 	 */
 	public function get_delivery_time_html() {
+		
 		if ( $this->is_virtual() )
 			return false;
+		
 		return ( $this->get_delivery_time_term() ) ? apply_filters( 'woocommerce_germanized_delivery_time_html', str_replace( '{delivery_time}', $this->get_delivery_time_term()->name, get_option( 'woocommerce_gzd_delivery_time_text' ) ), $this->get_delivery_time_term()->name ) : '';
 	}
 

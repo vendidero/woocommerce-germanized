@@ -192,10 +192,6 @@ final class WooCommerce_Germanized {
 		// Payment gateways
 		add_filter( 'woocommerce_payment_gateways', array( $this, 'register_gateways' ) );
 
-		// Check for customer activation
-		add_action( 'template_redirect', array( $this, 'customer_account_activation_check' ) );
-		add_action( 'woocommerce_gzd_customer_cleanup', array( WC_GZD_Admin_Customer::instance(), 'account_cleanup' ) );
-
 		// Remove cart subtotal filter
 		add_action( 'template_redirect', array( $this, 'remove_cart_unit_price_filter' ) );
 
@@ -324,6 +320,7 @@ final class WooCommerce_Germanized {
 		include_once ( 'includes/wc-gzd-cart-functions.php' );
 		include_once ( 'includes/wc-gzd-order-functions.php' );
 		include_once ( 'includes/class-wc-gzd-checkout.php' );
+		include_once ( 'includes/class-wc-gzd-customer-helper.php' );
 		include_once ( 'includes/class-wc-gzd-virtual-vat-helper.php' );
 
 		$this->trusted_shops  = new WC_GZD_Trusted_Shops();
@@ -515,27 +512,13 @@ final class WooCommerce_Germanized {
 	 *
 	 * Frontend/global Locales found in:
 	 * 		- WP_LANG_DIR/woocommerce-germanized/woocommerce-germanized-LOCALE.mo
-	 * 	 	- woocommerce-germanized/i18n/languages/woocommerce-germanized-LOCALE.mo (which if not found falls back to:)
 	 * 	 	- WP_LANG_DIR/plugins/woocommerce-germanized-LOCALE.mo
 	 */
 	public function load_plugin_textdomain() {
-		$domain = 'woocommerce-germanized';
-		$locale = apply_filters( 'plugin_locale', get_locale(), $domain );
+		$locale = apply_filters( 'plugin_locale', get_locale(), 'woocommerce-germanized' );
 
-		load_textdomain( $domain, trailingslashit( WP_LANG_DIR ) . $domain . '/' . $domain . '-' . $locale . '.mo' );
-		load_plugin_textdomain( $domain, FALSE, basename( dirname( __FILE__ ) ) . '/i18n/languages/' );
-	}
-
-	/**
-	 * Load a single translation by textdomain
-	 *
-	 * @param string  $path
-	 * @param string  $textdomain
-	 * @param string  $prefix
-	 */
-	public function load_translation( $path, $textdomain, $prefix ) {
-		if ( is_readable( $path . $prefix . '-de_DE.mo' ) )
-			load_textdomain( $textdomain, $path . $prefix . '-de_DE.mo' );
+		load_textdomain( 'woocommerce-germanized', trailingslashit( WP_LANG_DIR ) . 'woocommerce-germanized/woocommerce-germanized-' . $locale . '.mo' );
+		load_plugin_textdomain( 'woocommerce-germanized', FALSE, basename( dirname( __FILE__ ) ) . '/i18n/languages/' );
 	}
 
 	/**
@@ -560,7 +543,7 @@ final class WooCommerce_Germanized {
 	 */
 	public function action_links( $links ) {
 		return array_merge( array(
-			'<a href="' . admin_url( 'admin.php?page=wc-settings&tab=germanized' ) . '">' . __( 'Settings', 'woocommerce' ) . '</a>',
+			'<a href="' . admin_url( 'admin.php?page=wc-settings&tab=germanized' ) . '">' . __( 'Settings', 'woocommerce-germanized' ) . '</a>',
 		), $links );
 	}
 
@@ -601,7 +584,7 @@ final class WooCommerce_Germanized {
 		$assets_path = str_replace( array( 'http:', 'https:' ), '', WC_germanized()->plugin_url() ) . '/assets/';
 		$frontend_script_path = $assets_path . 'js/';
 
-		if ( is_page() )
+		if ( is_page() && has_shortcode( $post->post_content, 'revocation_form' ) )
 			wp_enqueue_script( 'wc-gzd-revocation', $frontend_script_path . 'revocation' . $suffix . '.js', array( 'jquery', 'woocommerce', 'wc-country-select', 'wc-address-i18n' ), WC_GERMANIZED_VERSION, true );
 		
 		if ( is_checkout() )
@@ -748,53 +731,6 @@ final class WooCommerce_Germanized {
 
 		return $gateways;
 
-	}
-
-	/**
-	 * Check for activation codes on my account page
-	 */
-	public function customer_account_activation_check() {
-		if ( is_account_page() ) {
-			if ( isset( $_GET[ 'activate' ] ) ) {
-				$activation_code = sanitize_text_field( $_GET[ 'activate' ] );
-				if ( ! empty( $activation_code ) ) {
-					if ( $this->customer_account_activate( $activation_code ) ) {
-						wc_add_notice( __( 'Thank you. You have successfully activated your account.', 'woocommerce-germanized' ) );
-						return;
-					}
-				}
-				wc_add_notice( __( 'Sorry, but this activation code cannot be found.', 'woocommerce-germanized' ), 'error' );
-			}
-		}
-	}
-
-	/**
-	 * Activate customer account based on activation code
-	 *  
-	 * @param  string $activation_code hashed activation code
-	 * @return boolean                  
-	 */
-	public function customer_account_activate( $activation_code ) {
-		$user_query = new WP_User_Query(
-			array( 'role' => 'Customer', 'number' => 1, 'meta_query' =>
-				array(
-					array(
-						'key'     => '_woocommerce_activation',
-						'value'   => $activation_code,
-						'compare' => '=',
-					),
-				),
-			)
-		);
-		if ( ! empty( $user_query->results ) ) {
-			foreach ( $user_query->results as $user ) {
-				do_action( 'woocommerce_gzd_customer_opted_in', $user );
-				delete_user_meta( $user->ID, '_woocommerce_activation' );
-				WC()->mailer()->customer_new_account( $user->ID );
-				return true;
-			}
-		}
-		return false;
 	}
 
 	/**

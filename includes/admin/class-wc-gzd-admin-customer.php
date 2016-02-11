@@ -70,36 +70,6 @@ class WC_GZD_Admin_Customer {
 		}
 	}
 
-	/**
-	 * Check for customer that didn't activate their accounts within a couple of time and delete them
-	 */
-	public function account_cleanup() {
-		if ( ! get_option( 'woocommerce_gzd_customer_cleanup_interval' ) || get_option( 'woocommerce_gzd_customer_cleanup_interval' ) == 0 )
-			return;
-
-		$user_query = new WP_User_Query(
-			array( 'role' => 'Customer', 'meta_query' =>
-				array(
-					array(
-						'key'     => '_woocommerce_activation',
-						'compare' => 'EXISTS',
-					),
-				),
-			)
-		);
-		if ( ! empty( $user_query->results ) ) {
-			foreach ( $user_query->results as $user ) {
-				// Check date interval
-				$registered = $user->data->user_registered;
-				$date_diff = WC_germanized()->get_date_diff( $registered, date( 'Y-m-d' ) );
-				if ( $date_diff[ 'd' ] >= (int) get_option( 'woocommerce_gzd_customer_cleanup_interval' ) ) {
-					require_once( ABSPATH . 'wp-admin/includes/user.php' );
-					wp_delete_user( $user->ID );
-				}
-			}
-		}
-	}
-
 }
 
 WC_GZD_Admin_Customer::instance();

@@ -419,6 +419,15 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 			),
 
 			array(
+				'title' 	=> __( 'Disable Login and Checkout', 'woocommerce-germanized' ),
+				'desc' 		=> __( 'Disable login and checkout for unactivated customers.', 'woocommerce-germanized' ),
+				'desc_tip'  => __( 'Customers that did not click on the activation link will not be able to complete checkout nor login to their account.', 'woocommerce-germanized' ),
+				'id' 		=> 'woocommerce_gzd_customer_activation_login_disabled',
+				'default'	=> 'no',
+				'type' 		=> 'checkbox',
+			),
+
+			array(
 				'title' 	=> __( 'Delete Unactivated After', 'woocommerce-germanized' ),
 				'desc_tip' 	=> __( 'This will make sure unactivated customer accounts will be deleted after X days. Set to 0 if you don\'t want to automatically delete unactivated customers.', 'woocommerce-germanized' ),
 				'desc'		=> __( 'days', 'woocommerce-germanized' ),
