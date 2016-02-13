@@ -187,18 +187,23 @@ function wc_gzd_cart_totals_order_total_tax_html() {
 			$tax_array[] = array( 'tax' => $base_rate, 'contains' => array( $base_rate ), 'amount' => WC()->cart->get_taxes_total( true, true ) );
 		}
 
-		if ( ! empty( $tax_array ) ) {	
-			foreach ( $tax_array as $tax ) {
+		?>
+
+		<?php if ( ! empty( $tax_array ) ) : ?>	
+			
+			<?php foreach ( $tax_array as $tax ) : 
 
 				$label = ( get_option( 'woocommerce_tax_total_display' ) == 'itemized' ? sprintf( __( 'incl. %s%% VAT', 'woocommerce-germanized' ), wc_gzd_format_tax_rate_percentage( $tax[ 'tax' ]->rate ) ) : __( 'incl. VAT', 'woocommerce-germanized' ) );
 
-				echo '
-					<tr class="order-tax">
-						<th>' . $label . '</th> 
-						<td data-title="' . $label . '">' . wc_price( $tax[ 'amount' ] ) . '</td>
-					</tr>';
-			}
-		}
+			?>
+				<tr class="order-tax">
+					<th><?php echo $label; ?></th> 
+					<td data-title="<?php echo esc_attr( $label ); ?>"><?php echo wc_price( $tax[ 'amount' ] ); ?></td>
+				</tr>
+			
+			<?php endforeach; ?>
+		
+		<?php endif;
 	}
 }
 

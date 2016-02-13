@@ -725,6 +725,14 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 			),
 
 			array(
+				'title' 	=> __( 'Variable Base Price', 'woocommerce-germanized' ),
+				'desc' 		=> __( 'Enable price range base prices for variable products.', 'woocommerce-germanized' ),
+				'id' 		=> 'woocommerce_gzd_unit_price_enable_variable',
+				'default'	=> 'yes',
+				'type' 		=> 'checkbox',
+			),
+
+			array(
 				'title' 	=> __( 'Product Units Text', 'woocommerce-germanized' ),
 				'desc' 		=> __( 'This text will be used to display the product units. Use {product_units} to insert the amount of product units. Use {unit} to insert the unit. Optionally display the formatted unit price with {unit_price}.', 'woocommerce-germanized' ),
 				'desc_tip'	=> true,
@@ -738,18 +746,14 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 
 			array(	'title' => __( 'Checkout & Cart', 'woocommerce-germanized' ), 'type' => 'title', 'id' => 'checkout_options' ),
 
-			( version_compare( WC()->version, '2.3', '>=' ) ?
-
-				array(
-					'title' 	=> __( 'Fallback Mode', 'woocommerce-germanized' ),
-					'desc' 		=> __( 'Enable to make sure default checkout template is not being overriden by theme.', 'woocommerce-germanized' ),
-					'id' 		=> 'woocommerce_gzd_display_checkout_fallback',
-					'default'	=> 'no',
-					'type' 		=> 'checkbox',
-					'desc_tip'	=> __( 'If you are facing problems within your checkout e.g. legally relevant data is not showing (terms, delivery time, unit price etc.) your theme seems to be incompatible (not using default WooCommerce hooks and filters). As a workaround you may use this fallback which ensures default review-order.php and form-checkout.php is used.', 'woocommerce-germanized' ),
-				)
-
-			: array() ),
+			array(
+				'title' 	=> __( 'Fallback Mode', 'woocommerce-germanized' ),
+				'desc' 		=> __( 'Enable to make sure default checkout template is not being overriden by theme.', 'woocommerce-germanized' ),
+				'id' 		=> 'woocommerce_gzd_display_checkout_fallback',
+				'default'	=> 'no',
+				'type' 		=> 'checkbox',
+				'desc_tip'	=> __( 'If you are facing problems within your checkout e.g. legally relevant data is not showing (terms, delivery time, unit price etc.) your theme seems to be incompatible (not using default WooCommerce hooks and filters). As a workaround you may use this fallback which ensures default review-order.php and form-checkout.php is used.', 'woocommerce-germanized' ),
+			),
 
 			array(
 				'title' 	=> __( 'Force free shipping', 'woocommerce-germanized' ),

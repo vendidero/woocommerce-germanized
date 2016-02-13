@@ -54,6 +54,10 @@ function wc_gzd_check_price_update( $meta_id, $post_id, $meta_key, $meta_value )
 
 }
 
+function wc_gzd_get_small_business_product_notice() {
+	return apply_filters( 'woocommerce_gzd_small_business_product_notice', __( 'VAT free based on &#167;19 UStG', 'woocommerce-germanized' ) );
+}
+
 function wc_gzd_is_revocation_exempt( $product ) {
 	
 	$digital_types = apply_filters( 'woocommerce_gzd_digital_product_types', get_option( 'woocommerce_gzd_checkout_legal_digital_types', array( 'downloadable' ) ) );

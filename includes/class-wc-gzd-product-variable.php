@@ -74,6 +74,9 @@ class WC_GZD_Product_Variable extends WC_GZD_Product {
 	 * @return string
 	 */
 	public function get_unit_html( $price = '' ) {
+
+		if ( get_option( 'woocommerce_gzd_unit_price_enable_variable' ) === 'no' )
+			return '';
 		
 		$prices = $this->get_variation_unit_prices( true );
 		$text = get_option( 'woocommerce_gzd_unit_price_text' );

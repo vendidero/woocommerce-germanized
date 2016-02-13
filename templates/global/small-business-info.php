@@ -12,6 +12,6 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 <div class="wc-gzd-additional-wrapper">
 	<p class="wc-gzd-additional-info small-business-info">
-		<?php _e( 'Because of the small business owner state according to &#167;19 UstG the seller does not levy nor state the German value added tax.', 'woocommerce-germanized' ); ?>
+		<?php echo wc_gzd_get_small_business_notice(); ?>
 	</p>
 </div>

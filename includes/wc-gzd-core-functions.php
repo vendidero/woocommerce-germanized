@@ -25,9 +25,10 @@ function wc_gzd_format_tax_rate_percentage( $rate, $percent = false ) {
 
 function wc_gzd_is_customer_activated( $user_id = '' ) {
 	
-	if ( empty( $user_id ) && is_user_logged_in() )
+	if ( is_user_logged_in() && empty( $user_id ) )
 		$user_id = get_current_user_id();
-	else
+
+	if ( empty( $user_id ) || ! $user_id )
 		return false;
 
 	return ( get_user_meta( $user_id, '_woocommerce_activation' ) ? false : true );
@@ -79,4 +80,8 @@ if ( ! function_exists( 'is_payment_methods' ) ) {
 	function is_payment_methods() {
 		return is_page( wc_get_page_id( 'payment_methods' ) ) || apply_filters( 'woocommerce_gzd_is_payment_methods', false ) ? true : false;
 	}
+}
+
+function wc_gzd_get_small_business_notice() {
+	return apply_filters( 'woocommerce_gzd_small_business_notice', __( 'Because of the small business owner state according to &#167;19 UStG the seller charge no sales tax, and therefore do not show it.', 'woocommerce-germanized' ) );
 }
