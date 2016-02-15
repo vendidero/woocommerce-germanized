@@ -39,6 +39,7 @@ class WC_GZD_Gateway_Direct_Debit extends WC_Payment_Gateway {
 		$this->company_info 					= $this->get_option( 'company_info' );
 		$this->company_identification_number 	= $this->get_option( 'company_identification_number' );
 		$this->checkbox_label					= $this->get_option( 'checkbox_label' );
+		$this->mask 							=  $this->get_option( 'mask', 'yes' );
 		$this->mandate_text	   					= $this->get_option( 'mandate_text', __( '[company_info]
 debtee identification number: [company_identification_number]
 mandat reference number: will be notified separately.
@@ -102,7 +103,7 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 
     	$sepa_fields = array(
     		__( 'Account Holder', 'woocommerce-germanized' ) 	=> $order->direct_debit_holder,
-    		__( 'IBAN', 'woocommerce-germanized' ) 				=> $order->direct_debit_iban,
+    		__( 'IBAN', 'woocommerce-germanized' ) 				=> $this->mask( $order->direct_debit_iban ),
      		__( 'BIC/SWIFT', 'woocommerce-germanized' ) 		=> $order->direct_debit_bic,
     	);
 
@@ -207,7 +208,7 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 
     	$params = array(
     		'account_holder' 	=> $order->direct_debit_holder,
-    		'account_iban' 		=> $order->direct_debit_iban,
+    		'account_iban' 		=> $this->mask( $order->direct_debit_iban ),
      		'account_swift' 	=> $order->direct_debit_bic,
     		'street'			=> $order->billing_address_1,
 			'postcode' 			=> $order->billing_postcode,
@@ -218,6 +219,14 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 
 		return $this->generate_mandate_text( $params );
 
+    }
+
+    public function mask( $data ) {
+    	
+    	if ( strlen( $data ) <= 4 || $this->get_option( 'mask' ) === 'no' )
+    		return $data;
+    	
+    	return str_repeat( apply_filters( 'woocommerce_gzd_direct_debit_mask_char', '*' ), strlen( $data ) - 4 ) . substr( $data, -4 );
     }
 
     public function generate_mandate_text( $args = array() ) {
@@ -328,6 +337,13 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 				'description' => __( 'Customize the checkbox label. Use {link}link name{/link} to insert the preview link.', 'woocommerce-germanized' ),
 				'default'     => __( 'I hereby agree to the {link}direct debit mandate{/link}.', 'woocommerce-germanized' ),
 				'desc_tip'	  => true,
+			),
+			'mask' => array(
+				'title'       => __( 'Mask IBAN', 'woocommerce-germanized' ),
+				'label'		  => __( 'Mask the IBAN within emails.', 'woocommerce-germanized' ),
+				'type'        => 'checkbox',
+				'description' => __( 'This will lead to masked IBANs within emails (replaced by *). All but last 4 digits will be masked.', 'woocommerce-germanized' ),
+				'default'     => 'yes',
 			),
 		);
     }

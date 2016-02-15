@@ -335,7 +335,7 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 				'id' 		=> 'woocommerce_gzd_free_shipping_text',
 				'type' 		=> 'text',
 				'css' 		=> 'min-width:300px;',
-				'default'	=> __( '', 'woocommerce-germanized' ),
+				'default'	=> '',
 			),
 
 			array(

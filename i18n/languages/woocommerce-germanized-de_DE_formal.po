@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: WooCommerce Germanized v1.5.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-02-15 14:00+0100\n"
-"PO-Revision-Date: 2016-02-15 14:39+0100\n"
+"PO-Revision-Date: 2016-02-15 15:42+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -618,7 +618,7 @@ msgid ""
 msgstr ""
 "Online-Streitbeilegung gemäß Art. 14 Abs. 1 ODR-VO: Die Europäische "
 "Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit, die "
-"du unter http://ec.europa.eu/consumers/odr/ findest."
+"Sie unter http://ec.europa.eu/consumers/odr/ finden."
 
 # @ woocommerce-germanized
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:285
@@ -1462,7 +1462,7 @@ msgid ""
 "and Conditions{/term_link} and your {revocation_link}Right of Recission{/"
 "revocation_link}."
 msgstr ""
-"Mit deiner Bestellung erklärst du dich mit unseren {term_link}Allgemeinen "
+"Mit Ihrer Bestellung erklären Sie sich mit unseren {term_link}Allgemeinen "
 "Geschäftsbedingungen{/term_link} und {revocation_link}Widerrufsbestimmungen{/"
 "revocation_link} einverstanden."
 
@@ -1493,7 +1493,7 @@ msgid ""
 "Conditions{/term_link} and {revocation_link}Right of Recission{/"
 "revocation_link}."
 msgstr ""
-"Bitte akzeptiere unsere {term_link}Allgemeinen Geschäftsbedingungen{/"
+"Bitte akzeptieren Sie unsere {term_link}Allgemeinen Geschäftsbedingungen{/"
 "term_link} und {revocation_link}Widerrufsbestimmungen{/revocation_link}."
 
 # @ woocommerce-germanized
@@ -1582,7 +1582,7 @@ msgid ""
 "To retrieve direct access to digital content you have to agree to the loss "
 "of your right of withdrawal."
 msgstr ""
-"Um direkten Zugang zu den digitalen Inhalte zu erhalten, musst du auf das "
+"Um direkten Zugang zu den digitalen Inhalte zu erhalten, müssen Sie auf das "
 "Widerrufsrecht verzichten."
 
 # @ woocommerce-germanized
@@ -1609,10 +1609,10 @@ msgid ""
 "period. I have noted to lose my {link}right of withdrawal{/link} with the "
 "beginning of the performance of the contract."
 msgstr ""
-"Außerdem hast du ausdrücklich zugestimmt, dass für die digitalen Inhalte "
-"deiner Bestellung mit der Ausführung des Vertrags bereits vor Ablauf der "
-"Widerrufsfrist begonnen wird. Du hast auch zur Kenntnis genommen, dass du "
-"mit Beginn der Ausführung des Vertrags dein {link}Widerrufsrecht{/link} "
+"Außerdem haben Sie ausdrücklich zugestimmt, dass für die digitalen Inhalte "
+"Ihrer Bestellung mit der Ausführung des Vertrags bereits vor Ablauf der "
+"Widerrufsfrist begonnen wird. Sie haben auch zur Kenntnis genommen, dass Sie "
+"mit Beginn der Ausführung des Vertrags Ihr {link}Widerrufsrecht{/link} "
 "verlieren."
 
 # @ woocommerce-germanized
@@ -2137,8 +2137,8 @@ msgid ""
 "Thank you. We have received your Revocation Request. You will receive a "
 "conformation email within a few minutes."
 msgstr ""
-"Vielen Dank. Wir haben deinen Widerruf erhalten. Du bekommst in Kürze eine E-"
-"Mail mit deinen Daten als Bestätigung."
+"Vielen Dank. Wir haben Ihren Widerruf erhalten. Sie bekommen in Kürze eine E-"
+"Mail mit Ihren Daten als Bestätigung."
 
 # @ woocommerce-germanized
 # @ woocommerce
@@ -2173,7 +2173,8 @@ msgid ""
 "Please activate your account through clicking on the activation link "
 "received via email."
 msgstr ""
-"Bitte aktiviere dein Kundenkonto indem du auf den Link in der E-Mail klickst."
+"Bitte aktivieren Sie Ihr Kundenkonto indem Sie auf den Link in der E-Mail "
+"klicken."
 
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-customer-helper.php:117
 #, php-format
@@ -2183,12 +2184,13 @@ msgstr "Weiter zur Kasse ohne Kundenkonto? <a href=\"%s\">Hier klicken</a>"
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-customer-helper.php:119
 msgid "Please create an account or login before continuing to checkout"
 msgstr ""
-"Bitte erstelle ein Kundenkonto oder logge dich ein, bevor du zur Kasse gehst"
+"Bitte erstellen Sie ein Kundenkonto oder loggen Sie sich ein, bevor Sie zur "
+"Kasse gehen"
 
 # @ woocommerce-germanized
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-customer-helper.php:174
 msgid "Thank you. You have successfully activated your account."
-msgstr "Vielen Dank. Dein Benutzerkonto wurde erfolgreich aktiviert."
+msgstr "Vielen Dank. Ihr Benutzerkonto wurde erfolgreich aktiviert."
 
 # @ woocommerce-germanized
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-customer-helper.php:180
@@ -2301,7 +2303,7 @@ msgstr "eKomi"
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-emails.php:238
 msgctxt "revocation-form"
 msgid "Forward your Revocation online"
-msgstr "Deinen Widerruf online erklären"
+msgstr "Widerruf online erklären"
 
 # @ woocommerce-germanized
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-install.php:122
@@ -2548,7 +2550,7 @@ msgstr "Widerruf"
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-revocation.php:24
 msgctxt "revocation-form"
 msgid "Tip: Delete whatever entry does not apply, and provide, as needed"
-msgstr "Hinweis: Bitte Unzutreffendes streichen und um deinen Text ergänzen."
+msgstr "Hinweis: Bitte Unzutreffendes streichen und um Ihren Text ergänzen."
 
 # @ woocommerce-germanized
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-revocation.php:25
@@ -2934,13 +2936,13 @@ msgstr ""
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/emails/class-wc-gzd-email-customer-ekomi.php:27
 msgctxt "ekomi"
 msgid "Please rate your Order"
-msgstr "Bitte bewerte deinen Einkauf"
+msgstr "Bitte bewerten Sie Ihren Einkauf"
 
 # @ woocommerce-germanized
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/emails/class-wc-gzd-email-customer-ekomi.php:28
 msgctxt "ekomi"
 msgid "Please rate your {site_title} order from {order_date}"
-msgstr "Bitte bewerte deinen Einkauf vom {order_date} bei {site_title}"
+msgstr "Bitte bewerten Sie Ihren Einkauf vom {order_date} bei {site_title}"
 
 # @ woocommerce-germanized
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/emails/class-wc-gzd-email-customer-new-account-activation.php:38
@@ -2961,12 +2963,12 @@ msgstr ""
 # @ woocommerce-germanized
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/emails/class-wc-gzd-email-customer-new-account-activation.php:44
 msgid "Activate your account on {site_title}"
-msgstr "Aktiviere dein Benutzerkonto auf {site_title}"
+msgstr "Aktivieren Sie Ihr Benutzerkonto auf {site_title}"
 
 # @ woocommerce-germanized
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/emails/class-wc-gzd-email-customer-new-account-activation.php:45
 msgid "Account activation {site_title}"
-msgstr "Dein Konto bei {site_title}"
+msgstr "Ihr Konto bei {site_title}"
 
 # @ woocommerce-germanized
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/emails/class-wc-gzd-email-customer-revocation.php:27
@@ -2984,7 +2986,7 @@ msgstr ""
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/emails/class-wc-gzd-email-customer-revocation.php:33
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/emails/class-wc-gzd-email-customer-revocation.php:34
 msgid "Your Revocation"
-msgstr "Dein Widerruf"
+msgstr "Ihr Widerruf"
 
 # @ woocommerce-germanized
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/emails/class-wc-gzd-email-customer-sepa-direct-debit-mandate.php:29
@@ -3022,13 +3024,13 @@ msgstr ""
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/emails/class-wc-gzd-email-customer-trusted-shops.php:27
 msgctxt "trusted-shops"
 msgid "Please rate your Order"
-msgstr "Bitte bewerte deine Bestellung"
+msgstr "Bitte bewerten Sie Ihre Bestellung"
 
 # @ woocommerce-germanized
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/emails/class-wc-gzd-email-customer-trusted-shops.php:28
 msgctxt "trusted-shops"
 msgid "Please rate your {site_title} order from {order_date}"
-msgstr "Bitte bewerte deine Bestellung bei {site_title} vom {order_date}"
+msgstr "Bitte bewerten Sie Ihre Bestellung bei {site_title} vom {order_date}"
 
 # @ woocommerce-germanized
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:26
@@ -3110,8 +3112,8 @@ msgstr ""
 "\n"
 "<hr/>\n"
 "\n"
-"Bitte beachte: Die First für die Vorabinformation der SEPA-Lastschrift wird "
-"auf einen Tag verkürzt. "
+"Bitte beachten Sie: Die First für die Vorabinformation der SEPA-Lastschrift "
+"wird auf einen Tag verkürzt. "
 
 # @ woocommerce-germanized
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:104
@@ -3175,7 +3177,7 @@ msgstr "Beschreibung der Zahlungsart, die Kunden auf deiner Website sehen."
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:286
 msgid "The order amount will be debited directly from your bank account."
 msgstr ""
-"Der Gesamtbestellbetrag wird per SEPA-Lastschrift direkt von deinem Konto "
+"Der Gesamtbestellbetrag wird per SEPA-Lastschrift direkt von Ihrem Konto "
 "abgebucht."
 
 # @ woocommerce-germanized
@@ -3269,17 +3271,17 @@ msgstr "Hiermit erteile ich das {link}SEPA Lastschriftmandat{/link}."
 # @ woocommerce-germanized
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:382
 msgid "Please accept the direct debit mandate."
-msgstr "Bitte erteile das SEPA Lastschriftmandat."
+msgstr "Bitte erteilen Sie das SEPA Lastschriftmandat."
 
 # @ woocommerce-germanized
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:399
 msgid "Please insert your SEPA account data."
-msgstr "Bitte füge deine SEPA Kontoinformationen ein."
+msgstr "Bitte fügen Sie Ihre SEPA Kontoinformationen ein."
 
 # @ woocommerce-germanized
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:409
 msgid "Your IBAN seems to be invalid."
-msgstr "Dein IBAN scheint nicht gültig zu sein."
+msgstr "Ihr IBAN scheint nicht gültig zu sein."
 
 # @ woocommerce-germanized
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:411
@@ -3289,7 +3291,7 @@ msgstr "Der Ländercode des IBANs stimmt nicht mit dem Rechnungsland überein."
 # @ woocommerce-germanized
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:415
 msgid "Your BIC seems to be invalid."
-msgstr "Dein BIC/SWIFT scheint nicht gültig zu sein."
+msgstr "Ihr BIC/SWIFT scheint nicht gültig zu sein."
 
 # @ woocommerce-germanized
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:446
@@ -3355,8 +3357,8 @@ msgid ""
 "You'll receive an invoice after your order. Please transfer the order amount "
 "to our bank account within 14 days."
 msgstr ""
-"Du erhältst nach der Bestellung eine Rechnung von uns. Bitte überweise den "
-"Gesamtbetrag innerhalb von 14 Tagen auf das dort angegebene Konto."
+"Sie erhalten nach der Bestellung eine Rechnung von uns. Bitte überweisen Sie "
+"den Gesamtbetrag innerhalb von 14 Tagen auf das dort angegebene Konto."
 
 # @ woocommerce-germanized
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/invoice/class-wc-gzd-gateway-invoice.php:106
@@ -3448,7 +3450,7 @@ msgstr "Jetzt kaufen"
 # @ woocommerce-germanized
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/wc-gzd-template-functions.php:415
 msgid "Please accept the creation of a new customer account"
-msgstr "Bitte akzeptiere die Erstellung eines neuen Kundenkontos"
+msgstr "Bitte akzeptieren Sie die Erstellung eines neuen Kundenkontos"
 
 # @ woocommerce-germanized
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/widgets/class-wc-gzd-widget-trusted-shops-reviews.php:19
@@ -3485,8 +3487,8 @@ msgid ""
 "Please check all of your entries carefully. You may change your entries with "
 "the help of the button \"%s\"."
 msgstr ""
-"Bitte überprüfe deine Eingaben. Du kannst einzelne Angaben durch Klicken des "
-"Buttons „%s“ korrigieren."
+"Bitte überprüfen Sie Ihre Eingaben. Sie können einzelne Angaben durch "
+"Klicken des Buttons „%s“ korrigieren."
 
 # @ woocommerce-germanized
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/templates/checkout/edit-data-notice.php:18
@@ -3494,8 +3496,8 @@ msgid ""
 "Please check all of your entries carefully. You may change your entries with "
 "the help of the \"Back\" button in your browser"
 msgstr ""
-"Bitte überprüfen deine Eingaben. Du kannst diese durch Klicken des „Zurück“-"
-"Buttons deines Browsers korrigieren"
+"Bitte überprüfen Sie Ihre Eingaben. Sie können diese durch Klicken des "
+"„Zurück“-Buttons Ihres Browsers korrigieren"
 
 # @ woocommerce
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/templates/checkout/order-submit.php:19
@@ -3505,8 +3507,8 @@ msgid ""
 "order. You may be charged more than the amount stated above if you fail to "
 "do so."
 msgstr ""
-"Da dein Browser kein JavaScript erlaubt, denke bitte daran, auf "
-"\"Gesamtsumme aktualisieren\" zu klicken, bevor du den Auftrag absendest. "
+"Da Ihr Browser kein JavaScript erlaubt, denken Sie bitte daran, auf "
+"\"Gesamtsumme aktualisieren\" zu klicken, bevor Sie den Auftrag absenden. "
 
 # @ woocommerce-germanized
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/templates/emails/customer-ekomi.php:18
@@ -3526,9 +3528,9 @@ msgid ""
 "some time to write a review about your order. To do so please follow follow "
 "the link."
 msgstr ""
-"Du hast vor einiger Zeit bei %s eingekauft. Vielen Dank! Wir wären froh "
-"darüber, wenn du dir die Zeit nehmen und deinen Einkauf bewerten würdest. Um "
-"dies nun zu tun, klicke bitte auf den nachfolgenden Link."
+"Sie haben vor einiger Zeit bei %s eingekauft. Vielen Dank! Wir wären froh "
+"darüber, wenn Sie sich die Zeit nehmen und Ihren Einkauf bewerten würden. Um "
+"dies nun zu tun, klicken Sie bitte auf den nachfolgenden Link."
 
 # @ woocommerce-germanized
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/templates/emails/customer-ekomi.php:22
@@ -3544,8 +3546,8 @@ msgid ""
 "Thanks for creating an account on %s. Your username is %s. Please follow the "
 "activation link to activate your account:"
 msgstr ""
-"Es wurde für dich ein Benutzerkonto bei %s angelegt. Dein Benutzername "
-"lautet %s. Bitte folge dem Link, um dein Benutzerkonto zu bestätigen:"
+"Es wurde für Sie ein Benutzerkonto bei %s angelegt. Ihr Benutzername lautet "
+"%s. Bitte folgen Sie dem Link, um Ihr Benutzerkonto zu bestätigen:"
 
 # @ woocommerce-germanized
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/templates/emails/customer-new-account-activation.php:20
@@ -3557,7 +3559,7 @@ msgstr "Benutzerkonto aktivieren"
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/templates/emails/plain/customer-new-account-activation.php:26
 #, php-format
 msgid "Your password has been automatically generated: <strong>%s</strong>"
-msgstr "Dein Password wurde automatisch generiert: <strong>%s</strong>"
+msgstr "Ihr Password wurde automatisch generiert: <strong>%s</strong>"
 
 # @ woocommerce-germanized
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/templates/emails/customer-new-account-activation.php:28
@@ -3565,8 +3567,8 @@ msgstr "Dein Password wurde automatisch generiert: <strong>%s</strong>"
 #, php-format
 msgid "If you haven't created an account on %s please ignore this email."
 msgstr ""
-"Wenn du bei %s kein Benutzerkonto eröffnet haben, ignoriere diese E-Mail "
-"bitte."
+"Wenn Sie bei %s kein Benutzerkonto eröffnet haben, ignorieren Sie diese E-"
+"Mail bitte."
 
 # @ woocommerce-germanized
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/templates/emails/customer-new-account-activation.php:30
@@ -3575,8 +3577,8 @@ msgid ""
 "If you cannot follow the link above please copy this url and paste it to "
 "your browser bar: %s"
 msgstr ""
-"Falls du dem Link nicht folgen kannst, kopiere bitte folgende URL in die "
-"Adresszeile deines Browsers: %s"
+"Falls Sie dem Link nicht folgen können, kopieren bitte folgende URL in die "
+"Adresszeile Ihres Browsers: %s"
 
 # @ woocommerce-germanized
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/templates/emails/customer-revocation.php:16
@@ -3586,8 +3588,8 @@ msgid ""
 "By sending you this email we confirm your Revocation. Please review your "
 "data."
 msgstr ""
-"Mit der Zustellung dieser E-Mail bestätigen wir deinen Widerruf. Bitte prüfe "
-"deine Daten."
+"Mit der Zustellung dieser E-Mail bestätigen wir Ihren Widerruf. Bitte prüfen "
+"Sie Ihre Daten."
 
 # @ woocommerce-germanized
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/templates/emails/customer-sepa-direct-debit-mandate.php:16
@@ -3595,7 +3597,7 @@ msgstr ""
 msgid ""
 "Please see the SEPA direct debit mandate for order %s attached to this email."
 msgstr ""
-"Im Folgenden findest du eine Kopie des SEPA Lastschriftmandates zur "
+"Im Folgenden finden Sie eine Kopie des SEPA Lastschriftmandates zur "
 "Bestellung %s."
 
 # @ woocommerce-germanized
@@ -3616,10 +3618,10 @@ msgid ""
 "some time to write a review about your order. To do so please follow follow "
 "the link."
 msgstr ""
-"Du hast vor kurzem bei %s online bestellt. Vielen Dank! Wir würden uns sehr "
-"freuen, wenn du dir die Zeit nehmen würdest, eine kurze Bewertung zu deiner "
-"Bestellung zu verfassen. Bitte klicke einfach auf nachfolgendem Button um "
-"deine Bewertung bei Trusted Shops abzugeben."
+"Sie haben vor kurzem bei %s online bestellt. Vielen Dank! Wir würden uns "
+"sehr freuen, wenn Sie sich die Zeit nehmen würden, eine kurze Bewertung zu "
+"Ihrer Bestellung zu verfassen. Bitte klicken Sie einfach auf nachfolgendem "
+"Button um Ihre Bewertung bei Trusted Shops abzugeben."
 
 # @ woocommerce-germanized
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/templates/emails/customer-trusted-shops.php:22
