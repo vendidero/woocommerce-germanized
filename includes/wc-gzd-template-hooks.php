@@ -131,8 +131,10 @@ add_action( 'woocommerce_order_item_quantity_html', 'wc_gzd_cart_product_units',
 add_action( 'woocommerce_order_item_quantity_html', 'wc_gzd_cart_product_delivery_time', wc_gzd_get_hook_priority( 'order_product_delivery_time' ), 3 );
 add_action( 'woocommerce_order_item_quantity_html', 'wc_gzd_cart_product_item_desc', wc_gzd_get_hook_priority( 'order_product_item_desc' ), 3 );
 add_filter( 'woocommerce_order_formatted_line_subtotal', 'wc_gzd_cart_product_unit_price', wc_gzd_get_hook_priority( 'order_product_unit_price' ), 3 );
+
 if ( get_option( 'woocommerce_gzd_hide_order_success_details' ) == 'yes' )
 	remove_action( 'woocommerce_thankyou', 'woocommerce_order_details_table', WC_GZD_Hook_Priorities::instance()->get_priority( 'woocommerce_thankyou', 'woocommerce_order_details_table' ) );
+
 if ( get_option( 'woocommerce_gzd_trusted_shops_id' ) )
 	add_action( 'woocommerce_thankyou', 'woocommerce_gzd_template_checkout_thankyou_trusted_shops', 10, 1 );
 

@@ -27,6 +27,14 @@ class WC_GZD_Emails {
 			$this->footer_attachments[ 'woocommerce_gzd_mail_attach_' . $key ] = $key;
 
 		add_action( 'woocommerce_email', array( $this, 'email_hooks' ), 0, 1 );
+		// Change email template path if is germanized email template
+		add_filter( 'woocommerce_template_directory', array( $this, 'set_woocommerce_template_dir' ), 10, 2 );
+	}
+
+	public function set_woocommerce_template_dir( $dir, $template ) {
+		if ( file_exists( WC_germanized()->plugin_path() . '/templates/' . $template ) )
+			return 'woocommerce-germanized';
+		return $dir;
 	}
 
 	public function email_hooks( $mailer ) {
