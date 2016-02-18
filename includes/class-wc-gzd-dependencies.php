@@ -16,6 +16,10 @@ class WC_GZD_Dependencies {
 
 	public $plugins = array();
 
+	public $plugins_required = array(
+		'woocommerce' => array( 'version' => '2.4', 'version_prefix' => 'woocommerce', 'name' => 'WooCommerce' ),
+	);
+
 	public static function instance() {
 		if ( is_null( self::$_instance ) ) {
 			self::$_instance = new self();
@@ -44,11 +48,18 @@ class WC_GZD_Dependencies {
 	public function __construct() {
 
 		$this->plugins = (array) get_option( 'active_plugins', array() );
+		
 		if ( is_multisite() )
 			$this->plugins = array_merge( $this->plugins, get_site_option( 'active_sitewide_plugins', array() ) );
 		
-		if ( ! $this->is_woocommerce_activated() )
-			$this->loadable = false;
+		foreach ( $this->plugins_required as $plugin => $data ) {
+
+			if ( ! $this->is_plugin_activated( $plugin ) || $this->is_plugin_outdated( $plugin ) ) {
+				add_action( 'admin_notices', array( $this, 'dependencies_notice' ) );
+				$this->loadable = false;
+			}
+
+		}
 
 	}
 
@@ -56,7 +67,21 @@ class WC_GZD_Dependencies {
 		return get_option( $plugin_slug . '_version' );
 	}
 
+	public function is_plugin_outdated( $plugin ) {
+		$required = ( isset( $this->plugins_required[ $plugin ] ) ? $this->plugins_required[ $plugin ] : false );
+		if ( ! $required )
+			return false;
+		if ( version_compare( $this->get_plugin_version( $required[ 'version_prefix' ] ), $required[ 'version' ], "<" ) )
+			return true;
+		return false;
+	}
+
 	public function is_plugin_activated( $plugin ) {
+
+		if ( strpos( $plugin, '.php' ) !== true ) {
+			$plugin = trailingslashit( $plugin ) . $plugin . '.php';
+		}
+
 		return in_array( $plugin, $this->plugins ) || array_key_exists( $plugin, $this->plugins );
 	}
 
@@ -76,6 +101,14 @@ class WC_GZD_Dependencies {
 
 	public function is_loadable() {
 		return $this->loadable;
+	}
+
+	public function dependencies_notice() {
+
+		global $dependencies;
+		$dependencies = $this;
+
+		include_once( 'admin/views/html-notice-dependencies.php' );
 	}
 
 }

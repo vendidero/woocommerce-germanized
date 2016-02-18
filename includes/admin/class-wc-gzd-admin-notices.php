@@ -205,18 +205,25 @@ class WC_GZD_Admin_Notices {
 	 * @return boolean
 	 */
 	public function is_theme_compatible() {
+		
 		$templates_to_check = WC_germanized()->get_critical_templates();
+		
 		if ( ! empty( $templates_to_check ) ) {
+		
 			foreach ( $templates_to_check as $template ) {
+		
 				$template_path = trailingslashit( 'woocommerce' ) . $template;
+		
 				$theme_template = locate_template( array(
 					$template_path,
 					$template
 				) );
+		
 				if ( $theme_template )
 					return false;
 			}
 		}
+
 		return true;
 	}
 }

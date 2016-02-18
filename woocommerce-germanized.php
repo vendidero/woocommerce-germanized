@@ -111,8 +111,11 @@ final class WooCommerce_Germanized {
 			spl_autoload_register( "__autoload" );
 		spl_autoload_register( array( $this, 'autoload' ) );
 
+		add_action( 'plugins_loaded', array( $this, 'load_plugin_textdomain' ) );
+			
 		// Check if dependecies are installed
 		$init = WC_GZD_Dependencies::instance();
+		
 		if ( ! $init->is_loadable() )
 			return;
 
@@ -128,7 +131,6 @@ final class WooCommerce_Germanized {
 		add_action( 'init', array( $this, 'init' ), 1 );
 		add_action( 'init', array( 'WC_GZD_Shortcodes', 'init' ), 2 );
 		add_action( 'widgets_init', array( $this, 'include_widgets' ), 25 );
-		add_action( 'plugins_loaded', array( $this, 'load_plugin_textdomain' ) );
 		add_action( 'woocommerce_init', array( $this, 'replace_woocommerce_product_factory' ), PHP_INT_MAX );
 
 		// Loaded action
@@ -154,17 +156,8 @@ final class WooCommerce_Germanized {
 
 		add_filter( 'woocommerce_locate_template', array( $this, 'filter_templates' ), PHP_INT_MAX, 3 );
 		
-		if ( version_compare( get_option( 'woocommerce_version' ), '2.3', '<' ) ) {
-			
-			add_filter( 'woocommerce_gzd_default_plugin_template', array( $this, 'filter_templates_old_version' ), 0, 2 );
-		
-		} else {
-			
-			add_filter( 'woocommerce_gzd_important_templates', array( $this, 'set_critical_templates_2_3' ) );
-			
-			if ( get_option( 'woocommerce_gzd_display_checkout_fallback' ) == 'yes' )
-				add_filter( 'woocommerce_germanized_filter_template', array( $this, 'set_checkout_fallback' ), 10, 3 );
-		}
+		if ( get_option( 'woocommerce_gzd_display_checkout_fallback' ) == 'yes' )
+			add_filter( 'woocommerce_germanized_filter_template', array( $this, 'set_checkout_fallback' ), 10, 3 );
 		
 		add_filter( 'woocommerce_get_settings_pages', array( $this, 'add_settings' ) );
 		
@@ -363,6 +356,7 @@ final class WooCommerce_Germanized {
 
 		if ( ! isset( $GLOBALS[ 'wc_gzd_template_name' ] ) || empty( $GLOBALS[ 'wc_gzd_template_name' ] ) || ! is_array( $GLOBALS[ 'wc_gzd_template_name' ] ) )
 			$GLOBALS['wc_gzd_template_name'] = array();
+		
 		$GLOBALS['wc_gzd_template_name'][] = $template_name;
 
 		// Check Theme
@@ -385,39 +379,12 @@ final class WooCommerce_Germanized {
 	}
 
 	/**
-	 * Filter templates for WooCommerce 2.2 specific template files
-	 *  
-	 * @param  string $path          
-	 * @param  string $template_name 
-	 * @return string                
-	 */
-	public function filter_templates_old_version( $path, $template_name ) {
-		$old_path = str_replace( '.php', '-2-2.php', $path );
-		if ( file_exists( $old_path ) )
-			return $old_path;
-		return $path;
-	}
-
-	/**
 	 * Get templates which are legally critical
 	 *  
 	 * @return array
 	 */
 	public function get_critical_templates() {
-		return apply_filters( 'woocommerce_gzd_important_templates', array( 'checkout/form-pay.php', 'checkout/review-order.php' ) );
-	}
-
-	/**
-	 * Sets WC 2.3 critical templates (if fallback mode is used don't remove review-order.php)
-	 *  
-	 * @param array $templates
-	 * @return array
-	 */
-	public function set_critical_templates_2_3( $templates ) {
-		$templates = array_diff( $templates, array( 'checkout/form-pay.php' ) );
-		if ( get_option( 'woocommerce_gzd_display_checkout_fallback' ) != 'yes' )
-			$templates = array_diff( $templates, array( 'checkout/review-order.php' ) );
-		return $templates;
+		return apply_filters( 'woocommerce_gzd_important_templates', array() );
 	}
 
 	/**
