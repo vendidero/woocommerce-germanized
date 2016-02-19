@@ -78,7 +78,7 @@ class WC_GZD_Dependencies {
 
 	public function is_plugin_activated( $plugin ) {
 
-		if ( strpos( $plugin, '.php' ) !== true ) {
+		if ( strpos( $plugin, '.php' ) === false ) {
 			$plugin = trailingslashit( $plugin ) . $plugin . '.php';
 		}
 

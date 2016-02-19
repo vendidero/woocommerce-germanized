@@ -20,26 +20,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 class WC_Germanized_Meta_Box_Product_Data_Variable {
 	
 	public static function init() {
-		add_action( 'woocommerce_product_options_general_product_data', array( __CLASS__, 'output_variable' ) );
 		add_action( 'woocommerce_product_after_variable_attributes', array( __CLASS__, 'output' ), 20, 3 );
 		add_action( 'woocommerce_save_product_variation', array( __CLASS__, 'save' ) , 0, 2 );
-	}
-
-	public static function output_variable() {
-
-		global $post, $thepostid;
-
-		$thepostid = $post->ID;
-		$_product = wc_get_product( $thepostid );
-
-		echo '<div class="options_group pricing show_if_variable">';
-
-		woocommerce_wp_select( array( 'id' => '_unit', 'label' => __( 'Unit', 'woocommerce-germanized' ), 'options' => array_merge( array( "-1" => __( 'Select unit', 'woocommerce-germanized' ) ), WC_germanized()->units->get_units() ), 'desc_tip' => true, 'description' => __( 'Needed if selling on a per unit basis', 'woocommerce-germanized' ) ) );
-		woocommerce_wp_text_input( array( 'id' => '_unit_product', 'label' => __( 'Product Units', 'woocommerce-germanized' ), 'data_type' => 'decimal', 'desc_tip' => true, 'description' => __( 'Number of units included per default product price. Example: 1000 ml.', 'woocommerce-germanized' ) ) );
-		woocommerce_wp_text_input( array( 'id' => '_unit_base', 'label' => __( 'Base Price Units', 'woocommerce-germanized' ), 'data_type' => 'decimal', 'desc_tip' => true, 'description' => __( 'Base price units. Example base price: 0,99 € / 100 ml. Insert 100 as base price unit amount.', 'woocommerce-germanized' ) ) );
-
-		echo '</div>';
-
 	}
 
 	public static function output( $loop, $variation_data, $variation ) {
@@ -130,6 +112,20 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 		}
 
 		$product = wc_get_product( $variation_id );
+		$parent = wc_gzd_get_gzd_product( $product->parent );
+
+		// Check if parent has unit_base + unit otherwise ignore data
+		if ( empty( $parent->unit ) || empty( $parent->unit_base ) ) {
+			$data[ '_unit_price_auto' ] = '';
+			$data[ '_unit_price_regular' ] = '';
+			$data[ '_unit_price_sale' ] = '';
+		}
+
+		// If parent has no unit, delete unit_product as well
+		if ( empty( $parent->unit ) ) {
+			$data[ '_unit_product' ] = '';
+		}
+
 		$data[ 'product-type' ] = ( isset( $product->parent ) ? $product->parent->product_type : $product->type );
 		$data[ '_sale_price_dates_from' ] = $_POST['variable_sale_price_dates_from'][$i];
 		$data[ '_sale_price_dates_to' ] = $_POST['variable_sale_price_dates_to'][$i];

@@ -93,6 +93,7 @@ class WC_GZD_Admin {
 		wp_register_script( 'scrollto', $admin_script_path . 'scrollTo' . $suffix . '.js', array( 'jquery' ), WC_GERMANIZED_VERSION, true );
 		wp_register_script( 'tourbus', $admin_script_path . 'tourbus' . $suffix . '.js', array( 'jquery' ), WC_GERMANIZED_VERSION, true );
 		wp_register_script( 'wc-gzd-admin-tour', $admin_script_path . 'tour' . $suffix . '.js', array( 'jquery', 'woocommerce_settings', 'tourbus' ), WC_GERMANIZED_VERSION, true );
+		wp_register_script( 'wc-gzd-admin-product-variations', $admin_script_path . 'product-variations' . $suffix . '.js', array( 'wc-admin-variation-meta-boxes' ), WC_GERMANIZED_VERSION );
 
 		if ( isset( $_GET[ 'tab' ] ) && $_GET[ 'tab' ] == 'germanized' ) {
 			wp_enqueue_script( 'wc-gzd-admin' );
@@ -111,6 +112,9 @@ class WC_GZD_Admin {
 
 			}
 		}
+
+		if ( in_array( $screen->id, array( 'product', 'edit-product' ) ) )
+			wp_enqueue_script( 'wc-gzd-admin-product-variations' );
 
 		// Hide delivery time and unit tagsdiv
 		if ( version_compare( WC()->version, '2.3', '>=' ) )

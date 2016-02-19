@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce Germanized v1.5.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-02-18 17:20+0100\n"
-"PO-Revision-Date: 2016-02-18 17:20+0100\n"
+"POT-Creation-Date: 2016-02-19 15:29+0100\n"
+"PO-Revision-Date: 2016-02-19 15:32+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -12,9 +12,10 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Poedit 1.6.4\n"
-"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;"
-"_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2\n"
+"_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;"
+"esc_attr_e\n"
 "X-Poedit-Basepath: .\n"
 "X-Textdomain-Support: yes\n"
 "X-Poedit-SearchPath-0: /Users/dennis/Documents/localhost/vendidero/wp-"
@@ -196,25 +197,25 @@ msgid "System Status"
 msgstr "Systemstatus"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:121
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:125
 msgid "Optional Email Content"
 msgstr "Optionaler E-Mail Inhalt"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:130
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:134
 msgid "Add content which will be replacing default page content within emails."
 msgstr ""
 "Fülle dieses Feld aus um einen abweichenden E-Mail Anhangstext für diese "
 "Seite zu bestimmen."
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:139
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:106
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:143
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:88
 msgid "Optional Mini Description"
 msgstr "Warenkorb Kurzbeschreibung"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:156
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:160
 msgid ""
 "This content will be shown as short product description within checkout and "
 "emails."
@@ -223,54 +224,88 @@ msgstr ""
 "Produkt Kurzbeschreibung angezeigt."
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:213
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:217
 msgid "Complaints Procedure"
 msgstr "Beschwerdeverfahren"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:37
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:38
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-post-types.php:66
-msgid "Unit"
-msgstr "Einheit"
-
-# @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:37
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:38
-msgid "Select unit"
-msgstr "Einheit auswählen"
-
-# @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:37
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:38
-msgid "Needed if selling on a per unit basis"
-msgstr "Notwendig falls auf pro-Einheit-Basis verkauft werden soll"
-
-# @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:38
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:78
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:39
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:60
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:27
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:649
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:690
 msgid "Product Units"
 msgstr "Produkteinheiten"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:38
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:39
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:60
+msgid ""
+"Number of units included per default product price. Example: 1000 ml. Leave "
+"blank to use parent value."
+msgstr ""
+"Anzahl der Produkteinheiten auf Basis des Produktpreises. Beispiel: 1000 ml. "
+"Frei lassen um den Wert des Eltern-Produkts zu verwenden."
+
+# @ woocommerce-germanized
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:64
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:32
+msgid "Calculation"
+msgstr "Berechnung"
+
+# @ woocommerce-germanized
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:67
+msgid "Calculate unit prices automatically"
+msgstr "Grundpreis automatisch berechnen."
+
+# @ woocommerce-germanized
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:72
+msgid "Regular Unit Price"
+msgstr "Einheitspreis"
+
+# @ woocommerce-germanized
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:76
+msgid "Sale Unit Price"
+msgstr "Angebots-Einheitspreis"
+
+# @ woocommerce-germanized
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:82
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:56
+msgid "Delivery Time"
+msgstr "Lieferzeit"
+
+# @ woocommerce-germanized
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:83
+msgid "Same as parent"
+msgstr "Gleiche wie übergeordnet"
+
+# @ woocommerce-germanized
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:26
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-post-types.php:66
+msgid "Unit"
+msgstr "Einheit"
+
+# @ woocommerce-germanized
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:26
+msgid "Select unit"
+msgstr "Einheit auswählen"
+
+# @ woocommerce-germanized
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:26
+msgid "Needed if selling on a per unit basis"
+msgstr "Notwendig falls auf pro-Einheit-Basis verkauft werden soll"
+
+# @ woocommerce-germanized
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:27
 msgid "Number of units included per default product price. Example: 1000 ml."
 msgstr ""
 "Anzahl der Produkteinheiten auf Basis des Produktpreises. Beispiel: 1000 ml."
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:39
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:40
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:28
 msgid "Base Price Units"
 msgstr "Grundpreiseinheiten"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:39
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:40
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:28
 msgid ""
 "Base price units. Example base price: 0,99 € / 100 ml. Insert 100 as base "
 "price unit amount."
@@ -279,64 +314,32 @@ msgstr ""
 "hier 100 als Grundpreiseinheiten ein."
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:82
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:41
-msgid "Calculation"
-msgstr "Berechnung"
-
-# @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:85
-msgid "Calculate unit prices automatically"
-msgstr "Grundpreis automatisch berechnen."
-
-# @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:90
-msgid "Regular Unit Price"
-msgstr "Einheitspreis"
-
-# @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:94
-msgid "Sale Unit Price"
-msgstr "Angebots-Einheitspreis"
-
-# @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:100
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:63
-msgid "Delivery Time"
-msgstr "Lieferzeit"
-
-# @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:101
-msgid "Same as parent"
-msgstr "Gleiche wie übergeordnet"
-
-# @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:41
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:32
 msgid "Calculate base prices automatically."
 msgstr "Grundpreis automatisch berechnen."
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:43
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:34
 msgid "Regular Base Price"
 msgstr "Regulärer Grundpreis"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:44
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:35
 msgid "Sale Base Price"
 msgstr "Angebotsgrundpreis"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:64
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:57
 msgid "Search for a delivery time&hellip;"
 msgstr "Lieferzeit suchen&hellip;"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:70
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:63
 msgid "Free shipping?"
 msgstr "Versand kostenlos?"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:70
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:63
 msgid "This option disables the \"plus shipping costs\" notice on product page"
 msgstr ""
 "Deaktiviert den Hinweis \"zzgl. Versandkosten\". Ohne Auswirkungen auf die "
@@ -3565,6 +3568,11 @@ msgid ""
 msgstr ""
 "Da Ihr Browser kein JavaScript erlaubt, denken Sie bitte daran, auf "
 "\"Gesamtsumme aktualisieren\" zu klicken, bevor Sie den Auftrag absenden. "
+
+# @ woocommerce-germanized
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/templates/checkout/order-submit.php:20
+msgid "Update totals"
+msgstr "Betrag aktualisieren"
 
 # @ woocommerce-germanized
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/templates/emails/customer-ekomi.php:18
