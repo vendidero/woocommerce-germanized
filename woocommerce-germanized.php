@@ -189,7 +189,7 @@ final class WooCommerce_Germanized {
 		add_action( 'template_redirect', array( $this, 'remove_cart_unit_price_filter' ) );
 
 		// Let third party apps disable instant order confirmation
-		if ( apply_filters( 'woocommerce_gzd_instant_order_confirmation', true ) && ( 'yes' !== get_option( 'woocommerce_gzd_disable_instant_order_confirmation' ) ) ) {
+		if ( $this->send_instant_order_confirmation() ) {
 
 			// Unregister WooCommerce default order confirmation mails
 			$this->unregister_order_confirmation_hooks();
@@ -205,6 +205,10 @@ final class WooCommerce_Germanized {
 
 		// Init action
 		do_action( 'woocommerce_germanized_init' );
+	}
+
+	public function send_instant_order_confirmation() {
+		return ( apply_filters( 'woocommerce_gzd_instant_order_confirmation', true ) && ( 'yes' !== get_option( 'woocommerce_gzd_disable_instant_order_confirmation' ) ) );
 	}
 
 	/**
@@ -674,12 +678,14 @@ final class WooCommerce_Germanized {
 		if ( isset( $result[ 'redirect' ] ) && $result[ 'redirect' ] != $order->get_checkout_order_received_url() )
 			update_post_meta( $order->id, '_order_payment_info', $result[ 'redirect' ] );		
 
+		do_action( 'woocommerce_germanized_before_order_confirmation', $order->id );
+
 		// Send order processing mail
-		if ( $processing = $this->emails->get_email_instance_by_id( 'customer_processing_order' ) )
+		if ( apply_filters( 'woocommerce_germanized_order_email_customer_confirmation_sent', false, $order->id ) === false && $processing = $this->emails->get_email_instance_by_id( 'customer_processing_order' ) )
 			$processing->trigger( $order->id );
 
 		// Send admin mail
-		if ( $new_order = $this->emails->get_email_instance_by_id( 'new_order' ) )
+		if ( apply_filters( 'woocommerce_germanized_order_email_admin_confirmation_sent', false, $order->id ) === false && $new_order = $this->emails->get_email_instance_by_id( 'new_order' ) )
 			$new_order->trigger( $order->id );
 
 		// Always clear cart after order success

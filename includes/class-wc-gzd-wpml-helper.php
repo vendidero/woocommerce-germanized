@@ -36,6 +36,40 @@ class WC_GZD_WPML_Helper {
 	public function init() {
 		// Observe order update and trigger hook
 		add_action( 'post_updated', array( $this, 'observe_order_update' ), 0, 3 );
+		// Prevent double sending order confirmation email to admin
+		if ( WC_germanized()->send_instant_order_confirmation() ) {
+			add_action( 'wp_loaded', array( $this, 'unregister_order_confirmation_hooks' ) );
+			add_action( 'woocommerce_germanized_before_order_confirmation', array( $this, 'send_order_admin_confirmation' ) );
+		}
+	}
+
+	public function send_order_admin_confirmation( $order_id ) {
+		global $woocommerce_wpml;
+		if ( isset( $woocommerce_wpml ) ) {
+			// Instantiate mailer to make sure that new order email is known
+			$mailer = WC()->mailer();
+			$woocommerce_wpml->emails->admin_email( $order_id );
+			// Stop Germanized from sending the notification
+			add_filter( 'woocommerce_germanized_order_email_admin_confirmation_sent', array( $this, 'set_order_admin_confirmation' ) );
+		}
+	}
+
+	public function set_order_admin_confirmation( $is_sent ) {
+		return true;
+	}
+
+	public function unregister_order_confirmation_hooks() {
+		global $woocommerce_wpml;
+		if ( isset( $woocommerce_wpml ) ) {
+			$statuses = array(
+				'woocommerce_order_status_pending_to_processing_notification',
+        		'woocommerce_order_status_pending_to_completed_notification',
+        		'woocommerce_order_status_pending_to_on-hold_notification',
+			);
+			foreach ( $statuses as $status ) {
+				remove_action( $status, array( $woocommerce_wpml->emails, 'admin_email' ), 9 );
+			}
+		}
 	}
 
 	public function observe_order_update( $post_id, $post_after, $post_before ) {
