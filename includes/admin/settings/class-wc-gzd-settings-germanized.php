@@ -600,6 +600,15 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 			),
 
 			array(
+				'title' 	=> __( 'Digital Delivery Time Text', 'woocommerce-germanized' ),
+				'id' 		=> 'woocommerce_gzd_display_digital_delivery_time_text',
+				'default'	=> '',
+				'type' 		=> 'text',
+				'desc_tip'	=> __( 'Enter a text which will be shown as digital delivery time text (replacement for default digital time on digital products).', 'woocommerce-germanized' ),
+				'css' 		=> 'min-width:300px;',
+			),
+
+			array(
 				'title' 	=> __( 'Notice Footer', 'woocommerce-germanized' ),
 				'desc' 		=> __( 'Show a global VAT notice within footer', 'woocommerce-germanized' ),
 				'id' 		=> 'woocommerce_gzd_display_footer_vat_notice',

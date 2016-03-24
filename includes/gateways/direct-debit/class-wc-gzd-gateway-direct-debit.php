@@ -36,13 +36,18 @@ class WC_GZD_Gateway_Direct_Debit extends WC_Payment_Gateway {
 		$this->description  					= $this->get_option( 'description' );
 		$this->instructions 					= $this->get_option( 'instructions', $this->description );
 		$this->enable_checkbox					= $this->get_option( 'enable_checkbox', 'yes' );
+		$this->generate_mandate_id 				= $this->get_option( 'generate_mandate_id', 'yes' );
+		$this->mandate_id_format 				= $this->get_option( 'mandate_id_format', 'MANDAT{id}' );
 		$this->company_info 					= $this->get_option( 'company_info' );
 		$this->company_identification_number 	= $this->get_option( 'company_identification_number' );
+		$this->company_account_holder     		= $this->get_option( 'company_account_holder' );
+		$this->company_account_iban     		= $this->get_option( 'company_account_iban' );
+		$this->company_account_bic     			= $this->get_option( 'company_account_bic' );
 		$this->checkbox_label					= $this->get_option( 'checkbox_label' );
-		$this->mask 							=  $this->get_option( 'mask', 'yes' );
+		$this->mask 							= $this->get_option( 'mask', 'yes' );
 		$this->mandate_text	   					= $this->get_option( 'mandate_text', __( '[company_info]
 debtee identification number: [company_identification_number]
-mandat reference number: will be notified separately.
+mandat reference number: [mandate_id].
 
 <h3>SEPA Direct Debit Mandate</h3>
 
@@ -92,9 +97,136 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
     	add_action( 'woocommerce_email_customer_details', array( $this, 'email_sepa' ), 15, 3 );
 
     	// Order admin
-    	add_filter( 'woocommerce_admin_billing_fields', array( $this, 'set_debit_fields' ) ); 
+    	add_filter( 'woocommerce_admin_billing_fields', array( $this, 'set_debit_fields' ) );
+
+    	// Export filters
+		add_action( 'export_filters', array( $this, 'export_view' ) );
+		add_action( 'export_wp', array( $this, 'export' ), 0, 1 );
+		add_filter( 'export_args', array( $this, 'export_args' ), 0, 1 );
 
     }
+
+    public function export_view() {
+    	include_once( 'views/html-export.php' );
+    }
+
+    public function export_args( $args = array() ) {
+		if ( 'sepa' === $_GET['content'] ) {
+			$args['content'] = 'sepa';
+			if ( $_GET['sepa_start_date'] || $_GET['sepa_end_date'] ) {
+				$args['start_date'] = ( isset( $_GET['sepa_start_date'] ) ? sanitize_text_field( $_GET['sepa_start_date'] ) : '' );
+				$args['end_date'] = ( isset( $_GET['sepa_end_date'] ) ? sanitize_text_field( $_GET['sepa_end_date'] ) : '' );
+			}
+		}
+		return $args;
+	}
+
+	public function export( $args = array() ) {
+		
+		if ( $args[ 'content' ] != 'sepa' )
+			return;
+
+		$filename = '';
+		$parts = array( 'SEPA-Export' );
+
+		$query_args = array(
+			'post_type'   => 'shop_order',
+			'post_status' => array_keys( wc_get_order_statuses() ),
+			'orderby'	  => 'post_date',
+			'order'		  => 'ASC',
+			'meta_query'  => array(
+				array(
+					'key'     => '_payment_method',
+					'value'   => 'direct-debit',
+					'compare' => '=',
+				),
+			),
+		);
+
+		if ( isset( $args['order_id'] ) ) {
+
+			$query_args[ 'p' ] = absint( $args['order_id'] );
+			array_push( $parts, 'order-' . absint( $args['order_id'] ) );
+
+		} else {
+
+			$query_args = array_merge( $query_args, array(
+				'showposts'   => -1,
+				'date_query' => array(
+					array(
+						'after' => $args['start_date'],
+						'before' => $args['end_date'],
+						'inclusive' => true,
+					),
+				),
+			) );
+
+			if ( ! empty( $args['start_date'] ) )
+				array_push( $parts, $args['start_date'] );
+			if ( ! empty( $args['end_date'] ) )
+				array_push( $parts, $args['end_date'] );
+
+		}
+
+		$order_query = new WP_Query( $query_args );
+		$filename = apply_filters( 'woocommerce_germanized_direct_debit_export_filename', implode( '-', $parts ) . '.xml', $args );
+
+		if ( $order_query->have_posts() ) {
+
+			include_once( 'sepa-xml-creator/SepaXmlCreator.php' );
+			$creator = new SepaXmlCreator();
+
+			$creator->setAccountValues( $this->company_account_holder, $this->company_account_iban, $this->company_account_bic );
+			$creator->setGlaeubigerId( $this->company_identification_number );
+
+			while ( $order_query->have_posts() ) {
+
+				$order_query->next_post();
+				$order = wc_get_order( $order_query->post->ID );
+
+				$book = new SepaBuchung();
+				$book->setBetrag( $order->get_total() );
+				$book->setBic( $order->direct_debit_bic );
+				$book->setName( $order->direct_debit_holder );
+				$book->setIban( $order->direct_debit_iban );
+				$book->setName( $order->direct_debit_holder );
+				$book->setVerwendungszweck( apply_filters( 'woocommerce_germanized_direct_debit_purpose', sprintf( __( 'Order %s', 'woocommerce-germanized' ), $order->get_order_number() ) ), $order );
+				$book->setMandat( $this->get_mandate_id( $order->id ), date_i18n( "Y-m-d", strtotime( $order->order_date ) ), false );
+				$creator->addBuchung( $book );
+
+			}
+
+			$sepaxml = $creator->generateBasislastschriftXml();
+			
+			header( 'Content-Description: File Transfer' );
+			header( 'Content-Disposition: attachment; filename=' . $filename );
+			header( 'Content-Type: text/xml; charset=' . get_option( 'blog_charset' ), true );
+			header( 'Cache-Control: no-cache, no-store, must-revalidate' ); 
+			header( 'Pragma: no-cache' );
+			header( 'Expires: 0' );
+
+			echo $sepaxml;
+			exit();
+
+		}	
+	 	
+	}
+
+	public function get_mandate_id( $order_id = false ) {
+
+		if ( ! $order_id )
+			return __( 'Will be notified separately', 'woocommerce-germanized' );
+
+		$order = wc_get_order( $order_id );
+
+		if ( $order->direct_debit_mandate_id )
+			return $order->direct_debit_mandate_id;
+		
+		$mandate_id = apply_filters( 'woocommerce_germanized_direct_debit_mandate_id', ( $this->generate_mandate_id === 'yes' ? str_replace( '{id}', $order->get_order_number(), $this->mandate_id_format ) : '' ) );
+		update_post_meta( $order->id, '_direct_debit_mandate_id', $mandate_id );
+		
+		return $mandate_id;
+	}
 
     public function email_sepa( $order, $sent_to_admin, $plain_text ) {
 
@@ -215,6 +347,7 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 			'city' 				=> $order->billing_city,
 			'country'			=> WC()->countries->countries[ $order->billing_country ],
 			'date'				=> date_i18n( wc_date_format(), strtotime( $order->post->post_date ) ),
+			'mandate_id'		=> $this->get_mandate_id( $order->id ),
 		);
 
 		return $this->generate_mandate_text( $params );
@@ -235,6 +368,7 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
     		'company_info' => $this->company_info,
     		'company_identification_number' => $this->company_identification_number,
     		'date' => date_i18n( wc_date_format(), strtotime( "now" ) ),
+    		'mandate_id' => $this->get_mandate_id(),
     	) );
 
     	$text = $this->mandate_text;
@@ -282,7 +416,7 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 				'default' => 'no'
 			),
 			'title' => array(
-				'title'       => __( 'Title', 'woocommerce-germanized' ),
+				'title'       => _x( 'Title', 'gateway', 'woocommerce-germanized' ),
 				'type'        => 'text',
 				'description' => __( 'This controls the title which the user sees during checkout.', 'woocommerce-germanized' ),
 				'default'     => __( 'Direct Debit', 'woocommerce-germanized' ),
@@ -310,11 +444,46 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 				'placeholder' => __( 'Company Inc, John Doe Street, New York', 'woocommerce-germanized' ),
 				'desc_tip'    => true,
 			),
+			'company_account_holder' => array(
+				'title'       => __( 'Account Holder', 'woocommerce-germanized' ),
+				'type'        => 'text',
+				'description' => __( 'Insert the bank account holder name.', 'woocommerce-germanized' ),
+				'default'     => '',
+				'placeholder' => __( 'Company Inc', 'woocommerce-germanized' ),
+				'desc_tip'    => true,
+			),
+			'company_account_iban' => array(
+				'title'       => __( 'IBAN', 'woocommerce-germanized' ),
+				'type'        => 'text',
+				'description' => __( 'Insert the bank account IBAN.', 'woocommerce-germanized' ),
+				'default'     => '',
+				'desc_tip'    => true,
+			),
+			'company_account_bic' => array(
+				'title'       => __( 'BIC', 'woocommerce-germanized' ),
+				'type'        => 'text',
+				'description' => __( 'Insert the bank account BIC.', 'woocommerce-germanized' ),
+				'default'     => '',
+				'desc_tip'    => true,
+			),
 			'company_identification_number' => array(
 				'title'       => __( 'Debtee identification number', 'woocommerce-germanized' ),
 				'type'        => 'text',
 				'description' => sprintf( __( 'Insert your debtee indentification number. More information can be found <a href="%s">here</a>.', 'woocommerce-germanized' ), 'http://www.bundesbank.de/Navigation/DE/Aufgaben/Unbarer_Zahlungsverkehr/SEPA/Glaeubiger_Identifikationsnummer/glaeubiger_identifikationsnummer.html' ),
 				'default'     => '',
+			),
+			'generate_mandate_id' => array(
+				'title'       => __( 'Generate Mandate ID', 'woocommerce-germanized' ),
+				'type'        => 'checkbox',
+				'label'		  => __( 'Automatically generate Mandate ID.' ),
+				'description' => __( 'Automatically generate Mandate ID after order completion (based on Order ID).', 'woocommerce-germanized' ),
+				'default'     => 'yes',
+			),
+			'mandate_id_format' => array(
+				'title'       => __( 'Mandate ID Format', 'woocommerce-germanized' ),
+				'type'        => 'text',
+				'description' => __( 'You may extend the Mandate ID format by adding a prefix and/or suffix. Use {id} as placeholder to insert the automatically generated ID.', 'woocommerce-germanized' ),
+				'default'     => 'MANDAT{id}',
 			),
 			'mandate_text' => array(
 				'title'       => __( 'Mandate Text', 'woocommerce-germanized' ),

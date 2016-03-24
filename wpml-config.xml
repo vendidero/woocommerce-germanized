@@ -8,6 +8,7 @@
     	<key name="woocommerce_gzd_unit_price_text" />
         <key name="woocommerce_gzd_product_units_text" />
     	<key name="woocommerce_gzd_display_listings_link_details_text" />
+        <key name="woocommerce_gzd_display_digital_delivery_time_text" />
     	<key name="woocommerce_gzd_checkout_legal_text" />
     	<key name="woocommerce_gzd_checkout_legal_text_error" />
     	<key name="woocommerce_gzd_checkout_legal_text_digital" />

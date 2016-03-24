@@ -82,7 +82,7 @@ class WC_GZD_Gateway_Invoice extends WC_Payment_Gateway {
 				'default' => 'no'
 			),
 			'title' => array(
-				'title'       => __( 'Title', 'woocommerce-germanized' ),
+				'title'       => _x( 'Title', 'gateway', 'woocommerce-germanized' ),
 				'type'        => 'text',
 				'description' => __( 'This controls the title which the user sees during checkout.', 'woocommerce-germanized' ),
 				'default'     => __( 'Pay by Invoice', 'woocommerce-germanized' ),
