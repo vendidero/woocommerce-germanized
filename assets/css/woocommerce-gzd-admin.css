@@ -157,5 +157,32 @@ table.wc-gzd-tax-example tr th:first-child, table.wc-gzd-tax-example tr td:first
 
 .wc-gzd-text-green {
 	color: green;
-	
+}
+
+.order_actions .xml {
+    display: block;
+    text-indent: -9999px;
+    position: relative;
+    padding: 0!important;
+    height: 2em!important;
+    width: 2em;
+}
+
+.order_actions .xml:after {
+	content: "\e00d";
+	font-family: WooCommerce;
+    text-indent: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    speak: none;
+    font-variant: normal;
+    text-transform: none;
+    -webkit-font-smoothing: antialiased;
+    top: 0;
+    left: 0;
+    line-height: 1.85;
+    margin: 0;
+    text-align: center;
+    font-weight: 400;
 }

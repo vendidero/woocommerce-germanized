@@ -24,7 +24,7 @@ class WC_GZD_Gateway_Direct_Debit extends WC_Payment_Gateway {
 		$this->icon               = apply_filters( 'woocommerce_gzd_direct_debit_icon', '' );
 		$this->has_fields         = true;
 		$this->method_title       = __( 'Direct Debit', 'woocommerce-germanized' );
-		$this->method_description = __( 'Allows you to offer direct debit as a payment method to your customers. Adds SEPA fields to checkout.', 'woocommerce-germanized' );
+		$this->method_description =  sprintf( __( 'Allows you to offer direct debit as a payment method to your customers. Adds SEPA fields to checkout. %s', 'woocommerce-germanized' ), '<a class="button button-secondary" href="' . admin_url( 'export.php' ) . '">' . __( 'SEPA XML Bulk Export', 'woocommerce-germanized' ) . '</a>' );
 
 		// Load the settings.
 		$this->init_form_fields();
@@ -98,12 +98,27 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 
     	// Order admin
     	add_filter( 'woocommerce_admin_billing_fields', array( $this, 'set_debit_fields' ) );
+    	// Admin order table download actions
+		add_filter( 'woocommerce_admin_order_actions', array( $this, 'order_actions' ), 0, 2 );
 
     	// Export filters
 		add_action( 'export_filters', array( $this, 'export_view' ) );
 		add_action( 'export_wp', array( $this, 'export' ), 0, 1 );
 		add_filter( 'export_args', array( $this, 'export_args' ), 0, 1 );
 
+    }
+
+    public function order_actions( $actions, $order ) {
+
+    	if ( $order->payment_method === $this->id ) {
+    		$actions[ 'download-sepa' ] = array(
+				'url'       => add_query_arg( array( 'download' => 'true', 'content' => 'sepa', 'sepa_order_id' => $order->id ), admin_url( 'export.php' ) ),
+				'name'      => __( 'SEPA XML Export', 'woocommerce-germanized' ),
+				'action'    => "xml"
+			);
+    	}
+
+    	return $actions;
     }
 
     public function export_view() {
@@ -113,9 +128,11 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
     public function export_args( $args = array() ) {
 		if ( 'sepa' === $_GET['content'] ) {
 			$args['content'] = 'sepa';
-			if ( $_GET['sepa_start_date'] || $_GET['sepa_end_date'] ) {
+			if ( isset( $_GET['sepa_start_date'] ) || isset( $_GET['sepa_end_date'] ) ) {
 				$args['start_date'] = ( isset( $_GET['sepa_start_date'] ) ? sanitize_text_field( $_GET['sepa_start_date'] ) : '' );
 				$args['end_date'] = ( isset( $_GET['sepa_end_date'] ) ? sanitize_text_field( $_GET['sepa_end_date'] ) : '' );
+			} else if ( isset( $_GET[ 'sepa_order_id' ] ) ) {
+				$args['order_id'] = absint( $_GET['sepa_order_id'] );
 			}
 		}
 		return $args;
@@ -475,7 +492,7 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 			'generate_mandate_id' => array(
 				'title'       => __( 'Generate Mandate ID', 'woocommerce-germanized' ),
 				'type'        => 'checkbox',
-				'label'		  => __( 'Automatically generate Mandate ID.' ),
+				'label'		  => __( 'Automatically generate Mandate ID.', 'woocommerce-germanized' ),
 				'description' => __( 'Automatically generate Mandate ID after order completion (based on Order ID).', 'woocommerce-germanized' ),
 				'default'     => 'yes',
 			),

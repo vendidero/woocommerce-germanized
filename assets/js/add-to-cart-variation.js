@@ -4,6 +4,8 @@
 ;(function ( $, window, document, undefined ) {
 
 	$.fn.wc_gzd_variation_form = function () {
+		var $form 	 	= this,
+			$wrapper 	= $form.parents( '.type-product' );
 
 		$.fn.wc_gzd_variation_form.reset_variation = function() {
 
@@ -26,10 +28,10 @@
 			$('.variation_modified').remove();
 		}
 
-		$form = this
-		$wrapper = $form.parents( '.type-product' )
+		$form
 
 		.on( 'found_variation', function( event, variation ) {
+
 			if ( ! $wrapper.find( '.price:first' ).hasClass( 'variation_modified' ) ) {
 				$wrapper.append( '<div class="org_price org_product_info">' + $wrapper.find( '.price:not(.price-unit):first' ).html() + '</div>' );
 				if ( $wrapper.find( '.delivery-time-info:first' ).length > 0 )
