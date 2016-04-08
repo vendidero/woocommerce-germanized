@@ -121,11 +121,13 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 	 */
 	public function get_settings() {
 		
-		$delivery_terms = array('' => __( 'None', 'woocommerce-germanized' ));
+		$delivery_terms = array( '' => __( 'None', 'woocommerce-germanized' ) );
 		$terms = get_terms( 'product_delivery_time', array('fields' => 'id=>name', 'hide_empty' => false) );
 		
 		if ( ! is_wp_error( $terms ) )
 			$delivery_terms = $delivery_terms + $terms;
+
+		$labels = array_merge( array( '' => __( 'None', 'woocommerce-germanized' ) ), WC_Germanized()->price_labels->get_labels() );
 
 		$is_complaints_shortcode_inserted = WC_GZD_Admin::instance()->is_complaints_shortcode_inserted();
 
@@ -294,14 +296,14 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 
 			array(
 				'title' 	=> __( 'Default Delivery Time', 'woocommerce-germanized' ),
-				'desc' 		=> __( 'This delivery time will be added to every product if no delivery time has been chosen individually', 'woocommerce-germanized' ),
+				'desc_tip' 	=> __( 'This delivery time will be added to every product if no delivery time has been chosen individually', 'woocommerce-germanized' ),
 				'id' 		=> 'woocommerce_gzd_default_delivery_time',
 				'css' 		=> 'min-width:250px;',
 				'default'	=> '',
 				'type' 		=> 'select',
 				'class'		=> 'chosen_select',
 				'options'	=>	$delivery_terms,
-				'desc_tip'	=>  true,
+				'desc'		=>  '<a href="' . admin_url( 'edit-tags.php?taxonomy=product_delivery_time&post_type=product' ) . '">' . __( 'Manage Delivery Times', 'woocommerce-germanized' ) . '</a>',
 			),
 
 			array(
@@ -315,6 +317,43 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 			),
 
 			array( 'type' => 'sectionend', 'id' => 'delivery_times_options' ),
+
+			array( 'title' => __( 'Sale Price Labels', 'woocommerce-germanized' ), 'type' => 'title', 'desc' => '', 'id' => 'sale_price_labels_options' ),
+
+			array(
+				'title' 	=> __( 'Default Sale Label', 'woocommerce-germanized' ),
+				'desc_tip' 	=> __( 'Choose whether you would like to have a default sale price label to inform the customer about the regular price (e.g. Recommended Retail Price).', 'woocommerce-germanized' ),
+				'id' 		=> 'woocommerce_gzd_default_sale_price_label',
+				'css' 		=> 'min-width:250px;',
+				'default'	=> '',
+				'type' 		=> 'select',
+				'class'		=> 'chosen_select',
+				'options'	=>	$labels,
+				'desc'		=>  '<a href="' . admin_url( 'edit-tags.php?taxonomy=product_price_label&post_type=product' ) . '">' . __( 'Manage Price Labels', 'woocommerce-germanized' ) . '</a>',
+			),
+
+			array(
+				'title' 	=> __( 'Default Sale Regular Label', 'woocommerce-germanized' ),
+				'desc_tip' 	=> __( 'Choose whether you would like to have a default sale price regular label to inform the customer about the sale price (e.g. New Price).', 'woocommerce-germanized' ),
+				'id' 		=> 'woocommerce_gzd_default_sale_price_regular_label',
+				'css' 		=> 'min-width:250px;',
+				'default'	=> '',
+				'type' 		=> 'select',
+				'class'		=> 'chosen_select',
+				'options'	=>	$labels,
+				'desc'		=>  '<a href="' . admin_url( 'edit-tags.php?taxonomy=product_price_label&post_type=product' ) . '">' . __( 'Manage Price Labels', 'woocommerce-germanized' ) . '</a>',
+			),
+
+			array(
+				'title' 	=> __( 'Product Lists', 'woocommerce-germanized' ),
+				'desc' 		=> __( 'Disable sale price labels within product listings?', 'woocommerce-germanized' ),
+				'id' 		=> 'woocommerce_gzd_sale_price_listings',
+				'default'	=> 'yes',
+				'type' 		=> 'checkbox',
+			),
+
+			array( 'type' => 'sectionend', 'id' => 'delivery_times_options' ),
+
 
 			array(	'title' => __( 'Shipping Costs', 'woocommerce-germanized' ), 'type' => 'title', 'id' => 'shipping_costs_options' ),
 
@@ -563,10 +602,12 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 
 	public function get_display_settings() {
 
+		$product_types = wc_get_product_types();
+
 		$digital_type_options = array_merge( array(
 			'downloadable'  => __( 'Downloadable Product', 'woocommerce-germanized' ),
 			'virtual'		=> __( 'Virtual Product', 'woocommerce-germanized' ),
-		), wc_get_product_types() );
+		), $product_types );
 
 		$settings = array(
 
@@ -717,6 +758,28 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 				'id' 		=> 'woocommerce_gzd_display_shipping_costs_virtual',
 				'type' 		=> 'checkbox',
 				'default'	=> 'no',
+			),
+
+			array(
+				'title' 	=> __( 'Hide Shipping Costs Notice', 'woocommerce-germanized' ),
+				'desc' 		=> __( 'Select product types for which you might want to disable the shipping costs notice.', 'woocommerce-germanized' ),
+				'desc_tip'	=> true,
+				'id' 		=> 'woocommerce_gzd_display_shipping_costs_hidden_types',
+				'class' 	=> 'chosen_select',
+				'type'		=> 'multiselect',
+				'options'	=> $digital_type_options,
+				'default'	=> array( 'downloadable', 'external', 'virtual' ),
+			),
+
+			array(
+				'title' 	=> __( 'Hide Delivery Time Notice', 'woocommerce-germanized' ),
+				'desc' 		=> __( 'Select product types for which you might want to disable the delivery time notice.', 'woocommerce-germanized' ),
+				'desc_tip'	=> true,
+				'id' 		=> 'woocommerce_gzd_display_delivery_time_hidden_types',
+				'class' 	=> 'chosen_select',
+				'type'		=> 'multiselect',
+				'options'	=> $digital_type_options,
+				'default'	=> array( 'external', 'virtual' ),
 			),
 
 			array( 'type' => 'sectionend', 'id' => 'product_options' ),

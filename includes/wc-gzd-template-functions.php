@@ -442,4 +442,59 @@ if ( ! function_exists( 'woocommerce_gzd_template_checkout_forwarding_fee_notice
 
 }
 
+if ( ! function_exists( 'woocommerce_gzd_template_maybe_hide_delivery_time' ) ) {
+
+	function woocommerce_gzd_template_maybe_hide_delivery_time( $hide, $product ) {
+
+		$types = get_option( 'woocommerce_gzd_display_delivery_time_hidden_types', array() );
+		
+		if ( is_array( $types ) ) {
+		
+			foreach ( $types as $type ) {
+
+				if ( wc_gzd_product_matches_extended_type( $type, $product ) )
+					return true;
+			}
+		}
+
+		return $hide;
+
+	}
+
+}
+
+if ( ! function_exists( 'woocommerce_gzd_template_maybe_hide_shipping_costs' ) ) {
+
+	function woocommerce_gzd_template_maybe_hide_shipping_costs( $hide, $product ) {
+
+		$types = get_option( 'woocommerce_gzd_display_shipping_costs_hidden_types', array() );
+		
+		if ( is_array( $types ) ) {
+		
+			foreach ( $types as $type ) {
+
+				if ( wc_gzd_product_matches_extended_type( $type, $product ) )
+					return true;
+			}
+		}
+
+		return $hide;
+
+	}
+
+}
+
+if ( ! function_exists( 'woocommerce_gzd_template_digital_delivery_time_text' ) ) {
+
+	function woocommerce_gzd_template_digital_delivery_time_text( $text, $product ) {
+
+		if ( $product->is_downloadable() && get_option( 'woocommerce_gzd_display_digital_delivery_time_text' ) !== '' )
+			return apply_filters( 'woocommerce_germanized_digital_delivery_time_text', get_option( 'woocommerce_gzd_display_digital_delivery_time_text' ), $product );
+
+		return $text;
+
+	}
+
+}
+
 ?>

@@ -21,18 +21,20 @@ class WC_GZD_Product {
 	private $child;
 
 	protected $gzd_variation_level_meta = array(
-		'unit_price' 		 => '',
-		'unit_price_regular' => '',
-		'unit_price_sale' 	 => '',
-		'unit_price_auto'	 => '',
-		'mini_desc' 		 => '',
-		'gzd_product' 		 => NULL,
+		'unit_price' 		 		=> '',
+		'unit_price_regular' 		=> '',
+		'unit_price_sale' 	 		=> '',
+		'unit_price_auto'	 	   	=> '',
+		'mini_desc' 		 		=> '',
+		'gzd_product' 		 		=> NULL,
 	);
 
 	protected $gzd_variation_inherited_meta_data = array(
 		'unit',
 		'unit_base',
 		'unit_product',
+		'sale_price_label',
+		'sale_price_regular_label',
 	);
 
 	/**
@@ -129,6 +131,16 @@ class WC_GZD_Product {
 		return apply_filters( 'woocommerce_gzd_product_virtual_vat_exception', ( ( get_option( 'woocommerce_gzd_enable_virtual_vat' ) === 'yes' ) && ( $this->is_downloadable() || $this->is_virtual() ) ? true : false ), $this );
 	}
 
+	public function get_price_html_from_to( $from, $to, $show_labels = true ) {
+
+		$sale_label = ( $show_labels ? $this->get_sale_price_label() : '' );
+		$sale_regular_label = ( $show_labels ? $this->get_sale_price_regular_label() : '' );
+
+		$price = ( ! empty( $sale_label ) ? '<span class="wc-gzd-sale-price-label">' . $sale_label . '</span>' : '' ) . ' <del>' . ( ( is_numeric( $from ) ) ? wc_price( $from ) : $from ) . '</del> ' . ( ! empty( $sale_regular_label ) ? '<span class="wc-gzd-sale-price-label wc-gzd-sale-price-regular-label">' . $sale_regular_label . '</span> ' : '' ) . '<ins>' . ( ( is_numeric( $to ) ) ? wc_price( $to ) : $to ) . '</ins>';
+
+		return apply_filters( 'woocommerce_germanized_get_price_html_from_to', $price, $from, $to, $this );
+	}
+
 	/**
 	 * Gets a product's tax description (if is taxable)
 	 *  
@@ -180,6 +192,32 @@ class WC_GZD_Product {
 	public function get_unit() {
 		$unit = $this->unit;
 		return WC_germanized()->units->$unit;
+	}
+
+	/**
+	 * Returns sale price label
+	 *  
+	 * @return string
+	 */
+	public function get_sale_price_label() {
+
+		$default = get_option( 'woocommerce_gzd_default_sale_price_label', '' );
+		$label = ( ! empty( $this->sale_price_label ) ? $this->sale_price_label : $default );
+
+		return ( ! empty( $label ) ? WC_germanized()->price_labels->$label : '' );
+	}
+
+	/**
+	 * Returns sale price regular label
+	 *  
+	 * @return string
+	 */
+	public function get_sale_price_regular_label() {
+
+		$default = get_option( 'woocommerce_gzd_default_sale_price_regular_label', '' );
+		$label = ( ! empty( $this->sale_price_regular_label ) ? $this->sale_price_regular_label : $default );
+
+		return ( ! empty( $label ) ? WC_germanized()->price_labels->$label : '' );
 	}
 
 	/**
@@ -251,11 +289,14 @@ class WC_GZD_Product {
 	 * @return string 
 	 */
 	public function get_unit_html( $show_sale = true ) {
+
+		if ( apply_filters( 'woocommerce_gzd_hide_unit_text', false, $this ) )
+			return apply_filters( 'woocommerce_germanized_disabled_unit_text', '', $this );
 		
 		$display_price         = $this->get_unit_price();
 		$display_regular_price = $this->get_unit_price( 1, $this->get_unit_regular_price() );
 		$display_sale_price    = $this->get_unit_price( 1, $this->get_unit_sale_price() );
-		$price_html 		   = ( ( $this->is_on_unit_sale() && $show_sale ) ? $this->get_price_html_from_to( $display_regular_price, $display_sale_price ) : wc_price( $display_price ) );
+		$price_html 		   = ( ( $this->is_on_unit_sale() && $show_sale ) ? $this->get_price_html_from_to( $display_regular_price, $display_sale_price, false ) : wc_price( $display_price ) );
 		$html 				   = '';
 		$text 				   = get_option( 'woocommerce_gzd_unit_price_text' );
 
@@ -286,6 +327,9 @@ class WC_GZD_Product {
 	 * @return string 
 	 */
 	public function get_product_units_html() {
+
+		if ( apply_filters( 'woocommerce_gzd_hide_product_units_text', false, $this ) )
+			return apply_filters( 'woocommerce_germanized_disabled_product_units_text', '', $this );
 
 		$html = '';
 		$text = get_option( 'woocommerce_gzd_product_units_text' );
@@ -348,20 +392,20 @@ class WC_GZD_Product {
 
 		$html = '';
 		
-		if ( $this->is_downloadable() && get_option( 'woocommerce_gzd_display_digital_delivery_time_text' ) !== '' )
-			$html = apply_filters( 'woocommerce_germanized_digital_delivery_time_text', get_option( 'woocommerce_gzd_display_digital_delivery_time_text' ), $this );
+		if ( apply_filters( 'woocommerce_germanized_hide_delivery_time_text', false, $this ) )
+			return apply_filters( 'woocommerce_germanized_disabled_delivery_time_text', '', $this );
 
-		if ( $this->is_virtual() )
-			return false;
-
-		if ( $this->get_delivery_time_term() ) 
+		if ( $this->get_delivery_time_term() ) {
 			$html = $this->get_delivery_time_term()->name;
+		} else {
+			$html = apply_filters( 'woocommerce_germanized_empty_delivery_time_text', '', $this );
+		}
 		
 		return ( ! empty( $html ) ? apply_filters( 'woocommerce_germanized_delivery_time_html', str_replace( '{delivery_time}', $html, get_option( 'woocommerce_gzd_delivery_time_text' ) ), $html ) : '' );
 	}
 
 	public function has_free_shipping() {
-		return ( apply_filters( 'woocommerce_germanized_product_has_free_shipping', ( $this->is_virtual() || $this->free_shipping === 'yes' ? true : false ), $this ) );
+		return ( apply_filters( 'woocommerce_germanized_product_has_free_shipping', ( $this->free_shipping === 'yes' ? true : false ), $this ) );
 	}
 
 	/**
@@ -371,8 +415,8 @@ class WC_GZD_Product {
 	 */
 	public function get_shipping_costs_html() {
 		
-		if ( ( $this->is_virtual() && get_option( 'woocommerce_gzd_display_shipping_costs_virtual' ) != 'yes' ) )
-			return apply_filters( 'woocommerce_gzd_virtual_shipping_text', '', $this );
+		if ( apply_filters( 'woocommerce_germanized_hide_shipping_costs_text', false, $this ) )
+			return apply_filters( 'woocommerce_germanized_disabled_shipping_text', '', $this );
 		
 		$find = array(
 			'{link}',

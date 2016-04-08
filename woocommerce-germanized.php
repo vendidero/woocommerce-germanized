@@ -201,6 +201,7 @@ final class WooCommerce_Germanized {
 		}
 
 		$this->units          = new WC_GZD_Units();
+		$this->price_labels   = new WC_GZD_Price_Labels();
 		$this->emails    	  = new WC_GZD_Emails();
 
 		// Init action
@@ -312,6 +313,7 @@ final class WooCommerce_Germanized {
 
 		// Abstracts
 		include_once ( 'includes/abstracts/abstract-wc-gzd-product.php' );
+		include_once ( 'includes/abstracts/abstract-wc-gzd-taxonomy.php' );
 
 		include_once ( 'includes/class-wc-gzd-wpml-helper.php' );
 		include_once ( 'includes/wc-gzd-cart-functions.php' );

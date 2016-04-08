@@ -8,6 +8,47 @@
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 /**
+ * Hide certain HTML output if activated via options
+ */
+add_filter( 'woocommerce_germanized_hide_delivery_time_text', 'woocommerce_gzd_template_maybe_hide_delivery_time', 10, 2 );
+add_filter( 'woocommerce_germanized_hide_shipping_costs_text', 'woocommerce_gzd_template_maybe_hide_shipping_costs', 10, 2 );
+
+if ( get_option( 'woocommerce_gzd_display_digital_delivery_time_text' ) !== '' )
+	add_filter( 'woocommerce_germanized_empty_delivery_time_text', 'woocommerce_gzd_template_digital_delivery_time_text', 10, 2 );
+
+add_filter( 'woocommerce_get_price_html_from_to', 'woocommerce_gzd_template_sale_price_label', 10, 4 );
+add_filter( 'woocommerce_variation_sale_price_html', 'woocommerce_gzd_template_variation_sale_price_label', 10, 2 );
+add_filter( 'woocommerce_show_variation_price', 'woocommerce_gzd_template_show_variation_price', 10, 3 );
+
+function woocommerce_gzd_template_sale_price_label( $price, $from, $to, $product ) {
+
+	if ( get_option( 'woocommerce_gzd_sale_price_listings' ) === 'yes' && ! is_product() )
+		return $price;
+
+	return wc_gzd_get_gzd_product( $product )->get_price_html_from_to( $from, $to );
+}
+
+function woocommerce_gzd_template_variation_sale_price_label( $price, $product ) {
+
+	if ( get_option( 'woocommerce_gzd_sale_price_listings' ) === 'yes' && ! is_product() )
+		return $price;
+
+	$display_regular_price = $product->get_display_price( $product->get_regular_price() );
+	$display_sale_price    = $product->get_display_price( $product->get_sale_price() );
+
+	return wc_gzd_get_gzd_product( $product )->get_price_html_from_to( $display_regular_price, $display_sale_price );
+}
+
+function woocommerce_gzd_template_show_variation_price( $show, $product, $variation ) {
+
+	if ( ( $variation->sale_price_label !== $product->sale_price_label ) || ( $variation->sale_price_regular_label !== $product->sale_price_regular_label ) )
+		return true;
+
+	return $show;
+
+}
+
+/**
  * Single Product
  */
 if ( get_option( 'woocommerce_gzd_display_product_detail_unit_price' ) == 'yes' )

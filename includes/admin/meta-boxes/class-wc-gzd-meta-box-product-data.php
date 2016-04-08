@@ -22,11 +22,32 @@ class WC_Germanized_Meta_Box_Product_Data {
 	}
 
 	public static function output() {
+
+		global $post, $thepostid;
+		$thepostid = $post->ID;
+		$_product = wc_get_product( $thepostid );
+
+		woocommerce_wp_select( array( 'id' => '_sale_price_label', 'label' => __( 'Sale Label', 'woocommerce-germanized' ), 'options' => array_merge( array( "-1" => __( 'Select Price Label', 'woocommerce-germanized' ) ), WC_germanized()->price_labels->get_labels() ), 'desc_tip' => true, 'description' => __( 'If the product is on sale you may want to show a price label right before outputting the old price to inform the customer.', 'woocommerce-germanized' ) ) );
+		woocommerce_wp_select( array( 'id' => '_sale_price_regular_label', 'label' => __( 'Sale Regular Label', 'woocommerce-germanized' ), 'options' => array_merge( array( "-1" => __( 'Select Price Label', 'woocommerce-germanized' ) ), WC_germanized()->price_labels->get_labels() ), 'desc_tip' => true, 'description' => __( 'If the product is on sale you may want to show a price label right before outputting the new price to inform the customer.', 'woocommerce-germanized' ) ) );
 	
 		woocommerce_wp_select( array( 'id' => '_unit', 'label' => __( 'Unit', 'woocommerce-germanized' ), 'options' => array_merge( array( "-1" => __( 'Select unit', 'woocommerce-germanized' ) ), WC_germanized()->units->get_units() ), 'desc_tip' => true, 'description' => __( 'Needed if selling on a per unit basis', 'woocommerce-germanized' ) ) );
 		woocommerce_wp_text_input( array( 'id' => '_unit_product', 'label' => __( 'Product Units', 'woocommerce-germanized' ), 'data_type' => 'decimal', 'desc_tip' => true, 'description' => __( 'Number of units included per default product price. Example: 1000 ml.', 'woocommerce-germanized' ) ) );
 		woocommerce_wp_text_input( array( 'id' => '_unit_base', 'label' => __( 'Base Price Units', 'woocommerce-germanized' ), 'data_type' => 'decimal', 'desc_tip' => true, 'description' => __( 'Base price units. Example base price: 0,99 € / 100 ml. Insert 100 as base price unit amount.', 'woocommerce-germanized' ) ) );
-		
+
+		if ( $_product->is_virtual() ) {
+
+			// Show delivery time selection fallback if is virtual but delivery time should be visible on product
+			$types = get_option( 'woocommerce_gzd_display_delivery_time_hidden_types', array() );
+
+			if ( ! in_array( 'virtual', $types ) ) {
+
+				// Remove default delivery time selection - otherwise input would exist 2 times
+				remove_action( 'woocommerce_product_options_shipping', array( __CLASS__, 'output_shipping' ), 10 );
+				self::output_shipping();
+				
+			}
+		}
+
 		echo '<div class="show_if_simple show_if_external">';
 
 		woocommerce_wp_checkbox( array( 'id' => '_unit_price_auto', 'label' => __( 'Calculation', 'woocommerce-germanized' ), 'description' => '<span class="wc-gzd-premium-desc">' . __( 'Calculate base prices automatically.', 'woocommerce-germanized' ) . '</span> <a href="https://vendidero.de/woocommerce-germanized#buy" target="_blank" class="wc-gzd-pro">pro</a>' ) );
@@ -41,9 +62,6 @@ class WC_Germanized_Meta_Box_Product_Data {
 	public static function output_shipping() {
 
 		global $post, $thepostid;
-		
-		if ( version_compare( WC()->version, '2.3', '<' ) )
-			return;
 
 		$thepostid = $post->ID;
 		$_product = wc_get_product( $thepostid );
@@ -76,6 +94,8 @@ class WC_Germanized_Meta_Box_Product_Data {
 			'_unit_price_auto' => '',
 			'_unit_price_regular' => '',
 			'_unit_price_sale' => '',
+			'_sale_price_label' => '',
+			'_sale_price_regular_label' => '',
 			'_mini_desc' => '',
 			'delivery_time' => '',
 			'_sale_price_dates_from' => '',
@@ -104,6 +124,21 @@ class WC_Germanized_Meta_Box_Product_Data {
 				delete_post_meta( $post_id, '_unit' );
 			else
 				update_post_meta( $post_id, '_unit', sanitize_text_field( $data['_unit'] ) );
+
+		}
+
+		$sale_price_labels = array( '_sale_price_label', '_sale_price_regular_label' );
+
+		foreach ( $sale_price_labels as $label ) {
+
+			if ( isset( $data[$label] ) ) {
+
+				if ( empty( $data[$label] ) || in_array( $data[$label], array( 'none', '-1' ) ) )
+					delete_post_meta( $post_id, $label );
+				else
+					update_post_meta( $post_id, $label, sanitize_text_field( $data[$label] ) );
+
+			}
 
 		}
 		

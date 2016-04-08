@@ -34,14 +34,16 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 		$variation_data	  = array();
 
 		$variation_fields = array(
-			'_unit' 				=> '',
-			'_unit_base' 			=> '',
-			'_unit_product' 		=> '',
-			'_unit_price_auto' 		=> '',
-			'_unit_price_regular' 	=> '',
-			'_unit_price_auto' 		=> '',
-			'_unit_price_sale' 		=> '',
-			'_mini_desc' 			=> '',
+			'_unit' 					=> '',
+			'_unit_base' 				=> '',
+			'_unit_product' 			=> '',
+			'_unit_price_auto' 			=> '',
+			'_unit_price_regular' 		=> '',
+			'_unit_price_auto' 			=> '',
+			'_unit_price_sale' 			=> '',
+			'_sale_price_label'			=> '',
+			'_sale_price_regular_label' => '',
+			'_mini_desc' 				=> '',
 		);
 
 		foreach ( $variation_fields as $field => $value ) {
@@ -54,6 +56,30 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 			$delivery_time = $delivery_time[0];
 
 		?>
+
+		<div class="variable_pricing_labels">
+
+			<p class="form-row form-row-first">
+				<label><?php _e( 'Sale Label', 'woocommerce-germanized' ); ?>:</label>
+				<select name="variable_sale_price_label[<?php echo $loop; ?>]">
+					<option value="" <?php selected( is_null( ! empty( wc_gzd_get_gzd_product( $_product )->sale_price_label ) ? wc_gzd_get_gzd_product( $_product )->sale_price_label : null ), true ); ?>><?php _e( 'Same as Parent', 'woocommerce-germanized' ); ?></option>
+					<?php foreach ( WC_germanized()->price_labels->get_labels() as $key => $value ) : ?>
+						<option value="<?php echo esc_attr( $key ); ?>" <?php selected( $key === ( ! empty( wc_gzd_get_gzd_product( $_product )->sale_price_label ) ? wc_gzd_get_gzd_product( $_product )->sale_price_label : '' ) , true ); ?>><?php echo esc_html( $value ); ?></option>
+					<?php endforeach; ?>
+				</select>
+			</p>
+
+			<p class="form-row form-row-last">
+				<label><?php _e( 'Sale Regular Label', 'woocommerce-germanized' ); ?>:</label>
+				<select name="variable_sale_price_regular_label[<?php echo $loop; ?>]">
+					<option value="" <?php selected( is_null( ! empty( wc_gzd_get_gzd_product( $_product )->sale_price_regular_label ) ? wc_gzd_get_gzd_product( $_product )->sale_price_regular_label : null ), true ); ?>><?php _e( 'Same as Parent', 'woocommerce-germanized' ); ?></option>
+					<?php foreach ( WC_germanized()->price_labels->get_labels() as $key => $value ) : ?>
+						<option value="<?php echo esc_attr( $key ); ?>" <?php selected( $key === ( ! empty( wc_gzd_get_gzd_product( $_product )->sale_price_regular_label ) ? wc_gzd_get_gzd_product( $_product )->sale_price_regular_label : '' ) , true ); ?>><?php echo esc_html( $value ); ?></option>
+					<?php endforeach; ?>
+				</select>
+			</p>
+
+		</div>
 
 		<div class="variable_pricing_unit">
 			<p class="form-row form-row-first">
@@ -99,6 +125,8 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 			'_unit_product' => '',
 			'_unit_price_auto' => '',
 			'_unit_price_regular' => '',
+			'_sale_price_label' => '',
+			'_sale_price_regular_label' => '',
 			'_unit_price_sale' => '',
 			'_mini_desc' => '',
 			'delivery_time' => '',

@@ -84,6 +84,36 @@ class WC_GZD_Post_Types {
 				'rewrite'           	=> false,
 			) )
 		);
+		// Price labels
+		register_taxonomy( 'product_price_label',
+			apply_filters( 'woocommerce_germanized_taxonomy_objects_product_price_label', array( 'product' ) ),
+			apply_filters( 'woocommerce_germanized_taxonomy_args_product_price_label', array(
+				'hierarchical'          => false,
+				'update_count_callback' => '_wc_term_recount',
+				'label'                 => __( 'Price Labels', 'woocommerce-germanized' ),
+				'labels' => array(
+						'name'              => __( 'Price Labels', 'woocommerce-germanized' ),
+						'singular_name'     => __( 'Price Label', 'woocommerce-germanized' ),
+						'menu_name'         => _x( 'Price Labels', 'Admin menu name', 'woocommerce-germanized' ),
+						'search_items'      => __( 'Search Price Labels', 'woocommerce-germanized' ),
+						'all_items'         => __( 'All Price Labels', 'woocommerce-germanized' ),
+						'edit_item'         => __( 'Edit Price Label', 'woocommerce-germanized' ),
+						'update_item'       => __( 'Update Price Label', 'woocommerce-germanized' ),
+						'add_new_item'      => __( 'Add New Price Label', 'woocommerce-germanized' ),
+						'new_item_name'     => __( 'New Price Label Name', 'woocommerce-germanized' )
+					),
+				'show_ui'				=> true,
+				'query_var'             => true,
+				'public'				=> false,
+				'capabilities'          => array(
+					'manage_terms' => 'manage_product_terms',
+					'edit_terms'   => 'edit_product_terms',
+					'delete_terms' => 'delete_product_terms',
+					'assign_terms' => 'assign_product_terms',
+				),
+				'rewrite'           	=> false,
+			) )
+		);
 	}
 }
 

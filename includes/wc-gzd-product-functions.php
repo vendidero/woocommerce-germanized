@@ -61,19 +61,31 @@ function wc_gzd_get_small_business_product_notice() {
 function wc_gzd_is_revocation_exempt( $product ) {
 	
 	$digital_types = apply_filters( 'woocommerce_gzd_digital_product_types', get_option( 'woocommerce_gzd_checkout_legal_digital_types', array( 'downloadable' ) ) );
+	
 	if ( empty( $digital_types ) )
 		return false;
+	
 	else if ( ! is_array( $digital_types ) )
 		$digital_types = array( $digital_types );
+
+	foreach ( $digital_types as $digital_type ) {
+
+		if ( wc_gzd_product_matches_extended_type( $digital_type, $product ) )
+			return true;
+	}
+
+	if ( apply_filters( 'woocommerce_gzd_product_is_revocation_exception', false, $product ) )
+		return true;
+
+	return false;
+}
+
+function wc_gzd_product_matches_extended_type( $type, $product ) {
 	
-	if ( in_array( 'downloadable', $digital_types ) && $product->is_downloadable() )
-		return true;
-	else if ( in_array( 'virtual', $digital_types ) && $product->is_virtual() )
-		return true;
-	else if ( in_array( $product->get_type(), $digital_types ) )
-		return true;
-	else if ( apply_filters( 'woocommerce_gzd_product_is_revocation_exception', false, $product ) )
-		return true;
+	if ( $type === $product->get_type() )
+		return true; 
+	else if ( is_callable( array( $product, 'is_' . $type ) ) )
+		return ( call_user_func_array( array( $product, 'is_' . $type ), array() ) === true ? true : false );
 
 	return false;
 }

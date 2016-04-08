@@ -3,22 +3,22 @@ if ( ! defined( 'ABSPATH' ) )
 	exit;
 
 /**
- * The Units Class stores units/measurements data.
+ * The Price Labels Class stores labels to be added as price suffixes.
  *
- * @class WC_Germanized_Units
+ * @class WC_Germanized_Price_Labels
  * @version  1.0.0
  * @author   Vendidero
  */
-class WC_GZD_Units extends WC_GZD_Taxonomy {
+class WC_GZD_Price_Labels extends WC_GZD_Taxonomy {
 
 	/**
 	 * Adds the units from i18n template
 	 */
 	public function __construct() {
-		parent::__construct( 'product_unit' );
+		parent::__construct( 'product_price_label' );
 	}
 
-	public function get_unit( $key, $by = 'slug' ) {
+	public function get_label( $key, $by = 'slug' ) {
 		return parent::get_term( $key, $by );
 	}
 
@@ -27,7 +27,7 @@ class WC_GZD_Units extends WC_GZD_Taxonomy {
 	 *
 	 * @return mixed units as array
 	 */
-	public function get_units() {
+	public function get_labels() {
 		return $this->get_terms();
 	}
 }

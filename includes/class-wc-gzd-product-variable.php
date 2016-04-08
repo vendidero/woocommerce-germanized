@@ -91,7 +91,7 @@ class WC_GZD_Product_Variable extends WC_GZD_Product {
 				$min_regular_price = current( $prices['regular_price'] );
 				$max_regular_price = end( $prices['regular_price'] );
 				$regular_price     = $min_regular_price !== $max_regular_price ? sprintf( _x( '%1$s&ndash;%2$s', 'Price range: from-to', 'woocommerce-germanized' ), wc_price( $min_regular_price ), wc_price( $max_regular_price ) ) : wc_price( $min_regular_price );
-				$price        	   = apply_filters( 'woocommerce_gzd_variable_unit_sale_price_html', $this->get_price_html_from_to( $regular_price, $price ), $this );
+				$price        	   = apply_filters( 'woocommerce_gzd_variable_unit_sale_price_html', $this->get_price_html_from_to( $regular_price, $price, false ), $this );
 			} else {
 				$price 	   		   = apply_filters( 'woocommerce_gzd_variable_unit_price_html', $price, $this );
 			}
