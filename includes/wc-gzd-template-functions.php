@@ -497,4 +497,44 @@ if ( ! function_exists( 'woocommerce_gzd_template_digital_delivery_time_text' ) 
 
 }
 
+if ( ! function_exists( 'woocommerce_gzd_template_sale_price_label' ) ) {
+
+	function woocommerce_gzd_template_sale_price_label( $price, $from, $to, $product ) {
+
+		if ( get_option( 'woocommerce_gzd_sale_price_listings' ) === 'yes' && ! is_product() )
+			return $price;
+
+		return wc_gzd_get_gzd_product( $product )->get_price_html_from_to( $from, $to );
+	}
+
+}
+
+if ( ! function_exists( 'woocommerce_gzd_template_variation_sale_price_label' ) ) {
+
+	function woocommerce_gzd_template_variation_sale_price_label( $price, $product ) {
+
+		if ( get_option( 'woocommerce_gzd_sale_price_listings' ) === 'yes' && ! is_product() )
+			return $price;
+
+		$display_regular_price = $product->get_display_price( $product->get_regular_price() );
+		$display_sale_price    = $product->get_display_price( $product->get_sale_price() );
+
+		return wc_gzd_get_gzd_product( $product )->get_price_html_from_to( $display_regular_price, $display_sale_price );
+	}
+
+}
+
+if ( ! function_exists( 'woocommerce_gzd_template_show_variation_price' ) ) {
+
+	function woocommerce_gzd_template_show_variation_price( $show, $product, $variation ) {
+
+		if ( ( $variation->sale_price_label !== $product->sale_price_label ) || ( $variation->sale_price_regular_label !== $product->sale_price_regular_label ) )
+			return true;
+
+		return $show;
+
+	}
+
+}
+
 ?>

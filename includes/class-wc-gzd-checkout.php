@@ -72,21 +72,9 @@ class WC_GZD_Checkout {
 		return $rates;
 	}
 
-	
-
-	public function get_order_payment_url( $order_id ) {
-		
-		$order = wc_get_order( $order_id );
-		
-		if ( $order->order_payment_info )
-			return $order->order_payment_info;
-		
-		return false;
-	}
-
 	public function add_payment_link( $order_id ) {
 
-		if ( get_option( 'woocommerce_gzd_order_pay_now_button' ) == 'no' )
+		if ( get_option( 'woocommerce_gzd_order_pay_now_button' ) === 'no' )
 			return false;
 		
 		$order = wc_get_order( $order_id );
@@ -94,8 +82,7 @@ class WC_GZD_Checkout {
 		if ( ! $order->needs_payment() )
 			return;
 		
-		if ( $url = $this->get_order_payment_url( $order_id ) )
-			wc_get_template( 'order/order-pay-now-button.php', array( 'url' => $url, 'order_id' => $order_id ) );
+		wc_get_template( 'order/order-pay-now-button.php', array( 'url' => $order->get_checkout_payment_url( true ), 'order_id' => $order_id ) );
 	}
 
 	public function disallow_user_order_cancellation( $allcaps, $caps, $args ) {

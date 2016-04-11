@@ -674,11 +674,7 @@ final class WooCommerce_Germanized {
 	public function send_order_confirmation_mails( $result, $order ) {
 		
 		if ( ! is_object( $order ) )
-			$order = wc_get_order( $order );
-		
-		// Save payment link
-		if ( isset( $result[ 'redirect' ] ) && $result[ 'redirect' ] != $order->get_checkout_order_received_url() )
-			update_post_meta( $order->id, '_order_payment_info', $result[ 'redirect' ] );		
+			$order = wc_get_order( $order );	
 
 		do_action( 'woocommerce_germanized_before_order_confirmation', $order->id );
 
