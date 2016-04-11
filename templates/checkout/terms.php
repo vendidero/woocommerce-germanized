@@ -12,6 +12,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 ?>
 
+<?php if ( apply_filters( 'woocommerce_germanized_checkout_show_terms', true ) ) : ?>
+
 <p class="form-row legal terms wc-terms-and-conditions">
 	
 	<?php if ( get_option( 'woocommerce_gzd_display_checkout_legal_no_checkbox' ) == 'no' ) : ?>
@@ -23,3 +25,5 @@ if ( ! defined( 'ABSPATH' ) ) {
 	</label>
 	
 </p>
+
+<?php endif; ?>

@@ -60,6 +60,40 @@ class WC_GZD_Checkout {
 		// Free Shipping auto select
 		if ( get_option( 'woocommerce_gzd_display_checkout_free_shipping_select' ) == 'yes' )
 			add_filter( 'woocommerce_package_rates', array( $this, 'free_shipping_auto_select' ) );
+
+		// Pay for order
+		add_action( 'wp', array( $this, 'force_pay_order_redirect' ), 15 );
+	}
+
+	public function force_pay_order_redirect() {
+
+		global $wp;
+
+		if ( is_wc_endpoint_url( 'order-pay' ) && isset( $_GET['force_pay_order'] ) ) {
+			
+			// Manipulate $_POST
+			$order_key  = $_GET['key'];
+			$order_id = absint( $wp->query_vars[ 'order-pay' ] );
+			$order = wc_get_order( $order_id );
+
+			if ( ! $order || $order->order_key != $order_key )
+				return;
+
+			// Hide terms checkbox
+			add_filter( 'woocommerce_germanized_checkout_show_terms', array( $this, 'disable_terms_order_pay' ) );
+
+			// Set $_POST to disable double payment method selection -> redirect by WC_Form_Handler::pay_action()
+			$_POST['woocommerce_pay'] = 1;
+			$_POST['_wpnonce'] = wp_create_nonce( 'woocommerce-pay' );
+			$_POST['terms'] = 1;
+			$_POST['payment_method'] = $order->payment_method;
+
+		}
+
+	}
+
+	public function disable_terms_order_pay( $show ) {
+		return false;
 	}
 
 	public function free_shipping_auto_select( $rates ) {
@@ -82,7 +116,7 @@ class WC_GZD_Checkout {
 		if ( ! $order->needs_payment() )
 			return;
 		
-		wc_get_template( 'order/order-pay-now-button.php', array( 'url' => $order->get_checkout_payment_url( true ), 'order_id' => $order_id ) );
+		wc_get_template( 'order/order-pay-now-button.php', array( 'url' => add_query_arg( array( 'force_pay_order' => true ), $order->get_checkout_payment_url() ), 'order_id' => $order_id ) );
 	}
 
 	public function disallow_user_order_cancellation( $allcaps, $caps, $args ) {
