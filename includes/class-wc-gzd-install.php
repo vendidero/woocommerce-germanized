@@ -130,6 +130,7 @@ class WC_GZD_Install {
 
 		self::create_cron_jobs();
 		self::create_units();
+		self::create_labels();
 
 		// Virtual Tax Classes
 		$tax_classes = array_filter( array_map( 'trim', explode( "\n", get_option('woocommerce_tax_classes' ) ) ) );
@@ -301,6 +302,14 @@ class WC_GZD_Install {
 		if ( ! empty( $units ) ) {
 			foreach ( $units as $slug => $unit )
 				wp_insert_term( $unit, 'product_unit', array( 'slug' => $slug ) );
+		}
+	}
+
+	private static function create_labels() {
+		$labels = include_once( WC_Germanized()->plugin_path() . '/i18n/labels.php' );
+		if ( ! empty( $labels ) ) {
+			foreach ( $labels as $slug => $unit )
+				wp_insert_term( $unit, 'product_price_label', array( 'slug' => $slug ) );
 		}
 	}
 
