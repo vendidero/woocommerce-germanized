@@ -121,16 +121,12 @@ class WC_GZD_Admin_Welcome {
 			<p class="woocommerce-actions wc-gzd-actions">
 				<a href="<?php echo admin_url('admin.php?page=wc-settings&tab=germanized'); ?>" class="button button-primary">Einstellungen</a>
 				<a href="https://vendidero.de/woocommerce-germanized#buy" target="_blank" class="button button-primary">Upgrade zur Pro Version</a>
-				<span class="wc-gzd-fb">
-					<iframe src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Fvendidero.de%2Fwoocommerce-germanized&amp;width&amp;layout=button&amp;action=recommend&amp;show_faces=false&amp;share=false&amp;height=20" scrolling="no" frameborder="0" style="border:none; overflow:hidden; height:20px;" allowTransparency="true"></iframe>
-				</span>
 			</p>
 			<div class="changelog new-feature">
-				<h3>Link auf EU-Online-Schlichtungs-Plattform ab 9.1.2016</h3>
-				<p>Viele Shop-Betreiber haben sicherlich schon mitbekommen, dass ab dem 9.1.2016 ein Link auf die von der EU in Kürze bereitgestellte Online-Schlichtungsplattform "leicht zugänglich" platziert werden muss.</p>
-				<p>Basierend auf dem <a href="http://shop.trustedshops.com/de/rechtstipps/jetzt-handeln-link-auf-eu-online-schlichtungs-plattform-ab-9.1.2016" target="_blank">Artikel von Trusted Shops</a>, fügt Germanized in das Impressum (insofern in den Einstellungen hinterlegt) automatisch den Shortcode [gzd_complaints] ein, der den von Trusted Shops empfohlenen Text platziert.
-				Der Text kann in den Einstellungen angepasst werden.</p>
-				<p>In den <a href="<?php echo admin_url( 'admin.php?page=wc-settings&tab=germanized&section' ); ?>">Einstellungen</a> kannst du auch prüfen, ob der Shortcode korrekt in deinem Impressum hinterlegt wurde.</p>
+				<h3>Bessere Grundpreise für variable Produkte</h3>
+				<p>Mit Version 1.6 führen wir eine bessere Behandlung von Grundpreisen für variable Produkte ein. Optional können nun analog zu den Von-Bis-Preisen für variable Produkte auch die Grundpreise in gleicher Form angezeigt werden.</p>
+				<p>Weiterhin muss von nun an die Einheit nur noch für das variable Produkt und nicht mehr für alle Varianten einzeln ausgewählt werden. Ähnlich verhält es sich mit den Produkt- und Grundpreiseinheiten. Diese können für das variable Produkt hinterlegt und optional 
+				für Varianten angepasst werden.</p>
 			</div>
 			<div class="changelog vendipro new-feature">
 				<h3>Neu: Rechtliche Hinweistexte als PDF-Anhang <span class="wc-gzd-pro">pro</span></h3>
@@ -154,7 +150,7 @@ class WC_GZD_Admin_Welcome {
 					</div>
 					<div class="vendipro-buttons">
 						<a href="https://vendidero.de/woocommerce-germanized#pro" target="_blank" class="button button-primary wc-gzd-button">Pro Version entdecken</a>
-						<p class="price smaller">ab 69,95 € inkl. Mwst. - inkl. 1 Jahr Updates & Premium Support!</p>
+						<p class="price smaller">ab 69,95 € inkl. MwSt. - inkl. 1 Jahr Updates & Premium Support!</p>
 					</div>
 				</div>
 			</div>
@@ -189,7 +185,7 @@ class WC_GZD_Admin_Welcome {
 					</div>
 					<div class="vendipro-buttons">
 						<a href="https://vendidero.de/woocommerce-germanized#pro" target="_blank" class="button button-primary wc-gzd-button">Pro Version entdecken</a>
-						<p class="price smaller">ab 69,95 € inkl. Mwst. - inkl. 1 Jahr Updates & Premium Support!</p>
+						<p class="price smaller">ab 69,95 € inkl. MwSt. - inkl. 1 Jahr Updates & Premium Support!</p>
 					</div>
 				</div>
 			</div>
@@ -221,24 +217,31 @@ class WC_GZD_Admin_Welcome {
 					</div>
 					<div class="vendipro-buttons">
 						<a href="https://vendidero.de/vendipro" target="_blank" class="button button-primary wc-gzd-button">mehr erfahren</a>
-						<p class="price smaller">ab 49,95 € inkl. Mwst. - inkl. 1 Jahr Updates & Premium Support!</p>
+						<p class="price smaller">ab 49,95 € inkl. MwSt. - inkl. 1 Jahr Updates & Premium Support!</p>
 					</div>
 				</div>
 			</div>
 			<div class="changelog">
-				<h3>Neu in WooCommerce Germanized 1.5</h3>
+				<h3>Neu in WooCommerce Germanized 1.6</h3>
 				<div class="wc-feature feature-section col three-col" style="margin-bottom: -30px">
 					<div>
-						<h4><i class="fa fa-line-chart"></i> Verbesserte Performance</h4>
+						<h4><i class="fa fa-tag"></i> Preishinweise</h4>
 						<p>
-							Wir haben für dich weiter an der Performance des Plugins gearbeitet und konnte die Ladezeiten um 50% reduzieren.
+							Nun kannst du für reduzierte Preise optional einen Preishinweis für den Streichpreis einbetten. <a target="_blank" href="<?php echo admin_url( 'edit-tags.php?taxonomy=product_price_label&post_type=product' ); ?>">Hier</a> kannst du deine Preishinweise verwalten (z.B. UVP oder Unser alter Preis).
 						</p>
 					</div>
 					<div>
-						<h4><i class="fa fa-database"></i> Einstellungen importieren</h4>
+						<h4><i class="fa fa-code"></i> SEPA XML Export</h4>
 						<p>
-							Solltest du ein anderes Plugin für den deutschen Markt installiert haben, versuchen wir diese Einstellungen & Optionen zu übernehmen.
-							Dieses Feature ist allerdings nur nach der Erstinstallation des Plugins verfügbar.
+							Von nun an kannst du deine SEPA Mandate (bei Nutzung der SEPA Zahlungsmethode) einfach im XML Format (entweder einzeln oder einen bestimmten Zeitraum) exportieren.
+							<a href="<?php echo admin_url( 'export.php' ); ?>" target="_blank">Hier</a> geht's zum Export.
+						</p>
+					</div>
+					<div class="last-feature">
+						<h4><i class="fa fa-users"></i> Double Opt In</h4>
+						<p>
+							Der Double Opt In für Benutzerkonten war darauf limitiert, dass inaktive Nutzer nach einer gewissen Zeit gelöscht werden aber den Account trotzdem nutzen können.
+							Nun kann optional der Checkout und Login für inaktive Benutzer deaktiviert werden.
 						</p>
 					</div>
 				</div>

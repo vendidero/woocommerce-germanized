@@ -1,72 +1,75 @@
 === WooCommerce Germanized ===
 Contributors: vendidero
 Tags: woocommerce, german market, german, germany, deutsch, deutschland, de, de_DE, shop, commerce, e-commerce, ecommerce, woothemes, sepa, invoice
-Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=info@vendidero.de&item_name=Donation+for+WooCommerce+Germanized
 Requires at least: 3.8
-Tested up to: 4.4
-Stable tag: 1.5.1
+Tested up to: 4.5
+Stable tag: 1.6.0
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
-Extends WooCommerce to become a legally compliant shop for german market. WooCommerce für den deutschen Markt - vorzertifiziert durch Trusted Shops.
+Extends WooCommerce to become a legally compliant Shop for German Market. Must Have for every German Shop Owner. Certified by Trusted Shops.
 
 == Description ==
 
-WooCommerce Germanized erweitert WooCommerce um alle technisch relevanten Funktionen für den Betrieb eines rechtssicheren Online-Shops mit WooCommerce in Deutschland. Das Ziel des Plugins ist es, WooCommerce optimal an die Bedürfnisse des deutschen Marktes anzupassen. WC Germanized wird von einem WordPress-erfahrenen, deutschen Team aktiv (weiter-)entwickelt - bei Updates von WooCommerce ziehen wir innerhalb kürzester Zeit mit. 
+*This description is available in [German](https://de.wordpress.org/plugins/woocommerce-germanized/ "WooCommerce Germanized")*
 
-Nutzer von [WooCommerce Germanized Pro](https://vendidero.de/woocommerce-germanized "WooCommerce optimiert für den deutschen Markt") profitieren von vielen weiterführenden Features z.B. PDF-Rechnungen, Mustertexte-Generator für AGB und Widerrufsbelehrung, Premium Support und vielem mehr!
+WooCommerce Germanized extends WooCommerce to technically match german legal conditions. The objective of this plugin is to perfectly adapt WooCommerce to meet the special requirements of german market. WC Germanized is being continually developed by an experienced german team - on updates of WooCommerce we will respond quickly by offering compatibility. 
 
-Damit WooCommerce Germanized noch schicker aussieht haben wir ein komplett auf den deutschen Markt abgestimmtes [WooCommerce Theme](https://vendidero.de/vendipro "WooCommerce Theme für den deutschen Markt"): VendiPro.
-Bei der Entwicklung von VendiPro haben wir besonders auf die Einhaltung deutscher Shop-Design-Prinzipien Wert gelegt. WooCommerce Germanized + VendiPro - zusammen die optimale Wahl für deinen deutschen WooCommerce Shop.
+Users of [WooCommerce Germanized Pro](https://vendidero.de/woocommerce-germanized "WooCommerce optimized for German Market") benefit from additional features such as PDF Invoices, Model Text Generators for terms and revocation, Premium Support and more!
 
-= WooCommerce rechtssicher für den deutschen Markt =
-WooCommerce Germanized unterstützt eine Vielzahl typisch deutscher Funktionalitäten: Lieferzeiten, Grundpreise, Versandkosten- und Mehrwertsteuer-Hinweise, rechtlich relevante Hinweisseiten (z.B. AGB, Widerrufsbelehrung usw.) - auch in E-Mails, Kleinuternehmerregelung, Gebühren für Zahlungsmethoden und noch vieles mehr.
-Zudem haben wir einige Anpassungen am Bezahlvorgang vorgenommen, damit dein WooCommerce Shop den rechtlichen Ansprüchen eines deutschen Online-Shops entspricht. Eine ausführliche Liste der Funktionalitäten sowie weitere Informationen zu WooCommerce Germanized findest du unter vendidero.de.
+To fit german requirements even better you may have a look at our [WooCommerce Theme](https://vendidero.de/vendipro "WooCommerce Theme for German Market") specifically developed for the german market: VendiPro.
+While developing VendiPro we have specifically considered german design principles. WooCommerce Germanized + VendiPro are a perfect combination for your german WooCommerce Shop.
 
-* Lieferzeiten
-* Kleinunternehmerregelung
-* Hinweise für Mehrwertsteuer, Versandkosten
-* Einheits- und Grundpreise
-* Warenkorb-Kurzbeschreibungen
-* Hinweise für AGB, Widerrufsbelehrung
-* Kompatibilität zur Button-Lösung
-* Double-Opt-In für Benutzerkonten
-* Steuern für Versandkosten und Gebühren
-* AGB, Widerrufsbelehrung etc. in ausgewählten E-Mail-Templates
-* Zahlungsart: SEPA Lastschriftverfahren/Bankeinzug
-* Zahlungsart: Kauf auf Rechnung
-* Zahlungsgebühren festlegen
-* Online Widerrufsformular per Shortcode
+= Legal Certainty for German Market =
+WooCommerce Germanized supports typical german shop functionality: Delivery Times, Base Prices, Shipping Costs and Tax Notices, legally relevant Pages (e.g. Terms, Revocation Page etc.) - even in Emails, Small Business Regulation, Fees for Payment Methods and much more.
+Furthermore we have customized the checkout to make your WooCommerce Shop meet the german law requirments.
 
-= Trusted Shops vorzertifiziert =
-WC Germanized wurde von Trusted Shops vorzertifiziert und bietet damit die optimalen technischen Voraussetzungen für einen rechtssicheren Online-Shop mit WooCommerce in Deutschland.
-Trusted Shops zertifiziert Online-Shops nach sorgfältig ausgewählten Qualitätskriterien und hat das WooCommerce Plugin genau unter die Lupe genommen.
-Selbstverständlich können Trusted Shops Kunden mit nur wenigen Einstellungen das Gütesiegel und die Trusted Shops Produkte mit WooCommerce Germanized nutzen.
+* Delivery Times
+* Small Business Regulation
+* Notices regarding Shipping Costs and Taxes
+* Base Prices
+* Short Cart Product Descriptions 
+* Notices regarding Terms and Revocation
+* Compatibility with Button Solution
+* Double Opt In for Customers
+* Tax Calculation for Shipping Costs and Fees
+* Terms, Revocation etc. in certain Email Templates
+* Payment Gateway: SEPA direct debit
+* Payment Gateway: Pay by Invoice
+* Payment Gateway Fees
+* Online Revocation Form
+* Sale Price Labels
 
-= Sauber implementiert =
-Bei der Entwicklung von WC Germanized haben wir besonderes Augenmerk auf die nahtlose Integration in WooCommerce gelegt.
-Die meisten Änderungen erfolgen über Hooks & Filter - nur im äußersten Notfall wird ein Template direkt überschrieben.
+= Certified by Trusted Shops =
+WooCommerce Germanized has been approved by Trusted Shops and therefor offers best technical conditions to operate a legally certain Online Shop in Germany.
+Trusted Shops certifies Shops after selected and weighted criteria and has carefully examined this WooCommerce Plugin.
+Of course Trusted Shops customers may embed their quality seals and further Trusted Shops Products by adapting just a few options within WooCommerce Germanized.
 
-= SEPA Lastschrift & Kauf auf Rechnung für WooCommerce = 
-Mit WooCommerce Germanized 1.4 kannst du deinen Kunden ganz einfach den Kauf per Bankeinzug und per Rechnung ermöglichen.
-Beim SEPA Lastschriftverfahren werden entsprechende Felder für IBAN, BIC und Kontoinhaber zum Checkout hinzugefügt und überprüft.
-Zudem kann der Kunde eine Vorschau des Mandates per Link abrufen und vor dem Kauf einsehen. Den Kauf auf Rechnung kannst du auf Wunsch
-in den Einstellungen so einschränken, dass von dieser Zahlungsart nur Bestandskunden Gebrauch machen können.
+= Properly Implemented =
+While developing WC Germanized we have specifically considered clean integration within WooCommerce and WordPress by adapting core functionality.
+Most of the changes are made by using Hooks & Filters so that Germanized is compatible to almost every Theme.
 
-= Pro: WooCommerce PDF Rechnungen & Lieferscheine = 
-Als Nutzer der Pro Version von WC Germanized erstellst du automatisiert oder manuell PDF-Rechnungen und Lieferscheine zu deinen Bestellungen. Dabei hast du volle Kontrolle über das Layout deiner PDF-Dokumente.
-Lade beispielsweise einfach ein PDF-Template hoch, das als "Hintergrund" für deine Rechnungen fungiert. Mit wenigen Klicks exportierst du deine Rechnungen (CSV, zip) für deine Buchhaltung oder deinen Steuerberater.
-Mehr Informationen? [PDF Rechnungen für WooCommerce](https://vendidero.de/woocommerce-germanized#accounting "WooCommerce PDF Rechnungen")
+= SEPA Direct Debit & Pay By Invoice for WooCommerce = 
+With WooCommerce Germanized 1.4 you may offer Pay by Direct Debit and Pay By Invoice to your customers.
+Using SEPA Direct Debit checkout fields for IBAN, BIC and Account Holder will be automatically added and verified during checkout.
+Furthermore the customer may preview his SEPA Mandate before submitting the order. Starting with 1.6 shop managers may easily export
+SEPA Mandates in XML format to import mandates to their house bank our banking software. 
+Pay By Invoice may be optionally restricted to regular customers only.
 
-Neu: Rechtliche Hinweisseiten (AGB, Widerrufsbelehrung) können nun auch als PDF-Anhang an die Transaktionsmails angehängt werden.
+= Pro: WooCommerce PDF Invoices & Packing Slips = 
+As a Pro User of WC Germanized you may automatically or manually create PDF Invoices and Packing Slips for your orders. Doing so you may customize the PDF layout to meet your Corporate Design.
+You may upload your head of a letter which will be used as background for your PDF's. With only a few clicks you may export (CSV, zip) invoices for your tax consultant or accountant.
+Learn more about [PDF Invoices for WooCommerce](https://vendidero.de/woocommerce-germanized#accounting "WooCommerce PDF Invoices")
 
-= Steuern für Versandkosten und Gebühren =
-Das WooCommerce Plugin für den deutschen Markt unterstützt mit der aktuellen Version die komplizierte Besteuerung von Versandkosten bei "gemischten" Warenkörben (d.h. es befinden sich unterschiedliche MwSt.-Sätze im Warenkorb).
-In diesem Fall muss die Mehrwertsteuer der Versandkosten anteilig (basierend auf den Anteil der jeweiligen MwSt.-Rate an der Gesamtbestellung), anhand der unterschiedlichen MwSt.-Raten berechnet werden.
+New: Attach legally relevant Pages (e.g. Terms & Conditions) as PDF documents to specific WooCommerce Emails.
+
+= Tax Calculation for Shipping Costs and Fees =
+WooCommerce Germanized supports complicated calculation of shipping/fee taxes for "mixed" shopping carts (that is: cart contains multiple tax rates e.g. 7% and 19%).
+In that case tax has to be calculated proportional (based on tax rate share in comparison to total amount).
 
 = Pro: Theme Support =
-Für Nutzer der Pro-Version arbeiten wir kontinuierlich am Support weiterer Themes für WooCommerce Germanized. Dabei stellen wir sicher, dass alle WooCommerce Germanized Optionen im jeweiligen Theme sichtbar und optisch ansprechend gestaltet sind.
-Aktuell unterstützt die Pro-Version folgende Themes: 
+Professional Users benefit from specific Support of popular Themes. For those Themes we make sure that WooCommerce Germanized Options are visible and visually appealing.
+At the moment professional version supports the following Themes: 
 
 * Enfold
 * Flatsome
@@ -74,108 +77,97 @@ Aktuell unterstützt die Pro-Version folgende Themes:
 * Virtue
 
 = Pro: Premium Support =
-Kunden von WC Germanized Pro genießen einen kompetenten Ticket-Support zu Fragen rund um WC Germanized. Natürlich versuchen wir über das WordPress Support-Forum auch einen guten Support zu gewährleisten.
-Gerne übernehmen wir die von dir gewünschten Individualisierungen und Anpassungen an WordPress, WooCommerce und WC Germanized - und unterbreiten dir ein [individuelles Angebot](https://vendidero.de/individualisierung) basierend auf deinen Vorstellungen.
+Customers of WC Germanized Pro enjoy our qualified Germanized Support via Tickets. Of course we also seek to offer a good Plugin Support via WordPress Support Forums.
 
-= Double Opt-In Verfahren für WooCommerce Benutzerkonten =
-Ein Urteil des Amtsgerichts Berlin Pankow/Weißensee macht das Double Opt-In Verfahren für die Erstellung von Benutzerkonten in Online-Shops zur "Pflichtsache". In WC Germanized ist das kein Problem.
-Nach Erstellung eines Kontos wird automatisch eine Bestätigungsmail mit Bestätigungslink an den Kunden versendet. Unaktivierte Konten können nach einem bestimmten Interval automatisch gelöscht werden.
+= Double Opt In for WooCommerce =
+A new judgement of a German Court makes Shop Managers nervous about whether Double Opt In is required for Online Shops. Therefor WC Germanized offers Double Opt In Support for WooCommerce.
+After creating an account the customer receives an activation link via Email. Inactive customers may be automatically deleted after a certain amount of time.
+Starting with version 1.6 one may deactivate the checkout for inactive customers. To make this possible, registration has to be separated from the checkout - of course customers may still checkout as guests (if enabled).
 
-= Neue Umsatzsteuer-Regelung 2015 für virtuelle Produkte =
-Mit der neuesten Version unterstützt WooCommerce Germanized die neuen Umsatzsteuer-Regelungen (B2C-Geschäfte, gültig ab 01.01.2015) zum Verkauf von virtuellen Produkten in die Europäische Union.
-Dabei wird bei virtuellen Produkten der Brutto-Preis beibehalten und lediglich der Netto-Preis, je nach Herkunftsland des Dienstleistungsempfängers, angepasst. 
-Insofern du von den Regelungen betroffen sein solltest, empfehlen wir dir unbedingt mit deinem Steuerberater Rücksprache zu halten.
-
-= Pro: Zeitpunkt für den Vertragsschluss bestimmen = 
-In WooCommerce ist es standardmäßig nicht vorgesehen, den Vertragsschluss erst nach einer manuellen Prüfung einzuleiten. Im Normalfall wird der Kaufvertrag direkt mit der E-Mail "Bestätigung der Bestellung" geschlossen.
-Als Pro User kannst du optional entscheiden, ob du Bestellungen vorab manuell prüfen möchtest. Der Kunde wird dann nach der Bestellung nicht automatisch zur Bezahlschnittstelle (z.B. Paypal) weitergeleitet und erhält eine abweichende E-Mail in der auf die manuelle Prüfung aufmerksam gemacht wird.
-Anschließend kannst du in deinem WooCommerce Backend über einen Button die Bestellung nach einer Prüfung ganz einfach bestätigen.
+= Pro: Conclusion of Contract = 
+By default WooCommerce does not offer a distinction between receiving and confirming the order. WooCommerce Germanized Pro offers a feature to manually examine orders before confirming them to the customer.
+Shop managers may check order details and then manually confirm the order through a Button in the WooCommerce Backend.
 
 = eKomi Integration =
-Mit nur wenigen Klicks lässt sich eKomi als Bewertungsmanagement-Dienstleister in WooCommerce Germanized einstellen. 
-Damit kann dein Online-Shop ganz einfach von den Vorteilen des externen Dienstleisters profitieren und unabhängige Kundenbewertungen veröffentlichen.
-
-= About WooCommerce Germanized =
-WC Germanized extends WooCommerce to become a legally compliant Online-Shop for the german market. This does not replace legal advice - we do only offer technical implementations to meet german law.
-Overview of what WooCommerce Germanized offers:
-
-* small-enterprise regulation (§19 UStG)
-* shipping costs notice
-* vat notice
-* shipping time notice
-* checkout adapted to meet german law
-* buy now button description
-* trusted shops integration
-* ekomi integration
-* SEPA Payment gateway
-* Pay by Invoice gateway
-* double opt-in for customers
+Shop managers who are using eKomi as a Review Management Service may easily integrate it's features within WooCommerce. 
+Easily set up eKomi by adapting a few Settings within WooCommerce Germanized.
 
 == Installation ==
 
-= Minimale Voraussetzungen =
+= Minimal Requirments =
 
-* WordPress 3.8 oder neuer
-* WooCommerce 2.2 (neueste Version empfohlen)
-* PHP Version 5.2.4 oder neuer
-* MySQL Version 5.0 oder neuer
+* WordPress 3.8 or newer
+* WooCommerce 2.3 (newest version recommended)
+* PHP Version 5.2.4 or newer
 
-= Automatische Installation =
+= Automatic Installation =
 
-Wir empfehlen die Installation über das WordPress Backend. Dazu zuerst WooCommerce und anschließend WooCommerce Germanized installieren.
-Nach der Installation können grundlegende Einstellungen für WooCommerce und WooCommerce Germanized automatisiert vorgenommen werden. 
+We recommend installing WooCommerce Germanized through the WordPress Backend. Please install WooCommerce before installing WC Germanized.
+After the installation you may easily adapt the settings to your own needs. 
 
-= Nützliche Shortcodes =
+= Shortcodes =
 
 `[revocation_form]`
-Fügt an der jeweiligen Stelle ein Online-Widerrufsformular ein. Sowohl der Kunde als auch der Administrator erhalten eine automatische E-Mail Bestätigung.
+Inserts online revocation form. Customer and shop manager receive a confirmation by Email.
 
 `[payment_methods_info]`
-Sehr nützlich für die Zahlungsmethoden-Hinweisseite - Fügt eine Übersicht über alle aktivierten Zahlungsmethoden (samt Hinweise) ein.
+Very useful for Payment Gateway Information Page - Inserts an overview of all enabled payment gateways plus their descriptions.
 
 `[gzd_complaints]`
-Dieser Shortcode fügt einen Text ein, der auf die EU-Online-Schlichtungs-Plattform verweist - der Shortcode sollte in das Impressum eingebunden werden. [Hier](http://shop.trustedshops.com/de/rechtstipps/jetzt-handeln-link-auf-eu-online-schlichtungs-plattform-ab-9.1.2016) gibt es dazu weitere Informationen.
+Inserts a text that informs the customer about the EU Online Dispute Platform - this Shortcode should be inserted within your imprint. Find more information [here](http://shop.trustedshops.com/de/rechtstipps/jetzt-handeln-link-auf-eu-online-schlichtungs-plattform-ab-9.1.2016).
 
 `[trusted_shops_badge]`
-Falls du Trusted Shops nutzen solltest, kannst du mit diesem Shortcode das Trusted Shops Badge an beliebiger Stelle einfügen.
-Mit dem Parameter width=55 (wobei 55 für 55px Breite/Höhe steht) kannst du optional die Breite des Badges anpassen.
+If you are a Trusted Shops Customer, you may insert this Shortcode to insert the Trusted Shops Badge at your favourite place.
+With the parameter width=55 (55 means 55px width/height) you may optionally set badge's width.
 
 `[trusted_shops_rich_snippets]`
-Falls du die Bewertungsfunktion von Trusted Shops nutzen solltest, kannst du mit diesem Shortcode ganz einfach für Google optimierte Rich Snippets deines aktuellen Bewertungsstatus einfügen.
+If you are using Trusted Shop's review functionality, you may insert a Google Rich Snippet about your current shop rating.
 
 `[trusted_shops_reviews]`
-Mit diesem Shortcode fügst du eine aktuelle Trusted Shops Bewertungsgrafik an einer beliebigen Stelle ein.
+Inserts your current Trusted Shops rating as an image (provided by Trusted Shops).
 
 `[ekomi_badge]`
-Falls du eKomi nutzen solltest, kannst du mit diesem Shortcode das eKomi Badge an beliebiger Stelle einfügen.
-Mit dem Parameter width=55 (wobei 55 für 55px Breite/Höhe steht) kannst du optional die Breite des Badges anpassen.
+Inserts your eKomi badge as image.
+With the parameter width=55 (55 means 55px width/height) you may optionally set badge's width.
 
 = Updating =
 
-Vor dem Update von WooCommerce sollte unbedingt geprüft werden ob auch WooCommerce Germanized schon für die neueste Version von WooCommerce vorliegt.
-Wir bemühen uns immer schnellstmöglich auf Updates von WooCommerce zu reagieren. Anschließend kann WooCommerce Germanized ganz einfach im WordPress Backend geupdated werden.
+Before updating WooCommerce you should definitely check whether WooCommerce Germanized does already support the newest version. 
+You may of course Update WooCommerce Germanized automatically through the WordPess Backend. Please make sure to always backup (at least your database) before updating any theme or plugin.
 
 == Frequently Asked Questions ==
 
-= Wo erhalten ich Hilfe bei der Einstellung und Nutzung von WooCommerce Germanized? =
+= Where do I receive support for WooCommerce Germanized? =
 
-Wir arbeiten aktuell an einer ausführlichen Dokumentation - Zudem werden wir einige kleinere Tutorials veröffentlichen wie ihr WooCommerce Germanized
-professionell einsetzen könnt. Zusätzlich dazu bieten wir Support über die WordPress-Support Foren sowie für unsere Kunden von [WooCommerce Germanized Pro](https://vendidero.de/woocommerce-germanized "Support für WooCommerce Germanized") einen kompetenten Ticket-Support.
+You may ask your questions regarding Germanized within our free [WordPress Support Forum](https://wordpress.org/support/plugin/woocommerce-germanized).
+Professional Support via Ticket is being offered to [Professional Users](https://vendidero.de/woocommerce-germanized "Support for WooCommerce Germanized") only.
 
-= Nicht alle Einstellungen sehen in meinem Theme ansprechend aus =
+= Not every option fits my Theme =
 
-Wir können natürlich nicht gewähren, dass jedes Theme die nötigen Styles implementiert, damit jede WooCommerce Germanized Einstellung schick aussieht.
-Aus diesem Grund haben wir unser eigenes, für den deutschen Markt entwickeltes WooCommerce Theme - [VendiPro](https://vendidero.de/vendipro) - entwickelt.
+Unfortunately not every Theme does implement WooCommerce in the way it's meant to be or differs from the original structure which leads to layout and/or compatibility 
+issues. Out of that reason we have developed [VendiPro](https://vendidero.de/vendipro) which perfectly fits all Germanized Options and is optimized for German Market.
 
-= Du möchtest Bugs melden oder mithelfen WooCommerce Germanized zu verbessern? =
+= Want to file a Bug or improve Germanized? =
 
-Bugs sowie Hilfe bei der Arbeit an WooCommerce Germanized werden gerne über unser [GitHub repository](https://github.com/vendidero/woocommerce-germanized) entgegengenommen.
+Bug reports may be filed via our [GitHub repository](https://github.com/vendidero/woocommerce-germanized).
 
 == Screenshots ==
 
-1. Einstellungsmöglichkeiten für WooCommerce Germanized.
+1. WooCommerce Germanized Settings
 
 == Changelog ==
+
+= 1.6 =
+* Feature - Sale Price Labels
+* Feature - Better unit price management for variable products
+* Feature - Double Opt In optional checkout deactivation for inactive users
+* Feature - Officially supporting german formal language (Sie)
+* Feature - SEPA XML Export
+* Feature - Optionally hide shipping time/shipping cost notice for certain product types options
+* Fix - Matching WooCommerce checkbox HTML layout
+* Fix - Role based prices compatibility
+* Fix - WPML Helper improvement to stop double sending confirmation emails
+* Fix - Better "Pay for Order" link
 
 = 1.5.1 =
 * Fix - Correctly autoloading WC_GZD_Admin

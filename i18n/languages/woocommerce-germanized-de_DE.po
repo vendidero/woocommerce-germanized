@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce Germanized v1.5.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-04-11 11:32+0100\n"
-"PO-Revision-Date: 2016-04-11 11:35+0100\n"
+"POT-Creation-Date: 2016-04-12 09:40+0100\n"
+"PO-Revision-Date: 2016-04-12 09:41+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -79,7 +79,7 @@ msgstr "l"
 # @ woocommerce-germanized
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/abstracts/abstract-wc-gzd-product.php:159
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/wc-gzd-cart-functions.php:196
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/woocommerce-germanized.php:747
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/woocommerce-germanized.php:743
 msgid "incl. VAT"
 msgstr "inkl. MwSt."
 
@@ -91,7 +91,7 @@ msgstr "exkl. MwSt."
 # @ woocommerce-germanized
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/abstracts/abstract-wc-gzd-product.php:161
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/wc-gzd-cart-functions.php:196
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/woocommerce-germanized.php:747
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/woocommerce-germanized.php:743
 #, php-format
 msgid "incl. %s%% VAT"
 msgstr "inkl. %s%% MwSt."
@@ -1002,7 +1002,7 @@ msgstr ""
 
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:461
 msgid "Disable Login and Checkout"
-msgstr "Login und Checkout deaktivieren"
+msgstr "Login und Checkout"
 
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:462
 msgid "Disable login and checkout for unactivated customers."
@@ -2306,25 +2306,25 @@ msgstr ""
 
 # @ woocommerce-germanized
 # @ woocommerce
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-checkout.php:135
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-checkout.php:146
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-checkout.php:156
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-checkout.php:167
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/widgets/class-wc-gzd-widget-trusted-shops-reviews.php:26
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/widgets/class-wc-gzd-widget-trusted-shops-rich-snippets.php:26
 msgid "Title"
 msgstr "Anrede"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-checkout.php:136
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-checkout.php:144
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-checkout.php:276
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-checkout.php:157
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-checkout.php:165
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-checkout.php:297
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-revocation.php:41
 msgid "Mr."
 msgstr "Herr"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-checkout.php:136
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-checkout.php:144
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-checkout.php:276
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-checkout.php:157
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-checkout.php:165
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-checkout.php:297
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-revocation.php:42
 msgid "Ms."
 msgstr "Frau"
@@ -2460,7 +2460,7 @@ msgid "eKomi Options"
 msgstr "eKomi"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-emails.php:246
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-emails.php:248
 msgctxt "revocation-form"
 msgid "Forward your Revocation online"
 msgstr "Deinen Widerruf online erklären"
