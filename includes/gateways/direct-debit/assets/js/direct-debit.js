@@ -65,8 +65,8 @@
 				address_2:		$( 'input#billing_address_2' ).val(),
 				debit_holder:	$( 'input#direct-debit-account-holder' ).val(),
 				debit_iban: 	$( 'input#direct-debit-account-iban' ).val(),
-				debit_swift: 	$( 'input#direct-debit-account-bic' ).val(),
-			}
+				debit_swift: 	$( 'input#direct-debit-account-bic' ).val()
+			};
 
 			url += '&ajax=true&' + jQuery.param( data );
 
@@ -75,7 +75,7 @@
 
 		}); 
 
-		$( "a#show-direct-debit-pretty" ).prettyPhoto({
+		$( 'a#show-direct-debit-pretty' ).prettyPhoto({
 			social_tools: false,
 			theme: 'pp_woocommerce',
 			horizontal_padding: 20,

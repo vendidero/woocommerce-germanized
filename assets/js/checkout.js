@@ -9,8 +9,9 @@ jQuery( function( $ ) {
 	}
 	
 	$( 'body' ).bind( 'updated_checkout', function() {
-		if ( $( '.wc-gzd-place-order' ).length > 0 )
+		if ( $( '.wc-gzd-place-order' ).length > 0 ) {
 			$( '.place-order:not(.wc-gzd-place-order)' ).remove();
+		}
 	});
 	
 	if ( $( '.woocommerce-checkout' ).find( '#order_review_heading' ).length > 0 ) {

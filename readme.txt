@@ -158,6 +158,7 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 == Changelog ==
 
 = 1.6 =
+* Notice - removed compatibility to WooCommerce < 2.4
 * Feature - Sale Price Labels
 * Feature - Better unit price management for variable products
 * Feature - Double Opt In optional checkout deactivation for inactive users

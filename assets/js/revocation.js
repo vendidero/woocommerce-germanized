@@ -38,7 +38,9 @@ jQuery( function( $ ) {
 	$( 'form#woocommerce-gzd-revocation' ).submit( function() {
 		var $form = $( this );
 
-		if ( $form.is( '.processing' ) ) return false;
+		if ( $form.is( '.processing' ) ) {
+			return false;
+		}
 
 		$form.addClass( 'processing' ).block({
 			message: null,
@@ -60,11 +62,13 @@ jQuery( function( $ ) {
 				var result = '';
 				try {
 					// Get the valid JSON only from the returned string
-					if ( code.indexOf( '<!--WC_START-->' ) >= 0 )
+					if ( code.indexOf( '<!--WC_START-->' ) >= 0 ) {
 						code = code.split( '<!--WC_START-->' )[1]; // Strip off before after WC_START
+					}
 
-					if ( code.indexOf( '<!--WC_END-->' ) >= 0 )
+					if ( code.indexOf( '<!--WC_END-->' ) >= 0 ) {
 						code = code.split( '<!--WC_END-->' )[0]; // Strip off anything after WC_END
+					}
 
 					// Parse
 					result = $.parseJSON( code );

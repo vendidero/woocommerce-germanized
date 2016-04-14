@@ -30,18 +30,18 @@ jQuery( function ( $ ) {
 		},
 
 		is_variable: function() {
-			return $( 'select#product-type' ).val() == 'variable';
+			return $( 'select#product-type' ).val() === 'variable';
 		},
 
 		has_unit: function() {
-			return $( '#_unit' ).val() != "0";
+			return $( '#_unit' ).val() !== '0';
 		},
 
 		has_unit_price: function() {
-			return $( '#_unit' ).val() != "0" && $( '#_unit_base' ).val().length !== 0;
+			return $( '#_unit' ).val() !== '0' && $( '#_unit_base' ).val().length !== 0;
 		}
 
-	}
+	};
 
 	wc_gzd_product_variations_actions.init();
 

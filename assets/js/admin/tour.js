@@ -6,7 +6,7 @@ jQuery( function ( $ ) {
 			leg: {
 				zindex: 99999,
 				width: '450',
-				scrollSpeed: 550,
+				scrollSpeed: 550
 			}
 		} );
 		

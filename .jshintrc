@@ -18,6 +18,7 @@
 	"globals": {
 		"_": false,
 		"Backbone": false,
+		"JSON": false,
 		"jQuery": false,
 		"wp": false
 	}
