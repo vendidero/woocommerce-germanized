@@ -97,7 +97,7 @@ Easily set up eKomi by adapting a few Settings within WooCommerce Germanized.
 = Minimal Requirments =
 
 * WordPress 3.8 or newer
-* WooCommerce 2.3 (newest version recommended)
+* WooCommerce 2.4 (newest version recommended)
 * PHP Version 5.2.4 or newer
 
 = Automatic Installation =
