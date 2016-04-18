@@ -11,5 +11,5 @@ $order = wc_get_order( $order_id );
 ?>
 
 <p>
-	<a href="<?php echo $url;?>" class="button wc-gzdp-order-pay-button"><?php printf( __( 'Pay with %s', 'woocommerce-germanized' ), $order->payment_method_title ); ?></a>
+	<a href="<?php echo $url;?>" class="button wc-gzdp-order-pay-button"><?php _e( 'Pay now', 'woocommerce-germanized' ); ?></a>
 </p>
