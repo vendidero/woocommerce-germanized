@@ -42,6 +42,8 @@ final class WooCommerce_Germanized {
 	 */
 	public $units = null;
 
+	public $price_labels = null;
+
 	/**
 	 * WC_GZD_Trusted_Shops instance
 	 *
@@ -98,7 +100,7 @@ final class WooCommerce_Germanized {
 	 * @return mixed
 	 */
 	public function __get( $key ) {
-		return self::$key;
+		return $this->$key;
 	}
 
 	/**
@@ -132,6 +134,9 @@ final class WooCommerce_Germanized {
 		add_action( 'init', array( 'WC_GZD_Shortcodes', 'init' ), 2 );
 		add_action( 'widgets_init', array( $this, 'include_widgets' ), 25 );
 		add_action( 'woocommerce_init', array( $this, 'replace_woocommerce_product_factory' ), PHP_INT_MAX );
+
+		$this->units          = new WC_GZD_Units();
+		$this->price_labels   = new WC_GZD_Price_Labels();
 
 		// Loaded action
 		do_action( 'woocommerce_germanized_loaded' );
@@ -200,8 +205,6 @@ final class WooCommerce_Germanized {
 
 		}
 
-		$this->units          = new WC_GZD_Units();
-		$this->price_labels   = new WC_GZD_Price_Labels();
 		$this->emails    	  = new WC_GZD_Emails();
 
 		// Init action

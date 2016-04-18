@@ -122,8 +122,6 @@ class WC_GZD_Install {
 			wp_die( sprintf( __( 'Please install <a href="%s" target="_blank">WooCommerce</a> before installing WooCommerce Germanized. Thank you!', 'woocommerce-germanized' ), 'http://wordpress.org/plugins/woocommerce/' ) );
 		}
 
-		self::create_options();
-		
 		// Register post types
 		include_once( 'class-wc-gzd-post-types.php' );
 		WC_GZD_Post_types::register_taxonomies();
@@ -131,6 +129,8 @@ class WC_GZD_Install {
 		self::create_cron_jobs();
 		self::create_units();
 		self::create_labels();
+
+		self::create_options();
 
 		// Virtual Tax Classes
 		$tax_classes = array_filter( array_map( 'trim', explode( "\n", get_option('woocommerce_tax_classes' ) ) ) );
