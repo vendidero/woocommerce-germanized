@@ -286,17 +286,6 @@ if ( ! function_exists( 'woocommerce_gzd_template_order_button_text' ) ) {
 
 }
 
-if ( ! function_exists( 'woocommerce_gzd_template_checkout_thankyou_trusted_shops' ) ) {
-
-	/**
-	 * Add Trusted Shops template to order success
-	 */
-	function woocommerce_gzd_template_checkout_thankyou_trusted_shops( $order_id ) {
-		wc_get_template( 'trusted-shops/thankyou.php', array( 'order_id' => $order_id ) );
-	}
-
-}
-
 if ( ! function_exists( 'woocommerce_gzd_add_variation_options' ) ) {
 
 	/**

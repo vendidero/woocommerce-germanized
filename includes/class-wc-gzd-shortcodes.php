@@ -81,7 +81,7 @@ class WC_GZD_Shortcodes {
 	public static function trusted_shops_rich_snippets( $atts ) {
 		
 		ob_start();
-		wc_get_template( 'trusted-shops/rich-snippets.php' );
+		wc_get_template( 'trusted-shops/rich-snippets.php', array( 'rating' => WC_germanized()->trusted_shops->get_average_rating(), 'rating_link' => WC_germanized()->trusted_shops->get_rating_link() ) );
 		$html = ob_get_clean();
 		return WC_germanized()->trusted_shops->is_enabled() ? '<div class="woocommerce woocommerce-gzd">' . $html . '</div>' : '';
 	
@@ -96,7 +96,7 @@ class WC_GZD_Shortcodes {
 	public static function trusted_shops_reviews( $atts ) {
 		
 		ob_start();
-		wc_get_template( 'trusted-shops/reviews.php' );
+		wc_get_template( 'trusted-shops/reviews.php', array( 'rating_link' => WC_germanized()->trusted_shops->get_rating_link(), 'widget_attachment' => WC_germanized()->trusted_shops->get_review_widget_attachment() ) );
 		$html = ob_get_clean();
 		return WC_germanized()->trusted_shops->is_enabled() ? '<div class="woocommerce woocommerce-gzd">' . $html . '</div>' : '';
 	

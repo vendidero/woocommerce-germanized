@@ -149,9 +149,6 @@ add_filter( 'woocommerce_order_formatted_line_subtotal', 'wc_gzd_cart_product_un
 if ( get_option( 'woocommerce_gzd_hide_order_success_details' ) == 'yes' )
 	remove_action( 'woocommerce_thankyou', 'woocommerce_order_details_table', WC_GZD_Hook_Priorities::instance()->get_priority( 'woocommerce_thankyou', 'woocommerce_order_details_table' ) );
 
-if ( get_option( 'woocommerce_gzd_trusted_shops_id' ) )
-	add_action( 'woocommerce_thankyou', 'woocommerce_gzd_template_checkout_thankyou_trusted_shops', 10, 1 );
-
 /**
  * Customer Account Creation
  */

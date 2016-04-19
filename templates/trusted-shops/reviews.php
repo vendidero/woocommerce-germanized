@@ -11,4 +11,4 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 ?>
 
-<?php echo WC_germanized()->trusted_shops->get_review_widget_html(); ?>
+<a href="<?php echo $rating_link; ?>" target="_blank" title="<?php echo _x( 'Show customer reviews', 'trusted-shops', 'woocommerce-germanized' ); ?>"><?php echo wp_get_attachment_image( $widget_attachment, 'full' ); ?></a>

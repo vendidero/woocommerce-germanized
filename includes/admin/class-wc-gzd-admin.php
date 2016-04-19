@@ -94,14 +94,19 @@ class WC_GZD_Admin {
 		wp_register_script( 'tourbus', $admin_script_path . 'tourbus' . $suffix . '.js', array( 'jquery', 'scrollto' ), WC_GERMANIZED_VERSION, true );
 		wp_register_script( 'wc-gzd-admin-tour', $admin_script_path . 'tour' . $suffix . '.js', array( 'jquery', 'woocommerce_settings', 'tourbus' ), WC_GERMANIZED_VERSION, true );
 		wp_register_script( 'wc-gzd-admin-product-variations', $admin_script_path . 'product-variations' . $suffix . '.js', array( 'wc-admin-variation-meta-boxes' ), WC_GERMANIZED_VERSION );
+		wp_register_script( 'wc-gzd-admin-trusted-shops', $admin_script_path . 'trusted-shops' . $suffix . '.js', array( 'jquery', 'wc-gzd-admin' ), WC_GERMANIZED_VERSION, true );
 
 		if ( isset( $_GET[ 'tab' ] ) && $_GET[ 'tab' ] == 'germanized' ) {
+			
 			wp_enqueue_script( 'wc-gzd-admin' );
 
 			$section = 'general';
 
 			if ( isset( $_GET[ 'section' ] ) )
 				$section = sanitize_text_field( $_GET[ 'section' ] );
+
+			if ( $section === 'trusted_shops' )
+				wp_enqueue_script( 'wc-gzd-admin-trusted-shops' );
 
 			if ( $this->is_tour_enabled( $section ) ) {
 				
