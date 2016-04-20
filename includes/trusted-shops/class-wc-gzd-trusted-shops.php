@@ -91,7 +91,7 @@ class WC_GZD_Trusted_Shops {
 	}
 
 	public function refresh() {
-		$this->id = get_option( 'woocommerce_gzd_trusted_shops_id' );
+		$this->id = get_option( 'woocommerce_' . $this->option_prefix . 'trusted_shops_id' );
 		$this->api_url = 'http://api.trustedshops.com/rest/public/v2/shops/'. $this->id .'/quality.json';
 	}
 
