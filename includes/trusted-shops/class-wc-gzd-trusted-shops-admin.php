@@ -319,10 +319,10 @@ class WC_GZD_Trusted_Shops_Admin {
 			update_option( 'woocommerce_enable_review_rating', 'no' );
 		
 		if ( get_option( '_woocommerce_' . $this->base->option_prefix . 'trusted_shops_update_reviews' ) )
-			$this->base->update_review_widget();
+			$this->base->get_dependency( 'schedule' )->update_review_widget();
 		
 		if ( get_option( '_woocommerce_' . $this->base->option_prefix . 'trusted_shops_update_snippets' ) )
-			$this->base->update_reviews();
+			$this->base->get_dependency( 'schedule' )->update_reviews();
 		
 		delete_option( '_woocommerce_' . $this->base->option_prefix . 'trusted_shops_update_reviews' );
 		delete_option( '_woocommerce_' . $this->base->option_prefix . 'trusted_shops_update_snippets' );

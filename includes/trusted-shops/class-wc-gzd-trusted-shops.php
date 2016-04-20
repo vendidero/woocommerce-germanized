@@ -12,36 +12,55 @@ if ( ! defined( 'ABSPATH' ) )
 class WC_GZD_Trusted_Shops {
 
 	/**
-	 * Shops ID
-	 *
+	 * TS ID
 	 * @var mixed
 	 */
 	public $id;
-	/**
-	 * Trusted Shops Payment Gateways
-	 *
-	 * @var array
-	 */
+
 	/**
 	 * Trusted Shops Partner ID of WooCommerce Germanized
 	 * @var string
 	 */
 	public $partner_id;
 	
-	public $et_params;
+	/**
+	 * Trusted Shops URL Parameters 
+	 * @var array
+	 */
+	public $et_params = array();
 
+	/**
+	 * Class Prefix for auto dependency loading
+	 * @var string
+	 */
 	public $prefix = '';
+
+	/**
+	 * Option prefix for DB strings
+	 * @var string
+	 */
 	public $option_prefix = '';
 	
-	public $gateways;
+	/**
+	 * WooCommerce Gateway mapping
+	 * @var array
+	 */
+	public $gateways = array();
 
+	/**
+	 * Parent Plugin
+	 * @var null
+	 */
 	public $plugin = null;
 
+	/**
+	 * Trusted Shops Version
+	 * @var string
+	 */
 	public $version = '1.1.0';
 
 	/**
 	 * API URL for review collection
-	 *
 	 * @var string
 	 */
 	public $api_url;
