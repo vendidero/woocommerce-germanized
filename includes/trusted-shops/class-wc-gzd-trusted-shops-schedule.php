@@ -79,12 +79,12 @@ class WC_GZD_Trusted_Shops_Schedule {
 		
 		$filename = $this->base->id . '.gif';
 		$raw_data = file_get_contents( 'https://www.trustedshops.com/bewertung/widget/widgets/' . $filename );
-		$uploads = wp_upload_dir( date( 'Y-m' ) );
+		$uploads = wp_upload_dir();
 		
 		if ( is_wp_error( $uploads ) )
 			return;
 		
-		$filepath = $uploads['path'] . '/' . $filename;
+		$filepath = trailingslashit( $uploads['path'] ) . $filename;
   		file_put_contents( $filepath, $raw_data );
   		
   		$attachment = array(
@@ -96,7 +96,7 @@ class WC_GZD_Trusted_Shops_Schedule {
   		);
 		
 		if ( ! $this->base->get_review_widget_attachment() ) {
-			$attachment_id = wp_insert_attachment( $attachment , $filepath );
+			$attachment_id = wp_insert_attachment( $attachment, $filepath );
 			update_option( 'woocommerce_gzd_trusted_shops_review_widget_attachment', $attachment_id );
 		} else {
 			$attachment_id = $this->base->get_review_widget_attachment();
