@@ -12,7 +12,7 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-class WC_GZD_Widget_Trusted_Shops_Reviews extends WC_Widget {
+class WC_GZD_Trusted_Shops_Widget_Reviews extends WC_Widget {
 
 	public function __construct() {
 		$this->widget_cssclass    = 'woocommerce woocommerce_gzd widget_trusted_shops_reviews';
@@ -23,7 +23,7 @@ class WC_GZD_Widget_Trusted_Shops_Reviews extends WC_Widget {
 			'title'  => array(
 				'type'  => 'text',
 				'std'   => _x( 'Trusted Shops Reviews', 'trusted-shops', 'woocommerce-germanized' ),
-				'label' => __( 'Title', 'woocommerce' )
+				'label' => _x( 'Title', 'trusted-shops', 'woocommerce-germanized' ),
 			),
 		);
 		parent::__construct();

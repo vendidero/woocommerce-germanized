@@ -19,9 +19,6 @@ class WC_GZD_Shortcodes {
 		$shortcodes = array(
 			'revocation_form'            => __CLASS__ . '::revocation_form',
 			'payment_methods_info'		 => __CLASS__ . '::payment_methods_info',
-			'trusted_shops_rich_snippets'=> __CLASS__ . '::trusted_shops_rich_snippets',
-			'trusted_shops_reviews'		 => __CLASS__ . '::trusted_shops_reviews',
-			'trusted_shops_badge'		 => __CLASS__ . '::trusted_shops_badge',
 			'ekomi_badge'				 => __CLASS__ . '::ekomi_badge',
 			'ekomi_widget'				 => __CLASS__ . '::ekomi_widget',
 			'gzd_feature'				 => __CLASS__ . '::gzd_feature',
@@ -69,49 +66,6 @@ class WC_GZD_Shortcodes {
 		wc_get_template( 'global/payment-methods.php' );
 		$return = '<div class="woocommerce woocommerce-gzd">' . ob_get_clean() . '</div>';
 		return $return;
-	
-	}
-
-	/**
-	 * Returns Trusted Shops rich snippet review html
-	 *  
-	 * @param  array $atts 
-	 * @return string       
-	 */
-	public static function trusted_shops_rich_snippets( $atts ) {
-		
-		ob_start();
-		wc_get_template( 'trusted-shops/rich-snippets.php', array( 'rating' => WC_germanized()->trusted_shops->get_average_rating(), 'rating_link' => WC_germanized()->trusted_shops->get_rating_link() ) );
-		$html = ob_get_clean();
-		return WC_germanized()->trusted_shops->is_enabled() ? '<div class="woocommerce woocommerce-gzd">' . $html . '</div>' : '';
-	
-	}
-
-	/**
-	 * Returns Trusted Shops reviews graphic
-	 *  
-	 * @param  array $atts 
-	 * @return string       
-	 */
-	public static function trusted_shops_reviews( $atts ) {
-		
-		ob_start();
-		wc_get_template( 'trusted-shops/reviews.php', array( 'rating_link' => WC_germanized()->trusted_shops->get_rating_link(), 'widget_attachment' => WC_germanized()->trusted_shops->get_review_widget_attachment() ) );
-		$html = ob_get_clean();
-		return WC_germanized()->trusted_shops->is_enabled() ? '<div class="woocommerce woocommerce-gzd">' . $html . '</div>' : '';
-	
-	}
-
-	/**
-	 * Returns Trusted Shops Badge html
-	 *  
-	 * @param  array $atts 
-	 * @return string       
-	 */
-	public static function trusted_shops_badge( $atts ) {
-
-		extract( shortcode_atts( array('width' => ''), $atts ) );
-		return WC_germanized()->trusted_shops->is_enabled() ? '<a class="trusted-shops-badge" style="' . ( $width ? 'background-size:' . ( $width - 1 ) . 'px auto; width: ' . $width . 'px; height: ' . $width . 'px;' : '' ) . '" href="' . WC_germanized()->trusted_shops->get_certificate_link() . '" target="_blank"></a>' : '';
 	
 	}
 

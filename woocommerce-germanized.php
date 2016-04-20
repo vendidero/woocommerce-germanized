@@ -132,7 +132,6 @@ final class WooCommerce_Germanized {
 		add_action( 'after_setup_theme', array( $this, 'include_template_functions' ), 12 );
 		add_action( 'init', array( $this, 'init' ), 1 );
 		add_action( 'init', array( 'WC_GZD_Shortcodes', 'init' ), 2 );
-		add_action( 'widgets_init', array( $this, 'include_widgets' ), 25 );
 		add_action( 'woocommerce_init', array( $this, 'replace_woocommerce_product_factory' ), PHP_INT_MAX );
 
 		$this->units          = new WC_GZD_Units();
@@ -231,6 +230,8 @@ final class WooCommerce_Germanized {
 			$path = $this->plugin_path() . '/includes/admin/';
 		elseif ( strpos( $class, 'wc_gzd_gateway_' ) !== false )
 			$path = $this->plugin_path() . '/includes/gateways/' . substr( str_replace( '_', '-', $class ), 15 ) . '/';
+		else if ( strpos( $class, 'wc_gzd_trusted_shops' ) !== false )
+			$path = $this->plugin_path() . '/includes/trusted-shops/';
 
 		if ( $path && is_readable( $path . $file ) ) {
 			include_once( $path . $file );
@@ -325,7 +326,12 @@ final class WooCommerce_Germanized {
 		include_once ( 'includes/class-wc-gzd-customer-helper.php' );
 		include_once ( 'includes/class-wc-gzd-virtual-vat-helper.php' );
 
-		$this->trusted_shops  = new WC_GZD_Trusted_Shops();
+		$this->trusted_shops  = new WC_GZD_Trusted_Shops( $this, array(
+				'partner_id'  => 'WooCommerceGermanized', 
+				'prefix' 	  => 'GZD_', 
+				'et' 		  => array( 'etcc_med' => 'part', 'etcc_cmp' => 'sofpar', 'etcc_par' => 'woo', 'etcc_mon' => 11 ) 
+			)
+		);
 		$this->ekomi    	  = new WC_GZD_Ekomi();
 
 	}
@@ -495,20 +501,6 @@ final class WooCommerce_Germanized {
 
 		load_textdomain( 'woocommerce-germanized', trailingslashit( WP_LANG_DIR ) . 'woocommerce-germanized/woocommerce-germanized-' . $locale . '.mo' );
 		load_plugin_textdomain( 'woocommerce-germanized', FALSE, basename( dirname( __FILE__ ) ) . '/i18n/languages/' );
-	}
-
-	/**
-	 * Include WooCommerce Germanized Widgets
-	 */
-	public function include_widgets() {
-		if ( is_object( $this->trusted_shops) && $this->trusted_shops->is_rich_snippets_enabled() ) {
-			include_once( 'includes/widgets/class-wc-gzd-widget-trusted-shops-rich-snippets.php' );
-			register_widget( 'WC_GZD_Widget_Trusted_Shops_Rich_Snippets' );
-		}
-		if ( is_object( $this->trusted_shops) && $this->trusted_shops->is_review_widget_enabled() ) {
-			include_once( 'includes/widgets/class-wc-gzd-widget-trusted-shops-reviews.php' );
-			register_widget( 'WC_GZD_Widget_Trusted_Shops_Reviews' );
-		}
 	}
 
 	/**
