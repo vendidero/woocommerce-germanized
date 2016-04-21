@@ -121,6 +121,8 @@ class WC_GZD_Trusted_Shops_Admin {
 				'title'  => _x( 'Trustbadge code', 'trusted-shops', 'woocommerce-germanized' ),
 				'id'     => 'woocommerce_' . $this->base->option_prefix . 'trusted_shops_trustbadge_code',
 				'type'   => 'textarea',
+				'desc_tip' => true,
+				'desc' => _x( 'Use shortcodes e.g. {variant} to dynamically insert your options. You may of couse replace them with static code.', 'trusted-shops', 'woocommerce-germanized' ),
 				'css' => 'width: 100%; min-height: 150px',
 				'default' => $this->base->get_trustbadge_code( false ),
 			),
