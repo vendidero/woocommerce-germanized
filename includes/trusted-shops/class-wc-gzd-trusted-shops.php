@@ -29,6 +29,8 @@ class WC_GZD_Trusted_Shops {
 	 */
 	public $et_params = array();
 
+	public $signup_params = array();
+
 	/**
 	 * Class Prefix for auto dependency loading
 	 * @var string
@@ -40,6 +42,8 @@ class WC_GZD_Trusted_Shops {
 	 * @var string
 	 */
 	public $option_prefix = '';
+
+	public $integration_url = '';
 	
 	/**
 	 * WooCommerce Gateway mapping
@@ -73,6 +77,8 @@ class WC_GZD_Trusted_Shops {
 		$this->plugin = $plugin;
 		$this->partner_id = $params[ 'partner_id' ];
 		$this->et_params = $params[ 'et' ];
+		$this->signup_params = $params[ 'signup' ];
+		$this->integration_url = $params[ 'integration' ];
 		$this->prefix = $params[ 'prefix' ];
 		$this->option_prefix = strtolower( $this->prefix );
 

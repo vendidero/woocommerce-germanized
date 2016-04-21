@@ -330,7 +330,9 @@ final class WooCommerce_Germanized {
 		$this->trusted_shops  = new WC_GZD_Trusted_Shops( $this, array(
 				'partner_id'  => 'WooCommerceGermanized', 
 				'prefix' 	  => 'GZD_', 
-				'et' 		  => array( 'etcc_med' => 'part', 'etcc_cmp' => 'sofpar', 'etcc_par' => 'woo', 'etcc_mon' => 11 ) 
+				'et' 		  => array( 'utm_campaign' => 'shopsoftware', 'utm_content' => 'WOOCOMMERCEGERMANIZED' ),
+				'signup'	  => array( 'utm_source' => 'woocommerce-germanized', 'utm_campaign' => 'woocommerce-germanized' ),
+				'integration' => 'http://www.trustedshops.de/shopbetreiber/integration/shopsoftware-integration/woocommerce-germanized/',
 			)
 		);
 

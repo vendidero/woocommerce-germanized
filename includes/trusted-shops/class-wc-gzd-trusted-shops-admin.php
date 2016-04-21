@@ -83,7 +83,7 @@ class WC_GZD_Trusted_Shops_Admin {
 			array(
 				'title'  => _x( 'Mode', 'trusted-shops', 'woocommerce-germanized' ),
 				'id'   => 'woocommerce_' . $this->base->option_prefix . 'trusted_shops_integration_mode',
-				'type'   => 'select',
+				'type'   => 'radio',
 				'options' => array( 
 					'standard' => _x( 'Standard Mode', 'trusted-shops', 'woocommerce-germanized' ),
 					'expert' => _x( 'Expert Mode', 'trusted-shops', 'woocommerce-germanized' ),
@@ -121,7 +121,6 @@ class WC_GZD_Trusted_Shops_Admin {
 				'title'  => _x( 'Trustbadge code', 'trusted-shops', 'woocommerce-germanized' ),
 				'id'     => 'woocommerce_' . $this->base->option_prefix . 'trusted_shops_trustbadge_code',
 				'type'   => 'textarea',
-				'desc' => sprintf( _x( 'Learn more about relevant <a href="%s" target="_blank">variables</a>.', 'trusted-shops', 'woocommerce-germanized' ), $this->get_trusted_url( 'integration/', 'trustbadge' ) ),
 				'css' => 'width: 100%; min-height: 150px',
 				'default' => $this->base->get_trustbadge_code( false ),
 			),
@@ -166,7 +165,6 @@ class WC_GZD_Trusted_Shops_Admin {
 				'id'     => 'woocommerce_' . $this->base->option_prefix . 'trusted_shops_product_sticker_code',
 				'type'   => 'textarea',
 				'css' => 'width: 100%; min-height: 150px',
-				'desc' => sprintf( _x( 'Learn more about relevant <a href="%s" target="_blank">variables</a>.', 'trusted-shops', 'woocommerce-germanized' ), 'https://www.trustedshops.de/shopbetreiber/integration/product-reviews/' ),
 				'default' => $this->base->get_product_sticker_code( false ),
 			),
 
@@ -208,7 +206,6 @@ class WC_GZD_Trusted_Shops_Admin {
 				'id'     => 'woocommerce_' . $this->base->option_prefix . 'trusted_shops_product_widget_code',
 				'type'   => 'textarea',
 				'css' => 'width: 100%; min-height: 150px',
-				'desc' => sprintf( _x( 'Learn more about relevant <a href="%s" target="_blank">variables</a>.', 'trusted-shops', 'woocommerce-germanized' ), 'https://www.trustedshops.de/shopbetreiber/integration/product-reviews/' ),
 				'default' => $this->base->get_product_widget_code( false ),
 			),
 
@@ -310,8 +307,8 @@ class WC_GZD_Trusted_Shops_Admin {
 		?>
 			<div class="wc-<?php echo $this->script_prefix; ?>admin-settings-sidebar wc-<?php echo $this->script_prefix; ?>admin-settings-sidebar-trusted-shops">
 				<h3><?php echo _x( 'About Trusted Shops', 'trusted-shops', 'woocommerce-germanized' ); ?></h3>
-				<a href="<?php echo $this->get_trusted_url( 'integration/', 'membership' ); ?>" target="_blank"><img style="width: 100%; height: auto" src="<?php echo $this->base->plugin->plugin_url(); ?>/assets/images/trusted-shops-b.png" /></a>
-				<a class="button button-primary" href="" target="_blank"><?php echo _x( 'Get your account', 'trusted-shops', 'woocommerce-germanized' ); ?></a>
+				<a href="<?php echo $this->get_signup_url( 'http://www.trustbadge.com/en/pricing/' ); ?>" target="_blank"><img style="width: 100%; height: auto" src="<?php echo $this->base->plugin->plugin_url(); ?>/assets/images/trusted-shops-b.jpg" /></a>
+				<a class="button button-primary" href="<?php echo $this->get_signup_url( 'http://www.trustbadge.com/en/pricing/' ); ?>" target="_blank"><?php echo _x( 'Get your account', 'trusted-shops', 'woocommerce-germanized' ); ?></a>
 				<div class="wc-<?php echo $this->script_prefix; ?>trusted-shops-expert-mode-note">
 					<p><?php echo _x( 'Use additional options to customize your Trusted Shops Integration or use the latest code version here. E.g.:', 'trusted-shops', 'woocommerce-germanized' ); ?></p>
 					<ul>
@@ -319,7 +316,7 @@ class WC_GZD_Trusted_Shops_Admin {
 						<li><?php echo _x( 'Deactivate mobile use', 'trusted-shops', 'woocommerce-germanized' ); ?></li>
 						<li><?php echo _x( 'Jump from your Product Reviews stars directly to your Product Reviews', 'trusted-shops', 'woocommerce-germanized' ); ?></li>
 					</ul>
-					<p><?php echo sprintf( _x( '<a href="%s">Learn more</a> about <a href="%s" target="_blank">Trustbadge</a> options and <a href="%s" target="_blank">Product Reviews</a> configuration.', 'trusted-shops', 'woocommerce-germanized' ), $this->get_trusted_url(), 'http://www.trustedshops.de/shopbetreiber/integration/trustbadge/trustbadge-custom/', 'http://www.trustedshops.de/shopbetreiber/integration/product-reviews/' ); ?></p>
+					<p><?php echo sprintf( _x( '<a href="%s">Learn more</a> about <a href="%s" target="_blank">Trustbadge</a> options and <a href="%s" target="_blank">Product Reviews</a> configuration.', 'trusted-shops', 'woocommerce-germanized' ), $this->get_trusted_url( $this->base->integration_url ), 'http://www.trustedshops.de/shopbetreiber/integration/trustbadge/trustbadge-custom/', 'http://www.trustedshops.de/shopbetreiber/integration/product-reviews/' ); ?></p>
 				</div>
 			</div>
 		<?php
@@ -457,13 +454,30 @@ class WC_GZD_Trusted_Shops_Admin {
 		<?php
 	}
 
-	private function get_trusted_url( $base = 'integration/', $context = 'trustbadge' ) {
-		$url = 'https://www.trustedshops.com/' . $base . '?shop_id=' . esc_attr( $this->base->id ) . '&backend_language=' . esc_attr( substr( get_bloginfo( 'language' ), 0, 2) ) . '&shopsw=' . esc_attr( $this->base->partner_id ) . '&shopsw_version=' . esc_attr( WC_GERMANIZED_VERSION ) . '&plugin_version=' . esc_attr( $this->base->version ) . 'context=' . esc_attr( $context );
-		if ( ! empty( $this->base->et_params ) ) {
-			foreach ( $this->base->et_params as $key => $param )
-				$url .= '&' . esc_attr( $key ) . '=' . esc_attr( $param );
-		}
-		return $url;
+	private function get_signup_url( $url, $args = array() ) {
+		
+		$args = array_merge( $this->base->signup_params, $args );
+
+		$args = wp_parse_args( $args, array(
+			'utm_content' => 'marketing-page',
+			'utm_medium' => 'software-app',
+		) );
+
+		return add_query_arg( $args, $url );
+	}
+
+	private function get_trusted_url( $url, $args = array() ) {
+
+		$args = array_merge( $this->base->et_params, $args );
+
+		$args = wp_parse_args( $args, array(
+			'utm_term' => substr( get_locale(), 0, 2 ),
+			'utm_medium' => 'link',
+			'utm_source' => 'shopsoftwarebackend',
+			'shop_id' => $this->base->ID,
+		) );
+
+		return add_query_arg( $args, $url );
 	}
 
 }
