@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		'trustcardDirection': '', /* for custom variants: topRight, topLeft, bottomRight, bottomLeft */ 'customBadgeWidth': '', /* for custom variants: 40 - 90 (in pixels) */
 		'customBadgeHeight': '', /* for custom variants: 40 - 90 (in pixels) */
 		'disableResponsive': 'false', /* deactivate responsive behaviour */
-		'disableTrustbadge': 'false', /* deactivate trustbadge */
+		'disableTrustbadge': '{disable}', /* deactivate trustbadge */
 		'trustCardTrigger': 'mouseenter', /* set to 'click' if you want the trustcard to be opened on click instead */ 'customCheckoutElementId': ''/* required for custom trustcard */
 	};
 	var _ts = document.createElement('script');

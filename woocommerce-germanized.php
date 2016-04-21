@@ -326,12 +326,14 @@ final class WooCommerce_Germanized {
 		include_once ( 'includes/class-wc-gzd-customer-helper.php' );
 		include_once ( 'includes/class-wc-gzd-virtual-vat-helper.php' );
 
+		// Initialize Trusted Shops module
 		$this->trusted_shops  = new WC_GZD_Trusted_Shops( $this, array(
 				'partner_id'  => 'WooCommerceGermanized', 
 				'prefix' 	  => 'GZD_', 
 				'et' 		  => array( 'etcc_med' => 'part', 'etcc_cmp' => 'sofpar', 'etcc_par' => 'woo', 'etcc_mon' => 11 ) 
 			)
 		);
+
 		$this->ekomi    	  = new WC_GZD_Ekomi();
 
 	}

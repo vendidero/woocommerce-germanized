@@ -31,7 +31,7 @@ $order = wc_get_order( $order_id );
 				<?php endif; ?>
 				<span class="tsCheckoutProductName"><?php echo get_the_title( $product->id ); ?></span>
 				<span class="tsCheckoutProductSKU"><?php echo ( $product->get_sku() ? $product->get_sku() : $product->id ); ?></span>
-				<span class="tsCheckoutProductGTIN"></span>
+				<span class="tsCheckoutProductGTIN"><?php echo $product->get_attribute( 'pa_gtin' ); ?></span>
 				<span class="tsCheckoutProductMPN"></span>
 				<span class="tsCheckoutProductBrand"></span>
  			</span>

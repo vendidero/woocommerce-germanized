@@ -243,7 +243,7 @@ class WC_GZD_Trusted_Shops {
 	public function get_script( $name, $replace = true, $args = array() ) {
 		$script = $this->get_template( $name );
 
-		if ( $this->expert_mode === 'yes' )
+		if ( $this->integration_mode === 'expert' )
 			$script = $this->{$name . "_code"};
 
 		if ( $replace ) {
@@ -295,7 +295,8 @@ class WC_GZD_Trusted_Shops {
 
 			$args = wp_parse_args( $args, array(
 				'offset' => $this->trustbadge_y,
-				'variant' => $this->trustbadge_hide_reviews === 'yes' ? 'default' : 'reviews',
+				'variant' => $this->trustbadge_variant === 'standard' ? 'reviews' : 'default',
+				'disable' => $this->trustbadge_variant === 'disable' ? 'true' : 'false',
 			) );
 
 		}

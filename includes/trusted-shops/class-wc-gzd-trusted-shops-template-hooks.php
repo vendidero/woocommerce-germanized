@@ -34,6 +34,15 @@ class WC_GZD_Trusted_Shops_Template_Hooks {
 
 	}
 
+	public function template_hooks() {
+		
+		add_action( 'woocommerce_thankyou', array( $this, 'template_thankyou' ), 10, 1 );
+		
+		if ( $this->base->standard_trustbadge === 'yes' )
+			add_action( 'wp_footer', array( $this, 'template_trustbadge' ), PHP_INT_MAX );
+
+	}
+
 	public function set_product_widget_template( $template ) {
 		if ( in_array( $template, array( 'single-product/rating.php', 'loop/rating.php' ) ) )
 			$template = 'trusted-shops/product-widget.php';
@@ -54,15 +63,6 @@ class WC_GZD_Trusted_Shops_Template_Hooks {
 			'callback' => array( $this, 'template_product_sticker' ),
 		);
 		return $tabs;
-	}
-
-	public function template_hooks() {
-		
-		add_action( 'woocommerce_thankyou', array( $this, 'template_thankyou' ), 10, 1 );
-		
-		if ( $this->base->standard_trustbadge === 'yes' )
-			add_action( 'wp_footer', array( $this, 'template_trustbadge' ), 5 );
-
 	}
 
 	public function template_product_sticker( $template ) {
