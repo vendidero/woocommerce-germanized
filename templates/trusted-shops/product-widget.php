@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 	global $post;
 	$product = wc_get_product( $post->ID );
 ?>
-<div id="ts_product_widget"></div>
+<div class="ts_product_widget"></div>
 
 <script type="text/javascript" src="//widgets.trustedshops.com/reviews/tsSticker/tsProductStickerSummary.js"></script>
 

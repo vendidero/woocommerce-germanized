@@ -12,7 +12,7 @@ var summaryBadge = new productStickerSummary();
 summaryBadge.showSummary({
 	'tsId': '{id}',
 	'sku': [{sku}],
-	'element': '#ts_product_widget',
+	'element': '{element}',
 	'starColor' : '{star_color}',
 	'starSize' : '{star_size}px',
 	'fontSize' : '{font_size}px',
