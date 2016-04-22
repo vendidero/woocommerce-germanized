@@ -83,7 +83,7 @@ class WC_GZD_Trusted_Shops_Admin {
 			array(
 				'title'  => _x( 'Mode', 'trusted-shops', 'woocommerce-germanized' ),
 				'id'   => 'woocommerce_' . $this->base->option_prefix . 'trusted_shops_integration_mode',
-				'type'   => 'radio',
+				'type'   => 'select',
 				'options' => array( 
 					'standard' => _x( 'Standard Mode', 'trusted-shops', 'woocommerce-germanized' ),
 					'expert' => _x( 'Expert Mode', 'trusted-shops', 'woocommerce-germanized' ),
@@ -98,7 +98,7 @@ class WC_GZD_Trusted_Shops_Admin {
 			array(
 				'title'  => _x( 'Variant', 'trusted-shops', 'woocommerce-germanized' ),
 				'id'   => 'woocommerce_' . $this->base->option_prefix . 'trusted_shops_trustbadge_variant',
-				'type'   => 'radio',
+				'type'   => 'select',
 				'options' => array( 
 					'hide_reviews' => _x( 'Display Trustbadge without review stars', 'trusted-shops', 'woocommerce-germanized' ),
 					'standard' => _x( 'Display Trustbadge with review stars', 'trusted-shops', 'woocommerce-germanized' ),
