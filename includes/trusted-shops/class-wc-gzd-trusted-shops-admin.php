@@ -102,7 +102,7 @@ class WC_GZD_Trusted_Shops_Admin {
 				'options' => array( 
 					'hide_reviews' => _x( 'Display Trustbadge without review stars', 'trusted-shops', 'woocommerce-germanized' ),
 					'standard' => _x( 'Display Trustbadge with review stars', 'trusted-shops', 'woocommerce-germanized' ),
-					'disable' => _x( 'Don’t show Trustbadge', 'woocommerce-germanized' ),
+					'disable' => _x( 'Don’t show Trustbadge', 'trusted-shops', 'woocommerce-germanized' ),
 				),
 				'default' => 'standard'
 			),
