@@ -22,15 +22,19 @@ jQuery( function ( $ ) {
 	});
 
 	$( document ).on( 'change', '#woocommerce_' + trusted_shops_params.option_prefix + 'trusted_shops_enable_reviews', function() {
+		
 		if ( $( this ).is( ':checked' ) ) {
+			$( '#woocommerce_' + trusted_shops_params.option_prefix + 'trusted_shops_gtin_attribute' ).parents( 'tr' ).show();
 			$( '#woocommerce_' + trusted_shops_params.option_prefix + 'trusted_shops_product_sticker_enable' ).parents( 'tr' ).show();
 			$( '#woocommerce_' + trusted_shops_params.option_prefix + 'trusted_shops_product_widget_enable' ).parents( 'tr' ).show();
 		} else {
+			$( '#woocommerce_' + trusted_shops_params.option_prefix + 'trusted_shops_gtin_attribute' ).parents( 'tr' ).hide();
 			$( '#woocommerce_' + trusted_shops_params.option_prefix + 'trusted_shops_product_sticker_enable' ).parents( 'tr' ).hide();
 			$( '#woocommerce_' + trusted_shops_params.option_prefix + 'trusted_shops_product_widget_enable' ).parents( 'tr' ).hide();
 			$( '#woocommerce_' + trusted_shops_params.option_prefix + 'trusted_shops_product_sticker_enable' ).removeAttr( 'checked' );
 			$( '#woocommerce_' + trusted_shops_params.option_prefix + 'trusted_shops_product_widget_enable' ).removeAttr( 'checked' );
 		}
+
 		$( document ).find( '#woocommerce_' + trusted_shops_params.option_prefix + 'trusted_shops_product_sticker_enable' ).trigger( 'change' );
 		$( document ).find( '#woocommerce_' + trusted_shops_params.option_prefix + 'trusted_shops_product_widget_enable' ).trigger( 'change' );
 	});

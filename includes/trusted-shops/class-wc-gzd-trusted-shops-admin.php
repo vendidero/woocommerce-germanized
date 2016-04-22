@@ -242,8 +242,7 @@ class WC_GZD_Trusted_Shops_Admin {
 
 			array(
 				'title'  => _x( 'GTIN Attribute', 'trusted-shops', 'woocommerce-germanized' ),
-				'desc'   => _x( 'Choose a custom attribute which will be used as GTIN for product reviews.', 'trusted-shops', 'woocommerce-germanized' ),
-				'desc_tip' => true,
+				'desc'   => sprintf( _x( 'This is the product identification code for trade items. If you use Google Shopping and want to display your review stars in Shopping and payed product ads, this information is necessary for Google. Please choose from the product attributes which you have manually customized <a href="%s">here</a>.', 'trusted-shops', 'woocommerce-germanized' ), admin_url( 'edit.php?post_type=product&page=product_attributes' ) ),
 				'id'   => 'woocommerce_' . $this->base->option_prefix . 'trusted_shops_gtin_attribute',
 				'css'   => 'min-width:250px;',
 				'default' => 'gtin',
