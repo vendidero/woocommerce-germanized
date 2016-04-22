@@ -286,7 +286,7 @@ class WC_GZD_Trusted_Shops {
 		if ( $replace ) {
 
 			$args = wp_parse_args( $args, array(
-				'element' => '.ts_product_widget',
+				'element' => '#ts_product_widget',
 				'star_color' => $this->product_widget_star_color,
 				'star_size' => $this->product_widget_star_size,
 				'font_size' => $this->product_widget_font_size,
