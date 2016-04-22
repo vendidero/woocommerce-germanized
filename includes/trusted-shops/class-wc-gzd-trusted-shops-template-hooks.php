@@ -44,16 +44,20 @@ class WC_GZD_Trusted_Shops_Template_Hooks {
 	}
 
 	public function set_product_widget_template( $template ) {
-		if ( in_array( $template, array( 'single-product/rating.php', 'loop/rating.php' ) ) )
+		
+		if ( in_array( $template, array( 'single-product/rating.php' ) ) )
 			$template = 'trusted-shops/product-widget.php';
 
 		return $template;
+
 	}
 
 	public function remove_review_tab( $tabs ) {
+		
 		if ( isset( $tabs[ 'reviews' ] ) )
 			unset( $tabs[ 'reviews' ] );
 		return $tabs;
+	
 	}
 
 	public function review_tab( $tabs ) {

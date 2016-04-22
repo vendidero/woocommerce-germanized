@@ -309,8 +309,8 @@ class WC_GZD_Trusted_Shops_Admin {
 		?>
 			<div class="wc-<?php echo $this->script_prefix; ?>admin-settings-sidebar wc-<?php echo $this->script_prefix; ?>admin-settings-sidebar-trusted-shops">
 				<h3><?php echo _x( 'About Trusted Shops', 'trusted-shops', 'woocommerce-germanized' ); ?></h3>
-				<a href="<?php echo $this->get_signup_url( 'http://www.trustbadge.com/en/pricing/' ); ?>" target="_blank"><img style="width: 100%; height: auto" src="<?php echo $this->base->plugin->plugin_url(); ?>/assets/images/trusted-shops-b.jpg" /></a>
-				<a class="button button-primary" href="<?php echo $this->get_signup_url( 'http://www.trustbadge.com/en/pricing/' ); ?>" target="_blank"><?php echo _x( 'Get your account', 'trusted-shops', 'woocommerce-germanized' ); ?></a>
+				<a href="<?php echo $this->get_signup_url( 'http://www.trustbadge.com/de/Preise/' ); ?>" target="_blank"><img style="width: 100%; height: auto" src="<?php echo $this->base->plugin->plugin_url(); ?>/assets/images/trusted-shops-b.jpg" /></a>
+				<a class="button button-primary" href="<?php echo $this->get_signup_url( 'http://www.trustbadge.com/de/Preise/' ); ?>" target="_blank"><?php echo _x( 'Get your account', 'trusted-shops', 'woocommerce-germanized' ); ?></a>
 				<div class="wc-<?php echo $this->script_prefix; ?>trusted-shops-expert-mode-note">
 					<p><?php echo _x( 'Use additional options to customize your Trusted Shops Integration or use the latest code version here. E.g.:', 'trusted-shops', 'woocommerce-germanized' ); ?></p>
 					<ul>
