@@ -109,10 +109,10 @@ class WC_GZD_Trusted_Shops_Admin {
 
 			array(
 				'title'  => _x( 'Y-Offset', 'trusted-shops', 'woocommerce-germanized' ),
-				'desc'   => _x( 'Adjust the y-axis position of your Trustbadge from 0-250 (pixel) vertically on low right hand side of your shop.', 'trusted-shops', 'woocommerce-germanized' ),
-				'desc_tip' => true,
+				'desc_tip' => _x( 'Adjust the y-axis position of your Trustbadge from 0-250 (pixel) vertically on low right hand side of your shop.', 'trusted-shops', 'woocommerce-germanized' ),
 				'id'   => 'woocommerce_' . $this->base->option_prefix . 'trusted_shops_trustbadge_y',
 				'type'   => 'number',
+				'desc' => __( 'px', 'trusted-shops', 'woocommerce-germanized' ),
 				'default' => '0',
 				'css'   => 'max-width:60px;',
 			),
