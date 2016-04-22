@@ -22,7 +22,11 @@ $order = wc_get_order( $order_id );
 	<span id="tsCheckoutOrderPaymentType"><?php echo WC_germanized()->trusted_shops->get_payment_gateway( $order->payment_method );?></span>
 	<?php if ( WC_germanized()->trusted_shops->is_product_reviews_enabled() ) : ?>
 		<?php foreach( $order->get_items() as $item_id => $item ) : 
-			$product = apply_filters( 'woocommerce_order_item_product', $order->get_product_from_item( $item ), $item ); ?>
+			$product = apply_filters( 'woocommerce_order_item_product', $order->get_product_from_item( $item ), $item ); 
+			// Currently not supporting reviews for variations	
+			if ( $product->is_type( 'variation' ) )
+				$product = $product->parent;
+			?>
 			<span class="tsCheckoutProductItem">
 				<span class="tsCheckoutProductUrl"><?php echo get_permalink( $product->id ); ?></span>
 				<?php if ( has_post_thumbnail( $product->id ) ) : 
