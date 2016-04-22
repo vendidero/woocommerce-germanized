@@ -29,6 +29,10 @@ class WC_GZD_Trusted_Shops {
 	 */
 	public $et_params = array();
 
+	/**
+	 * Trusted Shops Signup URL Parameters
+	 * @var array
+	 */
 	public $signup_params = array();
 
 	/**
@@ -43,7 +47,16 @@ class WC_GZD_Trusted_Shops {
 	 */
 	public $option_prefix = '';
 
-	public $integration_url = '';
+	/**
+	 * Admin URLs
+	 * @var array
+	 */
+	public $urls = array(
+		'integration' => 'http://www.trustedshops.de/shopbetreiber/integration/shopsoftware-integration/woocommerce-germanized/',
+		'signup' => 'http://www.trustbadge.com/de/Preise/',
+		'trustbadge_custom' => 'http://www.trustedshops.de/shopbetreiber/integration/trustbadge/trustbadge-custom/', 
+		'reviews' => 'http://www.trustedshops.de/shopbetreiber/integration/product-reviews/',
+	);
 	
 	/**
 	 * WooCommerce Gateway mapping
@@ -78,7 +91,6 @@ class WC_GZD_Trusted_Shops {
 		$this->partner_id = $params[ 'partner_id' ];
 		$this->et_params = $params[ 'et' ];
 		$this->signup_params = $params[ 'signup' ];
-		$this->integration_url = $params[ 'integration' ];
 		$this->prefix = $params[ 'prefix' ];
 		$this->option_prefix = strtolower( $this->prefix );
 

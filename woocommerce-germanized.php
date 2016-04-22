@@ -332,7 +332,6 @@ final class WooCommerce_Germanized {
 				'prefix' 	  => 'GZD_', 
 				'et' 		  => array( 'utm_campaign' => 'shopsoftware', 'utm_content' => 'WOOCOMMERCEGERMANIZED' ),
 				'signup'	  => array( 'utm_source' => 'woocommerce-germanized', 'utm_campaign' => 'woocommerce-germanized' ),
-				'integration' => 'http://www.trustedshops.de/shopbetreiber/integration/shopsoftware-integration/woocommerce-germanized/',
 			)
 		);
 
