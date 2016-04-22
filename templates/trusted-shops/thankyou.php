@@ -38,7 +38,7 @@ $order = wc_get_order( $order_id );
 				<span class="tsCheckoutProductImageUrl"><?php echo ( ! empty( $image ) ? $image[0] : '' ); ?></span>
 				<span class="tsCheckoutProductName"><?php echo get_the_title( $product->id ); ?></span>
 				<span class="tsCheckoutProductSKU"><?php echo ( $product->get_sku() ? $product->get_sku() : $product->id ); ?></span>
-				<span class="tsCheckoutProductGTIN"><?php echo apply_filters( 'woocommerce_gzd_trusted_shops_product_gtin', $product->get_attribute( 'pa_gtin' ), $product ); ?></span>
+				<span class="tsCheckoutProductGTIN"><?php echo apply_filters( 'woocommerce_gzd_trusted_shops_product_gtin', $product->get_attribute( $gtin_attribute ), $product ); ?></span>
 				<span class="tsCheckoutProductMPN"></span>
 				<span class="tsCheckoutProductBrand"></span>
  			</span>

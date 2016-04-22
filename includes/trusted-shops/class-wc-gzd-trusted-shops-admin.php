@@ -96,6 +96,13 @@ class WC_GZD_Trusted_Shops_Admin {
 	public function get_settings() {
 
 		$payment_options = array( '' => __( 'None', 'woocommerce-germanized' ) ) + $this->base->gateways;
+		$attributes = wc_get_attribute_taxonomies();
+		$gtin_attributes = array();
+			
+		// Set attributes
+		foreach ( $attributes as $attribute ) {
+			$gtin_attributes[ $attribute->attribute_name ] = $attribute->attribute_label;
+		}
 
 		$options = array(
 
@@ -231,6 +238,18 @@ class WC_GZD_Trusted_Shops_Admin {
 				'desc' => __( 'px', 'trusted-shops', 'woocommerce-germanized' ),
 				'default' => '12',
 				'css'   => 'max-width:60px;',
+			),
+
+			array(
+				'title'  => _x( 'GTIN Attribute', 'trusted-shops', 'woocommerce-germanized' ),
+				'desc'   => _x( 'Choose a custom attribute which will be used as GTIN for product reviews.', 'trusted-shops', 'woocommerce-germanized' ),
+				'desc_tip' => true,
+				'id'   => 'woocommerce_' . $this->base->option_prefix . 'trusted_shops_gtin_attribute',
+				'css'   => 'min-width:250px;',
+				'default' => 'gtin',
+				'type'   => 'select',
+				'class'  => 'chosen_select',
+				'options' => $gtin_attributes,
 			),
 
 			array(
