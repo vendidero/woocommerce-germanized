@@ -46,6 +46,22 @@ class WC_GZD_Admin {
 		add_action( 'admin_menu', array( $this, 'set_status_page' ), 1 );
 		add_action( 'admin_init', array( $this, 'check_tour_hide' ) );
 		add_action( 'admin_init', array( $this, 'check_complaints_shortcode_append' ) );
+		add_filter( 'woocommerce_addons_section_data', array( $this, 'set_addon' ), 10, 2 );
+	}
+
+	public function set_addon( $products, $section_id ) {
+
+		if ( $section_id !== 'featured' )
+			return $products;
+
+		array_unshift( $products, (object) array(
+			'title' => 'Woo Germanized Pro',
+			'excerpt' => 'Upgrade jetzt auf die Pro Version von WooCommerce Germanized und profitiere von weiteren nützliche Funktionen speziell für den deutschen Markt sowie professionellem Support.',
+			'link' => 'https://vendidero.de/woocommerce-germanized#buy',
+			'price' => '69,95 €',
+		) );
+
+		return $products;
 	}
 
 	/**

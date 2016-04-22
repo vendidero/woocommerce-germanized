@@ -93,7 +93,7 @@ class WC_GZD_Trusted_Shops_Admin {
 
 			array( 'type' => 'sectionend', 'id' => 'trusted_shops_options' ),
 
-			array(	'title' => _x( 'Configure your Trustbadge', 'trusted-shops', 'woocommerce-germanized' ), 'type' => 'title', 'id' => 'trusted_shops_badge_options', 'desc' => _x( 'Here you can find a step-by-step introduction.', 'trusted-shops', 'woocommerce-germanized' ) ),
+			array(	'title' => _x( 'Configure your Trustbadge', 'trusted-shops', 'woocommerce-germanized' ), 'type' => 'title', 'id' => 'trusted_shops_badge_options', 'desc' => sprintf( _x( '<a href="%s" target="_blank">Here</a> you can find a step-by-step introduction.', 'trusted-shops', 'woocommerce-germanized' ), $this->get_trusted_url( $this->base->integration_url ) ) ),
 
 			array(
 				'title'  => _x( 'Variant', 'trusted-shops', 'woocommerce-germanized' ),
@@ -204,7 +204,7 @@ class WC_GZD_Trusted_Shops_Admin {
 			),
 
 			array(
-				'title'  => _x( 'Product Widget Code', 'trusted-shops', 'woocommerce-germanized' ),
+				'title'  => _x( 'Product Review Code', 'trusted-shops', 'woocommerce-germanized' ),
 				'id'     => 'woocommerce_' . $this->base->option_prefix . 'trusted_shops_product_widget_code',
 				'type'   => 'textarea',
 				'css' => 'width: 100%; min-height: 150px',
@@ -318,7 +318,7 @@ class WC_GZD_Trusted_Shops_Admin {
 						<li><?php echo _x( 'Deactivate mobile use', 'trusted-shops', 'woocommerce-germanized' ); ?></li>
 						<li><?php echo _x( 'Jump from your Product Reviews stars directly to your Product Reviews', 'trusted-shops', 'woocommerce-germanized' ); ?></li>
 					</ul>
-					<p><?php echo sprintf( _x( '<a href="%s">Learn more</a> about <a href="%s" target="_blank">Trustbadge</a> options and <a href="%s" target="_blank">Product Reviews</a> configuration.', 'trusted-shops', 'woocommerce-germanized' ), $this->get_trusted_url( $this->base->integration_url ), 'http://www.trustedshops.de/shopbetreiber/integration/trustbadge/trustbadge-custom/', 'http://www.trustedshops.de/shopbetreiber/integration/product-reviews/' ); ?></p>
+					<p><?php echo sprintf( _x( '<a href="%s" target="_blank">Learn more</a> about <a href="%s" target="_blank">Trustbadge</a> options and <a href="%s" target="_blank">Product Reviews</a> configuration.', 'trusted-shops', 'woocommerce-germanized' ), $this->get_trusted_url( $this->base->integration_url ), 'http://www.trustedshops.de/shopbetreiber/integration/trustbadge/trustbadge-custom/', 'http://www.trustedshops.de/shopbetreiber/integration/product-reviews/' ); ?></p>
 				</div>
 			</div>
 		<?php
