@@ -26,11 +26,41 @@ class WC_GZD_Trusted_Shops_Admin {
 		add_action( 'woocommerce_gzd_before_save_section_trusted_shops', array( $this, 'before_save' ), 0, 1 );
 		add_action( 'woocommerce_gzd_after_save_section_trusted_shops', array( $this, 'after_save' ), 0, 1 );
 
+		// Default settings
+		add_filter( 'woocommerce_gzd_installation_default_settings', array( $this, 'set_installation_settings' ), 10, 1 );
+
+		// After Install
+		add_action( 'woocommerce_gzd_installed', array( $this, 'create_gtin_attribute' ) );
+
 		// Review Collector
 		add_action( 'wc_germanized_settings_section_after_trusted_shops', array( $this, 'review_collector_export' ), 0 );
 		add_action( 'admin_init', array( $this, 'review_collector_export_csv' ) );
 
 		add_action( 'woocommerce_gzd_load_trusted_shops_script', array( $this, 'load_scripts' ) );
+	}
+
+	public function create_gtin_attribute() {
+		
+		// Create the taxonomy
+		global $wpdb;
+		delete_transient( 'wc_attribute_taxonomies' );
+		
+		if ( ! in_array( 'pa_gtin', wc_get_attribute_taxonomy_names() ) ) {
+			$attribute = array(
+				'attribute_label'   => _x( 'GTIN', 'trusted-shops', 'woocommerce-germanized' ),
+				'attribute_name'    => 'gtin',
+				'attribute_type'    => 'text',
+				'attribute_orderby' => 'menu_order',
+				'attribute_public'  => 0
+			);
+		
+			$wpdb->insert( $wpdb->prefix . 'woocommerce_attribute_taxonomies', $attribute );
+			delete_transient( 'wc_attribute_taxonomies' );
+		}
+	}
+
+	public function set_installation_settings( $settings ) {
+		return array_merge( $settings, $this->get_settings() );
 	}
 
 	public function load_scripts() {

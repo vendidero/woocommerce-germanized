@@ -198,6 +198,9 @@ class WC_GZD_Install {
 		// Flush rules after install
 		flush_rewrite_rules();
 
+		// Upon install + update
+		do_action( 'woocommerce_gzd_installed' );
+
 		// Redirect to welcome screen
 		set_transient( '_wc_gzd_activation_redirect', 1, 60 * 60 );
 	}
@@ -503,7 +506,7 @@ class WC_GZD_Install {
 		include_once( 'admin/settings/class-wc-gzd-settings-germanized.php' );
 
 		$settings = new WC_GZD_Settings_Germanized();
-		$options = array_merge( $settings->get_settings(), $settings->get_display_settings(), $settings->get_email_settings() );
+		$options = apply_filters( 'woocommerce_gzd_installation_default_settings', array_merge( $settings->get_settings(), $settings->get_display_settings(), $settings->get_email_settings() ) );
 
 		foreach ( $options as $value ) {
 			if ( isset( $value['default'] ) && isset( $value['id'] ) ) {
