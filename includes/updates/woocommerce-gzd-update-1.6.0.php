@@ -30,12 +30,22 @@ foreach ( $update_variations as $variation ) {
 
 }
 
-// Delete all _unit + _unit_base fields from children
+// Rename all _unit of children
 $wpdb->query("
-	DELETE {$wpdb->postmeta} FROM {$wpdb->postmeta}
-	LEFT OUTER JOIN wp_posts AS posts ON {$wpdb->postmeta}.post_id = posts.ID
-	WHERE posts.post_type = 'product_variation'
-	AND ( {$wpdb->postmeta}.meta_key = '_unit' OR {$wpdb->postmeta}.meta_key = '_unit_base' )
+	UPDATE {$wpdb->postmeta} pm
+	LEFT OUTER JOIN wp_posts p ON pm.post_id = p.ID
+	SET pm.meta_key = '_unit_pre'
+	WHERE p.post_type = 'product_variation'
+	AND pm.meta_key = '_unit'
+");
+
+// Rename all _unit_base of children
+$wpdb->query("
+	UPDATE {$wpdb->postmeta} pm
+	LEFT OUTER JOIN wp_posts p ON pm.post_id = p.ID
+	SET pm.meta_key = '_unit_base_pre'
+	WHERE p.post_type = 'product_variation'
+	AND pm.meta_key = '_unit_base'
 ");
 
 // Update hide virtual shipping costs
