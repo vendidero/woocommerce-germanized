@@ -165,6 +165,7 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 * Feature - Officially supporting german formal language (Sie)
 * Feature - SEPA XML Export
 * Feature - Optionally hide shipping time/shipping cost notice for certain product types options
+* Feature - Better Trusted Shops integration
 * Fix - Matching WooCommerce checkbox HTML layout
 * Fix - Role based prices compatibility
 * Fix - WPML Helper improvement to stop double sending confirmation emails
