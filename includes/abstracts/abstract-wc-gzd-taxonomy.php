@@ -54,7 +54,7 @@ class WC_GZD_Taxonomy {
 	public function get_terms() {
 		$list = array();
 		$terms = get_terms( $this->taxonomy, array( 'hide_empty' => false ) );
-		if ( ! empty( $terms ) ) {
+		if ( ! empty( $terms ) && ! is_wp_error( $terms ) ) {
 			foreach ( $terms as $term )
 				$list[ $term->slug ] = $term->name;
 		}

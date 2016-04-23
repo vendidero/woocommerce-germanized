@@ -118,7 +118,7 @@ class WC_GZD_Trusted_Shops {
 	}
 
 	public function get_dependency_name( $name ) {
-		$classname = 'WC_' . $this->prefix . 'Trusted_Shops_' . ucwords( str_replace( '-', '_', strtolower( $name ) ), '_' );
+		$classname = 'WC_' . $this->prefix . 'Trusted_Shops_' . ucwords( str_replace( '-', '_', strtolower( $name ) ) );
 		return $classname;
 	}
 
