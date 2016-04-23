@@ -344,14 +344,6 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 				'desc'		=>  '<a href="' . admin_url( 'edit-tags.php?taxonomy=product_price_label&post_type=product' ) . '">' . __( 'Manage Price Labels', 'woocommerce-germanized' ) . '</a>',
 			),
 
-			array(
-				'title' 	=> __( 'Product Lists', 'woocommerce-germanized' ),
-				'desc' 		=> __( 'Disable sale price labels within product listings?', 'woocommerce-germanized' ),
-				'id' 		=> 'woocommerce_gzd_sale_price_listings',
-				'default'	=> 'yes',
-				'type' 		=> 'checkbox',
-			),
-
 			array( 'type' => 'sectionend', 'id' => 'delivery_times_options' ),
 
 
@@ -708,7 +700,15 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 				'id' 		=> 'woocommerce_gzd_display_listings_delivery_time',
 				'type' 		=> 'checkbox',
 				'default'	=> 'yes',
-				'checkboxgroup'		=> 'end',
+				'checkboxgroup'		=> '',
+			),
+
+			array(
+				'desc' 	=> __( 'Price Labels', 'woocommerce-germanized' ),
+				'id' 		=> 'woocommerce_gzd_display_listings_sale_price_labels',
+				'default'	=> 'yes',
+				'type' 		=> 'checkbox',
+				'checkboxgroup'	=> 'end',
 			),
 
 			array(
@@ -749,7 +749,15 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 				'id' 		=> 'woocommerce_gzd_display_product_detail_delivery_time',
 				'type' 		=> 'checkbox',
 				'default'	=> 'yes',
-				'checkboxgroup'		=> 'end',
+				'checkboxgroup'		=> '',
+			),
+
+			array(
+				'desc' 	=> __( 'Price Labels', 'woocommerce-germanized' ),
+				'id' 		=> 'woocommerce_gzd_display_product_detail_sale_price_labels',
+				'default'	=> 'yes',
+				'type' 		=> 'checkbox',
+				'checkboxgroup'	=> 'end',
 			),
 
 			array(

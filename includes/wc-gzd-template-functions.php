@@ -490,7 +490,9 @@ if ( ! function_exists( 'woocommerce_gzd_template_sale_price_label' ) ) {
 
 	function woocommerce_gzd_template_sale_price_label( $price, $from, $to, $product ) {
 
-		if ( get_option( 'woocommerce_gzd_sale_price_listings' ) === 'yes' && ! is_product() )
+		if ( ! is_product() && get_option( 'woocommerce_gzd_display_listings_sale_price_labels' ) === 'no' )
+			return $price;
+		else if ( is_product() && get_option( 'woocommerce_gzd_display_product_detail_sale_price_labels' ) === 'no' )
 			return $price;
 
 		return wc_gzd_get_gzd_product( $product )->get_price_html_from_to( $from, $to );
@@ -502,7 +504,9 @@ if ( ! function_exists( 'woocommerce_gzd_template_variation_sale_price_label' ) 
 
 	function woocommerce_gzd_template_variation_sale_price_label( $price, $product ) {
 
-		if ( get_option( 'woocommerce_gzd_sale_price_listings' ) === 'yes' && ! is_product() )
+		if ( ! is_product() && get_option( 'woocommerce_gzd_display_listings_sale_price_labels' ) === 'no' )
+			return $price;
+		else if ( is_product() && get_option( 'woocommerce_gzd_display_product_detail_sale_price_labels' ) === 'no' )
 			return $price;
 
 		$display_regular_price = $product->get_display_price( $product->get_regular_price() );

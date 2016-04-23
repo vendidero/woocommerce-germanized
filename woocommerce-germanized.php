@@ -133,6 +133,8 @@ final class WooCommerce_Germanized {
 		add_action( 'init', array( $this, 'init' ), 1 );
 		add_action( 'init', array( 'WC_GZD_Shortcodes', 'init' ), 2 );
 		add_action( 'woocommerce_init', array( $this, 'replace_woocommerce_product_factory' ), PHP_INT_MAX );
+		// Set template filter directly after load to ensure wc_get_template finds templates
+		add_filter( 'woocommerce_locate_template', array( $this, 'filter_templates' ), PHP_INT_MAX, 3 );
 
 		$this->units          = new WC_GZD_Units();
 		$this->price_labels   = new WC_GZD_Price_Labels();
@@ -157,8 +159,6 @@ final class WooCommerce_Germanized {
 	public function init() {
 		// Before init action
 		do_action( 'before_woocommerce_germanized_init' );
-
-		add_filter( 'woocommerce_locate_template', array( $this, 'filter_templates' ), PHP_INT_MAX, 3 );
 		
 		if ( get_option( 'woocommerce_gzd_display_checkout_fallback' ) == 'yes' )
 			add_filter( 'woocommerce_germanized_filter_template', array( $this, 'set_checkout_fallback' ), 10, 3 );

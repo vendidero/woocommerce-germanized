@@ -37,9 +37,7 @@ class WC_GZD_Trusted_Shops_Template_Hooks {
 	public function template_hooks() {
 		
 		add_action( 'woocommerce_thankyou', array( $this, 'template_thankyou' ), 10, 1 );
-		
-		if ( $this->base->standard_trustbadge === 'yes' )
-			add_action( 'wp_footer', array( $this, 'template_trustbadge' ), PHP_INT_MAX );
+		add_action( 'wp_footer', array( $this, 'template_trustbadge' ), PHP_INT_MAX );
 
 	}
 
