@@ -124,7 +124,7 @@ class WC_GZD_Trusted_Shops {
 
 	public function get_dependency( $name ) {
 		$classname = $this->get_dependency_name( $name );
-		return $classname::instance( $this );
+		return call_user_func_array( array( $classname, 'instance' ), array( $this ) );
 	}
 
 	public function refresh() {
