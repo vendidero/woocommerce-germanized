@@ -84,7 +84,7 @@ if ( ! defined( 'ABSPATH' ) )
 		</tr>
 		<tr>
 			<td data-export-label="Tax Rate Name Collision"><?php _e( 'Tax Rate Name Collision', 'woocommerce-germanized' ); ?>:</td>
-			<td class="help"><?php echo '<a href="#" class="help_tip" data-tip="' . esc_attr__( 'Make sure, that different tax rates do not have the same names. WooCommerce will then merge these rates within checkout into one line.', 'woocommerce-germanized' ) . '">[?]</a>'; ?></td>
+			<td class="help"><?php echo '<a href="#" class="help_tip" data-tip="' . esc_attr( __( 'Make sure, that different tax rates do not have the same names. WooCommerce will then merge these rates within checkout into one line.', 'woocommerce-germanized' ) ) . '">[?]</a>'; ?></td>
 			<td>
 				<?php
 
@@ -128,7 +128,7 @@ if ( ! defined( 'ABSPATH' ) )
 		</tr>
 		<tr>
 			<td data-export-label="VAT Table Check"><?php _e( 'VAT Table Check', 'woocommerce-germanized' ); ?>:</td>
-			<td class="help"><?php echo '<a href="#" class="help_tip" data-tip="' . esc_attr__( 'Checks whether all WooCommerce tax relevant tables have been added.', 'woocommerce-germanized' ) . '">[?]</a>'; ?></td>
+			<td class="help"><?php echo '<a href="#" class="help_tip" data-tip="' . esc_attr( __( 'Checks whether all WooCommerce tax relevant tables have been added.', 'woocommerce-germanized' ) ) . '">[?]</a>'; ?></td>
 			<td><?php echo WC_GZD_Admin_Status::tax_tables_exist() ? '<mark class="yes">'.'&#10004;'.'</mark>' : '<mark class="no">'.'&ndash;'.'</mark>' . ' [' .sprintf( __( 'Missing: %s', 'woocommerce-germanized' ), implode( ', ', WC_GZD_Admin_Status::get_missing_tax_tables() ) ) . ']'; ?></td>
 		</tr>
 		<?php do_action( 'woocommerce_gzd_status_after_vat' ); ?>
