@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce Germanized v1.5.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-04-25 11:05+0100\n"
-"PO-Revision-Date: 2016-04-27 10:20+0100\n"
+"POT-Creation-Date: 2016-04-27 10:20+0100\n"
+"PO-Revision-Date: 2016-04-27 10:22+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -91,7 +91,7 @@ msgstr "l"
 # @ woocommerce-germanized
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/abstracts/abstract-wc-gzd-product.php:159
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/wc-gzd-cart-functions.php:196
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/woocommerce-germanized.php:741
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/woocommerce-germanized.php:734
 msgid "incl. VAT"
 msgstr "inkl. MwSt."
 
@@ -103,7 +103,7 @@ msgstr "exkl. MwSt."
 # @ woocommerce-germanized
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/abstracts/abstract-wc-gzd-product.php:161
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/wc-gzd-cart-functions.php:196
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/woocommerce-germanized.php:741
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/woocommerce-germanized.php:734
 #, php-format
 msgid "incl. %s%% VAT"
 msgstr "inkl. %s%% MwSt."
@@ -3357,7 +3357,7 @@ msgstr ""
 # @ woocommerce-germanized
 # @ woocommerce
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/invoice/class-wc-gzd-gateway-invoice.php:50
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/woocommerce-germanized.php:517
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/woocommerce-germanized.php:510
 msgid "Settings"
 msgstr "Einstellungen"
 
@@ -3729,13 +3729,13 @@ msgstr ""
 "als Rich Snippets im Shop als Widget verfügbar sind. "
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:289
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:295
 msgctxt "trusted-shops"
 msgid "Review Reminder"
 msgstr "Bewertungserinnerung"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:290
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:296
 msgctxt "trusted-shops"
 msgid "Send a one-time email review reminder to your customers."
 msgstr ""
@@ -3743,13 +3743,13 @@ msgstr ""
 "senden."
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:298
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:304
 msgctxt "trusted-shops"
 msgid "Days until reminder"
 msgstr "Tage bis zur Erinnerung"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:299
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:305
 msgctxt "trusted-shops"
 msgid ""
 "Decide how many days after an order the email review reminder will be sent."
@@ -3758,13 +3758,13 @@ msgstr ""
 "wurde) bis zur E-Mail Erinnerung an den Kunden."
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:309
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:321
 msgctxt "trusted-shops"
 msgid "Assign payment methods"
 msgstr "Zahlungsarten zuweisen"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:339
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:351
 #, php-format
 msgctxt "trusted-shops"
 msgid ""
@@ -3775,18 +3775,18 @@ msgstr ""
 "Zahlungsarten aus."
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:361
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:373
 msgctxt "trusted-shops"
 msgid "About Trusted Shops"
 msgstr "Über Trusted Shops"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:363
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:375
 msgctxt "trusted-shops"
 msgid "Get your account"
 msgstr "Erstelle deinen Account"
 
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:365
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:377
 msgctxt "trusted-shops"
 msgid ""
 "Use additional options to customize your Trusted Shops Integration or use "
@@ -3795,24 +3795,24 @@ msgstr ""
 "Hier kannst du deine Trusted Shops Integration detaillierter konfigurieren "
 "oder den neuesten Code einbinden:"
 
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:367
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:379
 msgctxt "trusted-shops"
 msgid "Place your Trustbadge wherever you want"
 msgstr "Platziere dein Trustbadge wo immer du möchtest"
 
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:368
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:380
 msgctxt "trusted-shops"
 msgid "Deactivate mobile use"
 msgstr "Deaktiviere die mobile Anzeige"
 
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:369
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:381
 msgctxt "trusted-shops"
 msgid "Jump from your Product Reviews stars directly to your Product Reviews"
 msgstr ""
 "Springe durch einen Klick von deinen Produktbewertungssternen direkt zu "
 "deinen Produktbewertungen"
 
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:371
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:383
 #, php-format
 msgctxt "trusted-shops"
 msgid ""
@@ -3825,43 +3825,43 @@ msgstr ""
 "a> oder von <a href=\"%s\" target=\"_blank\">Produktbewertungen</a>."
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:487
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:499
 msgctxt "trusted-shops"
 msgid "Review Collector"
 msgstr "Review Collector"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:492
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:504
 msgctxt "trusted-shops"
 msgid "Export customer data"
 msgstr "Bestellungen exportieren"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:496
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:508
 msgctxt "trusted-shops"
 msgid "30 days"
 msgstr "30 Tage"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:497
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:509
 msgctxt "trusted-shops"
 msgid "60 days"
 msgstr "60 Tage"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:498
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:510
 msgctxt "trusted-shops"
 msgid "90 days"
 msgstr "90 Tage"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:500
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:512
 msgctxt "trusted-shops"
 msgid "Start export"
 msgstr "Export starten"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:501
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:513
 #, php-format
 msgctxt "trusted-shops"
 msgid ""
@@ -3883,43 +3883,43 @@ msgid "Reviews"
 msgstr "Bewertungen"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops.php:101
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops.php:105
 msgctxt "trusted-shops"
 msgid "Prepayment"
 msgstr "Überweisung"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops.php:102
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops.php:106
 msgctxt "trusted-shops"
 msgid "Cash On Delivery"
 msgstr "Bar bei Lieferung"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops.php:103
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops.php:107
 msgctxt "trusted-shops"
 msgid "Credit Card"
 msgstr "Kreditkarte"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops.php:104
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops.php:108
 msgctxt "trusted-shops"
 msgid "Paypal"
 msgstr "Paypal"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops.php:105
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops.php:109
 msgctxt "trusted-shops"
 msgid "Invoice"
 msgstr "Rechnung"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops.php:106
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops.php:110
 msgctxt "trusted-shops"
 msgid "Direct Debit"
 msgstr "Bankeinzug"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops.php:107
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops.php:111
 msgctxt "trusted-shops"
 msgid "Financing"
 msgstr "Finanzierung"
