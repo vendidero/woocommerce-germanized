@@ -285,30 +285,42 @@ class WC_GZD_Trusted_Shops_Admin {
 				'autoload'  => false
 			),
 
-			array(
-				'title'  => _x( 'Review Reminder', 'trusted-shops', 'woocommerce-germanized' ),
-				'desc'   => sprintf( _x( 'Send a one-time email review reminder to your customers.', 'trusted-shops', 'woocommerce-germanized' ), admin_url( 'widgets.php' ) ),
-				'id'   => 'woocommerce_' . $this->base->option_prefix . 'trusted_shops_review_reminder_enable',
-				'type'   => 'checkbox',
-				'default' => 'no',
-				'autoload'  => false
-			),
+		);
 
-			array(
-				'title'  => _x( 'Days until reminder', 'trusted-shops', 'woocommerce-germanized' ),
-				'desc'   => _x( 'Decide how many days after an order the email review reminder will be sent.', 'trusted-shops', 'woocommerce-germanized' ),
-				'desc_tip' => true,
-				'default' => 7,
-				'id'   => 'woocommerce_' . $this->base->option_prefix . 'trusted_shops_review_reminder_days',
-				'type'   => 'number',
-				'custom_attributes' => array( 'min' => 0, 'step' => 1 ),
-			),
+		if ( $this->base->supports( 'reminder' ) ) {
+
+			$options = array_merge( $options, array(
+
+				array(
+					'title'  => _x( 'Review Reminder', 'trusted-shops', 'woocommerce-germanized' ),
+					'desc'   => sprintf( _x( 'Send a one-time email review reminder to your customers.', 'trusted-shops', 'woocommerce-germanized' ), admin_url( 'widgets.php' ) ),
+					'id'   => 'woocommerce_' . $this->base->option_prefix . 'trusted_shops_review_reminder_enable',
+					'type'   => 'checkbox',
+					'default' => 'no',
+					'autoload'  => false
+				),
+
+				array(
+					'title'  => _x( 'Days until reminder', 'trusted-shops', 'woocommerce-germanized' ),
+					'desc'   => _x( 'Decide how many days after an order the email review reminder will be sent.', 'trusted-shops', 'woocommerce-germanized' ),
+					'desc_tip' => true,
+					'default' => 7,
+					'id'   => 'woocommerce_' . $this->base->option_prefix . 'trusted_shops_review_reminder_days',
+					'type'   => 'number',
+					'custom_attributes' => array( 'min' => 0, 'step' => 1 ),
+				)
+
+			) );
+
+		}
+
+		$options = array_merge( $options, array(
 
 			array( 'type' => 'sectionend', 'id' => 'trusted_shops_additional_options' ),
 
 			array(	'title' => _x( 'Assign payment methods', 'trusted-shops', 'woocommerce-germanized' ), 'type' => 'title', 'id' => 'trusted_shops_payment_options' ),
 
-		);
+		) );
 
 		$payment_gateways = WC()->payment_gateways->payment_gateways();
 
@@ -357,11 +369,11 @@ class WC_GZD_Trusted_Shops_Admin {
 	public function get_sidebar() {
 		ob_start();
 		?>
-			<div class="wc-<?php echo $this->script_prefix; ?>admin-settings-sidebar wc-<?php echo $this->script_prefix; ?>admin-settings-sidebar-trusted-shops">
+			<div class="wc-gzd-admin-settings-sidebar wc-gzd-admin-settings-sidebar-trusted-shops">
 				<h3><?php echo _x( 'About Trusted Shops', 'trusted-shops', 'woocommerce-germanized' ); ?></h3>
 				<a href="<?php echo $this->get_signup_url( $this->base->urls[ 'signup' ] ); ?>" target="_blank"><img style="width: 100%; height: auto" src="<?php echo $this->base->plugin->plugin_url(); ?>/assets/images/trusted-shops-b.jpg" /></a>
 				<a class="button button-primary" href="<?php echo $this->get_signup_url( $this->base->urls[ 'signup' ] ); ?>" target="_blank"><?php echo _x( 'Get your account', 'trusted-shops', 'woocommerce-germanized' ); ?></a>
-				<div class="wc-<?php echo $this->script_prefix; ?>trusted-shops-expert-mode-note">
+				<div class="wc-gzd-trusted-shops-expert-mode-note">
 					<p><?php echo _x( 'Use additional options to customize your Trusted Shops Integration or use the latest code version here. E.g.:', 'trusted-shops', 'woocommerce-germanized' ); ?></p>
 					<ul>
 						<li><?php echo _x( 'Place your Trustbadge wherever you want', 'trusted-shops', 'woocommerce-germanized' ); ?></li>

@@ -326,14 +326,7 @@ final class WooCommerce_Germanized {
 		include_once ( 'includes/class-wc-gzd-customer-helper.php' );
 		include_once ( 'includes/class-wc-gzd-virtual-vat-helper.php' );
 
-		// Initialize Trusted Shops module
-		$this->trusted_shops  = new WC_GZD_Trusted_Shops( $this, array(
-				'partner_id'  => 'WooCommerceGermanized', 
-				'prefix' 	  => 'GZD_', 
-				'et' 		  => array( 'utm_campaign' => 'shopsoftware', 'utm_content' => 'WOOCOMMERCEGERMANIZED' ),
-				'signup'	  => array( 'utm_source' => 'woocommerce-germanized', 'utm_campaign' => 'woocommerce-germanized' ),
-			)
-		);
+		$this->setup_trusted_shops();
 
 		$this->ekomi    	  = new WC_GZD_Ekomi();
 
@@ -764,6 +757,25 @@ final class WooCommerce_Germanized {
 	 */
 	public function prevent_tax_name_merge( $code, $rate_id ) {
 		return $code . '-' . $rate_id;
+	}
+
+	/**
+	 * Initialize Trusted Shops Module
+	 */
+	private function setup_trusted_shops() {
+		// Initialize Trusted Shops module
+		$this->trusted_shops  = new WC_GZD_Trusted_Shops( $this, array(
+				'prefix' 	  => 'GZD_', 
+				'et' 		  => array( 'utm_campaign' => 'shopsoftware', 'utm_content' => 'WOOCOMMERCEGERMANIZED' ),
+				'signup'	  => array( 'utm_source' => 'woocommerce-germanized', 'utm_campaign' => 'woocommerce-germanized' ),
+				'urls'		  => array( 
+					'integration' 		=> 'http://www.trustedshops.de/shopbetreiber/integration/shopsoftware-integration/woocommerce-germanized/',
+					'signup' 			=> 'http://www.trustbadge.com/de/Preise/',
+					'trustbadge_custom' => 'http://www.trustedshops.de/shopbetreiber/integration/trustbadge/trustbadge-custom/', 
+					'reviews' 			=> 'http://www.trustedshops.de/shopbetreiber/integration/product-reviews/', 
+				),
+			)
+		);
 	}
 
 }

@@ -16,12 +16,6 @@ class WC_GZD_Trusted_Shops {
 	 * @var mixed
 	 */
 	public $id;
-
-	/**
-	 * Trusted Shops Partner ID of WooCommerce Germanized
-	 * @var string
-	 */
-	public $partner_id;
 	
 	/**
 	 * Trusted Shops URL Parameters 
@@ -48,15 +42,16 @@ class WC_GZD_Trusted_Shops {
 	public $option_prefix = '';
 
 	/**
+	 * Support functionality
+	 * @var array
+	 */
+	public $supports = array();
+
+	/**
 	 * Admin URLs
 	 * @var array
 	 */
-	public $urls = array(
-		'integration' => 'http://www.trustedshops.de/shopbetreiber/integration/shopsoftware-integration/woocommerce-germanized/',
-		'signup' => 'http://www.trustbadge.com/de/Preise/',
-		'trustbadge_custom' => 'http://www.trustedshops.de/shopbetreiber/integration/trustbadge/trustbadge-custom/', 
-		'reviews' => 'http://www.trustedshops.de/shopbetreiber/integration/product-reviews/',
-	);
+	public $urls = array();
 	
 	/**
 	 * WooCommerce Gateway mapping
@@ -86,12 +81,21 @@ class WC_GZD_Trusted_Shops {
 	 * Sets Trusted Shops payment gateways and load dependencies
 	 */
 	public function __construct( $plugin, $params = array() ) {
-		
+			
 		$this->plugin = $plugin;
-		$this->partner_id = $params[ 'partner_id' ];
-		$this->et_params = $params[ 'et' ];
-		$this->signup_params = $params[ 'signup' ];
-		$this->prefix = $params[ 'prefix' ];
+
+		$args = wp_parse_args( $params, array(
+			'et_params' 	=> array(),
+			'signup_params' => array(),
+			'prefix' 		=> '',
+			'urls' 			=> array(),
+			'supports' 		=> array( 'reminder' ),
+		) );
+
+		foreach ( $args as $arg => $val ) {
+			$this->$arg = $val;
+		}
+
 		$this->option_prefix = strtolower( $this->prefix );
 
 		// Refresh TS ID + API URL
@@ -180,7 +184,7 @@ class WC_GZD_Trusted_Shops {
 	}
 
 	public function is_review_reminder_enabled() {
-		return ( $this->review_reminder_enable === 'yes' && $this->is_enabled() ? true : false );
+		return ( $this->review_reminder_enable === 'yes' && $this->supports( 'reminder' ) && $this->is_enabled() ? true : false );
 	}
 
 	public function is_product_reviews_enabled() {
@@ -193,6 +197,10 @@ class WC_GZD_Trusted_Shops {
 
 	public function is_product_widget_enabled() {
 		return ( $this->is_product_reviews_enabled() && $this->product_widget_enable === 'yes' ? true : false );
+	}
+
+	public function supports( $type ) {
+		return ( in_array( $type, $this->supports ) ? true : false );
 	}
 
 	/**

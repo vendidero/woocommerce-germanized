@@ -33,7 +33,7 @@ foreach ( $update_variations as $variation ) {
 // Rename all _unit of children
 $wpdb->query("
 	UPDATE {$wpdb->postmeta} pm
-	LEFT OUTER JOIN wp_posts p ON pm.post_id = p.ID
+	LEFT OUTER JOIN {$wpdb->posts} p ON pm.post_id = p.ID
 	SET pm.meta_key = '_unit_pre'
 	WHERE p.post_type = 'product_variation'
 	AND pm.meta_key = '_unit'
@@ -42,7 +42,7 @@ $wpdb->query("
 // Rename all _unit_base of children
 $wpdb->query("
 	UPDATE {$wpdb->postmeta} pm
-	LEFT OUTER JOIN wp_posts p ON pm.post_id = p.ID
+	LEFT OUTER JOIN {$wpdb->posts} p ON pm.post_id = p.ID
 	SET pm.meta_key = '_unit_base_pre'
 	WHERE p.post_type = 'product_variation'
 	AND pm.meta_key = '_unit_base'

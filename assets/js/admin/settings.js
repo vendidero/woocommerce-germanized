@@ -1,9 +1,4 @@
 jQuery( function ( $ ) {
-	
-	$( document ).on( 'click', '#wc-gzd-trusted-shops-export', function() {
-		var href_org = $( this ).data( 'href-org' );
-		$( this ).attr( 'href', href_org + '&interval=' + $( '#woocommerce_gzd_trusted_shops_review_collector' ).val() ); 
-	});
 
 	if ( $( '#woocommerce_gzd_mail_attach_imprint' ).length > 0 ) {
 

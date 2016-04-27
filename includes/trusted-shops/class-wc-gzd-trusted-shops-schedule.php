@@ -69,7 +69,7 @@ class WC_GZD_Trusted_Shops_Schedule {
 				}
 			}
 		}
-		update_option( 'woocommerce_gzd_trusted_shops_reviews_cache', $update );
+		update_option( 'woocommerce' . $this->base->option_prefix . '_trusted_shops_reviews_cache', $update );
 	}
 
 	/**
@@ -97,7 +97,7 @@ class WC_GZD_Trusted_Shops_Schedule {
 		
 		if ( ! $this->base->get_review_widget_attachment() ) {
 			$attachment_id = wp_insert_attachment( $attachment, $filepath );
-			update_option( 'woocommerce_gzd_trusted_shops_review_widget_attachment', $attachment_id );
+			update_option( 'woocommerce' . $this->base->option_prefix . '_trusted_shops_review_widget_attachment', $attachment_id );
 		} else {
 			$attachment_id = $this->base->get_review_widget_attachment();
 			update_attached_file( $attachment_id, $filepath );
