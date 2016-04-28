@@ -35,9 +35,10 @@
 
 		$( 'form.checkout, form#order_review' ).on( 'blur input change', 'input, select', function() {
 
-			if ( $( '#direct-debit-form' ).length ) {
+			// Hide by default
+			$( '.direct-debit-checkbox' ).hide();
 
-				$( '.direct-debit-checkbox' ).hide();
+			if ( $( '#direct-debit-form' ).length ) {
 
 				if ( $( '#payment_method_direct-debit' ).is( ':checked' ) &&
 					$( 'input#direct-debit-account-holder' ).val() && 
