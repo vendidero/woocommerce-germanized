@@ -210,7 +210,7 @@ class WC_GZD_Trusted_Shops {
 	 * @return string
 	 */
 	public function get_payment_gateway( $payment_method_id ) {
-		return ( get_option( 'woocommerce_gzd_trusted_shops_gateway_' . $payment_method_id ) ) ? strtoupper( get_option( 'woocommerce_gzd_trusted_shops_gateway_' . $payment_method_id ) ) : '';
+		return ( $this->{"gateway_$payment_method_id"} ? strtoupper( $this->{"gateway_$payment_method_id"} ) : '' );
 	}
 
 	/**

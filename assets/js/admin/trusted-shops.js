@@ -18,10 +18,10 @@ jQuery( function ( $ ) {
 
 			$( '#woocommerce_' + trusted_shops_params.option_prefix + 'trusted_shops_trustbadge_code' ).parents( 'tr' ).show();
 			// Show notice
-			$( '.wc-' + trusted_shops_params.script_prefix + 'trusted-shops-expert-mode-note' ).appendTo( $( this ).parents( 'td' ) ).show();
+			$( '.wc-gzd-trusted-shops-expert-mode-note' ).appendTo( $( this ).parents( 'td' ) ).show();
 		} else {
 			$( '#woocommerce_' + trusted_shops_params.option_prefix + 'trusted_shops_trustbadge_code' ).parents( 'tr' ).hide();
-			$( '.wc-' + trusted_shops_params.script_prefix + 'trusted-shops-expert-mode-note' ).hide();
+			$( '.wc-gzd-trusted-shops-expert-mode-note' ).hide();
 		}
 		$( document ).find( '#woocommerce_' + trusted_shops_params.option_prefix + 'trusted_shops_enable_reviews' ).trigger( 'change' );
 	});
