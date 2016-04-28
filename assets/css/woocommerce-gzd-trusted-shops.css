@@ -1,0 +1,26 @@
+.wc-gzd-trusted-shops-rating-widget {
+	line-height: 1.5rem;
+}
+.wc-gzd-trusted-shops-rating-widget .star-rating {
+	display: inline-block;
+	float: none;
+}
+.trusted-shops-badge {
+	width: 100px;
+	height: 100px;
+	display: inline-block;
+	background: transparent url(../images/trusted-shops-badge.png) no-repeat;
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+only screen and (-o-min-device-pixel-ratio: 3/2),
+only screen and (min--moz-device-pixel-ratio: 1.5),
+only screen and (min-device-pixel-ratio: 1.5) {
+ 	.trusted-shops-badge {
+  		background: transparent url(../images/trusted-shops-badge@2x.png) no-repeat;
+   		background-size: 100px 100px;
+    }
+    .trusted-shops-badge-smaller {
+   		background-size: 75px 75px;
+    }
+}

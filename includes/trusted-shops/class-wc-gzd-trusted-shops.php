@@ -119,6 +119,21 @@ class WC_GZD_Trusted_Shops {
 		$this->get_dependency( 'shortcodes' );
 		$this->get_dependency( 'widgets' );
 		$this->get_dependency( 'template_hooks' );
+
+		if ( $this->is_enabled() )
+			add_action( 'wp_enqueue_scripts', array( $this, 'load_frontend_assets' ), 50 );
+
+	}
+
+	public function load_frontend_assets() {
+
+		$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
+		$assets_path = $this->plugin->plugin_url() . '/assets/css';
+		$script_prefix = str_replace( '_', '-', $this->option_prefix );
+
+		wp_register_style( 'woocommerce-' . $script_prefix . 'trusted-shops', $assets_path . '/woocommerce-' . $script_prefix . 'trusted-shops' . $suffix . '.css', false, $this->plugin->version );
+		wp_enqueue_style( 'woocommerce-' . $script_prefix . 'trusted-shops' );
+
 	}
 
 	public function get_dependency_name( $name ) {

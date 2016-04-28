@@ -20,6 +20,7 @@ $order = wc_get_order( $order_id );
 	<span id="tsCheckoutOrderAmount"><?php echo $order->get_total(); ?></span>
 	<span id="tsCheckoutOrderCurrency"><?php echo $order->get_order_currency(); ?></span>
 	<span id="tsCheckoutOrderPaymentType"><?php echo WC_germanized()->trusted_shops->get_payment_gateway( $order->payment_method );?></span>
+	<span id="tsCheckoutOrderEstDeliveryDate"></span>
 	<?php if ( WC_germanized()->trusted_shops->is_product_reviews_enabled() ) : ?>
 		<?php foreach( $order->get_items() as $item_id => $item ) : 
 			
