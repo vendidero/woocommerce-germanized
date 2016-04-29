@@ -291,7 +291,7 @@ class WC_GZD_Trusted_Shops {
 
 			$args = wp_parse_args( $args, array(
 				'id' => $this->id,
-				'locale' => get_bloginfo( 'language' ),
+				'locale' => str_replace( '-', '_', get_bloginfo( 'language' ) ),
 			) );
 
 			foreach ( $args as $key => $arg ) {
