@@ -291,7 +291,7 @@ class WC_GZD_Trusted_Shops {
 
 			$args = wp_parse_args( $args, array(
 				'id' => $this->id,
-				'locale' => str_replace( '-', '_', get_bloginfo( 'language' ) ),
+				'locale' => $this->get_locale(),
 			) );
 
 			foreach ( $args as $key => $arg ) {
@@ -344,6 +344,28 @@ class WC_GZD_Trusted_Shops {
 		}
 
 		return $this->get_script( 'trustbadge', $replace, $args );
+	}
+
+	public function get_locale() {
+
+		$supported = array(
+			'de' => 'de_DE',
+			'en' => 'en_GB',
+			'fr' => 'fr_FR',
+			'es' => 'es_ES',
+			'it' => 'it_IT',
+			'nl' => 'nl_NL',
+			'pl' => 'pl_PL',
+		);
+
+		$locale = 'en_GB';
+		$base = substr( get_locale(), 0, 2 );
+
+		if ( isset( $supported[ $base ] ) )
+			$locale = $supported[ $base ];
+
+		return $locale;
+
 	}
 
 }
