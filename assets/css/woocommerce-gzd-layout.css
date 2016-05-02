@@ -42,6 +42,10 @@
 .entry-content .woocommerce #payment {
 	margin-bottom: 1em;
 }
+/* Hide first checkout/terms.php template loaded by WooCommerce */
+.woocommerce #payment .wc-terms-and-conditions {
+	display: none !important;
+}
 .entry-content .woocommerce .checkout-btn-wrap {
 	text-align: right;
 }

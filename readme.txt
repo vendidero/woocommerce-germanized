@@ -3,7 +3,7 @@ Contributors: vendidero
 Tags: woocommerce, german market, german, germany, deutsch, deutschland, de, de_DE, shop, commerce, e-commerce, ecommerce, woothemes, sepa, invoice
 Requires at least: 3.8
 Tested up to: 4.5
-Stable tag: 1.6.1
+Stable tag: 1.6.2
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -156,6 +156,11 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 1. WooCommerce Germanized Settings
 
 == Changelog ==
+
+= 1.6.2 =
+* Fix - Trusted Shops PHP < 5.4 backwards compatibility
+* Fix - Prevent showing terms twice before AJAX call
+* Fix - Trusted Shops implementation improvements
 
 = 1.6.1 =
 * Fix - PHP < 5.4 backwards compatibility
