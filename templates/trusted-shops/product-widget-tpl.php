@@ -11,11 +11,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 var summaryBadge = new productStickerSummary();
 summaryBadge.showSummary({
 	'tsId': '{id}',
-	'sku': [{sku}],
+	'sku': ['{sku}'],
 	'element': '{element}',
 	'starColor' : '{star_color}',
 	'starSize' : '{star_size}px',
 	'fontSize' : '{font_size}px',
 	'showRating' : 'true',
-	'scrollToReviews' : 'false',
+	'scrollToReviews' : 'false'
 });</script>

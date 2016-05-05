@@ -11,7 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 <script type="text/javascript">
 _tsProductReviewsConfig = {
 	tsid: '{id}', 
-	sku: [{sku}],
+	sku: ['{sku}'],
 	variant: 'productreviews',
 	borderColor: '{border_color}',
     locale: '{locale}',
