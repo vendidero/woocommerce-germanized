@@ -45,7 +45,7 @@ class WC_GZD_WPML_Helper {
 
 	public function send_order_admin_confirmation( $order_id ) {
 		global $woocommerce_wpml;
-		if ( isset( $woocommerce_wpml ) ) {
+		if ( isset( $woocommerce_wpml ) && isset( $woocommerce_wpml->emails ) && is_object( $woocommerce_wpml->emails ) ) {
 			// Instantiate mailer to make sure that new order email is known
 			$mailer = WC()->mailer();
 			$woocommerce_wpml->emails->admin_email( $order_id );
