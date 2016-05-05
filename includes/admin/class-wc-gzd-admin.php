@@ -157,7 +157,7 @@ class WC_GZD_Admin {
 
 	public function add_product_mini_desc() {
 		global $post;
-		if ( isset( $post ) ) {
+		if ( isset( $post ) && $post->post_type === 'product' ) {
 			$product = wc_get_product( $post );
 			if ( ! $product->is_type( 'variable' ) )
 				add_meta_box( 'wc-gzd-product-mini-desc', __( 'Optional Mini Description', 'woocommerce-germanized' ), array( $this, 'init_product_mini_desc' ), 'product', 'advanced', 'high' );
