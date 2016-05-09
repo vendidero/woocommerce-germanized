@@ -94,12 +94,14 @@ class WC_GZD_Trusted_Shops_Schedule {
   			'post_content' => '',
   			'post_status' => 'publish',
   		);
-		
-		if ( ! $this->base->get_review_widget_attachment() ) {
+
+  		$existing_attachment_id = $this->base->get_review_widget_attachment();
+
+		if ( ! $existing_attachment_id || ! get_post( $existing_attachment_id ) ) {
 			$attachment_id = wp_insert_attachment( $attachment, $filepath );
-			update_option( 'woocommerce' . $this->base->option_prefix . '_trusted_shops_review_widget_attachment', $attachment_id );
+			update_option( 'woocommerce_' . $this->base->option_prefix . 'trusted_shops_review_widget_attachment', $attachment_id );
 		} else {
-			$attachment_id = $this->base->get_review_widget_attachment();
+			$attachment_id = $existing_attachment_id;
 			update_attached_file( $attachment_id, $filepath );
 			$attachment[ 'ID' ] = $attachment_id;
 			wp_update_post( $attachment );
