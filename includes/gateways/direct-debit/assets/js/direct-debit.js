@@ -33,6 +33,9 @@
 			}
 		});
 
+		// Hide checkbox
+		$( '.direct-debit-checkbox' ).hide();
+
 		$( 'form.checkout, form#order_review' ).on( 'blur input change', 'input, select', function() {
 
 			// Hide by default

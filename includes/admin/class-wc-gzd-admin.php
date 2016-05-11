@@ -45,6 +45,8 @@ class WC_GZD_Admin {
 		add_action( 'admin_menu', array( $this, 'remove_status_page_hooks' ), 0 );
 		add_action( 'admin_menu', array( $this, 'set_status_page' ), 1 );
 		add_action( 'admin_init', array( $this, 'check_tour_hide' ) );
+		add_action( 'admin_init', array( $this, 'check_language_install' ) );
+		add_action( 'admin_init', array( $this, 'check_text_options_deletion' ) );
 		add_action( 'admin_init', array( $this, 'check_complaints_shortcode_append' ) );
 		add_filter( 'woocommerce_addons_section_data', array( $this, 'set_addon' ), 10, 2 );
 	}
@@ -190,13 +192,18 @@ class WC_GZD_Admin {
 	}
 
 	public function check_tour_hide() {
+		
 		if ( isset( $_GET[ 'tour' ] ) && isset( $_GET[ 'hide' ] ) && isset( $_GET[ '_wpnonce' ] ) && check_admin_referer( 'wc-gzd-tour-hide' ) ) {
+		
 			if ( ! empty( $_GET[ 'tour' ] ) )
 				update_option( 'woocommerce_gzd_hide_tour_' . sanitize_text_field( $_GET[ 'tour' ] ), true );
 			else 
 				update_option( 'woocommerce_gzd_hide_tour', true );
+		
 			wp_safe_redirect( remove_query_arg( array( 'hide', 'tour', '_wpnonce' ) ) );
+		
 		} else if ( isset( $_GET[ 'tour' ] ) && isset( $_GET[ 'enable' ] ) && isset( $_GET[ '_wpnonce' ] ) && check_admin_referer( 'wc-gzd-tour-enable' ) ) {
+		
 			$setting_sections = array_merge( array( 
 				'general' => '', 
 				'display' => '', 
@@ -210,6 +217,71 @@ class WC_GZD_Admin {
 		}
  	}
 
+ 	public function check_language_install() {
+		
+		if ( isset( $_GET[ 'install-language' ] ) && isset( $_GET[ '_wpnonce' ] ) && check_admin_referer( 'wc-gzd-install-language' ) ) {
+			
+			require_once( ABSPATH . 'wp-admin/includes/translation-install.php' );
+			$language = sanitize_text_field( $_GET[ 'install-language' ] );
+
+			// Download language pack if possible
+			if ( wp_can_install_language_pack() )
+				$loaded_language = wp_download_language_pack( $language );
+
+			update_option( 'WPLANG', $language );
+			load_default_textdomain( $loaded_language );
+
+			// Redirect to check for updates
+			wp_safe_redirect( admin_url( 'update-core.php?force-check=1' ) );
+
+		}
+
+	}
+
+	public function check_text_options_deletion() {
+
+		if ( isset( $_GET[ 'delete-text-options' ] ) && isset( $_GET[ '_wpnonce' ] ) && check_admin_referer( 'wc-gzd-delete-text-options' ) ) {
+
+			global $wpdb;
+
+			$wpdb->query( $wpdb->prepare( "DELETE FROM $wpdb->options WHERE option_name LIKE %s", 'woocommerce_gzd_%_text' ) );
+
+			$options = array(
+				'woocommerce_gzd_checkout_legal_text_digital',
+				'woocommerce_gzd_checkout_legal_text_digital_error',
+				'woocommerce_gzd_order_confirmation_legal_digital_notice',
+				'woocommerce_gzd_checkout_legal_text_error',
+			);
+
+			foreach ( $options as $option_name ) {
+				delete_option( $option_name );
+			}
+
+			// Reinstall options
+			WC_GZD_Install::create_options();
+
+			do_action( 'woocommerce_gzd_deleted_text_options' );
+
+			// Redirect to check for updates
+			wp_safe_redirect( admin_url( 'admin.php?page=wc-settings&tab=germanized' ) );
+
+		}
+
+	}
+
+	public function check_complaints_shortcode_append() {
+ 		if ( isset( $_GET[ 'complaints' ] ) && 'add' === $_GET[ 'complaints' ] && isset( $_GET[ '_wpnonce' ] ) && check_admin_referer( 'append-complaints-shortcode' ) ) {
+ 		
+ 			if ( wc_get_page_id( 'imprint' ) != 1 ) {
+ 		
+ 				$page_id = wc_get_page_id( 'imprint' );
+ 				$this->insert_complaints_shortcode( $page_id );
+ 				wp_safe_redirect( admin_url( 'post.php?post=' . $page_id . '&action=edit' ) );
+ 		
+ 			}
+ 		}
+ 	}
+
  	public function is_complaints_shortcode_inserted() {
  		$imprint = wc_get_page_id( 'imprint' );
  		if ( $imprint != -1 ) {
@@ -217,16 +289,6 @@ class WC_GZD_Admin {
  			return ( strpos( $post->post_content, '[gzd_complaints]' ) !== false ? true : false );
  		}
  		return false;
- 	}
-
- 	public function check_complaints_shortcode_append() {
- 		if ( isset( $_GET[ 'complaints' ] ) && 'add' === $_GET[ 'complaints' ] && isset( $_GET[ '_wpnonce' ] ) && check_admin_referer( 'append-complaints-shortcode' ) ) {
- 			if ( wc_get_page_id( 'imprint' ) != 1 ) {
- 				$page_id = wc_get_page_id( 'imprint' );
- 				$this->insert_complaints_shortcode( $page_id );
- 				wp_safe_redirect( admin_url( 'post.php?post=' . $page_id . '&action=edit' ) );
- 			}
- 		}
  	}
 
  	public function insert_complaints_shortcode( $page_id ) {
