@@ -296,6 +296,7 @@ class WC_GZD_Product {
 		$display_price         = $this->get_unit_price();
 		$display_regular_price = $this->get_unit_price( 1, $this->get_unit_regular_price() );
 		$display_sale_price    = $this->get_unit_price( 1, $this->get_unit_sale_price() );
+
 		$price_html 		   = ( ( $this->is_on_unit_sale() && $show_sale ) ? $this->get_price_html_from_to( $display_regular_price, $display_sale_price, false ) : wc_price( $display_price ) );
 		$html 				   = '';
 		$text 				   = get_option( 'woocommerce_gzd_unit_price_text' );
