@@ -26,6 +26,16 @@ class WC_GZD_Gateway_Direct_Debit extends WC_Payment_Gateway {
 		$this->method_title       = __( 'Direct Debit', 'woocommerce-germanized' );
 		$this->method_description =  sprintf( __( 'Allows you to offer direct debit as a payment method to your customers. Adds SEPA fields to checkout. %s', 'woocommerce-germanized' ), '<a class="button button-secondary" href="' . admin_url( 'export.php' ) . '">' . __( 'SEPA XML Bulk Export', 'woocommerce-germanized' ) . '</a>' );
 
+		if ( ! $this->supports_encryption() ) {
+
+			ob_start();
+			include_once( 'views/html-encryption-notice.php' );
+			$notice = ob_get_clean();
+
+			$this->method_description .= $notice;
+
+		}
+
 		// Load the settings.
 		$this->init_form_fields();
 		$this->init_settings();
@@ -44,6 +54,7 @@ class WC_GZD_Gateway_Direct_Debit extends WC_Payment_Gateway {
 		$this->company_account_iban     		= $this->get_option( 'company_account_iban' );
 		$this->company_account_bic     			= $this->get_option( 'company_account_bic' );
 		$this->checkbox_label					= $this->get_option( 'checkbox_label' );
+		$this->remember							= $this->get_option( 'remember', 'no' );
 		$this->mask 							= $this->get_option( 'mask', 'yes' );
 		$this->mandate_text	   					= $this->get_option( 'mandate_text', __( '[company_info]
 debtee identification number: [company_identification_number]
@@ -76,6 +87,11 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 			'products',
 		);
 
+		// Force disabling remember account data if encryption is not supported
+		if ( ! $this->supports_encryption() ) {
+			$this->remember = 'no';
+		}
+
 		// Actions
 		add_action( 'woocommerce_update_options_payment_gateways_' . $this->id, array( $this, 'process_admin_options' ) );
     	add_action( 'woocommerce_thankyou_direct-debit', array( $this, 'thankyou_page' ) );
@@ -90,6 +106,9 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 
 		// Order Meta
     	add_action( 'woocommerce_checkout_update_order_meta', array( $this, 'set_order_meta' ), 10, 2 );
+
+    	// Customer Meta
+    	add_action( 'woocommerce_checkout_update_user_meta', array( $this, 'set_customer_meta' ), 10, 2 );
 
     	// Customer Emails
     	add_action( 'woocommerce_email_before_order_table', array( $this, 'email_instructions' ), 10, 3 );
@@ -106,6 +125,11 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 		add_action( 'export_wp', array( $this, 'export' ), 0, 1 );
 		add_filter( 'export_args', array( $this, 'export_args' ), 0, 1 );
 
+    }
+
+    public function test_encryption() {
+    	echo $this->maybe_decrypt( $this->maybe_encrypt( "Das ist ein Test!" ) );
+    	exit();
     }
 
     public function order_actions( $actions, $order ) {
@@ -190,7 +214,7 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 
 		if ( $order_query->have_posts() ) {
 
-			include_once( 'sepa-xml-creator/SepaXmlCreator.php' );
+			include_once( 'libraries/sepa-xml-creator/SepaXmlCreator.php' );
 			$creator = new SepaXmlCreator();
 
 			$creator->setAccountValues( $this->company_account_holder, $this->company_account_iban, $this->company_account_bic );
@@ -203,9 +227,9 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 
 				$book = new SepaBuchung();
 				$book->setBetrag( $order->get_total() );
-				$book->setBic( $order->direct_debit_bic );
+				$book->setBic( $this->maybe_decrypt( $order->direct_debit_bic ) );
 				$book->setName( $order->direct_debit_holder );
-				$book->setIban( $order->direct_debit_iban );
+				$book->setIban( $this->maybe_decrypt( $order->direct_debit_iban ) );
 				$book->setName( $order->direct_debit_holder );
 				$book->setVerwendungszweck( apply_filters( 'woocommerce_germanized_direct_debit_purpose', sprintf( __( 'Order %s', 'woocommerce-germanized' ), $order->get_order_number() ) ), $order );
 				$book->setMandat( $this->get_mandate_id( $order->id ), date_i18n( "Y-m-d", strtotime( $order->order_date ) ), false );
@@ -252,8 +276,8 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 
     	$sepa_fields = array(
     		__( 'Account Holder', 'woocommerce-germanized' ) 	=> $order->direct_debit_holder,
-    		__( 'IBAN', 'woocommerce-germanized' ) 				=> $this->mask( $order->direct_debit_iban ),
-     		__( 'BIC/SWIFT', 'woocommerce-germanized' ) 		=> $order->direct_debit_bic,
+    		__( 'IBAN', 'woocommerce-germanized' ) 				=> $this->mask( $this->maybe_decrypt( $order->direct_debit_iban ) ),
+     		__( 'BIC/SWIFT', 'woocommerce-germanized' ) 		=> $this->maybe_decrypt( $order->direct_debit_bic ),
     	);
 
     	wc_get_template( 'emails/email-sepa-data.php', array( 'fields' => $sepa_fields ) );
@@ -279,18 +303,20 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
     	$fields[ 'direct_debit_iban' ] = array(
     		'label' => __( 'IBAN', 'woocommerce-germanized' ),
     		'id'  	=> '_direct_debit_iban',
+    		'value' => $this->maybe_decrypt( get_post_meta( $order->id, '_direct_debit_iban', true ) ),
 			'show'  => true,
     	);
 
     	$fields[ 'direct_debit_bic' ] = array(
     		'label' => __( 'BIC/SWIFT', 'woocommerce-germanized' ),
     		'id'  	=> '_direct_debit_bic',
+    		'value' => $this->maybe_decrypt( get_post_meta( $order->id, '_direct_debit_bic', true ) ),
 			'show'  => true,
     	);
 
-    	$fields[ 'direct_debit_reference' ] = array(
+    	$fields[ 'direct_debit_mandate_id' ] = array(
     		'label' => __( 'Mandate Reference ID', 'woocommerce-germanized' ),
-    		'id'  	=> '_direct_debit_reference',
+    		'id'  	=> '_direct_debit_mandate_id',
 			'show'  => true,
     	);
 
@@ -316,9 +342,20 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
     	if ( ! $order->payment_method == $this->id )
     		return;
 
-    	update_post_meta( $order->id, '_direct_debit_holder',  ( isset( $_POST[ 'direct_debit_account_holder' ] ) ? wc_clean( $_POST[ 'direct_debit_account_holder' ] ) : '' ) );
-    	update_post_meta( $order->id, '_direct_debit_iban',  ( isset( $_POST[ 'direct_debit_account_iban' ] ) ? wc_clean( $_POST[ 'direct_debit_account_iban' ] ) : '' ) );
-    	update_post_meta( $order->id, '_direct_debit_bic',  ( isset( $_POST[ 'direct_debit_account_bic' ] ) ? wc_clean( $_POST[ 'direct_debit_account_bic' ] ) : '' ) );
+    	$holder 	= ( isset( $_POST[ 'direct_debit_account_holder' ] ) ? wc_clean( $_POST[ 'direct_debit_account_holder' ] ) : '' );
+    	$iban 		= ( isset( $_POST[ 'direct_debit_account_iban' ] ) ? $this->maybe_encrypt( wc_clean( $_POST[ 'direct_debit_account_iban' ] ) ) : '' );
+    	$bic 		= ( isset( $_POST[ 'direct_debit_account_bic' ] ) ? $this->maybe_encrypt( wc_clean( $_POST[ 'direct_debit_account_bic' ] ) ) : '' );
+
+    	update_post_meta( $order->id, '_direct_debit_holder', $holder );
+    	update_post_meta( $order->id, '_direct_debit_iban', $iban );
+    	update_post_meta( $order->id, '_direct_debit_bic', $bic );
+
+    	if ( ! $this->supports_encryption() || $this->remember === 'no' || ! $order->customer_user )
+    		return;
+
+    	update_user_meta( $order->customer_user, 'direct_debit_holder', $holder );
+    	update_user_meta( $order->customer_user, 'direct_debit_iban', $iban );
+    	update_user_meta( $order->customer_user, 'direct_debit_bic', $bic );
 
     }
 
@@ -357,8 +394,8 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 
     	$params = array(
     		'account_holder' 	=> $order->direct_debit_holder,
-    		'account_iban' 		=> $this->mask( $order->direct_debit_iban ),
-     		'account_swift' 	=> $order->direct_debit_bic,
+    		'account_iban' 		=> $this->mask( $this->maybe_decrypt( $order->direct_debit_iban ) ),
+     		'account_swift' 	=> $this->maybe_decrypt( $order->direct_debit_bic ),
     		'street'			=> $order->billing_address_1,
 			'postcode' 			=> $order->billing_postcode,
 			'city' 				=> $order->billing_city,
@@ -531,7 +568,44 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 				'description' => __( 'This will lead to masked IBANs within emails (replaced by *). All but last 4 digits will be masked.', 'woocommerce-germanized' ),
 				'default'     => 'yes',
 			),
+
 		);
+
+		if ( $this->supports_encryption() ) {
+
+			$this->form_fields = array_merge( $this->form_fields, array( 'remember' => array(
+				'title'       => __( 'Remember', 'woocommerce-germanized' ),
+				'label'		  => __( 'Remember account data for returning customers.', 'woocommerce-germanized' ),
+				'type'        => 'checkbox',
+				'description' => __( 'Save account data as user meta if user has/creates a customer account.', 'woocommerce-germanized' ),
+				'default'     => 'no',
+			) ) );
+
+		}
+
+    }
+
+    public function get_user_account_data( $user_id = '' ) {
+    	
+    	if ( empty( $user_id ) )
+    		$user_id = get_current_user_id();
+
+    	$data = array(
+    		'holder' => '',
+    		'iban'	 => '',
+    		'bic'	 => '',
+    	);
+
+    	if ( $this->remember !== 'yes' )
+    		return $data;
+
+    	$data = array(
+    		'holder' => $this->maybe_decrypt( get_user_meta( $user_id, 'direct_debit_holder', true ) ), 
+    		'iban' => $this->maybe_decrypt( get_user_meta( $user_id, 'direct_debit_iban', true ) ),
+    		'bic' => $this->maybe_decrypt( get_user_meta( $user_id, 'direct_debit_bic', true ) ),
+    	);
+
+    	return $data;
     }
 
     /**
@@ -542,19 +616,21 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 		if ( $description = $this->get_description() ) {
 			echo wpautop( wptexturize( $description ) );
 		}
+		
+		$account_data = $this->get_user_account_data();
 
 		$fields = array(
 			'account-holder' => '<p class="form-row form-row-wide">
 				<label for="' . esc_attr( $this->id ) . '-account-holder">' . __( 'Account Holder', 'woocommerce-germanized' ) . ' <span class="required">*</span></label>
-				<input id="' . esc_attr( $this->id ) . '-account-holder" class="input-text wc-gzd-' . $this->id . '-account-holder" type="text" autocomplete="off" placeholder="" name="' . str_replace( '-', '_', $this->id ) . '_account_holder' . '" />
+				<input id="' . esc_attr( $this->id ) . '-account-holder" class="input-text wc-gzd-' . $this->id . '-account-holder" value="' . esc_attr( $account_data[ 'holder' ] ) . '" type="text" autocomplete="off" placeholder="" name="' . str_replace( '-', '_', $this->id ) . '_account_holder' . '" />
 			</p>',
 			'account-iban' => '<p class="form-row form-row-wide">
 				<label for="' . esc_attr( $this->id ) . '-account-iban">' . __( 'IBAN', 'woocommerce-germanized' ) . ' <span class="required">*</span></label>
-				<input id="' . esc_attr( $this->id ) . '-account-iban" class="input-text wc-gzd-' . $this->id . '-account-iban" type="text" autocomplete="off" placeholder="" name="' . str_replace( '-', '_', $this->id ) . '_account_iban' . '" />
+				<input id="' . esc_attr( $this->id ) . '-account-iban" class="input-text wc-gzd-' . $this->id . '-account-iban" type="text" value="' . esc_attr( $account_data[ 'iban' ] ) . '" autocomplete="off" placeholder="" name="' . str_replace( '-', '_', $this->id ) . '_account_iban' . '" />
 			</p>',
 			'account-bic' => '<p class="form-row form-row-wide">
 				<label for="' . esc_attr( $this->id ) . '-account-bic">' . __( 'BIC/SWIFT', 'woocommerce-germanized' ) . ' <span class="required">*</span></label>
-				<input id="' . esc_attr( $this->id ) . '-account-bic" class="input-text wc-gzd-' . $this->id . '-account-bic" type="text" autocomplete="off" placeholder="" name="' . str_replace( '-', '_', $this->id ) . '_account_bic' . '" />
+				<input id="' . esc_attr( $this->id ) . '-account-bic" class="input-text wc-gzd-' . $this->id . '-account-bic" type="text" value="' . esc_attr( $account_data[ 'bic' ] ) . '" autocomplete="off" placeholder="" name="' . str_replace( '-', '_', $this->id ) . '_account_bic' . '" />
 			</p>',
 		);
 
@@ -697,4 +773,40 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 			'redirect'	=> $this->get_return_url( $order )
 		);
 	}
+
+	public function maybe_encrypt( $string ) {
+		if ( $this->supports_encryption() ) {	
+			return WC_GZD_Gateway_Direct_Debit_Encryption_Helper::instance()->encrypt( $string );
+		}
+		return $string;
+	}
+
+	public function maybe_decrypt( $string ) {
+		if ( $this->supports_encryption() ) {
+			$decrypted = WC_GZD_Gateway_Direct_Debit_Encryption_Helper::instance()->decrypt( $string );
+			
+			// Maxlength of IBAN is 30 - seems like we have an encrypted string (cannot be decrypted, maybe key changed)
+			if ( strlen( $decrypted ) > 40 )
+				return "";
+
+			return $decrypted;
+		}
+
+		return $string;
+	}
+
+	public function supports_encryption() {
+		if ( version_compare( phpversion(), '5.4', '<' ) )
+			return false; 
+		if ( ! extension_loaded( 'openssl' ) )
+			return false;
+
+		require_once( 'class-wc-gzd-gateway-direct-debit-encryption-helper.php' );
+
+		if ( ! WC_GZD_Gateway_Direct_Debit_Encryption_Helper::instance()->is_configured() )
+			return false;
+
+		return true;
+	}
+
 }

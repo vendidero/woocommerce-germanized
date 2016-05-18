@@ -228,10 +228,14 @@ final class WooCommerce_Germanized {
 
 		if ( strpos( $class, 'wc_gzd_admin' ) !== false )
 			$path = $this->plugin_path() . '/includes/admin/';
-		elseif ( strpos( $class, 'wc_gzd_gateway_' ) !== false )
+		else if ( strpos( $class, 'wc_gzd_gateway_' ) !== false )
 			$path = $this->plugin_path() . '/includes/gateways/' . substr( str_replace( '_', '-', $class ), 15 ) . '/';
 		else if ( strpos( $class, 'wc_gzd_trusted_shops' ) !== false )
 			$path = $this->plugin_path() . '/includes/trusted-shops/';
+		else if ( strpos( $class, 'defuse\crypto' ) !== false ) {
+			$path = $this->plugin_path() . '/includes/gateways/direct-debit/libraries/php-encryption/';
+			$file = str_replace( 'defuse/crypto/', '', str_replace( '\\', '/', $class ) ) . '.php';
+		}
 
 		if ( $path && is_readable( $path . $file ) ) {
 			include_once( $path . $file );
