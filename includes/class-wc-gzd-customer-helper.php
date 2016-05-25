@@ -35,25 +35,34 @@ class WC_GZD_Customer_Helper {
 		// Send customer account notification
 		add_action( 'woocommerce_email', array( $this, 'email_hooks' ), 0, 1 );
 		
-		if ( $this->is_double_opt_in_login_enabled() ) {
-			// Disable login for unactivated users
-			add_filter( 'wp_authenticate_user', array( $this, 'login_restriction' ) , 10, 2 );
-			// Disable auto login after registration
-			add_filter( 'woocommerce_registration_auth_new_customer', array( $this, 'disable_registration_auto_login' ), 10, 2 );
+		if ( $this->is_double_opt_in_enabled() ) {
+
 			// Check for customer activation
 			add_action( 'template_redirect', array( $this, 'customer_account_activation_check' ) );
 			// Cronjob to delete unactivated users
 			add_action( 'woocommerce_gzd_customer_cleanup', array( $this, 'account_cleanup' ) );
-			// Redirect customers that are not logged in to customer account page
-			add_action( 'template_redirect', array( $this, 'disable_checkout' ), 10 );
-			// Show notices on customer account page
-			add_action( 'template_redirect', array( $this, 'show_disabled_checkout_notice' ), 20 );
-			// Redirect customers to checkout after login
-			add_filter( 'woocommerce_login_redirect', array( $this, 'login_redirect' ), 10, 2 );
-			// Disable customer signup if customer has forced guest checkout
-			add_action( 'woocommerce_checkout_init', array( $this, 'disable_signup' ), 10, 1 );
+
+			if ( $this->is_double_opt_in_login_enabled() ) {
+				// Disable login for unactivated users
+				add_filter( 'wp_authenticate_user', array( $this, 'login_restriction' ) , 10, 2 );
+				// Disable auto login after registration
+				add_filter( 'woocommerce_registration_auth_new_customer', array( $this, 'disable_registration_auto_login' ), 10, 2 );			
+				// Redirect customers that are not logged in to customer account page
+				add_action( 'template_redirect', array( $this, 'disable_checkout' ), 10 );
+				// Show notices on customer account page
+				add_action( 'template_redirect', array( $this, 'show_disabled_checkout_notice' ), 20 );
+				// Redirect customers to checkout after login
+				add_filter( 'woocommerce_login_redirect', array( $this, 'login_redirect' ), 10, 2 );
+				// Disable customer signup if customer has forced guest checkout
+				add_action( 'woocommerce_checkout_init', array( $this, 'disable_signup' ), 10, 1 );
+			}
+
 		}
 
+	}
+
+	public function is_double_opt_in_enabled() {
+		return get_option( 'woocommerce_gzd_customer_activation' ) === 'yes';
 	}
 
 	public function is_double_opt_in_login_enabled() {
@@ -162,16 +171,16 @@ class WC_GZD_Customer_Helper {
 	public function customer_account_activation_check() {
 		
 		if ( is_account_page() ) {
-			
+
 			if ( isset( $_GET[ 'activate' ] ) ) {
 			
 				$activation_code = sanitize_text_field( $_GET[ 'activate' ] );
 			
 				if ( ! empty( $activation_code ) ) {
-			
+
 					if ( $this->customer_account_activate( $activation_code, true ) ) {
 						
-						wc_add_notice( __( 'Thank you. You have successfully activated your account.', 'woocommerce-germanized' ) );
+						wc_add_notice( __( 'Thank you. You have successfully activated your account.', 'woocommerce-germanized' ), 'notice' );
 						return;
 					}
 

@@ -202,6 +202,15 @@ class WC_GZD_Trusted_Shops_Admin {
 			),
 
 			array(
+				'title'  => _x( 'Star Size', 'trusted-shops', 'woocommerce-germanized' ),
+				'id'   => 'woocommerce_' . $this->base->option_prefix . 'trusted_shops_product_sticker_star_size',
+				'type'   => 'number',
+				'default' => '15',
+				'desc' => __( 'px', 'trusted-shops', 'woocommerce-germanized' ),
+				'css'   => 'max-width:60px;',
+			),
+
+			array(
 				'title'  => _x( 'Product Sticker Code', 'trusted-shops', 'woocommerce-germanized' ),
 				'id'     => 'woocommerce_' . $this->base->option_prefix . 'trusted_shops_product_sticker_code',
 				'type'   => 'textarea',

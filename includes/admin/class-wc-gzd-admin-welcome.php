@@ -123,6 +123,21 @@ class WC_GZD_Admin_Welcome {
 				<a href="https://vendidero.de/woocommerce-germanized#buy" target="_blank" class="button button-primary">Upgrade zur Pro Version</a>
 			</p>
 			<div class="changelog new-feature">
+
+				<?php $gateways = WC()->payment_gateways->payment_gateways(); ?>
+
+				<?php if ( isset( $gateways[ 'direct-debit' ] ) && $gateways[ 'direct-debit' ]->enabled === 'yes' ) : ?>
+
+					<div style="background: #FFF; padding: 0.1em 1em; border-left: 5px solid red; display: block; margin-top: 1em;">
+						
+						<h3>Verschlüsselung sensibler Zahlungsdaten für Lastschrift</h3>
+						<p>Mit der neuesten Version führen wir optional die Verschlüsselung von sensiblen Zahlungsdaten deiner Kunden ein (IBAN, BIC).
+						Nachdem du die Verschlüsselung konfiguriert hast, kannst du auch optional die Zahlungsdaten für Folgebestellungen speichern.</p>
+						<p><a class="button button-primary" href="<?php echo admin_url( 'admin.php?page=wc-settings&tab=checkout&section=wc_gzd_gateway_direct_debit' ); ?>">Konfiguration der Verschlüsselung</a></p>
+					</div>
+
+				<?php endif; ?>
+
 				<h3>Bessere Grundpreise für variable Produkte</h3>
 				<p>Mit Version 1.6 führen wir eine bessere Behandlung von Grundpreisen für variable Produkte ein. Optional können nun analog zu den Von-Bis-Preisen für variable Produkte auch die Grundpreise in gleicher Form angezeigt werden.</p>
 				<p>Weiterhin muss von nun an die Einheit nur noch für das variable Produkt und nicht mehr für alle Varianten einzeln ausgewählt werden. Ähnlich verhält es sich mit den Produkt- und Grundpreiseinheiten. Diese können für das variable Produkt hinterlegt und optional 
