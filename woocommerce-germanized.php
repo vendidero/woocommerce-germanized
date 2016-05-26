@@ -3,7 +3,7 @@
  * Plugin Name: WooCommerce Germanized
  * Plugin URI: https://www.vendidero.de/woocommerce-germanized
  * Description: Extends WooCommerce to become a legally compliant store for the german market.
- * Version: 1.6.3
+ * Version: 1.6.4
  * Author: Vendidero
  * Author URI: https://vendidero.de
  * Requires at least: 3.8
@@ -26,7 +26,7 @@ final class WooCommerce_Germanized {
 	 *
 	 * @var string
 	 */
-	public $version = '1.6.3';
+	public $version = '1.6.4';
 
 	/**
 	 * Single instance of WooCommerce Germanized Main Class
@@ -234,7 +234,7 @@ final class WooCommerce_Germanized {
 			$path = $this->plugin_path() . '/includes/trusted-shops/';
 		else if ( strpos( $class, 'defuse\crypto' ) !== false ) {
 			$path = $this->plugin_path() . '/includes/gateways/direct-debit/libraries/php-encryption/';
-			$file = str_replace( 'defuse/crypto/', '', str_replace( '\\', '/', $class ) ) . '.php';
+			$file = ucfirst( str_replace( 'defuse/crypto/', '', str_replace( '\\', '/', $class ) ) . '.php' );
 		}
 
 		if ( $path && is_readable( $path . $file ) ) {
