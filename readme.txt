@@ -159,6 +159,8 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 
 = 1.6.3 =
 * Feature - Encryption for Direct Debit Gateway data
+* Feature - Install German Formal Language (see Systemstatus > Germanized > Tools)
+* Feature - Tool to delete Germanized Text Options (will we replaced by defaults)
 * Fix - Double-Opt-In even if checkout shouldn't be disabled
 * Fix - Trusted Shops Template SKU Parameter
 * Fix - Trusted Shops Product Sticker Star Size

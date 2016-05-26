@@ -26,16 +26,6 @@ class WC_GZD_Gateway_Direct_Debit extends WC_Payment_Gateway {
 		$this->method_title       = __( 'Direct Debit', 'woocommerce-germanized' );
 		$this->method_description =  sprintf( __( 'Allows you to offer direct debit as a payment method to your customers. Adds SEPA fields to checkout. %s', 'woocommerce-germanized' ), '<a class="button button-secondary" href="' . admin_url( 'export.php' ) . '">' . __( 'SEPA XML Bulk Export', 'woocommerce-germanized' ) . '</a>' );
 
-		if ( ! $this->supports_encryption() ) {
-
-			ob_start();
-			include_once( 'views/html-encryption-notice.php' );
-			$notice = ob_get_clean();
-
-			$this->method_description .= $notice;
-
-		}
-
 		// Load the settings.
 		$this->init_form_fields();
 		$this->init_settings();
@@ -86,6 +76,16 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 		$this->supports         = array(
 			'products',
 		);
+
+		if ( $this->get_option( 'enabled' ) === 'yes' && ! $this->supports_encryption() ) {
+
+			ob_start();
+			include_once( 'views/html-encryption-notice.php' );
+			$notice = ob_get_clean();
+
+			$this->method_description .= $notice;
+
+		}
 
 		// Force disabling remember account data if encryption is not supported
 		if ( ! $this->supports_encryption() ) {
