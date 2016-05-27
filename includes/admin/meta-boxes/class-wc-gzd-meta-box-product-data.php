@@ -185,7 +185,7 @@ class WC_Germanized_Meta_Box_Product_Data {
 
 		if ( isset( $data[ 'delivery_time' ] ) && ! empty( $data[ 'delivery_time' ] ) ) {
 			if ( ! is_numeric( $data[ 'delivery_time' ] ) )
-				wp_set_post_terms( $post_id, sanitize_text_field( $data[ 'delivery_time' ] ), 'product_delivery_time' );
+				wp_set_object_terms( $post_id, sanitize_text_field( $data[ 'delivery_time' ] ), 'product_delivery_time' );
 			else
 				wp_set_object_terms( $post_id, absint( $data[ 'delivery_time' ] ) , 'product_delivery_time' );
 		} else {

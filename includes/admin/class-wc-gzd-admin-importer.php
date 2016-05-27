@@ -16,7 +16,8 @@ class WC_GZD_Admin_Importer {
 
 	public $taxonomies = array(
 		'product_delivery_time' => 'product_delivery_times',
-		'product_unit' => 'pa_masseinheit',
+		'product_unit' 			=> 'pa_masseinheit',
+		'product_price_label' 	=> 'product_sale_labels',
 	);
 
 	public static function instance() {
@@ -80,6 +81,9 @@ class WC_GZD_Admin_Importer {
 
 		// Import delivery time
 		$this->import_product_data();
+
+		// Import default delivery time/sale price label options
+		$this->import_defaults();
 		
 		// Finished
 		delete_option( '_wc_gzd_import_available' );
@@ -87,6 +91,41 @@ class WC_GZD_Admin_Importer {
 
 		// Save redirect
 		wp_safe_redirect( remove_query_arg( array( 'nonce', 'import' ) ) );
+	}
+
+	private function import_defaults() {
+
+		$defaults = array(
+			'product_delivery_time' => array(
+				'org_option' => 'woocommerce_global_lieferzeit', 
+				'option' 	 => 'woocommerce_gzd_default_delivery_time',
+				'type' 	  	 => 'id',
+			),
+			'product_price_label' => array(
+				'org_option' => 'woocommerce_global_sale_label',
+				'option'	 => 'woocommerce_gzd_default_sale_price_label',
+				'type' 		 => 'slug',
+			),
+		);
+
+		foreach ( $defaults as $taxonomy => $options ) {
+
+			$default = get_option( $options[ 'org_option' ] );
+			
+			if ( ! empty( $default ) ) {
+			
+				$term = get_term_by( 'id', $default, $this->taxonomies[ $taxonomy ] );
+				
+				if ( ! empty( $term ) && ! is_wp_error( $term ) ) {
+				
+					$gzd_term = $this->insert_term_if_necessary( $term, $taxonomy );
+				
+					if ( ! empty( $gzd_term ) && ! is_wp_error( $gzd_term ) ) {
+						update_option( $options[ 'option' ], $options[ 'type' ] === 'slug' ? $gzd_term->slug : $gzd_term->term_id );
+					}
+				}
+			}
+		}
 	}
 
 	private function import_settings() {
@@ -162,10 +201,7 @@ class WC_GZD_Admin_Importer {
 				
 				if ( $unit_term && ! is_wp_error( $unit_term ) ) {
 					
-					$gzd_term = false;
-
-					if ( ! $gzd_term = get_term_by( 'slug', $unit, 'product_unit' ) )
-						$gzd_term = wp_insert_term( $unit_term->name, 'product_unit', array( 'description' => $unit_term->description ) );
+					$gzd_term = $this->insert_term_if_necessary( $unit_term, 'product_unit' );
 
 					if ( $gzd_term && ! is_wp_error( $gzd_term ) ) {
 
@@ -185,7 +221,20 @@ class WC_GZD_Admin_Importer {
 
 		}
 
-		// Delivery time
+		// Labels
+		if ( get_post_meta( $product->id, '_sale_label', true ) ) {
+
+			$term_id = get_post_meta( $product->id, '_sale_label', true );
+			$term = get_term_by( 'id', absint( $term_id ), $this->taxonomies[ 'product_price_label' ] );
+
+			if ( ! empty( $term ) && ! is_wp_error( $term ) ) {
+				$gzd_term = $this->insert_term_if_necessary( $term, 'product_price_label' );
+				$save['_sale_price_label'] = $term->slug;
+			}
+			
+		}
+
+		// Delivery time (if does not exist will be added automatically)
 		if ( $delivery_time = get_post_meta( $product->id, '_lieferzeit', true ) ) {
 
 			$term = get_term_by( 'id', $delivery_time, $this->taxonomies[ 'product_delivery_time' ] );
@@ -204,6 +253,23 @@ class WC_GZD_Admin_Importer {
 		if ( sizeof( $save ) > 3 ) {
 			WC_Germanized_Meta_Box_Product_Data::save_product_data( $product->id, $save, ( $product->is_type( 'variation' ) ) );
 		}
+
+	}
+
+	private function insert_term_if_necessary( $term, $taxonomy ) {
+
+		$gzd_term = false;
+		
+		if ( ! $gzd_term = get_term_by( 'slug', $term->slug, $taxonomy ) ) {
+			
+			$term_data = wp_insert_term( $term->name, $taxonomy, array( 'description' => $term->description ) );
+			
+			if ( ! empty( $term_data ) && ! is_wp_error( $term_data ) ) {
+				$gzd_term = get_term_by( 'id', $term_data[ 'term_id' ], $taxonomy );
+			}
+		}
+		
+		return $gzd_term;
 
 	}
 
