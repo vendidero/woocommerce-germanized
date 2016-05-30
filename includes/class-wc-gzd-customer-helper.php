@@ -140,6 +140,7 @@ class WC_GZD_Customer_Helper {
 
 				// Redirect to checkout
 				wp_safe_redirect( wc_gzd_get_page_permalink( 'checkout' ) );
+				exit;
 
 			}
 
