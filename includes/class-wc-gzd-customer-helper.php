@@ -55,6 +55,8 @@ class WC_GZD_Customer_Helper {
 				add_filter( 'woocommerce_login_redirect', array( $this, 'login_redirect' ), 10, 2 );
 				// Disable customer signup if customer has forced guest checkout
 				add_action( 'woocommerce_checkout_init', array( $this, 'disable_signup' ), 10, 1 );
+				// Remove the checkout signup cookie if customer logs out
+				add_action( 'wp_logout', array( $this, 'delete_checkout_signup_cookie' ) );
 			}
 
 		}
@@ -67,6 +69,11 @@ class WC_GZD_Customer_Helper {
 
 	public function is_double_opt_in_login_enabled() {
 		return get_option( 'woocommerce_gzd_customer_activation_login_disabled' ) === 'yes';
+	}
+
+	public function delete_checkout_signup_cookie() {
+		unset( WC()->session->disable_checkout_signup );
+		unset( WC()->session->login_redirect );
 	}
 
 	public function disable_signup( $checkout ) {
@@ -101,6 +108,7 @@ class WC_GZD_Customer_Helper {
 				
 				WC()->session->set( 'login_redirect', 'checkout' );
 				wp_safe_redirect( wc_gzd_get_page_permalink( 'myaccount' ) );
+				exit;
 
 			} else if ( is_checkout() ) {
 
