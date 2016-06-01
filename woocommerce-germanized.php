@@ -223,6 +223,7 @@ final class WooCommerce_Germanized {
 	public function autoload( $class ) {
 		
 		$path = $this->plugin_path() . '/includes/';
+		$original_class = $class;
 		$class = strtolower( $class );
 		$file = 'class-' . str_replace( '_', '-', $class ) . '.php';
 
@@ -234,7 +235,7 @@ final class WooCommerce_Germanized {
 			$path = $this->plugin_path() . '/includes/trusted-shops/';
 		else if ( strpos( $class, 'defuse\crypto' ) !== false ) {
 			$path = $this->plugin_path() . '/includes/gateways/direct-debit/libraries/php-encryption/';
-			$file = ucfirst( str_replace( 'defuse/crypto/', '', str_replace( '\\', '/', $class ) ) . '.php' );
+			$file = ucfirst( str_replace( 'Defuse/Crypto/', '', str_replace( '\\', '/', $original_class ) ) . '.php' );			
 		}
 
 		if ( $path && is_readable( $path . $file ) ) {
