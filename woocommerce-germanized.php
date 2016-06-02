@@ -437,11 +437,12 @@ final class WooCommerce_Germanized {
 	 */
 	public function replace_shipping_rate_class( $rates, $rate ) {
 
-		if ( get_option( 'woocommerce_gzd_shipping_tax' ) != 'yes' )
+		if ( get_option( 'woocommerce_gzd_shipping_tax' ) !== 'yes' )
 			return $rates;
 
 		foreach ( $rates as $key => $rate )
 			$rates[ $key ] = new WC_GZD_Shipping_Rate( $rate );
+
 		return $rates;
 	}
 
@@ -658,6 +659,9 @@ final class WooCommerce_Germanized {
 		remove_action( 'woocommerce_order_status_pending_to_processing_notification', array( $this->emails->get_email_instance_by_id( 'new_order' ), 'trigger' ) );
 		remove_action( 'woocommerce_order_status_pending_to_on-hold_notification', array( $this->emails->get_email_instance_by_id( 'new_order' ), 'trigger' ) );
 		remove_action( 'woocommerce_order_status_pending_to_completed_notification', array( $this->emails->get_email_instance_by_id( 'new_order' ), 'trigger' ) );
+		
+		if ( $this->emails->get_email_instance_by_id( 'customer_on_hold_order' ) )
+			remove_action( 'woocommerce_order_status_pending_to_on-hold_notification', array( $this->emails->get_email_instance_by_id( 'customer_on_hold_order' ), 'trigger' ) );
 
 	}
 
