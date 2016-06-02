@@ -62,9 +62,9 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 			<p class="form-row form-row-first">
 				<label><?php _e( 'Sale Label', 'woocommerce-germanized' ); ?>:</label>
 				<select name="variable_sale_price_label[<?php echo $loop; ?>]">
-					<option value="" <?php selected( is_null( ! empty( wc_gzd_get_gzd_product( $_product )->sale_price_label ) ? wc_gzd_get_gzd_product( $_product )->sale_price_label : null ), true ); ?>><?php _e( 'Same as Parent', 'woocommerce-germanized' ); ?></option>
+					<option value="" <?php selected( empty( $variation_data[ '_sale_price_label' ] ) , true ); ?>><?php _e( 'Same as Parent', 'woocommerce-germanized' ); ?></option>
 					<?php foreach ( WC_germanized()->price_labels->get_labels() as $key => $value ) : ?>
-						<option value="<?php echo esc_attr( $key ); ?>" <?php selected( $key === ( ! empty( wc_gzd_get_gzd_product( $_product )->sale_price_label ) ? wc_gzd_get_gzd_product( $_product )->sale_price_label : '' ) , true ); ?>><?php echo esc_html( $value ); ?></option>
+						<option value="<?php echo esc_attr( $key ); ?>" <?php selected( $key === $variation_data[ '_sale_price_label' ], true ); ?>><?php echo esc_html( $value ); ?></option>
 					<?php endforeach; ?>
 				</select>
 			</p>
@@ -72,9 +72,9 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 			<p class="form-row form-row-last">
 				<label><?php _e( 'Sale Regular Label', 'woocommerce-germanized' ); ?>:</label>
 				<select name="variable_sale_price_regular_label[<?php echo $loop; ?>]">
-					<option value="" <?php selected( is_null( ! empty( wc_gzd_get_gzd_product( $_product )->sale_price_regular_label ) ? wc_gzd_get_gzd_product( $_product )->sale_price_regular_label : null ), true ); ?>><?php _e( 'Same as Parent', 'woocommerce-germanized' ); ?></option>
+					<option value="" <?php selected( empty( $variation_data[ '_sale_price_regular_label' ] ), true ); ?>><?php _e( 'Same as Parent', 'woocommerce-germanized' ); ?></option>
 					<?php foreach ( WC_germanized()->price_labels->get_labels() as $key => $value ) : ?>
-						<option value="<?php echo esc_attr( $key ); ?>" <?php selected( $key === ( ! empty( wc_gzd_get_gzd_product( $_product )->sale_price_regular_label ) ? wc_gzd_get_gzd_product( $_product )->sale_price_regular_label : '' ) , true ); ?>><?php echo esc_html( $value ); ?></option>
+						<option value="<?php echo esc_attr( $key ); ?>" <?php selected( $key === $variation_data[ '_sale_price_regular_label' ], true ); ?>><?php echo esc_html( $value ); ?></option>
 					<?php endforeach; ?>
 				</select>
 			</p>
