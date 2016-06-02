@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @version     1.0.0
  */
 class WC_Germanized_Meta_Box_Product_Data_Variable {
-	
+
 	public static function init() {
 		add_action( 'woocommerce_product_after_variable_attributes', array( __CLASS__, 'output' ), 20, 3 );
 		add_action( 'woocommerce_save_product_variation', array( __CLASS__, 'save' ) , 0, 2 );
@@ -51,7 +51,7 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 		}
 
 		$delivery_time = wp_get_post_terms( $variation_id, 'product_delivery_time' );
-		
+
 		if ( $delivery_time && ! empty( $delivery_time ) && is_array( $delivery_time ) )
 			$delivery_time = $delivery_time[0];
 
@@ -62,9 +62,9 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 			<p class="form-row form-row-first">
 				<label><?php _e( 'Sale Label', 'woocommerce-germanized' ); ?>:</label>
 				<select name="variable_sale_price_label[<?php echo $loop; ?>]">
-					<option value="" <?php selected( is_null( ! empty( wc_gzd_get_gzd_product( $_product )->sale_price_label ) ? wc_gzd_get_gzd_product( $_product )->sale_price_label : null ), true ); ?>><?php _e( 'Same as Parent', 'woocommerce-germanized' ); ?></option>
+					<option value="" <?php selected( is_null( ! empty( $variation_data[ '_sale_price_label' ] ) ? esc_attr( $variation_data[ '_sale_price_label' ] ) : null ), true ); ?>><?php _e( 'Same as Parent', 'woocommerce-germanized' ); ?></option>
 					<?php foreach ( WC_germanized()->price_labels->get_labels() as $key => $value ) : ?>
-						<option value="<?php echo esc_attr( $key ); ?>" <?php selected( $key === ( ! empty( wc_gzd_get_gzd_product( $_product )->sale_price_label ) ? wc_gzd_get_gzd_product( $_product )->sale_price_label : '' ) , true ); ?>><?php echo esc_html( $value ); ?></option>
+						<option value="<?php echo esc_attr( $key ); ?>" <?php selected( $key === ( ! empty( $variation_data[ '_sale_price_label' ] ) ? esc_attr( $variation_data[ '_sale_price_label' ] ) : '' ) , true ); ?>><?php echo esc_html( $value ); ?></option>
 					<?php endforeach; ?>
 				</select>
 			</p>
@@ -72,9 +72,9 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 			<p class="form-row form-row-last">
 				<label><?php _e( 'Sale Regular Label', 'woocommerce-germanized' ); ?>:</label>
 				<select name="variable_sale_price_regular_label[<?php echo $loop; ?>]">
-					<option value="" <?php selected( is_null( ! empty( wc_gzd_get_gzd_product( $_product )->sale_price_regular_label ) ? wc_gzd_get_gzd_product( $_product )->sale_price_regular_label : null ), true ); ?>><?php _e( 'Same as Parent', 'woocommerce-germanized' ); ?></option>
+					<option value="" <?php selected( is_null( ! empty( $variation_data[ '_sale_price_regular_label' ] ) ? esc_attr( $variation_data[ '_sale_price_regular_label' ] ) : null ), true ); ?>><?php _e( 'Same as Parent', 'woocommerce-germanized' ); ?></option>
 					<?php foreach ( WC_germanized()->price_labels->get_labels() as $key => $value ) : ?>
-						<option value="<?php echo esc_attr( $key ); ?>" <?php selected( $key === ( ! empty( wc_gzd_get_gzd_product( $_product )->sale_price_regular_label ) ? wc_gzd_get_gzd_product( $_product )->sale_price_regular_label : '' ) , true ); ?>><?php echo esc_html( $value ); ?></option>
+						<option value="<?php echo esc_attr( $key ); ?>" <?php selected( $key === ( ! empty( $variation_data[ '_sale_price_regular_label' ] ) ? esc_attr( $variation_data[ '_sale_price_regular_label' ] ) : '' ) , true ); ?>><?php echo esc_html( $value ); ?></option>
 					<?php endforeach; ?>
 				</select>
 			</p>
@@ -133,7 +133,7 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 		);
 
 		foreach ( $data as $k => $v ) {
-			
+
 			$data_k = 'variable' . ( substr( $k, 0, 1) === '_' ? '' : '_' ) . $k;
 			$data[ $k ] = ( isset( $_POST[ $data_k ][$i] ) ? $_POST[ $data_k ][$i] : null );
 
