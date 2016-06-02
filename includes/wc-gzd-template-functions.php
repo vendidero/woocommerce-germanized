@@ -292,10 +292,11 @@ if ( ! function_exists( 'woocommerce_gzd_add_variation_options' ) ) {
 	 * Add delivery time and unit price to variations
 	 */
 	function woocommerce_gzd_add_variation_options( $options, $product, $variation ) {
-		$options[ 'delivery_time' ] = wc_gzd_get_gzd_product( $variation )->get_delivery_time_html();
-		$options[ 'unit_price' ] 	= wc_gzd_get_gzd_product( $variation )->get_unit_html();
-		$options[ 'product_units' ] = wc_gzd_get_gzd_product( $variation )->get_product_units_html();
-		$options[ 'tax_info' ] 		= wc_gzd_get_gzd_product( $variation )->get_tax_info();
+		$options[ 'delivery_time' ] 		= wc_gzd_get_gzd_product( $variation )->get_delivery_time_html();
+		$options[ 'unit_price' ] 			= wc_gzd_get_gzd_product( $variation )->get_unit_html();
+		$options[ 'product_units' ] 		= wc_gzd_get_gzd_product( $variation )->get_product_units_html();
+		$options[ 'tax_info' ] 				= wc_gzd_get_gzd_product( $variation )->get_tax_info();
+		$options[ 'shipping_costs_info' ] 	= wc_gzd_get_gzd_product( $variation )->get_shipping_costs_html();
 		return $options;
 	}
 

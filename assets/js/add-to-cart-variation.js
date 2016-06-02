@@ -21,6 +21,9 @@
 			if ( $('.type-product').find('.org_tax_info').length > 0 ) {
 				$( '.type-product .tax-info' ).html( $('.product').find('.org_tax_info').html() ).removeClass('variation_modified').show();
 			}
+			if ( $('.type-product').find('.org_shipping_costs_info').length > 0 ) {
+				$( '.type-product .shipping-costs-info' ).html( $('.product').find('.org_shipping_costs_info').html() ).removeClass('variation_modified').show();
+			}
 			if ( $('.type-product').find('.org_product_units').length > 0 ) {
 				$( '.type-product .product-units' ).html( $('.product').find('.org_product_units').html() ).removeClass('variation_modified').show();
 			}
@@ -40,6 +43,9 @@
 				if ( $wrapper.find( '.tax-info:first' ).length > 0 ) {
 					$wrapper.append( '<div class="org_tax_info org_product_info">' + $wrapper.find( '.tax-info:first' ).html() + '</div>' );
 				}
+				if ( $wrapper.find( '.shipping-costs-info:first' ).length > 0 ) {
+					$wrapper.append( '<div class="org_shipping_costs_info org_product_info">' + $wrapper.find( '.shipping-costs-info:first' ).html() + '</div>' );
+				}
 				if ( $wrapper.find( '.price-unit:first' ).length > 0 ) {
 					$wrapper.append( '<div class="org_unit_price org_product_info">' + $wrapper.find( '.price-unit:first' ).html() + '</div>' );
 				}
@@ -56,6 +62,7 @@
 			$wrapper.find( '.delivery-time-info:first' ).hide();
 			$wrapper.find( '.price-unit:first' ).hide();
 			$wrapper.find( '.tax-info:first' ).hide();
+			$wrapper.find( '.shipping-costs-info:first' ).hide();
 			$wrapper.find( '.product-units:first' ).hide();
 
 			if ( variation.delivery_time !== '' ) {
@@ -63,6 +70,9 @@
 			}
 			if ( variation.tax_info !== '' ) {
 				$wrapper.find( '.tax-info:first' ).html( variation.tax_info ).addClass('variation_modified').show();
+			}
+			if ( variation.shipping_costs_info !== '' ) {
+				$wrapper.find( '.shipping-costs-info:first' ).html( variation.shipping_costs_info ).addClass('variation_modified').show();
 			}
 			if ( variation.unit_price !== '' ) {
 				$wrapper.find( '.price-unit:first' ).remove();
