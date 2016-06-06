@@ -637,8 +637,10 @@ final class WooCommerce_Germanized {
 	 * @return string
 	 */
 	public function email_templates( $core_file, $template, $template_base ) {
+		
 		if ( ! file_exists( $template_base . $template ) && file_exists( $this->plugin_path() . '/templates/' . $template ) )
 			$core_file = $this->plugin_path() . '/templates/' . $template;
+		
 		return apply_filters( 'woocommerce_germanized_email_template_hook', $core_file, $template, $template_base );
 	}
 
@@ -655,6 +657,7 @@ final class WooCommerce_Germanized {
 
 		remove_action( 'woocommerce_order_status_pending_to_processing_notification', array( $this->emails->get_email_instance_by_id( 'customer_processing_order' ), 'trigger' ) );
 		remove_action( 'woocommerce_order_status_pending_to_on-hold_notification', array( $this->emails->get_email_instance_by_id( 'customer_processing_order' ), 'trigger' ) );
+		
 		remove_action( 'woocommerce_order_status_pending_to_processing_notification', array( $this->emails->get_email_instance_by_id( 'new_order' ), 'trigger' ) );
 		remove_action( 'woocommerce_order_status_pending_to_on-hold_notification', array( $this->emails->get_email_instance_by_id( 'new_order' ), 'trigger' ) );
 		remove_action( 'woocommerce_order_status_pending_to_completed_notification', array( $this->emails->get_email_instance_by_id( 'new_order' ), 'trigger' ) );
