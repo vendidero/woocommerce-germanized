@@ -298,14 +298,17 @@ final class WooCommerce_Germanized {
 		include_once ( 'includes/class-wc-gzd-install.php' );
 
 		if ( is_admin() ) {
+			
 			include_once( 'includes/admin/class-wc-gzd-admin.php' );
 			include_once( 'includes/admin/class-wc-gzd-admin-welcome.php' );
 			include_once( 'includes/admin/class-wc-gzd-admin-notices.php' );
 			include_once( 'includes/admin/class-wc-gzd-admin-customer.php' );
 			include_once( 'includes/admin/class-wc-gzd-admin-importer.php' );
-			include_once( 'includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php' );
-			include_once( 'includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php' );
+
 		}
+
+		include_once( 'includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php' );
+		include_once( 'includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php' );
 
 		if ( defined( 'DOING_AJAX' ) )
 			$this->ajax_includes();
@@ -323,6 +326,9 @@ final class WooCommerce_Germanized {
 		// Abstracts
 		include_once ( 'includes/abstracts/abstract-wc-gzd-product.php' );
 		include_once ( 'includes/abstracts/abstract-wc-gzd-taxonomy.php' );
+
+		// API
+		include_once ( 'includes/api/class-wc-gzd-rest-api.php' );
 
 		include_once ( 'includes/class-wc-gzd-wpml-helper.php' );
 		include_once ( 'includes/wc-gzd-cart-functions.php' );

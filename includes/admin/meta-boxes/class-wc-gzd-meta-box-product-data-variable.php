@@ -19,9 +19,20 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 class WC_Germanized_Meta_Box_Product_Data_Variable {
 	
-	public static function init() {
-		add_action( 'woocommerce_product_after_variable_attributes', array( __CLASS__, 'output' ), 20, 3 );
-		add_action( 'woocommerce_save_product_variation', array( __CLASS__, 'save' ) , 0, 2 );
+	protected static $_instance = null;
+
+	public static function instance() {
+		if ( is_null( self::$_instance ) )
+			self::$_instance = new self();
+		return self::$_instance;
+	}
+
+	private function __construct() {
+
+		if ( is_admin() ) {
+			add_action( 'woocommerce_product_after_variable_attributes', array( __CLASS__, 'output' ), 20, 3 );
+			add_action( 'woocommerce_save_product_variation', array( __CLASS__, 'save' ) , 0, 2 );
+		}
 	}
 
 	public static function output( $loop, $variation_data, $variation ) {
@@ -165,4 +176,4 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 
 }
 
-WC_Germanized_Meta_Box_Product_Data_Variable::init();
+WC_Germanized_Meta_Box_Product_Data_Variable::instance();

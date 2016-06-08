@@ -14,14 +14,25 @@ if ( ! defined( 'ABSPATH' ) ) {
  * WC_Germanized_Meta_Box_Product_Data
  */
 class WC_Germanized_Meta_Box_Product_Data {
-	
-	public static function init() {
-		add_action( 'woocommerce_product_options_general_product_data', array( __CLASS__, 'output' ) );
-		add_action( 'woocommerce_product_options_shipping', array( __CLASS__, 'output_shipping' ) );
-		add_action( 'woocommerce_product_options_pricing', array( __CLASS__, 'output_pricing' ) );
-		add_action( 'woocommerce_process_product_meta', array( __CLASS__, 'save' ), 20, 2 );
+
+	protected static $_instance = null;
+
+	public static function instance() {
+		if ( is_null( self::$_instance ) )
+			self::$_instance = new self();
+		return self::$_instance;
 	}
 
+	private function __construct() {
+		
+		if ( is_admin() ) {
+			add_action( 'woocommerce_product_options_general_product_data', array( __CLASS__, 'output' ) );
+			add_action( 'woocommerce_product_options_shipping', array( __CLASS__, 'output_shipping' ) );
+			add_action( 'woocommerce_product_options_pricing', array( __CLASS__, 'output_pricing' ) );
+			add_action( 'woocommerce_process_product_meta', array( __CLASS__, 'save' ), 20, 2 );
+		}
+	}
+	
 	public static function output_pricing() {
 
 		global $post, $thepostid;
@@ -95,11 +106,8 @@ class WC_Germanized_Meta_Box_Product_Data {
 
 	}
 
-	public static function save( $post_id ) {
-
-		$product = wc_get_product( $post_id );
-
-		$data = array(
+	public static function get_fields() {
+		return array(
 			'product-type' => '',
 			'_unit' => '',
 			'_unit_base' => '',
@@ -116,6 +124,13 @@ class WC_Germanized_Meta_Box_Product_Data {
 			'_sale_price' => '',
 			'_free_shipping' => '',
 		);
+	}
+
+	public static function save( $post_id ) {
+
+		$product = wc_get_product( $post_id );
+
+		$data = self::get_fields();
 
 		foreach ( $data as $k => $v ) {
 			$data[ $k ] = ( isset( $_POST[ $k ] ) ? $_POST[ $k ] : null );
@@ -210,18 +225,22 @@ class WC_Germanized_Meta_Box_Product_Data {
 			$date_to   = isset( $data['_sale_price_dates_to'] ) ? wc_clean( $data['_sale_price_dates_to'] ) : '';
 
 			// Update price if on sale
-			if ( '' !== $data['_unit_price_sale'] && '' == $date_to && '' == $date_from ) {
-				update_post_meta( $post_id, '_unit_price', wc_format_decimal( $data['_unit_price_sale'] ) );
-			} else {
-				update_post_meta( $post_id, '_unit_price', ( $data['_unit_price_regular'] === '' ) ? '' : wc_format_decimal( $data['_unit_price_regular'] ) );
-			}
+			if ( isset( $data['_unit_price_sale'] ) ) {
+				
+				if ( '' !== $data['_unit_price_sale'] && '' == $date_to && '' == $date_from ) {
+					update_post_meta( $post_id, '_unit_price', wc_format_decimal( $data['_unit_price_sale'] ) );
+				} else {
+					update_post_meta( $post_id, '_unit_price', ( $data['_unit_price_regular'] === '' ) ? '' : wc_format_decimal( $data['_unit_price_regular'] ) );
+				}
 
-			if ( '' !== $data['_unit_price_sale'] && $date_from && strtotime( $date_from ) < strtotime( 'NOW', current_time( 'timestamp' ) ) ) {
-				update_post_meta( $post_id, '_unit_price', wc_format_decimal( $data['_unit_price_sale'] ) );
-			}
+				if ( '' !== $data['_unit_price_sale'] && $date_from && strtotime( $date_from ) < strtotime( 'NOW', current_time( 'timestamp' ) ) ) {
+					update_post_meta( $post_id, '_unit_price', wc_format_decimal( $data['_unit_price_sale'] ) );
+				}
 
-			if ( $date_to && strtotime( $date_to ) < strtotime( 'NOW', current_time( 'timestamp' ) ) )
-				update_post_meta( $post_id, '_unit_price', ( $data['_unit_price_regular'] === '' ) ? '' : wc_format_decimal( $data['_unit_price_regular'] ) );
+				if ( $date_to && strtotime( $date_to ) < strtotime( 'NOW', current_time( 'timestamp' ) ) )
+					update_post_meta( $post_id, '_unit_price', ( $data['_unit_price_regular'] === '' ) ? '' : wc_format_decimal( $data['_unit_price_regular'] ) );
+
+			}
 	
 		}
 
@@ -229,4 +248,4 @@ class WC_Germanized_Meta_Box_Product_Data {
 
 }
 
-WC_Germanized_Meta_Box_Product_Data::init();
+WC_Germanized_Meta_Box_Product_Data::instance();

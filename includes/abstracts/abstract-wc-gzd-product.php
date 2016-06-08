@@ -266,7 +266,7 @@ class WC_GZD_Product {
 	 */
 	public function get_unit_price_including_tax( $qty = 1, $price = '' ) {
 		$price = ( $price == '' ) ? $this->unit_price : $price;
-		return $this->get_price_including_tax( $qty, $price );
+		return ( $price == '' ) ? '' : $this->get_price_including_tax( $qty, $price );
 	}
 
 	/**
