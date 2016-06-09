@@ -11,6 +11,8 @@ class WC_GZD_REST_API {
 
 	protected static $_instance = null;
 
+	private $direct_debit_gateway = null;
+
 	public static function instance() {
 		if ( is_null( self::$_instance ) )
 			self::$_instance = new self();
@@ -19,9 +21,13 @@ class WC_GZD_REST_API {
 
 	private function __construct() {
 
+		// Products
 		add_filter( 'woocommerce_rest_prepare_product', array( $this, 'set_product_fields' ), 20, 3 );
 		add_action( 'woocommerce_rest_insert_product', array( $this, 'save_update_product_fields' ), 20, 3 );
 		add_action( 'woocommerce_rest_save_product_variation', array( $this, 'save_product_variation' ), 20, 3 );
+
+		// Direct Debit Gateway
+		add_filter( 'woocommerce_rest_prepare_shop_order', array( $this, 'set_order_fields' ), 20, 3 );
 
 	}
 
@@ -83,6 +89,23 @@ class WC_GZD_REST_API {
 
 		return apply_filters( 'woocommerce_gzd_rest_prepare_product', $response, $product, $request );
 	}
+
+	public function set_order_fields( $response, $post, $request ) {
+
+	 	if ( ! $this->direct_debit_gateway ) {
+			$this->direct_debit_gateway = new WC_GZD_Gateway_Direct_Debit();
+		}
+
+    	$order = wc_get_order( $post );
+
+    	if ( $order->payment_method === $this->direct_debit_gateway->id ) {
+    		$response->data[ 'direct_debit_holder' ] = $this->direct_debit_gateway->maybe_decrypt( $order->direct_debit_holder );
+    		$response->data[ 'direct_debit_bic' ] = $this->direct_debit_gateway->maybe_decrypt( $order->direct_debit_bic );
+    		$response->data[ 'direct_debit_iban' ] = $this->direct_debit_gateway->maybe_decrypt( $order->direct_debit_iban );
+    	}
+
+    	return $response;
+    }
 
 	private function set_product_variation_fields( $variations, $product ) {
 

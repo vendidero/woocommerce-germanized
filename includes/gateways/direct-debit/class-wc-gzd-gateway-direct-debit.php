@@ -127,11 +127,6 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 
     }
 
-    public function test_encryption() {
-    	echo $this->maybe_decrypt( $this->maybe_encrypt( "Das ist ein Test!" ) );
-    	exit();
-    }
-
     public function order_actions( $actions, $order ) {
 
     	if ( $order->payment_method === $this->id ) {
