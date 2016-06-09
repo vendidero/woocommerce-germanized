@@ -16,7 +16,6 @@ class WC_GZD_REST_Products_Controller {
 	/**
 	 * Extend schema.
 	 *
-	 * @since 1.0.0
 	 * @wp-hook woocommerce_rest_customer_schema
 	 *
 	 * @param array $schema_properties Data used to create the customer.

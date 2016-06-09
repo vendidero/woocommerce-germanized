@@ -15,8 +15,6 @@ class WC_GZD_REST_Orders_Controller {
 	/**
 	 * ExtendOrdersController constructor.
 	 *
-	 * @since 1.0.0
-	 *
 	 * @param WC_Payment_Gateways $payment_gateways
 	 */
 	public function __construct() {
@@ -25,8 +23,6 @@ class WC_GZD_REST_Orders_Controller {
 
 	/**
 	 * Register
-	 *
-	 * @since 1.0.0
 	 */
 	public function register_fields() {
 
@@ -71,8 +67,6 @@ class WC_GZD_REST_Orders_Controller {
 	/**
 	 * Handler for getting custom field data.
 	 *
-	 * @since 1.0.0
-	 *
 	 * @param array $object The object from the response
 	 * @param string $field_name Name of field
 	 * @param \WP_REST_Request $request Current request
@@ -100,9 +94,7 @@ class WC_GZD_REST_Orders_Controller {
 	}
 
 	/**
-	 * Handler for updating custom field data.
-	 *
-	 * @since 1.0.0
+	 * Handler for updating custom field data
 	 *
 	 * @param mixed $value The value of the field
 	 * @param \WP_Post $object The object from the response
