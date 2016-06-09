@@ -31,7 +31,7 @@ class WC_GZD_REST_API {
 		$this->rest_api_includes();
 
 		// Init REST API routes.
-		add_action( 'rest_api_init', array( $this, 'register_rest_routes' ) );
+		add_action( 'rest_api_init', array( $this, 'register_rest_routes' ), 25 );
 
 	}
 
@@ -47,30 +47,25 @@ class WC_GZD_REST_API {
 
 	public function register_rest_routes() {
 		
-		$controllers = array(
+		$controllers = apply_filters( 'woocommerce_gzd_rest_controller', array(
 			'WC_GZD_REST_Product_Delivery_Times_Controller',
 			'WC_GZD_REST_Product_Price_Labels_Controller',
 			'WC_GZD_REST_Product_Units_Controller',
-		);
-
-		foreach ( $controllers as $controller ) {
-			WC()->api->$controller = new $controller();
-			WC()->api->$controller->register_routes();
-		}
-
-		$extensions = array(
 			'WC_GZD_REST_Customers_Controller',
 			'WC_GZD_REST_Orders_Controller',
 			'WC_GZD_REST_Products_Controller',
-		);
+		) );
 
-		foreach( $extensions as $extension ) {
-			$this->$extension = new $extension();
+		foreach ( $controllers as $controller ) {
+			WC()->api->$controller = new $controller();
+
+			if ( method_exists( WC()->api->$controller, 'register_routes' ) )
+				WC()->api->$controller->register_routes();
 			
-			if ( method_exists( $this->$extension, 'register_fields' ) )
-				$this->$extension->register_fields();
+			if ( method_exists( WC()->api->$controller, 'register_fields' ) )
+				WC()->api->$controller->register_fields();
+			
 		}
-
 	}
 
 }
