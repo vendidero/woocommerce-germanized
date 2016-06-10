@@ -44,7 +44,12 @@ class WC_GZD_REST_Products_Controller {
 					'description' => __( 'Delivery Time Slug', 'woocommerce-germanized' ),
 					'type'        => 'string',
 					'context'     => array( 'view', 'edit' )
-				)
+				),
+				'html' => array(
+					'description' => __( 'Delivery Time HTML', 'woocommerce-germanized' ),
+					'type'        => 'string',
+					'context'     => array( 'view' )
+				),
 			)
 		);
 		$schema_properties['sale_price_label'] = array(
@@ -190,7 +195,12 @@ class WC_GZD_REST_Products_Controller {
 					'description' => __( 'Delivery Time Slug', 'woocommerce-germanized' ),
 					'type'        => 'string',
 					'context'     => array( 'view', 'edit' )
-				)
+				),
+				'html' => array(
+					'description' => __( 'Delivery Time HTML', 'woocommerce-germanized' ),
+					'type'        => 'string',
+					'context'     => array( 'view' )
+				),
 			)
 		);
 		$schema_properties['variations']['properties'][ 'sale_price_label' ] = array(
@@ -420,15 +430,18 @@ class WC_GZD_REST_Products_Controller {
 		);
 
 		// Cart Mini Description
-		$data[ 'mini_desc' ] = $product->get_mini_desc();
+		$data[ 'mini_desc' ] = $product->get_mini_desc() ? $product->get_mini_desc() : '';
 
 		// Sale Labels
 		$data[ 'sale_price_label' ] = $this->prepare_term( WC_germanized()->price_labels->get_term_object( $product->sale_price_label ) );
 		$data[ 'sale_price_regular_label' ] = $this->prepare_term( WC_germanized()->price_labels->get_term_object( $product->sale_price_regular_label ) );
 
 		// Delivery Time
-		$data[ 'delivery_time' ] = $this->prepare_term( $product->get_delivery_time() );
-		$data[ 'delivery_time_html' ] = $product->get_delivery_time_html();
+		$data[ 'delivery_time' ] = $this->prepare_term( $product->get_delivery_time_term() );
+
+		if ( ! empty( $data[ 'delivery_time' ] ) ) {
+			$data[ 'delivery_time' ][ 'html' ] = $product->get_delivery_time_html();
+		}
 
 		// Shipping costs hidden?
 		$data[ 'free_shipping' ] = $product->has_free_shipping();
