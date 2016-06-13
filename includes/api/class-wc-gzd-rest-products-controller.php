@@ -48,7 +48,8 @@ class WC_GZD_REST_Products_Controller {
 				'html' => array(
 					'description' => __( 'Delivery Time HTML', 'woocommerce-germanized' ),
 					'type'        => 'string',
-					'context'     => array( 'view' )
+					'context'     => array( 'view', 'edit' ),
+					'readonly'    => true,
 				),
 			)
 		);
@@ -160,9 +161,10 @@ class WC_GZD_REST_Products_Controller {
 				'price_html' => array(
 					'description' => __( 'Unit Price HTML', 'woocommerce-germanized' ),
 					'type'        => 'string',
-					'context'     => array( 'view' )
+					'context'     => array( 'view', 'edit' ),
+					'readonly'    => true,
 				),
-			)		
+			)
 		);
 		$schema_properties['mini_desc'] = array(
 			'description' => __( 'Small Cart Product Description', 'woocommerce-germanized' ),
@@ -199,7 +201,8 @@ class WC_GZD_REST_Products_Controller {
 				'html' => array(
 					'description' => __( 'Delivery Time HTML', 'woocommerce-germanized' ),
 					'type'        => 'string',
-					'context'     => array( 'view' )
+					'context'     => array( 'view', 'edit' ),
+					'readonly'    => true,
 				),
 			)
 		);
@@ -293,9 +296,10 @@ class WC_GZD_REST_Products_Controller {
 				'price_html' => array(
 					'description' => __( 'Unit Price HTML', 'woocommerce-germanized' ),
 					'type'        => 'string',
-					'context'     => array( 'view' )
+					'context'     => array( 'view', 'edit' ),
+					'readonly'    => true,
 				),
-			)		
+			)
 		);
 
 		return $schema_properties;
@@ -304,16 +308,16 @@ class WC_GZD_REST_Products_Controller {
 	public function prepare( $response, $post, $request ) {
 
 		$product = wc_get_product( $post );
-		
+
 		// Add variations to variable products.
 		if ( $product->is_type( 'variable' ) && $product->has_child() ) {
-			
+
 			$data = $response->data;
 			$data[ 'variations' ] = $this->set_product_variation_fields( $response->data[ 'variations' ], $product );
 			$response->set_data( $data );
 
 		}
-		
+
 		$response->set_data( array_merge( $response->data, $this->get_product_data( $product ) ) );
 
 		return apply_filters( 'woocommerce_gzd_rest_prepare_product', $response, $product, $request );
@@ -324,7 +328,7 @@ class WC_GZD_REST_Products_Controller {
 
 		$product = wc_get_product( $post );
 		$this->save_update_product_data( $request, $product );
-	
+
 	}
 
 	public function save_variation( $variation_id, $menu_order, $request ) {
@@ -375,7 +379,7 @@ class WC_GZD_REST_Products_Controller {
 		if ( isset( $request['unit_price'] ) && is_array( $request['unit_price'] ) ) {
 
 			foreach ( $request['unit_price'] as $key => $val ) {
-				
+
 				if ( isset( $data_saveable[ '_unit_' . $key ] ) ) {
 					$data[ '_unit_' . $key ] = sanitize_text_field( $val );
 				}
