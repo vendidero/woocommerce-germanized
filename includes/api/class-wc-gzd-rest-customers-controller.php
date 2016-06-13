@@ -41,8 +41,8 @@ class WC_GZD_REST_Customers_Controller {
 
 		$response_customer_data = $response->get_data();
 		
-		$response_customer_data['billing_address']['title'] = $customer->billing_title;
-		$response_customer_data['shipping_address']['title'] = $customer->shipping_title;
+		$response_customer_data['billing']['title'] = $customer->billing_title;
+		$response_customer_data['shipping']['title'] = $customer->shipping_title;
 
 		$response->set_data( $response_customer_data );
 
