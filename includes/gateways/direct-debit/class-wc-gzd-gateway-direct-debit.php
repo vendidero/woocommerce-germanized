@@ -101,8 +101,8 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 		add_action( 'wp_ajax_nopriv_show_direct_debit', array( $this, 'generate_mandate' ) );
 		add_filter( 'woocommerce_email_classes', array( $this, 'add_email_template' ) );
 
-		// Checkbox check
-		add_action( 'woocommerce_after_checkout_validation', array( $this, 'validate_checkbox' ), 10, 1 );
+		// Pay for Order
+		add_action( 'woocommerce_pay_order_before_submit', array( $this, 'checkbox' ) );
 
 		// Order Meta
     	add_action( 'woocommerce_checkout_update_order_meta', array( $this, 'set_order_meta' ), 10, 2 );
@@ -125,11 +125,6 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 		add_action( 'export_wp', array( $this, 'export' ), 0, 1 );
 		add_filter( 'export_args', array( $this, 'export_args' ), 0, 1 );
 
-    }
-
-    public function test_encryption() {
-    	echo $this->maybe_decrypt( $this->maybe_encrypt( "Das ist ein Test!" ) );
-    	exit();
     }
 
     public function order_actions( $actions, $order ) {
@@ -649,17 +644,11 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 
 	}
 
+	public function validate_form_pay() {
+
+	}
+
 	public function validate_checkbox( $posted ) {
-
-		if ( ! $this->is_available() || $this->enable_checkbox !== 'yes' || ! isset( $_POST[ 'payment_method' ] ) || $_POST[ 'payment_method' ] != $this->id )
-			return;
-
-		if ( ! isset( $_POST[ 'woocommerce_checkout_update_totals' ] ) ) {
-
-			if ( ! isset( $_POST[ 'direct_debit_legal' ] ) && empty( $_POST[ 'direct_debit_legal' ] ) )
-				wc_add_notice( __( 'Please accept the direct debit mandate.', 'woocommerce-germanized' ), 'error' );
-
-		}
 
 	}
 
@@ -691,6 +680,13 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 		// Validate BIC
 		if ( ! preg_match( '/^([a-zA-Z]){4}([a-zA-Z]){2}([0-9a-zA-Z]){2}([0-9a-zA-Z]{3})?$/', $bic ) ) 
 			wc_add_notice( __( 'Your BIC seems to be invalid.', 'woocommerce-germanized' ), 'error' );
+
+		if ( ! isset( $_POST[ 'woocommerce_checkout_update_totals' ] ) ) {
+
+			if ( ! isset( $_POST[ 'direct_debit_legal' ] ) && empty( $_POST[ 'direct_debit_legal' ] ) )
+				wc_add_notice( __( 'Please accept the direct debit mandate.', 'woocommerce-germanized' ), 'error' );
+
+		}
 
 	}
 

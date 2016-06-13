@@ -34,6 +34,8 @@ class WC_GZD_Customer_Helper {
 		add_action( 'template_redirect', array( $this, 'init_gettext_replacement' ) );
 		// Send customer account notification
 		add_action( 'woocommerce_email', array( $this, 'email_hooks' ), 0, 1 );
+		// Add Title to user profile
+		add_filter( 'woocommerce_customer_meta_fields', array( $this, 'profile_field_title' ), 10, 1 ); 
 		
 		if ( $this->is_double_opt_in_enabled() ) {
 
@@ -61,6 +63,28 @@ class WC_GZD_Customer_Helper {
 
 		}
 
+	}
+
+	public function profile_field_title( $fields ) {
+
+		if ( get_option( 'woocommerce_gzd_checkout_address_field' ) !== 'yes' )
+			return $fields;
+
+		$fields[ 'billing' ][ 'fields' ][ 'billing_title' ] = array(
+			'label'       => __( 'Title', 'woocommerce-germanized' ),
+			'type'		  => 'select',
+			'options'	  => apply_filters( 'woocommerce_gzd_title_options', array( 1 => __( 'Mr.', 'woocommerce-germanized' ), 2 => __( 'Ms.', 'woocommerce-germanized' ) ) ),
+			'description' => ''
+		);
+
+		$fields[ 'shipping' ][ 'fields' ][ 'shipping_title' ] = array(
+			'label'       => __( 'Title', 'woocommerce-germanized' ),
+			'type'		  => 'select',
+			'options'	  => apply_filters( 'woocommerce_gzd_title_options', array( 1 => __( 'Mr.', 'woocommerce-germanized' ), 2 => __( 'Ms.', 'woocommerce-germanized' ) ) ),
+			'description' => ''
+		);
+
+		return $fields;
 	}
 
 	public function is_double_opt_in_enabled() {
