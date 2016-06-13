@@ -85,14 +85,14 @@ class WC_GZD_REST_Orders_Controller {
 	public function schema( $schema_properties ) {
 
 		$schema_properties['billing']['properties']['title'] = array(
-			'description' => __( 'Title', 'woocommerce-germanized-pro' ),
-			'type'        => 'string',
+			'description' => __( 'Title', 'woocommerce-germanized' ),
+			'type'        => 'integer',
 			'context'     => array( 'view', 'edit' )
 		);
 
 		$schema_properties['shipping']['properties']['title'] = array(
-			'description' => __( 'Title', 'woocommerce-germanized-pro' ),
-			'type'        => 'string',
+			'description' => __( 'Title', 'woocommerce-germanized' ),
+			'type'        => 'integer',
 			'context'     => array( 'view', 'edit' )
 		);
 

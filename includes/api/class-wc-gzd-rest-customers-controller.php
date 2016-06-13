@@ -85,13 +85,13 @@ class WC_GZD_REST_Customers_Controller {
 
 		$schema_properties['billing']['properties']['title'] = array(
 			'description' => __( 'Title', 'woocommerce-germanized-pro' ),
-			'type'        => 'string',
+			'type'        => 'integer',
 			'context'     => array( 'view', 'edit' )
 		);
 
 		$schema_properties['shipping']['properties']['title'] = array(
 			'description' => __( 'Title', 'woocommerce-germanized-pro' ),
-			'type'        => 'string',
+			'type'        => 'integer',
 			'context'     => array( 'view', 'edit' )
 		);
 
