@@ -8,6 +8,8 @@
  * Author URI: https://vendidero.de
  * Requires at least: 3.8
  * Tested up to: 4.5
+ * Requires at least WooCommerce: 2.4
+ * Tested up to WooCommerce: 2.6
  *
  * Text Domain: woocommerce-germanized
  * Domain Path: /i18n/languages/
@@ -114,9 +116,9 @@ final class WooCommerce_Germanized {
 		spl_autoload_register( array( $this, 'autoload' ) );
 
 		add_action( 'plugins_loaded', array( $this, 'load_plugin_textdomain' ) );
-			
+		
 		// Check if dependecies are installed
-		$init = WC_GZD_Dependencies::instance();
+		$init = WC_GZD_Dependencies::instance( $this );
 		
 		if ( ! $init->is_loadable() )
 			return;

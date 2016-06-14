@@ -149,6 +149,9 @@ class WC_GZD_Install {
 			update_option( 'woocommerce_tax_classes', implode( "\n", $tax_classes ) );
 		}
 
+		// Delete plugin header data for dependency check
+		delete_option( 'woocommerce_gzd_plugin_header_data' );
+
 		// Queue upgrades
 		$current_version    = get_option( 'woocommerce_gzd_version', null );
 		$current_db_version = get_option( 'woocommerce_gzd_db_version', null );

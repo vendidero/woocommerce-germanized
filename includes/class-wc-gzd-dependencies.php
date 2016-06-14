@@ -14,15 +14,30 @@ class WC_GZD_Dependencies {
 
 	public $loadable = true;
 
+	public $plugin = null;
+	public $prefix = 'gzd';
+	
 	public $plugins = array();
 
-	public $plugins_required = array(
-		'woocommerce' => array( 'version' => '2.4', 'version_prefix' => 'woocommerce', 'name' => 'WooCommerce' ),
+	public $plugins_header = array(
+		'woocommerce' => array( 
+			'name' 					=> 'WooCommerce',
+			'tested' 				=> '',
+			'requires' 				=> '',
+			'version' 				=> '',
+			'version_prefix' 		=> 'woocommerce',
+		),
 	);
 
-	public static function instance() {
+	public $plugins_result = array(
+		'outdated' 		   => array(),
+		'unactivated'	   => array(),
+		'untested'		   => array(),
+	);
+
+	public static function instance( $plugin = null ) {
 		if ( is_null( self::$_instance ) ) {
-			self::$_instance = new self();
+			self::$_instance = new self( $plugin );
 		}
 		return self::$_instance;
 	}
@@ -45,44 +60,147 @@ class WC_GZD_Dependencies {
 		_doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?', 'woocommerce-germanized-pro' ), '1.0' );
 	}
 	
-	public function __construct() {
+	public function __construct( $plugin = null ) {
+
+		if ( ! $plugin ) {
+			$plugin = WC_germanized();
+		}
+
+		$this->plugin = $plugin;
+
+		if ( $plugin->version != get_option( 'woocommerce_' . $this->prefix . '_version' ) ) {
+			delete_option( 'woocommerce_' . $this->prefix . '_plugin_header_data' );
+		}
 
 		$this->plugins = (array) get_option( 'active_plugins', array() );
 		
 		if ( is_multisite() )
 			$this->plugins = array_merge( $this->plugins, get_site_option( 'active_sitewide_plugins', array() ) );
-		
-		foreach ( $this->plugins_required as $plugin => $data ) {
+	
+		$this->parse_plugin_header_data();
 
-			if ( ! $this->is_plugin_activated( $plugin ) || $this->is_plugin_outdated( $plugin ) ) {
-				add_action( 'admin_notices', array( $this, 'dependencies_notice' ) );
-				$this->loadable = false;
+		// Set Plugin versions
+		foreach ( $this->plugins_header as $plugin => $data ) {
+			$this->plugins_header[ $plugin ][ 'version' ] = $this->get_plugin_version( $data[ 'version_prefix' ] );
+		}
+
+		foreach ( $this->plugins_header as $plugin => $data ) {
+
+			if ( ! $this->is_plugin_activated( $plugin ) ) {
+				$this->plugins_result[ 'unactivated' ][ $plugin ] = $data;
+			} else if ( $this->is_plugin_outdated( $plugin ) ) {
+				$this->plugins_result[ 'outdated' ][ $plugin ] = $data;
+			} else if ( ! $this->is_plugin_tested( $plugin ) ) {
+				$this->plugins_result[ 'untested' ][ $plugin ] = $data;
 			}
 
 		}
 
+		if ( ! empty( $this->plugins_result[ 'unactivated' ] ) || ! empty( $this->plugins_result[ 'outdated' ] ) || ! empty( $this->plugins_result[ 'untested' ] ) ) {
+			$this->loadable = false;
+			add_action( 'admin_notices', array( $this, 'dependencies_notice' ) );
+		}
+
+	}
+
+	protected function get_current_plugin_path() {
+		return $this->plugin->plugin_path();
+	}
+
+	protected function parse_plugin_header_data() {
+
+		if ( ! empty( get_option( 'woocommerce_' . $this->prefix . '_plugin_header_data', array() ) ) ) {
+			$this->plugins_header = get_option( 'woocommerce_' . $this->prefix . '_plugin_header_data' );
+			return;
+		}
+
+		$plugin_header_check = array();
+
+		foreach ( $this->plugins_header as $plugin => $data ) {
+
+			$plugin_header_check[ 'requires_' . $plugin ] = 'Requires at least ' . $data[ 'name' ];
+			$plugin_header_check[ 'tested_' . $plugin ] = 'Tested up to ' . $data[ 'name' ];
+
+		}
+
+		if ( ! empty( $plugin_header_check ) ) {
+
+			$plugin_data = get_file_data( $this->get_current_plugin_path(), $plugin_header_check );
+
+			foreach ( $plugin_data as $key => $value ) {
+				if ( strpos( $key, 'requires' ) !== false ) {
+					$this->plugins_header[ str_replace( 'requires_', '', $key ) ][ 'requires' ] = $value;
+				} else if ( strpos( $key, 'tested' ) !== false ) {
+					$this->plugins_header[ str_replace( 'tested_', '', $key ) ][ 'tested' ] = $value;
+				}
+			}
+		}
+
+		update_option( 'woocommerce_' . $this->prefix . '_plugin_header_data', $this->plugins_header );
 	}
 
 	public function get_plugin_version( $plugin_slug ) {
-		return get_option( $plugin_slug . '_version' );
+		$version = preg_replace( '#(\.0+)+($|-)#', '', get_option( $plugin_slug . '_version', '1.0' ) );
+		return $version;
 	}
 
 	public function is_plugin_outdated( $plugin ) {
-		$required = ( isset( $this->plugins_required[ $plugin ] ) ? $this->plugins_required[ $plugin ] : false );
-		if ( ! $required )
+		
+		$plugin_data = ( isset( $this->plugins_header[ $plugin ] ) ? $this->plugins_header[ $plugin ] : false );
+		
+		if ( ! $plugin_data || ! isset( $plugin_data[ 'requires' ] ) || empty( $plugin_data[ 'requires' ] ) )
 			return false;
-		if ( version_compare( $this->get_plugin_version( $required[ 'version_prefix' ] ), $required[ 'version' ], "<" ) )
+		
+		if ( $this->compare_versions( $plugin_data[ 'requires' ], $this->get_plugin_version( $plugin_data[ 'version_prefix' ] ), ">" ) )
 			return true;
+
 		return false;
 	}
 
 	public function is_plugin_activated( $plugin ) {
+		
+		if ( isset( $this->plugins_header[ $plugin ][ 'constant' ] ) ) {
+			
+			if ( ! defined( $this->plugins_header[ $plugin ][ 'constant' ] ) )
+				return false;
+		}
 
 		if ( strpos( $plugin, '.php' ) === false ) {
 			$plugin = trailingslashit( $plugin ) . $plugin . '.php';
 		}
+		
+		return ( in_array( $plugin, $this->plugins ) || array_key_exists( $plugin, $this->plugins ) );
+	}
 
-		return in_array( $plugin, $this->plugins ) || array_key_exists( $plugin, $this->plugins );
+	public function is_plugin_tested( $plugin ) {
+
+		$plugin_data = ( isset( $this->plugins_header[ $plugin ] ) ? $this->plugins_header[ $plugin ] : false );
+
+		if ( ! $plugin_data || ! isset( $plugin_data[ 'tested' ] ) || empty( $plugin_data[ 'tested' ] ) )
+			return true;
+
+		if ( $this->compare_versions( $plugin_data[ 'tested' ], $this->get_plugin_version( $plugin_data[ 'version_prefix' ] ), ">=" ) )
+			return true;
+
+		return false;
+
+	}
+
+	/**
+	 * This method removes accuration from $ver2 if this version is more accurate than $main_ver
+	 */
+	public function compare_versions( $main_ver, $ver2, $operator ) {
+
+		$expl_main_ver = explode( '.', $main_ver );
+		$expl_ver2 = explode( '.', $ver2 );
+
+		// Check if ver2 string is more accurate than main_ver
+		if ( sizeof( $expl_main_ver ) == 2 && sizeof( $expl_ver2 ) > 2 ) {
+			$new_ver_2 = array_slice( $expl_ver2, 0, 2 );
+			$ver2 = implode( '.', $new_ver_2 );
+		}
+
+		return version_compare( $main_ver, $ver2, $operator );
 	}
 
 	/**
@@ -98,13 +216,11 @@ class WC_GZD_Dependencies {
 		return ( $this->is_plugin_activated( 'sitepress-multilingual-cms/sitepress.php' ) && $this->is_plugin_activated( 'woocommerce-multilingual/wpml-woocommerce.php' ) );
 	}
 
-
 	public function is_loadable() {
 		return $this->loadable;
 	}
 
 	public function dependencies_notice() {
-
 		global $dependencies;
 		$dependencies = $this;
 
@@ -112,5 +228,3 @@ class WC_GZD_Dependencies {
 	}
 
 }
-
-WC_GZD_Dependencies::instance();
