@@ -107,9 +107,6 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 		// Order Meta
     	add_action( 'woocommerce_checkout_update_order_meta', array( $this, 'set_order_meta' ), 10, 2 );
 
-    	// Customer Meta
-    	add_action( 'woocommerce_checkout_update_user_meta', array( $this, 'set_customer_meta' ), 10, 2 );
-
     	// Customer Emails
     	add_action( 'woocommerce_email_before_order_table', array( $this, 'email_instructions' ), 10, 3 );
     	add_action( 'woocommerce_germanized_order_confirmation_sent', array( $this, 'send_mail' ) );
