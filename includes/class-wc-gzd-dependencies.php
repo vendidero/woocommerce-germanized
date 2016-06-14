@@ -106,7 +106,7 @@ class WC_GZD_Dependencies {
 	}
 
 	protected function get_current_plugin_path() {
-		return trailingslashit( WP_PLUGIN_DIR ) . $this->plugin->plugin_file;
+		return $this->plugin->plugin_path() . '/woocommerce-germanized.php';
 	}
 
 	protected function parse_plugin_header_data() {
