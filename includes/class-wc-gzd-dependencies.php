@@ -96,15 +96,17 @@ class WC_GZD_Dependencies {
 
 		}
 
-		if ( ! empty( $this->plugins_result[ 'unactivated' ] ) || ! empty( $this->plugins_result[ 'outdated' ] ) || ! empty( $this->plugins_result[ 'untested' ] ) ) {
+		if ( ! empty( $this->plugins_result[ 'unactivated' ] ) || ! empty( $this->plugins_result[ 'outdated' ] ) ) {
 			$this->loadable = false;
+			add_action( 'admin_notices', array( $this, 'dependencies_notice' ) );
+		} else if ( ! empty( $this->plugins_result[ 'untested' ] ) ) {
 			add_action( 'admin_notices', array( $this, 'dependencies_notice' ) );
 		}
 
 	}
 
 	protected function get_current_plugin_path() {
-		return $this->plugin->plugin_path();
+		return trailingslashit( WP_PLUGIN_DIR ) . $this->plugin->plugin_file;
 	}
 
 	protected function parse_plugin_header_data() {
