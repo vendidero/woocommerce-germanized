@@ -97,12 +97,36 @@ class WC_GZD_Checkout {
 	}
 
 	public function free_shipping_auto_select( $rates ) {
-		if ( ( is_checkout() || is_cart() ) && isset( $rates['free_shipping'] ) ) {
-			foreach ( $rates as $key => $value ) {
-				if ( 'free_shipping' !== $key )
+
+		if ( ! is_checkout() && ! is_cart() )
+			return $rates;
+
+		$keep = '';
+
+		// Legacy Support
+		if ( isset( $rates[ 'free_shipping' ] ) ) {
+			$keep = 'free_shipping';
+		}
+
+		// Check for cost-free shipping
+		foreach ( $rates as $key => $rate ) {
+
+			if ( is_object( $rate ) && isset( $rate->cost ) && $rate->cost == 0 ) {
+				$keep = $key;
+			}
+
+		}
+
+		// Unset all other rates
+		if ( ! empty( $keep ) ) {
+			
+			foreach ( $rates as $key => $rate ) {
+			
+				if ( $key !== $keep )
 					unset( $rates[ $key ] );
 			}
 		}
+
 		return $rates;
 	}
 
