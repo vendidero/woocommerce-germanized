@@ -11,11 +11,15 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 ?>
 
-<?php if ( $available_gateways = WC()->payment_gateways->get_available_payment_gateways() ) : ?>
+<?php if ( $gateways = WC()->payment_gateways()->payment_gateways() ) : ?>
 
 	<ul class="payment_methods methods">
 
-		<?php foreach ( $available_gateways as $gateway ) : ?>
+		<?php foreach ( $gateways as $gateway ) : 
+			
+			if ( $gateway->enabled !== 'yes' )
+				continue; 
+		?>
 
 			<li class="payment_method_<?php echo $gateway->id; ?>">
 				<label for="payment_method_<?php echo $gateway->id; ?>"><?php echo $gateway->get_title(); ?> <?php echo $gateway->get_icon(); ?></label>
