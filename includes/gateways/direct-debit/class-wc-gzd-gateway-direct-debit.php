@@ -681,7 +681,7 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 
 	public function validate_checkbox() {
 
-		if ( $this->enable_checkbox === 'yes' && ( ! isset( $_POST[ 'direct_debit_legal' ] ) && empty( $_POST[ 'direct_debit_legal' ] ) ) )
+		if ( isset( $_POST[ 'payment_method' ] ) && $_POST[ 'payment_method' ] === $this->id && $this->enable_checkbox === 'yes' && ( ! isset( $_POST[ 'direct_debit_legal' ] ) && empty( $_POST[ 'direct_debit_legal' ] ) ) )
 			wc_add_notice( __( 'Please accept the direct debit mandate.', 'woocommerce-germanized' ), 'error' );
 
 	}
