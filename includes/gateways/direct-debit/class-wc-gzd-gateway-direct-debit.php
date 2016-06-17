@@ -101,6 +101,8 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 		add_action( 'wp_ajax_nopriv_show_direct_debit', array( $this, 'generate_mandate' ) );
 		add_filter( 'woocommerce_email_classes', array( $this, 'add_email_template' ) );
 
+		add_action( 'woocommerce_after_checkout_validation', array( $this, 'validate_checkbox' ) );
+
 		// Pay for Order
 		add_action( 'woocommerce_pay_order_before_submit', array( $this, 'checkbox' ) );
 
@@ -641,14 +643,6 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 
 	}
 
-	public function validate_form_pay() {
-
-	}
-
-	public function validate_checkbox( $posted ) {
-
-	}
-
 	public function validate_fields() { 
 		
 		if ( ! $this->is_available() || ! isset( $_POST[ 'payment_method' ] ) || $_POST[ 'payment_method' ] != $this->id )
@@ -678,12 +672,17 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 		if ( ! preg_match( '/^([a-zA-Z]){4}([a-zA-Z]){2}([0-9a-zA-Z]){2}([0-9a-zA-Z]{3})?$/', $bic ) ) 
 			wc_add_notice( __( 'Your BIC seems to be invalid.', 'woocommerce-germanized' ), 'error' );
 
-		if ( ! isset( $_POST[ 'woocommerce_checkout_update_totals' ] ) ) {
-
-			if ( ! isset( $_POST[ 'direct_debit_legal' ] ) && empty( $_POST[ 'direct_debit_legal' ] ) )
-				wc_add_notice( __( 'Please accept the direct debit mandate.', 'woocommerce-germanized' ), 'error' );
-
+		// Make sure that checkbox gets validated if on woocommerce_pay for order page
+		if ( isset( $_POST['woocommerce_pay'] ) ) {
+			$this->validate_checkbox();
 		}
+
+	}
+
+	public function validate_checkbox() {
+
+		if ( $this->enable_checkbox === 'yes' && ( ! isset( $_POST[ 'direct_debit_legal' ] ) && empty( $_POST[ 'direct_debit_legal' ] ) ) )
+			wc_add_notice( __( 'Please accept the direct debit mandate.', 'woocommerce-germanized' ), 'error' );
 
 	}
 
