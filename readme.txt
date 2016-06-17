@@ -157,6 +157,15 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 
 == Changelog ==
 
+= 1.6.7 =
+* Fix - Free Shipping Auto Select WC 2.6
+* Fix - Payment Gateways Shortcode
+* Fix - Fallback Library random_compat for Direct Debit Gateway Encryption
+* Fix - Removed Unused Hook from Direct Debit Gateway
+* Fix - Better Order Email Filter Removal
+* Fix - Direct Debit Checkbox Validation
+* Fix - Better Dependency Management
+
 = 1.6.6 =
 * Feature - WooCommerce 2.6 Support
 * Feature - WooCommerce REST API Support
