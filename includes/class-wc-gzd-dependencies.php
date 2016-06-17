@@ -111,8 +111,10 @@ class WC_GZD_Dependencies {
 
 	protected function parse_plugin_header_data() {
 
-		if ( ! empty( get_option( 'woocommerce_' . $this->prefix . '_plugin_header_data', array() ) ) ) {
-			$this->plugins_header = get_option( 'woocommerce_' . $this->prefix . '_plugin_header_data' );
+		$plugin_header_data = get_option( 'woocommerce_' . $this->prefix . '_plugin_header_data', array() );
+
+		if ( ! empty( $plugin_header_data ) ) {
+			$this->plugins_header = $plugin_header_data;
 			return;
 		}
 
