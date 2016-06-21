@@ -83,11 +83,16 @@ class WC_GZD_Trusted_Shops_Schedule {
 	public function update_review_widget() {
 		
 		$uploads = wp_upload_dir();
+		
 		if ( is_wp_error( $uploads ) )
 			return;
 
 		$filename = $this->base->id . '.gif';
-		$raw_data = file_get_contents( 'https://www.trustedshops.com/bewertung/widget/widgets/' . $filename );
+		$raw_data = $this->get_file_content( 'https://www.trustedshops.com/bewertung/widget/widgets/' . $filename );
+
+		// Seems like neither CURL nor file_get_contents does work
+		if ( ! $raw_data )
+			return;
 		
 		$filepath = trailingslashit( $uploads['path'] ) . $filename;
   		file_put_contents( $filepath, $raw_data );
@@ -152,6 +157,30 @@ class WC_GZD_Trusted_Shops_Schedule {
 				}
 			}
 		}
+	}
+
+	/**
+	 * Helper Function which decides between CURL or file_get_contents based on fopen
+	 *  
+	 * @param  [type] $url [description]
+	 */
+	private function get_file_content( $url ) {
+
+	    if ( function_exists( 'curl_init' ) ) {
+
+	    	$ch = curl_init();
+		    curl_setopt( $ch, CURLOPT_URL, $url );
+		    curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
+		    $output = curl_exec( $ch );
+		    curl_close( $ch );
+
+		    return $output;
+
+	    } else if ( ini_get( 'allow_url_fopen' ) ) {
+	    	return file_get_contents( $url );
+	    }
+
+	    return false;
 	}
 
 }
