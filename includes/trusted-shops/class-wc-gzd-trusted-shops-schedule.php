@@ -18,16 +18,20 @@ class WC_GZD_Trusted_Shops_Schedule {
 		if ( $this->base->is_rich_snippets_enabled() ) {
 			
 			add_action( 'woocommerce_gzd_trusted_shops_reviews', array( $this, 'update_reviews' ) );
-			
-			if ( empty( $this->base->reviews_cache ) )
+			$reviews = $this->base->reviews_cache;
+
+			// Generate reviews for the first time
+			if ( empty( $reviews ) )
 				add_action( 'init', array( $this, 'update_reviews' ) );
 		}
 		
 		if ( $this->base->is_review_widget_enabled() ) {
-			
+
 			add_action( 'woocommerce_gzd_trusted_shops_reviews', array( $this, 'update_review_widget' ) );
-			
-			if ( empty( $this->base->review_widget_attachment ) )
+			$attachment = $this->base->review_widget_attachment;
+
+			// Generate attachment for the first time
+			if ( empty( $attachment ) )
 				add_action( 'init', array( $this, 'update_review_widget' ) );
 		}
 		
@@ -69,7 +73,8 @@ class WC_GZD_Trusted_Shops_Schedule {
 				}
 			}
 		}
-		update_option( 'woocommerce' . $this->base->option_prefix . '_trusted_shops_reviews_cache', $update );
+
+		update_option( 'woocommerce_' . $this->base->option_prefix . '_trusted_shops_reviews_cache', $update );
 	}
 
 	/**
@@ -77,12 +82,12 @@ class WC_GZD_Trusted_Shops_Schedule {
 	 */
 	public function update_review_widget() {
 		
-		$filename = $this->base->id . '.gif';
-		$raw_data = file_get_contents( 'https://www.trustedshops.com/bewertung/widget/widgets/' . $filename );
 		$uploads = wp_upload_dir();
-		
 		if ( is_wp_error( $uploads ) )
 			return;
+
+		$filename = $this->base->id . '.gif';
+		$raw_data = file_get_contents( 'https://www.trustedshops.com/bewertung/widget/widgets/' . $filename );
 		
 		$filepath = trailingslashit( $uploads['path'] ) . $filename;
   		file_put_contents( $filepath, $raw_data );
@@ -106,6 +111,7 @@ class WC_GZD_Trusted_Shops_Schedule {
 			$attachment[ 'ID' ] = $attachment_id;
 			wp_update_post( $attachment );
 		}
+
 		require_once( ABSPATH . 'wp-admin/includes/image.php' );
 		
 		// Generate the metadata for the attachment, and update the database record.
