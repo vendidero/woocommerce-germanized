@@ -72,11 +72,17 @@ class WC_GZD_Checkout {
 		if ( is_wc_endpoint_url( 'order-pay' ) && isset( $_GET['force_pay_order'] ) ) {
 			
 			// Manipulate $_POST
-			$order_key  = $_GET['key'];
+			$order_key = $_GET['key'];
 			$order_id = absint( $wp->query_vars[ 'order-pay' ] );
 			$order = wc_get_order( $order_id );
 
 			if ( ! $order || $order->order_key != $order_key )
+				return;
+
+			// Check if gateway is available - otherwise don't force redirect - would lead to errors in pay_action
+			$gateways = WC()->payment_gateways->get_available_payment_gateways();
+
+			if ( ! isset( $gateways[ $order->payment_method ] ) )
 				return;
 
 			// Hide terms checkbox
