@@ -1,7 +1,7 @@
 jQuery( function( $ ) {
 
 	if ( $( '.payment_methods:first' ).parents( '#order_review' ).length ) {
-		
+
 		$( document ).on( 'change', '.payment_methods input[name="payment_method"]', function() {
 			$( 'body' ).trigger( 'update_checkout' );
 		});

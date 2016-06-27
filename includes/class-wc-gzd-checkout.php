@@ -117,10 +117,9 @@ class WC_GZD_Checkout {
 		// Check for cost-free shipping
 		foreach ( $rates as $key => $rate ) {
 
-			if ( is_object( $rate ) && isset( $rate->cost ) && $rate->cost == 0 ) {
+			if ( strpos( $key, 'free_shipping' ) !== false ) {
 				$keep = $key;
 			}
-
 		}
 
 		// Unset all other rates
