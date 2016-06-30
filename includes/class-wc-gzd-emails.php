@@ -81,9 +81,12 @@ class WC_GZD_Emails {
 			$is_downloadable = false;
 			
 			if ( ! empty( $items ) ) {
+				
 				foreach ( $items as $item ) {
+					
 					$_product = apply_filters( 'woocommerce_order_item_product', $order->get_product_from_item( $item ), $item );
-					if ( $_product->is_downloadable() || apply_filters( 'woocommerce_gzd_product_is_revocation_exception', false, $_product ) )
+					
+					if ( wc_gzd_is_revocation_exempt( $_product ) || apply_filters( 'woocommerce_gzd_product_is_revocation_exception', false, $_product ) )
 						$is_downloadable = true;
 				}
 			}
