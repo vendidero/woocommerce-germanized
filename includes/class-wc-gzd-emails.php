@@ -27,8 +27,27 @@ class WC_GZD_Emails {
 			$this->footer_attachments[ 'woocommerce_gzd_mail_attach_' . $key ] = $key;
 
 		add_action( 'woocommerce_email', array( $this, 'email_hooks' ), 0, 1 );
+		
 		// Change email template path if is germanized email template
 		add_filter( 'woocommerce_template_directory', array( $this, 'set_woocommerce_template_dir' ), 10, 2 );
+
+		$this->admin_hooks();
+
+	}
+	
+	public function admin_hooks() {
+		add_filter( 'woocommerce_resend_order_emails_available', array( $this, 'resend_order_emails' ), 0 );
+	}
+	
+	public function resend_order_emails( $emails ) {
+		global $theorder;
+		
+		if ( is_null( $theorder ) )
+			return $emails;
+		
+		array_push( $emails, 'customer_paid_for_order' );
+		
+		return $emails;
 	}
 
 	public function set_woocommerce_template_dir( $dir, $template ) {

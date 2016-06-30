@@ -630,6 +630,7 @@ final class WooCommerce_Germanized {
 	 * @return array
 	 */
 	public function add_emails( $mails ) {
+		$mails[ 'WC_GZD_Email_Customer_Paid_For_Order' ] 			= include 'includes/emails/class-wc-gzd-email-customer-paid-for-order.php';
 		$mails[ 'WC_GZD_Email_Customer_New_Account_Activation' ] 	= include 'includes/emails/class-wc-gzd-email-customer-new-account-activation.php';
 		$mails[ 'WC_GZD_Email_Customer_Revocation' ] 				= include 'includes/emails/class-wc-gzd-email-customer-revocation.php';
 		$mails[ 'WC_GZD_Email_Customer_Ekomi' ] 	 				= include 'includes/emails/class-wc-gzd-email-customer-ekomi.php';
