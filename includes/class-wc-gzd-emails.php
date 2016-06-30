@@ -225,7 +225,7 @@ class WC_GZD_Emails {
 			$mails = WC()->mailer()->get_emails();
 			if ( ! empty( $mails ) ) {
 				foreach ( $mails as $mail ) {
-					if ( $mail->id == $tpl )
+					if ( is_object( $mail ) && $mail->id == $tpl )
 						array_push( $found_mails, $mail );
 				}
 			}
