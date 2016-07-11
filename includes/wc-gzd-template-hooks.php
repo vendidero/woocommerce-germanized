@@ -32,6 +32,7 @@ if ( get_option( 'woocommerce_gzd_display_product_detail_delivery_time' ) == 'ye
 	add_action( 'woocommerce_single_product_summary', 'woocommerce_gzd_template_single_delivery_time_info', wc_gzd_get_hook_priority( 'single_delivery_time_info' ) );
 if ( get_option( 'woocommerce_gzd_display_product_detail_product_units' ) == 'yes' )
 	add_action( 'woocommerce_product_meta_start', 'woocommerce_gzd_template_single_product_units', wc_gzd_get_hook_priority( 'single_product_units' ) );
+
 add_filter( 'woocommerce_available_variation', 'woocommerce_gzd_add_variation_options', 0, 3 );
 
 /**

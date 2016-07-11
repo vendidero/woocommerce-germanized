@@ -107,27 +107,34 @@ class WC_GZD_Checkout {
 		if ( ! is_checkout() && ! is_cart() )
 			return $rates;
 
-		$keep = '';
+		$keep = array();
+		$hide = false;
 
 		// Legacy Support
 		if ( isset( $rates[ 'free_shipping' ] ) ) {
-			$keep = 'free_shipping';
+			$keep[] = 'free_shipping';
+			$hide = true;
 		}
 
 		// Check for cost-free shipping
 		foreach ( $rates as $key => $rate ) {
 
+			// Do only hide if free_shipping exists
 			if ( strpos( $key, 'free_shipping' ) !== false ) {
-				$keep = $key;
+				$hide = true;
+			}
+
+			if ( $rate->cost == 0 ) {
+				$keep[] = $key;
 			}
 		}
 
 		// Unset all other rates
-		if ( ! empty( $keep ) ) {
+		if ( ! empty( $keep ) && $hide ) {
 			
 			foreach ( $rates as $key => $rate ) {
 			
-				if ( $key !== $keep )
+				if ( ! in_array( $key, $keep ) )
 					unset( $rates[ $key ] );
 			}
 		}
