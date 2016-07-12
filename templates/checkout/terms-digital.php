@@ -13,11 +13,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 ?>
 
 <p class="form-row data-download terms legal">
-
 	<input type="checkbox" class="input-checkbox" name="download-revocate" id="data-download" />
-
-	<label for="data-download" class="checkbox">
-		<?php echo wc_gzd_get_legal_text_digital(); ?>
-	</label>
-	
+	<label for="data-download" class="checkbox"><?php echo wc_gzd_get_legal_text_digital(); ?></label>
 </p>
