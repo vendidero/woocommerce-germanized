@@ -17,7 +17,7 @@ echo sprintf( __( "Thanks for creating an account on %s. Your username is %s. Pl
 
 echo "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n\n";
 
-echo $user_activation_url . "\n\n";
+echo esc_attr( $user_activation_url ) . "\n\n";
 
 echo "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n\n";
 

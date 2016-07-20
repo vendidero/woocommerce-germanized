@@ -27,6 +27,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <p><?php printf( __( "If you haven't created an account on %s please ignore this email.", "woocommerce-germanized" ),esc_html( $blogname ) );?></p>
 
-<p><?php printf( __( 'If you cannot follow the link above please copy this url and paste it to your browser bar: %s', 'woocommerce-germanized' ), $user_activation_url ); ?></p>
+<p><?php printf( __( 'If you cannot follow the link above please copy this url and paste it to your browser bar: %s', 'woocommerce-germanized' ), esc_attr( $user_activation_url ) ); ?></p>
 
 <?php do_action( 'woocommerce_email_footer' ); ?>
