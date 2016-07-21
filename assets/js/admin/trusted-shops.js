@@ -9,12 +9,12 @@ jQuery( function ( $ ) {
 		
 		// Hide gateway options
 		$( '#woocommerce_' + trusted_shops_params.option_prefix + 'trusted_shops_gateway_bacs' ).parents( 'table.form-table' ).hide();
-		$( '#woocommerce_' + trusted_shops_params.option_prefix + 'trusted_shops_gateway_bacs' ).parents( 'table' ).prev( 'h3' ).hide();
+		$( '#woocommerce_' + trusted_shops_params.option_prefix + 'trusted_shops_gateway_bacs' ).parents( 'table' ).prev( 'h3,h2' ).hide();
 
 		if ( $( this ).val() === 'expert' ) {
 
 			$( '#woocommerce_' + trusted_shops_params.option_prefix + 'trusted_shops_gateway_bacs' ).parents( 'table.form-table' ).show();
-			$( '#woocommerce_' + trusted_shops_params.option_prefix + 'trusted_shops_gateway_bacs' ).parents( 'table' ).prev( 'h3' ).show();
+			$( '#woocommerce_' + trusted_shops_params.option_prefix + 'trusted_shops_gateway_bacs' ).parents( 'table' ).prev( 'h3,h2' ).show();
 
 			$( '#woocommerce_' + trusted_shops_params.option_prefix + 'trusted_shops_trustbadge_code' ).parents( 'tr' ).show();
 			// Show notice
