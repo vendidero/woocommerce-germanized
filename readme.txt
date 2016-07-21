@@ -41,9 +41,9 @@ Furthermore we have customized the checkout to make your WooCommerce Shop meet t
 * Sale Price Labels
 
 = Certified by Trusted Shops =
-WooCommerce Germanized has been approved by Trusted Shops and therefor offers best technical conditions to operate a legally certain Online Shop in Germany.
-Trusted Shops certifies Shops after selected and weighted criteria and has carefully examined this WooCommerce Plugin.
-Of course Trusted Shops customers may embed their quality seals and further Trusted Shops Products by adapting just a few options within WooCommerce Germanized.
+WooCommerce Germanized has been approved by Trusted Shops and therefor offers best technical conditions to operate a legally certain Online Shop in Germany. 
+Trusted Shops certifies Shops after selected and weighted criteria and has carefully examined this WooCommerce Plugin. 
+Of course Trusted Shops customers may embed their quality seals or further Trusted Shops Products as genuine Seller and Product Reviews by adapting just a few options within WooCommerce Germanized.
 
 = Properly Implemented =
 While developing WC Germanized we have specifically considered clean integration within WooCommerce and WordPress by adapting core functionality.
