@@ -3,7 +3,7 @@
  * Class WC_GZD_REST_Customers_Controller
  *
  * @since 1.7.0
- * @author vendidero, Daniel Hüsken
+ * @author vendidero, Daniel Huesken
  */
 class WC_GZD_REST_Customers_Controller {
 
@@ -168,12 +168,12 @@ class WC_GZD_REST_Customers_Controller {
 	 * Handler for updating custom field data.
 	 *
 	 * @param mixed $value The value of the field
-	 * @param \WP_User $object The object from the response
+	 * @param WP_User $object The object from the response
 	 * @param string $field_name Name of field
 	 *
 	 * @return bool|int
 	 */
-	public function update_direct_debit( $value, \WP_User $object, $field_name ) {
+	public function update_direct_debit( $value, $object, $field_name ) {
 
 		if ( ! $value || ! is_array( $value ) ) {
 			return false;

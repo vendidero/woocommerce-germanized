@@ -3,7 +3,7 @@
  * Class WC_GZD_REST_Product_Price_Labels_Controller
  *
  * @since 1.7.0
- * @author vendidero, Daniel Hüsken
+ * @author vendidero, Daniel Huesken
  */
 class WC_GZD_REST_Product_Price_Labels_Controller extends WC_REST_Terms_Controller {
 
