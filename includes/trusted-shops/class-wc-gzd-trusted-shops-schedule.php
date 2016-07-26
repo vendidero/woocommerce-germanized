@@ -74,7 +74,7 @@ class WC_GZD_Trusted_Shops_Schedule {
 			}
 		}
 
-		update_option( 'woocommerce_' . $this->base->option_prefix . '_trusted_shops_reviews_cache', $update );
+		update_option( 'woocommerce_' . $this->base->option_prefix . 'trusted_shops_reviews_cache', $update );
 	}
 
 	/**
