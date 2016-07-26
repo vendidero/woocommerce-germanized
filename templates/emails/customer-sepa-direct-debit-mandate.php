@@ -11,10 +11,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 ?>
 
-<?php do_action( 'woocommerce_email_header', $email_heading ); ?>
+<?php do_action( 'woocommerce_email_header', $email_heading, $email ); ?>
 
 <p><?php printf( __( "Please see the SEPA direct debit mandate for order %s attached to this email.", 'woocommerce-germanized' ), $order->get_order_number() ); ?></p>
 
 <?php echo $gateway->generate_mandate_by_order( $order ); ?>
 
-<?php do_action( 'woocommerce_email_footer' ); ?>
+<?php do_action( 'woocommerce_email_footer', $email ); ?>

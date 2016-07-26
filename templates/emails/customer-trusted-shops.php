@@ -13,7 +13,7 @@ $text 		= get_option( 'woocommerce_email_text_color' );
 
 ?>
 
-<?php do_action( 'woocommerce_email_header', $email_heading ); ?>
+<?php do_action( 'woocommerce_email_header', $email_heading, $email ); ?>
 
 <p><?php echo sprintf( _x( 'Dear %s %s,', 'trusted-shops', 'woocommerce-germanized' ), $order->billing_first_name, $order->billing_last_name ); ?></p>
 <p><?php echo sprintf( _x( 'You have recently shopped at %s. Thank you! We would be glad if you spent some time to write a review about your order. To do so please follow follow the link.', 'trusted-shops', 'woocommerce-germanized' ), get_bloginfo( 'name' ) ); ?></p>
@@ -23,4 +23,4 @@ $text 		= get_option( 'woocommerce_email_text_color' );
 	</tr>
 </table>
 
-<?php do_action( 'woocommerce_email_footer' ); ?>
+<?php do_action( 'woocommerce_email_footer', $email ); ?>

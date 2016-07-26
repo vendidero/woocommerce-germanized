@@ -11,7 +11,7 @@ $fields = WC_GZD_Revocation::get_fields();
 
 ?>
 
-<?php do_action( 'woocommerce_email_header', $email_heading ); ?>
+<?php do_action( 'woocommerce_email_header', $email_heading, $email ); ?>
 
 <p><?php echo _x( 'By sending you this email we confirm your Revocation. Please review your data.', 'revocation-form', 'woocommerce-germanized' );?></p>
 
@@ -47,4 +47,4 @@ $fields = WC_GZD_Revocation::get_fields();
 
 </table>
 
-<?php do_action( 'woocommerce_email_footer' ); ?>
+<?php do_action( 'woocommerce_email_footer', $email ); ?>
