@@ -39,7 +39,7 @@ class WC_GZD_REST_Orders_Controller {
 	 */
 	public function prepare( $response, $order, $request ) {
 
-		$order = wc_get_order( $post );
+		$order = wc_get_order( $order->id );
 		$response_order_data = $response->get_data();
 		
 		$response_order_data['billing']['title'] = $order->billing_title;
