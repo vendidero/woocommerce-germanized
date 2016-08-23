@@ -8,47 +8,45 @@
  * @category	Class
  * @author 		vendidero
  */
-class WC_GZD_WPML_Helper {
-
-	protected static $_instance = null;
-	public $locale = false;
-
-	public static function instance() {
-		if ( is_null( self::$_instance ) )
-			self::$_instance = new self();
-		return self::$_instance;
-	}
+class WC_GZD_Compatibility_Wpml extends WC_GZD_Compatibility {
 
 	public function __construct() {
-		
-		if ( ! $this->is_activated() ) 
-			return;
-
-		add_action( 'init', array( $this, 'init' ), 5 );
-		
-		$this->filter_page_ids();
+		parent::__construct( 
+			'WPML', 
+			'sitepress-multilingual-cms/sitepress.php', 
+			array( 
+				'version' => get_option( 'icl_sitepress_version', '1.0.0' )
+			) 
+		);
 	}
 
 	public function is_activated() {
-		return WC_GZD_Dependencies::instance()->is_wpml_activated();
+		return parent::is_activated() && WC_GZD_Dependencies::instance()->is_plugin_activated( 'woocommerce-multilingual/wpml-woocommerce.php' );
 	}
 
-	public function init() {
+	public function load() {
+
 		// Observe order update and trigger hook
 		add_action( 'post_updated', array( $this, 'observe_order_update' ), 0, 3 );
+		
 		// Prevent double sending order confirmation email to admin
 		if ( WC_germanized()->send_instant_order_confirmation() ) {
 			add_action( 'wp_loaded', array( $this, 'unregister_order_confirmation_hooks' ) );
 			add_action( 'woocommerce_germanized_before_order_confirmation', array( $this, 'send_order_admin_confirmation' ) );
 		}
+		
+		$this->filter_page_ids();
 	}
 
 	public function send_order_admin_confirmation( $order_id ) {
 		global $woocommerce_wpml;
+		
 		if ( isset( $woocommerce_wpml ) && isset( $woocommerce_wpml->emails ) && is_object( $woocommerce_wpml->emails ) ) {
+		
 			// Instantiate mailer to make sure that new order email is known
 			$mailer = WC()->mailer();
 			$woocommerce_wpml->emails->admin_email( $order_id );
+		
 			// Stop Germanized from sending the notification
 			add_filter( 'woocommerce_germanized_order_email_admin_confirmation_sent', array( $this, 'set_order_admin_confirmation' ) );
 		}
@@ -59,13 +57,16 @@ class WC_GZD_WPML_Helper {
 	}
 
 	public function unregister_order_confirmation_hooks() {
+		
 		global $woocommerce_wpml;
+		
 		if ( isset( $woocommerce_wpml ) ) {
 			$statuses = array(
 				'woocommerce_order_status_pending_to_processing_notification',
         		'woocommerce_order_status_pending_to_completed_notification',
         		'woocommerce_order_status_pending_to_on-hold_notification',
 			);
+		
 			foreach ( $statuses as $status ) {
 				remove_action( $status, array( $woocommerce_wpml->emails, 'admin_email' ), 9 );
 			}
@@ -109,6 +110,7 @@ class WC_GZD_WPML_Helper {
         do_action( 'woocommerce_gzd_wpml_lang_changed', $lang );
         
         load_default_textdomain();
+        
         global $wp_locale;
         $wp_locale = new WP_Locale();
 
@@ -124,6 +126,7 @@ class WC_GZD_WPML_Helper {
 	}
 
 	public function filter_page_ids() {
+		
 		$woo_pages = array(
             'revocation_page_id',
             'data_security_page_id',
@@ -131,6 +134,7 @@ class WC_GZD_WPML_Helper {
             'payment_methods_page_id',
             'shipping_costs_page_id'
         );
+        
         foreach ( $woo_pages as $page ) {
         	add_filter( 'woocommerce_get_' . $page, array( $this, 'translate_page' ) );
             add_filter( 'option_woocommerce_' . $page, array( $this, 'translate_page') );
@@ -138,12 +142,13 @@ class WC_GZD_WPML_Helper {
 	}
 
 	public function translate_page( $id ) {
+        
         global $pagenow;
+        
         if( is_admin() && $pagenow == 'options-permalink.php' )
             return $id;
+        
         return apply_filters( 'translate_object_id', $id, 'page', true );
     }
 
 }
-
-return WC_GZD_WPML_Helper::instance();

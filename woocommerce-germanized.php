@@ -7,7 +7,7 @@
  * Author: Vendidero
  * Author URI: https://vendidero.de
  * Requires at least: 3.8
- * Tested up to: 4.5
+ * Tested up to: 4.6
  * Requires at least WooCommerce: 2.4
  * Tested up to WooCommerce: 2.6
  *
@@ -62,6 +62,8 @@ final class WooCommerce_Germanized {
 
 	public $emails = null;
 
+	public $compatibilities = array();
+
 	/**
 	 * Main WooCommerceGermanized Instance
 	 *
@@ -113,10 +115,9 @@ final class WooCommerce_Germanized {
 		// Auto-load classes on demand
 		if ( function_exists( "__autoload" ) )
 			spl_autoload_register( "__autoload" );
+		
 		spl_autoload_register( array( $this, 'autoload' ) );
 
-		add_action( 'plugins_loaded', array( $this, 'load_plugin_textdomain' ) );
-		
 		// Check if dependecies are installed
 		$init = WC_GZD_Dependencies::instance( $this );
 		
@@ -132,8 +133,11 @@ final class WooCommerce_Germanized {
 		register_activation_hook( __FILE__, array( 'WC_GZD_Install', 'install' ) );
 		add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), array( $this, 'action_links' ) );
 		add_action( 'after_setup_theme', array( $this, 'include_template_functions' ), 12 );
-		add_action( 'init', array( $this, 'init' ), 1 );
+		
+		add_action( 'init', array( $this, 'init' ), 0 );
 		add_action( 'init', array( 'WC_GZD_Shortcodes', 'init' ), 2 );
+		add_action( 'init', array( $this, 'setup_compatibility' ), 15 );
+
 		add_action( 'woocommerce_init', array( $this, 'replace_woocommerce_product_factory' ), PHP_INT_MAX );
 		// Set template filter directly after load to ensure wc_get_template finds templates
 		add_filter( 'woocommerce_locate_template', array( $this, 'filter_templates' ), PHP_INT_MAX, 3 );
@@ -159,8 +163,11 @@ final class WooCommerce_Germanized {
 	 * Init WooCommerceGermanized when WordPress initializes.
 	 */
 	public function init() {
+
 		// Before init action
 		do_action( 'before_woocommerce_germanized_init' );
+
+		$this->load_plugin_textdomain();
 		
 		if ( get_option( 'woocommerce_gzd_display_checkout_fallback' ) == 'yes' )
 			add_filter( 'woocommerce_germanized_filter_template', array( $this, 'set_checkout_fallback' ), 10, 3 );
@@ -235,6 +242,8 @@ final class WooCommerce_Germanized {
 			$path = $this->plugin_path() . '/includes/gateways/' . substr( str_replace( '_', '-', $class ), 15 ) . '/';
 		else if ( strpos( $class, 'wc_gzd_trusted_shops' ) !== false )
 			$path = $this->plugin_path() . '/includes/trusted-shops/';
+		else if ( strpos( $class, 'wc_gzd_compatibility' ) !== false )
+			$path = $this->plugin_path() . '/includes/compatibility/';
 		else if ( strpos( $class, 'defuse\crypto' ) !== false ) {
 			$path = $this->plugin_path() . '/includes/gateways/direct-debit/libraries/php-encryption/';
 			$file = ucfirst( str_replace( 'Defuse/Crypto/', '', str_replace( '\\', '/', $original_class ) ) . '.php' );			
@@ -328,11 +337,11 @@ final class WooCommerce_Germanized {
 		// Abstracts
 		include_once ( 'includes/abstracts/abstract-wc-gzd-product.php' );
 		include_once ( 'includes/abstracts/abstract-wc-gzd-taxonomy.php' );
+		include_once ( 'includes/abstracts/abstract-wc-gzd-compatibility.php' );
 
 		// API
 		include_once ( 'includes/api/class-wc-gzd-rest-api.php' );
 
-		include_once ( 'includes/class-wc-gzd-wpml-helper.php' );
 		include_once ( 'includes/wc-gzd-cart-functions.php' );
 		include_once ( 'includes/wc-gzd-order-functions.php' );
 		include_once ( 'includes/class-wc-gzd-checkout.php' );
@@ -340,8 +349,21 @@ final class WooCommerce_Germanized {
 		include_once ( 'includes/class-wc-gzd-virtual-vat-helper.php' );
 
 		$this->setup_trusted_shops();
+		$this->ekomi = new WC_GZD_Ekomi();
 
-		$this->ekomi    	  = new WC_GZD_Ekomi();
+	}
+
+	public function setup_compatibility() {
+
+		$plugins = apply_filters( 'woocommerce_gzd_compatibilities', array( 'wpml', 'woocommerce-subscriptions' ) );
+		
+		foreach ( $plugins as $comp ) {
+	
+			$classname = str_replace( ' ', '_', 'WC_GZD_Compatibility_' . ucwords( str_replace( '-', ' ', $comp ) ) );
+			
+			if ( class_exists( $classname ) )
+				$this->compatibilities[ $comp ] = new $classname();
+		}
 
 	}
 
@@ -448,8 +470,11 @@ final class WooCommerce_Germanized {
 		if ( get_option( 'woocommerce_gzd_shipping_tax' ) !== 'yes' )
 			return $rates;
 
-		foreach ( $rates as $key => $rate )
-			$rates[ $key ] = new WC_GZD_Shipping_Rate( $rate );
+		foreach ( $rates as $key => $rate ) {
+			// Check for instance to make sure calculation is not done for multiple times
+			if ( ! $rate instanceof WC_GZD_Shipping_Rate )
+				$rates[ $key ] = new WC_GZD_Shipping_Rate( $rate );
+		}
 
 		return $rates;
 	}
@@ -508,9 +533,9 @@ final class WooCommerce_Germanized {
 	 */
 	public function load_plugin_textdomain() {
 		$locale = apply_filters( 'plugin_locale', get_locale(), 'woocommerce-germanized' );
-
+	
 		load_textdomain( 'woocommerce-germanized', trailingslashit( WP_LANG_DIR ) . 'woocommerce-germanized/woocommerce-germanized-' . $locale . '.mo' );
-		load_plugin_textdomain( 'woocommerce-germanized', FALSE, basename( dirname( __FILE__ ) ) . '/i18n/languages/' );
+		load_plugin_textdomain( 'woocommerce-germanized', false, plugin_basename( dirname( __FILE__ ) ) . '/i18n/languages/' );
 	}
 
 	/**

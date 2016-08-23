@@ -81,7 +81,7 @@ class WC_GZD_Trusted_Shops {
 	 * Sets Trusted Shops payment gateways and load dependencies
 	 */
 	public function __construct( $plugin, $params = array() ) {
-			
+		
 		$this->plugin = $plugin;
 
 		$args = wp_parse_args( $params, array(
@@ -100,17 +100,6 @@ class WC_GZD_Trusted_Shops {
 
 		// Refresh TS ID + API URL
 		$this->refresh();
-		
-		$this->gateways = apply_filters( 'woocommerce_trusted_shops_gateways', array(
-				'prepayment' => _x( 'Prepayment', 'trusted-shops', 'woocommerce-germanized' ),
-				'cash_on_delivery' => _x( 'Cash On Delivery', 'trusted-shops', 'woocommerce-germanized' ),
-				'credit_card' => _x( 'Credit Card', 'trusted-shops', 'woocommerce-germanized' ),
-				'paypal' => _x( 'Paypal', 'trusted-shops', 'woocommerce-germanized' ),
-				'invoice' => _x( 'Invoice', 'trusted-shops', 'woocommerce-germanized' ),
-				'direct_debit' => _x( 'Direct Debit', 'trusted-shops', 'woocommerce-germanized' ),
-				'financing' =>  _x( 'Financing', 'trusted-shops', 'woocommerce-germanized' ),
-			)
-		);
 
 		if ( is_admin() )
 			$this->get_dependency( 'admin' );
@@ -123,6 +112,21 @@ class WC_GZD_Trusted_Shops {
 		if ( $this->is_enabled() )
 			add_action( 'wp_enqueue_scripts', array( $this, 'load_frontend_assets' ), 50 );
 
+		add_action( 'init', array( $this, 'setup_payment_options' ) );
+
+	}
+
+	public function setup_payment_options() {
+		$this->gateways = apply_filters( 'woocommerce_trusted_shops_gateways', array(
+				'prepayment' => _x( 'Prepayment', 'trusted-shops', 'woocommerce-germanized' ),
+				'cash_on_delivery' => _x( 'Cash On Delivery', 'trusted-shops', 'woocommerce-germanized' ),
+				'credit_card' => _x( 'Credit Card', 'trusted-shops', 'woocommerce-germanized' ),
+				'paypal' => _x( 'Paypal', 'trusted-shops', 'woocommerce-germanized' ),
+				'invoice' => _x( 'Invoice', 'trusted-shops', 'woocommerce-germanized' ),
+				'direct_debit' => _x( 'Direct Debit', 'trusted-shops', 'woocommerce-germanized' ),
+				'financing' =>  _x( 'Financing', 'trusted-shops', 'woocommerce-germanized' ),
+			)
+		);
 	}
 
 	public function load_frontend_assets() {

@@ -338,21 +338,26 @@ class WC_GZD_Trusted_Shops_Admin {
 			$default = '';
 
 			switch ( $gateway->id ) {
-			case 'bacs':
-				$default = 'prepayment';
-				break;
-			case 'paypal':
-				$default = 'paypal';
-				break;
-			case 'cod':
-				$default = 'cash_on_delivery';
-				break;
-			case 'cheque':
-				$default = 'cash_on_delivery';
-				break;
-			case 'mijireh_checkout':
-				$default = 'credit_card';
-				break;
+				case 'bacs':
+					$default = 'prepayment';
+					break;
+				case 'paypal':
+					$default = 'paypal';
+					break;
+				case 'cod':
+					$default = 'cash_on_delivery';
+					break;
+				case 'cheque':
+					$default = 'cash_on_delivery';
+					break;
+				case 'mijireh_checkout':
+					$default = 'credit_card';
+					break;
+				case 'direct-debit':
+					$default = 'direct_debit';
+					break;
+				default:
+					$default = $gateway->id;
 			}
 
 			array_push( $options, array(

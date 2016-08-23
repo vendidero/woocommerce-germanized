@@ -14,14 +14,12 @@ class WC_GZD_Trusted_Shops_Widgets {
 
 	private function __construct( $base ) {
 		$this->base = $base;
-
 		add_action( 'widgets_init', array( $this, 'include_widgets' ), 25 );
 	}
 
 	public function include_widgets() {
 		if ( $this->base->is_rich_snippets_enabled() )
 			$this->register_widget( 'rich_snippets' );
-
 		if ( $this->base->is_review_widget_enabled() ) {
 			$this->register_widget( 'reviews' );
 		}

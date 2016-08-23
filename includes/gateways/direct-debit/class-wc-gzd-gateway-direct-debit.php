@@ -73,8 +73,9 @@ This letter is done automatically and is valid without signature.
 
 Please notice: Period for pre-information of the SEPA direct debit is shortened to one day.', 'woocommerce-germanized' ) );
 
-		$this->supports         = array(
+		$this->supports = array(
 			'products',
+			'subscriptions'
 		);
 
 		if ( $this->get_option( 'enabled' ) === 'yes' && ! $this->supports_encryption() ) {

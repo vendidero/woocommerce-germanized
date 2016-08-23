@@ -155,6 +155,37 @@ if ( ! defined( 'ABSPATH' ) )
 	</tbody>
 </table>
 
+<table class="wc_status_table widefat" cellspacing="0" id="status">
+	<thead>
+		<tr>
+			<th colspan="3" data-export-label="Compatibility"><?php _e( 'Compatibility', 'woocommerce-germanized' ); ?></th>
+		</tr>
+	</thead>
+	<tbody class="tools">
+
+		<?php foreach( WC_germanized()->compatibilities as $c => $comp ) : 
+
+			if ( ! $comp->is_activated() )
+				continue;
+
+			$version_data = $comp->get_version_data();
+		?>
+
+			<tr>
+				<td data-export-label="<?php esc_attr( $comp->get_name() ); ?>"><?php echo $comp->get_name() ;?></td>
+				<td class="help"><?php echo '<a href="#" class="help_tip" data-tip="' . esc_attr( sprintf( __( 'Checks whether compatibility options for %s are being applied.', 'woocommerce-germanized' ), $comp->get_name() ) ) . '">[?]</a>'; ?></td>
+				<td>
+					<?php echo ( $comp->is_applicable() ? '<mark class="yes">'.'&#10004;'.'</mark>' : '<mark class="no">'.'&ndash;'.'</mark>' ); ?>
+					<?php echo ( ! $comp->is_supported() ? sprintf( __( 'Version % not supported, supporting version %s - %s', 'woocommerce-germanized' ), $version_data['version'], $version_data['requires_at_least'], $version_data['tested_up_to'] ) : '' ); ?> 
+				</td>
+			</tr>
+
+		<?php endforeach; ?>
+
+		<?php do_action( 'woocommerce_gzd_status_after_compatibility' ); ?>
+	</tbody>
+</table>
+
 <table class="wc_status_table widefat" cellspacing="0">
 	<thead>
 		<tr>

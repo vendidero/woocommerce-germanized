@@ -161,6 +161,15 @@ class WC_GZD_Dependencies {
 		return false;
 	}
 
+	public function get_plugin_path( $plugin ) {
+
+		if ( strpos( $plugin, '.php' ) === false ) {
+			$plugin = trailingslashit( $plugin ) . $plugin . '.php';
+		}
+
+		return $plugin;
+	}
+
 	public function is_plugin_activated( $plugin ) {
 		
 		if ( isset( $this->plugins_header[ $plugin ][ 'constant' ] ) ) {
@@ -214,10 +223,6 @@ class WC_GZD_Dependencies {
 	 */
 	public function is_woocommerce_activated() {
 		return $this->is_plugin_activated( 'woocommerce/woocommerce.php' );
-	}
-
-	public function is_wpml_activated() {
-		return ( $this->is_plugin_activated( 'sitepress-multilingual-cms/sitepress.php' ) && $this->is_plugin_activated( 'woocommerce-multilingual/wpml-woocommerce.php' ) );
 	}
 
 	public function is_loadable() {

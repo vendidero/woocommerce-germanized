@@ -102,7 +102,6 @@ class WC_GZD_Install {
 	 * Install WC_Germanized
 	 */
 	public static function install() {
-
 		global $wpdb;
 
 		if ( ! defined( 'WC_GZD_INSTALLING' ) ) {
