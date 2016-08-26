@@ -32,7 +32,19 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 		if ( is_admin() ) {
 			add_action( 'woocommerce_product_after_variable_attributes', array( __CLASS__, 'output' ), 20, 3 );
 			add_action( 'woocommerce_save_product_variation', array( __CLASS__, 'save' ) , 0, 2 );
+			add_action( 'woocommerce_variation_options', array( __CLASS__, 'service' ), 0, 3 );
 		}
+	}
+
+	public static function service( $loop, $variation_data, $variation ) {
+
+		$_product = wc_get_product( $variation );
+		$variation_id = $_product->variation_id;
+		$is_service = get_post_meta( $variation_id, '_service', true );
+
+		?>
+		<label><input type="checkbox" class="checkbox variable_service" name="variable_service[<?php echo $loop; ?>]" <?php checked( $is_service !== '' ? $is_service : '', 'yes' ); ?> /> <?php _e( 'Service', 'woocommerce-germanized' ); ?> <?php echo wc_gzd_help_tip( __( 'Service products do not sell physical products.', 'woocommerce-germanized' ) ); ?></label>
+		<?php
 	}
 
 	public static function output( $loop, $variation_data, $variation ) {
@@ -54,7 +66,7 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 			'_unit_price_sale' 			=> '',
 			'_sale_price_label'			=> '',
 			'_sale_price_regular_label' => '',
-			'_mini_desc' 				=> '',
+			'_mini_desc' 				=> ''
 		);
 
 		foreach ( $variation_fields as $field => $value ) {
@@ -140,6 +152,7 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 			'_sale_price_regular_label' => '',
 			'_unit_price_sale' => '',
 			'_mini_desc' => '',
+			'_service' => '',
 			'delivery_time' => '',
 		);
 

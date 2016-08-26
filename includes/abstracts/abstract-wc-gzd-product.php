@@ -26,6 +26,7 @@ class WC_GZD_Product {
 		'unit_price_sale' 	 		=> '',
 		'unit_price_auto'	 	   	=> '',
 		'mini_desc' 		 		=> '',
+		'service'					=> '',
 		'gzd_product' 		 		=> NULL,
 	);
 
@@ -120,6 +121,12 @@ class WC_GZD_Product {
 	public function get_mini_desc() {
 		if ( $this->mini_desc && ! empty( $this->mini_desc ) )
 			return wpautop( htmlspecialchars_decode( $this->mini_desc ) );
+		return false;
+	}
+
+	public function is_service() {
+		if ( ! empty( $this->service ) && 'yes' === $this->service )
+			return true;
 		return false;
 	}
 

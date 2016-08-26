@@ -30,7 +30,21 @@ class WC_Germanized_Meta_Box_Product_Data {
 			add_action( 'woocommerce_product_options_shipping', array( __CLASS__, 'output_shipping' ) );
 			add_action( 'woocommerce_product_options_pricing', array( __CLASS__, 'output_pricing' ) );
 			add_action( 'woocommerce_process_product_meta', array( __CLASS__, 'save' ), 20, 2 );
+			add_filter( 'product_type_options', array( __CLASS__, 'service_type' ), 10, 1 );
 		}
+	}
+
+	public static function service_type( $types ) {
+
+		$types[ 'service' ] = array(
+			'id'            => '_service',
+			'wrapper_class' => 'show_if_simple',
+			'label'         => __( 'Service', 'woocommerce-germanized' ),
+			'description'   => __( 'Service products do not sell physical products.', 'woocommerce-germanized' ),
+			'default'       => 'no'
+		);
+
+		return $types;
 	}
 	
 	public static function output_pricing() {
@@ -123,6 +137,7 @@ class WC_Germanized_Meta_Box_Product_Data {
 			'_sale_price_dates_to' => '',
 			'_sale_price' => '',
 			'_free_shipping' => '',
+			'_service' => '',
 		);
 	}
 
@@ -209,6 +224,9 @@ class WC_Germanized_Meta_Box_Product_Data {
 
 		// Free shipping
 		update_post_meta( $post_id, '_free_shipping', ( isset( $data['_free_shipping'] ) ) ? 'yes' : '' );
+
+		// Free shipping
+		update_post_meta( $post_id, '_service', ( isset( $data['_service'] ) ) ? 'yes' : '' );
 
 		// Ignore variable data
 		if ( in_array( $product_type, array( 'variable', 'grouped' ) ) && ! $is_variation ) {

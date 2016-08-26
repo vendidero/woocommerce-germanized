@@ -334,3 +334,37 @@ function wc_gzd_get_legal_text_digital_email_notice() {
 	}
 	return $text;
 }
+
+function wc_gzd_get_legal_text_service() {
+	$plain_text = __( 'For services: I demand and acknowledge the immediate performance of the service before the expiration of the withdrawal period. I acknowledge that thereby I lose my right to cancel once the service has begun.', 'woocommerce-germanized' );
+	
+	if ( get_option( 'woocommerce_gzd_checkout_legal_text_service' ) )
+		$plain_text = wc_gzd_get_legal_text( get_option( 'woocommerce_gzd_checkout_legal_text_service' ) );
+	
+	return $plain_text;
+}
+
+function wc_gzd_get_legal_text_service_error() {
+	$plain_text = __( 'To allow the immediate performance of the services you have to agree to the loss of your right of withdrawal.', 'woocommerce-germanized' );
+	
+	if ( get_option( 'woocommerce_gzd_checkout_legal_text_service_error' ) )
+		$plain_text = wc_gzd_get_legal_text( get_option( 'woocommerce_gzd_checkout_legal_text_service_error' ) );
+	
+	return $plain_text;
+}
+
+function wc_gzd_get_legal_text_service_email_notice() {
+	$text = get_option( 'woocommerce_gzd_order_confirmation_legal_service_notice' );
+	
+	if ( $text ) {
+		$text = str_replace( 
+			array( '{link}', '{/link}' ), 
+			array( 
+				'<a href="' . esc_url( get_permalink( wc_get_page_id( 'revocation' ) ) ) . '" target="_blank">',
+				'</a>'
+			),
+			$text
+		);
+	}
+	return $text;
+}

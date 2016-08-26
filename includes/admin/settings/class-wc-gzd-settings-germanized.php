@@ -969,6 +969,45 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 			),
 
 			array(
+				'title' 	=> __( 'Show service notice', 'woocommerce-germanized' ),
+				'desc' 		=> __( 'Show checkbox for service products.', 'woocommerce-germanized' ),
+				'desc_tip'	=> __( 'Disable this option if you want your customers to obtain their right of recission even if service products are being bought.', 'woocommerce-germanized' ),
+				'id' 		=> 'woocommerce_gzd_checkout_legal_service_checkbox',
+				'default'	=> 'yes',
+				'type' 		=> 'checkbox',
+			),
+
+			array(
+				'title' 	=> __( 'Legal Service Text', 'woocommerce-germanized' ),
+				'desc' 		=> __( 'Choose a Plain Text which will be shown right above checkout submit button if a user has picked a service product. See legal text option for possible placeholders.', 'woocommerce-germanized' ),
+				'desc_tip'	=> true,
+				'default'   => __( 'For services: I demand and acknowledge the immediate performance of the service before the expiration of the withdrawal period. I acknowledge that thereby I lose my right to cancel once the service has begun.', 'woocommerce-germanized' ),
+				'css' 		=> 'width:100%; height: 65px;',
+				'id' 		=> 'woocommerce_gzd_checkout_legal_text_service',
+				'type' 		=> 'textarea',
+			),
+
+			array(
+				'title' 	=> __( 'Legal Service Error', 'woocommerce-germanized' ),
+				'desc' 		=> __( 'This text will be shown as error message if customer has not checked the corresponding checkbox. See legal text option for possible placeholders.', 'woocommerce-germanized' ),
+				'desc_tip'	=> true,
+				'default'   =>  __( 'To allow the immediate performance of the services you have to agree to the loss of your right of withdrawal.', 'woocommerce-germanized' ),
+				'css' 		=> 'width:100%; height: 65px;',
+				'id' 		=> 'woocommerce_gzd_checkout_legal_text_service_error',
+				'type' 		=> 'textarea',
+			),
+
+			array(
+				'title' 	=> __( 'Service Confirmation Notice', 'woocommerce-germanized' ),
+				'desc' 		=> __( 'This text will be appended to your order processing email if the order contains service products. Use placeholders {link}{/link} to insert link to right of withdrawal page.', 'woocommerce-germanized' ),
+				'desc_tip'	=> true,
+				'id' 		=> 'woocommerce_gzd_order_confirmation_legal_service_notice',
+				'default'	=> __( 'Furthermore you have expressly agreed to start the performance of the contract for services before expiry of the withdrawal period. I have noted to lose my {link}right of withdrawal{/link} with the beginning of the performance of the contract.', 'woocommerce-germanized' ),
+				'type' 		=> 'textarea',
+				'css' 		=> 'width:100%; height: 65px;',
+			),
+
+			array(
 				'title' 	=> __( 'Pay now Button', 'woocommerce-germanized' ),
 				'desc' 		=> __( 'Add a pay now button to emails and order success page.', 'woocommerce-germanized' ),
 				'desc_tip' 	=> __( 'Add a pay now button to order confirmation email and order success page if the order awaits payment (PayPal etc).', 'woocommerce-germanized' ),

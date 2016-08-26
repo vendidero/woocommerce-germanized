@@ -131,6 +131,9 @@ class WC_GZD_Checkout {
 
 		// Unset all other rates
 		if ( ! empty( $keep ) && $hide ) {
+
+			// Unset chosen shipping method to avoid key errors
+			unset( WC()->session->chosen_shipping_methods );
 			
 			foreach ( $rates as $key => $rate ) {
 			

@@ -115,6 +115,9 @@ function woocommerce_gzd_checkout_load_ajax_relevant_hooks() {
 
 	if ( get_option( 'woocommerce_gzd_checkout_legal_digital_checkbox' ) == 'yes' )
 		add_action( 'woocommerce_review_order_after_payment', 'woocommerce_gzd_digital_checkbox', wc_gzd_get_hook_priority( 'checkout_digital_checkbox' ) );
+
+	if ( get_option( 'woocommerce_gzd_checkout_legal_service_checkbox' ) == 'yes' )
+		add_action( 'woocommerce_review_order_after_payment', 'woocommerce_gzd_service_checkbox', wc_gzd_get_hook_priority( 'checkout_service_checkbox' ) );
 	
 	// Add payment title heading
 	add_action( 'woocommerce_review_order_before_payment', 'woocommerce_gzd_template_checkout_payment_title' );

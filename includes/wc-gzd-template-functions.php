@@ -188,6 +188,30 @@ if ( ! function_exists( 'woocommerce_gzd_digital_checkbox' ) ) {
 
 }
 
+if ( ! function_exists( 'woocommerce_gzd_service_checkbox' ) ) {
+
+	function woocommerce_gzd_service_checkbox() {
+		
+		$items = WC()->cart->get_cart();
+		$is_service = false;
+		
+		if ( ! empty( $items ) ) {
+		
+			foreach ( $items as $cart_item_key => $values ) {
+				$_product = apply_filters( 'woocommerce_cart_item_product', $values[ 'data' ], $values, $cart_item_key );
+				
+				if ( wc_gzd_is_revocation_exempt( $_product, 'service' ) )
+					$is_service = true;
+			}
+
+		}
+		
+		if ( $is_service )
+			wc_get_template( 'checkout/terms-service.php' );
+	}
+
+}
+
 if ( ! function_exists( 'woocommerce_gzd_checkout_validation' ) ) {
 
 	/**
@@ -195,20 +219,35 @@ if ( ! function_exists( 'woocommerce_gzd_checkout_validation' ) ) {
 	 */
 	function woocommerce_gzd_checkout_validation( $posted ) {
 		if ( ! isset( $_POST[ 'woocommerce_checkout_update_totals' ] ) ) {
+			
 			if ( ! isset( $_POST[ 'legal' ] ) && get_option( 'woocommerce_gzd_display_checkout_legal_no_checkbox' ) == 'no' )
 				wc_add_notice( wc_gzd_get_legal_text_error(), 'error' );
+			
 			// Check if cart contains downloadable product
 			$items = WC()->cart->get_cart();
 			$is_downloadable = false;
-			if ( ! empty( $items ) && get_option( 'woocommerce_gzd_checkout_legal_digital_checkbox' ) == 'yes' ) {
+			$is_service = false;
+			
+			if ( ! empty( $items ) && ( get_option( 'woocommerce_gzd_checkout_legal_digital_checkbox' ) === 'yes' || get_option( 'woocommerce_gzd_checkout_legal_service_checkbox' ) === 'yes' ) ) {
+			
 				foreach ( $items as $cart_item_key => $values ) {
+			
 					$_product = apply_filters( 'woocommerce_cart_item_product', $values[ 'data' ], $values, $cart_item_key );
+			
 					if ( wc_gzd_is_revocation_exempt( $_product ) )
 						$is_downloadable = true;
+
+					if ( wc_gzd_is_revocation_exempt( $_product, 'service' ) )
+						$is_service = true;
+
 				}
 			}
-			if ( $is_downloadable && ! isset( $_POST[ 'download-revocate' ] ) )
+			
+			if ( get_option( 'woocommerce_gzd_checkout_legal_digital_checkbox' ) === 'yes' && $is_downloadable && ! isset( $_POST[ 'download-revocate' ] ) )
 				wc_add_notice( wc_gzd_get_legal_text_digital_error(), 'error' );
+
+			if ( get_option( 'woocommerce_gzd_checkout_legal_service_checkbox' ) === 'yes' && $is_service && ! isset( $_POST[ 'service-revocate' ] ) )
+				wc_add_notice( wc_gzd_get_legal_text_service_error(), 'error' );
 		}
 	}
 

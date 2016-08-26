@@ -58,23 +58,28 @@ function wc_gzd_get_small_business_product_notice() {
 	return apply_filters( 'woocommerce_gzd_small_business_product_notice', __( 'VAT free based on &#167;19 UStG', 'woocommerce-germanized' ) );
 }
 
-function wc_gzd_is_revocation_exempt( $product ) {
+function wc_gzd_is_revocation_exempt( $product, $type = 'digital' ) {
 	
-	$digital_types = apply_filters( 'woocommerce_gzd_digital_product_types', get_option( 'woocommerce_gzd_checkout_legal_digital_types', array( 'downloadable' ) ) );
-	
-	if ( empty( $digital_types ) )
+	$types = apply_filters( 'woocommerce_gzd_digital_product_types', get_option( 'woocommerce_gzd_checkout_legal_digital_types', array( 'downloadable' ) ) );
+
+	if ( empty( $types ) )
 		return false;
 	
-	else if ( ! is_array( $digital_types ) )
-		$digital_types = array( $digital_types );
+	else if ( ! is_array( $types ) )
+		$types = array( $types );
 
-	foreach ( $digital_types as $digital_type ) {
+	if ( $type === 'digital' ) {
+		foreach ( $types as $revo_type ) {
 
-		if ( wc_gzd_product_matches_extended_type( $digital_type, $product ) )
+			if ( wc_gzd_product_matches_extended_type( $revo_type, $product ) )
+				return true;
+		}
+	} else if ( $type === 'service' ) {
+		if ( wc_gzd_get_gzd_product( $product )->is_service() )
 			return true;
 	}
 
-	if ( apply_filters( 'woocommerce_gzd_product_is_revocation_exception', false, $product ) )
+	if ( apply_filters( 'woocommerce_gzd_product_is_revocation_exception', false, $product, $type ) )
 		return true;
 
 	return false;

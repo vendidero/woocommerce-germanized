@@ -98,6 +98,7 @@ class WC_GZD_Emails {
 			// Check if order contains digital products
 			$items = $order->get_items();
 			$is_downloadable = false;
+			$is_service = false;
 			
 			if ( ! empty( $items ) ) {
 				
@@ -105,13 +106,20 @@ class WC_GZD_Emails {
 					
 					$_product = apply_filters( 'woocommerce_order_item_product', $order->get_product_from_item( $item ), $item );
 					
-					if ( wc_gzd_is_revocation_exempt( $_product ) || apply_filters( 'woocommerce_gzd_product_is_revocation_exception', false, $_product ) )
+					if ( wc_gzd_is_revocation_exempt( $_product ) || apply_filters( 'woocommerce_gzd_product_is_revocation_exception', false, $_product, 'digital' ) )
 						$is_downloadable = true;
+
+					if ( wc_gzd_is_revocation_exempt( $_product, 'service' ) || apply_filters( 'woocommerce_gzd_product_is_revocation_exception', false, $_product, 'service' ) )
+						$is_service = true;
 				}
 			}
 
 			if ( $is_downloadable && $text = wc_gzd_get_legal_text_digital_email_notice() )
 				echo wpautop( apply_filters( 'woocommerce_gzd_order_confirmation_digital_notice', '<div class="gzd-digital-notice-text">' . $text . '</div>', $order ) );
+		
+			if ( $is_service && $text = wc_gzd_get_legal_text_service_email_notice() )
+				echo wpautop( apply_filters( 'woocommerce_gzd_order_confirmation_service_notice', '<div class="gzd-service-notice-text">' . $text . '</div>', $order ) );
+		
 		}
 	}
 
