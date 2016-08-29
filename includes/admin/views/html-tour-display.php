@@ -81,6 +81,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<a class="button button-primary tourbus-next" href="javascript:void(0);">weiter</a>
 	</li>
 
+	<li data-el="#woocommerce_gzd_checkout_legal_service_checkbox" data-orientation="top">
+		<h2>Checkbox für Dienstleistungen</h2>
+		<p>Solltest du Dienstleistungen verkaufen, möchtest du vielleicht im Sinne des Käufers bereits vor Ablauf der Widerrufsfrist mit der Erfüllung der Dienstleistung beginnen. Für diesen Fall bieten Germanized die Option einer Checkbox an,
+		die es ermöglicht, den Käufer darauf hinzuweisen. Die Checkbox wird natürlich nur dann angezeigt wenn sich Dienstleistungen im Warenkorb befinden (d.h. Produkte die als Dienstleistung markiert wurden). Mehr Informationen dazu findest du auch beim <a href="https://www.haendlerbund.de/de/downloads/das-neue-widerrufsrecht-bei-dienstleistungen.pdf" target="_blank">Händlerbund</a>.
+		</p>
+		<a class="button button-primary tourbus-next" href="javascript:void(0);">weiter</a>
+	</li>
+
 	<li data-el="#woocommerce_gzd_order_pay_now_button" data-orientation="top">
 		<h2>Bezahlen-Button in E-Mails</h2>
 		<p>WooCommerce Germanized sorgt dafür, dass dem Käufer direkt nach der Bestellung (d.h. nach Betätigen des Kaufen-Buttons) eine Bestellbestätigung zugestellt wird. 
