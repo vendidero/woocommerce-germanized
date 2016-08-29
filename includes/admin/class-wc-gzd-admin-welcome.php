@@ -123,25 +123,9 @@ class WC_GZD_Admin_Welcome {
 				<a href="https://vendidero.de/woocommerce-germanized#buy" target="_blank" class="button button-primary">Upgrade zur Pro Version</a>
 			</p>
 			<div class="changelog new-feature">
-
-				<?php $gateways = WC()->payment_gateways->payment_gateways(); ?>
-
-				<?php if ( isset( $gateways[ 'direct-debit' ] ) && $gateways[ 'direct-debit' ]->enabled === 'yes' ) : ?>
-
-					<div style="background: #FFF; padding: 0.1em 1em; border-left: 5px solid red; display: block; margin-top: 1em;">
-						
-						<h3>Verschlüsselung sensibler Zahlungsdaten für Lastschrift</h3>
-						<p>Mit der neuesten Version führen wir optional die Verschlüsselung von sensiblen Zahlungsdaten deiner Kunden ein (IBAN, BIC).
-						Nachdem du die Verschlüsselung konfiguriert hast, kannst du auch optional die Zahlungsdaten für Folgebestellungen speichern.</p>
-						<p><a class="button button-primary" href="<?php echo admin_url( 'admin.php?page=wc-settings&tab=checkout&section=wc_gzd_gateway_direct_debit' ); ?>">Konfiguration der Verschlüsselung</a></p>
-					</div>
-
-				<?php endif; ?>
-
-				<h3>Bessere Grundpreise für variable Produkte</h3>
-				<p>Mit Version 1.6 führen wir eine bessere Behandlung von Grundpreisen für variable Produkte ein. Optional können nun analog zu den Von-Bis-Preisen für variable Produkte auch die Grundpreise in gleicher Form angezeigt werden.</p>
-				<p>Weiterhin muss von nun an die Einheit nur noch für das variable Produkt und nicht mehr für alle Varianten einzeln ausgewählt werden. Ähnlich verhält es sich mit den Produkt- und Grundpreiseinheiten. Diese können für das variable Produkt hinterlegt und optional 
-				für Varianten angepasst werden.</p>
+				<h3>Dienstleistungen</h3>
+				<p>Mit Version 1.7 werden Dienstleistungen nativ unterstützt. Dafür haben wir den auswählbaren Produkttyp "Dienstleistung" hinzugefügt. Ähnlich wie "virtuell" oder "herunterladbar" kann der Produkttyp für Produkte explizit angewählt werden.</p>
+				<p>Für den Produkttyp können in den Einstellungen unter Anzeige individiuelle Hinweistexte für die Kasse (d.h. Checkbox) ähnlich wie bei digitalen Produkten hinterlegt werden, um mit der Ausführung der Dienstleistung vor Ablauf der Widerrufsfrist zu beginnen.</p>
 			</div>
 			<div class="changelog vendipro new-feature">
 				<h3>Neu: Rechtliche Hinweistexte als PDF-Anhang <span class="wc-gzd-pro">pro</span></h3>
@@ -237,26 +221,27 @@ class WC_GZD_Admin_Welcome {
 				</div>
 			</div>
 			<div class="changelog">
-				<h3>Neu in WooCommerce Germanized 1.6</h3>
+				<h3>Neu in WooCommerce Germanized 1.7</h3>
 				<div class="wc-feature feature-section col three-col" style="margin-bottom: -30px">
 					<div>
-						<h4><i class="fa fa-tag"></i> Preishinweise</h4>
+						<h4><i class="fa fa-refresh"></i> Subscriptions</h4>
 						<p>
-							Nun kannst du für reduzierte Preise optional einen Preishinweis für den Streichpreis einbetten. <a target="_blank" href="<?php echo admin_url( 'edit-tags.php?taxonomy=product_price_label&post_type=product' ); ?>">Hier</a> kannst du deine Preishinweise verwalten (z.B. UVP oder Unser alter Preis).
+							Germanized bietet von nun an eine bessere Kompatibilität zum beliebten Plugin WooCommerce Subscriptions.
+							So werden nun z.B. auch die Mehrwertsteuer-Hinweise für Subscriptions in der Kasse und in den Mails korrekt gesetzt.
 						</p>
 					</div>
 					<div>
-						<h4><i class="fa fa-code"></i> SEPA XML Export</h4>
+						<h4><i class="fa fa-envelope"></i> Bestellung bezahlt E-Mail</h4>
 						<p>
-							Von nun an kannst du deine SEPA Mandate (bei Nutzung der SEPA Zahlungsmethode) einfach im XML Format (entweder einzeln oder einen bestimmten Zeitraum) exportieren.
-							<a href="<?php echo admin_url( 'export.php' ); ?>" target="_blank">Hier</a> geht's zum Export.
+							Damit du deine Kunden über die erfolgreiche Bezahlung einer Bestellung informieren kannst haben wir das "Bestellung bezahlt" Template eingeführt.
+							Dieses E-Mail-Template kannst du wie gewohnt über die WooCommerce <a href="<?php admin_url( 'admin.php?page=wc-settings&tab=email' );?>">E-Mail-Einstellungen</a> verwalten.
 						</p>
 					</div>
 					<div class="last-feature">
-						<h4><i class="fa fa-users"></i> Double Opt In</h4>
+						<h4><i class="fa fa-language"></i> Übersetzung</h4>
 						<p>
-							Der Double Opt In für Benutzerkonten war darauf limitiert, dass inaktive Nutzer nach einer gewissen Zeit gelöscht werden aber den Account trotzdem nutzen können.
-							Nun kann optional der Checkout und Login für inaktive Benutzer deaktiviert werden.
+							Mit Einführung der automatischen Übersetzung von Germanized über das GlotPress-Repository, wurde die Möglichkeit des Überschreibens der Übersetzungen im language-Ordner "geraubt".
+							Übersetzungen werden nun wieder zuerst im Ordner wp-content/languages/woocommerce-germanized gesucht und geladen. 
 						</p>
 					</div>
 				</div>
