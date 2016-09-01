@@ -165,6 +165,7 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 * Fix - Free Shipping Auto Select
 * Fix - REST Endpoint Order ID
 * Fix - Trusted Shops Prefix Options
+* Fix - Removed random_compat lib
 
 = 1.6.8 =
 * Fix - Direct Debit Checkbox Validation

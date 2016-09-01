@@ -19,7 +19,7 @@ class WC_GZD_Gateway_Direct_Debit_Encryption_Helper {
 	private function __construct() {
 		// Make sure that random_int exists
 		if ( ! function_exists( 'random_int' ) ) {
-			include_once( trailingslashit( WC_germanized()->plugin_path() ) . 'includes/gateways/direct-debit/libraries/random-compat/lib/random.php' );
+			require_once ABSPATH . WPINC . '/random_compat/random.php';
 		}
 	}
 

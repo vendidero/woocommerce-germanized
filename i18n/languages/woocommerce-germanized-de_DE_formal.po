@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce Germanized v1.5.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-08-26 13:24+0100\n"
-"PO-Revision-Date: 2016-08-26 13:41+0100\n"
+"POT-Creation-Date: 2016-09-01 13:32+0100\n"
+"PO-Revision-Date: 2016-09-01 13:32+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -195,7 +195,7 @@ msgid "Welcome to WooCommerce Germanized"
 msgstr "Willkommen bei WooCommerce Germanized"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/class-wc-gzd-admin-welcome.php:317
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/class-wc-gzd-admin-welcome.php:302
 msgid "Go to WooCommerce Germanized Settings"
 msgstr "zu den WooCommerce Germanized Einstellungen"
 
@@ -223,13 +223,13 @@ msgstr ""
 "Seite zu bestimmen."
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:165
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:166
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:137
 msgid "Optional Mini Description"
 msgstr "Warenkorb Kurzbeschreibung"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:182
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:183
 msgid ""
 "This content will be shown as short product description within checkout and "
 "emails."
@@ -238,7 +238,7 @@ msgstr ""
 "Produkt Kurzbeschreibung angezeigt."
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:299
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:300
 msgid "Complaints Procedure"
 msgstr "Beschwerdeverfahren"
 
@@ -1810,10 +1810,10 @@ msgid ""
 "service before the expiration of the withdrawal period. I acknowledge that "
 "thereby I lose my right to cancel once the service has begun."
 msgstr ""
-"Für Dienstleistungen: Ich verlange ausdrücklich und stimme gleichzeitig zu, "
+"Für Dienstleistungen: Ich verlange ausdrücklich und stimme gleichzeitig zu, "
 "dass mit der in Auftrag gegebenen Dienstleistung vor Ablauf der "
 "Widerrufsfrist begonnen werden soll. Ich weiß, dass mein Widerrufsrecht bei "
-"vollständiger Erfüllung des Vertrages erlischt."
+"vollständiger Erfüllung des Vertrages erlischt."
 
 # @ woocommerce-germanized
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:991
@@ -2481,8 +2481,8 @@ msgstr "jetzt upgraden"
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/api/class-wc-gzd-rest-customers-controller.php:93
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/api/class-wc-gzd-rest-orders-controller.php:88
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/api/class-wc-gzd-rest-orders-controller.php:94
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-checkout.php:192
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-checkout.php:203
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-checkout.php:195
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-checkout.php:206
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-customer-helper.php:74
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-customer-helper.php:81
 msgid "Title"
@@ -2726,9 +2726,9 @@ msgstr ""
 "Mail mit Ihren Daten als Bestätigung."
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-checkout.php:193
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-checkout.php:201
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-checkout.php:333
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-checkout.php:196
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-checkout.php:204
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-checkout.php:336
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-customer-helper.php:76
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-customer-helper.php:83
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-revocation.php:41
@@ -2736,9 +2736,9 @@ msgid "Mr."
 msgstr "Herr"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-checkout.php:193
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-checkout.php:201
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-checkout.php:333
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-checkout.php:196
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-checkout.php:204
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-checkout.php:336
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-customer-helper.php:76
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-customer-helper.php:83
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-revocation.php:42
@@ -2975,7 +2975,7 @@ msgstr "%s Zahlungsgebühr"
 # @ woocommerce-germanized
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-payment-gateways.php:54
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/wc-gzd-order-functions.php:21
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/wc-gzd-template-functions.php:453
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/wc-gzd-template-functions.php:468
 #, php-format
 msgid "Plus %s forwarding fee (charged by the transport agent)"
 msgstr "zzgl. %s Übermittlungsentgelt (direkt an den Zusteller)"
@@ -3721,18 +3721,19 @@ msgstr "ist ungültig"
 msgid "Processing direct debit"
 msgstr "Lastschriftverfahren vorbereiten"
 
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/views/html-encryption-notice.php:14
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/views/html-encryption-notice.php:17
 #, php-format
 msgid ""
 "Please upgrade your PHP Version to at least 5.4 and make sure that you have "
-"<a href=\"%s\" target=\"_blank\">openssl</a> enabled to support account data "
-"encryption."
+"<a href=\"%s\" target=\"_blank\">openssl</a> enabled and WP Version 4.4 or "
+"greater installed to support account data encryption."
 msgstr ""
 "Bitte upgrade deine PHP Version mind. auf 5.4 und stelle sicher, dass du <a "
-"href=\"%s\" target=\"_blank\">openssl</a> aktiviert hast um eine "
-"Verschlüsselung der sensiblen Daten (IBAN, BIC) gewährleisten zu können."
+"href=\"%s\" target=\"_blank\">openssl</a> aktiviert und mind. WP in der "
+"Version 4.4 installiert hast um eine Verschlüsselung der sensiblen Daten "
+"(IBAN, BIC) gewährleisten zu können."
 
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/views/html-encryption-notice.php:18
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/views/html-encryption-notice.php:21
 #, php-format
 msgid ""
 "Please insert the following code in your <a href=\"%s\" target=\"_blank\">wp-"
@@ -3742,7 +3743,7 @@ msgstr ""
 "config.php</a> Datei hinzu um Verschlüsselung zu unterstützen. Du kannst "
 "natürlich einen eigenen Key vergeben:"
 
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/views/html-encryption-notice.php:20
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/views/html-encryption-notice.php:23
 #, php-format
 msgid ""
 "Your customers’ account data (IBAN, BIC) will from then on be saved <a href="
@@ -4419,12 +4420,12 @@ msgid "Choose a Payment Gateway"
 msgstr "Zahlungsart auswählen"
 
 # @ woocommerce
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/wc-gzd-template-functions.php:363
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/wc-gzd-template-functions.php:378
 msgid "Place order"
 msgstr "Jetzt kaufen"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/wc-gzd-template-functions.php:434
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/wc-gzd-template-functions.php:449
 msgid "Please accept the creation of a new customer account"
 msgstr "Bitte akzeptieren Sie die Erstellung eines neuen Kundenkontos"
 

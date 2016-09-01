@@ -789,9 +789,14 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 	}
 
 	public function supports_encryption() {
+
+		global $wp_version;
+
 		if ( version_compare( phpversion(), '5.4', '<' ) )
 			return false; 
 		if ( ! extension_loaded( 'openssl' ) )
+			return false;
+		if ( version_compare( $wp_version, '4.4', '<' ) )
 			return false;
 
 		require_once( 'class-wc-gzd-gateway-direct-debit-encryption-helper.php' );

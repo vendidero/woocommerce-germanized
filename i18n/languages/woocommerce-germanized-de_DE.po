@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce Germanized v1.5.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-08-26 13:52+0100\n"
-"PO-Revision-Date: 2016-08-26 13:55+0100\n"
+"POT-Creation-Date: 2016-09-01 13:30+0100\n"
+"PO-Revision-Date: 2016-09-01 13:31+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -195,7 +195,7 @@ msgid "Welcome to WooCommerce Germanized"
 msgstr "Willkommen bei WooCommerce Germanized"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/class-wc-gzd-admin-welcome.php:317
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/class-wc-gzd-admin-welcome.php:302
 msgid "Go to WooCommerce Germanized Settings"
 msgstr "zu den WooCommerce Germanized Einstellungen"
 
@@ -223,13 +223,13 @@ msgstr ""
 "Seite zu bestimmen."
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:165
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:166
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:137
 msgid "Optional Mini Description"
 msgstr "Warenkorb Kurzbeschreibung"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:182
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:183
 msgid ""
 "This content will be shown as short product description within checkout and "
 "emails."
@@ -238,7 +238,7 @@ msgstr ""
 "Produkt Kurzbeschreibung angezeigt."
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:299
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:300
 msgid "Complaints Procedure"
 msgstr "Beschwerdeverfahren"
 
@@ -249,7 +249,6 @@ msgstr "Dienstleistung"
 
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:46
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:43
-#, fuzzy
 msgid "Service products do not sell physical products."
 msgstr "Dienstleistungen werden nicht in physikalischer Form verkauft."
 
@@ -1789,13 +1788,11 @@ msgstr ""
 
 # @ woocommerce-germanized
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:981
-#, fuzzy
 msgid "Legal Service Text"
 msgstr "Hinweis Dienstleistungen"
 
 # @ woocommerce-germanized
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:982
-#, fuzzy
 msgid ""
 "Choose a Plain Text which will be shown right above checkout submit button "
 "if a user has picked a service product. See legal text option for possible "
@@ -1820,7 +1817,6 @@ msgstr ""
 
 # @ woocommerce-germanized
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:991
-#, fuzzy
 msgid "Legal Service Error"
 msgstr "Fehlermeldung Dienstleistung"
 
@@ -1835,13 +1831,11 @@ msgstr ""
 
 # @ woocommerce-germanized
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:1001
-#, fuzzy
 msgid "Service Confirmation Notice"
 msgstr "Dienstleistung Bestätigung"
 
 # @ woocommerce-germanized
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:1002
-#, fuzzy
 msgid ""
 "This text will be appended to your order processing email if the order "
 "contains service products. Use placeholders {link}{/link} to insert link to "
@@ -2349,17 +2343,15 @@ msgstr "Seite existiert nicht"
 
 # @ woocommerce-germanized
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/views/html-page-status-germanized.php:161
-#, fuzzy
 msgid "Compatibility"
 msgstr "Kompatibilität"
 
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/views/html-page-status-germanized.php:176
-#, fuzzy, php-format
+#, php-format
 msgid "Checks whether compatibility options for %s are being applied."
 msgstr "Prüft ob die Kompatibilitätsanpassungen für %s geladen werden."
 
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/views/html-page-status-germanized.php:179
-#, fuzzy
 msgid "Version % not supported, supporting version %s - %s"
 msgstr ""
 "Version %s wird nicht unterstützt. Bitte installiere eine Version zwischen "
@@ -3726,18 +3718,19 @@ msgstr "ist ungültig"
 msgid "Processing direct debit"
 msgstr "Lastschriftverfahren vorbereiten"
 
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/views/html-encryption-notice.php:14
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/views/html-encryption-notice.php:17
 #, php-format
 msgid ""
 "Please upgrade your PHP Version to at least 5.4 and make sure that you have "
-"<a href=\"%s\" target=\"_blank\">openssl</a> enabled to support account data "
-"encryption."
+"<a href=\"%s\" target=\"_blank\">openssl</a> enabled and WP Version 4.4 or "
+"greater installed to support account data encryption."
 msgstr ""
 "Bitte upgrade deine PHP Version mind. auf 5.4 und stelle sicher, dass du <a "
-"href=\"%s\" target=\"_blank\">openssl</a> aktiviert hast um eine "
-"Verschlüsselung der sensiblen Daten (IBAN, BIC) gewährleisten zu können."
+"href=\"%s\" target=\"_blank\">openssl</a> aktiviert und mind. WP in der "
+"Version 4.4 installiert hast um eine Verschlüsselung der sensiblen Daten "
+"(IBAN, BIC) gewährleisten zu können."
 
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/views/html-encryption-notice.php:18
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/views/html-encryption-notice.php:21
 #, php-format
 msgid ""
 "Please insert the following code in your <a href=\"%s\" target=\"_blank\">wp-"
@@ -3747,7 +3740,7 @@ msgstr ""
 "config.php</a> Datei hinzu um Verschlüsselung zu unterstützen. Du kannst "
 "natürlich einen eigenen Key vergeben:"
 
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/views/html-encryption-notice.php:20
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/views/html-encryption-notice.php:23
 #, php-format
 msgid ""
 "Your customers’ account data (IBAN, BIC) will from then on be saved <a href="

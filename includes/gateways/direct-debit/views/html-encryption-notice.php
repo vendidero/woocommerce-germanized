@@ -5,13 +5,16 @@
 
 if ( ! defined( 'ABSPATH' ) )
 	exit;
+
+global $wp_version;
+
 ?>
 
 <div class="wc-gzd-direct-debit-encryption-notice notice error inline">
 
-	<?php if ( version_compare( phpversion(), '5.4', '<' ) || ! extension_loaded( 'openssl' ) ) : ?>
+	<?php if ( version_compare( phpversion(), '5.4', '<' ) || ! extension_loaded( 'openssl' ) || version_compare( $wp_version, '4.4', '<' )  ) : ?>
 
-		<p><?php printf( __( 'Please upgrade your PHP Version to at least 5.4 and make sure that you have <a href="%s" target="_blank">openssl</a> enabled to support account data encryption.', 'woocommerce-germanized' ), 'http://php.net/manual/de/book.openssl.php' ); ?></p>
+		<p><?php printf( __( 'Please upgrade your PHP Version to at least 5.4 and make sure that you have <a href="%s" target="_blank">openssl</a> enabled and WP Version 4.4 or greater installed to support account data encryption.', 'woocommerce-germanized' ), 'http://php.net/manual/de/book.openssl.php' ); ?></p>
 
 	<?php elseif ( ! WC_GZD_Gateway_Direct_Debit_Encryption_Helper::instance()->is_configured() ) : ?>
 
