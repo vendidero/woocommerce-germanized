@@ -204,8 +204,11 @@ class WC_GZD_Install {
 		// Upon install + update
 		do_action( 'woocommerce_gzd_installed' );
 
-		// Redirect to welcome screen
-		set_transient( '_wc_gzd_activation_redirect', 1, 60 * 60 );
+		// Prevent redirect for inline plugin updates
+		if ( ! defined( 'DOING_AJAX' ) ) {
+			// Redirect to welcome screen
+			set_transient( '_wc_gzd_activation_redirect', 1, 60 * 60 );
+		}
 	}
 
 	/**
