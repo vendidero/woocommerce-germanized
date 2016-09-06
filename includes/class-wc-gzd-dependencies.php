@@ -98,8 +98,10 @@ class WC_GZD_Dependencies {
 
 		if ( ! empty( $this->plugins_result[ 'unactivated' ] ) || ! empty( $this->plugins_result[ 'outdated' ] ) ) {
 			$this->loadable = false;
+			remove_all_actions( 'admin_notices' );
 			add_action( 'admin_notices', array( $this, 'dependencies_notice' ) );
 		} else if ( ! empty( $this->plugins_result[ 'untested' ] ) ) {
+			remove_all_actions( 'admin_notices' );
 			add_action( 'admin_notices', array( $this, 'dependencies_notice' ) );
 		}
 
