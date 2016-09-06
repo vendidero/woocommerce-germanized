@@ -10,6 +10,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+// Make sure only template calls from germanized are accepted
+if ( ! isset( $gzd_checkbox ) || ! $gzd_checkbox )
+	return;
+
 ?>
 
 <?php if ( apply_filters( 'woocommerce_germanized_checkout_show_terms', true ) ) : ?>

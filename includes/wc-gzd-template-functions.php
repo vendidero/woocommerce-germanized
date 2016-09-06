@@ -160,7 +160,7 @@ if ( ! function_exists( 'woocommerce_gzd_template_checkout_legal' ) ) {
 	 * text legal info within checkout (may contain checkbox)
 	 */
 	function woocommerce_gzd_template_checkout_legal() {
-		wc_get_template( 'checkout/terms.php' );
+		wc_get_template( 'checkout/terms.php', array( 'gzd_checkbox' => true ) );
 	}
 
 }
