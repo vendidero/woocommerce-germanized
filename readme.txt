@@ -157,6 +157,11 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 
 == Changelog ==
 
+= 1.7.1 =
+* Fix - WooCommerce Multilingual 3.6.8 compatibility
+* Fix - Better Inline Plugin Update Compatibility
+* Fix - Disable WC Default Term Display instead of hiding them via CSS
+
 = 1.7.0 =
 * Feature - Email Template Paid for Order
 * Feature - Better WC Subscriptions Compatibility
