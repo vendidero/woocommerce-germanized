@@ -83,7 +83,7 @@ if ( ! function_exists( 'is_payment_methods' ) ) {
 }
 
 function wc_gzd_get_small_business_notice() {
-	return apply_filters( 'woocommerce_gzd_small_business_notice', __( 'Because of the small business owner state according to &#167;19 UStG the seller charge no sales tax, and therefore do not show it.', 'woocommerce-germanized' ) );
+	return apply_filters( 'woocommerce_gzd_small_business_notice', __( 'Because of the small business owner state according to &#167; 19 UStG the seller does not levy nor state the German value added tax.', 'woocommerce-germanized' ) );
 }
 
 function wc_gzd_help_tip( $tip, $allow_html = false ) {
