@@ -45,7 +45,11 @@ class WC_GZD_Compatibility_Wpml extends WC_GZD_Compatibility {
 		
 			// Instantiate mailer to make sure that new order email is known
 			$mailer = WC()->mailer();
-			$woocommerce_wpml->emails->admin_email( $order_id );
+			
+			if ( method_exists( $woocommerce_wpml->emails, 'admin_email' ) )
+				$woocommerce_wpml->emails->admin_email( $order_id );
+			else if ( method_exists( $woocommerce_wpml->emails, 'new_order_admin_email' ) )
+				$woocommerce_wpml->emails->new_order_admin_email( $order_id );
 		
 			// Stop Germanized from sending the notification
 			add_filter( 'woocommerce_germanized_order_email_admin_confirmation_sent', array( $this, 'set_order_admin_confirmation' ) );
@@ -68,7 +72,10 @@ class WC_GZD_Compatibility_Wpml extends WC_GZD_Compatibility {
 			);
 		
 			foreach ( $statuses as $status ) {
-				remove_action( $status, array( $woocommerce_wpml->emails, 'admin_email' ), 9 );
+				if ( method_exists( $woocommerce_wpml->emails, 'admin_email' ) )
+					remove_action( $status, array( $woocommerce_wpml->emails, 'admin_email' ), 9 );
+				else if ( method_exists( $woocommerce_wpml->emails, 'new_order_admin_email' ) )
+					remove_action( $status, array( $woocommerce_wpml->emails, 'new_order_admin_email' ), 9 );
 			}
 		}
 	}
