@@ -106,6 +106,11 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 
 		<div class="variable_pricing_unit">
 			<p class="form-row form-row-first">
+				
+				<input type="hidden" name="variable_parent_unit_product[<?php echo $loop; ?>]" class="wc-gzd-parent-unit_product" value="" />
+				<input type="hidden" name="variable_parent_unit[<?php echo $loop; ?>]" class="wc-gzd-parent-unit" value="" />
+				<input type="hidden" name="variable_parent_unit_base[<?php echo $loop; ?>]" class="wc-gzd-parent-unit_base" value="" />
+
 				<label for="variable_unit_product"><?php echo __( 'Product Units', 'woocommerce-germanized' );?> <?php echo wc_gzd_help_tip( __( 'Number of units included per default product price. Example: 1000 ml. Leave blank to use parent value.', 'woocommerce-germanized' ) ); ?></label>
 				<input class="input-text wc_input_decimal" size="6" type="text" name="variable_unit_product[<?php echo $loop; ?>]" value="<?php echo ( ! empty( $variation_data[ '_unit_product' ] ) ? esc_attr( wc_format_localized_decimal( $variation_data[ '_unit_product' ] ) ) : '' );?>" placeholder="<?php echo esc_attr( wc_format_localized_decimal( wc_gzd_get_gzd_product( $_parent )->unit_product ) ); ?>" />
 			</p>
@@ -151,6 +156,9 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 			'_sale_price_label' => '',
 			'_sale_price_regular_label' => '',
 			'_unit_price_sale' => '',
+			'_parent_unit_product' => '',
+			'_parent_unit' => '',
+			'_parent_unit_base' => '',
 			'_mini_desc' => '',
 			'_service' => '',
 			'delivery_time' => '',
@@ -167,14 +175,15 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 		$parent = wc_gzd_get_gzd_product( $product->parent );
 
 		// Check if parent has unit_base + unit otherwise ignore data
-		if ( empty( $parent->unit ) || empty( $parent->unit_base ) ) {
+		if ( empty( $data[ '_parent_unit' ] ) || empty( $data[ '_parent_unit_base' ] ) ) {
+
 			$data[ '_unit_price_auto' ] = '';
 			$data[ '_unit_price_regular' ] = '';
 			$data[ '_unit_price_sale' ] = '';
 		}
 
 		// If parent has no unit, delete unit_product as well
-		if ( empty( $parent->unit ) ) {
+		if ( empty( $data[ '_parent_unit' ] ) ) {
 			$data[ '_unit_product' ] = '';
 		}
 
