@@ -587,7 +587,7 @@ final class WooCommerce_Germanized {
 		$assets_path = str_replace( array( 'http:', 'https:' ), '', WC_germanized()->plugin_url() ) . '/assets/';
 		$frontend_script_path = $assets_path . 'js/';
 
-		if ( is_page() && has_shortcode( $post->post_content, 'revocation_form' ) )
+		if ( is_page() && is_object( $post ) && has_shortcode( $post->post_content, 'revocation_form' ) )
 			wp_enqueue_script( 'wc-gzd-revocation', $frontend_script_path . 'revocation' . $suffix . '.js', array( 'jquery', 'woocommerce', 'wc-country-select', 'wc-address-i18n' ), WC_GERMANIZED_VERSION, true );
 		
 		if ( is_checkout() )
