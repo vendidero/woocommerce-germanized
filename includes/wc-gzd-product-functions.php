@@ -87,6 +87,11 @@ function wc_gzd_is_revocation_exempt( $product, $type = 'digital' ) {
 
 function wc_gzd_product_matches_extended_type( $type, $product ) {
 	
+	// Support Variations
+	if ( $product->parent ) {
+		$product = wc_get_product( $product->parent );
+	}
+
 	if ( $type === $product->get_type() )
 		return true; 
 	else if ( is_callable( array( $product, 'is_' . $type ) ) )
