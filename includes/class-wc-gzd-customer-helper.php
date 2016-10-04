@@ -148,6 +148,7 @@ class WC_GZD_Customer_Helper {
 
 		if ( ! is_user_logged_in() && isset( $_GET[ 'account' ] ) && 'activate' === $_GET[ 'account' ] ) {
 			wc_add_notice( __( 'Please activate your account through clicking on the activation link received via email.', 'woocommerce-germanized' ), 'notice' );
+			return;
 		}
 
 		if ( is_account_page() && WC()->session->get( 'login_redirect' ) ) {
