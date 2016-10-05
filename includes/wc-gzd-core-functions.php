@@ -65,10 +65,10 @@ function wc_gzd_get_email_attachment_order() {
 	return $items;	
 }
 
-function wc_gzd_get_page_permalink( $page ) {
-	$page_id   = wc_get_page_id( $page );
-	$permalink = $page_id ? get_permalink( $page_id ) : '';
-	return apply_filters( 'woocommerce_get_' . $page . '_page_permalink', $permalink );
+function wc_gzd_get_page_permalink( $type ) {
+	$page_id = wc_get_page_id( $type );
+	$link = $page_id ? get_permalink( $page_id ) : '';
+	return apply_filters( 'woocommerce_gzd_legal_page_permalink', $link, $type );
 }
 
 if ( ! function_exists( 'is_payment_methods' ) ) {

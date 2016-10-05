@@ -286,9 +286,9 @@ function wc_gzd_get_legal_text( $text = '' ) {
 		$plain_text = str_replace( 
 			array( '{term_link}', '{data_security_link}', '{revocation_link}', '{/term_link}', '{/data_security_link}', '{/revocation_link}' ), 
 			array( 
-				'<a href="' . esc_url( get_permalink( wc_get_page_id( 'terms' ) ) ) . '" target="_blank">',
-				'<a href="' . esc_url( get_permalink( wc_get_page_id( 'data_security' ) ) ) . '" target="_blank">', 
-				'<a href="' . esc_url( get_permalink( wc_get_page_id( 'revocation' ) ) ) . '" target="_blank">', 
+				'<a href="' . esc_url( wc_gzd_get_page_permalink( 'terms' ) ) . '" target="_blank">',
+				'<a href="' . esc_url( wc_gzd_get_page_permalink( 'data_security' ) ) . '" target="_blank">', 
+				'<a href="' . esc_url( wc_gzd_get_page_permalink( 'revocation' ) ) . '" target="_blank">', 
 				'</a>',
 				'</a>',
 				'</a>', 
@@ -326,7 +326,7 @@ function wc_gzd_get_legal_text_digital_email_notice() {
 		$text = str_replace( 
 			array( '{link}', '{/link}' ), 
 			array( 
-				'<a href="' . esc_url( get_permalink( wc_get_page_id( 'revocation' ) ) ) . '" target="_blank">',
+				'<a href="' . esc_url( wc_gzd_get_page_permalink( 'revocation' ) ) . '" target="_blank">',
 				'</a>'
 			),
 			$text
@@ -360,7 +360,7 @@ function wc_gzd_get_legal_text_service_email_notice() {
 		$text = str_replace( 
 			array( '{link}', '{/link}' ), 
 			array( 
-				'<a href="' . esc_url( get_permalink( wc_get_page_id( 'revocation' ) ) ) . '" target="_blank">',
+				'<a href="' . esc_url( wc_gzd_get_page_permalink( 'revocation' ) ) . '" target="_blank">',
 				'</a>'
 			),
 			$text
