@@ -176,8 +176,11 @@ class WC_GZD_Gateway_Invoice extends WC_Payment_Gateway {
 	public function process_payment( $order_id ) {
 
 		$order = wc_get_order( $order_id );
+	
+		// Do not send "paid for order" e-mail for invoice payment
+		if ( WC_germanized()->emails->get_email_instance_by_id( 'customer_paid_for_order' ) )
+			remove_action( 'woocommerce_order_status_pending_to_processing_notification', array( WC_germanized()->emails->get_email_instance_by_id( 'customer_paid_for_order' ), 'trigger' ), 30 );
 
-		// Mark as on-hold (we're awaiting the cheque)
 		$order->update_status( $this->default_order_status );
 
 		// Reduce stock levels

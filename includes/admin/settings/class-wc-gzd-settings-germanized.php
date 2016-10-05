@@ -187,6 +187,15 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 				'default'	=> 'yes',
 			),
 
+			array(
+				'title' 	=> __( 'Disallow gateway choosing', 'woocommerce-germanized' ),
+				'desc' 		=> __( 'Don’t allow customers to change the payment gateway after ordering.', 'woocommerce-germanized' ),
+				'desc_tip'	=> __( 'Customers paying through a gateway which allows later payment (e.g. PayPal) will find a link within their customer account which redirects them to a pay page. This page offers the possibility to choose another gateway than before which may lead to further problems e.g. additional gateway costs etc. which would require a new order submittal. This option makes sure the customer gets redirected directly to the gateways payment page, e.g. to PayPal.', 'woocommerce-germanized' ),
+				'id' 		=> 'woocommerce_gzd_checkout_disallow_belated_payment_method_selection',
+				'type' 		=> 'checkbox',
+				'default'	=> 'yes',
+			),
+
 			array( 'type' => 'sectionend', 'id' => 'general_options' ),
 
 			array(	'title' => __( 'Contract', 'woocommerce-germanized' ), 'type' => 'title', 'id' => 'contract_options', 'desc' => '<div class="notice inline notice-warning"><p>' . sprintf( __( '%sUpgrade to %spro%s%s to unlock this feature and get premium support.', 'woocommerce-germanized' ), '<a href="https://vendidero.de/woocommerce-germanized" class="button">', '<span class="wc-gzd-pro">', '</span>', '</a>' ) . '</p></div>' ),

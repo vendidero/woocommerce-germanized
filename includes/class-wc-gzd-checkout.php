@@ -63,13 +63,25 @@ class WC_GZD_Checkout {
 
 		// Pay for order
 		add_action( 'wp', array( $this, 'force_pay_order_redirect' ), 15 );
+
+		if ( get_option( 'woocommerce_gzd_checkout_disallow_belated_payment_method_selection' ) === 'yes' ) {
+			add_filter( 'woocommerce_get_checkout_payment_url', array( $this, 'set_payment_url_to_force_payment' ), 10, 2 );
+		}
+	}
+
+	public function set_payment_url_to_force_payment( $url, $order ) {
+		if ( strpos( $url, 'pay_for_order' ) !== false ) {
+			$url = add_query_arg( array( 'force_pay_order' => true ), $url );
+		}
+
+		return $url;
 	}
 
 	public function force_pay_order_redirect() {
 
 		global $wp;
 
-		if ( is_wc_endpoint_url( 'order-pay' ) && isset( $_GET['force_pay_order'] ) ) {
+		if ( is_wc_endpoint_url( 'order-pay' ) && isset( $_GET[ 'force_pay_order' ] ) ) {
 			
 			// Manipulate $_POST
 			$order_key = $_GET['key'];
