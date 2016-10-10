@@ -166,6 +166,7 @@ class WC_GZD_Admin_Notices {
 		);
 
 		$current = wp_get_theme();
+
 		if ( in_array( $current->get_template(), $supporting ) )
 			return true;
 
