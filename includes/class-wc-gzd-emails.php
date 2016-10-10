@@ -172,11 +172,6 @@ class WC_GZD_Emails {
 
 	public function remove_order_email_filters() {
 
-		$current = $this->get_current_email_object();
-
-		if ( ! $current || empty( $current ) )
-			return;
-
 		// Add order item name actions
 		remove_action( 'woocommerce_order_item_name', 'wc_gzd_cart_product_units', wc_gzd_get_hook_priority( 'email_product_units' ) );
 		remove_action( 'woocommerce_order_item_name', 'wc_gzd_cart_product_delivery_time', wc_gzd_get_hook_priority( 'email_product_delivery_time' ) );
