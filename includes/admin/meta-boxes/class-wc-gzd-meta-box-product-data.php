@@ -18,8 +18,10 @@ class WC_Germanized_Meta_Box_Product_Data {
 	protected static $_instance = null;
 
 	public static function instance() {
+		
 		if ( is_null( self::$_instance ) )
 			self::$_instance = new self();
+		
 		return self::$_instance;
 	}
 
@@ -155,9 +157,7 @@ class WC_Germanized_Meta_Box_Product_Data {
 
 	}
 
-	public static function save_product_data( $post_id, $data, $is_variation = false ) {
-
-		$data = apply_filters( 'woocommerce_gzd_product_saveable_data', $data, $post_id );
+	public static function save_unit_price( $post_id, $data, $is_variation = false ) {
 
 		$product_type = ( ! isset( $data['product-type'] ) || empty( $data['product-type'] ) ) ? 'simple' : sanitize_title( stripslashes( $data['product-type'] ) );
 
@@ -170,21 +170,6 @@ class WC_Germanized_Meta_Box_Product_Data {
 
 		}
 
-		$sale_price_labels = array( '_sale_price_label', '_sale_price_regular_label' );
-
-		foreach ( $sale_price_labels as $label ) {
-
-			if ( isset( $data[$label] ) ) {
-
-				if ( empty( $data[$label] ) || in_array( $data[$label], array( 'none', '-1' ) ) )
-					delete_post_meta( $post_id, $label );
-				else
-					update_post_meta( $post_id, $label, sanitize_text_field( $data[$label] ) );
-
-			}
-
-		}
-		
 		if ( isset( $data['_unit_base'] ) ) {
 			update_post_meta( $post_id, '_unit_base', ( $data['_unit_base'] === '' ) ? '' : wc_format_decimal( $data['_unit_base'] ) );
 		}
@@ -208,25 +193,6 @@ class WC_Germanized_Meta_Box_Product_Data {
 
 			update_post_meta( $post_id, '_unit_price_sale', ( $data['_unit_price_sale'] === '' ) ? '' : wc_format_decimal( $data['_unit_price_sale'] ) );
 		}
-		
-		if ( isset( $data[ '_mini_desc' ] ) ) {
-			update_post_meta( $post_id, '_mini_desc', ( $data[ '_mini_desc' ] === '' ? '' : esc_html( $data[ '_mini_desc' ] ) ) );
-		}
-
-		if ( isset( $data[ 'delivery_time' ] ) && ! empty( $data[ 'delivery_time' ] ) ) {
-			if ( ! is_numeric( $data[ 'delivery_time' ] ) )
-				wp_set_object_terms( $post_id, sanitize_text_field( $data[ 'delivery_time' ] ), 'product_delivery_time' );
-			else
-				wp_set_object_terms( $post_id, absint( $data[ 'delivery_time' ] ) , 'product_delivery_time' );
-		} else {
-			wp_delete_object_term_relationships( $post_id, 'product_delivery_time' );
-		}
-
-		// Free shipping
-		update_post_meta( $post_id, '_free_shipping', ( isset( $data['_free_shipping'] ) ) ? 'yes' : '' );
-
-		// Free shipping
-		update_post_meta( $post_id, '_service', ( isset( $data['_service'] ) ) ? 'yes' : '' );
 
 		// Ignore variable data
 		if ( in_array( $product_type, array( 'variable', 'grouped' ) ) && ! $is_variation ) {
@@ -235,7 +201,6 @@ class WC_Germanized_Meta_Box_Product_Data {
 			update_post_meta( $post_id, '_unit_price_sale', '' );
 			update_post_meta( $post_id, '_unit_price', '' );
 			update_post_meta( $post_id, '_unit_price_auto', '' );
-			update_post_meta( $post_id, '_mini_desc', '' );
 
 		} else {
 
@@ -260,6 +225,55 @@ class WC_Germanized_Meta_Box_Product_Data {
 
 			}
 	
+		}
+
+	}
+
+	public static function save_product_data( $post_id, $data, $is_variation = false ) {
+
+		$data = apply_filters( 'woocommerce_gzd_product_saveable_data', $data, $post_id );
+
+		self::save_unit_price( $post_id, $data, $is_variation );
+
+		$product_type = ( ! isset( $data['product-type'] ) || empty( $data['product-type'] ) ) ? 'simple' : sanitize_title( stripslashes( $data['product-type'] ) );
+
+		$sale_price_labels = array( '_sale_price_label', '_sale_price_regular_label' );
+
+		foreach ( $sale_price_labels as $label ) {
+
+			if ( isset( $data[$label] ) ) {
+
+				if ( empty( $data[$label] ) || in_array( $data[$label], array( 'none', '-1' ) ) )
+					delete_post_meta( $post_id, $label );
+				else
+					update_post_meta( $post_id, $label, sanitize_text_field( $data[$label] ) );
+
+			}
+
+		}
+		
+		if ( isset( $data[ '_mini_desc' ] ) ) {
+			update_post_meta( $post_id, '_mini_desc', ( $data[ '_mini_desc' ] === '' ? '' : esc_html( $data[ '_mini_desc' ] ) ) );
+		}
+
+		if ( isset( $data[ 'delivery_time' ] ) && ! empty( $data[ 'delivery_time' ] ) ) {
+			if ( ! is_numeric( $data[ 'delivery_time' ] ) )
+				wp_set_object_terms( $post_id, sanitize_text_field( $data[ 'delivery_time' ] ), 'product_delivery_time' );
+			else
+				wp_set_object_terms( $post_id, absint( $data[ 'delivery_time' ] ) , 'product_delivery_time' );
+		} else {
+			wp_delete_object_term_relationships( $post_id, 'product_delivery_time' );
+		}
+
+		// Free shipping
+		update_post_meta( $post_id, '_free_shipping', ( isset( $data['_free_shipping'] ) ) ? 'yes' : '' );
+
+		// Free shipping
+		update_post_meta( $post_id, '_service', ( isset( $data['_service'] ) ) ? 'yes' : '' );
+
+		// Ignore variable data
+		if ( in_array( $product_type, array( 'variable', 'grouped' ) ) && ! $is_variation ) {
+			update_post_meta( $post_id, '_mini_desc', '' );
 		}
 
 	}
