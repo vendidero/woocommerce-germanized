@@ -14,6 +14,9 @@ class WC_GZD_Shortcodes {
 	 * Initializes Shortcodes
 	 */
 	public static function init() {
+
+		// Rename the original WooCommerce Shortcode tag so that we can add our custom function to it
+		add_filter( 'add_to_cart_shortcode_tag', __CLASS__ . '::replace_add_to_cart_shortcode', 10 );
 		
 		// Define shortcodes
 		$shortcodes = array(
@@ -21,6 +24,7 @@ class WC_GZD_Shortcodes {
 			'payment_methods_info'		 => __CLASS__ . '::payment_methods_info',
 			'ekomi_badge'				 => __CLASS__ . '::ekomi_badge',
 			'ekomi_widget'				 => __CLASS__ . '::ekomi_widget',
+			'add_to_cart'				 => __CLASS__ . '::gzd_add_to_cart',
 			'gzd_feature'				 => __CLASS__ . '::gzd_feature',
 			'gzd_vat_info'				 => __CLASS__ . '::gzd_vat_info',
 			'gzd_sale_info'				 => __CLASS__ . '::gzd_sale_info',
@@ -28,9 +32,35 @@ class WC_GZD_Shortcodes {
 		);
 
 		foreach ( $shortcodes as $shortcode => $function ) {
-			add_shortcode( apply_filters( "{$shortcode}_shortcode_tag", $shortcode ), $function );
+			add_shortcode( apply_filters( "gzd_{$shortcode}_shortcode_tag", $shortcode ), $function );
 		}
 
+	}
+
+	public static function gzd_add_price_suffixes( $price, $product ) {
+		global $product;
+
+		ob_start();
+		woocommerce_gzd_template_single_legal_info();
+		$legal = ob_get_clean();
+
+		ob_start();
+		woocommerce_gzd_template_single_price_unit();
+		$unit = ob_get_clean();
+
+		return $price . strip_tags( $unit . $legal, '<span><a>' );
+	}
+
+	public static function gzd_add_to_cart( $atts ) {
+		add_filter( 'woocommerce_get_price_html', __CLASS__ . '::gzd_add_price_suffixes', 10, 2 );
+		
+		echo WC_Shortcodes::product_add_to_cart( $atts );
+		
+		remove_filter( 'woocommerce_get_price_html', __CLASS__ . '::gzd_add_price_features', 10 );
+	}
+
+	public static function replace_add_to_cart_shortcode( $shortcode ) {
+		return 'add_to_cart_legacy';
 	}
 
 	public static function gzd_complaints( $atts ) {
