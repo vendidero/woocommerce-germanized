@@ -14,8 +14,6 @@ class WC_GZD_REST_Orders_Controller {
 
 	/**
 	 * ExtendOrdersController constructor.
-	 *
-	 * @param WC_Payment_Gateways $payment_gateways
 	 */
 	public function __construct() {
 		$this->direct_debit_gateway = new WC_GZD_Gateway_Direct_Debit();
@@ -26,20 +24,20 @@ class WC_GZD_REST_Orders_Controller {
 	}
 
 	/**
-	 * Filter customer data returned from the REST API.
+	 * Filter order data returned from the REST API.
 	 *
 	 * @since 1.0.0
 	 * @wp-hook woocommerce_rest_prepare_order
 	 *
 	 * @param \WP_REST_Response $response The response object.
-	 * @param \WP_User $customer User object used to create response.
+	 * @param \WP_Post $post object used to create response.
 	 * @param \WP_REST_Request $request Request object.
 	 *
 	 * @return \WP_REST_Response
 	 */
-	public function prepare( $response, $order, $request ) {
+	public function prepare( $response, $post, $request ) {
 
-		$order = wc_get_order( $order->id );
+		$order = wc_get_order( $post );
 		$response_order_data = $response->get_data();
 		
 		$response_order_data['billing']['title'] = $order->billing_title;
@@ -51,12 +49,12 @@ class WC_GZD_REST_Orders_Controller {
 	}
 
 	/**
-	 * Prepare a single customer for create or update.
+	 * Prepare a single order for create or update.
 	 *
 	 * @since 1.0.0
 	 * @wp-hook woocommerce_rest_insert_customer
 	 *
-	 * @param \WP_User $customer Data used to create the customer.
+	 * @param \WP_Post $post Data used to create the customer.
 	 * @param \WP_REST_Request $request Request object.
 	 * @param bool $creating True when creating item, false when updating.
 	 */
@@ -76,9 +74,9 @@ class WC_GZD_REST_Orders_Controller {
 	 * Extend schema.
 	 *
 	 * @since 1.0.0
-	 * @wp-hook woocommerce_rest_customer_schema
+	 * @wp-hook woocommerce_rest_order_schema
 	 *
-	 * @param array $schema_properties Data used to create the customer.
+	 * @param array $schema_properties Data used to create the order.
 	 *
 	 * @return array
 	 */
