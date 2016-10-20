@@ -95,6 +95,10 @@
 
 		.on( 'click', '.reset_variations', function() {
 			$.fn.wc_gzd_variation_form.reset_variation();
+		})
+
+		.on( 'reset_data', function() {
+			$.fn.wc_gzd_variation_form.reset_variation();
 		});
 
 	};
