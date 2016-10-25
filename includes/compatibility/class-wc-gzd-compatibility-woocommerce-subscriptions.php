@@ -28,10 +28,10 @@ class WC_GZD_Compatibility_Woocommerce_Subscriptions extends WC_GZD_Compatibilit
 	}
 
 	public function set_tax_notice( $price, $cart ) {
-		ob_start();
-
 		// Tax for inclusive prices
 		if ( 'yes' == get_option( 'woocommerce_calc_taxes' ) && 'incl' == $cart->tax_display_cart ) {
+
+			ob_start();
 			
 			$tax_array = array();
 			
@@ -83,8 +83,12 @@ class WC_GZD_Compatibility_Woocommerce_Subscriptions extends WC_GZD_Compatibilit
 					<?php
 				}
 			}
+
+			return ob_get_clean();
+		
+		} else {
+			return $price;
 		}
-		return ob_get_clean();
 	}
 
 }

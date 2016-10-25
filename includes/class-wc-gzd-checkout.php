@@ -56,6 +56,7 @@ class WC_GZD_Checkout {
 			add_filter( 'woocommerce_get_cancel_order_url', array( $this, 'cancel_order_url' ), PHP_INT_MAX, 1 );
 			add_filter( 'woocommerce_get_cancel_order_url_raw', array( $this, 'cancel_order_url' ), PHP_INT_MAX, 1 );
 			add_filter( 'user_has_cap', array( $this, 'disallow_user_order_cancellation' ), 15, 3 );
+			add_action( 'woocommerce_germanized_order_confirmation_sent', array( $this, 'maybe_reduce_order_stock' ), 5, 1 );
 		}
 		// Free Shipping auto select
 		if ( get_option( 'woocommerce_gzd_display_checkout_free_shipping_select' ) == 'yes' )
@@ -168,6 +169,16 @@ class WC_GZD_Checkout {
 			return;
 		
 		wc_get_template( 'order/order-pay-now-button.php', array( 'url' => add_query_arg( array( 'force_pay_order' => true ), $order->get_checkout_payment_url() ), 'order_id' => $order_id ) );
+	}
+
+	public function maybe_reduce_order_stock( $order_id ) {
+		$order = wc_get_order( $order_id );
+		if ( $order ) {
+			// Reduce order stock for non-cancellable orders
+			if ( apply_filters( 'woocommerce_payment_complete_reduce_order_stock', ! get_post_meta( $order->id, '_order_stock_reduced', true ), $order->id ) ) {
+				$order->reduce_order_stock();
+			}
+		}
 	}
 
 	public function disallow_user_order_cancellation( $allcaps, $caps, $args ) {
