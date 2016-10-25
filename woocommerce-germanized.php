@@ -220,7 +220,7 @@ final class WooCommerce_Germanized {
 	}
 
 	/**
-	 * Check whether to send instant order confirmation or not
+	 * Check whether to send instant order confirmation
 	 *  
 	 * @return bool
 	 */
