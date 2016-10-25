@@ -219,6 +219,11 @@ final class WooCommerce_Germanized {
 		do_action( 'woocommerce_germanized_init' );
 	}
 
+	/**
+	 * Check whether to send instant order confirmation
+	 *  
+	 * @return bool
+	 */
 	public function send_instant_order_confirmation() {
 		return ( apply_filters( 'woocommerce_gzd_instant_order_confirmation', true ) && ( 'yes' !== get_option( 'woocommerce_gzd_disable_instant_order_confirmation' ) ) );
 	}
