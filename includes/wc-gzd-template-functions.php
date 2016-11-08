@@ -486,6 +486,10 @@ if ( ! function_exists( 'woocommerce_gzd_template_maybe_hide_delivery_time' ) ) 
 			}
 		}
 
+		// Hide delivery time if product is not in stock
+		if ( ! $product->is_in_stock() )
+			return true;
+
 		return $hide;
 
 	}
