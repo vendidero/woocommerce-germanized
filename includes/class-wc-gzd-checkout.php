@@ -85,6 +85,8 @@ class WC_GZD_Checkout {
 	public function order_parcel_delivery_data_transfer( $order_id, $posted ) {
 		if ( isset( $_POST[ 'parcel-delivery' ] ) ) {
 			update_post_meta( $order_id, '_parcel_delivery_opted_in', 'yes' );
+		} else {
+			update_post_meta( $order_id, '_parcel_delivery_opted_in', 'no' );
 		}
 	}
 

@@ -52,12 +52,14 @@ class WC_GZD_Admin {
 		add_action( 'admin_init', array( $this, 'check_complaints_shortcode_append' ) );
 		
 		add_filter( 'woocommerce_addons_section_data', array( $this, 'set_addon' ), 10, 2 );
-
-		if ( wc_gzd_is_parcel_delivery_data_transfer_checkbox_enabled() )
-			add_action( 'woocommerce_admin_order_data_after_shipping_address', array( $this, 'set_order_parcel_delivery_opted_in' ), 10, 1 );
+		add_action( 'woocommerce_admin_order_data_after_shipping_address', array( $this, 'set_order_parcel_delivery_opted_in' ), 10, 1 );
 	}
 
 	public function set_order_parcel_delivery_opted_in( $order ) {
+
+		if ( ! $order->parcel_delivery_opted_in )
+			return;
+
 		?>
 			<p><strong style="display: block;"><?php _e( 'Parcel Delivery Data Transfer:', 'woocommerce-germanized' ) ?></strong>
 				<span><?php echo ( wc_gzd_order_supports_parcel_delivery_reminder( $order->id ) ? __( 'allowed', 'woocommerce-germanized' ) : __( 'not allowed', 'woocommerce-germanized' ) ); ?></span>
