@@ -610,6 +610,14 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 			'virtual'		=> __( 'Virtual Product', 'woocommerce-germanized' ),
 		), $product_types );
 
+		$shipping_methods = WC()->shipping->get_shipping_methods();
+		$shipping_methods_options = array();
+		
+		foreach ( $shipping_methods as $key => $method ) {
+			$title = $method->get_title();
+			$shipping_methods_options[ $key ] = ( empty( $title ) ? $method->get_method_title() : $title );
+		}
+
 		$settings = array(
 
 			array(	'title' => __( 'General', 'woocommerce-germanized' ), 'type' => 'title', 'id' => 'general_options' ),
@@ -1014,6 +1022,45 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 				'default'	=> __( 'Furthermore you have expressly agreed to start the performance of the contract for services before expiry of the withdrawal period. I have noted to lose my {link}right of withdrawal{/link} with the beginning of the performance of the contract.', 'woocommerce-germanized' ),
 				'type' 		=> 'textarea',
 				'css' 		=> 'width:100%; height: 65px;',
+			),
+
+			array(
+				'title' 	=> __( 'Parcel Delivery Checkbox', 'woocommerce-germanized' ),
+				'desc' 		=> __( 'Show checkbox for data transmission to third party parcel service providers.', 'woocommerce-germanized' ),
+				'desc_tip'	=> __( 'You may optionally choose to show a checkbox which lets the customer accept data transmission to a third party parcel service provider to receive parcel delivery reminders.', 'woocommerce-germanized' ),
+				'id' 		=> 'woocommerce_gzd_checkout_legal_parcel_delivery_checkbox',
+				'default'	=> 'no',
+				'type' 		=> 'checkbox',
+			),
+
+			array(
+				'title' 	=> __( 'Checkbox required', 'woocommerce-germanized' ),
+				'desc' 		=> __( 'Make the parcel delivery checkbox a required field.', 'woocommerce-germanized' ),
+				'desc_tip'	=> __( 'For some reason you may want to force your customers to Opt-In to the data transmission to a third party parcel service provider.', 'woocommerce-germanized' ),
+				'id' 		=> 'woocommerce_gzd_checkout_legal_parcel_delivery_checkbox_required',
+				'default'	=> 'no',
+				'type' 		=> 'checkbox',
+			),
+
+			array(
+				'title' 	=> __( 'Parcel Delivery Text', 'woocommerce-germanized' ),
+				'desc' 		=> __( 'Choose a Plain Text which will be shown right next to the corresponding checkbox to inform the customer about the data being transfered to the third party shipping supplier. Use {shipping_method_title} to insert the shipping method title.', 'woocommerce-germanized' ),
+				'desc_tip'	=> true,
+				'default'   => __( 'Yes, I would like to be reminded via E-mail about parcel delivery ({shipping_method_title}). Your E-mail Address will only be transferred to our parcel service provider for that particular reason.', 'woocommerce-germanized' ),
+				'css' 		=> 'width:100%; height: 65px;',
+				'id' 		=> 'woocommerce_gzd_checkout_legal_text_parcel_delivery',
+				'type' 		=> 'textarea',
+			),
+
+			array(
+				'title' 	=> __( 'Shipping Methods', 'woocommerce-germanized' ),
+				'desc' 		=> __( 'Select shipping methods which are applicable for the Opt-In Checkbox.', 'woocommerce-germanized' ),
+				'desc_tip'	=> true,
+				'id' 		=> 'woocommerce_gzd_checkout_legal_parcel_delivery_checkbox_methods',
+				'default'	=> array( 'downloadable' ),
+				'class'		=> 'chosen_select',
+				'options'	=> $shipping_methods_options,
+				'type' 		=> 'multiselect',
 			),
 
 			array(

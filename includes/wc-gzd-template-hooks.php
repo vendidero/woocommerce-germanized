@@ -113,19 +113,22 @@ function woocommerce_gzd_checkout_load_ajax_relevant_hooks() {
 	add_action( 'woocommerce_review_order_after_payment', 'woocommerce_gzd_template_checkout_legal', wc_gzd_get_hook_priority( 'checkout_legal' ) );
 	add_action( 'woocommerce_review_order_after_payment', 'woocommerce_gzd_template_checkout_set_terms_manually', wc_gzd_get_hook_priority( 'checkout_set_terms' ) );
 
-	if ( get_option( 'woocommerce_gzd_checkout_legal_digital_checkbox' ) == 'yes' )
+	if ( get_option( 'woocommerce_gzd_checkout_legal_digital_checkbox' ) === 'yes' )
 		add_action( 'woocommerce_review_order_after_payment', 'woocommerce_gzd_digital_checkbox', wc_gzd_get_hook_priority( 'checkout_digital_checkbox' ) );
 
-	if ( get_option( 'woocommerce_gzd_checkout_legal_service_checkbox' ) == 'yes' )
+	if ( get_option( 'woocommerce_gzd_checkout_legal_service_checkbox' ) === 'yes' )
 		add_action( 'woocommerce_review_order_after_payment', 'woocommerce_gzd_service_checkbox', wc_gzd_get_hook_priority( 'checkout_service_checkbox' ) );
 	
+	if ( get_option( 'woocommerce_gzd_checkout_legal_parcel_delivery_checkbox' ) === 'yes' )
+		add_action( 'woocommerce_review_order_after_payment', 'woocommerce_gzd_parcel_delivery_checkbox', wc_gzd_get_hook_priority( 'checkout_parcel_delivery_checkbox' ) );
+
 	// Add payment title heading
 	add_action( 'woocommerce_review_order_before_payment', 'woocommerce_gzd_template_checkout_payment_title' );
 
 }
 
 // Display back to cart button
-if ( get_option( 'woocommerce_gzd_display_checkout_back_to_cart_button' ) == 'yes' )
+if ( get_option( 'woocommerce_gzd_display_checkout_back_to_cart_button' ) === 'yes' )
 	add_action( 'woocommerce_review_order_after_cart_contents', 'woocommerce_gzd_template_checkout_back_to_cart' );
 
 // Force order button text

@@ -716,7 +716,10 @@ final class WooCommerce_Germanized {
 	public function send_order_confirmation_mails( $result, $order ) {
 		
 		if ( ! is_object( $order ) )
-			$order = wc_get_order( $order );	
+			$order = wc_get_order( $order );
+
+		if ( ! apply_filters( 'woocommerce_germanized_send_instant_order_confirmation', true, $order ) )
+			return $result;
 
 		do_action( 'woocommerce_germanized_before_order_confirmation', $order->id );
 

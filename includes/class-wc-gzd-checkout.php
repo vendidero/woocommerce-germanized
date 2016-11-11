@@ -32,25 +32,33 @@ class WC_GZD_Checkout {
 	}
 
 	public function __construct() {
+		
 		add_action( 'init', array( $this, 'init_fields' ) );
 		add_filter( 'woocommerce_billing_fields', array( $this, 'set_custom_fields' ), 0, 1 );
 		add_filter( 'woocommerce_shipping_fields', array( $this, 'set_custom_fields_shipping' ), 0, 1 );
+		
 		// Add Fields to Order Edit Page
 		add_filter( 'woocommerce_admin_billing_fields', array( $this, 'set_custom_fields_admin' ), 0, 1 );
 		add_filter( 'woocommerce_admin_shipping_fields', array( $this, 'set_custom_fields_admin' ), 0, 1 );
+		
 		// Save Fields on order
 		add_action( 'woocommerce_checkout_update_order_meta', array( $this, 'save_fields' ) );
+		
 		// Add Title to billing address format
 		add_filter( 'woocommerce_order_formatted_billing_address', array( $this, 'set_formatted_billing_address' ), 0, 2 );
 		add_filter( 'woocommerce_order_formatted_shipping_address', array( $this, 'set_formatted_shipping_address' ), 0, 2 );
 		add_filter( 'woocommerce_formatted_address_replacements', array( $this, 'set_formatted_address' ), 0, 2 );
+		
 		// Add item desc to order
 		add_action( 'woocommerce_order_add_product', array( $this, 'set_order_meta' ), 0, 5 );
 		add_filter( 'woocommerce_hidden_order_itemmeta', array( $this, 'set_order_meta_hidden' ), 0 );
+		
 		// Deactivate checkout shipping selection
 		add_action( 'woocommerce_review_order_before_shipping', array( $this, 'remove_shipping_rates' ), 0 );
+		
 		// Add better fee taxation
 		add_action( 'woocommerce_cart_calculate_fees', array( $this, 'do_fee_tax_calculation' ), PHP_INT_MAX, 1 );
+		
 		// Disallow user order cancellation
 		if ( get_option( 'woocommerce_gzd_checkout_stop_order_cancellation' ) == 'yes' ) {
 			add_filter( 'woocommerce_get_cancel_order_url', array( $this, 'cancel_order_url' ), PHP_INT_MAX, 1 );
@@ -58,6 +66,7 @@ class WC_GZD_Checkout {
 			add_filter( 'user_has_cap', array( $this, 'disallow_user_order_cancellation' ), 15, 3 );
 			add_action( 'woocommerce_germanized_order_confirmation_sent', array( $this, 'maybe_reduce_order_stock' ), 5, 1 );
 		}
+		
 		// Free Shipping auto select
 		if ( get_option( 'woocommerce_gzd_display_checkout_free_shipping_select' ) == 'yes' )
 			add_filter( 'woocommerce_package_rates', array( $this, 'free_shipping_auto_select' ) );
@@ -67,6 +76,15 @@ class WC_GZD_Checkout {
 
 		if ( get_option( 'woocommerce_gzd_checkout_disallow_belated_payment_method_selection' ) === 'yes' ) {
 			add_filter( 'woocommerce_get_checkout_payment_url', array( $this, 'set_payment_url_to_force_payment' ), 10, 2 );
+		}
+
+		if ( wc_gzd_is_parcel_delivery_data_transfer_checkbox_enabled() )
+			add_action( 'woocommerce_checkout_update_order_meta', array( $this, 'order_parcel_delivery_data_transfer' ), 10, 2 );
+	}
+
+	public function order_parcel_delivery_data_transfer( $order_id, $posted ) {
+		if ( isset( $_POST[ 'parcel-delivery' ] ) ) {
+			update_post_meta( $order_id, '_parcel_delivery_opted_in', 'yes' );
 		}
 	}
 
@@ -294,9 +312,13 @@ class WC_GZD_Checkout {
 	public function remove_shipping_rates() {
 		if ( get_option( 'woocommerce_gzd_display_checkout_shipping_rate_select' ) == 'no' )
 			return;
+		
 		$packages = WC()->shipping->get_packages();
+		
 		foreach ( $packages as $i => $package ) {
+		
 			$chosen_method = isset( WC()->session->chosen_shipping_methods[ $i ] ) ? WC()->session->chosen_shipping_methods[ $i ] : '';
+		
 			if ( ! empty( $package[ 'rates' ] ) ) {
 				foreach ( $package[ 'rates' ] as $key => $rate ) {
 					if ( $key != $chosen_method )

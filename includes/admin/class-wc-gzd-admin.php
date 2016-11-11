@@ -40,15 +40,29 @@ class WC_GZD_Admin {
 	public function __construct() {
 		add_action( 'add_meta_boxes', array( $this, 'add_legal_page_metabox' ) );
 		add_action( 'add_meta_boxes', array( $this, 'add_product_mini_desc' ) );
+		
 		add_action( 'admin_enqueue_scripts', array( $this, 'add_scripts' ) );
 		add_action( 'save_post', array( $this, 'save_legal_page_content' ), 10, 3 );
+		
 		add_action( 'admin_menu', array( $this, 'remove_status_page_hooks' ), 0 );
 		add_action( 'admin_menu', array( $this, 'set_status_page' ), 1 );
 		add_action( 'admin_init', array( $this, 'check_tour_hide' ) );
 		add_action( 'admin_init', array( $this, 'check_language_install' ) );
 		add_action( 'admin_init', array( $this, 'check_text_options_deletion' ) );
 		add_action( 'admin_init', array( $this, 'check_complaints_shortcode_append' ) );
+		
 		add_filter( 'woocommerce_addons_section_data', array( $this, 'set_addon' ), 10, 2 );
+
+		if ( wc_gzd_is_parcel_delivery_data_transfer_checkbox_enabled() )
+			add_action( 'woocommerce_admin_order_data_after_shipping_address', array( $this, 'set_order_parcel_delivery_opted_in' ), 10, 1 );
+	}
+
+	public function set_order_parcel_delivery_opted_in( $order ) {
+		?>
+			<p><strong style="display: block;"><?php _e( 'Parcel Delivery Data Transfer:', 'woocommerce-germanized' ) ?></strong>
+				<span><?php echo ( wc_gzd_order_supports_parcel_delivery_reminder( $order->id ) ? __( 'allowed', 'woocommerce-germanized' ) : __( 'not allowed', 'woocommerce-germanized' ) ); ?></span>
+			</p>
+			<?php
 	}
 
 	public function set_addon( $products, $section_id ) {

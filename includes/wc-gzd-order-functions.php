@@ -11,7 +11,6 @@
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 function wc_gzd_cart_forwarding_fee_notice_filter( $total_rows, $order ) {
-	
 	$gateways = WC()->payment_gateways()->get_available_payment_gateways();
 	$gateway = isset( $gateways[ $order->payment_method ] ) ? $gateways[ $order->payment_method ] : null;
 
@@ -22,7 +21,15 @@ function wc_gzd_cart_forwarding_fee_notice_filter( $total_rows, $order ) {
 		);
 	}
 	return $total_rows;
-
 }
 
 add_filter( 'woocommerce_get_order_item_totals', 'wc_gzd_cart_forwarding_fee_notice_filter', PHP_INT_MAX, 2 );
+
+function wc_gzd_order_supports_parcel_delivery_reminder( $order_id ) {
+	$order = wc_get_order( $order_id );
+	
+	if ( $order->parcel_delivery_opted_in === 'yes' || ! wc_gzd_is_parcel_delivery_checkbox_enabled() )
+		return true;
+	
+	return false;
+}

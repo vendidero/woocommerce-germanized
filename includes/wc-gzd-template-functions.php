@@ -212,6 +212,25 @@ if ( ! function_exists( 'woocommerce_gzd_service_checkbox' ) ) {
 
 }
 
+if ( ! function_exists( 'woocommerce_gzd_parcel_delivery_checkbox' ) ) {
+
+	function woocommerce_gzd_parcel_delivery_checkbox() {
+
+		$rates = wc_gzd_get_chosen_shipping_rates();
+		$ids = array();
+		$titles = array();
+
+		foreach ( $rates as $rate ) {
+			array_push( $ids, $rate->method_id );
+			array_push( $titles, $rate->get_label() );
+		}	
+		
+		if ( wc_gzd_is_parcel_delivery_data_transfer_checkbox_enabled( $ids ) ) {
+			wc_get_template( 'checkout/terms-parcel-delivery.php', array( 'titles' => $titles ) );
+		}	
+	}
+}
+
 if ( ! function_exists( 'woocommerce_gzd_checkout_validation' ) ) {
 
 	/**
@@ -248,6 +267,9 @@ if ( ! function_exists( 'woocommerce_gzd_checkout_validation' ) ) {
 
 			if ( get_option( 'woocommerce_gzd_checkout_legal_service_checkbox' ) === 'yes' && $is_service && ! isset( $_POST[ 'service-revocate' ] ) )
 				wc_add_notice( wc_gzd_get_legal_text_service_error(), 'error' );
+
+			if ( get_option( 'woocommerce_gzd_checkout_legal_parcel_delivery_checkbox_required' ) === 'yes' && ! isset( $_POST[ 'parcel-delivery' ] ) )
+				wc_add_notice( __( 'Please accept our parcel delivery agreement', 'woocommerce-germanized' ), 'error' );
 		}
 	}
 

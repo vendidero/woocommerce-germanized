@@ -368,3 +368,31 @@ function wc_gzd_get_legal_text_service_email_notice() {
 	}
 	return $text;
 }
+
+function wc_gzd_get_chosen_shipping_rates() {
+	
+	$packages = WC()->shipping->get_packages();
+	$shipping_methods = (array) WC()->session->get( 'chosen_shipping_methods' );
+	$rates = array();
+
+	foreach ( $packages as $i => $package ) {
+		if ( isset( $package['rates'][ $shipping_methods[ $i ] ] ) ) {
+			array_push( $rates, $package['rates'][ $shipping_methods[ $i ] ] );
+		}
+	}
+
+	return $rates;
+}
+
+function wc_gzd_get_legal_text_parcel_delivery( $titles = array() ) {
+	$plain_text = __( 'Yes, I would like to be reminded via E-mail about parcel delivery ({shipping_method_title}). Your E-mail Address will only be transferred to our parcel service provider for that particular reason.', 'woocommerce-germanized' );
+	
+	if ( get_option( 'woocommerce_gzd_checkout_legal_text_parcel_delivery' ) )
+		$plain_text = get_option( 'woocommerce_gzd_checkout_legal_text_parcel_delivery' );
+
+	if ( ! empty( $titles ) ) {
+		$plain_text = str_replace( '{shipping_method_title}', implode( ', ', $titles ), $plain_text );
+	}
+	
+	return apply_filters( 'woocommerce_gzd_legal_text_parcel_delivery', $plain_text, $titles );
+}
