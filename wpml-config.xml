@@ -15,6 +15,7 @@
         <key name="woocommerce_gzd_checkout_legal_text_digital_error" />
         <key name="woocommerce_gzd_checkout_legal_text_service" />
         <key name="woocommerce_gzd_checkout_legal_text_service_error" />
+        <key name="woocommerce_gzd_checkout_legal_text_parcel_delivery" />
     	<key name="woocommerce_gzd_order_success_text" />
         <key name="woocommerce_gzd_customer_account_text" />
         <key name="woocommerce_direct-debit_company_info" />
