@@ -43,6 +43,7 @@ class WC_GZD_Gateway_Direct_Debit extends WC_Payment_Gateway {
 		$this->company_account_holder     		= $this->get_option( 'company_account_holder' );
 		$this->company_account_iban     		= $this->get_option( 'company_account_iban' );
 		$this->company_account_bic     			= $this->get_option( 'company_account_bic' );
+		$this->pain_format     					= $this->get_option( 'pain_format', 'pain.008.002.02' );
 		$this->checkbox_label					= $this->get_option( 'checkbox_label' );
 		$this->remember							= $this->get_option( 'remember', 'no' );
 		$this->mask 							= $this->get_option( 'mask', 'yes' );
@@ -209,31 +210,38 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 
 		if ( $order_query->have_posts() ) {
 
-			include_once( 'libraries/sepa-xml-creator/SepaXmlCreator.php' );
-			$creator = new SepaXmlCreator();
+			$msg_id = apply_filters( 'woocommerce_gzd_direct_debit_sepa_xml_msg_id', $this->company_account_bic . '00' . date( 'YmdHis', time() ) );
+			$payment_id = 'PMT-ID-' . date( 'YmdHis', time() );
+			
+			$directDebit = Digitick\Sepa\TransferFile\Factory\TransferFileFacadeFactory::createDirectDebit( $msg_id, $this->company_account_holder, $this->pain_format );
+			$directDebit = apply_filters( 'woocommerce_gzd_direct_debit_sepa_xml_exporter', $directDebit );
 
-			$creator->setAccountValues( $this->company_account_holder, $this->company_account_iban, $this->company_account_bic );
-			$creator->setGlaeubigerId( $this->company_identification_number );
+			$directDebit->addPaymentInfo( $payment_id, array(
+			    'id'                    => $payment_id,
+			    'creditorName'          => $this->company_account_holder,
+			    'creditorAccountIBAN'   => $this->company_account_iban,
+			    'creditorAgentBIC'      => $this->company_account_bic,
+			    'seqType'               => Digitick\Sepa\PaymentInformation::S_ONEOFF,
+			    'creditorId'            => $this->company_identification_number,
+			));
 
 			while ( $order_query->have_posts() ) {
 
 				$order_query->next_post();
 				$order = wc_get_order( $order_query->post->ID );
-
-				$book = new SepaBuchung();
-				$book->setBetrag( $order->get_total() );
-				$book->setBic( $this->maybe_decrypt( $order->direct_debit_bic ) );
-				$book->setName( $order->direct_debit_holder );
-				$book->setIban( $this->maybe_decrypt( $order->direct_debit_iban ) );
-				$book->setName( $order->direct_debit_holder );
-				$book->setVerwendungszweck( apply_filters( 'woocommerce_germanized_direct_debit_purpose', sprintf( __( 'Order %s', 'woocommerce-germanized' ), $order->get_order_number() ) ), $order );
-				$book->setMandat( $this->get_mandate_id( $order->id ), date_i18n( "Y-m-d", strtotime( $order->order_date ) ), false );
-				$creator->addBuchung( $book );
-
+				
+				// Add a Single Transaction to the named payment
+				$directDebit->addTransfer( $payment_id, apply_filters( 'woocommerce_gzd_direct_debit_sepa_xml_exporter_transfer_args', array(
+				    'amount'                => $order->get_total(),
+				    'debtorIban'            => $this->maybe_decrypt( $order->direct_debit_iban ),
+				    'debtorBic'             => $this->maybe_decrypt( $order->direct_debit_bic ),
+				    'debtorName'            => $order->direct_debit_holder,
+				    'debtorMandate'         => $this->get_mandate_id( $order->id ), date_i18n( "Y-m-d", strtotime( $order->order_date ) ),
+				    'debtorMandateSignDate' => date_i18n( 'd.m.Y', strtotime( $order->order_date ) ),
+				    'remittanceInformation' => apply_filters( 'woocommerce_germanized_direct_debit_purpose', sprintf( __( 'Order %s', 'woocommerce-germanized' ), $order->get_order_number() ), $order ),
+				) ), $this, $order );
 			}
 
-			$sepaxml = $creator->generateBasislastschriftXml();
-			
 			header( 'Content-Description: File Transfer' );
 			header( 'Content-Disposition: attachment; filename=' . $filename );
 			header( 'Content-Type: text/xml; charset=' . get_option( 'blog_charset' ), true );
@@ -241,7 +249,7 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 			header( 'Pragma: no-cache' );
 			header( 'Expires: 0' );
 
-			echo $sepaxml;
+			echo $directDebit->asXML();
 			exit();
 
 		}	
@@ -527,6 +535,12 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 				'label'		  => __( 'Automatically generate Mandate ID.', 'woocommerce-germanized' ),
 				'description' => __( 'Automatically generate Mandate ID after order completion (based on Order ID).', 'woocommerce-germanized' ),
 				'default'     => 'yes',
+			),
+			'pain_format' 		=> array(
+				'title'       => __( 'XML Pain Format', 'woocommerce-germanized' ),
+				'type'        => 'text',
+				'description' => __( 'You may adjust the XML Export Pain Schema to your banks needs. Some banks may require pain.001.003.03.', 'woocommerce-germanized' ),
+				'default'     => 'pain.008.002.02',
 			),
 			'mandate_id_format' => array(
 				'title'       => __( 'Mandate ID Format', 'woocommerce-germanized' ),
