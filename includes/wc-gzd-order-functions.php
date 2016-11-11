@@ -28,7 +28,7 @@ add_filter( 'woocommerce_get_order_item_totals', 'wc_gzd_cart_forwarding_fee_not
 function wc_gzd_order_supports_parcel_delivery_reminder( $order_id ) {
 	$order = wc_get_order( $order_id );
 	
-	if ( $order->parcel_delivery_opted_in === 'yes' || ! wc_gzd_is_parcel_delivery_checkbox_enabled() )
+	if ( $order->parcel_delivery_opted_in === 'yes' || ! wc_gzd_is_parcel_delivery_data_transfer_checkbox_enabled() )
 		return true;
 	
 	return false;

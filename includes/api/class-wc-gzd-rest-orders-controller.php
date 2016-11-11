@@ -42,6 +42,9 @@ class WC_GZD_REST_Orders_Controller {
 		
 		$response_order_data['billing']['title'] = $order->billing_title;
 		$response_order_data['shipping']['title'] = $order->shipping_title;
+
+		if ( wc_gzd_is_parcel_delivery_data_transfer_checkbox_enabled() )
+			$response_order_data['parcel_delivery_opted_in'] = $order->parcel_delivery_opted_in === 'yes' ? 'yes' : 'no';
 		
 		$response->set_data( $response_order_data );
 
@@ -93,6 +96,15 @@ class WC_GZD_REST_Orders_Controller {
 			'type'        => 'integer',
 			'context'     => array( 'view', 'edit' )
 		);
+
+		if ( wc_gzd_is_parcel_delivery_data_transfer_checkbox_enabled() ) {
+			$schema_properties['parcel_delivery_opted_in'] = array(
+				'description' => __( 'Parcel Delivery Data Transfer', 'woocommerce-germanized' ),
+				'type'        => 'string',
+				'context'     => array( 'view', 'edit' ),
+				'readonly'	  => true,
+			);
+		}
 
 		return $schema_properties;
 	}
