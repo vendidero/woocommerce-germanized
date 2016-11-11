@@ -3,7 +3,7 @@ Contributors: vendidero
 Tags: woocommerce, german market, german, germany, deutsch, deutschland, de, de_DE, shop, commerce, e-commerce, ecommerce, woothemes, sepa, invoice
 Requires at least: 3.8
 Tested up to: 4.6
-Stable tag: 1.7.1
+Stable tag: 1.7.2
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -156,6 +156,19 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 1. WooCommerce Germanized Settings
 
 == Changelog ==
+
+= 1.7.2 =
+* Feature - Optionally do not allow customers to switch payment gateway after ordering
+* Feature - Better Woo Subscriptions Compatibility
+* Feature - Parcel Delivery Data Transfer Checkbox for certain shipping methods (optional)
+* Feature - Better SEPA XML Library (https://github.com/php-sepa-xml/php-sepa-xml) with Pain Format Support
+* Fix - Customer Double Opt In Notice
+* Fix - Hide Shipping Time if Product is not in stock
+* Fix - Free Shipping REST API
+* Fix - Unit Price Saving
+* Fix - Order REST API
+* Fix - JS Variation Reset
+* Fix - Maybe Reduce Order Stock (for gateways like PayPal)
 
 = 1.7.1 =
 * Fix - WooCommerce Multilingual 3.6.8 compatibility

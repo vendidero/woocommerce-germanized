@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce Germanized v1.5.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-11 12:34+0100\n"
-"PO-Revision-Date: 2016-11-11 12:37+0100\n"
+"POT-Creation-Date: 2016-11-11 15:47+0100\n"
+"PO-Revision-Date: 2016-11-11 15:49+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -92,7 +92,7 @@ msgstr "l"
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/abstracts/abstract-wc-gzd-product.php:172
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/compatibility/class-wc-gzd-compatibility-woocommerce-subscriptions.php:72
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/wc-gzd-cart-functions.php:269
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/woocommerce-germanized.php:788
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/woocommerce-germanized.php:791
 msgid "incl. VAT"
 msgstr "inkl. MwSt."
 
@@ -105,7 +105,7 @@ msgstr "exkl. MwSt."
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/abstracts/abstract-wc-gzd-product.php:174
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/compatibility/class-wc-gzd-compatibility-woocommerce-subscriptions.php:72
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/wc-gzd-cart-functions.php:269
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/woocommerce-germanized.php:788
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/woocommerce-germanized.php:791
 #, php-format
 msgid "incl. %s%% VAT"
 msgstr "inkl. %s%% MwSt."
@@ -200,49 +200,49 @@ msgstr "Willkommen bei WooCommerce Germanized"
 msgid "Go to WooCommerce Germanized Settings"
 msgstr "zu den WooCommerce Germanized Einstellungen"
 
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:62
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:64
 msgid "Parcel Delivery Data Transfer:"
 msgstr "Paketdienstleister Datenweitergabe:"
 
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:63
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:65
 msgid "allowed"
 msgstr "akzeptiert"
 
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:63
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:65
 msgid "not allowed"
 msgstr "nicht akzeptiert"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:104
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:106
 msgid "WooCommerce Status"
 msgstr "WooCommerce Status"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:104
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:106
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/views/html-page-status.php:16
 msgid "System Status"
 msgstr "Systemstatus"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:161
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:163
 msgid "Optional Email Content"
 msgstr "Optionaler E-Mail Inhalt"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:170
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:172
 msgid "Add content which will be replacing default page content within emails."
 msgstr ""
 "Fülle dieses Feld aus um einen abweichenden E-Mail Anhangstext für diese "
 "Seite zu bestimmen."
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:180
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:182
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:142
 msgid "Optional Mini Description"
 msgstr "Warenkorb Kurzbeschreibung"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:197
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:199
 msgid ""
 "This content will be shown as short product description within checkout and "
 "emails."
@@ -251,7 +251,7 @@ msgstr ""
 "Produkt Kurzbeschreibung angezeigt."
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:314
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:316
 msgid "Complaints Procedure"
 msgstr "Beschwerdeverfahren"
 
@@ -973,7 +973,7 @@ msgstr "Kunden"
 
 # @ woocommerce-germanized
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:426
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:546
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:560
 msgid "Checkbox"
 msgstr "Checkbox"
 
@@ -2597,10 +2597,10 @@ msgstr "jetzt upgraden"
 # @ woocommerce
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/api/class-wc-gzd-rest-customers-controller.php:87
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/api/class-wc-gzd-rest-customers-controller.php:93
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/api/class-wc-gzd-rest-orders-controller.php:86
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/api/class-wc-gzd-rest-orders-controller.php:92
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-checkout.php:236
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-checkout.php:247
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/api/class-wc-gzd-rest-orders-controller.php:87
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/api/class-wc-gzd-rest-orders-controller.php:93
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-checkout.php:238
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-checkout.php:249
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-customer-helper.php:74
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-customer-helper.php:81
 msgid "Title"
@@ -2608,47 +2608,51 @@ msgstr "Anrede"
 
 # @ woocommerce-germanized
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/api/class-wc-gzd-rest-customers-controller.php:113
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/api/class-wc-gzd-rest-orders-controller.php:112
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/api/class-wc-gzd-rest-orders-controller.php:120
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:26
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:471
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:479
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/views/html-export.php:27
 msgid "Direct Debit"
 msgstr "Lastschrift"
 
 # @ woocommerce-germanized
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/api/class-wc-gzd-rest-customers-controller.php:118
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/api/class-wc-gzd-rest-orders-controller.php:117
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:273
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:292
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:497
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:619
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/api/class-wc-gzd-rest-orders-controller.php:125
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:281
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:300
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:505
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:633
 msgid "Account Holder"
 msgstr "Kontoinhaber"
 
 # @ woocommerce-germanized
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/api/class-wc-gzd-rest-customers-controller.php:123
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/api/class-wc-gzd-rest-orders-controller.php:122
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:274
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:299
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:505
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:623
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:715
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/api/class-wc-gzd-rest-orders-controller.php:130
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:282
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:307
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:513
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:637
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:729
 msgid "IBAN"
 msgstr "IBAN"
 
 # @ woocommerce-germanized
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/api/class-wc-gzd-rest-customers-controller.php:128
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/api/class-wc-gzd-rest-orders-controller.php:127
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:275
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:306
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:627
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:716
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/api/class-wc-gzd-rest-orders-controller.php:135
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:283
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:314
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:641
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:730
 msgid "BIC/SWIFT"
 msgstr "BIC/SWIFT"
 
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/api/class-wc-gzd-rest-orders-controller.php:99
+msgid "Parcel Delivery Data Transfer"
+msgstr "Paketdienstleister Datenweitergabe"
+
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/api/class-wc-gzd-rest-orders-controller.php:132
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:313
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/api/class-wc-gzd-rest-orders-controller.php:140
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:321
 msgid "Mandate Reference ID"
 msgstr "Mandat-Referenznummer"
 
@@ -2844,9 +2848,9 @@ msgstr ""
 "Mail mit deinen Daten als Bestätigung."
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-checkout.php:237
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-checkout.php:245
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-checkout.php:381
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-checkout.php:239
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-checkout.php:247
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-checkout.php:383
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-customer-helper.php:76
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-customer-helper.php:83
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-revocation.php:41
@@ -2854,9 +2858,9 @@ msgid "Mr."
 msgstr "Herr"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-checkout.php:237
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-checkout.php:245
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-checkout.php:381
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-checkout.php:239
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-checkout.php:247
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-checkout.php:383
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-customer-helper.php:76
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-customer-helper.php:83
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-revocation.php:42
@@ -3505,7 +3509,7 @@ msgid "SEPA XML Bulk Export"
 msgstr "SEPA XML Export"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:49
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:50
 msgid ""
 "[company_info]\n"
 "debtee identification number: [company_identification_number]\n"
@@ -3573,119 +3577,119 @@ msgstr ""
 "Bitte beachte: Die First für die Vorabinformation der SEPA-Lastschrift wird "
 "auf einen Tag verkürzt. "
 
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:135
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:136
 msgid "SEPA XML Export"
 msgstr "SEPA XML Export"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:229
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:241
 #, php-format
 msgid "Order %s"
 msgstr "Bestellung %s"
 
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:254
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:262
 msgid "Will be notified separately"
 msgstr "Wird separat mitgeteilt"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:462
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:470
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/invoice/class-wc-gzd-gateway-invoice.php:79
 msgid "Enable/Disable"
 msgstr "Aktivieren/Deaktivieren"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:464
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:472
 msgid "Enable Direct Debit Payment"
 msgstr "Bezahlung per Lastschrift aktivieren"
 
 # @ woocommerce-germanized
 # @ woocommerce
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:468
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:476
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/invoice/class-wc-gzd-gateway-invoice.php:85
 msgctxt "gateway"
 msgid "Title"
 msgstr "Bezeichnung"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:470
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:478
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/invoice/class-wc-gzd-gateway-invoice.php:87
 msgid "This controls the title which the user sees during checkout."
 msgstr ""
 "Beschreibungstext, den Benutzer bei der Auswahl dieser Zahlungsart sehen."
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:475
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:483
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/invoice/class-wc-gzd-gateway-invoice.php:92
 msgid "Description"
 msgstr "Beschreibung"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:477
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:485
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/invoice/class-wc-gzd-gateway-invoice.php:94
 msgid "Payment method description that the customer will see on your checkout."
 msgstr "Beschreibung der Zahlungsart, die Kunden auf deiner Website sehen."
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:478
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:486
 msgid "The order amount will be debited directly from your bank account."
 msgstr ""
 "Der Gesamtbestellbetrag wird per SEPA-Lastschrift direkt von deinem Konto "
 "abgebucht."
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:482
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:490
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/invoice/class-wc-gzd-gateway-invoice.php:99
 msgid "Instructions"
 msgstr "Anweisungen"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:484
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:492
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/invoice/class-wc-gzd-gateway-invoice.php:101
 msgid "Instructions that will be added to the thank you page and emails."
 msgstr "Anweisung, die zur „Danke“-Seite und zu E-Mails hinzugefügt werden."
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:489
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:497
 msgid "Debtee"
 msgstr "Gläubiger Informationen"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:491
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:499
 msgid "Insert your company information."
 msgstr "Füge hier die Informationen zu deinem Unternehmen ein."
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:493
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:501
 msgid "Company Inc, John Doe Street, New York"
 msgstr "Musterfirma GmbH, Musterstraße 12, 12203 Musterstadt"
 
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:499
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:507
 msgid "Insert the bank account holder name."
 msgstr "Füge hier den Namen des Kontoinhabers ein."
 
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:501
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:509
 msgid "Company Inc"
 msgstr "Muster GmbH"
 
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:507
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:515
 msgid "Insert the bank account IBAN."
 msgstr "Füge hier den IBAN deines Kontos ein."
 
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:512
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:520
 msgid "BIC"
 msgstr "BIC"
 
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:514
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:522
 msgid "Insert the bank account BIC."
 msgstr "Füge hier den BIC deines Kontos ein."
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:519
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:527
 msgid "Debtee identification number"
 msgstr "Identifikationsnummer"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:521
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:529
 #, php-format
 msgid ""
 "Insert your debtee indentification number. More information can be found <a "
@@ -3695,16 +3699,16 @@ msgstr ""
 "Weitere Informationen zu dieser Nummer erhältst du <a href=\"%s\">hier</a>."
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:525
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:533
 msgid "Generate Mandate ID"
 msgstr "Mandat-Referenz generieren"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:527
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:535
 msgid "Automatically generate Mandate ID."
 msgstr "Mandat-Referenznummer automatisch generieren."
 
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:528
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:536
 msgid ""
 "Automatically generate Mandate ID after order completion (based on Order ID)."
 msgstr ""
@@ -3712,11 +3716,24 @@ msgstr ""
 "basierend auf der Bestellnummer."
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:532
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:540
+msgid "XML Pain Format"
+msgstr "XML Pain Format"
+
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:542
+msgid ""
+"You may adjust the XML Export Pain Schema to your banks needs. Some banks "
+"may require pain.001.003.03."
+msgstr ""
+"Passe hier das SEPA XML Schema an die Anforderungen deiner Bank an. Einige "
+"Banken benötigen z.B. pain.001.003.03."
+
+# @ woocommerce-germanized
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:546
 msgid "Mandate ID Format"
 msgstr "Mandat-Referenz Format"
 
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:534
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:548
 msgid ""
 "You may extend the Mandate ID format by adding a prefix and/or suffix. Use "
 "{id} as placeholder to insert the automatically generated ID."
@@ -3725,12 +3742,12 @@ msgstr ""
 "{id} als Platzhalter um die automatisch generierte Referenznummer einzufügen."
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:538
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:552
 msgid "Mandate Text"
 msgstr "Lastschriftmandat"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:540
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:554
 msgid ""
 "This text will be populated with live order/checkout data. Will be used as "
 "preview direct debit mandate and as email template text."
@@ -3741,23 +3758,23 @@ msgstr ""
 "Verfügung gestellt."
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:547
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:561
 msgid "Enable \"agree to SEPA mandate\" checkbox"
 msgstr "Aktiviere die Checkbox zur Bestätigung des Lastschriftmandates."
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:549
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:563
 msgid "Enable a checkbox linking to a SEPA direct debit mandate preview."
 msgstr ""
 "Aktiviere eine Checkbox, die zu einer Vorschau des Lastschrift-Mandats führt."
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:553
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:567
 msgid "Checkbox label"
 msgstr "Checkbox Text"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:555
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:569
 msgid ""
 "Customize the checkbox label. Use {link}link name{/link} to insert the "
 "preview link."
@@ -3766,20 +3783,20 @@ msgstr ""
 "auf die Vorschau zu verlinken."
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:556
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:570
 msgid "I hereby agree to the {link}direct debit mandate{/link}."
 msgstr "Hiermit erteile ich das {link}SEPA Lastschriftmandat{/link}."
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:560
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:574
 msgid "Mask IBAN"
 msgstr "IBAN maskieren"
 
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:561
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:575
 msgid "Mask the IBAN within emails."
 msgstr "IBAN in E-Mails maskieren."
 
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:563
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:577
 msgid ""
 "This will lead to masked IBANs within emails (replaced by *). All but last 4 "
 "digits will be masked."
@@ -3787,15 +3804,15 @@ msgstr ""
 "Der IBAN wird in E-Mails (abgesehen von den letzten 4 Stellen) mit * "
 "maskiert."
 
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:572
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:586
 msgid "Remember"
 msgstr "Bankdaten merken\t"
 
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:573
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:587
 msgid "Remember account data for returning customers."
 msgstr "Bankverbindung für registrierte Kunden speichern."
 
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:575
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:589
 msgid "Save account data as user meta if user has/creates a customer account."
 msgstr ""
 "Speichert die Bankverbindung für registrierte Kunden in der user_meta "
@@ -3803,37 +3820,37 @@ msgstr ""
 "eigenständig aus."
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:658
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:672
 msgid "Please insert your SEPA account data."
 msgstr "Bitte füge deine SEPA Kontoinformationen ein."
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:668
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:682
 msgid "Your IBAN seems to be invalid."
 msgstr "Dein IBAN scheint nicht gültig zu sein."
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:670
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:684
 msgid "Your IBAN's country code doesn’t match with your billing country."
 msgstr "Der Ländercode des IBANs stimmt nicht mit dem Rechnungsland überein."
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:674
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:688
 msgid "Your BIC seems to be invalid."
 msgstr "Dein BIC/SWIFT scheint nicht gültig zu sein."
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:686
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:700
 msgid "Please accept the direct debit mandate."
 msgstr "Bitte erteile das SEPA Lastschriftmandat."
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:717
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:731
 msgid "is invalid"
 msgstr "ist ungültig"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:755
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:769
 msgid "Processing direct debit"
 msgstr "Lastschriftverfahren vorbereiten"
 
@@ -3893,7 +3910,7 @@ msgstr ""
 # @ woocommerce-germanized
 # @ woocommerce
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/invoice/class-wc-gzd-gateway-invoice.php:50
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/woocommerce-germanized.php:554
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/woocommerce-germanized.php:557
 msgid "Settings"
 msgstr "Einstellungen"
 
