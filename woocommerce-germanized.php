@@ -745,7 +745,10 @@ final class WooCommerce_Germanized {
 
 	public function register_gateways( $gateways ) {
 
-		$gateways[] = 'WC_GZD_Gateway_Direct_Debit';
+		// Do only load gateway for PHP >= 5.3 because of Namespaces
+		if ( version_compare( phpversion(), '5.3', '>=' ) )
+			$gateways[] = 'WC_GZD_Gateway_Direct_Debit';
+		
 		$gateways[] = 'WC_GZD_Gateway_Invoice';
 
 		return $gateways;
