@@ -65,6 +65,7 @@ class WC_GZD_Checkout {
 			add_filter( 'woocommerce_get_cancel_order_url_raw', array( $this, 'cancel_order_url' ), PHP_INT_MAX, 1 );
 			add_filter( 'user_has_cap', array( $this, 'disallow_user_order_cancellation' ), 15, 3 );
 			add_action( 'woocommerce_germanized_order_confirmation_sent', array( $this, 'maybe_reduce_order_stock' ), 5, 1 );
+			add_filter( 'woocommerce_my_account_my_orders_actions', array( $this, 'remove_cancel_button' ), 10, 2 );
 		}
 		
 		// Free Shipping auto select
@@ -80,6 +81,14 @@ class WC_GZD_Checkout {
 
 		if ( wc_gzd_is_parcel_delivery_data_transfer_checkbox_enabled() )
 			add_action( 'woocommerce_checkout_update_order_meta', array( $this, 'order_parcel_delivery_data_transfer' ), 10, 2 );
+	}
+	
+	public function remove_cancel_button( $actions, $order ) {
+
+		if ( isset( $actions[ 'cancel' ] ) )
+			unset( $actions[ 'cancel' ] );
+
+		return $actions;
 	}
 
 	public function order_parcel_delivery_data_transfer( $order_id, $posted ) {
