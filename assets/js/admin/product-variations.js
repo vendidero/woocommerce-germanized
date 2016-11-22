@@ -6,6 +6,24 @@ jQuery( function ( $ ) {
 			$( '#woocommerce-product-data' ).on( 'click', '.woocommerce_variation', this.show_or_hide_unit_variation );
 			$( '#general_product_data' ).on( 'blur', 'input#_unit_base', this.show_or_hide_unit_variation );
 			$( '#general_product_data' ).on( 'change', 'select#_unit', this.show_or_hide_unit_variation );
+			
+			$( document ).bind( 'woocommerce_variations_save_variations_button', this.save_variations );
+			$( document ).bind( 'woocommerce_variations_save_variations_on_submit', this.save_variations );
+		},
+
+		save_variations: function() {
+
+			var fields = [ 'unit', 'unit_base', 'unit_product' ];
+			var variations = $( '.woocommerce_variations' ).find( '.woocommerce_variation' );
+			
+			$.each( fields, function( index, id ) {
+				var parent_val = $( '#_' + id ).val();
+
+				variations.each( function() {
+					$( this ).find( '.wc-gzd-parent-' + id ).val( parent_val );
+				});
+			});
+
 		},
 
 		show_or_hide_unit_variation: function() {
