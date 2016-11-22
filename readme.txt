@@ -3,7 +3,7 @@ Contributors: vendidero
 Tags: woocommerce, german market, german, germany, deutsch, deutschland, de, de_DE, shop, commerce, e-commerce, ecommerce, woothemes, sepa, invoice
 Requires at least: 3.8
 Tested up to: 4.6
-Stable tag: 1.7.2
+Stable tag: 1.7.3
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -156,6 +156,13 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 1. WooCommerce Germanized Settings
 
 == Changelog ==
+
+= 1.7.3 =
+* Fix - Variations Unit Price Saving
+* Fix - Better Performance by using get_the_terms
+* Fix - Cancel Order Button Removal if option has been activated
+* Fix - Digital Extended Type Check
+* Fix - PHP < 5.3 check for SEPA Gateway (not supported)
 
 = 1.7.2 =
 * Feature - Optionally do not allow customers to switch payment gateway after ordering
