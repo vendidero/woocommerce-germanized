@@ -364,10 +364,10 @@ class WC_GZD_Product {
 	 */
 	public function get_delivery_time() {
 		
-		$terms = wp_get_post_terms( $this->id, 'product_delivery_time' );
+		$terms = get_the_terms( $this->id, 'product_delivery_time' );
 		
 		if ( $this->child->is_type( 'variation' ) ) {
-			$variation_terms = wp_get_post_terms( $this->child->variation_id , 'product_delivery_time' );
+			$variation_terms = get_the_terms( $this->child->variation_id , 'product_delivery_time' );
 			if ( ! empty( $variation_terms ) && ! is_wp_error( $variation_terms ) )
 				$terms = $variation_terms;
 		}

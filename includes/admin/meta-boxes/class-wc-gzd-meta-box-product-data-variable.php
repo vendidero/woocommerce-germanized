@@ -73,7 +73,7 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 			$variation_data[ $field ] = isset( $variation_meta[ $field ][0] ) ? maybe_unserialize( $variation_meta[ $field ][0] ) : $value;
 		}
 
-		$delivery_time = wp_get_post_terms( $variation_id, 'product_delivery_time' );
+		$delivery_time = get_the_terms( $variation_id, 'product_delivery_time' );
 		
 		if ( $delivery_time && ! empty( $delivery_time ) && is_array( $delivery_time ) )
 			$delivery_time = $delivery_time[0];
