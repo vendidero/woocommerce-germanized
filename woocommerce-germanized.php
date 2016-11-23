@@ -700,6 +700,7 @@ final class WooCommerce_Germanized {
 
 		remove_action( 'woocommerce_order_status_pending_to_processing_notification', array( $this->emails->get_email_instance_by_id( 'customer_processing_order' ), 'trigger' ) );
 		remove_action( 'woocommerce_order_status_pending_to_on-hold_notification', array( $this->emails->get_email_instance_by_id( 'customer_processing_order' ), 'trigger' ) );
+		remove_action( 'woocommerce_order_status_on-hold_to_processing_notification', array( $this->emails->get_email_instance_by_id( 'customer_processing_order' ), 'trigger' ) );
 		
 		remove_action( 'woocommerce_order_status_pending_to_processing_notification', array( $this->emails->get_email_instance_by_id( 'new_order' ), 'trigger' ) );
 		remove_action( 'woocommerce_order_status_pending_to_on-hold_notification', array( $this->emails->get_email_instance_by_id( 'new_order' ), 'trigger' ) );
