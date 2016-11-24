@@ -44,8 +44,9 @@ class WC_GZD_Admin {
 		add_action( 'admin_enqueue_scripts', array( $this, 'add_scripts' ) );
 		add_action( 'save_post', array( $this, 'save_legal_page_content' ), 10, 3 );
 		
-		add_action( 'admin_menu', array( $this, 'remove_status_page_hooks' ), 0 );
-		add_action( 'admin_menu', array( $this, 'set_status_page' ), 1 );
+		add_filter( 'woocommerce_admin_status_tabs', array( $this, 'set_gzd_status_tab' ) );
+		add_action( 'woocommerce_admin_status_content_germanized', array( $this, 'status_tab' ) );
+
 		add_action( 'admin_init', array( $this, 'check_tour_hide' ) );
 		add_action( 'admin_init', array( $this, 'check_language_install' ) );
 		add_action( 'admin_init', array( $this, 'check_text_options_deletion' ) );
@@ -53,6 +54,15 @@ class WC_GZD_Admin {
 		
 		add_filter( 'woocommerce_addons_section_data', array( $this, 'set_addon' ), 10, 2 );
 		add_action( 'woocommerce_admin_order_data_after_shipping_address', array( $this, 'set_order_parcel_delivery_opted_in' ), 10, 1 );
+	}
+
+	public function status_tab() {
+		WC_GZD_Admin_Status::output();
+	}
+
+	public function set_gzd_status_tab( $tabs ) {
+		$tabs[ 'germanized' ] = __( 'Germanized', 'woocommerce-germanized' );
+		return $tabs;
 	}
 
 	public function set_order_parcel_delivery_opted_in( $order ) {
@@ -80,31 +90,6 @@ class WC_GZD_Admin {
 		) );
 
 		return $products;
-	}
-
-	/**
-	 * Manually remove hook (class WC_Admin_Menus is noch callable)
-	 */
-	public function remove_status_page_hooks() {
-		global $wp_filter;
-		if ( isset( $wp_filter[ 'admin_menu' ][60] ) ) {
-			foreach ( $wp_filter[ 'admin_menu' ][60] as $k => $f ) {
-				if ( isset( $f[ 'function' ][1] ) && $f[ 'function' ][1] == 'status_menu' )
-					unset( $wp_filter[ 'admin_menu' ][60][$k] );
-			}
-		}
-	}
-
-	public function set_status_page() {
-		if ( ! is_ajax() ) {
-			include_once( 'class-wc-gzd-admin-status.php' );
-			add_action( 'admin_menu', array( $this, 'status_menu' ), 60 );
-		}
-	}
-
-	public function status_menu() {
-		add_submenu_page( 'woocommerce', __( 'WooCommerce Status', 'woocommerce-germanized' ),  __( 'System Status', 'woocommerce-germanized' ) , 'manage_woocommerce', 'wc-status', array( $this, 'status_page' ) );
-		register_setting( 'woocommerce_status_settings_fields', 'woocommerce_status_options' );
 	}
 
 	public function status_page() {

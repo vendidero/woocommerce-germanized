@@ -23,10 +23,6 @@ class WC_GZD_Admin_Status extends WC_Admin_Status {
 	);
 
 	public static function output() {
-		include_once( 'views/html-page-status.php' );
-	}
-
-	public static function germanized() {
 		include_once( 'views/html-page-status-germanized.php' );
 	}
 
