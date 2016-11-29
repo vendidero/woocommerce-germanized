@@ -59,6 +59,7 @@
 				$wrapper.find( '.price:not(.price-unit):first' ).html( variation.price_html ).addClass( 'variation_modified' );
 				$wrapper.find( '.price:not(.price-unit):first' ).find( '.price' ).contents().unwrap();
 			}
+
 			$wrapper.find( '.delivery-time-info:first' ).hide();
 			$wrapper.find( '.price-unit:first' ).hide();
 			$wrapper.find( '.tax-info:first' ).hide();
@@ -80,7 +81,7 @@
 			}
 			if ( variation.product_units !== '' ) {
 				$wrapper.find( '.product-units:first' ).remove();
-				$wrapper.find( '.product_meta' ).prepend('<span class="product-units-wrapper product-units variation_modified">' + variation.product_units + '</span>').show();
+				$wrapper.find( '.product_meta:first' ).prepend('<span class="product-units-wrapper product-units variation_modified">' + variation.product_units + '</span>').show();
 			}
 		})
 

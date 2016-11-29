@@ -12,8 +12,9 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 ?>
 
 <div itemscope itemtype="http://schema.org/LocalBusiness" class="wc-gzd-trusted-shops-rating-widget">
-	<div itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
-		<meta itemprop="name" content="<?php echo bloginfo( 'url' ); ?>">
+	<meta itemprop="name" content="<?php echo bloginfo( 'url' ); ?>">
+	<meta itemprop="image" content="<?php echo $image; ?>">
+	<div itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">	
 		<div class="star-rating">
 			<span style="width:<?php echo ( ( $rating[ 'avg' ] / $rating[ 'max' ] ) * 100 ); ?>%"></span>
 		</div>

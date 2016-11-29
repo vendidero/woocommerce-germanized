@@ -33,6 +33,32 @@ class WC_GZD_Trusted_Shops_Shortcodes {
 
 	}
 
+	public function get_trusted_shops_rich_snippets_image() {
+	
+		$image_url = '';
+		$custom_logo_id = get_theme_mod( 'custom_logo' );
+
+		if ( ! empty( $custom_logo_id ) ) {
+			
+			$image = wp_get_attachment_image_src( $custom_logo_id , 'full' );
+			
+			if ( ! empty( $image ) )
+				$image_url = $image[0];
+		}
+
+		// Use WooCommerce E-Mail Header Image
+		if ( empty( $image_url ) ) {
+			$image_url = get_option( 'woocommerce_email_header_image' );
+		}
+
+		// Use Header Image
+		if ( empty( $image_url ) && function_exists( 'get_header_image' ) ) {
+			$image_url = get_header_image();
+		}
+
+		return apply_filters( 'woocommerce_gzd_trusted_shops_rich_snippets_image', $image_url );
+	}
+
 	/**
 	 * Returns Trusted Shops rich snippet review html
 	 *  
@@ -42,7 +68,11 @@ class WC_GZD_Trusted_Shops_Shortcodes {
 	public function trusted_shops_rich_snippets( $atts ) {
 		
 		ob_start();
-		wc_get_template( 'trusted-shops/rich-snippets.php', array( 'rating' => $this->base->get_average_rating(), 'rating_link' => $this->base->get_rating_link() ) );
+		wc_get_template( 'trusted-shops/rich-snippets.php', array( 
+			'rating' => $this->base->get_average_rating(), 
+			'rating_link' => $this->base->get_rating_link(), 
+			'image' => $this->get_trusted_shops_rich_snippets_image()
+		) );
 		$html = ob_get_clean();
 		return $this->base->is_enabled() ? '<div class="woocommerce woocommerce-gzd">' . $html . '</div>' : '';
 	
