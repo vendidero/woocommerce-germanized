@@ -332,8 +332,13 @@ final class WooCommerce_Germanized {
 		if ( defined( 'DOING_AJAX' ) )
 			$this->ajax_includes();
 
-		if ( ( ! is_admin() || defined( 'DOING_AJAX' ) ) && ! defined( 'DOING_CRON' ) )
-			add_action( 'woocommerce_loaded', array( $this, 'frontend_includes' ), 5 );
+		if ( ( ! is_admin() || defined( 'DOING_AJAX' ) ) && ! defined( 'DOING_CRON' ) ) {
+			if ( did_action( 'woocommerce_loaded' ) ) {
+				$this->frontend_includes();
+			} else {
+				add_action( 'woocommerce_loaded', array( $this, 'frontend_includes' ), 5 );
+			}
+		}
 
 		// Post types
 		include_once ( 'includes/class-wc-gzd-post-types.php' );
