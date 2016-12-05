@@ -2,8 +2,8 @@
 Contributors: vendidero
 Tags: woocommerce, german market, german, germany, deutsch, deutschland, de, de_DE, shop, commerce, e-commerce, ecommerce, woothemes, sepa, invoice
 Requires at least: 3.8
-Tested up to: 4.6
-Stable tag: 1.7.3
+Tested up to: 4.7
+Stable tag: 1.7.4
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -156,6 +156,14 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 1. WooCommerce Germanized Settings
 
 == Changelog ==
+
+= 1.7.4 =
+* Fix - WP 4.7 compatibility
+* Fix - add_to_cart Shortcode output buffering
+* Fix - WooCommerce GZD Status Page
+* Fix - Trusted Shops Rich Snippet Meta 
+* Fix - Country Codes for Virtual Rates
+* Fix - On-hold to Processing Order Confirmation unhook
 
 = 1.7.3 =
 * Fix - Variations Unit Price Saving
