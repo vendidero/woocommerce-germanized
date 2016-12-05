@@ -336,7 +336,7 @@ class WC_GZD_Install {
 			'DK' => 25,
 			'DE' => 19,
 			'EE' => 20,
-			'EL' => 23,
+			'GR' => 23,
 			'ES' => 21,
 			'FR' => 20,
 			'HR' => 25,
@@ -357,7 +357,7 @@ class WC_GZD_Install {
 			'SK' => 20,
 			'FI' => 24,
 			'SE' => 25,
-			'UK' => 20,
+			'GB' => 20,
 		);
 
 		if ( ! empty( $rates ) ) {
