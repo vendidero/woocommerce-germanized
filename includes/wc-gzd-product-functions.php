@@ -94,12 +94,16 @@ function wc_gzd_product_matches_extended_type( $type, $product ) {
 		$parent = wc_get_product( $product->parent );
 	}
 
+	$matches_type = false;
+
 	if ( $type === $product->get_type() )
-		return true; 
+		$matches_type = true; 
 	else if ( is_callable( array( $product, 'is_' . $type ) ) )
-		return ( call_user_func_array( array( $product, 'is_' . $type ), array() ) === true ? true : false );
-	else if ( $parent )
+		$matches_type = ( call_user_func_array( array( $product, 'is_' . $type ), array() ) === true ? true : false );
+	
+	// Do only check parent if product does not match the type
+	if ( ! $matches_type && $parent )
 		return wc_gzd_product_matches_extended_type( $type, $parent );
 
-	return false;
+	return $matches_type;
 }
