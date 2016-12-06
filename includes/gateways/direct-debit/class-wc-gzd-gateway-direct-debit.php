@@ -283,6 +283,10 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
      		__( 'BIC/SWIFT', 'woocommerce-germanized' ) 		=> $this->maybe_decrypt( $order->direct_debit_bic ),
     	);
 
+    	if ( $sent_to_admin ) {
+    		$sepa_fields[ __( 'Mandate Reference ID', 'woocommerce-germanized' ) ] = $this->get_mandate_id( $order->id );
+    	}
+
     	wc_get_template( 'emails/email-sepa-data.php', array( 'fields' => $sepa_fields ) );
 
     }
