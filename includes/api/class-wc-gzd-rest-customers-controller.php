@@ -14,8 +14,6 @@ class WC_GZD_REST_Customers_Controller {
 
 	/**
 	 * ExtendOrdersController constructor.
-	 *
-	 * @param WC_Payment_Gateways $payment_gateways
 	 */
 	public function __construct() {
 		$this->direct_debit_gateway = new WC_GZD_Gateway_Direct_Debit();
@@ -29,7 +27,7 @@ class WC_GZD_REST_Customers_Controller {
 	 * Filter customer data returned from the REST API.
 	 *
 	 * @since 1.0.0
-	 * @wp-hook woocommerce_rest_prepare_order
+	 * @wp-hook woocommerce_rest_prepare_customer
 	 *
 	 * @param \WP_REST_Response $response The response object.
 	 * @param \WP_User $customer User object used to create response.
@@ -84,15 +82,17 @@ class WC_GZD_REST_Customers_Controller {
 	public function schema( $schema_properties ) {
 
 		$schema_properties['billing']['properties']['title'] = array(
-			'description' => __( 'Title', 'woocommerce-germanized-pro' ),
+			'description' => __( 'Title', 'woocommerce-germanized' ),
 			'type'        => 'integer',
-			'context'     => array( 'view', 'edit' )
+			'context'     => array( 'view', 'edit' ),
+			'enum'        => array( 1, 2 )
 		);
 
 		$schema_properties['shipping']['properties']['title'] = array(
-			'description' => __( 'Title', 'woocommerce-germanized-pro' ),
+			'description' => __( 'Title', 'woocommerce-germanized' ),
 			'type'        => 'integer',
-			'context'     => array( 'view', 'edit' )
+			'context'     => array( 'view', 'edit' ),
+			'enum'        => array( 1, 2 )
 		);
 
 		return $schema_properties;

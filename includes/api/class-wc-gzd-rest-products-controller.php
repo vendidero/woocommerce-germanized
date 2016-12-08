@@ -26,7 +26,7 @@ class WC_GZD_REST_Products_Controller {
 
 		$schema_properties['delivery_time'] = array(
 			'description' => __( 'Delivery Time', 'woocommerce-germanized' ),
-			'type'        => 'array',
+			'type'        => 'object',
 			'context'     => array( 'view', 'edit' ),
 			'properties'  => array(
 				'id' => array(
@@ -55,7 +55,7 @@ class WC_GZD_REST_Products_Controller {
 		);
 		$schema_properties['sale_price_label'] = array(
 			'description' => __( 'Price Label', 'woocommerce-germanized' ),
-			'type'        => 'array',
+			'type'        => 'object',
 			'context'     => array( 'view', 'edit' ),
 			'properties'  => array(
 				'id' => array(
@@ -78,7 +78,7 @@ class WC_GZD_REST_Products_Controller {
 		);
 		$schema_properties['sale_price_regular_label'] = array(
 			'description' => __( 'Price Label', 'woocommerce-germanized' ),
-			'type'        => 'array',
+			'type'        => 'object',
 			'context'     => array( 'view', 'edit' ),
 			'properties'  => array(
 				'id' => array(
@@ -101,7 +101,7 @@ class WC_GZD_REST_Products_Controller {
 		);
 		$schema_properties['unit'] = array(
 			'description' => __( 'Unit', 'woocommerce-germanized' ),
-			'type'        => 'array',
+			'type'        => 'object',
 			'context'     => array( 'view', 'edit' ),
 			'properties'  => array(
 				'id' => array(
@@ -124,7 +124,7 @@ class WC_GZD_REST_Products_Controller {
 		);
 		$schema_properties['unit_price'] = array(
 			'description' => __( 'Unit Price', 'woocommerce-germanized' ),
-			'type'        => 'array',
+			'type'        => 'object',
 			'context'     => array( 'view', 'edit' ),
 			'properties'  => array(
 				'base' => array(
@@ -177,9 +177,9 @@ class WC_GZD_REST_Products_Controller {
 			'default'     => false,
 			'context'     => array( 'view', 'edit' ),
 		);
-		$schema_properties['variations']['properties'][ 'delivery_time' ] = array(
+		$schema_properties['variations']['items']['properties'][ 'delivery_time' ] = array(
 			'description' => __( 'Delivery Time', 'woocommerce-germanized' ),
-			'type'        => 'array',
+			'type'        => 'object',
 			'context'     => array( 'view', 'edit' ),
 			'properties'  => array(
 				'id' => array(
@@ -206,9 +206,9 @@ class WC_GZD_REST_Products_Controller {
 				),
 			)
 		);
-		$schema_properties['variations']['properties'][ 'sale_price_label' ] = array(
+		$schema_properties['variations']['items']['properties'][ 'sale_price_label' ] = array(
 			'description' => __( 'Price Label', 'woocommerce-germanized' ),
-			'type'        => 'array',
+			'type'        => 'object',
 			'context'     => array( 'view', 'edit' ),
 			'properties'  => array(
 				'id' => array(
@@ -229,9 +229,9 @@ class WC_GZD_REST_Products_Controller {
 				)
 			)
 		);
-		$schema_properties['variations']['properties'][ 'sale_price_regular_label' ] = array(
+		$schema_properties['variations']['items']['properties'][ 'sale_price_regular_label' ] = array(
 			'description' => __( 'Price Label', 'woocommerce-germanized' ),
-			'type'        => 'array',
+			'type'        => 'object',
 			'context'     => array( 'view', 'edit' ),
 			'properties'  => array(
 				'id' => array(
@@ -252,14 +252,14 @@ class WC_GZD_REST_Products_Controller {
 				)
 			)
 		);
-		$schema_properties['variations']['properties'][ 'mini_desc' ] = array(
+		$schema_properties['variations']['items']['properties'][ 'mini_desc' ] = array(
 			'description' => __( 'Small Cart Product Description', 'woocommerce-germanized' ),
 			'type'        => 'string',
 			'context'     => array( 'view', 'edit' ),
 		);
-		$schema_properties['variations']['properties'][ 'unit_price' ] = array(
+		$schema_properties['variations']['items']['properties'][ 'unit_price' ] = array(
 			'description' => __( 'Unit Price', 'woocommerce-germanized' ),
-			'type'        => 'array',
+			'type'        => 'object',
 			'context'     => array( 'view', 'edit' ),
 			'properties'  => array(
 				'base' => array(

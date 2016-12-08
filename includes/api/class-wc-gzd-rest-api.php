@@ -18,21 +18,16 @@ class WC_GZD_REST_API {
 	}
 
 	private function __construct() {
-		add_action( 'woocommerce_loaded', array( $this, 'init' ) );
+		add_action( 'rest_api_init', array( $this, 'init' ) );
 	}
 
 	public function init() {
-
-		global $wp_version;
-
-		if ( version_compare( WC_GZD_Dependencies::instance()->get_plugin_version( 'woocommerce' ), '2.6', '<' ) || version_compare( $wp_version, 4.4, '<' ) )
+		if ( version_compare( WC_GZD_Dependencies::instance()->get_plugin_version( 'woocommerce' ), '2.6', '<' ) )
 			return;
 
 		$this->rest_api_includes();
-
-		// Init REST API routes.
-		add_action( 'rest_api_init', array( $this, 'register_rest_routes' ), 25 );
-
+		
+		$this->register_rest_routes();
 	}
 
 	public function rest_api_includes() {

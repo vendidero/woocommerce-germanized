@@ -86,13 +86,15 @@ class WC_GZD_REST_Orders_Controller {
 		$schema_properties['billing']['properties']['title'] = array(
 			'description' => __( 'Title', 'woocommerce-germanized' ),
 			'type'        => 'integer',
-			'context'     => array( 'view', 'edit' )
+			'context'     => array( 'view', 'edit' ),
+			'enum'        => array( 1, 2 )
 		);
 
 		$schema_properties['shipping']['properties']['title'] = array(
 			'description' => __( 'Title', 'woocommerce-germanized' ),
 			'type'        => 'integer',
-			'context'     => array( 'view', 'edit' )
+			'context'     => array( 'view', 'edit' ),
+			'enum'        => array( 1, 2 )
 		);
 
 		$schema_properties['parcel_delivery_opted_in'] = array(
@@ -118,7 +120,7 @@ class WC_GZD_REST_Orders_Controller {
 				'update_callback' => array( $this, 'update_direct_debit' ),
 				'schema'          => array(
 					'description' => __( 'Direct Debit', 'woocommerce-germanized' ),
-					'type'        => 'array',
+					'type'        => 'object',
 					'context'     => array( 'view', 'edit' ),
 					'properties'  => array(
 						'holder'     => array(
