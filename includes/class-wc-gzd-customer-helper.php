@@ -271,18 +271,18 @@ class WC_GZD_Customer_Helper {
 	 */
 	public function customer_account_activate( $activation_code, $login = false ) {
 		
-		$user_query = new WP_User_Query(
-			array( 'role' => 'Customer', 'number' => 1, 'meta_query' =>
+		$user_query = new WP_User_Query( apply_filters( 'woocommerce_gzd_customer_account_activation_query', array( 
+			'role' => 'Customer', 
+			'number' => 1, 
+			'meta_query' => array(
 				array(
-					array(
-						'key'     => '_woocommerce_activation',
-						'value'   => $activation_code,
-						'compare' => '=',
-					),
+					'key'     => '_woocommerce_activation',
+					'value'   => $activation_code,
+					'compare' => '=',
 				),
-			)
-		);
-
+			),
+		), $activation_code, $login ) );
+		
 		if ( ! empty( $user_query->results ) ) {
 			
 			foreach ( $user_query->results as $user ) {
