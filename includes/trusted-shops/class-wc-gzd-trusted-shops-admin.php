@@ -484,7 +484,12 @@ class WC_GZD_Trusted_Shops_Admin {
 		while ( $order_query->have_posts() ) {
 			$order_query->next_post();
 			$order = wc_get_order( $order_query->post->ID );
-			array_push( $data, array( $order->billing_email, $order->id, $order->billing_first_name, $order->billing_last_name ) );
+			array_push( $data, array( 
+				wc_gzd_get_crud_data( $order, 'billing_email' ), 
+				wc_gzd_get_crud_data( $order, 'id' ), 
+				wc_gzd_get_crud_data( $order, 'billing_first_name' ), 
+				wc_gzd_get_crud_data( $order, 'billing_last_name' ) 
+			) );
 		}
 
 		$write = $this->prepare_csv_data( $data );

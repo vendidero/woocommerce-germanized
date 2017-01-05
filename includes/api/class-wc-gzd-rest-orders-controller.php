@@ -40,9 +40,9 @@ class WC_GZD_REST_Orders_Controller {
 		$order = wc_get_order( $post );
 		$response_order_data = $response->get_data();
 		
-		$response_order_data['billing']['title'] = $order->billing_title;
-		$response_order_data['shipping']['title'] = $order->shipping_title;
-		$response_order_data['parcel_delivery_opted_in'] = $order->parcel_delivery_opted_in;
+		$response_order_data['billing']['title'] = wc_gzd_get_crud_data( $order, 'billing_title' );
+		$response_order_data['shipping']['title'] = wc_gzd_get_crud_data( $order, 'shipping_title' );
+		$response_order_data['parcel_delivery_opted_in'] = wc_gzd_get_crud_data( $order, 'parcel_delivery_opted_in' );
 		
 		$response->set_data( $response_order_data );
 

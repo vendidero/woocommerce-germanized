@@ -18,7 +18,7 @@ class WC_GZD_Product {
 	 * The actual Product object (e.g. simple, variable)
 	 * @var object
 	 */
-	private $child;
+	protected $child;
 
 	protected $gzd_variation_level_meta = array(
 		'unit_price' 		 		=> '',
@@ -51,6 +51,10 @@ class WC_GZD_Product {
 		
 		$this->child = $product;
 	}
+
+	public function get_wc_product() {
+		return $this->child;
+	}
  
 	/**
 	 * Redirects __get calls to WC_Product Class.
@@ -62,18 +66,18 @@ class WC_GZD_Product {
 
 		if ( $this->child->is_type( 'variation' ) && in_array( $key, array_keys( $this->gzd_variation_level_meta ) ) ) {
 			
-			$value = get_post_meta( $this->child->variation_id, '_' . $key, true );
+			$value = wc_gzd_get_crud_data( $this->child, $key );
 
 			if ( '' === $value )
 				$value = $this->gzd_variation_level_meta[ $key ];
 		
 		} else if ( $this->child->is_type( 'variation' ) && in_array( $key, $this->gzd_variation_inherited_meta_data ) ) {
 			
-			$value = metadata_exists( 'post', $this->child->variation_id, '_' . $key ) ? get_post_meta( $this->child->variation_id, '_' . $key, true ) : get_post_meta( $this->child->parent->id, '_' . $key, true );
+			$value = wc_gzd_get_crud_data( $this->child, $key ) ? wc_gzd_get_crud_data( $this->child, $key ) : wc_gzd_get_crud_data( wc_get_product( wc_gzd_get_crud_data( $this->child, 'parent_id' ) ), $key );
 
 			// Handle meta data keys which can be empty at variation level to cause inheritance
 			if ( '' === $value ) {
-				$value = get_post_meta( $this->child->parent->id, '_' . $key, true );
+				$value = wc_gzd_get_crud_data( wc_get_product( wc_gzd_get_crud_data( $this->child, 'parent' ) ), $key );
 			}
 		
 		} else if ( $key == 'delivery_time' ) {
@@ -82,8 +86,10 @@ class WC_GZD_Product {
 		
 		} else {
 			
-			$value = $this->child->$key;
-		
+			if ( strpos( '_', $key ) !== true )
+				$key = '_' . $key;
+
+			$value = wc_gzd_get_crud_data( $this->child, $key );
 		}
 
 		return $value;
@@ -97,14 +103,13 @@ class WC_GZD_Product {
 	 */
 	public function __isset( $key ) {
 
-		if ( $this->child->is_type( 'variation' ) && in_array( $key, array_keys( $this->gzd_variation_level_meta ) ) ) {
-			return metadata_exists( 'post', $this->child->variation_id, '_' . $key );
-		} else if ( $this->child->is_type( 'variation' ) && in_array( $key, array_keys( $this->gzd_variation_inherited_meta_data ) ) ) {
-			return metadata_exists( 'post', $this->child->parent->id, '_' . $key );
-		} else {
-			return isset( $this->child->$key );
-		}
+		$data = $this->child->get_data();
 
+		if ( $this->child->is_type( 'variation' ) && in_array( $key, array_keys( $this->gzd_variation_inherited_meta_data ) ) ) {
+			$data = wc_get_product( $this->child->get_parent_id() )->get_data();
+		} 
+
+		return isset( $data[ $key ] );
 	}
 
 	public function __call( $method, $args ) {
@@ -274,7 +279,7 @@ class WC_GZD_Product {
 	 */
 	public function get_unit_price_including_tax( $qty = 1, $price = '' ) {
 		$price = ( $price == '' ) ? $this->unit_price : $price;
-		return ( $price == '' ) ? '' : $this->get_price_including_tax( $qty, $price );
+		return ( $price == '' ) ? '' : wc_gzd_get_price_including_tax( $this->child, array( 'price' => $price, 'qty' => $qty ) );
 	}
 
 	/**
@@ -286,7 +291,7 @@ class WC_GZD_Product {
 	 */
 	public function get_unit_price_excluding_tax( $qty = 1, $price = '' ) {
 		$price = ( $price == '' ) ? $this->unit_price : $price;
-		return ( $price == '' ) ? '' : $this->get_price_excluding_tax( $qty, $price );
+		return ( $price == '' ) ? '' : wc_gzd_get_price_excluding_tax( $this->child, array( 'price' => $price, 'qty' => $qty ) );
 	}
 
 	/**
@@ -329,12 +334,21 @@ class WC_GZD_Product {
 			}
 
 		}
-
+		
 		return apply_filters( 'woocommerce_gzd_unit_price_html', $html, $this );
 	}
 
+	public function is_unit_price_calculated_automatically() {
+		return $this->unit_price_auto === 'yes';
+	}
+
+	public function get_unit_products() {
+		return $this->unit_product;
+	}
+
 	public function has_product_units() {
-		return ( $this->unit_product && ! empty( $this->unit_product ) && $this->get_unit() );
+		$products = $this->get_unit_products();
+		return ( $products && ! empty( $products ) && $this->get_unit() );
 	}
 
 	/**
@@ -351,7 +365,7 @@ class WC_GZD_Product {
 		$text = get_option( 'woocommerce_gzd_product_units_text' );
 
 		if ( $this->has_product_units() )
-			$html = str_replace( array( '{product_units}', '{unit}', '{unit_price}' ), array( str_replace( '.', ',', $this->unit_product ), $this->get_unit(), $this->get_unit_html() ), $text );
+			$html = str_replace( array( '{product_units}', '{unit}', '{unit_price}' ), array( str_replace( '.', ',', $this->get_unit_products() ), $this->get_unit(), $this->get_unit_html() ), $text );
 
 		return apply_filters( 'woocommerce_gzd_product_units_html', $html, $this );
 
@@ -363,15 +377,15 @@ class WC_GZD_Product {
 	 * @return bool|object false returns false if term does not exist otherwise returns term object
 	 */
 	public function get_delivery_time() {
+
+		$terms = get_the_terms( wc_gzd_get_crud_data( $this->child, 'id' ), 'product_delivery_time' );
 		
-		$terms = get_the_terms( $this->id, 'product_delivery_time' );
-		
-		if ( $this->child->is_type( 'variation' ) ) {
+		if ( empty( $terms ) && $this->child->is_type( 'variation' ) ) {
 			
-			$variation_terms = get_the_terms( $this->child->variation_id , 'product_delivery_time' );
+			$parent_terms = get_the_terms( wc_gzd_get_crud_data( $this->child, 'parent' ), 'product_delivery_time' );
 			
-			if ( ! empty( $variation_terms ) && ! is_wp_error( $variation_terms ) )
-				$terms = $variation_terms;
+			if ( ! empty( $parent_terms ) && ! is_wp_error( $parent_terms ) )
+				$terms = $parent_terms;
 		}
 
 		if ( is_wp_error( $terms ) || empty( $terms ) )

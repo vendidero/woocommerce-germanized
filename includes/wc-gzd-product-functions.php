@@ -90,8 +90,8 @@ function wc_gzd_product_matches_extended_type( $type, $product ) {
 	$parent = null;
 
 	// Support Variations
-	if ( $product->parent ) {
-		$parent = wc_get_product( $product->parent );
+	if ( wc_gzd_get_crud_data( $product, 'parent' ) ) {
+		$parent = wc_get_product( wc_gzd_get_crud_data( $product, 'parent' ) );
 	}
 
 	$matches_type = false;

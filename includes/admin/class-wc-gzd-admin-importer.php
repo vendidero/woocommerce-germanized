@@ -188,12 +188,12 @@ class WC_GZD_Admin_Importer {
 		);
 
 		// Price per unit
-		if ( get_post_meta( $product->id, '_regular_price_per_unit', true ) ) {
+		if ( get_post_meta( wc_gzd_get_crud_data( $product, 'id' ), '_regular_price_per_unit', true ) ) {
 
-			$regular = get_post_meta( $product->id, '_regular_price_per_unit', true );
-			$base = get_post_meta( $product->id, '_unit_regular_price_per_unit_mult', true );
-			$sale = get_post_meta( $product->id, '_sale_price_per_unit', true );
-			$unit = get_post_meta( $product->id, '_unit_regular_price_per_unit', true );
+			$regular = get_post_meta( wc_gzd_get_crud_data( $product, 'id' ), '_regular_price_per_unit', true );
+			$base = get_post_meta( wc_gzd_get_crud_data( $product, 'id' ), '_unit_regular_price_per_unit_mult', true );
+			$sale = get_post_meta( wc_gzd_get_crud_data( $product, 'id' ), '_sale_price_per_unit', true );
+			$unit = get_post_meta( wc_gzd_get_crud_data( $product, 'id' ), '_unit_regular_price_per_unit', true );
 
 			if ( $unit ) {
 
@@ -210,8 +210,8 @@ class WC_GZD_Admin_Importer {
 						$save['_unit_price_regular'] = $regular;
 						$save['_unit_price_sale'] = $sale;
 						$save['_sale_price'] = $product->get_sale_price();
-						$save['_sale_price_dates_from'] = ( get_post_meta( $product->id, '_sale_price_dates_from', true ) ? get_post_meta( $product->id, '_sale_price_dates_from', true ) : '' );
-						$save['_sale_price_dates_to'] = ( get_post_meta( $product->id, '_sale_price_dates_to', true ) ? get_post_meta( $product->id, '_sale_price_dates_to', true ) : '' );
+						$save['_sale_price_dates_from'] = ( get_post_meta( wc_gzd_get_crud_data( $product, 'id' ), '_sale_price_dates_from', true ) ? get_post_meta( wc_gzd_get_crud_data( $product, 'id' ), '_sale_price_dates_from', true ) : '' );
+						$save['_sale_price_dates_to'] = ( get_post_meta( wc_gzd_get_crud_data( $product, 'id' ), '_sale_price_dates_to', true ) ? get_post_meta( wc_gzd_get_crud_data( $product, 'id' ), '_sale_price_dates_to', true ) : '' );
 
 					}
 
@@ -222,9 +222,9 @@ class WC_GZD_Admin_Importer {
 		}
 
 		// Labels
-		if ( get_post_meta( $product->id, '_sale_label', true ) ) {
+		if ( get_post_meta( wc_gzd_get_crud_data( $product, 'id' ), '_sale_label', true ) ) {
 
-			$term_id = get_post_meta( $product->id, '_sale_label', true );
+			$term_id = get_post_meta( wc_gzd_get_crud_data( $product, 'id' ), '_sale_label', true );
 			$term = get_term_by( 'id', absint( $term_id ), $this->taxonomies[ 'product_price_label' ] );
 
 			if ( ! empty( $term ) && ! is_wp_error( $term ) ) {
@@ -235,7 +235,7 @@ class WC_GZD_Admin_Importer {
 		}
 
 		// Delivery time (if does not exist will be added automatically)
-		if ( $delivery_time = get_post_meta( $product->id, '_lieferzeit', true ) ) {
+		if ( $delivery_time = get_post_meta( wc_gzd_get_crud_data( $product, 'id' ), '_lieferzeit', true ) ) {
 
 			$term = get_term_by( 'id', $delivery_time, $this->taxonomies[ 'product_delivery_time' ] );
 
@@ -245,13 +245,13 @@ class WC_GZD_Admin_Importer {
 		}
 
 		// Free shipping
-		if ( 'on' === get_post_meta( $product->id, '_suppress_shipping_notice', true ) && ! $product->is_type( 'variation' ) ) {
+		if ( 'on' === get_post_meta( wc_gzd_get_crud_data( $product, 'id' ), '_suppress_shipping_notice', true ) && ! $product->is_type( 'variation' ) ) {
 			$save['_free_shipping'] = 'yes';
 		}
 
 		// Save
 		if ( sizeof( $save ) > 3 ) {
-			WC_Germanized_Meta_Box_Product_Data::save_product_data( $product->id, $save, ( $product->is_type( 'variation' ) ) );
+			WC_Germanized_Meta_Box_Product_Data::save_product_data( wc_gzd_get_crud_data( $product, 'id' ), $save, ( $product->is_type( 'variation' ) ) );
 		}
 
 	}

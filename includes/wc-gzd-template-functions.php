@@ -28,7 +28,7 @@ if ( ! function_exists( 'woocommerce_gzd_template_single_price_unit' ) ) {
 	 */
 	function woocommerce_gzd_template_single_price_unit() {
 		global $product;
-		if ( in_array( $product->product_type, apply_filters( 'woocommerce_gzd_product_types_supporting_unit_prices', array( 'simple', 'external', 'variable' ) ) ) )
+		if ( in_array( $product->get_type(), apply_filters( 'woocommerce_gzd_product_types_supporting_unit_prices', array( 'simple', 'external', 'variable' ) ) ) )
 			wc_get_template( 'single-product/price-unit.php' );
 	}
 }
@@ -587,7 +587,10 @@ if ( ! function_exists( 'woocommerce_gzd_template_show_variation_price' ) ) {
 
 	function woocommerce_gzd_template_show_variation_price( $show, $product, $variation ) {
 
-		if ( ( $variation->sale_price_label !== $product->sale_price_label ) || ( $variation->sale_price_regular_label !== $product->sale_price_regular_label ) )
+		$gzd_product = wc_gzd_get_gzd_product( $product );
+		$gzd_product_variation = wc_gzd_get_gzd_product( $variation );
+
+		if ( ( $gzd_product_variation->get_sale_price_label() !== $gzd_product->get_sale_price_label() ) || ( $gzd_product_variation->get_sale_price_regular_label() !== $gzd_product->get_sale_price_regular_label() ) )
 			return true;
 
 		return $show;

@@ -171,15 +171,15 @@ class WC_GZD_Product_Variable extends WC_GZD_Product {
 				$prices           = array();
 				$regular_prices   = array();
 				$sale_prices      = array();
-				$variation_ids    = $this->get_children( true );
+				$variation_ids    = wc_gzd_get_variable_visible_children( $this->child );
 
 				foreach ( $variation_ids as $variation_id ) {
 					
-					if ( $variation = $this->get_child( $variation_id ) ) {
+					if ( $variation = wc_gzd_get_variation( $this->child, $variation_id ) ) {
 					
-						$price         = apply_filters( 'woocommerce_gzd_variation_unit_prices_price', $variation->unit_price, $variation, $this );
-						$regular_price = apply_filters( 'woocommerce_gzd_variation_unit_prices_regular_price', $variation->unit_price_regular, $variation, $this );
-						$sale_price    = apply_filters( 'woocommerce_gzd_variation_unit_prices_sale_price', $variation->unit_price_sale, $variation, $this );
+						$price         = apply_filters( 'woocommerce_gzd_variation_unit_prices_price', wc_gzd_get_crud_data( $variation, 'unit_price' ), $variation, $this );
+						$regular_price = apply_filters( 'woocommerce_gzd_variation_unit_prices_regular_price', wc_gzd_get_crud_data( $variation, 'unit_price_regular' ), $variation, $this );
+						$sale_price    = apply_filters( 'woocommerce_gzd_variation_unit_prices_sale_price', wc_gzd_get_crud_data( $variation, 'unit_price_sale' ), $variation, $this );
 
 						// If sale price does not equal price, the product is not yet on sale
 						if ( $sale_price === $regular_price || $sale_price !== $price ) {
@@ -189,13 +189,13 @@ class WC_GZD_Product_Variable extends WC_GZD_Product {
 						// If we are getting prices for display, we need to account for taxes
 						if ( $display ) {
 							if ( 'incl' === get_option( 'woocommerce_tax_display_shop' ) ) {
-								$price         = '' === $price ? ''         : $variation->get_price_including_tax( 1, $price );
-								$regular_price = '' === $regular_price ? '' : $variation->get_price_including_tax( 1, $regular_price );
-								$sale_price    = '' === $sale_price ? ''    : $variation->get_price_including_tax( 1, $sale_price );
+								$price         = '' === $price ? ''         : wc_gzd_get_price_including_tax( $variation, array( 'qty' => 1, 'price' => $price ) );
+								$regular_price = '' === $regular_price ? '' : wc_gzd_get_price_including_tax( $variation, array( 'qty' => 1, 'price' => $regular_price ) );
+								$sale_price    = '' === $sale_price ? ''    : wc_gzd_get_price_including_tax( $variation, array( 'qty' => 1, 'price' => $sale_price ) );
 							} else {
-								$price         = '' === $price ? ''         : $variation->get_price_excluding_tax( 1, $price );
-								$regular_price = '' === $regular_price ? '' : $variation->get_price_excluding_tax( 1, $regular_price );
-								$sale_price    = '' === $sale_price ? ''    : $variation->get_price_excluding_tax( 1, $sale_price );
+								$price         = '' === $price ? ''         : wc_gzd_get_price_excluding_tax( $variation, array( 'qty' => 1, 'price' => $price ) );
+								$regular_price = '' === $regular_price ? '' : wc_gzd_get_price_excluding_tax( $variation, array( 'qty' => 1, 'price' => $regular_price ) );
+								$sale_price    = '' === $sale_price ? ''    : wc_gzd_get_price_excluding_tax( $variation, array( 'qty' => 1, 'price' => $sale_price ) );
 							}
 						}
 

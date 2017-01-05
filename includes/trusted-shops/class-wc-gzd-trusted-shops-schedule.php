@@ -147,13 +147,13 @@ class WC_GZD_Trusted_Shops_Schedule {
 
 			$order_query->next_post();
 			$order = wc_get_order( $order_query->post->ID );
-			$diff = $this->base->plugin->get_date_diff( $order->completed_date, date( 'Y-m-d H:i:s' ) );
+			$diff = $this->base->plugin->get_date_diff( wc_gzd_get_crud_data( $order, 'completed_date' ), date( 'Y-m-d H:i:s' ) );
 			
 			if ( $diff[ 'd' ] >= (int) $this->base->review_reminder_days ) {
 				
 				if ( $mail = $this->base->plugin->emails->get_email_instance_by_id( 'customer_trusted_shops' ) ) {
-					$mail->trigger( $order->id );
-					update_post_meta( $order->id, '_trusted_shops_review_mail_sent', 1 );
+					$mail->trigger( wc_gzd_get_crud_data( $order, 'id' ) );
+					update_post_meta( wc_gzd_get_crud_data( $order, 'id' ), '_trusted_shops_review_mail_sent', 1 );
 				}
 			}
 		}

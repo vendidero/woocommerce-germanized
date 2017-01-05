@@ -9,7 +9,7 @@
  * Requires at least: 3.8
  * Tested up to: 4.6
  * Requires at least WooCommerce: 2.4
- * Tested up to WooCommerce: 2.6
+ * Tested up to WooCommerce: 2.7
  *
  * Text Domain: woocommerce-germanized
  * Domain Path: /i18n/languages/
@@ -28,7 +28,7 @@ final class WooCommerce_Germanized {
 	 *
 	 * @var string
 	 */
-	public $version = '1.7.4';
+	public $version = '1.7.5';
 
 	/**
 	 * Single instance of WooCommerce Germanized Main Class
@@ -314,6 +314,7 @@ final class WooCommerce_Germanized {
 	private function includes() {
 
 		include_once ( 'includes/wc-gzd-core-functions.php' );
+		include_once ( 'includes/wc-gzd-legacy-functions.php' );
 		include_once ( 'includes/class-wc-gzd-install.php' );
 
 		if ( is_admin() ) {
@@ -730,21 +731,21 @@ final class WooCommerce_Germanized {
 		if ( ! apply_filters( 'woocommerce_germanized_send_instant_order_confirmation', true, $order ) )
 			return $result;
 
-		do_action( 'woocommerce_germanized_before_order_confirmation', $order->id );
+		do_action( 'woocommerce_germanized_before_order_confirmation', wc_gzd_get_crud_data( $order, 'id' ) );
 
 		// Send order processing mail
-		if ( apply_filters( 'woocommerce_germanized_order_email_customer_confirmation_sent', false, $order->id ) === false && $processing = $this->emails->get_email_instance_by_id( 'customer_processing_order' ) )
-			$processing->trigger( $order->id );
+		if ( apply_filters( 'woocommerce_germanized_order_email_customer_confirmation_sent', false, wc_gzd_get_crud_data( $order, 'id' ) ) === false && $processing = $this->emails->get_email_instance_by_id( 'customer_processing_order' ) )
+			$processing->trigger( wc_gzd_get_crud_data( $order, 'id' ) );
 
 		// Send admin mail
-		if ( apply_filters( 'woocommerce_germanized_order_email_admin_confirmation_sent', false, $order->id ) === false && $new_order = $this->emails->get_email_instance_by_id( 'new_order' ) )
-			$new_order->trigger( $order->id );
+		if ( apply_filters( 'woocommerce_germanized_order_email_admin_confirmation_sent', false, wc_gzd_get_crud_data( $order, 'id' ) ) === false && $new_order = $this->emails->get_email_instance_by_id( 'new_order' ) )
+			$new_order->trigger( wc_gzd_get_crud_data( $order, 'id' ) );
 
 		// Always clear cart after order success
 		if ( get_option( 'woocommerce_gzd_checkout_stop_order_cancellation' ) === 'yes' )
 			WC()->cart->empty_cart();
 
-		do_action( 'woocommerce_germanized_order_confirmation_sent', $order->id );
+		do_action( 'woocommerce_germanized_order_confirmation_sent', wc_gzd_get_crud_data( $order, 'id' ) );
 
 		return $result;
 	}
@@ -774,7 +775,7 @@ final class WooCommerce_Germanized {
 		$order_totals['order_total']['value'] = $order->get_formatted_order_total();
 
 		// Tax for inclusive prices
-		if ( 'yes' == get_option( 'woocommerce_calc_taxes' ) && 'incl' == $order->tax_display_cart ) {
+		if ( 'yes' == get_option( 'woocommerce_calc_taxes' ) && 'incl' == get_option( 'woocommerce_tax_display_cart' ) ) {
 			
 			$tax_array = array();
 			if ( 'itemized' == get_option( 'woocommerce_tax_total_display' ) ) {

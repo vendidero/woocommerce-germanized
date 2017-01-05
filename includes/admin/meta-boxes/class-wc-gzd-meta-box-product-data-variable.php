@@ -172,7 +172,7 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 		}
 
 		$product = wc_get_product( $variation_id );
-		$parent = wc_gzd_get_gzd_product( $product->parent );
+		$product_parent = wc_get_product( wc_gzd_get_crud_data( $product, 'parent' ) );
 
 		// Check if parent has unit_base + unit otherwise ignore data
 		if ( empty( $data[ '_parent_unit' ] ) || empty( $data[ '_parent_unit_base' ] ) ) {
@@ -187,7 +187,7 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 			$data[ '_unit_product' ] = '';
 		}
 
-		$data[ 'product-type' ] = ( isset( $product->parent ) ? $product->parent->product_type : $product->type );
+		$data[ 'product-type' ] = $product_parent->get_type();
 		$data[ '_sale_price_dates_from' ] = $_POST['variable_sale_price_dates_from'][$i];
 		$data[ '_sale_price_dates_to' ] = $_POST['variable_sale_price_dates_to'][$i];
 		$data[ '_sale_price' ] = $_POST['variable_sale_price'][$i];
