@@ -17,9 +17,13 @@ if ( get_option( 'woocommerce_gzd_display_digital_delivery_time_text' ) !== '' )
 	add_filter( 'woocommerce_germanized_empty_delivery_time_text', 'woocommerce_gzd_template_digital_delivery_time_text', 10, 2 );
 
 // Sale Price Labels
+/*
 add_filter( 'woocommerce_get_price_html_from_to', 'woocommerce_gzd_template_sale_price_label', 10, 4 );
 add_filter( 'woocommerce_variation_sale_price_html', 'woocommerce_gzd_template_variation_sale_price_label', 10, 2 );
 add_filter( 'woocommerce_show_variation_price', 'woocommerce_gzd_template_show_variation_price', 10, 3 );
+*/
+
+add_filter( 'woocommerce_get_price_html', 'woocommerce_gzd_template_sale_price_label_html', 50, 2 );
 
 /**
  * Single Product

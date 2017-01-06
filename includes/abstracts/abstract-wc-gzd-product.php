@@ -102,14 +102,13 @@ class WC_GZD_Product {
 	 * @return boolean      
 	 */
 	public function __isset( $key ) {
-
-		$data = $this->child->get_data();
-
-		if ( $this->child->is_type( 'variation' ) && in_array( $key, array_keys( $this->gzd_variation_inherited_meta_data ) ) ) {
-			$data = wc_get_product( $this->child->get_parent_id() )->get_data();
-		} 
-
-		return isset( $data[ $key ] );
+		if ( $this->child->is_type( 'variation' ) && in_array( $key, array_keys( $this->gzd_variation_level_meta ) ) ) {
+			return metadata_exists( 'post', wc_gzd_get_crud_data( $this->child, 'id' ), '_' . $key );
+		} else if ( $this->child->is_type( 'variation' ) && in_array( $key, array_keys( $this->gzd_variation_inherited_meta_data ) ) ) {	
+			return metadata_exists( 'post', wc_gzd_get_crud_data( $this->child, 'parent' ), '_' . $key );
+		} else {
+			return metadata_exists( 'post', wc_gzd_get_crud_data( $this->child, 'id' ), '_' . $key );
+		}
 	}
 
 	public function __call( $method, $args ) {
@@ -142,6 +141,31 @@ class WC_GZD_Product {
 	 */
 	public function is_virtual_vat_exception() {
 		return apply_filters( 'woocommerce_gzd_product_virtual_vat_exception', ( ( get_option( 'woocommerce_gzd_enable_virtual_vat' ) === 'yes' ) && ( $this->is_downloadable() || $this->is_virtual() ) ? true : false ), $this );
+	}
+
+	public function add_labels_to_price_html( $price_html ) {
+
+		if ( ! $this->child->is_on_sale() )
+			return $price_html;
+
+		$sale_label = $this->get_sale_price_label();
+		$sale_regular_label = $this->get_sale_price_regular_label();
+		
+		preg_match( "/<del>(.*?)<\\/del>/si", $price_html, $match_regular );
+		preg_match( "/<ins>(.*?)<\\/ins>/si", $price_html, $match_sale );
+
+		$new_price_regular = ( isset( $match_regular[1] ) ? $match_regular[1] : $match_regular[0] );
+		$new_price_sale = ( isset( $match_sale[1] ) ? $match_sale[1] : $match_sale[0] );
+
+		if ( ! empty( $sale_label ) && isset( $match_regular[1] ) )
+			$new_price_regular = '<span class="wc-gzd-sale-price-label">' . $sale_label . '</span> <del>' . $match_regular[1] . '</del>';
+
+		if ( ! empty( $sale_label ) && isset( $match_sale[1] ) )
+			$new_price_sale = '<span class="wc-gzd-sale-price-label wc-gzd-sale-price-regular-label">' . $sale_regular_label . '</span> <ins>' . $match_sale[1] . '</ins>';
+
+		$price_html = $new_price_regular . $new_price_sale;
+
+		return $price_html;
 	}
 
 	public function get_price_html_from_to( $from, $to, $show_labels = true ) {
