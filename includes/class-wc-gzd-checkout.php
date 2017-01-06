@@ -50,10 +50,11 @@ class WC_GZD_Checkout {
 		add_filter( 'woocommerce_formatted_address_replacements', array( $this, 'set_formatted_address' ), 0, 2 );
 		
 		// Add item desc to order
-		if ( WC_GZD_Dependencies::instance()->woocommerce_version_supports_crud() )
+		if ( WC_GZD_Dependencies::instance()->woocommerce_version_supports_crud() ) {
 			add_action( 'woocommerce_new_order_item', array( $this, 'set_order_item_meta_crud' ), 0, 3 );
-		else
+		} else {
 			add_action( 'woocommerce_order_add_product', array( $this, 'set_order_meta' ), 0, 3 );
+		}	
 
 		add_filter( 'woocommerce_hidden_order_itemmeta', array( $this, 'set_order_meta_hidden' ), 0 );
 		
@@ -361,7 +362,7 @@ class WC_GZD_Checkout {
 
 	public function set_order_item_meta_crud( $item_id, $item, $order_id ) {
 		if ( 'line_item' === $item->get_type() ) {
-			$this->set_order_meta( $order_id, $item_id, $item->get_product() );
+			$this->set_order_meta( $order_id, $item_id, $item->get_product(), $item->get_quantity(), array() );
 		}
 	}
 
