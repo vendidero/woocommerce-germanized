@@ -73,7 +73,7 @@ class WC_GZD_Product {
 		
 		} else if ( $this->child->is_type( 'variation' ) && in_array( $key, $this->gzd_variation_inherited_meta_data ) ) {
 			
-			$value = wc_gzd_get_crud_data( $this->child, $key ) ? wc_gzd_get_crud_data( $this->child, $key ) : wc_gzd_get_crud_data( wc_get_product( wc_gzd_get_crud_data( $this->child, 'parent_id' ) ), $key );
+			$value = wc_gzd_get_crud_data( $this->child, $key ) ? wc_gzd_get_crud_data( $this->child, $key ) : wc_gzd_get_crud_data( wc_get_product( wc_gzd_get_crud_data( $this->child, 'parent' ) ), $key );
 
 			// Handle meta data keys which can be empty at variation level to cause inheritance
 			if ( '' === $value ) {

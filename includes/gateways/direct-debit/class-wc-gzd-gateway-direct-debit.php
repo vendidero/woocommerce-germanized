@@ -233,8 +233,8 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 				// Add a Single Transaction to the named payment
 				$directDebit->addTransfer( $payment_id, apply_filters( 'woocommerce_gzd_direct_debit_sepa_xml_exporter_transfer_args', array(
 				    'amount'                => $order->get_total(),
-				    'debtorIban'            => $this->maybe_decrypt( wc_gzd_get_crud_data( $order, 'direct_debit_iban' ) ),
-				    'debtorBic'             => $this->maybe_decrypt( wc_gzd_get_crud_data( $order, 'direct_debit_bic' ) ),
+				    'debtorIban'            => $this->clean_whitespaces( $this->maybe_decrypt( wc_gzd_get_crud_data( $order, 'direct_debit_iban' ) ) ),
+				    'debtorBic'             => $this->clean_whitespaces( $this->maybe_decrypt( wc_gzd_get_crud_data( $order, 'direct_debit_bic' ) ) ), 
 				    'debtorName'            => wc_gzd_get_crud_data( $order, 'direct_debit_holder' ),
 				    'debtorMandate'         => $this->get_mandate_id( wc_gzd_get_crud_data( $order, 'id' ) ), date_i18n( "Y-m-d", strtotime( wc_gzd_get_crud_data( $order, 'order_date' ) ) ),
 				    'debtorMandateSignDate' => date_i18n( 'd.m.Y', strtotime( wc_gzd_get_crud_data( $order, 'order_date' ) ) ),
@@ -342,6 +342,10 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 
     }
 
+    public function clean_whitespaces( $str ) {
+    	return preg_replace('/\s+/', '', $str );
+    }
+
     public function set_order_meta( $order_id, $posted ) {
 
     	$order = wc_get_order( $order_id );
@@ -350,8 +354,8 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
     		return;
 
     	$holder 	= ( isset( $_POST[ 'direct_debit_account_holder' ] ) ? wc_clean( $_POST[ 'direct_debit_account_holder' ] ) : '' );
-    	$iban 		= ( isset( $_POST[ 'direct_debit_account_iban' ] ) ? $this->maybe_encrypt( wc_clean( $_POST[ 'direct_debit_account_iban' ] ) ) : '' );
-    	$bic 		= ( isset( $_POST[ 'direct_debit_account_bic' ] ) ? $this->maybe_encrypt( wc_clean( $_POST[ 'direct_debit_account_bic' ] ) ) : '' );
+    	$iban 		= ( isset( $_POST[ 'direct_debit_account_iban' ] ) ? $this->maybe_encrypt( $this->clean_whitespaces( wc_clean( $_POST[ 'direct_debit_account_iban' ] ) ) ) : '' );
+    	$bic 		= ( isset( $_POST[ 'direct_debit_account_bic' ] ) ? $this->maybe_encrypt( $this->clean_whitespaces( wc_clean( $_POST[ 'direct_debit_account_bic' ] ) ) ) : '' );
 
     	update_post_meta( wc_gzd_get_crud_data( $order, 'id' ), '_direct_debit_holder', $holder );
     	update_post_meta( wc_gzd_get_crud_data( $order, 'id' ), '_direct_debit_iban', $iban );

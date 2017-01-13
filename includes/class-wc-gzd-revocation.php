@@ -36,7 +36,7 @@ class WC_GZD_Revocation {
 			'address_title'   => array(
 				'type' 		  => 'select',
 				'label'       => _x( 'Title', 'revocation-form', 'woocommerce-germanized' ),
-				'required' 	  => true,
+				'required' 	  => false,
 				'options'	  => array( 
 					__( 'Mr.', 'woocommerce-germanized' ) => __( 'Mr.', 'woocommerce-germanized' ),
 					__( 'Ms.', 'woocommerce-germanized' ) => __( 'Ms.', 'woocommerce-germanized' )
@@ -55,17 +55,17 @@ class WC_GZD_Revocation {
 			'address_street'  => array(
 				'type' 		  => 'text',
 				'label'       => _x( 'Street', 'revocation-form', 'woocommerce-germanized' ),
-				'required' 	  => true,
+				'required' 	  => false,
 			),
 			'address_postal'  => array(
 				'type' 		  => 'text',
 				'label'       => _x( 'Postal Code', 'revocation-form', 'woocommerce-germanized' ),
-				'required' 	  => true,
+				'required' 	  => false,
 			),
 			'address_city'  => array(
 				'type' 		  => 'text',
 				'label'       => _x( 'City', 'revocation-form', 'woocommerce-germanized' ),
-				'required' 	  => true,
+				'required' 	  => false,
 			),
 			'address_country'  => array(
 				'type' 		  => 'country',

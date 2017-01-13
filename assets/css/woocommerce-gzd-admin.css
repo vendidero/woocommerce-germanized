@@ -191,3 +191,7 @@ table.wc-gzd-tax-example tr th:first-child, table.wc-gzd-tax-example tr td:first
     text-align: center;
     font-weight: 400;
 }
+
+table.form-table .forminp-radio fieldset p {
+	margin-bottom: 1em;
+}

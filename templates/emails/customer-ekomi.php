@@ -1,25 +1,27 @@
 <?php
 /**
- * Customer eKomi review notification
+ * Customer new account email
  *
- * @author Vendidero
- * @version 1.0.0
+ * @author 		WooThemes
+ * @package 	WooCommerce/Templates/Emails
+ * @version     1.6.4
  */
-if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-$base 		= get_option( 'woocommerce_email_base_color' );
-$base_text 	= wc_light_or_dark( $base, '#202020', '#ffffff' );
-$text 		= get_option( 'woocommerce_email_text_color' );
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly
+}
 
 ?>
 
 <?php do_action( 'woocommerce_email_header', $email_heading, $email ); ?>
 
-<p><?php echo sprintf( _x( 'Dear %s %s,', 'ekomi', 'woocommerce-germanized' ), $order->billing_first_name, $order->billing_last_name ); ?></p>
-<p><?php echo sprintf( _x( 'You have recently shopped at %s. Thank you! We would be glad if you spent some time to write a review about your order. To do so please follow follow the link.', 'ekomi', 'woocommerce-germanized' ), get_bloginfo( 'name' ) ); ?></p>
+<p><?php printf( _x( 'Dear %s %s,', 'ekomi', 'woocommerce-germanized' ), wc_gzd_get_crud_data( $order, 'billing_first_name' ), wc_gzd_get_crud_data( $order, 'billing_last_name' ) ); ?></p>
+
+<p><?php printf( _x( 'You have recently shopped at %s. Thank you! We would be glad if you spent some time to write a review about your order. To do so please follow follow the link.', 'ekomi', 'woocommerce-germanized' ), get_bloginfo( 'name' ) ); ?></p>
+
 <table cellspacing="0" cellpadding="0" style="width: 100%; border: none;" border="0">
 	<tr align="center">
-		<td align="center"><a class="email_btn" href="<?php echo esc_url( $order->ekomi_review_link ); ?>" target="_blank" style="text-decoration: none; background-color: <?php echo esc_attr( $base ); ?>; color: <?php echo $base_text;?>; border-radius: 3px !important; padding: font-family:Arial; font-weight:bold; line-height:100%; padding: 0.5rem;"><?php echo _x( 'Rate Order now', 'ekomi', 'woocommerce-germanized' );?></a></td>
+		<td align="center"><a class="wc-button button" href="<?php echo esc_url( wc_gzd_get_crud_data( $order, 'ekomi_review_link' ) ); ?>" target="_blank"><?php echo _x( 'Rate Order now', 'ekomi', 'woocommerce-germanized' );?></a></td>
 	</tr>
 </table>
 

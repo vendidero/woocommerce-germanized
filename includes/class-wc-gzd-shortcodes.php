@@ -67,7 +67,19 @@ class WC_GZD_Shortcodes {
 	}
 
 	public static function gzd_complaints( $atts ) {
-		return wpautop( str_replace( 'http://ec.europa.eu/consumers/odr/', '<a href="http://ec.europa.eu/consumers/odr/" target="_blank">http://ec.europa.eu/consumers/odr/</a>', get_option( 'woocommerce_gzd_complaints_procedure_text' ) ) );
+		$texts = array(
+			'dispute' =>  wc_gzd_get_dispute_resolution_text(),
+		);
+
+		foreach( $texts as $key => $text ) {
+			$texts[ $key ] = wpautop( str_replace( 'http://ec.europa.eu/consumers/odr/', '<a href="http://ec.europa.eu/consumers/odr/" target="_blank">http://ec.europa.eu/consumers/odr/</a>', $text ) );
+		}
+
+		ob_start();
+		wc_get_template( 'global/complaints.php', array( 'dispute_text' => $texts[ 'dispute' ] ) );
+		$return = '<div class="woocommerce woocommerce-gzd woocommerce-gzd-complaints-shortcode">' . ob_get_clean() . '</div>';
+
+		return $return;
 	}
 
 	/**
@@ -77,12 +89,10 @@ class WC_GZD_Shortcodes {
 	 * @return string revocation form html       
 	 */
 	public static function revocation_form( $atts ) {
-		
 		ob_start();
 		wc_get_template( 'forms/revocation-form.php' );
 		$return = '<div class="woocommerce woocommerce-gzd">' . ob_get_clean() . '</div>';
 		return $return;
-	
 	}
 
 	/**

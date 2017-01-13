@@ -25,10 +25,17 @@ function wc_gzd_get_crud_data( $object, $key ) {
 		$key = 'variation_id';
 	}
 
-	if ( 'parent' === $key )
-		$getter .= '_id';
-	else if ( 'product_type' === $key || 'order_type' === $key )
-		$getter = 'get_type';
+	$getter_mapping = array(
+		'parent' => 'parent_id',
+		'completed_date' => 'get_date_completed',
+		'order_date' => 'get_date_created',
+		'product_type' => 'get_type',
+		'order_type' => 'get_type',
+	);
+
+	if ( array_key_exists( $key, $getter_mapping ) ) {
+		$getter = $getter_mapping[ $key ];
+	}
 
 	if ( is_callable( array( $object, $getter ) ) ) {
 		$reflection = new ReflectionMethod( $object, $getter );
@@ -42,7 +49,7 @@ function wc_gzd_get_crud_data( $object, $key ) {
 		$value = $object->get_meta( $key );
 	} else {
 		$key = substr( $key, 0, 1 ) === "_" ? substr( $key, 1 ) : $key;
-		$value = $order->{$key};
+		$value = $object->{$key};
 	}
 
 	return $value;
@@ -57,13 +64,13 @@ function wc_gzd_get_variable_visible_children( $product ) {
 function wc_gzd_get_price_including_tax( $product, $args = array() ) {
 	if ( function_exists( 'wc_get_price_including_tax' ) )
 		return wc_get_price_including_tax( $product, $args );
-	$product->get_price_including_tax( $args[ 'qty' ], $args[ 'price' ] );
+	return $product->get_price_including_tax( $args[ 'qty' ], $args[ 'price' ] );
 }
 
 function wc_gzd_get_price_excluding_tax( $product, $args = array() ) {
 	if ( function_exists( 'wc_get_price_excluding_tax' ) )
 		return wc_get_price_excluding_tax( $product, $args );
-	$product->get_price_excluding_tax( $args[ 'qty' ], $args[ 'price' ] );
+	return $product->get_price_excluding_tax( $args[ 'qty' ], $args[ 'price' ] );
 }
 
 function wc_gzd_get_variation( $parent, $variation ) {

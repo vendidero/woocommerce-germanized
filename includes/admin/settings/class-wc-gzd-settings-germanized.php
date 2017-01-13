@@ -280,15 +280,49 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 
 			array( 'type' => 'sectionend', 'id' => 'legal_pages_options' ),
 
-			array( 'title' => __( 'Complaints', 'woocommerce-germanized' ), 'type' => 'title', 'desc' => sprintf( __( 'Options regarding new EU online dispute resolution platform (OS). Read more about this topic <a href="%s" target="_blank">here</a>.', 'woocommerce-germanized' ), 'http://shop.trustedshops.com/de/rechtstipps/jetzt-handeln-link-auf-eu-online-schlichtungs-plattform-ab-9.1.2016' ), 'id' => 'complaints_options' ),
+			array( 'title' => __( 'Dispute Resolution', 'woocommerce-germanized' ), 'type' => 'title', 'desc' => sprintf( __( 'As with Feb. 1 2017 new regulations regarding alternative dispute resolution take effect. Further information regarding your duty to supply information can be found <a href="%s" target="_blank">here</a>.', 'woocommerce-germanized' ), 'http://shopbetreiber-blog.de/2017/01/05/streitschlichtung-neue-infopflichten-fuer-alle-online-haendler-ab-1-februar/' ), 'id' => 'complaints_options' ),
 
 			array(
-				'title' 	=> __( 'Complaints Procedure Text', 'woocommerce-germanized' ),
-				'desc' 		=> __( 'Customize the text produced by the shortcode [gzd_complaints] to your needs. This text is to be meant to inform your customer about the existance of a platform for dispute settlement provided by the EU. You may place this shortcode within your imprint.', 'woocommerce-germanized' ),
+				'title' 	 => __( 'Dispute Resolution', 'woocommerce-germanized' ),
+				'desc' 		 => __( 'You may select whether you are willing, obliged or not willing to participate in dispute settlement proceeedings before a consumer arbitration board. The corresponding Resolution Text is attached to the [gzd_complaints] shortcode which you should add to your imprint. Trusted Shops advises you to add that text to your Terms & Conditions as well.', 'woocommerce-germanized' ),
+				'desc_tip'	 => true,
+				'id' 		 => 'woocommerce_gzd_dispute_resolution_type',
+				'type' 		 => 'radio',
+				'default'	 => 'none',
+				'options'	 => array(
+					'none'   	=> __( 'Not obliged, not willing', 'woocommerce-germanized' ),
+					'willing'   => __( 'Not obliged, willing', 'woocommerce-germanized' ),
+					'obliged'   => __( 'Obliged', 'woocommerce-germanized' ),
+				),
+			),
+
+			array(
+				'title' 	=> __( 'Resolution Text', 'woocommerce-germanized' ),
+				'desc' 		=> __( 'Adapt this example text regarding alternative dispute resolution to your needs. Text will be added to the [gzd_complaints] Shortcode. You may as well add this text to your terms & conditions.', 'woocommerce-germanized' ),
 				'desc_tip'	=> true,
-				'default'   =>  __( 'Online dispute resolution in accordance with Art. 14 (1) ODR-VO: The european commission provides a platform for online dispute resolution (OS) which is accessible at http://ec.europa.eu/consumers/odr/.', 'woocommerce-germanized' ),
+				'default'   =>  __( 'The european commission provides a platform for online dispute resolution (OS) which is accessible at http://ec.europa.eu/consumers/odr/. We are not obliged nor willing to participate in dispute settlement proceedings before a consumer arbitration board.', 'woocommerce-germanized' ),
 				'css' 		=> 'width:100%; height: 65px;',
-				'id' 		=> 'woocommerce_gzd_complaints_procedure_text',
+				'id' 		=> 'woocommerce_gzd_alternative_complaints_text_none',
+				'type' 		=> 'textarea',
+			),
+
+			array(
+				'title' 	=> __( 'Resolution Text', 'woocommerce-germanized' ),
+				'desc' 		=> __( 'Adapt this example text regarding alternative dispute resolution to your needs. Text will be added to the [gzd_complaints] Shortcode. You may as well add this text to your terms & conditions.', 'woocommerce-germanized' ),
+				'desc_tip'	=> true,
+				'default'   =>  __( 'The european commission provides a platform for online dispute resolution (OS) which is accessible at http://ec.europa.eu/consumers/odr/. Consumers may use this platform for the settlements of their disputes. We are in principle prepared to participate in an extrajudicial arbitration proceeding.', 'woocommerce-germanized' ),
+				'css' 		=> 'width:100%; height: 65px;',
+				'id' 		=> 'woocommerce_gzd_alternative_complaints_text_willing',
+				'type' 		=> 'textarea',
+			),
+
+			array(
+				'title' 	=> __( 'Resolution Text', 'woocommerce-germanized' ),
+				'desc' 		=> __( 'Adapt this example text regarding alternative dispute resolution to your needs. Text will be added to the [gzd_complaints] Shortcode. You may as well add this text to your terms & conditions.', 'woocommerce-germanized' ),
+				'desc_tip'	=> true,
+				'default'   =>  __( 'The european commission provides a platform for online dispute resolution (OS) which is accessible at http://ec.europa.eu/consumers/odr/. Consumers may contact [Name, Address, Website of arbitration board] for the settlements of their disputes. We are obliged to participate in arbitration proceeding before that board.', 'woocommerce-germanized' ),
+				'css' 		=> 'width:100%; height: 65px;',
+				'id' 		=> 'woocommerce_gzd_alternative_complaints_text_obliged',
 				'type' 		=> 'textarea',
 			),
 

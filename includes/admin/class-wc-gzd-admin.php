@@ -298,7 +298,7 @@ class WC_GZD_Admin {
  		wp_update_post(
  			array(
  				'ID' => $page_id,
- 				'post_content' => $page->post_content . "\n<h3>" . __( 'Complaints Procedure', 'woocommerce-germanized' ) . "</h3>\n[gzd_complaints]",
+ 				'post_content' => $page->post_content . "\n[gzd_complaints]",
  			)
  		);
  	}
