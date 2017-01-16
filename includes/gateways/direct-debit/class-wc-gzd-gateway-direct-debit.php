@@ -304,27 +304,27 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
     		'label' => __( 'Account Holder', 'woocommerce-germanized' ),
     		'id'  	=> '_direct_debit_holder',
     		'class' => '',
-			'show'  => true,
+			'show'  => false,
     	);
 
     	$fields[ 'direct_debit_iban' ] = array(
     		'label' => __( 'IBAN', 'woocommerce-germanized' ),
     		'id'  	=> '_direct_debit_iban',
     		'value' => $this->maybe_decrypt( wc_gzd_get_crud_data( $order, 'direct_debit_iban' ) ),
-			'show'  => true,
+			'show'  => false,
     	);
 
     	$fields[ 'direct_debit_bic' ] = array(
     		'label' => __( 'BIC/SWIFT', 'woocommerce-germanized' ),
     		'id'  	=> '_direct_debit_bic',
     		'value' => $this->maybe_decrypt( wc_gzd_get_crud_data( $order, 'direct_debit_bic' ) ),
-			'show'  => true,
+			'show'  => false,
     	);
 
     	$fields[ 'direct_debit_mandate_id' ] = array(
     		'label' => __( 'Mandate Reference ID', 'woocommerce-germanized' ),
     		'id'  	=> '_direct_debit_mandate_id',
-			'show'  => true,
+			'show'  => false,
     	);
 
     	return $fields;

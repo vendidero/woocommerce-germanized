@@ -185,19 +185,18 @@ class WC_GZD_Product {
 	 */
 	public function get_tax_info() {
 		
-		$_tax  = new WC_Tax();
 		$tax_notice = false;
 		
 		if ( $this->is_taxable() ) {
 		
 			$tax_display_mode = get_option( 'woocommerce_tax_display_shop' );
-			$tax_rates  = $_tax->get_rates( $this->get_tax_class() );
+			$tax_rates  = WC_Tax::get_rates( $this->get_tax_class() );
 		
 			if ( ! empty( $tax_rates ) ) {
 		
 				$tax_rates = array_values( $tax_rates );
 				// If is variable or is virtual vat exception dont show exact tax rate
-				if ( $this->is_virtual_vat_exception() || $this->is_type( 'variable' ) )
+				if ( $this->is_virtual_vat_exception() || $this->is_type( 'variable' ) || get_option( 'woocommerce_gzd_hide_tax_rate_shop' ) === 'yes' )
 					$tax_notice = ( $tax_display_mode == 'incl' && ! WC()->customer->is_vat_exempt() ? __( 'incl. VAT', 'woocommerce-germanized' ) : __( 'excl. VAT', 'woocommerce-germanized' ) );
 				else
 					$tax_notice = ( $tax_display_mode == 'incl' && ! WC()->customer->is_vat_exempt() ? sprintf( __( 'incl. %s%% VAT', 'woocommerce-germanized' ), ( wc_gzd_format_tax_rate_percentage( $tax_rates[0][ 'rate' ] ) ) ) : sprintf( __( 'excl. %s%% VAT', 'woocommerce-germanized' ), ( wc_gzd_format_tax_rate_percentage( $tax_rates[0][ 'rate' ] ) ) ) );

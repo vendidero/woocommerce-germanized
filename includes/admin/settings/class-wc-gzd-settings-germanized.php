@@ -812,6 +812,15 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 			),
 
 			array(
+				'title' 	=> __( 'Hide Tax Rate', 'woocommerce-germanized' ),
+				'desc' 		=> __( 'Hide specific tax rate within shop pages.', 'woocommerce-germanized' ),
+				'id' 		=> 'woocommerce_gzd_hide_tax_rate_shop',
+				'default'	=> 'no',
+				'type' 		=> 'checkbox',
+				'desc_tip'	=> __( 'This option will make sure that within shop pages no specific tax rates are shown. Instead only incl. tax or excl. tax notice is shown.', 'woocommerce-germanized' ),
+			),
+
+			array(
 				'title' 	=> __( 'Hide Shipping Costs Notice', 'woocommerce-germanized' ),
 				'desc' 		=> __( 'Select product types for which you might want to disable the shipping costs notice.', 'woocommerce-germanized' ),
 				'desc_tip'	=> true,
