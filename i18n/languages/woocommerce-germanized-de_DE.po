@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce Germanized v1.5.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-12 19:00+0100\n"
-"PO-Revision-Date: 2017-01-12 19:05+0100\n"
+"POT-Creation-Date: 2017-01-16 19:31+0100\n"
+"PO-Revision-Date: 2017-01-16 19:32+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -89,7 +89,7 @@ msgid "l"
 msgstr "l"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/abstracts/abstract-wc-gzd-product.php:201
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/abstracts/abstract-wc-gzd-product.php:200
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/compatibility/class-wc-gzd-compatibility-woocommerce-subscriptions.php:72
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/wc-gzd-cart-functions.php:269
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/woocommerce-germanized.php:804
@@ -97,12 +97,12 @@ msgid "incl. VAT"
 msgstr "inkl. MwSt."
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/abstracts/abstract-wc-gzd-product.php:201
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/abstracts/abstract-wc-gzd-product.php:200
 msgid "excl. VAT"
 msgstr "exkl. MwSt."
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/abstracts/abstract-wc-gzd-product.php:203
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/abstracts/abstract-wc-gzd-product.php:202
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/compatibility/class-wc-gzd-compatibility-woocommerce-subscriptions.php:72
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/wc-gzd-cart-functions.php:269
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/woocommerce-germanized.php:804
@@ -111,7 +111,7 @@ msgid "incl. %s%% VAT"
 msgstr "inkl. %s%% MwSt."
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/abstracts/abstract-wc-gzd-product.php:203
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/abstracts/abstract-wc-gzd-product.php:202
 #, php-format
 msgid "excl. %s%% VAT"
 msgstr "exkl. %s%% MwSt."
@@ -245,11 +245,6 @@ msgstr ""
 "Dieser Inhalt wird während des Bezahlvorganges und in den E-Mails als "
 "Produkt Kurzbeschreibung angezeigt."
 
-# @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:301
-msgid "Complaints Procedure"
-msgstr "Beschwerdeverfahren"
-
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:46
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:44
 msgid "Service"
@@ -279,8 +274,8 @@ msgstr "Angebotspreis Hinweis"
 # @ woocommerce-germanized
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:114
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:74
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:751
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:800
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:742
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:791
 msgid "Product Units"
 msgstr "Produkteinheiten"
 
@@ -469,13 +464,13 @@ msgstr "E-Mails"
 # @ woocommerce-germanized
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:124
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:130
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:98
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:106
 msgid "None"
 msgstr "Keine"
 
 # @ woocommerce-germanized
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:136
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:666
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:657
 msgid "General"
 msgstr "Allgemein"
 
@@ -604,8 +599,8 @@ msgstr "Kaufvertrag"
 
 # @ woocommerce-germanized
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:201
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:551
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:563
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:542
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:554
 #, php-format
 msgid "%sUpgrade to %spro%s%s to unlock this feature and get premium support."
 msgstr ""
@@ -678,93 +673,58 @@ msgstr ""
 "Diese Seite sollte Informationen zu den von dir zur Verfügung gestellten "
 "Versandarten bereitstellen."
 
-# @ woocommerce-germanized
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:283
-msgid "Complaints"
-msgstr "Beschwerden"
-
-# @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:283
-#, php-format
-msgid ""
-"Options regarding new EU online dispute resolution platform (OS). Read more "
-"about this topic <a href=\"%s\" target=\"_blank\">here</a>."
-msgstr ""
-"Optionen im Zusammenhang mit der neuen EU-Online-Schlichtungs-Plattform "
-"(OS). <a href=\"%s\" target=\"_blank\">Hier</a> erfährst du mehr über deine "
-"Pflichten."
-
-# @ woocommerce-germanized
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:286
-msgid "Complaints Procedure Text"
-msgstr "Hinweistext"
-
-# @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:287
-msgid ""
-"Customize the text produced by the shortcode [gzd_complaints] to your needs. "
-"This text is to be meant to inform your customer about the existance of a "
-"platform for dispute settlement provided by the EU. You may place this "
-"shortcode within your imprint."
-msgstr ""
-"Passe den Text des Shortcodes [gzd_complaints] an deine Bedürfnisse an. "
-"Dieser Text soll Verbraucher über die EU-Online-Schlichtungs-Plattform "
-"informieren. Du solltest diesen Shortcode z.B. in deinem Impressum einbinden."
-
-# @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:289
-msgid ""
-"Online dispute resolution in accordance with Art. 14 (1) ODR-VO: The "
-"european commission provides a platform for online dispute resolution (OS) "
-"which is accessible at http://ec.europa.eu/consumers/odr/."
-msgstr ""
-"Online-Streitbeilegung gemäß Art. 14 Abs. 1 ODR-VO: Die Europäische "
-"Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit, die "
-"du unter http://ec.europa.eu/consumers/odr/ findest."
-
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:296
 msgid "Dispute Resolution"
 msgstr "Streitbeilegung"
 
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:297
+# @ woocommerce-germanized
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:283
 #, php-format
 msgid ""
-"As with Feb. 1 2017 new regulations take effect. Further information "
-"regarding alternative dispute resolution can be found <a href=\"%s\" target="
-"\"_blank\">here</a>. You may select whether you are willing, obliged or not "
-"willing to participate in dispute settlement proceeedings before a consumer "
-"arbitration board. The corresponding Resolution Text is attached to the "
-"[gzd_complaints] shortcode. Trusted Shops advises you to add that text to "
-"your Terms & Conditions as well."
+"As with Feb. 1 2017 new regulations regarding alternative dispute resolution "
+"take effect. Further information regarding your duty to supply information "
+"can be found <a href=\"%s\" target=\"_blank\">here</a>."
 msgstr ""
 "Am 01.02.2017 treten neue Regulierungen hinsichtlich der Streitbeilegung in "
-"Kraft. Weiterführende Informationen dazu erhältst du <a href=\"%s\" target="
-"\"_blank\">hier</a>. Wähle aus ob du bereit, nicht bereit oder verpflichtet "
-"bist an einem Streitbeilegungsverfahren teilzunehmen. Der zugehörige "
-"Mustertext wird dir unten angezeigt und an den [gzd_complaints] Shortcode "
-"angehängt. Trusted Shops rät dazu den Text auf in deinen AGB einzufügen."
+"Kraft. Weiterführende Informationen zu deinen Informationspflichten findest "
+"du <a href=\"%s\" target=\"_blank\">hier</a>."
 
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:302
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:287
+msgid ""
+"You may select whether you are willing, obliged or not willing to "
+"participate in dispute settlement proceeedings before a consumer arbitration "
+"board. The corresponding Resolution Text is attached to the [gzd_complaints] "
+"shortcode which you should add to your imprint. Trusted Shops advises you to "
+"add that text to your Terms & Conditions as well."
+msgstr ""
+"Wähle aus ob du bereit, nicht bereit oder verpflichtet bist an einem "
+"Streitbeilegungsverfahren teilzunehmen. Der zugehörige Mustertext wird dir "
+"unten angezeigt und an den [gzd_complaints] Shortcode angehängt, den du in "
+"deinem Impressum platzieren solltest. Trusted Shops rät dazu den Text auf in "
+"deinen AGB einzufügen."
+
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:293
 msgid "Not obliged, not willing"
 msgstr "Nicht verpflichtet, bereit"
 
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:303
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:294
 msgid "Not obliged, willing"
 msgstr "Nicht verpflichtet, bereit"
 
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:304
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:295
 msgid "Obliged"
 msgstr "Verpflichtet"
 
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:309
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:319
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:329
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:300
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:310
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:320
 msgid "Resolution Text"
 msgstr "Streitbeilegung Text"
 
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:310
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:320
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:330
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:301
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:311
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:321
 msgid ""
 "Adapt this example text regarding alternative dispute resolution to your "
 "needs. Text will be added to the [gzd_complaints] Shortcode. You may as well "
@@ -775,7 +735,7 @@ msgstr ""
 "noch in deinen AGB integrieren."
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:312
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:303
 msgid ""
 "The european commission provides a platform for online dispute resolution "
 "(OS) which is accessible at http://ec.europa.eu/consumers/odr/. We are not "
@@ -788,7 +748,7 @@ msgstr ""
 "Verbraucherschlichtungsstelle sind wir nicht verpflichtet und nicht bereit. "
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:322
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:313
 msgid ""
 "The european commission provides a platform for online dispute resolution "
 "(OS) which is accessible at http://ec.europa.eu/consumers/odr/. Consumers "
@@ -800,7 +760,7 @@ msgstr ""
 "sind bereit, an einem außergerichtlichen Schlichtungsverfahren teilzunehmen."
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:332
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:323
 msgid ""
 "The european commission provides a platform for online dispute resolution "
 "(OS) which is accessible at http://ec.europa.eu/consumers/odr/. Consumers "
@@ -816,43 +776,43 @@ msgstr ""
 "Stelle teilzunehmen. Wir werden an einem solchen Verfahren teilnehmen."
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:339
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:330
 msgid "Shortcode Status"
 msgstr "Shortcode Status"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:342
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:333
 msgid "Please choose a page as your imprint first."
 msgstr "Bitte hinterlege zuerst eine Seite als dein Impressum."
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:342
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:333
 msgid "Found"
 msgstr "Eingebunden"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:342
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:333
 msgid "Not found within your imprint"
 msgstr "Nicht in deinem Impressum gefunden"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:342
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:333
 msgid "Append it now"
 msgstr "Jetzt hinzufügen"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:347
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:338
 msgid "Delivery Times"
 msgstr "Lieferzeiten"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:350
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:341
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/views/html-page-status-germanized.php:42
 msgid "Default Delivery Time"
 msgstr "Standard-Lieferzeit"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:351
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:342
 msgid ""
 "This delivery time will be added to every product if no delivery time has "
 "been chosen individually"
@@ -861,17 +821,17 @@ msgstr ""
 "zugeordnet wurde"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:358
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:349
 msgid "Manage Delivery Times"
 msgstr "Lieferzeiten verwalten"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:362
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:353
 msgid "Delivery Time Text"
 msgstr "Lieferzeit Text"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:363
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:354
 msgid ""
 "This text will be used to indicate delivery time for products. Use "
 "{delivery_time} as placeholder."
@@ -880,21 +840,21 @@ msgstr ""
 "{delivery_time} als Platzhalter verwenden."
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:368
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:359
 msgid "Delivery time: {delivery_time}"
 msgstr "Lieferzeit: {delivery_time}"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:373
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:364
 msgid "Sale Price Labels"
 msgstr "Preishinweise"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:376
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:367
 msgid "Default Sale Label"
 msgstr "Streichpreis-Hinweis"
 
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:377
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:368
 msgid ""
 "Choose whether you would like to have a default sale price label to inform "
 "the customer about the regular price (e.g. Recommended Retail Price)."
@@ -903,16 +863,16 @@ msgstr ""
 "den Kunden auf den alten Preis (bei reduzierten Produkten, sog. "
 "Streichpreis) hinweist (z.B. UVP)."
 
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:384
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:396
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:375
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:387
 msgid "Manage Price Labels"
 msgstr "Preishinweise verwalten"
 
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:388
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:379
 msgid "Default Sale Regular Label"
 msgstr "Angebotspreis-Hinweis"
 
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:389
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:380
 msgid ""
 "Choose whether you would like to have a default sale price regular label to "
 "inform the customer about the sale price (e.g. New Price)."
@@ -922,17 +882,17 @@ msgstr ""
 "hinweist (z.B. Unser neuer Preis)."
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:402
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:393
 msgid "Shipping Costs"
 msgstr "Versandkosten"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:405
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:396
 msgid "Shipping Costs Text"
 msgstr "Versandkosten Text"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:406
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:397
 msgid ""
 "This text will be used to inform the customer about shipping costs. Use "
 "{link}{/link} to insert link to shipping costs page."
@@ -942,17 +902,17 @@ msgstr ""
 "zur Versandkosten-Seite einzufügen."
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:411
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:402
 msgid "plus {link}Shipping Costs{/link}"
 msgstr "zzgl. {link}Versandkosten{/link}"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:415
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:406
 msgid "Free Shipping Text"
 msgstr "Kostenloser Versand Text"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:416
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:407
 msgid ""
 "This text will be used to inform the customer about free shipping. Leave "
 "empty to disable notice. Use {link}{/link} to insert link to shipping costs "
@@ -963,17 +923,17 @@ msgstr ""
 "Versandkosten-Seite einzufügen."
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:425
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:416
 msgid "Shipping Costs Tax"
 msgstr "Steuerberechnung"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:426
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:417
 msgid "Enable better taxation for shpping costs?"
 msgstr "Genauere Steuerberechnung für Versandkosten aktivieren?"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:430
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:421
 #, php-format
 msgid ""
 "By choosing this option shipping cost taxation will be calculated based on "
@@ -987,18 +947,18 @@ msgstr ""
 "Bruttobeträge. Hier ein kleines Beispiel: %s"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:434
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:456
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:425
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:447
 msgid "Force Tax Calculation"
 msgstr "Steuerberechnung erzwingen"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:435
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:426
 msgid "Force shipping costs tax calculation for every method?"
 msgstr "Erzwinge die Besteuerung für Versandkosten für jede Versandart?"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:439
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:430
 msgid ""
 "This option will overwrite settings for each individual shipping method to "
 "force tax calculation (instead of only calculating tax for those methods "
@@ -1008,22 +968,22 @@ msgstr ""
 "Versandarten und erzwingt die Steuerberechnung."
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:444
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:435
 msgid "Fees"
 msgstr "Gebühren"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:447
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:438
 msgid "Fee Tax"
 msgstr "Steuerberechnung"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:448
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:439
 msgid "Enable better taxation for fees?"
 msgstr "Genauere Steuerberechnung für Gebühren aktivieren?"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:452
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:443
 msgid ""
 "By choosing this option fee taxation will be calculated based on tax rates "
 "within cart. See shipping costs taxation for more information."
@@ -1034,12 +994,12 @@ msgstr ""
 "Nettobeträge in Bruttobeträge an."
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:457
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:448
 msgid "Force fee tax calculation for every fee?"
 msgstr "Berechnung der Steuern für Gebühren erzwingen?"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:461
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:452
 msgid ""
 "This option will overwrite settings for each individual fee to force tax "
 "calculation (instead of only calculating tax for those fees which are "
@@ -1049,28 +1009,28 @@ msgstr ""
 "Steuerberechnung."
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:466
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:457
 msgid "Customers"
 msgstr "Kunden"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:469
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:460
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:568
 msgid "Checkbox"
 msgstr "Checkbox"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:470
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:461
 msgid "Add a checkbox to customer registration form."
 msgstr "Füge eine Checkbox zum Formular für die Kundenregistrierung hinzu."
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:477
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:468
 msgid "Checkbox text"
 msgstr "Checkbox Text"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:478
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:469
 msgid ""
 "Choose a Plain Text which will be shown as checkbox text for customer "
 "account creation. Use {term_link}{/term_link}, {data_security_link}{/"
@@ -1084,7 +1044,7 @@ msgstr ""
 "Hinweisseiten."
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:480
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:471
 msgid ""
 "Yes, I’d like create a new account and have read and understood the "
 "{data_security_link}data privacy statement{/data_security_link}."
@@ -1093,19 +1053,19 @@ msgstr ""
 "{data_security_link}Datenschutzerklärung{/data_security_link}."
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:487
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:478
 msgid "Checkout"
 msgstr "Kasse"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:488
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:479
 msgid ""
 "Replace default WooCommerce text regarding account creation during checkout."
 msgstr ""
 "Ersetze den WooCommerce Text (Kundenkonto erstellen?) durch den o.g. Hinweis."
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:489
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:480
 msgid ""
 "Use the text from above instead of the default WooCommerce text regarding "
 "account creation during checkout. This checkbox is only show if you have "
@@ -1117,17 +1077,17 @@ msgstr ""
 "zulässt."
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:496
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:487
 msgid "Customer Double Opt In"
 msgstr "Double Opt-In"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:497
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:488
 msgid "Enable customer double opt in on registration?"
 msgstr "Double Opt-In Verfahren für Kundenkonten aktivieren?"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:498
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:489
 #, php-format
 msgid ""
 "If customer chooses to create a customer account an email with an activation "
@@ -1141,15 +1101,15 @@ msgstr ""
 "Verfahren ist laut Amtsgericht Berlin Pankow/Weißensee notwendig. Mehr "
 "Informationen findest du <a href=\"%s\" target=\"_blank\">hier</a>."
 
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:505
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:496
 msgid "Disable Login and Checkout"
 msgstr "Login und Checkout"
 
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:506
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:497
 msgid "Disable login and checkout for unactivated customers."
 msgstr "Deaktiviere den Login und Checkout für inaktive Kunden."
 
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:507
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:498
 msgid ""
 "Customers that did not click on the activation link will not be able to "
 "complete checkout nor login to their account."
@@ -1159,12 +1119,12 @@ msgstr ""
 "werden."
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:514
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:505
 msgid "Delete Unactivated After"
 msgstr "Unaktivierte löschen nach"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:515
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:506
 msgid ""
 "This will make sure unactivated customer accounts will be deleted after X "
 "days. Set to 0 if you don't want to automatically delete unactivated "
@@ -1175,23 +1135,23 @@ msgstr ""
 "setze den Wert auf 0."
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:516
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:507
 msgid "days"
 msgstr "Tagen"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:525
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:516
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/wc-gzd-core-functions.php:52
 msgid "Right of Recission"
 msgstr "Widerrufsrecht"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:528
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:519
 msgid "Revocation Address"
 msgstr "Widerruf richten an"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:529
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:520
 msgid ""
 "Type in an address, telephone/telefax number, email address which is to be "
 "used as revocation address"
@@ -1200,18 +1160,18 @@ msgstr ""
 "die deine Kunden ihren Widerruf richten sollen"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:538
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:529
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/views/html-page-status-germanized.php:81
 msgid "Virtual VAT"
 msgstr "USt. Änderung 2015"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:541
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:532
 msgid "Enable Virtual VAT"
 msgstr "USt. Anpassung aktivieren"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:542
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:533
 msgid ""
 "Enable if you want to charge your customer's countries' VAT for virtual "
 "products."
@@ -1219,7 +1179,7 @@ msgstr ""
 "Für virtuelle Produkte den USt.-Satz des Dienstleistungsempfängers berechnen."
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:546
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:537
 #, php-format
 msgid ""
 "New EU VAT rule applies on 01.01.2015. Make sure that every digital or "
@@ -1242,35 +1202,35 @@ msgstr ""
 "dazu findest du <a href=\"%s\" target=\"_blank\">hier</a>."
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:551
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:542
 msgctxt "invoices"
 msgid "Invoices"
 msgstr "Rechnungen"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:563
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:554
 msgid "VAT"
 msgstr "Umsatzsteuer"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:598
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:589
 #, php-format
 msgid "Attach %s"
 msgstr "%s"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:599
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:590
 #, php-format
 msgid "Attach %s to the following email templates"
 msgstr "%s an die folgenden E-Mail Templates anfügen"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:612
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:603
 msgid "E-Mails"
 msgstr "E-Mails"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:612
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:603
 msgid ""
 "Use drag & drop to customize attachment order. Don't forget to save your "
 "changes."
@@ -1279,12 +1239,12 @@ msgstr ""
 "beeinflussen und speichere anschließend deine Änderungen."
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:629
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:620
 msgid "Email Attachment Options"
 msgstr "PDF Anhang"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:629
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:620
 #, php-format
 msgid ""
 "Want to attach automatically generated PDF files to emails instead of plain "
@@ -1294,27 +1254,27 @@ msgstr ""
 "%sUpgrade zur %spro%s Version%s"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:652
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:643
 msgid "Downloadable Product"
 msgstr "Herunterladbares Produkt"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:653
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:644
 msgid "Virtual Product"
 msgstr "Virtuelles Produkt"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:669
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:660
 msgid "Add to Cart"
 msgstr "Zum Warenkorb Button"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:670
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:661
 msgid "Show add to cart button on listings?"
 msgstr "Den zum Warenkorb Button in Produktlisten darstellen?"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:674
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:665
 msgid ""
 "unset this option if you don't want to show the add to cart button within "
 "the product listings"
@@ -1323,18 +1283,18 @@ msgstr ""
 "von Produktauflistungen darstellen möchten"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:678
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:669
 msgid "Link to Details"
 msgstr "Verlinkung zu Produktdetails"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:679
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:670
 msgid ""
 "Want to link to product details page instead of add to cart within listings?"
 msgstr "Zum Warenkorb Button mit Button zur Produktdetail-Seite ersetzen?"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:683
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:674
 msgid ""
 "Decide whether you like to link to your product's details page instead of "
 "displaying an add to cart button within product listings."
@@ -1344,17 +1304,17 @@ msgstr ""
 "diese Option."
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:687
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:678
 msgid "Product Details Text"
 msgstr "Produktdetails Text"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:689
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:680
 msgid "Details"
 msgstr "Details"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:691
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:682
 msgid ""
 "If you have chosen to link to product details page instead of add to cart "
 "URL you may want to change the button text."
@@ -1364,11 +1324,11 @@ msgstr ""
 "einen Button-Text vergeben."
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:696
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:687
 msgid "Digital Delivery Time Text"
 msgstr "Lieferzeit Digital"
 
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:700
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:691
 msgid ""
 "Enter a text which will be shown as digital delivery time text (replacement "
 "for default digital time on digital products)."
@@ -1378,68 +1338,86 @@ msgstr ""
 "lassen."
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:705
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:696
 msgid "Notice Footer"
 msgstr "Hinweise im Footer"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:706
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:697
 msgid "Show a global VAT notice within footer"
 msgstr "Einen seitenübergreifenden Hinweis bzgl. der MwSt. im Footer einfügen."
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:714
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:705
 msgid "Show a global sale price notice within footer"
 msgstr ""
 "Einen seitenübergreifenden Hinweis bzgl. reduzierter Preise im Footer "
 "einfügen."
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:723
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:714
 msgid "Products"
 msgstr "Produkt"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:726
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:717
 msgid "Show within Product Listings"
 msgstr "In Produktlisten"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:727
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:776
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:718
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:767
 msgid "Shipping Costs notice"
 msgstr "Versandkosten-Hinweis"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:735
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:784
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:726
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:775
 msgid "Tax Info"
 msgstr "MwSt. Hinweis"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:743
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:792
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:734
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:783
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:847
 msgid "Base Price"
 msgstr "Grundpreis"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:759
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:808
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:750
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:799
 msgid "Delivery Time Notice"
 msgstr "Lieferzeiten-Hinweis"
 
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:767
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:816
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:758
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:807
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-post-types.php:93
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-post-types.php:95
 msgid "Price Labels"
 msgstr "Preishinweise"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:775
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:766
 msgid "Show on Product Detail Page"
 msgstr "Auf der Produktseite"
+
+# @ woocommerce-germanized
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:815
+msgid "Hide Tax Rate"
+msgstr "Steuersatz verstecken"
+
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:816
+msgid "Hide specific tax rate within shop pages."
+msgstr "Entferne die Anzeige des konkreten Steuersatzes im Shop."
+
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:820
+msgid ""
+"This option will make sure that within shop pages no specific tax rates are "
+"shown. Instead only incl. tax or excl. tax notice is shown."
+msgstr ""
+"Diese Option stellt sicher, dass auf Shop-Seiten für Produkte der spezielle "
+"Steuersatz im MwSt.-Hinweis nicht auftaucht. Stattdessen steht dort inkl. "
+"bzw. exkl. MwSt."
 
 # @ woocommerce-germanized
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:824
@@ -2897,25 +2875,25 @@ msgid "%s [new]"
 msgstr "%s [neu]"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-ajax.php:79
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-ajax.php:82
 msgctxt "revocation-form"
 msgid "is not a valid email address."
 msgstr "ist leider keine valide E-Mail Adresse."
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-ajax.php:82
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-ajax.php:85
 msgctxt "revocation-form"
 msgid "Please enter a valid postcode/ZIP"
 msgstr "Bitte gib eine echte Postleitzahl ein"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-ajax.php:85
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-ajax.php:88
 msgctxt "revocation-form"
 msgid "is not valid."
 msgstr "ist leider nicht korrekt."
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-ajax.php:102
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-ajax.php:108
 msgctxt "revocation-form"
 msgid ""
 "Thank you. We have received your Revocation Request. You will receive a "
@@ -2978,43 +2956,43 @@ msgid "eKomi Customer"
 msgstr "eKomi Kundenbewertung"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-ekomi.php:411
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-ekomi.php:391
 msgctxt "ekomi"
 msgid "Ekomi Integration"
 msgstr "eKomi Integration"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-ekomi.php:414
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-ekomi.php:394
 msgctxt "ekomi"
 msgid "Shop ID"
 msgstr "Shop ID"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-ekomi.php:415
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-ekomi.php:395
 msgctxt "ekomi"
 msgid "Insert your Shop ID here."
 msgstr "Füge hier deine Shop ID ein."
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-ekomi.php:423
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-ekomi.php:403
 msgctxt "ekomi"
 msgid "Link to Certificate"
 msgstr "Link zum Shop-Zertifikat"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-ekomi.php:424
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-ekomi.php:404
 msgctxt "ekomi"
 msgid "Insert the link to your Certificate"
 msgstr "Füge hier den Link zu deinem Shop-Zertifikat ein"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-ekomi.php:432
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-ekomi.php:412
 msgctxt "ekomi"
 msgid "Partner ID"
 msgstr "Partner ID"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-ekomi.php:433
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-ekomi.php:413
 msgctxt "ekomi"
 msgid ""
 "Insert your Partner ID here (you may find that ID on your certificate "
@@ -3024,13 +3002,13 @@ msgstr ""
 "Zertifikat-Seite)"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-ekomi.php:441
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-ekomi.php:421
 msgctxt "ekomi"
 msgid "Interface ID"
 msgstr "Interface ID"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-ekomi.php:442
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-ekomi.php:422
 msgctxt "ekomi"
 msgid "Insert your Interface ID here."
 msgstr ""
@@ -3038,13 +3016,13 @@ msgstr ""
 "Kundenbereich)"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-ekomi.php:450
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-ekomi.php:430
 msgctxt "ekomi"
 msgid "Interface Password"
 msgstr "Interface Password"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-ekomi.php:451
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-ekomi.php:431
 msgctxt "ekomi"
 msgid "Insert your Interface Password here."
 msgstr ""
@@ -3052,13 +3030,13 @@ msgstr ""
 "Kundenbereich)"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-ekomi.php:459
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-ekomi.php:439
 msgctxt "ekomi"
 msgid "Days until Email"
 msgstr "Tage bis E-Mail Erinnerung"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-ekomi.php:460
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-ekomi.php:440
 msgctxt "ekomi"
 msgid ""
 "Number of days between an order being marked as completed and review email "
@@ -3069,7 +3047,7 @@ msgstr ""
 "den Kunden"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-ekomi.php:475
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/class-wc-gzd-ekomi.php:455
 msgctxt "ekomi"
 msgid "eKomi Options"
 msgstr "eKomi"
@@ -4074,30 +4052,40 @@ msgstr ""
 "Aktiviere die Zahlungsart nur dann, wenn der Kunde bereits eine Bestellung "
 "erfolgreich abgeschlossen hat."
 
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:50
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:45
 msgctxt "trusted-shops"
 msgid "GTIN"
 msgstr "GTIN"
 
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:46
+msgctxt "trusted-shops"
+msgid "Brand"
+msgstr "Marke"
+
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:47
+msgctxt "trusted-shops"
+msgid "MPN"
+msgstr "MPN"
+
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:87
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:95
 msgctxt "trusted-shops"
 msgid "Trusted Shops Options"
 msgstr "Trusted Shops"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:109
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:117
 msgctxt "trusted-shops"
 msgid "Trusted Shops Integration"
 msgstr "Trusted Shops Integration"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:112
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:120
 msgctxt "trusted-shops"
 msgid "Trusted Shops ID"
 msgstr "Trusted Shops ID"
 
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:113
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:121
 msgctxt "trusted-shops"
 msgid ""
 "The Trusted Shops ID is a unique identifier for your shop. You can find your "
@@ -4106,28 +4094,28 @@ msgstr ""
 "Die Trusted Shops ID identifiziert Ihren Shop eindeutig bei Trusted Shops. "
 "Sie wird Ihnen in der Bestätigungsmail Ihrer Anmeldung zugesendet"
 
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:121
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:129
 msgctxt "trusted-shops"
 msgid "Mode"
 msgstr "Modus"
 
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:126
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:134
 msgctxt "trusted-shops"
 msgid "Standard Mode"
 msgstr "Standard Modus"
 
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:127
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:135
 msgctxt "trusted-shops"
 msgid "Expert Mode"
 msgstr "Experten Modus"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:134
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:142
 msgctxt "trusted-shops"
 msgid "Configure your Trustbadge"
 msgstr "Konfiguriere dein Trustbadge"
 
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:134
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:142
 #, php-format
 msgctxt "trusted-shops"
 msgid ""
@@ -4137,34 +4125,34 @@ msgstr ""
 "In unserem Integration Center findest du eine Schritt-für-Schritt Anleitung. "
 "<a href=\"%s\" target=\"_blank\">Klicke hier</a>."
 
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:137
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:145
 msgctxt "trusted-shops"
 msgid "Variant"
 msgstr "Variante"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:142
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:150
 msgctxt "trusted-shops"
 msgid "Display Trustbadge without review stars"
 msgstr "Trustbadge ohne Bewertungssterne anzeigen"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:143
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:151
 msgctxt "trusted-shops"
 msgid "Display Trustbadge with review stars"
 msgstr "Trustbadge mit Bewertungssternen anzeigen"
 
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:144
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:152
 msgctxt "trusted-shops"
 msgid "Don’t show Trustbadge"
 msgstr "Trustbadge ausblenden"
 
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:150
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:158
 msgctxt "trusted-shops"
 msgid "Y-Offset"
 msgstr "Y-Offset"
 
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:151
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:159
 msgctxt "trusted-shops"
 msgid ""
 "Adjust the y-axis position of your Trustbadge from 0-250 (pixel) vertically "
@@ -4173,20 +4161,20 @@ msgstr ""
 "Wähle einen Abstand für das Trustbadge von 0-250px vom rechten unteren Rand "
 "deines Shops."
 
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:154
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:209
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:241
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:162
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:217
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:249
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:257
 msgid "px"
 msgstr "px"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:160
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:168
 msgctxt "trusted-shops"
 msgid "Trustbadge code"
 msgstr "Trustbadge Code"
 
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:164
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:172
 msgctxt "trusted-shops"
 msgid ""
 "Use shortcodes e.g. {variant} to dynamically insert your options. You may of "
@@ -4196,25 +4184,25 @@ msgstr ""
 "Du kannst die Shortcodes natürlich durch statischen Code ersetzen."
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:171
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:179
 msgctxt "trusted-shops"
 msgid "Configure Product Reviews"
 msgstr "Konfiguriere deine Produktbewertungen"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:174
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:182
 msgctxt "trusted-shops"
 msgid "Product Reviews"
 msgstr "Produktbewertungen"
 
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:175
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:183
 msgctxt "trusted-shops"
 msgid ""
 "Collect Product Reviews. This options replaces default WooCommerce Reviews."
 msgstr ""
 "Produktbewertungen sammeln. Ersetzt die WooCommerce Produktbewertungen."
 
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:176
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:184
 msgctxt "trusted-shops"
 msgid ""
 "More Traffic, less returns: Make sure to unlock unlimited Product Reviews in "
@@ -4224,68 +4212,68 @@ msgstr ""
 "deinem Trusted Shops Paket frei."
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:183
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:191
 msgctxt "trusted-shops"
 msgid "Product Review Sticker"
 msgstr "Im Shop"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:184
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:192
 msgctxt "trusted-shops"
 msgid "Show Product Reviews on Product Detail page on Reviews tab."
 msgstr ""
 "Produktbewertungen auf der Produktseite im Reiter „Produktbewertungen“ "
 "anzeigen"
 
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:191
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:199
 msgctxt "trusted-shops"
 msgid "Border Color"
 msgstr "Rahmenfarbe"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:198
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:230
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:206
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:238
 msgctxt "trusted-shops"
 msgid "Star Color"
 msgstr "Farbe der Sterne"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:205
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:237
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:213
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:245
 msgctxt "trusted-shops"
 msgid "Star Size"
 msgstr "Größe der Sterne"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:214
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:222
 msgctxt "trusted-shops"
 msgid "Product Sticker Code"
 msgstr "Produktbewertungen Code"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:222
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:230
 msgctxt "trusted-shops"
 msgid "Product Review Stars"
 msgstr "Produktbewertungssterne"
 
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:223
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:231
 msgctxt "trusted-shops"
 msgid "Show Star ratings on Product Detail Page below your Product Name."
 msgstr ""
 "Produktbewertungen auf der Produktdetailseite unter dem Produktnamen "
 "anzeigen."
 
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:246
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:254
 msgctxt "trusted-shops"
 msgid "Font Size"
 msgstr "Schriftgröße"
 
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:255
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:263
 msgctxt "trusted-shops"
 msgid "GTIN Attribute"
 msgstr "GTIN Attribut"
 
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:256
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:264
 #, php-format
 msgctxt "trusted-shops"
 msgid ""
@@ -4301,32 +4289,73 @@ msgstr ""
 "möchtest, benötigt Google die GTIN. Hier kannst du Produktattribute "
 "auswählen, die du selbst unter <a href=\"%s\">hier</a> erstellt hast."
 
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:274
+msgctxt "trusted-shops"
+msgid "Brand Attribute"
+msgstr "Marken Attribut"
+
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:275
+#, php-format
+msgctxt "trusted-shops"
+msgid ""
+"This is the brand name of the product. By setting this variable you can "
+"improve your data analysis possibilities. If you create individual products "
+"and do not have a GTIN, you can pass the brand name along with the MPN to "
+"use Google Integration. Please choose from the product attributes which you "
+"have manually customized <a href=\"%s\">here</a>."
+msgstr ""
+"Markenname des Produkts. Durch Übergeben dieser Variablen verbessern Sie "
+"Ihre Analysemöglichkeiten. Wenn sie individuelle Produkte herstellen und "
+"keine GTIN haben, können Sie den Markennamen zusammen mit der MPN übergeben, "
+"um die Google Integration zu nutzen. Hier kannst du Produktattribute "
+"auswählen, die du selbst unter <a href=\"%s\">hier</a> erstellt hast."
+
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:285
+msgctxt "trusted-shops"
+msgid "MPN Attribute"
+msgstr "MPN Attribut"
+
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:286
+#, php-format
+msgctxt "trusted-shops"
+msgid ""
+"Number that associates the product to its manufacturer. If you create "
+"individual products and do not have a GTIN, you can pass the MPN along with "
+"the brand name to use Google Integration. Please choose from the product "
+"attributes which you have manually customized <a href=\"%s\">here</a>."
+msgstr ""
+"Kennzahl, die das Produkt eindeutig einem bestimmten Hersteller zuordnet. "
+"Wenn sie individuelle Produkte herstellen und keine GTIN haben, können Sie "
+"die MPN zusammen mit dem Markennamen übergeben, um die Google Integration zu "
+"nutzen.Hier kannst du Produktattribute auswählen, die du selbst unter <a "
+"href=\"%s\">hier</a> erstellt hast."
+
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:266
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:296
 msgctxt "trusted-shops"
 msgid "Product Review Code"
 msgstr "Produktbewertungen Code"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:275
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:305
 msgctxt "trusted-shops"
 msgid "Additional Options"
 msgstr "Zusätzliche Optionen"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:278
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:308
 msgctxt "trusted-shops"
 msgid "Review Widget"
 msgstr "Widget"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:279
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:309
 msgctxt "trusted-shops"
 msgid "Enable Review Widget"
 msgstr "Kundenbewertungswidget aktiveren"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:280
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:310
 #, php-format
 msgctxt "trusted-shops"
 msgid ""
@@ -4338,19 +4367,19 @@ msgstr ""
 "deine Widgets zuweisen."
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:288
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:318
 msgctxt "trusted-shops"
 msgid "Rich Snippets"
 msgstr "Rich Snippets"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:289
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:319
 msgctxt "trusted-shops"
 msgid "Enable Rich Snippets Widget."
 msgstr "Rich Snippets Widget aktivieren"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:290
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:320
 msgctxt "trusted-shops"
 msgid ""
 "This option will update your reviews received via Trusted Shops once per day "
@@ -4360,13 +4389,13 @@ msgstr ""
 "als Rich Snippets im Shop als Widget verfügbar sind. "
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:304
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:334
 msgctxt "trusted-shops"
 msgid "Review Reminder"
 msgstr "Bewertungserinnerung"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:305
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:335
 msgctxt "trusted-shops"
 msgid "Send a one-time email review reminder to your customers."
 msgstr ""
@@ -4374,13 +4403,13 @@ msgstr ""
 "senden."
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:313
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:343
 msgctxt "trusted-shops"
 msgid "Days until reminder"
 msgstr "Tage bis zur Erinnerung"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:314
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:344
 msgctxt "trusted-shops"
 msgid ""
 "Decide how many days after an order the email review reminder will be sent."
@@ -4389,13 +4418,13 @@ msgstr ""
 "wurde) bis zur E-Mail Erinnerung an den Kunden."
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:330
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:360
 msgctxt "trusted-shops"
 msgid "Assign payment methods"
 msgstr "Zahlungsarten zuweisen"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:365
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:395
 #, php-format
 msgctxt "trusted-shops"
 msgid ""
@@ -4406,18 +4435,18 @@ msgstr ""
 "Zahlungsarten aus."
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:387
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:417
 msgctxt "trusted-shops"
 msgid "About Trusted Shops"
 msgstr "Über Trusted Shops"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:389
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:419
 msgctxt "trusted-shops"
 msgid "Get your account"
 msgstr "Erstelle deinen Account"
 
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:391
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:421
 msgctxt "trusted-shops"
 msgid ""
 "Use additional options to customize your Trusted Shops Integration or use "
@@ -4426,24 +4455,24 @@ msgstr ""
 "Hier kannst du deine Trusted Shops Integration detaillierter konfigurieren "
 "oder den neuesten Code einbinden:"
 
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:393
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:423
 msgctxt "trusted-shops"
 msgid "Place your Trustbadge wherever you want"
 msgstr "Platziere dein Trustbadge wo immer du möchtest"
 
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:394
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:424
 msgctxt "trusted-shops"
 msgid "Deactivate mobile use"
 msgstr "Deaktiviere die mobile Anzeige"
 
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:395
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:425
 msgctxt "trusted-shops"
 msgid "Jump from your Product Reviews stars directly to your Product Reviews"
 msgstr ""
 "Springe durch einen Klick von deinen Produktbewertungssternen direkt zu "
 "deinen Produktbewertungen"
 
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:397
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:427
 #, php-format
 msgctxt "trusted-shops"
 msgid ""
@@ -4456,43 +4485,43 @@ msgstr ""
 "a> oder von <a href=\"%s\" target=\"_blank\">Produktbewertungen</a>."
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:519
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:549
 msgctxt "trusted-shops"
 msgid "Review Collector"
 msgstr "Review Collector"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:524
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:554
 msgctxt "trusted-shops"
 msgid "Export customer data"
 msgstr "Bestellungen exportieren"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:528
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:558
 msgctxt "trusted-shops"
 msgid "30 days"
 msgstr "30 Tage"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:529
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:559
 msgctxt "trusted-shops"
 msgid "60 days"
 msgstr "60 Tage"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:530
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:560
 msgctxt "trusted-shops"
 msgid "90 days"
 msgstr "90 Tage"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:532
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:562
 msgctxt "trusted-shops"
 msgid "Start export"
 msgstr "Export starten"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:533
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:563
 #, php-format
 msgctxt "trusted-shops"
 msgid ""
@@ -4687,7 +4716,7 @@ msgid "Dear %s %s,"
 msgstr "Sehr geehrte(r) %s %s,"
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/templates/emails/customer-ekomi.php:19
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/templates/emails/customer-ekomi.php:20
 #: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/templates/emails/plain/customer-ekomi.php:21
 #, php-format
 msgctxt "ekomi"
@@ -4701,7 +4730,7 @@ msgstr ""
 "dies nun zu tun, klicke bitte auf den nachfolgenden Link."
 
 # @ woocommerce-germanized
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/templates/emails/customer-ekomi.php:22
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/templates/emails/customer-ekomi.php:24
 msgctxt "ekomi"
 msgid "Rate Order now"
 msgstr "Einkauf jetzt bewerten"
@@ -4841,7 +4870,7 @@ msgctxt "revocation-form"
 msgid "Forward Revocation"
 msgstr "Widerruf erklären"
 
-#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/templates/global/complaints.php:14
+#: /Users/dennis/Documents/localhost/vendidero/wp-content/plugins/woocommerce-germanized/templates/global/complaints.php:12
 msgid ""
 "Alternative Dispute Resolution in accordance with Art. 14 (1) ODR-VO and § "
 "36 VSBG:"
