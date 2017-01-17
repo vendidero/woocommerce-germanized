@@ -41,8 +41,8 @@ $order = wc_get_order( $order_id );
 				<span class="tsCheckoutProductName"><?php echo get_the_title( wc_gzd_get_crud_data( $product, 'id' ) ); ?></span>
 				<span class="tsCheckoutProductSKU"><?php echo ( $product->get_sku() ? $product->get_sku() : wc_gzd_get_crud_data( $product, 'id' ) ); ?></span>
 				<span class="tsCheckoutProductGTIN"><?php echo apply_filters( 'woocommerce_gzd_trusted_shops_product_gtin', $product->get_attribute( $gtin_attribute ), $product ); ?></span>
-				<span class="tsCheckoutProductMPN"><?php echo apply_filters( 'woocommerce_gzd_trusted_shops_product_brand', $product->get_attribute( $brand_attribute ), $product ); ?></span>
-				<span class="tsCheckoutProductBrand"><?php echo apply_filters( 'woocommerce_gzd_trusted_shops_product_mpn', $product->get_attribute( $mpn_attribute ), $product ); ?></span>
+				<span class="tsCheckoutProductBrand"><?php echo apply_filters( 'woocommerce_gzd_trusted_shops_product_brand', $product->get_attribute( $brand_attribute ), $product ); ?></span>
+				<span class="tsCheckoutProductMPN"><?php echo apply_filters( 'woocommerce_gzd_trusted_shops_product_mpn', $product->get_attribute( $mpn_attribute ), $product ); ?></span>
  			</span>
 		<?php endforeach; ?>
 	<?php endif; ?>
