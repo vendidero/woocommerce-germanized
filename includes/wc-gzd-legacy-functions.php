@@ -26,7 +26,7 @@ function wc_gzd_get_crud_data( $object, $key ) {
 	}
 
 	$getter_mapping = array(
-		'parent' => 'parent_id',
+		'parent' => 'get_parent_id',
 		'completed_date' => 'get_date_completed',
 		'order_date' => 'get_date_created',
 		'product_type' => 'get_type',
