@@ -53,7 +53,7 @@ class WC_GZD_Checkout {
 		if ( WC_GZD_Dependencies::instance()->woocommerce_version_supports_crud() ) {
 			add_action( 'woocommerce_new_order_item', array( $this, 'set_order_item_meta_crud' ), 0, 3 );
 		} else {
-			add_action( 'woocommerce_order_add_product', array( $this, 'set_order_meta' ), 0, 3 );
+			add_action( 'woocommerce_order_add_product', array( $this, 'set_order_meta' ), 0, 5 );
 		}	
 
 		add_filter( 'woocommerce_hidden_order_itemmeta', array( $this, 'set_order_meta_hidden' ), 0 );
