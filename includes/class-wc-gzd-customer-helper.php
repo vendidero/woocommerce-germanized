@@ -59,10 +59,20 @@ class WC_GZD_Customer_Helper {
 				add_action( 'woocommerce_checkout_init', array( $this, 'disable_signup' ), 10, 1 );
 				// Remove the checkout signup cookie if customer logs out
 				add_action( 'wp_logout', array( $this, 'delete_checkout_signup_cookie' ) );
+				// WC Social Login comp
+				add_filter( 'wc_social_login_set_auth_cookie', array( $this, 'social_login_activation_check' ), 10, 2 );
 			}
 
 		}
 
+	}
+
+	public function social_login_activation_check( $message, $user ) {
+		$user_id = $user->ID;
+		if ( ! wc_gzd_is_customer_activated( $user_id ) ) {
+			return __( 'Please activate your account through clicking on the activation link received via email.', 'woocommerce-germanized' );
+		}
+		return $message;
 	}
 
 	public function profile_field_title( $fields ) {
