@@ -235,7 +235,7 @@ function wc_gzd_cart_totals_order_total_html() {
  * @return void
  */
 function wc_gzd_cart_totals_order_total_tax_html() {
-	$_tax = new WC_Tax();
+
 	// If prices are tax inclusive, show taxes here
 	if ( get_option( 'woocommerce_calc_taxes' ) == 'yes' && WC()->cart->tax_display_cart == 'incl' ) {
 		$tax_array = array();
@@ -376,7 +376,7 @@ function wc_gzd_get_chosen_shipping_rates() {
 	$rates = array();
 
 	foreach ( $packages as $i => $package ) {
-		if ( isset( $package['rates'][ $shipping_methods[ $i ] ] ) ) {
+		if ( isset( $shipping_methods[ $i ] ) && isset( $package['rates'][ $shipping_methods[ $i ] ] ) ) {
 			array_push( $rates, $package['rates'][ $shipping_methods[ $i ] ] );
 		}
 	}

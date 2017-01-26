@@ -18,11 +18,16 @@
         <key name="woocommerce_gzd_checkout_legal_text_parcel_delivery" />
     	<key name="woocommerce_gzd_order_success_text" />
         <key name="woocommerce_gzd_customer_account_text" />
-        <key name="woocommerce_direct-debit_company_info" />
-        <key name="woocommerce_direct-debit_company_identification_number" />
-        <key name="woocommerce_direct-debit_mandate_text" />
-        <key name="woocommerce_direct-debit_checkbox_label" />
+        <key name="woocommerce_direct-debit_settings">
+            <key name="mandate_text" />
+            <key name="company_info" />
+            <key name="company_identification_number" />
+            <key name="checkbox_label" />
+        </key>
         <key name="woocommerce_gzd_order_confirmation_legal_digital_notice" />
         <key name="woocommerce_gzd_order_confirmation_legal_service_notice" />
+        <key name="woocommerce_gzd_alternative_complaints_text_none" />
+        <key name="woocommerce_gzd_alternative_complaints_text_willing" />
+        <key name="woocommerce_gzd_alternative_complaints_text_obliged" />
     </admin-texts>
 </wpml-config>

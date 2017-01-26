@@ -31,12 +31,14 @@ class WC_GZD_Ekomi {
 	 */
 	public $user;
 
+	private $api = null;
+
 	/**
 	 * Creates a new User if the eKomi user does not already exist. Adds hooks to schedules to manage review updates and Email notifications
 	 */
 	public function __construct() {
 		
-		$this->version = 'cust-1.0.0';
+		$this->version = 'v3';
 		$this->id = $this->shop_id;
 		
 		if ( $this->is_enabled() )
@@ -48,19 +50,23 @@ class WC_GZD_Ekomi {
 	}
 
 	public function init() {
+
 		if ( ! username_exists( 'ekomi' ) ) {
 			wp_create_user( __( 'eKomi Customer', 'woocommerce-germanized' ), wp_generate_password(), 'ekomi@loremipsumdolorom.com' );
 			$this->user = get_user_by( 'email', 'ekomi@loremipsumdolorom.com' );
 			wp_update_user( array( 'ID' => $this->user->ID, 'role' => 'customer' ) );
 		}
+
 		// Cronjobs & Hooks
 		$this->user = get_user_by( 'email', 'ekomi@loremipsumdolorom.com' );
+
+		$this->api = new Ekomi\Api( $this->interface_id, $this->interface_password, 'GET' );
+		
 		add_action( 'woocommerce_gzd_ekomi', array( $this, 'put_products' ), 5 );
 		add_action( 'woocommerce_gzd_ekomi', array( $this, 'send_mails' ), 10 );
 		add_action( 'woocommerce_gzd_ekomi', array( $this, 'get_reviews' ), 15 );
 		add_action( 'woocommerce_order_status_completed', array( $this, 'put_order' ), 0, 1 );
 		add_action( 'wp_footer', array( $this, 'add_scripts' ), 10 );
-		// add_action( 'admin_init', array( $this, 'get_reviews' ) );
 	}
 
 	/**
@@ -96,18 +102,28 @@ class WC_GZD_Ekomi {
 	 * Transfers all Shop Products including IDs and Titles to eKomi
 	 */
 	public function put_products() {
-		$posts = get_posts( array( 'post_type' => array( 'product' ), 'post_status' => 'publish', 'showposts' => -1 ) );
-		if ( !empty( $posts ) ) {
-			foreach ( $posts as $post ) {
-				$product = get_product( $post );
-				if ( $product->is_type( 'variable' ) ) {
-					$variations = $product->get_available_variations();
-					if ( !empty( $variations ) ) {
-						foreach ( $variations as $variation ) {
-							$this->put_product( get_product( $variation['variation_id'] ) );
-						}
-					}
-				} elseif ( $product->is_type( 'simple' ) ) {
+		
+		$posts = new WP_Query( array( 
+			'post_type' => array( 'product', 'product_variation' ), 
+			'post_status' => 'publish', 
+			'showposts' => -1,
+			'meta_query' => array(
+				array(
+					'key' => '_wc_gzd_ekomi_added',
+					'compare' => 'NOT EXISTS',
+				)
+			),
+		) );
+
+		if ( $posts->have_posts() ) {
+			while ( $posts->have_posts() ) {
+			
+				global $post;
+				$posts->the_post();
+
+				$product = wc_get_product( $post->ID );
+				
+				if ( $product ) {
 					$this->put_product( $product );
 				}
 			}
@@ -120,10 +136,19 @@ class WC_GZD_Ekomi {
 	 * @param object  $product
 	 */
 	public function put_product( $product ) {
-		$response = unserialize( file_get_contents(
-			'https://api.ekomi.de/v2/putProduct?auth=' . $this->interface_id . '|' . $this->interface_password . '&version=' . $this->version . '&product_id=' . urlencode( esc_attr( $this->get_product_id( $product ) ) ) . '&product_name=' . urlencode( esc_attr( $this->get_product_name( $product ) ) )
-		) );
-		return ( $response['done'] == 1 ) ? true : false;
+
+		$ekomi_product = new Ekomi\Request\PutProduct();
+	 	$ekomi_product->setProductId( $this->get_product_id( $product ) );
+	 	$ekomi_product->setProductName( $this->get_product_name( $product ) );
+	 	$ekomi_product->getOther()->addLinks( $this->get_product_link( $product ), 'html' );
+
+	 	$result = $this->api->exec( apply_filters( 'woocommerce_gzd_ekomi_product', $ekomi_product, $this ) );
+	 	
+	 	if ( $result && $result->done ) {
+	 		update_post_meta( $this->get_product_id( $product ), '_wc_gzd_ekomi_added', 'yes' );
+	 	}
+
+	 	return ( $result ? $result->done : false );
 	}
 
 	/**
@@ -133,7 +158,7 @@ class WC_GZD_Ekomi {
 	 * @return integer          
 	 */
 	public function get_product_id( $product ) {
-		return ( isset( $product->variation_id ) ? $product->variation_id : $product->id );
+		return wc_gzd_get_crud_data( $product, 'id' );
 	}
 
 	/**
@@ -143,7 +168,17 @@ class WC_GZD_Ekomi {
 	 * @return string
 	 */
 	public function get_product_name( $product ) {
-		return isset( $product->variation_id ) ? get_the_title( $product->id ) . ' (' . implode( ', ', $product->get_variation_attributes() ) . ')' : get_the_title( $product->id );
+		return get_the_title( wc_gzd_get_crud_data( $product, 'id' ) );
+	}
+
+	/**
+	 * Gets the Product's name based on it's type
+	 *
+	 * @param object  $product
+	 * @return string
+	 */
+	public function get_product_link( $product ) {
+		return get_permalink( wc_gzd_get_crud_data( $product, 'id' ) );
 	}
 
 	/**
@@ -153,22 +188,38 @@ class WC_GZD_Ekomi {
 	 * @return boolean
 	 */
 	public function put_order( $order_id ) {
+
 		$order = wc_get_order( $order_id );
-		if ( ! isset( $order->ekomi_review_link ) ) {
+		$review_link = wc_gzd_get_crud_data( $order, 'ekomi_review_link' );
+
+		if ( empty( $review_link ) ) {
+
+			$ekomi_order = new Ekomi\Request\PutOrder();
+
 			$items = $order->get_items();
 			$product_ids = array();
-			if ( !empty( $items ) ) {
+			
+			if ( ! empty( $items ) ) {
 				foreach ( $items as $item ) {
-					$product_ids[] = ( empty( $item[ 'variation_id' ] ) ? $item[ 'product_id' ] : $item[ 'variation_id' ] );
+					if ( is_object( $item ) && is_callable( array( $item, 'get_product_id' ) ) )
+						$product_ids[] = $item->get_product_id();
+					else
+						$product_ids[] = ( empty( $item[ 'variation_id' ] ) ? $item[ 'product_id' ] : $item[ 'variation_id' ] );
 				}
 			}
-			$response = unserialize( file_get_contents(
-				'https://api.ekomi.de/v2/putOrder?auth=' . $this->interface_id . '|' . $this->interface_password . '&version=' . $this->version . '&order_id=' . urlencode( esc_attr( $order->id ) ) . '&product_ids=' . urlencode( esc_attr( implode( ',', $product_ids ) ) )
-			) );
-			if ( $response['done'] == 1 && isset( $response['link'] ) )
-				update_post_meta( $order->id, '_ekomi_review_link', $response[ 'link' ] );
-			return ( $response['done'] == 1 && isset( $response['link'] ) ) ? true : false;
+
+			$ekomi_order->setOrderId( $order_id );
+    		$ekomi_order->setProductIds( implode( ',', $product_ids ) );
+    		$ekomi_order->setProductIdsUpdateMethod( 'replace' );
+
+    		$result = $this->api->exec( $ekomi_order );
+    		
+    		if ( $result->done === 1 && isset( $result->link ) ) {
+    			update_post_meta( $order_id, '_ekomi_review_link', $result->link );
+    			return true;
+    		}
 		}
+
 		return false;
 	}
 
@@ -176,9 +227,13 @@ class WC_GZD_Ekomi {
 	 * Send Customer Email notifications if necessary (loops through orders and checks day difference after completion)
 	 */
 	public function send_mails() {
+		
 		$order_query = new WP_Query(
-			array( 'post_type' => 'shop_order', 'post_status' => 'wc-completed', 'meta_query' =>
-				array(
+			array(
+				'showposts' => -1,
+				'post_type' => 'shop_order', 
+				'post_status' => 'wc-completed', 
+				'meta_query' => array(
 					array(
 						'key'     => '_ekomi_review_link',
 						'compare' => 'EXISTS',
@@ -190,18 +245,23 @@ class WC_GZD_Ekomi {
 				),
 			)
 		);
+
 		while ( $order_query->have_posts() ) {
-			$order_query->next_post();
-			$order = wc_get_order( $order_query->post->ID );
-			$diff = WC_germanized()->get_date_diff( $order->completed_date, date( 'Y-m-d H:i:s' ) );
+
+			global $post;
+			$order_query->the_post();
+			
+			$order = wc_get_order( $post->ID );
+
+			$diff = WC_germanized()->get_date_diff( date( 'Y-m-d H:i:s', wc_gzd_get_crud_data( $order, 'completed_date' ) ), date( 'Y-m-d H:i:s' ) );
+			
 			if ( $diff[ 'd' ] >= (int) get_option( 'woocommerce_gzd_ekomi_day_diff' ) ) {
-
 				if ( $mail = WC_germanized()->emails->get_email_instance_by_id( 'customer_ekomi' ) ) {
-					$mail->trigger( $order->id );
-					update_post_meta( $order->id, '_ekomi_review_mail_sent', 1 );
-					update_post_meta( $order->id, '_ekomi_review_link', '' );
+					$mail->trigger( wc_gzd_get_crud_data( $order, 'id' ) );
+					
+					update_post_meta( wc_gzd_get_crud_data( $order, 'id' ), '_ekomi_review_mail_sent', 1 );
+					update_post_meta( wc_gzd_get_crud_data( $order, 'id' ), '_ekomi_review_link', '' );
 				}
-
 			}
 		}
 	}
@@ -213,47 +273,51 @@ class WC_GZD_Ekomi {
 	 */
 	public function get_reviews() {
 
-		$response = file_get_contents(
-			'https://api.ekomi.de/get_productfeedback.php?interface_id=' . $this->interface_id . '&interface_pw=' . $this->interface_password . '&version=' . $this->version . '&type=csv&product=all'
-		);
-		if ( ! empty( $response ) ) {
-			$reviews = explode( PHP_EOL, $response );
-			
-			if ( ! empty( $reviews ) ) {
-				
-				foreach ( $reviews as $review ) {
-					$review = str_getcsv( $review );
-					if ( ! empty( $review[0] ) ) {
-						
-						if ( ! $this->review_exists( $review[1] ) && $this->is_product( (int) esc_attr( $review[2] ) ) ) {
-							
-							$product = wc_get_product( (int) esc_attr( $review[2] ) );
-							
-							$data = array(
-								'comment_post_ID' => $product->id,
-								'comment_author' => $this->user->user_login,
-								'comment_author_email' => $this->user->user_email,
-								'comment_content' => preg_replace( '/\v+|\\\[rn]/', '<br/>', esc_attr( $review[4] ) ),
-								'comment_date' => date( 'Y-m-d H:i:s', (int) esc_attr( $review[0] ) ),
-								'comment_approved' => 1,
-							);
+		$ekomi_feedback = new Ekomi\Request\GetProductFeedback();
 
-							$comment_id = wp_insert_comment( $data );
-							
-							if ( $comment_id ) {
-								add_comment_meta( $comment_id, 'rating', (int) esc_attr( $review[3] ), true );
-								add_comment_meta( $comment_id, 'order_id', esc_attr( $review[1] ), true );
-							}
-						}
+		// Check if reviews have already been fetched once. If yes, do only select latest reviews.
+		if ( get_option( 'woocommerce_gzd_ekomi_product_reviews_checked', false ) ) {
+			$ekomi_feedback->setRange( '1m' );
+		}
+
+		$results = $this->api->exec( $ekomi_feedback );
+		
+		if ( ! empty( $results ) ) {
+
+			foreach( $results as $result ) {
+
+				if ( ! $this->review_exists( $result ) && $this->is_product( $result->product_id ) ) {
+
+					$product = wc_get_product( $result->product_id );
+					
+					$data = array(
+						'comment_post_ID' => wc_gzd_get_crud_data( $product, 'id' ),
+						'comment_author' => $this->user->user_login,
+						'comment_author_email' => $this->user->user_email,
+						'comment_content' => preg_replace( '/\v+|\\\[rn]/', '<br/>', esc_attr( $result->review ) ),
+						'comment_date' => date( 'Y-m-d H:i:s', (int) esc_attr( $result->submitted ) ),
+						'comment_approved' => 1,
+					);
+
+					$comment_id = wp_insert_comment( apply_filters( 'woocommerce_gzd_ekomi_review_comment', $data, $result ) );
+
+					if ( $comment_id ) {
+
+						add_comment_meta( $comment_id, 'rating', esc_attr( absint( $result->rating ) ), true );
+						add_comment_meta( $comment_id, 'order_id', esc_attr( absint( $result->order_id ) ), true );
+
+						do_action( 'woocommerce_gzd_ekomi_review_comment_inserted', $comment_id, $result );
 					}
 				}
 			}
+
+			// Make sure next time we do not need to fetch all reviews (but only recent reviews).
+			update_option( 'woocommerce_gzd_ekomi_product_reviews_checked', 'yes' );
 		}
-		return ( is_array( $reviews ) ) ? true : false;
 	}
 
 	public function is_product( $id ) {
-		return ( get_post_status( $id ) == 'publish' ) ? true : false;
+		return ( get_post_status( $id ) === 'publish' ) ? true : false;
 	}
 
 	/**
@@ -262,9 +326,14 @@ class WC_GZD_Ekomi {
 	 * @param string  $review_order_id
 	 * @return boolean
 	 */
-	public function review_exists( $review_order_id ) {
+	public function review_exists( $review ) {
 		$comments_query = new WP_Comment_Query;
-		$comments       = $comments_query->query( array( 'meta_key' => 'order_id', 'meta_value' => $review_order_id ) );
+		$comments       = $comments_query->query( array( 
+			'meta_key' 		=> 'order_id', 
+			'meta_value' 	=> $review->order_id,
+			'post_id' 		=> $review->product_id,
+		) );
+
 		return empty( $comments ) ? false : true;
 	}
 

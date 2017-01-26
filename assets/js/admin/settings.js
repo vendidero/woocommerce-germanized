@@ -1,5 +1,17 @@
 jQuery( function ( $ ) {
 
+	$( document ).on( 'change', 'input[name=woocommerce_gzd_dispute_resolution_type]', function() {
+
+		var val = $( this ).val();
+		var text = $( '#woocommerce_gzd_alternative_complaints_text_' + val );
+
+		$( '[id^=woocommerce_gzd_alternative_complaints_text_' ).parents( 'tr' ).hide();
+		$( '#woocommerce_gzd_alternative_complaints_text_' + val ).parents( 'tr' ).show();
+		
+	});
+
+	$( 'input[name=woocommerce_gzd_dispute_resolution_type]:checked' ).trigger( 'change' );
+
 	if ( $( '#woocommerce_gzd_mail_attach_imprint' ).length > 0 ) {
 
 		var table = $( '#woocommerce_gzd_mail_attach_imprint' ).parents( 'table' );

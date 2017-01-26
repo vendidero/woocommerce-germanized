@@ -77,7 +77,7 @@
 			}
 			if ( variation.unit_price !== '' ) {
 				$wrapper.find( '.price-unit:first' ).remove();
-				$wrapper.find( 'div[itemprop="offers"]:first' ).after('<p class="price price-unit smaller variation_modified">' + variation.unit_price + '</p>').show();
+				$wrapper.find( 'p.price:first' ).after('<p class="price price-unit smaller variation_modified">' + variation.unit_price + '</p>').show();
 			}
 			if ( variation.product_units !== '' ) {
 				$wrapper.find( '.product-units:first' ).remove();

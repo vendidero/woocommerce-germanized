@@ -50,7 +50,12 @@ class WC_GZD_Checkout {
 		add_filter( 'woocommerce_formatted_address_replacements', array( $this, 'set_formatted_address' ), 0, 2 );
 		
 		// Add item desc to order
-		add_action( 'woocommerce_order_add_product', array( $this, 'set_order_meta' ), 0, 5 );
+		if ( WC_GZD_Dependencies::instance()->woocommerce_version_supports_crud() ) {
+			add_action( 'woocommerce_new_order_item', array( $this, 'set_order_item_meta_crud' ), 0, 3 );
+		} else {
+			add_action( 'woocommerce_order_add_product', array( $this, 'set_order_meta' ), 0, 5 );
+		}	
+
 		add_filter( 'woocommerce_hidden_order_itemmeta', array( $this, 'set_order_meta_hidden' ), 0 );
 		
 		// Deactivate checkout shipping selection
@@ -118,13 +123,13 @@ class WC_GZD_Checkout {
 			$order_id = absint( $wp->query_vars[ 'order-pay' ] );
 			$order = wc_get_order( $order_id );
 
-			if ( ! $order || $order->order_key != $order_key )
+			if ( ! $order || wc_gzd_get_crud_data( $order, 'order_key' ) != $order_key )
 				return;
 
 			// Check if gateway is available - otherwise don't force redirect - would lead to errors in pay_action
 			$gateways = WC()->payment_gateways->get_available_payment_gateways();
 
-			if ( ! isset( $gateways[ $order->payment_method ] ) )
+			if ( ! isset( $gateways[ wc_gzd_get_crud_data( $order, 'payment_method' ) ] ) )
 				return;
 
 			// Hide terms checkbox
@@ -134,7 +139,7 @@ class WC_GZD_Checkout {
 			$_POST['woocommerce_pay'] = 1;
 			$_POST['_wpnonce'] = wp_create_nonce( 'woocommerce-pay' );
 			$_POST['terms'] = 1;
-			$_POST['payment_method'] = $order->payment_method;
+			$_POST['payment_method'] = wc_gzd_get_crud_data( $order, 'payment_method' );
 
 		}
 
@@ -204,7 +209,7 @@ class WC_GZD_Checkout {
 		$order = wc_get_order( $order_id );
 		if ( $order ) {
 			// Reduce order stock for non-cancellable orders
-			if ( apply_filters( 'woocommerce_payment_complete_reduce_order_stock', ! get_post_meta( $order->id, '_order_stock_reduced', true ), $order->id ) ) {
+			if ( apply_filters( 'woocommerce_payment_complete_reduce_order_stock', ! get_post_meta( $order->id, '_order_stock_reduced', true ), wc_gzd_get_crud_data( $order, 'id' ) ) ) {
 				$order->reduce_order_stock();
 			}
 		}
@@ -355,6 +360,12 @@ class WC_GZD_Checkout {
 		wc_add_order_item_meta( $item_id, '_unit_price', wc_gzd_get_gzd_product( $product )->get_unit_html( false ) );
 	}
 
+	public function set_order_item_meta_crud( $item_id, $item, $order_id ) {
+		if ( 'line_item' === $item->get_type() ) {
+			$this->set_order_meta( $order_id, $item_id, $item->get_product(), $item->get_quantity(), array() );
+		}
+	}
+
 	/**
 	 * Hide product description from order meta default output
 	 *  
@@ -373,8 +384,8 @@ class WC_GZD_Checkout {
 		if ( 'yes' !== get_option( 'woocommerce_gzd_checkout_address_field' ) )
 			return $fields;
 
-		if ( $order->billing_title )
-			$fields[ 'title' ] = $this->get_customer_title( $order->billing_title );
+		if ( wc_gzd_get_crud_data( $order, 'billing_title' ) )
+			$fields[ 'title' ] = $this->get_customer_title( wc_gzd_get_crud_data( $order, 'billing_title' ) );
 		return $fields;
 	}
 
@@ -383,8 +394,8 @@ class WC_GZD_Checkout {
 		if ( 'yes' !== get_option( 'woocommerce_gzd_checkout_address_field' ) )
 			return $fields;
 		
-		if ( $order->shipping_title )
-			$fields[ 'title' ] = $this->get_customer_title( $order->shipping_title );
+		if ( wc_gzd_get_crud_data( $order, 'shipping_title' ) )
+			$fields[ 'title' ] = $this->get_customer_title( wc_gzd_get_crud_data( $order, 'shipping_title' ) );
 		return $fields;
 	}
 

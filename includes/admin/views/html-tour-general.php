@@ -56,6 +56,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<a class="button button-primary tourbus-next" href="javascript:void(0);">weiter</a>
 	</li>
 
+	<li data-el="#woocommerce_gzd_alternative_complaints_text_none" data-orientation="top">
+		<h2>Streitbeilegung</h2>
+		<p>Das Thema Streitbelegung ist relativ aktuell und einige Informationspflichten sind diesbezüglich einzuhalten. Wir stellen dir hier die von Trusted Shops bereitgestellten Mustertexte für die jeweiligen
+		Fälle zur Verfügung. Den Text kannst du an deine Bedürfnisse anpassen und den Shortcode [gzd_complaints] (passiert mit dem Anlegen der rechtlichen Hinweisseiten automatisch) in dein Impressum einbinden, um den Text anzuzeigen. Zudem empfiehlt Trusted Shops
+		den Text auch in deinen AGB einzubinden. Weitere Informationen dazu findest du <a href="http://shopbetreiber-blog.de/2017/01/05/streitschlichtung-neue-infopflichten-fuer-alle-online-haendler-ab-1-februar/" target="_blank">hier</a>.</p>
+		<a class="button button-primary tourbus-next" href="javascript:void(0);">weiter</a>
+	</li>
+
 	<li data-el="#s2id_woocommerce_gzd_default_delivery_time" data-orientation="top" data-width="600">
 		<h2>Lieferzeiten</h2>
 		<p>Standardmäßig verfügt WooCommerce über keine <a href="<?php echo admin_url( 'edit-tags.php?taxonomy=product_delivery_time&post_type=product' ); ?>" target="_blank">Lieferzeiten-Verwaltung</a> für Produkte. Diese Funktionalität fügt Germanizedh hinzu.

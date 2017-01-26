@@ -111,3 +111,8 @@ function wc_gzd_is_parcel_delivery_data_transfer_checkbox_enabled( $method_ids =
 	}
 	return true;
 }
+
+function wc_gzd_get_dispute_resolution_text() {
+	$type = get_option( 'woocommerce_gzd_dispute_resolution_type', 'none' );
+	return get_option( 'woocommerce_gzd_alternative_complaints_text_' . $type );
+}

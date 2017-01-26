@@ -144,7 +144,7 @@ class WC_GZD_Gateway_Invoice extends WC_Payment_Gateway {
      * @param bool $plain_text
      */
 	public function email_instructions( $order, $sent_to_admin, $plain_text = false ) {
-        if ( $this->instructions && ! $sent_to_admin && 'invoice' === $order->payment_method && $order->has_status( 'on-hold' ) ) {
+        if ( $this->instructions && ! $sent_to_admin && 'invoice' === wc_gzd_get_crud_data( $order, 'payment_method' ) && $order->has_status( 'on-hold' ) ) {
 			echo wpautop( wptexturize( $this->instructions ) ) . PHP_EOL;
 		}
 	}

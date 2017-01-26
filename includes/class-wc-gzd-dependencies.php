@@ -218,6 +218,10 @@ class WC_GZD_Dependencies {
 		return version_compare( $main_ver, $ver2, $operator );
 	}
 
+	public function woocommerce_version_supports_crud() {
+		return ( $this->compare_versions( $this->get_plugin_version( 'woocommerce' ), '2.7', '>=' ) );
+	}
+
 	/**
 	 * Checks if WooCommerce is activated
 	 *  

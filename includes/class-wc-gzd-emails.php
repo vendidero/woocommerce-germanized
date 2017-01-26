@@ -75,9 +75,10 @@ class WC_GZD_Emails {
 		}
 
 		// Set email filters
-		add_action( 'woocommerce_email_before_order_table', array( $this, 'set_order_email_filters' ), 10 );
+		add_action( 'woocommerce_email_before_order_table', array( $this, 'set_order_email_filters' ), 10, 4 );
+		
 		// Remove them after total has been displayed
-		add_action( 'woocommerce_email_after_order_table', array( $this, 'remove_order_email_filters' ), 10 );
+		add_action( 'woocommerce_email_after_order_table', array( $this, 'remove_order_email_filters' ), 10, 4 );
 
 		// Pay now button
 		add_action( 'woocommerce_email_before_order_table', array( $this, 'email_pay_now_button' ), 0, 1 );
@@ -128,7 +129,7 @@ class WC_GZD_Emails {
 		$type = $this->get_current_email_object();
 
 		if ( $type && $type->id == 'customer_processing_order' )
-			WC_GZD_Checkout::instance()->add_payment_link( $order->id );
+			WC_GZD_Checkout::instance()->add_payment_link( wc_gzd_get_crud_data( $order, 'id' ) );
 	}
 
 	public function email_footer_plain( $text ) {

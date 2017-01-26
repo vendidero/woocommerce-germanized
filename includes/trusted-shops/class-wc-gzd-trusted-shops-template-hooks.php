@@ -76,7 +76,12 @@ class WC_GZD_Trusted_Shops_Template_Hooks {
 	}
 
 	public function template_thankyou( $order_id ) {
-		wc_get_template( 'trusted-shops/thankyou.php', array( 'order_id' => $order_id, 'gtin_attribute' => $this->base->gtin_attribute ) );
+		wc_get_template( 'trusted-shops/thankyou.php', array( 
+			'order_id' => $order_id,
+			'gtin_attribute' => $this->base->gtin_attribute,
+			'brand_attribute' => $this->base->brand_attribute,
+			'mpn_attribute' => $this->base->mpn_attribute,
+		) );
 	}
 
 }

@@ -342,7 +342,7 @@ class WC_GZD_REST_Products_Controller {
 
 		$data_saveable = WC_Germanized_Meta_Box_Product_Data::get_fields();
 		$data = array();
-		$real_product_id = isset( $product->variation_id ) ? $product->variation_id : $product->id;
+		$real_product_id = wc_gzd_get_crud_data( $product, 'id' );
 
 		$data[ 'product-type' ] = $product->get_type();
 
@@ -419,15 +419,15 @@ class WC_GZD_REST_Products_Controller {
 		$data = array();
 
 		if ( ! $product->is_type( 'variation' ) ) {
-			$data[ 'unit' ]	= $this->prepare_term( WC_germanized()->units->get_term_object( $product->unit ) );
+			$data[ 'unit' ]	= $this->prepare_term( WC_germanized()->units->get_term_object( wc_gzd_get_crud_data( $product, 'unit' ) ) );
 		}
 
 		// Unit Price
 		$data[ 'unit_price' ] 	 = array(
-			'base'			 	 => $product->unit_base,
-			'product'		 	 => $product->unit_product,
-			'price_auto'	 	 => $product->unit_price_auto === 'yes' ? true : false,
-			'price'	 	 		 => $product->unit_price,
+			'base'			 	 => $product->get_unit_base(),
+			'product'		 	 => $product->get_unit_products(),
+			'price_auto'	 	 => $product->is_unit_price_calculated_automatically(),
+			'price'	 	 		 => $product->get_unit_price(),
 			'regular_price' 	 => $product->get_unit_regular_price(),
 			'sale_price'	 	 => $product->get_unit_sale_price(),
 			'price_html'	 	 => $product->get_unit_html(),
@@ -437,8 +437,8 @@ class WC_GZD_REST_Products_Controller {
 		$data[ 'mini_desc' ] = $product->get_mini_desc() ? $product->get_mini_desc() : '';
 
 		// Sale Labels
-		$data[ 'sale_price_label' ] = $this->prepare_term( WC_germanized()->price_labels->get_term_object( $product->sale_price_label ) );
-		$data[ 'sale_price_regular_label' ] = $this->prepare_term( WC_germanized()->price_labels->get_term_object( $product->sale_price_regular_label ) );
+		$data[ 'sale_price_label' ] = $this->prepare_term( WC_germanized()->price_labels->get_term_object( $product->get_sale_price_label() ) );
+		$data[ 'sale_price_regular_label' ] = $this->prepare_term( WC_germanized()->price_labels->get_term_object( $product->get_sale_price_regular_label() ) );
 
 		// Delivery Time
 		$data[ 'delivery_time' ] = $this->prepare_term( $product->get_delivery_time_term() );

@@ -30,7 +30,7 @@ class WC_GZD_Trusted_Shops_Admin {
 		add_filter( 'woocommerce_gzd_installation_default_settings', array( $this, 'set_installation_settings' ), 10, 1 );
 
 		// After Install
-		add_action( 'woocommerce_gzd_installed', array( $this, 'create_gtin_attribute' ) );
+		add_action( 'woocommerce_gzd_installed', array( $this, 'create_attribute' ) );
 
 		// Review Collector
 		add_action( 'wc_germanized_settings_section_after_trusted_shops', array( $this, 'review_collector_export' ), 0 );
@@ -39,23 +39,31 @@ class WC_GZD_Trusted_Shops_Admin {
 		add_action( 'woocommerce_gzd_load_trusted_shops_script', array( $this, 'load_scripts' ) );
 	}
 
-	public function create_gtin_attribute() {
-		
+	public function create_attribute() {
+
+		$attributes = array( 
+			'gtin' => _x( 'GTIN', 'trusted-shops', 'woocommerce-germanized' ), 
+			'brand' => _x( 'Brand', 'trusted-shops', 'woocommerce-germanized' ), 
+			'mpn' => _x( 'MPN', 'trusted-shops', 'woocommerce-germanized' ),
+		);
+
 		// Create the taxonomy
 		global $wpdb;
 		delete_transient( 'wc_attribute_taxonomies' );
-		
-		if ( ! in_array( 'pa_gtin', wc_get_attribute_taxonomy_names() ) ) {
-			$attribute = array(
-				'attribute_label'   => _x( 'GTIN', 'trusted-shops', 'woocommerce-germanized' ),
-				'attribute_name'    => 'gtin',
-				'attribute_type'    => 'text',
-				'attribute_orderby' => 'menu_order',
-				'attribute_public'  => 0
-			);
-		
-			$wpdb->insert( $wpdb->prefix . 'woocommerce_attribute_taxonomies', $attribute );
-			delete_transient( 'wc_attribute_taxonomies' );
+
+		foreach ( $attributes as $attribute_name => $title ) {
+			if ( ! in_array( 'pa_' . $attribute_name, wc_get_attribute_taxonomy_names() ) ) {
+				$attribute = array(
+					'attribute_label'   => $title,
+					'attribute_name'    => $attribute_name,
+					'attribute_type'    => 'text',
+					'attribute_orderby' => 'menu_order',
+					'attribute_public'  => 0
+				);
+			
+				$wpdb->insert( $wpdb->prefix . 'woocommerce_attribute_taxonomies', $attribute );
+				delete_transient( 'wc_attribute_taxonomies' );
+			}
 		}
 	}
 
@@ -97,11 +105,11 @@ class WC_GZD_Trusted_Shops_Admin {
 
 		$payment_options = array( '' => __( 'None', 'woocommerce-germanized' ) ) + $this->base->gateways;
 		$attributes = wc_get_attribute_taxonomies();
-		$gtin_attributes = array();
+		$linked_attributes = array();
 			
 		// Set attributes
 		foreach ( $attributes as $attribute ) {
-			$gtin_attributes[ $attribute->attribute_name ] = $attribute->attribute_label;
+			$linked_attributes[ $attribute->attribute_name ] = $attribute->attribute_label;
 		}
 
 		$options = array(
@@ -259,7 +267,29 @@ class WC_GZD_Trusted_Shops_Admin {
 				'default' => 'gtin',
 				'type'   => 'select',
 				'class'  => 'chosen_select',
-				'options' => $gtin_attributes,
+				'options' => $linked_attributes,
+			),
+
+			array(
+				'title'  => _x( 'Brand Attribute', 'trusted-shops', 'woocommerce-germanized' ),
+				'desc'   => sprintf( _x( 'This is the brand name of the product. By setting this variable you can improve your data analysis possibilities. If you create individual products and do not have a GTIN, you can pass the brand name along with the MPN to use Google Integration. Please choose from the product attributes which you have manually customized <a href="%s">here</a>.', 'trusted-shops', 'woocommerce-germanized' ), admin_url( 'edit.php?post_type=product&page=product_attributes' ) ),
+				'id'   => 'woocommerce_' . $this->base->option_prefix . 'trusted_shops_brand_attribute',
+				'css'   => 'min-width:250px;',
+				'default' => 'brand',
+				'type'   => 'select',
+				'class'  => 'chosen_select',
+				'options' => $linked_attributes,
+			),
+
+			array(
+				'title'  => _x( 'MPN Attribute', 'trusted-shops', 'woocommerce-germanized' ),
+				'desc'   => sprintf( _x( 'Number that associates the product to its manufacturer. If you create individual products and do not have a GTIN, you can pass the MPN along with the brand name to use Google Integration. Please choose from the product attributes which you have manually customized <a href="%s">here</a>.', 'trusted-shops', 'woocommerce-germanized' ), admin_url( 'edit.php?post_type=product&page=product_attributes' ) ),
+				'id'   => 'woocommerce_' . $this->base->option_prefix . 'trusted_shops_mpn_attribute',
+				'css'   => 'min-width:250px;',
+				'default' => 'mpn',
+				'type'   => 'select',
+				'class'  => 'chosen_select',
+				'options' => $linked_attributes,
 			),
 
 			array(
@@ -484,7 +514,12 @@ class WC_GZD_Trusted_Shops_Admin {
 		while ( $order_query->have_posts() ) {
 			$order_query->next_post();
 			$order = wc_get_order( $order_query->post->ID );
-			array_push( $data, array( $order->billing_email, $order->id, $order->billing_first_name, $order->billing_last_name ) );
+			array_push( $data, array( 
+				wc_gzd_get_crud_data( $order, 'billing_email' ), 
+				wc_gzd_get_crud_data( $order, 'id' ), 
+				wc_gzd_get_crud_data( $order, 'billing_first_name' ), 
+				wc_gzd_get_crud_data( $order, 'billing_last_name' ) 
+			) );
 		}
 
 		$write = $this->prepare_csv_data( $data );

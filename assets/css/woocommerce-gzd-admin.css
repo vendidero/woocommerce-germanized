@@ -121,6 +121,11 @@ table.data_table tr td p.form-field {
 	padding-right: 0;
 }
 
+p._unit_price_auto_field label {
+	display: block !important;
+	margin-bottom: 5px;
+}
+
 ._unit_price_auto_field label, ._unit_price_auto_field input, ._unit_price_auto_field .wc-gzd-premium-desc {
 	opacity: 0.6;
 }
@@ -185,4 +190,8 @@ table.wc-gzd-tax-example tr th:first-child, table.wc-gzd-tax-example tr td:first
     margin: 0;
     text-align: center;
     font-weight: 400;
+}
+
+table.form-table .forminp-radio fieldset p {
+	margin-bottom: 1em;
 }

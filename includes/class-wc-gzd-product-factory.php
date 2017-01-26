@@ -45,14 +45,13 @@ class WC_GZD_Product_Factory extends WC_Product_Factory {
 	 */
 	public function get_gzd_product( $product ) {
 
-		$type = $product->product_type;
+		$type = wc_gzd_get_crud_data( $product, 'product_type' );
 		$classname = 'WC_GZD_Product_' . ucfirst( $type );
 
 		if ( class_exists( $classname ) )
 			return new $classname( $product );
 
 		return new WC_GZD_Product( $product );
-
 	}
 
 }
