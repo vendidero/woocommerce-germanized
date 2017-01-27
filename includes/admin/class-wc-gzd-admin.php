@@ -271,29 +271,47 @@ class WC_GZD_Admin {
 
 	}
 
+	public function get_complaints_shortcode_pages() {
+
+	    $pages = array(
+            'imprint' => wc_get_page_id( 'imprint' ),
+        );
+
+	    if ( wc_get_page_id( 'terms' ) && wc_get_page_id( 'terms' ) != -1 ) {
+	        $pages[ 'terms' ] = wc_get_page_id( 'terms' );
+        }
+
+        return $pages;
+    }
+
 	public function check_complaints_shortcode_append() {
  		if ( isset( $_GET[ 'complaints' ] ) && 'add' === $_GET[ 'complaints' ] && isset( $_GET[ '_wpnonce' ] ) && check_admin_referer( 'append-complaints-shortcode' ) ) {
- 		
- 			if ( wc_get_page_id( 'imprint' ) != 1 ) {
- 		
- 				$page_id = wc_get_page_id( 'imprint' );
- 				$this->insert_complaints_shortcode( $page_id );
- 				wp_safe_redirect( admin_url( 'post.php?post=' . $page_id . '&action=edit' ) );
- 		
- 			}
+
+ 		    $pages = $this->get_complaints_shortcode_pages();
+
+ 		    foreach( $pages as $page_name => $page_id ) {
+
+                if ( $page_id != 1 ) {
+                    $this->insert_complaints_shortcode( $page_id );
+                }
+            }
+
+            // Redirect to check for updates
+            wp_safe_redirect( admin_url( 'admin.php?page=wc-settings&tab=germanized' ) );
  		}
  	}
 
- 	public function is_complaints_shortcode_inserted() {
- 		$imprint = wc_get_page_id( 'imprint' );
- 		if ( $imprint != -1 ) {
- 			$post = get_post( $imprint );
- 			return ( strpos( $post->post_content, '[gzd_complaints]' ) !== false ? true : false );
- 		}
- 		return false;
+ 	public function is_complaints_shortcode_inserted( $page_id ) {
+        $post = get_post( $page_id );
+        if ( $post )
+            return ( strpos( $post->post_content, '[gzd_complaints]' ) !== false ? true : false );
+        return false;
  	}
 
  	public function insert_complaints_shortcode( $page_id ) {
+	    if ( $this->is_complaints_shortcode_inserted( $page_id ) )
+	        return;
+
  		$page = get_post( $page_id );
  		wp_update_post(
  			array(

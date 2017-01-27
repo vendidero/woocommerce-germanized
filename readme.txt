@@ -3,7 +3,7 @@ Contributors: vendidero
 Tags: woocommerce, german market, german, germany, deutsch, deutschland, de, de_DE, shop, commerce, e-commerce, ecommerce, woothemes, sepa, invoice
 Requires at least: 3.8
 Tested up to: 4.7
-Stable tag: 1.7.4
+Stable tag: 1.8.0
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -156,6 +156,21 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 1. WooCommerce Germanized Settings
 
 == Changelog ==
+
+= 1.8.0 =
+* Feature - WooCommerce 2.7 beta compatibility (CRUD)
+* Feature - gzd_complaints Shortcode extended to meet newest law requirements
+* Feature - Option that hides specific tax rate from product pages
+* Feature - Trusted Shops MPN and Brand support
+* Improvement - Direct Debit default status to on-hold
+* Improvement - Direct Debit data sanitization
+* Improvement - Filter for customer account activation
+* Improvement - eKomi v3 API
+* Improvement - Double Opt In Social Login Plugin compatibility
+* Improvememt - Added template for gzd_complaints Shortcode
+* Fix - REST API to fit latest WC version
+* Fix - Removed some unnecessary required fields from revocation form
+* Fix - Direct Debit WPML compatiblity (string translation)
 
 = 1.7.4 =
 * Fix - WP 4.7 compatibility

@@ -129,7 +129,16 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 
 		$labels = array_merge( array( '' => __( 'None', 'woocommerce-germanized' ) ), WC_Germanized()->price_labels->get_labels() );
 
-		$is_complaints_shortcode_inserted = WC_GZD_Admin::instance()->is_complaints_shortcode_inserted();
+		$complaints_pages = WC_GZD_Admin::instance()->get_complaints_shortcode_pages();
+        $is_complaints_shortcode_inserted = true;
+        $complaints_shortcode_missing = array();
+
+		foreach( $complaints_pages as $page => $page_id ) {
+            if ( ! WC_GZD_Admin::instance()->is_complaints_shortcode_inserted( $page_id ) ) {
+                $is_complaints_shortcode_inserted = false;
+                array_push( $complaints_shortcode_missing, ( $page === 'terms' ? __( 'Terms & Conditions', 'woocommerce-germanized' ) : __( 'Imprint', 'woocommerce-germanized' ) ) );
+            }
+        }
 
 		$settings = array(
 
@@ -330,7 +339,7 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 				'title' 	=> __( 'Shortcode Status', 'woocommerce-germanized' ),
 				'id' 		=> 'woocommerce_gzd_complaints_procedure_status',
 				'type' 		=> 'html',
-				'html' 		=> '<p>' . ( wc_get_page_id( 'imprint' ) == -1 ? '<span class="wc-gzd-status-text wc-gzd-text-red">' . __( 'Please choose a page as your imprint first.', 'woocommerce-germanized' ) . '</span>' : '<span class="wc-gzd-status-text wc-gzd-text-' . ( $is_complaints_shortcode_inserted ? 'green' : 'red' ) . '"> ' . ( $is_complaints_shortcode_inserted ? __( 'Found', 'woocommerce-germanized' ) : __( 'Not found within your imprint', 'woocommerce-germanized' ) ) . '</span> ' . ( ! $is_complaints_shortcode_inserted ? '<a class="button button-secondary" style="margin-left: 1em" href="' . wp_nonce_url( add_query_arg( array( 'complaints' => 'add' ) ), 'append-complaints-shortcode' ). '" target="_blank">' . __( 'Append it now', 'woocommerce-germanized' ) . '</a></p>' : '' ) ),
+				'html' 		=> '<p>' . ( wc_get_page_id( 'imprint' ) == -1 ? '<span class="wc-gzd-status-text wc-gzd-text-red">' . __( 'Please choose a page as your imprint first.', 'woocommerce-germanized' ) . '</span>' : '<span class="wc-gzd-status-text wc-gzd-text-' . ( $is_complaints_shortcode_inserted ? 'green' : 'red' ) . '"> ' . ( $is_complaints_shortcode_inserted ? __( 'Found', 'woocommerce-germanized' ) : sprintf( __( 'Not found within %s', 'woocommerce-germanized' ), implode( ', ', $complaints_shortcode_missing ) ) ) . '</span> ' . ( ! $is_complaints_shortcode_inserted ? '<a class="button button-secondary" style="margin-left: 1em" href="' . wp_nonce_url( add_query_arg( array( 'complaints' => 'add' ) ), 'append-complaints-shortcode' ). '">' . __( 'Append it now', 'woocommerce-germanized' ) . '</a></p>' : '' ) ),
 			),
 
 			array( 'type' => 'sectionend', 'id' => 'complaints_options' ),
