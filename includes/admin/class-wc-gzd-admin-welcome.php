@@ -123,10 +123,11 @@ class WC_GZD_Admin_Welcome {
 				<a href="https://vendidero.de/woocommerce-germanized#buy" target="_blank" class="button button-primary">Upgrade zur Pro Version</a>
 			</p>
 			<div class="changelog new-feature">
-				<h3>Dienstleistungen</h3>
-				<p>Mit Version 1.7 werden Dienstleistungen nativ unterstützt. Dafür haben wir den auswählbaren Produkttyp "Dienstleistung" hinzugefügt. Ähnlich wie "virtuell" oder "herunterladbar" kann der Produkttyp für Produkte explizit angewählt werden.</p>
-				<p>Für den Produkttyp können in den Einstellungen unter Anzeige individiuelle Hinweistexte für die Kasse (d.h. Checkbox) ähnlich wie bei digitalen Produkten hinterlegt werden, um mit der Ausführung der Dienstleistung vor Ablauf der Widerrufsfrist zu beginnen.</p>
-			</div>
+				<h3>WooCommerce 2.7 & neue Infopflichten am 01.02.17</h3>
+                <p>Mit Version 1.8 ist Germanized bereits vorbereitet auf das bald anstehende Major Update von WooCommerce auf Version 2.7. Das Update wird viele Änderungen mit sich bringen, insbesondere bei der Datenstruktur. Dafür mussten auch in Germanized viele Anpassungen gemacht werden und vor allem Aufwand zur Gewährleistung der Rückwärtskompatibilität mit älteren WC Versionen betrieben werden.</p>
+                <p>Zudem gibt es mit dem 01.02.17 neue Informationspflichten (s.h. <a href="http://shopbetreiber-blog.de/2017/01/13/streitschlichtung-neue-infopflichten-fuer-alle-online-haendler-ab-1-februar/" target="_blank">Trusted Shops</a>). Die nötigen Informationen werden in Form des Shortcodes [gzd_complaints] zum Impressum (und falls hinterlegt zu den AGB) hinzugefügt. Dafür wurden
+                    neue Optionen in den Einstellungen hinterlegt, da je nach Geschäftsmodell u.U. andere Informationen einzufügen sind. Die empfohlenen Mustertexte von Trusted Shops haben wir bereits eingearbeitet. Bitte kontrolliere deine <a href="<?php echo admin_url( 'admin.php?page=wc-settings&tab=germanized#woocommerce_gzd_alternative_complaints_text_none' ); ?>">Einstellungen</a>.</p>
+            </div>
 			<div class="changelog vendipro new-feature">
 				<h3>Neu: Rechtliche Hinweistexte als PDF-Anhang <span class="wc-gzd-pro">pro</span></h3>
 				<div class="left">
