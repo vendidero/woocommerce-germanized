@@ -157,6 +157,11 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 
 == Changelog ==
 
+= 1.8.1 =
+* Fix - Parent product data inherit
+* Fix - Only manipulate price display if sale_price_labels are applicable
+* Fix - REST API saving free_shipping parameter
+
 = 1.8.0 =
 * Feature - WooCommerce 2.7 beta compatibility (CRUD)
 * Feature - gzd_complaints Shortcode extended to meet newest law requirements

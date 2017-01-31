@@ -21,9 +21,13 @@ function wc_gzd_get_crud_data( $object, $key ) {
 	$getter = substr( $key, 0, 3 ) === "get" ? $key : "get_$key";
 	$key = substr( $key, 0, 3 ) === "get" ? substr( $key, 3 ) : $key;
 
-	if ( 'id' === $key && is_a( $object, 'WC_Product_Variation' ) && ! WC_GZD_Dependencies::instance()->woocommerce_version_supports_crud() ) {
+	if ( 'id' === $key && is_callable( array( $object, 'is_type' ) ) && $object->is_type( 'variation' ) && ! WC_GZD_Dependencies::instance()->woocommerce_version_supports_crud() ) {
 		$key = 'variation_id';
-	}
+	} else if ( 'parent' === $key && is_callable( array( $object, 'is_type' ) ) && $object->is_type( 'variation' ) && ! WC_GZD_Dependencies::instance()->woocommerce_version_supports_crud() ) {
+	    // Set getter to parent so that it is not being used for pre 2.7
+	    $key = 'id';
+	    $getter = 'parent';
+    }
 
 	$getter_mapping = array(
 		'parent' => 'get_parent_id',

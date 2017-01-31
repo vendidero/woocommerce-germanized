@@ -556,20 +556,6 @@ if ( ! function_exists( 'woocommerce_gzd_template_digital_delivery_time_text' ) 
 
 }
 
-if ( ! function_exists( 'woocommerce_gzd_template_sale_price_label' ) ) {
-
-	function woocommerce_gzd_template_sale_price_label( $price, $from, $to, $product ) {
-
-		if ( ! is_product() && get_option( 'woocommerce_gzd_display_listings_sale_price_labels' ) === 'no' )
-			return $price;
-		else if ( is_product() && get_option( 'woocommerce_gzd_display_product_detail_sale_price_labels' ) === 'no' )
-			return $price;
-
-		return wc_gzd_get_gzd_product( $product )->get_price_html_from_to( $from, $to );
-	}
-
-}
-
 if ( ! function_exists( 'woocommerce_gzd_template_sale_price_label_html' ) ) {
 
 	function woocommerce_gzd_template_sale_price_label_html( $price, $product ) {
@@ -580,39 +566,6 @@ if ( ! function_exists( 'woocommerce_gzd_template_sale_price_label_html' ) ) {
 			return $price;
 
 		return wc_gzd_get_gzd_product( $product )->add_labels_to_price_html( $price );
-	}
-
-}
-
-if ( ! function_exists( 'woocommerce_gzd_template_variation_sale_price_label' ) ) {
-
-	function woocommerce_gzd_template_variation_sale_price_label( $price, $product ) {
-
-		if ( ! is_product() && get_option( 'woocommerce_gzd_display_listings_sale_price_labels' ) === 'no' )
-			return $price;
-		else if ( is_product() && get_option( 'woocommerce_gzd_display_product_detail_sale_price_labels' ) === 'no' )
-			return $price;
-
-		$display_regular_price = $product->get_display_price( $product->get_regular_price() );
-		$display_sale_price    = $product->get_display_price( $product->get_sale_price() );
-
-		return wc_gzd_get_gzd_product( $product )->get_price_html_from_to( $display_regular_price, $display_sale_price );
-	}
-
-}
-
-if ( ! function_exists( 'woocommerce_gzd_template_show_variation_price' ) ) {
-
-	function woocommerce_gzd_template_show_variation_price( $show, $product, $variation ) {
-
-		$gzd_product = wc_gzd_get_gzd_product( $product );
-		$gzd_product_variation = wc_gzd_get_gzd_product( $variation );
-
-		if ( ( $gzd_product_variation->get_sale_price_label() !== $gzd_product->get_sale_price_label() ) || ( $gzd_product_variation->get_sale_price_regular_label() !== $gzd_product->get_sale_price_regular_label() ) )
-			return true;
-
-		return $show;
-
 	}
 
 }

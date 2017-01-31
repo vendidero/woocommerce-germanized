@@ -400,6 +400,10 @@ class WC_GZD_REST_Products_Controller {
 			$data[ '_free_shipping' ] = get_post_meta( $real_product_id, '_free_shipping', false );
 		}
 
+		// Do only add free_shipping if is set so saving works (checkbox-style).
+		if ( empty( $data[ '_free_shipping' ] ) || ! $data[ '_free_shipping' ] )
+		    unset( $data[ '_free_shipping' ] );
+
 		WC_Germanized_Meta_Box_Product_Data::save_product_data( $real_product_id, $data );
 	}
 

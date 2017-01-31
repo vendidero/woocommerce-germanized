@@ -105,7 +105,7 @@ class WC_GZD_Product {
 		if ( $this->child->is_type( 'variation' ) && in_array( $key, array_keys( $this->gzd_variation_level_meta ) ) ) {
 			return metadata_exists( 'post', wc_gzd_get_crud_data( $this->child, 'id' ), '_' . $key );
 		} else if ( $this->child->is_type( 'variation' ) && in_array( $key, array_keys( $this->gzd_variation_inherited_meta_data ) ) ) {	
-			return metadata_exists( 'post', wc_gzd_get_crud_data( $this->child, 'parent' ), '_' . $key );
+			return metadata_exists( 'post', wc_gzd_get_crud_data( $this->child, 'id' ), '_' . $key ) || metadata_exists( 'post', wc_gzd_get_crud_data( $this->child, 'parent' ), '_' . $key );
 		} else {
 			return metadata_exists( 'post', wc_gzd_get_crud_data( $this->child, 'id' ), '_' . $key );
 		}
@@ -150,6 +150,10 @@ class WC_GZD_Product {
 
 		$sale_label = $this->get_sale_price_label();
 		$sale_regular_label = $this->get_sale_price_regular_label();
+
+		// Do not manipulate if there is no label to be added.
+		if ( empty( $sale_label ) && empty( $sale_regular_label ) )
+		    return $price_html;
 		
 		preg_match( "/<del>(.*?)<\\/del>/si", $price_html, $match_regular );
 		preg_match( "/<ins>(.*?)<\\/ins>/si", $price_html, $match_sale );
@@ -406,7 +410,7 @@ class WC_GZD_Product {
 		if ( empty( $terms ) && $this->child->is_type( 'variation' ) ) {
 			
 			$parent_terms = get_the_terms( wc_gzd_get_crud_data( $this->child, 'parent' ), 'product_delivery_time' );
-			
+
 			if ( ! empty( $parent_terms ) && ! is_wp_error( $parent_terms ) )
 				$terms = $parent_terms;
 		}
