@@ -397,7 +397,7 @@ class WC_GZD_REST_Products_Controller {
 			if ( ! empty( $request['free_shipping'] ) )
 				$data[ '_free_shipping' ] = true;
 		} else {
-			$data[ '_free_shipping' ] = get_post_meta( $real_product_id, '_free_shipping', false );
+			$data[ '_free_shipping' ] = get_post_meta( $real_product_id, '_free_shipping', true );
 		}
 
 		// Do only add free_shipping if is set so saving works (checkbox-style).
