@@ -219,10 +219,10 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 			$directDebit->addPaymentInfo( $payment_id, array(
 			    'id'                    => $payment_id,
 			    'creditorName'          => $this->company_account_holder,
-			    'creditorAccountIBAN'   => $this->company_account_iban,
-			    'creditorAgentBIC'      => $this->company_account_bic,
+			    'creditorAccountIBAN'   => $this->clean_whitespaces( $this->company_account_iban ),
+			    'creditorAgentBIC'      => $this->clean_whitespaces( $this->company_account_bic ),
 			    'seqType'               => Digitick\Sepa\PaymentInformation::S_ONEOFF,
-			    'creditorId'            => $this->company_identification_number,
+			    'creditorId'            => $this->clean_whitespaces( $this->company_identification_number ),
 			));
 
 			while ( $order_query->have_posts() ) {
