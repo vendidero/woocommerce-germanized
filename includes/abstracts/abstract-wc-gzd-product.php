@@ -158,6 +158,9 @@ class WC_GZD_Product {
 		preg_match( "/<del>(.*?)<\\/del>/si", $price_html, $match_regular );
 		preg_match( "/<ins>(.*?)<\\/ins>/si", $price_html, $match_sale );
 
+		if ( empty( $match_sale ) || empty( $match_regular ) )
+		    return $price_html;
+
 		$new_price_regular = ( isset( $match_regular[1] ) ? $match_regular[1] : $match_regular[0] );
 		$new_price_sale = ( isset( $match_sale[1] ) ? $match_sale[1] : $match_sale[0] );
 

@@ -99,6 +99,37 @@ class WC_Germanized_Meta_Box_Product_Data {
 
 	}
 
+	public static function output_delivery_time_select2( $args = array() ) {
+
+	    $args = wp_parse_args( $args, array(
+            'name' => 'delivery_time',
+            'placeholder' => __( 'Search for a delivery time&hellip;', 'woocommerce-germanized' ),
+            'term' => false,
+            'id' => '',
+            'style' => 'width: 50%',
+        ) );
+
+	    $args[ 'id' ] = empty( $args[ 'id' ] ? $args[ 'name' ] : $args[ 'id' ] );
+
+	    if ( WC_GZD_Dependencies::instance()->woocommerce_version_supports_crud() ) {
+	        ?>
+            <select class="wc-product-search wc-gzd-delivery-time-search" style="<?php echo $args[ 'style' ]; ?>" id="<?php echo $args[ 'id' ]; ?>" name="<?php echo $args[ 'name' ]; ?>" data-minimum_input_length="1" data-allow_clear="true" data-placeholder="<?php echo $args[ 'placeholder' ]; ?>" data-action="woocommerce_gzd_json_search_delivery_time" data-multiple="false">
+                <?php
+
+                if ( $args[ 'term' ] ) {
+                    echo '<option value="' . esc_attr( $args[ 'term' ]->term_id ) . '"' . selected( true, true, false ) . '>' . $args[ 'term' ]->name . '</option>';
+                }
+
+                ?>
+            </select>
+            <?php
+        } else {
+	        ?>
+            <input type="hidden" class="wc-product-search wc-gzd-delivery-time-search" style="<?php echo $args[ 'style' ]; ?>" id="<?php echo $args[ 'id' ]; ?>" name="<?php echo $args[ 'name' ]; ?>" data-minimum_input_length="1" data-allow_clear="true" data-placeholder="<?php echo $args[ 'placeholder' ]; ?>" data-action="woocommerce_gzd_json_search_delivery_time" data-multiple="false" data-selected="<?php echo ( $args[ 'term' ] ? $args[ 'term' ]->name : '' ); ?>" value="<?php echo ( $args[ 'term' ] ? $args[ 'term' ]->term_id : '' ); ?>" />
+            <?php
+        }
+    }
+
 	public static function output_shipping() {
 
 		global $post, $thepostid;
@@ -112,7 +143,13 @@ class WC_Germanized_Meta_Box_Product_Data {
 
 		<p class="form-field">
 			<label for="delivery_time"><?php _e( 'Delivery Time', 'woocommerce-germanized' ); ?></label>
-			<input type="hidden" class="wc-product-search wc-gzd-delivery-time-search" style="width: 50%" id="delivery_time" name="delivery_time" data-minimum_input_length="1" data-allow_clear="true" data-placeholder="<?php _e( 'Search for a delivery time&hellip;', 'woocommerce-germanized' ); ?>" data-action="woocommerce_gzd_json_search_delivery_time" data-multiple="false" data-selected="<?php echo ( $delivery_time ? $delivery_time->name : '' ); ?>" value="<?php echo ( $delivery_time ? $delivery_time->term_id : '' ); ?>" />
+            <?php
+                self::output_delivery_time_select2( array(
+                    'name' => 'delivery_time',
+                    'placeholder' => __( 'Search for a delivery time&hellip;', 'woocommerce-germanized' ),
+                    'term' => $delivery_time,
+                ) );
+            ?>
 		</p>
 		
 		<?php

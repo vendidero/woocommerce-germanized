@@ -66,6 +66,24 @@ class WC_GZD_Product_Variable extends WC_GZD_Product {
 		return false;
 	}
 
+    public function get_price_html( $price = '' ) {
+        $prices = $this->get_variation_prices( true );
+
+        if ( empty( $prices['price'] ) ) {
+            return apply_filters( 'woocommerce_variable_empty_price_html', '', $this );
+        }
+
+        $min_price = current( $prices['price'] );
+        $max_price = end( $prices['price'] );
+
+        if ( $min_price !== $max_price ) {
+            $price = apply_filters( 'woocommerce_variable_price_html', wc_format_price_range( $min_price, $max_price ), $this );
+        } else {
+            $price = apply_filters( 'woocommerce_variable_price_html', wc_price( $min_price ) . $this->get_price_suffix(), $this );
+        }
+        return apply_filters( 'woocommerce_get_price_html', $price, $this );
+    }
+
 	/**
 	 * Returns the price in html format.
 	 *
@@ -85,27 +103,34 @@ class WC_GZD_Product_Variable extends WC_GZD_Product {
 
 			$min_price = current( $prices['price'] );
 			$max_price = end( $prices['price'] );
-			$price = $min_price !== $max_price ? sprintf( _x( '%1$s&ndash;%2$s', 'Price range: from-to', 'woocommerce-germanized' ), wc_price( $min_price ), wc_price( $max_price ) ) : wc_price( $min_price );
 
-			if ( $this->is_on_sale() ) {
-				$min_regular_price = current( $prices['regular_price'] );
-				$max_regular_price = end( $prices['regular_price'] );
-				$regular_price     = $min_regular_price !== $max_regular_price ? sprintf( _x( '%1$s&ndash;%2$s', 'Price range: from-to', 'woocommerce-germanized' ), wc_price( $min_regular_price ), wc_price( $max_regular_price ) ) : wc_price( $min_regular_price );
-				$price        	   = apply_filters( 'woocommerce_gzd_variable_unit_sale_price_html', $this->get_price_html_from_to( $regular_price, $price, false ), $this );
-			} else {
-				$price 	   		   = apply_filters( 'woocommerce_gzd_variable_unit_price_html', $price, $this );
-			}
+			if ( WC_GZD_Dependencies::instance()->woocommerce_version_supports_crud() ) {
 
-			if ( strpos( $text, '{price}' ) !== false ) {
+                if ( $min_price !== $max_price ) {
+                    $price = apply_filters( 'woocommerce_gzd_variable_unit_price_html', wc_format_price_range( $min_price, $max_price ), $this );
+                } else {
+                    $price = apply_filters( 'woocommerce_gzd_variable_unit_price_html', wc_price( $min_price ) . $this->get_price_suffix(), $this );
+                }
 
-				$price = str_replace( '{price}', $price . apply_filters( 'wc_gzd_unit_price_seperator', ' / ' ) . $this->get_unit_base(), $text );
+            } else {
 
-			} else {
+                $price = $min_price !== $max_price ? sprintf( _x( '%1$s&ndash;%2$s', 'Price range: from-to', 'woocommerce-germanized' ), wc_price( $min_price ), wc_price( $max_price ) ) : wc_price( $min_price );
 
-				$price = str_replace( array( '{base_price}', '{unit}', '{base}' ), array( $price, '<span class="unit">' . $this->get_unit() . '</span>', ( $this->unit_base != apply_filters( 'wc_gzd_unit_base_min_amount_to_show', 1 ) ? '<span class="unit-base">' . $this->unit_base . '</span>' : '' ) ), $text );
+                if ( $this->is_on_sale() ) {
+                    $min_regular_price = current( $prices['regular_price'] );
+                    $max_regular_price = end( $prices['regular_price'] );
+                    $regular_price     = $min_regular_price !== $max_regular_price ? sprintf( _x( '%1$s&ndash;%2$s', 'Price range: from-to', 'woocommerce-germanized' ), wc_price( $min_regular_price ), wc_price( $max_regular_price ) ) : wc_price( $min_regular_price );
+                    $price        	   = apply_filters( 'woocommerce_gzd_variable_unit_sale_price_html', $this->get_price_html_from_to( $regular_price, $price, false ), $this );
+                } else {
+                    $price 	   		   = apply_filters( 'woocommerce_gzd_variable_unit_price_html', $price, $this );
+                }
+            }
 
-			}
-
+            if ( strpos( $text, '{price}' ) !== false ) {
+                $price = str_replace( '{price}', $price . apply_filters( 'wc_gzd_unit_price_seperator', ' / ' ) . $this->get_unit_base(), $text );
+            } else {
+                $price = str_replace( array( '{base_price}', '{unit}', '{base}' ), array( $price, '<span class="unit">' . $this->get_unit() . '</span>', ( $this->unit_base != apply_filters( 'wc_gzd_unit_base_min_amount_to_show', 1 ) ? '<span class="unit-base">' . $this->unit_base . '</span>' : '' ) ), $text );
+            }
 		}
 
 		return apply_filters( 'woocommerce_gzd_unit_price_html', $price, $this );
