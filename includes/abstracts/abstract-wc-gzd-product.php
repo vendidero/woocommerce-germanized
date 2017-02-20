@@ -123,8 +123,12 @@ class WC_GZD_Product {
 	 * @return boolean|string
 	 */
 	public function get_mini_desc() {
-		if ( $this->mini_desc && ! empty( $this->mini_desc ) )
-			return wpautop( htmlspecialchars_decode( $this->mini_desc ) );
+
+	    $mini_desc = apply_filters( 'woocommerce_gzd_product_cart_description', $this->mini_desc, $this );
+
+		if ( $mini_desc && ! empty( $mini_desc ) )
+			return wpautop( htmlspecialchars_decode( $mini_desc ) );
+
 		return false;
 	}
 
