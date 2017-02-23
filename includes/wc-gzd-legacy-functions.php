@@ -88,3 +88,12 @@ function wc_gzd_get_order_currency( $order ) {
 		return $order->get_currency();
 	return $order->get_order_currency();
 }
+
+function wc_gzd_reduce_order_stock( $order_id ) {
+    if ( WC_GZD_Dependencies::instance()->woocommerce_version_supports_crud() ) {
+        wc_reduce_stock_levels($order_id);
+    } else {
+        $order = wc_get_order( $order_id );
+        $order->reduce_order_stock();
+    }
+}

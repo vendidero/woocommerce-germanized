@@ -15,9 +15,12 @@ class WC_GZD_Dependencies {
 	public $loadable = true;
 
 	public $plugin = null;
+
 	public $prefix = 'gzd';
 	
 	public $plugins = array();
+
+	public $wc_supports_crud = false;
 
 	public $plugins_header = array(
 		'woocommerce' => array( 
@@ -68,6 +71,9 @@ class WC_GZD_Dependencies {
 
 		$this->plugin = $plugin;
 
+		// Set whether current WooCommerce Version supports CRUD
+		$this->set_wc_supports_crud();
+
 		if ( $plugin->version != get_option( 'woocommerce_' . $this->prefix . '_version' ) ) {
 			delete_option( 'woocommerce_' . $this->prefix . '_plugin_header_data' );
 		}
@@ -106,6 +112,10 @@ class WC_GZD_Dependencies {
 		}
 
 	}
+
+	public function set_wc_supports_crud() {
+        $this->wc_supports_crud = ( $this->compare_versions( $this->get_plugin_version( 'woocommerce' ), '2.7', '>=' ) );
+    }
 
 	protected function get_current_plugin_path() {
 		return $this->plugin->plugin_path() . '/woocommerce-germanized.php';
@@ -219,7 +229,7 @@ class WC_GZD_Dependencies {
 	}
 
 	public function woocommerce_version_supports_crud() {
-		return ( $this->compare_versions( $this->get_plugin_version( 'woocommerce' ), '2.7', '>=' ) );
+		return $this->wc_supports_crud;
 	}
 
 	/**

@@ -776,8 +776,8 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 		// Mark as on-hold (we're awaiting the cheque)
 		$order->update_status( 'on-hold', __( 'Awaiting Direct Debit Payment', 'woocommerce-germanized' ) );
 
-		// Reduce stock levels
-		$order->reduce_order_stock();
+		// Reduce stock level
+        wc_gzd_reduce_order_stock( $order_id );
 
 		// Remove cart
 		WC()->cart->empty_cart();
