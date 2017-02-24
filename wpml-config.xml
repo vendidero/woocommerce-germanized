@@ -1,4 +1,23 @@
 <wpml-config>
+    <custom-fields>
+        <custom-field action="copy">_unit</custom-field>
+        <custom-field action="copy">_unit_base</custom-field>
+        <custom-field action="copy">_unit_product</custom-field>
+        <custom-field action="copy">_unit_price</custom-field>
+        <custom-field action="copy">_unit_price_regular</custom-field>
+        <custom-field action="copy">_unit_price_sale</custom-field>
+        <custom-field action="copy">_unit_price_auto</custom-field>
+        <custom-field action="copy">_sale_price_label</custom-field>
+        <custom-field action="copy">_sale_price_regular_label</custom-field>
+        <custom-field action="copy">_free_shipping</custom-field>
+        <custom-field action="translate">_mini_desc</custom-field>
+        <custom-field action="copy">_service</custom-field>
+    </custom-fields>
+    <taxonomies>
+        <taxonomy translate="1">product_price_label</taxonomy>
+        <taxonomy translate="1">product_unit</taxonomy>
+        <taxonomy translate="1">product_delivery_time</taxonomy>
+    </taxonomies>
     <admin-texts>
     	<key name="woocommerce_gzd_shipping_costs_text" />
         <key name="woocommerce_gzd_free_shipping_text" />

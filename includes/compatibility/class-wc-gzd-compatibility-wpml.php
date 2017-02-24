@@ -30,13 +30,28 @@ class WC_GZD_Compatibility_Wpml extends WC_GZD_Compatibility {
 		add_action( 'post_updated', array( $this, 'observe_order_update' ), 0, 3 );
 		
 		// Prevent double sending order confirmation email to admin
-		if ( WC_germanized()->send_instant_order_confirmation() ) {
+		if ( wc_gzd_send_instant_order_confirmation() ) {
 			add_action( 'wp_loaded', array( $this, 'unregister_order_confirmation_hooks' ) );
 			add_action( 'woocommerce_germanized_before_order_confirmation', array( $this, 'send_order_admin_confirmation' ) );
 		}
+
+		add_action( 'woocommerce_gzd_get_term', array( $this, 'unhook_terms_clause' ), 10 );
+        add_action( 'woocommerce_gzd_after_get_term', array( $this, 'rehook_terms_clause' ), 10 );
 		
 		$this->filter_page_ids();
 	}
+
+	public function unhook_terms_clause() {
+        global $sitepress;
+
+        remove_filter( 'terms_clauses', array( $sitepress, 'terms_clauses' ), 10, 4 );
+    }
+
+    public function rehook_terms_clause() {
+        global $sitepress;
+
+        add_filter( 'terms_clauses', array( $sitepress, 'terms_clauses' ), 10, 4 );
+    }
 
 	public function send_order_admin_confirmation( $order_id ) {
 		global $woocommerce_wpml;

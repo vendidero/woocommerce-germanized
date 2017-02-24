@@ -31,9 +31,17 @@ class WC_GZD_Taxonomy {
 	}
 
 	public function get_term_object( $key, $by = 'slug' ) {
-		if ( $term = get_term_by( $by, $key, $this->taxonomy ) ) 
-			return $term;
-		return false;
+
+	    do_action( 'woocommerce_gzd_get_term', $key, $by, $this->taxonomy );
+
+	    $term = get_term_by( $by, $key, $this->taxonomy );
+
+	    if ( ! $term || is_wp_error( $term ) )
+	        $term = false;
+
+        do_action( 'woocommerce_gzd_after_get_term', $key, $by, $this->taxonomy );
+
+	    return $term;
 	}
 
 	public function get_term( $key, $by = 'slug' ) {
