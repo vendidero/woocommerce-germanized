@@ -185,6 +185,7 @@ final class WooCommerce_Germanized {
 
 		// Add better tax display to order totals
 		add_filter( 'woocommerce_get_order_item_totals', array( $this, 'order_item_totals' ), 0, 2 );
+
 		// Unsure wether this could lead to future problems - tax classes with same name wont be merged anylonger
 		//add_filter( 'woocommerce_rate_code', array( $this, 'prevent_tax_name_merge' ), PHP_INT_MAX, 2 );
 		
@@ -201,31 +202,10 @@ final class WooCommerce_Germanized {
 		// Remove cart subtotal filter
 		add_action( 'template_redirect', array( $this, 'remove_cart_unit_price_filter' ) );
 
-		// Let third party apps disable instant order confirmation
-		if ( $this->send_instant_order_confirmation() ) {
-
-			// Unregister WooCommerce default order confirmation mails
-			$this->unregister_order_confirmation_hooks();
-
-			// Send order notice directly after new order is being added - use these filters because order status has to be updated already
-			add_filter( 'woocommerce_payment_successful_result', array( $this, 'send_order_confirmation_mails' ), 0, 2 );
-			add_filter( 'woocommerce_checkout_no_payment_needed_redirect', array( $this, 'send_order_confirmation_mails' ), 0, 2 );
-
-		}
-
-		$this->emails    	  = new WC_GZD_Emails();
+        $this->emails    	  = new WC_GZD_Emails();
 
 		// Init action
 		do_action( 'woocommerce_germanized_init' );
-	}
-
-	/**
-	 * Check whether to send instant order confirmation or not
-	 *  
-	 * @return bool
-	 */
-	public function send_instant_order_confirmation() {
-		return ( apply_filters( 'woocommerce_gzd_instant_order_confirmation', true ) && ( 'yes' !== get_option( 'woocommerce_gzd_disable_instant_order_confirmation' ) ) );
 	}
 
 	/**
@@ -694,63 +674,6 @@ final class WooCommerce_Germanized {
 			$core_file = $this->plugin_path() . '/templates/' . $template;
 		
 		return apply_filters( 'woocommerce_germanized_email_template_hook', $core_file, $template, $template_base );
-	}
-
-	public function unregister_order_confirmation_hooks() {
-
-		$statuses = array( 'completed', 'on-hold', 'processing' );
-		
-		foreach ( $statuses as $status )
-			add_action( 'woocommerce_order_status_' . $status, array( $this, 'remove_order_email_hooks' ), 0 );
-
-	}
-
-	public function remove_order_email_hooks() {
-
-		remove_action( 'woocommerce_order_status_pending_to_processing_notification', array( $this->emails->get_email_instance_by_id( 'customer_processing_order' ), 'trigger' ) );
-		remove_action( 'woocommerce_order_status_pending_to_on-hold_notification', array( $this->emails->get_email_instance_by_id( 'customer_processing_order' ), 'trigger' ) );
-		remove_action( 'woocommerce_order_status_on-hold_to_processing_notification', array( $this->emails->get_email_instance_by_id( 'customer_processing_order' ), 'trigger' ) );
-		
-		remove_action( 'woocommerce_order_status_pending_to_processing_notification', array( $this->emails->get_email_instance_by_id( 'new_order' ), 'trigger' ) );
-		remove_action( 'woocommerce_order_status_pending_to_on-hold_notification', array( $this->emails->get_email_instance_by_id( 'new_order' ), 'trigger' ) );
-		remove_action( 'woocommerce_order_status_pending_to_completed_notification', array( $this->emails->get_email_instance_by_id( 'new_order' ), 'trigger' ) );
-		
-		if ( $this->emails->get_email_instance_by_id( 'customer_on_hold_order' ) )
-			remove_action( 'woocommerce_order_status_pending_to_on-hold_notification', array( $this->emails->get_email_instance_by_id( 'customer_on_hold_order' ), 'trigger' ) );
-
-	}
-
-	/**
-	 * Send order confirmation mail directly after order is being sent
-	 *  	
-	 * @param  mixed 	  $return 	
-	 * @param  mixed  	  $order
-	 */
-	public function send_order_confirmation_mails( $result, $order ) {
-		
-		if ( ! is_object( $order ) )
-			$order = wc_get_order( $order );
-
-		if ( ! apply_filters( 'woocommerce_germanized_send_instant_order_confirmation', true, $order ) )
-			return $result;
-
-		do_action( 'woocommerce_germanized_before_order_confirmation', wc_gzd_get_crud_data( $order, 'id' ) );
-
-		// Send order processing mail
-		if ( apply_filters( 'woocommerce_germanized_order_email_customer_confirmation_sent', false, wc_gzd_get_crud_data( $order, 'id' ) ) === false && $processing = $this->emails->get_email_instance_by_id( 'customer_processing_order' ) )
-			$processing->trigger( wc_gzd_get_crud_data( $order, 'id' ) );
-
-		// Send admin mail
-		if ( apply_filters( 'woocommerce_germanized_order_email_admin_confirmation_sent', false, wc_gzd_get_crud_data( $order, 'id' ) ) === false && $new_order = $this->emails->get_email_instance_by_id( 'new_order' ) )
-			$new_order->trigger( wc_gzd_get_crud_data( $order, 'id' ) );
-
-		// Always clear cart after order success
-		if ( get_option( 'woocommerce_gzd_checkout_stop_order_cancellation' ) === 'yes' )
-			WC()->cart->empty_cart();
-
-		do_action( 'woocommerce_germanized_order_confirmation_sent', wc_gzd_get_crud_data( $order, 'id' ) );
-
-		return $result;
 	}
 
 	public function register_gateways( $gateways ) {

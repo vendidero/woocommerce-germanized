@@ -9,35 +9,96 @@
 class WC_GZD_Emails {
 
 	/**
-	 * contains options and page ids
+	 * Contains options and page ids
 	 * @var array
 	 */
 	private $footer_attachments = array();
+
+    /**
+     * Contains WC_Emails instance after init
+     * @var WC_Emails
+     */
+	private $mailer = null;
 
 	/**
 	 * Adds legal page ids to different options and adds a hook to the email footer
 	 */
 	public function __construct() {
 
-		// Order attachments
-		$attachment_order = wc_gzd_get_email_attachment_order();
-		$this->footer_attachments = array();
-
-		foreach ( $attachment_order as $key => $order )
-			$this->footer_attachments[ 'woocommerce_gzd_mail_attach_' . $key ] = $key;
+		$this->set_footer_attachments();
 
 		add_action( 'woocommerce_email', array( $this, 'email_hooks' ), 0, 1 );
-		
-		// Change email template path if is germanized email template
+
+        if ( wc_gzd_send_instant_order_confirmation() ) {
+
+            // Send order notice directly after new order is being added - use these filters because order status has to be updated already
+            add_filter( 'woocommerce_payment_successful_result', array( $this, 'send_order_confirmation_mails' ), 0, 2 );
+            add_filter( 'woocommerce_checkout_no_payment_needed_redirect', array( $this, 'send_order_confirmation_mails' ), 0, 2 );
+        }
+
+        // Change email template path if is germanized email template
 		add_filter( 'woocommerce_template_directory', array( $this, 'set_woocommerce_template_dir' ), 10, 2 );
 
-		$this->admin_hooks();
-
+        if ( is_admin() )
+		    $this->admin_hooks();
 	}
+
+    private function set_mailer( $mailer = null ) {
+	    if ( $mailer )
+	        $this->mailer = $mailer;
+	    else
+            $this->mailer = WC()->mailer();
+    }
+
+	private function set_footer_attachments() {
+
+        // Order attachments
+        $attachment_order = wc_gzd_get_email_attachment_order();
+        $this->footer_attachments = array();
+
+        foreach ( $attachment_order as $key => $order )
+            $this->footer_attachments[ 'woocommerce_gzd_mail_attach_' . $key ] = $key;
+    }
 	
 	public function admin_hooks() {
 		add_filter( 'woocommerce_resend_order_emails_available', array( $this, 'resend_order_emails' ), 0 );
 	}
+
+    public function email_hooks( $mailer ) {
+
+        $this->set_mailer( $mailer );
+
+        if ( wc_gzd_send_instant_order_confirmation() ) {
+            $this->prevent_confirmation_email_sending();
+        }
+
+        // Hook before WooCommerce Footer is applied
+        remove_action( 'woocommerce_email_footer', array( $this->mailer, 'email_footer' ) );
+
+        add_action( 'woocommerce_email_footer', array( $this, 'add_template_footers' ), 0 );
+        add_action( 'woocommerce_email_footer', array( $this->mailer, 'email_footer' ), 1 );
+
+        add_filter( 'woocommerce_email_footer_text', array( $this, 'email_footer_plain' ), 0 );
+        add_filter( 'woocommerce_email_styles', array( $this, 'styles' ) );
+
+        $mails = $this->mailer->get_emails();
+
+        if ( ! empty( $mails ) ) {
+
+            foreach ( $mails as $mail )
+                add_action( 'woocommerce_germanized_email_footer_' . $mail->id, array( $this, 'hook_mail_footer' ), 10, 1 );
+        }
+
+        // Set email filters
+        add_action( 'woocommerce_email_before_order_table', array( $this, 'set_order_email_filters' ), 10, 4 );
+
+        // Remove them after total has been displayed
+        add_action( 'woocommerce_email_after_order_table', array( $this, 'remove_order_email_filters' ), 10, 4 );
+
+        // Pay now button
+        add_action( 'woocommerce_email_before_order_table', array( $this, 'email_pay_now_button' ), 0, 1 );
+        add_action( 'woocommerce_email_after_order_table', array( $this, 'email_digital_revocation_notice' ), 0, 3 );
+    }
 	
 	public function resend_order_emails( $emails ) {
 		global $theorder;
@@ -56,36 +117,60 @@ class WC_GZD_Emails {
 		return $dir;
 	}
 
-	public function email_hooks( $mailer ) {
-		// Hook before WooCommerce Footer is applied
-		remove_action( 'woocommerce_email_footer', array( $mailer, 'email_footer' ) );
-		add_action( 'woocommerce_email_footer', array( $this, 'add_template_footers' ), 0 );
-		add_action( 'woocommerce_email_footer', array( $mailer, 'email_footer' ), 1 );
+    private function get_confirmation_email_transaction_statuses() {
+        return array(
+            'woocommerce_order_status_pending_to_processing',
+            'woocommerce_order_status_pending_to_completed',
+            'woocommerce_order_status_pending_to_on-hold',
+            'woocommerce_order_status_on-hold_to_processing',
+        );
+    }
 
-		add_filter( 'woocommerce_email_footer_text', array( $this, 'email_footer_plain' ), 0 );
+    public function prevent_confirmation_email_sending() {
 
-		add_filter( 'woocommerce_email_styles', array( $this, 'styles' ) );
+	    foreach( $this->get_confirmation_email_transaction_statuses() as $status ) {
 
-		$mails = $mailer->get_emails();
+            remove_action( $status . '_notification', array( $this->get_email_instance_by_id( 'customer_processing_order' ), 'trigger' ) );
+            remove_action( $status . '_notification', array( $this->get_email_instance_by_id( 'new_order' ), 'trigger' ) );
 
-		if ( ! empty( $mails ) ) {
+            if ( $this->get_email_instance_by_id( 'customer_on_hold_order' ) )
+                remove_action( 'woocommerce_order_status_pending_to_on-hold_notification', array( $this->get_email_instance_by_id( 'customer_on_hold_order' ), 'trigger' ) );
 
-			foreach ( $mails as $mail )
-				add_action( 'woocommerce_germanized_email_footer_' . $mail->id, array( $this, 'hook_mail_footer' ), 10, 1 );
-		}
+	    }
+    }
 
-		// Set email filters
-		add_action( 'woocommerce_email_before_order_table', array( $this, 'set_order_email_filters' ), 10, 4 );
-		
-		// Remove them after total has been displayed
-		add_action( 'woocommerce_email_after_order_table', array( $this, 'remove_order_email_filters' ), 10, 4 );
+    /**
+     * Send order confirmation mail directly after order is being sent
+     *
+     * @param  mixed 	  $return
+     * @param  mixed  	  $order
+     */
+    public function send_order_confirmation_mails( $result, $order ) {
 
-		// Pay now button
-		add_action( 'woocommerce_email_before_order_table', array( $this, 'email_pay_now_button' ), 0, 1 );
+        if ( ! is_object( $order ) )
+            $order = wc_get_order( $order );
 
-		add_action( 'woocommerce_email_after_order_table', array( $this, 'email_digital_revocation_notice' ), 0, 3 );
+        if ( ! apply_filters( 'woocommerce_germanized_send_instant_order_confirmation', true, $order ) )
+            return $result;
 
-	}
+        do_action( 'woocommerce_germanized_before_order_confirmation', wc_gzd_get_crud_data( $order, 'id' ) );
+
+        // Send order processing mail
+        if ( apply_filters( 'woocommerce_germanized_order_email_customer_confirmation_sent', false, wc_gzd_get_crud_data( $order, 'id' ) ) === false && $processing = $this->get_email_instance_by_id( 'customer_processing_order' ) )
+            $processing->trigger( wc_gzd_get_crud_data( $order, 'id' ) );
+
+        // Send admin mail
+        if ( apply_filters( 'woocommerce_germanized_order_email_admin_confirmation_sent', false, wc_gzd_get_crud_data( $order, 'id' ) ) === false && $new_order = $this->get_email_instance_by_id( 'new_order' ) )
+            $new_order->trigger( wc_gzd_get_crud_data( $order, 'id' ) );
+
+        // Always clear cart after order success
+        if ( get_option( 'woocommerce_gzd_checkout_stop_order_cancellation' ) === 'yes' )
+            WC()->cart->empty_cart();
+
+        do_action( 'woocommerce_germanized_order_confirmation_sent', wc_gzd_get_crud_data( $order, 'id' ) );
+
+        return $result;
+    }
 
 	public function email_digital_revocation_notice( $order, $sent_to_admin, $plain_text ) {
 			
@@ -144,9 +229,12 @@ class WC_GZD_Emails {
 	}
 
 	public function get_email_instance_by_id( $id ) {
-		
-		$mailer = WC()->mailer();
-		$mails = $mailer->get_emails();
+
+        if ( ! $this->mailer ) {
+            $this->set_mailer();
+        }
+
+		$mails = $this->mailer->get_emails();
 		
 		foreach ( $mails as $mail ) {
 			if ( $id === $mail->id )
@@ -207,7 +295,7 @@ class WC_GZD_Emails {
 	public function hook_mail_footer( $mail ) {
 		if ( ! empty( $this->footer_attachments ) ) {
 			foreach ( $this->footer_attachments as $option_key => $page_option ) {
-				$option = woocommerce_get_page_id ( $page_option );
+				$option = wc_get_page_id ( $page_option );
 				if ( $option == -1 || ! get_option( $option_key ) )
 					continue;
 				if ( in_array( $mail->id, get_option( $option_key ) ) && apply_filters( 'woocommerce_gzd_attach_email_footer', true, $mail, $page_option ) ) {
@@ -245,10 +333,17 @@ class WC_GZD_Emails {
 	 * @return mixed      
 	 */
 	private function get_email_instance_by_tpl( $tpls = array() ) {
-		$found_mails = array();
-		foreach ( $tpls as $tpl ) {
-			$tpl = apply_filters( 'woocommerce_germanized_email_template_name',  str_replace( array( 'admin-', '-' ), array( '', '_' ), basename( $tpl, '.php' ) ), $tpl );
-			$mails = WC()->mailer()->get_emails();
+
+	    if ( ! $this->mailer )
+	        $this->set_mailer();
+
+	    $found_mails = array();
+
+	    foreach ( $tpls as $tpl ) {
+
+	        $tpl = apply_filters( 'woocommerce_germanized_email_template_name',  str_replace( array( 'admin-', '-' ), array( '', '_' ), basename( $tpl, '.php' ) ), $tpl );
+			$mails = $this->mailer->get_emails();
+
 			if ( ! empty( $mails ) ) {
 				foreach ( $mails as $mail ) {
 					if ( is_object( $mail ) && $mail->id == $tpl )
