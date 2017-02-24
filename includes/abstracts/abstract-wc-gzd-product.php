@@ -149,6 +149,8 @@ class WC_GZD_Product {
 
 	public function add_labels_to_price_html( $price_html ) {
 
+	    $org_price_html = $price_html;
+
 		if ( ! $this->child->is_on_sale() )
 			return $price_html;
 
@@ -156,14 +158,16 @@ class WC_GZD_Product {
 		$sale_regular_label = $this->get_sale_price_regular_label();
 
 		// Do not manipulate if there is no label to be added.
-		if ( empty( $sale_label ) && empty( $sale_regular_label ) )
-		    return $price_html;
+		if ( empty( $sale_label ) && empty( $sale_regular_label ) ) {
+            return $price_html;
+        }
 		
 		preg_match( "/<del>(.*?)<\\/del>/si", $price_html, $match_regular );
 		preg_match( "/<ins>(.*?)<\\/ins>/si", $price_html, $match_sale );
 
-		if ( empty( $match_sale ) || empty( $match_regular ) )
-		    return $price_html;
+		if ( empty( $match_sale ) || empty( $match_regular ) ) {
+            return $price_html;
+        }
 
 		$new_price_regular = ( isset( $match_regular[1] ) ? $match_regular[1] : $match_regular[0] );
 		$new_price_sale = ( isset( $match_sale[1] ) ? $match_sale[1] : $match_sale[0] );
@@ -171,7 +175,7 @@ class WC_GZD_Product {
 		if ( ! empty( $sale_label ) && isset( $match_regular[1] ) )
 			$new_price_regular = '<span class="wc-gzd-sale-price-label">' . $sale_label . '</span> <del>' . $match_regular[1] . '</del>';
 
-		if ( ! empty( $sale_label ) && isset( $match_sale[1] ) )
+		if ( ! empty( $sale_regular_label ) && isset( $match_sale[1] ) )
 			$new_price_sale = '<span class="wc-gzd-sale-price-label wc-gzd-sale-price-regular-label">' . $sale_regular_label . '</span> <ins>' . $match_sale[1] . '</ins>';
 
 		$price_html = $new_price_regular . $new_price_sale;
