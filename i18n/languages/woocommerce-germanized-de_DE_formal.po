@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce Germanized v1.5.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-27 16:15+0100\n"
-"PO-Revision-Date: 2017-01-27 16:17+0100\n"
+"POT-Creation-Date: 2017-03-03 15:28+0100\n"
+"PO-Revision-Date: 2017-03-03 15:28+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Poedit 1.8.11\n"
+"X-Generator: Poedit 1.8.12\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;"
 "_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;"
@@ -89,27 +89,27 @@ msgid "l"
 msgstr "l"
 
 # @ woocommerce-germanized
-#: includes/abstracts/abstract-wc-gzd-product.php:200
+#: includes/abstracts/abstract-wc-gzd-product.php:215
 #: includes/compatibility/class-wc-gzd-compatibility-woocommerce-subscriptions.php:72
-#: includes/wc-gzd-cart-functions.php:269 woocommerce-germanized.php:804
+#: includes/wc-gzd-cart-functions.php:269 woocommerce-germanized.php:727
 msgid "incl. VAT"
 msgstr "inkl. MwSt."
 
 # @ woocommerce-germanized
-#: includes/abstracts/abstract-wc-gzd-product.php:200
+#: includes/abstracts/abstract-wc-gzd-product.php:215
 msgid "excl. VAT"
 msgstr "exkl. MwSt."
 
 # @ woocommerce-germanized
-#: includes/abstracts/abstract-wc-gzd-product.php:202
+#: includes/abstracts/abstract-wc-gzd-product.php:217
 #: includes/compatibility/class-wc-gzd-compatibility-woocommerce-subscriptions.php:72
-#: includes/wc-gzd-cart-functions.php:269 woocommerce-germanized.php:804
+#: includes/wc-gzd-cart-functions.php:269 woocommerce-germanized.php:727
 #, php-format
 msgid "incl. %s%% VAT"
 msgstr "inkl. %s%% MwSt."
 
 # @ woocommerce-germanized
-#: includes/abstracts/abstract-wc-gzd-product.php:202
+#: includes/abstracts/abstract-wc-gzd-product.php:217
 #, php-format
 msgid "excl. %s%% VAT"
 msgstr "exkl. %s%% MwSt."
@@ -133,8 +133,8 @@ msgstr "Ja, Kunde wurde per Double Opt-In bestätigt."
 #: includes/class-wc-gzd-checkout.php:22 includes/class-wc-gzd-checkout.php:31
 #: includes/class-wc-gzd-customer-helper.php:19
 #: includes/class-wc-gzd-customer-helper.php:28
-#: includes/class-wc-gzd-dependencies.php:51
-#: includes/class-wc-gzd-dependencies.php:60
+#: includes/class-wc-gzd-dependencies.php:54
+#: includes/class-wc-gzd-dependencies.php:63
 #: includes/class-wc-gzd-hook-priorities.php:33
 #: includes/class-wc-gzd-hook-priorities.php:42 woocommerce-germanized.php:88
 #: woocommerce-germanized.php:97
@@ -145,7 +145,7 @@ msgstr "So geht das leider nicht.."
 #: includes/admin/class-wc-gzd-admin-status.php:38
 #: includes/admin/settings/class-wc-gzd-settings-germanized.php:139
 #: includes/admin/settings/class-wc-gzd-settings-germanized.php:225
-#: includes/wc-gzd-core-functions.php:49
+#: includes/wc-gzd-core-functions.php:53
 msgid "Terms & Conditions"
 msgstr "AGB"
 
@@ -159,7 +159,7 @@ msgstr "Widerrufsbelehrung"
 #: includes/admin/class-wc-gzd-admin-status.php:40
 #: includes/admin/settings/class-wc-gzd-settings-germanized.php:139
 #: includes/admin/settings/class-wc-gzd-settings-germanized.php:247
-#: includes/wc-gzd-core-functions.php:55
+#: includes/wc-gzd-core-functions.php:59
 msgid "Imprint"
 msgstr "Impressum"
 
@@ -194,7 +194,7 @@ msgid "Welcome to WooCommerce Germanized"
 msgstr "Willkommen bei WooCommerce Germanized"
 
 # @ woocommerce-germanized
-#: includes/admin/class-wc-gzd-admin-welcome.php:302
+#: includes/admin/class-wc-gzd-admin-welcome.php:303
 msgid "Go to WooCommerce Germanized Settings"
 msgstr "zu den WooCommerce Germanized Einstellungen"
 
@@ -230,7 +230,7 @@ msgstr ""
 
 # @ woocommerce-germanized
 #: includes/admin/class-wc-gzd-admin.php:167
-#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:142
+#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:151
 msgid "Optional Mini Description"
 msgstr "Warenkorb Kurzbeschreibung"
 
@@ -309,14 +309,14 @@ msgstr "Angebots-Einheitspreis"
 
 # @ woocommerce-germanized
 #: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:136
-#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:114
+#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:145
 #: includes/api/class-wc-gzd-rest-products-controller.php:28
 #: includes/api/class-wc-gzd-rest-products-controller.php:181
 msgid "Delivery Time"
 msgstr "Lieferzeit"
 
 # @ woocommerce-germanized
-#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:137
+#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:142
 msgid "Same as parent"
 msgstr "Gleiche wie übergeordnet"
 
@@ -398,17 +398,18 @@ msgid "Sale Base Price"
 msgstr "Angebotsgrundpreis"
 
 # @ woocommerce-germanized
-#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:115
+#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:106
+#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:149
 msgid "Search for a delivery time&hellip;"
 msgstr "Lieferzeit suchen&hellip;"
 
 # @ woocommerce-germanized
-#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:121
+#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:158
 msgid "Free shipping?"
 msgstr "Versand kostenlos?"
 
 # @ woocommerce-germanized
-#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:121
+#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:158
 msgid "This option disables the \"plus shipping costs\" notice on product page"
 msgstr ""
 "Deaktiviert den Hinweis \"zzgl. Versandkosten\". Ohne Auswirkungen auf die "
@@ -1139,7 +1140,7 @@ msgstr "Tagen"
 
 # @ woocommerce-germanized
 #: includes/admin/settings/class-wc-gzd-settings-germanized.php:525
-#: includes/wc-gzd-core-functions.php:52
+#: includes/wc-gzd-core-functions.php:56
 msgid "Right of Recission"
 msgstr "Widerrufsrecht"
 
@@ -3055,7 +3056,7 @@ msgid "eKomi Options"
 msgstr "eKomi"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-emails.php:292
+#: includes/class-wc-gzd-emails.php:387
 msgctxt "revocation-form"
 msgid "Forward your Revocation online"
 msgstr "Widerruf online erklären"
@@ -3320,8 +3321,8 @@ msgstr "Neuen Preishinweis anlegen"
 msgid "New Price Label Name"
 msgstr "Name des neuen Preishinweises"
 
-#: includes/class-wc-gzd-product-variable.php:88
-#: includes/class-wc-gzd-product-variable.php:93
+#: includes/class-wc-gzd-product-variable.php:117
+#: includes/class-wc-gzd-product-variable.php:122
 #, php-format
 msgctxt "Price range: from-to"
 msgid "%1$s&ndash;%2$s"
@@ -3967,7 +3968,7 @@ msgstr ""
 # @ woocommerce-germanized
 # @ woocommerce
 #: includes/gateways/invoice/class-wc-gzd-gateway-invoice.php:50
-#: woocommerce-germanized.php:566
+#: woocommerce-germanized.php:546
 msgid "Settings"
 msgstr "Einstellungen"
 
@@ -4633,12 +4634,12 @@ msgstr ""
 "Widerrufsrecht mit dem Zugang erlischt."
 
 # @ woocommerce-germanized
-#: includes/wc-gzd-core-functions.php:58
+#: includes/wc-gzd-core-functions.php:62
 msgid "Data Security"
 msgstr "Datenschutzbelehrung"
 
 # @ woocommerce-germanized
-#: includes/wc-gzd-core-functions.php:86
+#: includes/wc-gzd-core-functions.php:90
 msgid ""
 "Because of the small business owner state according to &#167; 19 UStG the "
 "seller does not levy nor state the German value added tax."

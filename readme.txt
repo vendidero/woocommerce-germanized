@@ -157,6 +157,14 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 
 == Changelog ==
 
+= 1.8.2 =
+* Fix - API free shipping
+* Fix - Clean SEPA XML whitespaces
+* Fix - WC 2.7 RC 1 compatibility
+* Fix - WPML Compatibility improvements
+* Fix - Tax Rate adjustments for LU and RO
+* Fix - Labels Price HTML
+
 = 1.8.1 =
 * Fix - Parent product data inherit
 * Fix - Only manipulate price display if sale_price_labels are applicable

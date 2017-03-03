@@ -730,6 +730,7 @@ final class WooCommerce_Germanized {
 				}
 			}
 		}
+
 		return $order_totals;
 	}
 
