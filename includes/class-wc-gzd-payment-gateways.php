@@ -12,6 +12,8 @@ class WC_GZD_Payment_Gateways {
 
 	protected static $_instance = null;
 
+	private $gateway_data = array();
+
 	public static function instance() {
 		if ( is_null( self::$_instance ) )
 			self::$_instance = new self();
@@ -42,23 +44,35 @@ class WC_GZD_Payment_Gateways {
 		$gateways = WC()->payment_gateways->get_available_payment_gateways();
 		
 		foreach( $gateways as $gateway ) {
-			
+
+			$this->maybe_set_gateway_data( $gateway );
+
 			if ( ! isset( $gateway->force_order_button_text ) || ! $gateway->force_order_button_text )
 				$gateway->order_button_text = __( get_option( 'woocommerce_gzd_order_submit_btn_text' ), 'woocommerce-germanized' );
 			
-			if ( $gateway->get_option( 'fee' ) ) {	
+			if ( $gateway->get_option( 'fee' ) ) {
+
+				$gateway_description = $this->gateway_data[ $gateway->id ][ 'description' ];
 
 				$desc = sprintf( __( '%s payment charge', 'woocommerce-germanized' ), wc_price( $gateway->get_option( 'fee' ) ) ) . '.';
 				
 				if ( $gateway->get_option( 'forwarding_fee' ) )
 					$desc .= ' ' . sprintf( __( 'Plus %s forwarding fee (charged by the transport agent)', 'woocommerce-germanized' ), wc_price( $gateway->get_option( 'forwarding_fee' ) ) ) . '.';
-			
-				$gateway->description .= apply_filters( 'woocommerce_gzd_payment_gateway_description', ' ' . $desc, $gateway );
 
+				$gateway_description .= apply_filters( 'woocommerce_gzd_payment_gateway_description', ' ' . $desc, $gateway );
+
+				$gateway->description = $gateway_description;
 			}
-
 		}
+	}
 
+	private function maybe_set_gateway_data( $gateway ) {
+		if ( ! isset( $this->gateway_data[ $gateway->id ] ) ) {
+			$this->gateway_data[ $gateway->id ] = array(
+				'title' => $gateway->title,
+				'description' => $gateway->description,
+			);
+		}
 	}
 
 	/**
@@ -70,11 +84,17 @@ class WC_GZD_Payment_Gateways {
 	public function set_title( $title, $id ) {
 		$gateways = WC()->payment_gateways->get_available_payment_gateways();
 		foreach ( $gateways as $gateway ) {
+
 			if ( $gateway->id != $id )
 				continue;
-			$title = $gateway->title;
+
+			$this->maybe_set_gateway_data( $gateway );
+
+			$title = $this->gateway_data[ $gateway->id ][ 'title' ];
+
 			if ( $gateway->get_option( 'fee' ) && ( is_payment_methods() || ( is_checkout() || ( defined( 'DOING_AJAX' ) && isset( $_POST[ 'action' ] ) && $_POST[ 'action' ] == 'woocommerce_update_order_review' ) ) ) )
 				$title = $title . ' <span class="small">(' . sprintf( __( '%s payment charge', 'woocommerce-germanized' ), wc_price( $gateway->get_option( 'fee' ) ) ) . ')</span>';
+
 			return $title;
 		}
 	}
