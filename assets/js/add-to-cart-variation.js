@@ -76,12 +76,22 @@
 				$wrapper.find( '.shipping-costs-info:first' ).html( variation.shipping_costs_info ).addClass('variation_modified').show();
 			}
 			if ( variation.unit_price !== '' ) {
-				$wrapper.find( '.price-unit:first' ).remove();
-				$wrapper.find( 'p.price:first' ).after('<p class="price price-unit smaller variation_modified">' + variation.unit_price + '</p>').show();
+			    // Check if unit price for variable product exists and replace instead of insert
+				if ( $wrapper.find( '.price-unit:first' ).length ) {
+                    $wrapper.find( '.price-unit:first' ).html( variation.unit_price ).addClass('variation-modified').show();
+                } else {
+                    $wrapper.find( '.price-unit:first' ).remove();
+                    $wrapper.find( 'p.price:first' ).after('<p class="price price-unit smaller variation_modified">' + variation.unit_price + '</p>').show();
+                }
 			}
 			if ( variation.product_units !== '' ) {
-				$wrapper.find( '.product-units:first' ).remove();
-				$wrapper.find( '.product_meta:first' ).prepend('<span class="product-units-wrapper product-units variation_modified">' + variation.product_units + '</span>').show();
+                // Check if product units for variable product exist and replace instead of insert
+                if ( $wrapper.find( '.product-units:first' ).length ) {
+                    $wrapper.find( '.product-units:first' ).html( variation.product_units ).addClass('variation-modified').show();
+                } else {
+                    $wrapper.find( '.product-units:first' ).remove();
+                    $wrapper.find( '.product_meta:first' ).prepend('<span class="product-units-wrapper product-units variation_modified">' + variation.product_units + '</span>').show();
+                }
 			}
 		})
 

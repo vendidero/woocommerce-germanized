@@ -227,15 +227,11 @@ class WC_GZD_Customer_Helper {
 						wc_add_notice( __( 'Thank you. You have successfully activated your account.', 'woocommerce-germanized' ), 'notice' );
 						return;
 					}
-
 				}
 
 				wc_add_notice( __( 'Sorry, but this activation code cannot be found.', 'woocommerce-germanized' ), 'error' );
-			
 			}
-		
 		}
-
 	}
 
 	/**
