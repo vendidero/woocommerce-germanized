@@ -75,7 +75,7 @@ class WC_GZD_Dependencies {
 		$this->set_wc_supports_crud();
 
 		if ( $plugin->version != get_option( 'woocommerce_' . $this->prefix . '_version' ) ) {
-			delete_option( 'woocommerce_' . $this->prefix . '_plugin_header_data' );
+			$this->delete_cached_plugin_header_data();
 		}
 
 		$this->plugins = (array) get_option( 'active_plugins', array() );
@@ -115,6 +115,10 @@ class WC_GZD_Dependencies {
 
 	public function set_wc_supports_crud() {
         $this->wc_supports_crud = ( $this->compare_versions( $this->get_plugin_version( 'woocommerce' ), '2.7', '>=' ) );
+    }
+
+    public function delete_cached_plugin_header_data() {
+		delete_option( 'woocommerce_' . $this->prefix . '_plugin_header_data' );
     }
 
 	protected function get_current_plugin_path() {

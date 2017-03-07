@@ -51,6 +51,7 @@ class WC_GZD_Admin {
 		add_action( 'admin_init', array( $this, 'check_language_install' ) );
 		add_action( 'admin_init', array( $this, 'check_text_options_deletion' ) );
 		add_action( 'admin_init', array( $this, 'check_complaints_shortcode_append' ) );
+		add_action( 'admin_init', array( $this, 'check_version_cache_deletion' ) );
 		
 		add_filter( 'woocommerce_addons_section_data', array( $this, 'set_addon' ), 10, 2 );
 		add_action( 'woocommerce_admin_order_data_after_shipping_address', array( $this, 'set_order_parcel_delivery_opted_in' ), 10, 1 );
@@ -269,6 +270,16 @@ class WC_GZD_Admin {
 
 		}
 
+	}
+
+	public function check_version_cache_deletion() {
+
+		if ( isset( $_GET[ 'delete-version-cache' ] ) && isset( $_GET[ '_wpnonce' ] ) && check_admin_referer( 'wc-gzd-delete-version-cache' ) ) {
+
+            WC_GZD_Dependencies::instance()->delete_cached_plugin_header_data();
+
+            do_action( 'woocommerce_gzd_deleted_cached_plugin_header_data' );
+		}
 	}
 
 	public function get_complaints_shortcode_pages() {

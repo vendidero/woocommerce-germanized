@@ -208,6 +208,11 @@ if ( ! defined( 'ABSPATH' ) )
 			<td class="help"><?php echo '<a href="#" class="help_tip" data-tip="' . esc_attr( __( 'This option removes custom Germanized text options (e.g. Pay-Button-Text) and installs default options. You may use this options to reinstall text options e.g. after a language switch.', 'woocommerce-germanized' ) ) . '">[?]</a>'; ?></td>
 			<td><a href="<?php echo wp_nonce_url( add_query_arg( array( 'delete-text-options' => true ) ), 'wc-gzd-delete-text-options' ); ?>" class="button button-secondary"><?php _e( 'Delete text options', 'woocommerce-germanized' ); ?></a></td>
 		</tr>
+        <tr>
+            <td><?php _e( 'Delete Version Cache', 'woocommerce-germanized' ); ?></td>
+            <td class="help"><?php echo '<a href="#" class="help_tip" data-tip="' . esc_attr( __( 'This option deletes plugin version caches necessary to check whether activated plugins are compatible with Germanized.', 'woocommerce-germanized' ) ) . '">[?]</a>'; ?></td>
+            <td><a href="<?php echo wp_nonce_url( add_query_arg( array( 'delete-version-cache' => true ) ), 'wc-gzd-delete-version-cache' ); ?>" class="button button-secondary"><?php _e( 'Delete version cache', 'woocommerce-germanized' ); ?></a></td>
+        </tr>
 		<?php do_action( 'woocommerce_gzd_status_after_tools' ); ?>
 	</tbody>
 </table>
