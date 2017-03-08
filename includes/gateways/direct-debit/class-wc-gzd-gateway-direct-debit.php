@@ -76,7 +76,6 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 
 		$this->supports = array(
 			'products',
-			'subscriptions'
 		);
 
 		if ( $this->get_option( 'enabled' ) === 'yes' && ! $this->supports_encryption() ) {
@@ -779,8 +778,11 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 		// Reduce stock level
         wc_gzd_reduce_order_stock( $order_id );
 
-		// Remove cart
-		WC()->cart->empty_cart();
+        // Check if cart instance exists (frontend request only)
+        if ( WC()->cart ) {
+	        // Remove cart
+	        WC()->cart->empty_cart();
+        }
 
 		// Return thankyou redirect
 		return array(

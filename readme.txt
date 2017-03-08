@@ -164,6 +164,9 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 * Fix - WPML Compatibility improvements
 * Fix - Tax Rate adjustments for LU and RO
 * Fix - Labels Price HTML
+* Fix - Add to cart variation js preserving markup
+* Fix - Removed direct debit gateway subscriptions support (not yet prepared)
+* Feature - Added plugin version cache deletion tool to system status
 
 = 1.8.1 =
 * Fix - Parent product data inherit
