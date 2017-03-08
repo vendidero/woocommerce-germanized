@@ -109,7 +109,7 @@ class WC_Germanized_Meta_Box_Product_Data {
             'style' => 'width: 50%',
         ) );
 
-	    $args[ 'id' ] = empty( $args[ 'id' ] ? $args[ 'name' ] : $args[ 'id' ] );
+	    $args[ 'id' ] = empty( $args[ 'id' ] ) ? $args[ 'name' ] : $args[ 'id' ];
 
 	    if ( WC_GZD_Dependencies::instance()->woocommerce_version_supports_crud() ) {
 	        ?>
