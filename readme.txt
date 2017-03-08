@@ -3,7 +3,7 @@ Contributors: vendidero
 Tags: woocommerce, german market, german, germany, deutsch, deutschland, de, de_DE, shop, commerce, e-commerce, ecommerce, woothemes, sepa, invoice
 Requires at least: 3.8
 Tested up to: 4.7
-Stable tag: 1.8.2
+Stable tag: 1.8.3
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -156,6 +156,18 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 1. WooCommerce Germanized Settings
 
 == Changelog ==
+
+= 1.8.3 =
+* Fix - Is empty check in 1.8.2
+* Fix - API free shipping
+* Fix - Clean SEPA XML whitespaces
+* Fix - WC 2.7 RC 1 compatibility
+* Fix - WPML Compatibility improvements
+* Fix - Tax Rate adjustments for LU and RO
+* Fix - Labels Price HTML
+* Fix - Add to cart variation js preserving markup
+* Fix - Removed direct debit gateway subscriptions support (not yet prepared)
+* Feature - Added plugin version cache deletion tool to system status
 
 = 1.8.2 =
 * Fix - API free shipping
