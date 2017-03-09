@@ -39,8 +39,19 @@ class WC_GZD_Emails {
         // Change email template path if is germanized email template
 		add_filter( 'woocommerce_template_directory', array( $this, 'set_woocommerce_template_dir' ), 10, 2 );
 
+		// Map partially refunded order mail template to correct email instance
+        add_filter( 'woocommerce_gzd_email_template_id_comparison', array( $this, 'check_for_partial_refund_mail' ), 10, 3 );
+
         if ( is_admin() )
 		    $this->admin_hooks();
+	}
+
+	public function check_for_partial_refund_mail( $result, $mail_id, $tpl ) {
+
+		if ( $mail_id === 'customer_partially_refunded_order' && $tpl === 'customer_refunded_order' )
+			return true;
+
+		return $result;
 	}
 
     private function set_mailer( $mailer = null ) {
@@ -315,7 +326,7 @@ class WC_GZD_Emails {
 	}
 
 	public function get_current_email_object() {
-		
+
 		if ( isset( $GLOBALS[ 'wc_gzd_template_name' ] ) && ! empty( $GLOBALS[ 'wc_gzd_template_name' ] ) ) {
 			
 			$object = $this->get_email_instance_by_tpl( $GLOBALS[ 'wc_gzd_template_name' ] );
@@ -338,21 +349,30 @@ class WC_GZD_Emails {
 	        $this->set_mailer();
 
 	    $found_mails = array();
+		$mails = $this->mailer->get_emails();
 
 	    foreach ( $tpls as $tpl ) {
 
 	        $tpl = apply_filters( 'woocommerce_germanized_email_template_name',  str_replace( array( 'admin-', '-' ), array( '', '_' ), basename( $tpl, '.php' ) ), $tpl );
-			$mails = $this->mailer->get_emails();
 
 			if ( ! empty( $mails ) ) {
+
 				foreach ( $mails as $mail ) {
-					if ( is_object( $mail ) && $mail->id == $tpl )
-						array_push( $found_mails, $mail );
+
+					if ( is_object( $mail ) ) {
+
+						if ( apply_filters( 'woocommerce_gzd_email_template_id_comparison', ( $mail->id === $tpl ), $mail->id, $tpl ) ) {
+							array_push( $found_mails, $mail );
+						}
+					}
 				}
 			}
 		}
-		if ( ! empty( $found_mails ) )
+
+		if ( ! empty( $found_mails ) ) {
 			return $found_mails[ sizeof( $found_mails ) - 1 ];
+		}
+
 		return null;
 	}
 
