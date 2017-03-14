@@ -164,33 +164,23 @@ class WC_GZD_Product {
 		
 		preg_match( "/<del>(.*?)<\\/del>/si", $price_html, $match_regular );
 		preg_match( "/<ins>(.*?)<\\/ins>/si", $price_html, $match_sale );
+		preg_match( "/<small .*>(.*?)<\\/small>/si", $price_html, $match_suffix );
 
 		if ( empty( $match_sale ) || empty( $match_regular ) ) {
             return $price_html;
         }
 
-		$new_price_regular = ( isset( $match_regular[1] ) ? $match_regular[1] : $match_regular[0] );
-		$new_price_sale = ( isset( $match_sale[1] ) ? $match_sale[1] : $match_sale[0] );
+		$new_price_regular = $match_regular[0];
+		$new_price_sale = $match_sale[0];
+		$new_price_suffix = ( empty( $match_suffix ) ? '' : ' ' . $match_suffix[0] );
 
 		if ( ! empty( $sale_label ) && isset( $match_regular[1] ) )
-			$new_price_regular = '<span class="wc-gzd-sale-price-label">' . $sale_label . '</span> <del>' . $match_regular[1] . '</del>';
+			$new_price_regular = '<span class="wc-gzd-sale-price-label">' . $sale_label . '</span> ' . $match_regular[0];
 
 		if ( ! empty( $sale_regular_label ) && isset( $match_sale[1] ) )
-			$new_price_sale = '<span class="wc-gzd-sale-price-label wc-gzd-sale-price-regular-label">' . $sale_regular_label . '</span> <ins>' . $match_sale[1] . '</ins>';
+			$new_price_sale = '<span class="wc-gzd-sale-price-label wc-gzd-sale-price-regular-label">' . $sale_regular_label . '</span> ' . $match_sale[0];
 
-		$price_html = $new_price_regular . $new_price_sale;
-
-		return $price_html;
-	}
-
-	public function get_price_html_from_to( $from, $to, $show_labels = true ) {
-
-		$sale_label = ( $show_labels ? $this->get_sale_price_label() : '' );
-		$sale_regular_label = ( $show_labels ? $this->get_sale_price_regular_label() : '' );
-
-		$price = ( ! empty( $sale_label ) ? '<span class="wc-gzd-sale-price-label">' . $sale_label . '</span>' : '' ) . ' <del>' . ( ( is_numeric( $from ) ) ? wc_price( $from ) : $from ) . '</del> ' . ( ! empty( $sale_regular_label ) ? '<span class="wc-gzd-sale-price-label wc-gzd-sale-price-regular-label">' . $sale_regular_label . '</span> ' : '' ) . '<ins>' . ( ( is_numeric( $to ) ) ? wc_price( $to ) : $to ) . '</ins>';
-
-		return apply_filters( 'woocommerce_germanized_get_price_html_from_to', $price, $from, $to, $this );
+		return apply_filters( 'woocommerce_gzd_product_sale_price_with_labels_html', $new_price_regular . ' ' . $new_price_sale . $new_price_suffix, $org_price_html, $this );
 	}
 
 	/**

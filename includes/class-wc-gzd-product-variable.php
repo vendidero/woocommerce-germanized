@@ -84,6 +84,16 @@ class WC_GZD_Product_Variable extends WC_GZD_Product {
         return apply_filters( 'woocommerce_get_price_html', $price, $this );
     }
 
+	public function get_price_html_from_to( $from, $to, $show_labels = true ) {
+
+		$sale_label = ( $show_labels ? $this->get_sale_price_label() : '' );
+		$sale_regular_label = ( $show_labels ? $this->get_sale_price_regular_label() : '' );
+
+		$price = ( ! empty( $sale_label ) ? '<span class="wc-gzd-sale-price-label">' . $sale_label . '</span>' : '' ) . ' <del>' . ( ( is_numeric( $from ) ) ? wc_price( $from ) : $from ) . '</del> ' . ( ! empty( $sale_regular_label ) ? '<span class="wc-gzd-sale-price-label wc-gzd-sale-price-regular-label">' . $sale_regular_label . '</span> ' : '' ) . '<ins>' . ( ( is_numeric( $to ) ) ? wc_price( $to ) : $to ) . '</ins>';
+
+		return apply_filters( 'woocommerce_germanized_get_price_html_from_to', $price, $from, $to, $this );
+	}
+
 	/**
 	 * Returns the price in html format.
 	 *
