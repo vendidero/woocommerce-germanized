@@ -30,7 +30,9 @@ class WC_GZD_Virtual_VAT_Helper {
 
 		$location = WC_Tax::get_tax_location( $tax_class );
 
-		if ( in_array( $tax_class, array( 'virtual-rate', 'virtual-reduced-rate' ) ) && isset( $location[0] ) && sizeof( $location ) === 4 && $location[0] !== WC()->countries->get_base_country() ) {
+		$virtual_vat_applicable = in_array( $tax_class, array( 'virtual-rate', 'virtual-reduced-rate' ) ) && isset( $location[0] ) && sizeof( $location ) === 4 && $location[0] !== WC()->countries->get_base_country();
+
+		if ( apply_filters( 'woocommerce_gzd_force_tax_location_vat_base_rates', $virtual_vat_applicable, $tax_class, $location ) ) {
 
 			list( $country, $state, $postcode, $city ) = $location;
 
@@ -41,11 +43,9 @@ class WC_GZD_Virtual_VAT_Helper {
 				'city' 		=> $city,
 				'tax_class' => $tax_class
 			) );
-
 		}
 
 		return $rates;
-
 	}
 
 }
