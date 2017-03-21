@@ -3,7 +3,7 @@ Contributors: vendidero
 Tags: woocommerce, german market, german, germany, deutsch, deutschland, de, de_DE, shop, commerce, e-commerce, ecommerce, woothemes, sepa, invoice
 Requires at least: 3.8
 Tested up to: 4.7
-Stable tag: 1.8.3
+Stable tag: 1.8.4
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -103,7 +103,7 @@ Easily set up eKomi by adapting a few Settings within WooCommerce Germanized.
 
 * WordPress 3.8 or newer
 * WooCommerce 2.4 (newest version recommended)
-* PHP Version 5.2.4 or newer
+* PHP Version 5.3 or newer
 
 = Automatic Installation =
 
