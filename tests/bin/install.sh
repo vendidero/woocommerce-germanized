@@ -18,28 +18,18 @@ WP_TESTS_DIR="${PWD}/tmp/wordpress-tests-lib"
 WOO_TESTS_DIR="${PWD}/tmp/woocommerce"
 WP_CORE_DIR="${PWD}/tmp/wordpress/"
 WOO_CORE_DIR="${PWD}/tmp/woocommerce/"
-
-set -ex
+TEST_BASE_DIR="${PWD}/tmp/"
 
 install_woo() {
-    mkdir -p $WOO_CORE_DIR
-
-    if [ $WOO_VERSION == 'latest' ]; then
-		curl -L https://api.github.com/repos/woocommerce/woocommerce/releases > /tmp/woo-latest.json
-	elif [ $WOO_VERSION == 'latest_stable' ]; then
-	    curl -L https://api.github.com/repos/woocommerce/woocommerce/releases/latest > /tmp/woo-latest.json
-	else
-	    curl -L https://api.github.com/repos/woocommerce/woocommerce/releases/tags/${WOO_VERSION} > /tmp/woo-latest.json
-	fi
-
-	local RELEASES=$(sed -n 's/.*"tarball_url": "\(.*\)",/\1/p' /tmp/woo-latest.json)
-	local RSPLIT=( $RELEASES )
-	local ARCHIVE_URL=${RSPLIT[0]}
-
-    curl -L $ARCHIVE_URL --output /tmp/woocommerce.tar.gz
-
-    tar --strip-components=1 -zxmf /tmp/woocommerce.tar.gz -C $WOO_CORE_DIR
+    cd $TEST_BASE_DIR
+    $(git clone https://github.com/woocommerce/woocommerce.git)
+    if [ $WOO_VERSION != 'latest' ]; then
+        cd $WOO_CORE_DIR
+        git checkout tags/${WOO_VERSION}
+    fi
 }
+
+set -ex
 
 install_wp() {
 	mkdir -p $WP_CORE_DIR
