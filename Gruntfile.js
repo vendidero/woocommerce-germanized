@@ -100,6 +100,25 @@ module.exports = function( grunt ) {
 			}
 		},
 
+        // PHP Code Sniffer.
+        phpcs: {
+            options: {
+                bin: 'vendor/bin/phpcs',
+                standard: './phpcs.ruleset.xml'
+            },
+            dist: {
+                src:  [
+                    '**/*.php',                                                  // Include all files
+                    '!apigen/**',                                                // Exclude apigen/
+                    '!includes/gateways/direct-debit/libraries/**', // Exclude simplify commerce SDK
+                    '!includes/libraries/**',                                    // Exclude libraries/
+                    '!node_modules/**',                                          // Exclude node_modules/
+                    '!tmp/**',                                                   // Exclude tmp/
+                    '!vendor/**'                                                 // Exclude vendor/
+                ]
+            }
+        }
+
 	});
 
 	// Load NPM tasks to be used here
@@ -109,6 +128,7 @@ module.exports = function( grunt ) {
 	grunt.loadNpmTasks( 'grunt-contrib-cssmin' );
 	grunt.loadNpmTasks( 'grunt-contrib-watch' );
 	grunt.loadNpmTasks( 'grunt-contrib-clean' );
+    grunt.loadNpmTasks( 'grunt-phpcs' );
 
 	// Register tasks
 	grunt.registerTask( 'default', [

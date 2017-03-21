@@ -40,11 +40,11 @@ elif [ $1 == 'during' ]; then
 		# -n flag: Do not print warnings. (shortcut for --warning-severity=0)
 		# --standard: Use WordPress as the standard.
 		# --extensions: Only sniff PHP files.
-		/tmp/phpcs/scripts/phpcs -p -s -n ./*.php --standard=./phpcs.ruleset.xml --extensions=php
-		/tmp/phpcs/scripts/phpcs -p -s -n ./**/*.php --standard=./phpcs.ruleset.xml --extensions=php --ignore=./vendor/*.php --ignore=./tests/*.php
-		/tmp/phpcs/scripts/phpcs -p -s -n ./**/**/*.php --standard=./phpcs.ruleset.xml --extensions=php --ignore=./vendor/**/*.php --ignore=./tests/**/*.php
-		/tmp/phpcs/scripts/phpcs -p -s -n ./**/**/**/*.php --standard=./phpcs.ruleset.xml --extensions=php --ignore=./vendor/**/**/*.php --ignore=./tests/**/**/*.php
-		/tmp/phpcs/scripts/phpcs -p -s -n ./**/**/**/**/*.php --standard=./phpcs.ruleset.xml --extensions=php --ignore=./vendor/**/**/*.php --ignore=./tests/**/**/*.php
+		# /tmp/phpcs/scripts/phpcs -p -s -n ./*.php --standard=./phpcs.ruleset.xml --extensions=php
+		# /tmp/phpcs/scripts/phpcs -p -s -n ./**/*.php --standard=./phpcs.ruleset.xml --extensions=php --ignore=./vendor/*.php --ignore=./tests/*.php
+		# /tmp/phpcs/scripts/phpcs -p -s -n ./**/**/*.php --standard=./phpcs.ruleset.xml --extensions=php --ignore=./vendor/**/*.php --ignore=./tests/**/*.php
+		# /tmp/phpcs/scripts/phpcs -p -s -n ./**/**/**/*.php --standard=./phpcs.ruleset.xml --extensions=php --ignore=./vendor/**/**/*.php --ignore=./tests/**/**/*.php
+		# /tmp/phpcs/scripts/phpcs -p -s -n ./**/**/**/**/*.php --standard=./phpcs.ruleset.xml --extensions=php --ignore=./vendor/**/**/*.php --ignore=./tests/**/**/*.php
 	fi
 
 elif [ $1 == 'after' ]; then
