@@ -25,14 +25,16 @@ install_woo() {
     mkdir -p $WOO_CORE_DIR
 
     if [ $WOO_VERSION == 'latest' ]; then
-		local RELEASES=$(curl https://api.github.com/repos/woocommerce/woocommerce/releases | sed -n 's/.*"tarball_url": "\(.*\)",/\1/p')
-	    local RSPLIT=( $RELEASES )
-	    local ARCHIVE_URL=${RSPLIT[0]}
+		curl -L https://api.github.com/repos/woocommerce/woocommerce/releases > /tmp/woo-latest.json
 	elif [ $WOO_VERSION == 'latest_stable' ]; then
-	    local ARCHIVE_URL=$(curl https://api.github.com/repos/woocommerce/woocommerce/releases/latest | sed -n 's/.*"tarball_url": "\(.*\)",/\1/p')
+	    curl -L https://api.github.com/repos/woocommerce/woocommerce/releases/latest > /tmp/woo-latest.json
 	else
-		local ARCHIVE_URL=$(curl https://api.github.com/repos/woocommerce/woocommerce/releases/tags/$WOO_VERSION | sed -n 's/.*"tarball_url": "\(.*\)",/\1/p')
+	    curl -L https://api.github.com/repos/woocommerce/woocommerce/releases/tags/${WOO_VERSION} > /tmp/woo-latest.json
 	fi
+
+	local RELEASES=$(sed -n 's/.*"tarball_url": "\(.*\)",/\1/p' /tmp/woo-latest.json)
+	local RSPLIT=( $RELEASES )
+	local ARCHIVE_URL=${RSPLIT[0]}
 
     curl -L $ARCHIVE_URL --output /tmp/woocommerce.tar.gz
 
