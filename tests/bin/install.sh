@@ -26,7 +26,6 @@ install_woo() {
     if [ $WOO_VERSION == 'latest' ]; then
 		local RELEASES=$(curl https://api.github.com/repos/woocommerce/woocommerce/releases --silent | sed -n 's/.*"tarball_url": "\(.*\)",/\1/p')
 	    local a=($RELEASES)
-	    echo $a
 	    local ARCHIVE_URL=$a
 	elif [ $WOO_VERSION == 'latest_stable' ]; then
 	    local ARCHIVE_URL=$(curl https://api.github.com/repos/woocommerce/woocommerce/releases/latest --silent | sed -n 's/.*"tarball_url": "\(.*\)",/\1/p')
@@ -34,11 +33,9 @@ install_woo() {
 		local ARCHIVE_URL=$(curl https://api.github.com/repos/woocommerce/woocommerce/releases/tags/$WOO_VERSION --silent | sed -n 's/.*"tarball_url": "\(.*\)",/\1/p')
 	fi
 
-	#echo ${ARCHIVE_URL}
+    curl -L ${ARCHIVE_URL} --output /tmp/woocommerce.tar.gz --silent
 
-    #curl -L ${ARCHIVE_URL} --output /tmp/woocommerce.tar.gz --silent
-
-    #tar --strip-components=1 -zxmf /tmp/woocommerce.tar.gz -C $WOO_CORE_DIR
+    tar --strip-components=1 -zxmf /tmp/woocommerce.tar.gz -C $WOO_CORE_DIR
 }
 
 install_wp() {
