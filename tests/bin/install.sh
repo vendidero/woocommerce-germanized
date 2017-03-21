@@ -15,8 +15,9 @@ WOO_VERSION=${6-latest}
 
 # TODO: allow environment vars for WP_TESTS_DIR & WP_CORE_DIR
 WP_TESTS_DIR="${PWD}/tmp/wordpress-tests-lib"
+WOO_TESTS_DIR="${PWD}/tmp/woocommerce"
 WP_CORE_DIR="${PWD}/tmp/wordpress/"
-WOO_CORE_DIR="${PWD}/tmp/woocommerce"
+WOO_CORE_DIR="${PWD}/tmp/woocommerce/"
 
 set -ex
 

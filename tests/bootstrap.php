@@ -43,7 +43,7 @@ class WC_GZD_Unit_Tests_Bootstrap {
 		$this->plugin_dir    = dirname( $this->tests_dir );
 
 		$this->wp_tests_dir  = getenv( 'WP_TESTS_DIR' ) ? getenv( 'WP_TESTS_DIR' ) :  $this->plugin_dir . '/tmp/wordpress-tests-lib';
-		$this->woo_tests_dir  = getenv( 'WOO_CORE_DIR' ) ? getenv( 'WOO_CORE_DIR' ) :  $this->plugin_dir . '/tmp/woocommerce';
+		$this->woo_tests_dir  = getenv( 'WOO_TESTS_DIR' ) ? getenv( 'WOO_TESTS_DIR' ) :  $this->plugin_dir . '/tmp/woocommerce';
 
 		$this->wc_plugin_dir = $this->woo_tests_dir . '/';
 		$this->wc_tests_dir  = $this->wc_plugin_dir . 'tests';
