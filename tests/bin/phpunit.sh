@@ -1,5 +1,5 @@
-if [[ ${TRAVIS_PHP_VERSION} == ${PHP_LATEST_STABLE} ]]; then
-	vendor/bin/phpunit -c phpunit.xml.dist --coverage-clover ./tmp/clover.xml
+if [ `which vendor/bin/phpunit` ]; then
+    vendor/bin/phpunit -c phpunit.xml.dist
 else
-	vendor/bin/phpunit -c phpunit.xml.dist
+   phpunit -c phpunit.xml.dist
 fi
