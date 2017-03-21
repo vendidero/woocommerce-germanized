@@ -1,5 +1,10 @@
 <?php
 
+// Get all variable products
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 // Insert complaints shortcode in terms (if existent)
 $terms = wc_get_page_id( 'terms' );
 

@@ -33,13 +33,13 @@ class WC_GZD_Checkout {
 
 	public function __construct() {
 		
-		add_action( 'init', array( $this, 'init_fields' ) );
+		add_action( 'init', array( $this, 'init_fields' ), 30 );
 		add_filter( 'woocommerce_billing_fields', array( $this, 'set_custom_fields' ), 0, 1 );
 		add_filter( 'woocommerce_shipping_fields', array( $this, 'set_custom_fields_shipping' ), 0, 1 );
 		
 		// Add Fields to Order Edit Page
-		add_filter( 'woocommerce_admin_billing_fields', array( $this, 'set_custom_fields_admin' ), 0, 1 );
-		add_filter( 'woocommerce_admin_shipping_fields', array( $this, 'set_custom_fields_admin' ), 0, 1 );
+		add_filter( 'woocommerce_admin_billing_fields', array( $this, 'set_custom_fields_admin_billing' ), 0, 1 );
+		add_filter( 'woocommerce_admin_shipping_fields', array( $this, 'set_custom_fields_admin_shipping' ), 0, 1 );
 		
 		// Save Fields on order
 		add_action( 'woocommerce_checkout_update_order_meta', array( $this, 'save_fields' ) );
@@ -48,13 +48,16 @@ class WC_GZD_Checkout {
 		add_filter( 'woocommerce_order_formatted_billing_address', array( $this, 'set_formatted_billing_address' ), 0, 2 );
 		add_filter( 'woocommerce_order_formatted_shipping_address', array( $this, 'set_formatted_shipping_address' ), 0, 2 );
 		add_filter( 'woocommerce_formatted_address_replacements', array( $this, 'set_formatted_address' ), 0, 2 );
-		
+
+		// Support Checkout Field Managers (which are unable to map options to values)
+		add_filter( 'woocommerce_gzd_custom_title_field_value', array( $this, 'set_title_field_mapping_editors' ), 10, 1 );
+
 		// Add item desc to order
-		if ( WC_GZD_Dependencies::instance()->woocommerce_version_supports_crud() ) {
+		if ( wc_gzd_get_dependencies()->woocommerce_version_supports_crud() ) {
 			add_action( 'woocommerce_new_order_item', array( $this, 'set_order_item_meta_crud' ), 0, 3 );
 		} else {
 			add_action( 'woocommerce_order_add_product', array( $this, 'set_order_meta' ), 0, 5 );
-		}	
+		}
 
 		add_filter( 'woocommerce_hidden_order_itemmeta', array( $this, 'set_order_meta_hidden' ), 0 );
 		
@@ -86,6 +89,7 @@ class WC_GZD_Checkout {
 
 		if ( wc_gzd_is_parcel_delivery_data_transfer_checkbox_enabled() )
 			add_action( 'woocommerce_checkout_update_order_meta', array( $this, 'order_parcel_delivery_data_transfer' ), 10, 2 );
+
 	}
 	
 	public function remove_cancel_button( $actions, $order ) {
@@ -259,8 +263,8 @@ class WC_GZD_Checkout {
 				'before'   => 'first_name',
 				'type'     => 'select',
 				'options'  => array( 1 => __( 'Mr.', 'woocommerce-germanized' ), 2 => __( 'Ms.', 'woocommerce-germanized' ) ),
-				'show'     => false,
 				'label'    => __( 'Title', 'woocommerce-germanized' ),
+				'show'     => false,
 			);
 
 		}
@@ -275,6 +279,22 @@ class WC_GZD_Checkout {
 			);
 
 		}
+
+		$this->custom_fields_admin = apply_filters( 'woocommerce_gzd_custom_checkout_admin_fields', $this->custom_fields_admin, $this );
+		$this->custom_fields = apply_filters( 'woocommerce_gzd_custom_checkout_fields', $this->custom_fields, $this );
+	}
+
+	public function set_title_field_mapping_editors( $val ) {
+
+		$values = array(
+			__( 'Mr.', 'woocommerce-germanized' ) => 1,
+			__( 'Ms.', 'woocommerce-germanized' ) => 2,
+		);
+
+		if ( isset( $values[ $val ] ) )
+			return $values[ $val ];
+
+		return $val;
 	}
 
 	/**
@@ -386,6 +406,7 @@ class WC_GZD_Checkout {
 
 		if ( wc_gzd_get_crud_data( $order, 'billing_title' ) )
 			$fields[ 'title' ] = $this->get_customer_title( wc_gzd_get_crud_data( $order, 'billing_title' ) );
+
 		return $fields;
 	}
 
@@ -414,56 +435,99 @@ class WC_GZD_Checkout {
 	}
 
 	public function set_custom_fields( $fields = array(), $type = 'billing' ) {
-		$new = array();
+
 		if ( ! empty( $this->custom_fields ) ) {
+
 			foreach ( $this->custom_fields as $key => $custom_field ) {
+
+				$new = array();
+
 				if ( in_array( $type, $custom_field[ 'group' ] ) ) {
+
 					if ( ! empty( $fields ) ) {
+
 						foreach ( $fields as $name => $field ) {
-							if ( $name == $type . '_' . $custom_field[ 'before' ] && ! isset( $custom_field[ 'override' ] ) )
+
+							if ( $name == $type . '_' . $custom_field[ 'before' ] && ! isset( $custom_field[ 'override' ] ) ) {
 								$new[ $type . '_' . $key ] = $custom_field;
+							}
+
 							$new[ $name ] = $field;
-							if ( $name == $type . '_' . $key && isset( $custom_field[ 'override' ] ) )
+
+							if ( $name == $type . '_' . $key && isset( $custom_field[ 'override' ] ) ) {
 								$new[ $name ] = array_merge( $field, $custom_field );
+							}
 						}
 					}
 				}
+
+				if ( ! empty( $new ) ) {
+					$fields = $new;
+				}
 			}
 		}
-		return ( ! empty( $new ) ? $new : $fields );
+
+		return $fields;
 	}
 
 	public function set_custom_fields_shipping( $fields ) {
 		return $this->set_custom_fields( $fields, 'shipping' );
 	}
 
-	public function set_custom_fields_admin( $fields = array() ) {
+	public function set_custom_fields_admin( $fields = array(), $type = 'billing' ) {
 		$new = array();
+
 		if ( ! empty( $this->custom_fields_admin ) ) {
+
 			foreach ( $this->custom_fields_admin as $key => $custom_field ) {
+
+				$new = array();
+
+				if ( isset( $custom_field[ 'address_type' ] ) && $custom_field[ 'address_type' ] !== $type )
+					continue;
+
 				if ( ! empty( $fields ) ) {
+
 					foreach ( $fields as $name => $field ) {
 						if ( $name == $custom_field[ 'before' ] && ! isset( $custom_field[ 'override' ] ) )
 							$new[ $key ] = $custom_field;
+
 						$new[ $name ] = $field;
 					}
 				}
+
+				if ( ! empty( $new ) ) {
+					$fields = $new;
+				}
 			}
 		}
-		return ( ! empty( $new ) ? $new : $fields );
+
+		return $fields;
+	}
+
+	public function set_custom_fields_admin_billing( $fields = array() ) {
+		return $this->set_custom_fields_admin( $fields, 'billing' );
+	}
+
+	public function set_custom_fields_admin_shipping( $fields = array() ) {
+		return $this->set_custom_fields_admin( $fields, 'shipping' );
 	}
 
 	public function save_fields( $order_id ) {
 		$checkout = WC()->checkout();
+
 		if ( ! empty( $this->custom_fields ) ) {
 			foreach ( $this->custom_fields as $key => $custom_field ) {
 				if ( ! empty( $custom_field[ 'group' ] ) && ! isset( $custom_field[ 'override' ] ) ) {
 					foreach ( $custom_field[ 'group' ] as $group ) {
+
 						$val = ( isset( $checkout->posted[ $group . '_' . $key ] ) ? $checkout->posted[ $group . '_' . $key ] : '' );
+
 						if ( $group == 'shipping' || $group == 'billing' )
 							$val = $checkout->get_posted_address_data( $key, $group );
+
 						if ( ! empty( $val ) )
-							update_post_meta( $order_id, '_' . $group . '_' . $key, sanitize_text_field( $val ) );
+							update_post_meta( $order_id, '_' . $group . '_' . $key, apply_filters( 'woocommerce_gzd_custom_' . $key . '_field_value', sanitize_text_field( $val ) ) );
 					}
 				}
 			}

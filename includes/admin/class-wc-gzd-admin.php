@@ -276,7 +276,7 @@ class WC_GZD_Admin {
 
 		if ( isset( $_GET[ 'delete-version-cache' ] ) && isset( $_GET[ '_wpnonce' ] ) && check_admin_referer( 'wc-gzd-delete-version-cache' ) ) {
 
-            WC_GZD_Dependencies::instance()->delete_cached_plugin_header_data();
+			wc_gzd_get_dependencies()->delete_cached_plugin_header_data();
 
             do_action( 'woocommerce_gzd_deleted_cached_plugin_header_data' );
 		}

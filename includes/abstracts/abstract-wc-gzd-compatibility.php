@@ -29,11 +29,11 @@ abstract class WC_GZD_Compatibility {
 			$version_data[ 'tested_up_to' ] = $version_data[ 'version' ];
 		} else if ( empty( $version_data[ 'tested_up_to' ] ) ) {
 			$version_data[ 'tested_up_to' ] = $version_data[ 'requires_at_least' ];
-			if ( WC_GZD_Dependencies::instance()->compare_versions( $version_data[ 'version' ], $version_data[ 'requires_at_least' ], '>' ) )
+			if ( wc_gzd_get_dependencies()->compare_versions( $version_data[ 'version' ], $version_data[ 'requires_at_least' ], '>' ) )
 				$version_data[ 'tested_up_to' ] = $version_data[ 'version' ];
 		} else if ( empty( $version_data[ 'requires_at_least' ] ) ) {
 			$version_data[ 'requires_at_least' ] = $version_data[ 'tested_up_to' ];
-			if ( WC_GZD_Dependencies::instance()->compare_versions( $version_data[ 'version' ], $version_data[ 'requires_at_least' ], '<' ) )
+			if ( wc_gzd_get_dependencies()->compare_versions( $version_data[ 'version' ], $version_data[ 'requires_at_least' ], '<' ) )
 				$version_data[ 'requires_at_least' ] = $version_data[ 'version' ];
 		}
 
@@ -53,13 +53,13 @@ abstract class WC_GZD_Compatibility {
 	}
 
 	public function is_activated() {
-		return WC_GZD_Dependencies::instance()->is_plugin_activated( $this->plugin_file );
+		return wc_gzd_get_dependencies()->is_plugin_activated( $this->plugin_file );
 	}
 
 	public function is_supported() {
-		return 
-			WC_GZD_Dependencies::instance()->compare_versions( $this->version_data[ 'version' ], $this->version_data[ 'requires_at_least' ], '>=' ) && 
-			WC_GZD_Dependencies::instance()->compare_versions( $this->version_data[ 'version' ], $this->version_data[ 'tested_up_to' ], '<=' );
+		return
+			wc_gzd_get_dependencies()->compare_versions( $this->version_data[ 'version' ], $this->version_data[ 'requires_at_least' ], '>=' ) &&
+			wc_gzd_get_dependencies()->compare_versions( $this->version_data[ 'version' ], $this->version_data[ 'tested_up_to' ], '<=' );
 	}
 
 	public function get_name() {

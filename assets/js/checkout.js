@@ -18,4 +18,5 @@ jQuery( function( $ ) {
 		$( '.woocommerce-checkout' ).find( '#payment' ).after( $( '.woocommerce-checkout' ).find( '#order_review_heading' ) ); 
 		$( '.woocommerce-checkout' ).find( '#order_review_heading' ).show();
 	}
+
 });

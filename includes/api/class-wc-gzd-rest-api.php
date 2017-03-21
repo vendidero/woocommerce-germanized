@@ -22,7 +22,7 @@ class WC_GZD_REST_API {
 	}
 
 	public function init() {
-		if ( version_compare( WC_GZD_Dependencies::instance()->get_plugin_version( 'woocommerce' ), '2.6', '<' ) )
+		if ( version_compare( wc_gzd_get_dependencies()->get_plugin_version( 'woocommerce' ), '2.6', '<' ) )
 			return;
 
 		$this->rest_api_includes();

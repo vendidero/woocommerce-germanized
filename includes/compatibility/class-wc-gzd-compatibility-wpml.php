@@ -21,7 +21,7 @@ class WC_GZD_Compatibility_Wpml extends WC_GZD_Compatibility {
 	}
 
 	public function is_activated() {
-		return parent::is_activated() && WC_GZD_Dependencies::instance()->is_plugin_activated( 'woocommerce-multilingual/wpml-woocommerce.php' );
+		return parent::is_activated() && wc_gzd_get_dependencies()->is_plugin_activated( 'woocommerce-multilingual/wpml-woocommerce.php' );
 	}
 
 	public function load() {

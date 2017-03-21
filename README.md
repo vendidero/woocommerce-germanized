@@ -1,4 +1,5 @@
-# WooCommerce für den deutschen Markt
+# [WooCommerce Germanized](https://vendidero.de/) [![Build Status](https://travis-ci.org/vendidero/woocommerce-germanized.svg?branch=master)](https://travis-ci.org/vendidero/woocommerce-germanized)
+
 mit WooCommerce Germanized erweiterst du deine WooCommerce Installation um typisch deutsche Funktionen. Das Plugin widmet sich insbesondere dem Problem der Rechtssicherheit von WooCommerce in Deutschland. WooCommerce Germanized ist ein "Muss" für deutsche WooCommerce-Nutzer. Mit dem Plugin schützt du deine WooCommerce Installation gegen Abmahnungen.
 Bitte beachte, dass das Plugin nur die technischen Voraussetzungen für einen rechtskonformen WooCommerce Shop in Deutschland erfüllt. Um die Inhalte (z.B. Widerrufsbelehrung, AGB usw.) musst du dich natürlich selbst kümmern. 
 

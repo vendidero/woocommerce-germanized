@@ -1,30 +1,37 @@
-# Compiled source #
-###################
-*.com
-*.class
-*.dll
-*.exe
-*.o
-*.so
+# Editors
+project.xml
+project.properties
+/nbproject/private/
+.buildpath
+.project
+.settings*
+.idea
 
-# Packages #
-############
-# it's better to unpack these files and commit the raw source
-# git has its own built in compression methods
-*.7z
-*.dmg
-*.gz
-*.iso
-*.jar
-*.rar
-*.tar
-*.zip
+# Grunt
+/node_modules/
 
-# Logs and databases #
-######################
-*.log
-*.sql
-*.sqlite
+# Sass
+.sass-cache/
+
+# OS X metadata
+.DS_Store
+
+# Windows junk
+Thumbs.db
+
+# ApiGen
+/wc-gzd-apidocs/
+
+# Unit tests
+/tmp
+/tests/bin/tmp
+
+# Logs
+/logs
+
+# Composer
+/vendor/
+composer.phar
 
 # OS generated files #
 ######################
@@ -36,6 +43,3 @@
 *.idea
 ehthumbs.db
 Thumbs.db
-
-# Node Modules #
-/node_modules/

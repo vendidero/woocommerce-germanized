@@ -21,9 +21,9 @@ function wc_gzd_get_crud_data( $object, $key ) {
 	$getter = substr( $key, 0, 3 ) === "get" ? $key : "get_$key";
 	$key = substr( $key, 0, 3 ) === "get" ? substr( $key, 3 ) : $key;
 
-	if ( 'id' === $key && is_callable( array( $object, 'is_type' ) ) && $object->is_type( 'variation' ) && ! WC_GZD_Dependencies::instance()->woocommerce_version_supports_crud() ) {
+	if ( 'id' === $key && is_callable( array( $object, 'is_type' ) ) && $object->is_type( 'variation' ) && ! wc_gzd_get_dependencies()->woocommerce_version_supports_crud() ) {
 		$key = 'variation_id';
-	} else if ( 'parent' === $key && is_callable( array( $object, 'is_type' ) ) && $object->is_type( 'variation' ) && ! WC_GZD_Dependencies::instance()->woocommerce_version_supports_crud() ) {
+	} else if ( 'parent' === $key && is_callable( array( $object, 'is_type' ) ) && $object->is_type( 'variation' ) && ! wc_gzd_get_dependencies()->woocommerce_version_supports_crud() ) {
 	    // Set getter to parent so that it is not being used for pre 2.7
 	    $key = 'id';
 	    $getter = 'parent';
@@ -46,7 +46,7 @@ function wc_gzd_get_crud_data( $object, $key ) {
 		if ( $reflection->isPublic() ) {
 			$value = $object->{$getter}();
 		}
-	} else if ( WC_GZD_Dependencies::instance()->woocommerce_version_supports_crud() ) {
+	} else if ( wc_gzd_get_dependencies()->woocommerce_version_supports_crud() ) {
 		if ( substr( $key, 0, 1 ) !== '_' )
 			$key = '_' . $key;
 
@@ -78,19 +78,19 @@ function wc_gzd_get_price_excluding_tax( $product, $args = array() ) {
 }
 
 function wc_gzd_get_variation( $parent, $variation ) {
-	if ( WC_GZD_Dependencies::instance()->woocommerce_version_supports_crud() )
+	if ( wc_gzd_get_dependencies()->woocommerce_version_supports_crud() )
 		return wc_get_product( $variation );
 	return $parent->get_child( $variation );
 }
 
 function wc_gzd_get_order_currency( $order ) {
-	if ( WC_GZD_Dependencies::instance()->woocommerce_version_supports_crud() )
+	if ( wc_gzd_get_dependencies()->woocommerce_version_supports_crud() )
 		return $order->get_currency();
 	return $order->get_order_currency();
 }
 
 function wc_gzd_reduce_order_stock( $order_id ) {
-    if ( WC_GZD_Dependencies::instance()->woocommerce_version_supports_crud() ) {
+    if ( wc_gzd_get_dependencies()->woocommerce_version_supports_crud() ) {
         wc_reduce_stock_levels($order_id);
     } else {
         $order = wc_get_order( $order_id );

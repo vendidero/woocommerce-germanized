@@ -3,13 +3,13 @@
  * Plugin Name: WooCommerce Germanized
  * Plugin URI: https://www.vendidero.de/woocommerce-germanized
  * Description: Extends WooCommerce to become a legally compliant store for the german market.
- * Version: 1.8.3
+ * Version: 1.8.4
  * Author: Vendidero
  * Author URI: https://vendidero.de
  * Requires at least: 3.8
  * Tested up to: 4.6
  * Requires at least WooCommerce: 2.4
- * Tested up to WooCommerce: 2.7
+ * Tested up to WooCommerce: 3.0
  *
  * Text Domain: woocommerce-germanized
  * Domain Path: /i18n/languages/
@@ -28,7 +28,7 @@ final class WooCommerce_Germanized {
 	 *
 	 * @var string
 	 */
-	public $version = '1.8.3';
+	public $version = '1.8.4';
 
 	/**
 	 * Single instance of WooCommerce Germanized Main Class
@@ -118,10 +118,9 @@ final class WooCommerce_Germanized {
 		
 		spl_autoload_register( array( $this, 'autoload' ) );
 
-		// Check if dependecies are installed
-		$init = WC_GZD_Dependencies::instance( $this );
-		
-		if ( ! $init->is_loadable() )
+		$dependencies = apply_filters( 'woocommerce_gzd_dependencies_instance', WC_GZD_Dependencies::instance( $this ) );
+
+		if ( ! $dependencies->is_loadable() )
 			return;
 
 		// Define constants
@@ -341,7 +340,9 @@ final class WooCommerce_Germanized {
 
 		include_once ( 'includes/wc-gzd-cart-functions.php' );
 		include_once ( 'includes/wc-gzd-order-functions.php' );
+
 		include_once ( 'includes/class-wc-gzd-checkout.php' );
+		include_once ( 'includes/class-wc-gzd-dhl-parcel-shops.php' );
 		include_once ( 'includes/class-wc-gzd-customer-helper.php' );
 		include_once ( 'includes/class-wc-gzd-virtual-vat-helper.php' );
 
@@ -587,16 +588,24 @@ final class WooCommerce_Germanized {
 		if ( is_page() && is_object( $post ) && has_shortcode( $post->post_content, 'revocation_form' ) )
 			wp_enqueue_script( 'wc-gzd-revocation', $frontend_script_path . 'revocation' . $suffix . '.js', array( 'jquery', 'woocommerce', 'wc-country-select', 'wc-address-i18n' ), WC_GERMANIZED_VERSION, true );
 		
-		if ( is_checkout() )
-			wp_enqueue_script( 'wc-gzd-checkout', $frontend_script_path . 'checkout' . $suffix . '.js', array( 'jquery', 'wc-checkout' ), WC_GERMANIZED_VERSION, true );
-		
+		if ( is_checkout() ) {
+
+			wp_enqueue_script( 'wc-gzd-checkout', $frontend_script_path . 'checkout' . $suffix . '.js', array(
+				'jquery',
+				'wc-checkout'
+			), WC_GERMANIZED_VERSION, true );
+
+		}
+
 		if ( is_singular( 'product' ) ) {
 			$product = wc_get_product( $post->ID );
 			if ( $product && $product->is_type( 'variable' ) ) {
 				// Enqueue variation scripts
 				wp_enqueue_script( 'wc-gzd-add-to-cart-variation', $frontend_script_path . 'add-to-cart-variation' . $suffix . '.js', array( 'jquery', 'woocommerce', 'wc-add-to-cart-variation' ), WC_GERMANIZED_VERSION, true );
 			}
-		} 
+		}
+
+		do_action( 'woocommerce_gzd_registered_scripts', $suffix, $frontend_script_path, $assets_path );
 	}
 
 	/**
@@ -605,12 +614,15 @@ final class WooCommerce_Germanized {
 	public function localize_scripts() {
 		global $wp;
 		$assets_path = str_replace( array( 'http:', 'https:' ), '', WC()->plugin_url() ) . '/assets/';
+
 		if ( wp_script_is( 'wc-gzd-revocation' ) ) {
 			wp_localize_script( 'wc-gzd-revocation', 'wc_gzd_revocation_params', apply_filters( 'wc_gzd_revocation_params', array(
 				'ajax_url'                  => WC()->ajax_url(),
 				'ajax_loader_url'           => apply_filters( 'woocommerce_ajax_loader_url', $assets_path . 'images/ajax-loader@2x.gif' ),
 			) ) );
 		}
+
+		do_action( 'woocommerce_gzd_localized_scripts', $assets_path );
 	}
 
 	/**

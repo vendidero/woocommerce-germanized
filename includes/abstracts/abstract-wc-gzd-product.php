@@ -183,6 +183,16 @@ class WC_GZD_Product {
 		return apply_filters( 'woocommerce_gzd_product_sale_price_with_labels_html', $new_price_regular . ' ' . $new_price_sale . $new_price_suffix, $org_price_html, $this );
 	}
 
+	public function get_price_html_from_to( $from, $to, $show_labels = true ) {
+
+		$sale_label = ( $show_labels ? $this->get_sale_price_label() : '' );
+		$sale_regular_label = ( $show_labels ? $this->get_sale_price_regular_label() : '' );
+
+		$price = ( ! empty( $sale_label ) ? '<span class="wc-gzd-sale-price-label">' . $sale_label . '</span>' : '' ) . ' <del>' . ( ( is_numeric( $from ) ) ? wc_price( $from ) : $from ) . '</del> ' . ( ! empty( $sale_regular_label ) ? '<span class="wc-gzd-sale-price-label wc-gzd-sale-price-regular-label">' . $sale_regular_label . '</span> ' : '' ) . '<ins>' . ( ( is_numeric( $to ) ) ? wc_price( $to ) : $to ) . '</ins>';
+
+		return apply_filters( 'woocommerce_germanized_get_price_html_from_to', $price, $from, $to, $this );
+	}
+
 	/**
 	 * Gets a product's tax description (if is taxable)
 	 *  

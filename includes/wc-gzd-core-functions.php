@@ -12,6 +12,10 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 include( 'wc-gzd-product-functions.php' );
 
+function wc_gzd_get_dependencies( $instance = null ) {
+	return apply_filters( 'woocommerce_gzd_dependencies_instance', WC_GZD_Dependencies::instance( $instance ) );
+}
+
 function wc_gzd_send_instant_order_confirmation() {
     return ( apply_filters( 'woocommerce_gzd_instant_order_confirmation', true ) && ( 'yes' !== get_option( 'woocommerce_gzd_disable_instant_order_confirmation' ) ) );
 }

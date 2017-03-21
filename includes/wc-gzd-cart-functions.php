@@ -369,7 +369,11 @@ function wc_gzd_get_legal_text_service_email_notice() {
 	return $text;
 }
 
-function wc_gzd_get_chosen_shipping_rates() {
+function wc_gzd_get_chosen_shipping_rates( $args = array() ) {
+
+    $args = wp_parse_args( $args, array(
+        'value' => '',
+    ) );
 	
 	$packages = WC()->shipping->get_packages();
 	$shipping_methods = (array) WC()->session->get( 'chosen_shipping_methods' );
@@ -377,7 +381,11 @@ function wc_gzd_get_chosen_shipping_rates() {
 
 	foreach ( $packages as $i => $package ) {
 		if ( isset( $shipping_methods[ $i ] ) && isset( $package['rates'][ $shipping_methods[ $i ] ] ) ) {
-			array_push( $rates, $package['rates'][ $shipping_methods[ $i ] ] );
+		    if ( empty( $args[ 'value' ] ) ) {
+			    array_push( $rates, $package['rates'][ $shipping_methods[ $i ] ] );
+		    } else {
+			    array_push( $rates, $package['rates'][ $shipping_methods[ $i ] ]->{$args['value']} );
+		    }
 		}
 	}
 

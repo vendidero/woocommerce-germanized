@@ -111,7 +111,7 @@ class WC_Germanized_Meta_Box_Product_Data {
 
 	    $args[ 'id' ] = empty( $args[ 'id' ] ) ? $args[ 'name' ] : $args[ 'id' ];
 
-	    if ( WC_GZD_Dependencies::instance()->woocommerce_version_supports_crud() ) {
+	    if ( wc_gzd_get_dependencies()->woocommerce_version_supports_crud() ) {
 	        ?>
             <select class="wc-product-search wc-gzd-delivery-time-search" style="<?php echo $args[ 'style' ]; ?>" id="<?php echo $args[ 'id' ]; ?>" name="<?php echo $args[ 'name' ]; ?>" data-minimum_input_length="1" data-allow_clear="true" data-placeholder="<?php echo $args[ 'placeholder' ]; ?>" data-action="woocommerce_gzd_json_search_delivery_time" data-multiple="false">
                 <?php

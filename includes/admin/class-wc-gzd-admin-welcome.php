@@ -122,11 +122,17 @@ class WC_GZD_Admin_Welcome {
 				<a href="<?php echo admin_url('admin.php?page=wc-settings&tab=germanized'); ?>" class="button button-primary">Einstellungen</a>
 				<a href="https://vendidero.de/woocommerce-germanized#buy" target="_blank" class="button button-primary">Upgrade zur Pro Version</a>
 			</p>
-			<div class="changelog new-feature">
-				<h3>WooCommerce 2.7 & neue Infopflichten am 01.02.17</h3>
-                <p>Mit Version 1.8 ist Germanized bereits vorbereitet auf das bald anstehende Major Update von WooCommerce auf Version 2.7. Das Update wird viele Änderungen mit sich bringen, insbesondere bei der Datenstruktur. Dafür mussten auch in Germanized viele Anpassungen gemacht werden und vor allem Aufwand zur Gewährleistung der Rückwärtskompatibilität mit älteren WC Versionen betrieben werden.</p>
-                <p>Zudem gibt es mit dem 01.02.17 neue Informationspflichten (s.h. <a href="http://shopbetreiber-blog.de/2017/01/13/streitschlichtung-neue-infopflichten-fuer-alle-online-haendler-ab-1-februar/" target="_blank">Trusted Shops</a>). Die nötigen Informationen werden in Form des Shortcodes [gzd_complaints] zum Impressum (und falls hinterlegt zu den AGB) hinzugefügt. Dafür wurden
-                    neue Optionen in den Einstellungen hinterlegt, da je nach Geschäftsmodell u.U. andere Informationen einzufügen sind. Die empfohlenen Mustertexte von Trusted Shops haben wir bereits eingearbeitet. Bitte kontrolliere deine <a href="<?php echo admin_url( 'admin.php?page=wc-settings&tab=germanized#woocommerce_gzd_alternative_complaints_text_none' ); ?>">Einstellungen</a>.</p>
+			<div class="changelog vendipro new-feature">
+                <h3>Neu in 1.8.4: Versand an DHL Shops & Packstationen</h3>
+                <div class="left">
+                    <p>
+                        Germanized 1.8.4 ermöglicht es dir deinen Kunden den Versand an DHL Shops & Packstationen anzubieten. Dafür fügt Germanized eine Checkbox in der Versandadresse ein, die der Kunde anhaken kann. Anschließend wird die PostNummer und die Packstation abgefragt.
+                        Zudem haben wir auch die DHL Standortsuche integriert, über die der Kunde eine Packstation in seiner Nähe finden kann - die Daten der Packstation werden automatisch als Versandresse übernommen. Aktiviere jetzt den Versand an DHL Packstationen bzw. Paketshops in den <a href="<?php echo admin_url( 'admin.php?page=wc-settings&tab=germanized&section=display#woocommerce_gzd_dhl_parcel_shops' ); ?>">Einstellungen</a>.
+                    </p>
+                </div>
+                <div class="right">
+                    <img src="<?php echo WC_germanized()->plugin_url();?>/assets/images/dhl-packstation.png" style="max-width: 600px; border: none" />
+                </div>
             </div>
 			<div class="changelog vendipro new-feature">
 				<h3>Neu: Rechtliche Hinweistexte als PDF-Anhang <span class="wc-gzd-pro">pro</span></h3>

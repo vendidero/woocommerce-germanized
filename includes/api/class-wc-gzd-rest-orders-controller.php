@@ -42,6 +42,8 @@ class WC_GZD_REST_Orders_Controller {
 		
 		$response_order_data['billing']['title'] = wc_gzd_get_crud_data( $order, 'billing_title' );
 		$response_order_data['shipping']['title'] = wc_gzd_get_crud_data( $order, 'shipping_title' );
+		$response_order_data['shipping']['parcelshop'] = (bool) wc_gzd_get_crud_data( $order, 'shipping_parcelshop' );
+		$response_order_data['shipping']['parcelshop_post_number'] = wc_gzd_get_crud_data( $order, 'shipping_parcelshop_post_number' );
 		$response_order_data['parcel_delivery_opted_in'] = wc_gzd_get_crud_data( $order, 'parcel_delivery_opted_in' );
 		
 		$response->set_data( $response_order_data );
@@ -69,6 +71,17 @@ class WC_GZD_REST_Orders_Controller {
 			update_post_meta( $post->ID, '_shipping_title', absint( $request['shipping']['title'] ) );
 		}
 
+		if ( isset( $request['shipping']['parcelshop'] ) ) {
+			if ( (bool) $request['shipping']['parcelshop'] ) {
+				update_post_meta( $post->ID, '_shipping_parcelshop', 1 );
+			} else {
+				delete_post_meta( $post->ID, '_shipping_parcelshop' );
+			}
+		}
+
+		if ( isset( $request['shipping']['parcelshop_post_number'] ) ) {
+			update_post_meta( $post->ID, '_shipping_parcelshop_post_number', wc_clean( $request['shipping']['parcelshop_post_number'] ) );
+		}
 	}
 
 	/**
@@ -95,6 +108,18 @@ class WC_GZD_REST_Orders_Controller {
 			'type'        => 'integer',
 			'context'     => array( 'view', 'edit' ),
 			'enum'        => array( 1, 2 )
+		);
+
+		$schema_properties['shipping']['properties']['parcelshop'] = array(
+			'description' => __( 'Parcel Shop', 'woocommerce-germanized' ),
+			'type'        => 'boolean',
+			'context'     => array( 'view', 'edit' ),
+		);
+
+		$schema_properties['shipping']['properties']['parcelshop_post_number'] = array(
+			'description' => __( 'Postnumber', 'woocommerce-germanized' ),
+			'type'        => 'string',
+			'context'     => array( 'view', 'edit' ),
 		);
 
 		$schema_properties['parcel_delivery_opted_in'] = array(

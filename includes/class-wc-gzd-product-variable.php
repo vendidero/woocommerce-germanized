@@ -114,7 +114,7 @@ class WC_GZD_Product_Variable extends WC_GZD_Product {
 			$min_price = current( $prices['price'] );
 			$max_price = end( $prices['price'] );
 
-			if ( WC_GZD_Dependencies::instance()->woocommerce_version_supports_crud() ) {
+			if ( wc_gzd_get_dependencies()->woocommerce_version_supports_crud() ) {
 
                 if ( $min_price !== $max_price ) {
                     $price = apply_filters( 'woocommerce_gzd_variable_unit_price_html', wc_format_price_range( $min_price, $max_price ), $this );

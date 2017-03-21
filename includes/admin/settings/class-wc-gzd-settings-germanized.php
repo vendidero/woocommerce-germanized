@@ -888,6 +888,32 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 			array(	'title' => __( 'Checkout & Cart', 'woocommerce-germanized' ), 'type' => 'title', 'id' => 'checkout_options' ),
 
 			array(
+				'title' 	=> __( 'DHL Parcel Shops', 'woocommerce-germanized' ),
+				'desc' 		=> __( 'Allow customers to choose a DHL parcel shop or packing station as delivery address.', 'woocommerce-germanized' ),
+				'id' 		=> 'woocommerce_gzd_dhl_parcel_shops',
+				'default'	=> 'no',
+				'type' 		=> 'checkbox',
+				'desc_tip'	=> __( 'This option adds a checkbox to your checkout shipping fields which allows the customer to optionally choose a DHL packing station or parcel shop for delivery. A PostNumber is required.', 'woocommerce-germanized' ),
+			),
+
+			array(
+				'title' 	=> __( 'Supported Countries', 'woocommerce-germanized' ),
+				'id' 		=> 'woocommerce_gzd_dhl_parcel_shop_supported_countries',
+				'default'	=> array( 'DE', 'AT' ),
+				'type' 		=> 'multi_select_countries',
+				'desc_tip'	=> __( 'Choose countries which support Parcel Shop delivery.', 'woocommerce-germanized' ),
+			),
+
+			array(
+				'title' 	=> __( 'Parcel Shop Finder', 'woocommerce-germanized' ),
+				'desc' 		=> __( 'Enable DHL Parcel Shop Finder to let customers choose a parcel shop nearby.', 'woocommerce-germanized' ),
+				'id' 		=> 'woocommerce_gzd_dhl_parcel_shop_finder',
+				'default'	=> 'no',
+				'type' 		=> 'checkbox',
+				'desc_tip'	=> sprintf( __( 'You may enable this option to add a <a href="%s" target="_blank">Parcel Shop Finder</a> to your checkout. Adds an link next to the checkbox. The finder (DHL API) opens in an overlay and lets the customer find and choose a parcel shop or packing station nearby.', 'woocommerce-germanized' ), 'https://parcelshopfinder.dhlparcel.com/' ),
+			),
+
+			array(
 				'title' 	=> __( 'Fallback Mode', 'woocommerce-germanized' ),
 				'desc' 		=> __( 'Enable to make sure default checkout template is not being overriden by theme.', 'woocommerce-germanized' ),
 				'id' 		=> 'woocommerce_gzd_display_checkout_fallback',

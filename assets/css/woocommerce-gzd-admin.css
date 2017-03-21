@@ -152,6 +152,11 @@ table.wc-gzd-tax-example tr th:first-child, table.wc-gzd-tax-example tr td:first
     width: 100%;
 }
 
+#order_data ._shipping_parcelshop_post_number_field {
+	clear: left;
+	width: 100% !important;
+}
+
 .wc-gzd-text-red {
 	color: red;
 }
