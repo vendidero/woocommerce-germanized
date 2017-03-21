@@ -25,11 +25,9 @@ install_woo() {
     mkdir -p $WOO_CORE_DIR
 
     if [ $WOO_VERSION == 'latest' ]; then
-
 		local RELEASES=$(curl https://api.github.com/repos/woocommerce/woocommerce/releases | sed -n 's/.*"tarball_url": "\(.*\)",/\1/p')
-	    local a=($RELEASES)
-	    local ARCHIVE_URL=$a
-
+	    local RSPLIT=( $RELEASES )
+	    local ARCHIVE_URL=${RSPLIT[0]}
 	elif [ $WOO_VERSION == 'latest_stable' ]; then
 	    local ARCHIVE_URL=$(curl https://api.github.com/repos/woocommerce/woocommerce/releases/latest | sed -n 's/.*"tarball_url": "\(.*\)",/\1/p')
 	else
