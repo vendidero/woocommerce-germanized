@@ -24,20 +24,21 @@ install_woo() {
     mkdir -p $WOO_CORE_DIR
 
     if [ $WOO_VERSION == 'latest' ]; then
-		RELEASES=$(curl -s https://api.github.com/repos/woocommerce/woocommerce/releases | sed -n 's/.*"tarball_url": "\(.*\)",/\1/p')
-	    a=($RELEASES)
-	    local ARCHIVE_URL=${a[0]}
+		local RELEASES=$(curl https://api.github.com/repos/woocommerce/woocommerce/releases --silent | sed -n 's/.*"tarball_url": "\(.*\)",/\1/p')
+	    local a=($RELEASES)
+	    echo $a
+	    local ARCHIVE_URL=$a
 	elif [ $WOO_VERSION == 'latest_stable' ]; then
-	    local ARCHIVE_URL=$(curl -s https://api.github.com/repos/woocommerce/woocommerce/releases/latest | sed -n 's/.*"tarball_url": "\(.*\)",/\1/p')
+	    local ARCHIVE_URL=$(curl https://api.github.com/repos/woocommerce/woocommerce/releases/latest --silent | sed -n 's/.*"tarball_url": "\(.*\)",/\1/p')
 	else
-		local ARCHIVE_URL=$(curl -s https://api.github.com/repos/woocommerce/woocommerce/releases/tags/$WOO_VERSION | sed -n 's/.*"tarball_url": "\(.*\)",/\1/p')
+		local ARCHIVE_URL=$(curl https://api.github.com/repos/woocommerce/woocommerce/releases/tags/$WOO_VERSION --silent | sed -n 's/.*"tarball_url": "\(.*\)",/\1/p')
 	fi
 
-	echo ${ARCHIVE_URL}
+	#echo ${ARCHIVE_URL}
 
-    curl -L ${ARCHIVE_URL} --output /tmp/woocommerce.tar.gz --silent
+    #curl -L ${ARCHIVE_URL} --output /tmp/woocommerce.tar.gz --silent
 
-    tar --strip-components=1 -zxmf /tmp/woocommerce.tar.gz -C $WOO_CORE_DIR
+    #tar --strip-components=1 -zxmf /tmp/woocommerce.tar.gz -C $WOO_CORE_DIR
 }
 
 install_wp() {
@@ -104,7 +105,7 @@ install_db() {
 	mysqladmin create $DB_NAME --user="$DB_USER" --password="$DB_PASS"$EXTRA
 }
 
-install_wp
+#install_wp
 install_woo
-install_test_suite
-install_db
+#install_test_suite
+#install_db
