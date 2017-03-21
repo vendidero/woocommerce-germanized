@@ -11,7 +11,8 @@
     "squizlabs/php_codesniffer": "*",
     "wp-coding-standards/wpcs": "*",
     "wimg/php-compatibility": "*",
-    "simplyadmire/composer-plugins" : "@dev"
+    "simplyadmire/composer-plugins" : "@dev",
+    "phpunit/phpunit": "5.7"
   },
   "scripts": {
     "post-install-cmd": [
