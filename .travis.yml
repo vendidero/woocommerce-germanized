@@ -11,13 +11,13 @@ php:
   - hhvm
 
 env:
-  - WP_VERSION=latest WOO_Version=3.0.0-rc.1 WP_MULTISITE=0 PHP_LATEST_STABLE=7.1
+  - WP_VERSION=latest WOO_VERSION=latest WP_MULTISITE=0 PHP_LATEST_STABLE=7.1
 
 # Additonal tests against stable PHP (min recommended version is 5.6) and past supported versions of WP.
 matrix:
   include:
   - php: 5.6
-    env: WP_VERSION=latest WOO_VERSION=3.0.0-rc.1 WP_MULTISITE=1 PHP_LATEST_STABLE=7.1
+    env: WP_VERSION=latest WOO_VERSION=latest WP_MULTISITE=1 PHP_LATEST_STABLE=7.1
 
 before_script:
   - export PATH="$HOME/.composer/vendor/bin:$PATH"
