@@ -87,6 +87,9 @@ class WC_GZD_DHL_Parcel_Shops {
 		if ( isset( $args[ 'parcelshop_post_number' ] ) ) {
 			$placeholder[ '{parcelshop_post_number}' ] = $args[ 'parcelshop_post_number' ];
 			$placeholder[ '{parcelshop_post_number_upper}' ] = strtoupper( $args[ 'parcelshop_post_number' ] );
+		} else {
+			$placeholder[ '{parcelshop_post_number}' ] = '';
+			$placeholder[ '{parcelshop_post_number_upper}' ] = '';
 		}
 		return $placeholder;
 	}

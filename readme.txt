@@ -3,7 +3,7 @@ Contributors: vendidero
 Tags: woocommerce, german market, german, germany, deutsch, deutschland, de, de_DE, shop, commerce, e-commerce, ecommerce, woothemes, sepa, invoice
 Requires at least: 3.8
 Tested up to: 4.7
-Stable tag: 1.8.4
+Stable tag: 1.8.5
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -166,6 +166,14 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 1. WooCommerce Germanized Settings
 
 == Changelog ==
+
+= 1.8.5 =
+* Feature - DHL Parcel Shop or Pick-Up Station delivery
+* Fix - Parcel Shop empty address placeholder
+* Fix - Sale Price Labels Price Suffixes HTML
+* Fix - Partial refunded order email legal item information
+* Fix - Hook priority for product units in loop
+* Fix - Parcel delivery checkbox validation
 
 = 1.8.4 =
 * Feature - DHL Parcel Shop or Pick-Up Station delivery
