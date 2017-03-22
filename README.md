@@ -1,4 +1,4 @@
-# [WooCommerce Germanized](https://vendidero.de/) [![Build Status](https://travis-ci.org/vendidero/woocommerce-germanized.svg?branch=master)](https://travis-ci.org/vendidero/woocommerce-germanized)
+# [WooCommerce Germanized](https://vendidero.de/woocommerce-germanized) [![Build Status](https://travis-ci.org/vendidero/woocommerce-germanized.svg?branch=master)](https://travis-ci.org/vendidero/woocommerce-germanized)
 
 WooCommerce Germanized extends WooCommerce to meet german law and adds some german market specific functionality like the delivery to DHL Pick-Up-Stations. Germany has some very specific 
 legal requirements in regard to selling products online - that's why a lot of german store owners are aware of expensive warning letters because of formal violations against german law.   
