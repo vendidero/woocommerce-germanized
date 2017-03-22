@@ -1,50 +1,82 @@
 # [WooCommerce Germanized](https://vendidero.de/) [![Build Status](https://travis-ci.org/vendidero/woocommerce-germanized.svg?branch=master)](https://travis-ci.org/vendidero/woocommerce-germanized)
 
-mit WooCommerce Germanized erweiterst du deine WooCommerce Installation um typisch deutsche Funktionen. Das Plugin widmet sich insbesondere dem Problem der Rechtssicherheit von WooCommerce in Deutschland. WooCommerce Germanized ist ein "Muss" für deutsche WooCommerce-Nutzer. Mit dem Plugin schützt du deine WooCommerce Installation gegen Abmahnungen.
-Bitte beachte, dass das Plugin nur die technischen Voraussetzungen für einen rechtskonformen WooCommerce Shop in Deutschland erfüllt. Um die Inhalte (z.B. Widerrufsbelehrung, AGB usw.) musst du dich natürlich selbst kümmern. 
+WooCommerce Germanized extends WooCommerce to meet german law and adds some german market specific functionality like the delivery to DHL Pick-Up-Stations. Germany has some very specific 
+legal requirements in regard to selling products online - that's why a lot of german store owners are aware of expensive warning letters because of formal violations against german law.   
 
-## Funktionsumfang von WooCommerce Germanized
-Nach der Installation übernimmt das Plugin auf Wunsch die Anpassung der WooCommerce Einstellungen an den deutschen Markt (z.B. Darstellung des Preises, MwSt.-Raten usw.). Zusätzlich können die rechtlichen Hinweisseiten (ohne Inhalt) automatisch erzeugt werden. Hier eine kurze Einführung in die Funktionen des Plugins:
+WooCommerce Germanized creates the technical preconditions to operate a legally certain WooCommerce store in Germany. Still the store owner needs to take care of the content (e.g. legal pages such as cancellation, terms etc.).
 
-**Lieferzeiten**
-Du kannst deinen Produkten von nun an konkrete Lieferzeiten zuordnen (und diese natürlich selbst anlegen). Zusätzlich dazu kannst du auch eine Standard-Lieferzeit festlegen, die automatisch für Produkte verwendet wird, denen keine Lieferzeit zugeteilt wurde. Die Lieferzeiten werden dann automatisch auf der Produktseite und während des Bestellvorganges dargestellt.
+### WooCommerce for the German Market
+After installation the plugin optionally adapts your WooCommerce settings to meet a typical german setup (e.g. price display, tax settings).
+Furthermore blank templates for legal pages such as Terms & Conditions or Imprint can be generated automatically. 
 
-**Rechtlich relevante Hinweise**
-Neben dem Hinweis der Lieferzeit fügt WooCommerce Germanized auch automatisch andere rechtlich relevante Hinweise hinzu. Darunter der MwSt-Hinweis sowie der Versandkosten-Hinweis.
+**Delivery Times**
+Create specific delivery times for your products and variations. Show delivery times on your product page as well as cart and checkout. 
+You may even setup a default delivery time which acts as a fallback if no specific delivery time has been set.
 
-**Rechtliche Hinweise während des Kaufvorganges**
-Das Plugin fügt automatisch einen Hinweis zu Widerrufsbelehrung und AGB in den Checkout ein (der Text lässt sich in den Einstellungen anpassen). Auf Wunsch kann der Hinweis auch per Checkbox bestätigt werden.
+**Price Labelling**
+Show legally required notices like tax or shipping cost notices on your product pages, loops and checkout.
 
-**Einheitspreise, Hinweis-Seiten in E-Mails uvm.**
-WooCommerce Germanized bietet natürlich noch vieles mehr. Weitere Informationen, wie du deinen WooCommerce Shop mit WooCommerce Germanized rechtssicher machen kannst findest du im [WordPress Plugin Repository](https://de.wordpress.org/plugins/woocommerce-germanized/) bzw. auf [vendidero.de](http://vendidero.de/woocommerce-germanized).
+**Checkboxes**
+On your checkout page you may optionally insert multiple checkboxes to let your customer explicitly accept your terms & conditions as well as cancellation conditions. 
+Furthermore specific checkboxes for digital/virtual and service products are provided. 
 
-## WooCommerce Theme für den deutschen Markt
-Neben WooCommerce Germanized bietet wir auch noch ein perfekt auf den deutschen Markt abgestimmtes [WooCommerce Theme](http://vendidero.de/vendipro) an. VendiPro ist komplett responsive und bietet jede Menge Möglichkeiten zur Individualisierung deines WooCommerce Shops.
-Das Theme bietet natürlich volle WooCommerce und WooCommerce Germanized Unterstützung!
+**Email Attachments**
+Configure email attachments to make sure your terms & conditions or imprint are attached to your WooCommerce emails (e.g. order confirmation email).
 
-### Nützliche Shortcodes
-WooCommerce Germanized hat ein paar nützliche Shortcodes um gewisse Inhalte und Funktionen einzufügen. Dazu einfach folgende Shortcodes in die jeweilige Seite bzw. in den Post einfügen.
+**Unit Prices**
+WooCommerce Germanized offers unit prices for your products. You may then easily setup unit-specific prices for your products e.g. 5,00 Euro per 100 ml to inform your customers.
 
-**Online Widerrufsformular einbetten**
+**Further Functionality**
+- DHL Parcel Shop and Pick-Up-Station Delivery
+- Delivery Times
+- Unit Prices
+- Product Cart Description
+- Button Solution Compatibility
+- Certified by Trusted Shops
+- Double-Opt-In for Customers
+- Improved Tax Share Calculation for Shipping and Fees
+- Payment Gateway: Direct Debit (SEPA)
+- Payment Gateway: Pay by Invoice
+- Payment Gateway Fees
+- Sale Price Labels (e.g. old price - new price)
+
+Find out more about WooCommerce Germanized on our [WordPress Plugin Repository Page](https://wordpress.org/plugins/woocommerce-germanized/) or at [vendidero.de](http://vendidero.de/woocommerce-germanized).
+
+### WooCommerce Theme for German Market
+Vendidero offers a premium [WooCommerce Theme](http://vendidero.de/vendipro) specifically designed for the German Market. 
+VendiPro offers a responsive layout and a lot of customization opportunities - the best thing: It is 100% compatible to WooCommerce and Germanized.
+
+### Contributing
+If you have a patch, or stumbled upon an issue with WooCommerce Germanized, you can contribute this back to the code.
+
+### Support
+Free Support is available within our [WordPress Support Forum](https://wordpress.org/support/plugin/woocommerce-germanized).
+Users of our professional version may find Ticket Support within our customer area at vendidero.de.
+
+### Shortcodes
+WooCommerce Germanized offers some shortcodes to embed further functionality within posts/pages.
+Specific shortcodes for Trusted Shops and eKomi are only available if configured.
+
+**Online Cancellation Form**
 
 [revocation_form]
 
-**Informationen zu den angebotenen Zahlungsmethoden einfügen**
+**Payment Gateway Information**
 
 [payment_methods_info]
 
-**Trusted Shops Badge einfügen (falls aktiviert)**
+**Trusted Shops Badge**
 
 [trusted_shops_badge width="50"]
 
-**Trusted Shops Google Rich Snippets einfügen (falls aktiviert)**
+**Trusted Shops Google Rich Snippets**
 
 [trusted_shops_rich_snippets]
 
-**Trusted Shops Reviews einbetten (Grafik-Datei, falls aktiviert)**
+**Trusted Shops Reviews**
 
 [trusted_shops_reviews]
 
-**eKomi-Badge einfügen (falls aktiviert)**
+**eKomi Badge**
 
 [ekomi_badge]
