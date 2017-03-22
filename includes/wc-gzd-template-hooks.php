@@ -65,10 +65,16 @@ add_action( 'woocommerce_review_order_before_cart_contents', 'woocommerce_gzd_te
 add_filter( 'woocommerce_cart_item_name', 'wc_gzd_cart_product_units', wc_gzd_get_hook_priority( 'cart_product_units' ), 3 );
 add_filter( 'woocommerce_cart_item_name', 'wc_gzd_cart_product_delivery_time', wc_gzd_get_hook_priority( 'cart_product_delivery_time' ), 3 );
 add_filter( 'woocommerce_cart_item_name', 'wc_gzd_cart_product_item_desc', wc_gzd_get_hook_priority( 'cart_product_item_desc' ), 3 );
+
 // Small enterprises
 if ( get_option( 'woocommerce_gzd_small_enterprise' ) == 'yes' ) {
+
 	add_action( 'woocommerce_after_cart_totals', 'woocommerce_gzd_template_small_business_info', wc_gzd_get_hook_priority( 'cart_small_business_info' ) );
 	add_action( 'woocommerce_review_order_after_order_total', 'woocommerce_gzd_template_checkout_small_business_info', wc_gzd_get_hook_priority( 'checkout_small_business_info' ) );
+
+	// Small Business incl. vat display
+	add_filter( 'woocommerce_get_formatted_order_total', 'woocommerce_gzd_template_small_business_vat_notice', 10, 1 );
+	add_filter( 'woocommerce_cart_totals_order_total_html', 'woocommerce_gzd_template_small_business_vat_notice', 10, 1 );
 }
 
 /**

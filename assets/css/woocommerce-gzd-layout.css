@@ -12,6 +12,11 @@
 .includes_tax, .tax_label {
 	display: none !important;
 }
+.wc-gzd-small-business-includes-tax {
+	display: inline !important;
+	font-size: 0.9em;
+	padding-left: 3px;
+}
 #order_review_heading {
 	display: none;
 }

@@ -570,4 +570,12 @@ if ( ! function_exists( 'woocommerce_gzd_template_sale_price_label_html' ) ) {
 
 }
 
+if ( ! function_exists( 'woocommerce_gzd_template_small_business_vat_notice' ) ) {
+
+	function woocommerce_gzd_template_small_business_vat_notice( $total ) {
+		return $total . ' <span class="includes_tax wc-gzd-small-business-includes-tax">' . __( 'incl. VAT', 'woocommerce-germanized' ) . '</span>';
+	}
+
+}
+
 ?>
