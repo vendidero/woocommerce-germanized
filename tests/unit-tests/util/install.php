@@ -35,9 +35,21 @@ class WC_GZD_Tests_Install extends WC_GZD_Unit_Test_Case {
 
 		include( dirname( dirname( dirname( dirname( __FILE__ ) ) ) ) . '/uninstall.php' );
 
+		add_filter( 'plugin_locale', array( $this, 'set_locale' ), 10, 2 );
+
 		WC_GZD_Install::install();
 
 		$this->assertTrue( get_option( 'woocommerce_gzd_version' ) === WC_germanized()->version );
+		$this->assertEquals( 'Jetzt kaufen', get_option( 'woocommerce_gzd_order_submit_btn_text' ) );
+
+		remove_filter( 'plugin_locale', array( $this, 'set_locale' ), 10 );
+	}
+
+	public function set_locale( $locale, $textdomain ) {
+		if ( 'woocommerce-germanized' === $textdomain ) {
+			return 'de_DE';
+		}
+		return $locale;
 	}
 
 	/**

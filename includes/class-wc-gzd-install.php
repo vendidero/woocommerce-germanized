@@ -110,7 +110,7 @@ class WC_GZD_Install {
 		}
 		
 		// Load Translation for default options
-		$locale = apply_filters( 'plugin_locale', get_locale() );
+		$locale = apply_filters( 'plugin_locale', get_locale(), 'woocommerce-germanized' );
 		$mofile = WC_germanized()->plugin_path() . '/i18n/languages/woocommerce-germanized.mo';
 		
 		if ( file_exists( WC_germanized()->plugin_path() . '/i18n/languages/woocommerce-germanized-' . $locale . '.mo' ) )
