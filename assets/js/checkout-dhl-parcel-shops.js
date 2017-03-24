@@ -123,7 +123,15 @@ jQuery( function( $ ) {
         },
 
         saveParcelFinder: function(e) {
+
             var c = JSON.parse( e.originalEvent.data );
+
+            if ( typeof c !== 'object' )
+                return;
+
+            if ( ! c.countryCode )
+                return;
+
             var country = c.countryCode.toUpperCase();
 
             $( '.wc-gzd-parcel-finder-shipping-country-error' ).remove();

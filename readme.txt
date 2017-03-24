@@ -169,6 +169,8 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 
 = 1.8.6 =
 * Fix - plugin_locale filter in WC_GZD_Install
+* Fix - Support Parcel Shop Delivery in My Account - Edit Address
+* Fix - Parcel Shop Delivery JS better event check
 
 = 1.8.5 =
 * Feature - DHL Parcel Shop or Pick-Up Station delivery

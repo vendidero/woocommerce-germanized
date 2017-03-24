@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce Germanized v1.5.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-17 17:56+0100\n"
-"PO-Revision-Date: 2017-03-17 18:37+0100\n"
+"POT-Creation-Date: 2017-03-24 11:47+0100\n"
+"PO-Revision-Date: 2017-03-24 11:47+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -20,6 +20,9 @@ msgstr ""
 "X-Textdomain-Support: yes\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: node_modules\n"
+"X-Poedit-SearchPathExcluded-1: tests\n"
+"X-Poedit-SearchPathExcluded-2: tmp\n"
+"X-Poedit-SearchPathExcluded-3: vendor\n"
 
 #: i18n/labels.php:16
 msgid "RRP: "
@@ -91,7 +94,8 @@ msgstr "l"
 # @ woocommerce-germanized
 #: includes/abstracts/abstract-wc-gzd-product.php:215
 #: includes/compatibility/class-wc-gzd-compatibility-woocommerce-subscriptions.php:72
-#: includes/wc-gzd-cart-functions.php:269 woocommerce-germanized.php:740
+#: includes/wc-gzd-cart-functions.php:269
+#: includes/wc-gzd-template-functions.php:576 woocommerce-germanized.php:768
 msgid "incl. VAT"
 msgstr "inkl. MwSt."
 
@@ -103,7 +107,7 @@ msgstr "exkl. MwSt."
 # @ woocommerce-germanized
 #: includes/abstracts/abstract-wc-gzd-product.php:217
 #: includes/compatibility/class-wc-gzd-compatibility-woocommerce-subscriptions.php:72
-#: includes/wc-gzd-cart-functions.php:269 woocommerce-germanized.php:740
+#: includes/wc-gzd-cart-functions.php:269 woocommerce-germanized.php:768
 #, php-format
 msgid "incl. %s%% VAT"
 msgstr "inkl. %s%% MwSt."
@@ -136,8 +140,8 @@ msgstr "Ja, Kunde wurde per Double Opt-In bestätigt."
 #: includes/class-wc-gzd-dependencies.php:54
 #: includes/class-wc-gzd-dependencies.php:63
 #: includes/class-wc-gzd-hook-priorities.php:33
-#: includes/class-wc-gzd-hook-priorities.php:42 woocommerce-germanized.php:88
-#: woocommerce-germanized.php:97
+#: includes/class-wc-gzd-hook-priorities.php:42 woocommerce-germanized.php:90
+#: woocommerce-germanized.php:99
 msgid "Cheatin&#8217; huh?"
 msgstr "So geht das leider nicht.."
 
@@ -145,7 +149,7 @@ msgstr "So geht das leider nicht.."
 #: includes/admin/class-wc-gzd-admin-status.php:38
 #: includes/admin/settings/class-wc-gzd-settings-germanized.php:139
 #: includes/admin/settings/class-wc-gzd-settings-germanized.php:225
-#: includes/wc-gzd-core-functions.php:53
+#: includes/wc-gzd-core-functions.php:57
 msgid "Terms & Conditions"
 msgstr "AGB"
 
@@ -159,7 +163,7 @@ msgstr "Widerrufsbelehrung"
 #: includes/admin/class-wc-gzd-admin-status.php:40
 #: includes/admin/settings/class-wc-gzd-settings-germanized.php:139
 #: includes/admin/settings/class-wc-gzd-settings-germanized.php:247
-#: includes/wc-gzd-core-functions.php:59
+#: includes/wc-gzd-core-functions.php:63
 msgid "Imprint"
 msgstr "Impressum"
 
@@ -1140,7 +1144,7 @@ msgstr "Tagen"
 
 # @ woocommerce-germanized
 #: includes/admin/settings/class-wc-gzd-settings-germanized.php:525
-#: includes/wc-gzd-core-functions.php:56
+#: includes/wc-gzd-core-functions.php:60
 msgid "Right of Recission"
 msgstr "Widerrufsrecht"
 
@@ -1534,7 +1538,7 @@ msgstr ""
 "bzw. Paketshops aktivieren möchtest."
 
 #: includes/admin/settings/class-wc-gzd-settings-germanized.php:908
-#: includes/class-wc-gzd-dhl-parcel-shops.php:237
+#: includes/class-wc-gzd-dhl-parcel-shops.php:302
 msgid "Parcel Shop Finder"
 msgstr "Paketshop finden"
 
@@ -2075,7 +2079,7 @@ msgstr ""
 "den Titel der Versandmethoden einzubetten."
 
 #: includes/admin/settings/class-wc-gzd-settings-germanized.php:1127
-#: includes/wc-gzd-cart-functions.php:388
+#: includes/wc-gzd-cart-functions.php:396
 msgid ""
 "Yes, I would like to be reminded via E-mail about parcel delivery "
 "({shipping_method_title}). Your E-mail Address will only be transferred to "
@@ -2721,8 +2725,8 @@ msgstr "jetzt upgraden"
 # @ woocommerce
 #: includes/api/class-wc-gzd-rest-customers-controller.php:85
 #: includes/api/class-wc-gzd-rest-customers-controller.php:92
-#: includes/api/class-wc-gzd-rest-orders-controller.php:87
-#: includes/api/class-wc-gzd-rest-orders-controller.php:94
+#: includes/api/class-wc-gzd-rest-orders-controller.php:100
+#: includes/api/class-wc-gzd-rest-orders-controller.php:107
 #: includes/class-wc-gzd-checkout.php:256
 #: includes/class-wc-gzd-checkout.php:266
 #: includes/class-wc-gzd-customer-helper.php:84
@@ -2732,7 +2736,7 @@ msgstr "Anrede"
 
 # @ woocommerce-germanized
 #: includes/api/class-wc-gzd-rest-customers-controller.php:113
-#: includes/api/class-wc-gzd-rest-orders-controller.php:122
+#: includes/api/class-wc-gzd-rest-orders-controller.php:147
 #: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:26
 #: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:486
 #: includes/gateways/direct-debit/views/html-export.php:27
@@ -2741,7 +2745,7 @@ msgstr "Lastschrift"
 
 # @ woocommerce-germanized
 #: includes/api/class-wc-gzd-rest-customers-controller.php:118
-#: includes/api/class-wc-gzd-rest-orders-controller.php:127
+#: includes/api/class-wc-gzd-rest-orders-controller.php:152
 #: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:280
 #: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:303
 #: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:512
@@ -2751,7 +2755,7 @@ msgstr "Kontoinhaber"
 
 # @ woocommerce-germanized
 #: includes/api/class-wc-gzd-rest-customers-controller.php:123
-#: includes/api/class-wc-gzd-rest-orders-controller.php:132
+#: includes/api/class-wc-gzd-rest-orders-controller.php:157
 #: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:281
 #: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:310
 #: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:520
@@ -2762,7 +2766,7 @@ msgstr "IBAN"
 
 # @ woocommerce-germanized
 #: includes/api/class-wc-gzd-rest-customers-controller.php:128
-#: includes/api/class-wc-gzd-rest-orders-controller.php:137
+#: includes/api/class-wc-gzd-rest-orders-controller.php:162
 #: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:282
 #: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:317
 #: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:648
@@ -2770,12 +2774,27 @@ msgstr "IBAN"
 msgid "BIC/SWIFT"
 msgstr "BIC/SWIFT"
 
-#: includes/api/class-wc-gzd-rest-orders-controller.php:101
+#: includes/api/class-wc-gzd-rest-orders-controller.php:114
+#: includes/class-wc-gzd-dhl-parcel-shops.php:192
+#: includes/class-wc-gzd-dhl-parcel-shops.php:225
+#: includes/class-wc-gzd-dhl-parcel-shops.php:279
+#: includes/class-wc-gzd-dhl-parcel-shops.php:280
+msgid "Parcel Shop"
+msgstr "Shop/Packstation"
+
+#: includes/api/class-wc-gzd-rest-orders-controller.php:120
+#: includes/class-wc-gzd-dhl-parcel-shops.php:123
+#: includes/class-wc-gzd-dhl-parcel-shops.php:142
+#: includes/class-wc-gzd-dhl-parcel-shops.php:155
+msgid "Postnumber"
+msgstr "PostNummer"
+
+#: includes/api/class-wc-gzd-rest-orders-controller.php:126
 msgid "Parcel Delivery Data Transfer"
 msgstr "Paketdienstleister Datenweitergabe"
 
 # @ woocommerce-germanized
-#: includes/api/class-wc-gzd-rest-orders-controller.php:142
+#: includes/api/class-wc-gzd-rest-orders-controller.php:167
 #: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:286
 #: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:324
 msgid "Mandate Reference ID"
@@ -3025,35 +3044,29 @@ msgstr "Vielen Dank. Ihr Benutzerkonto wurde erfolgreich aktiviert."
 msgid "Sorry, but this activation code cannot be found."
 msgstr "Sorry, dieser Aktivierungscode ist uns leider nicht bekannt."
 
-#: includes/class-wc-gzd-dhl-parcel-shops.php:99
+#: includes/class-wc-gzd-dhl-parcel-shops.php:114
 msgid "Send to DHL Parcel Shop?"
 msgstr "An DHL Paketshop oder Packstation senden?"
 
-#: includes/class-wc-gzd-dhl-parcel-shops.php:108
-#: includes/class-wc-gzd-dhl-parcel-shops.php:127
-#: includes/class-wc-gzd-dhl-parcel-shops.php:141
-msgid "Postnumber"
-msgstr "PostNummer"
-
-#: includes/class-wc-gzd-dhl-parcel-shops.php:120
+#: includes/class-wc-gzd-dhl-parcel-shops.php:135
 msgid "DHL Parcel Shop?"
 msgstr "DHL Paketshop/Packstation?"
 
-#: includes/class-wc-gzd-dhl-parcel-shops.php:122
+#: includes/class-wc-gzd-dhl-parcel-shops.php:137
 msgid "No"
 msgstr "Nein"
 
-#: includes/class-wc-gzd-dhl-parcel-shops.php:122
+#: includes/class-wc-gzd-dhl-parcel-shops.php:137
 msgid "Yes"
 msgstr "Ja"
 
-#: includes/class-wc-gzd-dhl-parcel-shops.php:123
+#: includes/class-wc-gzd-dhl-parcel-shops.php:138
 msgid "Select whether delivery to parcel shop should be enabled."
 msgstr ""
 "Wähle aus ob die Lieferung an DHL Paketshops bzw. Packstationen aktiviert "
 "werden soll."
 
-#: includes/class-wc-gzd-dhl-parcel-shops.php:129
+#: includes/class-wc-gzd-dhl-parcel-shops.php:144
 msgid ""
 "In case delivery to parcel shop is enabled please fill in the corresponding "
 "DHL post number."
@@ -3061,18 +3074,12 @@ msgstr ""
 "Wenn die Lieferung an eine DHL Packstation aktiviert wurde, trage bitte die "
 "PostNummer ein."
 
-#: includes/class-wc-gzd-dhl-parcel-shops.php:162
-#: includes/class-wc-gzd-dhl-parcel-shops.php:213
-#: includes/class-wc-gzd-dhl-parcel-shops.php:214
-msgid "Parcel Shop"
-msgstr "Shop/Packstation"
-
-#: includes/class-wc-gzd-dhl-parcel-shops.php:181
+#: includes/class-wc-gzd-dhl-parcel-shops.php:245
 msgid "Your PostNumber should contain numbers only"
 msgstr "Deine PostNummer sollte nur aus Zahlen bestehen."
 
-#: includes/class-wc-gzd-dhl-parcel-shops.php:187
-#: includes/class-wc-gzd-dhl-parcel-shops.php:220
+#: includes/class-wc-gzd-dhl-parcel-shops.php:251
+#: includes/class-wc-gzd-dhl-parcel-shops.php:286
 #, php-format
 msgid "Parcel Shop Delivery is only supported in: %s."
 msgstr ""
@@ -3197,73 +3204,73 @@ msgstr ""
 "WooCommerce Germanized installierst. Vielen Dank!"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-install.php:465
+#: includes/class-wc-gzd-install.php:466
 msgctxt "Page slug"
 msgid "data-security"
 msgstr "datenschutzbelehrung"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-install.php:466
+#: includes/class-wc-gzd-install.php:467
 msgctxt "Page title"
 msgid "Data Security Statement"
 msgstr "Datenschutzbelehrung"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-install.php:470
+#: includes/class-wc-gzd-install.php:471
 msgctxt "Page slug"
 msgid "imprint"
 msgstr "impressum"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-install.php:471
+#: includes/class-wc-gzd-install.php:472
 msgctxt "Page title"
 msgid "Imprint"
 msgstr "Impressum"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-install.php:475
+#: includes/class-wc-gzd-install.php:476
 msgctxt "Page slug"
 msgid "terms"
 msgstr "agb"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-install.php:476
+#: includes/class-wc-gzd-install.php:477
 msgctxt "Page title"
 msgid "Terms & Conditions"
 msgstr "AGB"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-install.php:480
+#: includes/class-wc-gzd-install.php:481
 msgctxt "Page slug"
 msgid "revocation"
 msgstr "widerrufsbelehrung"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-install.php:481
+#: includes/class-wc-gzd-install.php:482
 msgctxt "Page title"
 msgid "Power of Revocation"
 msgstr "Widerrufsbelehrung"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-install.php:485
+#: includes/class-wc-gzd-install.php:486
 msgctxt "Page slug"
 msgid "shipping-methods"
 msgstr "versandarten"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-install.php:486
+#: includes/class-wc-gzd-install.php:487
 msgctxt "Page title"
 msgid "Shipping Methods"
 msgstr "Versandarten"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-install.php:490
+#: includes/class-wc-gzd-install.php:491
 msgctxt "Page slug"
 msgid "payment-methods"
 msgstr "bezahlmoeglichkeiten"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-install.php:491
+#: includes/class-wc-gzd-install.php:492
 msgctxt "Page title"
 msgid "Payment Methods"
 msgstr "Zahlungsarten"
@@ -3321,7 +3328,7 @@ msgstr ""
 "kassiert - z.B. DHL (steuerfrei)."
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-payment-gateways.php:177
+#: includes/class-wc-gzd-payment-gateways.php:183
 msgid "Payment charge"
 msgstr "Zahlungsgebühr"
 
@@ -4093,7 +4100,7 @@ msgstr ""
 # @ woocommerce-germanized
 # @ woocommerce
 #: includes/gateways/invoice/class-wc-gzd-gateway-invoice.php:50
-#: woocommerce-germanized.php:548
+#: woocommerce-germanized.php:562
 msgid "Settings"
 msgstr "Einstellungen"
 
@@ -4759,12 +4766,12 @@ msgstr ""
 "Widerrufsrecht mit dem Zugang erlischt."
 
 # @ woocommerce-germanized
-#: includes/wc-gzd-core-functions.php:62
+#: includes/wc-gzd-core-functions.php:66
 msgid "Data Security"
 msgstr "Datenschutzbelehrung"
 
 # @ woocommerce-germanized
-#: includes/wc-gzd-core-functions.php:90
+#: includes/wc-gzd-core-functions.php:94
 msgid ""
 "Because of the small business owner state according to &#167; 19 UStG the "
 "seller does not levy nor state the German value added tax."

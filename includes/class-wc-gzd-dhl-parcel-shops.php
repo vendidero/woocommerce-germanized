@@ -36,6 +36,10 @@ class WC_GZD_DHL_Parcel_Shops {
 			add_action( 'woocommerce_checkout_process', array( $this, 'manipulate_checkout_fields' ), 10 );
 			add_action( 'woocommerce_after_checkout_validation', array( $this, 'validate_fields' ), 10, 1 );
 
+			// My Account Edit Address
+			add_filter( 'woocommerce_shipping_fields', array( $this, 'manipulate_address_fields' ), 20, 1 );
+			add_filter( 'woocommerce_process_myaccount_field_shipping_parcelshop', array( $this, 'validate_address_fields' ), 10, 1 );
+
 			// Customer fields
 			add_filter( 'woocommerce_customer_meta_fields', array( $this, 'init_profile_fields' ), 10, 1 );
 
@@ -52,6 +56,7 @@ class WC_GZD_DHL_Parcel_Shops {
 		add_filter( 'woocommerce_order_formatted_billing_address', array( $this, 'set_formatted_billing_address' ), 20, 2 );
 		add_filter( 'woocommerce_formatted_address_replacements', array( $this, 'set_formatted_address' ), 20, 2 );
 		add_filter( 'woocommerce_localisation_address_formats', array( $this, 'set_address_format' ), 20 );
+		add_filter( 'woocommerce_my_account_my_address_formatted_address', array( $this, 'set_user_address' ), 10, 3 );
 	}
 
 	public function set_address_format( $formats ) {
@@ -66,7 +71,6 @@ class WC_GZD_DHL_Parcel_Shops {
 	}
 
 	public function set_formatted_shipping_address( $fields = array(), $order ) {
-
 		$fields[ 'parcelshop_post_number' ] = '';
 
 		if ( wc_gzd_get_crud_data( $order, 'shipping_parcelshop' ) ) {
@@ -77,7 +81,6 @@ class WC_GZD_DHL_Parcel_Shops {
 	}
 
 	public function set_formatted_billing_address( $fields = array(), $order ) {
-
 		$fields[ 'parcelshop_post_number' ] = '';
 
 		return $fields;
@@ -92,6 +95,15 @@ class WC_GZD_DHL_Parcel_Shops {
 			$placeholder[ '{parcelshop_post_number_upper}' ] = '';
 		}
 		return $placeholder;
+	}
+
+	public function set_user_address( $address, $customer_id, $name ) {
+		if ( 'shipping' === $name ) {
+			if ( get_user_meta( $customer_id, $name . '_parcelshop', true ) ) {
+				$address[ 'parcelshop_post_number' ] = get_user_meta( $customer_id, $name . '_parcelshop_post_number', true );
+			}
+		}
+		return $address;
 	}
 
 	public function init_fields( $fields ) {
@@ -136,7 +148,6 @@ class WC_GZD_DHL_Parcel_Shops {
 
 	}
 
-
 	public function init_admin_fields( $fields ) {
 
 		$fields[ 'parcelshop_post_number' ] = array(
@@ -156,6 +167,52 @@ class WC_GZD_DHL_Parcel_Shops {
 
 	public function is_finder_enabled() {
 		return ( get_option( 'woocommerce_gzd_dhl_parcel_shop_finder' ) === 'yes' );
+	}
+
+	public function manipulate_address_fields( $fields ) {
+		global $wp;
+
+		if ( 'POST' !== strtoupper( $_SERVER['REQUEST_METHOD'] ) ) {
+			return $fields;
+		}
+
+		if ( empty( $_POST['action'] ) || 'edit_address' !== $_POST['action'] || empty( $_POST['_wpnonce'] ) || ! wp_verify_nonce( $_POST['_wpnonce'], 'woocommerce-edit_address' ) ) {
+			return $fields;
+		}
+
+		$user_id = get_current_user_id();
+
+		if ( $user_id <= 0 ) {
+			return $fields;
+		}
+
+		if ( ! isset( $_POST[ 'shipping_parcelshop' ] ) && isset( $fields[ 'shipping_parcelshop_post_number' ] ) ) {
+			$fields[ 'shipping_parcelshop_post_number' ][ 'required' ] = false;
+		} else {
+			$fields[ 'shipping_address_1' ][ 'label' ] = __( 'Parcel Shop', 'woocommerce-germanized' );
+		}
+
+		return $fields;
+	}
+
+	public function validate_address_fields( $value ) {
+		if ( $value && ! empty( $value ) ) {
+			$data = array(
+				'shipping_parcelshop_post_number' => '',
+				'shipping_parcelshop' => '',
+				'shipping_country' => '',
+			);
+
+			foreach( $data as $key => $val ) {
+				if ( isset( $_POST[ $key ] ) ) {
+					$data[ $key ] = sanitize_text_field( $_POST[ $key ] );
+				}
+			}
+
+			$this->validate_fields( $data );
+		}
+
+		return $value;
 	}
 
 	public function manipulate_checkout_fields() {
@@ -197,12 +254,14 @@ class WC_GZD_DHL_Parcel_Shops {
 
 	public function load_scripts( $suffix, $frontend_script_path, $assets_path ) {
 
-		if ( is_checkout() ) {
+		if ( is_checkout() || is_wc_endpoint_url( 'edit-address' ) ) {
 
-			wp_enqueue_script( 'wc-gzd-checkout-dhl-parcel-shops', $frontend_script_path . 'checkout-dhl-parcel-shops' . $suffix . '.js', array(
-				'jquery',
-				'wc-checkout'
-			), WC_GERMANIZED_VERSION, true );
+			$deps = array( 'jquery' );
+
+			if ( is_checkout() )
+				array_push( $deps, 'wc-checkout' );
+
+			wp_enqueue_script( 'wc-gzd-checkout-dhl-parcel-shops', $frontend_script_path . 'checkout-dhl-parcel-shops' . $suffix . '.js', $deps, WC_GERMANIZED_VERSION, true );
 
 			if ( $this->is_finder_enabled() ) {
 				wp_register_style( 'wc-gzd-checkout-dhl-parcel-shops-finder', $assets_path . 'css/woocommerce-gzd-dhl-parcel-shop-finder' . $suffix . '.css', '', WC_GERMANIZED_VERSION, 'all' );
@@ -230,10 +289,9 @@ class WC_GZD_DHL_Parcel_Shops {
 	}
 
 	public function add_overlay_markup() {
-		if ( ! is_checkout() )
-			return;
-
-		wc_get_template( 'checkout/dhl-parcel-shop-finder.php' );
+		if ( is_checkout() || is_wc_endpoint_url( 'edit-address' ) ) {
+			wc_get_template( 'checkout/dhl-parcel-shop-finder.php' );
+		}
 	}
 
 	public function add_button_markup( $field, $key, $args, $value ) {
