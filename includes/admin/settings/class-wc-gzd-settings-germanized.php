@@ -145,23 +145,6 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 			array(	'title' => __( 'General', 'woocommerce-germanized' ), 'type' => 'title', 'id' => 'general_options' ),
 
 			array(
-				'title' 	=> __( 'Small-Enterprise-Regulation', 'woocommerce-germanized' ),
-				'desc' 		=> __( 'VAT based on &#167;19 UStG', 'woocommerce-germanized' ),
-				'id' 		=> 'woocommerce_gzd_small_enterprise',
-				'default'	=> 'no',
-				'type' 		=> 'checkbox',
-				'desc_tip'	=> sprintf( __( 'set this Option if you have chosen <a href="%s" target="_blank">&#167;19 UStG</a>', 'woocommerce-germanized' ), esc_url( 'http://www.gesetze-im-internet.de/ustg_1980/__19.html' ) )
-			),
-
-			array(
-				'title' 	=> __( 'Show no VAT notice', 'woocommerce-germanized' ),
-				'desc' 		=> __( 'Show no VAT &#167;19 UStG notice on single product', 'woocommerce-germanized' ),
-				'id' 		=> 'woocommerce_gzd_display_product_detail_small_enterprise',
-				'type' 		=> 'checkbox',
-				'default'	=> 'no',
-			),
-
-			array(
 				'title' 	=> __( 'Submit Order Button Text', 'woocommerce-germanized' ),
 				'desc' 		=> __( 'This text serves as Button text for the Order Submit Button.', 'woocommerce-germanized' ),
 				'desc_tip'	=> true,
@@ -343,6 +326,27 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 			),
 
 			array( 'type' => 'sectionend', 'id' => 'complaints_options' ),
+
+			array( 'title' => __( 'Small Businesses', 'woocommerce-germanized' ), 'type' => 'title', 'desc' => '', 'id' => 'small_business_options' ),
+
+			array(
+				'title' 	=> __( 'Small-Enterprise-Regulation', 'woocommerce-germanized' ),
+				'desc' 		=> __( 'VAT based on &#167;19 UStG', 'woocommerce-germanized' ),
+				'id' 		=> 'woocommerce_gzd_small_enterprise',
+				'default'	=> 'no',
+				'type' 		=> 'checkbox',
+				'desc_tip'	=> sprintf( __( 'set this Option if you have chosen <a href="%s" target="_blank">&#167;19 UStG</a>', 'woocommerce-germanized' ), esc_url( 'http://www.gesetze-im-internet.de/ustg_1980/__19.html' ) )
+			),
+
+			array(
+				'title' 	=> __( 'Show no VAT notice', 'woocommerce-germanized' ),
+				'desc' 		=> __( 'Show no VAT &#167;19 UStG notice on single product', 'woocommerce-germanized' ),
+				'id' 		=> 'woocommerce_gzd_display_product_detail_small_enterprise',
+				'type' 		=> 'checkbox',
+				'default'	=> 'no',
+			),
+
+			array( 'type' => 'sectionend', 'id' => 'small_business_options' ),
 
 			array( 'title' => __( 'Delivery Times', 'woocommerce-germanized' ), 'type' => 'title', 'desc' => '', 'id' => 'delivery_times_options' ),
 

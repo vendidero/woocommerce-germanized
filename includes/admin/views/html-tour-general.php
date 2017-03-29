@@ -23,13 +23,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<a class="button button-primary tourbus-next" href="javascript:void(0);">weiter</a>
 	</li>
 
-	<li data-el="#woocommerce_gzd_small_enterprise" data-orientation="bottom">
-		<h2>Kleinunternehmerregelung</h2>
-		<p>Bist du Kleinunternehmer nach §19 UStG.? Dann aktiviere diese Option. Wenn du zusätzlich einen Hinweis auf der Produktseite
-		aktivieren möchtest, setze auch die untere Checkbox.</p>
-		<a class="button button-primary tourbus-next" href="javascript:void(0);">weiter</a>
-	</li>
-
 	<li data-el="#woocommerce_gzd_order_submit_btn_text" data-orientation="top">
 		<h2>Kaufen-Button</h2>
 		<p>Spätestens mit Verabschiedung der Button-Lösung, hat die Beschriftung des Kaufen-Buttons an Relevanz gewonnen. Du kannst hier natürlich
@@ -63,6 +56,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 		den Text auch in deinen AGB einzubinden. Weitere Informationen dazu findest du <a href="http://shopbetreiber-blog.de/2017/01/05/streitschlichtung-neue-infopflichten-fuer-alle-online-haendler-ab-1-februar/" target="_blank">hier</a>.</p>
 		<a class="button button-primary tourbus-next" href="javascript:void(0);">weiter</a>
 	</li>
+
+    <li data-el="#woocommerce_gzd_small_enterprise" data-orientation="bottom">
+        <h2>Kleinunternehmerregelung</h2>
+        <p>Bist du Kleinunternehmer nach §19 UStG.? Dann aktiviere diese Option. Wenn du zusätzlich einen Hinweis auf der Produktseite
+            aktivieren möchtest, setze auch die untere Checkbox.</p>
+        <a class="button button-primary tourbus-next" href="javascript:void(0);">weiter</a>
+    </li>
 
 	<li data-el="#s2id_woocommerce_gzd_default_delivery_time" data-orientation="top" data-width="600">
 		<h2>Lieferzeiten</h2>

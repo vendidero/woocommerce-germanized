@@ -241,7 +241,7 @@ class WC_GZD_Checkout {
 		if ( $search && isset( $matches[1] ) ) {
 			$order_id = absint( $matches[1] );
 			$order = wc_get_order( $order_id );
-			$return = $order->get_checkout_order_received_url();
+			$return = apply_filters( 'woocommerce_gzd_attempt_order_cancellation_url', add_query_arg( array( 'retry' => true ), $order->get_checkout_order_received_url(), $order ) );
 		}
 		
 		return $return;
@@ -262,7 +262,7 @@ class WC_GZD_Checkout {
 			$this->custom_fields_admin[ 'title' ] = array(
 				'before'   => 'first_name',
 				'type'     => 'select',
-				'options'  => array( 1 => __( 'Mr.', 'woocommerce-germanized' ), 2 => __( 'Ms.', 'woocommerce-germanized' ) ),
+				'options'  => apply_filters( 'woocommerce_gzd_title_options', array( 1 => __( 'Mr.', 'woocommerce-germanized' ), 2 => __( 'Ms.', 'woocommerce-germanized' ) ) ),
 				'label'    => __( 'Title', 'woocommerce-germanized' ),
 				'show'     => false,
 			);

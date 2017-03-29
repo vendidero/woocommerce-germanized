@@ -178,9 +178,7 @@ class WC_GZD_Customer_Helper {
 				exit;
 
 			}
-
 		}
-
 	}
 
 	public function registration_redirect( $redirect ) {

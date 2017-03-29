@@ -67,14 +67,16 @@ add_filter( 'woocommerce_cart_item_name', 'wc_gzd_cart_product_delivery_time', w
 add_filter( 'woocommerce_cart_item_name', 'wc_gzd_cart_product_item_desc', wc_gzd_get_hook_priority( 'cart_product_item_desc' ), 3 );
 
 // Small enterprises
-if ( get_option( 'woocommerce_gzd_small_enterprise' ) == 'yes' ) {
+if ( get_option( 'woocommerce_gzd_small_enterprise' ) === 'yes' ) {
 
 	add_action( 'woocommerce_after_cart_totals', 'woocommerce_gzd_template_small_business_info', wc_gzd_get_hook_priority( 'cart_small_business_info' ) );
 	add_action( 'woocommerce_review_order_after_order_total', 'woocommerce_gzd_template_checkout_small_business_info', wc_gzd_get_hook_priority( 'checkout_small_business_info' ) );
 
-	// Small Business incl. vat display
-	add_filter( 'woocommerce_get_formatted_order_total', 'woocommerce_gzd_template_small_business_vat_notice', 10, 1 );
-	add_filter( 'woocommerce_cart_totals_order_total_html', 'woocommerce_gzd_template_small_business_vat_notice', 10, 1 );
+	// Maybe show Small Business incl. VAT notice for total sums
+	if ( apply_filters( 'woocommerce_gzd_small_business_show_total_vat_notice', false ) ) {
+		add_filter( 'woocommerce_get_formatted_order_total', 'woocommerce_gzd_template_small_business_total_vat_notice', 10, 1 );
+		add_filter( 'woocommerce_cart_totals_order_total_html', 'woocommerce_gzd_template_small_business_total_vat_notice', 10, 1 );
+	}
 }
 
 /**
@@ -151,11 +153,15 @@ add_action( 'woocommerce_after_checkout_validation', 'woocommerce_gzd_checkout_v
  * Order details & Thankyou
  */
 remove_action( 'woocommerce_order_details_after_order_table', 'woocommerce_order_again_button' );
+
 add_action( 'woocommerce_thankyou_order_received_text', 'woocommerce_gzd_template_order_success_text', 0, 1 );
 add_action( 'woocommerce_thankyou', 'woocommerce_gzd_template_order_pay_now_button', wc_gzd_get_hook_priority( 'order_pay_now_button' ), 1 );
-add_action( 'woocommerce_order_item_quantity_html', 'wc_gzd_cart_product_units', wc_gzd_get_hook_priority( 'order_product_units' ), 3 );
-add_action( 'woocommerce_order_item_quantity_html', 'wc_gzd_cart_product_delivery_time', wc_gzd_get_hook_priority( 'order_product_delivery_time' ), 3 );
-add_action( 'woocommerce_order_item_quantity_html', 'wc_gzd_cart_product_item_desc', wc_gzd_get_hook_priority( 'order_product_item_desc' ), 3 );
+
+// Set Hooks before order details table
+add_action( 'woocommerce_thankyou', 'woocommerce_gzd_template_order_item_hooks', 0 );
+// Add Hooks to pay form
+add_action( 'before_woocommerce_pay', 'woocommerce_gzd_template_order_item_hooks', 10 );
+
 add_filter( 'woocommerce_order_formatted_line_subtotal', 'wc_gzd_cart_product_unit_price', wc_gzd_get_hook_priority( 'order_product_unit_price' ), 3 );
 
 if ( get_option( 'woocommerce_gzd_hide_order_success_details' ) == 'yes' )
