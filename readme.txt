@@ -3,7 +3,7 @@ Contributors: vendidero
 Tags: woocommerce, german market, german, germany, deutsch, deutschland, de, de_DE, shop, commerce, e-commerce, ecommerce, woothemes, sepa, invoice
 Requires at least: 3.8
 Tested up to: 4.7
-Stable tag: 1.8.6
+Stable tag: 1.8.7
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -166,6 +166,11 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 1. WooCommerce Germanized Settings
 
 == Changelog ==
+
+= 1.8.7 =
+* Fix - Small Business VAT total tax removal (as Trusted Shops advised)
+* Fix - FontAwesome Update to latest version
+* Fix - Use frontend options filter for admin billing_title field
 
 = 1.8.6 =
 * Fix - plugin_locale filter in WC_GZD_Install
