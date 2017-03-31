@@ -23,7 +23,7 @@ function wc_gzd_get_crud_data( $object, $key ) {
 
 	if ( 'id' === $key && is_callable( array( $object, 'is_type' ) ) && $object->is_type( 'variation' ) && ! wc_gzd_get_dependencies()->woocommerce_version_supports_crud() ) {
 		$key = 'variation_id';
-	} else if ( 'parent' === $key && is_callable( array( $object, 'is_type' ) ) && $object->is_type( 'variation' ) && ! wc_gzd_get_dependencies()->woocommerce_version_supports_crud() ) {
+	} elseif ( 'parent' === $key && is_callable( array( $object, 'is_type' ) ) && $object->is_type( 'variation' ) && ! wc_gzd_get_dependencies()->woocommerce_version_supports_crud() ) {
 	    // Set getter to parent so that it is not being used for pre 2.7
 	    $key = 'id';
 	    $getter = 'parent';
@@ -46,7 +46,7 @@ function wc_gzd_get_crud_data( $object, $key ) {
 		if ( $reflection->isPublic() ) {
 			$value = $object->{$getter}();
 		}
-	} else if ( wc_gzd_get_dependencies()->woocommerce_version_supports_crud() ) {
+	} elseif ( wc_gzd_get_dependencies()->woocommerce_version_supports_crud() ) {
 		if ( substr( $key, 0, 1 ) !== '_' )
 			$key = '_' . $key;
 

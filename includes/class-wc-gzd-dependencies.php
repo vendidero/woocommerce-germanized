@@ -94,9 +94,9 @@ class WC_GZD_Dependencies {
 
 			if ( ! $this->is_plugin_activated( $plugin ) ) {
 				$this->plugins_result[ 'unactivated' ][ $plugin ] = $data;
-			} else if ( $this->is_plugin_outdated( $plugin ) ) {
+			} elseif ( $this->is_plugin_outdated( $plugin ) ) {
 				$this->plugins_result[ 'outdated' ][ $plugin ] = $data;
-			} else if ( ! $this->is_plugin_tested( $plugin ) ) {
+			} elseif ( ! $this->is_plugin_tested( $plugin ) ) {
 				$this->plugins_result[ 'untested' ][ $plugin ] = $data;
 			}
 
@@ -106,7 +106,7 @@ class WC_GZD_Dependencies {
 			$this->loadable = false;
 			remove_all_actions( 'admin_notices' );
 			add_action( 'admin_notices', array( $this, 'dependencies_notice' ) );
-		} else if ( ! empty( $this->plugins_result[ 'untested' ] ) ) {
+		} elseif ( ! empty( $this->plugins_result[ 'untested' ] ) ) {
 			remove_all_actions( 'admin_notices' );
 			add_action( 'admin_notices', array( $this, 'dependencies_notice' ) );
 		}
@@ -150,7 +150,7 @@ class WC_GZD_Dependencies {
 			foreach ( $plugin_data as $key => $value ) {
 				if ( strpos( $key, 'requires' ) !== false ) {
 					$this->plugins_header[ str_replace( 'requires_', '', $key ) ][ 'requires' ] = $value;
-				} else if ( strpos( $key, 'tested' ) !== false ) {
+				} elseif ( strpos( $key, 'tested' ) !== false ) {
 					$this->plugins_header[ str_replace( 'tested_', '', $key ) ][ 'tested' ] = $value;
 				}
 			}

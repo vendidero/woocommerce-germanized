@@ -176,7 +176,7 @@ class WC_GZD_Trusted_Shops_Schedule {
 
 		    return $output;
 
-	    } else if ( ini_get( 'allow_url_fopen' ) ) {
+	    } elseif ( ini_get( 'allow_url_fopen' ) ) {
 	    	return file_get_contents( $url );
 	    }
 

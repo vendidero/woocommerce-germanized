@@ -136,7 +136,7 @@ class WC_GZD_Customer_Helper {
 			// Disable registration
 			WC()->session->set( 'disable_checkout_signup', true );
 
-		} else if ( ! WC()->session->get( 'disable_checkout_signup' ) ) {
+		} elseif ( ! WC()->session->get( 'disable_checkout_signup' ) ) {
 			
 			if ( is_checkout() && ( ! is_user_logged_in() || ! wc_gzd_is_customer_activated() ) ) {
 				
@@ -144,7 +144,7 @@ class WC_GZD_Customer_Helper {
 				wp_safe_redirect( wc_gzd_get_page_permalink( 'myaccount' ) );
 				exit;
 
-			} else if ( is_checkout() ) {
+			} elseif ( is_checkout() ) {
 
 				unset( WC()->session->login_redirect );
 

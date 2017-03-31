@@ -40,11 +40,11 @@ function wc_gzd_cart_product_item_desc( $title, $cart_item, $cart_item_key = '' 
 		if ( wc_gzd_get_gzd_product( $product )->get_mini_desc() )
 			$product_desc = wc_gzd_get_gzd_product( $product )->get_mini_desc();
 	
-	} else if ( isset( $cart_item[ 'item_desc' ] ) ) {
+	} elseif ( isset( $cart_item[ 'item_desc' ] ) ) {
 
 		$product_desc = $cart_item[ 'item_desc' ];
 	
-	} else if ( isset( $cart_item[ 'product_id' ] ) ) {
+	} elseif ( isset( $cart_item[ 'product_id' ] ) ) {
 
 		$product = wc_get_product( ! empty( $cart_item[ 'variation_id' ] ) ? $cart_item[ 'variation_id' ] : $cart_item[ 'product_id' ] );
 
@@ -77,11 +77,11 @@ function wc_gzd_cart_product_delivery_time( $title, $cart_item, $cart_item_key =
 		if ( wc_gzd_get_gzd_product( $product )->get_delivery_time_term() )
 			$delivery_time = wc_gzd_get_gzd_product( $product )->get_delivery_time_html();
 	
-	} else if ( isset( $cart_item[ 'delivery_time' ] ) ) {
+	} elseif ( isset( $cart_item[ 'delivery_time' ] ) ) {
 
 		$delivery_time = $cart_item[ 'delivery_time' ];
 	
-	} else if ( isset( $cart_item[ 'product_id' ] ) ) {
+	} elseif ( isset( $cart_item[ 'product_id' ] ) ) {
 
 		$product = wc_get_product( ! empty( $cart_item[ 'variation_id' ] ) ? $cart_item[ 'variation_id' ] : $cart_item[ 'product_id' ] );
 
@@ -114,12 +114,12 @@ function wc_gzd_cart_product_unit_price( $price, $cart_item, $cart_item_key = ''
 		if ( wc_gzd_get_gzd_product( $product )->has_unit() )
 			$unit_price = wc_gzd_get_gzd_product( $product )->get_unit_html( false );
 	
-	} else if ( isset( $cart_item[ 'unit_price' ] ) ) {
+	} elseif ( isset( $cart_item[ 'unit_price' ] ) ) {
 
 		$unit_price = $cart_item[ 'unit_price' ];
 
 	
-	} else if ( isset( $cart_item[ 'product_id' ] ) ) {
+	} elseif ( isset( $cart_item[ 'product_id' ] ) ) {
 
 		$product = wc_get_product( ! empty( $cart_item[ 'variation_id' ] ) ? $cart_item[ 'variation_id' ] : $cart_item[ 'product_id' ] );
 
@@ -152,11 +152,11 @@ function wc_gzd_cart_product_units( $title, $cart_item, $cart_item_key = '' ) {
 		if ( wc_gzd_get_gzd_product( $product )->has_product_units() )
 			$units = wc_gzd_get_gzd_product( $product )->get_product_units_html();
 	
-	} else if ( isset( $cart_item[ 'units' ] ) ) {
+	} elseif ( isset( $cart_item[ 'units' ] ) ) {
 
 		$units = $cart_item[ 'units' ];
 	
-	} else if ( isset( $cart_item[ 'product_id' ] ) ) {
+	} elseif ( isset( $cart_item[ 'product_id' ] ) ) {
 
 		$product = wc_get_product( ! empty( $cart_item[ 'variation_id' ] ) ? $cart_item[ 'variation_id' ] : $cart_item[ 'product_id' ] );
 

@@ -63,9 +63,9 @@ class WC_GZD_Admin_Notices {
 
 				if ( ! $this->is_theme_compatible() )
 					add_action( 'admin_notices', array( $this, 'theme_incompatibility_notice' ) );
-				else if ( $this->is_theme_supported_by_pro() )
+				elseif ( $this->is_theme_supported_by_pro() )
 					add_action( 'admin_notices', array( $this, 'theme_supported_notice' ) );
-				else if ( ! $this->is_theme_ready() )
+				elseif ( ! $this->is_theme_ready() )
 					add_action( 'admin_notices', array( $this, 'theme_not_ready_notice' ) );
 
 			}

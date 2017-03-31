@@ -65,7 +65,7 @@ function wc_gzd_is_revocation_exempt( $product, $type = 'digital' ) {
 	if ( empty( $types ) )
 		return false;
 	
-	else if ( ! is_array( $types ) )
+	elseif ( ! is_array( $types ) )
 		$types = array( $types );
 
 	if ( $type === 'digital' ) {
@@ -74,7 +74,7 @@ function wc_gzd_is_revocation_exempt( $product, $type = 'digital' ) {
 			if ( wc_gzd_product_matches_extended_type( $revo_type, $product ) )
 				return true;
 		}
-	} else if ( $type === 'service' ) {
+	} elseif ( $type === 'service' ) {
 		if ( wc_gzd_get_gzd_product( $product )->is_service() )
 			return true;
 	}
@@ -98,7 +98,7 @@ function wc_gzd_product_matches_extended_type( $type, $product ) {
 
 	if ( $type === $product->get_type() )
 		$matches_type = true; 
-	else if ( is_callable( array( $product, 'is_' . $type ) ) )
+	elseif ( is_callable( array( $product, 'is_' . $type ) ) )
 		$matches_type = ( call_user_func_array( array( $product, 'is_' . $type ), array() ) === true ? true : false );
 	
 	// Do only check parent if product does not match the type

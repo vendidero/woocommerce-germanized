@@ -1258,7 +1258,7 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 						update_option( 'woocommerce_calc_taxes', 'yes' );
 						update_option( 'woocommerce_prices_include_tax', 'yes' );
 					}
-				} else if ( $setting[ 'id' ] == 'woocommerce_gzd_enable_virtual_vat' ) {
+				} elseif ( $setting[ 'id' ] == 'woocommerce_gzd_enable_virtual_vat' ) {
 					if ( get_option( 'woocommerce_gzd_enable_virtual_vat' ) != 'yes' && ! empty( $_POST[ 'woocommerce_gzd_enable_virtual_vat' ] ) ) {
 						if ( ! empty( $_POST[ 'woocommerce_gzd_small_enterprise' ] ) )
 							continue;

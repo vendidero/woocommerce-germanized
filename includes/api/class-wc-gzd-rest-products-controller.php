@@ -387,7 +387,7 @@ class WC_GZD_REST_Products_Controller {
 
 			if ( isset( $data[ '_unit_price_auto' ] ) && ! empty( $data[ '_unit_price_auto' ] ) )
 				$data[ '_unit_price_auto' ] = true;
-			else if ( empty( $data[ '_unit_price_auto' ] ) )
+			elseif ( empty( $data[ '_unit_price_auto' ] ) )
 				unset( $data[ '_unit_price_auto' ] );
 			else
 				$data[ '_unit_price_auto' ] = get_post_meta( $real_product_id, '_unit_price_auto', true );

@@ -72,7 +72,7 @@ class WC_GZD_Emails {
 		if ( 'woocommerce' === $domain ) {
 			if ( 'Someone requested that the password be reset for the following account:' === $original ) {
 				return __( 'Someone requested a password reset for your account.', 'woocommerce-germanized' );
-			} else if ( 'Username: %s' === $original ) {
+			} elseif ( 'Username: %s' === $original ) {
 				remove_filter( 'gettext', array( $this, 'maybe_hide_username_password_reset' ), 10, 3 );
 				return '';
 			}

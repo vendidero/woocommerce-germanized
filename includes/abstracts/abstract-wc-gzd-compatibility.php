@@ -27,11 +27,11 @@ abstract class WC_GZD_Compatibility {
 		if ( empty( $version_data[ 'requires_at_least' ] ) && empty( $version_data[ 'tested_up_to' ] ) ) {
 			$version_data[ 'requires_at_least' ] = $version_data[ 'version' ];
 			$version_data[ 'tested_up_to' ] = $version_data[ 'version' ];
-		} else if ( empty( $version_data[ 'tested_up_to' ] ) ) {
+		} elseif ( empty( $version_data[ 'tested_up_to' ] ) ) {
 			$version_data[ 'tested_up_to' ] = $version_data[ 'requires_at_least' ];
 			if ( wc_gzd_get_dependencies()->compare_versions( $version_data[ 'version' ], $version_data[ 'requires_at_least' ], '>' ) )
 				$version_data[ 'tested_up_to' ] = $version_data[ 'version' ];
-		} else if ( empty( $version_data[ 'requires_at_least' ] ) ) {
+		} elseif ( empty( $version_data[ 'requires_at_least' ] ) ) {
 			$version_data[ 'requires_at_least' ] = $version_data[ 'tested_up_to' ];
 			if ( wc_gzd_get_dependencies()->compare_versions( $version_data[ 'version' ], $version_data[ 'requires_at_least' ], '<' ) )
 				$version_data[ 'requires_at_least' ] = $version_data[ 'version' ];

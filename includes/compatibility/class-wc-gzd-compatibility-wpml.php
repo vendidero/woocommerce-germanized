@@ -63,7 +63,7 @@ class WC_GZD_Compatibility_Wpml extends WC_GZD_Compatibility {
 			
 			if ( method_exists( $woocommerce_wpml->emails, 'admin_email' ) )
 				$woocommerce_wpml->emails->admin_email( $order_id );
-			else if ( method_exists( $woocommerce_wpml->emails, 'new_order_admin_email' ) )
+			elseif ( method_exists( $woocommerce_wpml->emails, 'new_order_admin_email' ) )
 				$woocommerce_wpml->emails->new_order_admin_email( $order_id );
 		
 			// Stop Germanized from sending the notification
@@ -89,7 +89,7 @@ class WC_GZD_Compatibility_Wpml extends WC_GZD_Compatibility {
 			foreach ( $statuses as $status ) {
 				if ( method_exists( $woocommerce_wpml->emails, 'admin_email' ) )
 					remove_action( $status, array( $woocommerce_wpml->emails, 'admin_email' ), 9 );
-				else if ( method_exists( $woocommerce_wpml->emails, 'new_order_admin_email' ) )
+				elseif ( method_exists( $woocommerce_wpml->emails, 'new_order_admin_email' ) )
 					remove_action( $status, array( $woocommerce_wpml->emails, 'new_order_admin_email' ), 9 );
 			}
 		}

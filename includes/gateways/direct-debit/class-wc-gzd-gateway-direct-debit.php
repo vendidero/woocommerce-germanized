@@ -150,7 +150,7 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 			if ( isset( $_GET['sepa_start_date'] ) || isset( $_GET['sepa_end_date'] ) ) {
 				$args['start_date'] = ( isset( $_GET['sepa_start_date'] ) ? sanitize_text_field( $_GET['sepa_start_date'] ) : '' );
 				$args['end_date'] = ( isset( $_GET['sepa_end_date'] ) ? sanitize_text_field( $_GET['sepa_end_date'] ) : '' );
-			} else if ( isset( $_GET[ 'sepa_order_id' ] ) ) {
+			} elseif ( isset( $_GET[ 'sepa_order_id' ] ) ) {
 				$args['order_id'] = absint( $_GET['sepa_order_id'] );
 			}
 		}

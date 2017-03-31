@@ -71,7 +71,7 @@ class WC_GZD_Product {
 			if ( '' === $value )
 				$value = $this->gzd_variation_level_meta[ $key ];
 		
-		} else if ( $this->child->is_type( 'variation' ) && in_array( $key, $this->gzd_variation_inherited_meta_data ) ) {
+		} elseif ( $this->child->is_type( 'variation' ) && in_array( $key, $this->gzd_variation_inherited_meta_data ) ) {
 			
 			$value = wc_gzd_get_crud_data( $this->child, $key ) ? wc_gzd_get_crud_data( $this->child, $key ) : '';
 
@@ -80,7 +80,7 @@ class WC_GZD_Product {
 				$value = wc_gzd_get_crud_data( wc_get_product( wc_gzd_get_crud_data( $this->child, 'parent' ) ), $key );
 			}
 		
-		} else if ( $key == 'delivery_time' ) {
+		} elseif ( $key == 'delivery_time' ) {
 			
 			$value = $this->get_delivery_time();
 		
@@ -104,7 +104,7 @@ class WC_GZD_Product {
 	public function __isset( $key ) {
 		if ( $this->child->is_type( 'variation' ) && in_array( $key, array_keys( $this->gzd_variation_level_meta ) ) ) {
 			return metadata_exists( 'post', wc_gzd_get_crud_data( $this->child, 'id' ), '_' . $key );
-		} else if ( $this->child->is_type( 'variation' ) && in_array( $key, array_keys( $this->gzd_variation_inherited_meta_data ) ) ) {	
+		} elseif ( $this->child->is_type( 'variation' ) && in_array( $key, array_keys( $this->gzd_variation_inherited_meta_data ) ) ) {
 			return metadata_exists( 'post', wc_gzd_get_crud_data( $this->child, 'id' ), '_' . $key ) || metadata_exists( 'post', wc_gzd_get_crud_data( $this->child, 'parent' ), '_' . $key );
 		} else {
 			return metadata_exists( 'post', wc_gzd_get_crud_data( $this->child, 'id' ), '_' . $key );

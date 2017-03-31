@@ -107,7 +107,7 @@ if ( ! defined( 'ABSPATH' ) )
 						foreach ( $rates as $rate ) {
 							if ( ! isset( $tax_rate_names[ $rate->tax_rate_name ] ) )
 								$tax_rate_names[ $rate->tax_rate_name ] = $rate;
-							else if ( $tax_rate_names[ $rate->tax_rate_name ]->tax_rate_class != $rate->tax_rate_class )
+							elseif ( $tax_rate_names[ $rate->tax_rate_name ]->tax_rate_class != $rate->tax_rate_class )
 								array_push( $collisions, array( $tax_rate_names[ $rate->tax_rate_name ], $rate ) );
 
 						}
