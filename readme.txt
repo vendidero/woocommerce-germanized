@@ -171,6 +171,7 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 * Fix - Small Business VAT total tax removal (as Trusted Shops advised)
 * Fix - FontAwesome Update to latest version
 * Fix - Use frontend options filter for admin billing_title field
+* Fix - By default remove username from password reset, new account mail if password or reset link is included (Trusted Shops advised)
 
 = 1.8.6 =
 * Fix - plugin_locale filter in WC_GZD_Install

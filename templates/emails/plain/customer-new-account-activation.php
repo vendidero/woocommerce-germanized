@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 echo "= " . $email_heading . " =\n\n";
 
-echo sprintf( __( "Thanks for creating an account on %s. Your username is %s. Please follow the activation link to activate your account:", 'woocommerce-germanized' ), esc_html( $blogname ), esc_html( $user_login ) ) . "\n\n";
+echo sprintf( __( "Thanks for creating an account on %s. Please follow the activation link to activate your account:", 'woocommerce-germanized' ), esc_html( $blogname ) ) . "\n\n";
 
 echo "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n\n";
 

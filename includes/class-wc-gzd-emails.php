@@ -38,12 +38,55 @@ class WC_GZD_Emails {
 
         // Change email template path if is germanized email template
 		add_filter( 'woocommerce_template_directory', array( $this, 'set_woocommerce_template_dir' ), 10, 2 );
-
 		// Map partially refunded order mail template to correct email instance
         add_filter( 'woocommerce_gzd_email_template_id_comparison', array( $this, 'check_for_partial_refund_mail' ), 10, 3 );
+        // Hide username if an email contains a password or password reset link (TS advises to do so)
+        if ( 'yes' === get_option( 'woocommerce_gzd_hide_username_with_password' ) )
+            add_filter( 'woocommerce_before_template_part', array( $this, 'maybe_set_gettext_username_filter' ), 10, 4 );
 
         if ( is_admin() )
 		    $this->admin_hooks();
+	}
+
+	public function maybe_set_gettext_username_filter( $template_name, $template_path, $located, $args ) {
+
+		$templates = array(
+			'emails/customer-reset-password.php' => 'maybe_hide_username_password_reset',
+			'emails/plain/customer-reset-password.php' => 'maybe_hide_username_password_reset',
+		);
+
+		// If the password is generated automatically and sent by email, hide the username
+		if ( 'yes' === get_option( 'woocommerce_registration_generate_password' ) ) {
+			$templates = array_merge( $templates, array(
+				'emails/customer-new-account.php' => 'maybe_hide_username_new_account',
+				'emails/plain/customer-new-account.php' => 'maybe_hide_username_new_account'
+			) );
+		}
+
+		if ( isset( $templates[ $template_name ] ) ) {
+			add_filter( 'gettext', array( $this, $templates[ $template_name ] ), 10, 3 );
+		}
+	}
+
+	public function maybe_hide_username_password_reset( $translated, $original, $domain ) {
+		if ( 'woocommerce' === $domain ) {
+			if ( 'Someone requested that the password be reset for the following account:' === $original ) {
+				return __( 'Someone requested a password reset for your account.', 'woocommerce-germanized' );
+			} else if ( 'Username: %s' === $original ) {
+				remove_filter( 'gettext', array( $this, 'maybe_hide_username_password_reset' ), 10, 3 );
+				return '';
+			}
+		}
+
+		return $translated;
+	}
+
+	public function maybe_hide_username_new_account( $translated, $original, $domain ) {
+		if ( 'woocommerce' === $domain && 'Thanks for creating an account on %s. Your username is <strong>%s</strong>' === $original ) {
+			remove_filter( 'gettext', array( $this, 'maybe_hide_username_new_account' ), 10, 3 );
+			return __( 'Thanks for creating an account on %s.', 'woocommerce-germanized' );
+		}
+		return $translated;
 	}
 
 	public function check_for_partial_refund_mail( $result, $mail_id, $tpl ) {

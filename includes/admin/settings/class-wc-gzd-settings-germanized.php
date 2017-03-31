@@ -628,6 +628,15 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 
 		$settings = array_merge( $settings, array(
 
+			array(
+				'title' 	=> __( 'Hide Username', 'woocommerce-germanized' ),
+				'desc' 		=> __( 'Hide username from email content if password or password reset link is embedded.', 'woocommerce-germanized' ),
+				'desc_tip'  => __( 'Trusted Shops advises to not show the username together with an account password or password reset link. This option hides (or masks) the username in those specific cases.', 'woocommerce-germanized' ),
+				'id' 		=> 'woocommerce_gzd_hide_username_with_password',
+				'default'	=> 'yes',
+				'type' 		=> 'checkbox',
+			),
+
 			array( 'type' => 'sectionend', 'id' => 'email_options' ),
 
 			array(	'title' => __( 'Email Attachment Options', 'woocommerce-germanized' ), 'type' => 'title', 'id' => 'email_attachment_options', 'desc' => '<div class="notice inline notice-warning"><p>' . sprintf( __( 'Want to attach automatically generated PDF files to emails instead of plain text? %sUpgrade to %spro%s%s', 'woocommerce-germanized' ), '<a style="margin-left: 1em" href="https://vendidero.de/woocommerce-germanized" class="button">', '<span class="wc-gzd-pro">', '</span>', '</a>' ) . '</p></div>' ),
