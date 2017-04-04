@@ -14,9 +14,6 @@ class WC_GZD_Customers_API extends WC_GZD_REST_Unit_Test_Case {
 	public function setUp() {
 		parent::setUp();
 		$this->endpoint = new WC_GZD_REST_Customers_Controller();
-		$this->user     = $this->factory->user->create( array(
-			'role' => 'administrator',
-		) );
 	}
 
 	/**
@@ -25,7 +22,7 @@ class WC_GZD_Customers_API extends WC_GZD_REST_Unit_Test_Case {
 	 * @since 3.0.0
 	 */
 	public function test_get_customer() {
-		wp_set_current_user( $this->user );
+		wp_set_current_user( 1 );
 
 		$simple   = WC_GZD_Helper_Customer::create_customer();
 		$response = $this->server->dispatch( new WP_REST_Request( 'GET', '/wc/v2/customers/' . $simple->get_id() ) );
@@ -53,7 +50,7 @@ class WC_GZD_Customers_API extends WC_GZD_REST_Unit_Test_Case {
 	 * @since 3.0.0
 	*/
 	public function test_update_customer() {
-		wp_set_current_user( $this->user );
+		wp_set_current_user( 1 );
 
 		// test simple products
 		$simple   = WC_GZD_Helper_Customer::create_customer();
@@ -67,7 +64,6 @@ class WC_GZD_Customers_API extends WC_GZD_REST_Unit_Test_Case {
 
 		$response = $this->server->dispatch( $request );
 		$data  = $response->get_data();
-		var_dump($data);
 
 		// GET Product
 		$response = $this->server->dispatch( new WP_REST_Request( 'GET', '/wc/v2/customers/' . $simple->get_id() ) );
