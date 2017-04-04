@@ -67,6 +67,7 @@ class WC_GZD_Customers_API extends WC_GZD_REST_Unit_Test_Case {
 
 		$response = $this->server->dispatch( $request );
 		$data  = $response->get_data();
+		var_dump($data);
 
 		// GET Product
 		$response = $this->server->dispatch( new WP_REST_Request( 'GET', '/wc/v2/customers/' . $simple->get_id() ) );
