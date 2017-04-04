@@ -55,7 +55,8 @@ class WC_GZD_Admin {
 		
 		add_filter( 'woocommerce_addons_section_data', array( $this, 'set_addon' ), 10, 2 );
 		add_action( 'woocommerce_admin_order_data_after_shipping_address', array( $this, 'set_order_parcel_delivery_opted_in' ), 10, 1 );
-	}
+
+    }
 
 	public function status_tab() {
 		WC_GZD_Admin_Status::output();

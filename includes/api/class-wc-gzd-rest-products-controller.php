@@ -7,9 +7,20 @@
 class WC_GZD_REST_Products_Controller {
 
 	public function __construct() {
-		add_filter( 'woocommerce_rest_prepare_product', array( $this, 'prepare' ), 10, 3 );
-		add_action( 'woocommerce_rest_insert_product', array( $this, 'insert_update' ), 10, 3 );
-		add_action( 'woocommerce_rest_save_product_variation', array( $this, 'save_variation' ), 10, 3 );
+
+		// v3
+		if ( wc_gzd_get_dependencies()->woocommerce_version_supports_crud() ) {
+			add_filter( 'woocommerce_rest_prepare_product_object', array( $this, 'prepare' ), 10, 3 );
+			add_filter( 'woocommerce_rest_prepare_product_variation_object', array( $this, 'prepare' ), 10, 3 );
+
+			add_filter( 'woocommerce_rest_pre_insert_product_object', array( $this, 'insert_update_v3' ), 10, 3 );
+			add_filter( 'woocommerce_rest_pre_insert_product_variation_object', array( $this, 'insert_update_v3' ), 10, 3 );
+		} else {
+			add_filter( 'woocommerce_rest_prepare_product', array( $this, 'prepare' ), 10, 3 );
+			add_action( 'woocommerce_rest_insert_product', array( $this, 'insert_update' ), 10, 3 );
+			add_action( 'woocommerce_rest_save_product_variation', array( $this, 'save_variation' ), 10, 3 );
+		}
+
 		add_filter( 'woocommerce_rest_product_schema', array( $this, 'schema' ) );
 	}
 
@@ -324,33 +335,41 @@ class WC_GZD_REST_Products_Controller {
 
 	}
 
+	public function insert_update_v3( $product, $request, $inserted ) {
+
+		$product = $this->save_update_product_data( $request, $product );
+
+		return $product;
+	}
+
 	public function insert_update( $post, $request, $inserted ) {
 
 		$product = wc_get_product( $post );
-		$this->save_update_product_data( $request, $product );
+		$product = $this->save_update_product_data( $request, $product );
 
+		return $product;
 	}
 
 	public function save_variation( $variation_id, $menu_order, $request ) {
 
 		$product = wc_get_product( $variation_id );
-		$this->save_update_product_data( $request, $product );
+		$product = $this->save_update_product_data( $request, $product );
 
+		return $product;
 	}
 
-	public function save_update_product_data( $request, $product ) {
+	public function get_product_saveable_data( $request, $product ) {
 
 		$data_saveable = WC_Germanized_Meta_Box_Product_Data::get_fields();
 		$data = array();
-		$real_product_id = wc_gzd_get_crud_data( $product, 'id' );
 
 		$data[ 'product-type' ] = $product->get_type();
 
 		if ( isset( $request['delivery_time'] ) && is_array( $request['delivery_time'] ) ) {
 			if ( isset( $request['delivery_time']['id'] ) ) {
-				$data[ '_delivery_time' ] = intval( $request['delivery_time']['id'] );
+				$data[ 'delivery_time' ] = intval( $request['delivery_time']['id'] );
 			} elseif ( isset( $request['delivery_time']['slug'] ) ) {
-				$data[ '_delivery_time' ] = sanitize_text_field( $request['delivery_time']['id'] );
+				$data[ 'delivery_time' ] = sanitize_text_field( $request['delivery_time']['id'] );
 			}
 		}
 
@@ -385,26 +404,41 @@ class WC_GZD_REST_Products_Controller {
 				}
 			}
 
-			if ( isset( $data[ '_unit_price_auto' ] ) && ! empty( $data[ '_unit_price_auto' ] ) )
-				$data[ '_unit_price_auto' ] = true;
-			elseif ( empty( $data[ '_unit_price_auto' ] ) )
-				unset( $data[ '_unit_price_auto' ] );
-			else
-				$data[ '_unit_price_auto' ] = get_post_meta( $real_product_id, '_unit_price_auto', true );
+			if ( isset( $data[ '_unit_price_auto' ] ) && ! empty( $data[ '_unit_price_auto' ] ) ) {
+				$data['_unit_price_auto'] = true;
+			} elseif ( empty( $data[ '_unit_price_auto' ] ) ) {
+				unset( $data['_unit_price_auto'] );
+			} else {
+				$data['_unit_price_auto'] = wc_gzd_get_crud_data( $product, '_unit_price_auto' );
+			}
+
+			if ( isset( $data['_unit_price_sale'] ) ) {
+				$data['_sale_price'] = wc_gzd_get_crud_data( $product, 'sale_price' );
+			}
 		}
 
 		if ( isset( $request['free_shipping'] ) ) {
 			if ( ! empty( $request['free_shipping'] ) )
 				$data[ '_free_shipping' ] = true;
 		} else {
-			$data[ '_free_shipping' ] = get_post_meta( $real_product_id, '_free_shipping', true );
+			$data[ '_free_shipping' ] = wc_gzd_get_crud_data( $product, '_free_shipping', true );
 		}
 
 		// Do only add free_shipping if is set so saving works (checkbox-style).
 		if ( empty( $data[ '_free_shipping' ] ) || ! $data[ '_free_shipping' ] )
-		    unset( $data[ '_free_shipping' ] );
+			unset( $data[ '_free_shipping' ] );
 
-		WC_Germanized_Meta_Box_Product_Data::save_product_data( $real_product_id, $data );
+		return $data;
+	}
+
+	public function save_update_product_data( $request, $product ) {
+
+		$data = $this->get_product_saveable_data( $request, $product );
+		$data['save'] = false;
+
+		$product = WC_Germanized_Meta_Box_Product_Data::save_product_data( $product, $data );
+
+		return $product;
 	}
 
 	private function set_product_variation_fields( $variations, $product ) {
@@ -432,8 +466,8 @@ class WC_GZD_REST_Products_Controller {
 			'product'		 	 => $product->get_unit_products(),
 			'price_auto'	 	 => $product->is_unit_price_calculated_automatically(),
 			'price'	 	 		 => $product->get_unit_price(),
-			'regular_price' 	 => $product->get_unit_regular_price(),
-			'sale_price'	 	 => $product->get_unit_sale_price(),
+			'price_regular' 	 => $product->get_unit_regular_price(),
+			'price_sale'	 	 => $product->get_unit_sale_price(),
 			'price_html'	 	 => $product->get_unit_html(),
 		);
 

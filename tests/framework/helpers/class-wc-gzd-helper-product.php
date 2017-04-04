@@ -19,6 +19,7 @@ class WC_GZD_Helper_Product {
 			'_unit_price_regular' => '100.0',
 			'_unit_price_sale' => '90.0',
 			'_unit_price' => '90.00',
+			'_unit_price_auto' => false,
 			'_sale_price_label' => 'new-price',
 			'_sale_price_regular_label' => 'old-price',
 			'_mini_desc' => 'This is a test',

@@ -201,10 +201,8 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 		$data[ '_sale_price_dates_to' ] = $_POST['variable_sale_price_dates_to'][$i];
 		$data[ '_sale_price' ] = $_POST['variable_sale_price'][$i];
 
-		WC_Germanized_Meta_Box_Product_Data::save_product_data( $variation_id, $data, true );
-
+		$product = WC_Germanized_Meta_Box_Product_Data::save_product_data( $product, $data, true );
 	}
-
 }
 
 WC_Germanized_Meta_Box_Product_Data_Variable::instance();

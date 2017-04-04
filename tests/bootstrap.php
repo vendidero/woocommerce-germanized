@@ -134,6 +134,13 @@ class WC_GZD_Unit_Tests_Bootstrap {
 		// Helpers
 		require_once( $this->wc_tests_dir . '/framework/helpers/class-wc-helper-product.php' );
 		require_once( $this->tests_dir . '/framework/helpers/class-wc-gzd-helper-product.php' );
+
+		require_once( $this->wc_tests_dir . '/framework/helpers/class-wc-helper-customer.php' );
+		require_once( $this->tests_dir . '/framework/helpers/class-wc-gzd-helper-customer.php' );
+
+		require_once( $this->wc_tests_dir . '/framework/helpers/class-wc-helper-shipping.php' );
+		require_once( $this->wc_tests_dir . '/framework/helpers/class-wc-helper-order.php' );
+		require_once( $this->tests_dir . '/framework/helpers/class-wc-gzd-helper-order.php' );
 	}
 
 	/**

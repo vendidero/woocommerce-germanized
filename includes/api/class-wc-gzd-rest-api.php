@@ -18,7 +18,7 @@ class WC_GZD_REST_API {
 	}
 
 	private function __construct() {
-		add_action( 'rest_api_init', array( $this, 'init' ) );
+		add_action( 'rest_api_init', array( $this, 'init' ), 20 );
 	}
 
 	public function init() {
@@ -26,25 +26,33 @@ class WC_GZD_REST_API {
 			return;
 
 		$this->rest_api_includes();
-		
 		$this->register_rest_routes();
 	}
 
 	public function rest_api_includes() {
+
+		// REST API v1 controllers.
+		include_once( dirname( __FILE__ ) . '/v1/class-wc-gzd-rest-product-delivery-times-controller.php' );
+		include_once( dirname( __FILE__ ) . '/v1/class-wc-gzd-rest-product-price-labels-controller.php' );
+		include_once( dirname( __FILE__ ) . '/v1/class-wc-gzd-rest-product-units-controller.php' );
+
 		// REST API controllers.
-		include_once( 'class-wc-gzd-rest-customers-controller.php' );
-		include_once( 'class-wc-gzd-rest-orders-controller.php' );
-		include_once( 'class-wc-gzd-rest-product-delivery-times-controller.php' );
-		include_once( 'class-wc-gzd-rest-product-price-labels-controller.php' );
-		include_once( 'class-wc-gzd-rest-product-units-controller.php' );
-		include_once( 'class-wc-gzd-rest-products-controller.php' );
+		include_once( dirname( __FILE__ ) . '/class-wc-gzd-rest-customers-controller.php' );
+		include_once( dirname( __FILE__ ) . '/class-wc-gzd-rest-orders-controller.php' );
+		include_once( dirname( __FILE__ ) . '/class-wc-gzd-rest-product-delivery-times-controller.php' );
+		include_once( dirname( __FILE__ ) . '/class-wc-gzd-rest-product-price-labels-controller.php' );
+		include_once( dirname( __FILE__ ) . '/class-wc-gzd-rest-product-units-controller.php' );
+		include_once( dirname( __FILE__ ) . '/class-wc-gzd-rest-products-controller.php' );
 	}
 
 	public function register_rest_routes() {
 		
 		$controllers = apply_filters( 'woocommerce_gzd_rest_controller', array(
+			'WC_GZD_REST_Product_Delivery_Times_V1_Controller',
 			'WC_GZD_REST_Product_Delivery_Times_Controller',
+			'WC_GZD_REST_Product_Price_Labels_V1_Controller',
 			'WC_GZD_REST_Product_Price_Labels_Controller',
+			'WC_GZD_REST_Product_Units_V1_Controller',
 			'WC_GZD_REST_Product_Units_Controller',
 			'WC_GZD_REST_Customers_Controller',
 			'WC_GZD_REST_Orders_Controller',
@@ -59,7 +67,6 @@ class WC_GZD_REST_API {
 			
 			if ( method_exists( WC()->api->$controller, 'register_fields' ) )
 				WC()->api->$controller->register_fields();
-			
 		}
 	}
 

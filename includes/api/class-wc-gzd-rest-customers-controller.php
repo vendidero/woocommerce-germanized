@@ -20,6 +20,7 @@ class WC_GZD_REST_Customers_Controller {
 
 		add_filter( 'woocommerce_rest_prepare_customer', array( $this, 'prepare' ), 10, 3 );
 		add_action( 'woocommerce_rest_insert_customer', array( $this, 'insert' ), 10, 3 );
+
 		add_filter( 'woocommerce_rest_customer_schema', array( $this, 'schema' ) );
 	}
 
@@ -42,6 +43,24 @@ class WC_GZD_REST_Customers_Controller {
 		$response_customer_data['billing']['title'] = $customer->billing_title;
 		$response_customer_data['shipping']['title'] = $customer->shipping_title;
 
+		$response_customer_data['shipping']['parcelshop'] = $customer->shipping_parcelshop == '1';
+		$response_customer_data['shipping']['parcelshop_post_number'] = $customer->shipping_parcelshop_post_number;
+
+		$holder = $customer->direct_debit_holder;
+		$iban   = $customer->direct_debit_iban;
+		$bic    = $customer->direct_debit_bic;
+
+		if ( $this->direct_debit_gateway ) {
+			$iban = $this->direct_debit_gateway->maybe_decrypt( $iban );
+			$bic  = $this->direct_debit_gateway->maybe_decrypt( $bic );
+		}
+
+		$response_customer_data['direct_debit'] = array(
+			'holder' => $holder,
+			'iban'   => $iban,
+			'bic'    => $bic
+		);
+
 		$response->set_data( $response_customer_data );
 
 		return $response;
@@ -60,13 +79,46 @@ class WC_GZD_REST_Customers_Controller {
 	public function insert( $customer, $request, $creating ) {
 
 		if ( isset( $request['billing']['title'] ) ) {
-			update_user_meta( $customer->ID, '_billing_title', absint( $request['billing']['title'] ) );
+			update_user_meta( $customer->ID, 'billing_title', absint( $request['billing']['title'] ) );
 		}
 
 		if ( isset( $request['shipping']['title'] ) ) {
-			update_user_meta( $customer->ID, '_shipping_title', absint( $request['shipping']['title'] ) );
+			update_user_meta( $customer->ID, 'shipping_title', absint( $request['shipping']['title'] ) );
 		}
 
+		if ( isset( $request['shipping']['parcelshop'] ) ) {
+			if ( ! $request['shipping']['parcelshop'] || empty( $request['shipping']['parcelshop'] ) ) {
+				delete_user_meta( $customer->ID, 'shipping_parcelshop' );
+			} else {
+				update_user_meta( $customer->ID, 'shipping_parcelshop', true );
+			}
+		}
+
+		if ( isset( $request['shipping']['parcelshop_post_number'] ) ) {
+			update_user_meta( $customer->ID, 'shipping_parcelshop_post_number', sanitize_text_field( $request['shipping']['parcelshop_post_number'] ) );
+		}
+
+		if ( isset( $request['direct_debit'] ) ) {
+			if ( isset( $request['direct_debit']['holder'] ) ) {
+				update_user_meta( $customer->ID, 'direct_debit_holder', sanitize_text_field( $request['direct_debit']['holder'] ) );
+			}
+
+			if ( isset( $request['direct_debit']['iban'] ) ) {
+				$iban = sanitize_text_field( $request['direct_debit']['iban'] );
+				if ( $this->direct_debit_gateway ) {
+					$iban = $this->direct_debit_gateway->maybe_encrypt( $iban );
+				}
+				update_user_meta( $customer->ID, 'direct_debit_iban', $iban );
+			}
+
+			if ( isset( $request['direct_debit']['bic'] ) ) {
+				$bic = sanitize_text_field( $request['direct_debit']['bic'] );
+				if ( $this->direct_debit_gateway ) {
+					$bic = $this->direct_debit_gateway->maybe_encrypt( $bic );
+				}
+				update_user_meta( $customer->ID, 'direct_debit_bic', $bic );
+			}
+		}
 	}
 
 	/**
@@ -95,111 +147,42 @@ class WC_GZD_REST_Customers_Controller {
 			'enum'        => array( 1, 2 )
 		);
 
-		return $schema_properties;
-	}
+		$schema_properties['shipping']['properties']['parcelshop'] = array(
+			'description' => __( 'Send to DHL Parcel Shop?', 'woocommerce-germanized' ),
+			'type'        => 'boolean',
+			'context'     => array( 'view', 'edit' ),
+		);
 
-	/**
-	 * Register
-	 */
-	public function register_fields() {
+		$schema_properties['shipping']['properties']['parcelshop_post_number'] = array(
+			'description' => __( 'Postnumber', 'woocommerce-germanized' ),
+			'type'        => 'string',
+			'context'     => array( 'view', 'edit' ),
+		);
 
-		register_rest_field(
-			'customer',
-			'direct_debit',
-			array(
-				'get_callback'    => array( $this, 'get_direct_debit' ),
-				'update_callback' => array( $this, 'update_direct_debit' ),
-				'schema'          => array(
-					'description' => __( 'Direct Debit', 'woocommerce-germanized' ),
-					'type'        => 'array',
-					'context'     => array( 'view', 'edit' ),
-					'properties'  => array(
-						'holder' => array(
-							'description' => __( 'Account Holder', 'woocommerce-germanized' ),
-							'type'        => 'string',
-							'context'     => array( 'view', 'edit' )
-						),
-						'iban'   => array(
-							'description' => __( 'IBAN', 'woocommerce-germanized' ),
-							'type'        => 'string',
-							'context'     => array( 'view', 'edit' )
-						),
-						'bic'    => array(
-							'description' => __( 'BIC/SWIFT', 'woocommerce-germanized' ),
-							'type'        => 'string',
-							'context'     => array( 'view', 'edit' )
-						)
-					)
+		$schema_properties['direct_debit'] = array(
+			'description' => __( 'Direct Debit', 'woocommerce-germanized' ),
+			'type'        => 'array',
+			'context'     => array( 'view', 'edit' ),
+			'properties'  => array(
+				'holder' => array(
+					'description' => __( 'Account Holder', 'woocommerce-germanized' ),
+					'type'        => 'string',
+					'context'     => array( 'view', 'edit' )
+				),
+				'iban'   => array(
+					'description' => __( 'IBAN', 'woocommerce-germanized' ),
+					'type'        => 'string',
+					'context'     => array( 'view', 'edit' )
+				),
+				'bic'    => array(
+					'description' => __( 'BIC/SWIFT', 'woocommerce-germanized' ),
+					'type'        => 'string',
+					'context'     => array( 'view', 'edit' )
 				)
 			)
 		);
 
-	}
-
-
-	/**
-	 * Handler for getting custom field data.
-	 *
-	 * @param array $object The object from the response
-	 * @param string $field_name Name of field
-	 * @param \WP_REST_Request $request Current request
-	 *
-	 * @return array
-	 */
-	public function get_direct_debit( $object, $field_name, $request ) {
-
-		$holder = get_user_meta( $object['id'], 'direct_debit_holder', true );
-		$iban   = get_user_meta( $object['id'], 'direct_debit_iban', true );
-		$bic    = get_user_meta( $object['id'], 'direct_debit_bic', true );
-
-		if ( $this->direct_debit_gateway ) {
-			$iban = $this->direct_debit_gateway->maybe_decrypt( $iban );
-			$bic  = $this->direct_debit_gateway->maybe_decrypt( $bic );
-		}
-
-		return array(
-			'holder' => $holder,
-			'iban'   => $iban,
-			'bic'    => $bic
-		);
-	}
-
-	/**
-	 * Handler for updating custom field data.
-	 *
-	 * @param mixed $value The value of the field
-	 * @param WP_User $object The object from the response
-	 * @param string $field_name Name of field
-	 *
-	 * @return bool|int
-	 */
-	public function update_direct_debit( $value, $object, $field_name ) {
-
-		if ( ! $value || ! is_array( $value ) ) {
-			return false;
-		}
-
-		if ( isset( $value['holder'] ) ) {
-			update_user_meta( $object->ID, 'direct_debit_holder', sanitize_text_field( $value['holder'] ) );
-		}
-
-		if ( isset( $value['iban'] ) ) {
-			$iban = sanitize_text_field( $value['iban'] );
-			if ( $this->direct_debit_gateway ) {
-				$iban = $this->direct_debit_gateway->maybe_encrypt( $iban );
-			}
-			update_user_meta( $object->ID, 'direct_debit_iban', $iban );
-		}
-
-		if ( isset( $value['bic'] ) ) {
-			$bic = sanitize_text_field( $value['bic'] );
-			if ( $this->direct_debit_gateway ) {
-				$bic = $this->direct_debit_gateway->maybe_encrypt( $bic );
-			}
-			update_user_meta( $object->ID, 'direct_debit_bic', $bic );
-		}
-
-		return true;
+		return $schema_properties;
 	}
 
 }

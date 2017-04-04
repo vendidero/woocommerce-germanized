@@ -19,6 +19,7 @@
         <taxonomy translate="1">product_delivery_time</taxonomy>
     </taxonomies>
     <admin-texts>
+        <key name="woocommerce_gzd_small_enterprise_text" />
     	<key name="woocommerce_gzd_shipping_costs_text" />
         <key name="woocommerce_gzd_free_shipping_text" />
     	<key name="woocommerce_gzd_order_submit_btn_text" />

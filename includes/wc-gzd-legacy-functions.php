@@ -59,6 +59,47 @@ function wc_gzd_get_crud_data( $object, $key ) {
 	return $value;
 }
 
+function wc_gzd_set_crud_meta_data( $object, $key, $value ) {
+	if ( wc_gzd_get_dependencies()->woocommerce_version_supports_crud() ) {
+		$object->update_meta_data( $key, $value );
+	} else {
+		update_post_meta( wc_gzd_get_crud_data( $object, 'id' ), $key, $value );
+	}
+	return $object;
+}
+
+function wc_gzd_unset_crud_meta_data( $object, $key ) {
+	if ( wc_gzd_get_dependencies()->woocommerce_version_supports_crud() ) {
+		$object->delete_meta_data( $key );
+	} else {
+		delete_post_meta( wc_gzd_get_crud_data( $object, 'id' ), $key );
+	}
+	return $object;
+}
+
+function wc_gzd_set_crud_term_data( $object, $term, $taxonomy ) {
+
+	$term_data = ( ! is_numeric( $term ) ? sanitize_text_field( $term ) : absint( $term ) );
+
+	if ( wc_gzd_get_dependencies()->woocommerce_version_supports_crud() ) {
+		$object->update_meta_data( '_' . $taxonomy, $term );
+	} else {
+		wp_set_object_terms( wc_gzd_get_crud_data( $object, 'id' ), $term_data, $taxonomy );
+	}
+
+	return $object;
+}
+
+function wc_gzd_unset_crud_term_data( $object, $taxonomy ) {
+	if ( wc_gzd_get_dependencies()->woocommerce_version_supports_crud() ) {
+		$object->update_meta_data( '_delete_' . $taxonomy, true );
+	} else {
+		wp_delete_object_term_relationships( wc_gzd_get_crud_data( $object, 'id' ), $taxonomy );
+	}
+
+	return $object;
+}
+
 function wc_gzd_get_variable_visible_children( $product ) {
 	if ( is_callable( array( $product, 'get_visible_children' ) ) )
 		return $product->get_visible_children();

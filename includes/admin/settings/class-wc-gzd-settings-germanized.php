@@ -346,6 +346,16 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 				'default'	=> 'no',
 			),
 
+			array(
+				'title' 	=> __( 'Notice Text', 'woocommerce-germanized' ),
+				'desc' 		=> __( 'You may want to adjust the small buisness notice text to meet your criteria.', 'woocommerce-germanized' ),
+				'desc_tip'  => true,
+                'id' 		=> 'woocommerce_gzd_small_enterprise_text',
+				'type' 		=> 'textarea',
+				'default'	=> __( 'Value added tax is not collected, as small businesses according to §19 (1) UStG.', 'woocommerce-germanized' ),
+				'css' 		=> 'width:100%; height: 50px;',
+			),
+
 			array( 'type' => 'sectionend', 'id' => 'small_business_options' ),
 
 			array( 'title' => __( 'Delivery Times', 'woocommerce-germanized' ), 'type' => 'title', 'desc' => '', 'id' => 'delivery_times_options' ),

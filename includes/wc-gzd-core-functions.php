@@ -91,7 +91,7 @@ if ( ! function_exists( 'is_payment_methods' ) ) {
 }
 
 function wc_gzd_get_small_business_notice() {
-	return apply_filters( 'woocommerce_gzd_small_business_notice', __( 'Because of the small business owner state according to &#167; 19 UStG the seller does not levy nor state the German value added tax.', 'woocommerce-germanized' ) );
+	return apply_filters( 'woocommerce_gzd_small_business_notice', get_option( 'woocommerce_gzd_small_enterprise_text', __( 'Value added tax is not collected, as small businesses according to §19 (1) UStG.', 'woocommerce-germanized' ) ) );
 }
 
 function wc_gzd_help_tip( $tip, $allow_html = false ) {

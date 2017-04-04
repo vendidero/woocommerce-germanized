@@ -100,6 +100,20 @@ module.exports = function( grunt ) {
 			}
 		},
 
+        // Exec shell commands.
+        shell: {
+            options: {
+                stdout: true,
+                stderr: true
+            },
+            e2e_test: {
+                command: 'npm run --silent test:single tests/e2e-tests/' + grunt.option( 'file' )
+            },
+            e2e_tests: {
+                command: 'npm run --silent test'
+            }
+        },
+
         // PHP Code Sniffer.
         phpcs: {
             options: {
@@ -139,5 +153,13 @@ module.exports = function( grunt ) {
 	grunt.registerTask( 'css', [
 		'cssmin'
 	]);
+
+    grunt.registerTask( 'e2e-tests', [
+        'shell:e2e_tests'
+    ]);
+
+    grunt.registerTask( 'e2e-test', [
+        'shell:e2e_test'
+    ]);
 
 };

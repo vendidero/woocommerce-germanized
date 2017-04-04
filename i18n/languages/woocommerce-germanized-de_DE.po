@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce Germanized v1.5.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-31 13:44+0200\n"
-"PO-Revision-Date: 2017-03-31 13:44+0200\n"
+"POT-Creation-Date: 2017-03-31 17:37+0200\n"
+"PO-Revision-Date: 2017-03-31 17:37+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -182,7 +182,7 @@ msgstr "Zahlungarten"
 # @ woocommerce-germanized
 #: includes/admin/class-wc-gzd-admin-status.php:43
 #: includes/admin/settings/class-wc-gzd-settings-germanized.php:263
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:1147
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:1157
 msgid "Shipping Methods"
 msgstr "Versandarten"
 
@@ -203,43 +203,43 @@ msgid "Go to WooCommerce Germanized Settings"
 msgstr "zu den WooCommerce Germanized Einstellungen"
 
 # @ woocommerce-germanized
-#: includes/admin/class-wc-gzd-admin.php:65
+#: includes/admin/class-wc-gzd-admin.php:80
 #: includes/admin/settings/class-wc-gzd-settings-germanized.php:25
 msgid "Germanized"
 msgstr "Germanized"
 
-#: includes/admin/class-wc-gzd-admin.php:75
+#: includes/admin/class-wc-gzd-admin.php:90
 msgid "Parcel Delivery Data Transfer:"
 msgstr "Paketdienstleister Datenweitergabe:"
 
-#: includes/admin/class-wc-gzd-admin.php:76
+#: includes/admin/class-wc-gzd-admin.php:91
 msgid "allowed"
 msgstr "akzeptiert"
 
-#: includes/admin/class-wc-gzd-admin.php:76
+#: includes/admin/class-wc-gzd-admin.php:91
 msgid "not allowed"
 msgstr "nicht akzeptiert"
 
 # @ woocommerce-germanized
-#: includes/admin/class-wc-gzd-admin.php:149
+#: includes/admin/class-wc-gzd-admin.php:164
 msgid "Optional Email Content"
 msgstr "Optionaler E-Mail Inhalt"
 
 # @ woocommerce-germanized
-#: includes/admin/class-wc-gzd-admin.php:158
+#: includes/admin/class-wc-gzd-admin.php:173
 msgid "Add content which will be replacing default page content within emails."
 msgstr ""
 "Fülle dieses Feld aus um einen abweichenden E-Mail Anhangstext für diese "
 "Seite zu bestimmen."
 
 # @ woocommerce-germanized
-#: includes/admin/class-wc-gzd-admin.php:168
+#: includes/admin/class-wc-gzd-admin.php:183
 #: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:151
 msgid "Optional Mini Description"
 msgstr "Warenkorb Kurzbeschreibung"
 
 # @ woocommerce-germanized
-#: includes/admin/class-wc-gzd-admin.php:185
+#: includes/admin/class-wc-gzd-admin.php:200
 msgid ""
 "This content will be shown as short product description within checkout and "
 "emails."
@@ -275,9 +275,9 @@ msgstr "Angebotspreis Hinweis"
 
 # @ woocommerce-germanized
 #: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:114
-#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:74
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:764
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:813
+#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:76
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:774
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:823
 msgid "Product Units"
 msgstr "Produkteinheiten"
 
@@ -292,7 +292,7 @@ msgstr ""
 
 # @ woocommerce-germanized
 #: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:118
-#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:93
+#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:97
 msgid "Calculation"
 msgstr "Berechnung"
 
@@ -313,7 +313,7 @@ msgstr "Angebots-Einheitspreis"
 
 # @ woocommerce-germanized
 #: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:136
-#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:145
+#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:149
 #: includes/api/class-wc-gzd-rest-products-controller.php:28
 #: includes/api/class-wc-gzd-rest-products-controller.php:181
 msgid "Delivery Time"
@@ -350,35 +350,35 @@ msgstr ""
 "Preis)."
 
 # @ woocommerce-germanized
-#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:73
+#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:75
 #: includes/api/class-wc-gzd-rest-products-controller.php:103
 #: includes/class-wc-gzd-post-types.php:66
 msgid "Unit"
 msgstr "Einheit"
 
 # @ woocommerce-germanized
-#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:73
+#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:75
 msgid "Select unit"
 msgstr "Einheit auswählen"
 
 # @ woocommerce-germanized
-#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:73
+#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:75
 msgid "Needed if selling on a per unit basis"
 msgstr "Notwendig falls auf pro-Einheit-Basis verkauft werden soll"
 
 # @ woocommerce-germanized
-#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:74
+#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:76
 msgid "Number of units included per default product price. Example: 1000 ml."
 msgstr ""
 "Anzahl der Produkteinheiten auf Basis des Produktpreises. Beispiel: 1000 ml."
 
 # @ woocommerce-germanized
-#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:75
+#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:77
 msgid "Base Price Units"
 msgstr "Grundpreiseinheiten"
 
 # @ woocommerce-germanized
-#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:75
+#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:77
 msgid ""
 "Base price units. Example base price: 0,99 € / 100 ml. Insert 100 as base "
 "price unit amount."
@@ -387,33 +387,33 @@ msgstr ""
 "hier 100 als Grundpreiseinheiten ein."
 
 # @ woocommerce-germanized
-#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:93
+#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:97
 msgid "Calculate base prices automatically."
 msgstr "Grundpreis automatisch berechnen."
 
 # @ woocommerce-germanized
-#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:95
+#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:99
 msgid "Regular Base Price"
 msgstr "Regulärer Grundpreis"
 
 # @ woocommerce-germanized
-#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:96
+#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:100
 msgid "Sale Base Price"
 msgstr "Angebotsgrundpreis"
 
 # @ woocommerce-germanized
-#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:106
-#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:149
+#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:110
+#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:153
 msgid "Search for a delivery time&hellip;"
 msgstr "Lieferzeit suchen&hellip;"
 
 # @ woocommerce-germanized
-#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:158
+#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:162
 msgid "Free shipping?"
 msgstr "Versand kostenlos?"
 
 # @ woocommerce-germanized
-#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:158
+#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:162
 msgid "This option disables the \"plus shipping costs\" notice on product page"
 msgstr ""
 "Deaktiviert den Hinweis \"zzgl. Versandkosten\". Ohne Auswirkungen auf die "
@@ -473,7 +473,7 @@ msgstr "Keine"
 
 # @ woocommerce-germanized
 #: includes/admin/settings/class-wc-gzd-settings-germanized.php:145
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:679
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:689
 msgid "General"
 msgstr "Allgemein"
 
@@ -568,8 +568,8 @@ msgstr "Kaufvertrag"
 
 # @ woocommerce-germanized
 #: includes/admin/settings/class-wc-gzd-settings-germanized.php:193
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:555
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:567
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:565
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:577
 #, php-format
 msgid "%sUpgrade to %spro%s%s to unlock this feature and get premium support."
 msgstr ""
@@ -808,18 +808,36 @@ msgstr ""
 "anzeigen."
 
 # @ woocommerce-germanized
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:350
+msgid "Notice Text"
+msgstr "Hinweistext"
+
 #: includes/admin/settings/class-wc-gzd-settings-germanized.php:351
+msgid ""
+"You may want to adjust the small buisness notice text to meet your criteria."
+msgstr "Passe hier, falls notwending, den Kleinunternehmer Hinweistext an."
+
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:355
+#: includes/wc-gzd-core-functions.php:94
+#: includes/wc-gzd-product-functions.php:58
+msgid ""
+"Value added tax is not collected, as small businesses according to §19 (1) "
+"UStG."
+msgstr "Kein Mehrwertsteuerausweis, da Kleinunternehmer nach §19 (1) UStG."
+
+# @ woocommerce-germanized
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:361
 msgid "Delivery Times"
 msgstr "Lieferzeiten"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:354
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:364
 #: includes/admin/views/html-page-status-germanized.php:42
 msgid "Default Delivery Time"
 msgstr "Standard-Lieferzeit"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:355
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:365
 msgid ""
 "This delivery time will be added to every product if no delivery time has "
 "been chosen individually"
@@ -828,17 +846,17 @@ msgstr ""
 "zugeordnet wurde"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:362
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:372
 msgid "Manage Delivery Times"
 msgstr "Lieferzeiten verwalten"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:366
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:376
 msgid "Delivery Time Text"
 msgstr "Lieferzeit Text"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:367
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:377
 msgid ""
 "This text will be used to indicate delivery time for products. Use "
 "{delivery_time} as placeholder."
@@ -847,21 +865,21 @@ msgstr ""
 "{delivery_time} als Platzhalter verwenden."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:372
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:382
 msgid "Delivery time: {delivery_time}"
 msgstr "Lieferzeit: {delivery_time}"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:377
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:387
 msgid "Sale Price Labels"
 msgstr "Preishinweise"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:380
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:390
 msgid "Default Sale Label"
 msgstr "Streichpreis-Hinweis"
 
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:381
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:391
 msgid ""
 "Choose whether you would like to have a default sale price label to inform "
 "the customer about the regular price (e.g. Recommended Retail Price)."
@@ -870,16 +888,16 @@ msgstr ""
 "den Kunden auf den alten Preis (bei reduzierten Produkten, sog. "
 "Streichpreis) hinweist (z.B. UVP)."
 
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:388
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:400
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:398
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:410
 msgid "Manage Price Labels"
 msgstr "Preishinweise verwalten"
 
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:392
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:402
 msgid "Default Sale Regular Label"
 msgstr "Angebotspreis-Hinweis"
 
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:393
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:403
 msgid ""
 "Choose whether you would like to have a default sale price regular label to "
 "inform the customer about the sale price (e.g. New Price)."
@@ -889,17 +907,17 @@ msgstr ""
 "hinweist (z.B. Unser neuer Preis)."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:406
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:416
 msgid "Shipping Costs"
 msgstr "Versandkosten"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:409
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:419
 msgid "Shipping Costs Text"
 msgstr "Versandkosten Text"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:410
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:420
 msgid ""
 "This text will be used to inform the customer about shipping costs. Use "
 "{link}{/link} to insert link to shipping costs page."
@@ -909,17 +927,17 @@ msgstr ""
 "zur Versandkosten-Seite einzufügen."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:415
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:425
 msgid "plus {link}Shipping Costs{/link}"
 msgstr "zzgl. {link}Versandkosten{/link}"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:419
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:429
 msgid "Free Shipping Text"
 msgstr "Kostenloser Versand Text"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:420
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:430
 msgid ""
 "This text will be used to inform the customer about free shipping. Leave "
 "empty to disable notice. Use {link}{/link} to insert link to shipping costs "
@@ -930,17 +948,17 @@ msgstr ""
 "Versandkosten-Seite einzufügen."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:429
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:439
 msgid "Shipping Costs Tax"
 msgstr "Steuerberechnung"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:430
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:440
 msgid "Enable better taxation for shpping costs?"
 msgstr "Genauere Steuerberechnung für Versandkosten aktivieren?"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:434
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:444
 #, php-format
 msgid ""
 "By choosing this option shipping cost taxation will be calculated based on "
@@ -954,18 +972,18 @@ msgstr ""
 "Bruttobeträge. Hier ein kleines Beispiel: %s"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:438
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:460
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:448
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:470
 msgid "Force Tax Calculation"
 msgstr "Steuerberechnung erzwingen"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:439
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:449
 msgid "Force shipping costs tax calculation for every method?"
 msgstr "Erzwinge die Besteuerung für Versandkosten für jede Versandart?"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:443
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:453
 msgid ""
 "This option will overwrite settings for each individual shipping method to "
 "force tax calculation (instead of only calculating tax for those methods "
@@ -975,22 +993,22 @@ msgstr ""
 "Versandarten und erzwingt die Steuerberechnung."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:448
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:458
 msgid "Fees"
 msgstr "Gebühren"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:451
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:461
 msgid "Fee Tax"
 msgstr "Steuerberechnung"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:452
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:462
 msgid "Enable better taxation for fees?"
 msgstr "Genauere Steuerberechnung für Gebühren aktivieren?"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:456
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:466
 msgid ""
 "By choosing this option fee taxation will be calculated based on tax rates "
 "within cart. See shipping costs taxation for more information."
@@ -1001,12 +1019,12 @@ msgstr ""
 "Nettobeträge in Bruttobeträge an."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:461
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:471
 msgid "Force fee tax calculation for every fee?"
 msgstr "Berechnung der Steuern für Gebühren erzwingen?"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:465
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:475
 msgid ""
 "This option will overwrite settings for each individual fee to force tax "
 "calculation (instead of only calculating tax for those fees which are "
@@ -1016,28 +1034,28 @@ msgstr ""
 "Steuerberechnung."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:470
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:480
 msgid "Customers"
 msgstr "Kunden"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:473
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:483
 #: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:567
 msgid "Checkbox"
 msgstr "Checkbox"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:474
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:484
 msgid "Add a checkbox to customer registration form."
 msgstr "Füge eine Checkbox zum Formular für die Kundenregistrierung hinzu."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:481
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:491
 msgid "Checkbox text"
 msgstr "Checkbox Text"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:482
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:492
 msgid ""
 "Choose a Plain Text which will be shown as checkbox text for customer "
 "account creation. Use {term_link}{/term_link}, {data_security_link}{/"
@@ -1051,7 +1069,7 @@ msgstr ""
 "Hinweisseiten."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:484
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:494
 msgid ""
 "Yes, I’d like create a new account and have read and understood the "
 "{data_security_link}data privacy statement{/data_security_link}."
@@ -1060,19 +1078,19 @@ msgstr ""
 "{data_security_link}Datenschutzerklärung{/data_security_link}."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:491
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:501
 msgid "Checkout"
 msgstr "Kasse"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:492
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:502
 msgid ""
 "Replace default WooCommerce text regarding account creation during checkout."
 msgstr ""
 "Ersetze den WooCommerce Text (Kundenkonto erstellen?) durch den o.g. Hinweis."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:493
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:503
 msgid ""
 "Use the text from above instead of the default WooCommerce text regarding "
 "account creation during checkout. This checkbox is only show if you have "
@@ -1084,17 +1102,17 @@ msgstr ""
 "zulässt."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:500
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:510
 msgid "Customer Double Opt In"
 msgstr "Double Opt-In"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:501
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:511
 msgid "Enable customer double opt in on registration?"
 msgstr "Double Opt-In Verfahren für Kundenkonten aktivieren?"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:502
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:512
 #, php-format
 msgid ""
 "If customer chooses to create a customer account an email with an activation "
@@ -1108,15 +1126,15 @@ msgstr ""
 "Verfahren ist laut Amtsgericht Berlin Pankow/Weißensee notwendig. Mehr "
 "Informationen findest du <a href=\"%s\" target=\"_blank\">hier</a>."
 
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:509
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:519
 msgid "Disable Login and Checkout"
 msgstr "Login und Checkout"
 
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:510
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:520
 msgid "Disable login and checkout for unactivated customers."
 msgstr "Deaktiviere den Login und Checkout für inaktive Kunden."
 
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:511
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:521
 msgid ""
 "Customers that did not click on the activation link will not be able to "
 "complete checkout nor login to their account."
@@ -1126,12 +1144,12 @@ msgstr ""
 "werden."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:518
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:528
 msgid "Delete Unactivated After"
 msgstr "Unaktivierte löschen nach"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:519
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:529
 msgid ""
 "This will make sure unactivated customer accounts will be deleted after X "
 "days. Set to 0 if you don't want to automatically delete unactivated "
@@ -1142,23 +1160,23 @@ msgstr ""
 "setze den Wert auf 0."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:520
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:530
 msgid "days"
 msgstr "Tagen"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:529
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:539
 #: includes/wc-gzd-core-functions.php:60
 msgid "Right of Recission"
 msgstr "Widerrufsrecht"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:532
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:542
 msgid "Revocation Address"
 msgstr "Widerruf richten an"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:533
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:543
 msgid ""
 "Type in an address, telephone/telefax number, email address which is to be "
 "used as revocation address"
@@ -1167,18 +1185,18 @@ msgstr ""
 "die deine Kunden ihren Widerruf richten sollen"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:542
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:552
 #: includes/admin/views/html-page-status-germanized.php:81
 msgid "Virtual VAT"
 msgstr "USt. Änderung 2015"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:545
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:555
 msgid "Enable Virtual VAT"
 msgstr "USt. Anpassung aktivieren"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:546
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:556
 msgid ""
 "Enable if you want to charge your customer's countries' VAT for virtual "
 "products."
@@ -1186,7 +1204,7 @@ msgstr ""
 "Für virtuelle Produkte den USt.-Satz des Dienstleistungsempfängers berechnen."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:550
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:560
 #, php-format
 msgid ""
 "New EU VAT rule applies on 01.01.2015. Make sure that every digital or "
@@ -1209,35 +1227,35 @@ msgstr ""
 "dazu findest du <a href=\"%s\" target=\"_blank\">hier</a>."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:555
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:565
 msgctxt "invoices"
 msgid "Invoices"
 msgstr "Rechnungen"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:567
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:577
 msgid "VAT"
 msgstr "Umsatzsteuer"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:602
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:612
 #, php-format
 msgid "Attach %s"
 msgstr "%s"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:603
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:613
 #, php-format
 msgid "Attach %s to the following email templates"
 msgstr "%s an die folgenden E-Mail Templates anfügen"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:616
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:626
 msgid "E-Mails"
 msgstr "E-Mails"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:616
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:626
 msgid ""
 "Use drag & drop to customize attachment order. Don't forget to save your "
 "changes."
@@ -1245,17 +1263,17 @@ msgstr ""
 "Verwende Drag & Drop um die Reihenfolge der Texte in den E-Mails zu "
 "beeinflussen und speichere anschließend deine Änderungen."
 
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:632
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:642
 msgid "Hide Username"
 msgstr "Nutzernamen verstecken"
 
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:633
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:643
 msgid ""
 "Hide username from email content if password or password reset link is "
 "embedded."
 msgstr "Nutzernamen nicht zusammen mit einem Passwort versenden."
 
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:634
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:644
 msgid ""
 "Trusted Shops advises to not show the username together with an account "
 "password or password reset link. This option hides (or masks) the username "
@@ -1266,12 +1284,12 @@ msgstr ""
 "Trusted Shops Mitglied bist, solltest du diese Option aktivieren."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:642
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:652
 msgid "Email Attachment Options"
 msgstr "PDF Anhang"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:642
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:652
 #, php-format
 msgid ""
 "Want to attach automatically generated PDF files to emails instead of plain "
@@ -1281,27 +1299,27 @@ msgstr ""
 "%sUpgrade zur %spro%s Version%s"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:665
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:675
 msgid "Downloadable Product"
 msgstr "Herunterladbares Produkt"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:666
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:676
 msgid "Virtual Product"
 msgstr "Virtuelles Produkt"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:682
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:692
 msgid "Add to Cart"
 msgstr "Zum Warenkorb Button"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:683
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:693
 msgid "Show add to cart button on listings?"
 msgstr "Den zum Warenkorb Button in Produktlisten darstellen?"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:687
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:697
 msgid ""
 "unset this option if you don't want to show the add to cart button within "
 "the product listings"
@@ -1310,18 +1328,18 @@ msgstr ""
 "von Produktauflistungen darstellen möchten"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:691
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:701
 msgid "Link to Details"
 msgstr "Verlinkung zu Produktdetails"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:692
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:702
 msgid ""
 "Want to link to product details page instead of add to cart within listings?"
 msgstr "Zum Warenkorb Button mit Button zur Produktdetail-Seite ersetzen?"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:696
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:706
 msgid ""
 "Decide whether you like to link to your product's details page instead of "
 "displaying an add to cart button within product listings."
@@ -1331,17 +1349,17 @@ msgstr ""
 "diese Option."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:700
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:710
 msgid "Product Details Text"
 msgstr "Produktdetails Text"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:702
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:712
 msgid "Details"
 msgstr "Details"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:704
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:714
 msgid ""
 "If you have chosen to link to product details page instead of add to cart "
 "URL you may want to change the button text."
@@ -1351,11 +1369,11 @@ msgstr ""
 "einen Button-Text vergeben."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:709
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:719
 msgid "Digital Delivery Time Text"
 msgstr "Lieferzeit Digital"
 
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:713
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:723
 msgid ""
 "Enter a text which will be shown as digital delivery time text (replacement "
 "for default digital time on digital products)."
@@ -1365,79 +1383,79 @@ msgstr ""
 "lassen."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:718
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:728
 msgid "Notice Footer"
 msgstr "Hinweise im Footer"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:719
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:729
 msgid "Show a global VAT notice within footer"
 msgstr "Einen seitenübergreifenden Hinweis bzgl. der MwSt. im Footer einfügen."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:727
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:737
 msgid "Show a global sale price notice within footer"
 msgstr ""
 "Einen seitenübergreifenden Hinweis bzgl. reduzierter Preise im Footer "
 "einfügen."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:736
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:746
 msgid "Products"
 msgstr "Produkt"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:739
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:749
 msgid "Show within Product Listings"
 msgstr "In Produktlisten"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:740
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:789
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:750
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:799
 msgid "Shipping Costs notice"
 msgstr "Versandkosten-Hinweis"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:748
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:797
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:758
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:807
 msgid "Tax Info"
 msgstr "MwSt. Hinweis"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:756
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:805
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:869
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:766
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:815
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:879
 msgid "Base Price"
 msgstr "Grundpreis"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:772
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:821
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:782
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:831
 msgid "Delivery Time Notice"
 msgstr "Lieferzeiten-Hinweis"
 
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:780
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:829
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:790
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:839
 #: includes/class-wc-gzd-post-types.php:93
 #: includes/class-wc-gzd-post-types.php:95
 msgid "Price Labels"
 msgstr "Preishinweise"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:788
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:798
 msgid "Show on Product Detail Page"
 msgstr "Auf der Produktseite"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:837
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:847
 msgid "Hide Tax Rate"
 msgstr "Steuersatz verstecken"
 
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:838
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:848
 msgid "Hide specific tax rate within shop pages."
 msgstr "Entferne die Anzeige des konkreten Steuersatzes im Shop."
 
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:842
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:852
 msgid ""
 "This option will make sure that within shop pages no specific tax rates are "
 "shown. Instead only incl. tax or excl. tax notice is shown."
@@ -1447,12 +1465,12 @@ msgstr ""
 "bzw. exkl. MwSt."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:846
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:856
 msgid "Hide Shipping Costs Notice"
 msgstr "Versandkosten ausblenden"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:847
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:857
 msgid ""
 "Select product types for which you might want to disable the shipping costs "
 "notice."
@@ -1461,11 +1479,11 @@ msgstr ""
 "möchtest."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:857
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:867
 msgid "Hide Delivery Time Notice"
 msgstr "Lieferzeiten ausblenden"
 
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:858
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:868
 msgid ""
 "Select product types for which you might want to disable the delivery time "
 "notice."
@@ -1474,12 +1492,12 @@ msgstr ""
 "möchtest."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:872
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:882
 msgid "Base Price Text"
 msgstr "Grundpreis Text"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:873
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:883
 msgid ""
 "This text will be used to display the base price. Use {price} to insert the "
 "price. If you want to specifically format base price output use {base}, "
@@ -1491,26 +1509,26 @@ msgstr ""
 "{base_price} für die einzelnen Elemente."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:878
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:888
 msgid "{price}"
 msgstr "{price}"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:882
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:892
 msgid "Variable Base Price"
 msgstr "Variabler Grundpreis"
 
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:883
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:893
 msgid "Enable price range base prices for variable products."
 msgstr "Aktiviere von-bis-Grundpreise für variable Produkte."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:890
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:900
 msgid "Product Units Text"
 msgstr "Produkteinheiten Text"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:891
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:901
 msgid ""
 "This text will be used to display the product units. Use {product_units} to "
 "insert the amount of product units. Use {unit} to insert the unit. "
@@ -1522,26 +1540,26 @@ msgstr ""
 "Grundpreis."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:896
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:906
 msgid "Product contains: {product_units} {unit}"
 msgstr "Produkt enthält: {product_units} {unit}"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:901
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:911
 msgid "Checkout & Cart"
 msgstr "Checkout & Warenkorb"
 
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:904
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:914
 msgid "DHL Parcel Shops"
 msgstr "DHL Packstationen"
 
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:905
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:915
 msgid ""
 "Allow customers to choose a DHL parcel shop or packing station as delivery "
 "address."
 msgstr "Versand an DHL Packstation bzw. Paketshops aktivieren."
 
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:909
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:919
 msgid ""
 "This option adds a checkbox to your checkout shipping fields which allows "
 "the customer to optionally choose a DHL packing station or parcel shop for "
@@ -1551,27 +1569,27 @@ msgstr ""
 "der Kunde optional die Lieferung an eine Packstation aktivieren. Fall das "
 "der Fall ist, muss eine PostNummer angegeben werden."
 
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:913
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:923
 msgid "Supported Countries"
 msgstr "Unterstützte Länder"
 
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:917
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:927
 msgid "Choose countries which support Parcel Shop delivery."
 msgstr ""
 "Wähle hier die Länder an, in denen du die Lieferung an DHL Packstationen "
 "bzw. Paketshops aktivieren möchtest."
 
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:921
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:931
 #: includes/class-wc-gzd-dhl-parcel-shops.php:302
 msgid "Parcel Shop Finder"
 msgstr "Paketshop finden"
 
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:922
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:932
 msgid ""
 "Enable DHL Parcel Shop Finder to let customers choose a parcel shop nearby."
 msgstr "Standortsuche nach der nächstgelegenen Packstation aktivieren."
 
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:926
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:936
 #, php-format
 msgid ""
 "You may enable this option to add a <a href=\"%s\" target=\"_blank\">Parcel "
@@ -1586,13 +1604,13 @@ msgstr ""
 "Nähe auswählen und die Daten automatisch übernehmen."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:930
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:940
 #: includes/admin/views/html-page-status-germanized.php:55
 msgid "Fallback Mode"
 msgstr "Fallback Modus"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:931
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:941
 msgid ""
 "Enable to make sure default checkout template is not being overriden by "
 "theme."
@@ -1600,7 +1618,7 @@ msgstr ""
 "Überschreiben relevanter Templates im Checkout durch dein Theme verhindern."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:935
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:945
 msgid ""
 "If you are facing problems within your checkout e.g. legally relevant data "
 "is not showing (terms, delivery time, unit price etc.) your theme seems to "
@@ -1614,17 +1632,17 @@ msgstr ""
 "Checkout (review-order.php und form-checkout.php) zu überschreiben. "
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:939
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:949
 msgid "Force free shipping"
 msgstr "Versandmethode erzwingen"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:940
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:950
 msgid "Force free shipping method if available?"
 msgstr "Kostenlosen Versand erzwingen wenn die Methode zur Verfügung steht?"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:944
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:954
 msgid ""
 "By default WooCommerce will let customers choose other shipping methods than "
 "free shipping (if available). This option will force free shipping if "
@@ -1635,18 +1653,18 @@ msgstr ""
 "Versand, sobald dieser verfügbar ist."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:948
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:958
 msgid "Hide taxes estimated"
 msgstr "Hinweis \"Steuern geschätzt\""
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:949
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:959
 msgid ""
 "Do you want to hide the \"taxes and shipping estimated\" text from your cart?"
 msgstr "Den Hinweis \"Versandkosten und Steuern werden geschätzt\" entfernen?"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:953
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:963
 msgid ""
 "By default WooCommerce adds a \"taxes and shipping estimated\" text to your "
 "cart. This might puzzle your customers and may not meet german law."
@@ -1656,17 +1674,17 @@ msgstr ""
 "Markt geeignet."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:957
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:967
 msgid "Show Thumbnails"
 msgstr "Thumbnails anzeigen"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:958
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:968
 msgid "Show product thumbnails on checkout page?"
 msgstr "Produktbilder im Checkout darstellen?"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:962
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:972
 msgid ""
 "Uncheck if you don't want to show your product thumbnails within checkout "
 "table."
@@ -1675,17 +1693,17 @@ msgstr ""
 "bekommen möchtest."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:966
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:976
 msgid "Hide Shipping Select"
 msgstr "Versandarten Auswahl"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:967
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:977
 msgid "Hide shipping rate selection from checkout?"
 msgstr "Die Auswahl von Versandarten im Checkout deaktivieren?"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:971
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:981
 msgid ""
 "This option will hide shipping rate selection from checkout. By then "
 "customers will only be able to change their shipping rate on cart page."
@@ -1695,18 +1713,18 @@ msgstr ""
 "Versandmethode ändern."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:975
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:985
 msgid "Show back to cart button"
 msgstr "Bestellung bearbeiten"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:976
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:986
 msgid "Show back to cart button within your checkout table?"
 msgstr ""
 "Einen \"Bestellung bearbeiten\" Button in der Bestellübersicht anzeigen?"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:980
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:990
 msgid ""
 "This button may let your customer edit their order before submitting. Some "
 "people state that this button should be hidden to avoid legal problems."
@@ -1718,28 +1736,28 @@ msgstr ""
 "keine weitere Informationen abgedruckt werden sollten."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:984
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:994
 msgid "Show edit data notice"
 msgstr "Bestellung prüfen Hinweis"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:985
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:995
 msgid "Show a \"check-your-entries\" notice to the user?"
 msgstr "Einen \"Bestellung prüfen\" Hinweis anzeigen?"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:989
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:999
 msgid "This notice will be added right before the order comments field."
 msgstr ""
 "Dieser Hinweis wird direkt oberhalb des Bestellhinweise-Feldes eingefügt."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:993
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:1003
 msgid "Checkout Table Color"
 msgstr "Hintergrundfarbe der Tabelle"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:995
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:1005
 msgid ""
 "Choose the color of your checkout product table. This table should be "
 "highlighted within your checkout page."
@@ -1748,17 +1766,17 @@ msgstr ""
 "Tabelle sollte sich farblich vom Rest des Inhalts abheben."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:1001
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:1011
 msgid "Checkout Legal Display"
 msgstr "Checkbox oder Text"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:1002
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:1012
 msgid "Use Text without Checkbox"
 msgstr "Rechtshinweis ohne Checkbox."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:1004
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:1014
 msgid ""
 "This version will remove checkboxes from Checkout and display a text "
 "instead. This seems to be legally compliant (Zalando & Co are using this "
@@ -1769,12 +1787,12 @@ msgstr ""
 "diese Form)"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:1010
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:1020
 msgid "Legal Text"
 msgstr "Rechtlicher Hinweistext"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:1011
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:1021
 msgid ""
 "Choose a Plain Text which will be shown right above checkout submit button. "
 "Use {term_link}{/term_link}, {data_security_link}{/data_security_link}, "
@@ -1787,7 +1805,7 @@ msgstr ""
 "revocation_link} um die jeweiligen Links zu den Seiten einzufügen."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:1013
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:1023
 msgid ""
 "With your order, you agree to have read and understood our {term_link}Terms "
 "and Conditions{/term_link} and your {revocation_link}Right of Recission{/"
@@ -1798,12 +1816,12 @@ msgstr ""
 "revocation_link} einverstanden."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:1020
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:1030
 msgid "Legal Text Error"
 msgstr "Fehlermeldung der Checkbox"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:1021
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:1031
 msgid ""
 "If you have chosen to use checkbox validation please choose a error message "
 "which will be shown if the user doesn't check checkbox. Use {term_link}{/"
@@ -1818,7 +1836,7 @@ msgstr ""
 "revocation_link}"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:1023
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:1033
 msgid ""
 "To finish the order you have to accept to our {term_link}Terms and "
 "Conditions{/term_link} and {revocation_link}Right of Recission{/"
@@ -1828,17 +1846,17 @@ msgstr ""
 "term_link} und {revocation_link}Widerrufsbestimmungen{/revocation_link}."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:1030
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:1040
 msgid "Show digital notice"
 msgstr "Checkbox digitale Produkte"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:1031
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:1041
 msgid "Show checkbox for digital products."
 msgstr "Checkbox bei digitalen Produkten anzeigen."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:1032
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:1042
 msgid ""
 "Disable this option if you want your customers to obtain their right of "
 "recission even if digital products are being bought."
@@ -1848,12 +1866,12 @@ msgstr ""
 "werden, dass im Falle von digitalen Produkten das Widerrufsrecht erlischt."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:1039
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:1049
 msgid "Digital Product types"
 msgstr "Digitale Produkttypen"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:1040
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:1050
 msgid ""
 "Select product types for which the loss of recission notice is shown. "
 "Product types like \"simple product\" may be redudant because they include "
@@ -1865,12 +1883,12 @@ msgstr ""
 "einschließen."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:1050
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:1060
 msgid "Legal Digital Text"
 msgstr "Hinweis Digital"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:1051
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:1061
 msgid ""
 "Choose a Plain Text which will be shown right above checkout submit button "
 "if a user has picked a digital product. See legal text option for possible "
@@ -1881,7 +1899,7 @@ msgstr ""
 "Platzhalter verwenden wie beim Rechtlichen Hinweistext"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:1053
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:1063
 msgid ""
 "For digital products: I strongly agree that the execution of the agreement "
 "starts before the revocation period has expired. I am aware that my right of "
@@ -1892,13 +1910,13 @@ msgstr ""
 "bekannt, dass mit Beginn der Ausführung mein Widerrufsrecht erlischt."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:1060
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:1070
 msgid "Legal Digital Error"
 msgstr "Fehlermeldung Digital"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:1061
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:1100
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:1071
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:1110
 msgid ""
 "This text will be shown as error message if customer has not checked the "
 "corresponding checkbox. See legal text option for possible placeholders."
@@ -1908,7 +1926,7 @@ msgstr ""
 "Hinweistext für eine Liste der Platzhalter."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:1063
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:1073
 #: includes/wc-gzd-cart-functions.php:317
 msgid ""
 "To retrieve direct access to digital content you have to agree to the loss "
@@ -1918,12 +1936,12 @@ msgstr ""
 "Widerrufsrecht verzichten."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:1070
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:1080
 msgid "Digital Confirmation Notice"
 msgstr "Digitale Bestätigung"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:1071
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:1081
 msgid ""
 "This text will be appended to your order processing email if the order "
 "contains digital products. Use placeholders {link}{/link} to insert link to "
@@ -1934,7 +1952,7 @@ msgstr ""
 "Platzhalter {link}{/link} um einen Link zur Widerrufsbelehrung einzufügen."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:1074
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:1084
 msgid ""
 "Furthermore you have expressly agreed to start the performance of the "
 "contract for digital items (e.g. downloads) before expiry of the withdrawal "
@@ -1948,17 +1966,17 @@ msgstr ""
 "verlieren."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:1080
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:1090
 msgid "Show service notice"
 msgstr "Checkbox Dienstleistungen"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:1081
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:1091
 msgid "Show checkbox for service products."
 msgstr "Checkbox bei Dienstleistungen anzeigen."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:1082
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:1092
 msgid ""
 "Disable this option if you want your customers to obtain their right of "
 "recission even if service products are being bought."
@@ -1969,12 +1987,12 @@ msgstr ""
 "Widerrufsfrist mit der Dienstleistung begonnen wird."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:1089
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:1099
 msgid "Legal Service Text"
 msgstr "Hinweis Dienstleistungen"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:1090
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:1100
 msgid ""
 "Choose a Plain Text which will be shown right above checkout submit button "
 "if a user has picked a service product. See legal text option for possible "
@@ -1985,7 +2003,7 @@ msgstr ""
 "Platzhalter verwenden wie beim Rechtlichen Hinweistext."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:1092
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:1102
 #: includes/wc-gzd-cart-functions.php:339
 msgid ""
 "For services: I demand and acknowledge the immediate performance of the "
@@ -1998,12 +2016,12 @@ msgstr ""
 "vollständiger Erfüllung des Vertrages erlischt."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:1099
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:1109
 msgid "Legal Service Error"
 msgstr "Fehlermeldung"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:1102
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:1112
 #: includes/wc-gzd-cart-functions.php:348
 msgid ""
 "To allow the immediate performance of the services you have to agree to the "
@@ -2012,12 +2030,12 @@ msgstr ""
 "Bitte stimme dem Beginn der Dienstleistung vor Ablauf der Widerrufsfrist zu."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:1109
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:1119
 msgid "Service Confirmation Notice"
 msgstr "Dienstleistung Bestätigung"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:1110
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:1120
 msgid ""
 "This text will be appended to your order processing email if the order "
 "contains service products. Use placeholders {link}{/link} to insert link to "
@@ -2028,7 +2046,7 @@ msgstr ""
 "Platzhalter {link}{/link} um einen Link zur Widerrufsbelehrung einzufügen."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:1113
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:1123
 msgid ""
 "Furthermore you have expressly agreed to start the performance of the "
 "contract for services before expiry of the withdrawal period. I have noted "
@@ -2042,18 +2060,18 @@ msgstr ""
 "erlischt."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:1119
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:1129
 msgid "Parcel Delivery Checkbox"
 msgstr "Paketdienstleister Checkbox"
 
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:1120
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:1130
 msgid ""
 "Show checkbox for data transmission to third party parcel service providers."
 msgstr ""
 "Checkbox zur Erlaubnis der Datenweitergabe an den Paketdienstleister "
 "einfügen."
 
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:1121
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:1131
 msgid ""
 "You may optionally choose to show a checkbox which lets the customer accept "
 "data transmission to a third party parcel service provider to receive parcel "
@@ -2067,15 +2085,15 @@ msgstr ""
 "weitergeleitet werden. "
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:1128
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:1138
 msgid "Checkbox required"
 msgstr "Checkbox verpflichtend"
 
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:1129
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:1139
 msgid "Make the parcel delivery checkbox a required field."
 msgstr "Paketdienstleister Checkbox zum Pflichtfeld machen?"
 
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:1130
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:1140
 msgid ""
 "For some reason you may want to force your customers to Opt-In to the data "
 "transmission to a third party parcel service provider."
@@ -2085,11 +2103,11 @@ msgstr ""
 "diese Option aus."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:1137
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:1147
 msgid "Parcel Delivery Text"
 msgstr "Paketdienstleister Text"
 
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:1138
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:1148
 msgid ""
 "Choose a Plain Text which will be shown right next to the corresponding "
 "checkbox to inform the customer about the data being transfered to the third "
@@ -2101,7 +2119,7 @@ msgstr ""
 "den Paketdienstleister. Verwende den Platzhalter {shipping_method_title} um "
 "den Titel der Versandmethoden einzubetten."
 
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:1140
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:1150
 #: includes/wc-gzd-cart-functions.php:396
 msgid ""
 "Yes, I would like to be reminded via E-mail about parcel delivery "
@@ -2113,26 +2131,26 @@ msgstr ""
 "wird nur für diesen einmaligen Zweck an unseren Paketdienstleister "
 "weitergegeben."
 
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:1148
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:1158
 msgid "Select shipping methods which are applicable for the Opt-In Checkbox."
 msgstr ""
 "Wähle Versandmethoden aus für die die Paketdienstleister Checkbox angezeigt "
 "werden soll."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:1158
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:1168
 msgid "Pay now Button"
 msgstr "Jetzt bezahlen Button"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:1159
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:1169
 msgid "Add a pay now button to emails and order success page."
 msgstr ""
 "Füge einen jetzt bezahlen - Button zur E-Mail und der Bestätigungs-Seite "
 "hinzu."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:1160
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:1170
 msgid ""
 "Add a pay now button to order confirmation email and order success page if "
 "the order awaits payment (PayPal etc)."
@@ -2142,30 +2160,30 @@ msgstr ""
 "benötigt (z.B. per PayPal)."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:1167
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:1177
 msgid "Order Success Text"
 msgstr "Bestellung eingegangen"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:1168
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:1178
 msgid "Choose a custom text to display on order success page."
 msgstr ""
 "Hier kannst du einen individuellen kurzen Text eingeben, der nach der "
 "Bestellung ausgegeben wird."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:1176
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:1186
 msgid "Order Success Data"
 msgstr "Bestellbestätigungs-Daten"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:1177
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:1187
 msgid "Hide product table and customer data on order success page"
 msgstr ""
 "Produktdetails (Tabelle, Kundeninfos) von der Bestätigungsseite entfernen."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-germanized.php:1285
+#: includes/admin/settings/class-wc-gzd-settings-germanized.php:1295
 msgid ""
 "Sorry, but the new Virtual VAT rules cannot be applied to small business."
 msgstr ""
@@ -3208,18 +3226,18 @@ msgctxt "ekomi"
 msgid "eKomi Options"
 msgstr "eKomi"
 
-#: includes/class-wc-gzd-emails.php:75
+#: includes/class-wc-gzd-emails.php:74
 msgid "Someone requested a password reset for your account."
 msgstr ""
 "Jemand hat das Zurücksetzen des Passworts für deinen Account beantragt."
 
-#: includes/class-wc-gzd-emails.php:88
+#: includes/class-wc-gzd-emails.php:87
 #, php-format
 msgid "Thanks for creating an account on %s."
 msgstr "Danke, dass du ein Konto bei %s erstellt hast."
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-emails.php:451
+#: includes/class-wc-gzd-emails.php:450
 msgctxt "revocation-form"
 msgid "Forward your Revocation online"
 msgstr "Deinen Widerruf online erklären"
@@ -4801,18 +4819,6 @@ msgid "Data Security"
 msgstr "Datenschutzbelehrung"
 
 # @ woocommerce-germanized
-#: includes/wc-gzd-core-functions.php:94
-msgid ""
-"Because of the small business owner state according to &#167; 19 UStG the "
-"seller does not levy nor state the German value added tax."
-msgstr "Kein Mehrwertsteuerausweis, da Kleinunternehmer nach §19 (1) UStG."
-
-# @ woocommerce-germanized
-#: includes/wc-gzd-product-functions.php:58
-msgid "VAT free based on &#167;19 UStG"
-msgstr "Kein Mehrwertsteuerausweis, da Kleinunternehmer nach §19 (1) UStG."
-
-# @ woocommerce-germanized
 #: includes/wc-gzd-template-functions.php:141
 #: templates/checkout/edit-data-notice.php:16
 msgid "Edit Order"
@@ -4903,6 +4909,7 @@ msgstr "Einkauf jetzt bewerten"
 
 # @ woocommerce-germanized
 #: templates/emails/customer-new-account-activation.php:18
+#: templates/emails/plain/customer-new-account-activation.php:16
 #, php-format
 msgid ""
 "Thanks for creating an account on %s. Please follow the activation link to "
@@ -5007,16 +5014,6 @@ msgid "SEPA Data"
 msgstr "SEPA Daten"
 
 # @ woocommerce-germanized
-#: templates/emails/plain/customer-new-account-activation.php:16
-#, php-format
-msgid ""
-"Thanks for creating an account on %s. Your username is %s. Please follow the "
-"activation link to activate your account:"
-msgstr ""
-"Es wurde für dich ein Benutzerkonto bei %s angelegt. Dein Benutzername "
-"lautet %s. Bitte folge dem Link, um dein Benutzerkonto zu bestätigen:"
-
-# @ woocommerce-germanized
 #: templates/footer/sale-info.php:13
 msgid "All striked out prices refer to prices used to be charged at this shop."
 msgstr ""
@@ -5075,21 +5072,8 @@ msgctxt "trusted-shops"
 msgid "%s custom reviews"
 msgstr "%s Kundenbewertungen"
 
-#~ msgid "[Removed for security reasons]"
-#~ msgstr "[Aus Sicherheitsgründen entfernt]"
-
 #~ msgid ""
-#~ "You may enable this option to add a <a href=\"%s\">Parcel Shop Finder</a> "
-#~ "to your checkout. Adds an link next to the checkbox. The finder (DHL API) "
-#~ "opens in an overlay and lets the customer find and choose a parcel shop "
-#~ "or packing station nearby."
+#~ "Value added tax is not collected, as small businesses according to "
+#~ "&#167;19 (1) UStG."
 #~ msgstr ""
-#~ "Aktiviere diese Option um die <a href=\"%s\">Standortsuche</a> zu "
-#~ "aktivieren. Diese Option fügt einen Link neben der Checkbox ein bei "
-#~ "dessen Klick, die Suche (DHL API) in einer Lightbox geöffnet wird. Der "
-#~ "Kunde kann eine Packstation bzw. einen Paketshop seiner Nähe auswählen "
-#~ "und die Daten automatisch übernehmen."
-
-# @ woocommerce-germanized
-#~ msgid "Not found within your imprint"
-#~ msgstr "Nicht in deinem Impressum gefunden"
+#~ "Kein Mehrwertsteuerausweis, da Kleinunternehmer nach &#167;19 (1) UStG."
