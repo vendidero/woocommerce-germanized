@@ -251,7 +251,7 @@ class WC_GZD_Admin_Importer {
 
 		// Save
 		if ( sizeof( $save ) > 3 ) {
-			WC_Germanized_Meta_Box_Product_Data::save_product_data( wc_gzd_get_crud_data( $product, 'id' ), $save, ( $product->is_type( 'variation' ) ) );
+			WC_Germanized_Meta_Box_Product_Data::save_product_data( $product, $save, ( $product->is_type( 'variation' ) ) );
 		}
 
 	}
