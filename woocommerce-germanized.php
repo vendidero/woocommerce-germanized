@@ -738,13 +738,16 @@ final class WooCommerce_Germanized {
 
 			$tax_array = array();
 			if ( 'itemized' == get_option( 'woocommerce_tax_total_display' ) ) {
+
 				foreach ( $order->get_tax_totals() as $code => $tax ) {
+
 					$tax->rate = WC_Tax::get_rate_percent( $tax->rate_id );
+
 					if ( ! isset( $tax_array[ $tax->rate ] ) ) {
 						$tax_array[ $tax->rate ] = array(
-						'tax' => $tax,
-						'amount' => $tax->amount,
-						'contains' => array( $tax ),
+							'tax' => $tax,
+							'amount' => $tax->amount,
+							'contains' => array( $tax ),
 						);
 					} else {
 						array_push( $tax_array[ $tax->rate ]['contains'], $tax );
@@ -752,6 +755,7 @@ final class WooCommerce_Germanized {
 					}
 				}
 			} else {
+
 				$base_rate = array_values( WC_Tax::get_shop_base_rate() );
 				$base_rate = (object) $base_rate[0];
 				$base_rate->rate = $base_rate->rate;
@@ -764,9 +768,10 @@ final class WooCommerce_Germanized {
 
 			if ( ! empty( $tax_array ) ) {
 				foreach ( $tax_array as $tax ) {
-					$order_totals[ 'tax_' . $tax['tax']->label ] = array(
-					'label' => ( get_option( 'woocommerce_tax_total_display' ) == 'itemized' ? sprintf( __( 'incl. %s%% VAT', 'woocommerce-germanized' ), wc_gzd_format_tax_rate_percentage( $tax['tax']->rate ) ) : __( 'incl. VAT', 'woocommerce-germanized' ) ),
-					'value' => wc_price( $tax['amount'] ),
+
+					$order_totals[ 'tax_' . WC_Tax::get_rate_code( $tax['tax']->rate_id ) ] = array(
+						'label' => ( get_option( 'woocommerce_tax_total_display' ) == 'itemized' ? sprintf( __( 'incl. %s%% VAT', 'woocommerce-germanized' ), wc_gzd_format_tax_rate_percentage( $tax['tax']->rate ) ) : __( 'incl. VAT', 'woocommerce-germanized' ) ),
+						'value' => wc_price( $tax['amount'] ),
 					);
 				}
 			}
