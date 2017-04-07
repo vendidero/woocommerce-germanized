@@ -44,6 +44,8 @@ class WC_GZD_Customer_Helper {
 			// Cronjob to delete unactivated users
 			add_action( 'woocommerce_gzd_customer_cleanup', array( $this, 'account_cleanup' ) );
 
+			add_action( 'woocommerce_created_customer', array( $this, 'set_customer_activation_meta' ), 10, 3 );
+
 			if ( $this->is_double_opt_in_login_enabled() ) {
 				// Disable login for unactivated users
 				add_filter( 'wp_authenticate_user', array( $this, 'login_restriction' ) , 10, 2 );
@@ -131,6 +133,13 @@ class WC_GZD_Customer_Helper {
 
 		$user_id = get_current_user_id();
 
+		if ( is_cart() ) {
+
+			// On accessing cart - reset disable checkout signup so that the customer is rechecked before redirecting him to the checkout.
+			unset( WC()->session->disable_checkout_signup );
+
+		}
+
 		if ( get_option( 'woocommerce_enable_guest_checkout' ) === 'yes' && isset( $_GET[ 'force-guest' ] ) ) {
 
 			// Disable registration
@@ -149,9 +158,7 @@ class WC_GZD_Customer_Helper {
 				unset( WC()->session->login_redirect );
 
 			}
-
 		}
-
 	}
 
 	public function show_disabled_checkout_notice() {
@@ -174,6 +181,7 @@ class WC_GZD_Customer_Helper {
 			} else {
 
 				// Redirect to checkout
+				unset( WC()->session->login_redirect );
 				wp_safe_redirect( wc_gzd_get_page_permalink( 'checkout' ) );
 				exit;
 
@@ -186,6 +194,10 @@ class WC_GZD_Customer_Helper {
 	}
 
 	public function disable_registration_auto_login( $result, $user_id ) {
+
+		if ( is_a( $user_id, 'WP_User' ) ) {
+			$user_id = $user_id->ID;
+		}
 
 		// Has not been activated yet
 		if ( ! wc_gzd_is_customer_activated( $user_id ) ) {
@@ -339,26 +351,39 @@ class WC_GZD_Customer_Helper {
 	 * @param array $new_customer_data
 	 */
 	public function customer_new_account_activation( $customer_id, $new_customer_data = array(), $password_generated = false ) {
-		
+
+		if ( ! $customer_id )
+			return;
+
+		if ( ! wc_gzd_get_dependencies()->woocommerce_version_supports_crud() ) {
+			$this->set_customer_activation_meta( $customer_id, $new_customer_data, $password_generated );
+		}
+
+		$user_pass = ! empty( $new_customer_data['user_pass'] ) ? $new_customer_data['user_pass'] : '';
+
+		$user_activation = get_user_meta( $customer_id, '_woocommerce_activation', true );
+		$user_activation_url = apply_filters( 'woocommerce_gzd_customer_activation_url', add_query_arg( array( 'activate' => $user_activation ), wc_gzd_get_page_permalink( 'myaccount' ) ) );
+
+		if ( $email = WC_germanized()->emails->get_email_instance_by_id( 'customer_new_account_activation' ) )
+			$email->trigger( $customer_id, $user_activation, $user_activation_url, $user_pass, $password_generated );
+
+	}
+
+	public function set_customer_activation_meta( $customer_id, $new_customer_data, $password_generated ) {
+
 		global $wp_hasher;
 
 		if ( ! $customer_id )
 			return;
 
-		$user_pass = ! empty( $new_customer_data['user_pass'] ) ? $new_customer_data['user_pass'] : '';
-		
 		if ( empty( $wp_hasher ) ) {
 			require_once ABSPATH . WPINC . '/class-phpass.php';
 			$wp_hasher = new PasswordHash( 8, true );
 		}
 
 		$user_activation = $wp_hasher->HashPassword( wp_generate_password( 20 ) );
-		$user_activation_url = apply_filters( 'woocommerce_gzd_customer_activation_url', add_query_arg( array( 'activate' => $user_activation ), wc_gzd_get_page_permalink( 'myaccount' ) ) ); 
+
 		add_user_meta( $customer_id, '_woocommerce_activation', $user_activation );
-
-		if ( $email = WC_germanized()->emails->get_email_instance_by_id( 'customer_new_account_activation' ) )
-			$email->trigger( $customer_id, $user_activation, $user_activation_url, $user_pass, $password_generated );
-
 	}
 
 }

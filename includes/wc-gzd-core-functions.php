@@ -39,7 +39,7 @@ function wc_gzd_is_customer_activated( $user_id = '' ) {
 	if ( empty( $user_id ) || ! $user_id )
 		return false;
 
-	return ( get_user_meta( $user_id, '_woocommerce_activation' ) ? false : true );
+	return ( get_user_meta( $user_id, '_woocommerce_activation', true ) ? false : true );
 }
 
 function wc_gzd_get_hook_priority( $hook ) {
