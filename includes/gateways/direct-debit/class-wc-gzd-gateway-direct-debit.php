@@ -349,7 +349,7 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 
     	$order = wc_get_order( $order_id );
 
-    	if ( ! wc_gzd_get_crud_data( $order, 'payment_method' ) == $this->id )
+    	if ( ! ( wc_gzd_get_crud_data( $order, 'payment_method' ) === $this->id ) )
     		return;
 
     	$holder 	= ( isset( $_POST[ 'direct_debit_account_holder' ] ) ? wc_clean( $_POST[ 'direct_debit_account_holder' ] ) : '' );

@@ -74,6 +74,10 @@ class WC_GZD_Checkout {
 			add_filter( 'user_has_cap', array( $this, 'disallow_user_order_cancellation' ), 15, 3 );
 			add_action( 'woocommerce_germanized_order_confirmation_sent', array( $this, 'maybe_reduce_order_stock' ), 5, 1 );
 			add_filter( 'woocommerce_my_account_my_orders_actions', array( $this, 'remove_cancel_button' ), 10, 2 );
+
+			// Woo 3.0 stock reducing checks - mark order as stock-reduced so that stock reducing fails upon second attempt
+			add_action( 'woocommerce_reduce_order_stock', array( $this, 'set_order_stock_reduced_meta' ), 10, 1 );
+			add_filter( 'woocommerce_can_reduce_order_stock', array( $this, 'maybe_disallow_order_stock_reducing' ), 10, 2 );
 		}
 		
 		// Free Shipping auto select
@@ -210,13 +214,39 @@ class WC_GZD_Checkout {
 	}
 
 	public function maybe_reduce_order_stock( $order_id ) {
-		$order = wc_get_order( $order_id );
-		if ( $order ) {
-			// Reduce order stock for non-cancellable orders
-			if ( apply_filters( 'woocommerce_payment_complete_reduce_order_stock', ! get_post_meta( $order->id, '_order_stock_reduced', true ), wc_gzd_get_crud_data( $order, 'id' ) ) ) {
-				$order->reduce_order_stock();
+		if ( wc_gzd_get_dependencies()->woocommerce_version_supports_crud() ) {
+			wc_reduce_stock_levels( $order_id );
+		} else {
+			$order = wc_get_order( $order_id );
+
+			if ( $order ) {
+				// Reduce order stock for non-cancellable orders
+				if ( apply_filters( 'woocommerce_payment_complete_reduce_order_stock', ! get_post_meta( $order->id, '_order_stock_reduced', true ), wc_gzd_get_crud_data( $order, 'id' ) ) ) {
+					$order->reduce_order_stock();
+				}
 			}
 		}
+	}
+
+	public function set_order_stock_reduced_meta( $order ) {
+		if ( wc_gzd_get_dependencies()->woocommerce_version_supports_crud() ) {
+			$order = wc_gzd_set_crud_meta_data( $order, '_order_stock_reduced', '1' );
+			$order->save();
+		}
+	}
+
+	public function maybe_disallow_order_stock_reducing( $reduce_stock, $order ) {
+		if ( wc_gzd_get_dependencies()->woocommerce_version_supports_crud() ) {
+			if ( wc_gzd_get_crud_data( $order, '_order_stock_reduced' ) ) {
+
+				// Delete the meta so that third party plugins may reduce/change order stock later
+				$order = wc_gzd_unset_crud_meta_data( $order, '_order_stock_reduced' );
+				$order->save();
+
+				return false;
+			}
+		}
+		return $reduce_stock;
 	}
 
 	public function disallow_user_order_cancellation( $allcaps, $caps, $args ) {
