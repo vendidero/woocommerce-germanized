@@ -413,6 +413,11 @@ class WC_GZD_Checkout {
 	public function set_order_item_meta_crud( $item_id, $item, $order_id ) {
 
 		$order = wc_get_order( $order_id );
+
+		if ( ! $order ) {
+			return;
+		}
+
 		$item = $order->get_item( $item_id );
 
 		if ( 'line_item' === $item->get_type() ) {
