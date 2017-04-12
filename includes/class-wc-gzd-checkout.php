@@ -420,7 +420,7 @@ class WC_GZD_Checkout {
 
 		$item = $order->get_item( $item_id );
 
-		if ( 'line_item' === $item->get_type() ) {
+		if ( 'line_item' === $item->get_type() && $item->get_product() ) {
 			$this->set_order_meta( $order_id, $item_id, $item->get_product(), $item->get_quantity(), array() );
 		}
 	}

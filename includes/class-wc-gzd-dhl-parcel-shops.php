@@ -62,6 +62,10 @@ class WC_GZD_DHL_Parcel_Shops {
 	public function set_address_format( $formats ) {
 
 		foreach( $this->get_supported_countries() as $country ) {
+
+			if ( ! isset( $formats[ $country ] ) )
+				continue;
+
 			$format = $formats[ $country ];
 			$format = str_replace( "{name}", "{name}\n{parcelshop_post_number}", $format );
 			$formats[ $country ] = $format;
