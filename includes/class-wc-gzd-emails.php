@@ -36,6 +36,10 @@ class WC_GZD_Emails {
             add_filter( 'woocommerce_checkout_no_payment_needed_redirect', array( $this, 'send_order_confirmation_mails' ), 0, 2 );
         }
 
+        // Disable paid order email for certain gateways (e.g. COD or invoice)
+		add_action( 'woocommerce_order_status_processing', array( $this, 'maybe_disable_order_paid_email_notification_2_6' ), 0, 1 );
+        add_filter( 'woocommerce_allow_send_queued_transactional_email', array( $this, 'maybe_disable_order_paid_email_notification'), 10, 3 );
+
         // Change email template path if is germanized email template
 		add_filter( 'woocommerce_template_directory', array( $this, 'set_woocommerce_template_dir' ), 10, 2 );
 		// Map partially refunded order mail template to correct email instance
@@ -152,6 +156,48 @@ class WC_GZD_Emails {
         // Pay now button
         add_action( 'woocommerce_email_before_order_table', array( $this, 'email_pay_now_button' ), 0, 1 );
         add_action( 'woocommerce_email_after_order_table', array( $this, 'email_digital_revocation_notice' ), 0, 3 );
+    }
+
+	public function get_gateways_disabling_paid_for_order_mail() {
+		return apply_filters( 'woocommerce_gzd_disable_gateways_paid_order_email', array( 'cod', 'invoice' ) );
+	}
+
+    public function maybe_disable_order_paid_email_notification_2_6( $order_id ) {
+
+		$order = wc_get_order( $order_id );
+
+		if ( ! $order ) {
+			return;
+		}
+
+		$method = wc_gzd_get_crud_data( $order, 'payment_method' );
+		$current_status = $order->get_status();
+		$disable_for_gateways = $this->get_gateways_disabling_paid_for_order_mail();
+
+		if ( in_array( $method, $disable_for_gateways ) ) {
+			// Remove action
+			if ( WC_germanized()->emails->get_email_instance_by_id( 'customer_paid_for_order' ) ) {
+				remove_action( 'woocommerce_order_status_pending_to_processing_notification', array( WC_germanized()->emails->get_email_instance_by_id( 'customer_paid_for_order' ), 'trigger' ), 30 );
+			}
+		}
+    }
+
+    public function maybe_disable_order_paid_email_notification( $send, $filter, $args ) {
+		if ( isset( $args[0] ) && is_numeric( $args[0] ) ) {
+			$order = wc_get_order( absint( $args[0] ) );
+
+			if ( $order ) {
+
+				$method = wc_gzd_get_crud_data( $order, 'payment_method' );
+				$current_status = $order->get_status();
+				$disable_for_gateways = $this->get_gateways_disabling_paid_for_order_mail();
+
+				if ( in_array( $method, $disable_for_gateways ) && $filter === 'woocommerce_order_status_pending_to_processing' ) {
+					return false;
+				}
+			}
+		}
+		return $send;
     }
 	
 	public function resend_order_emails( $emails ) {
