@@ -221,8 +221,14 @@ if ( ! function_exists( 'woocommerce_gzd_parcel_delivery_checkbox' ) ) {
 		$titles = array();
 
 		foreach ( $rates as $rate ) {
-			array_push( $ids, $rate->method_id );
-			array_push( $titles, $rate->get_label() );
+
+			array_push( $ids, $rate->id );
+
+			if ( method_exists( $rate, 'get_label' ) ) {
+				array_push( $titles, $rate->get_label() );
+			} else {
+				array_push( $titles, $rate->label );
+			}
 		}	
 		
 		if ( wc_gzd_is_parcel_delivery_data_transfer_checkbox_enabled( $ids ) ) {
@@ -268,7 +274,7 @@ if ( ! function_exists( 'woocommerce_gzd_checkout_validation' ) ) {
 			if ( get_option( 'woocommerce_gzd_checkout_legal_service_checkbox' ) === 'yes' && $is_service && ! isset( $_POST[ 'service-revocate' ] ) )
 				wc_add_notice( wc_gzd_get_legal_text_service_error(), 'error' );
 
-			if ( ( wc_gzd_is_parcel_delivery_data_transfer_checkbox_enabled( wc_gzd_get_chosen_shipping_rates( array( 'value' => 'method_id' ) ) ) && get_option( 'woocommerce_gzd_checkout_legal_parcel_delivery_checkbox_required' ) === 'yes' ) && ! isset( $_POST[ 'parcel-delivery' ] ) )
+			if ( ( wc_gzd_is_parcel_delivery_data_transfer_checkbox_enabled( wc_gzd_get_chosen_shipping_rates( array( 'value' => 'id' ) ) ) && get_option( 'woocommerce_gzd_checkout_legal_parcel_delivery_checkbox_required' ) === 'yes' ) && ! isset( $_POST[ 'parcel-delivery' ] ) )
 				wc_add_notice( __( 'Please accept our parcel delivery agreement', 'woocommerce-germanized' ), 'error' );
 		}
 	}

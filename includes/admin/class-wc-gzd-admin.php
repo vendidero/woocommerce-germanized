@@ -333,6 +333,46 @@ class WC_GZD_Admin {
  		);
  	}
 
+ 	public function get_shipping_method_instances() {
+
+	    if ( ! class_exists( 'WC_Shipping_Zones' ) ) {
+		    $instances = WC()->shipping->get_shipping_methods();
+        } else {
+		    $zones = WC_Shipping_Zones::get_zones();
+		    $worldwide = new WC_Shipping_Zone( 0 );
+
+		    $instances = $worldwide->get_shipping_methods( true );
+
+		    foreach( $zones as $id => $zone ) {
+			    $zone = new WC_Shipping_Zone( $id );
+			    $instances = $instances + $zone->get_shipping_methods( true );
+		    }
+        }
+
+        return $instances;
+    }
+
+    public function get_shipping_method_instances_options() {
+
+	    $methods = $this->get_shipping_method_instances();
+	    $shipping_methods_options = array();
+
+	    foreach ( $methods as $key => $method ) {
+
+	        if ( method_exists( $method, 'get_rate_id' ) ) {
+		        $key = $method->get_rate_id();
+            } else {
+	            $key = $method->id;
+            }
+
+		    $title = $method->get_title();
+
+		    $shipping_methods_options[ $key ] = ( empty( $title ) ? $method->get_method_title() : $title );
+	    }
+
+	    return $shipping_methods_options;
+    }
+
 }
 
 WC_GZD_Admin::instance();

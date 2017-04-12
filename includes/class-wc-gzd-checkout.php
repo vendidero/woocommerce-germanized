@@ -131,7 +131,10 @@ class WC_GZD_Checkout {
 			$order_id = absint( $wp->query_vars[ 'order-pay' ] );
 			$order = wc_get_order( $order_id );
 
-			if ( ! $order || wc_gzd_get_crud_data( $order, 'order_key' ) != $order_key )
+			if ( ! $order )
+				return;
+
+			if ( wc_gzd_get_crud_data( $order, 'order_key' ) != $order_key )
 				return;
 
 			// Check if gateway is available - otherwise don't force redirect - would lead to errors in pay_action

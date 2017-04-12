@@ -102,7 +102,7 @@ function wc_gzd_help_tip( $tip, $allow_html = false ) {
 	return '<a class="tips" data-tip="' . ( $allow_html ? esc_html( $tip ) : $tip ) . '" href="#">[?]</a>';
 }
 
-function wc_gzd_is_parcel_delivery_data_transfer_checkbox_enabled( $method_ids = array() ) {
+function wc_gzd_is_parcel_delivery_data_transfer_checkbox_enabled( $rate_ids = array() ) {
 	$supported = get_option( 'woocommerce_gzd_checkout_legal_parcel_delivery_checkbox_methods', array() );
 	
 	if ( ! is_array( $supported ) )
@@ -111,9 +111,9 @@ function wc_gzd_is_parcel_delivery_data_transfer_checkbox_enabled( $method_ids =
 	if ( get_option( 'woocommerce_gzd_checkout_legal_parcel_delivery_checkbox' ) !== 'yes' )
 		return false; 
 
-	if ( ! empty( $method_ids ) ) {
-		foreach ( $method_ids as $method_id ) {
-			if ( ! in_array( $method_id, $supported ) )
+	if ( ! empty( $rate_ids ) ) {
+		foreach ( $rate_ids as $rate_id ) {
+			if ( ! in_array( $rate_id, $supported ) )
 				return false;
 		}
 	}

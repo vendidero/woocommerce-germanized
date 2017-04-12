@@ -43,12 +43,47 @@ class WC_GZD_DHL_Parcel_Shops {
 			// Customer fields
 			add_filter( 'woocommerce_customer_meta_fields', array( $this, 'init_profile_fields' ), 10, 1 );
 
+			add_action( 'woocommerce_before_checkout_form', array( $this, 'maybe_hide_fields_before_rendering' ), 10, 1 );
+
 			if ( $this->is_finder_enabled() ) {
 				// Add Markup
 				add_filter( 'woocommerce_form_field_checkbox', array( $this, 'add_button_markup' ), 10, 4 );
 				add_action( 'wp_footer', array( $this, 'add_overlay_markup' ), 50 );
 			}
 		}
+	}
+
+	public function maybe_hide_fields_before_rendering( $checkout ) {
+
+		$hide_fields = false;
+		$chosen_shipping_methods = wc_gzd_get_chosen_shipping_rates();
+
+		foreach ( $chosen_shipping_methods as $rate ) {
+			if ( in_array( $rate->id, $this->get_disabled_shipping_methods() ) ) {
+				$hide_fields = true;
+			}
+		}
+
+		if ( apply_filters( 'woocommerce_gzd_dhl_parcel_shops_hide_fields', $hide_fields, $this ) ) {
+			add_filter( 'woocommerce_checkout_fields', array( $this, 'remove_fields' ), 10, 1 );
+		}
+	}
+
+	public function get_disabled_shipping_methods() {
+
+		if ( get_option( 'woocommerce_gzd_display_checkout_shipping_rate_select' ) !== 'yes' )
+			return array();
+
+		return get_option( 'woocommerce_gzd_dhl_parcel_shop_disabled_shipping_methods', array() );
+	}
+
+	public function remove_fields( $fields ) {
+
+		if ( isset( $fields[ 'shipping' ][ 'shipping_parcelshop' ] ) ) {
+			unset( $fields[ 'shipping' ][ 'shipping_parcelshop' ] );
+		}
+
+		return $fields;
 	}
 
 	public function address_hooks() {
@@ -119,6 +154,7 @@ class WC_GZD_DHL_Parcel_Shops {
 			'before'   => 'address_1',
 			'group'    => array( 'shipping' ),
 			'class'    => array( 'form-row-wide', 'first-check' ),
+			'hidden'   => $this->maybe_hide_fields(),
 		);
 
 		$fields[ 'parcelshop_post_number' ] = array(
@@ -128,9 +164,14 @@ class WC_GZD_DHL_Parcel_Shops {
 			'before'   => 'address_1',
 			'group'    => array( 'shipping' ),
 			'class'    => array( 'form-row-wide' ),
+			'hidden'   => $this->maybe_hide_fields(),
 		);
 
 		return $fields;
+	}
+
+	public function maybe_hide_fields() {
+		return apply_filters( 'woocommerce_gzd_dhl_parcel_shops_hide_fields', false, $this );
 	}
 
 	public function init_profile_fields( $fields ) {

@@ -676,13 +676,7 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 			'virtual'		=> __( 'Virtual Product', 'woocommerce-germanized' ),
 		), $product_types );
 
-		$shipping_methods = WC()->shipping->get_shipping_methods();
-		$shipping_methods_options = array();
-		
-		foreach ( $shipping_methods as $key => $method ) {
-			$title = $method->get_title();
-			$shipping_methods_options[ $key ] = ( empty( $title ) ? $method->get_method_title() : $title );
-		}
+		$shipping_methods_options = WC_GZD_Admin::instance()->get_shipping_method_instances_options();
 
 		$settings = array(
 
@@ -925,6 +919,16 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 				'default'	=> array( 'DE', 'AT' ),
 				'type' 		=> 'multi_select_countries',
 				'desc_tip'	=> __( 'Choose countries which support Parcel Shop delivery.', 'woocommerce-germanized' ),
+			),
+
+			array(
+				'title' 	=> __( 'Disabled Methods', 'woocommerce-germanized' ),
+				'id' 		=> 'woocommerce_gzd_dhl_parcel_shop_disabled_shipping_methods',
+				'default'	=> array(),
+				'class' 	=> 'chosen_select',
+				'type'      => 'multiselect',
+				'options'   => $shipping_methods_options,
+				'desc_tip'	=> __( 'Optionally choose methods for which DHL Parcel Shop Delivery should be disabled. Does only work if you have disabled choosing shipping methods within checkout.', 'woocommerce-germanized' ),
 			),
 
 			array(
