@@ -636,6 +636,10 @@ final class WooCommerce_Germanized {
 				'ajax_url'                  => WC()->ajax_url(),
 				'ajax_loader_url'           => apply_filters( 'woocommerce_ajax_loader_url', $assets_path . 'images/ajax-loader@2x.gif' ),
 			) ) );
+		} else if ( wp_script_is( 'wc-gzd-add-to-cart-variation' ) ) {
+			wp_localize_script( 'wc-gzd-add-to-cart-variation', 'wc_gzd_add_to_cart_variation_params', apply_filters( 'woocommerce_gzd_add_to_cart_variation_params', array(
+				'wrapper'                   => '.type-product',
+			) ) );
 		}
 
 		do_action( 'woocommerce_gzd_localized_scripts', $assets_path );

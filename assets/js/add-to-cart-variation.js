@@ -5,27 +5,27 @@
 
 	$.fn.wc_gzd_variation_form = function () {
 		var $form 	 	= this,
-			$wrapper 	= $form.parents( '.type-product' );
+			$wrapper 	= $form.parents( wc_gzd_add_to_cart_variation_params.wrapper );
 
 		$.fn.wc_gzd_variation_form.reset_variation = function() {
 
-			if ( $('.type-product').find('.org_price').length > 0 ) {
-				$( '.type-product .price.variation_modified:not(.price-unit)' ).html( $('.type-product').find('.org_price').html() ).removeClass('variation_modified').show();
+			if ( $wrapper.find('.org_price').length > 0 ) {
+				$wrapper.find('.price.variation_modified:not(.price-unit)' ).html( $wrapper.find('.org_price').html() ).removeClass('variation_modified').show();
 			}
-			if ( $('.type-product').find('.org_delivery_time').length > 0 ) {
-				$( '.type-product .delivery-time-info' ).html( $('.type-product').find('.org_delivery_time').html() ).removeClass('variation_modified').show();
+			if ( $wrapper.find('.org_delivery_time').length > 0 ) {
+                $wrapper.find( '.delivery-time-info:first' ).html( $wrapper.find('.org_delivery_time').html() ).removeClass('variation_modified').show();
 			}
-			if ( $('.type-product').find('.org_unit_price').length > 0 ) {
-				$( '.type-product .price-unit' ).html( $('.product').find('.org_unit_price').html() ).removeClass('variation_modified').show();
+			if ( $wrapper.find('.org_unit_price').length > 0 ) {
+                $wrapper.find('.price-unit:first' ).html( $wrapper.find('.org_unit_price').html() ).removeClass('variation_modified').show();
 			}
-			if ( $('.type-product').find('.org_tax_info').length > 0 ) {
-				$( '.type-product .tax-info' ).html( $('.product').find('.org_tax_info').html() ).removeClass('variation_modified').show();
+			if ( $wrapper.find('.org_tax_info').length > 0 ) {
+                $wrapper.find('.tax-info:first' ).html( $wrapper.find('.org_tax_info').html() ).removeClass('variation_modified').show();
 			}
-			if ( $('.type-product').find('.org_shipping_costs_info').length > 0 ) {
-				$( '.type-product .shipping-costs-info' ).html( $('.product').find('.org_shipping_costs_info').html() ).removeClass('variation_modified').show();
+			if ( $wrapper.find('.org_shipping_costs_info').length > 0 ) {
+                $wrapper.find('.shipping-costs-info:first' ).html( $wrapper.find('.org_shipping_costs_info').html() ).removeClass('variation_modified').show();
 			}
-			if ( $('.type-product').find('.org_product_units').length > 0 ) {
-				$( '.type-product .product-units' ).html( $('.product').find('.org_product_units').html() ).removeClass('variation_modified').show();
+			if ( $wrapper.find('.org_product_units').length > 0 ) {
+                $wrapper.find('.product-units:first' ).html( $wrapper.find('.org_product_units').html() ).removeClass('variation_modified').show();
 			}
 			$('.org_product_info').remove();
 			$('.variation_modified').remove();
