@@ -291,6 +291,9 @@ class WC_GZD_Emails {
 				foreach ( $items as $item ) {
 					
 					$_product = apply_filters( 'woocommerce_order_item_product', $order->get_product_from_item( $item ), $item );
+
+					if ( ! $_product )
+						continue;
 					
 					if ( wc_gzd_is_revocation_exempt( $_product ) || apply_filters( 'woocommerce_gzd_product_is_revocation_exception', false, $_product, 'digital' ) )
 						$is_downloadable = true;
