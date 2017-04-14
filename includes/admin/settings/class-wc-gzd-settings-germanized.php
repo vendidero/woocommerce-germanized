@@ -1162,7 +1162,7 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 				'desc' 		=> __( 'Select shipping methods which are applicable for the Opt-In Checkbox.', 'woocommerce-germanized' ),
 				'desc_tip'	=> true,
 				'id' 		=> 'woocommerce_gzd_checkout_legal_parcel_delivery_checkbox_methods',
-				'default'	=> array( 'downloadable' ),
+				'default'	=> array(),
 				'class'		=> 'chosen_select',
 				'options'	=> $shipping_methods_options,
 				'type' 		=> 'multiselect',

@@ -27,6 +27,7 @@
 			if ( $wrapper.find('.org_product_units').length > 0 ) {
                 $wrapper.find('.product-units:first' ).html( $wrapper.find('.org_product_units').html() ).removeClass('variation_modified').show();
 			}
+
 			$('.org_product_info').remove();
 			$('.variation_modified').remove();
 		};

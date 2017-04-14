@@ -3,7 +3,7 @@ Contributors: vendidero
 Tags: woocommerce, german market, german, germany, deutsch, deutschland, de, de_DE, shop, commerce, e-commerce, ecommerce, woothemes, sepa, invoice
 Requires at least: 3.8
 Tested up to: 4.7
-Stable tag: 1.8.8
+Stable tag: 1.8.9
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -166,6 +166,16 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 1. WooCommerce Germanized Settings
 
 == Changelog ==
+
+= 1.8.9 =
+* Feature - Allow DHL parcel shop delivery for certain shipping rates only
+* Improvement - woocommerce_gzd_add_to_cart_variation_params filter to adjust wrapper name
+* Improvement - better shipping rate choosing options (choose instances instead of methods) for parcel delivery checkbox
+* Fix - Double Opt In WooCommerce 3.0
+* Fix - Use get_rate_code for order item totals
+* Fix - WooCommerce 3.0 stock reducing
+* Fix - Order Item Meta CRUD - better product instance check
+* Fix - Disable Paid for Order Email for direct debit and invoice gateway
 
 = 1.8.8 =
 * Feature - Better product data saving
