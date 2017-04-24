@@ -42,7 +42,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<?php endif; ?>
 	</li>
 
-	<li data-el="#s2id_woocommerce_terms_page_id" data-orientation="top">
+	<li data-el="#woocommerce_terms_page_id" data-orientation="top">
 		<h2>Rechtliche Hinweisseiten</h2>
 		<p>Damit dein Shop besser vor Abmahnungen geschützt ist, solltest du hier auf jeden Fall deine Rechtstexte wie z.B. AGB, Widerrufsbelehrung, Impressum etc. auswählen.
 		Diese Texte werden, je nach Einstellungen, auch als Textanhang für die Bestellbestätigung oder andere WooCommerce E-Mails verwendet.</p>
@@ -64,7 +64,7 @@ if ( ! defined( 'ABSPATH' ) ) {
         <a class="button button-primary tourbus-next" href="javascript:void(0);">weiter</a>
     </li>
 
-	<li data-el="#s2id_woocommerce_gzd_default_delivery_time" data-orientation="top" data-width="600">
+	<li data-el="#woocommerce_gzd_default_delivery_time" data-orientation="top" data-width="600">
 		<h2>Lieferzeiten</h2>
 		<p>Standardmäßig verfügt WooCommerce über keine <a href="<?php echo admin_url( 'edit-tags.php?taxonomy=product_delivery_time&post_type=product' ); ?>" target="_blank">Lieferzeiten-Verwaltung</a> für Produkte. Diese Funktionalität fügt Germanizedh hinzu.
 		Wähle optional eine Standard-Lieferzeit aus, die immer dann gezeigt wird, wenn keine Lieferzeit für das Produkt hinterlegt wurde.

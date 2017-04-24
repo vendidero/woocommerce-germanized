@@ -211,7 +211,7 @@ class WC_GZD_Admin {
 			$setting_sections = array_merge( array( 
 				'general' => '', 
 				'display' => '', 
-				'emails' => '' ), 
+				'email' => '' ),
 			apply_filters( 'woocommerce_gzd_settings_sections', array() ) );
 			
 			delete_option( 'woocommerce_gzd_hide_tour' );

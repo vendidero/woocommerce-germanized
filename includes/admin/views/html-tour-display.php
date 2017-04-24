@@ -73,7 +73,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<a class="button button-primary tourbus-next" href="javascript:void(0);">weiter</a>
 	</li>
 
-	<li data-el="#s2id_woocommerce_gzd_checkout_legal_digital_types" data-orientation="top">
+	<li data-el="#woocommerce_gzd_checkout_legal_digital_types" data-orientation="top">
 		<h2>Digitale Produkttypen</h2>
 		<p>Standardmäßig wird der Hinweis bzgl. des Abtretens des Widerrufsrechts nur für herunterladbare Produkte angezeigt. Wenn du den Hinweis auch für andere Produkttypen (z.B. auch für virtuelle Produkte)
 		aktivieren möchtest, kannst du dies hier auswählen. Mit den Standard-Produkttypen (wie einfaches Produkt) solltest du allerdings vorsichtig sein, da der Hinweis dann immer angezeigt wird,

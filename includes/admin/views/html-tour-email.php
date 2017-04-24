@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<a class="button button-secondary" href="<?php echo WC_GZD_Admin::instance()->disable_tour_link( 'email' ); ?>" style="float: right">Nein, Danke</a>
 	</li>
 
-	<li data-el="#s2id_woocommerce_gzd_mail_attach_terms" data-orientation="bottom" data-width="500">
+	<li data-el="#woocommerce_gzd_mail_attach_terms" data-orientation="bottom" data-width="500">
 		<h2>Rechtstexte an E-Mails anhängen</h2>
 		<p>An dieser Stelle kannst du für jeden Rechtstext (z.B. AGB, Widerufsbelehrung) auswählen, an welche WooCommerce E-Mails der Text angehängt werden soll.
 		Per Drag & Drop kannst du die Reihenfolge der Rechtstexte in den E-Mails beeinflussen (z.B. zuerst AGB dann Widerrufsbelehrung).</p>
