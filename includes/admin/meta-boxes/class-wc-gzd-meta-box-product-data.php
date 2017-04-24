@@ -233,6 +233,10 @@ class WC_Germanized_Meta_Box_Product_Data {
 			'save' => true,
 		) );
 
+		if ( is_numeric( $product ) ) {
+		    $product = wc_get_product( $product );
+        }
+
 		$product_type = ( ! isset( $data['product-type'] ) || empty( $data['product-type'] ) ) ? 'simple' : sanitize_title( stripslashes( $data['product-type'] ) );
 
 		if ( isset( $data['_unit'] ) ) {
