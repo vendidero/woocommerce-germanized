@@ -7,7 +7,7 @@
  * Author: Vendidero
  * Author URI: https://vendidero.de
  * Requires at least: 3.8
- * Tested up to: 4.6
+ * Tested up to: 4.8
  * Requires at least WooCommerce: 2.4
  * Tested up to WooCommerce: 3.1
  *
@@ -760,9 +760,15 @@ final class WooCommerce_Germanized {
 				}
 			} else {
 
-				$base_rate = array_values( WC_Tax::get_shop_base_rate() );
-				$base_rate = (object) $base_rate[0];
+				$base_rate = WC_Tax::get_shop_base_rate();
+
+				$rate = reset($base_rate);
+				$rate_id = key($base_rate);
+
+				$base_rate = (object) $rate;
 				$base_rate->rate = $base_rate->rate;
+				$base_rate->rate_id = $rate_id;
+
 				$tax_array[] = array(
 					'tax' => $base_rate,
 					'contains' => array( $base_rate ),

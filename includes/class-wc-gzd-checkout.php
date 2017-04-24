@@ -93,9 +93,8 @@ class WC_GZD_Checkout {
 
 		if ( wc_gzd_is_parcel_delivery_data_transfer_checkbox_enabled() )
 			add_action( 'woocommerce_checkout_update_order_meta', array( $this, 'order_parcel_delivery_data_transfer' ), 10, 2 );
-
 	}
-	
+
 	public function remove_cancel_button( $actions, $order ) {
 
 		if ( isset( $actions[ 'cancel' ] ) )
