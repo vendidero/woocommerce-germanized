@@ -50,8 +50,9 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 	public static function output( $loop, $variation_data, $variation ) {
 
 		$_product = wc_get_product( $variation );
-		$_parent = wc_get_product( $_product->parent );
-		$variation_id = $_product->variation_id;
+
+		$_parent = wc_get_product( wc_gzd_get_crud_data( $_product, 'parent' ) );
+		$variation_id = wc_gzd_get_crud_data( $_product, 'id' );
 
 		$variation_meta   = get_post_meta( $variation_id );
 		$variation_data	  = array();
