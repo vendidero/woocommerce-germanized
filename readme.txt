@@ -3,7 +3,7 @@ Contributors: vendidero
 Tags: woocommerce, german market, german, germany, deutsch, deutschland, de, de_DE, shop, commerce, e-commerce, ecommerce, woothemes, sepa, invoice
 Requires at least: 3.8
 Tested up to: 4.7
-Stable tag: 1.8.9
+Stable tag: 1.8.10
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -166,6 +166,13 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 1. WooCommerce Germanized Settings
 
 == Changelog ==
+
+= 1.8.10 =
+* Improvement - Better E-Mail-Template naming (renamed processing order to order confirmation)
+* Fix - WC 3.0 unit prices (from-to) for variations
+* Fix - Unit price bulk saving fallback
+* Fix - rate_id within order tax totals (using get_shop_base_rate)
+* Fix - tour email explanations, WC 3.0 preparations
 
 = 1.8.9 =
 * Feature - Allow DHL parcel shop delivery for certain shipping rates only

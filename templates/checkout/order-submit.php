@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 ?>
 <div class="wc-gzd-order-submit">
-	
+
 	<div class="form-row place-order wc-gzd-place-order">
 
 		<noscript>
@@ -23,7 +23,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<?php wp_nonce_field( 'woocommerce-process_checkout' ); ?>
 
 		<?php do_action( 'woocommerce_review_order_before_submit' ); ?>
-		
+
 		<?php do_action( 'woocommerce_gzd_review_order_before_submit' ); ?>
 
 		<?php echo apply_filters( 'woocommerce_order_button_html', '<input type="submit" class="button alt" name="woocommerce_checkout_place_order" id="place_order" value="' . esc_attr( $order_button_text ) . '" data-value="' . esc_attr( $order_button_text ) . '" />' ); ?>
@@ -31,5 +31,5 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<?php do_action( 'woocommerce_review_order_after_submit' ); ?>
 
 	</div>
-	
+
 </div>

@@ -598,8 +598,16 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 		$email_templates 	= $mailer->get_emails();
 		$email_select 		= array();
 
-		foreach ( $email_templates as $email )
-			$email_select[ $email->id ] = empty( $email->title ) ? ucfirst( $email->id ) : ucfirst( $email->title );
+		foreach ( $email_templates as $email ) {
+
+		    $customer = false;
+
+		    if ( is_callable( array( $email, 'is_customer_email' ) ) ) {
+		        $customer = $email->is_customer_email();
+            }
+
+			$email_select[ $email->id ] = empty( $email->title ) ? ucfirst( $email->id ) : ucfirst( $email->title ) . ' (' . ( $customer ? __( 'Customer', 'woocommerce-germanized' ) : __( 'Admin', 'woocommerce-germanized' ) ) . ')';
+		}
 
 		$email_order = wc_gzd_get_email_attachment_order();
 

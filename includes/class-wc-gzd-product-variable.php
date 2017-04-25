@@ -139,7 +139,7 @@ class WC_GZD_Product_Variable extends WC_GZD_Product {
             if ( strpos( $text, '{price}' ) !== false ) {
                 $price = str_replace( '{price}', $price . apply_filters( 'wc_gzd_unit_price_seperator', ' / ' ) . $this->get_unit_base(), $text );
             } else {
-                $price = str_replace( array( '{base_price}', '{unit}', '{base}' ), array( $price, '<span class="unit">' . $this->get_unit() . '</span>', ( $this->unit_base != apply_filters( 'wc_gzd_unit_base_min_amount_to_show', 1 ) ? '<span class="unit-base">' . $this->unit_base . '</span>' : '' ) ), $text );
+                $price = str_replace( array( '{base_price}', '{unit}', '{base}' ), array( $price, '<span class="unit">' . $this->get_unit() . '</span>', $this->get_unit_base() ), $text );
             }
 		}
 
@@ -162,7 +162,7 @@ class WC_GZD_Product_Variable extends WC_GZD_Product {
 
 		global $wp_filter;
 
-		$transient_name = 'wc_gzd_var_unit_prices_' . $this->id;
+		$transient_name = 'wc_gzd_var_unit_prices_' . wc_gzd_get_crud_data( $this, 'id' );
 
 		/**
 		 * Create unique cache key based on the tax location (affects displayed/cached prices), product version and active price filters.
