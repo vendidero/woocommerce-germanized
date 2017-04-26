@@ -558,17 +558,24 @@ class WC_GZD_Checkout {
 		$checkout = WC()->checkout();
 
 		if ( ! empty( $this->custom_fields ) ) {
+
 			foreach ( $this->custom_fields as $key => $custom_field ) {
+
 				if ( ! empty( $custom_field[ 'group' ] ) && ! isset( $custom_field[ 'override' ] ) ) {
+
 					foreach ( $custom_field[ 'group' ] as $group ) {
 
-						$val = ( isset( $checkout->posted[ $group . '_' . $key ] ) ? $checkout->posted[ $group . '_' . $key ] : '' );
+						$val = '';
 
-						if ( $group == 'shipping' || $group == 'billing' )
+						if ( wc_gzd_get_dependencies()->woocommerce_version_supports_crud() ) {
 							$val = $checkout->get_posted_address_data( $key, $group );
+						} else {
+							$val = ( isset( $checkout->posted[ $group . '_' . $key ] ) ? $checkout->posted[ $group . '_' . $key ] : '' );
+						}
 
-						if ( ! empty( $val ) )
+						if ( ! empty( $val ) ) {
 							update_post_meta( $order_id, '_' . $group . '_' . $key, apply_filters( 'woocommerce_gzd_custom_' . $key . '_field_value', sanitize_text_field( $val ) ) );
+						}
 					}
 				}
 			}
