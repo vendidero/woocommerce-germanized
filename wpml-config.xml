@@ -49,5 +49,29 @@
         <key name="woocommerce_gzd_alternative_complaints_text_none" />
         <key name="woocommerce_gzd_alternative_complaints_text_willing" />
         <key name="woocommerce_gzd_alternative_complaints_text_obliged" />
+        <key name="woocommerce_customer_revocation_settings">
+            <key name="subject" />
+            <key name="heading" />
+        </key>
+        <key name="woocommerce_customer_trusted_shops_settings">
+            <key name="subject" />
+            <key name="heading" />
+        </key>
+        <key name="woocommerce_customer_ekomi_settings">
+            <key name="subject" />
+            <key name="heading" />
+        </key>
+        <key name="woocommerce_customer_sepa_direct_debit_mandate_settings">
+            <key name="subject" />
+            <key name="heading" />
+        </key>
+        <key name="woocommerce_customer_paid_for_order_settings">
+            <key name="subject" />
+            <key name="heading" />
+        </key>
+        <key name="woocommerce_customer_new_account_activation_settings">
+            <key name="subject" />
+            <key name="heading" />
+        </key>
     </admin-texts>
 </wpml-config>

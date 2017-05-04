@@ -124,3 +124,26 @@ function wc_gzd_get_dispute_resolution_text() {
 	$type = get_option( 'woocommerce_gzd_dispute_resolution_type', 'none' );
 	return get_option( 'woocommerce_gzd_alternative_complaints_text_' . $type );
 }
+
+function wc_gzd_get_tax_rate_label( $rate_percentage ) {
+	return ( get_option( 'woocommerce_tax_total_display' ) == 'itemized' ? sprintf( __( 'incl. %s%% VAT', 'woocommerce-germanized' ), wc_gzd_format_tax_rate_percentage( $rate_percentage ) ) : __( 'incl. VAT', 'woocommerce-germanized' ) );
+}
+
+function wc_gzd_get_shipping_costs_text( $product = false ) {
+
+	$find = array(
+		'{link}',
+		'{/link}'
+	);
+
+	$replace = array(
+		'<a href="' . esc_url( get_permalink( wc_get_page_id( 'shipping_costs' ) ) ) . '" target="_blank">',
+		'</a>'
+	);
+
+	if ( $product ) {
+		return apply_filters( 'woocommerce_gzd_shipping_costs_text', str_replace( $find, $replace, ( $product->has_free_shipping() ? get_option( 'woocommerce_gzd_free_shipping_text' ) : get_option( 'woocommerce_gzd_shipping_costs_text' ) ) ), $product );
+	} else {
+		return apply_filters( 'woocommerce_gzd_shipping_costs_cart_text', str_replace( $find, $replace, get_option( 'woocommerce_gzd_shipping_costs_text' ) ) );
+	}
+}

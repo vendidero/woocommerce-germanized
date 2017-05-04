@@ -37,8 +37,16 @@ class WC_GZD_Compatibility_Wpml extends WC_GZD_Compatibility {
 
 		add_action( 'woocommerce_gzd_get_term', array( $this, 'unhook_terms_clause' ), 10 );
         add_action( 'woocommerce_gzd_after_get_term', array( $this, 'rehook_terms_clause' ), 10 );
+
+        add_action( 'woocommerce_gzd_after_revocation_form_fields', array( $this, 'set_language_field' ), 10 );
 		
 		$this->filter_page_ids();
+	}
+
+	public function set_language_field() {
+		if( function_exists('wpml_the_language_input_field' ) ) {
+			wpml_the_language_input_field();
+		}
 	}
 
 	public function unhook_terms_clause() {

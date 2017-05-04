@@ -488,17 +488,7 @@ class WC_GZD_Product {
 		if ( apply_filters( 'woocommerce_germanized_hide_shipping_costs_text', false, $this ) )
 			return apply_filters( 'woocommerce_germanized_disabled_shipping_text', '', $this );
 		
-		$find = array(
-			'{link}',
-			'{/link}'
-		);
-		
-		$replace = array(
-			'<a href="' . esc_url( get_permalink( wc_get_page_id( 'shipping_costs' ) ) ) . '" target="_blank">',
-			'</a>'
-		);
-		
-		return apply_filters( 'woocommerce_gzd_shipping_costs_text', str_replace( $find, $replace, ( $this->has_free_shipping() ? get_option( 'woocommerce_gzd_free_shipping_text' ) : get_option( 'woocommerce_gzd_shipping_costs_text' ) ) ), $this );
+		return wc_gzd_get_shipping_costs_text( $this );
 	}
 
 }

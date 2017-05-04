@@ -229,6 +229,47 @@ function wc_gzd_cart_totals_order_total_html() {
 	echo '<td><strong>' . WC()->cart->get_total() . '</strong></td>';
 }
 
+function wc_gzd_get_cart_total_taxes() {
+
+	$tax_array = array();
+
+	// If prices are tax inclusive, show taxes here
+	if ( get_option( 'woocommerce_calc_taxes' ) === 'yes' && WC()->cart->tax_display_cart === 'incl' ) {
+
+		if ( get_option( 'woocommerce_tax_total_display' ) == 'itemized' ) {
+			foreach ( WC()->cart->get_tax_totals() as $code => $tax ) {
+				$rate = wc_gzd_get_tax_rate( $tax->tax_rate_id );
+				if ( ! $rate ) {
+					continue;
+				}
+				if ( ! empty( $rate ) && isset( $rate->tax_rate ) ) {
+					$tax->rate = $rate->tax_rate;
+				}
+				if ( ! isset( $tax_array[ $tax->rate ] ) ) {
+					$tax_array[ $tax->rate ] = array( 'tax'      => $tax,
+					                                  'amount'   => $tax->amount,
+					                                  'contains' => array( $tax )
+					);
+				} else {
+					array_push( $tax_array[ $tax->rate ]['contains'], $tax );
+					$tax_array[ $tax->rate ]['amount'] += $tax->amount;
+				}
+			}
+		} else {
+			$base_rate       = array_values( WC_Tax::get_shop_base_rate() );
+			$base_rate       = (object) $base_rate[0];
+			$base_rate->rate = $base_rate->rate;
+			$tax_array[]     = array( 'tax'      => $base_rate,
+			                          'contains' => array( $base_rate ),
+			                          'amount'   => WC()->cart->get_taxes_total( true, true )
+			);
+		}
+
+		return $tax_array;
+	}
+
+}
+
 /**
  * Get order total tax html.
  *  
@@ -236,53 +277,24 @@ function wc_gzd_cart_totals_order_total_html() {
  */
 function wc_gzd_cart_totals_order_total_tax_html() {
 
-	// If prices are tax inclusive, show taxes here
-	if ( get_option( 'woocommerce_calc_taxes' ) == 'yes' && WC()->cart->tax_display_cart == 'incl' ) {
-		$tax_array = array();
-		if ( get_option( 'woocommerce_tax_total_display' ) == 'itemized' ) {
-			foreach ( WC()->cart->get_tax_totals() as $code => $tax ) {
-				$rate = wc_gzd_get_tax_rate( $tax->tax_rate_id );
-				if ( ! $rate )
-					continue;
-				if ( ! empty( $rate ) && isset( $rate->tax_rate ) )
-					$tax->rate = $rate->tax_rate;
-				if ( ! isset( $tax_array[ $tax->rate ] ) )
-					$tax_array[ $tax->rate ] = array( 'tax' => $tax, 'amount' => $tax->amount, 'contains' => array( $tax ) );
-				else {
-					array_push( $tax_array[ $tax->rate ][ 'contains' ], $tax );
-					$tax_array[ $tax->rate ][ 'amount' ] += $tax->amount;
-				}
-			}
-		} else {
-			$base_rate = array_values( WC_Tax::get_shop_base_rate() );
-			$base_rate = (object) $base_rate[0];
-			$base_rate->rate = $base_rate->rate;
-			$tax_array[] = array( 'tax' => $base_rate, 'contains' => array( $base_rate ), 'amount' => WC()->cart->get_taxes_total( true, true ) );
-		}
+    foreach ( wc_gzd_get_cart_total_taxes() as $tax ) :
 
-		?>
+        $label = wc_gzd_get_tax_rate_label( $tax[ 'tax' ]->rate );
 
-		<?php if ( ! empty( $tax_array ) ) : ?>	
-			
-			<?php foreach ( $tax_array as $tax ) : 
+    ?>
+        <tr class="order-tax">
+            <th><?php echo $label; ?></th>
+            <td data-title="<?php echo esc_attr( $label ); ?>"><?php echo wc_price( $tax[ 'amount' ] ); ?></td>
+        </tr>
 
-				$label = ( get_option( 'woocommerce_tax_total_display' ) == 'itemized' ? sprintf( __( 'incl. %s%% VAT', 'woocommerce-germanized' ), wc_gzd_format_tax_rate_percentage( $tax[ 'tax' ]->rate ) ) : __( 'incl. VAT', 'woocommerce-germanized' ) );
-
-			?>
-				<tr class="order-tax">
-					<th><?php echo $label; ?></th> 
-					<td data-title="<?php echo esc_attr( $label ); ?>"><?php echo wc_price( $tax[ 'amount' ] ); ?></td>
-				</tr>
-			
-			<?php endforeach; ?>
-		
-		<?php endif;
-	}
+    <?php endforeach;
 }
 
 function wc_gzd_get_legal_text( $text = '' ) {
-	$plain_text = ( $text == '' ? get_option( 'woocommerce_gzd_checkout_legal_text' ) : $text );
-	if ( ! empty( $plain_text ) ) {
+
+    $plain_text = ( $text == '' ? apply_filters( 'woocommerce_gzd_legal_text', get_option( 'woocommerce_gzd_checkout_legal_text' ) ) : $text );
+
+    if ( ! empty( $plain_text ) ) {
 		$plain_text = str_replace( 
 			array( '{term_link}', '{data_security_link}', '{revocation_link}', '{/term_link}', '{/data_security_link}', '{/revocation_link}' ), 
 			array( 
@@ -300,28 +312,40 @@ function wc_gzd_get_legal_text( $text = '' ) {
 }
 
 function wc_gzd_get_legal_text_error() {
-	$plain_text = '';
-	if ( get_option( 'woocommerce_gzd_checkout_legal_text_error' ) )
-		$plain_text = wc_gzd_get_legal_text( get_option( 'woocommerce_gzd_checkout_legal_text_error' ) );
+
+    $plain_text = '';
+	$text = apply_filters( 'woocommerce_gzd_legal_error_text', get_option( 'woocommerce_gzd_checkout_legal_text_error' ) );
+
+	if ( $text )
+		$plain_text = wc_gzd_get_legal_text( $text );
+
 	return $plain_text;
 }
 
 function wc_gzd_get_legal_text_digital() {
-	$plain_text = __( 'I want immediate access to the digital content and I acknowledge that thereby I lose my right to cancel once the service has begun.', 'woocommerce-germanized' );
-	if ( get_option( 'woocommerce_gzd_checkout_legal_text_digital' ) )
-		$plain_text = wc_gzd_get_legal_text( get_option( 'woocommerce_gzd_checkout_legal_text_digital' ) );
+
+    $plain_text = '';
+    $text = apply_filters( 'woocommerce_gzd_legal_digital_text', get_option( 'woocommerce_gzd_checkout_legal_text_digital', __( 'I want immediate access to the digital content and I acknowledge that thereby I lose my right to cancel once the service has begun.', 'woocommerce-germanized' ) ) );
+
+	if ( $text )
+		$plain_text = wc_gzd_get_legal_text( $text );
+
 	return $plain_text;
 }
 
 function wc_gzd_get_legal_text_digital_error() {
-	$plain_text = __( 'To retrieve direct access to digital content you have to agree to the loss of your right of withdrawal.', 'woocommerce-germanized' );
-	if ( get_option( 'woocommerce_gzd_checkout_legal_text_digital_error' ) )
-		$plain_text = wc_gzd_get_legal_text( get_option( 'woocommerce_gzd_checkout_legal_text_digital_error' ) );
+
+    $plain_text = '';
+	$text = apply_filters( 'woocommerce_gzd_legal_digital_error_text', get_option( 'woocommerce_gzd_checkout_legal_text_digital_error', __( 'To retrieve direct access to digital content you have to agree to the loss of your right of withdrawal.', 'woocommerce-germanized' ) ) );
+
+    if ( $text )
+		$plain_text = wc_gzd_get_legal_text( $text );
+
 	return $plain_text;
 }
 
 function wc_gzd_get_legal_text_digital_email_notice() {
-	$text = get_option( 'woocommerce_gzd_order_confirmation_legal_digital_notice' );
+	$text = apply_filters( 'woocommerce_gzd_legal_digital_email_text', get_option( 'woocommerce_gzd_order_confirmation_legal_digital_notice' ) );
 	if ( $text ) {
 		$text = str_replace( 
 			array( '{link}', '{/link}' ), 
@@ -332,6 +356,7 @@ function wc_gzd_get_legal_text_digital_email_notice() {
 			$text
 		);
 	}
+
 	return $text;
 }
 
@@ -341,20 +366,22 @@ function wc_gzd_get_legal_text_service() {
 	if ( get_option( 'woocommerce_gzd_checkout_legal_text_service' ) )
 		$plain_text = wc_gzd_get_legal_text( get_option( 'woocommerce_gzd_checkout_legal_text_service' ) );
 	
-	return $plain_text;
+	return apply_filters( 'woocommerce_gzd_legal_service_text', $plain_text );
 }
 
 function wc_gzd_get_legal_text_service_error() {
-	$plain_text = __( 'To allow the immediate performance of the services you have to agree to the loss of your right of withdrawal.', 'woocommerce-germanized' );
-	
+
+    $plain_text = '';
+	$text = apply_filters( 'woocommerce_gzd_legal_service_error_text', get_option( 'woocommerce_gzd_checkout_legal_text_service_error', __( 'To allow the immediate performance of the services you have to agree to the loss of your right of withdrawal.', 'woocommerce-germanized' ) ) );
+
 	if ( get_option( 'woocommerce_gzd_checkout_legal_text_service_error' ) )
-		$plain_text = wc_gzd_get_legal_text( get_option( 'woocommerce_gzd_checkout_legal_text_service_error' ) );
+		$plain_text = wc_gzd_get_legal_text( $text );
 	
 	return $plain_text;
 }
 
 function wc_gzd_get_legal_text_service_email_notice() {
-	$text = get_option( 'woocommerce_gzd_order_confirmation_legal_service_notice' );
+	$text = apply_filters( 'woocommerce_gzd_legal_service_email_text', get_option( 'woocommerce_gzd_order_confirmation_legal_service_notice' ) );
 	
 	if ( $text ) {
 		$text = str_replace( 
@@ -366,6 +393,7 @@ function wc_gzd_get_legal_text_service_email_notice() {
 			$text
 		);
 	}
+
 	return $text;
 }
 
@@ -394,7 +422,7 @@ function wc_gzd_get_chosen_shipping_rates( $args = array() ) {
 
 function wc_gzd_get_legal_text_parcel_delivery( $titles = array() ) {
 	$plain_text = __( 'Yes, I would like to be reminded via E-mail about parcel delivery ({shipping_method_title}). Your E-mail Address will only be transferred to our parcel service provider for that particular reason.', 'woocommerce-germanized' );
-	
+
 	if ( get_option( 'woocommerce_gzd_checkout_legal_text_parcel_delivery' ) )
 		$plain_text = get_option( 'woocommerce_gzd_checkout_legal_text_parcel_delivery' );
 

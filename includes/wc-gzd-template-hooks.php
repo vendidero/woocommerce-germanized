@@ -80,6 +80,11 @@ if ( get_option( 'woocommerce_gzd_small_enterprise' ) === 'yes' ) {
 }
 
 /**
+ * Mini Cart
+ */
+add_action( 'woocommerce_widget_shopping_cart_before_buttons', 'woocommerce_gzd_template_mini_cart_taxes', 10 );
+
+/**
  * Checkout
  */
 add_action( 'woocommerce_review_order_after_order_total', 'woocommerce_gzd_template_cart_total_tax', 1 );

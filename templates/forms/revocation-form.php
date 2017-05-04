@@ -22,7 +22,10 @@ $fields = WC_GZD_Revocation::get_fields();
 		<?php foreach ( $fields as $name => $field ) : ?>
 			<?php echo ($name == 'sep') ? '<h3>' . $field . '</h3>' : woocommerce_form_field( $name, $field ); ?>
 		<?php endforeach;?>
-	<?php endif;?> 
+	<?php endif;?>
+
+    <?php do_action( 'woocommerce_gzd_after_revocation_form_fields' ); ?>
+
 	<div class="form-row submit-revocation checkout-btn-wrap">
 		<?php wp_nonce_field( 'woocommerce-revocation' ); ?>
 		<input type="submit" class="button alt" name="woocommerce_gzd_revocation_submit" id="submit_revocation" value="<?php echo _x( 'Forward Revocation', 'revocation-form', 'woocommerce-germanized' );?>" data-value="<?php echo _x( 'Forward Revocation', 'revocation-form', 'woocommerce-germanized' );?>"/>

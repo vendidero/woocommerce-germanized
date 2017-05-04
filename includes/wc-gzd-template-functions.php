@@ -599,4 +599,12 @@ if ( ! function_exists( 'woocommerce_gzd_template_order_item_hooks' ) ) {
 
 }
 
+if ( ! function_exists( 'woocommerce_gzd_template_mini_cart_taxes' ) ) {
+
+	function woocommerce_gzd_template_mini_cart_taxes() {
+		wc_get_template( 'cart/mini-cart-totals.php', array( 'taxes' => wc_gzd_get_cart_total_taxes(), 'shipping_costs_info' => wc_gzd_get_shipping_costs_text() ) );
+	}
+
+}
+
 ?>
