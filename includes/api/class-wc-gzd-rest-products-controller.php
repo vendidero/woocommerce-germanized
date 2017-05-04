@@ -444,7 +444,9 @@ class WC_GZD_REST_Products_Controller {
 	private function set_product_variation_fields( $variations, $product ) {
 
 		foreach( $variations as $key => $variation ) {
-			$variations[ $key ] = array_merge( $variation, $this->get_product_data( wc_get_product( $variation[ 'id' ] ) ) );
+			if( isset($variation[ 'id' ]) ) {
+				$variations[ $key ] = array_merge( $variation, $this->get_product_data( wc_get_product( $variation[ 'id' ] ) ) );
+			}
 		}
 
 		return $variations;
