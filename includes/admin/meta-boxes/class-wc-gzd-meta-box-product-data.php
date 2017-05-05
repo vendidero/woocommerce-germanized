@@ -30,7 +30,11 @@ class WC_Germanized_Meta_Box_Product_Data {
 		if ( is_admin() ) {
 			add_action( 'woocommerce_product_options_general_product_data', array( __CLASS__, 'output' ) );
 			add_action( 'woocommerce_product_options_shipping', array( __CLASS__, 'output_shipping' ) );
-			add_action( 'woocommerce_process_product_meta', array( __CLASS__, 'save' ), 20, 2 );
+			if ( ! wc_gzd_get_dependencies()->woocommerce_version_supports_crud() ) {
+				add_action( 'woocommerce_process_product_meta', array( __CLASS__, 'save' ), 20, 2 );
+            } else {
+			    add_action( 'woocommerce_admin_process_product_object', array( __CLASS__, 'save' ), 10, 1 );
+            }
 			add_filter( 'product_type_options', array( __CLASS__, 'service_type' ), 10, 1 );
 		}
 
@@ -214,9 +218,10 @@ class WC_Germanized_Meta_Box_Product_Data {
 		);
 	}
 
-	public static function save( $post_id ) {
+	public static function save( $product ) {
 
-		$product = wc_get_product( $post_id );
+	    if ( is_numeric( $product ) )
+		    $product = wc_get_product( $product );
 
 		$data = self::get_fields();
 
@@ -224,7 +229,12 @@ class WC_Germanized_Meta_Box_Product_Data {
 			$data[ $k ] = ( isset( $_POST[ $k ] ) ? $_POST[ $k ] : null );
 		}
 
+		if ( wc_gzd_get_dependencies()->woocommerce_version_supports_crud() )
+			$data[ 'save' ] = false;
+
 		$product = self::save_product_data( $product, $data );
+
+		return $product;
 	}
 
 	public static function save_unit_price( $product, $data, $is_variation = false ) {
