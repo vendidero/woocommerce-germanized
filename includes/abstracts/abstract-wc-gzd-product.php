@@ -317,7 +317,7 @@ class WC_GZD_Product {
 	 */
 	public function get_unit_price_including_tax( $qty = 1, $price = '' ) {
 		$price = ( $price == '' ) ? $this->unit_price : $price;
-		return ( $price == '' ) ? '' : wc_gzd_get_price_including_tax( $this->child, array( 'price' => $price, 'qty' => $qty ) );
+		return apply_filters( 'woocommerce_gzd_unit_price_including_tax', ( $price == '' ) ? '' : wc_gzd_get_price_including_tax( $this->child, array( 'price' => $price, 'qty' => $qty ) ), $price, $qty, $this );
 	}
 
 	/**
@@ -329,7 +329,7 @@ class WC_GZD_Product {
 	 */
 	public function get_unit_price_excluding_tax( $qty = 1, $price = '' ) {
 		$price = ( $price == '' ) ? $this->unit_price : $price;
-		return ( $price == '' ) ? '' : wc_gzd_get_price_excluding_tax( $this->child, array( 'price' => $price, 'qty' => $qty ) );
+		return apply_filters( 'woocommerce_gzd_unit_price_excluding_tax', ( $price == '' ) ? '' : wc_gzd_get_price_excluding_tax( $this->child, array( 'price' => $price, 'qty' => $qty ) ), $price, $qty, $this );
 	}
 
 	/**
