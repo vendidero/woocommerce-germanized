@@ -122,7 +122,7 @@ class WC_GZD_Customer_Helper {
 	public function login_redirect( $redirect, $user ) {
 
 		if ( WC()->session->get( 'login_redirect' ) && 'checkout' === WC()->session->get( 'login_redirect' ) ) {
-			return wc_gzd_get_page_permalink( 'checkout' );
+			return apply_filters( 'woocommerce_gzd_customer_activation_checkout_redirect', wc_gzd_get_page_permalink( 'checkout' ) );
 		}
 
 		return $redirect;
@@ -182,7 +182,7 @@ class WC_GZD_Customer_Helper {
 
 				// Redirect to checkout
 				unset( WC()->session->login_redirect );
-				wp_safe_redirect( wc_gzd_get_page_permalink( 'checkout' ) );
+				wp_safe_redirect( apply_filters( 'woocommerce_gzd_customer_activation_checkout_redirect', wc_gzd_get_page_permalink( 'checkout' ) ) );
 				exit;
 
 			}
@@ -307,7 +307,7 @@ class WC_GZD_Customer_Helper {
 				delete_user_meta( $user->ID, '_woocommerce_activation' );
 				WC()->mailer()->customer_new_account( $user->ID );
 
-				if ( $login && ! is_user_logged_in() )
+				if ( apply_filters( 'woocommerce_gzd_user_activation_auto_login', $login, $user ) && ! is_user_logged_in() )
 					wc_set_customer_auth_cookie( $user->ID );
 
 				return true;
