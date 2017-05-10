@@ -264,10 +264,9 @@ function wc_gzd_get_cart_total_taxes() {
 			                          'amount'   => WC()->cart->get_taxes_total( true, true )
 			);
 		}
-
-		return $tax_array;
 	}
 
+	return $tax_array;
 }
 
 /**
