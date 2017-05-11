@@ -39,7 +39,7 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 	public static function service( $loop, $variation_data, $variation ) {
 
 		$_product = wc_get_product( $variation );
-		$variation_id = $_product->variation_id;
+		$variation_id = wc_gzd_get_crud_data( $_product, 'id' );
 		$is_service = get_post_meta( $variation_id, '_service', true );
 
 		?>
