@@ -20,6 +20,14 @@ WP_CORE_DIR="${PWD}/tmp/wordpress/"
 WOO_CORE_DIR="${PWD}/tmp/woocommerce/"
 TEST_BASE_DIR="${PWD}/tmp/"
 
+download() {
+    if [ `which curl` ]; then
+        curl -s "$1" > "$2";
+    elif [ `which wget` ]; then
+        wget -nv -O "$2" "$1"
+    fi
+}
+
 install_woo() {
     cd $TEST_BASE_DIR
     $(git clone https://github.com/woocommerce/woocommerce.git)
