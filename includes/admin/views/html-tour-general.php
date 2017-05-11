@@ -90,7 +90,7 @@ if ( ! wc_gzd_get_dependencies()->woocommerce_version_supports_crud() ) {
 
 	<li data-el="<?php echo $elements[ 'delivery_time' ]; ?>" data-orientation="top" data-width="600">
 		<h2>Lieferzeiten</h2>
-		<p>Standardmäßig verfügt WooCommerce über keine <a href="<?php echo admin_url( 'edit-tags.php?taxonomy=product_delivery_time&post_type=product' ); ?>" target="_blank">Lieferzeiten-Verwaltung</a> für Produkte. Diese Funktionalität fügt Germanizedh hinzu.
+		<p>Standardmäßig verfügt WooCommerce über keine <a href="<?php echo admin_url( 'edit-tags.php?taxonomy=product_delivery_time&post_type=product' ); ?>" target="_blank">Lieferzeiten-Verwaltung</a> für Produkte. Diese Funktionalität fügt Germanized hinzu.
 		Wähle optional eine Standard-Lieferzeit aus, die immer dann gezeigt wird, wenn keine Lieferzeit für das Produkt hinterlegt wurde.
 		Der Lieferzeiten-Text wird verwendet um die Lieferzeiten im Shop darzustellen. Du kannst mit dieser Option die Ausgabe steuern - z.B. Lieferzeit: {delivery_time} wobei der Platzhalter {delivery_time} mit dem für die Lieferzeit hinterlegtem Wert (z.B. 3-4 Tage) ersetzt wird.</p>
 		<a class="button button-primary tourbus-next" href="javascript:void(0);">weiter</a>
