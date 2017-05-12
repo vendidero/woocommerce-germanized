@@ -176,7 +176,7 @@ class WC_GZD_Admin {
 			return;
 
 		if ( isset( $_POST[ '_legal_text' ] ) && ! empty( $_POST[ '_legal_text' ] ) )
-			update_post_meta( $post_id, '_legal_text', esc_html( $_POST[ '_legal_text' ] ) );
+			update_post_meta( $post_id, '_legal_text', sanitize_text_field( esc_html( $_POST[ '_legal_text' ] ) ) );
 		else
 			delete_post_meta( $post_id, '_legal_text' );
 		

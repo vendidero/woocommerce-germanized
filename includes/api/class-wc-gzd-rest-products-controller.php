@@ -418,7 +418,7 @@ class WC_GZD_REST_Products_Controller {
 		}
 
 		if ( isset( $request['mini_desc'] ) ) {
-			$data['_mini_desc'] = sanitize_text_field( $request['mini_desc'] );
+			$data['_mini_desc'] = sanitize_text_field( esc_html( $request['mini_desc'] ) );
 		}
 
 		if ( isset( $request['free_shipping'] ) ) {
