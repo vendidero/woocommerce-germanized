@@ -167,6 +167,14 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 
 == Changelog ==
 
+= 1.8.11 =
+* Improvement - Better WC 3.0 compliant product saving
+* Improvement - WPML Compatibility for revocation form and custom emails
+* Improvement - Filters for unit prices and double opt in
+* Fix - WC 3.0 meta box warnings
+* Fix - Replaced checkout legacy posted data access
+* Fix - REST API mini description
+
 = 1.8.10 =
 * Improvement - Better E-Mail-Template naming (renamed processing order to order confirmation)
 * Fix - WC 3.0 unit prices (from-to) for variations

@@ -76,7 +76,7 @@ jQuery( function( $ ) {
 
                 if ( $( '#shipping_country' ).val() === 'DE' ) {
                     $( '#shipping_address_2' ).val( '' );
-                    $( '#shipping_address_2' ).hide();
+                    $( '#shipping_address_2' ).addClass( 'gzd-hidden' ).hide();
                 } else {
                     $( '#shipping_address_2' ).show();
                 }
@@ -88,6 +88,11 @@ jQuery( function( $ ) {
                 label.contents().filter( function() {
                     return this.nodeType == 3;
                 }).first().replaceWith( wc_gzd_dhl_parcel_shops.defaultAddressFieldLabel );
+
+                if ( $( '#shipping_address_2' ).hasClass( 'gzd-hidden' ) ) {
+                    $( '#shipping_address_2' ).show();
+                    $( '#shipping_address_2' ).removeClass( 'gzd-hidden' );
+                }
 
                 $( '#shipping_address_1' ).attr( 'placeholder', wc_gzd_dhl_parcel_shops.defaultAddressFieldPlaceholder );
                 $( '#shipping_parcelshop_post_number_field' ).hide();

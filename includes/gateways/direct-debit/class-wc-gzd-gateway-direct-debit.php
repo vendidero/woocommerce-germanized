@@ -294,7 +294,8 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 
     	global $post;
 
-    	$order = wc_get_order( $post->ID );
+    	if ( ! $post || ! $order = wc_get_order( $post->ID ) )
+    	    return $fields;
 
     	if ( wc_gzd_get_crud_data( $order, 'payment_method' ) !== $this->id )
     		return $fields;
