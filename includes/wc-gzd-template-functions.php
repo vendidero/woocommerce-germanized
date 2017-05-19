@@ -229,12 +229,28 @@ if ( ! function_exists( 'woocommerce_gzd_parcel_delivery_checkbox' ) ) {
 			} else {
 				array_push( $titles, $rate->label );
 			}
-		}	
-		
-		if ( wc_gzd_is_parcel_delivery_data_transfer_checkbox_enabled( $ids ) ) {
-			wc_get_template( 'checkout/terms-parcel-delivery.php', array( 'titles' => $titles ) );
-		}	
+		}
+
+		wc_get_template( 'checkout/terms-parcel-delivery.php', array(
+			'titles' => $titles,
+			'show'   => wc_gzd_is_parcel_delivery_data_transfer_checkbox_enabled( $ids )
+		) );
 	}
+}
+
+if ( ! function_exists( 'woocommerce_gzd_refresh_parcel_delivery_checkbox_fragment' ) ) {
+
+	function woocommerce_gzd_refresh_parcel_delivery_checkbox_fragment( $fragments ) {
+
+		ob_start();
+		woocommerce_gzd_parcel_delivery_checkbox();
+		$delivery_checkbox = ob_get_clean();
+
+		$fragments[ '.data-parcel-delivery' ] = $delivery_checkbox;
+
+		return $fragments;
+	}
+
 }
 
 if ( ! function_exists( 'woocommerce_gzd_checkout_validation' ) ) {

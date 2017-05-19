@@ -4,6 +4,7 @@
 ;(function ( $, window, document, undefined ) {
 
 	$.fn.wc_gzd_variation_form = function () {
+
 		var $form 	 	= this,
 			$wrapper 	= $form.parents( wc_gzd_add_to_cart_variation_params.wrapper );
 

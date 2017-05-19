@@ -35,8 +35,8 @@ class WC_GZD_Customer_Helper {
 		// Send customer account notification
 		add_action( 'woocommerce_email', array( $this, 'email_hooks' ), 0, 1 );
 		// Add Title to user profile
-		add_filter( 'woocommerce_customer_meta_fields', array( $this, 'profile_field_title' ), 10, 1 ); 
-		
+		add_filter( 'woocommerce_customer_meta_fields', array( $this, 'profile_field_title' ), 10, 1 );
+
 		if ( $this->is_double_opt_in_enabled() ) {
 
 			// Check for customer activation
@@ -319,16 +319,20 @@ class WC_GZD_Customer_Helper {
 	}
 
 	public function init_gettext_replacement() {
+
 		if ( is_checkout() && get_option( 'woocommerce_gzd_customer_account_checkout_checkbox' ) == 'yes' )
 			add_filter( 'gettext', array( $this, 'set_customer_account_checkbox_text' ), 10, 3 );
 	}
 
 	public function set_customer_account_checkbox_text( $translated, $original, $domain ) {
+
 		$search = "Create an account?";
+
 		if ( $domain === 'woocommerce' && $original === $search ) {
 			remove_filter( 'gettext', array( $this, 'set_customer_account_checkbox_text' ), 10, 3 );
 			return wc_gzd_get_legal_text( get_option( 'woocommerce_gzd_customer_account_text' ) );
 		}
+
 		return $translated;
 	}
 

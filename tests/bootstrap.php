@@ -57,7 +57,7 @@ class WC_GZD_Unit_Tests_Bootstrap {
 		tests_add_filter( 'muplugins_loaded', array( $this, 'load_wc_germanized' ) );
 
 		// install WC
-		tests_add_filter( 'setup_theme', array( $this, 'install_wc_germanized' ) );
+		tests_add_filter( 'init', array( $this, 'install_wc_germanized' ) );
 
 		// load the WP testing environment
 		require_once( $this->wp_tests_dir . '/includes/bootstrap.php' );

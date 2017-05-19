@@ -65,6 +65,8 @@ final class WooCommerce_Germanized {
 
 	public $compatibilities = array();
 
+	private $localized_scripts = array();
+
 	/**
 	 * Main WooCommerceGermanized Instance
 	 *
@@ -179,10 +181,13 @@ final class WooCommerce_Germanized {
 		add_filter( 'woocommerce_get_settings_pages', array( $this, 'add_settings' ) );
 
 		add_filter( 'woocommerce_enqueue_styles', array( $this, 'add_styles' ) );
+
 		// Load after WooCommerce Frontend scripts
 		add_action( 'wp_enqueue_scripts', array( $this, 'add_scripts' ), 15 );
 		add_action( 'wp_enqueue_scripts', array( $this, 'add_inline_styles' ) );
 		add_action( 'wp_print_scripts', array( $this, 'localize_scripts' ), 5 );
+		add_action( 'wp_print_footer_scripts', array( $this, 'localize_scripts' ), 5 );
+
 		add_filter( 'woocommerce_email_classes', array( $this, 'add_emails' ) );
 		add_filter( 'woocommerce_locate_core_template', array( $this, 'email_templates' ), 0, 3 );
 		add_action( 'woocommerce_email_order_meta', array( $this, 'email_small_business_notice' ), 1 );
@@ -600,24 +605,33 @@ final class WooCommerce_Germanized {
 		$assets_path = str_replace( array( 'http:', 'https:' ), '', WC_germanized()->plugin_url() ) . '/assets/';
 		$frontend_script_path = $assets_path . 'js/';
 
+		wp_register_script( 'wc-gzd-revocation', $frontend_script_path . 'revocation' . $suffix . '.js', array(
+			'jquery', 'woocommerce', 'wc-country-select', 'wc-address-i18n'
+		), WC_GERMANIZED_VERSION, true );
+
+		wp_register_script( 'wc-gzd-checkout', $frontend_script_path . 'checkout' . $suffix . '.js', array(
+			'jquery',
+			'wc-checkout',
+		), WC_GERMANIZED_VERSION, true );
+
+		wp_register_script( 'wc-gzd-add-to-cart-variation', $frontend_script_path . 'add-to-cart-variation' . $suffix . '.js', array(
+			'jquery', 'woocommerce', 'wc-add-to-cart-variation'
+		), WC_GERMANIZED_VERSION, true );
+
 		if ( is_page() && is_object( $post ) && has_shortcode( $post->post_content, 'revocation_form' ) ) {
-			wp_enqueue_script( 'wc-gzd-revocation', $frontend_script_path . 'revocation' . $suffix . '.js', array( 'jquery', 'woocommerce', 'wc-country-select', 'wc-address-i18n' ), WC_GERMANIZED_VERSION, true );
+			wp_enqueue_script( 'wc-gzd-revocation' );
 		}
 
 		if ( is_checkout() ) {
-
-			wp_enqueue_script( 'wc-gzd-checkout', $frontend_script_path . 'checkout' . $suffix . '.js', array(
-				'jquery',
-				'wc-checkout',
-			), WC_GERMANIZED_VERSION, true );
-
+			wp_enqueue_script( 'wc-gzd-checkout' );
 		}
 
 		if ( is_singular( 'product' ) ) {
 			$product = wc_get_product( $post->ID );
+
 			if ( $product && $product->is_type( 'variable' ) ) {
 				// Enqueue variation scripts
-				wp_enqueue_script( 'wc-gzd-add-to-cart-variation', $frontend_script_path . 'add-to-cart-variation' . $suffix . '.js', array( 'jquery', 'woocommerce', 'wc-add-to-cart-variation' ), WC_GERMANIZED_VERSION, true );
+				wp_enqueue_script( 'wc-gzd-add-to-cart-variation' );
 			}
 		}
 
@@ -629,14 +643,23 @@ final class WooCommerce_Germanized {
 	 */
 	public function localize_scripts() {
 		global $wp;
+
 		$assets_path = str_replace( array( 'http:', 'https:' ), '', WC()->plugin_url() ) . '/assets/';
 
-		if ( wp_script_is( 'wc-gzd-revocation' ) ) {
+		if ( wp_script_is( 'wc-gzd-revocation' ) && ! in_array( 'wc-gzd-revocation', $this->localized_scripts ) ) {
+
+			$this->localized_scripts[] = 'wc-gzd-revocation';
+
 			wp_localize_script( 'wc-gzd-revocation', 'wc_gzd_revocation_params', apply_filters( 'wc_gzd_revocation_params', array(
 				'ajax_url'                  => WC()->ajax_url(),
 				'ajax_loader_url'           => apply_filters( 'woocommerce_ajax_loader_url', $assets_path . 'images/ajax-loader@2x.gif' ),
 			) ) );
-		} else if ( wp_script_is( 'wc-gzd-add-to-cart-variation' ) ) {
+		}
+
+		if ( wp_script_is( 'wc-gzd-add-to-cart-variation' ) && ! in_array( 'wc-gzd-add-to-cart-variation', $this->localized_scripts )  ) {
+
+			$this->localized_scripts[] = 'wc-gzd-add-to-cart-variation';
+
 			wp_localize_script( 'wc-gzd-add-to-cart-variation', 'wc_gzd_add_to_cart_variation_params', apply_filters( 'woocommerce_gzd_add_to_cart_variation_params', array(
 				'wrapper'                   => '.type-product',
 			) ) );

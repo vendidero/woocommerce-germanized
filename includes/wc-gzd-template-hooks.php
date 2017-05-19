@@ -116,12 +116,17 @@ add_action( 'woocommerce_review_order_before_submit', 'woocommerce_gzd_template_
 add_action( 'woocommerce_review_order_after_submit', 'woocommerce_gzd_template_set_order_button_show_filter', PHP_INT_MAX );
 add_action( 'woocommerce_gzd_review_order_before_submit', 'woocommerce_gzd_template_set_order_button_show_filter', PHP_INT_MAX );
 
+// Refresh (show/hide) parcel delivery checkbox when changing address (which may lead to shipping method change)
+if ( get_option( 'woocommerce_gzd_checkout_legal_parcel_delivery_checkbox' ) === 'yes' )
+	add_filter( 'woocommerce_update_order_review_fragments', 'woocommerce_gzd_refresh_parcel_delivery_checkbox_fragment', 10, 1 );
+
 function woocommerce_gzd_checkout_load_ajax_relevant_hooks() {
 
 	if ( is_ajax() )
 		return;
 
 	add_action( 'woocommerce_checkout_order_review', 'woocommerce_gzd_template_order_submit', wc_gzd_get_hook_priority( 'checkout_order_submit' ) );
+
 	add_action( 'woocommerce_review_order_after_payment', 'woocommerce_gzd_template_checkout_legal', wc_gzd_get_hook_priority( 'checkout_legal' ) );
 	add_action( 'woocommerce_review_order_after_payment', 'woocommerce_gzd_template_checkout_set_terms_manually', wc_gzd_get_hook_priority( 'checkout_set_terms' ) );
 
