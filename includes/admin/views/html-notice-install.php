@@ -39,11 +39,21 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 				<?php endif; ?>
 
+                <tr>
+                    <th scope="row"><?php _e( 'Insert EU VAT Rates', 'woocommerce-germanized' );?></th>
+                    <td>
+                        <label for="install_woocommerce_gzd_tax_rates">
+                            <input id="install_woocommerce_gzd_tax_rates" type="checkbox" value="true" name="install_woocommerce_gzd_tax_rates">
+							<?php _e( 'We will automatically insert VAT Rates for EU countries.', 'woocommerce-germanized' );?>
+                        </label>
+                    </td>
+                </tr>
+
 				<tr>
-					<th scope="row"><?php _e( 'Generate EU VAT Rates', 'woocommerce-germanized' );?></th>
+					<th scope="row"><?php _e( 'Insert Virtual EU VAT Rates', 'woocommerce-germanized' );?></th>
 					<td>
-						<label for="install_woocommerce_gzd_tax_rates">
-							<input id="install_woocommerce_gzd_tax_rates" type="checkbox" value="true" name="install_woocommerce_gzd_tax_rates">
+						<label for="install_woocommerce_gzd_virtual_tax_rates">
+							<input id="install_woocommerce_gzd_virtual_tax_rates" type="checkbox" value="true" name="install_woocommerce_gzd_virtual_tax_rates">
 							<?php _e( 'We will automatically insert EU VAT Rates for selling virtual products.', 'woocommerce-germanized' );?>
 						</label>
 					</td>

@@ -3,7 +3,7 @@ Contributors: vendidero
 Tags: woocommerce, german market, german, germany, deutsch, deutschland, de, de_DE, shop, commerce, e-commerce, ecommerce, woothemes, sepa, invoice
 Requires at least: 3.8
 Tested up to: 4.7
-Stable tag: 1.8.10
+Stable tag: 1.8.11
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -168,12 +168,15 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 == Changelog ==
 
 = 1.8.11 =
-* Improvement - Better WC 3.0 compliant product saving
-* Improvement - WPML Compatibility for revocation form and custom emails
-* Improvement - Filters for unit prices and double opt in
-* Fix - WC 3.0 meta box warnings
-* Fix - Replaced checkout legacy posted data access
-* Fix - REST API mini description
+* Improvement: Better Woo 3.0 compliant product data saving
+* Improvement: Filters for double opt in and unit prices
+* Improvement: Fragment refresh for parcel delivery checkbox (e.g. when changing shipping method)
+* Fix: Woo 3.0 variable meta box warnings
+* Fix: Replaced legacy Woo 3.0 checkout posted data warning
+* Fix: Product Variation fields for API v2
+* Fix: Mini Cart REST API fix
+* Fix: WPML revocation form and better email translation support
+* Fix: Direct Debit field adding check for order existence
 
 = 1.8.10 =
 * Improvement - Better E-Mail-Template naming (renamed processing order to order confirmation)

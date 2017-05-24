@@ -52,6 +52,7 @@ class WC_GZD_Admin {
 		add_action( 'admin_init', array( $this, 'check_text_options_deletion' ) );
 		add_action( 'admin_init', array( $this, 'check_complaints_shortcode_append' ) );
 		add_action( 'admin_init', array( $this, 'check_version_cache_deletion' ) );
+		add_action( 'admin_init', array( $this, 'check_insert_vat_rates' ) );
 		
 		add_filter( 'woocommerce_addons_section_data', array( $this, 'set_addon' ), 10, 2 );
 		add_action( 'woocommerce_admin_order_data_after_shipping_address', array( $this, 'set_order_parcel_delivery_opted_in' ), 10, 1 );
@@ -332,6 +333,17 @@ class WC_GZD_Admin {
  			)
  		);
  	}
+
+	public function check_insert_vat_rates() {
+		if ( isset( $_GET[ 'insert-vat-rates' ] ) && isset( $_GET[ '_wpnonce' ] ) && check_admin_referer( 'wc-gzd-insert-vat-rates' ) ) {
+
+		    WC_GZD_Install::create_tax_rates();
+			WC_GZD_Install::create_virtual_tax_rates();
+
+			// Redirect to check for updates
+			wp_safe_redirect( admin_url( 'admin.php?page=wc-settings&tab=tax&section=standard' ) );
+		}
+	}
 
  	public function get_shipping_method_instances() {
 

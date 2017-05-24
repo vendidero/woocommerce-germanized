@@ -213,6 +213,11 @@ if ( ! defined( 'ABSPATH' ) )
             <td class="help"><?php echo '<a href="#" class="help_tip" data-tip="' . esc_attr( __( 'This option deletes plugin version caches necessary to check whether activated plugins are compatible with Germanized.', 'woocommerce-germanized' ) ) . '">[?]</a>'; ?></td>
             <td><a href="<?php echo wp_nonce_url( add_query_arg( array( 'delete-version-cache' => true ) ), 'wc-gzd-delete-version-cache' ); ?>" class="button button-secondary"><?php _e( 'Delete version cache', 'woocommerce-germanized' ); ?></a></td>
         </tr>
+        <tr>
+            <td><?php _e( 'Renew EU VAT Rates', 'woocommerce-germanized' ); ?></td>
+            <td class="help"><?php echo '<a href="#" class="help_tip" data-tip="' . esc_attr( __( 'Insert VAT rates (standard, recuded and virtual) for EU countries. This option deletes all of your standard, reduced and virtual rates before inserting.', 'woocommerce-germanized' ) ) . '">[?]</a>'; ?></td>
+            <td><a href="<?php echo wp_nonce_url( add_query_arg( array( 'insert-vat-rates' => true ) ), 'wc-gzd-insert-vat-rates' ); ?>" class="button button-secondary"><?php _e( 'Renew VAT Rates', 'woocommerce-germanized' ); ?></a></td>
+        </tr>
 		<?php do_action( 'woocommerce_gzd_status_after_tools' ); ?>
 	</tbody>
 </table>
