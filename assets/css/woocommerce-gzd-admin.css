@@ -200,3 +200,13 @@ table.wc-gzd-tax-example tr th:first-child, table.wc-gzd-tax-example tr td:first
 table.form-table .forminp-radio fieldset p {
 	margin-bottom: 1em;
 }
+
+.wc-gzd-admin-settings tr.single_select_page .description {
+	display: block;
+}
+
+.wc-gzd-admin-settings td.forminp-select .description {
+	position: relative;
+	top: 3px;
+	margin-left: 10px;
+}

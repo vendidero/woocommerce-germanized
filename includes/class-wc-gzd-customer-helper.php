@@ -37,6 +37,8 @@ class WC_GZD_Customer_Helper {
 		// Add Title to user profile
 		add_filter( 'woocommerce_customer_meta_fields', array( $this, 'profile_field_title' ), 10, 1 );
 
+		add_filter( 'woocommerce_ajax_get_customer_details', array( $this, 'load_customer_fields' ), 10, 3 );
+
 		if ( $this->is_double_opt_in_enabled() ) {
 
 			// Check for customer activation
@@ -67,6 +69,30 @@ class WC_GZD_Customer_Helper {
 
 		}
 
+	}
+
+	public function load_customer_fields( $data, $customer, $user_id ) {
+
+		$fields = WC_GZD_Checkout::instance()->custom_fields_admin;
+
+		if ( is_array( $fields ) ) {
+			foreach( $fields as $key => $field ) {
+
+				$types = array( 'shipping', 'billing' );
+
+				if ( isset( $field[ 'address_type' ] ) ) {
+					$types = array( $field[ 'address_type' ] );
+				}
+
+				foreach( $types as $type ) {
+					if ( ! isset( $data[ $type ] ) )
+						continue;
+
+					$data[ $type ][ $key ] = get_user_meta( $user_id,  $type . '_' . $key, true );
+				}
+			}
+		}
+		return $data;
 	}
 
 	public function social_login_activation_check( $message, $user ) {
