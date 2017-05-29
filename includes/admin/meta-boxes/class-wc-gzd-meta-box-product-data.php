@@ -350,7 +350,7 @@ class WC_Germanized_Meta_Box_Product_Data {
 		}
 		
 		if ( isset( $data[ '_mini_desc' ] ) ) {
-			$product = wc_gzd_set_crud_meta_data( $product, '_mini_desc', ( $data[ '_mini_desc' ] === '' ? '' : sanitize_text_field( esc_html( $data[ '_mini_desc' ] ) ) ) );
+			$product = wc_gzd_set_crud_meta_data( $product, '_mini_desc', ( $data[ '_mini_desc' ] === '' ? '' : wc_gzd_sanitize_mini_desc( $data[ '_mini_desc' ] ) ) );
 		}
 
 		if ( isset( $data[ 'delivery_time' ] ) && ! empty( $data[ 'delivery_time' ] ) ) {

@@ -147,3 +147,7 @@ function wc_gzd_get_shipping_costs_text( $product = false ) {
 		return apply_filters( 'woocommerce_gzd_shipping_costs_cart_text', str_replace( $find, $replace, get_option( 'woocommerce_gzd_shipping_costs_text' ) ) );
 	}
 }
+
+function wc_gzd_sanitize_mini_desc( $value ) {
+	return wp_kses_post( esc_html( wp_unslash( $value ) ) );
+}
