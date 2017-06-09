@@ -10,7 +10,7 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-function wc_gzd_get_crud_data( $object, $key ) {
+function wc_gzd_get_crud_data( $object, $key, $suppress_suffix = false ) {
 
 	if ( is_a( $object, 'WC_GZD_Product' ) ) {
 		$object = $object->get_wc_product();
@@ -47,7 +47,8 @@ function wc_gzd_get_crud_data( $object, $key ) {
 			$value = $object->{$getter}();
 		}
 	} elseif ( wc_gzd_get_dependencies()->woocommerce_version_supports_crud() ) {
-		if ( substr( $key, 0, 1 ) !== '_' )
+		// Prefix meta if suppress_suffix is not set
+		if ( substr( $key, 0, 1 ) !== '_' && ! $suppress_suffix )
 			$key = '_' . $key;
 
 		$value = $object->get_meta( $key );
@@ -137,4 +138,23 @@ function wc_gzd_reduce_order_stock( $order_id ) {
         $order = wc_get_order( $order_id );
         $order->reduce_order_stock();
     }
+}
+
+function wc_gzd_get_product_type( $id ) {
+	$type = false;
+
+	if ( wc_gzd_get_dependencies()->woocommerce_version_supports_crud() ) {
+		$type = WC_Product_Factory::get_product_type( $id );
+	} else {
+		$post_type  = get_post_type( $id );
+		if ( 'product' === $post_type ) {
+			$terms = get_the_terms( $id, 'product_type' );
+			$type = ! empty( $terms ) ? sanitize_title( current( $terms )->name ) : 'simple';
+		} elseif( 'product_variation' === $post_type ) {
+			$type = 'variation';
+		} else {
+			$type = false;
+		}
+	}
+	return $type;
 }

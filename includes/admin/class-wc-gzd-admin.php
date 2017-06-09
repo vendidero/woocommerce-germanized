@@ -144,7 +144,7 @@ class WC_GZD_Admin {
 
 		// Hide delivery time and unit tagsdiv
 		if ( version_compare( WC()->version, '2.3', '>=' ) )
-			wp_add_inline_style( 'woocommerce-gzd-admin', '#tagsdiv-product_delivery_time, #tagsdiv-product_unit {display: none}' );
+			wp_add_inline_style( 'woocommerce-gzd-admin', '#tagsdiv-product_delivery_time, #tagsdiv-product_unit, #tagsdiv-product_price_label {display: none}' );
 	}
 
 	public function add_legal_page_metabox() {

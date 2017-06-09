@@ -17,14 +17,20 @@ class WC_GZD_AJAX {
 	 * Hook in methods
 	 */
 	public static function init() {
+
 		$ajax_events = array(
 			'gzd_revocation' => true,
 			'gzd_json_search_delivery_time' => false,
 		);
+
 		foreach ( $ajax_events as $ajax_event => $nopriv ) {
 			add_action( 'wp_ajax_woocommerce_' . $ajax_event, array( __CLASS__, $ajax_event ) );
+
 			if ( $nopriv ) {
 				add_action( 'wp_ajax_nopriv_woocommerce_' . $ajax_event, array( __CLASS__, $ajax_event ) );
+
+				// WC AJAX can be used for frontend ajax requests.
+				add_action( 'wc_ajax_' . $ajax_event, array( __CLASS__, $ajax_event ) );
 			}
 		}
 	}
@@ -76,7 +82,7 @@ class WC_GZD_AJAX {
 
 				if ( 'sep' !== $key ) {
 
-					if ( true === $field[ 'required' ] ) {
+					if ( isset( $field[ 'required' ] ) && true === $field[ 'required' ] ) {
 						if ( $key == 'address_mail' ) {
 							if ( ! is_email( $_POST[ $key ] ) )
 								wc_add_notice( '<strong>' . $field['label'] . '</strong> ' . _x( 'is not a valid email address.', 'revocation-form', 'woocommerce-germanized' ), 'error' );
@@ -125,24 +131,12 @@ class WC_GZD_AJAX {
 		wc_print_notices();
 		$messages = ob_get_clean();
 
-		if ( $error ) {
-			echo '<!--WC_START-->' . json_encode(
-				array(
-					'result' => 'failure',
-					'messages'  => isset( $messages ) ? $messages : '',
-				)
-			) . '<!--WC_END-->';
-		} else {
-			if ( is_ajax() ) {
-				echo '<!--WC_START-->' . json_encode(
-					array(
-						'result'  => 'success',
-						'messages' => isset ( $messages ) ? $messages : '',
-					)
-				) . '<!--WC_END-->';
-			}
-		}
-		exit();
+		$data = array(
+			'messages' => isset( $messages ) ? $messages : '',
+			'result' => ( $error ? 'failure' : 'success' ),
+		);
+
+		wp_send_json( $data );
 	}
 
 }

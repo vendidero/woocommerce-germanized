@@ -85,25 +85,37 @@ function wc_gzd_is_revocation_exempt( $product, $type = 'digital' ) {
 	return false;
 }
 
-function wc_gzd_product_matches_extended_type( $type, $product ) {
-	
-	$parent = null;
+function wc_gzd_product_matches_extended_type( $types, $product ) {
 
-	// Support Variations
-	if ( wc_gzd_get_crud_data( $product, 'parent' ) ) {
-		$parent = wc_get_product( wc_gzd_get_crud_data( $product, 'parent' ) );
-	}
+	if ( empty( $types ) )
+		return false;
 
 	$matches_type = false;
 
-	if ( $type === $product->get_type() )
-		$matches_type = true; 
-	elseif ( is_callable( array( $product, 'is_' . $type ) ) )
-		$matches_type = ( call_user_func_array( array( $product, 'is_' . $type ), array() ) === true ? true : false );
-	
-	// Do only check parent if product does not match the type
-	if ( ! $matches_type && $parent )
-		return wc_gzd_product_matches_extended_type( $type, $parent );
+	if ( ! is_array( $types ) )
+		$types = array( $types );
+
+	if ( in_array( $product->get_type(), $types ) ) {
+		$matches_type = true;
+	} else {
+		foreach ( $types as $type ) {
+			if ( is_callable( array( $product, 'is_' . $type ) ) )
+				$matches_type = ( call_user_func_array( array( $product, 'is_' . $type ), array() ) === true ? true : false );
+		}
+	}
+
+	if ( ! $matches_type ) {
+		$parent_id = wc_gzd_get_crud_data( $product, 'parent' );
+
+		// Check parent product type
+		if ( $parent_id ) {
+			$parent_type = wc_gzd_get_product_type( $parent_id );
+
+			if ( $parent_type && in_array( $parent_type, $types ) ) {
+				$matches_type = true;
+			}
+		}
+	}
 
 	return $matches_type;
 }

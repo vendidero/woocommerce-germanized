@@ -49,55 +49,33 @@ jQuery( function( $ ) {
 				opacity: 0.6
 			}
 		});
-		
-		var form_data = $form.serialize() + '&action=woocommerce_gzd_revocation';
 
 		$.ajax({
 			type:		'POST',
-			url:		wc_gzd_revocation_params.ajax_url,
-			data:		form_data,
-			success:	function( code ) {
+			url:		wc_gzd_revocation_params.wc_ajax_url.toString().replace( '%%endpoint%%', 'gzd_revocation' ),
+			data:		$form.serialize(),
+            dataType:   'json',
+			success:	function( data ) {
+
 				$( '.woocommerce-error, .woocommerce-message' ).remove();
 				$form.removeClass( 'processing' ).unblock();
-				var result = '';
-				try {
-					// Get the valid JSON only from the returned string
-					if ( code.indexOf( '<!--WC_START-->' ) >= 0 ) {
-						code = code.split( '<!--WC_START-->' )[1]; // Strip off before after WC_START
-					}
 
-					if ( code.indexOf( '<!--WC_END-->' ) >= 0 ) {
-						code = code.split( '<!--WC_END-->' )[0]; // Strip off anything after WC_END
-					}
-
-					// Parse
-					result = $.parseJSON( code );
-
-					if ( result.result === 'success' ) {
-						$form.before( result.messages );
-						$form.fadeOut( 'fast' );
-						$( 'html, body' ).animate({
-							scrollTop: ( $( '.woocommerce-message' ).offset().top - 100 )
-						}, 1000 );
-					} else if ( result.result === 'failure' ) {
-						throw 'Result failure';
-					} else {
-						throw 'Invalid response';
-					}
-				}
-				catch( err ) {
-					// Add new errors
-					if ( result.messages ) {
-						$form.prepend( result.messages );
-					} else {
-						$form.prepend( code );
-					}
-					$( 'html, body' ).animate({
-						scrollTop: ( $( 'form#woocommerce-gzd-revocation' ).offset().top - 100 )
-					}, 1000 );
+				if ( data.result === 'success' ) {
+                    $form.before( data.messages );
+                    $form.fadeOut( 'fast' );
+                    $( 'html, body' ).animate({
+                        scrollTop: ( $( '.woocommerce-message' ).offset().top - 100 )
+                    }, 1000 );
+				} else {
+                    // Add new errors
+                    if ( data.messages ) {
+                        $form.prepend( data.messages );
+                    }
+                    $( 'html, body' ).animate({
+                        scrollTop: ( $( 'form#woocommerce-gzd-revocation' ).offset().top - 100 )
+                    }, 1000 );
 				}
 			},
-			dataType: 'html'
 		});
 
 		return false;

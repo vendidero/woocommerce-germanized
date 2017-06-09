@@ -151,3 +151,8 @@ function wc_gzd_get_shipping_costs_text( $product = false ) {
 function wc_gzd_sanitize_mini_desc( $value ) {
 	return wp_kses_post( esc_html( wp_unslash( $value ) ) );
 }
+
+function wc_gzd_convert_coupon_to_voucher( $coupon ) {
+	$coupon = new WC_Coupon( $coupon );
+	WC_GZD_Coupon_Helper::instance()->convert_coupon_to_voucher( $coupon );
+}

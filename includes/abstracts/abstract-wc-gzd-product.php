@@ -350,27 +350,27 @@ class WC_GZD_Product {
 
 		if ( apply_filters( 'woocommerce_gzd_hide_unit_text', false, $this ) )
 			return apply_filters( 'woocommerce_germanized_disabled_unit_text', '', $this );
-		
-		$display_price         = $this->get_unit_price();
-		$display_regular_price = $this->get_unit_price( 1, $this->get_unit_regular_price() );
-		$display_sale_price    = $this->get_unit_price( 1, $this->get_unit_sale_price() );
 
-		$price_html 		   = ( ( $this->is_on_unit_sale() && $show_sale ) ? $this->get_price_html_from_to( $display_regular_price, $display_sale_price, false ) : wc_price( $display_price ) );
-		$html 				   = '';
-		$text 				   = get_option( 'woocommerce_gzd_unit_price_text' );
+		$html = '';
 
 		if ( $this->has_unit() ) {
 
+			$display_price = $this->get_unit_price();
+			$display_regular_price = $this->get_unit_price( 1, $this->get_unit_regular_price() );
+			$display_sale_price = $this->get_unit_price( 1, $this->get_unit_sale_price() );
+
+			$price_html = ( ( $this->is_on_unit_sale() && $show_sale ) ? $this->get_price_html_from_to( $display_regular_price, $display_sale_price, false ) : wc_price( $display_price ) );
+			$text       = get_option( 'woocommerce_gzd_unit_price_text' );
+
 			if ( strpos( $text, '{price}' ) !== false ) {
-
 				$html = str_replace( '{price}', $price_html . apply_filters( 'wc_gzd_unit_price_seperator', ' / ' ) . $this->get_unit_base(), $text );
-
 			} else {
-
-				$html = str_replace( array( '{base_price}', '{unit}', '{base}' ), array( $price_html, '<span class="unit">' . $this->get_unit() . '</span>', ( $this->unit_base != apply_filters( 'woocommerce_gzd_unit_base_hide_amount', 1 ) ? '<span class="unit-base">' . $this->unit_base . '</span>' : '' ) ), $text );
-
+				$html = str_replace( array( '{base_price}', '{unit}', '{base}' ), array(
+					$price_html,
+					'<span class="unit">' . $this->get_unit() . '</span>',
+					( $this->unit_base != apply_filters( 'woocommerce_gzd_unit_base_hide_amount', 1 ) ? '<span class="unit-base">' . $this->unit_base . '</span>' : '' )
+				), $text );
 			}
-
 		}
 		
 		return apply_filters( 'woocommerce_gzd_unit_price_html', $html, $this );

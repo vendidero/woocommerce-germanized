@@ -29,7 +29,7 @@ final class WooCommerce_Germanized {
 	 *
 	 * @var string
 	 */
-	public $version = '1.8.11';
+	public $version = '1.8.12';
 
 	/**
 	 * Single instance of WooCommerce Germanized Main Class
@@ -141,7 +141,7 @@ final class WooCommerce_Germanized {
 
 		add_action( 'init', array( $this, 'init' ), 0 );
 		add_action( 'init', array( 'WC_GZD_Shortcodes', 'init' ), 2 );
-		add_action( 'init', array( $this, 'setup_compatibility' ), 15 );
+		add_action( 'init', array( $this, 'setup_compatibility' ), 0 );
 
 		add_action( 'woocommerce_init', array( $this, 'replace_woocommerce_product_factory' ), PHP_INT_MAX );
 		// Set template filter directly after load to ensure wc_get_template finds templates
@@ -321,10 +321,6 @@ final class WooCommerce_Germanized {
 		include_once( 'includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php' );
 		include_once( 'includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php' );
 
-		if ( defined( 'DOING_AJAX' ) ) {
-			$this->ajax_includes();
-		}
-
 		if ( ( ! is_admin() || defined( 'DOING_AJAX' ) ) && ! defined( 'DOING_CRON' ) ) {
 			if ( did_action( 'woocommerce_loaded' ) ) {
 				$this->frontend_includes();
@@ -351,9 +347,11 @@ final class WooCommerce_Germanized {
 		include_once( 'includes/wc-gzd-cart-functions.php' );
 		include_once( 'includes/wc-gzd-order-functions.php' );
 
+		include_once( 'includes/class-wc-gzd-ajax.php' );
 		include_once( 'includes/class-wc-gzd-checkout.php' );
 		include_once( 'includes/class-wc-gzd-dhl-parcel-shops.php' );
 		include_once( 'includes/class-wc-gzd-customer-helper.php' );
+		include_once( 'includes/class-wc-gzd-coupon-helper.php' );
 		include_once( 'includes/class-wc-gzd-virtual-vat-helper.php' );
 
 		$this->setup_trusted_shops();
@@ -363,7 +361,9 @@ final class WooCommerce_Germanized {
 
 	public function setup_compatibility() {
 
-		$plugins = apply_filters( 'woocommerce_gzd_compatibilities', array( 'wpml', 'woocommerce-subscriptions' ) );
+		$plugins = apply_filters( 'woocommerce_gzd_compatibilities',
+			array( 'wpml', 'woocommerce-subscriptions', 'polylang' )
+		);
 
 		foreach ( $plugins as $comp ) {
 
@@ -374,13 +374,6 @@ final class WooCommerce_Germanized {
 			}
 		}
 
-	}
-
-	/**
-	 * Include required ajax files.
-	 */
-	public function ajax_includes() {
-		include_once( 'includes/class-wc-gzd-ajax.php' );
 	}
 
 	/**
@@ -550,7 +543,8 @@ final class WooCommerce_Germanized {
 	 * 	 	- WP_LANG_DIR/plugins/woocommerce-germanized-LOCALE.mo
 	 */
 	public function load_plugin_textdomain() {
-		$locale = apply_filters( 'plugin_locale', get_locale(), 'woocommerce-germanized' );
+		$locale = is_admin() && function_exists( 'get_user_locale' ) ? get_user_locale() : get_locale();
+		$locale = apply_filters( 'plugin_locale', $locale, 'woocommerce-germanized' );
 
 		load_textdomain( 'woocommerce-germanized', trailingslashit( WP_LANG_DIR ) . 'woocommerce-germanized/woocommerce-germanized-' . $locale . '.mo' );
 		load_plugin_textdomain( 'woocommerce-germanized', false, plugin_basename( dirname( __FILE__ ) ) . '/i18n/languages/' );
@@ -652,6 +646,7 @@ final class WooCommerce_Germanized {
 
 			wp_localize_script( 'wc-gzd-revocation', 'wc_gzd_revocation_params', apply_filters( 'wc_gzd_revocation_params', array(
 				'ajax_url'                  => WC()->ajax_url(),
+				'wc_ajax_url'               => WC_AJAX::get_endpoint( "%%endpoint%%" ),
 				'ajax_loader_url'           => apply_filters( 'woocommerce_ajax_loader_url', $assets_path . 'images/ajax-loader@2x.gif' ),
 			) ) );
 		}

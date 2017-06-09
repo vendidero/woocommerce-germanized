@@ -66,6 +66,12 @@ class WC_GZD_Product_Variable extends WC_GZD_Product {
 		return false;
 	}
 
+	public function has_unit_fields() {
+		if ( $this->unit && $this->unit_base )
+			return true;
+		return false;
+	}
+
     public function get_price_html( $price = '' ) {
         $prices = $this->get_variation_prices( true );
 
@@ -158,7 +164,11 @@ class WC_GZD_Product_Variable extends WC_GZD_Product {
 	public function get_variation_unit_prices( $display = false ) {
 
 		if ( ! $this->is_type( 'variable' ) )
-			return false; 
+			return false;
+
+		// Product doesn't apply for unit pricing
+		if ( ! $this->has_unit_fields() )
+			return false;
 
 		global $wp_filter;
 

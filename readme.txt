@@ -2,8 +2,10 @@
 Contributors: vendidero
 Tags: woocommerce, german market, german, germany, deutsch, deutschland, de, de_DE, shop, commerce, e-commerce, ecommerce, woothemes, sepa, invoice
 Requires at least: 3.8
-Tested up to: 4.7
-Stable tag: 1.8.11
+Tested up to: 4.8
+WC requires at least: 2.4
+WC tested up to: 3.1
+Stable tag: 1.8.12
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -166,6 +168,9 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 1. WooCommerce Germanized Settings
 
 == Changelog ==
+
+= 1.8.12 =
+
 
 = 1.8.11 =
 * Improvement: Better Woo 3.0 compliant product data saving
