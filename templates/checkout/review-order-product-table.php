@@ -27,8 +27,8 @@ foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
 					<div class="wc-gzd-product-name-right">
 				
 				<?php endif; ?>
-				
-					<?php echo apply_filters( 'woocommerce_cart_item_name', $_product->get_title(), $cart_item, $cart_item_key ); ?>
+
+				    <?php echo apply_filters( 'woocommerce_cart_item_name', wc_gzd_get_product_name( $_product ), $cart_item, $cart_item_key ) . '&nbsp;'; ?>
 					<?php echo apply_filters( 'woocommerce_checkout_cart_item_quantity', ' <strong class="product-quantity">' . sprintf( '&times; %s', $cart_item['quantity'] ) . '</strong>', $cart_item, $cart_item_key ); ?>
 					<?php echo WC()->cart->get_item_data( $cart_item ); ?>
 				

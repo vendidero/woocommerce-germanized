@@ -135,7 +135,7 @@ function woocommerce_gzd_checkout_load_ajax_relevant_hooks() {
 
 	if ( get_option( 'woocommerce_gzd_checkout_legal_service_checkbox' ) === 'yes' )
 		add_action( 'woocommerce_review_order_after_payment', 'woocommerce_gzd_service_checkbox', wc_gzd_get_hook_priority( 'checkout_service_checkbox' ) );
-	
+
 	if ( get_option( 'woocommerce_gzd_checkout_legal_parcel_delivery_checkbox' ) === 'yes' )
 		add_action( 'woocommerce_review_order_after_payment', 'woocommerce_gzd_parcel_delivery_checkbox', wc_gzd_get_hook_priority( 'checkout_parcel_delivery_checkbox' ) );
 

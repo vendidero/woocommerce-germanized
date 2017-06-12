@@ -158,3 +158,11 @@ function wc_gzd_get_product_type( $id ) {
 	}
 	return $type;
 }
+
+function wc_gzd_get_product_name( $product ) {
+	if ( wc_gzd_get_dependencies()->woocommerce_version_supports_crud() ) {
+		return $product->get_name();
+	} else {
+		return $product->get_title();
+	}
+}
