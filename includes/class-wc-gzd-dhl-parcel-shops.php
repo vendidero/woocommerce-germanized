@@ -181,6 +181,7 @@ class WC_GZD_DHL_Parcel_Shops {
 			'type'		  => 'select',
 			'options'     => array( 0 => __( 'No', 'woocommerce-germanized' ), 1 => __( 'Yes', 'woocommerce-germanized' ) ),
 			'description' => __( 'Select whether delivery to parcel shop should be enabled.', 'woocommerce-germanized' ),
+			'class'       => '',
 		);
 
 		$fields[ 'shipping' ][ 'fields' ][ 'shipping_parcelshop_post_number' ] = array(

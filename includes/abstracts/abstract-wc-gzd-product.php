@@ -77,7 +77,11 @@ class WC_GZD_Product {
 
 			// Handle meta data keys which can be empty at variation level to cause inheritance
 			if ( ! $value || '' === $value ) {
-				$value = wc_gzd_get_crud_data( wc_get_product( wc_gzd_get_crud_data( $this->child, 'parent' ) ), $key );
+
+				$parent = wc_get_product( wc_gzd_get_crud_data( $this->child, 'parent' ) );
+				// Check if parent exists
+				if ( $parent )
+					$value = wc_gzd_get_crud_data( $parent, $key );
 			}
 		
 		} elseif ( $key == 'delivery_time' ) {
@@ -242,6 +246,16 @@ class WC_GZD_Product {
 		return ( $this->unit_base ) ? ( $this->unit_base != apply_filters( 'woocommerce_gzd_unit_base_hide_amount', 1 ) ? '<span class="unit-base">' . $this->unit_base . '</span>' . apply_filters( 'wc_gzd_unit_price_base_seperator', ' ' ) : '' ) . '<span class="unit">' . $this->get_unit() . '</span>' : '';
 	}
 
+	public function get_unit_term() {
+		$unit = $this->unit;
+
+		if ( ! empty( $unit ) ) {
+			return WC_germanized()->units->get_unit_term( $unit );
+		}
+
+		return false;
+	}
+
 	/**
 	 * Returns unit
 	 *  
@@ -251,6 +265,16 @@ class WC_GZD_Product {
 		$unit = $this->unit;
 		return WC_germanized()->units->$unit;
 	}
+
+	public function get_sale_price_label_term() {
+		$label = $this->sale_price_label;
+
+		if ( ! empty( $label ) ) {
+			return WC_germanized()->price_labels->get_label_term( $label );
+		}
+
+		return false;
+ 	}
 
 	/**
 	 * Returns sale price label
@@ -263,6 +287,16 @@ class WC_GZD_Product {
 		$label = ( ! empty( $this->sale_price_label ) ? $this->sale_price_label : $default );
 
 		return ( ! empty( $label ) ? WC_germanized()->price_labels->$label : '' );
+	}
+
+	public function get_sale_price_regular_label_term() {
+		$label = $this->sale_price_regular_label;
+
+		if ( ! empty( $label ) ) {
+			return WC_germanized()->price_labels->get_label_term( $label );
+		}
+
+		return false;
 	}
 
 	/**

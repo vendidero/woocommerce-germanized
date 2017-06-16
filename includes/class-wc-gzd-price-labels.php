@@ -22,6 +22,10 @@ class WC_GZD_Price_Labels extends WC_GZD_Taxonomy {
 		return parent::get_term( $key, $by );
 	}
 
+	public function get_label_term( $key, $by = 'slug' ) {
+		return parent::get_term_object( $key, $by );
+	}
+
 	/**
 	 * Returns mixed units array
 	 *

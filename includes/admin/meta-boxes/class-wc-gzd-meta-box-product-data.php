@@ -41,11 +41,11 @@ class WC_Germanized_Meta_Box_Product_Data {
 		/**
 		 * Listen to product updates to actually transform term meta data to term relationships e.g. for product delivery time.
 		 */
-		add_action( 'woocommerce_update_product', array( __CLASS__, 'update_terms' ), 10, 1 );
-		add_action( 'woocommerce_create_product', array( __CLASS__, 'update_terms' ), 10, 1 );
+		add_action( 'woocommerce_update_product', array( __CLASS__, 'update_after_save' ), 10, 1 );
+		add_action( 'woocommerce_create_product', array( __CLASS__, 'update_after_save' ), 10, 1 );
 
-		add_action( 'woocommerce_update_product_variation', array( __CLASS__, 'update_terms' ), 10, 1 );
-		add_action( 'woocommerce_create_product_variation', array( __CLASS__, 'update_terms' ), 10, 1 );
+		add_action( 'woocommerce_update_product_variation', array( __CLASS__, 'update_after_save' ), 10, 1 );
+		add_action( 'woocommerce_create_product_variation', array( __CLASS__, 'update_after_save' ), 10, 1 );
 	}
 
 	/**
@@ -56,7 +56,7 @@ class WC_Germanized_Meta_Box_Product_Data {
      *
 	 * @param $product_id
 	 */
-	public static function update_terms( $product_id ) {
+	public static function update_after_save( $product_id ) {
 
 		if ( ! wc_gzd_get_dependencies()->woocommerce_version_supports_crud() )
 		    return;
@@ -64,6 +64,7 @@ class WC_Germanized_Meta_Box_Product_Data {
 	    $product = wc_get_product( $product_id );
 
 	    if ( $product->get_id() > 0 ) {
+
 	        $taxonomies = array( 'product_delivery_time' );
 
 	        foreach( $taxonomies as $taxonomy ) {
@@ -77,6 +78,27 @@ class WC_Germanized_Meta_Box_Product_Data {
                 } elseif ( $product->get_meta( '_delete_' . $taxonomy, true ) ) {
 		            wp_delete_object_term_relationships( $product->get_id(), $taxonomy );
 		            delete_post_meta( $product->get_id(), '_delete_' . $taxonomy );
+	            }
+            }
+
+            // Update unit price based on whether the product is on sale or not
+            if ( wc_gzd_get_gzd_product( $product )->has_unit() ) {
+
+	            // Let pro version filter prices
+	            $data = apply_filters( 'woocommerce_gzd_save_display_unit_price_data', array(
+                    '_unit_price_regular' => wc_gzd_get_gzd_product( $product )->get_unit_regular_price(),
+                    '_unit_price_sale' => wc_gzd_get_gzd_product( $product )->get_unit_sale_price(),
+                ), $product );
+
+	            // Make sure we update automatically calculated prices
+	            update_post_meta( $product->get_id(), '_unit_price_regular', $data[ '_unit_price_regular' ] );
+	            update_post_meta( $product->get_id(), '_unit_price_sale', $data[ '_unit_price_sale' ] );
+
+	            // Lets update the display price
+	            if ( $product->is_on_sale() ) {
+		            update_post_meta( $product->get_id(), '_unit_price', $data[ '_unit_price_sale' ] );
+	            } else {
+		            update_post_meta( $product->get_id(), '_unit_price', $data[ '_unit_price_regular' ] );
 	            }
             }
         }

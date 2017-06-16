@@ -112,14 +112,16 @@ class WC_GZD_Customer_Helper {
 			'label'       => __( 'Title', 'woocommerce-germanized' ),
 			'type'		  => 'select',
 			'options'	  => apply_filters( 'woocommerce_gzd_title_options', array( 1 => __( 'Mr.', 'woocommerce-germanized' ), 2 => __( 'Ms.', 'woocommerce-germanized' ) ) ),
-			'description' => ''
+			'description' => '',
+			'class'       => '',
 		);
 
 		$fields[ 'shipping' ][ 'fields' ][ 'shipping_title' ] = array(
 			'label'       => __( 'Title', 'woocommerce-germanized' ),
 			'type'		  => 'select',
 			'options'	  => apply_filters( 'woocommerce_gzd_title_options', array( 1 => __( 'Mr.', 'woocommerce-germanized' ), 2 => __( 'Ms.', 'woocommerce-germanized' ) ) ),
-			'description' => ''
+			'description' => '',
+			'class'       => '',
 		);
 
 		return $fields;

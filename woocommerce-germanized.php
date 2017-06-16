@@ -316,6 +316,8 @@ final class WooCommerce_Germanized {
 			include_once( 'includes/admin/class-wc-gzd-admin-customer.php' );
 			include_once( 'includes/admin/class-wc-gzd-admin-importer.php' );
 
+			include_once( 'includes/export/class-wc-gzd-product-export.php' );
+			include_once( 'includes/import/class-wc-gzd-product-import.php' );
 		}
 
 		include_once( 'includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php' );
