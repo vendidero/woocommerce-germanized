@@ -40,7 +40,7 @@ class WC_GZD_Coupon_Helper {
 
 	public function recalculate_tax_totals( $cart ) {
 
-		if ( WC()->customer->get_is_vat_exempt() )
+		if ( WC()->customer->is_vat_exempt() )
 			return;
 
 		// Check for discounts and whether the coupon is a voucher

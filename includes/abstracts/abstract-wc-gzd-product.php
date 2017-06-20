@@ -221,7 +221,7 @@ class WC_GZD_Product {
 					$tax_notice = ( $tax_display_mode == 'incl' && ! WC()->customer->is_vat_exempt() ? sprintf( __( 'incl. %s%% VAT', 'woocommerce-germanized' ), ( wc_gzd_format_tax_rate_percentage( $tax_rates[0][ 'rate' ] ) ) ) : sprintf( __( 'excl. %s%% VAT', 'woocommerce-germanized' ), ( wc_gzd_format_tax_rate_percentage( $tax_rates[0][ 'rate' ] ) ) ) );
 			}
 
-		} 
+		}
 		
 		return apply_filters( 'woocommerce_gzd_product_tax_info', $tax_notice, $this );
 	}
