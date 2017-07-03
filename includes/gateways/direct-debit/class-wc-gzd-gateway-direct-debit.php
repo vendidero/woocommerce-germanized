@@ -357,9 +357,13 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
     	$iban 		= ( isset( $_POST[ 'direct_debit_account_iban' ] ) ? $this->maybe_encrypt( $this->clean_whitespaces( wc_clean( $_POST[ 'direct_debit_account_iban' ] ) ) ) : '' );
     	$bic 		= ( isset( $_POST[ 'direct_debit_account_bic' ] ) ? $this->maybe_encrypt( $this->clean_whitespaces( wc_clean( $_POST[ 'direct_debit_account_bic' ] ) ) ) : '' );
 
-    	update_post_meta( wc_gzd_get_crud_data( $order, 'id' ), '_direct_debit_holder', $holder );
-    	update_post_meta( wc_gzd_get_crud_data( $order, 'id' ), '_direct_debit_iban', $iban );
-    	update_post_meta( wc_gzd_get_crud_data( $order, 'id' ), '_direct_debit_bic', $bic );
+    	$order = wc_gzd_set_crud_meta_data( $order, '_direct_debit_holder', $holder );
+	    $order = wc_gzd_set_crud_meta_data( $order,'_direct_debit_iban', $iban );
+	    $order = wc_gzd_set_crud_meta_data( $order, '_direct_debit_bic', $bic );
+
+	    if ( wc_gzd_get_dependencies()->woocommerce_version_supports_crud() ) {
+	        $order->save();
+        }
 
     	if ( ! $this->supports_encryption() || $this->remember === 'no' || ! wc_gzd_get_crud_data( $order, 'user_id' ) )
     		return;
@@ -367,7 +371,6 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
     	update_user_meta( wc_gzd_get_crud_data( $order, 'user_id' ), 'direct_debit_holder', $holder );
     	update_user_meta( wc_gzd_get_crud_data( $order, 'user_id' ), 'direct_debit_iban', $iban );
     	update_user_meta( wc_gzd_get_crud_data( $order, 'user_id' ), 'direct_debit_bic', $bic );
-
     }
 
     public function add_email_template( $mails ) {
@@ -446,21 +449,9 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
     }
 
     public function checkbox() {
-
-    	if ( $this->is_available() && $this->enable_checkbox === 'yes' ) : ?>
-    	
-    		<p class="form-row legal direct-debit-checkbox">
-
-    			<input type="checkbox" class="input-checkbox" name="direct_debit_legal" id="direct-debit-checkbox" />
-
-    			<label class="checkbox" for="direct-debit-checkbox">
-    				<?php echo $this->get_checkbox_label(); ?>
-    				<a href="" rel="prettyPhoto" id="show-direct-debit-pretty" class="hidden"></a>
-    			</label>
-    			
-    		</p>
-    	
-    	<?php endif; 
+    	if ( $this->is_available() && $this->enable_checkbox === 'yes' ) {
+		    wc_get_template( 'checkout/terms-sepa.php', array( 'checkbox_label' => $this->get_checkbox_label() ) );
+        }
     }
 
     public function get_checkbox_label() {

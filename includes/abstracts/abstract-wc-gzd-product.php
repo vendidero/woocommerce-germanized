@@ -37,6 +37,7 @@ class WC_GZD_Product {
 		'sale_price_label',
 		'sale_price_regular_label',
 		'free_shipping',
+		'differential_taxation'
 	);
 
 	/**
@@ -139,6 +140,14 @@ class WC_GZD_Product {
 	public function is_service() {
 		if ( ! empty( $this->service ) && 'yes' === $this->service )
 			return true;
+
+		return false;
+	}
+
+	public function is_differential_taxed() {
+		if ( ! empty( $this->differential_taxation ) && 'yes' === $this->differential_taxation )
+			return true;
+
 		return false;
 	}
 
@@ -206,7 +215,7 @@ class WC_GZD_Product {
 		
 		$tax_notice = false;
 		
-		if ( $this->is_taxable() ) {
+		if ( $this->is_taxable() || $this->is_differential_taxed() ) {
 		
 			$tax_display_mode = get_option( 'woocommerce_tax_display_shop' );
 			$tax_rates  = WC_Tax::get_rates( $this->get_tax_class() );
@@ -214,8 +223,9 @@ class WC_GZD_Product {
 			if ( ! empty( $tax_rates ) ) {
 		
 				$tax_rates = array_values( $tax_rates );
+
 				// If is variable or is virtual vat exception dont show exact tax rate
-				if ( $this->is_virtual_vat_exception() || $this->is_type( 'variable' ) || get_option( 'woocommerce_gzd_hide_tax_rate_shop' ) === 'yes' )
+				if ( $this->is_differential_taxed() || $this->is_virtual_vat_exception() || $this->is_type( 'variable' ) || get_option( 'woocommerce_gzd_hide_tax_rate_shop' ) === 'yes' )
 					$tax_notice = ( $tax_display_mode == 'incl' && ! WC()->customer->is_vat_exempt() ? __( 'incl. VAT', 'woocommerce-germanized' ) : __( 'excl. VAT', 'woocommerce-germanized' ) );
 				else
 					$tax_notice = ( $tax_display_mode == 'incl' && ! WC()->customer->is_vat_exempt() ? sprintf( __( 'incl. %s%% VAT', 'woocommerce-germanized' ), ( wc_gzd_format_tax_rate_percentage( $tax_rates[0][ 'rate' ] ) ) ) : sprintf( __( 'excl. %s%% VAT', 'woocommerce-germanized' ), ( wc_gzd_format_tax_rate_percentage( $tax_rates[0][ 'rate' ] ) ) ) );
@@ -505,7 +515,7 @@ class WC_GZD_Product {
 			$html = apply_filters( 'woocommerce_germanized_empty_delivery_time_text', '', $this );
 		}
 		
-		return ( ! empty( $html ) ? apply_filters( 'woocommerce_germanized_delivery_time_html', str_replace( '{delivery_time}', $html, get_option( 'woocommerce_gzd_delivery_time_text' ) ), $html ) : '' );
+		return ( ! empty( $html ) ? apply_filters( 'woocommerce_germanized_delivery_time_html', str_replace( '{delivery_time}', $html, get_option( 'woocommerce_gzd_delivery_time_text' ) ), $html, $this ) : '' );
 	}
 
 	public function has_free_shipping() {

@@ -72,7 +72,10 @@ class WC_GZD_AJAX {
 	public static function gzd_revocation() {
 
 		check_ajax_referer( 'woocommerce-revocation', 'security' );
-		wp_verify_nonce( $_POST['_wpnonce'], 'woocommerce-revocation' );
+
+		if ( ! wp_verify_nonce( $_POST['_wpnonce'], 'woocommerce-revocation' ) ) {
+			wp_send_json( array( 'result' => 'failure' ) );
+		}
 
 		$data = array();
 		$fields = WC_GZD_Revocation::get_fields();

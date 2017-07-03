@@ -338,6 +338,8 @@ class WC_GZD_Customer_Helper {
 				if ( apply_filters( 'woocommerce_gzd_user_activation_auto_login', $login, $user ) && ! is_user_logged_in() )
 					wc_set_customer_auth_cookie( $user->ID );
 
+				do_action( 'woocommerce_gzd_customer_opt_in_finished', $user );
+
 				return true;
 			}
 

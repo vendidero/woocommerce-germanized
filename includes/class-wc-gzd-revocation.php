@@ -16,7 +16,7 @@ class WC_GZD_Revocation {
 	 * @return array 
 	 */
 	public static function get_fields() {
-		return array(
+		return apply_filters( 'woocommerce_gzd_revocation_fields', array(
 			'content' 		  => array(
 				'type' 		  => 'textarea',
 				'label'       => _x( 'Revocation', 'revocation-form', 'woocommerce-germanized' ),
@@ -78,6 +78,6 @@ class WC_GZD_Revocation {
 				'label'       => _x( 'Mail', 'revocation-form', 'woocommerce-germanized' ),
 				'required' 	  => true,
 			),
-		);
+		) );
 	}
 }

@@ -60,7 +60,29 @@ function wc_gzd_get_crud_data( $object, $key, $suppress_suffix = false ) {
 	return $value;
 }
 
+function wc_gzd_set_crud_data( $object, $key, $value ) {
+
+	if ( wc_gzd_get_dependencies()->woocommerce_version_supports_crud() ) {
+
+		$key_unprefixed = substr( $key, 0, 1 ) === '_' ? substr( $key, 1 ) : $key;
+		$setter = substr( $key_unprefixed, 0, 3 ) === "set" ? $key : "set_{$key_unprefixed}";
+
+		if ( is_callable( array( $object, $setter ) ) ) {
+			$reflection = new ReflectionMethod( $object, $setter );
+			if ( $reflection->isPublic() ) {
+				$object->{$setter}( $value );
+			}
+		} else {
+			$object = wc_gzd_set_crud_meta_data( $object, $key, $value );
+		}
+	} else {
+		$object = wc_gzd_set_crud_meta_data( $object, $key, $value );
+	}
+	return $object;
+}
+
 function wc_gzd_set_crud_meta_data( $object, $key, $value ) {
+
 	if ( wc_gzd_get_dependencies()->woocommerce_version_supports_crud() ) {
 		$object->update_meta_data( $key, $value );
 	} else {

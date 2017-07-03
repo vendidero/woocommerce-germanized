@@ -114,6 +114,14 @@ class WC_Germanized_Meta_Box_Product_Data {
 			'default'       => 'no'
 		);
 
+		$types[ 'differential_taxation' ] = array(
+			'id'            => '_differential_taxation',
+			'wrapper_class' => '',
+			'label'         => __( 'Diff. Taxation', 'woocommerce-germanized' ),
+			'description'   => __( 'Product applies to differential taxation based on §25a UStG.', 'woocommerce-germanized' ),
+			'default'       => 'no'
+		);
+
 		return $types;
 	}
 
@@ -237,6 +245,7 @@ class WC_Germanized_Meta_Box_Product_Data {
 			'_sale_price' => '',
 			'_free_shipping' => '',
 			'_service' => '',
+            '_differential_taxation' => '',
 		);
 	}
 
@@ -384,8 +393,15 @@ class WC_Germanized_Meta_Box_Product_Data {
 		// Free shipping
 		$product = wc_gzd_set_crud_meta_data( $product, '_free_shipping', ( isset( $data['_free_shipping'] ) ) ? 'yes' : '' );
 
-		// Free shipping
+		// Is a service?
 		$product = wc_gzd_set_crud_meta_data( $product, '_service', ( isset( $data['_service'] ) ) ? 'yes' : '' );
+		
+		// Applies to differential taxation?
+		$product = wc_gzd_set_crud_meta_data( $product, '_differential_taxation', ( isset( $data['_differential_taxation'] ) ) ? 'yes' : '' );
+
+		if ( isset( $data['_differential_taxation'] ) ) {
+		    $product = wc_gzd_set_crud_data( $product, 'tax_status', 'shipping' );
+        }
 
 		// Ignore variable data
 		if ( in_array( $product_type, array( 'variable', 'grouped' ) ) && ! $is_variation ) {
