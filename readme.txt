@@ -5,7 +5,7 @@ Requires at least: 3.8
 Tested up to: 4.8
 WC requires at least: 2.4
 WC tested up to: 3.1
-Stable tag: 1.8.12
+Stable tag: 1.9.0
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -42,6 +42,10 @@ Furthermore we have customized the checkout to make your WooCommerce Shop meet t
 * Online Revocation Form
 * Sale Price Labels
 * Delivery to DHL Parcel Shops or Pick-Up Stations
+* Differential Taxation
+* WPML and PolyLang Support
+* REST API Support
+* Product CSV Import/Export Support
 
 = Certified by Trusted Shops =
 WooCommerce Germanized has been approved by Trusted Shops and therefor offers best technical conditions to operate a legally certain Online Shop in Germany. 
@@ -58,6 +62,9 @@ Using SEPA Direct Debit checkout fields for IBAN, BIC and Account Holder will be
 Furthermore the customer may preview his SEPA Mandate before submitting the order. Starting with 1.6 shop managers may easily export
 SEPA Mandates in XML format to import mandates to their house bank our banking software. 
 Pay By Invoice may be optionally restricted to regular customers only.
+
+= WPML and PolyLang Support =
+For those of you running WPML or PolyLang as multi-language Plugins: Don't worry! Germanized supports both plugins and enables you to easily translate the (product) options added by Germanized.
 
 = Pro: WooCommerce PDF Invoices & Packing Slips = 
 As a Pro User of WC Germanized you may automatically or manually create PDF Invoices and Packing Slips for your orders. Doing so you may customize the PDF layout to meet your Corporate Design.
@@ -169,8 +176,17 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 
 == Changelog ==
 
-= 1.8.12 =
-
+= 1.9.0 =
+* Feature: Woo 3.1 CSV Import/Export Support
+* Feature: Differential Taxation
+* Feature: PolyLang Support
+* Feature: Vouchers
+* Feature: Optional Tax Rate Creation after Install
+* Improvement: Load Customer Details Support
+* Improvement: Revocation Form Filter
+* Fix: Mini Desc Multiline
+* Fix: WC 3.X: Use Product Name instead of Title
+* Fix: Shipping Rates Copy Meta Data
 
 = 1.8.11 =
 * Improvement: Better Woo 3.0 compliant product data saving

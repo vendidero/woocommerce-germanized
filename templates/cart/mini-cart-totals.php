@@ -8,6 +8,7 @@
  */
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+
 ?>
 
 <?php foreach( $taxes as $tax ) : ?>

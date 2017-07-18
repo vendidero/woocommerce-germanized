@@ -56,6 +56,7 @@ class WC_GZD_Product_Import {
 			'unit_product'              => 'wc_format_decimal',
 			'unit_price_auto'           => array( $this, 'parse_bool_str' ),
 			'service'                   => array( $this, 'parse_bool_str' ),
+			'differential_taxation'     => array( $this, 'parse_bool_str' ),
 			'free_shipping'             => array( $this, 'parse_bool_str' ),
 			'delivery_time'             => array( $this, 'parse_delivery_time' ),
 			'sale_price_label'          => array( $this, 'parse_sale_price_label' ),

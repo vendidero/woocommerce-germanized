@@ -3,7 +3,7 @@
  * Plugin Name: WooCommerce Germanized
  * Plugin URI: https://www.vendidero.de/woocommerce-germanized
  * Description: Extends WooCommerce to become a legally compliant store for the german market.
- * Version: 1.8.12
+ * Version: 1.9.0
  * Author: Vendidero
  * Author URI: https://vendidero.de
  * Requires at least: 3.8
@@ -29,7 +29,7 @@ final class WooCommerce_Germanized {
 	 *
 	 * @var string
 	 */
-	public $version = '1.8.12';
+	public $version = '1.9.0';
 
 	/**
 	 * Single instance of WooCommerce Germanized Main Class
@@ -394,9 +394,7 @@ final class WooCommerce_Germanized {
 	 * Function used to Init WooCommerceGermanized Template Functions - This makes them pluggable by plugins and themes.
 	 */
 	public function include_template_functions() {
-		if ( ! is_admin() || defined( 'DOING_AJAX' ) ) {
-			include_once( 'includes/wc-gzd-template-functions.php' );
-		}
+		include_once( 'includes/wc-gzd-template-functions.php' );
 	}
 
 	/**
@@ -485,9 +483,19 @@ final class WooCommerce_Germanized {
 		}
 
 		foreach ( $rates as $key => $rate ) {
+
 			// Check for instance to make sure calculation is not done for multiple times
 			if ( ! $rate instanceof WC_GZD_Shipping_Rate ) {
+
+				// Replace rate with germanized placeholder
 				$rates[ $key ] = new WC_GZD_Shipping_Rate( $rate );
+
+				// Copy meta data if available
+				if ( is_callable( array( $rate, 'get_meta_data' ) ) ) {
+					foreach( $rate->get_meta_data() as $meta_key => $meta_val ) {
+						$rates[ $key ]->add_meta_data( $meta_key, $meta_val );
+					}
+				}
 			}
 		}
 

@@ -40,6 +40,8 @@ class WC_GZD_Products_API extends WC_GZD_REST_Unit_Test_Case {
 		$this->assertEquals( '100.0', $product['unit_price']['price_regular'] );
 		$this->assertEquals( '90.0', $product['unit_price']['price_sale'] );
 		$this->assertEquals( 'This is a test', trim(strip_tags($product['mini_desc'])) );
+		$this->assertEquals( true, $product['service'] );
+		$this->assertEquals( true, $product['differential_taxation'] );
 		$this->assertEquals( true, $product['free_shipping'] );
 
 		$simple->delete( true );
@@ -59,8 +61,9 @@ class WC_GZD_Products_API extends WC_GZD_REST_Unit_Test_Case {
 
 		$request = new WP_REST_Request( 'PUT', '/wc/v2/products/' . $simple->get_id() );
 		$request->set_body_params( array(
-			'delivery_time'     => array( 'id' => $term[ 'term_id' ] ),
-			'unit_price'        => array( 'price_regular' => '80.0', 'price_sale' => '70.0' ),
+			'delivery_time'             => array( 'id' => $term[ 'term_id' ] ),
+			'unit_price'                => array( 'price_regular' => '80.0', 'price_sale' => '70.0' ),
+			'differential_taxation'     => false,
 		) );
 
 		$response = $this->server->dispatch( $request );
@@ -79,6 +82,8 @@ class WC_GZD_Products_API extends WC_GZD_REST_Unit_Test_Case {
 		$this->assertEquals( '1', $product['unit_price']['product'] );
 		$this->assertEquals( 'This is a test', trim(strip_tags($product['mini_desc'])) );
 		$this->assertEquals( true, $product['free_shipping'] );
+		$this->assertEquals( false, $product['differential_taxation'] );
+		$this->assertEquals( true, $product['service'] );
 
 		$simple->delete( true );
 	}

@@ -188,6 +188,18 @@ class WC_GZD_REST_Products_Controller {
 			'default'     => false,
 			'context'     => array( 'view', 'edit' ),
 		);
+		$schema_properties['service'] = array(
+			'description' => __( 'Whether this product is a service or not', 'woocommerce-germanized' ),
+			'type'        => 'boolean',
+			'default'     => false,
+			'context'     => array( 'view', 'edit' ),
+		);
+		$schema_properties['differential_taxation'] = array(
+			'description' => __( 'Whether this product applies for differential taxation or not', 'woocommerce-germanized' ),
+			'type'        => 'boolean',
+			'default'     => false,
+			'context'     => array( 'view', 'edit' ),
+		);
 		$schema_properties['variations']['items']['properties'][ 'delivery_time' ] = array(
 			'description' => __( 'Delivery Time', 'woocommerce-germanized' ),
 			'type'        => 'object',
@@ -262,6 +274,12 @@ class WC_GZD_REST_Products_Controller {
 					'context'     => array( 'view', 'edit' )
 				)
 			)
+		);
+		$schema_properties['variations']['items']['properties'][ 'service' ] = array(
+			'description' => __( 'Whether this product is a service or not', 'woocommerce-germanized' ),
+			'type'        => 'boolean',
+			'default'     => false,
+			'context'     => array( 'view', 'edit' ),
 		);
 		$schema_properties['variations']['items']['properties'][ 'mini_desc' ] = array(
 			'description' => __( 'Small Cart Product Description', 'woocommerce-germanized' ),
@@ -421,16 +439,19 @@ class WC_GZD_REST_Products_Controller {
 			$data['_mini_desc'] = wc_gzd_sanitize_mini_desc( $request['mini_desc'] );
 		}
 
-		if ( isset( $request['free_shipping'] ) ) {
-			if ( ! empty( $request['free_shipping'] ) )
-				$data[ '_free_shipping' ] = true;
-		} else {
-			$data[ '_free_shipping' ] = wc_gzd_get_crud_data( $product, '_free_shipping', true );
-		}
+		foreach( array( 'free_shipping', 'service', 'differential_taxation' ) as $bool_meta ) {
 
-		// Do only add free_shipping if is set so saving works (checkbox-style).
-		if ( empty( $data[ '_free_shipping' ] ) || ! $data[ '_free_shipping' ] )
-			unset( $data[ '_free_shipping' ] );
+			if ( isset( $request[$bool_meta] ) ) {
+				if ( ! empty( $request[$bool_meta] ) )
+					$data[ "_{$bool_meta}" ] = true;
+			} else {
+				$data[ "_{$bool_meta}" ] = wc_gzd_get_crud_data( $product, "_{$bool_meta}", true );
+			}
+
+			// Do only add boolean values if is set so saving works (checkbox-style).
+			if ( empty( $data[ "_{$bool_meta}" ] ) || ! $data[ "_{$bool_meta}" ] )
+				unset( $data[ "_{$bool_meta}" ] );
+		}
 
 		return $data;
 	}
@@ -493,6 +514,12 @@ class WC_GZD_REST_Products_Controller {
 
 		// Shipping costs hidden?
 		$data[ 'free_shipping' ] = $product->has_free_shipping();
+
+		// Shipping costs hidden?
+		$data[ 'service' ] = $product->is_service();
+
+		// Shipping costs hidden?
+		$data[ 'differential_taxation' ] = $product->is_differential_taxed();
 
 		return $data;
 	}

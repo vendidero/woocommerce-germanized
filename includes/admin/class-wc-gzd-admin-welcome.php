@@ -123,15 +123,15 @@ class WC_GZD_Admin_Welcome {
 				<a href="https://vendidero.de/woocommerce-germanized#buy" target="_blank" class="button button-primary">Upgrade zur Pro Version</a>
 			</p>
 			<div class="changelog vendipro new-feature">
-                <h3>Neu in 1.8.4: Versand an DHL Shops & Packstationen</h3>
+                <h3>Neu in 1.9: CSV Import und Export</h3>
                 <div class="left">
                     <p>
-                        Germanized 1.8.4 ermöglicht es dir deinen Kunden den Versand an DHL Shops & Packstationen anzubieten. Dafür fügt Germanized eine Checkbox in der Versandadresse ein, die der Kunde anhaken kann. Anschließend wird die PostNummer und die Packstation abgefragt.
-                        Zudem haben wir auch die DHL Standortsuche integriert, über die der Kunde eine Packstation in seiner Nähe finden kann - die Daten der Packstation werden automatisch als Versandresse übernommen. Aktiviere jetzt den Versand an DHL Packstationen bzw. Paketshops in den <a href="<?php echo admin_url( 'admin.php?page=wc-settings&tab=germanized&section=display#woocommerce_gzd_dhl_parcel_shops' ); ?>">Einstellungen</a>.
+                        Mit WooCommerce 3.1 wurde ein mächtiges CSV Import/Export Feature implementiert. Germanized 1.9 macht nun auch die von uns hinzugefügten Daten über den Importer bzw. Exporter zugänglich.
+                        So kannst du also auch deine (Produkt-) Einheitspreise, Lieferzeiten usw. exportieren bzw. importieren - so kannst du deine Produktdaten u.U. auch aus externen Quellen verwalten.
                     </p>
                 </div>
                 <div class="right">
-                    <img src="<?php echo WC_germanized()->plugin_url();?>/assets/images/dhl-packstation.png" style="max-width: 600px; border: none" />
+                    <img src="<?php echo WC_germanized()->plugin_url();?>/assets/images/csv.png" style="max-width: 600px; border: none" />
                 </div>
             </div>
 			<div class="changelog vendipro new-feature">
@@ -228,27 +228,27 @@ class WC_GZD_Admin_Welcome {
 				</div>
 			</div>
 			<div class="changelog">
-				<h3>Neu in WooCommerce Germanized 1.7</h3>
+				<h3>Neu in WooCommerce Germanized 1.9</h3>
 				<div class="wc-feature feature-section col three-col" style="margin-bottom: -30px">
 					<div>
-						<h4><i class="fa fa-refresh"></i> Subscriptions</h4>
+						<h4><i class="fa fa-language"></i> PolyLang</h4>
 						<p>
-							Germanized bietet von nun an eine bessere Kompatibilität zum beliebten Plugin WooCommerce Subscriptions.
-							So werden nun z.B. auch die Mehrwertsteuer-Hinweise für Subscriptions in der Kasse und in den Mails korrekt gesetzt.
-						</p>
+                            Neben WPML unterstützt Germanized nun auch PolyLang und das WooCommerce Plugin <a href="https://wordpress.org/plugins/woo-poly-integration/" target="_blank">WooCommerce PolyLang Integration</a>.
+                            Mit PolyLang und Germanized kannst du deinen Online-Shop nun auch in mehreren Sprachen betreiben.
+                        </p>
 					</div>
 					<div>
-						<h4><i class="fa fa-envelope"></i> Bestellung bezahlt E-Mail</h4>
+						<h4><i class="fa fa-institution"></i> Differenzbesteuerung</h4>
 						<p>
-							Damit du deine Kunden über die erfolgreiche Bezahlung einer Bestellung informieren kannst haben wir das "Bestellung bezahlt" Template eingeführt.
-							Dieses E-Mail-Template kannst du wie gewohnt über die WooCommerce <a href="<?php admin_url( 'admin.php?page=wc-settings&tab=email' );?>">E-Mail-Einstellungen</a> verwalten.
+							Germanized unterstützt nun auch die Differenzbesteuerung nach §25a UStG. Damit kannst du deine Produkte nun entsprechend kennzeichnen und auf Wunsch
+                            in der Kasse und in den E-Mails Hinweise einbetten um deine Kunden zu informieren.
 						</p>
 					</div>
 					<div class="last-feature">
-						<h4><i class="fa fa-language"></i> Übersetzung</h4>
+						<h4><i class="fa fa-gift"></i> Wertgutscheine</h4>
 						<p>
-							Mit Einführung der automatischen Übersetzung von Germanized über das GlotPress-Repository, wurde die Möglichkeit des Überschreibens der Übersetzungen im language-Ordner "geraubt".
-							Übersetzungen werden nun wieder zuerst im Ordner wp-content/languages/woocommerce-germanized gesucht und geladen. 
+							Wertgutscheine werden im Gegensatz zu normalen Gutscheinen erst besteuert, wenn sie eingelöst werden. Du kannst bestimmte WooCommerce Gutscheine nun optional als
+                            Wertgutschein markieren. MwSt. wird in diesem Fall erst beim Einlösen berechnet.
 						</p>
 					</div>
 				</div>

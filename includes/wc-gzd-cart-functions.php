@@ -22,6 +22,28 @@ function wc_gzd_get_tax_rate( $tax_rate_id ) {
 	return false; 
 }
 
+function wc_gzd_cart_product_differential_taxation_mark( $title, $cart_item, $cart_item_key = '' ) {
+
+	$product = false;
+	$product_mark = '';
+
+	if ( isset( $cart_item[ 'data' ] ) ) {
+		$product = apply_filters( 'woocommerce_cart_item_product', $cart_item[ 'data' ], $cart_item, $cart_item_key );
+	} elseif ( isset( $cart_item[ 'product_id' ] ) ) {
+		$product = wc_get_product( ! empty( $cart_item[ 'variation_id' ] ) ? $cart_item[ 'variation_id' ] : $cart_item[ 'product_id' ] );
+	}
+
+	if ( $product ) {
+		if ( wc_gzd_get_gzd_product( $product )->is_differential_taxed() )
+			$product_mark = apply_filters( 'woocommerce_gzd_differential_taxation_cart_item_mark', ' **' );
+	}
+
+	if ( ! empty( $product_mark ) )
+		$title .= '<span class="wc-gzd-product-differential-taxation-mark">' . $product_mark . '</span>';
+
+	return $title;
+}
+
 /**
  * Appends product item desc live data (while checkout) or order meta to product name
  *  
@@ -229,7 +251,11 @@ function wc_gzd_cart_totals_order_total_html() {
 	echo '<td><strong>' . WC()->cart->get_total() . '</strong></td>';
 }
 
-function wc_gzd_get_cart_total_taxes() {
+function wc_gzd_cart_remove_shipping_taxes( $taxes, $cart ) {
+    return $cart->taxes;
+}
+
+function wc_gzd_get_cart_total_taxes( $include_shipping_taxes = true ) {
 
 	$tax_array = array();
 
@@ -237,18 +263,34 @@ function wc_gzd_get_cart_total_taxes() {
 	if ( get_option( 'woocommerce_calc_taxes' ) === 'yes' && WC()->cart->tax_display_cart === 'incl' ) {
 
 		if ( get_option( 'woocommerce_tax_total_display' ) == 'itemized' ) {
-			foreach ( WC()->cart->get_tax_totals() as $code => $tax ) {
-				$rate = wc_gzd_get_tax_rate( $tax->tax_rate_id );
-				if ( ! $rate ) {
+
+		    if ( ! $include_shipping_taxes ) {
+			    add_filter( 'woocommerce_cart_get_taxes', 'wc_gzd_cart_remove_shipping_taxes', 10, 2 );
+            }
+
+		    $taxes = WC()->cart->get_tax_totals();
+
+			if ( ! $include_shipping_taxes ) {
+				remove_filter( 'woocommerce_cart_get_taxes', 'wc_gzd_cart_remove_shipping_taxes', 10, 2 );
+			}
+
+		    foreach ( $taxes as $code => $tax ) {
+
+			    $rate = wc_gzd_get_tax_rate( $tax->tax_rate_id );
+
+			    if ( ! $rate ) {
 					continue;
 				}
+
 				if ( ! empty( $rate ) && isset( $rate->tax_rate ) ) {
 					$tax->rate = $rate->tax_rate;
 				}
+
 				if ( ! isset( $tax_array[ $tax->rate ] ) ) {
-					$tax_array[ $tax->rate ] = array( 'tax'      => $tax,
-					                                  'amount'   => $tax->amount,
-					                                  'contains' => array( $tax )
+					$tax_array[ $tax->rate ] = array(
+					        'tax'      => $tax,
+                            'amount'   => $tax->amount,
+                            'contains' => array( $tax )
 					);
 				} else {
 					array_push( $tax_array[ $tax->rate ]['contains'], $tax );
@@ -256,7 +298,7 @@ function wc_gzd_get_cart_total_taxes() {
 				}
 			}
 		} else {
-			$base_rate       = array_values( WC_Tax::get_shop_base_rate() );
+			$base_rate       = array_values( WC_Tax::get_base_tax_rates() );
 			$base_rate       = (object) $base_rate[0];
 			$base_rate->rate = $base_rate->rate;
 			$tax_array[]     = array( 'tax'      => $base_rate,

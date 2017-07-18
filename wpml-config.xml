@@ -12,6 +12,7 @@
         <custom-field action="copy">_free_shipping</custom-field>
         <custom-field action="translate">_mini_desc</custom-field>
         <custom-field action="copy">_service</custom-field>
+        <custom-field action="copy">_differential_taxation</custom-field>
     </custom-fields>
     <taxonomies>
         <taxonomy translate="1">product_price_label</taxonomy>
@@ -20,6 +21,7 @@
     </taxonomies>
     <admin-texts>
         <key name="woocommerce_gzd_small_enterprise_text" />
+        <key name="woocommerce_gzd_differential_taxation_notice_text" />
     	<key name="woocommerce_gzd_shipping_costs_text" />
         <key name="woocommerce_gzd_free_shipping_text" />
     	<key name="woocommerce_gzd_order_submit_btn_text" />

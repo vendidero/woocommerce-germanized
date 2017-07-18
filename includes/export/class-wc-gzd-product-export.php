@@ -40,6 +40,7 @@ class WC_GZD_Product_Export {
 
 		$this->columns = apply_filters( 'woocommerce_gzd_product_export_default_columns', array(
 			'service'                  => _x( 'Is service?', 'exporter', 'woocommerce-germanized' ),
+			'differential_taxation'    => _x( 'Is differential taxed?', 'exporter', 'woocommerce-germanized' ),
 			'free_shipping'            => _x( 'Has free shipping?', 'exporter', 'woocommerce-germanized' ),
 			'unit_price_regular'       => _x( 'Unit price regular', 'exporter', 'woocommerce-germanized' ),
 			'unit_price_sale'          => _x( 'Unit price sale', 'exporter', 'woocommerce-germanized' ),

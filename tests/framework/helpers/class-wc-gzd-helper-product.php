@@ -25,6 +25,7 @@ class WC_GZD_Helper_Product {
 			'_mini_desc' => 'This is a test',
 			'_free_shipping' => 'yes',
 			'_service' => 'yes',
+			'_differential_taxation' => 'yes'
 		);
 
 		foreach( $data as $key => $value ) {

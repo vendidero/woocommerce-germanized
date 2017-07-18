@@ -31,6 +31,7 @@ class WC_GZD_Tests_GZD_Product extends WC_GZD_Unit_Test_Case {
 		$this->assertEquals( 'This is a test', trim( strip_tags( $gzd_product->get_mini_desc() ) ) );
 
 		$this->assertEquals( true, $gzd_product->is_service() );
+		$this->assertEquals( true, $gzd_product->is_differential_taxed() );
 
 		$this->assertEquals( 'New Price:', $gzd_product->get_sale_price_label() );
 		$this->assertEquals( 'Old Price:', $gzd_product->get_sale_price_regular_label() );

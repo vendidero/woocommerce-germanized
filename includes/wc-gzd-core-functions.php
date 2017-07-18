@@ -156,3 +156,7 @@ function wc_gzd_convert_coupon_to_voucher( $coupon ) {
 	$coupon = new WC_Coupon( $coupon );
 	WC_GZD_Coupon_Helper::instance()->convert_coupon_to_voucher( $coupon );
 }
+
+function wc_gzd_get_differential_taxation_notice_text() {
+	return apply_filters( 'woocommerce_gzd_differential_taxation_notice_text', get_option( 'woocommerce_gzd_differential_taxation_notice_text' ) );
+}
