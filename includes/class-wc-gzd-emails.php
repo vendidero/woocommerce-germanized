@@ -377,6 +377,8 @@ class WC_GZD_Emails {
 		add_action( 'woocommerce_order_item_name', 'wc_gzd_cart_product_item_desc', wc_gzd_get_hook_priority( 'email_product_item_desc' ), 2 );
 		add_filter( 'woocommerce_order_formatted_line_subtotal', 'wc_gzd_cart_product_unit_price', wc_gzd_get_hook_priority( 'email_product_unit_price' ), 2 );
 
+		do_action( 'woocommerce_gzd_after_set_email_cart_item_filters' );
+
 	}
 
 	public function remove_order_email_filters() {
