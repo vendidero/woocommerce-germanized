@@ -458,7 +458,16 @@ class WC_GZD_Checkout {
 	}
 
 	public function get_customer_title( $option = 1 ) {
-		return ( 1 == $option ? __( 'Mr.', 'woocommerce-germanized' ) : __( 'Ms.', 'woocommerce-germanized' ) );
+
+		$option = absint( $option );
+
+		$titles = apply_filters( 'woocommerce_gzd_title_options', array( 1 => __( 'Mr.', 'woocommerce-germanized' ), 2 => __( 'Ms.', 'woocommerce-germanized' ) ) );
+
+		if ( array_key_exists( $option, $titles ) ) {
+			return $titles[ $option ];
+		} else {
+			return __( 'Ms.', 'woocommerce-germanized' );
+		}
 	}
 
 	public function set_formatted_address( $placeholder, $args ) {
