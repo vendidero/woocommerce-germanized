@@ -32,6 +32,13 @@ class WC_GZD_Virtual_VAT_Helper {
 
 		$virtual_vat_applicable = in_array( $tax_class, array( 'virtual-rate', 'virtual-reduced-rate' ) ) && isset( $location[0] ) && sizeof( $location ) === 4 && $location[0] !== WC()->countries->get_base_country();
 
+		// Make sure that the customer is not a vat exempt
+		if ( is_callable( array( WC()->customer, 'is_vat_exempt' ) ) ) {
+			if ( WC()->customer->is_vat_exempt() ) {
+				return $rates;
+			}
+		}
+
 		if ( apply_filters( 'woocommerce_gzd_force_tax_location_vat_base_rates', $virtual_vat_applicable, $tax_class, $location ) ) {
 
 			list( $country, $state, $postcode, $city ) = $location;
