@@ -18,18 +18,18 @@ class WC_GZD_Email_Customer_Paid_For_Order extends WC_Email {
 	/**
 	 * Constructor
 	 */
-	function __construct() {
+	public function __construct() {
 
 		$this->id 				= 'customer_paid_for_order';
 		$this->customer_email   = true;
 		$this->title 			= __( 'Paid for order', 'woocommerce-germanized' );
 		$this->description		= __( 'This E-Mail is being sent to a customer after the order has been paid.', 'woocommerce-germanized' );
 
-		$this->heading 			= __( 'Payment received', 'woocommerce-germanized' );
-		$this->subject      	= __( 'Payment received for order {order_number}', 'woocommerce-germanized' );
-
 		$this->template_html 	= 'emails/customer-paid-for-order.php';
 		$this->template_plain  	= 'emails/plain/customer-paid-for-order.php';
+
+		$this->heading 			= __( 'Payment received', 'woocommerce-germanized' );
+		$this->subject      	= __( 'Payment received for order {order_number}', 'woocommerce-germanized' );
 
 		// Triggers for this email
 		add_action( 'woocommerce_order_status_pending_to_processing_notification', array( $this, 'trigger' ), 30 );

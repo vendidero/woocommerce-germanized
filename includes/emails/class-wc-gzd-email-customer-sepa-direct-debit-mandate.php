@@ -23,7 +23,7 @@ class WC_GZD_Email_Customer_SEPA_Direct_Debit_Mandate extends WC_Email {
 	 * @access public
 	 * @return void
 	 */
-	function __construct() {
+	public function __construct() {
 
 		$this->id     		 	= 'customer_sepa_direct_debit_mandate';
 		$this->title    	 	= __( 'SEPA Direct Debit Mandate', 'woocommerce-germanized' );
@@ -47,7 +47,7 @@ class WC_GZD_Email_Customer_SEPA_Direct_Debit_Mandate extends WC_Email {
 	 * @access public
 	 * @return void
 	 */
-	function trigger( $order ) {
+	public function trigger( $order ) {
 
 		if ( ! is_object( $order ) ) {
 			$order = wc_get_order( absint( $order ) );
@@ -80,7 +80,7 @@ class WC_GZD_Email_Customer_SEPA_Direct_Debit_Mandate extends WC_Email {
 	 * @access public
 	 * @return string
 	 */
-	function get_content_html() {
+	public function get_content_html() {
 		ob_start();
 		wc_get_template( $this->template_html, array(
 			'order'      	 => $this->object,
@@ -100,7 +100,7 @@ class WC_GZD_Email_Customer_SEPA_Direct_Debit_Mandate extends WC_Email {
 	 * @access public
 	 * @return string
 	 */
-	function get_content_plain() {
+	public function get_content_plain() {
 		ob_start();
 		wc_get_template( $this->template_plain, array(
 			'order'      	 => $this->object,

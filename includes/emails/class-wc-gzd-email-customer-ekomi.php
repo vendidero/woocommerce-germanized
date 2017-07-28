@@ -18,17 +18,17 @@ class WC_GZD_Email_Customer_Ekomi extends WC_Email {
 	/**
 	 * Constructor
 	 */
-	function __construct() {
+	public function __construct() {
 
 		$this->id 				= 'customer_ekomi';
 		$this->title 			= _x( 'eKomi Review Reminder', 'ekomi', 'woocommerce-germanized' );
 		$this->description		= _x( 'This E-Mail is being sent to a customer to transfer eKomi order review link to a customer.', 'ekomi', 'woocommerce-germanized' );
 
-		$this->heading 			= _x( 'Please rate your Order', 'ekomi', 'woocommerce-germanized' );
-		$this->subject      	= _x( 'Please rate your {site_title} order from {order_date}', 'ekomi', 'woocommerce-germanized' );
-
 		$this->template_html 	= 'emails/customer-ekomi.php';
 		$this->template_plain 	= 'emails/plain/customer-ekomi.php';
+
+		$this->heading 			= _x( 'Please rate your Order', 'ekomi', 'woocommerce-germanized' );
+		$this->subject      	= _x( 'Please rate your {site_title} order from {order_date}', 'ekomi', 'woocommerce-germanized' );
 
 		// Triggers for this email
 		add_action( 'woocommerce_germanized_ekomi_review_notification', array( $this, 'trigger' ) );
@@ -45,7 +45,7 @@ class WC_GZD_Email_Customer_Ekomi extends WC_Email {
 	 * @access public
 	 * @return void
 	 */
-	function trigger( $order_id ) {
+	public function trigger( $order_id ) {
 
 		if ( $order_id ) {
 			$this->object 		= wc_get_order( $order_id );
@@ -71,7 +71,7 @@ class WC_GZD_Email_Customer_Ekomi extends WC_Email {
 	 * @access public
 	 * @return string
 	 */
-	function get_content_html() {
+	public function get_content_html() {
 		ob_start();
 		wc_get_template( $this->template_html, array(
 			'order' 		=> $this->object,
@@ -89,7 +89,7 @@ class WC_GZD_Email_Customer_Ekomi extends WC_Email {
 	 * @access public
 	 * @return string
 	 */
-	function get_content_plain() {
+	public function get_content_plain() {
 		ob_start();
 		wc_get_template( $this->template_plain, array(
 			'order' 		=> $this->object,

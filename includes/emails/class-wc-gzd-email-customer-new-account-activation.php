@@ -32,7 +32,7 @@ class WC_GZD_Email_Customer_New_Account_Activation extends WC_Email {
 	 * @access public
 	 * @return void
 	 */
-	function __construct() {
+	public function __construct() {
 
 		$this->id 				= 'customer_new_account_activation';
 		$this->title 			= __( 'New account activation', 'woocommerce-germanized' );
@@ -56,7 +56,7 @@ class WC_GZD_Email_Customer_New_Account_Activation extends WC_Email {
 	 * @access public
 	 * @return void
 	 */
-	function trigger( $user_id, $user_activation, $user_activation_url, $user_pass = '', $password_generated = false ) {
+	public function trigger( $user_id, $user_activation, $user_activation_url, $user_pass = '', $password_generated = false ) {
 
 		if ( $user_id ) {
 			$this->object 			   = new WP_User( $user_id );
@@ -82,7 +82,7 @@ class WC_GZD_Email_Customer_New_Account_Activation extends WC_Email {
 	 * @access public
 	 * @return string
 	 */
-	function get_content_html() {
+	public function get_content_html() {
 		ob_start();
 		wc_get_template( $this->template_html, array(
 			'email_heading'       => $this->get_heading(),
@@ -105,7 +105,7 @@ class WC_GZD_Email_Customer_New_Account_Activation extends WC_Email {
 	 * @access public
 	 * @return string
 	 */
-	function get_content_plain() {
+	public function get_content_plain() {
 		ob_start();
 		wc_get_template( $this->template_plain, array(
 			'email_heading'       => $this->get_heading(),

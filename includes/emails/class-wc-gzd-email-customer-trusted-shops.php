@@ -18,18 +18,17 @@ class WC_GZD_Email_Customer_Trusted_Shops extends WC_Email {
 	/**
 	 * Constructor
 	 */
-	function __construct() {
+	public function __construct() {
 
 		$this->id 				= 'customer_trusted_shops';
 		$this->title 			= _x( 'Trusted Shops Review Reminder', 'trusted-shops', 'woocommerce-germanized' );
 		$this->description		= _x( 'This E-Mail is being sent to a customer to remind him about the possibility to leave a review at Trusted Shops.', 'trusted-shops', 'woocommerce-germanized' );
 
-		$this->heading 			= _x( 'Please rate your Order', 'trusted-shops', 'woocommerce-germanized' );
-		$this->subject      	= _x( 'Please rate your {site_title} order from {order_date}', 'trusted-shops', 'woocommerce-germanized' );
-
 		$this->template_html 	= 'emails/customer-trusted-shops.php';
 		$this->template_plain  	= 'emails/plain/customer-trusted-shops.php';
 
+		$this->heading 			= _x( 'Please rate your Order', 'trusted-shops', 'woocommerce-germanized' );
+		$this->subject      	= _x( 'Please rate your {site_title} order from {order_date}', 'trusted-shops', 'woocommerce-germanized' );
 
 		// Triggers for this email
 		add_action( 'woocommerce_germanized_trusted_shops_review_notification', array( $this, 'trigger' ) );
@@ -46,7 +45,7 @@ class WC_GZD_Email_Customer_Trusted_Shops extends WC_Email {
 	 * @access public
 	 * @return void
 	 */
-	function trigger( $order_id ) {
+	public function trigger( $order_id ) {
 
 		if ( $order_id ) {
 			$this->object 		= wc_get_order( $order_id );
@@ -72,7 +71,7 @@ class WC_GZD_Email_Customer_Trusted_Shops extends WC_Email {
 	 * @access public
 	 * @return string
 	 */
-	function get_content_html() {
+	public function get_content_html() {
 		ob_start();
 		wc_get_template( $this->template_html, array(
 			'order' 		=> $this->object,
