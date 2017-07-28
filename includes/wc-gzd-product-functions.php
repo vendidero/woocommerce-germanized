@@ -92,6 +92,10 @@ function wc_gzd_product_matches_extended_type( $types, $product ) {
 
 	$matches_type = false;
 
+	if ( is_a( $product, 'WC_GZD_Product' ) ) {
+		$product = $product->get_wc_product();
+	}
+
 	if ( ! is_array( $types ) )
 		$types = array( $types );
 
@@ -99,8 +103,16 @@ function wc_gzd_product_matches_extended_type( $types, $product ) {
 		$matches_type = true;
 	} else {
 		foreach ( $types as $type ) {
-			if ( is_callable( array( $product, 'is_' . $type ) ) )
-				$matches_type = ( call_user_func_array( array( $product, 'is_' . $type ), array() ) === true ? true : false );
+			$getter = "is_" . $type;
+			try {
+				if ( is_callable( array( $product, $getter ) ) ) {
+					$reflection = new ReflectionMethod( $product, $getter );
+
+					if ( $reflection->isPublic() ) {
+						$matches_type = $product->{$getter}() === true;
+					}
+				}
+			} catch ( Exception $e ) {}
 		}
 	}
 
