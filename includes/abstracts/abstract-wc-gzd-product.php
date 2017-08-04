@@ -122,6 +122,36 @@ class WC_GZD_Product {
 		return false;
 	}
 
+	public function recalculate_unit_price( $args = array() ) {
+
+		$args = wp_parse_args( $args, array(
+			'regular_price' => $this->get_regular_price(),
+			'sale_price' => $this->get_sale_price(),
+			'price' => $this->get_price(),
+		) );
+
+		$base = $this->unit_base;
+		$product_base = $base;
+
+		if ( empty( $this->unit_product ) ) {
+			// Set base multiplicator to 1
+			$base = 1;
+		} else {
+			$product_base = $this->unit_product;
+		}
+
+		$this->unit_price_regular = wc_format_decimal( ( $args[ 'regular_price' ] / $product_base ) * $base, wc_get_price_decimals() );
+		$this->unit_price_sale = '';
+
+		if ( ! empty( $args[ 'sale_price' ] ) ) {
+			$this->unit_price_sale = wc_format_decimal( ( $args[ 'sale_price' ] / $product_base ) * $base, wc_get_price_decimals() );
+		}
+
+		$this->unit_price = wc_format_decimal( ( $args[ 'price' ] / $product_base ) * $base, wc_get_price_decimals() );
+
+		do_action( 'woocommerce_gzd_recalculated_unit_price', $this );
+	}
+
 	/**
 	 * Get a product's cart description
 	 * 

@@ -414,12 +414,16 @@ class WC_GZD_Checkout {
 
 	public function set_order_item_meta_crud( $item, $cart_item_key, $values, $order ) {
 		if ( is_a( $item, 'WC_Order_Item' ) && $item->get_product() ) {
-			$product = $item->get_product();
 
-			$item = wc_gzd_set_crud_meta_data( $item, '_units', wc_gzd_get_gzd_product( $product )->get_product_units_html() );
-			$item = wc_gzd_set_crud_meta_data( $item, '_delivery_time', wc_gzd_get_gzd_product( $product )->get_delivery_time_html() );
-			$item = wc_gzd_set_crud_meta_data( $item, '_item_desc', wc_gzd_get_gzd_product( $product )->get_mini_desc() );
-			$item = wc_gzd_set_crud_meta_data( $item, '_unit_price', wc_gzd_get_gzd_product( $product )->get_unit_html( false ) );
+			$product = $item->get_product();
+			$gzd_product = wc_gzd_get_gzd_product( $product );
+
+			do_action( 'woocommerce_gzd_add_order_item_meta', $item, $order, $gzd_product );
+
+			$item = wc_gzd_set_crud_meta_data( $item, '_units', $gzd_product->get_product_units_html() );
+			$item = wc_gzd_set_crud_meta_data( $item, '_delivery_time', $gzd_product->get_delivery_time_html() );
+			$item = wc_gzd_set_crud_meta_data( $item, '_item_desc', $gzd_product->get_mini_desc() );
+			$item = wc_gzd_set_crud_meta_data( $item, '_unit_price', apply_filters( 'woocommerce_gzd_order_item_unit_price', $gzd_product->get_unit_html( false ), $gzd_product, $item, $order ) );
 		}
 	}
 

@@ -133,8 +133,9 @@ function wc_gzd_cart_product_unit_price( $price, $cart_item, $cart_item_key = ''
 	
 		$product = apply_filters( 'woocommerce_cart_item_product', $cart_item[ 'data' ], $cart_item, $cart_item_key );
 	
-		if ( wc_gzd_get_gzd_product( $product )->has_unit() )
+		if ( wc_gzd_get_gzd_product( $product )->has_unit() ) {
 			$unit_price = wc_gzd_get_gzd_product( $product )->get_unit_html( false );
+		}
 	
 	} elseif ( isset( $cart_item[ 'unit_price' ] ) ) {
 

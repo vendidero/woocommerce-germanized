@@ -369,13 +369,12 @@ final class WooCommerce_Germanized {
 	public function setup_compatibility() {
 
 		$plugins = apply_filters( 'woocommerce_gzd_compatibilities',
-			array( 'wpml', 'woocommerce-subscriptions', 'polylang' )
+			array( 'wpml', 'woocommerce-subscriptions', 'polylang', 'woocommerce-dynamic-pricing' )
 		);
 
 		foreach ( $plugins as $comp ) {
 
 			$classname = str_replace( ' ', '_', 'WC_GZD_Compatibility_' . ucwords( str_replace( '-', ' ', $comp ) ) );
-
 			if ( class_exists( $classname ) ) {
 				$this->compatibilities[ $comp ] = new $classname();
 			}
