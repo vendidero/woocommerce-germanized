@@ -1,21 +1,19 @@
 === WooCommerce Germanized ===
 Contributors: vendidero
-Tags: woocommerce, german market, german, germany, deutsch, deutschland, de, de_DE, shop, commerce, e-commerce, ecommerce, woothemes, sepa, invoice
+Tags: woocommerce, german market, german, woocommerce-de, germany, deutsch, deutschland, de, de_DE, shop, e-commerce, ecommerce, woothemes, sepa, invoice
 Requires at least: 3.8
 Tested up to: 4.8
 WC requires at least: 2.4
 WC tested up to: 3.1
-Stable tag: 1.9.0
+Stable tag: 1.9.1
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
-Extends WooCommerce to become a legally compliant Shop for German Market. Must Have for every German Shop Owner. Certified by Trusted Shops.
+Extends WooCommerce to become a legally compliant Shop for German Market. Must Have for every German WooCommerce Shop Owner.
 
 == Description ==
 
-*This description is available in [German](https://de.wordpress.org/plugins/woocommerce-germanized/ "WooCommerce Germanized")*
-
-WooCommerce Germanized extends WooCommerce to technically match german legal conditions. The objective of this plugin is to perfectly adapt WooCommerce to meet the special requirements of german market. WC Germanized is being continually developed by an experienced german team - on updates of WooCommerce we will respond quickly by offering compatibility. 
+**WooCommerce Germanized** extends WooCommerce to technically match german legal conditions. The objective of this plugin is to perfectly adapt WooCommerce to meet the special requirements of german market. WC Germanized is being continually developed by an experienced german team - on updates of WooCommerce we will respond quickly by offering compatibility.
 
 Users of [WooCommerce Germanized Pro](https://vendidero.de/woocommerce-germanized "WooCommerce optimized for German Market") benefit from additional features such as PDF Invoices, Model Text Generators for terms and revocation, Premium Support and more!
 
@@ -36,6 +34,8 @@ Furthermore we have customized the checkout to make your WooCommerce Shop meet t
 * Double Opt In for Customers
 * Tax Calculation for Shipping Costs and Fees
 * Terms, Revocation etc. in certain Email Templates
+* Trusted Shops Integration
+* eKomi Integration
 * Payment Gateway: SEPA direct debit
 * Payment Gateway: Pay by Invoice
 * Payment Gateway Fees
@@ -53,7 +53,7 @@ Trusted Shops certifies Shops after selected and weighted criteria and has caref
 Of course Trusted Shops customers may embed their quality seals or further Trusted Shops Products as genuine Seller and Product Reviews by adapting just a few options within WooCommerce Germanized.
 
 = Properly Implemented =
-While developing WC Germanized we have specifically considered clean integration within WooCommerce and WordPress by adapting core functionality.
+While developing WooCommerce Germanized we have specifically considered clean integration within WooCommerce and WordPress by adapting core functionality.
 Most of the changes are made by using Hooks & Filters so that Germanized is compatible to almost every Theme.
 
 = SEPA Direct Debit & Pay By Invoice for WooCommerce = 
@@ -62,9 +62,6 @@ Using SEPA Direct Debit checkout fields for IBAN, BIC and Account Holder will be
 Furthermore the customer may preview his SEPA Mandate before submitting the order. Starting with 1.6 shop managers may easily export
 SEPA Mandates in XML format to import mandates to their house bank our banking software. 
 Pay By Invoice may be optionally restricted to regular customers only.
-
-= WPML and PolyLang Support =
-For those of you running WPML or PolyLang as multi-language Plugins: Don't worry! Germanized supports both plugins and enables you to easily translate the (product) options added by Germanized.
 
 = Pro: WooCommerce PDF Invoices & Packing Slips = 
 As a Pro User of WC Germanized you may automatically or manually create PDF Invoices and Packing Slips for your orders. Doing so you may customize the PDF layout to meet your Corporate Design.
@@ -87,7 +84,7 @@ At the moment professional version supports the following Themes:
 * Virtue
 
 = Pro: Premium Support =
-Customers of WC Germanized Pro enjoy our qualified Germanized Support via Tickets. Of course we also seek to offer a good Plugin Support via WordPress Support Forums.
+Customers of Woo Germanized Pro enjoy our qualified Germanized Support via Tickets. Of course we also seek to offer a good Plugin Support via WordPress Support Forums.
 
 = Double Opt In for WooCommerce =
 A new judgement of a German Court makes Shop Managers nervous about whether Double Opt In is required for Online Shops. Therefor WC Germanized offers Double Opt In Support for WooCommerce.
@@ -100,11 +97,7 @@ Shop managers may check order details and then manually confirm the order throug
 
 = Delivery to DHL Parcel Shops =
 You may optionally choose to offer delivery to DHL parcel shops or pick-up stations. Customers may find a parcel shop nearby by embedding an overlay of the DHL search API.
-On choosing a parcel shop within the overlay the corresponding data is automatically added to the checkout fields.
-
-= eKomi Integration =
-Shop managers who are using eKomi as a Review Management Service may easily integrate it's features within WooCommerce. 
-Easily set up eKomi by adapting a few Settings within WooCommerce Germanized.
+On choosing a parcel shop within the overlay the corresponding data is automatically added to the WooCommerce checkout fields.
 
 == Installation ==
 
@@ -175,6 +168,14 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 1. WooCommerce Germanized Settings
 
 == Changelog ==
+
+= 1.9.1 =
+* Feature: Display toggle options for Email filters (e.g. base price)
+* Fix: Extend product type matching (display options)
+* Fix: Virtual VAT customer vat exempt check
+* Fix: Better Email hook removal
+* Improvement: filter for get_customer_title
+* Improvement: Cleaned up Email code
 
 = 1.9.0 =
 * Feature: Woo 3.1 CSV Import/Export Support

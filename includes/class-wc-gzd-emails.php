@@ -374,10 +374,15 @@ class WC_GZD_Emails {
 
 		// Add order item name actions
 		add_filter( 'woocommerce_order_item_name', 'wc_gzd_cart_product_differential_taxation_mark', wc_gzd_get_hook_priority( 'email_product_differential_taxation' ), 2 );
-		add_filter( 'woocommerce_order_item_name', 'wc_gzd_cart_product_units', wc_gzd_get_hook_priority( 'email_product_units' ), 2 );
-		add_filter( 'woocommerce_order_item_name', 'wc_gzd_cart_product_delivery_time', wc_gzd_get_hook_priority( 'email_product_delivery_time' ), 2 );
-		add_filter( 'woocommerce_order_item_name', 'wc_gzd_cart_product_item_desc', wc_gzd_get_hook_priority( 'email_product_item_desc' ), 2 );
-		add_filter( 'woocommerce_order_formatted_line_subtotal', 'wc_gzd_cart_product_unit_price', wc_gzd_get_hook_priority( 'email_product_unit_price' ), 2 );
+
+		if ( get_option( 'woocommerce_gzd_display_emails_product_units' ) === 'yes' )
+			add_filter( 'woocommerce_order_item_name', 'wc_gzd_cart_product_units', wc_gzd_get_hook_priority( 'email_product_units' ), 2 );
+		if ( get_option( 'woocommerce_gzd_display_emails_delivery_time' ) === 'yes' )
+			add_filter( 'woocommerce_order_item_name', 'wc_gzd_cart_product_delivery_time', wc_gzd_get_hook_priority( 'email_product_delivery_time' ), 2 );
+		if ( get_option( 'woocommerce_gzd_display_emails_product_item_desc' ) === 'yes' )
+			add_filter( 'woocommerce_order_item_name', 'wc_gzd_cart_product_item_desc', wc_gzd_get_hook_priority( 'email_product_item_desc' ), 2 );
+		if ( get_option( 'woocommerce_gzd_display_emails_unit_price' ) === 'yes' )
+			add_filter( 'woocommerce_order_formatted_line_subtotal', 'wc_gzd_cart_product_unit_price', wc_gzd_get_hook_priority( 'email_product_unit_price' ), 2 );
 
 		do_action( 'woocommerce_gzd_after_set_email_cart_item_filters', $this, $current );
 
