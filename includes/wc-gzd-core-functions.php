@@ -148,7 +148,7 @@ function wc_gzd_get_shipping_costs_text( $product = false ) {
 	}
 }
 
-function wc_gzd_sanitize_mini_desc( $value ) {
+function wc_gzd_sanitize_html_text_field( $value ) {
 	return wp_kses_post( esc_html( wp_unslash( $value ) ) );
 }
 

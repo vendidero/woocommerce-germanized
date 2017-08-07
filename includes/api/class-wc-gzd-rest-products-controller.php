@@ -436,7 +436,7 @@ class WC_GZD_REST_Products_Controller {
 		}
 
 		if ( isset( $request['mini_desc'] ) ) {
-			$data['_mini_desc'] = wc_gzd_sanitize_mini_desc( $request['mini_desc'] );
+			$data['_mini_desc'] = wc_gzd_sanitize_html_text_field( $request['mini_desc'] );
 		}
 
 		foreach( array( 'free_shipping', 'service', 'differential_taxation' ) as $bool_meta ) {
