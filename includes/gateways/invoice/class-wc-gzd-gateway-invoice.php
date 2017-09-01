@@ -43,6 +43,8 @@ class WC_GZD_Gateway_Invoice extends WC_Payment_Gateway {
 		add_action( 'woocommerce_update_options_payment_gateways_' . $this->id, array( $this, 'process_admin_options' ) );
     	add_action( 'woocommerce_thankyou_invoice', array( $this, 'thankyou_page' ) );
 
+    	// Customer Emails
+		add_action( 'woocommerce_email_before_order_table', array( $this, 'email_instructions' ), 10, 3 );
     }
 
     public function admin_options() { ?>
@@ -144,7 +146,9 @@ class WC_GZD_Gateway_Invoice extends WC_Payment_Gateway {
      * @param bool $plain_text
      */
 	public function email_instructions( $order, $sent_to_admin, $plain_text = false ) {
-        if ( $this->instructions && ! $sent_to_admin && 'invoice' === wc_gzd_get_crud_data( $order, 'payment_method' ) && $order->has_status( 'on-hold' ) ) {
+	    $status = str_replace( 'wc-', '', $this->default_order_status );
+
+	    if ( $this->instructions && ! $sent_to_admin && 'invoice' === wc_gzd_get_crud_data( $order, 'payment_method' ) && $order->has_status( $status ) ) {
 			echo wpautop( wptexturize( $this->instructions ) ) . PHP_EOL;
 		}
 	}
