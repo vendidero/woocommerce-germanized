@@ -122,7 +122,7 @@ class WC_GZD_AJAX {
 				$mail->trigger( $data );
 				
 				// Send to Admin
-				$data[ 'mail' ] = get_bloginfo('admin_email');
+				$data[ 'mail' ] = apply_filters( 'wc_gzd_revocation_admin_mail', get_bloginfo('admin_email') );
 				$mail->trigger( $data );
 			}
 	

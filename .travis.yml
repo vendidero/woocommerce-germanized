@@ -4,7 +4,6 @@ sudo: false
 
 # Test main supported versions of PHP and HHVM against latest WP. 5.2 is min supported version.
 php:
-  - 5.3
   - 5.6
   - 7.0
   - 7.1
