@@ -437,6 +437,8 @@ class WC_GZD_Product {
 
 		if ( $this->has_unit() ) {
 
+			do_action( 'woocommerce_gzd_before_get_unit_price_html', $this );
+
 			$display_price = $this->get_unit_price();
 			$display_regular_price = $this->get_unit_price( 1, $this->get_unit_regular_price() );
 			$display_sale_price = $this->get_unit_price( 1, $this->get_unit_sale_price() );

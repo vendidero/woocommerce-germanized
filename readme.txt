@@ -5,7 +5,7 @@ Requires at least: 3.8
 Tested up to: 4.8
 WC requires at least: 2.4
 WC tested up to: 3.1
-Stable tag: 1.9.1
+Stable tag: 1.9.2
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -168,6 +168,12 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 1. WooCommerce Germanized Settings
 
 == Changelog ==
+
+= 1.9.2 =
+* Feature: Added Mulit-Currency-Support for Unit Prices (WPML)
+* Improvement: Filter to adjust default SEPA Gateway order status
+* Fix: Sanitizing for legal text removed line breaks
+* Fix: Send email instructions for invoice gateway
 
 = 1.9.1 =
 * Feature: Display toggle options for Email filters (e.g. base price)
