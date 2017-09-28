@@ -2,16 +2,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce Germanized v1.5.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-08-04 10:45+0200\n"
-"PO-Revision-Date: 2017-08-04 10:45+0200\n"
-"Last-Translator: \n"
+"POT-Creation-Date: 2017-09-28 18:12+0200\n"
+"PO-Revision-Date: 2017-09-28 18:13+0200\n"
+"Last-Translator: holzhannes <holzhannes@posteo.de>\n"
 "Language-Team: \n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Poedit 2.0.3\n"
+"X-Generator: Poedit 2.0.2\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;"
 "_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;"
@@ -92,29 +92,29 @@ msgid "l"
 msgstr "l"
 
 # @ woocommerce-germanized
-#: includes/abstracts/abstract-wc-gzd-product.php:230
-#: includes/abstracts/abstract-wc-gzd-product.php:239
+#: includes/abstracts/abstract-wc-gzd-product.php:260
+#: includes/abstracts/abstract-wc-gzd-product.php:269
 #: includes/compatibility/class-wc-gzd-compatibility-woocommerce-subscriptions.php:72
 #: includes/wc-gzd-core-functions.php:129
-#: includes/wc-gzd-template-functions.php:608 woocommerce-germanized.php:822
+#: includes/wc-gzd-template-functions.php:608 woocommerce-germanized.php:821
 msgid "incl. VAT"
 msgstr "inkl. MwSt."
 
 # @ woocommerce-germanized
-#: includes/abstracts/abstract-wc-gzd-product.php:230
+#: includes/abstracts/abstract-wc-gzd-product.php:260
 msgid "excl. VAT"
 msgstr "exkl. MwSt."
 
 # @ woocommerce-germanized
-#: includes/abstracts/abstract-wc-gzd-product.php:232
+#: includes/abstracts/abstract-wc-gzd-product.php:262
 #: includes/compatibility/class-wc-gzd-compatibility-woocommerce-subscriptions.php:72
-#: includes/wc-gzd-core-functions.php:129 woocommerce-germanized.php:822
+#: includes/wc-gzd-core-functions.php:129 woocommerce-germanized.php:821
 #, php-format
 msgid "incl. %s%% VAT"
 msgstr "inkl. %s%% MwSt."
 
 # @ woocommerce-germanized
-#: includes/abstracts/abstract-wc-gzd-product.php:232
+#: includes/abstracts/abstract-wc-gzd-product.php:262
 #, php-format
 msgid "excl. %s%% VAT"
 msgstr "exkl. %s%% MwSt."
@@ -1102,7 +1102,7 @@ msgstr "Kunden"
 
 # @ woocommerce-germanized
 #: includes/admin/settings/class-wc-gzd-settings-germanized.php:514
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:559
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:736
 msgid "Checkbox"
 msgstr "Checkbox"
 
@@ -2030,7 +2030,7 @@ msgstr ""
 
 # @ woocommerce-germanized
 #: includes/admin/settings/class-wc-gzd-settings-germanized.php:1156
-#: includes/wc-gzd-cart-functions.php:380
+#: includes/wc-gzd-cart-functions.php:381
 msgid ""
 "To retrieve direct access to digital content you have to agree to the loss "
 "of your right of withdrawal."
@@ -2107,7 +2107,7 @@ msgstr ""
 
 # @ woocommerce-germanized
 #: includes/admin/settings/class-wc-gzd-settings-germanized.php:1185
-#: includes/wc-gzd-cart-functions.php:405
+#: includes/wc-gzd-cart-functions.php:406
 msgid ""
 "For services: I demand and acknowledge the immediate performance of the "
 "service before the expiration of the withdrawal period. I acknowledge that "
@@ -2125,7 +2125,7 @@ msgstr "Fehlermeldung"
 
 # @ woocommerce-germanized
 #: includes/admin/settings/class-wc-gzd-settings-germanized.php:1195
-#: includes/wc-gzd-cart-functions.php:416
+#: includes/wc-gzd-cart-functions.php:417
 msgid ""
 "To allow the immediate performance of the services you have to agree to the "
 "loss of your right of withdrawal."
@@ -2223,7 +2223,7 @@ msgstr ""
 "den Titel der Versandmethoden einzubetten."
 
 #: includes/admin/settings/class-wc-gzd-settings-germanized.php:1233
-#: includes/wc-gzd-cart-functions.php:465
+#: includes/wc-gzd-cart-functions.php:466
 msgid ""
 "Yes, I would like to be reminded via E-mail about parcel delivery "
 "({shipping_method_title}). Your E-mail Address will only be transferred to "
@@ -2892,7 +2892,7 @@ msgstr ""
 
 # @ woocommerce-germanized
 #: includes/admin/views/html-settings-pro.php:25
-#: includes/gateways/invoice/class-wc-gzd-gateway-invoice.php:60
+#: includes/gateways/invoice/class-wc-gzd-gateway-invoice.php:62
 msgid "Upgrade now"
 msgstr "jetzt upgraden"
 
@@ -2926,7 +2926,7 @@ msgstr "PostNummer"
 #: includes/api/class-wc-gzd-rest-customers-controller.php:163
 #: includes/api/class-wc-gzd-rest-orders-controller.php:194
 #: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:26
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:478
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:655
 #: includes/gateways/direct-debit/views/html-export.php:27
 msgid "Direct Debit"
 msgstr "Lastschrift"
@@ -2934,31 +2934,31 @@ msgstr "Lastschrift"
 # @ woocommerce-germanized
 #: includes/api/class-wc-gzd-rest-customers-controller.php:168
 #: includes/api/class-wc-gzd-rest-orders-controller.php:199
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:280
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:304
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:504
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:632
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:369
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:393
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:681
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:809
 msgid "Account Holder"
 msgstr "Kontoinhaber"
 
 # @ woocommerce-germanized
 #: includes/api/class-wc-gzd-rest-customers-controller.php:173
 #: includes/api/class-wc-gzd-rest-orders-controller.php:204
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:281
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:311
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:512
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:636
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:728
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:370
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:400
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:689
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:813
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:905
 msgid "IBAN"
 msgstr "IBAN"
 
 # @ woocommerce-germanized
 #: includes/api/class-wc-gzd-rest-customers-controller.php:178
 #: includes/api/class-wc-gzd-rest-orders-controller.php:209
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:282
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:318
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:640
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:729
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:371
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:407
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:817
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:906
 msgid "BIC/SWIFT"
 msgstr "BIC/SWIFT"
 
@@ -2976,8 +2976,8 @@ msgstr "Paketdienstleister Datenweitergabe"
 
 # @ woocommerce-germanized
 #: includes/api/class-wc-gzd-rest-orders-controller.php:214
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:286
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:325
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:375
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:414
 msgid "Mandate Reference ID"
 msgstr "Mandat-Referenznummer"
 
@@ -3185,7 +3185,7 @@ msgstr ""
 #: includes/class-wc-gzd-checkout.php:289
 #: includes/class-wc-gzd-checkout.php:297
 #: includes/class-wc-gzd-checkout.php:322
-#: includes/class-wc-gzd-checkout.php:464
+#: includes/class-wc-gzd-checkout.php:468
 #: includes/class-wc-gzd-customer-helper.php:114
 #: includes/class-wc-gzd-customer-helper.php:122
 #: includes/class-wc-gzd-revocation.php:41
@@ -3196,8 +3196,8 @@ msgstr "Herr"
 #: includes/class-wc-gzd-checkout.php:289
 #: includes/class-wc-gzd-checkout.php:297
 #: includes/class-wc-gzd-checkout.php:323
-#: includes/class-wc-gzd-checkout.php:464
-#: includes/class-wc-gzd-checkout.php:469
+#: includes/class-wc-gzd-checkout.php:468
+#: includes/class-wc-gzd-checkout.php:473
 #: includes/class-wc-gzd-customer-helper.php:114
 #: includes/class-wc-gzd-customer-helper.php:122
 #: includes/class-wc-gzd-revocation.php:42
@@ -4020,9 +4020,9 @@ msgid ""
 "\n"
 "<h3>SEPA Direct Debit Mandate</h3>\n"
 "\n"
-"I hereby authorize the payee to automatically draft from my savings account "
-"listed below for the specified amount. I further authorize my bank to accept "
-"the direct debit from this account.\n"
+"I hereby authorize the payee to [mandate_type_text] draft from my savings "
+"account listed below for the specified amount. I further authorize my bank "
+"to accept the direct debit from this account.\n"
 "\n"
 "Notice: I may request a full refund within eight weeks starting with the "
 "initial debiting date. Responsibilities agreed with my credit institute "
@@ -4052,10 +4052,10 @@ msgstr ""
 "\n"
 "<h3>SEPA-Lastschriftmandat</h3>\n"
 "\n"
-"Hiermit ermächtige ich den Zahlungsempfänger, einmalig eine Zahlung von "
-"meinem Konto mittel Lastschrift einzuziehen. Zugleich weise ich mein "
-"Kreditinstitut an, die von dem Zahlungsempfänger auf mein Konto gezogene "
-"Lastschrift einzulösen.\n"
+"Hiermit ermächtige ich den Zahlungsempfänger, [mandate_type_text] von meinem "
+"Konto mittel Lastschrift einzuziehen. Zugleich weise ich mein Kreditinstitut "
+"an, die von dem Zahlungsempfänger auf mein Konto gezogene Lastschrift "
+"einzulösen.\n"
 "\n"
 "Hinweis: Ich kann innerhalb von acht Wochen, beginnend mit dem "
 "Belastungsdatum, die Erstattung des belasteten Betrages verlangen. Es gelten "
@@ -4080,119 +4080,139 @@ msgstr ""
 "Bitte beachte: Die Frist für die Vorabinformation der SEPA-Lastschrift wird "
 "auf einen Tag verkürzt. "
 
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:135
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:150
 msgid "SEPA XML Export"
 msgstr "SEPA XML Export"
 
 # @ woocommerce-germanized
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:240
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:289
 #, php-format
 msgid "Order %s"
 msgstr "Bestellung %s"
 
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:261
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:315
+msgid "Your existing Mandate from the"
+msgstr ""
+
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:315
+msgid "will be used if your bank account details did not change."
+msgstr ""
+
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:320
 msgid "Will be notified separately"
 msgstr "Wird separat mitgeteilt"
 
 # @ woocommerce-germanized
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:469
-#: includes/gateways/invoice/class-wc-gzd-gateway-invoice.php:79
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:541
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:569
+msgid "recurring payments"
+msgstr "wiederkehrende Zahlungen"
+
+# @ woocommerce-germanized
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:543
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:571
+msgid "a single payment"
+msgstr "eine einmalige Zahlung"
+
+# @ woocommerce-germanized
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:646
+#: includes/gateways/invoice/class-wc-gzd-gateway-invoice.php:81
 msgid "Enable/Disable"
 msgstr "Aktivieren/Deaktivieren"
 
 # @ woocommerce-germanized
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:471
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:648
 msgid "Enable Direct Debit Payment"
 msgstr "Bezahlung per Lastschrift aktivieren"
 
 # @ woocommerce-germanized
 # @ woocommerce
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:475
-#: includes/gateways/invoice/class-wc-gzd-gateway-invoice.php:85
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:652
+#: includes/gateways/invoice/class-wc-gzd-gateway-invoice.php:87
 msgctxt "gateway"
 msgid "Title"
 msgstr "Bezeichnung"
 
 # @ woocommerce-germanized
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:477
-#: includes/gateways/invoice/class-wc-gzd-gateway-invoice.php:87
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:654
+#: includes/gateways/invoice/class-wc-gzd-gateway-invoice.php:89
 msgid "This controls the title which the user sees during checkout."
 msgstr ""
 "Beschreibungstext, den Benutzer bei der Auswahl dieser Zahlungsart sehen."
 
 # @ woocommerce-germanized
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:482
-#: includes/gateways/invoice/class-wc-gzd-gateway-invoice.php:92
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:659
+#: includes/gateways/invoice/class-wc-gzd-gateway-invoice.php:94
 msgid "Description"
 msgstr "Beschreibung"
 
 # @ woocommerce-germanized
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:484
-#: includes/gateways/invoice/class-wc-gzd-gateway-invoice.php:94
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:661
+#: includes/gateways/invoice/class-wc-gzd-gateway-invoice.php:96
 msgid "Payment method description that the customer will see on your checkout."
 msgstr "Beschreibung der Zahlungsart, die Kunden auf deiner Website sehen."
 
 # @ woocommerce-germanized
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:485
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:662
 msgid "The order amount will be debited directly from your bank account."
 msgstr ""
 "Der Gesamtbestellbetrag wird per SEPA-Lastschrift direkt von deinem Konto "
 "abgebucht."
 
 # @ woocommerce-germanized
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:489
-#: includes/gateways/invoice/class-wc-gzd-gateway-invoice.php:99
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:666
+#: includes/gateways/invoice/class-wc-gzd-gateway-invoice.php:101
 msgid "Instructions"
 msgstr "Anweisungen"
 
 # @ woocommerce-germanized
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:491
-#: includes/gateways/invoice/class-wc-gzd-gateway-invoice.php:101
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:668
+#: includes/gateways/invoice/class-wc-gzd-gateway-invoice.php:103
 msgid "Instructions that will be added to the thank you page and emails."
 msgstr "Anweisung, die zur „Danke“-Seite und zu E-Mails hinzugefügt werden."
 
 # @ woocommerce-germanized
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:496
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:673
 msgid "Debtee"
 msgstr "Gläubiger Informationen"
 
 # @ woocommerce-germanized
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:498
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:675
 msgid "Insert your company information."
 msgstr "Füge hier die Informationen zu deinem Unternehmen ein."
 
 # @ woocommerce-germanized
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:500
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:677
 msgid "Company Inc, John Doe Street, New York"
 msgstr "Musterfirma GmbH, Musterstraße 12, 12203 Musterstadt"
 
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:506
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:683
 msgid "Insert the bank account holder name."
 msgstr "Füge hier den Namen des Kontoinhabers ein."
 
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:508
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:685
 msgid "Company Inc"
 msgstr "Muster GmbH"
 
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:514
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:691
 msgid "Insert the bank account IBAN."
 msgstr "Füge hier den IBAN deines Kontos ein."
 
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:519
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:696
 msgid "BIC"
 msgstr "BIC"
 
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:521
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:698
 msgid "Insert the bank account BIC."
 msgstr "Füge hier den BIC deines Kontos ein."
 
 # @ woocommerce-germanized
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:526
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:703
 msgid "Debtee identification number"
 msgstr "Identifikationsnummer"
 
 # @ woocommerce-germanized
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:528
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:705
 #, php-format
 msgid ""
 "Insert your debtee indentification number. More information can be found <a "
@@ -4202,16 +4222,16 @@ msgstr ""
 "Weitere Informationen zu dieser Nummer erhältst du <a href=\"%s\">hier</a>."
 
 # @ woocommerce-germanized
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:532
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:709
 msgid "Generate Mandate ID"
 msgstr "Mandat-Referenz generieren"
 
 # @ woocommerce-germanized
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:534
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:711
 msgid "Automatically generate Mandate ID."
 msgstr "Mandat-Referenznummer automatisch generieren."
 
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:535
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:712
 msgid ""
 "Automatically generate Mandate ID after order completion (based on Order ID)."
 msgstr ""
@@ -4219,11 +4239,11 @@ msgstr ""
 "basierend auf der Bestellnummer."
 
 # @ woocommerce-germanized
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:539
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:716
 msgid "XML Pain Format"
 msgstr "XML Pain Format"
 
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:541
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:718
 msgid ""
 "You may adjust the XML Export Pain Schema to your banks needs. Some banks "
 "may require pain.001.003.03."
@@ -4232,11 +4252,11 @@ msgstr ""
 "Banken benötigen z.B. pain.001.003.03."
 
 # @ woocommerce-germanized
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:545
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:722
 msgid "Mandate ID Format"
 msgstr "Mandat-Referenz Format"
 
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:547
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:724
 msgid ""
 "You may extend the Mandate ID format by adding a prefix and/or suffix. Use "
 "{id} as placeholder to insert the automatically generated ID."
@@ -4245,12 +4265,12 @@ msgstr ""
 "{id} als Platzhalter um die automatisch generierte Referenznummer einzufügen."
 
 # @ woocommerce-germanized
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:551
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:728
 msgid "Mandate Text"
 msgstr "Lastschriftmandat"
 
 # @ woocommerce-germanized
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:553
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:730
 msgid ""
 "This text will be populated with live order/checkout data. Will be used as "
 "preview direct debit mandate and as email template text."
@@ -4261,23 +4281,23 @@ msgstr ""
 "Verfügung gestellt."
 
 # @ woocommerce-germanized
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:560
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:737
 msgid "Enable \"agree to SEPA mandate\" checkbox"
 msgstr "Aktiviere die Checkbox zur Bestätigung des Lastschriftmandates."
 
 # @ woocommerce-germanized
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:562
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:739
 msgid "Enable a checkbox linking to a SEPA direct debit mandate preview."
 msgstr ""
 "Aktiviere eine Checkbox, die zu einer Vorschau des Lastschrift-Mandats führt."
 
 # @ woocommerce-germanized
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:566
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:743
 msgid "Checkbox label"
 msgstr "Checkbox Text"
 
 # @ woocommerce-germanized
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:568
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:745
 msgid ""
 "Customize the checkbox label. Use {link}link name{/link} to insert the "
 "preview link."
@@ -4286,20 +4306,20 @@ msgstr ""
 "auf die Vorschau zu verlinken."
 
 # @ woocommerce-germanized
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:569
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:746
 msgid "I hereby agree to the {link}direct debit mandate{/link}."
 msgstr "Hiermit erteile ich das {link}SEPA Lastschriftmandat{/link}."
 
 # @ woocommerce-germanized
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:573
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:750
 msgid "Mask IBAN"
 msgstr "IBAN maskieren"
 
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:574
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:751
 msgid "Mask the IBAN within emails."
 msgstr "IBAN in E-Mails maskieren."
 
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:576
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:753
 msgid ""
 "This will lead to masked IBANs within emails (replaced by *). All but last 4 "
 "digits will be masked."
@@ -4307,15 +4327,15 @@ msgstr ""
 "Der IBAN wird in E-Mails (abgesehen von den letzten 4 Stellen) mit * "
 "maskiert."
 
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:585
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:762
 msgid "Remember"
 msgstr "Bankdaten merken\t"
 
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:586
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:763
 msgid "Remember account data for returning customers."
 msgstr "Bankverbindung für registrierte Kunden speichern."
 
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:588
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:765
 msgid "Save account data as user meta if user has/creates a customer account."
 msgstr ""
 "Speichert die Bankverbindung für registrierte Kunden in der user_meta "
@@ -4323,37 +4343,37 @@ msgstr ""
 "eigenständig aus."
 
 # @ woocommerce-germanized
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:671
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:848
 msgid "Please insert your SEPA account data."
 msgstr "Bitte füge deine SEPA Kontoinformationen ein."
 
 # @ woocommerce-germanized
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:681
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:858
 msgid "Your IBAN seems to be invalid."
 msgstr "Dein IBAN scheint nicht gültig zu sein."
 
 # @ woocommerce-germanized
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:683
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:860
 msgid "Your IBAN's country code doesn’t match with your billing country."
 msgstr "Der Ländercode des IBANs stimmt nicht mit dem Rechnungsland überein."
 
 # @ woocommerce-germanized
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:687
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:864
 msgid "Your BIC seems to be invalid."
 msgstr "Dein BIC/SWIFT scheint nicht gültig zu sein."
 
 # @ woocommerce-germanized
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:699
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:876
 msgid "Please accept the direct debit mandate."
 msgstr "Bitte erteile das SEPA Lastschriftmandat."
 
 # @ woocommerce-germanized
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:730
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:907
 msgid "is invalid"
 msgstr "ist ungültig"
 
 # @ woocommerce-germanized
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:768
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:943
 msgid "Awaiting Direct Debit Payment"
 msgstr "Zahlung per Lastschrift ausstehend"
 
@@ -4400,7 +4420,7 @@ msgstr "Enddatum"
 
 # @ woocommerce-germanized
 #: includes/gateways/invoice/class-wc-gzd-gateway-invoice.php:26
-#: includes/gateways/invoice/class-wc-gzd-gateway-invoice.php:88
+#: includes/gateways/invoice/class-wc-gzd-gateway-invoice.php:90
 msgid "Pay by Invoice"
 msgstr "Rechnung"
 
@@ -4412,18 +4432,18 @@ msgstr ""
 
 # @ woocommerce-germanized
 # @ woocommerce
-#: includes/gateways/invoice/class-wc-gzd-gateway-invoice.php:50
-#: woocommerce-germanized.php:576
+#: includes/gateways/invoice/class-wc-gzd-gateway-invoice.php:52
+#: woocommerce-germanized.php:575
 msgid "Settings"
 msgstr "Einstellungen"
 
 # @ woocommerce-germanized
-#: includes/gateways/invoice/class-wc-gzd-gateway-invoice.php:57
+#: includes/gateways/invoice/class-wc-gzd-gateway-invoice.php:59
 msgid "Automatically generate PDF invoices for this gateway?"
 msgstr "PDF Rechnungen für diese Zahlungsart automatisch erstellen?"
 
 # @ woocommerce-germanized
-#: includes/gateways/invoice/class-wc-gzd-gateway-invoice.php:58
+#: includes/gateways/invoice/class-wc-gzd-gateway-invoice.php:60
 msgid ""
 "By upgrading to the professional version you'll be able to automatically "
 "generate PDF invoices to this payment gateway. Furthermore you'll benefit "
@@ -4437,17 +4457,17 @@ msgstr ""
 "Premium-Support via Ticket-System!"
 
 # @ woocommerce-germanized
-#: includes/gateways/invoice/class-wc-gzd-gateway-invoice.php:61
+#: includes/gateways/invoice/class-wc-gzd-gateway-invoice.php:63
 msgid "Learn more about PDF invoicing"
 msgstr "Mehr über PDF-Rechnungen erfahren"
 
 # @ woocommerce-germanized
-#: includes/gateways/invoice/class-wc-gzd-gateway-invoice.php:81
+#: includes/gateways/invoice/class-wc-gzd-gateway-invoice.php:83
 msgid "Enable Pay by Invoice"
 msgstr "Bezahlung auf Rechnung aktivieren"
 
 # @ woocommerce-germanized
-#: includes/gateways/invoice/class-wc-gzd-gateway-invoice.php:95
+#: includes/gateways/invoice/class-wc-gzd-gateway-invoice.php:97
 msgid ""
 "You'll receive an invoice after your order. Please transfer the order amount "
 "to our bank account within 14 days."
@@ -4456,12 +4476,12 @@ msgstr ""
 "Gesamtbetrag innerhalb von 14 Tagen auf das dort angegebene Konto."
 
 # @ woocommerce-germanized
-#: includes/gateways/invoice/class-wc-gzd-gateway-invoice.php:106
+#: includes/gateways/invoice/class-wc-gzd-gateway-invoice.php:108
 msgid "Order Status"
 msgstr "Bestellstatus"
 
 # @ woocommerce-germanized
-#: includes/gateways/invoice/class-wc-gzd-gateway-invoice.php:108
+#: includes/gateways/invoice/class-wc-gzd-gateway-invoice.php:110
 msgid ""
 "Choose which order status should be applied after a customer has chosen to "
 "pay by invoice."
@@ -4470,29 +4490,29 @@ msgstr ""
 "angewendet werden soll."
 
 # @ woocommerce-germanized
-#: includes/gateways/invoice/class-wc-gzd-gateway-invoice.php:114
+#: includes/gateways/invoice/class-wc-gzd-gateway-invoice.php:116
 msgid "Registered customers"
 msgstr "Registrierte Kunden"
 
 # @ woocommerce-germanized
-#: includes/gateways/invoice/class-wc-gzd-gateway-invoice.php:115
+#: includes/gateways/invoice/class-wc-gzd-gateway-invoice.php:117
 msgid "Do only offer pay by invoice to registered/logged in customers."
 msgstr "Biete diese Zahlungsart nur registrierten/eingeloggten Kunden an."
 
 # @ woocommerce-germanized
-#: includes/gateways/invoice/class-wc-gzd-gateway-invoice.php:117
+#: includes/gateways/invoice/class-wc-gzd-gateway-invoice.php:119
 msgid "This will enable Pay by Invoice to logged in customers only"
 msgstr ""
 "Diese Option erlaubt es dir, die Zahlungsart lediglich eingeloggten Kunden "
 "zur Verfügung zu stellen"
 
 # @ woocommerce-germanized
-#: includes/gateways/invoice/class-wc-gzd-gateway-invoice.php:122
+#: includes/gateways/invoice/class-wc-gzd-gateway-invoice.php:124
 msgid "Customer limitation"
 msgstr "Kunden Eingrenzung"
 
 # @ woocommerce-germanized
-#: includes/gateways/invoice/class-wc-gzd-gateway-invoice.php:123
+#: includes/gateways/invoice/class-wc-gzd-gateway-invoice.php:125
 msgid ""
 "Do only offer pay by invoice to customers who have at least completed one "
 "order."
@@ -5069,7 +5089,7 @@ msgid "Trusted Shops Rich Snippets"
 msgstr "Trusted Shops Rich Snippets"
 
 # @ woocommerce-germanized
-#: includes/wc-gzd-cart-functions.php:369
+#: includes/wc-gzd-cart-functions.php:370
 msgid ""
 "I want immediate access to the digital content and I acknowledge that "
 "thereby I lose my right to cancel once the service has begun."
@@ -5337,7 +5357,7 @@ msgid "%s custom reviews"
 msgstr "%s Kundenbewertungen"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized.php:731
+#: woocommerce-germanized.php:730
 msgid "Order Confirmation"
 msgstr "Bestellbestätigung"
 
