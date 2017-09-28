@@ -306,11 +306,13 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 
 	public function get_mandate_id( $order_id = false ) {
 
+		$create_user_checked = wc_clean( isset( $_GET[ 'create_user' ] ) ? $_GET[ 'create_user' ] : false );
+
 		//Preview for current user with mandate!
 		$current_user_mandate_id = get_user_meta(get_current_user_id(), 'direct_debit_mandate_id', true);
 		if ( ! $order_id && $current_user_mandate_id ) {
 			//$mandate_id = apply_filters( 'woocommerce_germanized_direct_debit_mandate_id', str_replace( '{id}', $current_user_mandate_id, $this->mandate_id_format ) );
-			return $current_user_mandate_id . ' (' . __( 'from', 'woocommerce-germanized' ) . ': ' . date_i18n( 'd.m.Y H:i:s', strtotime(get_user_meta(get_current_user_id(), 'direct_debit_mandate_DtOfSgntr', true) ) ) . ')';
+			return $current_user_mandate_id . "\n " . __( 'Your existing Mandate from the', 'woocommerce-germanized' ) . ' ' . date_i18n( 'd.m.Y H:i:s', strtotime(get_user_meta(get_current_user_id(), 'direct_debit_mandate_DtOfSgntr', true) ) ) . ' ' . __( 'will be used if your bank account details did not change.', 'woocommerce-germanized' ) ;
 		}
 
 		//No order yet!
@@ -323,7 +325,6 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 		//User has recurring mandate!
 		$user_mandate_id = get_user_meta(wc_gzd_get_crud_data( $order, 'user_id' ), 'direct_debit_mandate_id', true);
 		if ( $user_mandate_id ) {
-			//$mandate_id = apply_filters( 'woocommerce_germanized_direct_debit_mandate_id', ( $this->generate_mandate_id === 'yes' ? str_replace( '{id}', $user_mandate_id, $this->mandate_id_format ) : '' ) );
 			$mandate_id = $user_mandate_id;
 			update_post_meta( wc_gzd_get_crud_data( $order, 'id' ), '_direct_debit_mandate_id', $mandate_id );
 			return $mandate_id;
@@ -447,24 +448,27 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 		$post_bic = isset( $_POST[ 'direct_debit_account_bic' ] ) ? $this->clean_whitespaces( wc_clean( $_POST[ 'direct_debit_account_bic' ] ) ) : '';
 
 		//read user data
-    	$user_meta = $this->get_user_account_data( wc_gzd_get_crud_data( $order, 'user_id' ));
+    	$user_id = wc_gzd_get_crud_data( $order, 'user_id' );
 
-    	$check_holder = strcmp($user_meta['direct_debit_holder'], $post_holder);
-    	$check_iban = strcmp( $this->maybe_decrypt( $user_meta['direct_debit_iban'] ), $post_iban);
-    	$check_bic = strcmp( $this->maybe_decrypt( $user_meta['direct_debit_bic'] ), $post_bic);
-
-    	$holder 	= $post_holder;
+    	//Encrypt
     	$iban 		= $this->maybe_encrypt( $post_iban );
     	$bic 		= $this->maybe_encrypt( $post_bic );
 
-    	if ( $check_holder == 0 && $check_iban == 0 && $check_bic == 0 ) {
-    		// Keep existing mandate
-    	} else {
-    		$this->create_recurring_mandate_for_user( $order, $holder, $iban, $bic) );
+    	//If User check for existing or changed mandate
+    	if ( $user_id != null && get_user_meta($user_id, 'direct_debit_mandate_valid', true) == 1 ) {
+
+    		// Create new mandate if needed
+    		if ( check_if_new_mandate_needed( $user_id, $post_holder, $post_iban, $post_bic) ) {
+    			if ( $check_holder != 0 ){update_user_meta( $user_id, '_direct_debit_holder_changed', current_time( 'mysql' ) );}
+    			if ( $check_iban != 0 ) {update_user_meta( $user_id, '_direct_debit_iban_changed', current_time( 'mysql' ) );}
+    			if ( $check_bic != 0 ) {update_user_meta( $user_id, '_direct_debit_bic_changed', current_time( 'mysql' ) );}
+
+    			$this->create_recurring_mandate_for_user( $order, $post_holder, $iban, $bic);
+    		}
     	}
 
-    	//save account to order
-    	$order = wc_gzd_set_crud_meta_data( $order, '_direct_debit_holder', $holder );
+    	//Always save account details to order
+    	$order = wc_gzd_set_crud_meta_data( $order, '_direct_debit_holder', $post_holder );
 	    $order = wc_gzd_set_crud_meta_data( $order,'_direct_debit_iban', $iban );
 	    $order = wc_gzd_set_crud_meta_data( $order, '_direct_debit_bic', $bic );
 
@@ -476,21 +480,34 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
     		return;
     }
 
+    public function check_if_new_mandate_needed( $user_id, $new_holder, $new_iban, $new_bic) {
+    	$create_new_mandate = true;
+
+    	$check_holder = strcmp( get_user_meta($user_id, 'direct_debit_holder', true), $new_holder);
+    	$check_iban = strcmp( $this->maybe_decrypt( get_user_meta($user_id, 'direct_debit_iban', true) ), $new_iban);
+    	$check_bic = strcmp( $this->maybe_decrypt( get_user_meta($user_id, 'direct_debit_bic', true) ), $new_bic);
+
+    	if ( $check_holder === 0 && $check_iban === 0 && $check_bic === 0 ) {
+    			$create_new_mandate = false;
+    	}
+    	return $create_new_mandate;
+    }
+
     public function create_recurring_mandate_for_user( $subscription_order, $holder, $iban, $bic) {
     	
     	$order = wc_get_order( $subscription_order );
     	$user_id = wc_gzd_get_crud_data( $order, 'user_id' );
     	
-    	update_user_meta( $user_id, 'direct_debit_mandate_id', apply_filters( 'woocommerce_germanized_direct_debit_mandate_id', str_replace( '{id}', $order->id, $this->mandate_id_format ) ) ); //$subscription_order->id
+    	update_user_meta( $user_id, 'direct_debit_mandate_id', apply_filters( 'woocommerce_germanized_direct_debit_mandate_id', ( $this->generate_mandate_id === 'yes' ? str_replace( '{id}', $order->id, $this->mandate_id_format ) : '' ) ) );
     	update_user_meta( $user_id, 'direct_debit_mandate_seqType', Digitick\Sepa\PaymentInformation::S_FIRST );
-    	update_user_meta( $user_id, 'direct_debit_mandate_DtOfSgntr', current_time( 'mysql' ) );
     	update_user_meta( $user_id, 'direct_debit_mandate_valid', true );
+    	update_user_meta( $user_id, 'direct_debit_mandate_DtOfSgntr', current_time( 'mysql' ) );
     	update_user_meta( $user_id, 'direct_debit_mandate_Sgn_mail', get_userdata($user_id)->user_email );
 
     	// save account to user meta
-    	update_user_meta( wc_gzd_get_crud_data( $order, 'user_id' ), 'direct_debit_holder', $holder );
-    	update_user_meta( wc_gzd_get_crud_data( $order, 'user_id' ), 'direct_debit_iban', $iban );
-    	update_user_meta( wc_gzd_get_crud_data( $order, 'user_id' ), 'direct_debit_bic', $bic );
+    	update_user_meta( $user_id, 'direct_debit_holder', $holder );
+    	update_user_meta( $user_id, 'direct_debit_iban', $iban );
+    	update_user_meta( $user_id, 'direct_debit_bic', $bic );
     }
 
     public function set_mandate_seqType_to_RCUR_for_user( $subscription_order ) {
