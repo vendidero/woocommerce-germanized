@@ -37,5 +37,9 @@ if ( ! defined( 'ABSPATH' ) )
 			<?php echo _e( 'End Date', 'woocommerce-germanized' ); ?>
 			<input type="date" name="sepa_end_date" value="" />
 		</label>
+		<label>
+			<?php echo _e( 'Unpaid only', 'woocommerce-germanized' ); ?>
+			<input type="checkbox" name="sepa_unpaid_only" value="1"/>
+		</label>
 	</li>
 </ul>
