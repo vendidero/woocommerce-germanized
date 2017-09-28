@@ -119,11 +119,8 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
     	add_action( 'woocommerce_scheduled_subscription_payment', array( $this, 'set_order_meta' ), 10, 2 );
 
     	// User Meta
-    	// add_action( 'woocommerce_checkout_subscription_created', array( $this, 'save_debit_subscription_mandate_id' ), 10, 2 );
     	add_action( 'woocommerce_subscription_payment_complete', array( $this, 'set_mandate_seqType_to_RCUR_for_user' ), 10, 2 );
     	add_action( 'woocommerce_order_status_completed', array( $this, 'set_mandate_seqType_to_RCUR_for_user' ), 10, 2 );
-    	//add_action( 'woocommerce_scheduled_subscription_end_of_prepaid_term', array( $this, 'set_mandate_seqType_to_FNAL_for_user' ), 10, 2 );
-
 
     	// Customer Emails
     	add_action( 'woocommerce_email_before_order_table', array( $this, 'email_instructions' ), 10, 3 );
