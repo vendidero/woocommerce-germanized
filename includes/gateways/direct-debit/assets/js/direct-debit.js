@@ -60,7 +60,7 @@
 			e.preventDefault();
 
 			var url = $( this ).attr( 'href' );
-
+			
 			var data		= {
 				country: 		$( '#billing_country' ).val(),
 				postcode:		$( 'input#billing_postcode' ).val(),
@@ -69,7 +69,8 @@
 				address_2:		$( 'input#billing_address_2' ).val(),
 				debit_holder:	$( 'input#direct-debit-account-holder' ).val(),
 				debit_iban: 	$( 'input#direct-debit-account-iban' ).val(),
-				debit_swift: 	$( 'input#direct-debit-account-bic' ).val()
+				debit_swift: 	$( 'input#direct-debit-account-bic' ).val(),
+				user:			$( 'input#createaccount' ).val()
 			};
 
 			url += '&ajax=true&' + jQuery.param( data );
