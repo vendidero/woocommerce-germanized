@@ -533,6 +533,21 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
     		exit();
 
 		$create_user_checked = wc_clean( isset( $_GET[ 'create_user' ] ) ? $_GET[ 'create_user' ] : false );
+    	$mandate_type_text = __('a single payment','woocommerce-germanized');
+    	$recurring_mandate_type_text = __('recurring payments','woocommerce-germanized');
+
+    	if (subscriptions_plugin_is_active() && $create_user_checked ){
+    		$mandate_type_text = $recurring_mandate_type_text;
+    	}
+    	if (subscriptions_plugin_is_active() && wcs_order_contains_subscription( $post->ID, array( 'parent', 'renewal' ) ) ){
+    		$mandate_type_text = $recurring_mandate_type_text;
+    	}
+    	if (subscriptions_plugin_is_active() && WC_Subscriptions_Cart::cart_contains_subscription() ) {
+    		$mandate_type_text = $recurring_mandate_type_text;
+    	}
+    	if (subscriptions_plugin_is_active() && get_user_meta( get_current_user_id(), 'direct_debit_mandate_id', true) ) {
+    		$mandate_type_text = $recurring_mandate_type_text;
+    	}
 
     	$params = array(
     		'account_holder' 	=> wc_clean( isset( $_GET[ 'debit_holder' ] ) ? $_GET[ 'debit_holder' ] : '' ),
@@ -542,7 +557,7 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 			'postcode' 			=> wc_clean( isset( $_GET[ 'postcode' ] ) ? $_GET[ 'postcode' ] : '' ),
 			'city' 				=> wc_clean( isset( $_GET[ 'city' ] ) ? $_GET[ 'city' ] : '' ),
 			'country'			=> ( isset( $_GET[ 'country' ] ) && isset( WC()->countries->countries[ $_GET[ 'country' ] ] ) ? WC()->countries->countries[ $_GET[ 'country' ] ] : '' ),
-			'mandate_type_text'	=> $this->get_mandate_type_text( $post , $create_user_checked),
+			'mandate_type_text'	=> $mandate_type_text,
 			'create_user' 		=> wc_clean( isset( $_GET[ 'create_user' ] ) ? $_GET[ 'create_user' ] : 'nix' ),
 		);
 
@@ -556,6 +571,16 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
     	if ( is_numeric( $order ) )
     		$order = wc_get_order( absint( $order ) );
 
+    	$mandate_type_text = __('a single payment','woocommerce-germanized');
+    	$recurring_mandate_type_text = __('recurring payments','woocommerce-germanized');
+
+		if (subscriptions_plugin_is_active() && wcs_order_contains_subscription( $order->ID, array( 'parent', 'renewal' ) ){
+			$mandate_type_text = $recurring_mandate_type_text;
+		}
+		if (subscriptions_plugin_is_active() && get_user_meta(wc_gzd_get_crud_data( $order, 'user_id' ), 'direct_debit_mandate_id', true)) {
+	   		$mandate_type_text = $recurring_mandate_type_text;
+     	} 
+
     	$params = array(
     		'account_holder' 	=> wc_gzd_get_crud_data( $order, 'direct_debit_holder' ),
     		'account_iban' 		=> $this->mask( $this->maybe_decrypt( wc_gzd_get_crud_data( $order, 'direct_debit_iban' ) ) ),
@@ -567,7 +592,7 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 
 			'date'				=> $this->get_mandate_sign_date( $order ),
 			'mandate_id'		=> $this->get_mandate_id( wc_gzd_get_crud_data( $order, 'id' ) ),
-			'mandate_type_text'	=> $this->get_mandate_type_text( $order , false),
+			'mandate_type_text'	=> $mandate_type_text,
 		);
 
 		return $this->generate_mandate_text( $params );
@@ -580,38 +605,6 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
     	} else {
     		return false;
     	}
-    }
-
-
-    public function get_mandate_type_text( $order , $create_user){
-    	if (! $this->subscriptions_plugin_is_active() ) {
-    		return __('a single payment','woocommerce-germanized');
-    	}
-
-    	// Cases if subscriptions plugin is active
-
-    	//Cart contains subscription
-    	if ( WC_Subscriptions_Cart::cart_contains_subscription()){
-    		return __('recurring payments','woocommerce-germanized');
-    	}
-
-    	//Customer likes to create an account
-    	if ( $create_user ) {
-    		return __('recurring payments','woocommerce-germanized');
-    	}
-
-    	//Order with subscription
-    	if ( wcs_order_contains_subscription( $order->ID, array( 'parent', 'renewal' ) ) ) {
-    		return __('recurring payments','woocommerce-germanized');
-    	}
-
-    	//User has recurring mandate
-    	if ( get_user_meta(wc_gzd_get_crud_data( $order, 'user_id' ), 'direct_debit_mandate_id', true)) {
-    		return __('recurring payments','woocommerce-germanized');
-    	}
-
-    	//Default
-    	return __('a single payment','woocommerce-germanized');
     }
 
     public function mask( $data ) {
