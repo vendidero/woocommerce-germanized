@@ -39,9 +39,21 @@ class WC_GZD_Gateway_Invoice extends WC_Payment_Gateway {
 		$this->customers_only					= $this->get_option( 'customers_only', 'no' );
 		$this->customers_completed				= $this->get_option( 'customers_completed', 'no' );
 
+		$this->supports = array(
+			'products',
+			'subscriptions',
+			'subscription_cancellation',
+            'subscription_suspension',
+            'subscription_reactivation',
+            'subscription_amount_changes',
+            'subscription_date_changes',
+            'subscription_payment_method_change',
+		);
+
 		// Actions
 		add_action( 'woocommerce_update_options_payment_gateways_' . $this->id, array( $this, 'process_admin_options' ) );
     	add_action( 'woocommerce_thankyou_invoice', array( $this, 'thankyou_page' ) );
+    	add_action( 'woocommerce_scheduled_subscription_payment'. $this->id, array( $this, 'process_admin_options' ) );
 
     	// Customer Emails
 		add_action( 'woocommerce_email_before_order_table', array( $this, 'email_instructions' ), 10, 3 );
