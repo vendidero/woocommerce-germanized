@@ -542,7 +542,7 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 			'postcode' 			=> wc_clean( isset( $_GET[ 'postcode' ] ) ? $_GET[ 'postcode' ] : '' ),
 			'city' 				=> wc_clean( isset( $_GET[ 'city' ] ) ? $_GET[ 'city' ] : '' ),
 			'country'			=> ( isset( $_GET[ 'country' ] ) && isset( WC()->countries->countries[ $_GET[ 'country' ] ] ) ? WC()->countries->countries[ $_GET[ 'country' ] ] : '' ),
-			'mandate_type_text'	=> $this->get_mandate_type_text( $order , $create_user_checked),
+			'mandate_type_text'	=> $this->get_mandate_type_text( $post , $create_user_checked),
 			'create_user' 		=> wc_clean( isset( $_GET[ 'create_user' ] ) ? $_GET[ 'create_user' ] : 'nix' ),
 		);
 
