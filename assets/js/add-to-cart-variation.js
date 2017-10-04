@@ -37,6 +37,9 @@
 
 		.on( 'found_variation', function( event, variation ) {
 
+            if ( ! variation.variation_is_visible )
+            	return;
+
 			if ( ! $wrapper.find( '.price:first' ).hasClass( 'variation_modified' ) ) {
 				$wrapper.append( '<div class="org_price org_product_info">' + $wrapper.find( '.price:not(.price-unit):first' ).html() + '</div>' );
 				if ( $wrapper.find( '.delivery-time-info:first' ).length > 0 ) {
@@ -56,6 +59,7 @@
 				}
 				$( '.org_product_info' ).hide();
 			}
+
 			if ( variation.price_html !== '' ) {
 				$( '.single_variation .price' ).hide();
 				$wrapper.find( '.price:not(.price-unit):first' ).html( variation.price_html ).addClass( 'variation_modified' );

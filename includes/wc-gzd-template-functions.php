@@ -138,7 +138,7 @@ if ( ! function_exists( 'woocommerce_gzd_template_checkout_back_to_cart' ) ) {
 	 * Display back to cart button within checkout cart
 	 */
 	function woocommerce_gzd_template_checkout_back_to_cart() {
-		echo '<tr><td colspan="5" class="actions"><a class="button" href="' . WC()->cart->get_cart_url() . '">' . __( 'Edit Order', 'woocommerce-germanized' ) . '</a></td></tr>';
+		echo '<tr><td colspan="5" class="actions"><a class="button" href="' . wc_gzd_get_cart_url() . '">' . __( 'Edit Order', 'woocommerce-germanized' ) . '</a></td></tr>';
 	}
 
 }
