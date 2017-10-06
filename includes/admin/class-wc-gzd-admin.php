@@ -57,6 +57,30 @@ class WC_GZD_Admin {
 		add_filter( 'woocommerce_addons_section_data', array( $this, 'set_addon' ), 10, 2 );
 		add_action( 'woocommerce_admin_order_data_after_shipping_address', array( $this, 'set_order_parcel_delivery_opted_in' ), 10, 1 );
 
+		add_filter( 'woocommerce_order_actions', array( $this, 'order_actions' ), 10, 1 );
+		add_action( 'woocommerce_order_action_order_confirmation', array( $this, 'resend_order_confirmation' ), 10, 1 );
+    }
+
+    public function resend_order_confirmation( $order ) {
+
+	    // Send the customer invoice email.
+	    WC()->payment_gateways();
+	    WC()->shipping();
+
+	    $mail = WC_germanized()->emails->get_email_instance_by_id( 'customer_processing_order' );
+
+	    if ( $mail ) {
+	        $mail->trigger( $order );
+
+	        // Note the event.
+		    $order->add_order_note( __( 'Order confirmation manually sent to customer.', 'woocommerce-germanized' ), false, true );
+		    do_action( 'woocommerce_gzd_after_resend_order_confirmation_email', $order, 'customer_processing_order' );
+        }
+    }
+
+    public function order_actions( $actions ) {
+	    $actions[ 'order_confirmation' ] = __( 'Resend order confirmation', 'woocommerce-germanized' );
+	    return $actions;
     }
 
 	public function status_tab() {

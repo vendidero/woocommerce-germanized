@@ -143,12 +143,45 @@ table.wc-gzd-tax-example tr th:first-child, table.wc-gzd-tax-example tr td:first
 	cursor: move;
 }
 
-#order_data .order_data_column ._direct_debit_holder_field, #order_data .order_data_column ._direct_debit_iban_field, #order_data .order_data_column ._direct_debit_bic_field, #order_data .order_data_column ._direct_debit_reference_field {
+#gzd-admin-sepa {
+	padding-top: 1em;
+	display: block;
+	clear: both;
+	width: 100%;
+}
+
+#order_data .order_data_column a.download_sepa_xml {
+	width: 14px;
+	height: 0;
+	padding: 14px 0 0;
+	margin: 0 0 0 6px;
+	overflow: hidden;
+	position: relative;
+	color: #999;
+	border: 0;
+	float: right;
+}
+
+#order_data .order_data_column a.download_sepa_xml::after {
+	font-family: Dashicons;
+	content: '\f546';
+	position: absolute;
+	top: 0;
+	left: 0;
+	text-align: center;
+	vertical-align: top;
+	line-height: 14px;
+	font-size: 14px;
+	font-weight: 400;
+	-webkit-font-smoothing: antialiased;
+}
+
+#order_data .order_data_column ._direct_debit_holder_field, #order_data .order_data_column ._direct_debit_iban_field, #order_data .order_data_column ._direct_debit_bic_field, #order_data .order_data_column ._direct_debit_mandate_id_field {
     clear: left;
     width: 100% !important;
 }
 
-#order_data .order_data_column ._direct_debit_holder_field input, #order_data .order_data_column ._direct_debit_iban_field input, #order_data .order_data_column ._direct_debit_bic_field input, #order_data .order_data_column ._direct_debit_reference_field input {
+#order_data .order_data_column ._direct_debit_holder_field input, #order_data .order_data_column ._direct_debit_iban_field input, #order_data .order_data_column ._direct_debit_bic_field input, #order_data .order_data_column ._direct_debit_mandate_id_field input {
     width: 100%;
 }
 
