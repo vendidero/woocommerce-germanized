@@ -715,7 +715,7 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 				'default'     => 'yes',
 			),
 			'debit_days' => array(
-				'title'       => __( 'Number of days until account is debited.', 'woocommerce-germanized' ),
+				'title'       => __( 'Debit days', 'woocommerce-germanized' ),
 				'type'        => 'number',
 				'description' => __( 'This option is used to calculate the debit date and is added to the order date.', 'woocommerce-germanized' ),
 				'default'     => 5,
