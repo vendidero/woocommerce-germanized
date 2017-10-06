@@ -41,13 +41,6 @@ class WC_GZD_Gateway_Invoice extends WC_Payment_Gateway {
 
 		$this->supports = array(
 			'products',
-			'subscriptions',
-			'subscription_cancellation',
-            'subscription_suspension',
-            'subscription_reactivation',
-            'subscription_amount_changes',
-            'subscription_date_changes',
-            'subscription_payment_method_change',
 		);
 
 		// Actions
@@ -195,11 +188,14 @@ class WC_GZD_Gateway_Invoice extends WC_Payment_Gateway {
 
 		$order->update_status( $this->default_order_status );
 
-		// Reduce stock levels
-		$order->reduce_order_stock();
+		// Reduce stock level
+		wc_gzd_reduce_order_stock( $order_id );
 
-		// Remove cart
-		WC()->cart->empty_cart();
+		// Check if cart instance exists (frontend request only)
+		if ( WC()->cart ) {
+			// Remove cart
+			WC()->cart->empty_cart();
+		}
 
 		// Return thankyou redirect
 		return array(
