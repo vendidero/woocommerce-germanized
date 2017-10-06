@@ -5,7 +5,7 @@ Requires at least: 3.8
 Tested up to: 4.8
 WC requires at least: 2.4
 WC tested up to: 3.2
-Stable tag: 1.9.3
+Stable tag: 1.9.2
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -171,7 +171,11 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 
 = 1.9.2 =
 * Feature: Added Mulit-Currency-Support for Unit Prices (WPML)
+* Feature: Basic support for Subscriptions (Direct Debit Gateway)
+* Feature: WooCommerce 3.2 compatibility
+* Improvement: Pre-notification in order confirmation email (Direct Debit Gateway)
 * Improvement: Filter to adjust default SEPA Gateway order status
+* Improvement: Better SEPA data display in order management
 * Fix: Sanitizing for legal text removed line breaks
 * Fix: Send email instructions for invoice gateway
 
