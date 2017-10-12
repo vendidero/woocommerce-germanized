@@ -5,15 +5,27 @@ class WC_GZD_Shipping_Rate extends WC_Shipping_Rate {
 	public $tax_shares = array();
 
 	public function __construct( WC_Shipping_Rate $rate ) {
-		parent::__construct( $rate->id, $rate->label, $rate->cost, $rate->taxes, $rate->method_id );
-		
+
+		$num = 5;
+
+		try {
+			$method = new ReflectionMethod('WC_Shipping_Rate', '__construct' );
+			$num = $method->getNumberOfParameters();
+		} catch( Exception $e ) {}
+
+		if ( $num === 6 ) {
+			parent::__construct( $rate->id, $rate->label, $rate->cost, $rate->taxes, $rate->method_id, $rate->instance_id );
+		} else {
+			parent::__construct( $rate->id, $rate->label, $rate->cost, $rate->taxes, $rate->method_id );
+		}
+
 		if ( get_option( 'woocommerce_gzd_shipping_tax' ) === 'yes' && ( ! empty( $rate->taxes ) || get_option( 'woocommerce_gzd_shipping_tax_force' ) === 'yes' ) )
-			$this->set_taxes();
+			$this->set_shared_taxes();
 		
 		$this->set_costs();
 	}
 
-	public function set_taxes() {
+	public function set_shared_taxes() {
 
 		$cart = WC()->cart;
 		$this->tax_shares = wc_gzd_get_cart_tax_share();
@@ -39,7 +51,7 @@ class WC_GZD_Shipping_Rate extends WC_Shipping_Rate {
 		$this->cost = $this->cost - array_sum( $this->taxes );
 	}
 
-	public function get_taxes() {
+	public function get_shared_taxes() {
 		return $this->taxes;
 	}
 
