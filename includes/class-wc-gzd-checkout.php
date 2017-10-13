@@ -81,8 +81,10 @@ class WC_GZD_Checkout {
 		}
 		
 		// Free Shipping auto select
-		if ( get_option( 'woocommerce_gzd_display_checkout_free_shipping_select' ) == 'yes' )
+		if ( get_option( 'woocommerce_gzd_display_checkout_free_shipping_select' ) == 'yes' ) {
+			add_action( 'woocommerce_before_calculate_totals', array( $this, 'set_free_shipping_filter' ) );
 			add_filter( 'woocommerce_package_rates', array( $this, 'free_shipping_auto_select' ) );
+		}
 
 		// Pay for order
 		add_action( 'wp', array( $this, 'force_pay_order_redirect' ), 15 );
@@ -159,9 +161,15 @@ class WC_GZD_Checkout {
 		return false;
 	}
 
+	public function set_free_shipping_filter( $cart ) {
+		$_POST[ 'update_cart' ] = true;
+	}
+
 	public function free_shipping_auto_select( $rates ) {
 
-		if ( ! is_checkout() && ! is_cart() )
+		$do_check = is_checkout() || is_cart() || ! empty( $_POST['update_cart'] );
+
+		if ( ! $do_check )
 			return $rates;
 
 		$keep = array();
