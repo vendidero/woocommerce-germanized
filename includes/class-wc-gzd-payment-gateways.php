@@ -21,7 +21,7 @@ class WC_GZD_Payment_Gateways {
 	}
 
 	public function __construct() {
-		add_action( 'admin_init', array( $this, 'init_fields' ) );
+		add_action( 'woocommerce_settings_checkout', array( $this, 'init_fields' ), 0 );
 		add_action( 'woocommerce_calculate_totals', array( $this, 'checkout' ) );
 		add_action( 'woocommerce_cart_calculate_fees', array( $this, 'init_fee' ), 0 );
 	}
