@@ -65,7 +65,9 @@ class WC_GZD_Checkout {
 		add_action( 'woocommerce_review_order_before_shipping', array( $this, 'remove_shipping_rates' ), 0 );
 		
 		// Add better fee taxation
-		add_action( 'woocommerce_cart_calculate_fees', array( $this, 'do_fee_tax_calculation' ), PHP_INT_MAX, 1 );
+		add_action( 'woocommerce_calculate_totals', array( $this, 'do_fee_tax_calculation' ), PHP_INT_MAX, 1 );
+		// Pre WC 3.2
+		add_action( 'woocommerce_cart_calculate_fees', array( $this, 'do_fee_tax_calculation_legacy' ), PHP_INT_MAX, 1 );
 		
 		// Disallow user order cancellation
 		if ( get_option( 'woocommerce_gzd_checkout_stop_order_cancellation' ) == 'yes' ) {
@@ -342,22 +344,99 @@ class WC_GZD_Checkout {
 	 *  
 	 * @param  WC_Cart $cart
 	 */
-	public function do_fee_tax_calculation( WC_Cart $cart ) {
+	public function do_fee_tax_calculation( $cart ) {
+
 		if ( get_option( 'woocommerce_gzd_fee_tax' ) != 'yes' )
 			return;
-		if ( ! empty( $cart->fees ) ) {
+
+		if ( ! method_exists( $cart, 'set_fee_taxes' ) )
+			return;
+
+		if ( ! empty( $cart->get_fees() ) ) {
+
 			$tax_shares = wc_gzd_get_cart_tax_share( 'fee' );
-			foreach ( $cart->fees as $key => $fee ) {
-				if ( ! $fee->taxable && get_option( 'woocommerce_gzd_fee_tax_force' ) != 'yes' )
-					continue;	
+			$fee_tax_total = 0;
+			$fee_tax_data = array();
+			$new_fees = array();
+
+			foreach ( $cart->get_fees() as $key => $fee ) {
+
+				if ( ! $fee->taxable && get_option( 'woocommerce_gzd_fee_tax_force' ) !== 'yes' )
+					continue;
+
 				// Calculate gross price if necessary
 				if ( $fee->taxable ) {
 					$fee_tax_rates = WC_Tax::get_rates( $fee->tax_class );
 					$fee_tax = WC_Tax::calc_tax( $fee->amount, $fee_tax_rates, false );
 					$fee->amount += array_sum( $fee_tax );
 				}
+
 				// Set fee to nontaxable to avoid WooCommerce default tax calculation
 				$fee->taxable = false;
+
+				// Calculate tax class share
+				if ( ! empty( $tax_shares ) ) {
+					$fee_taxes = array();
+
+					foreach ( $tax_shares as $rate => $class ) {
+						$tax_rates = WC_Tax::get_rates( $rate );
+						$tax_shares[ $rate ][ 'fee_tax_share' ] = $fee->amount * $class[ 'share' ];
+						$tax_shares[ $rate ][ 'fee_tax' ] = WC_Tax::calc_tax( ( $fee->amount * $class[ 'share' ] ), $tax_rates, true );
+						$fee_taxes += $tax_shares[ $rate ][ 'fee_tax' ];
+					}
+
+					foreach ( $tax_shares as $rate => $class ) {
+
+						foreach ( $class['fee_tax'] as $rate_id => $tax ) {
+							if ( ! array_key_exists( $rate_id, $fee_tax_data ) ) {
+								$fee_tax_data[ $rate_id ] = 0;
+							}
+							$fee_tax_data[ $rate_id ] += $tax;
+						}
+
+						$fee_tax_total += array_sum( $class['fee_tax'] );
+					}
+
+					$fee->tax_data = $fee_taxes;
+					$fee->tax = $fee_tax_total;
+					$fee->amount = $fee->amount - $fee->tax;
+					$fee->total = $fee->amount;
+
+					$new_fees[ $key ] = $fee;
+				}
+			}
+
+			$cart->fees_api()->set_fees( $new_fees );
+			$cart->set_fee_tax( array_sum( $fee_tax_data ) );
+			$cart->set_fee_taxes( $fee_tax_data );
+		}
+	}
+
+	public function do_fee_tax_calculation_legacy( $cart ) {
+
+		if ( get_option( 'woocommerce_gzd_fee_tax' ) != 'yes' )
+			return;
+
+		if ( method_exists( $cart, 'set_fee_taxes' ) )
+			return;
+
+		if ( ! empty( $cart->fees ) ) {
+			$tax_shares = wc_gzd_get_cart_tax_share( 'fee' );
+			foreach ( $cart->fees as $key => $fee ) {
+
+				if ( ! $fee->taxable && get_option( 'woocommerce_gzd_fee_tax_force' ) != 'yes' )
+					continue;
+
+				// Calculate gross price if necessary
+				if ( $fee->taxable ) {
+					$fee_tax_rates = WC_Tax::get_rates( $fee->tax_class );
+					$fee_tax = WC_Tax::calc_tax( $fee->amount, $fee_tax_rates, false );
+					$fee->amount += array_sum( $fee_tax );
+				}
+
+				// Set fee to nontaxable to avoid WooCommerce default tax calculation
+				$fee->taxable = false;
+
 				// Calculate tax class share
 				if ( ! empty( $tax_shares ) ) {
 					$fee_taxes = array();

@@ -21,9 +21,16 @@ class WC_GZD_Payment_Gateways {
 	}
 
 	public function __construct() {
+		// Make sure fields are inited before being saved
+		add_action( 'woocommerce_settings_save_checkout', array( $this, 'save_fields' ), 5 );
+		// Init gateway fields
 		add_action( 'woocommerce_settings_checkout', array( $this, 'init_fields' ), 0 );
 		add_action( 'woocommerce_calculate_totals', array( $this, 'checkout' ) );
 		add_action( 'woocommerce_cart_calculate_fees', array( $this, 'init_fee' ), 0 );
+	}
+
+	public function save_fields() {
+		$this->init_fields();
 	}
 
 	/**

@@ -169,6 +169,10 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 
 == Changelog ==
 
+= 1.9.4 =
+* Fix: Fee tax share calculation for WC 3.2
+* Fix: Gateway fee saving
+
 = 1.9.3 =
 * Fix: PHP Warning regarding WC_GZD_Shipping_Rate
 * Fix: Free shipping auto select WC 3.2

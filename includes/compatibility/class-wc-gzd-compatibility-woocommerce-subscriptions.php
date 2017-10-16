@@ -147,7 +147,7 @@ class WC_GZD_Compatibility_Woocommerce_Subscriptions extends WC_GZD_Compatibilit
 					}
 				}
 			} else {
-				$base_rate = array_values( WC_Tax::get_shop_base_rate() );
+				$base_rate = array_values( WC_Tax::get_base_tax_rates() );
 				$base_rate = (object) $base_rate[0];
 				$base_rate->rate = $base_rate->rate;
 				$tax_array[] = array( 'tax' => $base_rate, 'contains' => array( $base_rate ), 'amount' => $cart->get_taxes_total( true, true ) );
