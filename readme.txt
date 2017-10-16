@@ -5,7 +5,7 @@ Requires at least: 3.8
 Tested up to: 4.8
 WC requires at least: 2.4
 WC tested up to: 3.2
-Stable tag: 1.9.4
+Stable tag: 1.9.5
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -168,6 +168,11 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 1. WooCommerce Germanized Settings
 
 == Changelog ==
+
+= 1.9.5 =
+* Fix: Fee tax share calculation for WC 3.2
+* Fix: Gateway fee saving
+* Fix: PHP write method return value error
 
 = 1.9.4 =
 * Fix: Fee tax share calculation for WC 3.2
