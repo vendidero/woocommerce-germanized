@@ -233,7 +233,7 @@ class WC_GZD_Checkout {
 
 			if ( $order ) {
 				// Reduce order stock for non-cancellable orders
-				if ( apply_filters( 'woocommerce_payment_complete_reduce_order_stock', ! get_post_meta( $order->id, '_order_stock_reduced', true ), wc_gzd_get_crud_data( $order, 'id' ) ) ) {
+				if ( apply_filters( 'woocommerce_payment_complete_reduce_order_stock', ! get_post_meta( wc_gzd_get_crud_data( $order, 'id' ), '_order_stock_reduced', true ), wc_gzd_get_crud_data( $order, 'id' ) ) ) {
 					$order->reduce_order_stock();
 				}
 			}
@@ -352,7 +352,9 @@ class WC_GZD_Checkout {
 		if ( ! method_exists( $cart, 'set_fee_taxes' ) )
 			return;
 
-		if ( ! empty( $cart->get_fees() ) ) {
+		$fees = $cart->get_fees();
+
+		if ( ! empty( $fees ) ) {
 
 			$tax_shares = wc_gzd_get_cart_tax_share( 'fee' );
 			$fee_tax_total = 0;
