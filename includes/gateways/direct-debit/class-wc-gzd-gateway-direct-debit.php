@@ -134,20 +134,11 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 
 		// Order admin
 		add_action( 'woocommerce_admin_order_data_after_order_details', array( $this, 'print_debit_fields' ), 10, 1 );
-
 		add_action( 'woocommerce_before_order_object_save', array( $this, 'save_debit_fields' ), 10, 1 );
 
 		if ( ! wc_gzd_get_dependencies()->woocommerce_version_supports_crud() ) {
 	        add_action( 'woocommerce_process_shop_order_meta', array( $this, 'save_debit_fields' ), 10, 1 );
         }
-
-		// Admin order table download actions
-		add_filter( 'woocommerce_admin_order_actions', array( $this, 'order_actions' ), 0, 2 );
-
-		// Export filters
-		add_action( 'export_filters', array( $this, 'export_view' ) );
-		add_action( 'export_wp', array( $this, 'export' ), 0, 1 );
-		add_filter( 'export_args', array( $this, 'export_args' ), 0, 1 );
 
 		$this->admin_fields = array(
 			'direct_debit_holder' => array(
@@ -176,8 +167,17 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
                 'encrypt' => false,
 		    ),
         );
-
 	}
+
+	public function admin_init() {
+		// Admin order table download actions
+		add_filter( 'woocommerce_admin_order_actions', array( $this, 'order_actions' ), 0, 2 );
+
+		// Export filters
+		add_action( 'export_filters', array( $this, 'export_view' ) );
+		add_action( 'export_wp', array( $this, 'export' ), 0, 1 );
+		add_filter( 'export_args', array( $this, 'export_args' ), 0, 1 );
+    }
 
 	public function print_debit_fields( $order ) {
 

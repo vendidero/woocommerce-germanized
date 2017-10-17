@@ -23,10 +23,25 @@ class WC_GZD_Payment_Gateways {
 	public function __construct() {
 		// Make sure fields are inited before being saved
 		add_action( 'woocommerce_settings_save_checkout', array( $this, 'save_fields' ), 5 );
+
 		// Init gateway fields
 		add_action( 'woocommerce_settings_checkout', array( $this, 'init_fields' ), 0 );
 		add_action( 'woocommerce_calculate_totals', array( $this, 'checkout' ) );
 		add_action( 'woocommerce_cart_calculate_fees', array( $this, 'init_fee' ), 0 );
+
+		// Gateway admin export
+		add_action( 'current_screen', array( $this, 'gateway_admin_init' ), 20 );
+	}
+
+	public function gateway_admin_init() {
+
+		$allowed = array( 'edit-shop_order', 'export' );
+		$screen = get_current_screen();
+
+		if ( $screen && in_array( $screen->id, $allowed ) ) {
+			$direct_debit = new WC_GZD_Gateway_Direct_Debit();
+			$direct_debit->admin_init();
+		}
 	}
 
 	public function save_fields() {
