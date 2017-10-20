@@ -31,6 +31,8 @@ class WC_GZD_Payment_Gateways {
 
 		// Gateway admin export
 		add_action( 'current_screen', array( $this, 'gateway_admin_init' ), 20 );
+		// AJAX
+		add_action( 'init', array( $this, 'gateway_ajax_init' ), 30 );
 	}
 
 	public function gateway_admin_init() {
@@ -40,7 +42,12 @@ class WC_GZD_Payment_Gateways {
 
 		if ( $screen && in_array( $screen->id, $allowed ) ) {
 			$direct_debit = new WC_GZD_Gateway_Direct_Debit();
-			$direct_debit->admin_init();
+		}
+	}
+
+	public function gateway_ajax_init() {
+		if ( is_ajax() ) {
+			$direct_debit = new WC_GZD_Gateway_Direct_Debit();
 		}
 	}
 

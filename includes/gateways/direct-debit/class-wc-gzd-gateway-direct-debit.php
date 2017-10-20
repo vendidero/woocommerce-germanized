@@ -16,6 +16,8 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 class WC_GZD_Gateway_Direct_Debit extends WC_Payment_Gateway {
 
+    public static $has_loaded = false;
+
     public $admin_fields = array();
 
 	/**
@@ -105,39 +107,8 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 			$this->remember = 'no';
 		}
 
-		// Actions
-		add_action( 'woocommerce_update_options_payment_gateways_' . $this->id, array( $this, 'process_admin_options' ) );
-		add_action( 'woocommerce_thankyou_direct-debit', array( $this, 'thankyou_page' ) );
-		add_action( 'wp_enqueue_scripts', array( $this, 'payment_scripts' ) );
-		add_action( 'woocommerce_review_order_after_payment', array( $this, 'checkbox' ), wc_gzd_get_hook_priority( 'checkout_direct_debit' ) );
-		add_action( 'wp_ajax_show_direct_debit', array( $this, 'generate_mandate' ) );
-		add_action( 'wp_ajax_nopriv_show_direct_debit', array( $this, 'generate_mandate' ) );
-		add_filter( 'woocommerce_email_classes', array( $this, 'add_email_template' ) );
-
-		add_action( 'woocommerce_after_checkout_validation', array( $this, 'validate_checkbox' ) );
-
-		// Pay for Order
-		add_action( 'woocommerce_pay_order_before_submit', array( $this, 'checkbox' ) );
-
-		// Order Meta
-		add_action( 'woocommerce_checkout_update_order_meta', array( $this, 'set_order_meta' ), 10, 2 );
-		add_action( 'woocommerce_scheduled_subscription_payment', array( $this, 'set_order_meta' ), 10, 2 );
-
-		// User Meta
-		add_action( 'woocommerce_subscription_payment_complete', array( $this, 'set_mandate_seqType_to_RCUR_for_user' ), 10, 2 );
-		add_action( 'woocommerce_order_status_completed', array( $this, 'set_mandate_seqType_to_RCUR_for_user' ), 10, 2 );
-
-		// Customer Emails
-		add_action( 'woocommerce_email_before_order_table', array( $this, 'email_instructions' ), 10, 3 );
-		add_action( 'woocommerce_germanized_order_confirmation_sent', array( $this, 'send_mail' ) );
-		add_action( 'woocommerce_email_customer_details', array( $this, 'email_sepa' ), 15, 3 );
-
-		// Order admin
-		add_action( 'woocommerce_admin_order_data_after_order_details', array( $this, 'print_debit_fields' ), 10, 1 );
-		add_action( 'woocommerce_before_order_object_save', array( $this, 'save_debit_fields' ), 10, 1 );
-
-		if ( ! wc_gzd_get_dependencies()->woocommerce_version_supports_crud() ) {
-	        add_action( 'woocommerce_process_shop_order_meta', array( $this, 'save_debit_fields' ), 10, 1 );
+		if ( ! self::$has_loaded ) {
+			$this->init();
         }
 
 		$this->admin_fields = array(
@@ -167,9 +138,47 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
                 'encrypt' => false,
 		    ),
         );
+
+		self::$has_loaded = true;
 	}
 
-	public function admin_init() {
+	public function init() {
+		// Actions
+		add_action( 'woocommerce_update_options_payment_gateways_' . $this->id, array( $this, 'process_admin_options' ) );
+		add_action( 'woocommerce_thankyou_direct-debit', array( $this, 'thankyou_page' ) );
+		add_action( 'wp_enqueue_scripts', array( $this, 'payment_scripts' ) );
+		add_action( 'woocommerce_review_order_after_payment', array( $this, 'checkbox' ), wc_gzd_get_hook_priority( 'checkout_direct_debit' ) );
+		add_filter( 'woocommerce_email_classes', array( $this, 'add_email_template' ) );
+
+		add_action( 'woocommerce_after_checkout_validation', array( $this, 'validate_checkbox' ) );
+
+		// Pay for Order
+		add_action( 'woocommerce_pay_order_before_submit', array( $this, 'checkbox' ) );
+
+		// Order Meta
+		add_action( 'woocommerce_checkout_update_order_meta', array( $this, 'set_order_meta' ), 10, 2 );
+		add_action( 'woocommerce_scheduled_subscription_payment', array( $this, 'set_order_meta' ), 10, 2 );
+
+		// User Meta
+		add_action( 'woocommerce_subscription_payment_complete', array( $this, 'set_mandate_seqType_to_RCUR_for_user' ), 10, 2 );
+		add_action( 'woocommerce_order_status_completed', array( $this, 'set_mandate_seqType_to_RCUR_for_user' ), 10, 2 );
+
+		// Customer Emails
+		add_action( 'woocommerce_email_before_order_table', array( $this, 'email_instructions' ), 10, 3 );
+		add_action( 'woocommerce_germanized_order_confirmation_sent', array( $this, 'send_mail' ) );
+		add_action( 'woocommerce_email_customer_details', array( $this, 'email_sepa' ), 15, 3 );
+
+		// Order admin
+		add_action( 'woocommerce_admin_order_data_after_order_details', array( $this, 'print_debit_fields' ), 10, 1 );
+		add_action( 'woocommerce_before_order_object_save', array( $this, 'save_debit_fields' ), 10, 1 );
+
+		if ( ! wc_gzd_get_dependencies()->woocommerce_version_supports_crud() ) {
+			add_action( 'woocommerce_process_shop_order_meta', array( $this, 'save_debit_fields' ), 10, 1 );
+		}
+
+		add_action( 'wp_ajax_show_direct_debit', array( $this, 'generate_mandate' ) );
+		add_action( 'wp_ajax_nopriv_show_direct_debit', array( $this, 'generate_mandate' ) );
+
 		// Admin order table download actions
 		add_filter( 'woocommerce_admin_order_actions', array( $this, 'order_actions' ), 0, 2 );
 
