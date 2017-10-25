@@ -140,6 +140,10 @@ class WC_GZD_Product {
 			$product_base = $this->unit_product;
 		}
 
+		// Do not recalculate if unit base and/or product is empty
+		if ( 0 == $product_base || 0 == $base )
+			return;
+
 		$this->unit_price_regular = wc_format_decimal( ( $args[ 'regular_price' ] / $product_base ) * $base, wc_get_price_decimals() );
 		$this->unit_price_sale = '';
 

@@ -37,8 +37,9 @@ class WC_GZD_Shortcodes {
 
 	}
 
-	public static function gzd_add_price_suffixes( $price, $product ) {
+	public static function gzd_add_price_suffixes( $price, $org_product ) {
 		global $product;
+		$product = $org_product;
 
 		ob_start();
 		woocommerce_gzd_template_single_legal_info();
