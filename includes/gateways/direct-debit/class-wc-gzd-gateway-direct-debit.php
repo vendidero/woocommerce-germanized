@@ -159,10 +159,6 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 		add_action( 'woocommerce_checkout_update_order_meta', array( $this, 'set_order_meta' ), 10, 2 );
 		add_action( 'woocommerce_scheduled_subscription_payment', array( $this, 'set_order_meta' ), 10, 2 );
 
-		// User Meta
-		add_action( 'woocommerce_subscription_payment_complete', array( $this, 'set_mandate_seqType_to_RCUR_for_user' ), 10, 2 );
-		add_action( 'woocommerce_order_status_completed', array( $this, 'set_mandate_seqType_to_RCUR_for_user' ), 10, 2 );
-
 		// Customer Emails
 		add_action( 'woocommerce_email_before_order_table', array( $this, 'email_instructions' ), 10, 3 );
 		add_action( 'woocommerce_germanized_order_confirmation_sent', array( $this, 'send_mail' ) );
