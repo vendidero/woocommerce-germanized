@@ -191,7 +191,8 @@ class WC_GZD_Checkout {
 				$hide = true;
 			}
 
-			if ( $rate->cost == 0 ) {
+			// Always show local pickup
+			if ( $rate->cost == 0 || strpos( $key, 'local_pickup' ) !== false ) {
 				$keep[] = $key;
 			}
 		}

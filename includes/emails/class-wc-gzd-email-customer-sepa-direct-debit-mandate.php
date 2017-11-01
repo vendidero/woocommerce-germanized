@@ -32,13 +32,30 @@ class WC_GZD_Email_Customer_SEPA_Direct_Debit_Mandate extends WC_Email {
 		$this->template_html  	= 'emails/customer-sepa-direct-debit-mandate.php';
 		$this->template_plain  	= 'emails/plain/customer-sepa-direct-debit-mandate.php';
 
-		$this->subject    		= __( 'SEPA Direct Debit Mandate', 'woocommerce-germanized' );
-		$this->heading       	= __( 'SEPA Direct Debit Mandate', 'woocommerce-germanized' );
-
 		// Call parent constuctor
 		parent::__construct();
 
 		$this->customer_email = true;
+	}
+
+	/**
+	 * Get email subject.
+	 *
+	 * @since  3.1.0
+	 * @return string
+	 */
+	public function get_default_subject() {
+		return __( 'SEPA Direct Debit Mandate', 'woocommerce-germanized' );
+	}
+
+	/**
+	 * Get email heading.
+	 *
+	 * @since  3.1.0
+	 * @return string
+	 */
+	public function get_default_heading() {
+		return __( 'SEPA Direct Debit Mandate', 'woocommerce-germanized' );
 	}
 
 	/**

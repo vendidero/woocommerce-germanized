@@ -30,13 +30,30 @@ class WC_GZD_Email_Customer_Revocation extends WC_Email {
 		$this->template_html  	= 'emails/customer-revocation.php';
 		$this->template_plain  	= 'emails/plain/customer-revocation.php';
 
-		$this->subject    		= __( 'Your Revocation', 'woocommerce-germanized' );
-		$this->heading       	= __( 'Your Revocation', 'woocommerce-germanized' );
-
 		// Call parent constuctor
 		parent::__construct();
 
 		$this->customer_email = true;
+	}
+
+	/**
+	 * Get email subject.
+	 *
+	 * @since  3.1.0
+	 * @return string
+	 */
+	public function get_default_subject() {
+		return __( 'Your revocation', 'woocommerce-germanized' );
+	}
+
+	/**
+	 * Get email heading.
+	 *
+	 * @since  3.1.0
+	 * @return string
+	 */
+	public function get_default_heading() {
+		return __( 'Your revocation', 'woocommerce-germanized' );
 	}
 
 	/**
@@ -50,7 +67,7 @@ class WC_GZD_Email_Customer_Revocation extends WC_Email {
 		if ( !empty( $user_data['address_mail'] ) ) {
 			$this->object      	  = $user_data;
 			$this->user_email     = $user_data['address_mail'];
-			if ( !empty( $user_data['mail'] ) )
+			if ( ! empty( $user_data['mail'] ) )
 				$this->user_email = $user_data['mail'];
 			$this->recipient      = $this->user_email;
 		}

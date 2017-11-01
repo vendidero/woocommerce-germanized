@@ -41,13 +41,30 @@ class WC_GZD_Email_Customer_New_Account_Activation extends WC_Email {
 		$this->template_html 	= 'emails/customer-new-account-activation.php';
 		$this->template_plain 	= 'emails/plain/customer-new-account-activation.php';
 
-		$this->subject 			= __( 'Activate your account on {site_title}', 'woocommerce-germanized');
-		$this->heading      	= __( 'Account activation {site_title}', 'woocommerce-germanized');
-
 		// Call parent constuctor
 		parent::__construct();
 
 		$this->customer_email = true;
+	}
+
+	/**
+	 * Get email subject.
+	 *
+	 * @since  3.1.0
+	 * @return string
+	 */
+	public function get_default_subject() {
+		return __( 'Activate your account on {site_title}', 'woocommerce-germanized');
+	}
+
+	/**
+	 * Get email heading.
+	 *
+	 * @since  3.1.0
+	 * @return string
+	 */
+	public function get_default_heading() {
+		return __( 'Account activation {site_title}', 'woocommerce-germanized');
 	}
 
 	/**
