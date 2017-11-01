@@ -339,33 +339,53 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 			$directDebit = Digitick\Sepa\TransferFile\Factory\TransferFileFacadeFactory::createDirectDebit( $msg_id, $this->company_account_holder, $this->pain_format );
 			$directDebit = apply_filters( 'woocommerce_gzd_direct_debit_sepa_xml_exporter', $directDebit );
 
+			// Group orders by their mandate type to only add one payment per mandate type group.
+			$mandate_type_groups = array();
+
 			while ( $order_query->have_posts() ) {
 
 				$order_query->next_post();
 				$order = wc_get_order( $order_query->post->ID );
 
-				$payment_id = 'PMT-ID-' . wc_gzd_get_crud_data( $order, 'id' );
+				if ( ! $order ) {
+				    continue;
+                }
+
+				$mandate_type = $this->get_mandate_type( $order );
+
+				if ( ! array_key_exists( $mandate_type, $mandate_type_groups ) ) {
+				    $mandate_type_groups[ $mandate_type ] = array();
+                }
+
+				array_push( $mandate_type_groups[ $mandate_type ], $order );
+			}
+
+			foreach( $mandate_type_groups as $mandate_type => $orders ) {
+
+			    $payment_id = 'PMT-ID-' . date( 'YmdHis', time() ) . '-' . strtolower( $mandate_type );
 
 				$directDebit->addPaymentInfo( $payment_id, apply_filters( 'woocommerce_gzd_direct_debit_sepa_xml_exporter_payment_args', array(
 					'id'                    => $payment_id,
 					'creditorName'          => $this->company_account_holder,
 					'creditorAccountIBAN'   => $this->clean_whitespaces( $this->company_account_iban ),
 					'creditorAgentBIC'      => $this->clean_whitespaces( $this->company_account_bic ),
-					'seqType'               => $this->get_mandate_type( $order ),
+					'seqType'               => $mandate_type,
 					'creditorId'            => $this->clean_whitespaces( $this->company_identification_number ),
-                    'dueDate'               => date_i18n( 'Y-m-d', $this->get_debit_date( $order ) ),
-				), $this, $order ) );
+					'dueDate'               => date_i18n( 'Y-m-d', $this->get_debit_date( $order ) ),
+				), $this, $mandate_type ) );
 
-				$directDebit->addTransfer( $payment_id, apply_filters( 'woocommerce_gzd_direct_debit_sepa_xml_exporter_transfer_args', array(
-					'amount'                => $order->get_total(),
-					'debtorIban'            => $this->clean_whitespaces( $this->maybe_decrypt( wc_gzd_get_crud_data( $order, 'direct_debit_iban' ) ) ),
-					'debtorBic'             => $this->clean_whitespaces( $this->maybe_decrypt( wc_gzd_get_crud_data( $order, 'direct_debit_bic' ) ) ),
-					'debtorName'            => wc_gzd_get_crud_data( $order, 'direct_debit_holder' ),
-					'debtorMandate'         => $this->get_mandate_id( $order ),
-					'debtorMandateSignDate' => date_i18n( 'Y-m-d', $this->get_mandate_sign_date( $order ) ),
-					'remittanceInformation' => apply_filters( 'woocommerce_germanized_direct_debit_purpose', sprintf( __( 'Order %s', 'woocommerce-germanized' ), $order->get_order_number() ), $order ),
-				), $this, $order ) );
-			}
+				foreach( $orders as $order ) {
+					$directDebit->addTransfer( $payment_id, apply_filters( 'woocommerce_gzd_direct_debit_sepa_xml_exporter_transfer_args', array(
+						'amount'                => $order->get_total(),
+						'debtorIban'            => $this->clean_whitespaces( $this->maybe_decrypt( wc_gzd_get_crud_data( $order, 'direct_debit_iban' ) ) ),
+						'debtorBic'             => $this->clean_whitespaces( $this->maybe_decrypt( wc_gzd_get_crud_data( $order, 'direct_debit_bic' ) ) ),
+						'debtorName'            => wc_gzd_get_crud_data( $order, 'direct_debit_holder' ),
+						'debtorMandate'         => $this->get_mandate_id( $order ),
+						'debtorMandateSignDate' => date_i18n( 'Y-m-d', $this->get_mandate_sign_date( $order ) ),
+						'remittanceInformation' => apply_filters( 'woocommerce_germanized_direct_debit_purpose', sprintf( __( 'Order %s', 'woocommerce-germanized' ), $order->get_order_number() ), $order ),
+					), $this, $order ) );
+                }
+            }
 
 			header( 'Content-Description: File Transfer' );
 			header( 'Content-Disposition: attachment; filename=' . $filename );
