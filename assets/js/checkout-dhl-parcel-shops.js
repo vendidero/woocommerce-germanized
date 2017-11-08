@@ -127,7 +127,24 @@ jQuery( function( $ ) {
 
         },
 
+        isValidJSON: function(str) {
+            try {
+                JSON.parse(str);
+            } catch (e) {
+                return false;
+            }
+            return true;
+        },
+
         saveParcelFinder: function(e) {
+
+            if ( e.originalEvent.data === "undefined" ) {
+                return;
+            }
+
+            if ( ! wc_gzd_dhl_parcel_shops.isValidJSON( e.originalEvent.data ) ) {
+                return;
+            }
 
             var c = JSON.parse( e.originalEvent.data );
 

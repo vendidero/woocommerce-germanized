@@ -371,7 +371,12 @@ final class WooCommerce_Germanized {
 	public function setup_compatibility() {
 
 		$plugins = apply_filters( 'woocommerce_gzd_compatibilities',
-			array( 'wpml', 'woocommerce-subscriptions', 'polylang', 'woocommerce-dynamic-pricing' )
+			array(
+				'wpml',
+				'polylang',
+				'woocommerce-dynamic-pricing',
+				'woocommerce-role-based-prices'
+			)
 		);
 
 		foreach ( $plugins as $comp ) {

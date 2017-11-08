@@ -82,14 +82,6 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 
 		$this->supports = array(
 			'products',
-			'subscriptions',
-			'subscription_cancellation',
-			'subscription_suspension',
-			'subscription_reactivation',
-			'subscription_amount_changes',
-			'subscription_date_changes',
-			'subscription_payment_method_change',
-            'gateway_scheduled_payments'
 		);
 
 		if ( $this->get_option( 'enabled' ) === 'yes' && ! $this->supports_encryption() ) {

@@ -170,7 +170,12 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 == Changelog ==
 
 = 1.9.6 =
-* Fix: Direct Debit Gateway Export Filters
+* Feature: Role Based Prices unit price recalculation support
+* Fix: Direct Debit Gateway Export
+* Fix: Email default header and subjects (Woo 3.X)
+* Fix: Unit price recalculation division by zero
+* Fix: add_to_cart shortcode price suffixes
+* Fix: Removed subcription support for direct debit (still beta and testing)
 
 = 1.9.5 =
 * Fix: Fee tax share calculation for WC 3.2
