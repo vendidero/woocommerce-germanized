@@ -2,7 +2,7 @@
 Contributors: vendidero
 Tags: woocommerce, german, woocommerce-de, germany, deutsch, deutschland, de, de_DE, shop, e-commerce, ecommerce, woothemes, sepa, invoice, market
 Requires at least: 3.8
-Tested up to: 4.8
+Tested up to: 4.9
 WC requires at least: 2.4
 WC tested up to: 3.2
 Stable tag: 1.9.6
