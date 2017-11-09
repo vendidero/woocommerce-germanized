@@ -142,7 +142,7 @@ class WC_GZD_Email_Customer_Revocation extends WC_Email {
 				'title'         => __( 'Admin email', 'woocommerce-germanized' ),
 				'type'          => 'text',
 				'desc_tip'      => true,
-				'description'   => __( 'Insert the email address of your shop manager here. A copy of the revocation email is being sent to this address.' ),
+				'description'   => __( 'Insert the email address of your shop manager here. A copy of the revocation email is being sent to this address.', 'woocommerce-germanized' ),
 				'placeholder'   => '',
 				'default'       => get_bloginfo( 'admin_email' ),
 			),
