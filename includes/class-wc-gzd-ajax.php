@@ -119,10 +119,11 @@ class WC_GZD_AJAX {
 			// Send Mail
 			if ( $mail = WC_germanized()->emails->get_email_instance_by_id( 'customer_revocation' ) ) {
 
+				// Send to customer
 				$mail->trigger( $data );
 				
 				// Send to Admin
-				$data[ 'mail' ] = apply_filters( 'wc_gzd_revocation_admin_mail', get_bloginfo('admin_email') );
+				$data[ 'send_to_admin' ] = true;
 				$mail->trigger( $data );
 			}
 	

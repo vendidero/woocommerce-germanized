@@ -171,6 +171,7 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 
 = 1.9.6 =
 * Feature: Role Based Prices unit price recalculation support
+* Improvement: Option to explicitly set revocation admin email address
 * Fix: Direct Debit Gateway Export
 * Fix: Email default header and subjects (Woo 3.X)
 * Fix: Unit price recalculation division by zero
