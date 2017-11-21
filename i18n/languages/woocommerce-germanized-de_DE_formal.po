@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: WooCommerce Germanized v1.5.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-09 14:18+0100\n"
-"PO-Revision-Date: 2017-11-09 14:18+0100\n"
+"PO-Revision-Date: 2017-11-16 10:22+0100\n"
 "Last-Translator: holzhannes <holzhannes@posteo.de>\n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -234,7 +234,7 @@ msgstr "akzeptiert"
 
 #: includes/admin/class-wc-gzd-admin.php:102
 msgid "not allowed"
-msgstr "akzeptiert"
+msgstr "nicht akzeptiert"
 
 # @ woocommerce-germanized
 #: includes/admin/class-wc-gzd-admin.php:175
@@ -361,7 +361,7 @@ msgid ""
 "outputting the old price to inform the customer."
 msgstr ""
 "Wenn das Produkt über einen Angebotspreis verfügt, kannst du mit dieser "
-"Auswahl einen Hinweis direkt vor dem Strichpreis platzieren (d.h. dem alten "
+"Auswahl einen Hinweis direkt vor dem Streichpreis platzieren (d.h. dem alten "
 "Preis). Mit diesem Hinweis kannst du genau festlegen, um welchen Preis es "
 "sich dabei handelte (z.B. UVP)."
 
@@ -405,7 +405,7 @@ msgstr "Grundpreiseinheiten"
 # @ woocommerce-germanized
 #: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:141
 msgid ""
-"Base price units. Example base price: 0,99 € / 100 ml. Insert 100 as base "
+"Base price units. Example base price: 0,99 € / 100 ml. Insert 100 as base "
 "price unit amount."
 msgstr ""
 "Anzahl der Grundpreiseinheiten. Beispiel Grundpreis: 0,99 / 100 ml. Füge "
@@ -4082,9 +4082,9 @@ msgstr ""
 "<h3>SEPA-Lastschriftmandat</h3>\n"
 "\n"
 "Hiermit ermächtige ich den Zahlungsempfänger, [mandate_type_text] von meinem "
-"Konto mittel Lastschrift einzuziehen. Zugleich weise ich mein Kreditinstitut "
-"an, die von dem Zahlungsempfänger auf mein Konto gezogene Lastschrift "
-"einzulösen.\n"
+"Konto mittels Lastschrift einzuziehen. Zugleich weise ich mein "
+"Kreditinstitut an, die von dem Zahlungsempfänger auf mein Konto gezogene "
+"Lastschrift einzulösen.\n"
 "\n"
 "Hinweis: Ich kann innerhalb von acht Wochen, beginnend mit dem "
 "Belastungsdatum, die Erstattung des belasteten Betrages verlangen. Es gelten "
@@ -5416,8 +5416,8 @@ msgstr "Kundenmeinungen ansehen"
 #: templates/trusted-shops/rich-snippets.php:24
 #, php-format
 msgctxt "trusted-shops"
-msgid "&#216; %s / %s of %s %s %s customer reviews | Trusted Shops %s"
-msgstr "&#216; %s / %s bei %s %s %s Kundenbewertungen | Trusted Shops %s"
+msgid "&#216; %s / %s of %s %s %s customer reviews | Trusted Shops %s"
+msgstr "&#216; %s / %s bei %s %s %s Kundenbewertungen | Trusted Shops %s"
 
 # @ woocommerce-germanized
 #: templates/trusted-shops/rich-snippets.php:28
