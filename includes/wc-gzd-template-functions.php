@@ -648,7 +648,10 @@ if ( ! function_exists( 'woocommerce_gzd_template_order_item_hooks' ) ) {
 if ( ! function_exists( 'woocommerce_gzd_template_mini_cart_taxes' ) ) {
 
 	function woocommerce_gzd_template_mini_cart_taxes() {
-		wc_get_template( 'cart/mini-cart-totals.php', array( 'taxes' => wc_gzd_get_cart_total_taxes( false ), 'shipping_costs_info' => wc_gzd_get_shipping_costs_text() ) );
+		wc_get_template( 'cart/mini-cart-totals.php', array(
+			'taxes' => apply_filters( 'woocommerce_gzd_show_mini_cart_totals_taxes', true ) ? wc_gzd_get_cart_total_taxes( false ) : array(),
+			'shipping_costs_info' => apply_filters( 'woocommerce_gzd_show_mini_cart_totals_shipping_costs_notice', true ) ? wc_gzd_get_shipping_costs_text() : '' )
+		);
 	}
 
 }

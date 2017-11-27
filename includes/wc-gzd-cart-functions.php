@@ -253,7 +253,7 @@ function wc_gzd_cart_totals_order_total_html() {
 }
 
 function wc_gzd_cart_remove_shipping_taxes( $taxes, $cart ) {
-    return $cart->taxes;
+	return is_callable( array( $cart, 'set_cart_contents_taxes' ) ) ? $cart->get_cart_contents_taxes() : $cart->taxes;
 }
 
 function wc_gzd_get_cart_total_taxes( $include_shipping_taxes = true ) {
