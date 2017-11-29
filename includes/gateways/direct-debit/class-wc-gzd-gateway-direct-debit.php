@@ -325,6 +325,8 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 		$order_query = new WP_Query( apply_filters( 'woocommerce_gzd_direct_debit_export_query_args', $query_args, $args ) );
 		$filename = apply_filters( 'woocommerce_germanized_direct_debit_export_filename', implode( '-', $parts ) . '.xml', $args );
 
+		$directDebit = false;
+
 		if ( $order_query->have_posts() ) {
 
 			$msg_id = apply_filters( 'woocommerce_gzd_direct_debit_sepa_xml_msg_id', $this->company_account_bic . '00' . date( 'YmdHis', time() ) );
@@ -378,19 +380,20 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 					), $this, $order ) );
                 }
             }
-
-			header( 'Content-Description: File Transfer' );
-			header( 'Content-Disposition: attachment; filename=' . $filename );
-			header( 'Content-Type: text/xml; charset=' . get_option( 'blog_charset' ), true );
-			header( 'Cache-Control: no-cache, no-store, must-revalidate' );
-			header( 'Pragma: no-cache' );
-			header( 'Expires: 0' );
-
-			echo $directDebit->asXML();
-			exit();
-
 		}
 
+		header( 'Content-Description: File Transfer' );
+		header( 'Content-Disposition: attachment; filename=' . $filename );
+		header( 'Content-Type: text/xml; charset=' . get_option( 'blog_charset' ), true );
+		header( 'Cache-Control: no-cache, no-store, must-revalidate' );
+		header( 'Pragma: no-cache' );
+		header( 'Expires: 0' );
+
+		if ( $directDebit ) {
+			echo $directDebit->asXML();
+        }
+
+		exit();
 	}
 
 	public function get_mandate_id( $order = false ) {

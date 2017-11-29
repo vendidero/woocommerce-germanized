@@ -142,7 +142,7 @@ class WC_GZD_Customer_Helper {
 
 	public function disable_signup( $checkout ) {
 
-		if ( WC()->session->get( 'disable_checkout_signup' ) )
+		if ( WC()->session && WC()->session->get( 'disable_checkout_signup' ) )
 			$checkout->enable_signup = false;
 
 	}
