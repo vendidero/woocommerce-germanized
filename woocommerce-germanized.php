@@ -143,7 +143,7 @@ final class WooCommerce_Germanized {
 
 		add_action( 'init', array( $this, 'init' ), 0 );
 		add_action( 'init', array( 'WC_GZD_Shortcodes', 'init' ), 2 );
-		add_action( 'init', array( $this, 'setup_compatibility' ), 0 );
+		add_action( 'plugins_loaded', array( $this, 'setup_compatibility' ), 0 );
 
 		add_action( 'woocommerce_init', array( $this, 'replace_woocommerce_product_factory' ), PHP_INT_MAX );
 		// Set template filter directly after load to ensure wc_get_template finds templates
@@ -374,6 +374,7 @@ final class WooCommerce_Germanized {
 			array(
 				'wpml',
 				'polylang',
+				'woo-poly-integration',
 				'woocommerce-dynamic-pricing',
 				'woocommerce-role-based-prices'
 			)
