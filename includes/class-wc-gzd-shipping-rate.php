@@ -19,9 +19,12 @@ class WC_GZD_Shipping_Rate extends WC_Shipping_Rate {
 			parent::__construct( $rate->id, $rate->label, $rate->cost, $rate->taxes, $rate->method_id );
 		}
 
-		if ( get_option( 'woocommerce_gzd_shipping_tax' ) === 'yes' && ( ! empty( $rate->taxes ) || get_option( 'woocommerce_gzd_shipping_tax_force' ) === 'yes' ) )
-			$this->set_shared_taxes();
-		
+		if ( get_option( 'woocommerce_gzd_shipping_tax' ) === 'yes' && ( ! empty( $rate->taxes ) || get_option( 'woocommerce_gzd_shipping_tax_force' ) === 'yes' ) ) {
+			if ( $this->get_shipping_tax() > 0 ) {
+				$this->set_shared_taxes();
+			}
+		}
+
 		$this->set_costs();
 	}
 
