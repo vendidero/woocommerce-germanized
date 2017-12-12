@@ -445,8 +445,9 @@ class WC_GZD_Emails {
 	 */
 	public function add_template_footers() {
 		$type = $this->get_current_email_object();
-		if ( $type )
+		if ( $type ) {
 			do_action( 'woocommerce_germanized_email_footer_' . $type->id, $type );
+		}
 	}
 
 	public function get_current_email_object() {
@@ -506,6 +507,8 @@ class WC_GZD_Emails {
 	 * @param  integer $page_id 
 	 */
 	public function attach_page_content( $page_id, $email_type = 'html' ) {
+
+		do_action( 'woocommerce_germanized_attach_email_footer', $page_id, $email_type );
 		
 		remove_shortcode( 'revocation_form' );
 		add_shortcode( 'revocation_form', array( $this, 'revocation_form_replacement' ) );
