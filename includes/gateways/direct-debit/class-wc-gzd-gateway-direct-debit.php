@@ -589,6 +589,10 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 
 	public function generate_mandate_text( $args = array() ) {
 
+		// temporarily reset global $post variable if available to ensure Pagebuilder compatibility
+		$tmp_post = isset( $GLOBALS['post'] ) ? $GLOBALS['post'] : false;
+		$GLOBALS['post'] = false;
+
 		$args = wp_parse_args( $args, array(
 			'company_info' => $this->company_info,
 			'company_identification_number' => $this->company_identification_number,
@@ -602,8 +606,12 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 		foreach ( $args as $key => $val )
 			$text = str_replace( '[' . $key . ']', $val, $text );
 
-		return apply_filters( 'the_content', $text );
+		$content = apply_filters( 'the_content', $text );
 
+		// Enable $post again
+		$GLOBALS['post'] = $tmp_post;
+
+		return $content;
 	}
 
 	public function checkbox() {
