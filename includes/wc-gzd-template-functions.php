@@ -216,8 +216,8 @@ if ( ! function_exists( 'woocommerce_gzd_parcel_delivery_checkbox' ) ) {
 
 	function woocommerce_gzd_parcel_delivery_checkbox() {
 
-		$rates = wc_gzd_get_chosen_shipping_rates();
-		$ids = array();
+		$rates  = wc_gzd_get_chosen_shipping_rates();
+		$ids    = array();
 		$titles = array();
 
 		foreach ( $rates as $rate ) {

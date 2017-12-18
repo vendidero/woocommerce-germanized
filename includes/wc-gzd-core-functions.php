@@ -116,6 +116,8 @@ function wc_gzd_is_parcel_delivery_data_transfer_checkbox_enabled( $rate_ids = a
 			if ( ! in_array( $rate_id, $supported ) )
 				return false;
 		}
+	} else {
+		return false;
 	}
 	return true;
 }
