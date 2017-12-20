@@ -421,8 +421,8 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
     }
 
 	public function get_mandate_sign_date( $order ) {
-	    $date = wc_gzd_get_crud_data( $order, 'direct_debit_mandate_date' ) ? wc_gzd_get_crud_data( $order, 'direct_debit_mandate_date' ) : wc_gzd_get_crud_data( $order, 'order_date' );
-		return strtotime( $date );
+		$date = wc_gzd_get_crud_data( $order, 'direct_debit_mandate_date' ) ? wc_gzd_get_crud_data( $order, 'direct_debit_mandate_date' ) : strtotime( wc_gzd_get_crud_data( $order, 'order_date' ) );
+		return $date;
 	}
 
 	public function get_mandate_type( $order ) {
