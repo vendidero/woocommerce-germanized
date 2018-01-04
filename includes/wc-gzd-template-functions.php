@@ -176,8 +176,9 @@ if ( ! function_exists( 'woocommerce_gzd_digital_checkbox' ) ) {
 		
 			foreach ( $items as $cart_item_key => $values ) {
 				$_product = apply_filters( 'woocommerce_cart_item_product', $values[ 'data' ], $values, $cart_item_key );
-				if ( wc_gzd_is_revocation_exempt( $_product ) )
+				if ( wc_gzd_is_revocation_exempt( $_product ) ) {
 					$is_downloadable = true;
+				}
 			}
 
 		}

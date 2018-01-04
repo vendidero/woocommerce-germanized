@@ -45,7 +45,7 @@ class WC_GZD_Shipping_Rate extends WC_Shipping_Rate {
 			$this->taxes = array();
 		
 			foreach ( $this->tax_shares as $rate => $class ) {
-				$this->taxes = $this->taxes + $class[ 'shipping_tax' ];
+				$this->taxes = array_map( 'wc_round_tax_total', $this->taxes + $class[ 'shipping_tax' ] );
 			}
 		}
 	}

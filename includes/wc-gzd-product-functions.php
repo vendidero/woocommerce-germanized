@@ -69,6 +69,7 @@ function wc_gzd_is_revocation_exempt( $product, $type = 'digital' ) {
 		$types = array( $types );
 
 	if ( $type === 'digital' ) {
+
 		foreach ( $types as $revo_type ) {
 
 			if ( wc_gzd_product_matches_extended_type( $revo_type, $product ) )
