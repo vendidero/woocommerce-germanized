@@ -266,8 +266,9 @@ class WC_GZD_Emails {
             $new_order->trigger( wc_gzd_get_crud_data( $order, 'id' ) );
 
         // Always clear cart after order success
-        if ( get_option( 'woocommerce_gzd_checkout_stop_order_cancellation' ) === 'yes' )
-            WC()->cart->empty_cart();
+        if ( get_option( 'woocommerce_gzd_checkout_stop_order_cancellation' ) === 'yes' && WC()->cart ) {
+	        WC()->cart->empty_cart();
+        }
 
         do_action( 'woocommerce_germanized_order_confirmation_sent', wc_gzd_get_crud_data( $order, 'id' ) );
 
