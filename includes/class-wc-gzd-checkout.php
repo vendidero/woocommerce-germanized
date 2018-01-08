@@ -95,8 +95,9 @@ class WC_GZD_Checkout {
 			add_filter( 'woocommerce_get_checkout_payment_url', array( $this, 'set_payment_url_to_force_payment' ), 10, 2 );
 		}
 
-		if ( wc_gzd_is_parcel_delivery_data_transfer_checkbox_enabled() )
+		if ( get_option( 'woocommerce_gzd_checkout_legal_parcel_delivery_checkbox' ) === 'yes' ) {
 			add_action( 'woocommerce_checkout_update_order_meta', array( $this, 'order_parcel_delivery_data_transfer' ), 10, 2 );
+		}
 	}
 
 	public function remove_cancel_button( $actions, $order ) {
@@ -108,6 +109,11 @@ class WC_GZD_Checkout {
 	}
 
 	public function order_parcel_delivery_data_transfer( $order_id, $posted ) {
+
+		if ( ! wc_gzd_is_parcel_delivery_data_transfer_checkbox_enabled( wc_gzd_get_chosen_shipping_rates( array( 'value' => 'id' ) ) ) ) {
+			return;
+		}
+
 		if ( isset( $_POST[ 'parcel-delivery' ] ) ) {
 			update_post_meta( $order_id, '_parcel_delivery_opted_in', 'yes' );
 		} else {

@@ -107,19 +107,25 @@ function wc_gzd_is_parcel_delivery_data_transfer_checkbox_enabled( $rate_ids = a
 	
 	if ( ! is_array( $supported ) )
 		$supported = array();
-	
-	if ( get_option( 'woocommerce_gzd_checkout_legal_parcel_delivery_checkbox' ) !== 'yes' )
-		return false; 
 
-	if ( ! empty( $rate_ids ) ) {
-		foreach ( $rate_ids as $rate_id ) {
-			if ( ! in_array( $rate_id, $supported ) )
-				return false;
+	$return = false;
+	$rate_is_supported = true;
+
+	if ( get_option( 'woocommerce_gzd_checkout_legal_parcel_delivery_checkbox' ) === 'yes' ) {
+		if ( ! empty( $rate_ids ) ) {
+
+			foreach ( $rate_ids as $rate_id ) {
+				if ( ! in_array( $rate_id, $supported ) )
+					$rate_is_supported = false;
+			}
+
+			if ( $rate_is_supported ) {
+				$return = true;
+			}
 		}
-	} else {
-		return false;
 	}
-	return true;
+
+	return apply_filters( 'woocommerce_gzd_enable_parcel_delivery_data_transfer_checkbox', $return );
 }
 
 function wc_gzd_get_dispute_resolution_text() {
