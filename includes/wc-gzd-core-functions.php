@@ -125,7 +125,7 @@ function wc_gzd_is_parcel_delivery_data_transfer_checkbox_enabled( $rate_ids = a
 		}
 	}
 
-	return apply_filters( 'woocommerce_gzd_enable_parcel_delivery_data_transfer_checkbox', $return );
+	return apply_filters( 'woocommerce_gzd_enable_parcel_delivery_data_transfer_checkbox', $return, $rate_ids );
 }
 
 function wc_gzd_get_dispute_resolution_text() {

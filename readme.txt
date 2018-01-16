@@ -5,7 +5,7 @@ Requires at least: 3.8
 Tested up to: 4.9
 WC requires at least: 2.4
 WC tested up to: 3.2
-Stable tag: 1.9.6
+Stable tag: 1.9.7
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -168,6 +168,17 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 1. WooCommerce Germanized Settings
 
 == Changelog ==
+
+= 1.9.7 =
+* Feature: Woo 3.3 compatibility
+* Improvement: Shopping costs for VAT exempts to show net prices instead of fixed gross prices
+* Improvement: Tax rounding for better shipping costs tax calculation
+* Improvement: Support tax exclusive mode for shipping tax calculation
+* Improvement: Added action firing before attaching email footers
+* Improvement: Better PolyLang compatibility
+* Fix: Parcel delivery checkbox and data storage
+* Fix: Check if cart object exists in email filter
+* Fix: Direct debit mandate sign date conversion
 
 = 1.9.6 =
 * Feature: Role Based Prices unit price recalculation support
