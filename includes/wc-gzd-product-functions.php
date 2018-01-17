@@ -104,16 +104,21 @@ function wc_gzd_product_matches_extended_type( $types, $product ) {
 		$matches_type = true;
 	} else {
 		foreach ( $types as $type ) {
-			$getter = "is_" . $type;
-			try {
-				if ( is_callable( array( $product, $getter ) ) ) {
-					$reflection = new ReflectionMethod( $product, $getter );
+			if ( 'service' === $type ) {
+				$is_service = wc_gzd_get_crud_data( $product, 'service' );
+				$matches_type = ( $is_service === 'yes' );
+			} else {
+				$getter = "is_" . $type;
+				try {
+					if ( is_callable( array( $product, $getter ) ) ) {
+						$reflection = new ReflectionMethod( $product, $getter );
 
-					if ( $reflection->isPublic() ) {
-						$matches_type = $product->{$getter}() === true;
+						if ( $reflection->isPublic() ) {
+							$matches_type = $product->{$getter}() === true;
+						}
 					}
-				}
-			} catch ( Exception $e ) {}
+				} catch ( Exception $e ) {}
+			}
 		}
 	}
 
