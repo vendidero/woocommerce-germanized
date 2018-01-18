@@ -218,7 +218,7 @@ class WC_GZD_Customer_Helper {
 	}
 
 	public function registration_redirect( $redirect ) {
-		return add_query_arg( array( 'account' => 'activate' ), wc_gzd_get_page_permalink( 'myaccount' ) );
+		return apply_filters( 'woocommerce_gzd_customer_registration_redirect', add_query_arg( array( 'account' => 'activate' ), wc_gzd_get_page_permalink( 'myaccount' ) ) );
 	}
 
 	public function disable_registration_auto_login( $result, $user_id ) {
