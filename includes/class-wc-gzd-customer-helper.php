@@ -393,6 +393,9 @@ class WC_GZD_Customer_Helper {
 			$this->set_customer_activation_meta( $customer_id, $new_customer_data, $password_generated );
 		}
 
+		// Try to flush the cache before continuing
+		WC_GZD_Cache_Helper::maybe_flush_cache( 'db', array( 'cache_type' => 'meta', 'meta_type' => 'user', 'meta_key' => '_woocommerce_activation' ) );
+
 		$user_pass = ! empty( $new_customer_data['user_pass'] ) ? $new_customer_data['user_pass'] : '';
 
 		$user_activation = get_user_meta( $customer_id, '_woocommerce_activation', true );

@@ -355,6 +355,7 @@ final class WooCommerce_Germanized {
 		include_once( 'includes/class-wc-gzd-checkout.php' );
 		include_once( 'includes/class-wc-gzd-dhl-parcel-shops.php' );
 		include_once( 'includes/class-wc-gzd-customer-helper.php' );
+		include_once( 'includes/class-wc-gzd-cache-helper.php' );
 
 		// Only available for Woo 3.X
 		if ( WC_GZD_Dependencies::instance( $this )->woocommerce_version_supports_crud() ) {
