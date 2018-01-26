@@ -76,8 +76,8 @@ class WC_GZD_Payment_Gateways {
 
 			$this->maybe_set_gateway_data( $gateway );
 
-			if ( ! isset( $gateway->force_order_button_text ) || ! $gateway->force_order_button_text )
-				$gateway->order_button_text = __( get_option( 'woocommerce_gzd_order_submit_btn_text' ), 'woocommerce-germanized' );
+			if ( ! isset( $gateway->force_order_button_text ) || $gateway->force_order_button_text )
+				$gateway->order_button_text = apply_filters( 'woocommerce_gzd_order_button_payment_gateway_text', __( get_option( 'woocommerce_gzd_order_submit_btn_text' ), 'woocommerce-germanized' ), $gateway->id );
 			
 			if ( $gateway->get_option( 'fee' ) ) {
 
