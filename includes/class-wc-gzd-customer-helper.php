@@ -97,9 +97,11 @@ class WC_GZD_Customer_Helper {
 
 	public function social_login_activation_check( $message, $user ) {
 		$user_id = $user->ID;
-		if ( ! wc_gzd_is_customer_activated( $user_id ) ) {
+
+		if ( $this->enable_double_opt_in_for_user( $user ) && ! wc_gzd_is_customer_activated( $user_id ) ) {
 			return __( 'Please activate your account through clicking on the activation link received via email.', 'woocommerce-germanized' );
 		}
+
 		return $message;
 	}
 
@@ -142,8 +144,9 @@ class WC_GZD_Customer_Helper {
 
 	public function disable_signup( $checkout ) {
 
-		if ( WC()->session && WC()->session->get( 'disable_checkout_signup' ) )
+		if ( WC()->session && WC()->session->get( 'disable_checkout_signup' ) ) {
 			$checkout->enable_signup = false;
+		}
 
 	}
 
@@ -175,7 +178,7 @@ class WC_GZD_Customer_Helper {
 
 		} elseif ( ! WC()->session->get( 'disable_checkout_signup' ) ) {
 			
-			if ( is_checkout() && ( ! is_user_logged_in() || ! wc_gzd_is_customer_activated() ) ) {
+			if ( is_checkout() && ( ! is_user_logged_in() || ( $this->enable_double_opt_in_for_user() && ! wc_gzd_is_customer_activated() ) ) ) {
 				
 				WC()->session->set( 'login_redirect', 'checkout' );
 				wp_safe_redirect( wc_gzd_get_page_permalink( 'myaccount' ) );
@@ -228,7 +231,7 @@ class WC_GZD_Customer_Helper {
 		}
 
 		// Has not been activated yet
-		if ( ! wc_gzd_is_customer_activated( $user_id ) ) {
+		if ( $this->enable_double_opt_in_for_user( $user_id ) && ! wc_gzd_is_customer_activated( $user_id ) ) {
 			add_filter( 'woocommerce_registration_redirect', array( $this, 'registration_redirect' ) );
 			return false;
 		}
@@ -237,10 +240,42 @@ class WC_GZD_Customer_Helper {
 
 	}
 
+	public function get_double_opt_in_user_roles() {
+		return apply_filters( 'woocommerce_gzd_customer_double_opt_in_supported_user_roles', array( 'customer' ) );
+	}
+
+	public function enable_double_opt_in_for_user( $user = false ) {
+
+		if ( ! $user ) {
+			$user = get_current_user_id();
+		}
+
+		if ( is_numeric( $user ) ) {
+			$user = get_user_by( 'id', absint( $user ) );
+		}
+
+		if ( ! $user ) {
+			return false;
+		}
+
+		$supported_roles = $this->get_double_opt_in_user_roles();
+		$supports_double_opt_in = false;
+		$user_roles = ( isset( $user->roles ) ? (array) $user->roles : array() );
+
+		foreach( $user_roles as $role ) {
+			if ( in_array( $role, $supported_roles ) ) {
+				$supports_double_opt_in = true;
+				break;
+			}
+		}
+
+		return apply_filters( 'woocommerce_gzd_customer_supports_double_opt_in', $supports_double_opt_in, $user );
+	}
+
 	public function login_restriction( $user, $password ) {
 
 		// Has not been activated yet
-		if ( ! wc_gzd_is_customer_activated( $user->ID ) )
+		if ( $this->enable_double_opt_in_for_user( $user ) && ! wc_gzd_is_customer_activated( $user->ID ))
 			return new WP_Error( 'woocommerce_gzd_login', __( 'Please activate your account through clicking on the activation link received via email.', 'woocommerce-germanized' ) );
 
 		return $user;
@@ -280,8 +315,10 @@ class WC_GZD_Customer_Helper {
 		if ( ! get_option( 'woocommerce_gzd_customer_cleanup_interval' ) || get_option( 'woocommerce_gzd_customer_cleanup_interval' ) == 0 )
 			return;
 
+		$roles = array_map( 'ucfirst', $this->get_double_opt_in_user_roles() );
+
 		$user_query = new WP_User_Query(
-			array( 'role' => 'Customer', 'meta_query' =>
+			array( 'role' => $roles, 'meta_query' =>
 				array(
 					array(
 						'key'     => '_woocommerce_activation',
@@ -314,9 +351,11 @@ class WC_GZD_Customer_Helper {
 	 * @return boolean                  
 	 */
 	public function customer_account_activate( $activation_code, $login = false ) {
+
+		$roles = array_map( 'ucfirst', $this->get_double_opt_in_user_roles() );
 		
 		$user_query = new WP_User_Query( apply_filters( 'woocommerce_gzd_customer_account_activation_query', array( 
-			'role' => 'Customer', 
+			'role' => $roles,
 			'number' => 1, 
 			'meta_query' => array(
 				array(
@@ -389,6 +428,9 @@ class WC_GZD_Customer_Helper {
 		if ( ! $customer_id )
 			return;
 
+		if ( ! $this->enable_double_opt_in_for_user( $customer_id ) )
+			return;
+
 		if ( ! wc_gzd_get_dependencies()->woocommerce_version_supports_crud() ) {
 			$this->set_customer_activation_meta( $customer_id, $new_customer_data, $password_generated );
 		}
@@ -411,6 +453,9 @@ class WC_GZD_Customer_Helper {
 		global $wp_hasher;
 
 		if ( ! $customer_id )
+			return;
+
+		if ( ! $this->enable_double_opt_in_for_user( $customer_id ) )
 			return;
 
 		if ( empty( $wp_hasher ) ) {
