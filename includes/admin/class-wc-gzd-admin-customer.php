@@ -35,7 +35,8 @@ class WC_GZD_Admin_Customer {
 	 * @param  object $user 
 	 */
 	public function profile_add_activation_field( $user ) {
-		if ( ! current_user_can( 'manage_woocommerce' ) || ! in_array( 'customer', $user->roles ) || get_option( 'woocommerce_gzd_customer_activation' ) != 'yes' )
+
+	    if ( ! current_user_can( 'manage_woocommerce' ) || ! WC_GZD_Customer_Helper::instance()->enable_double_opt_in_for_user( $user ) || get_option( 'woocommerce_gzd_customer_activation' ) != 'yes' )
 			return;
 
 		if ( current_user_can( 'edit_user', $user->ID ) ) {

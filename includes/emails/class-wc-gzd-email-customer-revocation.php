@@ -15,6 +15,8 @@ if ( ! class_exists( 'WC_GZD_Email_Customer_Revocation' ) ) :
  */
 class WC_GZD_Email_Customer_Revocation extends WC_Email {
 
+	public $user_email = '';
+
 	/**
 	 * Constructor
 	 *
@@ -30,13 +32,30 @@ class WC_GZD_Email_Customer_Revocation extends WC_Email {
 		$this->template_html  	= 'emails/customer-revocation.php';
 		$this->template_plain  	= 'emails/plain/customer-revocation.php';
 
-		$this->subject    		= __( 'Your Revocation', 'woocommerce-germanized' );
-		$this->heading       	= __( 'Your Revocation', 'woocommerce-germanized' );
-
 		// Call parent constuctor
 		parent::__construct();
 
 		$this->customer_email = true;
+	}
+
+	/**
+	 * Get email subject.
+	 *
+	 * @since  3.1.0
+	 * @return string
+	 */
+	public function get_default_subject() {
+		return __( 'Your revocation', 'woocommerce-germanized' );
+	}
+
+	/**
+	 * Get email heading.
+	 *
+	 * @since  3.1.0
+	 * @return string
+	 */
+	public function get_default_heading() {
+		return __( 'Your revocation', 'woocommerce-germanized' );
 	}
 
 	/**
@@ -47,18 +66,30 @@ class WC_GZD_Email_Customer_Revocation extends WC_Email {
 	 */
 	public function trigger( $user_data = array() ) {
 
-		if ( !empty( $user_data['address_mail'] ) ) {
-			$this->object      	  = $user_data;
-			$this->user_email     = $user_data['address_mail'];
-			if ( !empty( $user_data['mail'] ) )
-				$this->user_email = $user_data['mail'];
-			$this->recipient      = $this->user_email;
+		$this->object      	  = $user_data;
+		$this->user_email     = $user_data['address_mail'];
+
+		if ( ! empty( $user_data['send_to_admin'] ) && $user_data['send_to_admin'] ) {
+			$this->customer_email = false;
+			$this->user_email = $this->get_admin_email();
 		}
+
+		$this->recipient      = $this->user_email;
 
 		if ( ! $this->is_enabled() || ! $this->get_recipient() )
 			return;
 
 		$this->send( $this->get_recipient(), $this->get_subject(), $this->get_content(), $this->get_headers(), $this->get_attachments() );
+	}
+
+	/**
+	 * Get email heading.
+	 *
+	 * @access public
+	 * @return string
+	 */
+	public function get_admin_email() {
+		return apply_filters( 'wc_gzd_revocation_admin_mail', $this->get_option( 'admin_email', get_bloginfo( 'admin_email' ) ) );
 	}
 
 	/**
@@ -97,6 +128,25 @@ class WC_GZD_Email_Customer_Revocation extends WC_Email {
 			'email'			=> $this
 		) );
 		return ob_get_clean();
+	}
+
+	/**
+	 * Initialise settings form fields.
+	 */
+	public function init_form_fields() {
+
+		parent::init_form_fields();
+
+		$this->form_fields = array_merge( $this->form_fields, array(
+			'admin_email' => array(
+				'title'         => __( 'Admin email', 'woocommerce-germanized' ),
+				'type'          => 'text',
+				'desc_tip'      => true,
+				'description'   => __( 'Insert the email address of your shop manager here. A copy of the revocation email is being sent to this address.', 'woocommerce-germanized' ),
+				'placeholder'   => '',
+				'default'       => get_bloginfo( 'admin_email' ),
+			),
+		) );
 	}
 }
 

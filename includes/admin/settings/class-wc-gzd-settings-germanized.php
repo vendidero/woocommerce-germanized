@@ -753,6 +753,7 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 		$digital_type_options = array_merge( array(
 			'downloadable'  => __( 'Downloadable Product', 'woocommerce-germanized' ),
 			'virtual'		=> __( 'Virtual Product', 'woocommerce-germanized' ),
+            'service'       => __( 'Service', 'woocommerce-germanized' )
 		), $product_types );
 
 		$shipping_methods_options = WC_GZD_Admin::instance()->get_shipping_method_instances_options();

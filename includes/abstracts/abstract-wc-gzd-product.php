@@ -140,6 +140,10 @@ class WC_GZD_Product {
 			$product_base = $this->unit_product;
 		}
 
+		// Do not recalculate if unit base and/or product is empty
+		if ( 0 == $product_base || 0 == $base )
+			return;
+
 		$this->unit_price_regular = wc_format_decimal( ( $args[ 'regular_price' ] / $product_base ) * $base, wc_get_price_decimals() );
 		$this->unit_price_sale = '';
 
@@ -386,6 +390,9 @@ class WC_GZD_Product {
 	 * @return string  formatted unit price
 	 */
 	public function get_unit_price( $qty = 1, $price = '' ) {
+
+		do_action( 'woocommerce_gzd_before_get_unit_price', $this, $price, $qty );
+
 		$tax_display_mode = get_option( 'woocommerce_tax_display_shop' );
 		return ( $tax_display_mode == 'incl' ) ? $this->get_unit_price_including_tax( $qty, $price ) : $this->get_unit_price_excluding_tax( $qty, $price );
 	}

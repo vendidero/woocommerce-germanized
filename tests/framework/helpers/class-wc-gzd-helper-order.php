@@ -10,7 +10,9 @@ class WC_GZD_Helper_Order {
 	public static function create_order() {
 
 		$customer = WC_GZD_Helper_Customer::create_customer();
-		$order = WC_Helper_Order::create_order( $customer->get_id(), WC_GZD_Helper_Product::create_simple_product() );
+		$product = WC_GZD_Helper_Product::create_simple_product();
+		$order = WC_Helper_Order::create_order( $customer->get_id(), $product );
+
 		$order->update_meta_data( '_billing_title', 1 );
 		$order->update_meta_data( '_shipping_title', 1 );
 		$order->update_meta_data( '_shipping_parcelshop', 1 );

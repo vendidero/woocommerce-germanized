@@ -188,3 +188,11 @@ function wc_gzd_get_product_name( $product ) {
 		return $product->get_title();
 	}
 }
+
+function wc_gzd_get_cart_url() {
+	return ( function_exists( 'wc_get_cart_url' ) ? wc_get_cart_url() : WC()->cart->get_cart_url() );
+}
+
+function wc_gzd_get_checkout_url() {
+	return ( function_exists( 'wc_get_checkout_url' ) ? wc_get_checkout_url() : WC()->cart->get_checkout_url() );
+}

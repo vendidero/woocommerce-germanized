@@ -39,9 +39,14 @@ class WC_GZD_Gateway_Invoice extends WC_Payment_Gateway {
 		$this->customers_only					= $this->get_option( 'customers_only', 'no' );
 		$this->customers_completed				= $this->get_option( 'customers_completed', 'no' );
 
+		$this->supports = array(
+			'products',
+		);
+
 		// Actions
 		add_action( 'woocommerce_update_options_payment_gateways_' . $this->id, array( $this, 'process_admin_options' ) );
     	add_action( 'woocommerce_thankyou_invoice', array( $this, 'thankyou_page' ) );
+    	add_action( 'woocommerce_scheduled_subscription_payment'. $this->id, array( $this, 'process_admin_options' ) );
 
     	// Customer Emails
 		add_action( 'woocommerce_email_before_order_table', array( $this, 'email_instructions' ), 10, 3 );
@@ -163,9 +168,19 @@ class WC_GZD_Gateway_Invoice extends WC_Payment_Gateway {
 			if ( $this->get_option( 'customers_only' ) == 'yes' && ! is_user_logged_in() )
 				return false;
 
-			if ( $this->get_option( 'customers_completed' ) == 'yes' && ( ! is_user_logged_in() || ! WC()->customer->is_paying_customer( get_current_user_id() ) ) )
-				return false;
+			if ( $this->get_option( 'customers_completed' ) == 'yes' ) {
+				if ( is_user_logged_in() ) {
+				    $customer = WC()->customer;
 
+				    if ( method_exists( $customer, 'get_is_paying_customer' ) ) {
+				        return $customer->get_is_paying_customer() === true;
+                    } else {
+					    return $customer->is_paying_customer( get_current_user_id() ) === true;
+				    }
+                } else {
+				    return false;
+                }
+			}
 		}
 
 		return true;
@@ -183,11 +198,14 @@ class WC_GZD_Gateway_Invoice extends WC_Payment_Gateway {
 
 		$order->update_status( $this->default_order_status );
 
-		// Reduce stock levels
-		$order->reduce_order_stock();
+		// Reduce stock level
+		wc_gzd_reduce_order_stock( $order_id );
 
-		// Remove cart
-		WC()->cart->empty_cart();
+		// Check if cart instance exists (frontend request only)
+		if ( WC()->cart ) {
+			// Remove cart
+			WC()->cart->empty_cart();
+		}
 
 		// Return thankyou redirect
 		return array(

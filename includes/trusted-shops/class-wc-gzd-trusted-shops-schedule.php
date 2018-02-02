@@ -45,32 +45,17 @@ class WC_GZD_Trusted_Shops_Schedule {
 	public function update_reviews() {
 
 		$update = array();
-		
-		if ( $this->base->is_enabled() ) {
-		
-			if ( function_exists( 'curl_version' ) ) {
-				
-				$success = false;
-				$ch = curl_init();
-				curl_setopt( $ch, CURLOPT_HEADER, false );
-				curl_setopt( $ch, CURLOPT_RETURNTRANSFER, 1 );
-				curl_setopt( $ch, CURLOPT_POST, false );
-				curl_setopt( $ch, CURLOPT_URL, $this->base->api_url );
-				$output = curl_exec( $ch );
-				$httpcode = curl_getinfo( $ch, CURLINFO_HTTP_CODE );
-				
-				if ( ! curl_errno( $ch ) && $httpcode != 503 )
-					$success = true;
-				
-				curl_close( $ch );
 
-				if ( $success ) {
-					$output = json_decode( $output, true );
-					$reviews = $output[ 'response' ][ 'data' ][ 'shop' ][ 'qualityIndicators' ][ 'reviewIndicator' ];
-					$update[ 'count' ] = (string) $reviews[ 'activeReviewCount' ];
-					$update[ 'avg' ] = (float) $reviews[ 'overallMark' ];
-					$update[ 'max' ] = '5.00';
-				}
+		if ( $this->base->is_enabled() ) {
+
+			$response = wp_remote_post( $this->base->api_url );
+
+			if ( is_array( $response ) ) {
+				$output = json_decode( $response[ 'body' ], true );
+				$reviews = $output[ 'response' ][ 'data' ][ 'shop' ][ 'qualityIndicators' ][ 'reviewIndicator' ];
+				$update[ 'count' ] = (string) $reviews[ 'activeReviewCount' ];
+				$update[ 'avg' ] = (float) $reviews[ 'overallMark' ];
+				$update[ 'max' ] = '5.00';
 			}
 		}
 
@@ -150,7 +135,7 @@ class WC_GZD_Trusted_Shops_Schedule {
 			$diff = $this->base->plugin->get_date_diff( wc_gzd_get_crud_data( $order, 'completed_date' ), date( 'Y-m-d H:i:s' ) );
 			
 			if ( $diff[ 'd' ] >= (int) $this->base->review_reminder_days ) {
-				
+
 				if ( $mail = $this->base->plugin->emails->get_email_instance_by_id( 'customer_trusted_shops' ) ) {
 					$mail->trigger( wc_gzd_get_crud_data( $order, 'id' ) );
 					update_post_meta( wc_gzd_get_crud_data( $order, 'id' ), '_trusted_shops_review_mail_sent', 1 );
@@ -165,20 +150,11 @@ class WC_GZD_Trusted_Shops_Schedule {
 	 * @param  [type] $url [description]
 	 */
 	private function get_file_content( $url ) {
+		$response = wp_remote_post( $url );
 
-	    if ( function_exists( 'curl_init' ) ) {
-
-	    	$ch = curl_init();
-		    curl_setopt( $ch, CURLOPT_URL, $url );
-		    curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
-		    $output = curl_exec( $ch );
-		    curl_close( $ch );
-
-		    return $output;
-
-	    } elseif ( ini_get( 'allow_url_fopen' ) ) {
-	    	return file_get_contents( $url );
-	    }
+		if ( is_array( $response ) ) {
+			return $response[ 'body' ];
+		}
 
 	    return false;
 	}

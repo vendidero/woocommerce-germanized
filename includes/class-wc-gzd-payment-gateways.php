@@ -21,9 +21,38 @@ class WC_GZD_Payment_Gateways {
 	}
 
 	public function __construct() {
-		add_action( 'admin_init', array( $this, 'init_fields' ) );
+		// Make sure fields are inited before being saved
+		add_action( 'woocommerce_settings_save_checkout', array( $this, 'save_fields' ), 5 );
+
+		// Init gateway fields
+		add_action( 'woocommerce_settings_checkout', array( $this, 'init_fields' ), 0 );
 		add_action( 'woocommerce_calculate_totals', array( $this, 'checkout' ) );
 		add_action( 'woocommerce_cart_calculate_fees', array( $this, 'init_fee' ), 0 );
+
+		// Gateway admin export
+		add_action( 'current_screen', array( $this, 'gateway_admin_init' ), 20 );
+		// AJAX
+		add_action( 'init', array( $this, 'gateway_ajax_init' ), 30 );
+	}
+
+	public function gateway_admin_init() {
+
+		$allowed = array( 'edit-shop_order', 'export' );
+		$screen = get_current_screen();
+
+		if ( $screen && in_array( $screen->id, $allowed ) ) {
+			$direct_debit = new WC_GZD_Gateway_Direct_Debit();
+		}
+	}
+
+	public function gateway_ajax_init() {
+		if ( is_ajax() ) {
+			$direct_debit = new WC_GZD_Gateway_Direct_Debit();
+		}
+	}
+
+	public function save_fields() {
+		$this->init_fields();
 	}
 
 	/**
@@ -47,8 +76,8 @@ class WC_GZD_Payment_Gateways {
 
 			$this->maybe_set_gateway_data( $gateway );
 
-			if ( ! isset( $gateway->force_order_button_text ) || ! $gateway->force_order_button_text )
-				$gateway->order_button_text = __( get_option( 'woocommerce_gzd_order_submit_btn_text' ), 'woocommerce-germanized' );
+			if ( ! isset( $gateway->force_order_button_text ) || $gateway->force_order_button_text )
+				$gateway->order_button_text = apply_filters( 'woocommerce_gzd_order_button_payment_gateway_text', __( get_option( 'woocommerce_gzd_order_submit_btn_text' ), 'woocommerce-germanized' ), $gateway->id );
 			
 			if ( $gateway->get_option( 'fee' ) ) {
 

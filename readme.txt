@@ -1,11 +1,11 @@
 === WooCommerce Germanized ===
 Contributors: vendidero
-Tags: woocommerce, german market, german, woocommerce-de, germany, deutsch, deutschland, de, de_DE, shop, e-commerce, ecommerce, woothemes, sepa, invoice
+Tags: woocommerce, german, woocommerce-de, germany, deutsch, deutschland, de, de_DE, shop, e-commerce, ecommerce, woothemes, sepa, invoice, market
 Requires at least: 3.8
-Tested up to: 4.8
+Tested up to: 4.9
 WC requires at least: 2.4
-WC tested up to: 3.1
-Stable tag: 1.9.2
+WC tested up to: 3.3
+Stable tag: 1.9.7
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -169,9 +169,47 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 
 == Changelog ==
 
+= 1.9.7 =
+* Feature: Woo 3.3 compatibility
+* Improvement: Shopping costs for VAT exempts to show net prices instead of fixed gross prices
+* Improvement: Tax rounding for better shipping costs tax calculation
+* Improvement: Support tax exclusive mode for shipping tax calculation
+* Improvement: Added action firing before attaching email footers
+* Improvement: Better PolyLang compatibility
+* Fix: Parcel delivery checkbox and data storage
+* Fix: Check if cart object exists in email filter
+* Fix: Direct debit mandate sign date conversion
+
+= 1.9.6 =
+* Feature: Role Based Prices unit price recalculation support
+* Improvement: Option to explicitly set revocation admin email address
+* Fix: Direct Debit Gateway Export
+* Fix: Email default header and subjects (Woo 3.X)
+* Fix: Unit price recalculation division by zero
+* Fix: add_to_cart shortcode price suffixes
+* Fix: Removed subcription support for direct debit (still beta and testing)
+
+= 1.9.5 =
+* Fix: Fee tax share calculation for WC 3.2
+* Fix: Gateway fee saving
+* Fix: PHP write method return value error
+
+= 1.9.4 =
+* Fix: Fee tax share calculation for WC 3.2
+* Fix: Gateway fee saving
+
+= 1.9.3 =
+* Fix: PHP Warning regarding WC_GZD_Shipping_Rate
+* Fix: Free shipping auto select WC 3.2
+* Improvement: Payment gateway field initialization
+
 = 1.9.2 =
 * Feature: Added Mulit-Currency-Support for Unit Prices (WPML)
+* Feature: Basic support for Subscriptions (Direct Debit Gateway)
+* Feature: WooCommerce 3.2 compatibility
+* Improvement: Pre-notification in order confirmation email (Direct Debit Gateway)
 * Improvement: Filter to adjust default SEPA Gateway order status
+* Improvement: Better SEPA data display in order management
 * Fix: Sanitizing for legal text removed line breaks
 * Fix: Send email instructions for invoice gateway
 

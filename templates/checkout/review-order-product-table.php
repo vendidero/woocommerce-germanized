@@ -32,7 +32,11 @@ foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
 
 				    <?php echo apply_filters( 'woocommerce_cart_item_name', wc_gzd_get_product_name( $_product ), $cart_item, $cart_item_key ) . '&nbsp;'; ?>
 					<?php echo apply_filters( 'woocommerce_checkout_cart_item_quantity', ' <strong class="product-quantity">' . sprintf( '&times; %s', $cart_item['quantity'] ) . '</strong>', $cart_item, $cart_item_key ); ?>
-					<?php echo WC()->cart->get_item_data( $cart_item ); ?>
+                    <?php if ( function_exists( 'wc_get_formatted_cart_item_data' ) ) : ?>
+                        <?php echo wc_get_formatted_cart_item_data( $cart_item ); ?>
+                    <?php else: ?>
+                        <?php echo WC()->cart->get_item_data( $cart_item ); ?>
+                    <?php endif; ?>
 				
 				<?php if ( get_option( 'woocommerce_gzd_display_checkout_thumbnails' ) == 'yes' ) : ?>
 

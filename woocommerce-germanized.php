@@ -3,13 +3,15 @@
  * Plugin Name: WooCommerce Germanized
  * Plugin URI: https://www.vendidero.de/woocommerce-germanized
  * Description: Extends WooCommerce to become a legally compliant store for the german market.
- * Version: 1.9.2
+ * Version: 1.9.7
  * Author: Vendidero
  * Author URI: https://vendidero.de
  * Requires at least: 3.8
- * Tested up to: 4.8
+ * Tested up to: 4.9
+ * WC requires at least: 2.4
+ * WC tested up to: 3.3
  * Requires at least WooCommerce: 2.4
- * Tested up to WooCommerce: 3.1
+ * Tested up to WooCommerce: 3.3
  *
  * Text Domain: woocommerce-germanized
  * Domain Path: /i18n/languages/
@@ -29,7 +31,7 @@ final class WooCommerce_Germanized {
 	 *
 	 * @var string
 	 */
-	public $version = '1.9.2';
+	public $version = '1.9.7';
 
 	/**
 	 * Single instance of WooCommerce Germanized Main Class
@@ -141,7 +143,7 @@ final class WooCommerce_Germanized {
 
 		add_action( 'init', array( $this, 'init' ), 0 );
 		add_action( 'init', array( 'WC_GZD_Shortcodes', 'init' ), 2 );
-		add_action( 'init', array( $this, 'setup_compatibility' ), 0 );
+		add_action( 'plugins_loaded', array( $this, 'setup_compatibility' ), 0 );
 
 		add_action( 'woocommerce_init', array( $this, 'replace_woocommerce_product_factory' ), PHP_INT_MAX );
 		// Set template filter directly after load to ensure wc_get_template finds templates
@@ -353,6 +355,7 @@ final class WooCommerce_Germanized {
 		include_once( 'includes/class-wc-gzd-checkout.php' );
 		include_once( 'includes/class-wc-gzd-dhl-parcel-shops.php' );
 		include_once( 'includes/class-wc-gzd-customer-helper.php' );
+		include_once( 'includes/class-wc-gzd-cache-helper.php' );
 
 		// Only available for Woo 3.X
 		if ( WC_GZD_Dependencies::instance( $this )->woocommerce_version_supports_crud() ) {
@@ -369,7 +372,13 @@ final class WooCommerce_Germanized {
 	public function setup_compatibility() {
 
 		$plugins = apply_filters( 'woocommerce_gzd_compatibilities',
-			array( 'wpml', 'woocommerce-subscriptions', 'polylang', 'woocommerce-dynamic-pricing' )
+			array(
+				'wpml',
+				'polylang',
+				'woo-poly-integration',
+				'woocommerce-dynamic-pricing',
+				'woocommerce-role-based-prices'
+			)
 		);
 
 		foreach ( $plugins as $comp ) {

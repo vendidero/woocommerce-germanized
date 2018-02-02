@@ -45,12 +45,15 @@ abstract class WC_GZD_Compatibility {
 		if ( ! $this->is_applicable() )
 			return;
 
+		add_action( 'init', array( $this, 'early_execution' ), 0 );
 		add_action( 'init', array( $this, 'load' ), 15 );
 
-		$this->early_execution();
+		$this->after_plugins_loaded();
 	}
 
 	public function early_execution() {}
+
+	public function after_plugins_loaded() {}
 
 	public function is_applicable() {
 		return $this->is_activated() && $this->is_supported();

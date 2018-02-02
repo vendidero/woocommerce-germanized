@@ -28,14 +28,31 @@ class WC_GZD_Email_Customer_Paid_For_Order extends WC_Email {
 		$this->template_html 	= 'emails/customer-paid-for-order.php';
 		$this->template_plain  	= 'emails/plain/customer-paid-for-order.php';
 
-		$this->heading 			= __( 'Payment received', 'woocommerce-germanized' );
-		$this->subject      	= __( 'Payment received for order {order_number}', 'woocommerce-germanized' );
-
 		// Triggers for this email
 		add_action( 'woocommerce_order_status_pending_to_processing_notification', array( $this, 'trigger' ), 30 );
 
 		// Call parent constuctor
 		parent::__construct();
+	}
+
+	/**
+	 * Get email subject.
+	 *
+	 * @since  3.1.0
+	 * @return string
+	 */
+	public function get_default_subject() {
+		return __( 'Payment received for order {order_number}', 'woocommerce-germanized' );
+	}
+
+	/**
+	 * Get email heading.
+	 *
+	 * @since  3.1.0
+	 * @return string
+	 */
+	public function get_default_heading() {
+		return __( 'Payment received', 'woocommerce-germanized' );
 	}
 
 	/**

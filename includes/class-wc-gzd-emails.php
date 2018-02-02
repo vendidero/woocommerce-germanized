@@ -266,8 +266,9 @@ class WC_GZD_Emails {
             $new_order->trigger( wc_gzd_get_crud_data( $order, 'id' ) );
 
         // Always clear cart after order success
-        if ( get_option( 'woocommerce_gzd_checkout_stop_order_cancellation' ) === 'yes' )
-            WC()->cart->empty_cart();
+        if ( get_option( 'woocommerce_gzd_checkout_stop_order_cancellation' ) === 'yes' && WC()->cart ) {
+	        WC()->cart->empty_cart();
+        }
 
         do_action( 'woocommerce_germanized_order_confirmation_sent', wc_gzd_get_crud_data( $order, 'id' ) );
 
@@ -445,8 +446,9 @@ class WC_GZD_Emails {
 	 */
 	public function add_template_footers() {
 		$type = $this->get_current_email_object();
-		if ( $type )
+		if ( $type ) {
 			do_action( 'woocommerce_germanized_email_footer_' . $type->id, $type );
+		}
 	}
 
 	public function get_current_email_object() {
@@ -506,6 +508,8 @@ class WC_GZD_Emails {
 	 * @param  integer $page_id 
 	 */
 	public function attach_page_content( $page_id, $email_type = 'html' ) {
+
+		do_action( 'woocommerce_germanized_attach_email_footer', $page_id, $email_type );
 		
 		remove_shortcode( 'revocation_form' );
 		add_shortcode( 'revocation_form', array( $this, 'revocation_form_replacement' ) );

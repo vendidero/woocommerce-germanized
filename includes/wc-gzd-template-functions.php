@@ -138,7 +138,7 @@ if ( ! function_exists( 'woocommerce_gzd_template_checkout_back_to_cart' ) ) {
 	 * Display back to cart button within checkout cart
 	 */
 	function woocommerce_gzd_template_checkout_back_to_cart() {
-		echo '<tr><td colspan="5" class="actions"><a class="button" href="' . WC()->cart->get_cart_url() . '">' . __( 'Edit Order', 'woocommerce-germanized' ) . '</a></td></tr>';
+		echo '<tr><td colspan="5" class="actions"><a class="button" href="' . wc_gzd_get_cart_url() . '">' . __( 'Edit Order', 'woocommerce-germanized' ) . '</a></td></tr>';
 	}
 
 }
@@ -176,8 +176,9 @@ if ( ! function_exists( 'woocommerce_gzd_digital_checkbox' ) ) {
 		
 			foreach ( $items as $cart_item_key => $values ) {
 				$_product = apply_filters( 'woocommerce_cart_item_product', $values[ 'data' ], $values, $cart_item_key );
-				if ( wc_gzd_is_revocation_exempt( $_product ) )
+				if ( wc_gzd_is_revocation_exempt( $_product ) ) {
 					$is_downloadable = true;
+				}
 			}
 
 		}
@@ -216,8 +217,8 @@ if ( ! function_exists( 'woocommerce_gzd_parcel_delivery_checkbox' ) ) {
 
 	function woocommerce_gzd_parcel_delivery_checkbox() {
 
-		$rates = wc_gzd_get_chosen_shipping_rates();
-		$ids = array();
+		$rates  = wc_gzd_get_chosen_shipping_rates();
+		$ids    = array();
 		$titles = array();
 
 		foreach ( $rates as $rate ) {
@@ -648,7 +649,10 @@ if ( ! function_exists( 'woocommerce_gzd_template_order_item_hooks' ) ) {
 if ( ! function_exists( 'woocommerce_gzd_template_mini_cart_taxes' ) ) {
 
 	function woocommerce_gzd_template_mini_cart_taxes() {
-		wc_get_template( 'cart/mini-cart-totals.php', array( 'taxes' => wc_gzd_get_cart_total_taxes( false ), 'shipping_costs_info' => wc_gzd_get_shipping_costs_text() ) );
+		wc_get_template( 'cart/mini-cart-totals.php', array(
+			'taxes' => apply_filters( 'woocommerce_gzd_show_mini_cart_totals_taxes', true ) ? wc_gzd_get_cart_total_taxes( false ) : array(),
+			'shipping_costs_info' => apply_filters( 'woocommerce_gzd_show_mini_cart_totals_shipping_costs_notice', true ) ? wc_gzd_get_shipping_costs_text() : '' )
+		);
 	}
 
 }
