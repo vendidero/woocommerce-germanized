@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce Germanized v1.5.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-24 11:00+0100\n"
-"PO-Revision-Date: 2018-01-24 11:01+0100\n"
+"POT-Creation-Date: 2018-02-08 11:11+0100\n"
+"PO-Revision-Date: 2018-02-08 11:13+0100\n"
 "Last-Translator: holzhannes <holzhannes@posteo.de>\n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -120,12 +120,12 @@ msgid "excl. %s%% VAT"
 msgstr "exkl. %s%% MwSt."
 
 # @ woocommerce-germanized
-#: includes/admin/class-wc-gzd-admin-customer.php:46
+#: includes/admin/class-wc-gzd-admin-customer.php:47
 msgid "Double opt in"
 msgstr "Double Opt-In"
 
 # @ woocommerce-germanized
-#: includes/admin/class-wc-gzd-admin-customer.php:50
+#: includes/admin/class-wc-gzd-admin-customer.php:51
 msgid "Yes, customer opted in"
 msgstr "Ja, Kunde wurde per Double Opt-In bestätigt."
 
@@ -738,9 +738,9 @@ msgid ""
 "a consumer arbitration board."
 msgstr ""
 "Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung "
-"(OS) bereit, die Sie unter http://ec.europa.eu/consumers/odr/ finden. Zur "
+"(OS) bereit, die Sie unter https://ec.europa.eu/consumers/odr finden. Zur "
 "Teilnahme an einem Streitbeilegungsverfahren vor einer "
-"Verbraucherschlichtungsstelle sind wir nicht verpflichtet und nicht bereit. "
+"Verbraucherschlichtungsstelle sind wir nicht verpflichtet und nicht bereit."
 
 # @ woocommerce-germanized
 #: includes/admin/settings/class-wc-gzd-settings-germanized.php:305
@@ -2915,8 +2915,8 @@ msgstr "jetzt upgraden"
 #: includes/api/class-wc-gzd-rest-orders-controller.php:168
 #: includes/class-wc-gzd-checkout.php:305
 #: includes/class-wc-gzd-checkout.php:315
-#: includes/class-wc-gzd-customer-helper.php:112
-#: includes/class-wc-gzd-customer-helper.php:120
+#: includes/class-wc-gzd-customer-helper.php:114
+#: includes/class-wc-gzd-customer-helper.php:122
 msgid "Title"
 msgstr "Anrede"
 
@@ -3197,8 +3197,8 @@ msgstr ""
 #: includes/class-wc-gzd-checkout.php:314
 #: includes/class-wc-gzd-checkout.php:339
 #: includes/class-wc-gzd-checkout.php:564
-#: includes/class-wc-gzd-customer-helper.php:114
-#: includes/class-wc-gzd-customer-helper.php:122
+#: includes/class-wc-gzd-customer-helper.php:116
+#: includes/class-wc-gzd-customer-helper.php:124
 #: includes/class-wc-gzd-revocation.php:41
 msgid "Mr."
 msgstr "Herr"
@@ -3209,8 +3209,8 @@ msgstr "Herr"
 #: includes/class-wc-gzd-checkout.php:340
 #: includes/class-wc-gzd-checkout.php:564
 #: includes/class-wc-gzd-checkout.php:569
-#: includes/class-wc-gzd-customer-helper.php:114
-#: includes/class-wc-gzd-customer-helper.php:122
+#: includes/class-wc-gzd-customer-helper.php:116
+#: includes/class-wc-gzd-customer-helper.php:124
 #: includes/class-wc-gzd-revocation.php:42
 msgid "Ms."
 msgstr "Frau"
@@ -3231,9 +3231,9 @@ msgstr ""
 "besteuert. Weitere Informationen findest du <a href=\"%s\" target=\"_blank"
 "\">hier</a>."
 
-#: includes/class-wc-gzd-customer-helper.php:101
-#: includes/class-wc-gzd-customer-helper.php:195
-#: includes/class-wc-gzd-customer-helper.php:244
+#: includes/class-wc-gzd-customer-helper.php:102
+#: includes/class-wc-gzd-customer-helper.php:198
+#: includes/class-wc-gzd-customer-helper.php:279
 msgid ""
 "Please activate your account through clicking on the activation link "
 "received via email."
@@ -3241,24 +3241,24 @@ msgstr ""
 "Bitte aktivieren Sie Ihr Kundenkonto indem Sie auf den Link in der E-Mail "
 "klicken."
 
-#: includes/class-wc-gzd-customer-helper.php:204
+#: includes/class-wc-gzd-customer-helper.php:207
 #, php-format
 msgid "Continue without creating an account? <a href=\"%s\">Click here</a>"
 msgstr "Weiter zur Kasse ohne Kundenkonto? <a href=\"%s\">Hier klicken</a>"
 
-#: includes/class-wc-gzd-customer-helper.php:206
+#: includes/class-wc-gzd-customer-helper.php:209
 msgid "Please create an account or login before continuing to checkout"
 msgstr ""
 "Bitte erstellen Sie ein Kundenkonto oder loggen Sie sich ein, bevor Sie zur "
 "Kasse gehen"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-customer-helper.php:265
+#: includes/class-wc-gzd-customer-helper.php:300
 msgid "Thank you. You have successfully activated your account."
 msgstr "Vielen Dank. Ihr Benutzerkonto wurde erfolgreich aktiviert."
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-customer-helper.php:270
+#: includes/class-wc-gzd-customer-helper.php:305
 msgid "Sorry, but this activation code cannot be found."
 msgstr "Sorry, dieser Aktivierungscode ist uns leider nicht bekannt."
 
