@@ -5,7 +5,7 @@ Requires at least: 3.8
 Tested up to: 4.9
 WC requires at least: 2.4
 WC tested up to: 3.3
-Stable tag: 1.9.7
+Stable tag: 1.9.8
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -168,6 +168,15 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 1. WooCommerce Germanized Settings
 
 == Changelog ==
+
+= 1.9.8 =
+* Improvement: Extended type check to support services
+* Improvement: Cache helper for double opt in activation key
+* Improvement: Removed int_max from button text filter to allow overrides
+* Improvement: Further checks for double opt in user role (default: Customer)
+* Fix: OS platform shortcode link https replacement
+* Fix: is_ajax fallback function
+* Fix: Deactivate plugin hook to make sure no incomplete class error is thrown in cart
 
 = 1.9.7 =
 * Feature: Woo 3.3 compatibility
