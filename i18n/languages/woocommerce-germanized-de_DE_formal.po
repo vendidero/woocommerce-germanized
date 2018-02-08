@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce Germanized v1.5.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-08 11:11+0100\n"
-"PO-Revision-Date: 2018-02-08 11:13+0100\n"
+"POT-Creation-Date: 2018-02-08 13:01+0100\n"
+"PO-Revision-Date: 2018-02-08 13:03+0100\n"
 "Last-Translator: holzhannes <holzhannes@posteo.de>\n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -96,7 +96,7 @@ msgstr "l"
 #: includes/abstracts/abstract-wc-gzd-product.php:273
 #: includes/compatibility/class-wc-gzd-compatibility-woocommerce-subscriptions.php:169
 #: includes/wc-gzd-core-functions.php:137
-#: includes/wc-gzd-template-functions.php:609 woocommerce-germanized.php:830
+#: includes/wc-gzd-template-functions.php:609 woocommerce-germanized.php:831
 msgid "incl. VAT"
 msgstr "inkl. MwSt."
 
@@ -108,7 +108,7 @@ msgstr "exkl. MwSt."
 # @ woocommerce-germanized
 #: includes/abstracts/abstract-wc-gzd-product.php:266
 #: includes/compatibility/class-wc-gzd-compatibility-woocommerce-subscriptions.php:169
-#: includes/wc-gzd-core-functions.php:137 woocommerce-germanized.php:830
+#: includes/wc-gzd-core-functions.php:137 woocommerce-germanized.php:831
 #, php-format
 msgid "incl. %s%% VAT"
 msgstr "inkl. %s%% MwSt."
@@ -733,7 +733,7 @@ msgstr ""
 #: includes/admin/settings/class-wc-gzd-settings-germanized.php:295
 msgid ""
 "The european commission provides a platform for online dispute resolution "
-"(OS) which is accessible at http://ec.europa.eu/consumers/odr/. We are not "
+"(OS) which is accessible at https://ec.europa.eu/consumers/odr. We are not "
 "obliged nor willing to participate in dispute settlement proceedings before "
 "a consumer arbitration board."
 msgstr ""
@@ -746,25 +746,25 @@ msgstr ""
 #: includes/admin/settings/class-wc-gzd-settings-germanized.php:305
 msgid ""
 "The european commission provides a platform for online dispute resolution "
-"(OS) which is accessible at http://ec.europa.eu/consumers/odr/. Consumers "
+"(OS) which is accessible at https://ec.europa.eu/consumers/odr. Consumers "
 "may use this platform for the settlements of their disputes. We are in "
 "principle prepared to participate in an extrajudicial arbitration proceeding."
 msgstr ""
 "Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung "
-"(OS) bereit, die Sie unter http://ec.europa.eu/consumers/odr/ finden. Wir "
+"(OS) bereit, die Sie unter https://ec.europa.eu/consumers/odr finden. Wir "
 "sind bereit, an einem außergerichtlichen Schlichtungsverfahren teilzunehmen."
 
 # @ woocommerce-germanized
 #: includes/admin/settings/class-wc-gzd-settings-germanized.php:315
 msgid ""
 "The european commission provides a platform for online dispute resolution "
-"(OS) which is accessible at http://ec.europa.eu/consumers/odr/. Consumers "
+"(OS) which is accessible at https://ec.europa.eu/consumers/odr. Consumers "
 "may contact [Name, Address, Website of arbitration board] for the "
 "settlements of their disputes. We are obliged to participate in arbitration "
 "proceeding before that board."
 msgstr ""
 "Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung "
-"(OS) bereit, die Sie unter http://ec.europa.eu/consumers/odr/ finden. "
+"(OS) bereit, die Sie unter https://ec.europa.eu/consumers/odr finden. "
 "Verbraucher haben die Möglichkeit, sich für die Beilegung ihrer "
 "Streitigkeiten an [Name, Anschrift, Webseite der Schlichtungsstelle] zu "
 "wenden. Wir sind verpflichtet, an Verfahren zur Streitbeilegung vor dieser "
@@ -3427,73 +3427,73 @@ msgstr ""
 "WooCommerce Germanized installierst. Vielen Dank!"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-install.php:476
+#: includes/class-wc-gzd-install.php:484
 msgctxt "Page slug"
 msgid "data-security"
 msgstr "datenschutzbelehrung"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-install.php:477
+#: includes/class-wc-gzd-install.php:485
 msgctxt "Page title"
 msgid "Data Security Statement"
 msgstr "Datenschutzbelehrung"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-install.php:481
+#: includes/class-wc-gzd-install.php:489
 msgctxt "Page slug"
 msgid "imprint"
 msgstr "impressum"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-install.php:482
+#: includes/class-wc-gzd-install.php:490
 msgctxt "Page title"
 msgid "Imprint"
 msgstr "Impressum"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-install.php:486
+#: includes/class-wc-gzd-install.php:494
 msgctxt "Page slug"
 msgid "terms"
 msgstr "agb"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-install.php:487
+#: includes/class-wc-gzd-install.php:495
 msgctxt "Page title"
 msgid "Terms & Conditions"
 msgstr "AGB"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-install.php:491
+#: includes/class-wc-gzd-install.php:499
 msgctxt "Page slug"
 msgid "revocation"
 msgstr "widerrufsbelehrung"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-install.php:492
+#: includes/class-wc-gzd-install.php:500
 msgctxt "Page title"
 msgid "Power of Revocation"
 msgstr "Widerrufsbelehrung"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-install.php:496
+#: includes/class-wc-gzd-install.php:504
 msgctxt "Page slug"
 msgid "shipping-methods"
 msgstr "versandarten"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-install.php:497
+#: includes/class-wc-gzd-install.php:505
 msgctxt "Page title"
 msgid "Shipping Methods"
 msgstr "Versandarten"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-install.php:501
+#: includes/class-wc-gzd-install.php:509
 msgctxt "Page slug"
 msgid "payment-methods"
 msgstr "bezahlmoeglichkeiten"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-install.php:502
+#: includes/class-wc-gzd-install.php:510
 msgctxt "Page title"
 msgid "Payment Methods"
 msgstr "Zahlungsarten"
@@ -4503,7 +4503,7 @@ msgstr ""
 # @ woocommerce-germanized
 # @ woocommerce
 #: includes/gateways/invoice/class-wc-gzd-gateway-invoice.php:57
-#: woocommerce-germanized.php:584
+#: woocommerce-germanized.php:585
 msgid "Settings"
 msgstr "Einstellungen"
 
@@ -5428,7 +5428,7 @@ msgid "%s custom reviews"
 msgstr "%s Kundenbewertungen"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized.php:739
+#: woocommerce-germanized.php:740
 msgid "Order Confirmation"
 msgstr "Bestellbestätigung"
 
