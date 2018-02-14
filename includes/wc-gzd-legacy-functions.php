@@ -154,8 +154,8 @@ function wc_gzd_get_order_currency( $order ) {
 }
 
 function wc_gzd_reduce_order_stock( $order_id ) {
-    if ( wc_gzd_get_dependencies()->woocommerce_version_supports_crud() ) {
-        wc_reduce_stock_levels($order_id);
+    if ( wc_gzd_get_dependencies()->woocommerce_version_supports_crud() && function_exists( 'wc_maybe_reduce_stock_levels' ) ) {
+        wc_maybe_reduce_stock_levels($order_id);
     } else {
         $order = wc_get_order( $order_id );
         $order->reduce_order_stock();

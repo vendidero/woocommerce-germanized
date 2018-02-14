@@ -946,8 +946,9 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 	 * @return array
 	 */
 	public function process_payment( $order_id ) {
-		$order = wc_get_order( $order_id );
-		// Mark as on-hold (we're awaiting the cheque)
+        $order = wc_get_order( $order_id );
+
+        // Mark as on-hold (we're awaiting the cheque)
 		$order->update_status( apply_filters( 'woocommerce_gzd_direct_debit_default_status', 'on-hold' ), __( 'Awaiting Direct Debit Payment', 'woocommerce-germanized' ) );
 
 		// Reduce stock level
@@ -958,6 +959,7 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 			// Remove cart
 			WC()->cart->empty_cart();
 		}
+
 		// Return thankyou redirect
 		return array(
 			'result' 	=> 'success',

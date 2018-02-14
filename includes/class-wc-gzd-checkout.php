@@ -74,6 +74,8 @@ class WC_GZD_Checkout {
 			add_filter( 'woocommerce_get_cancel_order_url', array( $this, 'cancel_order_url' ), PHP_INT_MAX, 1 );
 			add_filter( 'woocommerce_get_cancel_order_url_raw', array( $this, 'cancel_order_url' ), PHP_INT_MAX, 1 );
 			add_filter( 'user_has_cap', array( $this, 'disallow_user_order_cancellation' ), 15, 3 );
+
+			// Remove order stock right after confirmation is sent
 			add_action( 'woocommerce_germanized_order_confirmation_sent', array( $this, 'maybe_reduce_order_stock' ), 5, 1 );
 			add_filter( 'woocommerce_my_account_my_orders_actions', array( $this, 'remove_cancel_button' ), 10, 2 );
 
@@ -233,8 +235,8 @@ class WC_GZD_Checkout {
 	}
 
 	public function maybe_reduce_order_stock( $order_id ) {
-		if ( wc_gzd_get_dependencies()->woocommerce_version_supports_crud() ) {
-			wc_reduce_stock_levels( $order_id );
+		if ( function_exists( 'wc_maybe_reduce_stock_levels' ) ) {
+			wc_maybe_reduce_stock_levels( $order_id );
 		} else {
 			$order = wc_get_order( $order_id );
 
@@ -249,7 +251,7 @@ class WC_GZD_Checkout {
 
 	public function set_order_stock_reduced_meta( $order ) {
 		if ( wc_gzd_get_dependencies()->woocommerce_version_supports_crud() ) {
-			$order = wc_gzd_set_crud_meta_data( $order, '_order_stock_reduced', '1' );
+			$order = wc_gzd_set_crud_meta_data( $order, '_order_stock_reduced', 'yes' );
 			$order->save();
 		}
 	}
