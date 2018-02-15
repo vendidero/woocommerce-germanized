@@ -592,13 +592,14 @@ final class WooCommerce_Germanized {
 	 * @param array $styles
 	 */
 	public function add_styles( $styles ) {
+
 		$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 
 		$styles['woocommerce-gzd-layout'] = array(
-		'src'     => str_replace( array( 'http:', 'https:' ), '', WC_germanized()->plugin_url() ) . '/assets/css/woocommerce-gzd-layout' . $suffix . '.css',
-		'deps'    => '',
-		'version' => WC_GERMANIZED_VERSION,
-		'media'   => 'all',
+			'src'     => str_replace( array( 'http:', 'https:' ), '', WC_germanized()->plugin_url() ) . '/assets/css/woocommerce-gzd-layout' . $suffix . '.css',
+			'deps'    => '',
+			'version' => WC_GERMANIZED_VERSION,
+			'media'   => 'all',
 		);
 
 		return $styles;
