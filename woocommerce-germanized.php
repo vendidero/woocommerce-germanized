@@ -378,7 +378,8 @@ final class WooCommerce_Germanized {
 				'polylang',
 				'woo-poly-integration',
 				'woocommerce-dynamic-pricing',
-				'woocommerce-role-based-prices'
+				'woocommerce-role-based-prices',
+				'woo-paypalplus'
 			)
 		);
 
