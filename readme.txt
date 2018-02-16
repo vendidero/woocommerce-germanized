@@ -5,7 +5,7 @@ Requires at least: 3.8
 Tested up to: 4.9
 WC requires at least: 2.4
 WC tested up to: 3.3
-Stable tag: 1.9.8
+Stable tag: 1.9.9
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -168,6 +168,12 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 1. WooCommerce Germanized Settings
 
 == Changelog ==
+
+= 1.9.9 =
+* Improvement: Adjusted payment gateway fee settings to only apply for COD for legal purposes
+* Improvement: Added Woo Paypal Plus checkout price manipulation compatibility
+* Fix: Stock update using wc_maybe_reduce_stock_levels
+* Fix: Added strtoupper to IBAN and BIC for direct debit
 
 = 1.9.8 =
 * Improvement: Extended type check to support services
