@@ -326,7 +326,7 @@ final class WooCommerce_Germanized {
 		include_once( 'includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php' );
 		include_once( 'includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php' );
 
-		if ( ( ! is_admin() || defined( 'DOING_AJAX' ) ) && ! defined( 'DOING_CRON' ) ) {
+		if ( $this->is_frontend() ) {
 			if ( did_action( 'woocommerce_loaded' ) ) {
 				$this->frontend_includes();
 			} else {
@@ -368,6 +368,10 @@ final class WooCommerce_Germanized {
 		$this->setup_trusted_shops();
 		$this->ekomi = new WC_GZD_Ekomi();
 
+	}
+
+	public function is_frontend() {
+		return ( ! is_admin() || defined( 'DOING_AJAX' ) ) && ! defined( 'DOING_CRON' );
 	}
 
 	public function setup_compatibility() {
