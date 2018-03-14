@@ -313,7 +313,7 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 
 			$query_args = array_merge( $query_args, array(
 				'showposts'   => -1,
-				'post_status' => array( 'wc-pending', 'wc-processing', 'wc-on-hold', 'wc-completed' ),
+				'post_status' => apply_filters( 'woocommerce_gzd_direct_debit_export_order_statuses', array( 'wc-pending', 'wc-processing', 'wc-on-hold' ) ),
 				'date_query'  => array(
 					array(
 						'after' => $args['start_date'],
