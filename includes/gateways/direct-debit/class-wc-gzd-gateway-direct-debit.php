@@ -313,7 +313,8 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 
 			$query_args = array_merge( $query_args, array(
 				'showposts'   => -1,
-				'date_query' => array(
+				'post_status' => array( 'wc-pending', 'wc-processing', 'wc-on-hold', 'wc-completed' ),
+				'date_query'  => array(
 					array(
 						'after' => $args['start_date'],
 						'before' => $args['end_date'],
