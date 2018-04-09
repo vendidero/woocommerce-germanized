@@ -30,12 +30,14 @@ class WC_Germanized_Meta_Box_Product_Data {
 		if ( is_admin() ) {
 			add_action( 'woocommerce_product_options_general_product_data', array( __CLASS__, 'output' ) );
 			add_action( 'woocommerce_product_options_shipping', array( __CLASS__, 'output_shipping' ) );
+
 			if ( ! wc_gzd_get_dependencies()->woocommerce_version_supports_crud() ) {
 				add_action( 'woocommerce_process_product_meta', array( __CLASS__, 'save' ), 20, 2 );
             } else {
 			    add_action( 'woocommerce_admin_process_product_object', array( __CLASS__, 'save' ), 10, 1 );
             }
-			add_filter( 'product_type_options', array( __CLASS__, 'service_type' ), 10, 1 );
+
+            add_filter( 'product_type_options', array( __CLASS__, 'service_type' ), 10, 1 );
 		}
 
 		/**
@@ -45,7 +47,12 @@ class WC_Germanized_Meta_Box_Product_Data {
 		add_action( 'woocommerce_create_product', array( __CLASS__, 'update_after_save' ), 10, 1 );
 
 		add_action( 'woocommerce_update_product_variation', array( __CLASS__, 'update_after_save' ), 10, 1 );
-		add_action( 'woocommerce_create_product_variation', array( __CLASS__, 'update_after_save' ), 10, 1 );
+
+		if ( ! wc_gzd_get_dependencies()->woocommerce_version_supports_crud() ) {
+			add_action( 'woocommerce_create_product_variation', array( __CLASS__, 'update_after_save' ), 10, 1 );
+		} else {
+			add_action( 'woocommerce_new_product_variation', array( __CLASS__, 'update_after_save' ), 10, 1 );
+        }
 	}
 
 	/**
