@@ -296,53 +296,53 @@ class WC_GZD_Emails {
 
 	public function email_notices( $order, $sent_to_admin, $plain_text ) {
 
-		if ( get_option( 'woocommerce_gzd_differential_taxation_checkout_notices' ) !== 'yes' )
-			return;
-
 		$type = $this->get_current_email_object();
 
-		// Check if order contains digital products
-		$items = $order->get_items();
+		if ( $type ) {
 
-		$is_downloadable = false;
-		$is_service = false;
-		$is_differential_taxed = false;
+			// Check if order contains digital products
+			$items = $order->get_items();
 
-		if ( ! empty( $items ) ) {
+			$is_downloadable = false;
+			$is_service = false;
+			$is_differential_taxed = false;
 
-			foreach ( $items as $item ) {
+			if ( ! empty( $items ) ) {
 
-				$_product = apply_filters( 'woocommerce_order_item_product', $order->get_product_from_item( $item ), $item );
+				foreach ( $items as $item ) {
 
-				if ( ! $_product )
-					continue;
+					$_product = apply_filters( 'woocommerce_order_item_product', $order->get_product_from_item( $item ), $item );
 
-				if ( wc_gzd_is_revocation_exempt( $_product ) || apply_filters( 'woocommerce_gzd_product_is_revocation_exception', false, $_product, 'digital' ) )
-					$is_downloadable = true;
+					if ( ! $_product )
+						continue;
 
-				if ( wc_gzd_is_revocation_exempt( $_product, 'service' ) || apply_filters( 'woocommerce_gzd_product_is_revocation_exception', false, $_product, 'service' ) )
-					$is_service = true;
+					if ( wc_gzd_is_revocation_exempt( $_product ) || apply_filters( 'woocommerce_gzd_product_is_revocation_exception', false, $_product, 'digital' ) )
+						$is_downloadable = true;
 
-				if ( wc_gzd_get_gzd_product( $_product )->is_differential_taxed() )
-					$is_differential_taxed = true;
+					if ( wc_gzd_is_revocation_exempt( $_product, 'service' ) || apply_filters( 'woocommerce_gzd_product_is_revocation_exception', false, $_product, 'service' ) )
+						$is_service = true;
+
+					if ( wc_gzd_get_gzd_product( $_product )->is_differential_taxed() )
+						$is_differential_taxed = true;
+				}
 			}
-		}
 
-		if ( $is_differential_taxed && apply_filters( 'woocommerce_gzd_show_differential_taxation_in_emails', true, $type ) ) {
+			if ( get_option( 'woocommerce_gzd_differential_taxation_checkout_notices' ) === 'yes' && $is_differential_taxed && apply_filters( 'woocommerce_gzd_show_differential_taxation_in_emails', true, $type ) ) {
 
-			$mark = apply_filters( 'woocommerce_gzd_differential_taxation_notice_text_mark', '** ' );
-			$notice = apply_filters( 'woocommerce_gzd_differential_taxation_notice_text_email', $mark . wc_gzd_get_differential_taxation_notice_text() );
+				$mark = apply_filters( 'woocommerce_gzd_differential_taxation_notice_text_mark', '** ' );
+				$notice = apply_filters( 'woocommerce_gzd_differential_taxation_notice_text_email', $mark . wc_gzd_get_differential_taxation_notice_text() );
 
-			echo wpautop( '<div class="gzd-differential-taxation-notice-email">' . $notice . '</div>' );
-		}
+				echo wpautop( '<div class="gzd-differential-taxation-notice-email">' . $notice . '</div>' );
+			}
 
-		if ( $type && $type->id == 'customer_processing_order' ) {
+			if ( $type->id == 'customer_processing_order' ) {
 
-			if ( $is_downloadable && $text = wc_gzd_get_legal_text_digital_email_notice() )
-				echo wpautop( apply_filters( 'woocommerce_gzd_order_confirmation_digital_notice', '<div class="gzd-digital-notice-text">' . $text . '</div>', $order ) );
+				if ( $is_downloadable && $text = wc_gzd_get_legal_text_digital_email_notice() )
+					echo wpautop( apply_filters( 'woocommerce_gzd_order_confirmation_digital_notice', '<div class="gzd-digital-notice-text">' . $text . '</div>', $order ) );
 
-			if ( $is_service && $text = wc_gzd_get_legal_text_service_email_notice() )
-				echo wpautop( apply_filters( 'woocommerce_gzd_order_confirmation_service_notice', '<div class="gzd-service-notice-text">' . $text . '</div>', $order ) );
+				if ( $is_service && $text = wc_gzd_get_legal_text_service_email_notice() )
+					echo wpautop( apply_filters( 'woocommerce_gzd_order_confirmation_service_notice', '<div class="gzd-service-notice-text">' . $text . '</div>', $order ) );
+			}
 		}
 	}
 

@@ -96,7 +96,7 @@
                     $wrapper.find( '.product-units:first' ).html( variation.product_units ).addClass('variation-modified').show();
                 } else {
                     $wrapper.find( '.product-units:first' ).remove();
-                    $wrapper.find( '.product_meta:first' ).prepend('<span class="product-units-wrapper product-units variation_modified">' + variation.product_units + '</span>').show();
+                    $wrapper.find( '.product_meta:first' ).prepend('<p class="wc-gzd-additional-info product-units-wrapper product-units variation_modified">' + variation.product_units + '</p>').show();
                 }
 			}
 		})
@@ -126,10 +126,12 @@
 		if ( typeof wc_add_to_cart_variation_params === 'undefined' ) {
 			return false;
 		}
-		
-		$( '.variations_form' ).wc_gzd_variation_form();
-		$( '.variations_form .variations select' ).change();
-		$( '.variations_form .variations input:radio:checked' ).change();
+
+        $( '.variations_form' ).each( function() {
+            $( this ).wc_gzd_variation_form();
+            $( this ).find( '.variations select' ).change();
+            $( this ).find( '.variations input:radio:checked' ).change();
+        });
 	});
 
 })( jQuery, window, document );

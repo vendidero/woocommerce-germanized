@@ -642,6 +642,10 @@ final class WooCommerce_Germanized {
 			'jquery', 'woocommerce', 'wc-add-to-cart-variation'
 		), WC_GERMANIZED_VERSION, true );
 
+		wp_register_script( 'wc-gzd-force-pay-order', $frontend_script_path . 'force-pay-order' . $suffix . '.js', array(
+			'jquery', 'jquery-blockui'
+		), WC_GERMANIZED_VERSION, true );
+
 		if ( is_page() && is_object( $post ) && has_shortcode( $post->post_content, 'revocation_form' ) ) {
 			wp_enqueue_script( 'wc-gzd-revocation' );
 		}
@@ -681,12 +685,26 @@ final class WooCommerce_Germanized {
 			) ) );
 		}
 
-		if ( wp_script_is( 'wc-gzd-add-to-cart-variation' ) && ! in_array( 'wc-gzd-add-to-cart-variation', $this->localized_scripts )  ) {
+		if ( wp_script_is( 'wc-gzd-add-to-cart-variation' ) && ! in_array( 'wc-gzd-add-to-cart-variation', $this->localized_scripts ) ) {
 
 			$this->localized_scripts[] = 'wc-gzd-add-to-cart-variation';
 
 			wp_localize_script( 'wc-gzd-add-to-cart-variation', 'wc_gzd_add_to_cart_variation_params', apply_filters( 'woocommerce_gzd_add_to_cart_variation_params', array(
 				'wrapper'                   => '.type-product',
+			) ) );
+		}
+
+		if ( wp_script_is( 'wc-gzd-force-pay-order' ) && ! in_array( 'wc-gzd-add-to-cart-variation', $this->localized_scripts ) ) {
+			global $wp;
+			$order_id = absint( $wp->query_vars[ 'order-pay' ] );
+			$order = wc_get_order( $order_id );
+
+			$this->localized_scripts[] = 'wc-gzd-force-pay-order';
+
+			wp_localize_script( 'wc-gzd-force-pay-order', 'wc_gzd_force_pay_order_params', apply_filters( 'wc_gzd_force_pay_order_params', array(
+				'order_id'      => $order_id,
+				'gateway'       => wc_gzd_get_crud_data( $order, 'payment_method' ),
+				'block_message' => __( 'Pease wait while we are trying to redirect you to the payment provider.', 'woocommerce-germanized' ),
 			) ) );
 		}
 

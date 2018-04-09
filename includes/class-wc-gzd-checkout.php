@@ -124,7 +124,7 @@ class WC_GZD_Checkout {
 	}
 
 	public function set_payment_url_to_force_payment( $url, $order ) {
-		if ( strpos( $url, 'pay_for_order' ) !== false ) {
+		if ( strpos( $url, 'pay_for_order' ) !== false && apply_filters( 'woocommerce_gzd_enable_force_pay_order', true, $order ) ) {
 			$url = add_query_arg( array( 'force_pay_order' => true ), $url );
 		}
 
@@ -132,7 +132,6 @@ class WC_GZD_Checkout {
 	}
 
 	public function force_pay_order_redirect() {
-
 		global $wp;
 
 		if ( is_wc_endpoint_url( 'order-pay' ) && isset( $_GET[ 'force_pay_order' ] ) ) {
@@ -154,17 +153,14 @@ class WC_GZD_Checkout {
 			if ( ! isset( $gateways[ wc_gzd_get_crud_data( $order, 'payment_method' ) ] ) )
 				return;
 
-			// Hide terms checkbox
-			add_filter( 'woocommerce_germanized_checkout_show_terms', array( $this, 'disable_terms_order_pay' ) );
-
-			// Set $_POST to disable double payment method selection -> redirect by WC_Form_Handler::pay_action()
-			$_POST['woocommerce_pay'] = 1;
-			$_POST['_wpnonce'] = wp_create_nonce( 'woocommerce-pay' );
-			$_POST['terms'] = 1;
-			$_POST['payment_method'] = wc_gzd_get_crud_data( $order, 'payment_method' );
-
+			if ( apply_filters( 'woocommerce_gzd_enable_force_pay_order', true, $order ) ) {
+				add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_force_pay_script' ), 20 );
+			}
 		}
+	}
 
+	public function enqueue_force_pay_script() {
+		wp_enqueue_script( 'wc-gzd-force-pay-order' );
 	}
 
 	public function disable_terms_order_pay( $show ) {

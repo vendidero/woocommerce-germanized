@@ -126,3 +126,6 @@ table.product-details-inner tr td:last-child {
 	display: inline;
 	margin-left: 5px;
 }
+#order_review .blockMsg {
+	line-height: 1.5em;
+}
