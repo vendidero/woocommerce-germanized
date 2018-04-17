@@ -183,8 +183,6 @@ final class WooCommerce_Germanized {
 
 		add_filter( 'woocommerce_get_settings_pages', array( $this, 'add_settings' ) );
 
-		add_filter( 'woocommerce_enqueue_styles', array( $this, 'add_styles' ) );
-
 		// Load after WooCommerce Frontend scripts
 		add_action( 'wp_enqueue_scripts', array( $this, 'add_scripts' ), 15 );
 		add_action( 'wp_enqueue_scripts', array( $this, 'add_inline_styles' ) );
@@ -592,25 +590,6 @@ final class WooCommerce_Germanized {
 	}
 
 	/**
-	 * Add styles to frontend
-	 *
-	 * @param array $styles
-	 */
-	public function add_styles( $styles ) {
-
-		$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
-
-		$styles['woocommerce-gzd-layout'] = array(
-			'src'     => str_replace( array( 'http:', 'https:' ), '', WC_germanized()->plugin_url() ) . '/assets/css/woocommerce-gzd-layout' . $suffix . '.css',
-			'deps'    => '',
-			'version' => WC_GERMANIZED_VERSION,
-			'media'   => 'all',
-		);
-
-		return $styles;
-	}
-
-	/**
 	 * Adds woocommerce checkout table background highlight color as inline css
 	 */
 	public function add_inline_styles() {
@@ -662,6 +641,9 @@ final class WooCommerce_Germanized {
 				wp_enqueue_script( 'wc-gzd-add-to-cart-variation' );
 			}
 		}
+
+		wp_register_style( 'woocommerce-gzd-layout', $assets_path . 'css/woocommerce-gzd-layout' . $suffix . '.css', array(), WC_GERMANIZED_VERSION );
+		wp_enqueue_style( 'woocommerce-gzd-layout' );
 
 		do_action( 'woocommerce_gzd_registered_scripts', $suffix, $frontend_script_path, $assets_path );
 	}
