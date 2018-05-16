@@ -2,8 +2,8 @@ jQuery( function ( $ ) {
 
 	$( document ).on( 'click', '#wc-gzd-trusted-shops-export', function() {
 		var href_org = $( this ).data( 'href-org' );
-		$( this ).attr( 'href', href_org + '&interval=' + $( '#woocommerce_' + trusted_shops_params.option_prefix + 'trusted_shops_review_collector' ).val() ); 
-	});
+		$( this ).attr( 'href', href_org + '&interval=' + $( '#woocommerce_' + trusted_shops_params.option_prefix + 'trusted_shops_review_collector' ).val() + '&days=' + $( '#woocommerce_' + trusted_shops_params.option_prefix + 'trusted_shops_review_collector_days_to_send' ).val() );
+    });
 
 	$( document ).on( 'change', '#woocommerce_' + trusted_shops_params.option_prefix + 'trusted_shops_integration_mode', function() {
 		

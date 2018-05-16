@@ -103,24 +103,31 @@ function wc_gzd_help_tip( $tip, $allow_html = false ) {
 }
 
 function wc_gzd_is_parcel_delivery_data_transfer_checkbox_enabled( $rate_ids = array() ) {
-	$supported = get_option( 'woocommerce_gzd_checkout_legal_parcel_delivery_checkbox_methods', array() );
-	
-	if ( ! is_array( $supported ) )
-		$supported = array();
 
-	$return = false;
-	$rate_is_supported = true;
+	$show = get_option( 'woocommerce_gzd_checkout_legal_parcel_delivery_checkbox_show' );
 
-	if ( get_option( 'woocommerce_gzd_checkout_legal_parcel_delivery_checkbox' ) === 'yes' ) {
-		if ( ! empty( $rate_ids ) ) {
+	if ( 'always' === $show ) {
+		$return = true;
+	} else {
+		$supported = get_option( 'woocommerce_gzd_checkout_legal_parcel_delivery_checkbox_methods', array() );
 
-			foreach ( $rate_ids as $rate_id ) {
-				if ( ! in_array( $rate_id, $supported ) )
-					$rate_is_supported = false;
-			}
+		if ( ! is_array( $supported ) )
+			$supported = array();
 
-			if ( $rate_is_supported ) {
-				$return = true;
+		$return = false;
+		$rate_is_supported = true;
+
+		if ( get_option( 'woocommerce_gzd_checkout_legal_parcel_delivery_checkbox' ) === 'yes' ) {
+			if ( ! empty( $rate_ids ) ) {
+
+				foreach ( $rate_ids as $rate_id ) {
+					if ( ! in_array( $rate_id, $supported ) )
+						$rate_is_supported = false;
+				}
+
+				if ( $rate_is_supported ) {
+					$return = true;
+				}
 			}
 		}
 	}
@@ -167,6 +174,19 @@ function wc_gzd_convert_coupon_to_voucher( $coupon ) {
 
 function wc_gzd_get_differential_taxation_notice_text() {
 	return apply_filters( 'woocommerce_gzd_differential_taxation_notice_text', get_option( 'woocommerce_gzd_differential_taxation_notice_text' ) );
+}
+
+function wc_gzd_get_privacy_policy_page_id() {
+	return apply_filters( 'woocommerce_gzd_privacy_policy_page_id', wc_get_page_id( 'data_security' ) );
+}
+
+function wc_gzd_get_privacy_policy_url() {
+	return get_permalink( wc_gzd_get_privacy_policy_page_id() );
+}
+
+function wc_gzd_get_customer_title( $option ) {
+	$options = apply_filters( 'woocommerce_gzd_title_options', array( 1 => __( 'Mr.', 'woocommerce-germanized' ), 2 => __( 'Ms.', 'woocommerce-germanized' ) ) );
+	return ( array_key_exists( $option, $options ) ? $options[ $option ] : $option );
 }
 
 if ( ! function_exists( 'is_ajax' ) ) {

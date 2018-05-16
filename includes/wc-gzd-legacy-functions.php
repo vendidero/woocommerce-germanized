@@ -196,3 +196,33 @@ function wc_gzd_get_cart_url() {
 function wc_gzd_get_checkout_url() {
 	return ( function_exists( 'wc_get_checkout_url' ) ? wc_get_checkout_url() : WC()->cart->get_checkout_url() );
 }
+
+function wc_gzd_order_is_anonymized( $order ) {
+	if ( is_numeric( $order ) ) {
+		$order = wc_get_order( $order );
+	}
+
+	$is_anyomized = wc_gzd_get_crud_data( $order, 'anonymized' );
+
+	return 'yes' === $is_anyomized;
+}
+
+function wc_gzd_get_order_date( $order, $format = '' ) {
+	if ( empty( $format ) ) {
+		$format = get_option( 'date_format' );
+	}
+
+	$date_formatted = '';
+
+	if ( wc_gzd_get_dependencies()->woocommerce_version_supports_crud() ) {
+		$date = gmdate( 'Y-m-d H:i:s', $order->get_date_created()->getOffsetTimestamp() );
+	} else {
+		$date = $order->order_date;
+	}
+
+	if ( ! empty( $date ) ) {
+		$date_formatted = date_i18n( $format, strtotime( $date ) );
+	}
+
+	return $date_formatted;
+}

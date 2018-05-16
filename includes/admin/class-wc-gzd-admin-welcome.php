@@ -123,15 +123,17 @@ class WC_GZD_Admin_Welcome {
 				<a href="https://vendidero.de/woocommerce-germanized#buy" target="_blank" class="button button-primary">Upgrade zur Pro Version</a>
 			</p>
 			<div class="changelog vendipro new-feature">
-                <h3>Neu in 1.9: CSV Import und Export</h3>
+                <h3>DSGVO & WooCommerce</h3>
                 <div class="left">
                     <p>
-                        Mit WooCommerce 3.1 wurde ein mächtiges CSV Import/Export Feature implementiert. Germanized 1.9 macht nun auch die von uns hinzugefügten Daten über den Importer bzw. Exporter zugänglich.
-                        So kannst du also auch deine (Produkt-) Einheitspreise, Lieferzeiten usw. exportieren bzw. importieren - so kannst du deine Produktdaten u.U. auch aus externen Quellen verwalten.
+                        Die DSGVO ist in aller Munde - das WordPress und WooCommerce Team beschäftigt sich intensiv mit der neuen Verordnung, da die Verordnung alle Shop-Betreiber mit Kunden in der EU betrifft.
+                        Das neue Update von Germanized greift die neuen bzw. <a href="https://woocommerce.wordpress.com/2018/04/10/how-were-tackling-gdpr-in-woocommerce-core/" target="_blank">geplanten Funktionen</a> von WordPress und WooCommerce auf und fügt etwaige zusätzlich erhobene Daten in die vorgesehenen Exporter bzw. Löschhilfen ein.
+                        Germanized betrifft die DSGVO nur am Rande - wir haben dazu einen <a href="https://vendidero.de/dokument/germanized-und-germanized-pro-dsgvo-update" target="_blank">Artikel</a> in unserer Doku bereitgestellt. Falls noch nicht vorhanden, solltest du dich um eine kompatible Datenschutzerklärung bemühen. Diese kannst du in den Germanized-Einstellungen hinterlegen und dann
+                        im <a href="<?php echo admin_url( 'admin.php?page=wc-settings&tab=germanized&section=display#woocommerce_gzd_display_checkout_legal_no_checkbox' ); ?>" target="_blank">rechtlichen Hinweistext</a> verlinken: {data_security_link}Datenschutzerklärung{/data_security_policy}. Die Platzhalter werden bei der Ausgabe automatisch mit dem Link zu deiner Datenschutzerklärung ersetzt. Die Germanized-Optionen zum Datenschutz findest du <a href="<?php admin_url( 'admin.php?page=wc-settings&tab=germanized' ); ?>">hier</a>.
                     </p>
                 </div>
                 <div class="right">
-                    <img src="<?php echo WC_germanized()->plugin_url();?>/assets/images/csv.png" style="max-width: 600px; border: none" />
+                    <img src="<?php echo WC_germanized()->plugin_url();?>/assets/images/exporter.png" />
                 </div>
             </div>
 			<div class="changelog vendipro new-feature">

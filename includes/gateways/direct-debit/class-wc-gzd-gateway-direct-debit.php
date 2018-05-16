@@ -186,7 +186,10 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 	    ?>
             <h3 id="gzd-admin-sepa">
                 <?php _e( 'SEPA', 'woocommerce-germanized' ); ?>
-                <a href="<?php echo add_query_arg( array( 'download' => 'true', 'content' => 'sepa', 'sepa_order_id' => wc_gzd_get_crud_data( $order, 'id' ) ), admin_url( 'export.php' ) ); ?>" target="_blank" class="download_sepa_xml"><?php _e( 'SEPA XML', 'woocommerce-germanized' ); ?></a>
+
+                <?php if ( ! wc_gzd_order_is_anonymized( $order ) ) : ?>
+                    <a href="<?php echo add_query_arg( array( 'download' => 'true', 'content' => 'sepa', 'sepa_order_id' => wc_gzd_get_crud_data( $order, 'id' ) ), admin_url( 'export.php' ) ); ?>" target="_blank" class="download_sepa_xml"><?php _e( 'SEPA XML', 'woocommerce-germanized' ); ?></a>
+                <?php endif; ?>
             </h3>
 
             <?php foreach( $this->admin_fields as $key => $field ) :
@@ -243,7 +246,7 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 
 	public function order_actions( $actions, $order ) {
 
-		if ( wc_gzd_get_crud_data( $order, 'payment_method' ) === $this->id ) {
+		if ( ! wc_gzd_order_is_anonymized( $order ) && wc_gzd_get_crud_data( $order, 'payment_method' ) === $this->id ) {
 			$actions[ 'download-sepa' ] = array(
 				'url'       => add_query_arg( array( 'download' => 'true', 'content' => 'sepa', 'sepa_order_id' => wc_gzd_get_crud_data( $order, 'id' ) ), admin_url( 'export.php' ) ),
 				'name'      => __( 'SEPA XML Export', 'woocommerce-germanized' ),
@@ -509,7 +512,7 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 
 		// Always save account details to order
 		$order = wc_gzd_set_crud_meta_data( $order, '_direct_debit_holder', $holder );
-		$order = wc_gzd_set_crud_meta_data( $order,'_direct_debit_iban', $iban );
+		$order = wc_gzd_set_crud_meta_data( $order, '_direct_debit_iban', $iban );
 		$order = wc_gzd_set_crud_meta_data( $order, '_direct_debit_bic', $bic );
 
 		// Generate mandate id if applicable

@@ -3,15 +3,15 @@
  * Plugin Name: WooCommerce Germanized
  * Plugin URI: https://www.vendidero.de/woocommerce-germanized
  * Description: Extends WooCommerce to become a legally compliant store for the german market.
- * Version: 1.9.9
+ * Version: 1.9.10
  * Author: Vendidero
  * Author URI: https://vendidero.de
  * Requires at least: 3.8
  * Tested up to: 4.9
  * WC requires at least: 2.4
- * WC tested up to: 3.3
+ * WC tested up to: 3.4
  * Requires at least WooCommerce: 2.4
- * Tested up to WooCommerce: 3.3
+ * Tested up to WooCommerce: 3.4
  *
  * Text Domain: woocommerce-germanized
  * Domain Path: /i18n/languages/
@@ -31,7 +31,7 @@ final class WooCommerce_Germanized {
 	 *
 	 * @var string
 	 */
-	public $version = '1.9.9';
+	public $version = '1.9.10';
 
 	/**
 	 * Single instance of WooCommerce Germanized Main Class
@@ -139,6 +139,7 @@ final class WooCommerce_Germanized {
 		// Hooks
 		register_activation_hook( __FILE__, array( 'WC_GZD_Install', 'install' ) );
 		register_deactivation_hook( __FILE__, array( 'WC_GZD_Install', 'deactivate' ) );
+
 		add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), array( $this, 'action_links' ) );
 		add_action( 'after_setup_theme', array( $this, 'include_template_functions' ), 12 );
 
@@ -338,6 +339,10 @@ final class WooCommerce_Germanized {
 		include_once( 'includes/class-wc-gzd-payment-gateways.php' );
 		// Template priority
 		include_once( 'includes/class-wc-gzd-hook-priorities.php' );
+		// Customizer
+		include_once  'includes/class-wc-gzd-shop-customizer.php';
+		// Pricacy
+		include_once  'includes/class-wc-gzd-privacy.php';
 
 		// Abstracts
 		include_once( 'includes/abstracts/abstract-wc-gzd-product.php' );
@@ -690,6 +695,15 @@ final class WooCommerce_Germanized {
 			) ) );
 		}
 
+		if ( wp_script_is( 'wc-gzd-checkout' ) && ! in_array( 'wc-gzd-checkout', $this->localized_scripts ) ) {
+
+			$this->localized_scripts[] = 'wc-gzd-checkout';
+
+			wp_localize_script( 'wc-gzd-checkout', 'wc_gzd_checkout_params', apply_filters( 'wc_gzd_checkout_params', array(
+				'adjust_heading' => true,
+			) ) );
+		}
+
 		do_action( 'woocommerce_gzd_localized_scripts', $assets_path );
 	}
 
@@ -869,17 +883,17 @@ final class WooCommerce_Germanized {
 	 */
 	private function setup_trusted_shops() {
 		// Initialize Trusted Shops module
-		$this->trusted_shops  = new WC_GZD_Trusted_Shops( $this, array(
-			'prefix' 	  	  => 'GZD_',
-			'et_params'       => array(
+		$this->trusted_shops   = new WC_GZD_Trusted_Shops( $this, array(
+			'prefix' 	  	   => 'GZD_',
+			'et_params'        => array(
 				'utm_campaign' => 'shopsoftware',
-				'utm_content' => 'WOOCOMMERCEGERMANIZED',
+				'utm_content'  => 'WOOCOMMERCEGERMANIZED',
 			),
-			'signup_params'	  => array(
-				'utm_source' => 'woocommerce-germanized',
+			'signup_params'	   => array(
+				'utm_source'   => 'woocommerce-germanized',
 				'utm_campaign' => 'woocommerce-germanized',
 			),
-			'urls'		  	  => array(
+			'urls'		  	        => array(
 				'integration' 		=> 'http://www.trustedshops.de/shopbetreiber/integration/shopsoftware-integration/woocommerce-germanized/',
 				'signup' 			=> 'http://www.trustbadge.com/de/Preise/',
 				'trustbadge_custom' => 'http://www.trustedshops.de/shopbetreiber/integration/trustbadge/trustbadge-custom/',

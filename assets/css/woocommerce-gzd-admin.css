@@ -150,6 +150,10 @@ table.wc-gzd-tax-example tr th:first-child, table.wc-gzd-tax-example tr td:first
 	width: 100%;
 }
 
+.wc-action-button-xml:after {
+	content: "\f475";
+}
+
 #order_data .order_data_column a.download_sepa_xml {
 	width: 14px;
 	height: 0;

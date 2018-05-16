@@ -11,11 +11,11 @@ $elements = array(
     'submit' => '#woocommerce_gzd_order_submit_btn_text',
     'contract' => '#woocommerce_gzdp_contract_after_confirmation',
     'terms' => '#woocommerce_terms_page_id',
+    'privacy' => '#woocommerce_gzd_customer_account_checkbox',
     'complaints' => '#woocommerce_gzd_alternative_complaints_text_none',
     'small_business' => '#woocommerce_gzd_small_enterprise',
     'delivery_time' => '#woocommerce_gzd_default_delivery_time',
     'shipping_tax' => '#woocommerce_gzd_shipping_tax',
-    'customer_account' => '#woocommerce_gzd_customer_account_checkbox',
     'customer_activation' => '#woocommerce_gzd_customer_activation',
     'invoice' => '#woocommerce_gzdp_invoice_enable',
     'vat_id' => '#woocommerce_gzdp_enable_vat_check',
@@ -73,6 +73,13 @@ if ( ! wc_gzd_get_dependencies()->woocommerce_version_supports_crud() ) {
 		<a class="button button-primary tourbus-next" href="javascript:void(0);">weiter</a>
 	</li>
 
+    <li data-el="<?php echo $elements[ 'privacy' ]; ?>" data-orientation="top">
+        <h2>Datenschutz</h2>
+        <p>Datenschutz ist insbesondere mit Inkrafttreten der DSGVO ein heikles Thema. Germanized stellt an dieser Stelle erweiterte Optionen zu den von WooCommerce (ab Version 3.4 <a href="<?php admin_url('admin.php?page=wc-settings&tab=account'); ?>" target="_blank">hier</a> zu finden) bzw. WordPress bereitgestellten Optionen zur Verfügung um die bestmögliche Aufklärung deiner Kunden zu ermöglichen.
+            Weitere Informationen zur DSGVO & WooCommerce findest du in folgendem <a href="https://woocommerce.wordpress.com/2018/04/10/how-were-tackling-gdpr-in-woocommerce-core/" target="_blank">Blog-Eintrag</a>.</p>
+        <a class="button button-primary tourbus-next" href="javascript:void(0);">weiter</a>
+    </li>
+
 	<li data-el="<?php echo $elements[ 'complaints' ]; ?>" data-orientation="top">
 		<h2>Streitbeilegung</h2>
 		<p>Das Thema Streitbelegung ist relativ aktuell und einige Informationspflichten sind diesbezüglich einzuhalten. Wir stellen dir hier die von Trusted Shops bereitgestellten Mustertexte für die jeweiligen
@@ -100,14 +107,6 @@ if ( ! wc_gzd_get_dependencies()->woocommerce_version_supports_crud() ) {
 		<h2>Versand- und Gebührenberechnung</h2>
 		<p>Diese Option ist eigentlich nur relevant für Shop-Betreiber, die Artikel zu unterschiedlichen Umsatzsteuersätzen (z.B. 19% und 7%) verkaufen.
 		In diesem Fall übernimmt Germanized eine genauere Berechnung der Umsatzsteuer für Versandkosten. Unterhalb der Option findest du dafür ein Beispiel.</p>
-		<a class="button button-primary tourbus-next" href="javascript:void(0);">weiter</a>
-	</li>
-
-	<li data-el="<?php echo $elements[ 'customer_account' ]; ?>" data-orientation="top">
-		<h2>Kundenkonten</h2>
-		<p>Viele Händler bieten Käufern das Erstellen von Kundenkonten an. In diesem Fall solltest du mit deinem Anwalt Rücksprache halten, ob eine Checkbox
-		von Nöten ist, die auf deine Datenschutzerklärung hinweist. Sollte das der Fall sein, kannst du unten aufgeführte Optionen verwenden. 
-		</p>
 		<a class="button button-primary tourbus-next" href="javascript:void(0);">weiter</a>
 	</li>
 

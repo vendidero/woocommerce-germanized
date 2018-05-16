@@ -78,6 +78,12 @@ class WC_GZD_Compatibility_Wpml extends WC_GZD_Compatibility {
 		global $woocommerce_wpml;
 		
 		if ( isset( $woocommerce_wpml ) && isset( $woocommerce_wpml->emails ) && is_object( $woocommerce_wpml->emails ) ) {
+
+			// Remove duplicate filters which lead to non-replaced placeholders
+			if ( method_exists( $woocommerce_wpml->emails, 'new_order_email_heading' ) ) {
+				remove_filter( 'woocommerce_email_heading_new_order',  array( $woocommerce_wpml->emails, 'new_order_email_heading' ), 10 );
+				remove_filter( 'woocommerce_email_subject_new_order',  array( $woocommerce_wpml->emails, 'new_order_email_subject' ), 10 );
+			}
 		
 			// Instantiate mailer to make sure that new order email is known
 			$mailer = WC()->mailer();

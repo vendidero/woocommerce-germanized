@@ -4,8 +4,8 @@ Tags: woocommerce, german, woocommerce-de, germany, deutsch, deutschland, de, de
 Requires at least: 3.8
 Tested up to: 4.9
 WC requires at least: 2.4
-WC tested up to: 3.3
-Stable tag: 1.9.9
+WC tested up to: 3.4
+Stable tag: 1.9.10
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -168,6 +168,22 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 1. WooCommerce Germanized Settings
 
 == Changelog ==
+
+= 1.9.10 =
+* Feature: Support upcoming Woo Privacy options (GDPR compatibility)
+* Improvement: Direct Debit: Only export orders with valid statuses
+* Improvement: Direct Debit: Added order status export filter "woocommerce_gzd_direct_debit_export_order_statuses"
+* Improvement: Added "woocommerce_gzd_order_confirmation" hook to woocommerce_email_actions flow to support async sending
+* Improvement: Removed duplicate nonce from checkout
+* Improvement: Order payment button leading to form submit via JS instead of PHP for better compatibility
+* Improvement: Transformed "product-units-wrapper" from span to p tag
+* Improvement: Enqueue style via normal enqueue logic instead of using the Woo filter
+* Improvement: Added new option to disable pay now button for certain payment gateways
+* Improvement: Trusted Shops review CSV exporter added order date and days to send
+* Improvement: Wrap input checkboxes within label (like WC does it)
+* Fix: Email notice only appended if differential tax option was set
+* Fix: Prevent using deprecated variation saving hook for Woo version > 3
+* Fix: Product API terms were removed on update if no term has been transmitted
 
 = 1.9.9 =
 * Improvement: Adjusted payment gateway fee settings to only apply for COD for legal purposes

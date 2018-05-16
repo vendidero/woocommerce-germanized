@@ -378,12 +378,12 @@ class WC_Germanized_Meta_Box_Product_Data {
 
 		foreach ( $sale_price_labels as $label ) {
 
-			if ( isset( $data[$label] ) ) {
+			if ( isset( $data[ $label ] ) ) {
 
-				if ( empty( $data[$label] ) || in_array( $data[$label], array( 'none', '-1' ) ) )
+				if ( empty( $data[ $label ] ) || in_array( $data[ $label ], array( 'none', '-1' ) ) )
 					$product = wc_gzd_unset_crud_meta_data( $product, $label );
 				else
-					$product = wc_gzd_set_crud_meta_data( $product, $label, sanitize_text_field( $data[$label] ) );
+					$product = wc_gzd_set_crud_meta_data( $product, $label, sanitize_text_field( $data[ $label ] ) );
 			}
 		}
 		

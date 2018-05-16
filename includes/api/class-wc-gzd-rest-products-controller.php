@@ -383,13 +383,15 @@ class WC_GZD_REST_Products_Controller {
 
 		$data[ 'product-type' ] = $product->get_type();
 
-		if ( isset( $request['delivery_time'] ) && is_array( $request['delivery_time'] ) ) {
-			if ( isset( $request['delivery_time']['id'] ) ) {
-				$data[ 'delivery_time' ] = intval( $request['delivery_time']['id'] );
-			} elseif ( isset( $request['delivery_time']['slug'] ) ) {
-				$data[ 'delivery_time' ] = sanitize_text_field( $request['delivery_time']['id'] );
-			}
+		// Delivery time
+		$current = get_the_terms( wc_gzd_get_crud_data( $product, 'id' ), 'product_delivery_time' );
+		$default = '';
+
+		if ( ! empty( $current ) ) {
+			$default = $current[0]->term_id;
 		}
+
+		$data['delivery_time'] = $this->get_term_data( isset( $request['delivery_time'] ) ? $request['delivery_time'] : false, $default );
 
 		// Price Labels + Unit
 		$meta_data = array(
@@ -399,14 +401,14 @@ class WC_GZD_REST_Products_Controller {
 		);
 
 		foreach ( $meta_data as $meta => $taxonomy_obj ) {
-			if ( isset( $request[$meta] ) && is_array( $request[$meta] ) ) {
-				$term = null;
-				if ( isset( $request[$meta]['id'] ) ) {
-					$term = $taxonomy_obj->get_term_object( absint( $request[$meta]['id'] ), 'id' );
-				}
-				elseif ( isset( $request[$meta]['slug'] ) ) {
-					$term = $taxonomy_obj->get_term_object( sanitize_text_field( $request[$meta]['slug'] ) );
-				}
+
+			$current = wc_gzd_get_crud_data( $product, $meta );
+			$term_data = $this->get_term_data( isset( $request[ $meta ] ) ? $request[ $meta ] : false, $current );
+			$data[ '_' . $meta ] = '';
+
+			if ( ! empty( $term_data ) ) {
+				$term = $taxonomy_obj->get_term_object( $term_data, ( is_numeric( $term_data ) ? 'id' : 'slug' ) );
+
 				if ( $term ) {
 					$data[ '_' . $meta ] = $term->slug;
 				}
@@ -451,6 +453,28 @@ class WC_GZD_REST_Products_Controller {
 			// Do only add boolean values if is set so saving works (checkbox-style).
 			if ( empty( $data[ "_{$bool_meta}" ] ) || ! $data[ "_{$bool_meta}" ] )
 				unset( $data[ "_{$bool_meta}" ] );
+		}
+
+		return $data;
+	}
+
+	/**
+	 * Makes sure that term data uses default data if no request data was received. Deletes the term data by returning an empty string if request data is empty.
+	 *
+	 * @param $request_data
+	 * @param int $current
+	 *
+	 * @return array|int|string
+	 */
+	protected function get_term_data( $request_data, $current = 0 ) {
+		$data = '';
+
+		if ( false === $request_data ) {
+			$data = $current;
+		} elseif ( is_array( $request_data ) && isset( $request_data['id'] ) ) {
+			$data = absint( $request_data['id'] );
+		} elseif ( is_array( $request_data ) && isset( $request_data['slug'] ) ) {
+			$data = wc_clean( $request_data['slug'] );
 		}
 
 		return $data;

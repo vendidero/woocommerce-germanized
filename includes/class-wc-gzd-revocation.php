@@ -78,6 +78,11 @@ class WC_GZD_Revocation {
 				'label'       => _x( 'Mail', 'revocation-form', 'woocommerce-germanized' ),
 				'required' 	  => true,
 			),
+			'privacy_checkbox' => array(
+				'type' 		  => 'checkbox',
+				'label'       => apply_filters( 'woocommerce_gzd_revocation_privacy_notice_label', sprintf( _x( 'Please accept our <a href="%s" target="_blank">Pricacy Policy</a> so that we can process your inquiry.', 'revocation-form', 'woocommerce-germanized' ) , wc_gzd_get_privacy_policy_url() ) ),
+				'required' 	  => true,
+			),
 		) );
 	}
 }

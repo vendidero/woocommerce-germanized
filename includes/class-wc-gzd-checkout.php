@@ -219,15 +219,27 @@ class WC_GZD_Checkout {
 
 	public function add_payment_link( $order_id ) {
 
-		if ( get_option( 'woocommerce_gzd_order_pay_now_button' ) === 'no' )
-			return false;
+		$enabled = true;
+
+		if ( get_option( 'woocommerce_gzd_order_pay_now_button' ) === 'no' ) {
+			$enabled = false;
+		}
 		
 		$order = wc_get_order( $order_id );
 		
-		if ( ! $order->needs_payment() )
-			return;
-		
-		wc_get_template( 'order/order-pay-now-button.php', array( 'url' => add_query_arg( array( 'force_pay_order' => true ), $order->get_checkout_payment_url() ), 'order_id' => $order_id ) );
+		if ( ! $order->needs_payment() ) {
+			$enabled = false;
+		}
+
+		$disabled_methods = get_option( 'woocommerce_gzd_order_pay_now_button_disabled_methods', array() );
+
+		if ( is_array( $disabled_methods ) && in_array( wc_gzd_get_crud_data( $order, 'payment_method' ), $disabled_methods ) ) {
+			$enabled = false;
+		}
+
+		if ( apply_filters( 'woocommerce_gzd_show_order_pay_now_button', $enabled, $order_id ) ) {
+			wc_get_template( 'order/order-pay-now-button.php', array( 'url' => add_query_arg( array( 'force_pay_order' => true ), $order->get_checkout_payment_url() ), 'order_id' => $order_id ) );
+		}
 	}
 
 	public function maybe_reduce_order_stock( $order_id ) {
@@ -549,17 +561,22 @@ class WC_GZD_Checkout {
 
 		if ( 'yes' !== get_option( 'woocommerce_gzd_checkout_address_field' ) )
 			return $fields;
-		
+
 		if ( wc_gzd_get_crud_data( $order, 'shipping_title' ) )
 			$fields[ 'title' ] = $this->get_customer_title( wc_gzd_get_crud_data( $order, 'shipping_title' ) );
+
 		return $fields;
 	}
 
-	public function get_customer_title( $option = 1 ) {
+	public function get_customer_title( $value = 1 ) {
 
-		$option = absint( $option );
+		$option = absint( $value );
 
 		$titles = apply_filters( 'woocommerce_gzd_title_options', array( 1 => __( 'Mr.', 'woocommerce-germanized' ), 2 => __( 'Ms.', 'woocommerce-germanized' ) ) );
+
+		if ( '[deleted]' === $value ) {
+			return $value;
+		}
 
 		if ( array_key_exists( $option, $titles ) ) {
 			return $titles[ $option ];
