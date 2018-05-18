@@ -29,7 +29,7 @@ if ( ! isset( $gzd_checkbox ) || ! $gzd_checkbox )
     do_action( 'woocommerce_checkout_terms_and_conditions' );
     ?>
 
-    <p class="form-row legal terms wc-terms-and-conditions">
+    <p class="form-row legal terms wc-terms-and-conditions validate-required">
         <label for="legal" class="woocommerce-form__label woocommerce-form__label-for-checkbox checkbox">
             <?php if ( get_option( 'woocommerce_gzd_display_checkout_legal_no_checkbox' ) === 'no' ) : ?>
                 <input type="checkbox" class="woocommerce-form__input woocommerce-form__input-checkbox input-checkbox" name="legal" id="legal" />
