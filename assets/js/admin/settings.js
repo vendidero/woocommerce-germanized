@@ -1,14 +1,36 @@
 jQuery( function ( $ ) {
 
-	$( document ).on( 'change', 'input[name=woocommerce_gzd_dispute_resolution_type]', function() {
-
+	$( document ).on( 'change', 'select#woocommerce_gzd_checkout_legal_parcel_delivery_checkbox_show', function() {
 		var val = $( this ).val();
-		var text = $( '#woocommerce_gzd_alternative_complaints_text_' + val );
 
-		$( '[id^=woocommerce_gzd_alternative_complaints_text_' ).parents( 'tr' ).hide();
-		$( '#woocommerce_gzd_alternative_complaints_text_' + val ).parents( 'tr' ).show();
-		
+		if ( 'shipping_methods' === val ) {
+            $( 'select#woocommerce_gzd_checkout_legal_parcel_delivery_checkbox_methods' ).parents( 'tr' ).show();
+		} else {
+            $( 'select#woocommerce_gzd_checkout_legal_parcel_delivery_checkbox_methods' ).parents( 'tr' ).hide();
+		}
 	});
+
+    $( document ).on( 'change', 'input#woocommerce_gzd_order_pay_now_button', function() {
+
+        if ( $( this ).is( ':checked' ) ) {
+            $( 'select#woocommerce_gzd_order_pay_now_button_disabled_methods' ).parents( 'tr' ).show();
+        } else {
+            $( 'select#woocommerce_gzd_order_pay_now_button_disabled_methods' ).parents( 'tr' ).hide();
+        }
+    });
+
+    $( 'select#woocommerce_gzd_checkout_legal_parcel_delivery_checkbox_show' ).trigger( 'change' );
+    $( 'input#woocommerce_gzd_order_pay_now_button' ).trigger( 'change' );
+
+    $( document ).on( 'change', 'input[name=woocommerce_gzd_dispute_resolution_type]', function() {
+
+        var val = $( this ).val();
+        var text = $( '#woocommerce_gzd_alternative_complaints_text_' + val );
+
+        $( '[id^=woocommerce_gzd_alternative_complaints_text_]' ).parents( 'tr' ).hide();
+        $( '#woocommerce_gzd_alternative_complaints_text_' + val ).parents( 'tr' ).show();
+
+    });
 
 	$( 'input[name=woocommerce_gzd_dispute_resolution_type]:checked' ).trigger( 'change' );
 

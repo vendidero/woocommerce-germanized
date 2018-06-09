@@ -487,64 +487,23 @@ class WC_GZD_Trusted_Shops_Admin {
 			return;
 		
 		$interval_d = ( ( isset( $_GET[ 'interval' ] ) && ! empty( $_GET[ 'interval' ] ) ) ? absint( $_GET[ 'interval' ] ) : 30 );
+		$days_to_send = ( ( isset( $_GET[ 'days' ] ) && ! empty( $_GET[ 'days' ] ) ) ? absint( $_GET[ 'days' ] ) : 5 );
 
-		header( 'Content-Description: File Transfer' );
-		header( 'Content-Disposition: attachment; filename=review-collector.csv' );
-		header( 'Content-Type: text/csv; charset=' . get_option( 'blog_charset' ), true );
-		header( 'Cache-Control: no-cache, no-store, must-revalidate' ); 
-		header( 'Pragma: no-cache' );
-		header( 'Expires: 0' );	
+		if ( wc_gzd_get_dependencies()->woocommerce_version_supports_crud() ) {
+		    include_once( 'class-wc-gzd-trusted-shops-review-exporter.php' );
 
-		$date = date( 'Y-m-d', strtotime( '-' . $interval_d . ' days') );
-		$order_query = new WP_Query(
-			array( 
-				'post_type'   => 'shop_order', 
-				'post_status' => array( 'wc-completed' ), 
-				'showposts'   => -1,
-				'date_query'  => array(
-					array(
-						'after' => $date,
-					),
-				),
-			)
-		);
+		    $exporter = new WC_GZD_Trusted_Shops_Review_Exporter();
+		    $exporter->set_days_until_send( $days_to_send );
+		    $exporter->set_interval_days( $interval_d );
 
-		$data = array();
-		
-		while ( $order_query->have_posts() ) {
-			$order_query->next_post();
-			$order = wc_get_order( $order_query->post->ID );
-			array_push( $data, array( 
-				wc_gzd_get_crud_data( $order, 'billing_email' ), 
-				wc_gzd_get_crud_data( $order, 'id' ), 
-				wc_gzd_get_crud_data( $order, 'billing_first_name' ), 
-				wc_gzd_get_crud_data( $order, 'billing_last_name' ) 
-			) );
-		}
-
-		$write = $this->prepare_csv_data( $data );
-	   	$df = fopen( "php://output", 'w' );
-		foreach ( $write as $row )
-			fwrite( $df, $row );
-	    fclose( $df );
-	    
-	    exit();
-	}
-
-	public function prepare_csv_data( $row ) {
-		foreach ( $row as $key => $row_data ) {
-			foreach ( $row_data as $rkey => $rvalue )
-				$row[ $key ][ $rkey ] = $this->encode_csv_data( str_replace( '"', '\"', $rvalue ) );
-			$row[ $key ] = implode( ",", $row[ $key ] ) . "\n";
-		}
-		return $row;
-	}
-
-	public function encode_csv_data( $string ) {
-		return iconv( get_option( 'blog_charset' ), 'Windows-1252', $string );
+		    $exporter->export();
+        }
 	}
 
 	public function review_collector_export() {
+
+		if ( ! wc_gzd_get_dependencies()->woocommerce_version_supports_crud() )
+		    return;
 		?>
 		<h3><?php echo _x( 'Review Collector', 'trusted-shops', 'woocommerce-germanized' ); ?></h3>
 		<table class="form-table">
@@ -553,15 +512,23 @@ class WC_GZD_Trusted_Shops_Admin {
 					<th scope="row" class="titledesc">
 						<label for="woocommerce_gzd_trusted_shops_review_collector"><?php echo _x( 'Export customer data', 'trusted-shops', 'woocommerce-germanized' ); ?></label>
 					</th>
-					<td class="forminp forminp-select">
+					<td class="forminp forminp-select forminp-review-collector">
 						<select name="woocommerce_<?php echo $this->base->option_prefix; ?>trusted_shops_review_collector" id="woocommerce_<?php echo $this->base->option_prefix; ?>trusted_shops_review_collector" class="chosen_select">
 							<option value="30"><?php echo _x( '30 days', 'trusted-shops', 'woocommerce-germanized' ); ?></option>
 							<option value="60"><?php echo _x( '60 days', 'trusted-shops', 'woocommerce-germanized' ); ?></option>
 							<option value="90"><?php echo _x( '90 days', 'trusted-shops', 'woocommerce-germanized' ); ?></option>
 						</select>
-						<p><a class="button button-secondary" id="wc-gzd-trusted-shops-export" data-href-org="<?php echo admin_url( '?action=wc_' . $this->base->option_prefix . 'trusted-shops-export&_wpnonce=' . wp_create_nonce( 'wc_' . $this->base->option_prefix . 'trusted-shops-export' ) ); ?>" href="#"><?php echo _x( 'Start export', 'trusted-shops', 'woocommerce-germanized' ); ?></a></p>
-						<p class="description"><?php printf( _x( 'Export your customer data and ask consumers for a review with the Trusted Shops <a href="%s" target="_blank">Review Collector</a>.', 'trusted-shops', 'woocommerce-germanized' ), 'https://www.trustedshops.com/tsb2b/sa/ratings/batchRatingRequest.seam?prefLang=' . substr( get_bloginfo( 'language' ), 0, 2 ) ); ?></p>
-					</td>
+                        <div class="trusted-shops-review-collector-wrap">
+                            <div class="review-collector-days">
+                                <label for="woocommerce_gzd_trusted_shops_review_collector"><?php echo _x( 'Days until notice will be sent', 'trusted-shops', 'woocommerce-germanized' ); ?></label>
+                                <input type="number" value="5" name="woocommerce_<?php echo $this->base->option_prefix; ?>trusted_shops_review_collector_days_to_send" id="woocommerce_<?php echo $this->base->option_prefix; ?>trusted_shops_review_collector_days_to_send" />
+                            </div>
+                            <div class="review-collector-buttons">
+                                <a class="button button-secondary" id="wc-gzd-trusted-shops-export" data-href-org="<?php echo admin_url( '?action=wc_' . $this->base->option_prefix . 'trusted-shops-export&_wpnonce=' . wp_create_nonce( 'wc_' . $this->base->option_prefix . 'trusted-shops-export' ) ); ?>" href="#"><?php echo _x( 'Start export', 'trusted-shops', 'woocommerce-germanized' ); ?></a>
+                            </div>
+                        </div>
+                        <p class="description"><?php printf( _x( 'Export your customer data and ask consumers for a review with the Trusted Shops <a href="%s" target="_blank">Review Collector</a>.', 'trusted-shops', 'woocommerce-germanized' ), 'https://www.trustedshops.com/tsb2b/sa/ratings/batchRatingRequest.seam?prefLang=' . substr( get_bloginfo( 'language' ), 0, 2 ) ); ?></p>
+                    </td>
 				</tr>
 			</tbody>
 		</table>

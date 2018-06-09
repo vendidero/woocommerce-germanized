@@ -59,6 +59,33 @@ class WC_GZD_Admin {
 
 		add_filter( 'woocommerce_order_actions', array( $this, 'order_actions' ), 10, 1 );
 		add_action( 'woocommerce_order_action_order_confirmation', array( $this, 'resend_order_confirmation' ), 10, 1 );
+
+		add_filter( 'pre_update_option_wp_page_for_privacy_policy', array( $this, 'pre_update_wp_privacy_option_page' ), 10, 2 );
+		add_filter( 'pre_update_option_woocommerce_data_security_page_id', array( $this, 'pre_update_gzd_privacy_option_page' ), 10, 2 );
+    }
+
+    public function pre_update_gzd_privacy_option_page( $new_value, $old_value ) {
+	    if ( apply_filters( 'woocommerce_gzd_sync_wp_privacy_page', true ) ) {
+		    remove_filter( 'pre_update_option_wp_page_for_privacy_policy', array( $this, 'pre_update_wp_privacy_option_page' ), 10 );
+		    update_option( 'wp_page_for_privacy_policy', $new_value );
+	    }
+
+	    return $new_value;
+    }
+
+	/**
+     * Updates Germanized privacy page option as soon as WP option changes to keep the pages in sync.
+     *
+	 * @param $new_value
+	 * @param $old_value
+	 */
+    public function pre_update_wp_privacy_option_page( $new_value, $old_value ) {
+	    if ( apply_filters( 'woocommerce_gzd_sync_wp_privacy_page', true ) ) {
+		    remove_filter( 'pre_update_option_woocommerce_data_security_page_id', array( $this, 'pre_update_gzd_privacy_option_page' ), 10 );
+		    update_option( 'woocommerce_data_security_page_id', $new_value );
+        }
+
+        return $new_value;
     }
 
     public function resend_order_confirmation( $order ) {
@@ -407,6 +434,19 @@ class WC_GZD_Admin {
 	    }
 
 	    return $shipping_methods_options;
+    }
+
+    public function get_payment_gateway_options() {
+        $gateways = WC()->payment_gateways->payment_gateways();
+        $options = array();
+
+        if ( ! empty( $gateways ) ) {
+            foreach( $gateways as $gateway ) {
+                $options[ $gateway->id ] = $gateway->title;
+            }
+        }
+
+        return $options;
     }
 
 }

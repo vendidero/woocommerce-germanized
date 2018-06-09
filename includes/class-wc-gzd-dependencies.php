@@ -74,9 +74,11 @@ class WC_GZD_Dependencies {
 		// Set whether current WooCommerce Version supports CRUD
 		$this->set_wc_supports_crud();
 
-		if ( $plugin->version != get_option( 'woocommerce_' . $this->prefix . '_version' ) ) {
+		//if ( $plugin->version != get_option( 'woocommerce_' . $this->prefix . '_version' ) ) {
 			$this->delete_cached_plugin_header_data();
-		}
+		//}
+
+		add_action( 'woocommerce_updated', array( $this, 'delete_cached_plugin_header_data' ) );
 
 		$this->plugins = (array) get_option( 'active_plugins', array() );
 		

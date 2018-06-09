@@ -31,9 +31,15 @@ class WC_GZD_Emails {
 
         if ( wc_gzd_send_instant_order_confirmation() ) {
 
-            // Send order notice directly after new order is being added - use these filters because order status has to be updated already
+        	// Send order notice directly after new order is being added - use these filters because order status has to be updated already
             add_filter( 'woocommerce_payment_successful_result', array( $this, 'send_order_confirmation_mails' ), 0, 2 );
             add_filter( 'woocommerce_checkout_no_payment_needed_redirect', array( $this, 'send_order_confirmation_mails' ), 0, 2 );
+
+            // Register the woocommerce_gzd_order_confirmation action which will be used as a notification to send the confirmation
+            add_filter( 'woocommerce_email_actions', array( $this, 'register_order_confirmation_email_action' ), 10, 1 );
+
+            // Make sure order confirmation is being sent as soon as the notification fires
+	        add_action( 'woocommerce_gzd_order_confirmation_notification', array( $this, 'trigger_order_confirmation_emails' ), 10, 1 );
         }
 
         // Disable paid order email for certain gateways (e.g. COD or invoice)
@@ -42,14 +48,22 @@ class WC_GZD_Emails {
 
         // Change email template path if is germanized email template
 		add_filter( 'woocommerce_template_directory', array( $this, 'set_woocommerce_template_dir' ), 10, 2 );
+
 		// Map partially refunded order mail template to correct email instance
         add_filter( 'woocommerce_gzd_email_template_id_comparison', array( $this, 'check_for_partial_refund_mail' ), 10, 3 );
+
         // Hide username if an email contains a password or password reset link (TS advises to do so)
         if ( 'yes' === get_option( 'woocommerce_gzd_hide_username_with_password' ) )
             add_filter( 'woocommerce_before_template_part', array( $this, 'maybe_set_gettext_username_filter' ), 10, 4 );
 
         if ( is_admin() )
 		    $this->admin_hooks();
+	}
+
+	public function register_order_confirmation_email_action( $actions ) {
+		$actions[] = 'woocommerce_gzd_order_confirmation';
+
+		return $actions;
 	}
 
 	public function maybe_set_gettext_username_filter( $template_name, $template_path, $located, $args ) {
@@ -255,75 +269,80 @@ class WC_GZD_Emails {
         if ( ! apply_filters( 'woocommerce_germanized_send_instant_order_confirmation', true, $order ) )
             return $result;
 
-        do_action( 'woocommerce_germanized_before_order_confirmation', wc_gzd_get_crud_data( $order, 'id' ) );
+	    // This action actually triggers the email sending (or defers it)
+	    do_action( 'woocommerce_gzd_order_confirmation', $order );
 
-        // Send order processing mail
-        if ( apply_filters( 'woocommerce_germanized_order_email_customer_confirmation_sent', false, wc_gzd_get_crud_data( $order, 'id' ) ) === false && $processing = $this->get_email_instance_by_id( 'customer_processing_order' ) )
-            $processing->trigger( wc_gzd_get_crud_data( $order, 'id' ) );
-
-        // Send admin mail
-        if ( apply_filters( 'woocommerce_germanized_order_email_admin_confirmation_sent', false, wc_gzd_get_crud_data( $order, 'id' ) ) === false && $new_order = $this->get_email_instance_by_id( 'new_order' ) )
-            $new_order->trigger( wc_gzd_get_crud_data( $order, 'id' ) );
-
-        // Always clear cart after order success
-        if ( get_option( 'woocommerce_gzd_checkout_stop_order_cancellation' ) === 'yes' && WC()->cart ) {
-	        WC()->cart->empty_cart();
-        }
-
-        do_action( 'woocommerce_germanized_order_confirmation_sent', wc_gzd_get_crud_data( $order, 'id' ) );
+	    // Always clear cart after order success
+	    if ( get_option( 'woocommerce_gzd_checkout_stop_order_cancellation' ) === 'yes' && WC()->cart ) {
+		    WC()->cart->empty_cart();
+	    }
 
         return $result;
     }
 
-	public function email_notices( $order, $sent_to_admin, $plain_text ) {
+    public function trigger_order_confirmation_emails( $order ) {
+	    do_action( 'woocommerce_germanized_before_order_confirmation', wc_gzd_get_crud_data( $order, 'id' ) );
 
-		if ( get_option( 'woocommerce_gzd_differential_taxation_checkout_notices' ) !== 'yes' )
-			return;
+	    // Send order processing mail
+	    if ( apply_filters( 'woocommerce_germanized_order_email_customer_confirmation_sent', false, wc_gzd_get_crud_data( $order, 'id' ) ) === false && $processing = $this->get_email_instance_by_id( 'customer_processing_order' ) )
+		    $processing->trigger( wc_gzd_get_crud_data( $order, 'id' ) );
+
+	    // Send admin mail
+	    if ( apply_filters( 'woocommerce_germanized_order_email_admin_confirmation_sent', false, wc_gzd_get_crud_data( $order, 'id' ) ) === false && $new_order = $this->get_email_instance_by_id( 'new_order' ) )
+		    $new_order->trigger( wc_gzd_get_crud_data( $order, 'id' ) );
+
+	    do_action( 'woocommerce_germanized_order_confirmation_sent', wc_gzd_get_crud_data( $order, 'id' ) );
+    }
+
+	public function email_notices( $order, $sent_to_admin, $plain_text ) {
 
 		$type = $this->get_current_email_object();
 
-		// Check if order contains digital products
-		$items = $order->get_items();
+		if ( $type ) {
 
-		$is_downloadable = false;
-		$is_service = false;
-		$is_differential_taxed = false;
+			// Check if order contains digital products
+			$items = $order->get_items();
 
-		if ( ! empty( $items ) ) {
+			$is_downloadable = false;
+			$is_service = false;
+			$is_differential_taxed = false;
 
-			foreach ( $items as $item ) {
+			if ( ! empty( $items ) ) {
 
-				$_product = apply_filters( 'woocommerce_order_item_product', $order->get_product_from_item( $item ), $item );
+				foreach ( $items as $item ) {
 
-				if ( ! $_product )
-					continue;
+					$_product = apply_filters( 'woocommerce_order_item_product', $order->get_product_from_item( $item ), $item );
 
-				if ( wc_gzd_is_revocation_exempt( $_product ) || apply_filters( 'woocommerce_gzd_product_is_revocation_exception', false, $_product, 'digital' ) )
-					$is_downloadable = true;
+					if ( ! $_product )
+						continue;
 
-				if ( wc_gzd_is_revocation_exempt( $_product, 'service' ) || apply_filters( 'woocommerce_gzd_product_is_revocation_exception', false, $_product, 'service' ) )
-					$is_service = true;
+					if ( wc_gzd_is_revocation_exempt( $_product ) || apply_filters( 'woocommerce_gzd_product_is_revocation_exception', false, $_product, 'digital' ) )
+						$is_downloadable = true;
 
-				if ( wc_gzd_get_gzd_product( $_product )->is_differential_taxed() )
-					$is_differential_taxed = true;
+					if ( wc_gzd_is_revocation_exempt( $_product, 'service' ) || apply_filters( 'woocommerce_gzd_product_is_revocation_exception', false, $_product, 'service' ) )
+						$is_service = true;
+
+					if ( wc_gzd_get_gzd_product( $_product )->is_differential_taxed() )
+						$is_differential_taxed = true;
+				}
 			}
-		}
 
-		if ( $is_differential_taxed && apply_filters( 'woocommerce_gzd_show_differential_taxation_in_emails', true, $type ) ) {
+			if ( get_option( 'woocommerce_gzd_differential_taxation_checkout_notices' ) === 'yes' && $is_differential_taxed && apply_filters( 'woocommerce_gzd_show_differential_taxation_in_emails', true, $type ) ) {
 
-			$mark = apply_filters( 'woocommerce_gzd_differential_taxation_notice_text_mark', '** ' );
-			$notice = apply_filters( 'woocommerce_gzd_differential_taxation_notice_text_email', $mark . wc_gzd_get_differential_taxation_notice_text() );
+				$mark = apply_filters( 'woocommerce_gzd_differential_taxation_notice_text_mark', '** ' );
+				$notice = apply_filters( 'woocommerce_gzd_differential_taxation_notice_text_email', $mark . wc_gzd_get_differential_taxation_notice_text() );
 
-			echo wpautop( '<div class="gzd-differential-taxation-notice-email">' . $notice . '</div>' );
-		}
+				echo wpautop( '<div class="gzd-differential-taxation-notice-email">' . $notice . '</div>' );
+			}
 
-		if ( $type && $type->id == 'customer_processing_order' ) {
+			if ( $type->id == 'customer_processing_order' ) {
 
-			if ( $is_downloadable && $text = wc_gzd_get_legal_text_digital_email_notice() )
-				echo wpautop( apply_filters( 'woocommerce_gzd_order_confirmation_digital_notice', '<div class="gzd-digital-notice-text">' . $text . '</div>', $order ) );
+				if ( $is_downloadable && $text = wc_gzd_get_legal_text_digital_email_notice() )
+					echo wpautop( apply_filters( 'woocommerce_gzd_order_confirmation_digital_notice', '<div class="gzd-digital-notice-text">' . $text . '</div>', $order ) );
 
-			if ( $is_service && $text = wc_gzd_get_legal_text_service_email_notice() )
-				echo wpautop( apply_filters( 'woocommerce_gzd_order_confirmation_service_notice', '<div class="gzd-service-notice-text">' . $text . '</div>', $order ) );
+				if ( $is_service && $text = wc_gzd_get_legal_text_service_email_notice() )
+					echo wpautop( apply_filters( 'woocommerce_gzd_order_confirmation_service_notice', '<div class="gzd-service-notice-text">' . $text . '</div>', $order ) );
+			}
 		}
 	}
 

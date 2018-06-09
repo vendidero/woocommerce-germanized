@@ -35,6 +35,8 @@ class WC_GZD_Compatibility_Polylang extends WC_GZD_Compatibility {
 	}
 
 	public function set_language_field() {
-		echo '<input type="hidden" name="lang" value="' . esc_attr( pll_current_language() ) . '" />';
+		if ( function_exists( 'pll_current_language' ) ) {
+			echo '<input type="hidden" name="lang" value="' . esc_attr( pll_current_language() ) . '" />';
+		}
 	}
 }

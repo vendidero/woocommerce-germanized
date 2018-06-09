@@ -187,6 +187,15 @@ if ( get_option( 'woocommerce_gzd_hide_order_success_details' ) == 'yes' )
 	remove_action( 'woocommerce_thankyou', 'woocommerce_order_details_table', WC_GZD_Hook_Priorities::instance()->get_priority( 'woocommerce_thankyou', 'woocommerce_order_details_table' ) );
 
 /**
+ * Remove Woo data privacy notices
+ */
+if ( apply_filters( 'woocommerce_gzd_disable_wc_privacy_policy_checkbox', true ) ) {
+	remove_action( 'woocommerce_checkout_terms_and_conditions', 'wc_checkout_privacy_policy_text', 20 );
+	remove_action( 'woocommerce_checkout_terms_and_conditions', 'wc_terms_and_conditions_page_content', 30 );
+	remove_action( 'woocommerce_register_form', 'wc_registration_privacy_policy_text', 20 );
+}
+
+/**
  * Customer Account Creation
  */
 if ( get_option( 'woocommerce_gzd_customer_account_checkbox' ) == 'yes' ) {

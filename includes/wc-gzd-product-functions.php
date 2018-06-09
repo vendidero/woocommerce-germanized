@@ -20,8 +20,16 @@ add_action( 'woocommerce_scheduled_sales', 'wc_gzd_register_scheduled_unit_sales
 
 function wc_gzd_get_gzd_product( $product ) {
 	
-	if ( ! isset( $product->gzd_product ) || ! is_object( $product->gzd_product ) )
-		$product->gzd_product = WC()->product_factory->get_gzd_product( $product );
+	if ( ! isset( $product->gzd_product ) || ! is_object( $product->gzd_product ) ) {
+		$factory = WC()->product_factory;
+
+		if ( ! is_a( $factory, 'WC_GZD_Product_Factory' ) ) {
+			$factory = new WC_GZD_Product_Factory();
+			WC()->product_factory = $factory;
+		}
+
+		$product->gzd_product = $factory->get_gzd_product( $product );
+	}
 
 	return $product->gzd_product;
 }

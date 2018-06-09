@@ -217,6 +217,14 @@ class WC_GZD_Install {
 		}
 	}
 
+	public static function deactivate() {
+		// Clear Woo sessions to remove WC_GZD_Shipping_Rate instance
+		if ( class_exists( 'WC_REST_System_Status_Tools_Controller' ) ) {
+			$tools_controller = new WC_REST_System_Status_Tools_Controller;
+			$tools_controller->execute_tool( 'clear_sessions' );
+		}
+	}
+
 	/**
 	 * Update WC version to current
 	 */

@@ -28,6 +28,11 @@ class WC_GZD_Virtual_VAT_Helper {
 
 	public function set_base_tax_rates( $rates, $tax_class ) {
 
+		// Make sure frontend functions are being loaded so that "wc_get_chosen_shipping_method_ids" is callable
+		if ( ! WC_germanized()->is_frontend() && function_exists( 'wc' ) ) {
+			wc()->frontend_includes();
+		}
+
 		$location = WC_Tax::get_tax_location( $tax_class );
 
 		$virtual_vat_applicable = in_array( $tax_class, array( 'virtual-rate', 'virtual-reduced-rate' ) ) && isset( $location[0] ) && sizeof( $location ) === 4 && $location[0] !== WC()->countries->get_base_country();

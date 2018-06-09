@@ -74,6 +74,8 @@ class WC_GZD_Checkout {
 			add_filter( 'woocommerce_get_cancel_order_url', array( $this, 'cancel_order_url' ), PHP_INT_MAX, 1 );
 			add_filter( 'woocommerce_get_cancel_order_url_raw', array( $this, 'cancel_order_url' ), PHP_INT_MAX, 1 );
 			add_filter( 'user_has_cap', array( $this, 'disallow_user_order_cancellation' ), 15, 3 );
+
+			// Remove order stock right after confirmation is sent
 			add_action( 'woocommerce_germanized_order_confirmation_sent', array( $this, 'maybe_reduce_order_stock' ), 5, 1 );
 			add_filter( 'woocommerce_my_account_my_orders_actions', array( $this, 'remove_cancel_button' ), 10, 2 );
 
@@ -122,7 +124,7 @@ class WC_GZD_Checkout {
 	}
 
 	public function set_payment_url_to_force_payment( $url, $order ) {
-		if ( strpos( $url, 'pay_for_order' ) !== false ) {
+		if ( strpos( $url, 'pay_for_order' ) !== false && apply_filters( 'woocommerce_gzd_enable_force_pay_order', true, $order ) ) {
 			$url = add_query_arg( array( 'force_pay_order' => true ), $url );
 		}
 
@@ -130,7 +132,6 @@ class WC_GZD_Checkout {
 	}
 
 	public function force_pay_order_redirect() {
-
 		global $wp;
 
 		if ( is_wc_endpoint_url( 'order-pay' ) && isset( $_GET[ 'force_pay_order' ] ) ) {
@@ -152,17 +153,14 @@ class WC_GZD_Checkout {
 			if ( ! isset( $gateways[ wc_gzd_get_crud_data( $order, 'payment_method' ) ] ) )
 				return;
 
-			// Hide terms checkbox
-			add_filter( 'woocommerce_germanized_checkout_show_terms', array( $this, 'disable_terms_order_pay' ) );
-
-			// Set $_POST to disable double payment method selection -> redirect by WC_Form_Handler::pay_action()
-			$_POST['woocommerce_pay'] = 1;
-			$_POST['_wpnonce'] = wp_create_nonce( 'woocommerce-pay' );
-			$_POST['terms'] = 1;
-			$_POST['payment_method'] = wc_gzd_get_crud_data( $order, 'payment_method' );
-
+			if ( apply_filters( 'woocommerce_gzd_enable_force_pay_order', true, $order ) ) {
+				add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_force_pay_script' ), 20 );
+			}
 		}
+	}
 
+	public function enqueue_force_pay_script() {
+		wp_enqueue_script( 'wc-gzd-force-pay-order' );
 	}
 
 	public function disable_terms_order_pay( $show ) {
@@ -221,20 +219,32 @@ class WC_GZD_Checkout {
 
 	public function add_payment_link( $order_id ) {
 
-		if ( get_option( 'woocommerce_gzd_order_pay_now_button' ) === 'no' )
-			return false;
+		$enabled = true;
+
+		if ( get_option( 'woocommerce_gzd_order_pay_now_button' ) === 'no' ) {
+			$enabled = false;
+		}
 		
 		$order = wc_get_order( $order_id );
 		
-		if ( ! $order->needs_payment() )
-			return;
-		
-		wc_get_template( 'order/order-pay-now-button.php', array( 'url' => add_query_arg( array( 'force_pay_order' => true ), $order->get_checkout_payment_url() ), 'order_id' => $order_id ) );
+		if ( ! $order->needs_payment() ) {
+			$enabled = false;
+		}
+
+		$disabled_methods = get_option( 'woocommerce_gzd_order_pay_now_button_disabled_methods', array() );
+
+		if ( is_array( $disabled_methods ) && in_array( wc_gzd_get_crud_data( $order, 'payment_method' ), $disabled_methods ) ) {
+			$enabled = false;
+		}
+
+		if ( apply_filters( 'woocommerce_gzd_show_order_pay_now_button', $enabled, $order_id ) ) {
+			wc_get_template( 'order/order-pay-now-button.php', array( 'url' => add_query_arg( array( 'force_pay_order' => true ), $order->get_checkout_payment_url() ), 'order_id' => $order_id ) );
+		}
 	}
 
 	public function maybe_reduce_order_stock( $order_id ) {
-		if ( wc_gzd_get_dependencies()->woocommerce_version_supports_crud() ) {
-			wc_reduce_stock_levels( $order_id );
+		if ( function_exists( 'wc_maybe_reduce_stock_levels' ) ) {
+			wc_maybe_reduce_stock_levels( $order_id );
 		} else {
 			$order = wc_get_order( $order_id );
 
@@ -249,7 +259,7 @@ class WC_GZD_Checkout {
 
 	public function set_order_stock_reduced_meta( $order ) {
 		if ( wc_gzd_get_dependencies()->woocommerce_version_supports_crud() ) {
-			$order = wc_gzd_set_crud_meta_data( $order, '_order_stock_reduced', '1' );
+			$order = wc_gzd_set_crud_meta_data( $order, '_order_stock_reduced', 'yes' );
 			$order->save();
 		}
 	}
@@ -551,17 +561,22 @@ class WC_GZD_Checkout {
 
 		if ( 'yes' !== get_option( 'woocommerce_gzd_checkout_address_field' ) )
 			return $fields;
-		
+
 		if ( wc_gzd_get_crud_data( $order, 'shipping_title' ) )
 			$fields[ 'title' ] = $this->get_customer_title( wc_gzd_get_crud_data( $order, 'shipping_title' ) );
+
 		return $fields;
 	}
 
-	public function get_customer_title( $option = 1 ) {
+	public function get_customer_title( $value = 1 ) {
 
-		$option = absint( $option );
+		$option = absint( $value );
 
 		$titles = apply_filters( 'woocommerce_gzd_title_options', array( 1 => __( 'Mr.', 'woocommerce-germanized' ), 2 => __( 'Ms.', 'woocommerce-germanized' ) ) );
+
+		if ( '[deleted]' === $value ) {
+			return $value;
+		}
 
 		if ( array_key_exists( $option, $titles ) ) {
 			return $titles[ $option ];

@@ -4,8 +4,8 @@ Tags: woocommerce, german, woocommerce-de, germany, deutsch, deutschland, de, de
 Requires at least: 3.8
 Tested up to: 4.9
 WC requires at least: 2.4
-WC tested up to: 3.3
-Stable tag: 1.9.7
+WC tested up to: 3.4
+Stable tag: 1.9.10
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -168,6 +168,37 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 1. WooCommerce Germanized Settings
 
 == Changelog ==
+
+= 1.9.10 =
+* Feature: Support upcoming Woo Privacy options (GDPR compatibility)
+* Improvement: Direct Debit: Only export orders with valid statuses
+* Improvement: Direct Debit: Added order status export filter "woocommerce_gzd_direct_debit_export_order_statuses"
+* Improvement: Added "woocommerce_gzd_order_confirmation" hook to woocommerce_email_actions flow to support async sending
+* Improvement: Removed duplicate nonce from checkout
+* Improvement: Order payment button leading to form submit via JS instead of PHP for better compatibility
+* Improvement: Transformed "product-units-wrapper" from span to p tag
+* Improvement: Enqueue style via normal enqueue logic instead of using the Woo filter
+* Improvement: Added new option to disable pay now button for certain payment gateways
+* Improvement: Trusted Shops review CSV exporter added order date and days to send
+* Improvement: Wrap input checkboxes within label (like WC does it)
+* Fix: Email notice only appended if differential tax option was set
+* Fix: Prevent using deprecated variation saving hook for Woo version > 3
+* Fix: Product API terms were removed on update if no term has been transmitted
+
+= 1.9.9 =
+* Improvement: Adjusted payment gateway fee settings to only apply for COD for legal purposes
+* Improvement: Added Woo Paypal Plus checkout price manipulation compatibility
+* Fix: Stock update using wc_maybe_reduce_stock_levels
+* Fix: Added strtoupper to IBAN and BIC for direct debit
+
+= 1.9.8 =
+* Improvement: Extended type check to support services
+* Improvement: Cache helper for double opt in activation key
+* Improvement: Removed int_max from button text filter to allow overrides
+* Improvement: Further checks for double opt in user role (default: Customer)
+* Fix: OS platform shortcode link https replacement
+* Fix: is_ajax fallback function
+* Fix: Deactivate plugin hook to make sure no incomplete class error is thrown in cart
 
 = 1.9.7 =
 * Feature: Woo 3.3 compatibility

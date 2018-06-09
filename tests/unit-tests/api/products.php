@@ -87,4 +87,69 @@ class WC_GZD_Products_API extends WC_GZD_REST_Unit_Test_Case {
 
 		$simple->delete( true );
 	}
+
+	public function test_update_product_leaves_terms() {
+		wp_set_current_user( $this->user );
+
+		// test simple products
+		$simple   = WC_GZD_Helper_Product::create_simple_product();
+		$term = wp_insert_term( '3-4 days', 'product_delivery_time', array( 'slug' => '3-4-days' ) );
+		$sale_term = wp_insert_term( 'Test Sale', 'product_price_label', array( 'slug' => 'test-sale' ) );
+
+		$request = new WP_REST_Request( 'PUT', '/wc/v2/products/' . $simple->get_id() );
+		$request->set_body_params( array(
+			'delivery_time'             => array( 'id' => $term[ 'term_id' ] ),
+			'sale_price_label'          => array( 'id' => $sale_term[ 'term_id' ] ),
+			'sale_price_regular_label'  => array( 'id' => $sale_term[ 'term_id' ] ),
+			'differential_taxation'     => false,
+		) );
+
+		$response = $this->server->dispatch( $request );
+		$data  = $response->get_data();
+
+		// Test whether term data is being available after updating the product if no term data as transmitted
+		$request = new WP_REST_Request( 'PUT', '/wc/v2/products/' . $simple->get_id() );
+		$request->set_body_params( array(
+			'differential_taxation'     => true,
+		) );
+
+		$response = $this->server->dispatch( $request );
+		$data  = $response->get_data();
+
+		// GET Product
+		$response = $this->server->dispatch( new WP_REST_Request( 'GET', '/wc/v2/products/' . $simple->get_id() ) );
+		$product  = $response->get_data();
+
+		$this->assertEquals( 'test-sale', $product['sale_price_label']['slug'] );
+		$this->assertEquals( '3-4-days', $product['delivery_time']['slug'] );
+		$this->assertEquals( 'test-sale', $product['sale_price_regular_label']['slug'] );
+		$this->assertEquals( true, $product['differential_taxation'] );
+
+		$simple->delete( true );
+	}
+
+	public function test_delete_term_data() {
+		wp_set_current_user( $this->user );
+
+		// test simple products
+		$simple   = WC_GZD_Helper_Product::create_simple_product();
+		$request = new WP_REST_Request( 'PUT', '/wc/v2/products/' . $simple->get_id() );
+		$request->set_body_params( array(
+			'delivery_time'             => array(),
+			'sale_price_label'          => array(),
+			'sale_price_regular_label'  => array(),
+		) );
+
+		$response = $this->server->dispatch( $request );
+
+		// GET Product
+		$response = $this->server->dispatch( new WP_REST_Request( 'GET', '/wc/v2/products/' . $simple->get_id() ) );
+		$product  = $response->get_data();
+
+		$this->assertEmpty( $product['delivery_time'] );
+		$this->assertEmpty( $product['sale_price_label'] );
+		$this->assertEmpty( $product['sale_price_regular_label'] );
+
+		$simple->delete( true );
+	}
 }

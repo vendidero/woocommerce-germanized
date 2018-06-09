@@ -3,15 +3,15 @@
  * Plugin Name: WooCommerce Germanized
  * Plugin URI: https://www.vendidero.de/woocommerce-germanized
  * Description: Extends WooCommerce to become a legally compliant store for the german market.
- * Version: 1.9.7
+ * Version: 1.9.10
  * Author: Vendidero
  * Author URI: https://vendidero.de
  * Requires at least: 3.8
  * Tested up to: 4.9
  * WC requires at least: 2.4
- * WC tested up to: 3.3
+ * WC tested up to: 3.4
  * Requires at least WooCommerce: 2.4
- * Tested up to WooCommerce: 3.3
+ * Tested up to WooCommerce: 3.4
  *
  * Text Domain: woocommerce-germanized
  * Domain Path: /i18n/languages/
@@ -31,7 +31,7 @@ final class WooCommerce_Germanized {
 	 *
 	 * @var string
 	 */
-	public $version = '1.9.7';
+	public $version = '1.9.10';
 
 	/**
 	 * Single instance of WooCommerce Germanized Main Class
@@ -138,6 +138,8 @@ final class WooCommerce_Germanized {
 
 		// Hooks
 		register_activation_hook( __FILE__, array( 'WC_GZD_Install', 'install' ) );
+		register_deactivation_hook( __FILE__, array( 'WC_GZD_Install', 'deactivate' ) );
+
 		add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), array( $this, 'action_links' ) );
 		add_action( 'after_setup_theme', array( $this, 'include_template_functions' ), 12 );
 
@@ -181,8 +183,6 @@ final class WooCommerce_Germanized {
 		}
 
 		add_filter( 'woocommerce_get_settings_pages', array( $this, 'add_settings' ) );
-
-		add_filter( 'woocommerce_enqueue_styles', array( $this, 'add_styles' ) );
 
 		// Load after WooCommerce Frontend scripts
 		add_action( 'wp_enqueue_scripts', array( $this, 'add_scripts' ), 15 );
@@ -325,7 +325,7 @@ final class WooCommerce_Germanized {
 		include_once( 'includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php' );
 		include_once( 'includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php' );
 
-		if ( ( ! is_admin() || defined( 'DOING_AJAX' ) ) && ! defined( 'DOING_CRON' ) ) {
+		if ( $this->is_frontend() ) {
 			if ( did_action( 'woocommerce_loaded' ) ) {
 				$this->frontend_includes();
 			} else {
@@ -339,6 +339,10 @@ final class WooCommerce_Germanized {
 		include_once( 'includes/class-wc-gzd-payment-gateways.php' );
 		// Template priority
 		include_once( 'includes/class-wc-gzd-hook-priorities.php' );
+		// Customizer
+		include_once  'includes/class-wc-gzd-shop-customizer.php';
+		// Pricacy
+		include_once  'includes/class-wc-gzd-privacy.php';
 
 		// Abstracts
 		include_once( 'includes/abstracts/abstract-wc-gzd-product.php' );
@@ -369,6 +373,10 @@ final class WooCommerce_Germanized {
 
 	}
 
+	public function is_frontend() {
+		return ( ! is_admin() || defined( 'DOING_AJAX' ) ) && ! defined( 'DOING_CRON' );
+	}
+
 	public function setup_compatibility() {
 
 		$plugins = apply_filters( 'woocommerce_gzd_compatibilities',
@@ -377,7 +385,8 @@ final class WooCommerce_Germanized {
 				'polylang',
 				'woo-poly-integration',
 				'woocommerce-dynamic-pricing',
-				'woocommerce-role-based-prices'
+				'woocommerce-role-based-prices',
+				'woo-paypalplus'
 			)
 		);
 
@@ -586,24 +595,6 @@ final class WooCommerce_Germanized {
 	}
 
 	/**
-	 * Add styles to frontend
-	 *
-	 * @param array $styles
-	 */
-	public function add_styles( $styles ) {
-		$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
-
-		$styles['woocommerce-gzd-layout'] = array(
-		'src'     => str_replace( array( 'http:', 'https:' ), '', WC_germanized()->plugin_url() ) . '/assets/css/woocommerce-gzd-layout' . $suffix . '.css',
-		'deps'    => '',
-		'version' => WC_GERMANIZED_VERSION,
-		'media'   => 'all',
-		);
-
-		return $styles;
-	}
-
-	/**
 	 * Adds woocommerce checkout table background highlight color as inline css
 	 */
 	public function add_inline_styles() {
@@ -635,6 +626,10 @@ final class WooCommerce_Germanized {
 			'jquery', 'woocommerce', 'wc-add-to-cart-variation'
 		), WC_GERMANIZED_VERSION, true );
 
+		wp_register_script( 'wc-gzd-force-pay-order', $frontend_script_path . 'force-pay-order' . $suffix . '.js', array(
+			'jquery', 'jquery-blockui'
+		), WC_GERMANIZED_VERSION, true );
+
 		if ( is_page() && is_object( $post ) && has_shortcode( $post->post_content, 'revocation_form' ) ) {
 			wp_enqueue_script( 'wc-gzd-revocation' );
 		}
@@ -651,6 +646,9 @@ final class WooCommerce_Germanized {
 				wp_enqueue_script( 'wc-gzd-add-to-cart-variation' );
 			}
 		}
+
+		wp_register_style( 'woocommerce-gzd-layout', $assets_path . 'css/woocommerce-gzd-layout' . $suffix . '.css', array(), WC_GERMANIZED_VERSION );
+		wp_enqueue_style( 'woocommerce-gzd-layout' );
 
 		do_action( 'woocommerce_gzd_registered_scripts', $suffix, $frontend_script_path, $assets_path );
 	}
@@ -674,12 +672,35 @@ final class WooCommerce_Germanized {
 			) ) );
 		}
 
-		if ( wp_script_is( 'wc-gzd-add-to-cart-variation' ) && ! in_array( 'wc-gzd-add-to-cart-variation', $this->localized_scripts )  ) {
+		if ( wp_script_is( 'wc-gzd-add-to-cart-variation' ) && ! in_array( 'wc-gzd-add-to-cart-variation', $this->localized_scripts ) ) {
 
 			$this->localized_scripts[] = 'wc-gzd-add-to-cart-variation';
 
 			wp_localize_script( 'wc-gzd-add-to-cart-variation', 'wc_gzd_add_to_cart_variation_params', apply_filters( 'woocommerce_gzd_add_to_cart_variation_params', array(
 				'wrapper'                   => '.type-product',
+			) ) );
+		}
+
+		if ( wp_script_is( 'wc-gzd-force-pay-order' ) && ! in_array( 'wc-gzd-add-to-cart-variation', $this->localized_scripts ) ) {
+			global $wp;
+			$order_id = absint( $wp->query_vars[ 'order-pay' ] );
+			$order = wc_get_order( $order_id );
+
+			$this->localized_scripts[] = 'wc-gzd-force-pay-order';
+
+			wp_localize_script( 'wc-gzd-force-pay-order', 'wc_gzd_force_pay_order_params', apply_filters( 'wc_gzd_force_pay_order_params', array(
+				'order_id'      => $order_id,
+				'gateway'       => wc_gzd_get_crud_data( $order, 'payment_method' ),
+				'block_message' => __( 'Pease wait while we are trying to redirect you to the payment provider.', 'woocommerce-germanized' ),
+			) ) );
+		}
+
+		if ( wp_script_is( 'wc-gzd-checkout' ) && ! in_array( 'wc-gzd-checkout', $this->localized_scripts ) ) {
+
+			$this->localized_scripts[] = 'wc-gzd-checkout';
+
+			wp_localize_script( 'wc-gzd-checkout', 'wc_gzd_checkout_params', apply_filters( 'wc_gzd_checkout_params', array(
+				'adjust_heading' => true,
 			) ) );
 		}
 
@@ -862,17 +883,17 @@ final class WooCommerce_Germanized {
 	 */
 	private function setup_trusted_shops() {
 		// Initialize Trusted Shops module
-		$this->trusted_shops  = new WC_GZD_Trusted_Shops( $this, array(
-			'prefix' 	  	  => 'GZD_',
-			'et_params'       => array(
+		$this->trusted_shops   = new WC_GZD_Trusted_Shops( $this, array(
+			'prefix' 	  	   => 'GZD_',
+			'et_params'        => array(
 				'utm_campaign' => 'shopsoftware',
-				'utm_content' => 'WOOCOMMERCEGERMANIZED',
+				'utm_content'  => 'WOOCOMMERCEGERMANIZED',
 			),
-			'signup_params'	  => array(
-				'utm_source' => 'woocommerce-germanized',
+			'signup_params'	   => array(
+				'utm_source'   => 'woocommerce-germanized',
 				'utm_campaign' => 'woocommerce-germanized',
 			),
-			'urls'		  	  => array(
+			'urls'		  	        => array(
 				'integration' 		=> 'http://www.trustedshops.de/shopbetreiber/integration/shopsoftware-integration/woocommerce-germanized/',
 				'signup' 			=> 'http://www.trustbadge.com/de/Preise/',
 				'trustbadge_custom' => 'http://www.trustedshops.de/shopbetreiber/integration/trustbadge/trustbadge-custom/',

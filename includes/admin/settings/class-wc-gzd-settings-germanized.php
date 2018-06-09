@@ -24,6 +24,8 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 		$this->id    = 'germanized';
 		$this->label = __( 'Germanized', 'woocommerce-germanized' );
 
+		add_filter( 'woocommerce_get_settings_account', array( $this, 'maybe_adjust_data_privacy_settings' ), 10, 1 );
+
 		add_filter( 'woocommerce_settings_tabs_array', array( $this, 'add_settings_page' ), 20 );
 		add_action( 'woocommerce_sections_' . $this->id, array( $this, 'output_sections' ) );
 		add_action( 'woocommerce_settings_' . $this->id, array( $this, 'output' ) );
@@ -56,6 +58,28 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 			}
 		}
 	}
+
+	public function maybe_adjust_data_privacy_settings( $settings ) {
+
+	    if ( apply_filters( 'woocommerce_gzd_disable_wc_privacy_policy_options', true ) ) {
+		    $url = admin_url( 'admin.php?page=wc-settings&tab=germanized' );
+		    $delete = array(
+			    'wp_page_for_privacy_policy',
+			    'woocommerce_registration_privacy_policy_text',
+			    'woocommerce_checkout_privacy_policy_text',
+		    );
+
+		    foreach( $settings as $key => $setting ) {
+			    if ( 'privacy_policy_options' === $setting['id'] ) {
+				    $settings[$key]['desc'] = sprintf( __( 'Please choose your data privacy settings from the available options within <a href="%s">Germanized</a>.', 'woocommerce-germanized' ), $url );
+			    } elseif( in_array( $setting['id'], $delete ) ) {
+				    unset( $settings[$key] );
+			    }
+		    }
+        }
+
+        return $settings;
+    }
 
 	public function image_field( $value ) {
 		?>
@@ -120,10 +144,10 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 	 * @return array
 	 */
 	public function get_settings() {
-		
+
 		$delivery_terms = array( '' => __( 'None', 'woocommerce-germanized' ) );
 		$terms = get_terms( 'product_delivery_time', array('fields' => 'id=>name', 'hide_empty' => false) );
-		
+
 		if ( ! is_wp_error( $terms ) )
 			$delivery_terms = $delivery_terms + $terms;
 
@@ -139,6 +163,8 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
                 array_push( $complaints_shortcode_missing, ( $page === 'terms' ? __( 'Terms & Conditions', 'woocommerce-germanized' ) : __( 'Imprint', 'woocommerce-germanized' ) ) );
             }
         }
+
+		$shipping_methods_options = WC_GZD_Admin::instance()->get_shipping_method_instances_options();
 
 		$settings = array(
 
@@ -238,7 +264,7 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 			),
 
 			array(
-				'title' 	=> __( 'Data Security Statement', 'woocommerce-germanized' ),
+				'title' 	=> __( 'Privacy Policy', 'woocommerce-germanized' ),
 				'desc' 		=> __( 'This page should contain information regarding your data security policy.', 'woocommerce-germanized' ),
 				'id' 		=> 'woocommerce_data_security_page_id',
 				'type' 		=> 'single_select_page',
@@ -272,6 +298,89 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 
 			array( 'type' => 'sectionend', 'id' => 'legal_pages_options' ),
 
+			array( 'title' => __( 'Privacy Policy', 'woocommerce-germanized' ), 'type' => 'title', 'desc' => '', 'id' => 'privacy_policy_options' ),
+
+			array(
+				'title' 	=> __( 'Registration', 'woocommerce-germanized' ),
+				'desc' 		=> __( 'Add a checkbox to customer registration form.', 'woocommerce-germanized' ),
+				'id' 		=> 'woocommerce_gzd_customer_account_checkbox',
+				'type' 		=> 'checkbox',
+				'default'	=> 'yes',
+			),
+
+			array(
+				'title' 	=> __( 'Text', 'woocommerce-germanized' ),
+				'desc' 		=> __( 'Choose a Plain Text which will be shown as checkbox text for customer account creation. Use {term_link}{/term_link}, {data_security_link}{/data_security_link}, {revocation_link}{/revocation_link} as Placeholders for the links to legal pages.', 'woocommerce-germanized' ),
+				'desc_tip'	=> true,
+				'default'   =>  __( 'Yes, I’d like create a new account and have read and understood the {data_security_link}data privacy statement{/data_security_link}.', 'woocommerce-germanized' ),
+				'css' 		=> 'width:100%; height: 65px;',
+				'id' 		=> 'woocommerce_gzd_customer_account_text',
+				'type' 		=> 'textarea',
+			),
+
+			array(
+				'title' 	=> __( 'Checkout', 'woocommerce-germanized' ),
+				'desc' 		=> __( 'Replace default WooCommerce text regarding account creation during checkout.', 'woocommerce-germanized' ),
+				'desc_tip'	=> __( 'Use the text from above instead of the default WooCommerce text regarding account creation during checkout. This checkbox is only show if you have activated guest accounts.', 'woocommerce-germanized' ),
+				'id' 		=> 'woocommerce_gzd_customer_account_checkout_checkbox',
+				'type' 		=> 'checkbox',
+				'default'	=> 'no',
+			),
+
+			array(
+				'title' 	=> __( 'Parcel Delivery', 'woocommerce-germanized' ),
+				'desc' 		=> __( 'Show checkbox for data transmission to third party parcel service providers.', 'woocommerce-germanized' ),
+				'desc_tip'	=> __( 'You may optionally choose to show a checkbox which lets the customer accept data transmission to a third party parcel service provider to receive parcel delivery reminders.', 'woocommerce-germanized' ),
+				'id' 		=> 'woocommerce_gzd_checkout_legal_parcel_delivery_checkbox',
+				'default'	=> 'no',
+				'type' 		=> 'checkbox',
+			),
+
+			array(
+				'title' 	=> __( 'Show checkbox', 'woocommerce-germanized' ),
+				'desc_tip' 	=> __( 'Choose whether you like to always show the parcel delivery checkbox or do only show for certain shipping methods.', 'woocommerce-germanized' ),
+				'id' 		=> 'woocommerce_gzd_checkout_legal_parcel_delivery_checkbox_show',
+				'default'	=> 'always',
+				'class'		=> 'chosen_select',
+				'options'	=> array(
+                    'shipping_methods' => __( 'For certain shipping methods.', 'woocommerce-germanized' ),
+                    'always'           => __( 'Always show.', 'woocommerce-germanized' ),
+                ),
+				'type' 		=> 'select',
+			),
+
+			array(
+				'title' 	=> __( 'Shipping Methods', 'woocommerce-germanized' ),
+				'desc' 		=> __( 'Select shipping methods which are applicable for the Opt-In Checkbox.', 'woocommerce-germanized' ),
+				'desc_tip'	=> true,
+				'id' 		=> 'woocommerce_gzd_checkout_legal_parcel_delivery_checkbox_methods',
+				'default'	=> array(),
+				'class'		=> 'chosen_select',
+				'options'	=> $shipping_methods_options,
+				'type' 		=> 'multiselect',
+			),
+
+			array(
+				'title' 	=> __( 'Mandatory', 'woocommerce-germanized' ),
+				'desc' 		=> __( 'Make the parcel delivery checkbox a required field.', 'woocommerce-germanized' ),
+				'desc_tip'	=> __( 'Make the checkbox mandatory to complete checkout.', 'woocommerce-germanized' ),
+				'id' 		=> 'woocommerce_gzd_checkout_legal_parcel_delivery_checkbox_required',
+				'default'	=> 'no',
+				'type' 		=> 'checkbox',
+			),
+
+			array(
+				'title' 	=> __( 'Text', 'woocommerce-germanized' ),
+				'desc' 		=> __( 'Choose a Plain Text which will be shown right next to the corresponding checkbox to inform the customer about the data being transfered to the third party shipping supplier. Use {shipping_method_title} to insert the shipping method title.', 'woocommerce-germanized' ),
+				'desc_tip'	=> true,
+				'default'   => __( 'Yes, I would like to be reminded via E-mail about parcel delivery ({shipping_method_title}). Your E-mail Address will only be transferred to our parcel service provider for that particular reason.', 'woocommerce-germanized' ),
+				'css' 		=> 'width:100%; height: 65px;',
+				'id' 		=> 'woocommerce_gzd_checkout_legal_text_parcel_delivery',
+				'type' 		=> 'textarea',
+			),
+
+			array( 'type' => 'sectionend', 'id' => 'privacy_policy_options' ),
+
 			array( 'title' => __( 'Dispute Resolution', 'woocommerce-germanized' ), 'type' => 'title', 'desc' => sprintf( __( 'As with Feb. 1 2017 new regulations regarding alternative dispute resolution take effect. Further information regarding your duty to supply information can be found <a href="%s" target="_blank">here</a>.', 'woocommerce-germanized' ), 'http://shopbetreiber-blog.de/2017/01/05/streitschlichtung-neue-infopflichten-fuer-alle-online-haendler-ab-1-februar/' ), 'id' => 'complaints_options' ),
 
 			array(
@@ -292,7 +401,7 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 				'title' 	=> __( 'Resolution Text', 'woocommerce-germanized' ),
 				'desc' 		=> __( 'Adapt this example text regarding alternative dispute resolution to your needs. Text will be added to the [gzd_complaints] Shortcode. You may as well add this text to your terms & conditions.', 'woocommerce-germanized' ),
 				'desc_tip'	=> true,
-				'default'   =>  __( 'The european commission provides a platform for online dispute resolution (OS) which is accessible at http://ec.europa.eu/consumers/odr/. We are not obliged nor willing to participate in dispute settlement proceedings before a consumer arbitration board.', 'woocommerce-germanized' ),
+				'default'   =>  __( 'The european commission provides a platform for online dispute resolution (OS) which is accessible at https://ec.europa.eu/consumers/odr. We are not obliged nor willing to participate in dispute settlement proceedings before a consumer arbitration board.', 'woocommerce-germanized' ),
 				'css' 		=> 'width:100%; height: 65px;',
 				'id' 		=> 'woocommerce_gzd_alternative_complaints_text_none',
 				'type' 		=> 'textarea',
@@ -302,7 +411,7 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 				'title' 	=> __( 'Resolution Text', 'woocommerce-germanized' ),
 				'desc' 		=> __( 'Adapt this example text regarding alternative dispute resolution to your needs. Text will be added to the [gzd_complaints] Shortcode. You may as well add this text to your terms & conditions.', 'woocommerce-germanized' ),
 				'desc_tip'	=> true,
-				'default'   =>  __( 'The european commission provides a platform for online dispute resolution (OS) which is accessible at http://ec.europa.eu/consumers/odr/. Consumers may use this platform for the settlements of their disputes. We are in principle prepared to participate in an extrajudicial arbitration proceeding.', 'woocommerce-germanized' ),
+				'default'   =>  __( 'The european commission provides a platform for online dispute resolution (OS) which is accessible at https://ec.europa.eu/consumers/odr. Consumers may use this platform for the settlements of their disputes. We are in principle prepared to participate in an extrajudicial arbitration proceeding.', 'woocommerce-germanized' ),
 				'css' 		=> 'width:100%; height: 65px;',
 				'id' 		=> 'woocommerce_gzd_alternative_complaints_text_willing',
 				'type' 		=> 'textarea',
@@ -312,7 +421,7 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 				'title' 	=> __( 'Resolution Text', 'woocommerce-germanized' ),
 				'desc' 		=> __( 'Adapt this example text regarding alternative dispute resolution to your needs. Text will be added to the [gzd_complaints] Shortcode. You may as well add this text to your terms & conditions.', 'woocommerce-germanized' ),
 				'desc_tip'	=> true,
-				'default'   =>  __( 'The european commission provides a platform for online dispute resolution (OS) which is accessible at http://ec.europa.eu/consumers/odr/. Consumers may contact [Name, Address, Website of arbitration board] for the settlements of their disputes. We are obliged to participate in arbitration proceeding before that board.', 'woocommerce-germanized' ),
+				'default'   =>  __( 'The european commission provides a platform for online dispute resolution (OS) which is accessible at https://ec.europa.eu/consumers/odr. Consumers may contact [Name, Address, Website of arbitration board] for the settlements of their disputes. We are obliged to participate in arbitration proceeding before that board.', 'woocommerce-germanized' ),
 				'css' 		=> 'width:100%; height: 65px;',
 				'id' 		=> 'woocommerce_gzd_alternative_complaints_text_obliged',
 				'type' 		=> 'textarea',
@@ -511,33 +620,6 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 			array( 'title' => __( 'Customers', 'woocommerce-germanized' ), 'type' => 'title', 'desc' => '', 'id' => 'customer_options' ),
 
 			array(
-				'title' 	=> __( 'Checkbox', 'woocommerce-germanized' ),
-				'desc' 		=> __( 'Add a checkbox to customer registration form.', 'woocommerce-germanized' ),
-				'id' 		=> 'woocommerce_gzd_customer_account_checkbox',
-				'type' 		=> 'checkbox',
-				'default'	=> 'yes',
-			),
-
-			array(
-				'title' 	=> __( 'Checkbox text', 'woocommerce-germanized' ),
-				'desc' 		=> __( 'Choose a Plain Text which will be shown as checkbox text for customer account creation. Use {term_link}{/term_link}, {data_security_link}{/data_security_link}, {revocation_link}{/revocation_link} as Placeholders for the links to legal pages.', 'woocommerce-germanized' ),
-				'desc_tip'	=> true,
-				'default'   =>  __( 'Yes, I’d like create a new account and have read and understood the {data_security_link}data privacy statement{/data_security_link}.', 'woocommerce-germanized' ),
-				'css' 		=> 'width:100%; height: 65px;',
-				'id' 		=> 'woocommerce_gzd_customer_account_text',
-				'type' 		=> 'textarea',
-			),
-
-			array(
-				'title' 	=> __( 'Checkout', 'woocommerce-germanized' ),
-				'desc' 		=> __( 'Replace default WooCommerce text regarding account creation during checkout.', 'woocommerce-germanized' ),
-				'desc_tip'	=> __( 'Use the text from above instead of the default WooCommerce text regarding account creation during checkout. This checkbox is only show if you have activated guest accounts.', 'woocommerce-germanized' ),
-				'id' 		=> 'woocommerce_gzd_customer_account_checkout_checkbox',
-				'type' 		=> 'checkbox',
-				'default'	=> 'yes',
-			),
-
-			array(
 				'title' 	=> __( 'Customer Double Opt In', 'woocommerce-germanized' ),
 				'desc' 		=> __( 'Enable customer double opt in on registration?', 'woocommerce-germanized' ),
 				'desc_tip'  => sprintf( __( 'If customer chooses to create a customer account an email with an activation link will be sent by mail. Customer account will be marked as activated if user clicks on the link within the email. More information on this topic can be found <a href="%s" target="_blank">here</a>.', 'woocommerce-germanized' ), 'http://t3n.de/news/urteil-anmeldebestatigungen-double-opt-in-pflicht-592304/' ),
@@ -618,7 +700,7 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 			array( 'type' => 'sectionend', 'id' => 'vat_options' ),
 
 		); // End general settings
-	
+
 		return apply_filters( 'woocommerce_germanized_settings', $settings );
 
 	}
@@ -757,6 +839,7 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 		), $product_types );
 
 		$shipping_methods_options = WC_GZD_Admin::instance()->get_shipping_method_instances_options();
+		$payment_gateway_options =  WC_GZD_Admin::instance()->get_payment_gateway_options();
 
 		$settings = array(
 
@@ -1104,7 +1187,7 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 				'title' 	=> __( 'Legal Text', 'woocommerce-germanized' ),
 				'desc' 		=> __( 'Choose a Plain Text which will be shown right above checkout submit button. Use {term_link}{/term_link}, {data_security_link}{/data_security_link}, {revocation_link}{/revocation_link} as Placeholders for the links to legal pages.', 'woocommerce-germanized' ),
 				'desc_tip'	=> true,
-				'default'   =>  __( 'With your order, you agree to have read and understood our {term_link}Terms and Conditions{/term_link} and your {revocation_link}Right of Recission{/revocation_link}.', 'woocommerce-germanized' ),
+				'default'   =>  __( 'With your order, you agree to have read and understood our {term_link}Terms and Conditions{/term_link} your {revocation_link}Right of Recission{/revocation_link} and our {data_security_link}Privacy Policy{/data_security_link}.', 'woocommerce-germanized' ),
 				'css' 		=> 'width:100%; height: 65px;',
 				'id' 		=> 'woocommerce_gzd_checkout_legal_text',
 				'type' 		=> 'textarea',
@@ -1114,7 +1197,7 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 				'title' 	=> __( 'Legal Text Error', 'woocommerce-germanized' ),
 				'desc' 		=> __( 'If you have chosen to use checkbox validation please choose a error message which will be shown if the user doesn\'t check checkbox. Use {term_link}{/term_link}, {data_security_link}{/data_security_link}, {revocation_link}{/revocation_link} as Placeholders for the links to legal pages.', 'woocommerce-germanized' ),
 				'desc_tip'	=> true,
-				'default'   =>  __( 'To finish the order you have to accept to our {term_link}Terms and Conditions{/term_link} and {revocation_link}Right of Recission{/revocation_link}.', 'woocommerce-germanized' ),
+				'default'   =>  __( 'To finish the order you have to accept to our {term_link}Terms and Conditions{/term_link}, {revocation_link}Right of Recission{/revocation_link} and our {data_security_link}Privacy Policy{/data_security_link}.', 'woocommerce-germanized' ),
 				'css' 		=> 'width:100%; height: 65px;',
 				'id' 		=> 'woocommerce_gzd_checkout_legal_text_error',
 				'type' 		=> 'textarea',
@@ -1210,51 +1293,22 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 			),
 
 			array(
-				'title' 	=> __( 'Parcel Delivery Checkbox', 'woocommerce-germanized' ),
-				'desc' 		=> __( 'Show checkbox for data transmission to third party parcel service providers.', 'woocommerce-germanized' ),
-				'desc_tip'	=> __( 'You may optionally choose to show a checkbox which lets the customer accept data transmission to a third party parcel service provider to receive parcel delivery reminders.', 'woocommerce-germanized' ),
-				'id' 		=> 'woocommerce_gzd_checkout_legal_parcel_delivery_checkbox',
-				'default'	=> 'no',
-				'type' 		=> 'checkbox',
-			),
-
-			array(
-				'title' 	=> __( 'Checkbox required', 'woocommerce-germanized' ),
-				'desc' 		=> __( 'Make the parcel delivery checkbox a required field.', 'woocommerce-germanized' ),
-				'desc_tip'	=> __( 'For some reason you may want to force your customers to Opt-In to the data transmission to a third party parcel service provider.', 'woocommerce-germanized' ),
-				'id' 		=> 'woocommerce_gzd_checkout_legal_parcel_delivery_checkbox_required',
-				'default'	=> 'no',
-				'type' 		=> 'checkbox',
-			),
-
-			array(
-				'title' 	=> __( 'Parcel Delivery Text', 'woocommerce-germanized' ),
-				'desc' 		=> __( 'Choose a Plain Text which will be shown right next to the corresponding checkbox to inform the customer about the data being transfered to the third party shipping supplier. Use {shipping_method_title} to insert the shipping method title.', 'woocommerce-germanized' ),
-				'desc_tip'	=> true,
-				'default'   => __( 'Yes, I would like to be reminded via E-mail about parcel delivery ({shipping_method_title}). Your E-mail Address will only be transferred to our parcel service provider for that particular reason.', 'woocommerce-germanized' ),
-				'css' 		=> 'width:100%; height: 65px;',
-				'id' 		=> 'woocommerce_gzd_checkout_legal_text_parcel_delivery',
-				'type' 		=> 'textarea',
-			),
-
-			array(
-				'title' 	=> __( 'Shipping Methods', 'woocommerce-germanized' ),
-				'desc' 		=> __( 'Select shipping methods which are applicable for the Opt-In Checkbox.', 'woocommerce-germanized' ),
-				'desc_tip'	=> true,
-				'id' 		=> 'woocommerce_gzd_checkout_legal_parcel_delivery_checkbox_methods',
-				'default'	=> array(),
-				'class'		=> 'chosen_select',
-				'options'	=> $shipping_methods_options,
-				'type' 		=> 'multiselect',
-			),
-
-			array(
 				'title' 	=> __( 'Pay now Button', 'woocommerce-germanized' ),
 				'desc' 		=> __( 'Add a pay now button to emails and order success page.', 'woocommerce-germanized' ),
 				'desc_tip' 	=> __( 'Add a pay now button to order confirmation email and order success page if the order awaits payment (PayPal etc).', 'woocommerce-germanized' ),
 				'id' 		=> 'woocommerce_gzd_order_pay_now_button',
 				'type' 		=> 'checkbox',
 				'default'	=> 'yes',
+			),
+
+			array(
+				'title' 	=> __( 'Disabled for', 'woocommerce-germanized' ),
+				'desc_tip'  => __( 'You may want to disable the pay now button for certain payment methods.', 'woocommerce-germanized' ),
+				'id' 		=> 'woocommerce_gzd_order_pay_now_button_disabled_methods',
+				'default'	=> array(),
+				'class'		=> 'chosen_select',
+				'options'	=> $payment_gateway_options,
+				'type' 		=> 'multiselect',
 			),
 
 			array(

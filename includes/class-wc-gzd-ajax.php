@@ -90,8 +90,12 @@ class WC_GZD_AJAX {
 							if ( ! is_email( $_POST[ $key ] ) )
 								wc_add_notice( '<strong>' . $field['label'] . '</strong> ' . _x( 'is not a valid email address.', 'revocation-form', 'woocommerce-germanized' ), 'error' );
 						} elseif ( $key == 'address_postal' ) {
-							if ( ! WC_Validation::is_postcode( $_POST[ $key ], $_POST[ 'address_country' ] ) || empty( $_POST[ $key ] ) )
+							if ( ! WC_Validation::is_postcode( $_POST[ $key ], $_POST['address_country'] ) || empty( $_POST[ $key ] ) ) {
 								wc_add_notice( _x( 'Please enter a valid postcode/ZIP', 'revocation-form', 'woocommerce-germanized' ), 'error' );
+							}
+						} elseif( $key === 'privacy_checkbox' ) {
+							if ( isset( $field[ 'required' ] ) && empty( $_POST[ $key ] ) )
+								wc_add_notice( '<strong>' . $field['label'] . '</strong>', 'error' );
 						} else {
 							if ( isset( $field[ 'required' ] ) && empty( $_POST[ $key ] ) )
 								wc_add_notice( '<strong>' . $field['label'] . '</strong> ' . _x( 'is not valid.', 'revocation-form', 'woocommerce-germanized' ), 'error' );

@@ -68,6 +68,10 @@ class WC_GZD_Payment_Gateways {
 		$this->manipulate_gateways();
 	}
 
+	public function gateway_supports_fees( $id ) {
+		return in_array( $id, apply_filters( 'woocommerce_gzd_fee_supporting_gateways', array( 'cod' ) ) ) ? true : false;
+	}
+
 	public function manipulate_gateways() {
 
 		$gateways = WC()->payment_gateways->get_available_payment_gateways();
@@ -79,7 +83,7 @@ class WC_GZD_Payment_Gateways {
 			if ( ! isset( $gateway->force_order_button_text ) || $gateway->force_order_button_text )
 				$gateway->order_button_text = apply_filters( 'woocommerce_gzd_order_button_payment_gateway_text', __( get_option( 'woocommerce_gzd_order_submit_btn_text' ), 'woocommerce-germanized' ), $gateway->id );
 			
-			if ( $gateway->get_option( 'fee' ) ) {
+			if ( $this->gateway_supports_fees( $gateway->id ) && $gateway->get_option( 'fee' ) ) {
 
 				$gateway_description = $this->gateway_data[ $gateway->id ][ 'description' ];
 
@@ -112,10 +116,15 @@ class WC_GZD_Payment_Gateways {
 	 */
 	public function set_title( $title, $id ) {
 		$gateways = WC()->payment_gateways->get_available_payment_gateways();
+
 		foreach ( $gateways as $gateway ) {
 
 			if ( $gateway->id != $id )
 				continue;
+
+			if ( !  $this->gateway_supports_fees( $gateway->id ) ) {
+				return $title;
+			}
 
 			$this->maybe_set_gateway_data( $gateway );
 
@@ -133,9 +142,15 @@ class WC_GZD_Payment_Gateways {
 	 */
 	public function init_fields() {
 		$gateways = WC()->payment_gateways->payment_gateways;
+
 		if ( ! empty( $gateways ) ) {
-			foreach ( $gateways as $key => $gateway ) {
-				add_filter( 'woocommerce_settings_api_form_fields_' . $gateway->id, array( $this, "set_fields" ) );
+				foreach ( $gateways as $key => $gateway ) {
+
+					if ( !  $this->gateway_supports_fees( $gateway->id ) ) {
+						continue;
+					}
+
+					add_filter( 'woocommerce_settings_api_form_fields_' . $gateway->id, array( $this, "set_fields" ) );
 			}
 		}
 	}
@@ -163,7 +178,7 @@ class WC_GZD_Payment_Gateways {
 			'default'     => 'no',
 		);
 
-		if ( 'wc_gateway_cod' === $gateway ) {
+		if ( 'wc_gateway_cod' === $gateway || 'cod' === $gateway ) {
 
 			$fields[ 'forwarding_fee' ] = array(
 				'title'       => __( 'Forwarding Fee', 'woocommerce-germanized' ),
@@ -188,6 +203,10 @@ class WC_GZD_Payment_Gateways {
 			return;
 
 		$gateway = $gateways[ $key ];
+
+		if ( !  $this->gateway_supports_fees( $gateway->id ) ) {
+			return;
+		}
 
 		if ( $gateway->get_option( 'fee' ) )
 			$this->set_fee( $gateway );

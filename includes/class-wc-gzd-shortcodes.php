@@ -73,7 +73,7 @@ class WC_GZD_Shortcodes {
 		);
 
 		foreach( $texts as $key => $text ) {
-			$texts[ $key ] = wpautop( str_replace( 'http://ec.europa.eu/consumers/odr/', '<a href="http://ec.europa.eu/consumers/odr/" target="_blank">http://ec.europa.eu/consumers/odr/</a>', $text ) );
+			$texts[ $key ] = wpautop( str_replace( array( 'https://ec.europa.eu/consumers/odr', 'http://ec.europa.eu/consumers/odr/' ), '<a href="https://ec.europa.eu/consumers/odr" target="_blank">https://ec.europa.eu/consumers/odr</a>', $text ) );
 		}
 
 		ob_start();
