@@ -335,7 +335,7 @@ class WC_GZD_Emails {
 				echo wpautop( '<div class="gzd-differential-taxation-notice-email">' . $notice . '</div>' );
 			}
 
-			if ( $type->id == 'customer_processing_order' ) {
+			if ( 'customer_processing_order' === $type->id ) {
 
 				if ( $is_downloadable && $text = wc_gzd_get_legal_text_digital_email_notice() )
 					echo wpautop( apply_filters( 'woocommerce_gzd_order_confirmation_digital_notice', '<div class="gzd-digital-notice-text">' . $text . '</div>', $order ) );

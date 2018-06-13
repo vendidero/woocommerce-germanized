@@ -206,6 +206,10 @@ class WC_GZD_Trusted_Shops {
 		return ( $this->review_reminder_enable === 'yes' && $this->supports( 'reminder' ) && $this->is_enabled() ? true : false );
 	}
 
+	public function is_review_reminder_checkbox_enabled() {
+		return ( $this->review_reminder_checkbox === 'yes' && $this->is_review_reminder_enabled() ? true : false );
+	}
+
 	public function is_product_reviews_enabled() {
 		return ( $this->enable_reviews === 'yes' && $this->is_enabled() ? true : false );
 	}

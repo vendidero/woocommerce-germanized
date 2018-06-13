@@ -202,7 +202,7 @@ function wc_gzd_cart_product_units( $title, $cart_item, $cart_item_key = '' ) {
  */
 function wc_gzd_get_cart_tax_share( $type = 'shipping' ) {
 	
-	$cart = WC()->cart->get_cart();
+	$cart = WC()->cart->cart_contents;
 	$tax_shares = array();
 	$item_totals = 0;
 	
@@ -210,12 +210,15 @@ function wc_gzd_get_cart_tax_share( $type = 'shipping' ) {
 	if ( ! empty( $cart ) ) {
 		
 		foreach ( $cart as $key => $item ) {
-			
+
 			$_product = apply_filters( 'woocommerce_cart_item_product', $item[ 'data' ], $item, $key );
-			
-			// Dont calculate share if is shipping and product is virtual or vat exception
-			if ( $type == 'shipping' && $_product->is_virtual() || ( wc_gzd_get_gzd_product( $_product )->is_virtual_vat_exception() && $type == 'shipping' ) )
-				continue;
+			$_product_shipping = apply_filters( 'woocommerce_gzd_cart_item_tax_share_product', $_product, $item, $key, $type );
+
+			$no_shipping = ( 'shipping' === $type && $_product_shipping->is_virtual() || ( wc_gzd_get_gzd_product( $_product_shipping )->is_virtual_vat_exception() && 'shipping' === $type ) );
+
+			if ( apply_filters( 'woocommerce_gzd_cart_item_not_supporting_tax_share', $no_shipping, $item, $key, $type ) ) {
+			    continue;
+            }
 			
 			$class = $_product->get_tax_class();
 			
@@ -332,111 +335,86 @@ function wc_gzd_cart_totals_order_total_tax_html() {
     <?php endforeach;
 }
 
-function wc_gzd_get_legal_text( $text = '' ) {
 
-    $plain_text = ( $text == '' ? apply_filters( 'woocommerce_gzd_legal_text', get_option( 'woocommerce_gzd_checkout_legal_text' ) ) : $text );
-
-    if ( ! empty( $plain_text ) ) {
-		$plain_text = str_replace( 
-			array( '{term_link}', '{data_security_link}', '{revocation_link}', '{/term_link}', '{/data_security_link}', '{/revocation_link}' ), 
-			array( 
+function wc_gzd_get_legal_text( $plain_text ) {
+	if ( ! empty( $plain_text ) ) {
+		$plain_text = str_replace(
+			array( '{term_link}', '{data_security_link}', '{revocation_link}', '{/term_link}', '{/data_security_link}', '{/revocation_link}' ),
+			array(
 				'<a href="' . esc_url( wc_gzd_get_page_permalink( 'terms' ) ) . '" target="_blank">',
-				'<a href="' . esc_url( wc_gzd_get_page_permalink( 'data_security' ) ) . '" target="_blank">', 
-				'<a href="' . esc_url( wc_gzd_get_page_permalink( 'revocation' ) ) . '" target="_blank">', 
+				'<a href="' . esc_url( wc_gzd_get_page_permalink( 'data_security' ) ) . '" target="_blank">',
+				'<a href="' . esc_url( wc_gzd_get_page_permalink( 'revocation' ) ) . '" target="_blank">',
 				'</a>',
 				'</a>',
-				'</a>', 
-			), 
-			$plain_text 
+				'</a>',
+			),
+			$plain_text
 		);
 	}
-	return  $plain_text;
+
+	return $plain_text;
 }
 
 function wc_gzd_get_legal_text_error() {
-
-    $plain_text = '';
-	$text = apply_filters( 'woocommerce_gzd_legal_error_text', get_option( 'woocommerce_gzd_checkout_legal_text_error' ) );
-
-	if ( $text )
-		$plain_text = wc_gzd_get_legal_text( $text );
-
-	return $plain_text;
+	wc_gzd_deprecated_function( __FUNCTION__, '2.0' );
 }
 
 function wc_gzd_get_legal_text_digital() {
-
-    $plain_text = '';
-    $text = apply_filters( 'woocommerce_gzd_legal_digital_text', get_option( 'woocommerce_gzd_checkout_legal_text_digital', __( 'I want immediate access to the digital content and I acknowledge that thereby I lose my right to cancel once the service has begun.', 'woocommerce-germanized' ) ) );
-
-	if ( $text )
-		$plain_text = wc_gzd_get_legal_text( $text );
-
-	return $plain_text;
+	wc_gzd_deprecated_function( __FUNCTION__, '2.0' );
 }
 
 function wc_gzd_get_legal_text_digital_error() {
-
-    $plain_text = '';
-	$text = apply_filters( 'woocommerce_gzd_legal_digital_error_text', get_option( 'woocommerce_gzd_checkout_legal_text_digital_error', __( 'To retrieve direct access to digital content you have to agree to the loss of your right of withdrawal.', 'woocommerce-germanized' ) ) );
-
-    if ( $text )
-		$plain_text = wc_gzd_get_legal_text( $text );
-
-	return $plain_text;
+	wc_gzd_deprecated_function( __FUNCTION__, '2.0' );
 }
 
 function wc_gzd_get_legal_text_digital_email_notice() {
-	$text = apply_filters( 'woocommerce_gzd_legal_digital_email_text', get_option( 'woocommerce_gzd_order_confirmation_legal_digital_notice' ) );
-	if ( $text ) {
-		$text = str_replace( 
-			array( '{link}', '{/link}' ), 
-			array( 
-				'<a href="' . esc_url( wc_gzd_get_page_permalink( 'revocation' ) ) . '" target="_blank">',
-				'</a>'
-			),
-			$text
-		);
-	}
+    $text = '';
 
-	return $text;
+    if ( $checkbox = wc_gzd_get_legal_checkbox( 'download' ) ) {
+	    $text = $checkbox->confirmation;
+
+	    if ( $text ) {
+		    $text = str_replace(
+			    array( '{link}', '{/link}' ),
+			    array(
+				    '<a href="' . esc_url( wc_gzd_get_page_permalink( 'revocation' ) ) . '" target="_blank">',
+				    '</a>'
+			    ),
+			    $text
+		    );
+	    }
+    }
+
+	return apply_filters( 'woocommerce_gzd_legal_digital_email_text', $text );
 }
 
 function wc_gzd_get_legal_text_service() {
-	$plain_text = __( 'For services: I demand and acknowledge the immediate performance of the service before the expiration of the withdrawal period. I acknowledge that thereby I lose my right to cancel once the service has begun.', 'woocommerce-germanized' );
-	
-	if ( get_option( 'woocommerce_gzd_checkout_legal_text_service' ) )
-		$plain_text = wc_gzd_get_legal_text( get_option( 'woocommerce_gzd_checkout_legal_text_service' ) );
-	
-	return apply_filters( 'woocommerce_gzd_legal_service_text', $plain_text );
+	wc_gzd_deprecated_function( __FUNCTION__, '2.0' );
 }
 
 function wc_gzd_get_legal_text_service_error() {
-
-    $plain_text = '';
-	$text = apply_filters( 'woocommerce_gzd_legal_service_error_text', get_option( 'woocommerce_gzd_checkout_legal_text_service_error', __( 'To allow the immediate performance of the services you have to agree to the loss of your right of withdrawal.', 'woocommerce-germanized' ) ) );
-
-	if ( get_option( 'woocommerce_gzd_checkout_legal_text_service_error' ) )
-		$plain_text = wc_gzd_get_legal_text( $text );
-	
-	return $plain_text;
+	wc_gzd_deprecated_function( __FUNCTION__, '2.0' );
 }
 
 function wc_gzd_get_legal_text_service_email_notice() {
-	$text = apply_filters( 'woocommerce_gzd_legal_service_email_text', get_option( 'woocommerce_gzd_order_confirmation_legal_service_notice' ) );
-	
-	if ( $text ) {
-		$text = str_replace( 
-			array( '{link}', '{/link}' ), 
-			array( 
-				'<a href="' . esc_url( wc_gzd_get_page_permalink( 'revocation' ) ) . '" target="_blank">',
-				'</a>'
-			),
-			$text
-		);
+	$text = '';
+
+	if ( $checkbox = wc_gzd_get_legal_checkbox( 'service' ) ) {
+		$text = $checkbox->confirmation;
+
+		if ( $text ) {
+			$text = str_replace(
+				array( '{link}', '{/link}' ),
+				array(
+					'<a href="' . esc_url( wc_gzd_get_page_permalink( 'revocation' ) ) . '" target="_blank">',
+					'</a>'
+				),
+				$text
+			);
+		}
 	}
 
-	return $text;
+	return apply_filters( 'woocommerce_gzd_legal_service_email_text', $text );
 }
 
 function wc_gzd_get_chosen_shipping_rates( $args = array() ) {
@@ -463,14 +441,5 @@ function wc_gzd_get_chosen_shipping_rates( $args = array() ) {
 }
 
 function wc_gzd_get_legal_text_parcel_delivery( $titles = array() ) {
-	$plain_text = __( 'Yes, I would like to be reminded via E-mail about parcel delivery ({shipping_method_title}). Your E-mail Address will only be transferred to our parcel service provider for that particular reason.', 'woocommerce-germanized' );
-
-	if ( get_option( 'woocommerce_gzd_checkout_legal_text_parcel_delivery' ) )
-		$plain_text = get_option( 'woocommerce_gzd_checkout_legal_text_parcel_delivery' );
-
-	if ( ! empty( $titles ) ) {
-		$plain_text = str_replace( '{shipping_method_title}', implode( ', ', $titles ), $plain_text );
-	}
-	
-	return apply_filters( 'woocommerce_gzd_legal_text_parcel_delivery', $plain_text, $titles );
+	wc_gzd_deprecated_function( __FUNCTION__, '2.0' );
 }

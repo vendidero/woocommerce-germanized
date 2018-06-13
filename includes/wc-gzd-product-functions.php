@@ -67,33 +67,37 @@ function wc_gzd_get_small_business_product_notice() {
 }
 
 function wc_gzd_is_revocation_exempt( $product, $type = 'digital' ) {
-	
-	$types = apply_filters( 'woocommerce_gzd_digital_product_types', get_option( 'woocommerce_gzd_checkout_legal_digital_types', array( 'downloadable' ) ) );
+	if ( 'digital' === $type && ( $checkbox = wc_gzd_get_legal_checkbox( 'download' ) ) ) {
+		$types = apply_filters( 'woocommerce_gzd_digital_product_types', $checkbox->types );
 
-	if ( empty( $types ) )
-		return false;
-	
-	elseif ( ! is_array( $types ) )
-		$types = array( $types );
-
-	if ( $type === 'digital' ) {
+		if ( empty( $types ) ) {
+			return false;
+		} elseif ( ! is_array( $types ) ) {
+			$types = array( $types );
+		}
 
 		foreach ( $types as $revo_type ) {
-
-			if ( wc_gzd_product_matches_extended_type( $revo_type, $product ) )
+			if ( wc_gzd_product_matches_extended_type( $revo_type, $product ) ) {
 				return true;
+			}
 		}
-	} elseif ( $type === 'service' ) {
-		if ( wc_gzd_get_gzd_product( $product )->is_service() )
+	} elseif ( 'service' === $type ) {
+		if ( wc_gzd_get_gzd_product( $product )->is_service() ) {
 			return true;
+		}
 	}
-
-	if ( apply_filters( 'woocommerce_gzd_product_is_revocation_exception', false, $product, $type ) )
-		return true;
 
 	return false;
 }
 
+/**
+ * Checks whether the product matches one of the types.
+ *
+ * @param array|string $types multiple types are OR connected
+ * @param $product
+ *
+ * @return bool
+ */
 function wc_gzd_product_matches_extended_type( $types, $product ) {
 
 	if ( empty( $types ) )
@@ -113,8 +117,7 @@ function wc_gzd_product_matches_extended_type( $types, $product ) {
 	} else {
 		foreach ( $types as $type ) {
 			if ( 'service' === $type ) {
-				$is_service = wc_gzd_get_crud_data( $product, 'service' );
-				$matches_type = ( $is_service === 'yes' );
+				$matches_type = wc_gzd_get_gzd_product( $product )->is_service();
 			} else {
 				$getter = "is_" . $type;
 				try {
@@ -126,6 +129,10 @@ function wc_gzd_product_matches_extended_type( $types, $product ) {
 						}
 					}
 				} catch ( Exception $e ) {}
+			}
+			// Seems like we found a match - lets escape the loop
+			if ( $matches_type === true ) {
+				break;
 			}
 		}
 	}

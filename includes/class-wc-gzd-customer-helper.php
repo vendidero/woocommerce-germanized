@@ -29,14 +29,10 @@ class WC_GZD_Customer_Helper {
 	}
 
 	public function __construct() {
-		
-		// Customer Account checkbox
-		add_action( 'template_redirect', array( $this, 'init_gettext_replacement' ) );
 		// Send customer account notification
 		add_action( 'woocommerce_email', array( $this, 'email_hooks' ), 0, 1 );
 		// Add Title to user profile
 		add_filter( 'woocommerce_customer_meta_fields', array( $this, 'profile_field_title' ), 10, 1 );
-
 		add_filter( 'woocommerce_ajax_get_customer_details', array( $this, 'load_customer_fields' ), 10, 3 );
 
 		if ( $this->is_double_opt_in_enabled() ) {
@@ -45,8 +41,6 @@ class WC_GZD_Customer_Helper {
 			add_action( 'template_redirect', array( $this, 'customer_account_activation_check' ) );
 			// Cronjob to delete unactivated users
 			add_action( 'woocommerce_gzd_customer_cleanup', array( $this, 'account_cleanup' ) );
-
-			add_action( 'woocommerce_created_customer', array( $this, 'set_customer_activation_meta' ), 10, 3 );
 
 			if ( $this->is_double_opt_in_login_enabled() ) {
 				// Disable login for unactivated users
@@ -66,9 +60,7 @@ class WC_GZD_Customer_Helper {
 				// WC Social Login comp
 				add_filter( 'wc_social_login_set_auth_cookie', array( $this, 'social_login_activation_check' ), 10, 2 );
 			}
-
 		}
-
 	}
 
 	public function load_customer_fields( $data, $customer, $user_id ) {
@@ -288,23 +280,24 @@ class WC_GZD_Customer_Helper {
 	 * Check for activation codes on my account page
 	 */
 	public function customer_account_activation_check() {
-		
 		if ( is_account_page() ) {
-
 			if ( isset( $_GET[ 'activate' ] ) ) {
-			
 				$activation_code = sanitize_text_field( $_GET[ 'activate' ] );
-			
 				if ( ! empty( $activation_code ) ) {
-
 					if ( $this->customer_account_activate( $activation_code, true ) ) {
-						
-						wc_add_notice( __( 'Thank you. You have successfully activated your account.', 'woocommerce-germanized' ), 'notice' );
-						return;
+						$url = add_query_arg( array( 'activated' => 'yes' ) );
+						$url = remove_query_arg( 'activate', $url );
+
+						wp_safe_redirect( apply_filters( 'woocommerce_gzd_double_opt_in_successful_redirect', $url ) );
+					}
+
+					// Double Opt In failed
+					if ( ! is_user_logged_in() ) {
+						wc_add_notice( __( 'Sorry, but this activation code cannot be found.', 'woocommerce-germanized' ), 'error' );
 					}
 				}
-
-				wc_add_notice( __( 'Sorry, but this activation code cannot be found.', 'woocommerce-germanized' ), 'error' );
+			} elseif( isset( $_GET['activated'] ) ) {
+				wc_add_notice( __( 'Thank you. You have successfully activated your account.', 'woocommerce-germanized' ), 'notice' );
 			}
 		}
 	}
@@ -383,40 +376,17 @@ class WC_GZD_Customer_Helper {
 
 				return true;
 			}
-
 		}
 
 		return false;
 	}
 
-	public function init_gettext_replacement() {
-
-		if ( is_checkout() && get_option( 'woocommerce_gzd_customer_account_checkout_checkbox' ) == 'yes' )
-			add_filter( 'gettext', array( $this, 'set_customer_account_checkbox_text' ), 10, 3 );
-	}
-
-	public function set_customer_account_checkbox_text( $translated, $original, $domain ) {
-
-		$search = "Create an account?";
-
-		if ( $domain === 'woocommerce' && $original === $search ) {
-			remove_filter( 'gettext', array( $this, 'set_customer_account_checkbox_text' ), 10, 3 );
-			return wc_gzd_get_legal_text( get_option( 'woocommerce_gzd_customer_account_text' ) );
-		}
-
-		return $translated;
-	}
-
 	public function email_hooks( $mailer ) {
-
 		// Add new customer activation
-		if ( get_option( 'woocommerce_gzd_customer_activation' ) == 'yes' ) {
-			
+		if ( 'yes' === get_option( 'woocommerce_gzd_customer_activation' ) ) {
 			remove_action( 'woocommerce_created_customer_notification', array( $mailer, 'customer_new_account' ), 10 );
 			add_action( 'woocommerce_created_customer_notification', array( $this, 'customer_new_account_activation' ), 9, 3 );
-		
 		}
-
 	}
 
 	/**
@@ -433,25 +403,16 @@ class WC_GZD_Customer_Helper {
 		if ( ! $this->enable_double_opt_in_for_user( $customer_id ) )
 			return;
 
-		if ( ! wc_gzd_get_dependencies()->woocommerce_version_supports_crud() ) {
-			$this->set_customer_activation_meta( $customer_id, $new_customer_data, $password_generated );
-		}
-
-		// Try to flush the cache before continuing
-		WC_GZD_Cache_Helper::maybe_flush_cache( 'db', array( 'cache_type' => 'meta', 'meta_type' => 'user', 'meta_key' => '_woocommerce_activation' ) );
-
 		$user_pass = ! empty( $new_customer_data['user_pass'] ) ? $new_customer_data['user_pass'] : '';
 
-		$user_activation = get_user_meta( $customer_id, '_woocommerce_activation', true );
+		$user_activation = $this->get_customer_activation_meta( $customer_id );
 		$user_activation_url = apply_filters( 'woocommerce_gzd_customer_activation_url', add_query_arg( array( 'activate' => $user_activation ), wc_gzd_get_page_permalink( 'myaccount' ) ) );
 
 		if ( $email = WC_germanized()->emails->get_email_instance_by_id( 'customer_new_account_activation' ) )
 			$email->trigger( $customer_id, $user_activation, $user_activation_url, $user_pass, $password_generated );
-
 	}
 
-	public function set_customer_activation_meta( $customer_id, $new_customer_data, $password_generated ) {
-
+	public function get_customer_activation_meta( $customer_id ) {
 		global $wp_hasher;
 
 		if ( ! $customer_id )
@@ -460,14 +421,21 @@ class WC_GZD_Customer_Helper {
 		if ( ! $this->enable_double_opt_in_for_user( $customer_id ) )
 			return;
 
+		// If meta does already exist - return activation code
+		if ( $activation = get_user_meta( $customer_id, '_woocommerce_activation', true ) ) {
+			return $activation;
+		}
+
+		// Meta does not exist yet - create new activation code
 		if ( empty( $wp_hasher ) ) {
 			require_once ABSPATH . WPINC . '/class-phpass.php';
 			$wp_hasher = new PasswordHash( 8, true );
 		}
 
 		$user_activation = $wp_hasher->HashPassword( wp_generate_password( 20 ) );
-
 		add_user_meta( $customer_id, '_woocommerce_activation', $user_activation );
+
+		return $user_activation;
 	}
 
 }

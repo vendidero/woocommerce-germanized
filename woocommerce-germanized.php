@@ -2,14 +2,14 @@
 /**
  * Plugin Name: WooCommerce Germanized
  * Plugin URI: https://www.vendidero.de/woocommerce-germanized
- * Description: Extends WooCommerce to become a legally compliant store for the german market.
- * Version: 1.9.10
+ * Description: WooCommerce Germanized extends WooCommerce to become a legally compliant store in the german market.
+ * Version: 2.0.0
  * Author: Vendidero
  * Author URI: https://vendidero.de
  * Requires at least: 3.8
  * Tested up to: 4.9
- * WC requires at least: 2.4
- * WC tested up to: 3.4
+ * WC requires at least: 2.4.0
+ * WC tested up to: 3.4.0
  * Requires at least WooCommerce: 2.4
  * Tested up to WooCommerce: 3.4
  *
@@ -31,7 +31,7 @@ final class WooCommerce_Germanized {
 	 *
 	 * @var string
 	 */
-	public $version = '1.9.10';
+	public $version = '2.0.0';
 
 	/**
 	 * Single instance of WooCommerce Germanized Main Class
@@ -133,7 +133,6 @@ final class WooCommerce_Germanized {
 
 		// Define constants
 		$this->define_constants();
-
 		$this->includes();
 
 		// Hooks
@@ -157,6 +156,11 @@ final class WooCommerce_Germanized {
 		// Loaded action
 		do_action( 'woocommerce_germanized_loaded' );
 
+		if ( did_action( 'woocommerce_loaded' ) ) {
+			$this->checkbox_includes();
+		} else {
+			add_action( 'woocommerce_loaded', array( $this, 'checkbox_includes' ) );
+		}
 	}
 
 	/**
@@ -316,6 +320,7 @@ final class WooCommerce_Germanized {
 			include_once( 'includes/admin/class-wc-gzd-admin-welcome.php' );
 			include_once( 'includes/admin/class-wc-gzd-admin-notices.php' );
 			include_once( 'includes/admin/class-wc-gzd-admin-customer.php' );
+			include_once( 'includes/admin/class-wc-gzd-admin-legal-checkboxes.php' );
 			include_once( 'includes/admin/class-wc-gzd-admin-importer.php' );
 
 			include_once( 'includes/export/class-wc-gzd-product-export.php' );
@@ -373,6 +378,12 @@ final class WooCommerce_Germanized {
 
 	}
 
+	public function checkbox_includes() {
+		// Checkboxes
+		include_once  'includes/class-wc-gzd-legal-checkbox.php';
+		include_once  'includes/class-wc-gzd-legal-checkbox-manager.php';
+	}
+
 	public function is_frontend() {
 		return ( ! is_admin() || defined( 'DOING_AJAX' ) ) && ! defined( 'DOING_CRON' );
 	}
@@ -385,6 +396,7 @@ final class WooCommerce_Germanized {
 				'polylang',
 				'woo-poly-integration',
 				'woocommerce-dynamic-pricing',
+				'woocommerce-product-bundles',
 				'woocommerce-role-based-prices',
 				'woo-paypalplus'
 			)

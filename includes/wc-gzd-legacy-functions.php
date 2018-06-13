@@ -226,3 +226,24 @@ function wc_gzd_get_order_date( $order, $format = '' ) {
 
 	return $date_formatted;
 }
+
+/**
+ * Wrapper for deprecated functions so we can apply some extra logic.
+ *
+ * @since 3.0.0
+ * @param string $function Function used.
+ * @param string $version Version the message was added in.
+ * @param string $replacement Replacement for the called function.
+ */
+function wc_gzd_deprecated_function( $function, $version, $replacement = null ) {
+	// @codingStandardsIgnoreStart
+	if ( is_ajax() ) {
+		do_action( 'deprecated_function_run', $function, $replacement, $version );
+		$log_string  = "The {$function} function is deprecated since version {$version}.";
+		$log_string .= $replacement ? " Replace with {$replacement}." : '';
+		error_log( $log_string );
+	} else {
+		_deprecated_function( $function, $version, $replacement );
+	}
+	// @codingStandardsIgnoreEnd
+}

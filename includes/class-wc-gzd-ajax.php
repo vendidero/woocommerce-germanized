@@ -21,6 +21,7 @@ class WC_GZD_AJAX {
 		$ajax_events = array(
 			'gzd_revocation' => true,
 			'gzd_json_search_delivery_time' => false,
+			'gzd_legal_checkboxes_save_changes' => false,
 		);
 
 		foreach ( $ajax_events as $ajax_event => $nopriv ) {
@@ -33,6 +34,76 @@ class WC_GZD_AJAX {
 				add_action( 'wc_ajax_' . $ajax_event, array( __CLASS__, $ajax_event ) );
 			}
 		}
+	}
+
+	public static function gzd_legal_checkboxes_save_changes() {
+		if ( ! isset( $_POST['wc_gzd_legal_checkbox_nonce'], $_POST['changes'] ) ) {
+			wp_send_json_error( 'missing_fields' );
+			wp_die();
+		}
+
+		if ( ! wp_verify_nonce( $_POST['wc_gzd_legal_checkbox_nonce'], 'wc_gzd_legal_checkbox_nonce' ) ) {
+			wp_send_json_error( 'bad_nonce' );
+			wp_die();
+		}
+
+		// Check User Caps
+		if ( ! current_user_can( 'manage_woocommerce' ) ) {
+			wp_send_json_error( 'missing_capabilities' );
+			wp_die();
+		}
+
+		$changes = $_POST['changes'];
+
+		$manager = WC_GZD_Legal_Checkbox_Manager::instance();
+		$options = $manager->get_options();
+
+		foreach ( $changes as $id => $data ) {
+
+			$checkbox = $manager->get_checkbox( $id );
+
+			if ( isset( $data['deleted'] ) ) {
+				if ( isset( $data['newRow'] ) ) {
+					// So the user added and deleted a new row.
+					// That's fine, it's not in the database anyways. NEXT!
+					continue;
+				}
+				// Delete
+				if ( isset( $options[ $id ] ) ) {
+					// Do not allow to delete core entries
+					if ( $checkbox && $checkbox->is_core() ) {
+						continue;
+					}
+					$manager->delete( $id );
+					unset( $options[ $id ] );
+				}
+				continue;
+			}
+
+			$checkbox_data = array_intersect_key(
+				$data, apply_filters( 'woocommerce_gzd_legal_checkboxes_option_keys', array(
+					'id'        => '',
+					'priority'  => 1,
+				) )
+			);
+
+			if ( ! isset( $options[ $id ] ) || ! is_array( $options[ $id ] ) ) {
+				$options[ $id ] = array();
+			}
+
+			$options[ $id ] = array_replace_recursive( $options[ $id ], $checkbox_data );
+		}
+
+		$manager->update_options( $options );
+		$manager->do_register_action();
+
+		$checkboxes = $manager->get_checkboxes( array(), 'json' );
+
+		wp_send_json_success(
+			array(
+				'checkboxes' => $checkboxes,
+			)
+		);
 	}
 
 	public static function gzd_json_search_delivery_time() {

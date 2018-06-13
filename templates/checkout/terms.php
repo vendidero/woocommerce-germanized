@@ -14,6 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 if ( ! isset( $gzd_checkbox ) || ! $gzd_checkbox )
 	return;
 
+do_action( "woocommerce_gzd_before_legal_checkbox_{$checkbox->get_id()}", $checkbox );
 ?>
 
 <?php if ( apply_filters( 'woocommerce_germanized_checkout_show_terms', true ) ) : ?>
@@ -29,12 +30,12 @@ if ( ! isset( $gzd_checkbox ) || ! $gzd_checkbox )
     do_action( 'woocommerce_checkout_terms_and_conditions' );
     ?>
 
-    <p class="form-row legal terms wc-terms-and-conditions validate-required">
-        <label for="legal" class="woocommerce-form__label woocommerce-form__label-for-checkbox checkbox">
-            <?php if ( get_option( 'woocommerce_gzd_display_checkout_legal_no_checkbox' ) === 'no' ) : ?>
-                <input type="checkbox" class="woocommerce-form__input woocommerce-form__input-checkbox input-checkbox" name="legal" id="legal" />
+    <p class="<?php $checkbox->render_classes( $checkbox->get_html_wrapper_classes() ); ?>" data-checkbox="<?php echo esc_attr( $checkbox->get_id() ); ?>">
+        <label for="<?php echo esc_attr( $checkbox->get_html_id() ); ?>" class="woocommerce-form__label woocommerce-form__label-for-checkbox checkbox">
+            <?php if ( ! $checkbox->hide_input() ) : ?>
+                <input type="checkbox" class="<?php $checkbox->render_classes( $checkbox->get_html_classes() ); ?>" name="<?php echo esc_attr( $checkbox->get_html_name() ); ?>" id="<?php echo esc_attr( $checkbox->get_html_id() ); ?>" />
             <?php endif; ?>
-            <span class="woocommerce-gzd-terms-and-conditions-checkbox-text"><?php echo wc_gzd_get_legal_text(); ?></span>
+            <span class="woocommerce-gzd-<?php echo esc_attr( $checkbox->get_html_id() ); ?>-checkbox-text"><?php echo $checkbox->get_label(); ?></span>
         </label>
     </p>
 

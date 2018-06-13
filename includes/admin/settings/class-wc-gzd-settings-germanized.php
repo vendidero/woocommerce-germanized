@@ -94,7 +94,7 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 	public function html_field( $value ) {
 		?>
 		<tr valign="top">
-			<th class="forminp forminp-html" id="<?php echo $value[ 'id' ]; ?>"><?php echo $value[ 'title' ]; ?></th>
+			<th class="forminp forminp-html" id="<?php echo $value[ 'id' ]; ?>"><label><?php echo $value[ 'title' ]; ?> <?php echo isset( $value['desc_tip'] ) ? wc_gzd_help_tip( $value['desc_tip'] ) : ''; // WPCS: XSS ok. ?></label></th>
 			<td class="forminp"><?php echo $value[ 'html' ]; ?></td>
 		</tr>
 		<?php
@@ -118,7 +118,8 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 		$sections = apply_filters( 'woocommerce_gzd_settings_sections', array(
 			''   		 	=> __( 'General Options', 'woocommerce-germanized' ),
 			'display'       => __( 'Display Options', 'woocommerce-germanized' ),
-			'email'			=> __( 'Email Options', 'woocommerce-germanized' ),
+			'checkboxes'    => __( 'Legal Checkboxes', 'woocommerce-germanized' ),
+		    'email'			=> __( 'Email Options', 'woocommerce-germanized' ),
 		) );
 		return $sections;
 	}
@@ -163,8 +164,6 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
                 array_push( $complaints_shortcode_missing, ( $page === 'terms' ? __( 'Terms & Conditions', 'woocommerce-germanized' ) : __( 'Imprint', 'woocommerce-germanized' ) ) );
             }
         }
-
-		$shipping_methods_options = WC_GZD_Admin::instance()->get_shipping_method_instances_options();
 
 		$settings = array(
 
@@ -301,82 +300,11 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 			array( 'title' => __( 'Privacy Policy', 'woocommerce-germanized' ), 'type' => 'title', 'desc' => '', 'id' => 'privacy_policy_options' ),
 
 			array(
-				'title' 	=> __( 'Registration', 'woocommerce-germanized' ),
-				'desc' 		=> __( 'Add a checkbox to customer registration form.', 'woocommerce-germanized' ),
-				'id' 		=> 'woocommerce_gzd_customer_account_checkbox',
-				'type' 		=> 'checkbox',
-				'default'	=> 'yes',
-			),
-
-			array(
-				'title' 	=> __( 'Text', 'woocommerce-germanized' ),
-				'desc' 		=> __( 'Choose a Plain Text which will be shown as checkbox text for customer account creation. Use {term_link}{/term_link}, {data_security_link}{/data_security_link}, {revocation_link}{/revocation_link} as Placeholders for the links to legal pages.', 'woocommerce-germanized' ),
-				'desc_tip'	=> true,
-				'default'   =>  __( 'Yes, I’d like create a new account and have read and understood the {data_security_link}data privacy statement{/data_security_link}.', 'woocommerce-germanized' ),
-				'css' 		=> 'width:100%; height: 65px;',
-				'id' 		=> 'woocommerce_gzd_customer_account_text',
-				'type' 		=> 'textarea',
-			),
-
-			array(
-				'title' 	=> __( 'Checkout', 'woocommerce-germanized' ),
-				'desc' 		=> __( 'Replace default WooCommerce text regarding account creation during checkout.', 'woocommerce-germanized' ),
-				'desc_tip'	=> __( 'Use the text from above instead of the default WooCommerce text regarding account creation during checkout. This checkbox is only show if you have activated guest accounts.', 'woocommerce-germanized' ),
-				'id' 		=> 'woocommerce_gzd_customer_account_checkout_checkbox',
-				'type' 		=> 'checkbox',
-				'default'	=> 'no',
-			),
-
-			array(
-				'title' 	=> __( 'Parcel Delivery', 'woocommerce-germanized' ),
-				'desc' 		=> __( 'Show checkbox for data transmission to third party parcel service providers.', 'woocommerce-germanized' ),
-				'desc_tip'	=> __( 'You may optionally choose to show a checkbox which lets the customer accept data transmission to a third party parcel service provider to receive parcel delivery reminders.', 'woocommerce-germanized' ),
-				'id' 		=> 'woocommerce_gzd_checkout_legal_parcel_delivery_checkbox',
-				'default'	=> 'no',
-				'type' 		=> 'checkbox',
-			),
-
-			array(
-				'title' 	=> __( 'Show checkbox', 'woocommerce-germanized' ),
-				'desc_tip' 	=> __( 'Choose whether you like to always show the parcel delivery checkbox or do only show for certain shipping methods.', 'woocommerce-germanized' ),
-				'id' 		=> 'woocommerce_gzd_checkout_legal_parcel_delivery_checkbox_show',
-				'default'	=> 'always',
-				'class'		=> 'chosen_select',
-				'options'	=> array(
-                    'shipping_methods' => __( 'For certain shipping methods.', 'woocommerce-germanized' ),
-                    'always'           => __( 'Always show.', 'woocommerce-germanized' ),
-                ),
-				'type' 		=> 'select',
-			),
-
-			array(
-				'title' 	=> __( 'Shipping Methods', 'woocommerce-germanized' ),
-				'desc' 		=> __( 'Select shipping methods which are applicable for the Opt-In Checkbox.', 'woocommerce-germanized' ),
-				'desc_tip'	=> true,
-				'id' 		=> 'woocommerce_gzd_checkout_legal_parcel_delivery_checkbox_methods',
-				'default'	=> array(),
-				'class'		=> 'chosen_select',
-				'options'	=> $shipping_methods_options,
-				'type' 		=> 'multiselect',
-			),
-
-			array(
-				'title' 	=> __( 'Mandatory', 'woocommerce-germanized' ),
-				'desc' 		=> __( 'Make the parcel delivery checkbox a required field.', 'woocommerce-germanized' ),
-				'desc_tip'	=> __( 'Make the checkbox mandatory to complete checkout.', 'woocommerce-germanized' ),
-				'id' 		=> 'woocommerce_gzd_checkout_legal_parcel_delivery_checkbox_required',
-				'default'	=> 'no',
-				'type' 		=> 'checkbox',
-			),
-
-			array(
-				'title' 	=> __( 'Text', 'woocommerce-germanized' ),
-				'desc' 		=> __( 'Choose a Plain Text which will be shown right next to the corresponding checkbox to inform the customer about the data being transfered to the third party shipping supplier. Use {shipping_method_title} to insert the shipping method title.', 'woocommerce-germanized' ),
-				'desc_tip'	=> true,
-				'default'   => __( 'Yes, I would like to be reminded via E-mail about parcel delivery ({shipping_method_title}). Your E-mail Address will only be transferred to our parcel service provider for that particular reason.', 'woocommerce-germanized' ),
-				'css' 		=> 'width:100%; height: 65px;',
-				'id' 		=> 'woocommerce_gzd_checkout_legal_text_parcel_delivery',
-				'type' 		=> 'textarea',
+				'title' 	=> __( 'Policy Status', 'woocommerce-germanized' ),
+				'id' 		=> 'woocommerce_gzd_privacy_policy_status',
+				'type' 		=> 'html',
+				'desc_tip'  => __( 'This option shows whether you have already embedded your privacy policy within your legal text.', 'woocommerce-germanized' ),
+				'html'      => WC_GZD_Admin_Legal_Checkboxes::instance()->get_terms_policy_status_html(),
 			),
 
 			array( 'type' => 'sectionend', 'id' => 'privacy_policy_options' ),
@@ -1175,124 +1103,6 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 			),
 
 			array(
-				'title' 	=> __( 'Checkout Legal Display', 'woocommerce-germanized' ),
-				'desc' 		=> __( 'Use Text without Checkbox', 'woocommerce-germanized' ),
-				'id' 		=> 'woocommerce_gzd_display_checkout_legal_no_checkbox',
-				'desc_tip'	=> __( 'This version will remove checkboxes from Checkout and display a text instead. This seems to be legally compliant (Zalando & Co are using this option).', 'woocommerce-germanized' ),
-				'default'	=> 'no',
-				'type' 		=> 'checkbox',
-			),
-
-			array(
-				'title' 	=> __( 'Legal Text', 'woocommerce-germanized' ),
-				'desc' 		=> __( 'Choose a Plain Text which will be shown right above checkout submit button. Use {term_link}{/term_link}, {data_security_link}{/data_security_link}, {revocation_link}{/revocation_link} as Placeholders for the links to legal pages.', 'woocommerce-germanized' ),
-				'desc_tip'	=> true,
-				'default'   =>  __( 'With your order, you agree to have read and understood our {term_link}Terms and Conditions{/term_link} your {revocation_link}Right of Recission{/revocation_link} and our {data_security_link}Privacy Policy{/data_security_link}.', 'woocommerce-germanized' ),
-				'css' 		=> 'width:100%; height: 65px;',
-				'id' 		=> 'woocommerce_gzd_checkout_legal_text',
-				'type' 		=> 'textarea',
-			),
-
-			array(
-				'title' 	=> __( 'Legal Text Error', 'woocommerce-germanized' ),
-				'desc' 		=> __( 'If you have chosen to use checkbox validation please choose a error message which will be shown if the user doesn\'t check checkbox. Use {term_link}{/term_link}, {data_security_link}{/data_security_link}, {revocation_link}{/revocation_link} as Placeholders for the links to legal pages.', 'woocommerce-germanized' ),
-				'desc_tip'	=> true,
-				'default'   =>  __( 'To finish the order you have to accept to our {term_link}Terms and Conditions{/term_link}, {revocation_link}Right of Recission{/revocation_link} and our {data_security_link}Privacy Policy{/data_security_link}.', 'woocommerce-germanized' ),
-				'css' 		=> 'width:100%; height: 65px;',
-				'id' 		=> 'woocommerce_gzd_checkout_legal_text_error',
-				'type' 		=> 'textarea',
-			),
-
-			array(
-				'title' 	=> __( 'Show digital notice', 'woocommerce-germanized' ),
-				'desc' 		=> __( 'Show checkbox for digital products.', 'woocommerce-germanized' ),
-				'desc_tip'	=> __( 'Disable this option if you want your customers to obtain their right of recission even if digital products are being bought.', 'woocommerce-germanized' ),
-				'id' 		=> 'woocommerce_gzd_checkout_legal_digital_checkbox',
-				'default'	=> 'yes',
-				'type' 		=> 'checkbox',
-			),
-
-			array(
-				'title' 	=> __( 'Digital Product types', 'woocommerce-germanized' ),
-				'desc' 		=> __( 'Select product types for which the loss of recission notice is shown. Product types like "simple product" may be redudant because they include virtual and downloadable products.', 'woocommerce-germanized' ),
-				'desc_tip'	=> true,
-				'id' 		=> 'woocommerce_gzd_checkout_legal_digital_types',
-				'default'	=> array( 'downloadable' ),
-				'class'		=> 'chosen_select',
-				'options'	=> $digital_type_options,
-				'type' 		=> 'multiselect',
-			),
-
-			array(
-				'title' 	=> __( 'Legal Digital Text', 'woocommerce-germanized' ),
-				'desc' 		=> __( 'Choose a Plain Text which will be shown right above checkout submit button if a user has picked a digital product. See legal text option for possible placeholders.', 'woocommerce-germanized' ),
-				'desc_tip'	=> true,
-				'default'   =>  __( 'For digital products: I strongly agree that the execution of the agreement starts before the revocation period has expired. I am aware that my right of withdrawal ceases with the beginning of the agreement.', 'woocommerce-germanized' ),
-				'css' 		=> 'width:100%; height: 65px;',
-				'id' 		=> 'woocommerce_gzd_checkout_legal_text_digital',
-				'type' 		=> 'textarea',
-			),
-
-			array(
-				'title' 	=> __( 'Legal Digital Error', 'woocommerce-germanized' ),
-				'desc' 		=> __( 'This text will be shown as error message if customer has not checked the corresponding checkbox. See legal text option for possible placeholders.', 'woocommerce-germanized' ),
-				'desc_tip'	=> true,
-				'default'   =>  __( 'To retrieve direct access to digital content you have to agree to the loss of your right of withdrawal.', 'woocommerce-germanized' ),
-				'css' 		=> 'width:100%; height: 65px;',
-				'id' 		=> 'woocommerce_gzd_checkout_legal_text_digital_error',
-				'type' 		=> 'textarea',
-			),
-
-			array(
-				'title' 	=> __( 'Digital Confirmation Notice', 'woocommerce-germanized' ),
-				'desc' 		=> __( 'This text will be appended to your order processing email if the order contains digital products. Use placeholders {link}{/link} to insert link to right of withdrawal page.', 'woocommerce-germanized' ),
-				'desc_tip'	=> true,
-				'id' 		=> 'woocommerce_gzd_order_confirmation_legal_digital_notice',
-				'default'	=> __( 'Furthermore you have expressly agreed to start the performance of the contract for digital items (e.g. downloads) before expiry of the withdrawal period. I have noted to lose my {link}right of withdrawal{/link} with the beginning of the performance of the contract.', 'woocommerce-germanized' ),
-				'type' 		=> 'textarea',
-				'css' 		=> 'width:100%; height: 65px;',
-			),
-
-			array(
-				'title' 	=> __( 'Show service notice', 'woocommerce-germanized' ),
-				'desc' 		=> __( 'Show checkbox for service products.', 'woocommerce-germanized' ),
-				'desc_tip'	=> __( 'Disable this option if you want your customers to obtain their right of recission even if service products are being bought.', 'woocommerce-germanized' ),
-				'id' 		=> 'woocommerce_gzd_checkout_legal_service_checkbox',
-				'default'	=> 'yes',
-				'type' 		=> 'checkbox',
-			),
-
-			array(
-				'title' 	=> __( 'Legal Service Text', 'woocommerce-germanized' ),
-				'desc' 		=> __( 'Choose a Plain Text which will be shown right above checkout submit button if a user has picked a service product. See legal text option for possible placeholders.', 'woocommerce-germanized' ),
-				'desc_tip'	=> true,
-				'default'   => __( 'For services: I demand and acknowledge the immediate performance of the service before the expiration of the withdrawal period. I acknowledge that thereby I lose my right to cancel once the service has begun.', 'woocommerce-germanized' ),
-				'css' 		=> 'width:100%; height: 65px;',
-				'id' 		=> 'woocommerce_gzd_checkout_legal_text_service',
-				'type' 		=> 'textarea',
-			),
-
-			array(
-				'title' 	=> __( 'Legal Service Error', 'woocommerce-germanized' ),
-				'desc' 		=> __( 'This text will be shown as error message if customer has not checked the corresponding checkbox. See legal text option for possible placeholders.', 'woocommerce-germanized' ),
-				'desc_tip'	=> true,
-				'default'   =>  __( 'To allow the immediate performance of the services you have to agree to the loss of your right of withdrawal.', 'woocommerce-germanized' ),
-				'css' 		=> 'width:100%; height: 65px;',
-				'id' 		=> 'woocommerce_gzd_checkout_legal_text_service_error',
-				'type' 		=> 'textarea',
-			),
-
-			array(
-				'title' 	=> __( 'Service Confirmation Notice', 'woocommerce-germanized' ),
-				'desc' 		=> __( 'This text will be appended to your order processing email if the order contains service products. Use placeholders {link}{/link} to insert link to right of withdrawal page.', 'woocommerce-germanized' ),
-				'desc_tip'	=> true,
-				'id' 		=> 'woocommerce_gzd_order_confirmation_legal_service_notice',
-				'default'	=> __( 'Furthermore you have expressly agreed to start the performance of the contract for services before expiry of the withdrawal period. I have noted to lose my {link}right of withdrawal{/link} with the beginning of the performance of the contract.', 'woocommerce-germanized' ),
-				'type' 		=> 'textarea',
-				'css' 		=> 'width:100%; height: 65px;',
-			),
-
-			array(
 				'title' 	=> __( 'Pay now Button', 'woocommerce-germanized' ),
 				'desc' 		=> __( 'Add a pay now button to emails and order success page.', 'woocommerce-germanized' ),
 				'desc_tip' 	=> __( 'Add a pay now button to order confirmation email and order success page if the order awaits payment (PayPal etc).', 'woocommerce-germanized' ),
@@ -1344,7 +1154,7 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 		
 		if ( $this->get_sections() ) {
 			foreach ( $this->get_sections() as $section => $name ) {
-				if ( $section == $current_section ) {
+				if ( $section === $current_section ) {
 					$settings = apply_filters( 'woocommerce_gzd_get_settings_' . $section, $this->get_settings() );
 					$sidebar = apply_filters( 'woocommerce_gzd_get_sidebar_' . $section, $sidebar );
 				}
@@ -1353,7 +1163,10 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 
 		do_action( 'woocommerce_gzd_before_section_output', $current_section );
 
-		include_once( WC_Germanized()->plugin_path() . '/includes/admin/views/html-settings-section.php' );
+		if ( apply_filters( 'woocommerce_gzd_settings_section_include_path', true, $current_section ) ) {
+			$path = apply_filters( 'woocommerce_gzd_settings_section_html_path', WC_Germanized()->plugin_path() . '/includes/admin/views/html-settings-section.php', $current_section );
+			include_once( $path );
+        }
 	}
 
 	public function get_sidebar() {
@@ -1379,6 +1192,7 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 				}
 			}
 		}
+
 		if ( empty( $settings ) )
 			return;
 

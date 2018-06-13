@@ -1,103 +1,92 @@
 === WooCommerce Germanized ===
-Contributors: vendidero
-Tags: woocommerce, german, woocommerce-de, germany, deutsch, deutschland, de, de_DE, shop, e-commerce, ecommerce, woothemes, sepa, invoice, market
+Contributors: vendidero, vdwoocommercesupport
+Tags: woocommerce, woocommerce german, woocommerce DE, woocommerce germany, woocommerce deutsch, woo
 Requires at least: 3.8
 Tested up to: 4.9
 WC requires at least: 2.4
 WC tested up to: 3.4
-Stable tag: 1.9.10
+Stable tag: 2.0.0
+Requires PHP: 5.3
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
-Extends WooCommerce to become a legally compliant Shop for German Market. Must Have for every German WooCommerce Shop Owner.
+WooCommerce Germanized extends WooCommerce to become a legally compliant shop in the german market. Must Have for every german WooCommerce shop owner.
 
 == Description ==
 
-**WooCommerce Germanized** extends WooCommerce to technically match german legal conditions. The objective of this plugin is to perfectly adapt WooCommerce to meet the special requirements of german market. WC Germanized is being continually developed by an experienced german team - on updates of WooCommerce we will respond quickly by offering compatibility.
+**WooCommerce Germanized** extends WooCommerce to technically match specific german legal conditions. The objective of this plugin is to adapt WooCommerce to the special requirements of german market.
+Users of [WooCommerce Germanized Pro](https://vendidero.de/woocommerce-germanized "WooCommerce optimized for German Market") benefit from additional features such as PDF invoices, model text generators for terms and revocation pages, premium support and more!
 
-Users of [WooCommerce Germanized Pro](https://vendidero.de/woocommerce-germanized "WooCommerce optimized for German Market") benefit from additional features such as PDF Invoices, Model Text Generators for terms and revocation, Premium Support and more!
+= Legal certainty for WooCommerce =
+WooCommerce Germanized extends WooCommerce with typical german shop functionality: Delivery times, base prices, shipping costs and tax notices, option to attach legally relevant pages (e.g. terms, revocation page, privacy policy etc.) - even in emails, small business regulation notices and many more.
+Furthermore we customized the WooCommerce checkout to make your store meet the button solution. See a list of our features for further details:
 
-To fit german requirements even better you may have a look at our [WooCommerce Theme](https://vendidero.de/vendipro "WooCommerce Theme for German Market") specifically developed for the german market: VendiPro.
-While developing VendiPro we have specifically considered german design principles. WooCommerce Germanized + VendiPro are a perfect combination for your german WooCommerce Shop.
+* *Delivery Times* - Add and edit delivery times for WooCommerce products. Optionally set a default delivery time as fallback. Disable delivery times for certain product types.
+* *Small Business Regulation* - Show special tax notices if you are a operating a WooCommerce shop as a small business.
+* *Shipping Costs and Tax notices* - Display notices beneath your WooCommerce product prices and within cart/checkout/e-mails.
+* *Base Prices* - Display additional per unit prices for your products. Let unit prices be calculated automatically (Pro).
+* *Short Cart Product Descriptions* - Display a special product description within your WooCommerce cart/checkout.
+* *Terms, Revocation, Privacy Policy* - Display checkboxes within your checkout to make sure customers agree to your conditions.
+* *Legal Checkboxes UI* - Adjust your legal WooCommerce checkboxes (e.g. terms & conditions) through a fluent user interface.
+* *Button Solution* - We adjust your checkout and submit button to comply with german button solution.
+* *Double opt-in (DOI) for Customers* - Make sure customers opted in while registering within your shop. Optionally disable checkout until the customer opted in.
+* *Tax Calculation for Shipping Costs and Fees* - Enable split tax calculation based on your WooCommerce cart taxes.
+* *Legal pages in Email Templates* - Attach legal pages content to certain WooCommerce e-mail templates.
+* *Trusted Shops Integration* - Integrate your Trusted Shops Products within your WooCommerce store
+* *eKomi Integration* - Integrate your eKomi Products within your store.
+* *Payment Gateway: SEPA direct debit* - Receive payments via direct debit. We've added a XML export to transfer payments to your bank.
+* *Payment Gateway: Pay by Invoice* - Allow certain customers to pay by invoice. Best integration with our PDF invoices feature (Pro).
+* *Online Revocation Form* - Allow customers to submit revocations by filling out a form on your revocation page.
+* *Sale Price Labels* - Prepend your WooCommerce sale prices by certain tags e.g. old price and new price.
+* *Delivery to DHL Parcel Shops or Pick-Up Stations* - Allow customers to choose a DHL pick-up-station within your WooCommerce checkout.
+* *Differential Taxation* - Insert special notices for products which a differential taxed.
+* *WPML and PolyLang Support* - Woo Germanized adds compatibility for WPML and PolyLang.
+* *REST API Support* - Data added by Germanized is adjustable via the WooCommerce REST API (v2)
+* *Product CSV Import/Export* - We've extended the WooCommerce product CSV import and export to support our custom fields (e.g. unit price, delivery time etc.)
+* *GDPR export/delete* - We do support the export/delete features of WordPress 4.6 and WooCommerce 3.4 and added new checkboxes to checkout and register form.
+* *PDF Invoices & Packing Slips (Pro)* - Easily create PDF invoices, packing slips and cancellations via your WooCommerce order screen. Optionally generate PDFs automatically based on a certain order status.
+* *Legal PDF attachments (Pro)* - Attach PDFs to certain email templates instead of plain text. Optionally let Germanized generate your PDFs automatically by parsing your page content.
+* *Delayed conclusion of contract (Pro)* - By default a contract is concluded right after submitting the WooCommerce checkout. Germanized offers you to delay that contract and manually check the order before concluding the contract.
+* *VAT ID check for WooCommerce (Pro)* - Provide additional fields within checkout and customer account to automatically validate the VAT ID based on the EU API.
+* *Multistep Checkout (Pro)* - Adjusts the default single-page-checkout within WooCommerce to support a multistep checkout without overriding templates for optimal theme support.
 
-= Legal Certainty for German Market =
-WooCommerce Germanized supports typical german shop functionality: Delivery Times, Base Prices, Shipping Costs and Tax Notices, legally relevant Pages (e.g. Terms, Revocation Page etc.) - even in Emails, Small Business Regulation, Fees for Payment Methods and much more.
-Furthermore we have customized the checkout to make your WooCommerce Shop meet the german law requirments.
+= WooCommerce Germanized is certified by Trusted Shops =
+WooCommerce Germanized has been approved by Trusted Shops and therefor offers best technical conditions to operate a legally binding WooCommerce Shop in Germany.
+Trusted Shops certifies Shops after selected and weighted criteria and has carefully examined our WooCommerce Plugin.
+Of course Trusted Shops customers may embed their quality seals or further Trusted Shops Products as genuine Seller and Product Reviews by adapting just a few options within Germanized.
 
-* Delivery Times
-* Small Business Regulation
-* Notices regarding Shipping Costs and Taxes
-* Base Prices
-* Short Cart Product Descriptions 
-* Notices regarding Terms and Revocation
-* Compatibility with Button Solution
-* Double Opt In for Customers
-* Tax Calculation for Shipping Costs and Fees
-* Terms, Revocation etc. in certain Email Templates
-* Trusted Shops Integration
-* eKomi Integration
-* Payment Gateway: SEPA direct debit
-* Payment Gateway: Pay by Invoice
-* Payment Gateway Fees
-* Online Revocation Form
-* Sale Price Labels
-* Delivery to DHL Parcel Shops or Pick-Up Stations
-* Differential Taxation
-* WPML and PolyLang Support
-* REST API Support
-* Product CSV Import/Export Support
-
-= Certified by Trusted Shops =
-WooCommerce Germanized has been approved by Trusted Shops and therefor offers best technical conditions to operate a legally certain Online Shop in Germany. 
-Trusted Shops certifies Shops after selected and weighted criteria and has carefully examined this WooCommerce Plugin. 
-Of course Trusted Shops customers may embed their quality seals or further Trusted Shops Products as genuine Seller and Product Reviews by adapting just a few options within WooCommerce Germanized.
-
-= Properly Implemented =
+= Code quality =
 While developing WooCommerce Germanized we have specifically considered clean integration within WooCommerce and WordPress by adapting core functionality.
 Most of the changes are made by using Hooks & Filters so that Germanized is compatible to almost every Theme.
 
-= SEPA Direct Debit & Pay By Invoice for WooCommerce = 
-With WooCommerce Germanized 1.4 you may offer Pay by Direct Debit and Pay By Invoice to your customers.
-Using SEPA Direct Debit checkout fields for IBAN, BIC and Account Holder will be automatically added and verified during checkout.
-Furthermore the customer may preview his SEPA Mandate before submitting the order. Starting with 1.6 shop managers may easily export
-SEPA Mandates in XML format to import mandates to their house bank our banking software. 
-Pay By Invoice may be optionally restricted to regular customers only.
-
-= Pro: WooCommerce PDF Invoices & Packing Slips = 
+= Pro: WooCommerce PDF invoices & packing slips =
 As a Pro User of WC Germanized you may automatically or manually create PDF Invoices and Packing Slips for your orders. Doing so you may customize the PDF layout to meet your Corporate Design.
 You may upload your head of a letter which will be used as background for your PDF's. With only a few clicks you may export (CSV, zip) invoices for your tax consultant or accountant.
 Learn more about [PDF Invoices for WooCommerce](https://vendidero.de/woocommerce-germanized#accounting "WooCommerce PDF Invoices")
 
-New: Attach legally relevant Pages (e.g. Terms & Conditions) as PDF documents to specific WooCommerce Emails.
-
-= Tax Calculation for Shipping Costs and Fees =
-WooCommerce Germanized supports complicated calculation of shipping/fee taxes for "mixed" shopping carts (that is: cart contains multiple tax rates e.g. 7% and 19%).
-In that case tax has to be calculated proportional (based on tax rate share in comparison to total amount).
-
-= Pro: Theme Support =
-Professional Users benefit from specific Support of popular Themes. For those Themes we make sure that WooCommerce Germanized Options are visible and visually appealing.
-At the moment professional version supports the following Themes: 
-
-* Enfold
-* Flatsome
-* Storefront
-* Virtue
+New: Attach legally relevant pages (e.g. Terms & Conditions) as PDF documents to specific WooCommerce emails.
 
 = Pro: Premium Support =
-Customers of Woo Germanized Pro enjoy our qualified Germanized Support via Tickets. Of course we also seek to offer a good Plugin Support via WordPress Support Forums.
+Customers of Woo Germanized Pro enjoy our high-quality support via tickets. Nevertheless we also seek to offer a good plugin support via our WordPress support forum.
 
-= Double Opt In for WooCommerce =
-A new judgement of a German Court makes Shop Managers nervous about whether Double Opt In is required for Online Shops. Therefor WC Germanized offers Double Opt In Support for WooCommerce.
-After creating an account the customer receives an activation link via Email. Inactive customers may be automatically deleted after a certain amount of time.
-Starting with version 1.6 one may deactivate the checkout for inactive customers. To make this possible, registration has to be separated from the checkout - of course customers may still checkout as guests (if enabled).
+= Tested WooCommerce Plugins =
+We've added some specific compatibility and tests for certain popular WooCommerce plugins. See this list for further details:
 
-= Pro: Conclusion of Contract = 
-By default WooCommerce does not offer a distinction between receiving and confirming the order. WooCommerce Germanized Pro offers a feature to manually examine orders before confirming them to the customer.
-Shop managers may check order details and then manually confirm the order through a Button in the WooCommerce Backend.
+* WPML
+* PolyLang
+* WooCommerce Dynamic Pricing
+* WooCommerce Role Based Pricing
 
-= Delivery to DHL Parcel Shops =
-You may optionally choose to offer delivery to DHL parcel shops or pick-up stations. Customers may find a parcel shop nearby by embedding an overlay of the DHL search API.
-On choosing a parcel shop within the overlay the corresponding data is automatically added to the WooCommerce checkout fields.
+= Tested WooCommerce Themes =
+To fit german requirements even better we've developed a special [WooCommerce Theme](https://vendidero.de/vendipro "WooCommerce Theme for German Market") specifically developed for the german market: VendiPro.
+While developing VendiPro we have considered german design principles to adapt WooCommerce to the german market.
+By default, Germanized works with every WooCommerce theme. Some themes may need adjustments due to not using WooCommerce standards hooks or styles. Within our professional version we've tested certain third-party WooCommerce themes to ensure better compatibility with Germanized:
+
+* Flatsome
+* Enfold
+* Storefront
+* VendiPro
+* Virtue
 
 == Installation ==
 
@@ -115,29 +104,29 @@ After the installation you may easily adapt the settings to your own needs.
 = Shortcodes =
 
 `[revocation_form]`
-Inserts online revocation form. Customer and shop manager receive a confirmation by Email.
+Inserts online revocation form within your WooCommerce store. Customer and shop manager receive a confirmation by email.
 
 `[payment_methods_info]`
-Very useful for Payment Gateway Information Page - Inserts an overview of all enabled payment gateways plus their descriptions.
+Very useful as page to inform the user of your WooCommerce payment gateways - Inserts an overview of all enabled payment gateways plus their descriptions.
 
 `[gzd_complaints]`
 Inserts a text that informs the customer about the EU Online Dispute Platform - this Shortcode should be inserted within your imprint. Find more information [here](http://shop.trustedshops.com/de/rechtstipps/jetzt-handeln-link-auf-eu-online-schlichtungs-plattform-ab-9.1.2016).
 
 `[trusted_shops_badge]`
-If you are a Trusted Shops Customer, you may insert this Shortcode to insert the Trusted Shops Badge at your favourite place.
-With the parameter width=55 (55 means 55px width/height) you may optionally set badge's width.
+If you are a Trusted Shops Customer, you may insert this shortcode to insert the Trusted Shops Badge at your favourite place.
+By adjusting parameter width=55 (55 means 55px width/height) you may optionally set badge's width.
 
 `[trusted_shops_rich_snippets]`
-If you are using Trusted Shop's review functionality, you may insert a Google Rich Snippet about your current shop rating.
+If you are using Trusted Shop's review functionality, you may insert a Google Rich Snippet to show your current shop's rating.
 
 `[trusted_shops_reviews]`
 Inserts your current Trusted Shops rating as an image (provided by Trusted Shops).
 
 `[ekomi_badge]`
 Inserts your eKomi badge as image.
-With the parameter width=55 (55 means 55px width/height) you may optionally set badge's width.
+By adjusting width=55 (55 means 55px width/height) you may optionally set badge's width.
 
-= Updating =
+= Updating WooCommerce Germanized =
 
 Before updating WooCommerce you should definitely check whether WooCommerce Germanized does already support the newest version. 
 You may of course Update WooCommerce Germanized automatically through the WordPess Backend. Please make sure to always backup (at least your database) before updating any theme or plugin.
@@ -146,28 +135,40 @@ You may of course Update WooCommerce Germanized automatically through the WordPe
 
 = Where do I receive support for WooCommerce Germanized? =
 
-You may ask your questions regarding Germanized within our free [WordPress Support Forum](https://wordpress.org/support/plugin/woocommerce-germanized).
-Professional Support via Ticket is being offered to [Professional Users](https://vendidero.de/woocommerce-germanized "Support for WooCommerce Germanized") only.
+You may ask your questions regarding WooCommerce Germanized within our free [WordPress Support Forum](https://wordpress.org/support/plugin/woocommerce-germanized).
+Professional ticket-support is being offered to [Professional Users](https://vendidero.de/woocommerce-germanized "Support for WooCommerce Germanized") only.
 
-= Not every option fits my Theme =
+= Not every option fits my WooCommerce Theme =
 
 Unfortunately not every Theme does implement WooCommerce in the way it's meant to be or differs from the original structure which leads to layout and/or compatibility 
 issues. Out of that reason we have developed [VendiPro](https://vendidero.de/vendipro) which perfectly fits all Germanized Options and is optimized for German Market.
 
-= Email Attachments not showing in Order Confirmation Email =
+= Email attachments not showing in WooCommerce order confirmation email =
 
 In most times you have a wrong configuration within your Germanized Email settings. The order confirmation email sent to the customer after an order has been made is called "Processing Order". The email called "New Order" is the email
 sent to the Administrator which serves as a notification only - so make sure you have "Processing Order" selected within the Germanized settings.
 
-= Want to file a Bug or improve Germanized? =
+= Want to file a bug or improve WooCommerce Germanized? =
 
 Bug reports may be filed via our [GitHub repository](https://github.com/vendidero/woocommerce-germanized).
 
 == Screenshots ==
 
-1. WooCommerce Germanized Settings
+1. Some of WooCommerce Germanized checkout adjustments to comply with the button solution
+2. General settings screen
+3. WooCommerce Germanized Legal Checkboxes UI
+4. WooCommerce Multistep Checkout (Pro)
 
 == Changelog ==
+
+= 2.0.0 =
+* Feature: Legal checkboxes registration/update functions
+* Feature: Legal checkboxes UI
+* Feature: Trusted Shops review reminder checkbox and opt-out link
+* Improvement: Support shipping cost tax shares for individually priced product bundles
+* Improvement: Force pay-for-order only once
+* Improvement: Mark invoice gateway as subscription ready
+* Fix: Bug which lead to problems while saving address within customer account with DHL numbers enabled
 
 = 1.9.10 =
 * Feature: Support upcoming Woo Privacy options (GDPR compatibility)

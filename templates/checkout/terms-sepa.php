@@ -10,11 +10,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+do_action( "woocommerce_gzd_before_legal_checkbox_{$checkbox->get_id()}", $checkbox );
 ?>
-<p class="form-row legal direct-debit-checkbox terms-sepa validate-required">
-	<label class="woocommerce-form__label woocommerce-form__label-for-checkbox checkbox" for="direct-debit-checkbox">
-        <input type="checkbox" class="woocommerce-form__input woocommerce-form__input-checkbox input-checkbox" name="direct_debit_legal" id="direct-debit-checkbox" />
-        <span class="woocommerce-gzd-sepa-terms-checkbox-text"><?php echo $checkbox_label; ?></span>
+
+<p class="<?php $checkbox->render_classes( $checkbox->get_html_wrapper_classes() ); ?>" style="<?php echo esc_attr( $checkbox->get_html_style() ); ?>" data-checkbox="<?php echo esc_attr( $checkbox->get_id() ); ?>">
+    <label for="<?php echo esc_attr( $checkbox->get_html_id() ); ?>" class="woocommerce-form__label woocommerce-form__label-for-checkbox checkbox">
+        <input type="checkbox" class="<?php $checkbox->render_classes( $checkbox->get_html_classes() ); ?>" name="<?php echo esc_attr( $checkbox->get_html_name() ); ?>" id="<?php echo esc_attr( $checkbox->get_html_id() ); ?>" />
+        <span class="woocommerce-gzd-<?php echo esc_attr( $checkbox->get_html_id() ); ?>-checkbox-text"><?php echo $checkbox->get_label(); ?></span>
         <a href="" rel="prettyPhoto" id="show-direct-debit-pretty" class="hidden"></a>
 	</label>
 </p>

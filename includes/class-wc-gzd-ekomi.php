@@ -37,6 +37,11 @@ class WC_GZD_Ekomi {
 	 * Creates a new User if the eKomi user does not already exist. Adds hooks to schedules to manage review updates and Email notifications
 	 */
 	public function __construct() {
+
+		// We need namespaces to use the eKomi API
+		if ( version_compare(PHP_VERSION, '5.3.0', '<' ) ) {
+			return;
+		}
 		
 		$this->version = 'v3';
 		$this->id = $this->shop_id;

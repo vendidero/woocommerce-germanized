@@ -1,12 +1,31 @@
 jQuery( function ( $ ) {
+	try {
+        $( document.body )
+            .on( 'wc-enhanced-select-init wc-gzd-enhanced-select-init', function() {
+                // Tag select
+                $( ':input.wc-gzd-enhanced-tags' ).filter( ':not(.enhanced)' ).each( function () {
+                    var select2_args = {
+                        minimumResultsForSearch: 10,
+                        allowClear: $( this ).data( 'allow_clear' ) ? true : false,
+                        placeholder: $( this ).data( 'placeholder' ),
+						tags: true
+                    };
 
-	$( document ).on( 'change', 'select#woocommerce_gzd_checkout_legal_parcel_delivery_checkbox_show', function() {
+                    $( this ).selectWoo( select2_args ).addClass( 'enhanced' );
+                });
+            }).trigger( 'wc-gzd-enhanced-select-init' );
+    } catch( err ) {
+        // If select2 failed (conflict?) log the error but don't stop other scripts breaking.
+        window.console.log( err );
+    }
+
+	$( document ).on( 'change', 'select#woocommerce_gzd_legal_checkboxes_settings_parcel_delivery_show_special', function() {
 		var val = $( this ).val();
 
 		if ( 'shipping_methods' === val ) {
-            $( 'select#woocommerce_gzd_checkout_legal_parcel_delivery_checkbox_methods' ).parents( 'tr' ).show();
+            $( 'select#woocommerce_gzd_legal_checkboxes_settings_parcel_delivery_show_shipping_methods' ).parents( 'tr' ).show();
 		} else {
-            $( 'select#woocommerce_gzd_checkout_legal_parcel_delivery_checkbox_methods' ).parents( 'tr' ).hide();
+            $( 'select#woocommerce_gzd_legal_checkboxes_settings_parcel_delivery_show_shipping_methods' ).parents( 'tr' ).hide();
 		}
 	});
 
@@ -19,7 +38,7 @@ jQuery( function ( $ ) {
         }
     });
 
-    $( 'select#woocommerce_gzd_checkout_legal_parcel_delivery_checkbox_show' ).trigger( 'change' );
+    $( 'select#woocommerce_gzd_legal_checkboxes_settings_parcel_delivery_show_special' ).trigger( 'change' );
     $( 'input#woocommerce_gzd_order_pay_now_button' ).trigger( 'change' );
 
     $( document ).on( 'change', 'input[name=woocommerce_gzd_dispute_resolution_type]', function() {

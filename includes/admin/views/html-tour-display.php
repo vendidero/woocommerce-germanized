@@ -13,20 +13,8 @@ $elements = array(
 	'shipping_costs' => '#woocommerce_gzd_display_listings_shipping_costs',
 	'unit_price' => '#woocommerce_gzd_unit_price_text',
 	'display_checkout' => '#woocommerce_gzd_display_checkout_fallback',
-	'checkout_legal' => '#woocommerce_gzd_display_checkout_legal_no_checkbox',
-	'checkout_digital' => '#woocommerce_gzd_checkout_legal_digital_checkbox',
-	'digital_types' => '#woocommerce_gzd_checkout_legal_digital_types',
-	'legal_service' => '#woocommerce_gzd_checkout_legal_service_checkbox',
 	'pay_now' => '#woocommerce_gzd_order_pay_now_button',
 );
-
-if ( ! wc_gzd_get_dependencies()->woocommerce_version_supports_crud() ) {
-	$e = array(
-		'digital_types' => '#s2id_woocommerce_gzd_checkout_legal_digital_types',
-	);
-
-	$elements = array_merge( $elements, $e );
-}
 
 ?>
 

@@ -141,13 +141,10 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 		add_action( 'woocommerce_update_options_payment_gateways_' . $this->id, array( $this, 'process_admin_options' ) );
 		add_action( 'woocommerce_thankyou_direct-debit', array( $this, 'thankyou_page' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'payment_scripts' ) );
-		add_action( 'woocommerce_review_order_after_payment', array( $this, 'checkbox' ), wc_gzd_get_hook_priority( 'checkout_direct_debit' ) );
 		add_filter( 'woocommerce_email_classes', array( $this, 'add_email_template' ) );
 
-		add_action( 'woocommerce_after_checkout_validation', array( $this, 'validate_checkbox' ) );
-
-		// Pay for Order
-		add_action( 'woocommerce_pay_order_before_submit', array( $this, 'checkbox' ) );
+		add_action( 'woocommerce_gzd_legal_checkbox_checkout_sepa_validate', array( $this, 'validate_checkbox' ) );
+		add_action( 'woocommerce_gzd_legal_checkbox_pay_for_order_sepa_validate', array( $this, 'validate_pay_order_checkbox' ) );
 
 		// Order Meta
 		add_action( 'woocommerce_checkout_update_order_meta', array( $this, 'set_order_meta' ), 10, 2 );
@@ -177,6 +174,8 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 		add_action( 'export_wp', array( $this, 'export' ), 0, 1 );
 		add_filter( 'export_args', array( $this, 'export_args' ), 0, 1 );
     }
+
+    public function validate_pay_order_checkbox() {}
 
 	public function print_debit_fields( $order ) {
 
@@ -877,16 +876,16 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 
 		// Make sure that checkbox gets validated if on woocommerce_pay for order page
 		if ( isset( $_POST['woocommerce_pay'] ) ) {
+		    // Gateways are being lazy loaded - make sure that the checkbox exists even after submit
 			$this->validate_checkbox();
 		}
-
 	}
 
 	public function validate_checkbox() {
+		if ( isset( $_POST['payment_method'] ) && $_POST['payment_method'] === $this->id && $this->enable_checkbox === 'yes' && ( ! isset( $_POST['direct_debit_legal'] ) && empty( $_POST['direct_debit_legal'] ) ) )
+		    return false;
 
-		if ( isset( $_POST[ 'payment_method' ] ) && $_POST[ 'payment_method' ] === $this->id && $this->enable_checkbox === 'yes' && ( ! isset( $_POST[ 'direct_debit_legal' ] ) && empty( $_POST[ 'direct_debit_legal' ] ) ) )
-			wc_add_notice( __( 'Please accept the direct debit mandate.', 'woocommerce-germanized' ), 'error' );
-
+		return true;
 	}
 
 	/**

@@ -136,6 +136,7 @@ class WC_Germanized_Meta_Box_Product_Data {
 
 		global $post, $thepostid;
 		$thepostid = $post->ID;
+
 		$_product = wc_get_product( $thepostid );
 
 		echo '<div class="options_group show_if_simple show_if_external show_if_variable">';

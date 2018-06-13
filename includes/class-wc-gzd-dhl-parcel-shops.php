@@ -222,7 +222,9 @@ class WC_GZD_DHL_Parcel_Shops {
 			return $fields;
 		}
 
-		if ( empty( $_POST['action'] ) || 'edit_address' !== $_POST['action'] || empty( $_POST['_wpnonce'] ) || ! wp_verify_nonce( $_POST['_wpnonce'], 'woocommerce-edit_address' ) ) {
+		$nonce_key = ( isset( $_REQUEST['woocommerce-edit-address-nonce'] ) ? 'woocommerce-edit-address-nonce' : '_wpnonce' );
+
+		if ( empty( $_POST['action'] ) || 'edit_address' !== $_POST['action'] || empty( $_REQUEST[ $nonce_key ] ) || ! wp_verify_nonce( $_REQUEST[ $nonce_key ], 'woocommerce-edit_address' ) ) {
 			return $fields;
 		}
 
@@ -242,6 +244,7 @@ class WC_GZD_DHL_Parcel_Shops {
 	}
 
 	public function validate_address_fields( $value ) {
+
 		if ( $value && ! empty( $value ) ) {
 			$data = array(
 				'shipping_parcelshop_post_number' => '',

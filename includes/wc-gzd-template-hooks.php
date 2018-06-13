@@ -122,9 +122,11 @@ add_action( 'woocommerce_review_order_before_submit', 'woocommerce_gzd_template_
 add_action( 'woocommerce_review_order_after_submit', 'woocommerce_gzd_template_set_order_button_show_filter', PHP_INT_MAX );
 add_action( 'woocommerce_gzd_review_order_before_submit', 'woocommerce_gzd_template_set_order_button_show_filter', PHP_INT_MAX );
 
-// Refresh (show/hide) parcel delivery checkbox when changing address (which may lead to shipping method change)
-if ( get_option( 'woocommerce_gzd_checkout_legal_parcel_delivery_checkbox' ) === 'yes' )
-	add_filter( 'woocommerce_update_order_review_fragments', 'woocommerce_gzd_refresh_parcel_delivery_checkbox_fragment', 10, 1 );
+/**
+ * Render Checkboxes (except checkout)
+ */
+add_action( 'woocommerce_pay_order_before_submit', 'woocommerce_gzd_template_render_pay_for_order_checkboxes', 10 );
+add_action( 'woocommerce_register_form', 'woocommerce_gzd_template_render_register_checkboxes', 19 );
 
 function woocommerce_gzd_checkout_load_ajax_relevant_hooks() {
 
@@ -133,17 +135,9 @@ function woocommerce_gzd_checkout_load_ajax_relevant_hooks() {
 
 	add_action( 'woocommerce_checkout_order_review', 'woocommerce_gzd_template_order_submit', wc_gzd_get_hook_priority( 'checkout_order_submit' ) );
 
-	add_action( 'woocommerce_review_order_after_payment', 'woocommerce_gzd_template_checkout_legal', wc_gzd_get_hook_priority( 'checkout_legal' ) );
+	// Render checkout checkboxes
+	add_action( 'woocommerce_review_order_after_payment', 'woocommerce_gzd_template_render_checkout_checkboxes', 10 );
 	add_action( 'woocommerce_review_order_after_payment', 'woocommerce_gzd_template_checkout_set_terms_manually', wc_gzd_get_hook_priority( 'checkout_set_terms' ) );
-
-	if ( get_option( 'woocommerce_gzd_checkout_legal_digital_checkbox' ) === 'yes' )
-		add_action( 'woocommerce_review_order_after_payment', 'woocommerce_gzd_digital_checkbox', wc_gzd_get_hook_priority( 'checkout_digital_checkbox' ) );
-
-	if ( get_option( 'woocommerce_gzd_checkout_legal_service_checkbox' ) === 'yes' )
-		add_action( 'woocommerce_review_order_after_payment', 'woocommerce_gzd_service_checkbox', wc_gzd_get_hook_priority( 'checkout_service_checkbox' ) );
-
-	if ( get_option( 'woocommerce_gzd_checkout_legal_parcel_delivery_checkbox' ) === 'yes' )
-		add_action( 'woocommerce_review_order_after_payment', 'woocommerce_gzd_parcel_delivery_checkbox', wc_gzd_get_hook_priority( 'checkout_parcel_delivery_checkbox' ) );
 
 	// Add payment title heading
 	add_action( 'woocommerce_review_order_before_payment', 'woocommerce_gzd_template_checkout_payment_title' );
@@ -162,11 +156,6 @@ add_filter( 'woocommerce_order_button_text', 'woocommerce_gzd_template_order_but
 
 // Forwarding fee
 add_action( 'woocommerce_review_order_after_order_total', 'woocommerce_gzd_template_checkout_forwarding_fee_notice' );
-
-/**
- * Checkout Validation
-*/
-add_action( 'woocommerce_after_checkout_validation', 'woocommerce_gzd_checkout_validation', 1, 1 );
 
 /**
  * Order details & Thankyou
@@ -193,24 +182,19 @@ if ( apply_filters( 'woocommerce_gzd_disable_wc_privacy_policy_checkbox', true )
 	remove_action( 'woocommerce_checkout_terms_and_conditions', 'wc_checkout_privacy_policy_text', 20 );
 	remove_action( 'woocommerce_checkout_terms_and_conditions', 'wc_terms_and_conditions_page_content', 30 );
 	remove_action( 'woocommerce_register_form', 'wc_registration_privacy_policy_text', 20 );
-}
 
-/**
- * Customer Account Creation
- */
-if ( get_option( 'woocommerce_gzd_customer_account_checkbox' ) == 'yes' ) {
-	add_action( 'woocommerce_register_form', 'woocommerce_gzd_template_customer_account_checkbox', PHP_INT_MAX );
-	add_filter( 'woocommerce_process_registration_errors', 'woocommerce_gzd_template_customer_account_checkbox_error', 10, 4 ); 
+	// If other plugins or themes use that function, make sure we are emptying the text.
+	add_filter( 'woocommerce_get_privacy_policy_text', 'wc_gzd_template_empty_wc_privacy_policy_text', 999, 2 );
 }
 
 /**
  * Footer
  */
-if ( get_option( 'woocommerce_gzd_display_footer_vat_notice' ) == 'yes' ) {
+if ( 'yes' === get_option( 'woocommerce_gzd_display_footer_vat_notice' ) ) {
 	add_action ( 'woocommerce_gzd_footer_msg', 'woocommerce_gzd_template_footer_vat_info', wc_gzd_get_hook_priority( 'gzd_footer_vat_info' ) );
 	add_action ( 'wp_footer', 'woocommerce_gzd_template_footer_vat_info', wc_gzd_get_hook_priority( 'footer_vat_info' ) );
 }
-if ( get_option( 'woocommerce_gzd_display_footer_sale_price_notice' ) == 'yes' ) {
+if ( 'yes' === get_option( 'woocommerce_gzd_display_footer_sale_price_notice' ) ) {
 	add_action ( 'woocommerce_gzd_footer_msg', 'woocommerce_gzd_template_footer_sale_info', wc_gzd_get_hook_priority( 'gzd_footer_sale_info' ) );
 	add_action ( 'wp_footer', 'woocommerce_gzd_template_footer_sale_info', wc_gzd_get_hook_priority( 'footer_sale_info' ) );
 }

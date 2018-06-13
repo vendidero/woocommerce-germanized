@@ -334,7 +334,8 @@ class WC_GZD_Trusted_Shops_Admin {
 					'title'  => _x( 'Review Reminder', 'trusted-shops', 'woocommerce-germanized' ),
 					'desc'   => sprintf( _x( 'Send a one-time email review reminder to your customers.', 'trusted-shops', 'woocommerce-germanized' ), admin_url( 'widgets.php' ) ),
 					'id'   => 'woocommerce_' . $this->base->option_prefix . 'trusted_shops_review_reminder_enable',
-					'type'   => 'checkbox',
+					'desc_tip' => _x( 'The review reminder e-mail will be sent via your own server by using the "Trusted Shops Review Reminder" template.', 'trusted-shops', 'woocommerce-germanized' ),
+                    'type'   => 'checkbox',
 					'default' => 'no',
 					'autoload'  => false
 				),
@@ -347,10 +348,25 @@ class WC_GZD_Trusted_Shops_Admin {
 					'id'   => 'woocommerce_' . $this->base->option_prefix . 'trusted_shops_review_reminder_days',
 					'type'   => 'number',
 					'custom_attributes' => array( 'min' => 0, 'step' => 1 ),
-				)
+				),
+
+				array(
+					'title' 	=> _x( 'Checkbox', 'trusted-shops', 'woocommerce-germanized' ),
+					'id' 		=> 'woocommerce_' . $this->base->option_prefix . 'checkbox_options',
+					'type' 		=> 'html',
+					'desc_tip'  => _x( 'You may want to insert a checkbox to ask the user for permission to send the e-mail', 'trusted-shops', 'woocommerce-germanized' ),
+					'html'      => '<a href="' . admin_url( 'admin.php?page=wc-settings&tab=germanized&section=checkboxes&checkbox_id=review_reminder' ) . '" class="button button-secondary">' . _x( 'Adjust Checkbox', 'trusted-shops', 'woocommerce-germanized' ) . '</a>',
+				),
+
+				array(
+					'title'   => _x( 'Enable opt out', 'trusted-shops', 'woocommerce-germanized' ),
+					'desc'    => _x( 'Allow the user to opt-out by clicking on a link within the order confirmation.', 'trusted-shops', 'woocommerce-germanized' ),
+					'default' => 'yes',
+					'id'      => 'woocommerce_' . $this->base->option_prefix . 'trusted_shops_review_reminder_opt_out',
+					'type'    => 'checkbox',
+				),
 
 			) );
-
 		}
 
 		$options = array_merge( $options, array(

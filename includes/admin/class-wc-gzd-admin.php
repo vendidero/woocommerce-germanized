@@ -128,7 +128,7 @@ class WC_GZD_Admin {
 			<p><strong style="display: block;"><?php _e( 'Parcel Delivery Data Transfer:', 'woocommerce-germanized' ) ?></strong>
 				<span><?php echo ( wc_gzd_order_supports_parcel_delivery_reminder( wc_gzd_get_crud_data( $order, 'id' ) ) ? __( 'allowed', 'woocommerce-germanized' ) : __( 'not allowed', 'woocommerce-germanized' ) ); ?></span>
 			</p>
-			<?php
+        <?php
 	}
 
 	public function set_addon( $products, $section_id ) {
@@ -167,6 +167,7 @@ class WC_GZD_Admin {
 		wp_register_script( 'tourbus', $admin_script_path . 'tourbus' . $suffix . '.js', array( 'jquery', 'scrollto' ), WC_GERMANIZED_VERSION, true );
 		wp_register_script( 'wc-gzd-admin-tour', $admin_script_path . 'tour' . $suffix . '.js', array( 'jquery', 'woocommerce_settings', 'tourbus' ), WC_GERMANIZED_VERSION, true );
 		wp_register_script( 'wc-gzd-admin-product-variations', $admin_script_path . 'product-variations' . $suffix . '.js', array( 'wc-admin-variation-meta-boxes' ), WC_GERMANIZED_VERSION );
+		wp_register_script( 'wc-gzd-admin-legal-checkboxes', $admin_script_path . 'legal-checkboxes' . $suffix . '.js', array( 'jquery', 'wp-util', 'underscore', 'backbone', 'jquery-ui-sortable', 'wc-enhanced-select' ), WC_GERMANIZED_VERSION );
 
 		if ( isset( $_GET[ 'tab' ] ) && $_GET[ 'tab' ] == 'germanized' ) {
 			
@@ -261,10 +262,11 @@ class WC_GZD_Admin {
 		} elseif ( isset( $_GET[ 'tour' ] ) && isset( $_GET[ 'enable' ] ) && isset( $_GET[ '_wpnonce' ] ) && check_admin_referer( 'wc-gzd-tour-enable' ) ) {
 		
 			$setting_sections = array_merge( array( 
-				'general' => '', 
-				'display' => '', 
-				'email' => '' ),
-			apply_filters( 'woocommerce_gzd_settings_sections', array() ) );
+				'general'    => '',
+				'display'    => '',
+				'checkboxes' => '',
+				'email'      => ''
+            ), apply_filters( 'woocommerce_gzd_settings_sections', array() ) );
 			
 			delete_option( 'woocommerce_gzd_hide_tour' );
 			
@@ -302,16 +304,31 @@ class WC_GZD_Admin {
 
 			$wpdb->query( $wpdb->prepare( "DELETE FROM $wpdb->options WHERE option_name LIKE %s", 'woocommerce_gzd_%_text' ) );
 
-			$options = array(
-				'woocommerce_gzd_checkout_legal_text_digital',
-				'woocommerce_gzd_checkout_legal_text_digital_error',
-				'woocommerce_gzd_order_confirmation_legal_digital_notice',
-				'woocommerce_gzd_checkout_legal_text_error',
-			);
+			$manager = WC_GZD_Legal_Checkbox_Manager::instance();
+			$manager->do_register_action();
+			$options = $manager->get_options();
 
-			foreach ( $options as $option_name ) {
-				delete_option( $option_name );
-			}
+			$checkboxes = $manager->get_checkboxes();
+			$text_options = array(
+			    'label',
+                'error_message',
+                'confirmation',
+                'admin_desc',
+                'admin_name',
+            );
+
+			foreach( $checkboxes as $checkbox ) {
+			    if ( ! $checkbox->is_core() ) {
+			        continue;
+                }
+                foreach( $text_options as $text_option ) {
+			        if ( isset( $options[ $checkbox->get_id() ][ $text_option ] ) ) {
+			            unset( $options[ $checkbox->get_id() ][ $text_option ] );
+                    }
+                }
+            }
+
+            $manager->update_options( $options );
 
 			// Reinstall options
 			WC_GZD_Install::create_options();
@@ -320,9 +337,7 @@ class WC_GZD_Admin {
 
 			// Redirect to check for updates
 			wp_safe_redirect( admin_url( 'admin.php?page=wc-settings&tab=germanized' ) );
-
 		}
-
 	}
 
 	public function check_version_cache_deletion() {
@@ -448,6 +463,47 @@ class WC_GZD_Admin {
 
         return $options;
     }
+
+	private function get_setting_key_by_id( $settings, $id, $type = '' ) {
+		if ( ! empty( $settings ) ) {
+
+			foreach ( $settings as $key => $value ) {
+
+				if ( isset( $value['id'] ) && $value['id'] == $id ) {
+
+					if ( ! empty( $type ) && $type !== $value['type'] )
+						continue;
+
+					return $key;
+				}
+			}
+		}
+
+		return false;
+	}
+
+	public function remove_setting( $settings, $id ) {
+
+		foreach ( $settings as $key => $value ) {
+			if ( isset( $value['id'] ) && $id === $value['id'] )
+				unset( $settings[ $key ] );
+		}
+
+		return array_filter( $settings );
+
+	}
+
+	public function insert_setting_after( $settings, $id, $insert = array(), $type = '' ) {
+        $key = $this->get_setting_key_by_id( $settings, $id, $type );
+		if ( is_numeric( $key ) ) {
+			$key++;
+			$settings = array_merge( array_merge( array_slice( $settings, 0, $key, true ), $insert ), array_slice( $settings, $key, count( $settings ) - 1, true ) );
+		} else {
+			$settings += $insert;
+		}
+
+		return $settings;
+	}
 
 }
 

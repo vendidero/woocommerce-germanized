@@ -97,9 +97,7 @@ class WC_GZD_Checkout {
 			add_filter( 'woocommerce_get_checkout_payment_url', array( $this, 'set_payment_url_to_force_payment' ), 10, 2 );
 		}
 
-		if ( get_option( 'woocommerce_gzd_checkout_legal_parcel_delivery_checkbox' ) === 'yes' ) {
-			add_action( 'woocommerce_checkout_update_order_meta', array( $this, 'order_parcel_delivery_data_transfer' ), 10, 2 );
-		}
+		add_action( 'woocommerce_checkout_update_order_meta', array( $this, 'order_parcel_delivery_data_transfer' ), 10, 2 );
 	}
 
 	public function remove_cancel_button( $actions, $order ) {
@@ -111,15 +109,20 @@ class WC_GZD_Checkout {
 	}
 
 	public function order_parcel_delivery_data_transfer( $order_id, $posted ) {
+		if ( $checkbox = wc_gzd_get_legal_checkbox( 'parcel_delivery' ) ) {
+			if ( ! $checkbox->is_enabled() ) {
+				return;
+			}
 
-		if ( ! wc_gzd_is_parcel_delivery_data_transfer_checkbox_enabled( wc_gzd_get_chosen_shipping_rates( array( 'value' => 'id' ) ) ) ) {
-			return;
-		}
+			if ( ! wc_gzd_is_parcel_delivery_data_transfer_checkbox_enabled( wc_gzd_get_chosen_shipping_rates( array( 'value' => 'id' ) ) ) ) {
+				return;
+			}
 
-		if ( isset( $_POST[ 'parcel-delivery' ] ) ) {
-			update_post_meta( $order_id, '_parcel_delivery_opted_in', 'yes' );
-		} else {
-			update_post_meta( $order_id, '_parcel_delivery_opted_in', 'no' );
+			if ( isset( $_POST[ $checkbox->get_html_name() ] ) ) {
+				update_post_meta( $order_id, '_parcel_delivery_opted_in', 'yes' );
+			} else {
+				update_post_meta( $order_id, '_parcel_delivery_opted_in', 'no' );
+			}
 		}
 	}
 
@@ -155,7 +158,16 @@ class WC_GZD_Checkout {
 
 			if ( apply_filters( 'woocommerce_gzd_enable_force_pay_order', true, $order ) ) {
 				add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_force_pay_script' ), 20 );
+				add_action( 'woocommerce_after_pay_action', array( $this, 'maybe_disable_force_pay_script' ), 20 );
 			}
+		}
+	}
+
+	public function maybe_disable_force_pay_script() {
+		// Make sure we are not retrying to redirect if an error ocurred
+		if ( wc_notice_count( 'error' ) > 0 ) {
+			wp_safe_redirect( remove_query_arg( 'force_pay_order' ) );
+			exit;
 		}
 	}
 

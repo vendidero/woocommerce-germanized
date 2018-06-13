@@ -103,30 +103,34 @@ function wc_gzd_help_tip( $tip, $allow_html = false ) {
 }
 
 function wc_gzd_is_parcel_delivery_data_transfer_checkbox_enabled( $rate_ids = array() ) {
+	$return = false;
 
-	$show = get_option( 'woocommerce_gzd_checkout_legal_parcel_delivery_checkbox_show' );
+	if ( $checkbox = wc_gzd_get_legal_checkbox( 'parcel_delivery' ) ) {
 
-	if ( 'always' === $show ) {
-		$return = true;
-	} else {
-		$supported = get_option( 'woocommerce_gzd_checkout_legal_parcel_delivery_checkbox_methods', array() );
+		if ( $checkbox->is_enabled() ) {
+			$show = $checkbox->show_special;
 
-		if ( ! is_array( $supported ) )
-			$supported = array();
+			if ( 'always' === $show ) {
+				$return = true;
+			} else {
+				$supported = $checkbox->show_shipping_methods ? $checkbox->show_shipping_methods : array();
 
-		$return = false;
-		$rate_is_supported = true;
+				if ( ! is_array( $supported ) )
+					$supported = array();
 
-		if ( get_option( 'woocommerce_gzd_checkout_legal_parcel_delivery_checkbox' ) === 'yes' ) {
-			if ( ! empty( $rate_ids ) ) {
+				$return = false;
+				$rate_is_supported = true;
 
-				foreach ( $rate_ids as $rate_id ) {
-					if ( ! in_array( $rate_id, $supported ) )
-						$rate_is_supported = false;
-				}
+				if ( ! empty( $rate_ids ) ) {
 
-				if ( $rate_is_supported ) {
-					$return = true;
+					foreach ( $rate_ids as $rate_id ) {
+						if ( ! in_array( $rate_id, $supported ) )
+							$rate_is_supported = false;
+					}
+
+					if ( $rate_is_supported ) {
+						$return = true;
+					}
 				}
 			}
 		}
@@ -145,7 +149,6 @@ function wc_gzd_get_tax_rate_label( $rate_percentage ) {
 }
 
 function wc_gzd_get_shipping_costs_text( $product = false ) {
-
 	$find = array(
 		'{link}',
 		'{/link}'
@@ -187,6 +190,26 @@ function wc_gzd_get_privacy_policy_url() {
 function wc_gzd_get_customer_title( $option ) {
 	$options = apply_filters( 'woocommerce_gzd_title_options', array( 1 => __( 'Mr.', 'woocommerce-germanized' ), 2 => __( 'Ms.', 'woocommerce-germanized' ) ) );
 	return ( array_key_exists( $option, $options ) ? $options[ $option ] : $option );
+}
+
+function wc_gzd_register_legal_checkbox( $id, $args ) {
+	$manager = WC_GZD_Legal_Checkbox_Manager::instance();
+	return $manager->register( $id, $args );
+}
+
+function wc_gzd_update_legal_checkbox( $id, $args ) {
+	$manager = WC_GZD_Legal_Checkbox_Manager::instance();
+	return $manager->update( $id, $args );
+}
+
+function wc_gzd_get_legal_checkbox( $id ) {
+	$manager = WC_GZD_Legal_Checkbox_Manager::instance();
+	return $manager->get_checkbox( $id );
+}
+
+function wc_gzd_remove_legal_checkbox( $id ) {
+	$manager = WC_GZD_Legal_Checkbox_Manager::instance();
+	$manager->remove( $id );
 }
 
 if ( ! function_exists( 'is_ajax' ) ) {

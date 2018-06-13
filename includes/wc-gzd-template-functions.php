@@ -154,150 +154,6 @@ if ( ! function_exists( 'woocommerce_gzd_template_checkout_payment_title' ) ) {
 
 }
 
-if ( ! function_exists( 'woocommerce_gzd_template_checkout_legal' ) ) {
-
-	/**
-	 * text legal info within checkout (may contain checkbox)
-	 */
-	function woocommerce_gzd_template_checkout_legal() {
-		wc_get_template( 'checkout/terms.php', array( 'gzd_checkbox' => true ) );
-	}
-
-}
-
-if ( ! function_exists( 'woocommerce_gzd_digital_checkbox' ) ) {
-
-	function woocommerce_gzd_digital_checkbox() {
-		
-		$items = WC()->cart->get_cart();
-		$is_downloadable = false;
-		
-		if ( ! empty( $items ) ) {
-		
-			foreach ( $items as $cart_item_key => $values ) {
-				$_product = apply_filters( 'woocommerce_cart_item_product', $values[ 'data' ], $values, $cart_item_key );
-				if ( wc_gzd_is_revocation_exempt( $_product ) ) {
-					$is_downloadable = true;
-				}
-			}
-
-		}
-		
-		if ( $is_downloadable )
-			wc_get_template( 'checkout/terms-digital.php' );
-	}
-
-}
-
-if ( ! function_exists( 'woocommerce_gzd_service_checkbox' ) ) {
-
-	function woocommerce_gzd_service_checkbox() {
-		
-		$items = WC()->cart->get_cart();
-		$is_service = false;
-		
-		if ( ! empty( $items ) ) {
-		
-			foreach ( $items as $cart_item_key => $values ) {
-				$_product = apply_filters( 'woocommerce_cart_item_product', $values[ 'data' ], $values, $cart_item_key );
-				
-				if ( wc_gzd_is_revocation_exempt( $_product, 'service' ) )
-					$is_service = true;
-			}
-
-		}
-		
-		if ( $is_service )
-			wc_get_template( 'checkout/terms-service.php' );
-	}
-
-}
-
-if ( ! function_exists( 'woocommerce_gzd_parcel_delivery_checkbox' ) ) {
-
-	function woocommerce_gzd_parcel_delivery_checkbox() {
-
-		$rates  = wc_gzd_get_chosen_shipping_rates();
-		$ids    = array();
-		$titles = array();
-
-		foreach ( $rates as $rate ) {
-
-			array_push( $ids, $rate->id );
-
-			if ( method_exists( $rate, 'get_label' ) ) {
-				array_push( $titles, $rate->get_label() );
-			} else {
-				array_push( $titles, $rate->label );
-			}
-		}
-
-		wc_get_template( 'checkout/terms-parcel-delivery.php', array(
-			'titles' => $titles,
-			'show'   => wc_gzd_is_parcel_delivery_data_transfer_checkbox_enabled( $ids )
-		) );
-	}
-}
-
-if ( ! function_exists( 'woocommerce_gzd_refresh_parcel_delivery_checkbox_fragment' ) ) {
-
-	function woocommerce_gzd_refresh_parcel_delivery_checkbox_fragment( $fragments ) {
-
-		ob_start();
-		woocommerce_gzd_parcel_delivery_checkbox();
-		$delivery_checkbox = ob_get_clean();
-
-		$fragments[ '.data-parcel-delivery' ] = $delivery_checkbox;
-
-		return $fragments;
-	}
-
-}
-
-if ( ! function_exists( 'woocommerce_gzd_checkout_validation' ) ) {
-
-	/**
-	 * Validate checkbox data
-	 */
-	function woocommerce_gzd_checkout_validation( $posted ) {
-		if ( ! isset( $_POST[ 'woocommerce_checkout_update_totals' ] ) ) {
-			
-			if ( ! isset( $_POST[ 'legal' ] ) && get_option( 'woocommerce_gzd_display_checkout_legal_no_checkbox' ) == 'no' )
-				wc_add_notice( wc_gzd_get_legal_text_error(), 'error' );
-			
-			// Check if cart contains downloadable product
-			$items = WC()->cart->get_cart();
-			$is_downloadable = false;
-			$is_service = false;
-			
-			if ( ! empty( $items ) && ( get_option( 'woocommerce_gzd_checkout_legal_digital_checkbox' ) === 'yes' || get_option( 'woocommerce_gzd_checkout_legal_service_checkbox' ) === 'yes' ) ) {
-			
-				foreach ( $items as $cart_item_key => $values ) {
-			
-					$_product = apply_filters( 'woocommerce_cart_item_product', $values[ 'data' ], $values, $cart_item_key );
-			
-					if ( wc_gzd_is_revocation_exempt( $_product ) )
-						$is_downloadable = true;
-
-					if ( wc_gzd_is_revocation_exempt( $_product, 'service' ) )
-						$is_service = true;
-
-				}
-			}
-			
-			if ( get_option( 'woocommerce_gzd_checkout_legal_digital_checkbox' ) === 'yes' && $is_downloadable && ! isset( $_POST[ 'download-revocate' ] ) )
-				wc_add_notice( wc_gzd_get_legal_text_digital_error(), 'error' );
-
-			if ( get_option( 'woocommerce_gzd_checkout_legal_service_checkbox' ) === 'yes' && $is_service && ! isset( $_POST[ 'service-revocate' ] ) )
-				wc_add_notice( wc_gzd_get_legal_text_service_error(), 'error' );
-
-			if ( ( wc_gzd_is_parcel_delivery_data_transfer_checkbox_enabled( wc_gzd_get_chosen_shipping_rates( array( 'value' => 'id' ) ) ) && get_option( 'woocommerce_gzd_checkout_legal_parcel_delivery_checkbox_required' ) === 'yes' ) && ! isset( $_POST[ 'parcel-delivery' ] ) )
-				wc_add_notice( __( 'Please accept our parcel delivery agreement', 'woocommerce-germanized' ), 'error' );
-		}
-	}
-
-}
-
 if ( ! function_exists( 'woocommerce_gzd_template_checkout_set_terms_manually' ) ) {
 
 	/**
@@ -504,26 +360,6 @@ if ( ! function_exists( 'woocommerce_gzd_template_set_wc_terms_hide' ) ) {
 
 }
 
-if ( ! function_exists( 'woocommerce_gzd_template_customer_account_checkbox' ) ) {
-
-	function woocommerce_gzd_template_customer_account_checkbox() {
-		wc_get_template( 'myaccount/form-register-checkbox.php' );
-	}
-
-}
-
-if ( ! function_exists( 'woocommerce_gzd_template_customer_account_checkbox_error' ) ) {
-
-	function woocommerce_gzd_template_customer_account_checkbox_error( $validation_error, $username, $password, $email ) {
-		
-		if ( ! isset( $_POST[ 'privacy' ] ) && empty( $_POST[ 'privacy' ] ) )
-			return new WP_Error( 'privacy', __( 'Please accept the creation of a new customer account', 'woocommerce-germanized' ) );
-
-		return $validation_error;
-	}
-
-}
-
 if ( ! function_exists( 'woocommerce_gzd_template_checkout_forwarding_fee_notice' ) ) {
 
 	function woocommerce_gzd_template_checkout_forwarding_fee_notice() {
@@ -649,10 +485,59 @@ if ( ! function_exists( 'woocommerce_gzd_template_order_item_hooks' ) ) {
 if ( ! function_exists( 'woocommerce_gzd_template_mini_cart_taxes' ) ) {
 
 	function woocommerce_gzd_template_mini_cart_taxes() {
+		$hidden_for_types = get_option( 'woocommerce_gzd_display_shipping_costs_hidden_types', array() );
+		$show_shipping = empty( $hidden_for_types ) ? true : false;
+
+		foreach( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
+			if ( $_product = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key ) ) {
+				if ( ! wc_gzd_product_matches_extended_type( $hidden_for_types, $_product ) ) {
+					$show_shipping = true;
+				}
+			}
+		}
+
 		wc_get_template( 'cart/mini-cart-totals.php', array(
-			'taxes' => apply_filters( 'woocommerce_gzd_show_mini_cart_totals_taxes', true ) ? wc_gzd_get_cart_total_taxes( false ) : array(),
-			'shipping_costs_info' => apply_filters( 'woocommerce_gzd_show_mini_cart_totals_shipping_costs_notice', true ) ? wc_gzd_get_shipping_costs_text() : '' )
+			'taxes' => ( apply_filters( 'woocommerce_gzd_show_mini_cart_totals_taxes', true ) ) ? wc_gzd_get_cart_total_taxes( false ) : array(),
+			'shipping_costs_info' => ( apply_filters( 'woocommerce_gzd_show_mini_cart_totals_shipping_costs_notice', $show_shipping ) ) ? wc_gzd_get_shipping_costs_text() : '' )
 		);
+	}
+
+}
+
+if ( ! function_exists( 'wc_gzd_template_empty_wc_privacy_policy_text' ) ) {
+
+	function wc_gzd_template_empty_wc_privacy_policy_text( $text, $type ) {
+
+		// Lets check if Germanized takes care of displaying the legal checkboxes
+		if ( did_action( 'woocommerce_gzd_before_legal_checkbox_terms' ) || did_action( 'woocommerce_gzd_before_legal_checkbox_privacy' ) ) {
+			return '';
+		}
+
+		return $text;
+	}
+
+}
+
+if ( ! function_exists( 'woocommerce_gzd_template_render_checkout_checkboxes' ) ) {
+
+	function woocommerce_gzd_template_render_checkout_checkboxes() {
+		WC_GZD_Legal_Checkbox_Manager::instance()->render( 'checkout' );
+	}
+
+}
+
+if ( ! function_exists( 'woocommerce_gzd_template_render_register_checkboxes' ) ) {
+
+	function woocommerce_gzd_template_render_register_checkboxes() {
+		WC_GZD_Legal_Checkbox_Manager::instance()->render( 'register' );
+	}
+
+}
+
+if ( ! function_exists( 'woocommerce_gzd_template_render_pay_for_order_checkboxes' ) ) {
+
+	function woocommerce_gzd_template_render_pay_for_order_checkboxes() {
+		WC_GZD_Legal_Checkbox_Manager::instance()->render( 'pay_for_order' );
 	}
 
 }

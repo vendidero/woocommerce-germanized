@@ -23,7 +23,8 @@ class WC_GZD_Install {
 		'1.6.3' => 'updates/woocommerce-gzd-update-1.6.3.php',
         '1.8.0' => 'updates/woocommerce-gzd-update-1.8.0.php',
 		'1.8.9' => 'updates/woocommerce-gzd-update-1.8.9.php',
-		'1.9.2' => 'updates/woocommerce-gzd-update-1.9.2.php'
+		'1.9.2' => 'updates/woocommerce-gzd-update-1.9.2.php',
+		'2.0.0' => 'updates/woocommerce-gzd-update-2.0.0.php'
 	);
 
 	/**
@@ -135,7 +136,6 @@ class WC_GZD_Install {
 		self::create_cron_jobs();
 		self::create_units();
 		self::create_labels();
-
 		self::create_options();
 
 		// Virtual Tax Classes
@@ -529,10 +529,34 @@ class WC_GZD_Install {
 
 		// Include settings so that we can run through defaults
 		include_once( WC()->plugin_path() . '/includes/admin/settings/class-wc-settings-page.php' );
+		include_once( 'admin/class-wc-gzd-admin-legal-checkboxes.php' );
 		include_once( 'admin/settings/class-wc-gzd-settings-germanized.php' );
 
 		$settings = new WC_GZD_Settings_Germanized();
-		$options = apply_filters( 'woocommerce_gzd_installation_default_settings', array_merge( $settings->get_settings(), $settings->get_display_settings(), $settings->get_email_settings() ) );
+		$options  = apply_filters( 'woocommerce_gzd_installation_default_settings', array_merge( $settings->get_settings(), $settings->get_display_settings(), $settings->get_email_settings() ) );
+
+		$manager  = WC_GZD_Legal_Checkbox_Manager::instance();
+		$manager->do_register_action();
+
+		$checkbox_options = $manager->get_options();
+
+		foreach( $manager->get_checkboxes( array( 'is_core' => true ) ) as $id => $checkbox ) {
+
+			if ( ! isset( $checkbox_options[ $id ] ) ) {
+				$checkbox_options[ $id ] = array();
+			}
+
+			foreach( $checkbox->get_form_fields() as $field ) {
+				if ( isset( $field['default'] ) && isset( $field['id'] ) ) {
+					$field_id = str_replace( $checkbox->get_form_field_id_prefix(), '', $field['id'] );
+					if ( ! isset( $checkbox_options[ $id ][ $field_id ] ) ) {
+						$checkbox_options[ $id ][ $field_id ] = $field['default'];
+					}
+				}
+			}
+		}
+
+		$manager->update_options( $checkbox_options );
 
 		foreach ( $options as $value ) {
 			if ( isset( $value['default'] ) && isset( $value['id'] ) ) {
@@ -540,7 +564,6 @@ class WC_GZD_Install {
 				add_option( $value['id'], $value['default'], '', ( $autoload ? 'yes' : 'no' ) );
 			}
 		}
-
 	}
 
 }

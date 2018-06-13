@@ -123,17 +123,25 @@ class WC_GZD_Admin_Welcome {
 				<a href="https://vendidero.de/woocommerce-germanized#buy" target="_blank" class="button button-primary">Upgrade zur Pro Version</a>
 			</p>
 			<div class="changelog vendipro new-feature">
-                <h3>DSGVO & WooCommerce</h3>
+                <h3>Rechtliche Checkboxen UI</h3>
                 <div class="left">
                     <p>
-                        Die DSGVO ist in aller Munde - das WordPress und WooCommerce Team beschäftigt sich intensiv mit der neuen Verordnung, da die Verordnung alle Shop-Betreiber mit Kunden in der EU betrifft.
-                        Das neue Update von Germanized greift die neuen bzw. <a href="https://woocommerce.wordpress.com/2018/04/10/how-were-tackling-gdpr-in-woocommerce-core/" target="_blank">geplanten Funktionen</a> von WordPress und WooCommerce auf und fügt etwaige zusätzlich erhobene Daten in die vorgesehenen Exporter bzw. Löschhilfen ein.
-                        Germanized betrifft die DSGVO nur am Rande - wir haben dazu einen <a href="https://vendidero.de/dokument/germanized-und-germanized-pro-dsgvo-update" target="_blank">Artikel</a> in unserer Doku bereitgestellt. Falls noch nicht vorhanden, solltest du dich um eine kompatible Datenschutzerklärung bemühen. Diese kannst du in den Germanized-Einstellungen hinterlegen und dann
-                        im <a href="<?php echo admin_url( 'admin.php?page=wc-settings&tab=germanized&section=display#woocommerce_gzd_display_checkout_legal_no_checkbox' ); ?>" target="_blank">rechtlichen Hinweistext</a> verlinken: {data_security_link}Datenschutzerklärung{/data_security_policy}. Die Platzhalter werden bei der Ausgabe automatisch mit dem Link zu deiner Datenschutzerklärung ersetzt. Die Germanized-Optionen zum Datenschutz findest du <a href="<?php echo admin_url( 'admin.php?page=wc-settings&tab=germanized' ); ?>">hier</a>.
+                        Mit Version 2.0 von Germanized kannst du deine rechtlichen Checkboxen über ein übersichtliches User Interface verwalten.
+                        Du kannst z.B. die Sortierung der verschiedenen Checkboxen via Drag & Drop anpassen und Attribute bearbeiten. Nutzer der Pro-Version können darüberhinaus eigene Checkboxen anlegen, bearbeiten und löschen.
+                        Beim Bearbeiten der Checkbox kannst du einfach Attribute der Checkbox festlegen, darunter die Beschriftung, Fehlermeldung, ob es sich um ein Pflichtfeld handelt uvm.
+                        Damit werden die Anpassungen an deinen Checkboxen nicht nur deutlich übersichtlicher sondern auch mit neuen Features versehen.
+                        Die neuen rechtlichen Checkboxen kannst du <a href="<?php echo admin_url( 'admin.php?page=wc-settings&tab=germanized&section=checkboxes' ); ?>">hier</a> anpassen.
                     </p>
+                    <p>
+                        Weitere Informationen, auch zu den technischen Details der rechtl. Checkboxen findest du in unserer <a href="https://vendidero.de/dokument/woocommerce-germanized-rechtliche-checkboxen" target="_blank">Doku</a>.
+                    </p>
+                    <div class="vendipro-buttons">
+                        <a href="https://vendidero.de/woocommerce-germanized#pro" target="_blank" class="button button-primary wc-gzd-button">Pro Version entdecken</a>
+                        <p class="price smaller">ab 69,95 € inkl. MwSt. - inkl. 1 Jahr Updates & Premium Support!</p>
+                    </div>
                 </div>
                 <div class="right">
-                    <img src="<?php echo WC_germanized()->plugin_url();?>/assets/images/exporter.png" />
+                    <img src="<?php echo WC_germanized()->plugin_url();?>/assets/images/checkboxes.png" />
                 </div>
             </div>
 			<div class="changelog vendipro new-feature">
@@ -230,28 +238,23 @@ class WC_GZD_Admin_Welcome {
 				</div>
 			</div>
 			<div class="changelog">
-				<h3>Neu in WooCommerce Germanized 1.9</h3>
+				<h3>Neu in WooCommerce Germanized 2.0</h3>
 				<div class="wc-feature feature-section col three-col" style="margin-bottom: -30px">
 					<div>
-						<h4><i class="fa fa-language"></i> PolyLang</h4>
+						<h4><i class="fa fa-check-square"></i> Rechtliche Checkboxen</h4>
 						<p>
-                            Neben WPML unterstützt Germanized nun auch PolyLang und das WooCommerce Plugin <a href="https://wordpress.org/plugins/woo-poly-integration/" target="_blank">WooCommerce PolyLang Integration</a>.
-                            Mit PolyLang und Germanized kannst du deinen Online-Shop nun auch in mehreren Sprachen betreiben.
+                            Germanized bietet nun ein übersichtliches UI zur Verwaltung deiner rechtl. Checkboxen an. Du kannst z.B. selbst festlegen, an welchen Orten die Checkbox angezeigt werden soll. Nutzer der Pro-Version können eigene Checkboxen hinzufügen.
                         </p>
 					</div>
 					<div>
-						<h4><i class="fa fa-institution"></i> Differenzbesteuerung</h4>
+						<h4><i class="fa fa-star"></i> Bewertungserinnerung Opt-Out</h4>
 						<p>
-							Germanized unterstützt nun auch die Differenzbesteuerung nach §25a UStG. Damit kannst du deine Produkte nun entsprechend kennzeichnen und auf Wunsch
-                            in der Kasse und in den E-Mails Hinweise einbetten um deine Kunden zu informieren.
+							Kunden von Trusted Shops können mit Hilfe von Germanized eine Bewertungserinnerung per E-Mail versenden - dafür gibt es nun eine separate Checkbox.
+                            Zudem wird auf Wunsch in der Bestellbestätigung ein Abmelde-Link platziert.
 						</p>
 					</div>
 					<div class="last-feature">
-						<h4><i class="fa fa-gift"></i> Wertgutscheine</h4>
-						<p>
-							Wertgutscheine werden im Gegensatz zu normalen Gutscheinen erst besteuert, wenn sie eingelöst werden. Du kannst bestimmte WooCommerce Gutscheine nun optional als
-                            Wertgutschein markieren. MwSt. wird in diesem Fall erst beim Einlösen berechnet.
-						</p>
+
 					</div>
 				</div>
 				<div class="return-to-dashboard">

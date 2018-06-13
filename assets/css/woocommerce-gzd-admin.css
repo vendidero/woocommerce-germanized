@@ -240,10 +240,101 @@ table.form-table .forminp-radio fieldset p {
 
 .wc-gzd-admin-settings tr.single_select_page .description {
 	display: block;
+	margin-top: .5em;
 }
 
 .wc-gzd-admin-settings td.forminp-select .description {
 	position: relative;
 	top: 3px;
 	margin-left: 10px;
+}
+
+/**
+ Checkbox UI
+ */
+
+table.wc-gzd-legal-checkboxes thead th {
+	vertical-align: middle;
+}
+
+table.wc-gzd-legal-checkboxes thead th.wc-gzd-legal-checkbox-sort {
+	text-align: center;
+}
+
+table.wc-gzd-legal-checkboxes th, table.wc-gzd-legal-checkboxes td {
+	vertical-align: top;
+	line-height: 24px;
+	padding: 1em !important;
+	font-size: 14px;
+	background: #fff;
+	display: table-cell !important;
+}
+
+table.wc-gzd-legal-checkboxes td ul {
+	margin: 0;
+}
+
+table.wc-gzd-legal-checkboxes td.wc-gzd-legal-checkbox-locations ul li::before {
+	content: ', ';
+}
+
+table.wc-gzd-legal-checkboxes td.wc-gzd-legal-checkbox-locations ul li:first-child::before {
+	content: '';
+}
+
+table.wc-gzd-legal-checkboxes td .status-enabled, table.wc-gzd-legal-checkboxes td .status-disabled {
+	margin-top: 3px;
+}
+
+table.wc-gzd-legal-checkboxes td ul li {
+	line-height: 24px;
+	font-size: 14px;
+	color: #555;
+	display: inline;
+	margin: 0;
+}
+
+table.wc-gzd-legal-checkboxes tbody.wc-gzd-legal-checkbox-rows td {
+	border-top: 2px solid #f9f9f9;
+}
+
+table.wc-gzd-legal-checkboxes tbody.wc-gzd-legal-checkbox-rows tr:first-child td {
+	border-top: 0;
+}
+
+.wc-gzd-legal-checkboxes tbody.wc-gzd-legal-checkbox-rows tr:nth-child( odd ) td {
+	background: #f9f9f9;
+}
+
+table.wc-gzd-legal-checkboxes td.wc-gzd-legal-checkbox-sort::before {
+	content: '\f333';
+	font-family: Dashicons;
+	text-align: center;
+	line-height: 1;
+	color: #999;
+	display: block;
+	width: 17px;
+	float: left;
+	height: 100%;
+	line-height: 24px;
+}
+
+.wc-gzd-admin-settings-checkboxes td.forminp-textarea p code {
+	margin: .5em 0;
+	display: block;
+}
+
+.wc-gzd-admin-settings-checkboxes td.forminp-textarea p {
+	margin-bottom: 1em;
+}
+
+.wc-gzd-admin-settings-checkboxes td.forminp-textarea .gzd-small-desc {
+	font-size: 12px;
+	font-style: italic;
+}
+
+.wc-gzd-admin-settings-checkboxes td.forminp-text .description {
+	margin-top: .5em;
+	line-height: 1.5em;
+	display: block;
 }
