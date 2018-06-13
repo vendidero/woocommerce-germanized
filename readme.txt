@@ -5,7 +5,7 @@ Requires at least: 3.8
 Tested up to: 4.9
 WC requires at least: 2.4
 WC tested up to: 3.4
-Stable tag: 2.0.1
+Stable tag: 2.0.2
 Requires PHP: 5.3
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -76,10 +76,10 @@ We've added some specific compatibility and tests for certain popular WooCommerc
 * PolyLang
 * WooCommerce Dynamic Pricing
 * WooCommerce Role Based Pricing
+* WooCommerce Product Bundles
 
 = Tested WooCommerce Themes =
-To fit german requirements even better we've developed a special [WooCommerce Theme](https://vendidero.de/vendipro "WooCommerce Theme for German Market") specifically developed for the german market: VendiPro.
-While developing VendiPro we have considered german design principles to adapt WooCommerce to the german market.
+To fit german requirements even better we've developed a special [WooCommerce Theme](https://vendidero.de/vendipro "WooCommerce Theme for German Market") specifically developed for the german market: VendiPro. While developing VendiPro we have considered german design principles to adapt WooCommerce to the german market.
 By default, Germanized works with every WooCommerce theme. Some themes may need adjustments due to not using WooCommerce standards hooks or styles. Within our professional version we've tested certain third-party WooCommerce themes to ensure better compatibility with Germanized:
 
 * Flatsome
@@ -160,6 +160,9 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 4. WooCommerce Multistep Checkout (Pro)
 
 == Changelog ==
+
+= 2.0.2 =
+* Fix: Make sure we are not registering core legal checkboxes again
 
 = 2.0.1 =
 * Fix: Failure while loading the 2.0.0 update script

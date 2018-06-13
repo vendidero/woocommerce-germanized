@@ -8,6 +8,16 @@ class WC_GZD_Legal_Checkbox_Manager {
 
 	protected $options = null;
 
+	protected $core_checkboxes = array(
+		'terms',
+		'download',
+		'service',
+		'parcel_delivery',
+		'privacy',
+		'sepa',
+		'review_reminder',
+	);
+
 	public static function instance() {
 		if ( is_null( self::$_instance ) )
 			self::$_instance = new self();
@@ -41,6 +51,10 @@ class WC_GZD_Legal_Checkbox_Manager {
 		}
 
 		return $fragments;
+	}
+
+	public function get_core_checkbox_ids() {
+		return apply_filters( 'woocommerce_gzd_legal_checkbox_core_ids', $this->core_checkboxes );
 	}
 
 	protected function get_legal_label_args() {
@@ -273,10 +287,11 @@ class WC_GZD_Legal_Checkbox_Manager {
 
 		do_action( 'woocommerce_gzd_register_legal_checkboxes', $this );
 
+		// Make sure we are not registering core checkboxes again
 		foreach( $this->get_options() as $id => $checkbox_args ) {
 			if ( $checkbox = $this->get_checkbox( $id ) ) {
 				$checkbox->update( $checkbox_args );
-			} else {
+			} elseif ( ! in_array( $id, $this->get_core_checkbox_ids() ) ) {
 				$this->register( $id, $checkbox_args );
 			}
 		}
