@@ -4,10 +4,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-if ( get_option( 'woocommerce_gzd_legal_checkboxes_settings', false ) ) {
-	return;
-}
-
 // Checkboxes
 $options = array(
 	'terms'           => array(),
