@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce Germanized v1.5.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-13 13:35+0200\n"
-"PO-Revision-Date: 2018-06-13 13:35+0200\n"
+"POT-Creation-Date: 2018-06-14 11:43+0200\n"
+"PO-Revision-Date: 2018-06-14 11:43+0200\n"
 "Last-Translator: holzhannes <holzhannes@posteo.de>\n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -249,7 +249,7 @@ msgstr "Virtuelles Produkt"
 #: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:46
 #: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:119
 #: includes/admin/settings/class-wc-gzd-settings-germanized.php:766
-#: includes/class-wc-gzd-legal-checkbox-manager.php:107
+#: includes/class-wc-gzd-legal-checkbox-manager.php:122
 msgid "Service"
 msgstr "Dienstleistung"
 
@@ -850,7 +850,7 @@ msgstr ""
 
 #: includes/admin/settings/class-wc-gzd-settings-germanized.php:266
 #: includes/admin/settings/class-wc-gzd-settings-germanized.php:300
-#: includes/class-wc-gzd-legal-checkbox-manager.php:143
+#: includes/class-wc-gzd-legal-checkbox-manager.php:158
 msgid "Privacy Policy"
 msgstr "Datenschutz"
 
@@ -3346,7 +3346,7 @@ msgid "Payment Methods"
 msgstr "Zahlungsarten"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-legal-checkbox-manager.php:65
+#: includes/class-wc-gzd-legal-checkbox-manager.php:80
 #: includes/updates/woocommerce-gzd-update-2.0.1.php:18
 msgid ""
 "With your order, you agree to have read and understood our {term_link}Terms "
@@ -3360,7 +3360,7 @@ msgstr ""
 "data_security_link} einverstanden."
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-legal-checkbox-manager.php:66
+#: includes/class-wc-gzd-legal-checkbox-manager.php:81
 #: includes/updates/woocommerce-gzd-update-2.0.1.php:19
 msgid ""
 "To finish the order you have to accept to our {term_link}Terms and "
@@ -3373,11 +3373,11 @@ msgstr ""
 "{data_security_link}Datenschutzbestimmungen{/data_security_link}."
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-legal-checkbox-manager.php:72
+#: includes/class-wc-gzd-legal-checkbox-manager.php:87
 msgid "Legal"
 msgstr "Allgemein"
 
-#: includes/class-wc-gzd-legal-checkbox-manager.php:73
+#: includes/class-wc-gzd-legal-checkbox-manager.php:88
 msgid ""
 "General legal checkbox which shall include terms, revocation and privacy "
 "notice."
@@ -3386,7 +3386,7 @@ msgstr ""
 "enthalten sollte."
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-legal-checkbox-manager.php:81
+#: includes/class-wc-gzd-legal-checkbox-manager.php:96
 #: includes/updates/woocommerce-gzd-update-2.0.1.php:24
 msgid ""
 "For digital products: I strongly agree that the execution of the agreement "
@@ -3398,7 +3398,7 @@ msgstr ""
 "bekannt, dass mit Beginn der Ausführung mein Widerrufsrecht erlischt."
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-legal-checkbox-manager.php:83
+#: includes/class-wc-gzd-legal-checkbox-manager.php:98
 #: includes/updates/woocommerce-gzd-update-2.0.1.php:25
 msgid ""
 "To retrieve direct access to digital content you have to agree to the loss "
@@ -3407,17 +3407,17 @@ msgstr ""
 "Um direkten Zugang zu den digitalen Inhalte zu erhalten, musst du auf das "
 "Widerrufsrecht verzichten."
 
-#: includes/class-wc-gzd-legal-checkbox-manager.php:89
+#: includes/class-wc-gzd-legal-checkbox-manager.php:104
 msgid "Digital"
 msgstr "Digital"
 
-#: includes/class-wc-gzd-legal-checkbox-manager.php:90
+#: includes/class-wc-gzd-legal-checkbox-manager.php:105
 msgid "Asks the customer to skip revocation period for digital products."
 msgstr ""
 "Ermöglicht die Bereitstellung des Downloads vor Ablauf der Widerrufsfrist."
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-legal-checkbox-manager.php:99
+#: includes/class-wc-gzd-legal-checkbox-manager.php:114
 #: includes/updates/woocommerce-gzd-update-2.0.1.php:31
 msgid ""
 "For services: I demand and acknowledge the immediate performance of the "
@@ -3430,7 +3430,7 @@ msgstr ""
 "vollständiger Erfüllung des Vertrages erlischt."
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-legal-checkbox-manager.php:101
+#: includes/class-wc-gzd-legal-checkbox-manager.php:116
 #: includes/updates/woocommerce-gzd-update-2.0.1.php:32
 msgid ""
 "To allow the immediate performance of the services you have to agree to the "
@@ -3438,12 +3438,12 @@ msgid ""
 msgstr ""
 "Bitte stimme dem Beginn der Dienstleistung vor Ablauf der Widerrufsfrist zu."
 
-#: includes/class-wc-gzd-legal-checkbox-manager.php:108
+#: includes/class-wc-gzd-legal-checkbox-manager.php:123
 msgid "Asks the customer to skip revocation period for services."
 msgstr ""
 "Ermöglicht das Beginnen von Dienstleistungen vor Ablauf der Widerrufsfrist."
 
-#: includes/class-wc-gzd-legal-checkbox-manager.php:116
+#: includes/class-wc-gzd-legal-checkbox-manager.php:131
 #: includes/updates/woocommerce-gzd-update-2.0.1.php:40
 msgid ""
 "Yes, I would like to be reminded via E-mail about parcel delivery "
@@ -3456,16 +3456,16 @@ msgstr ""
 "weitergegeben."
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-legal-checkbox-manager.php:121
+#: includes/class-wc-gzd-legal-checkbox-manager.php:136
 msgid "Please accept our parcel delivery agreement"
 msgstr "Bitte akzeptiere die Datenweitergabe an unsere Paketdienstleister"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-legal-checkbox-manager.php:126
+#: includes/class-wc-gzd-legal-checkbox-manager.php:141
 msgid "Parcel Delivery"
 msgstr "Paketdienstleister"
 
-#: includes/class-wc-gzd-legal-checkbox-manager.php:127
+#: includes/class-wc-gzd-legal-checkbox-manager.php:142
 msgid ""
 "Asks the customer to hand over data to the parcel delivery service provider."
 msgstr ""
@@ -3473,7 +3473,7 @@ msgstr ""
 "Paketdienstleister ein."
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-legal-checkbox-manager.php:136
+#: includes/class-wc-gzd-legal-checkbox-manager.php:151
 #: includes/updates/woocommerce-gzd-update-2.0.1.php:44
 msgid ""
 "Yes, I’d like create a new account and have read and understood the "
@@ -3483,63 +3483,67 @@ msgstr ""
 "{data_security_link}Datenschutzerklärung{/data_security_link}."
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-legal-checkbox-manager.php:140
+#: includes/class-wc-gzd-legal-checkbox-manager.php:155
 msgid "Please accept the creation of a new customer account"
 msgstr "Bitte akzeptiere die Erstellung eines neuen Kundenkontos"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-legal-checkbox-manager.php:144
+#: includes/class-wc-gzd-legal-checkbox-manager.php:159
 msgid "Let customers accept your privacy policy before registering."
 msgstr ""
 "Lässt Kunden deine Datenschutzbelehrung vor der Registrierung akzeptieren."
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-legal-checkbox-manager.php:158
+#: includes/class-wc-gzd-legal-checkbox-manager.php:173
 #: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:744
 msgid "I hereby agree to the {link}direct debit mandate{/link}."
 msgstr "Hiermit erteile ich das {link}SEPA Lastschriftmandat{/link}."
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-legal-checkbox-manager.php:161
+#: includes/class-wc-gzd-legal-checkbox-manager.php:176
 msgid "Please accept the direct debit mandate."
 msgstr "Bitte erteile das SEPA Lastschriftmandat."
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-legal-checkbox-manager.php:166
+#: includes/class-wc-gzd-legal-checkbox-manager.php:181
 #: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:187
 msgid "SEPA"
 msgstr "SEPA"
 
-#: includes/class-wc-gzd-legal-checkbox-manager.php:167
+#: includes/class-wc-gzd-legal-checkbox-manager.php:182
 msgid "Asks the customer to issue the SEPA mandate."
 msgstr "Lässt den Kunden das SEPA Mandat vor dem Kauf bestätigen."
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-legal-checkbox-manager.php:331
+#: includes/class-wc-gzd-legal-checkbox-manager.php:367
 msgid "Checkout"
 msgstr "Kasse"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-legal-checkbox-manager.php:332
+#: includes/class-wc-gzd-legal-checkbox-manager.php:368
 msgid "Register form"
 msgstr "Registrierung"
 
 # @ woocommerce
-#: includes/class-wc-gzd-legal-checkbox-manager.php:333
+#: includes/class-wc-gzd-legal-checkbox-manager.php:369
 msgid "Pay for order"
 msgstr "Bestell-Bezahlseite"
 
-#: includes/class-wc-gzd-legal-checkbox-manager.php:395
+#: includes/class-wc-gzd-legal-checkbox-manager.php:370
+msgid "Reviews"
+msgstr "Bewertungen"
+
+#: includes/class-wc-gzd-legal-checkbox-manager.php:432
 #, php-format
 msgid "Checkbox location %s does not exist."
 msgstr "Checkbox Ort %s existiert nicht."
 
-#: includes/class-wc-gzd-legal-checkbox-manager.php:414
+#: includes/class-wc-gzd-legal-checkbox-manager.php:451
 #, php-format
 msgid "Please make sure to check %s checkbox."
 msgstr "Kontrolliere bitte %s. Hier fehlt eine Einwilligung."
 
-#: includes/class-wc-gzd-legal-checkbox-manager.php:419
+#: includes/class-wc-gzd-legal-checkbox-manager.php:456
 #, php-format
 msgid "Checkbox with name %s does already exist."
 msgstr "Eine Checkbox mit dem Namen %s existiert bereits."

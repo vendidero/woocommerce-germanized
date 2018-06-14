@@ -127,6 +127,7 @@ add_action( 'woocommerce_gzd_review_order_before_submit', 'woocommerce_gzd_templ
  */
 add_action( 'woocommerce_pay_order_before_submit', 'woocommerce_gzd_template_render_pay_for_order_checkboxes', 10 );
 add_action( 'woocommerce_register_form', 'woocommerce_gzd_template_render_register_checkboxes', 19 );
+add_filter( 'comment_form_submit_button', 'woocommerce_gzd_template_render_review_checkboxes', 10, 2 );
 
 function woocommerce_gzd_checkout_load_ajax_relevant_hooks() {
 

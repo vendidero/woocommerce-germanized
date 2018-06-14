@@ -539,7 +539,30 @@ if ( ! function_exists( 'woocommerce_gzd_template_render_pay_for_order_checkboxe
 	function woocommerce_gzd_template_render_pay_for_order_checkboxes() {
 		WC_GZD_Legal_Checkbox_Manager::instance()->render( 'pay_for_order' );
 	}
+}
 
+if ( ! function_exists( 'woocommerce_gzd_template_render_review_checkboxes' ) ) {
+
+	function woocommerce_gzd_template_render_review_checkboxes( $html, $args ) {
+		global $post;
+
+		if ( ! $post || $post->post_type !== 'product' ) {
+			return $html;
+		}
+
+		$manager = WC_GZD_Legal_Checkbox_Manager::instance();
+		$checkbox_html = '';
+
+		foreach( $manager->get_checkboxes( array( 'locations' => 'reviews' ) ) as $id => $checkbox ) {
+			if ( $checkbox->is_printable() ) {
+				ob_start();
+				$checkbox->render();
+				$checkbox_html .= ob_get_clean();
+			}
+		}
+
+		return $checkbox_html . $html;
+	}
 }
 
 ?>

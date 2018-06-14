@@ -31,6 +31,7 @@ class WC_GZD_Legal_Checkbox_Manager {
 		add_action( 'woocommerce_after_checkout_validation', array( $this, 'validate_checkout' ), 1, 1 );
 		add_filter( 'woocommerce_process_registration_errors', array( $this, 'validate_register' ), 10, 1 );
 		add_action( 'woocommerce_before_pay_action', array( $this, 'validate_pay_for_order' ), 10, 1 );
+		add_filter( 'pre_comment_approved', array( $this, 'validate_reviews' ), 10, 2 );
 
 		// Cannot use after_setup_theme here because language packs are not yet loaded
 		add_action( 'init', array( $this, 'do_register_action' ), 50 );
@@ -326,6 +327,26 @@ class WC_GZD_Legal_Checkbox_Manager {
 		}
 	}
 
+	public function validate_reviews( $approved, $comment_data ) {
+
+		if ( 'product' !== get_post_type( $comment_data['comment_post_ID'] ) ) {
+			return $approved;
+		}
+
+		$this->maybe_do_hooks( 'reviews' );
+
+		foreach( $this->get_checkboxes( array( 'locations' => 'reviews' ) ) as $id => $checkbox ) {
+
+			$value = isset( $_POST[ $checkbox->get_html_name() ] ) ? $_POST[ $checkbox->get_html_name() ] : '';
+
+			if( ! $checkbox->validate( $value, 'reviews' ) ) {
+				return new WP_Error( $checkbox->get_html_name(), $checkbox->get_error_message(), 409 );
+			}
+		}
+
+		return $approved;
+	}
+
 	public function validate_register( $validation_error ) {
 		$this->maybe_do_hooks( 'register' );
 
@@ -343,9 +364,10 @@ class WC_GZD_Legal_Checkbox_Manager {
 
 	public function get_locations() {
 		return apply_filters( 'woocommerce_gzd_legal_checkbox_locations', array(
-			'checkout' => __( 'Checkout', 'woocommerce-germanized' ),
-			'register' => __( 'Register form', 'woocommerce-germanized' ),
-			'pay_for_order' => __( 'Pay for order', 'woocommerce-germanized' )
+			'checkout'      => __( 'Checkout', 'woocommerce-germanized' ),
+			'register'      => __( 'Register form', 'woocommerce-germanized' ),
+			'pay_for_order' => __( 'Pay for order', 'woocommerce-germanized' ),
+			'reviews'       => __( 'Reviews', 'woocommerce-germanized' )
 		) );
 	}
 

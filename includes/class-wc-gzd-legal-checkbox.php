@@ -50,6 +50,17 @@ class WC_GZD_Legal_Checkbox {
 	 * @param array $args
 	 */
 	public function update( $args = array() ) {
+
+		// Merge html classes to avoid core classes being overriden by empty option
+		$merge = array( 'html_classes', 'html_wrapper_classes' );
+
+		foreach( $merge as $merge_key ) {
+			if ( isset( $args[ $merge_key ] ) ) {
+				$getter = "get_" . $merge_key;
+				$args[ $merge_key ] = array_merge( $this->$getter(), $args[ $merge_key ] );
+			}
+		}
+
 		foreach( $args as $prop => $value ) {
 			try {
 				$setter = "set_$prop";
