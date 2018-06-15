@@ -553,13 +553,9 @@ if ( ! function_exists( 'woocommerce_gzd_template_render_review_checkboxes' ) ) 
 		$manager = WC_GZD_Legal_Checkbox_Manager::instance();
 		$checkbox_html = '';
 
-		foreach( $manager->get_checkboxes( array( 'locations' => 'reviews' ) ) as $id => $checkbox ) {
-			if ( $checkbox->is_printable() ) {
-				ob_start();
-				$checkbox->render();
-				$checkbox_html .= ob_get_clean();
-			}
-		}
+		ob_start();
+		$manager->render( 'reviews' );
+		$checkbox_html .= ob_get_clean();
 
 		return $checkbox_html . $html;
 	}

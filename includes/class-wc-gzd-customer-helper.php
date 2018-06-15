@@ -273,7 +273,6 @@ class WC_GZD_Customer_Helper {
 			return new WP_Error( 'woocommerce_gzd_login', __( 'Please activate your account through clicking on the activation link received via email.', 'woocommerce-germanized' ) );
 
 		return $user;
-
 	}
 
 		/**
@@ -282,17 +281,20 @@ class WC_GZD_Customer_Helper {
 	public function customer_account_activation_check() {
 		if ( is_account_page() ) {
 			if ( isset( $_GET[ 'activate' ] ) ) {
-				$activation_code = sanitize_text_field( $_GET[ 'activate' ] );
+				$activation_code = wc_clean( wp_unslash( $_GET[ 'activate' ] ) );
+
 				if ( ! empty( $activation_code ) ) {
-					if ( $this->customer_account_activate( $activation_code, true ) ) {
+					$result = $this->customer_account_activate( $activation_code, true );
+
+					if ( $result === true ) {
 						$url = add_query_arg( array( 'activated' => 'yes' ) );
 						$url = remove_query_arg( 'activate', $url );
+						$url = remove_query_arg( 'suffix', $url );
 
 						wp_safe_redirect( apply_filters( 'woocommerce_gzd_double_opt_in_successful_redirect', $url ) );
-					}
-
-					// Double Opt In failed
-					if ( ! is_user_logged_in() ) {
+					} elseif ( is_wp_error( $result ) && 'expired_key' === $result->get_error_code() ) {
+						wc_add_notice( __( 'This activation code has expired. We have sent you a new activation code via e-mail.', 'woocommerce-germanized' ), 'error' );
+					} else {
 						wc_add_notice( __( 'Sorry, but this activation code cannot be found.', 'woocommerce-germanized' ), 'error' );
 					}
 				}
@@ -343,12 +345,11 @@ class WC_GZD_Customer_Helper {
 	 * Activate customer account based on activation code
 	 *  
 	 * @param  string $activation_code hashed activation code
-	 * @return boolean                  
+	 * @return boolean|WP_Error
 	 */
 	public function customer_account_activate( $activation_code, $login = false ) {
-
 		$roles = array_map( 'ucfirst', $this->get_double_opt_in_user_roles() );
-		
+
 		$user_query = new WP_User_Query( apply_filters( 'woocommerce_gzd_customer_account_activation_query', array( 
 			'role' => $roles,
 			'number' => 1, 
@@ -360,25 +361,57 @@ class WC_GZD_Customer_Helper {
 				),
 			),
 		), $activation_code, $login ) );
+
+		/**
+		 * Filters the expiration time of customer activation keys.
+		 *
+		 * @since 4.3.0
+		 *
+		 * @param int $expiration The expiration time in seconds.
+		 */
+		$expiration_duration = apply_filters( 'woocommerce_germanized_account_activation_expiration', DAY_IN_SECONDS );
 		
 		if ( ! empty( $user_query->results ) ) {
-			
+
 			foreach ( $user_query->results as $user ) {
-				
-				do_action( 'woocommerce_gzd_customer_opted_in', $user );
-				delete_user_meta( $user->ID, '_woocommerce_activation' );
-				WC()->mailer()->customer_new_account( $user->ID );
 
-				if ( apply_filters( 'woocommerce_gzd_user_activation_auto_login', $login, $user ) && ! is_user_logged_in() )
-					wc_set_customer_auth_cookie( $user->ID );
+				$expiration_time = false;
 
-				do_action( 'woocommerce_gzd_customer_opt_in_finished', $user );
+				if ( false !== strpos( $activation_code, ':' ) ) {
+					list( $activation_request_time, $activation_key ) = explode( ':', $activation_code, 2 );
+					$expiration_time                                  = $activation_request_time + $expiration_duration;
+				}
 
-				return true;
+				if ( $expiration_time && time() < $expiration_time ) {
+
+					do_action( 'woocommerce_gzd_customer_opted_in', $user );
+					delete_user_meta( $user->ID, '_woocommerce_activation' );
+
+					WC()->mailer()->customer_new_account( $user->ID );
+
+					if ( apply_filters( 'woocommerce_gzd_user_activation_auto_login', $login, $user ) && ! is_user_logged_in() )
+						wc_set_customer_auth_cookie( $user->ID );
+
+					do_action( 'woocommerce_gzd_customer_opt_in_finished', $user );
+
+					return true;
+				} else {
+
+					do_action( 'woocommerce_gzd_customer_activation_expired', $user );
+					delete_user_meta( $user->ID, '_woocommerce_activation' );
+					$activation_code = $this->get_customer_activation_meta( $user->ID, true );
+
+					$user_activation_url = $this->get_customer_activation_url( $activation_code );
+
+					if ( $email = WC_germanized()->emails->get_email_instance_by_id( 'customer_new_account_activation' ) )
+						$email->trigger( $user->ID, $activation_code, $user_activation_url );
+
+					return new WP_Error( 'expired_key', __( 'Expired activation key', 'woocommerce-germanized' ) );
+				}
 			}
 		}
 
-		return false;
+		return new WP_Error( 'invalid_key', __( 'Invalid activation key', 'woocommerce-germanized' ) );
 	}
 
 	public function email_hooks( $mailer ) {
@@ -404,15 +437,19 @@ class WC_GZD_Customer_Helper {
 			return;
 
 		$user_pass = ! empty( $new_customer_data['user_pass'] ) ? $new_customer_data['user_pass'] : '';
-
 		$user_activation = $this->get_customer_activation_meta( $customer_id );
-		$user_activation_url = apply_filters( 'woocommerce_gzd_customer_activation_url', add_query_arg( array( 'activate' => $user_activation ), wc_gzd_get_page_permalink( 'myaccount' ) ) );
+		$user_activation_url = $this->get_customer_activation_url( $user_activation );
 
 		if ( $email = WC_germanized()->emails->get_email_instance_by_id( 'customer_new_account_activation' ) )
 			$email->trigger( $customer_id, $user_activation, $user_activation_url, $user_pass, $password_generated );
 	}
 
-	public function get_customer_activation_meta( $customer_id ) {
+	public function get_customer_activation_url( $key ) {
+		// Append another GET-Parameter to avoid email clients from stripping points as last chars within our actication code.
+		return apply_filters( 'woocommerce_gzd_customer_activation_url', add_query_arg( array( 'activate' => $key, 'suffix' => 'yes' ), wc_gzd_get_page_permalink( 'myaccount' ) ) );
+	}
+
+	public function get_customer_activation_meta( $customer_id, $force_new = false ) {
 		global $wp_hasher;
 
 		if ( ! $customer_id )
@@ -422,17 +459,21 @@ class WC_GZD_Customer_Helper {
 			return;
 
 		// If meta does already exist - return activation code
-		if ( $activation = get_user_meta( $customer_id, '_woocommerce_activation', true ) ) {
+		if ( ! $force_new && ( $activation = get_user_meta( $customer_id, '_woocommerce_activation', true ) ) ) {
 			return $activation;
 		}
 
-		// Meta does not exist yet - create new activation code
+		// Generate something random for a password reset key.
+		$key = wp_generate_password( 20, false );
+
+		// Now insert the key, hashed, into the DB.
 		if ( empty( $wp_hasher ) ) {
 			require_once ABSPATH . WPINC . '/class-phpass.php';
 			$wp_hasher = new PasswordHash( 8, true );
 		}
 
-		$user_activation = $wp_hasher->HashPassword( wp_generate_password( 20 ) );
+		$user_activation = time() . ':' . $wp_hasher->HashPassword( $key );
+
 		add_user_meta( $customer_id, '_woocommerce_activation', $user_activation );
 
 		return $user_activation;

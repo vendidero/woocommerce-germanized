@@ -5,7 +5,7 @@ Requires at least: 3.8
 Tested up to: 4.9
 WC requires at least: 2.4
 WC tested up to: 3.4
-Stable tag: 2.0.2
+Stable tag: 2.0.3
 Requires PHP: 5.3
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -160,6 +160,10 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 4. WooCommerce Multistep Checkout (Pro)
 
 == Changelog ==
+
+= 2.0.3 =
+* Improvement: Added reviews (review form) as new legal checkbox location
+* Improvement: Merge html classes for legal checkboxes instead of replacing them
 
 = 2.0.2 =
 * Fix: Make sure we are not registering core legal checkboxes again

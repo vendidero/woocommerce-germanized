@@ -674,7 +674,7 @@ class WC_GZD_Legal_Checkbox {
 	 * @return string
 	 */
 	public function get_form_field_id_prefix() {
-		return "woocommerce_gzd_legal_checkboxes_settings_{$this->get_id()}_";
+		return "woocommerce_gzd_checkboxes_{$this->get_id()}_";
 	}
 
 	/**

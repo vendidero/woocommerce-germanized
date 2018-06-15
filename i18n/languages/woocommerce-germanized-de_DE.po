@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce Germanized v1.5.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-14 11:43+0200\n"
-"PO-Revision-Date: 2018-06-14 11:43+0200\n"
+"POT-Creation-Date: 2018-06-15 12:13+0200\n"
+"PO-Revision-Date: 2018-06-15 12:14+0200\n"
 "Last-Translator: holzhannes <holzhannes@posteo.de>\n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -2107,13 +2107,13 @@ msgstr ""
 
 # @ woocommerce-germanized
 #: includes/admin/views/html-admin-page-checkboxes.php:16
-#: includes/class-wc-gzd-legal-checkbox.php:709
+#: includes/class-wc-gzd-legal-checkbox.php:720
 msgid "Name"
 msgstr "Name"
 
 # @ woocommerce-germanized
 #: includes/admin/views/html-admin-page-checkboxes.php:17
-#: includes/class-wc-gzd-legal-checkbox.php:728
+#: includes/class-wc-gzd-legal-checkbox.php:739
 #: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:657
 #: includes/gateways/invoice/class-wc-gzd-gateway-invoice.php:106
 msgid "Description"
@@ -2125,7 +2125,7 @@ msgstr "Aktiviert"
 
 # @ woocommerce-germanized
 #: includes/admin/views/html-admin-page-checkboxes.php:19
-#: includes/class-wc-gzd-legal-checkbox.php:765
+#: includes/class-wc-gzd-legal-checkbox.php:776
 msgid "Mandatory"
 msgstr "Pflichtfeld"
 
@@ -3098,15 +3098,31 @@ msgid "Please create an account or login before continuing to checkout"
 msgstr ""
 "Bitte erstelle ein Kundenkonto oder logge dich ein, bevor du zur Kasse gehst"
 
+#: includes/class-wc-gzd-customer-helper.php:297
+msgid ""
+"This activation code has expired. We have sent you a new activation code via "
+"e-mail."
+msgstr ""
+"Dieser Aktivierungscode ist leider abgelaufen. Wir haben dir einen neuen "
+"Code per E-Mail geschickt."
+
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-customer-helper.php:296
+#: includes/class-wc-gzd-customer-helper.php:299
 msgid "Sorry, but this activation code cannot be found."
 msgstr "Sorry, dieser Aktivierungscode ist uns leider nicht bekannt."
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-customer-helper.php:300
+#: includes/class-wc-gzd-customer-helper.php:303
 msgid "Thank you. You have successfully activated your account."
 msgstr "Vielen Dank. Dein Benutzerkonto wurde erfolgreich aktiviert."
+
+#: includes/class-wc-gzd-customer-helper.php:410
+msgid "Expired activation key"
+msgstr "Abgelaufener Aktivierungscode"
+
+#: includes/class-wc-gzd-customer-helper.php:415
+msgid "Invalid activation key"
+msgstr "Aktivierungscode ungültig"
 
 #: includes/class-wc-gzd-dhl-parcel-shops.php:180
 msgid "DHL Parcel Shop?"
@@ -3549,16 +3565,16 @@ msgid "Checkbox with name %s does already exist."
 msgstr "Eine Checkbox mit dem Namen %s existiert bereits."
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-legal-checkbox.php:701
+#: includes/class-wc-gzd-legal-checkbox.php:712
 msgid "Status"
 msgstr "Status"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-legal-checkbox.php:704
+#: includes/class-wc-gzd-legal-checkbox.php:715
 msgid "Enable checkbox"
 msgstr "Checkbox aktivieren"
 
-#: includes/class-wc-gzd-legal-checkbox.php:713
+#: includes/class-wc-gzd-legal-checkbox.php:724
 msgid ""
 "Choose a name to identify your checkbox. Upon creating a new checkbox, this "
 "value is being used to generate the Id."
@@ -3566,11 +3582,11 @@ msgstr ""
 "Wähle einen Namen um deine Checkbox zu identifizieren. Bei Erstellung einer "
 "neuen Checkbox wird dieser Wert verwendet um eine Id zu erzeugen."
 
-#: includes/class-wc-gzd-legal-checkbox.php:718
+#: includes/class-wc-gzd-legal-checkbox.php:729
 msgid "Id"
 msgstr "Id"
 
-#: includes/class-wc-gzd-legal-checkbox.php:722
+#: includes/class-wc-gzd-legal-checkbox.php:733
 msgid ""
 "The checkbox Id is the unique indentifier which is used to identify the "
 "checkbox within the code. Cannot be edited after creating the checkbox."
@@ -3579,29 +3595,29 @@ msgstr ""
 "Code heraus zugreifbar zu machen. Kann nach dem Erstellen einer Checkbox "
 "nicht mehr verändert werden."
 
-#: includes/class-wc-gzd-legal-checkbox.php:731
+#: includes/class-wc-gzd-legal-checkbox.php:742
 msgid "Describe the use case of your checkbox."
 msgstr "Beschreibe hier den Use-Case deiner Checkbox."
 
-#: includes/class-wc-gzd-legal-checkbox.php:737
+#: includes/class-wc-gzd-legal-checkbox.php:748
 msgid "Label"
 msgstr "Beschriftung"
 
-#: includes/class-wc-gzd-legal-checkbox.php:741
+#: includes/class-wc-gzd-legal-checkbox.php:752
 msgid "Choose a label to be inserted next to the checkbox."
 msgstr "Wähle eine Beschriftung aus, die neben der Checkbox platziert wird."
 
-#: includes/class-wc-gzd-legal-checkbox.php:742
-#: includes/class-wc-gzd-legal-checkbox.php:752
+#: includes/class-wc-gzd-legal-checkbox.php:753
+#: includes/class-wc-gzd-legal-checkbox.php:763
 #, php-format
 msgid "You may use one of the following placeholders within the text: %s"
 msgstr "Du kannst einen der folgenden Platzhalter in deinem Text verwenden: %s"
 
-#: includes/class-wc-gzd-legal-checkbox.php:747
+#: includes/class-wc-gzd-legal-checkbox.php:758
 msgid "Error Message"
 msgstr "Fehlermeldung"
 
-#: includes/class-wc-gzd-legal-checkbox.php:751
+#: includes/class-wc-gzd-legal-checkbox.php:762
 msgid ""
 "Choose an error message to be shown when the user has not confirmed the "
 "checkbox."
@@ -3610,25 +3626,25 @@ msgstr ""
 "die Checkbox nicht bestätigt hat."
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-legal-checkbox.php:757
+#: includes/class-wc-gzd-legal-checkbox.php:768
 msgid "Hide input"
 msgstr "Ausblenden"
 
-#: includes/class-wc-gzd-legal-checkbox.php:760
+#: includes/class-wc-gzd-legal-checkbox.php:771
 msgid "Do only show a label and hide the actual checkbox."
 msgstr ""
 "Zeige lediglich die Beschriftung und entferne die eigentliche Checkbox."
 
-#: includes/class-wc-gzd-legal-checkbox.php:768
+#: includes/class-wc-gzd-legal-checkbox.php:779
 msgid "Mark the checkbox as mandatory."
 msgstr "Checkbox zum Pflichtfeld machen."
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-legal-checkbox.php:773
+#: includes/class-wc-gzd-legal-checkbox.php:784
 msgid "Locations"
 msgstr "Orte"
 
-#: includes/class-wc-gzd-legal-checkbox.php:777
+#: includes/class-wc-gzd-legal-checkbox.php:788
 msgid "Choose where to display your checkbox."
 msgstr "Wähle einen Ort aus, an dem die Checkbox platziert werden soll."
 
@@ -5351,7 +5367,7 @@ msgstr "Bitte akzeptiere den Erhalt einer Bewertungserinnerung per E-Mail."
 #: includes/trusted-shops/class-wc-gzd-trusted-shops-template-hooks.php:164
 msgctxt "trusted-shops"
 msgid "Review reminder"
-msgstr "Bewertungs Erinnerung"
+msgstr "Bewertungserinnerung"
 
 #: includes/trusted-shops/class-wc-gzd-trusted-shops-template-hooks.php:165
 msgctxt "trusted-shops"
