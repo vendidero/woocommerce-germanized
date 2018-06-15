@@ -164,6 +164,9 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 = 2.0.3 =
 * Improvement: Added reviews (review form) as new legal checkbox location
 * Improvement: Merge html classes for legal checkboxes instead of replacing them
+* Improvement: Added expiration feature to customer activation link.
+* Improvement: Appended activation URL with another parameter to prevent email clients from stripping last char from activation code
+* Tweak: Decrease legal checkbox settings admin field name due to some PHP setups having length-problems
 
 = 2.0.2 =
 * Fix: Make sure we are not registering core legal checkboxes again
