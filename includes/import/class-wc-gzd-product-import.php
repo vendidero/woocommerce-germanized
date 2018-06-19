@@ -110,7 +110,7 @@ class WC_GZD_Product_Import {
 	}
 
 	public function parse_bool_str( $value ) {
-		$value = wc_string_to_bool( $value );
+		$value = wc_gzd_string_to_bool( $value );
 		return ( $value ? 'yes' : '' );
 	}
 

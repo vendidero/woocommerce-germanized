@@ -290,6 +290,10 @@ class WC_GZD_Legal_Checkbox_Manager {
 
 		// Make sure we are not registering core checkboxes again
 		foreach( $this->get_options() as $id => $checkbox_args ) {
+			if ( isset( $checkbox_args['id'] ) ) {
+				unset( $checkbox_args['id'] );
+			}
+
 			if ( $checkbox = $this->get_checkbox( $id ) ) {
 				$checkbox->update( $checkbox_args );
 			} elseif ( ! in_array( $id, $this->get_core_checkbox_ids() ) ) {
@@ -412,7 +416,7 @@ class WC_GZD_Legal_Checkbox_Manager {
 
 		// Make sure we do understand yes and no as bools
 		foreach( $bools as $bool ) {
-			$args[ $bool ] = wc_string_to_bool( $args[ $bool ] );
+			$args[ $bool ] = wc_gzd_string_to_bool( $args[ $bool ] );
 		}
 
 		if ( empty( $args['html_name'] ) ) {

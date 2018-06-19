@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 <table class="wc-gzd-legal-checkboxes widefat">
 	<thead>
 	<tr>
-		<th class="wc-gzd-legal-checkbox-sort"><?php echo wc_help_tip( __( 'Drag and drop to re-order checkboxes. This is the order being used for printing the fields.', 'woocommerce-germanized' ) ); ?></th>
+		<th class="wc-gzd-legal-checkbox-sort"><?php echo wc_gzd_help_tip( __( 'Drag and drop to re-order checkboxes. This is the order being used for printing the fields.', 'woocommerce-germanized' ) ); ?></th>
         <th class="wc-gzd-legal-checkbox-name"><?php esc_html_e( 'Name', 'woocommerce-germanized' ); ?></th>
         <th class="wc-gzd-legal-checkbox-desc"><?php esc_html_e( 'Description', 'woocommerce-germanized' ); ?></th>
         <th class="wc-gzd-legal-checkbox-enabled"><?php esc_html_e( 'Enabled', 'woocommerce-germanized' ); ?></th>

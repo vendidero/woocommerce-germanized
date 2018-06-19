@@ -104,6 +104,12 @@ class WC_GZD_Legal_Checkbox {
 
 	public function update_option( $key, $value ) {
 		$options = WC_GZD_Legal_Checkbox_Manager::instance()->get_options();
+
+		// Do not allow overriding id
+		if ( 'id' === $key ) {
+			return false;
+		}
+
 		$options[ $this->get_id() ][ $key ] = $value;
 		$this->settings[ $key ] = $value;
 
@@ -155,7 +161,7 @@ class WC_GZD_Legal_Checkbox {
 	 * @param bool $show_label_only
 	 */
 	public function set_hide_input( $hide_input ) {
-		$this->settings['hide_input'] = wc_bool_to_string( $hide_input );
+		$this->settings['hide_input'] = wc_gzd_bool_to_string( $hide_input );
 	}
 
 	/**
@@ -422,7 +428,7 @@ class WC_GZD_Legal_Checkbox {
 	 * @param bool $enabled
 	 */
 	public function set_is_enabled( $enabled ) {
-		$this->settings['is_enabled'] = wc_bool_to_string( $enabled );
+		$this->settings['is_enabled'] = wc_gzd_bool_to_string( $enabled );
 	}
 
 	/**
@@ -447,7 +453,7 @@ class WC_GZD_Legal_Checkbox {
 	 * @param bool $show
 	 */
 	public function set_is_shown( $show ) {
-		$this->settings['is_shown'] = wc_bool_to_string( $show );
+		$this->settings['is_shown'] = wc_gzd_bool_to_string( $show );
 	}
 
 	/**
@@ -472,7 +478,7 @@ class WC_GZD_Legal_Checkbox {
 	 * @param bool $mandatory
 	 */
 	public function set_is_mandatory( $mandatory ) {
-		$this->settings['is_mandatory'] = wc_bool_to_string( $mandatory );
+		$this->settings['is_mandatory'] = wc_gzd_bool_to_string( $mandatory );
 	}
 
 	/**
@@ -497,7 +503,7 @@ class WC_GZD_Legal_Checkbox {
 	 * @param bool $refresh_fragments
 	 */
 	public function set_refresh_fragments( $refresh_fragments ) {
-		$this->settings['refresh_fragments'] = wc_bool_to_string( $refresh_fragments );
+		$this->settings['refresh_fragments'] = wc_gzd_bool_to_string( $refresh_fragments );
 	}
 
 	/**
@@ -522,7 +528,7 @@ class WC_GZD_Legal_Checkbox {
 	 * @param bool $is_core
 	 */
 	public function set_is_core( $is_core ) {
-		$this->settings['is_core'] = wc_bool_to_string( $is_core );
+		$this->settings['is_core'] = wc_gzd_bool_to_string( $is_core );
 	}
 
 	/**
@@ -820,7 +826,7 @@ class WC_GZD_Legal_Checkbox {
 	 */
 	public function admin_options() {
 		foreach( $this->get_form_fields() as $field ) {
-			if ( ! isset( $field['id'] ) ) {
+			if ( ! isset( $field['id'] ) || 'title' === $field['type'] ) {
 				continue;
 			}
 
@@ -830,7 +836,7 @@ class WC_GZD_Legal_Checkbox {
 		WC_Admin_Settings::output_fields( $this->get_form_fields() );
 
 		foreach( $this->get_form_fields() as $field ) {
-			if ( ! isset( $field['id'] ) ) {
+			if ( ! isset( $field['id'] ) || 'title' === $field['type'] ) {
 				continue;
 			}
 

@@ -247,3 +247,14 @@ function wc_gzd_deprecated_function( $function, $version, $replacement = null ) 
 	}
 	// @codingStandardsIgnoreEnd
 }
+
+function wc_gzd_string_to_bool( $string ) {
+	return is_bool( $string ) ? $string : ( 'yes' === $string || 1 === $string || 'true' === $string || '1' === $string );
+}
+
+function wc_gzd_bool_to_string( $bool ) {
+	if ( ! is_bool( $bool ) ) {
+		$bool = wc_gzd_string_to_bool( $bool );
+	}
+	return true === $bool ? 'yes' : 'no';
+}
