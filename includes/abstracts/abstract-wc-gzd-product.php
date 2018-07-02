@@ -383,6 +383,15 @@ class WC_GZD_Product {
 	}
 
 	/**
+	 * Returns unit sale price
+	 *
+	 * @return string the sale price
+	 */
+	public function get_unit_price_raw() {
+		return apply_filters( 'woocommerce_gzd_get_unit_price_raw', $this->unit_price, $this );
+	}
+
+	/**
 	 * Returns the unit price (if is sale then return sale price)
 	 *  
 	 * @param  integer $qty   
@@ -390,7 +399,6 @@ class WC_GZD_Product {
 	 * @return string  formatted unit price
 	 */
 	public function get_unit_price( $qty = 1, $price = '' ) {
-
 		do_action( 'woocommerce_gzd_before_get_unit_price', $this, $price, $qty );
 
 		$tax_display_mode = get_option( 'woocommerce_tax_display_shop' );
@@ -405,7 +413,7 @@ class WC_GZD_Product {
 	 * @return string  unit price including tax
 	 */
 	public function get_unit_price_including_tax( $qty = 1, $price = '' ) {
-		$price = ( $price == '' ) ? $this->unit_price : $price;
+		$price = ( $price == '' ) ? $this->get_unit_price_raw() : $price;
 		return apply_filters( 'woocommerce_gzd_unit_price_including_tax', ( $price == '' ) ? '' : wc_gzd_get_price_including_tax( $this->child, array( 'price' => $price, 'qty' => $qty ) ), $price, $qty, $this );
 	}
 
@@ -417,7 +425,7 @@ class WC_GZD_Product {
 	 * @return string  unit price excluding tax
 	 */
 	public function get_unit_price_excluding_tax( $qty = 1, $price = '' ) {
-		$price = ( $price == '' ) ? $this->unit_price : $price;
+		$price = ( $price == '' ) ? $this->get_unit_price_raw() : $price;
 		return apply_filters( 'woocommerce_gzd_unit_price_excluding_tax', ( $price == '' ) ? '' : wc_gzd_get_price_excluding_tax( $this->child, array( 'price' => $price, 'qty' => $qty ) ), $price, $qty, $this );
 	}
 

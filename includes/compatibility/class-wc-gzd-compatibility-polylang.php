@@ -31,7 +31,7 @@ class WC_GZD_Compatibility_Polylang extends WC_GZD_Compatibility {
 		// Set language field for AJAX revocation and email language
 		add_action( 'woocommerce_gzd_after_revocation_form_fields', array( $this, 'set_language_field' ), 10 );
 		// Set language field for AJAX Checkout
-		add_filter( 'woocommerce_review_order_before_submit', array( $this, 'set_language_field' ), 10 );
+		add_action( 'woocommerce_review_order_before_submit', array( $this, 'set_language_field' ), 10 );
 	}
 
 	public function set_language_field() {

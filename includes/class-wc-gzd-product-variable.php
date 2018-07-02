@@ -203,10 +203,15 @@ class WC_GZD_Product_Variable extends WC_GZD_Product {
 				foreach ( $variation_ids as $variation_id ) {
 					
 					if ( $variation = wc_gzd_get_variation( $this->child, $variation_id ) ) {
+
+						$gzd_variation = wc_gzd_get_gzd_product( $variation );
+
+						// E.g. recalculate unit price for dynamic pricing plugins
+						do_action( 'woocommerce_gzd_before_get_variable_variation_unit_price', $gzd_variation );
 					
-						$price         = apply_filters( 'woocommerce_gzd_variation_unit_prices_price', wc_gzd_get_crud_data( $variation, 'unit_price' ), $variation, $this );
-						$regular_price = apply_filters( 'woocommerce_gzd_variation_unit_prices_regular_price', wc_gzd_get_crud_data( $variation, 'unit_price_regular' ), $variation, $this );
-						$sale_price    = apply_filters( 'woocommerce_gzd_variation_unit_prices_sale_price', wc_gzd_get_crud_data( $variation, 'unit_price_sale' ), $variation, $this );
+						$price         = apply_filters( 'woocommerce_gzd_variation_unit_prices_price', $gzd_variation->get_unit_price(), $variation, $this );
+						$regular_price = apply_filters( 'woocommerce_gzd_variation_unit_prices_regular_price', $gzd_variation->get_unit_regular_price(), $variation, $this );
+						$sale_price    = apply_filters( 'woocommerce_gzd_variation_unit_prices_sale_price', $gzd_variation->get_unit_sale_price(), $variation, $this );
 
 						// If sale price does not equal price, the product is not yet on sale
 						if ( $sale_price === $regular_price || $sale_price !== $price ) {
@@ -243,11 +248,9 @@ class WC_GZD_Product_Variable extends WC_GZD_Product {
 				);
 
 				set_transient( $transient_name, json_encode( $this->unit_prices_array ), DAY_IN_SECONDS * 30 );
-
 			}
 
 			$this->unit_prices_array[ $price_hash ] = apply_filters( 'woocommerce_gzd_variation_unit_prices', $this->unit_prices_array[ $price_hash ], $this, $display );
-
 		}
 
 		return $this->unit_prices_array[ $price_hash ];

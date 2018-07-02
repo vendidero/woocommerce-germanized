@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce Germanized v1.5.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-15 12:13+0200\n"
-"PO-Revision-Date: 2018-06-15 12:14+0200\n"
+"POT-Creation-Date: 2018-06-25 10:46+0200\n"
+"PO-Revision-Date: 2018-06-25 10:46+0200\n"
 "Last-Translator: holzhannes <holzhannes@posteo.de>\n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -2107,13 +2107,13 @@ msgstr ""
 
 # @ woocommerce-germanized
 #: includes/admin/views/html-admin-page-checkboxes.php:16
-#: includes/class-wc-gzd-legal-checkbox.php:720
+#: includes/class-wc-gzd-legal-checkbox.php:726
 msgid "Name"
 msgstr "Name"
 
 # @ woocommerce-germanized
 #: includes/admin/views/html-admin-page-checkboxes.php:17
-#: includes/class-wc-gzd-legal-checkbox.php:739
+#: includes/class-wc-gzd-legal-checkbox.php:745
 #: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:657
 #: includes/gateways/invoice/class-wc-gzd-gateway-invoice.php:106
 msgid "Description"
@@ -2125,7 +2125,7 @@ msgstr "Aktiviert"
 
 # @ woocommerce-germanized
 #: includes/admin/views/html-admin-page-checkboxes.php:19
-#: includes/class-wc-gzd-legal-checkbox.php:776
+#: includes/class-wc-gzd-legal-checkbox.php:782
 msgid "Mandatory"
 msgstr "Pflichtfeld"
 
@@ -3098,7 +3098,7 @@ msgid "Please create an account or login before continuing to checkout"
 msgstr ""
 "Bitte erstelle ein Kundenkonto oder logge dich ein, bevor du zur Kasse gehst"
 
-#: includes/class-wc-gzd-customer-helper.php:297
+#: includes/class-wc-gzd-customer-helper.php:296
 msgid ""
 "This activation code has expired. We have sent you a new activation code via "
 "e-mail."
@@ -3107,20 +3107,20 @@ msgstr ""
 "Code per E-Mail geschickt."
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-customer-helper.php:299
+#: includes/class-wc-gzd-customer-helper.php:298
 msgid "Sorry, but this activation code cannot be found."
 msgstr "Sorry, dieser Aktivierungscode ist uns leider nicht bekannt."
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-customer-helper.php:303
+#: includes/class-wc-gzd-customer-helper.php:302
 msgid "Thank you. You have successfully activated your account."
 msgstr "Vielen Dank. Dein Benutzerkonto wurde erfolgreich aktiviert."
 
-#: includes/class-wc-gzd-customer-helper.php:410
+#: includes/class-wc-gzd-customer-helper.php:409
 msgid "Expired activation key"
 msgstr "Abgelaufener Aktivierungscode"
 
-#: includes/class-wc-gzd-customer-helper.php:415
+#: includes/class-wc-gzd-customer-helper.php:414
 msgid "Invalid activation key"
 msgstr "Aktivierungscode ungültig"
 
@@ -3531,50 +3531,50 @@ msgid "Asks the customer to issue the SEPA mandate."
 msgstr "Lässt den Kunden das SEPA Mandat vor dem Kauf bestätigen."
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-legal-checkbox-manager.php:367
+#: includes/class-wc-gzd-legal-checkbox-manager.php:371
 msgid "Checkout"
 msgstr "Kasse"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-legal-checkbox-manager.php:368
+#: includes/class-wc-gzd-legal-checkbox-manager.php:372
 msgid "Register form"
 msgstr "Registrierung"
 
 # @ woocommerce
-#: includes/class-wc-gzd-legal-checkbox-manager.php:369
+#: includes/class-wc-gzd-legal-checkbox-manager.php:373
 msgid "Pay for order"
 msgstr "Bestell-Bezahlseite"
 
-#: includes/class-wc-gzd-legal-checkbox-manager.php:370
+#: includes/class-wc-gzd-legal-checkbox-manager.php:374
 msgid "Reviews"
 msgstr "Bewertungen"
 
-#: includes/class-wc-gzd-legal-checkbox-manager.php:432
+#: includes/class-wc-gzd-legal-checkbox-manager.php:436
 #, php-format
 msgid "Checkbox location %s does not exist."
 msgstr "Checkbox Ort %s existiert nicht."
 
-#: includes/class-wc-gzd-legal-checkbox-manager.php:451
+#: includes/class-wc-gzd-legal-checkbox-manager.php:455
 #, php-format
 msgid "Please make sure to check %s checkbox."
 msgstr "Kontrolliere bitte %s. Hier fehlt eine Einwilligung."
 
-#: includes/class-wc-gzd-legal-checkbox-manager.php:456
+#: includes/class-wc-gzd-legal-checkbox-manager.php:460
 #, php-format
 msgid "Checkbox with name %s does already exist."
 msgstr "Eine Checkbox mit dem Namen %s existiert bereits."
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-legal-checkbox.php:712
+#: includes/class-wc-gzd-legal-checkbox.php:718
 msgid "Status"
 msgstr "Status"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-legal-checkbox.php:715
+#: includes/class-wc-gzd-legal-checkbox.php:721
 msgid "Enable checkbox"
 msgstr "Checkbox aktivieren"
 
-#: includes/class-wc-gzd-legal-checkbox.php:724
+#: includes/class-wc-gzd-legal-checkbox.php:730
 msgid ""
 "Choose a name to identify your checkbox. Upon creating a new checkbox, this "
 "value is being used to generate the Id."
@@ -3582,11 +3582,11 @@ msgstr ""
 "Wähle einen Namen um deine Checkbox zu identifizieren. Bei Erstellung einer "
 "neuen Checkbox wird dieser Wert verwendet um eine Id zu erzeugen."
 
-#: includes/class-wc-gzd-legal-checkbox.php:729
+#: includes/class-wc-gzd-legal-checkbox.php:735
 msgid "Id"
 msgstr "Id"
 
-#: includes/class-wc-gzd-legal-checkbox.php:733
+#: includes/class-wc-gzd-legal-checkbox.php:739
 msgid ""
 "The checkbox Id is the unique indentifier which is used to identify the "
 "checkbox within the code. Cannot be edited after creating the checkbox."
@@ -3595,29 +3595,29 @@ msgstr ""
 "Code heraus zugreifbar zu machen. Kann nach dem Erstellen einer Checkbox "
 "nicht mehr verändert werden."
 
-#: includes/class-wc-gzd-legal-checkbox.php:742
+#: includes/class-wc-gzd-legal-checkbox.php:748
 msgid "Describe the use case of your checkbox."
 msgstr "Beschreibe hier den Use-Case deiner Checkbox."
 
-#: includes/class-wc-gzd-legal-checkbox.php:748
+#: includes/class-wc-gzd-legal-checkbox.php:754
 msgid "Label"
 msgstr "Beschriftung"
 
-#: includes/class-wc-gzd-legal-checkbox.php:752
+#: includes/class-wc-gzd-legal-checkbox.php:758
 msgid "Choose a label to be inserted next to the checkbox."
 msgstr "Wähle eine Beschriftung aus, die neben der Checkbox platziert wird."
 
-#: includes/class-wc-gzd-legal-checkbox.php:753
-#: includes/class-wc-gzd-legal-checkbox.php:763
+#: includes/class-wc-gzd-legal-checkbox.php:759
+#: includes/class-wc-gzd-legal-checkbox.php:769
 #, php-format
 msgid "You may use one of the following placeholders within the text: %s"
 msgstr "Du kannst einen der folgenden Platzhalter in deinem Text verwenden: %s"
 
-#: includes/class-wc-gzd-legal-checkbox.php:758
+#: includes/class-wc-gzd-legal-checkbox.php:764
 msgid "Error Message"
 msgstr "Fehlermeldung"
 
-#: includes/class-wc-gzd-legal-checkbox.php:762
+#: includes/class-wc-gzd-legal-checkbox.php:768
 msgid ""
 "Choose an error message to be shown when the user has not confirmed the "
 "checkbox."
@@ -3626,25 +3626,25 @@ msgstr ""
 "die Checkbox nicht bestätigt hat."
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-legal-checkbox.php:768
+#: includes/class-wc-gzd-legal-checkbox.php:774
 msgid "Hide input"
 msgstr "Ausblenden"
 
-#: includes/class-wc-gzd-legal-checkbox.php:771
+#: includes/class-wc-gzd-legal-checkbox.php:777
 msgid "Do only show a label and hide the actual checkbox."
 msgstr ""
 "Zeige lediglich die Beschriftung und entferne die eigentliche Checkbox."
 
-#: includes/class-wc-gzd-legal-checkbox.php:779
+#: includes/class-wc-gzd-legal-checkbox.php:785
 msgid "Mark the checkbox as mandatory."
 msgstr "Checkbox zum Pflichtfeld machen."
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-legal-checkbox.php:784
+#: includes/class-wc-gzd-legal-checkbox.php:790
 msgid "Locations"
 msgstr "Orte"
 
-#: includes/class-wc-gzd-legal-checkbox.php:788
+#: includes/class-wc-gzd-legal-checkbox.php:794
 msgid "Choose where to display your checkbox."
 msgstr "Wähle einen Ort aus, an dem die Checkbox platziert werden soll."
 
@@ -5635,7 +5635,7 @@ msgid ""
 msgstr ""
 "Du hast vor kurzem bei %s online bestellt. Vielen Dank! Wir würden uns sehr "
 "freuen, wenn du dir die Zeit nehmen würdest, eine kurze Bewertung zu deiner "
-"Bestellung zu verfassen. Bitte klicke einfach auf nachfolgendem Button um "
+"Bestellung zu verfassen. Bitte klicke einfach auf nachfolgenden Button um "
 "deine Bewertung bei Trusted Shops abzugeben."
 
 # @ woocommerce-germanized
