@@ -33,6 +33,7 @@ class WC_GZD_Compatibility_Woocommerce_Dynamic_Pricing extends WC_GZD_Compatibil
 		add_filter( 'woocommerce_cart_item_subtotal', 'wc_gzd_cart_product_unit_price', 500, 3 );
 
 		// Filters to recalculate unit price during cart/checkout
+		add_action( 'woocommerce_before_mini_cart', array( $this, 'set_unit_price_filter' ), 10 );
 		add_action( 'woocommerce_before_cart', array( $this, 'set_unit_price_filter' ), 10 );
 		add_action( 'woocommerce_before_checkout_form', array( $this, 'set_unit_price_filter' ), 10 );
 		add_action( 'woocommerce_gzd_review_order_before_cart_contents', array( $this, 'set_unit_price_filter' ), 10 );
