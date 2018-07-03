@@ -815,7 +815,7 @@ class WC_GZD_Legal_Checkbox {
 		return $old_value;
 	}
 
-	public function pre_get_option( $value, $name, $default ) {
+	public function pre_get_option( $value, $name, $default = null ) {
 		$name = str_replace( $this->get_form_field_id_prefix(), '', $name );
 
 		return $this->get_option( $name, $default );
