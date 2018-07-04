@@ -130,7 +130,7 @@ class WC_GZD_Install {
 		}
 
 		// Register post types
-		include_once( 'class-wc-gzd-post-types.php' );
+		include_once WC_GERMANIZED_ABSPATH . 'includes/class-wc-gzd-post-types.php';
 		WC_GZD_Post_types::register_taxonomies();
 
 		self::create_cron_jobs();
@@ -528,9 +528,9 @@ class WC_GZD_Install {
 	public static function create_options() {
 
 		// Include settings so that we can run through defaults
-		include_once( WC()->plugin_path() . '/includes/admin/settings/class-wc-settings-page.php' );
-		include_once( 'admin/class-wc-gzd-admin-legal-checkboxes.php' );
-		include_once( 'admin/settings/class-wc-gzd-settings-germanized.php' );
+		include_once WC()->plugin_path() . '/includes/admin/settings/class-wc-settings-page.php';
+		include_once WC_GERMANIZED_ABSPATH . 'includes/admin/class-wc-gzd-admin-legal-checkboxes.php';
+		include_once WC_GERMANIZED_ABSPATH . 'includes/admin/settings/class-wc-gzd-settings-germanized.php';
 
 		$settings = new WC_GZD_Settings_Germanized();
 		$options  = apply_filters( 'woocommerce_gzd_installation_default_settings', array_merge( $settings->get_settings(), $settings->get_display_settings(), $settings->get_email_settings() ) );

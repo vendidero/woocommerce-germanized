@@ -861,7 +861,7 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 		}
 
 		// Validate IBAN
-		include_once( WC_germanized()->plugin_path() . '/includes/libraries/iban/oophp-iban.php' );
+		include_once WC_GERMANIZED_ABSPATH . 'includes/libraries/iban/oophp-iban.php';
 
 		$iban_validator = new IBAN( $iban );
 
@@ -1002,7 +1002,7 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 		if ( version_compare( $wp_version, '4.4', '<' ) )
 			return false;
 
-		require_once( 'class-wc-gzd-gateway-direct-debit-encryption-helper.php' );
+		require_once WC_GERMANIZED_ABSPATH . 'includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit-encryption-helper.php';
 
 		if ( ! WC_GZD_Gateway_Direct_Debit_Encryption_Helper::instance()->is_configured() )
 			return false;

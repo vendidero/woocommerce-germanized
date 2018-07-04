@@ -108,7 +108,7 @@ class WC_GZD_Privacy {
 	}
 
 	private function decrypt( $data ) {
-		include_once( WC_germanized()->plugin_path() . '/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php' );
+		include_once WC_GERMANIZED_ABSPATH . 'includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php';
 		$instance = new WC_GZD_Gateway_Direct_Debit();
 
 		return $instance->maybe_decrypt( $data );

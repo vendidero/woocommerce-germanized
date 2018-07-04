@@ -10,7 +10,7 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-include( 'wc-gzd-product-functions.php' );
+require WC_GERMANIZED_ABSPATH . 'includes/wc-gzd-product-functions.php';
 
 function wc_gzd_get_dependencies( $instance = null ) {
 	return apply_filters( 'woocommerce_gzd_dependencies_instance', WC_GZD_Dependencies::instance( $instance ) );

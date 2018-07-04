@@ -82,6 +82,7 @@ final class WooCommerce_Germanized {
 		if ( is_null( self::$_instance ) ) {
 			self::$_instance = new self();
 		}
+
 		return self::$_instance;
 	}
 
@@ -118,6 +119,9 @@ final class WooCommerce_Germanized {
 	 */
 	public function __construct() {
 
+		// Define constants
+		$this->define_constants();
+
 		// Auto-load classes on demand
 		if ( function_exists( '__autoload' ) ) {
 			spl_autoload_register( '__autoload' );
@@ -131,8 +135,6 @@ final class WooCommerce_Germanized {
 			return;
 		}
 
-		// Define constants
-		$this->define_constants();
 		$this->includes();
 
 		// Hooks
@@ -267,7 +269,7 @@ final class WooCommerce_Germanized {
 	 * @return string
 	 */
 	public function plugin_url() {
-		return untrailingslashit( plugins_url( '/', __FILE__ ) );
+		return untrailingslashit( plugins_url( '/', WC_GERMANIZED_PLUGIN_FILE ) );
 	}
 
 	/**
@@ -276,7 +278,7 @@ final class WooCommerce_Germanized {
 	 * @return string
 	 */
 	public function plugin_path() {
-		return untrailingslashit( plugin_dir_path( __FILE__ ) );
+		return untrailingslashit( plugin_dir_path( WC_GERMANIZED_PLUGIN_FILE ) );
 	}
 
 	/**
@@ -302,6 +304,7 @@ final class WooCommerce_Germanized {
 	 */
 	private function define_constants() {
 		define( 'WC_GERMANIZED_PLUGIN_FILE', __FILE__ );
+		define( 'WC_GERMANIZED_ABSPATH', dirname( WC_GERMANIZED_PLUGIN_FILE ) . '/' );
 		define( 'WC_GERMANIZED_VERSION', $this->version );
 	}
 
@@ -310,25 +313,25 @@ final class WooCommerce_Germanized {
 	 */
 	private function includes() {
 
-		include_once( 'includes/wc-gzd-core-functions.php' );
-		include_once( 'includes/wc-gzd-legacy-functions.php' );
-		include_once( 'includes/class-wc-gzd-install.php' );
+		include_once WC_GERMANIZED_ABSPATH . 'includes/wc-gzd-core-functions.php';
+		include_once WC_GERMANIZED_ABSPATH . 'includes/wc-gzd-legacy-functions.php';
+		include_once WC_GERMANIZED_ABSPATH . 'includes/class-wc-gzd-install.php';
 
 		if ( is_admin() ) {
 
-			include_once( 'includes/admin/class-wc-gzd-admin.php' );
-			include_once( 'includes/admin/class-wc-gzd-admin-welcome.php' );
-			include_once( 'includes/admin/class-wc-gzd-admin-notices.php' );
-			include_once( 'includes/admin/class-wc-gzd-admin-customer.php' );
-			include_once( 'includes/admin/class-wc-gzd-admin-legal-checkboxes.php' );
-			include_once( 'includes/admin/class-wc-gzd-admin-importer.php' );
+			include_once WC_GERMANIZED_ABSPATH . 'includes/admin/class-wc-gzd-admin.php';
+			include_once WC_GERMANIZED_ABSPATH . 'includes/admin/class-wc-gzd-admin-welcome.php';
+			include_once WC_GERMANIZED_ABSPATH . 'includes/admin/class-wc-gzd-admin-notices.php';
+			include_once WC_GERMANIZED_ABSPATH . 'includes/admin/class-wc-gzd-admin-customer.php';
+			include_once WC_GERMANIZED_ABSPATH . 'includes/admin/class-wc-gzd-admin-legal-checkboxes.php';
+			include_once WC_GERMANIZED_ABSPATH . 'includes/admin/class-wc-gzd-admin-importer.php';
 
-			include_once( 'includes/export/class-wc-gzd-product-export.php' );
-			include_once( 'includes/import/class-wc-gzd-product-import.php' );
+			include_once WC_GERMANIZED_ABSPATH . 'includes/export/class-wc-gzd-product-export.php';
+			include_once WC_GERMANIZED_ABSPATH . 'includes/import/class-wc-gzd-product-import.php';
 		}
 
-		include_once( 'includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php' );
-		include_once( 'includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php' );
+		include_once WC_GERMANIZED_ABSPATH . 'includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php';
+		include_once WC_GERMANIZED_ABSPATH . 'includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php';
 
 		if ( $this->is_frontend() ) {
 			if ( did_action( 'woocommerce_loaded' ) ) {
@@ -339,39 +342,39 @@ final class WooCommerce_Germanized {
 		}
 
 		// Post types
-		include_once( 'includes/class-wc-gzd-post-types.php' );
+		include_once WC_GERMANIZED_ABSPATH . 'includes/class-wc-gzd-post-types.php';
 		// Gateway manipulation
-		include_once( 'includes/class-wc-gzd-payment-gateways.php' );
+		include_once WC_GERMANIZED_ABSPATH . 'includes/class-wc-gzd-payment-gateways.php';
 		// Template priority
-		include_once( 'includes/class-wc-gzd-hook-priorities.php' );
+		include_once WC_GERMANIZED_ABSPATH . 'includes/class-wc-gzd-hook-priorities.php';
 		// Customizer
-		include_once  'includes/class-wc-gzd-shop-customizer.php';
+		include_once WC_GERMANIZED_ABSPATH . 'includes/class-wc-gzd-shop-customizer.php';
 		// Pricacy
-		include_once  'includes/class-wc-gzd-privacy.php';
+		include_once WC_GERMANIZED_ABSPATH . 'includes/class-wc-gzd-privacy.php';
 
 		// Abstracts
-		include_once( 'includes/abstracts/abstract-wc-gzd-product.php' );
-		include_once( 'includes/abstracts/abstract-wc-gzd-taxonomy.php' );
-		include_once( 'includes/abstracts/abstract-wc-gzd-compatibility.php' );
+		include_once WC_GERMANIZED_ABSPATH . 'includes/abstracts/abstract-wc-gzd-product.php';
+		include_once WC_GERMANIZED_ABSPATH . 'includes/abstracts/abstract-wc-gzd-taxonomy.php';
+		include_once WC_GERMANIZED_ABSPATH . 'includes/abstracts/abstract-wc-gzd-compatibility.php';
 
 		// API
-		include_once( 'includes/api/class-wc-gzd-rest-api.php' );
+		include_once WC_GERMANIZED_ABSPATH . 'includes/api/class-wc-gzd-rest-api.php';
 
-		include_once( 'includes/wc-gzd-cart-functions.php' );
-		include_once( 'includes/wc-gzd-order-functions.php' );
+		include_once WC_GERMANIZED_ABSPATH . 'includes/wc-gzd-cart-functions.php';
+		include_once WC_GERMANIZED_ABSPATH . 'includes/wc-gzd-order-functions.php';
 
-		include_once( 'includes/class-wc-gzd-ajax.php' );
-		include_once( 'includes/class-wc-gzd-checkout.php' );
-		include_once( 'includes/class-wc-gzd-dhl-parcel-shops.php' );
-		include_once( 'includes/class-wc-gzd-customer-helper.php' );
-		include_once( 'includes/class-wc-gzd-cache-helper.php' );
+		include_once WC_GERMANIZED_ABSPATH . 'includes/class-wc-gzd-ajax.php';
+		include_once WC_GERMANIZED_ABSPATH . 'includes/class-wc-gzd-checkout.php';
+		include_once WC_GERMANIZED_ABSPATH . 'includes/class-wc-gzd-dhl-parcel-shops.php';
+		include_once WC_GERMANIZED_ABSPATH . 'includes/class-wc-gzd-customer-helper.php';
+		include_once WC_GERMANIZED_ABSPATH . 'includes/class-wc-gzd-cache-helper.php';
 
 		// Only available for Woo 3.X
 		if ( WC_GZD_Dependencies::instance( $this )->woocommerce_version_supports_crud() ) {
-			include_once( 'includes/class-wc-gzd-coupon-helper.php' );
+			include_once WC_GERMANIZED_ABSPATH . 'includes/class-wc-gzd-coupon-helper.php';
 		}
 
-		include_once( 'includes/class-wc-gzd-virtual-vat-helper.php' );
+		include_once WC_GERMANIZED_ABSPATH . 'includes/class-wc-gzd-virtual-vat-helper.php';
 
 		$this->setup_trusted_shops();
 		$this->ekomi = new WC_GZD_Ekomi();
@@ -380,8 +383,8 @@ final class WooCommerce_Germanized {
 
 	public function checkbox_includes() {
 		// Checkboxes
-		include_once  'includes/class-wc-gzd-legal-checkbox.php';
-		include_once  'includes/class-wc-gzd-legal-checkbox-manager.php';
+		include_once WC_GERMANIZED_ABSPATH . 'includes/class-wc-gzd-legal-checkbox.php';
+		include_once WC_GERMANIZED_ABSPATH . 'includes/class-wc-gzd-legal-checkbox-manager.php';
 	}
 
 	public function is_frontend() {
@@ -416,14 +419,14 @@ final class WooCommerce_Germanized {
 	 * Include required frontend files.
 	 */
 	public function frontend_includes() {
-		include_once( 'includes/wc-gzd-template-hooks.php' );
+		include_once WC_GERMANIZED_ABSPATH . 'includes/wc-gzd-template-hooks.php';
 	}
 
 	/**
 	 * Function used to Init WooCommerceGermanized Template Functions - This makes them pluggable by plugins and themes.
 	 */
 	public function include_template_functions() {
-		include_once( 'includes/wc-gzd-template-functions.php' );
+		include_once WC_GERMANIZED_ABSPATH . 'includes/wc-gzd-template-functions.php';
 	}
 
 	/**
@@ -726,7 +729,7 @@ final class WooCommerce_Germanized {
 	 * @return array
 	 */
 	public function add_settings( $integrations ) {
-		include_once( 'includes/admin/settings/class-wc-gzd-settings-germanized.php' );
+		include_once WC_GERMANIZED_ABSPATH . 'includes/admin/settings/class-wc-gzd-settings-germanized.php';
 		$integrations[] = new WC_GZD_Settings_Germanized();
 		return $integrations;
 	}

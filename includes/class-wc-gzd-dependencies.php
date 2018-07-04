@@ -255,7 +255,7 @@ class WC_GZD_Dependencies {
 		global $dependencies;
 		$dependencies = $this;
 
-		include_once( 'admin/views/html-notice-dependencies.php' );
+		include_once WC_GERMANIZED_ABSPATH . 'includes/admin/views/html-notice-dependencies.php';
 	}
 
 }

@@ -1164,14 +1164,14 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 		do_action( 'woocommerce_gzd_before_section_output', $current_section );
 
 		if ( apply_filters( 'woocommerce_gzd_settings_section_include_path', true, $current_section ) ) {
-			$path = apply_filters( 'woocommerce_gzd_settings_section_html_path', WC_Germanized()->plugin_path() . '/includes/admin/views/html-settings-section.php', $current_section );
+			$path = apply_filters( 'woocommerce_gzd_settings_section_html_path', WC_GERMANIZED_ABSPATH . 'includes/admin/views/html-settings-section.php', $current_section );
 			include_once( $path );
         }
 	}
 
 	public function get_sidebar() {
 		ob_start();
-		include_once( WC_Germanized()->plugin_path() . '/includes/admin/views/html-settings-sidebar.php' );
+		include_once WC_GERMANIZED_ABSPATH . 'includes/admin/views/html-settings-sidebar.php';
 		$content = ob_get_clean();
 		return $content;
 	}
@@ -1260,7 +1260,7 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 			return;
 		$GLOBALS[ 'hide_save_button' ] = true;
 		$section_title = $this->premium_sections[ $current_section ];
-		include_once( WC_Germanized()->plugin_path() . '/includes/admin/views/html-settings-pro.php' );
+		include_once WC_GERMANIZED_ABSPATH . 'includes/admin/views/html-settings-pro.php';
 	}
 
 	public function set_premium_sections( $sections ) {
