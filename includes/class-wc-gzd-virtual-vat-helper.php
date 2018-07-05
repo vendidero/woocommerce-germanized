@@ -28,9 +28,15 @@ class WC_GZD_Virtual_VAT_Helper {
 
 	public function set_base_tax_rates( $rates, $tax_class ) {
 
-		// Make sure frontend functions are being loaded so that "wc_get_chosen_shipping_method_ids" is callable
-		if ( ! WC_germanized()->is_frontend() && function_exists( 'wc' ) ) {
-			wc()->frontend_includes();
+		/**
+		 * Maybe load frontend functions if necessary e.g. if WC()->customer exists
+		 * In case WC()->customer exists, WC_Tax::get_tax_location tries to get location data from customer which then calls "wc_get_chosen_shipping_method_ids".
+		 * This problem was reported by a customer - seems to be an edge problem which could not yet be reproduced.
+		 */
+		if ( ! empty( WC()->customer ) && ! function_exists( 'wc_get_chosen_shipping_method_ids' ) ) {
+			if ( ! WC_germanized()->is_frontend() && function_exists( 'wc' ) ) {
+				wc()->frontend_includes();
+			}
 		}
 
 		$location = WC_Tax::get_tax_location( $tax_class );
