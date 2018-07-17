@@ -33,16 +33,21 @@ class WC_GZD_Payment_Gateways {
 		add_action( 'current_screen', array( $this, 'gateway_admin_init' ), 20 );
 		// AJAX
 		add_action( 'init', array( $this, 'gateway_ajax_init' ), 30 );
+		// Init upon Pay action
+		add_action( 'woocommerce_before_pay_action', array( $this, 'gateway_pay_init' ), 5 );
 	}
 
 	public function gateway_admin_init() {
-
 		$allowed = array( 'edit-shop_order', 'export' );
 		$screen = get_current_screen();
 
 		if ( $screen && in_array( $screen->id, $allowed ) ) {
 			$direct_debit = new WC_GZD_Gateway_Direct_Debit();
 		}
+	}
+
+	public function gateway_pay_init() {
+		$direct_debit = new WC_GZD_Gateway_Direct_Debit();
 	}
 
 	public function gateway_ajax_init() {

@@ -175,7 +175,9 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 		add_filter( 'export_args', array( $this, 'export_args' ), 0, 1 );
     }
 
-    public function validate_pay_order_checkbox() {}
+    public function validate_pay_order_checkbox() {
+        return $this->validate_checkbox();
+    }
 
 	public function print_debit_fields( $order ) {
 

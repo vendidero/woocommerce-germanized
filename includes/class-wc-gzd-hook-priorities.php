@@ -135,6 +135,7 @@ class WC_GZD_Hook_Priorities {
 	public function get_hook_priority( $hook, $suppress_filters = false ) {
 		if ( isset( $this->hooks[ $hook ] ) )
 			return ( ! $suppress_filters ? apply_filters( 'wc_gzd_frontend_hook_priority', $this->hooks[ $hook ], $hook, $this ) : $this->hooks[ $hook ] );
+
 		return false;
 	}
 

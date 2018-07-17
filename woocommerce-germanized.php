@@ -135,6 +135,9 @@ final class WooCommerce_Germanized {
 			return;
 		}
 
+		// Loaded action
+		do_action( 'woocommerce_germanized_before_load' );
+
 		$this->includes();
 
 		// Hooks
@@ -335,7 +338,19 @@ final class WooCommerce_Germanized {
 
 		if ( $this->is_frontend() ) {
 			if ( did_action( 'woocommerce_loaded' ) ) {
-				$this->frontend_includes();
+				/**
+				 * If Pro version is enabled: Make sure we are not including frontend hooks before pro has been loaded.
+				 * This is necessary to enable filters for hook priorities to work while adjusting theme-specific elements.
+				 */
+				if ( $this->is_pro() ) {
+					if ( ! did_action( 'woocommerce_gzdp_loaded' ) ) {
+						add_action( 'woocommerce_gzdp_loaded', array( $this, 'frontend_includes' ), 5 );
+					} else {
+						$this->frontend_includes();
+					}
+				} else {
+					$this->frontend_includes();
+				}
 			} else {
 				add_action( 'woocommerce_loaded', array( $this, 'frontend_includes' ), 5 );
 			}
@@ -696,7 +711,7 @@ final class WooCommerce_Germanized {
 			) ) );
 		}
 
-		if ( wp_script_is( 'wc-gzd-force-pay-order' ) && ! in_array( 'wc-gzd-add-to-cart-variation', $this->localized_scripts ) ) {
+		if ( wp_script_is( 'wc-gzd-force-pay-order' ) && ! in_array( 'wc-gzd-force-pay-order', $this->localized_scripts ) ) {
 			global $wp;
 			$order_id = absint( $wp->query_vars[ 'order-pay' ] );
 			$order = wc_get_order( $order_id );

@@ -9,7 +9,7 @@ jQuery( function( $ ) {
             }
         });
 
-        $( 'input#payment_method_' + wc_gzd_force_pay_order_params.gateway ).attr( 'checked', 'checked' );
+        $( 'input#payment_method_' + wc_gzd_force_pay_order_params.gateway ).prop( 'checked', true ).trigger( 'change' );
         $( '#order_review' ).trigger( 'submit' );
     }
 });
