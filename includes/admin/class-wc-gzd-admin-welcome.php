@@ -102,7 +102,12 @@ class WC_GZD_Admin_Welcome {
 		// Drop minor version if 0
 		$major_version = substr( WC_germanized()->version, 0, 3 );
 		?>
-		<div class="wc-gzd-news">
+        <style>
+            .wc-gzd-admin-welcome-hide-pro .wc-germanized-welcome-pro {
+                display: none;
+            }
+        </style>
+		<div class="wc-gzd-news <?php echo ( WC_germanized()->is_pro() ? 'wc-gzd-admin-welcome-hide-pro' : '' ); ?>">
 		
 			<h1>Willkommen bei WooCommerce Germanized</h1>
 			<a class="wc-gzd-logo" href="https://vendidero.de/woocommerce-germanized" target="_blank" style="margin-right: 1em"></a>
@@ -120,7 +125,7 @@ class WC_GZD_Admin_Welcome {
 			</div>
 			<p class="woocommerce-actions wc-gzd-actions">
 				<a href="<?php echo admin_url('admin.php?page=wc-settings&tab=germanized'); ?>" class="button button-primary">Einstellungen</a>
-				<a href="https://vendidero.de/woocommerce-germanized#buy" target="_blank" class="button button-primary">Upgrade zur Pro Version</a>
+                <a href="https://vendidero.de/woocommerce-germanized#buy" target="_blank" class="button button-primary wc-germanized-welcome-pro">Upgrade zur Pro Version</a>
 			</p>
 			<div class="changelog vendipro new-feature">
                 <h3>Rechtliche Checkboxen UI</h3>
@@ -135,7 +140,7 @@ class WC_GZD_Admin_Welcome {
                     <p>
                         Weitere Informationen, auch zu den technischen Details der rechtl. Checkboxen findest du in unserer <a href="https://vendidero.de/dokument/woocommerce-germanized-rechtliche-checkboxen" target="_blank">Doku</a>.
                     </p>
-                    <div class="vendipro-buttons">
+                    <div class="vendipro-buttons wc-germanized-welcome-pro">
                         <a href="https://vendidero.de/woocommerce-germanized#pro" target="_blank" class="button button-primary wc-gzd-button">Pro Version entdecken</a>
                         <p class="price smaller">ab 69,95 € inkl. MwSt. - inkl. 1 Jahr Updates & Premium Support!</p>
                     </div>
@@ -144,7 +149,7 @@ class WC_GZD_Admin_Welcome {
                     <img src="<?php echo WC_germanized()->plugin_url();?>/assets/images/checkboxes.png" />
                 </div>
             </div>
-			<div class="changelog vendipro new-feature">
+			<div class="changelog vendipro new-feature wc-germanized-welcome-pro">
 				<h3>Neu: Rechtliche Hinweistexte als PDF-Anhang <span class="wc-gzd-pro">pro</span></h3>
 				<div class="left">
 					<a href="https://vendidero.de/woocommerce-germanized#legal-page" target="_blank"><img src="<?php echo WC_germanized()->plugin_url();?>/assets/images/legal-page.png" style="border: none" /></a>
@@ -170,7 +175,7 @@ class WC_GZD_Admin_Welcome {
 					</div>
 				</div>
 			</div>
-			<div class="changelog vendipro new-feature">
+			<div class="changelog vendipro new-feature wc-germanized-welcome-pro">
 				<h3>Mehrstufige Kasse mit Datenüberprüfung <span class="wc-gzd-pro">pro</span></h3>
 				<div class="left">
 					<a href="https://vendidero.de/woocommerce-germanized#multistep-checkout" target="_blank"><img src="<?php echo WC_germanized()->plugin_url();?>/assets/images/multistep-checkout.png" /></a>
@@ -205,7 +210,7 @@ class WC_GZD_Admin_Welcome {
 					</div>
 				</div>
 			</div>
-			<div class="changelog vendipro">
+			<div class="changelog vendipro wc-germanized-welcome-pro">
 				<h3>VendiPro - Das WooCommerce Theme für den deutschen Markt</h3>
 				<div class="left">
 					<a href="https://vendidero.de/vendipro" target="_blank"><img src="<?php echo WC_germanized()->plugin_url();?>/assets/images/vendidero.jpg" /></a>
