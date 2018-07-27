@@ -412,6 +412,10 @@ class WC_GZD_Admin {
 	}
 
  	public function get_shipping_method_instances() {
+        // Make sure we are not firing before init because otherwise some Woo errors might occur
+        if ( ! did_action( 'init' ) ) {
+            return array();
+        }
 
 	    if ( ! class_exists( 'WC_Shipping_Zones' ) ) {
 		    $instances = WC()->shipping->get_shipping_methods();
