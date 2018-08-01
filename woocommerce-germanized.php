@@ -371,6 +371,7 @@ final class WooCommerce_Germanized {
 		include_once WC_GERMANIZED_ABSPATH . 'includes/abstracts/abstract-wc-gzd-product.php';
 		include_once WC_GERMANIZED_ABSPATH . 'includes/abstracts/abstract-wc-gzd-taxonomy.php';
 		include_once WC_GERMANIZED_ABSPATH . 'includes/abstracts/abstract-wc-gzd-compatibility.php';
+		include_once WC_GERMANIZED_ABSPATH . 'includes/abstracts/abstract-wc-gzd-compatibility-woocommerce-role-based-pricing.php';
 
 		// API
 		include_once WC_GERMANIZED_ABSPATH . 'includes/api/class-wc-gzd-rest-api.php';
@@ -416,6 +417,7 @@ final class WooCommerce_Germanized {
 				'woocommerce-dynamic-pricing',
 				'woocommerce-product-bundles',
 				'woocommerce-role-based-prices',
+				'woocommerce-role-based-price',
 				'woo-paypalplus'
 			)
 		);
