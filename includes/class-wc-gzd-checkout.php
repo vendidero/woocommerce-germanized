@@ -98,6 +98,21 @@ class WC_GZD_Checkout {
 		}
 
 		add_action( 'woocommerce_checkout_update_order_meta', array( $this, 'order_parcel_delivery_data_transfer' ), 10, 2 );
+
+		// Make sure that, just like in Woo core, the order submit button gets refreshed
+		add_filter( 'woocommerce_update_order_review_fragments', array( $this, 'refresh_order_submit' ), 10, 1 );
+	}
+
+	public function refresh_order_submit( $fragments ) {
+
+		// Get checkout order submit fragment
+		ob_start();
+		woocommerce_gzd_template_order_submit();
+		$wc_gzd_order_submit = ob_get_clean();
+
+		$fragments['.wc-gzd-order-submit'] = $wc_gzd_order_submit;
+
+		return $fragments;
 	}
 
 	public function remove_cancel_button( $actions, $order ) {
@@ -323,7 +338,7 @@ class WC_GZD_Checkout {
 
 			$this->custom_fields[ 'title' ] = array(
 				'type' 	   => 'select',
-				'required' => 1,
+				'required' => false,
 				'label'    => __( 'Title', 'woocommerce-germanized' ),
 				'options'  => apply_filters( 'woocommerce_gzd_title_options', array( 1 => __( 'Mr.', 'woocommerce-germanized' ), 2 => __( 'Ms.', 'woocommerce-germanized' ) ) ),
 				'before'   => 'first_name',

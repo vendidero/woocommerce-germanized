@@ -418,6 +418,7 @@ final class WooCommerce_Germanized {
 				'woocommerce-product-bundles',
 				'woocommerce-role-based-prices',
 				'woocommerce-role-based-price',
+				'woocommerce-gateway-paypal-express-checkout',
 				'woo-paypalplus'
 			)
 		);
