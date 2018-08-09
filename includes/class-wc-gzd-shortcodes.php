@@ -20,21 +20,93 @@ class WC_GZD_Shortcodes {
 		
 		// Define shortcodes
 		$shortcodes = array(
-			'revocation_form'            => __CLASS__ . '::revocation_form',
-			'payment_methods_info'		 => __CLASS__ . '::payment_methods_info',
-			'ekomi_badge'				 => __CLASS__ . '::ekomi_badge',
-			'ekomi_widget'				 => __CLASS__ . '::ekomi_widget',
-			'add_to_cart'				 => __CLASS__ . '::gzd_add_to_cart',
-			'gzd_feature'				 => __CLASS__ . '::gzd_feature',
-			'gzd_vat_info'				 => __CLASS__ . '::gzd_vat_info',
-			'gzd_sale_info'				 => __CLASS__ . '::gzd_sale_info',
-			'gzd_complaints'			 => __CLASS__ . '::gzd_complaints',
+			'revocation_form'             => __CLASS__ . '::revocation_form',
+			'payment_methods_info'		  => __CLASS__ . '::payment_methods_info',
+			'ekomi_badge'				  => __CLASS__ . '::ekomi_badge',
+			'ekomi_widget'				  => __CLASS__ . '::ekomi_widget',
+			'add_to_cart'				  => __CLASS__ . '::gzd_add_to_cart',
+			'gzd_feature'				  => __CLASS__ . '::gzd_feature',
+			'gzd_vat_info'				  => __CLASS__ . '::gzd_vat_info',
+			'gzd_sale_info'				  => __CLASS__ . '::gzd_sale_info',
+			'gzd_complaints'			  => __CLASS__ . '::gzd_complaints',
+			'gzd_product_unit_price'      => __CLASS__ . '::gzd_product_unit_price',
+			'gzd_product_units'           => __CLASS__ . '::gzd_product_units',
+			'gzd_product_delivery_time'   => __CLASS__ . '::gzd_product_delivery_time',
+			'gzd_product_tax_notice'      => __CLASS__ . '::gzd_product_tax_notice',
+			'gzd_product_shipping_notice' => __CLASS__ . '::gzd_product_shipping_notice',
+			'gzd_product_cart_desc'       => __CLASS__ . '::gzd_product_cart_desc',
 		);
 
 		foreach ( $shortcodes as $shortcode => $function ) {
 			add_shortcode( apply_filters( "gzd_{$shortcode}_shortcode_tag", $shortcode ), $function );
 		}
 
+	}
+
+	protected static function get_gzd_product_shortcode( $atts, $function_name = '' ) {
+		if ( empty( $function_name ) || ! function_exists( $function_name ) ) {
+			return;
+		}
+
+		global $product;
+
+		$content = '';
+
+		$atts = wp_parse_args( $atts, array(
+			'product' => '',
+		) );
+
+		if ( ! empty( $atts['product'] ) ) {
+			$product = wc_get_product( $atts['product'] );
+		}
+
+		if ( ! empty( $product ) && is_a( $product, 'WC_Product' ) ) {
+			ob_start();
+			call_user_func( $function_name );
+			$content = ob_get_clean();
+		}
+
+		return $content;
+	}
+
+	public static function gzd_product_unit_price( $atts ) {
+		return apply_filters( 'woocommerce_gzd_shortcode_product_unit_price_html', self::get_gzd_product_shortcode( $atts, 'woocommerce_gzd_template_single_price_unit' ), $atts );
+	}
+
+	public static function gzd_product_units( $atts ) {
+		return apply_filters( 'woocommerce_gzd_shortcode_product_units_html', self::get_gzd_product_shortcode( $atts, 'woocommerce_gzd_template_single_product_units' ), $atts );
+	}
+
+	public static function gzd_product_delivery_time( $atts ) {
+		return apply_filters( 'woocommerce_gzd_shortcode_product_delivery_time_html', self::get_gzd_product_shortcode( $atts, 'woocommerce_gzd_template_single_delivery_time_info' ), $atts );
+	}
+
+	public static function gzd_product_tax_notice( $atts ) {
+		return apply_filters( 'woocommerce_gzd_shortcode_product_tax_notice_html', self::get_gzd_product_shortcode( $atts, 'woocommerce_gzd_template_single_tax_info' ), $atts );
+	}
+
+	public static function gzd_product_shipping_notice( $atts ) {
+		return apply_filters( 'woocommerce_gzd_shortcode_product_shipping_notice_html', self::get_gzd_product_shortcode( $atts, 'woocommerce_gzd_template_single_shipping_costs_info' ), $atts );
+	}
+
+	public static function gzd_product_cart_desc( $atts ) {
+		global $product;
+
+		$content = '';
+
+		$atts = wp_parse_args( $atts, array(
+			'product' => '',
+		) );
+
+		if ( ! empty( $atts['product'] ) ) {
+			$product = wc_get_product( $atts['product'] );
+		}
+
+		if ( ! empty( $product ) && is_a( $product, 'WC_Product' ) ) {
+			$content = '<div class="wc-gzd-item-desc item-desc">' . do_shortcode( wc_gzd_get_gzd_product( $product )->get_mini_desc() ) . '</div>';
+		}
+
+		return $content;
 	}
 
 	public static function gzd_add_price_suffixes( $price, $org_product ) {

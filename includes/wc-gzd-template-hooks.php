@@ -52,7 +52,6 @@ if ( get_option( 'woocommerce_gzd_display_listings_add_to_cart' ) == 'no' )
 
 if ( get_option( 'woocommerce_gzd_display_listings_link_details' ) == 'yes' )
 	add_filter( 'woocommerce_loop_add_to_cart_link', 'woocommerce_gzd_template_loop_add_to_cart', 99, 2 );
-
 /**
  * Cart
  */
