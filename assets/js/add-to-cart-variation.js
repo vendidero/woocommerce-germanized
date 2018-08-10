@@ -11,7 +11,7 @@
 		$.fn.wc_gzd_variation_form.reset_variation = function() {
 
 			if ( $wrapper.find('.org_price').length > 0 ) {
-				$wrapper.find('.price.variation_modified:not(.price-unit)' ).html( $wrapper.find('.org_price').html() ).removeClass('variation_modified').show();
+				$wrapper.find( wc_gzd_add_to_cart_variation_params.price_selector + '.variation_modified:not(.price-unit)' ).html( $wrapper.find('.org_price').html() ).removeClass('variation_modified').show();
 			}
 			if ( $wrapper.find('.org_delivery_time').length > 0 ) {
                 $wrapper.find( '.delivery-time-info:first' ).html( $wrapper.find('.org_delivery_time').html() ).removeClass('variation_modified').show();
@@ -40,8 +40,8 @@
             if ( ! variation.variation_is_visible )
             	return;
 
-			if ( ! $wrapper.find( '.price:first' ).hasClass( 'variation_modified' ) ) {
-				$wrapper.append( '<div class="org_price org_product_info">' + $wrapper.find( '.price:not(.price-unit):first' ).html() + '</div>' );
+			if ( ! $wrapper.find( wc_gzd_add_to_cart_variation_params.price_selector + ':first' ).hasClass( 'variation_modified' ) ) {
+				$wrapper.append( '<div class="org_price org_product_info">' + $wrapper.find( wc_gzd_add_to_cart_variation_params.price_selector + ':not(.price-unit):first' ).html() + '</div>' );
 				if ( $wrapper.find( '.delivery-time-info:first' ).length > 0 ) {
 					$wrapper.append( '<div class="org_delivery_time org_product_info">' + $wrapper.find( '.delivery-time-info:first' ).html() + '</div>' );
 				}
@@ -62,8 +62,8 @@
 
 			if ( variation.price_html !== '' ) {
 				$( '.single_variation .price' ).hide();
-				$wrapper.find( '.price:not(.price-unit):first' ).html( variation.price_html ).addClass( 'variation_modified' );
-				$wrapper.find( '.price:not(.price-unit):first' ).find( '.price' ).contents().unwrap();
+				$wrapper.find( wc_gzd_add_to_cart_variation_params.price_selector + ':not(.price-unit):first' ).html( variation.price_html ).addClass( 'variation_modified' );
+				$wrapper.find( wc_gzd_add_to_cart_variation_params.price_selector + ':not(.price-unit):first' ).find( '.price' ).contents().unwrap();
 			}
 
 			$wrapper.find( '.delivery-time-info:first' ).hide();

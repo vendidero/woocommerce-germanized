@@ -99,9 +99,31 @@ By default, Germanized works with every WooCommerce theme. Some themes may need 
 = Automatic Installation =
 
 We recommend installing WooCommerce Germanized through the WordPress Backend. Please install WooCommerce before installing WC Germanized.
-After the installation you may easily adapt the settings to your own needs. 
+After the installation you may easily adapt the settings to your own needs.
 
-= Shortcodes =
+= Product specific shortcodes =
+You may use one of the following product-specific shortcodes to output notices within PageBuilders or on custom-built-pages.
+The `product` parameter is optional. Shortcodes are falling back to the global $product variable in case the `product` parameter is missing.
+
+`[gzd_product_unit_price product="123"]`
+Outputs unit price for a product.
+
+`[gzd_product_units product="123"]`
+Outputs units included with the product e.g. 100 ml.
+
+`[gzd_product_delivery_time product="123"]`
+Outputs delivery time for a product.
+
+`[gzd_product_tax_notice product="123"]`
+Outputs tax notice for a product.
+
+`[gzd_product_shipping_notice product="123"]`
+Outputs shipping costs notice for a product.
+
+`[gzd_product_cart_desc product="123"]`
+Outputs mini cart description for a product.
+
+= General Shortcodes =
 
 `[revocation_form]`
 Inserts online revocation form within your WooCommerce store. Customer and shop manager receive a confirmation by email.

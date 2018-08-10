@@ -711,6 +711,7 @@ final class WooCommerce_Germanized {
 
 			wp_localize_script( 'wc-gzd-add-to-cart-variation', 'wc_gzd_add_to_cart_variation_params', apply_filters( 'woocommerce_gzd_add_to_cart_variation_params', array(
 				'wrapper'                   => '.type-product',
+				'price_selector'            => '.price',
 			) ) );
 		}
 

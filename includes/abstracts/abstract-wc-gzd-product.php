@@ -454,9 +454,9 @@ class WC_GZD_Product {
 
 			do_action( 'woocommerce_gzd_before_get_unit_price_html', $this );
 
-			$display_price = $this->get_unit_price();
+			$display_price         = $this->get_unit_price();
 			$display_regular_price = $this->get_unit_price( 1, $this->get_unit_regular_price() );
-			$display_sale_price = $this->get_unit_price( 1, $this->get_unit_sale_price() );
+			$display_sale_price    = $this->get_unit_price( 1, $this->get_unit_sale_price() );
 
 			$price_html = ( ( $this->is_on_unit_sale() && $show_sale ) ? $this->get_price_html_from_to( $display_regular_price, $display_sale_price, false ) : wc_price( $display_price ) );
 			$text       = get_option( 'woocommerce_gzd_unit_price_text' );
