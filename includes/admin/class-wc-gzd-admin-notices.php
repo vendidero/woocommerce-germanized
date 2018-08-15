@@ -150,9 +150,11 @@ class WC_GZD_Admin_Notices {
 
 	public function is_theme_ready() {
 		$stylesheet = get_stylesheet_directory() . '/style.css';
-		$data = get_file_data( $stylesheet, array( 'wc_gzd_compatible' => 'wc_gzd_compatible' ) );
+		$data       = get_file_data( $stylesheet, array( 'wc_gzd_compatible' => 'wc_gzd_compatible' ) );
+
 		if ( ! $data[ 'wc_gzd_compatible' ] && ! current_theme_supports( 'woocommerce-germanized' ) )
 			return false;
+
 		return true;
 	}
 
@@ -163,6 +165,7 @@ class WC_GZD_Admin_Notices {
 			'flatsome',
 			'storefront',
 			'virtue',
+			'shopkeeper',
 		);
 
 		$current = wp_get_theme();

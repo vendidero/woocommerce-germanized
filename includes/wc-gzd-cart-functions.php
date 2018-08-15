@@ -202,19 +202,30 @@ function wc_gzd_cart_product_units( $title, $cart_item, $cart_item_key = '' ) {
  */
 function wc_gzd_get_cart_tax_share( $type = 'shipping' ) {
 	
-	$cart = WC()->cart->cart_contents;
-	$tax_shares = array();
+	$cart        = WC()->cart->cart_contents;
+	$tax_shares  = array();
 	$item_totals = 0;
 	
 	// Get tax classes and tax amounts
 	if ( ! empty( $cart ) ) {
-		
 		foreach ( $cart as $key => $item ) {
 
-			$_product = apply_filters( 'woocommerce_cart_item_product', $item[ 'data' ], $item, $key );
+			$_product          = apply_filters( 'woocommerce_cart_item_product', $item['data'], $item, $key );
 			$_product_shipping = apply_filters( 'woocommerce_gzd_cart_item_tax_share_product', $_product, $item, $key, $type );
+			$no_shipping       = false;
 
-			$no_shipping = ( 'shipping' === $type && $_product_shipping->is_virtual() || ( wc_gzd_get_gzd_product( $_product_shipping )->is_virtual_vat_exception() && 'shipping' === $type ) );
+			if ( 'shipping' === $type ) {
+				if ( $_product_shipping->is_virtual() || wc_gzd_get_gzd_product( $_product_shipping )->is_virtual_vat_exception() ) {
+				    $no_shipping = true;
+                }
+
+			    $tax_status = wc_gzd_get_crud_data( $_product, 'tax_status' );
+			    $tax_class  = $_product->get_tax_class();
+
+			    if ( 'none' === $tax_status || 'zero-rate' === $tax_class ) {
+			        $no_shipping = true;
+                }
+            }
 
 			if ( apply_filters( 'woocommerce_gzd_cart_item_not_supporting_tax_share', $no_shipping, $item, $key, $type ) ) {
 			    continue;
@@ -224,13 +235,13 @@ function wc_gzd_get_cart_tax_share( $type = 'shipping' ) {
 			
 			if ( ! isset( $tax_shares[ $class ] ) ) {
 				$tax_shares[ $class ] = array();
-				$tax_shares[ $class ][ 'total' ] = 0;
-				$tax_shares[ $class ][ 'key' ] = '';
+				$tax_shares[ $class ]['total'] = 0;
+				$tax_shares[ $class ]['key'] = '';
 			}
 			
-			$tax_shares[ $class ][ 'total' ] += ( $item[ 'line_total' ] + $item[ 'line_tax' ] ); 
-			$tax_shares[ $class ][ 'key' ] = key( $item[ 'line_tax_data' ][ 'total' ] );
-			$item_totals += ( $item[ 'line_total' ] + $item[ 'line_tax' ] ); 
+			$tax_shares[ $class ]['total'] += ( $item['line_total'] + $item['line_tax'] );
+			$tax_shares[ $class ]['key'] = key( $item['line_tax_data']['total'] );
+			$item_totals += ( $item['line_total'] + $item['line_tax'] );
 		}
 	}
 	
@@ -239,7 +250,7 @@ function wc_gzd_get_cart_tax_share( $type = 'shipping' ) {
 		$default = ( $item_totals == 0 ? 1 / sizeof( $tax_shares ) : 0 );
 
 		foreach ( $tax_shares as $key => $class )
-			$tax_shares[ $key ][ 'share' ] = ( $item_totals > 0 ? $class[ 'total' ] / $item_totals : $default );
+			$tax_shares[ $key ]['share'] = ( $item_totals > 0 ? $class['total'] / $item_totals : $default );
 
 	}
 

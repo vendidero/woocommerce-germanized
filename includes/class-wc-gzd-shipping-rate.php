@@ -30,7 +30,7 @@ class WC_GZD_Shipping_Rate extends WC_Shipping_Rate {
 
 	public function set_shared_taxes() {
 
-		$cart = WC()->cart;
+		$cart             = WC()->cart;
 		$this->tax_shares = wc_gzd_get_cart_tax_share();
 
 		// Calculate tax class share
@@ -38,8 +38,8 @@ class WC_GZD_Shipping_Rate extends WC_Shipping_Rate {
 		
 			foreach ( $this->tax_shares as $rate => $class ) {
 				$tax_rates  = WC_Tax::get_rates( $rate );
-				$this->tax_shares[ $rate ][ 'shipping_tax_share' ] = $this->cost * $class[ 'share' ];
-				$this->tax_shares[ $rate ][ 'shipping_tax' ] = WC_Tax::calc_tax( ( $this->cost * $class[ 'share' ] ), $tax_rates, ( WC()->cart->tax_display_cart === 'incl' ) );
+				$this->tax_shares[ $rate ]['shipping_tax_share'] = $this->cost * $class[ 'share' ];
+				$this->tax_shares[ $rate ]['shipping_tax'] = WC_Tax::calc_tax( ( $this->cost * $class[ 'share' ] ), $tax_rates, ( WC()->cart->tax_display_cart === 'incl' ) );
 			}
 		
 			$this->taxes = array();
