@@ -42,7 +42,13 @@
         <key name="woocommerce_gzd_order_confirmation_legal_digital_notice" />
         <key name="woocommerce_gzd_order_confirmation_legal_service_notice" />
         <key name="woocommerce_gzd_legal_checkboxes_settings">
-            <key name="*"/>
+            <key name="*">
+                <key name="admin_name" />
+                <key name="admin_desc" />
+                <key name="label" />
+                <key name="error_message" />
+                <key name="confirmation" />
+            </key>
         </key>
         <key name="woocommerce_gzd_alternative_complaints_text_none" />
         <key name="woocommerce_gzd_alternative_complaints_text_willing" />
