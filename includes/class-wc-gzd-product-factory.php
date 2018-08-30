@@ -44,9 +44,10 @@ class WC_GZD_Product_Factory extends WC_Product_Factory {
 	 * @return object WC_GZD_Product
 	 */
 	public function get_gzd_product( $product ) {
-
-		$type = wc_gzd_get_crud_data( $product, 'product_type' );
+		$type      = wc_gzd_get_crud_data( $product, 'product_type' );
 		$classname = 'WC_GZD_Product_' . ucfirst( $type );
+
+		$classname = apply_filters( 'woocommerce_gzd_product_classname', $classname, $type );
 
 		if ( class_exists( $classname ) )
 			return new $classname( $product );

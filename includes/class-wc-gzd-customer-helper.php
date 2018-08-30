@@ -351,8 +351,8 @@ class WC_GZD_Customer_Helper {
 		$roles = array_map( 'ucfirst', $this->get_double_opt_in_user_roles() );
 
 		$user_query = new WP_User_Query( apply_filters( 'woocommerce_gzd_customer_account_activation_query', array( 
-			'role' => $roles,
-			'number' => 1, 
+			'role__in'   => $roles,
+			'number'     => 1,
 			'meta_query' => array(
 				array(
 					'key'     => '_woocommerce_activation',

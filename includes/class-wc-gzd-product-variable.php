@@ -95,6 +95,7 @@ class WC_GZD_Product_Variable extends WC_GZD_Product {
 			return '';
 		
 		$prices = $this->get_variation_unit_prices( true );
+
 		$text = get_option( 'woocommerce_gzd_unit_price_text' );
 
 		if ( $this->has_unit() ) {
@@ -209,7 +210,7 @@ class WC_GZD_Product_Variable extends WC_GZD_Product {
 						// E.g. recalculate unit price for dynamic pricing plugins
 						do_action( 'woocommerce_gzd_before_get_variable_variation_unit_price', $gzd_variation );
 					
-						$price         = apply_filters( 'woocommerce_gzd_variation_unit_prices_price', $gzd_variation->get_unit_price(), $variation, $this );
+						$price         = apply_filters( 'woocommerce_gzd_variation_unit_prices_price', $gzd_variation->get_unit_price_raw(), $variation, $this );
 						$regular_price = apply_filters( 'woocommerce_gzd_variation_unit_prices_regular_price', $gzd_variation->get_unit_regular_price(), $variation, $this );
 						$sale_price    = apply_filters( 'woocommerce_gzd_variation_unit_prices_sale_price', $gzd_variation->get_unit_sale_price(), $variation, $this );
 

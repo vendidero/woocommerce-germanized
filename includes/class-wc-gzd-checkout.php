@@ -86,7 +86,6 @@ class WC_GZD_Checkout {
 		
 		// Free Shipping auto select
 		if ( get_option( 'woocommerce_gzd_display_checkout_free_shipping_select' ) == 'yes' ) {
-			add_action( 'woocommerce_before_calculate_totals', array( $this, 'set_free_shipping_filter' ) );
 			add_filter( 'woocommerce_package_rates', array( $this, 'free_shipping_auto_select' ) );
 		}
 
@@ -192,10 +191,6 @@ class WC_GZD_Checkout {
 
 	public function disable_terms_order_pay( $show ) {
 		return false;
-	}
-
-	public function set_free_shipping_filter( $cart ) {
-		$_POST[ 'update_cart' ] = true;
 	}
 
 	public function free_shipping_auto_select( $rates ) {

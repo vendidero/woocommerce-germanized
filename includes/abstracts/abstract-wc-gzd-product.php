@@ -402,6 +402,7 @@ class WC_GZD_Product {
 		do_action( 'woocommerce_gzd_before_get_unit_price', $this, $price, $qty );
 
 		$tax_display_mode = get_option( 'woocommerce_tax_display_shop' );
+
 		return ( $tax_display_mode == 'incl' ) ? $this->get_unit_price_including_tax( $qty, $price ) : $this->get_unit_price_excluding_tax( $qty, $price );
 	}
 

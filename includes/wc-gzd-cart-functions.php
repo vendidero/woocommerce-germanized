@@ -270,8 +270,7 @@ function wc_gzd_cart_remove_shipping_taxes( $taxes, $cart ) {
 	return is_callable( array( $cart, 'set_cart_contents_taxes' ) ) ? $cart->get_cart_contents_taxes() : $cart->taxes;
 }
 
-function wc_gzd_get_cart_total_taxes( $include_shipping_taxes = true ) {
-
+function wc_gzd_get_cart_taxes( $cart, $include_shipping_taxes = true ) {
 	$tax_array = array();
 
 	// If prices are tax inclusive, show taxes here
@@ -279,21 +278,21 @@ function wc_gzd_get_cart_total_taxes( $include_shipping_taxes = true ) {
 
 		if ( get_option( 'woocommerce_tax_total_display' ) == 'itemized' ) {
 
-		    if ( ! $include_shipping_taxes ) {
-			    add_filter( 'woocommerce_cart_get_taxes', 'wc_gzd_cart_remove_shipping_taxes', 10, 2 );
-            }
+			if ( ! $include_shipping_taxes ) {
+				add_filter( 'woocommerce_cart_get_taxes', 'wc_gzd_cart_remove_shipping_taxes', 10, 2 );
+			}
 
-		    $taxes = WC()->cart->get_tax_totals();
+			$taxes = $cart->get_tax_totals();
 
 			if ( ! $include_shipping_taxes ) {
 				remove_filter( 'woocommerce_cart_get_taxes', 'wc_gzd_cart_remove_shipping_taxes', 10, 2 );
 			}
 
-		    foreach ( $taxes as $code => $tax ) {
+			foreach ( $taxes as $code => $tax ) {
 
-			    $rate = wc_gzd_get_tax_rate( $tax->tax_rate_id );
+				$rate = wc_gzd_get_tax_rate( $tax->tax_rate_id );
 
-			    if ( ! $rate ) {
+				if ( ! $rate ) {
 					continue;
 				}
 
@@ -303,9 +302,9 @@ function wc_gzd_get_cart_total_taxes( $include_shipping_taxes = true ) {
 
 				if ( ! isset( $tax_array[ $tax->rate ] ) ) {
 					$tax_array[ $tax->rate ] = array(
-					        'tax'      => $tax,
-                            'amount'   => $tax->amount,
-                            'contains' => array( $tax )
+						'tax'      => $tax,
+						'amount'   => $tax->amount,
+						'contains' => array( $tax )
 					);
 				} else {
 					array_push( $tax_array[ $tax->rate ]['contains'], $tax );
@@ -324,6 +323,10 @@ function wc_gzd_get_cart_total_taxes( $include_shipping_taxes = true ) {
 	}
 
 	return $tax_array;
+}
+
+function wc_gzd_get_cart_total_taxes( $include_shipping_taxes = true ) {
+    return wc_gzd_get_cart_taxes( WC()->cart, $include_shipping_taxes );
 }
 
 /**
