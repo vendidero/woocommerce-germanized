@@ -256,11 +256,17 @@ class WC_GZD_Ekomi {
 			global $post;
 			$order_query->the_post();
 			
-			$order = wc_get_order( $post->ID );
+			$order          = wc_get_order( $post->ID );
+			$completed_date = wc_gzd_get_crud_data( $order, 'completed_date' );
 
-			$diff = WC_germanized()->get_date_diff( date( 'Y-m-d H:i:s', wc_gzd_get_crud_data( $order, 'completed_date' ) ), date( 'Y-m-d H:i:s' ) );
-			
-			if ( $diff[ 'd' ] >= (int) get_option( 'woocommerce_gzd_ekomi_day_diff' ) ) {
+			if ( is_a( $completed_date, 'WC_DateTime' ) ) {
+				$completed_date = $completed_date->getTimestamp();
+			}
+
+			$days_diff = get_option( 'woocommerce_gzd_ekomi_day_diff' );
+			$diff      = WC_germanized()->get_date_diff( date( 'Y-m-d H:i:s', $completed_date ), date( 'Y-m-d H:i:s' ) );
+
+			if ( $diff['d'] >= $days_diff ) {
 				if ( $mail = WC_germanized()->emails->get_email_instance_by_id( 'customer_ekomi' ) ) {
 					$mail->trigger( wc_gzd_get_crud_data( $order, 'id' ) );
 					
