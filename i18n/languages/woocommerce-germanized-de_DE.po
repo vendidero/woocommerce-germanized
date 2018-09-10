@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: WooCommerce Germanized v1.5.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-06-25 10:46+0200\n"
-"PO-Revision-Date: 2018-06-25 10:46+0200\n"
+"PO-Revision-Date: 2018-09-10 13:03+0200\n"
 "Last-Translator: holzhannes <holzhannes@posteo.de>\n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -275,7 +275,7 @@ msgstr ""
 "deiner Bestellung mit der Ausführung des Vertrags bereits vor Ablauf der "
 "Widerrufsfrist begonnen wird. Du hast auch zur Kenntnis genommen, dass du "
 "mit Beginn der Ausführung des Vertrags dein {link}Widerrufsrecht{/link} "
-"verlieren."
+"verlierst."
 
 # @ woocommerce-germanized
 #: includes/admin/class-wc-gzd-admin-legal-checkboxes.php:115

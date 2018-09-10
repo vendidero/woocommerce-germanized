@@ -94,7 +94,7 @@ class WC_Germanized_Meta_Box_Product_Data {
 	            // Let pro version filter prices
 	            $data = apply_filters( 'woocommerce_gzd_save_display_unit_price_data', array(
                     '_unit_price_regular' => wc_gzd_get_gzd_product( $product )->get_unit_regular_price(),
-                    '_unit_price_sale' => wc_gzd_get_gzd_product( $product )->get_unit_sale_price(),
+                    '_unit_price_sale'    => wc_gzd_get_gzd_product( $product )->get_unit_sale_price(),
                 ), $product );
 
 	            // Make sure we update automatically calculated prices

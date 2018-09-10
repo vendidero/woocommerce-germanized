@@ -265,8 +265,8 @@ class WC_GZD_Legal_Checkbox_Manager {
 		}
 	}
 
-	public function get_options() {
-		if ( is_null( $this->options ) || ! is_array( $this->options ) ) {
+	public function get_options( $force_refresh = false ) {
+		if ( is_null( $this->options ) || ! is_array( $this->options ) || $force_refresh ) {
 			wp_cache_delete( 'woocommerce_gzd_legal_checkboxes_settings', 'options' );
 			$this->options = get_option( 'woocommerce_gzd_legal_checkboxes_settings', array() );
 		}
