@@ -87,6 +87,7 @@ By default, Germanized works with every WooCommerce theme. Some themes may need 
 * Storefront
 * VendiPro
 * Virtue
+* Shopkeeper
 
 == Installation ==
 
@@ -182,6 +183,8 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 4. WooCommerce Multistep Checkout (Pro)
 
 == Changelog ==
+
+= 2.0.5 =
 
 = 2.0.4 =
 * Fix: Legal checkboxes Woo 2.4 support
