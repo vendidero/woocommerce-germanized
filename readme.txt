@@ -5,7 +5,7 @@ Requires at least: 3.8
 Tested up to: 4.9
 WC requires at least: 2.4
 WC tested up to: 3.4
-Stable tag: 2.0.4
+Stable tag: 2.0.5
 Requires PHP: 5.3
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -185,6 +185,20 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 == Changelog ==
 
 = 2.0.5 =
+* Feature: Support WC Role Based Price (https://de.wordpress.org/plugins/woocommerce-role-based-price/)
+* Feature: Support WooCommerce Gateway PayPal Express Checkout
+* Feature: Added new Shortcodes to better support Pagebuilders (see https://wordpress.org/plugins/woocommerce-germanized/#installation)
+* Feature: Added WooCommerce Subscriptions unit price compatiblity
+* Improvement: Better dynamic pricing plugin compatibility
+* Improvement: Added better PolyLang checkbox translation compatibility
+* Improvement: Check if gateway requires user input before forcing to redirect pay order
+* Improvement: Adjusted shipping cost split tax calculation to exclude non-taxable and zero-rate items
+* Fix: Possible ArgumentCountError within pre_get_option filter
+* Fix: Avoid loading frontend specific functions within admin
+* Fix: SEPA checkbox validation with force pay order script
+* Fix: Use role__in query argument to ensure multiple roles can be queries for DOI
+* Fix: eKomi review reminder support WC_DateTime
+* Fix: Parcel delivery post number address display
 
 = 2.0.4 =
 * Fix: Legal checkboxes Woo 2.4 support
