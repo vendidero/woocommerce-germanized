@@ -193,6 +193,7 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 * Improvement: Added better PolyLang checkbox translation compatibility
 * Improvement: Check if gateway requires user input before forcing to redirect pay order
 * Improvement: Adjusted shipping cost split tax calculation to exclude non-taxable and zero-rate items
+* Improvement: Re-added order again button which now redirects back to the cart instead of placing the order directly
 * Fix: Possible ArgumentCountError within pre_get_option filter
 * Fix: Avoid loading frontend specific functions within admin
 * Fix: SEPA checkbox validation with force pay order script
