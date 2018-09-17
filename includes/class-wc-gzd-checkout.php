@@ -219,7 +219,7 @@ class WC_GZD_Checkout {
 		$hide = false;
 
 		// Legacy Support
-		if ( isset( $rates[ 'free_shipping' ] ) ) {
+		if ( isset( $rates['free_shipping'] ) ) {
 			$keep[] = 'free_shipping';
 			$hide = true;
 		}
@@ -242,7 +242,9 @@ class WC_GZD_Checkout {
 		if ( ! empty( $keep ) && $hide ) {
 
 			// Unset chosen shipping method to avoid key errors
-			unset( WC()->session->chosen_shipping_methods );
+			if ( isset( WC()->session ) && ! is_null( WC()->session ) ) {
+				unset( WC()->session->chosen_shipping_methods );
+			}
 			
 			foreach ( $rates as $key => $rate ) {
 			
