@@ -5,7 +5,7 @@ Requires at least: 3.8
 Tested up to: 4.9
 WC requires at least: 2.4
 WC tested up to: 3.4
-Stable tag: 2.0.5
+Stable tag: 2.0.6
 Requires PHP: 5.3
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -183,6 +183,12 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 4. WooCommerce Multistep Checkout (Pro)
 
 == Changelog ==
+
+= 2.0.6 =
+* Improvement: Added re-send button for customer activation email within edit profile section (admin UI)
+* Improvement: Better UI while editing variable unit prices. Show errors if parent data is missing
+* Fix: Make sure to include nonce within checkout if payment wrapper is not refreshed during AJAX request
+* Fix: Free shipping auto select check after adding to cart
 
 = 2.0.5 =
 * Feature: Support WC Role Based Price (https://de.wordpress.org/plugins/woocommerce-role-based-price/)

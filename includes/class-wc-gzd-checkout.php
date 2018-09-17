@@ -5,6 +5,8 @@ class WC_GZD_Checkout {
 	public $custom_fields = array();
 	public $custom_fields_admin = array();
 
+	protected static $force_free_shipping_filter = false;
+
 	protected static $_instance = null;
 
 	public static function instance() {
@@ -87,6 +89,7 @@ class WC_GZD_Checkout {
 		// Free Shipping auto select
 		if ( get_option( 'woocommerce_gzd_display_checkout_free_shipping_select' ) == 'yes' ) {
 			add_filter( 'woocommerce_package_rates', array( $this, 'free_shipping_auto_select' ) );
+			add_action( 'woocommerce_before_calculate_totals', array( $this, 'set_free_shipping_filter' ) );
 		}
 
 		// Pay for order
@@ -201,9 +204,13 @@ class WC_GZD_Checkout {
 		return false;
 	}
 
+	public function set_free_shipping_filter( $cart ) {
+		static::$force_free_shipping_filter = true;
+	}
+
 	public function free_shipping_auto_select( $rates ) {
 
-		$do_check = is_checkout() || is_cart() || ! empty( $_POST['update_cart'] );
+		$do_check = is_checkout() || is_cart() || static::$force_free_shipping_filter;
 
 		if ( ! $do_check )
 			return $rates;
