@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce Germanized v1.5.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-10 13:01+0200\n"
-"PO-Revision-Date: 2018-09-10 13:17+0200\n"
+"POT-Creation-Date: 2018-09-12 16:45+0200\n"
+"PO-Revision-Date: 2018-09-12 16:48+0200\n"
 "Last-Translator: holzhannes <holzhannes@posteo.de>\n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -445,7 +445,7 @@ msgstr ""
 
 # @ woocommerce-germanized
 #: includes/admin/class-wc-gzd-admin.php:222
-#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:152
+#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:154
 msgid "Optional Mini Description"
 msgstr "Warenkorb Kurzbeschreibung"
 
@@ -463,24 +463,24 @@ msgstr ""
 msgid "Service products do not sell physical products."
 msgstr "Dienstleistungen werden nicht in physikalischer Form verkauft."
 
-#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:87
+#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:86
 #: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:144
 msgid "Sale Label"
 msgstr "Regulärer Preishinweis"
 
 # @ woocommerce-germanized
-#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:89
-#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:99
+#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:88
+#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:98
 msgid "Same as Parent"
 msgstr "Gleiche wie übergeordnet"
 
-#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:97
+#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:96
 #: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:145
 msgid "Sale Regular Label"
 msgstr "Neuer Preis Hinweis"
 
 # @ woocommerce-germanized
-#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:115
+#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:114
 #: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:148
 #: includes/admin/settings/class-wc-gzd-settings-germanized.php:704
 #: includes/admin/settings/class-wc-gzd-settings-germanized.php:859
@@ -489,7 +489,7 @@ msgid "Product Units"
 msgstr "Produkteinheiten"
 
 # @ woocommerce-germanized
-#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:115
+#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:114
 msgid ""
 "Number of units included per default product price. Example: 1000 ml. Leave "
 "blank to use parent value."
@@ -498,28 +498,41 @@ msgstr ""
 "Frei lassen um den Wert des Eltern-Produkts zu verwenden."
 
 # @ woocommerce-germanized
-#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:119
+#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:118
 #: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:169
 msgid "Calculation"
 msgstr "Berechnung"
 
 # @ woocommerce-germanized
-#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:122
+#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:121
 msgid "Calculate unit prices automatically"
 msgstr "Grundpreis automatisch berechnen."
 
 # @ woocommerce-germanized
-#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:127
+#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:126
 msgid "Regular Unit Price"
 msgstr "Einheitspreis"
 
 # @ woocommerce-germanized
-#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:131
+#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:130
 msgid "Sale Unit Price"
 msgstr "Angebots-Einheitspreis"
 
+#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:134
+#, php-format
+msgid ""
+"To enable unit prices on variation level please choose a unit and base price "
+"units within %s."
+msgstr ""
+"Um Einheitspreise auf Variationen-Ebene zu aktivieren, bitte Einheit und "
+"Grundpreiseinheiten unter %s auswählen."
+
+#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:134
+msgid "general product data"
+msgstr "Allgemein"
+
 # @ woocommerce-germanized
-#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:137
+#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:139
 #: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:221
 #: includes/api/class-wc-gzd-rest-products-controller.php:39
 #: includes/api/class-wc-gzd-rest-products-controller.php:204
@@ -527,7 +540,7 @@ msgid "Delivery Time"
 msgstr "Lieferzeit"
 
 # @ woocommerce-germanized
-#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:143
+#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:145
 msgid "Same as parent"
 msgstr "Gleiche wie übergeordnet"
 
@@ -1824,7 +1837,7 @@ msgstr ""
 "der Option \"Auswahl von Versandarten im Checkout deaktivieren\"."
 
 #: includes/admin/settings/class-wc-gzd-settings-germanized.php:1026
-#: includes/class-wc-gzd-dhl-parcel-shops.php:351
+#: includes/class-wc-gzd-dhl-parcel-shops.php:350
 msgid "Parcel Shop Finder"
 msgstr "Paketshop finden"
 
@@ -2757,15 +2770,15 @@ msgid "Title"
 msgstr "Anrede"
 
 #: includes/api/class-wc-gzd-rest-customers-controller.php:151
-#: includes/class-wc-gzd-dhl-parcel-shops.php:153
+#: includes/class-wc-gzd-dhl-parcel-shops.php:152
 msgid "Send to DHL Parcel Shop?"
 msgstr "An DHL Paketshop oder Packstation senden?"
 
 #: includes/api/class-wc-gzd-rest-customers-controller.php:157
 #: includes/api/class-wc-gzd-rest-orders-controller.php:181
-#: includes/class-wc-gzd-dhl-parcel-shops.php:163
-#: includes/class-wc-gzd-dhl-parcel-shops.php:188
-#: includes/class-wc-gzd-dhl-parcel-shops.php:201
+#: includes/class-wc-gzd-dhl-parcel-shops.php:162
+#: includes/class-wc-gzd-dhl-parcel-shops.php:187
+#: includes/class-wc-gzd-dhl-parcel-shops.php:200
 #: includes/class-wc-gzd-privacy.php:58 includes/class-wc-gzd-privacy.php:82
 #: includes/class-wc-gzd-privacy.php:120
 msgid "Postnumber"
@@ -2818,10 +2831,10 @@ msgid "BIC/SWIFT"
 msgstr "BIC/SWIFT"
 
 #: includes/api/class-wc-gzd-rest-orders-controller.php:175
-#: includes/class-wc-gzd-dhl-parcel-shops.php:240
-#: includes/class-wc-gzd-dhl-parcel-shops.php:274
+#: includes/class-wc-gzd-dhl-parcel-shops.php:239
+#: includes/class-wc-gzd-dhl-parcel-shops.php:273
+#: includes/class-wc-gzd-dhl-parcel-shops.php:327
 #: includes/class-wc-gzd-dhl-parcel-shops.php:328
-#: includes/class-wc-gzd-dhl-parcel-shops.php:329
 msgid "Parcel Shop"
 msgstr "Shop/Packstation"
 
@@ -3124,25 +3137,25 @@ msgstr "Abgelaufener Aktivierungscode"
 msgid "Invalid activation key"
 msgstr "Aktivierungscode ungültig"
 
-#: includes/class-wc-gzd-dhl-parcel-shops.php:180
+#: includes/class-wc-gzd-dhl-parcel-shops.php:179
 msgid "DHL Parcel Shop?"
 msgstr "DHL Paketshop/Packstation?"
 
-#: includes/class-wc-gzd-dhl-parcel-shops.php:182
+#: includes/class-wc-gzd-dhl-parcel-shops.php:181
 msgid "No"
 msgstr "Nein"
 
-#: includes/class-wc-gzd-dhl-parcel-shops.php:182
+#: includes/class-wc-gzd-dhl-parcel-shops.php:181
 msgid "Yes"
 msgstr "Ja"
 
-#: includes/class-wc-gzd-dhl-parcel-shops.php:183
+#: includes/class-wc-gzd-dhl-parcel-shops.php:182
 msgid "Select whether delivery to parcel shop should be enabled."
 msgstr ""
 "Wähle aus ob die Lieferung an DHL Paketshops bzw. Packstationen aktiviert "
 "werden soll."
 
-#: includes/class-wc-gzd-dhl-parcel-shops.php:190
+#: includes/class-wc-gzd-dhl-parcel-shops.php:189
 msgid ""
 "In case delivery to parcel shop is enabled please fill in the corresponding "
 "DHL post number."
@@ -3150,12 +3163,12 @@ msgstr ""
 "Wenn die Lieferung an eine DHL Packstation aktiviert wurde, trage bitte die "
 "PostNummer ein."
 
-#: includes/class-wc-gzd-dhl-parcel-shops.php:294
+#: includes/class-wc-gzd-dhl-parcel-shops.php:293
 msgid "Your PostNumber should contain numbers only"
 msgstr "Deine PostNummer sollte nur aus Zahlen bestehen."
 
-#: includes/class-wc-gzd-dhl-parcel-shops.php:300
-#: includes/class-wc-gzd-dhl-parcel-shops.php:335
+#: includes/class-wc-gzd-dhl-parcel-shops.php:299
+#: includes/class-wc-gzd-dhl-parcel-shops.php:334
 #, php-format
 msgid "Parcel Shop Delivery is only supported in: %s."
 msgstr ""

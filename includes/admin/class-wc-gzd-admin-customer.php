@@ -47,9 +47,12 @@ class WC_GZD_Admin_Customer {
 							<th><label for="woocommerce_activation"><?php _e( 'Double opt in', 'woocommerce-germanized' ); ?></label></th>
 							<td>
 								<label for="woocommerce_activation">
-									<input name="_woocommerce_activation" type="checkbox" id="_woocommerce_activation" value="1" <?php checked( wc_gzd_is_customer_activated( $user->ID ), 1 ); ?> />
+									<input name="_woocommerce_activation" type="checkbox" id="_woocommerce_activation" value="1" <?php checked( wc_gzd_is_customer_activated( $user->ID ), 1 ); ?> <?php echo wc_gzd_is_customer_activated( $user->ID ) ? 'disabled="disabled"' : ''; ?> />
 									<?php _e( 'Yes, customer opted in', 'woocommerce-germanized' ); ?>
-								</label>
+                                </label>
+                                <?php if ( ! wc_gzd_is_customer_activated( $user->ID ) ) : ?>
+                                    <br/> <a class="wc-gzd-resend-activation-link button button-secondary" href="<?php echo wp_nonce_url( add_query_arg( array( 'gzd-resend-activation' => 'yes' ) ), 'resend-activation-link' ); ?>"><?php _e( 'Resend activation link', 'woocommerce-germanized' ); ?></a>
+                                <?php endif; ?>
 							</td>
 						</tr>
 					</tbody>
@@ -66,6 +69,7 @@ class WC_GZD_Admin_Customer {
 	public function profile_save_activation_field( $user_id ) {
 		if ( current_user_can( 'edit_user', $user_id ) ) {
 			$user = get_userdata( $user_id );
+
 			if ( isset( $_POST[ '_woocommerce_activation' ] ) )
 				delete_user_meta( $user_id, '_woocommerce_activation' );
 		}

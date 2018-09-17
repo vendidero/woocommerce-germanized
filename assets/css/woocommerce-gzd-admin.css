@@ -11,6 +11,17 @@ table.data_table tr td p.form-field {
 	margin-top: -2em;
 }
 
+.wc-gzd-resend-activation-link {
+	margin-top: 1em !important;
+}
+
+.wc-gzd-unit-price-disabled-notice {
+	margin: 1em 0 !important;
+	box-sizing: border-box;
+	display: none;
+	padding: 5px 12px;
+}
+
 .wc-gzd-admin-settings {
 	display: inline-block;
 	width: 70%;

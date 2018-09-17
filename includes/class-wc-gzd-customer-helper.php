@@ -436,8 +436,8 @@ class WC_GZD_Customer_Helper {
 		if ( ! $this->enable_double_opt_in_for_user( $customer_id ) )
 			return;
 
-		$user_pass = ! empty( $new_customer_data['user_pass'] ) ? $new_customer_data['user_pass'] : '';
-		$user_activation = $this->get_customer_activation_meta( $customer_id );
+		$user_pass           = ! empty( $new_customer_data['user_pass'] ) ? $new_customer_data['user_pass'] : '';
+		$user_activation     = $this->get_customer_activation_meta( $customer_id );
 		$user_activation_url = $this->get_customer_activation_url( $user_activation );
 
 		if ( $email = WC_germanized()->emails->get_email_instance_by_id( 'customer_new_account_activation' ) )
@@ -474,7 +474,7 @@ class WC_GZD_Customer_Helper {
 
 		$user_activation = time() . ':' . $wp_hasher->HashPassword( $key );
 
-		add_user_meta( $customer_id, '_woocommerce_activation', $user_activation );
+		update_user_meta( $customer_id, '_woocommerce_activation', $user_activation );
 
 		return $user_activation;
 	}

@@ -294,11 +294,14 @@ if ( ! function_exists( 'woocommerce_gzd_template_order_submit' ) ) {
 	/**
 	 * Adds custom order submit template (at the end of checkout)
 	 */
-	function woocommerce_gzd_template_order_submit() {
-		wc_get_template( 'checkout/order-submit.php', array(
+	function woocommerce_gzd_template_order_submit( $args = array() ) {
+		$args = wp_parse_args( $args, array(
 			'checkout'           => WC()->checkout(),
-			'order_button_text'  => apply_filters( 'woocommerce_order_button_text', __( 'Place order', 'woocommerce' ) )
+			'order_button_text'  => apply_filters( 'woocommerce_order_button_text', __( 'Place order', 'woocommerce' ) ),
+			'include_nonce'      => false,
 		) );
+
+		wc_get_template( 'checkout/order-submit.php', $args );
 	}
 
 }
@@ -486,13 +489,20 @@ if ( ! function_exists( 'woocommerce_gzd_template_mini_cart_taxes' ) ) {
 
 	function woocommerce_gzd_template_mini_cart_taxes() {
 		$hidden_for_types = get_option( 'woocommerce_gzd_display_shipping_costs_hidden_types', array() );
-		$show_shipping = empty( $hidden_for_types ) ? true : false;
+		$show_shipping    = empty( $hidden_for_types ) ? true : false;
 
 		foreach( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
 			if ( $_product = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key ) ) {
 				if ( ! wc_gzd_product_matches_extended_type( $hidden_for_types, $_product ) ) {
 					$show_shipping = true;
 				}
+			}
+		}
+
+		// Do only show shipping notice if shipping costs are > 0
+		if ( is_callable( array( WC()->cart, 'get_shipping_total' ) ) ) {
+			if ( WC()->cart->get_shipping_total() <= 0 ) {
+				$show_shipping = false;
 			}
 		}
 

@@ -53,6 +53,7 @@ class WC_GZD_Admin {
 		add_action( 'admin_init', array( $this, 'check_complaints_shortcode_append' ) );
 		add_action( 'admin_init', array( $this, 'check_version_cache_deletion' ) );
 		add_action( 'admin_init', array( $this, 'check_insert_vat_rates' ) );
+		add_action( 'admin_init', array( $this, 'check_resend_activation_email' ) );
 		
 		add_filter( 'woocommerce_addons_section_data', array( $this, 'set_addon' ), 10, 2 );
 		add_action( 'woocommerce_admin_order_data_after_shipping_address', array( $this, 'set_order_parcel_delivery_opted_in' ), 10, 1 );
@@ -249,8 +250,7 @@ class WC_GZD_Admin {
 	}
 
 	public function check_tour_hide() {
-		
-		if ( isset( $_GET[ 'tour' ] ) && isset( $_GET[ 'hide' ] ) && isset( $_GET[ '_wpnonce' ] ) && check_admin_referer( 'wc-gzd-tour-hide' ) ) {
+		if ( current_user_can(  'manage_woocommerce' ) && isset( $_GET[ 'tour' ] ) && isset( $_GET[ 'hide' ] ) && isset( $_GET[ '_wpnonce' ] ) && check_admin_referer( 'wc-gzd-tour-hide' ) ) {
 		
 			if ( ! empty( $_GET[ 'tour' ] ) )
 				update_option( 'woocommerce_gzd_hide_tour_' . sanitize_text_field( $_GET[ 'tour' ] ), true );
@@ -259,7 +259,7 @@ class WC_GZD_Admin {
 		
 			wp_safe_redirect( remove_query_arg( array( 'hide', 'tour', '_wpnonce' ) ) );
 		
-		} elseif ( isset( $_GET[ 'tour' ] ) && isset( $_GET[ 'enable' ] ) && isset( $_GET[ '_wpnonce' ] ) && check_admin_referer( 'wc-gzd-tour-enable' ) ) {
+		} elseif ( current_user_can(  'manage_woocommerce' ) && isset( $_GET[ 'tour' ] ) && isset( $_GET[ 'enable' ] ) && isset( $_GET[ '_wpnonce' ] ) && check_admin_referer( 'wc-gzd-tour-enable' ) ) {
 		
 			$setting_sections = array_merge( array( 
 				'general'    => '',
@@ -276,8 +276,7 @@ class WC_GZD_Admin {
  	}
 
  	public function check_language_install() {
-		
-		if ( isset( $_GET[ 'install-language' ] ) && isset( $_GET[ '_wpnonce' ] ) && check_admin_referer( 'wc-gzd-install-language' ) ) {
+		if ( current_user_can(  'manage_woocommerce' ) && isset( $_GET[ 'install-language' ] ) && isset( $_GET[ '_wpnonce' ] ) && check_admin_referer( 'wc-gzd-install-language' ) ) {
 			
 			require_once( ABSPATH . 'wp-admin/includes/translation-install.php' );
 			$language = sanitize_text_field( $_GET[ 'install-language' ] );
@@ -297,8 +296,7 @@ class WC_GZD_Admin {
 	}
 
 	public function check_text_options_deletion() {
-
-		if ( isset( $_GET[ 'delete-text-options' ] ) && isset( $_GET[ '_wpnonce' ] ) && check_admin_referer( 'wc-gzd-delete-text-options' ) ) {
+		if ( current_user_can(  'manage_woocommerce' ) && isset( $_GET[ 'delete-text-options' ] ) && isset( $_GET[ '_wpnonce' ] ) && check_admin_referer( 'wc-gzd-delete-text-options' ) ) {
 
 			global $wpdb;
 
@@ -341,8 +339,7 @@ class WC_GZD_Admin {
 	}
 
 	public function check_version_cache_deletion() {
-
-		if ( isset( $_GET[ 'delete-version-cache' ] ) && isset( $_GET[ '_wpnonce' ] ) && check_admin_referer( 'wc-gzd-delete-version-cache' ) ) {
+		if ( current_user_can(  'manage_woocommerce' ) && isset( $_GET[ 'delete-version-cache' ] ) && isset( $_GET[ '_wpnonce' ] ) && check_admin_referer( 'wc-gzd-delete-version-cache' ) ) {
 
 			wc_gzd_get_dependencies()->delete_cached_plugin_header_data();
 
@@ -363,8 +360,26 @@ class WC_GZD_Admin {
         return $pages;
     }
 
+    public function check_resend_activation_email() {
+	    if ( current_user_can(  'manage_woocommerce' ) && isset( $_GET['user_id'] ) && isset( $_GET['gzd-resend-activation'] ) && 'yes' === $_GET['gzd-resend-activation'] && isset( $_GET['_wpnonce'] ) && check_admin_referer( 'resend-activation-link' ) ) {
+	        $user_id = absint( $_GET['user_id'] );
+
+	        if ( ! empty( $user_id ) && ! wc_gzd_is_customer_activated( $user_id ) ) {
+                $helper              = WC_GZD_Customer_Helper::instance();
+                $user_activation     = $helper->get_customer_activation_meta( $user_id, true );
+		        $user_activation_url = $helper->get_customer_activation_url( $user_activation );
+
+		        if ( $email = WC_germanized()->emails->get_email_instance_by_id( 'customer_new_account_activation' ) )
+			        $email->trigger( $user_id, $user_activation, $user_activation_url );
+            }
+
+		    // Redirect to check for updates
+		    wp_safe_redirect( admin_url( sprintf( 'user-edit.php?user_id=%d&gzd-sent=yes', $user_id ) ) );
+	    }
+    }
+
 	public function check_complaints_shortcode_append() {
- 		if ( isset( $_GET[ 'complaints' ] ) && 'add' === $_GET[ 'complaints' ] && isset( $_GET[ '_wpnonce' ] ) && check_admin_referer( 'append-complaints-shortcode' ) ) {
+ 		if ( current_user_can(  'manage_woocommerce' ) && isset( $_GET[ 'complaints' ] ) && 'add' === $_GET[ 'complaints' ] && isset( $_GET[ '_wpnonce' ] ) && check_admin_referer( 'append-complaints-shortcode' ) ) {
 
  		    $pages = $this->get_complaints_shortcode_pages();
 
@@ -401,7 +416,7 @@ class WC_GZD_Admin {
  	}
 
 	public function check_insert_vat_rates() {
-		if ( isset( $_GET[ 'insert-vat-rates' ] ) && isset( $_GET[ '_wpnonce' ] ) && check_admin_referer( 'wc-gzd-insert-vat-rates' ) ) {
+		if ( current_user_can(  'manage_woocommerce' ) && isset( $_GET[ 'insert-vat-rates' ] ) && isset( $_GET[ '_wpnonce' ] ) && check_admin_referer( 'wc-gzd-insert-vat-rates' ) ) {
 
 		    WC_GZD_Install::create_tax_rates();
 			WC_GZD_Install::create_virtual_tax_rates();

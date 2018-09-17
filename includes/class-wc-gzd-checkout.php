@@ -104,9 +104,17 @@ class WC_GZD_Checkout {
 
 	public function refresh_order_submit( $fragments ) {
 
+		$args = array(
+			'include_nonce' => false,
+		);
+
+		if ( ! isset( $fragments['.woocommerce-checkout-payment'] ) ) {
+			$args['include_nonce'] = true;
+		}
+
 		// Get checkout order submit fragment
 		ob_start();
-		woocommerce_gzd_template_order_submit();
+		woocommerce_gzd_template_order_submit( $args );
 		$wc_gzd_order_submit = ob_get_clean();
 
 		$fragments['.wc-gzd-order-submit'] = $wc_gzd_order_submit;

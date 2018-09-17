@@ -63,7 +63,6 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 			'_unit_product' 			=> '',
 			'_unit_price_auto' 			=> '',
 			'_unit_price_regular' 		=> '',
-			'_unit_price_auto' 			=> '',
 			'_unit_price_sale' 			=> '',
 			'_sale_price_label'			=> '',
 			'_sale_price_regular_label' => '',
@@ -131,6 +130,9 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 				<label for="variable_unit_price_sale"><?php echo __( 'Sale Unit Price', 'woocommerce-germanized' ) . ' (' . get_woocommerce_currency_symbol() . ')'; ?></label>
 				<input class="input-text wc_input_price" size="5" type="text" name="variable_unit_price_sale[<?php echo $loop; ?>]" value="<?php echo ( ! empty( $variation_data[ '_unit_price_sale' ] ) ? esc_attr( wc_format_localized_price( $variation_data[ '_unit_price_sale' ] ) ) : '' );?>" placeholder="" />
 			</p>
+            <p class="form-row form-row-first wc-gzd-unit-price-disabled-notice notice notice-warning">
+				<?php printf( __( 'To enable unit prices on variation level please choose a unit and base price units within %s.', 'woocommerce-germanized' ), '<a href="#general_product_data" class="wc-gzd-general-product-data-tab">' . __( 'general product data', 'woocommerce-germanized' ) . '</a>' ); ?>
+            </p>
 		</div>
 		<div class="variable_shipping_time hide_if_variation_virtual">
 			<p class="form-row form-row-first">
