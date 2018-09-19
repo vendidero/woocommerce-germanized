@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce Germanized v1.5.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-12 16:44+0200\n"
-"PO-Revision-Date: 2018-09-12 16:47+0200\n"
+"POT-Creation-Date: 2018-09-17 15:03+0200\n"
+"PO-Revision-Date: 2018-09-17 15:03+0200\n"
 "Last-Translator: holzhannes <holzhannes@posteo.de>\n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -95,7 +95,7 @@ msgstr "l"
 #: includes/abstracts/abstract-wc-gzd-product.php:264
 #: includes/abstracts/abstract-wc-gzd-product.php:273
 #: includes/wc-gzd-core-functions.php:148
-#: includes/wc-gzd-template-functions.php:445 woocommerce-germanized.php:886
+#: includes/wc-gzd-template-functions.php:448 woocommerce-germanized.php:886
 msgid "incl. VAT"
 msgstr "inkl. MwSt."
 
@@ -127,13 +127,17 @@ msgstr "Double Opt-In"
 msgid "Yes, customer opted in"
 msgstr "Ja, Kunde wurde per Double Opt-In bestätigt."
 
+#: includes/admin/class-wc-gzd-admin-customer.php:54
+msgid "Resend activation link"
+msgstr "Aktivierungscode erneut versenden"
+
 # @ woocommerce-germanized-pro
 # @ woocommerce-germanized
 #: includes/admin/class-wc-gzd-admin-importer.php:36
 #: includes/admin/class-wc-gzd-admin-importer.php:45
 #: includes/admin/class-wc-gzd-admin.php:28
 #: includes/admin/class-wc-gzd-admin.php:37
-#: includes/class-wc-gzd-checkout.php:22 includes/class-wc-gzd-checkout.php:31
+#: includes/class-wc-gzd-checkout.php:24 includes/class-wc-gzd-checkout.php:33
 #: includes/class-wc-gzd-coupon-helper.php:24
 #: includes/class-wc-gzd-coupon-helper.php:33
 #: includes/class-wc-gzd-customer-helper.php:19
@@ -404,53 +408,53 @@ msgstr "Willkommen bei WooCommerce Germanized"
 msgid "Go to WooCommerce Germanized Settings"
 msgstr "zu den WooCommerce Germanized Einstellungen"
 
-#: includes/admin/class-wc-gzd-admin.php:103
+#: includes/admin/class-wc-gzd-admin.php:104
 msgid "Order confirmation manually sent to customer."
 msgstr "Bestellbestätigung manuell an den Kunden versendet."
 
 # @ woocommerce-germanized
-#: includes/admin/class-wc-gzd-admin.php:109
+#: includes/admin/class-wc-gzd-admin.php:110
 msgid "Resend order confirmation"
 msgstr "Bestellbestätigung erneut versenden"
 
 # @ woocommerce-germanized
-#: includes/admin/class-wc-gzd-admin.php:118
+#: includes/admin/class-wc-gzd-admin.php:119
 #: includes/admin/settings/class-wc-gzd-settings-germanized.php:25
 msgid "Germanized"
 msgstr "Germanized"
 
-#: includes/admin/class-wc-gzd-admin.php:128
+#: includes/admin/class-wc-gzd-admin.php:129
 msgid "Parcel Delivery Data Transfer:"
 msgstr "Paketdienstleister Datenweitergabe:"
 
-#: includes/admin/class-wc-gzd-admin.php:129
+#: includes/admin/class-wc-gzd-admin.php:130
 msgid "allowed"
 msgstr "akzeptiert"
 
-#: includes/admin/class-wc-gzd-admin.php:129
+#: includes/admin/class-wc-gzd-admin.php:130
 msgid "not allowed"
 msgstr "nicht akzeptiert"
 
 # @ woocommerce-germanized
-#: includes/admin/class-wc-gzd-admin.php:203
+#: includes/admin/class-wc-gzd-admin.php:204
 msgid "Optional Email Content"
 msgstr "Optionaler E-Mail Inhalt"
 
 # @ woocommerce-germanized
-#: includes/admin/class-wc-gzd-admin.php:212
+#: includes/admin/class-wc-gzd-admin.php:213
 msgid "Add content which will be replacing default page content within emails."
 msgstr ""
 "Fülle dieses Feld aus um einen abweichenden E-Mail Anhangstext für diese "
 "Seite zu bestimmen."
 
 # @ woocommerce-germanized
-#: includes/admin/class-wc-gzd-admin.php:222
+#: includes/admin/class-wc-gzd-admin.php:223
 #: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:154
 msgid "Optional Mini Description"
 msgstr "Warenkorb Kurzbeschreibung"
 
 # @ woocommerce-germanized
-#: includes/admin/class-wc-gzd-admin.php:239
+#: includes/admin/class-wc-gzd-admin.php:240
 msgid ""
 "This content will be shown as short product description within checkout and "
 "emails."
@@ -2762,8 +2766,8 @@ msgstr "jetzt upgraden"
 #: includes/api/class-wc-gzd-rest-customers-controller.php:144
 #: includes/api/class-wc-gzd-rest-orders-controller.php:161
 #: includes/api/class-wc-gzd-rest-orders-controller.php:168
-#: includes/class-wc-gzd-checkout.php:337
-#: includes/class-wc-gzd-checkout.php:347
+#: includes/class-wc-gzd-checkout.php:354
+#: includes/class-wc-gzd-checkout.php:364
 #: includes/class-wc-gzd-customer-helper.php:106
 #: includes/class-wc-gzd-customer-helper.php:114
 msgid "Title"
@@ -3050,10 +3054,10 @@ msgstr ""
 "Mail mit deinen Daten als Bestätigung."
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-checkout.php:338
-#: includes/class-wc-gzd-checkout.php:346
-#: includes/class-wc-gzd-checkout.php:371
-#: includes/class-wc-gzd-checkout.php:597
+#: includes/class-wc-gzd-checkout.php:355
+#: includes/class-wc-gzd-checkout.php:363
+#: includes/class-wc-gzd-checkout.php:388
+#: includes/class-wc-gzd-checkout.php:614
 #: includes/class-wc-gzd-customer-helper.php:108
 #: includes/class-wc-gzd-customer-helper.php:116
 #: includes/class-wc-gzd-revocation.php:41
@@ -3062,11 +3066,11 @@ msgid "Mr."
 msgstr "Herr"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-checkout.php:338
-#: includes/class-wc-gzd-checkout.php:346
-#: includes/class-wc-gzd-checkout.php:372
-#: includes/class-wc-gzd-checkout.php:597
-#: includes/class-wc-gzd-checkout.php:606
+#: includes/class-wc-gzd-checkout.php:355
+#: includes/class-wc-gzd-checkout.php:363
+#: includes/class-wc-gzd-checkout.php:389
+#: includes/class-wc-gzd-checkout.php:614
+#: includes/class-wc-gzd-checkout.php:623
 #: includes/class-wc-gzd-customer-helper.php:108
 #: includes/class-wc-gzd-customer-helper.php:116
 #: includes/class-wc-gzd-revocation.php:42
@@ -3669,7 +3673,7 @@ msgstr "%s Zahlungsgebühr"
 # @ woocommerce-germanized
 #: includes/class-wc-gzd-payment-gateways.php:98
 #: includes/wc-gzd-order-functions.php:20
-#: includes/wc-gzd-template-functions.php:375
+#: includes/wc-gzd-template-functions.php:378
 #, php-format
 msgid "Plus %s forwarding fee (charged by the transport agent)"
 msgstr "zzgl. %s Übermittlungsentgelt (direkt an den Zusteller)"

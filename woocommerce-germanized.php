@@ -420,7 +420,8 @@ final class WooCommerce_Germanized {
 				'woocommerce-role-based-price',
 				'woocommerce-gateway-paypal-express-checkout',
 				'woocommerce-subscriptions',
-				'woo-paypalplus'
+				'woo-paypalplus',
+				'dhl-for-woocommerce'
 			)
 		);
 
