@@ -461,7 +461,7 @@ class WC_GZD_Legal_Checkbox_Manager {
 		}
 
 		// Allow third parties to filter checkbox args
-		$args = apply_filters( 'woocommerce_gzd_register_legal_checkbox_args', $args, $id );
+		$args      = apply_filters( 'woocommerce_gzd_register_legal_checkbox_args', $args, $id );
 		$classname = apply_filters( 'woocommerce_gzd_legal_checkbox_classname', 'WC_GZD_Legal_Checkbox' );
 
 		$this->checkboxes[ $id ] = new $classname( $id, $args );
@@ -512,16 +512,18 @@ class WC_GZD_Legal_Checkbox_Manager {
 					$obj_value = $obj->$getter_bool();
 				} elseif ( is_callable( array( $obj, $getter ) ) ) {
 					$obj_value = $obj->$getter();
+				} else {
+					$obj_value = $obj->$m_key;
 				}
 
 				if ( ! is_null( $obj_value ) ) {
 					if ( is_array( $obj_value ) && ! is_array( $m_value ) ) {
 						if ( in_array( $m_value, $obj_value ) ) {
-							$matched ++;
+							$matched++;
 						}
 					} else {
 						if ( $m_value == $obj_value ) {
-							$matched ++;
+							$matched++;
 						}
 					}
 				}

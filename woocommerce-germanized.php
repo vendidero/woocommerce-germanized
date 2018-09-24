@@ -3,15 +3,15 @@
  * Plugin Name: WooCommerce Germanized
  * Plugin URI: https://www.vendidero.de/woocommerce-germanized
  * Description: WooCommerce Germanized extends WooCommerce to become a legally compliant store in the german market.
- * Version: 2.0.6
+ * Version: 2.1.0
  * Author: Vendidero
  * Author URI: https://vendidero.de
  * Requires at least: 3.8
  * Tested up to: 4.9
  * WC requires at least: 2.4.0
- * WC tested up to: 3.4.0
+ * WC tested up to: 3.5.0
  * Requires at least WooCommerce: 2.4
- * Tested up to WooCommerce: 3.4
+ * Tested up to WooCommerce: 3.5
  *
  * Text Domain: woocommerce-germanized
  * Domain Path: /i18n/languages/
@@ -31,7 +31,7 @@ final class WooCommerce_Germanized {
 	 *
 	 * @var string
 	 */
-	public $version = '2.0.6';
+	public $version = '2.1.0';
 
 	/**
 	 * Single instance of WooCommerce Germanized Main Class
@@ -199,7 +199,7 @@ final class WooCommerce_Germanized {
 		add_action( 'wp_print_scripts', array( $this, 'localize_scripts' ), 5 );
 		add_action( 'wp_print_footer_scripts', array( $this, 'localize_scripts' ), 5 );
 
-		add_filter( 'woocommerce_email_classes', array( $this, 'add_emails' ) );
+		add_filter( 'woocommerce_email_classes', array( $this, 'add_emails' ), 10 );
 		add_filter( 'woocommerce_locate_core_template', array( $this, 'email_templates' ), 0, 3 );
 		add_action( 'woocommerce_email_order_meta', array( $this, 'email_small_business_notice' ), 1 );
 
@@ -792,8 +792,8 @@ final class WooCommerce_Germanized {
 		$mails['WC_GZD_Email_Customer_Trusted_Shops'] 			= include 'includes/emails/class-wc-gzd-email-customer-trusted-shops.php';
 
 		// Make sure the Processing Order Email is named Order Confirmation for better understanding
-		if ( isset( $mails[ 'WC_Email_Customer_Processing_Order' ] ) ) {
-			$mails[ 'WC_Email_Customer_Processing_Order' ]->title = __( 'Order Confirmation', 'woocommerce-germanized' );
+		if ( isset( $mails['WC_Email_Customer_Processing_Order'] ) ) {
+			$mails['WC_Email_Customer_Processing_Order']          = include 'includes/emails/class-wc-gzd-email-customer-processing-order.php';
 		}
 		
 		return $mails;

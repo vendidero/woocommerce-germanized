@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce Germanized v1.5.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-17 15:03+0200\n"
-"PO-Revision-Date: 2018-09-17 15:03+0200\n"
+"POT-Creation-Date: 2018-09-24 14:49+0200\n"
+"PO-Revision-Date: 2018-09-24 14:49+0200\n"
 "Last-Translator: holzhannes <holzhannes@posteo.de>\n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -95,7 +95,7 @@ msgstr "l"
 #: includes/abstracts/abstract-wc-gzd-product.php:264
 #: includes/abstracts/abstract-wc-gzd-product.php:273
 #: includes/wc-gzd-core-functions.php:148
-#: includes/wc-gzd-template-functions.php:448 woocommerce-germanized.php:886
+#: includes/wc-gzd-template-functions.php:448 woocommerce-germanized.php:887
 msgid "incl. VAT"
 msgstr "inkl. MwSt."
 
@@ -106,7 +106,7 @@ msgstr "exkl. MwSt."
 
 # @ woocommerce-germanized
 #: includes/abstracts/abstract-wc-gzd-product.php:266
-#: includes/wc-gzd-core-functions.php:148 woocommerce-germanized.php:886
+#: includes/wc-gzd-core-functions.php:148 woocommerce-germanized.php:887
 #, php-format
 msgid "incl. %s%% VAT"
 msgstr "inkl. %s%% MwSt."
@@ -1841,7 +1841,7 @@ msgstr ""
 "der Option \"Auswahl von Versandarten im Checkout deaktivieren\"."
 
 #: includes/admin/settings/class-wc-gzd-settings-germanized.php:1026
-#: includes/class-wc-gzd-dhl-parcel-shops.php:350
+#: includes/class-wc-gzd-dhl-parcel-shops.php:353
 msgid "Parcel Shop Finder"
 msgstr "Paketshop finden"
 
@@ -2766,23 +2766,23 @@ msgstr "jetzt upgraden"
 #: includes/api/class-wc-gzd-rest-customers-controller.php:144
 #: includes/api/class-wc-gzd-rest-orders-controller.php:161
 #: includes/api/class-wc-gzd-rest-orders-controller.php:168
-#: includes/class-wc-gzd-checkout.php:354
-#: includes/class-wc-gzd-checkout.php:364
+#: includes/class-wc-gzd-checkout.php:358
+#: includes/class-wc-gzd-checkout.php:368
 #: includes/class-wc-gzd-customer-helper.php:106
 #: includes/class-wc-gzd-customer-helper.php:114
 msgid "Title"
 msgstr "Anrede"
 
 #: includes/api/class-wc-gzd-rest-customers-controller.php:151
-#: includes/class-wc-gzd-dhl-parcel-shops.php:152
+#: includes/class-wc-gzd-dhl-parcel-shops.php:151
 msgid "Send to DHL Parcel Shop?"
 msgstr "An DHL Paketshop oder Packstation senden?"
 
 #: includes/api/class-wc-gzd-rest-customers-controller.php:157
 #: includes/api/class-wc-gzd-rest-orders-controller.php:181
-#: includes/class-wc-gzd-dhl-parcel-shops.php:162
-#: includes/class-wc-gzd-dhl-parcel-shops.php:187
-#: includes/class-wc-gzd-dhl-parcel-shops.php:200
+#: includes/class-wc-gzd-dhl-parcel-shops.php:161
+#: includes/class-wc-gzd-dhl-parcel-shops.php:186
+#: includes/class-wc-gzd-dhl-parcel-shops.php:198
 #: includes/class-wc-gzd-privacy.php:58 includes/class-wc-gzd-privacy.php:82
 #: includes/class-wc-gzd-privacy.php:120
 msgid "Postnumber"
@@ -2835,10 +2835,10 @@ msgid "BIC/SWIFT"
 msgstr "BIC/SWIFT"
 
 #: includes/api/class-wc-gzd-rest-orders-controller.php:175
-#: includes/class-wc-gzd-dhl-parcel-shops.php:239
-#: includes/class-wc-gzd-dhl-parcel-shops.php:273
-#: includes/class-wc-gzd-dhl-parcel-shops.php:327
-#: includes/class-wc-gzd-dhl-parcel-shops.php:328
+#: includes/class-wc-gzd-dhl-parcel-shops.php:237
+#: includes/class-wc-gzd-dhl-parcel-shops.php:277
+#: includes/class-wc-gzd-dhl-parcel-shops.php:331
+#: includes/class-wc-gzd-dhl-parcel-shops.php:332
 msgid "Parcel Shop"
 msgstr "Shop/Packstation"
 
@@ -3054,10 +3054,10 @@ msgstr ""
 "Mail mit deinen Daten als Bestätigung."
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-checkout.php:355
-#: includes/class-wc-gzd-checkout.php:363
-#: includes/class-wc-gzd-checkout.php:388
-#: includes/class-wc-gzd-checkout.php:614
+#: includes/class-wc-gzd-checkout.php:359
+#: includes/class-wc-gzd-checkout.php:367
+#: includes/class-wc-gzd-checkout.php:392
+#: includes/class-wc-gzd-checkout.php:618
 #: includes/class-wc-gzd-customer-helper.php:108
 #: includes/class-wc-gzd-customer-helper.php:116
 #: includes/class-wc-gzd-revocation.php:41
@@ -3066,11 +3066,11 @@ msgid "Mr."
 msgstr "Herr"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-checkout.php:355
-#: includes/class-wc-gzd-checkout.php:363
-#: includes/class-wc-gzd-checkout.php:389
-#: includes/class-wc-gzd-checkout.php:614
-#: includes/class-wc-gzd-checkout.php:623
+#: includes/class-wc-gzd-checkout.php:359
+#: includes/class-wc-gzd-checkout.php:367
+#: includes/class-wc-gzd-checkout.php:393
+#: includes/class-wc-gzd-checkout.php:618
+#: includes/class-wc-gzd-checkout.php:627
 #: includes/class-wc-gzd-customer-helper.php:108
 #: includes/class-wc-gzd-customer-helper.php:116
 #: includes/class-wc-gzd-revocation.php:42
@@ -3139,25 +3139,25 @@ msgstr "Abgelaufener Aktivierungscode"
 msgid "Invalid activation key"
 msgstr "Aktivierungscode ungültig"
 
-#: includes/class-wc-gzd-dhl-parcel-shops.php:179
+#: includes/class-wc-gzd-dhl-parcel-shops.php:178
 msgid "DHL Parcel Shop?"
 msgstr "DHL Paketshop/Packstation?"
 
-#: includes/class-wc-gzd-dhl-parcel-shops.php:181
+#: includes/class-wc-gzd-dhl-parcel-shops.php:180
 msgid "No"
 msgstr "Nein"
 
-#: includes/class-wc-gzd-dhl-parcel-shops.php:181
+#: includes/class-wc-gzd-dhl-parcel-shops.php:180
 msgid "Yes"
 msgstr "Ja"
 
-#: includes/class-wc-gzd-dhl-parcel-shops.php:182
+#: includes/class-wc-gzd-dhl-parcel-shops.php:181
 msgid "Select whether delivery to parcel shop should be enabled."
 msgstr ""
 "Wähle aus ob die Lieferung an DHL Paketshops bzw. Packstationen aktiviert "
 "werden soll."
 
-#: includes/class-wc-gzd-dhl-parcel-shops.php:189
+#: includes/class-wc-gzd-dhl-parcel-shops.php:188
 msgid ""
 "In case delivery to parcel shop is enabled please fill in the corresponding "
 "DHL post number."
@@ -3165,12 +3165,12 @@ msgstr ""
 "Wenn die Lieferung an eine DHL Packstation aktiviert wurde, trage bitte die "
 "PostNummer ein."
 
-#: includes/class-wc-gzd-dhl-parcel-shops.php:293
+#: includes/class-wc-gzd-dhl-parcel-shops.php:297
 msgid "Your PostNumber should contain numbers only"
 msgstr "Deine PostNummer sollte nur aus Zahlen bestehen."
 
-#: includes/class-wc-gzd-dhl-parcel-shops.php:299
-#: includes/class-wc-gzd-dhl-parcel-shops.php:334
+#: includes/class-wc-gzd-dhl-parcel-shops.php:303
+#: includes/class-wc-gzd-dhl-parcel-shops.php:338
 #, php-format
 msgid "Parcel Shop Delivery is only supported in: %s."
 msgstr ""
@@ -3278,18 +3278,40 @@ msgctxt "ekomi"
 msgid "eKomi Options"
 msgstr "eKomi"
 
-#: includes/class-wc-gzd-emails.php:92
+# @ woocommerce-germanized
+#: includes/class-wc-gzd-emails.php:81
+msgid "Confirmation text"
+msgstr "Bestätigung Text"
+
+#: includes/class-wc-gzd-emails.php:82
+msgid ""
+"Your order has been received and is now being processed. Your order details "
+"are shown below for your reference:"
+msgstr ""
+"Deine Bestellung ist eingegangen und wird nun bearbeitet. Die Einzelheiten "
+"deiner Bestellung kannst du der nachfolgenden Tabelle entnehmen."
+
+# @ woocommerce-germanized
+#: includes/class-wc-gzd-emails.php:83
+msgid ""
+"This text will be inserted within the order confirmation email. Use "
+"{order_number}, {site_title} or {order_date} as placeholder."
+msgstr ""
+"Dieser Text wird in die Bestellbestätigung eingefügt. Verwende "
+"{order_number}, {site_title} oder {order_date} als Platzhalter."
+
+#: includes/class-wc-gzd-emails.php:164
 msgid "Someone requested a password reset for your account."
 msgstr ""
 "Jemand hat das Zurücksetzen des Passworts für deinen Account beantragt."
 
-#: includes/class-wc-gzd-emails.php:105
+#: includes/class-wc-gzd-emails.php:177
 #, php-format
 msgid "Thanks for creating an account on %s."
 msgstr "Danke, dass du ein Konto bei %s erstellt hast."
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-emails.php:554
+#: includes/class-wc-gzd-emails.php:628
 msgctxt "revocation-form"
 msgid "Forward your Revocation online"
 msgstr "Deinen Widerruf online erklären"
@@ -4079,6 +4101,20 @@ msgid "Payment received"
 msgstr "Zahlung erhalten"
 
 # @ woocommerce-germanized
+#: includes/emails/class-wc-gzd-email-customer-processing-order.php:25
+msgid "Order Confirmation"
+msgstr "Bestellbestätigung"
+
+#: includes/emails/class-wc-gzd-email-customer-processing-order.php:35
+msgid "Confirmation of your order {order_number}"
+msgstr "Bestätigung deiner Bestellung {order_number}"
+
+# @ woocommerce
+#: includes/emails/class-wc-gzd-email-customer-processing-order.php:45
+msgid "Thank you for your order"
+msgstr "Vielen Dank für deine Bestellung"
+
+# @ woocommerce-germanized
 #: includes/emails/class-wc-gzd-email-customer-revocation.php:29
 msgid "Revocation"
 msgstr "Widerruf"
@@ -4686,7 +4722,7 @@ msgstr ""
 # @ woocommerce-germanized
 # @ woocommerce
 #: includes/gateways/invoice/class-wc-gzd-gateway-invoice.php:64
-#: woocommerce-germanized.php:627
+#: woocommerce-germanized.php:628
 msgid "Settings"
 msgstr "Einstellungen"
 
@@ -5733,14 +5769,9 @@ msgctxt "trusted-shops"
 msgid "%s custom reviews"
 msgstr "%s Kundenbewertungen"
 
-#: woocommerce-germanized.php:729
+#: woocommerce-germanized.php:730
 msgid "Pease wait while we are trying to redirect you to the payment provider."
 msgstr "Einen Moment - wir versuchen dich zum Zahlungsanbieter weiterzuleiten."
-
-# @ woocommerce-germanized
-#: woocommerce-germanized.php:795
-msgid "Order Confirmation"
-msgstr "Bestellbestätigung"
 
 # @ woocommerce-germanized
 #~ msgid "recurring payments"

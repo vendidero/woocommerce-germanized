@@ -33,6 +33,7 @@
         <key name="woocommerce_gzd_display_digital_delivery_time_text" />
     	<key name="woocommerce_gzd_order_success_text" />
         <key name="woocommerce_gzd_customer_account_text" />
+        <key name="woocommerce_gzd_email_order_confirmation_text" />
         <key name="woocommerce_direct-debit_settings">
             <key name="mandate_text" />
             <key name="company_info" />

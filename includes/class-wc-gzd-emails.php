@@ -52,6 +52,9 @@ class WC_GZD_Emails {
 		// Map partially refunded order mail template to correct email instance
         add_filter( 'woocommerce_gzd_email_template_id_comparison', array( $this, 'check_for_partial_refund_mail' ), 10, 3 );
 
+        // Filter customer-processing-order Woo 3.5 payment text
+		add_filter( 'woocommerce_before_template_part', array( $this, 'maybe_set_gettext_processing_filter' ), 10, 4 );
+
         // Hide username if an email contains a password or password reset link (TS advises to do so)
         if ( 'yes' === get_option( 'woocommerce_gzd_hide_username_with_password' ) )
             add_filter( 'woocommerce_before_template_part', array( $this, 'maybe_set_gettext_username_filter' ), 10, 4 );
@@ -60,10 +63,79 @@ class WC_GZD_Emails {
 		    $this->admin_hooks();
 	}
 
+	public function save_confirmation_text_option() {
+		if ( ! current_user_can( 'manage_woocommerce' ) ) {
+			return;
+		}
+
+		if ( isset( $_POST['woocommerce_gzd_email_order_confirmation_text'] ) ) {
+			update_option( 'woocommerce_gzd_email_order_confirmation_text', wp_unslash( wp_kses_post( trim( $_POST['woocommerce_gzd_email_order_confirmation_text'] ) ) ) );
+		}
+	}
+
+	public function confirmation_text_option( $object ) {
+		if ( 'customer_processing_order' === $object->id ) {
+
+			$args = array(
+				'id'          => 'woocommerce_gzd_email_order_confirmation_text',
+				'label'       => __( 'Confirmation text', 'woocommerce-germanized' ),
+				'placeholder' => __( 'Your order has been received and is now being processed. Your order details are shown below for your reference:', 'woocommerce-germanized' ),
+				'desc' 		  => __( 'This text will be inserted within the order confirmation email. Use {order_number}, {site_title} or {order_date} as placeholder.', 'woocommerce-germanized' ),
+				'value'       => get_option( 'woocommerce_gzd_email_order_confirmation_text' ),
+			);
+
+			include_once WC_GERMANIZED_ABSPATH . 'includes/admin/views/html-admin-email-text-option.php';
+		}
+	}
+
 	public function register_order_confirmation_email_action( $actions ) {
 		$actions[] = 'woocommerce_gzd_order_confirmation';
 
 		return $actions;
+	}
+
+	public function maybe_set_gettext_processing_filter( $template_name, $template_path, $located, $args ) {
+		if ( 'emails/customer-processing-order.php' === $template_name ) {
+
+			if ( isset( $args['order'] ) ) {
+				$GLOBALS['wc_gzd_processing_order'] = $args['order'];
+				add_filter( 'gettext', array( $this, 'replace_processing_email_text' ), 10, 3 );
+			}
+		}
+	}
+
+	public function replace_processing_email_text( $translated, $original, $domain ) {
+		if ( 'woocommerce' === $domain ) {
+			if ( 'Just to let you know -- your payment has been confirmed, and order #%s is now being processed:' === $original || 'Your order has been received and is now being processed. Your order details are shown below for your reference:' === $original ) {
+				if ( isset( $GLOBALS['wc_gzd_processing_order'] ) ) {
+					$order = $GLOBALS['wc_gzd_processing_order'];
+					return $this->get_processing_email_text( $order, $original );
+				}
+			}
+		}
+
+		return $translated;
+	}
+
+	protected function get_processing_email_text( $order_id, $original_text = '' ) {
+		$order        = is_numeric( $order_id ) ? wc_get_order( $order_id ) : $order_id;
+		$plain        = apply_filters( 'woocommerce_gzd_order_confirmation_email_plain_text', get_option( 'woocommerce_gzd_email_order_confirmation_text' ) );
+
+		if ( ! $plain || '' === $plain ) {
+			$plain    = $original_text;
+		}
+
+		$placeholders = array(
+			'{site_title}'   => wp_specialchars_decode( get_option( 'blogname' ), ENT_QUOTES ),
+			'{order_number}' => $order->get_order_number(),
+			'{order_date}'   => wc_gzd_get_order_date( $order ),
+		);
+
+		foreach( $placeholders as $placeholder => $value ) {
+			$plain = str_replace( $placeholder, $value, $plain );
+		}
+
+		return apply_filters( 'woocommerce_gzd_order_confirmation_email_text', $plain, $order );
 	}
 
 	public function maybe_set_gettext_username_filter( $template_name, $template_path, $located, $args ) {
@@ -134,6 +206,8 @@ class WC_GZD_Emails {
 	
 	public function admin_hooks() {
 		add_filter( 'woocommerce_resend_order_emails_available', array( $this, 'resend_order_emails' ), 0 );
+		add_action( 'woocommerce_email_settings_after', array( $this, 'confirmation_text_option' ), 10, 1 );
+		add_action( 'woocommerce_update_options_email_customer_processing_order', array( $this, 'save_confirmation_text_option' ) );
 	}
 
     public function email_hooks( $mailer ) {
@@ -411,7 +485,7 @@ class WC_GZD_Emails {
 	public function remove_order_email_filters() {
 
     	// Remove actions and filters from template hooks
-		remove_filter( 'woocommerce_order_formatted_line_subtotal', 'wc_gzd_cart_product_unit_price', wc_gzd_get_hook_priority( 'order_product_unit_price' ), 3 );
+		remove_filter( 'woocommerce_order_formatted_line_subtotal', 'wc_gzd_cart_product_unit_price', wc_gzd_get_hook_priority( 'order_product_unit_price' ) );
 		remove_action( 'woocommerce_thankyou', 'woocommerce_gzd_template_order_item_hooks', 0 );
 		remove_action( 'before_woocommerce_pay', 'woocommerce_gzd_template_order_item_hooks', 10 );
 

@@ -125,12 +125,9 @@ class WC_GZD_Shortcodes {
 	}
 
 	public static function gzd_add_to_cart( $atts ) {
-
-		add_filter( 'woocommerce_get_price_html', __CLASS__ . '::gzd_add_price_suffixes', 10, 2 );
-
+		add_filter( 'woocommerce_get_price_html', array( __CLASS__, 'gzd_add_price_suffixes' ), 10, 2 );
 		$html = WC_Shortcodes::product_add_to_cart( $atts );
-		
-		remove_filter( 'woocommerce_get_price_html', __CLASS__ . '::gzd_add_price_features', 10 );
+		remove_filter( 'woocommerce_get_price_html', array( __CLASS__, 'gzd_add_price_suffixes' ), 10 );
 
 		return $html;
 	}

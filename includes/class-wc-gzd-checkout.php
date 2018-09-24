@@ -127,8 +127,8 @@ class WC_GZD_Checkout {
 
 	public function remove_cancel_button( $actions, $order ) {
 
-		if ( isset( $actions[ 'cancel' ] ) )
-			unset( $actions[ 'cancel' ] );
+		if ( isset( $actions['cancel'] ) )
+			unset( $actions['cancel'] );
 
 		return $actions;
 	}
@@ -383,7 +383,7 @@ class WC_GZD_Checkout {
 		}
 
 		$this->custom_fields_admin = apply_filters( 'woocommerce_gzd_custom_checkout_admin_fields', $this->custom_fields_admin, $this );
-		$this->custom_fields = apply_filters( 'woocommerce_gzd_custom_checkout_fields', $this->custom_fields, $this );
+		$this->custom_fields       = apply_filters( 'woocommerce_gzd_custom_checkout_fields', $this->custom_fields, $this );
 	}
 
 	public function set_title_field_mapping_editors( $val ) {

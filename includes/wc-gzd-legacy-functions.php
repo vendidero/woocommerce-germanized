@@ -208,16 +208,16 @@ function wc_gzd_order_is_anonymized( $order ) {
 }
 
 function wc_gzd_get_order_date( $order, $format = '' ) {
-	if ( empty( $format ) ) {
-		$format = get_option( 'date_format' );
-	}
-
 	$date_formatted = '';
 
-	if ( wc_gzd_get_dependencies()->woocommerce_version_supports_crud() ) {
-		$date = gmdate( 'Y-m-d H:i:s', $order->get_date_created()->getOffsetTimestamp() );
+	if ( function_exists( 'wc_format_datetime' ) ) {
+		return wc_format_datetime( $order->get_date_created(), $format );
 	} else {
 		$date = $order->order_date;
+	}
+
+	if ( empty( $format ) ) {
+		$format = get_option( 'date_format' );
 	}
 
 	if ( ! empty( $date ) ) {

@@ -1,0 +1,51 @@
+<?php
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly
+}
+
+if ( ! class_exists( 'WC_GZD_Email_Customer_Processing_Order' ) ) :
+
+	/**
+	 * Customer Processing Order Email
+	 *
+	 * An email sent to the customer when a new order is received/paid for.
+	 *
+	 * @class 		WC_Email_Customer_Processing_Order
+	 * @version		2.0.0
+	 * @package		WooCommerce/Classes/Emails
+	 * @author 		WooThemes
+	 * @extends 	WC_Email
+	 */
+	class WC_GZD_Email_Customer_Processing_Order extends WC_Email_Customer_Processing_Order {
+
+		public function __construct() {
+			parent::__construct();
+
+			$this->title = __( 'Order Confirmation', 'woocommerce-germanized' );
+		}
+
+		/**
+		 * Get email subject.
+		 *
+		 * @since  3.1.0
+		 * @return string
+		 */
+		public function get_default_subject() {
+			return __( 'Confirmation of your order {order_number}', 'woocommerce-germanized' );
+		}
+
+		/**
+		 * Get email heading.
+		 *
+		 * @since  3.1.0
+		 * @return string
+		 */
+		public function get_default_heading() {
+			return __( 'Thank you for your order', 'woocommerce-germanized' );
+		}
+	}
+
+endif;
+
+return new WC_GZD_Email_Customer_Processing_Order();
