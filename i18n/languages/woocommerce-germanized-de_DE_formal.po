@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce Germanized v1.5.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-24 14:49+0200\n"
-"PO-Revision-Date: 2018-09-24 14:49+0200\n"
+"POT-Creation-Date: 2018-09-25 12:40+0200\n"
+"PO-Revision-Date: 2018-09-25 12:40+0200\n"
 "Last-Translator: holzhannes <holzhannes@posteo.de>\n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -3302,17 +3302,25 @@ msgstr ""
 "Dieser Text wird in die Bestellbestätigung eingefügt. Verwende "
 "{order_number}, {site_title} oder {order_date} als Platzhalter."
 
-#: includes/class-wc-gzd-emails.php:164
+#: includes/class-wc-gzd-emails.php:126
+msgid ""
+"Your order has been received and is now being processed. Your order details "
+"are shown below for your reference."
+msgstr ""
+"Ihre Bestellung ist eingegangen und wird nun bearbeitet. Die Einzelheiten "
+"Ihrer Bestellung können Sie der nachfolgenden Tabelle entnehmen."
+
+#: includes/class-wc-gzd-emails.php:165
 msgid "Someone requested a password reset for your account."
 msgstr "Jemand hat das Zurücksetzen des Passworts für Ihren Account beantragt."
 
-#: includes/class-wc-gzd-emails.php:177
+#: includes/class-wc-gzd-emails.php:178
 #, php-format
 msgid "Thanks for creating an account on %s."
 msgstr "Danke, dass Sie ein Konto bei %s erstellt haben."
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-emails.php:628
+#: includes/class-wc-gzd-emails.php:629
 msgctxt "revocation-form"
 msgid "Forward your Revocation online"
 msgstr "Widerruf online erklären"

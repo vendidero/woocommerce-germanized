@@ -95,8 +95,7 @@ class WC_GZD_Emails {
 	}
 
 	public function maybe_set_gettext_processing_filter( $template_name, $template_path, $located, $args ) {
-		if ( 'emails/customer-processing-order.php' === $template_name ) {
-
+		if ( 'emails/customer-processing-order.php' === $template_name || 'emails/plain/customer-processing-order.php' === $template_name ) {
 			if ( isset( $args['order'] ) ) {
 				$GLOBALS['wc_gzd_processing_order'] = $args['order'];
 				add_filter( 'gettext', array( $this, 'replace_processing_email_text' ), 10, 3 );
@@ -109,7 +108,8 @@ class WC_GZD_Emails {
 			if ( 'Just to let you know -- your payment has been confirmed, and order #%s is now being processed:' === $original || 'Your order has been received and is now being processed. Your order details are shown below for your reference:' === $original ) {
 				if ( isset( $GLOBALS['wc_gzd_processing_order'] ) ) {
 					$order = $GLOBALS['wc_gzd_processing_order'];
-					return $this->get_processing_email_text( $order, $original );
+
+					return $this->get_processing_email_text( $order );
 				}
 			}
 		}
@@ -117,12 +117,12 @@ class WC_GZD_Emails {
 		return $translated;
 	}
 
-	protected function get_processing_email_text( $order_id, $original_text = '' ) {
+	protected function get_processing_email_text( $order_id ) {
 		$order        = is_numeric( $order_id ) ? wc_get_order( $order_id ) : $order_id;
 		$plain        = apply_filters( 'woocommerce_gzd_order_confirmation_email_plain_text', get_option( 'woocommerce_gzd_email_order_confirmation_text' ) );
 
 		if ( ! $plain || '' === $plain ) {
-			$plain    = $original_text;
+			$plain = apply_filters( 'woocommerce_gzd_order_confirmation_email_default_text', __( 'Your order has been received and is now being processed. Your order details are shown below for your reference.', 'woocommerce-germanized' ) );
 		}
 
 		$placeholders = array(
@@ -141,14 +141,14 @@ class WC_GZD_Emails {
 	public function maybe_set_gettext_username_filter( $template_name, $template_path, $located, $args ) {
 
 		$templates = array(
-			'emails/customer-reset-password.php' => 'maybe_hide_username_password_reset',
+			'emails/customer-reset-password.php'       => 'maybe_hide_username_password_reset',
 			'emails/plain/customer-reset-password.php' => 'maybe_hide_username_password_reset',
 		);
 
 		// If the password is generated automatically and sent by email, hide the username
 		if ( 'yes' === get_option( 'woocommerce_registration_generate_password' ) ) {
 			$templates = array_merge( $templates, array(
-				'emails/customer-new-account.php' => 'maybe_hide_username_new_account',
+				'emails/customer-new-account.php'       => 'maybe_hide_username_new_account',
 				'emails/plain/customer-new-account.php' => 'maybe_hide_username_new_account'
 			) );
 		}
