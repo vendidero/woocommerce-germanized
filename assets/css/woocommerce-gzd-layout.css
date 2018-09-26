@@ -62,14 +62,29 @@
 	display: block;
 	margin-top: 5px;
 }
-.products .wc-gzd-additional-info {
+.products .wc-gzd-additional-info, .product_list_widget .wc-gzd-additional-info {
 	font-size: 0.8em;
 	margin: 0.7rem 0 0.7rem 0;
 	padding: 0;
 }
-.products .product .price-unit {
+
+.product_list_widget .wc-gzd-additional-info, .product_list_widget p.price-unit {
+	margin: 0.2rem 0;
+	line-height: 1.8em;
+}
+
+.product_list_widget .wc-gzd-additional-info a {
+	display: inline !important;
+}
+
+.products .product .price-unit, .product_list_widget .price-unit {
 	font-size: 0.8em;
 }
+
+.product_list_widget .price-unit {
+	margin-bottom: 0.7em;
+}
+
 .product p.wc-gzd-additional-info {
 	margin-bottom: 0.5rem;
 	font-size: 0.9em;

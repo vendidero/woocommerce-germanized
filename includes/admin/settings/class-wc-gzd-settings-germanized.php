@@ -929,6 +929,47 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 			),
 
 			array(
+				'title' 	=> __( 'Within Product Widgets', 'woocommerce-germanized' ),
+				'desc' 		=> __( 'Shipping Costs notice', 'woocommerce-germanized' ),
+				'id' 		=> 'woocommerce_gzd_display_product_widget_shipping_costs',
+				'type' 		=> 'checkbox',
+				'default'	=> 'yes',
+				'checkboxgroup'	=> 'start',
+			),
+
+			array(
+				'desc' 		=> __( 'Tax Info', 'woocommerce-germanized' ),
+				'id' 		=> 'woocommerce_gzd_display_product_widget_tax_info',
+				'type' 		=> 'checkbox',
+				'default'	=> 'yes',
+				'checkboxgroup'		=> '',
+			),
+
+			array(
+				'desc' 		=> __( 'Base Price', 'woocommerce-germanized' ),
+				'id' 		=> 'woocommerce_gzd_display_product_widget_unit_price',
+				'type' 		=> 'checkbox',
+				'default'	=> 'yes',
+				'checkboxgroup'		=> '',
+			),
+
+			array(
+				'desc' 		=> __( 'Product Units', 'woocommerce-germanized' ),
+				'id' 		=> 'woocommerce_gzd_display_product_widget_product_units',
+				'type' 		=> 'checkbox',
+				'default'	=> 'no',
+				'checkboxgroup'		=> '',
+			),
+
+			array(
+				'desc' 		=> __( 'Delivery Time Notice', 'woocommerce-germanized' ),
+				'id' 		=> 'woocommerce_gzd_display_product_widget_delivery_time',
+				'type' 		=> 'checkbox',
+				'default'	=> 'yes',
+				'checkboxgroup'	=> 'end',
+			),
+
+			array(
 				'title' 	=> __( 'Hide Tax Rate', 'woocommerce-germanized' ),
 				'desc' 		=> __( 'Hide specific tax rate within shop pages.', 'woocommerce-germanized' ),
 				'id' 		=> 'woocommerce_gzd_hide_tax_rate_shop',
