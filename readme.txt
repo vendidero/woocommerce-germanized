@@ -184,7 +184,7 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 
 == Changelog ==
 
-= 2.1.0 =
+= 2.2.0 =
 * Feature: WooCommerce 3.5 compatibility
 * Feature: Support DHL for WooCommerce parcel delivery checkbox option
 * Improvement: Explicit option (within e-mail settings) to override order confirmation email text
