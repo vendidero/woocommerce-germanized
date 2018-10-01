@@ -620,7 +620,7 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 			array(
 				'title' 	=> '',
 				'id' 		=> 'woocommerce_gzdp_enable_vat_check',
-				'img'		=> WC_Germanized()->plugin_url() . '/assets/images/pro/settings-inline-vat.png',
+				'img'		=> WC_Germanized()->plugin_url() . '/assets/images/pro/settings-inline-vat-v2.png',
 				'href'      => 'https://vendidero.de/woocommerce-germanized#vat',
 				'type' 		=> 'image',
 			),
