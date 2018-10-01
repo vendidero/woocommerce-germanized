@@ -68,7 +68,12 @@ function wc_gzd_get_small_business_product_notice() {
 
 function wc_gzd_is_revocation_exempt( $product, $type = 'digital' ) {
 	if ( 'digital' === $type && ( $checkbox = wc_gzd_get_legal_checkbox( 'download' ) ) ) {
+
 		$types = apply_filters( 'woocommerce_gzd_digital_product_types', $checkbox->types );
+
+		if ( ! $checkbox->is_enabled() ) {
+			return false;
+		}
 
 		if ( empty( $types ) ) {
 			return false;
@@ -81,7 +86,12 @@ function wc_gzd_is_revocation_exempt( $product, $type = 'digital' ) {
 				return true;
 			}
 		}
-	} elseif ( 'service' === $type ) {
+	} elseif ( 'service' === $type && ( $checkbox = wc_gzd_get_legal_checkbox( 'service' ) ) ) {
+
+		if ( ! $checkbox->is_enabled() ) {
+			return false;
+		}
+
 		if ( wc_gzd_get_gzd_product( $product )->is_service() ) {
 			return true;
 		}

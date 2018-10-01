@@ -12,6 +12,7 @@ class WC_GZD_Checkout {
 	public static function instance() {
 		if ( is_null( self::$_instance ) )
 			self::$_instance = new self();
+
 		return self::$_instance;
 	}
 
@@ -209,12 +210,12 @@ class WC_GZD_Checkout {
 	}
 
 	public function set_free_shipping_filter( $cart ) {
-		static::$force_free_shipping_filter = true;
+		self::$force_free_shipping_filter = true;
 	}
 
 	public function free_shipping_auto_select( $rates ) {
 
-		$do_check = is_checkout() || is_cart() || static::$force_free_shipping_filter;
+		$do_check = is_checkout() || is_cart() || self::$force_free_shipping_filter;
 
 		if ( ! $do_check )
 			return $rates;

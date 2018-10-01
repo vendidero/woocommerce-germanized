@@ -47,7 +47,7 @@ Furthermore we customized the WooCommerce checkout to make your store meet the b
 * *PDF Invoices & Packing Slips (Pro)* - Easily create PDF invoices, packing slips and cancellations via your WooCommerce order screen. Optionally generate PDFs automatically based on a certain order status.
 * *Legal PDF attachments (Pro)* - Attach PDFs to certain email templates instead of plain text. Optionally let Germanized generate your PDFs automatically by parsing your page content.
 * *Delayed conclusion of contract (Pro)* - By default a contract is concluded right after submitting the WooCommerce checkout. Germanized offers you to delay that contract and manually check the order before concluding the contract.
-* *VAT ID check for WooCommerce (Pro)* - Provide additional fields within checkout and customer account to automatically validate the VAT ID based on the EU API.
+* *VAT ID check for WooCommerce (Pro)* - Provide additional fields within checkout, customer account and registration form to automatically validate the VAT ID based on the EU API.
 * *Multistep Checkout (Pro)* - Adjusts the default single-page-checkout within WooCommerce to support a multistep checkout without overriding templates for optimal theme support.
 
 = WooCommerce Germanized is certified by Trusted Shops =

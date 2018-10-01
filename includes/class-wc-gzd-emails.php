@@ -403,7 +403,7 @@ class WC_GZD_Emails {
 
 			if ( get_option( 'woocommerce_gzd_differential_taxation_checkout_notices' ) === 'yes' && $is_differential_taxed && apply_filters( 'woocommerce_gzd_show_differential_taxation_in_emails', true, $type ) ) {
 
-				$mark = apply_filters( 'woocommerce_gzd_differential_taxation_notice_text_mark', '** ' );
+				$mark   = apply_filters( 'woocommerce_gzd_differential_taxation_notice_text_mark', '** ' );
 				$notice = apply_filters( 'woocommerce_gzd_differential_taxation_notice_text_email', $mark . wc_gzd_get_differential_taxation_notice_text() );
 
 				echo wpautop( '<div class="gzd-differential-taxation-notice-email">' . $notice . '</div>' );
