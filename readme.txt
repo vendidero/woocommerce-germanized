@@ -5,7 +5,7 @@ Requires at least: 3.8
 Tested up to: 4.9
 WC requires at least: 2.4
 WC tested up to: 3.5
-Stable tag: 2.0.6
+Stable tag: 2.2.0
 Requires PHP: 5.3
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -187,6 +187,7 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 = 2.2.0 =
 * Feature: WooCommerce 3.5 compatibility
 * Feature: Support DHL for WooCommerce parcel delivery checkbox option
+* Feature: Enable tax notices etc. within product widgets
 * Improvement: Explicit option (within e-mail settings) to override order confirmation email text
 * Fix: Adjusted add_to_cart shortcode filter execution
 
