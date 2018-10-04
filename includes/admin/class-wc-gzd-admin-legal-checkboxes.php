@@ -58,7 +58,7 @@ class WC_GZD_Admin_Legal_Checkboxes {
 
 		foreach( $fields as $key => $field ) {
 			if ( isset( $field['id'] ) && $checkbox->get_form_field_id( 'label' ) === $field['id'] ) {
-				$fields[$key]['desc'] = $field['desc'] . '<span class="gzd-small-desc">' . __( 'e.g. include your privacy policy: {data_security_page}Privacy Policy{/data_security_page}' ) . '</span>';
+				$fields[$key]['desc'] = $field['desc'] . '<span class="gzd-small-desc">' . __( 'e.g. include your privacy policy: {data_security_page}Privacy Policy{/data_security_page}', 'woocommerce-germanized' ) . '</span>';
 			}
 		}
 

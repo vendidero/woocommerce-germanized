@@ -12,6 +12,12 @@ class WC_GZD_Admin {
 	 */
 	protected static $_instance = null;
 
+	/**
+	 * Contains an array of script handles localized by WC.
+	 * @var array
+	 */
+	private static $wp_localize_scripts = array();
+
 	public static function instance() {
 		if ( is_null( self::$_instance ) ) {
 			self::$_instance = new self();
@@ -42,6 +48,9 @@ class WC_GZD_Admin {
 		add_action( 'add_meta_boxes', array( $this, 'add_product_mini_desc' ) );
 		
 		add_action( 'admin_enqueue_scripts', array( $this, 'add_scripts' ) );
+		add_action( 'wp_print_scripts', array( $this, 'localize_printed_scripts' ), 5 );
+		add_action( 'wp_print_footer_scripts', array( $this, 'localize_printed_scripts' ), 5 );
+
 		add_action( 'save_post', array( $this, 'save_legal_page_content' ), 10, 3 );
 		
 		add_filter( 'woocommerce_admin_status_tabs', array( $this, 'set_gzd_status_tab' ) );
@@ -152,10 +161,10 @@ class WC_GZD_Admin {
 	}
 
 	public function add_scripts() {
-		
-		$screen = get_current_screen();
-		$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
-		$assets_path = WC_germanized()->plugin_url() . '/assets/';
+
+		$screen            = get_current_screen();
+		$suffix            = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
+		$assets_path       = WC_germanized()->plugin_url() . '/assets/';
 		$admin_script_path = $assets_path . 'js/admin/';
 
 		wp_register_style( 'woocommerce-gzd-admin', $assets_path . 'css/woocommerce-gzd-admin' . $suffix . '.css', false, WC_GERMANIZED_VERSION );
@@ -198,7 +207,21 @@ class WC_GZD_Admin {
 		// Hide delivery time and unit tagsdiv
 		if ( version_compare( WC()->version, '2.3', '>=' ) )
 			wp_add_inline_style( 'woocommerce-gzd-admin', '#tagsdiv-product_delivery_time, #tagsdiv-product_unit, #tagsdiv-product_price_label {display: none}' );
+
+		do_action( 'woocommerce_gzd_admin_assets', $this, $admin_script_path, $suffix );
 	}
+
+	public function localize_printed_scripts() {
+        $localized_scripts = apply_filters( 'woocommerce_gzd_admin_localized_scripts', array() );
+
+        foreach( $localized_scripts as $handle => $data ) {
+	        if ( ! in_array( $handle, self::$wp_localize_scripts ) && wp_script_is( $handle ) ) {
+		        $name                        = str_replace( '-', '_', $handle ) . '_params';
+		        self::$wp_localize_scripts[] = $handle;
+		        wp_localize_script( $handle, $name, $data );
+	        }
+        }
+    }
 
 	public function add_legal_page_metabox() {
 		add_meta_box( 'wc-gzd-legal-page-email-content', __( 'Optional Email Content', 'woocommerce-germanized' ), array( $this, 'init_legal_page_metabox' ), 'page' );

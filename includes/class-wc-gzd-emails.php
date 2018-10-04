@@ -76,13 +76,14 @@ class WC_GZD_Emails {
 	public function confirmation_text_option( $object ) {
 		if ( 'customer_processing_order' === $object->id ) {
 
-			$args = array(
-				'id'          => 'woocommerce_gzd_email_order_confirmation_text',
-				'label'       => __( 'Confirmation text', 'woocommerce-germanized' ),
-				'placeholder' => __( 'Your order has been received and is now being processed. Your order details are shown below for your reference:', 'woocommerce-germanized' ),
-				'desc' 		  => __( 'This text will be inserted within the order confirmation email. Use {order_number}, {site_title} or {order_date} as placeholder.', 'woocommerce-germanized' ),
-				'value'       => get_option( 'woocommerce_gzd_email_order_confirmation_text' ),
-			);
+			$args = apply_filters( 'woocommerce_gzd_admin_email_order_confirmation_text_option', array(
+				'id'                => 'woocommerce_gzd_email_order_confirmation_text',
+				'label'             => __( 'Confirmation text', 'woocommerce-germanized' ),
+				'placeholder'       => __( 'Your order has been received and is now being processed. Your order details are shown below for your reference:', 'woocommerce-germanized' ),
+				'desc' 		        => __( 'This text will be inserted within the order confirmation email. Use {order_number}, {site_title} or {order_date} as placeholder.', 'woocommerce-germanized' ),
+				'custom_attributes' => array(),
+				'value'             => get_option( 'woocommerce_gzd_email_order_confirmation_text' ),
+			) );
 
 			include_once WC_GERMANIZED_ABSPATH . 'includes/admin/views/html-admin-email-text-option.php';
 		}

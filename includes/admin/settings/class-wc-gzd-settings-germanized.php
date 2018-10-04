@@ -1197,6 +1197,8 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 			foreach ( $this->get_sections() as $section => $name ) {
 				if ( $section === $current_section ) {
 					$settings = apply_filters( 'woocommerce_gzd_get_settings_' . $section, $this->get_settings() );
+					$settings = apply_filters( 'woocommerce_gzd_get_settings_filter', $settings );
+
 					$sidebar = apply_filters( 'woocommerce_gzd_get_sidebar_' . $section, $sidebar );
 				}
 			}
