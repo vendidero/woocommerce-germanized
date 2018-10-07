@@ -282,7 +282,13 @@ class WC_GZD_Checkout {
 		}
 
 		if ( apply_filters( 'woocommerce_gzd_show_order_pay_now_button', $enabled, $order_id ) ) {
-			wc_get_template( 'order/order-pay-now-button.php', array( 'url' => add_query_arg( array( 'force_pay_order' => true ), $order->get_checkout_payment_url() ), 'order_id' => $order_id ) );
+			$url = $order->get_checkout_payment_url();
+
+			if ( apply_filters( 'woocommerce_gzd_add_force_pay_order_parameter', true, $order_id ) ) {
+				$url = add_query_arg( array( 'force_pay_order' => true ), $url );
+			}
+
+			wc_get_template( 'order/order-pay-now-button.php', array( 'url' => $url, 'order_id' => $order_id ) );
 		}
 	}
 
