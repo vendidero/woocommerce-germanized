@@ -3,7 +3,7 @@
  * Plugin Name: WooCommerce Germanized
  * Plugin URI: https://www.vendidero.de/woocommerce-germanized
  * Description: WooCommerce Germanized extends WooCommerce to become a legally compliant store in the german market.
- * Version: 2.2.0
+ * Version: 2.2.1
  * Author: Vendidero
  * Author URI: https://vendidero.de
  * Requires at least: 3.8
@@ -31,7 +31,7 @@ final class WooCommerce_Germanized {
 	 *
 	 * @var string
 	 */
-	public $version = '2.2.0';
+	public $version = '2.2.1';
 
 	/**
 	 * Single instance of WooCommerce Germanized Main Class
@@ -793,7 +793,12 @@ final class WooCommerce_Germanized {
 
 		// Make sure the Processing Order Email is named Order Confirmation for better understanding
 		if ( isset( $mails['WC_Email_Customer_Processing_Order'] ) ) {
-			$mails['WC_Email_Customer_Processing_Order']          = include 'includes/emails/class-wc-gzd-email-customer-processing-order.php';
+			$mails['WC_Email_Customer_Processing_Order']        = include 'includes/emails/class-wc-gzd-email-customer-processing-order.php';
+		}
+
+		// Try to prevent the On Hold Email from being sent even though it is called directly via the trigger method
+		if ( isset( $mails['WC_Email_Customer_On_Hold_Order'] ) ) {
+			$mails['WC_Email_Customer_On_Hold_Order']           = include 'includes/emails/class-wc-gzd-email-customer-on-hold-order.php';
 		}
 		
 		return $mails;

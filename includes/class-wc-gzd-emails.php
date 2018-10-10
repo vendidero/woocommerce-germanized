@@ -164,7 +164,7 @@ class WC_GZD_Emails {
 			if ( 'Someone requested that the password be reset for the following account:' === $original ) {
 				return __( 'Someone requested a password reset for your account.', 'woocommerce-germanized' );
 			} elseif ( 'Username: %s' === $original ) {
-				remove_filter( 'gettext', array( $this, 'maybe_hide_username_password_reset' ), 10, 3 );
+				remove_filter( 'gettext', array( $this, 'maybe_hide_username_password_reset' ), 10 );
 				return '';
 			}
 		}
@@ -174,7 +174,7 @@ class WC_GZD_Emails {
 
 	public function maybe_hide_username_new_account( $translated, $original, $domain ) {
 		if ( 'woocommerce' === $domain && 'Thanks for creating an account on %s. Your username is <strong>%s</strong>' === $original ) {
-			remove_filter( 'gettext', array( $this, 'maybe_hide_username_new_account' ), 10, 3 );
+			remove_filter( 'gettext', array( $this, 'maybe_hide_username_new_account' ), 10 );
 			return __( 'Thanks for creating an account on %s.', 'woocommerce-germanized' );
 		}
 		return $translated;
@@ -254,7 +254,6 @@ class WC_GZD_Emails {
 	}
 
     public function maybe_disable_order_paid_email_notification_2_6( $order_id ) {
-
 		$order = wc_get_order( $order_id );
 
 		if ( ! $order ) {
@@ -305,6 +304,7 @@ class WC_GZD_Emails {
 	public function set_woocommerce_template_dir( $dir, $template ) {
 		if ( file_exists( WC_germanized()->plugin_path() . '/templates/' . $template ) )
 			return 'woocommerce-germanized';
+
 		return $dir;
 	}
 
@@ -324,9 +324,9 @@ class WC_GZD_Emails {
             remove_action( $status . '_notification', array( $this->get_email_instance_by_id( 'customer_processing_order' ), 'trigger' ) );
             remove_action( $status . '_notification', array( $this->get_email_instance_by_id( 'new_order' ), 'trigger' ) );
 
-            if ( $this->get_email_instance_by_id( 'customer_on_hold_order' ) )
-                remove_action( 'woocommerce_order_status_pending_to_on-hold_notification', array( $this->get_email_instance_by_id( 'customer_on_hold_order' ), 'trigger' ) );
-
+            if ( $this->get_email_instance_by_id( 'customer_on_hold_order' ) ) {
+	            remove_action( 'woocommerce_order_status_pending_to_on-hold_notification', array( $this->get_email_instance_by_id( 'customer_on_hold_order' ), 'trigger' ) );
+            }
 	    }
     }
 

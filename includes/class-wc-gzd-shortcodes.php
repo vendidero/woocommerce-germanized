@@ -228,11 +228,9 @@ class WC_GZD_Shortcodes {
 	 * @return string          
 	 */
 	public static function gzd_vat_info( $atts, $content = '' ) {
-
 		ob_start();
 		wc_get_template( 'footer/vat-info.php' );
 		return ob_get_clean();
-	
 	}
 
 	/**
@@ -243,11 +241,9 @@ class WC_GZD_Shortcodes {
 	 * @return string          
 	 */
 	public static function gzd_sale_info( $atts, $content = '' ) {
-
 		ob_start();
 		wc_get_template( 'footer/sale-info.php' );
 		return ob_get_clean();
-	
 	}
 
 }
