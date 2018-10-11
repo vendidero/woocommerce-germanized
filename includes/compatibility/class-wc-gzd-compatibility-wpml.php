@@ -149,7 +149,7 @@ class WC_GZD_Compatibility_Wpml extends WC_GZD_Compatibility {
 	public function supports_string_translation() {
 		$enabled = false;
 
-		if ( defined( 'WPML_ST_VERSION' ) && version_compare( WPML_ST_VERSION, '2.8.7', '>=' ) ) {
+		if ( defined( 'WPML_ST_VERSION' ) && wc_gzd_get_dependencies()->compare_versions( WPML_ST_VERSION, '2.8.7', '>=' ) ) {
 			$enabled = true;
 		}
 
