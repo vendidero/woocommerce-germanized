@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce Germanized v1.5.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-04 12:48+0200\n"
-"PO-Revision-Date: 2018-10-04 12:50+0200\n"
+"POT-Creation-Date: 2018-10-11 13:10+0200\n"
+"PO-Revision-Date: 2018-10-11 13:12+0200\n"
 "Last-Translator: holzhannes <holzhannes@posteo.de>\n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -95,7 +95,7 @@ msgstr "l"
 #: includes/abstracts/abstract-wc-gzd-product.php:264
 #: includes/abstracts/abstract-wc-gzd-product.php:273
 #: includes/wc-gzd-core-functions.php:148
-#: includes/wc-gzd-template-functions.php:448 woocommerce-germanized.php:887
+#: includes/wc-gzd-template-functions.php:448 woocommerce-germanized.php:892
 msgid "incl. VAT"
 msgstr "inkl. MwSt."
 
@@ -106,7 +106,7 @@ msgstr "exkl. MwSt."
 
 # @ woocommerce-germanized
 #: includes/abstracts/abstract-wc-gzd-product.php:266
-#: includes/wc-gzd-core-functions.php:148 woocommerce-germanized.php:887
+#: includes/wc-gzd-core-functions.php:148 woocommerce-germanized.php:892
 #, php-format
 msgid "incl. %s%% VAT"
 msgstr "inkl. %s%% MwSt."
@@ -408,53 +408,53 @@ msgstr "Willkommen bei WooCommerce Germanized"
 msgid "Go to WooCommerce Germanized Settings"
 msgstr "zu den WooCommerce Germanized Einstellungen"
 
-#: includes/admin/class-wc-gzd-admin.php:113
+#: includes/admin/class-wc-gzd-admin.php:114
 msgid "Order confirmation manually sent to customer."
 msgstr "Bestellbestätigung manuell an den Kunden versendet."
 
 # @ woocommerce-germanized
-#: includes/admin/class-wc-gzd-admin.php:119
+#: includes/admin/class-wc-gzd-admin.php:120
 msgid "Resend order confirmation"
 msgstr "Bestellbestätigung erneut versenden"
 
 # @ woocommerce-germanized
-#: includes/admin/class-wc-gzd-admin.php:128
+#: includes/admin/class-wc-gzd-admin.php:129
 #: includes/admin/settings/class-wc-gzd-settings-germanized.php:25
 msgid "Germanized"
 msgstr "Germanized"
 
-#: includes/admin/class-wc-gzd-admin.php:138
+#: includes/admin/class-wc-gzd-admin.php:139
 msgid "Parcel Delivery Data Transfer:"
 msgstr "Paketdienstleister Datenweitergabe:"
 
-#: includes/admin/class-wc-gzd-admin.php:139
+#: includes/admin/class-wc-gzd-admin.php:140
 msgid "allowed"
 msgstr "akzeptiert"
 
-#: includes/admin/class-wc-gzd-admin.php:139
+#: includes/admin/class-wc-gzd-admin.php:140
 msgid "not allowed"
 msgstr "nicht akzeptiert"
 
 # @ woocommerce-germanized
-#: includes/admin/class-wc-gzd-admin.php:227
+#: includes/admin/class-wc-gzd-admin.php:228
 msgid "Optional Email Content"
 msgstr "Optionaler E-Mail Inhalt"
 
 # @ woocommerce-germanized
-#: includes/admin/class-wc-gzd-admin.php:236
+#: includes/admin/class-wc-gzd-admin.php:237
 msgid "Add content which will be replacing default page content within emails."
 msgstr ""
 "Fülle dieses Feld aus um einen abweichenden E-Mail Anhangstext für diese "
 "Seite zu bestimmen."
 
 # @ woocommerce-germanized
-#: includes/admin/class-wc-gzd-admin.php:246
+#: includes/admin/class-wc-gzd-admin.php:247
 #: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:154
 msgid "Optional Mini Description"
 msgstr "Warenkorb Kurzbeschreibung"
 
 # @ woocommerce-germanized
-#: includes/admin/class-wc-gzd-admin.php:263
+#: includes/admin/class-wc-gzd-admin.php:264
 msgid ""
 "This content will be shown as short product description within checkout and "
 "emails."
@@ -2365,7 +2365,6 @@ msgstr "Mehr über die Pro Version erfahren"
 
 # @ woocommerce-germanized
 #: includes/admin/views/html-notice-pro.php:28
-#: includes/admin/views/html-notice-review.php:23
 #: includes/admin/views/html-notice-theme-incompatibility.php:20
 #: includes/admin/views/html-notice-theme-not-ready.php:20
 #: includes/admin/views/html-notice-theme-supported.php:22
@@ -2373,12 +2372,12 @@ msgid "Hide this notice"
 msgstr "Diese Nachricht ausblenden"
 
 # @ woocommerce-germanized
-#: includes/admin/views/html-notice-review.php:14
+#: includes/admin/views/html-notice-review.php:15
 msgid "Do you like WooCommerce Germanized?"
 msgstr "Gefällt dir WooCommerce Germanized?"
 
 # @ woocommerce-germanized
-#: includes/admin/views/html-notice-review.php:16
+#: includes/admin/views/html-notice-review.php:17
 msgid ""
 "If you like WooCommerce Germanized and our Plugin does a good job it would "
 "be great if you would write a review about WooCommerce Germanized on "
@@ -2390,14 +2389,22 @@ msgstr ""
 "veröffentlichen. Vielen Dank für deine Mühen!"
 
 # @ woocommerce-germanized
-#: includes/admin/views/html-notice-review.php:19
+#: includes/admin/views/html-notice-review.php:20
 msgid "Write review now"
 msgstr "jetzt Bewertung verfassen"
 
 # @ woocommerce-germanized
-#: includes/admin/views/html-notice-review.php:20
+#: includes/admin/views/html-notice-review.php:21
 msgid "Found Bugs?"
 msgstr "Bugs oder Wünsche melden"
+
+#: includes/admin/views/html-notice-review.php:24
+msgid "I've added my review"
+msgstr "Ich habe bereits bewertet"
+
+#: includes/admin/views/html-notice-review.php:25
+msgid "Not now"
+msgstr "Nicht jetzt"
 
 # @ woocommerce-germanized
 #: includes/admin/views/html-notice-theme-incompatibility.php:14
@@ -2722,12 +2729,33 @@ msgid "Renew VAT Rates"
 msgstr "EU MwSt.-Sätze erneuern"
 
 # @ woocommerce-germanized
-#: includes/admin/views/html-page-status-germanized.php:228
+#: includes/admin/views/html-page-status-germanized.php:222
+#: includes/admin/views/html-page-status-germanized.php:224
+msgid "Disable notices"
+msgstr "Meldungen deaktivieren"
+
+#: includes/admin/views/html-page-status-germanized.php:223
+msgid ""
+"Germanized might ask you to leave a review or notices you of using a "
+"possibly unsupported theme. If you want to disable these notices, check this "
+"option."
+msgstr ""
+"Germanized bittet dich um eine Bewertung oder macht dich darauf aufmerksam, "
+"wenn du ein nicht unterstütztes Theme verwendest. Wenn du diese Meldungen "
+"deaktivieren willst, verwende diese Option."
+
+# @ woocommerce-germanized
+#: includes/admin/views/html-page-status-germanized.php:224
+msgid "Enable notices"
+msgstr "Meldungen aktivieren"
+
+# @ woocommerce-germanized
+#: includes/admin/views/html-page-status-germanized.php:233
 msgid "Templates"
 msgstr "Templates"
 
 # @ woocommerce-germanized
-#: includes/admin/views/html-page-status-germanized.php:273
+#: includes/admin/views/html-page-status-germanized.php:278
 #, php-format
 msgid ""
 "<code>%s</code> version <strong style=\"color:red\">%s</strong> is out of "
@@ -2737,13 +2765,13 @@ msgstr ""
 "veraltet. Die Hauptversion ist %s"
 
 # @ woocommerce-germanized
-#: includes/admin/views/html-page-status-germanized.php:285
-#: includes/admin/views/html-page-status-germanized.php:294
+#: includes/admin/views/html-page-status-germanized.php:290
+#: includes/admin/views/html-page-status-germanized.php:299
 msgid "Overrides"
 msgstr "Überschreibt"
 
 # @ woocommerce-germanized
-#: includes/admin/views/html-page-status-germanized.php:305
+#: includes/admin/views/html-page-status-germanized.php:310
 msgid "Learn how to update outdated templates"
 msgstr "Erfahre, wie du veraltete Templates aktualisierst"
 
@@ -2776,8 +2804,8 @@ msgstr "jetzt upgraden"
 #: includes/api/class-wc-gzd-rest-customers-controller.php:144
 #: includes/api/class-wc-gzd-rest-orders-controller.php:161
 #: includes/api/class-wc-gzd-rest-orders-controller.php:168
-#: includes/class-wc-gzd-checkout.php:359
-#: includes/class-wc-gzd-checkout.php:369
+#: includes/class-wc-gzd-checkout.php:365
+#: includes/class-wc-gzd-checkout.php:375
 #: includes/class-wc-gzd-customer-helper.php:106
 #: includes/class-wc-gzd-customer-helper.php:114
 msgid "Title"
@@ -3064,10 +3092,10 @@ msgstr ""
 "Mail mit deinen Daten als Bestätigung."
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-checkout.php:360
-#: includes/class-wc-gzd-checkout.php:368
-#: includes/class-wc-gzd-checkout.php:393
-#: includes/class-wc-gzd-checkout.php:619
+#: includes/class-wc-gzd-checkout.php:366
+#: includes/class-wc-gzd-checkout.php:374
+#: includes/class-wc-gzd-checkout.php:399
+#: includes/class-wc-gzd-checkout.php:625
 #: includes/class-wc-gzd-customer-helper.php:108
 #: includes/class-wc-gzd-customer-helper.php:116
 #: includes/class-wc-gzd-revocation.php:41
@@ -3076,11 +3104,11 @@ msgid "Mr."
 msgstr "Herr"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-checkout.php:360
-#: includes/class-wc-gzd-checkout.php:368
-#: includes/class-wc-gzd-checkout.php:394
-#: includes/class-wc-gzd-checkout.php:619
-#: includes/class-wc-gzd-checkout.php:628
+#: includes/class-wc-gzd-checkout.php:366
+#: includes/class-wc-gzd-checkout.php:374
+#: includes/class-wc-gzd-checkout.php:400
+#: includes/class-wc-gzd-checkout.php:625
+#: includes/class-wc-gzd-checkout.php:634
 #: includes/class-wc-gzd-customer-helper.php:108
 #: includes/class-wc-gzd-customer-helper.php:116
 #: includes/class-wc-gzd-revocation.php:42
@@ -3345,73 +3373,73 @@ msgstr ""
 "WooCommerce Germanized installierst. Vielen Dank!"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-install.php:484
+#: includes/class-wc-gzd-install.php:482
 msgctxt "Page slug"
 msgid "data-security"
 msgstr "datenschutzbelehrung"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-install.php:485
+#: includes/class-wc-gzd-install.php:483
 msgctxt "Page title"
 msgid "Data Security Statement"
 msgstr "Datenschutzbelehrung"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-install.php:489
+#: includes/class-wc-gzd-install.php:487
 msgctxt "Page slug"
 msgid "imprint"
 msgstr "impressum"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-install.php:490
+#: includes/class-wc-gzd-install.php:488
 msgctxt "Page title"
 msgid "Imprint"
 msgstr "Impressum"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-install.php:494
+#: includes/class-wc-gzd-install.php:492
 msgctxt "Page slug"
 msgid "terms"
 msgstr "agb"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-install.php:495
+#: includes/class-wc-gzd-install.php:493
 msgctxt "Page title"
 msgid "Terms & Conditions"
 msgstr "AGB"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-install.php:499
+#: includes/class-wc-gzd-install.php:497
 msgctxt "Page slug"
 msgid "revocation"
 msgstr "widerrufsbelehrung"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-install.php:500
+#: includes/class-wc-gzd-install.php:498
 msgctxt "Page title"
 msgid "Power of Revocation"
 msgstr "Widerrufsbelehrung"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-install.php:504
+#: includes/class-wc-gzd-install.php:502
 msgctxt "Page slug"
 msgid "shipping-methods"
 msgstr "versandarten"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-install.php:505
+#: includes/class-wc-gzd-install.php:503
 msgctxt "Page title"
 msgid "Shipping Methods"
 msgstr "Versandarten"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-install.php:509
+#: includes/class-wc-gzd-install.php:507
 msgctxt "Page slug"
 msgid "payment-methods"
 msgstr "bezahlmoeglichkeiten"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-install.php:510
+#: includes/class-wc-gzd-install.php:508
 msgctxt "Page title"
 msgid "Payment Methods"
 msgstr "Zahlungsarten"
@@ -4128,16 +4156,16 @@ msgid "Payment received"
 msgstr "Zahlung erhalten"
 
 # @ woocommerce-germanized
-#: includes/emails/class-wc-gzd-email-customer-processing-order.php:25
+#: includes/emails/class-wc-gzd-email-customer-processing-order.php:35
 msgid "Order Confirmation"
 msgstr "Bestellbestätigung"
 
-#: includes/emails/class-wc-gzd-email-customer-processing-order.php:35
+#: includes/emails/class-wc-gzd-email-customer-processing-order.php:45
 msgid "Confirmation of your order {order_number}"
 msgstr "Bestätigung deiner Bestellung {order_number}"
 
 # @ woocommerce
-#: includes/emails/class-wc-gzd-email-customer-processing-order.php:45
+#: includes/emails/class-wc-gzd-email-customer-processing-order.php:55
 msgid "Thank you for your order"
 msgstr "Vielen Dank für deine Bestellung"
 

@@ -5,7 +5,7 @@ Requires at least: 3.8
 Tested up to: 4.9
 WC requires at least: 2.4
 WC tested up to: 3.5
-Stable tag: 2.2.0
+Stable tag: 2.2.1
 Requires PHP: 5.3
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -183,6 +183,13 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 4. WooCommerce Multistep Checkout (Pro)
 
 == Changelog ==
+
+= 2.2.1 =
+* Fix: Make sure that order confirmation email is not being sent twice
+* Improvement: Override on-hold-email to disallow triggering by third party plugins
+* Improvement: Added WPML string translation (>= 2.8.7) option right from the plugin settings (by changing the active language)
+* Improvement: Made notices more defensive. Added option to hide review notice forever
+* Improvement: Added "woocommerce_gzd_add_force_pay_order_parameter" filter to disable the forced redirect
 
 = 2.2.0 =
 * Feature: WooCommerce 3.5 compatibility

@@ -63,6 +63,7 @@ class WC_GZD_Admin {
 		add_action( 'admin_init', array( $this, 'check_version_cache_deletion' ) );
 		add_action( 'admin_init', array( $this, 'check_insert_vat_rates' ) );
 		add_action( 'admin_init', array( $this, 'check_resend_activation_email' ) );
+		add_action( 'admin_init', array( $this, 'check_notices' ) );
 		
 		add_filter( 'woocommerce_addons_section_data', array( $this, 'set_addon' ), 10, 2 );
 		add_action( 'woocommerce_admin_order_data_after_shipping_address', array( $this, 'set_order_parcel_delivery_opted_in' ), 10, 1 );
@@ -437,6 +438,20 @@ class WC_GZD_Admin {
  			)
  		);
  	}
+
+	public function check_notices() {
+		if ( current_user_can(  'manage_woocommerce' ) && isset( $_GET[ 'check-notices' ] ) && isset( $_GET[ '_wpnonce' ] ) && check_admin_referer( 'wc-gzd-notices' ) ) {
+
+		    if ( get_option( 'woocommerce_gzd_disable_notices' ) ) {
+			    delete_option( 'woocommerce_gzd_disable_notices' );
+            } else {
+			    update_option( 'woocommerce_gzd_disable_notices', 'yes' );
+            }
+
+			// Redirect to check for updates
+			wp_safe_redirect( admin_url( 'admin.php?page=wc-status&tab=germanized' ) );
+		}
+	}
 
 	public function check_insert_vat_rates() {
 		if ( current_user_can(  'manage_woocommerce' ) && isset( $_GET[ 'insert-vat-rates' ] ) && isset( $_GET[ '_wpnonce' ] ) && check_admin_referer( 'wc-gzd-insert-vat-rates' ) ) {

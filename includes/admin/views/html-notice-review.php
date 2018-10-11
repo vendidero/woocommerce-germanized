@@ -8,6 +8,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 $dismiss_url = add_query_arg( 'notice', 'wc-gzd-hide-review-notice', add_query_arg( 'nonce', wp_create_nonce( 'wc-gzd-hide-review-notice' ) ) );
+$disable_url = add_query_arg( 'notice', 'wc-gzd-disable-review-notice', add_query_arg( 'nonce', wp_create_nonce( 'wc-gzd-disable-review-notice' ) ) );
 ?>
 
 <div class="updated fade">
@@ -20,7 +21,8 @@ $dismiss_url = add_query_arg( 'notice', 'wc-gzd-hide-review-notice', add_query_a
 		<a class="button button-secondary" href="https://wordpress.org/support/plugin/woocommerce-germanized" target="_blank"><?php _e( 'Found Bugs?', 'woocommerce-germanized' );?></a>
 	</p>
 	<p class="alignright">
-		<a href="<?php echo esc_url( $dismiss_url );?>"><?php _e( 'Hide this notice', 'woocommerce-germanized' ); ?></a>
+        <a style="margin-right: 2em;" href="<?php echo esc_url( $disable_url );?>"><?php _e( "I've added my review", 'woocommerce-germanized' ); ?></a>
+		<a href="<?php echo esc_url( $dismiss_url );?>"><?php _e( 'Not now', 'woocommerce-germanized' ); ?></a>
 	</p>
 	<div class="clear"></div>
 </div>

@@ -124,7 +124,6 @@ class WC_GZD_Compatibility_Wpml extends WC_GZD_Compatibility {
 	}
 
 	public function admin_translate_options() {
-
 		if ( ! $this->supports_string_translation() ) {
 			return;
 		}
@@ -148,7 +147,13 @@ class WC_GZD_Compatibility_Wpml extends WC_GZD_Compatibility {
 	}
 
 	public function supports_string_translation() {
-		return true;
+		$enabled = false;
+
+		if ( defined( 'WPML_ST_VERSION' ) && version_compare( WPML_ST_VERSION, '2.8.7', '>=' ) ) {
+			$enabled = true;
+		}
+
+		return apply_filters( 'woocommerce_gzd_enable_wpml_string_translation_settings', $enabled );
 	}
 
 	public function add_admin_notices_email( $setting ) {

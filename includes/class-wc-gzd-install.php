@@ -167,13 +167,14 @@ class WC_GZD_Install {
 			// Show tour for new installs only
 			update_option( 'woocommerce_gzd_hide_tour', 1 );
 			
-			$major_version = substr( $current_version, 0, 3 );
+			$major_version     = substr( $current_version, 0, 3 );
 			$new_major_version = substr( WC_germanized()->version, 0, 3 );
 
 			// Only on major update
 			if ( version_compare( $new_major_version, $major_version, ">" ) ) {
 				delete_option( '_wc_gzd_hide_theme_notice' );
 				delete_option( '_wc_gzd_hide_pro_notice' );
+				delete_option( '_wc_gzd_hide_review_notice' );
 			}
 
 		} else {
@@ -195,9 +196,6 @@ class WC_GZD_Install {
 
 		// Update activation date
 		update_option( 'woocommerce_gzd_activation_date', date( 'Y-m-d' ) );
-
-		// Add theme compatibility check
-		delete_option( '_wc_gzd_hide_review_notice' );
 
 		// Check if pages are needed
 		if ( wc_get_page_id( 'revocation' ) < 1 ) {

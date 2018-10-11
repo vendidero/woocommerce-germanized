@@ -218,6 +218,11 @@ if ( ! defined( 'ABSPATH' ) )
             <td class="help"><?php echo '<a href="#" class="help_tip" data-tip="' . esc_attr( __( 'Insert VAT rates (standard, recuded and virtual) for EU countries. This option deletes all of your standard, reduced and virtual rates before inserting.', 'woocommerce-germanized' ) ) . '">[?]</a>'; ?></td>
             <td><a href="<?php echo wp_nonce_url( add_query_arg( array( 'insert-vat-rates' => true ) ), 'wc-gzd-insert-vat-rates' ); ?>" class="button button-secondary"><?php _e( 'Renew VAT Rates', 'woocommerce-germanized' ); ?></a></td>
         </tr>
+        <tr>
+            <td><?php _e( 'Disable notices', 'woocommerce-germanized' ); ?></td>
+            <td class="help"><?php echo '<a href="#" class="help_tip" data-tip="' . esc_attr( __( 'Germanized might ask you to leave a review or notices you of using a possibly unsupported theme. If you want to disable these notices, check this option.', 'woocommerce-germanized' ) ) . '">[?]</a>'; ?></td>
+            <td><a href="<?php echo wp_nonce_url( add_query_arg( array( 'check-notices' => true ) ), 'wc-gzd-notices' ); ?>" class="button button-secondary"><?php echo 'yes' === get_option( 'woocommerce_gzd_disable_notices' ) ? __( 'Enable notices', 'woocommerce-germanized' ) : __( 'Disable notices', 'woocommerce-germanized' ); ?></a></td>
+        </tr>
 		<?php do_action( 'woocommerce_gzd_status_after_tools' ); ?>
 	</tbody>
 </table>
