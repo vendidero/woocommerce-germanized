@@ -7,7 +7,7 @@
  * Author: Vendidero
  * Author URI: https://vendidero.de
  * Requires at least: 3.8
- * Tested up to: 4.9
+ * Tested up to: 5.0
  * WC requires at least: 2.4.0
  * WC tested up to: 3.5.0
  * Requires at least WooCommerce: 2.4
@@ -904,7 +904,7 @@ final class WooCommerce_Germanized {
 	 */
 	public function remove_cart_unit_price_filter() {
 		if ( is_cart() ) {
-			remove_filter( 'woocommerce_cart_item_subtotal', 'wc_gzd_cart_product_unit_price', 0, 2 );
+			remove_filter( 'woocommerce_cart_item_subtotal', 'wc_gzd_cart_product_unit_price', 0 );
 		}
 	}
 
