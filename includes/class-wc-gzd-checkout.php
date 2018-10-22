@@ -103,7 +103,8 @@ class WC_GZD_Checkout {
 		add_action( 'woocommerce_checkout_update_order_meta', array( $this, 'order_parcel_delivery_data_transfer' ), 10, 2 );
 
 		// Make sure that, just like in Woo core, the order submit button gets refreshed
-		add_filter( 'woocommerce_update_order_review_fragments', array( $this, 'refresh_order_submit' ), 10, 1 );
+		// Use a high priority to let other plugins do their adjustments beforehand
+		add_filter( 'woocommerce_update_order_review_fragments', array( $this, 'refresh_order_submit' ), 150, 1 );
 	}
 
 	public function refresh_order_submit( $fragments ) {

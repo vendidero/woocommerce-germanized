@@ -1,12 +1,12 @@
 /*global woocommerce_admin_meta_boxes, woocommerce_admin, accounting, woocommerce_admin_meta_boxes_order */
-window.gzd_settings = window.gzd_settings || {};
+window.germanized = window.germanized || {};
 
-( function( $, wp, gzd_settings ) {
+( function( $, wp, germanized ) {
 
     /**
      * Order Data Panel
      */
-    gzd_settings.admin = {
+    germanized.settings = {
 
         init: function() {
 
@@ -123,7 +123,7 @@ window.gzd_settings = window.gzd_settings || {};
     };
 
     $( document ).ready( function() {
-        gzd_settings.admin.init();
+        germanized.settings.init();
     });
 
-})( jQuery, wp, window.gzd_settings );
+})( jQuery, wp, window.germanized );
