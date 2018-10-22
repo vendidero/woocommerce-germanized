@@ -2,7 +2,7 @@
 
 class WC_GZD_Checkout {
 
-	public $custom_fields = array();
+	public $custom_fields       = array();
 	public $custom_fields_admin = array();
 
 	protected static $force_free_shipping_filter = false;
@@ -413,30 +413,36 @@ class WC_GZD_Checkout {
 	 */
 	public function do_fee_tax_calculation( $cart ) {
 
-		if ( get_option( 'woocommerce_gzd_fee_tax' ) != 'yes' )
+		if ( 'yes' !== get_option( 'woocommerce_gzd_fee_tax' ) )
 			return;
 
 		if ( ! method_exists( $cart, 'set_fee_taxes' ) )
+			return;
+
+		$calculate_taxes = wc_tax_enabled() && ! WC()->customer->is_vat_exempt();
+
+		// Do not calculate tax shares if tax calculation is disabled
+		if ( ! $calculate_taxes )
 			return;
 
 		$fees = $cart->get_fees();
 
 		if ( ! empty( $fees ) ) {
 
-			$tax_shares = wc_gzd_get_cart_tax_share( 'fee' );
+			$tax_shares    = wc_gzd_get_cart_tax_share( 'fee' );
 			$fee_tax_total = 0;
-			$fee_tax_data = array();
-			$new_fees = array();
+			$fee_tax_data  = array();
+			$new_fees      = array();
 
 			foreach ( $cart->get_fees() as $key => $fee ) {
 
-				if ( ! $fee->taxable && get_option( 'woocommerce_gzd_fee_tax_force' ) !== 'yes' )
+				if ( ! $fee->taxable && 'yes' !== get_option( 'woocommerce_gzd_fee_tax_force' ) )
 					continue;
 
 				// Calculate gross price if necessary
 				if ( $fee->taxable ) {
 					$fee_tax_rates = WC_Tax::get_rates( $fee->tax_class );
-					$fee_tax = WC_Tax::calc_tax( $fee->amount, $fee_tax_rates, false );
+					$fee_tax       = WC_Tax::calc_tax( $fee->amount, $fee_tax_rates, false );
 					$fee->amount += array_sum( $fee_tax );
 				}
 
@@ -448,18 +454,19 @@ class WC_GZD_Checkout {
 					$fee_taxes = array();
 
 					foreach ( $tax_shares as $rate => $class ) {
-						$tax_rates = WC_Tax::get_rates( $rate );
-						$tax_shares[ $rate ][ 'fee_tax_share' ] = $fee->amount * $class[ 'share' ];
-						$tax_shares[ $rate ][ 'fee_tax' ] = WC_Tax::calc_tax( ( $fee->amount * $class[ 'share' ] ), $tax_rates, true );
-						$fee_taxes += $tax_shares[ $rate ][ 'fee_tax' ];
+						$tax_rates                            = WC_Tax::get_rates( $rate );
+						$tax_shares[ $rate ]['fee_tax_share'] = $fee->amount * $class['share'];
+						$tax_shares[ $rate ]['fee_tax']       = WC_Tax::calc_tax( ( $fee->amount * $class['share'] ), $tax_rates, true );
+
+						$fee_taxes += $tax_shares[ $rate ]['fee_tax'];
 					}
 
 					foreach ( $tax_shares as $rate => $class ) {
-
 						foreach ( $class['fee_tax'] as $rate_id => $tax ) {
 							if ( ! array_key_exists( $rate_id, $fee_tax_data ) ) {
 								$fee_tax_data[ $rate_id ] = 0;
 							}
+
 							$fee_tax_data[ $rate_id ] += $tax;
 						}
 
@@ -467,9 +474,9 @@ class WC_GZD_Checkout {
 					}
 
 					$fee->tax_data = $fee_taxes;
-					$fee->tax = $fee_tax_total;
-					$fee->amount = $fee->amount - $fee->tax;
-					$fee->total = $fee->amount;
+					$fee->tax      = $fee_tax_total;
+					$fee->amount   = $fee->amount - $fee->tax;
+					$fee->total    = $fee->amount;
 
 					$new_fees[ $key ] = $fee;
 				}
@@ -489,6 +496,12 @@ class WC_GZD_Checkout {
 		if ( method_exists( $cart, 'set_fee_taxes' ) )
 			return;
 
+		$calculate_taxes = wc_tax_enabled() && ! WC()->customer->is_vat_exempt();
+
+		// Do not calculate tax shares if tax calculation is disabled
+		if ( ! $calculate_taxes )
+			return;
+
 		if ( ! empty( $cart->fees ) ) {
 			$tax_shares = wc_gzd_get_cart_tax_share( 'fee' );
 			foreach ( $cart->fees as $key => $fee ) {
@@ -499,7 +512,8 @@ class WC_GZD_Checkout {
 				// Calculate gross price if necessary
 				if ( $fee->taxable ) {
 					$fee_tax_rates = WC_Tax::get_rates( $fee->tax_class );
-					$fee_tax = WC_Tax::calc_tax( $fee->amount, $fee_tax_rates, false );
+					$fee_tax       = WC_Tax::calc_tax( $fee->amount, $fee_tax_rates, false );
+
 					$fee->amount += array_sum( $fee_tax );
 				}
 
@@ -510,13 +524,14 @@ class WC_GZD_Checkout {
 				if ( ! empty( $tax_shares ) ) {
 					$fee_taxes = array();
 					foreach ( $tax_shares as $rate => $class ) {
-						$tax_rates = WC_Tax::get_rates( $rate );
-						$tax_shares[ $rate ][ 'fee_tax_share' ] = $fee->amount * $class[ 'share' ];
-						$tax_shares[ $rate ][ 'fee_tax' ] = WC_Tax::calc_tax( ( $fee->amount * $class[ 'share' ] ), $tax_rates, true );
-						$fee_taxes += $tax_shares[ $rate ][ 'fee_tax' ];
+						$tax_rates                            = WC_Tax::get_rates( $rate );
+						$tax_shares[ $rate ]['fee_tax_share'] = $fee->amount * $class['share'];
+						$tax_shares[ $rate ]['fee_tax']       = WC_Tax::calc_tax( ( $fee->amount * $class['share'] ), $tax_rates, true );
+
+						$fee_taxes += $tax_shares[ $rate ]['fee_tax'];
 					}
 					foreach ( $tax_shares as $rate => $class ) {
-						$cart->fees[ $key ]->tax_data = $cart->fees[ $key ]->tax_data + $class[ 'fee_tax' ];
+						$cart->fees[ $key ]->tax_data = $cart->fees[ $key ]->tax_data + $class['fee_tax'];
 					}
 					// Add fee taxes to cart taxes
 					foreach ( array_keys( $cart->taxes + $fee_taxes ) as $sub ) {
@@ -534,7 +549,7 @@ class WC_GZD_Checkout {
 	 * Temporarily removes all shipping rates (except chosen one) from packages to only show chosen package within checkout. 
 	 */
 	public function remove_shipping_rates() {
-		if ( get_option( 'woocommerce_gzd_display_checkout_shipping_rate_select' ) == 'no' )
+		if ( 'no' === get_option( 'woocommerce_gzd_display_checkout_shipping_rate_select' ) )
 			return;
 		
 		$packages = WC()->shipping->get_packages();
@@ -543,10 +558,10 @@ class WC_GZD_Checkout {
 		
 			$chosen_method = isset( WC()->session->chosen_shipping_methods[ $i ] ) ? WC()->session->chosen_shipping_methods[ $i ] : '';
 		
-			if ( ! empty( $package[ 'rates' ] ) ) {
-				foreach ( $package[ 'rates' ] as $key => $rate ) {
+			if ( ! empty( $package['rates'] ) ) {
+				foreach ( $package['rates'] as $key => $rate ) {
 					if ( $key != $chosen_method )
-						unset( WC()->shipping->packages[ $i ][ 'rates' ][ $key ] );
+						unset( WC()->shipping->packages[ $i ]['rates'][ $key ] );
 				}
 			}	
 		}

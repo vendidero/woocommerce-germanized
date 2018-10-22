@@ -8,6 +8,10 @@ class WC_GZD_Trusted_Shops_Admin {
 
 	public $script_prefix = '';
 
+	protected $expert_mode_mandatory = array();
+
+	protected $standard_mode_mandatory = array();
+
 	public static function instance( $base ) {
 		if ( is_null( self::$_instance ) )
 			self::$_instance = new self( $base );
@@ -16,7 +20,7 @@ class WC_GZD_Trusted_Shops_Admin {
 
 	private function __construct( $base ) {
 		
-		$this->base = $base;
+		$this->base          = $base;
 		$this->script_prefix = str_replace( '_', '-', $this->base->option_prefix );
 
 		// Register Section
@@ -37,14 +41,119 @@ class WC_GZD_Trusted_Shops_Admin {
 		add_action( 'admin_init', array( $this, 'review_collector_export_csv' ) );
 
 		add_action( 'woocommerce_gzd_load_trusted_shops_script', array( $this, 'load_scripts' ) );
+
+		// Add custom fields
+		add_action( 'woocommerce_product_options_general_product_data', array( $this, 'output_fields' ) );
+		add_action( 'woocommerce_product_after_variable_attributes', array( $this, 'output_variation_fields' ), 20, 3 );
+		add_action( 'woocommerce_save_product_variation', array( $this, 'save_variation_fields' ) , 0, 2 );
+
+		if ( ! wc_ts_woocommerce_supports_crud() ) {
+			add_action( 'woocommerce_process_product_meta', array( $this, 'save_fields' ), 20, 2 );
+		} else {
+			add_action( 'woocommerce_admin_process_product_object', array( $this, 'save_fields' ), 10, 1 );
+		}
 	}
+
+	public function output_variation_fields( $loop, $variation_data, $variation ) {
+		$_product         = wc_get_product( $variation );
+		$_parent          = wc_get_product( wc_ts_get_crud_data( $_product, 'parent' ) );
+		$variation_id     = wc_ts_get_crud_data( $_product, 'id' );
+		$variation_meta   = get_post_meta( $variation_id );
+		$variation_data	  = array();
+
+		$variation_fields = array(
+			'_ts_gtin' 		        => '',
+			'_ts_mpn' 				=> '',
+		);
+
+		foreach ( $variation_fields as $field => $value ) {
+			$variation_data[ $field ] = isset( $variation_meta[ $field ][0] ) ? maybe_unserialize( $variation_meta[ $field ][0] ) : $value;
+		}
+
+		?>
+
+        <div class="variable_gzd_ts_labels">
+            <p class="form-row form-row-first">
+                <label for="variable_ts_gtin"><?php echo _x( 'GTIN', 'trusted-shops', 'woocommerce-germanized' );?> <?php echo wc_ts_help_tip( _x( 'GTIN desc', 'trusted-shops', 'woocommerce-germanized' ) ); ?></label>
+                <input class="input-text" type="text" name="variable_ts_gtin[<?php echo $loop; ?>]" value="<?php echo ( ! empty( $variation_data[ '_ts_gtin' ] ) ? esc_attr( $variation_data[ '_ts_gtin' ] ) : '' );?>" placeholder="<?php echo esc_attr( wc_ts_get_crud_data( $_parent, '_ts_gtin' ) ); ?>" />
+            </p>
+            <p class="form-row form-row-last">
+                <label for="variable_ts_mpn"><?php echo _x( 'MPN', 'trusted-shops', 'woocommerce-germanized' );?> <?php echo wc_ts_help_tip( _x( 'MPN desc', 'trusted-shops', 'woocommerce-germanized' ) ); ?></label>
+                <input class="input-text" type="text" name="variable_ts_mpn[<?php echo $loop; ?>]" value="<?php echo ( ! empty( $variation_data[ '_ts_mpn' ] ) ? esc_attr( $variation_data[ '_ts_mpn' ] ) : '' );?>" placeholder="<?php echo esc_attr( wc_ts_get_crud_data( $_parent, '_ts_mpn' ) ); ?>" />
+            </p>
+        </div>
+
+        <?php
+    }
+
+    public function save_variation_fields( $variation_id, $i ) {
+	    $data = array(
+		    '_ts_gtin' => '',
+		    '_ts_mpn'  => '',
+	    );
+
+	    foreach ( $data as $k => $v ) {
+		    $data_k     = 'variable' . ( substr( $k, 0, 1) === '_' ? '' : '_' ) . $k;
+		    $data[ $k ] = ( isset( $_POST[ $data_k ][$i] ) ? $_POST[ $data_k ][$i] : null );
+	    }
+
+	    $product        = wc_get_product( $variation_id );
+
+	    foreach( $data as $key => $value ) {
+	        $product = wc_ts_set_crud_data( $product, $key, $value );
+        }
+
+	    if ( wc_ts_woocommerce_supports_crud() ) {
+		    $product->save();
+	    }
+    }
+
+	public function output_fields() {
+		echo '<div class="options_group show_if_simple show_if_external show_if_variable">';
+
+		woocommerce_wp_text_input( array( 'id' => '_ts_gtin', 'label' => _x( 'GTIN', 'trusted-shops', 'woocommerce-germanized' ), 'data_type' => 'text', 'desc_tip' => true, 'description' => _x( 'GTIN desc', 'trusted-shops', 'woocommerce-germanized' ) ) );
+		woocommerce_wp_text_input( array( 'id' => '_ts_mpn', 'label' => _x( 'MPN', 'trusted-shops', 'woocommerce-germanized' ), 'data_type' => 'text', 'desc_tip' => true, 'description' => _x( 'MPN desc', 'trusted-shops', 'woocommerce-germanized' ) ) );
+
+		echo '</div>';
+    }
+
+    public function save_fields( $product ) {
+	    if ( is_numeric( $product ) )
+		    $product = wc_get_product( $product );
+
+	    if ( isset( $_POST['_ts_gtin'] ) ) {
+	        $product = wc_ts_set_crud_data( $product, '_ts_gtin', wc_clean( $_POST['_ts_gtin'] ) );
+        }
+
+        if ( isset( $_POST['_ts_mpn'] ) ) {
+	        $product = wc_ts_set_crud_data( $product, '_ts_mpn', wc_clean( $_POST['_ts_mpn'] ) );
+        }
+
+	    if ( wc_ts_woocommerce_supports_crud() ) {
+		    $product->save();
+	    }
+    }
+
+	public function get_expert_mode_mandatory_fields() {
+		return array(
+			"woocommerce_{$this->base->option_prefix}trusted_shops_trustbadge_code"        => _x( 'Please fill out the trustbadge code.', 'trusted-shops', 'woocommerce-germanized' ),
+			"woocommerce_{$this->base->option_prefix}trusted_shops_product_sticker_code"   => _x( 'Please fill out the product sticker code.', 'trusted-shops', 'woocommerce-germanized' ),
+			"woocommerce_{$this->base->option_prefix}trusted_shops_product_widget_code"    => _x( 'Please fill out the widget code.', 'trusted-shops', 'woocommerce-germanized' ),
+		);
+    }
+
+    public function get_standard_mode_mandatory_fields() {
+	    return array(
+		    "woocommerce_{$this->base->option_prefix}trusted_shops_product_sticker_border_color" => _x( 'Please choose a review border color.', 'trusted-shops', 'woocommerce-germanized' ),
+		    "woocommerce_{$this->base->option_prefix}trusted_shops_product_sticker_star_color"   => _x( 'Please choose a review star color.', 'trusted-shops', 'woocommerce-germanized' ),
+		    "woocommerce_{$this->base->option_prefix}trusted_shops_product_widget_star_color"    => _x( 'Please choose a widget star color.', 'trusted-shops', 'woocommerce-germanized' ),
+        );
+    }
 
 	public function create_attribute() {
 
-		$attributes = array( 
-			'gtin' => _x( 'GTIN', 'trusted-shops', 'woocommerce-germanized' ), 
-			'brand' => _x( 'Brand', 'trusted-shops', 'woocommerce-germanized' ), 
-			'mpn' => _x( 'MPN', 'trusted-shops', 'woocommerce-germanized' ),
+		$attributes = array(
+			'brand' => _x( 'Brand', 'trusted-shops', 'woocommerce-germanized' ),
 		);
 
 		// Create the taxonomy
@@ -83,8 +192,11 @@ class WC_GZD_Trusted_Shops_Admin {
 
 		wp_register_script( 'wc-' . $this->script_prefix . 'admin-trusted-shops', $admin_script_path . 'trusted-shops' . $suffix . '.js', array( 'jquery', 'woocommerce_settings' ), $this->base->plugin->version, true );
 		wp_localize_script( 'wc-' . $this->script_prefix . 'admin-trusted-shops', 'trusted_shops_params', array(
-			'option_prefix' => $this->base->option_prefix,
-			'script_prefix' => $this->script_prefix,
+			'option_prefix'           => $this->base->option_prefix,
+			'script_prefix'           => $this->script_prefix,
+            'expert_mode_mandatory'   => $this->get_expert_mode_mandatory_fields(),
+            'standard_mode_mandatory' => $this->get_standard_mode_mandatory_fields(),
+            'i18n_error_y_offset'     => _x( 'Please choose a non-negative Y-Offset', 'trusted-shops', 'woocommerce-germanized' ),
 		) );
 
 		wp_enqueue_script( 'wc-' . $this->script_prefix . 'admin-trusted-shops' );
@@ -142,6 +254,14 @@ class WC_GZD_Trusted_Shops_Admin {
 			array(	'title' => _x( 'Configure your Trustbadge', 'trusted-shops', 'woocommerce-germanized' ), 'type' => 'title', 'id' => 'trusted_shops_badge_options', 'desc' => sprintf( _x( '<a href="%s" target="_blank">Here</a> you can find a step-by-step introduction.', 'trusted-shops', 'woocommerce-germanized' ), $this->get_trusted_url( $this->base->urls[ 'integration' ] ) ) ),
 
 			array(
+				'title'     => _x( 'Trustbadge', 'trusted-shops', 'woocommerce-germanized' ),
+				'desc_tip'  => _x( 'Show the Trustbadge® on all your shop pages.', 'trusted-shops', 'woocommerce-germanized' ),
+				'id'        => 'woocommerce_' . $this->base->option_prefix . 'trusted_shops_enable_trustbadge',
+				'type'      => 'gzd_toggle',
+				'default'   => 'no'
+			),
+
+			array(
 				'title'  => _x( 'Variant', 'trusted-shops', 'woocommerce-germanized' ),
 				'id'   => 'woocommerce_' . $this->base->option_prefix . 'trusted_shops_trustbadge_variant',
 				'type'   => 'select',
@@ -155,13 +275,14 @@ class WC_GZD_Trusted_Shops_Admin {
 			),
 
 			array(
-				'title'  => _x( 'Y-Offset', 'trusted-shops', 'woocommerce-germanized' ),
-				'desc_tip' => _x( 'Adjust the y-axis position of your Trustbadge from 0-250 (pixel) vertically on low right hand side of your shop.', 'trusted-shops', 'woocommerce-germanized' ),
-				'id'   => 'woocommerce_' . $this->base->option_prefix . 'trusted_shops_trustbadge_y',
-				'type'   => 'number',
-				'desc' => __( 'px', 'trusted-shops', 'woocommerce-germanized' ),
-				'default' => '0',
-				'css'   => 'max-width:60px;',
+				'title'             => _x( 'Y-Offset', 'trusted-shops', 'woocommerce-germanized' ),
+				'desc_tip'          => _x( 'Adjust the y-axis position of your Trustbadge from 0-250 (pixel) vertically on low right hand side of your shop.', 'trusted-shops', 'woocommerce-germanized' ),
+				'id'                => 'woocommerce_' . $this->base->option_prefix . 'trusted_shops_trustbadge_y',
+				'type'              => 'number',
+				'desc'              => __( 'px', 'trusted-shops', 'woocommerce-germanized' ),
+				'default'           => '0',
+				'custom_attributes' => array( 'step' => '1', 'min' => 0 ),
+				'css'               => 'max-width:60px;',
 			),
 
 			array(
@@ -179,12 +300,11 @@ class WC_GZD_Trusted_Shops_Admin {
 			array(	'title' => _x( 'Configure Product Reviews', 'trusted-shops', 'woocommerce-germanized' ), 'type' => 'title', 'id' => 'trusted_shops_reviews_options' ),
 
 			array(
-				'title'  => _x( 'Product Reviews', 'trusted-shops', 'woocommerce-germanized' ),
-				'desc'   => _x( 'Collect Product Reviews. This options replaces default WooCommerce Reviews.', 'trusted-shops', 'woocommerce-germanized' ),
-				'desc_tip' => _x( 'More Traffic, less returns: Make sure to unlock unlimited Product Reviews in your Trusted Shops plan.', 'trusted-shops', 'woocommerce-germanized' ),
-				'id'   => 'woocommerce_' . $this->base->option_prefix . 'trusted_shops_enable_reviews',
-				'type'   => 'checkbox',
-				'default' => 'no'
+				'title'     => _x( 'Product Reviews', 'trusted-shops', 'woocommerce-germanized' ),
+				'desc_tip'  => _x( 'More Traffic, less returns: Make sure to unlock unlimited Product Reviews in your Trusted Shops plan.', 'trusted-shops', 'woocommerce-germanized' ),
+				'id'        => 'woocommerce_' . $this->base->option_prefix . 'trusted_shops_enable_reviews',
+				'type'      => 'gzd_toggle',
+				'default'   => 'no'
 			),
 
 			array(

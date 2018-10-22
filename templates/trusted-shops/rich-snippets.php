@@ -10,7 +10,7 @@
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 ?>
-
+<!-- Modul: WooCommerce Germanized -->
 <div itemscope itemtype="http://schema.org/LocalBusiness" class="wc-gzd-trusted-shops-rating-widget">
 	<meta itemprop="name" content="<?php echo bloginfo( 'url' ); ?>">
 	<meta itemprop="image" content="<?php echo $image; ?>">

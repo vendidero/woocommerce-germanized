@@ -12,6 +12,10 @@
 	margin-top: 1em;
 }
 
+.wc-gzd-admin-settings-trusted_shops textarea.has-error, .wc-gzd-admin-settings-trusted_shops input.has-error {
+	border: 1px solid #dc3232;
+}
+
 .trusted-shops-review-collector-wrap {
 	clear: both;
 	margin-top: 15px;

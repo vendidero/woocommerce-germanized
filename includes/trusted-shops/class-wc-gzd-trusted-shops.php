@@ -77,6 +77,8 @@ class WC_GZD_Trusted_Shops {
 	 */
 	public $api_url;
 
+	public $path = '';
+
 	/**
 	 * Sets Trusted Shops payment gateways and load dependencies
 	 */
@@ -90,6 +92,7 @@ class WC_GZD_Trusted_Shops {
 			'prefix' 		=> '',
 			'urls' 			=> array(),
 			'supports' 		=> array( 'reminder' ),
+			'path'          => dirname( __FILE__ ) . '/'
 		) );
 
 		foreach ( $args as $arg => $val ) {
@@ -100,6 +103,7 @@ class WC_GZD_Trusted_Shops {
 
 		// Refresh TS ID + API URL
 		$this->refresh();
+		$this->includes();
 
 		if ( is_admin() )
 			$this->get_dependency( 'admin' );
@@ -113,7 +117,10 @@ class WC_GZD_Trusted_Shops {
 			add_action( 'wp_enqueue_scripts', array( $this, 'load_frontend_assets' ), 50 );
 
 		add_action( 'init', array( $this, 'setup_payment_options' ) );
+	}
 
+	public function includes() {
+		include_once( $this->path . 'wc-gzd-ts-core-functions.php' );
 	}
 
 	public function setup_payment_options() {
@@ -281,6 +288,44 @@ class WC_GZD_Trusted_Shops {
 		return ( ! $this->review_widget_attachment ? false : $this->review_widget_attachment );
 	}
 
+	protected function get_product_data( $id, $attribute ) {
+		$product = is_numeric( $id ) ? wc_get_product( $id ) : $id;
+		$data    = wc_ts_get_crud_data( $product, $attribute );
+
+		if ( 'variation' === $product->get_type() ) {
+			if ( empty( $data ) ) {
+				$parent = wc_get_product( wc_ts_get_crud_data( $product, 'parent' ) );
+				$data   = wc_ts_get_crud_data( $parent, $attribute );
+			}
+		}
+
+		return $data;
+	}
+
+	public function get_product_mpn( $id ) {
+		return $this->get_product_data( $id, '_ts_mpn' );
+	}
+
+	public function get_product_gtin( $id ) {
+		return $this->get_product_data( $id, '_ts_gtin' );
+	}
+
+	public function get_product_skus( $id ) {
+		$product = is_numeric( $id ) ? wc_get_product( $id ) : $id;
+		$skus    = array();
+		$skus[]  = ( $product->get_sku() ) ? $product->get_sku() : wc_ts_get_crud_data( $product, 'id' );
+
+		if ( 'grouped' === $product->get_type() ) {
+			foreach( $product->get_children() as $child ) {
+				if ( $child_product = wc_get_product( $child ) ) {
+					$skus[] = ( $child_product->get_sku() ) ? $child_product->get_sku() : wc_ts_get_crud_data( $child_product, 'id' );
+				}
+			}
+		}
+
+		return $skus;
+	}
+
 	public function get_template( $name ) {
 		$html = "";
 		ob_start();
@@ -298,14 +343,26 @@ class WC_GZD_Trusted_Shops {
 		if ( $replace ) {
 
 			$args = wp_parse_args( $args, array(
-				'id' => $this->id,
+				'id'     => $this->id,
 				'locale' => $this->get_locale(),
 			) );
 
 			foreach ( $args as $key => $arg ) {
-				$script = str_replace( '{' . $key . '}', $arg, $script );
-			}
+				$search  = '{' . $key . '}';
+				$replace = $arg;
 
+				if ( is_array( $arg ) ) {
+					$search = "'{" . $key . "}'";
+
+					foreach( $arg as $k => $v ) {
+						$arg[$k] = "'$v'";
+					}
+
+					$replace = implode( ',', $arg );
+				}
+
+				$script = str_replace( $search, $replace, $script );
+			}
 		}
 
 		return $script;
@@ -313,13 +370,11 @@ class WC_GZD_Trusted_Shops {
 
 	public function get_product_sticker_code( $replace = true, $args = array() ) {
 		if ( $replace ) {
-
 			$args = wp_parse_args( $args, array(
 				'border_color' => $this->product_sticker_border_color,
-				'star_color' => $this->product_sticker_star_color,
-				'star_size' => $this->product_sticker_star_size,
+				'star_color'   => $this->product_sticker_star_color,
+				'star_size'    => $this->product_sticker_star_size,
 			) );
-
 		}
 
 		return $this->get_script( 'product_sticker', $replace, $args );
@@ -329,10 +384,10 @@ class WC_GZD_Trusted_Shops {
 		if ( $replace ) {
 
 			$args = wp_parse_args( $args, array(
-				'element' => '#ts_product_widget',
+				'element'    => '#ts_product_widget',
 				'star_color' => $this->product_widget_star_color,
-				'star_size' => $this->product_widget_star_size,
-				'font_size' => $this->product_widget_font_size,
+				'star_size'  => $this->product_widget_star_size,
+				'font_size'  => $this->product_widget_font_size,
 			) );
 
 		}
@@ -373,9 +428,7 @@ class WC_GZD_Trusted_Shops {
 			$locale = $supported[ $base ];
 
 		return $locale;
-
 	}
-
 }
 
 ?>
