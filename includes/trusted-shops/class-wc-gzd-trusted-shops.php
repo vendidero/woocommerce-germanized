@@ -125,12 +125,9 @@ class WC_GZD_Trusted_Shops {
 	}
 
 	public function setup_wpml_support( $settings ) {
-		$setting_ids = array(
-			'woocommerce_gzd_trusted_shops_id'               => '',
-			'woocommerce_gzd_trusted_shops_integration_mode' => '',
-		);
+		$admin = $this->get_dependency( 'admin' );
 
-		return array_merge( $settings, $setting_ids );
+		return array_merge( $settings, $admin->get_translatable_settings() );
 	}
 
 	public function includes() {

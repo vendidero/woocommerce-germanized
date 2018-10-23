@@ -8,10 +8,6 @@ class WC_GZD_Trusted_Shops_Admin {
 
 	public $script_prefix = '';
 
-	protected $expert_mode_mandatory = array();
-
-	protected $standard_mode_mandatory = array();
-
 	public static function instance( $base ) {
 		if ( is_null( self::$_instance ) )
 			self::$_instance = new self( $base );
@@ -134,22 +130,6 @@ class WC_GZD_Trusted_Shops_Admin {
 	    }
     }
 
-	public function get_expert_mode_mandatory_fields() {
-		return array(
-			"woocommerce_{$this->base->option_prefix}trusted_shops_trustbadge_code"        => _x( 'Please fill out the trustbadge code.', 'trusted-shops', 'woocommerce-germanized' ),
-			"woocommerce_{$this->base->option_prefix}trusted_shops_product_sticker_code"   => _x( 'Please fill out the product sticker code.', 'trusted-shops', 'woocommerce-germanized' ),
-			"woocommerce_{$this->base->option_prefix}trusted_shops_product_widget_code"    => _x( 'Please fill out the widget code.', 'trusted-shops', 'woocommerce-germanized' ),
-		);
-    }
-
-    public function get_standard_mode_mandatory_fields() {
-	    return array(
-		    "woocommerce_{$this->base->option_prefix}trusted_shops_product_sticker_border_color" => _x( 'Please choose a review border color.', 'trusted-shops', 'woocommerce-germanized' ),
-		    "woocommerce_{$this->base->option_prefix}trusted_shops_product_sticker_star_color"   => _x( 'Please choose a review star color.', 'trusted-shops', 'woocommerce-germanized' ),
-		    "woocommerce_{$this->base->option_prefix}trusted_shops_product_widget_star_color"    => _x( 'Please choose a widget star color.', 'trusted-shops', 'woocommerce-germanized' ),
-        );
-    }
-
 	public function create_attribute() {
 
 		$attributes = array(
@@ -194,8 +174,6 @@ class WC_GZD_Trusted_Shops_Admin {
 		wp_localize_script( 'wc-' . $this->script_prefix . 'admin-trusted-shops', 'trusted_shops_params', array(
 			'option_prefix'           => $this->base->option_prefix,
 			'script_prefix'           => $this->script_prefix,
-            'expert_mode_mandatory'   => $this->get_expert_mode_mandatory_fields(),
-            'standard_mode_mandatory' => $this->get_standard_mode_mandatory_fields(),
             'i18n_error_mandatory'    => _x( 'This field is mandatory', 'trusted-shops', 'woocommerce-germanized' ),
 		) );
 
@@ -223,6 +201,13 @@ class WC_GZD_Trusted_Shops_Admin {
 
     public function get_order_statuses() {
 	    return wc_get_order_statuses();
+    }
+
+    public function get_translatable_settings() {
+        return array(
+	        'woocommerce_gzd_trusted_shops_id'               => '',
+	        'woocommerce_gzd_trusted_shops_integration_mode' => '',
+        );
     }
 
 	/**
