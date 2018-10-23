@@ -113,10 +113,24 @@ class WC_GZD_Trusted_Shops {
 		$this->get_dependency( 'widgets' );
 		$this->get_dependency( 'template_hooks' );
 
-		if ( $this->is_enabled() )
+		if ( $this->is_enabled() ) {
 			add_action( 'wp_enqueue_scripts', array( $this, 'load_frontend_assets' ), 50 );
 
+			if ( is_admin() ) {
+				add_filter( 'woocommerce_gzd_wpml_translatable_options', array( $this, 'setup_wpml_support' ), 20 );
+			}
+		}
+
 		add_action( 'init', array( $this, 'setup_payment_options' ) );
+	}
+
+	public function setup_wpml_support( $settings ) {
+		$setting_ids = array(
+			'woocommerce_gzd_trusted_shops_id'               => '',
+			'woocommerce_gzd_trusted_shops_integration_mode' => '',
+		);
+
+		return array_merge( $settings, $setting_ids );
 	}
 
 	public function includes() {
@@ -125,21 +139,20 @@ class WC_GZD_Trusted_Shops {
 
 	public function setup_payment_options() {
 		$this->gateways = apply_filters( 'woocommerce_trusted_shops_gateways', array(
-				'prepayment' => _x( 'Prepayment', 'trusted-shops', 'woocommerce-germanized' ),
+				'prepayment'       => _x( 'Prepayment', 'trusted-shops', 'woocommerce-germanized' ),
 				'cash_on_delivery' => _x( 'Cash On Delivery', 'trusted-shops', 'woocommerce-germanized' ),
-				'credit_card' => _x( 'Credit Card', 'trusted-shops', 'woocommerce-germanized' ),
-				'paypal' => _x( 'Paypal', 'trusted-shops', 'woocommerce-germanized' ),
-				'invoice' => _x( 'Invoice', 'trusted-shops', 'woocommerce-germanized' ),
-				'direct_debit' => _x( 'Direct Debit', 'trusted-shops', 'woocommerce-germanized' ),
-				'financing' =>  _x( 'Financing', 'trusted-shops', 'woocommerce-germanized' ),
+				'credit_card'      => _x( 'Credit Card', 'trusted-shops', 'woocommerce-germanized' ),
+				'paypal'           => _x( 'Paypal', 'trusted-shops', 'woocommerce-germanized' ),
+				'invoice'          => _x( 'Invoice', 'trusted-shops', 'woocommerce-germanized' ),
+				'direct_debit'     => _x( 'Direct Debit', 'trusted-shops', 'woocommerce-germanized' ),
+				'financing'        =>  _x( 'Financing', 'trusted-shops', 'woocommerce-germanized' ),
 			)
 		);
 	}
 
 	public function load_frontend_assets() {
-
-		$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
-		$assets_path = $this->plugin->plugin_url() . '/assets/css';
+		$suffix        = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
+		$assets_path   = $this->plugin->plugin_url() . '/assets/css';
 		$script_prefix = str_replace( '_', '-', $this->option_prefix );
 
 		wp_register_style( 'woocommerce-' . $script_prefix . 'trusted-shops', $assets_path . '/woocommerce-' . $script_prefix . 'trusted-shops' . $suffix . '.css', false, $this->plugin->version );
@@ -288,7 +301,7 @@ class WC_GZD_Trusted_Shops {
 		return ( ! $this->review_widget_attachment ? false : $this->review_widget_attachment );
 	}
 
-	protected function get_product_data( $id, $attribute ) {
+	protected function get_product_shopping_data( $id, $attribute ) {
 		$product = is_numeric( $id ) ? wc_get_product( $id ) : $id;
 		$data    = wc_ts_get_crud_data( $product, $attribute );
 
@@ -303,11 +316,11 @@ class WC_GZD_Trusted_Shops {
 	}
 
 	public function get_product_mpn( $id ) {
-		return $this->get_product_data( $id, '_ts_mpn' );
+		return $this->get_product_shopping_data( $id, '_ts_mpn' );
 	}
 
 	public function get_product_gtin( $id ) {
-		return $this->get_product_data( $id, '_ts_gtin' );
+		return $this->get_product_shopping_data( $id, '_ts_gtin' );
 	}
 
 	public function get_product_skus( $id ) {
@@ -331,6 +344,7 @@ class WC_GZD_Trusted_Shops {
 		ob_start();
 		wc_get_template( 'trusted-shops/' . str_replace( '_', '-', $name ) . '-tpl.php' );
 		$html = ob_get_clean();
+
 		return preg_replace('/^\h*\v+/m', '', strip_tags( $html ) );
 	}
 
@@ -341,7 +355,6 @@ class WC_GZD_Trusted_Shops {
 			$script = $this->{$name . "_code"};
 
 		if ( $replace ) {
-
 			$args = wp_parse_args( $args, array(
 				'id'     => $this->id,
 				'locale' => $this->get_locale(),
@@ -380,6 +393,19 @@ class WC_GZD_Trusted_Shops {
 		return $this->get_script( 'product_sticker', $replace, $args );
 	}
 
+	public function get_review_sticker_code( $replace = true, $args = array() ) {
+		if ( $replace ) {
+			$args = wp_parse_args( $args, array(
+				'bg_color'     => $this->rating_sticker_bg_color,
+				'font'         => $this->rating_sticker_font,
+				'number'       => $this->rating_sticker_number,
+				'better_than'  => $this->rating_sticker_better_than
+			) );
+		}
+
+		return $this->get_script( 'review_sticker', $replace, $args );
+	}
+
 	public function get_product_widget_code( $replace = true, $args = array() ) {
 		if ( $replace ) {
 
@@ -397,20 +423,17 @@ class WC_GZD_Trusted_Shops {
 
 	public function get_trustbadge_code( $replace = true, $args = array() ) {
 		if ( $replace ) {
-
 			$args = wp_parse_args( $args, array(
-				'offset' => $this->trustbadge_y,
+				'offset'  => $this->trustbadge_y,
 				'variant' => $this->trustbadge_variant === 'standard' ? 'reviews' : 'default',
 				'disable' => $this->trustbadge_variant === 'disable' ? 'true' : 'false',
 			) );
-
 		}
 
 		return $this->get_script( 'trustbadge', $replace, $args );
 	}
 
 	public function get_locale() {
-
 		$supported = array(
 			'de' => 'de_DE',
 			'en' => 'en_GB',
@@ -422,7 +445,7 @@ class WC_GZD_Trusted_Shops {
 		);
 
 		$locale = 'en_GB';
-		$base = substr( get_locale(), 0, 2 );
+		$base   = substr( get_locale(), 0, 2 );
 
 		if ( isset( $supported[ $base ] ) )
 			$locale = $supported[ $base ];
