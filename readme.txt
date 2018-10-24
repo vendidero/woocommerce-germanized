@@ -5,7 +5,7 @@ Requires at least: 3.8
 Tested up to: 5.0
 WC requires at least: 2.4
 WC tested up to: 3.5
-Stable tag: 2.2.1
+Stable tag: 2.2.2
 Requires PHP: 5.3
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -183,6 +183,12 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 4. WooCommerce Multistep Checkout (Pro)
 
 == Changelog ==
+
+= 2.2.2 =
+* Fix: Load WPML Helper settings filter for settings screen only to avoid problems during admin actions
+* Fix: Do not force tax calculation for fees if customer is a vat exempt
+* Improvement: Keep hidden terms checkbox (woo builtin) in sync with GZD checkbox to avoid plugin conflicts
+* Improvement: Use higher priority to refresh order fragments to avoid plugin conflicts
 
 = 2.2.1 =
 * Fix: Make sure that order confirmation email is not being sent twice

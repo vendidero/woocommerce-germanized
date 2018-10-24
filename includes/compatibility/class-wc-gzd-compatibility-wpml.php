@@ -128,18 +128,29 @@ class WC_GZD_Compatibility_Wpml extends WC_GZD_Compatibility {
 			return;
 		}
 
-		foreach( $this->get_translatable_options() as $option => $args ) {
-			add_filter( 'option_' . $option, array( $this, 'translate_option_filter' ), 10, 2 );
-			add_filter( 'pre_update_option_' . $option, array( $this, 'pre_update_translation_filter' ), 10, 3 );
-
-			wc_gzd_remove_class_filter( 'option_' . $option, 'WPML_Admin_Texts', 'icl_st_translate_admin_string', 10 );
-		}
-
-		add_action( 'admin_init', array( $this, 'filter_settings' ), 50 );
+		add_action( 'admin_init', array( $this, 'set_filters' ), 50 );
 	}
 
-	public function filter_settings() {
+	protected function enable_option_filters() {
+		$enable = false;
+
 		if ( isset( $_GET['tab'] ) && ( 'germanized' === $_GET['tab'] || 'email' === $_GET['tab'] ) ) {
+			$enable = true;
+		}
+
+		return apply_filters( 'woocommerce_gzd_enable_wpml_string_translation_settings_filters', $enable );
+	}
+
+	public function set_filters() {
+		if ( $this->enable_option_filters() ) {
+
+			foreach( $this->get_translatable_options() as $option => $args ) {
+				add_filter( 'option_' . $option, array( $this, 'translate_option_filter' ), 10, 2 );
+				add_filter( 'pre_update_option_' . $option, array( $this, 'pre_update_translation_filter' ), 10, 3 );
+
+				wc_gzd_remove_class_filter( 'option_' . $option, 'WPML_Admin_Texts', 'icl_st_translate_admin_string', 10 );
+			}
+
 			add_filter( 'woocommerce_gzd_get_settings_filter', array( $this, 'add_admin_notices' ), 10, 1 );
 			add_filter( 'woocommerce_gzd_legal_checkbox_fields', array( $this, 'add_admin_notices_checkboxes' ), 10, 2 );
 			add_filter( 'woocommerce_gzd_admin_email_order_confirmation_text_option', array( $this, 'add_admin_notices_email' ), 10, 1 );
