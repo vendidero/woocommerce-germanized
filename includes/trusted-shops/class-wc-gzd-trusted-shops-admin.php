@@ -205,8 +205,12 @@ class WC_GZD_Trusted_Shops_Admin {
 
     public function get_translatable_settings() {
         return array(
-	        'woocommerce_gzd_trusted_shops_id'               => '',
-	        'woocommerce_gzd_trusted_shops_integration_mode' => '',
+	        'woocommerce_' . $this->base->option_prefix . 'trusted_shops_id'                 => '',
+	        'woocommerce_' . $this->base->option_prefix . 'trusted_shops_integration_mode'   => '',
+	        'woocommerce_' . $this->base->option_prefix . 'trusted_shops_trustbadge_enable'  => '',
+	        'woocommerce_' . $this->base->option_prefix . 'trusted_shops_trustbadge_variant' => '',
+	        'woocommerce_' . $this->base->option_prefix . 'trusted_shops_trustbadge_y'       => '',
+	        'woocommerce_' . $this->base->option_prefix . 'trusted_shops_trustbadge_code'    => '',
         );
     }
 
@@ -217,7 +221,6 @@ class WC_GZD_Trusted_Shops_Admin {
 	 */
 	public function get_settings() {
 
-		$payment_options   = array( '' => __( 'None', 'woocommerce-germanized' ) ) + $this->base->gateways;
 		$attributes        = wc_get_attribute_taxonomies();
 		$linked_attributes = array();
 			
@@ -310,7 +313,7 @@ class WC_GZD_Trusted_Shops_Admin {
 			array( 'type' => 'sectionend', 'id' => 'trusted_shops_badge_options' ),
 
 			array(
-                'title'             => _x( 'Configure Product Reviews', 'trusted-shops', 'woocommerce-germanized' ),
+                'title'             => _x( 'Configure Shop Reviews', 'trusted-shops', 'woocommerce-germanized' ),
                 'type'              => 'title',
                 'id'                => 'trusted_shops_review_sticker_options'
             ),
@@ -568,54 +571,6 @@ class WC_GZD_Trusted_Shops_Admin {
 			array( 'type' => 'sectionend', 'id' => 'trusted_shops_reviews_options' ),
 
 		);
-
-		$options = array_merge( $options, array(
-			array(	'title' => _x( 'Assign payment methods', 'trusted-shops', 'woocommerce-germanized' ), 'type' => 'title', 'id' => 'trusted_shops_payment_options' ),
-		) );
-
-		$payment_gateways = WC()->payment_gateways->payment_gateways();
-
-		foreach ( $payment_gateways as $gateway ) {
-			$default = '';
-
-			switch ( $gateway->id ) {
-				case 'bacs':
-					$default = 'prepayment';
-					break;
-				case 'paypal':
-					$default = 'paypal';
-					break;
-				case 'cod':
-					$default = 'cash_on_delivery';
-					break;
-				case 'cheque':
-					$default = 'cash_on_delivery';
-					break;
-				case 'mijireh_checkout':
-					$default = 'credit_card';
-					break;
-				case 'direct-debit':
-					$default = 'direct_debit';
-					break;
-				default:
-					$default = $gateway->id;
-			}
-
-			array_push( $options, array(
-				'title'         => empty( $gateway->method_title ) ? ucfirst( $gateway->id ) : $gateway->method_title,
-				'desc'          => sprintf( _x( 'Choose a Trusted Shops Payment Gateway linked to WooCommerce Payment Gateway %s', 'trusted-shops', 'woocommerce-germanized' ), empty( $gateway->method_title ) ? ucfirst( $gateway->id ) : $gateway->method_title ),
-				'desc_tip'      => true,
-				'id'            => 'woocommerce_' . $this->base->option_prefix . 'trusted_shops_gateway_' . $gateway->id,
-				'css'           => 'min-width:250px;',
-				'default'       => $default,
-				'type'          => 'select',
-				'class'         => 'chosen_select',
-				'options'       => $payment_options,
-				'autoload'      => false
-			) );
-		}
-
-		array_push( $options, array( 'type' => 'sectionend', 'id' => 'trusted_shops_payment_options' ) );
 
 		if ( $this->base->supports( 'reminder' ) ) {
 

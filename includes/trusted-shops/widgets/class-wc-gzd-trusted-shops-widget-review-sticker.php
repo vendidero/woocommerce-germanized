@@ -1,8 +1,8 @@
 <?php
 /**
- * Trusted Shops Rich Snippets Widget
+ * Trusted Shops Reviews Widget
  *
- * Displays Trusted Shops reviews as rich snippets
+ * Displays Trusted Shops reviews as graphic
  *
  * @author 		Vendidero
  * @category 	Widgets
@@ -12,17 +12,17 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-class WC_GZD_Trusted_Shops_Widget_Rich_Snippets extends WC_Widget {
+class WC_GZD_Trusted_Shops_Widget_Review_Sticker extends WC_Widget {
 
 	public function __construct() {
-		$this->widget_cssclass    = 'woocommerce woocommerce_gzd widget_trusted_shops_rich_snippets';
-		$this->widget_description = _x( "Display your Trusted Shops Reviews as Rich Snippets.", 'trusted-shops', 'woocommerce-germanized' );
-		$this->widget_id          = 'woocommerce_gzd_widget_trusted_shops_rich_snippets';
-		$this->widget_name        = _x( 'Trusted Shops Rich Snippets', 'trusted-shops', 'woocommerce-germanized' );
+		$this->widget_cssclass    = 'woocommerce woocommerce_gzd widget_trusted_shops_review_sticker';
+		$this->widget_description = _x( "Show your TS shop review sticker.", 'trusted-shops', 'woocommerce-germanized' );
+		$this->widget_id          = 'woocommerce_gzd_widget_trusted_shops_shop_review_sticker';
+		$this->widget_name        = _x( 'Trusted Shops Shop Review Sticker', 'trusted-shops', 'woocommerce-germanized' );
 		$this->settings           = array(
 			'title'  => array(
 				'type'  => 'text',
-				'std'   => _x( 'Trusted Shops Rich Snippets', 'trusted-shops', 'woocommerce-germanized' ),
+				'std'   => _x( 'Trusted Shops Reviews', 'trusted-shops', 'woocommerce-germanized' ),
 				'label' => _x( 'Title', 'trusted-shops', 'woocommerce-germanized' ),
 			),
 		);
@@ -49,9 +49,9 @@ class WC_GZD_Trusted_Shops_Widget_Rich_Snippets extends WC_Widget {
 		if ( $title )
 			echo $before_title . $title . $after_title;
 
-		echo '<div class="widget_trusted_shops_reviews_content">';
+		echo '<div class="widget_trusted_shops_review_sticker_content">';
 
-		echo do_shortcode( '[trusted_shops_rich_snippets]' );
+		echo do_shortcode( '[trusted_shops_review_sticker]' );
 
 		echo '</div>';
 

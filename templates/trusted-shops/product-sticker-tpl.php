@@ -20,6 +20,8 @@ _tsProductReviewsConfig = {
     ratingSummary: 'false',
     maxHeight: '1200px',
     element: '#ts_product_sticker',
+    hideEmptySticker: 'false',
+    richSnippets: 'off',
     introtext: ''  /* optional */
 };
 var scripts = document.getElementsByTagName('SCRIPT'), me = scripts[scripts.length - 1];

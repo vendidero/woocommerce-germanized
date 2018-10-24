@@ -24,16 +24,6 @@ class WC_GZD_Trusted_Shops_Schedule {
 			if ( empty( $reviews ) )
 				add_action( 'init', array( $this, 'update_reviews' ) );
 		}
-		
-		if ( $this->base->is_review_widget_enabled() ) {
-
-			add_action( 'woocommerce_gzd_trusted_shops_reviews', array( $this, 'update_review_widget' ) );
-			$attachment = $this->base->review_widget_attachment;
-
-			// Generate attachment for the first time
-			if ( empty( $attachment ) )
-				add_action( 'init', array( $this, 'update_review_widget' ) );
-		}
 
 		if ( $this->base->is_review_reminder_enabled() )
 			add_action( 'woocommerce_gzd_trusted_shops_reviews', array( $this, 'send_mails' ) );
@@ -60,53 +50,6 @@ class WC_GZD_Trusted_Shops_Schedule {
 		}
 
 		update_option( 'woocommerce_' . $this->base->option_prefix . 'trusted_shops_reviews_cache', $update );
-	}
-
-	/**
-	 * Updates the review widget graphic and saves it as an attachment
-	 */
-	public function update_review_widget() {
-		
-		$uploads = wp_upload_dir();
-		
-		if ( is_wp_error( $uploads ) )
-			return;
-
-		$filename = $this->base->id . '.gif';
-		$raw_data = $this->get_file_content( 'https://www.trustedshops.com/bewertung/widget/widgets/' . $filename );
-
-		// Seems like neither CURL nor file_get_contents does work
-		if ( ! $raw_data )
-			return;
-		
-		$filepath = trailingslashit( $uploads['path'] ) . $filename;
-  		file_put_contents( $filepath, $raw_data );
-  		
-  		$attachment = array(
-  			'guid' => $uploads[ 'url' ] . '/' . basename( $filepath ),
-  			'post_mime_type' => 'image/gif',
-  			'post_title' => _x( 'Trusted Shops Customer Reviews', 'trusted-shops', 'woocommerce-germanized' ),
-  			'post_content' => '',
-  			'post_status' => 'publish',
-  		);
-
-  		$existing_attachment_id = $this->base->get_review_widget_attachment();
-
-		if ( ! $existing_attachment_id || ! get_post( $existing_attachment_id ) ) {
-			$attachment_id = wp_insert_attachment( $attachment, $filepath );
-			update_option( 'woocommerce_' . $this->base->option_prefix . 'trusted_shops_review_widget_attachment', $attachment_id );
-		} else {
-			$attachment_id = $existing_attachment_id;
-			update_attached_file( $attachment_id, $filepath );
-			$attachment[ 'ID' ] = $attachment_id;
-			wp_update_post( $attachment );
-		}
-
-		require_once( ABSPATH . 'wp-admin/includes/image.php' );
-		
-		// Generate the metadata for the attachment, and update the database record.
-		$attach_data = wp_generate_attachment_metadata( $attachment_id, $filepath );
-		wp_update_attachment_metadata( $attachment_id, $attach_data );
 	}
 
 	/**
@@ -154,20 +97,4 @@ class WC_GZD_Trusted_Shops_Schedule {
 			}
 		}
 	}
-
-	/**
-	 * Helper Function which decides between CURL or file_get_contents based on fopen
-	 *  
-	 * @param  [type] $url [description]
-	 */
-	private function get_file_content( $url ) {
-		$response = wp_remote_post( $url );
-
-		if ( is_array( $response ) ) {
-			return $response[ 'body' ];
-		}
-
-	    return false;
-	}
-
 }

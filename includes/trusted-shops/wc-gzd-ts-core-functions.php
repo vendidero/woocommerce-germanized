@@ -25,3 +25,11 @@ function wc_ts_help_tip( $tip, $allow_html = false ) {
 function wc_ts_set_crud_data( $object, $key, $value ) {
 	return wc_gzd_set_crud_data( $object, $key, $value );
 }
+
+function wc_ts_wpml_string_translation_enabled() {
+	$gzd            = WC_germanized();
+	$compatibilites = $gzd->compatibilities;
+
+	var_dump($compatibilites);
+	exit();
+}

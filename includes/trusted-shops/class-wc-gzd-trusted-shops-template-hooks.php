@@ -32,6 +32,18 @@ class WC_GZD_Trusted_Shops_Template_Hooks {
 			add_filter( 'woocommerce_gzd_template_name', array( $this, 'set_product_widget_template' ), 50, 1 );
 		}
 
+		if ( $this->base->is_rich_snippets_enabled() ) {
+			if ( in_array( 'category', $this->base->get_rich_snippets_locations() ) ) {
+
+			}
+			if ( in_array( 'home', $this->base->get_rich_snippets_locations() ) ) {
+
+			}
+			if ( in_array( 'product', $this->base->get_rich_snippets_locations() ) ) {
+
+			}
+		}
+
 		// Save Fields on order
 		if ( $this->base->is_review_reminder_enabled() ) {
 
@@ -62,7 +74,7 @@ class WC_GZD_Trusted_Shops_Template_Hooks {
 					'p'              => $order_id,
 					'post_status'    => array_keys( wc_get_order_statuses() ),
 					'posts_per_page' => 1,
-					'meta_query'  => array(
+					'meta_query'     => array(
 						'code'            => array(
 							'key'         => '_ts_cancel_review_reminder_code',
 							'compare'     => '=',
@@ -168,42 +180,46 @@ class WC_GZD_Trusted_Shops_Template_Hooks {
 	}
 
 	public function set_product_widget_template( $template ) {
-		
-		if ( in_array( $template, array( 'single-product/rating.php' ) ) )
-			$template = 'trusted-shops/product-widget.php';
+		if ( in_array( $template, array( 'single-product/rating.php' ) ) ) {
+			$GLOBALS['plugin'] = $this->base;
+			$template          = 'trusted-shops/product-widget.php';
+		}
 
 		return $template;
 	}
 
 	public function remove_review_tab( $tabs ) {
-		
-		if ( isset( $tabs[ 'reviews' ] ) )
-			unset( $tabs[ 'reviews' ] );
+		if ( isset( $tabs['reviews'] ) )
+			unset( $tabs['reviews'] );
+
 		return $tabs;
-	
 	}
 
 	public function review_tab( $tabs ) {
-		$tabs[ 'trusted_shops_reviews' ] = array(
-			'title' => _x( 'Reviews', 'trusted-shops', 'woocommerce-germanized' ),
+		$tabs['trusted_shops_reviews'] = array(
+			'title'    => $this->base->product_sticker_tab_text,
 			'priority' => 30,
 			'callback' => array( $this, 'template_product_sticker' ),
 		);
 		return $tabs;
 	}
 
+	public function template_review_sticker( $template ) {
+		wc_get_template( 'trusted-shops/review-sticker.php', array( 'plugin' => $this->base ) );
+	}
+
 	public function template_product_sticker( $template ) {
-		wc_get_template( 'trusted-shops/product-sticker.php' );
+		wc_get_template( 'trusted-shops/product-sticker.php', array( 'plugin' => $this->base ) );
 	}
 
 	public function template_trustbadge() {
-		wc_get_template( 'trusted-shops/trustbadge.php' );
+		wc_get_template( 'trusted-shops/trustbadge.php', array( 'plugin' => $this->base ) );
 	}
 
 	public function template_thankyou( $order_id ) {
 		wc_get_template( 'trusted-shops/thankyou.php', array( 
 			'order_id'        => $order_id,
-			'base'            => $this->base,
+			'plugin'          => $this->base,
 			'brand_attribute' => $this->base->brand_attribute,
 		) );
 	}

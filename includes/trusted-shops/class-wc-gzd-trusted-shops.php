@@ -201,6 +201,24 @@ class WC_GZD_Trusted_Shops {
 		return ( $this->id ) ? true : false;
 	}
 
+	public function get_rich_snippets_locations() {
+		$locations = array();
+
+		if ( $this->rich_snippets_category === 'yes' ) {
+			$locations[] = 'category';
+		}
+
+		if ( $this->rich_snippets_product === 'yes' ) {
+			$locations[] = 'product';
+		}
+
+		if ( $this->rich_snippets_home === 'yes' ) {
+			$locations[] = 'home';
+		}
+
+		return $locations;
+	}
+
 	/**
 	 * Checks whether Trusted Shops Rich Snippets are enabled
 	 * 
@@ -228,11 +246,15 @@ class WC_GZD_Trusted_Shops {
 	}
 
 	public function is_product_reviews_enabled() {
-		return ( $this->enable_reviews === 'yes' && $this->is_enabled() ? true : false );
+		return ( $this->reviews_enable === 'yes' && $this->is_enabled() ? true : false );
 	}
 
 	public function is_product_sticker_enabled() {
 		return ( $this->is_product_reviews_enabled() && $this->product_sticker_enable === 'yes' ? true : false );
+	}
+
+	public function is_review_sticker_enabled() {
+		return ( $this->is_product_reviews_enabled() && $this->review_sticker_enable === 'yes' ? true : false );
 	}
 
 	public function is_product_widget_enabled() {
@@ -250,7 +272,7 @@ class WC_GZD_Trusted_Shops {
 	 * @return string
 	 */
 	public function get_payment_gateway( $payment_method_id ) {
-		return ( $this->{"gateway_$payment_method_id"} ? strtoupper( $this->{"gateway_$payment_method_id"} ) : '' );
+		return 'wcOther';
 	}
 
 	/**
@@ -338,8 +360,9 @@ class WC_GZD_Trusted_Shops {
 
 	public function get_template( $name ) {
 		$html = "";
+
 		ob_start();
-		wc_get_template( 'trusted-shops/' . str_replace( '_', '-', $name ) . '-tpl.php' );
+		wc_get_template( 'trusted-shops/' . str_replace( '_', '-', $name ) . '-tpl.php', array( 'plugin' => $this ) );
 		$html = ob_get_clean();
 
 		return preg_replace('/^\h*\v+/m', '', strip_tags( $html ) );

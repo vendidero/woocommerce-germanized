@@ -13,5 +13,5 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
     /**
      * Modul: WooCommerce Germanized
      */
-	<?php echo WC_germanized()->trusted_shops->get_trustbadge_code(); ?>
+	<?php echo $plugin->get_trustbadge_code(); ?>
 </script>

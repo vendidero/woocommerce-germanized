@@ -22,9 +22,9 @@ class WC_GZD_Trusted_Shops_Shortcodes {
 
 		// Define shortcodes
 		$shortcodes = array(
-			'trusted_shops_rich_snippets'=> array( $this, 'trusted_shops_rich_snippets' ),
-			'trusted_shops_reviews'		 => array( $this, 'trusted_shops_reviews' ),
-			'trusted_shops_badge'		 => array( $this, 'trusted_shops_badge' ),
+			'trusted_shops_rich_snippets'  => array( $this, 'trusted_shops_rich_snippets' ),
+			'trusted_shops_review_sticker' => array( $this, 'trusted_shops_review_sticker' ),
+			'trusted_shops_badge'		   => array( $this, 'trusted_shops_badge' ),
 		);
 
 		foreach ( $shortcodes as $shortcode => $function ) {
@@ -34,12 +34,10 @@ class WC_GZD_Trusted_Shops_Shortcodes {
 	}
 
 	public function get_trusted_shops_rich_snippets_image() {
-	
-		$image_url = '';
+		$image_url      = '';
 		$custom_logo_id = get_theme_mod( 'custom_logo' );
 
 		if ( ! empty( $custom_logo_id ) ) {
-			
 			$image = wp_get_attachment_image_src( $custom_logo_id , 'full' );
 			
 			if ( ! empty( $image ) )
@@ -66,16 +64,15 @@ class WC_GZD_Trusted_Shops_Shortcodes {
 	 * @return string       
 	 */
 	public function trusted_shops_rich_snippets( $atts ) {
-		
 		ob_start();
-		wc_get_template( 'trusted-shops/rich-snippets.php', array( 
-			'rating' => $this->base->get_average_rating(), 
+		wc_get_template( 'trusted-shops/rich-snippets.php', array(
+			'plugin'      => $this->base,
+			'rating'      => $this->base->get_average_rating(),
 			'rating_link' => $this->base->get_rating_link(), 
-			'image' => $this->get_trusted_shops_rich_snippets_image()
+			'image'       => $this->get_trusted_shops_rich_snippets_image()
 		) );
 		$html = ob_get_clean();
 		return $this->base->is_enabled() ? '<div class="woocommerce woocommerce-gzd">' . $html . '</div>' : '';
-	
 	}
 
 	/**
@@ -84,13 +81,13 @@ class WC_GZD_Trusted_Shops_Shortcodes {
 	 * @param  array $atts 
 	 * @return string       
 	 */
-	public function trusted_shops_reviews( $atts ) {
-		
+	public function trusted_shops_review_sticker( $atts ) {
 		ob_start();
-		wc_get_template( 'trusted-shops/reviews.php', array( 'rating_link' => $this->base->get_rating_link(), 'widget_attachment' => $this->base->get_review_widget_attachment() ) );
+		wc_get_template( 'trusted-shops/review-sticker.php', array(
+			'plugin'    => $this->base
+		) );
 		$html = ob_get_clean();
 		return $this->base->is_enabled() ? '<div class="woocommerce woocommerce-gzd">' . $html . '</div>' : '';
-	
 	}
 
 	/**
@@ -100,10 +97,8 @@ class WC_GZD_Trusted_Shops_Shortcodes {
 	 * @return string       
 	 */
 	public function trusted_shops_badge( $atts ) {
-
 		extract( shortcode_atts( array('width' => ''), $atts ) );
 		return $this->base->is_enabled() ? '<a class="trusted-shops-badge" style="' . ( $width ? 'background-size:' . ( $width - 1 ) . 'px auto; width: ' . $width . 'px; height: ' . $width . 'px;' : '' ) . '" href="' . $this->base->get_certificate_link() . '" target="_blank"></a>' : '';
-	
 	}
 
 }
