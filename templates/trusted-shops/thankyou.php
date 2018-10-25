@@ -18,7 +18,7 @@ $order = wc_get_order( $order_id );
 	<span id="tsCheckoutBuyerEmail"><?php echo wc_ts_get_crud_data( $order, 'billing_email' ); ?></span>
 	<span id="tsCheckoutBuyerId"><?php echo wc_ts_get_crud_data( $order, 'user_id' ); ?></span>
 	<span id="tsCheckoutOrderAmount"><?php echo $order->get_total(); ?></span>
-	<span id="tsCheckoutOrderCurrency"><?php echo wc_gzd_get_order_currency( $order ); ?></span>
+	<span id="tsCheckoutOrderCurrency"><?php echo wc_ts_get_order_currency( $order ); ?></span>
 	<span id="tsCheckoutOrderPaymentType"><?php echo $plugin->get_payment_gateway( wc_ts_get_crud_data( $order, 'payment_method' ) );?></span>
 	<span id="tsCheckoutOrderEstDeliveryDate"></span>
 	<?php if ( $plugin->is_product_reviews_enabled() ) : ?>

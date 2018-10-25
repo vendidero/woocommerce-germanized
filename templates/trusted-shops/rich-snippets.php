@@ -10,26 +10,20 @@
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 ?>
-<!-- Modul: WooCommerce Germanized -->
-<div itemscope itemtype="http://schema.org/LocalBusiness" class="wc-gzd-trusted-shops-rating-widget">
-	<meta itemprop="name" content="<?php echo bloginfo( 'url' ); ?>">
-	<meta itemprop="image" content="<?php echo $image; ?>">
-	<div itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">	
-		<div class="star-rating">
-			<span style="width:<?php echo ( ( $rating[ 'avg' ] / $rating[ 'max' ] ) * 100 ); ?>%"></span>
-		</div>
-		<p>
-			<?php 
-				printf( 
-					_x( '&#216; %s / %s of %s %s %s customer reviews | Trusted Shops %s', 'trusted-shops', 'woocommerce-germanized' ), 
-					'<span itemprop="ratingValue">' . $rating[ 'avg' ] . '</span>', 
-					'<span itemprop="bestRating">' . $rating[ 'max' ] . '</span>', 
-					'<span itemprop="ratingCount">' . $rating[ 'count' ] . '</span>',
-					'<a href="' . $rating_link . '" title="' . sprintf( _x( '%s custom reviews', 'trusted-shops', 'woocommerce-germanized' ), get_bloginfo( 'name' ) ) . '" target="_blank">',
-					get_bloginfo( 'name' ),
-					'</a>'
-				); 
-			?>
-		</p>
-	</div>
-</div>
+<!-- Module: WooCommerce Germanized -->
+<script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "LocalBusiness",
+    "url": "<?php echo $url; ?>",
+    "image": "<?php echo $image ?>",
+    "name": "<?php echo $name; ?>",
+    "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "<?php echo $rating['avg']; ?>",
+        "bestRating": "<?php echo $rating['max']; ?>",
+        "ratingCount": "<?php echo $rating['count']; ?>"
+    }
+    <?php do_action( 'woocommerce_trusted_shops_rich_snippets_ld_json' ); ?>
+}
+</script>

@@ -33,15 +33,7 @@ class WC_GZD_Trusted_Shops_Template_Hooks {
 		}
 
 		if ( $this->base->is_rich_snippets_enabled() ) {
-			if ( in_array( 'category', $this->base->get_rich_snippets_locations() ) ) {
-
-			}
-			if ( in_array( 'home', $this->base->get_rich_snippets_locations() ) ) {
-
-			}
-			if ( in_array( 'product', $this->base->get_rich_snippets_locations() ) ) {
-
-			}
+			add_action( 'wp_footer', array( $this, 'insert_rich_snippets' ), 20 );
 		}
 
 		// Save Fields on order
@@ -61,11 +53,37 @@ class WC_GZD_Trusted_Shops_Template_Hooks {
 		}
 	}
 
+	public function insert_rich_snippets() {
+		$insert = false;
+
+		if ( in_array( 'category', $this->base->get_rich_snippets_locations() ) ) {
+			if ( is_product_category() ) {
+				$insert = true;
+			}
+		}
+
+		if ( in_array( 'home', $this->base->get_rich_snippets_locations() ) ) {
+			if ( is_front_page() ) {
+				$insert = true;
+			}
+		}
+
+		if ( in_array( 'product', $this->base->get_rich_snippets_locations() ) ) {
+			if ( is_product() ) {
+				$insert = true;
+			}
+		}
+
+		if ( $insert ) {
+			echo do_shortcode( '[trusted_shops_rich_snippets]' );
+		}
+	}
+
 	public function cancel_review_reminder_check() {
 		if ( isset( $_GET['disable-review-reminder'] ) && isset( $_GET['order-id'] ) ) {
 
 			$order_id = absint( $_GET['order-id'] );
-			$code = wc_clean( $_GET['disable-review-reminder'] );
+			$code     = wc_clean( $_GET['disable-review-reminder'] );
 
 			if ( ! empty( $code ) && ! empty( $order_id ) ) {
 
@@ -88,7 +106,7 @@ class WC_GZD_Trusted_Shops_Template_Hooks {
 					$order = wc_get_order( $order_query->post->ID );
 
 					if ( $order ) {
-						$order_id = wc_gzd_get_crud_data( $order, 'id' );
+						$order_id = wc_ts_get_crud_data( $order, 'id' );
 
 						delete_post_meta( $order_id, '_ts_cancel_review_reminder_code' );
 						delete_post_meta( $order_id, '_ts_review_reminder_opted_in' );
@@ -101,15 +119,17 @@ class WC_GZD_Trusted_Shops_Template_Hooks {
 	}
 
 	public function email_styles( $css ) {
-		return $css .= '
+		$css .= '
 			.wc-ts-cancel-review-reminder {
 				margin-top: 16px;
 			}
 		';
+
+		return $css;
 	}
 
 	public function get_cancel_review_reminder_link( $order ) {
-		$code = wc_gzd_get_crud_data( $order, 'ts_cancel_review_reminder_code' );
+		$code = wc_ts_get_crud_data( $order, 'ts_cancel_review_reminder_code' );
 
 		if ( ! $code || empty( $code ) ) {
 
@@ -122,11 +142,11 @@ class WC_GZD_Trusted_Shops_Template_Hooks {
 
 			$code = $wp_hasher->HashPassword( wp_generate_password( 20 ) );
 
-			update_post_meta( wc_gzd_get_crud_data( $order, 'id' ), '_ts_cancel_review_reminder_code', $code );
+			update_post_meta( wc_ts_get_crud_data( $order, 'id' ), '_ts_cancel_review_reminder_code', $code );
 		}
 
-		$order_id = wc_gzd_get_crud_data( $order, 'id' );
-		$link = add_query_arg( array( 'disable-review-reminder' => $code, 'order-id' => $order_id ), get_site_url() );
+		$order_id = wc_ts_get_crud_data( $order, 'id' );
+		$link     = add_query_arg( array( 'disable-review-reminder' => $code, 'order-id' => $order_id ), get_site_url() );
 
 		return apply_filters( 'woocommerce_trusted_shops_cancel_review_reminder_link', $link, $code, $order );
 	}
@@ -136,7 +156,7 @@ class WC_GZD_Trusted_Shops_Template_Hooks {
 
 		// Try to flush the cache before continuing
 		WC_GZD_Cache_Helper::maybe_flush_cache( 'db', array( 'cache_type' => 'meta', 'meta_type' => 'post', 'meta_key' => 'ts_review_reminder_opted_in' ) );
-		$opted_in = wc_gzd_get_crud_data( $order, 'ts_review_reminder_opted_in' );
+		$opted_in = wc_ts_get_crud_data( $order, 'ts_review_reminder_opted_in' );
 
 		if ( $type && 'yes' === $opted_in && 'customer_processing_order' === $type->id ) {
 			wc_get_template( 'trusted-shops/email-cancel-review-reminder.php', array( 'link' => $this->get_cancel_review_reminder_link( $order ) ) );

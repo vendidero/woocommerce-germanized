@@ -52,12 +52,6 @@ class WC_GZD_Trusted_Shops {
 	 * @var array
 	 */
 	public $urls = array();
-	
-	/**
-	 * WooCommerce Gateway mapping
-	 * @var array
-	 */
-	public $gateways = array();
 
 	/**
 	 * Parent Plugin
@@ -103,6 +97,7 @@ class WC_GZD_Trusted_Shops {
 
 		// Refresh TS ID + API URL
 		$this->refresh();
+		$this->duplicate_plugin_check();
 		$this->includes();
 
 		if ( is_admin() )
@@ -120,8 +115,16 @@ class WC_GZD_Trusted_Shops {
 				add_filter( 'woocommerce_gzd_wpml_translatable_options', array( $this, 'setup_wpml_support' ), 20 );
 			}
 		}
+	}
 
-		add_action( 'init', array( $this, 'setup_payment_options' ) );
+	public function duplicate_plugin_check() {
+		if ( function_exists( 'wc_ts_get_crud_data' ) ) {
+			add_action( 'admin_notices', array( $this, 'show_duplicate_plugin_notice' ), 10 );
+		}
+	}
+
+	public function show_duplicate_plugin_notice() {
+		include_once( $this->path . 'admin/views/html-duplicate-plugin-notice.php' );
 	}
 
 	public function setup_wpml_support( $settings ) {
@@ -132,19 +135,6 @@ class WC_GZD_Trusted_Shops {
 
 	public function includes() {
 		include_once( $this->path . 'wc-gzd-ts-core-functions.php' );
-	}
-
-	public function setup_payment_options() {
-		$this->gateways = apply_filters( 'woocommerce_trusted_shops_gateways', array(
-				'prepayment'       => _x( 'Prepayment', 'trusted-shops', 'woocommerce-germanized' ),
-				'cash_on_delivery' => _x( 'Cash On Delivery', 'trusted-shops', 'woocommerce-germanized' ),
-				'credit_card'      => _x( 'Credit Card', 'trusted-shops', 'woocommerce-germanized' ),
-				'paypal'           => _x( 'Paypal', 'trusted-shops', 'woocommerce-germanized' ),
-				'invoice'          => _x( 'Invoice', 'trusted-shops', 'woocommerce-germanized' ),
-				'direct_debit'     => _x( 'Direct Debit', 'trusted-shops', 'woocommerce-germanized' ),
-				'financing'        =>  _x( 'Financing', 'trusted-shops', 'woocommerce-germanized' ),
-			)
-		);
 	}
 
 	public function load_frontend_assets() {
@@ -168,7 +158,7 @@ class WC_GZD_Trusted_Shops {
 	}
 
 	public function refresh() {
-		$this->id = get_option( 'woocommerce_' . $this->option_prefix . 'trusted_shops_id' );
+		$this->id      = get_option( 'woocommerce_' . $this->option_prefix . 'trusted_shops_id' );
 		$this->api_url = 'http://api.trustedshops.com/rest/public/v2/shops/'. $this->id .'/quality.json';
 	}
 

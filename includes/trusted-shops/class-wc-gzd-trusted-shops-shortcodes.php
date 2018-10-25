@@ -64,15 +64,20 @@ class WC_GZD_Trusted_Shops_Shortcodes {
 	 * @return string       
 	 */
 	public function trusted_shops_rich_snippets( $atts ) {
-		ob_start();
-		wc_get_template( 'trusted-shops/rich-snippets.php', array(
+		$args = apply_filters( 'woocommerce_gzd_trusted_shops_rich_snippets_args', array(
 			'plugin'      => $this->base,
 			'rating'      => $this->base->get_average_rating(),
-			'rating_link' => $this->base->get_rating_link(), 
-			'image'       => $this->get_trusted_shops_rich_snippets_image()
+			'rating_link' => $this->base->get_rating_link(),
+			'image'       => $this->get_trusted_shops_rich_snippets_image(),
+			'url'         => get_bloginfo( 'url' ),
+			'name'        => get_bloginfo( 'name' ),
 		) );
+
+		ob_start();
+		wc_get_template( 'trusted-shops/rich-snippets.php', $args );
 		$html = ob_get_clean();
-		return $this->base->is_enabled() ? '<div class="woocommerce woocommerce-gzd">' . $html . '</div>' : '';
+
+		return $this->base->is_enabled() ? $html : '';
 	}
 
 	/**
@@ -98,6 +103,7 @@ class WC_GZD_Trusted_Shops_Shortcodes {
 	 */
 	public function trusted_shops_badge( $atts ) {
 		extract( shortcode_atts( array('width' => ''), $atts ) );
+
 		return $this->base->is_enabled() ? '<a class="trusted-shops-badge" style="' . ( $width ? 'background-size:' . ( $width - 1 ) . 'px auto; width: ' . $width . 'px; height: ' . $width . 'px;' : '' ) . '" href="' . $this->base->get_certificate_link() . '" target="_blank"></a>' : '';
 	}
 

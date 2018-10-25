@@ -131,7 +131,6 @@ class WC_GZD_Trusted_Shops_Admin {
     }
 
 	public function create_attribute() {
-
 		$attributes = array(
 			'brand' => _x( 'Brand', 'trusted-shops', 'woocommerce-germanized' ),
 		);
@@ -161,10 +160,9 @@ class WC_GZD_Trusted_Shops_Admin {
 	}
 
 	public function load_scripts() {
-
-		$screen = get_current_screen();
-		$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
-		$assets_path = $this->base->plugin->plugin_url() . '/assets/';
+		$screen            = get_current_screen();
+		$suffix            = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
+		$assets_path       = $this->base->plugin->plugin_url() . '/assets/';
 		$admin_script_path = $assets_path . 'js/admin/';
 
 		wp_register_style( 'woocommerce-' . $this->script_prefix . 'trusted-shops-admin', $assets_path . 'css/woocommerce-' . $this->script_prefix . 'trusted-shops-admin' . $suffix . '.css', false, $this->base->plugin->version );
@@ -178,11 +176,11 @@ class WC_GZD_Trusted_Shops_Admin {
 		) );
 
 		wp_enqueue_script( 'wc-' . $this->script_prefix . 'admin-trusted-shops' );
-
 	}
 
 	public function register_section( $sections ) {
-		$sections[ 'trusted_shops' ] = _x( 'Trusted Shops Options', 'trusted-shops', 'woocommerce-germanized' );
+		$sections['trusted_shops'] = _x( 'Trusted Shops Options', 'trusted-shops', 'woocommerce-germanized' );
+
 		return $sections;
 	}
 
@@ -716,7 +714,7 @@ class WC_GZD_Trusted_Shops_Admin {
 		$interval_d = ( ( isset( $_GET[ 'interval' ] ) && ! empty( $_GET[ 'interval' ] ) ) ? absint( $_GET[ 'interval' ] ) : 30 );
 		$days_to_send = ( ( isset( $_GET[ 'days' ] ) && ! empty( $_GET[ 'days' ] ) ) ? absint( $_GET[ 'days' ] ) : 5 );
 
-		if ( wc_gzd_get_dependencies()->woocommerce_version_supports_crud() ) {
+		if ( wc_ts_woocommerce_supports_crud() ) {
 		    include_once( 'class-wc-gzd-trusted-shops-review-exporter.php' );
 
 		    $exporter = new WC_GZD_Trusted_Shops_Review_Exporter();
@@ -729,7 +727,7 @@ class WC_GZD_Trusted_Shops_Admin {
 
 	public function review_collector_export() {
 
-		if ( ! wc_gzd_get_dependencies()->woocommerce_version_supports_crud() )
+		if ( ! wc_ts_woocommerce_supports_crud() )
 		    return;
 		?>
 		<h3><?php echo _x( 'Review Collector', 'trusted-shops', 'woocommerce-germanized' ); ?></h3>

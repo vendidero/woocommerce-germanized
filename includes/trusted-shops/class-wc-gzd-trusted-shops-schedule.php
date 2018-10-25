@@ -41,11 +41,11 @@ class WC_GZD_Trusted_Shops_Schedule {
 			$response = wp_remote_post( $this->base->api_url );
 
 			if ( is_array( $response ) ) {
-				$output = json_decode( $response[ 'body' ], true );
-				$reviews = $output[ 'response' ][ 'data' ][ 'shop' ][ 'qualityIndicators' ][ 'reviewIndicator' ];
-				$update[ 'count' ] = (string) $reviews[ 'activeReviewCount' ];
-				$update[ 'avg' ] = (float) $reviews[ 'overallMark' ];
-				$update[ 'max' ] = '5.00';
+				$output          = json_decode( $response['body'], true );
+				$reviews         = $output['response']['data']['shop']['qualityIndicators']['reviewIndicator'];
+				$update['count'] = (string) $reviews['activeReviewCount'];
+				$update['avg']   = (float) $reviews['overallMark'];
+				$update['max']   = '5.00';
 			}
 		}
 
@@ -60,7 +60,7 @@ class WC_GZD_Trusted_Shops_Schedule {
 		$order_query = new WP_Query(
 			array( 
 				'post_type'   => 'shop_order', 
-				'post_status' => apply_filters( 'woocommerce_trusted_shops_review_reminder_valid_order_statuses', array( 'wc-completed' ) ),
+				'post_status' => apply_filters( 'woocommerce_trusted_shops_review_reminder_valid_order_statuses', array( $this->base->review_reminder_status ) ),
 				'showposts'   => -1,
 				'meta_query'  => array(
 					'relation'        => 'AND',
@@ -80,20 +80,19 @@ class WC_GZD_Trusted_Shops_Schedule {
 		while ( $order_query->have_posts() ) {
 
 			$order_query->next_post();
-			$order = wc_get_order( $order_query->post->ID );
-			$completed_date = apply_filters( 'woocommerce_trusted_shops_review_reminder_order_completed_date', wc_gzd_get_crud_data( $order, 'completed_date' ), $order );
-
-			$diff = $this->base->plugin->get_date_diff( $completed_date, date( 'Y-m-d H:i:s' ) );
+			$order          = wc_get_order( $order_query->post->ID );
+			$completed_date = apply_filters( 'woocommerce_trusted_shops_review_reminder_order_completed_date', wc_ts_get_crud_data( $order, 'completed_date' ), $order );
+			$diff           = $this->base->plugin->get_date_diff( $completed_date, date( 'Y-m-d H:i:s' ) );
 
 			if ( $diff['d'] >= (int) $this->base->review_reminder_days ) {
 
 				if ( apply_filters( 'woocommerce_trusted_shops_send_review_reminder_email', true, $order ) ) {
 					if ( $mail = $this->base->plugin->emails->get_email_instance_by_id( 'customer_trusted_shops' ) ) {
-						$mail->trigger( wc_gzd_get_crud_data( $order, 'id' ) );
+						$mail->trigger( wc_ts_get_crud_data( $order, 'id' ) );
 					}
 				}
 
-				update_post_meta( wc_gzd_get_crud_data( $order, 'id' ), '_trusted_shops_review_mail_sent', 1 );
+				update_post_meta( wc_ts_get_crud_data( $order, 'id' ), '_trusted_shops_review_mail_sent', 1 );
 			}
 		}
 	}
