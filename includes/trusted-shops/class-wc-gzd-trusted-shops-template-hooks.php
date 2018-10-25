@@ -240,7 +240,6 @@ class WC_GZD_Trusted_Shops_Template_Hooks {
 		wc_get_template( 'trusted-shops/thankyou.php', array( 
 			'order_id'        => $order_id,
 			'plugin'          => $this->base,
-			'brand_attribute' => $this->base->brand_attribute,
 		) );
 	}
 

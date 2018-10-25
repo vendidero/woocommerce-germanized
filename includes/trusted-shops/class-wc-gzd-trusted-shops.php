@@ -312,6 +312,11 @@ class WC_GZD_Trusted_Shops {
 
 	protected function get_product_shopping_data( $id, $attribute ) {
 		$product = is_numeric( $id ) ? wc_get_product( $id ) : $id;
+
+		if ( ! $product ) {
+			return false;
+		}
+
 		$data    = wc_ts_get_crud_data( $product, $attribute );
 
 		if ( 'variation' === $product->get_type() ) {
@@ -322,6 +327,16 @@ class WC_GZD_Trusted_Shops {
 		}
 
 		return $data;
+	}
+
+	public function get_product_brand( $id ) {
+		$product = is_numeric( $id ) ? wc_get_product( $id ) : $id;
+
+		if ( ! $product ) {
+			return false;
+		}
+
+		return $product->get_attribute( $this->brand_attribute );
 	}
 
 	public function get_product_mpn( $id ) {

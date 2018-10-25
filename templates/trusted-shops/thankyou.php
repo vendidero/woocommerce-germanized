@@ -45,7 +45,7 @@ $order = wc_get_order( $order_id );
 				<span class="tsCheckoutProductName"><?php echo get_the_title( wc_ts_get_crud_data( $product, 'id' ) ); ?></span>
 				<span class="tsCheckoutProductSKU"><?php echo ( $product->get_sku() ? $product->get_sku() : wc_ts_get_crud_data( $product, 'id' ) ); ?></span>
 				<span class="tsCheckoutProductGTIN"><?php echo apply_filters( 'woocommerce_gzd_trusted_shops_product_gtin', $plugin->get_product_gtin( $product ), $product ); ?></span>
-				<span class="tsCheckoutProductBrand"><?php echo apply_filters( 'woocommerce_gzd_trusted_shops_product_brand', $plugin->get_attribute( $brand_attribute ), $product ); ?></span>
+				<span class="tsCheckoutProductBrand"><?php echo apply_filters( 'woocommerce_gzd_trusted_shops_product_brand', $plugin->get_product_brand( $product ), $product ); ?></span>
 				<span class="tsCheckoutProductMPN"><?php echo apply_filters( 'woocommerce_gzd_trusted_shops_product_mpn', $plugin->get_product_mpn( $product ), $product ); ?></span>
  			</span>
 		<?php endforeach; ?>

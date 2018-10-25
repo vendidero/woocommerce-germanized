@@ -231,7 +231,7 @@ class WC_GZD_Trusted_Shops_Admin {
 
 			array(
                 'title'             => _x( 'Trusted Shops Integration', 'trusted-shops', 'woocommerce-germanized' ),
-                'desc'              => sprintf( _x( 'Need help? %s', 'trusted-shops', 'woocommerce-germanized' ), '<a href="https://support.trustedshops.com/de/apps/woocommerce" class="button button-secondary" target="_blank">' . _x( 'Step-by-step tutorial', 'trusted-shops', 'woocommerce-germanized' ) .'</a>' ),
+                'desc'              => sprintf( _x( 'Do you need help with integrating your Trustbadge? %s', 'trusted-shops', 'woocommerce-germanized' ), '<a href="https://support.trustedshops.com/de/apps/woocommerce" class="button button-secondary" target="_blank">' . _x( 'To the step-by-step instructions', 'trusted-shops', 'woocommerce-germanized' ) .'</a>' ),
                 'type'              => 'title',
                 'id'                => 'trusted_shops_options'
             ),
@@ -246,13 +246,14 @@ class WC_GZD_Trusted_Shops_Admin {
 			),
 
 			array(
-				'title'             => _x( 'Mode', 'trusted-shops', 'woocommerce-germanized' ),
+				'title'             => _x( 'Edit Mode', 'trusted-shops', 'woocommerce-germanized' ),
 				'id'                => 'woocommerce_' . $this->base->option_prefix . 'trusted_shops_integration_mode',
+				'desc_tip'          => _x( 'The  advanced configuration is for users with programming skills. Here you can create even more individual settings.', 'trusted-shops', 'woocommerce-germanized' ),
 				'type'              => 'select',
 				'class'             => 'chosen_select',
 				'options'           => array(
-					'standard'      => _x( 'Standard Mode', 'trusted-shops', 'woocommerce-germanized' ),
-					'expert'        => _x( 'Expert Mode', 'trusted-shops', 'woocommerce-germanized' ),
+					'standard'      => _x( 'Standard configuration', 'trusted-shops', 'woocommerce-germanized' ),
+					'expert'        => _x( 'Advanved configuration', 'trusted-shops', 'woocommerce-germanized' ),
 				),
 				'default'           => 'standard',
                 'custom_attributes' => array( 'data-sidebar' => 'wc-ts-sidebar-reviews' ),

@@ -14,9 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 <script type="application/ld+json">
 {
     "@context": "http://schema.org",
-    "@type": "LocalBusiness",
-    "url": "<?php echo $url; ?>",
-    "image": "<?php echo $image ?>",
+    "@type": "Organization",
     "name": "<?php echo $name; ?>",
     "aggregateRating": {
         "@type": "AggregateRating",
