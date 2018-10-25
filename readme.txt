@@ -5,7 +5,7 @@ Requires at least: 3.8
 Tested up to: 5.0
 WC requires at least: 2.4
 WC tested up to: 3.5
-Stable tag: 2.2.2
+Stable tag: 2.2.3
 Requires PHP: 5.3
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -183,6 +183,11 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 4. WooCommerce Multistep Checkout (Pro)
 
 == Changelog ==
+
+= 2.2.3 =
+* Fix: Woo 3.5 translation order processing email replacement
+* Fix: Inline CSS was not applied due to hook priority issues
+* Improvement: Added inline CSS to hide "estimated taxes" notice within cart if option is chosen
 
 = 2.2.2 =
 * Fix: Load WPML Helper settings filter for settings screen only to avoid problems during admin actions

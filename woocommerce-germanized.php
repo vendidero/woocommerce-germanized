@@ -3,7 +3,7 @@
  * Plugin Name: WooCommerce Germanized
  * Plugin URI: https://www.vendidero.de/woocommerce-germanized
  * Description: WooCommerce Germanized extends WooCommerce to become a legally compliant store in the german market.
- * Version: 2.2.2
+ * Version: 2.2.3
  * Author: Vendidero
  * Author URI: https://vendidero.de
  * Requires at least: 3.8
@@ -31,7 +31,7 @@ final class WooCommerce_Germanized {
 	 *
 	 * @var string
 	 */
-	public $version = '2.2.2';
+	public $version = '2.2.3';
 
 	/**
 	 * Single instance of WooCommerce Germanized Main Class
@@ -195,7 +195,7 @@ final class WooCommerce_Germanized {
 
 		// Load after WooCommerce Frontend scripts
 		add_action( 'wp_enqueue_scripts', array( $this, 'add_scripts' ), 15 );
-		add_action( 'wp_enqueue_scripts', array( $this, 'add_inline_styles' ) );
+		add_action( 'wp_enqueue_scripts', array( $this, 'add_inline_styles' ), 20 );
 		add_action( 'wp_print_scripts', array( $this, 'localize_scripts' ), 5 );
 		add_action( 'wp_print_footer_scripts', array( $this, 'localize_scripts' ), 5 );
 
@@ -630,15 +630,6 @@ final class WooCommerce_Germanized {
 	}
 
 	/**
-	 * Adds woocommerce checkout table background highlight color as inline css
-	 */
-	public function add_inline_styles() {
-		$color = ( get_option( 'woocommerce_gzd_display_checkout_table_color' ) ? get_option( 'woocommerce_gzd_display_checkout_table_color' ) : '#eee' );
-		$custom_css = ".woocommerce-checkout .shop_table { background-color: $color; }";
-		wp_add_inline_style( 'woocommerce-gzd-layout', $custom_css );
-	}
-
-	/**
 	 * Add Scripts to frontend
 	 */
 	public function add_scripts() {
@@ -686,6 +677,20 @@ final class WooCommerce_Germanized {
 		wp_enqueue_style( 'woocommerce-gzd-layout' );
 
 		do_action( 'woocommerce_gzd_registered_scripts', $suffix, $frontend_script_path, $assets_path );
+	}
+
+	/**
+	 * Adds woocommerce checkout table background highlight color as inline css
+	 */
+	public function add_inline_styles() {
+		$color      = ( get_option( 'woocommerce_gzd_display_checkout_table_color' ) ? get_option( 'woocommerce_gzd_display_checkout_table_color' ) : '#eee' );
+		$custom_css = ".woocommerce-checkout .shop_table { background-color: $color; }";
+
+		if ( 'yes' === get_option( 'woocommerce_gzd_display_hide_cart_tax_estimated' ) ) {
+			$custom_css .= " p.woocommerce-shipping-destination { display: none; }";
+		}
+
+		wp_add_inline_style( 'woocommerce-gzd-layout', $custom_css );
 	}
 
 	/**
