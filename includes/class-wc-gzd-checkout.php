@@ -475,8 +475,8 @@ class WC_GZD_Checkout {
 					}
 
 					$fee->tax_data = $fee_taxes;
-					$fee->tax      = $fee_tax_total;
-					$fee->amount   = $fee->amount - $fee->tax;
+					$fee->tax      = wc_round_tax_total( $fee_tax_total );
+					$fee->amount   = wc_format_decimal( ( $fee->amount - $fee->tax ), wc_get_price_decimals() );
 					$fee->total    = $fee->amount;
 
 					$new_fees[ $key ] = $fee;
@@ -524,6 +524,7 @@ class WC_GZD_Checkout {
 				// Calculate tax class share
 				if ( ! empty( $tax_shares ) ) {
 					$fee_taxes = array();
+
 					foreach ( $tax_shares as $rate => $class ) {
 						$tax_rates                            = WC_Tax::get_rates( $rate );
 						$tax_shares[ $rate ]['fee_tax_share'] = $fee->amount * $class['share'];
@@ -531,16 +532,19 @@ class WC_GZD_Checkout {
 
 						$fee_taxes += $tax_shares[ $rate ]['fee_tax'];
 					}
+
 					foreach ( $tax_shares as $rate => $class ) {
 						$cart->fees[ $key ]->tax_data = $cart->fees[ $key ]->tax_data + $class['fee_tax'];
 					}
+
 					// Add fee taxes to cart taxes
 					foreach ( array_keys( $cart->taxes + $fee_taxes ) as $sub ) {
 						$cart->taxes[ $sub ] = ( isset( $fee_taxes[ $sub ] ) ? $fee_taxes[ $sub ] : 0 ) + ( isset( $cart->taxes[ $sub ] ) ? $cart->taxes[ $sub ] : 0 );
 					}
+
 					// Update fee
-					$cart->fees[ $key ]->tax = array_sum( $cart->fees[ $key ]->tax_data );
-					$cart->fees[ $key ]->amount = $cart->fees[ $key ]->amount - $cart->fees[ $key ]->tax;
+					$cart->fees[ $key ]->tax    = wc_round_tax_total( array_sum( $cart->fees[ $key ]->tax_data ) );
+					$cart->fees[ $key ]->amount = wc_format_decimal( $cart->fees[ $key ]->amount - $cart->fees[ $key ]->tax, wc_get_price_decimals() );
 				}
 			}
 		}
