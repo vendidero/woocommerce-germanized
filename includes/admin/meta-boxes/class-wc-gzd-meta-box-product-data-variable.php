@@ -28,7 +28,6 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 	}
 
 	private function __construct() {
-
 		if ( is_admin() ) {
 			add_action( 'woocommerce_product_after_variable_attributes', array( __CLASS__, 'output' ), 20, 3 );
 			add_action( 'woocommerce_save_product_variation', array( __CLASS__, 'save' ) , 0, 2 );
@@ -177,32 +176,29 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 		);
 
 		foreach ( $data as $k => $v ) {
-			
 			$data_k = 'variable' . ( substr( $k, 0, 1) === '_' ? '' : '_' ) . $k;
 			$data[ $k ] = ( isset( $_POST[ $data_k ][$i] ) ? $_POST[ $data_k ][$i] : null );
-
 		}
 
-		$product = wc_get_product( $variation_id );
+		$product        = wc_get_product( $variation_id );
 		$product_parent = wc_get_product( wc_gzd_get_crud_data( $product, 'parent' ) );
 
 		// Check if parent has unit_base + unit otherwise ignore data
-		if ( empty( $data[ '_parent_unit' ] ) || empty( $data[ '_parent_unit_base' ] ) ) {
-
-			$data[ '_unit_price_auto' ] = '';
-			$data[ '_unit_price_regular' ] = '';
-			$data[ '_unit_price_sale' ] = '';
+		if ( empty( $data['_parent_unit'] ) || empty( $data['_parent_unit_base'] ) ) {
+			$data['_unit_price_auto']    = '';
+			$data['_unit_price_regular'] = '';
+			$data['_unit_price_sale']    = '';
 		}
 
 		// If parent has no unit, delete unit_product as well
-		if ( empty( $data[ '_parent_unit' ] ) ) {
-			$data[ '_unit_product' ] = '';
+		if ( empty( $data['_parent_unit'] ) ) {
+			$data['_unit_product'] = '';
 		}
 
-		$data[ 'product-type' ] = $product_parent->get_type();
-		$data[ '_sale_price_dates_from' ] = $_POST['variable_sale_price_dates_from'][$i];
-		$data[ '_sale_price_dates_to' ] = $_POST['variable_sale_price_dates_to'][$i];
-		$data[ '_sale_price' ] = $_POST['variable_sale_price'][$i];
+		$data['product-type']           = $product_parent->get_type();
+		$data['_sale_price_dates_from'] = $_POST['variable_sale_price_dates_from'][$i];
+		$data['_sale_price_dates_to']   = $_POST['variable_sale_price_dates_to'][$i];
+		$data['_sale_price']            = $_POST['variable_sale_price'][$i];
 
 		$product = WC_Germanized_Meta_Box_Product_Data::save_product_data( $product, $data, true );
 	}
