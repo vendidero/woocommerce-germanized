@@ -81,3 +81,7 @@ td.forminp-review-collector p.description {
 .wc-ts-sidebar-active {
 	display: block;
 }
+
+.wc-gzd-admin-settings #trusted_shops_options-description .button {
+	margin-left: 10px;
+}

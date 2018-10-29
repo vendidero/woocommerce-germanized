@@ -36,6 +36,8 @@ window.trusted_shops = window.trusted_shops || {};
                 $( this ).parents( 'tr' ).on( 'click', self.onSidebarChange );
             });
 
+            $( document ).on( 'click', 'h2, div[id$="options-description"]', this.onSidebarTitelChange );
+
             // Form validation
             $( document ).on( 'submit', '#mainform', this.onSaveForm );
         },
@@ -125,10 +127,25 @@ window.trusted_shops = window.trusted_shops || {};
             });
         },
 
+        onSidebarTitelChange: function() {
+            var $next = $( this ).nextAll( 'table.form-table:first' );
+            $next.find( 'tr:first' ).trigger( 'click' );
+
+            $sidebar = $( '.wc-ts-sidebar-active' );
+            $sidebar.offset( { top: $( this ).offset().top } );
+        },
+
         onSidebarChange: function() {
-            var $sidebar_elem    = $( this ).find( ':data(sidebar)' ),
+            var $sidebar_elem    = $( this ).find( '[data-sidebar]' ),
+                $table           = $( this ).parents( '.form-table' ),
                 $current_sidebar = $( '.wc-ts-sidebar-active' ),
                 $sidebar         = $current_sidebar;
+
+            if ( $sidebar_elem.length <= 0 ) {
+                if ( $table.find( '[data-sidebar]' ).length > 0 ) {
+                    $sidebar_elem = $table.find( '[data-sidebar]:first' );
+                }
+            }
 
             if ( $sidebar_elem.length <= 0 ) {
                 $sidebar = $( '#wc-ts-sidebar-default' );

@@ -238,7 +238,7 @@ class WC_GZD_Trusted_Shops_Admin {
 
 			array(
 				'title'             => _x( 'Trusted Shops ID', 'trusted-shops', 'woocommerce-germanized' ),
-				'desc'              => _x( 'The Trusted Shops ID is a unique identifier for your shop. You can find your Trusted Shops ID in your confirmation email after signing up.', 'trusted-shops', 'woocommerce-germanized' ),
+				'desc'              => _x( 'The Trusted Shops ID is a unique identifier for your shop. You can find your Trusted Shops ID in your My Trusted Shops account.', 'trusted-shops', 'woocommerce-germanized' ),
 				'desc_tip'          => true,
 				'id'                => 'woocommerce_' . $this->base->option_prefix . 'trusted_shops_id',
 				'type'              => 'text',
@@ -248,7 +248,7 @@ class WC_GZD_Trusted_Shops_Admin {
 			array(
 				'title'             => _x( 'Edit Mode', 'trusted-shops', 'woocommerce-germanized' ),
 				'id'                => 'woocommerce_' . $this->base->option_prefix . 'trusted_shops_integration_mode',
-				'desc_tip'          => _x( 'The  advanced configuration is for users with programming skills. Here you can create even more individual settings.', 'trusted-shops', 'woocommerce-germanized' ),
+				'desc_tip'          => _x( 'The advanced configuration is for users with programming skills. Here you can create even more individual settings.', 'trusted-shops', 'woocommerce-germanized' ),
 				'type'              => 'select',
 				'class'             => 'chosen_select',
 				'options'           => array(
@@ -261,11 +261,16 @@ class WC_GZD_Trusted_Shops_Admin {
 
 			array( 'type' => 'sectionend', 'id' => 'trusted_shops_options' ),
 
-			array(	'title' => _x( 'Configure your Trustbadge', 'trusted-shops', 'woocommerce-germanized' ), 'type' => 'title', 'id' => 'trusted_shops_badge_options', 'desc' => sprintf( _x( '<a href="%s" target="_blank">Here</a> you can find a step-by-step introduction.', 'trusted-shops', 'woocommerce-germanized' ), $this->get_trusted_url( $this->base->urls[ 'integration' ] ) ) ),
+			array(
+                'title'             => _x( 'Configure your Trustbadge', 'trusted-shops', 'woocommerce-germanized' ),
+                'type'              => 'title',
+                'id'                => 'trusted_shops_badge_options',
+            ),
 
 			array(
-				'title'             => _x( 'Show Trustbadge', 'trusted-shops', 'woocommerce-germanized' ),
+				'title'             => _x( 'Display Trustbadge', 'trusted-shops', 'woocommerce-germanized' ),
 				'id'                => 'woocommerce_' . $this->base->option_prefix . 'trusted_shops_trustbadge_enable',
+				'desc_tip'          => _x( 'Display the Trustbadge on all the pages of your shop.', 'trusted-shops', 'woocommerce-germanized' ),
 				'type'              => 'gzd_toggle',
 				'default'           => 'no'
 			),
@@ -273,19 +278,19 @@ class WC_GZD_Trusted_Shops_Admin {
 			array(
 				'title'             => _x( 'Variant', 'trusted-shops', 'woocommerce-germanized' ),
 				'id'                => 'woocommerce_' . $this->base->option_prefix . 'trusted_shops_trustbadge_variant',
+				'desc_tip'          => _x( 'You can display your Trustbadge with or without Review Stars.', 'trusted-shops', 'woocommerce-germanized' ),
 				'type'              => 'select',
 				'class'             => 'chosen_select',
 				'options'           => array(
-					'hide_reviews'  => _x( 'Display Trustbadge without review stars', 'trusted-shops', 'woocommerce-germanized' ),
 					'standard'      => _x( 'Display Trustbadge with review stars', 'trusted-shops', 'woocommerce-germanized' ),
-					'disable'       => _x( 'Don’t show Trustbadge', 'trusted-shops', 'woocommerce-germanized' ),
+					'hide_reviews'  => _x( 'Display Trustbadge without review stars', 'trusted-shops', 'woocommerce-germanized' ),
 				),
 				'default'           => 'standard'
 			),
 
 			array(
-				'title'             => _x( 'Y-Offset', 'trusted-shops', 'woocommerce-germanized' ),
-				'desc_tip'          => _x( 'Adjust the y-axis position of your Trustbadge from 0-250 (pixel) vertically on low right hand side of your shop.', 'trusted-shops', 'woocommerce-germanized' ),
+				'title'             => _x( 'Vertical Offset', 'trusted-shops', 'woocommerce-germanized' ),
+				'desc_tip'          => _x( 'Choose the distance that the Trustbadge will appear from the bottom-right corner of the screen.', 'trusted-shops', 'woocommerce-germanized' ),
 				'id'                => 'woocommerce_' . $this->base->option_prefix . 'trusted_shops_trustbadge_y',
 				'type'              => 'number',
 				'desc'              => __( 'px', 'trusted-shops', 'woocommerce-germanized' ),
@@ -304,7 +309,7 @@ class WC_GZD_Trusted_Shops_Admin {
 				'id'                => 'woocommerce_' . $this->base->option_prefix . 'trusted_shops_trustbadge_code',
 				'type'              => 'textarea',
 				'desc_tip'          => true,
-				'desc'              => _x( 'Use shortcodes e.g. {variant} to dynamically insert your options. You may of couse replace them with static code.', 'trusted-shops', 'woocommerce-germanized' ),
+				'desc'              => _x( 'The  advanced configuration is for users with programming skills. Here you can create even more individual settings.', 'trusted-shops', 'woocommerce-germanized' ),
 				'css'               => 'width: 100%; min-height: 150px',
 				'default'           => $this->base->get_trustbadge_code( false ),
 			),
@@ -312,22 +317,23 @@ class WC_GZD_Trusted_Shops_Admin {
 			array( 'type' => 'sectionend', 'id' => 'trusted_shops_badge_options' ),
 
 			array(
-                'title'             => _x( 'Configure Shop Reviews', 'trusted-shops', 'woocommerce-germanized' ),
+                'title'             => _x( 'Configure your Shop Reviews', 'trusted-shops', 'woocommerce-germanized' ),
                 'type'              => 'title',
                 'id'                => 'trusted_shops_review_sticker_options'
             ),
 
 			array(
-				'title'             => _x( 'Show Shop Reviews Sticker', 'trusted-shops', 'woocommerce-germanized' ),
-				'desc'              => _x( 'This is a desc', 'trusted-shops', 'woocommerce-germanized' ),
-				'id'                => 'woocommerce_' . $this->base->option_prefix . 'trusted_shops_review_sticker_enable',
+				'title'             => _x( 'Display Shop Review Sticker', 'trusted-shops', 'woocommerce-germanized' ),
+				'desc_tip'          => _x( 'To display the Shop Review Sticker, you have to assign the widget "Trusted Shops Review Sticker".', 'trusted-shops', 'woocommerce-germanized' ),
+				'desc'              => sprintf( _x( 'Assign widget %s', 'trusted-shops', 'woocommerce-germanized' ), '<a href="' . admin_url( 'widgets.php' ) . '" target="_blank">' . _x( 'here', 'trusted-shops', 'woocommerce-germanized' ) . '</a>' ),
+                'id'                => 'woocommerce_' . $this->base->option_prefix . 'trusted_shops_review_sticker_enable',
 				'type'              => 'gzd_toggle',
 				'default'           => 'no'
 			),
 
 			array(
-				'title'             => _x( 'Background Color', 'trusted-shops', 'woocommerce-germanized' ),
-				'desc_tip'          => _x( 'Desc tip', 'trusted-shops', 'woocommerce-germanized' ),
+				'title'             => _x( 'Background color', 'trusted-shops', 'woocommerce-germanized' ),
+				'desc_tip'          => _x( 'Choose the background color for your Review Sticker.', 'trusted-shops', 'woocommerce-germanized' ),
 				'id'                => 'woocommerce_' . $this->base->option_prefix . 'trusted_shops_review_sticker_bg_color',
 				'type'              => 'color',
 				'default'           => '#FFDC0F',
@@ -336,6 +342,7 @@ class WC_GZD_Trusted_Shops_Admin {
 			array(
 				'title'             => _x( 'Font', 'trusted-shops', 'woocommerce-germanized' ),
 				'id'                => 'woocommerce_' . $this->base->option_prefix . 'trusted_shops_review_sticker_font',
+				'desc_tip'          => _x( 'Choose the font for your Review Sticker.', 'trusted-shops', 'woocommerce-germanized' ),
 				'type'              => 'select',
 				'class'             => 'chosen_select',
 				'options'           => $this->get_font_families(),
@@ -343,11 +350,11 @@ class WC_GZD_Trusted_Shops_Admin {
 			),
 
 			array(
-				'title'             => _x( 'Number Ratings', 'trusted-shops', 'woocommerce-germanized' ),
-				'desc_tip'          => _x( '', 'trusted-shops', 'woocommerce-germanized' ),
+				'title'             => _x( 'Number of reviews displayed', 'trusted-shops', 'woocommerce-germanized' ),
+				'desc_tip'          => _x( 'Display x alternating Shop Reviews in your Shop Review Sticker. You can display between 1 and 5 alternating Shop Reviews.', 'trusted-shops', 'woocommerce-germanized' ),
 				'id'                => 'woocommerce_' . $this->base->option_prefix . 'trusted_shops_review_sticker_number',
 				'type'              => 'number',
-				'desc'              => __( 'Reviews in change', 'trusted-shops', 'woocommerce-germanized' ),
+				'desc'              => __( 'Show x alternating reviews', 'trusted-shops', 'woocommerce-germanized' ),
 				'default'           => '5',
 				'custom_attributes' => array(
 					'step'              => '1',
@@ -360,8 +367,8 @@ class WC_GZD_Trusted_Shops_Admin {
 			),
 
 			array(
-				'title'             => _x( 'Show Ratings better than', 'trusted-shops', 'woocommerce-germanized' ),
-				'desc_tip'          => _x( '', 'trusted-shops', 'woocommerce-germanized' ),
+				'title'             => _x( 'Minimum rating displayed', 'trusted-shops', 'woocommerce-germanized' ),
+				'desc_tip'          => _x( 'Only show Shop Reviews with a minimum rating of x stars. ', 'trusted-shops', 'woocommerce-germanized' ),
 				'id'                => 'woocommerce_' . $this->base->option_prefix . 'trusted_shops_review_sticker_better_than',
 				'type'              => 'number',
 				'desc'              => __( 'Reviews in change', 'trusted-shops', 'woocommerce-germanized' ),
@@ -381,21 +388,23 @@ class WC_GZD_Trusted_Shops_Admin {
 				'id'                => 'woocommerce_' . $this->base->option_prefix . 'trusted_shops_review_sticker_code',
 				'type'              => 'textarea',
 				'desc_tip'          => true,
-				'desc'              => _x( 'Use shortcodes e.g. {variant} to dynamically insert your options. You may of couse replace them with static code.', 'trusted-shops', 'woocommerce-germanized' ),
+				'desc'              => _x( 'The  advanced configuration is for users with programming skills. Here you can perform even more individual settings.', 'trusted-shops', 'woocommerce-germanized' ),
 				'css'               => 'width: 100%; min-height: 150px',
 				'default'           => $this->base->get_review_sticker_code( false ),
 			),
 
 			array(
 				'title'             => _x( 'Google Organic Search', 'trusted-shops', 'woocommerce-germanized' ),
+				'desc_tip'          => _x( 'Activate this option to give Google the opportunity to show your Shop Reviews in Google organic search results.', 'trusted-shops', 'woocommerce-germanized' ),
 				'id'                => 'woocommerce_' . $this->base->option_prefix . 'trusted_shops_rich_snippets_enable',
 				'type'              => 'gzd_toggle',
 				'default'           => 'no'
 			),
 
 			array(
-				'title' 	        => _x( 'Activate Rich Snippets', 'trusted-shops', 'woocommerce-germanized' ),
-				'desc' 		        => _x( 'Category', 'trusted-shops', 'woocommerce-germanized' ),
+				'title' 	        => _x( 'Activate rich snippets on', 'trusted-shops', 'woocommerce-germanized' ),
+				'desc_tip'          => _x( 'By activating this option, rich snippets will be integrated in the selected pages so your shop review stars may be displayed in Google organic search results. If you use Product Reviews and already activated rich snippets  in expert mode, we recommend integrating rich snippets for Shop Reviews on category pages only.', 'trusted-shops', 'woocommerce-germanized' ),
+				'desc' 		        => _x( 'category pages', 'trusted-shops', 'woocommerce-germanized' ),
 				'id' 	            => 'woocommerce_' . $this->base->option_prefix . 'trusted_shops_rich_snippets_category',
 				'type' 		        => 'checkbox',
 				'default'	        => 'no',
@@ -403,7 +412,7 @@ class WC_GZD_Trusted_Shops_Admin {
 			),
 
 			array(
-				'desc' 		        => _x( 'Product Page', 'trusted-shops', 'woocommerce-germanized' ),
+				'desc' 		        => _x( 'product pages', 'trusted-shops', 'woocommerce-germanized' ),
 				'id' 	            => 'woocommerce_' . $this->base->option_prefix . 'trusted_shops_rich_snippets_product',
 				'type' 		        => 'checkbox',
 				'default'	        => 'no',
@@ -411,7 +420,7 @@ class WC_GZD_Trusted_Shops_Admin {
 			),
 
 			array(
-				'desc' 		        => _x( 'Homepage', 'trusted-shops', 'woocommerce-germanized' ),
+				'desc' 		        => _x( 'homepage', 'trusted-shops', 'woocommerce-germanized' ),
 				'id' 	            => 'woocommerce_' . $this->base->option_prefix . 'trusted_shops_rich_snippets_home',
 				'type' 		        => 'checkbox',
 				'default'	        => 'no',
@@ -421,63 +430,69 @@ class WC_GZD_Trusted_Shops_Admin {
 			array( 'type' => 'sectionend', 'id' => 'trusted_shops_review_sticker_options' ),
 
 			array(
-                'title'             => _x( 'Configure Product Reviews', 'trusted-shops', 'woocommerce-germanized' ),
-                'desc'              => _x( 'To use ratings', 'trusted-shops', 'woocommerce-germanized' ),
+                'title'             => _x( 'Configure your Product Reviews ', 'trusted-shops', 'woocommerce-germanized' ),
+                'desc'              => sprintf( _x( 'To use Product Reviews, activate them in your %s first.', 'trusted-shops', 'woocommerce-germanized' ), '<a href="" target="_blank">' . _x( 'Trusted Shops package', 'trusted-shops', 'woocommerce-germanized' ) .'</a>' ),
                 'type'              => 'title',
                 'id'                => 'trusted_shops_reviews_options'
             ),
 
 			array(
-				'title'             => _x( 'Product Reviews', 'trusted-shops', 'woocommerce-germanized' ),
-				'desc'              => _x( '(WooCommerce reviews are being replaced)', 'trusted-shops', 'woocommerce-germanized' ),
-				'desc_tip'          => _x( 'More Traffic, less returns: Make sure to unlock unlimited Product Reviews in your Trusted Shops plan.', 'trusted-shops', 'woocommerce-germanized' ),
+				'title'             => _x( 'Collect Product Reviews', 'trusted-shops', 'woocommerce-germanized' ),
+				'desc'              => _x( '(WooCommerce Product Reviews will be replaced)', 'trusted-shops', 'woocommerce-germanized' ),
+				'desc_tip'          => _x( 'Show Product Reviews on the product page in a separate tab, just as shown on the picture on the right.', 'trusted-shops', 'woocommerce-germanized' ),
 				'id'                => 'woocommerce_' . $this->base->option_prefix . 'trusted_shops_reviews_enable',
 				'type'              => 'gzd_toggle',
 				'default'           => 'no'
 			),
 
 			array(
-				'title'             => _x( 'Product Review Sticker', 'trusted-shops', 'woocommerce-germanized' ),
-				'desc'              => _x( 'Show Product Reviews on Product Detail page on Reviews tab.', 'trusted-shops', 'woocommerce-germanized' ),
+				'title'             => _x( 'Reviews', 'trusted-shops', 'woocommerce-germanized' ),
+				'desc_tip'          => _x( 'You can choose a name for the tab with your Product Reviews.', 'trusted-shops', 'woocommerce-germanized' ),
+                'desc'              => _x( 'Show Product Reviews on the product detail page in an additional tab.', 'trusted-shops', 'woocommerce-germanized' ),
 				'id'                => 'woocommerce_' . $this->base->option_prefix . 'trusted_shops_product_sticker_enable',
 				'type'              => 'checkbox',
 				'default'           => 'no'
 			),
 
 			array(
-				'title'             => _x( 'Tab text', 'trusted-shops', 'woocommerce-germanized' ),
+				'title'             => _x( 'Name of Product Reviews tab', 'trusted-shops', 'woocommerce-germanized' ),
+				'desc_tip'          => _x( 'You can choose a name for the tab with your Product Reviews.', 'trusted-shops', 'woocommerce-germanized' ),
 				'id'                => 'woocommerce_' . $this->base->option_prefix . 'trusted_shops_product_sticker_tab_text',
 				'type'              => 'text',
 				'default'           => _x( 'Product reviews', 'trusted-shops', 'woocommerce-germanized' ),
 			),
 
 			array(
-				'title'             => _x( 'Border Color', 'trusted-shops', 'woocommerce-germanized' ),
+				'title'             => _x( 'Border color', 'trusted-shops', 'woocommerce-germanized' ),
+				'desc_tip'          => _x( 'Set the color for the frame around your Product Reviews.', 'trusted-shops', 'woocommerce-germanized' ),
 				'id'                => 'woocommerce_' . $this->base->option_prefix . 'trusted_shops_product_sticker_border_color',
 				'type'              => 'color',
 				'default'           => '#FFDC0F',
 			),
 
 			array(
-				'title'             => _x( 'Background Color', 'trusted-shops', 'woocommerce-germanized' ),
+				'title'             => _x( 'Background color', 'trusted-shops', 'woocommerce-germanized' ),
+				'desc_tip'          => _x( 'Set the background color for your Product Reviews.', 'trusted-shops', 'woocommerce-germanized' ),
 				'id'                => 'woocommerce_' . $this->base->option_prefix . 'trusted_shops_product_sticker_bg_color',
 				'type'              => 'color',
 				'default'           => '#FFFFFF',
 			),
 
 			array(
-				'title'             => _x( 'Star Color', 'trusted-shops', 'woocommerce-germanized' ),
+				'title'             => _x( 'Star color', 'trusted-shops', 'woocommerce-germanized' ),
+				'desc_tip'          => _x( 'Set the color for the Product Review stars in your Product Reviews tab.', 'trusted-shops', 'woocommerce-germanized' ),
 				'id'                => 'woocommerce_' . $this->base->option_prefix . 'trusted_shops_product_sticker_star_color',
 				'type'              => 'color',
 				'default'           => '#C0C0C0',
 			),
 
 			array(
-				'title'             => _x( 'Star Size', 'trusted-shops', 'woocommerce-germanized' ),
+				'title'             => _x( 'Star size', 'trusted-shops', 'woocommerce-germanized' ),
 				'id'                => 'woocommerce_' . $this->base->option_prefix . 'trusted_shops_product_sticker_star_size',
 				'type'              => 'number',
 				'default'           => '15',
 				'desc'              => __( 'px', 'trusted-shops', 'woocommerce-germanized' ),
+				'desc_tip'          => _x( 'Set the size for the Product Review stars in your Product Reviews tab.', 'trusted-shops', 'woocommerce-germanized' ),
 				'css'               => 'max-width:60px;',
 				'custom_attributes' => array(
 					'step'              => '1',
@@ -490,29 +505,33 @@ class WC_GZD_Trusted_Shops_Admin {
 			array(
 				'title'             => _x( 'Product Sticker Code', 'trusted-shops', 'woocommerce-germanized' ),
 				'id'                => 'woocommerce_' . $this->base->option_prefix . 'trusted_shops_product_sticker_code',
+				'desc_tip'          => _x( 'The  advanced configuration is for users with programming skills. Here you can perform even more individual settings.', 'trusted-shops', 'woocommerce-germanized' ),
 				'type'              => 'textarea',
 				'css'               => 'width: 100%; min-height: 150px',
 				'default'           => $this->base->get_product_sticker_code( false ),
 			),
 
 			array(
-				'title'             => _x( 'Product Review Stars', 'trusted-shops', 'woocommerce-germanized' ),
-				'desc'              => _x( 'Show Star ratings on Product Detail Page below your Product Name.', 'trusted-shops', 'woocommerce-germanized' ),
+				'title'             => _x( 'Rating stars', 'trusted-shops', 'woocommerce-germanized' ),
+				'desc'              => _x( 'Show star ratings on the product detail page below your product name.', 'trusted-shops', 'woocommerce-germanized' ),
+				'desc_tip'          => _x( 'Display Product Review stars on product pages below the product name, just as shown in the picture on the right.', 'trusted-shops', 'woocommerce-germanized' ),
 				'id'                => 'woocommerce_' . $this->base->option_prefix . 'trusted_shops_product_widget_enable',
 				'type'              => 'checkbox',
 				'default'           => 'no'
 			),
 
 			array(
-				'title'             => _x( 'Star Color', 'trusted-shops', 'woocommerce-germanized' ),
+				'title'             => _x( 'Star color', 'trusted-shops', 'woocommerce-germanized' ),
 				'id'                => 'woocommerce_' . $this->base->option_prefix . 'trusted_shops_product_widget_star_color',
+				'desc_tip'          => _x( 'Set the color for the review stars, that are displayed on the product page, below your product name.', 'trusted-shops', 'woocommerce-germanized' ),
 				'type'              => 'color',
 				'default'           => '#FFDC0F',
 			),
 
 			array(
-				'title'             => _x( 'Star Size', 'trusted-shops', 'woocommerce-germanized' ),
+				'title'             => _x( 'Star size', 'trusted-shops', 'woocommerce-germanized' ),
 				'id'                => 'woocommerce_' . $this->base->option_prefix . 'trusted_shops_product_widget_star_size',
+				'desc_tip'          => _x( 'Set the size for the review stars that are displayed on the product page, below your product name.', 'trusted-shops', 'woocommerce-germanized' ),
 				'type'              => 'number',
 				'default'           => '14',
 				'desc'              => __( 'px', 'trusted-shops', 'woocommerce-germanized' ),
@@ -526,8 +545,9 @@ class WC_GZD_Trusted_Shops_Admin {
 			),
 
 			array(
-				'title'             => _x( 'Font Size', 'trusted-shops', 'woocommerce-germanized' ),
+				'title'             => _x( 'Font size', 'trusted-shops', 'woocommerce-germanized' ),
 				'id'                => 'woocommerce_' . $this->base->option_prefix . 'trusted_shops_product_widget_font_size',
+				'desc_tip'          => _x( 'Set the font size for the text that goes with your review stars.', 'trusted-shops', 'woocommerce-germanized' ),
 				'type'              => 'number',
 				'desc'              => __( 'px', 'trusted-shops', 'woocommerce-germanized' ),
 				'default'           => '12',
@@ -542,6 +562,7 @@ class WC_GZD_Trusted_Shops_Admin {
 
 			array(
 				'title'             => _x( 'Product Review Code', 'trusted-shops', 'woocommerce-germanized' ),
+				'desc_tip'          => _x( 'The  advanced configuration is for users with programming skills. Here you can perform even more individual settings.', 'trusted-shops', 'woocommerce-germanized' ),
 				'id'                => 'woocommerce_' . $this->base->option_prefix . 'trusted_shops_product_widget_code',
 				'type'              => 'textarea',
 				'css'               => 'width: 100%; min-height: 150px',
@@ -550,16 +571,18 @@ class WC_GZD_Trusted_Shops_Admin {
 
 			array(
 				'title'             => _x( 'Google', 'trusted-shops', 'woocommerce-germanized' ),
-				'desc'              => _x( 'Configure reviews for Google Shopping.', 'trusted-shops', 'woocommerce-germanized' ),
+				'desc'              => _x( 'Configure Product Reviews for Google Shopping.', 'trusted-shops', 'woocommerce-germanized' ),
+				'desc_tip'          => _x( 'Activate this option, to give Google the opportunity to display your Product Reviews in Google Shopping and paid Google ads. Please assign at least one of the attributes below to your products (We recommend using the GTIN).', 'trusted-shops', 'woocommerce-germanized' ),
 				'id'                => 'woocommerce_' . $this->base->option_prefix . 'trusted_shops_google_shopping_enable',
 				'type'              => 'checkbox',
 				'default'           => 'no'
 			),
 
 			array(
-				'title'             => _x( 'Brand Attribute', 'trusted-shops', 'woocommerce-germanized' ),
-				'desc'              => sprintf( _x( 'This is the brand name of the product. By setting this variable you can improve your data analysis possibilities. If you create individual products and do not have a GTIN, you can pass the brand name along with the MPN to use Google Integration. Please choose from the product attributes which you have manually customized <a href="%s">here</a>.', 'trusted-shops', 'woocommerce-germanized' ), admin_url( 'edit.php?post_type=product&page=product_attributes' ) ),
-				'id'                => 'woocommerce_' . $this->base->option_prefix . 'trusted_shops_brand_attribute',
+				'title'             => _x( 'Brand attribute', 'trusted-shops', 'woocommerce-germanized' ),
+				'desc'              => sprintf( _x( 'Create brand attribute %s', 'trusted-shops', 'woocommerce-germanized' ), '<a href="' . admin_url( 'edit.php?post_type=product&page=product_attributes' ) . '" target="_blank">' . _x( 'here', 'trusted-shops', 'woocommerce-germanized' ) . '</a>' ),
+				'desc_tip'          => _x( 'Brand name of the product. By passing this information on to Google, you improve your chances of having Google identify your products. Assign your brand attribute. If your products don\'t have a GTIN, you can pass on the brand name and the MPN to use Google Integration.', 'trusted-shops', 'woocommerce-germanized' ),
+                'id'                => 'woocommerce_' . $this->base->option_prefix . 'trusted_shops_brand_attribute',
 				'css'               => 'min-width:250px;',
 				'default'           => 'brand',
 				'type'              => 'select',
@@ -576,24 +599,24 @@ class WC_GZD_Trusted_Shops_Admin {
 			$options = array_merge( $options, array(
 
 				array(
-					'title'             => _x( 'Configure Review Reminders', 'trusted-shops', 'woocommerce-germanized' ),
-					'desc'              => _x( 'Review Reminder text', 'trusted-shops', 'woocommerce-germanized' ),
+					'title'             => _x( 'Configure your Review Requests', 'trusted-shops', 'woocommerce-germanized' ),
+					'desc'              => _x( '7 days after an order has been placed, Trusted Shops automatically sends an invite to your customers. If you want to set a different time for sending automatic Review Requests, please activate the option below. If you want to send review requests with legal certainty, you need your customers\' consent to receive Review Requests. You also have to include an option to unsubscribe.', 'trusted-shops', 'woocommerce-germanized' ),
 					'type'              => 'title',
-					'id'                => 'trusted_shops_review_reminder_options'
+					'id'                => 'trusted_shops_review_reminder_options',
 				),
 
 				array(
-					'title'             => _x( 'Enable Review Reminder', 'trusted-shops', 'woocommerce-germanized' ),
+					'title'             => _x( 'Enable Review Requests', 'trusted-shops', 'woocommerce-germanized' ),
 					'id'                => 'woocommerce_' . $this->base->option_prefix . 'trusted_shops_review_reminder_enable',
                     'type'              => 'gzd_toggle',
 					'default'           => 'no',
-					'custom_attributes' => array(),
+					'custom_attributes' => array( 'data-sidebar' => 'wc-ts-sidebar-review-reminder' ),
 					'autoload'          => false
 				),
 
 				array(
-					'title'             => _x( 'Order status', 'trusted-shops', 'woocommerce-germanized' ),
-					'desc_tip'          => _x( 'Decide how many days after an order the email review reminder will be sent.', 'trusted-shops', 'woocommerce-germanized' ),
+					'title'             => _x( 'WooCommerce status', 'trusted-shops', 'woocommerce-germanized' ),
+					'desc_tip'          => _x( 'We recommend choosing the order status that you set when your products have been shipped.', 'trusted-shops', 'woocommerce-germanized' ),
 					'default'           => 'wc-completed',
 					'id'                => 'woocommerce_' . $this->base->option_prefix . 'trusted_shops_review_reminder_status',
 					'type'              => 'select',
@@ -602,8 +625,8 @@ class WC_GZD_Trusted_Shops_Admin {
 				),
 
 				array(
-					'title'             => _x( 'Days until reminder', 'trusted-shops', 'woocommerce-germanized' ),
-					'desc_tip'          => _x( 'Decide how many days after an order the email review reminder will be sent.', 'trusted-shops', 'woocommerce-germanized' ),
+					'title'             => _x( 'Days until Review Request', 'trusted-shops', 'woocommerce-germanized' ),
+					'desc_tip'          => _x( 'Set the number of days to wait after an order has reached the order status you selected above before having a review request sent to your customers.', 'trusted-shops', 'woocommerce-germanized' ),
 					'default'           => 7,
 					'id'                => 'woocommerce_' . $this->base->option_prefix . 'trusted_shops_review_reminder_days',
 					'type'              => 'number',
@@ -615,8 +638,8 @@ class WC_GZD_Trusted_Shops_Admin {
 				),
 
 				array(
-					'title'             => _x( 'Opt-In Checkbox', 'trusted-shops', 'woocommerce-germanized' ),
-					'desc_tip'          => _x( 'Decide how many days after an order the email review reminder will be sent.', 'trusted-shops', 'woocommerce-germanized' ),
+					'title'             => _x( 'Permission via checkbox', 'trusted-shops', 'woocommerce-germanized' ),
+					'desc_tip'          => _x( 'If the checkbox is activated, only customers who gave their consent will receive Review Requests.', 'trusted-shops', 'woocommerce-germanized' ),
 					'default'           => '',
 					'id'                => 'woocommerce_' . $this->base->option_prefix . 'trusted_shops_review_reminder_checkbox',
 					'type'              => 'html',
@@ -624,8 +647,8 @@ class WC_GZD_Trusted_Shops_Admin {
 				),
 
 				array(
-					'title'             => _x( 'Enable opt out', 'trusted-shops', 'woocommerce-germanized' ),
-					'desc'              => _x( 'Allow the user to opt-out by clicking on a link within the order confirmation.', 'trusted-shops', 'woocommerce-germanized' ),
+					'title'             => _x( 'Unsubscribe via link', 'trusted-shops', 'woocommerce-germanized' ),
+					'desc'              => _x( 'Allows the customer to unsubscribe from Review Requests.', 'trusted-shops', 'woocommerce-germanized' ),
 					'default'           => 'yes',
 					'id'                => 'woocommerce_' . $this->base->option_prefix . 'trusted_shops_review_reminder_opt_out',
 					'type'              => 'checkbox',
@@ -651,6 +674,14 @@ class WC_GZD_Trusted_Shops_Admin {
                 </div>
                 <div class="wc-ts-sidebar" id="wc-ts-sidebar-reviews">
                     <h3>Reviews Sidebar</h3>
+                </div>
+                <div class="wc-ts-sidebar" id="wc-ts-sidebar-review-reminder">
+                    <p><?php echo _x( 'Please note: If you want to send review requests through WooCommerce, you should deactivate automated review requests through Trusted Shops. To do so, please go to your My Trusted Shops account. Log in and go to Reviews >  Settings and deactivate "Collect reviews automatically"', 'trusted-shops', 'woocommerce-germanized' ); ?></p>
+                    <a class="button button-secondary" href="#" target="_blank">To your My Trusted Shops account</a>
+                </div>
+                <div class="wc-ts-sidebar" id="wc-ts-sidebar-review-collector">
+                    <p><?php echo _x( 'Export your customer information here and upload it in the Trusted Shops Review Collector. To do so go to your My Trusted Shops account. Log in and go to Reviews > Shop Reviews > Review Collector', 'trusted-shops', 'woocommerce-germanized' ); ?></p>
+                    <a class="button button-secondary" href="#" target="_blank">To the Trusted Shops Review Collector</a>
                 </div>
 			</div>
 		<?php
@@ -731,23 +762,26 @@ class WC_GZD_Trusted_Shops_Admin {
 		if ( ! wc_ts_woocommerce_supports_crud() )
 		    return;
 		?>
-		<h3><?php echo _x( 'Review Collector', 'trusted-shops', 'woocommerce-germanized' ); ?></h3>
-        <p class="description"><?php printf( _x( 'Export your customer data and ask consumers for a review with the Trusted Shops <a href="%s" target="_blank">Review Collector</a>.', 'trusted-shops', 'woocommerce-germanized' ), 'https://www.trustedshops.com/tsb2b/sa/ratings/batchRatingRequest.seam?prefLang=' . substr( get_bloginfo( 'language' ), 0, 2 ) ); ?></p>
-		<table class="form-table">
+		<h2><?php echo _x( 'Review Collector', 'trusted-shops', 'woocommerce-germanized' ); ?></h2>
+        <div id="trusted_shops_review_collector_options-description">
+            <p class="description"><?php printf( _x( 'Want to collect reviews for orders that were placed before your Trusted Shops Integration? No problem. Export old orders here and upload them in your %s.', 'trusted-shops', 'woocommerce-germanized' ), '<a href="https://www.trustedshops.com/tsb2b/sa/ratings/batchRatingRequest.seam?prefLang=' . substr( get_bloginfo( 'language' ), 0, 2 ) . '" target="_blank">' . _x( 'My Trusted Shops account', 'trusted-shops', 'woocommerce-germanized' ) . '</a>' ); ?></p>
+        </div>
+        <table class="form-table">
 			<tbody>
 				<tr valign="top">
 					<th scope="row" class="titledesc">
-						<label for="woocommerce_gzd_trusted_shops_review_collector"><?php echo _x( 'Export customer data', 'trusted-shops', 'woocommerce-germanized' ); ?> <?php echo wc_ts_help_tip( _x( 'Test tip', 'trusted-shops', 'woocommerce-germanized' ) ); ?></label>
+						<label for="woocommerce_gzd_trusted_shops_review_collector"><?php echo _x( 'Export orders', 'trusted-shops', 'woocommerce-germanized' ); ?> <?php echo wc_ts_help_tip( _x( 'Export your customer and order information of the last x days and upload them in your My Trusted Shops Account.', 'trusted-shops', 'woocommerce-germanized' ) ); ?></label>
 					</th>
 					<td class="forminp forminp-select forminp-review-collector">
-						<select name="woocommerce_<?php echo $this->base->option_prefix; ?>trusted_shops_review_collector" id="woocommerce_<?php echo $this->base->option_prefix; ?>trusted_shops_review_collector" class="chosen_select">
+						<select data-sidebar="wc-ts-sidebar-review-collector" name="woocommerce_<?php echo $this->base->option_prefix; ?>trusted_shops_review_collector" id="woocommerce_<?php echo $this->base->option_prefix; ?>trusted_shops_review_collector" class="chosen_select">
 							<option value="30"><?php echo _x( '30 days', 'trusted-shops', 'woocommerce-germanized' ); ?></option>
 							<option value="60"><?php echo _x( '60 days', 'trusted-shops', 'woocommerce-germanized' ); ?></option>
 							<option value="90"><?php echo _x( '90 days', 'trusted-shops', 'woocommerce-germanized' ); ?></option>
 						</select>
+                        <span class="description"><?php printf( _x( 'Upload customer and order information %s.', 'trusted-shops', 'woocommerce-germanized' ), '<a href="https://www.trustedshops.com/tsb2b/sa/ratings/reviewCollector/reviewCollector.seam" target="_blank">' . _x( 'here', 'trusted-shops', 'woocommerce-germanized' ) . '</a>' ); ?></span>
                         <div class="trusted-shops-review-collector-wrap">
                             <div class="review-collector-days">
-                                <label for="woocommerce_gzd_trusted_shops_review_collector"><?php echo _x( 'Days until notice will be sent', 'trusted-shops', 'woocommerce-germanized' ); ?> <?php echo wc_ts_help_tip( _x( 'Test tip', 'trusted-shops', 'woocommerce-germanized' ) ); ?></label>
+                                <label for="woocommerce_gzd_trusted_shops_review_collector"><?php echo _x( 'Days until reminder mail', 'trusted-shops', 'woocommerce-germanized' ); ?> <?php echo wc_ts_help_tip( _x( 'Set the number of days to wait after the order date before having a Review Request sent to your customers.', 'trusted-shops', 'woocommerce-germanized' ) ); ?></label>
                                 <input type="number" value="5" min="1" data-validate="integer" name="woocommerce_<?php echo $this->base->option_prefix; ?>trusted_shops_review_collector_days_to_send" id="woocommerce_<?php echo $this->base->option_prefix; ?>trusted_shops_review_collector_days_to_send" />
                             </div>
                             <div class="review-collector-buttons">
