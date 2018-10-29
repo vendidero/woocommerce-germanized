@@ -189,7 +189,7 @@ window.trusted_shops = window.trusted_shops || {};
                 if ( 'integer' === type ) {
                     value = parseInt( value );
 
-                    if ( ! value ) {
+                    if ( isNaN( value ) ) {
                         isValid = false;
                     }
                 }
