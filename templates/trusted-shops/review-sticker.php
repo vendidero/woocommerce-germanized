@@ -9,7 +9,7 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 ?>
-
+<!-- Module: WooCommerce Germanized -->
 <div id="ts_review_sticker"></div>
 
 <script type="text/javascript">

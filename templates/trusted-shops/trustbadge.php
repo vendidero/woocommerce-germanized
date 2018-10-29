@@ -9,9 +9,7 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 ?>
+<!-- Module: WooCommerce Germanized -->
 <script type="text/javascript">
-    /**
-     * Modul: WooCommerce Germanized
-     */
 	<?php echo $plugin->get_trustbadge_code(); ?>
 </script>

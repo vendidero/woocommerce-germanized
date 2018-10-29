@@ -209,6 +209,10 @@ class WC_GZD_Trusted_Shops {
 		return $locations;
 	}
 
+	public function is_trustbadge_enabled() {
+		return ( $this->trustbadge_enable === 'yes' ? true : false );
+	}
+
 	/**
 	 * Checks whether Trusted Shops Rich Snippets are enabled
 	 * 

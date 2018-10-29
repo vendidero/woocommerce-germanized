@@ -173,7 +173,10 @@ class WC_GZD_Trusted_Shops_Template_Hooks {
 
 	public function template_hooks() {
 		add_action( 'woocommerce_thankyou', array( $this, 'template_thankyou' ), 10, 1 );
-		add_action( 'wp_footer', array( $this, 'template_trustbadge' ), PHP_INT_MAX );
+
+		if ( $this->base->is_trustbadge_enabled() ) {
+			add_action( 'wp_footer', array( $this, 'template_trustbadge' ), PHP_INT_MAX );
+		}
 	}
 
 	public function review_reminder_checkbox() {

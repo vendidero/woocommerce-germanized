@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 $order = wc_get_order( $order_id );
 
 ?>
-<!-- Modul: WooCommerce Germanized -->
+<!-- Module: WooCommerce Germanized -->
 <div id="trustedShopsCheckout" style="display: none;">
 	<span id="tsCheckoutOrderNr"><?php echo wc_ts_get_crud_data( $order, 'id' );?></span> 
 	<span id="tsCheckoutBuyerEmail"><?php echo wc_ts_get_crud_data( $order, 'billing_email' ); ?></span>
