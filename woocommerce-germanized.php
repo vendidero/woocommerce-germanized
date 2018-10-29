@@ -811,8 +811,10 @@ final class WooCommerce_Germanized {
 		}
 
 		// Try to prevent the On Hold Email from being sent even though it is called directly via the trigger method
-		if ( isset( $mails['WC_Email_Customer_On_Hold_Order'] ) ) {
-			$mails['WC_Email_Customer_On_Hold_Order']           = include 'includes/emails/class-wc-gzd-email-customer-on-hold-order.php';
+		if ( wc_gzd_send_instant_order_confirmation() ) {
+			if ( isset( $mails['WC_Email_Customer_On_Hold_Order'] ) ) {
+				$mails['WC_Email_Customer_On_Hold_Order']       = include 'includes/emails/class-wc-gzd-email-customer-on-hold-order.php';
+			}
 		}
 		
 		return $mails;
