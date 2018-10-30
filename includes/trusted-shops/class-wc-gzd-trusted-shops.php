@@ -333,6 +333,35 @@ class WC_GZD_Trusted_Shops {
 		return $data;
 	}
 
+	public function get_product_image( $id ) {
+		$product = is_numeric( $id ) ? wc_get_product( $id ) : $id;
+
+		if ( ! $product ) {
+			return false;
+		}
+
+		$image = '';
+
+		if ( is_callable( array( $product, 'get_image_id' ) ) ) {
+			$image_id = $product->get_image_id();
+			$images   = wp_get_attachment_image_src( $image_id, 'shop_single' );
+
+			if ( ! empty( $images ) ) {
+				$image = $images[0];
+			}
+		} else {
+			if ( has_post_thumbnail( wc_ts_get_crud_data( $product, 'id' ) ) ) {
+				$images = wp_get_attachment_image_src( get_post_thumbnail_id( wc_ts_get_crud_data( $product, 'id' ) ), 'shop_single' );
+
+				if ( ! empty( $images ) ) {
+					$image = $images[0];
+				}
+			}
+		}
+
+		return $image;
+	}
+
 	public function get_product_brand( $id ) {
 		$product = is_numeric( $id ) ? wc_get_product( $id ) : $id;
 
