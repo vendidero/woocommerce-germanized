@@ -476,7 +476,7 @@ class WC_GZD_Checkout {
 
 					$fee->tax_data = $fee_taxes;
 					$fee->tax      = wc_round_tax_total( $fee_tax_total );
-					$fee->amount   = wc_format_decimal( ( $fee->amount - $fee->tax ), wc_get_price_decimals() );
+					$fee->amount   = ( $fee->amount - $fee->tax );
 					$fee->total    = $fee->amount;
 
 					$new_fees[ $key ] = $fee;
@@ -486,6 +486,10 @@ class WC_GZD_Checkout {
 			$cart->fees_api()->set_fees( $new_fees );
 			$cart->set_fee_tax( array_sum( $fee_tax_data ) );
 			$cart->set_fee_taxes( $fee_tax_data );
+
+			$fee_total = array_sum( wp_list_pluck( $new_fees, 'total' ) );
+
+			$cart->set_fee_total( wc_format_decimal( $fee_total, wc_get_price_decimals() ) );
 		}
 	}
 
