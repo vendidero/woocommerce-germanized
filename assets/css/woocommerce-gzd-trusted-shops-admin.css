@@ -74,12 +74,49 @@ td.forminp-review-collector p.description {
 	top: 15px !important;
 }
 
+.wc-ts-sidebar h3 {
+	font-size: 1.1em;
+}
+
 .wc-ts-sidebar {
 	display: none;
 }
 
+.wc-ts-sidebar-flex {
+	justify-content: flex-start;
+	width: 100%;
+}
+
+.wc-ts-sidebar .wc-ts-sidebar-desc {
+	margin-top: 1em;
+	display: block;
+}
+
+#wc-ts-sidebar-product-reviews .wc-ts-sidebar-desc {
+	margin: 1em 0;
+}
+
+.wc-ts-sidebar-flex .wc-ts-sidebar-container {
+	flex-grow: 1;
+	flex-shrink: 1;   /* do not shrink - initial value: 1 */
+	flex-basis: 50%;
+}
+
+.wc-ts-sidebar img {
+	width: auto;
+	max-width: 100%;
+}
+
+.wc-gzd-admin-settings-sidebar .wc-ts-sidebar img {
+	width: auto;
+}
+
 .wc-ts-sidebar-active {
 	display: block;
+}
+
+.wc-ts-sidebar-active.wc-ts-sidebar-flex {
+	display: flex;
 }
 
 .wc-gzd-admin-settings #trusted_shops_options-description .button {

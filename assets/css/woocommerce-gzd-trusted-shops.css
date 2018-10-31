@@ -9,7 +9,7 @@
 	width: 100px;
 	height: 100px;
 	display: inline-block;
-	background: transparent url(../images/trusted-shops-badge.png) no-repeat;
+	background: transparent url(../images/ts/trusted-shops-badge.png) no-repeat;
 }
 
 @media only screen and (-webkit-min-device-pixel-ratio: 1.5),
@@ -17,7 +17,7 @@ only screen and (-o-min-device-pixel-ratio: 3/2),
 only screen and (min--moz-device-pixel-ratio: 1.5),
 only screen and (min-device-pixel-ratio: 1.5) {
  	.trusted-shops-badge {
-  		background: transparent url(../images/trusted-shops-badge@2x.png) no-repeat;
+  		background: transparent url(../images/ts/trusted-shops-badge@2x.png) no-repeat;
    		background-size: 100px 100px;
     }
     .trusted-shops-badge-smaller {

@@ -491,16 +491,28 @@ class WC_GZD_Trusted_Shops {
 		return $this->get_script( 'trustbadge', $replace, $args );
 	}
 
-	public function get_locale() {
+	public function get_supported_languages() {
+		return array_keys( $this->get_locale_mapping() );
+	}
+
+	protected function get_locale_mapping() {
 		$supported = array(
 			'de' => 'de_DE',
 			'en' => 'en_GB',
 			'fr' => 'fr_FR',
-			'es' => 'es_ES',
-			'it' => 'it_IT',
-			'nl' => 'nl_NL',
-			'pl' => 'pl_PL',
 		);
+
+		return $supported;
+	}
+
+	public function get_language() {
+		$locale = $this->get_locale();
+
+		return substr( $locale, 0, 2 );
+	}
+
+	public function get_locale() {
+		$supported = $this->get_locale_mapping();
 
 		$locale = 'en_GB';
 		$base   = substr( get_locale(), 0, 2 );

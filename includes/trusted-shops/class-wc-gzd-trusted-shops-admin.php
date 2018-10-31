@@ -242,6 +242,7 @@ class WC_GZD_Trusted_Shops_Admin {
 				'desc_tip'          => true,
 				'id'                => 'woocommerce_' . $this->base->option_prefix . 'trusted_shops_id',
 				'type'              => 'text',
+				'custom_attributes' => array( 'data-sidebar' => 'wc-ts-sidebar-default' ),
 				'css'               => 'min-width:300px;',
 			),
 
@@ -256,7 +257,6 @@ class WC_GZD_Trusted_Shops_Admin {
 					'expert'        => _x( 'Advanved configuration', 'trusted-shops', 'woocommerce-germanized' ),
 				),
 				'default'           => 'standard',
-                'custom_attributes' => array( 'data-sidebar' => 'wc-ts-sidebar-reviews' ),
 			),
 
 			array( 'type' => 'sectionend', 'id' => 'trusted_shops_options' ),
@@ -272,6 +272,7 @@ class WC_GZD_Trusted_Shops_Admin {
 				'id'                => 'woocommerce_' . $this->base->option_prefix . 'trusted_shops_trustbadge_enable',
 				'desc_tip'          => _x( 'Display the Trustbadge on all the pages of your shop.', 'trusted-shops', 'woocommerce-germanized' ),
 				'type'              => 'gzd_toggle',
+				'custom_attributes' => array( 'data-sidebar' => 'wc-ts-sidebar-trustbadge' ),
 				'default'           => 'no'
 			),
 
@@ -328,6 +329,7 @@ class WC_GZD_Trusted_Shops_Admin {
 				'desc'              => sprintf( _x( 'Assign widget %s', 'trusted-shops', 'woocommerce-germanized' ), '<a href="' . admin_url( 'widgets.php' ) . '" target="_blank">' . _x( 'here', 'trusted-shops', 'woocommerce-germanized' ) . '</a>' ),
                 'id'                => 'woocommerce_' . $this->base->option_prefix . 'trusted_shops_review_sticker_enable',
 				'type'              => 'gzd_toggle',
+				'custom_attributes' => array( 'data-sidebar' => 'wc-ts-sidebar-shop-reviews' ),
 				'default'           => 'no'
 			),
 
@@ -442,6 +444,7 @@ class WC_GZD_Trusted_Shops_Admin {
 				'desc_tip'          => _x( 'Show Product Reviews on the product page in a separate tab, just as shown on the picture on the right.', 'trusted-shops', 'woocommerce-germanized' ),
 				'id'                => 'woocommerce_' . $this->base->option_prefix . 'trusted_shops_reviews_enable',
 				'type'              => 'gzd_toggle',
+				'custom_attributes' => array( 'data-sidebar' => 'wc-ts-sidebar-product-reviews' ),
 				'default'           => 'no'
 			),
 
@@ -663,22 +666,61 @@ class WC_GZD_Trusted_Shops_Admin {
 
 	}
 
+	public function get_image( $img ) {
+	    $language   = $this->base->get_language();
+	    $endings    = array( '.jpg', '.png' );
+	    $last       = substr( $img, -4 );
+	    $ending     = '';
+
+	    if ( in_array( $last, $endings ) ) {
+	        $ending = $last;
+	        $img    = substr( $img, 0, -4 );
+        }
+
+		$new_img    = $img . '_' . $language . $ending;
+
+	    return $this->base->plugin->plugin_url() . '/assets/images/ts/' . $new_img;
+    }
+
 	public function get_sidebar() {
 		ob_start();
 		?>
 			<div class="wc-gzd-admin-settings-sidebar wc-gzd-admin-settings-sidebar-trusted-shops">
+
                 <div class="wc-ts-sidebar wc-ts-sidebar-active" id="wc-ts-sidebar-default">
-                    <h3><?php echo _x( 'About Trusted Shops', 'trusted-shops', 'woocommerce-germanized' ); ?></h3>
-                    <a href="<?php echo $this->get_signup_url( $this->base->urls[ 'signup' ] ); ?>" target="_blank"><img style="width: 100%; height: auto" src="<?php echo $this->base->plugin->plugin_url(); ?>/assets/images/trusted-shops-b.jpg" /></a>
+                    <h3><?php echo _x( 'How does Trusted Shops make your shop better?', 'trusted-shops', 'woocommerce-germanized' ); ?></h3>
+                    <a href="<?php echo $this->get_signup_url( $this->base->urls['signup'] ); ?>" target="_blank"><img style="width: 100%; height: auto" src="<?php echo $this->get_image( 'ts.png' ); ?>" /></a>
                     <a class="button button-primary" href="<?php echo $this->get_signup_url( $this->base->urls[ 'signup' ] ); ?>" target="_blank"><?php echo _x( 'Get your account', 'trusted-shops', 'woocommerce-germanized' ); ?></a>
                 </div>
-                <div class="wc-ts-sidebar" id="wc-ts-sidebar-reviews">
-                    <h3>Reviews Sidebar</h3>
+
+                <div class="wc-ts-sidebar wc-ts-sidebar-flex" id="wc-ts-sidebar-trustbadge">
+                    <div class="wc-ts-sidebar-left wc-ts-sidebar-container">
+                        <img src="<?php echo $this->get_image( 'ts_trustbadge_trustmark_reviews.png' ); ?>" />
+                        <span class="wc-ts-sidebar-desc"><?php echo _x( 'Display Trustbadge with review stars', 'trusted-shops', 'woocommerce-germanized' ); ?></span>
+                    </div>
+                    <div class="wc-ts-sidebar-right wc-ts-sidebar-container">
+                        <img src="<?php echo $this->get_image( 'ts_trustbadge_trustmark-only.png' ); ?>" />
+                        <span class="wc-ts-sidebar-desc"><?php echo _x( 'Display Trustbadge without review stars', 'trusted-shops', 'woocommerce-germanized' ); ?></span>
+                    </div>
                 </div>
+
+                <div class="wc-ts-sidebar" id="wc-ts-sidebar-shop-reviews">
+                    <img style="width: 100%; height: auto" src="<?php echo $this->get_image( 'ts_shop_review_sticker.jpg' ); ?>" />
+                </div>
+
+                <div class="wc-ts-sidebar" id="wc-ts-sidebar-product-reviews">
+                    <img style="width: 100%; height: auto" src="<?php echo $this->get_image( 'ts_product_reviews.jpg' ); ?>" />
+                    <span class="wc-ts-sidebar-desc"><?php echo _x( 'Product Reviews on the product detail page in an additional tab', 'trusted-shops', 'woocommerce-germanized' ); ?></span>
+
+                    <img style="width: 100%; height: auto" src="<?php echo $this->get_image( 'ts_woo.jpg' ); ?>" />
+                    <span class="wc-ts-sidebar-desc"><?php echo _x( 'Show Star-Ratings on the product detail page below your product name', 'trusted-shops', 'woocommerce-germanized' ); ?></span>
+                </div>
+
                 <div class="wc-ts-sidebar" id="wc-ts-sidebar-review-reminder">
                     <p><?php echo _x( 'Please note: If you want to send review requests through WooCommerce, you should deactivate automated review requests through Trusted Shops. To do so, please go to your My Trusted Shops account. Log in and go to Reviews >  Settings and deactivate "Collect reviews automatically"', 'trusted-shops', 'woocommerce-germanized' ); ?></p>
                     <a class="button button-secondary" href="#" target="_blank">To your My Trusted Shops account</a>
                 </div>
+
                 <div class="wc-ts-sidebar" id="wc-ts-sidebar-review-collector">
                     <p><?php echo _x( 'Export your customer information here and upload it in the Trusted Shops Review Collector. To do so go to your My Trusted Shops account. Log in and go to Reviews > Shop Reviews > Review Collector', 'trusted-shops', 'woocommerce-germanized' ); ?></p>
                     <a class="button button-secondary" href="#" target="_blank">To the Trusted Shops Review Collector</a>
