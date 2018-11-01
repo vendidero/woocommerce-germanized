@@ -21,7 +21,6 @@ class WC_GZD_DHL_Parcel_Shops {
 	}
 
 	public function __construct() {
-
 		$this->address_hooks();
 
 		if ( $this->is_enabled() ) {
@@ -144,7 +143,6 @@ class WC_GZD_DHL_Parcel_Shops {
 	}
 
 	public function init_fields( $fields ) {
-
 		$fields['parcelshop'] = array(
 			'type' 	   => 'checkbox',
 			'required' => false,
@@ -153,6 +151,7 @@ class WC_GZD_DHL_Parcel_Shops {
 			'group'    => array( 'shipping' ),
 			'class'    => array( 'form-row-wide', 'first-check' ),
 			'hidden'   => $this->maybe_hide_fields(),
+			'priority' => 50,
 		);
 
 		$fields['parcelshop_post_number'] = array(
@@ -163,6 +162,7 @@ class WC_GZD_DHL_Parcel_Shops {
 			'group'    => array( 'shipping' ),
 			'class'    => array( 'form-row-wide' ),
 			'hidden'   => $this->maybe_hide_fields(),
+			'priority' => 60,
 		);
 
 		return $fields;
@@ -173,19 +173,20 @@ class WC_GZD_DHL_Parcel_Shops {
 	}
 
 	public function init_profile_fields( $fields ) {
-
 		$fields['shipping']['fields']['shipping_parcelshop'] = array(
 			'label'       => __( 'DHL Parcel Shop?', 'woocommerce-germanized' ),
 			'type'		  => 'select',
 			'options'     => array( 0 => __( 'No', 'woocommerce-germanized' ), 1 => __( 'Yes', 'woocommerce-germanized' ) ),
 			'description' => __( 'Select whether delivery to parcel shop should be enabled.', 'woocommerce-germanized' ),
 			'class'       => '',
+			'priority'    => 50,
 		);
 
 		$fields['shipping']['fields']['shipping_parcelshop_post_number'] = array(
 			'label'       => __( 'Postnumber', 'woocommerce-germanized' ),
 			'type'		  => 'text',
 			'description' => __( 'In case delivery to parcel shop is enabled please fill in the corresponding DHL post number.', 'woocommerce-germanized' ),
+			'priority'    => 60,
 		);
 
 		return $fields;

@@ -350,8 +350,8 @@ class WC_GZD_Checkout {
 
 		if ( $search && isset( $matches[1] ) ) {
 			$order_id = absint( $matches[1] );
-			$order = wc_get_order( $order_id );
-			$return = apply_filters( 'woocommerce_gzd_attempt_order_cancellation_url', add_query_arg( array( 'retry' => true ), $order->get_checkout_order_received_url(), $order ) );
+			$order    = wc_get_order( $order_id );
+			$return   = apply_filters( 'woocommerce_gzd_attempt_order_cancellation_url', add_query_arg( array( 'retry' => true ), $order->get_checkout_order_received_url(), $order ) );
 		}
 
 		return $return;
@@ -359,35 +359,33 @@ class WC_GZD_Checkout {
 
 	public function init_fields() {
 		if ( get_option( 'woocommerce_gzd_checkout_address_field' ) == 'yes' ) {
-
-			$this->custom_fields[ 'title' ] = array(
+			$this->custom_fields['title'] = array(
 				'type' 	   => 'select',
 				'required' => false,
 				'label'    => __( 'Title', 'woocommerce-germanized' ),
 				'options'  => apply_filters( 'woocommerce_gzd_title_options', array( 1 => __( 'Mr.', 'woocommerce-germanized' ), 2 => __( 'Ms.', 'woocommerce-germanized' ) ) ),
 				'before'   => 'first_name',
 				'group'    => array( 'billing', 'shipping' ),
+				'priority' => 0,
 			);
 
-			$this->custom_fields_admin[ 'title' ] = array(
+			$this->custom_fields_admin['title'] = array(
 				'before'   => 'first_name',
 				'type'     => 'select',
 				'options'  => apply_filters( 'woocommerce_gzd_title_options', array( 1 => __( 'Mr.', 'woocommerce-germanized' ), 2 => __( 'Ms.', 'woocommerce-germanized' ) ) ),
 				'label'    => __( 'Title', 'woocommerce-germanized' ),
 				'show'     => false,
+				'priority' => 0,
 			);
-
 		}
 
 		if ( get_option( 'woocommerce_gzd_checkout_phone_required' ) == 'no' ) {
-
-			$this->custom_fields[ 'phone' ] = array(
+			$this->custom_fields['phone'] = array(
 				'before'   => '',
 				'override' => true,
 				'required' => false,
 				'group'    => array( 'billing' )
 			);
-
 		}
 
 		$this->custom_fields_admin = apply_filters( 'woocommerce_gzd_custom_checkout_admin_fields', $this->custom_fields_admin, $this );
@@ -626,7 +624,7 @@ class WC_GZD_Checkout {
 			return $fields;
 
 		if ( wc_gzd_get_crud_data( $order, 'billing_title' ) )
-			$fields[ 'title' ] = $this->get_customer_title( wc_gzd_get_crud_data( $order, 'billing_title' ) );
+			$fields['title'] = $this->get_customer_title( wc_gzd_get_crud_data( $order, 'billing_title' ) );
 
 		return $fields;
 	}
@@ -637,7 +635,7 @@ class WC_GZD_Checkout {
 			return $fields;
 
 		if ( wc_gzd_get_crud_data( $order, 'shipping_title' ) )
-			$fields[ 'title' ] = $this->get_customer_title( wc_gzd_get_crud_data( $order, 'shipping_title' ) );
+			$fields['title'] = $this->get_customer_title( wc_gzd_get_crud_data( $order, 'shipping_title' ) );
 
 		return $fields;
 	}
@@ -660,11 +658,11 @@ class WC_GZD_Checkout {
 	}
 
 	public function set_formatted_address( $placeholder, $args ) {
-		if ( isset( $args[ 'title' ] ) ) {
-			$placeholder[ '{title}' ] = $args[ 'title' ];
-			$placeholder[ '{title_upper}' ] = strtoupper( $args[ 'title' ] );
-			$placeholder[ '{name}' ] = $placeholder[ '{title}' ] . ' ' . $placeholder[ '{name}' ];
-			$placeholder[ '{name_upper}' ] = $placeholder[ '{title_upper}' ] . ' ' . $placeholder[ '{name_upper}' ];
+		if ( isset( $args['title'] ) ) {
+			$placeholder['{title}']       = $args['title'];
+			$placeholder['{title_upper}'] = strtoupper( $args['title'] );
+			$placeholder['{name}']        = $placeholder['{title}'] . ' ' . $placeholder['{name}'];
+			$placeholder['{name_upper}']  = $placeholder['{title_upper}'] . ' ' . $placeholder['{name_upper}'];
 		}
 		return $placeholder;
 	}
@@ -718,13 +716,13 @@ class WC_GZD_Checkout {
 
 				$new = array();
 
-				if ( isset( $custom_field[ 'address_type' ] ) && $custom_field[ 'address_type' ] !== $type )
+				if ( isset( $custom_field['address_type'] ) && $custom_field['address_type'] !== $type )
 					continue;
 
 				if ( ! empty( $fields ) ) {
 
 					foreach ( $fields as $name => $field ) {
-						if ( $name == $custom_field[ 'before' ] && ! isset( $custom_field[ 'override' ] ) )
+						if ( $name == $custom_field['before'] && ! isset( $custom_field['override'] ) )
 							$new[ $key ] = $custom_field;
 
 						$new[ $name ] = $field;
@@ -755,9 +753,9 @@ class WC_GZD_Checkout {
 
 			foreach ( $this->custom_fields as $key => $custom_field ) {
 
-				if ( ! empty( $custom_field[ 'group' ] ) && ! isset( $custom_field[ 'override' ] ) ) {
+				if ( ! empty( $custom_field['group'] ) && ! isset( $custom_field['override'] ) ) {
 
-					foreach ( $custom_field[ 'group' ] as $group ) {
+					foreach ( $custom_field['group'] as $group ) {
 
 						$val = '';
 

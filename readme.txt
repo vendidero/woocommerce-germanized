@@ -5,7 +5,7 @@ Requires at least: 3.8
 Tested up to: 5.0
 WC requires at least: 2.4
 WC tested up to: 3.5
-Stable tag: 2.2.3
+Stable tag: 2.2.4
 Requires PHP: 5.3
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -183,6 +183,14 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 4. WooCommerce Multistep Checkout (Pro)
 
 == Changelog ==
+
+= 2.2.4 =
+* Fix: Added priority to checkout fields to avoid undefined index error in Woo 3.5.1
+* Fix: Do not remove default Woo order confirmation hooks if feature is disabled
+* Fix: Order submit nonce naming fallback
+* Improvement: Fee shared tax calculation
+* Improvement: REST API boolean data handling
+* Improvement: New REST API unit tests
 
 = 2.2.3 =
 * Fix: Woo 3.5 translation order processing email replacement
