@@ -439,9 +439,48 @@ class WC_GZD_Trusted_Shops {
 		return $script;
 	}
 
+	public function get_selector_attribute( $type, $selector = '' ) {
+		$element  = $this->get_selector_raw( $type, $selector );
+
+		if ( substr( $element, 0, 1 ) === '.' ) {
+			$element  = substr( $element, 1 );
+		} elseif( substr( $element, 0, 1 ) === '#' ) {
+			$element  = substr( $element, 1 );
+		}
+
+		return $element;
+	}
+
+	public function get_selector_raw( $type, $selector = '' ) {
+		$element  = $this->{$type . "_selector"};
+
+		if ( empty( $element ) ) {
+			$element = "#ts_{$type}";
+		}
+
+		if ( ! empty( $selector ) ) {
+			$element = $selector;
+		}
+
+		return $element;
+	}
+
+	public function get_selector( $type, $selector = '' ) {
+		$element   = $this->get_selector_raw( $type, $selector );
+		$attribute = $this->get_selector_attribute( $type, $selector );
+		$is_class  = false;
+
+		if ( substr( $element, 0, 1 ) === '.' ) {
+			$is_class = true;
+		}
+
+		return $is_class ? 'class="' . esc_attr( $attribute ) . '"' : 'id="' . esc_attr( $attribute ) . '"';
+	}
+
 	public function get_product_sticker_code( $replace = true, $args = array() ) {
 		if ( $replace ) {
 			$args = wp_parse_args( $args, array(
+				'element'      => $this->product_sticker_selector,
 				'border_color' => $this->product_sticker_border_color,
 				'star_color'   => $this->product_sticker_star_color,
 				'star_size'    => $this->product_sticker_star_size,
@@ -454,10 +493,11 @@ class WC_GZD_Trusted_Shops {
 	public function get_review_sticker_code( $replace = true, $args = array() ) {
 		if ( $replace ) {
 			$args = wp_parse_args( $args, array(
-				'bg_color'     => $this->rating_sticker_bg_color,
-				'font'         => $this->rating_sticker_font,
-				'number'       => $this->rating_sticker_number,
-				'better_than'  => $this->rating_sticker_better_than
+				'element'      => '#ts_review_sticker',
+				'bg_color'     => $this->review_sticker_bg_color,
+				'font'         => $this->review_sticker_font,
+				'number'       => $this->review_sticker_number,
+				'better_than'  => $this->review_sticker_better_than
 			) );
 		}
 
@@ -468,7 +508,7 @@ class WC_GZD_Trusted_Shops {
 		if ( $replace ) {
 
 			$args = wp_parse_args( $args, array(
-				'element'    => '#ts_product_widget',
+				'element'    => $this->product_widget_selector,
 				'star_color' => $this->product_widget_star_color,
 				'star_size'  => $this->product_widget_star_size,
 				'font_size'  => $this->product_widget_font_size,
@@ -489,6 +529,22 @@ class WC_GZD_Trusted_Shops {
 		}
 
 		return $this->get_script( 'trustbadge', $replace, $args );
+	}
+
+	public function get_rich_snippets_code( $replace = true, $args = array() ) {
+		if ( $replace ) {
+			$rating = $this->get_average_rating();
+
+			$args = apply_filters( 'woocommerce_trusted_shops_rich_snippets_args', wp_parse_args( $args, array(
+				'average'     => $rating['avg'],
+				'count'       => $rating['count'],
+				'maximum'     => $rating['max'],
+				'rating'      => $rating,
+				'name'        => get_bloginfo( 'name' ),
+			) ), $this );
+		}
+
+		return $this->get_script( 'rich_snippets', $replace, $args );
 	}
 
 	public function get_supported_languages() {

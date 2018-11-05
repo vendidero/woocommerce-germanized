@@ -39,8 +39,9 @@ class WC_GZD_Trusted_Shops_Widget_Review_Sticker extends WC_Widget {
 	 * @return void
 	 */
 	public function widget( $args, $instance ) {
-
 		extract( $args );
+
+		$element = "#ts_review_sticker_{$this->number}";
 
 		$title = apply_filters('widget_title', empty( $instance['title'] ) ? _x( 'Trusted Shops Reviews', 'trusted-shops', 'woocommerce-germanized' ) : $instance['title'], $instance, $this->id_base );
 
@@ -51,7 +52,7 @@ class WC_GZD_Trusted_Shops_Widget_Review_Sticker extends WC_Widget {
 
 		echo '<div class="widget_trusted_shops_review_sticker_content">';
 
-		echo do_shortcode( '[trusted_shops_review_sticker]' );
+		echo do_shortcode( '[trusted_shops_review_sticker element="' . $element . '"]' );
 
 		echo '</div>';
 

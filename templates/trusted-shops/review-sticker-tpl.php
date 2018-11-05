@@ -11,7 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 <script type="text/javascript">
     _tsRatingConfig = {
         tsid: '{id}',
-        element: '#ts_review_sticker',
+        element: '{element}',
 	    variant: 'testimonial',
         reviews: '{number}',
 	    betterThan: '{better_than}',

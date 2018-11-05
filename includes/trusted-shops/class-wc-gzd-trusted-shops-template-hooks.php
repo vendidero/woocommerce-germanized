@@ -228,7 +228,7 @@ class WC_GZD_Trusted_Shops_Template_Hooks {
 	}
 
 	public function template_review_sticker( $template ) {
-		wc_get_template( 'trusted-shops/review-sticker.php', array( 'plugin' => $this->base ) );
+		wc_get_template( 'trusted-shops/review-sticker.php', array( 'plugin' => $this->base, 'element' => '#ts_review_sticker' ) );
 	}
 
 	public function template_product_sticker( $template ) {

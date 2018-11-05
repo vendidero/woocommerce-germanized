@@ -75,15 +75,6 @@ window.trusted_shops = window.trusted_shops || {};
         onChangeIntegrationMode: function() {
             var self = trusted_shops.admin;
 
-            // Hide gateway options
-            $( document ).find( '#woocommerce_' + self.optionPrefix + 'trusted_shops_gateway_bacs' ).parents( 'table.form-table' ).hide();
-            $( document ).find( '#woocommerce_' + self.optionPrefix + 'trusted_shops_gateway_bacs' ).parents( 'table' ).prev( 'h3,h2' ).hide();
-
-            if ( self.isExpertMode() ) {
-                $( document ).find( '#woocommerce_' + self.optionPrefix + 'trusted_shops_gateway_bacs' ).parents('table.form-table').show();
-                $( document ).find( '#woocommerce_' + self.optionPrefix + 'trusted_shops_gateway_bacs' ).parents('table').prev('h3,h2').show();
-            }
-
             $( document ).find( ':input[id$=_enable]' ).trigger( 'change' );
         },
 
@@ -101,6 +92,12 @@ window.trusted_shops = window.trusted_shops || {};
                 $elements = $( ':input[id^=woocommerce_' + self.optionPrefix + 'trusted_shops_' + group + '_], th[id^=woocommerce_' + self.optionPrefix + 'trusted_shops_' + group + '_]' ),
                 show      = false;
 
+            var exclude_hide_experts = [
+                'woocommerce_' + self.optionPrefix + 'trusted_shops_rich_snippets_category',
+                'woocommerce_' + self.optionPrefix + 'trusted_shops_rich_snippets_product',
+                'woocommerce_' + self.optionPrefix + 'trusted_shops_rich_snippets_home'
+            ];
+
             if ( $parent.is( ':checked' ) ) {
                 show = true;
             }
@@ -113,9 +110,20 @@ window.trusted_shops = window.trusted_shops || {};
                     return;
                 }
 
-                if ( 'woocommerce_' + self.optionPrefix + 'trusted_shops_' + group + '_code' === elementId ) {
+                // Code blocks
+                if ( 'woocommerce_' + self.optionPrefix + 'trusted_shops_' + group + '_code' === elementId ||  'woocommerce_' + self.optionPrefix + 'trusted_shops_' + group + '_selector' === elementId ) {
                     if ( ! self.isExpertMode() && showElement ) {
                         showElement = false;
+                    }
+                } else if( self.isExpertMode() ) {
+                    // Check if parent has code block
+                    var $parent = $( this ).parents( 'table.form-table' );
+
+                    // Check if element is excluded from being hidden
+                    if ( $parent.find( ':input[id$=_code]' ).length > 0 ) {
+                        if ( $.inArray( elementId, exclude_hide_experts ) == -1 ) {
+                            showElement = false;
+                        }
                     }
                 }
 

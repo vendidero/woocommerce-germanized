@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 	$skus = $plugin->get_product_skus( $post->ID );
 ?>
 <!-- Module: WooCommerce Germanized -->
-<div id="ts_product_sticker"></div>
+<div <?php echo $plugin->get_selector( 'product_sticker' ); ?>></div>
 
 <script type="text/javascript">
 	<?php echo $plugin->get_product_sticker_code( true, array( 'sku' => $skus ) ); ?>

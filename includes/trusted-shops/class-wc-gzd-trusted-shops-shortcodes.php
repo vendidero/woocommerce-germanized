@@ -40,15 +40,10 @@ class WC_GZD_Trusted_Shops_Shortcodes {
 	 * @return string       
 	 */
 	public function trusted_shops_rich_snippets( $atts ) {
-		$args = apply_filters( 'woocommerce_gzd_trusted_shops_rich_snippets_args', array(
-			'plugin'      => $this->base,
-			'rating'      => $this->base->get_average_rating(),
-			'rating_link' => $this->base->get_rating_link(),
-			'name'        => get_bloginfo( 'name' ),
-		) );
-
 		ob_start();
-		wc_get_template( 'trusted-shops/rich-snippets.php', $args );
+		wc_get_template( 'trusted-shops/rich-snippets.php', array(
+			'plugin'    => $this->base
+		) );
 		$html = ob_get_clean();
 
 		return $this->base->is_enabled() ? $html : '';
@@ -61,9 +56,14 @@ class WC_GZD_Trusted_Shops_Shortcodes {
 	 * @return string       
 	 */
 	public function trusted_shops_review_sticker( $atts ) {
+		$atts = wp_parse_args( $atts, array(
+			'element' => '#ts_review_sticker',
+		) );
+
 		ob_start();
 		wc_get_template( 'trusted-shops/review-sticker.php', array(
-			'plugin'    => $this->base
+			'plugin'    => $this->base,
+			'element'   => $atts['element'],
 		) );
 		$html = ob_get_clean();
 		return $this->base->is_enabled() ? '<div class="woocommerce woocommerce-gzd">' . $html . '</div>' : '';

@@ -16,10 +16,10 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
     $skus    = $plugin->get_product_skus( $post->ID );
 ?>
 <!-- Module: WooCommerce Germanized -->
-<div id="ts_product_widget_<?php echo wc_ts_get_crud_data( $product, 'id' ); ?>"></div>
+<div <?php echo $plugin->get_selector( 'product_widget' ); ?>></div>
 
 <script type="text/javascript" src="//widgets.trustedshops.com/reviews/tsSticker/tsProductStickerSummary.js"></script>
 
 <script type="text/javascript">
-	<?php echo $plugin->get_product_widget_code( true, array( 'sku' => $skus, 'element' => '#ts_product_widget_' . wc_ts_get_crud_data( $product, 'id' ) ) ); ?>
+	<?php echo $plugin->get_product_widget_code( true, array( 'sku' => $skus ) ); ?>
 </script>

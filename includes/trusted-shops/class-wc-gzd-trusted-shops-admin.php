@@ -310,7 +310,7 @@ class WC_GZD_Trusted_Shops_Admin {
 				'id'                => 'woocommerce_' . $this->base->option_prefix . 'trusted_shops_trustbadge_code',
 				'type'              => 'textarea',
 				'desc_tip'          => true,
-				'desc'              => _x( 'The  advanced configuration is for users with programming skills. Here you can create even more individual settings.', 'trusted-shops', 'woocommerce-germanized' ),
+				'desc'              => _x( 'The advanced configuration is for users with programming skills. Here you can create even more individual settings.', 'trusted-shops', 'woocommerce-germanized' ),
 				'css'               => 'width: 100%; min-height: 150px',
 				'default'           => $this->base->get_trustbadge_code( false ),
 			),
@@ -390,7 +390,7 @@ class WC_GZD_Trusted_Shops_Admin {
 				'id'                => 'woocommerce_' . $this->base->option_prefix . 'trusted_shops_review_sticker_code',
 				'type'              => 'textarea',
 				'desc_tip'          => true,
-				'desc'              => _x( 'The  advanced configuration is for users with programming skills. Here you can perform even more individual settings.', 'trusted-shops', 'woocommerce-germanized' ),
+				'desc'              => _x( 'The advanced configuration is for users with programming skills. Here you can perform even more individual settings.', 'trusted-shops', 'woocommerce-germanized' ),
 				'css'               => 'width: 100%; min-height: 150px',
 				'default'           => $this->base->get_review_sticker_code( false ),
 			),
@@ -427,6 +427,16 @@ class WC_GZD_Trusted_Shops_Admin {
 				'type' 		        => 'checkbox',
 				'default'	        => 'no',
 				'checkboxgroup'	    => 'end',
+			),
+
+			array(
+				'title'             => _x( 'Rich snippets code', 'trusted-shops', 'woocommerce-germanized' ),
+				'id'                => 'woocommerce_' . $this->base->option_prefix . 'trusted_shops_rich_snippets_code',
+				'type'              => 'textarea',
+				'desc_tip'          => true,
+				'desc'              => _x( 'The advanced configuration is for users with programming skills. Here you can create even more individual settings.', 'trusted-shops', 'woocommerce-germanized' ),
+				'css'               => 'width: 100%; min-height: 150px',
+				'default'           => $this->base->get_rich_snippets_code( false ),
 			),
 
 			array( 'type' => 'sectionend', 'id' => 'trusted_shops_review_sticker_options' ),
@@ -508,10 +518,18 @@ class WC_GZD_Trusted_Shops_Admin {
 			array(
 				'title'             => _x( 'Product Sticker Code', 'trusted-shops', 'woocommerce-germanized' ),
 				'id'                => 'woocommerce_' . $this->base->option_prefix . 'trusted_shops_product_sticker_code',
-				'desc_tip'          => _x( 'The  advanced configuration is for users with programming skills. Here you can perform even more individual settings.', 'trusted-shops', 'woocommerce-germanized' ),
+				'desc_tip'          => _x( 'The advanced configuration is for users with programming skills. Here you can perform even more individual settings.', 'trusted-shops', 'woocommerce-germanized' ),
 				'type'              => 'textarea',
 				'css'               => 'width: 100%; min-height: 150px',
 				'default'           => $this->base->get_product_sticker_code( false ),
+			),
+
+			array(
+				'title'             => _x( 'jQuerySelector', 'trusted-shops', 'woocommerce-germanized' ),
+				'desc_tip'          => _x( 'Please choose where your Product Reviews shall be displayed on the Product detail page.', 'trusted-shops', 'woocommerce-germanized' ),
+				'id'                => 'woocommerce_' . $this->base->option_prefix . 'trusted_shops_product_sticker_selector',
+				'type'              => 'text',
+				'default'           => '#ts_product_sticker',
 			),
 
 			array(
@@ -565,11 +583,19 @@ class WC_GZD_Trusted_Shops_Admin {
 
 			array(
 				'title'             => _x( 'Product Review Code', 'trusted-shops', 'woocommerce-germanized' ),
-				'desc_tip'          => _x( 'The  advanced configuration is for users with programming skills. Here you can perform even more individual settings.', 'trusted-shops', 'woocommerce-germanized' ),
+				'desc_tip'          => _x( 'The advanced configuration is for users with programming skills. Here you can perform even more individual settings.', 'trusted-shops', 'woocommerce-germanized' ),
 				'id'                => 'woocommerce_' . $this->base->option_prefix . 'trusted_shops_product_widget_code',
 				'type'              => 'textarea',
 				'css'               => 'width: 100%; min-height: 150px',
 				'default'           => $this->base->get_product_widget_code( false ),
+			),
+
+			array(
+				'title'             => _x( 'jQuerySelector', 'trusted-shops', 'woocommerce-germanized' ),
+				'desc_tip'          => _x( 'Please choose where your Product Review Stars shall be displayed on the Product Detail page.', 'trusted-shops', 'woocommerce-germanized' ),
+				'id'                => 'woocommerce_' . $this->base->option_prefix . 'trusted_shops_product_widget_selector',
+				'type'              => 'text',
+				'default'           => '#ts_product_widget',
 			),
 
 			array(
