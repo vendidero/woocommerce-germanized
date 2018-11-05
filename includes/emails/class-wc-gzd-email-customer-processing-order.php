@@ -22,13 +22,12 @@ if ( ! class_exists( 'WC_GZD_Email_Customer_Processing_Order' ) ) :
 		public function __construct() {
 			parent::__construct();
 
+			// Remove Triggers for parent email to prevent duplicates.
+			wc_gzd_remove_class_action( 'woocommerce_order_status_on-hold_to_processing_notification', 'WC_Email_Customer_Processing_Order', 'trigger', 10 );
+			wc_gzd_remove_class_action( 'woocommerce_order_status_pending_to_processing_notification', 'WC_Email_Customer_Processing_Order', 'trigger', 10 );
+			wc_gzd_remove_class_action( 'woocommerce_order_status_failed_to_processing_notification', 'WC_Email_Customer_Processing_Order', 'trigger', 10 );
+
 			if ( wc_gzd_send_instant_order_confirmation() ) {
-
-				// Remove Triggers for parent email.
-				wc_gzd_remove_class_action( 'woocommerce_order_status_on-hold_to_processing_notification', 'WC_Email_Customer_Processing_Order', 'trigger', 10 );
-				wc_gzd_remove_class_action( 'woocommerce_order_status_pending_to_processing_notification', 'WC_Email_Customer_Processing_Order', 'trigger', 10 );
-				wc_gzd_remove_class_action( 'woocommerce_order_status_failed_to_processing_notification', 'WC_Email_Customer_Processing_Order', 'trigger', 10 );
-
 				// Remove Triggers for this email.
 				remove_action( 'woocommerce_order_status_failed_to_processing_notification', array( $this, 'trigger' ), 10 );
 				remove_action( 'woocommerce_order_status_on-hold_to_processing_notification', array( $this, 'trigger' ), 10 );
