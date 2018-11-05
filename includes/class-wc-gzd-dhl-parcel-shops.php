@@ -233,7 +233,7 @@ class WC_GZD_DHL_Parcel_Shops {
 		}
 
 		if ( ! isset( $_POST['shipping_parcelshop'] ) && isset( $fields['shipping_parcelshop_post_number'] ) ) {
-			$fields['shipping_parcelshop_post_number'][ 'required' ] = false;
+			$fields['shipping_parcelshop_post_number']['required'] = false;
 		} else {
 			$fields['shipping_address_1']['label'] = __( 'Parcel Shop', 'woocommerce-germanized' );
 		}
