@@ -349,3 +349,22 @@ table.wc-gzd-legal-checkboxes td.wc-gzd-legal-checkbox-sort::before {
 	line-height: 1.5em;
 	display: block;
 }
+
+.wc-gzd-admin-settings .wc-gzd-label-wrap {
+	position: relative;
+	display: block;
+	vertical-align: middle;
+}
+
+.wc-gzd-admin-settings .wc-gzd-label-wrap .woocommerce-help-tip {
+	margin: -8px -24px 0 0 !important;
+	position: absolute;
+	right: 0;
+	top: 50%;
+}
+
+.wc-gzd-admin-settings a.woocommerce-gzd-input-toggle-trigger:focus {
+	color: transparent;
+	box-shadow: none;
+	border: none;
+}

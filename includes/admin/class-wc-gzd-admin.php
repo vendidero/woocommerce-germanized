@@ -104,10 +104,12 @@ class WC_GZD_Admin {
 
 	    ?><tr valign="top">
         <th scope="row" class="titledesc">
-            <label for="<?php echo esc_attr( $value['id'] ); ?>"><?php echo esc_html( $value['title'] ); ?> <?php echo $tooltip_html; // WPCS: XSS ok. ?></label>
+            <span class="wc-gzd-label-wrap"><?php echo esc_html( $value['title'] ); ?> <?php echo $tooltip_html; // WPCS: XSS ok. ?></span>
         </th>
         <td class="forminp forminp-<?php echo esc_attr( sanitize_title( $value['type'] ) ); ?>">
-            <span id="<?php echo esc_attr( $value['id'] ); ?>-toggle" class="woocommerce-gzd-input-toggle woocommerce-input-toggle woocommerce-input-toggle--<?php echo ( 'yes' === $option_value ? 'enabled' : 'disabled' ); ?>"><?php echo ( 'yes' === $option_value ? __( 'Yes', 'woocommerce-germanized' ) : __( 'No', 'woocommerce-germanized' ) ); ?></span>
+            <a href="#" class="woocommerce-gzd-input-toggle-trigger">
+                <span id="<?php echo esc_attr( $value['id'] ); ?>-toggle" class="woocommerce-gzd-input-toggle woocommerce-input-toggle woocommerce-input-toggle--<?php echo ( 'yes' === $option_value ? 'enabled' : 'disabled' ); ?>"><?php echo ( 'yes' === $option_value ? __( 'Yes', 'woocommerce-germanized' ) : __( 'No', 'woocommerce-germanized' ) ); ?></span>
+            </a>
             <input
                     name="<?php echo esc_attr( $value['id'] ); ?>"
                     id="<?php echo esc_attr( $value['id'] ); ?>"
