@@ -53,6 +53,13 @@ class WC_GZD_Trusted_Shops_Schedule {
 	}
 
 	/**
+	 * Placeholder to avoid fatal errors within scheduled actions.
+	 *
+	 * @deprecated 2.2.5
+	 */
+	public function update_review_widget() {}
+
+	/**
 	 * Send review reminder mails after x days
 	 */
 	public function send_mails() {
