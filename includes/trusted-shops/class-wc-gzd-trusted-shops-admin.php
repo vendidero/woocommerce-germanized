@@ -759,56 +759,45 @@ class WC_GZD_Trusted_Shops_Admin {
 	}
 
 	public function before_save( $settings ) {
-		if ( ! empty( $settings ) ) {
-			
-			foreach ( $settings as $setting ) {
-				
-				// Update reviews & snippets if new ts id has been inserted
-				if ( isset( $_POST[ 'woocommerce_' . $this->base->option_prefix . 'trusted_shops_id' ] ) && $_POST[ 'woocommerce_' . $this->base->option_prefix . 'trusted_shops_id' ] != $this->base->id ) {
-					update_option( '_woocommerce_' . $this->base->option_prefix . 'trusted_shops_update_snippets', 1 );
-					update_option( '_woocommerce_' . $this->base->option_prefix . 'trusted_shops_update_reviews', 1 );
-				}
-				
-				if ( $setting[ 'id' ] == 'woocommerce_' . $this->base->option_prefix . 'trusted_shops_review_widget_enable' ) {
-					if ( ! empty( $_POST[ 'woocommerce_' . $this->base->option_prefix . 'trusted_shops_review_widget_enable' ] ) && ! $this->base->is_review_widget_enabled() )
-						update_option( '_woocommerce_' . $this->base->option_prefix . 'trusted_shops_update_reviews', 1 );
-				} elseif ( $setting[ 'id' ] == 'woocommerce_' . $this->base->option_prefix . 'trusted_shops_rich_snippets_enable' ) {
-					if ( ! empty( $_POST[ 'woocommerce_' . $this->base->option_prefix . 'trusted_shops_rich_snippets_enable' ] ) && ! $this->base->is_rich_snippets_enabled() )
-						update_option( '_woocommerce_' . $this->base->option_prefix . 'trusted_shops_update_snippets', 1 );
-				}
-			}
+		// Update reviews if new ts id has been inserted
+		if ( isset( $_POST['woocommerce_' . $this->base->option_prefix . 'trusted_shops_id'] ) && $_POST['woocommerce_' . $this->base->option_prefix . 'trusted_shops_id'] != $this->base->id ) {
+			update_option( '_woocommerce_' . $this->base->option_prefix . 'trusted_shops_update_reviews', 1 );
 		}
 	}
 
 	public function after_save( $settings ) {
-		
 		$this->base->refresh();
 
 		if ( get_option( 'woocommerce_' . $this->base->option_prefix . 'trusted_shops_integration_mode' ) === 'standard' ) {
-			// Delete code snippets
+		    // Delete code snippets
 			delete_option( 'woocommerce_' . $this->base->option_prefix . 'trusted_shops_trustbadge_code' );
 			delete_option( 'woocommerce_' . $this->base->option_prefix . 'trusted_shops_product_sticker_code' );
 			delete_option( 'woocommerce_' . $this->base->option_prefix . 'trusted_shops_product_widget_code' );
+			delete_option( 'woocommerce_' . $this->base->option_prefix . 'trusted_shops_rich_snippets_code' );
+			delete_option( 'woocommerce_' . $this->base->option_prefix . 'trusted_shops_review_sticker_code' );
 		}
 
 		// Disable Reviews if Trusted Shops review collection has been enabled
-		if ( get_option( 'woocommerce_' . $this->base->option_prefix . 'trusted_shops_enable_reviews' ) === 'yes' )
+		if ( get_option( 'woocommerce_' . $this->base->option_prefix . 'trusted_shops_reviews_enable' ) === 'yes' ) {
 			update_option( 'woocommerce_enable_review_rating', 'no' );
+		}
 		
-		if ( get_option( '_woocommerce_' . $this->base->option_prefix . 'trusted_shops_update_snippets' ) )
+		if ( get_option( '_woocommerce_' . $this->base->option_prefix . 'trusted_shops_update_reviews' ) ) {
 			$this->base->get_dependency( 'schedule' )->update_reviews();
+		}
 		
 		delete_option( '_woocommerce_' . $this->base->option_prefix . 'trusted_shops_update_reviews' );
-		delete_option( '_woocommerce_' . $this->base->option_prefix . 'trusted_shops_update_snippets' );
 	}
 
 	public function review_collector_export_csv() {
+	    if ( ! current_user_can( 'manage_woocommerce' ) )
+	        return;
 		
-		if ( ! isset( $_GET[ 'action' ] ) || $_GET[ 'action' ] != 'wc_' . $this->base->option_prefix . 'trusted-shops-export' || ( isset( $_GET[ 'action' ] ) && $_GET[ 'action' ] == 'wc_' . $this->base->option_prefix . 'trusted-shops-export' && ! wp_verify_nonce( $_REQUEST['_wpnonce'], 'wc_' . $this->base->option_prefix . 'trusted-shops-export' ) ) )
+		if ( ! isset( $_GET['action'] ) || $_GET['action'] != 'wc_' . $this->base->option_prefix . 'trusted-shops-export' || ( isset( $_GET['action'] ) && $_GET['action'] == 'wc_' . $this->base->option_prefix . 'trusted-shops-export' && ! wp_verify_nonce( $_REQUEST['_wpnonce'], 'wc_' . $this->base->option_prefix . 'trusted-shops-export' ) ) )
 			return;
 		
-		$interval_d = ( ( isset( $_GET[ 'interval' ] ) && ! empty( $_GET[ 'interval' ] ) ) ? absint( $_GET[ 'interval' ] ) : 30 );
-		$days_to_send = ( ( isset( $_GET[ 'days' ] ) && ! empty( $_GET[ 'days' ] ) ) ? absint( $_GET[ 'days' ] ) : 5 );
+		$interval_d   = ( ( isset( $_GET['interval'] ) && ! empty( $_GET['interval'] ) ) ? absint( $_GET['interval'] ) : 30 );
+		$days_to_send = ( ( isset( $_GET['days'] ) && ! empty( $_GET['days'] ) ) ? absint( $_GET['days'] ) : 5 );
 
 		if ( wc_ts_woocommerce_supports_crud() ) {
 		    include_once( 'class-wc-gzd-trusted-shops-review-exporter.php' );

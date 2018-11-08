@@ -363,6 +363,12 @@ table.wc-gzd-legal-checkboxes td.wc-gzd-legal-checkbox-sort::before {
 	top: 50%;
 }
 
+
+.wc-gzd-admin-settings a.woocommerce-gzd-input-toggle-trigger {
+	color: transparent;
+	border: none;
+}
+
 .wc-gzd-admin-settings a.woocommerce-gzd-input-toggle-trigger:focus {
 	color: transparent;
 	box-shadow: none;
