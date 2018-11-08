@@ -264,7 +264,7 @@ class WC_GZD_Product {
 				if ( $this->is_virtual_vat_exception() || $this->is_type( 'variable' ) || get_option( 'woocommerce_gzd_hide_tax_rate_shop' ) === 'yes' )
 					$tax_notice = ( $tax_display_mode == 'incl' && ! $is_vat_exempt ? __( 'incl. VAT', 'woocommerce-germanized' ) : __( 'excl. VAT', 'woocommerce-germanized' ) );
 				else
-					$tax_notice = ( $tax_display_mode == 'incl' && ! $is_vat_exempt ? sprintf( __( 'incl. %s%% VAT', 'woocommerce-germanized' ), ( wc_gzd_format_tax_rate_percentage( $tax_rates[0][ 'rate' ] ) ) ) : sprintf( __( 'excl. %s%% VAT', 'woocommerce-germanized' ), ( wc_gzd_format_tax_rate_percentage( $tax_rates[0][ 'rate' ] ) ) ) );
+					$tax_notice = ( $tax_display_mode == 'incl' && ! $is_vat_exempt ? sprintf( __( 'incl. %s%% VAT', 'woocommerce-germanized' ), ( wc_gzd_format_tax_rate_percentage( $tax_rates[0][ 'rate' ] ) ) ) : sprintf( __( 'excl. %s%% VAT', 'woocommerce-germanized' ), ( wc_gzd_format_tax_rate_percentage( $tax_rates[0]['rate'] ) ) ) );
 			}
 
 			if ( $this->is_differential_taxed() ) {
