@@ -30,8 +30,8 @@ table.form-table td.forminp-number .description {
 	left: 5px;
 }
 
-table.form-table td.forminp-gzd_toggle .description {
-	margin-left: 5px;
+table.form-table td.forminp-gzd_toggle .woocommerce-gzd-input-toggle {
+	margin-right: 5px;
 }
 
 table.form-table td.forminp-select .description {
@@ -121,4 +121,9 @@ td.forminp-review-collector p.description {
 
 .wc-gzd-admin-settings #trusted_shops_options-description .button {
 	margin-left: 10px;
+}
+
+#woocommerce_gzd_trusted_shops_rich_snippets_enable-toggle {
+	display: block;
+	margin-bottom: 15px;
 }

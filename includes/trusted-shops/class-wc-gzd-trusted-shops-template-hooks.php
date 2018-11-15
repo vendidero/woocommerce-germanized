@@ -63,7 +63,7 @@ class WC_GZD_Trusted_Shops_Template_Hooks {
 		}
 
 		if ( in_array( 'home', $this->base->get_rich_snippets_locations() ) ) {
-			if ( is_front_page() ) {
+			if ( function_exists( 'is_shop' ) && is_shop() ) {
 				$insert = true;
 			}
 		}

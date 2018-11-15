@@ -231,7 +231,7 @@ class WC_GZD_Trusted_Shops_Admin {
 
 			array(
                 'title'             => _x( 'Trusted Shops Integration', 'trusted-shops', 'woocommerce-germanized' ),
-                'desc'              => sprintf( _x( 'Do you need help with integrating your Trustbadge? %s', 'trusted-shops', 'woocommerce-germanized' ), '<a href="https://support.trustedshops.com/de/apps/woocommerce" class="button button-secondary" target="_blank">' . _x( 'To the step-by-step instructions', 'trusted-shops', 'woocommerce-germanized' ) .'</a>' ),
+                'desc'              => sprintf( _x( 'Do you need help with integrating your Trustbadge? %s', 'trusted-shops', 'woocommerce-germanized' ), '<a href="' . $this->get_trusted_url( 'https://support.trustedshops.com/de/apps/woocommerce' ) . '" class="button button-secondary" target="_blank">' . _x( 'To the step-by-step instructions', 'trusted-shops', 'woocommerce-germanized' ) .'</a>' ),
                 'type'              => 'title',
                 'id'                => 'trusted_shops_options'
             ),
@@ -254,7 +254,7 @@ class WC_GZD_Trusted_Shops_Admin {
 				'class'             => 'chosen_select',
 				'options'           => array(
 					'standard'      => _x( 'Standard configuration', 'trusted-shops', 'woocommerce-germanized' ),
-					'expert'        => _x( 'Advanved configuration', 'trusted-shops', 'woocommerce-germanized' ),
+					'expert'        => _x( 'Advanced configuration', 'trusted-shops', 'woocommerce-germanized' ),
 				),
 				'default'           => 'standard',
 			),
@@ -398,6 +398,7 @@ class WC_GZD_Trusted_Shops_Admin {
 			array(
 				'title'             => _x( 'Google Organic Search', 'trusted-shops', 'woocommerce-germanized' ),
 				'desc_tip'          => _x( 'Activate this option to give Google the opportunity to show your Shop Reviews in Google organic search results.', 'trusted-shops', 'woocommerce-germanized' ),
+				'desc'              => _x( 'By activating this option, rich snippets will be integrated in the selected pages so your shop review stars may be displayed in Google organic search results. If you use Product Reviews and already activated rich snippets  in expert mode, we recommend integrating rich snippets for Shop Reviews on category pages only.', 'trusted-shops', 'woocommerce-germanized' ),
 				'id'                => 'woocommerce_' . $this->base->option_prefix . 'trusted_shops_rich_snippets_enable',
 				'type'              => 'gzd_toggle',
 				'default'           => 'no'
@@ -405,7 +406,6 @@ class WC_GZD_Trusted_Shops_Admin {
 
 			array(
 				'title' 	        => _x( 'Activate rich snippets on', 'trusted-shops', 'woocommerce-germanized' ),
-				'desc_tip'          => _x( 'By activating this option, rich snippets will be integrated in the selected pages so your shop review stars may be displayed in Google organic search results. If you use Product Reviews and already activated rich snippets  in expert mode, we recommend integrating rich snippets for Shop Reviews on category pages only.', 'trusted-shops', 'woocommerce-germanized' ),
 				'desc' 		        => _x( 'category pages', 'trusted-shops', 'woocommerce-germanized' ),
 				'id' 	            => 'woocommerce_' . $this->base->option_prefix . 'trusted_shops_rich_snippets_category',
 				'type' 		        => 'checkbox',
@@ -422,7 +422,7 @@ class WC_GZD_Trusted_Shops_Admin {
 			),
 
 			array(
-				'desc' 		        => _x( 'homepage', 'trusted-shops', 'woocommerce-germanized' ),
+				'desc' 		        => _x( 'homepage (not recommended)', 'trusted-shops', 'woocommerce-germanized' ),
 				'id' 	            => 'woocommerce_' . $this->base->option_prefix . 'trusted_shops_rich_snippets_home',
 				'type' 		        => 'checkbox',
 				'default'	        => 'no',
@@ -443,7 +443,7 @@ class WC_GZD_Trusted_Shops_Admin {
 
 			array(
                 'title'             => _x( 'Configure your Product Reviews ', 'trusted-shops', 'woocommerce-germanized' ),
-                'desc'              => sprintf( _x( 'To use Product Reviews, activate them in your %s first.', 'trusted-shops', 'woocommerce-germanized' ), '<a href="" target="_blank">' . _x( 'Trusted Shops package', 'trusted-shops', 'woocommerce-germanized' ) .'</a>' ),
+                'desc'              => sprintf( _x( 'To use Product Reviews, activate them in your %s first.', 'trusted-shops', 'woocommerce-germanized' ), '<a href="' . $this->get_trusted_url( 'https://www.trustedshops.com/en/shop/login.html' ) . '" target="_blank">' . _x( 'Trusted Shops package', 'trusted-shops', 'woocommerce-germanized' ) .'</a>' ),
                 'type'              => 'title',
                 'id'                => 'trusted_shops_reviews_options'
             ),
@@ -601,7 +601,7 @@ class WC_GZD_Trusted_Shops_Admin {
 			array(
 				'title'             => _x( 'Google', 'trusted-shops', 'woocommerce-germanized' ),
 				'desc'              => _x( 'Configure Product Reviews for Google Shopping.', 'trusted-shops', 'woocommerce-germanized' ),
-				'desc_tip'          => _x( 'Activate this option, to give Google the opportunity to display your Product Reviews in Google Shopping and paid Google ads. Please assign at least one of the attributes below to your products (We recommend using the GTIN).', 'trusted-shops', 'woocommerce-germanized' ),
+				'desc_tip'          => _x( 'Activate this option, to give Google the opportunity to display your Product Reviews in Google Shopping and paid Google ads.', 'trusted-shops', 'woocommerce-germanized' ),
 				'id'                => 'woocommerce_' . $this->base->option_prefix . 'trusted_shops_google_shopping_enable',
 				'type'              => 'checkbox',
 				'default'           => 'no'
@@ -661,7 +661,7 @@ class WC_GZD_Trusted_Shops_Admin {
 					'type'              => 'number',
 					'custom_attributes' => array(
 						'step'          => '1',
-						'min'           => 1,
+						'min'           => 0,
 						'data-validate' => 'integer',
 					),
 				),
@@ -817,7 +817,7 @@ class WC_GZD_Trusted_Shops_Admin {
 		?>
 		<h2><?php echo _x( 'Review Collector', 'trusted-shops', 'woocommerce-germanized' ); ?></h2>
         <div id="trusted_shops_review_collector_options-description">
-            <p class="description"><?php printf( _x( 'Want to collect reviews for orders that were placed before your Trusted Shops Integration? No problem. Export old orders here and upload them in your %s.', 'trusted-shops', 'woocommerce-germanized' ), '<a href="https://www.trustedshops.com/tsb2b/sa/ratings/batchRatingRequest.seam?prefLang=' . substr( get_bloginfo( 'language' ), 0, 2 ) . '" target="_blank">' . _x( 'My Trusted Shops account', 'trusted-shops', 'woocommerce-germanized' ) . '</a>' ); ?></p>
+            <p class="description"><?php printf( _x( 'Want to collect reviews for orders that were placed before your Trusted Shops Integration? No problem. Export old orders here and upload them in your %s.', 'trusted-shops', 'woocommerce-germanized' ), '<a href="' . $this->get_trusted_url( 'https://www.trustedshops.com/en/shop/login.html' ) . '" target="_blank">' . _x( 'My Trusted Shops account', 'trusted-shops', 'woocommerce-germanized' ) . '</a>' ); ?></p>
         </div>
         <table class="form-table">
 			<tbody>
@@ -861,6 +861,8 @@ class WC_GZD_Trusted_Shops_Admin {
 	}
 
 	private function get_trusted_url( $url, $args = array() ) {
+	    $current_lang = $this->base->get_language();
+	    $url          = str_replace( '/en/', '/' . $current_lang . '/', $url );
 
 		$args = array_merge( $this->base->et_params, $args );
 
