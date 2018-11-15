@@ -180,9 +180,9 @@ class WC_GZD_Install {
 		} else {
 
 			// Fresh install - Check if some german market plugin was installed before
-			if ( WC_GZD_Admin_Importer::instance()->is_available() )
+			if ( WC_GZD_Admin_Importer::instance()->is_available() ) {
 				update_option( '_wc_gzd_import_available', 1 );
-
+			}
 		}
 		
 		if ( ! is_null( $current_db_version ) && version_compare( $current_db_version, max( array_keys( self::$db_updates ) ), '<' ) ) {
