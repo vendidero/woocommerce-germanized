@@ -296,7 +296,17 @@ class WC_GZD_Compatibility_Wpml extends WC_GZD_Compatibility {
 			$status = ICL_TM_COMPLETE;
 		}
 
+		if ( $string_id = $this->get_string_id( $option ) ) {
+            icl_add_string_translation( $string_id, $language, $value, $status );
+        }
+
 		icl_update_string_translation( $option, $language, $value, $status );
+
+		// Make sure that the string is stored within the WPML translatable option names
+        $option_names = get_option( '_icl_admin_option_names', array() );
+        $option_names[ $option ] = 1;
+
+        update_option( '_icl_admin_option_names', $option_names );
 	}
 
 	public function get_string_translation( $string_id, $language, $status = '' ) {

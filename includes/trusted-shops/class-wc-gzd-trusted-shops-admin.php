@@ -693,7 +693,7 @@ class WC_GZD_Trusted_Shops_Admin {
                 if ( isset( $setting['id'] ) ) {
                     foreach( $defaults as $setting_id => $default ) {
                         if ( $setting_id === $setting['id'] ) {
-                            $settings[ $key ] = array_merge_recursive( $setting, $default );
+                            $settings[ $key ] = array_replace_recursive( $setting, $default );
                         }
                     }
                 }

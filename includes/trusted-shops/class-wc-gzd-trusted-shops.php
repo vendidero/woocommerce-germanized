@@ -100,6 +100,8 @@ class WC_GZD_Trusted_Shops {
 		$this->duplicate_plugin_check();
 		$this->includes();
 
+		add_action( 'init', array( $this, 'refresh' ), 50 );
+
 		if ( is_admin() )
 			$this->get_dependency( 'admin' );
 
@@ -409,8 +411,13 @@ class WC_GZD_Trusted_Shops {
 	public function get_script( $name, $replace = true, $args = array() ) {
 		$script = $this->get_template( $name );
 
-		if ( $this->integration_mode === 'expert' )
-			$script = $this->{$name . "_code"};
+		if ( $this->integration_mode === 'expert' ) {
+            $option_script = $this->{$name . "_code"};
+
+            if ( $option_script ) {
+                $script = $option_script;
+            }
+        }
 
 		if ( $replace ) {
 			$args = wp_parse_args( $args, array(
