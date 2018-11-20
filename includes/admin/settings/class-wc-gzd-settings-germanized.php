@@ -1002,7 +1002,17 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 
 			array( 'type' => 'sectionend', 'id' => 'product_options' ),
 
-			array(	'title' => __( 'Base Price', 'woocommerce-germanized' ), 'type' => 'title', 'id' => 'unit_price_options' ),
+			array(	'title' => __( 'Prices', 'woocommerce-germanized' ), 'type' => 'title', 'id' => 'unit_price_options' ),
+
+            array(
+                'title' 	=> __( 'Price Range Format', 'woocommerce-germanized' ),
+                'desc' 		=> __( 'Adjust the price range format e.g. for variable products. Use {min_price} as placeholder for the minimum price. Use {max_price} as placeholder for the maximum price.', 'woocommerce-germanized' ),
+                'desc_tip'	=> true,
+                'id' 		=> 'woocommerce_gzd_price_range_format_text',
+                'type' 		=> 'text',
+                'css' 		=> 'min-width:300px;',
+                'default'	=> __( '{min_price} &ndash; {max_price}', 'woocommerce-germanized' ),
+            ),
 
 			array(
 				'title' 	=> __( 'Base Price Text', 'woocommerce-germanized' ),

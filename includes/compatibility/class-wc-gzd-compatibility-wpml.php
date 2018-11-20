@@ -19,6 +19,7 @@ class WC_GZD_Compatibility_Wpml extends WC_GZD_Compatibility {
 		'woocommerce_gzd_order_submit_btn_text'               => '',
 		'woocommerce_gzd_complaints_procedure_text'           => '',
 		'woocommerce_gzd_delivery_time_text'                  => '',
+		'woocommerce_gzd_price_range_format_text'             => '',
 		'woocommerce_gzd_unit_price_text'                     => '',
 		'woocommerce_gzd_product_units_text'                  => '',
 		'woocommerce_gzd_display_listings_link_details_text'  => '',

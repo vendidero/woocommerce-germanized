@@ -329,3 +329,20 @@ function wc_gzd_remove_class_filter( $tag, $class_name = '', $method_name = '', 
 function wc_gzd_remove_class_action( $tag, $class_name = '', $method_name = '', $priority = 10 ) {
 	wc_gzd_remove_class_filter( $tag, $class_name, $method_name, $priority );
 }
+
+/**
+ * Variable Pricing
+ */
+add_filter( 'woocommerce_format_price_range', 'woocommmerce_gzd_price_range', 10, 3 );
+
+function woocommmerce_gzd_price_range( $price_html, $from, $to ) {
+
+    if ( ! apply_filters( 'woocommerce_gzd_adjust_price_range_format', true ) ) {
+        return $price_html;
+    }
+
+    $format     = get_option( 'woocommerce_gzd_price_range_format_text', __( '{min_price} &ndash; {max_price}', 'woocommerce-germanized' ) );
+    $price_html = str_replace( array( '{min_price}', '{max_price}' ), array( is_numeric( $from ) ? wc_price( $from ) : $from, is_numeric( $to ) ? wc_price( $to ) : $to ), $format );
+
+    return $price_html;
+}

@@ -23,6 +23,7 @@ class WC_GZD_Product_Variable extends WC_GZD_Product {
 	public function get_variation_unit_regular_price( $min_or_max = 'min', $display = false ) {
 		$prices = $this->get_variation_unit_prices( $display );
 		$price  = 'min' === $min_or_max ? current( $prices['regular_price'] ) : end( $prices['regular_price'] );
+
 		return apply_filters( 'woocommerce_gzd_get_variation_unit_regular_price', $price, $this, $min_or_max, $display );
 	}
 
@@ -35,6 +36,7 @@ class WC_GZD_Product_Variable extends WC_GZD_Product {
 	public function get_variation_unit_sale_price( $min_or_max = 'min', $display = false ) {
 		$prices = $this->get_variation_unit_prices( $display );
 		$price  = 'min' === $min_or_max ? current( $prices['sale_price'] ) : end( $prices['sale_price'] );
+
 		return apply_filters( 'woocommerce_gzd_get_variation_unit_sale_price', $price, $this, $min_or_max, $display );
 	}
 
@@ -47,22 +49,28 @@ class WC_GZD_Product_Variable extends WC_GZD_Product {
 	public function get_variation_unit_price( $min_or_max = 'min', $display = false ) {
 		$prices = $this->get_variation_unit_prices( $display );
 		$price  = 'min' === $min_or_max ? current( $prices['price'] ) : end( $prices['price'] );
+
 		return apply_filters( 'woocommerce_gzd_get_variation_unit_price', $price, $this, $min_or_max, $display );
 	}
 
 	public function is_on_unit_sale() {
 		$is_on_sale = false;
 		$prices     = $this->get_variation_unit_prices();
+
 		if ( $prices['regular_price'] !== $prices['sale_price'] && $prices['sale_price'] === $prices['price'] ) {
 			$is_on_sale = true;
 		}
+
 		return apply_filters( 'woocommerce_gzd_product_is_on_unit_sale', $is_on_sale, $this );
 	}
 
 	public function has_unit() {
 		$prices = $this->get_variation_unit_prices();
-		if ( $this->unit && $prices['regular_price'] && $this->unit_base )
-			return true;
+
+		if ( $this->unit && $prices['regular_price'] && $this->unit_base ) {
+            return true;
+        }
+
 		return false;
 	}
 
@@ -74,7 +82,7 @@ class WC_GZD_Product_Variable extends WC_GZD_Product {
 
 	public function get_price_html_from_to( $from, $to, $show_labels = true ) {
 
-		$sale_label = ( $show_labels ? $this->get_sale_price_label() : '' );
+		$sale_label         = ( $show_labels ? $this->get_sale_price_label() : '' );
 		$sale_regular_label = ( $show_labels ? $this->get_sale_price_regular_label() : '' );
 
 		$price = ( ! empty( $sale_label ) ? '<span class="wc-gzd-sale-price-label">' . $sale_label . '</span>' : '' ) . ' <del>' . ( ( is_numeric( $from ) ) ? wc_price( $from ) : $from ) . '</del> ' . ( ! empty( $sale_regular_label ) ? '<span class="wc-gzd-sale-price-label wc-gzd-sale-price-regular-label">' . $sale_regular_label . '</span> ' : '' ) . '<ins>' . ( ( is_numeric( $to ) ) ? wc_price( $to ) : $to ) . '</ins>';

@@ -233,7 +233,7 @@ class WC_GZD_Product {
 
 	public function get_price_html_from_to( $from, $to, $show_labels = true ) {
 
-		$sale_label = ( $show_labels ? $this->get_sale_price_label() : '' );
+		$sale_label         = ( $show_labels ? $this->get_sale_price_label() : '' );
 		$sale_regular_label = ( $show_labels ? $this->get_sale_price_regular_label() : '' );
 
 		$price = ( ! empty( $sale_label ) ? '<span class="wc-gzd-sale-price-label">' . $sale_label . '</span>' : '' ) . ' <del>' . ( ( is_numeric( $from ) ) ? wc_price( $from ) : $from ) . '</del> ' . ( ! empty( $sale_regular_label ) ? '<span class="wc-gzd-sale-price-label wc-gzd-sale-price-regular-label">' . $sale_regular_label . '</span> ' : '' ) . '<ins>' . ( ( is_numeric( $to ) ) ? wc_price( $to ) : $to ) . '</ins>';
