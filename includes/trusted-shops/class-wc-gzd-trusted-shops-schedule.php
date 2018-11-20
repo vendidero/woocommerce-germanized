@@ -33,19 +33,20 @@ class WC_GZD_Trusted_Shops_Schedule {
 	 * Update Review Cache by grabbing information from xml file
 	 */
 	public function update_reviews() {
-
 		$update = array();
 
 		if ( $this->base->is_enabled() ) {
-
 			$response = wp_remote_post( $this->base->api_url );
 
 			if ( is_array( $response ) ) {
 				$output          = json_decode( $response['body'], true );
-				$reviews         = $output['response']['data']['shop']['qualityIndicators']['reviewIndicator'];
-				$update['count'] = (string) $reviews['activeReviewCount'];
-				$update['avg']   = (float) $reviews['overallMark'];
-				$update['max']   = '5.00';
+
+				if ( isset( $output['response']['data'] ) ) {
+                    $reviews         = $output['response']['data']['shop']['qualityIndicators']['reviewIndicator'];
+                    $update['count'] = (string) $reviews['activeReviewCount'];
+                    $update['avg']   = (float) $reviews['overallMark'];
+                    $update['max']   = '5.00';
+                }
 			}
 		}
 
