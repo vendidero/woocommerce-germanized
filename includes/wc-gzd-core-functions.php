@@ -46,28 +46,33 @@ function wc_gzd_get_hook_priority( $hook ) {
 	return WC_GZD_Hook_Priorities::instance()->get_hook_priority( $hook );
 }
 
+function wc_gzd_get_legal_pages( $email_attachable_only = false ) {
+    $legal_pages = array(
+        'terms'           => __( 'Terms & Conditions', 'woocommerce-germanized' ),
+        'revocation'      => __( 'Right of Recission', 'woocommerce-germanized' ),
+        'imprint'         => __( 'Imprint', 'woocommerce-germanized' ),
+        'data_security'   => __( 'Data Security', 'woocommerce-germanized' ),
+    );
+
+    $secondary_pages = array(
+        'payment_methods' => __( 'Payment Methods', 'woocommerce-germanized' ),
+        'shipping_costs'  => __( 'Shipping Costs', 'woocommerce-germanized' ),
+    );
+
+    if ( ! $email_attachable_only ) {
+        $legal_pages = $legal_pages + $secondary_pages;
+    }
+
+    return apply_filters( 'woocommerce_gzd_legal_pages', $legal_pages, $email_attachable_only );
+}
+
 function wc_gzd_get_email_attachment_order() {
-	$order = explode( ',', get_option( 'woocommerce_gzd_mail_attach_order', 'terms,revocation,data_security,imprint' ) );
-	$items = array();
+	$order       = explode( ',', get_option( 'woocommerce_gzd_mail_attach_order', 'terms,revocation,data_security,imprint' ) );
+	$items       = array();
+	$legal_pages = wc_gzd_get_legal_pages( true );
 
 	foreach ( $order as $key => $item ) {
-		$title = '';
-		switch( $item ) {
-			case "terms":
-				$title = __( 'Terms & Conditions', 'woocommerce-germanized' );
-			break;
-			case "revocation":
-				$title = __( 'Right of Recission', 'woocommerce-germanized' );
-			break;
-			case "imprint":
-				$title = __( 'Imprint', 'woocommerce-germanized' );
-			break;
-			case "data_security":
-				$title = __( 'Data Security', 'woocommerce-germanized' );
-			break;
-		}
-
-		$items[ $item ] = $title;
+		$items[ $item ] = ( isset( $legal_pages[ $key ] ) ? $legal_pages[ $key ] : '' );
 	}
 	
 	return $items;	
@@ -75,7 +80,8 @@ function wc_gzd_get_email_attachment_order() {
 
 function wc_gzd_get_page_permalink( $type ) {
 	$page_id = wc_get_page_id( $type );
-	$link = $page_id ? get_permalink( $page_id ) : '';
+	$link    = $page_id ? get_permalink( $page_id ) : '';
+
 	return apply_filters( 'woocommerce_gzd_legal_page_permalink', $link, $type );
 }
 
@@ -149,20 +155,16 @@ function wc_gzd_get_tax_rate_label( $rate_percentage ) {
 }
 
 function wc_gzd_get_shipping_costs_text( $product = false ) {
-	$find = array(
-		'{link}',
-		'{/link}'
-	);
-
-	$replace = array(
-		'<a href="' . esc_url( get_permalink( wc_get_page_id( 'shipping_costs' ) ) ) . '" target="_blank">',
-		'</a>'
-	);
+	$replacements = array(
+	    '{link}'  => '<a href="' . esc_url( get_permalink( wc_get_page_id( 'shipping_costs' ) ) ) . '" target="_blank">',
+        '{/link}' => '</a>',
+    );
 
 	if ( $product ) {
-		return apply_filters( 'woocommerce_gzd_shipping_costs_text', str_replace( $find, $replace, ( $product->has_free_shipping() ? get_option( 'woocommerce_gzd_free_shipping_text' ) : get_option( 'woocommerce_gzd_shipping_costs_text' ) ) ), $product );
+	    $html = $product->has_free_shipping() ? get_option( 'woocommerce_gzd_free_shipping_text' ) : get_option( 'woocommerce_gzd_shipping_costs_text' );
+		return apply_filters( 'woocommerce_gzd_shipping_costs_text', wc_gzd_replace_label_shortcodes( $html, $replacements ), $product );
 	} else {
-		return apply_filters( 'woocommerce_gzd_shipping_costs_cart_text', str_replace( $find, $replace, get_option( 'woocommerce_gzd_shipping_costs_text' ) ) );
+		return apply_filters( 'woocommerce_gzd_shipping_costs_cart_text', wc_gzd_replace_label_shortcodes( get_option( 'woocommerce_gzd_shipping_costs_text' ), $replacements ) );
 	}
 }
 
@@ -328,6 +330,60 @@ function wc_gzd_remove_class_filter( $tag, $class_name = '', $method_name = '', 
  */
 function wc_gzd_remove_class_action( $tag, $class_name = '', $method_name = '', $priority = 10 ) {
 	wc_gzd_remove_class_filter( $tag, $class_name, $method_name, $priority );
+}
+
+function wc_gzd_replace_label_shortcodes( $html, $replacements ) {
+    foreach( $replacements as $search => $replace ) {
+        $html = str_replace( $search, $replace, $html );
+    }
+
+    global $shortcode_tags;
+    $original_shortcode_tags = $shortcode_tags;
+    $shortcode_tags          = array();
+
+    add_shortcode( 'page', '_wc_gzd_page_shortcode' );
+
+    foreach( wc_gzd_get_legal_pages() as $legal_page => $title ) {
+        add_shortcode( $legal_page, '_wc_gzd_legal_page_shortcode' );
+    }
+
+    $html = do_shortcode( $html );
+
+    $shortcode_tags = $original_shortcode_tags;
+
+    return $html;
+}
+
+function _wc_gzd_page_shortcode( $atts, $content = '' ) {
+    $atts = wp_parse_args( $atts, array(
+        'id'     => 0,
+        'target' => '_blank',
+        'text'   => '',
+        'url'    => '',
+    ) );
+
+    if ( ( empty( $atts['id'] ) || ! get_post( $atts['id'] ) ) && empty( $atts['url'] ) ) {
+        return false;
+    }
+
+    if ( empty( $content ) ) {
+        if ( empty( $atts['text'] ) ) {
+            $content = get_the_title( $atts['id'] );
+        } else {
+            $content = $atts['text'];
+        }
+    }
+
+    $url = ( empty( $atts['url'] ) ? get_permalink( $atts['id'] ) : $atts['url'] );
+
+    return '<a href="' . esc_url( $url ) . '" target="' . esc_attr( $atts['target'] ) . '">' . $content . '</a>';
+}
+
+function _wc_gzd_legal_page_shortcode( $atts, $content, $tag ) {
+    $atts       = wp_parse_args( $atts, array() );
+    $atts['id'] = wc_get_page_id( $tag );
+
+    return _wc_gzd_page_shortcode( $atts, $content );
 }
 
 /**

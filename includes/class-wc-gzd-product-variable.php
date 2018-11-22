@@ -134,10 +134,18 @@ class WC_GZD_Product_Variable extends WC_GZD_Product {
             }
 
             if ( strpos( $text, '{price}' ) !== false ) {
-                $price = str_replace( '{price}', $price . apply_filters( 'wc_gzd_unit_price_seperator', ' / ' ) . $this->get_unit_base(), $text );
+                $replacements = array(
+                    '{price}' => $price . apply_filters( 'wc_gzd_unit_price_seperator', ' / ' ) . $this->get_unit_base(),
+                );
             } else {
-                $price = str_replace( array( '{base_price}', '{unit}', '{base}' ), array( $price, '<span class="unit">' . $this->get_unit() . '</span>', $this->get_unit_base() ), $text );
+                $replacements = array(
+                    '{base_price}' => $price,
+                    '{unit}'       => '<span class="unit">' . $this->get_unit() . '</span>',
+                    '{base}'       => $this->get_unit_base(),
+                );
             }
+
+            $price = wc_gzd_replace_label_shortcodes( $text, $replacements );
 		}
 
 		return apply_filters( 'woocommerce_gzd_unit_price_html', $price, $this );
