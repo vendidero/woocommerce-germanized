@@ -272,12 +272,20 @@ class WC_GZD_Trusted_Shops {
 	}
 
 	/**
-	 * Returns the average rating by grabbing the rating from the cache
+	 * Returns the average rating by grabbing the rating from the current languages' cache.
 	 *
 	 * @return array
 	 */
 	public function get_average_rating() {
-		return ( $this->reviews_cache ? $this->reviews_cache : array() );
+	    $reviews = ( $this->reviews_cache ? $this->reviews_cache : array() );
+
+	    if ( $lang = wc_ts_get_current_language() ) {
+	        if ( $lang != wc_ts_get_default_language() ) {
+                $reviews = ( $this->{"reviews_cache_{$lang}"} ? $this->{"reviews_cache_{$lang}"} : array() );
+            }
+        }
+
+		return $reviews;
 	}
 
 	/**

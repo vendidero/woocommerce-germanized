@@ -63,6 +63,9 @@ class WC_GZD_Email_Customer_Trusted_Shops extends WC_Email {
 	 * @return void
 	 */
 	public function trigger( $order_id ) {
+        if ( is_callable( array( $this, 'setup_locale' ) ) ) {
+            $this->setup_locale();
+        }
 
 		if ( $order_id ) {
 			$this->object 		= wc_get_order( $order_id );
@@ -80,6 +83,10 @@ class WC_GZD_Email_Customer_Trusted_Shops extends WC_Email {
 		}
 
 		$this->send( $this->get_recipient(), $this->get_subject(), $this->get_content(), $this->get_headers(), $this->get_attachments() );
+
+        if ( is_callable( array( $this, 'restore_locale' ) ) ) {
+            $this->restore_locale();
+        }
 	}
 
 	/**

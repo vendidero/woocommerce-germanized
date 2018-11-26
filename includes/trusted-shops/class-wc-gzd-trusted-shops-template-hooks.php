@@ -9,49 +9,60 @@ class WC_GZD_Trusted_Shops_Template_Hooks {
 	public static function instance( $base ) {
 		if ( is_null( self::$_instance ) )
 			self::$_instance = new self( $base );
+
 		return self::$_instance;
 	}
 
 	private function __construct( $base ) {
-		
 		$this->base = $base;
 
-		// Template actions
-		if ( $this->base->is_enabled() )
-			add_action( 'after_setup_theme', array( $this, 'template_hooks' ), 13 );
+		// Load hooks on init so that language-specific settings are loaded
+		add_action( 'init', array( $this, 'init' ), 10 );
 
-		if ( $this->base->is_product_reviews_enabled() ) {
-			add_filter( 'woocommerce_product_tabs', array( $this, 'remove_review_tab' ), 40, 1 );
-		}
-
-		if ( $this->base->is_product_sticker_enabled() ) {
-			add_filter( 'woocommerce_product_tabs', array( $this, 'review_tab' ), 50, 1 );
-		}
-		
-		if ( $this->base->is_product_widget_enabled() ) {
-			add_filter( 'woocommerce_gzd_template_name', array( $this, 'set_product_widget_template' ), 50, 1 );
-		}
-
-		if ( $this->base->is_rich_snippets_enabled() ) {
-			add_action( 'wp_footer', array( $this, 'insert_rich_snippets' ), 20 );
-		}
-
-		// Save Fields on order
-		if ( $this->base->is_review_reminder_enabled() ) {
-
-			add_action( 'woocommerce_gzd_register_legal_core_checkboxes', array( $this, 'review_reminder_checkbox' ), 30 );
-			add_action( 'woocommerce_checkout_update_order_meta', array( $this, 'update_order_meta' ) );
-
-			if ( 'yes' === $this->base->review_reminder_opt_out ) {
-				// Email notices right beneath order table
-				add_action( 'woocommerce_email_after_order_table', array( $this, 'email_cancel_review_reminder' ), 8, 3 );
-				add_filter( 'woocommerce_email_styles', array( $this, 'email_styles' ) );
-
-				// Check for customer activation
-				add_action( 'template_redirect', array( $this, 'cancel_review_reminder_check' ) );
-			}
-		}
+		// Always register checkbox to avoid language problems
+        add_action( 'woocommerce_gzd_register_legal_core_checkboxes', array( $this, 'review_reminder_checkbox' ), 30 );
 	}
+
+	public function init() {
+
+        if ( $this->base->is_enabled() ) {
+            add_action( 'woocommerce_thankyou', array( $this, 'template_thankyou' ), 10, 1 );
+
+            if ( $this->base->is_trustbadge_enabled() ) {
+                add_action( 'wp_footer', array( $this, 'template_trustbadge' ), PHP_INT_MAX );
+            }
+        }
+
+        if ( $this->base->is_product_reviews_enabled() ) {
+            add_filter( 'woocommerce_product_tabs', array( $this, 'remove_review_tab' ), 40, 1 );
+        }
+
+        if ( $this->base->is_product_sticker_enabled() ) {
+            add_filter( 'woocommerce_product_tabs', array( $this, 'review_tab' ), 50, 1 );
+        }
+
+        if ( $this->base->is_product_widget_enabled() ) {
+            add_filter( 'woocommerce_gzd_template_name', array( $this, 'set_product_widget_template' ), 50, 1 );
+        }
+
+        if ( $this->base->is_rich_snippets_enabled() ) {
+            add_action( 'wp_footer', array( $this, 'insert_rich_snippets' ), 20 );
+        }
+
+        // Save Fields on order
+        if ( $this->base->is_review_reminder_enabled() ) {
+            add_action( 'woocommerce_checkout_update_order_meta', array( $this, 'update_order_meta' ) );
+
+            if ( 'yes' === $this->base->review_reminder_opt_out ) {
+                // Email notices right beneath order table
+                add_action( 'woocommerce_email_after_order_table', array( $this, 'email_cancel_review_reminder' ), 8, 3 );
+                add_filter( 'woocommerce_email_styles', array( $this, 'email_styles' ) );
+
+                // Check for customer activation
+                add_action( 'template_redirect', array( $this, 'cancel_review_reminder_check' ) );
+            }
+        }
+    }
 
 	public function insert_rich_snippets() {
 		$insert = false;
@@ -132,7 +143,6 @@ class WC_GZD_Trusted_Shops_Template_Hooks {
 		$code = wc_ts_get_crud_data( $order, 'ts_cancel_review_reminder_code' );
 
 		if ( ! $code || empty( $code ) ) {
-
 			global $wp_hasher;
 
 			if ( empty( $wp_hasher ) ) {
@@ -147,6 +157,10 @@ class WC_GZD_Trusted_Shops_Template_Hooks {
 
 		$order_id = wc_ts_get_crud_data( $order, 'id' );
 		$link     = add_query_arg( array( 'disable-review-reminder' => $code, 'order-id' => $order_id ), get_site_url() );
+
+		if ( $lang = wc_ts_get_order_language( $order ) ) {
+		    $link = add_query_arg( array( 'lang' => $lang ), $link );
+        }
 
 		return apply_filters( 'woocommerce_trusted_shops_cancel_review_reminder_link', $link, $code, $order );
 	}
@@ -168,14 +182,6 @@ class WC_GZD_Trusted_Shops_Template_Hooks {
 
 		if ( isset( $_POST['review_reminder'] ) || ! $checkbox || ( $checkbox && ! $checkbox->is_enabled() ) ) {
 			update_post_meta( $order_id, '_ts_review_reminder_opted_in', 'yes' );
-		}
-	}
-
-	public function template_hooks() {
-		add_action( 'woocommerce_thankyou', array( $this, 'template_thankyou' ), 10, 1 );
-
-		if ( $this->base->is_trustbadge_enabled() ) {
-			add_action( 'wp_footer', array( $this, 'template_trustbadge' ), PHP_INT_MAX );
 		}
 	}
 
