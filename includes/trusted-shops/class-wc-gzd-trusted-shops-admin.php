@@ -359,7 +359,7 @@ class WC_GZD_Trusted_Shops_Admin {
                 'desc_tip'          => _x( 'Display x alternating Shop Reviews in your Shop Review Sticker. You can display between 1 and 5 alternating Shop Reviews.', 'trusted-shops', 'woocommerce-germanized' ),
                 'id'                => 'woocommerce_' . $this->base->option_prefix . 'trusted_shops_review_sticker_number',
                 'type'              => 'number',
-                'desc'              => __( 'Show x alternating reviews', 'trusted-shops', 'woocommerce-germanized' ),
+                'desc'              => _x( 'Show x alternating reviews', 'trusted-shops', 'woocommerce-germanized' ),
                 'default'           => '5',
                 'custom_attributes' => array(
                     'step'              => '1',
@@ -376,7 +376,7 @@ class WC_GZD_Trusted_Shops_Admin {
                 'desc_tip'          => _x( 'Only show Shop Reviews with a minimum rating of x stars. ', 'trusted-shops', 'woocommerce-germanized' ),
                 'id'                => 'woocommerce_' . $this->base->option_prefix . 'trusted_shops_review_sticker_better_than',
                 'type'              => 'number',
-                'desc'              => __( 'Reviews in change', 'trusted-shops', 'woocommerce-germanized' ),
+                'desc'              => _x( 'Star(s)', 'trusted-shops', 'woocommerce-germanized' ),
                 'default'           => '3',
                 'custom_attributes' => array(
                     'step'              => '1',
@@ -805,12 +805,12 @@ class WC_GZD_Trusted_Shops_Admin {
 
                 <div class="wc-ts-sidebar" id="wc-ts-sidebar-review-reminder">
                     <p><?php echo _x( 'Please note: If you want to send review requests through WooCommerce, you should deactivate automated review requests through Trusted Shops. To do so, please go to your My Trusted Shops account. Log in and go to Reviews >  Settings and deactivate "Collect reviews automatically"', 'trusted-shops', 'woocommerce-germanized' ); ?></p>
-                    <a class="button button-secondary" href="<?php echo $this->get_trusted_url( 'https://www.trustedshops.com/tsb2b/sa/ratings/shopRatingWidgetSettings.seam' ); ?>" target="_blank">To your My Trusted Shops account</a>
+                    <a class="button button-secondary" href="<?php echo $this->get_trusted_url( 'https://www.trustedshops.com/tsb2b/sa/ratings/shopRatingWidgetSettings.seam' ); ?>" target="_blank"><?php echo _x( 'To your My Trusted Shops account', 'trusted-shops', 'woocommerce-germanized' ); ?></a>
                 </div>
 
                 <div class="wc-ts-sidebar" id="wc-ts-sidebar-review-collector">
                     <p><?php echo _x( 'Export your customer information here and upload it in the Trusted Shops Review Collector. To do so go to your My Trusted Shops account. Log in and go to Reviews > Shop Reviews > Review Collector', 'trusted-shops', 'woocommerce-germanized' ); ?></p>
-                    <a class="button button-secondary" href="<?php echo $this->get_trusted_url( 'https://www.trustedshops.com/tsb2b/sa/ratings/reviewCollector/reviewCollector.seam' ); ?>" target="_blank">To the Trusted Shops Review Collector</a>
+                    <a class="button button-secondary" href="<?php echo $this->get_trusted_url( 'https://www.trustedshops.com/tsb2b/sa/ratings/reviewCollector/reviewCollector.seam' ); ?>" target="_blank"><?php echo _x( 'To the Trusted Shops Review Collector', 'trusted-shops', 'woocommerce-germanized' ); ?></a>
                 </div>
 			</div>
 		<?php

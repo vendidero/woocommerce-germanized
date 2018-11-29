@@ -366,6 +366,7 @@ table.wc-gzd-legal-checkboxes td.wc-gzd-legal-checkbox-sort::before {
 .wc-gzd-admin-settings a.woocommerce-gzd-input-toggle-trigger {
 	color: transparent;
 	border: none;
+    text-decoration: none;
 }
 
 .wc-gzd-admin-settings a.woocommerce-gzd-input-toggle-trigger:focus {
