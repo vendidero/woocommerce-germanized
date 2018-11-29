@@ -308,15 +308,24 @@ class WC_GZD_Customer_Helper {
 	 * Check for customer that didn't activate their accounts within a couple of time and delete them
 	 */
 	public function account_cleanup() {
-		
+
 		if ( ! get_option( 'woocommerce_gzd_customer_cleanup_interval' ) || get_option( 'woocommerce_gzd_customer_cleanup_interval' ) == 0 )
 			return;
 
-		$roles = array_map( 'ucfirst', $this->get_double_opt_in_user_roles() );
+		$roles             = array_map( 'ucfirst', $this->get_double_opt_in_user_roles() );
+		$cleanup_days      = (int) get_option( 'woocommerce_gzd_customer_cleanup_interval' );
+		$registered_before = date('Y-m-d H:i:s', strtotime( "-{$cleanup_days} days" ) );
 
 		$user_query = new WP_User_Query(
-			array( 'role' => $roles, 'meta_query' =>
-				array(
+			array(
+				'role'       => $roles,
+				'date_query' => array(
+					array(
+						'before'    => $registered_before,
+						'inclusive' => true,
+					)
+				),
+				'meta_query' => array(
 					array(
 						'key'     => '_woocommerce_activation',
 						'compare' => 'EXISTS',
@@ -326,18 +335,12 @@ class WC_GZD_Customer_Helper {
 		);
 
 		if ( ! empty( $user_query->results ) ) {
-
 			foreach ( $user_query->results as $user ) {
-
-				// Check date interval
-				$registered = $user->data->user_registered;
-				$date_diff = WC_germanized()->get_date_diff( $registered, date( 'Y-m-d' ) );
-				if ( $date_diff[ 'd' ] >= (int) get_option( 'woocommerce_gzd_customer_cleanup_interval' ) ) {
+				if ( apply_filters( 'woocommerce_gzd_delete_unactivated_customer', true, $user ) ) {
 					require_once( ABSPATH . 'wp-admin/includes/user.php' );
 					wp_delete_user( $user->ID );
 				}
 			}
-
 		}
 	}
 

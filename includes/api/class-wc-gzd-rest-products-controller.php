@@ -7,7 +7,6 @@
 class WC_GZD_REST_Products_Controller {
 
 	public function __construct() {
-
 		// v3
 		if ( wc_gzd_get_dependencies()->woocommerce_version_supports_crud() ) {
 			add_filter( 'woocommerce_rest_prepare_product_object', array( $this, 'prepare' ), 10, 3 );
@@ -335,14 +334,13 @@ class WC_GZD_REST_Products_Controller {
 	}
 
 	public function prepare( $response, $post, $request ) {
-
 		$product = wc_get_product( $post );
 
 		// Add variations to variable products.
 		if ( $product->is_type( 'variable' ) && $product->has_child() ) {
 
 			$data = $response->data;
-			$data[ 'variations' ] = $this->set_product_variation_fields( $response->data[ 'variations' ], $product );
+			$data['variations'] = $this->set_product_variation_fields( $response->data[ 'variations' ], $product );
 			$response->set_data( $data );
 
 		}
@@ -354,14 +352,12 @@ class WC_GZD_REST_Products_Controller {
 	}
 
 	public function insert_update_v3( $product, $request, $inserted ) {
-
 		$product = $this->save_update_product_data( $request, $product );
 
 		return $product;
 	}
 
 	public function insert_update( $post, $request, $inserted ) {
-
 		$product = wc_get_product( $post );
 		$product = $this->save_update_product_data( $request, $product );
 
@@ -369,7 +365,6 @@ class WC_GZD_REST_Products_Controller {
 	}
 
 	public function save_variation( $variation_id, $menu_order, $request ) {
-
 		$product = wc_get_product( $variation_id );
 		$product = $this->save_update_product_data( $request, $product );
 
@@ -379,9 +374,9 @@ class WC_GZD_REST_Products_Controller {
 	public function get_product_saveable_data( $request, $product ) {
 
 		$data_saveable = WC_Germanized_Meta_Box_Product_Data::get_fields();
-		$data = array();
+		$data          = array();
 
-		$data[ 'product-type' ] = $product->get_type();
+		$data['product-type'] = $product->get_type();
 
 		// Delivery time
 		$current = get_the_terms( wc_gzd_get_crud_data( $product, 'id' ), 'product_delivery_time' );
@@ -395,13 +390,12 @@ class WC_GZD_REST_Products_Controller {
 
 		// Price Labels + Unit
 		$meta_data = array(
-			'sale_price_label' => WC_germanized()->price_labels,
+			'sale_price_label'         => WC_germanized()->price_labels,
 			'sale_price_regular_label' => WC_germanized()->price_labels,
-			'unit' => WC_germanized()->units,
+			'unit'                     => WC_germanized()->units,
 		);
 
 		foreach ( $meta_data as $meta => $taxonomy_obj ) {
-
 			$current = wc_gzd_get_crud_data( $product, $meta );
 			$term_data = $this->get_term_data( isset( $request[ $meta ] ) ? $request[ $meta ] : false, $current );
 			$data[ '_' . $meta ] = '';
@@ -415,22 +409,27 @@ class WC_GZD_REST_Products_Controller {
 			}
 		}
 
+		// Set Unit Price Checkbox to current product value
+		$data['_unit_price_auto'] = wc_gzd_get_crud_data( $product, '_unit_price_auto' );
+
 		if ( isset( $request['unit_price'] ) && is_array( $request['unit_price'] ) ) {
 
 			foreach ( $request['unit_price'] as $key => $val ) {
-
-				if ( isset( $data_saveable[ '_unit_' . $key ] ) ) {
-					$data[ '_unit_' . $key ] = sanitize_text_field( $val );
+				if ( isset( $data_saveable['_unit_' . $key] ) ) {
+					$data['_unit_' . $key] = sanitize_text_field( $val );
 				}
 			}
 
-			if ( isset( $data[ '_unit_price_auto' ] ) && ! empty( $data[ '_unit_price_auto' ] ) ) {
-				$data['_unit_price_auto'] = true;
-			} elseif ( empty( $data[ '_unit_price_auto' ] ) ) {
-				unset( $data['_unit_price_auto'] );
+			if ( isset( $data['_unit_price_auto'] ) ) {
+				if ( ! empty( $data['_unit_price_auto'] ) )
+					$data['_unit_price_auto'] = true;
 			} else {
 				$data['_unit_price_auto'] = wc_gzd_get_crud_data( $product, '_unit_price_auto' );
 			}
+
+			// Do only add boolean values if is set so saving works (checkbox-style).
+			if ( empty( $data['_unit_price_auto'] ) || ! $data['_unit_price_auto'] )
+				unset( $data['_unit_price_auto'] );
 
 			if ( isset( $data['_unit_price_sale'] ) ) {
 				$data['_sale_price'] = wc_gzd_get_crud_data( $product, 'sale_price' );
@@ -442,7 +441,6 @@ class WC_GZD_REST_Products_Controller {
 		}
 
 		foreach( array( 'free_shipping', 'service', 'differential_taxation' ) as $bool_meta ) {
-
 			if ( isset( $request[$bool_meta] ) ) {
 				if ( ! empty( $request[$bool_meta] ) )
 					$data[ "_{$bool_meta}" ] = true;
@@ -481,11 +479,11 @@ class WC_GZD_REST_Products_Controller {
 	}
 
 	public function save_update_product_data( $request, $product ) {
+		$data            = $this->get_product_saveable_data( $request, $product );
+		$data['is_rest'] = true;
+		$data['save']    = false;
 
-		$data = $this->get_product_saveable_data( $request, $product );
-		$data['save'] = false;
-
-		$product = WC_Germanized_Meta_Box_Product_Data::save_product_data( $product, $data );
+		$product         = WC_Germanized_Meta_Box_Product_Data::save_product_data( $product, $data );
 
 		return $product;
 	}
@@ -493,8 +491,8 @@ class WC_GZD_REST_Products_Controller {
 	private function set_product_variation_fields( $variations, $product ) {
 
 		foreach( $variations as $key => $variation ) {
-			if( isset($variation[ 'id' ]) ) {
-				$variations[ $key ] = array_merge( $variation, $this->get_product_data( wc_get_product( $variation[ 'id' ] ) ) );
+			if( isset( $variation['id'] ) ) {
+				$variations[ $key ] = array_merge( $variation, $this->get_product_data( wc_get_product( $variation['id'] ) ) );
 			}
 		}
 
@@ -508,12 +506,12 @@ class WC_GZD_REST_Products_Controller {
 		$data = array();
 
 		if ( ! $product->is_type( 'variation' ) ) {
-			$data[ 'unit' ]	= $this->prepare_term( WC_germanized()->units->get_term_object( wc_gzd_get_crud_data( $product, 'unit' ) ) );
+			$data['unit']	= $this->prepare_term( WC_germanized()->units->get_term_object( wc_gzd_get_crud_data( $product, 'unit' ) ) );
 		}
 
 		// Unit Price
-		$data[ 'unit_price' ] 	 = array(
-			'base'			 	 => $product->get_unit_base(),
+		$data['unit_price'] 	 = array(
+			'base'			 	 => $product->get_unit_base_raw(),
 			'product'		 	 => $product->get_unit_products(),
 			'price_auto'	 	 => $product->is_unit_price_calculated_automatically(),
 			'price'	 	 		 => $product->get_unit_price(),
@@ -523,27 +521,27 @@ class WC_GZD_REST_Products_Controller {
 		);
 
 		// Cart Mini Description
-		$data[ 'mini_desc' ] = $product->get_mini_desc() ? $product->get_mini_desc() : '';
+		$data['mini_desc'] = $product->get_mini_desc() ? $product->get_mini_desc() : '';
 
 		// Sale Labels
-		$data[ 'sale_price_label' ] = $this->prepare_term( WC_germanized()->price_labels->get_term_object( $product->get_sale_price_label() ) );
-		$data[ 'sale_price_regular_label' ] = $this->prepare_term( WC_germanized()->price_labels->get_term_object( $product->get_sale_price_regular_label() ) );
+		$data['sale_price_label']         = $this->prepare_term( WC_germanized()->price_labels->get_term_object( $product->get_sale_price_label() ) );
+		$data['sale_price_regular_label'] = $this->prepare_term( WC_germanized()->price_labels->get_term_object( $product->get_sale_price_regular_label() ) );
 
 		// Delivery Time
-		$data[ 'delivery_time' ] = $this->prepare_term( $product->get_delivery_time_term() );
+		$data['delivery_time'] = $this->prepare_term( $product->get_delivery_time_term() );
 
-		if ( ! empty( $data[ 'delivery_time' ] ) ) {
-			$data[ 'delivery_time' ][ 'html' ] = $product->get_delivery_time_html();
+		if ( ! empty( $data['delivery_time'] ) ) {
+			$data['delivery_time']['html'] = $product->get_delivery_time_html();
 		}
 
 		// Shipping costs hidden?
-		$data[ 'free_shipping' ] = $product->has_free_shipping();
+		$data['free_shipping'] = $product->has_free_shipping();
 
 		// Shipping costs hidden?
-		$data[ 'service' ] = $product->is_service();
+		$data['service'] = $product->is_service();
 
 		// Shipping costs hidden?
-		$data[ 'differential_taxation' ] = $product->is_differential_taxed();
+		$data['differential_taxation'] = $product->is_differential_taxed();
 
 		return $data;
 	}

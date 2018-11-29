@@ -65,21 +65,27 @@ class WC_GZD_Email_Customer_Revocation extends WC_Email {
 	 * @return void
 	 */
 	public function trigger( $user_data = array() ) {
+		if ( is_callable( array( $this, 'setup_locale' ) ) ) {
+			$this->setup_locale();
+		}
 
 		$this->object      	  = $user_data;
 		$this->user_email     = $user_data['address_mail'];
 
 		if ( ! empty( $user_data['send_to_admin'] ) && $user_data['send_to_admin'] ) {
 			$this->customer_email = false;
-			$this->user_email = $this->get_admin_email();
+			$this->user_email     = $this->get_admin_email();
 		}
 
 		$this->recipient      = $this->user_email;
 
-		if ( ! $this->is_enabled() || ! $this->get_recipient() )
-			return;
+		if ( $this->is_enabled() && $this->get_recipient() ) {
+			$this->send( $this->get_recipient(), $this->get_subject(), $this->get_content(), $this->get_headers(), $this->get_attachments() );
+		}
 
-		$this->send( $this->get_recipient(), $this->get_subject(), $this->get_content(), $this->get_headers(), $this->get_attachments() );
+		if ( is_callable( array( $this, 'restore_locale' ) ) ) {
+			$this->restore_locale();
+		}
 	}
 
 	/**

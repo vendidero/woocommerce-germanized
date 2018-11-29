@@ -35,18 +35,18 @@ class WC_GZD_Checkout {
 	}
 
 	public function __construct() {
-		
+
 		add_action( 'init', array( $this, 'init_fields' ), 30 );
 		add_filter( 'woocommerce_billing_fields', array( $this, 'set_custom_fields' ), 0, 1 );
 		add_filter( 'woocommerce_shipping_fields', array( $this, 'set_custom_fields_shipping' ), 0, 1 );
-		
+
 		// Add Fields to Order Edit Page
 		add_filter( 'woocommerce_admin_billing_fields', array( $this, 'set_custom_fields_admin_billing' ), 0, 1 );
 		add_filter( 'woocommerce_admin_shipping_fields', array( $this, 'set_custom_fields_admin_shipping' ), 0, 1 );
-		
+
 		// Save Fields on order
 		add_action( 'woocommerce_checkout_update_order_meta', array( $this, 'save_fields' ) );
-		
+
 		// Add Title to billing address format
 		add_filter( 'woocommerce_order_formatted_billing_address', array( $this, 'set_formatted_billing_address' ), 0, 2 );
 		add_filter( 'woocommerce_order_formatted_shipping_address', array( $this, 'set_formatted_shipping_address' ), 0, 2 );
@@ -63,15 +63,15 @@ class WC_GZD_Checkout {
 		}
 
 		add_filter( 'woocommerce_hidden_order_itemmeta', array( $this, 'set_order_meta_hidden' ), 0 );
-		
+
 		// Deactivate checkout shipping selection
 		add_action( 'woocommerce_review_order_before_shipping', array( $this, 'remove_shipping_rates' ), 0 );
-		
+
 		// Add better fee taxation
 		add_action( 'woocommerce_calculate_totals', array( $this, 'do_fee_tax_calculation' ), PHP_INT_MAX, 1 );
 		// Pre WC 3.2
 		add_action( 'woocommerce_cart_calculate_fees', array( $this, 'do_fee_tax_calculation_legacy' ), PHP_INT_MAX, 1 );
-		
+
 		// Disallow user order cancellation
 		if ( get_option( 'woocommerce_gzd_checkout_stop_order_cancellation' ) == 'yes' ) {
 			add_filter( 'woocommerce_get_cancel_order_url', array( $this, 'cancel_order_url' ), PHP_INT_MAX, 1 );
@@ -86,7 +86,7 @@ class WC_GZD_Checkout {
 			add_action( 'woocommerce_reduce_order_stock', array( $this, 'set_order_stock_reduced_meta' ), 10, 1 );
 			add_filter( 'woocommerce_can_reduce_order_stock', array( $this, 'maybe_disallow_order_stock_reducing' ), 10, 2 );
 		}
-		
+
 		// Free Shipping auto select
 		if ( get_option( 'woocommerce_gzd_display_checkout_free_shipping_select' ) == 'yes' ) {
 			add_filter( 'woocommerce_package_rates', array( $this, 'free_shipping_auto_select' ) );
@@ -103,7 +103,8 @@ class WC_GZD_Checkout {
 		add_action( 'woocommerce_checkout_update_order_meta', array( $this, 'order_parcel_delivery_data_transfer' ), 10, 2 );
 
 		// Make sure that, just like in Woo core, the order submit button gets refreshed
-		add_filter( 'woocommerce_update_order_review_fragments', array( $this, 'refresh_order_submit' ), 10, 1 );
+		// Use a high priority to let other plugins do their adjustments beforehand
+		add_filter( 'woocommerce_update_order_review_fragments', array( $this, 'refresh_order_submit' ), 150, 1 );
 	}
 
 	public function refresh_order_submit( $fragments ) {
@@ -168,7 +169,7 @@ class WC_GZD_Checkout {
 		global $wp;
 
 		if ( is_wc_endpoint_url( 'order-pay' ) && isset( $_GET[ 'force_pay_order' ] ) ) {
-			
+
 			// Manipulate $_POST
 			$order_key = $_GET['key'];
 			$order_id = absint( $wp->query_vars[ 'order-pay' ] );
@@ -250,9 +251,9 @@ class WC_GZD_Checkout {
 			if ( isset( WC()->session ) && ! is_null( WC()->session ) ) {
 				unset( WC()->session->chosen_shipping_methods );
 			}
-			
+
 			foreach ( $rates as $key => $rate ) {
-			
+
 				if ( ! in_array( $key, $keep ) )
 					unset( $rates[ $key ] );
 			}
@@ -268,9 +269,9 @@ class WC_GZD_Checkout {
 		if ( get_option( 'woocommerce_gzd_order_pay_now_button' ) === 'no' ) {
 			$enabled = false;
 		}
-		
+
 		$order = wc_get_order( $order_id );
-		
+
 		if ( ! $order->needs_payment() ) {
 			$enabled = false;
 		}
@@ -333,60 +334,58 @@ class WC_GZD_Checkout {
 			switch ( $caps[0] ) {
 				case 'cancel_order' :
 					$allcaps['cancel_order'] = false;
-				break;
+					break;
 			}
 		}
 		return $allcaps;
 	}
 
 	public function cancel_order_url( $url ) {
-		
+
 		// Default to home url
 		$return = get_permalink( wc_get_page_id( 'shop' ) );
 
 		// Extract order id and use order success page as return url
 		$search = preg_match( '/order_id=([0-9]+)/', $url, $matches );
-		
+
 		if ( $search && isset( $matches[1] ) ) {
 			$order_id = absint( $matches[1] );
-			$order = wc_get_order( $order_id );
-			$return = apply_filters( 'woocommerce_gzd_attempt_order_cancellation_url', add_query_arg( array( 'retry' => true ), $order->get_checkout_order_received_url(), $order ) );
+			$order    = wc_get_order( $order_id );
+			$return   = apply_filters( 'woocommerce_gzd_attempt_order_cancellation_url', add_query_arg( array( 'retry' => true ), $order->get_checkout_order_received_url(), $order ) );
 		}
-		
+
 		return $return;
 	}
 
 	public function init_fields() {
 		if ( get_option( 'woocommerce_gzd_checkout_address_field' ) == 'yes' ) {
-
-			$this->custom_fields[ 'title' ] = array(
+			$this->custom_fields['title'] = array(
 				'type' 	   => 'select',
 				'required' => false,
 				'label'    => __( 'Title', 'woocommerce-germanized' ),
 				'options'  => apply_filters( 'woocommerce_gzd_title_options', array( 1 => __( 'Mr.', 'woocommerce-germanized' ), 2 => __( 'Ms.', 'woocommerce-germanized' ) ) ),
 				'before'   => 'first_name',
 				'group'    => array( 'billing', 'shipping' ),
+				'priority' => 0,
 			);
 
-			$this->custom_fields_admin[ 'title' ] = array(
+			$this->custom_fields_admin['title'] = array(
 				'before'   => 'first_name',
 				'type'     => 'select',
 				'options'  => apply_filters( 'woocommerce_gzd_title_options', array( 1 => __( 'Mr.', 'woocommerce-germanized' ), 2 => __( 'Ms.', 'woocommerce-germanized' ) ) ),
 				'label'    => __( 'Title', 'woocommerce-germanized' ),
 				'show'     => false,
+				'priority' => 0,
 			);
-
 		}
 
 		if ( get_option( 'woocommerce_gzd_checkout_phone_required' ) == 'no' ) {
-
-			$this->custom_fields[ 'phone' ] = array(
+			$this->custom_fields['phone'] = array(
 				'before'   => '',
 				'override' => true,
 				'required' => false,
 				'group'    => array( 'billing' )
 			);
-
 		}
 
 		$this->custom_fields_admin = apply_filters( 'woocommerce_gzd_custom_checkout_admin_fields', $this->custom_fields_admin, $this );
@@ -408,7 +407,7 @@ class WC_GZD_Checkout {
 
 	/**
 	 * Recalculate fee taxes to split tax based on different tax rates contained within cart
-	 *  
+	 *
 	 * @param  WC_Cart $cart
 	 */
 	public function do_fee_tax_calculation( $cart ) {
@@ -474,8 +473,8 @@ class WC_GZD_Checkout {
 					}
 
 					$fee->tax_data = $fee_taxes;
-					$fee->tax      = $fee_tax_total;
-					$fee->amount   = $fee->amount - $fee->tax;
+					$fee->tax      = wc_round_tax_total( $fee_tax_total );
+					$fee->amount   = ( $fee->amount - $fee->tax );
 					$fee->total    = $fee->amount;
 
 					$new_fees[ $key ] = $fee;
@@ -485,6 +484,10 @@ class WC_GZD_Checkout {
 			$cart->fees_api()->set_fees( $new_fees );
 			$cart->set_fee_tax( array_sum( $fee_tax_data ) );
 			$cart->set_fee_taxes( $fee_tax_data );
+
+			$fee_total = array_sum( wp_list_pluck( $new_fees, 'total' ) );
+
+			$cart->set_fee_total( wc_format_decimal( $fee_total, wc_get_price_decimals() ) );
 		}
 	}
 
@@ -523,6 +526,7 @@ class WC_GZD_Checkout {
 				// Calculate tax class share
 				if ( ! empty( $tax_shares ) ) {
 					$fee_taxes = array();
+
 					foreach ( $tax_shares as $rate => $class ) {
 						$tax_rates                            = WC_Tax::get_rates( $rate );
 						$tax_shares[ $rate ]['fee_tax_share'] = $fee->amount * $class['share'];
@@ -530,51 +534,54 @@ class WC_GZD_Checkout {
 
 						$fee_taxes += $tax_shares[ $rate ]['fee_tax'];
 					}
+
 					foreach ( $tax_shares as $rate => $class ) {
 						$cart->fees[ $key ]->tax_data = $cart->fees[ $key ]->tax_data + $class['fee_tax'];
 					}
+
 					// Add fee taxes to cart taxes
 					foreach ( array_keys( $cart->taxes + $fee_taxes ) as $sub ) {
 						$cart->taxes[ $sub ] = ( isset( $fee_taxes[ $sub ] ) ? $fee_taxes[ $sub ] : 0 ) + ( isset( $cart->taxes[ $sub ] ) ? $cart->taxes[ $sub ] : 0 );
 					}
+
 					// Update fee
-					$cart->fees[ $key ]->tax = array_sum( $cart->fees[ $key ]->tax_data );
-					$cart->fees[ $key ]->amount = $cart->fees[ $key ]->amount - $cart->fees[ $key ]->tax;
+					$cart->fees[ $key ]->tax    = wc_round_tax_total( array_sum( $cart->fees[ $key ]->tax_data ) );
+					$cart->fees[ $key ]->amount = wc_format_decimal( $cart->fees[ $key ]->amount - $cart->fees[ $key ]->tax, wc_get_price_decimals() );
 				}
 			}
 		}
 	}
 
 	/**
-	 * Temporarily removes all shipping rates (except chosen one) from packages to only show chosen package within checkout. 
+	 * Temporarily removes all shipping rates (except chosen one) from packages to only show chosen package within checkout.
 	 */
 	public function remove_shipping_rates() {
 		if ( 'no' === get_option( 'woocommerce_gzd_display_checkout_shipping_rate_select' ) )
 			return;
-		
+
 		$packages = WC()->shipping->get_packages();
-		
+
 		foreach ( $packages as $i => $package ) {
-		
+
 			$chosen_method = isset( WC()->session->chosen_shipping_methods[ $i ] ) ? WC()->session->chosen_shipping_methods[ $i ] : '';
-		
+
 			if ( ! empty( $package['rates'] ) ) {
 				foreach ( $package['rates'] as $key => $rate ) {
 					if ( $key != $chosen_method )
 						unset( WC()->shipping->packages[ $i ]['rates'][ $key ] );
 				}
-			}	
+			}
 		}
 	}
 
 	/**
 	 * Adds product description to order meta
-	 *  
-	 * @param int $order_id 
-	 * @param int $item_id  
-	 * @param object $product  
-	 * @param int $qty      
-	 * @param array $args     
+	 *
+	 * @param int $order_id
+	 * @param int $item_id
+	 * @param object $product
+	 * @param int $qty
+	 * @param array $args
 	 */
 	public function set_order_meta( $order_id, $item_id, $product, $qty, $args ) {
 		wc_add_order_item_meta( $item_id, '_units', wc_gzd_get_gzd_product( $product )->get_product_units_html() );
@@ -600,7 +607,7 @@ class WC_GZD_Checkout {
 
 	/**
 	 * Hide product description from order meta default output
-	 *  
+	 *
 	 * @param array $metas
 	 */
 	public function set_order_meta_hidden( $metas ) {
@@ -617,7 +624,7 @@ class WC_GZD_Checkout {
 			return $fields;
 
 		if ( wc_gzd_get_crud_data( $order, 'billing_title' ) )
-			$fields[ 'title' ] = $this->get_customer_title( wc_gzd_get_crud_data( $order, 'billing_title' ) );
+			$fields['title'] = $this->get_customer_title( wc_gzd_get_crud_data( $order, 'billing_title' ) );
 
 		return $fields;
 	}
@@ -628,7 +635,7 @@ class WC_GZD_Checkout {
 			return $fields;
 
 		if ( wc_gzd_get_crud_data( $order, 'shipping_title' ) )
-			$fields[ 'title' ] = $this->get_customer_title( wc_gzd_get_crud_data( $order, 'shipping_title' ) );
+			$fields['title'] = $this->get_customer_title( wc_gzd_get_crud_data( $order, 'shipping_title' ) );
 
 		return $fields;
 	}
@@ -651,11 +658,11 @@ class WC_GZD_Checkout {
 	}
 
 	public function set_formatted_address( $placeholder, $args ) {
-		if ( isset( $args[ 'title' ] ) ) {
-			$placeholder[ '{title}' ] = $args[ 'title' ];
-			$placeholder[ '{title_upper}' ] = strtoupper( $args[ 'title' ] );
-			$placeholder[ '{name}' ] = $placeholder[ '{title}' ] . ' ' . $placeholder[ '{name}' ];
-			$placeholder[ '{name_upper}' ] = $placeholder[ '{title_upper}' ] . ' ' . $placeholder[ '{name_upper}' ];
+		if ( isset( $args['title'] ) ) {
+			$placeholder['{title}']       = $args['title'];
+			$placeholder['{title_upper}'] = strtoupper( $args['title'] );
+			$placeholder['{name}']        = $placeholder['{title}'] . ' ' . $placeholder['{name}'];
+			$placeholder['{name_upper}']  = $placeholder['{title_upper}'] . ' ' . $placeholder['{name_upper}'];
 		}
 		return $placeholder;
 	}
@@ -709,13 +716,13 @@ class WC_GZD_Checkout {
 
 				$new = array();
 
-				if ( isset( $custom_field[ 'address_type' ] ) && $custom_field[ 'address_type' ] !== $type )
+				if ( isset( $custom_field['address_type'] ) && $custom_field['address_type'] !== $type )
 					continue;
 
 				if ( ! empty( $fields ) ) {
 
 					foreach ( $fields as $name => $field ) {
-						if ( $name == $custom_field[ 'before' ] && ! isset( $custom_field[ 'override' ] ) )
+						if ( $name == $custom_field['before'] && ! isset( $custom_field['override'] ) )
 							$new[ $key ] = $custom_field;
 
 						$new[ $name ] = $field;
@@ -746,9 +753,9 @@ class WC_GZD_Checkout {
 
 			foreach ( $this->custom_fields as $key => $custom_field ) {
 
-				if ( ! empty( $custom_field[ 'group' ] ) && ! isset( $custom_field[ 'override' ] ) ) {
+				if ( ! empty( $custom_field['group'] ) && ! isset( $custom_field['override'] ) ) {
 
-					foreach ( $custom_field[ 'group' ] as $group ) {
+					foreach ( $custom_field['group'] as $group ) {
 
 						$val = '';
 

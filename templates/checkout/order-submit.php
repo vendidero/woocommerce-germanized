@@ -27,8 +27,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<?php echo apply_filters( 'woocommerce_order_button_html', '<button type="submit" class="button alt" name="woocommerce_checkout_place_order" id="place_order" value="' . esc_attr( $order_button_text ) . '" data-value="' . esc_attr( $order_button_text ) . '">' . esc_html( $order_button_text ) . '</button>' ); ?>
 
         <?php if ( $include_nonce ) :
-            $nonce_name = wc_gzd_get_dependencies()->woocommerce_version_supports_crud() ? 'woocommerce-process-checkout-nonce' : '_wpnonce';
-	        wp_nonce_field( 'woocommerce-process_checkout', $nonce_name ); ?>
+	        wp_nonce_field( 'woocommerce-process_checkout', '_wpnonce' ); ?>
         <?php endif; ?>
 
 		<?php do_action( 'woocommerce_review_order_after_submit' ); ?>

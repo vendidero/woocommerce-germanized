@@ -276,11 +276,36 @@ class WC_Germanized_Meta_Box_Product_Data {
 		return $product;
 	}
 
+	public static function get_default_product_data( $product ) {
+	    $fields = array(
+            'product-type'           => $product->get_type(),
+            '_sale_price_dates_from' => '',
+            '_sale_price_dates_to'   => '',
+            '_is_on_sale'            => $product->is_on_sale(),
+            '_sale_price'            => wc_gzd_get_crud_data( $product, 'sale_price' ),
+        );
+
+	    if ( is_a( $fields['_sale_price_dates_from'], 'WC_DateTime' ) ) {
+	        $fields['_sale_price_dates_from'] = $fields['_sale_price_dates_from']->date_i18n();
+        }
+
+		if ( is_a( $fields['_sale_price_dates_to'], 'WC_DateTime' ) ) {
+			$fields['_sale_price_dates_to'] = $fields['_sale_price_dates_to']->date_i18n();
+		}
+
+	    return $fields;
+    }
+
 	public static function save_unit_price( $product, $data, $is_variation = false ) {
 
 		$data = wp_parse_args( $data, array(
-			'save' => true,
+			'save'    => true,
+            'is_rest' => false,
 		) );
+
+		if ( $data['is_rest'] ) {
+		    $data = array_replace_recursive( static::get_default_product_data( $product ), $data );
+        }
 
 		if ( is_numeric( $product ) ) {
 		    $product = wc_get_product( $product );
@@ -289,12 +314,10 @@ class WC_Germanized_Meta_Box_Product_Data {
 		$product_type = ( ! isset( $data['product-type'] ) || empty( $data['product-type'] ) ) ? 'simple' : sanitize_title( stripslashes( $data['product-type'] ) );
 
 		if ( isset( $data['_unit'] ) ) {
-
 			if ( empty( $data['_unit'] ) || in_array( $data['_unit'], array( 'none', '-1' ) ) )
 				$product = wc_gzd_unset_crud_meta_data( $product, '_unit' );
 			else
 				$product = wc_gzd_set_crud_meta_data( $product, '_unit', sanitize_text_field( $data['_unit'] ) );
-
 		}
 
 		if ( isset( $data['_unit_base'] ) ) {
@@ -313,7 +336,6 @@ class WC_Germanized_Meta_Box_Product_Data {
 		}
 		
 		if ( isset( $data['_unit_price_sale'] ) ) {
-
 			// Unset unit price sale if no product sale price has been defined
 			if ( ! isset( $data['_sale_price'] ) || $data['_sale_price'] === '' )
 				$data['_unit_price_sale'] = '';
@@ -331,24 +353,34 @@ class WC_Germanized_Meta_Box_Product_Data {
 
 		} else {
 
-			$date_from = isset( $data['_sale_price_dates_from'] ) ? wc_clean( $data['_sale_price_dates_from'] ) : '';
-			$date_to   = isset( $data['_sale_price_dates_to'] ) ? wc_clean( $data['_sale_price_dates_to'] ) : '';
+			$date_from        = isset( $data['_sale_price_dates_from'] ) ? wc_clean( $data['_sale_price_dates_from'] ) : '';
+			$date_to          = isset( $data['_sale_price_dates_to'] ) ? wc_clean( $data['_sale_price_dates_to'] ) : '';
+			$is_on_sale       = isset( $data['_is_on_sale'] ) ? $data['_is_on_sale'] : null;
 
 			// Update price if on sale
 			if ( isset( $data['_unit_price_sale'] ) ) {
-				
-				if ( '' !== $data['_unit_price_sale'] && '' == $date_to && '' == $date_from ) {
-					$product = wc_gzd_set_crud_meta_data( $product, '_unit_price', wc_format_decimal( $data['_unit_price_sale'] ) );
-				} else {
-					$product = wc_gzd_set_crud_meta_data( $product, '_unit_price', ( $data['_unit_price_regular'] === '' ) ? '' : wc_format_decimal( $data['_unit_price_regular'] ) );
-				}
 
-				if ( '' !== $data['_unit_price_sale'] && $date_from && strtotime( $date_from ) < strtotime( 'NOW', current_time( 'timestamp' ) ) ) {
-					$product = wc_gzd_set_crud_meta_data( $product, '_unit_price', wc_format_decimal( $data['_unit_price_sale'] ) );
-				}
+			    if ( ! is_null( $is_on_sale ) ) {
+			        if ( $is_on_sale ) {
+				        $product = wc_gzd_set_crud_meta_data( $product, '_unit_price', wc_format_decimal( $data['_unit_price_sale'] ) );
+                    } else {
+				        $product = wc_gzd_set_crud_meta_data( $product, '_unit_price', ( $data['_unit_price_regular'] === '' ) ? '' : wc_format_decimal( $data['_unit_price_regular'] ) );
+                    }
+                } else {
+				    if ( '' !== $data['_unit_price_sale'] && '' == $date_to && '' == $date_from ) {
+					    $product = wc_gzd_set_crud_meta_data( $product, '_unit_price', wc_format_decimal( $data['_unit_price_sale'] ) );
+				    } else {
+					    $product = wc_gzd_set_crud_meta_data( $product, '_unit_price', ( $data['_unit_price_regular'] === '' ) ? '' : wc_format_decimal( $data['_unit_price_regular'] ) );
+				    }
 
-				if ( $date_to && strtotime( $date_to ) < strtotime( 'NOW', current_time( 'timestamp' ) ) )
-					$product = wc_gzd_set_crud_meta_data( $product, '_unit_price', ( $data['_unit_price_regular'] === '' ) ? '' : wc_format_decimal( $data['_unit_price_regular'] ) );
+				    if ( '' !== $data['_unit_price_sale'] && $date_from && strtotime( $date_from ) < strtotime( 'NOW', current_time( 'timestamp' ) ) ) {
+					    $product = wc_gzd_set_crud_meta_data( $product, '_unit_price', wc_format_decimal( $data['_unit_price_sale'] ) );
+				    }
+
+				    if ( $date_to && strtotime( $date_to ) < strtotime( 'NOW', current_time( 'timestamp' ) ) ) {
+					    $product = wc_gzd_set_crud_meta_data( $product, '_unit_price', ( $data['_unit_price_regular'] === '' ) ? '' : wc_format_decimal( $data['_unit_price_regular'] ) );
+				    }
+                }
 			}
 		}
 
@@ -360,17 +392,27 @@ class WC_Germanized_Meta_Box_Product_Data {
 	}
 
 	public static function save_product_data( $product, $data, $is_variation = false ) {
-
 	    if ( is_numeric( $product ) )
 	        $product = wc_get_product( $product );
 
-		$data = apply_filters( 'woocommerce_gzd_product_saveable_data', $data, $product );
 		$data = wp_parse_args( $data, array(
-            'save' => true,
+			'is_rest' => false,
+		) );
+
+		if ( $data['is_rest'] ) {
+			$data = array_replace_recursive( static::get_default_product_data( $product ), $data );
+		}
+
+		$data = apply_filters( 'woocommerce_gzd_product_saveable_data', $data, $product );
+
+		$data = wp_parse_args( $data, array(
+            'save'    => true,
+            'is_rest' => false,
         ) );
 
-		$unit_data = $data;
-		$unit_data[ 'save' ] = false;
+		$unit_data         = $data;
+		$unit_data['save'] = false;
+
 		$product = self::save_unit_price( $product, $unit_data, $is_variation );
 
 		$product_type = ( ! isset( $data['product-type'] ) || empty( $data['product-type'] ) ) ? 'simple' : sanitize_title( stripslashes( $data['product-type'] ) );

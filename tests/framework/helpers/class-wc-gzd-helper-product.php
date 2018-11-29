@@ -39,4 +39,30 @@ class WC_GZD_Helper_Product {
 		return wc_gzd_get_gzd_product( $product );
 	}
 
+	public static function create_variation_product() {
+		$product           = WC_Helper_Product::create_variation_product();
+		$children          = $product->get_children();
+		$variation_id      = $children[0];
+
+		$data = array(
+			'_unit' => 'g',
+			'_unit_base' => '10',
+			'_unit_product' => '1',
+			'_sale_price_label' => 'new-price',
+			'_sale_price_regular_label' => 'old-price',
+			'_free_shipping' => 'yes',
+			'_service' => 'yes',
+			'_differential_taxation' => 'yes'
+		);
+
+		foreach( $data as $key => $value ) {
+			$product->update_meta_data( $key, $value );
+		}
+
+		$product->save();
+
+		wp_set_object_terms( $product->get_id(), '2-3 Days', 'product_delivery_time' );
+
+		return wc_gzd_get_gzd_product( $product );
+	}
 }

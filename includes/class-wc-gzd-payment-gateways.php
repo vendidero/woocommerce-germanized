@@ -39,7 +39,7 @@ class WC_GZD_Payment_Gateways {
 
 	public function gateway_admin_init() {
 		$allowed = array( 'edit-shop_order', 'export' );
-		$screen = get_current_screen();
+		$screen  = get_current_screen();
 
 		if ( $screen && in_array( $screen->id, $allowed ) ) {
 			$direct_debit = new WC_GZD_Gateway_Direct_Debit();

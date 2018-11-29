@@ -3,7 +3,7 @@
  * Plugin Name: WooCommerce Germanized
  * Plugin URI: https://www.vendidero.de/woocommerce-germanized
  * Description: WooCommerce Germanized extends WooCommerce to become a legally compliant store in the german market.
- * Version: 2.2.1
+ * Version: 2.2.4
  * Author: Vendidero
  * Author URI: https://vendidero.de
  * Requires at least: 3.8
@@ -31,7 +31,7 @@ final class WooCommerce_Germanized {
 	 *
 	 * @var string
 	 */
-	public $version = '2.2.1';
+	public $version = '2.2.4';
 
 	/**
 	 * Single instance of WooCommerce Germanized Main Class
@@ -195,7 +195,7 @@ final class WooCommerce_Germanized {
 
 		// Load after WooCommerce Frontend scripts
 		add_action( 'wp_enqueue_scripts', array( $this, 'add_scripts' ), 15 );
-		add_action( 'wp_enqueue_scripts', array( $this, 'add_inline_styles' ) );
+		add_action( 'wp_enqueue_scripts', array( $this, 'add_inline_styles' ), 20 );
 		add_action( 'wp_print_scripts', array( $this, 'localize_scripts' ), 5 );
 		add_action( 'wp_print_footer_scripts', array( $this, 'localize_scripts' ), 5 );
 
@@ -631,15 +631,6 @@ final class WooCommerce_Germanized {
 	}
 
 	/**
-	 * Adds woocommerce checkout table background highlight color as inline css
-	 */
-	public function add_inline_styles() {
-		$color = ( get_option( 'woocommerce_gzd_display_checkout_table_color' ) ? get_option( 'woocommerce_gzd_display_checkout_table_color' ) : '#eee' );
-		$custom_css = ".woocommerce-checkout .shop_table { background-color: $color; }";
-		wp_add_inline_style( 'woocommerce-gzd-layout', $custom_css );
-	}
-
-	/**
 	 * Add Scripts to frontend
 	 */
 	public function add_scripts() {
@@ -690,6 +681,20 @@ final class WooCommerce_Germanized {
 	}
 
 	/**
+	 * Adds woocommerce checkout table background highlight color as inline css
+	 */
+	public function add_inline_styles() {
+		$color      = ( get_option( 'woocommerce_gzd_display_checkout_table_color' ) ? get_option( 'woocommerce_gzd_display_checkout_table_color' ) : '#eee' );
+		$custom_css = ".woocommerce-checkout .shop_table { background-color: $color; }";
+
+		if ( 'yes' === get_option( 'woocommerce_gzd_display_hide_cart_tax_estimated' ) ) {
+			$custom_css .= " p.woocommerce-shipping-destination { display: none; }";
+		}
+
+		wp_add_inline_style( 'woocommerce-gzd-layout', $custom_css );
+	}
+
+	/**
 	 * Localize Script to enable AJAX
 	 */
 	public function localize_scripts() {
@@ -735,9 +740,18 @@ final class WooCommerce_Germanized {
 		if ( wp_script_is( 'wc-gzd-checkout' ) && ! in_array( 'wc-gzd-checkout', $this->localized_scripts ) ) {
 
 			$this->localized_scripts[] = 'wc-gzd-checkout';
+			$html_id                   = 'legal';
+			$hide_input                = false;
+
+			if ( $checkbox = wc_gzd_get_legal_checkbox( 'terms' ) ) {
+				$html_id    = $checkbox->get_html_id();
+				$hide_input = $checkbox->hide_input();
+			}
 
 			wp_localize_script( 'wc-gzd-checkout', 'wc_gzd_checkout_params', apply_filters( 'wc_gzd_checkout_params', array(
-				'adjust_heading' => true,
+				'adjust_heading'  => true,
+				'checkbox_id'     => $html_id,
+				'checkbox_hidden' => $hide_input,
 			) ) );
 		}
 
@@ -798,8 +812,10 @@ final class WooCommerce_Germanized {
 		}
 
 		// Try to prevent the On Hold Email from being sent even though it is called directly via the trigger method
-		if ( isset( $mails['WC_Email_Customer_On_Hold_Order'] ) ) {
-			$mails['WC_Email_Customer_On_Hold_Order']           = include 'includes/emails/class-wc-gzd-email-customer-on-hold-order.php';
+		if ( wc_gzd_send_instant_order_confirmation() ) {
+			if ( isset( $mails['WC_Email_Customer_On_Hold_Order'] ) ) {
+				$mails['WC_Email_Customer_On_Hold_Order']       = include 'includes/emails/class-wc-gzd-email-customer-on-hold-order.php';
+			}
 		}
 		
 		return $mails;

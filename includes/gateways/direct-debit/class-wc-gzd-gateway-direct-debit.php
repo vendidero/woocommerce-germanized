@@ -849,13 +849,13 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 
 	public function validate_fields() {
 
-		if ( ! $this->is_available() || ! isset( $_POST[ 'payment_method' ] ) || $_POST[ 'payment_method' ] != $this->id )
+		if ( ! $this->is_available() || ! isset( $_POST['payment_method'] ) || $_POST['payment_method'] != $this->id )
 			return;
 
-		$iban = ( isset( $_POST[ 'direct_debit_account_iban' ] ) ? wc_clean( $_POST[ 'direct_debit_account_iban' ] ) : '' );
-		$holder = ( isset( $_POST[ 'direct_debit_account_holder' ] ) ? wc_clean( $_POST[ 'direct_debit_account_holder' ] ) : '' );
-		$bic = ( isset( $_POST[ 'direct_debit_account_bic' ] ) ? wc_clean( $_POST[ 'direct_debit_account_bic' ] ) : '' );
-		$country = ( isset( $_POST[ 'billing_country' ] ) ? wc_clean( $_POST[ 'billing_country' ] ) : WC()->countries->get_base_country() );
+		$iban    = ( isset( $_POST['direct_debit_account_iban'] ) ? wc_clean( $_POST['direct_debit_account_iban'] ) : '' );
+		$holder  = ( isset( $_POST['direct_debit_account_holder'] ) ? wc_clean( $_POST['direct_debit_account_holder'] ) : '' );
+		$bic     = ( isset( $_POST['direct_debit_account_bic'] ) ? wc_clean( $_POST['direct_debit_account_bic'] ) : '' );
+		$country = ( isset( $_POST['billing_country'] ) ? wc_clean( $_POST['billing_country'] ) : WC()->countries->get_base_country() );
 
 		if ( empty( $iban ) || empty( $holder ) || empty( $bic ) ) {
 			wc_add_notice( __( 'Please insert your SEPA account data.', 'woocommerce-germanized' ), 'error' );
@@ -864,17 +864,18 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 
 		// Validate IBAN
 		include_once WC_GERMANIZED_ABSPATH . 'includes/libraries/iban/oophp-iban.php';
-
 		$iban_validator = new IBAN( $iban );
 
-		if ( ! $iban_validator->Verify() )
-			wc_add_notice( __( 'Your IBAN seems to be invalid.', 'woocommerce-germanized' ), 'error' );
-		else if ( apply_filters( 'woocommerce_gzd_direct_debit_verify_iban_country', true ) && $iban_validator->Country() != $country )
-			wc_add_notice( __( 'Your IBAN\'s country code doesn’t match with your billing country.', 'woocommerce-germanized' ), 'error' );
+		if ( ! $iban_validator->Verify() ) {
+            wc_add_notice( __( 'Your IBAN seems to be invalid.', 'woocommerce-germanized' ), 'error' );
+        } elseif ( apply_filters( 'woocommerce_gzd_direct_debit_verify_iban_country', true ) && $iban_validator->Country() != $country ) {
+            wc_add_notice( __( 'Your IBAN\'s country code doesn’t match with your billing country.', 'woocommerce-germanized' ), 'error' );
+        }
 
 		// Validate BIC
-		if ( ! preg_match( '/^([a-zA-Z]){4}([a-zA-Z]){2}([0-9a-zA-Z]){2}([0-9a-zA-Z]{3})?$/', $bic ) )
-			wc_add_notice( __( 'Your BIC seems to be invalid.', 'woocommerce-germanized' ), 'error' );
+		if ( ! preg_match( '/^([a-zA-Z]){4}([a-zA-Z]){2}([0-9a-zA-Z]){2}([0-9a-zA-Z]{3})?$/', $bic ) ) {
+            wc_add_notice( __( 'Your BIC seems to be invalid.', 'woocommerce-germanized' ), 'error' );
+        }
 
 		// Make sure that checkbox gets validated if on woocommerce_pay for order page
 		if ( isset( $_POST['woocommerce_pay'] ) ) {

@@ -32,7 +32,6 @@ if ( ! class_exists( 'WC_GZD_Email_Customer_On_Hold_Order' ) ) :
 		}
 
 		public function trigger( $order_id, $order = false ) {
-
 			if ( apply_filters( 'woocommerce_gzd_disable_on_hold_email', true ) ) {
 				return;
 			}

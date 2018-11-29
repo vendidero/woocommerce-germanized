@@ -285,7 +285,7 @@ function wc_gzd_get_cart_taxes( $cart, $include_shipping_taxes = true ) {
 			$taxes = $cart->get_tax_totals();
 
 			if ( ! $include_shipping_taxes ) {
-				remove_filter( 'woocommerce_cart_get_taxes', 'wc_gzd_cart_remove_shipping_taxes', 10, 2 );
+				remove_filter( 'woocommerce_cart_get_taxes', 'wc_gzd_cart_remove_shipping_taxes', 10 );
 			}
 
 			foreach ( $taxes as $code => $tax ) {
@@ -352,18 +352,17 @@ function wc_gzd_cart_totals_order_total_tax_html() {
 
 function wc_gzd_get_legal_text( $plain_text ) {
 	if ( ! empty( $plain_text ) ) {
-		$plain_text = str_replace(
-			array( '{term_link}', '{data_security_link}', '{revocation_link}', '{/term_link}', '{/data_security_link}', '{/revocation_link}' ),
-			array(
-				'<a href="' . esc_url( wc_gzd_get_page_permalink( 'terms' ) ) . '" target="_blank">',
-				'<a href="' . esc_url( wc_gzd_get_page_permalink( 'data_security' ) ) . '" target="_blank">',
-				'<a href="' . esc_url( wc_gzd_get_page_permalink( 'revocation' ) ) . '" target="_blank">',
-				'</a>',
-				'</a>',
-				'</a>',
-			),
-			$plain_text
-		);
+
+	    $replacements = array(
+	        '{term_link}'           => '<a href="' . esc_url( wc_gzd_get_page_permalink( 'terms' ) ) . '" target="_blank">',
+            '{data_security_link}'  => '<a href="' . esc_url( wc_gzd_get_page_permalink( 'data_security' ) ) . '" target="_blank">',
+            '{revocation_link}'     => '<a href="' . esc_url( wc_gzd_get_page_permalink( 'revocation' ) ) . '" target="_blank">',
+            '{/term_link}'          => '</a>',
+            '{/data_security_link}' => '</a>',
+            '{/revocation_link}'    => '</a>',
+        );
+
+		$plain_text = wc_gzd_replace_label_shortcodes( $plain_text, $replacements );
 	}
 
 	return $plain_text;
@@ -388,14 +387,12 @@ function wc_gzd_get_legal_text_digital_email_notice() {
 	    $text = $checkbox->confirmation;
 
 	    if ( $text ) {
-		    $text = str_replace(
-			    array( '{link}', '{/link}' ),
-			    array(
-				    '<a href="' . esc_url( wc_gzd_get_page_permalink( 'revocation' ) ) . '" target="_blank">',
-				    '</a>'
-			    ),
-			    $text
-		    );
+	        $replacements = array(
+	            '{link}'  => '<a href="' . esc_url( wc_gzd_get_page_permalink( 'revocation' ) ) . '" target="_blank">',
+                '{/link}' => '</a>',
+            );
+
+		    $text = wc_gzd_replace_label_shortcodes( $text, $replacements );
 	    }
     }
 
@@ -416,16 +413,14 @@ function wc_gzd_get_legal_text_service_email_notice() {
 	if ( $checkbox = wc_gzd_get_legal_checkbox( 'service' ) ) {
 		$text = $checkbox->confirmation;
 
-		if ( $text ) {
-			$text = str_replace(
-				array( '{link}', '{/link}' ),
-				array(
-					'<a href="' . esc_url( wc_gzd_get_page_permalink( 'revocation' ) ) . '" target="_blank">',
-					'</a>'
-				),
-				$text
-			);
-		}
+        if ( $text ) {
+            $replacements = array(
+                '{link}'  => '<a href="' . esc_url( wc_gzd_get_page_permalink( 'revocation' ) ) . '" target="_blank">',
+                '{/link}' => '</a>',
+            );
+
+            $text = wc_gzd_replace_label_shortcodes( $text, $replacements );
+        }
 	}
 
 	return apply_filters( 'woocommerce_gzd_legal_service_email_text', $text );

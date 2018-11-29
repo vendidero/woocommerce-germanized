@@ -265,12 +265,7 @@ class WC_GZD_Legal_Checkbox {
 			return $this->settings['label'];
 		} else {
 			$label = $this->settings['label'];
-
-			if ( $args = $this->get_label_args() ) {
-				foreach( $args as $placeholder => $replace ) {
-					$label = str_replace( $placeholder, $replace, $label );
-				}
-			}
+			$label = wc_gzd_replace_label_shortcodes( $label, $this->get_label_args() );
 
 			return apply_filters( "woocommerce_gzd_legal_checkbox_{$this->get_id()}_label", $label, $this );
 		}
@@ -311,12 +306,7 @@ class WC_GZD_Legal_Checkbox {
 			return $this->settings['error_message'];
 		} else {
 			$error_text = $this->settings['error_message'];
-
-			if ( $args = $this->get_label_args() ) {
-				foreach( $args as $placeholder => $replace ) {
-					$error_text = str_replace( $placeholder, $replace, $error_text );
-				}
-			}
+			$error_text = wc_gzd_replace_label_shortcodes( $error_text, $this->get_label_args()  );
 
 			return apply_filters( "woocommerce_gzd_legal_checkbox_{$this->get_id()}_error_text", $error_text, $this );
 		}

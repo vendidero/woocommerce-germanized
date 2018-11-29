@@ -1,26 +1,26 @@
 /*global woocommerce_admin_meta_boxes, woocommerce_admin, accounting, woocommerce_admin_meta_boxes_order */
-window.gzd_settings = window.gzd_settings || {};
+window.germanized = window.germanized || {};
 
-( function( $, wp, gzd_settings ) {
+( function( $, wp, germanized ) {
 
     /**
      * Order Data Panel
      */
-    gzd_settings.admin = {
+    germanized.settings = {
 
         init: function() {
 
             try {
-				$( document.body ).on( 'wc-enhanced-select-init wc-gzd-enhanced-select-init', this.onEnhancedSelectInit ).trigger( 'wc-gzd-enhanced-select-init' );
+                $( document.body ).on( 'wc-enhanced-select-init wc-gzd-enhanced-select-init', this.onEnhancedSelectInit ).trigger( 'wc-gzd-enhanced-select-init' );
             } catch( err ) {
                 // If select2 failed (conflict?) log the error but don't stop other scripts breaking.
                 window.console.log( err );
             }
 
             $( document )
-				.on( 'change', 'select#woocommerce_gzd_checkboxes_parcel_delivery_show_special', this.onParcelDeliveryShowSpecial )
+                .on( 'change', 'select#woocommerce_gzd_checkboxes_parcel_delivery_show_special', this.onParcelDeliveryShowSpecial )
                 .on( 'change', 'input#woocommerce_gzd_order_pay_now_button', this.onChangePayNow )
-				.on( 'change', 'input[name=woocommerce_gzd_dispute_resolution_type]', this.onChangeDisputeResolutionType )
+                .on( 'change', 'input[name=woocommerce_gzd_dispute_resolution_type]', this.onChangeDisputeResolutionType )
                 .on( 'click', 'a.woocommerce-gzd-input-toggle-trigger', this.onInputToogleClick );
 
             $( 'select#woocommerce_gzd_checkboxes_parcel_delivery_show_special' ).trigger( 'change' );
@@ -42,8 +42,8 @@ window.gzd_settings = window.gzd_settings || {};
 
                 $( this ).selectWoo( select2_args ).addClass( 'enhanced' );
             });
-		},
-
+        },
+      
         onParcelDeliveryShowSpecial: function() {
             var val = $( this ).val();
 
@@ -52,7 +52,7 @@ window.gzd_settings = window.gzd_settings || {};
             } else {
                 $( 'select#woocommerce_gzd_checkboxes_parcel_delivery_show_shipping_methods' ).parents( 'tr' ).hide();
             }
-		},
+        },
 
         onChangePayNow: function() {
             if ( $( this ).is( ':checked' ) ) {
@@ -60,7 +60,7 @@ window.gzd_settings = window.gzd_settings || {};
             } else {
                 $( 'select#woocommerce_gzd_order_pay_now_button_disabled_methods' ).parents( 'tr' ).hide();
             }
-		},
+        },
 
         onChangeDisputeResolutionType: function() {
             var val = $( this ).val();
@@ -68,7 +68,7 @@ window.gzd_settings = window.gzd_settings || {};
 
             $( '[id^=woocommerce_gzd_alternative_complaints_text_]' ).parents( 'tr' ).hide();
             $( '#woocommerce_gzd_alternative_complaints_text_' + val ).parents( 'tr' ).show();
-		},
+        },
 
         onInputToogleClick: function() {
             var $toggle   = $( this ).find( 'span.woocommerce-gzd-input-toggle' ),
@@ -92,7 +92,7 @@ window.gzd_settings = window.gzd_settings || {};
             return false;
         },
 
-		initMailSortable: function() {
+        initMailSortable: function() {
             if ( $( '#woocommerce_gzd_mail_attach_imprint' ).length > 0 ) {
                 var table = $( '#woocommerce_gzd_mail_attach_imprint' ).parents( 'table' );
                 $( table ).find( 'tbody' ).sortable({
@@ -125,7 +125,7 @@ window.gzd_settings = window.gzd_settings || {};
     };
 
     $( document ).ready( function() {
-        gzd_settings.admin.init();
+        germanized.settings.init();
     });
 
-})( jQuery, wp, window.gzd_settings );
+})( jQuery, wp, window.germanized );

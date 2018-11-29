@@ -19,7 +19,6 @@ class WC_GZD_Email_Customer_Paid_For_Order extends WC_Email {
 	 * Constructor
 	 */
 	public function __construct() {
-
 		$this->id 				= 'customer_paid_for_order';
 		$this->customer_email   = true;
 		$this->title 			= __( 'Paid for order', 'woocommerce-germanized' );
@@ -30,6 +29,13 @@ class WC_GZD_Email_Customer_Paid_For_Order extends WC_Email {
 
 		// Triggers for this email
 		add_action( 'woocommerce_order_status_pending_to_processing_notification', array( $this, 'trigger' ), 30 );
+
+		if ( property_exists( $this, 'placeholders' ) ) {
+			$this->placeholders   = array(
+				'{site_title}'   => $this->get_blogname(),
+				'{order_number}' => '',
+			);
+		}
 
 		// Call parent constuctor
 		parent::__construct();
@@ -62,20 +68,29 @@ class WC_GZD_Email_Customer_Paid_For_Order extends WC_Email {
 	 * @return void
 	 */
 	public function trigger( $order_id ) {
+		if ( is_callable( array( $this, 'setup_locale' ) ) ) {
+			$this->setup_locale();
+		}
 
 		if ( $order_id ) {
 			$this->object       = wc_get_order( $order_id );
 			$this->recipient    = wc_gzd_get_crud_data( $this->object, 'billing_email' );
 
-			$this->find['order-number']    = '{order_number}';
-			$this->replace['order-number'] = $this->object->get_order_number();
+			if ( property_exists( $this, 'placeholders' ) ) {
+				$this->placeholders['{order_number}'] = $this->object->get_order_number();
+			} else {
+				$this->find['order-number']    = '{order_number}';
+				$this->replace['order-number'] = $this->object->get_order_number();
+			}
 		}
 
-		if ( ! $this->is_enabled() || ! $this->get_recipient() ) {
-			return;
+		if ( $this->is_enabled() && $this->get_recipient() ) {
+			$this->send( $this->get_recipient(), $this->get_subject(), $this->get_content(), $this->get_headers(), $this->get_attachments() );
 		}
 
-		$this->send( $this->get_recipient(), $this->get_subject(), $this->get_content(), $this->get_headers(), $this->get_attachments() );
+		if ( is_callable( array( $this, 'restore_locale' ) ) ) {
+			$this->restore_locale();
+		}
 	}
 
 	/**

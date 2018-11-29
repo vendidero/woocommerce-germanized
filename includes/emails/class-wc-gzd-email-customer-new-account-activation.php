@@ -74,6 +74,9 @@ class WC_GZD_Email_Customer_New_Account_Activation extends WC_Email {
 	 * @return void
 	 */
 	public function trigger( $user_id, $user_activation, $user_activation_url, $user_pass = '', $password_generated = false ) {
+		if ( is_callable( array( $this, 'setup_locale' ) ) ) {
+			$this->setup_locale();
+		}
 
 		if ( $user_id ) {
 			$this->object 			   = new WP_User( $user_id );
@@ -90,7 +93,13 @@ class WC_GZD_Email_Customer_New_Account_Activation extends WC_Email {
 		if ( ! $this->is_enabled() || ! $this->get_recipient() )
 			return;
 
-		$this->send( $this->get_recipient(), $this->get_subject(), $this->get_content(), $this->get_headers(), $this->get_attachments() );
+		if ( $this->is_enabled() && $this->get_recipient() ) {
+			$this->send( $this->get_recipient(), $this->get_subject(), $this->get_content(), $this->get_headers(), $this->get_attachments() );
+		}
+
+		if ( is_callable( array( $this, 'restore_locale' ) ) ) {
+			$this->restore_locale();
+		}
 	}
 
 	/**

@@ -39,8 +39,7 @@ class WC_GZD_Virtual_VAT_Helper {
 			}
 		}
 
-		$location = WC_Tax::get_tax_location( $tax_class );
-
+		$location               = WC_Tax::get_tax_location( $tax_class );
 		$virtual_vat_applicable = in_array( $tax_class, array( 'virtual-rate', 'virtual-reduced-rate' ) ) && isset( $location[0] ) && sizeof( $location ) === 4 && $location[0] !== WC()->countries->get_base_country();
 
 		// Make sure that the customer is not a vat exempt
