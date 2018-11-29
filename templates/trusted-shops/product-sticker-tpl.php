@@ -19,7 +19,9 @@ _tsProductReviewsConfig = {
     starSize: '{star_size}px',
     ratingSummary: 'false',
     maxHeight: '1200px',
-    element: '#ts_product_sticker',
+    element: '{element}',
+    hideEmptySticker: 'false',
+    richSnippets: 'off',
     introtext: ''  /* optional */
 };
 var scripts = document.getElementsByTagName('SCRIPT'), me = scripts[scripts.length - 1];

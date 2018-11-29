@@ -21,7 +21,7 @@ window.germanized = window.germanized || {};
                 .on( 'change', 'select#woocommerce_gzd_checkboxes_parcel_delivery_show_special', this.onParcelDeliveryShowSpecial )
                 .on( 'change', 'input#woocommerce_gzd_order_pay_now_button', this.onChangePayNow )
                 .on( 'change', 'input[name=woocommerce_gzd_dispute_resolution_type]', this.onChangeDisputeResolutionType )
-                .on( 'click', 'span.woocommerce-gzd-input-toggle', this.onInputToogleClick );
+                .on( 'click', 'a.woocommerce-gzd-input-toggle-trigger', this.onInputToogleClick );
 
             $( 'select#woocommerce_gzd_checkboxes_parcel_delivery_show_special' ).trigger( 'change' );
             $( 'input#woocommerce_gzd_order_pay_now_button' ).trigger( 'change' );
@@ -43,7 +43,7 @@ window.germanized = window.germanized || {};
                 $( this ).selectWoo( select2_args ).addClass( 'enhanced' );
             });
         },
-
+      
         onParcelDeliveryShowSpecial: function() {
             var val = $( this ).val();
 
@@ -71,7 +71,7 @@ window.germanized = window.germanized || {};
         },
 
         onInputToogleClick: function() {
-            var $toggle   = $( this ),
+            var $toggle   = $( this ).find( 'span.woocommerce-gzd-input-toggle' ),
                 $row      = $toggle.parents( 'tr' ),
                 $checkbox = $row.find( 'input[type=checkbox]' ),
                 $enabled  = $toggle.hasClass( 'woocommerce-input-toggle--enabled' );
@@ -88,6 +88,8 @@ window.germanized = window.germanized || {};
             }
 
             $checkbox.trigger( 'change' );
+
+            return false;
         },
 
         initMailSortable: function() {

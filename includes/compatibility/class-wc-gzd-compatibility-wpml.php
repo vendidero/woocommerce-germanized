@@ -209,6 +209,11 @@ class WC_GZD_Compatibility_Wpml extends WC_GZD_Compatibility {
 	}
 
 	public function add_admin_notices( $settings ) {
+		// Remove notices for TS
+		if ( isset( $_GET['section'] ) && 'trusted_shops' === $_GET['section'] ) {
+			return $settings;
+		}
+
 		foreach( $settings as $key => $setting ) {
 			if ( isset( $setting['id'] ) && array_key_exists( $setting['id'], $this->get_translatable_options() ) ) {
 				if ( $string_id = $this->get_string_id( $setting['id'] ) ) {
@@ -218,7 +223,7 @@ class WC_GZD_Compatibility_Wpml extends WC_GZD_Compatibility {
 						$settings[ $key ] = $this->set_admin_notice_attribute( $settings[ $key ], $string_id, $string_language );
 					}
 				}
-			} 
+			}
 		}
 
 		return $settings;
@@ -303,7 +308,17 @@ class WC_GZD_Compatibility_Wpml extends WC_GZD_Compatibility {
 			$status = ICL_TM_COMPLETE;
 		}
 
+		if ( $string_id = $this->get_string_id( $option ) ) {
+            icl_add_string_translation( $string_id, $language, $value, $status );
+        }
+
 		icl_update_string_translation( $option, $language, $value, $status );
+
+		// Make sure that the string is stored within the WPML translatable option names
+        $option_names = get_option( '_icl_admin_option_names', array() );
+        $option_names[ $option ] = 1;
+
+        update_option( '_icl_admin_option_names', $option_names );
 	}
 
 	public function get_string_translation( $string_id, $language, $status = '' ) {
@@ -370,6 +385,7 @@ class WC_GZD_Compatibility_Wpml extends WC_GZD_Compatibility {
 
 			// Remove translation if it equals original string
 			if ( $org_string === $new_value || empty( $new_value ) ) {
+
 				$this->delete_string_translation( $org_string_id, $this->get_current_language() );
 
 				return $old_value;

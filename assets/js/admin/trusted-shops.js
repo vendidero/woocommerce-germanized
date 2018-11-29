@@ -1,130 +1,268 @@
-jQuery( function ( $ ) {
+/*global woocommerce_admin_meta_boxes, woocommerce_admin, accounting, woocommerce_admin_meta_boxes_order */
+window.trusted_shops = window.trusted_shops || {};
 
-	$( document ).on( 'click', '#wc-gzd-trusted-shops-export', function() {
-		var href_org = $( this ).data( 'href-org' );
-		$( this ).attr( 'href', href_org + '&interval=' + $( '#woocommerce_' + trusted_shops_params.option_prefix + 'trusted_shops_review_collector' ).val() + '&days=' + $( '#woocommerce_' + trusted_shops_params.option_prefix + 'trusted_shops_review_collector_days_to_send' ).val() );
+( function( $, wp, trusted_shops ) {
+
+    /**
+     * Order Data Panel
+     */
+    trusted_shops.admin = {
+
+        params: {},
+		optionPrefix: '',
+
+        init: function() {
+            this.params       = trusted_shops_params;
+            this.optionPrefix = this.params.option_prefix;
+            var self          = this;
+
+            // Show hide elements
+            $( document ).on( 'change', '#woocommerce_' + this.optionPrefix + 'trusted_shops_integration_mode', this.onChangeIntegrationMode );
+            $( document ).on( 'change', ':input[id$=_enable]', this.onChangeEnable );
+            $( document ).on( 'change', '#woocommerce_' + this.optionPrefix + 'trusted_shops_google_shopping_enable', this.onChangeEnableGoogleShopping );
+            $( document ).on( 'change', '#woocommerce_' + this.optionPrefix + 'trusted_shops_reviews_enable', this.onChangeEnableReviews );
+
+            // Initial triggers
+            $( document ).find( '#woocommerce_' + this.optionPrefix + 'trusted_shops_integration_mode' ).trigger( 'change' );
+            $( document ).find( ':input[id$=_enable]' ).trigger( 'change' );
+
+            // Exporter
+            $( document ).on( 'click', '#wc-gzd-trusted-shops-export', this.onClickExport );
+
+            // Sidebar Switch
+            $( document ).on( 'click', 'table.form-table tr', this.onSidebarChange );
+
+            $( ":data(sidebar)" ).each( function() {
+                $( this ).parents( 'tr' ).on( 'click', self.onSidebarChange );
+            });
+
+            $( document ).on( 'click', 'h2, div[id$="options-description"]', this.onSidebarTitelChange );
+
+            // Form validation
+            $( document ).on( 'submit', '#mainform', this.onSaveForm );
+        },
+
+        onChangeEnableGoogleShopping: function() {
+            if ( $( this ).is( ':checked' ) ) {
+                $( document ).find( '#woocommerce_' + self.optionPrefix + 'trusted_shops_brand_attribute' ).parents( 'tr' ).show();
+            } else {
+                $( document ).find( '#woocommerce_' + self.optionPrefix + 'trusted_shops_brand_attribute' ).parents( 'tr' ).hide();
+            }
+        },
+
+        onChangeEnableReviews: function() {
+            var self = trusted_shops.admin;
+
+            if ( $( this ).is( ':checked' ) ) {
+                $( document ).find( '#woocommerce_' + self.optionPrefix + 'trusted_shops_product_sticker_enable' ).parents( 'tr' ).show();
+                $( document ).find( '#woocommerce_' + self.optionPrefix + 'trusted_shops_product_widget_enable' ).parents( 'tr' ).show();
+                $( document ).find( '#woocommerce_' + self.optionPrefix + 'trusted_shops_google_shopping_enable' ).parents( 'tr' ).show();
+            } else {
+                $( document ).find( '#woocommerce_' + self.optionPrefix + 'trusted_shops_product_sticker_enable' ).prop( 'checked', false );
+                $( document ).find( '#woocommerce_' + self.optionPrefix + 'trusted_shops_product_widget_enable' ).prop( 'checked', false );
+                $( document ).find( '#woocommerce_' + self.optionPrefix + 'trusted_shops_google_shopping_enable' ).prop( 'checked', false );
+
+                $( document ).find( '#woocommerce_' + self.optionPrefix + 'trusted_shops_product_sticker_enable' ).parents( 'tr' ).hide();
+                $( document ).find( '#woocommerce_' + self.optionPrefix + 'trusted_shops_product_widget_enable' ).parents( 'tr' ).hide();
+                $( document ).find( '#woocommerce_' + self.optionPrefix + 'trusted_shops_google_shopping_enable' ).parents( 'tr' ).hide();
+            }
+
+            $( document ).find( '#woocommerce_' + self.optionPrefix + 'trusted_shops_product_sticker_enable' ).trigger( 'change' );
+            $( document ).find( '#woocommerce_' + self.optionPrefix + 'trusted_shops_product_widget_enable' ).trigger( 'change' );
+            $( document ).find( '#woocommerce_' + self.optionPrefix + 'trusted_shops_google_shopping_enable' ).trigger( 'change' );
+        },
+
+        onChangeIntegrationMode: function() {
+            var self = trusted_shops.admin;
+
+            $( document ).find( ':input[id$=_enable]' ).trigger( 'change' );
+        },
+
+        onChangeEnable: function() {
+            self      = trusted_shops.admin;
+            self.showHideGroupElements( $( this ) );
+        },
+
+        showHideGroupElements: function( $parent ) {
+            var id        = $parent.attr( 'id' ),
+                self      = trusted_shops.admin,
+                postfix   = id.replace( 'woocommerce_' + self.optionPrefix + 'trusted_shops_', '' ),
+                group     = postfix.substr( 0, postfix.length - 7 ),
+                // Support inputs and HTML fields
+                $elements = $( ':input[id^=woocommerce_' + self.optionPrefix + 'trusted_shops_' + group + '_], th[id^=woocommerce_' + self.optionPrefix + 'trusted_shops_' + group + '_]' ),
+                show      = false;
+
+            var exclude_hide_experts = [
+                'woocommerce_' + self.optionPrefix + 'trusted_shops_rich_snippets_category',
+                'woocommerce_' + self.optionPrefix + 'trusted_shops_rich_snippets_product',
+                'woocommerce_' + self.optionPrefix + 'trusted_shops_rich_snippets_home'
+            ];
+
+            if ( $parent.is( ':checked' ) ) {
+                show = true;
+            }
+
+            $elements.each( function() {
+                var elementId   = $( this ).attr( 'id' );
+                var showElement = show;
+
+                if ( 'woocommerce_' + self.optionPrefix + 'trusted_shops_' + group + '_enable' === elementId ) {
+                    return;
+                }
+
+                // Code blocks
+                if ( 'woocommerce_' + self.optionPrefix + 'trusted_shops_' + group + '_code' === elementId ||  'woocommerce_' + self.optionPrefix + 'trusted_shops_' + group + '_selector' === elementId ) {
+                    if ( ! self.isExpertMode() && showElement ) {
+                        showElement = false;
+                    }
+                } else if( self.isExpertMode() ) {
+                    // Check if parent has code block
+                    var $parent = $( this ).parents( 'table.form-table' );
+
+                    // Check if element is excluded from being hidden
+                    if ( $parent.find( ':input[id$=_code]' ).length > 0 ) {
+                        if ( $.inArray( elementId, exclude_hide_experts ) == -1 ) {
+                            showElement = false;
+                        }
+                    }
+                }
+
+                if ( showElement ) {
+                    $( this ).parents( 'tr' ).show();
+                } else {
+                    $( this ).parents( 'tr' ).hide();
+                }
+            });
+        },
+
+        onSidebarTitelChange: function() {
+            var $next = $( this ).nextAll( 'table.form-table:first' );
+            $next.find( 'tr:first' ).trigger( 'click' );
+
+            $sidebar = $( '.wc-ts-sidebar-active' );
+            $sidebar.offset( { top: $( this ).offset().top } );
+        },
+
+        onSidebarChange: function() {
+            var $sidebar_elem    = $( this ).find( '[data-sidebar]' ),
+                $table           = $( this ).parents( '.form-table' ),
+                $current_sidebar = $( '.wc-ts-sidebar-active' ),
+                $sidebar         = $current_sidebar;
+
+            if ( $sidebar_elem.length <= 0 ) {
+                if ( $table.find( '[data-sidebar]' ).length > 0 ) {
+                    $sidebar_elem = $table.find( '[data-sidebar]:first' );
+                }
+            }
+
+            if ( $sidebar_elem.length <= 0 ) {
+                $sidebar = $( '#wc-ts-sidebar-default' );
+            } else {
+                $sidebar = $( '#' + $sidebar_elem.data( 'sidebar' ) );
+            }
+
+            $current_sidebar.removeClass( 'wc-ts-sidebar-active' );
+            $sidebar.addClass( 'wc-ts-sidebar-active' );
+            $sidebar.offset( { top: $( this ).offset().top } );
+        },
+
+        getSettingsWrapper: function() {
+            var self   = trusted_shops.admin;
+            var prefix = self.optionPrefix.replace( '_', '-' );
+
+            return $( '.wc-' + prefix + 'admin-settings' );
+        },
+
+        addNotice: function( type, texts ) {
+            var self = trusted_shops.admin;
+
+            self.getSettingsWrapper().find( '#message' ).remove();
+            self.getSettingsWrapper().prepend( '<div id="message" class="notice ' + type + ' inline"><p>' + texts.join( '<br/>' ) + '</p></div>' );
+
+            $( 'html, body' ).animate( {
+                scrollTop: ( self.getSettingsWrapper().offset().top - 100 )
+            }, 1000 );
+        },
+
+        validate: function( $elem ) {
+            var self     = trusted_shops.admin,
+                isValid  = true,
+                id       = $elem.attr( 'id' ),
+                isCode   = id.substr( id.length - 5 ) === '_code',
+                value    = $elem.val();
+
+            if ( $elem.data( 'validate' ) ) {
+                var type = $elem.data( 'validate' );
+
+                if ( 'integer' === type ) {
+                    value = parseInt( value );
+
+                    if ( isNaN( value ) ) {
+                        isValid = false;
+                    }
+                }
+            } else if( self.isExpertMode() && isCode ) {
+                if ( '' === value ) {
+                    isValid = false;
+                }
+            }
+
+            return isValid;
+        },
+
+        onSaveForm: function() {
+            var self     = trusted_shops.admin;
+            var doSubmit = true;
+
+            $( 'textarea, input, select' ).removeClass( 'wc-ts-has-error' );
+
+            $( 'textarea:visible, input:visible, select:visible' ).each( function() {
+
+                var id      = $( this ).attr( 'id' ),
+                    isCode  = id.substr( id.length - 5 ) === '_code',
+                    $td     = $( this ).parents( 'tr' ).find( 'td' );
+
+                $td.find( '.wc-ts-error' ).remove();
+
+                if ( ! self.validate( $( this ) ) ) {
+                    $( this ).addClass( 'wc-ts-has-error' );
+
+                    if ( isCode ) {
+                        var message = self.params.i18n_error_mandatory;
+                    } else {
+                        var message = $( this ).data( 'validate-msg' );
+                    }
+
+                    $td.append( '<span class="wc-ts-error">' + message + '</span>' );
+
+                    doSubmit = false;
+                }
+            });
+
+            if ( ! doSubmit ) {
+                $( 'html, body' ).animate( {
+                    scrollTop: ( self.getSettingsWrapper().find( '.wc-ts-has-error:first' ).offset().top - 100 )
+                }, 1000 );
+            }
+
+            return doSubmit;
+        },
+
+        isExpertMode: function() {
+            var self = trusted_shops.admin;
+            return $( '#woocommerce_' + this.optionPrefix + 'trusted_shops_integration_mode' ).val() === 'expert';
+        },
+
+        onClickExport: function() {
+        	var self = trusted_shops.admin;
+            var href_org = $( this ).data( 'href-org' );
+
+            $( this ).attr( 'href', href_org + '&interval=' + $( '#woocommerce_' + self.optionPrefix + 'trusted_shops_review_collector' ).val() + '&days=' + $( '#woocommerce_' + self.params.option_prefix + 'trusted_shops_review_collector_days_to_send' ).val() );
+		}
+    };
+
+    $( document ).ready( function() {
+        trusted_shops.admin.init();
     });
 
-	$( document ).on( 'change', '#woocommerce_' + trusted_shops_params.option_prefix + 'trusted_shops_integration_mode', function() {
-		
-		// Hide gateway options
-		$( '#woocommerce_' + trusted_shops_params.option_prefix + 'trusted_shops_gateway_bacs' ).parents( 'table.form-table' ).hide();
-		$( '#woocommerce_' + trusted_shops_params.option_prefix + 'trusted_shops_gateway_bacs' ).parents( 'table' ).prev( 'h3,h2' ).hide();
-
-		if ( $( this ).val() === 'expert' ) {
-
-			$( '#woocommerce_' + trusted_shops_params.option_prefix + 'trusted_shops_gateway_bacs' ).parents( 'table.form-table' ).show();
-			$( '#woocommerce_' + trusted_shops_params.option_prefix + 'trusted_shops_gateway_bacs' ).parents( 'table' ).prev( 'h3,h2' ).show();
-
-			$( '#woocommerce_' + trusted_shops_params.option_prefix + 'trusted_shops_trustbadge_code' ).parents( 'tr' ).show();
-			// Show notice
-			$( '.wc-gzd-trusted-shops-expert-mode-note' ).appendTo( $( this ).parents( 'td' ) ).show();
-		} else {
-			$( '#woocommerce_' + trusted_shops_params.option_prefix + 'trusted_shops_trustbadge_code' ).parents( 'tr' ).hide();
-			$( '.wc-gzd-trusted-shops-expert-mode-note' ).hide();
-		}
-		$( document ).find( '#woocommerce_' + trusted_shops_params.option_prefix + 'trusted_shops_enable_reviews' ).trigger( 'change' );
-	});
-
-    $( document ).on( 'change', '#woocommerce_' + trusted_shops_params.option_prefix + 'trusted_shops_review_reminder_checkbox', function() {
-
-        // Hide options
-        $( '#woocommerce_' + trusted_shops_params.option_prefix + 'trusted_shops_review_reminder_checkbox_mandatory' ).parents( 'tr' ).hide();
-        $( '#woocommerce_' + trusted_shops_params.option_prefix + 'trusted_shops_review_reminder_checkbox_text' ).parents( 'tr' ).hide();
-        $( '#woocommerce_' + trusted_shops_params.option_prefix + 'trusted_shops_review_reminder_opt_out' ).parents( 'tr' ).hide();
-
-        if ( $( this ).is( ':checked' ) ) {
-            $( '#woocommerce_' + trusted_shops_params.option_prefix + 'trusted_shops_review_reminder_checkbox_mandatory' ).parents( 'tr' ).show();
-            $( '#woocommerce_' + trusted_shops_params.option_prefix + 'trusted_shops_review_reminder_checkbox_text' ).parents( 'tr' ).show();
-            $( '#woocommerce_' + trusted_shops_params.option_prefix + 'trusted_shops_review_reminder_opt_out' ).parents( 'tr' ).show();
-        }
-    });
-
-    $( document ).on( 'change', '#woocommerce_' + trusted_shops_params.option_prefix + 'trusted_shops_review_reminder_enable', function() {
-
-        // Hide options
-        $( '#woocommerce_' + trusted_shops_params.option_prefix + 'trusted_shops_review_reminder_days' ).parents( 'tr' ).hide();
-        $( '#woocommerce_' + trusted_shops_params.option_prefix + 'trusted_shops_review_reminder_checkbox' ).parents( 'tr' ).hide();
-        $( '#woocommerce_' + trusted_shops_params.option_prefix + 'trusted_shops_review_reminder_checkbox_mandatory' ).parents( 'tr' ).hide();
-        $( '#woocommerce_' + trusted_shops_params.option_prefix + 'trusted_shops_review_reminder_checkbox_text' ).parents( 'tr' ).hide();
-        $( '#woocommerce_' + trusted_shops_params.option_prefix + 'trusted_shops_review_reminder_opt_out' ).parents( 'tr' ).hide();
-
-        if ( $( this ).is( ':checked' ) ) {
-            $( '#woocommerce_' + trusted_shops_params.option_prefix + 'trusted_shops_review_reminder_days' ).parents( 'tr' ).show();
-            $( '#woocommerce_' + trusted_shops_params.option_prefix + 'trusted_shops_review_reminder_checkbox' ).parents( 'tr' ).show();
-            $( '#woocommerce_' + trusted_shops_params.option_prefix + 'trusted_shops_review_reminder_checkbox_mandatory' ).parents( 'tr' ).show();
-            $( '#woocommerce_' + trusted_shops_params.option_prefix + 'trusted_shops_review_reminder_checkbox_text' ).parents( 'tr' ).show();
-            $( '#woocommerce_' + trusted_shops_params.option_prefix + 'trusted_shops_review_reminder_opt_out' ).parents( 'tr' ).show();
-        }
-
-        $( document ).find( '#woocommerce_' + trusted_shops_params.option_prefix + 'trusted_shops_review_reminder_checkbox' ).trigger( 'change' );
-    });
-
-	$( document ).on( 'change', '#woocommerce_' + trusted_shops_params.option_prefix + 'trusted_shops_enable_reviews', function() {
-		
-		if ( $( this ).is( ':checked' ) ) {
-			$( '#woocommerce_' + trusted_shops_params.option_prefix + 'trusted_shops_gtin_attribute' ).parents( 'tr' ).show();
-			$( '#woocommerce_' + trusted_shops_params.option_prefix + 'trusted_shops_brand_attribute' ).parents( 'tr' ).show();
-			$( '#woocommerce_' + trusted_shops_params.option_prefix + 'trusted_shops_mpn_attribute' ).parents( 'tr' ).show();
-			$( '#woocommerce_' + trusted_shops_params.option_prefix + 'trusted_shops_product_sticker_enable' ).parents( 'tr' ).show();
-			$( '#woocommerce_' + trusted_shops_params.option_prefix + 'trusted_shops_product_widget_enable' ).parents( 'tr' ).show();
-		} else {
-			$( '#woocommerce_' + trusted_shops_params.option_prefix + 'trusted_shops_gtin_attribute' ).parents( 'tr' ).hide();
-			$( '#woocommerce_' + trusted_shops_params.option_prefix + 'trusted_shops_brand_attribute' ).parents( 'tr' ).hide();
-			$( '#woocommerce_' + trusted_shops_params.option_prefix + 'trusted_shops_mpn_attribute' ).parents( 'tr' ).hide();
-			$( '#woocommerce_' + trusted_shops_params.option_prefix + 'trusted_shops_product_sticker_enable' ).parents( 'tr' ).hide();
-			$( '#woocommerce_' + trusted_shops_params.option_prefix + 'trusted_shops_product_widget_enable' ).parents( 'tr' ).hide();
-			$( '#woocommerce_' + trusted_shops_params.option_prefix + 'trusted_shops_product_sticker_enable' ).removeAttr( 'checked' );
-			$( '#woocommerce_' + trusted_shops_params.option_prefix + 'trusted_shops_product_widget_enable' ).removeAttr( 'checked' );
-		}
-
-		$( document ).find( '#woocommerce_' + trusted_shops_params.option_prefix + 'trusted_shops_product_sticker_enable' ).trigger( 'change' );
-		$( document ).find( '#woocommerce_' + trusted_shops_params.option_prefix + 'trusted_shops_product_widget_enable' ).trigger( 'change' );
-	});
-
-	$( document ).on( 'change', '#woocommerce_' + trusted_shops_params.option_prefix + 'trusted_shops_product_sticker_enable', function() {
-
-		$( '#woocommerce_' + trusted_shops_params.option_prefix + 'trusted_shops_product_sticker_code' ).parents( 'tr' ).hide();
-
-		if ( $( this ).is( ':checked' ) ) {
-			
-			$( '#woocommerce_' + trusted_shops_params.option_prefix + 'trusted_shops_product_sticker_border_color' ).parents( 'tr' ).show();
-			$( '#woocommerce_' + trusted_shops_params.option_prefix + 'trusted_shops_product_sticker_star_color' ).parents( 'tr' ).show();
-			$( '#woocommerce_' + trusted_shops_params.option_prefix + 'trusted_shops_product_sticker_star_size' ).parents( 'tr' ).show();
-			
-			if ( $( document ).find( '#woocommerce_' + trusted_shops_params.option_prefix + 'trusted_shops_integration_mode' ).val() === 'expert' ) {
-				$( '#woocommerce_' + trusted_shops_params.option_prefix + 'trusted_shops_product_sticker_code' ).parents( 'tr' ).show();
-			}
-
-		} else {
-			$( '#woocommerce_' + trusted_shops_params.option_prefix + 'trusted_shops_product_sticker_border_color' ).parents( 'tr' ).hide();
-			$( '#woocommerce_' + trusted_shops_params.option_prefix + 'trusted_shops_product_sticker_star_color' ).parents( 'tr' ).hide();
-			$( '#woocommerce_' + trusted_shops_params.option_prefix + 'trusted_shops_product_sticker_star_size' ).parents( 'tr' ).hide();
-		}
-	});
-
-	$( document ).on( 'change', '#woocommerce_' + trusted_shops_params.option_prefix + 'trusted_shops_product_widget_enable', function() {
-
-		$( '#woocommerce_' + trusted_shops_params.option_prefix + 'trusted_shops_product_widget_code' ).parents( 'tr' ).hide();
-
-		if ( $( this ).is( ':checked' ) ) {
-			$( '#woocommerce_' + trusted_shops_params.option_prefix + 'trusted_shops_product_widget_star_color' ).parents( 'tr' ).show();
-			$( '#woocommerce_' + trusted_shops_params.option_prefix + 'trusted_shops_product_widget_star_size' ).parents( 'tr' ).show();
-			$( '#woocommerce_' + trusted_shops_params.option_prefix + 'trusted_shops_product_widget_font_size' ).parents( 'tr' ).show();
-
-			if ( $( document ).find( '#woocommerce_' + trusted_shops_params.option_prefix + 'trusted_shops_integration_mode' ).val() === 'expert' ) {
-				$( '#woocommerce_' + trusted_shops_params.option_prefix + 'trusted_shops_product_widget_code' ).parents( 'tr' ).show();
-			}
-
-		} else {
-			$( '#woocommerce_' + trusted_shops_params.option_prefix + 'trusted_shops_product_widget_star_color' ).parents( 'tr' ).hide();
-			$( '#woocommerce_' + trusted_shops_params.option_prefix + 'trusted_shops_product_widget_star_size' ).parents( 'tr' ).hide();
-			$( '#woocommerce_' + trusted_shops_params.option_prefix + 'trusted_shops_product_widget_font_size' ).parents( 'tr' ).hide();
-		}
-	});
-
-	$( document ).find( '#woocommerce_' + trusted_shops_params.option_prefix + 'trusted_shops_integration_mode' ).trigger( 'change' );
-	$( document ).find( '#woocommerce_' + trusted_shops_params.option_prefix + 'trusted_shops_enable_reviews' ).trigger( 'change' );
-    $( document ).find( '#woocommerce_' + trusted_shops_params.option_prefix + 'trusted_shops_review_reminder_enable' ).trigger( 'change' );
-
-});
+})( jQuery, wp, window.trusted_shops );

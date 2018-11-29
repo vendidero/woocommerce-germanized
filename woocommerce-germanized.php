@@ -613,6 +613,7 @@ final class WooCommerce_Germanized {
 		$locale = is_admin() && function_exists( 'get_user_locale' ) ? get_user_locale() : get_locale();
 		$locale = apply_filters( 'plugin_locale', $locale, 'woocommerce-germanized' );
 
+        unload_textdomain( 'woocommerce-germanized' );
 		load_textdomain( 'woocommerce-germanized', trailingslashit( WP_LANG_DIR ) . 'woocommerce-germanized/woocommerce-germanized-' . $locale . '.mo' );
 		load_plugin_textdomain( 'woocommerce-germanized', false, plugin_basename( dirname( __FILE__ ) ) . '/i18n/languages/' );
 	}
@@ -942,22 +943,13 @@ final class WooCommerce_Germanized {
 		// Initialize Trusted Shops module
 		$this->trusted_shops   = new WC_GZD_Trusted_Shops( $this, array(
 			'prefix' 	  	   => 'GZD_',
+			'path'             => WC_GERMANIZED_ABSPATH . 'includes/trusted-shops/',
 			'et_params'        => array(
 				'utm_campaign' => 'shopsoftware',
 				'utm_content'  => 'WOOCOMMERCEGERMANIZED',
 			),
-			'signup_params'	   => array(
-				'utm_source'   => 'woocommerce-germanized',
-				'utm_campaign' => 'woocommerce-germanized',
-			),
-			'urls'		  	        => array(
-				'integration' 		=> 'http://www.trustedshops.de/shopbetreiber/integration/shopsoftware-integration/woocommerce-germanized/',
-				'signup' 			=> 'http://www.trustbadge.com/de/Preise/',
-				'trustbadge_custom' => 'http://www.trustedshops.de/shopbetreiber/integration/trustbadge/trustbadge-custom/',
-				'reviews' 			=> 'http://www.trustedshops.de/shopbetreiber/integration/product-reviews/',
-			),
-			)
-		);
+			'signup_url'	   => 'http://www.trustbadge.com/de/Preise/',
+        ) );
 	}
 }
 

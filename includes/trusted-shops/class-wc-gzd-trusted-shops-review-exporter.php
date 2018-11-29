@@ -117,9 +117,9 @@ class WC_GZD_Trusted_Shops_Review_Exporter extends WC_CSV_Exporter {
 					// Handle special columns which don't map 1:1 to order data.
 					$value = $this->{"get_column_value_{$column_id}"}( $order );
 
-				} elseif ( wc_gzd_get_crud_data( $order, $column_id ) ) {
+				} elseif ( wc_ts_get_crud_data( $order, $column_id ) ) {
 					// Default and custom handling.
-					$value = wc_gzd_get_crud_data( $order, $column_id );
+					$value = wc_ts_get_crud_data( $order, $column_id );
 				}
 
 				$row[ $column_id ] = $value;
@@ -130,7 +130,7 @@ class WC_GZD_Trusted_Shops_Review_Exporter extends WC_CSV_Exporter {
 	}
 
 	public function get_column_value_date( $order ) {
-		return wc_gzd_get_order_date( $order, 'd.m.Y' );
+		return wc_ts_get_order_date( $order, 'd.m.Y' );
 	}
 
 	public function get_column_value_days( $order ) {

@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	var _tsid = '{id}'; 
 	_tsConfig = {
 		'yOffset': '{offset}', /* offset from page bottom */
-		'variant': '{variant}', /* text, default, small, reviews, custom, custom_reviews */
+		'variant': '{variant}', /* reviews, default, custom, custom_reviews */
 		'customElementId': '', /* required for variants custom and custom_reviews */
 		'trustcardDirection': '', /* for custom variants: topRight, topLeft, bottomRight, bottomLeft */ 'customBadgeWidth': '', /* for custom variants: 40 - 90 (in pixels) */
 		'customBadgeHeight': '', /* for custom variants: 40 - 90 (in pixels) */
