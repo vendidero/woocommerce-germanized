@@ -932,18 +932,8 @@ final class WooCommerce_Germanized {
 				'utm_campaign' => 'shopsoftware',
 				'utm_content'  => 'WOOCOMMERCEGERMANIZED',
 			),
-			'signup_params'	   => array(
-				'utm_source'   => 'woocommerce-germanized',
-				'utm_campaign' => 'woocommerce-germanized',
-			),
-			'urls'		  	        => array(
-				'integration' 		=> 'http://www.trustedshops.de/shopbetreiber/integration/shopsoftware-integration/woocommerce-germanized/',
-				'signup' 			=> 'http://www.trustbadge.com/de/Preise/',
-				'trustbadge_custom' => 'http://www.trustedshops.de/shopbetreiber/integration/trustbadge/trustbadge-custom/',
-				'reviews' 			=> 'http://www.trustedshops.de/shopbetreiber/integration/product-reviews/',
-			),
-			)
-		);
+			'signup_url'	   => 'http://www.trustbadge.com/de/Preise/',
+        ) );
 	}
 }
 

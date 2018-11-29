@@ -48,10 +48,10 @@ class WC_GZD_Trusted_Shops {
 	public $supports = array();
 
 	/**
-	 * Admin URLs
-	 * @var array
+	 * Admin signup url
+	 * @var string
 	 */
-	public $urls = array();
+	public $signup_url = '';
 
 	/**
 	 * Parent Plugin
@@ -84,7 +84,7 @@ class WC_GZD_Trusted_Shops {
 			'et_params' 	=> array(),
 			'signup_params' => array(),
 			'prefix' 		=> '',
-			'urls' 			=> array(),
+			'signup_url' 	=> '',
 			'supports' 		=> array( 'reminder' ),
 			'path'          => dirname( __FILE__ ) . '/'
 		) );

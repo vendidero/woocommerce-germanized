@@ -235,7 +235,7 @@ class WC_GZD_Trusted_Shops_Admin {
 	    $settings = array(
             array(
                 'title'             => _x( 'Trusted Shops Integration', 'trusted-shops', 'woocommerce-germanized' ),
-                'desc'              => sprintf( _x( 'Do you need help with integrating your Trustbadge? %s', 'trusted-shops', 'woocommerce-germanized' ), '<a href="' . $this->get_trusted_url( 'https://support.trustedshops.com/de/apps/woocommerce' ) . '" class="button button-secondary" target="_blank">' . _x( 'To the step-by-step instructions', 'trusted-shops', 'woocommerce-germanized' ) .'</a>' ),
+                'desc'              => sprintf( _x( 'Do you need help with integrating your Trustbadge? %s', 'trusted-shops', 'woocommerce-germanized' ), '<a href="' . $this->get_trusted_url( 'https://support.trustedshops.com/en/apps/woocommerce' ) . '" class="button button-secondary" target="_blank">' . _x( 'To the step-by-step instructions', 'trusted-shops', 'woocommerce-germanized' ) .'</a>' ),
                 'type'              => 'title',
                 'id'                => 'trusted_shops_options'
             ),
@@ -446,7 +446,7 @@ class WC_GZD_Trusted_Shops_Admin {
 
             array(
                 'title'             => _x( 'Configure your Product Reviews ', 'trusted-shops', 'woocommerce-germanized' ),
-                'desc'              => sprintf( _x( 'To use Product Reviews, activate them in your %s first.', 'trusted-shops', 'woocommerce-germanized' ), '<a href="' . $this->get_trusted_url( 'https://www.trustedshops.com/en/shop/login.html' ) . '" target="_blank">' . _x( 'Trusted Shops package', 'trusted-shops', 'woocommerce-germanized' ) .'</a>' ),
+                'desc'              => sprintf( _x( 'To use Product Reviews, activate them in your %s first.', 'trusted-shops', 'woocommerce-germanized' ), '<a href="' . $this->get_trusted_url( 'https://www.trustedshops.com/uk/shop/login.html', array( 'lang_mapping' => array( 'en' => 'uk' ) ) ) . '" target="_blank">' . _x( 'Trusted Shops package', 'trusted-shops', 'woocommerce-germanized' ) .'</a>' ),
                 'type'              => 'title',
                 'id'                => 'trusted_shops_reviews_options'
             ),
@@ -776,8 +776,8 @@ class WC_GZD_Trusted_Shops_Admin {
 
                 <div class="wc-ts-sidebar wc-ts-sidebar-active" id="wc-ts-sidebar-default">
                     <h3><?php echo _x( 'How does Trusted Shops make your shop better?', 'trusted-shops', 'woocommerce-germanized' ); ?></h3>
-                    <a href="<?php echo $this->get_signup_url( $this->base->urls['signup'] ); ?>" target="_blank"><img style="width: 100%; height: auto" src="<?php echo $this->get_image( 'ts.png' ); ?>" /></a>
-                    <a class="button button-primary" href="<?php echo $this->get_signup_url( $this->base->urls[ 'signup' ] ); ?>" target="_blank"><?php echo _x( 'Get your account', 'trusted-shops', 'woocommerce-germanized' ); ?></a>
+                    <a href="<?php echo $this->get_signup_url(); ?>" target="_blank"><img style="width: 100%; height: auto" src="<?php echo $this->get_image( 'ts.png' ); ?>" /></a>
+                    <a class="button button-primary" href="<?php echo $this->get_signup_url(); ?>" target="_blank"><?php echo _x( 'Get your account', 'trusted-shops', 'woocommerce-germanized' ); ?></a>
                 </div>
 
                 <div class="wc-ts-sidebar wc-ts-sidebar-flex" id="wc-ts-sidebar-trustbadge">
@@ -805,12 +805,12 @@ class WC_GZD_Trusted_Shops_Admin {
 
                 <div class="wc-ts-sidebar" id="wc-ts-sidebar-review-reminder">
                     <p><?php echo _x( 'Please note: If you want to send review requests through WooCommerce, you should deactivate automated review requests through Trusted Shops. To do so, please go to your My Trusted Shops account. Log in and go to Reviews >  Settings and deactivate "Collect reviews automatically"', 'trusted-shops', 'woocommerce-germanized' ); ?></p>
-                    <a class="button button-secondary" href="#" target="_blank">To your My Trusted Shops account</a>
+                    <a class="button button-secondary" href="<?php echo $this->get_trusted_url( 'https://www.trustedshops.com/tsb2b/sa/ratings/shopRatingWidgetSettings.seam' ); ?>" target="_blank">To your My Trusted Shops account</a>
                 </div>
 
                 <div class="wc-ts-sidebar" id="wc-ts-sidebar-review-collector">
                     <p><?php echo _x( 'Export your customer information here and upload it in the Trusted Shops Review Collector. To do so go to your My Trusted Shops account. Log in and go to Reviews > Shop Reviews > Review Collector', 'trusted-shops', 'woocommerce-germanized' ); ?></p>
-                    <a class="button button-secondary" href="#" target="_blank">To the Trusted Shops Review Collector</a>
+                    <a class="button button-secondary" href="<?php echo $this->get_trusted_url( 'https://www.trustedshops.com/tsb2b/sa/ratings/reviewCollector/reviewCollector.seam' ); ?>" target="_blank">To the Trusted Shops Review Collector</a>
                 </div>
 			</div>
 		<?php
@@ -878,7 +878,7 @@ class WC_GZD_Trusted_Shops_Admin {
 		?>
 		<h2><?php echo _x( 'Review Collector', 'trusted-shops', 'woocommerce-germanized' ); ?></h2>
         <div id="trusted_shops_review_collector_options-description">
-            <p class="description"><?php printf( _x( 'Want to collect reviews for orders that were placed before your Trusted Shops Integration? No problem. Export old orders here and upload them in your %s.', 'trusted-shops', 'woocommerce-germanized' ), '<a href="' . $this->get_trusted_url( 'https://www.trustedshops.com/en/shop/login.html' ) . '" target="_blank">' . _x( 'My Trusted Shops account', 'trusted-shops', 'woocommerce-germanized' ) . '</a>' ); ?></p>
+            <p class="description"><?php printf( _x( 'Want to collect reviews for orders that were placed before your Trusted Shops Integration? No problem. Export old orders here and upload them in your %s.', 'trusted-shops', 'woocommerce-germanized' ), '<a href="' . $this->get_trusted_url( 'https://www.trustedshops.com/tsb2b/sa/ratings/reviewCollector/reviewCollector.seam' ) . '" target="_blank">' . _x( 'My Trusted Shops account', 'trusted-shops', 'woocommerce-germanized' ) . '</a>' ); ?></p>
         </div>
         <table class="form-table">
 			<tbody>
@@ -892,7 +892,7 @@ class WC_GZD_Trusted_Shops_Admin {
 							<option value="60"><?php echo _x( '60 days', 'trusted-shops', 'woocommerce-germanized' ); ?></option>
 							<option value="90"><?php echo _x( '90 days', 'trusted-shops', 'woocommerce-germanized' ); ?></option>
 						</select>
-                        <span class="description"><?php printf( _x( 'Upload customer and order information %s.', 'trusted-shops', 'woocommerce-germanized' ), '<a href="https://www.trustedshops.com/tsb2b/sa/ratings/reviewCollector/reviewCollector.seam" target="_blank">' . _x( 'here', 'trusted-shops', 'woocommerce-germanized' ) . '</a>' ); ?></span>
+                        <span class="description"><?php printf( _x( 'Upload customer and order information %s.', 'trusted-shops', 'woocommerce-germanized' ), '<a href="' . $this->get_trusted_url( 'https://www.trustedshops.com/tsb2b/sa/ratings/reviewCollector/reviewCollector.seam' ) . '" target="_blank">' . _x( 'here', 'trusted-shops', 'woocommerce-germanized' ) . '</a>' ); ?></span>
                         <div class="trusted-shops-review-collector-wrap">
                             <div class="review-collector-days">
                                 <label for="woocommerce_gzd_trusted_shops_review_collector"><?php echo _x( 'Days until reminder mail', 'trusted-shops', 'woocommerce-germanized' ); ?> <?php echo wc_ts_help_tip( _x( 'Set the number of days to wait after the order date before having a Review Request sent to your customers.', 'trusted-shops', 'woocommerce-germanized' ) ); ?></label>
@@ -909,32 +909,44 @@ class WC_GZD_Trusted_Shops_Admin {
 		<?php
 	}
 
-	private function get_signup_url( $url, $args = array() ) {
-		
-		$args = array_merge( $this->base->signup_params, $args );
+	private function get_signup_url( $url = '', $args = array() ) {
+	    $args = wp_parse_args( $args, array(
+            'params' => true,
+        ) );
 
-		$args = wp_parse_args( $args, array(
-			'utm_content' => 'marketing-page',
-			'utm_medium' => 'software-app',
-		) );
+		$url = empty( $url ) ? $this->base->signup_url : $url;
 
-		return add_query_arg( $args, $url );
+		return $this->get_trusted_url( $url, $args );
 	}
 
 	private function get_trusted_url( $url, $args = array() ) {
+        $param_args = $this->base->et_params;
+        $args       = wp_parse_args( $args, array(
+            'utm_term'     => substr( get_locale(), 0, 2 ),
+            'shop_id'      => $this->base->ID,
+            'params'       => false,
+            'lang_mapping' => array(),
+        ) );
+
 	    $current_lang = $this->base->get_language();
-	    $url          = str_replace( '/en/', '/' . $current_lang . '/', $url );
+	    $base_lang    = isset( $args['lang_mapping']['en'] ) ? $args['lang_mapping']['en'] : 'en';
+	    $current_lang = isset( $args['lang_mapping'][ $current_lang ] ) ? $args['lang_mapping'][ $current_lang ] : $current_lang;
+	    $url          = str_replace( "/{$base_lang}/", '/' . $current_lang . '/', $url );
 
-		$args = array_merge( $this->base->et_params, $args );
+		if ( 'gzd_' === $this->base->option_prefix && substr( $url, -11 ) === 'woocommerce' ) {
+		    $url = str_replace( 'woocommerce', 'woocommerce_germanized', $url );
+        }
 
-		$args = wp_parse_args( $args, array(
-			'utm_term' => substr( get_locale(), 0, 2 ),
-			'utm_medium' => 'link',
-			'utm_source' => 'shopsoftwarebackend',
-			'shop_id' => $this->base->ID,
-		) );
+		if ( $args['params'] ) {
+		    $param_args = array_replace_recursive( $param_args, array(
+		        'utm_term' => $args['utm_term'],
+                'shop_id' => $args['shop_id'],
+            ) );
 
-		return add_query_arg( $args, $url );
+            return add_query_arg( $param_args, $url );
+        } else {
+		    return $url;
+        }
 	}
 
 }
