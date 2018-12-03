@@ -44,6 +44,10 @@ class WC_GZD_Trusted_Shops_Review_Exporter extends WC_CSV_Exporter {
 
 	protected $days_interval = 30;
 
+	protected $statuses = array( 'wc-completed' );
+
+	protected $lang = '';
+
 	public function __construct() {
 		$this->column_names = $this->get_default_column_names();
 	}
@@ -81,33 +85,57 @@ class WC_GZD_Trusted_Shops_Review_Exporter extends WC_CSV_Exporter {
 		$this->days_to_send = absint( $days );
 	}
 
+	public function get_statuses() {
+	    return $this->statuses;
+    }
+
+    public function set_statuses( $statuses ) {
+        $this->statuses = (array) $statuses;
+    }
+
+    public function set_lang( $lang ) {
+	    $this->lang = $lang;
+    }
+
+    public function get_lang() {
+	    return $this->lang;
+    }
+
 	/**
 	 * Prepare data that will be exported.
 	 */
 	public function prepare_data_to_export() {
 		$columns  = $this->get_column_names();
+		$date     = date( 'Y-m-d', strtotime( '-' . $this->get_interval_days() . ' days' ) );
+		$args     =  array(
+            'post_type'   => 'shop_order',
+            'post_status' => $this->get_statuses(),
+            'showposts'   => -1,
+            'date_query'  => array(
+                array(
+                    'after' => $date,
+                ),
+            ),
+        );
 
-		$date     = date( 'Y-m-d', strtotime( '-' . $this->get_interval_days() . ' days') );
-		$args     = apply_filters( "woocommerce_gzd_{$this->export_type}_query_args", array(
-			'post_type'   => 'shop_order',
-			'post_status' => array( 'wc-completed' ),
-			'showposts'   => -1,
-			'date_query'  => array(
-				array(
-					'after' => $date,
-				),
-			),
-		) );
+        if ( $this->get_lang() !== '' && 'all' !== $this->get_lang() ) {
+            $args['meta_query']         = array();
+            $args['meta_query']['wpml'] = array(
+                'key'     => 'wpml_language',
+                'compare' => '=',
+                'value'   => $this->get_lang(),
+            );
+        }
 
-		$order_query = new WP_Query( $args );
-
+		$order_query      = new WP_Query( apply_filters( "woocommerce_gzd_{$this->export_type}_query_args", $args ) );
 		$this->total_rows = $order_query->found_posts;
 		$this->row_data   = array();
 
 		while ( $order_query->have_posts() ) {
 			$order_query->next_post();
+
 			$order = wc_get_order( $order_query->post->ID );
-			$row = array();
+			$row   = array();
 
 			foreach ( $columns as $column_id => $column_name ) {
 				$column_id = strstr( $column_id, ':' ) ? current( explode( ':', $column_id ) ) : $column_id;

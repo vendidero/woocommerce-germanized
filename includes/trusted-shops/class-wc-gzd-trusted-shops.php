@@ -114,7 +114,8 @@ class WC_GZD_Trusted_Shops {
 			add_action( 'wp_enqueue_scripts', array( $this, 'load_frontend_assets' ), 50 );
 
 			if ( is_admin() ) {
-				add_filter( 'woocommerce_gzd_wpml_translatable_options', array( $this, 'setup_wpml_support' ), 20 );
+				add_filter( 'woocommerce_gzd_wpml_translatable_options', array( $this, 'register_wpml_options' ), 20, 1 );
+                add_filter( 'woocommerce_gzd_wpml_remove_translation_empty_equal', array( $this, 'stop_wpml_options_string_deletions' ), 20, 4 );
 			}
 		}
 	}
@@ -129,11 +130,30 @@ class WC_GZD_Trusted_Shops {
 		include_once( $this->path . 'admin/views/html-duplicate-plugin-notice.php' );
 	}
 
-	public function setup_wpml_support( $settings ) {
+	public function register_wpml_options( $settings ) {
 		$admin = $this->get_dependency( 'admin' );
 
 		return array_merge( $settings, $admin->get_translatable_settings() );
 	}
+
+    /**
+     * Make sure that other languages are not synced with main language e.g. option does not default to main language
+     *
+     * @param $allow
+     * @param $option
+     * @param $new_value
+     * @param $old_value
+     * @return bool
+     */
+	public function stop_wpml_options_string_deletions( $allow, $option, $new_value, $old_value ) {
+        $admin = $this->get_dependency( 'admin' );
+
+        if ( array_key_exists( $option, $admin->get_translatable_settings() ) ) {
+            $allow = false;
+        }
+
+	    return $allow;
+    }
 
 	public function includes() {
 		include_once( $this->path . 'wc-gzd-ts-core-functions.php' );
@@ -256,6 +276,10 @@ class WC_GZD_Trusted_Shops {
 	public function is_product_widget_enabled() {
 		return ( $this->is_product_reviews_enabled() && $this->product_widget_enable === 'yes' ? true : false );
 	}
+
+	public function is_google_shopping_enabled() {
+	    return ( $this->is_product_reviews_enabled() && $this->google_shopping_enable === 'yes' ? true : false );
+    }
 
 	public function supports( $type ) {
 		return ( in_array( $type, $this->supports ) ? true : false );

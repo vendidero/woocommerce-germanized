@@ -40,16 +40,15 @@ class WC_GZD_Trusted_Shops_Admin {
 
 		add_action( 'woocommerce_gzd_load_trusted_shops_script', array( $this, 'load_scripts' ) );
 
-		// Add custom fields
-		add_action( 'woocommerce_product_options_general_product_data', array( $this, 'output_fields' ) );
-		add_action( 'woocommerce_product_after_variable_attributes', array( $this, 'output_variation_fields' ), 20, 3 );
-		add_action( 'woocommerce_save_product_variation', array( $this, 'save_variation_fields' ) , 0, 2 );
+        add_action( 'woocommerce_product_options_general_product_data', array( $this, 'output_fields' ) );
+        add_action( 'woocommerce_product_after_variable_attributes', array( $this, 'output_variation_fields' ), 20, 3 );
+        add_action( 'woocommerce_save_product_variation', array( $this, 'save_variation_fields' ) , 0, 2 );
 
-		if ( ! wc_ts_woocommerce_supports_crud() ) {
-			add_action( 'woocommerce_process_product_meta', array( $this, 'save_fields' ), 20, 2 );
-		} else {
-			add_action( 'woocommerce_admin_process_product_object', array( $this, 'save_fields' ), 10, 1 );
-		}
+        if ( ! wc_ts_woocommerce_supports_crud() ) {
+            add_action( 'woocommerce_process_product_meta', array( $this, 'save_fields' ), 20, 2 );
+        } else {
+            add_action( 'woocommerce_admin_process_product_object', array( $this, 'save_fields' ), 10, 1 );
+        }
 	}
 
 	public function wpml_notice() {
@@ -859,19 +858,32 @@ class WC_GZD_Trusted_Shops_Admin {
 		
 		$interval_d   = ( ( isset( $_GET['interval'] ) && ! empty( $_GET['interval'] ) ) ? absint( $_GET['interval'] ) : 30 );
 		$days_to_send = ( ( isset( $_GET['days'] ) && ! empty( $_GET['days'] ) ) ? absint( $_GET['days'] ) : 5 );
+        $status       = ( ( isset( $_GET['status'] ) && ! empty( $_GET['status'] ) ) ? wc_clean( $_GET['status'] ) : 'wc-completed' );
 
-		if ( wc_ts_woocommerce_supports_crud() ) {
+        if ( wc_ts_woocommerce_supports_crud() ) {
 		    include_once( 'class-wc-gzd-trusted-shops-review-exporter.php' );
 
 		    $exporter = new WC_GZD_Trusted_Shops_Review_Exporter();
 		    $exporter->set_days_until_send( $days_to_send );
 		    $exporter->set_interval_days( $interval_d );
+            $exporter->set_statuses( array( $status ) );
+
+            if ( isset( $_GET['lang'] ) && ! empty( $_GET['lang'] ) ) {
+                $exporter->set_lang( wc_clean( $_GET['lang'] ) );
+            }
 
 		    $exporter->export();
         }
 	}
 
 	public function review_collector_export() {
+
+	    $href_org = admin_url();
+	    $href_org = add_query_arg( array(
+            'action'   => 'wc_' . $this->base->option_prefix . 'trusted-shops-export',
+            '_wpnonce' => wp_create_nonce( 'wc_' . $this->base->option_prefix . 'trusted-shops-export' ),
+            'lang'     => wc_ts_get_current_language(),
+        ), $href_org );
 
 		if ( ! wc_ts_woocommerce_supports_crud() )
 		    return;
@@ -883,7 +895,7 @@ class WC_GZD_Trusted_Shops_Admin {
         <table class="form-table">
 			<tbody>
 				<tr valign="top">
-					<th scope="row" class="titledesc">
+                    <th scope="row" class="titledesc">
 						<label for="woocommerce_gzd_trusted_shops_review_collector"><?php echo _x( 'Export orders', 'trusted-shops', 'woocommerce-germanized' ); ?> <?php echo wc_ts_help_tip( _x( 'Export your customer and order information of the last x days and upload them in your My Trusted Shops Account.', 'trusted-shops', 'woocommerce-germanized' ) ); ?></label>
 					</th>
 					<td class="forminp forminp-select forminp-review-collector">
@@ -899,7 +911,7 @@ class WC_GZD_Trusted_Shops_Admin {
                                 <input type="number" value="5" min="1" data-validate="integer" name="woocommerce_<?php echo $this->base->option_prefix; ?>trusted_shops_review_collector_days_to_send" id="woocommerce_<?php echo $this->base->option_prefix; ?>trusted_shops_review_collector_days_to_send" />
                             </div>
                             <div class="review-collector-buttons">
-                                <a class="button button-secondary" id="wc-gzd-trusted-shops-export" data-href-org="<?php echo admin_url( '?action=wc_' . $this->base->option_prefix . 'trusted-shops-export&_wpnonce=' . wp_create_nonce( 'wc_' . $this->base->option_prefix . 'trusted-shops-export' ) ); ?>" href="#"><?php echo _x( 'Start export', 'trusted-shops', 'woocommerce-germanized' ); ?></a>
+                                <a class="button button-secondary" id="wc-gzd-trusted-shops-export" data-href-org="<?php echo esc_url( $href_org ); ?>" href="#"><?php echo _x( 'Start export', 'trusted-shops', 'woocommerce-germanized' ); ?></a>
                             </div>
                         </div>
                     </td>

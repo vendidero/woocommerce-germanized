@@ -254,7 +254,7 @@ window.trusted_shops = window.trusted_shops || {};
         },
 
         onClickExport: function() {
-        	var self = trusted_shops.admin;
+        	var self     = trusted_shops.admin;
             var href_org = $( this ).data( 'href-org' );
 
             $( this ).attr( 'href', href_org + '&interval=' + $( '#woocommerce_' + self.optionPrefix + 'trusted_shops_review_collector' ).val() + '&days=' + $( '#woocommerce_' + self.params.option_prefix + 'trusted_shops_review_collector_days_to_send' ).val() );

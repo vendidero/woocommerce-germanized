@@ -183,7 +183,7 @@ class WC_GZD_Compatibility_Wpml extends WC_GZD_Compatibility {
 	}
 
 	public function add_admin_notices_checkboxes( $settings, $checkbox ) {
-		$ids = array();
+		$ids     = array();
 		$options = $this->get_translatable_options();
 
 		foreach( $options['woocommerce_gzd_legal_checkboxes_settings'] as $option_key ) {
@@ -381,11 +381,13 @@ class WC_GZD_Compatibility_Wpml extends WC_GZD_Compatibility {
 		}
 
 		if ( $org_string_id ) {
-			$org_string   = $this->get_string_value( $org_string_id );
+			$org_string = $this->get_string_value( $org_string_id );
 
-			// Remove translation if it equals original string
-			if ( $org_string === $new_value || empty( $new_value ) ) {
-
+			/**
+             * Remove translation if it equals original string
+             * Use woocommerce_gzd_wpml_remove_translation_empty_equal filter to disallow string deletion which results in "real" option translations
+            */
+			if ( ( $org_string === $new_value || empty( $new_value ) ) && apply_filters( 'woocommerce_gzd_wpml_remove_translation_empty_equal', true, $option, $new_value, $old_value ) ) {
 				$this->delete_string_translation( $org_string_id, $this->get_current_language() );
 
 				return $old_value;

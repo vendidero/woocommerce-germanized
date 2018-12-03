@@ -24,7 +24,6 @@ class WC_GZD_Trusted_Shops_Template_Hooks {
 	}
 
 	public function init() {
-
         if ( $this->base->is_enabled() ) {
             add_action( 'woocommerce_thankyou', array( $this, 'template_thankyou' ), 10, 1 );
 

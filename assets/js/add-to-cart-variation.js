@@ -104,9 +104,11 @@
 		// Check variations
 		.on( 'update_variation_values', function() {
 			setTimeout(function() {
-       		 	if ( ! $('.single_variation_wrap').is(':visible') || $( '.single_add_to_cart_button' ).is( '[disabled]' ) ) {
-       		 		$.fn.wc_gzd_variation_form.reset_variation();
-       		 	}
+                var $variation_wrap = $( '.single_variation' ).length > 0 ? $( '.single_variation' ) : $( '.single_variation_wrap' );
+
+                if ( ! $variation_wrap.is( ':visible' ) || $( '.single_add_to_cart_button' ).is( '[disabled]' ) ) {
+                    $.fn.wc_gzd_variation_form.reset_variation();
+                }
        		 }, 250);	
 		})
 
