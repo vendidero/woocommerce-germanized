@@ -31,6 +31,12 @@ class WC_GZD_Trusted_Shops_Schedule {
             $this->_update_reviews();
         }
 
+        if ( $current_language = wc_ts_get_current_language() ) {
+            global $wc_ts_original_lang;
+
+            $wc_ts_original_lang = $current_language;
+        }
+
         foreach( wc_ts_get_languages() as $language ) {
             if ( wc_ts_get_default_language() == $language ) {
                 continue;
@@ -49,6 +55,12 @@ class WC_GZD_Trusted_Shops_Schedule {
 	 */
 	public function update_reviews() {
 		$this->_update_reviews();
+
+		if ( $current_language = wc_ts_get_current_language() ) {
+            global $wc_ts_original_lang;
+
+            $wc_ts_original_lang = $current_language;
+        }
 
 		foreach( wc_ts_get_languages() as $language ) {
 		    if ( wc_ts_get_default_language() == $language ) {
@@ -115,6 +127,12 @@ class WC_GZD_Trusted_Shops_Schedule {
 	    if ( empty( $languages ) ) {
             $this->_send_mails();
         } else {
+            if ( $current_language = wc_ts_get_current_language() ) {
+                global $wc_ts_original_lang;
+
+                $wc_ts_original_lang = $current_language;
+            }
+
             foreach ( wc_ts_get_languages() as $language ) {
                 $this->_send_mails( $language );
             }

@@ -37,6 +37,8 @@ class WC_GZD_Compatibility_Wpml extends WC_GZD_Compatibility {
 		),
 	);
 
+	protected $admin_strings_to_translate = array();
+
 	public function __construct() {
 		parent::__construct( 
 			'WPML', 
@@ -120,9 +122,25 @@ class WC_GZD_Compatibility_Wpml extends WC_GZD_Compatibility {
 		return $localized;
 	}
 
+    /**
+     * Register strings that are translatable within the settings panel. Strings will be loaded in the admin user's language
+     * within the settings screen only.
+     *
+     * @return array
+     */
 	public function get_translatable_options() {
 		return apply_filters( 'woocommerce_gzd_wpml_translatable_options', $this->strings_to_translate );
 	}
+
+    /**
+     * By default WPML allow only certain strings to be translated within the administration area (e.g. blog title).
+     * If you want some translatable strings to be loaded globally within the admin panel use the filter accordingly.
+     *
+     * @return array
+     */
+    public function get_translatable_admin_options() {
+        return apply_filters( 'woocommerce_gzd_wpml_translatable_admin_options', $this->admin_strings_to_translate );
+    }
 
 	public function admin_translate_options() {
 		if ( ! $this->supports_string_translation() ) {
@@ -143,6 +161,8 @@ class WC_GZD_Compatibility_Wpml extends WC_GZD_Compatibility {
 	}
 
 	public function set_filters() {
+	    $admin_strings = $this->get_translatable_admin_options();
+
 		if ( $this->enable_option_filters() ) {
 
 			foreach( $this->get_translatable_options() as $option => $args ) {
@@ -155,7 +175,14 @@ class WC_GZD_Compatibility_Wpml extends WC_GZD_Compatibility {
 			add_filter( 'woocommerce_gzd_get_settings_filter', array( $this, 'add_admin_notices' ), 10, 1 );
 			add_filter( 'woocommerce_gzd_legal_checkbox_fields', array( $this, 'add_admin_notices_checkboxes' ), 10, 2 );
 			add_filter( 'woocommerce_gzd_admin_email_order_confirmation_text_option', array( $this, 'add_admin_notices_email' ), 10, 1 );
-		}
+
+		} elseif( ! empty( $admin_strings ) ) {
+
+		    foreach( $admin_strings as $option => $args ) {
+                add_filter( 'option_' . $option, array( $this, 'translate_option_filter' ), 10, 2 );
+                wc_gzd_remove_class_filter( 'option_' . $option, 'WPML_Admin_Texts', 'icl_st_translate_admin_string', 10 );
+            }
+        }
 	}
 
 	public function supports_string_translation() {
@@ -250,7 +277,9 @@ class WC_GZD_Compatibility_Wpml extends WC_GZD_Compatibility {
 	}
 
 	public function get_current_language() {
-		return ICL_LANGUAGE_CODE;
+        global $sitepress;
+
+        return $sitepress->get_current_language();
 	}
 
 	public function get_string_language( $string_id, $option = '' ) {
@@ -367,6 +396,7 @@ class WC_GZD_Compatibility_Wpml extends WC_GZD_Compatibility {
 	protected function pre_update_translation( $new_value, $old_value, $option, $context = '' ) {
 		$org_string_id    = $this->get_string_id( $option, $context );
 		$strings_language = $this->get_string_language( $org_string_id, $option );
+		$return_value     = $old_value;
 
 		if ( $strings_language === $this->get_current_language() || 'all' === $this->get_current_language() ) {
 
@@ -377,26 +407,35 @@ class WC_GZD_Compatibility_Wpml extends WC_GZD_Compatibility {
 				$this->update_string_value( $org_string_id, $new_value );
 			}
 
-			return $new_value;
-		}
+			$return_value = $new_value;
 
-		if ( $org_string_id ) {
-			$org_string = $this->get_string_value( $org_string_id );
+		} else {
+            $update_translation = true;
 
-			/**
-             * Remove translation if it equals original string
-             * Use woocommerce_gzd_wpml_remove_translation_empty_equal filter to disallow string deletion which results in "real" option translations
-            */
-			if ( ( $org_string === $new_value || empty( $new_value ) ) && apply_filters( 'woocommerce_gzd_wpml_remove_translation_empty_equal', true, $option, $new_value, $old_value ) ) {
-				$this->delete_string_translation( $org_string_id, $this->get_current_language() );
+		    if ( $org_string_id ) {
+                $org_string = $this->get_string_value( $org_string_id );
 
-				return $old_value;
-			}
-		}
+                /**
+                 * Remove translation if it equals original string
+                 * Use woocommerce_gzd_wpml_remove_translation_empty_equal filter to disallow string deletion which results in "real" option translations
+                 */
+                if ( ( $org_string === $new_value || empty( $new_value ) ) && apply_filters( 'woocommerce_gzd_wpml_remove_translation_empty_equal', true, $option, $new_value, $old_value ) ) {
+                    $this->delete_string_translation( $org_string_id, $this->get_current_language() );
 
-		$this->update_string_translation( $option, $this->get_current_language(), $new_value );
+                    $return_value       = $old_value;
+                    $update_translation = false;
+                }
+            }
 
-		return $old_value;
+            if ( $update_translation ) {
+                $this->update_string_translation( $option, $this->get_current_language(), $new_value );
+            }
+        }
+
+        // Allow WPML to delete the cache
+        do_action( "update_option_{$option}", $old_value, $return_value, $option );
+
+		return $return_value;
 	}
 
 	public function translate_option_filter( $org_value, $option ) {

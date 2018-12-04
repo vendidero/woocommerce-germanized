@@ -110,11 +110,13 @@ if ( ! function_exists( 'wc_ts_get_order_language' ) ) {
 
 if ( ! function_exists( 'wc_ts_switch_language' ) ) {
 
-    function wc_ts_switch_language( $lang ) {
+    function wc_ts_switch_language( $lang, $set_default = false ) {
         global $sitepress;
         global $wc_ts_original_lang;
 
-        $wc_ts_original_lang = $lang;
+        if ( $set_default ) {
+            $wc_ts_original_lang = $lang;
+        }
 
         if ( isset( $sitepress ) && is_callable( array( $sitepress, 'get_current_language' ) ) && is_callable( array( $sitepress, 'switch_lang' ) ) ) {
             if ( $sitepress->get_current_language() != $lang ) {
