@@ -28,7 +28,7 @@ class WC_GZD_Trusted_Shops_Template_Hooks {
             add_action( 'woocommerce_thankyou', array( $this, 'template_thankyou' ), 10, 1 );
 
             if ( $this->base->is_trustbadge_enabled() ) {
-                add_action( 'wp_footer', array( $this, 'template_trustbadge' ), PHP_INT_MAX );
+                add_action( 'wp_footer', array( $this, 'template_trustbadge' ), 250 );
             }
         }
 
