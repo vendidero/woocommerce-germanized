@@ -87,11 +87,11 @@ class WC_GZD_Trusted_Shops_Admin {
 
         <div class="variable_gzd_ts_labels">
             <p class="form-row form-row-first">
-                <label for="variable_ts_gtin"><?php echo _x( 'GTIN', 'trusted-shops', 'woocommerce-germanized' );?> <?php echo wc_ts_help_tip( _x( 'GTIN desc', 'trusted-shops', 'woocommerce-germanized' ) ); ?></label>
+                <label for="variable_ts_gtin"><?php echo _x( 'GTIN', 'trusted-shops', 'woocommerce-germanized' );?> <?php echo wc_ts_help_tip( _x( 'ID that allows your products to be identified worldwide. If you want to display your Trusted Shops Product Reviews in Google Shopping and paid Google adverts, Google needs the GTIN.', 'trusted-shops', 'woocommerce-germanized' ) ); ?></label>
                 <input class="input-text" type="text" name="variable_ts_gtin[<?php echo $loop; ?>]" value="<?php echo ( ! empty( $variation_data[ '_ts_gtin' ] ) ? esc_attr( $variation_data[ '_ts_gtin' ] ) : '' );?>" placeholder="<?php echo esc_attr( wc_ts_get_crud_data( $_parent, '_ts_gtin' ) ); ?>" />
             </p>
             <p class="form-row form-row-last">
-                <label for="variable_ts_mpn"><?php echo _x( 'MPN', 'trusted-shops', 'woocommerce-germanized' );?> <?php echo wc_ts_help_tip( _x( 'MPN desc', 'trusted-shops', 'woocommerce-germanized' ) ); ?></label>
+                <label for="variable_ts_mpn"><?php echo _x( 'MPN', 'trusted-shops', 'woocommerce-germanized' );?> <?php echo wc_ts_help_tip( _x( 'If you don\'t have a GTIN for your products, you can pass the brand name and the MPN on to Google to use the Trusted Shops Google Integration.', 'trusted-shops', 'woocommerce-germanized' ) ); ?></label>
                 <input class="input-text" type="text" name="variable_ts_mpn[<?php echo $loop; ?>]" value="<?php echo ( ! empty( $variation_data[ '_ts_mpn' ] ) ? esc_attr( $variation_data[ '_ts_mpn' ] ) : '' );?>" placeholder="<?php echo esc_attr( wc_ts_get_crud_data( $_parent, '_ts_mpn' ) ); ?>" />
             </p>
         </div>
@@ -124,8 +124,8 @@ class WC_GZD_Trusted_Shops_Admin {
 	public function output_fields() {
 		echo '<div class="options_group show_if_simple show_if_external show_if_variable">';
 
-		woocommerce_wp_text_input( array( 'id' => '_ts_gtin', 'label' => _x( 'GTIN', 'trusted-shops', 'woocommerce-germanized' ), 'data_type' => 'text', 'desc_tip' => true, 'description' => _x( 'GTIN desc', 'trusted-shops', 'woocommerce-germanized' ) ) );
-		woocommerce_wp_text_input( array( 'id' => '_ts_mpn', 'label' => _x( 'MPN', 'trusted-shops', 'woocommerce-germanized' ), 'data_type' => 'text', 'desc_tip' => true, 'description' => _x( 'MPN desc', 'trusted-shops', 'woocommerce-germanized' ) ) );
+		woocommerce_wp_text_input( array( 'id' => '_ts_gtin', 'label' => _x( 'GTIN', 'trusted-shops', 'woocommerce-germanized' ), 'data_type' => 'text', 'desc_tip' => true, 'description' => _x( 'ID that allows your products to be identified worldwide. If you want to display your Trusted Shops Product Reviews in Google Shopping and paid Google adverts, Google needs the GTIN.', 'trusted-shops', 'woocommerce-germanized' ) ) );
+		woocommerce_wp_text_input( array( 'id' => '_ts_mpn', 'label' => _x( 'MPN', 'trusted-shops', 'woocommerce-germanized' ), 'data_type' => 'text', 'desc_tip' => true, 'description' => _x( 'If you don\'t have a GTIN for your products, you can pass the brand name and the MPN on to Google to use the Trusted Shops Google Integration.', 'trusted-shops', 'woocommerce-germanized' ) ) );
 
 		echo '</div>';
     }
