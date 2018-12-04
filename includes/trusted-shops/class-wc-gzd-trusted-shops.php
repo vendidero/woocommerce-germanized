@@ -610,7 +610,7 @@ class WC_GZD_Trusted_Shops {
 		$supported = $this->get_locale_mapping();
 
 		$locale = 'en_GB';
-		$base   = substr( get_locale(), 0, 2 );
+		$base   = substr( function_exists( 'get_user_locale' ) ? get_user_locale() : get_locale(), 0, 2 );
 
 		if ( isset( $supported[ $base ] ) )
 			$locale = $supported[ $base ];

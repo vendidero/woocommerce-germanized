@@ -44,11 +44,12 @@ class WC_GZD_Trusted_Shops_Review_Exporter extends WC_CSV_Exporter {
 
 	protected $days_interval = 30;
 
-	protected $statuses = array( 'wc-completed' );
+	protected $statuses = array();
 
 	protected $lang = '';
 
 	public function __construct() {
+	    $this->statuses     = array_keys( wc_get_order_statuses() );
 		$this->column_names = $this->get_default_column_names();
 	}
 

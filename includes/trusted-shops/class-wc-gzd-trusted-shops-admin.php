@@ -858,7 +858,7 @@ class WC_GZD_Trusted_Shops_Admin {
 		
 		$interval_d   = ( ( isset( $_GET['interval'] ) && ! empty( $_GET['interval'] ) ) ? absint( $_GET['interval'] ) : 30 );
 		$days_to_send = ( ( isset( $_GET['days'] ) && ! empty( $_GET['days'] ) ) ? absint( $_GET['days'] ) : 5 );
-        $status       = ( ( isset( $_GET['status'] ) && ! empty( $_GET['status'] ) ) ? wc_clean( $_GET['status'] ) : 'wc-completed' );
+        $status       = ( ( isset( $_GET['status'] ) && ! empty( $_GET['status'] ) ) ? wc_clean( $_GET['status'] ) : '' );
 
         if ( wc_ts_woocommerce_supports_crud() ) {
 		    include_once( 'class-wc-gzd-trusted-shops-review-exporter.php' );
@@ -866,7 +866,10 @@ class WC_GZD_Trusted_Shops_Admin {
 		    $exporter = new WC_GZD_Trusted_Shops_Review_Exporter();
 		    $exporter->set_days_until_send( $days_to_send );
 		    $exporter->set_interval_days( $interval_d );
-            $exporter->set_statuses( array( $status ) );
+
+		    if ( ! empty( $status ) ) {
+                $exporter->set_statuses( array( $status ) );
+            }
 
             if ( isset( $_GET['lang'] ) && ! empty( $_GET['lang'] ) ) {
                 $exporter->set_lang( wc_clean( $_GET['lang'] ) );
@@ -941,6 +944,7 @@ class WC_GZD_Trusted_Shops_Admin {
         ) );
 
 	    $current_lang = $this->base->get_language();
+
 	    $base_lang    = isset( $args['lang_mapping']['en'] ) ? $args['lang_mapping']['en'] : 'en';
 	    $current_lang = isset( $args['lang_mapping'][ $current_lang ] ) ? $args['lang_mapping'][ $current_lang ] : $current_lang;
 	    $url          = str_replace( "/{$base_lang}/", '/' . $current_lang . '/', $url );
