@@ -466,13 +466,10 @@ final class WooCommerce_Germanized {
 
 		$GLOBALS['wc_gzd_template_name'][] = $template_name;
 
-		// Check Theme
-		$theme_template = locate_template(
-			array(
-			trailingslashit( $template_path ) . $template_name,
-			$template_name,
-			)
-		);
+        // Check for Theme overrides
+        $theme_template = locate_template( array(
+            trailingslashit( $template_path ) . $template_name,
+        ) );
 
 		$template_name = apply_filters( 'woocommerce_gzd_template_name', $template_name );
 

@@ -471,9 +471,11 @@ class WC_GZD_Compatibility_Wpml extends WC_GZD_Compatibility {
 			$string_id      = $this->register_string( $option, $org_value, $context );
 		}
 
-		if ( $translation = $this->get_string_translation( $string_id, $language ) ) {
-			return $translation;
-		}
+		$translation = $this->get_string_translation( $string_id, $language );
+
+		if ( false !== $translation ) {
+		    $org_value = $translation;
+        }
 
 		return $org_value;
 	}

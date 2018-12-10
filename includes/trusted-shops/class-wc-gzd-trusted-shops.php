@@ -277,10 +277,6 @@ class WC_GZD_Trusted_Shops {
 		return ( $this->is_product_reviews_enabled() && $this->product_widget_enable === 'yes' ? true : false );
 	}
 
-	public function is_google_shopping_enabled() {
-	    return ( $this->is_product_reviews_enabled() && $this->google_shopping_enable === 'yes' ? true : false );
-    }
-
 	public function supports( $type ) {
 		return ( in_array( $type, $this->supports ) ? true : false );
 	}
@@ -563,7 +559,7 @@ class WC_GZD_Trusted_Shops {
 			$args = wp_parse_args( $args, array(
 				'offset'  => $this->trustbadge_y,
 				'variant' => $this->trustbadge_variant === 'standard' ? 'reviews' : 'default',
-				'disable' => $this->trustbadge_variant === 'disable' ? 'true' : 'false',
+				'disable' => $this->is_trustbadge_enabled() ? 'true' : 'false',
 			) );
 		}
 

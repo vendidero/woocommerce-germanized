@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce Germanized v1.5.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-12-04 11:21+0100\n"
-"PO-Revision-Date: 2018-12-04 11:21+0100\n"
+"POT-Creation-Date: 2018-12-10 09:48+0100\n"
+"PO-Revision-Date: 2018-12-10 09:49+0100\n"
 "Last-Translator: holzhannes <holzhannes@posteo.de>\n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -95,7 +95,7 @@ msgstr "l"
 #: includes/abstracts/abstract-wc-gzd-product.php:265
 #: includes/abstracts/abstract-wc-gzd-product.php:274
 #: includes/wc-gzd-core-functions.php:154
-#: includes/wc-gzd-template-functions.php:448 woocommerce-germanized.php:909
+#: includes/wc-gzd-template-functions.php:448 woocommerce-germanized.php:906
 msgid "incl. VAT"
 msgstr "inkl. MwSt."
 
@@ -106,7 +106,7 @@ msgstr "exkl. MwSt."
 
 # @ woocommerce-germanized
 #: includes/abstracts/abstract-wc-gzd-product.php:267
-#: includes/wc-gzd-core-functions.php:154 woocommerce-germanized.php:909
+#: includes/wc-gzd-core-functions.php:154 woocommerce-germanized.php:906
 #, php-format
 msgid "incl. %s%% VAT"
 msgstr "inkl. %s%% MwSt."
@@ -4097,7 +4097,7 @@ msgid ""
 "Sale price labels used to mark old prices (e.g. Recommended Retail Price)"
 msgstr "Preishinweise zur Markierung von Streichpreisen"
 
-#: includes/compatibility/class-wc-gzd-compatibility-wpml.php:237
+#: includes/compatibility/class-wc-gzd-compatibility-wpml.php:264
 #, php-format
 msgid ""
 "This option may be translated via WPML. You may translate the original "
@@ -4803,7 +4803,7 @@ msgstr ""
 # @ woocommerce-germanized
 # @ woocommerce
 #: includes/gateways/invoice/class-wc-gzd-gateway-invoice.php:64
-#: woocommerce-germanized.php:629
+#: woocommerce-germanized.php:626
 msgid "Settings"
 msgstr "Einstellungen"
 
@@ -4929,23 +4929,24 @@ msgstr "WPML Unterstützung"
 msgctxt "trusted-shops"
 msgid ""
 "These settings serve as default settings for all your languages. To adjust "
-"the settings for a certain language, please switch your admin language and "
-"adjust the corresponding settings."
+"the settings for a certain language, please switch your admin language "
+"through the WPML language switcher and adjust the corresponding settings."
 msgstr ""
 "Diese Einstellungen werden als Standard für alle deine Sprachen verwendet. "
 "Um die Einstellungen für eine spezielle Sprache zu ändern, wechsle bitte zur "
-"entsprechenden Sprache über den Sprachumschalter im Admin-Bereich."
+"entsprechenden Sprache über den WPML Sprachumschalter."
 
 #: includes/trusted-shops/admin/views/html-wpml-notice.php:16
 #, php-format
 msgctxt "trusted-shops"
 msgid ""
 "These settings apply for your %s shop. To adjust settings for another "
-"language, please switch your admin language."
+"language, please switch your admin language through the WPML language "
+"switcher."
 msgstr ""
-"Diese Einstellungen werden für deinen %s shop verwendet. Um die "
+"Diese Einstellungen werden für deinen %s Shop verwendet. Um die "
 "Einstellungen für eine andere Sprache anzupassen, wechsle bitte die Sprache "
-"über den Sprachumschalter."
+"über den WPML Sprachumschalter."
 
 #: includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:90
 #: includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:127
@@ -5130,14 +5131,14 @@ msgstr "Du kannst dein Trustbadge mit oder ohne Bewertungssterne anzeigen."
 
 # @ woocommerce-germanized
 #: includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:289
-#: includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:785
+#: includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:777
 msgctxt "trusted-shops"
 msgid "Display Trustbadge with review stars"
 msgstr "Trustbadge mit Bewertungssternen anzeigen"
 
 # @ woocommerce-germanized
 #: includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:290
-#: includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:789
+#: includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:781
 msgctxt "trusted-shops"
 msgid "Display Trustbadge without review stars"
 msgstr "Trustbadge ohne Bewertungssterne anzeigen"
@@ -5205,8 +5206,8 @@ msgid "Assign widget %s"
 msgstr "Widget %s zuweisen"
 
 #: includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:332
-#: includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:614
-#: includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:910
+#: includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:605
+#: includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:902
 msgctxt "trusted-shops"
 msgid "here"
 msgstr "hier"
@@ -5548,37 +5549,16 @@ msgstr ""
 
 #: includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:604
 msgctxt "trusted-shops"
-msgid "Google"
-msgstr "Google"
-
-# @ woocommerce-germanized
-#: includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:605
-msgctxt "trusted-shops"
-msgid "Configure Product Reviews for Google Shopping."
-msgstr "Produktbewertungen für Google Shopping konfigurieren"
-
-#: includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:606
-msgctxt "trusted-shops"
-msgid ""
-"Activate this option, to give Google the opportunity to display your Product "
-"Reviews in Google Shopping and paid Google ads."
-msgstr ""
-"Aktiviere diese Funktion, um Google die Möglichkeit zu geben, deine "
-"Produktbewertungen in Google Shopping und bezahlten Google Produktanzeigen "
-"auszuspielen."
-
-#: includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:613
-msgctxt "trusted-shops"
 msgid "Brand attribute"
 msgstr "Marken-Produktattribut"
 
-#: includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:614
+#: includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:605
 #, php-format
 msgctxt "trusted-shops"
 msgid "Create brand attribute %s"
 msgstr "Marken-Produktattribut %s erstellen"
 
-#: includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:615
+#: includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:606
 msgctxt "trusted-shops"
 msgid ""
 "Brand name of the product. By passing this information on to Google, you "
@@ -5593,12 +5573,18 @@ msgstr ""
 "Integration zu nutzen."
 
 # @ woocommerce-germanized
-#: includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:631
+#: includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:612
+msgctxt "trusted-shops"
+msgid "None"
+msgstr "Keines"
+
+# @ woocommerce-germanized
+#: includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:623
 msgctxt "trusted-shops"
 msgid "Configure your Review Requests"
 msgstr "Konfiguriere deine Bewertungserinnerungen"
 
-#: includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:632
+#: includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:624
 msgctxt "trusted-shops"
 msgid ""
 "7 days after an order has been placed, Trusted Shops automatically sends an "
@@ -5617,18 +5603,18 @@ msgstr ""
 "Möglichkeit geben, Bewertungserinnerungen wieder abzubestellen."
 
 # @ woocommerce-germanized
-#: includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:638
+#: includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:630
 msgctxt "trusted-shops"
 msgid "Enable Review Requests"
 msgstr "Bewertungserinnerungen aktivieren"
 
 # @ woocommerce-germanized
-#: includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:647
+#: includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:639
 msgctxt "trusted-shops"
 msgid "WooCommerce status"
 msgstr "Bestellstatus"
 
-#: includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:648
+#: includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:640
 msgctxt "trusted-shops"
 msgid ""
 "We recommend choosing the order status that you set when your products have "
@@ -5637,12 +5623,12 @@ msgstr ""
 "Wähle hier am besten den Bestellstatus aus WooCommerce aus, den du "
 "einstellst, wenn deine Ware versendet wurde."
 
-#: includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:656
+#: includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:648
 msgctxt "trusted-shops"
 msgid "Days until Review Request"
 msgstr "Tage bis zur Erinnerung"
 
-#: includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:657
+#: includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:649
 msgctxt "trusted-shops"
 msgid ""
 "Set the number of days to wait after an order has reached the order status "
@@ -5651,12 +5637,12 @@ msgstr ""
 "Stelle hier ein nach wie vielen Tagen nach Erreichen des oben ausgewählten "
 "Bestellstatus die Bewertungserinnerung an den Käufer versendet werden soll."
 
-#: includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:669
+#: includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:661
 msgctxt "trusted-shops"
 msgid "Permission via checkbox"
 msgstr "Einwilligung per Checkbox"
 
-#: includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:670
+#: includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:662
 msgctxt "trusted-shops"
 msgid ""
 "If the checkbox is activated, only customers who gave their consent will "
@@ -5666,45 +5652,45 @@ msgstr ""
 "die ihr Einverständnis gegeben haben."
 
 # @ woocommerce-germanized
-#: includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:674
+#: includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:666
 msgctxt "trusted-shops"
 msgid "Edit checkbox"
 msgstr "Checkbox anpassen"
 
-#: includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:678
+#: includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:670
 msgctxt "trusted-shops"
 msgid "Unsubscribe via link"
 msgstr "Abmeldung per Link"
 
-#: includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:679
+#: includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:671
 msgctxt "trusted-shops"
 msgid "Allows the customer to unsubscribe from Review Requests."
 msgstr ""
 "Erlaubt es dem Kunden sich von Bewertungserinnerungen per Link abzumelden."
 
-#: includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:777
+#: includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:769
 msgctxt "trusted-shops"
 msgid "How does Trusted Shops make your shop better?"
 msgstr "Wie macht Trusted Shops deinen Shop besser?"
 
 # @ woocommerce-germanized
-#: includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:779
+#: includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:771
 msgctxt "trusted-shops"
 msgid "Get your account"
 msgstr "Erstelle deinen Account"
 
 # @ woocommerce-germanized
-#: includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:799
+#: includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:791
 msgctxt "trusted-shops"
 msgid "Product Reviews on the product detail page in an additional tab"
 msgstr "Produktbewertungen auf der Produktseite in einem separatem Reiter"
 
-#: includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:802
+#: includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:794
 msgctxt "trusted-shops"
 msgid "Show Star-Ratings on the product detail page below your product name"
 msgstr "Bewertungssterne unter dem Produktnamen auf der Produktseite"
 
-#: includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:806
+#: includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:798
 msgctxt "trusted-shops"
 msgid ""
 "Please note: If you want to send review requests through WooCommerce, you "
@@ -5719,12 +5705,12 @@ msgstr ""
 "deaktiviere dort „Bewertungen automatisch sammeln“."
 
 # @ woocommerce-germanized
-#: includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:807
+#: includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:799
 msgctxt "trusted-shops"
 msgid "To your My Trusted Shops account"
 msgstr "Zu deinem My Trusted Shops Account"
 
-#: includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:811
+#: includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:803
 msgctxt "trusted-shops"
 msgid ""
 "Export your customer information here and upload it in the Trusted Shops "
@@ -5736,18 +5722,18 @@ msgstr ""
 "und gehe zu Bewertungen > Shopbewertungen > Review Collector"
 
 # @ woocommerce-germanized
-#: includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:812
+#: includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:804
 msgctxt "trusted-shops"
 msgid "To the Trusted Shops Review Collector"
 msgstr "Zum Trusted Shops Review Collector"
 
 # @ woocommerce-germanized
-#: includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:894
+#: includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:886
 msgctxt "trusted-shops"
 msgid "Review Collector"
 msgstr "Review Collector"
 
-#: includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:896
+#: includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:888
 #, php-format
 msgctxt "trusted-shops"
 msgid ""
@@ -5760,18 +5746,18 @@ msgstr ""
 "Bestellungen hier und lade diese in deinem %s hoch."
 
 # @ woocommerce-germanized
-#: includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:896
+#: includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:888
 msgctxt "trusted-shops"
 msgid "My Trusted Shops account"
 msgstr "My Trusted Shops Account"
 
 # @ woocommerce
-#: includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:902
+#: includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:894
 msgctxt "trusted-shops"
 msgid "Export orders"
 msgstr "Bestellungen exportieren"
 
-#: includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:902
+#: includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:894
 msgctxt "trusted-shops"
 msgid ""
 "Export your customer and order information of the last x days and upload "
@@ -5781,37 +5767,37 @@ msgstr ""
 "in deinem My Trusted Shops Account hoch."
 
 # @ woocommerce-germanized
-#: includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:906
+#: includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:898
 msgctxt "trusted-shops"
 msgid "30 days"
 msgstr "30 Tage"
 
 # @ woocommerce-germanized
-#: includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:907
+#: includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:899
 msgctxt "trusted-shops"
 msgid "60 days"
 msgstr "60 Tage"
 
 # @ woocommerce-germanized
-#: includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:908
+#: includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:900
 msgctxt "trusted-shops"
 msgid "90 days"
 msgstr "90 Tage"
 
 # @ woocommerce-germanized
-#: includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:910
+#: includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:902
 #, php-format
 msgctxt "trusted-shops"
 msgid "Upload customer and order information %s."
 msgstr "Kunden- und Bestelldaten %s hochladen"
 
 # @ woocommerce-germanized
-#: includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:913
+#: includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:905
 msgctxt "trusted-shops"
 msgid "Days until reminder mail"
 msgstr "Tage bis zur Erinnerung"
 
-#: includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:913
+#: includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:905
 msgctxt "trusted-shops"
 msgid ""
 "Set the number of days to wait after the order date before having a Review "
@@ -5821,7 +5807,7 @@ msgstr ""
 "Bewertungserinnerung liegen soll."
 
 # @ woocommerce-germanized
-#: includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:917
+#: includes/trusted-shops/class-wc-gzd-trusted-shops-admin.php:909
 msgctxt "trusted-shops"
 msgid "Start export"
 msgstr "Export starten"
@@ -5860,7 +5846,7 @@ msgctxt "trusted-shops"
 msgid "Last name"
 msgstr "Nachname"
 
-#: includes/trusted-shops/class-wc-gzd-trusted-shops-template-hooks.php:124
+#: includes/trusted-shops/class-wc-gzd-trusted-shops-template-hooks.php:121
 #, php-format
 msgctxt "trusted-shops"
 msgid ""
@@ -5869,12 +5855,12 @@ msgstr ""
 "Deine Bewertungserinnerung wurde erfolgreich deaktiviert. Kehre zurück zur "
 "%s."
 
-#: includes/trusted-shops/class-wc-gzd-trusted-shops-template-hooks.php:124
+#: includes/trusted-shops/class-wc-gzd-trusted-shops-template-hooks.php:121
 msgctxt "trusted-shops"
 msgid "Home"
 msgstr "Startseite"
 
-#: includes/trusted-shops/class-wc-gzd-trusted-shops-template-hooks.php:196
+#: includes/trusted-shops/class-wc-gzd-trusted-shops-template-hooks.php:193
 msgctxt "trusted-shops"
 msgid ""
 "Yes, I would like to be reminded via e-mail after {days} day(s) to review my "
@@ -5886,18 +5872,18 @@ msgstr ""
 "widersprechen, indem ich dem Link „von der Bewertungserinnerung abmelden“ in "
 "der Bestellbestätigung folge."
 
-#: includes/trusted-shops/class-wc-gzd-trusted-shops-template-hooks.php:201
+#: includes/trusted-shops/class-wc-gzd-trusted-shops-template-hooks.php:198
 msgctxt "trusted-shops"
 msgid "Please allow us to send a review reminder by e-mail."
 msgstr "Bitte akzeptiere den Erhalt einer Bewertungserinnerung per E-Mail."
 
 # @ woocommerce-germanized
-#: includes/trusted-shops/class-wc-gzd-trusted-shops-template-hooks.php:204
+#: includes/trusted-shops/class-wc-gzd-trusted-shops-template-hooks.php:201
 msgctxt "trusted-shops"
 msgid "Review reminder"
 msgstr "Bewertungserinnerung"
 
-#: includes/trusted-shops/class-wc-gzd-trusted-shops-template-hooks.php:205
+#: includes/trusted-shops/class-wc-gzd-trusted-shops-template-hooks.php:202
 msgctxt "trusted-shops"
 msgid "Asks the customer to receive a Trusted Shops review reminder."
 msgstr ""
@@ -6175,9 +6161,27 @@ msgctxt "trusted-shops"
 msgid "cancel review reminder"
 msgstr "von der Bewertungserinnerung abmelden"
 
-#: woocommerce-germanized.php:736
+#: woocommerce-germanized.php:733
 msgid "Pease wait while we are trying to redirect you to the payment provider."
 msgstr "Einen Moment - wir versuchen dich zum Zahlungsanbieter weiterzuleiten."
+
+#~ msgctxt "trusted-shops"
+#~ msgid "Google"
+#~ msgstr "Google"
+
+# @ woocommerce-germanized
+#~ msgctxt "trusted-shops"
+#~ msgid "Configure Product Reviews for Google Shopping."
+#~ msgstr "Produktbewertungen für Google Shopping konfigurieren"
+
+#~ msgctxt "trusted-shops"
+#~ msgid ""
+#~ "Activate this option, to give Google the opportunity to display your "
+#~ "Product Reviews in Google Shopping and paid Google ads."
+#~ msgstr ""
+#~ "Aktiviere diese Funktion, um Google die Möglichkeit zu geben, deine "
+#~ "Produktbewertungen in Google Shopping und bezahlten Google "
+#~ "Produktanzeigen auszuspielen."
 
 #~ msgctxt "trusted-shops"
 #~ msgid "Mode"

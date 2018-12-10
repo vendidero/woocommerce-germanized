@@ -601,15 +601,6 @@ class WC_GZD_Trusted_Shops_Admin {
             ),
 
             array(
-                'title'             => _x( 'Google', 'trusted-shops', 'woocommerce-germanized' ),
-                'desc'              => _x( 'Configure Product Reviews for Google Shopping.', 'trusted-shops', 'woocommerce-germanized' ),
-                'desc_tip'          => _x( 'Activate this option, to give Google the opportunity to display your Product Reviews in Google Shopping and paid Google ads.', 'trusted-shops', 'woocommerce-germanized' ),
-                'id'                => 'woocommerce_' . $this->base->option_prefix . 'trusted_shops_google_shopping_enable',
-                'type'              => 'checkbox',
-                'default'           => 'no'
-            ),
-
-            array(
                 'title'             => _x( 'Brand attribute', 'trusted-shops', 'woocommerce-germanized' ),
                 'desc'              => sprintf( _x( 'Create brand attribute %s', 'trusted-shops', 'woocommerce-germanized' ), '<a href="' . admin_url( 'edit.php?post_type=product&page=product_attributes' ) . '" target="_blank">' . _x( 'here', 'trusted-shops', 'woocommerce-germanized' ) . '</a>' ),
                 'desc_tip'          => _x( 'Brand name of the product. By passing this information on to Google, you improve your chances of having Google identify your products. Assign your brand attribute. If your products don\'t have a GTIN, you can pass on the brand name and the MPN to use Google Integration.', 'trusted-shops', 'woocommerce-germanized' ),
@@ -617,7 +608,8 @@ class WC_GZD_Trusted_Shops_Admin {
                 'css'               => 'min-width:250px;',
                 'default'           => 'brand',
                 'type'              => 'select',
-                'class'             => 'chosen_select',
+                'class'             => 'chosen_select_nostd',
+                'custom_attributes' => array( 'data-placeholder' => _x( 'None', 'trusted-shops', 'woocommerce-germanized' ) ),
             ),
 
             array( 'type' => 'sectionend', 'id' => 'trusted_shops_reviews_options' ),
