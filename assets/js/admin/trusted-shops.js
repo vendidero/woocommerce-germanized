@@ -19,7 +19,6 @@ window.trusted_shops = window.trusted_shops || {};
             // Show hide elements
             $( document ).on( 'change', '#woocommerce_' + this.optionPrefix + 'trusted_shops_integration_mode', this.onChangeIntegrationMode );
             $( document ).on( 'change', ':input[id$=_enable]', this.onChangeEnable );
-            $( document ).on( 'change', '#woocommerce_' + this.optionPrefix + 'trusted_shops_google_shopping_enable', this.onChangeEnableGoogleShopping );
             $( document ).on( 'change', '#woocommerce_' + this.optionPrefix + 'trusted_shops_reviews_enable', this.onChangeEnableReviews );
 
             // Initial triggers
@@ -42,34 +41,24 @@ window.trusted_shops = window.trusted_shops || {};
             $( document ).on( 'submit', '#mainform', this.onSaveForm );
         },
 
-        onChangeEnableGoogleShopping: function() {
-            if ( $( this ).is( ':checked' ) ) {
-                $( document ).find( '#woocommerce_' + self.optionPrefix + 'trusted_shops_brand_attribute' ).parents( 'tr' ).show();
-            } else {
-                $( document ).find( '#woocommerce_' + self.optionPrefix + 'trusted_shops_brand_attribute' ).parents( 'tr' ).hide();
-            }
-        },
-
         onChangeEnableReviews: function() {
             var self = trusted_shops.admin;
 
             if ( $( this ).is( ':checked' ) ) {
                 $( document ).find( '#woocommerce_' + self.optionPrefix + 'trusted_shops_product_sticker_enable' ).parents( 'tr' ).show();
                 $( document ).find( '#woocommerce_' + self.optionPrefix + 'trusted_shops_product_widget_enable' ).parents( 'tr' ).show();
-                $( document ).find( '#woocommerce_' + self.optionPrefix + 'trusted_shops_google_shopping_enable' ).parents( 'tr' ).show();
+                $( document ).find( '#woocommerce_' + self.optionPrefix + 'trusted_shops_brand_attribute' ).parents( 'tr' ).show();
             } else {
                 $( document ).find( '#woocommerce_' + self.optionPrefix + 'trusted_shops_product_sticker_enable' ).prop( 'checked', false );
                 $( document ).find( '#woocommerce_' + self.optionPrefix + 'trusted_shops_product_widget_enable' ).prop( 'checked', false );
-                $( document ).find( '#woocommerce_' + self.optionPrefix + 'trusted_shops_google_shopping_enable' ).prop( 'checked', false );
 
                 $( document ).find( '#woocommerce_' + self.optionPrefix + 'trusted_shops_product_sticker_enable' ).parents( 'tr' ).hide();
                 $( document ).find( '#woocommerce_' + self.optionPrefix + 'trusted_shops_product_widget_enable' ).parents( 'tr' ).hide();
-                $( document ).find( '#woocommerce_' + self.optionPrefix + 'trusted_shops_google_shopping_enable' ).parents( 'tr' ).hide();
+                $( document ).find( '#woocommerce_' + self.optionPrefix + 'trusted_shops_brand_attribute' ).parents( 'tr' ).hide();
             }
 
             $( document ).find( '#woocommerce_' + self.optionPrefix + 'trusted_shops_product_sticker_enable' ).trigger( 'change' );
             $( document ).find( '#woocommerce_' + self.optionPrefix + 'trusted_shops_product_widget_enable' ).trigger( 'change' );
-            $( document ).find( '#woocommerce_' + self.optionPrefix + 'trusted_shops_google_shopping_enable' ).trigger( 'change' );
         },
 
         onChangeIntegrationMode: function() {
