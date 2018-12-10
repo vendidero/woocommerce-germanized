@@ -559,7 +559,7 @@ class WC_GZD_Trusted_Shops {
 			$args = wp_parse_args( $args, array(
 				'offset'  => $this->trustbadge_y,
 				'variant' => $this->trustbadge_variant === 'standard' ? 'reviews' : 'default',
-				'disable' => $this->is_trustbadge_enabled() ? 'true' : 'false',
+				'disable' => $this->is_trustbadge_enabled() ? 'false' : 'true',
 			) );
 		}
 
