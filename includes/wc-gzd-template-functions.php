@@ -390,10 +390,6 @@ if ( ! function_exists( 'woocommerce_gzd_template_maybe_hide_delivery_time' ) ) 
 		if ( ! empty( $types ) && wc_gzd_product_matches_extended_type( $types, $product ) )
 			return true;
 
-		// Hide delivery time if product is not in stock
-		if ( ! $product->is_in_stock() )
-			return true;
-
 		return $hide;
 
 	}

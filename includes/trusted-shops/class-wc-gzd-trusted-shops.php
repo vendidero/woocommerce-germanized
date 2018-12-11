@@ -166,7 +166,6 @@ class WC_GZD_Trusted_Shops {
 
 		wp_register_style( 'woocommerce-' . $script_prefix . 'trusted-shops', $assets_path . '/woocommerce-' . $script_prefix . 'trusted-shops' . $suffix . '.css', false, $this->plugin->version );
 		wp_enqueue_style( 'woocommerce-' . $script_prefix . 'trusted-shops' );
-
 	}
 
 	public function get_dependency_name( $name ) {
