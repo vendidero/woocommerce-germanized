@@ -73,52 +73,59 @@ class WC_GZD_Trusted_Shops {
 
 	public $path = '';
 
+	public $options = array();
+
 	/**
 	 * Sets Trusted Shops payment gateways and load dependencies
 	 */
 	public function __construct( $plugin, $params = array() ) {
-		
 		$this->plugin = $plugin;
 
-		$args = wp_parse_args( $params, array(
-			'et_params' 	=> array(),
-			'signup_params' => array(),
-			'prefix' 		=> '',
-			'signup_url' 	=> '',
-			'supports' 		=> array( 'reminder' ),
-			'path'          => dirname( __FILE__ ) . '/'
-		) );
+        $args = wp_parse_args( $params, array(
+            'et_params' 	=> array(),
+            'signup_params' => array(),
+            'prefix' 		=> '',
+            'signup_url' 	=> '',
+            'supports' 		=> array( 'reminder' ),
+            'path'          => dirname( __FILE__ ) . '/'
+        ) );
 
-		foreach ( $args as $arg => $val ) {
-			$this->$arg = $val;
-		}
+        foreach ( $args as $arg => $val ) {
+            $this->$arg = $val;
+        }
 
-		$this->option_prefix = strtolower( $this->prefix );
+        $this->option_prefix = strtolower( $this->prefix );
 
-		// Refresh TS ID + API URL
-		$this->refresh();
-		$this->duplicate_plugin_check();
-		$this->includes();
-
-		add_action( 'init', array( $this, 'refresh' ), 50 );
-
-		if ( is_admin() )
-			$this->get_dependency( 'admin' );
-
-		$this->get_dependency( 'schedule' );
-		$this->get_dependency( 'shortcodes' );
-		$this->get_dependency( 'widgets' );
-		$this->get_dependency( 'template_hooks' );
-
-		if ( $this->is_enabled() ) {
-			add_action( 'wp_enqueue_scripts', array( $this, 'load_frontend_assets' ), 50 );
-
-			if ( is_admin() ) {
-				add_filter( 'woocommerce_gzd_wpml_translatable_options', array( $this, 'register_wpml_options' ), 20, 1 );
-                add_filter( 'woocommerce_gzd_wpml_remove_translation_empty_equal', array( $this, 'stop_wpml_options_string_deletions' ), 20, 4 );
-			}
-		}
+        // Setup after compatibilities e.g. multi-language-support was loaded
+        add_action( 'plugins_loaded', array( $this, 'load' ), 10 );
 	}
+
+	public function load() {
+        // Refresh TS ID + API URL
+        $this->refresh();
+        $this->duplicate_plugin_check();
+        $this->includes();
+
+        add_action( 'init', array( $this, 'refresh' ), 50 );
+
+        if ( is_admin() ) {
+            $this->get_dependency( 'admin' );
+        }
+
+        $this->get_dependency( 'schedule' );
+        $this->get_dependency( 'shortcodes' );
+        $this->get_dependency( 'widgets' );
+        $this->get_dependency( 'template_hooks' );
+
+        if ( $this->is_enabled() ) {
+            add_action( 'wp_enqueue_scripts', array( $this, 'load_frontend_assets' ), 50 );
+
+            if ( is_admin() ) {
+                add_filter( 'woocommerce_gzd_wpml_translatable_options', array( $this, 'register_wpml_options' ), 20, 1 );
+                add_filter( 'woocommerce_gzd_wpml_remove_translation_empty_equal', array( $this, 'stop_wpml_options_string_deletions' ), 20, 4 );
+            }
+        }
+    }
 
 	public function duplicate_plugin_check() {
 		if ( function_exists( 'wc_ts_get_crud_data' ) ) {
@@ -179,9 +186,17 @@ class WC_GZD_Trusted_Shops {
 	}
 
 	public function refresh() {
-		$this->id      = get_option( 'woocommerce_' . $this->option_prefix . 'trusted_shops_id' );
+		$this->id      = $this->__get( 'id' );
 		$this->api_url = 'http://api.trustedshops.com/rest/public/v2/shops/'. $this->id .'/quality.json';
 	}
+
+	public function get_multi_language_compatibility() {
+	    return apply_filters( 'woocommerce_trusted_shops_multi_language_compatibility', $this->plugin->get_compatibility( 'wpml-string-translation' ) );
+    }
+
+	public function is_multi_language_setup() {
+	    return $this->get_multi_language_compatibility() ? true : false;
+    }
 
 	/**
 	 * Get Trusted Shops Options
@@ -190,7 +205,34 @@ class WC_GZD_Trusted_Shops {
 	 * @return mixed
 	 */
 	public function __get( $key ) {
-		return get_option( 'woocommerce_' . $this->option_prefix . 'trusted_shops_' . $key );
+	    $option_name = 'woocommerce_' . $this->option_prefix . 'trusted_shops_' . $key;
+		$value       = get_option( $option_name );
+
+		if ( ! is_admin() && $this->is_multi_language_setup() ) {
+
+		    $compatibility = $this->get_multi_language_compatibility();
+
+		    $default_language = $compatibility->get_default_language();
+		    $current_language = $compatibility->get_current_language();
+
+		    if ( $current_language !== $default_language ) {
+		        // Check for string translation
+                if ( isset( $this->options[ $current_language ][ $key ] ) ) {
+                    return $this->options[ $current_language ][ $key ];
+                } else {
+                    if ( $string_id = $compatibility->get_string_id( $option_name ) ) {
+                        $translation = $compatibility->get_string_translation( $string_id, $current_language );
+
+                        if ( false !== $translation ) {
+                            $this->options[ $current_language ][ $key ] = $translation;
+                            $value = $translation;
+                        }
+                    }
+                }
+            }
+        }
+
+        return $value;
 	}
 
 	/**
@@ -231,7 +273,7 @@ class WC_GZD_Trusted_Shops {
 	}
 
 	public function is_trustbadge_enabled() {
-		return ( $this->trustbadge_enable === 'yes' ? true : false );
+		return ( $this->trustbadge_enable === 'yes' && $this->id !== '' ? true : false );
 	}
 
 	/**
@@ -298,9 +340,12 @@ class WC_GZD_Trusted_Shops {
 	public function get_average_rating() {
 	    $reviews = ( $this->reviews_cache ? $this->reviews_cache : array() );
 
-	    if ( $lang = wc_ts_get_current_language() ) {
-	        if ( $lang != wc_ts_get_default_language() ) {
-                $reviews = ( $this->{"reviews_cache_{$lang}"} ? $this->{"reviews_cache_{$lang}"} : array() );
+	    if ( $this->is_multi_language_setup() ) {
+	        $default_language = $this->get_multi_language_compatibility()->get_default_language();
+            $current_language = $this->get_multi_language_compatibility()->get_current_language();
+
+            if ( $current_language != $default_language ) {
+                $reviews = ( $this->{"reviews_cache_{$current_language}"} ? $this->{"reviews_cache_{$current_language}"} : array() );
             }
         }
 

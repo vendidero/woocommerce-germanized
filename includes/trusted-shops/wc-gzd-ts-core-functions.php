@@ -52,53 +52,6 @@ if ( ! function_exists( 'wc_ts_get_order_currency' ) ) {
 	}
 }
 
-if ( ! function_exists( 'wc_ts_get_languages' ) ) {
-
-    function wc_ts_get_languages() {
-        global $sitepress;
-        $codes = array();
-
-        if ( isset( $sitepress ) && is_callable( array( $sitepress, 'get_ls_languages' ) ) ) {
-            $languages = $sitepress->get_ls_languages();
-
-            if ( ! empty( $languages ) ) {
-                $codes = array_keys( $languages );
-            }
-        }
-
-        return apply_filters( 'woocommerce_gzd_trusted_shops_languages', $codes );
-    }
-}
-
-if ( ! function_exists( 'wc_ts_get_default_language' ) ) {
-
-    function wc_ts_get_default_language() {
-        global $sitepress;
-        $default = '';
-
-        if ( isset( $sitepress ) && is_callable( array( $sitepress, 'get_default_language' ) ) ) {
-            $default = $sitepress->get_default_language();
-        }
-
-        return apply_filters( 'woocommerce_gzd_trusted_shops_default_language', $default );
-    }
-}
-
-if ( ! function_exists( 'wc_ts_get_current_language' ) ) {
-
-    function wc_ts_get_current_language() {
-        global $sitepress;
-
-        $current = '';
-
-        if ( isset( $sitepress ) && is_callable( array( $sitepress, 'get_current_language' ) ) ) {
-            $current = $sitepress->get_current_language();
-        }
-
-        return apply_filters( 'woocommerce_trusted_shops_current_language', $current );
-    }
-}
-
 if ( ! function_exists( 'wc_ts_get_order_language' ) ) {
 
     function wc_ts_get_order_language( $order ) {

@@ -17,9 +17,7 @@ class WC_GZD_Trusted_Shops_Schedule {
 		$this->base = $base;
 
         add_action( 'woocommerce_gzd_trusted_shops_reviews', array( $this, 'update_reviews' ) );
-
         add_action( 'init', array( $this, 'update_default_reviews' ), 10 );
-
         add_action( 'woocommerce_gzd_trusted_shops_reviews', array( $this, 'send_mails' ) );
 	}
 
@@ -31,21 +29,25 @@ class WC_GZD_Trusted_Shops_Schedule {
             $this->_update_reviews();
         }
 
-        if ( $current_language = wc_ts_get_current_language() ) {
+        if ( $this->base->is_multi_language_setup() ) {
+            $compatibility    = $this->base->get_multi_language_compatibility();
+            $current_language = $compatibility->get_current_language();
+
             global $wc_ts_original_lang;
 
             $wc_ts_original_lang = $current_language;
-        }
 
-        foreach( wc_ts_get_languages() as $language ) {
-            if ( wc_ts_get_default_language() == $language ) {
-                continue;
-            }
+            foreach( $compatibility->get_languages() as $language ) {
 
-            $option_key .= '_' . $language;
+                if ( $compatibility->get_default_language() == $language ) {
+                    continue;
+                }
 
-            if ( ! get_option( $option_key, false ) ) {
-                $this->_update_reviews( $language );
+                $option_key .= '_' . $language;
+
+                if ( ! get_option( $option_key, false ) ) {
+                    $this->_update_reviews( $language );
+                }
             }
         }
     }
@@ -56,18 +58,22 @@ class WC_GZD_Trusted_Shops_Schedule {
 	public function update_reviews() {
 		$this->_update_reviews();
 
-		if ( $current_language = wc_ts_get_current_language() ) {
+        if ( $this->base->is_multi_language_setup() ) {
+
+            $compatibility    = $this->base->get_multi_language_compatibility();
+            $current_language = $compatibility->get_current_language();
+
             global $wc_ts_original_lang;
 
             $wc_ts_original_lang = $current_language;
-        }
 
-		foreach( wc_ts_get_languages() as $language ) {
-		    if ( wc_ts_get_default_language() == $language ) {
-		        continue;
+            foreach( $compatibility->get_languages() as $language ) {
+                if ( $compatibility->get_default_language() == $language ) {
+                    continue;
+                }
+
+                $this->_update_reviews( $language );
             }
-
-            $this->_update_reviews( $language );
         }
  	}
 
@@ -122,20 +128,20 @@ class WC_GZD_Trusted_Shops_Schedule {
 	 * Send review reminder mails after x days
 	 */
 	public function send_mails() {
-	    $languages = wc_ts_get_languages();
+	    if ( $this->base->is_multi_language_setup() ) {
+            $compatibility    = $this->base->get_multi_language_compatibility();
+            $current_language = $compatibility->get_current_language();
 
-	    if ( empty( $languages ) ) {
-            $this->_send_mails();
-        } else {
-            if ( $current_language = wc_ts_get_current_language() ) {
-                global $wc_ts_original_lang;
+            global $wc_ts_original_lang;
 
-                $wc_ts_original_lang = $current_language;
-            }
+            $wc_ts_original_lang = $current_language;
 
-            foreach ( wc_ts_get_languages() as $language ) {
+            foreach ( $compatibility->get_languages() as $language ) {
                 $this->_send_mails( $language );
             }
+
+        } else {
+            $this->_send_mails();
         }
 	}
 

@@ -408,10 +408,10 @@ final class WooCommerce_Germanized {
 	}
 
 	public function setup_compatibility() {
-
 		$plugins = apply_filters( 'woocommerce_gzd_compatibilities',
 			array(
 				'wpml',
+                'wpml-string-translation',
 				'polylang',
 				'woo-poly-integration',
 				'woocommerce-dynamic-pricing',
@@ -426,14 +426,17 @@ final class WooCommerce_Germanized {
 		);
 
 		foreach ( $plugins as $comp ) {
-
 			$classname = str_replace( ' ', '_', 'WC_GZD_Compatibility_' . ucwords( str_replace( '-', ' ', $comp ) ) );
+
 			if ( class_exists( $classname ) ) {
 				$this->compatibilities[ $comp ] = new $classname();
 			}
 		}
-
 	}
+
+	public function get_compatibility( $name ) {
+	    return ( isset( $this->compatibilities[ $name ] ) ? $this->compatibilities[ $name ] : false );
+    }
 
 	/**
 	 * Include required frontend files.

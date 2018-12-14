@@ -52,12 +52,11 @@ class WC_GZD_Trusted_Shops_Admin {
 	}
 
 	public function wpml_notice() {
-        global $sitepress;
-
-	    if ( defined( 'WPML_ST_VERSION' ) && defined( 'ICL_LANGUAGE_CODE' ) && isset( $sitepress ) ) {
+	    if ( $this->base->is_multi_language_setup() ) {
 	        $is_default_language = false;
-            $default_language    = strtoupper( $sitepress->get_default_language() );
-            $current_language    = strtoupper( ICL_LANGUAGE_CODE );
+	        $compatibility       = $this->base->get_multi_language_compatibility();
+            $default_language    = strtoupper( $compatibility->get_default_language() );
+            $current_language    = strtoupper( $compatibility->get_current_language() );
 
             if ( $current_language == $default_language ) {
                 $is_default_language = true;
@@ -877,7 +876,7 @@ class WC_GZD_Trusted_Shops_Admin {
 	    $href_org = add_query_arg( array(
             'action'   => 'wc_' . $this->base->option_prefix . 'trusted-shops-export',
             '_wpnonce' => wp_create_nonce( 'wc_' . $this->base->option_prefix . 'trusted-shops-export' ),
-            'lang'     => wc_ts_get_current_language(),
+            'lang'     => $this->base->is_multi_language_setup() ? $this->base->get_multi_language_compatibility()->get_current_language() : '',
         ), $href_org );
 
 		if ( ! wc_ts_woocommerce_supports_crud() )
