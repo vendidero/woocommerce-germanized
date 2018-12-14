@@ -195,7 +195,9 @@ class WC_GZD_Trusted_Shops {
     }
 
 	public function is_multi_language_setup() {
-	    return $this->get_multi_language_compatibility() ? true : false;
+	    $compatibility = $this->get_multi_language_compatibility();
+
+	    return $compatibility->is_activated() ? true : false;
     }
 
 	/**
@@ -208,6 +210,10 @@ class WC_GZD_Trusted_Shops {
 	    $option_name = 'woocommerce_' . $this->option_prefix . 'trusted_shops_' . $key;
 		$value       = get_option( $option_name );
 
+        /**
+         * By default WPML does not allow empty strings to override default translations.
+         * This snippet manually checks for translations and allows to override default WPML translations.
+         */
 		if ( ! is_admin() && $this->is_multi_language_setup() ) {
 
 		    $compatibility = $this->get_multi_language_compatibility();
@@ -216,7 +222,6 @@ class WC_GZD_Trusted_Shops {
 		    $current_language = $compatibility->get_current_language();
 
 		    if ( $current_language !== $default_language ) {
-		        // Check for string translation
                 if ( isset( $this->options[ $current_language ][ $key ] ) ) {
                     return $this->options[ $current_language ][ $key ];
                 } else {
