@@ -708,6 +708,9 @@ class WC_GZD_Trusted_Shops_Admin {
 			$linked_attributes[ $attribute->attribute_name ] = $attribute->attribute_label;
 		}
 
+		// Add empty option placeholder to allow clearing
+        $linked_attributes = array_merge( array( '' => '' ), $linked_attributes );
+
 		$update_settings = array(
             'woocommerce_' . $this->base->option_prefix . 'trusted_shops_trustbadge_code' => array(
                 'default' => $this->base->get_trustbadge_code( false ),
