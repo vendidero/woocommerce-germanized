@@ -1,139 +1,171 @@
-/*!
- * Variations Plugin
- */
+/*global wc_gzd_add_to_cart_variation_params */
 ;(function ( $, window, document, undefined ) {
+    /**
+     * VariationForm class which handles variation forms and attributes.
+     */
+    var GermanizedVariationForm = function( $form ) {
+        var self = this;
 
-	$.fn.wc_gzd_variation_form = function () {
+        self.$form                = $form;
+        self.$wrapper             = $form.parents( wc_gzd_add_to_cart_variation_params.wrapper );
+        self.$product             = $form.closest( '.product' );
+        self.variationData        = $form.data( 'product_variations' );
+        self.$singleVariation     = $form.find( '.single_variation' );
+        self.$singleVariationWrap = $form.find( '.single_variation_wrap' );
+        self.$resetVariations     = $form.find( '.reset_variations' );
+        self.$button              = $form.find( '.single_add_to_cart_button' );
 
-		var $form 	 	= this,
-			$wrapper 	= $form.parents( wc_gzd_add_to_cart_variation_params.wrapper );
+        if ( self.$wrapper.length <= 0 ) {
+            self.$wrapper         = self.$product;
+        }
 
-		$.fn.wc_gzd_variation_form.reset_variation = function() {
+        $form.on( 'click', '.reset_variations', { GermanizedvariationForm: self }, self.onReset );
+        $form.on( 'reset_data', { GermanizedvariationForm: self }, self.onReset );
+        $form.on( 'update_variation_values', { GermanizedvariationForm: self }, self.onUpdate );
+        $form.on( 'found_variation', { GermanizedvariationForm: self }, self.onFoundVariation );
+    };
 
-			if ( $wrapper.find('.org_price').length > 0 ) {
-				$wrapper.find( wc_gzd_add_to_cart_variation_params.price_selector + '.variation_modified:not(.price-unit)' ).html( $wrapper.find('.org_price').html() ).removeClass('variation_modified').show();
-			}
-			if ( $wrapper.find('.org_delivery_time').length > 0 ) {
-                $wrapper.find( '.delivery-time-info:first' ).html( $wrapper.find('.org_delivery_time').html() ).removeClass('variation_modified').show();
-			}
-			if ( $wrapper.find('.org_unit_price').length > 0 ) {
-                $wrapper.find('.price-unit:first' ).html( $wrapper.find('.org_unit_price').html() ).removeClass('variation_modified').show();
-			}
-			if ( $wrapper.find('.org_tax_info').length > 0 ) {
-                $wrapper.find('.tax-info:first' ).html( $wrapper.find('.org_tax_info').html() ).removeClass('variation_modified').show();
-			}
-			if ( $wrapper.find('.org_shipping_costs_info').length > 0 ) {
-                $wrapper.find('.shipping-costs-info:first' ).html( $wrapper.find('.org_shipping_costs_info').html() ).removeClass('variation_modified').show();
-			}
-			if ( $wrapper.find('.org_product_units').length > 0 ) {
-                $wrapper.find('.product-units:first' ).html( $wrapper.find('.org_product_units').html() ).removeClass('variation_modified').show();
-			}
+    /**
+     * Reset all fields.
+     */
+    GermanizedVariationForm.prototype.onReset = function( event ) {
+        var $wrapper = event.data.GermanizedvariationForm.$wrapper;
 
-			$('.org_product_info').remove();
-			$('.variation_modified').remove();
-		};
+        if ( $wrapper.find( '.org_price' ).length > 0 ) {
+            $wrapper.find( wc_gzd_add_to_cart_variation_params.price_selector + '.variation_modified:not(.price-unit)' ).html( $wrapper.find( '.org_price' ).html() ).removeClass( 'variation_modified' ).show();
+        }
 
-		$form
+        if ( $wrapper.find( '.org_delivery_time' ).length > 0 ) {
+            $wrapper.find( '.delivery-time-info:first' ).html( $wrapper.find( '.org_delivery_time' ).html() ).removeClass( 'variation_modified' ).show();
+        }
 
-		.on( 'found_variation', function( event, variation ) {
+        if ( $wrapper.find( '.org_unit_price' ).length > 0 ) {
+            $wrapper.find( '.price-unit:first' ).html( $wrapper.find( '.org_unit_price' ).html() ).removeClass( 'variation_modified' ).show();
+        }
 
-            if ( ! variation.variation_is_visible )
-            	return;
+        if ( $wrapper.find( '.org_tax_info' ).length > 0 ) {
+            $wrapper.find( '.tax-info:first' ).html( $wrapper.find( '.org_tax_info' ).html() ).removeClass( 'variation_modified' ).show();
+        }
 
-			if ( ! $wrapper.find( wc_gzd_add_to_cart_variation_params.price_selector + ':first' ).hasClass( 'variation_modified' ) ) {
-				$wrapper.append( '<div class="org_price org_product_info">' + $wrapper.find( wc_gzd_add_to_cart_variation_params.price_selector + ':not(.price-unit):first' ).html() + '</div>' );
-				if ( $wrapper.find( '.delivery-time-info:first' ).length > 0 ) {
-					$wrapper.append( '<div class="org_delivery_time org_product_info">' + $wrapper.find( '.delivery-time-info:first' ).html() + '</div>' );
-				}
-				if ( $wrapper.find( '.tax-info:first' ).length > 0 ) {
-					$wrapper.append( '<div class="org_tax_info org_product_info">' + $wrapper.find( '.tax-info:first' ).html() + '</div>' );
-				}
-				if ( $wrapper.find( '.shipping-costs-info:first' ).length > 0 ) {
-					$wrapper.append( '<div class="org_shipping_costs_info org_product_info">' + $wrapper.find( '.shipping-costs-info:first' ).html() + '</div>' );
-				}
-				if ( $wrapper.find( '.price-unit:first' ).length > 0 ) {
-					$wrapper.append( '<div class="org_unit_price org_product_info">' + $wrapper.find( '.price-unit:first' ).html() + '</div>' );
-				}
-				if ( $wrapper.find( '.product-units:first' ).length > 0 ) {
-					$wrapper.append( '<div class="org_product_units org_product_info">' + $wrapper.find( '.product-units:first' ).html() + '</div>' );
-				}
-				$( '.org_product_info' ).hide();
-			}
+        if ( $wrapper.find( '.org_shipping_costs_info' ).length > 0 ) {
+            $wrapper.find( '.shipping-costs-info:first' ).html( $wrapper.find( '.org_shipping_costs_info' ).html() ).removeClass( 'variation_modified' ).show();
+        }
 
-			if ( variation.price_html !== '' ) {
-				$( '.single_variation .price' ).hide();
-				$wrapper.find( wc_gzd_add_to_cart_variation_params.price_selector + ':not(.price-unit):first' ).html( variation.price_html ).addClass( 'variation_modified' );
-				$wrapper.find( wc_gzd_add_to_cart_variation_params.price_selector + ':not(.price-unit):first' ).find( '.price' ).contents().unwrap();
-			}
+        if ( $wrapper.find( '.org_product_units' ).length > 0 ) {
+            $wrapper.find( '.product-units:first' ).html( $wrapper.find( '.org_product_units' ).html() ).removeClass( 'variation_modified' ).show();
+        }
 
-			$wrapper.find( '.delivery-time-info:first' ).hide();
-			$wrapper.find( '.price-unit:first' ).hide();
-			$wrapper.find( '.tax-info:first' ).hide();
-			$wrapper.find( '.shipping-costs-info:first' ).hide();
-			$wrapper.find( '.product-units:first' ).hide();
+        $wrapper.find( '.org_product_info' ).remove();
+        $wrapper.find( '.variation_modified' ).remove();
 
-			if ( variation.delivery_time !== '' ) {
-				$wrapper.find( 'p.delivery-time-info:first' ).html( variation.delivery_time ).addClass('variation_modified').show();
-			}
-			if ( variation.tax_info !== '' ) {
-				$wrapper.find( '.tax-info:first' ).html( variation.tax_info ).addClass('variation_modified').show();
-			}
-			if ( variation.shipping_costs_info !== '' ) {
-				$wrapper.find( '.shipping-costs-info:first' ).html( variation.shipping_costs_info ).addClass('variation_modified').show();
-			}
-			if ( variation.unit_price !== '' ) {
-			    // Check if unit price for variable product exists and replace instead of insert
-				if ( $wrapper.find( '.price-unit:first' ).length ) {
-                    $wrapper.find( '.price-unit:first' ).html( variation.unit_price ).addClass('variation-modified').show();
-                } else {
-                    $wrapper.find( '.price-unit:first' ).remove();
-                    $wrapper.find( 'p.price:first' ).after('<p class="price price-unit smaller variation_modified">' + variation.unit_price + '</p>').show();
-                }
-			}
-			if ( variation.product_units !== '' ) {
-                // Check if product units for variable product exist and replace instead of insert
-                if ( $wrapper.find( '.product-units:first' ).length ) {
-                    $wrapper.find( '.product-units:first' ).html( variation.product_units ).addClass('variation-modified').show();
-                } else {
-                    $wrapper.find( '.product-units:first' ).remove();
-                    $wrapper.find( '.product_meta:first' ).prepend('<p class="wc-gzd-additional-info product-units-wrapper product-units variation_modified">' + variation.product_units + '</p>').show();
-                }
-			}
-		})
+        event.data.GermanizedvariationForm.$form.trigger( 'germanized_reset_data' );
+    };
 
-		// Check variations
-		.on( 'update_variation_values', function() {
-			setTimeout(function() {
-                var $variation_wrap = $( '.single_variation' ).length > 0 ? $( '.single_variation' ) : $( '.single_variation_wrap' );
+    GermanizedVariationForm.prototype.onUpdate = function( event ) {
+        setTimeout( function() {
+            if ( ! event.data.GermanizedvariationForm.$singleVariationWrap.is( ':visible' ) || event.data.GermanizedvariationForm.$button.is( '[disabled]' ) ) {
+                event.data.GermanizedvariationForm.onReset( event );
+            }
+        }, 250);
+    };
 
-                if ( ! $variation_wrap.is( ':visible' ) || $( '.single_add_to_cart_button' ).is( '[disabled]' ) ) {
-                    $.fn.wc_gzd_variation_form.reset_variation();
-                }
-       		 }, 250);	
-		})
+    GermanizedVariationForm.prototype.onFoundVariation = function( event, variation ) {
+        var form              = event.data.GermanizedvariationForm,
+            $wrapper          = form.$wrapper;
 
-		.on( 'click', '.reset_variations', function() {
-			$.fn.wc_gzd_variation_form.reset_variation();
-		})
+        if ( ! variation.variation_is_visible )
+            return;
 
-		.on( 'reset_data', function() {
-			$.fn.wc_gzd_variation_form.reset_variation();
-		});
+        if ( ! $wrapper.find( wc_gzd_add_to_cart_variation_params.price_selector + ':first' ).hasClass( 'variation_modified' ) ) {
 
-	};
+            $wrapper.append( '<div class="org_price org_product_info">' + $wrapper.find( wc_gzd_add_to_cart_variation_params.price_selector + ':not(.price-unit):first' ).html() + '</div>' );
 
-	$( function() {
+            if ( $wrapper.find( '.delivery-time-info:first' ).length > 0 ) {
+                $wrapper.append( '<div class="org_delivery_time org_product_info">' + $wrapper.find( '.delivery-time-info:first' ).html() + '</div>' );
+            }
 
-		// wc_add_to_cart_variation_params is required to continue, ensure the object exists
-		if ( typeof wc_add_to_cart_variation_params === 'undefined' ) {
-			return false;
-		}
+            if ( $wrapper.find( '.tax-info:first' ).length > 0 ) {
+                $wrapper.append( '<div class="org_tax_info org_product_info">' + $wrapper.find( '.tax-info:first' ).html() + '</div>' );
+            }
 
-        $( '.variations_form' ).each( function() {
-            $( this ).wc_gzd_variation_form();
-            $( this ).find( '.variations select' ).change();
-            $( this ).find( '.variations input:radio:checked' ).change();
-        });
-	});
+            if ( $wrapper.find( '.shipping-costs-info:first' ).length > 0 ) {
+                $wrapper.append( '<div class="org_shipping_costs_info org_product_info">' + $wrapper.find( '.shipping-costs-info:first' ).html() + '</div>' );
+            }
+
+            if ( $wrapper.find( '.price-unit:first' ).length > 0 ) {
+                $wrapper.append( '<div class="org_unit_price org_product_info">' + $wrapper.find( '.price-unit:first' ).html() + '</div>' );
+            }
+
+            if ( $wrapper.find( '.product-units:first' ).length > 0 ) {
+                $wrapper.append( '<div class="org_product_units org_product_info">' + $wrapper.find( '.product-units:first' ).html() + '</div>' );
+            }
+
+            $wrapper.find( '.org_product_info' ).hide();
+        }
+
+        if ( variation.price_html !== '' ) {
+            form.$singleVariation.find( '.price' ).hide();
+
+            $wrapper.find( wc_gzd_add_to_cart_variation_params.price_selector + ':not(.price-unit):first' ).html( variation.price_html ).addClass( 'variation_modified' );
+            $wrapper.find( wc_gzd_add_to_cart_variation_params.price_selector + ':not(.price-unit):first' ).find( '.price' ).contents().unwrap();
+        }
+
+        $wrapper.find( '.delivery-time-info:first' ).hide();
+        $wrapper.find( '.price-unit:first' ).hide();
+        $wrapper.find( '.tax-info:first' ).hide();
+        $wrapper.find( '.shipping-costs-info:first' ).hide();
+        $wrapper.find( '.product-units:first' ).hide();
+
+        if ( variation.delivery_time !== '' ) {
+            $wrapper.find( 'p.delivery-time-info:first' ).html( variation.delivery_time ).addClass('variation_modified').show();
+        }
+
+        if ( variation.tax_info !== '' ) {
+            $wrapper.find( '.tax-info:first' ).html( variation.tax_info ).addClass('variation_modified').show();
+        }
+
+        if ( variation.shipping_costs_info !== '' ) {
+            $wrapper.find( '.shipping-costs-info:first' ).html( variation.shipping_costs_info ).addClass('variation_modified').show();
+        }
+
+        if ( variation.unit_price !== '' ) {
+
+            // Check if unit price for variable product exists and replace instead of insert
+            if ( $wrapper.find( '.price-unit:first' ).length ) {
+                $wrapper.find( '.price-unit:first' ).html( variation.unit_price ).addClass('variation-modified').show();
+            } else {
+                $wrapper.find( '.price-unit:first' ).remove();
+                $wrapper.find( 'p.price:first' ).after('<p class="price price-unit smaller variation_modified">' + variation.unit_price + '</p>').show();
+            }
+        }
+
+        if ( variation.product_units !== '' ) {
+            // Check if product units for variable product exist and replace instead of insert
+            if ( $wrapper.find( '.product-units:first' ).length ) {
+                $wrapper.find( '.product-units:first' ).html( variation.product_units ).addClass('variation-modified').show();
+            } else {
+                $wrapper.find( '.product-units:first' ).remove();
+                $wrapper.find( '.product_meta:first' ).prepend('<p class="wc-gzd-additional-info product-units-wrapper product-units variation_modified">' + variation.product_units + '</p>').show();
+            }
+        }
+
+        form.$form.trigger( 'germanized_variation_data' );
+    };
+
+    /**
+     * Function to call wc_gzd_variation_form on jquery selector.
+     */
+    $.fn.wc_germanized_variation_form = function() {
+        new GermanizedVariationForm( this );
+        return this;
+    };
+
+    $( function() {
+        if ( typeof wc_gzd_add_to_cart_variation_params !== 'undefined' ) {
+            $( '.variations_form' ).each( function() {
+                $( this ).wc_germanized_variation_form();
+            });
+        }
+    });
 
 })( jQuery, window, document );
