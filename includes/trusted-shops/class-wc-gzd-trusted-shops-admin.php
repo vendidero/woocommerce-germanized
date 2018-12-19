@@ -11,6 +11,7 @@ class WC_GZD_Trusted_Shops_Admin {
 	public static function instance( $base ) {
 		if ( is_null( self::$_instance ) )
 			self::$_instance = new self( $base );
+
 		return self::$_instance;
 	}
 
@@ -920,7 +921,7 @@ class WC_GZD_Trusted_Shops_Admin {
 
 	private function get_signup_url( $url = '', $args = array() ) {
 	    $args = wp_parse_args( $args, array(
-            'params' => true,
+            'params' => false,
         ) );
 
 		$url = empty( $url ) ? $this->base->signup_url : $url;

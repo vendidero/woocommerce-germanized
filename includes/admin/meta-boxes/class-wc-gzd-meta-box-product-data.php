@@ -45,7 +45,6 @@ class WC_Germanized_Meta_Box_Product_Data {
 		 */
 		add_action( 'woocommerce_update_product', array( __CLASS__, 'update_after_save' ), 10, 1 );
 		add_action( 'woocommerce_create_product', array( __CLASS__, 'update_after_save' ), 10, 1 );
-
 		add_action( 'woocommerce_update_product_variation', array( __CLASS__, 'update_after_save' ), 10, 1 );
 
 		if ( ! wc_gzd_get_dependencies()->woocommerce_version_supports_crud() ) {
@@ -65,8 +64,9 @@ class WC_Germanized_Meta_Box_Product_Data {
 	 */
 	public static function update_after_save( $product_id ) {
 
-		if ( ! wc_gzd_get_dependencies()->woocommerce_version_supports_crud() )
-		    return;
+		if ( ! wc_gzd_get_dependencies()->woocommerce_version_supports_crud() ) {
+            return;
+        }
 
 	    $product = wc_get_product( $product_id );
 
@@ -113,7 +113,7 @@ class WC_Germanized_Meta_Box_Product_Data {
 
 	public static function service_type( $types ) {
 
-		$types[ 'service' ] = array(
+		$types['service'] = array(
 			'id'            => '_service',
 			'wrapper_class' => 'show_if_simple',
 			'label'         => __( 'Service', 'woocommerce-germanized' ),
@@ -121,7 +121,7 @@ class WC_Germanized_Meta_Box_Product_Data {
 			'default'       => 'no'
 		);
 
-		$types[ 'differential_taxation' ] = array(
+		$types['differential_taxation'] = array(
 			'id'            => '_differential_taxation',
 			'wrapper_class' => '',
 			'label'         => __( 'Diff. Taxation', 'woocommerce-germanized' ),
@@ -160,7 +160,6 @@ class WC_Germanized_Meta_Box_Product_Data {
 				// Remove default delivery time selection - otherwise input would exist 2 times
 				remove_action( 'woocommerce_product_options_shipping', array( __CLASS__, 'output_shipping' ), 10 );
 				self::output_shipping();
-
 			}
 		}
 
@@ -178,14 +177,14 @@ class WC_Germanized_Meta_Box_Product_Data {
 	public static function output_delivery_time_select2( $args = array() ) {
 
 	    $args = wp_parse_args( $args, array(
-            'name' => 'delivery_time',
+            'name'        => 'delivery_time',
             'placeholder' => __( 'Search for a delivery time&hellip;', 'woocommerce-germanized' ),
-            'term' => false,
-            'id' => '',
-            'style' => 'width: 50%',
+            'term'        => false,
+            'id'          => '',
+            'style'       => 'width: 50%',
         ) );
 
-	    $args[ 'id' ] = empty( $args[ 'id' ] ) ? $args[ 'name' ] : $args[ 'id' ];
+	    $args['id'] = empty( $args['id'] ) ? $args['name'] : $args['id'];
 
 	    if ( wc_gzd_get_dependencies()->woocommerce_version_supports_crud() ) {
 	        ?>
@@ -214,7 +213,6 @@ class WC_Germanized_Meta_Box_Product_Data {
 		$_product = wc_get_product( $thepostid );
 
 		$delivery_time = wc_gzd_get_gzd_product( $_product )->delivery_time;
-
 		?>	
 
 		<p class="form-field">
@@ -232,7 +230,6 @@ class WC_Germanized_Meta_Box_Product_Data {
 
 		// Free shipping
 		woocommerce_wp_checkbox( array( 'id' => '_free_shipping', 'label' => __( 'Free shipping?', 'woocommerce-germanized' ), 'description' => __( 'This option disables the "plus shipping costs" notice on product page', 'woocommerce-germanized' ) ) );
-
 	}
 
 	public static function get_fields() {
@@ -259,8 +256,9 @@ class WC_Germanized_Meta_Box_Product_Data {
 
 	public static function save( $product ) {
 
-	    if ( is_numeric( $product ) )
-		    $product = wc_get_product( $product );
+	    if ( is_numeric( $product ) ) {
+            $product = wc_get_product( $product );
+        }
 
 		$data = self::get_fields();
 
@@ -268,8 +266,9 @@ class WC_Germanized_Meta_Box_Product_Data {
 			$data[ $k ] = ( isset( $_POST[ $k ] ) ? $_POST[ $k ] : null );
 		}
 
-		if ( wc_gzd_get_dependencies()->woocommerce_version_supports_crud() )
-			$data[ 'save' ] = false;
+		if ( wc_gzd_get_dependencies()->woocommerce_version_supports_crud() ) {
+            $data['save'] = false;
+        }
 
 		$product = self::save_product_data( $product, $data );
 
@@ -314,10 +313,11 @@ class WC_Germanized_Meta_Box_Product_Data {
 		$product_type = ( ! isset( $data['product-type'] ) || empty( $data['product-type'] ) ) ? 'simple' : sanitize_title( stripslashes( $data['product-type'] ) );
 
 		if ( isset( $data['_unit'] ) ) {
-			if ( empty( $data['_unit'] ) || in_array( $data['_unit'], array( 'none', '-1' ) ) )
-				$product = wc_gzd_unset_crud_meta_data( $product, '_unit' );
-			else
-				$product = wc_gzd_set_crud_meta_data( $product, '_unit', sanitize_text_field( $data['_unit'] ) );
+			if ( empty( $data['_unit'] ) || in_array( $data['_unit'], array( 'none', '-1' ) ) ) {
+                $product = wc_gzd_unset_crud_meta_data( $product, '_unit' );
+            } else {
+                $product = wc_gzd_set_crud_meta_data( $product, '_unit', sanitize_text_field( $data['_unit'] ) );
+            }
 		}
 
 		if ( isset( $data['_unit_base'] ) ) {
@@ -337,8 +337,9 @@ class WC_Germanized_Meta_Box_Product_Data {
 		
 		if ( isset( $data['_unit_price_sale'] ) ) {
 			// Unset unit price sale if no product sale price has been defined
-			if ( ! isset( $data['_sale_price'] ) || $data['_sale_price'] === '' )
+			if ( ! isset( $data['_sale_price'] ) || $data['_sale_price'] === '' ) {
 				$data['_unit_price_sale'] = '';
+            }
 
 			$product = wc_gzd_set_crud_meta_data( $product, '_unit_price_sale', ( $data['_unit_price_sale'] === '' ) ? '' : wc_format_decimal( $data['_unit_price_sale'] ) );
 		}
@@ -384,7 +385,7 @@ class WC_Germanized_Meta_Box_Product_Data {
 			}
 		}
 
-		if ( wc_gzd_get_dependencies()->woocommerce_version_supports_crud() && $data[ 'save' ] ) {
+		if ( wc_gzd_get_dependencies()->woocommerce_version_supports_crud() && $data['save'] ) {
 			$product->save();
 		}
 
@@ -392,8 +393,9 @@ class WC_Germanized_Meta_Box_Product_Data {
 	}
 
 	public static function save_product_data( $product, $data, $is_variation = false ) {
-	    if ( is_numeric( $product ) )
-	        $product = wc_get_product( $product );
+	    if ( is_numeric( $product ) ) {
+            $product = wc_get_product( $product );
+        }
 
 		$data = wp_parse_args( $data, array(
 			'is_rest' => false,
