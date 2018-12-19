@@ -32,12 +32,10 @@ class WC_GZD_Compatibility_Wpml extends WC_GZD_Compatibility {
 		if ( function_exists( 'wcml_is_multi_currency_on' ) && wcml_is_multi_currency_on() ) {
 			$this->dynamic_unit_pricing = new WC_GZD_Compatibility_Woocommerce_Dynamic_Pricing();
 			$this->dynamic_unit_pricing->load();
+
 			add_action( 'woocommerce_gzd_before_get_unit_price_html', array( $this, 'before_show_product_unit_price' ), 10, 1 );
 		}
 
-		// Observe order update and trigger hook
-		add_action( 'post_updated', array( $this, 'observe_order_update' ), 0, 3 );
-		
 		// Prevent double sending order confirmation email to admin
 		if ( wc_gzd_send_instant_order_confirmation() ) {
 			add_action( 'wp_loaded', array( $this, 'unregister_order_confirmation_hooks' ) );
@@ -57,9 +55,7 @@ class WC_GZD_Compatibility_Wpml extends WC_GZD_Compatibility {
 	}
 
 	public function set_language_field() {
-		if( function_exists('wpml_the_language_input_field' ) ) {
-			wpml_the_language_input_field();
-		}
+        do_action('wpml_add_language_form_field' );
 	}
 
 	public function unhook_terms_clause() {
@@ -79,19 +75,20 @@ class WC_GZD_Compatibility_Wpml extends WC_GZD_Compatibility {
 		
 		if ( isset( $woocommerce_wpml ) && isset( $woocommerce_wpml->emails ) && is_object( $woocommerce_wpml->emails ) ) {
 
-			// Remove duplicate filters which lead to non-replaced placeholders
-			if ( method_exists( $woocommerce_wpml->emails, 'new_order_email_heading' ) ) {
-				remove_filter( 'woocommerce_email_heading_new_order',  array( $woocommerce_wpml->emails, 'new_order_email_heading' ), 10 );
-				remove_filter( 'woocommerce_email_subject_new_order',  array( $woocommerce_wpml->emails, 'new_order_email_subject' ), 10 );
-			}
-		
-			// Instantiate mailer to make sure that new order email is known
-			$mailer = WC()->mailer();
-			
-			if ( method_exists( $woocommerce_wpml->emails, 'admin_email' ) )
-				$woocommerce_wpml->emails->admin_email( $order_id );
-			elseif ( method_exists( $woocommerce_wpml->emails, 'new_order_admin_email' ) )
+            // Remove duplicate filters which lead to non-replaced placeholders
+            if ( method_exists( $woocommerce_wpml->emails, 'new_order_email_heading' ) ) {
+                remove_filter('woocommerce_email_heading_new_order', array($woocommerce_wpml->emails, 'new_order_email_heading'), 10);
+                remove_filter('woocommerce_email_subject_new_order', array($woocommerce_wpml->emails, 'new_order_email_subject'), 10);
+            }
+
+            // Instantiate mailer to make sure that new order email is known
+            $mailer = WC()->mailer();
+
+            if ( method_exists( $woocommerce_wpml->emails, 'admin_email' ) ) {
+                 $woocommerce_wpml->emails->admin_email( $order_id );
+            } elseif ( method_exists( $woocommerce_wpml->emails, 'new_order_admin_email' ) ) {
 				$woocommerce_wpml->emails->new_order_admin_email( $order_id );
+            }
 		
 			// Stop Germanized from sending the notification
 			add_filter( 'woocommerce_germanized_order_email_admin_confirmation_sent', array( $this, 'set_order_admin_confirmation' ) );
@@ -114,33 +111,16 @@ class WC_GZD_Compatibility_Wpml extends WC_GZD_Compatibility {
 			);
 		
 			foreach ( $statuses as $status ) {
-				if ( method_exists( $woocommerce_wpml->emails, 'admin_email' ) )
-					remove_action( $status, array( $woocommerce_wpml->emails, 'admin_email' ), 9 );
-				elseif ( method_exists( $woocommerce_wpml->emails, 'new_order_admin_email' ) )
-					remove_action( $status, array( $woocommerce_wpml->emails, 'new_order_admin_email' ), 9 );
+				if ( method_exists( $woocommerce_wpml->emails, 'admin_email' ) ) {
+                    remove_action( $status, array( $woocommerce_wpml->emails, 'admin_email' ), 9 );
+                } elseif ( method_exists( $woocommerce_wpml->emails, 'new_order_admin_email' ) ) {
+                    remove_action( $status, array( $woocommerce_wpml->emails, 'new_order_admin_email' ), 9 );
+                }
 			}
 		}
-	}
-
-	public function observe_order_update( $post_id, $post_after, $post_before ) {
-
-		if ( 'shop_order' === $post_after->post_type ) {
-
-			do_action( 'woocommerce_gzd_before_order_post_status', $post_id );
-
-			$order = wc_get_order( $post_id );
-			$lang = null;
-
-			// Reset GZD Locale
-			if ( $lang = get_post_meta( $post_id, 'wpml_language', true ) ) {
-				$this->set_language( $lang );
-			}
-		}
-
 	}
 
 	public function set_language( $lang ) {
-
 		global $sitepress, $woocommerce;
 
 		$sitepress->switch_lang( $lang, true );
@@ -152,6 +132,9 @@ class WC_GZD_Compatibility_Wpml extends WC_GZD_Compatibility {
         unload_textdomain( 'woocommerce-germanized' );
         unload_textdomain( 'woocommerce-germanized-pro' );
         unload_textdomain( 'default' );
+
+        global $wp_locale;
+        $wp_locale = new WP_Locale();
         
         $woocommerce->load_plugin_textdomain();
         WC_germanized()->load_plugin_textdomain();
@@ -159,15 +142,11 @@ class WC_GZD_Compatibility_Wpml extends WC_GZD_Compatibility {
         do_action( 'woocommerce_gzd_wpml_lang_changed', $lang );
         
         load_default_textdomain();
-        
-        global $wp_locale;
-        $wp_locale = new WP_Locale();
-
 	}
 
 	public function set_locale( $locale, $domain ) {
 
-		if( in_array( $domain, array( 'woocommerce', 'woocommerce-germanized', 'woocommerce-germanized-pro' ) ) && $this->locale ) {
+		if ( in_array( $domain, array( 'woocommerce', 'woocommerce-germanized', 'woocommerce-germanized-pro' ) ) && $this->locale ) {
             $locale = $this->locale;
         }
 
