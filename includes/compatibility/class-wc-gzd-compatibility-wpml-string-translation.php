@@ -345,6 +345,16 @@ class WC_GZD_Compatibility_Wpml_String_Translation extends WC_GZD_Compatibility 
         return false;
     }
 
+    public function get_translated_string( $option, $language, $context = '' ) {
+        $value = null;
+
+        if ( $string_id = $this->get_string_id( $option, $context ) ) {
+            $value = $this->get_string_translation( $string_id, $language );
+        }
+
+        return $value;
+    }
+
     public function register_string( $option, $value, $context = '' ) {
         $context = empty( $context ) ? 'admin_texts_' . $option : $context;
 

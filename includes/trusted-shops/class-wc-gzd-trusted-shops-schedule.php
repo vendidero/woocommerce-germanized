@@ -25,6 +25,13 @@ class WC_GZD_Trusted_Shops_Schedule {
         // Generate reviews for the first time
         $option_key = 'woocommerce_' . $this->base->option_prefix . 'trusted_shops_reviews_cache';
 
+        $section = isset( $_GET['section'] ) ? wc_clean( $_GET['section'] ) : '';
+
+        // Do only update default reviews if the admin user open the settings page.
+        if ( 'trusted_shops' !== $section ) {
+            return;
+        }
+
         if ( ! get_option( $option_key, false ) ) {
             $this->_update_reviews();
         }
