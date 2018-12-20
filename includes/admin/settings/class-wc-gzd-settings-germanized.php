@@ -1000,6 +1000,22 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 				'default'	=> array( 'external', 'virtual' ),
 			),
 
+            array(
+                'title' 	=> __( 'Backorder', 'woocommerce-germanized' ),
+                'desc' 		=> __( 'Hide delivery time if a product is on backorder.', 'woocommerce-germanized' ),
+                'id' 		=> 'woocommerce_gzd_delivery_time_disable_backorder',
+                'default'	=> 'no',
+                'type' 		=> 'checkbox',
+            ),
+
+            array(
+                'title' 	=> __( 'Not in Stock', 'woocommerce-germanized' ),
+                'desc' 		=> __( 'Hide delivery time if a product is not in stock.', 'woocommerce-germanized' ),
+                'id' 		=> 'woocommerce_gzd_delivery_time_disable_not_in_stock',
+                'default'	=> 'no',
+                'type' 		=> 'checkbox',
+            ),
+
 			array( 'type' => 'sectionend', 'id' => 'product_options' ),
 
 			array(	'title' => __( 'Prices', 'woocommerce-germanized' ), 'type' => 'title', 'id' => 'unit_price_options' ),

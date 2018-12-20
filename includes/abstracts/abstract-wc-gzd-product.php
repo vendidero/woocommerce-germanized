@@ -579,8 +579,9 @@ class WC_GZD_Product {
 	public function get_delivery_time_html() {
 		$html = '';
 		
-		if ( apply_filters( 'woocommerce_germanized_hide_delivery_time_text', false, $this ) )
-			return apply_filters( 'woocommerce_germanized_disabled_delivery_time_text', '', $this );
+		if ( apply_filters( 'woocommerce_germanized_hide_delivery_time_text', false, $this ) ) {
+            return apply_filters( 'woocommerce_germanized_disabled_delivery_time_text', '', $this );
+        }
 
 		if ( $this->get_delivery_time_term() ) {
 			$html = $this->get_delivery_time_term()->name;
@@ -599,10 +600,10 @@ class WC_GZD_Product {
         }
 
         // Hide delivery time if product is not in stock
-        if ( ! $this->is_in_stock() ) {
-            $html = apply_filters( 'woocommerce_germanized_delivery_time_out_of_stock_html', '', $this );
-        } elseif ( $this->is_on_backorder() ) {
-            $html = apply_filters( 'woocommerce_germanized_delivery_time_backorder_html', '', $this );
+        if ( 'yes' === get_option( 'woocommerce_gzd_delivery_time_disable_not_in_stock' ) && ! $this->is_in_stock() ) {
+            $html = apply_filters( 'woocommerce_germanized_delivery_time_out_of_stock_html', '', $this, $html );
+        } elseif ( 'yes' === get_option( 'woocommerce_gzd_delivery_time_disable_backorder' ) && $this->is_on_backorder() ) {
+            $html = apply_filters( 'woocommerce_germanized_delivery_time_backorder_html', '', $this, $html );
         }
 
         return $html;

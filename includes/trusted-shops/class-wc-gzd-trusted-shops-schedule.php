@@ -17,7 +17,7 @@ class WC_GZD_Trusted_Shops_Schedule {
 		$this->base = $base;
 
         add_action( 'woocommerce_gzd_trusted_shops_reviews', array( $this, 'update_reviews' ) );
-        add_action( 'init', array( $this, 'update_default_reviews' ), 10 );
+        add_action( 'admin_init', array( $this, 'update_default_reviews' ), 10 );
         add_action( 'woocommerce_gzd_trusted_shops_reviews', array( $this, 'send_mails' ) );
 	}
 
@@ -83,6 +83,10 @@ class WC_GZD_Trusted_Shops_Schedule {
         }
 
         if ( ! $this->base->is_rich_snippets_enabled() ) {
+            if ( ! empty( $lang ) ) {
+                wc_ts_restore_language();
+            }
+
             return;
         }
 
@@ -151,6 +155,10 @@ class WC_GZD_Trusted_Shops_Schedule {
         }
 
         if ( ! $this->base->is_review_reminder_enabled() ) {
+            if ( ! empty( $lang ) ) {
+                wc_ts_restore_language();
+            }
+
             return;
         }
 
