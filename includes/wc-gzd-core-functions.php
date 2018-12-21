@@ -72,7 +72,7 @@ function wc_gzd_get_email_attachment_order() {
 	$legal_pages = wc_gzd_get_legal_pages( true );
 
 	foreach ( $order as $key => $item ) {
-		$items[ $item ] = ( isset( $legal_pages[ $key ] ) ? $legal_pages[ $key ] : '' );
+		$items[ $item ] = ( isset( $legal_pages[ $item ] ) ? $legal_pages[ $item ] : '' );
 	}
 	
 	return $items;	
