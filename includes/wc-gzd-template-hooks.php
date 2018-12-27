@@ -95,6 +95,7 @@ if ( get_option( 'woocommerce_gzd_differential_taxation_checkout_notices' ) === 
  * Mini Cart
  */
 add_action( 'woocommerce_before_mini_cart', 'woocommerce_gzd_template_mini_cart_remove_hooks', 5 );
+add_action( 'woocommerce_after_mini_cart', 'woocommerce_gzd_template_mini_cart_add_hooks', 5 );
 add_action( 'woocommerce_widget_shopping_cart_before_buttons', 'woocommerce_gzd_template_mini_cart_taxes', 10 );
 
 /**

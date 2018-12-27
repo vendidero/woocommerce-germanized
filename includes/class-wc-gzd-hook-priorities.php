@@ -21,6 +21,7 @@ class WC_GZD_Hook_Priorities {
 		if ( is_null( self::$_instance ) ) {
 			self::$_instance = new self();
 		}
+
 		return self::$_instance;
 	}
 
@@ -68,8 +69,9 @@ class WC_GZD_Hook_Priorities {
 		$this->priorities = $this->default_priorities;
 
 		// Load custom theme priorities
-		if ( get_option( 'woocommerce_gzd_hook_priorities' ) )
+		if ( get_option( 'woocommerce_gzd_hook_priorities' ) ) {
 			$this->priorities = (array) get_option( 'woocommerce_gzd_hook_priorities' );
+		}
 
 		$this->hooks = array(
 			'single_price_unit' 		            => $this->get_priority( 'woocommerce_single_product_summary', 'woocommerce_template_single_price' ) + 1,
@@ -117,15 +119,16 @@ class WC_GZD_Hook_Priorities {
 			'gzd_footer_sale_info'			        => 0,
 			'footer_sale_info' 			 	        => 5,
 		);
-
 	}
 
 	/**
 	 * Returns the priority for critical hooks (see $this->priorities) which may be customized by a theme
 	 */
 	public function get_priority( $hook, $function ) {
-		if ( isset( $this->priorities[ $hook ][ $function ] ) )
+		if ( isset( $this->priorities[ $hook ][ $function ] ) ) {
 			return $this->priorities[ $hook ][ $function ];
+        }
+
 		return false;
 	}
 
@@ -133,8 +136,9 @@ class WC_GZD_Hook_Priorities {
 	 * Returns the priority for a custom wc germanized frontend hook
 	 */
 	public function get_hook_priority( $hook, $suppress_filters = false ) {
-		if ( isset( $this->hooks[ $hook ] ) )
-			return ( ! $suppress_filters ? apply_filters( 'wc_gzd_frontend_hook_priority', $this->hooks[ $hook ], $hook, $this ) : $this->hooks[ $hook ] );
+		if ( isset( $this->hooks[ $hook ] ) ) {
+            return ( ! $suppress_filters ? apply_filters('wc_gzd_frontend_hook_priority', $this->hooks[ $hook ], $hook, $this ) : $this->hooks[ $hook ] );
+        }
 
 		return false;
 	}
@@ -147,8 +151,10 @@ class WC_GZD_Hook_Priorities {
 	 * This changes the hook priority by overriding customizations made by the theme
 	 */
 	public function change_priority( $hook, $function, $new_prio ) {
-		if ( ! $this->get_priority( $hook, $function ) )
+		if ( ! $this->get_priority( $hook, $function ) ) {
 			return false;
+        }
+
 		$this->queue[] = array( 'hook' => $hook, 'function' => $function, 'new_prio' => $new_prio );
 	}
 
@@ -156,8 +162,10 @@ class WC_GZD_Hook_Priorities {
 	 * Hooked by after_setup_theme. Not to be called directly
 	 */
 	public function change_priority_queue() {
-		if ( empty( $this->queue ) )
-			return false;
+		if ( empty( $this->queue ) ) {
+            return false;
+        }
+
 		foreach ( $this->queue as $queue ) {
 			remove_action( $queue[ 'hook' ], $queue[ 'function' ], $this->get_priority( $queue[ 'hook' ], $queue[ 'function' ] ) );
 			add_action( $queue[ 'hook' ], $queue[ 'function' ], $queue[ 'new_prio' ] );
@@ -171,29 +179,27 @@ class WC_GZD_Hook_Priorities {
 		$this->priorities = $this->default_priorities;
 
 		if ( ! empty( $this->priorities ) ) {
-			
 			foreach ( $this->priorities as $hook => $functions ) {
-
 				foreach ( $functions as $function => $old_prio ) {
-					
 					$prio = has_action( $hook, $function );
 					
-					if ( ! $prio )
+					if ( ! $prio ) {
 						$prio = has_filter( $hook, $function );
+					}
 					
-					if ( $prio )
+					if ( $prio ) {
 						$this->priorities[ $hook ][ $function ] = $prio;
+                    }
 				}				
 			} 
 		}
 
-		if ( ! empty( $this->priorities ) )
+		if ( ! empty( $this->priorities ) ) {
 			update_option( 'woocommerce_gzd_hook_priorities', $this->priorities );
-		else
+        } else {
 			delete_option( 'woocommerce_gzd_hook_priorities' );
-
+		}
 	}
-
 }
 
 WC_GZD_Hook_Priorities::instance();
