@@ -166,22 +166,25 @@ class WC_GZD_Product {
 
 	    $mini_desc = apply_filters( 'woocommerce_gzd_product_cart_description', $this->mini_desc, $this );
 
-		if ( $mini_desc && ! empty( $mini_desc ) )
-			return wpautop( htmlspecialchars_decode( $mini_desc ) );
+		if ( $mini_desc && ! empty( $mini_desc ) ) {
+            return wpautop( htmlspecialchars_decode( $mini_desc ) );
+        }
 
 		return false;
 	}
 
 	public function is_service() {
-		if ( ! empty( $this->service ) && 'yes' === $this->service )
-			return true;
+		if ( ! empty( $this->service ) && 'yes' === $this->service ) {
+            return true;
+        }
 
 		return false;
 	}
 
 	public function is_differential_taxed() {
-		if ( ! empty( $this->differential_taxation ) && 'yes' === $this->differential_taxation )
-			return true;
+		if ( ! empty( $this->differential_taxation ) && 'yes' === $this->differential_taxation ) {
+            return true;
+        }
 
 		return false;
 	}
@@ -199,10 +202,11 @@ class WC_GZD_Product {
 
 	    $org_price_html = $price_html;
 
-		if ( ! $this->child->is_on_sale() )
-			return $price_html;
+		if ( ! $this->child->is_on_sale() ) {
+            return $price_html;
+        }
 
-		$sale_label = $this->get_sale_price_label();
+		$sale_label         = $this->get_sale_price_label();
 		$sale_regular_label = $this->get_sale_price_regular_label();
 
 		// Do not manipulate if there is no label to be added.
@@ -219,8 +223,8 @@ class WC_GZD_Product {
         }
 
 		$new_price_regular = $match_regular[0];
-		$new_price_sale = $match_sale[0];
-		$new_price_suffix = ( empty( $match_suffix ) ? '' : ' ' . $match_suffix[0] );
+		$new_price_sale    = $match_sale[0];
+		$new_price_suffix  = ( empty( $match_suffix ) ? '' : ' ' . $match_suffix[0] );
 
 		if ( ! empty( $sale_label ) && isset( $match_regular[1] ) )
 			$new_price_regular = '<span class="wc-gzd-sale-price-label">' . $sale_label . '</span> ' . $match_regular[0];
@@ -248,7 +252,7 @@ class WC_GZD_Product {
 	 */
 	public function get_tax_info() {
 		
-		$tax_notice = false;
+		$tax_notice    = false;
 		$is_vat_exempt = ( ! empty( WC()->customer ) ? WC()->customer->is_vat_exempt() : false );
 
 		if ( $this->is_taxable() || $this->is_differential_taxed() ) {

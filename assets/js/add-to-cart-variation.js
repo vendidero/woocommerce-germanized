@@ -63,7 +63,7 @@
 
     GermanizedVariationForm.prototype.onUpdate = function( event ) {
         setTimeout( function() {
-            if ( ! event.data.GermanizedvariationForm.$singleVariationWrap.is( ':visible' ) || event.data.GermanizedvariationForm.$button.is( '[disabled]' ) ) {
+            if ( ! event.data.GermanizedvariationForm.$singleVariation.is( ':visible' ) || event.data.GermanizedvariationForm.$button.is( '[disabled]' ) ) {
                 event.data.GermanizedvariationForm.onReset( event );
             }
         }, 250);
