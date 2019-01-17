@@ -44,7 +44,7 @@ class WC_GZD_Admin {
 	}
 
 	public function __construct() {
-		add_action( 'add_meta_boxes', array( $this, 'add_legal_page_metabox' ) );
+        add_action( 'add_meta_boxes', array( $this, 'add_legal_page_metabox' ) );
 		add_action( 'add_meta_boxes', array( $this, 'add_product_mini_desc' ) );
 
 		add_action( 'admin_enqueue_scripts', array( $this, 'add_scripts' ) );
@@ -79,51 +79,51 @@ class WC_GZD_Admin {
 	}
 
 	public function save_toggle_input_field( $value, $option, $raw_value ) {
-    if ( 'gzd_toggle' === $option['type'] ) {
-      $value = '1' === $raw_value || 'yes' === $raw_value ? 'yes' : 'no';
-      }
+        if ( 'gzd_toggle' === $option['type'] ) {
+            $value = '1' === $raw_value || 'yes' === $raw_value ? 'yes' : 'no';
+        }
 
-    return $value;
-  }
-
-  public function toggle_input( $value ) {
-    // Custom attribute handling.
-    $custom_attributes = array();
-
-    if ( ! empty( $value['custom_attributes'] ) && is_array( $value['custom_attributes'] ) ) {
-      foreach ( $value['custom_attributes'] as $attribute => $attribute_value ) {
-        $custom_attributes[] = esc_attr( $attribute ) . '="' . esc_attr( $attribute_value ) . '"';
-      }
+        return $value;
     }
 
-    // Description handling.
-    $field_description = WC_Admin_Settings::get_field_description( $value );
-    $description       = $field_description['description'];
-    $tooltip_html      = $field_description['tooltip_html'];
-    $option_value      = WC_Admin_Settings::get_option( $value['id'], $value['default'] );
+    public function toggle_input( $value ) {
+        // Custom attribute handling.
+        $custom_attributes = array();
 
-    ?><tr valign="top">
-      <th scope="row" class="titledesc">
-          <span class="wc-gzd-label-wrap"><?php echo esc_html( $value['title'] ); ?> <?php echo $tooltip_html; // WPCS: XSS ok. ?></span>
-      </th>
-      <td class="forminp forminp-<?php echo esc_attr( sanitize_title( $value['type'] ) ); ?>">
-          <a href="#" class="woocommerce-gzd-input-toggle-trigger">
-              <span id="<?php echo esc_attr( $value['id'] ); ?>-toggle" class="woocommerce-gzd-input-toggle woocommerce-input-toggle woocommerce-input-toggle--<?php echo ( 'yes' === $option_value ? 'enabled' : 'disabled' ); ?>"><?php echo ( 'yes' === $option_value ? __( 'Yes', 'woocommerce-germanized' ) : __( 'No', 'woocommerce-germanized' ) ); ?></span>
-          </a>
-          <input
-                  name="<?php echo esc_attr( $value['id'] ); ?>"
-                  id="<?php echo esc_attr( $value['id'] ); ?>"
-                  type="checkbox"
-                  style="display: none; <?php echo esc_attr( $value['css'] ); ?>"
-                  value="1"
-                  class="<?php echo esc_attr( $value['class'] ); ?>"
-                <?php checked( $option_value, 'yes' ); ?>
-            <?php echo implode( ' ', $custom_attributes ); // WPCS: XSS ok. ?>
-          /><?php echo esc_html( $value['suffix'] ); ?> <?php echo $description; // WPCS: XSS ok. ?>
-      </td>
-      </tr>
-    <?php
-  }
+        if ( ! empty( $value['custom_attributes'] ) && is_array( $value['custom_attributes'] ) ) {
+          foreach ( $value['custom_attributes'] as $attribute => $attribute_value ) {
+            $custom_attributes[] = esc_attr( $attribute ) . '="' . esc_attr( $attribute_value ) . '"';
+          }
+        }
+
+        // Description handling.
+        $field_description = WC_Admin_Settings::get_field_description( $value );
+        $description       = $field_description['description'];
+        $tooltip_html      = $field_description['tooltip_html'];
+        $option_value      = WC_Admin_Settings::get_option( $value['id'], $value['default'] );
+
+        ?><tr valign="top">
+          <th scope="row" class="titledesc">
+              <span class="wc-gzd-label-wrap"><?php echo esc_html( $value['title'] ); ?> <?php echo $tooltip_html; // WPCS: XSS ok. ?></span>
+          </th>
+          <td class="forminp forminp-<?php echo esc_attr( sanitize_title( $value['type'] ) ); ?>">
+              <a href="#" class="woocommerce-gzd-input-toggle-trigger">
+                  <span id="<?php echo esc_attr( $value['id'] ); ?>-toggle" class="woocommerce-gzd-input-toggle woocommerce-input-toggle woocommerce-input-toggle--<?php echo ( 'yes' === $option_value ? 'enabled' : 'disabled' ); ?>"><?php echo ( 'yes' === $option_value ? __( 'Yes', 'woocommerce-germanized' ) : __( 'No', 'woocommerce-germanized' ) ); ?></span>
+              </a>
+              <input
+                      name="<?php echo esc_attr( $value['id'] ); ?>"
+                      id="<?php echo esc_attr( $value['id'] ); ?>"
+                      type="checkbox"
+                      style="display: none; <?php echo esc_attr( $value['css'] ); ?>"
+                      value="1"
+                      class="<?php echo esc_attr( $value['class'] ); ?>"
+                    <?php checked( $option_value, 'yes' ); ?>
+                <?php echo implode( ' ', $custom_attributes ); // WPCS: XSS ok. ?>
+              /><?php echo esc_html( $value['suffix'] ); ?> <?php echo $description; // WPCS: XSS ok. ?>
+          </td>
+          </tr>
+        <?php
+    }
 
 	public function pre_update_gzd_privacy_option_page( $new_value, $old_value ) {
 		if ( apply_filters( 'woocommerce_gzd_sync_wp_privacy_page', true ) ) {
@@ -292,10 +292,12 @@ class WC_GZD_Admin {
 		global $post;
 
 		if ( is_object( $post ) && $post->post_type === 'product' ) {
-			$product = wc_get_product( $post );
-			if ( ! $product->is_type( 'variable' ) )
+		    $product = wc_get_product( $post );
+
+			if ( $product && ( ! $product->is_type( 'variable' ) ) ) {
 				add_meta_box( 'wc-gzd-product-mini-desc', __( 'Optional Mini Description', 'woocommerce-germanized' ), array( $this, 'init_product_mini_desc' ), 'product', 'advanced', 'high' );
-		}
+			}
+        }
 	}
 
 	public function save_legal_page_content( $post_id, $post, $update ) {

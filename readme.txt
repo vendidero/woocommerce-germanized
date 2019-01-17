@@ -40,34 +40,34 @@ Furthermore we customized the WooCommerce checkout to make your store meet the b
 * *Sale Price Labels* - Prepend your WooCommerce sale prices by certain tags e.g. old price and new price.
 * *Delivery to DHL Parcel Shops or Pick-Up Stations* - Allow customers to choose a DHL pick-up-station within your WooCommerce checkout.
 * *Differential Taxation* - Insert special notices for products which a differential taxed.
-* *WPML and PolyLang Support* - Woo Germanized adds compatibility for WPML and PolyLang.
-* *REST API Support* - Data added by Germanized is adjustable via the WooCommerce REST API (v2)
+* *WPML and PolyLang Support* - WooCommerce Germanized adds compatibility for WPML and PolyLang.
+* *REST API Support* - Data added by WooCommerce Germanized is adjustable via the WooCommerce REST API (v2)
 * *Product CSV Import/Export* - We've extended the WooCommerce product CSV import and export to support our custom fields (e.g. unit price, delivery time etc.)
 * *GDPR export/delete* - We do support the export/delete features of WordPress 4.6 and WooCommerce 3.4 and added new checkboxes to checkout and register form.
 * *PDF Invoices & Packing Slips (Pro)* - Easily create PDF invoices, packing slips and cancellations via your WooCommerce order screen. Optionally generate PDFs automatically based on a certain order status.
-* *Legal PDF attachments (Pro)* - Attach PDFs to certain email templates instead of plain text. Optionally let Germanized generate your PDFs automatically by parsing your page content.
-* *Delayed conclusion of contract (Pro)* - By default a contract is concluded right after submitting the WooCommerce checkout. Germanized offers you to delay that contract and manually check the order before concluding the contract.
+* *Legal PDF attachments (Pro)* - Attach PDFs to certain email templates instead of plain text. Optionally let WooCommerce Germanized generate your PDFs automatically by parsing your page content.
+* *Delayed conclusion of contract (Pro)* - By default a contract is concluded right after submitting the WooCommerce checkout. WooCommerce Germanized offers you to delay that contract and manually check the order before concluding the contract.
 * *VAT ID check for WooCommerce (Pro)* - Provide additional fields within checkout, customer account and registration form to automatically validate the VAT ID based on the EU API.
 * *Multistep Checkout (Pro)* - Adjusts the default single-page-checkout within WooCommerce to support a multistep checkout without overriding templates for optimal theme support.
 
 = WooCommerce Germanized is certified by Trusted Shops =
 WooCommerce Germanized has been approved by Trusted Shops and therefor offers best technical conditions to operate a legally binding WooCommerce Shop in Germany.
 Trusted Shops certifies Shops after selected and weighted criteria and has carefully examined our WooCommerce Plugin.
-Of course Trusted Shops customers may embed their quality seals or further Trusted Shops Products as genuine Seller and Product Reviews by adapting just a few options within Germanized.
+Of course Trusted Shops customers may embed their quality seals or further Trusted Shops Products as genuine Seller and Product Reviews by adapting just a few options within WooCommerce Germanized.
 
 = Code quality =
 While developing WooCommerce Germanized we have specifically considered clean integration within WooCommerce and WordPress by adapting core functionality.
-Most of the changes are made by using Hooks & Filters so that Germanized is compatible to almost every Theme.
+Most of the changes are made by using Hooks & Filters so that our plugin is compatible to almost every Theme.
 
 = Pro: WooCommerce PDF invoices & packing slips =
-As a Pro User of WC Germanized you may automatically or manually create PDF Invoices and Packing Slips for your orders. Doing so you may customize the PDF layout to meet your Corporate Design.
+As a Pro User of WooCommerce Germanized you may automatically or manually create PDF Invoices and Packing Slips for your orders. Doing so you may customize the PDF layout to meet your Corporate Design.
 You may upload your head of a letter which will be used as background for your PDF's. With only a few clicks you may export (CSV, zip) invoices for your tax consultant or accountant.
 Learn more about [PDF Invoices for WooCommerce](https://vendidero.de/woocommerce-germanized#accounting "WooCommerce PDF Invoices")
 
 New: Attach legally relevant pages (e.g. Terms & Conditions) as PDF documents to specific WooCommerce emails.
 
 = Pro: Premium Support =
-Customers of Woo Germanized Pro enjoy our high-quality support via tickets. Nevertheless we also seek to offer a good plugin support via our WordPress support forum.
+Customers of WooCommerce Germanized Pro enjoy our high-quality support via tickets. Nevertheless we also seek to offer a good plugin support via our WordPress support forum.
 
 = Tested WooCommerce Plugins =
 We've added some specific compatibility and tests for certain popular WooCommerce plugins. See this list for further details:
@@ -80,7 +80,7 @@ We've added some specific compatibility and tests for certain popular WooCommerc
 
 = Tested WooCommerce Themes =
 To fit german requirements even better we've developed a special [WooCommerce Theme](https://vendidero.de/vendipro "WooCommerce Theme for German Market") specifically developed for the german market: VendiPro. While developing VendiPro we have considered german design principles to adapt WooCommerce to the german market.
-By default, Germanized works with every WooCommerce theme. Some themes may need adjustments due to not using WooCommerce standards hooks or styles. Within our professional version we've tested certain third-party WooCommerce themes to ensure better compatibility with Germanized:
+By default, WooCommerce Germanized works with every WooCommerce theme. Some themes may need adjustments due to not using WooCommerce standards hooks or styles. Within our professional version we've tested certain third-party WooCommerce themes to ensure better compatibility with WooCommerce Germanized:
 
 * Flatsome
 * Enfold
@@ -99,7 +99,7 @@ By default, Germanized works with every WooCommerce theme. Some themes may need 
 
 = Automatic Installation =
 
-We recommend installing WooCommerce Germanized through the WordPress Backend. Please install WooCommerce before installing WC Germanized.
+We recommend installing WooCommerce Germanized through the WordPress Backend. Please install WooCommerce before installing our plugin.
 After the installation you may easily adapt the settings to your own needs.
 
 = Product specific shortcodes =
@@ -164,12 +164,12 @@ Professional ticket-support is being offered to [Professional Users](https://ven
 = Not every option fits my WooCommerce Theme =
 
 Unfortunately not every Theme does implement WooCommerce in the way it's meant to be or differs from the original structure which leads to layout and/or compatibility 
-issues. Out of that reason we have developed [VendiPro](https://vendidero.de/vendipro) which perfectly fits all Germanized Options and is optimized for German Market.
+issues. Out of that reason we have developed [VendiPro](https://vendidero.de/vendipro) which perfectly fits all WooCommerce Germanized options and is optimized for German Market.
 
 = Email attachments not showing in WooCommerce order confirmation email =
 
-In most times you have a wrong configuration within your Germanized Email settings. The order confirmation email sent to the customer after an order has been made is called "Processing Order". The email called "New Order" is the email
-sent to the Administrator which serves as a notification only - so make sure you have "Processing Order" selected within the Germanized settings.
+In most times you have a wrong configuration within your WooCommerce Germanized email settings. The order confirmation email sent to the customer after an order has been made is called "Processing Order". The email called "New Order" is the email
+sent to the Administrator which serves as a notification only - so make sure you have "Processing Order" selected within the plugins' settings.
 
 = Want to file a bug or improve WooCommerce Germanized? =
 
