@@ -316,7 +316,7 @@ class WC_GZD_Trusted_Shops {
 	}
 
 	public function is_review_sticker_enabled() {
-		return ( $this->is_product_reviews_enabled() && $this->review_sticker_enable === 'yes' ? true : false );
+		return $this->review_sticker_enable === 'yes' ? true : false;
 	}
 
 	public function is_product_widget_enabled() {

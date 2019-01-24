@@ -176,7 +176,7 @@ class WC_GZD_Admin {
 	}
 
 	public function set_gzd_status_tab( $tabs ) {
-		$tabs[ 'germanized' ] = __( 'Germanized', 'woocommerce-germanized' );
+		$tabs['germanized'] = __( 'Germanized', 'woocommerce-germanized' );
 		return $tabs;
 	}
 
@@ -231,33 +231,34 @@ class WC_GZD_Admin {
 		wp_register_script( 'wc-gzd-admin-legal-checkboxes', $admin_script_path . 'legal-checkboxes' . $suffix . '.js', array( 'jquery', 'wp-util', 'underscore', 'backbone', 'jquery-ui-sortable', 'wc-enhanced-select' ), WC_GERMANIZED_VERSION );
 
 		if ( isset( $_GET[ 'tab' ] ) && $_GET[ 'tab' ] == 'germanized' ) {
-
 			wp_enqueue_script( 'wc-gzd-admin' );
 
 			$section = 'general';
 
-			if ( isset( $_GET[ 'section' ] ) )
+			if ( isset( $_GET[ 'section' ] ) ) {
 				$section = sanitize_text_field( $_GET[ 'section' ] );
+            }
 
-			if ( $section === 'trusted_shops' )
+			if ( $section === 'trusted_shops' ) {
 				do_action( 'woocommerce_gzd_load_trusted_shops_script' );
+            }
 
 			if ( $this->is_tour_enabled( $section ) ) {
-
 				wp_enqueue_script( 'scrollto' );
 				wp_enqueue_script( 'tourbus' );
 				wp_enqueue_script( 'wc-gzd-admin-tour' );
 				wp_enqueue_style( 'tourbus' );
-
 			}
 		}
 
-		if ( in_array( $screen->id, array( 'product', 'edit-product' ) ) )
+		if ( in_array( $screen->id, array( 'product', 'edit-product' ) ) ) {
 			wp_enqueue_script( 'wc-gzd-admin-product-variations' );
+        }
 
 		// Hide delivery time and unit tagsdiv
-		if ( version_compare( WC()->version, '2.3', '>=' ) )
+		if ( version_compare( WC()->version, '2.3', '>=' ) ) {
 			wp_add_inline_style( 'woocommerce-gzd-admin', '#tagsdiv-product_delivery_time, #tagsdiv-product_unit, #tagsdiv-product_price_label {display: none}' );
+        }
 
 		do_action( 'woocommerce_gzd_admin_assets', $this, $admin_script_path, $suffix );
 	}
@@ -302,18 +303,20 @@ class WC_GZD_Admin {
 
 	public function save_legal_page_content( $post_id, $post, $update ) {
 
-		if ( $post->post_type != 'page' )
+		if ( $post->post_type != 'page' ) {
 			return;
+        }
 
-		if ( isset( $_POST[ '_legal_text' ] ) && ! empty( $_POST[ '_legal_text' ] ) )
+		if ( isset( $_POST[ '_legal_text' ] ) && ! empty( $_POST[ '_legal_text' ] ) ) {
 			update_post_meta( $post_id, '_legal_text', wc_gzd_sanitize_html_text_field( $_POST[ '_legal_text' ] ) );
-		else
+        } else {
 			delete_post_meta( $post_id, '_legal_text' );
-
+        }
 	}
 
 	public function init_product_mini_desc( $post ) {
 		echo '<p class="small">' . __( 'This content will be shown as short product description within checkout and emails.', 'woocommerce-germanized' ) . '</p>';
+
 		wp_editor( htmlspecialchars_decode( get_post_meta( $post->ID, '_mini_desc', true ) ), 'wc_gzd_product_mini_desc', array( 'textarea_name' => '_mini_desc', 'textarea_rows' => 5, 'media_buttons' => false ) );
 	}
 

@@ -152,7 +152,7 @@ class WC_GZD_Legal_Checkbox_Manager {
 			'label_args'           => $this->get_legal_label_args(),
 			'is_mandatory'         => true,
 			'is_enabled'           => true,
-			'error_message'        => __( 'Please accept the creation of a new customer account', 'woocommerce-germanized' ),
+			'error_message'        => __( 'Please accept our privacy policy to create a new customer account', 'woocommerce-germanized' ),
 			'is_core'              => true,
 			'priority'             => 4,
 			'admin_name'           => __( 'Privacy Policy', 'woocommerce-germanized' ),

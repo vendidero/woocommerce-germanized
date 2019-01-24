@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce Germanized v1.5.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-12-20 11:45+0100\n"
-"PO-Revision-Date: 2018-12-20 11:45+0100\n"
+"POT-Creation-Date: 2019-01-23 10:21+0100\n"
+"PO-Revision-Date: 2019-01-23 10:21+0100\n"
 "Last-Translator: holzhannes <holzhannes@posteo.de>\n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -92,27 +92,27 @@ msgid "l"
 msgstr "l"
 
 # @ woocommerce-germanized
-#: includes/abstracts/abstract-wc-gzd-product.php:265
-#: includes/abstracts/abstract-wc-gzd-product.php:274
+#: includes/abstracts/abstract-wc-gzd-product.php:269
+#: includes/abstracts/abstract-wc-gzd-product.php:278
 #: includes/wc-gzd-core-functions.php:154
 #: includes/wc-gzd-template-functions.php:444 woocommerce-germanized.php:909
 msgid "incl. VAT"
 msgstr "inkl. MwSt."
 
 # @ woocommerce-germanized
-#: includes/abstracts/abstract-wc-gzd-product.php:265
+#: includes/abstracts/abstract-wc-gzd-product.php:269
 msgid "excl. VAT"
 msgstr "exkl. MwSt."
 
 # @ woocommerce-germanized
-#: includes/abstracts/abstract-wc-gzd-product.php:267
+#: includes/abstracts/abstract-wc-gzd-product.php:271
 #: includes/wc-gzd-core-functions.php:154 woocommerce-germanized.php:909
 #, php-format
 msgid "incl. %s%% VAT"
 msgstr "inkl. %s%% MwSt."
 
 # @ woocommerce-germanized
-#: includes/abstracts/abstract-wc-gzd-product.php:267
+#: includes/abstracts/abstract-wc-gzd-product.php:271
 #, php-format
 msgid "excl. %s%% VAT"
 msgstr "exkl. %s%% MwSt."
@@ -144,8 +144,8 @@ msgstr "Aktivierungscode erneut versenden"
 #: includes/class-wc-gzd-customer-helper.php:28
 #: includes/class-wc-gzd-dependencies.php:54
 #: includes/class-wc-gzd-dependencies.php:63
-#: includes/class-wc-gzd-hook-priorities.php:33
-#: includes/class-wc-gzd-hook-priorities.php:42
+#: includes/class-wc-gzd-hook-priorities.php:34
+#: includes/class-wc-gzd-hook-priorities.php:43
 #: includes/export/class-wc-gzd-product-export.php:23
 #: includes/export/class-wc-gzd-product-export.php:32
 #: includes/import/class-wc-gzd-product-import.php:23
@@ -447,25 +447,25 @@ msgid "not allowed"
 msgstr "nicht akzeptiert"
 
 # @ woocommerce-germanized
-#: includes/admin/class-wc-gzd-admin.php:278
+#: includes/admin/class-wc-gzd-admin.php:279
 msgid "Optional Email Content"
 msgstr "Optionaler E-Mail Inhalt"
 
 # @ woocommerce-germanized
-#: includes/admin/class-wc-gzd-admin.php:287
+#: includes/admin/class-wc-gzd-admin.php:288
 msgid "Add content which will be replacing default page content within emails."
 msgstr ""
 "Fülle dieses Feld aus um einen abweichenden E-Mail Anhangstext für diese "
 "Seite zu bestimmen."
 
 # @ woocommerce-germanized
-#: includes/admin/class-wc-gzd-admin.php:297
+#: includes/admin/class-wc-gzd-admin.php:299
 #: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:153
 msgid "Optional Mini Description"
 msgstr "Warenkorb Kurzbeschreibung"
 
 # @ woocommerce-germanized
-#: includes/admin/class-wc-gzd-admin.php:314
+#: includes/admin/class-wc-gzd-admin.php:318
 msgid ""
 "This content will be shown as short product description within checkout and "
 "emails."
@@ -3629,8 +3629,10 @@ msgstr ""
 
 # @ woocommerce-germanized
 #: includes/class-wc-gzd-legal-checkbox-manager.php:155
-msgid "Please accept the creation of a new customer account"
-msgstr "Bitte akzeptieren Sie die Erstellung eines neuen Kundenkontos"
+msgid "Please accept our privacy policy to create a new customer account"
+msgstr ""
+"Bitte akzeptieren Sie unsere Datenschutzerklärung, um ein neues Kundenkonto "
+"zu erstellen"
 
 # @ woocommerce-germanized
 #: includes/class-wc-gzd-legal-checkbox-manager.php:159
