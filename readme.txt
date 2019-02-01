@@ -5,7 +5,7 @@ Requires at least: 3.8
 Tested up to: 5.0
 WC requires at least: 2.4
 WC tested up to: 3.5
-Stable tag: 2.2.7
+Stable tag: 2.2.8
 Requires PHP: 5.3
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -183,6 +183,15 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 4. WooCommerce Multistep Checkout (Pro)
 
 == Changelog ==
+
+= 2.2.8 =
+* Fix: Readd cart template hooks after rendering mini cart
+* Fix: Make sure that product object exists within add_product_mini_desc()
+* Fix: TS review sticket widget enabling
+* Tweak: Woo 3.5.4 gettext order confirmation replacement
+* Improvement: Default privacy error message wording
+* Improvement: Add to cart variation script
+* Improvement: Better WPML language switch implementation
 
 = 2.2.7 =
 * Fix: Email settings labels missing
