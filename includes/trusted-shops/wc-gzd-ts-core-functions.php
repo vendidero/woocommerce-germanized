@@ -64,50 +64,17 @@ if ( ! function_exists( 'wc_ts_get_order_language' ) ) {
 if ( ! function_exists( 'wc_ts_switch_language' ) ) {
 
     function wc_ts_switch_language( $lang, $set_default = false ) {
-        global $sitepress;
-        global $wc_ts_original_lang;
-
-        if ( $set_default ) {
-            $wc_ts_original_lang = $lang;
+        if ( $compatibility = WC_germanized()->get_compatibility( 'wpml' ) ) {
+            $compatibility->set_language( $lang, $set_default );
         }
-
-        if ( isset( $sitepress ) && is_callable( array( $sitepress, 'get_current_language' ) ) && is_callable( array( $sitepress, 'switch_lang' ) ) ) {
-            if ( $sitepress->get_current_language() != $lang ) {
-
-                $sitepress->switch_lang( $lang, true );
-
-                // Somehow WPML doesn't automatically change the locale
-                if ( is_callable( array( $sitepress, 'reset_locale_utils_cache' ) ) ) {
-                    $sitepress->reset_locale_utils_cache();
-                }
-
-                if ( function_exists( 'switch_to_locale' ) ) {
-                    switch_to_locale( get_locale() );
-
-                    // Filter on plugin_locale so load_plugin_textdomain loads the correct locale.
-                    add_filter( 'plugin_locale', 'get_locale' );
-
-                    // Init WC locale.
-                    WC()->load_plugin_textdomain();
-                    WC_germanized()->load_plugin_textdomain();
-                    WC_germanized()->trusted_shops->refresh();
-                }
-
-                do_action( 'woocommerce_gzd_trusted_shops_switched_language', $lang, $wc_ts_original_lang );
-            }
-        }
-
-        do_action( 'woocommerce_gzd_trusted_shops_switch_language', $lang, $wc_ts_original_lang );
     }
 }
 
 if ( ! function_exists( 'wc_ts_restore_language' ) ) {
 
     function wc_ts_restore_language() {
-        global $wc_ts_original_lang;
-
-        if ( isset( $wc_ts_original_lang ) && ! empty( $wc_ts_original_lang ) ) {
-            wc_ts_switch_language( $wc_ts_original_lang );
+        if ( $compatibility = WC_germanized()->get_compatibility( 'wpml' ) ) {
+            $compatibility->restore_language();
         }
     }
 }

@@ -12,6 +12,8 @@ class WC_GZD_Compatibility_Wpml extends WC_GZD_Compatibility {
 
 	protected $dynamic_unit_pricing = null;
 
+	protected $new_language = false;
+
 	public function __construct() {
 		parent::__construct( 
 			'WPML', 
@@ -120,38 +122,87 @@ class WC_GZD_Compatibility_Wpml extends WC_GZD_Compatibility {
 		}
 	}
 
-	public function set_language( $lang ) {
-		global $sitepress, $woocommerce;
+	public function language_locale_filter( $default ) {
+        global $sitepress;
 
-		$sitepress->switch_lang( $lang, true );
-        $this->locale = $sitepress->get_locale( $lang );
-       	
-       	add_filter( 'plugin_locale', array( $this, 'set_locale' ), 10, 2 );
-
-        unload_textdomain( 'woocommerce' );
-        unload_textdomain( 'woocommerce-germanized' );
-        unload_textdomain( 'woocommerce-germanized-pro' );
-        unload_textdomain( 'default' );
-
-        global $wp_locale;
-        $wp_locale = new WP_Locale();
-        
-        $woocommerce->load_plugin_textdomain();
-        WC_germanized()->load_plugin_textdomain();
-
-        do_action( 'woocommerce_gzd_wpml_lang_changed', $lang );
-        
-        load_default_textdomain();
-	}
-
-	public function set_locale( $locale, $domain ) {
-
-		if ( in_array( $domain, array( 'woocommerce', 'woocommerce-germanized', 'woocommerce-germanized-pro' ) ) && $this->locale ) {
-            $locale = $this->locale;
+        if ( $this->new_language && ! empty( $this->new_language ) ) {
+            if ( isset( $sitepress ) && is_callable( array( $sitepress, 'get_locale' ) ) ) {
+                return $sitepress->get_locale( $this->new_language );
+            }
         }
 
-        return $locale;
+        return $default;
+    }
+
+    public function language_user_locale_filter( $value, $user_id, $meta_key ) {
+	    if ( 'locale' === $meta_key ) {
+            return get_locale();
+        }
+
+        return $value;
+    }
+
+	public function set_language( $lang, $set_default = false ) {
+        global $sitepress;
+        global $wc_gzd_original_lang;
+
+        if ( $set_default ) {
+            $wc_gzd_original_lang = $lang;
+        } elseif ( ! isset( $wc_gzd_original_lang ) || empty( $wc_gzd_original_lang ) ) {
+            // Make sure default language is stored within global to ensure reset works
+            if ( is_callable( array( $sitepress, 'get_current_language' ) ) ) {
+                $wc_gzd_original_lang = $sitepress->get_current_language();
+            }
+        }
+
+        if ( isset( $sitepress ) && is_callable( array( $sitepress, 'get_current_language' ) ) && is_callable( array( $sitepress, 'switch_lang' ) ) ) {
+            if ( $sitepress->get_current_language() != $lang ) {
+
+                $this->new_language = $lang;
+
+                $sitepress->switch_lang( $lang, true );
+
+                // Somehow WPML doesn't automatically change the locale
+                if ( is_callable( array( $sitepress, 'reset_locale_utils_cache' ) ) ) {
+                    $sitepress->reset_locale_utils_cache();
+                }
+
+                // Filter locale because WPML does still use the user locale within admin panel
+                add_filter( 'locale', array( $this, 'language_locale_filter' ), 50 );
+
+                if ( function_exists( 'switch_to_locale' ) ) {
+                    switch_to_locale( get_locale() );
+
+                    // Filter on plugin_locale so load_plugin_textdomain loads the correct locale.
+                    add_filter( 'plugin_locale', 'get_locale' );
+
+                    unload_textdomain( 'default' );
+                    unload_textdomain( 'woocommerce' );
+                    unload_textdomain( 'woocommerce-germanized' );
+
+                    // Init WC locale.
+                    WC()->load_plugin_textdomain();
+                    WC_germanized()->load_plugin_textdomain();
+                    load_default_textdomain( get_locale() );
+                }
+
+                do_action( 'woocommerce_gzd_wpml_switched_language', $lang, $wc_gzd_original_lang );
+            }
+        }
+
+        do_action( 'woocommerce_gzd_wpml_switch_language', $lang, $wc_gzd_original_lang );
 	}
+
+    public function restore_language() {
+        global $wc_gzd_original_lang;
+
+        if ( isset( $wc_gzd_original_lang ) && ! empty( $wc_gzd_original_lang ) ) {
+            $this->set_language( $wc_gzd_original_lang );
+            $this->new_language = false;
+
+            remove_filter( 'locale', array( $this, 'language_locale_filter' ), 50 );
+        }
+    }
 
 	public function filter_page_ids() {
 
