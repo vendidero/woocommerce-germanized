@@ -108,10 +108,15 @@ class WC_GZD_Emails {
 
 	public function replace_processing_email_text( $translated, $original, $domain ) {
 		if ( 'woocommerce' === $domain ) {
-			if ( 'Just to let you know &mdash; your payment has been confirmed, and order #%s is now being processed:' === $original || 'Your order has been received and is now being processed. Your order details are shown below for your reference:' === $original ) {
+		    $search = array(
+		        'Just to let you know &mdash; we\'ve received your order #%s, and it is now being processed:',
+                'Just to let you know &mdash; your payment has been confirmed, and order #%s is now being processed:',
+                'Your order has been received and is now being processed. Your order details are shown below for your reference:',
+            );
+
+			if ( in_array( $original, $search ) ) {
 				if ( isset( $GLOBALS['wc_gzd_processing_order'] ) ) {
 					$order = $GLOBALS['wc_gzd_processing_order'];
-
 					return $this->get_processing_email_text( $order );
 				}
 			}
