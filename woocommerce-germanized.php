@@ -235,9 +235,23 @@ final class WooCommerce_Germanized {
 	 */
 	public function autoload( $class ) {
 
+        $original_class = $class;
+        $class          = strtolower( $class );
+
+	    $matcher = array(
+	        'wc_gzd_',
+            'ekomi\\',
+            'digitick\sepa',
+            'defuse\crypto',
+        );
+
+        $is_match = ( str_replace( $matcher, '', $class ) != $class );
+
+	    if ( ! $is_match ) {
+	        return;
+        }
+
 		$path = $this->plugin_path() . '/includes/';
-		$original_class = $class;
-		$class = strtolower( $class );
 		$file = 'class-' . str_replace( '_', '-', $class ) . '.php';
 
 		if ( strpos( $class, 'wc_gzd_admin' ) !== false ) {

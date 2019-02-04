@@ -520,10 +520,16 @@ class WC_GZD_Admin {
 	}
 
 	public function get_shipping_method_instances() {
-		// Make sure we are not firing before init because otherwise some Woo errors might occur
+
+	    // Make sure we are not firing before init because otherwise some Woo errors might occur
 		if ( ! did_action( 'init' ) ) {
 			return array();
 		}
+
+		// WC_Shipping_Zone will try to call WC()->countries. Make sure that the object already exists.
+		if ( ! isset( WC()->countries ) || ! is_a( WC()->countries, 'WC_Countries' ) ) {
+		    return array();
+        }
 
 		if ( ! class_exists( 'WC_Shipping_Zones' ) ) {
 			$instances = WC()->shipping->get_shipping_methods();
