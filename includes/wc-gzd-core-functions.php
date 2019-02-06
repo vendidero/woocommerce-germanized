@@ -189,9 +189,20 @@ function wc_gzd_get_privacy_policy_url() {
 	return get_permalink( wc_gzd_get_privacy_policy_page_id() );
 }
 
-function wc_gzd_get_customer_title( $option ) {
-	$options = apply_filters( 'woocommerce_gzd_title_options', array( 1 => __( 'Mr.', 'woocommerce-germanized' ), 2 => __( 'Ms.', 'woocommerce-germanized' ) ) );
-	return ( array_key_exists( $option, $options ) ? $options[ $option ] : $option );
+function wc_gzd_get_customer_title( $value ) {
+    $option = absint( $value );
+
+    $titles = apply_filters( 'woocommerce_gzd_title_options', array( 1 => __( 'Mr.', 'woocommerce-germanized' ), 2 => __( 'Ms.', 'woocommerce-germanized' ) ) );
+
+    if ( '[deleted]' === $value ) {
+        return $value;
+    }
+
+    if ( array_key_exists( $option, $titles ) ) {
+        return $titles[ $option ];
+    } else {
+        return __( 'Ms.', 'woocommerce-germanized' );
+    }
 }
 
 function wc_gzd_register_legal_checkbox( $id, $args ) {

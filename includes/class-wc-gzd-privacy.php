@@ -129,7 +129,7 @@ class WC_GZD_Privacy {
 			if ( $value = $customer->get_meta( $prop ) ) {
 
 				if ( in_array( $prop, array( 'billing_title', 'shipping_title' ) ) ) {
-					$value = WC_GZD_Checkout::instance()->get_customer_title( $value );
+					$value = wc_gzd_get_customer_title( $value );
 				}
 
 				if ( in_array( $prop, array( 'direct_debit_iban', 'direct_debit_bic' ) ) ) {

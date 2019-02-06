@@ -289,8 +289,10 @@ class WC_GZD_Product {
 	 * @return boolean
 	 */
 	public function has_unit() {
-		if ( $this->unit && $this->unit_price_regular && $this->unit_base )
+		if ( $this->unit && $this->unit_price_regular && $this->unit_base ) {
 			return true;
+        }
+
 		return false;
 	}
 

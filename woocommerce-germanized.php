@@ -162,9 +162,9 @@ final class WooCommerce_Germanized {
 		do_action( 'woocommerce_germanized_loaded' );
 
 		if ( did_action( 'woocommerce_loaded' ) ) {
-			$this->checkbox_includes();
+			$this->woocommerce_loaded_includes();
 		} else {
-			add_action( 'woocommerce_loaded', array( $this, 'checkbox_includes' ) );
+			add_action( 'woocommerce_loaded', array( $this, 'woocommerce_loaded_includes' ) );
 		}
 	}
 
@@ -411,10 +411,16 @@ final class WooCommerce_Germanized {
 
 	}
 
-	public function checkbox_includes() {
+	public function woocommerce_loaded_includes() {
 		// Checkboxes
 		include_once WC_GERMANIZED_ABSPATH . 'includes/class-wc-gzd-legal-checkbox.php';
 		include_once WC_GERMANIZED_ABSPATH . 'includes/class-wc-gzd-legal-checkbox-manager.php';
+
+		// Product Attribute
+        if ( wc_gzd_get_dependencies()->woocommerce_version_supports_crud() ) {
+            include_once WC_GERMANIZED_ABSPATH . 'includes/class-wc-gzd-product-attribute.php';
+            include_once WC_GERMANIZED_ABSPATH . 'includes/class-wc-gzd-product-attribute-helper.php';
+        }
 	}
 
 	public function is_frontend() {
