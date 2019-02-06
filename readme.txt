@@ -185,6 +185,7 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 == Changelog ==
 
 = 2.2.8 =
+* Feature: Choose product attributes to be shown during checkout/cart
 * Fix: Readd cart template hooks after rendering mini cart
 * Fix: Make sure that product object exists within add_product_mini_desc()
 * Fix: TS review sticket widget enabling

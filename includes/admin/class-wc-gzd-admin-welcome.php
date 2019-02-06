@@ -128,17 +128,11 @@ class WC_GZD_Admin_Welcome {
                 <a href="https://vendidero.de/woocommerce-germanized#buy" target="_blank" class="button button-primary wc-germanized-welcome-pro">Upgrade zur Pro Version</a>
 			</p>
 			<div class="changelog vendipro new-feature">
-                <h3>Rechtliche Checkboxen UI</h3>
+                <h3>Produktattribute im Warenkorb & Checkout</h3>
                 <div class="left">
                     <p>
-                        Mit Version 2.0 von Germanized kannst du deine rechtlichen Checkboxen über ein übersichtliches User Interface verwalten.
-                        Du kannst z.B. die Sortierung der verschiedenen Checkboxen via Drag & Drop anpassen und Attribute bearbeiten. Nutzer der Pro-Version können darüberhinaus eigene Checkboxen anlegen, bearbeiten und löschen.
-                        Beim Bearbeiten der Checkbox kannst du einfach Attribute der Checkbox festlegen, darunter die Beschriftung, Fehlermeldung, ob es sich um ein Pflichtfeld handelt uvm.
-                        Damit werden die Anpassungen an deinen Checkboxen nicht nur deutlich übersichtlicher sondern auch mit neuen Features versehen.
-                        Die neuen rechtlichen Checkboxen kannst du <a href="<?php echo admin_url( 'admin.php?page=wc-settings&tab=germanized&section=checkboxes' ); ?>">hier</a> anpassen.
-                    </p>
-                    <p>
-                        Weitere Informationen, auch zu den technischen Details der rechtl. Checkboxen findest du in unserer <a href="https://vendidero.de/dokument/woocommerce-germanized-rechtliche-checkboxen" target="_blank">Doku</a>.
+                        Mit der neuesten Version von Germanized könnt ihr nun bequem entscheiden, welche Produktattribute im Checkout bzw. im Warenkorb angezeigt werden sollen.
+                        Damit könnt ihr (neben der Warenkorbkurzbeschreibung) rechtlich relevante Produkteigenschaften bequem verwalten. Weitere Informationen zum Urteil des OLG in Bezug auf den Amazon-Checkout findet ihr <a href="https://www.onlinehaendler-news.de/e-recht/aktuelle-urteile/130463-amazon-check-out-rechtswidrig" target="_blank">hier</a>.
                     </p>
                     <div class="vendipro-buttons wc-germanized-welcome-pro">
                         <a href="https://vendidero.de/woocommerce-germanized#pro" target="_blank" class="button button-primary wc-gzd-button">Pro Version entdecken</a>
@@ -146,7 +140,7 @@ class WC_GZD_Admin_Welcome {
                     </div>
                 </div>
                 <div class="right">
-                    <img src="<?php echo WC_germanized()->plugin_url();?>/assets/images/checkboxes.png" />
+                    <img src="<?php echo WC_germanized()->plugin_url();?>/assets/images/attributes.png" />
                 </div>
             </div>
 			<div class="changelog vendipro new-feature wc-germanized-welcome-pro">
