@@ -128,12 +128,13 @@ class WC_GZD_Admin_Welcome {
                 <a href="https://vendidero.de/woocommerce-germanized#buy" target="_blank" class="button button-primary wc-germanized-welcome-pro">Upgrade zur Pro Version</a>
 			</p>
 			<div class="changelog vendipro new-feature">
-                <h3>Produktattribute im Warenkorb & Checkout</h3>
+                <h3>Produkteigenschaften im Warenkorb & Checkout</h3>
                 <div class="left">
                     <p>
-                        Mit der neuesten Version von Germanized könnt ihr nun bequem entscheiden, welche Produktattribute im Checkout bzw. im Warenkorb angezeigt werden sollen.
-                        Damit könnt ihr (neben der Warenkorbkurzbeschreibung) rechtlich relevante Produkteigenschaften bequem verwalten. Weitere Informationen zum Urteil des OLG in Bezug auf den Amazon-Checkout findet ihr <a href="https://www.onlinehaendler-news.de/e-recht/aktuelle-urteile/130463-amazon-check-out-rechtswidrig" target="_blank">hier</a>.
+                        Mit der neuesten Version von Germanized könnt ihr nun bequem entscheiden, welche Produkteigenschaften im Checkout bzw. im Warenkorb angezeigt werden sollen.
+                        Damit könnt ihr (neben der Warenkorbkurzbeschreibung) rechtlich relevante Produkteigenschaften bequem verwalten und zuordnen. Weitere Informationen zum Urteil des OLG in Bezug auf den Amazon-Checkout findet ihr <a href="https://www.onlinehaendler-news.de/e-recht/aktuelle-urteile/130463-amazon-check-out-rechtswidrig" target="_blank">hier</a>.
                     </p>
+                    <p>Alternativ könnt ihr die Option zum Auflisten <strong>aller Produkteigenschaften</strong> im Warenkorb und in der Kasse in den Germanized-Einstellungen unter <a href="<?php echo admin_url( 'admin.php?page=wc-settings&tab=germanized&section=display' ); ?>">Anzeige</a> aktivieren.</p>
                     <div class="vendipro-buttons wc-germanized-welcome-pro">
                         <a href="https://vendidero.de/woocommerce-germanized#pro" target="_blank" class="button button-primary wc-gzd-button">Pro Version entdecken</a>
                         <p class="price smaller">ab 69,95 € inkl. MwSt. - inkl. 1 Jahr Updates & Premium Support!</p>

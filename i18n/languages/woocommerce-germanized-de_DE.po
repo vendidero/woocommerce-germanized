@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce Germanized v1.5.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-06 13:26+0100\n"
-"PO-Revision-Date: 2019-02-06 13:26+0100\n"
+"POT-Creation-Date: 2019-02-07 11:29+0100\n"
+"PO-Revision-Date: 2019-02-07 11:31+0100\n"
 "Last-Translator: holzhannes <holzhannes@posteo.de>\n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -251,7 +251,7 @@ msgstr "Virtuelles Produkt"
 
 #: includes/admin/class-wc-gzd-admin-legal-checkboxes.php:101
 #: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:45
-#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:141
+#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:119
 #: includes/admin/settings/class-wc-gzd-settings-germanized.php:766
 #: includes/class-wc-gzd-legal-checkbox-manager.php:122
 msgid "Service"
@@ -407,7 +407,7 @@ msgid "Welcome to WooCommerce Germanized"
 msgstr "Willkommen bei WooCommerce Germanized"
 
 # @ woocommerce-germanized
-#: includes/admin/class-wc-gzd-admin-welcome.php:319
+#: includes/admin/class-wc-gzd-admin-welcome.php:314
 msgid "Go to WooCommerce Germanized Settings"
 msgstr "zu den WooCommerce Germanized Einstellungen"
 
@@ -476,12 +476,12 @@ msgstr ""
 "Produkt Kurzbeschreibung angezeigt."
 
 #: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:45
-#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:142
+#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:120
 msgid "Service products do not sell physical products."
 msgstr "Dienstleistungen werden nicht in physikalischer Form verkauft."
 
 #: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:85
-#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:166
+#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:144
 msgid "Sale Label"
 msgstr "Streichpreis Hinweis"
 
@@ -492,13 +492,13 @@ msgid "Same as Parent"
 msgstr "Gleiche wie übergeordnet"
 
 #: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:95
-#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:167
+#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:145
 msgid "Sale Regular Label"
 msgstr "Angebotspreis Hinweis"
 
 # @ woocommerce-germanized
 #: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:113
-#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:170
+#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:148
 #: includes/admin/settings/class-wc-gzd-settings-germanized.php:704
 #: includes/admin/settings/class-wc-gzd-settings-germanized.php:859
 #: includes/admin/settings/class-wc-gzd-settings-germanized.php:908
@@ -517,7 +517,7 @@ msgstr ""
 
 # @ woocommerce-germanized
 #: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:117
-#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:190
+#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:168
 msgid "Calculation"
 msgstr "Berechnung"
 
@@ -551,7 +551,7 @@ msgstr "Allgemein"
 
 # @ woocommerce-germanized
 #: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:138
-#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:241
+#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:219
 #: includes/api/class-wc-gzd-rest-products-controller.php:38
 #: includes/api/class-wc-gzd-rest-products-controller.php:203
 msgid "Delivery Time"
@@ -562,25 +562,21 @@ msgstr "Lieferzeit"
 msgid "Same as parent"
 msgstr "Gleiche wie übergeordnet"
 
-#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:73
-msgid "Visible on checkout"
-msgstr "Im Checkout anzeigen"
-
-#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:149
+#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:127
 msgid "Diff. Taxation"
 msgstr "Differenzbesteuerung"
 
-#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:150
+#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:128
 msgid "Product applies to differential taxation based on §25a UStG."
 msgstr "Produkt ist differenzbesteuert nach §25a UStG."
 
 # @ woocommerce-germanized
-#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:166
-#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:167
+#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:144
+#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:145
 msgid "Select Price Label"
 msgstr "Preishinweis auswählen"
 
-#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:166
+#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:144
 msgid ""
 "If the product is on sale you may want to show a price label right before "
 "outputting the old price to inform the customer."
@@ -590,7 +586,7 @@ msgstr ""
 "Preis). Mit diesem Hinweis kannst du genau festlegen, um welchen Preis es "
 "sich dabei handelte (z.B. UVP)."
 
-#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:167
+#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:145
 msgid ""
 "If the product is on sale you may want to show a price label right before "
 "outputting the new price to inform the customer."
@@ -600,35 +596,35 @@ msgstr ""
 "Preis)."
 
 # @ woocommerce-germanized
-#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:169
+#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:147
 #: includes/api/class-wc-gzd-rest-products-controller.php:113
 #: includes/class-wc-gzd-post-types.php:66
 msgid "Unit"
 msgstr "Einheit"
 
 # @ woocommerce-germanized
-#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:169
+#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:147
 msgid "Select unit"
 msgstr "Einheit auswählen"
 
 # @ woocommerce-germanized
-#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:169
+#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:147
 msgid "Needed if selling on a per unit basis"
 msgstr "Notwendig falls auf pro-Einheit-Basis verkauft werden soll"
 
 # @ woocommerce-germanized
-#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:170
+#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:148
 msgid "Number of units included per default product price. Example: 1000 ml."
 msgstr ""
 "Anzahl der Produkteinheiten auf Basis des Produktpreises. Beispiel: 1000 ml."
 
 # @ woocommerce-germanized
-#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:171
+#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:149
 msgid "Base Price Units"
 msgstr "Grundpreiseinheiten"
 
 # @ woocommerce-germanized
-#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:171
+#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:149
 msgid ""
 "Base price units. Example base price: 0,99 € / 100 ml. Insert 100 as base "
 "price unit amount."
@@ -637,33 +633,33 @@ msgstr ""
 "hier 100 als Grundpreiseinheiten ein."
 
 # @ woocommerce-germanized
-#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:190
+#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:168
 msgid "Calculate base prices automatically."
 msgstr "Grundpreis automatisch berechnen."
 
 # @ woocommerce-germanized
-#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:192
+#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:170
 msgid "Regular Base Price"
 msgstr "Regulärer Grundpreis"
 
 # @ woocommerce-germanized
-#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:193
+#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:171
 msgid "Sale Base Price"
 msgstr "Angebotsgrundpreis"
 
 # @ woocommerce-germanized
-#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:203
-#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:245
+#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:181
+#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:223
 msgid "Search for a delivery time&hellip;"
 msgstr "Lieferzeit suchen&hellip;"
 
 # @ woocommerce-germanized
-#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:254
+#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:232
 msgid "Free shipping?"
 msgstr "Versand kostenlos?"
 
 # @ woocommerce-germanized
-#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:254
+#: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:232
 msgid "This option disables the \"plus shipping costs\" notice on product page"
 msgstr ""
 "Deaktiviert den Hinweis \"zzgl. Versandkosten\". Ohne Auswirkungen auf die "
@@ -3988,6 +3984,26 @@ msgstr "Mandat ID"
 #: includes/class-wc-gzd-privacy.php:88
 msgid "Mandate Email"
 msgstr "Mandat E-Mail"
+
+#: includes/class-wc-gzd-product-attribute-helper.php:52
+msgid "Show product attributes"
+msgstr "Produkteigenschaften"
+
+#: includes/class-wc-gzd-product-attribute-helper.php:53
+msgid "List all product attributes during cart and checkout."
+msgstr "Listet alle Produkteigenschaften im Warenkorb und in der Kasse auf."
+
+#: includes/class-wc-gzd-product-attribute-helper.php:57
+msgid ""
+"This option forces WooCommerce to output a list of all product attributes "
+"during cart and checkout."
+msgstr ""
+"Diese Option zwingt WooCommerce zur Ausgabe aller Produkteigenschaften im "
+"Warenkorb und in der Kasse."
+
+#: includes/class-wc-gzd-product-attribute-helper.php:80
+msgid "Visible on checkout"
+msgstr "Im Checkout anzeigen"
 
 #: includes/class-wc-gzd-product-variable.php:124
 #: includes/class-wc-gzd-product-variable.php:129
