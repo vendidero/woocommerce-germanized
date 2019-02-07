@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce Germanized v1.5.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-07 11:29+0100\n"
-"PO-Revision-Date: 2019-02-07 11:31+0100\n"
+"POT-Creation-Date: 2019-02-07 12:00+0100\n"
+"PO-Revision-Date: 2019-02-07 12:00+0100\n"
 "Last-Translator: holzhannes <holzhannes@posteo.de>\n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -4002,7 +4002,7 @@ msgstr ""
 "Warenkorb und in der Kasse."
 
 #: includes/class-wc-gzd-product-attribute-helper.php:80
-msgid "Visible on checkout"
+msgid "Visible during checkout"
 msgstr "Im Checkout anzeigen"
 
 #: includes/class-wc-gzd-product-variable.php:124

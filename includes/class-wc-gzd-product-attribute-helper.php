@@ -77,7 +77,7 @@ class WC_GZD_Product_Attribute_Helper {
         ?>
         <tr>
             <td>
-                <label><input type="checkbox" class="checkbox" <?php checked( $gzd_product_attribute->is_checkout_visible(), true ); ?> name="attribute_checkout_visibility[<?php echo esc_attr( $i ); ?>]" value="1" /> <?php esc_html_e( 'Visible on checkout', 'woocommerce-germanized' ); ?></label>
+                <label><input type="checkbox" class="checkbox" <?php checked( $gzd_product_attribute->is_checkout_visible(), true ); ?> name="attribute_checkout_visibility[<?php echo esc_attr( $i ); ?>]" value="1" /> <?php esc_html_e( 'Visible during checkout', 'woocommerce-germanized' ); ?></label>
             </td>
         </tr>
         <?php
