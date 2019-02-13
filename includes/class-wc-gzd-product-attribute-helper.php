@@ -36,7 +36,7 @@ class WC_GZD_Product_Attribute_Helper {
         // This is the only nice way to update attributes after Woo has updated product attributes
         add_action( 'woocommerce_product_object_updated_props', array( $this, 'update_attributes' ), 10, 2 );
         // Adjust cart item data to include attributes visible during cart/checkout
-        add_filter( 'woocommerce_get_item_data', array( $this, 'cart_item_data_filter' ), 10, 2 );
+        add_filter( 'woocommerce_get_item_data', array( $this, 'cart_item_data_filter' ), 150, 2 );
 
         if ( is_admin() ) {
             add_action( 'woocommerce_after_product_attribute_settings', array( $this, 'attribute_visibility' ), 10, 2 );
@@ -87,10 +87,10 @@ class WC_GZD_Product_Attribute_Helper {
         $cart_product = $cart_item['data'];
 
         if ( $cart_product->is_type( 'variation' ) ) {
-            $item_data = array_merge( $item_data, $this->get_cart_product_variation_attributes( $cart_item ) );
+            $item_data = array_merge( $item_data, $this->get_cart_product_variation_attributes( $cart_item, $item_data ) );
         }
 
-        $item_data = array_merge( $this->get_cart_product_attributes( $cart_item ), $item_data );
+        $item_data = array_merge( $this->get_cart_product_attributes( $cart_item, $item_data ), $item_data );
 
         return $item_data;
     }
@@ -109,7 +109,17 @@ class WC_GZD_Product_Attribute_Helper {
         return false;
     }
 
-    protected function get_cart_product_variation_attributes( $cart_item ) {
+    protected function cart_item_data_exists( $key, $item_data ) {
+        foreach( $item_data as $item_data_key => $data ) {
+            if ( isset( $data['key'] ) && $key === $data['key'] ) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    protected function get_cart_product_variation_attributes( $cart_item, $original_item_data = array() ) {
         $item_data = array();
 
         if ( $cart_item['data']->is_type( 'variation' ) && is_array( $cart_item['variation'] ) ) {
@@ -141,6 +151,10 @@ class WC_GZD_Product_Attribute_Helper {
                     continue;
                 }
 
+                if ( $this->cart_item_data_exists( $label, $original_item_data ) ) {
+                    continue;
+                }
+
                 $item_data[] = array(
                     'key'   => $label,
                     'value' => $value,
@@ -151,7 +165,7 @@ class WC_GZD_Product_Attribute_Helper {
         return $item_data;
     }
 
-    protected function get_cart_product_attributes( $cart_item ) {
+    protected function get_cart_product_attributes( $cart_item, $original_item_data = array() ) {
         $item_data    = array();
         $org_product  = $cart_item['data'];
         $product      = $org_product;
@@ -196,8 +210,14 @@ class WC_GZD_Product_Attribute_Helper {
                     }
                 }
 
+                $label = wc_attribute_label( $attribute->get_name() );
+
+                if ( $this->cart_item_data_exists( $label, $original_item_data ) ) {
+                    continue;
+                }
+
                 $item_data[] = array(
-                    'key'   => wc_attribute_label( $attribute->get_name() ),
+                    'key'   => $label,
                     'value' => apply_filters( 'woocommerce_attribute', wpautop( wptexturize( implode( ', ', $values ) ) ), $attribute->get_attribute(), $values )
                 );
             }

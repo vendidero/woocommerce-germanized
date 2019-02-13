@@ -176,7 +176,7 @@ if ( ! defined( 'ABSPATH' ) )
 				<td class="help"><?php echo '<a href="#" class="help_tip" data-tip="' . esc_attr( sprintf( __( 'Checks whether compatibility options for %s are being applied.', 'woocommerce-germanized' ), $comp->get_name() ) ) . '">[?]</a>'; ?></td>
 				<td>
 					<?php echo ( $comp->is_applicable() ? '<mark class="yes">'.'&#10004;'.'</mark>' : '<mark class="no">'.'&ndash;'.'</mark>' ); ?>
-					<?php echo ( ! $comp->is_supported() ? sprintf( __( 'Version % not supported, supporting version %s - %s', 'woocommerce-germanized' ), $version_data['version'], $version_data['requires_at_least'], $version_data['tested_up_to'] ) : '' ); ?> 
+					<?php echo ( ! $comp->is_supported() ? sprintf( __( 'Version %s not supported, supporting version %s - %s', 'woocommerce-germanized' ), $version_data['version'], $version_data['requires_at_least'], $version_data['tested_up_to'] ) : '' ); ?>
 				</td>
 			</tr>
 
