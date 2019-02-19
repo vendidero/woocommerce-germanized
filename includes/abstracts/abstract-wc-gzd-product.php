@@ -270,7 +270,7 @@ class WC_GZD_Product {
             }
         }
 
-        return $item_data;
+        return apply_filters( 'woocommerce_gzd_product_checkout_attributes', $item_data, $this->child );
     }
 
 	public function is_service() {
