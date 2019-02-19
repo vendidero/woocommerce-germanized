@@ -114,6 +114,7 @@ class WC_GZD_Hook_Priorities {
 			'email_product_units'		 	        => 2,
 			'email_product_delivery_time'	        => 3,
 			'email_product_item_desc'		        => 4,
+            'email_product_attributes'		        => 5,
 			'gzd_footer_vat_info'			        => 0,
 			'footer_vat_info'				        => 5,
 			'gzd_footer_sale_info'			        => 0,

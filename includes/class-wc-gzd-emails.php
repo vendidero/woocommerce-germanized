@@ -484,24 +484,33 @@ class WC_GZD_Emails {
 		// Add order item name actions
 		add_filter( 'woocommerce_order_item_name', 'wc_gzd_cart_product_differential_taxation_mark', wc_gzd_get_hook_priority( 'email_product_differential_taxation' ), 2 );
 
-		if ( get_option( 'woocommerce_gzd_display_emails_product_units' ) === 'yes' )
+		if ( 'yes' === get_option( 'woocommerce_gzd_display_emails_product_units' ) ) {
 			add_filter( 'woocommerce_order_item_name', 'wc_gzd_cart_product_units', wc_gzd_get_hook_priority( 'email_product_units' ), 2 );
-		if ( get_option( 'woocommerce_gzd_display_emails_delivery_time' ) === 'yes' )
+        }
+		if ( 'yes' === get_option( 'woocommerce_gzd_display_emails_delivery_time' ) ) {
 			add_filter( 'woocommerce_order_item_name', 'wc_gzd_cart_product_delivery_time', wc_gzd_get_hook_priority( 'email_product_delivery_time' ), 2 );
-		if ( get_option( 'woocommerce_gzd_display_emails_product_item_desc' ) === 'yes' )
-			add_filter( 'woocommerce_order_item_name', 'wc_gzd_cart_product_item_desc', wc_gzd_get_hook_priority( 'email_product_item_desc' ), 2 );
-		if ( get_option( 'woocommerce_gzd_display_emails_unit_price' ) === 'yes' )
+        }
+
+		if ( 'yes' === get_option( 'woocommerce_gzd_display_emails_product_item_desc' ) ) {
+            add_filter( 'woocommerce_order_item_name', 'wc_gzd_cart_product_item_desc', wc_gzd_get_hook_priority( 'email_product_item_desc' ), 2 );
+        }
+
+        if ( 'yes' === get_option( 'woocommerce_gzd_display_emails_product_attributes' ) ) {
+            add_filter( 'woocommerce_order_item_name', 'wc_gzd_cart_product_attributes', wc_gzd_get_hook_priority( 'email_product_attributes' ), 2 );
+        }
+
+		if ( 'yes' === get_option( 'woocommerce_gzd_display_emails_unit_price' ) ) {
 			add_filter( 'woocommerce_order_formatted_line_subtotal', 'wc_gzd_cart_product_unit_price', wc_gzd_get_hook_priority( 'email_product_unit_price' ), 2 );
+        }
 
 		do_action( 'woocommerce_gzd_after_set_email_cart_item_filters', $this, $current );
-
 	}
 
 	public function remove_order_email_filters() {
     	// Make sure to explicitly remove order item name filters - removing "woocommerce_gzd_template_order_item_hooks" may not be sufficient thankyou hooks have already been applied
 		remove_filter( 'woocommerce_order_item_name', 'wc_gzd_cart_product_units', wc_gzd_get_hook_priority( 'order_product_units' ) );
 		remove_filter( 'woocommerce_order_item_name', 'wc_gzd_cart_product_delivery_time', wc_gzd_get_hook_priority( 'order_product_delivery_time' ) );
-		remove_filter( 'woocommerce_order_item_name', 'wc_gzd_cart_product_item_desc', wc_gzd_get_hook_priority( 'order_product_item_desc' ) );
+        remove_filter( 'woocommerce_order_item_name', 'wc_gzd_cart_product_item_desc', wc_gzd_get_hook_priority( 'order_product_item_desc' ) );
 
     	// Remove actions and filters from template hooks
 		remove_filter( 'woocommerce_order_formatted_line_subtotal', 'wc_gzd_cart_product_unit_price', wc_gzd_get_hook_priority( 'order_product_unit_price' ) );
@@ -513,8 +522,9 @@ class WC_GZD_Emails {
 		remove_filter( 'woocommerce_order_item_name', 'wc_gzd_cart_product_units', wc_gzd_get_hook_priority( 'email_product_units' ) );
 		remove_filter( 'woocommerce_order_item_name', 'wc_gzd_cart_product_delivery_time', wc_gzd_get_hook_priority( 'email_product_delivery_time' ) );
 		remove_filter( 'woocommerce_order_item_name', 'wc_gzd_cart_product_item_desc', wc_gzd_get_hook_priority( 'email_product_item_desc' ) );
-		remove_filter( 'woocommerce_order_formatted_line_subtotal', 'wc_gzd_cart_product_unit_price', wc_gzd_get_hook_priority( 'email_product_unit_price' ) );
+        remove_filter( 'woocommerce_order_item_name', 'wc_gzd_cart_product_attributes', wc_gzd_get_hook_priority( 'email_product_attributes' ) );
 
+        remove_filter( 'woocommerce_order_formatted_line_subtotal', 'wc_gzd_cart_product_unit_price', wc_gzd_get_hook_priority( 'email_product_unit_price' ) );
 	}
 
 	/**

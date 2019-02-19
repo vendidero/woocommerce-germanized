@@ -2,7 +2,7 @@
 Contributors: vendidero, vdwoocommercesupport
 Tags: woocommerce, woocommerce german, woocommerce DE, woocommerce germany, woocommerce deutsch, woo
 Requires at least: 3.8
-Tested up to: 5.0
+Tested up to: 5.1
 WC requires at least: 2.4
 WC tested up to: 3.5
 Stable tag: 2.2.8

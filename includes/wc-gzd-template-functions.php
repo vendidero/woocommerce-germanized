@@ -478,7 +478,6 @@ if ( ! function_exists( 'woocommerce_gzd_template_order_item_hooks' ) ) {
 		add_filter( 'woocommerce_order_item_name', 'wc_gzd_cart_product_delivery_time', wc_gzd_get_hook_priority( 'order_product_delivery_time' ), 3 );
 		add_filter( 'woocommerce_order_item_name', 'wc_gzd_cart_product_item_desc', wc_gzd_get_hook_priority( 'order_product_item_desc' ), 3 );
 	}
-
 }
 
 if ( ! function_exists( 'woocommerce_gzd_template_mini_cart_taxes' ) ) {

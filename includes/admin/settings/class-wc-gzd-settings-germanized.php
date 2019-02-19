@@ -685,7 +685,7 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 
 		$settings = array_merge( $settings, $email_settings );
 
-		$settings = array_merge( $settings, array(
+		$settings = array_merge( $settings, apply_filters( 'woocommerce_gzd_email_visibility_settings', array(
 
 			array( 'type' => 'sectionend', 'id' => 'email_options' ),
 
@@ -723,7 +723,7 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 				'default'	=> 'yes',
 				'checkboxgroup'		=> '',
 			),
-        ) );
+        ) ) );
 
 		$settings = array_merge( $settings, array(
 

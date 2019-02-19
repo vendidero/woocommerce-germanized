@@ -163,7 +163,6 @@ class WC_GZD_Product {
 	 * @return boolean|string
 	 */
 	public function get_mini_desc() {
-
 	    $mini_desc = apply_filters( 'woocommerce_gzd_product_cart_description', $this->mini_desc, $this );
 
 		if ( $mini_desc && ! empty( $mini_desc ) ) {
@@ -172,6 +171,107 @@ class WC_GZD_Product {
 
 		return false;
 	}
+
+	private function attribute_exists( $key, $item_data ) {
+        foreach( $item_data as $item_data_key => $data ) {
+            if ( isset( $data['key'] ) && $key === $data['key'] ) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    protected function attribute_is_checkout_visible( $attribute ) {
+	    return ( $attribute && ( 'yes' === get_option( 'woocommerce_gzd_display_checkout_product_attributes' ) || $attribute->is_checkout_visible() ) );
+	}
+
+	public function get_checkout_attributes( $item_data = array(), $cart_variation_data = array() ) {
+	    $item_data = ! empty( $item_data ) ? $item_data : array();
+
+	    if ( $this->child->is_type( 'variation' ) ) {
+            $attributes = ! empty( $cart_variation_data ) ? $cart_variation_data : $this->child->get_variation_attributes();
+
+            foreach( $attributes as $name => $value ) {
+                $taxonomy  = wc_attribute_taxonomy_name( str_replace( 'attribute_pa_', '', urldecode( $name ) ) );
+                $attribute = WC_GZD_Product_Attribute_Helper::instance()->get_attribute_by_variation( $this->child, $name );
+
+                if ( $this->attribute_is_checkout_visible( $attribute ) ) {
+                    if ( taxonomy_exists( $taxonomy ) ) {
+                        // If this is a term slug, get the term's nice name.
+                        $term = get_term_by( 'slug', $value, $taxonomy );
+                        if ( ! is_wp_error( $term ) && $term && $term->name ) {
+                            $value = $term->name;
+                        }
+                        $label = wc_attribute_label( $taxonomy );
+                    } else {
+                        // If this is a custom option slug, get the options name.
+                        $value = apply_filters( 'woocommerce_variation_option_name', $value );
+                        $label = wc_attribute_label( str_replace( 'attribute_', '', $name ), $this->child );
+                    }
+
+                    if ( '' === $value || $this->attribute_exists( $label, $item_data ) ) {
+                        continue;
+                    }
+
+                    $item_data[] = array(
+                        'key'   => $label,
+                        'value' => $value,
+                    );
+                }
+            }
+        }
+
+        $product    = $this->child->is_type( 'variation' ) ? wc_get_product( $this->child->get_parent_id() ) : $this->child;
+        $attributes = $product->get_attributes();
+
+        foreach( $attributes as $attribute ) {
+            $attribute = WC_GZD_Product_Attribute_Helper::instance()->get_attribute( $attribute, $product );
+
+            if ( $this->attribute_is_checkout_visible( $attribute ) ) {
+                $values = array();
+
+                // Make sure to exclude variation specific attributes (which were already added by variation data).
+                if ( $this->child->is_type( 'variation' ) && $attribute->get_variation() ) {
+                    continue;
+                }
+
+                if ( $attribute->is_taxonomy() ) {
+                    $attribute_taxonomy = $attribute->get_taxonomy_object();
+                    $attribute_values   = wc_get_product_terms( $product->get_id(), $attribute->get_name(), array( 'fields' => 'all' ) );
+
+                    foreach ( $attribute_values as $attribute_value ) {
+                        $value_name = esc_html( $attribute_value->name );
+
+                        if ( apply_filters( 'woocommerce_gzd_product_attribute_checkout_clickable', false ) && $attribute_taxonomy->attribute_public ) {
+                            $values[] = '<a href="' . esc_url( get_term_link( $attribute_value->term_id, $attribute->get_name() ) ) . '" rel="tag">' . $value_name . '</a>';
+                        } else {
+                            $values[] = $value_name;
+                        }
+                    }
+                } else {
+                    $values = $attribute->get_options();
+
+                    foreach ( $values as &$value ) {
+                        $value = make_clickable( esc_html( $value ) );
+                    }
+                }
+
+                $label = wc_attribute_label( $attribute->get_name() );
+
+                if ( $this->attribute_exists( $label, $item_data ) ) {
+                    continue;
+                }
+
+                $item_data[] = array(
+                    'key'   => $label,
+                    'value' => apply_filters( 'woocommerce_attribute', wpautop( wptexturize( implode( ', ', $values ) ) ), $attribute->get_attribute(), $values )
+                );
+            }
+        }
+
+        return $item_data;
+    }
 
 	public function is_service() {
 		if ( ! empty( $this->service ) && 'yes' === $this->service ) {

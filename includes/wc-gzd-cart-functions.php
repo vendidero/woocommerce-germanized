@@ -52,7 +52,6 @@ function wc_gzd_cart_product_differential_taxation_mark( $title, $cart_item, $ca
  * @return string
  */
 function wc_gzd_cart_product_item_desc( $title, $cart_item, $cart_item_key = '' ) {
-	
 	$product_desc = "";
 	
 	if ( isset( $cart_item[ 'data' ] ) ) {
@@ -79,6 +78,46 @@ function wc_gzd_cart_product_item_desc( $title, $cart_item, $cart_item_key = '' 
 		$title .= '<div class="wc-gzd-item-desc item-desc">' . do_shortcode( $product_desc ) . '</div>';
 	
 	return $title;
+}
+
+function wc_gzd_cart_product_attributes( $title, $cart_item, $cart_item_key = '' ) {
+    $item_data = array();
+
+    if ( isset( $cart_item['data'] ) ) {
+        $product    = wc_get_product( ! empty( $cart_item['variation_id'] ) ? $cart_item['variation_id'] : $cart_item['product_id'] );
+        $item_data  = wc_gzd_get_gzd_product( $product )->get_checkout_attributes( array(), isset( $cart_item['variation'] ) ? $cart_item['variation'] : array() );
+    } elseif ( isset( $cart_item['product_id'] ) ) {
+        $product    = wc_get_product( ! empty( $cart_item['variation_id'] ) ? $cart_item['variation_id'] : $cart_item['product_id'] );
+        $item_data  = wc_gzd_get_gzd_product( $product )->get_checkout_attributes();
+    }
+
+    // Format item data ready to display.
+    foreach ( $item_data as $key => $data ) {
+        // Set hidden to true to not display meta on cart.
+        if ( ! empty( $data['hidden'] ) ) {
+            unset( $item_data[ $key ] );
+            continue;
+        }
+        $item_data[ $key ]['key']     = ! empty( $data['key'] ) ? $data['key'] : $data['name'];
+        $item_data[ $key ]['display'] = ! empty( $data['display'] ) ? $data['display'] : $data['value'];
+    }
+
+    $item_data_html = '';
+
+    // Output flat or in list format.
+    if ( count( $item_data ) > 0 ) {
+        ob_start();
+        foreach ( $item_data as $data ) {
+            echo esc_html( $data['key'] ) . ': ' . strip_tags( $data['display'] ) . "\n" . "<br/>";
+        }
+        $item_data_html = ob_get_clean();
+    }
+
+    if ( ! empty( $item_data_html ) ) {
+        $title .= '<div class="wc-gzd-item-attributes item-attributes">' . $item_data_html . '</div>';
+    }
+
+    return $title;
 }
 
 /**

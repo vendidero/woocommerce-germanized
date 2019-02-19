@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce Germanized v1.5.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-07 12:00+0100\n"
-"PO-Revision-Date: 2019-02-07 12:00+0100\n"
+"POT-Creation-Date: 2019-02-19 12:33+0100\n"
+"PO-Revision-Date: 2019-02-19 12:33+0100\n"
 "Last-Translator: holzhannes <holzhannes@posteo.de>\n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Poedit 2.2\n"
+"X-Generator: Poedit 2.2.1\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;"
 "_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;"
@@ -92,27 +92,27 @@ msgid "l"
 msgstr "l"
 
 # @ woocommerce-germanized
-#: includes/abstracts/abstract-wc-gzd-product.php:269
-#: includes/abstracts/abstract-wc-gzd-product.php:278
+#: includes/abstracts/abstract-wc-gzd-product.php:369
+#: includes/abstracts/abstract-wc-gzd-product.php:378
 #: includes/wc-gzd-core-functions.php:154
-#: includes/wc-gzd-template-functions.php:444 woocommerce-germanized.php:929
+#: includes/wc-gzd-template-functions.php:444 woocommerce-germanized.php:928
 msgid "incl. VAT"
 msgstr "inkl. MwSt."
 
 # @ woocommerce-germanized
-#: includes/abstracts/abstract-wc-gzd-product.php:269
+#: includes/abstracts/abstract-wc-gzd-product.php:369
 msgid "excl. VAT"
 msgstr "exkl. MwSt."
 
 # @ woocommerce-germanized
-#: includes/abstracts/abstract-wc-gzd-product.php:271
-#: includes/wc-gzd-core-functions.php:154 woocommerce-germanized.php:929
+#: includes/abstracts/abstract-wc-gzd-product.php:371
+#: includes/wc-gzd-core-functions.php:154 woocommerce-germanized.php:928
 #, php-format
 msgid "incl. %s%% VAT"
 msgstr "inkl. %s%% MwSt."
 
 # @ woocommerce-germanized
-#: includes/abstracts/abstract-wc-gzd-product.php:271
+#: includes/abstracts/abstract-wc-gzd-product.php:371
 #, php-format
 msgid "excl. %s%% VAT"
 msgstr "exkl. %s%% MwSt."
@@ -2679,7 +2679,8 @@ msgid "Checks whether compatibility options for %s are being applied."
 msgstr "Prüft ob die Kompatibilitätsanpassungen für %s geladen werden."
 
 #: includes/admin/views/html-page-status-germanized.php:179
-msgid "Version % not supported, supporting version %s - %s"
+#, php-format
+msgid "Version %s not supported, supporting version %s - %s"
 msgstr ""
 "Version %s wird nicht unterstützt. Bitte installiere eine Version zwischen "
 "%s und %s."
@@ -3401,7 +3402,7 @@ msgid "Thanks for creating an account on %s."
 msgstr "Danke, dass du ein Konto bei %s erstellt hast."
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-emails.php:647
+#: includes/class-wc-gzd-emails.php:657
 msgctxt "revocation-form"
 msgid "Forward your Revocation online"
 msgstr "Deinen Widerruf online erklären"
@@ -3985,15 +3986,19 @@ msgstr "Mandat ID"
 msgid "Mandate Email"
 msgstr "Mandat E-Mail"
 
-#: includes/class-wc-gzd-product-attribute-helper.php:52
+#: includes/class-wc-gzd-product-attribute-helper.php:51
+msgid "Product Attributes"
+msgstr "Produkteigenschaften"
+
+#: includes/class-wc-gzd-product-attribute-helper.php:65
 msgid "Show product attributes"
 msgstr "Produkteigenschaften"
 
-#: includes/class-wc-gzd-product-attribute-helper.php:53
+#: includes/class-wc-gzd-product-attribute-helper.php:66
 msgid "List all product attributes during cart and checkout."
 msgstr "Listet alle Produkteigenschaften im Warenkorb und in der Kasse auf."
 
-#: includes/class-wc-gzd-product-attribute-helper.php:57
+#: includes/class-wc-gzd-product-attribute-helper.php:70
 msgid ""
 "This option forces WooCommerce to output a list of all product attributes "
 "during cart and checkout."
@@ -4001,7 +4006,7 @@ msgstr ""
 "Diese Option zwingt WooCommerce zur Ausgabe aller Produkteigenschaften im "
 "Warenkorb und in der Kasse."
 
-#: includes/class-wc-gzd-product-attribute-helper.php:80
+#: includes/class-wc-gzd-product-attribute-helper.php:93
 msgid "Visible during checkout"
 msgstr "Im Checkout anzeigen"
 
@@ -4843,7 +4848,7 @@ msgstr ""
 # @ woocommerce-germanized
 # @ woocommerce
 #: includes/gateways/invoice/class-wc-gzd-gateway-invoice.php:64
-#: woocommerce-germanized.php:649
+#: woocommerce-germanized.php:648
 msgid "Settings"
 msgstr "Einstellungen"
 
@@ -6201,7 +6206,7 @@ msgctxt "trusted-shops"
 msgid "cancel review reminder"
 msgstr "von der Bewertungserinnerung abmelden"
 
-#: woocommerce-germanized.php:756
+#: woocommerce-germanized.php:755
 msgid "Pease wait while we are trying to redirect you to the payment provider."
 msgstr "Einen Moment - wir versuchen dich zum Zahlungsanbieter weiterzuleiten."
 
