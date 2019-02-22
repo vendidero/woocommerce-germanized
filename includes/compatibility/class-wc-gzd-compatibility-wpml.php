@@ -52,6 +52,13 @@ class WC_GZD_Compatibility_Wpml extends WC_GZD_Compatibility {
 		$this->filter_page_ids();
 	}
 
+	public function reload_locale() {
+	    unload_textdomain( 'woocommerce-germanized' );
+	    WC_germanized()->load_plugin_textdomain();
+
+	    do_action( 'woocommerce_gzd_reload_locale' );
+    }
+
 	public function before_show_product_unit_price( $product ) {
 		$product->recalculate_unit_price();
 	}
@@ -156,38 +163,38 @@ class WC_GZD_Compatibility_Wpml extends WC_GZD_Compatibility {
         }
 
         if ( isset( $sitepress ) && is_callable( array( $sitepress, 'get_current_language' ) ) && is_callable( array( $sitepress, 'switch_lang' ) ) ) {
+
             if ( $sitepress->get_current_language() != $lang ) {
-
                 $this->new_language = $lang;
-
-                $sitepress->switch_lang( $lang, true );
-
-                // Somehow WPML doesn't automatically change the locale
-                if ( is_callable( array( $sitepress, 'reset_locale_utils_cache' ) ) ) {
-                    $sitepress->reset_locale_utils_cache();
-                }
-
-                // Filter locale because WPML does still use the user locale within admin panel
-                add_filter( 'locale', array( $this, 'language_locale_filter' ), 50 );
-
-                if ( function_exists( 'switch_to_locale' ) ) {
-                    switch_to_locale( get_locale() );
-
-                    // Filter on plugin_locale so load_plugin_textdomain loads the correct locale.
-                    add_filter( 'plugin_locale', 'get_locale' );
-
-                    unload_textdomain( 'default' );
-                    unload_textdomain( 'woocommerce' );
-                    unload_textdomain( 'woocommerce-germanized' );
-
-                    // Init WC locale.
-                    WC()->load_plugin_textdomain();
-                    WC_germanized()->load_plugin_textdomain();
-                    load_default_textdomain( get_locale() );
-                }
-
-                do_action( 'woocommerce_gzd_wpml_switched_language', $lang, $wc_gzd_original_lang );
             }
+
+            $sitepress->switch_lang( $lang, true );
+
+            // Somehow WPML doesn't automatically change the locale
+            if ( is_callable( array( $sitepress, 'reset_locale_utils_cache' ) ) ) {
+                $sitepress->reset_locale_utils_cache();
+            }
+
+            // Filter locale because WPML does still use the user locale within admin panel
+            add_filter( 'locale', array( $this, 'language_locale_filter' ), 50 );
+
+            if ( function_exists( 'switch_to_locale' ) ) {
+                switch_to_locale( get_locale() );
+
+                // Filter on plugin_locale so load_plugin_textdomain loads the correct locale.
+                add_filter( 'plugin_locale', 'get_locale' );
+
+                unload_textdomain( 'default' );
+                unload_textdomain( 'woocommerce' );
+
+                // Init WC locale.
+                WC()->load_plugin_textdomain();
+                $this->reload_locale();
+
+                load_default_textdomain( get_locale() );
+            }
+
+            do_action( 'woocommerce_gzd_wpml_switched_language', $lang, $wc_gzd_original_lang );
         }
 
         do_action( 'woocommerce_gzd_wpml_switch_language', $lang, $wc_gzd_original_lang );
