@@ -233,15 +233,26 @@ class WC_GZD_Checkout {
 		// Check for cost-free shipping
 		foreach ( $rates as $key => $rate ) {
 
-			// Do only hide if free_shipping exists
-			if ( strpos( $key, 'free_shipping' ) !== false ) {
-				$hide = true;
-			}
+		    if ( is_a( $rate, 'WC_Shipping_Rate' ) ) {
+		        if ( 'free_shipping' === $rate->method_id ) {
+		            $keep[] = $key;
+		            $hide   = true;
+                } elseif ( 'local_pickup' === $rate->method_id ) {
+		            $keep[] = $key;
+                } elseif( $rate->cost == 0 ) {
+		            $keep[] = $key;
+                }
+            } else {
+                // Do only hide if free_shipping exists
+                if ( strpos( $key, 'free_shipping' ) !== false ) {
+                    $hide = true;
+                }
 
-			// Always show local pickup
-			if ( $rate->cost == 0 || strpos( $key, 'local_pickup' ) !== false ) {
-				$keep[] = $key;
-			}
+                // Always show local pickup
+                if ( $rate->cost == 0 || strpos( $key, 'local_pickup' ) !== false ) {
+                    $keep[] = $key;
+                }
+            }
 		}
 
 		// Unset all other rates
@@ -253,9 +264,9 @@ class WC_GZD_Checkout {
 			}
 
 			foreach ( $rates as $key => $rate ) {
-
-				if ( ! in_array( $key, $keep ) )
-					unset( $rates[ $key ] );
+				if ( ! in_array( $key, $keep ) ) {
+                    unset( $rates[ $key ] );
+                }
 			}
 		}
 
