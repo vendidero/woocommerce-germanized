@@ -55,14 +55,13 @@ class WC_GZD_Shipping_Rate extends WC_Shipping_Rate {
 	}
 
 	public function set_costs() {
-		if ( WC()->cart->tax_display_cart === 'incl' ) {
+		if ( WC()->cart->tax_display_cart === 'incl' || WC()->customer->is_vat_exempt() ) {
 			$cost = $this->cost - array_sum( $this->taxes );
 
 			if ( WC()->customer->is_vat_exempt() ) {
 				$shipping_rates = WC_Tax::get_shipping_tax_rates();
 				$shipping_taxes = WC_Tax::calc_inclusive_tax( $this->cost, $shipping_rates );
-
-				$cost = ( $cost - array_sum( $shipping_taxes ) );
+				$cost           = ( $cost - array_sum( $shipping_taxes ) );
 			}
 
 			if ( is_callable( array( $this, 'set_cost' ) ) ) {
