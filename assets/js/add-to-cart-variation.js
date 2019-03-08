@@ -62,6 +62,11 @@
     };
 
     GermanizedVariationForm.prototype.onUpdate = function( event ) {
+
+        if( ! event.data.hasOwnProperty('GermanizedvariationForm') ) {
+            return;
+        }
+
         setTimeout( function() {
             if ( ! event.data.GermanizedvariationForm.$singleVariation.is( ':visible' ) || event.data.GermanizedvariationForm.$button.is( '[disabled]' ) ) {
                 event.data.GermanizedvariationForm.onReset( event );
