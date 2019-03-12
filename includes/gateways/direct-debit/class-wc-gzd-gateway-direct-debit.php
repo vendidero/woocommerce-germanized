@@ -868,7 +868,7 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 
 		if ( ! $iban_validator->Verify() ) {
             wc_add_notice( __( 'Your IBAN seems to be invalid.', 'woocommerce-germanized' ), 'error' );
-        } elseif ( apply_filters( 'woocommerce_gzd_direct_debit_verify_iban_country', true ) && $iban_validator->Country() != $country ) {
+        } elseif ( apply_filters( 'woocommerce_gzd_direct_debit_verify_iban_country', false ) && $iban_validator->Country() != $country ) {
             wc_add_notice( __( 'Your IBAN\'s country code doesn’t match with your billing country.', 'woocommerce-germanized' ), 'error' );
         }
 
