@@ -63,11 +63,13 @@
 
     GermanizedVariationForm.prototype.onUpdate = function( event ) {
 
-        if( ! event.data.hasOwnProperty('GermanizedvariationForm') ) {
-            return;
-        }
-
         setTimeout( function() {
+            if( typeof event.data === 'undefined' || ! event.data.hasOwnProperty( 'GermanizedvariationForm' ) ) {
+                return;
+            } else if ( typeof event.data.GermanizedvariationForm === 'undefined' ) {
+                return;
+            }
+
             if ( ! event.data.GermanizedvariationForm.$singleVariation.is( ':visible' ) || event.data.GermanizedvariationForm.$button.is( '[disabled]' ) ) {
                 event.data.GermanizedvariationForm.onReset( event );
             }
