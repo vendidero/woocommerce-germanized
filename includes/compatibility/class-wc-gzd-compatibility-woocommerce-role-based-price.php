@@ -2,7 +2,8 @@
 /**
  * WPML Helper
  *
- * Specific configuration for WPML
+ * Specific configuration for Role Based Pricing
+ * https://wordpress.org/plugins/woocommerce-role-based-price/
  *
  * @class 		WC_GZD_WPML_Helper
  * @category	Class

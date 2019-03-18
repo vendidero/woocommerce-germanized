@@ -102,6 +102,7 @@ class WC_GZD_Compatibility_Wpml_String_Translation extends WC_GZD_Compatibility 
             'woocommerce_gzd_alternative_complaints_text_none'    => '',
             'woocommerce_gzd_alternative_complaints_text_willing' => '',
             'woocommerce_gzd_alternative_complaints_text_obliged' => '',
+            'woocommerce_gzd_email_title_text'                    => '',
             'woocommerce_gzd_legal_checkboxes_settings'           => array(
                 'label',
                 'error_message',

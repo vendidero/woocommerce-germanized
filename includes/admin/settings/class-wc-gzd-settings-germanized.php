@@ -727,6 +727,14 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 
 		$settings = array_merge( $settings, array(
 
+            array(
+                'title' 	=> __( 'Title', 'woocommerce-germanized' ),
+                'desc_tip'  => __( 'Adjust the title to be used within emails. Use {first_name}, {last_name} and {title} as placeholders.', 'woocommerce-germanized' ),
+                'id' 		=> 'woocommerce_gzd_email_title_text',
+                'default'	=> __( 'Hi {first_name},', 'woocommerce-germanized' ),
+                'type' 		=> 'text',
+            ),
+
 			array(
 				'title' 	=> __( 'Hide Username', 'woocommerce-germanized' ),
 				'desc' 		=> __( 'Hide username from email content if password or password reset link is embedded.', 'woocommerce-germanized' ),

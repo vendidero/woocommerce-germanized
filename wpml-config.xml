@@ -55,6 +55,7 @@
         <key name="woocommerce_gzd_alternative_complaints_text_none" />
         <key name="woocommerce_gzd_alternative_complaints_text_willing" />
         <key name="woocommerce_gzd_alternative_complaints_text_obliged" />
+        <key name="woocommerce_gzd_email_title_text" />
         <key name="woocommerce_customer_revocation_settings">
             <key name="subject" />
             <key name="heading" />
