@@ -5,7 +5,7 @@ Requires at least: 3.8
 Tested up to: 5.1
 WC requires at least: 2.4
 WC tested up to: 3.5
-Stable tag: 2.2.8
+Stable tag: 2.2.9
 Requires PHP: 5.3
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -183,6 +183,14 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 4. WooCommerce Multistep Checkout (Pro)
 
 == Changelog ==
+
+= 2.2.9 =
+* Feature: Adjust email title format and customize it with placeholders e.g. first name or last name
+* Improvement: Free shipping auto select implementation
+* Improvement: Remove shipping taxes in case of VAT exempt to make sure shipping costs are interpreted as gross
+* Improvement: Do not force IBAN to equal billing country (see https://www.wettbewerbszentrale.de/de/presse/pressemitteilungen/_pressemitteilung/?id=303)
+* Fix: Check event data before calling GermanizedVariationForm in add to cart variation script
+* Fix: Duplicate attributes in cart/checkout
 
 = 2.2.8 =
 * Feature: Choose specific product attributes to be shown during checkout/cart (WC version > 3)
