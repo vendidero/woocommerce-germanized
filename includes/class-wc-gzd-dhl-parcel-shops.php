@@ -154,9 +154,10 @@ class WC_GZD_DHL_Parcel_Shops {
 			'priority' => 50,
 		);
 
+		// By default mark as non-required for better gateway compatibility
 		$fields['parcelshop_post_number'] = array(
 			'type' 	   => 'text',
-			'required' => true,
+			'required' => false,
 			'label'    => __( 'Postnumber', 'woocommerce-germanized' ),
 			'before'   => 'address_1',
 			'group'    => array( 'shipping' ),
@@ -232,10 +233,9 @@ class WC_GZD_DHL_Parcel_Shops {
 			return $fields;
 		}
 
-		if ( ! isset( $_POST['shipping_parcelshop'] ) && isset( $fields['shipping_parcelshop_post_number'] ) ) {
-			$fields['shipping_parcelshop_post_number']['required'] = false;
-		} else {
-			$fields['shipping_address_1']['label'] = __( 'Parcel Shop', 'woocommerce-germanized' );
+		if ( isset( $_POST['shipping_parcelshop'] ) ) {
+            $fields['shipping_address_1']['label'] = __( 'Parcel Shop', 'woocommerce-germanized' );
+            $fields['shipping_parcelshop_post_number']['required'] = true;
 		}
 
 		return $fields;
@@ -275,6 +275,7 @@ class WC_GZD_DHL_Parcel_Shops {
 			WC()->checkout()->checkout_fields = $fields;
 		} else {
 			$fields = WC()->checkout()->checkout_fields;
+            $fields['shipping']['shipping_parcelshop_post_number']['required'] = true;
 			$fields['shipping']['shipping_address_1']['label'] = __( 'Parcel Shop', 'wooocommerce-germanized' );
 			WC()->checkout()->checkout_fields = $fields;
 		}
@@ -288,8 +289,9 @@ class WC_GZD_DHL_Parcel_Shops {
 		);
 
 		foreach( $required as $req ) {
-			if ( ! isset( $data[ $req ] ) || empty( $data[ $req ] ) )
+			if ( ! isset( $data[ $req ] ) || empty( $data[ $req ] ) ) {
 				return;
+            }
 		}
 
 		$is_valid_postnumber = (bool) preg_match( '/^([0-9]*)$/', $data[ 'shipping_parcelshop_post_number' ] );
