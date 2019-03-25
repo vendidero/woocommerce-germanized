@@ -29,11 +29,11 @@ class WC_GZD_Trusted_Shops_Template_Hooks {
             add_action( 'wp_footer', array( $this, 'template_trustbadge' ), 250 );
         }
 
-        if ( $this->base->is_product_reviews_enabled() ) {
+        if ( $this->base->product_reviews_visible() ) {
             add_filter( 'woocommerce_product_tabs', array( $this, 'remove_review_tab' ), 40, 1 );
         }
 
-        if ( $this->base->is_product_sticker_enabled() ) {
+        if ( $this->base->product_reviews_visible() ) {
             add_filter( 'woocommerce_product_tabs', array( $this, 'review_tab' ), 50, 1 );
         }
 

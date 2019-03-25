@@ -452,7 +452,6 @@ class WC_GZD_Trusted_Shops_Admin {
 
             array(
                 'title'             => _x( 'Collect Product Reviews', 'trusted-shops', 'woocommerce-germanized' ),
-                'desc'              => _x( '(WooCommerce Product Reviews will be replaced)', 'trusted-shops', 'woocommerce-germanized' ),
                 'desc_tip'          => _x( 'Show Product Reviews on the product page in a separate tab, just as shown on the picture on the right.', 'trusted-shops', 'woocommerce-germanized' ),
                 'id'                => 'woocommerce_' . $this->base->option_prefix . 'trusted_shops_reviews_enable',
                 'type'              => 'gzd_toggle',

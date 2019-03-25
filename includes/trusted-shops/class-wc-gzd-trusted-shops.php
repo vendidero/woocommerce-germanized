@@ -311,6 +311,10 @@ class WC_GZD_Trusted_Shops {
 		return ( $this->reviews_enable === 'yes' && $this->is_enabled() ? true : false );
 	}
 
+    public function product_reviews_visible() {
+        return ( $this->is_enabled() && $this->is_product_sticker_enabled() ? true : false );
+    }
+
 	public function is_product_sticker_enabled() {
 		return ( $this->is_product_reviews_enabled() && $this->product_sticker_enable === 'yes' ? true : false );
 	}
