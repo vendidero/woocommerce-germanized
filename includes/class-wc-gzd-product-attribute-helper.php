@@ -101,7 +101,7 @@ class WC_GZD_Product_Attribute_Helper {
         $item_data_product  = wc_gzd_get_gzd_product( $cart_product )->get_checkout_attributes( $item_data, isset( $cart_item['variation'] ) ? $cart_item['variation'] : array() );
 
         if ( $item_data !== $item_data_product ) {
-            $item_data      = array_merge( $item_data, $item_data_product );
+            $item_data      = array_replace_recursive( $item_data, $item_data_product );
         }
 
         return $item_data;
