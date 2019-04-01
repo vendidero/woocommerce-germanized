@@ -547,7 +547,7 @@ class WC_GZD_Product {
 	 * @return boolean 
 	 */
 	public function is_on_unit_sale() {
-		return apply_filters( 'woocommerce_gzd_product_is_on_unit_sale', ( $this->get_unit_sale_price() !== $this->get_unit_regular_price() && $this->get_unit_sale_price() == $this->get_unit_price() ), $this );
+		return apply_filters( 'woocommerce_gzd_product_is_on_unit_sale', ( $this->get_unit_sale_price() !== $this->get_unit_regular_price() && $this->get_unit_sale_price() == $this->get_unit_price_raw() ), $this );
 	}
 
 	/**
