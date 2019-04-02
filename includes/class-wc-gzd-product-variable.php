@@ -14,6 +14,8 @@ if ( ! defined( 'ABSPATH' ) )
  */
 class WC_GZD_Product_Variable extends WC_GZD_Product {
 
+    protected $unit_prices_array = array();
+
 	/**
 	 * Get the min or max variation unit regular price.
 	 * @param  string $min_or_max - min or max
@@ -277,7 +279,6 @@ class WC_GZD_Product_Variable extends WC_GZD_Product {
 		}
 
 		return $this->unit_prices_array[ $price_hash ];
-
 	}
 
 }
