@@ -73,10 +73,6 @@ Specific shortcodes for Trusted Shops and eKomi are only available if configured
 
 [trusted_shops_rich_snippets]
 
-**Trusted Shops Reviews**
-
-[trusted_shops_reviews]
-
 **eKomi Badge**
 
 [ekomi_badge]

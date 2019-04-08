@@ -5,7 +5,7 @@ Requires at least: 3.8
 Tested up to: 5.1
 WC requires at least: 2.4
 WC tested up to: 3.6
-Stable tag: 2.2.9
+Stable tag: 2.2.10
 Requires PHP: 5.3
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -142,9 +142,6 @@ By adjusting parameter width=55 (55 means 55px width/height) you may optionally 
 `[trusted_shops_rich_snippets]`
 If you are using Trusted Shop's review functionality, you may insert a Google Rich Snippet to show your current shop's rating.
 
-`[trusted_shops_reviews]`
-Inserts your current Trusted Shops rating as an image (provided by Trusted Shops).
-
 `[ekomi_badge]`
 Inserts your eKomi badge as image.
 By adjusting width=55 (55 means 55px width/height) you may optionally set badge's width.
@@ -183,6 +180,13 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 4. WooCommerce Multistep Checkout (Pro)
 
 == Changelog ==
+
+= 2.2.10 =
+* Feature: WC 3.6 compatibility
+* Improvement: By default mark post_number as non-required for better gateway compatibility
+* Improvement: Do only replace reviews with TS reviews if product sticker has been enabled
+* Fix: Variable unit price sale displaying
+* Fix: Replace cart product attribute data instead of merging
 
 = 2.2.9 =
 * Feature: Adjust email title format and customize it with placeholders e.g. first name or last name

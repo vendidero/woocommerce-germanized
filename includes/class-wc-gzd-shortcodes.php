@@ -118,10 +118,12 @@ class WC_GZD_Shortcodes {
 		$legal = ob_get_clean();
 
 		ob_start();
+		echo '<span class="price price-unit">';
 		woocommerce_gzd_template_single_price_unit();
+		echo '</span>';
 		$unit = ob_get_clean();
 
-		return $price . strip_tags( $unit . $legal, '<span><a>' );
+		return $price . '<span class="wc-gzd-legal-price-info">' . strip_tags( $unit . $legal, '<span><a><ins><del>' ) . '</span>';
 	}
 
 	public static function gzd_add_to_cart( $atts ) {

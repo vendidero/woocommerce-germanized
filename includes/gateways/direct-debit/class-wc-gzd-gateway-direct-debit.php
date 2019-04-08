@@ -499,11 +499,15 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 	}
 
 	public function set_order_meta( $order_id ) {
-
 		$order = wc_get_order( $order_id );
 
-		if ( ! ( wc_gzd_get_crud_data( $order, 'payment_method' ) === $this->id ) )
-			return;
+		if ( ! $order ) {
+		    return;
+        }
+
+		if ( ! ( wc_gzd_get_crud_data( $order, 'payment_method' ) === $this->id ) ) {
+		    return;
+        }
 
 		$holder 	= ( isset( $_POST[ 'direct_debit_account_holder' ] ) ? wc_clean( $_POST[ 'direct_debit_account_holder' ] ) : '' );
 		$iban 		= ( isset( $_POST[ 'direct_debit_account_iban' ] ) ? $this->maybe_encrypt( strtoupper( $this->clean_whitespaces( wc_clean( $_POST[ 'direct_debit_account_iban' ] ) ) ) ) : '' );

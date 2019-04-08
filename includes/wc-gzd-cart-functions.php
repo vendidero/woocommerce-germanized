@@ -239,9 +239,9 @@ function wc_gzd_cart_product_units( $title, $cart_item, $cart_item_key = '' ) {
  * @param  string $type 
  * @return array       
  */
-function wc_gzd_get_cart_tax_share( $type = 'shipping' ) {
+function wc_gzd_get_cart_tax_share( $type = 'shipping', $cart_contents = array() ) {
 	
-	$cart        = WC()->cart->cart_contents;
+	$cart        = empty( $cart_contents ) ? WC()->cart->cart_contents : $cart_contents;
 	$tax_shares  = array();
 	$item_totals = 0;
 	
@@ -277,20 +277,21 @@ function wc_gzd_get_cart_tax_share( $type = 'shipping' ) {
 				$tax_shares[ $class ]['total'] = 0;
 				$tax_shares[ $class ]['key'] = '';
 			}
-			
+
+			// Does not contain pricing data in case of recurring Subscriptions
 			$tax_shares[ $class ]['total'] += ( $item['line_total'] + $item['line_tax'] );
 			$tax_shares[ $class ]['key'] = key( $item['line_tax_data']['total'] );
+
 			$item_totals += ( $item['line_total'] + $item['line_tax'] );
 		}
 	}
-	
-	if ( ! empty( $tax_shares ) ) {
 
+	if ( ! empty( $tax_shares ) ) {
 		$default = ( $item_totals == 0 ? 1 / sizeof( $tax_shares ) : 0 );
 
-		foreach ( $tax_shares as $key => $class )
+		foreach ( $tax_shares as $key => $class ) {
 			$tax_shares[ $key ]['share'] = ( $item_totals > 0 ? $class['total'] / $item_totals : $default );
-
+        }
 	}
 
 	return $tax_shares;

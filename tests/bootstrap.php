@@ -42,14 +42,25 @@ class WC_GZD_Unit_Tests_Bootstrap {
 		$this->tests_dir     = dirname( __FILE__ );
 		$this->plugin_dir    = dirname( $this->tests_dir );
 
-		$this->wp_tests_dir  = getenv( 'WP_TESTS_DIR' ) ? getenv( 'WP_TESTS_DIR' ) :  $this->plugin_dir . '/tmp/wordpress-tests-lib';
-		$this->woo_tests_dir  = getenv( 'WOO_TESTS_DIR' ) ? getenv( 'WOO_TESTS_DIR' ) :  $this->plugin_dir . '/tmp/woocommerce';
+        $_tests_dir          = getenv( 'WP_TESTS_DIR' );
+        $_woo_tests_dir      = getenv( 'WOO_TESTS_DIR' );
+
+        if ( ! $_tests_dir ) {
+            $_tests_dir = rtrim( sys_get_temp_dir(), '/\\' ) . '/wordpress-tests-lib';
+        }
+
+        if ( ! $_woo_tests_dir ) {
+            $_woo_tests_dir = rtrim( sys_get_temp_dir(), '/\\' ) . '/woocommerce';
+        }
+
+		$this->wp_tests_dir  = $_tests_dir;
+		$this->woo_tests_dir = $_woo_tests_dir;
 
 		$this->wc_plugin_dir = $this->woo_tests_dir . '/';
 		$this->wc_tests_dir  = $this->wc_plugin_dir . 'tests';
 
 		// load test function so tests_add_filter() is available
-		require_once( $this->wp_tests_dir . '/includes/functions.php' );
+		require_once $this->wp_tests_dir . '/includes/functions.php';
 
 		tests_add_filter( 'woocommerce_gzd_dependencies_instance', array( $this, 'mock_dependencies' ) );
 

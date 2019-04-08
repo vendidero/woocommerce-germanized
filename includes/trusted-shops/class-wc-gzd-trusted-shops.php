@@ -187,7 +187,7 @@ class WC_GZD_Trusted_Shops {
 
 	public function refresh() {
 		$this->id      = $this->__get( 'id' );
-		$this->api_url = 'http://api.trustedshops.com/rest/public/v2/shops/'. $this->id .'/quality.json';
+		$this->api_url = 'https://api.trustedshops.com/rest/public/v2/shops/'. $this->id .'/quality.json';
 	}
 
 	public function get_multi_language_compatibility() {
