@@ -128,31 +128,33 @@ function wc_gzd_cart_product_attributes( $title, $cart_item, $cart_item_key = ''
  * @return string
  */
 function wc_gzd_cart_product_delivery_time( $title, $cart_item, $cart_item_key = '' ) {
-	
+
 	$delivery_time = "";
 	
-	if ( isset( $cart_item[ 'data' ] ) ) {
+	if ( isset( $cart_item['data'] ) ) {
 	
-		$product = apply_filters( 'woocommerce_cart_item_product', $cart_item[ 'data' ], $cart_item, $cart_item_key );
+		$product = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
 	
-		if ( wc_gzd_get_gzd_product( $product )->get_delivery_time_term() )
+		if ( wc_gzd_get_gzd_product( $product )->get_delivery_time_term() ) {
 			$delivery_time = wc_gzd_get_gzd_product( $product )->get_delivery_time_html();
+        }
 	
-	} elseif ( isset( $cart_item[ 'delivery_time' ] ) ) {
+	} elseif ( isset( $cart_item['delivery_time'] ) ) {
 
-		$delivery_time = $cart_item[ 'delivery_time' ];
+		$delivery_time = $cart_item['delivery_time'];
 	
-	} elseif ( isset( $cart_item[ 'product_id' ] ) ) {
+	} elseif ( isset( $cart_item['product_id'] ) ) {
 
-		$product = wc_get_product( ! empty( $cart_item[ 'variation_id' ] ) ? $cart_item[ 'variation_id' ] : $cart_item[ 'product_id' ] );
+		$product = wc_get_product( ! empty( $cart_item['variation_id'] ) ? $cart_item['variation_id'] : $cart_item['product_id'] );
 
-		if ( $product && wc_gzd_get_gzd_product( $product )->get_delivery_time_term() )
+		if ( $product && wc_gzd_get_gzd_product( $product )->get_delivery_time_term() ) {
 			$delivery_time = wc_gzd_get_gzd_product( $product )->get_delivery_time_html();
-
+        }
 	}
 	 
-	if ( ! empty( $delivery_time ) )
+	if ( ! empty( $delivery_time ) ) {
 		$title .= '<p class="delivery-time-info">' . $delivery_time . '</p>';
+    }
 	
 	return $title;
 }
