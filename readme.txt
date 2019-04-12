@@ -181,6 +181,10 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 
 == Changelog ==
 
+= 2.2.11 =
+* Fix: Tax share calculation in forced shipping rate
+* Fix: Mini cart hooks to show legal item data
+
 = 2.2.10 =
 * Feature: WC 3.6 compatibility
 * Improvement: By default mark post_number as non-required for better gateway compatibility

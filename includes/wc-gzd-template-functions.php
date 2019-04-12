@@ -601,6 +601,11 @@ if ( ! function_exists( 'woocommerce_gzd_template_mini_cart_remove_hooks' ) ) {
 if ( ! function_exists( 'woocommerce_gzd_template_mini_cart_add_hooks' ) ) {
 
     function woocommerce_gzd_template_mini_cart_add_hooks() {
+
+        if ( apply_filters( 'woocommerce_gzd_disable_mini_cart_item_legal_details', false ) ) {
+            return;
+        }
+
         add_filter( 'woocommerce_cart_item_name', 'wc_gzd_cart_product_units', wc_gzd_get_hook_priority( 'cart_product_units' ), 3 );
         add_filter( 'woocommerce_cart_item_name', 'wc_gzd_cart_product_delivery_time', wc_gzd_get_hook_priority( 'cart_product_delivery_time' ), 3 );
         add_filter( 'woocommerce_cart_item_name', 'wc_gzd_cart_product_item_desc', wc_gzd_get_hook_priority( 'cart_product_item_desc' ), 3 );
