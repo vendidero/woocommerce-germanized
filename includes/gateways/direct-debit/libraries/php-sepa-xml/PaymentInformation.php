@@ -150,6 +150,7 @@ class PaymentInformation
     public function __construct($id, $originAccountIBAN, $originAgentBIC, $originName, $originAccountCurrency = 'EUR')
     {
         $this->id = $id;
+        $this->transfers = array();
         $this->originAccountIBAN = $originAccountIBAN;
         $this->originAgentBIC = $originAgentBIC;
         $this->originName = StringHelper::sanitizeString($originName);
