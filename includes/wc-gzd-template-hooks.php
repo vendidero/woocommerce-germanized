@@ -65,8 +65,10 @@ add_action( 'woocommerce_widget_product_item_end', 'woocommerce_gzd_template_pro
 add_action( 'woocommerce_cart_totals_after_order_total', 'woocommerce_gzd_template_cart_total_tax', 1 );
 add_filter( 'woocommerce_cart_item_price', 'wc_gzd_cart_product_unit_price', wc_gzd_get_hook_priority( 'cart_product_unit_price' ), 3 );
 add_filter( 'woocommerce_cart_item_subtotal', 'wc_gzd_cart_product_unit_price', wc_gzd_get_hook_priority( 'cart_subtotal_unit_price' ), 3 );
+
 // Remove cart item name filter within checkout
 add_action( 'woocommerce_review_order_before_cart_contents', 'woocommerce_gzd_template_checkout_remove_cart_name_filter' );
+
 // Add item name filter within cart
 add_filter( 'woocommerce_cart_item_name', 'wc_gzd_cart_product_units', wc_gzd_get_hook_priority( 'cart_product_units' ), 3 );
 add_filter( 'woocommerce_cart_item_name', 'wc_gzd_cart_product_delivery_time', wc_gzd_get_hook_priority( 'cart_product_delivery_time' ), 3 );
@@ -96,7 +98,8 @@ if ( get_option( 'woocommerce_gzd_differential_taxation_checkout_notices' ) === 
  */
 add_action( 'woocommerce_before_mini_cart_contents', 'woocommerce_gzd_template_mini_cart_remove_hooks', 5 );
 add_action( 'woocommerce_before_mini_cart_contents', 'woocommerce_gzd_template_mini_cart_add_hooks', 10 );
-add_action( 'woocommerce_after_mini_cart', 'woocommerce_gzd_template_mini_cart_remove_hooks', 10 );
+add_action( 'woocommerce_after_mini_cart', 'woocommerce_gzd_template_mini_cart_maybe_remove_hooks', 10 );
+
 add_action( 'woocommerce_widget_shopping_cart_before_buttons', 'woocommerce_gzd_template_mini_cart_taxes', 10 );
 
 /**
