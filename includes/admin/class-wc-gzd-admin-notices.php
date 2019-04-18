@@ -88,12 +88,13 @@ class WC_GZD_Admin_Notices {
 		}
 		
 		if ( ! get_option( '_wc_gzd_hide_theme_notice' ) && ! WC_germanized()->is_pro() && $this->enable_notices() ) {
-			if ( ! $this->is_theme_compatible() )
+			if ( ! $this->is_theme_compatible() ) {
 				add_action( 'admin_notices', array( $this, 'theme_incompatibility_notice' ) );
-			elseif ( $this->is_theme_supported_by_pro() )
+            } elseif ( $this->is_theme_supported_by_pro() ) {
 				add_action( 'admin_notices', array( $this, 'theme_supported_notice' ) );
-			elseif ( ! $this->is_theme_ready() )
+            } elseif ( ! $this->is_theme_ready() ) {
 				add_action( 'admin_notices', array( $this, 'theme_not_ready_notice' ) );
+            }
 		}
 		
 		if ( ! get_option( '_wc_gzd_hide_review_notice' ) && ! get_option( '_wc_gzd_disable_review_notice' ) && $this->enable_notices() ) {
@@ -200,13 +201,15 @@ class WC_GZD_Admin_Notices {
 	}
 
 	public function add_review_notice() {
-		if ( get_option( 'woocommerce_gzd_activation_date' ) )
+		if ( get_option( 'woocommerce_gzd_activation_date' ) ) {
 			$this->queue_notice( 3, 'html-notice-review.php' );
+        }
 	}
 
 	public function add_pro_notice() {
-		if ( get_option( 'woocommerce_gzd_activation_date' ) )
+		if ( get_option( 'woocommerce_gzd_activation_date' ) ) {
 			$this->queue_notice( 4, 'html-notice-pro.php' );
+        }
 	}
 
 	public function queue_notice( $days, $view ) {
@@ -215,8 +218,9 @@ class WC_GZD_Admin_Notices {
 			$activation_date = ( get_option( 'woocommerce_gzd_activation_date' ) ? get_option( 'woocommerce_gzd_activation_date' ) : date( 'Y-m-d' ) );
 			$diff            = WC_germanized()->get_date_diff( $activation_date, date( 'Y-m-d' ) );
 
-			if ( $diff['d'] >= absint( $days ) )
+			if ( $diff['d'] >= absint( $days ) ) {
 				include( 'views/' . $view );
+            }
 		}
 	}
 
@@ -231,7 +235,6 @@ class WC_GZD_Admin_Notices {
 		if ( ! empty( $templates_to_check ) ) {
 		
 			foreach ( $templates_to_check as $template ) {
-		
 				$template_path = trailingslashit( 'woocommerce' ) . $template;
 		
 				$theme_template = locate_template( array(
@@ -239,8 +242,9 @@ class WC_GZD_Admin_Notices {
 					$template
 				) );
 		
-				if ( $theme_template )
+				if ( $theme_template ) {
 					return false;
+                }
 			}
 		}
 		return true;

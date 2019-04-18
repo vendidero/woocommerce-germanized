@@ -440,7 +440,8 @@ final class WooCommerce_Germanized {
 				'woocommerce-gateway-paypal-express-checkout',
 				'woocommerce-subscriptions',
 				'woo-paypalplus',
-				'dhl-for-woocommerce'
+				'dhl-for-woocommerce',
+                'elementor-pro',
 			)
 		);
 

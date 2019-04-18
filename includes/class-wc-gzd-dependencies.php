@@ -167,7 +167,6 @@ class WC_GZD_Dependencies {
 	}
 
 	public function is_plugin_outdated( $plugin ) {
-		
 		$plugin_data = ( isset( $this->plugins_header[ $plugin ] ) ? $this->plugins_header[ $plugin ] : false );
 		
 		if ( ! $plugin_data || ! isset( $plugin_data[ 'requires' ] ) || empty( $plugin_data[ 'requires' ] ) )
@@ -180,7 +179,6 @@ class WC_GZD_Dependencies {
 	}
 
 	public function get_plugin_path( $plugin ) {
-
 		if ( strpos( $plugin, '.php' ) === false ) {
 			$plugin = trailingslashit( $plugin ) . $plugin . '.php';
 		}
@@ -189,9 +187,7 @@ class WC_GZD_Dependencies {
 	}
 
 	public function is_plugin_activated( $plugin ) {
-		
 		if ( isset( $this->plugins_header[ $plugin ][ 'constant' ] ) ) {
-			
 			if ( ! defined( $this->plugins_header[ $plugin ][ 'constant' ] ) )
 				return false;
 		}
@@ -221,7 +217,6 @@ class WC_GZD_Dependencies {
 	 * This method removes accuration from $ver2 if this version is more accurate than $main_ver
 	 */
 	public function compare_versions( $main_ver, $ver2, $operator ) {
-
 		$expl_main_ver = explode( '.', $main_ver );
 		$expl_ver2     = explode( '.', $ver2 );
 
@@ -246,6 +241,10 @@ class WC_GZD_Dependencies {
 	public function is_woocommerce_activated() {
 		return $this->is_plugin_activated( 'woocommerce/woocommerce.php' );
 	}
+
+	public function is_element_pro_activated() {
+        return $this->is_plugin_activated( 'elementor-pro/elementor-pro.php' );
+    }
 
 	public function is_loadable() {
 		return $this->loadable;
