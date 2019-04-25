@@ -159,19 +159,17 @@ class WC_GZD_Customer_Helper {
 		$user_id = get_current_user_id();
 
 		if ( is_cart() ) {
-
 			// On accessing cart - reset disable checkout signup so that the customer is rechecked before redirecting him to the checkout.
 			unset( WC()->session->disable_checkout_signup );
-
 		}
 
-		if ( get_option( 'woocommerce_enable_guest_checkout' ) === 'yes' && isset( $_GET[ 'force-guest' ] ) ) {
+		if ( ( 'yes' === get_option( 'woocommerce_enable_guest_checkout' ) && isset( $_GET[ 'force-guest' ] ) ) || 'yes' !== get_option( 'woocommerce_enable_signup_and_login_from_checkout' ) ) {
 
-			// Disable registration
+		    // Disable registration
 			WC()->session->set( 'disable_checkout_signup', true );
 
 		} elseif ( ! WC()->session->get( 'disable_checkout_signup' ) ) {
-			
+
 			if ( is_checkout() && ( ! is_user_logged_in() || ( $this->enable_double_opt_in_for_user() && ! wc_gzd_is_customer_activated() ) ) ) {
 				
 				WC()->session->set( 'login_redirect', 'checkout' );
@@ -179,9 +177,7 @@ class WC_GZD_Customer_Helper {
 				exit;
 
 			} elseif ( is_checkout() ) {
-
 				unset( WC()->session->login_redirect );
-
 			}
 		}
 	}
