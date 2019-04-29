@@ -427,10 +427,12 @@ final class WooCommerce_Germanized {
 	}
 
 	public function is_rest_api_request() {
-	    $wc = WC();
+	    if ( function_exists( 'WC' ) ) {
+            $wc = WC();
 
-	    if ( is_callable( array( $wc, 'is_rest_api_request' ) ) ) {
-	        return $wc->is_rest_api_request();
+            if ( is_callable( array( $wc, 'is_rest_api_request' ) ) ) {
+                return $wc->is_rest_api_request();
+            }
         }
 
         return false;
