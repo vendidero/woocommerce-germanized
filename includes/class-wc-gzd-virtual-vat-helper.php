@@ -34,10 +34,15 @@ class WC_GZD_Virtual_VAT_Helper {
 		 * This problem was reported by a customer - seems to be an edge problem which could not yet be reproduced.
 		 */
 		if ( ! empty( WC()->customer ) && ! function_exists( 'wc_get_chosen_shipping_method_ids' ) ) {
-			if ( ! WC_germanized()->is_frontend() && function_exists( 'wc' ) ) {
-				wc()->frontend_includes();
+			if ( ! WC_germanized()->is_frontend() && function_exists( 'WC' ) ) {
+				WC()->frontend_includes();
 			}
 		}
+
+		// Prevent errors
+		if ( ! function_exists( 'wc_get_chosen_shipping_method_ids' ) ) {
+		    return $rates;
+        }
 
 		$location               = WC_Tax::get_tax_location( $tax_class );
 		$virtual_vat_applicable = in_array( $tax_class, array( 'virtual-rate', 'virtual-reduced-rate' ) ) && isset( $location[0] ) && sizeof( $location ) === 4 && $location[0] !== WC()->countries->get_base_country();

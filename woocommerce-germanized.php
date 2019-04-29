@@ -423,8 +423,18 @@ final class WooCommerce_Germanized {
 	}
 
 	public function is_frontend() {
-		return ( ! is_admin() || defined( 'DOING_AJAX' ) ) && ! defined( 'DOING_CRON' );
+		return ( ! is_admin() || defined( 'DOING_AJAX' ) ) && ! defined( 'DOING_CRON' ) && ! $this->is_rest_api_request();
 	}
+
+	public function is_rest_api_request() {
+	    $wc = WC();
+
+	    if ( is_callable( array( $wc, 'is_rest_api_request' ) ) ) {
+	        return $wc->is_rest_api_request();
+        }
+
+        return false;
+    }
 
 	public function setup_compatibility() {
 		$plugins = apply_filters( 'woocommerce_gzd_compatibilities',
