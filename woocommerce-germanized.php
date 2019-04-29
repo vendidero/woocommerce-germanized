@@ -7,7 +7,7 @@
  * Author: Vendidero
  * Author URI: https://vendidero.de
  * Requires at least: 3.8
- * Tested up to: 5.1
+ * Tested up to: 5.2
  * WC requires at least: 2.4.0
  * WC tested up to: 3.6.0
  * Requires at least WooCommerce: 2.4
