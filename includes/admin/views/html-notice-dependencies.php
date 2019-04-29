@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) )
 
 		<?php if ( $type === 'unactivated' && ! empty( $plugins ) ) : ?>
 
-			<p><?php _e( 'To use WooCommerce Germanized you may at first install the following plugins:', 'woocommerce-germanized' ); ?></p>
+			<p><?php _e( 'To use Germanized you may at first install the following plugins:', 'woocommerce-germanized' ); ?></p>
 
 			<ul>
 			
@@ -28,7 +28,7 @@ if ( ! defined( 'ABSPATH' ) )
 
 		<?php elseif ( $type === 'outdated' && ! empty( $plugins ) ) : ?>
 
-			<p><?php _e( 'To use WooCommerce Germanized you may at first update the following plugins to a newer version:', 'woocommerce-germanized' ); ?></p>
+			<p><?php _e( 'To use Germanized you may at first update the following plugins to a newer version:', 'woocommerce-germanized' ); ?></p>
 
 			<ul>
 			

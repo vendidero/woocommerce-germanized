@@ -19,7 +19,7 @@ if ( ! defined( 'ABSPATH' ) )
 <table class="wc_status_table widefat" cellspacing="0" id="status">
 	<thead>
 		<tr>
-			<th colspan="3" data-export-label="WooCommerce Germanized"><?php _e( 'WooCommerce Germanized', 'woocommerce-germanized' ); ?></th>
+			<th colspan="3" data-export-label="Germanized"><?php _e( 'Germanized', 'woocommerce-germanized' ); ?></th>
 		</tr>
 	</thead>
 	<tbody>

@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce Germanized v1.5.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-18 11:16+0200\n"
-"PO-Revision-Date: 2019-04-18 11:37+0200\n"
+"POT-Creation-Date: 2019-04-29 12:06+0200\n"
+"PO-Revision-Date: 2019-04-29 12:07+0200\n"
 "Last-Translator: holzhannes <holzhannes@posteo.de>\n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -95,7 +95,7 @@ msgstr "l"
 #: includes/abstracts/abstract-wc-gzd-product.php:369
 #: includes/abstracts/abstract-wc-gzd-product.php:378
 #: includes/wc-gzd-core-functions.php:154
-#: includes/wc-gzd-template-functions.php:444 woocommerce-germanized.php:929
+#: includes/wc-gzd-template-functions.php:444 woocommerce-germanized.php:941
 msgid "incl. VAT"
 msgstr "inkl. MwSt."
 
@@ -106,7 +106,7 @@ msgstr "exkl. MwSt."
 
 # @ woocommerce-germanized
 #: includes/abstracts/abstract-wc-gzd-product.php:371
-#: includes/wc-gzd-core-functions.php:154 woocommerce-germanized.php:929
+#: includes/wc-gzd-core-functions.php:154 woocommerce-germanized.php:941
 #, php-format
 msgid "incl. %s%% VAT"
 msgstr "inkl. %s%% MwSt."
@@ -397,19 +397,19 @@ msgstr "Zahlungarten"
 
 # @ woocommerce-germanized
 #: includes/admin/class-wc-gzd-admin-welcome.php:53
-msgid "About WooCommerce Germanized"
-msgstr "Über WooCommerce Germanized"
+msgid "About Germanized"
+msgstr "Germanized"
 
 # @ woocommerce-germanized
 #: includes/admin/class-wc-gzd-admin-welcome.php:54
 #: includes/admin/views/html-notice-install.php:13
-msgid "Welcome to WooCommerce Germanized"
-msgstr "Willkommen bei WooCommerce Germanized"
+msgid "Welcome to Germanized"
+msgstr "Willkommen bei Germanized"
 
 # @ woocommerce-germanized
 #: includes/admin/class-wc-gzd-admin-welcome.php:314
-msgid "Go to WooCommerce Germanized Settings"
-msgstr "zu den WooCommerce Germanized Einstellungen"
+msgid "Go to Germanized Settings"
+msgstr "Germanized Einstellungen"
 
 #: includes/admin/class-wc-gzd-admin.php:111
 #: includes/class-wc-gzd-dhl-parcel-shops.php:180
@@ -433,6 +433,7 @@ msgstr "Bestellbestätigung erneut versenden"
 # @ woocommerce-germanized
 #: includes/admin/class-wc-gzd-admin.php:179
 #: includes/admin/settings/class-wc-gzd-settings-germanized.php:25
+#: includes/admin/views/html-page-status-germanized.php:22
 msgid "Germanized"
 msgstr "Germanized"
 
@@ -503,7 +504,7 @@ msgstr "Neuer Preis Hinweis"
 #: includes/admin/settings/class-wc-gzd-settings-germanized.php:867
 #: includes/admin/settings/class-wc-gzd-settings-germanized.php:916
 #: includes/admin/settings/class-wc-gzd-settings-germanized.php:965
-#: includes/compatibility/elementor/widgets/class-wc-gzd-elementor-widget-product-units.php:14
+#: includes/compatibility/elementor/widgets/class-wc-gzd-elementor-widget-product-units.php:10
 msgid "Product Units"
 msgstr "Produkteinheiten"
 
@@ -555,7 +556,7 @@ msgstr "Allgemein"
 #: includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:219
 #: includes/api/class-wc-gzd-rest-products-controller.php:38
 #: includes/api/class-wc-gzd-rest-products-controller.php:203
-#: includes/compatibility/elementor/widgets/class-wc-gzd-elementor-widget-product-delivery-time.php:14
+#: includes/compatibility/elementor/widgets/class-wc-gzd-elementor-widget-product-delivery-time.php:10
 msgid "Delivery Time"
 msgstr "Lieferzeit"
 
@@ -2258,19 +2259,18 @@ msgid "Dependencies missing, outdated or not yet tested"
 msgstr "Wichtige Plugins fehlen, sind veraltete oder werden nicht unterstützt"
 
 #: includes/admin/views/html-notice-dependencies.php:19
-msgid ""
-"To use WooCommerce Germanized you may at first install the following plugins:"
+msgid "To use Germanized you may at first install the following plugins:"
 msgstr ""
-"Um WooCommerce Germanized zuverlässig nutzen zu können, müssen Sie erst "
-"folgende Plugins installieren:"
+"Um Germanized zuverlässig nutzen zu können, müssen Sie erst folgende Plugins "
+"installieren:"
 
 #: includes/admin/views/html-notice-dependencies.php:31
 msgid ""
-"To use WooCommerce Germanized you may at first update the following plugins "
-"to a newer version:"
+"To use Germanized you may at first update the following plugins to a newer "
+"version:"
 msgstr ""
-"Um WooCommerce Germanized zuverlässig nutzen zu können, updaten Sie bitte "
-"folgende Plugins:"
+"Um Germanized zuverlässig nutzen zu können, updaten Sie bitte folgende "
+"Plugins:"
 
 #: includes/admin/views/html-notice-dependencies.php:36
 #, php-format
@@ -2398,8 +2398,8 @@ msgstr "Wir übernehmen das Einfügen der EU MwSt.-Sätze für virtuelle Produkt
 
 # @ woocommerce-germanized
 #: includes/admin/views/html-notice-install.php:65
-msgid "Install WooCommerce Germanized"
-msgstr "WooCommerce Germanized installieren"
+msgid "Install Germanized"
+msgstr "Germanized installieren"
 
 # @ woocommerce-germanized
 #: includes/admin/views/html-notice-install.php:65
@@ -2414,14 +2414,14 @@ msgstr "Entdecken Sie jetzt noch mehr nützliche Funktionen"
 # @ woocommerce-germanized
 #: includes/admin/views/html-notice-pro.php:16
 msgid ""
-"Do you enjoy WooCommerce Germanized? Do you want to benefit from even more "
-"and better features? You may consider an uprade to Pro. Check out some of "
-"the main Pro features:"
+"Do you enjoy Germanized? Do you want to benefit from even more and better "
+"features? You may consider an uprade to Pro. Check out some of the main Pro "
+"features:"
 msgstr ""
-"Ihnen gefällt WooCommerce Germanized? Dann profitieren Sie jetzt von "
-"weiteren nützlichen WooCommerce Funktionen um ihren Shop noch ein Stückchen "
-"besser an den deutschen Markt anzupassen. Hier finden Sie einen Auszug der "
-"Funktionen der Pro Version:"
+"Ihnen gefällt Germanized? Dann profitieren Sie jetzt von weiteren nützlichen "
+"WooCommerce Funktionen um ihren Shop noch ein Stückchen besser an den "
+"deutschen Markt anzupassen. Hier finden Sie einen Auszug der Funktionen der "
+"Pro Version:"
 
 # @ woocommerce-germanized
 #: includes/admin/views/html-notice-pro.php:19
@@ -2458,20 +2458,20 @@ msgstr "Diese Nachricht ausblenden"
 
 # @ woocommerce-germanized
 #: includes/admin/views/html-notice-review.php:15
-msgid "Do you like WooCommerce Germanized?"
-msgstr "Gefällt Ihnen WooCommerce Germanized?"
+msgid "Do you like Germanized?"
+msgstr "Gefällt Ihnen Germanized?"
 
 # @ woocommerce-germanized
 #: includes/admin/views/html-notice-review.php:17
 msgid ""
-"If you like WooCommerce Germanized and our Plugin does a good job it would "
-"be great if you would write a review about WooCommerce Germanized on "
-"WordPress.org. Thank you for your support!"
+"If you like Germanized and our Plugin does a good job it would be great if "
+"you would write a review about WooCommerce Germanized on WordPress.org. "
+"Thank you for your support!"
 msgstr ""
-"Wenn Sie WooCommerce Germanized nützlich finden und ihnen unsere Arbeit "
-"gefällt, dann würden wir uns sehr darüber freuen, wenn Sie die Zeit finden "
-"würden, eine kurze Bewertung zum Plugin bei WordPress zu veröffentlichen. "
-"Vielen Dank für Ihre Mühen!"
+"Wenn Sie Germanized nützlich finden und ihnen unsere Arbeit gefällt, dann "
+"würden wir uns sehr darüber freuen, wenn Sie die Zeit finden würden, eine "
+"kurze Bewertung zum Plugin bei WordPress zu veröffentlichen. Vielen Dank für "
+"Ihre Mühen!"
 
 # @ woocommerce-germanized
 #: includes/admin/views/html-notice-review.php:20
@@ -2502,16 +2502,16 @@ msgstr "Theme Inkompatibilität entdeckt"
 msgid ""
 "It seems like your theme tries to overwrite legally relevant templates. "
 "Please review your checkout page. Some things might look weird because "
-"WooCommerce Germanized had to stop template overriding for legal purposes "
-"(Critical templates: %s). See <a href=\"%s\" target=\"_blank\">making your "
-"theme compatible</a> or check out our Theme <a href=\"%s\" target=\"_blank"
+"Germanized had to stop template overriding for legal purposes (Critical "
+"templates: %s). See <a href=\"%s\" target=\"_blank\">making your theme "
+"compatible</a> or check out our Theme <a href=\"%s\" target=\"_blank"
 "\">VendiPro</a> for 100&#37; compatibility."
 msgstr ""
 "Es sieht so aus als wenn ihr aktuelles Theme versucht rechtlich relevante "
 "Templates (kritische Templates: %s) zu überschreiben. Bitte überprüfen Sie "
-"ihren Shop und insbesondere den Bezahlvorgang. WooCommerce Germanized musste "
-"das Überschreiben dieser Templates verhindern um für Rechtssicherheit sorgen "
-"zu können. Bitte lesen Sie dazu <a href=\"%s\" target=\"_blank\">mein Theme "
+"ihren Shop und insbesondere den Bezahlvorgang. Germanized musste das "
+"Überschreiben dieser Templates verhindern um für Rechtssicherheit sorgen zu "
+"können. Bitte lesen Sie dazu <a href=\"%s\" target=\"_blank\">mein Theme "
 "kompatibel machen</a> oder schauen Sie sich das von uns entwickelte Theme <a "
 "href=\"%s\" target=\"_blank\">VendiPro</a> für 100&#37; Kompatibilität an."
 
@@ -2531,20 +2531,19 @@ msgstr "Theme ist noch nicht für WooCommerce Germanized optimiert"
 #: includes/admin/views/html-notice-theme-not-ready.php:15
 #, php-format
 msgid ""
-"It seems like your theme is not yet ready for WooCommerce Germanized. Please "
-"check your theme's styles. Some things might look weird - WooCommerce "
-"Germanized can only offer basic styles. See <a href=\"%s\" target=\"_blank"
-"\">making your theme compatible</a> or check out our Theme <a href=\"%s\" "
-"target=\"_blank\">VendiPro</a> for 100&#37; compatibility."
+"It seems like your theme is not yet ready for Germanized. Please check your "
+"theme's styles. Some things might look weird - Germanized can only offer "
+"basic styles. See <a href=\"%s\" target=\"_blank\">making your theme "
+"compatible</a> or check out our Theme <a href=\"%s\" target=\"_blank"
+"\">VendiPro</a> for 100&#37; compatibility."
 msgstr ""
-"Wir haben festgestellt, dass ihr Theme scheinbar noch nicht für WooCommerce "
-"Germanized optimiert ist. Bitte überprüfen Sie die Style-Angaben des Themes "
-"bzw. das Aussehen ihres Shops. Manche Elemente werden möglicherweise falsch "
-"dargestellt - WooCommerce Germanized kann nur grundlegende Style-Angaben "
-"machen. Lesen Sie sich dazu <a href=\"%s\" target=\"_blank\">wie mache ich "
-"mein Theme kompatibel</a> durch oder nutzen Sie das von uns entwickelte "
-"Theme <a href=\"%s\" target=\"_blank\">VendiPro</a> für 100&#37; "
-"Kompatibilität."
+"Wir haben festgestellt, dass ihr Theme scheinbar noch nicht für Germanized "
+"optimiert ist. Bitte überprüfen Sie die Style-Angaben des Themes bzw. das "
+"Aussehen ihres Shops. Manche Elemente werden möglicherweise falsch "
+"dargestellt - Germanized kann nur grundlegende Style-Angaben machen. Lesen "
+"Sie sich dazu <a href=\"%s\" target=\"_blank\">wie mache ich mein Theme "
+"kompatibel</a> durch oder nutzen Sie das von uns entwickelte Theme <a href="
+"\"%s\" target=\"_blank\">VendiPro</a> für 100&#37; Kompatibilität."
 
 # @ woocommerce-germanized
 #: includes/admin/views/html-notice-theme-supported.php:14
@@ -2557,18 +2556,17 @@ msgstr "Anpassungen für %s freischalten"
 #, php-format
 msgid ""
 "Your current theme %s needs some adaptions to seamlessly integrate with "
-"WooCommerce Germanized. Our Pro Version will <strong>enable support for %s</"
-"strong> and makes sure WooCommerce Germanized settings are shown and styled "
-"within frontend for a better user experience. A better user experience will "
-"help you selling more products."
+"Germanized. Our Pro Version will <strong>enable support for %s</strong> and "
+"makes sure Germanized settings are shown and styled within frontend for a "
+"better user experience. A better user experience will help you selling more "
+"products."
 msgstr ""
 "Ihr aktuelles Theme %s benötigt einige Anpassungen um die Darstellung der "
-"Optionen von WooCommerce Germanized (Lieferzeiten, Einheitspreise etc.) zu "
-"optimieren. Unsere Pro Version bietet die <strong>Unterstützung ihres "
-"aktuellen Themes %s</strong> und sorgt für eine bessere Bedienbarkeit und "
-"Benutzererfahrung in ihrem Shop. Alternativ möchten wir Ihnen natürlich auch "
-"gerne unser Theme VendiPro empfehlen welches WooCommerce Germanized zu 100%% "
-"unterstützt."
+"Optionen von Germanized (Lieferzeiten, Einheitspreise etc.) zu optimieren. "
+"Unsere Pro Version bietet die <strong>Unterstützung ihres aktuellen Themes "
+"%s</strong> und sorgt für eine bessere Bedienbarkeit und Benutzererfahrung "
+"in ihrem Shop. Alternativ möchten wir Ihnen natürlich auch gerne unser Theme "
+"VendiPro empfehlen welches Germanized zu 100%% unterstützt."
 
 # @ woocommerce-germanized
 #: includes/admin/views/html-notice-theme-supported.php:17
@@ -2579,11 +2577,11 @@ msgstr "Anpassungen für %s freischalten"
 # @ woocommerce-germanized
 #: includes/admin/views/html-notice-update.php:12
 msgid ""
-"<strong>WooCommerce Germanized Data Update Required</strong> &#8211; We just "
-"need to update your install to the latest version"
+"<strong>Germanized Data Update Required</strong> &#8211; We just need to "
+"update your install to the latest version"
 msgstr ""
-"<strong>WooCommerce Germanized Datenaktualisierung erforderlich</strong> "
-"&#8211; Wir müssen ihre Installation auf die neueste Version updaten"
+"<strong>Germanized Datenaktualisierung erforderlich</strong> &#8211; Wir "
+"müssen ihre Installation auf die neueste Version updaten"
 
 # @ woocommerce-germanized
 #: includes/admin/views/html-notice-update.php:13
@@ -2622,11 +2620,6 @@ msgstr "Kopiert!"
 #: includes/admin/views/html-page-status-germanized.php:15
 msgid "Copy for Support"
 msgstr "Für Supportanfrage kopieren"
-
-# @ woocommerce-germanized
-#: includes/admin/views/html-page-status-germanized.php:22
-msgid "WooCommerce Germanized"
-msgstr "WooCommerce Germanized"
 
 # @ woocommerce-germanized
 #: includes/admin/views/html-page-status-germanized.php:27
@@ -2864,7 +2857,7 @@ msgstr "Erfahren Sie, wie Sie veraltete Templates aktualisieren"
 
 # @ woocommerce-germanized
 #: includes/admin/views/html-settings-pro.php:23
-msgid "Get WooCommerce Germanized Pro to unlock"
+msgid "Get Germanized Pro to unlock"
 msgstr "Upgraden Sie zur Pro Version um dieses Feature zu nutzen"
 
 # @ woocommerce-germanized
@@ -2881,7 +2874,7 @@ msgstr ""
 
 # @ woocommerce-germanized
 #: includes/admin/views/html-settings-pro.php:25
-#: includes/compatibility/elementor/widgets/abstact-class-wc-gzd-elementor-widget.php:40
+#: includes/compatibility/elementor/widgets/abstact-class-wc-gzd-elementor-widget.php:46
 #: includes/gateways/invoice/class-wc-gzd-gateway-invoice.php:74
 msgid "Upgrade now"
 msgstr "jetzt upgraden"
@@ -3038,7 +3031,7 @@ msgstr "Einheit Slug"
 # @ woocommerce-germanized
 #: includes/api/class-wc-gzd-rest-products-controller.php:136
 #: includes/api/class-wc-gzd-rest-products-controller.php:289
-#: includes/compatibility/elementor/widgets/class-wc-gzd-elementor-widget-product-unit-price.php:14
+#: includes/compatibility/elementor/widgets/class-wc-gzd-elementor-widget-product-unit-price.php:10
 msgid "Unit Price"
 msgstr "Grundpreis"
 
@@ -3207,8 +3200,8 @@ msgstr ""
 "\">hier</a>."
 
 #: includes/class-wc-gzd-customer-helper.php:94
-#: includes/class-wc-gzd-customer-helper.php:192
-#: includes/class-wc-gzd-customer-helper.php:273
+#: includes/class-wc-gzd-customer-helper.php:188
+#: includes/class-wc-gzd-customer-helper.php:269
 msgid ""
 "Please activate your account through clicking on the activation link "
 "received via email."
@@ -3216,18 +3209,18 @@ msgstr ""
 "Bitte aktivieren Sie Ihr Kundenkonto indem Sie auf den Link in der E-Mail "
 "klicken."
 
-#: includes/class-wc-gzd-customer-helper.php:201
+#: includes/class-wc-gzd-customer-helper.php:197
 #, php-format
 msgid "Continue without creating an account? <a href=\"%s\">Click here</a>"
 msgstr "Weiter zur Kasse ohne Kundenkonto? <a href=\"%s\">Hier klicken</a>"
 
-#: includes/class-wc-gzd-customer-helper.php:203
+#: includes/class-wc-gzd-customer-helper.php:199
 msgid "Please create an account or login before continuing to checkout"
 msgstr ""
 "Bitte erstellen Sie ein Kundenkonto oder loggen Sie sich ein, bevor Sie zur "
 "Kasse gehen"
 
-#: includes/class-wc-gzd-customer-helper.php:296
+#: includes/class-wc-gzd-customer-helper.php:292
 msgid ""
 "This activation code has expired. We have sent you a new activation code via "
 "e-mail."
@@ -3236,20 +3229,20 @@ msgstr ""
 "Code per E-Mail geschickt."
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-customer-helper.php:298
+#: includes/class-wc-gzd-customer-helper.php:294
 msgid "Sorry, but this activation code cannot be found."
 msgstr "Sorry, dieser Aktivierungscode ist uns leider nicht bekannt."
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-customer-helper.php:302
+#: includes/class-wc-gzd-customer-helper.php:298
 msgid "Thank you. You have successfully activated your account."
 msgstr "Vielen Dank. Ihr Benutzerkonto wurde erfolgreich aktiviert."
 
-#: includes/class-wc-gzd-customer-helper.php:412
+#: includes/class-wc-gzd-customer-helper.php:408
 msgid "Expired activation key"
 msgstr "Abgelaufener Aktivierungscode"
 
-#: includes/class-wc-gzd-customer-helper.php:417
+#: includes/class-wc-gzd-customer-helper.php:413
 msgid "Invalid activation key"
 msgstr "Aktivierungscode ungültig"
 
@@ -4175,7 +4168,7 @@ msgstr ""
 "Diese Option kann per WPML übersetzt werden. Sie können die originale Option "
 "(%s) %s auf %s übersetzen indem Sie die Übersetzung oben anpassen."
 
-#: includes/compatibility/elementor/widgets/abstact-class-wc-gzd-elementor-widget.php:40
+#: includes/compatibility/elementor/widgets/abstact-class-wc-gzd-elementor-widget.php:46
 #, php-format
 msgid ""
 "Upgrade to WooCommerce Germanized Pro to use your our custom Elementor "
@@ -4185,7 +4178,7 @@ msgstr ""
 "verwenden. %s"
 
 # @ woocommerce-germanized
-#: includes/compatibility/elementor/widgets/class-wc-gzd-elementor-widget-product-shipping-notice.php:14
+#: includes/compatibility/elementor/widgets/class-wc-gzd-elementor-widget-product-shipping-notice.php:10
 msgid "Shipping Notice"
 msgstr "Versandkosten Hinweis"
 
@@ -4893,7 +4886,7 @@ msgstr ""
 # @ woocommerce-germanized
 # @ woocommerce
 #: includes/gateways/invoice/class-wc-gzd-gateway-invoice.php:64
-#: woocommerce-germanized.php:649
+#: woocommerce-germanized.php:661
 msgid "Settings"
 msgstr "Einstellungen"
 
@@ -4989,15 +4982,15 @@ msgstr "Doppelte Plugin Installation"
 #, php-format
 msgctxt "trusted-shops"
 msgid ""
-"It seems like you've installed WooCommerce Germanized and Trustbadge Reviews "
-"for WooCommerce. Please deactivate Trustbadge Reviews for WooCommerce as "
-"long as you are using WooCommerce Germanized. You can manage your Trusted "
-"Shops configuration within your %s."
+"It seems like you've installed Germanized and Trustbadge Reviews for "
+"WooCommerce. Please deactivate Trustbadge Reviews for WooCommerce as long as "
+"you are using Germanized. You can manage your Trusted Shops configuration "
+"within your %s."
 msgstr ""
-"Es scheint als hätten Sie WooCommerce Germanized und Trustbadge Reviews for "
-"WooCommerce installiert. Bitte deaktivieren Sie das Trustbadge Reviews "
-"Plugin solange Sie WooCommerce Germanized verwenden. Sie können ihre Trusted "
-"Shops Konfiguration in den %s verwalten."
+"Es scheint als hätten Sie Germanized und Trustbadge Reviews for WooCommerce "
+"installiert. Bitte deaktivieren Sie das Trustbadge Reviews Plugin solange "
+"Sie Germanized verwenden. Sie können ihre Trusted Shops Konfiguration in den "
+"%s verwalten."
 
 # @ woocommerce-germanized
 #: includes/trusted-shops/admin/views/html-duplicate-plugin-notice.php:21
@@ -6251,9 +6244,21 @@ msgctxt "trusted-shops"
 msgid "cancel review reminder"
 msgstr "von der Bewertungserinnerung abmelden"
 
-#: woocommerce-germanized.php:756
+#: woocommerce-germanized.php:768
 msgid "Pease wait while we are trying to redirect you to the payment provider."
 msgstr "Einen Moment - wir versuchen Sie zum Zahlungsanbieter weiterzuleiten."
+
+# @ woocommerce-germanized
+#~ msgid "About WooCommerce Germanized"
+#~ msgstr "Über WooCommerce Germanized"
+
+# @ woocommerce-germanized
+#~ msgid "Go to WooCommerce Germanized Settings"
+#~ msgstr "zu den WooCommerce Germanized Einstellungen"
+
+# @ woocommerce-germanized
+#~ msgid "WooCommerce Germanized"
+#~ msgstr "WooCommerce Germanized"
 
 #~ msgctxt "trusted-shops"
 #~ msgid "(WooCommerce Product Reviews will be replaced)"
@@ -6597,7 +6602,7 @@ msgstr "Einen Moment - wir versuchen Sie zum Zahlungsanbieter weiterzuleiten."
 #~ msgstr "Trusted Shops Rich Snippets"
 
 #~ msgctxt "trusted-shops"
-#~ msgid "&#216; %s / %s of %s %s %s customer reviews | Trusted Shops %s"
+#~ msgid "&#216; %s / %s of %s %s %s customer reviews | Trusted Shops %s"
 #~ msgstr "&#216; %s / %s bei %s %s %s Kundenbewertungen | Trusted Shops %s"
 
 # @ woocommerce-germanized

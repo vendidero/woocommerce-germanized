@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<div class="wc-gzd-sidebar-img">
 		<a href="https://vendidero.de/woocommerce-germanized" target="_blank"><img class="browser" src="<?php echo WC_germanized()->plugin_url(); ?>/assets/images/new-checkbox.png" /></a>
 	</div>
-	<p>Mit der <span class="wc-gzd-pro">pro</span> Version von WooCommerce Germanized bekommst du jetzt noch mehr Gestaltungsfreiheit für deine Checkboxen.
+	<p>Mit der <span class="wc-gzd-pro">pro</span> Version von Germanized bekommst du jetzt noch mehr Gestaltungsfreiheit für deine Checkboxen.
 		Über unsere Oberfläche kannst du einfach eigene Checkboxen anlegen, bearbeiten oder löschen. Zusätzlich fügt Germanized Pro weitere Optionen für die Anpassung der HTML-Elemente hinzu.</p>
 	<div class="wc-gzd-sidebar-action">
 		<a class="button button-primary wc-gzd-button" href="https://vendidero.de/woocommerce-germanized" target="_blank">jetzt entdecken</a>

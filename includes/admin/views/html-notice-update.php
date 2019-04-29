@@ -9,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 ?>
 <div id="message" class="updated woocommerce-message woocommerce-gzd-message wc-connect">
-	<p><?php _e( '<strong>WooCommerce Germanized Data Update Required</strong> &#8211; We just need to update your install to the latest version', 'woocommerce-germanized' ); ?></p>
+	<p><?php _e( '<strong>Germanized Data Update Required</strong> &#8211; We just need to update your install to the latest version', 'woocommerce-germanized' ); ?></p>
 	<p class="submit"><a href="<?php echo esc_url( add_query_arg( 'do_update_woocommerce_gzd', 'true', admin_url( 'admin.php?page=wc-settings&tab=germanized' ) ) ); ?>" class="wc-gzd-update-now button-primary"><?php _e( 'Run the updater', 'woocommerce-germanized' ); ?></a></p>
 </div>
 <script type="text/javascript">

@@ -18,7 +18,7 @@ $deactivate_url = $prefix . 'plugins.php?action=deactivate&plugin=' . rawurlenco
 <div id="message" class="error woocommerce-gzd-message wc-connect">
 	<h3><?php echo _x( 'Duplicate Plugin installation', 'trusted-shops', 'woocommerce-germanized' );?></h3>
 	<p>
-		<?php echo sprintf( _x( "It seems like you've installed WooCommerce Germanized and Trustbadge Reviews for WooCommerce. Please deactivate Trustbadge Reviews for WooCommerce as long as you are using WooCommerce Germanized. You can manage your Trusted Shops configuration within your %s.", 'trusted-shops', 'woocommerce-germanized' ), '<a href="' . admin_url( 'admin.php?page=wc-settings&tab=germanized&section=trusted_shops' ) . '">' . _x( 'Germanized settings', 'trusted-shops', 'woocommerce-germanized' ) . '</a>' ); ?>
+		<?php echo sprintf( _x( "It seems like you've installed Germanized and Trustbadge Reviews for WooCommerce. Please deactivate Trustbadge Reviews for WooCommerce as long as you are using Germanized. You can manage your Trusted Shops configuration within your %s.", 'trusted-shops', 'woocommerce-germanized' ), '<a href="' . admin_url( 'admin.php?page=wc-settings&tab=germanized&section=trusted_shops' ) . '">' . _x( 'Germanized settings', 'trusted-shops', 'woocommerce-germanized' ) . '</a>' ); ?>
 	</p>
 	<p><a class="button button-primary" href="<?php echo $deactivate_url; ?>"><?php echo _x( 'Deactivate standalone version', 'trusted-shops', 'woocommerce-germanized' ); ?></a></p>
 </div>

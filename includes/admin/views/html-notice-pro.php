@@ -13,7 +13,7 @@ $dismiss_url = add_query_arg( 'notice', 'wc-gzd-hide-pro-notice', add_query_arg(
 <div class="updated fade">
 	<h3><?php _e( 'For professionals: Upgrade to Pro-Version', 'woocommerce-germanized' ); ?></h3>
 	<p>
-		<?php _e( 'Do you enjoy WooCommerce Germanized? Do you want to benefit from even more and better features? You may consider an uprade to Pro. Check out some of the main Pro features:', 'woocommerce-germanized' ); ?>
+		<?php _e( 'Do you enjoy Germanized? Do you want to benefit from even more and better features? You may consider an uprade to Pro. Check out some of the main Pro features:', 'woocommerce-germanized' ); ?>
 	</p>
 	<ul>
 		<li>✓ <?php _e( 'PDF invoices and packing slips', 'woocommerce-germanized' ); ?></li>

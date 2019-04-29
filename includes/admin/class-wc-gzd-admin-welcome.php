@@ -50,8 +50,8 @@ class WC_GZD_Admin_Welcome {
 			return;
 		}
 
-		$welcome_page_name  = __( 'About WooCommerce Germanized', 'woocommerce-germanized' );
-		$welcome_page_title = __( 'Welcome to WooCommerce Germanized', 'woocommerce-germanized' );
+		$welcome_page_name  = __( 'About Germanized', 'woocommerce-germanized' );
+		$welcome_page_title = __( 'Welcome to Germanized', 'woocommerce-germanized' );
 
 		switch ( $_GET['page'] ) {
 			case 'wc-gzd-about' :
@@ -109,7 +109,7 @@ class WC_GZD_Admin_Welcome {
         </style>
 		<div class="wc-gzd-news <?php echo ( WC_germanized()->is_pro() ? 'wc-gzd-admin-welcome-hide-pro' : '' ); ?>">
 		
-			<h1>Willkommen bei WooCommerce Germanized</h1>
+			<h1>Willkommen bei Germanized</h1>
 			<a class="wc-gzd-logo" href="https://vendidero.de/woocommerce-germanized" target="_blank" style="margin-right: 1em"></a>
 			<div class="about-text woocommerce-about-text">
 				<?php
@@ -121,7 +121,7 @@ class WC_GZD_Admin_Welcome {
 						$message = 'Danke für die Installation!';
 					echo $message . '<br/>';
 				?>
-				WooCommerce Germanized <?php echo $major_version; ?> erweitert deine WooCommerce Installation um wichtige Funktionen für den deutschen Markt.</p>
+                Germanized <?php echo $major_version; ?> erweitert deine WooCommerce Installation um wichtige Funktionen für den deutschen Markt.</p>
 			</div>
 			<p class="woocommerce-actions wc-gzd-actions">
 				<a href="<?php echo admin_url('admin.php?page=wc-settings&tab=germanized'); ?>" class="button button-primary">Einstellungen</a>
@@ -212,7 +212,7 @@ class WC_GZD_Admin_Welcome {
 				</div>
 				<div class="right">
 					<p>Endlich ist es soweit - Ein WooCommerce Theme, perfekt auf den deutschen Markt abgestimmt.
-					Mit <a href="https://vendidero.de/vendipro" target="_blank">VendiPro</a> wirken alle WooCommerce & WooCommerce Germanized Inhalte einfach noch professioneller.</p>
+					Mit <a href="https://vendidero.de/vendipro" target="_blank">VendiPro</a> wirken alle WooCommerce & Germanized Inhalte einfach noch professioneller.</p>
 					<div class="wc-feature wc-vendipro-features feature-section col two-col">
 						<div>
 							<h4><i class="fa fa-mobile"></i> Responsive Layout</h4>
@@ -238,7 +238,7 @@ class WC_GZD_Admin_Welcome {
 				</div>
 			</div>
 			<div class="changelog">
-				<h3>Neu in WooCommerce Germanized 2.0</h3>
+				<h3>Neu in Germanized 2.0</h3>
 				<div class="wc-feature feature-section col three-col" style="margin-bottom: -30px">
 					<div>
 						<h4><i class="fa fa-check-square"></i> Rechtliche Checkboxen</h4>
@@ -262,11 +262,11 @@ class WC_GZD_Admin_Welcome {
 				</div>
 			</div>
 			<div class="changelog">
-				<h3>WooCommerce Germanized - Funktionsübersicht</h3>
+				<h3>Germanized - Funktionsübersicht</h3>
 				<div class="wc-feature feature-section col three-col">
 					<div>
 						<h4><i class="fa fa-child"></i> Kleinunternehmerregelung</h4>
-						<p>Mit nur einem Klick wird Dein Online-Shop §19 UStG - kompatibel! Einfach die Häkchen innerhalb der WooCommerce Germanized Einstellungen setzen und schon geht es los.</p>
+						<p>Mit nur einem Klick wird Dein Online-Shop §19 UStG - kompatibel! Einfach die Häkchen innerhalb der Germanized Einstellungen setzen und schon geht es los.</p>
 					</div>
 					<div>
 						<h4><i class="fa fa-truck"></i> Lieferzeiten</h4>
@@ -284,7 +284,7 @@ class WC_GZD_Admin_Welcome {
 					</div>
 					<div>
 						<h4><i class="fa fa-certificate"></i> Trusted Shops</h4>
-						<p>Du möchtest deine Trusted Shops Mitgliedschaft in WooCommerce nutzen? Kein Problem. WooCommerce Germanized hat die Schnittstelle zu Trusted Shops bereits implementiert.
+						<p>Du möchtest deine Trusted Shops Mitgliedschaft in WooCommerce nutzen? Kein Problem. Germanized hat die Schnittstelle zu Trusted Shops bereits implementiert.
 						Klicke <a href="<?php echo esc_url( admin_url( add_query_arg( array( 'page' => 'wc-settings&tab=germanized&section=trusted_shops' ), 'admin.php' ) ) ); ?>">hier</a> um die nötigen Einstellungen vorzunehmen.</p>
 					</div>
 					<div class="last-feature">
@@ -311,7 +311,7 @@ class WC_GZD_Admin_Welcome {
 			
 
 			<div class="return-to-dashboard">
-				<a href="<?php echo esc_url( admin_url( add_query_arg( array( 'page' => 'wc-settings&tab=germanized' ), 'admin.php' ) ) ); ?>"><?php _e( 'Go to WooCommerce Germanized Settings', 'woocommerce-germanized' ); ?></a>
+				<a href="<?php echo esc_url( admin_url( add_query_arg( array( 'page' => 'wc-settings&tab=germanized' ), 'admin.php' ) ) ); ?>"><?php _e( 'Go to Germanized Settings', 'woocommerce-germanized' ); ?></a>
 			</div>
 		</div>
 		<?php

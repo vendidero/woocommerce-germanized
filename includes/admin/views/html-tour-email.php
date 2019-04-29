@@ -25,8 +25,8 @@ if ( ! wc_gzd_get_dependencies()->woocommerce_version_supports_crud() ) {
 <ol class="tourbus-legs wc-gzd-tour" id="tour-settings-email">
 
 	<li data-orientation="centered">
-		<h2>WooCommerce Germanized Tour</h2>
-		<p>Lerne jetzt schnell und einfach die ersten Schritte zur Konfiguration von WooCommerce Germanized kennen.</p>
+		<h2>Germanized Tour</h2>
+		<p>Lerne jetzt schnell und einfach die ersten Schritte zur Konfiguration von Germanized kennen.</p>
 		<a class="button button-primary tourbus-next" href="javascript:void(0);">Los geht's</a>
 		<a class="button button-secondary" href="<?php echo WC_GZD_Admin::instance()->disable_tour_link( 'email' ); ?>" style="float: right">Nein, Danke</a>
 	</li>
@@ -43,7 +43,7 @@ if ( ! wc_gzd_get_dependencies()->woocommerce_version_supports_crud() ) {
 	<li class="wc-gzd-tour-pro" data-el="<?php echo $elements[ 'legal_terms' ]; ?>" data-orientation="top" data-width="500">
 		<h2><span class="wc-gzd-pro">pro</span> PDF Anhänge in E-Mails</h2>
 		<p>
-			Nutzer der Pro-Version von WooCommerce Germanized können optional PDF-Dateien anstatt reinem Text an die WooCommerce E-Mails anhängen.
+			Nutzer der Pro-Version von Germanized können optional PDF-Dateien anstatt reinem Text an die WooCommerce E-Mails anhängen.
 			Die PDF-Dateien können automatisch, basierend auf dem Inhalt der jeweiligen Seite erzeugt oder manuell hinterlegt werden.
 		</p>
 		<a class="button button-primary tourbus-disable" href="<?php echo WC_GZD_Admin::instance()->disable_tour_link( '' ); ?>">Tour beenden</a>

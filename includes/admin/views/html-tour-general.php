@@ -35,8 +35,8 @@ if ( ! wc_gzd_get_dependencies()->woocommerce_version_supports_crud() ) {
 <ol class="tourbus-legs wc-gzd-tour" id="tour-settings-general">
 
 	<li data-orientation="centered">
-		<h2>WooCommerce Germanized Tour</h2>
-		<p>Lerne jetzt schnell und einfach die ersten Schritte zur Konfiguration von WooCommerce Germanized kennen.</p>
+		<h2>Germanized Tour</h2>
+		<p>Lerne jetzt schnell und einfach die ersten Schritte zur Konfiguration von Germanized kennen.</p>
 		<a class="button button-primary tourbus-next" href="javascript:void(0);">Los geht's</a>
 		<a class="button button-secondary" href="<?php echo WC_GZD_Admin::instance()->disable_tour_link( 'general' ); ?>" style="float: right">Nein, Danke</a>
 	</li>

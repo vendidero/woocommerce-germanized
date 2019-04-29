@@ -1,9 +1,9 @@
 <?php
 /**
- * Plugin Name: WooCommerce Germanized
+ * Plugin Name: Germanized for WooCommerce
  * Plugin URI: https://www.vendidero.de/woocommerce-germanized
- * Description: WooCommerce Germanized extends WooCommerce to become a legally compliant store in the german market.
- * Version: 2.2.11
+ * Description: Germanized for WooCommerce extends WooCommerce to become a legally compliant store in the german market.
+ * Version: 2.2.12
  * Author: Vendidero
  * Author URI: https://vendidero.de
  * Requires at least: 3.8
@@ -31,7 +31,7 @@ final class WooCommerce_Germanized {
 	 *
 	 * @var string
 	 */
-	public $version = '2.2.11';
+	public $version = '2.2.12';
 
 	/**
 	 * Single instance of WooCommerce Germanized Main Class

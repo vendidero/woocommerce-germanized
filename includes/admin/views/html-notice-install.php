@@ -10,8 +10,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 ?>
 
 <div id="message" class="updated woocommerce-message woocommerce-gzd-message wc-connect">
-	<h3><strong><?php _e( 'Welcome to WooCommerce Germanized', 'woocommerce-germanized' ); ?></strong></h3>
-	<p><?php echo _e( 'Just a few more steps and your Online-Shop will become legally compliant:', 'woocommerce-germanized' ); ?></p>
+	<h3><strong><?php _e( 'Welcome to Germanized', 'woocommerce-germanized' ); ?></strong></h3>
+	<p><?php _e( 'Just a few more steps and your Online-Shop will become legally compliant:', 'woocommerce-germanized' ); ?></p>
 	<form name="" method="get">
 		<table class="form-table">
 			<tbody>
@@ -62,6 +62,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<input type="hidden" name="install_woocommerce_gzd" value="true" />
 		</table>
 		<p class="submit">
-			<input type="submit" class="button-primary" value="<?php _e( 'Install WooCommerce Germanized', 'woocommerce-germanized' );?>" /> <a class="wc-gzd-skip button-primary" href="<?php echo add_query_arg( 'skip_install_woocommerce_gzd', 'true', admin_url( 'admin.php?page=wc-settings&tab=germanized&section' ) ); ?>"><?php _e( 'Skip setup', 'woocommerce-germanized' ); ?></a></p>
+			<input type="submit" class="button-primary" value="<?php _e( 'Install Germanized', 'woocommerce-germanized' );?>" /> <a class="wc-gzd-skip button-primary" href="<?php echo add_query_arg( 'skip_install_woocommerce_gzd', 'true', admin_url( 'admin.php?page=wc-settings&tab=germanized&section' ) ); ?>"><?php _e( 'Skip setup', 'woocommerce-germanized' ); ?></a></p>
 	</form>
 </div>
