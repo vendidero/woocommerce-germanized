@@ -53,7 +53,7 @@ Furthermore we customized the WooCommerce checkout to make your store meet the b
 = Germanized for WooCommerce is certified by Trusted Shops =
 Germanized has been approved by Trusted Shops and therefor offers best technical conditions to operate a legally binding WooCommerce Shop in Germany.
 Trusted Shops certifies Shops after selected and weighted criteria and has carefully examined our WooCommerce Plugin.
-Of course Trusted Shops customers may embed their quality seals or further Trusted Shops Products as genuine Seller and Product Reviews by adapting just a few options within WooCommerce Germanized.
+Of course Trusted Shops customers may embed their quality seals or further Trusted Shops Products as genuine Seller and Product Reviews by adapting just a few options within Germanized for WooCommerce.
 
 = Code quality =
 While developing Germanized we have specifically considered clean integration within WooCommerce and WordPress by adapting core functionality.
