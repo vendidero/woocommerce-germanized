@@ -55,6 +55,9 @@ class WC_GZD_Emails {
         // Filter customer-processing-order Woo 3.5 payment text
 		add_filter( 'woocommerce_before_template_part', array( $this, 'maybe_set_gettext_email_filter' ), 10, 4 );
 
+		// Make sure confirmation emails are not being resent on order-pay
+        add_action( 'woocommerce_before_pay_action', array( $this, 'disable_pay_order_confirmation' ), 10, 1 );
+
         // Hide username if an email contains a password or password reset link (TS advises to do so)
         if ( 'yes' === get_option( 'woocommerce_gzd_hide_username_with_password' ) ) {
             add_filter( 'woocommerce_before_template_part', array( $this, 'maybe_set_gettext_username_filter' ), 10, 4 );
@@ -64,6 +67,11 @@ class WC_GZD_Emails {
             $this->admin_hooks();
         }
 	}
+
+	public function disable_pay_order_confirmation( $order ) {
+        remove_filter( 'woocommerce_payment_successful_result', array( $this, 'send_order_confirmation_mails' ), 0 );
+        remove_filter( 'woocommerce_checkout_no_payment_needed_redirect', array( $this, 'send_order_confirmation_mails' ), 0 );
+    }
 
 	public function save_confirmation_text_option() {
 		if ( ! current_user_can( 'manage_woocommerce' ) ) {
