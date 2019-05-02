@@ -144,3 +144,6 @@ table.product-details-inner tr td:last-child {
 #order_review .blockMsg {
 	line-height: 1.5em;
 }
+#shipping_parcelshop_post_number_field .optional {
+    display: none !important;
+}
