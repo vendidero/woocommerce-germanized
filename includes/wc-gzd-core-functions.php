@@ -20,6 +20,69 @@ function wc_gzd_send_instant_order_confirmation() {
     return ( apply_filters( 'woocommerce_gzd_instant_order_confirmation', true ) && ( 'yes' !== get_option( 'woocommerce_gzd_disable_instant_order_confirmation' ) ) );
 }
 
+function wc_gzd_get_legal_product_notice_types() {
+    return apply_filters( 'woocommerce_gzd_legal_product_notice_types', array(
+        'price_unit' => array(
+            'single' => 'woocommerce_single_product_summary',
+            'loop'   => 'woocommerce_after_shop_loop_item_title',
+        ),
+        'product_units' => array(
+            'single' => 'woocommerce_product_meta_start',
+            'loop'   => 'woocommerce_after_shop_loop_item',
+        ),
+        'shipping_costs_info' => array(
+            'loop'   => 'woocommerce_after_shop_loop_item',
+        ),
+        'delivery_time_info' => array(
+            'single' => 'woocommerce_single_product_summary',
+            'loop'   => 'woocommerce_after_shop_loop_item',
+        ),
+        'tax_info' => array(
+            'loop'   => 'woocommerce_after_shop_loop_item',
+        ),
+        'legal_info' => array(
+            'single' => 'woocommerce_single_product_summary',
+        ),
+    ) );
+}
+
+function wc_gzd_get_legal_product_notice_types_by_location( $location = 'loop' ) {
+    $location_types = array();
+    $option_prefix  = 'woocommerce_gzd_display_';
+
+    if ( 'loop' === $location ) {
+        $option_prefix .= 'listings_';
+    } elseif ( 'single' === $location ) {
+        $option_prefix .= 'product_detail_';
+    }
+
+    foreach( wc_gzd_get_legal_product_notice_types() as $type => $locations ) {
+
+        if ( ! isset( $locations[ $location ] ) ) {
+            continue;
+        }
+
+        $enabled = 'yes' === get_option( $option_prefix . $type );
+
+        // Make sure to display legal info if tax info or shipping costs info is enabled within display settings
+        if ( 'single' === $location && 'legal_info' === $type && ( 'yes' === get_option( $option_prefix . 'tax_info' ) || 'yes' === get_option( $option_prefix . 'shipping_costs_info' ) ) ) {
+            $enabled = true;
+        }
+
+        if ( $enabled ) {
+            $callback = "woocommerce_gzd_template_single_{$type}";
+
+            $location_types[ $type ] = array(
+                'priority' => wc_gzd_get_hook_priority( $location . '_' . $type ),
+                'callback' => $callback,
+                'filter'   => $locations[ $location ],
+            );
+        }
+    }
+
+    return apply_filters( 'woocommerce_gzd_legal_product_notice_types_location', $location_types, $location );
+}
+
 /**
  * Format tax rate percentage for output in frontend
  *  

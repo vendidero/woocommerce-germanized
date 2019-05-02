@@ -10,7 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 $elements = array(
 	'add_to_cart' => '#woocommerce_gzd_display_listings_add_to_cart',
 	'vat_notice' => '#woocommerce_gzd_display_footer_vat_notice',
-	'shipping_costs' => '#woocommerce_gzd_display_listings_shipping_costs',
+	'shipping_costs' => '#woocommerce_gzd_display_listings_shipping_costs_info',
 	'unit_price' => '#woocommerce_gzd_unit_price_text',
 	'display_checkout' => '#woocommerce_gzd_display_checkout_fallback',
 	'pay_now' => '#woocommerce_gzd_order_pay_now_button',

@@ -19,7 +19,7 @@ global $product;
 		<?php elseif ( ( get_option( 'woocommerce_gzd_small_enterprise' ) == 'yes' && get_option( 'woocommerce_gzd_display_product_detail_small_enterprise' ) == 'yes' ) ) : ?>
 			<span class="wc-gzd-additional-info small-business-info"><?php echo wc_gzd_get_small_business_product_notice(); ?></span>		
 		<?php endif; ?>
-		<?php if ( wc_gzd_get_gzd_product( $product )->get_shipping_costs_html() && get_option( 'woocommerce_gzd_display_product_detail_shipping_costs' ) == 'yes' ) : ?>
+		<?php if ( wc_gzd_get_gzd_product( $product )->get_shipping_costs_html() && get_option( 'woocommerce_gzd_display_product_detail_shipping_costs_info' ) == 'yes' ) : ?>
 			<span class="wc-gzd-additional-info shipping-costs-info"><?php echo wc_gzd_get_gzd_product( $product )->get_shipping_costs_html();?></span>
 		<?php endif; ?>
 	</p>

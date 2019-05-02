@@ -135,8 +135,8 @@ class WC_GZD_Admin_Importer {
 		);
 
 		$settings_on_off = array(
-			'woocommerce_de_show_delivery_time_overview' => 'woocommerce_gzd_display_listings_delivery_time',
-			'woocommerce_de_show_price_per_unit' => 'woocommerce_gzd_display_listings_unit_price',
+			'woocommerce_de_show_delivery_time_overview' => 'woocommerce_gzd_display_listings_delivery_time_info',
+			'woocommerce_de_show_price_per_unit' => 'woocommerce_gzd_display_listings_price_unit',
 			'wgm_use_split_tax' => 'woocommerce_gzd_shipping_tax',
 			'wgm_use_split_tax' => 'woocommerce_gzd_fee_tax',
 		);

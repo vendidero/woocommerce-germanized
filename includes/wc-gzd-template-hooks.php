@@ -23,35 +23,26 @@ add_filter( 'woocommerce_get_variation_price_html', 'woocommerce_gzd_template_sa
 /**
  * Single Product
  */
-if ( get_option( 'woocommerce_gzd_display_product_detail_unit_price' ) == 'yes' )
-	add_action( 'woocommerce_single_product_summary', 'woocommerce_gzd_template_single_price_unit', wc_gzd_get_hook_priority( 'single_price_unit' ) );
-if ( get_option( 'woocommerce_gzd_display_product_detail_tax_info' ) == 'yes' || get_option( 'woocommerce_gzd_display_product_detail_shipping_costs' ) == 'yes' )
-	add_action( 'woocommerce_single_product_summary', 'woocommerce_gzd_template_single_legal_info', wc_gzd_get_hook_priority( 'single_legal_info' ) );
-if ( get_option( 'woocommerce_gzd_display_product_detail_delivery_time' ) == 'yes' )
-	add_action( 'woocommerce_single_product_summary', 'woocommerce_gzd_template_single_delivery_time_info', wc_gzd_get_hook_priority( 'single_delivery_time_info' ) );
-if ( get_option( 'woocommerce_gzd_display_product_detail_product_units' ) == 'yes' )
-	add_action( 'woocommerce_product_meta_start', 'woocommerce_gzd_template_single_product_units', wc_gzd_get_hook_priority( 'single_product_units' ) );
+foreach( wc_gzd_get_legal_product_notice_types_by_location( 'single' ) as $type => $notice ) {
+    add_action( $notice['filter'], $notice['callback'], $notice['priority'] );
+}
 
 add_filter( 'woocommerce_available_variation', 'woocommerce_gzd_add_variation_options', 0, 3 );
 
 /**
  * Product Loop Items
  */
-if ( get_option( 'woocommerce_gzd_display_listings_unit_price' ) == 'yes' )
-	add_action( 'woocommerce_after_shop_loop_item_title', 'woocommerce_gzd_template_single_price_unit', wc_gzd_get_hook_priority( 'loop_price_unit' ) );
-if ( get_option( 'woocommerce_gzd_display_listings_product_units' ) == 'yes' )
-	add_action( 'woocommerce_after_shop_loop_item', 'woocommerce_gzd_template_single_product_units', wc_gzd_get_hook_priority( 'loop_product_units' ) );
-if ( get_option( 'woocommerce_gzd_display_listings_shipping_costs' ) == 'yes' )
-	add_action( 'woocommerce_after_shop_loop_item', 'woocommerce_gzd_template_single_shipping_costs_info', wc_gzd_get_hook_priority( 'loop_shipping_costs_info' ) );
-if ( get_option( 'woocommerce_gzd_display_listings_delivery_time' ) == 'yes' )
-	add_action( 'woocommerce_after_shop_loop_item', 'woocommerce_gzd_template_single_delivery_time_info', wc_gzd_get_hook_priority( 'loop_delivery_time_info' ) );
-if ( get_option( 'woocommerce_gzd_display_listings_tax_info' ) == 'yes' )
-	add_action( 'woocommerce_after_shop_loop_item', 'woocommerce_gzd_template_single_tax_info', wc_gzd_get_hook_priority( 'loop_tax_info' ) );
-if ( get_option( 'woocommerce_gzd_display_listings_add_to_cart' ) == 'no' )
-	remove_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart' );
+foreach( wc_gzd_get_legal_product_notice_types_by_location( 'loop' ) as $type => $notice ) {
+    add_action( $notice['filter'], $notice['callback'], $notice['priority'] );
+}
 
-if ( get_option( 'woocommerce_gzd_display_listings_link_details' ) == 'yes' )
+if ( get_option( 'woocommerce_gzd_display_listings_add_to_cart' ) == 'no' ) {
+	remove_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart' );
+}
+
+if ( get_option( 'woocommerce_gzd_display_listings_link_details' ) == 'yes' ) {
 	add_filter( 'woocommerce_loop_add_to_cart_link', 'woocommerce_gzd_template_loop_add_to_cart', 99, 2 );
+}
 
 /**
  * Widgets

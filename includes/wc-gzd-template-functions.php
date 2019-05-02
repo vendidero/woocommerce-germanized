@@ -243,10 +243,10 @@ if ( ! function_exists( 'woocommerce_gzd_add_variation_options' ) ) {
 			'shipping_costs_info'   => '',
 		) );
 
-		if ( get_option( 'woocommerce_gzd_display_product_detail_delivery_time' ) === 'yes' )
+		if ( get_option( 'woocommerce_gzd_display_product_detail_delivery_time_info' ) === 'yes' )
 			$options[ 'delivery_time' ] 		= $gzd_product->get_delivery_time_html();
 
-		if ( get_option( 'woocommerce_gzd_display_product_detail_unit_price' ) === 'yes' )
+		if ( get_option( 'woocommerce_gzd_display_product_detail_price_unit' ) === 'yes' )
 			$options[ 'unit_price' ] 			= $gzd_product->get_unit_html();
 
 		if ( get_option( 'woocommerce_gzd_display_product_detail_product_units' ) === 'yes' )
@@ -255,7 +255,7 @@ if ( ! function_exists( 'woocommerce_gzd_add_variation_options' ) ) {
 		if ( get_option( 'woocommerce_gzd_display_product_detail_tax_info' ) === 'yes' )
 			$options[ 'tax_info' ] 				= $gzd_product->get_tax_info();
 
-		if ( get_option( 'woocommerce_gzd_display_product_detail_shipping_costs' ) === 'yes' )
+		if ( get_option( 'woocommerce_gzd_display_product_detail_shipping_costs_info' ) === 'yes' )
 			$options[ 'shipping_costs_info' ] 	= $gzd_product->get_shipping_costs_html();
 
 		return $options;

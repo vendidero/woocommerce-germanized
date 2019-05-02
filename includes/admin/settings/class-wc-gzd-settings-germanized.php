@@ -841,7 +841,7 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 			array(
 				'title' 	=> __( 'Show within Product Listings', 'woocommerce-germanized' ),
 				'desc' 		=> __( 'Shipping Costs notice', 'woocommerce-germanized' ),
-				'id' 		=> 'woocommerce_gzd_display_listings_shipping_costs',
+				'id' 		=> 'woocommerce_gzd_display_listings_shipping_costs_info',
 				'type' 		=> 'checkbox',
 				'default'	=> 'yes',
 				'checkboxgroup'	=> 'start',
@@ -857,7 +857,7 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 
 			array(
 				'desc' 		=> __( 'Base Price', 'woocommerce-germanized' ),
-				'id' 		=> 'woocommerce_gzd_display_listings_unit_price',
+				'id' 		=> 'woocommerce_gzd_display_listings_price_unit',
 				'type' 		=> 'checkbox',
 				'default'	=> 'yes',
 				'checkboxgroup'		=> '',
@@ -873,7 +873,7 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 
 			array(
 				'desc' 		=> __( 'Delivery Time Notice', 'woocommerce-germanized' ),
-				'id' 		=> 'woocommerce_gzd_display_listings_delivery_time',
+				'id' 		=> 'woocommerce_gzd_display_listings_delivery_time_info',
 				'type' 		=> 'checkbox',
 				'default'	=> 'yes',
 				'checkboxgroup'		=> '',
@@ -890,7 +890,7 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 			array(
 				'title' 	=> __( 'Show on Product Detail Page', 'woocommerce-germanized' ),
 				'desc' 		=> __( 'Shipping Costs notice', 'woocommerce-germanized' ),
-				'id' 		=> 'woocommerce_gzd_display_product_detail_shipping_costs',
+				'id' 		=> 'woocommerce_gzd_display_product_detail_shipping_costs_info',
 				'type' 		=> 'checkbox',
 				'default'	=> 'yes',
 				'checkboxgroup'	=> 'start',
@@ -906,7 +906,7 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 
 			array(
 				'desc' 		=> __( 'Base Price', 'woocommerce-germanized' ),
-				'id' 		=> 'woocommerce_gzd_display_product_detail_unit_price',
+				'id' 		=> 'woocommerce_gzd_display_product_detail_price_unit',
 				'type' 		=> 'checkbox',
 				'default'	=> 'yes',
 				'checkboxgroup'		=> '',
@@ -922,7 +922,7 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 
 			array(
 				'desc' 		=> __( 'Delivery Time Notice', 'woocommerce-germanized' ),
-				'id' 		=> 'woocommerce_gzd_display_product_detail_delivery_time',
+				'id' 		=> 'woocommerce_gzd_display_product_detail_delivery_time_info',
 				'type' 		=> 'checkbox',
 				'default'	=> 'yes',
 				'checkboxgroup'		=> '',
