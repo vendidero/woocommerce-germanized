@@ -190,6 +190,7 @@ class WC_GZD_Admin_Notices {
 			'storefront',
 			'virtue',
 			'shopkeeper',
+            'astra'
 		);
 
 		$current = wp_get_theme();
