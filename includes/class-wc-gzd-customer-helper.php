@@ -276,8 +276,8 @@ class WC_GZD_Customer_Helper {
 	 */
 	public function customer_account_activation_check() {
 		if ( is_account_page() ) {
-			if ( isset( $_GET[ 'activate' ] ) ) {
-				$activation_code = wc_clean( wp_unslash( $_GET[ 'activate' ] ) );
+			if ( isset( $_GET['activate'] ) ) {
+				$activation_code = wc_clean( wp_unslash( $_GET['activate'] ) );
 
 				if ( ! empty( $activation_code ) ) {
 					$result = $this->customer_account_activate( $activation_code, true );

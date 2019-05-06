@@ -429,8 +429,8 @@ class WC_GZD_Emails {
 			// Check if order contains digital products
 			$items = $order->get_items();
 
-			$is_downloadable = false;
-			$is_service = false;
+			$is_downloadable       = false;
+			$is_service            = false;
 			$is_differential_taxed = false;
 
 			if ( ! empty( $items ) ) {
@@ -439,17 +439,21 @@ class WC_GZD_Emails {
 
 					$_product = apply_filters( 'woocommerce_order_item_product', $order->get_product_from_item( $item ), $item );
 
-					if ( ! $_product )
+					if ( ! $_product ) {
 						continue;
+                    }
 
-					if ( wc_gzd_is_revocation_exempt( $_product ) || apply_filters( 'woocommerce_gzd_product_is_revocation_exception', false, $_product, 'digital' ) )
+					if ( wc_gzd_is_revocation_exempt( $_product ) || apply_filters( 'woocommerce_gzd_product_is_revocation_exception', false, $_product, 'digital' ) ) {
 						$is_downloadable = true;
+					}
 
-					if ( wc_gzd_is_revocation_exempt( $_product, 'service' ) || apply_filters( 'woocommerce_gzd_product_is_revocation_exception', false, $_product, 'service' ) )
+					if ( wc_gzd_is_revocation_exempt( $_product, 'service' ) || apply_filters( 'woocommerce_gzd_product_is_revocation_exception', false, $_product, 'service' ) ) {
 						$is_service = true;
+                    }
 
-					if ( wc_gzd_get_gzd_product( $_product )->is_differential_taxed() )
+					if ( wc_gzd_get_gzd_product( $_product )->is_differential_taxed() ) {
 						$is_differential_taxed = true;
+                    }
 				}
 			}
 
@@ -461,31 +465,37 @@ class WC_GZD_Emails {
 				echo wpautop( '<div class="gzd-differential-taxation-notice-email">' . $notice . '</div>' );
 			}
 
-			if ( 'customer_processing_order' === $type->id ) {
+			if ( $this->is_order_confirmation_email( $type->id ) ) {
 
-				if ( $is_downloadable && $text = wc_gzd_get_legal_text_digital_email_notice() )
+				if ( $is_downloadable && $text = wc_gzd_get_legal_text_digital_email_notice() ) {
 					echo wpautop( apply_filters( 'woocommerce_gzd_order_confirmation_digital_notice', '<div class="gzd-digital-notice-text">' . $text . '</div>', $order ) );
+                }
 
-				if ( $is_service && $text = wc_gzd_get_legal_text_service_email_notice() )
+				if ( $is_service && $text = wc_gzd_get_legal_text_service_email_notice() ) {
 					echo wpautop( apply_filters( 'woocommerce_gzd_order_confirmation_service_notice', '<div class="gzd-service-notice-text">' . $text . '</div>', $order ) );
+                }
 			}
 		}
 	}
 
-	public function email_pay_now_button( $order ) {
+	public function is_order_confirmation_email( $id ) {
+        return apply_filters( 'woocommerce_gzd_is_order_confirmation_email', ( 'customer_processing_order' === $id ), $id );
+    }
 
+	public function email_pay_now_button( $order ) {
 		$type = $this->get_current_email_object();
 
-		if ( $type && $type->id == 'customer_processing_order' )
+		if ( $type && $this->is_order_confirmation_email( $type->id ) ) {
 			WC_GZD_Checkout::instance()->add_payment_link( wc_gzd_get_crud_data( $order, 'id' ) );
+        }
 	}
 
 	public function email_footer_plain( $text ) {
-
 		$type = $this->get_current_email_object();
 		
-		if ( $type && $type->get_email_type() == 'plain' )
+		if ( $type && $type->get_email_type() == 'plain' ) {
 			$this->add_template_footers();
+        }
 		
 		return $text;
 
@@ -500,8 +510,9 @@ class WC_GZD_Emails {
 		$mails = $this->mailer->get_emails();
 		
 		foreach ( $mails as $mail ) {
-			if ( $id === $mail->id )
+			if ( $id === $mail->id ) {
 				return $mail;
+            }
 		}
 		
 		return false;
@@ -511,8 +522,9 @@ class WC_GZD_Emails {
 
 		$current = $this->get_current_email_object();
 
-		if ( ! $current || empty( $current ) )
+		if ( ! $current || empty( $current ) ) {
 			return;
+        }
 
 		$this->remove_order_email_filters();
 

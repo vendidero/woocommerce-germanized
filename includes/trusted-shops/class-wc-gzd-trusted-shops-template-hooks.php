@@ -47,7 +47,7 @@ class WC_GZD_Trusted_Shops_Template_Hooks {
 
         // Save Fields on order
         if ( $this->base->is_review_reminder_enabled() ) {
-            add_action( 'woocommerce_checkout_update_order_meta', array( $this, 'update_order_meta' ) );
+            add_action( 'woocommerce_checkout_create_order', array( $this, 'update_order_meta' ) );
 
             if ( 'yes' === $this->base->review_reminder_opt_out ) {
                 // Email notices right beneath order table
@@ -173,11 +173,11 @@ class WC_GZD_Trusted_Shops_Template_Hooks {
 		}
 	}
 
-	public function update_order_meta( $order_id ) {
+	public function update_order_meta( $order ) {
 		$checkbox = wc_gzd_get_legal_checkbox( 'review_reminder' );
 
 		if ( isset( $_POST['review_reminder'] ) || ! $checkbox || ( $checkbox && ! $checkbox->is_enabled() ) ) {
-			update_post_meta( $order_id, '_ts_review_reminder_opted_in', 'yes' );
+			$order = wc_ts_set_crud_data( $order, '_ts_review_reminder_opted_in', 'yes' );
 		}
 	}
 

@@ -65,7 +65,7 @@ function wc_gzd_set_crud_data( $object, $key, $value ) {
 	if ( wc_gzd_get_dependencies()->woocommerce_version_supports_crud() ) {
 
 		$key_unprefixed = substr( $key, 0, 1 ) === '_' ? substr( $key, 1 ) : $key;
-		$setter = substr( $key_unprefixed, 0, 3 ) === "set" ? $key : "set_{$key_unprefixed}";
+		$setter         = substr( $key_unprefixed, 0, 3 ) === "set" ? $key : "set_{$key_unprefixed}";
 
 		if ( is_callable( array( $object, $setter ) ) ) {
 			$reflection = new ReflectionMethod( $object, $setter );
