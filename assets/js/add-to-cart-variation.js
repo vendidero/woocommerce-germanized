@@ -70,7 +70,8 @@
                 return;
             }
 
-            if ( ! event.data.GermanizedvariationForm.$singleVariation.is( ':visible' ) || event.data.GermanizedvariationForm.$button.is( '[disabled]' ) ) {
+            // If the button is diabled (or has disabled class) no variation can be added to the cart - reset has been triggered
+            if ( event.data.GermanizedvariationForm.$button.is( '[disabled]' ) || event.data.GermanizedvariationForm.$button.hasClass( 'disabled' ) ) {
                 event.data.GermanizedvariationForm.onReset( event );
             }
         }, 250);
