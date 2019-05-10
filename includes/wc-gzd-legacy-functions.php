@@ -61,7 +61,6 @@ function wc_gzd_get_crud_data( $object, $key, $suppress_suffix = false ) {
 }
 
 function wc_gzd_set_crud_data( $object, $key, $value ) {
-
 	if ( wc_gzd_get_dependencies()->woocommerce_version_supports_crud() ) {
 
 		$key_unprefixed = substr( $key, 0, 1 ) === '_' ? substr( $key, 1 ) : $key;
@@ -78,6 +77,7 @@ function wc_gzd_set_crud_data( $object, $key, $value ) {
 	} else {
 		$object = wc_gzd_set_crud_meta_data( $object, $key, $value );
 	}
+
 	return $object;
 }
 
