@@ -854,6 +854,9 @@ class WC_GZD_Trusted_Shops_Admin {
 		$days_to_send = ( ( isset( $_GET['days'] ) && ! empty( $_GET['days'] ) ) ? absint( $_GET['days'] ) : 5 );
         $status       = ( ( isset( $_GET['status'] ) && ! empty( $_GET['status'] ) ) ? wc_clean( $_GET['status'] ) : '' );
 
+        update_option( 'woocommerce_' . $this->base->option_prefix . 'trusted_shops_review_collector_days_to_send', $days_to_send );
+        update_option( 'woocommerce_' . $this->base->option_prefix . 'trusted_shops_review_collector', $interval_d );
+
         if ( wc_ts_woocommerce_supports_crud() ) {
 		    include_once( 'class-wc-gzd-trusted-shops-review-exporter.php' );
 
@@ -874,7 +877,6 @@ class WC_GZD_Trusted_Shops_Admin {
 	}
 
 	public function review_collector_export() {
-
 	    $href_org = admin_url();
 	    $href_org = add_query_arg( array(
             'action'   => 'wc_' . $this->base->option_prefix . 'trusted-shops-export',
@@ -884,6 +886,9 @@ class WC_GZD_Trusted_Shops_Admin {
 
 		if ( ! wc_ts_woocommerce_supports_crud() )
 		    return;
+
+		$days_interval = get_option( 'woocommerce_' . $this->base->option_prefix . 'trusted_shops_review_collector', 30 );
+		$days_to_send  = get_option( 'woocommerce_' . $this->base->option_prefix . 'trusted_shops_review_collector_days_to_send', 5 );
 		?>
 		<h2><?php echo _x( 'Review Collector', 'trusted-shops', 'woocommerce-germanized' ); ?></h2>
         <div id="trusted_shops_review_collector_options-description">
@@ -897,15 +902,15 @@ class WC_GZD_Trusted_Shops_Admin {
 					</th>
 					<td class="forminp forminp-select forminp-review-collector">
 						<select data-sidebar="wc-ts-sidebar-review-collector" name="woocommerce_<?php echo $this->base->option_prefix; ?>trusted_shops_review_collector" id="woocommerce_<?php echo $this->base->option_prefix; ?>trusted_shops_review_collector" class="chosen_select">
-							<option value="30"><?php echo _x( '30 days', 'trusted-shops', 'woocommerce-germanized' ); ?></option>
-							<option value="60"><?php echo _x( '60 days', 'trusted-shops', 'woocommerce-germanized' ); ?></option>
-							<option value="90"><?php echo _x( '90 days', 'trusted-shops', 'woocommerce-germanized' ); ?></option>
+							<option value="30" <?php selected( 30, $days_interval ); ?>><?php echo _x( '30 days', 'trusted-shops', 'woocommerce-germanized' ); ?></option>
+							<option value="60" <?php selected( 60, $days_interval ); ?>><?php echo _x( '60 days', 'trusted-shops', 'woocommerce-germanized' ); ?></option>
+							<option value="90" <?php selected( 90, $days_interval ); ?>><?php echo _x( '90 days', 'trusted-shops', 'woocommerce-germanized' ); ?></option>
 						</select>
                         <span class="description"><?php printf( _x( 'Upload customer and order information %s.', 'trusted-shops', 'woocommerce-germanized' ), '<a href="' . $this->get_trusted_url( 'https://www.trustedshops.com/tsb2b/sa/ratings/reviewCollector/reviewCollector.seam' ) . '" target="_blank">' . _x( 'here', 'trusted-shops', 'woocommerce-germanized' ) . '</a>' ); ?></span>
                         <div class="trusted-shops-review-collector-wrap">
                             <div class="review-collector-days">
                                 <label for="woocommerce_gzd_trusted_shops_review_collector"><?php echo _x( 'Days until reminder mail', 'trusted-shops', 'woocommerce-germanized' ); ?> <?php echo wc_ts_help_tip( _x( 'Set the number of days to wait after the order date before having a Review Request sent to your customers.', 'trusted-shops', 'woocommerce-germanized' ) ); ?></label>
-                                <input type="number" value="5" min="1" data-validate="integer" name="woocommerce_<?php echo $this->base->option_prefix; ?>trusted_shops_review_collector_days_to_send" id="woocommerce_<?php echo $this->base->option_prefix; ?>trusted_shops_review_collector_days_to_send" />
+                                <input type="number" value="<?php echo esc_attr( $days_to_send ); ?>" min="1" data-validate="integer" name="woocommerce_<?php echo $this->base->option_prefix; ?>trusted_shops_review_collector_days_to_send" id="woocommerce_<?php echo $this->base->option_prefix; ?>trusted_shops_review_collector_days_to_send" />
                             </div>
                             <div class="review-collector-buttons">
                                 <a class="button button-secondary" id="wc-gzd-trusted-shops-export" data-href-org="<?php echo esc_url( $href_org ); ?>" href="#"><?php echo _x( 'Start export', 'trusted-shops', 'woocommerce-germanized' ); ?></a>

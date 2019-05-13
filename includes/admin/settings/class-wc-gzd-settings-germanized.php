@@ -1225,7 +1225,7 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 		
 		global $current_section;
 		$settings = $this->get_settings();
-		$sidebar = $this->get_sidebar();
+		$sidebar  = $this->get_sidebar();
 		
 		if ( $this->get_sections() ) {
 			foreach ( $this->get_sections() as $section => $name ) {
