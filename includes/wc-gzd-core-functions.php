@@ -83,6 +83,57 @@ function wc_gzd_get_legal_product_notice_types_by_location( $location = 'loop' )
     return apply_filters( 'woocommerce_gzd_legal_product_notice_types_location', $location_types, $location );
 }
 
+function wc_gzd_get_legal_cart_notice_types() {
+    return apply_filters( 'woocommerce_gzd_legal_cart_notice_types', array(
+        'unit_price'    => array(
+            'cart'      => 'woocommerce_cart_item_price',
+            'checkout'  => 'woocommerce_cart_item_subtotal',
+            'mini_cart' => 'woocommerce_cart_item_price'
+        ),
+        'units'         => array(
+            'cart'      => 'woocommerce_cart_item_name',
+            'checkout'  => 'woocommerce_checkout_cart_item_quantity',
+            'mini_cart' => 'woocommerce_cart_item_name'
+        ),
+        'item_desc'     => array(
+            'cart'      => 'woocommerce_cart_item_name',
+            'checkout'  => 'woocommerce_checkout_cart_item_quantity',
+            'mini_cart' => 'woocommerce_cart_item_name'
+        ),
+        'delivery_time' => array(
+            'cart'      => 'woocommerce_cart_item_name',
+            'checkout'  => 'woocommerce_checkout_cart_item_quantity',
+            'mini_cart' => 'woocommerce_cart_item_name'
+        )
+    ) );
+}
+
+function wc_gzd_get_legal_cart_notice_types_by_location( $location = 'cart' ) {
+    $location_types = array();
+    $option_prefix  = "woocommerce_gzd_display_{$location}_product_";
+
+    foreach( wc_gzd_get_legal_cart_notice_types() as $type => $locations ) {
+
+        if ( ! isset( $locations[ $location ] ) ) {
+            continue;
+        }
+
+        $enabled = 'yes' === get_option( $option_prefix . $type );
+
+        if ( $enabled ) {
+            $callback = "wc_gzd_cart_product_{$type}";
+
+            $location_types[ $type ] = array(
+                'priority' => wc_gzd_get_hook_priority( $location . '_product_' . $type ),
+                'callback' => $callback,
+                'filter'   => $locations[ $location ],
+            );
+        }
+    }
+
+    return apply_filters( 'woocommerce_gzd_legal_cart_notice_types_location', $location_types, $location );
+}
+
 /**
  * Format tax rate percentage for output in frontend
  *  

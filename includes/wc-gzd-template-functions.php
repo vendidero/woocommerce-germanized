@@ -597,9 +597,9 @@ if ( ! function_exists( 'woocommerce_gzd_template_mini_cart_remove_hooks' ) ) {
             return;
         }
 
-        remove_filter( 'woocommerce_cart_item_name', 'wc_gzd_cart_product_units', wc_gzd_get_hook_priority( 'cart_product_units' ) );
-        remove_filter( 'woocommerce_cart_item_name', 'wc_gzd_cart_product_delivery_time', wc_gzd_get_hook_priority( 'cart_product_delivery_time' ) );
-        remove_filter( 'woocommerce_cart_item_name', 'wc_gzd_cart_product_item_desc', wc_gzd_get_hook_priority( 'cart_product_item_desc' ) );
+        foreach( wc_gzd_get_legal_cart_notice_types_by_location( 'mini_cart' ) as $type => $notice ) {
+            remove_filter( $notice['filter'], $notice['callback'], $notice['priority'] );
+        }
     }
 }
 
@@ -611,9 +611,10 @@ if ( ! function_exists( 'woocommerce_gzd_template_mini_cart_add_hooks' ) ) {
             return;
         }
 
-        add_filter( 'woocommerce_cart_item_name', 'wc_gzd_cart_product_units', wc_gzd_get_hook_priority( 'cart_product_units' ), 3 );
-        add_filter( 'woocommerce_cart_item_name', 'wc_gzd_cart_product_delivery_time', wc_gzd_get_hook_priority( 'cart_product_delivery_time' ), 3 );
-        add_filter( 'woocommerce_cart_item_name', 'wc_gzd_cart_product_item_desc', wc_gzd_get_hook_priority( 'cart_product_item_desc' ), 3 );
+        // Add mini cart product info
+        foreach( wc_gzd_get_legal_cart_notice_types_by_location( 'mini_cart' ) as $type => $notice ) {
+            add_filter( $notice['filter'], $notice['callback'], $notice['priority'], 3 );
+        }
     }
 }
 

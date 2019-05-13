@@ -977,7 +977,7 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 				'checkboxgroup'	=> 'end',
 			),
 
-			array(
+            array(
 				'title' 	=> __( 'Hide Tax Rate', 'woocommerce-germanized' ),
 				'desc' 		=> __( 'Hide specific tax rate within shop pages.', 'woocommerce-germanized' ),
 				'id' 		=> 'woocommerce_gzd_hide_tax_rate_shop',
@@ -1069,6 +1069,105 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 			array( 'type' => 'sectionend', 'id' => 'unit_price_options' ),
 
 			array(	'title' => __( 'Checkout & Cart', 'woocommerce-germanized' ), 'type' => 'title', 'id' => 'checkout_options' ),
+
+            array(
+                'title' 	=> __( 'Cart', 'woocommerce-germanized' ),
+                'desc' 		=> __( 'Base Price', 'woocommerce-germanized' ),
+                'id' 		=> 'woocommerce_gzd_display_cart_product_unit_price',
+                'type' 		=> 'checkbox',
+                'default'	=> 'yes',
+                'checkboxgroup'	=> 'start',
+            ),
+
+            array(
+                'desc' 		=> __( 'Product Units', 'woocommerce-germanized' ),
+                'id' 		=> 'woocommerce_gzd_display_cart_product_units',
+                'type' 		=> 'checkbox',
+                'default'	=> 'yes',
+                'checkboxgroup'		=> '',
+            ),
+
+            array(
+                'desc' 		=> __( 'Delivery Time', 'woocommerce-germanized' ),
+                'id' 		=> 'woocommerce_gzd_display_cart_product_delivery_time',
+                'type' 		=> 'checkbox',
+                'default'	=> 'yes',
+                'checkboxgroup'		=> '',
+            ),
+
+            array(
+                'desc' 		=> __( 'Description', 'woocommerce-germanized' ),
+                'id' 		=> 'woocommerce_gzd_display_cart_product_item_desc',
+                'type' 		=> 'checkbox',
+                'default'	=> 'yes',
+                'checkboxgroup'		=> 'end',
+            ),
+
+            array(
+                'title' 	=> __( 'Checkout', 'woocommerce-germanized' ),
+                'desc' 		=> __( 'Base Price', 'woocommerce-germanized' ),
+                'id' 		=> 'woocommerce_gzd_display_checkout_product_unit_price',
+                'type' 		=> 'checkbox',
+                'default'	=> 'yes',
+                'checkboxgroup'	=> 'start',
+            ),
+
+            array(
+                'desc' 		=> __( 'Product Units', 'woocommerce-germanized' ),
+                'id' 		=> 'woocommerce_gzd_display_checkout_product_units',
+                'type' 		=> 'checkbox',
+                'default'	=> 'yes',
+                'checkboxgroup'		=> '',
+            ),
+
+            array(
+                'desc' 		=> __( 'Delivery Time', 'woocommerce-germanized' ),
+                'id' 		=> 'woocommerce_gzd_display_checkout_product_delivery_time',
+                'type' 		=> 'checkbox',
+                'default'	=> 'yes',
+                'checkboxgroup'		=> '',
+            ),
+
+            array(
+                'desc' 		=> __( 'Description', 'woocommerce-germanized' ),
+                'id' 		=> 'woocommerce_gzd_display_checkout_product_item_desc',
+                'type' 		=> 'checkbox',
+                'default'	=> 'yes',
+                'checkboxgroup'		=> 'end',
+            ),
+
+            array(
+                'title' 	=> __( 'Mini Cart', 'woocommerce-germanized' ),
+                'desc' 		=> __( 'Base Price', 'woocommerce-germanized' ),
+                'id' 		=> 'woocommerce_gzd_display_mini_cart_product_unit_price',
+                'type' 		=> 'checkbox',
+                'default'	=> 'yes',
+                'checkboxgroup'	=> 'start',
+            ),
+
+            array(
+                'desc' 		=> __( 'Product Units', 'woocommerce-germanized' ),
+                'id' 		=> 'woocommerce_gzd_display_mini_cart_product_units',
+                'type' 		=> 'checkbox',
+                'default'	=> 'yes',
+                'checkboxgroup'		=> '',
+            ),
+
+            array(
+                'desc' 		=> __( 'Delivery Time', 'woocommerce-germanized' ),
+                'id' 		=> 'woocommerce_gzd_display_mini_cart_product_delivery_time',
+                'type' 		=> 'checkbox',
+                'default'	=> 'yes',
+                'checkboxgroup'		=> '',
+            ),
+
+            array(
+                'desc' 		=> __( 'Description', 'woocommerce-germanized' ),
+                'id' 		=> 'woocommerce_gzd_display_mini_cart_product_item_desc',
+                'type' 		=> 'checkbox',
+                'default'	=> 'yes',
+                'checkboxgroup'		=> 'end',
+            ),
 
 			array(
 				'title' 	=> __( 'DHL Parcel Shops', 'woocommerce-germanized' ),

@@ -5,7 +5,7 @@ Requires at least: 3.8
 Tested up to: 5.2
 WC requires at least: 2.4
 WC tested up to: 3.6
-Stable tag: 2.2.12
+Stable tag: 2.3.0
 Requires PHP: 5.3
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -180,6 +180,15 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 4. WooCommerce Multistep Checkout (Pro)
 
 == Changelog ==
+
+= 2.3.0 =
+* Feature: Better legal hook placement via wc_gzd_get_legal_*_notice_types_by_location
+* Feature: Added options to enable/disable legal info within cart, checkout and mini cart
+* Improvement: Store Trusted Shops export options within settings
+* Improvement: Use CRUD functionality for review reminder to prevent caching issues
+* Improvement: Do only check button visibility witin add-to-cart-variation script to determine variation status
+* Improvement: Make sure that optional label is hidden for parcel shop number
+* Improvement: Prevent sending confirmation emails during pay-for-order
 
 = 2.2.12 =
 * Naming: Changed Plugin name on behalf of Automattic request from WooCommerce Germanized to Germanized for WooCommerce

@@ -102,9 +102,7 @@ class WC_GZD_Install {
 			// What's new redirect
 			wp_redirect( admin_url( 'index.php?page=wc-gzd-about&wc-gzd-updated=true' ) );
 			exit;
-
 		}
-		
 	}
 
 	/**

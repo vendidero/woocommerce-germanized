@@ -12,8 +12,7 @@ $post = $post_attach;
 
 setup_postdata( $post );
 
-$content = ( get_post_meta( $post->ID, '_legal_text', true ) ? htmlspecialchars_decode( get_post_meta( $post->ID, '_legal_text', true ) ) : $post->post_content );
-
+$content     = ( get_post_meta( $post->ID, '_legal_text', true ) ? htmlspecialchars_decode( get_post_meta( $post->ID, '_legal_text', true ) ) : $post->post_content );
 $print_title = true;
 
 if ( substr( trim( $content ), 0, 2 ) == '<h' )
@@ -28,19 +27,21 @@ if ( substr( trim( $content ), 0, 2 ) == '<h' )
 	<?php endif; ?>
 
 	<div class="wc-gzd-email-attached-content">
-
 		<?php if ( ! get_post_meta( $post->ID, '_legal_text', true ) ) : ?>
 
-			<?php the_content();?>
+			<?php the_content(); ?>
 
-		<?php else : ?>
+		<?php else :
+            $apply_content_filters = apply_filters( 'woocommerce_gzd_apply_optional_content_filter_email_attachment', true, $content );
+            $plain_content         = htmlspecialchars_decode( get_post_meta( $post->ID, '_legal_text', true ) );
+            $content               = $apply_content_filters ? apply_filters( 'the_content', $plain_content ) : $plain_content;
+            ?>
 
-			<?php echo apply_filters( 'the_content', htmlspecialchars_decode( get_post_meta( $post->ID, '_legal_text', true ) ) ) ?>
+			<?php echo $content; ?>
 
 		<?php endif; ?>
 
 	</div>
-
 </div>
 
 <?php wp_reset_postdata(); ?>
