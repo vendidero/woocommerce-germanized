@@ -73,10 +73,22 @@ function wc_gzd_get_legal_product_notice_types_by_location( $location = 'loop' )
             $callback = "woocommerce_gzd_template_single_{$type}";
 
             $location_types[ $type ] = array(
-                'priority' => wc_gzd_get_hook_priority( $location . '_' . $type ),
-                'callback' => $callback,
-                'filter'   => $locations[ $location ],
+                'priority'  => wc_gzd_get_hook_priority( $location . '_' . $type ),
+                'callback'  => $callback,
+                'filter'    => $locations[ $location ],
+                'is_action' => true,
+                'params'    => 1,
             );
+
+            if ( 'single' === $location ) {
+                $location_types[ 'grouped_' . $type ] = array(
+                    'priority'  => wc_gzd_get_hook_priority( 'grouped_' . $location . '_' . $type ),
+                    'callback'  => "woocommerce_gzd_template_grouped_single_{$type}",
+                    'filter'    => 'woocommerce_grouped_product_list_column_price',
+                    'is_action' => false,
+                    'params'    => 2,
+                );
+            }
         }
     }
 
@@ -124,9 +136,11 @@ function wc_gzd_get_legal_cart_notice_types_by_location( $location = 'cart' ) {
             $callback = "wc_gzd_cart_product_{$type}";
 
             $location_types[ $type ] = array(
-                'priority' => wc_gzd_get_hook_priority( $location . '_product_' . $type ),
-                'callback' => $callback,
-                'filter'   => $locations[ $location ],
+                'priority'  => wc_gzd_get_hook_priority( $location . '_product_' . $type ),
+                'callback'  => $callback,
+                'filter'    => $locations[ $location ],
+                'is_action' => false,
+                'params'    => 1,
             );
         }
     }

@@ -16,10 +16,17 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 function wc_gzd_register_scheduled_unit_sales() {
 	add_action( 'updated_post_meta', 'wc_gzd_check_price_update', 0, 4 );
 }
+
 add_action( 'woocommerce_scheduled_sales', 'wc_gzd_register_scheduled_unit_sales', 0 );
 
 function wc_gzd_get_gzd_product( $product ) {
-	
+
+    if ( is_numeric( $product ) ) {
+        $product = wc_get_product( $product );
+    } elseif( is_a( $product, 'WC_GZD_Product' ) ) {
+        return $product;
+    }
+
 	if ( ! isset( $product->gzd_product ) || ! is_object( $product->gzd_product ) ) {
 		$factory = WC()->product_factory;
 
@@ -161,4 +168,58 @@ function wc_gzd_product_matches_extended_type( $types, $product ) {
 	}
 
 	return $matches_type;
+}
+
+function wc_gzd_recalculate_unit_price( $args = array(), $product = false ) {
+
+    $default_args = array(
+        'regular_price' => 0,
+        'sale_price'    => 0,
+        'price'         => 0,
+        'base'          => 1,
+        'products'      => 1,
+        'tax_mode'      => 'incl',
+    );
+
+    if ( $product ) {
+        $default_args = array(
+            'regular_price' => ( isset( $args['tax_mode'] ) && 'excl' === $args['tax_mode'] ) ? wc_get_price_excluding_tax( $product, array( 'price' => $product->get_regular_price() ) ) : wc_get_price_including_tax( $product, array( 'price' => $product->get_regular_price() ) ),
+            'sale_price'    => ( isset( $args['tax_mode'] ) && 'excl' === $args['tax_mode'] ) ? wc_get_price_excluding_tax( $product, array( 'price' => $product->get_sale_price() ) ) : wc_get_price_including_tax( $product, array( 'price' => $product->get_sale_price() ) ),
+            'price'         => ( isset( $args['tax_mode'] ) && 'excl' === $args['tax_mode'] ) ? wc_get_price_excluding_tax( $product ) : wc_get_price_including_tax( $product ),
+            'base'          => $product->get_unit_base_raw(),
+            'products'      => $product->get_unit_products(),
+        );
+    }
+
+    $args = wp_parse_args( $args, $default_args );
+
+    $base         = $args['base'];
+    $unit_product = $args['products'];
+
+    $product_base = $base;
+
+    if ( empty( $unit_product ) ) {
+        // Set base multiplicator to 1
+        $base = 1;
+    } else {
+        $product_base = $unit_product;
+    }
+
+    $prices = array();
+
+    // Do not recalculate if unit base and/or product is empty
+    if ( 0 == $product_base || 0 == $base ) {
+        return $prices;
+    }
+
+    $prices['regular']  = wc_format_decimal( ( $args['regular_price'] / $product_base ) * $base, wc_get_price_decimals() );
+    $prices['sale']     = '';
+
+    if ( ! empty( $args['sale_price'] ) ) {
+        $prices['sale'] = wc_format_decimal( ( $args['sale_price'] / $product_base ) * $base, wc_get_price_decimals() );
+    }
+
+    $prices['unit']     = wc_format_decimal( ( $args['price'] / $product_base ) * $base, wc_get_price_decimals() );
+
+    return apply_filters( 'woocommerce_gzd_recalculated_unit_prices', $prices, $product, $args );
 }

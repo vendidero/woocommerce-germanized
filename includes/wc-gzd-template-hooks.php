@@ -17,6 +17,7 @@ if ( get_option( 'woocommerce_gzd_display_digital_delivery_time_text' ) !== '' )
 	add_filter( 'woocommerce_germanized_empty_delivery_time_text', 'woocommerce_gzd_template_digital_delivery_time_text', 10, 2 );
 
 add_filter( 'woocommerce_get_price_html', 'woocommerce_gzd_template_sale_price_label_html', 50, 2 );
+
 // WC pre 2.7
 add_filter( 'woocommerce_get_variation_price_html', 'woocommerce_gzd_template_sale_price_label_html', 50, 2 );
 
@@ -24,8 +25,15 @@ add_filter( 'woocommerce_get_variation_price_html', 'woocommerce_gzd_template_sa
  * Single Product
  */
 foreach( wc_gzd_get_legal_product_notice_types_by_location( 'single' ) as $type => $notice ) {
-    add_action( $notice['filter'], $notice['callback'], $notice['priority'] );
+    if ( $notice['is_action'] ) {
+        add_action( $notice['filter'], $notice['callback'], $notice['priority'], $notice['params'] );
+    } else {
+        add_filter( $notice['filter'], $notice['callback'], $notice['priority'], $notice['params'] );
+    }
 }
+
+// Make sure to add a global product object to allow getting the grouped parent product within child display
+add_action( 'woocommerce_before_add_to_cart_form', 'woocommerce_gzd_template_single_setup_global_product' );
 
 add_filter( 'woocommerce_available_variation', 'woocommerce_gzd_add_variation_options', 0, 3 );
 
@@ -33,7 +41,11 @@ add_filter( 'woocommerce_available_variation', 'woocommerce_gzd_add_variation_op
  * Product Loop Items
  */
 foreach( wc_gzd_get_legal_product_notice_types_by_location( 'loop' ) as $type => $notice ) {
-    add_action( $notice['filter'], $notice['callback'], $notice['priority'] );
+    if ( $notice['is_action'] ) {
+        add_action( $notice['filter'], $notice['callback'], $notice['priority'], $notice['params'] );
+    } else {
+        add_filter( $notice['filter'], $notice['callback'], $notice['priority'], $notice['params'] );
+    }
 }
 
 if ( get_option( 'woocommerce_gzd_display_listings_add_to_cart' ) == 'no' ) {

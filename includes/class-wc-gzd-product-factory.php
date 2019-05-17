@@ -21,8 +21,11 @@ class WC_GZD_Product_Factory extends WC_Product_Factory {
 	 */
 	public function get_product( $the_product = false, $args = array() ) {
 		$product = $this->get_product_standalone( $the_product, $args );
-		if ( is_object( $product ) )
+
+		if ( is_object( $product ) ) {
 			$product->gzd_product = $this->get_gzd_product( $product );
+        }
+
 		return $product;
 	}
 
@@ -49,8 +52,9 @@ class WC_GZD_Product_Factory extends WC_Product_Factory {
 
 		$classname = apply_filters( 'woocommerce_gzd_product_classname', $classname, $type );
 
-		if ( class_exists( $classname ) )
+		if ( class_exists( $classname ) ) {
 			return new $classname( $product );
+        }
 
 		return new WC_GZD_Product( $product );
 	}

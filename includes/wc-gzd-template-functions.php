@@ -17,8 +17,23 @@ if ( ! function_exists( 'woocommerce_gzd_template_single_legal_info' ) ) {
 	 */
 	function woocommerce_gzd_template_single_legal_info() {
 		global $product;
+
 		wc_get_template( 'single-product/legal-info.php' );
 	}
+}
+
+if ( ! function_exists( 'woocommerce_gzd_template_grouped_single_legal_info' ) ) {
+
+    /**
+     * Single Product delivery time info
+     */
+    function woocommerce_gzd_template_grouped_single_legal_info( $html, $grouped_child ) {
+        ob_start();
+        wc_get_template( 'single-product/legal-info.php' );
+        $legal_html = ob_get_clean();
+
+        return $html . $legal_html;
+    }
 }
 
 if ( ! function_exists( 'woocommerce_gzd_template_single_price_unit' ) ) {
@@ -28,9 +43,46 @@ if ( ! function_exists( 'woocommerce_gzd_template_single_price_unit' ) ) {
 	 */
 	function woocommerce_gzd_template_single_price_unit() {
 		global $product;
-		if ( in_array( $product->get_type(), apply_filters( 'woocommerce_gzd_product_types_supporting_unit_prices', array( 'simple', 'external', 'variable' ) ) ) )
+
+		if ( in_array( $product->get_type(), apply_filters( 'woocommerce_gzd_product_types_supporting_unit_prices', array( 'simple', 'external', 'variable', 'grouped' ) ) ) ) {
 			wc_get_template( 'single-product/price-unit.php' );
+        }
 	}
+}
+
+if ( ! function_exists( 'woocommerce_gzd_template_single_setup_global_product' ) ) {
+
+    function woocommerce_gzd_template_single_setup_global_product() {
+        global $product, $wc_gzd_global_product;
+
+        $wc_gzd_global_product = $product;
+    }
+}
+
+if ( ! function_exists( 'woocommerce_gzd_template_grouped_single_price_unit' ) ) {
+
+    /**
+     * Grouped Product price per unit.
+     * If grouped parent has unit price, recalculate child unit prices with grouped parent unit base.
+     */
+    function woocommerce_gzd_template_grouped_single_price_unit( $html, $grouped_child ) {
+        global $wc_gzd_global_product;
+
+        $gzd_product = wc_gzd_get_gzd_product( $wc_gzd_global_product );
+        $gzd_child   = wc_gzd_get_gzd_product( $grouped_child );
+
+        if( $gzd_product->has_unit() ) {
+            $gzd_child->recalculate_unit_price( array(
+                'base' => $gzd_product->get_unit_base_raw(),
+            ) );
+        }
+
+        ob_start();
+        wc_get_template( 'single-product/price-unit.php', array( 'gzd_product' => $gzd_child ) );
+        $unit_html = ob_get_clean();
+
+        return $html . $unit_html;
+    }
 }
 
 if ( ! function_exists( 'woocommerce_gzd_template_single_shipping_costs_info' ) ) {
@@ -53,6 +105,20 @@ if ( ! function_exists( 'woocommerce_gzd_template_single_delivery_time_info' ) )
 	}
 }
 
+if ( ! function_exists( 'woocommerce_gzd_template_grouped_single_delivery_time_info' ) ) {
+
+    /**
+     * Grouped single product delivery time info
+     */
+    function woocommerce_gzd_template_grouped_single_delivery_time_info( $html, $grouped_child ) {
+        ob_start();
+        wc_get_template( 'single-product/delivery-time-info.php' );
+        $legal_html = ob_get_clean();
+
+        return $html . $legal_html;
+    }
+}
+
 if ( ! function_exists( 'woocommerce_gzd_template_single_tax_info' ) ) {
 
 	/**
@@ -68,7 +134,17 @@ if ( ! function_exists( 'woocommerce_gzd_template_single_product_units' ) ) {
 	function woocommerce_gzd_template_single_product_units() {
 		wc_get_template( 'single-product/units.php' );
 	}
+}
 
+if ( ! function_exists( 'woocommerce_gzd_template_grouped_single_product_units' ) ) {
+
+    function woocommerce_gzd_template_grouped_single_product_units( $html, $grouped_child ) {
+        ob_start();
+        wc_get_template( 'single-product/units.php' );
+        $legal_html = ob_get_clean();
+
+        return $html . $legal_html;
+    }
 }
 
 if ( ! function_exists( 'woocommerce_gzd_template_small_business_info' ) ) {
