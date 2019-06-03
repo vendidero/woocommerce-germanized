@@ -374,3 +374,9 @@ table.wc-gzd-legal-checkboxes td.wc-gzd-legal-checkbox-sort::before {
 	box-shadow: none;
 	border: none;
 }
+
+.parcel-delivery-checkbox-status {
+    float: left;
+    width: 100%;
+    clear: both;
+}

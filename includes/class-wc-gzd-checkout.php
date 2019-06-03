@@ -710,19 +710,20 @@ class WC_GZD_Checkout {
 		$new = array();
 
 		if ( ! empty( $this->custom_fields_admin ) ) {
-
 			foreach ( $this->custom_fields_admin as $key => $custom_field ) {
 
 				$new = array();
 
-				if ( isset( $custom_field['address_type'] ) && $custom_field['address_type'] !== $type )
+				if ( isset( $custom_field['address_type'] ) && $custom_field['address_type'] !== $type ) {
 					continue;
+                }
 
 				if ( ! empty( $fields ) ) {
-
 					foreach ( $fields as $name => $field ) {
-						if ( $name == $custom_field['before'] && ! isset( $custom_field['override'] ) )
+
+					    if ( $name == $custom_field['before'] && ! isset( $custom_field['override'] ) ) {
 							$new[ $key ] = $custom_field;
+                        }
 
 						$new[ $name ] = $field;
 					}
