@@ -429,18 +429,21 @@ class WC_GZD_Customer_Helper {
 	 */
 	public function customer_new_account_activation( $customer_id, $new_customer_data = array(), $password_generated = false ) {
 
-		if ( ! $customer_id )
+		if ( ! $customer_id ) {
 			return;
+        }
 
-		if ( ! $this->enable_double_opt_in_for_user( $customer_id ) )
+		if ( ! $this->enable_double_opt_in_for_user( $customer_id ) ) {
 			return;
+        }
 
 		$user_pass           = ! empty( $new_customer_data['user_pass'] ) ? $new_customer_data['user_pass'] : '';
 		$user_activation     = $this->get_customer_activation_meta( $customer_id );
 		$user_activation_url = $this->get_customer_activation_url( $user_activation );
 
-		if ( $email = WC_germanized()->emails->get_email_instance_by_id( 'customer_new_account_activation' ) )
+		if ( $email = WC_germanized()->emails->get_email_instance_by_id( 'customer_new_account_activation' ) ) {
 			$email->trigger( $customer_id, $user_activation, $user_activation_url, $user_pass, $password_generated );
+        }
 	}
 
 	public function get_customer_activation_url( $key ) {

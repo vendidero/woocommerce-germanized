@@ -241,13 +241,13 @@ class WC_GZD_Emails {
     }
 
 	private function set_footer_attachments() {
-
         // Order attachments
-        $attachment_order = wc_gzd_get_email_attachment_order();
+        $attachment_order         = wc_gzd_get_email_attachment_order();
         $this->footer_attachments = array();
 
-        foreach ( $attachment_order as $key => $order )
+        foreach ( $attachment_order as $key => $order ) {
             $this->footer_attachments[ 'woocommerce_gzd_mail_attach_' . $key ] = $key;
+        }
     }
 	
 	public function admin_hooks() {
@@ -276,9 +276,9 @@ class WC_GZD_Emails {
         $mails = $this->mailer->get_emails();
 
         if ( ! empty( $mails ) ) {
-
-            foreach ( $mails as $mail )
+            foreach ( $mails as $mail ) {
                 add_action( 'woocommerce_germanized_email_footer_' . $mail->id, array( $this, 'hook_mail_footer' ), 10, 1 );
+            }
         }
 
         // Set email filters
@@ -601,12 +601,16 @@ class WC_GZD_Emails {
 	 */
 	public function hook_mail_footer( $mail ) {
 		if ( ! empty( $this->footer_attachments ) ) {
-			foreach ( $this->footer_attachments as $option_key => $page_option ) {
-				$option = wc_get_page_id ( $page_option );
-				if ( $option == -1 || ! get_option( $option_key ) )
+
+		    foreach ( $this->footer_attachments as $option_key => $page_option ) {
+			    $option = wc_get_page_id ( $page_option );
+
+			    if ( $option == -1 || ! get_option( $option_key ) ) {
 					continue;
-				if ( in_array( $mail->id, get_option( $option_key ) ) && apply_filters( 'woocommerce_gzd_attach_email_footer', true, $mail, $page_option ) ) {
-					$this->attach_page_content( $option, $mail->get_email_type() );
+                }
+
+			    if ( in_array( $mail->id, get_option( $option_key ) ) && apply_filters( 'woocommerce_gzd_attach_email_footer', true, $mail, $page_option ) ) {
+					$this->attach_page_content( $option, $mail, $mail->get_email_type() );
 				}
 			}
 		}
@@ -617,6 +621,7 @@ class WC_GZD_Emails {
 	 */
 	public function add_template_footers() {
 		$type = $this->get_current_email_object();
+
 		if ( $type ) {
 			do_action( 'woocommerce_germanized_email_footer_' . $type->id, $type );
 		}
@@ -678,16 +683,20 @@ class WC_GZD_Emails {
 	 *  
 	 * @param  integer $page_id 
 	 */
-	public function attach_page_content( $page_id, $email_type = 'html' ) {
+	public function attach_page_content( $page_id, $mail, $email_type = 'html' ) {
 
 		do_action( 'woocommerce_germanized_attach_email_footer', $page_id, $email_type );
+
+		$page_id = apply_filters( 'woocommerce_germanized_attach_email_footer_page_id', $page_id, $mail );
 		
 		remove_shortcode( 'revocation_form' );
 		add_shortcode( 'revocation_form', array( $this, 'revocation_form_replacement' ) );
 		
 		$template = 'emails/email-footer-attachment.php';
-		if ( $email_type == 'plain' )
+
+		if ( $email_type == 'plain' ) {
 			$template = 'emails/plain/email-footer-attachment.php';
+        }
 		
 		wc_get_template( $template, array(
 			'post_attach'  => get_post( $page_id ),
