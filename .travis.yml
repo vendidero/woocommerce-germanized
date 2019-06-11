@@ -35,7 +35,7 @@ before_script:
       echo "xdebug.ini does not exist"
     fi
   - |
-  - # Install WP Test suite, install PHPUnit globally if needed:
+    # Install WP Test suite, install PHPUnit globally if needed:
     if [[ ! -z "$WP_VERSION" ]]; then
       bash tests/bin/install.sh woocommerce_gzd_test root '' localhost $WP_VERSION $WOO_VERSION
       # PHP 5.2 does not have composer, do not try to run it.
