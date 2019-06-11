@@ -2,7 +2,7 @@
 # see https://github.com/wp-cli/wp-cli/blob/master/templates/install-wp-tests.sh
 
 if [ $# -lt 3 ]; then
-	echo "usage: $0 <db-name> <db-user> <db-pass> [db-host] [wp-version]"
+	echo "usage: $0 <db-name> <db-user> <db-pass> [db-host] [wp-version] [woo-version] [skip-database-creation]"
 	exit 1
 fi
 
@@ -12,6 +12,7 @@ DB_PASS=$3
 DB_HOST=${4-localhost}
 WP_VERSION=${5-latest}
 WOO_VERSION=${6-latest}
+SKIP_DB_CREATE=${7-false}
 
 # TODO: allow environment vars for WP_TESTS_DIR & WP_CORE_DIR
 TMPDIR=${TMPDIR-/tmp}
@@ -147,6 +148,10 @@ install_test_suite() {
 }
 
 install_db() {
+    if [ ${SKIP_DB_CREATE} = "true" ]; then
+		return 0
+	fi
+
 	# parse DB_HOST for port or socket references
 	local PARTS=(${DB_HOST//\:/ })
 	local DB_HOSTNAME=${PARTS[0]};

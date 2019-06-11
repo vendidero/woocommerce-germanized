@@ -1,39 +1,13 @@
 #!/usr/bin/env bash
 # usage: travis.sh before|after
 
-if [ $1 == 'before' ]; then
+if [ $1 == 'after' ]; then
 
-	# Composer install fails in PHP 5.2
-	[[ ${TRAVIS_PHP_VERSION} == '5.2' ]] && exit;
-
-	# No Xdebug and therefore no coverage in PHP 5.3
-	[[ ${TRAVIS_PHP_VERSION} == '5.3' ]] && exit;
-
-	composer self-update
-	composer install --no-interaction
-
-	## Only run on latest stable PHP box (defined in .travis.yml).
-	if [[ ${TRAVIS_PHP_VERSION} == ${PHP_LATEST_STABLE} ]]; then
-		# Install CodeSniffer for WordPress Coding Standards checks. Only check once.
-		git clone -b master --depth 1 https://github.com/squizlabs/PHP_CodeSniffer.git /tmp/phpcs
-		# Install WordPress Coding Standards.
-		git clone -b master --depth 1 https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards.git /tmp/sniffs
-		# Install PHP Compatibility sniffs.
-		git clone -b master --depth 1 https://github.com/wimg/PHPCompatibility.git /tmp/sniffs/PHPCompatibility
-		# Set install path for PHPCS sniffs.
-		# @link https://github.com/squizlabs/PHP_CodeSniffer/blob/4237c2fc98cc838730b76ee9cee316f99286a2a7/CodeSniffer.php#L1941
-		/tmp/phpcs/scripts/phpcs --config-set installed_paths /tmp/sniffs
-		# After CodeSniffer install you should refresh your path.
-		phpenv rehash
-	fi
-
-elif [ $1 == 'after' ]; then
-
-	## Only run on latest stable PHP box (defined in .travis.yml).
-	if [[ ${TRAVIS_PHP_VERSION} == ${PHP_LATEST_STABLE} ]]; then
+	if [[ ${RUN_CODE_COVERAGE} == 1 ]]; then
+		bash <(curl -s https://codecov.io/bash)
 		wget https://scrutinizer-ci.com/ocular.phar
 		chmod +x ocular.phar
-		php ocular.phar code-coverage:upload --format=php-clover ./tmp/clover.xml
+		php ocular.phar code-coverage:upload --format=php-clover coverage.clover
 	fi
 
 fi
