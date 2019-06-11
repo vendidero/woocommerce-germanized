@@ -210,7 +210,7 @@ class WC_GZD_Customer_Helper {
 		}
 	}
 
-	public function registration_redirect( $redirect ) {
+	protected function registration_redirect() {
 		return apply_filters( 'woocommerce_gzd_customer_registration_redirect', add_query_arg( array( 'account' => 'activate' ), wc_gzd_get_page_permalink( 'myaccount' ) ) );
 	}
 
@@ -222,12 +222,11 @@ class WC_GZD_Customer_Helper {
 
 		// Has not been activated yet
 		if ( $this->enable_double_opt_in_for_user( $user_id ) && ! wc_gzd_is_customer_activated( $user_id ) ) {
-			add_filter( 'woocommerce_registration_redirect', array( $this, 'registration_redirect' ) );
-			return false;
+            wp_redirect( wp_validate_redirect( $this->registration_redirect() ) ); //phpcs:ignore WordPress.Security.SafeRedirect.wp_redirect_wp_redirect
+            exit;
 		}
 
 		return true;
-
 	}
 
 	public function get_double_opt_in_user_roles() {
