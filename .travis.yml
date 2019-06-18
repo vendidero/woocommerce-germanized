@@ -24,6 +24,9 @@ matrix:
   include:
   - php: 5.6
     env: WP_VERSION=latest WOO_VERSION=latest WP_MULTISITE=1
+ - name: "WooCommerce unit tests using WordPress nightly"
+   php: 7.3
+   env: WP_VERSION=nightly WP_MULTISITE=0
 
 before_script:
   - export PATH="$HOME/.composer/vendor/bin:$PATH"

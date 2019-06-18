@@ -552,26 +552,27 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 
 	public function generate_mandate() {
 
-		if ( ! $this->is_available() )
+		if ( ! $this->is_available() ) {
 			exit();
+        }
 
-		if ( ! isset( $_GET[ '_wpnonce' ] ) || ! wp_verify_nonce( $_GET[ '_wpnonce' ], 'show_direct_debit' ) )
+		if ( ! isset( $_GET['_wpnonce'] ) || ! wp_verify_nonce( $_GET['_wpnonce'], 'show_direct_debit' ) ) {
 			exit();
+        }
 
 		$params = array(
-			'account_holder' 	=> wc_clean( isset( $_GET[ 'debit_holder' ] ) ? $_GET[ 'debit_holder' ] : '' ),
-			'account_iban' 		=> strtoupper( wc_clean( isset( $_GET[ 'debit_iban' ] ) ? $_GET[ 'debit_iban' ] : '' ) ),
-			'account_swift' 	=> strtoupper( wc_clean( isset( $_GET[ 'debit_swift' ] ) ? $_GET[ 'debit_swift' ] : '' ) ),
-			'street'			=> wc_clean( isset( $_GET[ 'address' ] ) ? $_GET[ 'address' ] : '' ),
-			'postcode' 			=> wc_clean( isset( $_GET[ 'postcode' ] ) ? $_GET[ 'postcode' ] : '' ),
-			'city' 				=> wc_clean( isset( $_GET[ 'city' ] ) ? $_GET[ 'city' ] : '' ),
-			'country'			=> ( isset( $_GET[ 'country' ] ) && isset( WC()->countries->countries[ $_GET[ 'country' ] ] ) ? WC()->countries->countries[ $_GET[ 'country' ] ] : '' ),
+			'account_holder' 	=> wc_clean( isset( $_GET['debit_holder'] ) ? $_GET['debit_holder'] : '' ),
+			'account_iban' 		=> strtoupper( wc_clean( isset( $_GET['debit_iban'] ) ? $_GET['debit_iban'] : '' ) ),
+			'account_swift' 	=> strtoupper( wc_clean( isset( $_GET['debit_swift'] ) ? $_GET['debit_swift'] : '' ) ),
+			'street'			=> wc_clean( isset( $_GET['address'] ) ? $_GET['address'] : '' ),
+			'postcode' 			=> wc_clean( isset( $_GET['postcode'] ) ? $_GET['postcode'] : '' ),
+			'city' 				=> wc_clean( isset( $_GET['city'] ) ? $_GET['city'] : '' ),
+			'country'			=> ( isset( $_GET[ 'country' ] ) && isset( WC()->countries->countries[ $_GET['country'] ] ) ? WC()->countries->countries[ $_GET['country'] ] : '' ),
 			'mandate_type_text'	=> apply_filters( 'woocommerce_gzd_direct_debit_mandate_type_text', __( 'a single payment', 'woocommerce-germanized' ) ),
 		);
 
 		echo $this->generate_mandate_text( $params );
 		exit();
-
 	}
 
 	public function generate_mandate_by_order( $order ) {

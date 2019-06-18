@@ -693,7 +693,12 @@ class WC_GZD_Product {
                 '{delivery_time}' => $html,
             );
 
-		    $html = apply_filters( 'woocommerce_germanized_delivery_time_html', wc_gzd_replace_label_shortcodes( get_option( 'woocommerce_gzd_delivery_time_text' ), $replacements ), get_option( 'woocommerce_gzd_delivery_time_text' ), $html, $this );
+		    $html = apply_filters( 'woocommerce_germanized_delivery_time_html',
+                wc_gzd_replace_label_shortcodes( get_option( 'woocommerce_gzd_delivery_time_text' ), $replacements ),
+                get_option( 'woocommerce_gzd_delivery_time_text' ),
+                $html,
+                $this
+            );
 		} else {
 		    $html = '';
         }
