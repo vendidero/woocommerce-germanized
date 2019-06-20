@@ -68,6 +68,11 @@ class WC_Germanized_Meta_Box_Product_Data {
             return;
         }
 
+		// Do not update products on checkout - seems to cause problems with WPML
+        if ( function_exists( 'is_checkout' ) && is_checkout() ) {
+            return;
+        }
+
 	    $product = wc_get_product( $product_id );
 
 	    if ( $product->get_id() > 0 ) {
