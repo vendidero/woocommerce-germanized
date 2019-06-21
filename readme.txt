@@ -5,7 +5,7 @@ Requires at least: 3.8
 Tested up to: 5.2
 WC requires at least: 2.4
 WC tested up to: 3.6
-Stable tag: 2.3.0
+Stable tag: 2.3.1
 Requires PHP: 5.3
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -180,6 +180,15 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 4. WooCommerce Multistep Checkout (Pro)
 
 == Changelog ==
+
+= 2.3.1 =
+* Feature: Added better fee/shipping costs calculation to order tax recalculation
+* Feature: Grouped products: Unit price support if all children share the same unit
+* Feature: Grouped products: Show legal info per item
+* Improvement: Activate parcel shop delivery address format as soon as post number is added to the order
+* Improvement: Force customer registration redirect for customer that have not yet been activated (DOI)
+* Improvement: Added _legal_text post meta to wpml config
+* Tweak: Do not watch for product updates within checkout (causes problem with WPML)
 
 = 2.3.0 =
 * Feature: Better legal hook placement via wc_gzd_get_legal_*_notice_types_by_location
