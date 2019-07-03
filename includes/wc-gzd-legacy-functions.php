@@ -16,10 +16,9 @@ function wc_gzd_get_crud_data( $object, $key, $suppress_suffix = false ) {
 		$object = $object->get_wc_product();
 	}
 
-	$value = null;
-
+	$value  = null;
 	$getter = substr( $key, 0, 3 ) === "get" ? $key : "get_$key";
-	$key = substr( $key, 0, 3 ) === "get" ? substr( $key, 3 ) : $key;
+	$key    = substr( $key, 0, 3 ) === "get" ? substr( $key, 3 ) : $key;
 
 	if ( 'id' === $key && is_callable( array( $object, 'is_type' ) ) && $object->is_type( 'variation' ) && ! wc_gzd_get_dependencies()->woocommerce_version_supports_crud() ) {
 		$key = 'variation_id';
@@ -30,11 +29,11 @@ function wc_gzd_get_crud_data( $object, $key, $suppress_suffix = false ) {
     }
 
 	$getter_mapping = array(
-		'parent' => 'get_parent_id',
+		'parent'         => 'get_parent_id',
 		'completed_date' => 'get_date_completed',
-		'order_date' => 'get_date_created',
-		'product_type' => 'get_type',
-		'order_type' => 'get_type',
+		'order_date'     => 'get_date_created',
+		'product_type'   => 'get_type',
+		'order_type'     => 'get_type',
 	);
 
 	if ( array_key_exists( $key, $getter_mapping ) ) {
@@ -49,14 +48,16 @@ function wc_gzd_get_crud_data( $object, $key, $suppress_suffix = false ) {
                 $value = $object->{$getter}();
             }
         } catch ( Exception $e ) {}
-	} elseif ( wc_gzd_get_dependencies()->woocommerce_version_supports_crud() ) {
-		// Prefix meta if suppress_suffix is not set
-		if ( substr( $key, 0, 1 ) !== '_' && ! $suppress_suffix )
+	} elseif ( wc_gzd_get_dependencies()->woocommerce_version_supports_crud() && is_callable( array( $object, 'get_meta' ) ) ) {
+
+	    // Prefix meta if suppress_suffix is not set
+		if ( substr( $key, 0, 1 ) !== '_' && ! $suppress_suffix ) {
 			$key = '_' . $key;
+        }
 
 		$value = $object->get_meta( $key );
 	} else {
-		$key = substr( $key, 0, 1 ) === "_" ? substr( $key, 1 ) : $key;
+		$key   = substr( $key, 0, 1 ) === "_" ? substr( $key, 1 ) : $key;
 		$value = $object->{$key};
 	}
 
@@ -71,6 +72,7 @@ function wc_gzd_set_crud_data( $object, $key, $value ) {
 
 		if ( is_callable( array( $object, $setter ) ) ) {
 			$reflection = new ReflectionMethod( $object, $setter );
+
 			if ( $reflection->isPublic() ) {
 				$object->{$setter}( $value );
 			}
@@ -86,7 +88,7 @@ function wc_gzd_set_crud_data( $object, $key, $value ) {
 
 function wc_gzd_set_crud_meta_data( $object, $key, $value ) {
 
-	if ( wc_gzd_get_dependencies()->woocommerce_version_supports_crud() ) {
+	if ( wc_gzd_get_dependencies()->woocommerce_version_supports_crud() && is_callable( array( $object, 'update_meta_data' ) ) ) {
 		$object->update_meta_data( $key, $value );
 	} else {
 		update_post_meta( wc_gzd_get_crud_data( $object, 'id' ), $key, $value );
@@ -95,7 +97,7 @@ function wc_gzd_set_crud_meta_data( $object, $key, $value ) {
 }
 
 function wc_gzd_unset_crud_meta_data( $object, $key ) {
-	if ( wc_gzd_get_dependencies()->woocommerce_version_supports_crud() ) {
+	if ( wc_gzd_get_dependencies()->woocommerce_version_supports_crud() && is_callable( array( $object, 'delete_meta_data' ) ) ) {
 		$object->delete_meta_data( $key );
 	} else {
 		delete_post_meta( wc_gzd_get_crud_data( $object, 'id' ), $key );
@@ -104,10 +106,9 @@ function wc_gzd_unset_crud_meta_data( $object, $key ) {
 }
 
 function wc_gzd_set_crud_term_data( $object, $term, $taxonomy ) {
-
 	$term_data = ( ! is_numeric( $term ) ? sanitize_text_field( $term ) : absint( $term ) );
 
-	if ( wc_gzd_get_dependencies()->woocommerce_version_supports_crud() ) {
+	if ( wc_gzd_get_dependencies()->woocommerce_version_supports_crud() && is_callable( array( $object, 'update_meta_data' ) ) ) {
 		$object->update_meta_data( '_' . $taxonomy, $term );
 	} else {
 		wp_set_object_terms( wc_gzd_get_crud_data( $object, 'id' ), $term_data, $taxonomy );
@@ -117,7 +118,7 @@ function wc_gzd_set_crud_term_data( $object, $term, $taxonomy ) {
 }
 
 function wc_gzd_unset_crud_term_data( $object, $taxonomy ) {
-	if ( wc_gzd_get_dependencies()->woocommerce_version_supports_crud() ) {
+	if ( wc_gzd_get_dependencies()->woocommerce_version_supports_crud() && is_callable( array( $object, 'update_meta_data' ) ) ) {
 		$object->update_meta_data( '_delete_' . $taxonomy, true );
 	} else {
 		wp_delete_object_term_relationships( wc_gzd_get_crud_data( $object, 'id' ), $taxonomy );
@@ -127,38 +128,48 @@ function wc_gzd_unset_crud_term_data( $object, $taxonomy ) {
 }
 
 function wc_gzd_get_variable_visible_children( $product ) {
-	if ( is_callable( array( $product, 'get_visible_children' ) ) )
+	if ( is_callable( array( $product, 'get_visible_children' ) ) ) {
 		return $product->get_visible_children();
+    }
+
 	return $product->get_children( true );
 }
 
 function wc_gzd_get_price_including_tax( $product, $args = array() ) {
-	if ( function_exists( 'wc_get_price_including_tax' ) )
+	if ( function_exists( 'wc_get_price_including_tax' ) ) {
 		return wc_get_price_including_tax( $product, $args );
-	return $product->get_price_including_tax( $args[ 'qty' ], $args[ 'price' ] );
+    }
+
+	return $product->get_price_including_tax( $args['qty'], $args['price'] );
 }
 
 function wc_gzd_get_price_excluding_tax( $product, $args = array() ) {
-	if ( function_exists( 'wc_get_price_excluding_tax' ) )
+	if ( function_exists( 'wc_get_price_excluding_tax' ) ) {
 		return wc_get_price_excluding_tax( $product, $args );
-	return $product->get_price_excluding_tax( $args[ 'qty' ], $args[ 'price' ] );
+    }
+
+	return $product->get_price_excluding_tax( $args['qty'], $args['price'] );
 }
 
 function wc_gzd_get_variation( $parent, $variation ) {
-	if ( wc_gzd_get_dependencies()->woocommerce_version_supports_crud() )
+	if ( wc_gzd_get_dependencies()->woocommerce_version_supports_crud() ) {
 		return wc_get_product( $variation );
+    }
+
 	return $parent->get_child( $variation );
 }
 
 function wc_gzd_get_order_currency( $order ) {
-	if ( wc_gzd_get_dependencies()->woocommerce_version_supports_crud() )
+	if ( wc_gzd_get_dependencies()->woocommerce_version_supports_crud() ) {
 		return $order->get_currency();
+    }
+
 	return $order->get_order_currency();
 }
 
 function wc_gzd_reduce_order_stock( $order_id ) {
     if ( wc_gzd_get_dependencies()->woocommerce_version_supports_crud() && function_exists( 'wc_maybe_reduce_stock_levels' ) ) {
-        wc_maybe_reduce_stock_levels($order_id);
+        wc_maybe_reduce_stock_levels( $order_id );
     } else {
         $order = wc_get_order( $order_id );
         $order->reduce_order_stock();
