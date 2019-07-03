@@ -42,10 +42,13 @@ function wc_gzd_get_crud_data( $object, $key, $suppress_suffix = false ) {
 	}
 
 	if ( is_callable( array( $object, $getter ) ) ) {
-		$reflection = new ReflectionMethod( $object, $getter );
-		if ( $reflection->isPublic() ) {
-			$value = $object->{$getter}();
-		}
+        try {
+            $reflection = new ReflectionMethod( $object, $getter );
+
+            if ( $reflection->isPublic() ) {
+                $value = $object->{$getter}();
+            }
+        } catch ( Exception $e ) {}
 	} elseif ( wc_gzd_get_dependencies()->woocommerce_version_supports_crud() ) {
 		// Prefix meta if suppress_suffix is not set
 		if ( substr( $key, 0, 1 ) !== '_' && ! $suppress_suffix )

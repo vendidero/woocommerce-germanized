@@ -27,6 +27,10 @@ function wc_gzd_get_gzd_product( $product ) {
         return $product;
     }
 
+    if ( ! $product ) {
+        return false;
+    }
+
 	if ( ! isset( $product->gzd_product ) || ! is_object( $product->gzd_product ) ) {
 		$factory = WC()->product_factory;
 

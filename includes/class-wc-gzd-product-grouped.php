@@ -38,6 +38,11 @@ class WC_GZD_Product_Grouped extends WC_GZD_Product {
                 $this->has_unit_price = true;
 
                 foreach ( $children as $child ) {
+
+                    if ( ! $child ) {
+                        continue;
+                    }
+
                     if ( $child->has_unit() ) {
                         $unit = $child->get_unit_raw();
 
