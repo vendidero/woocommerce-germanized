@@ -387,8 +387,9 @@ class WC_GZD_Customer_Helper {
 
 					WC()->mailer()->customer_new_account( $user->ID );
 
-					if ( apply_filters( 'woocommerce_gzd_user_activation_auto_login', $login, $user ) && ! is_user_logged_in() )
+					if ( apply_filters( 'woocommerce_gzd_user_activation_auto_login', $login, $user ) && ! is_user_logged_in() ) {
 						wc_set_customer_auth_cookie( $user->ID );
+                    }
 
 					do_action( 'woocommerce_gzd_customer_opt_in_finished', $user );
 
@@ -401,8 +402,9 @@ class WC_GZD_Customer_Helper {
 
 					$user_activation_url = $this->get_customer_activation_url( $activation_code );
 
-					if ( $email = WC_germanized()->emails->get_email_instance_by_id( 'customer_new_account_activation' ) )
+					if ( $email = WC_germanized()->emails->get_email_instance_by_id( 'customer_new_account_activation' ) ) {
 						$email->trigger( $user->ID, $activation_code, $user_activation_url );
+                    }
 
 					return new WP_Error( 'expired_key', __( 'Expired activation key', 'woocommerce-germanized' ) );
 				}

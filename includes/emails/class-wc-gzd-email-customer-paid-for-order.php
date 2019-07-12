@@ -85,6 +85,10 @@ class WC_GZD_Email_Customer_Paid_For_Order extends WC_Email {
 		}
 
 		if ( $this->is_enabled() && $this->get_recipient() ) {
+
+		    // Make sure gateways do not insert data here
+            remove_all_actions( 'woocommerce_email_before_order_table' );
+
 			$this->send( $this->get_recipient(), $this->get_subject(), $this->get_content(), $this->get_headers(), $this->get_attachments() );
 		}
 

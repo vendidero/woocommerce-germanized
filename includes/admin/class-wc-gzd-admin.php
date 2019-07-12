@@ -70,6 +70,7 @@ class WC_GZD_Admin {
 
 		add_filter( 'woocommerce_order_actions', array( $this, 'order_actions' ), 10, 1 );
 		add_action( 'woocommerce_order_action_order_confirmation', array( $this, 'resend_order_confirmation' ), 10, 1 );
+        add_action( 'woocommerce_order_action_paid_for_order_notification', array( $this, 'send_paid_for_order_notification' ), 10, 1 );
 
 		add_filter( 'pre_update_option_wp_page_for_privacy_policy', array( $this, 'pre_update_wp_privacy_option_page' ), 10, 2 );
 		add_filter( 'pre_update_option_woocommerce_data_security_page_id', array( $this, 'pre_update_gzd_privacy_option_page' ), 10, 2 );
@@ -149,8 +150,18 @@ class WC_GZD_Admin {
 		return $new_value;
 	}
 
-	public function resend_order_confirmation( $order ) {
+	public function send_paid_for_order_notification( $order ) {
+        $mail = WC_germanized()->emails->get_email_instance_by_id( 'customer_paid_for_order' );
 
+        if ( $mail ) {
+            $mail->trigger( $order );
+
+            // Note the event.
+            $order->add_order_note( __( 'Paid for order notification manually sent to customer.', 'woocommerce-germanized' ), false, true );
+        }
+    }
+
+	public function resend_order_confirmation( $order ) {
 		// Send the customer invoice email.
 		WC()->payment_gateways();
 		WC()->shipping();
@@ -167,8 +178,10 @@ class WC_GZD_Admin {
 	}
 
 	public function order_actions( $actions ) {
-		$actions[ 'order_confirmation' ] = __( 'Resend order confirmation', 'woocommerce-germanized' );
-		return $actions;
+		$actions['order_confirmation']          = __( 'Resend order confirmation', 'woocommerce-germanized' );
+        $actions['paid_for_order_notification'] = __( 'Send paid for order notification', 'woocommerce-germanized' );
+
+        return $actions;
 	}
 
 	public function status_tab() {
