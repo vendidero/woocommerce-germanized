@@ -389,8 +389,16 @@ if ( ! function_exists( 'woocommerce_gzd_template_order_pay_now_button' ) ) {
 	 */
 	function woocommerce_gzd_template_order_pay_now_button( $order_id ) {
 
-		$show = ( isset( $_GET[ 'retry' ] ) && $_GET[ 'retry' ] );
+		$show = ( isset( $_GET['retry'] ) && $_GET['retry'] );
 
+        /**
+         * Filter to allow disabling the pay now button.
+         *
+         * @since 1.0.0
+         *
+         * @param bool $show Whether to show or hide the button.
+         * @param int  $order_id The order id.
+         */
 		if ( apply_filters( 'woocommerce_gzd_show_pay_now_button', $show, $order_id ) ) {
 			WC_GZD_Checkout::instance()->add_payment_link( $order_id );
 		}
@@ -445,16 +453,23 @@ if ( ! function_exists( 'woocommerce_gzd_template_checkout_forwarding_fee_notice
 
 		$gateways = WC()->payment_gateways()->get_available_payment_gateways();
 		
-		if ( ! ( $key = WC()->session->get('chosen_payment_method') ) || ! isset( $gateways[ $key ] ) )
+		if ( ! ( $key = WC()->session->get('chosen_payment_method') ) || ! isset( $gateways[ $key ] ) ) {
 			return;
+        }
 		
 		$gateway = $gateways[ $key ];
 
-		if ( $gateway->get_option( 'forwarding_fee' ) )
+		if ( $gateway->get_option( 'forwarding_fee' ) ) {
+            /**
+             * Filter to adjust the forwarding fee checkout notice.
+             *
+             * @since 1.0.0
+             *
+             * @param string $html The notice.
+             */
 			echo apply_filters( 'woocommerce_gzd_forwarding_fee_checkout_text', '<tr><td colspan="2">' . sprintf( __( 'Plus %s forwarding fee (charged by the transport agent)', 'woocommerce-germanized' ), wc_price( $gateway->get_option( 'forwarding_fee' ) ) ) . '</td></tr>' );
-	
+        }
 	}
-
 }
 
 if ( ! function_exists( 'woocommerce_gzd_template_maybe_hide_delivery_time' ) ) {
@@ -491,13 +506,21 @@ if ( ! function_exists( 'woocommerce_gzd_template_digital_delivery_time_text' ) 
 
 	function woocommerce_gzd_template_digital_delivery_time_text( $text, $product ) {
 
-		if ( $product->is_downloadable() && get_option( 'woocommerce_gzd_display_digital_delivery_time_text' ) !== '' )
+		if ( $product->is_downloadable() && get_option( 'woocommerce_gzd_display_digital_delivery_time_text' ) !== '' ) {
+            /**
+             * Filter to adjust delivery time text for digital products.
+             *
+             * @since 1.6.3
+             *
+             * @param string     $html The notice.
+             * @param WC_Product $product The product object.
+             */
 			return apply_filters( 'woocommerce_germanized_digital_delivery_time_text', get_option( 'woocommerce_gzd_display_digital_delivery_time_text' ), $product );
+        }
 
 		return $text;
 
 	}
-
 }
 
 if ( ! function_exists( 'woocommerce_gzd_template_sale_price_label_html' ) ) {
@@ -539,7 +562,16 @@ if ( ! function_exists( 'woocommerce_gzd_template_differential_taxation_notice_c
 
 		if ( $contains_differentail_taxation ) {
 
-			$mark = apply_filters( 'woocommerce_gzd_differential_taxation_notice_text_mark', '** ' );
+		    /** This filter is documented in includes/class-wc-gzd-emails.php */
+			$mark   = apply_filters( 'woocommerce_gzd_differential_taxation_notice_text_mark', '** ' );
+
+            /**
+             * Filter to adjust the differential taxation notice text during checkout.
+             *
+             * @since 1.9.3
+             *
+             * @param string $html The notice.
+             */
 			$notice = apply_filters( 'woocommerce_gzd_differential_taxation_notice_text_checkout', $mark . wc_gzd_get_differential_taxation_notice_text() );
 
 			wc_get_template( 'checkout/differential-taxation-notice.php', array( 'notice' => $notice ) );
@@ -578,8 +610,23 @@ if ( ! function_exists( 'woocommerce_gzd_template_mini_cart_taxes' ) ) {
 		}
 
 		wc_get_template( 'cart/mini-cart-totals.php', array(
-			'taxes' => ( apply_filters( 'woocommerce_gzd_show_mini_cart_totals_taxes', true ) ) ? wc_gzd_get_cart_total_taxes( false ) : array(),
-			'shipping_costs_info' => ( apply_filters( 'woocommerce_gzd_show_mini_cart_totals_shipping_costs_notice', $show_shipping ) ) ? wc_gzd_get_shipping_costs_text() : '' )
+            /**
+             * Filter that allows disabling tax notices within mini cart.
+             *
+             * @since 2.0.2
+             *
+             * @param bool $enable Whether to enable or not.
+             */
+			'taxes'               => ( apply_filters( 'woocommerce_gzd_show_mini_cart_totals_taxes', true ) ) ? wc_gzd_get_cart_total_taxes( false ) : array(),
+
+            /**
+             * Filter that allows disabling shipping costs notice within mini cart.
+             *
+             * @since 2.0.2
+             *
+             * @param bool $enable Whether to enable or not.
+             */
+            'shipping_costs_info' => ( apply_filters( 'woocommerce_gzd_show_mini_cart_totals_shipping_costs_notice', $show_shipping ) ) ? wc_gzd_get_shipping_costs_text() : '' )
 		);
 	}
 
@@ -683,6 +730,13 @@ if ( ! function_exists( 'woocommerce_gzd_template_mini_cart_add_hooks' ) ) {
 
     function woocommerce_gzd_template_mini_cart_add_hooks() {
 
+        /**
+         * This filter serves to manually disable mini cart item legal details.
+         *
+         * @since 2.2.11
+         *
+         * @param bool $disable Whether to disable or not.
+         */
         if ( apply_filters( 'woocommerce_gzd_disable_mini_cart_item_legal_details', false ) ) {
             return;
         }
@@ -732,6 +786,16 @@ if ( ! function_exists( 'woocommerce_gzd_template_add_price_html_suffixes' ) ) {
 			),
 		) );
 
+        /**
+         * In some cases (e.g. product widgets) Germanized has to add legal information
+         * as a suffix because no other filters exist. This filter serves to decide which
+         * info to append and in which order.
+         *
+         * @since 2.2.0
+         *
+         * @param array  $args The data to be appended.
+         * @param string $location The location e.g. product_widget.
+         */
 		$args = apply_filters( 'woocommerce_gzd_template_add_price_html_suffixes_args', $args, $location );
 
 		// Re-order tabs by priority.
@@ -773,6 +837,15 @@ if ( ! function_exists( 'woocommerce_gzd_template_add_price_html_suffixes' ) ) {
 			}
 		}
 
+        /**
+         * Filter that allows adjusting the HTML suffix for product widgets.
+         *
+         * @since 2.2.0
+         *
+         * @param string $html The suffix.
+         * @param array  $args The data which was appended.
+         * @param string $location The location.
+         */
 		$suffix = apply_filters( 'woocommerce_gzd_template_add_price_html_suffix', $suffix, $args, $location );
 
 		return $price_html . $suffix;

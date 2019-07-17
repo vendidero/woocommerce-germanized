@@ -95,6 +95,13 @@ class WC_GZD_Email_Customer_Revocation extends WC_Email {
 	 * @return string
 	 */
 	public function get_admin_email() {
+        /**
+         * Filter the revocation admin email receiver address.
+         *
+         * @since 1.0.0
+         *
+         * @param string $email The email address.
+         */
 		return apply_filters( 'wc_gzd_revocation_admin_mail', $this->get_option( 'admin_email', get_bloginfo( 'admin_email' ) ) );
 	}
 

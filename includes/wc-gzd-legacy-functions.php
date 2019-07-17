@@ -127,6 +127,10 @@ function wc_gzd_unset_crud_term_data( $object, $taxonomy ) {
 	return $object;
 }
 
+function wc_gzd_get_order_item_product( $item, $order ) {
+    return ( is_callable( array( $item, 'get_product' ) ) ? $item->get_product() : apply_filters( 'woocommerce_order_item_product', $order->get_product_from_item( $item ), $item ) );
+}
+
 function wc_gzd_get_variable_visible_children( $product ) {
 	if ( is_callable( array( $product, 'get_visible_children' ) ) ) {
 		return $product->get_visible_children();

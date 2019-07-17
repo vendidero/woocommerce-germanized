@@ -127,6 +127,15 @@ class WC_GZD_Admin {
     }
 
 	public function pre_update_gzd_privacy_option_page( $new_value, $old_value ) {
+
+        /**
+         * Filter to disable syncing WP privacy page option with Germanized
+         * privacy page option.
+         *
+         * @since 2.0.0
+         *
+         * @param bool $enabled Set to false to disable syncing.
+         */
 		if ( apply_filters( 'woocommerce_gzd_sync_wp_privacy_page', true ) ) {
 			remove_filter( 'pre_update_option_wp_page_for_privacy_policy', array( $this, 'pre_update_wp_privacy_option_page' ), 10 );
 			update_option( 'wp_page_for_privacy_policy', $new_value );
@@ -142,6 +151,8 @@ class WC_GZD_Admin {
 	 * @param $old_value
 	 */
 	public function pre_update_wp_privacy_option_page( $new_value, $old_value ) {
+
+	    /** This filter is documented in includes/admin/class-wc-gzd-admin.php */
 		if ( apply_filters( 'woocommerce_gzd_sync_wp_privacy_page', true ) ) {
 			remove_filter( 'pre_update_option_woocommerce_data_security_page_id', array( $this, 'pre_update_gzd_privacy_option_page' ), 10 );
 			update_option( 'woocommerce_data_security_page_id', $new_value );
@@ -166,14 +177,26 @@ class WC_GZD_Admin {
 		WC()->payment_gateways();
 		WC()->shipping();
 
-		$mail = WC_germanized()->emails->get_email_instance_by_id( 'customer_processing_order' );
+		$mail_id = 'customer_processing_order';
+		$mail    = WC_germanized()->emails->get_email_instance_by_id( $mail_id );
 
 		if ( $mail ) {
 			$mail->trigger( $order );
 
 			// Note the event.
 			$order->add_order_note( __( 'Order confirmation manually sent to customer.', 'woocommerce-germanized' ), false, true );
-			do_action( 'woocommerce_gzd_after_resend_order_confirmation_email', $order, 'customer_processing_order' );
+
+            /**
+             * Admin manual resend order confirmation email.
+             *
+             * This hook fires after a manual resend of the order confirmation email has been triggered.
+             *
+             * @since 1.0.0
+             *
+             * @param WC_Order $order The order for which the confirmation email is sent.
+             * @param string   $mail_id The email id (customer_processing_order).
+             */
+			do_action( 'woocommerce_gzd_after_resend_order_confirmation_email', $order, $mail_id );
 		}
 	}
 
@@ -254,6 +277,13 @@ class WC_GZD_Admin {
             }
 
 			if ( $section === 'trusted_shops' ) {
+                /**
+                 * Action to load Trusted Shops specific admin assets.
+                 *
+                 * This hook is used to load Trusted Shops assets within admin settings page.
+                 *
+                 * @since 1.6.3
+                 */
 				do_action( 'woocommerce_gzd_load_trusted_shops_script' );
             }
 
@@ -274,10 +304,29 @@ class WC_GZD_Admin {
 			wp_add_inline_style( 'woocommerce-gzd-admin', '#tagsdiv-product_delivery_time, #tagsdiv-product_unit, #tagsdiv-product_price_label {display: none}' );
         }
 
+        /**
+         * After admin assets.
+         *
+         * This hook fires after Germanized has loaded and enqueued it's admin assets.
+         *
+         * @since 1.0.0
+         *
+         * @param WC_GZD_Admin $this The admin class.
+         * @param string       $admin_script_path The absolute URL to the plugins admin js scripts.
+         * @param string       $suffix The assets suffix e.g. .min in non-debugging-mode.
+         */
 		do_action( 'woocommerce_gzd_admin_assets', $this, $admin_script_path, $suffix );
 	}
 
 	public function localize_printed_scripts() {
+
+        /**
+         * Filter to localize certain admin scripts.
+         *
+         * @since 1.0.0
+         *
+         * @param array $scripts Array containing handle => data.
+         */
 		$localized_scripts = apply_filters( 'woocommerce_gzd_admin_localized_scripts', array() );
 
 		foreach( $localized_scripts as $handle => $data ) {
@@ -354,12 +403,15 @@ class WC_GZD_Admin {
 
 		} elseif ( current_user_can(  'manage_woocommerce' ) && isset( $_GET[ 'tour' ] ) && isset( $_GET[ 'enable' ] ) && isset( $_GET[ '_wpnonce' ] ) && check_admin_referer( 'wc-gzd-tour-enable' ) ) {
 
+		    /** This filter is documented in includes/admin/settings/class-wc-gzd-settings-germanized.php */
+		    $additional_sections = apply_filters( 'woocommerce_gzd_settings_sections', array() );
+
 			$setting_sections = array_merge( array(
 				'general'    => '',
 				'display'    => '',
 				'checkboxes' => '',
 				'email'      => ''
-			), apply_filters( 'woocommerce_gzd_settings_sections', array() ) );
+			), $additional_sections );
 
 			delete_option( 'woocommerce_gzd_hide_tour' );
 
@@ -424,6 +476,13 @@ class WC_GZD_Admin {
 			// Reinstall options
 			WC_GZD_Install::create_options();
 
+            /**
+             * After text options deletion.
+             *
+             * This hook fires after Germanized has deleted and re-installed it's text options.
+             *
+             * @since 1.6.0
+             */
 			do_action( 'woocommerce_gzd_deleted_text_options' );
 
 			// Redirect to check for updates
@@ -436,6 +495,13 @@ class WC_GZD_Admin {
 
 			wc_gzd_get_dependencies()->delete_cached_plugin_header_data();
 
+            /**
+             * After plugin header cache deletion.
+             *
+             * This hook fires after the dependency script has deleted it's cached plugin header data.
+             *
+             * @since 1.6.0
+             */
 			do_action( 'woocommerce_gzd_deleted_cached_plugin_header_data' );
 		}
 	}

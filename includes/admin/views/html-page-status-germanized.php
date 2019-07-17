@@ -56,7 +56,17 @@ if ( ! defined( 'ABSPATH' ) )
 			<td class="help">&nbsp;</td>
 			<td><?php echo 'yes' === get_option( 'woocommerce_gzd_display_checkout_fallback' ) ? '<mark class="yes">'.'&#10004;'.'</mark>' : '<mark class="no">'.'&ndash;'.'</mark>'; ?></td>
 		</tr>
-		<?php do_action( 'woocommerce_gzd_status_after_germanized' ); ?>
+		<?php
+
+        /**
+         * After Germanized status page output.
+         *
+         * Fires after Germanized has rendered it's status page.
+         *
+         * @since 1.0.0
+         */
+        do_action( 'woocommerce_gzd_status_after_germanized' );
+        ?>
 	</tbody>
 </table>
 
@@ -131,7 +141,17 @@ if ( ! defined( 'ABSPATH' ) )
 			<td class="help"><?php echo '<a href="#" class="help_tip" data-tip="' . esc_attr( __( 'Checks whether all WooCommerce tax relevant tables have been added.', 'woocommerce-germanized' ) ) . '">[?]</a>'; ?></td>
 			<td><?php echo WC_GZD_Admin_Status::tax_tables_exist() ? '<mark class="yes">'.'&#10004;'.'</mark>' : '<mark class="no">'.'&ndash;'.'</mark>' . ' [' .sprintf( __( 'Missing: %s', 'woocommerce-germanized' ), implode( ', ', WC_GZD_Admin_Status::get_missing_tax_tables() ) ) . ']'; ?></td>
 		</tr>
-		<?php do_action( 'woocommerce_gzd_status_after_vat' ); ?>
+		<?php
+
+        /**
+         * After VAT status.
+         *
+         * Fires after Germanized has rendered the VAT status section.
+         *
+         * @since 1.0.0
+         */
+        do_action( 'woocommerce_gzd_status_after_vat' );
+        ?>
 	</tbody>
 </table>
 
@@ -151,7 +171,16 @@ if ( ! defined( 'ABSPATH' ) )
 			</tr>
 
 		<?php endforeach; ?>
-		<?php do_action( 'woocommerce_gzd_status_after_legal_pages' ); ?>
+		<?php
+        /**
+         * After legal pages section.
+         *
+         * Fires after the legal pages section within the Germanized status page.
+         *
+         * @since 1.0.0
+         */
+        do_action( 'woocommerce_gzd_status_after_legal_pages' );
+        ?>
 	</tbody>
 </table>
 
@@ -182,7 +211,16 @@ if ( ! defined( 'ABSPATH' ) )
 
 		<?php endforeach; ?>
 
-		<?php do_action( 'woocommerce_gzd_status_after_compatibility' ); ?>
+		<?php
+        /**
+         * After compatibility section.
+         *
+         * Fires after the compatibility section within the Germanized status page.
+         *
+         * @since 1.0.0
+         */
+        do_action( 'woocommerce_gzd_status_after_compatibility' );
+        ?>
 	</tbody>
 </table>
 
@@ -223,7 +261,16 @@ if ( ! defined( 'ABSPATH' ) )
             <td class="help"><?php echo '<a href="#" class="help_tip" data-tip="' . esc_attr( __( 'Germanized might ask you to leave a review or notices you of using a possibly unsupported theme. If you want to disable these notices, check this option.', 'woocommerce-germanized' ) ) . '">[?]</a>'; ?></td>
             <td><a href="<?php echo wp_nonce_url( add_query_arg( array( 'check-notices' => true ) ), 'wc-gzd-notices' ); ?>" class="button button-secondary"><?php echo 'yes' === get_option( 'woocommerce_gzd_disable_notices' ) ? __( 'Enable notices', 'woocommerce-germanized' ) : __( 'Disable notices', 'woocommerce-germanized' ); ?></a></td>
         </tr>
-		<?php do_action( 'woocommerce_gzd_status_after_tools' ); ?>
+		<?php
+        /**
+         * After tools section.
+         *
+         * Fires after the tools section within the Germanized status page.
+         *
+         * @since 1.0.0
+         */
+        do_action( 'woocommerce_gzd_status_after_tools' );
+        ?>
 	</tbody>
 </table>
 
@@ -236,6 +283,13 @@ if ( ! defined( 'ABSPATH' ) )
 	<tbody>
 		<?php
 
+            /**
+             * Filters Germanized template override scan paths.
+             *
+             * @since 1.0.0
+             *
+             * @param array $path The path data.
+             */
 			$template_paths     = apply_filters( 'woocommerce_gzd_template_overrides_scan_paths', array( 'WooCommerce Germanized' => WC_germanized()->plugin_path() . '/templates/' ) );
 			$scanned_files      = array();
 			$found_files        = array();
@@ -268,7 +322,16 @@ if ( ! defined( 'ABSPATH' ) )
 
 					if ( $theme_file ) {
 
-						$core_version  = WC_Admin_Status::get_file_version( apply_filters( 'woocommerce_gzd_template_overrides_scan_plugin_dir', WC()->plugin_path() . '/templates/' . $file, $plugin_name, $file ) );
+                        /**
+                         * Filter to adjust the core template plugin path.
+                         *
+                         * @since 1.0.0
+                         *
+                         * @param string $path The template file core path.
+                         * @param string $name The template name.
+                         * @param string $file The template file.
+                         */
+						$core_version  = WC_Admin_Status::get_file_version( apply_filters( 'woocommerce_gzd_template_overrides_scan_plugin_dir', WC_germanized()->plugin_path() . '/templates/' . $file, $plugin_name, $file ) );
 						$theme_version = WC_Admin_Status::get_file_version( $theme_file );
 
 						if ( $core_version && ( empty( $theme_version ) || version_compare( $theme_version, $core_version, '<' ) ) ) {
@@ -306,13 +369,23 @@ if ( ! defined( 'ABSPATH' ) )
 			if ( true === $outdated_templates ) {
 				?>
 				<tr>
+                    <td></td>
 					<td>&nbsp;</td>
 					<td><a href="http://speakinginbytes.com/2014/02/woocommerce-2-1-outdated-templates/" target="_blank"><?php _e( 'Learn how to update outdated templates', 'woocommerce-germanized' ) ?></a></td>
 				</tr>
 				<?php
 			}
 		?>
-		<?php do_action( 'woocommerce_gzd_status_after_templates' ); ?>
+		<?php
+        /**
+         * After templates section.
+         *
+         * Fires after the templates section within the Germanized status page.
+         *
+         * @since 1.0.0
+         */
+        do_action( 'woocommerce_gzd_status_after_templates' );
+        ?>
 	</tbody>
 </table>
 

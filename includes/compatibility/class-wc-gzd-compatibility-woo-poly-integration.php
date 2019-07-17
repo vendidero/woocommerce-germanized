@@ -40,6 +40,15 @@ class WC_GZD_Compatibility_Woo_Poly_Integration extends WC_GZD_Compatibility {
 		$this->setup_taxonomy_translation();
 		$this->setup_emails();
 
+        /**
+         * Hyyan WooCommerce Polylang Integration compatibility loaded.
+         *
+         * Fires after Germanized loaded it's Woo PolyLang compatibility script.
+         *
+         * @since 1.9.7
+         *
+         * @param WC_GZD_Compatibility_Woo_Poly_Integration $this The compatibility instance.
+         */
 		do_action( 'woocommerce_gzd_polylang_compatibility_loaded', $this );
 	}
 
@@ -67,10 +76,26 @@ class WC_GZD_Compatibility_Woo_Poly_Integration extends WC_GZD_Compatibility {
 	}
 
 	public function get_order_emails() {
+        /**
+         * Filter to add additional order emails to PolyLang.
+         *
+         * @since 1.8.5
+         *
+         * @param array                                     $order_mails Array containing additional email ids.
+         * @param WC_GZD_Compatibility_Woo_Poly_Integration $integration The integration instance.
+         */
 		return apply_filters( 'woocommerce_gzd_polylang_order_emails', $this->order_emails, $this );
 	}
 
 	public function get_emails() {
+        /**
+         * Filter to get emails relevant for PolyLang.
+         *
+         * @since 1.8.5
+         *
+         * @param array                                     $mails Array containing additional email ids.
+         * @param WC_GZD_Compatibility_Woo_Poly_Integration $integration The integration instance.
+         */
 		return apply_filters( 'woocommerce_gzd_polylang_emails', array_merge( $this->get_order_emails(), $this->other_emails ), $this );
 	}
 

@@ -31,16 +31,22 @@ if ( substr( trim( $content ), 0, 2 ) == '<h' )
 
 			<?php the_content(); ?>
 
-		<?php else :
-            $apply_content_filters = apply_filters( 'woocommerce_gzd_apply_optional_content_filter_email_attachment', true, $content );
-            $plain_content         = htmlspecialchars_decode( get_post_meta( $post->ID, '_legal_text', true ) );
-            $content               = $apply_content_filters ? apply_filters( 'the_content', $plain_content ) : $plain_content;
+		<?php else : ?>
+            <?php
+                /**
+                 * Filter that allows disabling the `the_content` filter for optional legal page content.
+                 *
+                 * @param bool   $enable Enable or disable the `the_content` filter.
+                 * @param string $content The content.
+                 */
+                $apply_content_filters = apply_filters( 'woocommerce_gzd_apply_optional_content_filter_email_attachment', true, $content );
+                $plain_content         = htmlspecialchars_decode( get_post_meta( $post->ID, '_legal_text', true ) );
+                $content               = $apply_content_filters ? apply_filters( 'the_content', $plain_content ) : $plain_content;
             ?>
 
 			<?php echo $content; ?>
 
 		<?php endif; ?>
-
 	</div>
 </div>
 

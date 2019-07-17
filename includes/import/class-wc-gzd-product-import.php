@@ -48,6 +48,15 @@ class WC_GZD_Product_Import {
 	}
 
 	public function get_formatting_callbacks() {
+
+        /**
+         * Filter that allows adjusting product import formatting callbacks
+         * for Germanized product data.
+         *
+         * @since 1.8.5
+         *
+         * @param array $callbacks Key => value array containing meta keys and callback functions.
+         */
 		return apply_filters( 'woocommerce_gzd_product_import_formatting_callbacks', array(
 			'mini_desc'                 => 'wp_filter_post_kses',
 			'unit_price_regular'        => 'wc_format_decimal',
@@ -96,8 +105,16 @@ class WC_GZD_Product_Import {
 
 			$value = $data[ $column_name ];
 
-			// Filter for 3rd parties.
 			if ( has_filter( "woocommerce_gzd_product_import_column_{$column_name}" ) ) {
+
+                /**
+                 * Filter that allows adjusting product import data for a certain `$column_name`.
+                 *
+                 * @since 1.8.5
+                 *
+                 * @param WC_Product $product The product object
+                 * @param mixed      $value The import value.
+                 */
 				$product = apply_filters( "woocommerce_gzd_product_import_column_{$column_name}", $product, $value );
 			} else if ( is_callable( array( $this, "set_column_value_{$column_name}" ) ) ) {
 				$product = $this->{"set_column_value_{$column_name}"}( $product, $value );

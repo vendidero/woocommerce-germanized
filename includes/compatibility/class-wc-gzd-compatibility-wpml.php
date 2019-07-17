@@ -56,6 +56,13 @@ class WC_GZD_Compatibility_Wpml extends WC_GZD_Compatibility {
 	    unload_textdomain( 'woocommerce-germanized' );
 	    WC_germanized()->load_plugin_textdomain();
 
+        /**
+         * Reload locale.
+         *
+         * Fires after Germanized plugin textdomain was reloaded programmatically.
+         *
+         * @since 2.2.9
+         */
 	    do_action( 'woocommerce_gzd_reload_locale' );
     }
 
@@ -194,9 +201,29 @@ class WC_GZD_Compatibility_Wpml extends WC_GZD_Compatibility {
                 load_default_textdomain( get_locale() );
             }
 
+            /**
+             * WPML language switched.
+             *
+             * Fires whenever Germanized has explicitly changed the language.
+             *
+             * @since 2.2.9
+             *
+             * @param string $lang The new language code.
+             * @param string $wc_gzd_original_lang The old language code.
+             */
             do_action( 'woocommerce_gzd_wpml_switched_language', $lang, $wc_gzd_original_lang );
         }
 
+        /**
+         * WPML language switch.
+         *
+         * Fires whenever Germanized was asked to programatically change the language.
+         *
+         * @since 2.2.9
+         *
+         * @param string $lang The new language code.
+         * @param string $wc_gzd_original_lang The old language code.
+         */
         do_action( 'woocommerce_gzd_wpml_switch_language', $lang, $wc_gzd_original_lang );
 	}
 

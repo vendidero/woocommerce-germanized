@@ -94,6 +94,16 @@ class WC_GZD_Admin_Order {
                 }
             }
 
+            /**
+             * Filter to disable tax share calculation for a certain order item.
+             *
+             * @since 2.3.0
+             *
+             * @param bool          $no_shipping Set to false to disable tax share calculation for this item.
+             * @param WC_Order_Item $item The order item.
+             * @param string        $key The item key.
+             * @param string        $type The tax share type e.g. shipping or fees.
+             */
             if ( apply_filters( 'woocommerce_gzd_order_item_not_supporting_tax_share', $no_shipping, $item, $key, $type ) ) {
                 continue;
             }

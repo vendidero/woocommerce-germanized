@@ -26,7 +26,21 @@ class WC_GZD_Post_Types {
 	public static function register_taxonomies() {
 		// Delivery time
 		register_taxonomy( 'product_delivery_time',
+            /**
+             * Filter post types which are capable of storing delivery times.
+             *
+             * @since 1.0.0
+             *
+             * @param array $post_types The post types to support `delivery_time` taxonomy.
+             */
 			apply_filters( 'woocommerce_germanized_taxonomy_objects_product_delivery_time', array( 'product' ) ),
+            /**
+             * Filter to adjust arguments passed to register the `delivery_time` taxonomy.
+             *
+             * @since 1.0.0
+             *
+             * @param array $args Arguments passed to `register_taxonomy`.
+             */
 			apply_filters( 'woocommerce_germanized_taxonomy_args_product_delivery_time', array(
 				'hierarchical'          => false,
 				'update_count_callback' => '_wc_term_recount',
@@ -56,7 +70,21 @@ class WC_GZD_Post_Types {
 		);
 		// Units
 		register_taxonomy( 'product_unit',
+            /**
+             * Filter post types which are capable of storing units.
+             *
+             * @since 1.0.0
+             *
+             * @param array $post_types The post types to support `product_unit` taxonomy.
+             */
 			apply_filters( 'woocommerce_germanized_taxonomy_objects_product_unit', array( 'product' ) ),
+            /**
+             * Filter to adjust arguments passed to register the `product_unit` taxonomy.
+             *
+             * @since 1.0.0
+             *
+             * @param array $args Arguments passed to `register_taxonomy`.
+             */
 			apply_filters( 'woocommerce_germanized_taxonomy_args_product_unit', array(
 				'hierarchical'          => false,
 				'update_count_callback' => '_wc_term_recount',
@@ -86,7 +114,21 @@ class WC_GZD_Post_Types {
 		);
 		// Price labels
 		register_taxonomy( 'product_price_label',
+            /**
+             * Filter post types which are capable of storing price labels.
+             *
+             * @since 1.0.0
+             *
+             * @param array $post_types The post types to support `price_label` taxonomy.
+             */
 			apply_filters( 'woocommerce_germanized_taxonomy_objects_product_price_label', array( 'product' ) ),
+            /**
+             * Filter to adjust arguments passed to register the `price_label` taxonomy.
+             *
+             * @since 1.0.0
+             *
+             * @param array $args Arguments passed to `register_taxonomy`.
+             */
 			apply_filters( 'woocommerce_germanized_taxonomy_args_product_price_label', array(
 				'hierarchical'          => false,
 				'update_count_callback' => '_wc_term_recount',

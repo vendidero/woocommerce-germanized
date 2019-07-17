@@ -27,6 +27,13 @@ class WC_GZD_Admin_Status extends WC_Admin_Status {
 	}
 
 	public static function status_default( $status ) {
+        /**
+         * Admin status screen.
+         *
+         * Executes for a default status page.
+         *
+         * @since 1.0.0
+         */
 		do_action( 'woocommerce_gzd_status_' . $status );
 	}
 

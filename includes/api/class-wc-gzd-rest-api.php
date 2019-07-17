@@ -46,7 +46,14 @@ class WC_GZD_REST_API {
 	}
 
 	public function register_rest_routes() {
-		
+
+        /**
+         * Filter to add new REST controller to Germanized.
+         *
+         * @since 1.8.5
+         *
+         * @param array $controllers The controller classes.
+         */
 		$controllers = apply_filters( 'woocommerce_gzd_rest_controller', array(
 			'WC_GZD_REST_Product_Delivery_Times_V1_Controller',
 			'WC_GZD_REST_Product_Delivery_Times_Controller',

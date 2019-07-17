@@ -347,8 +347,16 @@ class WC_GZD_REST_Products_Controller {
 
 		$response->set_data( array_merge( $response->data, $this->get_product_data( $product ) ) );
 
+        /**
+         * Filter to adjust the REST response after preparing the product.
+         *
+         * @since 1.8.5
+         *
+         * @param WP_REST_Response $response The response.
+         * @param WC_Product       $product The product object.
+         * @param WP_REST_Request  $request The request object.
+         */
 		return apply_filters( 'woocommerce_gzd_rest_prepare_product', $response, $product, $request );
-
 	}
 
 	public function insert_update_v3( $product, $request, $inserted ) {

@@ -47,6 +47,13 @@ class WC_GZD_Compatibility_Woocommerce_Subscriptions extends WC_GZD_Compatibilit
 
 	public function set_tax_notice( $price, $cart ) {
 
+        /**
+         * Filter that allows disabling tax notice for subscription cart prices.
+         *
+         * @since 2.0.0
+         *
+         * @param bool $disable Whether to disable tax notice for subscription price or not.
+         */
 	    if ( ! apply_filters( 'woocommerce_gzd_show_tax_for_cart_subscription_price', true ) ) {
 	        return $price;
         }

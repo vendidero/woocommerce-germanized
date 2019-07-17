@@ -159,6 +159,7 @@ class WC_GZD_Product_Attribute_Helper {
             if ( isset( $meta_attributes[ $meta_key ] ) ) {
                 $meta_value = array_merge(
                     array(
+                        /** This filter is documented in includes/class-wc-gzd-product-attribute.php */
                         'checkout_visible' => apply_filters( 'woocommerce_gzd_product_attribute_checkout_visible_default_value', false ),
                     ),
                     (array) $meta_attributes[ $meta_key ]

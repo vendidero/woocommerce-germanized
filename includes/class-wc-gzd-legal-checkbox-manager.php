@@ -55,6 +55,14 @@ class WC_GZD_Legal_Checkbox_Manager {
 	}
 
 	public function get_core_checkbox_ids() {
+
+        /**
+         * Filter that returns the core checkbox ids.
+         *
+         * @since 2.0.0
+         *
+         * @param array $checkbox_ids Array containg checkbox ids.
+         */
 		return apply_filters( 'woocommerce_gzd_legal_checkbox_core_ids', $this->core_checkboxes );
 	}
 
@@ -184,6 +192,22 @@ class WC_GZD_Legal_Checkbox_Manager {
 			) );
 		}
 
+        /**
+         * After core checkbox registration.
+         *
+         * Fires after Germanized has registered it's core legal checkboxes.
+         * Might be used to register additional checkboxes.
+         *
+         * ```php
+         * function ex_after_register_checkboxes( $manager ) {
+         *      wc_gzd_register_legal_checkbox( array() );
+         * }
+         * add_action( 'woocommerce_gzd_register_legal_core_checkboxes', 'ex_after_register_checkboxes', 10, 1 );
+         *
+         * @since 2.0.0
+         *
+         * @param WC_GZD_Legal_Checkbox_Manager $this The legal checkbox manager instance.
+         */
 		do_action( 'woocommerce_gzd_register_legal_core_checkboxes', $this );
 	}
 
@@ -286,6 +310,15 @@ class WC_GZD_Legal_Checkbox_Manager {
 		$this->checkboxes = array();
 		$this->register_core_checkboxes();
 
+        /**
+         * Before legal checkbox registration.
+         *
+         * Register legal checkboxes and populate settings.
+         *
+         * @since 2.0.0
+         *
+         * @param WC_GZD_Legal_Checkbox_Manager $this The checkboxes manager instance.
+         */
 		do_action( 'woocommerce_gzd_register_legal_checkboxes', $this );
 
 		// Make sure we are not registering core checkboxes again
@@ -301,6 +334,15 @@ class WC_GZD_Legal_Checkbox_Manager {
 			}
 		}
 
+        /**
+         * After legal checkbox registration.
+         *
+         * Fires after the registration is completed. Might be used to alter settings and registered checkboxes.
+         *
+         * @since 2.0.0
+         *
+         * @param WC_GZD_Legal_Checkbox_Manager $this The checkboxes manager instance.
+         */
 		do_action( 'woocommerce_gzd_registered_legal_checkboxes', $this );
 	}
 
@@ -367,6 +409,14 @@ class WC_GZD_Legal_Checkbox_Manager {
 	}
 
 	public function get_locations() {
+
+        /**
+         * Filter to add/remove legal checkbox locations.
+         *
+         * @since 2.0.0
+         *
+         * @param array $locations Key => value array containing location id and title.
+         */
 		return apply_filters( 'woocommerce_gzd_legal_checkbox_locations', array(
 			'checkout'      => __( 'Checkout', 'woocommerce-germanized' ),
 			'register'      => __( 'Register form', 'woocommerce-germanized' ),
@@ -460,8 +510,23 @@ class WC_GZD_Legal_Checkbox_Manager {
 			return new WP_Error( 'checkbox_exists', sprintf( __( 'Checkbox with name %s does already exist.', 'woocommerce-germanized' ), $id ) );
 		}
 
-		// Allow third parties to filter checkbox args
+        /**
+         * Filter legal checkbox arguments before registering.
+         *
+         * @since 2.0.0
+         *
+         * @param array $args Arguments passed to register checkbox.
+         * @param int   $id   Checkbox id.
+         */
 		$args      = apply_filters( 'woocommerce_gzd_register_legal_checkbox_args', $args, $id );
+
+        /**
+         * Filter to adjust default checkbox classname. Defaults to `WC_GZD_Legal_Checkbox`.
+         *
+         * @since 2.0.0
+         *
+         * @param string $classname The name of the checkbox classname.
+         */
 		$classname = apply_filters( 'woocommerce_gzd_legal_checkbox_classname', 'WC_GZD_Legal_Checkbox' );
 
 		$this->checkboxes[ $id ] = new $classname( $id, $args );
@@ -566,11 +631,46 @@ class WC_GZD_Legal_Checkbox_Manager {
 	}
 
 	private function maybe_do_hooks( $location = 'checkout' ) {
+
 		if ( ! did_action( 'woocommerce_gzd_run_legal_checkboxes' ) ) {
+
+            /**
+             * Before render checkboxes.
+             *
+             * This hook is used to alter checkboxes before rendering and to
+             * dynamically choose whether to display or hide them.
+             *
+             * @since 2.0.0
+             *
+             * @param WC_GZD_Legal_Checkbox_Manager $this The checkboxes manager instance.
+             */
 			do_action( 'woocommerce_gzd_run_legal_checkboxes', $this );
 		}
 
 		if ( ! did_action( 'woocommerce_gzd_run_legal_checkboxes_' . $location ) ) {
+
+            /**
+             * Before render checkboxes location.
+             *
+             * This hook is used to alter checkboxes before rendering a specific location `$location`
+             * e.g. checkout and to dynamically choose whether to display or hide them.
+             *
+             * @see WC_GZD_Legal_Checkbox_Manager::get_locations()
+             *
+             * ```php
+             * function ex_filter_checkboxes_checkout( $manager ) {
+             *      if ( $manager = $this->get_checkbox( 'download' ) ) {
+             *          wc_gzd_update_legal_checkbox( 'download', array(
+             *               'is_shown' => true,
+             *          ) );
+             *      }
+             * }
+             * add_action( 'woocommerce_gzd_run_legal_checkboxes_checkout', 'ex_filter_checkboxes_checkout', 10, 1 );
+             *
+             * @since 2.0.0
+             *
+             * @param WC_GZD_Legal_Checkbox_Manager $this The checkboxes manager instance.
+             */
 			do_action( 'woocommerce_gzd_run_legal_checkboxes_' . $location, $this );
 		}
 	}

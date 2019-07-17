@@ -2,11 +2,18 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
+
+/**
+ * {@internal Missing Summary}
+ *
+ * @since 2.0.0
+ */
+$new_checkbox_link = apply_filters( 'woocommerce_gzd_admin_new_legal_checkbox_link', 'https://vendidero.de/woocommerce-germanized' );
 ?>
 
 <h2 class="wc-gzd-legal-checkboxes-heading">
 	<?php _e( 'Checkboxes', 'woocommerce-germanized' ); ?>
-	<a href="<?php echo apply_filters( 'woocommerce_gzd_admin_new_legal_checkbox_link', 'https://vendidero.de/woocommerce-germanized' ); ?>" class="page-title-action wc-gzd-disabled-button" target="<?php echo ( ! WC_germanized()->is_pro() ? '_blank' : '_self' ); ?>"><?php esc_html_e( 'Add checkbox', 'woocommerce-germanized' ); ?> <?php echo ( ! WC_germanized()->is_pro() ? '<span class="wc-gzd-premium-section-tab">pro</span>' : '' ); ?></a>
+	<a href="<?php echo $new_checkbox_link; ?>" class="page-title-action wc-gzd-disabled-button" target="<?php echo ( ! WC_germanized()->is_pro() ? '_blank' : '_self' ); ?>"><?php esc_html_e( 'Add checkbox', 'woocommerce-germanized' ); ?> <?php echo ( ! WC_germanized()->is_pro() ? '<span class="wc-gzd-premium-section-tab">pro</span>' : '' ); ?></a>
 </h2>
 <p><?php echo __( 'Legal checkboxes are being used to ask the customer for a certain permission or action (e.g. to accept terms & conditions) before the checkout or another form may be completed.', 'woocommerce-germanized' ); ?></p>
 <table class="wc-gzd-legal-checkboxes widefat">

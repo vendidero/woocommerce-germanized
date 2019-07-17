@@ -139,6 +139,13 @@ class WC_GZD_Product {
 		$this->unit_price_sale    = $prices['sale'];
 		$this->unit_price         = $prices['unit'];
 
+        /**
+         * Recalculated unit price.
+         *
+         * Executes whenever the unit price is recalculated.
+         *
+         * @since 1.9.1
+         */
 		do_action( 'woocommerce_gzd_recalculated_unit_price', $this );
 	}
 
@@ -148,6 +155,14 @@ class WC_GZD_Product {
 	 * @return boolean|string
 	 */
 	public function get_mini_desc() {
+        /**
+         * Filter that allows adjusting a product's mini cart description.
+         *
+         * @since 1.0.0
+         *
+         * @param string         $html The cart description.
+         * @param WC_GZD_Product $product The product object.
+         */
 	    $mini_desc = apply_filters( 'woocommerce_gzd_product_cart_description', $this->mini_desc, $this );
 
 		if ( $mini_desc && ! empty( $mini_desc ) ) {
@@ -228,6 +243,13 @@ class WC_GZD_Product {
                     foreach ( $attribute_values as $attribute_value ) {
                         $value_name = esc_html( $attribute_value->name );
 
+                        /**
+                         * Filter that might allow making checkout attributes clickable.
+                         *
+                         * @since 2.0.0
+                         *
+                         * @param bool $enable Set to `true` to enable clickable checkout attributes.
+                         */
                         if ( apply_filters( 'woocommerce_gzd_product_attribute_checkout_clickable', false ) && $attribute_taxonomy->attribute_public ) {
                             $values[] = '<a href="' . esc_url( get_term_link( $attribute_value->term_id, $attribute->get_name() ) ) . '" rel="tag">' . $value_name . '</a>';
                         } else {
@@ -255,6 +277,14 @@ class WC_GZD_Product {
             }
         }
 
+        /**
+         * Filter product attributes visible during checkout.
+         *
+         * @since 2.2.9
+         *
+         * @param array      $item_data The attribute data.
+         * @param WC_Product $product The product object.
+         */
         return apply_filters( 'woocommerce_gzd_product_checkout_attributes', $item_data, $this->child );
     }
 
@@ -280,6 +310,14 @@ class WC_GZD_Product {
 	 * @return boolean
 	 */
 	public function is_virtual_vat_exception() {
+        /**
+         * Filter that allows marking a product as virtual vat exception.
+         *
+         * @since 1.8.5
+         *
+         * @param bool           $is_exception Whether it is a exception or not.
+         * @param WC_GZD_Product $product The product object.
+         */
 		return apply_filters( 'woocommerce_gzd_product_virtual_vat_exception', ( ( get_option( 'woocommerce_gzd_enable_virtual_vat' ) === 'yes' ) && ( $this->is_downloadable() || $this->is_virtual() ) ? true : false ), $this );
 	}
 
@@ -311,12 +349,23 @@ class WC_GZD_Product {
 		$new_price_sale    = $match_sale[0];
 		$new_price_suffix  = ( empty( $match_suffix ) ? '' : ' ' . $match_suffix[0] );
 
-		if ( ! empty( $sale_label ) && isset( $match_regular[1] ) )
+		if ( ! empty( $sale_label ) && isset( $match_regular[1] ) ) {
 			$new_price_regular = '<span class="wc-gzd-sale-price-label">' . $sale_label . '</span> ' . $match_regular[0];
+        }
 
-		if ( ! empty( $sale_regular_label ) && isset( $match_sale[1] ) )
+		if ( ! empty( $sale_regular_label ) && isset( $match_sale[1] ) ) {
 			$new_price_sale = '<span class="wc-gzd-sale-price-label wc-gzd-sale-price-regular-label">' . $sale_regular_label . '</span> ' . $match_sale[0];
+        }
 
+        /**
+         * Filters the product sale price containing price labels.
+         *
+         * @since 1.8.5
+         *
+         * @param string         $html The new price containing labels.
+         * @param string         $old_price The old price.
+         * @param WC_GZD_Product $product The product object.
+         */
 		return apply_filters( 'woocommerce_gzd_product_sale_price_with_labels_html', $new_price_regular . ' ' . $new_price_sale . $new_price_suffix, $org_price_html, $this );
 	}
 
@@ -327,6 +376,16 @@ class WC_GZD_Product {
 
 		$price = ( ! empty( $sale_label ) ? '<span class="wc-gzd-sale-price-label">' . $sale_label . '</span>' : '' ) . ' <del>' . ( ( is_numeric( $from ) ) ? wc_price( $from ) : $from ) . '</del> ' . ( ! empty( $sale_regular_label ) ? '<span class="wc-gzd-sale-price-label wc-gzd-sale-price-regular-label">' . $sale_regular_label . '</span> ' : '' ) . '<ins>' . ( ( is_numeric( $to ) ) ? wc_price( $to ) : $to ) . '</ins>';
 
+        /**
+         * Filter to adjust the HTML price range for unit prices.
+         *
+         * @since 1.0.0
+         *
+         * @param string         $price The HTML price range.
+         * @param string         $from The from price.
+         * @param string         $to The to price.
+         * @param WC_GZD_Product $product The product object.
+         */
 		return apply_filters( 'woocommerce_germanized_get_price_html_from_to', $price, $from, $to, $this );
 	}
 
@@ -364,7 +423,17 @@ class WC_GZD_Product {
 				}
 			}
 		}
-		
+
+        /**
+         * Filter to adjust the product tax notice.
+         *
+         * This filter allows you to easily change the tax notice on a per product basis.
+         *
+         * @since 1.0.0
+         *
+         * @param string         $tax_notice The tax notice.
+         * @param WC_GZD_Product $product The product object.
+         */
 		return apply_filters( 'woocommerce_gzd_product_tax_info', $tax_notice, $this );
 	}
 
@@ -387,7 +456,26 @@ class WC_GZD_Product {
 	 * @return string
 	 */
 	public function get_unit_base() {
-		return ( $this->unit_base ) ? ( $this->unit_base != apply_filters( 'woocommerce_gzd_unit_base_hide_amount', 1 ) ? '<span class="unit-base">' . $this->unit_base . '</span>' . apply_filters( 'wc_gzd_unit_price_base_seperator', ' ' ) : '' ) . '<span class="unit">' . $this->get_unit() . '</span>' : '';
+        /**
+         * Filter that allows changing the amount which is used to determine whether
+         * the base for the unit price should be skipped or not. Defaults to 1.
+         *
+         * @since 1.0.0
+         *
+         * @param int $amount The amount.
+         */
+	    $hide_amount = apply_filters( 'woocommerce_gzd_unit_base_hide_amount', 1 );
+
+        /**
+         * Filter to adjust the unit price base separator.
+         *
+         * @since 1.0.0
+         *
+         * @param string $separator The separator.
+         */
+	    $separator   = apply_filters( 'wc_gzd_unit_price_base_seperator', ' ' );
+
+		return ( $this->unit_base ) ? ( $this->unit_base != $hide_amount ? '<span class="unit-base">' . $this->unit_base . '</span>' . $separator : '' ) . '<span class="unit">' . $this->get_unit() . '</span>' : '';
 	}
 
 	public function get_unit_base_raw() {
@@ -471,6 +559,15 @@ class WC_GZD_Product {
 	 * @return string the regular price
 	 */
 	public function get_unit_regular_price() {
+
+        /**
+         * Filter to adjust a product's regular unit price.
+         *
+         * @since 1.0.0
+         *
+         * @param string         $price The regular unit price.
+         * @param WC_GZD_Product $product The product object.
+         */
 		return apply_filters( 'woocommerce_gzd_get_unit_regular_price', $this->unit_price_regular, $this );
 	}
 
@@ -480,6 +577,15 @@ class WC_GZD_Product {
 	 * @return string the sale price 
 	 */
 	public function get_unit_sale_price() {
+
+        /**
+         * Filter to adjust a product's sale unit price.
+         *
+         * @since 1.0.0
+         *
+         * @param string         $price The sale unit price.
+         * @param WC_GZD_Product $product The product object.
+         */
 		return apply_filters( 'woocommerce_gzd_get_unit_sale_price', $this->unit_price_sale, $this );
 	}
 
@@ -489,6 +595,15 @@ class WC_GZD_Product {
 	 * @return string the sale price
 	 */
 	public function get_unit_price_raw() {
+
+        /**
+         * Filter to adjust a product's raw unit price.
+         *
+         * @since 1.0.0
+         *
+         * @param string         $price The raw unit price.
+         * @param WC_GZD_Product $product The product object.
+         */
 		return apply_filters( 'woocommerce_gzd_get_unit_price_raw', $this->unit_price, $this );
 	}
 
@@ -500,6 +615,17 @@ class WC_GZD_Product {
 	 * @return string  formatted unit price
 	 */
 	public function get_unit_price( $qty = 1, $price = '' ) {
+        /**
+         * Before retrieving unit price.
+         *
+         * Fires before the product unit price is retrieved.
+         *
+         * @since 1.0.0
+         *
+         * @param WC_GZD_Product $this The product object.
+         * @param string         $price Optionally pass the price.
+         * @param int            $qty The product quantity.
+         */
 		do_action( 'woocommerce_gzd_before_get_unit_price', $this, $price, $qty );
 
 		$tax_display_mode = get_option( 'woocommerce_tax_display_shop' );
@@ -516,6 +642,17 @@ class WC_GZD_Product {
 	 */
 	public function get_unit_price_including_tax( $qty = 1, $price = '' ) {
 		$price = ( $price == '' ) ? $this->get_unit_price_raw() : $price;
+
+        /**
+         * Filter to adjust the unit price including tax.
+         *
+         * @since 1.0.0
+         *
+         * @param string         $unit_price The calculated unit price.
+         * @param string         $price The price passed.
+         * @param int            $qty The quantity.
+         * @param WC_GZD_Product $product The product object.
+         */
 		return apply_filters( 'woocommerce_gzd_unit_price_including_tax', ( $price == '' ) ? '' : wc_gzd_get_price_including_tax( $this->child, array( 'price' => $price, 'qty' => $qty ) ), $price, $qty, $this );
 	}
 
@@ -528,6 +665,17 @@ class WC_GZD_Product {
 	 */
 	public function get_unit_price_excluding_tax( $qty = 1, $price = '' ) {
 		$price = ( $price == '' ) ? $this->get_unit_price_raw() : $price;
+
+        /**
+         * Filter to adjust the unit price excluding tax.
+         *
+         * @since 1.0.0
+         *
+         * @param string         $unit_price The calculated unit price.
+         * @param string         $price The price passed.
+         * @param int            $qty The quantity.
+         * @param WC_GZD_Product $product The product object.
+         */
 		return apply_filters( 'woocommerce_gzd_unit_price_excluding_tax', ( $price == '' ) ? '' : wc_gzd_get_price_excluding_tax( $this->child, array( 'price' => $price, 'qty' => $qty ) ), $price, $qty, $this );
 	}
 
@@ -537,6 +685,15 @@ class WC_GZD_Product {
 	 * @return boolean 
 	 */
 	public function is_on_unit_sale() {
+
+        /**
+         * Filter to decide whether a product is on unit sale or not.
+         *
+         * @since 1.0.0
+         *
+         * @param bool           $on_sale Whether the product is on sale or not.
+         * @param WC_GZD_Product $product The product object.
+         */
 		return apply_filters( 'woocommerce_gzd_product_is_on_unit_sale', ( $this->get_unit_sale_price() !== $this->get_unit_regular_price() && $this->get_unit_sale_price() == $this->get_unit_price_raw() ), $this );
 	}
 
@@ -547,13 +704,40 @@ class WC_GZD_Product {
 	 */
 	public function get_unit_html( $show_sale = true ) {
 
-		if ( apply_filters( 'woocommerce_gzd_hide_unit_text', false, $this ) )
+        /**
+         * Filter that allows disabling the unit price output for a certain product.
+         *
+         * @since 1.0.0
+         *
+         * @param bool           $hide Whether to hide the output or not.
+         * @param WC_GZD_Product $product The product object.
+         */
+		if ( apply_filters( 'woocommerce_gzd_hide_unit_text', false, $this ) ) {
+
+            /**
+             * Filter to adjust the output of a disabled product unit price.
+             *
+             * @since 1.0.0
+             *
+             * @param string         $output The output.
+             * @param WC_GZD_Product $product The product object.
+             */
 			return apply_filters( 'woocommerce_germanized_disabled_unit_text', '', $this );
+        }
 
 		$html = '';
 
 		if ( $this->has_unit() ) {
 
+            /**
+             * Before retrieving unit price HTML.
+             *
+             * Fires before the HTML output for the unit price is generated.
+             *
+             * @since 1.0.0
+             *
+             * @param WC_GZD_Product $this The product object.
+             */
 			do_action( 'woocommerce_gzd_before_get_unit_price_html', $this );
 
 			$display_price         = $this->get_unit_price();
@@ -566,19 +750,35 @@ class WC_GZD_Product {
 
 			if ( strpos( $text, '{price}' ) !== false ) {
 			    $replacements = array(
+                    /**
+                     * Filter to adjust the unit price separator.
+                     *
+                     * @since 1.0.0
+                     *
+                     * @param string $separator The separator.
+                     */
 			        '{price}' => $price_html . apply_filters( 'wc_gzd_unit_price_seperator', ' / ' ) . $this->get_unit_base(),
                 );
 			} else {
 			    $replacements = array(
 			        '{base_price}' => $price_html,
                     '{unit}'       => '<span class="unit">' . $this->get_unit() . '</span>',
+                    /** This filter is documented in includes/abstracts/abstract-wc-gzd-product.php */
                     '{base}'       => ( $this->unit_base != apply_filters( 'woocommerce_gzd_unit_base_hide_amount', 1 ) ? '<span class="unit-base">' . $this->unit_base . '</span>' : '' )
                 );
 			}
 
             $html = wc_gzd_replace_label_shortcodes( $text, $replacements );
 		}
-		
+
+        /**
+         * Filter to adjust the product's unit price HTML output.
+         *
+         * @since 1.0.0
+         *
+         * @param string         $html The unit price as HTML.
+         * @param WC_GZD_Product $product The product object.
+         */
 		return apply_filters( 'woocommerce_gzd_unit_price_html', $html, $this );
 	}
 
@@ -603,7 +803,24 @@ class WC_GZD_Product {
 	 */
 	public function get_product_units_html() {
 
+        /**
+         * Filter that allows disabling product units output for a specific product.
+         *
+         * @since 1.0.0
+         *
+         * @param bool           $disable Whether to disable or not.
+         * @param WC_GZD_Product $product The product object.
+         */
 		if ( apply_filters( 'woocommerce_gzd_hide_product_units_text', false, $this ) ) {
+
+            /**
+             * Filter that allows adjusting the disabled product units output.
+             *
+             * @since 1.0.0
+             *
+             * @param string         $notice The output.
+             * @param WC_GZD_Product $product The product object.
+             */
 			return apply_filters( 'woocommerce_germanized_disabled_product_units_text', '', $this );
         }
 
@@ -620,8 +837,15 @@ class WC_GZD_Product {
 		    $html = wc_gzd_replace_label_shortcodes( $text, $replacements );
         }
 
+        /**
+         * Filter to adjust the product units HTML output.
+         *
+         * @since 1.0.0
+         *
+         * @param string         $html The HTML output.
+         * @param WC_GZD_Product $product The product object.
+         */
 		return apply_filters( 'woocommerce_gzd_product_units_html', $html, $this );
-
 	}
 
 	/**
@@ -677,14 +901,39 @@ class WC_GZD_Product {
 	 */
 	public function get_delivery_time_html() {
 		$html = '';
-		
+
+        /**
+         * Filter that allows hiding the delivery time for a specific product.
+         *
+         * @since 1.0.0
+         *
+         * @param bool           $hide Whether to hide delivery time or not.
+         * @param WC_GZD_Product $product The product object.
+         */
 		if ( apply_filters( 'woocommerce_germanized_hide_delivery_time_text', false, $this ) ) {
+
+            /**
+             * Filter to adjust disabled product delivery time output.
+             *
+             * @since 1.0.0
+             *
+             * @param string         $output The output.
+             * @param WC_GZD_Product $product The product object.
+             */
             return apply_filters( 'woocommerce_germanized_disabled_delivery_time_text', '', $this );
         }
 
 		if ( $this->get_delivery_time_term() ) {
 			$html = $this->get_delivery_time_term()->name;
 		} else {
+            /**
+             * Filter to adjust empty delivery time text.
+             *
+             * @since 1.0.0
+             *
+             * @param string         $text The delivery time text.
+             * @param WC_GZD_Product $product The product object.
+             */
 			$html = apply_filters( 'woocommerce_germanized_empty_delivery_time_text', '', $this );
 		}
 
@@ -693,6 +942,16 @@ class WC_GZD_Product {
                 '{delivery_time}' => $html,
             );
 
+            /**
+             * Filter to adjust product delivery time HTML.
+             *
+             * @since 1.0.0
+             *
+             * @param string         $html The notice.
+             * @param string         $option The placeholder option.
+             * @param string         $html_org The HTML before replacement.
+             * @param WC_GZD_Product $product The product object.
+             */
 		    $html = apply_filters( 'woocommerce_germanized_delivery_time_html',
                 wc_gzd_replace_label_shortcodes( get_option( 'woocommerce_gzd_delivery_time_text' ), $replacements ),
                 get_option( 'woocommerce_gzd_delivery_time_text' ),
@@ -705,8 +964,28 @@ class WC_GZD_Product {
 
         // Hide delivery time if product is not in stock
         if ( 'yes' === get_option( 'woocommerce_gzd_delivery_time_disable_not_in_stock' ) && ! $this->is_in_stock() ) {
+
+            /**
+             * Filter to adjust product delivery time in case of a product is out of stock.
+             *
+             * @since 2.0.0
+             *
+             * @param string         $output The new delivery time text.
+             * @param WC_GZD_Product $product The product object.
+             * @param string         $html The original HTML output.
+             */
             $html = apply_filters( 'woocommerce_germanized_delivery_time_out_of_stock_html', '', $this, $html );
         } elseif ( 'yes' === get_option( 'woocommerce_gzd_delivery_time_disable_backorder' ) && $this->is_on_backorder() ) {
+
+            /**
+             * Filter to adjust product delivery time in case of a product is on backorder.
+             *
+             * @since 2.0.0
+             *
+             * @param string         $output The new delivery time text.
+             * @param WC_GZD_Product $product The product object.
+             * @param string         $html The original HTML output.
+             */
             $html = apply_filters( 'woocommerce_germanized_delivery_time_backorder_html', '', $this, $html );
         }
 
@@ -714,6 +993,15 @@ class WC_GZD_Product {
 	}
 
 	public function has_free_shipping() {
+
+        /**
+         * Filter that allows adjusting whether a product has free shipping option or not.
+         *
+         * @since 1.0.0
+         *
+         * @param bool           $has_free_shipping Has free shipping or not.
+         * @param WC_GZD_Product $product The product object.
+         */
 		return ( apply_filters( 'woocommerce_germanized_product_has_free_shipping', ( $this->free_shipping === 'yes' ? true : false ), $this ) );
 	}
 
@@ -723,9 +1011,27 @@ class WC_GZD_Product {
 	 * @return string 
 	 */
 	public function get_shipping_costs_html() {
-		
-		if ( apply_filters( 'woocommerce_germanized_hide_shipping_costs_text', false, $this ) )
+
+        /**
+         * Filter to optionally disable shipping costs info for a certain product.
+         *
+         * @since 1.0.0
+         *
+         * @param bool           $disable Whether to disable the shipping costs notice or not.
+         * @param WC_GZD_Product $product The product object.
+         */
+		if ( apply_filters( 'woocommerce_germanized_hide_shipping_costs_text', false, $this ) ) {
+
+            /**
+             * Filter to adjust a product's disabled shipping costs notice.
+             *
+             * @since 1.0.0
+             *
+             * @param string         $output The output.
+             * @param WC_GZD_Product $product The product object.
+             */
 			return apply_filters( 'woocommerce_germanized_disabled_shipping_text', '', $this );
+        }
 		
 		return wc_gzd_get_shipping_costs_text( $this );
 	}

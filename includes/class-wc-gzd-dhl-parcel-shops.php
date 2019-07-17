@@ -83,6 +83,14 @@ class WC_GZD_DHL_Parcel_Shops {
 			}
 		}
 
+        /**
+         * Filter that allows hiding DHL parcel shop fields before rendering.
+         *
+         * @since 1.8.9
+         *
+         * @param bool                    $hide_fields Whether to hide the fields or not.
+         * @param WC_GZD_DHL_Parcel_Shops $parcel_shop Parcel shop instance.
+         */
 		if ( apply_filters( 'woocommerce_gzd_dhl_parcel_shops_hide_fields', $hide_fields, $this ) ) {
 			add_filter( 'woocommerce_checkout_fields', array( $this, 'remove_fields' ), 10, 1 );
 		}
@@ -193,6 +201,7 @@ class WC_GZD_DHL_Parcel_Shops {
 	}
 
 	public function maybe_hide_fields() {
+	    /** This filter is documented in includes/class-wc-gzd-dhl-parcel-shops.php */
 		return apply_filters( 'woocommerce_gzd_dhl_parcel_shops_hide_fields', false, $this );
 	}
 
@@ -347,6 +356,14 @@ class WC_GZD_DHL_Parcel_Shops {
 		$lang = substr( get_bloginfo( "language" ), 0, 2 );
 
 		if ( wp_script_is( 'wc-gzd-checkout-dhl-parcel-shops' ) ) {
+
+            /**
+             * Filter to adjust `wc-gzd-checkout-dhl-parcel-shops` script localization parameters.
+             *
+             * @since 1.9.5
+             *
+             * @param array $args Array containing Key => value parameters.
+             */
 			wp_localize_script( 'wc-gzd-checkout-dhl-parcel-shops', 'wc_gzd_dhl_parcel_shops_params', apply_filters( 'wc_gzd_dhl_parcel_shops_params', array(
 				'address_field_title'       => __( 'Parcel Shop', 'woocommerce-germanized' ),
 				'address_field_placeholder' => __( 'Parcel Shop', 'woocommerce-germanized' ),
@@ -370,6 +387,14 @@ class WC_GZD_DHL_Parcel_Shops {
 		if ( 'shipping_parcelshop' === $key ) {
 			if ( substr( $field, -4 ) === "</p>" ) {
 				$field = substr( $field, 0, -4 );
+
+                /**
+                 * Filter to adjust the DHL parcel shop finder button HTML.
+                 *
+                 * @since 1.8.5
+                 *
+                 * @param string $html The HTML output.
+                 */
 				$field .= apply_filters( 'woocommerce_gzd_dhl_parcel_finder_button_html', '<span id="wc-gzd-parcel-shop-finder-button-wrapper"><a class="wc-gzd-parcel-finder-open-button" href="#">' . __( 'Parcel Shop Finder', 'woocommerce-germanized' ) . '</a></span></p><div class="clear"></div>' );
 			}
 		}
@@ -378,6 +403,14 @@ class WC_GZD_DHL_Parcel_Shops {
 	}
 
 	public function get_supported_countries( $as_names = false ) {
+
+        /**
+         * Filter to enable DHL parcel shop delivery for certain countries.
+         *
+         * @since 1.8.5
+         *
+         * @param array $country_codes Array of country codes which support DHL parcel shop delivery.
+         */
 		$codes = apply_filters( 'woocommerce_gzd_dhl_parcel_shops_countries', (array) get_option( 'woocommerce_gzd_dhl_parcel_shop_supported_countries', array( 'DE', 'AT' ) ) );
 
 		if ( $as_names ) {

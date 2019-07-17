@@ -38,6 +38,13 @@ class WC_GZD_Product_Export {
 
 	public function init() {
 
+        /**
+         * Filter to extend Germanized data added to the WooCommerce product export.
+         *
+         * @since 1.9.1
+         *
+         * @param array $export_data Product export data.
+         */
 		$this->columns = apply_filters( 'woocommerce_gzd_product_export_default_columns', array(
 			'service'                  => _x( 'Is service?', 'exporter', 'woocommerce-germanized' ),
 			'differential_taxation'    => _x( 'Is differential taxed?', 'exporter', 'woocommerce-germanized' ),
@@ -70,12 +77,20 @@ class WC_GZD_Product_Export {
 	}
 
 	public function export_column( $value, $product ) {
-		$filter = current_filter();
+		$filter      = current_filter();
 		$column_name = str_replace( 'woocommerce_product_export_product_column_', '', $filter );
 
 		// Filter for 3rd parties.
 		if ( has_filter( "woocommerce_gzd_product_export_column_{$column_name}" ) ) {
-			$value = apply_filters( "woocommerce_product_export_column_{$column_name}", '', $product );
+            /**
+             * Filter that allows adjusting product export data for a certain `$column_name`.
+             *
+             * @since 1.9.1
+             *
+             * @param string     $data Export data.
+             * @param WC_Product $product Product object.
+             */
+			$value = apply_filters( "woocommerce_gzd_product_export_column_{$column_name}", '', $product );
 		} else if ( is_callable( array( $this, "get_column_value_{$column_name}" ) ) ) {
 			$value = $this->{"get_column_value_{$column_name}"}( $product );
 		} else {

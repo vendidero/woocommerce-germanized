@@ -16,6 +16,14 @@ class WC_GZD_Revocation {
 	 * @return array 
 	 */
 	public static function get_fields() {
+
+        /**
+         * Filter to adjust form fields for the revocation form.
+         *
+         * @since 1.0.0
+         *
+         * @param array $fields The fields for the form.
+         */
 		return apply_filters( 'woocommerce_gzd_revocation_fields', array(
 			'content' 		  => array(
 				'type' 		  => 'textarea',
@@ -80,6 +88,13 @@ class WC_GZD_Revocation {
 			),
 			'privacy_checkbox' => array(
 				'type' 		  => 'checkbox',
+                /**
+                 * Filter to adjust the privacy field label for revocation form.
+                 *
+                 * @since 1.9.10
+                 *
+                 * @param string $html The label.
+                 */
 				'label'       => apply_filters( 'woocommerce_gzd_revocation_privacy_notice_label', sprintf( _x( 'Please accept our <a href="%s" target="_blank">Pricacy Policy</a> so that we can process your inquiry.', 'revocation-form', 'woocommerce-germanized' ) , wc_gzd_get_privacy_policy_url() ) ),
 				'required' 	  => true,
 			),

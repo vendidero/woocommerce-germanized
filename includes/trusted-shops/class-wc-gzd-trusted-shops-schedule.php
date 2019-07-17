@@ -171,6 +171,15 @@ class WC_GZD_Trusted_Shops_Schedule {
 
         $args = array(
             'post_type'   => 'shop_order',
+            /**
+             * Filter that allows adjusting Trusted Shops review reminder order statuses.
+             *
+             * This filter allows adjusting valid order status to send the review reminder.
+             *
+             * @since 2.0.0
+             *
+             * @param array $order_statuses Valid order statuses to send the reminder.
+             */
             'post_status' => apply_filters( 'woocommerce_trusted_shops_review_reminder_valid_order_statuses', array( $this->base->review_reminder_status ) ),
             'showposts'   => -1,
             'meta_query'  => array(
@@ -195,18 +204,45 @@ class WC_GZD_Trusted_Shops_Schedule {
             );
         }
 
+        /**
+         * Filter that allows adjusting Trusted Shops arguments passed to `WP_Query` to retrieve
+         * order objects which are ready to retrieve the review reminder email.
+         *
+         * @since 2.0.0
+         *
+         * @param array  $args Arguments passed to `WP_Query`.
+         * @param string $lang The language to be considered.
+         */
         $order_query = new WP_Query( apply_filters( 'woocommerce_trusted_shops_review_reminder_order_args', $args, $lang ) );
 
         while ( $order_query->have_posts() ) {
 
             $order_query->next_post();
             $order          = wc_get_order( $order_query->post->ID );
+
+            /**
+             * Filter to adjust the order completed data used to determine whether
+             * to send the review reminder or not.
+             *
+             * @since 2.0.0
+             *
+             * @param string   $order_date The order completed date.
+             * @param WC_Order $order The order object.
+             */
             $completed_date = apply_filters( 'woocommerce_trusted_shops_review_reminder_order_completed_date', wc_ts_get_crud_data( $order, 'completed_date' ), $order );
             $diff           = $this->base->plugin->get_date_diff( $completed_date, date( 'Y-m-d H:i:s' ) );
             $min_days       = (int) $this->base->review_reminder_days;
 
             if ( $diff['d'] >= $min_days ) {
 
+                /**
+                 * Filter that allows to disable Trusted Shops review reminder email for a certain order.
+                 *
+                 * @since 2.0.0
+                 *
+                 * @param bool     $send Whether to send the reminder or not.
+                 * @param WC_Order $order The order object.
+                 */
                 if ( apply_filters( 'woocommerce_trusted_shops_send_review_reminder_email', true, $order ) ) {
                     if ( $mail = $this->base->plugin->emails->get_email_instance_by_id( 'customer_trusted_shops' ) ) {
                         $mail->trigger( wc_ts_get_crud_data( $order, 'id' ) );

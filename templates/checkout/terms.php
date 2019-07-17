@@ -14,21 +14,31 @@ if ( ! defined( 'ABSPATH' ) ) {
 if ( ! isset( $gzd_checkbox ) || ! $gzd_checkbox )
 	return;
 
-do_action( "woocommerce_gzd_before_legal_checkbox_{$checkbox->get_id()}", $checkbox );
+$checkbox_id = $checkbox->get_id();
+
+/**
+ * Before render checkbox template.
+ *
+ * Fires before a checkbox with `$checkbox_id` is rendered.
+ *
+ * @since 2.0.0
+ *
+ * @param WC_GZD_Legal_Checkbox $checkbox The checkbox instance.
+ */
+do_action( "woocommerce_gzd_before_legal_checkbox_{$checkbox_id}", $checkbox );
 ?>
 
-<?php if ( apply_filters( 'woocommerce_germanized_checkout_show_terms', true ) ) : ?>
+<?php
+/**
+ * Filter that allows hiding the terms checkbox in checkout.
+ *
+ * @since 2.0.0
+ *
+ * @param bool $hide Whether to hide the terms checkbox.
+ */
+if ( apply_filters( 'woocommerce_germanized_checkout_show_terms', true ) ) : ?>
 
-    <?php
-    /**
-     * Terms and conditions hook used to inject content.
-     *
-     * @since 3.4.0.
-     * @hooked wc_privacy_policy_text() Shows custom privacy policy text. Priority 20.
-     * @hooked wc_terms_and_conditions_page_content() Shows t&c page content. Priority 30.
-     */
-    do_action( 'woocommerce_checkout_terms_and_conditions' );
-    ?>
+    <?php do_action( 'woocommerce_checkout_terms_and_conditions' ); ?>
 
     <p class="<?php $checkbox->render_classes( $checkbox->get_html_wrapper_classes() ); ?>" data-checkbox="<?php echo esc_attr( $checkbox->get_id() ); ?>">
         <label for="<?php echo esc_attr( $checkbox->get_html_id() ); ?>" class="woocommerce-form__label woocommerce-form__label-for-checkbox checkbox">

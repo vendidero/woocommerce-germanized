@@ -129,13 +129,26 @@ final class WooCommerce_Germanized {
 
 		spl_autoload_register( array( $this, 'autoload' ) );
 
+        /**
+         * Filter the Germanized dependency manager instance.
+         *
+         * @since 1.0.0
+         *
+         * @param WC_GZD_Dependencies $dependency The dependency manager instance.
+         */
 		$dependencies = apply_filters( 'woocommerce_gzd_dependencies_instance', WC_GZD_Dependencies::instance( $this ) );
 
 		if ( ! $dependencies->is_loadable() ) {
 			return;
 		}
 
-		// Loaded action
+        /**
+         * Before startup.
+         *
+         * This hook fires right before Germanized includes relevant files for startup.
+         *
+         * @since 1.0.0
+         */
 		do_action( 'woocommerce_germanized_before_load' );
 
 		$this->includes();
@@ -158,7 +171,13 @@ final class WooCommerce_Germanized {
 		$this->units          = new WC_GZD_Units();
 		$this->price_labels   = new WC_GZD_Price_Labels();
 
-		// Loaded action
+        /**
+         * After startup.
+         *
+         * This hook fires right after all relevant files for Germanized has been loaded.
+         *
+         * @since 1.0.0
+         */
 		do_action( 'woocommerce_germanized_loaded' );
 
 		if ( did_action( 'woocommerce_loaded' ) ) {
@@ -181,7 +200,14 @@ final class WooCommerce_Germanized {
 	 * Init WooCommerceGermanized when WordPress initializes.
 	 */
 	public function init() {
-		// Before init action
+
+        /**
+         * Initialize Germanized
+         *
+         * This hook fires as soon as Germanized initializes.
+         *
+         * @since 1.0.0
+         */
 		do_action( 'before_woocommerce_germanized_init' );
 
 		$this->load_plugin_textdomain();
@@ -222,7 +248,14 @@ final class WooCommerce_Germanized {
 
 		$this->emails    	  = new WC_GZD_Emails();
 
-		// Init action
+        /**
+         * Initialized Germanized
+         *
+         * This hook fires after Germanized has been initialized e.g. textdomain has been loaded and relevant
+         * have been placed.
+         *
+         * @since 1.0.0
+         */
 		do_action( 'woocommerce_germanized_init' );
 	}
 
@@ -303,6 +336,19 @@ final class WooCommerce_Germanized {
 	 * @return string
 	 */
 	public function template_path() {
+        /**
+         * Filter the default Germanized template path folder.
+         *
+         * ```php
+         * function ex_filter_template_path( $path ) {
+         *      return 'woocommerce-germanized-test/';
+         * }
+         * add_filter( 'woocommerce_gzd_template_path', 'ex_filter_template_path', 10, 1 );
+         *
+         * @since 1.0.0
+         *
+         * @param string $path The relative path within your theme directory.
+         */
 		return apply_filters( 'woocommerce_gzd_template_path', 'woocommerce-germanized/' );
 	}
 
@@ -440,6 +486,18 @@ final class WooCommerce_Germanized {
     }
 
 	public function setup_compatibility() {
+
+        /**
+         * Filter compatibility classes.
+         *
+         * This filter allows third party developers to register compatibility scripts
+         * for certain plugins or themes. Class prefix: `WC_GZD_Compatibility_` is expected.
+         * Make sure to include your class accordingly.
+         *
+         * @since 1.9.1
+         *
+         * @param array[string] $comp Array containing the compatibilities.
+         */
 		$plugins = apply_filters( 'woocommerce_gzd_compatibilities',
 			array(
 				'wpml',
@@ -507,15 +565,42 @@ final class WooCommerce_Germanized {
             trailingslashit( $template_path ) . $template_name,
         ) );
 
+        /**
+         * Filters the template name.
+         *
+         * @since 1.0.0
+         *
+         * @param string $template_name The template name e.g. checkboxes/default.php
+         */
 		$template_name = apply_filters( 'woocommerce_gzd_template_name', $template_name );
 
-		// Load Default
+		/** This filter is documented in woocommerce-germanized.php */
 		if ( ! $theme_template && file_exists( apply_filters( 'woocommerce_gzd_default_plugin_template', $this->plugin_path() . '/templates/' . $template_name, $template_name ) ) ) {
-			$template = apply_filters( 'woocommerce_gzd_default_plugin_template', $this->plugin_path() . '/templates/' . $template_name, $template_name );
+            /**
+             * Filter the default plugin template file.
+             *
+             * This file is being loaded as a default template if no theme template was found.
+             *
+             * @since 1.0.0
+             *
+             * @params string $path The absolute path to the template.
+             */
+		    $template = apply_filters( 'woocommerce_gzd_default_plugin_template', $this->plugin_path() . '/templates/' . $template_name, $template_name );
 		} elseif ( $theme_template ) {
 			$template = $theme_template;
 		}
 
+        /**
+         * Filters the actual loaded template.
+         *
+         * This filter allows filtering the located template path (whether theme or plugin).
+         *
+         * @since 1.0.0
+         *
+         * @params string $template The path to the template.
+         * @params string $template_name The template name e.g. checkboxes/default.php.
+         * @params string $template_path Germanized template path.
+         */
 		return apply_filters( 'woocommerce_germanized_filter_template', $template, $template_name, $template_path );
 	}
 
@@ -525,6 +610,13 @@ final class WooCommerce_Germanized {
 	 * @return array
 	 */
 	public function get_critical_templates() {
+        /**
+         * Filters critical template which should be prevented from overriding.
+         *
+         * @since 1.0.0
+         *
+         * @param array $templates Array containing the template names.
+         */
 		return apply_filters( 'woocommerce_gzd_important_templates', array() );
 	}
 
@@ -710,6 +802,18 @@ final class WooCommerce_Germanized {
 		wp_register_style( 'woocommerce-gzd-layout', $assets_path . 'css/woocommerce-gzd-layout' . $suffix . '.css', array(), WC_GERMANIZED_VERSION );
 		wp_enqueue_style( 'woocommerce-gzd-layout' );
 
+        /**
+         * Register frontend scripts and styles.
+         *
+         * This hook executes right after Germanized has registered and enqueued relevant scripts and styles for the
+         * frontend.
+         *
+         * @since 1.0.0
+         *
+         * @param string $suffix The asset suffix e.g. .min in non-debugging mode.
+         * @param string $frontend_script_path The absolute URL to the plugins JS files.
+         * @param string $assets_path The absolute URL to the plugins asset files.
+         */
 		do_action( 'woocommerce_gzd_registered_scripts', $suffix, $frontend_script_path, $assets_path );
 	}
 
@@ -739,6 +843,13 @@ final class WooCommerce_Germanized {
 
 			$this->localized_scripts[] = 'wc-gzd-revocation';
 
+            /**
+             * Filters script localization paramaters for the `wc-gzd-revocation` script.
+             *
+             * @since 1.0.0
+             *
+             * @param array $params Key => value array containing parameter name and value.
+             */
 			wp_localize_script( 'wc-gzd-revocation', 'wc_gzd_revocation_params', apply_filters( 'wc_gzd_revocation_params', array(
 				'ajax_url'                  => WC()->ajax_url(),
 				'wc_ajax_url'               => WC_AJAX::get_endpoint( "%%endpoint%%" ),
@@ -750,6 +861,13 @@ final class WooCommerce_Germanized {
 
 			$this->localized_scripts[] = 'wc-gzd-add-to-cart-variation';
 
+            /**
+             * Filters script localization paramaters for the `wc-gzd-add-to-cart-variation` script.
+             *
+             * @since 1.0.0
+             *
+             * @param array $params Key => value array containing parameter name and value.
+             */
 			wp_localize_script( 'wc-gzd-add-to-cart-variation', 'wc_gzd_add_to_cart_variation_params', apply_filters( 'woocommerce_gzd_add_to_cart_variation_params', array(
 				'wrapper'                   => '.type-product',
 				'price_selector'            => '.price',
@@ -763,6 +881,13 @@ final class WooCommerce_Germanized {
 
 			$this->localized_scripts[] = 'wc-gzd-force-pay-order';
 
+            /**
+             * Filters script localization paramaters for the `wc-gzd-force-pay-order` script.
+             *
+             * @since 1.0.0
+             *
+             * @param array $params Key => value array containing parameter name and value.
+             */
 			wp_localize_script( 'wc-gzd-force-pay-order', 'wc_gzd_force_pay_order_params', apply_filters( 'wc_gzd_force_pay_order_params', array(
 				'order_id'      => $order_id,
 				'gateway'       => wc_gzd_get_crud_data( $order, 'payment_method' ),
@@ -781,6 +906,13 @@ final class WooCommerce_Germanized {
 				$hide_input = $checkbox->hide_input();
 			}
 
+            /**
+             * Filters script localization paramaters for the `wc-gzd-checkout` script.
+             *
+             * @since 1.0.0
+             *
+             * @param array $params Key => value array containing parameter name and value.
+             */
 			wp_localize_script( 'wc-gzd-checkout', 'wc_gzd_checkout_params', apply_filters( 'wc_gzd_checkout_params', array(
 				'adjust_heading'  => true,
 				'checkbox_id'     => $html_id,
@@ -788,6 +920,15 @@ final class WooCommerce_Germanized {
 			) ) );
 		}
 
+        /**
+         * Localized scripts.
+         *
+         * This hook fires after Germanized has localized it's scripts.
+         *
+         * @since 1.0.0
+         *
+         * @param string $assets_path The absolute URL to the plugins assets.
+         */
 		do_action( 'woocommerce_gzd_localized_scripts', $assets_path );
 	}
 
@@ -868,6 +1009,15 @@ final class WooCommerce_Germanized {
 			$core_file = $this->plugin_path() . '/templates/' . $template;
 		}
 
+        /**
+         * Filters email templates.
+         *
+         * @since 1.0.0
+         *
+         * @param string $core_file The core template file.
+         * @param string $template The template name.
+         * @param string $template_base The template base folder.
+         */
 		return apply_filters( 'woocommerce_germanized_email_template_hook', $core_file, $template, $template_base );
 	}
 
@@ -900,6 +1050,7 @@ final class WooCommerce_Germanized {
 		if ( 'yes' == get_option( 'woocommerce_calc_taxes' ) && 'incl' == get_option( 'woocommerce_tax_display_cart' ) ) {
 
 			$tax_array = array();
+
 			if ( 'itemized' == get_option( 'woocommerce_tax_total_display' ) ) {
 
 				foreach ( $order->get_tax_totals() as $code => $tax ) {
@@ -908,8 +1059,8 @@ final class WooCommerce_Germanized {
 
 					if ( ! isset( $tax_array[ $tax->rate ] ) ) {
 						$tax_array[ $tax->rate ] = array(
-							'tax' => $tax,
-							'amount' => $tax->amount,
+							'tax'      => $tax,
+							'amount'   => $tax->amount,
 							'contains' => array( $tax ),
 						);
 					} else {
@@ -919,32 +1070,31 @@ final class WooCommerce_Germanized {
 				}
 			} else {
 
-				$base_rate = WC_Tax::get_shop_base_rate();
+				$base_rate = ( is_callable( array( 'WC_Tax', 'get_base_tax_rates' ) ) ? WC_Tax::get_base_tax_rates() : WC_Tax::get_shop_base_rate() );
 
-				$rate = reset($base_rate);
+				$rate    = reset($base_rate);
 				$rate_id = key($base_rate);
 
 				$base_rate = (object) $rate;
-				$base_rate->rate = $base_rate->rate;
 				$base_rate->rate_id = $rate_id;
 
 				$tax_array[] = array(
-					'tax' => $base_rate,
+					'tax'      => $base_rate,
 					'contains' => array( $base_rate ),
-					'amount' => $order->get_total_tax(),
+					'amount'   => $order->get_total_tax(),
 				);
 			}
 
 			if ( ! empty( $tax_array ) ) {
 				foreach ( $tax_array as $tax ) {
 
-					$order_totals[ 'tax_' . WC_Tax::get_rate_code( $tax['tax']->rate_id ) ] = array(
-						'label' => ( get_option( 'woocommerce_tax_total_display' ) == 'itemized' ? sprintf( __( 'incl. %s%% VAT', 'woocommerce-germanized' ), wc_gzd_format_tax_rate_percentage( $tax['tax']->rate ) ) : __( 'incl. VAT', 'woocommerce-germanized' ) ),
+					$order_totals['tax_' . WC_Tax::get_rate_code( $tax['tax']->rate_id ) ] = array(
+						'label' => wc_gzd_get_tax_rate_label( $tax['tax']->rate ),
 						'value' => wc_price( $tax['amount'] ),
 					);
 				}
 			}
-		}// End if().
+		}
 
 		return $order_totals;
 	}

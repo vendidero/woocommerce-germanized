@@ -86,6 +86,13 @@ class WC_GZD_Emails {
 	public function confirmation_text_option( $object ) {
 		if ( 'customer_processing_order' === $object->id ) {
 
+            /**
+             * Filter order confirmation text option field.
+             *
+             * @since 1.0.0
+             *
+             * @param array $args Text option arguments.
+             */
 			$args = apply_filters( 'woocommerce_gzd_admin_email_order_confirmation_text_option', array(
 				'id'                => 'woocommerce_gzd_email_order_confirmation_text',
 				'label'             => __( 'Confirmation text', 'woocommerce-germanized' ),
@@ -154,6 +161,14 @@ class WC_GZD_Emails {
 
                     $title_text    = str_replace( array_keys( $title_options ), array_values( $title_options ), $title_text );
 
+                    /**
+                     * Filter the email title option used to address the customer in emails.
+                     *
+                     * @since 2.0.0
+                     *
+                     * @param string   $title The title.
+                     * @param WC_Order $order The order object.
+                     */
                     return apply_filters( 'woocommerce_gzd_email_title', esc_html( $title_text ), $order );
                 }
             }
@@ -164,9 +179,25 @@ class WC_GZD_Emails {
 
 	protected function get_processing_email_text( $order_id ) {
 		$order        = is_numeric( $order_id ) ? wc_get_order( $order_id ) : $order_id;
+
+        /**
+         * Filters the plain order confirmation email text.
+         *
+         * @since 1.0.0
+         *
+         * @param string $text The plain text.
+         */
 		$plain        = apply_filters( 'woocommerce_gzd_order_confirmation_email_plain_text', get_option( 'woocommerce_gzd_email_order_confirmation_text' ) );
 
 		if ( ! $plain || '' === $plain ) {
+
+            /**
+             * Filter the fallback order confirmation email text.
+             *
+             * @since 1.0.0
+             *
+             * @param string $text The default text.
+             */
 			$plain = apply_filters( 'woocommerce_gzd_order_confirmation_email_default_text', __( 'Your order has been received and is now being processed. Your order details are shown below for your reference.', 'woocommerce-germanized' ) );
 		}
 
@@ -180,6 +211,14 @@ class WC_GZD_Emails {
 			$plain = str_replace( $placeholder, $value, $plain );
 		}
 
+        /**
+         * Filter the order confirmation introduction text.
+         *
+         * @since 1.0.0
+         *
+         * @param string   $plain The text.
+         * @param WC_Order $order The order object.
+         */
 		return apply_filters( 'woocommerce_gzd_order_confirmation_email_text', $plain, $order );
 	}
 
@@ -295,6 +334,15 @@ class WC_GZD_Emails {
     }
 
 	public function get_gateways_disabling_paid_for_order_mail() {
+
+        /**
+         * Filters disabled gateway for the paid for order notification.
+         * By adjusting the filter you may deactivate the paid for order notification for certain gateways.
+         *
+         * @since 1.0.0
+         *
+         * @param array $gateways Array of gateway ids.
+         */
 		return apply_filters( 'woocommerce_gzd_disable_gateways_paid_order_email', array( 'cod', 'invoice' ) );
 	}
 
@@ -389,11 +437,27 @@ class WC_GZD_Emails {
             $order = wc_get_order( $order );
         }
 
+        /**
+         * Last chance to force disabling the order confirmation for a certain order object.
+         *
+         * @since 1.0.0
+         *
+         * @param bool     $disable Whether to disable notification or not.
+         * @param WC_Order $order The order object.
+         */
         if ( ! apply_filters( 'woocommerce_germanized_send_instant_order_confirmation', true, $order ) ) {
             return $result;
         }
 
-	    // This action actually triggers the email sending (or defers it)
+        /**
+         * Trigger the order confirmation email.
+         *
+         * This action triggers the order confirmation email notification.
+         *
+         * @since 1.9.10
+         *
+         * @param WC_Order $order The order object.
+         */
 	    do_action( 'woocommerce_gzd_order_confirmation', $order );
 
 	    // Always clear cart after order success
@@ -405,19 +469,54 @@ class WC_GZD_Emails {
     }
 
     public function trigger_order_confirmation_emails( $order ) {
-	    do_action( 'woocommerce_germanized_before_order_confirmation', wc_gzd_get_crud_data( $order, 'id' ) );
 
-	    // Send order processing mail
-	    if ( apply_filters( 'woocommerce_germanized_order_email_customer_confirmation_sent', false, wc_gzd_get_crud_data( $order, 'id' ) ) === false && $processing = $this->get_email_instance_by_id( 'customer_processing_order' ) ) {
-            $processing->trigger( wc_gzd_get_crud_data( $order, 'id' ) );
+        $order_id = wc_gzd_get_crud_data( $order, 'id' );
+
+        /**
+         * Before order confirmation emails.
+         *
+         * Fires before the order confirmation emails are being triggered (admin and user).
+         *
+         * @since 1.0.0
+         *
+         * @param integer $order_id The order id.
+         */
+	    do_action( 'woocommerce_germanized_before_order_confirmation', $order_id );
+
+        /**
+         * Filters whether the order confirmation email has already been sent or not.
+         *
+         * @since 1.0.0
+         *
+         * @param bool $sent Whether the email has been sent or not.
+         * @param int  $order_id The order id.
+         */
+	    if ( apply_filters( 'woocommerce_germanized_order_email_customer_confirmation_sent', false, $order_id ) === false && $processing = $this->get_email_instance_by_id( 'customer_processing_order' ) ) {
+            $processing->trigger( $order_id );
         }
 
-	    // Send admin mail
-	    if ( apply_filters( 'woocommerce_germanized_order_email_admin_confirmation_sent', false, wc_gzd_get_crud_data( $order, 'id' ) ) === false && $new_order = $this->get_email_instance_by_id( 'new_order' ) ) {
-            $new_order->trigger( wc_gzd_get_crud_data( $order, 'id' ) );
+        /**
+         * Filters whether the order confirmation admin email has already been sent or not.
+         *
+         * @since 1.0.0
+         *
+         * @param bool $sent Whether the email has been sent or not.
+         * @param int  $order_id The order id.
+         */
+	    if ( apply_filters( 'woocommerce_germanized_order_email_admin_confirmation_sent', false, $order_id ) === false && $new_order = $this->get_email_instance_by_id( 'new_order' ) ) {
+            $new_order->trigger( $order_id );
         }
 
-	    do_action( 'woocommerce_germanized_order_confirmation_sent', wc_gzd_get_crud_data( $order, 'id' ) );
+        /**
+         * After order confirmation emails.
+         *
+         * Fires after the order confirmation emails are being triggered (admin and user).
+         *
+         * @since 1.0.0
+         *
+         * @param integer $order_id The order id.
+         */
+	    do_action( 'woocommerce_germanized_order_confirmation_sent', $order_id );
     }
 
 	public function email_notices( $order, $sent_to_admin, $plain_text ) {
@@ -437,7 +536,7 @@ class WC_GZD_Emails {
 
 				foreach ( $items as $item ) {
 
-					$_product = apply_filters( 'woocommerce_order_item_product', $order->get_product_from_item( $item ), $item );
+					$_product = wc_gzd_get_order_item_product( $item, $order );
 
 					if ( ! $_product ) {
 						continue;
@@ -459,7 +558,22 @@ class WC_GZD_Emails {
 
 			if ( get_option( 'woocommerce_gzd_differential_taxation_checkout_notices' ) === 'yes' && $is_differential_taxed && apply_filters( 'woocommerce_gzd_show_differential_taxation_in_emails', true, $type ) ) {
 
+                /**
+                 * Filters the general differential taxation notice mark.
+                 *
+                 * @since 1.5.0
+                 *
+                 * @param string $notice The notice mark, e.g. `*`.
+                 */
 				$mark   = apply_filters( 'woocommerce_gzd_differential_taxation_notice_text_mark', '** ' );
+
+                /**
+                 * Filters the differential taxation notice text for emails.
+                 *
+                 * @since 1.5.0
+                 *
+                 * @param string $html The notice output.
+                 */
 				$notice = apply_filters( 'woocommerce_gzd_differential_taxation_notice_text_email', $mark . wc_gzd_get_differential_taxation_notice_text() );
 
 				echo wpautop( '<div class="gzd-differential-taxation-notice-email">' . $notice . '</div>' );
@@ -468,10 +582,28 @@ class WC_GZD_Emails {
 			if ( $this->is_order_confirmation_email( $type->id ) ) {
 
 				if ( $is_downloadable && $text = wc_gzd_get_legal_text_digital_email_notice() ) {
+
+                    /**
+                     * Filters the order confirmation digital notice text.
+                     *
+                     * @since 1.0.0
+                     *
+                     * @param string   $html The notice HTML.
+                     * @param WC_Order $order The order object.
+                     */
 					echo wpautop( apply_filters( 'woocommerce_gzd_order_confirmation_digital_notice', '<div class="gzd-digital-notice-text">' . $text . '</div>', $order ) );
                 }
 
 				if ( $is_service && $text = wc_gzd_get_legal_text_service_email_notice() ) {
+
+                    /**
+                     * Filters the order confirmation service notice text.
+                     *
+                     * @since 1.0.0
+                     *
+                     * @param string   $html The notice HTML.
+                     * @param WC_Order $order The order object.
+                     */
 					echo wpautop( apply_filters( 'woocommerce_gzd_order_confirmation_service_notice', '<div class="gzd-service-notice-text">' . $text . '</div>', $order ) );
                 }
 			}
@@ -479,6 +611,15 @@ class WC_GZD_Emails {
 	}
 
 	public function is_order_confirmation_email( $id ) {
+
+        /**
+         * Filters whether a certain email id equals the order confirmation email.
+         *
+         * @since 1.0.0
+         *
+         * @param bool   $is_confirmation Whether the `$id` matches the order confirmation or not.
+         * @param string $id The email id.
+         */
         return apply_filters( 'woocommerce_gzd_is_order_confirmation_email', ( 'customer_processing_order' === $id ), $id );
     }
 
@@ -528,6 +669,17 @@ class WC_GZD_Emails {
 
 		$this->remove_order_email_filters();
 
+        /**
+         * Before place email cart item filters.
+         *
+         * This hook fires before Germanized places certain cart item filters to make sure
+         * that product-related info (e.g. delivery time, unit price etc.) is shown within email tables.
+         *
+         * @since 1.9.1
+         *
+         * @param WC_GZD_Emails $this The email helper class.
+         * @param WC_Email      $current The current email object.
+         */
 		do_action( 'woocommerce_gzd_before_set_email_cart_item_filters', $this, $current );
 
 		// Add order item name actions
@@ -552,6 +704,16 @@ class WC_GZD_Emails {
 			add_filter( 'woocommerce_order_formatted_line_subtotal', 'wc_gzd_cart_product_unit_price', wc_gzd_get_hook_priority( 'email_product_unit_price' ), 2 );
         }
 
+        /**
+         * After place email cart item filters.
+         *
+         * This hook fires after Germanized placed certain cart item filters.
+         *
+         * @since 1.9.1
+         *
+         * @param WC_GZD_Emails $this The email helper class.
+         * @param WC_Email      $current The current email object.
+         */
 		do_action( 'woocommerce_gzd_after_set_email_cart_item_filters', $this, $current );
 	}
 
@@ -609,6 +771,15 @@ class WC_GZD_Emails {
 					continue;
                 }
 
+                /**
+                 * Filters whether to attach a certain page to the email footer or not.
+                 *
+                 * @since 1.0.0
+                 *
+                 * @param bool     $attach Whether to attach or not.
+                 * @param WC_Email $mail The mail instance.
+                 * @param string   $page_option The legal page option identifier e.g. terms.
+                 */
 			    if ( in_array( $mail->id, get_option( $option_key ) ) && apply_filters( 'woocommerce_gzd_attach_email_footer', true, $mail, $page_option ) ) {
 					$this->attach_page_content( $option, $mail, $mail->get_email_type() );
 				}
@@ -620,20 +791,35 @@ class WC_GZD_Emails {
 	 * Add global footer Hooks to Email templates
 	 */
 	public function add_template_footers() {
-		$type = $this->get_current_email_object();
+		$email = $this->get_current_email_object();
 
-		if ( $type ) {
-			do_action( 'woocommerce_germanized_email_footer_' . $type->id, $type );
+		if ( $email ) {
+
+		    $email_id = $email->id;
+
+            /**
+             * Global email footer (after content) hook.
+             *
+             * This hook serves as entry point for legal attachment texts within emails.
+             * `$email_id` contains the actual Woo email template id e.g. "wc_email_new_order".
+             *
+             * @since 1.0.0
+             *
+             * @param WC_Email $type The email instance.
+             */
+			do_action( 'woocommerce_germanized_email_footer_' . $email_id, $email );
 		}
 	}
 
 	public function get_current_email_object() {
 
-		if ( isset( $GLOBALS[ 'wc_gzd_template_name' ] ) && ! empty( $GLOBALS[ 'wc_gzd_template_name' ] ) ) {
+		if ( isset( $GLOBALS['wc_gzd_template_name'] ) && ! empty( $GLOBALS['wc_gzd_template_name'] ) ) {
 			
-			$object = $this->get_email_instance_by_tpl( $GLOBALS[ 'wc_gzd_template_name' ] );
-			if ( is_object( $object ) )
+			$object = $this->get_email_instance_by_tpl( $GLOBALS['wc_gzd_template_name'] );
+
+			if ( is_object( $object ) ) {
 				return $object;
+            }
 		}
 
 		return false;
@@ -647,22 +833,38 @@ class WC_GZD_Emails {
 	 */
 	private function get_email_instance_by_tpl( $tpls = array() ) {
 
-	    if ( ! $this->mailer )
+	    if ( ! $this->mailer ) {
 	        $this->set_mailer();
+        }
 
 	    $found_mails = array();
-		$mails = $this->mailer->get_emails();
+		$mails       = $this->mailer->get_emails();
 
 	    foreach ( $tpls as $tpl ) {
 
-	        $tpl = apply_filters( 'woocommerce_germanized_email_template_name',  str_replace( array( 'admin-', '-' ), array( '', '_' ), basename( $tpl, '.php' ) ), $tpl );
+            /**
+             * Filters the email template name for instance comparison.
+             *
+             * @since 1.0.0
+             *
+             * @param string $template_name The email template name.
+             */
+	        $tpl = apply_filters( 'woocommerce_germanized_email_template_name', str_replace( array( 'admin-', '-' ), array( '', '_' ), basename( $tpl, '.php' ) ), $tpl );
 
 			if ( ! empty( $mails ) ) {
-
 				foreach ( $mails as $mail ) {
 
 					if ( is_object( $mail ) ) {
 
+                        /**
+                         * Filters whether an email template equals email id.
+                         *
+                         * @since 1.0.0
+                         *
+                         * @param bool   $equals Whether template and email id match or not.
+                         * @param string $email_id The email id.
+                         * @param string $tpl The template name.
+                         */
 						if ( apply_filters( 'woocommerce_gzd_email_template_id_comparison', ( $mail->id === $tpl ), $mail->id, $tpl ) ) {
 							array_push( $found_mails, $mail );
 						}
@@ -685,8 +887,26 @@ class WC_GZD_Emails {
 	 */
 	public function attach_page_content( $page_id, $mail, $email_type = 'html' ) {
 
+        /**
+         * Attach email footer.
+         *
+         * Fires before attaching legal page content to certain email templates.
+         *
+         * @since 1.0.0
+         *
+         * @param int $page_id The page id related to the legal content.
+         * @param string $email_type Equals `html` if HTML output is allowed.
+         */
 		do_action( 'woocommerce_germanized_attach_email_footer', $page_id, $email_type );
 
+        /**
+         * Filters the page id to be attached to the email footer.
+         *
+         * @since 1.0.0
+         *
+         * @param int      $page_id The page id to be attached.
+         * @param WC_Email $mail The email instance.
+         */
 		$page_id = apply_filters( 'woocommerce_germanized_attach_email_footer_page_id', $page_id, $mail );
 		
 		remove_shortcode( 'revocation_form' );

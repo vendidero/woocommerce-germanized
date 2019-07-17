@@ -12,7 +12,7 @@
     "wp-coding-standards/wpcs": "*",
     "wimg/php-compatibility": "*",
     "simplyadmire/composer-plugins" : "@dev",
-    "phpunit/phpunit": "5.7"
+    "phpunit/phpunit": "*"
   },
   "scripts": {
     "post-install-cmd": [

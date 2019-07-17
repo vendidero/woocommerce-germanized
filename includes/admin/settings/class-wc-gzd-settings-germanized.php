@@ -61,6 +61,13 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 
 	public function maybe_adjust_data_privacy_settings( $settings ) {
 
+        /**
+         * Filter that allows you to turn off disabling default WooCommerce privacy notice.
+         *
+         * @since 1.9.10
+         *
+         * @param bool $enable Set to false to re-enable Woo privacy notice.
+         */
 	    if ( apply_filters( 'woocommerce_gzd_disable_wc_privacy_policy_options', true ) ) {
 		    $url = admin_url( 'admin.php?page=wc-settings&tab=germanized' );
 		    $delete = array(
@@ -115,6 +122,13 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 	 * Gets setting sections
 	 */
 	public function get_sections() {
+        /**
+         * Filter available admin setting sections.
+         *
+         * @since 1.0.0
+         *
+         * @param array $sections Key => value array containing section keys and titles.
+         */
 		$sections = apply_filters( 'woocommerce_gzd_settings_sections', array(
 			''   		 	=> __( 'General Options', 'woocommerce-germanized' ),
 			'display'       => __( 'Display Options', 'woocommerce-germanized' ),
@@ -629,8 +643,16 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 
 		); // End general settings
 
+        /**
+         * Filter admin general settings.
+         *
+         * This filter allows filtering available general settings.
+         *
+         * @since 1.0.0
+         *
+         * @param array $settings Array containing the settings.
+         */
 		return apply_filters( 'woocommerce_germanized_settings', $settings );
-
 	}
 
 	public function get_email_settings() {
@@ -685,6 +707,15 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 
 		$settings = array_merge( $settings, $email_settings );
 
+        /**
+         * Filter email visibility settings.
+         *
+         * This filter allows filtering available email visibility settings.
+         *
+         * @since 1.0.0
+         *
+         * @param array $settings Array containing the settings.
+         */
 		$settings = array_merge( $settings, apply_filters( 'woocommerce_gzd_email_visibility_settings', array(
 
 			array( 'type' => 'sectionend', 'id' => 'email_options' ),
@@ -760,8 +791,16 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 
 		) );
 
+        /**
+         * Filter admin email settings.
+         *
+         * This filter allows filtering available email settings.
+         *
+         * @since 1.0.0
+         *
+         * @param array $settings Array containing the settings.
+         */
 		return apply_filters( 'woocommerce_germanized_settings_email', $settings );
-
 	}
 
 	public function get_display_settings() {
@@ -1316,8 +1355,16 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 
 		);
 
+        /**
+         * Filter admin display settings.
+         *
+         * This filter allows filtering available display settings.
+         *
+         * @since 1.0.0
+         *
+         * @param array $settings Array containing the settings.
+         */
 		return apply_filters( 'woocommerce_germanized_settings_display', $settings );
-
 	}
 
 	public function output() {
@@ -1329,18 +1376,69 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 		if ( $this->get_sections() ) {
 			foreach ( $this->get_sections() as $section => $name ) {
 				if ( $section === $current_section ) {
+
+                    /**
+                     * Filter settings for a certain `$section`.
+                     *
+                     * @since 1.0.0
+                     *
+                     * @param array $settings Array containing settings.
+                     */
 					$settings = apply_filters( 'woocommerce_gzd_get_settings_' . $section, $this->get_settings() );
+
+                    /**
+                     * Filter settings.
+                     *
+                     * @since 1.0.0
+                     *
+                     * @param array $settings Array containing settings.
+                     */
 					$settings = apply_filters( 'woocommerce_gzd_get_settings_filter', $settings );
 
+                    /**
+                     * Filter current sidebar for a certain `$section`.
+                     *
+                     * @since 1.0.0
+                     *
+                     * @param string $sidebar The sidebar name.
+                     */
 					$sidebar = apply_filters( 'woocommerce_gzd_get_sidebar_' . $section, $sidebar );
 				}
 			}
 		}
 
+        /**
+         * Fires before a specific setting tab (section) outputs.
+         *
+         * This hook fires before a certain setting tab (e.g. display settings) outputs it's content.
+         * You may insert data right before the output of the tab through this hook.
+         *
+         * @since 1.0.0
+         *
+         * @param string $current_section the name of the current tab (section).
+         */
 		do_action( 'woocommerce_gzd_before_section_output', $current_section );
 
+        /**
+         * Filter to stop including settings section for a certain section.
+         *
+         * @since 1.0.0
+         *
+         * @param bool   $stop Set to false to disable including settings section.
+         * @param string $current_section The current section e.g. display.
+         */
 		if ( apply_filters( 'woocommerce_gzd_settings_section_include_path', true, $current_section ) ) {
-			$path = apply_filters( 'woocommerce_gzd_settings_section_html_path', WC_GERMANIZED_ABSPATH . 'includes/admin/views/html-settings-section.php', $current_section );
+
+            /**
+             * Filter the view path for a certain setting section.
+             *
+             * @since 1.0.0
+             *
+             * @param string $path Path to the admin section view template.
+             * @param string $current_section The current section.
+             */
+		    $path = apply_filters( 'woocommerce_gzd_settings_section_html_path', WC_GERMANIZED_ABSPATH . 'includes/admin/views/html-settings-section.php', $current_section );
+
 			include_once( $path );
         }
 	}
@@ -1364,19 +1462,55 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 		if ( $this->get_sections() ) {
 			foreach ( $this->get_sections() as $section => $name ) {
 				if ( $section == $current_section ) {
+
+                    /**
+                     * Filter available settings for a certain `$section` before saving.
+                     *
+                     * @since 1.0.0
+                     *
+                     * @param array $settings Array containing settings.
+                     */
 					$settings = apply_filters( 'woocommerce_gzd_get_settings_' . $section, $this->get_settings() );
 				}
 			}
 		}
 
-		if ( empty( $settings ) )
+		if ( empty( $settings ) ) {
 			return;
+        }
 
+        /**
+         * Before saving settings section.
+         *
+         * This hook fires right before a certain section (tab) will save it's settings.
+         * `$current_section` contains the name of the tab (e.g. display or email).
+         *
+         * @since 1.0.0
+         *
+         * @param array $settings Array containing the settings of the current section.
+         */
 		do_action( 'woocommerce_gzd_before_save_section_' . $current_section, $settings );
 
-		if ( apply_filters( 'wc_germanized_show_settings_' . $current_section, true ) )
+        /**
+         * Filter to disable showing/saving fields for a certain section.
+         * `$current_section` contains the section key e.g. display.
+         *
+         * @param bool $enabled Set to false to disable.
+         */
+		if ( apply_filters( 'wc_germanized_show_settings_' . $current_section, true ) ) {
 			WC_Admin_Settings::save_fields( $settings );
+        }
 
+        /**
+         * After saving settings section.
+         *
+         * This hook fires right after a certain section (tab) saves it's settings.
+         * `$current_section` contains the name of the tab (e.g. display or email).
+         *
+         * @since 1.0.0
+         *
+         * @param array $settings Array containing the settings of the current section.
+         */
 		do_action( 'woocommerce_gzd_after_save_section_' . $current_section, $settings );
 	}
 

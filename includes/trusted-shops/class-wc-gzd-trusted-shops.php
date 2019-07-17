@@ -191,6 +191,14 @@ class WC_GZD_Trusted_Shops {
 	}
 
 	public function get_multi_language_compatibility() {
+
+        /**
+         * This filter adjusts how to load the Trusted Shops multi language compatibility if necessary.
+         *
+         * @since 2.0.0
+         *
+         * @param WC_GZD_Compatibility_Wpml_String_Translation $instance The string translation helper instance.
+         */
 	    return apply_filters( 'woocommerce_trusted_shops_multi_language_compatibility', $this->plugin->get_compatibility( 'wpml-string-translation' ) );
     }
 
@@ -623,6 +631,14 @@ class WC_GZD_Trusted_Shops {
 		if ( $replace ) {
 			$rating = $this->get_average_rating();
 
+            /**
+             * Filter to adjust Trusted Shops rich snippets arguments.
+             *
+             * @since 2.0.0
+             *
+             * @param array                $args The arguments to be passed.
+             * @param WC_GZD_Trusted_Shops $instance The Trusted Shops instance.
+             */
 			$args = apply_filters( 'woocommerce_trusted_shops_rich_snippets_args', wp_parse_args( $args, array(
 				'average'     => $rating['avg'],
 				'count'       => $rating['count'],

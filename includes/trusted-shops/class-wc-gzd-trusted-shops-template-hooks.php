@@ -158,6 +158,15 @@ class WC_GZD_Trusted_Shops_Template_Hooks {
 		    $link = add_query_arg( array( 'lang' => $lang ), $link );
         }
 
+        /**
+         * Filter that allows adjusting the Trusted Shops cancel review reminder link.
+         *
+         * @since 2.0.0
+         *
+         * @param string   $link The URL.
+         * @param string   $code The code to identify the request.
+         * @param WC_Order $order The order object.
+         */
 		return apply_filters( 'woocommerce_trusted_shops_cancel_review_reminder_link', $link, $code, $order );
 	}
 

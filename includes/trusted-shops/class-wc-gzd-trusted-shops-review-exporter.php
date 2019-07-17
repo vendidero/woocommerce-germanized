@@ -60,7 +60,15 @@ class WC_GZD_Trusted_Shops_Review_Exporter extends WC_CSV_Exporter {
 	 * @return array
 	 */
 	public function get_default_column_names() {
-		return apply_filters( "woocommerce_gzd_{$this->export_type}_default_columns", array(
+
+        /**
+         * Filter to adjust Trusted Shops review CSV exporter column names.
+         *
+         * @since 2.3.0
+         *
+         * @param array $columns Key => value pair of columns to be exported.
+         */
+		return apply_filters( "woocommerce_gzd_trusted_shops_reviews_default_columns", array(
 			'id'                 => _x( 'Order ID', 'trusted-shops', 'woocommerce-germanized' ),
 			'date'               => _x( 'Order date', 'trusted-shops', 'woocommerce-germanized' ),
 			'days'               => _x( '# Days', 'trusted-shops', 'woocommerce-germanized' ),
@@ -128,7 +136,15 @@ class WC_GZD_Trusted_Shops_Review_Exporter extends WC_CSV_Exporter {
             );
         }
 
-		$order_query      = new WP_Query( apply_filters( "woocommerce_gzd_{$this->export_type}_query_args", $args ) );
+        /**
+         * Filter that allows adjusting arguments passed to `WP_Query` when exporting
+         * orders that should be included within the review export CSV file.
+         *
+         * @since 2.0.0
+         *
+         * @param array $args The arguments passed to `WP_Query`.
+         */
+		$order_query      = new WP_Query( apply_filters( "woocommerce_gzd_trusted_shops_reviews_query_args", $args ) );
 		$this->total_rows = $order_query->found_posts;
 		$this->row_data   = array();
 
@@ -154,6 +170,14 @@ class WC_GZD_Trusted_Shops_Review_Exporter extends WC_CSV_Exporter {
 				$row[ $column_id ] = $value;
 			}
 
+            /**
+             * Filter that allows adjusting Trusted Shops review export data per order.
+             *
+             * @since 2.0.0
+             *
+             * @param array    $row The row data.
+             * @param WC_Order $order The order object.
+             */
 			$this->row_data[] = apply_filters( 'woocommerce_gzd_trusted_shops_review_export_row_data', $row, $order );
 		}
 	}

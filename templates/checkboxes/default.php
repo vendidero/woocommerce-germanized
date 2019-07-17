@@ -9,7 +9,19 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
-do_action( "woocommerce_gzd_before_legal_checkbox_{$checkbox->get_id()}", $checkbox );
+
+$checkbox_id = $checkbox->get_id();
+
+/**
+ * Before render checkbox template.
+ *
+ * Fires before a checkbox with `$checkbox_id` is rendered.
+ *
+ * @since 2.0.0
+ *
+ * @param WC_GZD_Legal_Checkbox $checkbox The checkbox instance.
+ */
+do_action( "woocommerce_gzd_before_legal_checkbox_{$checkbox_id}", $checkbox );
 ?>
 
 <p class="<?php $checkbox->render_classes( $checkbox->get_html_wrapper_classes() ); ?>" style="<?php echo esc_attr( $checkbox->get_html_style() ); ?>">

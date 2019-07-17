@@ -34,8 +34,18 @@ function wc_gzd_cart_product_differential_taxation_mark( $title, $cart_item, $ca
 	}
 
 	if ( $product ) {
-		if ( wc_gzd_get_gzd_product( $product )->is_differential_taxed() )
+		if ( wc_gzd_get_gzd_product( $product )->is_differential_taxed() ) {
+            /**
+             * Differential taxation mark.
+             *
+             * Adjust the default differential taxation mark.
+             *
+             * @since 1.9.1
+             *
+             * @param string $html The differential mark e.g. `*`.
+             */
 			$product_mark = apply_filters( 'woocommerce_gzd_differential_taxation_cart_item_mark', ' **' );
+        }
 	}
 
 	if ( ! empty( $product_mark ) )
@@ -250,6 +260,19 @@ function wc_gzd_get_cart_tax_share( $type = 'shipping', $cart_contents = array()
 		foreach ( $cart as $key => $item ) {
 
 			$_product          = apply_filters( 'woocommerce_cart_item_product', $item['data'], $item, $key );
+
+            /**
+             * Cart item tax share product.
+             *
+             * Filters the product containing shipping information for cart item tax share calculation.
+             *
+             * @since 2.0.2
+             *
+             * @param WC_Product $_product The product object.
+             * @param array      $item The cart item.
+             * @param string     $key The cart item hash.
+             * @param string     $type The tax calculation type e.g. shipping or fees.
+             */
 			$_product_shipping = apply_filters( 'woocommerce_gzd_cart_item_tax_share_product', $_product, $item, $key, $type );
 			$no_shipping       = false;
 
@@ -266,6 +289,16 @@ function wc_gzd_get_cart_tax_share( $type = 'shipping', $cart_contents = array()
                 }
             }
 
+            /**
+             * Filter whether cart item supports tax share calculation or not.
+             *
+             * @since 1.7.5
+             *
+             * @param bool   $no_shipping True if supports calculation. False otherwise.
+             * @param array  $item The cart item.
+             * @param string $key The cart item hash.
+             * @param string $type The tax calculation type e.g. shipping or fees.
+             */
 			if ( apply_filters( 'woocommerce_gzd_cart_item_not_supporting_tax_share', $no_shipping, $item, $key, $type ) ) {
 			    continue;
             }
@@ -436,6 +469,13 @@ function wc_gzd_get_legal_text_digital_email_notice() {
 	    }
     }
 
+    /**
+     * Filter to adjust the legal email text for digital products.
+     *
+     * @since 2.0.2
+     *
+     * @param string $text The HTML output.
+     */
 	return apply_filters( 'woocommerce_gzd_legal_digital_email_text', $text );
 }
 
@@ -463,6 +503,13 @@ function wc_gzd_get_legal_text_service_email_notice() {
         }
 	}
 
+    /**
+     * Filter to adjust the legal email text for service products.
+     *
+     * @since 2.0.2
+     *
+     * @param string $text The HTML output.
+     */
 	return apply_filters( 'woocommerce_gzd_legal_service_email_text', $text );
 }
 

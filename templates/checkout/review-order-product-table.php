@@ -7,9 +7,18 @@
  * @version     1.0.0
  */
 
-if ( ! defined( 'ABSPATH' ) )
+if ( ! defined( 'ABSPATH' ) ) {
 	exit;
+}
 
+/**
+ * Before review order product table.
+ *
+ * Fires before rendering the checkout review order product table.
+ * This additional template replaces Woo's default product table within review-order.php.
+ *
+ * @since 1.0.0
+ */
 do_action( 'woocommerce_gzd_review_order_before_cart_contents' );
 
 foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {

@@ -24,7 +24,16 @@ $fields = WC_GZD_Revocation::get_fields();
 		<?php endforeach; ?>
 	<?php endif; ?>
 
-    <?php do_action( 'woocommerce_gzd_after_revocation_form_fields' ); ?>
+    <?php
+    /**
+     * After revocation form fields.
+     *
+     * Executes after outputting revocation form fields.
+     *
+     * @since 1.8.11
+     */
+    do_action( 'woocommerce_gzd_after_revocation_form_fields' );
+    ?>
 
 	<div class="form-row submit-revocation checkout-btn-wrap">
 		<?php wp_nonce_field( 'woocommerce-revocation' ); ?>

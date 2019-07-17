@@ -96,21 +96,28 @@ class WC_Germanized_Meta_Box_Product_Data {
             // Update unit price based on whether the product is on sale or not
             if ( wc_gzd_get_gzd_product( $product )->has_unit() ) {
 
-	            // Let pro version filter prices
+                /**
+                 * Filter to adjust unit price data before saving a product.
+                 *
+                 * @since 1.8.5
+                 *
+                 * @param array      $data The unit price data.
+                 * @param WC_Product $product The product object.
+                 */
 	            $data = apply_filters( 'woocommerce_gzd_save_display_unit_price_data', array(
                     '_unit_price_regular' => wc_gzd_get_gzd_product( $product )->get_unit_regular_price(),
                     '_unit_price_sale'    => wc_gzd_get_gzd_product( $product )->get_unit_sale_price(),
                 ), $product );
 
 	            // Make sure we update automatically calculated prices
-	            update_post_meta( $product->get_id(), '_unit_price_regular', $data[ '_unit_price_regular' ] );
-	            update_post_meta( $product->get_id(), '_unit_price_sale', $data[ '_unit_price_sale' ] );
+	            update_post_meta( $product->get_id(), '_unit_price_regular', $data['_unit_price_regular'] );
+	            update_post_meta( $product->get_id(), '_unit_price_sale', $data['_unit_price_sale'] );
 
 	            // Lets update the display price
 	            if ( $product->is_on_sale() ) {
-		            update_post_meta( $product->get_id(), '_unit_price', $data[ '_unit_price_sale' ] );
+		            update_post_meta( $product->get_id(), '_unit_price', $data['_unit_price_sale'] );
 	            } else {
-		            update_post_meta( $product->get_id(), '_unit_price', $data[ '_unit_price_regular' ] );
+		            update_post_meta( $product->get_id(), '_unit_price', $data['_unit_price_regular'] );
 	            }
             }
         }
@@ -410,6 +417,14 @@ class WC_Germanized_Meta_Box_Product_Data {
 			$data = array_replace_recursive( static::get_default_product_data( $product ), $data );
 		}
 
+        /**
+         * Filter that allows adjusting Germanized product data before saving.
+         *
+         * @since 1.8.5
+         *
+         * @param array      $data Product data to be saved.
+         * @param WC_Product $product The product object.
+         */
 		$data = apply_filters( 'woocommerce_gzd_product_saveable_data', $data, $product );
 
 		$data = wp_parse_args( $data, array(

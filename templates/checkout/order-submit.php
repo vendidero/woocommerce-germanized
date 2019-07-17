@@ -22,7 +22,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 		<?php do_action( 'woocommerce_review_order_before_submit' ); ?>
 
-		<?php do_action( 'woocommerce_gzd_review_order_before_submit' ); ?>
+		<?php
+        /**
+         * Before review order submit button.
+         *
+         * This hooks fires right before outputting the order submit button.
+         *
+         * @since 1.0.0
+         */
+        do_action( 'woocommerce_gzd_review_order_before_submit' );
+        ?>
 
 		<?php echo apply_filters( 'woocommerce_order_button_html', '<button type="submit" class="button alt" name="woocommerce_checkout_place_order" id="place_order" value="' . esc_attr( $order_button_text ) . '" data-value="' . esc_attr( $order_button_text ) . '">' . esc_html( $order_button_text ) . '</button>' ); ?>
 

@@ -22,6 +22,15 @@ class WC_GZD_Privacy {
 	}
 
 	public function erase_order_data( $order ) {
+
+        /**
+         * Filter to adjust personal order data to be anonymized while removing personal data from orders.
+         *
+         * @since 1.9.10
+         *
+         * @param array    $meta_keys Meta keys to be anonymized.
+         * @param WC_Order $order The order object.
+         */
 		$meta_data = apply_filters( 'woocommerce_gzd_privacy_erase_order_personal_metadata', array(
 			'_shipping_parcelshop_post_number' => 'text',
 			'_billing_title'                   => 'text',
@@ -54,6 +63,15 @@ class WC_GZD_Privacy {
 	}
 
 	public function erase_customer_data( $response, $customer ) {
+
+        /**
+         * Filter to adjust personal customer data to be anonymized while removing personal data from customers.
+         *
+         * @since 1.9.10
+         *
+         * @param array       $meta_keys Meta keys to be anonymized.
+         * @param WC_Customer $customer The customer object.
+         */
 		$meta_data = apply_filters( 'woocommerce_gzd_privacy_erase_customer_personal_metadata', array(
 			'shipping_parcelshop_post_number' => __( 'Postnumber', 'woocommerce-germanized' ),
 			'billing_title'                   => __( 'Billing Title', 'woocommerce-germanized' ),
@@ -78,6 +96,15 @@ class WC_GZD_Privacy {
 	}
 
 	public function get_order_data( $data, $order ) {
+
+        /**
+         * Filter to allow exporting personal data added by Germanized to orders.
+         *
+         * @since 1.9.10
+         *
+         * @param array    $meta_keys Keys as well as titles to be exported.
+         * @param WC_Order $order The order object.
+         */
 		$meta_data = apply_filters( 'woocommerce_gzd_privacy_export_order_personal_metadata', array(
 			'_shipping_parcelshop_post_number' => __( 'Postnumber', 'woocommerce-germanized' ),
 			'_direct_debit_holder'             => __( 'Account Holder', 'woocommerce-germanized' ),
@@ -116,6 +143,14 @@ class WC_GZD_Privacy {
 
 	public function get_customer_data( $data, $customer ) {
 
+        /**
+         * Filter to allow exporting personal data added by Germanized to customers.
+         *
+         * @since 1.9.10
+         *
+         * @param array       $meta_keys Keys as well as titles to be exported.
+         * @param WC_Customer $customer The customer object.
+         */
 		$meta_data = apply_filters( 'woocommerce_gzd_privacy_export_customer_personal_metadata', array(
 			'shipping_parcelshop_post_number' => __( 'Postnumber', 'woocommerce-germanized' ),
 			'billing_title'                   => __( 'Billing Title', 'woocommerce-germanized' ),

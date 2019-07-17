@@ -74,12 +74,28 @@ function wc_gzd_check_price_update( $meta_id, $post_id, $meta_key, $meta_value )
 }
 
 function wc_gzd_get_small_business_product_notice() {
+
+    /**
+     * Filter to adjust the small business product notice.
+     *
+     * @since 1.0.0
+     *
+     * @param string $html The notice.
+     */
 	return apply_filters( 'woocommerce_gzd_small_business_product_notice', wc_gzd_get_small_business_notice() );
 }
 
 function wc_gzd_is_revocation_exempt( $product, $type = 'digital' ) {
 	if ( 'digital' === $type && ( $checkbox = wc_gzd_get_legal_checkbox( 'download' ) ) ) {
 
+        /**
+         * Filter to allow adjusting which product types are considered digital types.
+         * Digital product types are used to check whether a possible revocation exempt exists or not.
+         *
+         * @since 1.8.5
+         *
+         * @param array $types The product types.
+         */
 		$types = apply_filters( 'woocommerce_gzd_digital_product_types', $checkbox->types );
 
 		if ( ! $checkbox->is_enabled() ) {
@@ -225,5 +241,14 @@ function wc_gzd_recalculate_unit_price( $args = array(), $product = false ) {
 
     $prices['unit']     = wc_format_decimal( ( $args['price'] / $product_base ) * $base, wc_get_price_decimals() );
 
+    /**
+     * Filter to adjust unit price after a recalculation happened.
+     *
+     * @since 2.3.1
+     *
+     * @param array          $prices The price data.
+     * @param WC_GZD_Product $product The product object.
+     * @param array          $args Additional arguments.
+     */
     return apply_filters( 'woocommerce_gzd_recalculated_unit_prices', $prices, $product, $args );
 }

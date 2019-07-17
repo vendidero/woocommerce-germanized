@@ -32,21 +32,48 @@ class WC_GZD_Taxonomy {
 
 	public function get_term_object( $key, $by = 'slug' ) {
 
-	    do_action( 'woocommerce_gzd_get_term', $key, $by, $this->taxonomy );
+	    $taxonomy = $this->taxonomy;
 
-	    $term = get_term_by( $by, $key, $this->taxonomy );
+        /**
+         * Before retrieving a certain term.
+         *
+         * Executes before retrieving a certain term (e.g. a delivery time).
+         *
+         * @since 1.0.0
+         *
+         * @param string $key The identifier e.g. term slug.
+         * @param string $by Indicates how to identify the term e.g. by slug.
+         * @param string $taxonomy The taxonomy linked to the term e.g. delivery_time.
+         */
+	    do_action( 'woocommerce_gzd_get_term', $key, $by, $taxonomy );
 
-	    if ( ! $term || is_wp_error( $term ) )
+	    $term = get_term_by( $by, $key, $taxonomy );
+
+	    if ( ! $term || is_wp_error( $term ) ) {
 	        $term = false;
+        }
 
-        do_action( 'woocommerce_gzd_after_get_term', $key, $by, $this->taxonomy );
+        /**
+         * After retrieving a certain term.
+         *
+         * Executes after retrieving a certain term (e.g. a delivery time).
+         *
+         * @since 1.0.0
+         *
+         * @param string $key The identifier e.g. term slug.
+         * @param string $by Indicates how to identify the term e.g. by slug.
+         * @param string $taxonomy The taxonomy linked to the term e.g. delivery_time.
+         */
+        do_action( 'woocommerce_gzd_after_get_term', $key, $by, $taxonomy );
 
 	    return $term;
 	}
 
 	public function get_term( $key, $by = 'slug' ) {
-		if ( $term = $this->get_term_object( $key, $by ) ) 
+		if ( $term = $this->get_term_object( $key, $by ) ) {
 			return $term->name;
+        }
+
 		return false;
 	}
 
@@ -60,12 +87,16 @@ class WC_GZD_Taxonomy {
 	 * @return mixed units as array
 	 */
 	public function get_terms() {
-		$list = array();
+		$list  = array();
 		$terms = get_terms( $this->taxonomy, array( 'hide_empty' => false ) );
+
 		if ( ! empty( $terms ) && ! is_wp_error( $terms ) ) {
-			foreach ( $terms as $term )
+
+		    foreach ( $terms as $term ) {
 				$list[ $term->slug ] = $term->name;
+            }
 		}
+
 		return $list;
 	}
 }

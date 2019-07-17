@@ -1,4 +1,7 @@
 <?php
+
+use Ekomi\Request\PutProduct;
+
 if ( ! defined( 'ABSPATH' ) )
 	exit;
 
@@ -147,6 +150,14 @@ class WC_GZD_Ekomi {
 	 	$ekomi_product->setProductName( $this->get_product_name( $product ) );
 	 	$ekomi_product->getOther()->addLinks( $this->get_product_link( $product ), 'html' );
 
+        /**
+         * Filter eKomi product.
+         *
+         * @since 1.0.0
+         *
+         * @param Ekomi\Request\PutProduct $ekomi_product The eKomi product.
+         * @param WC_GZD_Ekomi $ekomi The eKomi instance.
+         */
 	 	$result = $this->api->exec( apply_filters( 'woocommerce_gzd_ekomi_product', $ekomi_product, $this ) );
 	 	
 	 	if ( $result && $result->done ) {
@@ -317,6 +328,16 @@ class WC_GZD_Ekomi {
 						add_comment_meta( $comment_id, 'rating', esc_attr( absint( $result->rating ) ), true );
 						add_comment_meta( $comment_id, 'order_id', esc_attr( absint( $result->order_id ) ), true );
 
+                        /**
+                         * After inserting eKomi review.
+                         *
+                         * Fires after a comment is being added matching a certain eKomi review.
+                         *
+                         * @since 1.0.0
+                         *
+                         * @param int    $comment_id The comment id.
+                         * @param object $result The result object.
+                         */
 						do_action( 'woocommerce_gzd_ekomi_review_comment_inserted', $comment_id, $result );
 					}
 				}

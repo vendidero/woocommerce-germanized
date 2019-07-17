@@ -50,6 +50,14 @@ class WC_GZD_Product_Factory extends WC_Product_Factory {
 		$type      = wc_gzd_get_crud_data( $product, 'product_type' );
 		$classname = 'WC_GZD_Product_' . ucfirst( $type );
 
+        /**
+         * Filter the classname for the Germanized product implementation.
+         *
+         * @since 1.0.0
+         *
+         * @param string $classname The classname.
+         * @param string $type The product type.
+         */
 		$classname = apply_filters( 'woocommerce_gzd_product_classname', $classname, $type );
 
 		if ( class_exists( $classname ) ) {

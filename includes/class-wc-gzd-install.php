@@ -47,6 +47,14 @@ class WC_GZD_Install {
 	public static function check_version() {
 		if ( ! defined( 'IFRAME_REQUEST' ) && ( get_option( 'woocommerce_gzd_version' ) != WC_germanized()->version ) ) {
 			self::install();
+
+            /**
+             * Plugin updated.
+             *
+             * Germanized was updated to a new version.
+             *
+             * @since 1.0.0
+             */
 			do_action( 'woocommerce_gzd_updated' );
 		}
 	}
@@ -205,7 +213,13 @@ class WC_GZD_Install {
 		// Flush rules after install
 		flush_rewrite_rules();
 
-		// Upon install + update
+        /**
+         * Plugin installed.
+         *
+         * Germanized was installed successfully.
+         *
+         * @since 1.0.0
+         */
 		do_action( 'woocommerce_gzd_installed' );
 
 		// Prevent redirect for inline plugin updates
@@ -474,9 +488,17 @@ class WC_GZD_Install {
 	 */
 	public static function create_pages() {
 
-		if ( ! function_exists( 'wc_create_page' ) )
+		if ( ! function_exists( 'wc_create_page' ) ) {
 			include_once( WC()->plugin_path() . '/includes/admin/wc-admin-functions.php' );
+        }
 
+        /**
+         * Filter to add/edit pages to be created on install.
+         *
+         * @since 1.0.0
+         *
+         * @param array $pages Array containing page data.
+         */
 		$pages = apply_filters( 'woocommerce_gzd_create_pages', array(
 			'data_security' => array(
 				'name'    => _x( 'data-security', 'Page slug', 'woocommerce-germanized' ),
@@ -506,7 +528,7 @@ class WC_GZD_Install {
 			'payment_methods' => array(
 				'name'    => _x( 'payment-methods', 'Page slug', 'woocommerce-germanized' ),
 				'title'   => _x( 'Payment Methods', 'Page title', 'woocommerce-germanized' ),
-				'content' => '[' . apply_filters( 'woocommerce_gzd_payment_methods_shortcode_tag', 'payment_methods_info' ) . ']'
+				'content' => '[payment_methods_info]'
 			),
 		) );
 
@@ -531,6 +553,14 @@ class WC_GZD_Install {
 		include_once WC_GERMANIZED_ABSPATH . 'includes/admin/settings/class-wc-gzd-settings-germanized.php';
 
 		$settings = new WC_GZD_Settings_Germanized();
+
+        /**
+         * Filter to adjust default options to be created on install.
+         *
+         * @since 1.0.0
+         *
+         * @param array $settings The settings to be added as wp_option on install.
+         */
 		$options  = apply_filters( 'woocommerce_gzd_installation_default_settings', array_merge( $settings->get_settings(), $settings->get_display_settings(), $settings->get_email_settings() ) );
 
 		$manager  = WC_GZD_Legal_Checkbox_Manager::instance();

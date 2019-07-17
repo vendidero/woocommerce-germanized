@@ -189,6 +189,15 @@ class WC_GZD_Admin_Legal_Checkboxes {
 		$manager->do_register_action();
 
 		$checkbox = $manager->get_checkbox( $checkbox_id );
+
+        /**
+         * Adjust the checkbox within admin edit view.
+         *
+         * @since 2.0.0
+         *
+         * @param WC_GZD_Legal_Checkbox $checkbox The checkbox instance.
+         * @param int                   $checkbox_id The checkbox id.
+         */
 		$checkbox = apply_filters( 'woocommerce_gzd_admin_legal_checkbox', $checkbox, $checkbox_id );
 
 		if ( ! empty( $_POST['save'] ) ) { // WPCS: input var ok, sanitization ok.
@@ -197,11 +206,29 @@ class WC_GZD_Admin_Legal_Checkboxes {
 				echo '<div class="updated error"><p>' . esc_html__( 'Edit failed. Please try again.', 'woocommerce-germanized' ) . '</p></div>';
 			}
 
+            /**
+             * Before saving a legal checkbox.
+             *
+             * This hook fires before a certain legal checkbox saves it's settings.
+             *
+             * @since 2.0.0
+             *
+             * @param WC_GZD_Legal_Checkbox $checkbox The checkbox to be saved.
+             */
 			do_action( 'woocommerce_gzd_before_save_legal_checkbox', $checkbox );
 
 			if ( $checkbox ) {
 				$checkbox->save_fields();
 
+                /**
+                 * After saving a legal checkbox
+                 *
+                 * This hook fires after a certain legal checkbox saves it's settings.
+                 *
+                 * @since 2.0.0
+                 *
+                 * @param WC_GZD_Legal_Checkbox $checkbox The checkbox containing the new settings.
+                 */
 				do_action( 'woocommerce_gzd_after_save_legal_checkbox', $checkbox );
 			}
 		}
@@ -215,6 +242,13 @@ class WC_GZD_Admin_Legal_Checkboxes {
 
 	protected function screen() {
 
+        /**
+         * Before outputting admin checkboxes.
+         *
+         * This hook fires before legal checkboxes admin list view is being output.
+         *
+         * @since 2.0.0
+         */
 		do_action( 'woocommerce_gzd_before_admin_legal_checkboxes' );
 
 		$manager = WC_GZD_Legal_Checkbox_Manager::instance();

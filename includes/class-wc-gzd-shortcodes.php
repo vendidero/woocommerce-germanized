@@ -38,9 +38,15 @@ class WC_GZD_Shortcodes {
 		);
 
 		foreach ( $shortcodes as $shortcode => $function ) {
+            /**
+             * Filter the shortcode tag.
+             *
+             * @since 1.0.0
+             *
+             * @param string $shortcode The shortcode name.
+             */
 			add_shortcode( apply_filters( "gzd_{$shortcode}_shortcode_tag", $shortcode ), $function );
 		}
-
 	}
 
 	protected static function get_gzd_product_shortcode( $atts, $function_name = '' ) {
@@ -70,22 +76,62 @@ class WC_GZD_Shortcodes {
 	}
 
 	public static function gzd_product_unit_price( $atts ) {
+        /**
+         * Filter shortcode product unit price output.
+         *
+         * @since 2.0.0
+         *
+         * @param string $html The output.
+         * @param array  $atts The shortcode arguments.
+         */
 		return apply_filters( 'woocommerce_gzd_shortcode_product_unit_price_html', self::get_gzd_product_shortcode( $atts, 'woocommerce_gzd_template_single_price_unit' ), $atts );
 	}
 
 	public static function gzd_product_units( $atts ) {
+        /**
+         * Filter shortcode product unit output.
+         *
+         * @since 2.0.0
+         *
+         * @param string $html The output.
+         * @param array  $atts The shortcode arguments.
+         */
 		return apply_filters( 'woocommerce_gzd_shortcode_product_units_html', self::get_gzd_product_shortcode( $atts, 'woocommerce_gzd_template_single_product_units' ), $atts );
 	}
 
 	public static function gzd_product_delivery_time( $atts ) {
+        /**
+         * Filter shortcode product delivery time output.
+         *
+         * @since 2.0.0
+         *
+         * @param string $html The output.
+         * @param array  $atts The shortcode arguments.
+         */
 		return apply_filters( 'woocommerce_gzd_shortcode_product_delivery_time_html', self::get_gzd_product_shortcode( $atts, 'woocommerce_gzd_template_single_delivery_time_info' ), $atts );
 	}
 
 	public static function gzd_product_tax_notice( $atts ) {
+        /**
+         * Filter shortcode product tax notice output.
+         *
+         * @since 2.0.0
+         *
+         * @param string $html The output.
+         * @param array  $atts The shortcode arguments.
+         */
 		return apply_filters( 'woocommerce_gzd_shortcode_product_tax_notice_html', self::get_gzd_product_shortcode( $atts, 'woocommerce_gzd_template_single_tax_info' ), $atts );
 	}
 
 	public static function gzd_product_shipping_notice( $atts ) {
+        /**
+         * Filter shortcode product shipping notice output.
+         *
+         * @since 2.0.0
+         *
+         * @param string $html The output.
+         * @param array  $atts The shortcode arguments.
+         */
 		return apply_filters( 'woocommerce_gzd_shortcode_product_shipping_notice_html', self::get_gzd_product_shortcode( $atts, 'woocommerce_gzd_template_single_shipping_costs_info' ), $atts );
 	}
 

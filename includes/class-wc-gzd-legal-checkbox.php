@@ -266,8 +266,18 @@ class WC_GZD_Legal_Checkbox {
 		} else {
 			$label = $this->settings['label'];
 			$label = wc_gzd_replace_label_shortcodes( $label, $this->get_label_args() );
+			$id    = $this->get_id();
 
-			return apply_filters( "woocommerce_gzd_legal_checkbox_{$this->get_id()}_label", $label, $this );
+            /**
+             * Filter the label for a legal checkbox.
+             * `$id` equals the checkbox id.
+             *
+             * @since 2.0.0
+             *
+             * @param string                $label The HTML label.
+             * @param WC_GZD_Legal_Checkbox $checkbox The checkbox instance.
+             */
+			return apply_filters( "woocommerce_gzd_legal_checkbox_{$id}_label", $label, $this );
 		}
 	}
 
@@ -306,9 +316,19 @@ class WC_GZD_Legal_Checkbox {
 			return $this->settings['error_message'];
 		} else {
 			$error_text = $this->settings['error_message'];
-			$error_text = wc_gzd_replace_label_shortcodes( $error_text, $this->get_label_args()  );
+			$error_text = wc_gzd_replace_label_shortcodes( $error_text, $this->get_label_args() );
+			$id         = $this->get_id();
 
-			return apply_filters( "woocommerce_gzd_legal_checkbox_{$this->get_id()}_error_text", $error_text, $this );
+            /**
+             * Filter the error message for a legal checkbox.
+             * `$id` equals the checkbox id.
+             *
+             * @since 2.0.0
+             *
+             * @param string                $error_text The error message.
+             * @param WC_GZD_Legal_Checkbox $checkbox The checkbox instance.
+             */
+			return apply_filters( "woocommerce_gzd_legal_checkbox_{$id}_error_text", $error_text, $this );
 		}
 	}
 
@@ -608,10 +628,21 @@ class WC_GZD_Legal_Checkbox {
 	 */
 	public function validate( $value = '', $location = 'checkout' ) {
 		$value = wc_clean( $value );
+		$id    = $this->get_id();
 
 		if ( $this->is_validateable() && $this->is_mandatory() ) {
-			if ( has_action( "woocommerce_gzd_legal_checkbox_{$location}_{$this->get_id()}_validate" ) ) {
-				return apply_filters( "woocommerce_gzd_legal_checkbox_{$location}_{$this->get_id()}_validate", true, $this );
+			if ( has_filter( "woocommerce_gzd_legal_checkbox_{$location}_{$id}_validate" ) ) {
+
+                /**
+                 * Filter whether a certain checkbox `$id` shall be validated for a certain
+                 * location `$location`.
+                 *
+                 * @since 2.0.0
+                 *
+                 * @param bool                  $validate Whether to validate the checkbox or not.
+                 * @param WC_GZD_Legal_Checkbox $checkbox The checkbox instance.
+                 */
+			    return apply_filters( "woocommerce_gzd_legal_checkbox_{$location}_{$id}_validate", true, $this );
 			} elseif ( empty( $value ) ) {
 				return false;
 			}
@@ -702,6 +733,14 @@ class WC_GZD_Legal_Checkbox {
 			$supporting_locations[ $location ] = $locations[ $location ];
 		}
 
+        /**
+         * Filters legal checkbox settings before titles.
+         *
+         * @since 2.0.0
+         *
+         * @param array                 $settings Array containing settings.
+         * @param WC_GZD_Legal_Checkbox $checkbox The checkbox instance.
+         */
 		$options = apply_filters( "woocommerce_gzd_legal_checkbox_fields_before_titles", array(
 
 			array(
@@ -788,12 +827,29 @@ class WC_GZD_Legal_Checkbox {
 
 		), $this );
 
-		// ID based filter
-		$options = apply_filters( "woocommerce_gzd_legal_checkbox_{$this->get_id()}_fields_before_titles", $options, $this );
+		$id = $this->get_id();
+
+        /**
+         * Filters legal checkbox settings for `$id` before titles.
+         *
+         * @since 2.0.0
+         *
+         * @param array                 $settings Array containing settings.
+         * @param WC_GZD_Legal_Checkbox $checkbox The checkbox instance.
+         */
+		$options = apply_filters( "woocommerce_gzd_legal_checkbox_{$id}_fields_before_titles", $options, $this );
 
 		array_unshift( $options, array( 'title' => '', 'type' => 'title', 'id' => "checkbox_options" ) );
 		array_push( $options, array( 'type' => 'sectionend', 'id' => 'checkbox_options' ) );
 
+        /**
+         * Filters legal checkbox settings.
+         *
+         * @since 2.0.0
+         *
+         * @param array                 $settings Array containing settings.
+         * @param WC_GZD_Legal_Checkbox $checkbox The checkbox instance.
+         */
 		return apply_filters( "woocommerce_gzd_legal_checkbox_fields", $options, $this );
 	}
 

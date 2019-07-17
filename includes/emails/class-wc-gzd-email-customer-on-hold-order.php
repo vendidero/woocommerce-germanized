@@ -32,6 +32,15 @@ if ( ! class_exists( 'WC_GZD_Email_Customer_On_Hold_Order' ) ) :
 		}
 
 		public function trigger( $order_id, $order = false ) {
+
+            /**
+             * Filter that allows re-enabling the on-hold order email which is by default
+             * replaced by the processing email used as order confirmation.
+             *
+             * @since 1.0.0
+             *
+             * @param bool $disable Whether to disable the on-hold email or not.
+             */
 			if ( apply_filters( 'woocommerce_gzd_disable_on_hold_email', true ) ) {
 				return;
 			}

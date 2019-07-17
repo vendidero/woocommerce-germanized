@@ -53,15 +53,6 @@ class WC_GZD_REST_Product_Units_V1_Controller extends WC_REST_Terms_Controller {
 
 		$response->add_links( $this->prepare_links( $item, $request ) );
 
-		/**
-		 * Filter a term item returned from the API.
-		 *
-		 * Allows modification of the term data right before it is returned.
-		 *
-		 * @param \WP_REST_Response  $response  The response object.
-		 * @param object            $item      The original term object.
-		 * @param \WP_REST_Request   $request   Request used to generate the response.
-		 */
 		return apply_filters( "woocommerce_rest_prepare_{$this->taxonomy}", $response, $item, $request );
 	}
 

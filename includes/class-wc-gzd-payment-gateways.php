@@ -74,6 +74,15 @@ class WC_GZD_Payment_Gateways {
 	}
 
 	public function gateway_supports_fees( $id ) {
+        /**
+         * Filter to adjust gateways supporting fees.
+         *
+         * By default only the Cash on delivery gateway supports the Germanized payment gateway fee feature.
+         *
+         * @since 2.0.0
+         *
+         * @param array[string] $gateway Array of gateway ids.
+         */
 		return in_array( $id, apply_filters( 'woocommerce_gzd_fee_supporting_gateways', array( 'cod' ) ) ) ? true : false;
 	}
 
@@ -85,8 +94,21 @@ class WC_GZD_Payment_Gateways {
 
 			$this->maybe_set_gateway_data( $gateway );
 
-			if ( ! isset( $gateway->force_order_button_text ) || $gateway->force_order_button_text )
+			if ( ! isset( $gateway->force_order_button_text ) || $gateway->force_order_button_text ) {
+
+                /**
+                 * Filter to adjust the forced order submit button text per gateway.
+                 * By default Woo allows gateways to adjust the submit button text.
+                 * This behaviour does not comply with the button solution - that is why Germanized adds the
+                 * option-based static text by default.
+                 *
+                 * @since 1.0.0
+                 *
+                 * @param string $button_text The static button text from within the options.
+                 * @param string $gateway_id The gateway id.
+                 */
 				$gateway->order_button_text = apply_filters( 'woocommerce_gzd_order_button_payment_gateway_text', __( get_option( 'woocommerce_gzd_order_submit_btn_text' ), 'woocommerce-germanized' ), $gateway->id );
+            }
 			
 			if ( $this->gateway_supports_fees( $gateway->id ) && $gateway->get_option( 'fee' ) ) {
 
@@ -94,9 +116,18 @@ class WC_GZD_Payment_Gateways {
 
 				$desc = sprintf( __( '%s payment charge', 'woocommerce-germanized' ), wc_price( $gateway->get_option( 'fee' ) ) ) . '.';
 				
-				if ( $gateway->get_option( 'forwarding_fee' ) )
-					$desc .= ' ' . sprintf( __( 'Plus %s forwarding fee (charged by the transport agent)', 'woocommerce-germanized' ), wc_price( $gateway->get_option( 'forwarding_fee' ) ) ) . '.';
+				if ( $gateway->get_option( 'forwarding_fee' ) ) {
+				    $desc .= ' ' . sprintf( __( 'Plus %s forwarding fee (charged by the transport agent)', 'woocommerce-germanized' ), wc_price( $gateway->get_option( 'forwarding_fee' ) ) ) . '.';
+                }
 
+                /**
+                 * Filters the gateway description in case gateway fees have been added.
+                 *
+                 * @since 1.0.0
+                 *
+                 * @param string             $html The description.
+                 * @param WC_Payment_Gateway $gateway The gateway instance.
+                 */
 				$gateway_description .= apply_filters( 'woocommerce_gzd_payment_gateway_description', ' ' . $desc, $gateway );
 
 				$gateway->description = $gateway_description;

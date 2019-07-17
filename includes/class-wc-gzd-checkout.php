@@ -153,11 +153,32 @@ class WC_GZD_Checkout {
 
 			update_post_meta( $order_id, '_parcel_delivery_opted_in', $selected ? 'yes' : 'no' );
 
+            /**
+             * Parcel delivery notification.
+             *
+             * Execute whenever the parcel delivery notification data is stored for a certain order.
+             *
+             * @since 1.7.2
+             *
+             * @param int  $order_id The order id.
+             * @param bool $selected True if the checkbox was checked. False otherwise.
+             */
 			do_action( 'woocommerce_gzd_parcel_delivery_order_opted_in', $order_id, $selected );
 		}
 	}
 
 	public function set_payment_url_to_force_payment( $url, $order ) {
+
+        /**
+         * Filter to optionally disable forced pay order redirection.
+         * If forced pay order is enabled Germanized auto submits the pay order form with the
+         * previously selected payment method to allow redirecting the customer to the payment provider.
+         *
+         * @since 1.9.10
+         *
+         * @param bool     $enable Set to `false` to disable forced redirection.
+         * @param WC_Order $order The order instance.
+         */
 		if ( strpos( $url, 'pay_for_order' ) !== false && apply_filters( 'woocommerce_gzd_enable_force_pay_order', true, $order ) ) {
 			$url = add_query_arg( array( 'force_pay_order' => true ), $url );
 		}
@@ -184,9 +205,11 @@ class WC_GZD_Checkout {
 			// Check if gateway is available - otherwise don't force redirect - would lead to errors in pay_action
 			$gateways = WC()->payment_gateways->get_available_payment_gateways();
 
-			if ( ! isset( $gateways[ wc_gzd_get_crud_data( $order, 'payment_method' ) ] ) )
+			if ( ! isset( $gateways[ wc_gzd_get_crud_data( $order, 'payment_method' ) ] ) ) {
 				return;
+            }
 
+			/** This filter is documented in includes/class-wc-gzd-checkout.php */
 			if ( apply_filters( 'woocommerce_gzd_enable_force_pay_order', true, $order ) ) {
 				add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_force_pay_script' ), 20 );
 				add_action( 'woocommerce_after_pay_action', array( $this, 'maybe_disable_force_pay_script' ), 20 );
@@ -293,9 +316,39 @@ class WC_GZD_Checkout {
 			$enabled = false;
 		}
 
+        /**
+         * Filters whether to show the pay now button for a certain order.
+         *
+         * ```php
+         * function ex_show_order_button( $show, $order_id ) {
+         *      if ( $order = wc_get_order( $order_id ) {
+         *          // Check the order and decide whether to enable or disable button
+         *          return false;
+         *      }
+         *
+         *      return $show;
+         * }
+         * add_filter( 'woocommerce_gzd_show_order_pay_now_button', 'ex_show_order_button', 10, 2 );
+         * ```
+         *
+         * @since 1.9.10
+         *
+         * @param bool $enabled Whether to enable the button or not.
+         * @param int  $order_id The order id.
+         */
 		if ( apply_filters( 'woocommerce_gzd_show_order_pay_now_button', $enabled, $order_id ) ) {
 			$url = $order->get_checkout_payment_url();
 
+            /**
+             * Filter whether to add the `force_pay_order` parameter to the URL to allow
+             * automatically redirecting the customer to the chosen payment provider after
+             * clicking the link.
+             *
+             * @since 1.9.10
+             *
+             * @param bool $enable Set to `false` to disable.
+             * @param int  $order_id The order id.
+             */
 			if ( apply_filters( 'woocommerce_gzd_add_force_pay_order_parameter', true, $order_id ) ) {
 				$url = add_query_arg( array( 'force_pay_order' => true ), $url );
 			}
@@ -362,6 +415,17 @@ class WC_GZD_Checkout {
 		if ( $search && isset( $matches[1] ) ) {
 			$order_id = absint( $matches[1] );
 			$order    = wc_get_order( $order_id );
+
+            /**
+             * Filter the order cancellation URL replacement when customer
+             * order cancellation was disabled in the Germanized settings.
+             * Defaults to the order-received page.
+             *
+             * @since 1.0.0
+             *
+             * @param string   $url The return url.
+             * @param WC_Order $order The order object.
+             */
 			$return   = apply_filters( 'woocommerce_gzd_attempt_order_cancellation_url', add_query_arg( array( 'retry' => true ), $order->get_checkout_order_received_url(), $order ) );
 		}
 
@@ -369,12 +433,12 @@ class WC_GZD_Checkout {
 	}
 
 	public function init_fields() {
-		if ( get_option( 'woocommerce_gzd_checkout_address_field' ) == 'yes' ) {
+		if ( 'yes' === get_option( 'woocommerce_gzd_checkout_address_field' ) ) {
 			$this->custom_fields['title'] = array(
 				'type' 	   => 'select',
 				'required' => false,
 				'label'    => __( 'Title', 'woocommerce-germanized' ),
-				'options'  => apply_filters( 'woocommerce_gzd_title_options', array( 1 => __( 'Mr.', 'woocommerce-germanized' ), 2 => __( 'Ms.', 'woocommerce-germanized' ) ) ),
+				'options'  => wc_gzd_get_customer_title_options(),
 				'before'   => 'first_name',
 				'group'    => array( 'billing', 'shipping' ),
 				'priority' => 0,
@@ -383,7 +447,7 @@ class WC_GZD_Checkout {
 			$this->custom_fields_admin['title'] = array(
 				'before'   => 'first_name',
 				'type'     => 'select',
-				'options'  => apply_filters( 'woocommerce_gzd_title_options', array( 1 => __( 'Mr.', 'woocommerce-germanized' ), 2 => __( 'Ms.', 'woocommerce-germanized' ) ) ),
+				'options'  => wc_gzd_get_customer_title_options(),
 				'label'    => __( 'Title', 'woocommerce-germanized' ),
 				'show'     => false,
 				'priority' => 0,
@@ -399,19 +463,38 @@ class WC_GZD_Checkout {
 			);
 		}
 
+        /**
+         * Filter to adjust custom checkout-related admin fields.
+         *
+         * This filter may be used to output certain checkout fields within admin order screen.
+         *
+         * @since 1.0.0
+         *
+         * @param array           $custom_fields Array of fields.
+         * @param WC_GZD_Checkout $checkout The checkout instance.
+         */
 		$this->custom_fields_admin = apply_filters( 'woocommerce_gzd_custom_checkout_admin_fields', $this->custom_fields_admin, $this );
+
+        /**
+         * Filter to adjust custom checkout-related frontend fields.
+         *
+         * This filter may be used to output certain checkout fields within the checkout.
+         *
+         * @since 1.0.0
+         *
+         * @param array           $custom_fields Array of fields.
+         * @param WC_GZD_Checkout $checkout The checkout instance.
+         */
 		$this->custom_fields       = apply_filters( 'woocommerce_gzd_custom_checkout_fields', $this->custom_fields, $this );
 	}
 
 	public function set_title_field_mapping_editors( $val ) {
+	    $titles = array_flip( wc_gzd_get_customer_title_options() );
+		$values = $titles;
 
-		$values = array(
-			__( 'Mr.', 'woocommerce-germanized' ) => 1,
-			__( 'Ms.', 'woocommerce-germanized' ) => 2,
-		);
-
-		if ( isset( $values[ $val ] ) )
+		if ( isset( $values[ $val ] ) ) {
 			return $values[ $val ];
+        }
 
 		return $val;
 	}
@@ -423,11 +506,13 @@ class WC_GZD_Checkout {
 	 */
 	public function do_fee_tax_calculation( $cart ) {
 
-		if ( 'yes' !== get_option( 'woocommerce_gzd_fee_tax' ) )
+		if ( 'yes' !== get_option( 'woocommerce_gzd_fee_tax' ) ) {
 			return;
+        }
 
-		if ( ! method_exists( $cart, 'set_fee_taxes' ) )
+		if ( ! method_exists( $cart, 'set_fee_taxes' ) ) {
 			return;
+        }
 
 		$calculate_taxes = wc_tax_enabled() && ! WC()->customer->is_vat_exempt();
 
@@ -607,11 +692,33 @@ class WC_GZD_Checkout {
 			$product = $item->get_product();
 			$gzd_product = wc_gzd_get_gzd_product( $product );
 
+            /**
+             * Add order item meta.
+             *
+             * Fires when Germanized adds order item meta.
+             *
+             * @since 1.8.9
+             *
+             * @param WC_Order_Item  $item The order item.
+             * @param WC_Order       $order The order.
+             * @param WC_GZD_Product $gzd_product The product object.
+             */
 			do_action( 'woocommerce_gzd_add_order_item_meta', $item, $order, $gzd_product );
 
 			$item = wc_gzd_set_crud_meta_data( $item, '_units', $gzd_product->get_product_units_html() );
 			$item = wc_gzd_set_crud_meta_data( $item, '_delivery_time', $gzd_product->get_delivery_time_html() );
 			$item = wc_gzd_set_crud_meta_data( $item, '_item_desc', $gzd_product->get_mini_desc() );
+
+            /**
+             * Filter that allow adjusting the order item unit price.
+             *
+             * @since 1.8.9
+             *
+             * @param string         $price The unit price HTML.
+             * @param WC_GZD_Product $gzd_product The product instance.
+             * @param WC_Order_Item  $item The order item instance.
+             * @param WC_Order       $order The order instance.
+             */
 			$item = wc_gzd_set_crud_meta_data( $item, '_unit_price', apply_filters( 'woocommerce_gzd_order_item_unit_price', $gzd_product->get_unit_html( false ), $gzd_product, $item, $order ) );
 		}
 	}
@@ -766,6 +873,15 @@ class WC_GZD_Checkout {
 						}
 
 						if ( ! empty( $val ) ) {
+
+                            /**
+                             * Filter the value for a custom checkout field before saving.
+                             * `$key` corresponds to the field id e.g. title.
+                             *
+                             * @since 1.0.0
+                             *
+                             * @param mixed $value The field value.
+                             */
 							update_post_meta( $order_id, '_' . $group . '_' . $key, apply_filters( 'woocommerce_gzd_custom_' . $key . '_field_value', sanitize_text_field( $val ) ) );
 						}
 					}

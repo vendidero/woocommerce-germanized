@@ -21,6 +21,14 @@ class WC_GZD_Gateway_Invoice extends WC_Payment_Gateway {
      */
 	public function __construct() {
 		$this->id                 = 'invoice';
+
+        /**
+         * Filter to allow adding an icon to the invoice gateway.
+         *
+         * @since 1.8.5
+         *
+         * @param string $icon_url The icon URL.
+         */
 		$this->icon               = apply_filters( 'woocommerce_gzd_invoice_icon', '' );
 		$this->has_fields         = true;
 		$this->method_title       = __( 'Pay by Invoice', 'woocommerce-germanized' );

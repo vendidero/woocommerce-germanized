@@ -30,6 +30,16 @@ class WC_GZD_Cache_Helper {
 			call_user_func( 'w3tc_' . $type . 'cache_flush' );
 		}
 
+        /**
+         * Flush cache action.
+         *
+         * Trigger the flush cache action to indicate that Germanized wants to flush the cache.
+         *
+         * @since 1.0.0
+         *
+         * @param string $type Cache type e.g. db.
+         * @param array  $cache_args Additional arguments.
+         */
 		do_action( 'woocommerce_gzd_maybe_flush_cache', $type, $cache_args );
 	}
 }

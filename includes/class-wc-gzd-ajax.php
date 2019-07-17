@@ -80,12 +80,19 @@ class WC_GZD_AJAX {
 				continue;
 			}
 
-			$checkbox_data = array_intersect_key(
-				$data, apply_filters( 'woocommerce_gzd_legal_checkboxes_option_keys', array(
-					'id'        => '',
-					'priority'  => 1,
-				) )
-			);
+            /**
+             * Filters legal checkbox default option keys.
+             *
+             * @since 2.0.0
+             *
+             * @param array $args Option keys.
+             */
+			$keys = apply_filters( 'woocommerce_gzd_legal_checkboxes_option_keys', array(
+                'id'        => '',
+                'priority'  => 1,
+            ) );
+
+			$checkbox_data = array_intersect_key( $data, $keys );
 
 			if ( ! isset( $options[ $id ] ) || ! is_array( $options[ $id ] ) ) {
 				$options[ $id ] = array();

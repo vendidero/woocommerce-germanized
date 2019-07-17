@@ -37,6 +37,13 @@ abstract class WC_GZD_Elementor_Widget extends ElementorPro\Modules\Woocommerce\
             ]
         );
 
+        /**
+         * Filter that allows to disable showing an upgrade notice for Germanized Elementor widgets.
+         *
+         * @since 2.0.0
+         *
+         * @param bool $disable Whether to disable the upgrade notice or not.
+         */
         if ( apply_filters( 'woocommerce_gzd_show_elementor_upgrade_notice', true ) ) {
             $this->add_responsive_control(
                 'upgrade',
@@ -48,12 +55,26 @@ abstract class WC_GZD_Elementor_Widget extends ElementorPro\Modules\Woocommerce\
             );
         }
 
-        do_action( "woocommerce_gzd_elementor_widget_{$this->get_postfix()}_controls", $this, Controls_Manager::class );
+        $class_name = Controls_Manager::class;
+
+        /**
+         * Elementor Widget Controls.
+         *
+         * Fires after Germanized has added Elementor widget controls.
+         *
+         * @since 2.0.0
+         *
+         * @param WC_GZD_Elementor_Widget $this The actual widget.
+         * @param Elementor\Controls_Manager $class_name The controls manager class.
+         */
+        do_action( "woocommerce_gzd_elementor_widget_{$this->get_postfix()}_controls", $this, $class_name );
 
         $this->end_controls_section();
     }
 
     protected function get_title_prefix() {
+
+        /** This filter is documented in includes/compatibility/elementor/widgets/abstract-class-wc-gzd-elementor-widget.php */
         if ( ! apply_filters( 'woocommerce_gzd_show_elementor_upgrade_notice', true ) ) {
             return '';
         }
@@ -68,6 +89,16 @@ abstract class WC_GZD_Elementor_Widget extends ElementorPro\Modules\Woocommerce\
             return '';
         }
 
+        /**
+         * Render an Elementor widget.
+         *
+         * Render a certain Germanized Elementor widget in the frontend.
+         *
+         * @since 2.0.0
+         *
+         * @param WC_Product              $product The product object.
+         * @param WC_GZD_Elementor_Widget $this The widget instance.
+         */
         do_action( "woocommerce_gzd_elementor_widget_{$this->get_postfix()}_render", $product, $this );
     }
 

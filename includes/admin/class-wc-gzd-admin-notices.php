@@ -55,6 +55,13 @@ class WC_GZD_Admin_Notices {
 			$enabled = false;
 		}
 
+        /**
+         * Filter to enable or disable admin notices in WP-Admin.
+         *
+         * @since 1.8.5
+         *
+         * @param bool $enabled Whether notices are enabled or disabled.
+         */
 		return apply_filters( 'woocommerce_gzd_enable_notices', $enabled );
 	}
 

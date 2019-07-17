@@ -84,6 +84,14 @@ class WC_GZD_Compatibility_Wpml_String_Translation extends WC_GZD_Compatibility 
      * @return array
      */
     public function get_translatable_options() {
+
+        /**
+         * Filter that return WPML translatable string options.
+         *
+         * @since 2.0.0
+         *
+         * @param array $strings Array containing the option_name as key.
+         */
         return apply_filters( 'woocommerce_gzd_wpml_translatable_options', array(
             'woocommerce_gzd_small_enterprise_text'               => '',
             'woocommerce_gzd_differential_taxation_notice_text'   => '',
@@ -111,13 +119,17 @@ class WC_GZD_Compatibility_Wpml_String_Translation extends WC_GZD_Compatibility 
         ) );
     }
 
-    /**
-     * By default WPML allow only certain strings to be translated within the administration area (e.g. blog title).
-     * If you want some translatable strings to be loaded globally within the admin panel use the filter accordingly.
-     *
-     * @return array
-     */
     public function get_translatable_admin_options() {
+        /**
+         * Filter to add further WPML translatable admin options.
+         *
+         * By default WPML allow only certain strings to be translated within the administration area (e.g. blog title).
+         * If you want some translatable strings to be loaded globally within the admin panel use the filter accordingly.
+         *
+         * @since 2.0.0
+         *
+         * @param array $strings Array containing admin strings.
+         */
         return apply_filters( 'woocommerce_gzd_wpml_translatable_admin_options', array() );
     }
 
@@ -193,6 +205,13 @@ class WC_GZD_Compatibility_Wpml_String_Translation extends WC_GZD_Compatibility 
             $enable = true;
         }
 
+        /**
+         * Filter that allows enabling WPML translation string filters.
+         *
+         * @since 2.0.0
+         *
+         * @param bool $enable Whether to enable filters or not.
+         */
         return apply_filters( 'woocommerce_gzd_enable_wpml_string_translation_settings_filters', $enable );
     }
 
@@ -414,6 +433,20 @@ class WC_GZD_Compatibility_Wpml_String_Translation extends WC_GZD_Compatibility 
                  * Remove translation if it equals original string
                  * Use woocommerce_gzd_wpml_remove_translation_empty_equal filter to disallow string deletion which results in "real" option translations
                  */
+
+                /**
+                 * Filter that allows to disable deleting empty strings or strings that equal their parent value.
+                 *
+                 * This filter is used by our Trusted Shops integration to allow "real" option translation e.g. to allow
+                 * one option to be set for a specific language only.
+                 *
+                 * @since 2.0.0
+                 *
+                 * @param bool   $enable Whether to enable deletion or not.
+                 * @param string $option The option name.
+                 * @param string $new_value The new value.
+                 * @param string $old_value The old value.
+                 */
                 if ( ( $org_string === $new_value || empty( $new_value ) ) && apply_filters( 'woocommerce_gzd_wpml_remove_translation_empty_equal', true, $option, $new_value, $old_value ) ) {
                     $this->delete_string_translation( $org_string_id, $this->get_current_language() );
 
@@ -427,7 +460,6 @@ class WC_GZD_Compatibility_Wpml_String_Translation extends WC_GZD_Compatibility 
             }
         }
 
-        // Allow WPML to delete the cache
         do_action( "update_option_{$option}", $old_value, $return_value, $option );
 
         return $return_value;
