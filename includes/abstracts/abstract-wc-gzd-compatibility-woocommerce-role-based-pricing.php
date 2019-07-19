@@ -26,14 +26,14 @@ abstract class WC_GZD_Compatibility_Woocommerce_Role_Based_Pricing extends WC_GZ
 
 		$this->adjust_cart_hooks();
 
-		/**
+        /**
          * Make sure to re-adjust cart hooks after mini cart content - otherwise duplicate entries show up as
          * Germanized adds hooks on `woocommerce_before_mini_cart_contents`.
          */
-		add_action( 'woocommerce_before_mini_cart_contents', array( $this, 'adjust_cart_hooks' ), 40 );
+        add_action( 'woocommerce_before_mini_cart_contents', array( $this, 'adjust_cart_hooks' ), 40 );
 	}
 
-	public function adjust_cart_hooks() {
+    public function adjust_cart_hooks() {
         // Filter seems to be removed due to low priority
         remove_filter( 'woocommerce_cart_item_price', 'wc_gzd_cart_product_unit_price', wc_gzd_get_hook_priority( 'cart_product_unit_price' ) );
         remove_filter( 'woocommerce_cart_item_subtotal', 'wc_gzd_cart_product_unit_price', wc_gzd_get_hook_priority( 'cart_subtotal_unit_price' ) );
