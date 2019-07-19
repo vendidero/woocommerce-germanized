@@ -464,6 +464,15 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 				'default'	=> __( 'Delivery time: {delivery_time}', 'woocommerce-germanized' ),
 			),
 
+            array(
+                'title' 	=> __( 'Digital Delivery Time Text', 'woocommerce-germanized' ),
+                'id' 		=> 'woocommerce_gzd_display_digital_delivery_time_text',
+                'default'	=> '',
+                'type' 		=> 'text',
+                'desc_tip'	=> __( 'Enter a text which will be shown as digital delivery time text (replacement for default digital time on digital products).', 'woocommerce-germanized' ),
+                'css' 		=> 'min-width:300px;',
+            ),
+
 			array( 'type' => 'sectionend', 'id' => 'delivery_times_options' ),
 
 			array( 'title' => __( 'Sale Price Labels', 'woocommerce-germanized' ), 'type' => 'title', 'desc' => '', 'id' => 'sale_price_labels_options' ),
@@ -844,15 +853,6 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 				'default'	=> __( 'Details', 'woocommerce-germanized' ),
 				'type' 		=> 'text',
 				'desc_tip'	=> __( 'If you have chosen to link to product details page instead of add to cart URL you may want to change the button text.', 'woocommerce-germanized' ),
-				'css' 		=> 'min-width:300px;',
-			),
-
-			array(
-				'title' 	=> __( 'Digital Delivery Time Text', 'woocommerce-germanized' ),
-				'id' 		=> 'woocommerce_gzd_display_digital_delivery_time_text',
-				'default'	=> '',
-				'type' 		=> 'text',
-				'desc_tip'	=> __( 'Enter a text which will be shown as digital delivery time text (replacement for default digital time on digital products).', 'woocommerce-germanized' ),
 				'css' 		=> 'min-width:300px;',
 			),
 

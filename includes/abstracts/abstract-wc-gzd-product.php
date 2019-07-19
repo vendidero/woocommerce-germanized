@@ -145,6 +145,8 @@ class WC_GZD_Product {
          * Executes whenever the unit price is recalculated.
          *
          * @since 1.9.1
+         *
+         * @param WC_GZD_Product $product The product object.
          */
 		do_action( 'woocommerce_gzd_recalculated_unit_price', $this );
 	}

@@ -527,10 +527,11 @@ if ( ! function_exists( 'woocommerce_gzd_template_sale_price_label_html' ) ) {
 
 	function woocommerce_gzd_template_sale_price_label_html( $price, $product ) {
 
-		if ( ! is_product() && get_option( 'woocommerce_gzd_display_listings_sale_price_labels' ) === 'no' )
+		if ( ! is_product() && get_option( 'woocommerce_gzd_display_listings_sale_price_labels' ) === 'no' ) {
 			return $price;
-		elseif ( is_product() && get_option( 'woocommerce_gzd_display_product_detail_sale_price_labels' ) === 'no' )
+        } elseif ( is_product() && get_option( 'woocommerce_gzd_display_product_detail_sale_price_labels' ) === 'no' ) {
 			return $price;
+        }
 
 		return wc_gzd_get_gzd_product( $product )->add_labels_to_price_html( $price );
 	}
