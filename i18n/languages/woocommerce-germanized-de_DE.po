@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: WooCommerce Germanized\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-07-12 15:15+0200\n"
-"PO-Revision-Date: 2019-07-19 10:27+0200\n"
+"PO-Revision-Date: 2019-07-22 15:31+0200\n"
 "Last-Translator: holzhannes <holzhannes@posteo.de>\n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -110,13 +110,13 @@ msgstr "exkl. MwSt."
 #: includes/wc-gzd-core-functions.php:282 woocommerce-germanized.php:942
 #, php-format
 msgid "incl. %s%% VAT"
-msgstr "inkl. %s%% MwSt."
+msgstr "inkl. %s %% MwSt."
 
 # @ woocommerce-germanized
 #: includes/abstracts/abstract-wc-gzd-product.php:355
 #, php-format
 msgid "excl. %s%% VAT"
-msgstr "exkl. %s%% MwSt."
+msgstr "exkl. %s %% MwSt."
 
 # @ woocommerce-germanized
 #: includes/admin/class-wc-gzd-admin-customer.php:47
