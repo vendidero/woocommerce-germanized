@@ -213,7 +213,7 @@ class WC_GZD_Product_Grouped extends WC_GZD_Product {
      * @return string
      */
     public function get_unit_html( $show_sale = true ) {
-	$price = '';
+	    $price = '';
 
         if ( $this->has_unit() ) {
 
