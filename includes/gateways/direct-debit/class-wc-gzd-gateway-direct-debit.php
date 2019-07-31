@@ -1186,17 +1186,23 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 
 		global $wp_version;
 
-		if ( version_compare( phpversion(), '5.4', '<' ) )
+		if ( version_compare( phpversion(), '5.4', '<' ) ) {
 			return false;
-		if ( ! extension_loaded( 'openssl' ) )
+        }
+
+		if ( ! extension_loaded( 'openssl' ) ) {
 			return false;
-		if ( version_compare( $wp_version, '4.4', '<' ) )
+        }
+
+		if ( version_compare( $wp_version, '4.4', '<' ) ) {
 			return false;
+        }
 
 		require_once WC_GERMANIZED_ABSPATH . 'includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit-encryption-helper.php';
 
-		if ( ! WC_GZD_Gateway_Direct_Debit_Encryption_Helper::instance()->is_configured() )
+		if ( ! WC_GZD_Gateway_Direct_Debit_Encryption_Helper::instance()->is_configured() ) {
 			return false;
+        }
 
 		return true;
 	}
