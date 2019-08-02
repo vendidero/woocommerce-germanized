@@ -182,7 +182,7 @@ class WC_GZD_Customer_Helper {
 			if ( is_checkout() && ( ! is_user_logged_in() || ( $this->enable_double_opt_in_for_user() && ! wc_gzd_is_customer_activated() ) ) ) {
 				
 				WC()->session->set( 'login_redirect', 'checkout' );
-				wp_safe_redirect( wc_gzd_get_page_permalink( 'myaccount' ) );
+				wp_safe_redirect( $this->registration_redirect() );
 				exit;
 
 			} elseif ( is_checkout() ) {
@@ -220,7 +220,7 @@ class WC_GZD_Customer_Helper {
 		}
 	}
 
-	protected function registration_redirect() {
+	protected function registration_redirect( $query_args = array() ) {
 
         /**
          * Filter URL which serves as redirection if a customer has not yet activated it's account and
@@ -228,9 +228,10 @@ class WC_GZD_Customer_Helper {
          *
          * @since 1.0.0
          *
-         * @param string $url The redirection URL.
+         * @param string $url               The redirection URL.
+         * @param array[string] $query_args Arguments passed to the URL.
          */
-		return apply_filters( 'woocommerce_gzd_customer_registration_redirect', add_query_arg( array( 'account' => 'activate' ), wc_gzd_get_page_permalink( 'myaccount' ) ) );
+		return apply_filters( 'woocommerce_gzd_customer_registration_redirect', add_query_arg( $query_args, wc_gzd_get_page_permalink( 'myaccount' ) ), $query_args );
 	}
 
 	public function disable_registration_auto_login( $result, $user_id ) {
@@ -241,7 +242,7 @@ class WC_GZD_Customer_Helper {
 
 		// Has not been activated yet
 		if ( $this->enable_double_opt_in_for_user( $user_id ) && ! wc_gzd_is_customer_activated( $user_id ) ) {
-            wp_redirect( wp_validate_redirect( $this->registration_redirect() ) ); //phpcs:ignore WordPress.Security.SafeRedirect.wp_redirect_wp_redirect
+            wp_redirect( wp_validate_redirect( $this->registration_redirect( array( 'account' => 'activate' ) ) ) ); //phpcs:ignore WordPress.Security.SafeRedirect.wp_redirect_wp_redirect
             exit;
 		}
 
