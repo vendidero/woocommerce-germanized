@@ -19,6 +19,7 @@ class WC_GZD_Shipping_Rate extends WC_Shipping_Rate {
 		}
 
 		if ( get_option( 'woocommerce_gzd_shipping_tax' ) === 'yes' && ( ! empty( $rate->taxes ) || get_option( 'woocommerce_gzd_shipping_tax_force' ) === 'yes' ) ) {
+
 		    if ( $this->get_shipping_tax() > 0 ) {
 				$this->set_shared_taxes();
 			}
@@ -50,6 +51,23 @@ class WC_GZD_Shipping_Rate extends WC_Shipping_Rate {
                 $this->set_taxes( $taxes );
             } else {
                 $this->taxes = $taxes;
+            }
+        // Fallback when no taxes have been defined for the items - use default shipping rate instead.
+        } else {
+            $rates = array_keys( $this->taxes );
+
+            if ( ! empty( $rates ) ) {
+                $tax_rates = WC_Tax::get_shipping_tax_rates();
+
+                if ( ! empty( $tax_rates) ) {
+                    $taxes = WC_Tax::calc_tax( $this->cost, $tax_rates, ( WC()->cart->tax_display_cart === 'incl' ) );
+
+                    if ( is_callable( array( $this, 'set_taxes' ) ) ) {
+                        $this->set_taxes( $taxes );
+                    } else {
+                        $this->taxes = $taxes;
+                    }
+                }
             }
         }
 	}
