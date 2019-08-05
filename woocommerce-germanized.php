@@ -8,10 +8,10 @@
  * Author URI: https://vendidero.de
  * Requires at least: 3.8
  * Tested up to: 5.2
- * WC requires at least: 2.4.0
- * WC tested up to: 3.6.0
+ * WC requires at least: 2.4
+ * WC tested up to: 3.7
  * Requires at least WooCommerce: 2.4
- * Tested up to WooCommerce: 3.6
+ * Tested up to WooCommerce: 3.7
  *
  * Text Domain: woocommerce-germanized
  * Domain Path: /i18n/languages/
