@@ -5,7 +5,7 @@ Requires at least: 3.8
 Tested up to: 5.2
 WC requires at least: 2.4
 WC tested up to: 3.7
-Stable tag: 2.3.1
+Stable tag: 2.3.3
 Requires PHP: 5.3
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -180,6 +180,18 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 4. WooCommerce Multistep Checkout (Pro)
 
 == Changelog ==
+
+= 2.3.3 =
+* Feature: Option to manually resend paid for order email
+* Feature: WooCommerce 3.7 support
+* Improvement: Better hook documentation
+* Improvement: Moved digital delivery time text option to delivery time settings
+* Improvement: Role based pricing compatibility mini cart support
+* Improvement: White space between percentage and number in tax rate
+* Improvement: Use woocommerce_gzd_customer_registration_redirect filter while redirecting from checkout to myaccount
+* Fix: Prevent error while trying to access parent products
+* Fix: Better legacy method calling support
+* Fix: Zero tax rate shipping tax calculation fallback
 
 = 2.3.1 =
 * Feature: Added better fee/shipping costs calculation to order tax recalculation
