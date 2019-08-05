@@ -18,8 +18,32 @@
  *
  * @author Vendidero
  */
+
+use Vendidero\Germanized\Autoloader;
+use Vendidero\Germanized\Packages;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
+}
+
+/**
+ * Load core packages and the autoloader.
+ *
+ * The new packages and autoloader require PHP 5.6+. If this dependency is not met, do not include them. Users will be warned
+ * that they are using an older version of PHP. WooCommerce will continue to load, but some functionality such as the REST API
+ * and Blocks will be missing.
+ *
+ * This requirement will be enforced in future versions of WooCommerce.
+ */
+if ( version_compare( PHP_VERSION, '5.6.0', '>=' ) ) {
+    require __DIR__ . '/src/Autoloader.php';
+    require __DIR__ . '/src/Packages.php';
+
+    if ( ! Autoloader::init() ) {
+        return;
+    }
+
+    Packages::init();
 }
 
 if ( ! class_exists( 'WooCommerce_Germanized' ) ) :

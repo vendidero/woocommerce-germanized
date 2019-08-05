@@ -27,8 +27,7 @@ class Packages {
      * @var array Key is the package name/directory, value is the main package class which handles init.
      */
     protected static $packages = [
-        'woocommerce-blocks'   => '\\Automattic\\WooCommerce\\Blocks\\Package',
-        'woocommerce-rest-api' => '\\Automattic\\WooCommerce\\RestApi\\Package',
+        'woocommerce-germanized-dhl' => '\\Vendidero\\Germanized\\DHL\\Package',
     ];
 
     /**

@@ -9,9 +9,7 @@
   "require": {
     "automattic/jetpack-autoloader": "1.2.0",
     "php": ">=5.6|>=7.0",
-    "composer/installers": "1.6.0",
-    "woocommerce/woocommerce-blocks": "2.3.0-rc.1",
-    "woocommerce/woocommerce-rest-api": "1.0.3"
+    "composer/installers": "1.6.0"
   },
   "require-dev": {
     "myclabs/deep-copy": "1.7.0",
@@ -23,8 +21,7 @@
       "php": "7.1"
     },
     "preferred-install": {
-      "woocommerce/woocommerce-rest-api": "dist",
-      "woocommerce/woocommerce-blocks": "dist"
+
     },
     "sort-packages": true
   },
@@ -59,8 +56,7 @@
   },
   "extra": {
     "installer-paths": {
-      "packages/woocommerce-rest-api": ["woocommerce/woocommerce-rest-api"],
-      "packages/woocommerce-blocks": ["woocommerce/woocommerce-blocks"]
+
     },
     "scripts-description": {
       "test": "Run unit tests",
