@@ -66,17 +66,21 @@ class WC_GZD_Install {
 		// Install - Add pages button
 		if ( ! empty( $_GET['install_woocommerce_gzd'] ) ) {
 
-			if ( ! empty( $_GET['install_woocommerce_gzd_pages'] ) )
+			if ( ! empty( $_GET['install_woocommerce_gzd_pages'] ) ) {
 				self::create_pages();
+            }
 
-			if ( ! empty( $_GET['install_woocommerce_gzd_settings'] ) )
+			if ( ! empty( $_GET['install_woocommerce_gzd_settings'] ) ) {
 				self::set_default_settings();
+            }
 
-			if ( ! empty( $_GET['install_woocommerce_gzd_virtual_tax_rates'] ) )
+			if ( ! empty( $_GET['install_woocommerce_gzd_virtual_tax_rates'] ) ) {
 				self::create_virtual_tax_rates();
+            }
 
-			if ( ! empty( $_GET['install_woocommerce_gzd_tax_rates'] ) )
+			if ( ! empty( $_GET['install_woocommerce_gzd_tax_rates'] ) ) {
 				self::create_tax_rates();
+            }
 
 			// We no longer need to install pages
 			delete_option( '_wc_gzd_needs_pages' );
@@ -127,8 +131,9 @@ class WC_GZD_Install {
 		$locale = apply_filters( 'plugin_locale', get_locale(), 'woocommerce-germanized' );
 		$mofile = WC_germanized()->plugin_path() . '/i18n/languages/woocommerce-germanized.mo';
 		
-		if ( file_exists( WC_germanized()->plugin_path() . '/i18n/languages/woocommerce-germanized-' . $locale . '.mo' ) )
+		if ( file_exists( WC_germanized()->plugin_path() . '/i18n/languages/woocommerce-germanized-' . $locale . '.mo' ) ) {
 			$mofile = WC_germanized()->plugin_path() . '/i18n/languages/woocommerce-germanized-' . $locale . '.mo';
+        }
 		
 		load_textdomain( 'woocommerce-germanized', $mofile );
 		
@@ -146,20 +151,36 @@ class WC_GZD_Install {
 		self::create_labels();
 		self::create_options();
 
-		// Virtual Tax Classes
-		$tax_classes = array_filter( array_map( 'trim', explode( "\n", get_option('woocommerce_tax_classes' ) ) ) );
-		
-		if ( ! in_array( 'Virtual Rate', $tax_classes ) || ! in_array( 'Virtual Reduced Rate', $tax_classes ) ) {
+		if ( is_callable( array( 'WC_Tax', 'get_tax_class_slugs' ) ) ) {
+		    $tax_classes = WC_Tax::get_tax_class_slugs();
+        } else {
+            $tax_classes = array_filter( array_map( 'sanitize_title', array_map( 'trim', explode( "\n", get_option( 'woocommerce_tax_classes' ) ) ) ) );
+        }
+
+		$new_tax_classes = array();
+
+		if ( ! in_array( 'virtual-rate', $tax_classes ) || ! in_array( 'virtual-reduced-rate', $tax_classes ) ) {
 			
 			update_option( '_wc_gzd_needs_pages', 1 );
 			
-			if ( ! in_array( 'Virtual Rate', $tax_classes ) )
-				array_push( $tax_classes, 'Virtual Rate' );
+			if ( ! in_array( 'virtual-rate', $tax_classes ) ) {
+				array_push( $new_tax_classes, 'Virtual Rate' );
+            }
 			
-			if ( ! in_array( 'Virtual Reduced Rate', $tax_classes ) )
-				array_push( $tax_classes, 'Virtual Reduced Rate' );
-			
-			update_option( 'woocommerce_tax_classes', implode( "\n", $tax_classes ) );
+			if ( ! in_array( 'virtual-reduced-rate', $tax_classes ) ) {
+				array_push( $new_tax_classes, 'Virtual Reduced Rate' );
+            }
+
+			if ( is_callable( array( 'WC_Tax', 'create_tax_class' ) ) ) {
+			    foreach( $new_tax_classes as $new_tax_class ) {
+			        WC_Tax::create_tax_class( $new_tax_class );
+                }
+            } else {
+			    $tax_classes = array_filter( array_map( 'trim', explode( "\n", get_option( 'woocommerce_tax_classes' ) ) ) );
+			    $tax_classes = array_merge( $tax_classes, $new_tax_classes );
+
+                update_option( 'woocommerce_tax_classes', implode( "\n", $tax_classes ) );
+            }
 		}
 
 		// Delete plugin header data for dependency check
@@ -472,7 +493,9 @@ class WC_GZD_Install {
 			'woocommerce_tax_based_on'               => 'billing',
 			'woocommerce_allowed_countries'	    	 => 'specific',
 			'woocommerce_specific_allowed_countries' => array( 'DE' ),
+            'woocommerce_default_customer_address'   => 'base'
 		);
+
 		if ( ! empty($options ) ) {
 			foreach ( $options as $key => $option ) {
 				update_option( $key, $option );
