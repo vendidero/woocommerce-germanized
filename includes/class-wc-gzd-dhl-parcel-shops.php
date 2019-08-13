@@ -138,17 +138,21 @@ class WC_GZD_DHL_Parcel_Shops {
 	}
 
 	public function set_formatted_shipping_address( $fields, $order ) {
-		$fields['parcelshop_post_number'] = '';
+		if ( ! empty( $fields ) && is_array( $fields ) ) {
+			$fields['parcelshop_post_number'] = '';
 
-		if ( wc_gzd_get_crud_data( $order, 'shipping_parcelshop_post_number' ) ) {
-			$fields['parcelshop_post_number'] = wc_gzd_get_crud_data( $order, 'shipping_parcelshop_post_number' );
+			if ( wc_gzd_get_crud_data( $order, 'shipping_parcelshop_post_number' ) ) {
+				$fields['parcelshop_post_number'] = wc_gzd_get_crud_data( $order, 'shipping_parcelshop_post_number' );
+			}
 		}
 
 		return $fields;
 	}
 
 	public function set_formatted_billing_address( $fields, $order ) {
-		$fields['parcelshop_post_number'] = '';
+		if ( ! empty( $fields ) && is_array( $fields ) ) {
+			$fields['parcelshop_post_number'] = '';
+		}
 
 		return $fields;
 	}

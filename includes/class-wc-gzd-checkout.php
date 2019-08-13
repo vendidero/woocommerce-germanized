@@ -751,6 +751,10 @@ class WC_GZD_Checkout {
 	}
 
 	public function set_formatted_shipping_address( $fields, $order ) {
+		
+		if ( empty( $fields ) || ! is_array( $fields ) ) {
+			return $fields;
+		}
 
 		if ( 'yes' !== get_option( 'woocommerce_gzd_checkout_address_field' ) ) {
 			return $fields;
