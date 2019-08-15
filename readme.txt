@@ -5,7 +5,7 @@ Requires at least: 3.8
 Tested up to: 5.2
 WC requires at least: 2.4
 WC tested up to: 3.7
-Stable tag: 2.3.3
+Stable tag: 2.3.4
 Requires PHP: 5.3
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -180,6 +180,10 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 4. WooCommerce Multistep Checkout (Pro)
 
 == Changelog ==
+
+= 2.3.4 =
+* Improvement: Hook into payment gateways later so that we can make sure the order button text replacement is loaded
+* Fix: Shipping address field warning with Woo >= 3.7
 
 = 2.3.3 =
 * Feature: Option to manually resend paid for order email
