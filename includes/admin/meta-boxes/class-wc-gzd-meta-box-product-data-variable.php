@@ -48,9 +48,8 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 
 	public static function output( $loop, $variation_data, $variation ) {
 
-		$_product = wc_get_product( $variation );
-
-		$_parent = wc_get_product( wc_gzd_get_crud_data( $_product, 'parent' ) );
+		$_product     = wc_get_product( $variation );
+		$_parent      = wc_get_product( wc_gzd_get_crud_data( $_product, 'parent' ) );
 		$variation_id = wc_gzd_get_crud_data( $_product, 'id' );
 
 		$variation_meta   = get_post_meta( $variation_id );
@@ -65,7 +64,8 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 			'_unit_price_sale' 			=> '',
 			'_sale_price_label'			=> '',
 			'_sale_price_regular_label' => '',
-			'_mini_desc' 				=> ''
+			'_mini_desc' 				=> '',
+            '_age_verification'         => '',
 		);
 
 		foreach ( $variation_fields as $field => $value ) {
@@ -74,9 +74,9 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 
 		$delivery_time = get_the_terms( $variation_id, 'product_delivery_time' );
 		
-		if ( $delivery_time && ! empty( $delivery_time ) && is_array( $delivery_time ) )
+		if ( $delivery_time && ! empty( $delivery_time ) && is_array( $delivery_time ) ) {
 			$delivery_time = $delivery_time[0];
-
+		}
 		?>
 
 		<div class="variable_pricing_labels">
@@ -148,6 +148,19 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
                 ?>
 			</p>
 		</div>
+
+        <div class="variable_age_verification">
+            <p class="form-row form-row-last">
+                <label><?php _e( 'Age Verification', 'woocommerce-germanized' ); ?></label>
+                <select name="variable_age_verification[<?php echo $loop; ?>]">
+                    <option value="" <?php selected( empty( $variation_data['_age_verification'] ), true ); ?>><?php _e( 'Same as Parent', 'woocommerce-germanized' ); ?></option>
+			        <?php foreach ( wc_gzd_get_age_verification_min_ages() as $key => $value ) : ?>
+                        <option value="<?php echo esc_attr( $key ); ?>" <?php selected( $key === (int) $variation_data['_age_verification'], true ); ?>><?php echo esc_html( $value ); ?></option>
+			        <?php endforeach; ?>
+                </select>
+            </p>
+        </div>
+
 		<div class="variable_cart_mini_desc">
 			<p class="form-row form-row-full">
 				<label for="variable_mini_desc"><?php echo __( 'Optional Mini Description', 'woocommerce-germanized' ); ?></label>
@@ -172,6 +185,7 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 			'_parent_unit_base' => '',
 			'_mini_desc' => '',
 			'_service' => '',
+			'_age_verification' => '',
 			'delivery_time' => '',
 		);
 

@@ -170,6 +170,7 @@ class WC_Germanized_Meta_Box_Product_Data {
 		$thepostid = $post->ID;
 
 		$_product = wc_get_product( $thepostid );
+		$age_select = array( "-1" => __( 'None', 'woocommerce-germanized' ) ) + wc_gzd_get_age_verification_min_ages();
 
 		echo '<div class="options_group show_if_simple show_if_external show_if_variable">';
 
@@ -204,6 +205,11 @@ class WC_Germanized_Meta_Box_Product_Data {
 
 		echo '</div>';
 
+		echo '<div class="options_group show_if_simple show_if_external show_if_variable">';
+
+		woocommerce_wp_select( array( 'id' => '_age_verification', 'label' => __( 'Age Verification', 'woocommerce-germanized' ), 'desc_tip' => true, 'description' => __( 'Adds an age verification checkbox while purchasing this product.', 'woocommerce-germanized' ), 'options' => $age_select ) );
+
+		echo '</div>';
 	}
 
 	public static function output_delivery_time_select2( $args = array() ) {
@@ -283,6 +289,7 @@ class WC_Germanized_Meta_Box_Product_Data {
 			'_free_shipping' => '',
 			'_service' => '',
 			'_differential_taxation' => '',
+            '_age_verification' => '',
 		);
 	}
 
@@ -457,19 +464,23 @@ class WC_Germanized_Meta_Box_Product_Data {
 
 		$product = self::save_unit_price( $product, $unit_data, $is_variation );
 
-		$product_type = ( ! isset( $data['product-type'] ) || empty( $data['product-type'] ) ) ? 'simple' : sanitize_title( stripslashes( $data['product-type'] ) );
-
+		$product_type      = ( ! isset( $data['product-type'] ) || empty( $data['product-type'] ) ) ? 'simple' : sanitize_title( stripslashes( $data['product-type'] ) );
 		$sale_price_labels = array( '_sale_price_label', '_sale_price_regular_label' );
 
 		foreach ( $sale_price_labels as $label ) {
-
 			if ( isset( $data[ $label ] ) ) {
-
-				if ( empty( $data[ $label ] ) || in_array( $data[ $label ], array( 'none', '-1' ) ) )
+				if ( empty( $data[ $label ] ) || in_array( $data[ $label ], array( 'none', '-1' ) ) ) {
 					$product = wc_gzd_unset_crud_meta_data( $product, $label );
-				else
+				} else {
 					$product = wc_gzd_set_crud_meta_data( $product, $label, sanitize_text_field( $data[ $label ] ) );
+				}
 			}
+		}
+
+		if ( isset( $data['_age_verification'] ) && array_key_exists( (int) $data['_age_verification'], wc_gzd_get_age_verification_min_ages() ) ) {
+			$product = wc_gzd_set_crud_meta_data( $product, '_age_verification', absint( $data['_age_verification'] ) );
+		} else {
+			$product = wc_gzd_set_crud_meta_data( $product, '_age_verification', '' );
 		}
 
 		if ( isset( $data[ '_mini_desc' ] ) ) {

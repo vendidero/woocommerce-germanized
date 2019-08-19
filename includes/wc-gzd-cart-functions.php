@@ -243,6 +243,66 @@ function wc_gzd_cart_product_units( $title, $cart_item, $cart_item_key = '' ) {
 	return $title;
 }
 
+function wc_gzd_cart_needs_age_verification( $items = false ) {
+	$items                  = $items ? (array) $items : WC()->cart->get_cart();
+	$needs_age_verification = false;
+
+	if ( ! empty( $items ) ) {
+		foreach ( $items as $cart_item_key => $values ) {
+			$_product = apply_filters( 'woocommerce_cart_item_product', $values['data'], $values, $cart_item_key );
+
+			if ( wc_gzd_needs_age_verification( $_product ) ) {
+				$needs_age_verification = true;
+			}
+		}
+	}
+
+	/**
+	 * Determines whether a cart needs age verification or not.
+	 *
+	 * This filter might adjust whether cart items need age verification or not.
+	 *
+	 * @since 2.3.5
+	 *
+	 * @param bool  $needs_age_verification Whether items need age verification or not.
+     * @param array $items The cart items.
+	 */
+	return apply_filters( 'woocommerce_gzd_cart_needs_age_verification', $needs_age_verification, $items );
+}
+
+function wc_gzd_cart_get_age_verification_min_age( $items = false  ) {
+	$items                  = $items ? (array) $items : WC()->cart->get_cart();
+	$min_age                = false;
+
+	if ( ! empty( $items ) ) {
+		foreach ( $items as $cart_item_key => $values ) {
+			$_product     = apply_filters( 'woocommerce_cart_item_product', $values['data'], $values, $cart_item_key );
+			$_gzd_product = wc_gzd_get_gzd_product( $_product );
+
+			if ( wc_gzd_needs_age_verification( $_product ) ) {
+			    if ( false === $min_age ) {
+			        $min_age = $_gzd_product->get_min_age();
+                } elseif ( $_gzd_product->get_min_age() > $min_age ) {
+			        $min_age = $_gzd_product->get_min_age();
+                }
+			}
+		}
+	}
+
+	/**
+	 * Returns the minimum age within a cart.
+	 *
+	 * This filter might be used to adjust the minimum age for a certain cart used for
+     * the age verification.
+	 *
+	 * @since 2.3.5
+	 *
+	 * @param integer $min_age The minimum age required to checkout.
+	 * @param array   $items The cart items.
+	 */
+	return apply_filters( 'woocommerce_gzd_cart_age_verification_min_age', $min_age, $items );
+}
+
 /**
  * Calculates tax share for shipping/fees
  *  

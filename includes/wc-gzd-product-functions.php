@@ -127,6 +127,16 @@ function wc_gzd_is_revocation_exempt( $product, $type = 'digital' ) {
 	return false;
 }
 
+function wc_gzd_needs_age_verification( $product ) {
+	$needs_age_verification = false;
+
+	if ( $gzd_product = wc_gzd_get_gzd_product( $product ) ) {
+		$needs_age_verification = $gzd_product->needs_age_verification();
+	}
+
+	return $needs_age_verification;
+}
+
 /**
  * Checks whether the product matches one of the types.
  *
