@@ -65,7 +65,6 @@ add_action( 'woocommerce_widget_product_item_end', 'woocommerce_gzd_template_pro
 /**
  * Cart
  */
-
 add_action( 'woocommerce_cart_totals_after_order_total', 'woocommerce_gzd_template_cart_total_tax', 1 );
 
 // Remove cart item name filter within checkout
