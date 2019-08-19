@@ -18,26 +18,26 @@ class WC_Germanized_Meta_Box_Product_Data {
 	protected static $_instance = null;
 
 	public static function instance() {
-		
+
 		if ( is_null( self::$_instance ) )
 			self::$_instance = new self();
-		
+
 		return self::$_instance;
 	}
 
 	private function __construct() {
-		
+
 		if ( is_admin() ) {
 			add_action( 'woocommerce_product_options_general_product_data', array( __CLASS__, 'output' ) );
 			add_action( 'woocommerce_product_options_shipping', array( __CLASS__, 'output_shipping' ) );
 
 			if ( ! wc_gzd_get_dependencies()->woocommerce_version_supports_crud() ) {
 				add_action( 'woocommerce_process_product_meta', array( __CLASS__, 'save' ), 20, 2 );
-            } else {
-			    add_action( 'woocommerce_admin_process_product_object', array( __CLASS__, 'save' ), 10, 1 );
-            }
+			} else {
+				add_action( 'woocommerce_admin_process_product_object', array( __CLASS__, 'save' ), 10, 1 );
+			}
 
-            add_filter( 'product_type_options', array( __CLASS__, 'service_type' ), 10, 1 );
+			add_filter( 'product_type_options', array( __CLASS__, 'service_type' ), 10, 1 );
 		}
 
 		/**
@@ -51,14 +51,14 @@ class WC_Germanized_Meta_Box_Product_Data {
 		/**
 		 * Product duplication
 		 */
-        add_action( 'woocommerce_product_duplicate_before_save', array( __CLASS__, 'update_before_duplicate' ), 10, 2 );
+		add_action( 'woocommerce_product_duplicate_before_save', array( __CLASS__, 'update_before_duplicate' ), 10, 2 );
 
 		if ( ! wc_gzd_get_dependencies()->woocommerce_version_supports_crud() ) {
 			add_action( 'woocommerce_create_product_variation', array( __CLASS__, 'update_after_save' ), 10, 1 );
 			add_action( 'woocommerce_new_product_variation', array( __CLASS__, 'update_after_save' ), 10, 1 );
 		} else {
 			add_action( 'woocommerce_new_product_variation', array( __CLASS__, 'update_after_save' ), 10, 1 );
-        }
+		}
 	}
 
 	/**
@@ -66,82 +66,82 @@ class WC_Germanized_Meta_Box_Product_Data {
 	 * @param WC_Product $product
 	 */
 	public static function update_before_duplicate( $duplicate, $product ) {
-	    if ( $gzd_product = wc_gzd_get_gzd_product( $product ) ) {
+		if ( $gzd_product = wc_gzd_get_gzd_product( $product ) ) {
 
-	        if ( $delivery_time = $gzd_product->get_delivery_time() ) {
-	            $duplicate->update_meta_data( '_product_delivery_time', $delivery_time->term_id );
-            }
-        }
-    }
+			if ( $delivery_time = $gzd_product->get_delivery_time() ) {
+				$duplicate->update_meta_data( '_product_delivery_time', $delivery_time->term_id );
+			}
+		}
+	}
 
 	/**
-     * Manipulating WooCommerce CRUD objects through REST API (saving) doesn't work
-     * because we need to use filters which do only receive the product id as a parameter and not the actual
-     * manipulated instance. That's why we need to temporarily store term data as product meta.
-     * After saving the product this hook checks whether term relationships need to be updated or deleted.
-     *
+	 * Manipulating WooCommerce CRUD objects through REST API (saving) doesn't work
+	 * because we need to use filters which do only receive the product id as a parameter and not the actual
+	 * manipulated instance. That's why we need to temporarily store term data as product meta.
+	 * After saving the product this hook checks whether term relationships need to be updated or deleted.
+	 *
 	 * @param $product_id
 	 */
 	public static function update_after_save( $product_id ) {
 
 		if ( ! wc_gzd_get_dependencies()->woocommerce_version_supports_crud() ) {
-            return;
-        }
+			return;
+		}
 
 		// Do not update products on checkout - seems to cause problems with WPML
-        if ( function_exists( 'is_checkout' ) && is_checkout() ) {
-            return;
-        }
+		if ( function_exists( 'is_checkout' ) && is_checkout() ) {
+			return;
+		}
 
-	    $product = wc_get_product( $product_id );
+		$product = wc_get_product( $product_id );
 
-	    if ( $product->get_id() > 0 ) {
+		if ( $product->get_id() > 0 ) {
 
-	        $taxonomies = array( 'product_delivery_time' );
+			$taxonomies = array( 'product_delivery_time' );
 
-	        foreach( $taxonomies as $taxonomy ) {
+			foreach( $taxonomies as $taxonomy ) {
 
-	            $term_data = $product->get_meta( '_' . $taxonomy, true );
+				$term_data = $product->get_meta( '_' . $taxonomy, true );
 
-	            if ( $term_data ) {
-	                $term_data = ( is_numeric( $term_data ) ? absint( $term_data ) : $term_data );
-		            wp_set_object_terms( $product->get_id(), $term_data, $taxonomy );
-		            delete_post_meta( $product->get_id(), '_' . $taxonomy );
-                } elseif ( $product->get_meta( '_delete_' . $taxonomy, true ) ) {
-		            wp_delete_object_term_relationships( $product->get_id(), $taxonomy );
-		            delete_post_meta( $product->get_id(), '_delete_' . $taxonomy );
-	            }
-            }
+				if ( $term_data ) {
+					$term_data = ( is_numeric( $term_data ) ? absint( $term_data ) : $term_data );
+					wp_set_object_terms( $product->get_id(), $term_data, $taxonomy );
+					delete_post_meta( $product->get_id(), '_' . $taxonomy );
+				} elseif ( $product->get_meta( '_delete_' . $taxonomy, true ) ) {
+					wp_delete_object_term_relationships( $product->get_id(), $taxonomy );
+					delete_post_meta( $product->get_id(), '_delete_' . $taxonomy );
+				}
+			}
 
-            // Update unit price based on whether the product is on sale or not
-            if ( wc_gzd_get_gzd_product( $product )->has_unit() ) {
+			// Update unit price based on whether the product is on sale or not
+			if ( wc_gzd_get_gzd_product( $product )->has_unit() ) {
 
-                /**
-                 * Filter to adjust unit price data before saving a product.
-                 *
-                 * @since 1.8.5
-                 *
-                 * @param array      $data The unit price data.
-                 * @param WC_Product $product The product object.
-                 */
-	            $data = apply_filters( 'woocommerce_gzd_save_display_unit_price_data', array(
-                    '_unit_price_regular' => wc_gzd_get_gzd_product( $product )->get_unit_regular_price(),
-                    '_unit_price_sale'    => wc_gzd_get_gzd_product( $product )->get_unit_sale_price(),
-                ), $product );
+				/**
+				 * Filter to adjust unit price data before saving a product.
+				 *
+				 * @since 1.8.5
+				 *
+				 * @param array      $data The unit price data.
+				 * @param WC_Product $product The product object.
+				 */
+				$data = apply_filters( 'woocommerce_gzd_save_display_unit_price_data', array(
+					'_unit_price_regular' => wc_gzd_get_gzd_product( $product )->get_unit_regular_price(),
+					'_unit_price_sale'    => wc_gzd_get_gzd_product( $product )->get_unit_sale_price(),
+				), $product );
 
-	            // Make sure we update automatically calculated prices
-	            update_post_meta( $product->get_id(), '_unit_price_regular', $data['_unit_price_regular'] );
-	            update_post_meta( $product->get_id(), '_unit_price_sale', $data['_unit_price_sale'] );
+				// Make sure we update automatically calculated prices
+				update_post_meta( $product->get_id(), '_unit_price_regular', $data['_unit_price_regular'] );
+				update_post_meta( $product->get_id(), '_unit_price_sale', $data['_unit_price_sale'] );
 
-	            // Lets update the display price
-	            if ( $product->is_on_sale() ) {
-		            update_post_meta( $product->get_id(), '_unit_price', $data['_unit_price_sale'] );
-	            } else {
-		            update_post_meta( $product->get_id(), '_unit_price', $data['_unit_price_regular'] );
-	            }
-            }
-        }
-    }
+				// Lets update the display price
+				if ( $product->is_on_sale() ) {
+					update_post_meta( $product->get_id(), '_unit_price', $data['_unit_price_sale'] );
+				} else {
+					update_post_meta( $product->get_id(), '_unit_price', $data['_unit_price_regular'] );
+				}
+			}
+		}
+	}
 
 	public static function service_type( $types ) {
 
@@ -201,41 +201,41 @@ class WC_Germanized_Meta_Box_Product_Data {
 
 		woocommerce_wp_text_input( array( 'id' => '_unit_price_regular', 'label' => __( 'Regular Base Price', 'woocommerce-germanized' ) . ' (' . get_woocommerce_currency_symbol() . ')', 'data_type' => 'price' ) );
 		woocommerce_wp_text_input( array( 'id' => '_unit_price_sale', 'label' => __( 'Sale Base Price', 'woocommerce-germanized' ) . ' (' . get_woocommerce_currency_symbol() . ')', 'data_type' => 'price' ) );
-		
+
 		echo '</div>';
 
 	}
 
 	public static function output_delivery_time_select2( $args = array() ) {
 
-	    $args = wp_parse_args( $args, array(
-            'name'        => 'delivery_time',
-            'placeholder' => __( 'Search for a delivery time&hellip;', 'woocommerce-germanized' ),
-            'term'        => false,
-            'id'          => '',
-            'style'       => 'width: 50%',
-        ) );
+		$args = wp_parse_args( $args, array(
+			'name'        => 'delivery_time',
+			'placeholder' => __( 'Search for a delivery time&hellip;', 'woocommerce-germanized' ),
+			'term'        => false,
+			'id'          => '',
+			'style'       => 'width: 50%',
+		) );
 
-	    $args['id'] = empty( $args['id'] ) ? $args['name'] : $args['id'];
+		$args['id'] = empty( $args['id'] ) ? $args['name'] : $args['id'];
 
-	    if ( wc_gzd_get_dependencies()->woocommerce_version_supports_crud() ) {
-	        ?>
-            <select class="wc-product-search wc-gzd-delivery-time-search" style="<?php echo $args[ 'style' ]; ?>" id="<?php echo $args[ 'id' ]; ?>" name="<?php echo $args[ 'name' ]; ?>" data-minimum_input_length="1" data-allow_clear="true" data-placeholder="<?php echo $args[ 'placeholder' ]; ?>" data-action="woocommerce_gzd_json_search_delivery_time" data-multiple="false">
-                <?php
+		if ( wc_gzd_get_dependencies()->woocommerce_version_supports_crud() ) {
+			?>
+			<select class="wc-product-search wc-gzd-delivery-time-search" style="<?php echo $args[ 'style' ]; ?>" id="<?php echo $args[ 'id' ]; ?>" name="<?php echo $args[ 'name' ]; ?>" data-minimum_input_length="1" data-allow_clear="true" data-placeholder="<?php echo $args[ 'placeholder' ]; ?>" data-action="woocommerce_gzd_json_search_delivery_time" data-multiple="false">
+				<?php
 
-                if ( $args[ 'term' ] ) {
-                    echo '<option value="' . esc_attr( $args[ 'term' ]->term_id ) . '"' . selected( true, true, false ) . '>' . $args[ 'term' ]->name . '</option>';
-                }
+				if ( $args[ 'term' ] ) {
+					echo '<option value="' . esc_attr( $args[ 'term' ]->term_id ) . '"' . selected( true, true, false ) . '>' . $args[ 'term' ]->name . '</option>';
+				}
 
-                ?>
-            </select>
-            <?php
-        } else {
-	        ?>
-            <input type="hidden" class="wc-product-search wc-gzd-delivery-time-search" style="<?php echo $args[ 'style' ]; ?>" id="<?php echo $args[ 'id' ]; ?>" name="<?php echo $args[ 'name' ]; ?>" data-minimum_input_length="1" data-allow_clear="true" data-placeholder="<?php echo $args[ 'placeholder' ]; ?>" data-action="woocommerce_gzd_json_search_delivery_time" data-multiple="false" data-selected="<?php echo ( $args[ 'term' ] ? $args[ 'term' ]->name : '' ); ?>" value="<?php echo ( $args[ 'term' ] ? $args[ 'term' ]->term_id : '' ); ?>" />
-            <?php
-        }
-    }
+				?>
+			</select>
+			<?php
+		} else {
+			?>
+			<input type="hidden" class="wc-product-search wc-gzd-delivery-time-search" style="<?php echo $args[ 'style' ]; ?>" id="<?php echo $args[ 'id' ]; ?>" name="<?php echo $args[ 'name' ]; ?>" data-minimum_input_length="1" data-allow_clear="true" data-placeholder="<?php echo $args[ 'placeholder' ]; ?>" data-action="woocommerce_gzd_json_search_delivery_time" data-multiple="false" data-selected="<?php echo ( $args[ 'term' ] ? $args[ 'term' ]->name : '' ); ?>" value="<?php echo ( $args[ 'term' ] ? $args[ 'term' ]->term_id : '' ); ?>" />
+			<?php
+		}
+	}
 
 	public static function output_shipping() {
 
@@ -245,19 +245,19 @@ class WC_Germanized_Meta_Box_Product_Data {
 		$_product = wc_get_product( $thepostid );
 
 		$delivery_time = wc_gzd_get_gzd_product( $_product )->delivery_time;
-		?>	
+		?>
 
 		<p class="form-field">
 			<label for="delivery_time"><?php _e( 'Delivery Time', 'woocommerce-germanized' ); ?></label>
-            <?php
-                self::output_delivery_time_select2( array(
-                    'name' => 'delivery_time',
-                    'placeholder' => __( 'Search for a delivery time&hellip;', 'woocommerce-germanized' ),
-                    'term' => $delivery_time,
-                ) );
-            ?>
+			<?php
+				self::output_delivery_time_select2( array(
+					'name' => 'delivery_time',
+					'placeholder' => __( 'Search for a delivery time&hellip;', 'woocommerce-germanized' ),
+					'term' => $delivery_time,
+				) );
+			?>
 		</p>
-		
+
 		<?php
 
 		// Free shipping
@@ -282,15 +282,15 @@ class WC_Germanized_Meta_Box_Product_Data {
 			'_sale_price' => '',
 			'_free_shipping' => '',
 			'_service' => '',
-            '_differential_taxation' => '',
+			'_differential_taxation' => '',
 		);
 	}
 
 	public static function save( $product ) {
 
-	    if ( is_numeric( $product ) ) {
-            $product = wc_get_product( $product );
-        }
+		if ( is_numeric( $product ) ) {
+			$product = wc_get_product( $product );
+		}
 
 		$data = self::get_fields();
 
@@ -299,8 +299,8 @@ class WC_Germanized_Meta_Box_Product_Data {
 		}
 
 		if ( wc_gzd_get_dependencies()->woocommerce_version_supports_crud() ) {
-            $data['save'] = false;
-        }
+			$data['save'] = false;
+		}
 
 		$product = self::save_product_data( $product, $data );
 
@@ -308,48 +308,48 @@ class WC_Germanized_Meta_Box_Product_Data {
 	}
 
 	public static function get_default_product_data( $product ) {
-	    $fields = array(
-            'product-type'           => $product->get_type(),
-            '_sale_price_dates_from' => '',
-            '_sale_price_dates_to'   => '',
-            '_is_on_sale'            => $product->is_on_sale(),
-            '_sale_price'            => wc_gzd_get_crud_data( $product, 'sale_price' ),
-        );
+		$fields = array(
+			'product-type'           => $product->get_type(),
+			'_sale_price_dates_from' => '',
+			'_sale_price_dates_to'   => '',
+			'_is_on_sale'            => $product->is_on_sale(),
+			'_sale_price'            => wc_gzd_get_crud_data( $product, 'sale_price' ),
+		);
 
-	    if ( is_a( $fields['_sale_price_dates_from'], 'WC_DateTime' ) ) {
-	        $fields['_sale_price_dates_from'] = $fields['_sale_price_dates_from']->date_i18n();
-        }
+		if ( is_a( $fields['_sale_price_dates_from'], 'WC_DateTime' ) ) {
+			$fields['_sale_price_dates_from'] = $fields['_sale_price_dates_from']->date_i18n();
+		}
 
 		if ( is_a( $fields['_sale_price_dates_to'], 'WC_DateTime' ) ) {
 			$fields['_sale_price_dates_to'] = $fields['_sale_price_dates_to']->date_i18n();
 		}
 
-	    return $fields;
-    }
+		return $fields;
+	}
 
 	public static function save_unit_price( $product, $data, $is_variation = false ) {
 
 		$data = wp_parse_args( $data, array(
 			'save'    => true,
-            'is_rest' => false,
+			'is_rest' => false,
 		) );
 
 		if ( $data['is_rest'] ) {
-		    $data = array_replace_recursive( static::get_default_product_data( $product ), $data );
-        }
+			$data = array_replace_recursive( static::get_default_product_data( $product ), $data );
+		}
 
 		if ( is_numeric( $product ) ) {
-		    $product = wc_get_product( $product );
-        }
+			$product = wc_get_product( $product );
+		}
 
 		$product_type = ( ! isset( $data['product-type'] ) || empty( $data['product-type'] ) ) ? 'simple' : sanitize_title( stripslashes( $data['product-type'] ) );
 
 		if ( isset( $data['_unit'] ) ) {
 			if ( empty( $data['_unit'] ) || in_array( $data['_unit'], array( 'none', '-1' ) ) ) {
-                $product = wc_gzd_unset_crud_meta_data( $product, '_unit' );
-            } else {
-                $product = wc_gzd_set_crud_meta_data( $product, '_unit', sanitize_text_field( $data['_unit'] ) );
-            }
+				$product = wc_gzd_unset_crud_meta_data( $product, '_unit' );
+			} else {
+				$product = wc_gzd_set_crud_meta_data( $product, '_unit', sanitize_text_field( $data['_unit'] ) );
+			}
 		}
 
 		if ( isset( $data['_unit_base'] ) ) {
@@ -361,17 +361,17 @@ class WC_Germanized_Meta_Box_Product_Data {
 		}
 
 		$product = wc_gzd_set_crud_meta_data( $product, '_unit_price_auto', ( isset( $data['_unit_price_auto'] ) ) ? 'yes' : '' );
-		
+
 		if ( isset( $data['_unit_price_regular'] ) ) {
 			$product = wc_gzd_set_crud_meta_data( $product, '_unit_price_regular', ( $data['_unit_price_regular'] === '' ) ? '' : wc_format_decimal( $data['_unit_price_regular'] ) );
 			$product = wc_gzd_set_crud_meta_data( $product, '_unit_price', ( $data['_unit_price_regular'] === '' ) ? '' : wc_format_decimal( $data['_unit_price_regular'] ) );
 		}
-		
+
 		if ( isset( $data['_unit_price_sale'] ) ) {
 			// Unset unit price sale if no product sale price has been defined
 			if ( ! isset( $data['_sale_price'] ) || $data['_sale_price'] === '' ) {
 				$data['_unit_price_sale'] = '';
-            }
+			}
 
 			$product = wc_gzd_set_crud_meta_data( $product, '_unit_price_sale', ( $data['_unit_price_sale'] === '' ) ? '' : wc_format_decimal( $data['_unit_price_sale'] ) );
 		}
@@ -393,27 +393,27 @@ class WC_Germanized_Meta_Box_Product_Data {
 			// Update price if on sale
 			if ( isset( $data['_unit_price_sale'] ) ) {
 
-			    if ( ! is_null( $is_on_sale ) ) {
-			        if ( $is_on_sale ) {
-				        $product = wc_gzd_set_crud_meta_data( $product, '_unit_price', wc_format_decimal( $data['_unit_price_sale'] ) );
-                    } else {
-				        $product = wc_gzd_set_crud_meta_data( $product, '_unit_price', ( $data['_unit_price_regular'] === '' ) ? '' : wc_format_decimal( $data['_unit_price_regular'] ) );
-                    }
-                } else {
-				    if ( '' !== $data['_unit_price_sale'] && '' == $date_to && '' == $date_from ) {
-					    $product = wc_gzd_set_crud_meta_data( $product, '_unit_price', wc_format_decimal( $data['_unit_price_sale'] ) );
-				    } else {
-					    $product = wc_gzd_set_crud_meta_data( $product, '_unit_price', ( $data['_unit_price_regular'] === '' ) ? '' : wc_format_decimal( $data['_unit_price_regular'] ) );
-				    }
+				if ( ! is_null( $is_on_sale ) ) {
+					if ( $is_on_sale ) {
+						$product = wc_gzd_set_crud_meta_data( $product, '_unit_price', wc_format_decimal( $data['_unit_price_sale'] ) );
+					} else {
+						$product = wc_gzd_set_crud_meta_data( $product, '_unit_price', ( $data['_unit_price_regular'] === '' ) ? '' : wc_format_decimal( $data['_unit_price_regular'] ) );
+					}
+				} else {
+					if ( '' !== $data['_unit_price_sale'] && '' == $date_to && '' == $date_from ) {
+						$product = wc_gzd_set_crud_meta_data( $product, '_unit_price', wc_format_decimal( $data['_unit_price_sale'] ) );
+					} else {
+						$product = wc_gzd_set_crud_meta_data( $product, '_unit_price', ( $data['_unit_price_regular'] === '' ) ? '' : wc_format_decimal( $data['_unit_price_regular'] ) );
+					}
 
-				    if ( '' !== $data['_unit_price_sale'] && $date_from && strtotime( $date_from ) < strtotime( 'NOW', current_time( 'timestamp' ) ) ) {
-					    $product = wc_gzd_set_crud_meta_data( $product, '_unit_price', wc_format_decimal( $data['_unit_price_sale'] ) );
-				    }
+					if ( '' !== $data['_unit_price_sale'] && $date_from && strtotime( $date_from ) < strtotime( 'NOW', current_time( 'timestamp' ) ) ) {
+						$product = wc_gzd_set_crud_meta_data( $product, '_unit_price', wc_format_decimal( $data['_unit_price_sale'] ) );
+					}
 
-				    if ( $date_to && strtotime( $date_to ) < strtotime( 'NOW', current_time( 'timestamp' ) ) ) {
-					    $product = wc_gzd_set_crud_meta_data( $product, '_unit_price', ( $data['_unit_price_regular'] === '' ) ? '' : wc_format_decimal( $data['_unit_price_regular'] ) );
-				    }
-                }
+					if ( $date_to && strtotime( $date_to ) < strtotime( 'NOW', current_time( 'timestamp' ) ) ) {
+						$product = wc_gzd_set_crud_meta_data( $product, '_unit_price', ( $data['_unit_price_regular'] === '' ) ? '' : wc_format_decimal( $data['_unit_price_regular'] ) );
+					}
+				}
 			}
 		}
 
@@ -425,9 +425,9 @@ class WC_Germanized_Meta_Box_Product_Data {
 	}
 
 	public static function save_product_data( $product, $data, $is_variation = false ) {
-	    if ( is_numeric( $product ) ) {
-            $product = wc_get_product( $product );
-        }
+		if ( is_numeric( $product ) ) {
+			$product = wc_get_product( $product );
+		}
 
 		$data = wp_parse_args( $data, array(
 			'is_rest' => false,
@@ -437,20 +437,20 @@ class WC_Germanized_Meta_Box_Product_Data {
 			$data = array_replace_recursive( static::get_default_product_data( $product ), $data );
 		}
 
-        /**
-         * Filter that allows adjusting Germanized product data before saving.
-         *
-         * @since 1.8.5
-         *
-         * @param array      $data Product data to be saved.
-         * @param WC_Product $product The product object.
-         */
+		/**
+		 * Filter that allows adjusting Germanized product data before saving.
+		 *
+		 * @since 1.8.5
+		 *
+		 * @param array      $data Product data to be saved.
+		 * @param WC_Product $product The product object.
+		 */
 		$data = apply_filters( 'woocommerce_gzd_product_saveable_data', $data, $product );
 
 		$data = wp_parse_args( $data, array(
-            'save'    => true,
-            'is_rest' => false,
-        ) );
+			'save'    => true,
+			'is_rest' => false,
+		) );
 
 		$unit_data         = $data;
 		$unit_data['save'] = false;
@@ -471,7 +471,7 @@ class WC_Germanized_Meta_Box_Product_Data {
 					$product = wc_gzd_set_crud_meta_data( $product, $label, sanitize_text_field( $data[ $label ] ) );
 			}
 		}
-		
+
 		if ( isset( $data[ '_mini_desc' ] ) ) {
 			$product = wc_gzd_set_crud_meta_data( $product, '_mini_desc', ( $data[ '_mini_desc' ] === '' ? '' : wc_gzd_sanitize_html_text_field( $data[ '_mini_desc' ] ) ) );
 		}
@@ -487,13 +487,13 @@ class WC_Germanized_Meta_Box_Product_Data {
 
 		// Is a service?
 		$product = wc_gzd_set_crud_meta_data( $product, '_service', ( isset( $data['_service'] ) ) ? 'yes' : '' );
-		
+
 		// Applies to differential taxation?
 		$product = wc_gzd_set_crud_meta_data( $product, '_differential_taxation', ( isset( $data['_differential_taxation'] ) ) ? 'yes' : '' );
 
 		if ( isset( $data['_differential_taxation'] ) ) {
-		    $product = wc_gzd_set_crud_data( $product, 'tax_status', 'shipping' );
-        }
+			$product = wc_gzd_set_crud_data( $product, 'tax_status', 'shipping' );
+		}
 
 		// Ignore variable data
 		if ( in_array( $product_type, array( 'variable', 'grouped' ) ) && ! $is_variation ) {
