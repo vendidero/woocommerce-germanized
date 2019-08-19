@@ -51,6 +51,7 @@ class WC_GZD_Admin {
 	public function __construct() {
 		add_action( 'add_meta_boxes', array( $this, 'add_legal_page_metabox' ) );
 		add_action( 'add_meta_boxes', array( $this, 'add_product_mini_desc' ) );
+		add_action( 'admin_menu', array( $this, 'hide_metaboxes' ), 10 );
 
 		add_action( 'admin_enqueue_scripts', array( $this, 'add_scripts' ) );
 		add_action( 'wp_print_scripts', array( $this, 'localize_printed_scripts' ), 5 );
@@ -89,6 +90,12 @@ class WC_GZD_Admin {
 
 		$this->wizward = require 'class-wc-gzd-admin-setup-wizard.php';
 	}
+
+	public function hide_metaboxes() {
+		remove_meta_box( 'tagsdiv-product_unit', 'product' , 'side' );
+		remove_meta_box( 'tagsdiv-product_delivery_time', 'product' , 'side' );
+		remove_meta_box( 'tagsdiv-product_price_label', 'product' , 'side' );
+    }
 
 	public function check_dhl_import() {
 	    if ( ! class_exists( '\Vendidero\Germanized\DHL\Admin\Importer' ) ) {
@@ -428,9 +435,6 @@ class WC_GZD_Admin {
 		if ( in_array( $screen->id, array( 'product', 'edit-product' ) ) ) {
 			wp_enqueue_script( 'wc-gzd-admin-product-variations' );
 		}
-
-		// Hide delivery time and unit tagsdiv
-        wp_add_inline_style( 'woocommerce-gzd-admin', '#tagsdiv-product_delivery_time, #tagsdiv-product_unit, #tagsdiv-product_price_label {display: none}' );
 
 		/**
 		 * After admin assets.

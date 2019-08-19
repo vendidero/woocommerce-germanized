@@ -43,6 +43,31 @@ function wc_gzd_order_supports_parcel_delivery_reminder( $order_id ) {
 	return false;
 }
 
+function wc_gzd_get_order_min_age( $order_id ) {
+	$min_age = false;
+
+	if ( $order = wc_get_order( $order_id ) ) {
+		$min_age = $order->get_meta( '_min_age', true );
+
+		if ( '' === $min_age || ! is_numeric( $min_age ) ) {
+			$min_age = false;
+		}
+	}
+
+	return apply_filters( 'woocommerce_gzd_order_min_age', $min_age, $order_id );
+}
+
+function wc_gzd_order_has_age_verification( $order_id ) {
+	$age                = wc_gzd_get_order_min_age( $order_id );
+	$needs_verification = false;
+
+	if ( $age ) {
+		$needs_verification = true;
+	}
+
+	return apply_filters( 'woocommerce_gzd_order_needs_age_verification', $needs_verification, $order_id );
+}
+
 function wc_gzd_order_is_anonymized( $order ) {
 	if ( is_numeric( $order ) ) {
 		$order = wc_get_order( $order );

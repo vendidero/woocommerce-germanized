@@ -94,6 +94,7 @@ class WC_GZD_Checkout {
 		}
 
 		add_action( 'woocommerce_checkout_create_order', array( $this, 'order_parcel_delivery_data_transfer' ), 10, 2 );
+		add_action( 'woocommerce_checkout_create_order', array( $this, 'order_age_verification' ), 20, 2 );
 
 		// Make sure that, just like in Woo core, the order submit button gets refreshed
 		// Use a high priority to let other plugins do their adjustments beforehand
@@ -161,6 +162,36 @@ class WC_GZD_Checkout {
              * @param bool $selected True if the checkbox was checked. False otherwise.
              */
 			do_action( 'woocommerce_gzd_parcel_delivery_order_opted_in', $order->get_id(), $selected );
+		}
+	}
+
+	/**
+	 * @param WC_Order $order
+	 * @param $posted
+	 */
+	public function order_age_verification( $order, $posted ) {
+		if ( $checkbox = wc_gzd_get_legal_checkbox( 'age_verification' ) ) {
+
+			if ( ! $checkbox->is_enabled() ) {
+				return;
+			}
+
+			if ( ! wc_gzd_cart_needs_age_verification( $order->get_items() ) ) {
+				return;
+			}
+
+			$min_age = wc_gzd_cart_get_age_verification_min_age( $order->get_items() );
+
+			if ( ! $min_age ) {
+				return;
+			}
+
+			// Checkbox has not been checked
+			if ( ! isset( $_POST[ $checkbox->get_html_name() ] ) ) {
+				return;
+			}
+
+			$order->update_meta_data( '_min_age', $min_age );
 		}
 	}
 

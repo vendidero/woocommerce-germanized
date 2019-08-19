@@ -149,7 +149,9 @@ class WC_Germanized_Meta_Box_Product_Data {
 		global $post, $thepostid;
 		$thepostid = $post->ID;
 
-		$_product = wc_get_product( $thepostid );
+		$_product     = wc_get_product( $thepostid );
+		$_gzd_product = wc_gzd_get_product( $_product );
+		$age_select   = wc_gzd_get_age_verification_min_ages_select();
 
 		echo '<div class="options_group show_if_simple show_if_external show_if_variable">';
 
@@ -183,6 +185,11 @@ class WC_Germanized_Meta_Box_Product_Data {
 		
 		echo '</div>';
 
+		echo '<div class="options_group show_if_simple show_if_external show_if_variable">';
+
+		woocommerce_wp_select( array( 'id' => '_min_age', 'label' => __( 'Minimum Age', 'woocommerce-germanized' ), 'desc_tip' => true, 'description' => __( 'Adds an age verification checkbox while purchasing this product.', 'woocommerce-germanized' ), 'options' => $age_select ) );
+
+		echo '</div>';
 	}
 
 	public static function output_delivery_time_select2( $args = array() ) {
@@ -249,6 +256,7 @@ class WC_Germanized_Meta_Box_Product_Data {
 			'_free_shipping'            => '',
 			'_service'                  => '',
             '_differential_taxation'    => '',
+            '_min_age'                  => '',
 		);
 	}
 
@@ -443,6 +451,12 @@ class WC_Germanized_Meta_Box_Product_Data {
 		
 		if ( isset( $data['_mini_desc'] ) ) {
 			$gzd_product->set_mini_desc( $data['_mini_desc'] === '' ? '' : wc_gzd_sanitize_html_text_field( $data['_mini_desc'] ) );
+		}
+
+		if ( isset( $data['_min_age'] ) && array_key_exists( (int) $data['_min_age'], wc_gzd_get_age_verification_min_ages() ) ) {
+			$gzd_product->set_min_age( absint( $data['_min_age'] ) );
+		} else {
+			$gzd_product->set_min_age( '' );
 		}
 
 		if ( isset( $data['delivery_time'] ) && ! empty( $data['delivery_time'] ) ) {

@@ -140,7 +140,7 @@ class WC_GZD_Legal_Checkbox_Manager {
 			'label'                => __( 'Yes, I would like to be reminded via E-mail about parcel delivery ({shipping_method_title}). Your E-mail Address will only be transferred to our parcel service provider for that particular reason.', 'woocommerce-germanized' ),
 			'label_args'           => array( '{shipping_method_title}' => '' ),
 			'is_mandatory'         => false,
-			'priority'             => 3,
+			'priority'             => 4,
 			'is_enabled'           => false,
 			'error_message'        => __( 'Please accept our parcel delivery agreement', 'woocommerce-germanized' ),
 			'is_core'              => true,
@@ -150,6 +150,24 @@ class WC_GZD_Legal_Checkbox_Manager {
 			'admin_name'           => __( 'Parcel Delivery', 'woocommerce-germanized' ),
 			'admin_desc'           => __( 'Asks the customer to hand over data to the parcel delivery service provider.', 'woocommerce-germanized' ),
 			'locations'            => array( 'checkout' )
+		) );
+
+		// Age verification
+		wc_gzd_register_legal_checkbox( 'age_verification', array(
+			'html_id'              => 'data-age-verification',
+			'html_name'            => 'age-verification',
+			'html_wrapper_classes' => array( 'legal' ),
+			'label'                =>  __( 'I hereby confirm that I\'m at least {age} years old.', 'woocommerce-germanized' ),
+			'label_args'           => array_merge( $this->get_legal_label_args(), array( '{age}' => '' ) ),
+			'error_message'        =>  __( 'Please confirm your age.', 'woocommerce-germanized' ),
+			'is_mandatory'         => true,
+			'priority'             => 5,
+			'is_enabled'           => true,
+			'is_core'              => true,
+			'is_shown'             => false,
+			'admin_name'           => __( 'Age Verification', 'woocommerce-germanized' ),
+			'admin_desc'           => __( 'Asks the customer to confirm a minimum age.', 'woocommerce-germanized' ),
+			'locations'            => array( 'checkout' ),
 		) );
 
 		// Privacy Policy
@@ -222,7 +240,8 @@ class WC_GZD_Legal_Checkbox_Manager {
 
 				if ( ! empty( $items ) ) {
 					foreach ( $items as $cart_item_key => $values ) {
-						$_product = apply_filters( 'woocommerce_cart_item_product', $values[ 'data' ], $values, $cart_item_key );
+						$_product = apply_filters( 'woocommerce_cart_item_product', $values['data'], $values, $cart_item_key );
+
 						if ( wc_gzd_is_revocation_exempt( $_product ) ) {
 							$is_downloadable = true;
 						}
@@ -232,6 +251,18 @@ class WC_GZD_Legal_Checkbox_Manager {
 				if ( $is_downloadable ) {
 					wc_gzd_update_legal_checkbox( 'download', array(
 						'is_shown' => true,
+					) );
+				}
+			}
+		}
+
+		// Age verification
+		if ( $checkbox = $this->get_checkbox( 'age_verification' ) ) {
+			if ( $checkbox->is_enabled() ) {
+				if ( wc_gzd_cart_needs_age_verification() ) {
+					wc_gzd_update_legal_checkbox( 'age_verification', array(
+						'is_shown'   => true,
+						'label_args' => array_merge( $this->get_legal_label_args(), array( '{age}' => wc_gzd_cart_get_age_verification_min_age() ) ),
 					) );
 				}
 			}

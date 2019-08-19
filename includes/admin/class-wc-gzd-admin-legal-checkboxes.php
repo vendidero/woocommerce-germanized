@@ -22,6 +22,7 @@ class WC_GZD_Admin_Legal_Checkboxes {
 
 	public function __construct() {
 		add_filter( "woocommerce_gzd_legal_checkbox_terms_fields_before_titles", array( $this, 'additional_terms_fields' ), 10, 2 );
+		add_filter( "woocommerce_gzd_legal_checkbox_age_verification_fields_before_titles", array( $this, 'additional_age_verification_fields' ), 10, 2 );
 		add_filter( "woocommerce_gzd_legal_checkbox_service_fields_before_titles", array( $this, 'additional_service_fields' ), 10, 2 );
 		add_filter( "woocommerce_gzd_legal_checkbox_download_fields_before_titles", array( $this, 'additional_download_fields' ), 10, 2 );
 		add_filter( "woocommerce_gzd_legal_checkbox_parcel_delivery_fields_before_titles", array( $this, 'additional_parcel_delivery_fields' ), 10, 2 );
@@ -44,6 +45,20 @@ class WC_GZD_Admin_Legal_Checkboxes {
 		}
 
 		return '<p>' . ( wc_get_page_id( 'data_security' ) == -1 ? '<span class="wc-gzd-status-text wc-gzd-text-red">' . __( 'Please choose a page as your privacy policy first.', 'woocommerce-germanized' ) . '</span>' : '<span class="wc-gzd-status-text wc-gzd-text-' . ( $is_privacy_policy_inserted ? 'green' : 'red' ) . '"> ' . ( $is_privacy_policy_inserted ? __( 'Found', 'woocommerce-germanized' ) : __( 'Not found within label.', 'woocommerce-germanized' ) ) . '</span> ' . ( ! $is_privacy_policy_inserted  ? '<a class="button button-secondary" style="margin-left: 1em" href="' . admin_url( 'admin.php?page=wc-settings&tab=germanized&section=checkboxes&checkbox_id=terms#woocommerce_gzd_legal_checkboxes_settings_terms_label' ) . '">' . __( 'Adjust label', 'woocommerce-germanized' ) . '</a></p>' : '' ) );
+	}
+
+	public function additional_age_verification_fields( $fields, $checkbox ) {
+		$fields = WC_GZD_Admin::instance()->insert_setting_after( $fields, $checkbox->get_form_field_id( 'is_enabled' ), array(
+			array(
+				'title' 	=> __( 'Global minimum age', 'woocommerce-germanized' ),
+				'id'        => $checkbox->get_form_field_id( 'min_age' ),
+				'type' 		=> 'select',
+				'options'   => array( "-1" => __( 'None', 'woocommerce-germanized' ) ) + wc_gzd_get_age_verification_min_ages(),
+				'desc_tip'  => __( 'Choose a global minimum age necessary to buy your products. Can be overridden by product specific settings.', 'woocommerce-germanized' ),
+			)
+		) );
+
+		return $fields;
 	}
 
 	public function additional_terms_fields( $fields, $checkbox ) {

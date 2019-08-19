@@ -47,7 +47,6 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 	}
 
 	public static function output( $loop, $variation_data, $variation ) {
-
 		$_product           = wc_get_product( $variation );
 		$_parent            = wc_get_product( $_product->get_parent_id() );
 		$gzd_product        = wc_gzd_get_product( $_product );
@@ -119,6 +118,19 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
                 ) ); ?>
 			</p>
 		</div>
+
+        <div class="variable_min_age">
+            <p class="form-row form-row-last">
+                <label><?php _e( 'Minimum Age', 'woocommerce-germanized' ); ?></label>
+                <select name="variable_min_age[<?php echo $loop; ?>]">
+                    <option value="" <?php selected( $gzd_product->get_min_age( 'edit' ) === '', true ); ?>><?php _e( 'Same as Parent', 'woocommerce-germanized' ); ?></option>
+			        <?php foreach ( wc_gzd_get_age_verification_min_ages_select() as $key => $value ) : ?>
+                        <option value="<?php echo esc_attr( $key ); ?>" <?php selected( $key === (int) $gzd_product->get_min_age( 'edit' ), true ); ?>><?php echo esc_html( $value ); ?></option>
+			        <?php endforeach; ?>
+                </select>
+            </p>
+        </div>
+
 		<div class="variable_cart_mini_desc">
 			<p class="form-row form-row-full">
 				<label for="variable_mini_desc"><?php echo __( 'Optional Mini Description', 'woocommerce-germanized' ); ?></label>
@@ -143,6 +155,7 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 			'_mini_desc'                => '',
 			'_service'                  => '',
 			'delivery_time'             => '',
+			'_min_age'                  => '',
 		);
 
 		foreach ( $data as $k => $v ) {

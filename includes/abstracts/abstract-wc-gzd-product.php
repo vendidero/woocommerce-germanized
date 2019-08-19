@@ -241,6 +241,62 @@ class WC_GZD_Product {
 		do_action( 'woocommerce_gzd_recalculated_unit_price', $this );
 	}
 
+	public function needs_age_verification() {
+		return $this->get_min_age() !== '';
+	}
+
+	public function has_min_age() {
+		return $this->needs_age_verification();
+	}
+
+	public function get_min_age( $context = 'view' ) {
+		$product_min_age = $this->get_prop( 'min_age', $context );
+
+		if ( 'view' === $context ) {
+			$categories = wc_get_product_cat_ids( $this->get_id() );
+
+			// Use product category age as fallback
+			if ( empty( $product_min_age ) ) {
+
+				foreach( $categories as $category ) {
+					if ( $category_age = get_term_meta( $category, 'age_verification', true ) ) {
+						$category_age = absint( $category_age );
+
+						if ( ! empty( $category_age ) ) {
+							$product_min_age = $category_age;
+						}
+					}
+				}
+			}
+
+			// Use global age as fallback
+			if ( empty( $product_min_age ) ) {
+				if ( $checkbox = wc_gzd_get_legal_checkbox( 'age_verification' ) ) {
+
+					if ( $checkbox->is_enabled() && $checkbox->get_option( 'min_age' ) ) {
+						$product_min_age = $checkbox->get_option( 'min_age' );
+					}
+				}
+			}
+
+			/**
+			 * Filter that allows adjusting a product's age verification min age.
+			 *
+			 * @since 1.0.0
+			 *
+			 * @param string         $min_age The minimum age.
+			 * @param WC_GZD_Product $product The product object.
+			 */
+			return apply_filters( 'woocommerce_gzd_product_age_verification_min_age', $product_min_age, $this, $context );
+		}
+
+		return $product_min_age;
+	}
+
+	public function set_min_age( $min_age ) {
+		$this->set_prop( 'min_age', is_numeric( $min_age ) ? absint( $min_age ) : '' );
+	}
+
 	private function attribute_exists( $key, $item_data ) {
         foreach( $item_data as $item_data_key => $data ) {
             if ( isset( $data['key'] ) && $key === $data['key'] ) {

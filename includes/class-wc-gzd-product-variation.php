@@ -33,7 +33,8 @@ class WC_GZD_Product_Variation extends WC_GZD_Product {
 		'sale_price_label',
 		'sale_price_regular_label',
 		'free_shipping',
-		'differential_taxation'
+		'differential_taxation',
+		'min_age'
 	);
 
 	public function get_gzd_parent() {

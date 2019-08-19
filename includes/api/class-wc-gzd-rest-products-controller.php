@@ -180,6 +180,13 @@ class WC_GZD_REST_Products_Controller {
 			'default'     => false,
 			'context'     => array( 'view', 'edit' ),
 		);
+		$schema_properties['age_verification'] = array(
+			'description' => __( 'Age verification minimum age.', 'woocommerce-germanized' ),
+			'type'        => 'string',
+			'enum'        => array_merge( array( '' ), array_keys( wc_gzd_get_age_verification_min_ages() ) ),
+			'default'     => '',
+			'context'     => array( 'view', 'edit' ),
+		);
 		$schema_properties['service'] = array(
 			'description' => __( 'Whether this product is a service or not', 'woocommerce-germanized' ),
 			'type'        => 'boolean',
@@ -276,6 +283,12 @@ class WC_GZD_REST_Products_Controller {
 		$schema_properties['variations']['items']['properties'][ 'mini_desc' ] = array(
 			'description' => __( 'Small Cart Product Description', 'woocommerce-germanized' ),
 			'type'        => 'string',
+			'context'     => array( 'view', 'edit' ),
+		);
+		$schema_properties['variations']['items']['properties']['min_age'] = array(
+			'description' => __( 'Age verification minimum age.', 'woocommerce-germanized' ),
+			'type'        => 'string',
+			'enum'        => array_merge( array( '' ), array_keys( wc_gzd_get_age_verification_min_ages() ) ),
 			'context'     => array( 'view', 'edit' ),
 		);
 		$schema_properties['variations']['items']['properties'][ 'unit_price' ] = array(
@@ -442,6 +455,10 @@ class WC_GZD_REST_Products_Controller {
 			$data['_mini_desc'] = wc_gzd_sanitize_html_text_field( $request['mini_desc'] );
 		}
 
+		if ( isset( $request['min_age'] ) ) {
+			$data['_min_age'] = esc_attr( $request['min_age'] );
+		}
+
 		foreach( array( 'free_shipping', 'service', 'differential_taxation' ) as $bool_meta ) {
 			if ( isset( $request[$bool_meta] ) ) {
 				if ( ! empty( $request[$bool_meta] ) ) {
@@ -517,7 +534,7 @@ class WC_GZD_REST_Products_Controller {
 		$data        = array();
 
 		if ( ! $product->is_type( 'variation' ) ) {
-			$data['unit']	= $this->prepare_term( WC_germanized()->units->get_term_object( $gzd_product->get_unit() ) );
+			$data['unit'] = $this->prepare_term( WC_germanized()->units->get_term_object( $gzd_product->get_unit() ) );
 		}
 
 		// Unit Price
@@ -533,6 +550,9 @@ class WC_GZD_REST_Products_Controller {
 
 		// Cart Mini Description
 		$data['mini_desc'] = $gzd_product->get_cart_description() ? $gzd_product->get_cart_description() : '';
+
+		// Age verification
+		$data['min_age'] = $gzd_product->get_min_age( 'edit' );
 
 		// Sale Labels
 		$data['sale_price_label']         = $this->prepare_term( WC_germanized()->price_labels->get_term_object( $gzd_product->get_sale_price_label() ) );
