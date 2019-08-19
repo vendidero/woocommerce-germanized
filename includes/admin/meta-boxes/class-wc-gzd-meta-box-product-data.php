@@ -45,14 +45,34 @@ class WC_Germanized_Meta_Box_Product_Data {
 		 */
 		add_action( 'woocommerce_update_product', array( __CLASS__, 'update_after_save' ), 10, 1 );
 		add_action( 'woocommerce_create_product', array( __CLASS__, 'update_after_save' ), 10, 1 );
+		add_action( 'woocommerce_new_product', array( __CLASS__, 'update_after_save' ), 10, 1 );
 		add_action( 'woocommerce_update_product_variation', array( __CLASS__, 'update_after_save' ), 10, 1 );
+
+		/**
+		 * Product duplication
+		 */
+        add_action( 'woocommerce_product_duplicate_before_save', array( __CLASS__, 'update_before_duplicate' ), 10, 2 );
 
 		if ( ! wc_gzd_get_dependencies()->woocommerce_version_supports_crud() ) {
 			add_action( 'woocommerce_create_product_variation', array( __CLASS__, 'update_after_save' ), 10, 1 );
+			add_action( 'woocommerce_new_product_variation', array( __CLASS__, 'update_after_save' ), 10, 1 );
 		} else {
 			add_action( 'woocommerce_new_product_variation', array( __CLASS__, 'update_after_save' ), 10, 1 );
         }
 	}
+
+	/**
+	 * @param WC_Product $duplicate
+	 * @param WC_Product $product
+	 */
+	public static function update_before_duplicate( $duplicate, $product ) {
+	    if ( $gzd_product = wc_gzd_get_gzd_product( $product ) ) {
+
+	        if ( $delivery_time = $gzd_product->get_delivery_time() ) {
+	            $duplicate->update_meta_data( '_product_delivery_time', $delivery_time->term_id );
+            }
+        }
+    }
 
 	/**
      * Manipulating WooCommerce CRUD objects through REST API (saving) doesn't work

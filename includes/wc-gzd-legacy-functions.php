@@ -109,7 +109,7 @@ function wc_gzd_set_crud_term_data( $object, $term, $taxonomy ) {
 	$term_data = ( ! is_numeric( $term ) ? sanitize_text_field( $term ) : absint( $term ) );
 
 	if ( wc_gzd_get_dependencies()->woocommerce_version_supports_crud() && is_callable( array( $object, 'update_meta_data' ) ) ) {
-		$object->update_meta_data( '_' . $taxonomy, $term );
+		$object->update_meta_data( '_' . $taxonomy, $term_data );
 	} else {
 		wp_set_object_terms( wc_gzd_get_crud_data( $object, 'id' ), $term_data, $taxonomy );
 	}

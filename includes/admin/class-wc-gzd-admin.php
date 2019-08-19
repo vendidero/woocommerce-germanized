@@ -162,7 +162,9 @@ class WC_GZD_Admin {
 	}
 
 	public function send_paid_for_order_notification( $order ) {
-        $mail = WC_germanized()->emails->get_email_instance_by_id( 'customer_paid_for_order' );
+		do_action( 'woocommerce_before_resend_order_emails', $order, 'customer_paid_for_order' );
+
+		$mail = WC_germanized()->emails->get_email_instance_by_id( 'customer_paid_for_order' );
 
         if ( $mail ) {
             $mail->trigger( $order );
@@ -170,9 +172,13 @@ class WC_GZD_Admin {
             // Note the event.
             $order->add_order_note( __( 'Paid for order notification manually sent to customer.', 'woocommerce-germanized' ), false, true );
         }
-    }
+
+		do_action( 'woocommerce_after_resend_order_email', $order, 'customer_paid_for_order' );
+	}
 
 	public function resend_order_confirmation( $order ) {
+		do_action( 'woocommerce_before_resend_order_emails', $order, 'customer_processing_order' );
+
 		// Send the customer invoice email.
 		WC()->payment_gateways();
 		WC()->shipping();
@@ -198,6 +204,8 @@ class WC_GZD_Admin {
              */
 			do_action( 'woocommerce_gzd_after_resend_order_confirmation_email', $order, $mail_id );
 		}
+
+		do_action( 'woocommerce_after_resend_order_email', $order, 'customer_processing_order' );
 	}
 
 	public function order_actions( $actions ) {
