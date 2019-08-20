@@ -131,8 +131,9 @@ class WC_GZD_Trusted_Shops_Admin {
     }
 
     public function save_fields( $product ) {
-	    if ( is_numeric( $product ) )
+	    if ( is_numeric( $product ) ) {
 		    $product = wc_get_product( $product );
+	    }
 
 	    if ( isset( $_POST['_ts_gtin'] ) ) {
 	        $product = wc_ts_set_crud_data( $product, '_ts_gtin', wc_clean( $_POST['_ts_gtin'] ) );
@@ -141,10 +142,6 @@ class WC_GZD_Trusted_Shops_Admin {
         if ( isset( $_POST['_ts_mpn'] ) ) {
 	        $product = wc_ts_set_crud_data( $product, '_ts_mpn', wc_clean( $_POST['_ts_mpn'] ) );
         }
-
-	    if ( wc_ts_woocommerce_supports_crud() ) {
-		    $product->save();
-	    }
     }
 
 	public function create_attribute() {
