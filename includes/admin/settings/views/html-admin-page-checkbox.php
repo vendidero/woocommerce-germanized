@@ -8,7 +8,7 @@ $checkbox_id = $checkbox->get_id()
 ?>
 
 <h2>
-	<a href="<?php echo admin_url( 'admin.php?page=wc-settings&tab=germanized&section=checkboxes' ); ?>"><?php _e( 'Checkboxes', 'woocommerce-germanized' ); ?></a> &gt;
+	<a href="<?php echo admin_url( 'admin.php?page=wc-settings&tab=germanized-checkboxes' ); ?>"><?php _e( 'Checkboxes', 'woocommerce-germanized' ); ?></a> &gt;
 	<?php echo esc_html( $checkbox->get_admin_name() ); ?>
 </h2>
 

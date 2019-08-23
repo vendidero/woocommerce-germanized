@@ -963,8 +963,11 @@ final class WooCommerce_Germanized {
 	 * @return array
 	 */
 	public function add_settings( $integrations ) {
+		include_once WC_GERMANIZED_ABSPATH . 'includes/admin/settings/abstract-wc-gzd-settings-tab.php';
 		include_once WC_GERMANIZED_ABSPATH . 'includes/admin/settings/class-wc-gzd-settings-germanized.php';
+
 		$integrations[] = new WC_GZD_Settings_Germanized();
+
 		return $integrations;
 	}
 
