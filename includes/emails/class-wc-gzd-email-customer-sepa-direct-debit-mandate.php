@@ -82,7 +82,6 @@ class WC_GZD_Email_Customer_SEPA_Direct_Debit_Mandate extends WC_Email {
 
 		if ( $order ) {
 			$this->object                  = $order;
-
 			$gateways					   = WC()->payment_gateways()->payment_gateways();
 			$this->gateway 				   = $gateways['direct-debit'];
 

@@ -74,6 +74,7 @@ class WC_GZD_Emails {
     }
 
 	public function save_confirmation_text_option() {
+		
 		if ( ! current_user_can( 'manage_woocommerce' ) ) {
 			return;
 		}
