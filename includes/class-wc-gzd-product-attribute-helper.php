@@ -42,7 +42,6 @@ class WC_GZD_Product_Attribute_Helper {
             add_action( 'woocommerce_after_product_attribute_settings', array( $this, 'attribute_visibility' ), 10, 2 );
         }
 
-        add_filter( 'woocommerce_germanized_settings_display', array( $this, 'global_attribute_setting' ), 10 );
         add_filter( 'woocommerce_gzd_email_visibility_settings', array( $this, 'email_attribute_setting' ), 10 );
     }
 

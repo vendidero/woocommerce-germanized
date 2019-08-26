@@ -75,7 +75,11 @@ class WC_GZD_Admin {
 		add_filter( 'pre_update_option_wp_page_for_privacy_policy', array( $this, 'pre_update_wp_privacy_option_page' ), 10, 2 );
 		add_filter( 'pre_update_option_woocommerce_data_security_page_id', array( $this, 'pre_update_gzd_privacy_option_page' ), 10, 2 );
 
-		add_action( 'woocommerce_admin_field_gzd_toggle', array( $this, 'toggle_input' ), 10 );
+		add_action( 'woocommerce_admin_field_gzd_toggle', array( $this, 'toggle_input_field' ), 10 );
+		add_action( 'woocommerce_admin_field_image', array( $this, 'image_field' ), 0, 1 );
+		add_action( 'woocommerce_admin_field_html', array( $this, 'html_field' ), 0, 1 );
+		add_action( 'woocommerce_admin_field_hidden', array( $this, 'hidden_field' ), 0, 1 );
+
 		add_filter( 'woocommerce_admin_settings_sanitize_option', array( $this, 'save_toggle_input_field' ), 0, 3 );
 	}
 
@@ -87,7 +91,35 @@ class WC_GZD_Admin {
         return $value;
     }
 
-    public function toggle_input( $value ) {
+	public function image_field( $value ) {
+		?>
+        <tr valign="top">
+            <th class="forminp forminp-image" colspan="2" id="<?php echo esc_attr( $value['id'] ); ?>">
+                <a href="<?php echo esc_attr( $value['href'] ); ?>" target="_blank"><img src="<?php echo $value['img']; ?>" /></a>
+            </th>
+        </tr>
+		<?php
+	}
+	public function html_field( $value ) {
+		?>
+        <tr valign="top">
+            <th class="forminp forminp-html" id="<?php echo esc_attr( $value['id'] ); ?>"><label><?php echo esc_attr( $value['title'] ); ?> <?php echo isset( $value['desc_tip'] ) ? wc_gzd_help_tip( $value['desc_tip'] ) : ''; // WPCS: XSS ok. ?></label></th>
+            <td class="forminp"><?php echo $value['html']; ?></td>
+        </tr>
+		<?php
+	}
+	public function hidden_field( $value ) {
+		$option_value = WC_Admin_Settings::get_option( $value['id'], $value['default'] );
+		?>
+        <tr valign="top" style="display: none">
+            <th class="forminp forminp-image">
+                <input type="hidden" id="<?php echo esc_attr( $value['id'] ); ?>" value="<?php echo esc_attr( $option_value ); ?>" name="<?php echo esc_attr( $value['id'] ); ?>" />
+            </th>
+        </tr>
+		<?php
+	}
+
+    public function toggle_input_field( $value ) {
         // Custom attribute handling.
         $custom_attributes = array();
 
@@ -103,27 +135,42 @@ class WC_GZD_Admin {
         $tooltip_html      = $field_description['tooltip_html'];
         $option_value      = WC_Admin_Settings::get_option( $value['id'], $value['default'] );
 
-        ?><tr valign="top">
-          <th scope="row" class="titledesc">
-              <span class="wc-gzd-label-wrap"><?php echo esc_html( $value['title'] ); ?> <?php echo $tooltip_html; // WPCS: XSS ok. ?></span>
-          </th>
-          <td class="forminp forminp-<?php echo esc_attr( sanitize_title( $value['type'] ) ); ?>">
-              <a href="#" class="woocommerce-gzd-input-toggle-trigger">
-                  <span id="<?php echo esc_attr( $value['id'] ); ?>-toggle" class="woocommerce-gzd-input-toggle woocommerce-input-toggle woocommerce-input-toggle--<?php echo ( 'yes' === $option_value ? 'enabled' : 'disabled' ); ?>"><?php echo ( 'yes' === $option_value ? __( 'Yes', 'woocommerce-germanized' ) : __( 'No', 'woocommerce-germanized' ) ); ?></span>
-              </a>
-              <input
-                      name="<?php echo esc_attr( $value['id'] ); ?>"
-                      id="<?php echo esc_attr( $value['id'] ); ?>"
-                      type="checkbox"
-                      style="display: none; <?php echo esc_attr( $value['css'] ); ?>"
-                      value="1"
-                      class="<?php echo esc_attr( $value['class'] ); ?>"
-                    <?php checked( $option_value, 'yes' ); ?>
-                <?php echo implode( ' ', $custom_attributes ); // WPCS: XSS ok. ?>
-              /><?php echo esc_html( $value['suffix'] ); ?> <?php echo $description; // WPCS: XSS ok. ?>
-          </td>
-          </tr>
-        <?php
+        if ( ! isset( $value['checkboxgroup'] ) || 'start' === $value['checkboxgroup'] ) {
+            ?>
+                <tr valign="top">
+                    <th scope="row" class="titledesc">
+                        <span class="wc-gzd-label-wrap"><?php echo esc_html( $value['title'] ); ?> <?php echo $tooltip_html; // WPCS: XSS ok. ?></span>
+                    </th>
+                    <td class="forminp forminp-<?php echo esc_attr( sanitize_title( $value['type'] ) ); ?>">
+                        <fieldset>
+            <?php
+        } else {
+            ?>
+             <fieldset>
+            <?php
+        }
+        ?>
+          <a href="#" class="woocommerce-gzd-input-toggle-trigger">
+              <span id="<?php echo esc_attr( $value['id'] ); ?>-toggle" class="woocommerce-gzd-input-toggle woocommerce-input-toggle woocommerce-input-toggle--<?php echo ( 'yes' === $option_value ? 'enabled' : 'disabled' ); ?>"><?php echo ( 'yes' === $option_value ? __( 'Yes', 'woocommerce-germanized' ) : __( 'No', 'woocommerce-germanized' ) ); ?></span>
+          </a>
+          <input
+                  name="<?php echo esc_attr( $value['id'] ); ?>"
+                  id="<?php echo esc_attr( $value['id'] ); ?>"
+                  type="checkbox"
+                  style="display: none; <?php echo esc_attr( $value['css'] ); ?>"
+                  value="1"
+                  class="<?php echo esc_attr( $value['class'] ); ?>"
+                <?php checked( $option_value, 'yes' ); ?>
+            <?php echo implode( ' ', $custom_attributes ); // WPCS: XSS ok. ?>
+          /><?php echo esc_html( $value['suffix'] ); ?> <?php echo $description; // WPCS: XSS ok. ?>
+
+        </fieldset>
+        <?php if ( ! isset( $value['checkboxgroup'] ) || 'end' === $value['checkboxgroup'] ) {
+		    ?>
+            </td>
+            </tr>
+		    <?php
+	    }
     }
 
 	public function pre_update_gzd_privacy_option_page( $new_value, $old_value ) {
@@ -255,45 +302,15 @@ class WC_GZD_Admin {
 		$assets_path       = WC_germanized()->plugin_url() . '/assets/';
 		$admin_script_path = $assets_path . 'js/admin/';
 
-		wp_register_style( 'woocommerce-gzd-admin', $assets_path . 'css/woocommerce-gzd-admin' . $suffix . '.css', false, WC_GERMANIZED_VERSION );
+		wp_register_style( 'woocommerce-gzd-admin', $assets_path . 'css/admin' . $suffix . '.css', false, WC_GERMANIZED_VERSION );
 		wp_enqueue_style( 'woocommerce-gzd-admin' );
 
 		wp_register_style( 'tourbus', $assets_path . 'css/tourbus' . $suffix . '.css', false, WC_GERMANIZED_VERSION );
 
-		wp_register_script( 'wc-gzd-admin', $admin_script_path . 'settings' . $suffix . '.js', array( 'jquery', 'woocommerce_settings' ), WC_GERMANIZED_VERSION, true );
 		wp_register_script( 'scrollto', $admin_script_path . 'scrollTo' . $suffix . '.js', array( 'jquery' ), WC_GERMANIZED_VERSION, true );
 		wp_register_script( 'tourbus', $admin_script_path . 'tourbus' . $suffix . '.js', array( 'jquery', 'scrollto' ), WC_GERMANIZED_VERSION, true );
-		wp_register_script( 'wc-gzd-admin-tour', $admin_script_path . 'tour' . $suffix . '.js', array( 'jquery', 'woocommerce_settings', 'tourbus' ), WC_GERMANIZED_VERSION, true );
 		wp_register_script( 'wc-gzd-admin-product-variations', $admin_script_path . 'product-variations' . $suffix . '.js', array( 'wc-admin-variation-meta-boxes' ), WC_GERMANIZED_VERSION );
 		wp_register_script( 'wc-gzd-admin-legal-checkboxes', $admin_script_path . 'legal-checkboxes' . $suffix . '.js', array( 'jquery', 'wp-util', 'underscore', 'backbone', 'jquery-ui-sortable', 'wc-enhanced-select' ), WC_GERMANIZED_VERSION );
-
-		if ( isset( $_GET[ 'tab' ] ) && $_GET[ 'tab' ] == 'germanized' ) {
-			wp_enqueue_script( 'wc-gzd-admin' );
-
-			$section = 'general';
-
-			if ( isset( $_GET[ 'section' ] ) ) {
-				$section = sanitize_text_field( $_GET[ 'section' ] );
-            }
-
-			if ( $section === 'trusted_shops' ) {
-                /**
-                 * Action to load Trusted Shops specific admin assets.
-                 *
-                 * This hook is used to load Trusted Shops assets within admin settings page.
-                 *
-                 * @since 1.6.3
-                 */
-				do_action( 'woocommerce_gzd_load_trusted_shops_script' );
-            }
-
-			if ( $this->is_tour_enabled( $section ) ) {
-				wp_enqueue_script( 'scrollto' );
-				wp_enqueue_script( 'tourbus' );
-				wp_enqueue_script( 'wc-gzd-admin-tour' );
-				wp_enqueue_style( 'tourbus' );
-			}
-		}
 
 		if ( in_array( $screen->id, array( 'product', 'edit-product' ) ) ) {
 			wp_enqueue_script( 'wc-gzd-admin-product-variations' );

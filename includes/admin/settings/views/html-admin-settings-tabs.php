@@ -9,7 +9,7 @@ defined( 'ABSPATH' ) || exit;
 	<?php _e( 'Germanized', 'woocommerce-germanized' ); ?>
 </h2>
 
-<p><?php echo __( 'Adjust your Germanized settings.', 'woocommerce-germanized' ); ?></p>
+<p class="tab-description"><?php echo __( 'Adjust your Germanized settings.', 'woocommerce-germanized' ); ?></p>
 
 <table class="wc-gzd-setting-tabs widefat">
 	<thead>
@@ -24,9 +24,15 @@ defined( 'ABSPATH' ) || exit;
         <?php foreach( $tabs as $tab_id => $tab ) : ?>
             <tr>
                 <td class="wc-gzd-setting-tab-name"><a href="<?php echo $tab->get_link(); ?>" class="wc-gzd-setting-tab-link"><?php echo $tab->get_label(); ?></a></td>
-                <td class="wc-gzd-setting-tab-enabled"><span class="status-enabled"><?php echo esc_attr__( 'Yes', 'woocommerce-germanized' ); ?></span></td>
+                <td class="wc-gzd-setting-tab-enabled">
+                    <?php if ( $tab->supports_disabling() ) : ?>
+                        <a class="wc-gzd-settings-tab-toggle-<?php echo ( $tab->is_enabled() ? 'enabled' : 'disabled' ); ?>" href="#"><span class="woocommerce-input-toggle woocommerce-input-toggle--<?php echo ( $tab->is_enabled() ? 'enabled' : 'disabled' ); ?>"><?php echo esc_attr__( 'Yes', 'woocommerce-germanized' ); ?></span></a>
+                    <?php else: ?>
+                        <span class="status-enabled"><?php echo esc_attr__( 'Yes', 'woocommerce-germanized' ); ?></span>
+                    <?php endif; ?>
+                </td>
                 <td class="wc-gzd-setting-tab-desc"><?php echo $tab->get_description(); ?></td>
-                <td class="wc-gzd-setting-tab-actions"><a class="button button-secondary" href="<?php echo $tab->get_link(); ?>"><?php _e( 'Adjust settings', 'woocommerce-germanized' ); ?></a></td>
+                <td class="wc-gzd-setting-tab-actions"><a class="button button-secondary" href="<?php echo $tab->get_link(); ?>"><?php _e( 'Manage', 'woocommerce-germanized' ); ?></a></td>
             </tr>
         <?php endforeach; ?>
 	</tbody>

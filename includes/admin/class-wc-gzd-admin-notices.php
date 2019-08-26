@@ -88,7 +88,7 @@ class WC_GZD_Admin_Notices {
 			if ( current_user_can( 'manage_woocommerce' ) ) {
 
 				wp_enqueue_style( 'woocommerce-activation', plugins_url( '/assets/css/activation.css', WC_PLUGIN_FILE ) );
-				wp_enqueue_style( 'woocommerce-gzd-activation', plugins_url( '/assets/css/woocommerce-gzd-activation.css', WC_GERMANIZED_PLUGIN_FILE ) );
+				wp_enqueue_style( 'woocommerce-gzd-activation', plugins_url( '/assets/css/admin-activation.css', WC_GERMANIZED_PLUGIN_FILE ) );
 
 				add_action( 'admin_notices', array( $this, 'install_notice' ) );
 			}

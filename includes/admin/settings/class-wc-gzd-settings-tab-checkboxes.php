@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 class WC_GZD_Settings_Tab_Checkboxes extends WC_GZD_Settings_Tab {
 
 	public function get_description() {
-		return __( 'Adjust legal checkboxes.', 'woocommerce-germanized' );
+		return __( 'Legal checkboxes are being used to ask the customer for a certain permission or action (e.g. to accept terms & conditions) before the checkout or another form may be completed.', 'woocommerce-germanized' );
 	}
 
 	public function get_label() {
@@ -23,6 +23,56 @@ class WC_GZD_Settings_Tab_Checkboxes extends WC_GZD_Settings_Tab {
 
 	public function get_name() {
 		return 'checkboxes';
+	}
+
+	public function get_current_section() {
+		return $this->get_current_checkbox_id();
+	}
+
+	public function get_current_checkbox_id() {
+		$checkbox_id  = isset( $_GET['checkbox_id'] ) && ! empty( $_GET['checkbox_id'] ) ? wc_clean( $_GET['checkbox_id'] ) : false;
+
+		return $checkbox_id;
+	}
+
+	public function get_tab_settings( $current_section = '' ) {
+		return array();
+	}
+
+	protected function get_section_description( $checkbox_id ) {
+		$manager = WC_GZD_Legal_Checkbox_Manager::instance();
+
+		if ( $checkbox = $manager->get_checkbox( $checkbox_id ) ) {
+			return $checkbox->get_admin_desc();
+		}
+
+		return '';
+	}
+
+	public function get_section_title( $checkbox_id = '' ) {
+		if ( ! empty( $checkbox_id ) ) {
+			$manager  = WC_GZD_Legal_Checkbox_Manager::instance();
+			$checkbox = $manager->get_checkbox( $checkbox_id );
+
+			if ( $checkbox ) {
+				return $checkbox->get_admin_name();
+			}
+		}
+
+		return '';
+	}
+
+	protected function get_breadcrumb() {
+		$breadcrumb          = parent::get_breadcrumb();
+		$checkbox_id         = $this->get_current_checkbox_id();
+		$new_checkbox_link   = apply_filters( 'woocommerce_gzd_admin_new_legal_checkbox_link', 'https://vendidero.de/woocommerce-germanized' );
+		$new_checkbox_button = ' <a class="page-title-action" href="' . $new_checkbox_link . '" target="' . ( ! WC_germanized()->is_pro() ? '_blank' : '_self' ) . '">' . esc_html__( 'Add checkbox', 'woocommerce-germanized' ) . ' ' . ( ! WC_germanized()->is_pro() ? '<span class="wc-gzd-premium-section-tab">pro</span>' : '' ) . '</a>';
+
+		if ( empty( $checkbox_id ) ) {
+			$breadcrumb[ sizeof( $breadcrumb ) - 1 ]['title'] = $breadcrumb[ sizeof( $breadcrumb ) - 1 ]['title'] . $new_checkbox_button;
+		}
+
+		return $breadcrumb;
 	}
 
 	/**

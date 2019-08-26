@@ -24,4 +24,8 @@ class WC_GZD_Settings_Tab_Emails extends WC_GZD_Settings_Tab {
 	public function get_name() {
 		return 'emails';
 	}
+
+	public function get_tab_settings( $current_section = '' ) {
+		return array();
+	}
 }

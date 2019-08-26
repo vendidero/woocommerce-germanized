@@ -1,6 +1,7 @@
 /* jshint node:true */
 module.exports = function( grunt ) {
 	'use strict';
+    var sass = require( 'node-sass' );
 
 	grunt.initConfig({
 
@@ -11,6 +12,16 @@ module.exports = function( grunt ) {
 			images: 'assets/images',
 			js: 'assets/js'
 		},
+
+        // Sass linting with Stylelint.
+        stylelint: {
+            options: {
+                configFile: '.stylelintrc'
+            },
+            all: [
+                '<%= dirs.css %>/*.scss'
+            ]
+        },
 
 		// JavaScript linting with JSHint.
 		jshint: {
@@ -40,7 +51,7 @@ module.exports = function( grunt ) {
 					src: [
 						'*.js',
 						'!*.min.js',
-						'!Gruntfile.js',
+						'!Gruntfile.js'
 					],
 					dest: '<%= dirs.js %>/admin/',
 					ext: '.min.js'
@@ -72,6 +83,23 @@ module.exports = function( grunt ) {
 			}
 		},
 
+        // Compile all .scss files.
+        sass: {
+            compile: {
+                options: {
+                    implementation: sass,
+                    sourceMap: 'none'
+                },
+                files: [{
+                    expand: true,
+                    cwd: '<%= dirs.css %>/',
+                    src: ['*.scss'],
+                    dest: '<%= dirs.css %>/',
+                    ext: '.css'
+                }]
+            }
+        },
+
 		// Minify all .css files.
 		cssmin: {
 			minify: {
@@ -83,12 +111,19 @@ module.exports = function( grunt ) {
 			}
 		},
 
+        // Concatenate select2.css onto the admin.css files.
+        concat: {
+            main: {
+                files: {}
+            }
+        },
+
 		// Watch changes for assets.
 		watch: {
-			css: {
-				files: ['<%= dirs.css %>/*.css'],
-				tasks: ['cssmin']
-			},
+            css: {
+                files: ['<%= dirs.css %>/*.scss'],
+                tasks: ['sass', 'postcss', 'cssmin', 'concat']
+            },
 			js: {
 				files: [
 					'<%= dirs.js %>/admin/*js',
@@ -99,6 +134,20 @@ module.exports = function( grunt ) {
 				tasks: ['uglify']
 			}
 		},
+
+        // Autoprefixer.
+        postcss: {
+            options: {
+                processors: [
+                    require( 'autoprefixer' )
+                ]
+            },
+            dist: {
+                src: [
+                    '<%= dirs.css %>/*.css'
+                ]
+            }
+        },
 
         // Exec shell commands.
         shell: {
@@ -136,13 +185,20 @@ module.exports = function( grunt ) {
 	});
 
 	// Load NPM tasks to be used here
-	grunt.loadNpmTasks( 'grunt-shell' );
-	grunt.loadNpmTasks( 'grunt-contrib-jshint' );
-	grunt.loadNpmTasks( 'grunt-contrib-uglify' );
-	grunt.loadNpmTasks( 'grunt-contrib-cssmin' );
-	grunt.loadNpmTasks( 'grunt-contrib-watch' );
-	grunt.loadNpmTasks( 'grunt-contrib-clean' );
+    grunt.loadNpmTasks( 'grunt-sass' );
+    grunt.loadNpmTasks( 'grunt-shell' );
     grunt.loadNpmTasks( 'grunt-phpcs' );
+    grunt.loadNpmTasks( 'grunt-rtlcss' );
+    grunt.loadNpmTasks( 'grunt-postcss' );
+    grunt.loadNpmTasks( 'grunt-stylelint' );
+    grunt.loadNpmTasks( 'grunt-contrib-jshint' );
+    grunt.loadNpmTasks( 'grunt-contrib-uglify' );
+    grunt.loadNpmTasks( 'grunt-contrib-cssmin' );
+    grunt.loadNpmTasks( 'grunt-contrib-concat' );
+    grunt.loadNpmTasks( 'grunt-contrib-copy' );
+    grunt.loadNpmTasks( 'grunt-contrib-watch' );
+    grunt.loadNpmTasks( 'grunt-contrib-clean' );
+    grunt.loadNpmTasks( 'grunt-prompt' );
 
 	// Register tasks
 	grunt.registerTask( 'default', [
@@ -151,15 +207,14 @@ module.exports = function( grunt ) {
 	]);
 
 	grunt.registerTask( 'css', [
-		'cssmin'
+        'sass',
+        'postcss',
+        'cssmin',
+        'concat'
 	]);
 
-    grunt.registerTask( 'e2e-tests', [
-        'shell:e2e_tests'
+    grunt.registerTask( 'assets', [
+        'css',
+        'uglify'
     ]);
-
-    grunt.registerTask( 'e2e-test', [
-        'shell:e2e_test'
-    ]);
-
 };

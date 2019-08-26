@@ -21,13 +21,77 @@ window.germanized = window.germanized || {};
                 .on( 'change', 'select#woocommerce_gzd_checkboxes_parcel_delivery_show_special', this.onParcelDeliveryShowSpecial )
                 .on( 'change', 'input#woocommerce_gzd_order_pay_now_button', this.onChangePayNow )
                 .on( 'change', 'input[name=woocommerce_gzd_dispute_resolution_type]', this.onChangeDisputeResolutionType )
-                .on( 'click', 'a.woocommerce-gzd-input-toggle-trigger', this.onInputToogleClick );
+                .on( 'click', 'a.woocommerce-gzd-input-toggle-trigger', this.onInputToogleClick )
+                .on( 'change', '.wc-gzd-admin-settings :input', this.onChangeInput );
+
+            $( '.wc-gzd-admin-settings :input' ).trigger( 'change' );
 
             $( 'select#woocommerce_gzd_checkboxes_parcel_delivery_show_special' ).trigger( 'change' );
             $( 'input#woocommerce_gzd_order_pay_now_button' ).trigger( 'change' );
             $( 'input[name=woocommerce_gzd_dispute_resolution_type]:checked' ).trigger( 'change' );
 
             this.initMailSortable();
+        },
+
+        onChangeInput: function() {
+            var $field = $( this ).parents( 'tr' );
+
+            $field.find( ':input:not(.select2-focusser, .select2-input)' ).each( function() {
+                var $input   = $( this ),
+                    checked  = false,
+                    nameOrg = $( this ).attr( 'name' );
+
+                if ( $input.is( ':checked' ) || $input.is( ':selected' ) ) {
+                    checked = true;
+                }
+
+                if ( typeof nameOrg === typeof undefined || nameOrg === false ) {
+                    return;
+                }
+
+                var name    = nameOrg.replace( '[]', '' );
+                var val     = $input.val();
+
+                var $fields = $( '.wc-gzd-admin-settings' ).find( ':input[data-show_if_' + name +  ']' );
+
+                $fields.each( function() {
+                    var dataValue  = $( this ).data( 'show_if_' + name );
+                    var currentVal = $( this ).val();
+
+                    $( this ).parents( 'tr' ).removeClass( 'wc-gzd-setting-visible wc-gzd-setting-invisible' );
+
+                    if ( dataValue.length > 0 ) {
+                        // Check value
+                        if ( val === currentVal ) {
+                            $( this ).parents( 'tr' ).addClass( 'wc-gzd-setting-visible' );
+                        } else {
+                            $( this ).parents( 'tr' ).addClass( 'wc-gzd-setting-invisible' );
+                        }
+                    } else if ( checked ) {
+                        $( this ).parents( 'tr' ).addClass( 'wc-gzd-setting-visible' );
+                    } else {
+                        $( this ).parents( 'tr' ).addClass( 'wc-gzd-setting-invisible' );
+                    }
+                });
+
+                var $table         = $( this ).parents( '.form-table' );
+                var tableIsVisible = false;
+
+                $table.find( 'tr' ).each( function() {
+                    var isVisible = ! $( this ).hasClass( 'wc-gzd-setting-invisible' );
+
+                    if ( isVisible ) {
+                        tableIsVisible = true;
+                        return false;
+                    }
+                });
+
+                if ( ! tableIsVisible ) {
+                    $table.hide();
+                } else {
+                    $table.show();
+                }
+            });
         },
 
         onEnhancedSelectInit: function() {
