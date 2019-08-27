@@ -18,13 +18,26 @@ abstract class WC_GZD_Settings_Tab extends WC_Settings_Page {
 		parent::__construct();
 
 		remove_filter( 'woocommerce_settings_tabs_array', array( $this, 'add_settings_page' ), 20 );
-		add_action( "woocommerce_sections_{$this->id}", array( $this, 'header' ), 15 );
+		add_action( "woocommerce_sections_{$this->id}", array( $this, 'header' ), 5 );
 	}
 
 	public function get_current_section() {
 		$current_section = isset( $_GET['section'] ) && ! empty( $_GET['section'] ) ? wc_clean( $_GET['section'] ) : '';
-
 		return $current_section;
+	}
+
+	protected function get_pro_content_html() {
+		ob_start();
+		?>
+		<div class="wc-gzd-premium-overlay notice notice-warning inline">
+			<h3><?php _e( 'Get Germanized Pro to unlock', 'woocommerce-germanized' );?></h3>
+			<p><?php _e( 'Enjoy even more professional features such as invoices, legal text generators, B2B VAT settings and premium support!', 'woocommerce-germanized' );?></p>
+			<p><a class="button button-primary" href="https://vendidero.de/woocommerce-germanized" target="_blank"><?php _e( 'Upgrade now', 'woocommerce-germanized' ); ?></a></p>
+		</div>
+		<?php
+		$html = ob_get_clean();
+
+		return $html;
 	}
 
 	public function get_section_title( $section = '' ) {
@@ -42,21 +55,29 @@ abstract class WC_GZD_Settings_Tab extends WC_Settings_Page {
 
 		foreach( $breadcrumb as $breadcrumb_item ) {
 			$count++;
-			echo '<li class="breadcrumb-item breadcrumb-item-' . esc_attr( $breadcrumb_item['class'] ) . ' ' . ( $count === sizeof( $breadcrumb ) ? 'breadcrumb-item-active' : '' ) . '">' . ( ! empty( $breadcrumb_item['href'] ) ? '<a class="breadcrumb-link" href="' . esc_attr( $breadcrumb_item['href'] ) . '">' . esc_attr( $breadcrumb_item['title'] ) . '</a>' : $breadcrumb_item['title'] ) . '</li>';
+			echo '<li class="breadcrumb-item breadcrumb-item-' . esc_attr( $breadcrumb_item['class'] ) . ' ' . ( $count === sizeof( $breadcrumb ) ? 'breadcrumb-item-active' : '' ) . '">' . ( ! empty( $breadcrumb_item['href'] ) ? '<a class="breadcrumb-link" href="' . esc_attr( $breadcrumb_item['href'] ) . '">' . $breadcrumb_item['title'] . '</a>' : $breadcrumb_item['title'] ) . '</li>';
 		}
 
 		echo '</ul>';
 
 		$this->output_description();
+
+		if ( $this->is_pro() && ! WC_germanized()->is_pro() ) {
+			echo $this->get_pro_content_html();
+		}
+	}
+
+	public function is_pro() {
+		return false;
 	}
 
 	protected function output_description() {
 		$current_section = $this->get_current_section();
 
-		if ( empty( $current_section ) ) {
-			echo '<p class="tab-description">' . $this->get_description() . '</p>';
-		} elseif( $desc = $this->get_section_description( $current_section ) ) {
+		if( $desc = $this->get_section_description( $current_section ) ) {
 			echo '<p class="tab-description tab-section-description">' . $desc . '</p>';
+		} elseif( empty( $current_section ) ) {
+			echo '<p class="tab-description">' . $this->get_description() . '</p>';
 		}
 	}
 
@@ -116,11 +137,23 @@ abstract class WC_GZD_Settings_Tab extends WC_Settings_Page {
 		return '';
 	}
 
+	public function get_pointers() {
+	    return array();
+    }
+
+	protected function is_saveable() {
+	    return ( $this->is_pro() && ! WC_germanized()->is_pro() ? false : true );
+    }
+
 	public function output() {
 		$current_section = $this->get_current_section();
 		$current_tab     = $this->get_id();
 		$settings        = $this->get_settings( $this->get_current_section() );
 		$sidebar         = $this->get_sidebar( $this->get_current_section() );
+
+		if ( ! $this->is_saveable() ) {
+		    $GLOBALS['hide_save_button'] = true;
+        }
 
 		do_action( "woocommerce_gzd_admin_settings_before_{$this->get_id()}", $current_section );
 

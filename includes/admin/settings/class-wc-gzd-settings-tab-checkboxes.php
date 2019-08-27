@@ -66,7 +66,7 @@ class WC_GZD_Settings_Tab_Checkboxes extends WC_GZD_Settings_Tab {
 		$breadcrumb          = parent::get_breadcrumb();
 		$checkbox_id         = $this->get_current_checkbox_id();
 		$new_checkbox_link   = apply_filters( 'woocommerce_gzd_admin_new_legal_checkbox_link', 'https://vendidero.de/woocommerce-germanized' );
-		$new_checkbox_button = ' <a class="page-title-action" href="' . $new_checkbox_link . '" target="' . ( ! WC_germanized()->is_pro() ? '_blank' : '_self' ) . '">' . esc_html__( 'Add checkbox', 'woocommerce-germanized' ) . ' ' . ( ! WC_germanized()->is_pro() ? '<span class="wc-gzd-premium-section-tab">pro</span>' : '' ) . '</a>';
+		$new_checkbox_button = ' <a class="page-title-action" href="' . $new_checkbox_link . '" target="' . ( ! WC_germanized()->is_pro() ? '_blank' : '_self' ) . '">' . esc_html__( 'Add checkbox', 'woocommerce-germanized' ) . ' ' . ( ! WC_germanized()->is_pro() ? '<span class="wc-gzd-pro">pro</span>' : '' ) . '</a>';
 
 		if ( empty( $checkbox_id ) ) {
 			$breadcrumb[ sizeof( $breadcrumb ) - 1 ]['title'] = $breadcrumb[ sizeof( $breadcrumb ) - 1 ]['title'] . $new_checkbox_button;

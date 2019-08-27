@@ -454,7 +454,7 @@ class WC_GZD_Checkout {
 			);
 		}
 
-		if ( 'no' === get_option( 'woocommerce_gzd_checkout_phone_required' ) ) {
+		if ( 'yes' === get_option( 'woocommerce_gzd_checkout_phone_non_required' ) ) {
 			$this->custom_fields['phone'] = array(
 				'before'   => '',
 				'override' => true,

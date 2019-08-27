@@ -103,7 +103,7 @@ class WC_GZD_Admin {
 	public function html_field( $value ) {
 		?>
         <tr valign="top">
-            <th class="forminp forminp-html" id="<?php echo esc_attr( $value['id'] ); ?>"><label><?php echo esc_attr( $value['title'] ); ?> <?php echo isset( $value['desc_tip'] ) ? wc_gzd_help_tip( $value['desc_tip'] ) : ''; // WPCS: XSS ok. ?></label></th>
+            <th class="forminp forminp-html" id="<?php echo esc_attr( $value['id'] ); ?>"><label><?php echo esc_attr( $value['title'] ); ?> <?php echo ( isset( $value['desc_tip'] ) && ! empty( $value['desc_tip'] ) ? wc_gzd_help_tip( $value['desc_tip'] ) : '' ); // WPCS: XSS ok. ?></label></th>
             <td class="forminp"><?php echo $value['html']; ?></td>
         </tr>
 		<?php

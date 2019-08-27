@@ -28,7 +28,6 @@ class WC_GZD_Settings_Tab_Button_Solution extends WC_GZD_Settings_Tab {
 	public function get_tab_settings( $current_section = '' ) {
 		return array(
 			array( 'title' => '', 'type' => 'title', 'id' => 'button_solution_options' ),
-
 			array(
 				'title' 	=> __( 'Button Text', 'woocommerce-germanized' ),
 				'desc' 		=> __( 'This text serves as Button text for the Order Submit Button.', 'woocommerce-germanized' ),
@@ -47,11 +46,10 @@ class WC_GZD_Settings_Tab_Button_Solution extends WC_GZD_Settings_Tab {
 			),
 			array(
 				'title' 	=> __( 'Back to cart', 'woocommerce-germanized' ),
-				'desc' 		=> __( 'Add a back to cart button to the checkout table.', 'woocommerce-germanized' ),
+				'desc' 		=> __( 'Add a back to cart button to the checkout table.', 'woocommerce-germanized' ) . '<div class="wc-gzd-additional-desc">' . __( 'This button may let your customer edit their order before submitting. Some people state that this button should be hidden to avoid legal problems.', 'woocommerce-germanized' ) . '</div>',
 				'id' 		=> 'woocommerce_gzd_display_checkout_back_to_cart_button',
 				'default'	=> 'no',
 				'type' 		=> 'gzd_toggle',
-				'desc_tip'	=> __( 'This button may let your customer edit their order before submitting. Some people state that this button should be hidden to avoid legal problems.', 'woocommerce-germanized' ),
 			),
 			array(
 				'title' 	=> __( 'Edit data notice', 'woocommerce-germanized' ),
@@ -69,7 +67,42 @@ class WC_GZD_Settings_Tab_Button_Solution extends WC_GZD_Settings_Tab {
 				'type' 		=> 'color',
 			),
 			array(
-				'title' 	=> __( 'Thankyou Page', 'woocommerce-germanized' ),
+				'title' 	=> __( 'Thumbnails', 'woocommerce-germanized' ),
+				'desc' 		=> __( 'Show product thumbnails within checkout table.', 'woocommerce-germanized' ),
+				'id' 		=> 'woocommerce_gzd_display_checkout_thumbnails',
+				'default'	=> 'yes',
+				'type' 		=> 'gzd_toggle',
+				'desc_tip'	=> __( 'Uncheck if you don\'t want to show your product thumbnails within checkout table.', 'woocommerce-germanized' ),
+			),
+			array(
+				'title' 	=> __( 'Hide Shipping Select', 'woocommerce-germanized' ),
+				'desc' 		=> __( 'Hide shipping rate selection from checkout.', 'woocommerce-germanized' ),
+				'id' 		=> 'woocommerce_gzd_display_checkout_shipping_rate_select',
+				'default'	=> 'yes',
+				'type' 		=> 'gzd_toggle',
+				'desc_tip'	=> __( 'This option will hide shipping rate selection from checkout. By then customers will only be able to change their shipping rate on cart page.', 'woocommerce-germanized' ),
+			),
+			array(
+				'title' 	=> __( 'Estimated taxes', 'woocommerce-germanized' ),
+				'desc' 		=> __( 'Hide the "taxes and shipping estimated" text from the cart.', 'woocommerce-germanized' ),
+				'id' 		=> 'woocommerce_gzd_display_hide_cart_tax_estimated',
+				'default'	=> 'yes',
+				'type' 		=> 'gzd_toggle',
+				'desc_tip'	=> __( 'By default WooCommerce adds a "taxes and shipping estimated" text to your cart. This might puzzle your customers and may not meet german law.', 'woocommerce-germanized' ),
+			),
+			array(
+				'title' 	=> __( 'Fallback Mode', 'woocommerce-germanized' ),
+				'desc' 		=> __( 'Force default WooCommerce checkout template.', 'woocommerce-germanized' ) . '<div class="wc-gzd-additional-desc">' . __( 'If you are facing problems within your checkout e.g. legally relevant data is not showing (terms, delivery time, unit price etc.) your theme seems to be incompatible (not using default WooCommerce hooks and filters). As a workaround you may use this fallback which ensures default review-order.php and form-checkout.php is used.', 'woocommerce-germanized' ) . '</div>',
+				'id' 		=> 'woocommerce_gzd_display_checkout_fallback',
+				'default'	=> 'no',
+				'type' 		=> 'gzd_toggle',
+			),
+			array( 'type' => 'sectionend', 'id' => 'button_solution_options' ),
+
+			array( 'title' => __( 'Thankyou Page', 'woocommerce-germanized' ), 'type' => 'title', 'id' => 'thankyou_options' ),
+
+			array(
+				'title' 	=> __( 'Information', 'woocommerce-germanized' ),
 				'desc' 		=> __( 'Hide product table and customer data on order thankyou page.', 'woocommerce-germanized' ),
 				'id' 		=> 'woocommerce_gzd_hide_order_success_details',
 				'type' 		=> 'gzd_toggle',
@@ -83,8 +116,7 @@ class WC_GZD_Settings_Tab_Button_Solution extends WC_GZD_Settings_Tab {
 				'id' 		=> 'woocommerce_gzd_order_success_text',
 				'type' 		=> 'textarea',
 			),
-
-			array( 'type' => 'sectionend', 'id' => 'button_solution_options' ),
+			array( 'type' => 'sectionend', 'id' => 'thankyou_options' ),
 		);
 	}
 }

@@ -43,9 +43,8 @@ table.data_table tr td p.form-field {
   margin-right: 1em;
 }
 
-.wc-gzd-premium-section-tab, .wc-gzd-pro {
+.wc-gzd-pro {
   font-size: 9px;
-  background: #0074a2;
   border-radius: 3px;
   line-height: 9px;
   color: #FFF;
@@ -54,6 +53,10 @@ table.data_table tr td p.form-field {
   padding: 1px 3px;
   position: relative;
   top: -1px;
+  background: #222;
+  font-style: normal;
+  opacity: 1 !important;
+  text-decoration: none;
 }
 
 .wc-gzd-premium-section-tab {
@@ -61,13 +64,6 @@ table.data_table tr td p.form-field {
   border: 1px solid #CCC;
   color: #555;
   padding: 0 3px;
-}
-
-.wc-gzd-pro {
-  background: #222;
-  font-style: normal;
-  opacity: 1 !important;
-  text-decoration: none;
 }
 
 .wc-gzd-pro:visited {
@@ -80,16 +76,6 @@ table.data_table tr td p.form-field {
 
 .tourbus-leg-inner .wc-gzd-pro {
   top: -3px;
-}
-
-.wc-gzd-premium img, .forminp-image img {
-  width: 100%;
-  height: auto;
-  opacity: 0.7;
-}
-
-.woocommerce table.form-table th.forminp-image {
-  padding-right: 0;
 }
 
 p._unit_price_auto_field label {
