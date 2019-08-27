@@ -44,7 +44,8 @@ class WC_GZD_Admin_Order {
             // Calculate tax shares
             $tax_share = $this->get_order_tax_share( $order, is_a( $item, 'WC_Order_Item_Shipping' ) ? 'shipping' : 'fee' );
 
-            if ( $tax_share && ! empty( $tax_share ) ) {
+            // Do only adjust taxes if tax share contains more than one tax rate
+            if ( $tax_share && ! empty( $tax_share ) && sizeof( $tax_share ) > 1 ) {
                 $taxes      = array();
                 $old_item   = $order->get_item( $item->get_id() );
 
