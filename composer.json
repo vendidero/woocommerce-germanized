@@ -1,5 +1,5 @@
 {
-  "name": "woocommerce-germanized/woocommerce-germanized",
+  "name": "vendidero/woocommerce-germanized",
   "description": "Adapt WooCommerce to the german market.",
   "homepage": "https://vendidero.de/",
   "type": "wordpress-plugin",
@@ -9,7 +9,8 @@
   "require": {
     "automattic/jetpack-autoloader": "1.2.0",
     "php": ">=5.6|>=7.0",
-    "composer/installers": "1.6.0"
+    "composer/installers": "1.6.0",
+    "vendidero/woocommerce-trusted-shops": "4.0.0-beta"
   },
   "require-dev": {
     "myclabs/deep-copy": "1.7.0",
@@ -21,14 +22,15 @@
       "php": "7.1"
     },
     "preferred-install": {
-
+      "vendidero/woocommerce-trusted-shops": "dist"
     },
     "sort-packages": true
   },
   "autoload": {
     "exclude-from-classmap": [
       "includes/legacy",
-      "includes/libraries"
+      "includes/libraries",
+      "includes/gateways/direct-debit/libraries"
     ],
     "psr-4": {
       "Vendidero\\Germanized\\": "src/"
@@ -56,7 +58,7 @@
   },
   "extra": {
     "installer-paths": {
-
+      "packages/woocommerce-trusted-shops": ["vendidero/woocommerce-trusted-shops"]
     },
     "scripts-description": {
       "test": "Run unit tests",

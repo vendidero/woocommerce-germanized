@@ -35,6 +35,7 @@ class WC_GZD_Install {
 	public function __construct() {
 		add_action( 'admin_init', array( __CLASS__, 'check_version' ), 10 );
 		add_action( 'admin_init', array( __CLASS__, 'install_actions' ), 5 );
+
 		add_action( 'in_plugin_update_message-woocommerce-germanized/woocommerce-germanized.php', array( __CLASS__, 'in_plugin_update_message' ) );
 	}
 
@@ -89,10 +90,8 @@ class WC_GZD_Install {
 			// What's new redirect
 			wp_redirect( admin_url( 'index.php?page=wc-gzd-about&wc-gzd-installed=true' ) );
 			exit;
-
 		// Skip button
 		} elseif ( ! empty( $_GET['skip_install_woocommerce_gzd'] ) ) {
-
 			// We no longer need to install pages
 			delete_option( '_wc_gzd_needs_pages' );
 			delete_transient( '_wc_gzd_activation_redirect' );
@@ -100,10 +99,8 @@ class WC_GZD_Install {
 			// What's new redirect
 			wp_redirect( admin_url( 'index.php?page=wc-gzd-about' ) );
 			exit;
-
 		// Update button
 		} elseif ( ! empty( $_GET['do_update_woocommerce_gzd'] ) ) {
-
 			self::update();
 
 			// Update complete
@@ -160,7 +157,6 @@ class WC_GZD_Install {
 		$new_tax_classes = array();
 
 		if ( ! in_array( 'virtual-rate', $tax_classes ) || ! in_array( 'virtual-reduced-rate', $tax_classes ) ) {
-			
 			update_option( '_wc_gzd_needs_pages', 1 );
 			
 			if ( ! in_array( 'virtual-rate', $tax_classes ) ) {
@@ -193,9 +189,6 @@ class WC_GZD_Install {
 		// Queue messages and notices
 		if ( ! is_null( $current_version ) ) {
 
-			// Show tour for new installs only
-			update_option( 'woocommerce_gzd_hide_tour', 1 );
-			
 			$major_version     = substr( $current_version, 0, 3 );
 			$new_major_version = substr( WC_germanized()->version, 0, 3 );
 
@@ -207,14 +200,22 @@ class WC_GZD_Install {
 			}
 
 		} else {
-
 			// Fresh install - Check if some german market plugin was installed before
 			if ( WC_GZD_Admin_Importer::instance()->is_available() ) {
 				update_option( '_wc_gzd_import_available', 1 );
 			}
 		}
-		
-		if ( ! is_null( $current_db_version ) && version_compare( $current_db_version, max( array_keys( self::$db_updates ) ), '<' ) ) {
+
+		$needs_db_update = ! is_null( $current_db_version ) && version_compare( $current_db_version, max( array_keys( self::$db_updates ) ), '<' );
+
+		/**
+		 * Decides whether Germanized needs a database update.
+		 *
+		 * @since 3.0.0
+		 *
+		 * @param boolean Whether a database update is needed or not.
+		 */
+		if ( apply_filters( 'woocommerec_gzd_needs_db_update', $needs_db_update ) ) {
 			// Update
 			update_option( '_wc_gzd_needs_update', 1 );
 		} else {
@@ -286,6 +287,13 @@ class WC_GZD_Install {
 				self::update_db_version( $version );
 			}
 		}
+
+		/**
+		 * Runs as soon as a database update has been triggered by the user.
+		 *
+		 * @since 3.0.0
+		 */
+		do_action( 'woocommerce_gzd_db_update' );
 
 		self::update_db_version();
 	}
@@ -572,6 +580,8 @@ class WC_GZD_Install {
 
 		// Include settings so that we can run through defaults
 		include_once WC()->plugin_path() . '/includes/admin/settings/class-wc-settings-page.php';
+
+		include_once WC_GERMANIZED_ABSPATH . 'includes/admin/settings/abstract-wc-gzd-settings-tab.php';
 		include_once WC_GERMANIZED_ABSPATH . 'includes/admin/class-wc-gzd-admin-legal-checkboxes.php';
 		include_once WC_GERMANIZED_ABSPATH . 'includes/admin/settings/class-wc-gzd-settings-germanized.php';
 

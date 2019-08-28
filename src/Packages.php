@@ -4,7 +4,6 @@
  *
  * @package Vendidero/Germanized
  */
-
 namespace Vendidero\Germanized;
 
 defined( 'ABSPATH' ) || exit;
@@ -26,7 +25,9 @@ class Packages {
      *
      * @var array Key is the package name/directory, value is the main package class which handles init.
      */
-    protected static $packages = [];
+    protected static $packages = [
+	    'woocommerce-trusted-shops' => '\\Vendidero\\TrustedShops\\Package',
+    ];
 
     /**
      * Init the package loader.
@@ -79,9 +80,9 @@ class Packages {
             error_log(  // phpcs:ignore
                 sprintf(
                 /* Translators: %s package name. */
-                    esc_html__( 'Missing the WooCommerce %s package', 'woocommerce' ),
+                    esc_html__( 'Missing the Germanized %s package', 'woocommerce-germanized' ),
                     '<code>' . esc_html( $package ) . '</code>'
-                ) . ' - ' . esc_html__( 'Your installation of WooCommerce is incomplete. If you installed WooCommerce from GitHub, please refer to this document to set up your development environment: https://github.com/woocommerce/woocommerce/wiki/How-to-set-up-WooCommerce-development-environment', 'woocommerce' )
+                ) . ' - ' . esc_html__( 'Your installation of Germanized is incomplete. If you installed Germanized from GitHub, please refer to this document to set up your development environment: https://github.com/woocommerce/woocommerce/wiki/How-to-set-up-WooCommerce-development-environment', 'woocommerce-germanized' )
             );
         }
         add_action(
@@ -94,7 +95,7 @@ class Packages {
                             <?php
                             printf(
                             /* Translators: %s package name. */
-                                esc_html__( 'Missing the WooCommerce %s package', 'woocommerce' ),
+                                esc_html__( 'Missing the Germanized %s package', 'woocommerce-germanized' ),
                                 '<code>' . esc_html( $package ) . '</code>'
                             );
                             ?>
@@ -103,7 +104,7 @@ class Packages {
                         <?php
                         printf(
                         /* translators: 1: is a link to a support document. 2: closing link */
-                            esc_html__( 'Your installation of WooCommerce is incomplete. If you installed WooCommerce from GitHub, %1$splease refer to this document%2$s to set up your development environment.', 'woocommerce' ),
+                            esc_html__( 'Your installation of Germanized is incomplete. If you installed Germanized from GitHub, %1$splease refer to this document%2$s to set up your development environment.', 'woocommerce-germanized' ),
                             '<a href="' . esc_url( 'https://github.com/woocommerce/woocommerce/wiki/How-to-set-up-WooCommerce-development-environment' ) . '" target="_blank" rel="noopener noreferrer">',
                             '</a>'
                         );

@@ -23,6 +23,7 @@ abstract class WC_GZD_Settings_Tab extends WC_Settings_Page {
 
 	public function get_current_section() {
 		$current_section = isset( $_GET['section'] ) && ! empty( $_GET['section'] ) ? wc_clean( $_GET['section'] ) : '';
+
 		return $current_section;
 	}
 
@@ -32,7 +33,7 @@ abstract class WC_GZD_Settings_Tab extends WC_Settings_Page {
 		<div class="wc-gzd-premium-overlay notice notice-warning inline">
 			<h3><?php _e( 'Get Germanized Pro to unlock', 'woocommerce-germanized' );?></h3>
 			<p><?php _e( 'Enjoy even more professional features such as invoices, legal text generators, B2B VAT settings and premium support!', 'woocommerce-germanized' );?></p>
-			<p><a class="button button-primary" href="https://vendidero.de/woocommerce-germanized" target="_blank"><?php _e( 'Upgrade now', 'woocommerce-germanized' ); ?></a></p>
+			<p><a class="button button-primary wc-gzd-button" href="https://vendidero.de/woocommerce-germanized" target="_blank"><?php _e( 'Upgrade now', 'woocommerce-germanized' ); ?></a></p>
 		</div>
 		<?php
 		$html = ob_get_clean();
@@ -123,12 +124,12 @@ abstract class WC_GZD_Settings_Tab extends WC_Settings_Page {
 		$settings = $this->get_tab_settings( $current_section );
 
 		if ( ! empty( $current_section ) ) {
-			$settings = apply_filters( "woocommerce_gzd_admin_settings_tab_{$this->get_id()}", $settings );
+			$settings = apply_filters( "woocommerce_gzd_admin_settings_tab_{$this->get_name()}", $settings );
 		} else {
-			$settings = apply_filters( "woocommerce_gzd_admin_settings_tab_{$this->get_id()}_{$current_section}", $settings );
+			$settings = apply_filters( "woocommerce_gzd_admin_settings_tab_{$this->get_name()}_{$current_section}", $settings );
 		}
 
-		return apply_filters( "woocommerce_gzd_admin_settings", $settings, $this->get_id(), $current_section );
+		return apply_filters( "woocommerce_gzd_admin_settings", $settings, $this->get_name(), $current_section );
 	}
 
 	abstract public function get_tab_settings( $current_section = '' );
@@ -146,10 +147,11 @@ abstract class WC_GZD_Settings_Tab extends WC_Settings_Page {
     }
 
 	public function output() {
-		$current_section = $this->get_current_section();
-		$current_tab     = $this->get_id();
-		$settings        = $this->get_settings( $this->get_current_section() );
-		$sidebar         = $this->get_sidebar( $this->get_current_section() );
+		$current_section  = $this->get_current_section();
+		$current_tab      = $this->get_id();
+		$current_tab_name = $this->get_name();
+		$settings         = $this->get_settings( $this->get_current_section() );
+		$sidebar          = $this->get_sidebar( $this->get_current_section() );
 
 		if ( ! $this->is_saveable() ) {
 		    $GLOBALS['hide_save_button'] = true;
@@ -191,4 +193,30 @@ abstract class WC_GZD_Settings_Tab extends WC_Settings_Page {
 	}
 
 	abstract public function get_name();
+
+	protected function before_save( $settings, $current_section = '' ) {
+	    do_action(  "woocommerce_gzd_admin_settings_before_save_{$this->get_name()}", $settings );
+
+	    if ( ! empty( $current_section ) ) {
+		    do_action(  "woocommerce_gzd_admin_settings_before_save_{$this->get_name()}_{$current_section}", $settings );
+	    }
+    }
+
+    protected function after_save( $settings, $current_section = '' ) {
+	    do_action(  "woocommerce_gzd_admin_settings_after_save_{$this->get_name()}", $settings );
+
+	    if ( ! empty( $current_section ) ) {
+		    do_action(  "woocommerce_gzd_admin_settings_after_save_{$this->get_name()}_{$current_section}", $settings );
+	    }
+    }
+
+	public function save() {
+	    global $current_section;
+
+		$settings = $this->get_settings( $current_section );
+
+		$this->before_save( $settings, $current_section );
+		WC_Admin_Settings::save_fields( $settings );
+		$this->after_save( $settings, $current_section );
+	}
 }

@@ -8,7 +8,7 @@ defined( 'ABSPATH' ) || exit;
 <h2 class="wc-gzd-setting-header">
 	<?php _e( 'Germanized', 'woocommerce-germanized' ); ?>
     <?php if ( ! WC_germanized()->is_pro() ) : ?>
-        <a class="page-title-action" href="https://vendidero.de/woocommerce-germanized" target="_blank"><?php _e( 'Upgrade to Pro', 'woocommerce-germanized' ); ?></a>
+        <a class="page-title-action" href="https://vendidero.de/woocommerce-germanized" target="_blank"><?php printf( __( 'Upgrade to %s', 'woocommerce-germanized' ), '<span class="wc-gzd-pro">pro</span>' ); ?></a>
     <?php endif; ?>
 </h2>
 

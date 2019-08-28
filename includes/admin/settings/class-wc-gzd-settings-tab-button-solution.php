@@ -25,6 +25,48 @@ class WC_GZD_Settings_Tab_Button_Solution extends WC_GZD_Settings_Tab {
 		return 'button_solution';
 	}
 
+	public function get_pointers() {
+		$current  = $this->get_current_section();
+		$pointers = array();
+
+		if ( '' === $current ) {
+			$pointers = array(
+				'pointers' => array(
+					'default'          => array(
+						'target'       => '#woocommerce_gzd_order_submit_btn_text',
+						'next'         => 'color',
+						'next_url'     => '',
+						'next_trigger' => array(),
+						'options'      => array(
+							'content'  => '<h3>' . esc_html__( 'Buy now button', 'woocommerce-germanized' ) . '</h3>' .
+							              '<p>' . esc_html__( 'These settings help you comply to the button solution. The buy now button text is forced and static so that no payment gateway might override it.', 'woocommerce-germanized' ) . '</p>',
+							'position' => array(
+								'edge'  => 'left',
+								'align' => 'left',
+							),
+						),
+					),
+					'color'          => array(
+						'target'       => '#woocommerce_gzd_display_checkout_table_color',
+						'next'         => '',
+						'next_url'     => admin_url( 'admin.php?page=wc-settings&tab=germanized-emails&tutorial=yes' ),
+						'next_trigger' => array(),
+						'options'      => array(
+							'content'  => '<h3>' . esc_html__( 'Product table background', 'woocommerce-germanized' ) . '</h3>' .
+							              '<p>' . esc_html__( 'The product table within your checkout should be noticeable for your customers. You might want to choose a different background color for it.', 'woocommerce-germanized' ) . '</p>',
+							'position' => array(
+								'edge'  => 'left',
+								'align' => 'left',
+							),
+						),
+					),
+				),
+			);
+		}
+
+		return $pointers;
+	}
+
 	public function get_tab_settings( $current_section = '' ) {
 		return array(
 			array( 'title' => '', 'type' => 'title', 'id' => 'button_solution_options' ),
@@ -53,7 +95,7 @@ class WC_GZD_Settings_Tab_Button_Solution extends WC_GZD_Settings_Tab {
 			),
 			array(
 				'title' 	=> __( 'Edit data notice', 'woocommerce-germanized' ),
-				'desc' 		=> __( 'Display a edit-your-data notice within checkout.', 'woocommerce-germanized' ),
+				'desc' 		=> __( 'Display an edit-your-data notice within checkout.', 'woocommerce-germanized' ),
 				'id' 		=> 'woocommerce_gzd_display_checkout_edit_data_notice',
 				'default'	=> 'no',
 				'type' 		=> 'gzd_toggle',

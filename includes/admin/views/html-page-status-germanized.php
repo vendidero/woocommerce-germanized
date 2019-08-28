@@ -232,11 +232,6 @@ if ( ! defined( 'ABSPATH' ) )
 	</thead>
 	<tbody class="tools">
 		<tr>
-			<td><?php _e( 'Settings Tour', 'woocommerce-germanized' ); ?></td>
-			<td class="help"><?php echo '<a href="#" class="help_tip" data-tip="' . esc_attr( __( 'This will delete every option which prevents the Germanized settings tour from starting.', 'woocommerce-germanized' ) ) . '">[?]</a>'; ?></td>
-			<td><a href="<?php echo wp_nonce_url( add_query_arg( array( 'tour' => '', 'enable' => true ) ), 'wc-gzd-tour-enable' ); ?>" class="button button-secondary"><?php _e( 'Reenable Tour', 'woocommerce-germanized' ); ?></a></td>
-		</tr>
-		<tr>
 			<td><?php _e( 'German Formal', 'woocommerce-germanized' ); ?></td>
 			<td class="help"><?php echo '<a href="#" class="help_tip" data-tip="' . esc_attr( __( 'This option will install and activate German formal as your WordPress and WooCommerce language.', 'woocommerce-germanized' ) ) . '">[?]</a>'; ?></td>
 			<td><a href="<?php echo wp_nonce_url( add_query_arg( array( 'install-language' => 'de_DE_formal' ) ), 'wc-gzd-install-language' ); ?>" class="button button-secondary"><?php _e( 'Install de_DE_formal', 'woocommerce-germanized' ); ?></a></td>

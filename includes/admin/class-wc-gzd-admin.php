@@ -56,7 +56,6 @@ class WC_GZD_Admin {
 		add_filter( 'woocommerce_admin_status_tabs', array( $this, 'set_gzd_status_tab' ) );
 		add_action( 'woocommerce_admin_status_content_germanized', array( $this, 'status_tab' ) );
 
-		add_action( 'admin_init', array( $this, 'check_tour_hide' ) );
 		add_action( 'admin_init', array( $this, 'check_language_install' ) );
 		add_action( 'admin_init', array( $this, 'check_text_options_deletion' ) );
 		add_action( 'admin_init', array( $this, 'check_complaints_shortcode_append' ) );
@@ -305,10 +304,7 @@ class WC_GZD_Admin {
 		wp_register_style( 'woocommerce-gzd-admin', $assets_path . 'css/admin' . $suffix . '.css', false, WC_GERMANIZED_VERSION );
 		wp_enqueue_style( 'woocommerce-gzd-admin' );
 
-		wp_register_style( 'tourbus', $assets_path . 'css/tourbus' . $suffix . '.css', false, WC_GERMANIZED_VERSION );
-
 		wp_register_script( 'scrollto', $admin_script_path . 'scrollTo' . $suffix . '.js', array( 'jquery' ), WC_GERMANIZED_VERSION, true );
-		wp_register_script( 'tourbus', $admin_script_path . 'tourbus' . $suffix . '.js', array( 'jquery', 'scrollto' ), WC_GERMANIZED_VERSION, true );
 		wp_register_script( 'wc-gzd-admin-product-variations', $admin_script_path . 'product-variations' . $suffix . '.js', array( 'wc-admin-variation-meta-boxes' ), WC_GERMANIZED_VERSION );
 		wp_register_script( 'wc-gzd-admin-legal-checkboxes', $admin_script_path . 'legal-checkboxes' . $suffix . '.js', array( 'jquery', 'wp-util', 'underscore', 'backbone', 'jquery-ui-sortable', 'wc-enhanced-select' ), WC_GERMANIZED_VERSION );
 
@@ -398,43 +394,6 @@ class WC_GZD_Admin {
 		echo '<p class="small">' . __( 'This content will be shown as short product description within checkout and emails.', 'woocommerce-germanized' ) . '</p>';
 
 		wp_editor( htmlspecialchars_decode( get_post_meta( $post->ID, '_mini_desc', true ) ), 'wc_gzd_product_mini_desc', array( 'textarea_name' => '_mini_desc', 'textarea_rows' => 5, 'media_buttons' => false ) );
-	}
-
-	public function disable_tour_link( $type ) {
-		return wp_nonce_url( add_query_arg( array( 'tour' => $type, 'hide' => true ) ), 'wc-gzd-tour-hide' );
-	}
-
-	public function is_tour_enabled( $type = '' ) {
-		return ( ! get_option( 'woocommerce_gzd_hide_tour' ) && ! get_option( 'woocommerce_gzd_hide_tour_' . $type ) );
-	}
-
-	public function check_tour_hide() {
-		if ( current_user_can(  'manage_woocommerce' ) && isset( $_GET[ 'tour' ] ) && isset( $_GET[ 'hide' ] ) && isset( $_GET[ '_wpnonce' ] ) && check_admin_referer( 'wc-gzd-tour-hide' ) ) {
-
-			if ( ! empty( $_GET[ 'tour' ] ) )
-				update_option( 'woocommerce_gzd_hide_tour_' . sanitize_text_field( $_GET[ 'tour' ] ), true );
-			else
-				update_option( 'woocommerce_gzd_hide_tour', true );
-
-			wp_safe_redirect( remove_query_arg( array( 'hide', 'tour', '_wpnonce' ) ) );
-
-		} elseif ( current_user_can(  'manage_woocommerce' ) && isset( $_GET[ 'tour' ] ) && isset( $_GET[ 'enable' ] ) && isset( $_GET[ '_wpnonce' ] ) && check_admin_referer( 'wc-gzd-tour-enable' ) ) {
-
-		    /** This filter is documented in includes/admin/settings/class-wc-gzd-settings-germanized.php */
-		    $additional_sections = apply_filters( 'woocommerce_gzd_settings_sections', array() );
-
-			$setting_sections = array_merge( array(
-				'general'    => '',
-				'display'    => '',
-				'checkboxes' => '',
-				'email'      => ''
-			), $additional_sections );
-
-			delete_option( 'woocommerce_gzd_hide_tour' );
-
-			foreach ( $setting_sections as $section => $name )
-				delete_option( 'woocommerce_gzd_hide_tour_' . $section );
-		}
 	}
 
 	public function check_language_install() {

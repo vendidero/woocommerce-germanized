@@ -28,6 +28,24 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 		parent::__construct();
 	}
 
+	public function get_settings() {
+		$settings = array();
+
+		foreach( $this->get_tabs() as $tab ) {
+			$sections = $tab->get_sections();
+
+			if ( ! empty( $sections ) ) {
+				foreach( $tab->get_sections() as $section_name => $section ) {
+					$settings = array_merge( $settings, $tab->get_settings( $section_name ) );
+				}
+			} else {
+				$settings = array_merge( $settings, $tab->get_settings() );
+			}
+		}
+
+		return $settings;
+	}
+
 	public function admin_styles() {
 		$suffix      = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 		$assets_path = str_replace( array( 'http:', 'https:' ), '', WC_germanized()->plugin_url() ) . '/assets/';
@@ -38,6 +56,8 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 		// Admin styles for WC pages only.
 		if ( $this->is_active() ) {
 			wp_enqueue_style( 'woocommerce-gzd-admin-settings' );
+
+			do_action( 'woocommerce_gzd_admin_settings_styles' );
 		}
 	}
 
@@ -49,6 +69,8 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 
 		if ( $this->is_active() ) {
 			wp_enqueue_script( 'wc-gzd-admin-settings' );
+
+			do_action( 'woocommerce_gzd_admin_settings_scripts' );
 		}
 	}
 

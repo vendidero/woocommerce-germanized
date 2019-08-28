@@ -135,7 +135,7 @@ class WC_GZD_Settings_Pointers {
 						pointerClass: 'wp-pointer wc-pointer',
 						next_url: '',
 						close: function() {
-							if ( pointer.next_url.length ) {
+							if ( pointer.hasOwnProperty( 'next_url' ) && pointer.next_url.length ) {
 								window.location.href = pointer.next_url;
 							} else if ( pointer.next ) {
 								show_wc_pointer( pointer.next );
@@ -146,11 +146,13 @@ class WC_GZD_Settings_Pointers {
 								next    = '" . esc_js( __( 'Next', 'woocommerce-germanized' ) ) . "',
 								button  = $( '<a class=\"close\" href=\"#\">' + close + '</a>' ),
 								button2 = $( '<a class=\"button button-primary\" href=\"#\">' + next + '</a>' ),
-								wrapper = $( '<div class=\"wc-pointer-buttons\" />' );
+								wrapper = $( '<div class=\"wc-pointer-buttons\" />' ),
+								nextUrl = '';
 							
-							if ( pointer.next_url.length ) {
+							if ( pointer.hasOwnProperty( 'next_url' ) && pointer.next_url.length ) {
+								nextUrl = pointer.next_url;
 								button2 = $( '<a class=\"button button-primary\" href=\"' + pointer.next_url + '\">' + next + '</a>' );
-							}
+							} 
 							
 							button.bind( 'click.pointer', function(e) {
 								e.preventDefault();
@@ -163,10 +165,15 @@ class WC_GZD_Settings_Pointers {
 							});
 							
 							wrapper.append( button ); 
-							
-							if ( pointer.next.length || pointer.next_url.length ) {
+									
+							if ( pointer.next.length || nextUrl.length ) {
 								wrapper.append( button2 );
-							}
+							}	
+							
+							if ( pointer.hasOwnProperty( 'pro' ) ) {
+								var button_pro = $( '<a class=\"button button-secondary button-wc-gzd-pro\" target=\"_blank\" style=\"margin-right: 1em;\" href=\"https://vendidero.de/woocommerce-germanized\">" . esc_js( __( 'Upgrade now', 'woocommerce-germanized' ) ) . "</a>' );
+								wrapper.append( button_pro );
+							}			
 
 							return wrapper;
 						},

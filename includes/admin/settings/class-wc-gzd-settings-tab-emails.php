@@ -34,6 +34,49 @@ class WC_GZD_Settings_Tab_Emails extends WC_GZD_Settings_Tab {
 		);
 	}
 
+	public function get_pointers() {
+		$current  = $this->get_current_section();
+		$pointers = array();
+
+		if ( '' === $current ) {
+			$pointers = array(
+				'pointers' => array(
+					'default'          => array(
+						'target'       => '.ui-sortable td.forminp-multiselect:first .select2-container:nth-of-type(1)',
+						'next'         => 'pdf',
+						'next_url'     => '',
+						'next_trigger' => array(),
+						'options'      => array(
+							'content'  => '<h3>' . esc_html__( 'Email attachments', 'woocommerce-germanized' ) . '</h3>' .
+							              '<p>' . esc_html__( 'Choose which of your email templates (e.g. order confirmation) should contain your legal page content e.g. terms and conditions within it\'s footer.', 'woocommerce-germanized' ) . '</p>',
+							'position' => array(
+								'edge'  => 'left',
+								'align' => 'left',
+							),
+						),
+					),
+					'pdf'              => array(
+						'target'       => '.subsubsub li:nth-of-type(3) a',
+						'next'         => '',
+						'next_url'     => admin_url( 'admin.php?page=wc-settings&tab=germanized-checkboxes&tutorial=yes' ),
+						'next_trigger' => array(),
+						'pro'          => true,
+						'options'      => array(
+							'content'  => '<h3>' . esc_html__( 'PDF Attachments', 'woocommerce-germanized' ) . '</h3>' .
+							              '<p>' . esc_html__( 'Customers of our pro version may attach PDF files instead of plain text content to emails.', 'woocommerce-germanized' ) . '</p>',
+							'position' => array(
+								'edge'  => 'top',
+								'align' => 'left',
+							),
+						),
+					),
+				),
+			);
+		}
+
+		return $pointers;
+	}
+
 	public function get_section_description( $section ) {
 		if ( '' === $section ) {
 			return __( 'Use drag & drop to customize attachment order. Don\'t forget to save your changes.', 'woocommerce-germanized' );

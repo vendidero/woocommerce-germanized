@@ -156,11 +156,12 @@
   justify-content: flex-start;
   margin-top: 1em;
 
-  .wc-gzd-admin-settings-has-sidebar {
+  &.wc-gzd-admin-settings-has-sidebar {
     box-sizing: border-box;
 
     .wc-gzd-admin-settings-fields {
-      width: 70%;
+      width: 65%;
+      padding-right: 5%;
     }
     .wc-gzd-admin-settings-sidebar {
       width: 30%;
@@ -262,10 +263,22 @@
   }
 }
 
+a.page-title-action {
+  .wc-gzd-pro {
+    background: #0073aa;
+  }
+
+  &:hover {
+    .wc-gzd-pro {
+      background: #fff;
+      color: #0073aa;
+    }
+  }
+}
+
 /**
  Checkbox UI
  */
-
 table.wc-gzd-legal-checkboxes {
   thead th {
     vertical-align: middle;
@@ -345,6 +358,43 @@ table.wc-gzd-legal-checkboxes {
   }
 }
 
+.wc-gzd-premium-overlay {
+  border-left-color: #639aff !important;
+}
+
+.wc-gzd-admin-settings-sidebar {
+  box-sizing: border-box;
+  padding: 1em;
+  background: #FFF;
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
+
+  .wc-gzd-admin-settings-sidebar-inner {
+    &.sticky {
+      position: sticky;
+      top: 50px;
+    }
+  }
+
+  h1:first-of-type, h2:first-of-type, h3:first-of-type {
+    margin-top: 0;
+  }
+
+  img {
+    width: 100%;
+  }
+
+  .browser {
+    border-radius: 3px;
+  }
+
+  .small {
+    font-size: 0.9em;
+    display: block;
+    margin-top: 0.5em;
+    color: #888;
+  }
+}
+
 .wc-gzd-admin-settings-checkboxes {
   td.forminp-textarea p code {
     margin: .5em 0;
@@ -356,6 +406,7 @@ table.wc-gzd-legal-checkboxes {
   td.forminp-textarea .gzd-small-desc {
     font-size: 12px;
     font-style: italic;
+    display: block;
   }
   td.forminp-text .description {
     margin-top: .5em;

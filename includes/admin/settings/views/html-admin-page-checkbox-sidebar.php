@@ -8,7 +8,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 ?>
-<div class="wc-gzd-admin-settings-sidebar">
+<div class="wc-gzd-admin-settings-sidebar-inner sticky">
 	<h3>100% Gestaltungsfreiheit</h3>
 	<div class="wc-gzd-sidebar-img">
 		<a href="https://vendidero.de/woocommerce-germanized" target="_blank"><img class="browser" src="<?php echo WC_germanized()->plugin_url(); ?>/assets/images/new-checkbox.png" /></a>

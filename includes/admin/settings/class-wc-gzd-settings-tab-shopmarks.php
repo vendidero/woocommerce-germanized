@@ -34,6 +34,86 @@ class WC_GZD_Settings_Tab_Shopmarks extends WC_GZD_Settings_Tab {
 		);
 	}
 
+	public function get_pointers() {
+		$current  = $this->get_current_section();
+		$pointers = array();
+
+		if ( '' === $current ) {
+			$pointers = array(
+				'pointers' => array(
+					'display'          => array(
+						'target'       => '#woocommerce_gzd_display_listings_shipping_costs_info-toggle',
+						'next'         => '',
+						'next_url'     => admin_url( 'admin.php?page=wc-settings&tab=germanized-shopmarks&section=delivery_times&tutorial=yes' ),
+						'next_trigger' => array(),
+						'options'      => array(
+							'content'  => '<h3>' . esc_html__( 'Shopmark Display', 'woocommerce-germanized' ) . '</h3>' .
+							              '<p>' . esc_html__( 'By adjusting the display settings you might determine where to show or hide your shopmarks e.g. the shipping costs notice.', 'woocommerce-germanized' ) . '</p>',
+							'position' => array(
+								'edge'  => 'bottom',
+								'align' => 'left',
+							),
+						),
+					),
+				),
+			);
+		} elseif( 'delivery_times' === $current ) {
+			$pointers = array(
+				'pointers' => array(
+					'default'          => array(
+						'target'       => '#select2-woocommerce_gzd_default_delivery_time-container',
+						'next'         => 'format',
+						'next_url'     => '',
+						'next_trigger' => array(),
+						'options'      => array(
+							'content'  => '<h3>' . esc_html__( 'Default Delivery Time', 'woocommerce-germanized' ) . '</h3>' .
+							              '<p>' . esc_html__( 'Choose a delivery time that serves as fallback in case no delivery time was added to the product.', 'woocommerce-germanized' ) . '</p>',
+							'position' => array(
+								'edge'  => 'left',
+								'align' => 'left',
+							),
+						),
+					),
+					'format'           => array(
+						'target'       => '#woocommerce_gzd_delivery_time_text',
+						'next'         => '',
+						'next_url'     => admin_url( 'admin.php?page=wc-settings&tab=germanized-shopmarks&section=price_labels&tutorial=yes' ),
+						'next_trigger' => array(),
+						'options'      => array(
+							'content'  => '<h3>' . esc_html__( 'Format', 'woocommerce-germanized' ) . '</h3>' .
+							              '<p>' . esc_html__( 'You may want to adjust the delivery time output format. You might use {delivery_time} to output the current product\'s delivery time.', 'woocommerce-germanized' ) . '</p>',
+							'position' => array(
+								'edge'  => 'left',
+								'align' => 'left',
+							),
+						),
+					),
+				),
+			);
+		} elseif( 'price_labels' === $current ) {
+			$pointers = array(
+				'pointers' => array(
+					'default'          => array(
+						'target'       => '#select2-woocommerce_gzd_default_sale_price_label-container',
+						'next'         => '',
+						'next_url'     => admin_url( 'admin.php?page=wc-settings&tab=germanized-button_solution&tutorial=yes' ),
+						'next_trigger' => array(),
+						'options'      => array(
+							'content'  => '<h3>' . esc_html__( 'Default Sale Label', 'woocommerce-germanized' ) . '</h3>' .
+							              '<p>' . esc_html__( 'Price labels are added to sale products to inform the customers of the differnt prices\' meaning. You may add a fallback label in case a product does not contain a label.', 'woocommerce-germanized' ) . '</p>',
+							'position' => array(
+								'edge'  => 'left',
+								'align' => 'left',
+							),
+						),
+					),
+				),
+			);
+		}
+
+		return $pointers;
+	}
+
 	public function get_tab_settings( $current_section = '' ) {
 		$settings = array();
 

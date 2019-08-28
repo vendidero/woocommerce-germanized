@@ -309,6 +309,48 @@ class WC_GZD_Settings_Tab_General extends WC_GZD_Settings_Tab {
 		);
 	}
 
+	public function get_pointers() {
+		$current  = $this->get_current_section();
+		$pointers = array();
+
+		if ( '' === $current ) {
+			$pointers = array(
+				'pointers' => array(
+					'tab'          => array(
+						'target'       => 'ul.subsubsub li:nth-of-type(2) a',
+						'next'         => 'legal_pages',
+						'next_url'     => '',
+						'next_trigger' => array(),
+						'options'      => array(
+							'content'  => '<h3>' . esc_html__( 'Sections', 'woocommerce-germanized' ) . '</h3>' .
+							              '<p>' . esc_html__( 'Each setting tab might have sub sections containing more specific options.', 'woocommerce-germanized' ) . '</p>',
+							'position' => array(
+								'edge'  => 'top',
+								'align' => 'left',
+							),
+						),
+					),
+					'legal_pages'      => array(
+						'target'       => '#select2-woocommerce_terms_page_id-container',
+						'next'         => '',
+						'next_url'     => admin_url( 'admin.php?page=wc-settings&tab=germanized-shopmarks&tutorial=yes' ),
+						'next_trigger' => array(),
+						'options'      => array(
+							'content'  => '<h3>' . esc_html__( 'Legal Pages', 'woocommerce-germanized' ) . '</h3>' .
+							              '<p>' . esc_html__( 'Adjust legal pages e.g. terms and conditions. These pages are used to add links within checkboxes and text attachments to emails.', 'woocommerce-germanized' ) . '</p>',
+							'position' => array(
+								'edge'  => 'left',
+								'align' => 'left',
+							),
+						),
+					),
+				),
+			);
+		}
+
+		return $pointers;
+	}
+
 	public function get_tab_settings( $current_section = '' ) {
 		$settings = array();
 

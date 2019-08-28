@@ -25,6 +25,53 @@ class WC_GZD_Settings_Tab_Checkboxes extends WC_GZD_Settings_Tab {
 		return 'checkboxes';
 	}
 
+	public function get_pointers() {
+		$current  = $this->get_current_section();
+		$pointers = array();
+
+		if ( false === $current ) {
+			$pointers = array(
+				'pointers' => array(
+					'default'          => array(
+						'target'       => '.wc-gzd-legal-checkbox-rows tr:first td.wc-gzd-legal-checkbox-name a:first',
+						'next'         => '',
+						'next_url'     => admin_url( 'admin.php?page=wc-settings&tab=germanized-checkboxes&checkbox_id=terms&tutorial=yes' ),
+						'next_trigger' => array(),
+						'options'      => array(
+							'content'  => '<h3>' . esc_html__( 'Edit checkbox', 'woocommerce-germanized' ) . '</h3>' .
+							              '<p>' . esc_html__( 'Legal checkboxes help you obtain consent from your customers. You might edit a checkbox\' label and other options by clicking on the link.', 'woocommerce-germanized' ) . '</p>',
+							'position' => array(
+								'edge'  => 'top',
+								'align' => 'left',
+							),
+						),
+					),
+				),
+			);
+		} elseif( 'terms' === $current ) {
+			$pointers = array(
+				'pointers' => array(
+					'default'          => array(
+						'target'       => '#woocommerce_gzd_checkboxes_terms_label',
+						'next'         => '',
+						'next_url'     => '',
+						'next_trigger' => array(),
+						'options'      => array(
+							'content'  => '<h3>' . esc_html__( 'Label', 'woocommerce-germanized' ) . '</h3>' .
+							              '<p>' . esc_html__( 'Adjust the label of your checkbox which will be shown within your shop (e.g. checkout). Use placeholders to add links to your legal pages.', 'woocommerce-germanized' ) . '</p>',
+							'position' => array(
+								'edge'  => 'bottom',
+								'align' => 'left',
+							),
+						),
+					),
+				),
+			);
+		}
+
+		return $pointers;
+	}
+
 	public function get_current_section() {
 		return $this->get_current_checkbox_id();
 	}

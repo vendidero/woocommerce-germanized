@@ -43,7 +43,7 @@ if ( version_compare( PHP_VERSION, '5.6.0', '>=' ) ) {
         return;
     }
 
-    Packages::init();
+	Packages::init();
 }
 
 if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
@@ -72,13 +72,6 @@ final class WooCommerce_Germanized {
 	public $units = null;
 
 	public $price_labels = null;
-
-	/**
-	 * WC_GZD_Trusted_Shops instance
-	 *
-	 * @var object
-	 */
-	public $trusted_shops = null;
 
 	/**
 	 * WC_GZD_Ekomi instance
@@ -314,8 +307,6 @@ final class WooCommerce_Germanized {
 			$path = $this->plugin_path() . '/includes/admin/';
 		} elseif ( strpos( $class, 'wc_gzd_gateway_' ) !== false ) {
 			$path = $this->plugin_path() . '/includes/gateways/' . substr( str_replace( '_', '-', $class ), 15 ) . '/';
-		} elseif ( strpos( $class, 'wc_gzd_trusted_shops' ) !== false ) {
-			$path = $this->plugin_path() . '/includes/trusted-shops/';
 		} elseif ( strpos( $class, 'wc_gzd_compatibility' ) !== false ) {
 			$path = $this->plugin_path() . '/includes/compatibility/';
 		} elseif ( strpos( $class, 'defuse\crypto' ) !== false ) {
@@ -477,9 +468,7 @@ final class WooCommerce_Germanized {
 
 		include_once WC_GERMANIZED_ABSPATH . 'includes/class-wc-gzd-virtual-vat-helper.php';
 
-		$this->setup_trusted_shops();
 		$this->ekomi = new WC_GZD_Ekomi();
-
 	}
 
 	public function woocommerce_loaded_includes() {
@@ -1006,7 +995,6 @@ final class WooCommerce_Germanized {
 		$mails['WC_GZD_Email_Customer_New_Account_Activation'] 	= include 'includes/emails/class-wc-gzd-email-customer-new-account-activation.php';
 		$mails['WC_GZD_Email_Customer_Revocation'] 				= include 'includes/emails/class-wc-gzd-email-customer-revocation.php';
 		$mails['WC_GZD_Email_Customer_Ekomi'] 	 				= include 'includes/emails/class-wc-gzd-email-customer-ekomi.php';
-		$mails['WC_GZD_Email_Customer_Trusted_Shops'] 			= include 'includes/emails/class-wc-gzd-email-customer-trusted-shops.php';
 
 		// Make sure the Processing Order Email is named Order Confirmation for better understanding
 		if ( isset( $mails['WC_Email_Customer_Processing_Order'] ) ) {
@@ -1145,22 +1133,6 @@ final class WooCommerce_Germanized {
 	 */
 	public function prevent_tax_name_merge( $code, $rate_id ) {
 		return $code . '-' . $rate_id;
-	}
-
-	/**
-	 * Initialize Trusted Shops Module
-	 */
-	private function setup_trusted_shops() {
-		// Initialize Trusted Shops module
-		$this->trusted_shops   = new WC_GZD_Trusted_Shops( $this, array(
-			'prefix' 	  	   => 'GZD_',
-			'path'             => WC_GERMANIZED_ABSPATH . 'includes/trusted-shops/',
-			'et_params'        => array(
-				'utm_campaign' => 'shopsoftware',
-				'utm_content'  => 'WOOCOMMERCEGERMANIZED',
-			),
-			'signup_url'	   => 'http://www.trustbadge.com/de/Preise/',
-        ) );
 	}
 }
 
