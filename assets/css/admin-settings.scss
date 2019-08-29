@@ -249,7 +249,9 @@
       }
     }
   }
+}
 
+.wc-gzd-setting-tabs, .wc-gzd-admin-settings {
   a.woocommerce-gzd-input-toggle-trigger {
     color: transparent;
     border: none;
@@ -364,11 +366,12 @@ table.wc-gzd-legal-checkboxes {
 
 .wc-gzd-admin-settings-sidebar {
   box-sizing: border-box;
-  padding: 1em;
-  background: #FFF;
-  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
 
   .wc-gzd-admin-settings-sidebar-inner {
+    padding: 1em;
+    background: #FFF;
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
+
     &.sticky {
       position: sticky;
       top: 50px;

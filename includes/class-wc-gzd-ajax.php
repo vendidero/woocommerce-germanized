@@ -19,9 +19,10 @@ class WC_GZD_AJAX {
 	public static function init() {
 
 		$ajax_events = array(
-			'gzd_revocation' => true,
-			'gzd_json_search_delivery_time' => false,
+			'gzd_revocation'                    => true,
+			'gzd_json_search_delivery_time'     => false,
 			'gzd_legal_checkboxes_save_changes' => false,
+			'gzd_toggle_tab_enabled'            => false,
 		);
 
 		foreach ( $ajax_events as $ajax_event => $nopriv ) {
@@ -34,6 +35,48 @@ class WC_GZD_AJAX {
 				add_action( 'wc_ajax_' . $ajax_event, array( __CLASS__, $ajax_event ) );
 			}
 		}
+	}
+
+	public static function gzd_toggle_tab_enabled() {
+		check_ajax_referer( 'wc_gzd_tab_toggle_nonce', 'security' );
+
+		if ( ! current_user_can( 'manage_woocommerce' ) || ! isset( $_POST['tab'] ) || ! isset( $_POST['enable'] ) ) {
+			wp_die( -1 );
+		}
+
+		$tab_id     = wc_clean( $_POST['tab'] );
+		$enable     = wc_string_to_bool( $_POST['enable'] );
+
+		$pages = WC_Admin_Settings::get_settings_pages();
+
+		foreach( $pages as $page ) {
+
+			if ( is_a( $page, 'WC_GZD_Settings_Germanized' ) ) {
+				$tabs = $page->get_tabs();
+
+				if ( array_key_exists( $tab_id, $tabs ) ) {
+					$tab = $tabs[ $tab_id ];
+
+					if ( $enable ) {
+						$tab->enable();
+
+						wp_send_json( array(
+							'data' => true,
+						) );
+					} else {
+						$tab->disable();
+
+						wp_send_json( array(
+							'data' => false,
+						) );
+					}
+				}
+			}
+		}
+
+		wp_send_json( array(
+			'data' => false,
+		) );
 	}
 
 	public static function gzd_legal_checkboxes_save_changes() {

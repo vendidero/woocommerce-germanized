@@ -8,7 +8,11 @@ window.germanized = window.germanized || {};
      */
     germanized.settings = {
 
+        params: {},
+
         init: function() {
+
+            this.params = wc_gzd_admin_settings_params;
 
             try {
                 $( document.body ).on( 'wc-enhanced-select-init wc-gzd-enhanced-select-init', this.onEnhancedSelectInit ).trigger( 'wc-gzd-enhanced-select-init' );
@@ -22,7 +26,12 @@ window.germanized = window.germanized || {};
                 .on( 'change', 'input#woocommerce_gzd_order_pay_now_button', this.onChangePayNow )
                 .on( 'change', 'input[name=woocommerce_gzd_dispute_resolution_type]', this.onChangeDisputeResolutionType )
                 .on( 'click', 'a.woocommerce-gzd-input-toggle-trigger', this.onInputToogleClick )
+                .on( 'change', '.wc-gzd-setting-tabs input.woocommerce-gzd-tab-status-checkbox', this.onChangeTabStatus )
                 .on( 'change', '.wc-gzd-admin-settings :input', this.onChangeInput );
+
+            $( document.body )
+                .on( 'woocommerce_gzd_setting_field_visible', this.onShowField )
+                .on( 'woocommerce_gzd_setting_field_invisible', this.onHideField );
 
             $( '.wc-gzd-admin-settings :input' ).trigger( 'change' );
 
@@ -31,6 +40,80 @@ window.germanized = window.germanized || {};
             $( 'input[name=woocommerce_gzd_dispute_resolution_type]:checked' ).trigger( 'change' );
 
             this.initMailSortable();
+        },
+
+        onChangeTabStatus: function() {
+            var $checkbox = $( this ),
+                self      = germanized.settings,
+                tab_id    = $checkbox.data( 'tab' ),
+                $toggle   = $checkbox.parents( 'td' ).find( '.woocommerce-gzd-input-toggle' ),
+                $link     = $toggle.parents( 'a' ),
+                isEnabled = $checkbox.is( ':checked' ) ? 'yes' : 'no';
+
+            var data = {
+                action: 'woocommerce_gzd_toggle_tab_enabled',
+                security: self.params.tab_toggle_nonce,
+                enable: isEnabled,
+                tab: tab_id
+            };
+
+            $toggle.addClass( 'woocommerce-input-toggle--loading' );
+
+            $.ajax( {
+                url:      self.params.ajax_url,
+                data:     data,
+                dataType : 'json',
+                type     : 'POST',
+                success:  function( response ) {
+                    if ( true === response.data ) {
+                        $toggle.removeClass( 'woocommerce-input-toggle--enabled, woocommerce-input-toggle--disabled' );
+                        $toggle.addClass( 'woocommerce-input-toggle--enabled' );
+                        $toggle.removeClass( 'woocommerce-input-toggle--loading' );
+                    } else if ( false === response.data ) {
+                        $toggle.removeClass( 'woocommerce-input-toggle--enabled, woocommerce-input-toggle--disabled' );
+                        $toggle.addClass( 'woocommerce-input-toggle--disabled' );
+                        $toggle.removeClass( 'woocommerce-input-toggle--loading' );
+                    } else if ( 'needs_setup' === response.data ) {
+                        window.location.href = $link.attr( 'href' );
+                    }
+                }
+            } );
+
+            return false;
+        },
+
+        onShowField: function( e, $field, name, value ) {
+            var $inputs = $field.parents( 'table' ).find( ':input[data-show_if_' + name + ']' );
+
+            $inputs.each( function() {
+                var dataValue   = $( this ).data( 'show_if_' + name ),
+                    currentVal  = $( this ).val(),
+                    currentName = $( this ).attr( 'name' ).replace( '[]', '' ),
+                    $field      = $( this ).parents( 'tr' );
+
+
+                $field.removeClass( 'wc-gzd-setting-invisible' );
+                $field.addClass( 'wc-gzd-setting-visible' );
+
+                $( document.body ).trigger( 'woocommerce_gzd_setting_field_visible', [ $field, currentName, currentVal ] );
+            });
+        },
+
+        onHideField: function( e, $field, name, value ) {
+            var $inputs = $field.parents( 'table' ).find( ':input[data-show_if_' + name + ']' );
+
+            $inputs.each( function() {
+                var dataValue   = $( this ).data( 'show_if_' + name ),
+                    currentVal  = $( this ).val(),
+                    currentName = $( this ).attr( 'name' ).replace( '[]', '' ),
+                    $field      = $( this ).parents( 'tr' );
+
+
+                $field.removeClass( 'wc-gzd-setting-visible' );
+                $field.addClass( 'wc-gzd-setting-invisible' );
+
+                $( document.body ).trigger( 'woocommerce_gzd_setting_field_invisible', [ $field, currentName, currentVal ] );
+            });
         },
 
         onChangeInput: function() {
@@ -51,26 +134,36 @@ window.germanized = window.germanized || {};
 
                 var name    = nameOrg.replace( '[]', '' );
                 var val     = $input.val();
-
                 var $fields = $( '.wc-gzd-admin-settings' ).find( ':input[data-show_if_' + name +  ']' );
 
                 $fields.each( function() {
-                    var dataValue  = $( this ).data( 'show_if_' + name );
-                    var currentVal = $( this ).val();
+                    var dataValue   = $( this ).data( 'show_if_' + name ),
+                        currentVal  = $( this ).val(),
+                        currentName = $( this ).attr( 'name' ).replace( '[]', '' ),
+                        $field      = $( this ).parents( 'tr' );
 
-                    $( this ).parents( 'tr' ).removeClass( 'wc-gzd-setting-visible wc-gzd-setting-invisible' );
+                    $field.removeClass( 'wc-gzd-setting-visible wc-gzd-setting-invisible' );
 
                     if ( dataValue.length > 0 ) {
                         // Check value
                         if ( val === currentVal ) {
-                            $( this ).parents( 'tr' ).addClass( 'wc-gzd-setting-visible' );
+                            $field.addClass( 'wc-gzd-setting-visible' );
+
+                            $( document.body ).trigger( 'woocommerce_gzd_setting_field_visible', [ $field, currentName, currentVal ] );
                         } else {
-                            $( this ).parents( 'tr' ).addClass( 'wc-gzd-setting-invisible' );
+                            $field.addClass( 'wc-gzd-setting-invisible' );
+
+                            $( document.body ).trigger( 'woocommerce_gzd_setting_field_invisible', [ $field, currentName, currentVal ] );
                         }
                     } else if ( checked ) {
-                        $( this ).parents( 'tr' ).addClass( 'wc-gzd-setting-visible' );
+                        $field.addClass( 'wc-gzd-setting-visible' );
+
+                        $( document.body ).trigger( 'woocommerce_gzd_setting_field_visible', [ $field, currentName, currentVal ] );
+
                     } else {
-                        $( this ).parents( 'tr' ).addClass( 'wc-gzd-setting-invisible' );
+                        $field.addClass( 'wc-gzd-setting-invisible' );
+
+                        $( document.body ).trigger( 'woocommerce_gzd_setting_field_invisible', [ $field, currentName, currentVal ] );
                     }
                 });
 

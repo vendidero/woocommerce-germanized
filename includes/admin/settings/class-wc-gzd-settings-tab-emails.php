@@ -114,7 +114,7 @@ class WC_GZD_Settings_Tab_Emails extends WC_GZD_Settings_Tab {
 
 	protected function get_attachment_pdf_settings() {
 		return array(
-			array(	'title' => '', 'type' => 'title', 'id' => 'email_pdf_options', 'desc' => '<div class="notice inline notice-warning"><p>' . sprintf( __( 'Want to attach automatically generated PDF files to emails instead of plain text? %sUpgrade to %spro%s%s', 'woocommerce-germanized' ), '<a style="margin-left: 1em" href="https://vendidero.de/woocommerce-germanized" class="button">', '<span class="wc-gzd-pro">', '</span>', '</a>' ) . '</p></div>' ),
+			array(	'title' => '', 'type' => 'title', 'id' => 'email_pdf_options', 'desc' => '<div class="notice inline notice-warning wc-gzd-premium-overlay"><p>' . sprintf( __( 'Want to attach automatically generated PDF files to emails instead of plain text? %sUpgrade to %spro%s%s', 'woocommerce-germanized' ), '<a style="margin-left: 1em" href="https://vendidero.de/woocommerce-germanized" class="button button-primary wc-gzd-button">', '<span class="wc-gzd-pro">', '</span>', '</a>' ) . '</p></div>' ),
 
 			array(
 				'title' 	=> '',
@@ -130,7 +130,7 @@ class WC_GZD_Settings_Tab_Emails extends WC_GZD_Settings_Tab {
 
 	protected function get_attachment_settings() {
 		return array(
-			array(	'title' => '', 'type' => 'title', 'id' => 'email_attachment_options', 'desc' => '<div class="notice inline notice-warning"><p>' . sprintf( __( 'Want to attach automatically generated PDF files to emails instead of plain text? %sUpgrade to %spro%s%s', 'woocommerce-germanized' ), '<a style="margin-left: 1em" href="https://vendidero.de/woocommerce-germanized" class="button">', '<span class="wc-gzd-pro">', '</span>', '</a>' ) . '</p></div>' ),
+			array(	'title' => '', 'type' => 'title', 'id' => 'email_attachment_options', 'desc' => '<div class="notice inline notice-warning wc-gzd-premium-overlay"><p>' . sprintf( __( 'Want to attach automatically generated PDF files to emails instead of plain text? %sUpgrade to %spro%s%s', 'woocommerce-germanized' ), '<a style="margin-left: 1em" href="https://vendidero.de/woocommerce-germanized" class="button button-primary wc-gzd-button">', '<span class="wc-gzd-pro">', '</span>', '</a>' ) . '</p></div>' ),
 
 			array(
 				'title' 	=> '',

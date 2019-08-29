@@ -40,6 +40,15 @@ table.data_table tr td p.form-field {
     transform: scale(1.02);
     cursor: pointer;
   }
+
+  .wc-gzd-pro {
+    background: #fff;
+    color: #000;
+
+    &:hover {
+      color: #000;
+    }
+  }
 }
 
 .wc-gzd-button-wrapper .button {

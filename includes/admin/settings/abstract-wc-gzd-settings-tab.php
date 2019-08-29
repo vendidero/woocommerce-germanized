@@ -123,7 +123,7 @@ abstract class WC_GZD_Settings_Tab extends WC_Settings_Page {
 	public function get_settings( $current_section = '' ) {
 		$settings = $this->get_tab_settings( $current_section );
 
-		if ( ! empty( $current_section ) ) {
+		if ( empty( $current_section ) ) {
 			$settings = apply_filters( "woocommerce_gzd_admin_settings_tab_{$this->get_name()}", $settings );
 		} else {
 			$settings = apply_filters( "woocommerce_gzd_admin_settings_tab_{$this->get_name()}_{$current_section}", $settings );

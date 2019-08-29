@@ -68,6 +68,13 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 		wp_register_script( 'wc-gzd-admin-settings', $assets_path . 'js/admin/settings' . $suffix . '.js', array( 'jquery', 'woocommerce_settings' ), WC_GERMANIZED_VERSION, true );
 
 		if ( $this->is_active() ) {
+			wp_localize_script(
+				'wc-gzd-admin-settings', 'wc_gzd_admin_settings_params', array(
+					'tab_toggle_nonce'  => wp_create_nonce( 'wc_gzd_tab_toggle_nonce' ),
+					'ajax_url'          => admin_url( 'admin-ajax.php' ),
+				)
+			);
+
 			wp_enqueue_script( 'wc-gzd-admin-settings' );
 
 			do_action( 'woocommerce_gzd_admin_settings_scripts' );
@@ -92,6 +99,7 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 
 	public function get_tabs() {
 
+		include_once dirname( __FILE__ ) . '/abstract-wc-gzd-settings-tab.php';
 		include_once dirname( __FILE__ ) . '/class-wc-gzd-settings-tab-general.php';
 		include_once dirname( __FILE__ ) . '/class-wc-gzd-settings-tab-shopmarks.php';
 		include_once dirname( __FILE__ ) . '/class-wc-gzd-settings-tab-emails.php';

@@ -44,7 +44,7 @@ class WC_GZD_Admin {
 	}
 
 	public function __construct() {
-        add_action( 'add_meta_boxes', array( $this, 'add_legal_page_metabox' ) );
+		add_action( 'add_meta_boxes', array( $this, 'add_legal_page_metabox' ) );
 		add_action( 'add_meta_boxes', array( $this, 'add_product_mini_desc' ) );
 
 		add_action( 'admin_enqueue_scripts', array( $this, 'add_scripts' ) );
@@ -69,7 +69,7 @@ class WC_GZD_Admin {
 
 		add_filter( 'woocommerce_order_actions', array( $this, 'order_actions' ), 10, 1 );
 		add_action( 'woocommerce_order_action_order_confirmation', array( $this, 'resend_order_confirmation' ), 10, 1 );
-        add_action( 'woocommerce_order_action_paid_for_order_notification', array( $this, 'send_paid_for_order_notification' ), 10, 1 );
+		add_action( 'woocommerce_order_action_paid_for_order_notification', array( $this, 'send_paid_for_order_notification' ), 10, 1 );
 
 		add_filter( 'pre_update_option_wp_page_for_privacy_policy', array( $this, 'pre_update_wp_privacy_option_page' ), 10, 2 );
 		add_filter( 'pre_update_option_woocommerce_data_security_page_id', array( $this, 'pre_update_gzd_privacy_option_page' ), 10, 2 );
@@ -83,105 +83,105 @@ class WC_GZD_Admin {
 	}
 
 	public function save_toggle_input_field( $value, $option, $raw_value ) {
-        if ( 'gzd_toggle' === $option['type'] ) {
-            $value = '1' === $raw_value || 'yes' === $raw_value ? 'yes' : 'no';
-        }
+		if ( 'gzd_toggle' === $option['type'] ) {
+			$value = '1' === $raw_value || 'yes' === $raw_value ? 'yes' : 'no';
+		}
 
-        return $value;
-    }
+		return $value;
+	}
 
 	public function image_field( $value ) {
 		?>
-        <tr valign="top">
-            <th class="forminp forminp-image" colspan="2" id="<?php echo esc_attr( $value['id'] ); ?>">
-                <a href="<?php echo esc_attr( $value['href'] ); ?>" target="_blank"><img src="<?php echo $value['img']; ?>" /></a>
-            </th>
-        </tr>
+		<tr valign="top">
+			<th class="forminp forminp-image" colspan="2" id="<?php echo esc_attr( $value['id'] ); ?>">
+				<a href="<?php echo esc_attr( $value['href'] ); ?>" target="_blank"><img src="<?php echo $value['img']; ?>" /></a>
+			</th>
+		</tr>
 		<?php
 	}
 	public function html_field( $value ) {
 		?>
-        <tr valign="top">
-            <th class="forminp forminp-html" id="<?php echo esc_attr( $value['id'] ); ?>"><label><?php echo esc_attr( $value['title'] ); ?> <?php echo ( isset( $value['desc_tip'] ) && ! empty( $value['desc_tip'] ) ? wc_gzd_help_tip( $value['desc_tip'] ) : '' ); // WPCS: XSS ok. ?></label></th>
-            <td class="forminp"><?php echo $value['html']; ?></td>
-        </tr>
+		<tr valign="top">
+			<th class="forminp forminp-html" id="<?php echo esc_attr( $value['id'] ); ?>"><label><?php echo esc_attr( $value['title'] ); ?> <?php echo ( isset( $value['desc_tip'] ) && ! empty( $value['desc_tip'] ) ? wc_gzd_help_tip( $value['desc_tip'] ) : '' ); // WPCS: XSS ok. ?></label></th>
+			<td class="forminp"><?php echo $value['html']; ?></td>
+		</tr>
 		<?php
 	}
 	public function hidden_field( $value ) {
 		$option_value = WC_Admin_Settings::get_option( $value['id'], $value['default'] );
 		?>
-        <tr valign="top" style="display: none">
-            <th class="forminp forminp-image">
-                <input type="hidden" id="<?php echo esc_attr( $value['id'] ); ?>" value="<?php echo esc_attr( $option_value ); ?>" name="<?php echo esc_attr( $value['id'] ); ?>" />
-            </th>
-        </tr>
+		<tr valign="top" style="display: none">
+			<th class="forminp forminp-image">
+				<input type="hidden" id="<?php echo esc_attr( $value['id'] ); ?>" value="<?php echo esc_attr( $option_value ); ?>" name="<?php echo esc_attr( $value['id'] ); ?>" />
+			</th>
+		</tr>
 		<?php
 	}
 
-    public function toggle_input_field( $value ) {
-        // Custom attribute handling.
-        $custom_attributes = array();
+	public function toggle_input_field( $value ) {
+		// Custom attribute handling.
+		$custom_attributes = array();
 
-        if ( ! empty( $value['custom_attributes'] ) && is_array( $value['custom_attributes'] ) ) {
-          foreach ( $value['custom_attributes'] as $attribute => $attribute_value ) {
-            $custom_attributes[] = esc_attr( $attribute ) . '="' . esc_attr( $attribute_value ) . '"';
-          }
-        }
+		if ( ! empty( $value['custom_attributes'] ) && is_array( $value['custom_attributes'] ) ) {
+			foreach ( $value['custom_attributes'] as $attribute => $attribute_value ) {
+				$custom_attributes[] = esc_attr( $attribute ) . '="' . esc_attr( $attribute_value ) . '"';
+			}
+		}
 
-        // Description handling.
-        $field_description = WC_Admin_Settings::get_field_description( $value );
-        $description       = $field_description['description'];
-        $tooltip_html      = $field_description['tooltip_html'];
-        $option_value      = WC_Admin_Settings::get_option( $value['id'], $value['default'] );
+		// Description handling.
+		$field_description = WC_Admin_Settings::get_field_description( $value );
+		$description       = $field_description['description'];
+		$tooltip_html      = $field_description['tooltip_html'];
+		$option_value      = WC_Admin_Settings::get_option( $value['id'], $value['default'] );
 
-        if ( ! isset( $value['checkboxgroup'] ) || 'start' === $value['checkboxgroup'] ) {
-            ?>
-                <tr valign="top">
-                    <th scope="row" class="titledesc">
-                        <span class="wc-gzd-label-wrap"><?php echo esc_html( $value['title'] ); ?> <?php echo $tooltip_html; // WPCS: XSS ok. ?></span>
-                    </th>
-                    <td class="forminp forminp-<?php echo esc_attr( sanitize_title( $value['type'] ) ); ?>">
-                        <fieldset>
-            <?php
-        } else {
-            ?>
-             <fieldset>
-            <?php
-        }
-        ?>
-          <a href="#" class="woocommerce-gzd-input-toggle-trigger">
-              <span id="<?php echo esc_attr( $value['id'] ); ?>-toggle" class="woocommerce-gzd-input-toggle woocommerce-input-toggle woocommerce-input-toggle--<?php echo ( 'yes' === $option_value ? 'enabled' : 'disabled' ); ?>"><?php echo ( 'yes' === $option_value ? __( 'Yes', 'woocommerce-germanized' ) : __( 'No', 'woocommerce-germanized' ) ); ?></span>
-          </a>
-          <input
-                  name="<?php echo esc_attr( $value['id'] ); ?>"
-                  id="<?php echo esc_attr( $value['id'] ); ?>"
-                  type="checkbox"
-                  style="display: none; <?php echo esc_attr( $value['css'] ); ?>"
-                  value="1"
-                  class="<?php echo esc_attr( $value['class'] ); ?>"
-                <?php checked( $option_value, 'yes' ); ?>
-            <?php echo implode( ' ', $custom_attributes ); // WPCS: XSS ok. ?>
-          /><?php echo esc_html( $value['suffix'] ); ?> <?php echo $description; // WPCS: XSS ok. ?>
+		if ( ! isset( $value['checkboxgroup'] ) || 'start' === $value['checkboxgroup'] ) {
+			?>
+				<tr valign="top">
+					<th scope="row" class="titledesc">
+						<span class="wc-gzd-label-wrap"><?php echo esc_html( $value['title'] ); ?> <?php echo $tooltip_html; // WPCS: XSS ok. ?></span>
+					</th>
+					<td class="forminp forminp-<?php echo esc_attr( sanitize_title( $value['type'] ) ); ?>">
+						<fieldset>
+			<?php
+		} else {
+			?>
+			 <fieldset>
+			<?php
+		}
+		?>
+		<a href="#" class="woocommerce-gzd-input-toggle-trigger">
+			<span id="<?php echo esc_attr( $value['id'] ); ?>-toggle" class="woocommerce-gzd-input-toggle woocommerce-input-toggle woocommerce-input-toggle--<?php echo ( 'yes' === $option_value ? 'enabled' : 'disabled' ); ?>"><?php echo ( 'yes' === $option_value ? __( 'Yes', 'woocommerce-germanized' ) : __( 'No', 'woocommerce-germanized' ) ); ?></span>
+		</a>
+		<input
+			name="<?php echo esc_attr( $value['id'] ); ?>"
+			id="<?php echo esc_attr( $value['id'] ); ?>"
+			type="checkbox"
+			style="display: none; <?php echo esc_attr( $value['css'] ); ?>"
+			value="1"
+			class="<?php echo esc_attr( $value['class'] ); ?>"
+            <?php checked( $option_value, 'yes' ); ?>
+			<?php echo implode( ' ', $custom_attributes ); // WPCS: XSS ok. ?>
+		/><?php echo esc_html( $value['suffix'] ); ?> <?php echo $description; // WPCS: XSS ok. ?>
 
-        </fieldset>
-        <?php if ( ! isset( $value['checkboxgroup'] ) || 'end' === $value['checkboxgroup'] ) {
-		    ?>
-            </td>
-            </tr>
-		    <?php
-	    }
-    }
+		</fieldset>
+		<?php if ( ! isset( $value['checkboxgroup'] ) || 'end' === $value['checkboxgroup'] ) {
+			?>
+			</td>
+			</tr>
+			<?php
+		}
+	}
 
 	public function pre_update_gzd_privacy_option_page( $new_value, $old_value ) {
 
-        /**
-         * Filter to disable syncing WP privacy page option with Germanized
-         * privacy page option.
-         *
-         * @since 2.0.0
-         *
-         * @param bool $enabled Set to false to disable syncing.
-         */
+		/**
+		 * Filter to disable syncing WP privacy page option with Germanized
+		 * privacy page option.
+		 *
+		 * @since 2.0.0
+		 *
+		 * @param bool $enabled Set to false to disable syncing.
+		 */
 		if ( apply_filters( 'woocommerce_gzd_sync_wp_privacy_page', true ) ) {
 			remove_filter( 'pre_update_option_wp_page_for_privacy_policy', array( $this, 'pre_update_wp_privacy_option_page' ), 10 );
 			update_option( 'wp_page_for_privacy_policy', $new_value );
@@ -198,7 +198,7 @@ class WC_GZD_Admin {
 	 */
 	public function pre_update_wp_privacy_option_page( $new_value, $old_value ) {
 
-	    /** This filter is documented in includes/admin/class-wc-gzd-admin.php */
+		/** This filter is documented in includes/admin/class-wc-gzd-admin.php */
 		if ( apply_filters( 'woocommerce_gzd_sync_wp_privacy_page', true ) ) {
 			remove_filter( 'pre_update_option_woocommerce_data_security_page_id', array( $this, 'pre_update_gzd_privacy_option_page' ), 10 );
 			update_option( 'woocommerce_data_security_page_id', $new_value );
@@ -208,15 +208,15 @@ class WC_GZD_Admin {
 	}
 
 	public function send_paid_for_order_notification( $order ) {
-        $mail = WC_germanized()->emails->get_email_instance_by_id( 'customer_paid_for_order' );
+		$mail = WC_germanized()->emails->get_email_instance_by_id( 'customer_paid_for_order' );
 
-        if ( $mail ) {
-            $mail->trigger( $order );
+		if ( $mail ) {
+			$mail->trigger( $order );
 
-            // Note the event.
-            $order->add_order_note( __( 'Paid for order notification manually sent to customer.', 'woocommerce-germanized' ), false, true );
-        }
-    }
+			// Note the event.
+			$order->add_order_note( __( 'Paid for order notification manually sent to customer.', 'woocommerce-germanized' ), false, true );
+		}
+	}
 
 	public function resend_order_confirmation( $order ) {
 		// Send the customer invoice email.
@@ -232,25 +232,25 @@ class WC_GZD_Admin {
 			// Note the event.
 			$order->add_order_note( __( 'Order confirmation manually sent to customer.', 'woocommerce-germanized' ), false, true );
 
-            /**
-             * Admin manual resend order confirmation email.
-             *
-             * This hook fires after a manual resend of the order confirmation email has been triggered.
-             *
-             * @since 1.0.0
-             *
-             * @param WC_Order $order The order for which the confirmation email is sent.
-             * @param string   $mail_id The email id (customer_processing_order).
-             */
+			/**
+			 * Admin manual resend order confirmation email.
+			 *
+			 * This hook fires after a manual resend of the order confirmation email has been triggered.
+			 *
+			 * @since 1.0.0
+			 *
+			 * @param WC_Order $order The order for which the confirmation email is sent.
+			 * @param string   $mail_id The email id (customer_processing_order).
+			 */
 			do_action( 'woocommerce_gzd_after_resend_order_confirmation_email', $order, $mail_id );
 		}
 	}
 
 	public function order_actions( $actions ) {
 		$actions['order_confirmation']          = __( 'Resend order confirmation', 'woocommerce-germanized' );
-        $actions['paid_for_order_notification'] = __( 'Send paid for order notification', 'woocommerce-germanized' );
+		$actions['paid_for_order_notification'] = __( 'Send paid for order notification', 'woocommerce-germanized' );
 
-        return $actions;
+		return $actions;
 	}
 
 	public function status_tab() {
@@ -266,12 +266,12 @@ class WC_GZD_Admin {
 
 		if ( ! wc_gzd_get_crud_data( $order, 'parcel_delivery_opted_in' ) ) {
 			return;
-        }
+		}
 
 		?>
-        <p class="parcel-delivery-checkbox-status"><strong style="display: block;"><?php _e( 'Parcel Delivery Data Transfer:', 'woocommerce-germanized' ) ?></strong>
-            <span><?php echo ( wc_gzd_order_supports_parcel_delivery_reminder( wc_gzd_get_crud_data( $order, 'id' ) ) ? __( 'allowed', 'woocommerce-germanized' ) : __( 'not allowed', 'woocommerce-germanized' ) ); ?></span>
-        </p>
+		<p class="parcel-delivery-checkbox-status"><strong style="display: block;"><?php _e( 'Parcel Delivery Data Transfer:', 'woocommerce-germanized' ) ?></strong>
+			<span><?php echo ( wc_gzd_order_supports_parcel_delivery_reminder( wc_gzd_get_crud_data( $order, 'id' ) ) ? __( 'allowed', 'woocommerce-germanized' ) : __( 'not allowed', 'woocommerce-germanized' ) ); ?></span>
+		</p>
 		<?php
 	}
 
@@ -310,36 +310,36 @@ class WC_GZD_Admin {
 
 		if ( in_array( $screen->id, array( 'product', 'edit-product' ) ) ) {
 			wp_enqueue_script( 'wc-gzd-admin-product-variations' );
-        }
+		}
 
 		// Hide delivery time and unit tagsdiv
 		if ( version_compare( WC()->version, '2.3', '>=' ) ) {
 			wp_add_inline_style( 'woocommerce-gzd-admin', '#tagsdiv-product_delivery_time, #tagsdiv-product_unit, #tagsdiv-product_price_label {display: none}' );
-        }
+		}
 
-        /**
-         * After admin assets.
-         *
-         * This hook fires after Germanized has loaded and enqueued it's admin assets.
-         *
-         * @since 1.0.0
-         *
-         * @param WC_GZD_Admin $this The admin class.
-         * @param string       $admin_script_path The absolute URL to the plugins admin js scripts.
-         * @param string       $suffix The assets suffix e.g. .min in non-debugging-mode.
-         */
+		/**
+		 * After admin assets.
+		 *
+		 * This hook fires after Germanized has loaded and enqueued it's admin assets.
+		 *
+		 * @since 1.0.0
+		 *
+		 * @param WC_GZD_Admin $this The admin class.
+		 * @param string       $admin_script_path The absolute URL to the plugins admin js scripts.
+		 * @param string       $suffix The assets suffix e.g. .min in non-debugging-mode.
+		 */
 		do_action( 'woocommerce_gzd_admin_assets', $this, $admin_script_path, $suffix );
 	}
 
 	public function localize_printed_scripts() {
 
-        /**
-         * Filter to localize certain admin scripts.
-         *
-         * @since 1.0.0
-         *
-         * @param array $scripts Array containing handle => data.
-         */
+		/**
+		 * Filter to localize certain admin scripts.
+		 *
+		 * @since 1.0.0
+		 *
+		 * @param array $scripts Array containing handle => data.
+		 */
 		$localized_scripts = apply_filters( 'woocommerce_gzd_admin_localized_scripts', array() );
 
 		foreach( $localized_scripts as $handle => $data ) {
@@ -369,25 +369,25 @@ class WC_GZD_Admin {
 		global $post;
 
 		if ( is_object( $post ) && $post->post_type === 'product' ) {
-		    $product = wc_get_product( $post );
+			$product = wc_get_product( $post );
 
 			if ( $product && ( ! $product->is_type( 'variable' ) ) ) {
 				add_meta_box( 'wc-gzd-product-mini-desc', __( 'Optional Mini Description', 'woocommerce-germanized' ), array( $this, 'init_product_mini_desc' ), 'product', 'advanced', 'high' );
 			}
-        }
+		}
 	}
 
 	public function save_legal_page_content( $post_id, $post, $update ) {
 
 		if ( $post->post_type != 'page' ) {
 			return;
-        }
+		}
 
 		if ( isset( $_POST[ '_legal_text' ] ) && ! empty( $_POST[ '_legal_text' ] ) ) {
 			update_post_meta( $post_id, '_legal_text', wc_gzd_sanitize_html_text_field( $_POST[ '_legal_text' ] ) );
-        } else {
+		} else {
 			delete_post_meta( $post_id, '_legal_text' );
-        }
+		}
 	}
 
 	public function init_product_mini_desc( $post ) {
@@ -452,13 +452,13 @@ class WC_GZD_Admin {
 			// Reinstall options
 			WC_GZD_Install::create_options();
 
-            /**
-             * After text options deletion.
-             *
-             * This hook fires after Germanized has deleted and re-installed it's text options.
-             *
-             * @since 1.6.0
-             */
+			/**
+			 * After text options deletion.
+			 *
+			 * This hook fires after Germanized has deleted and re-installed it's text options.
+			 *
+			 * @since 1.6.0
+			 */
 			do_action( 'woocommerce_gzd_deleted_text_options' );
 
 			// Redirect to check for updates
@@ -471,13 +471,13 @@ class WC_GZD_Admin {
 
 			wc_gzd_get_dependencies()->delete_cached_plugin_header_data();
 
-            /**
-             * After plugin header cache deletion.
-             *
-             * This hook fires after the dependency script has deleted it's cached plugin header data.
-             *
-             * @since 1.6.0
-             */
+			/**
+			 * After plugin header cache deletion.
+			 *
+			 * This hook fires after the dependency script has deleted it's cached plugin header data.
+			 *
+			 * @since 1.6.0
+			 */
 			do_action( 'woocommerce_gzd_deleted_cached_plugin_header_data' );
 		}
 	}
@@ -577,15 +577,15 @@ class WC_GZD_Admin {
 
 	public function get_shipping_method_instances() {
 
-	    // Make sure we are not firing before init because otherwise some Woo errors might occur
+		// Make sure we are not firing before init because otherwise some Woo errors might occur
 		if ( ! did_action( 'init' ) ) {
 			return array();
 		}
 
 		// WC_Shipping_Zone will try to call WC()->countries. Make sure that the object already exists.
 		if ( ! isset( WC()->countries ) || ! is_a( WC()->countries, 'WC_Countries' ) ) {
-		    return array();
-        }
+			return array();
+		}
 
 		if ( ! class_exists( 'WC_Shipping_Zones' ) ) {
 			$instances = WC()->shipping->get_shipping_methods();

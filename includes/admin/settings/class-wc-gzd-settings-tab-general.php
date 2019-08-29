@@ -316,6 +316,20 @@ class WC_GZD_Settings_Tab_General extends WC_GZD_Settings_Tab {
 		if ( '' === $current ) {
 			$pointers = array(
 				'pointers' => array(
+					'breadcrumb'     => array(
+						'target'       => '.breadcrumb-item-main a',
+						'next'         => 'tab',
+						'next_url'     => '',
+						'next_trigger' => array(),
+						'options'      => array(
+							'content'  => '<h3>' . esc_html__( 'Overview', 'woocommerce-germanized' ) . '</h3>' .
+							              '<p>' . esc_html__( 'You can always return to the settings overview by navigating through the breadcrumb navigation.', 'woocommerce-germanized' ) . '</p>',
+							'position' => array(
+								'edge'  => 'top',
+								'align' => 'left',
+							),
+						),
+					),
 					'tab'          => array(
 						'target'       => 'ul.subsubsub li:nth-of-type(2) a',
 						'next'         => 'legal_pages',
