@@ -31,7 +31,7 @@ class WC_GZD_Product_Grouped extends WC_GZD_Product {
 
     protected function get_child_unit_data() {
         if ( is_null( $this->child_prices ) ) {
-            $children           = array_filter( array_map( 'wc_gzd_get_gzd_product', $this->get_children() ), array( $this, '_filter_visible_grouped' ) );
+            $children           = array_filter( array_map( 'wc_gzd_get_gzd_product', $this->child->get_children() ), array( $this, '_filter_visible_grouped' ) );
             $this->child_prices = array();
 
             if ( ! empty( $children ) ) {
@@ -43,8 +43,10 @@ class WC_GZD_Product_Grouped extends WC_GZD_Product {
                         continue;
                     }
 
-                    if ( $child->has_unit() ) {
-                        $unit = $child->get_unit_raw();
+                    $gzd_child = wc_gzd_get_product( $child );
+
+                    if ( $gzd_child->has_unit() ) {
+                        $unit = $gzd_child->get_unit();
 
                         if ( ! isset( $this->child_prices[ $unit ] ) ) {
                             $this->child_prices[ $unit ] = array();
@@ -63,18 +65,18 @@ class WC_GZD_Product_Grouped extends WC_GZD_Product {
                         }
 
                         if ( ! isset( $this->child_prices[ $unit ]['base'] ) ) {
-                            $this->child_prices[ $unit ]['base'] = $child->get_unit_base_raw();
+                            $this->child_prices[ $unit ]['base'] = $gzd_child->get_unit_base();
                         }
 
                         // Recalculate new prices
                         $prices_incl  = wc_gzd_recalculate_unit_price( array(
                             'base'     => $this->child_prices[ $unit ]['base'],
-                            'products' => $child->get_unit_products(),
+                            'products' => $gzd_child->get_unit_product(),
                         ), $child );
 
                         $prices_excl  = wc_gzd_recalculate_unit_price( array(
                             'base'     => $this->child_prices[ $unit ]['base'],
-                            'products' => $child->get_unit_products(),
+                            'products' => $gzd_child->get_unit_product(),
                             'tax_mode' => 'excl',
                         ), $child );
 
@@ -130,19 +132,19 @@ class WC_GZD_Product_Grouped extends WC_GZD_Product {
         return array_keys( $data );
     }
 
-    public function get_unit() {
-        $data = $this->get_child_unit_data();
+    public function get_unit( $context = 'view' ) {
+	    $data = $this->get_child_unit_data();
 
-        if ( ! empty( $data ) ) {
-            $keys = array_keys( $data );
-            $unit = $keys[0];
+	    if ( ! empty( $data ) ) {
+		    $keys = array_keys( $data );
+		    $unit = $keys[0];
 
-            if ( $unit ) {
-                return WC_germanized()->units->$unit;
-            }
-        }
+		    if ( $unit ) {
+			    return $unit;
+		    }
+	    }
 
-        return '';
+	    return '';
     }
 
     /**
@@ -150,7 +152,7 @@ class WC_GZD_Product_Grouped extends WC_GZD_Product {
      *
      * @return string
      */
-    public function get_unit_base_raw() {
+    public function get_unit_base( $context = 'view' ) {
         $data        = $this->get_child_unit_data();
         $base_data   = array();
         $base        = false;
@@ -181,21 +183,6 @@ class WC_GZD_Product_Grouped extends WC_GZD_Product {
     }
 
     /**
-     * Returns unit base html
-     *
-     * @return string
-     */
-    public function get_unit_base() {
-        $base        = $this->get_unit_base_raw();
-        /** This filter is documented in includes/abstract/abstract-wc-gzd-product.php */
-        $hide_amount = apply_filters( 'woocommerce_gzd_unit_base_hide_amount', 1 );
-        /** This filter is documented in includes/abstract/abstract-wc-gzd-product.php */
-        $separator   = apply_filters( 'wc_gzd_unit_price_base_seperator', ' ' );
-
-        return ( $base ) ? ( $base != $hide_amount ? '<span class="unit-base">' . $base . '</span>' . $separator : '' ) . '<span class="unit">' . $this->get_unit() . '</span>' : '';
-    }
-
-    /**
      * Show unit prices only if every product has a unit price and shares the same unit.
      *
      * @return bool
@@ -212,7 +199,7 @@ class WC_GZD_Product_Grouped extends WC_GZD_Product {
      * @param string $price (default: '').
      * @return string
      */
-    public function get_unit_html( $show_sale = true ) {
+    public function get_unit_price_html( $show_sale = true ) {
 	    $price = '';
 
         if ( $this->has_unit() ) {
@@ -225,62 +212,38 @@ class WC_GZD_Product_Grouped extends WC_GZD_Product {
             $min_reg_price = current( $prices['regular_price'] );
             $max_reg_price = end( $prices['regular_price'] );
 
-            if ( wc_gzd_get_dependencies()->woocommerce_version_supports_crud() ) {
-
-                if ( $min_price !== $max_price ) {
-                    $price = wc_format_price_range( $min_price, $max_price );
-                } elseif ( $this->is_on_sale() && $min_reg_price === $max_reg_price ) {
-                    $price = wc_format_sale_price( wc_price( $max_reg_price ), wc_price( $min_price ) );
-                } else {
-                    $price = wc_price( $min_price );
-                }
-
-                /**
-                 * Filter to adjust grouped product unit price.
-                 * In case of Woo version > 3.0.0 this filter can contain the formatted sale price too.
-                 *
-                 * @since 2.3.1
-                 *
-                 * @param string                 $price The price.
-                 * @param WC_GZD_Product_Grouped $product The product object.
-                 */
-                $price = apply_filters( 'woocommerce_gzd_grouped_unit_price_html', $price, $this );
-
+            if ( $min_price !== $max_price ) {
+                $price = wc_format_price_range( $min_price, $max_price );
+            } elseif ( $this->child->is_on_sale() && $min_reg_price === $max_reg_price ) {
+                $price = wc_format_sale_price( wc_price( $max_reg_price ), wc_price( $min_price ) );
             } else {
-
-                $price = $min_price !== $max_price ? sprintf( _x( '%1$s&ndash;%2$s', 'Price range: from-to', 'woocommerce-germanized' ), wc_price( $min_price ), wc_price( $max_price ) ) : wc_price( $min_price );
-
-                if ( $this->is_on_sale() ) {
-                    $min_regular_price = current( $prices['regular_price'] );
-                    $max_regular_price = end( $prices['regular_price'] );
-                    $regular_price     = $min_regular_price !== $max_regular_price ? sprintf( _x( '%1$s&ndash;%2$s', 'Price range: from-to', 'woocommerce-germanized' ), wc_price( $min_regular_price ), wc_price( $max_regular_price ) ) : wc_price( $min_regular_price );
-
-                    /**
-                     * Filter to adjust grouped product unit sale price for Woo version < 3.0.0.
-                     *
-                     * @since 2.3.1
-                     *
-                     * @param string                 $price The price range.
-                     * @param WC_GZD_Product_Grouped $product The product object.
-                     */
-                    $price        	   = apply_filters( 'woocommerce_gzd_grouped_unit_sale_price_html', $this->get_price_html_from_to( $regular_price, $price, false ), $this );
-                } else {
-
-                    /** This filter is documented in includes/class-wc-gzd-product-grouped.php */
-                    $price 	   		   = apply_filters( 'woocommerce_gzd_grouped_unit_price_html', $price, $this );
-                }
+                $price = wc_price( $min_price );
             }
+
+            /**
+             * Filter to adjust grouped product unit price.
+             * In case of Woo version > 3.0.0 this filter can contain the formatted sale price too.
+             *
+             * @since 2.3.1
+             *
+             * @param string                 $price The price.
+             * @param WC_GZD_Product_Grouped $product The product object.
+             */
+            $price = apply_filters( 'woocommerce_gzd_grouped_unit_price_html', $price, $this );
+
+	        /** This filter is documented in includes/abstract/abstract-wc-gzd-product.php */
+	        $separator = apply_filters( 'wc_gzd_unit_price_base_seperator', ' ' );
 
             if ( strpos( $text, '{price}' ) !== false ) {
                 $replacements = array(
                     /** This filter is documented in includes/abstract/abstract-wc-gzd-product.php */
-                    '{price}' => $price . apply_filters( 'wc_gzd_unit_price_seperator', ' / ' ) . $this->get_unit_base(),
+                    '{price}' => $price . apply_filters( 'wc_gzd_unit_price_seperator', ' / ' ) . $this->get_unit_base_html() . $separator . $this->get_unit_html(),
                 );
             } else {
                 $replacements = array(
                     '{base_price}' => $price,
-                    '{unit}'       => '<span class="unit">' . $this->get_unit() . '</span>',
-                    '{base}'       => $this->get_unit_base(),
+                    '{unit}'       => $this->get_unit_html(),
+                    '{base}'       => $this->get_unit_base_html(),
                 );
             }
 

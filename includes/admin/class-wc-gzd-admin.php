@@ -18,6 +18,8 @@ class WC_GZD_Admin {
 	 */
 	private static $wp_localize_scripts = array();
 
+	protected $wizard = null;
+
 	public static function instance() {
 		if ( is_null( self::$_instance ) ) {
 			self::$_instance = new self();
@@ -80,6 +82,8 @@ class WC_GZD_Admin {
 		add_action( 'woocommerce_admin_field_hidden', array( $this, 'hidden_field' ), 0, 1 );
 
 		add_filter( 'woocommerce_admin_settings_sanitize_option', array( $this, 'save_toggle_input_field' ), 0, 3 );
+
+		$this->wizward = require 'class-wc-gzd-admin-setup-wizard.php';
 	}
 
 	public function save_toggle_input_field( $value, $option, $raw_value ) {
@@ -173,7 +177,6 @@ class WC_GZD_Admin {
 	}
 
 	public function pre_update_gzd_privacy_option_page( $new_value, $old_value ) {
-
 		/**
 		 * Filter to disable syncing WP privacy page option with Germanized
 		 * privacy page option.
@@ -304,9 +307,13 @@ class WC_GZD_Admin {
 		wp_register_style( 'woocommerce-gzd-admin', $assets_path . 'css/admin' . $suffix . '.css', false, WC_GERMANIZED_VERSION );
 		wp_enqueue_style( 'woocommerce-gzd-admin' );
 
+		wp_register_style( 'woocommerce-gzd-admin-settings', $assets_path . 'css/admin-settings' . $suffix . '.css', array( 'woocommerce_admin_styles', 'woocommerce-gzd-admin' ), WC_GERMANIZED_VERSION );
+
 		wp_register_script( 'scrollto', $admin_script_path . 'scrollTo' . $suffix . '.js', array( 'jquery' ), WC_GERMANIZED_VERSION, true );
 		wp_register_script( 'wc-gzd-admin-product-variations', $admin_script_path . 'product-variations' . $suffix . '.js', array( 'wc-admin-variation-meta-boxes' ), WC_GERMANIZED_VERSION );
 		wp_register_script( 'wc-gzd-admin-legal-checkboxes', $admin_script_path . 'legal-checkboxes' . $suffix . '.js', array( 'jquery', 'wp-util', 'underscore', 'backbone', 'jquery-ui-sortable', 'wc-enhanced-select' ), WC_GERMANIZED_VERSION );
+
+		wp_register_script( 'wc-gzd-admin-settings', $assets_path . 'js/admin/settings' . $suffix . '.js', array( 'jquery', 'woocommerce_settings' ), WC_GERMANIZED_VERSION, true );
 
 		if ( in_array( $screen->id, array( 'product', 'edit-product' ) ) ) {
 			wp_enqueue_script( 'wc-gzd-admin-product-variations' );
@@ -332,7 +339,6 @@ class WC_GZD_Admin {
 	}
 
 	public function localize_printed_scripts() {
-
 		/**
 		 * Filter to localize certain admin scripts.
 		 *
@@ -340,7 +346,12 @@ class WC_GZD_Admin {
 		 *
 		 * @param array $scripts Array containing handle => data.
 		 */
-		$localized_scripts = apply_filters( 'woocommerce_gzd_admin_localized_scripts', array() );
+		$localized_scripts = apply_filters( 'woocommerce_gzd_admin_localized_scripts', array(
+			'wc-gzd-admin-settings' => array(
+				'tab_toggle_nonce'  => wp_create_nonce( 'wc_gzd_tab_toggle_nonce' ),
+				'ajax_url'          => admin_url( 'admin-ajax.php' ),
+            ),
+        ) );
 
 		foreach( $localized_scripts as $handle => $data ) {
 			if ( ! in_array( $handle, self::$wp_localize_scripts ) && wp_script_is( $handle ) ) {
@@ -563,6 +574,27 @@ class WC_GZD_Admin {
 			wp_safe_redirect( admin_url( 'admin.php?page=wc-status&tab=germanized' ) );
 		}
 	}
+
+	public function disable_small_business_options() {
+		// Update woocommerce options to show tax
+		update_option( 'woocommerce_calc_taxes', 'yes' );
+		update_option( 'woocommerce_prices_include_tax', 'yes' );
+    }
+
+	public function enable_small_business_options() {
+		// Update woocommerce options to not show tax
+		update_option( 'woocommerce_calc_taxes', 'no' );
+		update_option( 'woocommerce_prices_include_tax', 'yes' );
+		update_option( 'woocommerce_tax_display_shop', 'incl' );
+		update_option( 'woocommerce_tax_display_cart', 'incl' );
+		update_option( 'woocommerce_price_display_suffix', '' );
+
+		update_option( 'woocommerce_gzd_shipping_tax', 'no' );
+		update_option( 'woocommerce_gzd_shipping_tax_force', 'no' );
+		update_option( 'woocommerce_gzd_fee_tax', 'no' );
+		update_option( 'woocommerce_gzd_fee_tax_force', 'no' );
+		update_option( 'woocommerce_gzd_enable_virtual_vat', 'no' );
+    }
 
 	public function check_insert_vat_rates() {
 		if ( current_user_can(  'manage_woocommerce' ) && isset( $_GET[ 'insert-vat-rates' ] ) && isset( $_GET[ '_wpnonce' ] ) && check_admin_referer( 'wc-gzd-insert-vat-rates' ) ) {

@@ -155,7 +155,7 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 		add_action( 'woocommerce_gzd_legal_checkbox_pay_for_order_sepa_validate', array( $this, 'validate_pay_order_checkbox' ) );
 
 		// Order Meta
-		add_action( 'woocommerce_checkout_update_order_meta', array( $this, 'set_order_meta' ), 10, 2 );
+		add_action( 'woocommerce_checkout_create_order', array( $this, 'set_order_meta' ), 10, 1 );
 		add_action( 'woocommerce_scheduled_subscription_payment', array( $this, 'set_order_meta' ), 10, 2 );
 
 		// Customer Emails
@@ -166,10 +166,6 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 		// Order admin
 		add_action( 'woocommerce_admin_order_data_after_order_details', array( $this, 'print_debit_fields' ), 10, 1 );
 		add_action( 'woocommerce_before_order_object_save', array( $this, 'save_debit_fields' ), 10, 1 );
-
-		if ( ! wc_gzd_get_dependencies()->woocommerce_version_supports_crud() ) {
-			add_action( 'woocommerce_process_shop_order_meta', array( $this, 'save_debit_fields' ), 10, 1 );
-		}
 
 		add_action( 'wp_ajax_show_direct_debit', array( $this, 'generate_mandate' ) );
 		add_action( 'wp_ajax_nopriv_show_direct_debit', array( $this, 'generate_mandate' ) );
@@ -187,25 +183,25 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
         return $this->validate_checkbox();
     }
 
+	/**
+	 * @param WC_Order $order
+	 */
 	public function print_debit_fields( $order ) {
-
-	    if ( wc_gzd_get_crud_data( $order, 'payment_method' ) !== $this->id )
+	    if ( $order->get_payment_method() !== $this->id ) {
 	        return;
-
+	    }
 	    ?>
             <h3 id="gzd-admin-sepa">
                 <?php _e( 'SEPA', 'woocommerce-germanized' ); ?>
 
                 <?php if ( ! wc_gzd_order_is_anonymized( $order ) ) : ?>
-                    <a href="<?php echo add_query_arg( array( 'download' => 'true', 'content' => 'sepa', 'sepa_order_id' => wc_gzd_get_crud_data( $order, 'id' ) ), admin_url( 'export.php' ) ); ?>" target="_blank" class="download_sepa_xml"><?php _e( 'SEPA XML', 'woocommerce-germanized' ); ?></a>
+                    <a href="<?php echo add_query_arg( array( 'download' => 'true', 'content' => 'sepa', 'sepa_order_id' => $order->get_id() ), admin_url( 'export.php' ) ); ?>" target="_blank" class="download_sepa_xml"><?php _e( 'SEPA XML', 'woocommerce-germanized' ); ?></a>
                 <?php endif; ?>
             </h3>
 
             <?php foreach( $this->admin_fields as $key => $field ) :
-                $field[ 'value' ] = $this->maybe_decrypt( wc_gzd_get_crud_data( $order, $field[ 'id' ] ) );
-            ?>
+                $field['value'] = $this->maybe_decrypt( $order->get_meta( $field['id'] ) );
 
-                <?php
                 switch( $field[ 'type' ] ) {
                     case 'select' :
                         woocommerce_wp_select( $field );
@@ -213,13 +209,15 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
                     default :
                         woocommerce_wp_text_input( $field );
                         break;
-			    } ?>
-
+			    }
+            ?>
             <?php endforeach; ?>
-
         <?php
     }
 
+	/**
+	 * @param WC_Order $order
+	 */
     public function save_debit_fields( $order ) {
 
 	    // Check the nonce
@@ -231,13 +229,12 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 	        $order = wc_get_order( $order );
         }
 
-	    if ( wc_gzd_get_crud_data( $order, 'payment_method' ) !== $this->id )
+	    if ( $order->get_payment_method() !== $this->id ) {
 		    return;
+	    }
 
         foreach( $this->admin_fields as $key => $field ) {
-
 	        if ( isset( $_POST[ $field[ 'id' ] ] ) ) {
-
 	            $data = wc_clean( $_POST[ $field[ 'id' ] ] );
 
 	            if ( ! empty( $data ) && isset( $field['toupper'] ) && $field['toupper'] ) {
@@ -248,16 +245,22 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 	                $data = $this->maybe_encrypt( $data );
                 }
 
-	            $order = wc_gzd_set_crud_data( $order, $field[ 'id' ], $data );
+	            $order->update_meta_data( $field['id'], $data );
             }
         }
     }
 
+	/**
+	 * @param $actions
+	 * @param WC_Order $order
+	 *
+	 * @return mixed
+	 */
 	public function order_actions( $actions, $order ) {
 
-		if ( ! wc_gzd_order_is_anonymized( $order ) && wc_gzd_get_crud_data( $order, 'payment_method' ) === $this->id ) {
-			$actions[ 'download-sepa' ] = array(
-				'url'       => add_query_arg( array( 'download' => 'true', 'content' => 'sepa', 'sepa_order_id' => wc_gzd_get_crud_data( $order, 'id' ) ), admin_url( 'export.php' ) ),
+		if ( ! wc_gzd_order_is_anonymized( $order ) && $order->get_payment_method() === $this->id ) {
+			$actions['download-sepa'] = array(
+				'url'       => add_query_arg( array( 'download' => 'true', 'content' => 'sepa', 'sepa_order_id' => $order->get_id() ), admin_url( 'export.php' ) ),
 				'name'      => __( 'SEPA XML Export', 'woocommerce-germanized' ),
 				'action'    => "xml"
 			);
@@ -273,9 +276,10 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 	public function export_args( $args = array() ) {
 		if ( 'sepa' === $_GET['content'] ) {
 			$args['content'] = 'sepa';
+
 			if ( isset( $_GET['sepa_start_date'] ) || isset( $_GET['sepa_end_date'] ) ) {
-				$args['start_date'] = ( isset( $_GET['sepa_start_date'] ) ? sanitize_text_field( $_GET['sepa_start_date'] ) : '' );
-				$args['end_date'] = ( isset( $_GET['sepa_end_date'] ) ? sanitize_text_field( $_GET['sepa_end_date'] ) : '' );
+				$args['start_date']  = ( isset( $_GET['sepa_start_date'] ) ? sanitize_text_field( $_GET['sepa_start_date'] ) : '' );
+				$args['end_date']    = ( isset( $_GET['sepa_end_date'] ) ? sanitize_text_field( $_GET['sepa_end_date'] ) : '' );
 				$args['unpaid_only'] = ( isset( $_GET['sepa_unpaid_only'] ) ? 1 : 0 );
 			} elseif ( isset( $_GET[ 'sepa_order_id' ] ) ) {
 				$args['order_id'] = absint( $_GET['sepa_order_id'] );
@@ -285,7 +289,6 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 	}
 
 	public function export( $args = array() ) {
-
 		if ( $args['content'] != 'sepa' ) {
 			return;
         }
@@ -318,12 +321,9 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 		);
 
 		if ( isset( $args['order_id'] ) ) {
-
 			$query_args['p'] = absint( $args['order_id'] );
 			array_push( $parts, 'order-' . absint( $args['order_id'] ) );
-
 		} else {
-
 			$query_args = array_merge( $query_args, array(
 				'showposts'   => -1,
                 /**
@@ -343,10 +343,13 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 				),
 			) );
 
-			if ( ! empty( $args['start_date'] ) )
+			if ( ! empty( $args['start_date'] ) ) {
 				array_push( $parts, $args['start_date'] );
-			if ( ! empty( $args['end_date'] ) )
+			}
+
+			if ( ! empty( $args['end_date'] ) ) {
 				array_push( $parts, $args['end_date'] );
+			}
 		}
 
         /**
@@ -449,9 +452,9 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
                      */
 					$directDebit->addTransfer( $payment_id, apply_filters( 'woocommerce_gzd_direct_debit_sepa_xml_exporter_transfer_args', array(
 						'amount'                => $order->get_total(),
-						'debtorIban'            => strtoupper( $this->clean_whitespaces( $this->maybe_decrypt( wc_gzd_get_crud_data( $order, 'direct_debit_iban' ) ) ) ),
-						'debtorBic'             => strtoupper( $this->clean_whitespaces( $this->maybe_decrypt( wc_gzd_get_crud_data( $order, 'direct_debit_bic' ) ) ) ),
-						'debtorName'            => wc_gzd_get_crud_data( $order, 'direct_debit_holder' ),
+						'debtorIban'            => strtoupper( $this->clean_whitespaces( $this->maybe_decrypt( $order->get_meta('_direct_debit_iban' ) ) ) ),
+						'debtorBic'             => strtoupper( $this->clean_whitespaces( $this->maybe_decrypt( $order->get_meta('_direct_debit_bic' ) ) ) ),
+						'debtorName'            => $order->get_meta('_direct_debit_holder' ),
 						'debtorMandate'         => $this->get_mandate_id( $order ),
 						'debtorMandateSignDate' => date_i18n( 'Y-m-d', $this->get_mandate_sign_date( $order ) ),
                         /**
@@ -482,14 +485,19 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 		exit();
 	}
 
+	/**
+	 * @param WC_Order|false $order
+	 *
+	 * @return mixed|void
+	 */
 	public function get_mandate_id( $order = false ) {
 		if ( ! $order ) {
 			$id = __( 'Will be notified separately', 'woocommerce-germanized' );
 		} else {
-			if ( wc_gzd_get_crud_data( $order, 'direct_debit_mandate_id' ) ) {
-				$id = wc_gzd_get_crud_data( $order, 'direct_debit_mandate_id' );
+			if ( $madate_id = $order->get_meta('_direct_debit_mandate_id' ) ) {
+				$id = $madate_id;
 			} else {
-			    $id =  ( $this->generate_mandate_id === 'yes' ? str_replace( '{id}', $order->get_order_number(), $this->mandate_id_format ) : '' );
+			    $id = ( $this->generate_mandate_id === 'yes' ? str_replace( '{id}', $order->get_order_number(), $this->mandate_id_format ) : '' );
             }
         }
 
@@ -504,43 +512,61 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 		return apply_filters( 'woocommerce_germanized_direct_debit_mandate_id', $id, $order );
 	}
 
+	/**
+	 * @param WC_Order $order
+	 *
+	 * @return false|int
+	 */
 	public function get_debit_date( $order ) {
-	    $order_date = wc_gzd_get_crud_data( $order, 'order_date' );
+		$order_date_formatted = $order->get_date_created()->format( 'Y-m-d' );
 
-	    if ( is_a( $order_date, 'WC_DateTime' ) ) {
-	        $order_date = $order_date->format( 'Y-m-d' );
-        }
-
-		return strtotime('+' . $this->debit_days . ' days', strtotime( $order_date ) );
+		return strtotime('+' . $this->debit_days . ' days', strtotime( $order_date_formatted ) );
     }
 
+	/**
+	 * @param WC_Order $order
+	 *
+	 * @return false|int|null
+	 */
 	public function get_mandate_sign_date( $order ) {
-		$date = wc_gzd_get_crud_data( $order, 'direct_debit_mandate_date' ) ? wc_gzd_get_crud_data( $order, 'direct_debit_mandate_date' ) : strtotime( wc_gzd_get_crud_data( $order, 'order_date' ) );
+		$date = $order->get_meta( '_direct_debit_mandate_date' ) ?  $order->get_meta( '_direct_debit_mandate_date' ) : $order->get_date_created()->getTimestamp();
+
 		return $date;
 	}
 
+	/**
+	 * @param WC_Order $order
+	 *
+	 * @return string
+	 */
 	public function get_mandate_type( $order ) {
-        $type = wc_gzd_get_crud_data( $order, 'direct_debit_mandate_type' );
+        $type =  $order->get_meta( '_direct_debit_mandate_type' );
+
         return ( empty( $type ) ? Digitick\Sepa\PaymentInformation::S_ONEOFF : $type );
 	}
 
+	/**
+	 * @param WC_Order $order
+	 * @param $sent_to_admin
+	 * @param $plain_text
+	 */
 	public function email_sepa( $order, $sent_to_admin, $plain_text ) {
 
-		if ( $this->id !== wc_gzd_get_crud_data( $order, 'payment_method' ) ) {
+		if ( $this->id !== $order->get_payment_method() ) {
 			return;
         }
 
 		$sepa_fields = array(
-			__( 'Account Holder', 'woocommerce-germanized' ) 	=> wc_gzd_get_crud_data( $order, 'direct_debit_holder' ),
-			__( 'IBAN', 'woocommerce-germanized' ) 				=> $this->mask( $this->maybe_decrypt( wc_gzd_get_crud_data( $order, 'direct_debit_iban' ) ) ),
-			__( 'BIC/SWIFT', 'woocommerce-germanized' ) 		=> $this->maybe_decrypt( wc_gzd_get_crud_data( $order, 'direct_debit_bic' ) ),
+			__( 'Account Holder', 'woocommerce-germanized' ) => $order->get_meta( '_direct_debit_holder' ),
+			__( 'IBAN', 'woocommerce-germanized' ) 			 => $this->mask( $this->maybe_decrypt( $order->get_meta( '_direct_debit_iban' ) ) ),
+			__( 'BIC/SWIFT', 'woocommerce-germanized' ) 	 => $this->maybe_decrypt( $order->get_meta( '_direct_debit_bic' ) ),
 		);
 
 		if ( $sent_to_admin ) {
 			$sepa_fields[ __( 'Mandate Reference ID', 'woocommerce-germanized' ) ] = $this->get_mandate_id( $order );
 		}
 
-		$debit_date            = $this->get_debit_date( $order );
+		$debit_date = $this->get_debit_date( $order );
 
         /**
          * Filter to adjust the direct debit pre notification text.
@@ -567,7 +593,7 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 			return $fields;
         }
 
-		if ( wc_gzd_get_crud_data( $order, 'payment_method' ) !== $this->id ) {
+		if ( $order->get_payment_method() !== $this->id ) {
 			return $fields;
         }
 
@@ -575,10 +601,9 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 	}
 
 	public function send_mail( $order_id ) {
-
 		$order = wc_get_order( $order_id );
 
-		if ( wc_gzd_get_crud_data( $order, 'payment_method' ) == $this->id ) {
+		if ( $order->get_payment_method() == $this->id ) {
 
 			if ( $mail = WC_germanized()->emails->get_email_instance_by_id( 'customer_sepa_direct_debit_mandate' ) ) {
 				$mail->trigger( $order );
@@ -590,35 +615,32 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 		return preg_replace('/\s+/', '', $str );
 	}
 
-	public function set_order_meta( $order_id ) {
-		$order = wc_get_order( $order_id );
+	/**
+	 * @param WC_Order $order
+	 */
+	public function set_order_meta( $order ) {
 
-		if ( ! $order ) {
+		if ( ! $order->get_payment_method() === $this->id ) {
 		    return;
         }
 
-		if ( ! ( wc_gzd_get_crud_data( $order, 'payment_method' ) === $this->id ) ) {
-		    return;
-        }
-
-		$holder 	= ( isset( $_POST[ 'direct_debit_account_holder' ] ) ? wc_clean( $_POST[ 'direct_debit_account_holder' ] ) : '' );
-		$iban 		= ( isset( $_POST[ 'direct_debit_account_iban' ] ) ? $this->maybe_encrypt( strtoupper( $this->clean_whitespaces( wc_clean( $_POST[ 'direct_debit_account_iban' ] ) ) ) ) : '' );
-		$bic 		= ( isset( $_POST[ 'direct_debit_account_bic' ] ) ? $this->maybe_encrypt( strtoupper( $this->clean_whitespaces( wc_clean( $_POST[ 'direct_debit_account_bic' ] ) ) ) ) : '' );
-
-		$user_id = wc_gzd_get_crud_data( $order, 'user_id' );
+		$holder 	= ( isset( $_POST['direct_debit_account_holder'] ) ? wc_clean( $_POST['direct_debit_account_holder'] ) : '' );
+		$iban 		= ( isset( $_POST['direct_debit_account_iban'] ) ? $this->maybe_encrypt( strtoupper( $this->clean_whitespaces( wc_clean( $_POST['direct_debit_account_iban'] ) ) ) ) : '' );
+		$bic 		= ( isset( $_POST['direct_debit_account_bic'] ) ? $this->maybe_encrypt( strtoupper( $this->clean_whitespaces( wc_clean( $_POST['direct_debit_account_bic'] ) ) ) ) : '' );
+		$user_id    = $order->get_customer_id();
 
 		// Always save account details to order
-		$order = wc_gzd_set_crud_meta_data( $order, '_direct_debit_holder', $holder );
-		$order = wc_gzd_set_crud_meta_data( $order, '_direct_debit_iban', $iban );
-		$order = wc_gzd_set_crud_meta_data( $order, '_direct_debit_bic', $bic );
+        $order->update_meta_data( '_direct_debit_holder', $holder );
+        $order->update_meta_data( '_direct_debit_iban', $iban );
+		$order->update_meta_data( '_direct_debit_bic', $bic );
 
 		// Generate mandate id if applicable
 		$mandate_id = $this->get_mandate_id( $order );
 
-		$order = wc_gzd_set_crud_meta_data( $order, '_direct_debit_mandate_id', $mandate_id );
-		$order = wc_gzd_set_crud_meta_data( $order, '_direct_debit_mandate_type', Digitick\Sepa\PaymentInformation::S_ONEOFF );
-		$order = wc_gzd_set_crud_meta_data( $order, '_direct_debit_mandate_date', current_time( 'timestamp', true ) );
-		$order = wc_gzd_set_crud_meta_data( $order, '_direct_debit_mandate_mail', wc_gzd_get_crud_data( $order, 'billing_email' ) );
+		$order->update_meta_data( '_direct_debit_mandate_id', $mandate_id );
+		$order->update_meta_data( '_direct_debit_mandate_type', Digitick\Sepa\PaymentInformation::S_ONEOFF );
+		$order->update_meta_data( '_direct_debit_mandate_date', current_time( 'timestamp', true ) );
+        $order->update_meta_data( '_direct_debit_mandate_mail', $order->get_billing_email() );
 
         /**
          * Updated direct debit order data.
@@ -633,7 +655,7 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
          */
 		do_action( 'woocommerce_gzd_direct_debit_order_data_updated', $order, $user_id, $this );
 
-		if ( $this->supports_encryption() && $this->remember === 'yes' && wc_gzd_get_crud_data( $order, 'user_id' ) && ! empty( $iban ) ) {
+		if ( $this->supports_encryption() && $this->remember === 'yes' && ! empty( $user_id ) && ! empty( $iban ) ) {
 
 			update_user_meta( $user_id, 'direct_debit_holder', $holder );
 			update_user_meta( $user_id, 'direct_debit_iban', $iban );
@@ -651,10 +673,6 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
              * @param WC_GZD_Gateway_Direct_Debit $this The gateway instance.
              */
 			do_action( 'woocommerce_gzd_direct_debit_user_data_updated', $order, $user_id, $this );
-		}
-
-		if ( wc_gzd_get_dependencies()->woocommerce_version_supports_crud() ) {
-			$order->save();
 		}
 	}
 
@@ -697,17 +715,18 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 
 	public function generate_mandate_by_order( $order ) {
 
-		if ( is_numeric( $order ) )
+		if ( is_numeric( $order ) ) {
 			$order = wc_get_order( absint( $order ) );
+		}
 
 		$params = array(
-			'account_holder' 	=> wc_gzd_get_crud_data( $order, 'direct_debit_holder' ),
-			'account_iban' 		=> $this->mask( $this->maybe_decrypt( wc_gzd_get_crud_data( $order, 'direct_debit_iban' ) ) ),
-			'account_swift' 	=> $this->maybe_decrypt( wc_gzd_get_crud_data( $order, 'direct_debit_bic' ) ),
-			'street'			=> wc_gzd_get_crud_data( $order, 'billing_address_1' ),
-			'postcode' 			=> wc_gzd_get_crud_data( $order, 'billing_postcode' ),
-			'city' 				=> wc_gzd_get_crud_data( $order, 'billing_city' ),
-			'country'			=> WC()->countries->countries[ wc_gzd_get_crud_data( $order, 'billing_country' ) ],
+			'account_holder' 	=> $order->get_meta('_direct_debit_holder' ),
+			'account_iban' 		=> $this->mask( $this->maybe_decrypt( $order->get_meta('_direct_debit_iban' ) ) ),
+			'account_swift' 	=> $this->maybe_decrypt( $order->get_meta('_direct_debit_bic' ) ),
+			'street'			=> $order->get_billing_address_1(),
+			'postcode' 			=> $order->get_billing_postcode(),
+			'city' 				=> $order->get_billing_city(),
+			'country'			=> WC()->countries->countries[ $order->get_billing_country() ],
 			'date'				=> date_i18n( wc_date_format(), $this->get_mandate_sign_date( $order ) ),
 			'mandate_id'		=> $this->get_mandate_id( $order ),
             /**
@@ -1122,7 +1141,7 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 	 * @param bool $plain_text
 	 */
 	public function email_instructions( $order, $sent_to_admin, $plain_text = false ) {
-		if ( $this->instructions && ! $sent_to_admin && 'direct-debit' === wc_gzd_get_crud_data( $order, 'payment_method' ) && $order->has_status( 'processing' ) ) {
+		if ( $this->instructions && ! $sent_to_admin && 'direct-debit' === $order->get_payment_method() && $order->has_status( 'processing' ) ) {
 			echo wpautop( wptexturize( $this->instructions ) ) . PHP_EOL;
 		}
 	}

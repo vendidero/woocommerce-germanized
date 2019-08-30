@@ -11,30 +11,29 @@
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 function wc_gzd_get_tax_rate( $tax_rate_id ) {
-	
 	global $wpdb;
 	
 	$rate = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM {$wpdb->prefix}woocommerce_tax_rates WHERE tax_rate_id = %d LIMIT 1", $tax_rate_id ) );
 	
-	if ( ! empty( $rate ) )
+	if ( ! empty( $rate ) ) {
 		return $rate[0];
+	}
 	
 	return false; 
 }
 
 function wc_gzd_cart_product_differential_taxation_mark( $title, $cart_item, $cart_item_key = '' ) {
-
-	$product = false;
+	$product      = false;
 	$product_mark = '';
 
-	if ( isset( $cart_item[ 'data' ] ) ) {
-		$product = apply_filters( 'woocommerce_cart_item_product', $cart_item[ 'data' ], $cart_item, $cart_item_key );
-	} elseif ( isset( $cart_item[ 'product_id' ] ) ) {
-		$product = wc_get_product( ! empty( $cart_item[ 'variation_id' ] ) ? $cart_item[ 'variation_id' ] : $cart_item[ 'product_id' ] );
+	if ( isset( $cart_item['data'] ) ) {
+		$product = $cart_item['data'];
+	} elseif ( is_a( $cart_item, 'WC_Order_Item_Product' ) ) {
+		$product = $cart_item->get_product();
 	}
 
 	if ( $product ) {
-		if ( wc_gzd_get_gzd_product( $product )->is_differential_taxed() ) {
+		if ( wc_gzd_get_product( $product )->is_differential_taxed() ) {
             /**
              * Differential taxation mark.
              *
@@ -48,8 +47,9 @@ function wc_gzd_cart_product_differential_taxation_mark( $title, $cart_item, $ca
         }
 	}
 
-	if ( ! empty( $product_mark ) )
+	if ( ! empty( $product_mark ) ) {
 		$title .= '<span class="wc-gzd-product-differential-taxation-mark">' . $product_mark . '</span>';
+	}
 
 	return $title;
 }
@@ -58,34 +58,31 @@ function wc_gzd_cart_product_differential_taxation_mark( $title, $cart_item, $ca
  * Appends product item desc live data (while checkout) or order meta to product name
  *  
  * @param  string $title    
- * @param  array $cart_item 
+ * @param  array|WC_Order_Item_Product $cart_item
  * @return string
  */
 function wc_gzd_cart_product_item_desc( $title, $cart_item, $cart_item_key = '' ) {
 	$product_desc = "";
 	
-	if ( isset( $cart_item[ 'data' ] ) ) {
+	if ( isset( $cart_item['data'] ) ) {
+		$product = $cart_item['data'];
 	
-		$product = apply_filters( 'woocommerce_cart_item_product', $cart_item[ 'data' ], $cart_item, $cart_item_key );
-	
-		if ( wc_gzd_get_gzd_product( $product )->get_mini_desc() )
+		if ( wc_gzd_get_product( $product )->get_cart_description() ) {
+			$product_desc = wc_gzd_get_product( $product )->get_formatted_cart_description();
+		}
+	} elseif ( isset( $cart_item['item_desc'] ) ) {
+		$product_desc = $cart_item['item_desc'];
+	} elseif ( is_a( $cart_item, 'WC_Order_Item_Product' ) ) {
+		$product = $cart_item->get_product();
+
+		if ( $product && wc_gzd_get_gzd_product( $product )->get_mini_desc() ) {
 			$product_desc = wc_gzd_get_gzd_product( $product )->get_mini_desc();
-	
-	} elseif ( isset( $cart_item[ 'item_desc' ] ) ) {
-
-		$product_desc = $cart_item[ 'item_desc' ];
-	
-	} elseif ( isset( $cart_item[ 'product_id' ] ) ) {
-
-		$product = wc_get_product( ! empty( $cart_item[ 'variation_id' ] ) ? $cart_item[ 'variation_id' ] : $cart_item[ 'product_id' ] );
-
-		if ( $product && wc_gzd_get_gzd_product( $product )->get_mini_desc() )
-			$product_desc = wc_gzd_get_gzd_product( $product )->get_mini_desc();
-
+		}
 	}
 	
-	if ( ! empty( $product_desc ) )
+	if ( ! empty( $product_desc ) ) {
 		$title .= '<div class="wc-gzd-cart-info wc-gzd-item-desc item-desc">' . do_shortcode( $product_desc ) . '</div>';
+	}
 	
 	return $title;
 }
@@ -94,11 +91,12 @@ function wc_gzd_cart_product_attributes( $title, $cart_item, $cart_item_key = ''
     $item_data = array();
 
     if ( isset( $cart_item['data'] ) ) {
-        $product    = wc_get_product( ! empty( $cart_item['variation_id'] ) ? $cart_item['variation_id'] : $cart_item['product_id'] );
+        $product    = $cart_item['data'];
         $item_data  = wc_gzd_get_gzd_product( $product )->get_checkout_attributes( array(), isset( $cart_item['variation'] ) ? $cart_item['variation'] : array() );
-    } elseif ( isset( $cart_item['product_id'] ) ) {
-        $product    = wc_get_product( ! empty( $cart_item['variation_id'] ) ? $cart_item['variation_id'] : $cart_item['product_id'] );
-        $item_data  = wc_gzd_get_gzd_product( $product )->get_checkout_attributes();
+    } elseif ( is_a( $cart_item, 'WC_Order_Item_Product' ) ) {
+        if ( $product = $cart_item->get_product() ) {
+	        $item_data  = wc_gzd_get_product( $product )->get_checkout_attributes();
+        }
     }
 
     // Format item data ready to display.
@@ -134,7 +132,7 @@ function wc_gzd_cart_product_attributes( $title, $cart_item, $cart_item_key = ''
  * Appends delivery time live data (while checkout) or order meta to product name
  *  
  * @param  string $title    
- * @param  array $cart_item 
+ * @param  array|WC_Order_Item_Product $cart_item
  * @return string
  */
 function wc_gzd_cart_product_delivery_time( $title, $cart_item, $cart_item_key = '' ) {
@@ -142,23 +140,19 @@ function wc_gzd_cart_product_delivery_time( $title, $cart_item, $cart_item_key =
 	$delivery_time = "";
 	
 	if ( isset( $cart_item['data'] ) ) {
+		$product = $cart_item['data'];
 	
-		$product = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
-	
-		if ( wc_gzd_get_gzd_product( $product )->get_delivery_time_term() ) {
-			$delivery_time = wc_gzd_get_gzd_product( $product )->get_delivery_time_html();
+		if ( wc_gzd_get_product( $product )->get_delivery_time_term() ) {
+			$delivery_time = wc_gzd_get_product( $product )->get_delivery_time_html();
         }
 	
 	} elseif ( isset( $cart_item['delivery_time'] ) ) {
-
 		$delivery_time = $cart_item['delivery_time'];
-	
-	} elseif ( isset( $cart_item['product_id'] ) ) {
+	} elseif ( is_a( $cart_item, 'WC_Order_Item_Product' ) ) {
+		$product = $cart_item->get_product();
 
-		$product = wc_get_product( ! empty( $cart_item['variation_id'] ) ? $cart_item['variation_id'] : $cart_item['product_id'] );
-
-		if ( $product && wc_gzd_get_gzd_product( $product )->get_delivery_time_term() ) {
-			$delivery_time = wc_gzd_get_gzd_product( $product )->get_delivery_time_html();
+		if ( $product && wc_gzd_get_product( $product )->get_delivery_time_term() ) {
+			$delivery_time = wc_gzd_get_product( $product )->get_delivery_time_html();
         }
 	}
 	 
@@ -179,23 +173,19 @@ function wc_gzd_cart_product_delivery_time( $title, $cart_item, $cart_item_key =
 function wc_gzd_cart_product_unit_price( $price, $cart_item, $cart_item_key = '' ) {
 	$unit_price = "";
 
-	if ( isset( $cart_item[ 'data' ] ) ) {
+	if ( isset( $cart_item['data'] ) ) {
+		$product = $cart_item['data'];
 	
-		$product = apply_filters( 'woocommerce_cart_item_product', $cart_item[ 'data' ], $cart_item, $cart_item_key );
-	
-		if ( wc_gzd_get_gzd_product( $product )->has_unit() ) {
-			$unit_price = wc_gzd_get_gzd_product( $product )->get_unit_html( false );
+		if ( wc_gzd_get_product( $product )->has_unit() ) {
+			$unit_price = wc_gzd_get_product( $product )->get_unit_price_html( false );
 		}
-	} elseif ( isset( $cart_item[ 'unit_price' ] ) ) {
+	} elseif ( isset( $cart_item['unit_price'] ) ) {
+		$unit_price = $cart_item['unit_price'];
+	} elseif ( is_a( $cart_item, 'WC_Order_Item_Product' ) ) {
+		$product = $cart_item->get_product();
 
-		$unit_price = $cart_item[ 'unit_price' ];
-
-	} elseif ( isset( $cart_item[ 'product_id' ] ) ) {
-
-		$product = wc_get_product( ! empty( $cart_item[ 'variation_id' ] ) ? $cart_item[ 'variation_id' ] : $cart_item[ 'product_id' ] );
-
-		if ( $product && wc_gzd_get_gzd_product( $product )->has_unit() ) {
-			$unit_price = wc_gzd_get_gzd_product( $product )->get_unit_html( false );
+		if ( $product && wc_gzd_get_product( $product )->has_unit() ) {
+			$unit_price = wc_gzd_get_product( $product )->get_unit_price_html( false );
         }
 	}
 
@@ -214,31 +204,27 @@ function wc_gzd_cart_product_unit_price( $price, $cart_item, $cart_item_key = ''
  * @return string
  */
 function wc_gzd_cart_product_units( $title, $cart_item, $cart_item_key = '' ) {
-	
 	$units = "";
 	
-	if ( isset( $cart_item[ 'data' ] ) ) {
+	if ( isset( $cart_item['data'] ) ) {
+		$product = $cart_item['data'];
 	
-		$product = apply_filters( 'woocommerce_cart_item_product', $cart_item[ 'data' ], $cart_item, $cart_item_key );
-	
-		if ( wc_gzd_get_gzd_product( $product )->has_product_units() )
-			$units = wc_gzd_get_gzd_product( $product )->get_product_units_html();
-	
-	} elseif ( isset( $cart_item[ 'units' ] ) ) {
+		if ( wc_gzd_get_product( $product )->has_unit_product() ) {
+			$units = wc_gzd_get_gzd_product( $product )->get_unit_product_html();
+		}
+	} elseif ( isset( $cart_item['units'] ) ) {
+		$units = $cart_item['units'];
+	} elseif ( is_a( $cart_item, 'WC_Order_Item_Product' ) ) {
+		$product = $cart_item->get_product();
 
-		$units = $cart_item[ 'units' ];
-	
-	} elseif ( isset( $cart_item[ 'product_id' ] ) ) {
-
-		$product = wc_get_product( ! empty( $cart_item[ 'variation_id' ] ) ? $cart_item[ 'variation_id' ] : $cart_item[ 'product_id' ] );
-
-		if ( $product && wc_gzd_get_gzd_product( $product )->has_product_units() )
-			$units = wc_gzd_get_gzd_product( $product )->get_product_units_html();
-
+		if ( $product && wc_gzd_get_product( $product )->has_unit_product() ) {
+			$units = wc_gzd_get_product( $product )->get_unit_product_html();
+		}
 	}
 	
-	if ( ! empty( $units ) )
+	if ( ! empty( $units ) ) {
 		$title .= '<p class="wc-gzd-cart-info units-info">' . $units . '</p>';
+	}
 	
 	return $title;
 }
@@ -250,7 +236,6 @@ function wc_gzd_cart_product_units( $title, $cart_item, $cart_item_key = '' ) {
  * @return array       
  */
 function wc_gzd_get_cart_tax_share( $type = 'shipping', $cart_contents = array() ) {
-	
 	$cart        = empty( $cart_contents ) ? WC()->cart->cart_contents : $cart_contents;
 	$tax_shares  = array();
 	$item_totals = 0;
@@ -258,8 +243,7 @@ function wc_gzd_get_cart_tax_share( $type = 'shipping', $cart_contents = array()
 	// Get tax classes and tax amounts
 	if ( ! empty( $cart ) ) {
 		foreach ( $cart as $key => $item ) {
-
-			$_product          = apply_filters( 'woocommerce_cart_item_product', $item['data'], $item, $key );
+			$_product = $item['data'];
 
             /**
              * Cart item tax share product.
@@ -277,7 +261,7 @@ function wc_gzd_get_cart_tax_share( $type = 'shipping', $cart_contents = array()
 			$no_shipping       = false;
 
 			if ( 'shipping' === $type ) {
-				if ( $_product_shipping->is_virtual() || wc_gzd_get_gzd_product( $_product_shipping )->is_virtual_vat_exception() ) {
+				if ( $_product_shipping->is_virtual() || wc_gzd_get_product( $_product_shipping )->is_virtual_vat_exception() ) {
 				    $no_shipping = true;
                 }
 
@@ -330,15 +314,6 @@ function wc_gzd_get_cart_tax_share( $type = 'shipping', $cart_contents = array()
 	return $tax_shares;
 }
 
-/**
- * Get order total html
- *
- * @return void
- */
-function wc_gzd_cart_totals_order_total_html() {
-	echo '<td><strong>' . WC()->cart->get_total() . '</strong></td>';
-}
-
 function wc_gzd_cart_remove_shipping_taxes( $taxes, $cart ) {
 	return is_callable( array( $cart, 'set_cart_contents_taxes' ) ) ? $cart->get_cart_contents_taxes() : $cart->taxes;
 }
@@ -388,9 +363,10 @@ function wc_gzd_get_cart_taxes( $cart, $include_shipping_taxes = true ) {
 			$base_rate       = array_values( WC_Tax::get_base_tax_rates() );
 			$base_rate       = (object) $base_rate[0];
 			$base_rate->rate = $base_rate->rate;
-			$tax_array[]     = array( 'tax'      => $base_rate,
-			                          'contains' => array( $base_rate ),
-			                          'amount'   => WC()->cart->get_taxes_total( true, true )
+			$tax_array[]     = array(
+                'tax'      => $base_rate,
+                'contains' => array( $base_rate ),
+                'amount'   => WC()->cart->get_taxes_total( true, true )
 			);
 		}
 	}
@@ -410,15 +386,12 @@ function wc_gzd_get_cart_total_taxes( $include_shipping_taxes = true ) {
 function wc_gzd_cart_totals_order_total_tax_html() {
 
     foreach ( wc_gzd_get_cart_total_taxes() as $tax ) :
-
-        $label = wc_gzd_get_tax_rate_label( $tax[ 'tax' ]->rate );
-
-    ?>
+        $label = wc_gzd_get_tax_rate_label( $tax['tax']->rate );
+        ?>
         <tr class="order-tax">
             <th><?php echo $label; ?></th>
             <td data-title="<?php echo esc_attr( $label ); ?>"><?php echo wc_price( $tax[ 'amount' ] ); ?></td>
         </tr>
-
     <?php endforeach;
 }
 

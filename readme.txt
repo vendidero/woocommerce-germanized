@@ -3,7 +3,7 @@ Contributors: vendidero, vdwoocommercesupport
 Tags: woocommerce, woocommerce german, woocommerce DE, woocommerce germany, woocommerce deutsch, woo, woocommerce deutschland, woocommerce germanized, woocommerce addon, woocommerce plugin, woocommerce german addon, woocommerce germany addon
 Requires at least: 3.8
 Tested up to: 5.2
-WC requires at least: 2.4
+WC requires at least: 3.4
 WC tested up to: 3.7
 Stable tag: 2.3.3
 Requires PHP: 5.3

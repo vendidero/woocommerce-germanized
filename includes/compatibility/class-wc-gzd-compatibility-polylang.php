@@ -10,11 +10,12 @@
  */
 class WC_GZD_Compatibility_Polylang extends WC_GZD_Compatibility {
 
-	public function __construct() {
-		parent::__construct(
-			'PolyLang',
-			'polylang/polylang.php'
-		);
+	public static function get_name() {
+		return 'PolyLang';
+	}
+
+	public static function get_path() {
+		return 'polylang/polylang.php';
 	}
 
 	/**

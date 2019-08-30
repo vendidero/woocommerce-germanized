@@ -30,13 +30,10 @@ class WC_GZD_Admin_Welcome {
 	 * @return void
 	 */
 	public function __construct() {
-		
 		$this->plugin  = 'woocommerce-germanized/woocommerce-germanized.php';
 
 		add_action( 'admin_menu', array( $this, 'admin_menus') );
 		add_action( 'admin_head', array( $this, 'admin_head' ) );
-		add_action( 'admin_init', array( $this, 'welcome' ) );
-
 	}
 
 	/**
@@ -315,36 +312,6 @@ class WC_GZD_Admin_Welcome {
 			</div>
 		</div>
 		<?php
-	}
-
-	/**
-	 * Sends user to the welcome page on first activation
-	 */
-	public function welcome() {
-		// Bail if no activation redirect transient is set
-	    if ( ! get_transient( '_wc_gzd_activation_redirect' ) ) {
-			return;
-	    }
-
-		// Delete the redirect transient
-		delete_transient( '_wc_gzd_activation_redirect' );
-
-		// Bail if we are waiting to install or update via the interface update/install links
-		if ( get_option( '_wc_gzd_needs_update' ) == 1 || get_option( '_wc_gzd_needs_pages' ) == 1 ) {
-			return;
-		}
-
-		// Bail if activating from network, or bulk, or within an iFrame
-		if ( is_network_admin() || isset( $_GET['activate-multi'] ) || defined( 'IFRAME_REQUEST' ) ) {
-			return;
-		}
-
-		if ( ( isset( $_GET['action'] ) && 'upgrade-plugin' == $_GET['action'] ) && ( isset( $_GET['plugin'] ) && strstr( $_GET['plugin'], 'woocommerce-germanized.php' ) ) ) {
-			return;
-		}
-
-		wp_redirect( admin_url( 'index.php?page=wc-gzd-about' ) );
-		exit;
 	}
 }
 

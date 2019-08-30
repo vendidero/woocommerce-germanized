@@ -10,11 +10,12 @@
  */
 class WC_GZD_Compatibility_DHL_For_WooCommerce extends WC_GZD_Compatibility {
 
-	public function __construct() {
-		parent::__construct(
-			'DHL for WooCommerce',
-			'dhl-for-woocommerce/pr-dhl-woocommerce.php'
-		);
+	public static function get_name() {
+		return 'DHL for WooCommerce';
+	}
+
+	public static function get_path() {
+		return 'dhl-for-woocommerce/pr-dhl-woocommerce.php';
 	}
 
 	public function load() {

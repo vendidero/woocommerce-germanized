@@ -8,19 +8,17 @@
  * @category	Class
  * @author 		vendidero
  */
-class WC_GZD_Compatibility_Wpml_String_Translation extends WC_GZD_Compatibility {
+class WC_GZD_Compatibility_WPML_String_Translation extends WC_GZD_Compatibility {
 
-    public function __construct() {
-        parent::__construct(
-            'WPML String Translation',
-            'wpml-string-translation/plugin.php',
-            array(
-                'version' => defined( 'WPML_ST_VERSION' ) ? WPML_ST_VERSION : '1.0',
-            )
-        );
-    }
+	public static function get_name() {
+		return 'WPML String Translation';
+	}
 
-    public function is_activated() {
+	public static function get_path() {
+		return 'wpml-string-translation/plugin.php';
+	}
+
+    public static function is_activated() {
         global $sitepress;
 
         return defined( 'WPML_ST_VERSION' ) && isset( $sitepress) ? true : false;

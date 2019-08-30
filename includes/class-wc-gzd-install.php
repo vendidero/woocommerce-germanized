@@ -34,9 +34,40 @@ class WC_GZD_Install {
 	 */
 	public function __construct() {
 		add_action( 'admin_init', array( __CLASS__, 'check_version' ), 10 );
-		add_action( 'admin_init', array( __CLASS__, 'install_actions' ), 5 );
-
 		add_action( 'in_plugin_update_message-woocommerce-germanized/woocommerce-germanized.php', array( __CLASS__, 'in_plugin_update_message' ) );
+
+		add_action( 'admin_init', array( __CLASS__, 'redirect' ) );
+	}
+
+	public static function redirect() {
+		if ( get_option( '_wc_gzd_setup_wizard_redirect' ) ) {
+
+			delete_option( '_wc_gzd_setup_wizard_redirect' );
+			wp_safe_redirect( admin_url( 'admin.php?page=wc-gzd-setup' ) );
+			exit();
+
+		} elseif ( get_transient( '_wc_gzd_activation_redirect' ) ) {
+
+			// Delete the redirect transient
+			delete_transient( '_wc_gzd_activation_redirect' );
+
+			// Bail if we are waiting to install or update via the interface update/install links
+			if ( get_option( '_wc_gzd_needs_update' ) == 1 ) {
+				return;
+			}
+
+			// Bail if activating from network, or bulk, or within an iFrame
+			if ( is_network_admin() || isset( $_GET['activate-multi'] ) || defined( 'IFRAME_REQUEST' ) ) {
+				return;
+			}
+
+			if ( ( isset( $_GET['action'] ) && 'upgrade-plugin' == $_GET['action'] ) && ( isset( $_GET['plugin'] ) && strstr( $_GET['plugin'], 'woocommerce-germanized.php' ) ) ) {
+				return;
+			}
+
+			wp_redirect( admin_url( 'index.php?page=wc-gzd-about' ) );
+			exit;
+		}
 	}
 
 	/**
@@ -57,60 +88,6 @@ class WC_GZD_Install {
              * @since 1.0.0
              */
 			do_action( 'woocommerce_gzd_updated' );
-		}
-	}
-
-	/**
-	 * Install actions such as installing pages when a button is clicked.
-	 */
-	public static function install_actions() {
-		// Install - Add pages button
-		if ( ! empty( $_GET['install_woocommerce_gzd'] ) ) {
-
-			if ( ! empty( $_GET['install_woocommerce_gzd_pages'] ) ) {
-				self::create_pages();
-            }
-
-			if ( ! empty( $_GET['install_woocommerce_gzd_settings'] ) ) {
-				self::set_default_settings();
-            }
-
-			if ( ! empty( $_GET['install_woocommerce_gzd_virtual_tax_rates'] ) ) {
-				self::create_virtual_tax_rates();
-            }
-
-			if ( ! empty( $_GET['install_woocommerce_gzd_tax_rates'] ) ) {
-				self::create_tax_rates();
-            }
-
-			// We no longer need to install pages
-			delete_option( '_wc_gzd_needs_pages' );
-			delete_transient( '_wc_gzd_activation_redirect' );
-
-			// What's new redirect
-			wp_redirect( admin_url( 'index.php?page=wc-gzd-about&wc-gzd-installed=true' ) );
-			exit;
-		// Skip button
-		} elseif ( ! empty( $_GET['skip_install_woocommerce_gzd'] ) ) {
-			// We no longer need to install pages
-			delete_option( '_wc_gzd_needs_pages' );
-			delete_transient( '_wc_gzd_activation_redirect' );
-
-			// What's new redirect
-			wp_redirect( admin_url( 'index.php?page=wc-gzd-about' ) );
-			exit;
-		// Update button
-		} elseif ( ! empty( $_GET['do_update_woocommerce_gzd'] ) ) {
-			self::update();
-
-			// Update complete
-			delete_option( '_wc_gzd_needs_pages' );
-			delete_option( '_wc_gzd_needs_update' );
-			delete_transient( '_wc_gzd_activation_redirect' );
-
-			// What's new redirect
-			wp_redirect( admin_url( 'index.php?page=wc-gzd-about&wc-gzd-updated=true' ) );
-			exit;
 		}
 	}
 
@@ -157,8 +134,7 @@ class WC_GZD_Install {
 		$new_tax_classes = array();
 
 		if ( ! in_array( 'virtual-rate', $tax_classes ) || ! in_array( 'virtual-reduced-rate', $tax_classes ) ) {
-			update_option( '_wc_gzd_needs_pages', 1 );
-			
+
 			if ( ! in_array( 'virtual-rate', $tax_classes ) ) {
 				array_push( $new_tax_classes, 'Virtual Rate' );
             }
@@ -188,7 +164,6 @@ class WC_GZD_Install {
 
 		// Queue messages and notices
 		if ( ! is_null( $current_version ) ) {
-
 			$major_version     = substr( $current_version, 0, 3 );
 			$new_major_version = substr( WC_germanized()->version, 0, 3 );
 
@@ -197,12 +172,6 @@ class WC_GZD_Install {
 				delete_option( '_wc_gzd_hide_theme_notice' );
 				delete_option( '_wc_gzd_hide_pro_notice' );
 				delete_option( '_wc_gzd_hide_review_notice' );
-			}
-
-		} else {
-			// Fresh install - Check if some german market plugin was installed before
-			if ( WC_GZD_Admin_Importer::instance()->is_available() ) {
-				update_option( '_wc_gzd_import_available', 1 );
 			}
 		}
 
@@ -227,13 +196,16 @@ class WC_GZD_Install {
 		// Update activation date
 		update_option( 'woocommerce_gzd_activation_date', date( 'Y-m-d' ) );
 
-		// Check if pages are needed
-		if ( wc_get_page_id( 'revocation' ) < 1 ) {
-			update_option( '_wc_gzd_needs_pages', 1 );
-		}
-
 		// Flush rules after install
 		flush_rewrite_rules();
+
+		// Check if pages are needed - start setup
+		if ( wc_get_page_id( 'revocation' ) < 1 ) {
+			update_option('_wc_gzd_setup_wizard_redirect', 1 );
+		} elseif ( ! defined( 'DOING_AJAX' ) ) {
+			// Redirect to welcome screen
+			set_transient( '_wc_gzd_activation_redirect', 1, 60 * 60 );
+		}
 
         /**
          * Plugin installed.
@@ -243,12 +215,6 @@ class WC_GZD_Install {
          * @since 1.0.0
          */
 		do_action( 'woocommerce_gzd_installed' );
-
-		// Prevent redirect for inline plugin updates
-		if ( ! defined( 'DOING_AJAX' ) ) {
-			// Redirect to welcome screen
-			set_transient( '_wc_gzd_activation_redirect', 1, 60 * 60 );
-		}
 	}
 
 	public static function deactivate() {
@@ -282,6 +248,7 @@ class WC_GZD_Install {
 		$current_db_version = get_option( 'woocommerce_gzd_db_version' );
 
 		foreach ( self::$db_updates as $version => $updater ) {
+
 			if ( version_compare( $current_db_version, $version, '<' ) ) {
 				include( $updater );
 				self::update_db_version( $version );
@@ -363,6 +330,7 @@ class WC_GZD_Install {
 
 	public static function create_units() {
 		$units = include( WC_Germanized()->plugin_path() . '/i18n/units.php' );
+
 		if ( ! empty( $units ) ) {
 			foreach ( $units as $slug => $unit ) {
 				wp_insert_term( $unit, 'product_unit', array( 'slug' => $slug ) );
@@ -372,9 +340,11 @@ class WC_GZD_Install {
 
 	public static function create_labels() {
 		$labels = include( WC_Germanized()->plugin_path() . '/i18n/labels.php' );
+
 		if ( ! empty( $labels ) ) {
-			foreach ( $labels as $slug => $unit )
+			foreach ( $labels as $slug => $unit ) {
 				wp_insert_term( $unit, 'product_price_label', array( 'slug' => $slug ) );
+			}
 		}
 	}
 
@@ -422,10 +392,8 @@ class WC_GZD_Install {
 		global $wpdb;
 
 		if ( ! empty( $rates ) ) {
-
 			// Delete rates
 			$wpdb->delete( $wpdb->prefix . 'woocommerce_tax_rates', array( 'tax_rate_class' => $type ), array( '%s' ) );
-
 			$count = 0;
 
 			foreach ( $rates as $iso => $rate ) {
@@ -442,11 +410,13 @@ class WC_GZD_Install {
 				);
 
 				// Check if standard rate exists
-				if ( strpos( $type, 'virtual' ) !== false && WC()->countries->get_base_country() == $iso ) {
-					$base_rate = WC_Tax::get_shop_base_rate();
+				if ( strpos( $type, 'virtual' ) !== false && WC()->countries->get_base_country() === $iso ) {
+					$base_rate = WC_Tax::get_base_tax_rates();
 					$base_rate = reset( $base_rate );
-					if ( ! empty( $base_rate ) )
-						$_tax_rate[ 'tax_rate_name' ] = $base_rate[ 'label' ];
+
+					if ( ! empty( $base_rate ) ) {
+						$_tax_rate['tax_rate_name'] = $base_rate['label'];
+					}
 				}
 
 				$wpdb->insert( $wpdb->prefix . 'woocommerce_tax_rates', $_tax_rate );
@@ -465,14 +435,14 @@ class WC_GZD_Install {
 		$countries = WC()->countries->get_european_union_countries();
 
 		foreach( $countries as $key => $country ) {
-			$countries[ $country ] = WC()->countries->get_base_country() === 'at' ? 20 : 19;
+			$countries[ $country ] = WC()->countries->get_base_country() === 'AT' ? 20 : 19;
 			unset( $countries[ $key ] );
 		}
 
 		self::import_rates( $countries,'' );
 
 		foreach( $countries as $key => $country ) {
-			$countries[ $key ] = WC()->countries->get_base_country() === 'at' ? 10 : 7;
+			$countries[ $key ] = WC()->countries->get_base_country() === 'AT' ? 10 : 7;
 		}
 
 		self::import_rates( $countries,'reduced-rate' );
@@ -484,8 +454,10 @@ class WC_GZD_Install {
 	public static function set_default_settings() {
 		global $wpdb;
 
+		$base_country = ( isset( WC()->countries ) ) ? WC()->countries->get_base_country() : 'DE';
+
 		$options = array(
-			'woocommerce_default_country' 			 => 'DE',
+			'woocommerce_default_country' 			 => $base_country,
 			'woocommerce_currency' 					 => 'EUR',
 			'woocommerce_currency_pos'				 => 'right_space',
 			'woocommerce_price_thousand_sep' 	     => '.',
@@ -500,11 +472,11 @@ class WC_GZD_Install {
 			'woocommerce_tax_total_display'			 => 'itemized',
 			'woocommerce_tax_based_on'               => 'billing',
 			'woocommerce_allowed_countries'	    	 => 'specific',
-			'woocommerce_specific_allowed_countries' => array( 'DE' ),
+			'woocommerce_specific_allowed_countries' => array( $base_country ),
             'woocommerce_default_customer_address'   => 'base'
 		);
 
-		if ( ! empty($options ) ) {
+		if ( ! empty( $options ) ) {
 			foreach ( $options as $key => $option ) {
 				update_option( $key, $option );
 			}
@@ -566,7 +538,6 @@ class WC_GZD_Install {
 		foreach ( $pages as $key => $page ) {
 			wc_create_page( esc_sql( $page['name'] ), 'woocommerce_' . $key . '_page_id', $page['title'], $page['content'], ! empty( $page['parent'] ) ? wc_get_page_id( $page['parent'] ) : '' );
 		}
-
 	}
 
 	/**

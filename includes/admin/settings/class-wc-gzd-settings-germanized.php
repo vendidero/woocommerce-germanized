@@ -47,36 +47,16 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 	}
 
 	public function admin_styles() {
-		$suffix      = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
-		$assets_path = str_replace( array( 'http:', 'https:' ), '', WC_germanized()->plugin_url() ) . '/assets/';
-
-		// Register admin styles.
-		wp_register_style( 'woocommerce-gzd-admin-settings', $assets_path . 'css/admin-settings' . $suffix . '.css', array( 'woocommerce_admin_styles', 'woocommerce-gzd-admin' ), WC_GERMANIZED_VERSION );
-
 		// Admin styles for WC pages only.
 		if ( $this->is_active() ) {
 			wp_enqueue_style( 'woocommerce-gzd-admin-settings' );
-
 			do_action( 'woocommerce_gzd_admin_settings_styles' );
 		}
 	}
 
 	public function admin_scripts() {
-		$suffix      = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
-		$assets_path = str_replace( array( 'http:', 'https:' ), '', WC_germanized()->plugin_url() ) . '/assets/';
-
-		wp_register_script( 'wc-gzd-admin-settings', $assets_path . 'js/admin/settings' . $suffix . '.js', array( 'jquery', 'woocommerce_settings' ), WC_GERMANIZED_VERSION, true );
-
 		if ( $this->is_active() ) {
-			wp_localize_script(
-				'wc-gzd-admin-settings', 'wc_gzd_admin_settings_params', array(
-					'tab_toggle_nonce'  => wp_create_nonce( 'wc_gzd_tab_toggle_nonce' ),
-					'ajax_url'          => admin_url( 'admin-ajax.php' ),
-				)
-			);
-
 			wp_enqueue_script( 'wc-gzd-admin-settings' );
-
 			do_action( 'woocommerce_gzd_admin_settings_scripts' );
 		}
 	}

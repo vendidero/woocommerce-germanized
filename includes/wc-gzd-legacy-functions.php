@@ -140,6 +140,7 @@ function wc_gzd_get_variable_visible_children( $product ) {
 }
 
 function wc_gzd_get_price_including_tax( $product, $args = array() ) {
+
 	if ( function_exists( 'wc_get_price_including_tax' ) ) {
 		return wc_get_price_including_tax( $product, $args );
     }
@@ -181,22 +182,7 @@ function wc_gzd_reduce_order_stock( $order_id ) {
 }
 
 function wc_gzd_get_product_type( $id ) {
-	$type = false;
-
-	if ( wc_gzd_get_dependencies()->woocommerce_version_supports_crud() ) {
-		$type = WC_Product_Factory::get_product_type( $id );
-	} else {
-		$post_type  = get_post_type( $id );
-		if ( 'product' === $post_type ) {
-			$terms = get_the_terms( $id, 'product_type' );
-			$type = ! empty( $terms ) ? sanitize_title( current( $terms )->name ) : 'simple';
-		} elseif( 'product_variation' === $post_type ) {
-			$type = 'variation';
-		} else {
-			$type = false;
-		}
-	}
-	return $type;
+	return WC_Product_Factory::get_product_type( $id );
 }
 
 function wc_gzd_get_product_name( $product ) {

@@ -69,7 +69,6 @@ class WC_GZD_Admin_Notices {
 	 * Add notices + styles if needed.
 	 */
 	public function add_notices() {
-
 		$screen          = get_current_screen();
 		$screen_id       = $screen ? $screen->id : '';
 		$show_on_screens = array(
@@ -84,23 +83,18 @@ class WC_GZD_Admin_Notices {
 			return;
 		}
 
-		if ( get_option( '_wc_gzd_needs_update' ) == 1 || get_option( '_wc_gzd_needs_pages' ) == 1 || get_option( '_wc_gzd_import_available' ) == 1 ) {
+		if ( get_option( '_wc_gzd_needs_update' ) == 1 ) {
 			if ( current_user_can( 'manage_woocommerce' ) ) {
-
 				wp_enqueue_style( 'woocommerce-activation', plugins_url( '/assets/css/activation.css', WC_PLUGIN_FILE ) );
 				wp_enqueue_style( 'woocommerce-gzd-activation', plugins_url( '/assets/css/admin-activation.css', WC_GERMANIZED_PLUGIN_FILE ) );
 
-				add_action( 'admin_notices', array( $this, 'install_notice' ) );
+				add_action( 'admin_notices', array( $this, 'update_notice' ) );
 			}
 		}
 		
 		if ( ! get_option( '_wc_gzd_hide_theme_notice' ) && ! WC_germanized()->is_pro() && $this->enable_notices() ) {
-			if ( ! $this->is_theme_compatible() ) {
-				add_action( 'admin_notices', array( $this, 'theme_incompatibility_notice' ) );
-            } elseif ( $this->is_theme_supported_by_pro() ) {
+			if ( $this->is_theme_supported_by_pro() ) {
 				add_action( 'admin_notices', array( $this, 'theme_supported_notice' ) );
-            } elseif ( ! $this->is_theme_ready() ) {
-				add_action( 'admin_notices', array( $this, 'theme_not_ready_notice' ) );
             }
 		}
 		
@@ -112,9 +106,7 @@ class WC_GZD_Admin_Notices {
 			add_action( 'admin_notices', array( $this, 'add_pro_notice' ) );
 		}
 		
-		if ( isset( $_GET[ 'page' ] ) && $_GET[ 'page' ] == 'wc-gzd-about' || get_option( '_wc_gzd_needs_pages' ) ) {
-			remove_action( 'admin_notices', array( $this, 'theme_incompatibility_notice' ) );
-			remove_action( 'admin_notices', array( $this, 'theme_not_ready_notice' ) );
+		if ( isset( $_GET['page'] ) && $_GET['page'] === 'wc-gzd-about' ) {
 			remove_action( 'admin_notices', array( $this, 'theme_supported_notice' ) );
 		}
 	}
@@ -126,18 +118,10 @@ class WC_GZD_Admin_Notices {
 	/**
 	 * Show the install notices
 	 */
-	public function install_notice() {
+	public function update_notice() {
 		// If we need to update, include a message with the update button
 		if ( get_option( '_wc_gzd_needs_update' ) == 1 ) {
 			include( 'views/html-notice-update.php' );
-		}
-		// Check if other german market plugin was installed
-		elseif ( get_option( '_wc_gzd_import_available' ) == 1 ) {
-			include( 'views/html-notice-import.php' );
-		}
-		// If we have just installed, show a message with the install pages button
-		elseif ( get_option( '_wc_gzd_needs_pages' ) == 1 ) {
-			include( 'views/html-notice-install.php' );
 		}
 	}
 
@@ -166,15 +150,6 @@ class WC_GZD_Admin_Notices {
 		}
 	}
 
-	public function theme_incompatibility_notice() {
-		include( 'views/html-notice-theme-incompatibility.php' );
-	}
-
-	public function theme_not_ready_notice() {
-		$current_theme = wp_get_theme();
-		include( 'views/html-notice-theme-not-ready.php' );
-	}
-
 	public function theme_supported_notice() {
 		$current_theme = wp_get_theme();
 		include( 'views/html-notice-theme-supported.php' );
@@ -184,8 +159,9 @@ class WC_GZD_Admin_Notices {
 		$stylesheet = get_stylesheet_directory() . '/style.css';
 		$data       = get_file_data( $stylesheet, array( 'wc_gzd_compatible' => 'wc_gzd_compatible' ) );
 
-		if ( ! $data[ 'wc_gzd_compatible' ] && ! current_theme_supports( 'woocommerce-germanized' ) )
+		if ( ! $data['wc_gzd_compatible'] && ! current_theme_supports( 'woocommerce-germanized' ) ) {
 			return false;
+		}
 
 		return true;
 	}
@@ -202,8 +178,9 @@ class WC_GZD_Admin_Notices {
 
 		$current = wp_get_theme();
 
-		if ( in_array( $current->get_template(), $supporting ) )
+		if ( in_array( $current->get_template(), $supporting ) ) {
 			return true;
+		}
 
 		return false;
 	}
@@ -241,7 +218,6 @@ class WC_GZD_Admin_Notices {
 		$templates_to_check = WC_germanized()->get_critical_templates();
 		
 		if ( ! empty( $templates_to_check ) ) {
-		
 			foreach ( $templates_to_check as $template ) {
 				$template_path = trailingslashit( 'woocommerce' ) . $template;
 		

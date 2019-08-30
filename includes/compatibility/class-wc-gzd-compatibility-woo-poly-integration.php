@@ -14,11 +14,12 @@ class WC_GZD_Compatibility_Woo_Poly_Integration extends WC_GZD_Compatibility {
 	private $order_emails = array();
 	private $other_emails = array();
 
-	public function __construct() {
-		parent::__construct(
-			'Hyyan WooCommerce Polylang Integration',
-			'woo-poly-integration/__init__.php'
-		);
+	public static function get_name() {
+		return 'Hyyan WooCommerce Polylang Integration';
+	}
+
+	public static function get_path() {
+		return 'woo-poly-integration/__init__.php';
 	}
 
 	public function early_execution() {

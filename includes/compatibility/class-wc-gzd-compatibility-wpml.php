@@ -8,23 +8,20 @@
  * @category	Class
  * @author 		vendidero
  */
-class WC_GZD_Compatibility_Wpml extends WC_GZD_Compatibility {
+class WC_GZD_Compatibility_WPML extends WC_GZD_Compatibility {
 
 	protected $dynamic_unit_pricing = null;
+	protected $new_language         = false;
 
-	protected $new_language = false;
-
-	public function __construct() {
-		parent::__construct( 
-			'WPML', 
-			'sitepress-multilingual-cms/sitepress.php', 
-			array( 
-				'version' => get_option( 'icl_sitepress_version', '1.0.0' )
-			) 
-		);
+	public static function get_name() {
+		return 'WPML';
 	}
 
-	public function is_activated() {
+	public static function get_path() {
+		return 'sitepress-multilingual-cms/sitepress.php';
+	}
+
+	public static function is_activated() {
 		return parent::is_activated() && wc_gzd_get_dependencies()->is_plugin_activated( 'woocommerce-multilingual/wpml-woocommerce.php' );
 	}
 

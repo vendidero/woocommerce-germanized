@@ -8,13 +8,14 @@
  * @category	Class
  * @author 		vendidero
  */
-class WC_GZD_Compatibility_Woocommerce_Dynamic_Pricing extends WC_GZD_Compatibility_Woocommerce_Role_Based_Pricing {
+class WC_GZD_Compatibility_WooCommerce_Dynamic_Pricing extends WC_GZD_Compatibility_Woocommerce_Role_Based_Pricing {
 
-	public function __construct() {
-		parent::__construct(
-			'WooCommerce Dynamic Pricing',
-			'woocommerce-dynamic-pricing/woocommerce-dynamic-pricing.php'
-		);
+	public static function get_name() {
+		return 'WooCommerce Dynamic Pricing';
+	}
+
+	public static function get_path() {
+		return 'woocommerce-dynamic-pricing/woocommerce-dynamic-pricing.php';
 	}
 
 	public function variable_unit_prices_hash( $hash ) {

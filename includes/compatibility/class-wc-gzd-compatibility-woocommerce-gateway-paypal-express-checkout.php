@@ -8,13 +8,14 @@
  * @category	Class
  * @author 		vendidero
  */
-class WC_GZD_Compatibility_Woocommerce_Gateway_Paypal_Express_Checkout extends WC_GZD_Compatibility {
+class WC_GZD_Compatibility_WooCommerce_Gateway_Paypal_Express_Checkout extends WC_GZD_Compatibility {
 
-	public function __construct() {
-		parent::__construct(
-			'WooCommerce PayPal Checkout Gateway',
-			'woocommerce-gateway-paypal-express-checkout/woocommerce-gateway-paypal-express-checkout.php'
-		);
+	public static function get_name() {
+		return 'WooCommerce PayPal Checkout Gateway';
+	}
+
+	public static function get_path() {
+		return 'woocommerce-gateway-paypal-express-checkout/woocommerce-gateway-paypal-express-checkout.php';
 	}
 
 	public function load() {

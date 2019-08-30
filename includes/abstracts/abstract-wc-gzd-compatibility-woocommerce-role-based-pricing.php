@@ -97,5 +97,4 @@ abstract class WC_GZD_Compatibility_Woocommerce_Role_Based_Pricing extends WC_GZ
 
         return $price_hash;
     }
-
 }

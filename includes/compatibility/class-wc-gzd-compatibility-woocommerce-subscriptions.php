@@ -8,19 +8,21 @@
  * @category	Class
  * @author 		vendidero
  */
-class WC_GZD_Compatibility_Woocommerce_Subscriptions extends WC_GZD_Compatibility {
+class WC_GZD_Compatibility_WooCommerce_Subscriptions extends WC_GZD_Compatibility {
 
-	public function __construct() {
-		
-		parent::__construct( 
-			'WooCommerce Subscriptions', 
-			'woocommerce-subscriptions/woocommerce-subscriptions.php', 
-			array(
-				'version' => get_option( 'woocommerce_subscriptions_active_version', '1.0.0' ),
-				'requires_at_least' => '2.0',
-			)
-		);
-		
+	public static function get_name() {
+		return 'WooCommerce Subscriptions';
+	}
+
+	public static function get_path() {
+		return 'woocommerce-subscriptions/woocommerce-subscriptions.php';
+	}
+
+	public static function get_version_data() {
+		return static::parse_version_data( array(
+			'version'           => get_option( 'woocommerce_subscriptions_active_version', '1.0.0' ),
+			'requires_at_least' => '2.0',
+        ) );
 	}
 
 	public function load() {
@@ -37,7 +39,6 @@ class WC_GZD_Compatibility_Woocommerce_Subscriptions extends WC_GZD_Compatibilit
     }
 
 	public function product_classname( $classname, $type ) {
-
 	    if ( 'variable-subscription' === $type ) {
             return 'WC_GZD_Product_Variable';
         }

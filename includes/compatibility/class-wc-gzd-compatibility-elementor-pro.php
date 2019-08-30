@@ -1,23 +1,25 @@
 <?php
 
+use Elementor\Plugin;
+
 if ( ! defined( 'ABSPATH' ) )
     exit;
 
 class WC_GZD_Compatibility_Elementor_Pro extends WC_GZD_Compatibility {
 
-    public function __construct() {
-        parent::__construct(
-            'Elementor Pro',
-            'elementor-pro/elementor-pro.php'
-        );
-    }
+	public static function get_name() {
+		return 'Elementor Pro';
+	}
+
+	public static function get_path() {
+		return 'elementor-pro/elementor-pro.php';
+	}
 
     public function load() {
         add_action( 'elementor/widgets/widgets_registered', array( $this, 'init_widgets' ), 10 );
     }
 
     public function init_widgets() {
-
         if ( ! class_exists( 'ElementorPro\Modules\Woocommerce\Widgets\Products_Base' ) ) {
             return;
         }
@@ -32,7 +34,7 @@ class WC_GZD_Compatibility_Elementor_Pro extends WC_GZD_Compatibility {
             'WC_GZD_Elementor_Widget_Product_Delivery_Time',
         );
 
-        $widget_manager = \Elementor\Plugin::$instance->widgets_manager;
+        $widget_manager = Plugin::$instance->widgets_manager;
 
         foreach ( $widgets as $widget ) {
             $classname = 'class-' . str_replace( '_', '-', strtolower( $widget ) ) . '.php';

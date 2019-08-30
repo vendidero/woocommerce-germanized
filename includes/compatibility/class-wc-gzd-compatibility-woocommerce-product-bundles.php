@@ -8,13 +8,14 @@
  * @category	Class
  * @author 		vendidero
  */
-class WC_GZD_Compatibility_Woocommerce_Product_Bundles extends WC_GZD_Compatibility {
+class WC_GZD_Compatibility_WooCommerce_Product_Bundles extends WC_GZD_Compatibility {
 
-	public function __construct() {
-		parent::__construct(
-			'WooCommerce Product Bundles',
-			'woocommerce-product-bundles/woocommerce-product-bundles.php'
-		);
+	public static function get_name() {
+		return 'WooCommerce Product Bundles';
+	}
+
+	public static function get_path() {
+		return 'woocommerce-product-bundles/woocommerce-product-bundles.php';
 	}
 
 	public function load() {

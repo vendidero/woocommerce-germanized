@@ -11,14 +11,53 @@
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 /**
- * Register unit price update hook while cronjob is running
+ * @param WC_Product $product
  */
-function wc_gzd_register_scheduled_unit_sales() {
-	add_action( 'updated_post_meta', 'wc_gzd_check_price_update', 0, 4 );
+function _wc_gzd_check_unit_sale( $product ) {
+	$gzd_product = wc_gzd_get_product( $product );
+
+	if ( $gzd_product->has_unit() ) {
+		if ( $product->is_on_sale() ) {
+			$sale_price = $gzd_product->get_unit_price_sale();
+
+			if ( ! empty( $sale_price ) ) {
+				$gzd_product->set_unit_price( $sale_price );
+			} else {
+				$gzd_product->set_unit_price( $gzd_product->get_unit_price_regular() );
+			}
+		} else {
+			$gzd_product->set_unit_price( $gzd_product->get_unit_price_regular() );
+		}
+	}
 }
 
-add_action( 'woocommerce_scheduled_sales', 'wc_gzd_register_scheduled_unit_sales', 0 );
+/**
+ * Register unit price update hook while cronjob is running
+ */
+function wc_gzd_register_scheduled_unit_sales( $product_ids ) {
+	add_action( 'woocommerce_before_product_object_save', '_wc_gzd_check_unit_sale', 10 );
+}
 
+add_action( 'wc_before_products_starting_sales', 'wc_gzd_register_scheduled_unit_sales', 10, 1 );
+remove_action( 'wc_after_products_starting_sales', 'wc_gzd_register_scheduled_unit_sales', 10 );
+
+add_action( 'wc_before_products_ending_sales', 'wc_gzd_register_scheduled_unit_sales', 10, 1 );
+remove_action( 'wc_after_products_ending_sales', 'wc_gzd_register_scheduled_unit_sales', 10 );
+
+/**
+ * @param $product
+ *
+ * @return bool|WC_GZD_Product
+ */
+function wc_gzd_get_product( $product ) {
+	return wc_gzd_get_gzd_product( $product );
+}
+
+/**
+ * @param $product
+ *
+ * @return bool|WC_GZD_Product
+ */
 function wc_gzd_get_gzd_product( $product ) {
 
     if ( is_numeric( $product ) ) {
@@ -31,46 +70,12 @@ function wc_gzd_get_gzd_product( $product ) {
         return false;
     }
 
-	if ( ! isset( $product->gzd_product ) || ! is_object( $product->gzd_product ) ) {
-		$factory = WC()->product_factory;
-
-		if ( ! is_a( $factory, 'WC_GZD_Product_Factory' ) ) {
-			$factory = new WC_GZD_Product_Factory();
-			WC()->product_factory = $factory;
-		}
-
+	if ( ! isset( $product->gzd_product ) || ! is_a( $product->gzd_product, 'WC_GZD_Product' ) ) {
+		$factory              = WC_germanized()->product_factory;
 		$product->gzd_product = $factory->get_gzd_product( $product );
 	}
 
 	return $product->gzd_product;
-}
-
-/**
- * Unregister unit price update hook
- */
-function wc_gzd_unregister_scheduled_unit_sales() {
-	remove_action( 'updated_post_meta', 'wc_gzd_check_price_update', 0 );
-}
-add_action( 'woocommerce_scheduled_sales', 'wc_gzd_unregister_scheduled_unit_sales', 20 );
-
-/**
- * Update the unit price to sale price if product is on sale
- */
-function wc_gzd_check_price_update( $meta_id, $post_id, $meta_key, $meta_value ) {
-
-	if ( $meta_key != '_price' )
-		return;
-
-	$product = wc_get_product( $post_id );
-	$sale_price = get_post_meta( $post_id, '_unit_price_sale', true );
-	$regular_price = get_post_meta( $post_id, '_unit_price_regular', true );
-	
-	if ( $product->is_on_sale() && $sale_price ) {
-		update_post_meta( $post_id, '_unit_price', $sale_price );
-	} else {
-		update_post_meta( $post_id, '_unit_price', $regular_price );
-	}
-
 }
 
 function wc_gzd_get_small_business_product_notice() {
@@ -131,14 +136,15 @@ function wc_gzd_is_revocation_exempt( $product, $type = 'digital' ) {
  * Checks whether the product matches one of the types.
  *
  * @param array|string $types multiple types are OR connected
- * @param $product
+ * @param WC_Product|WC_GZD_Product $product
  *
  * @return bool
  */
 function wc_gzd_product_matches_extended_type( $types, $product ) {
 
-	if ( empty( $types ) )
+	if ( empty( $types ) ) {
 		return false;
+	}
 
 	$matches_type = false;
 
@@ -146,15 +152,16 @@ function wc_gzd_product_matches_extended_type( $types, $product ) {
 		$product = $product->get_wc_product();
 	}
 
-	if ( ! is_array( $types ) )
+	if ( ! is_array( $types ) ) {
 		$types = array( $types );
+	}
 
 	if ( in_array( $product->get_type(), $types ) ) {
 		$matches_type = true;
 	} else {
 		foreach ( $types as $type ) {
 			if ( 'service' === $type ) {
-				$matches_type = wc_gzd_get_gzd_product( $product )->is_service();
+				$matches_type = wc_gzd_get_product( $product )->is_service();
 			} else {
 				$getter = "is_" . $type;
 				try {
@@ -175,7 +182,7 @@ function wc_gzd_product_matches_extended_type( $types, $product ) {
 	}
 
 	if ( ! $matches_type ) {
-		$parent_id = wc_gzd_get_crud_data( $product, 'parent' );
+		$parent_id = $product->get_parent_id();
 
 		// Check parent product type
 		if ( $parent_id ) {
@@ -190,6 +197,12 @@ function wc_gzd_product_matches_extended_type( $types, $product ) {
 	return $matches_type;
 }
 
+/**
+ * @param array $args
+ * @param bool|WC_GZD_Product $product
+ *
+ * @return array|mixed|void
+ */
 function wc_gzd_recalculate_unit_price( $args = array(), $product = false ) {
 
     $default_args = array(
@@ -202,12 +215,14 @@ function wc_gzd_recalculate_unit_price( $args = array(), $product = false ) {
     );
 
     if ( $product ) {
+    	$wc_product = $product->get_wc_product();
+
         $default_args = array(
-            'regular_price' => ( isset( $args['tax_mode'] ) && 'excl' === $args['tax_mode'] ) ? wc_get_price_excluding_tax( $product, array( 'price' => $product->get_regular_price() ) ) : wc_get_price_including_tax( $product, array( 'price' => $product->get_regular_price() ) ),
-            'sale_price'    => ( isset( $args['tax_mode'] ) && 'excl' === $args['tax_mode'] ) ? wc_get_price_excluding_tax( $product, array( 'price' => $product->get_sale_price() ) ) : wc_get_price_including_tax( $product, array( 'price' => $product->get_sale_price() ) ),
-            'price'         => ( isset( $args['tax_mode'] ) && 'excl' === $args['tax_mode'] ) ? wc_get_price_excluding_tax( $product ) : wc_get_price_including_tax( $product ),
-            'base'          => $product->get_unit_base_raw(),
-            'products'      => $product->get_unit_products(),
+            'regular_price' => ( isset( $args['tax_mode'] ) && 'excl' === $args['tax_mode'] ) ? wc_get_price_excluding_tax( $wc_product, array( 'price' => $wc_product->get_regular_price() ) ) : wc_get_price_including_tax( $wc_product, array( 'price' => $wc_product->get_regular_price() ) ),
+            'sale_price'    => ( isset( $args['tax_mode'] ) && 'excl' === $args['tax_mode'] ) ? wc_get_price_excluding_tax( $wc_product, array( 'price' => $wc_product->get_sale_price() ) ) : wc_get_price_including_tax( $wc_product, array( 'price' => $wc_product->get_sale_price() ) ),
+            'price'         => ( isset( $args['tax_mode'] ) && 'excl' === $args['tax_mode'] ) ? wc_get_price_excluding_tax( $wc_product ) : wc_get_price_including_tax( $wc_product ),
+            'base'          => $product->get_unit_base(),
+            'products'      => $product->get_unit_product(),
         );
     }
 

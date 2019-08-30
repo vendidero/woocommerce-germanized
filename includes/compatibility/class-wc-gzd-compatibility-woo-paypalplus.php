@@ -8,13 +8,14 @@
  * @category	Class
  * @author 		vendidero
  */
-class WC_GZD_Compatibility_Woo_Paypalplus extends WC_GZD_Compatibility {
+class WC_GZD_Compatibility_Woo_PaypalPlus extends WC_GZD_Compatibility {
 
-	public function __construct() {
-		parent::__construct(
-			'PayPal Plus for WooCommerce',
-			'woo-paypalplus/paypalplus-woocommerce.php'
-		);
+	public static function get_name() {
+		return 'PayPal Plus for WooCommerce';
+	}
+
+	public static function get_path() {
+		return 'woo-paypalplus/paypalplus-woocommerce.php';
 	}
 
 	public function load() {

@@ -10,7 +10,7 @@
  * @category	Class
  * @author 		WooThemes
  */
-class WC_GZD_Product_Factory extends WC_Product_Factory {
+class WC_GZD_Product_Factory {
 
 	/**
 	 * get_product function.
@@ -19,8 +19,8 @@ class WC_GZD_Product_Factory extends WC_Product_Factory {
 	 * @param array $args (default: array())
 	 * @return WC_Product|bool false if the product cannot be loaded
 	 */
-	public function get_product( $the_product = false, $args = array() ) {
-		$product = $this->get_product_standalone( $the_product, $args );
+	public function get_product( $the_product = false ) {
+		$product = $this->get_product_standalone( $the_product );
 
 		if ( is_object( $product ) ) {
 			$product->gzd_product = $this->get_gzd_product( $product );
@@ -36,18 +36,18 @@ class WC_GZD_Product_Factory extends WC_Product_Factory {
 	 * @param array $args (default: array())
 	 * @return WC_Product|bool false if the product cannot be loaded
 	*/
-	public function get_product_standalone( $the_product = false, $args = array() ) {
-		return parent::get_product( $the_product, $args );
+	public function get_product_standalone( $the_product = false ) {
+		return wc_get_product( $the_product );
 	}
 
 	/**
 	 * Returns and locates the WC_GZD_Product Object based on product type. 
 	 *  
-	 * @param  object $product WC_Product
-	 * @return object WC_GZD_Product
+	 * @param  WC_Product $product the product
+	 * @return WC_GZD_Product
 	 */
 	public function get_gzd_product( $product ) {
-		$type      = wc_gzd_get_crud_data( $product, 'product_type' );
+		$type      = $product->get_type();
 		$classname = 'WC_GZD_Product_' . ucfirst( $type );
 
         /**

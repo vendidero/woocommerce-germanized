@@ -8,13 +8,13 @@
  * @category	Class
  * @author 		vendidero
  */
-class WC_GZD_Compatibility_Woocommerce_Role_Based_Prices extends WC_GZD_Compatibility_Woocommerce_Role_Based_Pricing {
+class WC_GZD_Compatibility_WooCommerce_Role_Based_Prices extends WC_GZD_Compatibility_Woocommerce_Role_Based_Pricing {
 
-	public function __construct() {
-		parent::__construct(
-			'WooCommerce Role Based Prices',
-			'woocommerce-role-based-prices/woocommerce-role-based-prices.php'
-		);
+	public static function get_name() {
+		return 'WooCommerce Role Based Prices';
 	}
 
+	public static function get_path() {
+		return 'woocommerce-role-based-prices/woocommerce-role-based-prices.php';
+	}
 }

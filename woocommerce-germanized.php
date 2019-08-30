@@ -8,9 +8,9 @@
  * Author URI: https://vendidero.de
  * Requires at least: 3.8
  * Tested up to: 5.2
- * WC requires at least: 2.4
+ * WC requires at least: 3.4
  * WC tested up to: 3.7
- * Requires at least WooCommerce: 2.4
+ * Requires at least WooCommerce: 3.4
  * Tested up to WooCommerce: 3.7
  *
  * Text Domain: woocommerce-germanized
@@ -58,9 +58,7 @@ final class WooCommerce_Germanized {
 	public $version = '3.0.0 beta';
 
 	/**
-	 * Single instance of WooCommerce Germanized Main Class
-	 *
-	 * @var object
+	 * @var WooCommerce_Germanized $instance of the plugin
 	 */
 	protected static $_instance = null;
 
@@ -86,6 +84,8 @@ final class WooCommerce_Germanized {
 
 	private $localized_scripts = array();
 
+	public $product_factory = null;
+
 	/**
 	 * Main WooCommerceGermanized Instance
 	 *
@@ -93,7 +93,7 @@ final class WooCommerce_Germanized {
 	 *
 	 * @static
 	 * @see WC_germanized()
-	 * @return WooCommerceGermanized - Main instance
+	 * @return WooCommerce_Germanized - Main instance
 	 */
 	public static function instance() {
 		if ( is_null( self::$_instance ) ) {
@@ -181,12 +181,12 @@ final class WooCommerce_Germanized {
 		add_action( 'init', array( 'WC_GZD_Shortcodes', 'init' ), 2 );
 		add_action( 'plugins_loaded', array( $this, 'setup_compatibility' ), 0 );
 
-		add_action( 'woocommerce_init', array( $this, 'replace_woocommerce_product_factory' ), PHP_INT_MAX );
 		// Set template filter directly after load to ensure wc_get_template finds templates
 		add_filter( 'woocommerce_locate_template', array( $this, 'filter_templates' ), PHP_INT_MAX, 3 );
 
-		$this->units          = new WC_GZD_Units();
-		$this->price_labels   = new WC_GZD_Price_Labels();
+		$this->units           = new WC_GZD_Units();
+		$this->price_labels    = new WC_GZD_Price_Labels();
+		$this->product_factory = new WC_GZD_Product_Factory();
 
         /**
          * After startup.
@@ -263,7 +263,7 @@ final class WooCommerce_Germanized {
 		// Remove cart subtotal filter
 		add_action( 'template_redirect', array( $this, 'remove_cart_unit_price_filter' ) );
 
-		$this->emails    	  = new WC_GZD_Emails();
+		$this->emails = new WC_GZD_Emails();
 
         /**
          * Initialized Germanized
@@ -402,7 +402,6 @@ final class WooCommerce_Germanized {
 			include_once WC_GERMANIZED_ABSPATH . 'includes/admin/class-wc-gzd-admin-notices.php';
 			include_once WC_GERMANIZED_ABSPATH . 'includes/admin/class-wc-gzd-admin-customer.php';
 			include_once WC_GERMANIZED_ABSPATH . 'includes/admin/class-wc-gzd-admin-legal-checkboxes.php';
-			include_once WC_GERMANIZED_ABSPATH . 'includes/admin/class-wc-gzd-admin-importer.php';
 			include_once WC_GERMANIZED_ABSPATH . 'includes/admin/settings/class-wc-gzd-settings-pointers.php';
 
 			include_once WC_GERMANIZED_ABSPATH . 'includes/export/class-wc-gzd-product-export.php';
@@ -449,6 +448,8 @@ final class WooCommerce_Germanized {
 		include_once WC_GERMANIZED_ABSPATH . 'includes/abstracts/abstract-wc-gzd-compatibility.php';
 		include_once WC_GERMANIZED_ABSPATH . 'includes/abstracts/abstract-wc-gzd-compatibility-woocommerce-role-based-pricing.php';
 
+		include_once WC_GERMANIZED_ABSPATH . 'includes/class-wc-gzd-product-factory.php';
+
 		// API
 		include_once WC_GERMANIZED_ABSPATH . 'includes/api/class-wc-gzd-rest-api.php';
 
@@ -460,11 +461,7 @@ final class WooCommerce_Germanized {
 		include_once WC_GERMANIZED_ABSPATH . 'includes/class-wc-gzd-dhl-parcel-shops.php';
 		include_once WC_GERMANIZED_ABSPATH . 'includes/class-wc-gzd-customer-helper.php';
 		include_once WC_GERMANIZED_ABSPATH . 'includes/class-wc-gzd-cache-helper.php';
-
-		// Only available for Woo 3.X
-		if ( WC_GZD_Dependencies::instance( $this )->woocommerce_version_supports_crud() ) {
-			include_once WC_GERMANIZED_ABSPATH . 'includes/class-wc-gzd-coupon-helper.php';
-		}
+		include_once WC_GERMANIZED_ABSPATH . 'includes/class-wc-gzd-coupon-helper.php';
 
 		include_once WC_GERMANIZED_ABSPATH . 'includes/class-wc-gzd-virtual-vat-helper.php';
 
@@ -477,10 +474,8 @@ final class WooCommerce_Germanized {
 		include_once WC_GERMANIZED_ABSPATH . 'includes/class-wc-gzd-legal-checkbox-manager.php';
 
 		// Product Attribute
-        if ( wc_gzd_get_dependencies()->woocommerce_version_supports_crud() ) {
-            include_once WC_GERMANIZED_ABSPATH . 'includes/class-wc-gzd-product-attribute.php';
-            include_once WC_GERMANIZED_ABSPATH . 'includes/class-wc-gzd-product-attribute-helper.php';
-        }
+        include_once WC_GERMANIZED_ABSPATH . 'includes/class-wc-gzd-product-attribute.php';
+        include_once WC_GERMANIZED_ABSPATH . 'includes/class-wc-gzd-product-attribute-helper.php';
 	}
 
 	public function is_frontend() {
@@ -500,7 +495,6 @@ final class WooCommerce_Germanized {
     }
 
 	public function setup_compatibility() {
-
         /**
          * Filter compatibility classes.
          *
@@ -510,31 +504,32 @@ final class WooCommerce_Germanized {
          *
          * @since 1.9.1
          *
-         * @param array[string] $comp Array containing the compatibilities.
+         * @param array[string] $comp Array containing compatibility plugin slug => class name.
          */
 		$plugins = apply_filters( 'woocommerce_gzd_compatibilities',
 			array(
-				'wpml',
-                'wpml-string-translation',
-				'polylang',
-				'woo-poly-integration',
-				'woocommerce-dynamic-pricing',
-				'woocommerce-product-bundles',
-				'woocommerce-role-based-prices',
-				'woocommerce-role-based-price',
-				'woocommerce-gateway-paypal-express-checkout',
-				'woocommerce-subscriptions',
-				'woo-paypalplus',
-				'dhl-for-woocommerce',
-                'elementor-pro',
+				'wpml'                                        => 'WC_GZD_Compatibility_WPML',
+                'wpml-string-translation'                     => 'WC_GZD_Compatibility_WPML_String_Translation',
+				'polylang'                                    => 'WC_GZD_Compatibility_Polylang',
+				'woo-poly-integration'                        => 'WC_GZD_Compatibility_Woo_Poly_Integration',
+				'woocommerce-dynamic-pricing'                 => 'WC_GZD_Compatibility_WooCommerce_Dynamic_Pricing',
+				'woocommerce-product-bundles'                 => 'WC_GZD_Compatibility_WooCommerce_Product_Bundles',
+				'woocommerce-role-based-prices'               => 'WC_GZD_Compatibility_WooCommerce_Role_Based_Prices',
+				'woocommerce-role-based-price'                => 'WC_GZD_Compatibility_WooCommerce_Role_Based_Price',
+				'woocommerce-gateway-paypal-express-checkout' => 'WC_GZD_Compatibility_WooCommerce_Gateway_Paypal_Express_Checkout',
+				'woocommerce-subscriptions'                   => 'WC_GZD_Compatibility_WooCommerce_Subscriptions',
+				'woo-paypalplus'                              => 'WC_GZD_Compatibility_Woo_PaypalPlus',
+				'dhl-for-woocommerce'                         => 'WC_GZD_Compatibility_DHL_For_WooCommerce',
+                'elementor-pro'                               => 'WC_GZD_Compatibility_Elementor_Pro',
 			)
 		);
 
-		foreach ( $plugins as $comp ) {
-			$classname = str_replace( ' ', '_', 'WC_GZD_Compatibility_' . ucwords( str_replace( '-', ' ', $comp ) ) );
+		foreach ( $plugins as $comp => $classname ) {
+			if ( class_exists( $classname ) && is_callable( array( $classname, 'is_applicable' ) ) ) {
 
-			if ( class_exists( $classname ) ) {
-				$this->compatibilities[ $comp ] = new $classname();
+				if ( $classname::is_applicable() ) {
+					$this->compatibilities[ $comp ] = new $classname();
+				}
 			}
 		}
 	}
@@ -651,13 +646,6 @@ final class WooCommerce_Germanized {
 		}
 
 		return $template;
-	}
-
-	/**
-	 * Overload product factory to inject gzd_product
-	 */
-	public function replace_woocommerce_product_factory() {
-		WC()->product_factory = new WC_GZD_Product_Factory();
 	}
 
 	/**
@@ -1139,7 +1127,7 @@ final class WooCommerce_Germanized {
 endif;
 
 /**
- * Returns the global instance of WooCommerce Germanized
+ * @return WooCommerce_Germanized $plugin instance
  */
 function WC_germanized() {
 	return WooCommerce_Germanized::instance();

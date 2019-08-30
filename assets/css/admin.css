@@ -23,7 +23,7 @@ table.data_table tr td p.form-field {
 .wc-gzd-button {
   background-color: #639aff !important;
   background-image: linear-gradient(120deg, #639aff 0, #9a4dff 100%) !important;
-  color: #fff;
+  color: #fff !important;
   box-shadow: inset 0 0 30px rgba(255, 255, 255, 0), 0 19px 25px -17px rgba(3, 39, 64, 0.4) !important;
   border: 1px solid transparent !important;
   text-shadow: none !important;
