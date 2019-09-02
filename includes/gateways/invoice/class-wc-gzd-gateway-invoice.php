@@ -168,30 +168,25 @@ class WC_GZD_Gateway_Invoice extends WC_Payment_Gateway {
 	public function email_instructions( $order, $sent_to_admin, $plain_text = false ) {
 	    $status = str_replace( 'wc-', '', $this->default_order_status );
 
-	    if ( $this->instructions && ! $sent_to_admin && 'invoice' === wc_gzd_get_crud_data( $order, 'payment_method' ) && $order->has_status( $status ) ) {
+	    if ( $this->instructions && ! $sent_to_admin && 'invoice' === $order->get_payment_method() && $order->has_status( $status ) ) {
 			echo wpautop( wptexturize( $this->instructions ) ) . PHP_EOL;
 		}
 	}
 
 	public function is_available() {
-
-		if ( 'yes' != $this->enabled )
+		if ( 'yes' != $this->enabled ) {
 			return false;
+		}
 
 		if ( is_checkout() ) {
 
-			if ( $this->get_option( 'customers_only' ) == 'yes' && ! is_user_logged_in() )
+			if ( $this->get_option( 'customers_only' ) == 'yes' && ! is_user_logged_in() ) {
 				return false;
+			}
 
 			if ( $this->get_option( 'customers_completed' ) == 'yes' ) {
 				if ( is_user_logged_in() ) {
-				    $customer = WC()->customer;
-
-				    if ( method_exists( $customer, 'get_is_paying_customer' ) ) {
-				        return $customer->get_is_paying_customer() === true;
-                    } else {
-					    return $customer->is_paying_customer( get_current_user_id() ) === true;
-				    }
+                    return WC()->customer->get_is_paying_customer() === true;
                 } else {
 				    return false;
                 }
@@ -214,7 +209,7 @@ class WC_GZD_Gateway_Invoice extends WC_Payment_Gateway {
 		$order->update_status( $this->default_order_status );
 
 		// Reduce stock level
-		wc_gzd_reduce_order_stock( $order_id );
+		wc_maybe_reduce_stock_levels( $order_id );
 
 		// Check if cart instance exists (frontend request only)
 		if ( WC()->cart ) {

@@ -69,6 +69,17 @@ class WC_GZD_Settings_Tab_General extends WC_GZD_Settings_Tab {
 				'css' 		=> 'min-width:300px;',
 				'desc'		=> ( ! get_option( 'woocommerce_revocation_page_id' ) ? sprintf( __( 'Don\'t have a revocation page yet? <a href="%s">Generate now</a>!', 'woocommerce-germanized' ), admin_url( 'admin.php?page=wc-settings&tab=germanized&section=widerruf' ) ) : '' ),
 			),
+
+			array(
+				'title' 	=> __( 'Revocation Address', 'woocommerce-germanized' ),
+				'desc' 		=> __( 'Type in an address, telephone/telefax number, email address which is to be used as revocation address', 'woocommerce-germanized' ),
+				'desc_tip'	=> true,
+				'css' 		=> 'width:100%; height: 65px;',
+				'id' 		=> 'woocommerce_gzd_revocation_address',
+				'type' 		=> 'textarea',
+				'default'   => wc_gzd_get_default_revocation_address(),
+			),
+
 			array(
 				'title' 	=> __( 'Imprint', 'woocommerce-germanized' ),
 				'desc' 		=> __( 'This page should contain an imprint with your company\'s information.', 'woocommerce-germanized' ),

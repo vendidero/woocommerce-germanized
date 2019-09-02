@@ -68,6 +68,12 @@ class WC_GZD_Admin_Order {
         }
     }
 
+	/**
+	 * @param WC_Order $order
+	 * @param string $type
+	 *
+	 * @return array
+	 */
     public function get_order_tax_share( $order, $type = 'shipping' ) {
         $tax_shares  = array();
         $item_totals = 0;
@@ -82,11 +88,12 @@ class WC_GZD_Admin_Order {
             }
 
             if ( 'shipping' === $type ) {
-                if ( $_product->is_virtual() || wc_gzd_get_gzd_product( $_product )->is_virtual_vat_exception() ) {
+
+                if ( $_product->is_virtual() || wc_gzd_get_product( $_product )->is_virtual_vat_exception() ) {
                     $no_shipping = true;
                 }
 
-                $tax_status = wc_gzd_get_crud_data( $_product, 'tax_status' );
+                $tax_status = $_product->get_tax_status();
                 $tax_class  = $_product->get_tax_class();
 
                 if ( 'none' === $tax_status || 'zero-rate' === $tax_class ) {

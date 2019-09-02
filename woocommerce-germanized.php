@@ -78,12 +78,18 @@ final class WooCommerce_Germanized {
 	 */
 	public $ekomi = null;
 
+	/**
+	 * @var WC_GZD_Emails|null
+	 */
 	public $emails = null;
 
 	public $compatibilities = array();
 
 	private $localized_scripts = array();
 
+	/**
+	 * @var WC_GZD_Product_Factory|null
+	 */
 	public $product_factory = null;
 
 	/**
@@ -458,7 +464,6 @@ final class WooCommerce_Germanized {
 
 		include_once WC_GERMANIZED_ABSPATH . 'includes/class-wc-gzd-ajax.php';
 		include_once WC_GERMANIZED_ABSPATH . 'includes/class-wc-gzd-checkout.php';
-		include_once WC_GERMANIZED_ABSPATH . 'includes/class-wc-gzd-dhl-parcel-shops.php';
 		include_once WC_GERMANIZED_ABSPATH . 'includes/class-wc-gzd-customer-helper.php';
 		include_once WC_GERMANIZED_ABSPATH . 'includes/class-wc-gzd-cache-helper.php';
 		include_once WC_GERMANIZED_ABSPATH . 'includes/class-wc-gzd-coupon-helper.php';
@@ -519,7 +524,6 @@ final class WooCommerce_Germanized {
 				'woocommerce-gateway-paypal-express-checkout' => 'WC_GZD_Compatibility_WooCommerce_Gateway_Paypal_Express_Checkout',
 				'woocommerce-subscriptions'                   => 'WC_GZD_Compatibility_WooCommerce_Subscriptions',
 				'woo-paypalplus'                              => 'WC_GZD_Compatibility_Woo_PaypalPlus',
-				'dhl-for-woocommerce'                         => 'WC_GZD_Compatibility_DHL_For_WooCommerce',
                 'elementor-pro'                               => 'WC_GZD_Compatibility_Elementor_Pro',
 			)
 		);
@@ -892,7 +896,7 @@ final class WooCommerce_Germanized {
              */
 			wp_localize_script( 'wc-gzd-force-pay-order', 'wc_gzd_force_pay_order_params', apply_filters( 'wc_gzd_force_pay_order_params', array(
 				'order_id'      => $order_id,
-				'gateway'       => wc_gzd_get_crud_data( $order, 'payment_method' ),
+				'gateway'       => $order->get_payment_method(),
 				'block_message' => __( 'Pease wait while we are trying to redirect you to the payment provider.', 'woocommerce-germanized' ),
 			) ) );
 		}

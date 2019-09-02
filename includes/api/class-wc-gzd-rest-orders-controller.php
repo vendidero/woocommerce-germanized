@@ -18,14 +18,8 @@ class WC_GZD_REST_Orders_Controller {
 	public function __construct() {
 		$this->direct_debit_gateway = new WC_GZD_Gateway_Direct_Debit();
 
-		// v3
-		if ( wc_gzd_get_dependencies()->woocommerce_version_supports_crud() ) {
-			add_filter( 'woocommerce_rest_prepare_shop_order_object', array( $this, 'prepare' ), 10, 3 );
-			add_filter( 'woocommerce_rest_pre_insert_shop_order_object', array( $this, 'insert_v3' ), 10, 3 );
-		} else {
-			add_filter( 'woocommerce_rest_prepare_shop_order', array( $this, 'prepare' ), 10, 3 );
-			add_action( 'woocommerce_rest_insert_shop_order', array( $this, 'insert' ), 10, 3 );
-		}
+		add_filter( 'woocommerce_rest_prepare_shop_order_object', array( $this, 'prepare' ), 10, 3 );
+		add_filter( 'woocommerce_rest_pre_insert_shop_order_object', array( $this, 'insert' ), 10, 3 );
 
 		add_filter( 'woocommerce_rest_shop_order_schema', array( $this, 'schema' ) );
 	}
@@ -33,30 +27,29 @@ class WC_GZD_REST_Orders_Controller {
 	/**
 	 * Filter order data returned from the REST API.
 	 *
-	 * @since 1.0.0
-	 * @wp-hook woocommerce_rest_prepare_order
-	 *
-	 * @param \WP_REST_Response $response The response object.
+	 * @param WP_REST_Response $response The response object.
 	 * @param \WP_Post $post object used to create response.
 	 * @param \WP_REST_Request $request Request object.
 	 *
-	 * @return \WP_REST_Response
+	 * @return WP_REST_Response
+	 *@since 1.0.0
+	 * @wp-hook woocommerce_rest_prepare_order
+	 *
 	 */
 	public function prepare( $response, $post, $request ) {
 
-		$order = wc_get_order( $post );
+		$order               = wc_get_order( $post );
 		$response_order_data = $response->get_data();
 		
-		$response_order_data['billing']['title'] = wc_gzd_get_crud_data( $order, 'billing_title' );
-		$response_order_data['shipping']['title'] = wc_gzd_get_crud_data( $order, 'shipping_title' );
-		$response_order_data['shipping']['parcelshop'] = (bool) wc_gzd_get_crud_data( $order, 'shipping_parcelshop' );
-		$response_order_data['shipping']['parcelshop_post_number'] = wc_gzd_get_crud_data( $order, 'shipping_parcelshop_post_number' );
-		$response_order_data['parcel_delivery_opted_in'] = wc_gzd_get_crud_data( $order, 'parcel_delivery_opted_in' );
+		$response_order_data['billing']['title']  = $order->get_meta( '_billing_title' );
+		$response_order_data['shipping']['title'] = $order->get_meta( 'shipping_title' );
 
-		$holder         = wc_gzd_get_crud_data( $order, 'direct_debit_holder' );
-		$iban           = wc_gzd_get_crud_data( $order, 'direct_debit_iban' );
-		$bic            = wc_gzd_get_crud_data( $order, 'direct_debit_bic' );
-		$mandate_id     = wc_gzd_get_crud_data( $order, 'direct_debit_mandate_id' );
+		$response_order_data['parcel_delivery_opted_in'] = $order->get_meta( 'parcel_delivery_opted_in' );
+
+		$holder         = $order->get_meta( '_direct_debit_holder' );
+		$iban           = $order->get_meta( '_direct_debit_iban' );
+		$bic            = $order->get_meta( '_direct_debit_bic' );
+		$mandate_id     = $order->get_meta( '_direct_debit_mandate_id' );
 
 		if ( $this->direct_debit_gateway ) {
 			$iban = $this->direct_debit_gateway->maybe_decrypt( $iban );
@@ -75,70 +68,54 @@ class WC_GZD_REST_Orders_Controller {
 		return $response;
 	}
 
-	/**
-	 * Prepare a single order for create or update.
-	 *
-	 * @since 1.0.0
-	 * @wp-hook woocommerce_rest_insert_customer
-	 *
-	 * @param \WP_Post $post Data used to create the customer.
-	 * @param \WP_REST_Request $request Request object.
-	 * @param bool $creating True when creating item, false when updating.
-	 */
-	public function insert( $post, $request, $creating ) {
-		$order = wc_get_order( $post->ID );
+	public function insert( $order, $request, $creating ) {
 		$order = $this->save_update_order_data( $order, $request );
-	}
 
-	public function insert_v3( $order, $request, $creating ) {
-		$order = $this->save_update_order_data( $order, $request );
 		return $order;
 	}
 
+	/**
+	 * @param WC_Order $order
+	 * @param $request
+	 *
+	 * @return mixed
+	 */
 	public function save_update_order_data( $order, $request ) {
 		if ( isset( $request['billing']['title'] ) ) {
-			$order = wc_gzd_set_crud_meta_data( $order, '_billing_title', absint( $request['billing']['title'] ) );
+			$order->update_meta_data( '_billing_title', absint( $request['billing']['title'] ) );
 		}
 
 		if ( isset( $request['shipping']['title'] ) ) {
-			$order = wc_gzd_set_crud_meta_data( $order, '_shipping_title', absint( $request['shipping']['title'] ) );
-		}
-
-		if ( isset( $request['shipping']['parcelshop'] ) ) {
-			if ( (bool) $request['shipping']['parcelshop'] ) {
-				$order = wc_gzd_set_crud_meta_data( $order, '_shipping_parcelshop', 1 );
-			} else {
-				$order = wc_gzd_unset_crud_meta_data( $order, '_shipping_parcelshop' );
-			}
-		}
-
-		if ( isset( $request['shipping']['parcelshop_post_number'] ) ) {
-			$order = wc_gzd_set_crud_meta_data( $order, '_shipping_parcelshop_post_number', wc_clean( $request['shipping']['parcelshop_post_number'] ) );
+			$order->update_meta_data( '_shipping_title', absint( $request['shipping']['title'] ) );
 		}
 
 		if ( isset( $request['direct_debit'] ) ) {
 			if ( isset( $request['direct_debit']['holder'] ) ) {
-				$order = wc_gzd_set_crud_meta_data( $order, '_direct_debit_holder', sanitize_text_field( $request['direct_debit']['holder'] ) );
+				$order->update_meta_data( '_direct_debit_holder', wc_clean( $request['direct_debit']['holder'] ) );
 			}
 
 			if ( isset( $request['direct_debit']['iban'] ) ) {
-				$iban = sanitize_text_field( $request['direct_debit']['iban'] );
+				$iban = wc_clean( $request['direct_debit']['iban'] );
+
 				if ( $this->direct_debit_gateway ) {
 					$iban = $this->direct_debit_gateway->maybe_encrypt( $iban );
 				}
-				$order = wc_gzd_set_crud_meta_data( $order, '_direct_debit_iban', $iban );
+
+				$order->update_meta_data( '_direct_debit_iban', $iban );
 			}
 
 			if ( isset( $request['direct_debit']['bic'] ) ) {
-				$bic = sanitize_text_field( $request['direct_debit']['bic'] );
+				$bic = wc_clean( $request['direct_debit']['bic'] );
+
 				if ( $this->direct_debit_gateway ) {
 					$bic = $this->direct_debit_gateway->maybe_encrypt( $bic );
 				}
-				$order = wc_gzd_set_crud_meta_data( $order, '_direct_debit_bic', $bic );
+
+				$order->update_meta_data( '_direct_debit_bic', $bic );
 			}
 
 			if ( isset( $request['direct_debit']['mandate_id'] ) ) {
-				$order = wc_gzd_set_crud_meta_data( $order, '_direct_debit_mandate_id', sanitize_text_field( $request['direct_debit']['mandate_id'] ) );
+				$order->update_meta_data( '_direct_debit_mandate_id', wc_clean( $request['direct_debit']['mandate_id'] ) );
 			}
 		}
 

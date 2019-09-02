@@ -86,7 +86,7 @@ class WC_GZD_Email_Customer_SEPA_Direct_Debit_Mandate extends WC_Email {
 			$gateways					   = WC()->payment_gateways()->payment_gateways();
 			$this->gateway 				   = $gateways['direct-debit'];
 
-			$this->recipient               = wc_gzd_get_crud_data( $this->object, 'billing_email' );
+			$this->recipient               = $this->object->get_billing_email();
 
 			if ( property_exists( $this, 'placeholders' ) ) {
 				$this->placeholders['{order_date}']   = wc_gzd_get_order_date( $this->object, wc_date_format() );

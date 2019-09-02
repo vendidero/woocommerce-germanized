@@ -212,7 +212,7 @@ class WC_GZD_Product_Variable extends WC_GZD_Product {
 
 		global $wp_filter;
 
-		$transient_name = 'wc_gzd_var_unit_prices_' . wc_gzd_get_crud_data( $this, 'id' );
+		$transient_name = 'wc_gzd_var_unit_prices_' . $this->child->get_id();
 
 		/**
 		 * Create unique cache key based on the tax location (affects displayed/cached prices), product version and active price filters.
@@ -266,11 +266,11 @@ class WC_GZD_Product_Variable extends WC_GZD_Product {
 				$prices           = array();
 				$regular_prices   = array();
 				$sale_prices      = array();
-				$variation_ids    = wc_gzd_get_variable_visible_children( $this->child );
+				$variation_ids    = $this->child->get_visible_children();
 
 				foreach ( $variation_ids as $variation_id ) {
 					
-					if ( $variation = wc_gzd_get_variation( $this->child, $variation_id ) ) {
+					if ( $variation = wc_get_product( $variation_id ) ) {
 
 						$gzd_variation = wc_gzd_get_product( $variation );
 
@@ -327,13 +327,13 @@ class WC_GZD_Product_Variable extends WC_GZD_Product {
 						// If we are getting prices for display, we need to account for taxes
 						if ( $display ) {
 							if ( 'incl' === get_option( 'woocommerce_tax_display_shop' ) ) {
-								$price         = '' === $price ? ''         : wc_gzd_get_price_including_tax( $variation, array( 'qty' => 1, 'price' => $price ) );
-								$regular_price = '' === $regular_price ? '' : wc_gzd_get_price_including_tax( $variation, array( 'qty' => 1, 'price' => $regular_price ) );
-								$sale_price    = '' === $sale_price ? ''    : wc_gzd_get_price_including_tax( $variation, array( 'qty' => 1, 'price' => $sale_price ) );
+								$price         = '' === $price ? ''         : wc_get_price_including_tax( $variation, array( 'qty' => 1, 'price' => $price ) );
+								$regular_price = '' === $regular_price ? '' : wc_get_price_including_tax( $variation, array( 'qty' => 1, 'price' => $regular_price ) );
+								$sale_price    = '' === $sale_price ? ''    : wc_get_price_including_tax( $variation, array( 'qty' => 1, 'price' => $sale_price ) );
 							} else {
-								$price         = '' === $price ? ''         : wc_gzd_get_price_excluding_tax( $variation, array( 'qty' => 1, 'price' => $price ) );
-								$regular_price = '' === $regular_price ? '' : wc_gzd_get_price_excluding_tax( $variation, array( 'qty' => 1, 'price' => $regular_price ) );
-								$sale_price    = '' === $sale_price ? ''    : wc_gzd_get_price_excluding_tax( $variation, array( 'qty' => 1, 'price' => $sale_price ) );
+								$price         = '' === $price ? ''         : wc_get_price_excluding_tax( $variation, array( 'qty' => 1, 'price' => $price ) );
+								$regular_price = '' === $regular_price ? '' : wc_get_price_excluding_tax( $variation, array( 'qty' => 1, 'price' => $regular_price ) );
+								$sale_price    = '' === $sale_price ? ''    : wc_get_price_excluding_tax( $variation, array( 'qty' => 1, 'price' => $sale_price ) );
 							}
 						}
 

@@ -149,11 +149,9 @@ class WC_GZD_Compatibility_Woo_Poly_Integration extends WC_GZD_Compatibility {
 	}
 
 	public function translate_taxonomies_variations( $from, $to, $from_variable, $to_variable ) {
+		$lang = isset( $_GET['new_lang'] ) ? sanitize_text_field( esc_attr( $_GET['new_lang'] ) ) : pll_get_post_language( $to_variable->get_id() );
 
-		$lang = isset( $_GET[ 'new_lang' ] ) ? sanitize_text_field( esc_attr( $_GET[ 'new_lang' ] ) ) : pll_get_post_language( wc_gzd_get_crud_data( $to_variable, 'id' ) );
-
-		$this->translate_product_taxonomies( $from, $to, $lang, pll_get_post_language( wc_gzd_get_crud_data( $from_variable, 'id' ) ) );
-
+		$this->translate_product_taxonomies( $from, $to, $lang, pll_get_post_language( $to_variable->get_id() ) );
 	}
 
 	public function translate_taxonomies( $post_id, $post, $translations ) {

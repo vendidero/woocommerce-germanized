@@ -156,7 +156,7 @@ class WC_GZD_Emails {
                     $title_options = array(
                         '{first_name}' => $order->get_billing_first_name(),
                         '{last_name}'  => $order->get_billing_last_name(),
-                        '{title}'      => wc_gzd_get_customer_title( wc_gzd_get_crud_data( $order, 'billing_title' ) )
+                        '{title}'      => wc_gzd_get_order_customer_title( $order, 'billing' )
                     );
 
                     $title_text    = str_replace( array_keys( $title_options ), array_values( $title_options ), $title_text );
@@ -353,7 +353,7 @@ class WC_GZD_Emails {
 			return;
 		}
 
-		$method               = wc_gzd_get_crud_data( $order, 'payment_method' );
+		$method               = $order->get_payment_method();
 		$current_status       = $order->get_status();
 		$disable_for_gateways = $this->get_gateways_disabling_paid_for_order_mail();
 
@@ -371,7 +371,7 @@ class WC_GZD_Emails {
 
 			if ( $order ) {
 
-				$method               = wc_gzd_get_crud_data( $order, 'payment_method' );
+				$method               = $order->get_payment_method();
 				$current_status       = $order->get_status();
 				$disable_for_gateways = $this->get_gateways_disabling_paid_for_order_mail();
 
@@ -469,8 +469,7 @@ class WC_GZD_Emails {
     }
 
     public function trigger_order_confirmation_emails( $order ) {
-
-        $order_id = wc_gzd_get_crud_data( $order, 'id' );
+        $order_id = $order->get_id();
 
         /**
          * Before order confirmation emails.
@@ -519,6 +518,11 @@ class WC_GZD_Emails {
 	    do_action( 'woocommerce_germanized_order_confirmation_sent', $order_id );
     }
 
+	/**
+	 * @param WC_Order $order
+	 * @param $sent_to_admin
+	 * @param $plain_text
+	 */
 	public function email_notices( $order, $sent_to_admin, $plain_text ) {
 
 		$type = $this->get_current_email_object();
@@ -536,7 +540,7 @@ class WC_GZD_Emails {
 
 				foreach ( $items as $item ) {
 
-					$_product = wc_gzd_get_order_item_product( $item, $order );
+					$_product = $item->get_product();
 
 					if ( ! $_product ) {
 						continue;
@@ -627,7 +631,7 @@ class WC_GZD_Emails {
 		$type = $this->get_current_email_object();
 
 		if ( $type && $this->is_order_confirmation_email( $type->id ) ) {
-			WC_GZD_Checkout::instance()->add_payment_link( wc_gzd_get_crud_data( $order, 'id' ) );
+			WC_GZD_Checkout::instance()->add_payment_link( $order->get_id() );
         }
 	}
 

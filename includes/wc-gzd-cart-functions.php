@@ -243,6 +243,9 @@ function wc_gzd_get_cart_tax_share( $type = 'shipping', $cart_contents = array()
 	// Get tax classes and tax amounts
 	if ( ! empty( $cart ) ) {
 		foreach ( $cart as $key => $item ) {
+			/**
+			 * @var WC_Product $_product
+			 */
 			$_product = $item['data'];
 
             /**
@@ -265,7 +268,7 @@ function wc_gzd_get_cart_tax_share( $type = 'shipping', $cart_contents = array()
 				    $no_shipping = true;
                 }
 
-			    $tax_status = wc_gzd_get_crud_data( $_product, 'tax_status' );
+			    $tax_status = $_product->get_tax_status();
 			    $tax_class  = $_product->get_tax_class();
 
 			    if ( 'none' === $tax_status || 'zero-rate' === $tax_class ) {
@@ -415,15 +418,15 @@ function wc_gzd_get_legal_text( $plain_text ) {
 }
 
 function wc_gzd_get_legal_text_error() {
-	wc_gzd_deprecated_function( __FUNCTION__, '2.0' );
+	wc_deprecated_function( __FUNCTION__, '2.0' );
 }
 
 function wc_gzd_get_legal_text_digital() {
-	wc_gzd_deprecated_function( __FUNCTION__, '2.0' );
+	wc_deprecated_function( __FUNCTION__, '2.0' );
 }
 
 function wc_gzd_get_legal_text_digital_error() {
-	wc_gzd_deprecated_function( __FUNCTION__, '2.0' );
+	wc_deprecated_function( __FUNCTION__, '2.0' );
 }
 
 function wc_gzd_get_legal_text_digital_email_notice() {
@@ -453,11 +456,11 @@ function wc_gzd_get_legal_text_digital_email_notice() {
 }
 
 function wc_gzd_get_legal_text_service() {
-	wc_gzd_deprecated_function( __FUNCTION__, '2.0' );
+	wc_deprecated_function( __FUNCTION__, '2.0' );
 }
 
 function wc_gzd_get_legal_text_service_error() {
-	wc_gzd_deprecated_function( __FUNCTION__, '2.0' );
+	wc_deprecated_function( __FUNCTION__, '2.0' );
 }
 
 function wc_gzd_get_legal_text_service_email_notice() {
@@ -492,9 +495,9 @@ function wc_gzd_get_chosen_shipping_rates( $args = array() ) {
         'value' => '',
     ) );
 	
-	$packages = WC()->shipping->get_packages();
+	$packages         = WC()->shipping->get_packages();
 	$shipping_methods = (array) WC()->session->get( 'chosen_shipping_methods' );
-	$rates = array();
+	$rates            = array();
 
 	foreach ( $packages as $i => $package ) {
 		if ( isset( $shipping_methods[ $i ] ) && isset( $package['rates'][ $shipping_methods[ $i ] ] ) ) {
@@ -510,5 +513,5 @@ function wc_gzd_get_chosen_shipping_rates( $args = array() ) {
 }
 
 function wc_gzd_get_legal_text_parcel_delivery( $titles = array() ) {
-	wc_gzd_deprecated_function( __FUNCTION__, '2.0' );
+	wc_deprecated_function( __FUNCTION__, '2.0' );
 }

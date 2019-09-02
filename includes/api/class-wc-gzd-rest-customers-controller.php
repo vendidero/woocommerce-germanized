@@ -20,31 +20,27 @@ class WC_GZD_REST_Customers_Controller {
 
 		add_filter( 'woocommerce_rest_prepare_customer', array( $this, 'prepare' ), 10, 3 );
 		add_action( 'woocommerce_rest_insert_customer', array( $this, 'insert' ), 10, 3 );
-
 		add_filter( 'woocommerce_rest_customer_schema', array( $this, 'schema' ) );
 	}
 
 	/**
 	 * Filter customer data returned from the REST API.
 	 *
+	 * @param \WP_REST_Response $response The response object.
+	 * @param \WP_User $customer User object used to create response.
+	 * @param WP_REST_Request $request Request object.
+	 *
+	 * @return \WP_REST_Response
 	 * @since 1.0.0
 	 * @wp-hook woocommerce_rest_prepare_customer
 	 *
-	 * @param \WP_REST_Response $response The response object.
-	 * @param \WP_User $customer User object used to create response.
-	 * @param \WP_REST_Request $request Request object.
-	 *
-	 * @return \WP_REST_Response
 	 */
 	public function prepare( $response, $customer, $request ) {
 
 		$response_customer_data = $response->get_data();
 		
-		$response_customer_data['billing']['title'] = $customer->billing_title;
+		$response_customer_data['billing']['title']  = $customer->billing_title;
 		$response_customer_data['shipping']['title'] = $customer->shipping_title;
-
-		$response_customer_data['shipping']['parcelshop'] = $customer->shipping_parcelshop == '1';
-		$response_customer_data['shipping']['parcelshop_post_number'] = $customer->shipping_parcelshop_post_number;
 
 		$holder = $customer->direct_debit_holder;
 		$iban   = $customer->direct_debit_iban;
@@ -69,12 +65,13 @@ class WC_GZD_REST_Customers_Controller {
 	/**
 	 * Prepare a single customer for create or update.
 	 *
-	 * @since 1.0.0
+	 * @param \WP_User $customer Data used to create the customer.
+	 * @param WP_REST_Request $request Request object.
+	 * @param bool $creating True when creating item, false when updating.
+	 *
+	 *@since 1.0.0
 	 * @wp-hook woocommerce_rest_insert_customer
 	 *
-	 * @param \WP_User $customer Data used to create the customer.
-	 * @param \WP_REST_Request $request Request object.
-	 * @param bool $creating True when creating item, false when updating.
 	 */
 	public function insert( $customer, $request, $creating ) {
 
@@ -86,36 +83,28 @@ class WC_GZD_REST_Customers_Controller {
 			update_user_meta( $customer->ID, 'shipping_title', absint( $request['shipping']['title'] ) );
 		}
 
-		if ( isset( $request['shipping']['parcelshop'] ) ) {
-			if ( ! $request['shipping']['parcelshop'] || empty( $request['shipping']['parcelshop'] ) ) {
-				delete_user_meta( $customer->ID, 'shipping_parcelshop' );
-			} else {
-				update_user_meta( $customer->ID, 'shipping_parcelshop', true );
-			}
-		}
-
-		if ( isset( $request['shipping']['parcelshop_post_number'] ) ) {
-			update_user_meta( $customer->ID, 'shipping_parcelshop_post_number', sanitize_text_field( $request['shipping']['parcelshop_post_number'] ) );
-		}
-
 		if ( isset( $request['direct_debit'] ) ) {
 			if ( isset( $request['direct_debit']['holder'] ) ) {
-				update_user_meta( $customer->ID, 'direct_debit_holder', sanitize_text_field( $request['direct_debit']['holder'] ) );
+				update_user_meta( $customer->ID, 'direct_debit_holder', wc_clean( $request['direct_debit']['holder'] ) );
 			}
 
 			if ( isset( $request['direct_debit']['iban'] ) ) {
-				$iban = sanitize_text_field( $request['direct_debit']['iban'] );
+				$iban = wc_clean( $request['direct_debit']['iban'] );
+
 				if ( $this->direct_debit_gateway ) {
 					$iban = $this->direct_debit_gateway->maybe_encrypt( $iban );
 				}
+
 				update_user_meta( $customer->ID, 'direct_debit_iban', $iban );
 			}
 
 			if ( isset( $request['direct_debit']['bic'] ) ) {
-				$bic = sanitize_text_field( $request['direct_debit']['bic'] );
+				$bic = wc_clean( $request['direct_debit']['bic'] );
+
 				if ( $this->direct_debit_gateway ) {
 					$bic = $this->direct_debit_gateway->maybe_encrypt( $bic );
 				}
+
 				update_user_meta( $customer->ID, 'direct_debit_bic', $bic );
 			}
 		}

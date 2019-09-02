@@ -150,7 +150,7 @@ class WC_GZD_Product_Attribute_Helper {
 
     public function get_attribute( $attribute, $product_id = false ) {
         $new_attribute   = new WC_GZD_Product_Attribute( $attribute );
-        $product_id      = ( $product_id && ! is_numeric( $product_id ) ? wc_gzd_get_crud_data( $product_id, 'id' ) : $product_id );
+        $product_id      = ( $product_id && ! is_numeric( $product_id ) ? $product_id->get_id() : $product_id );
         $meta_attributes = $product_id ? get_post_meta( $product_id, '_product_attributes', true ) : array();
         $meta_key        = sanitize_title( $attribute->get_name() );
 

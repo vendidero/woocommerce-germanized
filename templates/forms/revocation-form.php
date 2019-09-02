@@ -4,19 +4,18 @@
  *
  * @author 		Vendidero
  * @package 	WooCommerceGermanized/Templates
- * @version     1.0
+ * @version     3.0.0
  */
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 $fields = WC_GZD_Revocation::get_fields();
-
 ?>
 
 <form name="revocation" method="post" id="woocommerce-gzd-revocation">
 	<p class="form-row" id="to_field">
 		<label for="to" class=""><?php echo _x( 'To', 'revocation-form', 'woocommerce-germanized' );?></label>
-		<span class="description"><?php echo nl2br( get_option( 'woocommerce_gzd_revocation_address' ) );?></span>
+		<span class="description"><?php echo wc_gzd_get_formatted_revocation_address();?></span>
 	</p>
 	<?php if ( ! empty( $fields ) ) : ?>
 		<?php foreach ( $fields as $name => $field ) : ?>

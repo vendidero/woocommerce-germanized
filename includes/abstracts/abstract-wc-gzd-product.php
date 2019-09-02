@@ -70,7 +70,7 @@ class WC_GZD_Product {
 			$value = $this->child->get_meta( $meta_key, true, $context ) ? $this->child->get_meta( $meta_key, true, $context ) : '';
 
 			// Handle meta data keys which can be empty at variation level to cause inheritance
-			if ( ! $value || '' === $value ) {
+			if ( 'view' === $context && ( ! $value || '' === $value ) ) {
 				$parent = wc_get_product( $this->child->get_parent_id() );
 
 				// Check if parent exists
@@ -224,19 +224,19 @@ class WC_GZD_Product {
 	}
 
 	public function set_unit_price_auto( $auto ) {
-		$this->set_prop( 'unit_price_auto', wc_string_to_bool( $auto ) );
+		$this->set_prop( 'unit_price_auto', wc_bool_to_string( $auto ) );
 	}
 
 	public function set_service( $service ) {
-		$this->set_prop( 'service', wc_string_to_bool( $service ) );
+		$this->set_prop( 'service', wc_bool_to_string( $service ) );
 	}
 
 	public function set_free_shipping( $shipping ) {
-		$this->set_prop( 'free_shipping', wc_string_to_bool( $shipping ) );
+		$this->set_prop( 'free_shipping', wc_bool_to_string( $shipping ) );
 	}
 
 	public function set_differential_taxation( $taxation ) {
-		$this->set_prop( 'differential_taxation', wc_string_to_bool( $taxation ) );
+		$this->set_prop( 'differential_taxation', wc_bool_to_string( $taxation ) );
 	}
 
 	public function set_sale_price_label( $label ) {
@@ -574,8 +574,8 @@ class WC_GZD_Product {
 		return '';
 	}
 
-	public function get_unit_term() {
-		$unit = $this->get_unit();
+	public function get_unit_term( $context = 'view' ) {
+		$unit = $this->get_unit( $context );
 
 		if ( ! empty( $unit ) ) {
 			return WC_germanized()->units->get_unit_term( $unit );
@@ -584,16 +584,16 @@ class WC_GZD_Product {
 		return false;
 	}
 
-	public function get_unit_name() {
-		if ( $term = $this->get_unit_term() ) {
+	public function get_unit_name( $context = 'view' ) {
+		if ( $term = $this->get_unit_term( $context ) ) {
 			return $term->name;
 		}
 
 		return '';
 	}
 
-	public function get_sale_price_label_term() {
-		$label = $this->get_sale_price_label();
+	public function get_sale_price_label_term( $context = 'view' ) {
+		$label = $this->get_sale_price_label( $context );
 
 		if ( ! empty( $label ) ) {
 			return WC_germanized()->price_labels->get_label_term( $label );
@@ -602,16 +602,16 @@ class WC_GZD_Product {
 		return false;
  	}
 
- 	public function get_sale_price_label_name() {
-		if ( $term = $this->get_sale_price_label_term() ) {
+ 	public function get_sale_price_label_name( $context = 'view' ) {
+		if ( $term = $this->get_sale_price_label_term( $context ) ) {
 			return $term->name;
 		}
 
 		return '';
     }
 
-	public function get_sale_price_regular_label_term() {
-		$label = $this->get_sale_price_regular_label();
+	public function get_sale_price_regular_label_term( $context = 'view' ) {
+		$label = $this->get_sale_price_regular_label( $context );
 
 		if ( ! empty( $label ) ) {
 			return WC_germanized()->price_labels->get_label_term( $label );
@@ -620,8 +620,8 @@ class WC_GZD_Product {
 		return false;
 	}
 
-	public function get_sale_price_regular_label_name() {
-		if ( $term = $this->get_sale_price_regular_label_term() ) {
+	public function get_sale_price_regular_label_name( $context = 'view' ) {
+		if ( $term = $this->get_sale_price_regular_label_term( $context ) ) {
 			return $term->name;
 		}
 
@@ -877,10 +877,10 @@ class WC_GZD_Product {
 	 *  
 	 * @return bool|object false returns false if term does not exist otherwise returns term object
 	 */
-	public function get_delivery_time() {
+	public function get_delivery_time( $context = 'view' ) {
 		$terms = get_the_terms( $this->child->get_id(), 'product_delivery_time' );
 		
-		if ( empty( $terms ) && $this->child->is_type( 'variation' ) ) {
+		if ( 'view' === $context && ( empty( $terms ) && $this->child->is_type( 'variation' ) ) ) {
 			$parent_terms = get_the_terms( $this->child->get_parent_id(), 'product_delivery_time' );
 
 			if ( ! empty( $parent_terms ) && ! is_wp_error( $parent_terms ) ) {
@@ -900,16 +900,15 @@ class WC_GZD_Product {
 	 *  
 	 * @return WP_Term|false
 	 */
-	public function get_delivery_time_term() {
+	public function get_delivery_time_term( $context = 'view' ) {
 		$delivery_time = $this->get_delivery_time();
 
-		if ( empty( $delivery_time ) && get_option( 'woocommerce_gzd_default_delivery_time' ) && ! $this->is_downloadable() ) {
+		if ( 'view' === $context && ( empty( $delivery_time ) && get_option( 'woocommerce_gzd_default_delivery_time' ) && ! $this->is_downloadable() ) ) {
 			
 			$delivery_time = array( get_term_by( 'id', get_option( 'woocommerce_gzd_default_delivery_time' ), 'product_delivery_time' ) );
 
 			if ( is_array( $delivery_time ) ) {
 				array_values( $delivery_time );
-
 				$delivery_time = $delivery_time[0];
 			}
 		}

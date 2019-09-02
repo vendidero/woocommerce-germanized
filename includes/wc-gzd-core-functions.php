@@ -284,24 +284,6 @@ function wc_gzd_get_page_permalink( $type ) {
 	return apply_filters( 'woocommerce_gzd_legal_page_permalink', $link, $type );
 }
 
-if ( ! function_exists( 'is_payment_methods' ) ) {
-
-	/**
-	 * is_checkout - Returns true when viewing the checkout page.
-	 * @return bool
-	 */
-	function is_payment_methods() {
-        /**
-         * Filter allowing to manually set whether the current page is the legal payment methods page or not.
-         *
-         * @since 1.0.0
-         *
-         * @param bool $is_page Whether current page is the payment_methods page or not.
-         */
-		return is_page( wc_get_page_id( 'payment_methods' ) ) || apply_filters( 'woocommerce_gzd_is_payment_methods', false ) ? true : false;
-	}
-}
-
 function wc_gzd_get_small_business_notice() {
 
     /**
@@ -312,15 +294,6 @@ function wc_gzd_get_small_business_notice() {
      * @param string $html The notice HTML.
      */
 	return apply_filters( 'woocommerce_gzd_small_business_notice', get_option( 'woocommerce_gzd_small_enterprise_text', __( 'Value added tax is not collected, as small businesses according to §19 (1) UStG.', 'woocommerce-germanized' ) ) );
-}
-
-function wc_gzd_help_tip( $tip, $allow_html = false ) {
-	
-	if ( function_exists( 'wc_help_tip' ) ) {
-		return wc_help_tip( $tip, $allow_html );
-    }
-
-	return '<a class="tips" data-tip="' . ( $allow_html ? esc_html( $tip ) : $tip ) . '" href="#">[?]</a>';
 }
 
 function wc_gzd_is_parcel_delivery_data_transfer_checkbox_enabled( $rate_ids = array() ) {
@@ -710,4 +683,28 @@ function woocommmerce_gzd_price_range( $price_html, $from, $to ) {
     $price_html = str_replace( array( '{min_price}', '{max_price}' ), array( is_numeric( $from ) ? wc_price( $from ) : $from, is_numeric( $to ) ? wc_price( $to ) : $to ), $format );
 
     return $price_html;
+}
+
+function wc_gzd_get_default_revocation_address() {
+	$address = str_replace( "<br/>", "\n", WC()->countries->get_formatted_address( array(
+		'company'    => get_bloginfo( 'name' ),
+		'city'       => WC()->countries->get_base_city(),
+		'country'    => WC()->countries->get_base_country(),
+		'address_1'  => WC()->countries->get_base_address(),
+		'address_2'  => WC()->countries->get_base_address_2(),
+		'postcode'   => WC()->countries->get_base_postcode(),
+	) ) );
+
+	return $address;
+}
+
+function wc_gzd_get_formatted_revocation_address() {
+	$legacy  = get_option( 'woocommerce_gzd_revocation_address' );
+	$address = wc_gzd_get_default_revocation_address();
+
+	if ( ! empty( $legacy ) ) {
+		$address = $legacy;
+	}
+
+	return nl2br( $address );
 }

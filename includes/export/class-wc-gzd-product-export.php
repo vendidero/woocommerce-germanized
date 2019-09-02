@@ -76,9 +76,16 @@ class WC_GZD_Product_Export {
 		return array_merge( $columns, $this->columns );
 	}
 
+	/**
+	 * @param $value
+	 * @param WC_Product $product
+	 *
+	 * @return mixed|void|null
+	 */
 	public function export_column( $value, $product ) {
 		$filter      = current_filter();
 		$column_name = str_replace( 'woocommerce_product_export_product_column_', '', $filter );
+		$gzd_product = wc_gzd_get_product( $product );
 
 		// Filter for 3rd parties.
 		if ( has_filter( "woocommerce_gzd_product_export_column_{$column_name}" ) ) {
@@ -94,7 +101,12 @@ class WC_GZD_Product_Export {
 		} else if ( is_callable( array( $this, "get_column_value_{$column_name}" ) ) ) {
 			$value = $this->{"get_column_value_{$column_name}"}( $product );
 		} else {
-			$value = wc_gzd_get_crud_data( $product, $column_name );
+			$getter = "get_{$column_name}";
+			$value  = '';
+
+			if ( is_callable( array( $gzd_product, $getter ) ) ) {
+				$value = $gzd_product->$getter();
+			}
 		}
 
 		return $value;
@@ -103,7 +115,7 @@ class WC_GZD_Product_Export {
 	public function get_column_value_delivery_time( $product ) {
 
 		// Get delivery time without falling back to default
-		$term = wc_gzd_get_gzd_product( $product )->get_delivery_time();
+		$term = wc_gzd_get_product( $product )->get_delivery_time();
 
 		if ( ! empty( $term ) ) {
 			return $term->name;
@@ -114,7 +126,7 @@ class WC_GZD_Product_Export {
 
 	public function get_column_value_sale_price_label( $product ) {
 
-		$term = wc_gzd_get_gzd_product( $product )->get_sale_price_label_term();
+		$term = wc_gzd_get_product( $product )->get_sale_price_label_term();
 
 		if ( is_a( $term, 'WP_Term' ) ) {
 			return $term->name;
@@ -125,7 +137,7 @@ class WC_GZD_Product_Export {
 
 	public function get_column_value_sale_price_regular_label( $product ) {
 
-		$term = wc_gzd_get_gzd_product( $product )->get_sale_price_regular_label_term();
+		$term = wc_gzd_get_product( $product )->get_sale_price_regular_label_term();
 
 		if ( is_a( $term, 'WP_Term' ) ) {
 			return $term->name;
@@ -136,7 +148,7 @@ class WC_GZD_Product_Export {
 
 	public function get_column_value_unit( $product ) {
 
-		$term = wc_gzd_get_gzd_product( $product )->get_unit_term();
+		$term = wc_gzd_get_product( $product )->get_unit_term();
 
 		if ( is_a( $term, 'WP_Term' ) ) {
 			return $term->name;

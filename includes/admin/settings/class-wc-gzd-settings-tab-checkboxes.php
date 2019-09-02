@@ -97,7 +97,10 @@ class WC_GZD_Settings_Tab_Checkboxes extends WC_GZD_Settings_Tab {
 	}
 
 	public function get_section_title( $checkbox_id = '' ) {
-		if ( ! empty( $checkbox_id ) ) {
+
+		if ( 'new' === $checkbox_id ) {
+			return __( 'New checkbox', 'woocommerce-germanized' );
+		} elseif ( ! empty( $checkbox_id ) ) {
 			$manager  = WC_GZD_Legal_Checkbox_Manager::instance();
 			$checkbox = $manager->get_checkbox( $checkbox_id );
 

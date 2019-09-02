@@ -577,7 +577,7 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
          * @param WC_Order $order The order object.
          * @param int      $debit_date The debit date as timestamp.
          */
-		$pre_notification_text = apply_filters( 'woocommerce_gzd_direct_debit_pre_notification_text', sprintf( __( 'We will debit %s from your account by direct debit on or shortly after %s.', 'woocommerce-germanized' ), wc_price( $order->get_total(), array( 'currency' => wc_gzd_get_order_currency( $order ) ) ), date_i18n( wc_date_format(), $debit_date ) ), $order, $debit_date );
+		$pre_notification_text = apply_filters( 'woocommerce_gzd_direct_debit_pre_notification_text', sprintf( __( 'We will debit %s from your account by direct debit on or shortly after %s.', 'woocommerce-germanized' ), wc_price( $order->get_total(), array( 'currency' => $order->get_currency() ) ), date_i18n( wc_date_format(), $debit_date ) ), $order, $debit_date );
 
 		wc_get_template( 'emails/email-sepa-data.php', array(
             'fields'                => $sepa_fields,
@@ -1165,7 +1165,7 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 		$order->update_status( apply_filters( 'woocommerce_gzd_direct_debit_default_status', 'on-hold' ), __( 'Awaiting Direct Debit Payment', 'woocommerce-germanized' ) );
 
 		// Reduce stock level
-		wc_gzd_reduce_order_stock( $order_id );
+		wc_maybe_reduce_stock_levels( $order_id );
 
 		// Check if cart instance exists (frontend request only)
 		if ( WC()->cart ) {

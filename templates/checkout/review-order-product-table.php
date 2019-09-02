@@ -4,7 +4,7 @@
  *
  * @author 		Vendidero
  * @package 	WooCommerceGermanized/Templates
- * @version     1.0.0
+ * @version     3.0.0
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -22,7 +22,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 do_action( 'woocommerce_gzd_review_order_before_cart_contents' );
 
 foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
-	$_product     = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
+	$_product = $cart_item['data'];
 
 	if ( $_product && $_product->exists() && $cart_item['quantity'] > 0 && apply_filters( 'woocommerce_checkout_cart_item_visible', true, $cart_item, $cart_item_key ) ) {
 		?>
@@ -39,14 +39,11 @@ foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
 				
 				<?php endif; ?>
 
-				    <?php echo apply_filters( 'woocommerce_cart_item_name', wc_gzd_get_product_name( $_product ), $cart_item, $cart_item_key ) . '&nbsp;'; ?>
+				    <?php echo apply_filters( 'woocommerce_cart_item_name', $_product->get_name(), $cart_item, $cart_item_key ) . '&nbsp;'; ?>
 					<?php echo apply_filters( 'woocommerce_checkout_cart_item_quantity', ' <strong class="product-quantity">' . sprintf( '&times; %s', $cart_item['quantity'] ) . '</strong>', $cart_item, $cart_item_key ); ?>
-                    <?php if ( function_exists( 'wc_get_formatted_cart_item_data' ) ) : ?>
-                        <?php echo wc_get_formatted_cart_item_data( $cart_item ); ?>
-                    <?php else: ?>
-                        <?php echo WC()->cart->get_item_data( $cart_item ); ?>
-                    <?php endif; ?>
-				
+
+                    <?php echo wc_get_formatted_cart_item_data( $cart_item ); ?>
+
 				<?php if ( get_option( 'woocommerce_gzd_display_checkout_thumbnails' ) == 'yes' ) : ?>
 
 					</div>

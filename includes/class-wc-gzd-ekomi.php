@@ -161,7 +161,8 @@ class WC_GZD_Ekomi {
 	 	$result = $this->api->exec( apply_filters( 'woocommerce_gzd_ekomi_product', $ekomi_product, $this ) );
 	 	
 	 	if ( $result && $result->done ) {
-	 		update_post_meta( $this->get_product_id( $product ), '_wc_gzd_ekomi_added', 'yes' );
+	 		$product->update_meta_data( '_wc_gzd_ekomi_added', 'yes' );
+	 		$product->save();
 	 	}
 
 	 	return ( $result ? $result->done : false );
@@ -174,7 +175,7 @@ class WC_GZD_Ekomi {
 	 * @return integer          
 	 */
 	public function get_product_id( $product ) {
-		return wc_gzd_get_crud_data( $product, 'id' );
+		return $product->get_id();
 	}
 
 	/**
@@ -184,7 +185,7 @@ class WC_GZD_Ekomi {
 	 * @return string
 	 */
 	public function get_product_name( $product ) {
-		return get_the_title( wc_gzd_get_crud_data( $product, 'id' ) );
+		return get_the_title( $product->get_id() );
 	}
 
 	/**
@@ -194,7 +195,7 @@ class WC_GZD_Ekomi {
 	 * @return string
 	 */
 	public function get_product_link( $product ) {
-		return get_permalink( wc_gzd_get_crud_data( $product, 'id' ) );
+		return get_permalink( $product->get_id() );
 	}
 
 	/**
@@ -205,8 +206,8 @@ class WC_GZD_Ekomi {
 	 */
 	public function put_order( $order_id ) {
 
-		$order = wc_get_order( $order_id );
-		$review_link = wc_gzd_get_crud_data( $order, 'ekomi_review_link' );
+		$order       = wc_get_order( $order_id );
+		$review_link = $order->get_meta('_ekomi_review_link', true );
 
 		if ( empty( $review_link ) ) {
 
@@ -231,7 +232,9 @@ class WC_GZD_Ekomi {
     		$result = $this->api->exec( $ekomi_order );
     		
     		if ( $result->done === 1 && isset( $result->link ) ) {
-    			update_post_meta( $order_id, '_ekomi_review_link', $result->link );
+    			$order->update_meta_data( '_ekomi_review_link', $result->link );
+    			$order->save();
+
     			return true;
     		}
 		}
@@ -268,7 +271,7 @@ class WC_GZD_Ekomi {
 			$order_query->the_post();
 			
 			$order          = wc_get_order( $post->ID );
-			$completed_date = wc_gzd_get_crud_data( $order, 'completed_date' );
+			$completed_date = $order->get_date_completed();
 
 			if ( is_a( $completed_date, 'WC_DateTime' ) ) {
 				$completed_date = $completed_date->getTimestamp();
@@ -279,10 +282,11 @@ class WC_GZD_Ekomi {
 
 			if ( $diff['d'] >= $days_diff ) {
 				if ( $mail = WC_germanized()->emails->get_email_instance_by_id( 'customer_ekomi' ) ) {
-					$mail->trigger( wc_gzd_get_crud_data( $order, 'id' ) );
-					
-					update_post_meta( wc_gzd_get_crud_data( $order, 'id' ), '_ekomi_review_mail_sent', 1 );
-					update_post_meta( wc_gzd_get_crud_data( $order, 'id' ), '_ekomi_review_link', '' );
+					$mail->trigger( $order->get_id() );
+
+					$order->update_meta_data( '_ekomi_review_mail_sent', 1 );
+					$order->update_meta_data( '_ekomi_review_link', '' );
+					$order->save();
 				}
 			}
 		}
@@ -313,7 +317,7 @@ class WC_GZD_Ekomi {
 					$product = wc_get_product( $result->product_id );
 					
 					$data = array(
-						'comment_post_ID' => wc_gzd_get_crud_data( $product, 'id' ),
+						'comment_post_ID' => $product->get_id(),
 						'comment_author' => $this->user->user_login,
 						'comment_author_email' => $this->user->user_email,
 						'comment_content' => preg_replace( '/\v+|\\\[rn]/', '<br/>', esc_attr( $result->review ) ),

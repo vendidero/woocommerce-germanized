@@ -74,7 +74,7 @@ class WC_GZD_Email_Customer_Paid_For_Order extends WC_Email {
 
 		if ( $order_id ) {
 			$this->object       = wc_get_order( $order_id );
-			$this->recipient    = wc_gzd_get_crud_data( $this->object, 'billing_email' );
+			$this->recipient    = $this->object->get_billing_email();
 
 			if ( property_exists( $this, 'placeholders' ) ) {
 				$this->placeholders['{order_number}'] = $this->object->get_order_number();

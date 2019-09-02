@@ -77,7 +77,7 @@ class WC_GZD_Email_Customer_Ekomi extends WC_Email {
 
 		if ( $order_id ) {
 			$this->object 		= wc_get_order( $order_id );
-			$this->recipient	= wc_gzd_get_crud_data( $this->object, 'billing_email' );
+			$this->recipient	= $this->object->get_billing_email();
 
 			if ( property_exists( $this, 'placeholders' ) ) {
 				$this->placeholders['{order_date}']   = wc_gzd_get_order_date( $this->object, wc_date_format() );

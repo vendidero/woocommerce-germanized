@@ -214,7 +214,7 @@ if ( ! function_exists( 'woocommerce_gzd_template_checkout_back_to_cart' ) ) {
 	 * Display back to cart button within checkout cart
 	 */
 	function woocommerce_gzd_template_checkout_back_to_cart() {
-		echo '<tr><td colspan="5" class="actions"><a class="button" href="' . wc_gzd_get_cart_url() . '">' . __( 'Edit Order', 'woocommerce-germanized' ) . '</a></td></tr>';
+		echo '<tr><td colspan="5" class="actions"><a class="button" href="' . wc_get_cart_url() . '">' . __( 'Edit Order', 'woocommerce-germanized' ) . '</a></td></tr>';
 	}
 
 }
@@ -770,23 +770,23 @@ if ( ! function_exists( 'woocommerce_gzd_template_add_price_html_suffixes' ) ) {
 
 		$args = wp_parse_args( $args, array(
 			'price_unit'          => array(
-				'show'            => wc_gzd_string_to_bool( get_option( "woocommerce_gzd_display_{$location}_unit_price", true ) ),
+				'show'            => wc_string_to_bool( get_option( "woocommerce_gzd_display_{$location}_unit_price", true ) ),
 				'priority'        => 10,
 			),
 			'tax_info'            => array(
-				'show'            => wc_gzd_string_to_bool( get_option( "woocommerce_gzd_display_{$location}_tax_info", true ) ),
+				'show'            => wc_string_to_bool( get_option( "woocommerce_gzd_display_{$location}_tax_info", true ) ),
 				'priority'        => 20,
 			),
 			'shipping_costs_info' => array(
-				'show'            => wc_gzd_string_to_bool( get_option( "woocommerce_gzd_display_{$location}_shipping_costs", true ) ),
+				'show'            => wc_string_to_bool( get_option( "woocommerce_gzd_display_{$location}_shipping_costs", true ) ),
 				'priority'        => 30,
 			),
 			'product_units'       => array(
-				'show'            => wc_gzd_string_to_bool( get_option( "woocommerce_gzd_display_{$location}_product_units", false ) ),
+				'show'            => wc_string_to_bool( get_option( "woocommerce_gzd_display_{$location}_product_units", false ) ),
 				'priority'        => 40,
 			),
 			'delivery_time_info'  => array(
-				'show'            => wc_gzd_string_to_bool( get_option( "woocommerce_gzd_display_{$location}_delivery_time", true ) ),
+				'show'            => wc_string_to_bool( get_option( "woocommerce_gzd_display_{$location}_delivery_time", true ) ),
 				'priority'        => 50,
 			),
 		) );

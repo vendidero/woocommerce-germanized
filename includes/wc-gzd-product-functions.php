@@ -186,7 +186,7 @@ function wc_gzd_product_matches_extended_type( $types, $product ) {
 
 		// Check parent product type
 		if ( $parent_id ) {
-			$parent_type = wc_gzd_get_product_type( $parent_id );
+			$parent_type = WC_Product_Factory::get_product_type( $parent_id );
 
 			if ( $parent_type && in_array( $parent_type, $types ) ) {
 				$matches_type = true;

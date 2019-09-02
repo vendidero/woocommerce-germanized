@@ -106,7 +106,7 @@ class WC_GZD_Admin {
 	public function html_field( $value ) {
 		?>
 		<tr valign="top">
-			<th class="forminp forminp-html" id="<?php echo esc_attr( $value['id'] ); ?>"><label><?php echo esc_attr( $value['title'] ); ?> <?php echo ( isset( $value['desc_tip'] ) && ! empty( $value['desc_tip'] ) ? wc_gzd_help_tip( $value['desc_tip'] ) : '' ); // WPCS: XSS ok. ?></label></th>
+			<th class="forminp forminp-html" id="<?php echo esc_attr( $value['id'] ); ?>"><label><?php echo esc_attr( $value['title'] ); ?> <?php echo ( isset( $value['desc_tip'] ) && ! empty( $value['desc_tip'] ) ? wc_help_tip( $value['desc_tip'] ) : '' ); // WPCS: XSS ok. ?></label></th>
 			<td class="forminp"><?php echo $value['html']; ?></td>
 		</tr>
 		<?php
@@ -265,23 +265,24 @@ class WC_GZD_Admin {
 		return $tabs;
 	}
 
+	/**
+	 * @param WC_Order $order
+	 */
 	public function set_order_parcel_delivery_opted_in( $order ) {
-
-		if ( ! wc_gzd_get_crud_data( $order, 'parcel_delivery_opted_in' ) ) {
+		if ( ! $order->get_meta( '_parcel_delivery_opted_in' ) ) {
 			return;
 		}
-
 		?>
 		<p class="parcel-delivery-checkbox-status"><strong style="display: block;"><?php _e( 'Parcel Delivery Data Transfer:', 'woocommerce-germanized' ) ?></strong>
-			<span><?php echo ( wc_gzd_order_supports_parcel_delivery_reminder( wc_gzd_get_crud_data( $order, 'id' ) ) ? __( 'allowed', 'woocommerce-germanized' ) : __( 'not allowed', 'woocommerce-germanized' ) ); ?></span>
+			<span><?php echo ( wc_gzd_order_supports_parcel_delivery_reminder( $order->get_id() ) ? __( 'allowed', 'woocommerce-germanized' ) : __( 'not allowed', 'woocommerce-germanized' ) ); ?></span>
 		</p>
 		<?php
 	}
 
 	public function set_addon( $products, $section_id ) {
-
-		if ( $section_id !== 'featured' )
+		if ( $section_id !== 'featured' ) {
 			return $products;
+		}
 
 		array_unshift( $products, (object) array(
 			'title' => 'Woo Germanized Pro',
@@ -395,7 +396,7 @@ class WC_GZD_Admin {
 		}
 
 		if ( isset( $_POST[ '_legal_text' ] ) && ! empty( $_POST[ '_legal_text' ] ) ) {
-			update_post_meta( $post_id, '_legal_text', wc_gzd_sanitize_html_text_field( $_POST[ '_legal_text' ] ) );
+			update_post_meta( $post_id, '_legal_text', wc_gzd_sanitize_html_text_field( $_POST['_legal_text'] ) );
 		} else {
 			delete_post_meta( $post_id, '_legal_text' );
 		}

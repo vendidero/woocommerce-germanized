@@ -19,8 +19,9 @@ class WC_GZD_Legal_Checkbox_Manager {
 	);
 
 	public static function instance() {
-		if ( is_null( self::$_instance ) )
+		if ( is_null( self::$_instance ) ) {
 			self::$_instance = new self();
+		}
 
 		return self::$_instance;
 	}
@@ -466,7 +467,7 @@ class WC_GZD_Legal_Checkbox_Manager {
 
 		// Make sure we do understand yes and no as bools
 		foreach( $bools as $bool ) {
-			$args[ $bool ] = wc_gzd_string_to_bool( $args[ $bool ] );
+			$args[ $bool ] = wc_string_to_bool( $args[ $bool ] );
 		}
 
 		if ( empty( $args['html_name'] ) ) {
