@@ -2,6 +2,8 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
+use \Vendidero\Germanized\Packages;
+
 if ( ! class_exists( 'WC_GZD_Install' ) ) :
 
 /**
@@ -121,6 +123,8 @@ class WC_GZD_Install {
 		WC_GZD_Post_types::register_taxonomies();
 
 		self::create_cron_jobs();
+		self::install_packages();
+
 		self::create_units();
 		self::create_labels();
 		self::create_options();
@@ -215,6 +219,14 @@ class WC_GZD_Install {
          * @since 1.0.0
          */
 		do_action( 'woocommerce_gzd_installed' );
+	}
+
+	protected static function install_packages() {
+		foreach( Packages::get_packages() as $package_slug => $namespace ) {
+			if ( is_callable( array( $namespace, 'install_integration' ) ) ) {
+				$namespace::install_integration();
+			}
+		}
 	}
 
 	public static function deactivate() {

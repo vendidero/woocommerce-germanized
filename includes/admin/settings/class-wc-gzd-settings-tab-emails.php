@@ -181,7 +181,7 @@ class WC_GZD_Settings_Tab_Emails extends WC_GZD_Settings_Tab {
 					'data-show_if_woocommerce_gzd_order_pay_now_button' => '',
 				),
 				'default'	=> array(),
-				'class'		=> 'chosen_select',
+				'class'		=> 'wc-enhanced-select',
 				'options'	=> $payment_gateway_options,
 				'type' 		=> 'multiselect',
 			),
@@ -223,7 +223,7 @@ class WC_GZD_Settings_Tab_Emails extends WC_GZD_Settings_Tab {
 				'desc' 		=> sprintf( __( 'Attach %s to the following email templates', 'woocommerce-germanized' ), $order ),
 				'id' 		=> 'woocommerce_gzd_mail_attach_' . $key,
 				'type' 		=> 'multiselect',
-				'class'		=> 'chosen_select',
+				'class'		=> 'wc-enhanced-select',
 				'desc_tip'	=> true,
 				'options'	=> $email_select,
 			) );

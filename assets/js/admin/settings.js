@@ -136,6 +136,10 @@ window.germanized = window.germanized || {};
                 var val     = $input.val();
                 var $fields = $( '.wc-gzd-admin-settings' ).find( ':input[data-show_if_' + name +  ']' );
 
+                if ( $input.is( ':checkbox' ) ) {
+                    val = $input.is( ':checked' ) ? 'yes' : 'no';
+                }
+
                 $fields.each( function() {
                     var dataValue   = $( this ).data( 'show_if_' + name ),
                         currentVal  = $( this ).val(),
@@ -145,8 +149,9 @@ window.germanized = window.germanized || {};
                     $field.removeClass( 'wc-gzd-setting-visible wc-gzd-setting-invisible' );
 
                     if ( dataValue.length > 0 ) {
+
                         // Check value
-                        if ( val === currentVal ) {
+                        if ( val === dataValue ) {
                             $field.addClass( 'wc-gzd-setting-visible' );
 
                             $( document.body ).trigger( 'woocommerce_gzd_setting_field_visible', [ $field, currentName, currentVal ] );
@@ -229,7 +234,7 @@ window.germanized = window.germanized || {};
 
         onInputToogleClick: function() {
             var $toggle   = $( this ).find( 'span.woocommerce-gzd-input-toggle' ),
-                $row      = $toggle.parents( 'tr' ),
+                $row      = $toggle.parents( 'fieldset' ),
                 $checkbox = $row.find( 'input[type=checkbox]' ),
                 $enabled  = $toggle.hasClass( 'woocommerce-input-toggle--enabled' );
 

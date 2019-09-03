@@ -41,37 +41,6 @@ class WC_GZD_Product_Attribute_Helper {
         if ( is_admin() ) {
             add_action( 'woocommerce_after_product_attribute_settings', array( $this, 'attribute_visibility' ), 10, 2 );
         }
-
-        add_filter( 'woocommerce_gzd_email_visibility_settings', array( $this, 'email_attribute_setting' ), 10 );
-    }
-
-    public function email_attribute_setting( $settings ) {
-        $settings[] = array(
-            'desc' 		=> __( 'Product Attributes', 'woocommerce-germanized' ),
-            'id' 		=> 'woocommerce_gzd_display_emails_product_attributes',
-            'type' 		=> 'checkbox',
-            'default'	=> 'no',
-            'checkboxgroup'		=> '',
-        );
-
-        return $settings;
-    }
-
-    public function global_attribute_setting( $settings ) {
-        foreach( $settings as $key => $setting ) {
-            if ( isset( $setting['id'] ) && 'woocommerce_gzd_display_checkout_thumbnails' === $setting['id'] ) {
-                array_splice( $settings, $key + 1, 0, array( array(
-                    'title' 	=> __( 'Show product attributes', 'woocommerce-germanized' ),
-                    'desc' 		=> __( 'List all product attributes during cart and checkout.', 'woocommerce-germanized' ),
-                    'id' 		=> 'woocommerce_gzd_display_checkout_product_attributes',
-                    'default'	=> 'no',
-                    'type' 		=> 'checkbox',
-                    'desc_tip'	=> __( 'This option forces WooCommerce to output a list of all product attributes during cart and checkout.', 'woocommerce-germanized' ),
-                ) ) );
-            }
-        }
-
-        return $settings;
     }
 
     public function attribute_visibility( $attribute, $i ) {

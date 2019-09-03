@@ -38,6 +38,10 @@ class Packages {
         add_action( 'plugins_loaded', array( __CLASS__, 'on_init' ) );
     }
 
+    public static function get_packages() {
+        return self::$packages;
+    }
+
     /**
      * Callback for WordPress init hook.
      */
