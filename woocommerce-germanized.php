@@ -185,6 +185,7 @@ final class WooCommerce_Germanized {
 
 		add_action( 'init', array( $this, 'init' ), 0 );
 		add_action( 'init', array( 'WC_GZD_Shortcodes', 'init' ), 2 );
+
 		add_action( 'plugins_loaded', array( $this, 'setup_compatibility' ), 0 );
 
 		// Set template filter directly after load to ensure wc_get_template finds templates
@@ -267,7 +268,8 @@ final class WooCommerce_Germanized {
 		add_filter( 'woocommerce_payment_gateways', array( $this, 'register_gateways' ) );
 
 		// Remove cart subtotal filter
-		add_action( 'template_redirect', array( $this, 'remove_cart_unit_price_filter' ) );
+		add_action( 'template_redirect', array( $this, 'maybe_remove_filters' ) );
+		add_action( 'woocommerce_checkout_update_order_review', array( $this, 'maybe_remove_filters' ) );
 
 		$this->emails = new WC_GZD_Emails();
 
@@ -1110,9 +1112,26 @@ final class WooCommerce_Germanized {
 	/**
 	 * Remove cart unit price subtotal filter
 	 */
-	public function remove_cart_unit_price_filter() {
-		if ( is_cart() ) {
-			remove_filter( 'woocommerce_cart_item_subtotal', 'wc_gzd_cart_product_unit_price', 0 );
+	public function maybe_remove_filters() {
+		if ( is_cart() || is_checkout() ) {
+
+			foreach( wc_gzd_get_checkout_shopmarks() as $shopmark ) {
+				$shopmark->remove();
+			}
+
+			foreach( wc_gzd_get_cart_shopmarks() as $shopmark ) {
+				$shopmark->remove();
+			}
+
+			if ( is_cart() ) {
+				foreach( wc_gzd_get_cart_shopmarks() as $shopmark ) {
+					$shopmark->execute();
+				}
+			} elseif( is_checkout() ) {
+				foreach ( wc_gzd_get_checkout_shopmarks() as $shopmark ) {
+					$shopmark->execute();
+				}
+			}
 		}
 	}
 

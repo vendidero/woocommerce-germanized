@@ -278,19 +278,6 @@ if ( ! function_exists( 'woocommerce_gzd_template_checkout_table_product_hide_fi
 
 }
 
-if ( ! function_exists( 'woocommerce_gzd_template_checkout_remove_cart_name_filter' ) ) {
-
-	/**
-	 * Removes the cart item name filter (using checkout quantity html) if within checkout
-	 */
-	function woocommerce_gzd_template_checkout_remove_cart_name_filter() {
-		remove_filter( 'woocommerce_cart_item_name', 'wc_gzd_cart_product_units', wc_gzd_get_hook_priority( 'cart_product_units' ) );
-		remove_filter( 'woocommerce_cart_item_name', 'wc_gzd_cart_product_delivery_time', wc_gzd_get_hook_priority( 'cart_product_delivery_time' ) );
-		remove_filter( 'woocommerce_cart_item_name', 'wc_gzd_cart_product_item_desc', wc_gzd_get_hook_priority( 'cart_product_item_desc' ) );
-	}
-
-}
-
 if ( ! function_exists( 'woocommerce_gzd_template_order_button_text' ) ) {
 
 	/**
@@ -319,23 +306,23 @@ if ( ! function_exists( 'woocommerce_gzd_add_variation_options' ) ) {
 			'shipping_costs_info'   => '',
 		) );
 
-		if ( get_option( 'woocommerce_gzd_display_product_detail_delivery_time_info' ) === 'yes' ) {
+		if ( wc_gzd_shopmark_is_enabled( 'single_product', 'delivery_time' ) ) {
 			$options['delivery_time'] = $gzd_product->get_delivery_time_html();
 		}
 
-		if ( get_option( 'woocommerce_gzd_display_product_detail_price_unit' ) === 'yes' ) {
+		if ( wc_gzd_shopmark_is_enabled( 'single_product', 'unit_price' ) ) {
 			$options['unit_price'] = $gzd_product->get_unit_price_html();
 		}
 
-		if ( get_option( 'woocommerce_gzd_display_product_detail_product_units' ) === 'yes' ) {
+		if ( wc_gzd_shopmark_is_enabled( 'single_product', 'units' ) ) {
 			$options['product_units'] = $gzd_product->get_unit_product_html();
 		}
 
-		if ( get_option( 'woocommerce_gzd_display_product_detail_tax_info' ) === 'yes' ) {
+		if ( wc_gzd_shopmark_is_enabled( 'single_product', 'legal' ) && 'yes' === get_option( 'woocommerce_gzd_display_product_detail_tax_info' ) ) {
 			$options['tax_info'] = $gzd_product->get_tax_info();
 		}
 
-		if ( get_option( 'woocommerce_gzd_display_product_detail_shipping_costs_info' ) === 'yes' ) {
+		if ( wc_gzd_shopmark_is_enabled( 'single_product', 'legal' ) && 'yes' === get_option( 'woocommerce_gzd_display_product_detail_shipping_costs_info' ) ) {
 			$options['shipping_costs_info'] = $gzd_product->get_shipping_costs_html();
 		}
 
@@ -725,8 +712,11 @@ if ( ! function_exists( 'woocommerce_gzd_template_mini_cart_remove_hooks' ) ) {
             return;
         }
 
-        foreach( wc_gzd_get_legal_cart_notice_types_by_location( 'mini_cart' ) as $type => $notice ) {
-            remove_filter( $notice['filter'], $notice['callback'], $notice['priority'] );
+	    /**
+	     * Remove cart hooks to prevent duplicate notices
+	     */
+        foreach( wc_gzd_get_cart_shopmarks() as $shopmark ) {
+            $shopmark->remove();
         }
     }
 }
@@ -746,19 +736,35 @@ if ( ! function_exists( 'woocommerce_gzd_template_mini_cart_add_hooks' ) ) {
             return;
         }
 
-        // Add mini cart product info
-        foreach( wc_gzd_get_legal_cart_notice_types_by_location( 'mini_cart' ) as $type => $notice ) {
-            add_filter( $notice['filter'], $notice['callback'], $notice['priority'], 3 );
-        }
+	    foreach( wc_gzd_get_mini_cart_shopmarks() as $shopmark ) {
+		    $shopmark->execute();
+	    }
     }
 }
 
 if ( ! function_exists( 'woocommerce_gzd_template_mini_cart_maybe_remove_hooks' ) ) {
 
     function woocommerce_gzd_template_mini_cart_maybe_remove_hooks() {
-        if ( ! is_cart() ) {
-            woocommerce_gzd_template_mini_cart_remove_hooks();
-        }
+
+	    if ( ! did_action( 'woocommerce_before_mini_cart_contents' ) ) {
+		    return;
+	    }
+
+	    /**
+	     * Remove mini cart hooks after mini cart rendering finished
+	     */
+	    foreach( wc_gzd_get_mini_cart_shopmarks() as $shopmark ) {
+		    $shopmark->remove();
+	    }
+
+	    /**
+	     * Readd cart hooks to make sure they are placed accordingly.
+	     */
+	    if ( is_cart() ) {
+		    foreach( wc_gzd_get_cart_shopmarks() as $shopmark ) {
+			    $shopmark->execute();
+		    }
+	    }
     }
 }
 

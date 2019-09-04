@@ -27,7 +27,7 @@ function wc_gzd_cart_product_differential_taxation_mark( $title, $cart_item, $ca
 	$product_mark = '';
 
 	if ( isset( $cart_item['data'] ) ) {
-		$product = $cart_item['data'];
+		$product = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
 	} elseif ( is_a( $cart_item, 'WC_Order_Item_Product' ) ) {
 		$product = $cart_item->get_product();
 	}
@@ -63,9 +63,17 @@ function wc_gzd_cart_product_differential_taxation_mark( $title, $cart_item, $ca
  */
 function wc_gzd_cart_product_item_desc( $title, $cart_item, $cart_item_key = '' ) {
 	$product_desc = "";
+	$echo         = false;
+
+	if ( is_array( $title ) && isset( $title['data'] ) ) {
+		$cart_item     = $title;
+		$cart_item_key = $cart_item;
+		$title         = "";
+		$echo          = true;
+	}
 	
 	if ( isset( $cart_item['data'] ) ) {
-		$product = $cart_item['data'];
+		$product = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
 	
 		if ( wc_gzd_get_product( $product )->get_cart_description() ) {
 			$product_desc = wc_gzd_get_product( $product )->get_formatted_cart_description();
@@ -83,6 +91,10 @@ function wc_gzd_cart_product_item_desc( $title, $cart_item, $cart_item_key = '' 
 	if ( ! empty( $product_desc ) ) {
 		$title .= '<div class="wc-gzd-cart-info wc-gzd-item-desc item-desc">' . do_shortcode( $product_desc ) . '</div>';
 	}
+
+	if ( $echo ) {
+		echo $title;
+	}
 	
 	return $title;
 }
@@ -91,7 +103,7 @@ function wc_gzd_cart_product_attributes( $title, $cart_item, $cart_item_key = ''
     $item_data = array();
 
     if ( isset( $cart_item['data'] ) ) {
-        $product    = $cart_item['data'];
+	    $product    = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
         $item_data  = wc_gzd_get_gzd_product( $product )->get_checkout_attributes( array(), isset( $cart_item['variation'] ) ? $cart_item['variation'] : array() );
     } elseif ( is_a( $cart_item, 'WC_Order_Item_Product' ) ) {
         if ( $product = $cart_item->get_product() ) {
@@ -136,11 +148,18 @@ function wc_gzd_cart_product_attributes( $title, $cart_item, $cart_item_key = ''
  * @return string
  */
 function wc_gzd_cart_product_delivery_time( $title, $cart_item, $cart_item_key = '' ) {
-
 	$delivery_time = "";
+	$echo          = false;
+
+	if ( is_array( $title ) && isset( $title['data'] ) ) {
+		$cart_item     = $title;
+		$cart_item_key = $cart_item;
+		$title         = "";
+		$echo          = true;
+	}
 	
 	if ( isset( $cart_item['data'] ) ) {
-		$product = $cart_item['data'];
+		$product = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
 	
 		if ( wc_gzd_get_product( $product )->get_delivery_time_term() ) {
 			$delivery_time = wc_gzd_get_product( $product )->get_delivery_time_html();
@@ -159,6 +178,10 @@ function wc_gzd_cart_product_delivery_time( $title, $cart_item, $cart_item_key =
 	if ( ! empty( $delivery_time ) ) {
 		$title .= '<p class="wc-gzd-cart-info delivery-time-info">' . $delivery_time . '</p>';
     }
+
+	if ( $echo ) {
+		echo $title;
+	}
 	
 	return $title;
 }
@@ -172,9 +195,17 @@ function wc_gzd_cart_product_delivery_time( $title, $cart_item, $cart_item_key =
  */
 function wc_gzd_cart_product_unit_price( $price, $cart_item, $cart_item_key = '' ) {
 	$unit_price = "";
+	$echo       = false;
+
+	if ( is_array( $price ) && isset( $price['data'] ) ) {
+	    $cart_item     = $price;
+	    $cart_item_key = $cart_item;
+	    $price         = "";
+		$echo          = true;
+    }
 
 	if ( isset( $cart_item['data'] ) ) {
-		$product = $cart_item['data'];
+		$product = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
 	
 		if ( wc_gzd_get_product( $product )->has_unit() ) {
 			$unit_price = wc_gzd_get_product( $product )->get_unit_price_html( false );
@@ -192,6 +223,10 @@ function wc_gzd_cart_product_unit_price( $price, $cart_item, $cart_item_key = ''
 	if ( ! empty( $unit_price ) ) {
 		$price .= ' <span class="wc-gzd-cart-info unit-price unit-price-cart">' . $unit_price . '</span>';
     }
+
+	if ( $echo ) {
+	    echo $price;
+    }
 	
 	return $price;
 }
@@ -205,9 +240,17 @@ function wc_gzd_cart_product_unit_price( $price, $cart_item, $cart_item_key = ''
  */
 function wc_gzd_cart_product_units( $title, $cart_item, $cart_item_key = '' ) {
 	$units = "";
+	$echo  = false;
+
+	if ( is_array( $title ) && isset( $title['data'] ) ) {
+		$cart_item     = $title;
+		$cart_item_key = $cart_item;
+		$title         = "";
+		$echo          = true;
+	}
 	
 	if ( isset( $cart_item['data'] ) ) {
-		$product = $cart_item['data'];
+		$product = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
 	
 		if ( wc_gzd_get_product( $product )->has_unit_product() ) {
 			$units = wc_gzd_get_gzd_product( $product )->get_unit_product_html();
@@ -225,6 +268,10 @@ function wc_gzd_cart_product_units( $title, $cart_item, $cart_item_key = '' ) {
 	if ( ! empty( $units ) ) {
 		$title .= '<p class="wc-gzd-cart-info units-info">' . $units . '</p>';
 	}
+
+	if ( $echo ) {
+	    echo $title;
+    }
 	
 	return $title;
 }
@@ -246,7 +293,7 @@ function wc_gzd_get_cart_tax_share( $type = 'shipping', $cart_contents = array()
 			/**
 			 * @var WC_Product $_product
 			 */
-			$_product = $item['data'];
+			$product = apply_filters( 'woocommerce_cart_item_product', $item['data'], $item, $key );
 
             /**
              * Cart item tax share product.

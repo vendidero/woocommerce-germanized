@@ -34,13 +34,7 @@ abstract class WC_GZD_Compatibility_Woocommerce_Role_Based_Pricing extends WC_GZ
     }
 
     public function adjust_cart_hooks() {
-        // Filter seems to be removed due to low priority
-        remove_filter( 'woocommerce_cart_item_price', 'wc_gzd_cart_product_unit_price', wc_gzd_get_hook_priority( 'cart_product_unit_price' ) );
-        remove_filter( 'woocommerce_cart_item_subtotal', 'wc_gzd_cart_product_unit_price', wc_gzd_get_hook_priority( 'cart_subtotal_unit_price' ) );
-
-        // Readd filter with higher priority
-        add_filter( 'woocommerce_cart_item_price', 'wc_gzd_cart_product_unit_price', 500, 3 );
-        add_filter( 'woocommerce_cart_item_subtotal', 'wc_gzd_cart_product_unit_price', 500, 3 );
+        // @TODO Recheck cart hooks
     }
 
     public function load() {

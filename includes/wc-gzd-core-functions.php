@@ -10,11 +10,74 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
+use Vendidero\Germanized\Shopmarks;
+
 require WC_GERMANIZED_ABSPATH . 'includes/wc-gzd-product-functions.php';
 
 function wc_gzd_get_dependencies( $instance = null ) {
     /** This filter is documented in woocommerce-germanized.php */
 	return apply_filters( 'woocommerce_gzd_dependencies_instance', WC_GZD_Dependencies::instance( $instance ) );
+}
+
+/**
+ * @return Vendidero\Germanized\Shopmark[]
+ */
+function wc_gzd_get_single_product_shopmarks() {
+	return Shopmarks::get( 'single_product' );
+}
+
+/**
+ * @return Vendidero\Germanized\Shopmark[]
+ */
+function wc_gzd_get_product_loop_shopmarks() {
+	return Shopmarks::get( 'product_loop' );
+}
+
+/**
+ * @return Vendidero\Germanized\Shopmark[]
+ */
+function wc_gzd_get_cart_shopmarks() {
+	return Shopmarks::get( 'cart' );
+}
+
+/**
+ * @return Vendidero\Germanized\Shopmark[]
+ */
+function wc_gzd_get_mini_cart_shopmarks() {
+	return Shopmarks::get( 'mini_cart' );
+}
+
+/**
+ * @return Vendidero\Germanized\Shopmark[]
+ */
+function wc_gzd_get_checkout_shopmarks() {
+	return Shopmarks::get( 'checkout' );
+}
+
+/**
+ * @param $location
+ * @param $type
+ *
+ * @return bool|Vendidero\Germanized\Shopmark $shopmark
+ */
+function wc_gzd_get_shopmark( $location, $type ) {
+	$shopmarks = Shopmarks::get( $location );
+
+	foreach( $shopmarks as $shopmark ) {
+		if ( $type === $shopmark->get_type() ) {
+			return $shopmark;
+		}
+	}
+
+	return false;
+}
+
+function wc_gzd_shopmark_is_enabled( $location, $type ) {
+	if ( $shopmark = wc_gzd_get_shopmark( $location, $type ) ) {
+		return $shopmark->is_enabled();
+	}
+
+	return false;
 }
 
 function wc_gzd_send_instant_order_confirmation() {
@@ -40,167 +103,27 @@ function wc_gzd_send_instant_order_confirmation() {
 }
 
 function wc_gzd_get_legal_product_notice_types() {
+	wc_deprecated_function( __FUNCTION__, '3.0' );
 
-    /**
-     * Filters legal product notice types.
-     * May be adjusted to move or adjust hook names for certain Themes.
-     *
-     * @since 2.2.0
-     *
-     * @param array $legal_types Array containing notice types and hook names.
-     */
-    return apply_filters( 'woocommerce_gzd_legal_product_notice_types', array(
-        'price_unit' => array(
-            'single' => 'woocommerce_single_product_summary',
-            'loop'   => 'woocommerce_after_shop_loop_item_title',
-        ),
-        'product_units' => array(
-            'single' => 'woocommerce_product_meta_start',
-            'loop'   => 'woocommerce_after_shop_loop_item',
-        ),
-        'shipping_costs_info' => array(
-            'loop'   => 'woocommerce_after_shop_loop_item',
-        ),
-        'delivery_time_info' => array(
-            'single' => 'woocommerce_single_product_summary',
-            'loop'   => 'woocommerce_after_shop_loop_item',
-        ),
-        'tax_info' => array(
-            'loop'   => 'woocommerce_after_shop_loop_item',
-        ),
-        'legal_info' => array(
-            'single' => 'woocommerce_single_product_summary',
-        ),
-    ) );
+	return array();
 }
 
 function wc_gzd_get_legal_product_notice_types_by_location( $location = 'loop' ) {
-    $location_types = array();
-    $option_prefix  = 'woocommerce_gzd_display_';
+	wc_deprecated_function( __FUNCTION__, '3.0' );
 
-    if ( 'loop' === $location ) {
-        $option_prefix .= 'listings_';
-    } elseif ( 'single' === $location ) {
-        $option_prefix .= 'product_detail_';
-    }
-
-    foreach( wc_gzd_get_legal_product_notice_types() as $type => $locations ) {
-
-        if ( ! isset( $locations[ $location ] ) ) {
-            continue;
-        }
-
-        $enabled = 'yes' === get_option( $option_prefix . $type );
-
-        // Make sure to display legal info if tax info or shipping costs info is enabled within display settings
-        if ( 'single' === $location && 'legal_info' === $type && ( 'yes' === get_option( $option_prefix . 'tax_info' ) || 'yes' === get_option( $option_prefix . 'shipping_costs_info' ) ) ) {
-            $enabled = true;
-        }
-
-        if ( $enabled ) {
-            $callback = "woocommerce_gzd_template_single_{$type}";
-
-            $location_types[ $type ] = array(
-                'priority'  => wc_gzd_get_hook_priority( $location . '_' . $type ),
-                'callback'  => $callback,
-                'filter'    => $locations[ $location ],
-                'is_action' => true,
-                'params'    => 1,
-            );
-
-            if ( 'single' === $location ) {
-                $location_types[ 'grouped_' . $type ] = array(
-                    'priority'  => wc_gzd_get_hook_priority( 'grouped_' . $location . '_' . $type ),
-                    'callback'  => "woocommerce_gzd_template_grouped_single_{$type}",
-                    'filter'    => 'woocommerce_grouped_product_list_column_price',
-                    'is_action' => false,
-                    'params'    => 2,
-                );
-            }
-        }
-    }
-
-    /**
-     * Filters legal product notice type locations containing hooks ready to be executed.
-     *
-     * @see wc_gzd_get_legal_product_notice_types
-     * @since 2.2.0
-     *
-     * @param array  $location_types Array containing notice location types.
-     * @param string $location The actual location e.g. loop or single.
-     */
-    return apply_filters( 'woocommerce_gzd_legal_product_notice_types_location', $location_types, $location );
+    return array();
 }
 
 function wc_gzd_get_legal_cart_notice_types() {
+	wc_deprecated_function( __FUNCTION__, '3.0' );
 
-    /**
-     * Filters legal cart notice types.
-     * May be adjusted to move or adjust hook names for certain Themes.
-     *
-     * @since 2.2.0
-     *
-     * @param array $legal_types Array containing notice types and hook names.
-     */
-    return apply_filters( 'woocommerce_gzd_legal_cart_notice_types', array(
-        'unit_price'    => array(
-            'cart'      => 'woocommerce_cart_item_price',
-            'checkout'  => 'woocommerce_cart_item_subtotal',
-            'mini_cart' => 'woocommerce_cart_item_price'
-        ),
-        'units'         => array(
-            'cart'      => 'woocommerce_cart_item_name',
-            'checkout'  => 'woocommerce_checkout_cart_item_quantity',
-            'mini_cart' => 'woocommerce_cart_item_name'
-        ),
-        'item_desc'     => array(
-            'cart'      => 'woocommerce_cart_item_name',
-            'checkout'  => 'woocommerce_checkout_cart_item_quantity',
-            'mini_cart' => 'woocommerce_cart_item_name'
-        ),
-        'delivery_time' => array(
-            'cart'      => 'woocommerce_cart_item_name',
-            'checkout'  => 'woocommerce_checkout_cart_item_quantity',
-            'mini_cart' => 'woocommerce_cart_item_name'
-        )
-    ) );
+	return array();
 }
 
 function wc_gzd_get_legal_cart_notice_types_by_location( $location = 'cart' ) {
-    $location_types = array();
-    $option_prefix  = "woocommerce_gzd_display_{$location}_product_";
+	wc_deprecated_function( __FUNCTION__, '3.0' );
 
-    foreach( wc_gzd_get_legal_cart_notice_types() as $type => $locations ) {
-
-        if ( ! isset( $locations[ $location ] ) ) {
-            continue;
-        }
-
-        $enabled = 'yes' === get_option( $option_prefix . $type );
-
-        if ( $enabled ) {
-            $callback = "wc_gzd_cart_product_{$type}";
-
-            $location_types[ $type ] = array(
-                'priority'  => wc_gzd_get_hook_priority( $location . '_product_' . $type ),
-                'callback'  => $callback,
-                'filter'    => $locations[ $location ],
-                'is_action' => false,
-                'params'    => 1,
-            );
-        }
-    }
-
-    /**
-     * Filters legal cart notice type locations containing hooks ready to be executed.
-     *
-     * @see wc_gzd_get_legal_product_notice_types
-     * @since 2.2.0
-     *
-     * @param array  $location_types Array containing notice location types.
-     * @param string $location The actual location e.g. cart or checkout.
-     */
-    return apply_filters( 'woocommerce_gzd_legal_cart_notice_types_location', $location_types, $location );
+    return array();
 }
 
 /**

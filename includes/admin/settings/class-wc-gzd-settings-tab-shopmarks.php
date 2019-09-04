@@ -4,6 +4,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
 
+use Vendidero\Germanized\Shopmarks;
+use Vendidero\Germanized\Shopmark;
+
 /**
  * Adds Germanized Shopmark settings.
  *
@@ -26,12 +29,22 @@ class WC_GZD_Settings_Tab_Shopmarks extends WC_GZD_Settings_Tab {
 	}
 
 	public function get_sections() {
-		return array(
-			''               => __( 'General', 'woocommerce-germanized' ),
-			'delivery_times' => __( 'Delivery times', 'woocommerce-germanized' ),
-			'unit_prices'    => __( 'Unit prices', 'woocommerce-germanized' ),
-			'price_labels'   => __( 'Price labels', 'woocommerce-germanized' ),
+		$sections = array(
+			'' => __( 'General', 'woocommerce-germanized' ),
 		);
+
+		foreach( Shopmarks::get_locations() as $location => $title ) {
+			$sections[ $location ] = $title;
+		}
+
+		$sections = array_merge( $sections, array(
+			'product_widgets' => __( 'Product Widgets', 'woocommerce-germanized' ),
+			'delivery_times'  => __( 'Delivery times', 'woocommerce-germanized' ),
+			'unit_prices'     => __( 'Unit prices', 'woocommerce-germanized' ),
+			'price_labels'    => __( 'Price labels', 'woocommerce-germanized' ),
+		) );
+
+		return $sections;
 	}
 
 	public function get_pointers() {
@@ -42,15 +55,48 @@ class WC_GZD_Settings_Tab_Shopmarks extends WC_GZD_Settings_Tab {
 			$pointers = array(
 				'pointers' => array(
 					'display'          => array(
-						'target'       => '#woocommerce_gzd_display_listings_shipping_costs_info-toggle',
+						'target'       => 'ul.subsubsub li:nth-of-type(2) a',
+						'next'         => '',
+						'next_url'     => admin_url( 'admin.php?page=wc-settings&tab=germanized-shopmarks&section=single_product&tutorial=yes' ),
+						'next_trigger' => array(),
+						'options'      => array(
+							'content'  => '<h3>' . esc_html__( 'Shopmark Display', 'woocommerce-germanized' ) . '</h3>' .
+							              '<p>' . esc_html__( 'By adjusting the display settings you might determine where to show or hide your shopmarks e.g. the tax notice on single product pages.', 'woocommerce-germanized' ) . '</p>',
+							'position' => array(
+								'edge'  => 'top',
+								'align' => 'left',
+							),
+						),
+					),
+				),
+			);
+		} elseif( 'single_product' === $current ) {
+			$pointers = array(
+				'pointers' => array(
+					'location'         => array(
+						'target'       => '#select2-woocommerce_gzd_display_single_product_unit_price_filter-container',
+						'next'         => 'priority',
+						'next_url'     => '',
+						'next_trigger' => array(),
+						'options'      => array(
+							'content'  => '<h3>' . esc_html__( 'Location', 'woocommerce-germanized' ) . '</h3>' .
+							              '<p>' . esc_html__( 'Adjust the location of the shopmark by selecting a location from the list. Some Themes might apply the locations at different positions that\'s why this option may differ from theme to theme.', 'woocommerce-germanized' ) . '</p>',
+							'position' => array(
+								'edge'  => 'left',
+								'align' => 'left',
+							),
+						),
+					),
+					'priority'         => array(
+						'target'       => '#woocommerce_gzd_display_single_product_unit_price_priority',
 						'next'         => '',
 						'next_url'     => admin_url( 'admin.php?page=wc-settings&tab=germanized-shopmarks&section=delivery_times&tutorial=yes' ),
 						'next_trigger' => array(),
 						'options'      => array(
-							'content'  => '<h3>' . esc_html__( 'Shopmark Display', 'woocommerce-germanized' ) . '</h3>' .
-							              '<p>' . esc_html__( 'By adjusting the display settings you might determine where to show or hide your shopmarks e.g. the shipping costs notice.', 'woocommerce-germanized' ) . '</p>',
+							'content'  => '<h3>' . esc_html__( 'Priority', 'woocommerce-germanized' ) . '</h3>' .
+							              '<p>' . esc_html__( 'Many different information may be attached to the location selected. By adjusting the priority you can choose whether the shopmark gets applied earlier (lower) or later (higher).', 'woocommerce-germanized' ) . '</p>',
 							'position' => array(
-								'edge'  => 'bottom',
+								'edge'  => 'left',
 								'align' => 'left',
 							),
 						),
@@ -115,7 +161,8 @@ class WC_GZD_Settings_Tab_Shopmarks extends WC_GZD_Settings_Tab {
 	}
 
 	public function get_tab_settings( $current_section = '' ) {
-		$settings = array();
+		$settings         = array();
+		$display_sections = Shopmarks::get_locations();
 
 		if ( '' === $current_section ) {
 			$settings = $this->get_general_settings();
@@ -125,124 +172,32 @@ class WC_GZD_Settings_Tab_Shopmarks extends WC_GZD_Settings_Tab {
 			$settings = $this->get_unit_price_settings();
 		} elseif( 'price_labels' === $current_section ) {
 			$settings = $this->get_price_label_settings();
+		} elseif( 'product_widgets' === $current_section ) {
+			$settings = $this->get_product_widget_settings();
+		} elseif( array_key_exists( $current_section, $display_sections ) ) {
+			$settings = $this->get_display_settings( $current_section );
 		}
 
 		return $settings;
 	}
 
-	protected function get_general_settings() {
+	public function get_section_description( $section ) {
+		$display_sections = Shopmarks::get_locations();
+
+		if ( 'product_widgets' === $section ) {
+			return __( 'Adjust Product Widget visibility options.', 'woocommerce-germanized' );
+		} elseif ( array_key_exists( $section, $display_sections ) ) {
+			$title = Shopmarks::get_location_title( $section );
+			return sprintf( __( 'Adjust %s visibility options and choose which shopmarks to be displayed at which locations.', 'woocommerce-germanized' ), $title );
+		}
+
+		return '';
+	}
+
+	protected function get_product_widget_settings() {
 		return array(
-			array( 'title' => __( 'Shipping Costs', 'woocommerce-germanized' ), 'type' => 'title', 'id' => 'shipping_costs_options' ),
+			array( 'title' => '', 'type' => 'title', 'id' => 'product_widget_visibility_options' ),
 
-			array(
-				'title' 	=> __( 'Notice Text', 'woocommerce-germanized' ),
-				'desc' 		=> '<div class="wc-gzd-additional-desc">' . __( 'This text will be used to inform the customer about shipping costs. Use {link}{/link} to insert link to shipping costs page.', 'woocommerce-germanized' ) . '</div>',
-				'desc_tip'	=> false,
-				'id' 		=> 'woocommerce_gzd_shipping_costs_text',
-				'type' 		=> 'text',
-				'css' 		=> 'min-width:300px;',
-				'default'	=> __( 'plus {link}Shipping Costs{/link}', 'woocommerce-germanized' ),
-			),
-			array(
-				'title' 	=> __( 'Free Shipping Text', 'woocommerce-germanized' ),
-				'desc' 		=> '<div class="wc-gzd-additional-desc">' . __( 'This text will be used to inform the customer about free shipping. Leave empty to disable notice. Use {link}{/link} to insert link to shipping costs page.', 'woocommerce-germanized' ) . '</div>',
-				'desc_tip'	=> false,
-				'id' 		=> 'woocommerce_gzd_free_shipping_text',
-				'type' 		=> 'text',
-				'css' 		=> 'min-width:300px;',
-				'default'	=> '',
-			),
-
-			array( 'type' => 'sectionend', 'id' => 'shipping_costs_options' ),
-
-			array( 'title' => __( 'Display', 'woocommerce-germanized' ), 'type' => 'title', 'id' => 'shopmark_options', 'desc' => __( 'Choose where to show which shopmarks within your shop.', 'woocommerce-germanized' ) ),
-
-			array(
-				'title' 	=> __( 'Show within Product Listings', 'woocommerce-germanized' ),
-				'desc' 		=> __( 'Shipping Costs', 'woocommerce-germanized' ),
-				'id' 		=> 'woocommerce_gzd_display_listings_shipping_costs_info',
-				'type' 		=> 'gzd_toggle',
-				'default'	=> 'yes',
-				'checkboxgroup'	=> 'start',
-			),
-			array(
-				'desc' 		=> __( 'Tax Info', 'woocommerce-germanized' ),
-				'id' 		=> 'woocommerce_gzd_display_listings_tax_info',
-				'type' 		=> 'gzd_toggle',
-				'default'	=> 'yes',
-				'checkboxgroup'		=> '',
-			),
-			array(
-				'desc' 		=> __( 'Base Price', 'woocommerce-germanized' ),
-				'id' 		=> 'woocommerce_gzd_display_listings_price_unit',
-				'type' 		=> 'gzd_toggle',
-				'default'	=> 'yes',
-				'checkboxgroup'		=> '',
-			),
-			array(
-				'desc' 		=> __( 'Product Units', 'woocommerce-germanized' ),
-				'id' 		=> 'woocommerce_gzd_display_listings_product_units',
-				'type' 		=> 'gzd_toggle',
-				'default'	=> 'no',
-				'checkboxgroup'		=> '',
-			),
-			array(
-				'desc' 		=> __( 'Delivery Time Notice', 'woocommerce-germanized' ),
-				'id' 		=> 'woocommerce_gzd_display_listings_delivery_time_info',
-				'type' 		=> 'gzd_toggle',
-				'default'	=> 'yes',
-				'checkboxgroup'		=> '',
-			),
-			array(
-				'desc' 	=> __( 'Price Labels', 'woocommerce-germanized' ),
-				'id' 		=> 'woocommerce_gzd_display_listings_sale_price_labels',
-				'default'	=> 'yes',
-				'type' 		=> 'gzd_toggle',
-				'checkboxgroup'	=> 'end',
-			),
-			array(
-				'title' 	=> __( 'Single Product', 'woocommerce-germanized' ),
-				'desc' 		=> __( 'Shipping Costs notice', 'woocommerce-germanized' ),
-				'id' 		=> 'woocommerce_gzd_display_product_detail_shipping_costs_info',
-				'type' 		=> 'gzd_toggle',
-				'default'	=> 'yes',
-				'checkboxgroup'	=> 'start',
-			),
-			array(
-				'desc' 		=> __( 'Tax Info', 'woocommerce-germanized' ),
-				'id' 		=> 'woocommerce_gzd_display_product_detail_tax_info',
-				'type' 		=> 'gzd_toggle',
-				'default'	=> 'yes',
-				'checkboxgroup'		=> '',
-			),
-			array(
-				'desc' 		=> __( 'Base Price', 'woocommerce-germanized' ),
-				'id' 		=> 'woocommerce_gzd_display_product_detail_price_unit',
-				'type' 		=> 'gzd_toggle',
-				'default'	=> 'yes',
-				'checkboxgroup'		=> '',
-			),
-			array(
-				'desc' 		=> __( 'Product Units', 'woocommerce-germanized' ),
-				'id' 		=> 'woocommerce_gzd_display_product_detail_product_units',
-				'type' 		=> 'gzd_toggle',
-				'default'	=> 'no',
-				'checkboxgroup'		=> '',
-			),
-			array(
-				'desc' 		=> __( 'Delivery Time Notice', 'woocommerce-germanized' ),
-				'id' 		=> 'woocommerce_gzd_display_product_detail_delivery_time_info',
-				'type' 		=> 'gzd_toggle',
-				'default'	=> 'yes',
-				'checkboxgroup'		=> '',
-			),
-			array(
-				'desc' 	=> __( 'Price Labels', 'woocommerce-germanized' ),
-				'id' 		=> 'woocommerce_gzd_display_product_detail_sale_price_labels',
-				'default'	=> 'yes',
-				'type' 		=> 'gzd_toggle',
-				'checkboxgroup'	=> 'end',
-			),
 			array(
 				'title' 	=> __( 'Product Widgets', 'woocommerce-germanized' ),
 				'desc' 		=> __( 'Shipping Costs notice', 'woocommerce-germanized' ),
@@ -280,132 +235,105 @@ class WC_GZD_Settings_Tab_Shopmarks extends WC_GZD_Settings_Tab {
 				'checkboxgroup'	=> 'end',
 			),
 
-			array(
-				'title' 	=> __( 'Cart', 'woocommerce-germanized' ),
-				'desc' 		=> __( 'Base Price', 'woocommerce-germanized' ),
-				'id' 		=> 'woocommerce_gzd_display_cart_product_unit_price',
+			array( 'type' => 'sectionend', 'id' => 'product_widget_visibility_options' )
+		);
+	}
+
+	protected function get_display_settings( $location ) {
+		$title      = Shopmarks::get_location_title( $location );
+		$visibility = array(
+			array( 'title' => '', 'type' => 'title', 'id' => $location . '_visibility_options' )
+		);
+
+		foreach( Shopmarks::get( $location ) as $shopmark ) {
+			$title          = Shopmarks::get_type_title( $location, $shopmark->get_type() );
+			$default_filter = $shopmark->get_default_filter();
+
+			$visibility[] = array(
+				'title' 	=> $title,
+				'desc' 		=> sprintf( __( 'Show %s shopmark', 'woocommerce-germanized' ), $title ),
+				'id' 	    => $shopmark->get_option_name(),
+				'default'	=> $shopmark->is_default_enabled() ? 'yes' : 'no',
 				'type' 		=> 'gzd_toggle',
-				'default'	=> 'yes',
-				'checkboxgroup'	=> 'start',
-			),
-			array(
-				'desc' 		=> __( 'Product Units', 'woocommerce-germanized' ),
-				'id' 		=> 'woocommerce_gzd_display_cart_product_units',
-				'type' 		=> 'gzd_toggle',
-				'default'	=> 'yes',
-				'checkboxgroup'		=> '',
-			),
-			array(
-				'desc' 		=> __( 'Delivery Time', 'woocommerce-germanized' ),
-				'id' 		=> 'woocommerce_gzd_display_cart_product_delivery_time',
-				'type' 		=> 'gzd_toggle',
-				'default'	=> 'yes',
-				'checkboxgroup'	=> '',
-			),
-			array(
-				'desc' 		=> __( 'Description', 'woocommerce-germanized' ),
-				'id' 		=> 'woocommerce_gzd_display_cart_product_item_desc',
-				'type' 		=> 'gzd_toggle',
-				'default'	=> 'yes',
-				'checkboxgroup' => 'end',
-			),
-			array(
-				'title' 	=> __( 'Checkout', 'woocommerce-germanized' ),
-				'desc' 		=> __( 'Base Price', 'woocommerce-germanized' ),
-				'id' 		=> 'woocommerce_gzd_display_checkout_product_unit_price',
-				'type' 		=> 'gzd_toggle',
-				'default'	=> 'yes',
-				'checkboxgroup'	=> 'start',
-			),
-			array(
-				'desc' 		=> __( 'Product Units', 'woocommerce-germanized' ),
-				'id' 		=> 'woocommerce_gzd_display_checkout_product_units',
-				'type' 		=> 'gzd_toggle',
-				'default'	=> 'yes',
-				'checkboxgroup'		=> '',
-			),
-			array(
-				'desc' 		=> __( 'Delivery Time', 'woocommerce-germanized' ),
-				'id' 		=> 'woocommerce_gzd_display_checkout_product_delivery_time',
-				'type' 		=> 'gzd_toggle',
-				'default'	=> 'yes',
-				'checkboxgroup'	=> '',
-			),
-			array(
-				'desc' 		=> __( 'Description', 'woocommerce-germanized' ),
-				'id' 		=> 'woocommerce_gzd_display_checkout_product_item_desc',
-				'type' 		=> 'gzd_toggle',
-				'default'	=> 'yes',
-				'checkboxgroup' => 'end',
-			),
-			array(
-				'title' 	=> __( 'Mini Cart', 'woocommerce-germanized' ),
-				'desc' 		=> __( 'Base Price', 'woocommerce-germanized' ),
-				'id' 		=> 'woocommerce_gzd_display_mini_cart_product_unit_price',
-				'type' 		=> 'gzd_toggle',
-				'default'	=> 'yes',
-				'checkboxgroup'	=> 'start',
-			),
-			array(
-				'desc' 		=> __( 'Product Units', 'woocommerce-germanized' ),
-				'id' 		=> 'woocommerce_gzd_display_mini_cart_product_units',
-				'type' 		=> 'gzd_toggle',
-				'default'	=> 'yes',
-				'checkboxgroup'	=> '',
-			),
-			array(
-				'desc' 		=> __( 'Delivery Time', 'woocommerce-germanized' ),
-				'id' 		=> 'woocommerce_gzd_display_mini_cart_product_delivery_time',
-				'type' 		=> 'gzd_toggle',
-				'default'	=> 'yes',
-				'checkboxgroup'	=> '',
-			),
-			array(
-				'desc' 		=> __( 'Description', 'woocommerce-germanized' ),
-				'id' 		=> 'woocommerce_gzd_display_mini_cart_product_item_desc',
-				'type' 		=> 'gzd_toggle',
-				'default'	=> 'yes',
-				'checkboxgroup'	=> 'end',
-			),
+			);
+
+			if ( 'legal' === $shopmark->get_type() ) {
+				$visibility[] = array(
+					'title' 	=> __( 'Tax', 'woocommerce-germanized' ),
+					'desc' 		=> __( 'Show Tax shopmark', 'woocommerce-germanized' ),
+					'id' 	    => 'woocommerce_gzd_display_product_detail_tax_info',
+					'default'	=> $shopmark->is_default_enabled() ? 'yes' : 'no',
+					'type' 		=> 'gzd_toggle',
+					'custom_attributes' => array( 'data-show_if_' . $shopmark->get_option_name() => '' ),
+				);
+
+				$visibility[] = array(
+					'title' 	=> __( 'Shipping Costs', 'woocommerce-germanized' ),
+					'desc' 		=> __( 'Show Shipping Costs shopmark', 'woocommerce-germanized' ),
+					'id' 	    => 'woocommerce_gzd_display_product_detail_shipping_costs_info',
+					'default'	=> $shopmark->is_default_enabled() ? 'yes' : 'no',
+					'type' 		=> 'gzd_toggle',
+					'custom_attributes' => array( 'data-show_if_' . $shopmark->get_option_name() => '' ),
+				);
+			}
+
+			$visibility[] = array(
+				'title' 	=> __( 'Location', 'woocommerce-germanized' ),
+				'desc' 		=> __( 'Choose a location for the shopmark. Locations are mapped to specific WooCommerce hooks and may differ from Theme to Theme.', 'woocommerce-germanized' ),
+				'desc_tip'  => true,
+				'id' 	    => $shopmark->get_option_name( 'filter' ),
+				'default'   => $default_filter,
+				'type' 		=> 'select',
+				'options'   => Shopmarks::get_filter_options( $location ),
+				'class'     => 'wc-enhanced-select-nostd',
+				'custom_attributes' => array(
+					'data-show_if_' . $shopmark->get_option_name() => '',
+					'data-placeholder' => Shopmarks::get_filter_title( $location, $default_filter ),
+				),
+			);
+
+			$visibility[] = array(
+				'title' 	=> __( 'Priority', 'woocommerce-germanized' ),
+				'desc' 		=> sprintf( __( 'Choose a priority by which the shopmark should be attached to the location. The higher the priority, the later the shopmark will be attached. Defaults to %d.', 'woocommerce-germanized' ), $shopmark->get_default_priority() ),
+				'desc_tip'  => true,
+				'id' 	    => $shopmark->get_option_name( 'priority' ),
+				'default'   => $shopmark->get_default_priority(),
+				'type' 		=> 'number',
+				'css'       => 'max-width: 60px',
+				'custom_attributes' => array( 'data-show_if_' . $shopmark->get_option_name() => '', 'min' => 0 ),
+			);
+		}
+
+		$visibility[] = array( 'type' => 'sectionend', 'id' => $location . '_visibility_options' );
+
+		return $visibility;
+	}
+
+	protected function get_general_settings() {
+
+		$settings = array(
+			array( 'title' => __( 'Shipping Costs', 'woocommerce-germanized' ), 'type' => 'title', 'id' => 'shipping_costs_options' ),
 
 			array(
-				'title' 	=> __( 'E-mails', 'woocommerce-germanized' ),
-				'desc' 		=> __( 'Base Price', 'woocommerce-germanized' ),
-				'id' 		=> 'woocommerce_gzd_display_emails_unit_price',
-				'type' 		=> 'gzd_toggle',
-				'default'	=> 'yes',
-				'checkboxgroup'	=> 'start',
+				'title' 	=> __( 'Notice Text', 'woocommerce-germanized' ),
+				'desc' 		=> '<div class="wc-gzd-additional-desc">' . __( 'This text will be used to inform the customer about shipping costs. Use {link}{/link} to insert link to shipping costs page.', 'woocommerce-germanized' ) . '</div>',
+				'desc_tip'	=> false,
+				'id' 		=> 'woocommerce_gzd_shipping_costs_text',
+				'type' 		=> 'text',
+				'css' 		=> 'min-width:300px;',
+				'default'	=> __( 'plus {link}Shipping Costs{/link}', 'woocommerce-germanized' ),
 			),
 			array(
-				'desc' 		=> __( 'Product Units', 'woocommerce-germanized' ),
-				'id' 		=> 'woocommerce_gzd_display_emails_product_units',
-				'type' 		=> 'gzd_toggle',
-				'default'	=> 'yes',
-				'checkboxgroup'	=> '',
-			),
-			array(
-				'desc' 		=> __( 'Delivery Time Notice', 'woocommerce-germanized' ),
-				'id' 		=> 'woocommerce_gzd_display_emails_delivery_time',
-				'type' 		=> 'gzd_toggle',
-				'default'	=> 'yes',
-				'checkboxgroup'	=> '',
-			),
-			array(
-				'desc' 		=> __( 'Short Description', 'woocommerce-germanized' ),
-				'id' 		=> 'woocommerce_gzd_display_emails_product_item_desc',
-				'type' 		=> 'gzd_toggle',
-				'default'	=> 'yes',
-				'checkboxgroup'	=> '',
-			),
-			array(
-				'desc' 		=> __( 'Product Attributes', 'woocommerce-germanized' ),
-				'id' 		=> 'woocommerce_gzd_display_emails_product_attributes',
-				'type' 		=> 'gzd_toggle',
-				'default'	=> 'no',
-				'checkboxgroup' => 'end',
+				'title' 	=> __( 'Free Shipping Text', 'woocommerce-germanized' ),
+				'desc' 		=> '<div class="wc-gzd-additional-desc">' . __( 'This text will be used to inform the customer about free shipping. Leave empty to disable notice. Use {link}{/link} to insert link to shipping costs page.', 'woocommerce-germanized' ) . '</div>',
+				'desc_tip'	=> false,
+				'id' 		=> 'woocommerce_gzd_free_shipping_text',
+				'type' 		=> 'text',
+				'css' 		=> 'min-width:300px;',
+				'default'	=> '',
 			),
 
-			array( 'type' => 'sectionend', 'id' => 'shopmark_options' ),
+			array( 'type' => 'sectionend', 'id' => 'shipping_costs_options' ),
 
 			array( 'title' => __( 'Footer', 'woocommerce-germanized' ), 'type' => 'title', 'id' => 'footer_options' ),
 
@@ -427,6 +355,8 @@ class WC_GZD_Settings_Tab_Shopmarks extends WC_GZD_Settings_Tab {
 
 			array( 'type' => 'sectionend', 'id' => 'footer_options' ),
 		);
+
+		return $settings;
 	}
 
 	protected function get_delivery_time_settings() {
@@ -557,6 +487,23 @@ class WC_GZD_Settings_Tab_Shopmarks extends WC_GZD_Settings_Tab {
 				'options'	=>	$labels,
 				'desc'		=>  '<a href="' . admin_url( 'edit-tags.php?taxonomy=product_price_label&post_type=product' ) . '">' . __( 'Manage Price Labels', 'woocommerce-germanized' ) . '</a><div class="wc-gzd-additional-desc">' . __( 'Choose whether you would like to have a default sale price regular label to inform the customer about the sale price (e.g. New Price).', 'woocommerce-germanized' ) . '</div>',
 			),
+
+			array(
+				'title' 	=> __( 'Single Product', 'woocommerce-germanized' ),
+				'desc' 		=> __( 'Show sale price labels on single product page.', 'woocommerce-germanized' ),
+				'id' 		=> 'woocommerce_gzd_display_product_detail_sale_price_labels',
+				'type' 		=> 'gzd_toggle',
+				'default'	=> 'yes',
+			),
+
+			array(
+				'title' 	=> __( 'Loop', 'woocommerce-germanized' ),
+				'desc' 		=> __( 'Show sale price labels in product loops.', 'woocommerce-germanized' ),
+				'id' 		=> 'woocommerce_gzd_display_listings_sale_price_labels',
+				'type' 		=> 'gzd_toggle',
+				'default'	=> 'yes',
+			),
+
 			array( 'type' => 'sectionend', 'id' => 'price_label_options' ),
 		);
 	}

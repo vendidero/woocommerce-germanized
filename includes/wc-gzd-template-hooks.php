@@ -24,29 +24,21 @@ add_filter( 'woocommerce_get_variation_price_html', 'woocommerce_gzd_template_sa
 /**
  * Single Product
  */
-foreach( wc_gzd_get_legal_product_notice_types_by_location( 'single' ) as $type => $notice ) {
-    if ( $notice['is_action'] ) {
-        add_action( $notice['filter'], $notice['callback'], $notice['priority'], $notice['params'] );
-    } else {
-        add_filter( $notice['filter'], $notice['callback'], $notice['priority'], $notice['params'] );
-    }
+foreach( wc_gzd_get_single_product_shopmarks() as $shopmark ) {
+	$shopmark->execute();
+}
+
+/**
+ * Product Loop
+ */
+foreach( wc_gzd_get_product_loop_shopmarks() as $shopmark ) {
+	$shopmark->execute();
 }
 
 // Make sure to add a global product object to allow getting the grouped parent product within child display
 add_action( 'woocommerce_before_add_to_cart_form', 'woocommerce_gzd_template_single_setup_global_product' );
 
 add_filter( 'woocommerce_available_variation', 'woocommerce_gzd_add_variation_options', 0, 3 );
-
-/**
- * Product Loop Items
- */
-foreach( wc_gzd_get_legal_product_notice_types_by_location( 'loop' ) as $type => $notice ) {
-    if ( $notice['is_action'] ) {
-        add_action( $notice['filter'], $notice['callback'], $notice['priority'], $notice['params'] );
-    } else {
-        add_filter( $notice['filter'], $notice['callback'], $notice['priority'], $notice['params'] );
-    }
-}
 
 if ( get_option( 'woocommerce_gzd_display_listings_add_to_cart' ) == 'no' ) {
 	remove_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart' );
@@ -65,15 +57,13 @@ add_action( 'woocommerce_widget_product_item_end', 'woocommerce_gzd_template_pro
 /**
  * Cart
  */
-
 add_action( 'woocommerce_cart_totals_after_order_total', 'woocommerce_gzd_template_cart_total_tax', 1 );
 
-// Remove cart item name filter within checkout
-add_action( 'woocommerce_review_order_before_cart_contents', 'woocommerce_gzd_template_checkout_remove_cart_name_filter' );
-
-// Add cart product info
-foreach( wc_gzd_get_legal_cart_notice_types_by_location( 'cart' ) as $type => $notice ) {
-    add_filter( $notice['filter'], $notice['callback'], $notice['priority'], 3 );
+/**
+ * Cart Hooks
+ */
+foreach( wc_gzd_get_cart_shopmarks() as $shopmark ) {
+	$shopmark->execute();
 }
 
 // Small enterprises
@@ -127,13 +117,16 @@ add_action( 'woocommerce_review_order_after_order_total', 'woocommerce_gzd_templ
 add_action( 'woocommerce_review_order_before_cart_contents', 'woocommerce_gzd_template_checkout_table_content_replacement' );
 add_action( 'woocommerce_review_order_after_cart_contents', 'woocommerce_gzd_template_checkout_table_product_hide_filter_removal' );
 
-// Add checkout product info
-foreach( wc_gzd_get_legal_cart_notice_types_by_location( 'checkout' ) as $type => $notice ) {
-    add_filter( $notice['filter'], $notice['callback'], $notice['priority'], 3 );
+/**
+ * Checkout Hooks
+ */
+foreach( wc_gzd_get_checkout_shopmarks() as $shopmark ) {
+	$shopmark->execute();
 }
 
-if ( get_option( 'woocommerce_gzd_display_checkout_edit_data_notice' ) == 'yes' )
+if ( get_option( 'woocommerce_gzd_display_checkout_edit_data_notice' ) == 'yes' ) {
 	add_action( 'woocommerce_before_order_notes', 'woocommerce_gzd_template_checkout_edit_data_notice', wc_gzd_get_hook_priority( 'checkout_edit_data_notice' ), 1 );
+}
 
 // Remove default priorities
 remove_action( 'woocommerce_checkout_order_review', 'woocommerce_order_review', 10 );
@@ -163,8 +156,9 @@ add_filter( 'comment_form_submit_button', 'woocommerce_gzd_template_render_revie
 
 function woocommerce_gzd_checkout_load_ajax_relevant_hooks() {
 
-	if ( is_ajax() )
+	if ( is_ajax() ) {
 		return;
+	}
 
 	add_action( 'woocommerce_checkout_order_review', 'woocommerce_gzd_template_order_submit', wc_gzd_get_hook_priority( 'checkout_order_submit' ) );
 
@@ -181,8 +175,9 @@ function woocommerce_gzd_checkout_load_ajax_relevant_hooks() {
 }
 
 // Display back to cart button
-if ( get_option( 'woocommerce_gzd_display_checkout_back_to_cart_button' ) === 'yes' )
+if ( get_option( 'woocommerce_gzd_display_checkout_back_to_cart_button' ) === 'yes' ) {
 	add_action( 'woocommerce_review_order_after_cart_contents', 'woocommerce_gzd_template_checkout_back_to_cart' );
+}
 
 // Force order button text
 add_filter( 'woocommerce_order_button_text', 'woocommerce_gzd_template_order_button_text', 9999 );
