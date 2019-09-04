@@ -129,12 +129,7 @@ class WC_GZD_Install {
 		self::create_labels();
 		self::create_options();
 
-		if ( is_callable( array( 'WC_Tax', 'get_tax_class_slugs' ) ) ) {
-		    $tax_classes = WC_Tax::get_tax_class_slugs();
-        } else {
-            $tax_classes = array_filter( array_map( 'sanitize_title', array_map( 'trim', explode( "\n", get_option( 'woocommerce_tax_classes' ) ) ) ) );
-        }
-
+	    $tax_classes     = WC_Tax::get_tax_class_slugs();
 		$new_tax_classes = array();
 
 		if ( ! in_array( 'virtual-rate', $tax_classes ) || ! in_array( 'virtual-reduced-rate', $tax_classes ) ) {
@@ -147,15 +142,8 @@ class WC_GZD_Install {
 				array_push( $new_tax_classes, 'Virtual Reduced Rate' );
             }
 
-			if ( is_callable( array( 'WC_Tax', 'create_tax_class' ) ) ) {
-			    foreach( $new_tax_classes as $new_tax_class ) {
-			        WC_Tax::create_tax_class( $new_tax_class );
-                }
-            } else {
-			    $tax_classes = array_filter( array_map( 'trim', explode( "\n", get_option( 'woocommerce_tax_classes' ) ) ) );
-			    $tax_classes = array_merge( $tax_classes, $new_tax_classes );
-
-                update_option( 'woocommerce_tax_classes', implode( "\n", $tax_classes ) );
+		    foreach( $new_tax_classes as $new_tax_class ) {
+		        WC_Tax::create_tax_class( $new_tax_class );
             }
 		}
 
