@@ -7,12 +7,17 @@ defined( 'ABSPATH' ) || exit;
 
 <h2 class="wc-gzd-setting-header">
 	<?php _e( 'Germanized', 'woocommerce-germanized' ); ?>
+
     <?php if ( ! WC_germanized()->is_pro() ) : ?>
         <a class="page-title-action" href="https://vendidero.de/woocommerce-germanized" target="_blank"><?php printf( __( 'Upgrade to %s', 'woocommerce-germanized' ), '<span class="wc-gzd-pro">pro</span>' ); ?></a>
     <?php endif; ?>
+
+    <a class="page-title-action" href="<?php echo add_query_arg( array( 'tutorial' => 'yes' ) ); ?>"><?php _e( 'Start tutorial', 'woocommerce-germanized' ); ?></a>
 </h2>
 
-<p class="tab-description"><?php echo __( 'Adjust your Germanized settings.', 'woocommerce-germanized' ); ?></p>
+<p class="tab-description">
+    <?php echo __( 'Adapt your WooCommerce installation to the german market with Germanized.', 'woocommerce-germanized' ); ?>
+</p>
 
 <table class="wc-gzd-setting-tabs widefat">
 	<thead>

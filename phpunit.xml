@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <phpunit
-        bootstrap="tests/bootstrap.php"
-        backupGlobals="false"
-        colors="true"
-        convertErrorsToExceptions="true"
-        convertNoticesToExceptions="true"
-        convertWarningsToExceptions="true"
-        verbose="true"
-        syntaxCheck="true"
+    bootstrap="tests/bootstrap.php"
+    backupGlobals="false"
+    colors="true"
+    convertErrorsToExceptions="true"
+    convertNoticesToExceptions="true"
+    convertWarningsToExceptions="true"
+    verbose="true"
 >
     <testsuites>
         <testsuite name="WooCommerce GZD Test Suite">
@@ -16,20 +15,27 @@
     </testsuites>
     <filter>
         <whitelist addUncoveredFilesFromWhitelist="true">
-            <directory suffix=".php">.</directory>
+            <directory suffix=".php">./includes</directory>
+            <file>woocommerce-germanized.php</file>
+            <file>uninstall.php</file>
             <exclude>
                 <directory suffix=".php">./i18n/</directory>
                 <directory suffix=".php">./includes/gateways/direct-debit/libraries/</directory>
                 <directory suffix=".php">./includes/libraries/</directory>
                 <directory suffix=".php">./includes/updates/</directory>
                 <directory suffix=".php">./includes/widgets/</directory>
+                <directory suffix=".php">./includes/vendor</directory>
                 <directory suffix=".php">./templates/</directory>
-                <directory>./tests/</directory>
                 <directory suffix=".php">./tmp/</directory>
+                <directory suffix=".php">./packages</directory>
+                <directory suffix=".php">./src</directory>
+                <directory suffix=".php">./vendor</directory>
+                <file>./includes/wc-gzd-legacy-functions.php</file>
+                <file>./includes/wc-gzd-template-hooks.php</file>
             </exclude>
         </whitelist>
     </filter>
-    <logging>
-        <log type="coverage-html" target="./tmp/coverage" charset="UTF-8" />
-    </logging>
+    <listeners>
+        <listener class="SpeedTrapListener" file="tests/includes/listener-loader.php" />
+    </listeners>
 </phpunit>

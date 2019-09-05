@@ -54,7 +54,9 @@ class WC_GZD_Settings_Tab_Checkboxes extends WC_GZD_Settings_Tab {
 					'default'          => array(
 						'target'       => '#woocommerce_gzd_checkboxes_terms_label',
 						'next'         => '',
-						'next_url'     => '',
+						'next_url'     => admin_url( 'admin.php?page=wc-settings&tab=germanized' ),
+						'last_step'    => true,
+						'pro'          => true,
 						'next_trigger' => array(),
 						'options'      => array(
 							'content'  => '<h3>' . esc_html__( 'Label', 'woocommerce-germanized' ) . '</h3>' .

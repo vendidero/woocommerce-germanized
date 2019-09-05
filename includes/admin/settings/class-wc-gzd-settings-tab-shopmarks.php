@@ -80,7 +80,7 @@ class WC_GZD_Settings_Tab_Shopmarks extends WC_GZD_Settings_Tab {
 						'next_trigger' => array(),
 						'options'      => array(
 							'content'  => '<h3>' . esc_html__( 'Location', 'woocommerce-germanized' ) . '</h3>' .
-							              '<p>' . esc_html__( 'Adjust the location of the shopmark by selecting a location from the list. Some Themes might apply the locations at different positions that\'s why this option may differ from theme to theme.', 'woocommerce-germanized' ) . '</p>',
+							              '<p>' . esc_html__( 'Adjust the location of the shopmark by selecting a location from the list. Some Themes might apply the locations at different positions that\'s why the result may differ from Theme to Theme.', 'woocommerce-germanized' ) . '</p>',
 							'position' => array(
 								'edge'  => 'left',
 								'align' => 'left',

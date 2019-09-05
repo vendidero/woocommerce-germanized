@@ -90,7 +90,7 @@ class WC_GZD_Settings_Pointers {
 				'enabled'        => array(
 					'target'       => '#wc-gzd-setting-tab-enabled-double_opt_in .woocommerce-input-toggle',
 					'next'         => '',
-					'next_url'     => 'http://www.test.de',
+					'next_url'     => admin_url( 'admin.php?page=wc-settings&tab=germanized-general&tutorial=yes' ),
 					'next_trigger' => array(),
 					'options'      => array(
 						'content'  => '<h3>' . esc_html__( 'Status', 'woocommerce-germanized' ) . '</h3>' .
@@ -148,6 +148,10 @@ class WC_GZD_Settings_Pointers {
 								button2 = $( '<a class=\"button button-primary\" href=\"#\">' + next + '</a>' ),
 								wrapper = $( '<div class=\"wc-pointer-buttons\" />' ),
 								nextUrl = '';
+								
+							if ( pointer.hasOwnProperty( 'last_step' ) && pointer.last_step ) {
+								next    = '" . esc_js( __( 'Let\'s go', 'woocommerce-germanized' ) ) . "';
+							}
 							
 							if ( pointer.hasOwnProperty( 'next_url' ) && pointer.next_url.length ) {
 								nextUrl = pointer.next_url;

@@ -65,6 +65,8 @@
 
 .wc-gzd-settings .wc-gzd-setting-header {
   font-size: 1.4em; }
+  .wc-gzd-settings .wc-gzd-setting-header .page-title-action {
+    top: -1px; }
 
 .wc-gzd-settings .wc-gzd-setting-tabs {
   margin-top: 1.5em; }

@@ -227,10 +227,6 @@ class WC_GZD_Checkout {
 		wp_enqueue_script( 'wc-gzd-force-pay-order' );
 	}
 
-	public function disable_terms_order_pay( $show ) {
-		return false;
-	}
-
 	public function set_free_shipping_filter( $cart ) {
 		self::$force_free_shipping_filter = true;
 	}
@@ -242,19 +238,26 @@ class WC_GZD_Checkout {
 			return $rates;
         }
 
-		$keep = array();
-		$hide = false;
-
-		// Legacy Support
-		if ( isset( $rates['free_shipping'] ) ) {
-			$keep[] = 'free_shipping';
-			$hide = true;
-		}
+		$keep     = array();
+		$hide     = false;
+		$excluded = get_option( 'woocommerce_gzd_display_checkout_free_shipping_excluded', array() );
 
 		// Check for cost-free shipping
 		foreach ( $rates as $key => $rate ) {
-
 		    if ( is_a( $rate, 'WC_Shipping_Rate' ) ) {
+
+			    /**
+			     * Filter to exclude certain shipping rates from being hidden as soon as free shipping option
+			     * is available.
+			     *
+			     * @since 3.0.0
+			     *
+			     * @param bool             $is_excluded Whether the rate is excluded or not.
+			     * @param string           $instance The shipping rate instance.
+			     * @param WC_Shipping_Rate $rate The shipping rate.
+			     */
+			    $is_excluded = apply_filters( 'woocommerce_gzd_exclude_from_force_free_shipping', false, $key, $rate );
+
 		        if ( 'free_shipping' === $rate->method_id ) {
 		            $keep[] = $key;
 		            $hide   = true;
@@ -262,17 +265,11 @@ class WC_GZD_Checkout {
 		            $keep[] = $key;
                 } elseif( $rate->cost == 0 ) {
 		            $keep[] = $key;
-                }
-            } else {
-                // Do only hide if free_shipping exists
-                if ( strpos( $key, 'free_shipping' ) !== false ) {
-                    $hide = true;
-                }
-
-                // Always show local pickup
-                if ( $rate->cost == 0 || strpos( $key, 'local_pickup' ) !== false ) {
-                    $keep[] = $key;
-                }
+                } elseif( in_array( $key, $excluded ) ) {
+		        	$keep[] = $key;
+		        } elseif( $is_excluded ) {
+		        	$keep[] = $key;
+		        }
             }
 		}
 

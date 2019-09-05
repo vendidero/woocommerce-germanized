@@ -233,6 +233,8 @@ class WC_GZD_Settings_Tab_General extends WC_GZD_Settings_Tab {
 	}
 
 	protected function get_checkout_settings() {
+		$shipping_methods_options = WC_GZD_Admin::instance()->get_shipping_method_instances_options();
+
 		return array(
 			array( 'title' => '', 'type' => 'title', 'desc' => '', 'id' => 'checkout_options' ),
 
@@ -271,6 +273,20 @@ class WC_GZD_Settings_Tab_General extends WC_GZD_Settings_Tab {
 				'default'	=> 'no',
 				'type' 		=> 'gzd_toggle',
 			),
+
+			array(
+				'title' 	=> __( 'Exclude Methods', 'woocommerce-germanized' ),
+				'id' 		=> 'woocommerce_gzd_display_checkout_free_shipping_excluded',
+				'default'	=> array(),
+				'class' 	=> 'wc-enhanced-select',
+				'type'      => 'multiselect',
+				'options'   => $shipping_methods_options,
+				'custom_attributes' => array(
+					'data-show_if_woocommerce_gzd_display_checkout_free_shipping_select' => '',
+				),
+				'desc'	    => '<div class="wc-gzd-additional-desc">' . __( 'Optionally choose methods which should be excluded from hiding when free shipping is available (e.g. express shipping options).', 'woocommerce-germanized' ) . '</div>',
+			),
+
 			array( 'type' => 'sectionend', 'id' => 'checkout_options' ),
 		);
 	}
