@@ -87,7 +87,7 @@ abstract class WC_GZD_Settings_Tab extends WC_Settings_Page {
 		$current_section = $this->get_current_section();
 		$section_label   = $this->get_section_title( $current_section );
 
-		$breadcrumb      = array( array(
+		$breadcrumb = array( array(
 			'class' => 'main',
 			'href'  => admin_url( 'admin.php?page=wc-settings&tab=germanized' ),
 			'title' => __( 'Germanized', 'woocommerce-germanized' )
@@ -96,14 +96,14 @@ abstract class WC_GZD_Settings_Tab extends WC_Settings_Page {
 		$breadcrumb[] = array(
 			'class' => 'tab',
 			'href'  => ! empty( $current_section ) ? $this->get_link() : '',
-			'title' => $this->get_label()
+			'title' => $this->get_breadcrumb_label( $this->get_label() )
 		);
 
 		if ( ! empty( $current_section ) ) {
 			$breadcrumb[] = array(
 				'class' => 'section',
 				'href'  => '',
-				'title' => $section_label,
+				'title' => $this->get_breadcrumb_label( $section_label ),
 			);
 		}
 
@@ -111,6 +111,10 @@ abstract class WC_GZD_Settings_Tab extends WC_Settings_Page {
 	}
 
 	public function get_description() {}
+
+	protected function get_breadcrumb_label( $label ) {
+	    return $label;
+    }
 
 	protected function get_section_description( $section ) {
 		return '';

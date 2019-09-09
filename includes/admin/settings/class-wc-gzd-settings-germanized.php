@@ -93,6 +93,7 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 		include_once dirname( __FILE__ ) . '/class-wc-gzd-settings-tab-terms-generator.php';
 		include_once dirname( __FILE__ ) . '/class-wc-gzd-settings-tab-revocation-generator.php';
 		include_once dirname( __FILE__ ) . '/class-wc-gzd-settings-tab-dhl.php';
+		include_once dirname( __FILE__ ) . '/class-wc-gzd-settings-tab-shipments.php';
 
 	    $tabs = apply_filters( 'woocommerce_gzd_admin_settings_tabs', array(
 		    'general'              => 'WC_GZD_Settings_Tab_General',
@@ -100,6 +101,7 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
             'taxes'                => 'WC_GZD_Settings_Tab_Taxes',
 		    'contract'             => 'WC_GZD_Settings_Tab_Contract',
             'button_solution'      => 'WC_GZD_Settings_Tab_Button_Solution',
+		    'shipments'            => 'WC_GZD_Settings_Tab_Shipments',
 		    'dhl'                  => 'WC_GZD_Settings_Tab_DHL',
             'emails'               => 'WC_GZD_Settings_Tab_Emails',
             'checkboxes'           => 'WC_GZD_Settings_Tab_Checkboxes',

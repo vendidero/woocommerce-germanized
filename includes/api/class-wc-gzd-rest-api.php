@@ -12,8 +12,10 @@ class WC_GZD_REST_API {
 	protected static $_instance = null;
 
 	public static function instance() {
-		if ( is_null( self::$_instance ) )
+		if ( is_null( self::$_instance ) ) {
 			self::$_instance = new self();
+		}
+
 		return self::$_instance;
 	}
 
@@ -22,9 +24,6 @@ class WC_GZD_REST_API {
 	}
 
 	public function init() {
-		if ( version_compare( wc_gzd_get_dependencies()->get_plugin_version( 'woocommerce' ), '2.6', '<' ) )
-			return;
-
 		$this->rest_api_includes();
 		$this->register_rest_routes();
 	}
