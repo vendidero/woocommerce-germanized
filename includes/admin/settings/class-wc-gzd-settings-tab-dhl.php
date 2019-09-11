@@ -27,6 +27,10 @@ class WC_GZD_Settings_Tab_DHL extends WC_GZD_Settings_Tab {
 		return 'dhl';
 	}
 
+	public function get_help_link() {
+		return 'https://vendidero.de';
+	}
+
 	public function get_tab_settings( $current_section = '' ) {
 		$settings = Settings::get_settings( $current_section );
 

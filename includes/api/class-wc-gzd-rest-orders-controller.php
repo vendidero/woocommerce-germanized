@@ -28,8 +28,8 @@ class WC_GZD_REST_Orders_Controller {
 	 * Filter order data returned from the REST API.
 	 *
 	 * @param WP_REST_Response $response The response object.
-	 * @param \WP_Post $post object used to create response.
-	 * @param \WP_REST_Request $request Request object.
+	 * @param WP_Post $post object used to create response.
+	 * @param WP_REST_Request $request Request object.
 	 *
 	 * @return WP_REST_Response
 	 *@since 1.0.0
@@ -41,10 +41,9 @@ class WC_GZD_REST_Orders_Controller {
 		$order               = wc_get_order( $post );
 		$response_order_data = $response->get_data();
 		
-		$response_order_data['billing']['title']  = $order->get_meta( '_billing_title' );
-		$response_order_data['shipping']['title'] = $order->get_meta( 'shipping_title' );
-
-		$response_order_data['parcel_delivery_opted_in'] = $order->get_meta( 'parcel_delivery_opted_in' );
+		$response_order_data['billing']['title']         = $order->get_meta( '_billing_title' );
+		$response_order_data['shipping']['title']        = $order->get_meta( '_shipping_title' );
+		$response_order_data['parcel_delivery_opted_in'] = $order->get_meta( '_parcel_delivery_opted_in' );
 
 		$holder         = $order->get_meta( '_direct_debit_holder' );
 		$iban           = $order->get_meta( '_direct_debit_iban' );
@@ -146,18 +145,6 @@ class WC_GZD_REST_Orders_Controller {
 			'type'        => 'integer',
 			'context'     => array( 'view', 'edit' ),
 			'enum'        => array( 1, 2 )
-		);
-
-		$schema_properties['shipping']['properties']['parcelshop'] = array(
-			'description' => __( 'Parcel Shop', 'woocommerce-germanized' ),
-			'type'        => 'boolean',
-			'context'     => array( 'view', 'edit' ),
-		);
-
-		$schema_properties['shipping']['properties']['parcelshop_post_number'] = array(
-			'description' => __( 'Postnumber', 'woocommerce-germanized' ),
-			'type'        => 'string',
-			'context'     => array( 'view', 'edit' ),
 		);
 
 		$schema_properties['parcel_delivery_opted_in'] = array(

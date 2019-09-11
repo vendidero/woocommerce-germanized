@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 class WC_GZD_Settings_Tab_Checkboxes extends WC_GZD_Settings_Tab {
 
 	public function get_description() {
-		return __( 'Legal checkboxes are being used to ask the customer for a certain permission or action (e.g. to accept terms & conditions) before the checkout or another form may be completed.', 'woocommerce-germanized' );
+		return __( 'Ask your customers for a certain permission or action before a form may be submitted.', 'woocommerce-germanized' );
 	}
 
 	public function get_label() {

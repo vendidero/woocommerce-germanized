@@ -68,6 +68,16 @@ abstract class WC_GZD_Settings_Tab extends WC_Settings_Page {
 		}
 	}
 
+	public function get_help_link() {
+	    return '';
+    }
+
+    public function has_help_link() {
+	    $help_link = $this->get_help_link();
+
+	    return ( ! empty( $help_link ) ? true : false );
+    }
+
 	public function is_pro() {
 		return false;
 	}
@@ -75,7 +85,7 @@ abstract class WC_GZD_Settings_Tab extends WC_Settings_Page {
 	protected function output_description() {
 		$current_section = $this->get_current_section();
 
-		if( $desc = $this->get_section_description( $current_section ) ) {
+		if ( $desc = $this->get_section_description( $current_section ) ) {
 			echo '<p class="tab-description tab-section-description">' . $desc . '</p>';
 		} elseif( empty( $current_section ) ) {
 			echo '<p class="tab-description">' . $this->get_description() . '</p>';
@@ -113,6 +123,10 @@ abstract class WC_GZD_Settings_Tab extends WC_Settings_Page {
 	public function get_description() {}
 
 	protected function get_breadcrumb_label( $label ) {
+	    if ( empty( $this->get_current_section() ) && $this->has_help_link() ) {
+	        $label = $label . '<a class="page-title-action" href="' . esc_url( $this->get_help_link() ) . '" target="_blank">' . __( 'Learn more', 'woocommerce-germanized' ) . '</a>';
+        }
+
 	    return $label;
     }
 

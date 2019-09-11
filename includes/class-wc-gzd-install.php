@@ -28,7 +28,8 @@ class WC_GZD_Install {
 		'1.9.2' => 'updates/woocommerce-gzd-update-1.9.2.php',
 		'2.0.1' => 'updates/woocommerce-gzd-update-2.0.1.php',
 		'2.2.5' => 'updates/woocommerce-gzd-update-2.2.5.php',
-        '2.3.0' => 'updates/woocommerce-gzd-update-2.3.0.php'
+        '2.3.0' => 'updates/woocommerce-gzd-update-2.3.0.php',
+		'3.0.0' => 'updates/woocommerce-gzd-update-3.0.0.php'
 	);
 
 	/**
@@ -68,6 +69,19 @@ class WC_GZD_Install {
 			}
 
 			wp_redirect( admin_url( 'index.php?page=wc-gzd-about' ) );
+			exit;
+		} elseif ( ! empty( $_GET['do_update_woocommerce_gzd'] ) ) {
+
+			self::update();
+
+			// Update complete
+			delete_option( '_wc_gzd_needs_pages' );
+			delete_option( '_wc_gzd_needs_update' );
+
+			delete_transient( '_wc_gzd_activation_redirect' );
+
+			// What's new redirect
+			wp_redirect( admin_url( 'index.php?page=wc-gzd-about&wc-gzd-updated=true' ) );
 			exit;
 		}
 	}

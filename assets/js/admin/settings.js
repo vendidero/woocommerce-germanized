@@ -12,6 +12,8 @@ window.germanized = window.germanized || {};
 
         init: function() {
 
+            var self = this;
+
             this.params = wc_gzd_admin_settings_params;
 
             try {
@@ -40,6 +42,21 @@ window.germanized = window.germanized || {};
             $( 'input[name=woocommerce_gzd_dispute_resolution_type]:checked' ).trigger( 'change' );
 
             this.initMailSortable();
+
+            $( document.body ).on( 'init_tooltips', function() {
+                self.initTipTips();
+            });
+
+            self.initTipTip();
+        },
+
+        initTipTip: function() {
+            console.log('jaa');
+            $( '.wc-gzd-setting-tab-actions a.button' ).tipTip( {
+                'fadeIn': 50,
+                'fadeOut': 50,
+                'delay': 200
+            });
         },
 
         onChangeTabStatus: function() {
@@ -49,6 +66,8 @@ window.germanized = window.germanized || {};
                 $toggle   = $checkbox.parents( 'td' ).find( '.woocommerce-gzd-input-toggle' ),
                 $link     = $toggle.parents( 'a' ),
                 isEnabled = $checkbox.is( ':checked' ) ? 'yes' : 'no';
+
+            console.log(isEnabled);
 
             var data = {
                 action: 'woocommerce_gzd_toggle_tab_enabled',

@@ -8,6 +8,8 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
+use Vendidero\Germanized\DHL\Admin\Importer;
+
 if ( ! class_exists( 'WC_GZD_Admin_Notices' ) ) :
 
 /**
@@ -85,8 +87,8 @@ class WC_GZD_Admin_Notices {
 
 		if ( get_option( '_wc_gzd_needs_update' ) == 1 ) {
 			if ( current_user_can( 'manage_woocommerce' ) ) {
-				wp_enqueue_style( 'woocommerce-activation', plugins_url( '/assets/css/activation.css', WC_PLUGIN_FILE ) );
-				wp_enqueue_style( 'woocommerce-gzd-activation', plugins_url( '/assets/css/admin-activation.css', WC_GERMANIZED_PLUGIN_FILE ) );
+				$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
+				wp_enqueue_style( 'woocommerce-gzd-activation', WC_germanized()->plugin_url() . '/assets/css/admin-activation' . $suffix . '.css', array(), WC_GERMANIZED_VERSION );
 
 				add_action( 'admin_notices', array( $this, 'update_notice' ) );
 			}
@@ -108,6 +110,14 @@ class WC_GZD_Admin_Notices {
 		
 		if ( isset( $_GET['page'] ) && $_GET['page'] === 'wc-gzd-about' ) {
 			remove_action( 'admin_notices', array( $this, 'theme_supported_notice' ) );
+		}
+
+		add_action( 'admin_notices', array( $this, 'dhl_importer_notice' ) );
+	}
+
+	public function dhl_importer_notice() {
+		if ( Importer::is_plugin_enabled() && Importer::is_available() ) {
+			include( 'views/html-notice-dhl.php' );
 		}
 	}
 

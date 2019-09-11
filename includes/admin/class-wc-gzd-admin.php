@@ -3,6 +3,8 @@
 if ( ! defined( 'ABSPATH' ) )
 	exit; // Exit if accessed directly
 
+use Vendidero\Germanized\DHL\Admin\Importer;
+
 class WC_GZD_Admin {
 
 	/**
@@ -24,6 +26,7 @@ class WC_GZD_Admin {
 		if ( is_null( self::$_instance ) ) {
 			self::$_instance = new self();
 		}
+
 		return self::$_instance;
 	}
 
@@ -65,6 +68,7 @@ class WC_GZD_Admin {
 		add_action( 'admin_init', array( $this, 'check_insert_vat_rates' ) );
 		add_action( 'admin_init', array( $this, 'check_resend_activation_email' ) );
 		add_action( 'admin_init', array( $this, 'check_notices' ) );
+		add_action( 'admin_init', array( $this, 'check_dhl_import' ) );
 
 		add_filter( 'woocommerce_addons_section_data', array( $this, 'set_addon' ), 10, 2 );
 		add_action( 'woocommerce_admin_order_data_after_shipping_address', array( $this, 'set_order_parcel_delivery_opted_in' ), 10, 1 );
@@ -84,6 +88,32 @@ class WC_GZD_Admin {
 		add_filter( 'woocommerce_admin_settings_sanitize_option', array( $this, 'save_toggle_input_field' ), 0, 3 );
 
 		$this->wizward = require 'class-wc-gzd-admin-setup-wizard.php';
+	}
+
+	public function check_dhl_import() {
+		if ( Importer::is_available() ) {
+			if ( isset( $_GET['wc-gzd-dhl-import'] ) && isset( $_GET['_wpnonce'] ) ) { // WPCS: input var ok, CSRF ok.
+
+			    if ( ! wp_verify_nonce( sanitize_key( wp_unslash( $_GET['_wpnonce'] ) ), 'woocommerce_gzd_dhl_import_nonce' ) ) { // WPCS: input var ok, CSRF ok.
+					wp_die( esc_html__( 'Action failed. Please refresh the page and retry.', 'woocommerce-germanized-dhl' ) );
+				}
+
+				if ( ! current_user_can( 'manage_woocommerce' ) ) {
+					wp_die( esc_html__( 'You don\'t have permission to do this.', 'woocommerce-germanized-dhl' ) );
+				}
+
+				Importer::import_order_data( 50 );
+				Importer::import_settings();
+
+				deactivate_plugins( 'dhl-for-woocommerce/pr-dhl-woocommerce.php' );
+
+				update_option( 'woocommerce_gzd_dhl_enable', 'yes' );
+				update_option( 'woocommerce_gzd_shipments_enable', 'yes' );
+				update_option( 'woocommerc_gzd_dhl_import_finished', 'yes' );
+				
+				wp_safe_redirect( admin_url( 'admin.php?page=wc-settings&tab=germanized-dhl' ) );
+			}
+		}
 	}
 
 	public function save_toggle_input_field( $value, $option, $raw_value ) {
