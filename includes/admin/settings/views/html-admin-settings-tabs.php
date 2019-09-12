@@ -54,10 +54,10 @@ defined( 'ABSPATH' ) || exit;
                 <td class="wc-gzd-setting-tab-desc"><?php echo $tab->get_description(); ?></td>
                 <td class="wc-gzd-setting-tab-actions">
 	                <?php if ( $tab->has_help_link() ) : ?>
-                        <a class="button button-secondary help-link" title="<?php esc_attr_e( 'Find out more', 'woocommerce-germanized' ); ?>" aria-label="<?php esc_attr_e( 'Find out more', 'woocommerce-germanized' ); ?>" href="<?php echo $tab->get_help_link(); ?>"><?php _e( 'How to', 'woocommerce-germanized' ); ?></a>
+                        <a class="button button-secondary wc-gzd-dash-button help-link" title="<?php esc_attr_e( 'Find out more', 'woocommerce-germanized' ); ?>" aria-label="<?php esc_attr_e( 'Find out more', 'woocommerce-germanized' ); ?>" href="<?php echo $tab->get_help_link(); ?>"><?php _e( 'How to', 'woocommerce-germanized' ); ?></a>
 	                <?php endif; ?>
 
-                    <a class="button button-secondary" aria-label="<?php esc_attr_e( 'Manage settings', 'woocommerce-germanized' ); ?>" title="<?php esc_attr_e( 'Manage settings', 'woocommerce-germanized' ); ?>" href="<?php echo $tab->get_link(); ?>"><?php _e( 'Manage', 'woocommerce-germanized' ); ?></a>
+                    <a class="button button-secondary wc-gzd-dash-button" aria-label="<?php esc_attr_e( 'Manage settings', 'woocommerce-germanized' ); ?>" title="<?php esc_attr_e( 'Manage settings', 'woocommerce-germanized' ); ?>" href="<?php echo $tab->get_link(); ?>"><?php _e( 'Manage', 'woocommerce-germanized' ); ?></a>
                 </td>
             </tr>
         <?php endforeach; ?>

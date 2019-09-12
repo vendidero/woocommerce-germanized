@@ -24,6 +24,33 @@
   border: 1px solid #0073aa;
   color: #0073aa; }
 
+.wc-gzd-settings .wc-gzd-dash-button {
+  margin-right: 5px;
+  text-indent: 9999px;
+  position: relative;
+  display: inline-block;
+  padding: 0;
+  height: 2em;
+  width: 2em;
+  overflow: hidden;
+  vertical-align: middle; }
+  .wc-gzd-settings .wc-gzd-dash-button::after {
+    font-family: Dashicons;
+    speak: none;
+    font-weight: 400;
+    font-variant: normal;
+    text-transform: none;
+    margin: 0;
+    text-indent: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    line-height: 1.85;
+    content: "\f464"; }
+
 .wc-gzd-settings .wc-gzd-settings-breadcrumb {
   display: flex;
   flex-wrap: wrap;
@@ -94,35 +121,7 @@
     justify-content: flex-end;
     flex-wrap: wrap; }
     .wc-gzd-settings .wc-gzd-setting-tabs td.wc-gzd-setting-tab-actions .button {
-      margin-right: 5px;
-      text-indent: 9999px;
-      position: relative;
-      display: inline-block;
-      padding: 0;
-      height: 2em;
-      width: 2em;
-      overflow: hidden;
-      vertical-align: middle; }
-      .wc-gzd-settings .wc-gzd-setting-tabs td.wc-gzd-setting-tab-actions .button::after {
-        font-family: Dashicons;
-        speak: none;
-        font-weight: 400;
-        font-variant: normal;
-        text-transform: none;
-        margin: 0;
-        text-indent: 0;
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        text-align: center;
-        line-height: 1.85;
-        content: "\f464"; }
-      .wc-gzd-settings .wc-gzd-setting-tabs td.wc-gzd-setting-tab-actions .button.help-link::after {
-        content: "?";
-        font-family: inherit;
-        font-weight: bold; }
+      margin-right: 5px; }
       .wc-gzd-settings .wc-gzd-setting-tabs td.wc-gzd-setting-tab-actions .button:last-child {
         margin-right: 0; }
   .wc-gzd-settings .wc-gzd-setting-tabs td.wc-gzd-setting-tab-name, .wc-gzd-settings .wc-gzd-setting-tabs th.wc-gzd-setting-tab-name {

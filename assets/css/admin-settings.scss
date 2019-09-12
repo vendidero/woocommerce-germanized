@@ -45,6 +45,44 @@
     }
   }
 
+  .wc-gzd-dash-button {
+    margin-right: 5px;
+    text-indent: 9999px;
+    position: relative;
+    display: inline-block;
+    padding: 0;
+    height: 2em;
+    width: 2em;
+    overflow: hidden;
+    vertical-align: middle;
+
+    &::after {
+      font-family: Dashicons;
+      speak: none;
+      font-weight: 400;
+      font-variant: normal;
+      text-transform: none;
+      margin: 0;
+      text-indent: 0;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      line-height: 1.85;
+      content: "\f464";
+    }
+
+    &.help-link {
+      &::after {
+        content: "?";
+        font-family: inherit;
+        font-weight: bold;
+      }
+    }
+  }
+
   .wc-gzd-settings-breadcrumb {
     display: flex;
     flex-wrap: wrap;
@@ -148,40 +186,6 @@
 
       .button {
         margin-right: 5px;
-        text-indent: 9999px;
-        position: relative;
-        display: inline-block;
-        padding: 0;
-        height: 2em;
-        width: 2em;
-        overflow: hidden;
-        vertical-align: middle;
-
-        &::after {
-          font-family: Dashicons;
-          speak: none;
-          font-weight: 400;
-          font-variant: normal;
-          text-transform: none;
-          margin: 0;
-          text-indent: 0;
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          text-align: center;
-          line-height: 1.85;
-          content: "\f464";
-        }
-
-        &.help-link {
-          &::after {
-            content: "?";
-            font-family: inherit;
-            font-weight: bold;
-          }
-        }
 
         &:last-child {
           margin-right: 0;

@@ -156,6 +156,12 @@ abstract class WC_GZD_Settings_Tab extends WC_Settings_Page {
 		return '';
 	}
 
+	public function has_tutorial() {
+	    $pointers = $this->get_pointers();
+
+	    return ! empty( $pointers ) ? true : false;
+    }
+
 	public function get_pointers() {
 	    return array();
     }
