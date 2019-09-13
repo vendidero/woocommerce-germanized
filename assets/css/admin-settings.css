@@ -50,6 +50,10 @@
     text-align: center;
     line-height: 1.85;
     content: "\f464"; }
+  .wc-gzd-settings .wc-gzd-dash-button.help-link::after {
+    content: "?";
+    font-family: inherit;
+    font-weight: bold; }
 
 .wc-gzd-settings .wc-gzd-settings-breadcrumb {
   display: flex;

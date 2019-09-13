@@ -51,7 +51,6 @@ window.germanized = window.germanized || {};
         },
 
         initTipTip: function() {
-            console.log('jaa');
             $( '.wc-gzd-setting-tab-actions a.button' ).tipTip( {
                 'fadeIn': 50,
                 'fadeOut': 50,
@@ -66,8 +65,6 @@ window.germanized = window.germanized || {};
                 $toggle   = $checkbox.parents( 'td' ).find( '.woocommerce-gzd-input-toggle' ),
                 $link     = $toggle.parents( 'a' ),
                 isEnabled = $checkbox.is( ':checked' ) ? 'yes' : 'no';
-
-            console.log(isEnabled);
 
             var data = {
                 action: 'woocommerce_gzd_toggle_tab_enabled',
