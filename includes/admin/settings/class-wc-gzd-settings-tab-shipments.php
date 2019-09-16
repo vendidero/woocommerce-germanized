@@ -31,14 +31,6 @@ class WC_GZD_Settings_Tab_Shipments extends WC_GZD_Settings_Tab {
 		return Settings::get_sections();
 	}
 
-	protected function get_enable_option_name() {
-		return 'woocommerce_gzd_shipments_enable';
-	}
-
-	public function supports_disabling() {
-		return true;
-	}
-
 	protected function get_breadcrumb_label( $label ) {
 		$current_section = $this->get_current_section();
 
