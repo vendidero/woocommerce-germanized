@@ -1,13 +1,12 @@
 language: php
-
-sudo: false
+dist: trusty
+sudo: required
 
 cache:
   directories:
     - vendor
     - $HOME/.composer/cache
 
-# Test main supported versions of PHP and HHVM against latest WP. 5.2 is min supported version.
 php:
   - 5.6
   - 7.0
@@ -16,46 +15,26 @@ php:
   - 7.3
 
 env:
-  - WP_VERSION=latest WOO_VERSION=latest WP_MULTISITE=0
+  - WP_VERSION=latest WOO_VERSION=latest WP_MULTISITE=0 WP_CORE_DIR=/tmp/wordpress
 
 # Additonal tests against stable PHP (min recommended version is 5.6) and past supported versions of WP.
 matrix:
   fast_finish: true
   include:
-  - php: 5.6
-    env: WP_VERSION=latest WOO_VERSION=latest WP_MULTISITE=1
- - name: "WooCommerce unit tests using WordPress nightly"
-   php: 7.3
-   env: WP_VERSION=nightly WP_MULTISITE=0
+    - name: "WooCommerce unit tests using WordPress nightly"
+      php: 7.3
+      env: WP_VERSION=nightly WP_MULTISITE=0 WP_CORE_DIR=/tmp/wordpress
 
 before_script:
   - export PATH="$HOME/.composer/vendor/bin:$PATH"
-  - |
-    # Remove Xdebug for a huge performance increase:
-    if [ -f ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/xdebug.ini ]; then
-      phpenv config-rm xdebug.ini
-    else
-      echo "xdebug.ini does not exist"
-    fi
-  - |
-    # Install WP Test suite, install PHPUnit globally if needed:
-    if [[ ! -z "$WP_VERSION" ]]; then
-      bash tests/bin/install.sh woocommerce_gzd_test root '' localhost $WP_VERSION $WOO_VERSION
-      # PHP 5.2 does not have composer, do not try to run it.
-      if [[ ${TRAVIS_PHP_VERSION:0:3} != "5.2" ]]; then
-        composer global require "phpunit/phpunit=4.8.*|6.5.*"
-      fi
-    fi
+  - phpenv config-rm xdebug.ini
+  - composer install
+  - composer global require "phpunit/phpunit=4.8.*|6.5.*"
+  - composer require woocommerce/woocommerce-sniffs
+  - bash unit-tests/bin/install.sh woocommerce_test root '' localhost $WP_VERSION
 
 script:
   - bash tests/bin/phpunit.sh
 
 after_script:
   - bash tests/bin/travis.sh after
-
-# Specifies that Travis should create builds for master and release branches and also tags.
-branches:
-  only:
-    - master
-    - /^\d+\.\d+(\.\d+)?(-\S*)?$/
-    - /^release\//

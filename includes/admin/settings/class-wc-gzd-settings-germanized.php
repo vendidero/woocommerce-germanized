@@ -1,5 +1,7 @@
 <?php
 
+use Vendidero\Germanized\Shipments\Package;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
@@ -92,8 +94,14 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 		include_once dirname( __FILE__ ) . '/class-wc-gzd-settings-tab-multistep-checkout.php';
 		include_once dirname( __FILE__ ) . '/class-wc-gzd-settings-tab-terms-generator.php';
 		include_once dirname( __FILE__ ) . '/class-wc-gzd-settings-tab-revocation-generator.php';
-		include_once dirname( __FILE__ ) . '/class-wc-gzd-settings-tab-dhl.php';
-		include_once dirname( __FILE__ ) . '/class-wc-gzd-settings-tab-shipments.php';
+
+		if ( class_exists( '\Vendidero\Germanized\DHL\Package' ) && \Vendidero\Germanized\DHL\Package::has_dependencies() ) {
+			include_once dirname( __FILE__ ) . '/class-wc-gzd-settings-tab-dhl.php';
+		}
+
+		if ( class_exists( '\Vendidero\Germanized\Shipments\Package' ) && Package::has_dependencies() ) {
+			include_once dirname( __FILE__ ) . '/class-wc-gzd-settings-tab-shipments.php';
+		}
 
 	    $tabs = apply_filters( 'woocommerce_gzd_admin_settings_tabs', array(
 		    'general'              => 'WC_GZD_Settings_Tab_General',
@@ -116,7 +124,10 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 	    	$this->tabs = array();
 
 	    	foreach( $tabs as $key => $tab ) {
-	    		$this->tabs[ $key ] = new $tab;
+
+	    		if ( class_exists( $tab ) ) {
+				    $this->tabs[ $key ] = new $tab;
+			    }
 		    }
 	    }
 

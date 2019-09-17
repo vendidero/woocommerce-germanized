@@ -29,6 +29,13 @@ function wc_gzd_get_single_product_shopmarks() {
 /**
  * @return Vendidero\Germanized\Shopmark[]
  */
+function wc_gzd_get_single_product_grouped_shopmarks() {
+	return Shopmarks::get( 'single_product_grouped' );
+}
+
+/**
+ * @return Vendidero\Germanized\Shopmark[]
+ */
 function wc_gzd_get_product_loop_shopmarks() {
 	return Shopmarks::get( 'product_loop' );
 }
@@ -609,14 +616,21 @@ function woocommmerce_gzd_price_range( $price_html, $from, $to ) {
 }
 
 function wc_gzd_get_default_revocation_address() {
-	$address = str_replace( "<br/>", "\n", WC()->countries->get_formatted_address( array(
-		'company'    => get_bloginfo( 'name' ),
-		'city'       => WC()->countries->get_base_city(),
-		'country'    => WC()->countries->get_base_country(),
-		'address_1'  => WC()->countries->get_base_address(),
-		'address_2'  => WC()->countries->get_base_address_2(),
-		'postcode'   => WC()->countries->get_base_postcode(),
-	) ) );
+	$countries = isset( WC()->countries ) && WC()->countries ? WC()->countries : false;
+	$default   = '';
+
+	if ( $countries ) {
+		$default = $countries->get_formatted_address( array(
+			'company'    => get_bloginfo( 'name' ),
+			'city'       => $countries->get_base_city(),
+			'country'    => $countries->get_base_country(),
+			'address_1'  => $countries->get_base_address(),
+			'address_2'  => $countries->get_base_address_2(),
+			'postcode'   => $countries->get_base_postcode(),
+		) );
+	}
+
+	$address = str_replace( "<br/>", "\n", $default );
 
 	return $address;
 }

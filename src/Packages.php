@@ -26,7 +26,7 @@ class Packages {
      * @var array Key is the package name/directory, value is the main package class which handles init.
      */
     protected static $packages = [
-	    'woocommerce-trusted-shops' => '\\Vendidero\\TrustedShops\\Package',
+	    //'woocommerce-trusted-shops' => '\\Vendidero\\TrustedShops\\Package',
     ];
 
     /**

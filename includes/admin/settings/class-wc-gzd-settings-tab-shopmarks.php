@@ -30,7 +30,10 @@ class WC_GZD_Settings_Tab_Shopmarks extends WC_GZD_Settings_Tab {
 
 	public function get_sections() {
 		$sections = array(
-			'' => __( 'General', 'woocommerce-germanized' ),
+			''                => __( 'General', 'woocommerce-germanized' ),
+			'delivery_times'  => __( 'Delivery times', 'woocommerce-germanized' ),
+			'unit_prices'     => __( 'Unit prices', 'woocommerce-germanized' ),
+			'price_labels'    => __( 'Price labels', 'woocommerce-germanized' ),
 		);
 
 		foreach( Shopmarks::get_locations() as $location => $title ) {
@@ -39,9 +42,6 @@ class WC_GZD_Settings_Tab_Shopmarks extends WC_GZD_Settings_Tab {
 
 		$sections = array_merge( $sections, array(
 			'product_widgets' => __( 'Product Widgets', 'woocommerce-germanized' ),
-			'delivery_times'  => __( 'Delivery times', 'woocommerce-germanized' ),
-			'unit_prices'     => __( 'Unit prices', 'woocommerce-germanized' ),
-			'price_labels'    => __( 'Price labels', 'woocommerce-germanized' ),
 		) );
 
 		return $sections;
@@ -55,7 +55,7 @@ class WC_GZD_Settings_Tab_Shopmarks extends WC_GZD_Settings_Tab {
 			$pointers = array(
 				'pointers' => array(
 					'display'          => array(
-						'target'       => 'ul.subsubsub li:nth-of-type(2) a',
+						'target'       => 'ul.subsubsub li:nth-of-type(5) a',
 						'next'         => '',
 						'next_url'     => admin_url( 'admin.php?page=wc-settings&tab=germanized-shopmarks&section=single_product&tutorial=yes' ),
 						'next_trigger' => array(),

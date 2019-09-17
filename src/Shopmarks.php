@@ -52,6 +52,41 @@ class Shopmarks {
 		}
 	}
 
+	protected static function register_single_product_grouped() {
+
+		$shopmarks_single_product_grouped = apply_filters( 'woocommerce_gzd_shopmark_single_product_grouped_defaults', array(
+			'unit_price'           => array(
+				'default_filter'   => 'woocommerce_grouped_product_list_column_price',
+				'default_priority' => 11,
+				'callback'         => 'woocommerce_gzd_template_grouped_single_price_unit',
+			),
+			'legal'                => array(
+				'default_filter'   => 'woocommerce_grouped_product_list_column_price',
+				'default_priority' => 12,
+				'callback'         => 'woocommerce_gzd_template_grouped_single_legal_info',
+			),
+			'delivery_time'        => array(
+				'default_filter'   => 'woocommerce_grouped_product_list_column_price',
+				'default_priority' => 15,
+				'callback'         => 'woocommerce_gzd_template_grouped_single_delivery_time_info',
+			),
+			'units' => array(
+				'default_filter'   => 'woocommerce_grouped_product_list_column_price',
+				'default_priority' => 20,
+				'callback'         => 'woocommerce_gzd_template_grouped_single_product_units',
+			),
+		) );
+
+		self::$shopmarks['single_product_grouped'] = array();
+
+		foreach( $shopmarks_single_product_grouped as $type => $args ) {
+			$args['location'] = 'single_product_grouped';
+			$args['type']     = $type;
+
+			self::$shopmarks['single_product_grouped'][] = new Shopmark( $args );
+		}
+	}
+
 	protected static function register_product_loop() {
 
 		$shopmarks_product_loop = apply_filters( 'woocommerce_gzd_shopmark_product_loop_defaults', array(
@@ -211,11 +246,12 @@ class Shopmarks {
 
 	public static function get_locations() {
 		return array(
-			'single_product' => __( 'Single Product', 'woocommerce-germanized' ),
-			'product_loop'   => __( 'Product Loop', 'woocommerce-germanized' ),
-			'cart'           => __( 'Cart', 'woocommerce-germanized' ),
-			'mini_cart'      => __( 'Mini Cart', 'woocommerce-germanized' ),
-			'checkout'       => __( 'Checkout', 'woocommerce-germanized' )
+			'single_product'         => __( 'Single Product', 'woocommerce-germanized' ),
+			'single_product_grouped' => __( 'Single Product (Grouped)', 'woocommerce-germanized' ),
+			'product_loop'           => __( 'Product Loop', 'woocommerce-germanized' ),
+			'cart'                   => __( 'Cart', 'woocommerce-germanized' ),
+			'mini_cart'              => __( 'Mini Cart', 'woocommerce-germanized' ),
+			'checkout'               => __( 'Checkout', 'woocommerce-germanized' )
 		);
 	}
 
@@ -257,6 +293,23 @@ class Shopmarks {
 					'title'            => __( 'After Summary', 'woocommerce-germanized' ),
 					'is_action'        => true,
 					'number_of_params' => 1,
+				),
+			),
+			'single_product_grouped' => array(
+				'woocommerce_grouped_product_list_column_price' => array(
+					'title'            => __( 'Price Column', 'woocommerce-germanized' ),
+					'is_action'        => false,
+					'number_of_params' => 2,
+				),
+				'woocommerce_grouped_product_list_column_label' => array(
+					'title'            => __( 'Label Column', 'woocommerce-germanized' ),
+					'is_action'        => false,
+					'number_of_params' => 2,
+				),
+				'woocommerce_grouped_product_list_column_quantity' => array(
+					'title'            => __( 'Quantity Column', 'woocommerce-germanized' ),
+					'is_action'        => false,
+					'number_of_params' => 2,
 				),
 			),
 			'product_loop' => array(
@@ -342,6 +395,12 @@ class Shopmarks {
 	public static function get_types( $location = 'single_product' ) {
 		$types = array(
 			'single_product' => array(
+				'unit_price'    => _x( 'Unit Price', 'shopmark', 'woocommerce-germanized' ),
+				'delivery_time' => _x( 'Delivery Time', 'shopmark', 'woocommerce-germanized' ),
+				'legal'         => _x( 'General', 'shopmark', 'woocommerce-germanized' ),
+				'units'         => _x( 'Product Units', 'shopmark', 'woocommerce-germanized' ),
+			),
+			'single_product_grouped' => array(
 				'unit_price'    => _x( 'Unit Price', 'shopmark', 'woocommerce-germanized' ),
 				'delivery_time' => _x( 'Delivery Time', 'shopmark', 'woocommerce-germanized' ),
 				'legal'         => _x( 'General', 'shopmark', 'woocommerce-germanized' ),

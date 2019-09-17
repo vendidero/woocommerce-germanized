@@ -9,6 +9,7 @@ class WC_GZD_Helper_Product {
 
 	public static function create_simple_product() {
 		$product = WC_Helper_Product::create_simple_product();
+
 		$product->set_regular_price(10);
 		$product->set_sale_price(9);
 
@@ -18,7 +19,7 @@ class WC_GZD_Helper_Product {
 			'_unit_product' => '1',
 			'_unit_price_regular' => '100.0',
 			'_unit_price_sale' => '90.0',
-			'_unit_price' => '90.00',
+			'_unit_price' => '90.0',
 			'_unit_price_auto' => false,
 			'_sale_price_label' => 'new-price',
 			'_sale_price_regular_label' => 'old-price',

@@ -6,7 +6,7 @@
  */
 class WC_GZD_Unit_Tests_Bootstrap {
 
-	/** @var WC_Unit_Tests_Bootstrap instance */
+	/** @var WC_GZD_Unit_Tests_Bootstrap instance */
 	protected static $instance = null;
 
 	/** @var string directory where wordpress-tests-lib is installed */
@@ -18,11 +18,15 @@ class WC_GZD_Unit_Tests_Bootstrap {
 	/** @var string plugin directory */
 	public $plugin_dir;
 
-	public $wc_plugin_dir;
+	public $wp_plugin_dir;
 
 	public $wc_tests_dir;
 
-	public $woo_tests_dir;
+	public $packages = array(
+		'woocommerce-germanized-shipments/woocommerce-germanized-shipments.php' => '\Vendidero\Germanized\Shipments',
+		'woocommerce-germanized-dhl/woocommerce-germanized-dhl.php'             => '\Vendidero\Germanized\DHL',
+		'woocommerce-trusted-shops/woocommerce-trusted-shops.php'               => '\Vendidero\TrustedShops'
+	);
 
 	/**
 	 * Setup the unit testing environment.
@@ -30,97 +34,88 @@ class WC_GZD_Unit_Tests_Bootstrap {
 	 * @since 2.2
 	 */
 	public function __construct() {
+		$this->wp_tests_dir = getenv( 'WP_TESTS_DIR' ) ? getenv( 'WP_TESTS_DIR' ) : rtrim( sys_get_temp_dir(), '/\\' ) . '/wordpress-tests-lib';
+		$this->tests_dir    = dirname( __FILE__ );
+		$this->plugin_dir   = dirname( $this->tests_dir );
 
-		ini_set( 'display_errors','on' );
-		error_reporting( E_ALL );
-
-		// Ensure server variable is set for WP email functions.
-		if ( ! isset( $_SERVER['SERVER_NAME'] ) ) {
-			$_SERVER['SERVER_NAME'] = 'localhost';
+		if ( file_exists( dirname( $this->plugin_dir ) . '/woocommerce/woocommerce.php' ) ) {
+			// From plugin directory.
+			$this->plugins_dir = dirname( $this->plugin_dir );
+		} else {
+			// Travis.
+			$this->plugins_dir = getenv( 'WP_CORE_DIR' ) . '/wp-content/plugins';
 		}
 
-		$this->tests_dir     = dirname( __FILE__ );
-		$this->plugin_dir    = dirname( $this->tests_dir );
+		$this->wc_tests_dir = $this->plugins_dir . '/woocommerce/tests';
 
-        $_tests_dir          = getenv( 'WP_TESTS_DIR' );
-        $_woo_tests_dir      = getenv( 'WOO_TESTS_DIR' );
-
-        if ( ! $_tests_dir ) {
-            $_tests_dir = rtrim( sys_get_temp_dir(), '/\\' ) . '/wordpress-tests-lib';
-        }
-
-        if ( ! $_woo_tests_dir ) {
-            $_woo_tests_dir = rtrim( sys_get_temp_dir(), '/\\' ) . '/woocommerce';
-        }
-
-		$this->wp_tests_dir  = $_tests_dir;
-		$this->woo_tests_dir = $_woo_tests_dir;
-
-		$this->wc_plugin_dir = $this->woo_tests_dir . '/';
-		$this->wc_tests_dir  = $this->wc_plugin_dir . 'tests';
-
-		// load test function so tests_add_filter() is available
-		require_once $this->wp_tests_dir . '/includes/functions.php';
-
-		tests_add_filter( 'woocommerce_gzd_dependencies_instance', array( $this, 'mock_dependencies' ) );
-
-		// load WC
-		tests_add_filter( 'muplugins_loaded', array( $this, 'load_wc_germanized' ) );
-
-		// install WC
-		tests_add_filter( 'init', array( $this, 'install_wc_germanized' ) );
-
-		// load the WP testing environment
-		require_once( $this->wp_tests_dir . '/includes/bootstrap.php' );
-
-		// load WC testing framework
+		$this->setup_hooks();
 		$this->includes();
 	}
 
-	public function mock_dependencies() {
-		// load the WP testing environment
-		require_once( $this->tests_dir . '/framework/class-wc-gzd-dependencies-mock.php' );
-		return WC_GZD_Dependencies_Mock::instance();
+	protected function is_separate_package( $package ) {
+		if ( file_exists( $this->plugins_dir . '/' . $package ) ) {
+			return true;
+		}
+
+		return false;
 	}
 
 	/**
-	 * Load WooCommerce.
-	 *
-	 * @since 2.2
+	 * Setup hooks.
 	 */
-	public function load_wc_germanized() {
-		require_once( $this->wc_plugin_dir . '/woocommerce.php' );
-		require_once( $this->plugin_dir . '/woocommerce-germanized.php' );
-	}
+	protected function setup_hooks() {
+		// Give access to tests_add_filter() function.
+		require_once $this->wp_tests_dir . '/includes/functions.php';
 
-	/**
-	 * Install WooCommerce after the test environment and WC have been loaded.
-	 *
-	 * @since 2.2
-	 */
-	public function install_wc_germanized() {
+		tests_add_filter( 'woocommerce_gzd_dependencies_instance', function() {
+			require_once( $this->tests_dir . '/framework/class-wc-gzd-dependencies-mock.php' );
 
-		global $wp_roles;
+			return WC_GZD_Dependencies_Mock::instance();
+		} );
 
-		// clean existing install first
-		define( 'WP_UNINSTALL_PLUGIN', true );
-		define( 'WC_REMOVE_ALL_DATA', true );
+		tests_add_filter( 'muplugins_loaded', function() {
+			require_once $this->plugins_dir . '/woocommerce/woocommerce.php';
+			require_once $this->plugin_dir . '/woocommerce-germanized.php';
 
-		include( $this->wc_plugin_dir . '/uninstall.php' );
+			foreach( $this->packages as $package_slug => $namespace ) {
+				if ( $this->is_separate_package( $package_slug ) ) {
+					require_once $this->plugins_dir . '/' . $package_slug;
+				}
+			}
+		} );
 
-		WC_Install::install();
+		tests_add_filter( 'woocommerce_gzd_installed', function() {
 
-		require_once( $this->plugin_dir . '/woocommerce-germanized.php' );
+			foreach( $this->packages as $package_slug => $namespace ) {
+				if ( $this->is_separate_package( $package_slug ) ) {
+					$classname = $namespace . '\Package';
 
-		define( 'WC_GZD_REMOVE_ALL_DATA', true );
-		include( $this->plugin_dir . '/uninstall.php' );
+					$classname::install_integration();
+				}
+			}
+		} );
 
-		WC_GZD_Install::install();
+		tests_add_filter( 'setup_theme', function() {
 
-		// reload capabilities after install, see https://core.trac.wordpress.org/ticket/28374
-		$wp_roles = new WP_Roles();
+			echo esc_html( 'Installing WooCommerce...' . PHP_EOL );
 
-		echo "Installing WooCommerce and Germanized..." . PHP_EOL;
+			define( 'WP_UNINSTALL_PLUGIN', true );
+			define( 'WC_REMOVE_ALL_DATA', true );
+
+			include $this->plugins_dir . '/woocommerce/uninstall.php';
+
+			WC_Install::install();
+
+			echo esc_html( 'Installing Germanized...' . PHP_EOL );
+
+			define( 'WC_GZD_REMOVE_ALL_DATA', true );
+			include( $this->plugin_dir . '/uninstall.php' );
+
+			WC_GZD_Install::install();
+
+			$GLOBALS['wp_roles'] = null; // WPCS: override ok.
+			wp_roles();
+		} );
 	}
 
 	/**
@@ -129,6 +124,9 @@ class WC_GZD_Unit_Tests_Bootstrap {
 	 * @since 2.2
 	 */
 	public function includes() {
+
+		// Start up the WP testing environment.
+		require_once $this->wp_tests_dir . '/includes/bootstrap.php';
 
 		// factories
 		require_once( $this->tests_dir . '/framework/factories/class-wc-gzd-unit-test-factory-for-webhook.php' );
@@ -139,6 +137,7 @@ class WC_GZD_Unit_Tests_Bootstrap {
 		require_once( $this->tests_dir . '/framework/vendor/class-wp-test-spy-rest-server.php' );
 
 		// test cases
+		require_once( $this->tests_dir . '/includes/wp-http-testcase.php' );
 		require_once( $this->tests_dir . '/framework/class-wc-gzd-unit-test-case.php' );
 		require_once( $this->tests_dir . '/framework/class-wc-gzd-rest-unit-test-case.php' );
 
@@ -158,7 +157,7 @@ class WC_GZD_Unit_Tests_Bootstrap {
 	 * Get the single class instance.
 	 *
 	 * @since 2.2
-	 * @return WC_Unit_Tests_Bootstrap
+	 * @return WC_GZD_Unit_Tests_Bootstrap
 	 */
 	public static function instance() {
 		if ( is_null( self::$instance ) ) {
