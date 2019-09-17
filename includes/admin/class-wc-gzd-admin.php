@@ -152,6 +152,81 @@ class WC_GZD_Admin {
 		<?php
 	}
 
+	/**
+	 * Show a notice highlighting bad template files.
+	 */
+	public function get_template_version_check_result() {
+
+	    $template_data = apply_filters( 'woocommerce_gzd_template_check', array(
+            'germanized' => array(
+                'title'             => __( 'Germanized for WooCommerce', 'woocommerce-germanized' ),
+                'path'              => WC_germanized()->plugin_path() . '/templates',
+                'template_path'     => WC_germanized()->template_path(),
+                'outdated_help_url' => '',
+                'files'             => array(),
+                'has_outdated'      => false,
+            )
+		) );
+
+		foreach( $template_data as $plugin => $path_data ) {
+
+		    $path_data = wp_parse_args( $path_data, array(
+                'title'             => '',
+                'path'              => '',
+                'template_path'     => '',
+                'outdated_help_url' => '',
+                'files'             => array(),
+                'has_outdated'      => false,
+            ) );
+
+		    $template_data[ $plugin ] = $path_data;
+
+			$core_templates = WC_Admin_Status::scan_template_files( $path_data['path'] );
+			$template_path  = $path_data['template_path'];
+
+			foreach ( $core_templates as $file ) {
+
+				$theme_file = false;
+
+				if ( file_exists( get_stylesheet_directory() . '/' . $file ) ) {
+					$theme_file = get_stylesheet_directory() . '/' . $file;
+				} elseif ( file_exists( get_stylesheet_directory() . '/' . $template_path . $file ) ) {
+					$theme_file = get_stylesheet_directory() . '/' . $template_path . $file;
+				} elseif ( file_exists( get_template_directory() . '/' . $file ) ) {
+					$theme_file = get_template_directory() . '/' . $file;
+				} elseif ( file_exists( get_template_directory() . '/' . $template_path . $file ) ) {
+					$theme_file = get_template_directory() . '/' . $template_path . $file;
+				}
+
+				if ( false !== $theme_file ) {
+					$core_version  = WC_Admin_Status::get_file_version( $path_data['path'] . '/' . $file );
+					$theme_version = WC_Admin_Status::get_file_version( $theme_file );
+
+					if ( ! $theme_version ) {
+					    $theme_version = '1.0';
+                    }
+
+					$file_data = array(
+						'template'      => $file,
+						'theme_file'    => $theme_file,
+						'theme_version' => $theme_version,
+						'core_version'  => $core_version,
+                        'outdated'      => false,
+					);
+
+					if ( $core_version && $theme_version && version_compare( $theme_version, $core_version, '<' ) ) {
+						$file_data['outdated']                    = true;
+						$template_data[ $plugin ]['has_outdated'] = true;
+					}
+
+					$template_data[ $plugin ]['files'][] = $file_data;
+				}
+			}
+		}
+
+        return $template_data;
+	}
+
 	public function toggle_input_field( $value ) {
 		// Custom attribute handling.
 		$custom_attributes = array();

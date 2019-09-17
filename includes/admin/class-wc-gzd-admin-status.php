@@ -42,28 +42,29 @@ class WC_GZD_Admin_Status extends WC_Admin_Status {
 		$return = array();
 		
 		$pages = array(
-			'terms' => __( 'Terms & Conditions', 'woocommerce-germanized' ),
-			'revocation' => __( 'Power of Revocation', 'woocommerce-germanized' ),
-			'imprint' => __( 'Imprint', 'woocommerce-germanized' ),
-			'data_security' => __( 'Data Security Statement', 'woocommerce-germanized' ),
+			'terms'           => __( 'Terms & Conditions', 'woocommerce-germanized' ),
+			'revocation'      => __( 'Power of Revocation', 'woocommerce-germanized' ),
+			'imprint'         => __( 'Imprint', 'woocommerce-germanized' ),
+			'data_security'   => __( 'Data Security Statement', 'woocommerce-germanized' ),
 			'payment_methods' => __( 'Payment Methods', 'woocommerce-germanized' ),
-			'shipping_costs' => __( 'Shipping Methods', 'woocommerce-germanized' ),
+			'shipping_costs'  => __( 'Shipping Methods', 'woocommerce-germanized' ),
 		);
 
-		foreach ( $pages as $page => $title )
+		foreach ( $pages as $page => $title ) {
 			$return[ $page ] = array( 'title' => $title, 'id' => get_option( 'woocommerce_' . $page . '_page_id' ) );
+		}
 
 		return $return;
-
 	}
 
 	public static function tax_tables_exist() {
-		
 		global $wpdb;
 		
 		foreach ( self::$tax_tables as $table ) {
-			if ( ! $wpdb->get_var( "SHOW TABLES LIKE '{$wpdb->prefix}{$table}';" ) )
+
+			if ( ! $wpdb->get_var( "SHOW TABLES LIKE '{$wpdb->prefix}{$table}';" ) ) {
 				return false;
+			}
 		}
 		
 		return true;
@@ -74,8 +75,9 @@ class WC_GZD_Admin_Status extends WC_Admin_Status {
 		$missing = array();
 		
 		foreach ( self::$tax_tables as $table ) {
-			if ( ! $wpdb->get_var( "SHOW TABLES LIKE '{$wpdb->prefix}{$table}';" ) )
+			if ( ! $wpdb->get_var( "SHOW TABLES LIKE '{$wpdb->prefix}{$table}';" ) ) {
 				array_push( $missing, $table );
+			}
 		}
 		
 		return $missing;

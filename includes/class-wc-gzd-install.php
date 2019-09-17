@@ -164,6 +164,9 @@ class WC_GZD_Install {
 		// Delete plugin header data for dependency check
 		delete_option( 'woocommerce_gzd_plugin_header_data' );
 
+		// Recheck outdated templates
+		delete_option( '_wc_gzd_hide_template_outdated_notice' );
+
 		// Queue upgrades
 		$current_version    = get_option( 'woocommerce_gzd_version', null );
 		$current_db_version = get_option( 'woocommerce_gzd_db_version', null );

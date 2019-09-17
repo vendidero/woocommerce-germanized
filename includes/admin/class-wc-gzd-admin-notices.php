@@ -8,8 +8,6 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-use Vendidero\Germanized\DHL\Admin\Importer;
-
 if ( ! class_exists( 'WC_GZD_Admin_Notices' ) ) :
 
 /**
@@ -42,6 +40,7 @@ class WC_GZD_Admin_Notices {
 
 	protected function __construct() {
 		add_action( 'admin_init', array( $this, 'check_notice_hide' ) );
+
 		add_action( 'after_switch_theme', array( $this, 'remove_theme_notice_hide' ) );
 		add_action( 'admin_print_styles', array( $this, 'add_notices' ), 1 );
 	}
@@ -104,6 +103,10 @@ class WC_GZD_Admin_Notices {
 			add_action( 'admin_notices', array( $this, 'add_review_notice' ) );
 		}
 
+		if ( ! get_option( '_wc_gzd_hide_template_outdated_notice' ) ) {
+			add_action( 'admin_notices', array( $this, 'add_template_outdated_notice' ) );
+		}
+
 		if ( ! get_option( '_wc_gzd_hide_pro_notice' ) && ! WC_germanized()->is_pro() && $this->enable_notices() ) {
 			add_action( 'admin_notices', array( $this, 'add_pro_notice' ) );
 		}
@@ -116,13 +119,30 @@ class WC_GZD_Admin_Notices {
 	}
 
 	public function dhl_importer_notice() {
-		if ( Importer::is_plugin_enabled() && Importer::is_available() ) {
+		if ( class_exists( 'Vendidero\Germanized\DHL\Admin\Importer' ) && Vendidero\Germanized\DHL\Admin\Importer::is_plugin_enabled() && Vendidero\Germanized\DHL\Admin\Importer::is_available() ) {
 			include( 'views/html-notice-dhl.php' );
+		}
+	}
+
+	public function add_template_outdated_notice() {
+		$templates = WC_GZD_Admin::instance()->get_template_version_check_result();
+		$show      = false;
+
+		foreach( $templates as $plugin => $data ) {
+			if ( $data['has_outdated'] ) {
+				$show = true;
+				break;
+			}
+		}
+
+		if ( $show ) {
+			include( 'views/html-notice-templates-outdated.php' );
 		}
 	}
 
 	public function remove_theme_notice_hide() {
 		delete_option( '_wc_gzd_hide_theme_notice' );
+		delete_option( '_wc_gzd_hide_template_outdated_notice' );
 	}
 
 	/**
@@ -144,7 +164,8 @@ class WC_GZD_Admin_Notices {
 			'wc-gzd-hide-theme-notice',
 			'wc-gzd-disable-review-notice',
 			'wc-gzd-hide-review-notice',
-			'wc-gzd-hide-pro-notice'
+			'wc-gzd-hide-pro-notice',
+			'wc-gzd-hide-template-outdated-notice'
 		);
 		
 		if ( ! empty( $notices ) ) {

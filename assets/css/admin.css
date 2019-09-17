@@ -2,12 +2,27 @@ table.data_table tr td p.form-field {
   margin: 0 !important;
   padding: 0 !important; }
 
-.woocommerce-gzd-message ul {
-  list-style-type: disc;
-  padding-left: 1.5em; }
-
-.woocommerce-gzd-message p.submit .button {
-  margin-right: 1em; }
+.woocommerce-gzd-message {
+  position: relative;
+  overflow: hidden; }
+  .woocommerce-gzd-message ul {
+    list-style-type: disc;
+    padding-left: 1.5em; }
+  .woocommerce-gzd-message .notice-dismiss {
+    position: static;
+    float: right;
+    padding: 0 15px 10px 28px;
+    margin-top: -10px;
+    font-size: 13px;
+    line-height: 1.2em;
+    text-decoration: none; }
+    .woocommerce-gzd-message .notice-dismiss::before {
+      position: relative;
+      top: 18px;
+      left: -20px;
+      transition: all .1s ease-in-out; }
+  .woocommerce-gzd-message p.submit .button {
+    margin-right: 1em; }
 
 .variable_cart_mini_desc .wp-editor-tools {
   margin-top: -3em; }
