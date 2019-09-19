@@ -1,9 +1,9 @@
 <?php
 
+use Vendidero\Germanized\DHL\Admin\Importer;
+
 if ( ! defined( 'ABSPATH' ) )
 	exit; // Exit if accessed directly
-
-use Vendidero\Germanized\DHL\Admin\Importer;
 
 class WC_GZD_Admin {
 
@@ -91,6 +91,10 @@ class WC_GZD_Admin {
 	}
 
 	public function check_dhl_import() {
+	    if ( ! class_exists( '\Vendidero\Germanized\DHL\Admin\Importer' ) ) {
+	        return;
+        }
+
 		if ( Importer::is_available() ) {
 			if ( isset( $_GET['wc-gzd-dhl-import'] ) && isset( $_GET['_wpnonce'] ) ) { // WPCS: input var ok, CSRF ok.
 

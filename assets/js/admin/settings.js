@@ -164,7 +164,7 @@ window.germanized = window.germanized || {};
 
                     $field.removeClass( 'wc-gzd-setting-visible wc-gzd-setting-invisible' );
 
-                    if ( dataValue.length > 0 ) {
+                    if ( ( 'undefined' !== typeof dataValue ) && dataValue.length > 0 ) {
 
                         // Check value
                         if ( val === dataValue ) {
