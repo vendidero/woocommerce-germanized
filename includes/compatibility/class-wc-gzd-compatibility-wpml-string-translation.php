@@ -25,6 +25,7 @@ class WC_GZD_Compatibility_WPML_String_Translation extends WC_GZD_Compatibility 
     }
 
     public function load() {
+
         if ( is_admin() ) {
             add_action( 'woocommerce_gzd_admin_assets', array( $this, 'settings_script' ), 10, 3 );
             add_action( 'woocommerce_gzd_admin_localized_scripts', array( $this, 'settings_script_localization' ), 10, 1 );
@@ -168,7 +169,7 @@ class WC_GZD_Compatibility_WPML_String_Translation extends WC_GZD_Compatibility 
     }
 
     public function admin_translate_options() {
-        add_action( 'admin_init', array( $this, 'set_filters' ), 50 );
+    	$this->set_filters();
     }
 
     public function set_filters() {
@@ -177,7 +178,8 @@ class WC_GZD_Compatibility_WPML_String_Translation extends WC_GZD_Compatibility 
         if ( $this->enable_option_filters() ) {
 
             foreach( $this->get_translatable_options() as $option => $args ) {
-                add_filter( 'option_' . $option, array( $this, 'translate_option_filter' ), 10, 2 );
+
+            	add_filter( 'option_' . $option, array( $this, 'translate_option_filter' ), 10, 2 );
                 add_filter( 'pre_update_option_' . $option, array( $this, 'pre_update_translation_filter' ), 10, 3 );
 
                 wc_gzd_remove_class_filter( 'option_' . $option, 'WPML_Admin_Texts', 'icl_st_translate_admin_string', 10 );
@@ -199,7 +201,7 @@ class WC_GZD_Compatibility_WPML_String_Translation extends WC_GZD_Compatibility 
     protected function enable_option_filters() {
         $enable = false;
 
-        if ( isset( $_GET['tab'] ) && ( 'germanized' === $_GET['tab'] || 'email' === $_GET['tab'] ) ) {
+        if ( isset( $_GET['tab'] ) && ( strpos( $_GET['tab'], 'germanized' ) !== false || 'email' === $_GET['tab'] ) ) {
             $enable = true;
         }
 
@@ -391,6 +393,7 @@ class WC_GZD_Compatibility_WPML_String_Translation extends WC_GZD_Compatibility 
             $args = $string_options[ $option ];
 
             foreach( $new_value as $id => $options ) {
+
                 foreach( $options as $key => $value ) {
                     if ( in_array( $key, $args ) ) {
                         $old_value_internal       = isset( $old_value[ $id ][ $key ] ) ? $old_value[ $id ][ $key ] : '';
