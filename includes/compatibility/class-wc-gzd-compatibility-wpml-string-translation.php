@@ -170,7 +170,7 @@ class WC_GZD_Compatibility_Wpml_String_Translation extends WC_GZD_Compatibility 
     }
 
     public function admin_translate_options() {
-        add_action( 'admin_init', array( $this, 'set_filters' ), 50 );
+        $this->set_filters();
     }
 
     public function set_filters() {
