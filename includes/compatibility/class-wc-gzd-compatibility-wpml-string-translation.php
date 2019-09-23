@@ -25,11 +25,7 @@ class WC_GZD_Compatibility_WPML_String_Translation extends WC_GZD_Compatibility 
     }
 
     public function load() {
-
         if ( is_admin() ) {
-            add_action( 'woocommerce_gzd_admin_assets', array( $this, 'settings_script' ), 10, 3 );
-            add_action( 'woocommerce_gzd_admin_localized_scripts', array( $this, 'settings_script_localization' ), 10, 1 );
-
             $this->admin_translate_options();
         }
     }
@@ -132,42 +128,6 @@ class WC_GZD_Compatibility_WPML_String_Translation extends WC_GZD_Compatibility 
         return apply_filters( 'woocommerce_gzd_wpml_translatable_admin_options', array() );
     }
 
-    public function settings_script( $gzd_admin, $admin_script_path, $suffix ) {
-        wp_register_script( 'wc-gzd-settings-wpml', $admin_script_path . 'settings-wpml' . $suffix . '.js', array( 'jquery', 'woocommerce_settings' ), WC_GERMANIZED_VERSION, true );
-
-        if ( isset( $_GET['tab'] ) && ( 'germanized' === $_GET['tab'] || 'email' === $_GET['tab'] ) ) {
-            wp_enqueue_script( 'wc-gzd-settings-wpml' );
-            wp_add_inline_style( 'woocommerce-gzd-admin', '.wc-gzd-wpml-notice {display: block; font-size: 12px; margin-top: 8px; line-height: 1.5em; background: #faf8e5; padding: 5px;} .wc-gzd-wpml-notice code {font-size: 12px; display: block; background: transparent; padding-left: 0;}' );
-        }
-    }
-
-    public function settings_script_localization( $localized ) {
-        $options      = array();
-        $translatable = $this->get_translatable_options();
-
-        foreach( $translatable as $option => $data ) {
-            if ( 'woocommerce_gzd_legal_checkboxes_settings' === $option ) {
-
-                $manager = WC_GZD_Legal_Checkbox_Manager::instance();
-                $manager->do_register_action();
-
-                foreach( $manager->get_checkboxes() as $id => $checkbox ) {
-                    foreach( $data as $value ) {
-                        $options[] = "#{$checkbox->get_form_field_id( $value )}";
-                    }
-                }
-            } else {
-                $options[] = "#{$option}";
-            }
-        }
-
-        $localized['wc-gzd-settings-wpml'] = array(
-            'options' => $options
-        );
-
-        return $localized;
-    }
-
     public function admin_translate_options() {
     	$this->set_filters();
     }
@@ -184,10 +144,6 @@ class WC_GZD_Compatibility_WPML_String_Translation extends WC_GZD_Compatibility 
 
                 wc_gzd_remove_class_filter( 'option_' . $option, 'WPML_Admin_Texts', 'icl_st_translate_admin_string', 10 );
             }
-
-            add_filter( 'woocommerce_gzd_get_settings_filter', array( $this, 'add_admin_notices' ), 10, 1 );
-            add_filter( 'woocommerce_gzd_legal_checkbox_fields', array( $this, 'add_admin_notices_checkboxes' ), 10, 2 );
-            add_filter( 'woocommerce_gzd_admin_email_order_confirmation_text_option', array( $this, 'add_admin_notices_email' ), 10, 1 );
 
         } elseif( ! empty( $admin_strings ) ) {
 
@@ -213,77 +169,6 @@ class WC_GZD_Compatibility_WPML_String_Translation extends WC_GZD_Compatibility 
          * @param bool $enable Whether to enable filters or not.
          */
         return apply_filters( 'woocommerce_gzd_enable_wpml_string_translation_settings_filters', $enable );
-    }
-
-    public function add_admin_notices_email( $setting ) {
-        if ( isset( $setting['id'] ) && array_key_exists( $setting['id'], $this->get_translatable_options() ) ) {
-            if ( $string_id = $this->get_string_id( $setting['id'] ) ) {
-                $string_language = $this->get_string_language( $string_id, $setting['id'] );
-
-                if ( $string_language !== $this->get_current_language() && 'all' !== $this->get_current_language() ) {
-                    $setting = $this->set_admin_notice_attribute( $setting, $string_id, $string_language );
-                }
-            }
-        }
-
-        return $setting;
-    }
-
-    public function add_admin_notices_checkboxes( $settings, $checkbox ) {
-        $ids     = array();
-        $options = $this->get_translatable_options();
-
-        foreach( $options['woocommerce_gzd_legal_checkboxes_settings'] as $option_key ) {
-            $ids[] = $checkbox->get_form_field_id( $option_key );
-        }
-
-        foreach( $settings as $key => $setting ) {
-            if ( isset( $setting['id'] ) && in_array( $setting['id'], $ids ) ) {
-                $option_key  = str_replace( $checkbox->get_form_field_id_prefix(), '', $setting['id'] );
-                $option_name = "[woocommerce_gzd_legal_checkboxes_settings][{$checkbox->get_id()}]{$option_key}";
-
-                if ( $string_id = $this->get_string_id( $option_name, "admin_texts_woocommerce_gzd_legal_checkboxes_settings" ) ) {
-                    $string_language = $this->get_string_language( $string_id, $option_name );
-
-                    if ( $string_language !== $this->get_current_language() && 'all' !== $this->get_current_language() ) {
-                        $settings[ $key ] = $this->set_admin_notice_attribute( $settings[ $key ], $string_id, $string_language );
-                    }
-                }
-            }
-        }
-
-        return $settings;
-    }
-
-    public function add_admin_notices( $settings ) {
-        // Remove notices for TS
-        if ( isset( $_GET['section'] ) && 'trusted_shops' === $_GET['section'] ) {
-            return $settings;
-        }
-
-        foreach( $settings as $key => $setting ) {
-            if ( isset( $setting['id'] ) && array_key_exists( $setting['id'], $this->get_translatable_options() ) ) {
-                if ( $string_id = $this->get_string_id( $setting['id'] ) ) {
-                    $string_language = $this->get_string_language( $string_id, $setting['id'] );
-
-                    if ( $string_language !== $this->get_current_language() && 'all' !== $this->get_current_language() ) {
-                        $settings[ $key ] = $this->set_admin_notice_attribute( $settings[ $key ], $string_id, $string_language );
-                    }
-                }
-            }
-        }
-
-        return $settings;
-    }
-
-    protected function set_admin_notice_attribute( $setting, $string_id, $string_language ) {
-        if ( ! isset( $setting['custom_attributes'] ) || ! is_array( $setting['custom_attributes'] ) ) {
-            $setting['custom_attributes'] = array();
-        }
-
-        $setting['custom_attributes']['data-wpml-notice'] = sprintf( __( 'This option may be translated via WPML. You may translate the original option (%s) %s to %s by adjusting the value above.', 'woocommerce-germanized' ), $this->get_language_name( $string_language ), '<code>' . $this->get_string_value( $string_id ) . '</code>', $this->get_language_name() );
-
-        return $setting;
     }
 
     public function get_string_language( $string_id, $option = '' ) {
