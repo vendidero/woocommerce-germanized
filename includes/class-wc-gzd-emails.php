@@ -120,7 +120,18 @@ class WC_GZD_Emails {
 			}
 		}
 
-		// Adjust customer addressing within emails
+		/**
+		 * By hooking into this filter you might prevent Germanized from replacing titles (e.g. Dear Dennis)
+		 * in WooCommerce email templates.
+		 *
+		 * ```php
+		 * add_filter( 'woocommerce_gzd_replace_email_titles', '__return_false', 10 );
+		 * ```
+		 *
+		 * @since 3.0.0
+		 *
+		 * @param bool $disable Whether to disable email title replacement or not.
+		 */
 		if ( strpos( $template_name, 'emails/' ) !== false && isset( $args['order'] ) && apply_filters( 'woocommerce_gzd_replace_email_titles', true ) ) {
 			$GLOBALS['wc_gzd_email_order'] = $args['order'];
             add_filter( 'gettext', array( $this, 'replace_title_email_text' ), 10, 3 );

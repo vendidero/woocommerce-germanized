@@ -54,6 +54,14 @@ function wc_gzd_get_order_min_age( $order_id ) {
 		}
 	}
 
+	/**
+	 * Filters the minimum age required for a certain order.
+	 *
+	 * @since 3.0.0
+	 *
+	 * @param integer|boolean $min_age The minimum age for an order. False if not available.
+	 * @param integer         $order_id The order id
+	 */
 	return apply_filters( 'woocommerce_gzd_order_min_age', $min_age, $order_id );
 }
 
@@ -65,6 +73,14 @@ function wc_gzd_order_has_age_verification( $order_id ) {
 		$needs_verification = true;
 	}
 
+	/**
+	 * Filter to determine whether an order needs age verification or not.
+	 *
+	 * @since 3.0.0
+	 *
+	 * @param boolean $needs_verification Whether the order needs age verification or not.
+	 * @param integer $order_id The order id
+	 */
 	return apply_filters( 'woocommerce_gzd_order_needs_age_verification', $needs_verification, $order_id );
 }
 

@@ -68,7 +68,7 @@ class WC_GZD_Compatibility_WPML extends WC_GZD_Compatibility {
 	}
 
 	public function set_language_field() {
-        do_action('wpml_add_language_form_field' );
+        do_action( 'wpml_add_language_form_field' );
 	}
 
 	public function unhook_terms_clause() {

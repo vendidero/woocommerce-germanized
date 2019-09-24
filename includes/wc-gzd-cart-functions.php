@@ -279,6 +279,7 @@ function wc_gzd_cart_product_units( $title, $cart_item, $cart_item_key = '' ) {
 function wc_gzd_cart_needs_age_verification( $items = false ) {
 	$items   = $items ? (array) $items : WC()->cart->get_cart();
 	$min_age = false;
+	$is_cart = true;
 
 	if ( ! empty( $items ) ) {
 
@@ -287,6 +288,7 @@ function wc_gzd_cart_needs_age_verification( $items = false ) {
 
 		    if ( is_a( $values, 'WC_Order_Item' ) ) {
 		        $_product = $values->get_product();
+		        $is_cart  = false;
             } elseif( isset( $values['data'] ) ) {
 			    $_product = apply_filters( 'woocommerce_cart_item_product', $values['data'], $values, $cart_item_key );
             }
@@ -297,22 +299,37 @@ function wc_gzd_cart_needs_age_verification( $items = false ) {
 		}
 	}
 
-	/**
-	 * Determines whether a cart needs age verification or not.
-	 *
-	 * This filter might adjust whether cart items need age verification or not.
-	 *
-	 * @since 2.3.5
-	 *
-	 * @param bool  $needs_age_verification Whether items need age verification or not.
-     * @param array $items The cart items.
-	 */
-	return apply_filters( 'woocommerce_gzd_cart_needs_age_verification', $needs_age_verification, $items );
+	if ( ! $is_cart ) {
+		/**
+		 * Determines whether order items need age verification or not.
+		 *
+		 * This filter might adjust whether order items need age verification or not.
+		 *
+		 * @since 2.3.5
+		 *
+		 * @param bool  $needs_age_verification Whether items need age verification or not.
+		 * @param array $items The order items.
+		 */
+		return apply_filters( 'woocommerce_gzd_order_needs_age_verification', $needs_age_verification, $items );
+    } else {
+		/**
+		 * Determines whether a cart needs age verification or not.
+		 *
+		 * This filter might adjust whether cart items need age verification or not.
+		 *
+		 * @since 2.3.5
+		 *
+		 * @param bool  $needs_age_verification Whether items need age verification or not.
+		 * @param array $items The cart items.
+		 */
+		return apply_filters( 'woocommerce_gzd_cart_needs_age_verification', $needs_age_verification, $items );
+    }
 }
 
 function wc_gzd_cart_get_age_verification_min_age( $items = false  ) {
 	$items   = $items ? (array) $items : WC()->cart->get_cart();
 	$min_age = false;
+	$is_cart = true;
 
 	if ( ! empty( $items ) ) {
 
@@ -321,6 +338,7 @@ function wc_gzd_cart_get_age_verification_min_age( $items = false  ) {
 
 			if ( is_a( $values, 'WC_Order_Item' ) ) {
 				$_product = $values->get_product();
+				$is_cart  = false;
 			} elseif( isset( $values['data'] ) ) {
 				$_product = apply_filters( 'woocommerce_cart_item_product', $values['data'], $values, $cart_item_key );
 			}
@@ -339,18 +357,33 @@ function wc_gzd_cart_get_age_verification_min_age( $items = false  ) {
 		}
 	}
 
-	/**
-	 * Returns the minimum age within a cart.
-	 *
-	 * This filter might be used to adjust the minimum age for a certain cart used for
-     * the age verification.
-	 *
-	 * @since 2.3.5
-	 *
-	 * @param integer $min_age The minimum age required to checkout.
-	 * @param array   $items The cart items.
-	 */
-	return apply_filters( 'woocommerce_gzd_cart_age_verification_min_age', $min_age, $items );
+	if ( ! $is_cart ) {
+		/**
+		 * Returns the minimum age for certain order items.
+		 *
+		 * This filter might be used to adjust the minimum age for a certain order used for
+		 * the age verification.
+		 *
+		 * @since 3.0.0
+		 *
+		 * @param integer $min_age The minimum age required to buy.
+		 * @param array   $items The order items.
+		 */
+		return apply_filters( 'woocommerce_gzd_order_age_verification_min_age', $min_age, $items );
+    } else {
+		/**
+		 * Returns the minimum age for a cart.
+		 *
+		 * This filter might be used to adjust the minimum age for a certain cart used for
+		 * the age verification.
+		 *
+		 * @since 2.3.5
+		 *
+		 * @param integer $min_age The minimum age required to checkout.
+		 * @param array   $items The cart items.
+		 */
+		return apply_filters( 'woocommerce_gzd_cart_age_verification_min_age', $min_age, $items );
+    }
 }
 
 /**

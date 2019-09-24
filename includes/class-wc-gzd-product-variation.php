@@ -68,6 +68,17 @@ class WC_GZD_Product_Variation extends WC_GZD_Product {
 			$value = parent::get_prop( $prop, $context );
 		}
 
+		/**
+		 * Filter to adjust a certain product variation property e.g. unit_price.
+		 *
+		 * The dynamic portion of the hook name, `$prop` refers to the product property e.g. unit_price.
+		 *
+		 * @since 3.0.0
+		 *
+		 * @param mixed                    $value The property value.
+		 * @param WC_GZD_Product_Variation $gzd_product The GZD product instance.
+		 * @param WC_Product_Variation     $product The product instance.
+		 */
 		return apply_filters( "woocommerce_gzd_get_product_variation_{$prop}", $value, $this, $this->child );
 	}
 
@@ -78,6 +89,7 @@ class WC_GZD_Product_Variation extends WC_GZD_Product {
 			$unit = $parent->get_unit();
 		}
 
+		/** This filter is documented in includes/class-wc-gzd-product-variation.php */
 		return apply_filters( "woocommerce_gzd_get_product_variation_unit", $unit, $this, $this->child );
 	}
 }

@@ -41,6 +41,17 @@ class WC_GZD_Product {
 		$meta_key = substr( $prop, 0, 1 ) !== '_' ? '_' . $prop : $prop;
 		$value    = $this->child->get_meta( $meta_key, true, $context );
 
+		/**
+		 * Filter to adjust a certain product property e.g. unit_price.
+		 *
+		 * The dynamic portion of the hook name, `$prop` refers to the product property e.g. unit_price.
+		 *
+		 * @since 3.0.0
+		 *
+		 * @param mixed                    $value The property value.
+		 * @param WC_GZD_Product           $gzd_product The GZD product instance.
+		 * @param WC_Product               $product The product instance.
+		 */
 		return apply_filters( "woocommerce_gzd_get_product_{$prop}", $value, $this, $this->child );
 	}
 

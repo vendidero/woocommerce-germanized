@@ -16,7 +16,7 @@ $section_key = sanitize_key( $current_section );
         /**
          * Before admin tab settings output.
          *
-         * Executes right before setting output for a specific admin setting tab `$tab_name` e.g. general.
+         * Executes right before setting output for a specific admin setting tab `$tab_name` e.g. shopmarks.
          *
          * @since 3.0.0
          */
@@ -26,8 +26,8 @@ $section_key = sanitize_key( $current_section );
 	        /**
 	         * Before admin tab section settings output.
 	         *
-	         * Executes right before setting output for a specific admin setting tab `$tab_name` e.g. general.
-	         * `$current_section` equals the current section e.g. price_labels.
+	         * Executes right before setting output for a specific admin setting tab `$tab_name` e.g. shopmarks.
+	         * `$current_section` refers to the current section e.g. product_widgets.
 	         *
 	         * @since 3.0.0
              *
@@ -41,7 +41,7 @@ $section_key = sanitize_key( $current_section );
 	    /**
 	     * After admin tab settings output.
 	     *
-	     * Executes right after setting output for a specific admin setting tab `$tab_name` e.g. general.
+	     * Executes right after setting output for a specific admin setting tab `$tab_name` e.g. shopmarks.
 	     *
 	     * @since 3.0.0
          *
@@ -53,8 +53,8 @@ $section_key = sanitize_key( $current_section );
 		    /**
 		     * After admin tab section settings output.
 		     *
-		     * Executes right after setting output for a specific admin setting tab `$tab_name` e.g. general.
-		     * `$current_section` equals the current section e.g. price_labels.
+		     * Executes right after setting output for a specific admin setting tab `$tab_name` e.g. shopmarks.
+		     * `$current_section` refers to the current section e.g. product_widgets.
 		     *
 		     * @since 3.0.0
              *

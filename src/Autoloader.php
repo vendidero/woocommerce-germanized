@@ -45,7 +45,7 @@ class Autoloader {
     protected static function missing_autoloader() {
         if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
             error_log(  // phpcs:ignore
-                esc_html__( 'Your installation of Germanized is incomplete. If you installed Germanized from GitHub, please refer to this document to set up your development environment: https://github.com/woocommerce/woocommerce/wiki/How-to-set-up-WooCommerce-development-environment', 'woocommerce-germanized' )
+                esc_html__( 'Your installation of Germanized is incomplete. If you installed Germanized from GitHub, please refer to this document to set up your development environment: https://github.com/vendidero/woocommerce-germanized/wiki/How-to-set-up-a-Germanized-development-environment', 'woocommerce-germanized' )
             );
         }
         add_action(
@@ -58,7 +58,7 @@ class Autoloader {
                         printf(
                         /* translators: 1: is a link to a support document. 2: closing link */
                             esc_html__( 'Your installation of Germanized is incomplete. If you installed Germanized from GitHub, %1$splease refer to this document%2$s to set up your development environment.', 'woocommerce-germanized' ),
-                            '<a href="' . esc_url( 'https://github.com/woocommerce/woocommerce/wiki/How-to-set-up-WooCommerce-development-environment' ) . '" target="_blank" rel="noopener noreferrer">',
+                            '<a href="' . esc_url( 'https://github.com/vendidero/woocommerce-germanized/wiki/How-to-set-up-a-Germanized-development-environment' ) . '" target="_blank" rel="noopener noreferrer">',
                             '</a>'
                         );
                         ?>

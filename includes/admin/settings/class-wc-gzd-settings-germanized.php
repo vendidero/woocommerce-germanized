@@ -52,6 +52,12 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 		// Admin styles for WC pages only.
 		if ( $this->is_active() ) {
 			wp_enqueue_style( 'woocommerce-gzd-admin-settings' );
+
+			/**
+			 * This action indicates that the admin settings styles are enqueued.
+			 *
+			 * @since 3.0.0
+			 */
 			do_action( 'woocommerce_gzd_admin_settings_styles' );
 		}
 	}
@@ -59,6 +65,12 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 	public function admin_scripts() {
 		if ( $this->is_active() ) {
 			wp_enqueue_script( 'wc-gzd-admin-settings' );
+
+			/**
+			 * This action indicates that the admin settings scripts are enqueued.
+			 *
+			 * @since 3.0.0
+			 */
 			do_action( 'woocommerce_gzd_admin_settings_scripts' );
 		}
 	}
@@ -103,6 +115,14 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 			include_once dirname( __FILE__ ) . '/class-wc-gzd-settings-tab-shipments.php';
 		}
 
+		/**
+		 * Filter to register or remove certain setting tabs from the Germanized settings screen.
+		 * Make sure that your class is loaded before adding it to the tabs array.
+		 *
+		 * @since 3.0.0
+		 *
+		 * @param array $tabs Array containing key => value pairs of tab name and class name.
+		 */
 	    $tabs = apply_filters( 'woocommerce_gzd_admin_settings_tabs', array(
 		    'general'              => 'WC_GZD_Settings_Tab_General',
             'shopmarks'            => 'WC_GZD_Settings_Tab_Shopmarks',

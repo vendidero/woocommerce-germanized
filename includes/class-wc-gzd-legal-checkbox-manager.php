@@ -222,6 +222,7 @@ class WC_GZD_Legal_Checkbox_Manager {
          *      wc_gzd_register_legal_checkbox( array() );
          * }
          * add_action( 'woocommerce_gzd_register_legal_core_checkboxes', 'ex_after_register_checkboxes', 10, 1 );
+         * ```
          *
          * @since 2.0.0
          *
@@ -698,6 +699,7 @@ class WC_GZD_Legal_Checkbox_Manager {
              *      }
              * }
              * add_action( 'woocommerce_gzd_run_legal_checkboxes_checkout', 'ex_filter_checkboxes_checkout', 10, 1 );
+             * ```
              *
              * @since 2.0.0
              *

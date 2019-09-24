@@ -18,7 +18,13 @@ class Shopmarks {
 	protected static $shopmarks = array();
 
 	protected static function register_single_product() {
-
+		/**
+		 * Filter to adjust default shopmark configuration for the single product page.
+		 *
+		 * @since 3.0.0
+		 *
+		 * @param array $defaults Array containing the default configuration.
+		 */
 		$shopmarks_single_product = apply_filters( 'woocommerce_gzd_shopmark_single_product_defaults', array(
 			'unit_price'           => array(
 				'default_filter'   => 'woocommerce_single_product_summary',
@@ -53,7 +59,13 @@ class Shopmarks {
 	}
 
 	protected static function register_single_product_grouped() {
-
+		/**
+		 * Filter to adjust default shopmark configuration for the single product page specifically for grouped products.
+		 *
+		 * @since 3.0.0
+		 *
+		 * @param array $defaults Array containing the default configuration.
+		 */
 		$shopmarks_single_product_grouped = apply_filters( 'woocommerce_gzd_shopmark_single_product_grouped_defaults', array(
 			'unit_price'           => array(
 				'default_filter'   => 'woocommerce_grouped_product_list_column_price',
@@ -88,7 +100,13 @@ class Shopmarks {
 	}
 
 	protected static function register_product_loop() {
-
+		/**
+		 * Filter to adjust default shopmark configuration for the product loop.
+		 *
+		 * @since 3.0.0
+		 *
+		 * @param array $defaults Array containing the default configuration.
+		 */
 		$shopmarks_product_loop = apply_filters( 'woocommerce_gzd_shopmark_product_loop_defaults', array(
 			'unit_price'           => array(
 				'default_filter'   => 'woocommerce_after_shop_loop_item_title',
@@ -128,7 +146,13 @@ class Shopmarks {
 	}
 
 	protected static function register_cart() {
-
+		/**
+		 * Filter to adjust default shopmark configuration for the cart.
+		 *
+		 * @since 3.0.0
+		 *
+		 * @param array $defaults Array containing the default configuration.
+		 */
 		$shopmarks_cart = apply_filters( 'woocommerce_gzd_shopmark_cart_defaults', array(
 			'unit_price'           => array(
 				'default_filter'   => 'woocommerce_cart_item_price',
@@ -163,7 +187,13 @@ class Shopmarks {
 	}
 
 	protected static function register_mini_cart() {
-
+		/**
+		 * Filter to adjust default shopmark configuration for the mini cart (cart dropdown).
+		 *
+		 * @since 3.0.0
+		 *
+		 * @param array $defaults Array containing the default configuration.
+		 */
 		$shopmarks_cart = apply_filters( 'woocommerce_gzd_shopmark_mini_cart_defaults', array(
 			'unit_price'           => array(
 				'default_filter'   => 'woocommerce_cart_item_price',
@@ -198,7 +228,13 @@ class Shopmarks {
 	}
 
 	protected static function register_checkout() {
-
+		/**
+		 * Filter to adjust default shopmark configuration for the checkout.
+		 *
+		 * @since 3.0.0
+		 *
+		 * @param array $defaults Array containing the default configuration.
+		 */
 		$shopmarks_checkout = apply_filters( 'woocommerce_gzd_shopmark_checkout_defaults', array(
 			'unit_price'           => array(
 				'default_filter'   => 'woocommerce_cart_item_subtotal',
@@ -389,6 +425,16 @@ class Shopmarks {
 
 		$filter_data = isset( $filters[ $location ] ) ? $filters[ $location ] : array();
 
+		/**
+		 * Filter to adjust available hook names for a certain location.
+		 *
+		 * The dynamic portion of the hook name, `$location` refers to the
+		 * shopmark location e.g. single_product
+		 *
+		 * @since 3.0.0
+		 *
+		 * @param array $hook_names Array containing available hook names.
+		 */
 		return apply_filters( "woocommerce_gzd_shopmark_{$location}_filters", $filter_data );
 	}
 
@@ -435,6 +481,16 @@ class Shopmarks {
 
 		$type_data = isset( $types[ $location ] ) ? $types[ $location ] : array();
 
+		/**
+		 * Filter to adjust available shopmark types e.g. unit_price for a certain location.
+		 *
+		 * The dynamic portion of the hook name, `$location` refers to the
+		 * shopmark location e.g. single_product
+		 *
+		 * @since 3.0.0
+		 *
+		 * @param array $hook_names Array containing available shopmark types.
+		 */
 		return apply_filters( "woocommerce_gzd_shopmark_{$location}_types", $type_data );
 	}
 

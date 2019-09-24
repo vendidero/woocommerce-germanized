@@ -172,6 +172,13 @@ class WC_GZD_Admin {
 	 */
 	public function get_template_version_check_result() {
 
+		/**
+		 * Filter to include certain packages or plugins while checking for outdated templates.
+		 *
+		 * @since 3.0.0
+		 *
+		 * @param array $template_data Template data in key => value pairs.
+		 */
 	    $template_data = apply_filters( 'woocommerce_gzd_template_check', array(
             'germanized' => array(
                 'title'             => __( 'Germanized for WooCommerce', 'woocommerce-germanized' ),

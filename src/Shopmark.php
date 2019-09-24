@@ -76,10 +76,38 @@ class Shopmark {
 	}
 
 	public function get_default_priority() {
+		/**
+		 * Filter to adjust default priority for a certain shopmark e.g. for the unit price on single product page.
+		 *
+		 * The dynamic portion of the hook name, `$this->get_hook_prefix()` constructs an individual
+		 * hook name containing location and type of the shopmark.
+		 *
+		 * Example hook name: `woocommerce_gzd_shopmark_single_product_unit_price_default_priority`
+		 *
+		 * @param integer                        $default_priority The default priority for the current shopmark.
+		 * @param Shopmark $shopmark The shopmark object.
+		 *
+		 *@since 3.0.0
+		 *
+		 */
 		return apply_filters( $this->get_hook_prefix() . 'default_priority', $this->default_priority, $this );
 	}
 
 	public function get_default_filter() {
+		/**
+		 * Filter to adjust default hook name for a certain shopmark e.g. for the unit price on single product page.
+		 *
+		 * The dynamic portion of the hook name, `$this->get_hook_prefix()` constructs an individual
+		 * hook name containing location and type of the shopmark.
+		 *
+		 * Example hook name: `woocommerce_gzd_shopmark_single_product_unit_price_default_filter`
+		 *
+		 * @param string                         $default_filter The default hook name for the current shopmark.
+		 * @param Shopmark $shopmark The shopmark object.
+		 *
+		 *@since 3.0.0
+		 *
+		 */
 		return apply_filters( $this->get_hook_prefix() . 'default_filter', $this->default_filter, $this );
 	}
 
@@ -116,11 +144,42 @@ class Shopmark {
 	public function get_priority() {
 		$priority = $this->get_option( $this->get_default_priority(), 'priority' );
 
+		/**
+		 * Filter to adjust priority for a certain shopmark e.g. the unit price on single product page.
+		 *
+		 * The dynamic portion of the hook name, `$this->get_hook_prefix()` constructs an individual
+		 * hook name containing location and type of the shopmark.
+		 *
+		 * Example hook name: `woocommerce_gzd_shopmark_single_product_unit_price_priority`
+		 *
+		 * @param integer                        $priority The priority for the current shopmark.
+		 * @param Shopmark $shopmark The shopmark object.
+		 *
+		 *@since 3.0.0
+		 *
+		 */
 		return apply_filters( $this->get_hook_prefix() . 'priority', $priority, $this );
 	}
 
 	public function get_filter() {
 		$filter = $this->get_option( $this->get_default_filter(), 'filter' );
+
+		/**
+		 * Filter to adjust the hook name for a certain shopmark e.g. the unit price on single product page.
+		 *
+		 * The hook name returned should be a valid WooCommerce hook which might be executed within the chosen location
+		 * e.g. on the single product page.
+		 * The dynamic portion of the hook name, `$this->get_hook_prefix()` constructs an individual
+		 * hook name containing location and type of the shopmark.
+		 *
+		 * Example hook name: `woocommerce_gzd_shopmark_single_product_unit_price_filter`
+		 *
+		 * @param integer                        $filter The hook name for the current shopmark.
+		 * @param Shopmark $shopmark The shopmark object.
+		 *
+		 *@since 3.0.0
+		 *
+		 */
 		$filter = apply_filters( $this->get_hook_prefix() . 'filter', $filter, $this );
 
 		// Make sure that the current filter name exists e.g. for custom theme support

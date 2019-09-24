@@ -367,6 +367,7 @@ final class WooCommerce_Germanized {
          *      return 'woocommerce-germanized-test/';
          * }
          * add_filter( 'woocommerce_gzd_template_path', 'ex_filter_template_path', 10, 1 );
+         * ```
          *
          * @since 1.0.0
          *
@@ -506,8 +507,7 @@ final class WooCommerce_Germanized {
          * Filter compatibility classes.
          *
          * This filter allows third party developers to register compatibility scripts
-         * for certain plugins or themes. Class prefix: `WC_GZD_Compatibility_` is expected.
-         * Make sure to include your class accordingly.
+         * for certain plugins or themes. Make sure to include your class accordingly before adding your script.
          *
          * @since 1.9.1
          *

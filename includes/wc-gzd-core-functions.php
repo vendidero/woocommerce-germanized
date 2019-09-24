@@ -123,6 +123,24 @@ function wc_gzd_get_legal_product_notice_types() {
 }
 
 function wc_gzd_get_age_verification_min_ages() {
+	/**
+	 * Returns minimum age options.
+	 *
+	 * This filter might be used to adjust the minimum age options available to choose from
+	 * e.g. on product level.
+	 *
+	 * ```php
+	 * function ex_filter_add_min_ages( $ages ) {
+	 *      $ages[14] = '>= 14 years';
+	 *      return $ages;
+	 * }
+	 * add_filter( 'woocommerce_gzd_age_verification_min_ages', 'ex_filter_add_min_ages', 10, 1 );
+	 * ```
+	 *
+	 * @since 2.3.5
+	 *
+	 * @param array $ages Array containing age => value elements.
+	 */
 	return apply_filters( 'woocommerce_gzd_age_verification_min_ages', array(
 		12 => __( '>= 12 years', 'woocommerce-germanized' ),
 		16 => __( '>= 16 years', 'woocommerce-germanized' ),
