@@ -6,6 +6,10 @@
  * @since    2.0.0
  */
 
+use \Vendidero\Germanized\DHL\Admin\Importer;
+use \Vendidero\Germanized\DHL\Package;
+use \Vendidero\Germanized\DHL\Admin\Settings;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -75,15 +79,35 @@ if ( ! class_exists( 'WC_GZD_Admin_Setup_Wizard' ) ) :
 				'first_steps' 	       => array(
 					'name'             => __( 'First Steps', 'woocommerce-germanized' ),
 					'view'             => 'first-steps.php',
-					'order'            => 3,
+					'order'            => 10,
 					'errors'  	       => array(),
 					'button_next'      => __( 'Start tutorial', 'woocommerce-germanized' ),
 					'button_next_link' => admin_url( 'admin.php?page=wc-settings&tab=germanized&tutorial=yes' ),
 				),
 			);
 
+			if ( class_exists( '\Vendidero\Germanized\DHL\Package' ) && Package::has_dependencies() && ! get_option( 'woocommerc_gzd_dhl_import_finished' ) ) {
+			    $default_steps['dhl'] = array(
+                    'name'    => __( 'DHL', 'woocommerce-germanized' ),
+					'view'    => 'dhl.php',
+					'handler' => array( $this, 'wc_gzd_setup_dhl_save' ),
+					'order'   => 3,
+					'errors'  => array(),
+			    );
+
+			    if ( Importer::is_available() ) {
+			        $default_steps['dhl']['button_next'] = __( 'Import settings', 'woocommerce-germanized' );
+			    }
+            }
+
 			$this->steps   = $default_steps;
 			uasort( $this->steps, array( $this, '_uasort_callback' ) );
+
+			$order = 0;
+
+			foreach( $this->steps as $key => $step ) {
+			    $this->steps[ $key ]['order'] = ++$order;
+			}
 
 			$this->step    = isset( $_REQUEST['step'] ) ? sanitize_key( $_REQUEST['step'] ) : current( array_keys( $this->steps ) ); // WPCS: CSRF ok, input var ok.
 
@@ -155,6 +179,8 @@ if ( ! class_exists( 'WC_GZD_Admin_Setup_Wizard' ) ) :
 					),
 					array( 'type' => 'sectionend', 'id' => 'setting_options' ),
 				);
+			} elseif( 'dhl' === $step ) {
+			    $settings = Settings::get_setup_settings();
 			}
 
 			return $settings;
@@ -536,6 +562,21 @@ if ( ! class_exists( 'WC_GZD_Admin_Setup_Wizard' ) ) :
 			    WC_GZD_Admin::instance()->enable_small_business_options();
 			} else {
 			    WC_GZD_Admin::instance()->disable_small_business_options();
+			}
+
+			wp_safe_redirect( $redirect );
+			exit();
+		}
+
+		public function wc_gzd_setup_dhl_save() {
+			$redirect 	 = $this->get_step_url( $this->get_next_step() );
+			$current_url = $this->get_step_url( $this->step );
+			$settings    = $this->get_settings( $this->step );
+
+			if ( Importer::is_available() ) {
+			    WC_GZD_Admin::instance()->import_dhl_settings();
+			} elseif ( ! empty( $settings) ) {
+			     WC_Admin_Settings::save_fields( $settings );
 			}
 
 			wp_safe_redirect( $redirect );

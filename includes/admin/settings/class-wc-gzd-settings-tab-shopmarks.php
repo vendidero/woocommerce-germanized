@@ -41,7 +41,7 @@ class WC_GZD_Settings_Tab_Shopmarks extends WC_GZD_Settings_Tab {
 		}
 
 		$sections = array_merge( $sections, array(
-			'product_widgets' => __( 'Product Widgets', 'woocommerce-germanized' ),
+			'product_widgets' => __( 'Widgets & Blocks', 'woocommerce-germanized' ),
 		) );
 
 		return $sections;
@@ -199,7 +199,7 @@ class WC_GZD_Settings_Tab_Shopmarks extends WC_GZD_Settings_Tab {
 			array( 'title' => '', 'type' => 'title', 'id' => 'product_widget_visibility_options' ),
 
 			array(
-				'title' 	=> __( 'Product Widgets', 'woocommerce-germanized' ),
+				'title' 	=> __( 'Widgets & Blocks', 'woocommerce-germanized' ),
 				'desc' 		=> __( 'Shipping Costs notice', 'woocommerce-germanized' ),
 				'id' 		=> 'woocommerce_gzd_display_product_widget_shipping_costs',
 				'type' 		=> 'gzd_toggle',

@@ -40,6 +40,9 @@ foreach( wc_gzd_get_product_loop_shopmarks() as $shopmark ) {
 	$shopmark->execute();
 }
 
+// Add widget price HTML filters to Gutenberg blocks
+add_filter( 'woocommerce_get_price_html', 'woocommerce_gzd_template_product_blocks', 50, 2 );
+
 // Make sure to add a global product object to allow getting the grouped parent product within child display
 add_action( 'woocommerce_before_add_to_cart_form', 'woocommerce_gzd_template_single_setup_global_product' );
 

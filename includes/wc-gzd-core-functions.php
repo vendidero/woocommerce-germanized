@@ -19,6 +19,15 @@ function wc_gzd_get_dependencies( $instance = null ) {
 	return apply_filters( 'woocommerce_gzd_dependencies_instance', WC_GZD_Dependencies::instance( $instance ) );
 }
 
+function wc_gzd_post_has_woocommerce_block( $post_content ) {
+
+	if ( false === has_blocks( $post_content ) ) {
+		return false;
+	}
+
+	return false !== strpos( $post_content, '<!-- wp:woocommerce/' );
+}
+
 /**
  * @return Vendidero\Germanized\Shopmark[]
  */

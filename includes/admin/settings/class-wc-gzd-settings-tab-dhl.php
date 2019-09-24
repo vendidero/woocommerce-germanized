@@ -46,7 +46,7 @@ class WC_GZD_Settings_Tab_DHL extends WC_GZD_Settings_Tab {
 	}
 
 	protected function get_enable_option_name() {
-		return '';
+		return 'woocommerce_gzd_dhl_enable';
 	}
 
 	public function supports_disabling() {

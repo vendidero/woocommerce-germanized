@@ -84,6 +84,8 @@ body {
     border-bottom: none; }
   .wc-gzd-setup-content .wc-gzd-admin-settings .wc-gzd-additional-desc {
     background: #fffae0; }
+  .wc-gzd-setup-content .wc-gzd-admin-settings h2 {
+    display: none; }
   .wc-gzd-setup-content .wc-gzd-admin-settings .wc-gzd-label-wrap {
     display: inline-block; }
   .wc-gzd-setup-content .wc-gzd-admin-settings .form-table th {

@@ -684,6 +684,7 @@ if ( ! function_exists( 'woocommerce_gzd_template_render_review_checkboxes' ) ) 
 if ( ! function_exists( 'woocommerce_gzd_template_product_widget_filters_start' ) ) {
 
 	function woocommerce_gzd_template_product_widget_filters_start( $args ) {
+		remove_filter( 'woocommerce_get_price_html', 'woocommerce_gzd_template_product_blocks', 50 );
 		add_filter( 'woocommerce_get_price_html', 'woocommerce_gzd_template_product_widget_price_html', 100, 2 );
 	}
 }
@@ -692,6 +693,7 @@ if ( ! function_exists( 'woocommerce_gzd_template_product_widget_filters_end' ) 
 
 	function woocommerce_gzd_template_product_widget_filters_end( $args ) {
 		remove_filter( 'woocommerce_get_price_html', 'woocommerce_gzd_template_product_widget_price_html', 100 );
+		add_filter( 'woocommerce_get_price_html', 'woocommerce_gzd_template_product_blocks', 50, 2 );
 	}
 }
 
@@ -766,6 +768,20 @@ if ( ! function_exists( 'woocommerce_gzd_template_mini_cart_maybe_remove_hooks' 
 		    }
 	    }
     }
+}
+
+if ( ! function_exists( 'woocommerce_gzd_template_product_blocks' ) ) {
+
+	function woocommerce_gzd_template_product_blocks( $price_html, $product ) {
+
+		$post = get_post();
+
+		if ( $post && wc_gzd_post_has_woocommerce_block( $post->post_content ) ) {
+			$price_html = woocommerce_gzd_template_add_price_html_suffixes( $price_html, $product );
+		}
+
+		return $price_html;
+	}
 }
 
 if ( ! function_exists( 'woocommerce_gzd_template_add_price_html_suffixes' ) ) {
