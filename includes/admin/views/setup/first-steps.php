@@ -21,10 +21,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<li><i class="dashicons dashicons-welcome-learn-more"></i> <a href="https://docs.woocommerce.com/" target="_blank"><?php _e( 'Learn how to use WooCommerce', 'woocommerce-germanized' ); ?></a></li>
 		</ul>
 	</div>
-	<div class="wc-gzd-setup-grid-item">
-		<h3><?php _e( 'Upgrade now', 'woocommerce-germanized' ); ?></h3>
-        <p><?php _e( 'Want more features and premium support?', 'woocommerce-germanized' ); ?></p>
 
-        <a class="button wc-gzd-button" href="https://vendidero.de/woocommerce-germanized" target="_blank"><?php _e( 'Discover professional version', 'woocommerce-germanized' ); ?></a>
-	</div>
+    <?php if ( ! WC_germanized()->is_pro() ) : ?>
+        <div class="wc-gzd-setup-grid-item">
+            <h3><?php _e( 'Upgrade now', 'woocommerce-germanized' ); ?></h3>
+            <p><?php _e( 'Want more features and premium support?', 'woocommerce-germanized' ); ?></p>
+
+            <a class="button wc-gzd-button" href="https://vendidero.de/woocommerce-germanized" target="_blank"><?php _e( 'Discover professional version', 'woocommerce-germanized' ); ?></a>
+        </div>
+    <?php endif; ?>
 </div>

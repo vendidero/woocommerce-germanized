@@ -32,7 +32,7 @@ class WC_GZD_REST_Orders_Controller {
 	 * @param WP_REST_Request $request Request object.
 	 *
 	 * @return WP_REST_Response
-	 *@since 1.0.0
+	 * @since 1.0.0
 	 * @wp-hook woocommerce_rest_prepare_order
 	 *
 	 */

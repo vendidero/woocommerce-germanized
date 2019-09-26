@@ -87,7 +87,7 @@ class Shopmark {
 		 * @param integer                        $default_priority The default priority for the current shopmark.
 		 * @param Shopmark $shopmark The shopmark object.
 		 *
-		 *@since 3.0.0
+		 * @since 3.0.0
 		 *
 		 */
 		return apply_filters( $this->get_hook_prefix() . 'default_priority', $this->default_priority, $this );
@@ -105,7 +105,7 @@ class Shopmark {
 		 * @param string                         $default_filter The default hook name for the current shopmark.
 		 * @param Shopmark $shopmark The shopmark object.
 		 *
-		 *@since 3.0.0
+		 * @since 3.0.0
 		 *
 		 */
 		return apply_filters( $this->get_hook_prefix() . 'default_filter', $this->default_filter, $this );
@@ -155,7 +155,7 @@ class Shopmark {
 		 * @param integer                        $priority The priority for the current shopmark.
 		 * @param Shopmark $shopmark The shopmark object.
 		 *
-		 *@since 3.0.0
+		 * @since 3.0.0
 		 *
 		 */
 		return apply_filters( $this->get_hook_prefix() . 'priority', $priority, $this );
@@ -177,7 +177,7 @@ class Shopmark {
 		 * @param integer                        $filter The hook name for the current shopmark.
 		 * @param Shopmark $shopmark The shopmark object.
 		 *
-		 *@since 3.0.0
+		 * @since 3.0.0
 		 *
 		 */
 		$filter = apply_filters( $this->get_hook_prefix() . 'filter', $filter, $this );
