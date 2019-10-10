@@ -104,9 +104,8 @@ window.germanized = window.germanized || {};
             $inputs.each( function() {
                 var dataValue   = $( this ).data( 'show_if_' + name ),
                     currentVal  = $( this ).val(),
-                    currentName = $( this ).attr( 'name' ).replace( '[]', '' ),
+                    currentName = $( this ).attr( 'name' ).replace( /[\[\]']+/g, '' ),
                     $field      = $( this ).parents( 'tr' );
-
 
                 $field.removeClass( 'wc-gzd-setting-invisible' );
                 $field.addClass( 'wc-gzd-setting-visible' );
@@ -121,9 +120,8 @@ window.germanized = window.germanized || {};
             $inputs.each( function() {
                 var dataValue   = $( this ).data( 'show_if_' + name ),
                     currentVal  = $( this ).val(),
-                    currentName = $( this ).attr( 'name' ).replace( '[]', '' ),
+                    currentName = $( this ).attr( 'name' ).replace( /[\[\]']+/g, '' ),
                     $field      = $( this ).parents( 'tr' );
-
 
                 $field.removeClass( 'wc-gzd-setting-visible' );
                 $field.addClass( 'wc-gzd-setting-invisible' );
@@ -148,8 +146,10 @@ window.germanized = window.germanized || {};
                     return;
                 }
 
-                var name    = nameOrg.replace( '[]', '' );
+                // Remove square brackets
+                var name    = nameOrg.replace( /[\[\]']+/g, '' );
                 var val     = $input.val();
+
                 var $fields = $( '.wc-gzd-admin-settings' ).find( ':input[data-show_if_' + name +  ']' );
 
                 if ( $input.is( ':checkbox' ) ) {
@@ -159,7 +159,7 @@ window.germanized = window.germanized || {};
                 $fields.each( function() {
                     var dataValue   = $( this ).data( 'show_if_' + name ),
                         currentVal  = $( this ).val(),
-                        currentName = $( this ).attr( 'name' ).replace( '[]', '' ),
+                        currentName = $( this ).attr( 'name' ).replace( /[\[\]']+/g, '' ),
                         $field      = $( this ).parents( 'tr' );
 
                     $field.removeClass( 'wc-gzd-setting-visible wc-gzd-setting-invisible' );

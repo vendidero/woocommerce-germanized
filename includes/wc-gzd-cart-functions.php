@@ -403,7 +403,7 @@ function wc_gzd_get_cart_tax_share( $type = 'shipping', $cart_contents = array()
 			/**
 			 * @var WC_Product $_product
 			 */
-			$product = apply_filters( 'woocommerce_cart_item_product', $item['data'], $item, $key );
+			$_product = apply_filters( 'woocommerce_cart_item_product', $item['data'], $item, $key );
 
             /**
              * Cart item tax share product.

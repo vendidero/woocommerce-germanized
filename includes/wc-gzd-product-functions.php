@@ -221,19 +221,29 @@ function wc_gzd_recalculate_unit_price( $args = array(), $product = false ) {
         'price'         => 0,
         'base'          => 1,
         'products'      => 1,
-        'tax_mode'      => 'incl',
+        'tax_mode'      => '',
     );
 
     if ( $product ) {
     	$wc_product = $product->get_wc_product();
 
         $default_args = array(
-            'regular_price' => ( isset( $args['tax_mode'] ) && 'excl' === $args['tax_mode'] ) ? wc_get_price_excluding_tax( $wc_product, array( 'price' => $wc_product->get_regular_price() ) ) : wc_get_price_including_tax( $wc_product, array( 'price' => $wc_product->get_regular_price() ) ),
-            'sale_price'    => ( isset( $args['tax_mode'] ) && 'excl' === $args['tax_mode'] ) ? wc_get_price_excluding_tax( $wc_product, array( 'price' => $wc_product->get_sale_price() ) ) : wc_get_price_including_tax( $wc_product, array( 'price' => $wc_product->get_sale_price() ) ),
-            'price'         => ( isset( $args['tax_mode'] ) && 'excl' === $args['tax_mode'] ) ? wc_get_price_excluding_tax( $wc_product ) : wc_get_price_including_tax( $wc_product ),
+            'regular_price' => $wc_product->get_regular_price(),
+            'sale_price'    => $wc_product->get_sale_price(),
+            'price'         => $wc_product->get_price(),
             'base'          => $product->get_unit_base(),
             'products'      => $product->get_unit_product(),
         );
+
+        if ( isset( $default_args['tax_mode'] ) && 'incl' === $default_args['tax_mode'] ) {
+        	$default_args['regular_price'] = wc_get_price_including_tax( $wc_product, array( 'price' => $wc_product->get_regular_price() ) );
+	        $default_args['sale_price']    = wc_get_price_including_tax( $wc_product, array( 'price' => $wc_product->get_sale_price() ) );
+			$default_args['price']         = wc_get_price_including_tax( $wc_product );
+        } elseif( isset( $default_args['tax_mode'] ) && 'excl' === $default_args['tax_mode'] ) {
+	        $default_args['regular_price'] = wc_get_price_excluding_tax( $wc_product, array( 'price' => $wc_product->get_regular_price() ) );
+	        $default_args['sale_price']    = wc_get_price_excluding_tax( $wc_product, array( 'price' => $wc_product->get_sale_price() ) );
+	        $default_args['price']         = wc_get_price_excluding_tax( $wc_product );
+        }
     }
 
     $args = wp_parse_args( $args, $default_args );
