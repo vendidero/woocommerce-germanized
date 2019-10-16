@@ -235,7 +235,6 @@ class WC_GZD_Install {
 	}
 
 	public static function deactivate() {
-
 		// Clear Woo sessions to remove WC_GZD_Shipping_Rate instance
 		if ( class_exists( 'WC_REST_System_Status_Tools_Controller' ) ) {
 			$tools_controller = new WC_REST_System_Status_Tools_Controller;
@@ -593,6 +592,7 @@ class WC_GZD_Install {
 			foreach( $checkbox->get_form_fields() as $field ) {
 				if ( isset( $field['default'] ) && isset( $field['id'] ) ) {
 					$field_id = str_replace( $checkbox->get_form_field_id_prefix(), '', $field['id'] );
+
 					if ( ! isset( $checkbox_options[ $id ][ $field_id ] ) ) {
 						$checkbox_options[ $id ][ $field_id ] = $field['default'];
 					}

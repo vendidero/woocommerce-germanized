@@ -73,6 +73,11 @@ class WC_GZD_Unit_Tests_Bootstrap {
 			return WC_GZD_Dependencies_Mock::instance();
 		} );
 
+		// Make sure the DHL Package loads - Base country should equal DE.
+		tests_add_filter( 'woocommerce_gzd_dhl_base_country', function() {
+			return 'DE';
+		} );
+
 		tests_add_filter( 'muplugins_loaded', function() {
 			require_once $this->plugins_dir . '/woocommerce/woocommerce.php';
 			require_once $this->plugin_dir . '/woocommerce-germanized.php';

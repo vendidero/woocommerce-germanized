@@ -27,6 +27,7 @@ class WC_GZD_Tests_Install extends WC_GZD_Unit_Test_Case {
 	 * Test - install.
 	 */
 	public function test_install() {
+
 		// clean existing install first
 		if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 			define( 'WP_UNINSTALL_PLUGIN', true );
@@ -41,6 +42,21 @@ class WC_GZD_Tests_Install extends WC_GZD_Unit_Test_Case {
 
 		$this->assertTrue( get_option( 'woocommerce_gzd_version' ) === WC_germanized()->version );
 		$this->assertEquals( 'Jetzt kaufen', get_option( 'woocommerce_gzd_order_submit_btn_text' ) );
+
+		// Check if package settings are added too (e.g. DHL, Shipments)
+		$this->assertEquals( 'yes', get_option( 'woocommerce_gzd_shipments_auto_enable' ) );
+		$this->assertEquals( 'V01PAK', get_option( 'woocommerce_gzd_dhl_label_default_product_dom' ) );
+
+		// Check if Tables are installed
+		global $wpdb;
+
+		// Shipments
+		$table_name = $wpdb->get_var("SHOW TABLES LIKE '{$wpdb->prefix}woocommerce_gzd_shipments'" );
+		$this->assertEquals( "{$wpdb->prefix}woocommerce_gzd_shipments", $table_name );
+
+		// DHL
+		$table_name = $wpdb->get_var("SHOW TABLES LIKE '{$wpdb->prefix}woocommerce_gzd_dhl_labels'" );
+		$this->assertEquals( "{$wpdb->prefix}woocommerce_gzd_dhl_labels", $table_name );
 
 		remove_filter( 'plugin_locale', array( $this, 'set_locale' ), 10 );
 	}
