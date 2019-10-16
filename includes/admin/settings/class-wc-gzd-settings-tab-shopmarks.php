@@ -17,7 +17,7 @@ use Vendidero\Germanized\Shopmark;
 class WC_GZD_Settings_Tab_Shopmarks extends WC_GZD_Settings_Tab {
 
 	public function get_description() {
-		return __( 'Adjust shopmark related settings and adjust which labels shall be attached to your product data.', 'woocommerce-germanized' );
+		return __( 'Adjust shopmark related settings. Choose which and where they shall be attached to your product data.', 'woocommerce-germanized' );
 	}
 
 	public function get_label() {
@@ -146,7 +146,7 @@ class WC_GZD_Settings_Tab_Shopmarks extends WC_GZD_Settings_Tab {
 						'next_trigger' => array(),
 						'options'      => array(
 							'content'  => '<h3>' . esc_html__( 'Default Sale Label', 'woocommerce-germanized' ) . '</h3>' .
-							              '<p>' . esc_html__( 'Price labels are added to sale products to inform the customers of the differnt prices\' meaning. You may add a fallback label in case a product does not contain a label.', 'woocommerce-germanized' ) . '</p>',
+							              '<p>' . esc_html__( 'Price labels are added to sale products to inform the customers of the different prices\' meaning. You may add a fallback label in case a product does not contain a label.', 'woocommerce-germanized' ) . '</p>',
 							'position' => array(
 								'edge'  => 'left',
 								'align' => 'left',
@@ -185,7 +185,7 @@ class WC_GZD_Settings_Tab_Shopmarks extends WC_GZD_Settings_Tab {
 		$display_sections = Shopmarks::get_locations();
 
 		if ( 'product_widgets' === $section ) {
-			return __( 'Adjust Product Widget visibility options.', 'woocommerce-germanized' );
+			return __( 'Adjust Product Widgets & Blocks visibility options.', 'woocommerce-germanized' );
 		} elseif ( array_key_exists( $section, $display_sections ) ) {
 			$title = Shopmarks::get_location_title( $section );
 			return sprintf( __( 'Adjust %s visibility options and choose which shopmarks to be displayed at which locations.', 'woocommerce-germanized' ), $title );
@@ -490,7 +490,7 @@ class WC_GZD_Settings_Tab_Shopmarks extends WC_GZD_Settings_Tab {
 
 			array(
 				'title' 	=> __( 'Single Product', 'woocommerce-germanized' ),
-				'desc' 		=> __( 'Show sale price labels on single product page.', 'woocommerce-germanized' ),
+				'desc' 		=> __( 'Show price labels on single product page.', 'woocommerce-germanized' ),
 				'id' 		=> 'woocommerce_gzd_display_product_detail_sale_price_labels',
 				'type' 		=> 'gzd_toggle',
 				'default'	=> 'yes',
@@ -498,7 +498,7 @@ class WC_GZD_Settings_Tab_Shopmarks extends WC_GZD_Settings_Tab {
 
 			array(
 				'title' 	=> __( 'Loop', 'woocommerce-germanized' ),
-				'desc' 		=> __( 'Show sale price labels in product loops.', 'woocommerce-germanized' ),
+				'desc' 		=> __( 'Show price labels in product loops.', 'woocommerce-germanized' ),
 				'id' 		=> 'woocommerce_gzd_display_listings_sale_price_labels',
 				'type' 		=> 'gzd_toggle',
 				'default'	=> 'yes',

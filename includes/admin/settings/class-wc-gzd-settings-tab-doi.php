@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 class WC_GZD_Settings_Tab_DOI extends WC_GZD_Settings_Tab {
 
 	public function get_description() {
-		return __( 'Adds a double opt in registration process to WooCommerce.', 'woocommerce-germanized' );
+		return __( 'Extend the WooCommerce registration process with a double opt in.', 'woocommerce-germanized' );
 	}
 
 	public function get_label() {

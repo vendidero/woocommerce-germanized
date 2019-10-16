@@ -29,7 +29,7 @@ class WC_GZD_Legal_Checkbox_Manager {
 	public function __construct() {
 		$this->checkboxes = array();
 
-		add_action( 'woocommerce_after_checkout_validation', array( $this, 'validate_checkout' ), 1, 1 );
+		add_action( 'woocommerce_after_checkout_validation', array( $this, 'validate_checkout' ), 1, 2 );
 		add_filter( 'woocommerce_process_registration_errors', array( $this, 'validate_register' ), 10, 1 );
 		add_action( 'woocommerce_before_pay_action', array( $this, 'validate_pay_for_order' ), 10, 1 );
 		add_filter( 'pre_comment_approved', array( $this, 'validate_reviews' ), 10, 2 );
@@ -391,9 +391,15 @@ class WC_GZD_Legal_Checkbox_Manager {
 		}
 	}
 
-	public function validate_checkout( $data ) {
-		if ( isset( $_POST[ 'woocommerce_checkout_update_totals' ] ) )
+	/**
+	 * @param array    $data
+	 * @param WP_Error $errors
+	 */
+	public function validate_checkout( $data, $errors ) {
+
+		if ( isset( $_POST[ 'woocommerce_checkout_update_totals' ] ) ) {
 			return;
+		}
 
 		$this->maybe_do_hooks( 'checkout' );
 
@@ -401,7 +407,7 @@ class WC_GZD_Legal_Checkbox_Manager {
 			$value = isset( $_POST[ $checkbox->get_html_name() ] ) ? $_POST[ $checkbox->get_html_name() ] : '';
 
 			if( ! $checkbox->validate( $value, 'checkout' ) ) {
-				wc_add_notice( $checkbox->get_error_message(), 'error' );
+				$errors->add( 'checkbox', $checkbox->get_error_message() );
 			}
 		}
 	}

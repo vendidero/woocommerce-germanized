@@ -338,12 +338,6 @@ class WC_GZD_Install {
 		// Cron jobs
 		wp_clear_scheduled_hook( 'woocommerce_gzd_customer_cleanup' );
 		wp_schedule_event( time(), 'daily', 'woocommerce_gzd_customer_cleanup' );
-
-		wp_clear_scheduled_hook( 'woocommerce_gzd_trusted_shops_reviews' );
-		wp_schedule_event( time(), 'twicedaily', 'woocommerce_gzd_trusted_shops_reviews' );
-		
-		wp_clear_scheduled_hook( 'woocommerce_gzd_ekomi' );
-		wp_schedule_event( time(), 'daily', 'woocommerce_gzd_ekomi' );
 	}
 
 	public static function create_units() {

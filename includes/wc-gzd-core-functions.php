@@ -151,7 +151,7 @@ function wc_gzd_get_age_verification_min_ages() {
 }
 
 function wc_gzd_get_age_verification_min_ages_select() {
-	$age_select = array( "-1" => __( 'None', 'age', 'woocommerce-germanized' ) ) + wc_gzd_get_age_verification_min_ages();
+	$age_select = array( "-1" => _x( 'None', 'age', 'woocommerce-germanized' ) ) + wc_gzd_get_age_verification_min_ages();
 
 	return $age_select;
 }

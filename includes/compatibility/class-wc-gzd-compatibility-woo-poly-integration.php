@@ -25,10 +25,8 @@ class WC_GZD_Compatibility_Woo_Poly_Integration extends WC_GZD_Compatibility {
 	public function early_execution() {
 
 		$this->order_emails = array(
-			'customer_ekomi',
 			'customer_paid_for_order',
 			'customer_sepa_direct_debit_mandate',
-			'customer_trusted_shops',
 		);
 
 		$this->other_emails = array(

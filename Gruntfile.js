@@ -150,6 +150,7 @@ module.exports = function( grunt ) {
                     potFilename: 'woocommerce-germanized.pot',
                     exclude: [
                         'vendor/.*',
+                        'node_modules/.*',
                         'tests/.*',
                         'tmp/.*'
                     ]
@@ -249,6 +250,8 @@ module.exports = function( grunt ) {
     grunt.loadNpmTasks( 'grunt-rtlcss' );
     grunt.loadNpmTasks( 'grunt-postcss' );
     grunt.loadNpmTasks( 'grunt-stylelint' );
+    grunt.loadNpmTasks( 'grunt-wp-i18n' );
+    grunt.loadNpmTasks( 'grunt-checktextdomain' );
     grunt.loadNpmTasks( 'grunt-contrib-jshint' );
     grunt.loadNpmTasks( 'grunt-contrib-uglify' );
     grunt.loadNpmTasks( 'grunt-contrib-cssmin' );
@@ -274,5 +277,14 @@ module.exports = function( grunt ) {
     grunt.registerTask( 'assets', [
         'css',
         'uglify'
+    ]);
+
+    grunt.registerTask( 'i18n', [
+        'checktextdomain',
+        'makepot'
+    ]);
+
+    grunt.registerTask( 'makepot', [
+        'makepot'
     ]);
 };

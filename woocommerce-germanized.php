@@ -6,7 +6,7 @@
  * Version: 3.0.0 beta
  * Author: Vendidero
  * Author URI: https://vendidero.de
- * Requires at least: 3.8
+ * Requires at least: 4.9
  * Tested up to: 5.2
  * WC requires at least: 3.4
  * WC tested up to: 3.7
@@ -29,11 +29,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Load core packages and the autoloader.
  *
- * The new packages and autoloader require PHP 5.6+. If this dependency is not met, do not include them. Users will be warned
- * that they are using an older version of PHP. WooCommerce will continue to load, but some functionality such as the REST API
- * and Blocks will be missing.
- *
- * This requirement will be enforced in future versions of WooCommerce.
+ * The new packages and autoloader require PHP 5.6+.
  */
 if ( version_compare( PHP_VERSION, '5.6.0', '>=' ) ) {
     require __DIR__ . '/src/Autoloader.php';
@@ -44,6 +40,15 @@ if ( version_compare( PHP_VERSION, '5.6.0', '>=' ) ) {
     }
 
 	Packages::init();
+} else {
+	function wc_gzd_admin_php_notice() {
+		?>
+		<div id="message" class="error"><p><?php printf( __( 'Germanized requires at least PHP 5.6 to work. Please %s your PHP version.', 'woocommerce-germanized' ), '<a href="https://wordpress.org/support/update-php/">' . __( 'upgrade', 'woocommerce-germanized' ) . '</a>' ); ?></p></div>
+		<?php
+	}
+
+	add_action( 'admin_notices', 'wc_gzd_admin_php_notice', 20 );
+	return;
 }
 
 if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
@@ -70,13 +75,6 @@ final class WooCommerce_Germanized {
 	public $units = null;
 
 	public $price_labels = null;
-
-	/**
-	 * WC_GZD_Ekomi instance
-	 *
-	 * @var object
-	 */
-	public $ekomi = null;
 
 	/**
 	 * @var WC_GZD_Emails|null
@@ -297,7 +295,6 @@ final class WooCommerce_Germanized {
 
 	    $matcher = array(
 	        'wc_gzd_',
-            'ekomi\\',
             'digitick\sepa',
             'defuse\crypto',
         );
@@ -323,9 +320,6 @@ final class WooCommerce_Germanized {
 		} elseif ( strpos( $class, 'digitick\sepa' ) !== false ) {
 			$path = $this->plugin_path() . '/includes/gateways/direct-debit/libraries/php-sepa-xml/';
 			$file = ucfirst( str_replace( 'Digitick/Sepa/', '', str_replace( '\\', '/', $original_class ) ) . '.php' );
-		} elseif ( strpos( $class, 'ekomi\\' ) !== false ) {
-			$path = $this->plugin_path() . '/includes/libraries/Ekomi/';
-			$file = ucfirst( str_replace( 'Ekomi/', '', str_replace( '\\', '/', $original_class ) ) . '.php' );
 		}
 
 		if ( $path && is_readable( $path . $file ) ) {
@@ -472,8 +466,6 @@ final class WooCommerce_Germanized {
 		include_once WC_GERMANIZED_ABSPATH . 'includes/class-wc-gzd-coupon-helper.php';
 
 		include_once WC_GERMANIZED_ABSPATH . 'includes/class-wc-gzd-virtual-vat-helper.php';
-
-		$this->ekomi = new WC_GZD_Ekomi();
 	}
 
 	public function woocommerce_loaded_includes() {
@@ -994,7 +986,6 @@ final class WooCommerce_Germanized {
 		$mails['WC_GZD_Email_Customer_Paid_For_Order'] 			= include 'includes/emails/class-wc-gzd-email-customer-paid-for-order.php';
 		$mails['WC_GZD_Email_Customer_New_Account_Activation'] 	= include 'includes/emails/class-wc-gzd-email-customer-new-account-activation.php';
 		$mails['WC_GZD_Email_Customer_Revocation'] 				= include 'includes/emails/class-wc-gzd-email-customer-revocation.php';
-		$mails['WC_GZD_Email_Customer_Ekomi'] 	 				= include 'includes/emails/class-wc-gzd-email-customer-ekomi.php';
 
 		// Make sure the Processing Order Email is named Order Confirmation for better understanding
 		if ( isset( $mails['WC_Email_Customer_Processing_Order'] ) ) {

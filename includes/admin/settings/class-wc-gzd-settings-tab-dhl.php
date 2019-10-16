@@ -16,7 +16,7 @@ use Vendidero\Germanized\DHL\Admin\Settings;
 class WC_GZD_Settings_Tab_DHL extends WC_GZD_Settings_Tab {
 
 	public function get_description() {
-		return __( 'Automatically generate DHL labels for your shipments.', 'woocommerce-germanized' );
+		return __( 'Integrate DHL Services such as Labels for Shipments and Returns and Delivery to Packstations.', 'woocommerce-germanized' );
 	}
 
 	public function get_label() {

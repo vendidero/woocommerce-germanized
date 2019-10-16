@@ -22,8 +22,6 @@ class WC_GZD_Shortcodes {
 		$shortcodes = array(
 			'revocation_form'             => __CLASS__ . '::revocation_form',
 			'payment_methods_info'		  => __CLASS__ . '::payment_methods_info',
-			'ekomi_badge'				  => __CLASS__ . '::ekomi_badge',
-			'ekomi_widget'				  => __CLASS__ . '::ekomi_widget',
 			'add_to_cart'				  => __CLASS__ . '::gzd_add_to_cart',
 			'gzd_feature'				  => __CLASS__ . '::gzd_feature',
 			'gzd_vat_info'				  => __CLASS__ . '::gzd_vat_info',
@@ -227,30 +225,6 @@ class WC_GZD_Shortcodes {
 		wc_get_template( 'global/payment-methods.php' );
 		$return = '<div class="woocommerce woocommerce-gzd">' . ob_get_clean() . '</div>';
 		return $return;
-	
-	}
-
-	/**
-	 * Returns eKomi Badge html
-	 *  
-	 * @param  array $atts 
-	 * @return string     
-	 */
-	public static function ekomi_badge( $atts ) {
-
-		return WC_germanized()->ekomi->get_badge( $atts );
-	
-	}
-
-	/**
-	 * Returns eKomi Widget html
-	 *  
-	 * @param  array $atts 
-	 * @return string       
-	 */
-	public static function ekomi_widget( $atts ) {
-
-		return WC_germanized()->ekomi->get_widget( $atts );
 	
 	}
 

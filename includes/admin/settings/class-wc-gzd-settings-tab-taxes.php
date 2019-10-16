@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 class WC_GZD_Settings_Tab_Taxes extends WC_GZD_Settings_Tab {
 
 	public function get_description() {
-		return __( 'Find tax related settings like shipping costs taxation here.', 'woocommerce-germanized' );
+		return __( 'Adjust tax related settings e.g. Split-tax calculation for shipping costs.', 'woocommerce-germanized' );
 	}
 
 	public function get_label() {
@@ -28,7 +28,7 @@ class WC_GZD_Settings_Tab_Taxes extends WC_GZD_Settings_Tab {
 	public function get_sections() {
 		return array(
 			''                      => __( 'VAT', 'woocommerce-germanized' ),
-			'split_tax'             => __( 'Split Tax', 'woocommerce-germanized' ),
+			'split_tax'             => __( 'Split-tax', 'woocommerce-germanized' ),
 			'differential_taxation' => __( 'Differential Taxation', 'woocommerce-germanized' ),
 		);
 	}

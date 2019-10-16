@@ -1,12 +1,12 @@
 === Germanized for WooCommerce ===
 Contributors: vendidero, vdwoocommercesupport
 Tags: woocommerce, woocommerce german, woocommerce DE, woocommerce germany, woocommerce deutsch, woo, woocommerce deutschland, woocommerce germanized, woocommerce addon, woocommerce plugin, woocommerce german addon, woocommerce germany addon
-Requires at least: 3.8
+Requires at least: 4.9
 Tested up to: 5.2
 WC requires at least: 3.4
 WC tested up to: 3.7
 Stable tag: 2.3.3
-Requires PHP: 5.3
+Requires PHP: 5.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 

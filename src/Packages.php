@@ -1,6 +1,6 @@
 <?php
 /**
- * Loads WooCommece packages from the /packages directory. These are packages developed outside of core.
+ * Loads Germanized packages from the /packages directory. These are packages developed outside of core.
  *
  * @package Vendidero/Germanized
  */
@@ -11,7 +11,7 @@ defined( 'ABSPATH' ) || exit;
 /**
  * Packages class.
  *
- * @since 3.7.0
+ * @since 3.0.0
  */
 class Packages {
 
@@ -26,7 +26,9 @@ class Packages {
      * @var array Key is the package name/directory, value is the main package class which handles init.
      */
     protected static $packages = [
-	    //'woocommerce-trusted-shops' => '\\Vendidero\\TrustedShops\\Package',
+	    'woocommerce-trusted-shops'        => '\\Vendidero\\TrustedShops\\Package',
+	    'woocommerce-germanized-shipments' => '\\Vendidero\\Germanized\\Shipments\\Package',
+	    'woocommerce-germanized-dhl'       => '\\Vendidero\\Germanized\\DHL\\Package',
     ];
 
     /**
@@ -86,7 +88,7 @@ class Packages {
                 /* Translators: %s package name. */
                     esc_html__( 'Missing the Germanized %s package', 'woocommerce-germanized' ),
                     '<code>' . esc_html( $package ) . '</code>'
-                ) . ' - ' . esc_html__( 'Your installation of Germanized is incomplete. If you installed Germanized from GitHub, please refer to this document to set up your development environment: https://github.com/woocommerce/woocommerce/wiki/How-to-set-up-WooCommerce-development-environment', 'woocommerce-germanized' )
+                ) . ' - ' . esc_html__( 'Your installation of Germanized is incomplete. If you installed Germanized from GitHub, please refer to this document to set up your development environment: https://github.com/vendidero/woocommerce-germanized/wiki/How-to-set-up-a-Germanized-development-environment', 'woocommerce-germanized' )
             );
         }
         add_action(

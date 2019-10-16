@@ -107,11 +107,11 @@ class WC_GZD_Admin {
 			if ( isset( $_GET['wc-gzd-dhl-import'] ) && isset( $_GET['_wpnonce'] ) ) { // WPCS: input var ok, CSRF ok.
 
 			    if ( ! wp_verify_nonce( sanitize_key( wp_unslash( $_GET['_wpnonce'] ) ), 'woocommerce_gzd_dhl_import_nonce' ) ) { // WPCS: input var ok, CSRF ok.
-					wp_die( esc_html__( 'Action failed. Please refresh the page and retry.', 'woocommerce-germanized-dhl' ) );
+					wp_die( esc_html_x( 'Action failed. Please refresh the page and retry.', 'dhl', 'woocommerce-germanized' ) );
 				}
 
 				if ( ! current_user_can( 'manage_woocommerce' ) ) {
-					wp_die( esc_html__( 'You don\'t have permission to do this.', 'woocommerce-germanized-dhl' ) );
+					wp_die( esc_html_x( 'You don\'t have permission to do this.',  'dhl','woocommerce-germanized' ) );
 				}
 
                 $this->import_dhl_settings();
