@@ -36,6 +36,11 @@ find ./packages/woocommerce-germanized-dhl -iname '*.php' -exec sed -i.bak -e "s
 # Replace template module comment for TS support
 find ./packages/woocommerce-trusted-shops/templates -iname '*.php' -exec sed -i.bak -e "s|Module: WooCommerce Trusted Shops|Module: WooCommerce Germanized|g" {} \;
 
+# Delete vendor directory in packages to avoid duplicate dependencies
+rm -rf ./packages/woocommerce-trusted-shops/vendor
+rm -rf ./packages/woocommerce-germanized-shipments/vendor
+rm -rf ./packages/woocommerce-germanized-dhl/vendor
+
 # Cleanup backup files
 find ./packages -name "*.bak" -type f -delete
 output 2 "Done!"
