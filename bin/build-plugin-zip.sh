@@ -40,11 +40,13 @@ copy_dest_files() {
 		--exclude="*.lock" \
 		--exclude=bin/ \
 		--exclude=node_modules/ \
+		--exclude=tmp/ \
 		--exclude=tests/ \
 		--exclude=phpcs.xml \
 		--exclude=phpunit.xml \
 		--exclude=phpunit.xml.dist \
 		--exclude=renovate.json \
+		--exclude=phpcs.ruleset.xml \
 		--exclude="*.config.js" \
 		--exclude="*-config.js" \
 		--exclude="*.config.json" \
