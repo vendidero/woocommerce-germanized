@@ -228,7 +228,7 @@ abstract class WC_GZD_Settings_Tab extends WC_Settings_Page {
          *
          * @param string $current_section The current sub section of the tab.
 		 */
-		do_action( "woocommerce_gzd_admin_settings_before_{$this->get_name()}", $current_section );
+		do_action( "woocommerce_gzd_admin_settings_before_wrapper_{$this->get_name()}", $current_section );
 
 		include_once 'views/html-admin-settings-section.php';
 	}

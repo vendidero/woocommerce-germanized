@@ -68,7 +68,7 @@ class WC_GZD_Settings_Tab_Taxes extends WC_GZD_Settings_Tab {
 			array(
 				'title' 	=> '',
 				'id' 		=> 'woocommerce_gzdp_enable_vat_check',
-				'img'		=> WC_Germanized()->plugin_url() . '/assets/images/pro/settings-inline-vat-v2.png?v=' . WC_germanized()->version,
+				'img'		=> WC_Germanized()->plugin_url() . '/assets/images/pro/settings-inline-vat.png?v=' . WC_germanized()->version,
 				'href'      => 'https://vendidero.de/woocommerce-germanized#vat',
 				'type' 		=> 'image',
 			),

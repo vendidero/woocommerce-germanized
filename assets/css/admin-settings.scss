@@ -105,6 +105,7 @@
       a.breadcrumb-link {
         text-decoration: none;
         display: inline-flex;
+        white-space: nowrap;
         align-items: center;
         color: #444;
 
@@ -199,6 +200,7 @@
 
     td.wc-gzd-setting-tab-name {
       font-weight: 700;
+      white-space: nowrap;
     }
 
     tr:nth-child(odd) td {
@@ -233,8 +235,12 @@
     margin-bottom: 1em;
   }
 
+  th.forminp-image {
+    padding-right: 0 !important;
+  }
+
   .wc-gzd-premium img, .forminp-image img {
-    max-width: 70%;
+    max-width: 100%;
     height: auto;
     opacity: 0.7;
   }

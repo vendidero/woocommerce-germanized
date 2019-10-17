@@ -1,7 +1,7 @@
 {
   "name": "woocommerce-germanized",
   "title": "Germanized for WooCommerce",
-  "version": "1.2.3",
+  "version": "3.0.0",
   "homepage": "https://vendidero.de/woocommerce-germanized",
   "repository": {
     "type": "git",
@@ -12,7 +12,9 @@
   "scripts": {
     "build": "grunt",
     "build-watch": "grunt watch",
-    "makepot": "grunt makepot"
+    "makepot": "grunt makepot",
+    "deploy": "sh ./bin/deploy.sh",
+    "package-plugin": "./bin/build-plugin-zip.sh"
   },
   "devDependencies": {
     "autoprefixer": "9.6.1",

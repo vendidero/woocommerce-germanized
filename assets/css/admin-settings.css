@@ -73,6 +73,7 @@
     .wc-gzd-settings .wc-gzd-settings-breadcrumb li.breadcrumb-item a.breadcrumb-link {
       text-decoration: none;
       display: inline-flex;
+      white-space: nowrap;
       align-items: center;
       color: #444; }
       .wc-gzd-settings .wc-gzd-settings-breadcrumb li.breadcrumb-item a.breadcrumb-link:hover {
@@ -131,7 +132,8 @@
   .wc-gzd-settings .wc-gzd-setting-tabs td.wc-gzd-setting-tab-name, .wc-gzd-settings .wc-gzd-setting-tabs th.wc-gzd-setting-tab-name {
     width: 25ch; }
   .wc-gzd-settings .wc-gzd-setting-tabs td.wc-gzd-setting-tab-name {
-    font-weight: 700; }
+    font-weight: 700;
+    white-space: nowrap; }
   .wc-gzd-settings .wc-gzd-setting-tabs tr:nth-child(odd) td {
     background: #f9f9f9; }
 
@@ -151,8 +153,10 @@
     cursor: move; }
   .wc-gzd-admin-settings .forminp-radio fieldset p {
     margin-bottom: 1em; }
+  .wc-gzd-admin-settings th.forminp-image {
+    padding-right: 0 !important; }
   .wc-gzd-admin-settings .wc-gzd-premium img, .wc-gzd-admin-settings .forminp-image img {
-    max-width: 70%;
+    max-width: 100%;
     height: auto;
     opacity: 0.7; }
   .wc-gzd-admin-settings #woocommerce_gzdp_terms_generator img {

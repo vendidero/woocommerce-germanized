@@ -19,6 +19,13 @@ class WC_GZD_Settings_Tab_DHL extends WC_GZD_Settings_Tab {
 		return __( 'Integrate DHL Services such as Labels for Shipments and Returns and Delivery to Packstations.', 'woocommerce-germanized' );
 	}
 
+	protected function get_breadcrumb_label( $label ) {
+		$label  = parent::get_breadcrumb_label( $label );
+		$label .= '<a href="https://www.dhl.de/de/geschaeftskunden/paket/kunde-werden/angebot-dhl-geschaeftskunden-online.html" class="page-title-action" target="_blank">' . _x( 'Not yet a customer?', 'dhl', 'woocommerce-germanized' ) . '</a>';
+
+		return $label;
+	}
+
 	public function get_label() {
 		return __( 'DHL', 'woocommerce-germanized' );
 	}

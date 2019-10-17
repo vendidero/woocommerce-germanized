@@ -1,22 +1,42 @@
-.wc-gzd-news .wc-feature {}
+.wc-gzd-news {
 
-.wc-gzd-news .wc-feature > div {
-  float: left;
-  margin-right: 0;
-}
+  p.price {
+    font-size: .8em;
+  }
 
-.wc-gzd-news .three-col > div {
-  width: 31%;
-  padding-right: 3%;
-}
+  .columns {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: -1em;
+    margin-right: -1em;
 
-.wc-gzd-news .two-col > div {
-  width: 47.5%;
-  padding-right: 5%;
-}
+    * {
+      box-sizing: border-box;
+    }
 
-.wc-gzd-news .wc-feature > div.last-feature {
-  padding-right: 0;
+    .col {
+      margin-right: 0;
+      padding: 0 1em;
+      width: 33.3333%;
+
+      h4 {
+        .dashicons {
+          margin-right: 5px;
+        }
+      }
+
+      &.align-center {
+        display: inline-flex;
+        align-self: center;
+      }
+    }
+
+    &.two-col {
+      .col {
+        width: 50%;
+      }
+    }
+  }
 }
 
 .wc-gzd-logo {
@@ -24,7 +44,7 @@
   text-indent: -9999px;
   width: 298px;
   vertical-align: top;
-  margin-top: 3rem;
+  margin-top: 2rem;
   height: 89px;
   background: url(../images/germanized.svg) no-repeat;
   background-size: 298px auto;
@@ -37,17 +57,6 @@
   margin: 0;
   margin-top: 2rem;
   margin-left: 5%;
-}
-.wc-gzd-twitter, .wc-gzd-fb {
-  display: inline-block;
-}
-.wc-gzd-twitter iframe {
-  width: 130px !important;
-}
-.wc-gzd-fb iframe {
-  position: relative;
-  top: 5px;
-  display: inline-block;
 }
 .dashboard_page_wc-gzd-about h1 {
   width: 100%;
@@ -102,16 +111,25 @@
   border: 1px solid #CCC;
   border-radius: 3px;
 }
-p.wc-gzd-actions a.button-primary, .woocommerce-gzd-message .button-primary {
-  background-color: #262626 !important;
-  border: 1px solid #000 !important;
-  text-shadow: none !important;
+
+.wc-gzd-actions {
+  a.button {
+    margin-right: .5em;
+  }
+
+  a.button-primary, .woocommerce-gzd-message .button-primary {
+    background-color: #262626 !important;
+    border: 1px solid #000 !important;
+    text-shadow: none !important;
+
+    &:hover {
+      background-color: #363636 !important;
+      border: 1px solid #000 !important;
+      text-shadow: none !important;
+    }
+  }
 }
-p.wc-gzd-actions a.button-primary:hover, .woocommerce-gzd-message .button-primary:hover {
-  background-color: #363636 !important;
-  border: 1px solid #000 !important;
-  text-shadow: none !important;
-}
+
 .woocommerce-gzd-message .form-table tr td, .woocommerce-gzd-message .form-table tr th {
   padding: 0.7rem 0;
   margin: 0;

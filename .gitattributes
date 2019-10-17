@@ -1,6 +1,7 @@
 /.* export-ignore
 /*.md export-ignore
 /node_modules* export-ignore
+/composer.* export-ignore
 /tests export-ignore
 /bin export-ignore
 /phpcs.xml export-ignore
