@@ -47,4 +47,13 @@ $fields = WC_GZD_Revocation::get_fields();
 
 </table>
 
+<?php
+/**
+ * Show user-defined additional content - this is set in each email's settings.
+ */
+if ( $additional_content ) {
+	echo wp_kses_post( wpautop( wptexturize( $additional_content ) ) );
+}
+?>
+
 <?php do_action( 'woocommerce_email_footer', $email ); ?>

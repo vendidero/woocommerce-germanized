@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce Germanized\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-10-17 15:12+0200\n"
-"PO-Revision-Date: 2019-10-18 13:10+0200\n"
+"POT-Creation-Date: 2019-10-18 13:45+0200\n"
+"PO-Revision-Date: 2019-10-18 13:46+0200\n"
 "Last-Translator: holzhannes <holzhannes@posteo.de>\n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -268,7 +268,7 @@ msgstr "Empfänger"
 
 #: woocommerce-germanized-dhl/includes/admin/views/settings-shipping-method.php:15
 #: woocommerce-germanized-dhl/src/Admin/Admin.php:192
-#: woocommerce-germanized-dhl/src/Package.php:242
+#: woocommerce-germanized-dhl/src/Package.php:239
 msgctxt "dhl"
 msgid "DHL"
 msgstr "DHL"
@@ -1846,7 +1846,7 @@ msgid "%s-%s"
 msgstr "%s-%s"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized-dhl/src/Package.php:643
+#: woocommerce-germanized-dhl/src/Package.php:641
 msgctxt "dhl"
 msgid "Germany"
 msgstr "Deutschland"
@@ -2708,8 +2708,7 @@ msgstr ""
 "wurde. %s die E-Mail-Benachrichtigung."
 
 #: woocommerce-germanized-shipments/src/Admin/Settings.php:24
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shipments.php:40
-msgctxt "shipments"
+msgctxt "shipments notification"
 msgid "Manage"
 msgstr "Verwalte"
 
@@ -3658,7 +3657,7 @@ msgid "Start tutorial"
 msgstr "Tutorial starten"
 
 #: woocommerce-germanized/includes/admin/class-wc-gzd-admin-setup-wizard.php:91
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-dhl.php:30
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-dhl.php:33
 #: woocommerce-germanized/includes/admin/views/setup/dhl.php:10
 msgid "DHL"
 msgstr "DHL"
@@ -3675,8 +3674,7 @@ msgstr "Rechtlich relevante Seiten"
 
 #: woocommerce-germanized/includes/admin/class-wc-gzd-admin-setup-wizard.php:131
 msgid "Create legal pages placeholders e.g. terms & conditions."
-msgstr ""
-"Lege rechtlich relevante Seiten an, z.B. Allgemeine Geschäftsbedingungen."
+msgstr "Lege rechtlich relevante Seiten an, z.B. AGB."
 
 #: woocommerce-germanized/includes/admin/class-wc-gzd-admin-setup-wizard.php:141
 msgid "Germanize WooCommerce settings (e.g. currency, tax display)."
@@ -3922,25 +3920,25 @@ msgid "not allowed"
 msgstr "nicht akzeptiert"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:489
+#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:488
 msgid "Optional Email Content"
 msgstr "Optionaler E-Mail Inhalt"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:498
+#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:497
 msgid "Add content which will be replacing default page content within emails."
 msgstr ""
 "Fülle dieses Feld aus um einen abweichenden E-Mail Anhangstext für diese "
 "Seite zu bestimmen."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:509
+#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:508
 #: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:136
 msgid "Optional Mini Description"
 msgstr "Warenkorb Kurzbeschreibung"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:528
+#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:527
 msgid ""
 "This content will be shown as short product description within checkout and "
 "emails."
@@ -4161,7 +4159,7 @@ msgstr ""
 
 # @ woocommerce-germanized
 #: woocommerce-germanized/includes/admin/settings/abstract-wc-gzd-settings-tab.php:36
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-pointers.php:178
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-pointers.php:181
 #: woocommerce-germanized/includes/admin/views/html-settings-pro.php:25
 #: woocommerce-germanized/includes/admin/views/setup/first-steps.php:27
 #: woocommerce-germanized/includes/compatibility/elementor/widgets/abstact-class-wc-gzd-elementor-widget.php:53
@@ -4200,16 +4198,16 @@ msgstr ""
 "Einige Funktionen können über den Regler explizit ein- bzw. ausgeschaltet "
 "werden."
 
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-pointers.php:145
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-pointers.php:148
 #: woocommerce-germanized/includes/admin/views/html-notice-templates-outdated.php:14
 msgid "Dismiss"
 msgstr "Ausblenden"
 
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-pointers.php:146
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-pointers.php:149
 msgid "Next"
 msgstr "Weiter"
 
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-pointers.php:153
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-pointers.php:156
 msgid "Let's go"
 msgstr "Los geht's"
 
@@ -4552,7 +4550,7 @@ msgstr ""
 "Erzeuge bequem DHL Labels für Sendungen und Retouren und mehr über dein "
 "Admin-Panel."
 
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-dhl.php:24
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-dhl.php:26
 msgctxt "dhl"
 msgid "Not yet a customer?"
 msgstr "Noch kein Geschäftskunde?"
@@ -5300,6 +5298,11 @@ msgstr "Erstelle bequem und einfach (mehrere) Sendungen zu Bestellungen."
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shipments.php:23
 msgid "Shipments"
 msgstr "Sendungen"
+
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shipments.php:40
+msgctxt "shipments"
+msgid "Manage"
+msgstr "Verwalten"
 
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shipments.php:59
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:63
@@ -9878,17 +9881,17 @@ msgctxt "trusted-shops"
 msgid "Cheatin&#8217; huh?"
 msgstr "So geht das leider nicht.."
 
-#: woocommerce-trusted-shops/includes/class-wc-trusted-shops-core.php:210
+#: woocommerce-trusted-shops/includes/class-wc-trusted-shops-core.php:213
 msgctxt "trusted-shops"
 msgid "Yes"
 msgstr "Ja"
 
-#: woocommerce-trusted-shops/includes/class-wc-trusted-shops-core.php:210
+#: woocommerce-trusted-shops/includes/class-wc-trusted-shops-core.php:213
 msgctxt "trusted-shops"
 msgid "No"
 msgstr "Nein"
 
-#: woocommerce-trusted-shops/includes/class-wc-trusted-shops-core.php:258
+#: woocommerce-trusted-shops/includes/class-wc-trusted-shops-core.php:261
 #, php-format
 msgctxt "trusted-shops"
 msgid ""
@@ -9900,7 +9903,7 @@ msgstr ""
 
 # @ woocommerce-germanized
 # @ woocommerce
-#: woocommerce-trusted-shops/includes/class-wc-trusted-shops-core.php:407
+#: woocommerce-trusted-shops/includes/class-wc-trusted-shops-core.php:410
 msgctxt "trusted-shops"
 msgid "Settings"
 msgstr "Einstellungen"
@@ -10036,7 +10039,7 @@ msgctxt "trusted-shops"
 msgid "Title"
 msgstr "Titel"
 
-#: woocommerce-trusted-shops/src/Package.php:53
+#: woocommerce-trusted-shops/src/Package.php:55
 msgctxt "trusted-shops"
 msgid ""
 "Trustbadge Reviews for WooCommerce needs at least WooCommerce version 3.1 to "

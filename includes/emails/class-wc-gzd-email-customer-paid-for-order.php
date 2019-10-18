@@ -105,11 +105,12 @@ class WC_GZD_Email_Customer_Paid_For_Order extends WC_Email {
 	 */
 	public function get_content_html() {
 		return wc_get_template_html( $this->template_html, array(
-			'order'         => $this->object,
-			'email_heading' => $this->get_heading(),
-			'sent_to_admin' => false,
-			'plain_text'    => false,
-			'email'			=> $this
+			'order'              => $this->object,
+			'email_heading'      => $this->get_heading(),
+			'additional_content' => $this->get_additional_content(),
+			'sent_to_admin'      => false,
+			'plain_text'         => false,
+			'email'			     => $this
 		) );
 	}
 
@@ -121,11 +122,12 @@ class WC_GZD_Email_Customer_Paid_For_Order extends WC_Email {
 	 */
 	public function get_content_plain() {
 		return wc_get_template_html( $this->template_plain, array(
-			'order'         => $this->object,
-			'email_heading' => $this->get_heading(),
-			'sent_to_admin' => false,
-			'plain_text'    => true,
-			'email'			=> $this
+			'order'              => $this->object,
+			'email_heading'      => $this->get_heading(),
+			'additional_content' => $this->get_additional_content(),
+			'sent_to_admin'      => false,
+			'plain_text'         => true,
+			'email'			     => $this
 		) );
 	}
 

@@ -29,4 +29,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <p><?php printf( __( 'If you cannot follow the link above please copy this url and paste it to your browser bar: %s', 'woocommerce-germanized' ), esc_url( $user_activation_url ) ); ?></p>
 
+<?php
+/**
+ * Show user-defined additional content - this is set in each email's settings.
+ */
+if ( $additional_content ) {
+	echo wp_kses_post( wpautop( wptexturize( $additional_content ) ) );
+}
+?>
+
 <?php do_action( 'woocommerce_email_footer', $email ); ?>

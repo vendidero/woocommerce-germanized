@@ -9,11 +9,13 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 $fields = WC_GZD_Revocation::get_fields();
 
-echo "= " . $email_heading . " =\n\n";
+echo "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n";
+echo esc_html( wp_strip_all_tags( $email_heading ) );
+echo "\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n\n";
 
 echo _x( 'By sending you this email we confirm your Revocation. Please review your data.', 'revocation-form', 'woocommerce-germanized' ) . "\n\n";
 
-echo "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n\n";
+echo "\n----------------------------------------\n\n";
 
 if ( ! empty( $fields ) ) {
 
@@ -27,6 +29,16 @@ if ( ! empty( $fields ) ) {
 
 	}
 
+}
+
+echo "\n\n----------------------------------------\n\n";
+
+/**
+ * Show user-defined additional content - this is set in each email's settings.
+ */
+if ( $additional_content ) {
+	echo esc_html( wp_strip_all_tags( wptexturize( $additional_content ) ) );
+	echo "\n\n----------------------------------------\n\n";
 }
 
 echo apply_filters( 'woocommerce_email_footer_text', get_option( 'woocommerce_email_footer_text' ) );

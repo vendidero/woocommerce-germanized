@@ -118,6 +118,7 @@ class WC_GZD_Email_Customer_New_Account_Activation extends WC_Email {
 			'user_pass'           => $this->user_pass,
 			'password_generated'  => $this->password_generated,
 			'blogname'            => $this->get_blogname(),
+			'additional_content'  => $this->get_additional_content(),
 			'sent_to_admin' => false,
 			'plain_text'    => false,
 			'email'			=> $this
@@ -141,6 +142,7 @@ class WC_GZD_Email_Customer_New_Account_Activation extends WC_Email {
 			'user_pass'           => $this->user_pass,
 			'password_generated'  => $this->password_generated,
 			'blogname'            => $this->get_blogname(),
+			'additional_content'  => $this->get_additional_content(),
 			'sent_to_admin' => false,
 			'plain_text'    => true,
 			'email'			=> $this

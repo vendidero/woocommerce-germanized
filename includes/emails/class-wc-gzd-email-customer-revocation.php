@@ -112,16 +112,15 @@ class WC_GZD_Email_Customer_Revocation extends WC_Email {
 	 * @return string
 	 */
 	public function get_content_html() {
-		ob_start();
-		wc_get_template( $this->template_html, array(
-			'user'      	 => $this->object,
-			'email_heading'  => $this->get_heading(),
-			'blogname'       => $this->get_blogname(),
-			'sent_to_admin'  => false,
-			'plain_text'     => false,
-			'email'			=> $this
+		return wc_get_template_html( $this->template_html, array(
+			'user'      	     => $this->object,
+			'email_heading'      => $this->get_heading(),
+			'blogname'           => $this->get_blogname(),
+			'additional_content' => $this->get_additional_content(),
+			'sent_to_admin'      => false,
+			'plain_text'         => false,
+			'email'			     => $this
 		) );
-		return ob_get_clean();
 	}
 
 	/**
@@ -131,16 +130,15 @@ class WC_GZD_Email_Customer_Revocation extends WC_Email {
 	 * @return string
 	 */
 	public function get_content_plain() {
-		ob_start();
-		wc_get_template( $this->template_plain, array(
-			'user'      	 => $this->object,
-			'email_heading'  => $this->get_heading(),
-			'blogname'       => $this->get_blogname(),
-			'sent_to_admin'  => false,
-			'plain_text'     => true,
-			'email'			=> $this
+		return wc_get_template_html( $this->template_plain, array(
+			'user'      	     => $this->object,
+			'email_heading'      => $this->get_heading(),
+			'blogname'           => $this->get_blogname(),
+			'additional_content' => $this->get_additional_content(),
+			'sent_to_admin'      => false,
+			'plain_text'         => true,
+			'email'			     => $this
 		) );
-		return ob_get_clean();
 	}
 
 	/**

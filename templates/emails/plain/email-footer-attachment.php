@@ -18,7 +18,7 @@ $print_title = true;
 if ( substr( trim( $content ), 0, 2 ) == '<h' )
 	$print_title = false;
 
-echo "\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n\n";
+echo "\n----------------------------------------\n\n";
 
 if ( $print_title ) {
 	echo "= ";
