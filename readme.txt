@@ -4,7 +4,7 @@ Tags: woocommerce, woocommerce german, woocommerce DE, woocommerce germany, wooc
 Requires at least: 4.9
 Tested up to: 5.2
 WC requires at least: 3.4
-WC tested up to: 3.7
+WC tested up to: 3.8
 Stable tag: 2.3.3
 Requires PHP: 5.6
 License: GPLv3
