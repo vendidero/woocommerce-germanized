@@ -437,7 +437,6 @@ class WC_GZD_Admin {
 
 		wp_register_style( 'woocommerce-gzd-admin-settings', $assets_path . 'css/admin-settings' . $suffix . '.css', array( 'woocommerce_admin_styles', 'woocommerce-gzd-admin' ), WC_GERMANIZED_VERSION );
 
-		wp_register_script( 'scrollto', $admin_script_path . 'scrollTo' . $suffix . '.js', array( 'jquery' ), WC_GERMANIZED_VERSION, true );
 		wp_register_script( 'wc-gzd-admin-product-variations', $admin_script_path . 'product-variations' . $suffix . '.js', array( 'wc-admin-variation-meta-boxes' ), WC_GERMANIZED_VERSION );
 		wp_register_script( 'wc-gzd-admin-legal-checkboxes', $admin_script_path . 'legal-checkboxes' . $suffix . '.js', array( 'jquery', 'wp-util', 'underscore', 'backbone', 'jquery-ui-sortable', 'wc-enhanced-select' ), WC_GERMANIZED_VERSION );
 
