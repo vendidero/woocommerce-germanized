@@ -141,6 +141,9 @@ class WC_GZD_Settings_Pointers {
 								show_wc_pointer( pointer.next );
 							}
 						},
+						open: function( e, t ) {
+							t.pointer.get(0).scrollIntoView( { behavior: 'smooth' } );
+						},
 						buttons: function( event, t ) {
 							var close   = '" . esc_js( __( 'Dismiss', 'woocommerce-germanized' ) ) . "',
 								next    = '" . esc_js( __( 'Next', 'woocommerce-germanized' ) ) . "',

@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce Germanized\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-10-16 17:59+0200\n"
-"PO-Revision-Date: 2019-10-17 11:05+0200\n"
+"POT-Creation-Date: 2019-10-17 15:12+0200\n"
+"PO-Revision-Date: 2019-10-18 11:01+0200\n"
 "Last-Translator: holzhannes <holzhannes@posteo.de>\n"
 "Language-Team: \n"
 "Language: de_DE@formal\n"
@@ -268,7 +268,7 @@ msgstr "Empfänger"
 
 #: woocommerce-germanized-dhl/includes/admin/views/settings-shipping-method.php:15
 #: woocommerce-germanized-dhl/src/Admin/Admin.php:192
-#: woocommerce-germanized-dhl/src/Package.php:243
+#: woocommerce-germanized-dhl/src/Package.php:242
 msgctxt "dhl"
 msgid "DHL"
 msgstr "DHL"
@@ -695,8 +695,8 @@ msgstr "Labels downloaden"
 # @ woocommerce-germanized
 #: woocommerce-germanized-dhl/src/Admin/Admin.php:222
 msgctxt "dhl"
-msgid "Generate labels"
-msgstr "Labels erstellen"
+msgid "Generate and download labels"
+msgstr "Labels erstellen und downloaden"
 
 #: woocommerce-germanized-dhl/src/Admin/Admin.php:248
 #: woocommerce-germanized-dhl/src/Ajax.php:261
@@ -1851,7 +1851,7 @@ msgid "%s-%s"
 msgstr "%s-%s"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized-dhl/src/Package.php:644
+#: woocommerce-germanized-dhl/src/Package.php:643
 msgctxt "dhl"
 msgid "Germany"
 msgstr "Deutschland"
@@ -3814,7 +3814,7 @@ msgid "Welcome to Germanized"
 msgstr "Willkommen bei Germanized"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/class-wc-gzd-admin-welcome.php:309
+#: woocommerce-germanized/includes/admin/class-wc-gzd-admin-welcome.php:229
 msgid "Go to Germanized Settings"
 msgstr "Germanized Einstellungen"
 
@@ -5381,7 +5381,7 @@ msgstr ""
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shipments.php:144
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:148
 msgid "Default Sale Label"
-msgstr "Standard-Streichpreis-Hinweis"
+msgstr "Standard-Streichpreis"
 
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shipments.php:145
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:149
@@ -5702,7 +5702,7 @@ msgstr ""
 
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:481
 msgid "Fallback Regular Label"
-msgstr "Standard-Angebotspreis Hinweis"
+msgstr "Standard-Angebotspreis"
 
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:488
 msgid ""
@@ -6093,7 +6093,6 @@ msgstr "Nach Updates suchen"
 
 # @ woocommerce-germanized
 #: woocommerce-germanized/includes/admin/views/html-notice-dependencies.php:64
-#: woocommerce-germanized/includes/admin/views/html-notice-theme-supported.php:18
 msgid "or"
 msgstr "oder"
 
@@ -6191,7 +6190,7 @@ msgstr "Mehr über die Pro Version erfahren"
 
 # @ woocommerce-germanized
 #: woocommerce-germanized/includes/admin/views/html-notice-pro.php:28
-#: woocommerce-germanized/includes/admin/views/html-notice-theme-supported.php:22
+#: woocommerce-germanized/includes/admin/views/html-notice-theme-supported.php:20
 msgid "Hide this notice"
 msgstr "Diese Nachricht ausblenden"
 
@@ -6291,11 +6290,6 @@ msgstr ""
 #, php-format
 msgid "Enable support for %s"
 msgstr "Anpassungen für %s freischalten"
-
-# @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/views/html-notice-theme-supported.php:19
-msgid "Get VendiPro now"
-msgstr "VendiPro jetzt entdecken"
 
 # @ woocommerce-germanized
 #: woocommerce-germanized/includes/admin/views/html-notice-update.php:12
@@ -10119,6 +10113,10 @@ msgstr "Vendidero"
 #. Author URI of the plugin/theme
 msgid "https://vendidero.de"
 msgstr "https://vendidero.de"
+
+# @ woocommerce-germanized
+#~ msgid "Get VendiPro now"
+#~ msgstr "VendiPro jetzt entdecken"
 
 #, php-format
 #~ msgctxt "dhl"
