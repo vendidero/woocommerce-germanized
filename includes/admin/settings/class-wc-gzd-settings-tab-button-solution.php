@@ -49,7 +49,7 @@ class WC_GZD_Settings_Tab_Button_Solution extends WC_GZD_Settings_Tab {
 					'color'          => array(
 						'target'       => '#woocommerce_gzd_display_checkout_table_color',
 						'next'         => '',
-						'next_url'     => admin_url( 'admin.php?page=wc-settings&tab=germanized-emails&tutorial=yes' ),
+						'next_url'     => admin_url( 'admin.php?page=wc-settings&tab=germanized-shipments&tutorial=yes' ),
 						'next_trigger' => array(),
 						'options'      => array(
 							'content'  => '<h3>' . esc_html__( 'Product table background', 'woocommerce-germanized' ) . '</h3>' .

@@ -2,7 +2,7 @@
 Contributors: vendidero, vdwoocommercesupport
 Tags: woocommerce, woocommerce german, woocommerce DE, woocommerce germany, woocommerce deutsch, woo, woocommerce deutschland, woocommerce germanized, woocommerce addon, woocommerce plugin, woocommerce german addon, woocommerce germany addon
 Requires at least: 4.9
-Tested up to: 5.2
+Tested up to: 5.3
 WC requires at least: 3.4
 WC tested up to: 3.8
 Stable tag: 2.3.3
@@ -33,12 +33,11 @@ Furthermore we customized the WooCommerce checkout to make your store meet the b
 * *Tax Calculation for Shipping Costs and Fees* - Enable split tax calculation based on your WooCommerce cart taxes.
 * *Legal pages in Email Templates* - Attach legal pages content to certain WooCommerce e-mail templates.
 * *Trusted Shops Integration* - Integrate your Trusted Shops Products within your WooCommerce store
-* *eKomi Integration* - Integrate your eKomi Products within your store.
+* *DHL Integration* - Generate labels for shipments and returns right from your backend. Offer additional services to your customers.
 * *Payment Gateway: SEPA direct debit* - Receive payments via direct debit. We've added a XML export to transfer payments to your bank.
 * *Payment Gateway: Pay by Invoice* - Allow certain customers to pay by invoice. Best integration with our PDF invoices feature (Pro).
 * *Online Revocation Form* - Allow customers to submit revocations by filling out a form on your revocation page.
 * *Sale Price Labels* - Prepend your WooCommerce sale prices by certain tags e.g. old price and new price.
-* *Delivery to DHL Parcel Shops or Pick-Up Stations* - Allow customers to choose a DHL pick-up-station within your WooCommerce checkout.
 * *Differential Taxation* - Insert special notices for products which a differential taxed.
 * *WPML and PolyLang Support* - Germanized adds compatibility for WPML and PolyLang.
 * *REST API Support* - Data added by Germanized is adjustable via the WooCommerce REST API (v2)
@@ -64,7 +63,13 @@ As a Pro User of Germanized you may automatically or manually create PDF Invoice
 You may upload your head of a letter which will be used as background for your PDF's. With only a few clicks you may export (CSV, zip) invoices for your tax consultant or accountant.
 Learn more about [PDF Invoices for WooCommerce](https://vendidero.de/woocommerce-germanized#accounting "WooCommerce PDF Invoices")
 
-New: Attach legally relevant pages (e.g. Terms & Conditions) as PDF documents to specific WooCommerce emails.
+Furthermore you may attach legally relevant pages (e.g. Terms & Conditions) as PDF documents to specific WooCommerce emails instead of using plain text.
+
+= Shipments & DHL =
+Germanized adds a new abstraction layer to WooCommerce to make it easier for you to send your parcels to your customers. With Germanized you'll be able to generate (multiple) shipments to an order.
+You can then manage your shipments and it's statuses independently from your orders. Let your customers receive a notification email as soon as a shipment has been marked as shipped.
+With the help of our built-in DHL integration you can easily create labels for your shipments and add tracking information to the notification emails. You can even let your shipments
+and labels be generated automatically by Germanized to avoid further manual work.
 
 = Pro: Premium Support =
 Customers of Germanized for WooCommerce Pro enjoy our high-quality support via tickets. Nevertheless we also seek to offer a good plugin support via our WordPress support forum.
@@ -73,19 +78,16 @@ Customers of Germanized for WooCommerce Pro enjoy our high-quality support via t
 We've added some specific compatibility and tests for certain popular WooCommerce plugins. See this list for further details:
 
 * WPML
-* PolyLang
 * WooCommerce Dynamic Pricing
 * WooCommerce Role Based Pricing
 * WooCommerce Product Bundles
 
 = Tested WooCommerce Themes =
-To fit german requirements even better we've developed a special [WooCommerce Theme](https://vendidero.de/vendipro "WooCommerce Theme for German Market") specifically developed for the german market: VendiPro. While developing VendiPro we have considered german design principles to adapt WooCommerce to the german market.
 By default, Germanized works with every WooCommerce theme. Some themes may need adjustments due to not using WooCommerce standards hooks or styles. Within our professional version we've tested certain third-party WooCommerce themes to ensure better compatibility with Germanized for WooCommerce:
 
 * Flatsome
 * Enfold
 * Storefront
-* VendiPro
 * Virtue
 * Shopkeeper
 
@@ -93,9 +95,9 @@ By default, Germanized works with every WooCommerce theme. Some themes may need 
 
 = Minimal Requirments =
 
-* WordPress 3.8 or newer
-* WooCommerce 2.4 (newest version recommended)
-* PHP Version 5.3 or newer
+* WordPress 4.9 or newer
+* WooCommerce 3.0 (newest version recommended)
+* PHP Version 5.6 or newer
 
 = Automatic Installation =
 
@@ -161,7 +163,7 @@ Professional ticket-support is being offered to [Professional Users](https://ven
 = Not every option fits my WooCommerce Theme =
 
 Unfortunately not every Theme does implement WooCommerce in the way it's meant to be or differs from the original structure which leads to layout and/or compatibility
-issues. Out of that reason we have developed [VendiPro](https://vendidero.de/vendipro) which perfectly fits all Germanized for WooCommerce options and is optimized for German Market.
+issues. For testing purposes, please activate a default WordPress Theme (such as TwentyX) and see whether the issues persist.
 
 = Email attachments not showing in WooCommerce order confirmation email =
 

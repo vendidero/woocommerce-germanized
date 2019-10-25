@@ -55,6 +55,10 @@ class WC_GZD_Settings_Tab_DHL extends WC_GZD_Settings_Tab {
 		return Settings::get_section_description( $section );
 	}
 
+	public function get_pointers() {
+		return Settings::get_pointers( $this->get_current_section() );
+	}
+
 	protected function get_enable_option_name() {
 		return 'woocommerce_gzd_dhl_enable';
 	}

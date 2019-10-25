@@ -137,7 +137,7 @@ class WC_GZD_Admin_Welcome {
                         </p>
 
                         <p>
-                            Sendungen lassen sich auch automatisch bei Erreichen eines bestimmten Bestellstatuses erzeugen.
+                            Sendungen lassen sich auch automatisch bei Erreichen eines bestimmten Bestellstatus erzeugen.
                             Als Kunde unserer Pro-Version kannst du zudem PDF-Lieferscheine zu Sendungen erzeugen.
                         </p>
 

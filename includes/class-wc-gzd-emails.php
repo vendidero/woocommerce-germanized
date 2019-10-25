@@ -116,6 +116,7 @@ class WC_GZD_Emails {
 	    if ( 'emails/customer-processing-order.php' === $template_name || 'emails/plain/customer-processing-order.php' === $template_name ) {
 			if ( isset( $args['order'] ) ) {
 				$GLOBALS['wc_gzd_processing_order'] = $args['order'];
+
 				add_filter( 'gettext', array( $this, 'replace_processing_email_text' ), 10, 3 );
 			}
 		}
@@ -149,6 +150,7 @@ class WC_GZD_Emails {
 			if ( in_array( $original, $search ) ) {
 				if ( isset( $GLOBALS['wc_gzd_processing_order'] ) ) {
 					$order = $GLOBALS['wc_gzd_processing_order'];
+
 					return $this->get_processing_email_text( $order );
 				}
 			}
@@ -188,7 +190,7 @@ class WC_GZD_Emails {
     }
 
 	protected function get_processing_email_text( $order_id ) {
-		$order        = is_numeric( $order_id ) ? wc_get_order( $order_id ) : $order_id;
+		$order = is_numeric( $order_id ) ? wc_get_order( $order_id ) : $order_id;
 
         /**
          * Filters the plain order confirmation email text.
@@ -197,7 +199,7 @@ class WC_GZD_Emails {
          *
          * @param string $text The plain text.
          */
-		$plain        = apply_filters( 'woocommerce_gzd_order_confirmation_email_plain_text', get_option( 'woocommerce_gzd_email_order_confirmation_text' ) );
+		$plain = apply_filters( 'woocommerce_gzd_order_confirmation_email_plain_text', get_option( 'woocommerce_gzd_email_order_confirmation_text' ) );
 
 		if ( ! $plain || '' === $plain ) {
 
