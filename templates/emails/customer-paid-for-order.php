@@ -1,21 +1,19 @@
 <?php
 /**
- * Customer paid for order email
+ * Customer paid for order email.
  *
- * This template can be overridden by copying it to yourtheme/woocommerce-germanized/emails/customer-paif-for-order.php.
+ * This template can be overridden by copying it to yourtheme/woocommerce-germanized/emails/customer-paid-for-order.php.
  *
- * HOWEVER, on occasion WooCommerce will need to update template files and you
+ * HOWEVER, on occasion Germanized will need to update template files and you
  * (the theme developer) will need to copy the new files to your theme to
  * maintain compatibility. We try to do this as little as possible, but it does
  * happen. When this occurs the version of the template file will be bumped and
  * the readme will list any important changes.
  *
- * @see      https://docs.woothemes.com/document/template-structure/
- * @author   WooThemes
- * @package  WooCommerce/Templates/Emails
- * @version  2.5.0
+ * @see https://github.com/vendidero/woocommerce-germanized/wiki/Overriding-Germanized-Templates
+ * @package Germanized/Templates
+ * @version 2.5.0
  */
-
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }

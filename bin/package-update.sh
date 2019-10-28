@@ -38,6 +38,8 @@ find ./packages/woocommerce-trusted-shops/templates -iname '*.php' -exec sed -i.
 
 # Delete vendor directory in packages to avoid duplicate dependencies
 rm -rf ./packages/woocommerce-trusted-shops/vendor
+rm -rf ./packages/woocommerce-trusted-shops/.wordpress-org
+
 rm -rf ./packages/woocommerce-germanized-shipments/vendor
 rm -rf ./packages/woocommerce-germanized-dhl/vendor
 

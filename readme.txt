@@ -5,7 +5,7 @@ Requires at least: 4.9
 Tested up to: 5.3
 WC requires at least: 3.4
 WC tested up to: 3.8
-Stable tag: 2.3.3
+Stable tag: 3.0.0
 Requires PHP: 5.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -182,6 +182,19 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 4. WooCommerce Multistep Checkout (Pro)
 
 == Changelog ==
+
+= 3.0.0 =
+* Feature: Add, edit and manage shipments for orders
+* Feature: Full DHL integration
+* Feature: Cleaner settings panel
+* Feature: Decide where, when and how to insert shopmarks e.g. tax notices
+* Feature: Age verification checkbox
+* Improvement: Removed legacy WC support (< 3.X)
+* Improvement: PHP 5.6 package loading
+* Improvement: WC_GZD_Product implementation rewrite
+* Fix: Delivery time copying on product duplication
+* Fix: Only adjust item taxes if tax shares contain more than one rate
+* Fix: Ignore unit meta key on variation level
 
 = 2.3.3 =
 * Feature: Option to manually resend paid for order email
