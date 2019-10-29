@@ -1,4 +1,5 @@
 <?php
+
 /**
  * WC Unit Test Case
  *
@@ -49,9 +50,10 @@ class WC_GZD_Unit_Test_Case extends WP_UnitTestCase {
 	/**
 	 * Asserts thing is not WP_Error.
 	 *
-	 * @since 2.2
-	 * @param mixed  $actual
+	 * @param mixed $actual
 	 * @param string $message
+	 *
+	 * @since 2.2
 	 */
 	public function assertNotWPError( $actual, $message = '' ) {
 		$this->assertNotInstanceOf( 'WP_Error', $actual, $message );
@@ -60,7 +62,7 @@ class WC_GZD_Unit_Test_Case extends WP_UnitTestCase {
 	/**
 	 * Asserts thing is WP_Error.
 	 *
-	 * @param mixed  $actual
+	 * @param mixed $actual
 	 * @param string $message
 	 */
 	public function assertIsWPError( $actual, $message = '' ) {

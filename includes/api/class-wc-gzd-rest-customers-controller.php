@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Class WC_GZD_REST_Customers_Controller
  *
@@ -39,7 +40,7 @@ class WC_GZD_REST_Customers_Controller {
 
 		$customer               = new WC_Customer( $user_data->ID );
 		$response_customer_data = $response->get_data();
-		
+
 		$response_customer_data['billing']['title']  = $customer->get_meta( 'billing_title' );
 		$response_customer_data['shipping']['title'] = $customer->get_meta( 'shipping_title' );
 
@@ -119,12 +120,12 @@ class WC_GZD_REST_Customers_Controller {
 	/**
 	 * Extend schema.
 	 *
-	 * @since 1.0.0
-	 * @wp-hook woocommerce_rest_customer_schema
-	 *
 	 * @param array $schema_properties Data used to create the customer.
 	 *
 	 * @return array
+	 * @since 1.0.0
+	 * @wp-hook woocommerce_rest_customer_schema
+	 *
 	 */
 	public function schema( $schema_properties ) {
 

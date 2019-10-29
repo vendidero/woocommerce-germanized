@@ -1,12 +1,13 @@
 <?php
+
 /**
  * WPML Helper
  *
  * Specific configuration for WPML
  *
- * @class 		WC_GZD_WPML_Helper
- * @category	Class
- * @author 		vendidero
+ * @class        WC_GZD_WPML_Helper
+ * @category    Class
+ * @author        vendidero
  */
 class WC_GZD_Compatibility_WooCommerce_Product_Bundles extends WC_GZD_Compatibility {
 
@@ -19,7 +20,10 @@ class WC_GZD_Compatibility_WooCommerce_Product_Bundles extends WC_GZD_Compatibil
 	}
 
 	public function load() {
-		add_filter( 'woocommerce_gzd_cart_item_tax_share_product', array( $this, 'switch_bundle_tax_share_product' ), 10, 4 );
+		add_filter( 'woocommerce_gzd_cart_item_tax_share_product', array(
+			$this,
+			'switch_bundle_tax_share_product'
+		), 10, 4 );
 	}
 
 	/**

@@ -9,9 +9,9 @@ use Vendidero\Germanized\Shipments\Admin\Settings;
 /**
  * Adds Germanized Shipments settings.
  *
- * @class 		WC_GZD_Settings_Tab_Shipments
- * @version		3.0.0
- * @author 		Vendidero
+ * @class        WC_GZD_Settings_Tab_Shipments
+ * @version        3.0.0
+ * @author        Vendidero
  */
 class WC_GZD_Settings_Tab_Shipments extends WC_GZD_Settings_Tab {
 

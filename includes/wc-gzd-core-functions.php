@@ -4,11 +4,13 @@
  *
  * WC_GZD core functions.
  *
- * @author 		Vendidero
+ * @author        Vendidero
  * @version     1.0.0
  */
 
-if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+} // Exit if accessed directly
 
 use Vendidero\Germanized\Shopmarks;
 
@@ -79,7 +81,7 @@ function wc_gzd_get_checkout_shopmarks() {
 function wc_gzd_get_shopmark( $location, $type ) {
 	$shopmarks = Shopmarks::get( $location );
 
-	foreach( $shopmarks as $shopmark ) {
+	foreach ( $shopmarks as $shopmark ) {
 		if ( $type === $shopmark->get_type() ) {
 			return $shopmark;
 		}
@@ -111,9 +113,10 @@ function wc_gzd_send_instant_order_confirmation() {
 	 * add_filter( 'woocommerce_gzd_instant_order_confirmation', 'ex_disable_instant_order_confirmation', 10 );
 	 * ```
 	 *
+	 * @param bool $enable Set to `false` to disable instant order confirmation.
+	 *
 	 * @since 1.0.0
 	 *
-	 * @param bool $enable Set to `false` to disable instant order confirmation.
 	 */
 	return ( apply_filters( 'woocommerce_gzd_instant_order_confirmation', true ) && ( 'yes' !== get_option( 'woocommerce_gzd_disable_instant_order_confirmation' ) ) );
 }
@@ -137,9 +140,10 @@ function wc_gzd_get_age_verification_min_ages() {
 	 * add_filter( 'woocommerce_gzd_age_verification_min_ages', 'ex_filter_add_min_ages', 10, 1 );
 	 * ```
 	 *
+	 * @param array $ages Array containing age => value elements.
+	 *
 	 * @since 2.3.5
 	 *
-	 * @param array $ages Array containing age => value elements.
 	 */
 	return apply_filters( 'woocommerce_gzd_age_verification_min_ages', array(
 		12 => __( '>= 12 years', 'woocommerce-germanized' ),
@@ -156,15 +160,12 @@ function wc_gzd_get_age_verification_min_ages_select() {
 	return $age_select;
 }
 
-function wc_gzd_get_legal_cart_notice_types() {
-	wc_deprecated_function( __FUNCTION__, '3.0' );
-}
-
 /**
  * Format tax rate percentage for output in frontend
- *  
- * @param  float  $rate   
- * @param  boolean $percent show percentage after number
+ *
+ * @param float $rate
+ * @param boolean $percent show percentage after number
+ *
  * @return string
  */
 function wc_gzd_format_tax_rate_percentage( $rate, $percent = false ) {
@@ -172,7 +173,7 @@ function wc_gzd_format_tax_rate_percentage( $rate, $percent = false ) {
 }
 
 function wc_gzd_is_customer_activated( $user_id = '' ) {
-	
+
 	if ( is_user_logged_in() && empty( $user_id ) ) {
 		$user_id = get_current_user_id();
 	}
@@ -190,10 +191,10 @@ function wc_gzd_get_hook_priority( $hook ) {
 
 function wc_gzd_get_legal_pages( $email_attachable_only = false ) {
 	$legal_pages = array(
-		'terms'           => __( 'Terms & Conditions', 'woocommerce-germanized' ),
-		'revocation'      => __( 'Right of Recission', 'woocommerce-germanized' ),
-		'imprint'         => __( 'Imprint', 'woocommerce-germanized' ),
-		'data_security'   => __( 'Data Security', 'woocommerce-germanized' ),
+		'terms'         => __( 'Terms & Conditions', 'woocommerce-germanized' ),
+		'revocation'    => __( 'Right of Recission', 'woocommerce-germanized' ),
+		'imprint'       => __( 'Imprint', 'woocommerce-germanized' ),
+		'data_security' => __( 'Data Security', 'woocommerce-germanized' ),
 	);
 
 	$secondary_pages = array(
@@ -208,10 +209,11 @@ function wc_gzd_get_legal_pages( $email_attachable_only = false ) {
 	/**
 	 * Filters pages considered as legal pages.
 	 *
+	 * @param array $legal_pages Array containing key and title of legal pages.
+	 * @param bool $email_attachable_only Whether to include those attachable to emails only or not.
+	 *
 	 * @since 1.0.0
 	 *
-	 * @param array $legal_pages Array containing key and title of legal pages.
-	 * @param bool  $email_attachable_only Whether to include those attachable to emails only or not.
 	 */
 	return apply_filters( 'woocommerce_gzd_legal_pages', $legal_pages, $email_attachable_only );
 }
@@ -224,8 +226,8 @@ function wc_gzd_get_email_attachment_order() {
 	foreach ( $order as $key => $item ) {
 		$items[ $item ] = ( isset( $legal_pages[ $item ] ) ? $legal_pages[ $item ] : '' );
 	}
-	
-	return $items;	
+
+	return $items;
 }
 
 function wc_gzd_get_page_permalink( $type ) {
@@ -235,10 +237,11 @@ function wc_gzd_get_page_permalink( $type ) {
 	/**
 	 * Filters the page permalink for a certain legal page.
 	 *
-	 * @since 1.0.0
+	 * @param string $type Legal page identifier e.g. terms.
+	 *
 	 * @see wc_gzd_get_legal_pages
 	 *
-	 * @param string $type Legal page identifier e.g. terms.
+	 * @since 1.0.0
 	 */
 	return apply_filters( 'woocommerce_gzd_legal_page_permalink', $link, $type );
 }
@@ -248,9 +251,10 @@ function wc_gzd_get_small_business_notice() {
 	/**
 	 * Filter the (global) small business notice.
 	 *
+	 * @param string $html The notice HTML.
+	 *
 	 * @since 1.0.0
 	 *
-	 * @param string $html The notice HTML.
 	 */
 	return apply_filters( 'woocommerce_gzd_small_business_notice', get_option( 'woocommerce_gzd_small_enterprise_text', __( 'Value added tax is not collected, as small businesses according to §19 (1) UStG.', 'woocommerce-germanized' ) ) );
 }
@@ -295,16 +299,18 @@ function wc_gzd_is_parcel_delivery_data_transfer_checkbox_enabled( $rate_ids = a
 	 * Filter that allows adjusting whether to show the parcel delivery data transfer
 	 * checkbox or not for rate ids.
 	 *
+	 * @param bool $return Whether to display the checkbox or not.
+	 * @param array $rate_ids Shipping rate ids to check against.
+	 *
 	 * @since 1.9.7
 	 *
-	 * @param bool $return    Whether to display the checkbox or not.
-	 * @param array $rate_ids Shipping rate ids to check against.
 	 */
 	return apply_filters( 'woocommerce_gzd_enable_parcel_delivery_data_transfer_checkbox', $return, $rate_ids );
 }
 
 function wc_gzd_get_dispute_resolution_text() {
 	$type = get_option( 'woocommerce_gzd_dispute_resolution_type', 'none' );
+
 	return get_option( 'woocommerce_gzd_alternative_complaints_text_' . $type );
 }
 
@@ -314,10 +320,11 @@ function wc_gzd_get_tax_rate_label( $rate_percentage ) {
 	/**
 	 * Allow adjusting the tax rate label e.g. "incl. 19% tax".
 	 *
+	 * @param string $label The label.
+	 * @param int $rate_percentage The percentage e.g. 19.
+	 *
 	 * @since 2.3.3
 	 *
-	 * @param string $label The label.
-	 * @param int    $rate_percentage The percentage e.g. 19.
 	 */
 	return apply_filters( 'woocommerce_gzd_tax_rate_label', $label, $rate_percentage );
 }
@@ -334,10 +341,11 @@ function wc_gzd_get_shipping_costs_text( $product = false ) {
 		/**
 		 * Filter to adjust the shipping costs legal text for a certain product.
 		 *
+		 * @param string $html The notice output.
+		 * @param WC_GZD_Product $product The product object.
+		 *
 		 * @since 1.8.5
 		 *
-		 * @param string         $html The notice output.
-		 * @param WC_GZD_Product $product The product object.
 		 */
 		return apply_filters( 'woocommerce_gzd_shipping_costs_text', wc_gzd_replace_label_shortcodes( $html, $replacements ), $product );
 	} else {
@@ -345,9 +353,10 @@ function wc_gzd_get_shipping_costs_text( $product = false ) {
 		/**
 		 * Filter to adjust the shipping costs legal text during cart, checkout and orders.
 		 *
+		 * @param string $html The notice output.
+		 *
 		 * @since 1.8.5
 		 *
-		 * @param string $html The notice output.
 		 */
 		return apply_filters( 'woocommerce_gzd_shipping_costs_cart_text', wc_gzd_replace_label_shortcodes( get_option( 'woocommerce_gzd_shipping_costs_text' ), $replacements ) );
 	}
@@ -366,9 +375,10 @@ function wc_gzd_get_differential_taxation_notice_text() {
 	/**
 	 * Filter to adjust the differential taxation notice text.
 	 *
+	 * @param string $html The notice.
+	 *
 	 * @since 1.9.1
 	 *
-	 * @param string $html The notice.
 	 */
 	return apply_filters( 'woocommerce_gzd_differential_taxation_notice_text', get_option( 'woocommerce_gzd_differential_taxation_notice_text' ) );
 }
@@ -378,9 +388,10 @@ function wc_gzd_get_privacy_policy_page_id() {
 	/**
 	 * Filter to adjust the Germanized privacy page id.
 	 *
+	 * @param int $page_id The page id.
+	 *
 	 * @since 1.9.10
 	 *
-	 * @param int $page_id The page id.
 	 */
 	return apply_filters( 'woocommerce_gzd_privacy_policy_page_id', wc_get_page_id( 'data_security' ) );
 }
@@ -404,11 +415,15 @@ function wc_gzd_get_customer_title_options() {
 	 * add_filter( 'woocommerce_gzd_title_options', 'ex_adjust_title_options', 10, 1 );
 	 * ```
 	 *
+	 * @param array $titles Array containing title selection options.
+	 *
 	 * @since 1.0.0
 	 *
-	 * @param array $titles Array containing title selection options.
 	 */
-	$titles = apply_filters( 'woocommerce_gzd_title_options', array( 1 => __( 'Mr.', 'woocommerce-germanized' ), 2 => __( 'Ms.', 'woocommerce-germanized' ) ) );
+	$titles = apply_filters( 'woocommerce_gzd_title_options', array(
+		1 => __( 'Mr.', 'woocommerce-germanized' ),
+		2 => __( 'Ms.', 'woocommerce-germanized' )
+	) );
 
 	return $titles;
 }
@@ -430,16 +445,19 @@ function wc_gzd_get_customer_title( $value ) {
 
 function wc_gzd_register_legal_checkbox( $id, $args ) {
 	$manager = WC_GZD_Legal_Checkbox_Manager::instance();
+
 	return $manager->register( $id, $args );
 }
 
 function wc_gzd_update_legal_checkbox( $id, $args ) {
 	$manager = WC_GZD_Legal_Checkbox_Manager::instance();
+
 	return $manager->update( $id, $args );
 }
 
 function wc_gzd_get_legal_checkbox( $id ) {
 	$manager = WC_GZD_Legal_Checkbox_Manager::instance();
+
 	return $manager->get_checkbox( $id );
 }
 
@@ -471,10 +489,10 @@ if ( ! function_exists( 'is_ajax' ) ) {
  * Works with WordPress 1.2+ (4.7+ support added 9-19-2016)
  * Updated 2-27-2017 to use internal WordPress removal for 4.7+ (to prevent PHP warnings output)
  *
- * @param string $tag         Filter to remove
- * @param string $class_name  Class name for the filter's callback
+ * @param string $tag Filter to remove
+ * @param string $class_name Class name for the filter's callback
  * @param string $method_name Method name for the filter's callback
- * @param int    $priority    Priority of the filter (default 10)
+ * @param int $priority Priority of the filter (default 10)
  *
  * @return bool Whether the function is removed.
  */
@@ -482,7 +500,9 @@ function wc_gzd_remove_class_filter( $tag, $class_name = '', $method_name = '', 
 	global $wp_filter;
 
 	// Check that filter actually exists first
-	if ( ! isset( $wp_filter[ $tag ] ) ) return FALSE;
+	if ( ! isset( $wp_filter[ $tag ] ) ) {
+		return false;
+	}
 
 	/**
 	 * If filter config is an object, means we're using WordPress 4.7+ and the config is no longer
@@ -494,32 +514,40 @@ function wc_gzd_remove_class_filter( $tag, $class_name = '', $method_name = '', 
 	 */
 	if ( is_object( $wp_filter[ $tag ] ) && isset( $wp_filter[ $tag ]->callbacks ) ) {
 		// Create $fob object from filter tag, to use below
-		$fob = $wp_filter[ $tag ];
+		$fob       = $wp_filter[ $tag ];
 		$callbacks = &$wp_filter[ $tag ]->callbacks;
 	} else {
 		$callbacks = &$wp_filter[ $tag ];
 	}
 
 	// Exit if there aren't any callbacks for specified priority
-	if ( ! isset( $callbacks[ $priority ] ) || empty( $callbacks[ $priority ] ) ) return FALSE;
+	if ( ! isset( $callbacks[ $priority ] ) || empty( $callbacks[ $priority ] ) ) {
+		return false;
+	}
 
 	// Loop through each filter for the specified priority, looking for our class & method
-	foreach( (array) $callbacks[ $priority ] as $filter_id => $filter ) {
+	foreach ( (array) $callbacks[ $priority ] as $filter_id => $filter ) {
 
 		// Filter should always be an array - array( $this, 'method' ), if not goto next
-		if ( ! isset( $filter[ 'function' ] ) || ! is_array( $filter[ 'function' ] ) ) continue;
+		if ( ! isset( $filter['function'] ) || ! is_array( $filter['function'] ) ) {
+			continue;
+		}
 
 		// If first value in array is not an object, it can't be a class
-		if ( ! is_object( $filter[ 'function' ][ 0 ] ) ) continue;
+		if ( ! is_object( $filter['function'][0] ) ) {
+			continue;
+		}
 
 		// Method doesn't match the one we're looking for, goto next
-		if ( $filter[ 'function' ][ 1 ] !== $method_name ) continue;
+		if ( $filter['function'][1] !== $method_name ) {
+			continue;
+		}
 
 		// Method matched, now let's check the Class
-		if ( get_class( $filter[ 'function' ][ 0 ] ) === $class_name ) {
+		if ( get_class( $filter['function'][0] ) === $class_name ) {
 
 			// WordPress 4.7+ use core remove_filter() since we found the class object
-			if( isset( $fob ) ){
+			if ( isset( $fob ) ) {
 				// Handles removing filter, reseting callback priority keys mid-iteration, etc.
 				$fob->remove_filter( $tag, $filter['function'], $priority );
 
@@ -538,11 +566,11 @@ function wc_gzd_remove_class_filter( $tag, $class_name = '', $method_name = '', 
 				unset( $GLOBALS['merged_filters'][ $tag ] );
 			}
 
-			return TRUE;
+			return true;
 		}
 	}
 
-	return FALSE;
+	return false;
 }
 
 /**
@@ -555,10 +583,10 @@ function wc_gzd_remove_class_filter( $tag, $class_name = '', $method_name = '', 
  *
  * Works with WordPress 1.2+ (4.7+ support added 9-19-2016)
  *
- * @param string $tag         Action to remove
- * @param string $class_name  Class name for the action's callback
+ * @param string $tag Action to remove
+ * @param string $class_name Class name for the action's callback
  * @param string $method_name Method name for the action's callback
- * @param int    $priority    Priority of the action (default 10)
+ * @param int $priority Priority of the action (default 10)
  *
  * @return bool               Whether the function is removed.
  */
@@ -567,7 +595,7 @@ function wc_gzd_remove_class_action( $tag, $class_name = '', $method_name = '', 
 }
 
 function wc_gzd_replace_label_shortcodes( $html, $replacements ) {
-	foreach( $replacements as $search => $replace ) {
+	foreach ( $replacements as $search => $replace ) {
 		$html = str_replace( $search, $replace, $html );
 	}
 
@@ -577,7 +605,7 @@ function wc_gzd_replace_label_shortcodes( $html, $replacements ) {
 
 	add_shortcode( 'page', '_wc_gzd_page_shortcode' );
 
-	foreach( wc_gzd_get_legal_pages() as $legal_page => $title ) {
+	foreach ( wc_gzd_get_legal_pages() as $legal_page => $title ) {
 		add_shortcode( $legal_page, '_wc_gzd_legal_page_shortcode' );
 	}
 
@@ -630,16 +658,20 @@ function woocommmerce_gzd_price_range( $price_html, $from, $to ) {
 	/**
 	 * Filter to decide whether Germanized should adjust the price range format or not.
 	 *
+	 * @param bool $adjust Whether to adjust price range format or not.
+	 *
 	 * @since 2.2.6
 	 *
-	 * @param bool $adjust Whether to adjust price range format or not.
 	 */
 	if ( ! apply_filters( 'woocommerce_gzd_adjust_price_range_format', true ) ) {
 		return $price_html;
 	}
 
 	$format     = get_option( 'woocommerce_gzd_price_range_format_text', __( '{min_price} &ndash; {max_price}', 'woocommerce-germanized' ) );
-	$price_html = str_replace( array( '{min_price}', '{max_price}' ), array( is_numeric( $from ) ? wc_price( $from ) : $from, is_numeric( $to ) ? wc_price( $to ) : $to ), $format );
+	$price_html = str_replace( array(
+		'{min_price}',
+		'{max_price}'
+	), array( is_numeric( $from ) ? wc_price( $from ) : $from, is_numeric( $to ) ? wc_price( $to ) : $to ), $format );
 
 	return $price_html;
 }
@@ -650,12 +682,12 @@ function wc_gzd_get_default_revocation_address() {
 
 	if ( $countries ) {
 		$default = $countries->get_formatted_address( array(
-			'company'    => get_bloginfo( 'name' ),
-			'city'       => $countries->get_base_city(),
-			'country'    => $countries->get_base_country(),
-			'address_1'  => $countries->get_base_address(),
-			'address_2'  => $countries->get_base_address_2(),
-			'postcode'   => $countries->get_base_postcode(),
+			'company'   => get_bloginfo( 'name' ),
+			'city'      => $countries->get_base_city(),
+			'country'   => $countries->get_base_country(),
+			'address_1' => $countries->get_base_address(),
+			'address_2' => $countries->get_base_address_2(),
+			'postcode'  => $countries->get_base_postcode(),
 		) );
 	}
 

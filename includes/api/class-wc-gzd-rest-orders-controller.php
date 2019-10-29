@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Class WC_GZD_REST_Orders_Controller
  *
@@ -40,15 +41,15 @@ class WC_GZD_REST_Orders_Controller {
 
 		$order               = wc_get_order( $post );
 		$response_order_data = $response->get_data();
-		
+
 		$response_order_data['billing']['title']         = $order->get_meta( '_billing_title' );
 		$response_order_data['shipping']['title']        = $order->get_meta( '_shipping_title' );
 		$response_order_data['parcel_delivery_opted_in'] = $order->get_meta( '_parcel_delivery_opted_in' );
 
-		$holder         = $order->get_meta( '_direct_debit_holder' );
-		$iban           = $order->get_meta( '_direct_debit_iban' );
-		$bic            = $order->get_meta( '_direct_debit_bic' );
-		$mandate_id     = $order->get_meta( '_direct_debit_mandate_id' );
+		$holder     = $order->get_meta( '_direct_debit_holder' );
+		$iban       = $order->get_meta( '_direct_debit_iban' );
+		$bic        = $order->get_meta( '_direct_debit_bic' );
+		$mandate_id = $order->get_meta( '_direct_debit_mandate_id' );
 
 		if ( $this->direct_debit_gateway ) {
 			$iban = $this->direct_debit_gateway->maybe_decrypt( $iban );
@@ -56,10 +57,10 @@ class WC_GZD_REST_Orders_Controller {
 		}
 
 		$response_order_data['direct_debit'] = array(
-			'holder'        => $holder,
-			'iban'          => $iban,
-			'bic'           => $bic,
-			'mandate_id'    => $mandate_id
+			'holder'     => $holder,
+			'iban'       => $iban,
+			'bic'        => $bic,
+			'mandate_id' => $mandate_id
 		);
 
 		$response->set_data( $response_order_data );
@@ -124,12 +125,12 @@ class WC_GZD_REST_Orders_Controller {
 	/**
 	 * Extend schema.
 	 *
-	 * @since 1.0.0
-	 * @wp-hook woocommerce_rest_order_schema
-	 *
 	 * @param array $schema_properties Data used to create the order.
 	 *
 	 * @return array
+	 * @since 1.0.0
+	 * @wp-hook woocommerce_rest_order_schema
+	 *
 	 */
 	public function schema( $schema_properties ) {
 
@@ -151,7 +152,7 @@ class WC_GZD_REST_Orders_Controller {
 			'description' => __( 'Parcel Delivery Data Transfer', 'woocommerce-germanized' ),
 			'type'        => 'string',
 			'context'     => array( 'view', 'edit' ),
-			'readonly'	  => true,
+			'readonly'    => true,
 		);
 
 		$schema_properties['direct_debit'] = array(

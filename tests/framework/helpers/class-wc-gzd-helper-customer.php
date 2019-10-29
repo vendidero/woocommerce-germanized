@@ -16,7 +16,7 @@ class WC_GZD_Helper_Customer {
 		$customer->update_meta_data( 'direct_debit_holder', 'Holder' );
 		$customer->update_meta_data( 'direct_debit_iban', 'DE2424242424' );
 		$customer->update_meta_data( 'direct_debit_bic', 'DEU234242' );
-		
+
 		$customer->save();
 
 		return $customer;

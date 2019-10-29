@@ -53,7 +53,7 @@ if ( ! is_array( $direct_debit_settings ) ) {
 $options['sepa']['is_enabled'] = ( isset( $direct_debit_settings['enable_checkbox'] ) && $direct_debit_settings['enable_checkbox'] === 'yes' ) ? 'yes' : 'no';
 
 if ( isset( $direct_debit_settings['checkbox_label'] ) ) {
-	$options['sepa']['label'] =  $direct_debit_settings['checkbox_label'];
+	$options['sepa']['label'] = $direct_debit_settings['checkbox_label'];
 }
 
 update_option( 'woocommerce_gzd_legal_checkboxes_settings', $options );
@@ -67,7 +67,7 @@ $tour_sections = array(
 	'email'
 );
 
-foreach( $tour_sections as $section ) {
+foreach ( $tour_sections as $section ) {
 	update_option( 'woocommerce_gzd_hide_tour_' . $section, '1' );
 }
 

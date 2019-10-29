@@ -9,15 +9,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Adds Settings Interface to WooCommerce Settings Tabs
  *
- * @class 		WC_GZD_Settings_Germanized
- * @version		1.0.0
- * @author 		Vendidero
+ * @class        WC_GZD_Settings_Germanized
+ * @version        1.0.0
+ * @author        Vendidero
  */
 class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 
-    protected $id = 'germanized';
+	protected $id = 'germanized';
 
-    protected $tabs = null;
+	protected $tabs = null;
 
 	public function __construct() {
 		$this->label = __( 'Germanized', 'woocommerce-germanized' );
@@ -33,11 +33,11 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 	public function get_settings() {
 		$settings = array();
 
-		foreach( $this->get_tabs() as $tab ) {
+		foreach ( $this->get_tabs() as $tab ) {
 			$sections = $tab->get_sections();
 
 			if ( ! empty( $sections ) ) {
-				foreach( $tab->get_sections() as $section_name => $section ) {
+				foreach ( $tab->get_sections() as $section_name => $section ) {
 					$settings = array_merge( $settings, $tab->get_settings( $section_name ) );
 				}
 			} else {
@@ -88,7 +88,7 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 			$classes = $classes . ' wc-gzd-settings';
 		}
 
-        return $classes;
+		return $classes;
 	}
 
 	public function get_tabs() {
@@ -119,45 +119,46 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 		 * Filter to register or remove certain setting tabs from the Germanized settings screen.
 		 * Make sure that your class is loaded before adding it to the tabs array.
 		 *
+		 * @param array $tabs Array containing key => value pairs of tab name and class name.
+		 *
 		 * @since 3.0.0
 		 *
-		 * @param array $tabs Array containing key => value pairs of tab name and class name.
 		 */
-	    $tabs = apply_filters( 'woocommerce_gzd_admin_settings_tabs', array(
-		    'general'              => 'WC_GZD_Settings_Tab_General',
-            'shopmarks'            => 'WC_GZD_Settings_Tab_Shopmarks',
-            'taxes'                => 'WC_GZD_Settings_Tab_Taxes',
-		    'contract'             => 'WC_GZD_Settings_Tab_Contract',
-            'button_solution'      => 'WC_GZD_Settings_Tab_Button_Solution',
-		    'shipments'            => 'WC_GZD_Settings_Tab_Shipments',
-		    'dhl'                  => 'WC_GZD_Settings_Tab_DHL',
-            'emails'               => 'WC_GZD_Settings_Tab_Emails',
-            'checkboxes'           => 'WC_GZD_Settings_Tab_Checkboxes',
-            'double_opt_in'        => 'WC_GZD_Settings_Tab_DOI',
-		    'invoices'             => 'WC_GZD_Settings_Tab_Invoices',
-		    'multistep_checkout'   => 'WC_GZD_Settings_Tab_Multistep_Checkout',
-		    'terms_generator'      => 'WC_GZD_Settings_Tab_Terms_Generator',
-		    'revocation_generator' => 'WC_GZD_Settings_Tab_Revocation_Generator',
-        ) );
+		$tabs = apply_filters( 'woocommerce_gzd_admin_settings_tabs', array(
+			'general'              => 'WC_GZD_Settings_Tab_General',
+			'shopmarks'            => 'WC_GZD_Settings_Tab_Shopmarks',
+			'taxes'                => 'WC_GZD_Settings_Tab_Taxes',
+			'contract'             => 'WC_GZD_Settings_Tab_Contract',
+			'button_solution'      => 'WC_GZD_Settings_Tab_Button_Solution',
+			'shipments'            => 'WC_GZD_Settings_Tab_Shipments',
+			'dhl'                  => 'WC_GZD_Settings_Tab_DHL',
+			'emails'               => 'WC_GZD_Settings_Tab_Emails',
+			'checkboxes'           => 'WC_GZD_Settings_Tab_Checkboxes',
+			'double_opt_in'        => 'WC_GZD_Settings_Tab_DOI',
+			'invoices'             => 'WC_GZD_Settings_Tab_Invoices',
+			'multistep_checkout'   => 'WC_GZD_Settings_Tab_Multistep_Checkout',
+			'terms_generator'      => 'WC_GZD_Settings_Tab_Terms_Generator',
+			'revocation_generator' => 'WC_GZD_Settings_Tab_Revocation_Generator',
+		) );
 
-	    if ( is_null( $this->tabs ) ) {
-	    	$this->tabs = array();
+		if ( is_null( $this->tabs ) ) {
+			$this->tabs = array();
 
-	    	foreach( $tabs as $key => $tab ) {
+			foreach ( $tabs as $key => $tab ) {
 
-	    		if ( class_exists( $tab ) ) {
-				    $this->tabs[ $key ] = new $tab;
-			    }
-		    }
-	    }
+				if ( class_exists( $tab ) ) {
+					$this->tabs[ $key ] = new $tab;
+				}
+			}
+		}
 
-	    return $this->tabs;
-    }
+		return $this->tabs;
+	}
 
-    public function output() {
+	public function output() {
 		$GLOBALS['hide_save_button'] = true;
 		$tabs                        = $this->get_tabs();
 
-	    include_once dirname( __FILE__ ) . '/views/html-admin-settings-tabs.php';
-    }
+		include_once dirname( __FILE__ ) . '/views/html-admin-settings-tabs.php';
+	}
 }

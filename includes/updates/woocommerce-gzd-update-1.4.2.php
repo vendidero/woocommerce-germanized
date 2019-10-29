@@ -2,9 +2,9 @@
 /**
  * Update WC to 2.0.9
  *
- * @author 		WooThemes
- * @category 	Admin
- * @package 	WooCommerce/Admin/Updates
+ * @author        WooThemes
+ * @category    Admin
+ * @package    WooCommerce/Admin/Updates
  * @version     2.0.9
  */
 

@@ -3,12 +3,13 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
+
 /**
  * Adds Settings Interface to WooCommerce Settings Tabs
  *
- * @class 		WC_GZD_Settings_Germanized
- * @version		1.0.0
- * @author 		Vendidero
+ * @class        WC_GZD_Settings_Germanized
+ * @version        1.0.0
+ * @author        Vendidero
  */
 abstract class WC_GZD_Settings_Tab extends WC_Settings_Page {
 
@@ -30,11 +31,12 @@ abstract class WC_GZD_Settings_Tab extends WC_Settings_Page {
 	protected function get_pro_content_html() {
 		ob_start();
 		?>
-		<div class="wc-gzd-premium-overlay notice notice-warning inline">
-			<h3><?php _e( 'Get Germanized Pro to unlock', 'woocommerce-germanized' );?></h3>
-			<p><?php _e( 'Enjoy even more professional features such as invoices, legal text generators, B2B VAT settings and premium support!', 'woocommerce-germanized' );?></p>
-			<p><a class="button button-primary wc-gzd-button" href="https://vendidero.de/woocommerce-germanized" target="_blank"><?php _e( 'Upgrade now', 'woocommerce-germanized' ); ?></a></p>
-		</div>
+        <div class="wc-gzd-premium-overlay notice notice-warning inline">
+            <h3><?php _e( 'Get Germanized Pro to unlock', 'woocommerce-germanized' ); ?></h3>
+            <p><?php _e( 'Enjoy even more professional features such as invoices, legal text generators, B2B VAT settings and premium support!', 'woocommerce-germanized' ); ?></p>
+            <p><a class="button button-primary wc-gzd-button" href="https://vendidero.de/woocommerce-germanized"
+                  target="_blank"><?php _e( 'Upgrade now', 'woocommerce-germanized' ); ?></a></p>
+        </div>
 		<?php
 		$html = ob_get_clean();
 
@@ -54,8 +56,8 @@ abstract class WC_GZD_Settings_Tab extends WC_Settings_Page {
 		echo '<ul class="wc-gzd-settings-breadcrumb">';
 		$count = 0;
 
-		foreach( $breadcrumb as $breadcrumb_item ) {
-			$count++;
+		foreach ( $breadcrumb as $breadcrumb_item ) {
+			$count ++;
 			echo '<li class="breadcrumb-item breadcrumb-item-' . esc_attr( $breadcrumb_item['class'] ) . ' ' . ( $count === sizeof( $breadcrumb ) ? 'breadcrumb-item-active' : '' ) . '">' . ( ! empty( $breadcrumb_item['href'] ) ? '<a class="breadcrumb-link" href="' . esc_attr( $breadcrumb_item['href'] ) . '">' . $breadcrumb_item['title'] . '</a>' : $breadcrumb_item['title'] ) . '</li>';
 		}
 
@@ -69,14 +71,14 @@ abstract class WC_GZD_Settings_Tab extends WC_Settings_Page {
 	}
 
 	public function get_help_link() {
-	    return '';
-    }
+		return '';
+	}
 
-    public function has_help_link() {
-	    $help_link = $this->get_help_link();
+	public function has_help_link() {
+		$help_link = $this->get_help_link();
 
-	    return ( ! empty( $help_link ) ? true : false );
-    }
+		return ( ! empty( $help_link ) ? true : false );
+	}
 
 	public function is_pro() {
 		return false;
@@ -87,7 +89,7 @@ abstract class WC_GZD_Settings_Tab extends WC_Settings_Page {
 
 		if ( $desc = $this->get_section_description( $current_section ) ) {
 			echo '<p class="tab-description tab-section-description">' . $desc . '</p>';
-		} elseif( empty( $current_section ) ) {
+		} elseif ( empty( $current_section ) ) {
 			echo '<p class="tab-description">' . $this->get_description() . '</p>';
 		}
 	}
@@ -97,11 +99,13 @@ abstract class WC_GZD_Settings_Tab extends WC_Settings_Page {
 		$current_section = $this->get_current_section();
 		$section_label   = $this->get_section_title( $current_section );
 
-		$breadcrumb = array( array(
-			'class' => 'main',
-			'href'  => admin_url( 'admin.php?page=wc-settings&tab=germanized' ),
-			'title' => __( 'Germanized', 'woocommerce-germanized' )
-		) );
+		$breadcrumb = array(
+			array(
+				'class' => 'main',
+				'href'  => admin_url( 'admin.php?page=wc-settings&tab=germanized' ),
+				'title' => __( 'Germanized', 'woocommerce-germanized' )
+			)
+		);
 
 		$breadcrumb[] = array(
 			'class' => 'tab',
@@ -122,22 +126,24 @@ abstract class WC_GZD_Settings_Tab extends WC_Settings_Page {
 		 *
 		 * The dynamic portion of the hook name, `$this->get_name()` refers to the tab name e.g. checkboxes.
 		 *
+		 * @param array $breadcrumb Array containing breadcrumb data.
+		 *
 		 * @since 3.0.0
 		 *
-		 * @param array $breadcrumb Array containing breadcrumb data.
 		 */
 		return apply_filters( "woocommerce_gzd_admin_settings_tab_{$this->get_name()}_breadcrumb", $breadcrumb );
 	}
 
-	public function get_description() {}
+	public function get_description() {
+	}
 
 	protected function get_breadcrumb_label( $label ) {
-	    if ( empty( $this->get_current_section() ) && $this->has_help_link() ) {
-	        $label = $label . '<a class="page-title-action" href="' . esc_url( $this->get_help_link() ) . '" target="_blank">' . __( 'Learn more', 'woocommerce-germanized' ) . '</a>';
-        }
+		if ( empty( $this->get_current_section() ) && $this->has_help_link() ) {
+			$label = $label . '<a class="page-title-action" href="' . esc_url( $this->get_help_link() ) . '" target="_blank">' . __( 'Learn more', 'woocommerce-germanized' ) . '</a>';
+		}
 
-	    return $label;
-    }
+		return $label;
+	}
 
 	protected function get_section_description( $section ) {
 		return '';
@@ -156,9 +162,10 @@ abstract class WC_GZD_Settings_Tab extends WC_Settings_Page {
 			 *
 			 * The dynamic portion of the hook name, `$this->get_name()` refers to the tab name e.g. checkboxes.
 			 *
+			 * @param array $settings Array containing settings data.
+			 *
 			 * @since 3.0.0
 			 *
-			 * @param array $settings Array containing settings data.
 			 */
 			$settings = apply_filters( "woocommerce_gzd_admin_settings_tab_{$this->get_name()}", $settings );
 		} else {
@@ -166,11 +173,12 @@ abstract class WC_GZD_Settings_Tab extends WC_Settings_Page {
 			 * Filter to adjust the settings for a certain section of a settings tab.
 			 *
 			 * The dynamic portion of the hook name, `$this->get_name()` refers to the tab name e.g. checkboxes.
-             * `$current_section` refers to the current section e.g. product_widget.
+			 * `$current_section` refers to the current section e.g. product_widget.
+			 *
+			 * @param array $settings Array containing settings data.
 			 *
 			 * @since 3.0.0
 			 *
-			 * @param array $settings Array containing settings data.
 			 */
 			$settings = apply_filters( "woocommerce_gzd_admin_settings_tab_{$this->get_name()}_{$current_section}", $settings );
 		}
@@ -178,11 +186,12 @@ abstract class WC_GZD_Settings_Tab extends WC_Settings_Page {
 		/**
 		 * General filter to adjust the settings for setting tabs.
 		 *
+		 * @param array $settings Array containing settings data.
+		 * @param string $tab_name The name of the tab e.g. checkboxes
+		 * @param string $current_section The section name e.g. product_widgets. Might be empty too.
+		 *
 		 * @since 3.0.0
 		 *
-		 * @param array  $settings Array containing settings data.
-         * @param string $tab_name The name of the tab e.g. checkboxes
-         * @param string $current_section The section name e.g. product_widgets. Might be empty too.
 		 */
 		return apply_filters( "woocommerce_gzd_admin_settings", $settings, $this->get_name(), $current_section );
 	}
@@ -194,18 +203,18 @@ abstract class WC_GZD_Settings_Tab extends WC_Settings_Page {
 	}
 
 	public function has_tutorial() {
-	    $pointers = $this->get_pointers();
+		$pointers = $this->get_pointers();
 
-	    return ! empty( $pointers ) ? true : false;
-    }
+		return ! empty( $pointers ) ? true : false;
+	}
 
 	public function get_pointers() {
-	    return array();
-    }
+		return array();
+	}
 
 	protected function is_saveable() {
-	    return ( $this->is_pro() && ! WC_germanized()->is_pro() ? false : true );
-    }
+		return ( $this->is_pro() && ! WC_germanized()->is_pro() ? false : true );
+	}
 
 	public function output() {
 		$current_section  = $this->get_current_section();
@@ -215,18 +224,19 @@ abstract class WC_GZD_Settings_Tab extends WC_Settings_Page {
 		$sidebar          = $this->get_sidebar( $this->get_current_section() );
 
 		if ( ! $this->is_saveable() ) {
-		    $GLOBALS['hide_save_button'] = true;
-        }
+			$GLOBALS['hide_save_button'] = true;
+		}
 
 		/**
 		 * Fires before settings for a certain tab are rendered.
-         *
-         * The dynamic portion of the hook name, $this->get_name(),
+		 *
+		 * The dynamic portion of the hook name, $this->get_name(),
 		 * refers to the current tab name e.g. checkboxes.
-         *
-         * @since 3.0.0
-         *
-         * @param string $current_section The current sub section of the tab.
+		 *
+		 * @param string $current_section The current sub section of the tab.
+		 *
+		 * @since 3.0.0
+		 *
 		 */
 		do_action( "woocommerce_gzd_admin_settings_before_wrapper_{$this->get_name()}", $current_section );
 
@@ -257,7 +267,8 @@ abstract class WC_GZD_Settings_Tab extends WC_Settings_Page {
 		}
 	}
 
-	protected function get_enable_option_name() {}
+	protected function get_enable_option_name() {
+	}
 
 	public function get_link() {
 		return admin_url( 'admin.php?page=wc-settings&tab=' . sanitize_title( $this->get_id() ) );
@@ -272,59 +283,63 @@ abstract class WC_GZD_Settings_Tab extends WC_Settings_Page {
 		 * The dynamic portion of the hook name, `$this->get_name()`,
 		 * refers to the current tab id e.g. checkboxes.
 		 *
+		 * @param array $settings Array containing the settings to be saved.
+		 *
 		 * @since 3.0.0
 		 *
-		 * @param array $settings Array containing the settings to be saved.
 		 */
-	    do_action(  "woocommerce_gzd_admin_settings_before_save_{$this->get_name()}", $settings );
+		do_action( "woocommerce_gzd_admin_settings_before_save_{$this->get_name()}", $settings );
 
-	    if ( ! empty( $current_section ) ) {
+		if ( ! empty( $current_section ) ) {
 
-		    /**
-		     * Fires before settings for a certain section of a tab are saved.
-		     *
-		     * The dynamic portion of the hook name, `$this->get_name()` and `$current_section`,
-		     * refer to the current tab id e.g. checkboxes and the current section name e.g. product_widgets.
-		     *
-		     * @since 3.0.0
-		     *
-		     * @param array $settings Array containing the settings to be saved.
-		     */
-		    do_action(  "woocommerce_gzd_admin_settings_before_save_{$this->get_name()}_{$current_section}", $settings );
-	    }
-    }
+			/**
+			 * Fires before settings for a certain section of a tab are saved.
+			 *
+			 * The dynamic portion of the hook name, `$this->get_name()` and `$current_section`,
+			 * refer to the current tab id e.g. checkboxes and the current section name e.g. product_widgets.
+			 *
+			 * @param array $settings Array containing the settings to be saved.
+			 *
+			 * @since 3.0.0
+			 *
+			 */
+			do_action( "woocommerce_gzd_admin_settings_before_save_{$this->get_name()}_{$current_section}", $settings );
+		}
+	}
 
-    protected function after_save( $settings, $current_section = '' ) {
-	    /**
-	     * Fires after settings for a certain tab have been saved.
-	     *
-	     * The dynamic portion of the hook name, `$this->get_name()`,
-	     * refers to the current tab id e.g. checkboxes.
-	     *
-	     * @since 3.0.0
-	     *
-	     * @param array $settings Array containing the settings to be saved.
-	     */
-	    do_action(  "woocommerce_gzd_admin_settings_after_save_{$this->get_name()}", $settings );
+	protected function after_save( $settings, $current_section = '' ) {
+		/**
+		 * Fires after settings for a certain tab have been saved.
+		 *
+		 * The dynamic portion of the hook name, `$this->get_name()`,
+		 * refers to the current tab id e.g. checkboxes.
+		 *
+		 * @param array $settings Array containing the settings to be saved.
+		 *
+		 * @since 3.0.0
+		 *
+		 */
+		do_action( "woocommerce_gzd_admin_settings_after_save_{$this->get_name()}", $settings );
 
-	    if ( ! empty( $current_section ) ) {
+		if ( ! empty( $current_section ) ) {
 
-		    /**
-		     * Fires after settings for a certain section of a tab are saved.
-		     *
-		     * The dynamic portion of the hook name, `$this->get_name()` and `$current_section`,
-		     * refer to the current tab id e.g. checkboxes and the current section name e.g. product_widgets.
-		     *
-		     * @since 3.0.0
-		     *
-		     * @param array $settings Array containing the settings to be saved.
-		     */
-		    do_action(  "woocommerce_gzd_admin_settings_after_save_{$this->get_name()}_{$current_section}", $settings );
-	    }
-    }
+			/**
+			 * Fires after settings for a certain section of a tab are saved.
+			 *
+			 * The dynamic portion of the hook name, `$this->get_name()` and `$current_section`,
+			 * refer to the current tab id e.g. checkboxes and the current section name e.g. product_widgets.
+			 *
+			 * @param array $settings Array containing the settings to be saved.
+			 *
+			 * @since 3.0.0
+			 *
+			 */
+			do_action( "woocommerce_gzd_admin_settings_after_save_{$this->get_name()}_{$current_section}", $settings );
+		}
+	}
 
 	public function save() {
-	    global $current_section;
+		global $current_section;
 
 		$settings = $this->get_settings( $current_section );
 

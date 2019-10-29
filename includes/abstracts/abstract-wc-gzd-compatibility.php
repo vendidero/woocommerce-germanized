@@ -1,10 +1,11 @@
 <?php
 
-if ( ! defined( 'ABSPATH' ) )
+if ( ! defined( 'ABSPATH' ) ) {
 	exit;
+}
 
 /**
- * The 
+ * The
  *
  * @class WC_GZD_Compatibility
  * @version  1.0.0
@@ -19,9 +20,11 @@ abstract class WC_GZD_Compatibility {
 		$this->after_plugins_loaded();
 	}
 
-	public function early_execution() {}
+	public function early_execution() {
+	}
 
-	public function after_plugins_loaded() {}
+	public function after_plugins_loaded() {
+	}
 
 	protected static function parse_version_data( $version_data ) {
 		$version_data = wp_parse_args( $version_data, array(
@@ -34,7 +37,7 @@ abstract class WC_GZD_Compatibility {
 			$version_data['requires_at_least'] = $version_data['version'];
 			$version_data['tested_up_to']      = $version_data['version'];
 		} elseif ( empty( $version_data['tested_up_to'] ) ) {
-			$version_data['tested_up_to']      = $version_data['requires_at_least'];
+			$version_data['tested_up_to'] = $version_data['requires_at_least'];
 			if ( wc_gzd_get_dependencies()->compare_versions( $version_data['version'], $version_data['requires_at_least'], '>' ) ) {
 				$version_data['tested_up_to'] = $version_data['version'];
 			}

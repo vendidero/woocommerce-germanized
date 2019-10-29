@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Webhook Test Factory
  *
@@ -10,8 +11,9 @@ class WC_GZD_Unit_Test_Factory_For_Webhook extends WP_UnitTest_Factory_For_Post 
 	/**
 	 * Setup factory.
 	 *
-	 * @since 2.2
 	 * @param null $factory
+	 *
+	 * @since 2.2
 	 */
 	public function __construct( $factory = null ) {
 
@@ -28,10 +30,11 @@ class WC_GZD_Unit_Test_Factory_For_Webhook extends WP_UnitTest_Factory_For_Post 
 	/**
 	 * Create a mock webhook.
 	 *
+	 * @param array $args
+	 *
+	 * @return int webhook (post) ID
 	 * @since 2.2
 	 * @see WP_UnitTest_Factory_For_Post::create_object()
-	 * @param array $args
-	 * @return int webhook (post) ID
 	 */
 	public function create_object( $args ) {
 
@@ -58,10 +61,11 @@ class WC_GZD_Unit_Test_Factory_For_Webhook extends WP_UnitTest_Factory_For_Post 
 	/**
 	 * Get a mock webhook object.
 	 *
+	 * @param int $id webhook ID
+	 *
+	 * @return WC_Webhook webhook instance
 	 * @since 2.2
 	 * @see WP_UnitTest_Factory_For_Post::get_object_by_id()
-	 * @param int $id webhook ID
-	 * @return WC_Webhook webhook instance
 	 */
 	public function get_object_by_id( $id ) {
 		return new WC_Webhook( $id );

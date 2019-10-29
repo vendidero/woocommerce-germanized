@@ -7,9 +7,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Adds Germanized Tax settings.
  *
- * @class 		WC_GZD_Settings_Tab_Taxes
- * @version		3.0.0
- * @author 		Vendidero
+ * @class        WC_GZD_Settings_Tab_Taxes
+ * @version        3.0.0
+ * @author        Vendidero
  */
 class WC_GZD_Settings_Tab_Contract extends WC_GZD_Settings_Tab {
 
@@ -34,11 +34,11 @@ class WC_GZD_Settings_Tab_Contract extends WC_GZD_Settings_Tab {
 			array( 'title' => '', 'desc' => '', 'type' => 'title', 'id' => 'manual_contract_options' ),
 
 			array(
-				'title' 	=> '',
-				'id' 		=> 'woocommerce_gzdp_contract_after_confirmation',
-				'img'		=> WC_Germanized()->plugin_url() . '/assets/images/pro/settings-inline-contract.png?v=' . WC_germanized()->version,
-				'href'      => 'https://vendidero.de/woocommerce-germanized#contract',
-				'type' 		=> 'image',
+				'title' => '',
+				'id'    => 'woocommerce_gzdp_contract_after_confirmation',
+				'img'   => WC_Germanized()->plugin_url() . '/assets/images/pro/settings-inline-contract.png?v=' . WC_germanized()->version,
+				'href'  => 'https://vendidero.de/woocommerce-germanized#contract',
+				'type'  => 'image',
 			),
 
 			array( 'type' => 'sectionend', 'id' => 'manual_contract_options' ),

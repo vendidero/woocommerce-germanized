@@ -1,15 +1,17 @@
 <?php
-if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+} // Exit if accessed directly
 
 /**
  * Adds Germanized Shortcodes
  *
- * @class 		WC_GZD_Shortcodes
- * @version		1.0.0
- * @author 		Vendidero
+ * @class        WC_GZD_Shortcodes
+ * @version        1.0.0
+ * @author        Vendidero
  */
 class WC_GZD_Shortcodes {
-	
+
 	/**
 	 * Initializes Shortcodes
 	 */
@@ -17,16 +19,16 @@ class WC_GZD_Shortcodes {
 
 		// Rename the original WooCommerce Shortcode tag so that we can add our custom function to it
 		add_filter( 'add_to_cart_shortcode_tag', __CLASS__ . '::replace_add_to_cart_shortcode', 10 );
-		
+
 		// Define shortcodes
 		$shortcodes = array(
 			'revocation_form'             => __CLASS__ . '::revocation_form',
-			'payment_methods_info'		  => __CLASS__ . '::payment_methods_info',
-			'add_to_cart'				  => __CLASS__ . '::gzd_add_to_cart',
-			'gzd_feature'				  => __CLASS__ . '::gzd_feature',
-			'gzd_vat_info'				  => __CLASS__ . '::gzd_vat_info',
-			'gzd_sale_info'				  => __CLASS__ . '::gzd_sale_info',
-			'gzd_complaints'			  => __CLASS__ . '::gzd_complaints',
+			'payment_methods_info'        => __CLASS__ . '::payment_methods_info',
+			'add_to_cart'                 => __CLASS__ . '::gzd_add_to_cart',
+			'gzd_feature'                 => __CLASS__ . '::gzd_feature',
+			'gzd_vat_info'                => __CLASS__ . '::gzd_vat_info',
+			'gzd_sale_info'               => __CLASS__ . '::gzd_sale_info',
+			'gzd_complaints'              => __CLASS__ . '::gzd_complaints',
 			'gzd_product_unit_price'      => __CLASS__ . '::gzd_product_unit_price',
 			'gzd_product_units'           => __CLASS__ . '::gzd_product_units',
 			'gzd_product_delivery_time'   => __CLASS__ . '::gzd_product_delivery_time',
@@ -36,13 +38,14 @@ class WC_GZD_Shortcodes {
 		);
 
 		foreach ( $shortcodes as $shortcode => $function ) {
-            /**
-             * Filter the shortcode tag.
-             *
-             * @since 1.0.0
-             *
-             * @param string $shortcode The shortcode name.
-             */
+			/**
+			 * Filter the shortcode tag.
+			 *
+			 * @param string $shortcode The shortcode name.
+			 *
+			 * @since 1.0.0
+			 *
+			 */
 			add_shortcode( apply_filters( "gzd_{$shortcode}_shortcode_tag", $shortcode ), $function );
 		}
 	}
@@ -74,62 +77,67 @@ class WC_GZD_Shortcodes {
 	}
 
 	public static function gzd_product_unit_price( $atts ) {
-        /**
-         * Filter shortcode product unit price output.
-         *
-         * @since 2.0.0
-         *
-         * @param string $html The output.
-         * @param array  $atts The shortcode arguments.
-         */
+		/**
+		 * Filter shortcode product unit price output.
+		 *
+		 * @param string $html The output.
+		 * @param array $atts The shortcode arguments.
+		 *
+		 * @since 2.0.0
+		 *
+		 */
 		return apply_filters( 'woocommerce_gzd_shortcode_product_unit_price_html', self::get_gzd_product_shortcode( $atts, 'woocommerce_gzd_template_single_price_unit' ), $atts );
 	}
 
 	public static function gzd_product_units( $atts ) {
-        /**
-         * Filter shortcode product unit output.
-         *
-         * @since 2.0.0
-         *
-         * @param string $html The output.
-         * @param array  $atts The shortcode arguments.
-         */
+		/**
+		 * Filter shortcode product unit output.
+		 *
+		 * @param string $html The output.
+		 * @param array $atts The shortcode arguments.
+		 *
+		 * @since 2.0.0
+		 *
+		 */
 		return apply_filters( 'woocommerce_gzd_shortcode_product_units_html', self::get_gzd_product_shortcode( $atts, 'woocommerce_gzd_template_single_product_units' ), $atts );
 	}
 
 	public static function gzd_product_delivery_time( $atts ) {
-        /**
-         * Filter shortcode product delivery time output.
-         *
-         * @since 2.0.0
-         *
-         * @param string $html The output.
-         * @param array  $atts The shortcode arguments.
-         */
+		/**
+		 * Filter shortcode product delivery time output.
+		 *
+		 * @param string $html The output.
+		 * @param array $atts The shortcode arguments.
+		 *
+		 * @since 2.0.0
+		 *
+		 */
 		return apply_filters( 'woocommerce_gzd_shortcode_product_delivery_time_html', self::get_gzd_product_shortcode( $atts, 'woocommerce_gzd_template_single_delivery_time_info' ), $atts );
 	}
 
 	public static function gzd_product_tax_notice( $atts ) {
-        /**
-         * Filter shortcode product tax notice output.
-         *
-         * @since 2.0.0
-         *
-         * @param string $html The output.
-         * @param array  $atts The shortcode arguments.
-         */
+		/**
+		 * Filter shortcode product tax notice output.
+		 *
+		 * @param string $html The output.
+		 * @param array $atts The shortcode arguments.
+		 *
+		 * @since 2.0.0
+		 *
+		 */
 		return apply_filters( 'woocommerce_gzd_shortcode_product_tax_notice_html', self::get_gzd_product_shortcode( $atts, 'woocommerce_gzd_template_single_tax_info' ), $atts );
 	}
 
 	public static function gzd_product_shipping_notice( $atts ) {
-        /**
-         * Filter shortcode product shipping notice output.
-         *
-         * @since 2.0.0
-         *
-         * @param string $html The output.
-         * @param array  $atts The shortcode arguments.
-         */
+		/**
+		 * Filter shortcode product shipping notice output.
+		 *
+		 * @param string $html The output.
+		 * @param array $atts The shortcode arguments.
+		 *
+		 * @since 2.0.0
+		 *
+		 */
 		return apply_filters( 'woocommerce_gzd_shortcode_product_shipping_notice_html', self::get_gzd_product_shortcode( $atts, 'woocommerce_gzd_template_single_shipping_costs_info' ), $atts );
 	}
 
@@ -184,15 +192,18 @@ class WC_GZD_Shortcodes {
 
 	public static function gzd_complaints( $atts ) {
 		$texts = array(
-			'dispute' =>  wc_gzd_get_dispute_resolution_text(),
+			'dispute' => wc_gzd_get_dispute_resolution_text(),
 		);
 
-		foreach( $texts as $key => $text ) {
-			$texts[ $key ] = wpautop( str_replace( array( 'https://ec.europa.eu/consumers/odr', 'http://ec.europa.eu/consumers/odr/' ), '<a href="https://ec.europa.eu/consumers/odr" target="_blank">https://ec.europa.eu/consumers/odr</a>', $text ) );
+		foreach ( $texts as $key => $text ) {
+			$texts[ $key ] = wpautop( str_replace( array(
+				'https://ec.europa.eu/consumers/odr',
+				'http://ec.europa.eu/consumers/odr/'
+			), '<a href="https://ec.europa.eu/consumers/odr" target="_blank">https://ec.europa.eu/consumers/odr</a>', $text ) );
 		}
 
 		ob_start();
-		wc_get_template( 'global/complaints.php', array( 'dispute_text' => $texts[ 'dispute' ] ) );
+		wc_get_template( 'global/complaints.php', array( 'dispute_text' => $texts['dispute'] ) );
 		$return = '<div class="woocommerce woocommerce-gzd woocommerce-gzd-complaints-shortcode">' . ob_get_clean() . '</div>';
 
 		return $return;
@@ -200,71 +211,81 @@ class WC_GZD_Shortcodes {
 
 	/**
 	 * Returns revocation_form template html
-	 *  
-	 * @param  array $atts 
-	 * @return string revocation form html       
+	 *
+	 * @param array $atts
+	 *
+	 * @return string revocation form html
 	 */
 	public static function revocation_form( $atts ) {
 		ob_start();
 		wc_get_template( 'forms/revocation-form.php' );
 		$return = '<div class="woocommerce woocommerce-gzd">' . ob_get_clean() . '</div>';
+
 		return $return;
 	}
 
 	/**
 	 * Returns payment methods info html
-	 *  
-	 * @param  array $atts
+	 *
+	 * @param array $atts
+	 *
 	 * @return string
 	 */
 	public static function payment_methods_info( $atts ) {
-		
+
 		WC_GZD_Payment_Gateways::instance()->manipulate_gateways();
 
 		ob_start();
 		wc_get_template( 'global/payment-methods.php' );
 		$return = '<div class="woocommerce woocommerce-gzd">' . ob_get_clean() . '</div>';
+
 		return $return;
-	
+
 	}
 
 	/**
 	 * Returns header feature shortcode
-	 *  
-	 * @param  array $atts    
-	 * @param  string $content 
-	 * @return string          
+	 *
+	 * @param array $atts
+	 * @param string $content
+	 *
+	 * @return string
 	 */
 	public static function gzd_feature( $atts, $content = '' ) {
 
-		extract( shortcode_atts( array('icon' => ''), $atts ) );
-		return ( !empty( $icon ) ? '<i class="fa fa-' . $icon . '"></i> ' : '' ) . $content;
-	
+		extract( shortcode_atts( array( 'icon' => '' ), $atts ) );
+
+		return ( ! empty( $icon ) ? '<i class="fa fa-' . $icon . '"></i> ' : '' ) . $content;
+
 	}
 
 	/**
 	 * Returns VAT info
-	 *  
-	 * @param  array $atts    
-	 * @param  string $content 
-	 * @return string          
+	 *
+	 * @param array $atts
+	 * @param string $content
+	 *
+	 * @return string
 	 */
 	public static function gzd_vat_info( $atts, $content = '' ) {
 		ob_start();
 		wc_get_template( 'footer/vat-info.php' );
+
 		return ob_get_clean();
 	}
 
 	/**
 	 * Returns Sale info
-	 *  
-	 * @param  array $atts    
-	 * @param  string $content 
-	 * @return string          
+	 *
+	 * @param array $atts
+	 * @param string $content
+	 *
+	 * @return string
 	 */
 	public static function gzd_sale_info( $atts, $content = '' ) {
 		ob_start();
 		wc_get_template( 'footer/sale-info.php' );
+
 		return ob_get_clean();
 	}
 

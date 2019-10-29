@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Class WC_GZD_REST_Product_Delivery_Times_Controller
  *

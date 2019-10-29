@@ -14,7 +14,9 @@
  * @package Germanized/Templates
  * @version 1.0.0
  */
-if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+} // Exit if accessed directly
 
 ?>
 
@@ -23,11 +25,11 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 	<?php foreach ( $available_shipping as $method ) : ?>
 
 		<?php if ( $method->enabled == 'yes' ) : ?>
-			
+
 			<?php echo ( method_exists( $method, 'get_html_table_costs' ) ) ? $method->get_html_table_costs() : ''; ?>
 
-		<?php endif ;?>
+		<?php endif; ?>
 
-	<?php endforeach ;?>
+	<?php endforeach; ?>
 
 <?php endif; ?>

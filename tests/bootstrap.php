@@ -1,4 +1,5 @@
 <?php
+
 /**
  * WooCommerce Unit Tests Bootstrap
  *
@@ -67,31 +68,31 @@ class WC_GZD_Unit_Tests_Bootstrap {
 		// Give access to tests_add_filter() function.
 		require_once $this->wp_tests_dir . '/includes/functions.php';
 
-		tests_add_filter( 'woocommerce_gzd_dependencies_instance', function() {
+		tests_add_filter( 'woocommerce_gzd_dependencies_instance', function () {
 			require_once( $this->tests_dir . '/framework/class-wc-gzd-dependencies-mock.php' );
 
 			return WC_GZD_Dependencies_Mock::instance();
 		} );
 
 		// Make sure the DHL Package loads - Base country should equal DE.
-		tests_add_filter( 'woocommerce_gzd_dhl_base_country', function() {
+		tests_add_filter( 'woocommerce_gzd_dhl_base_country', function () {
 			return 'DE';
 		} );
 
-		tests_add_filter( 'muplugins_loaded', function() {
+		tests_add_filter( 'muplugins_loaded', function () {
 			require_once $this->plugins_dir . '/woocommerce/woocommerce.php';
 			require_once $this->plugin_dir . '/woocommerce-germanized.php';
 
-			foreach( $this->packages as $package_slug => $namespace ) {
+			foreach ( $this->packages as $package_slug => $namespace ) {
 				if ( $this->is_separate_package( $package_slug ) ) {
 					require_once $this->plugins_dir . '/' . $package_slug;
 				}
 			}
 		} );
 
-		tests_add_filter( 'woocommerce_gzd_installed', function() {
+		tests_add_filter( 'woocommerce_gzd_installed', function () {
 
-			foreach( $this->packages as $package_slug => $namespace ) {
+			foreach ( $this->packages as $package_slug => $namespace ) {
 				if ( $this->is_separate_package( $package_slug ) ) {
 					$classname = $namespace . '\Package';
 
@@ -100,7 +101,7 @@ class WC_GZD_Unit_Tests_Bootstrap {
 			}
 		} );
 
-		tests_add_filter( 'setup_theme', function() {
+		tests_add_filter( 'setup_theme', function () {
 
 			echo esc_html( 'Installing WooCommerce...' . PHP_EOL );
 
@@ -161,8 +162,8 @@ class WC_GZD_Unit_Tests_Bootstrap {
 	/**
 	 * Get the single class instance.
 	 *
-	 * @since 2.2
 	 * @return WC_GZD_Unit_Tests_Bootstrap
+	 * @since 2.2
 	 */
 	public static function instance() {
 		if ( is_null( self::$instance ) ) {

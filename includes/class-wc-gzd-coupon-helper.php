@@ -48,6 +48,7 @@ class WC_GZD_Coupon_Helper {
 
 	/**
 	 * Checks whether an order has an voucher as coupon or not.
+	 *
 	 * @param $order
 	 *
 	 * @return bool
@@ -77,7 +78,7 @@ class WC_GZD_Coupon_Helper {
 		check_ajax_referer( 'calc-totals', 'security' );
 
 		if ( ! current_user_can( 'edit_shop_orders' ) ) {
-			wp_die( -1 );
+			wp_die( - 1 );
 		}
 
 		$order_id = absint( $_POST['order_id'] );
@@ -115,7 +116,7 @@ class WC_GZD_Coupon_Helper {
 		$order->calculate_totals( false );
 
 		if ( array_key_exists( 'discount_total', $order->get_changes() ) ) {
-			$order->set_discount_total( $order->get_discount_total() +  $order->get_cart_tax() );
+			$order->set_discount_total( $order->get_discount_total() + $order->get_cart_tax() );
 			$order->set_discount_tax( 0 );
 		}
 
@@ -186,22 +187,23 @@ class WC_GZD_Coupon_Helper {
 		}
 
 		// Check for discounts and whether the coupon is a voucher
-		$coupons                = $cart->get_coupons();
-		$has_vouchers           = false;
+		$coupons      = $cart->get_coupons();
+		$has_vouchers = false;
 
-		foreach( $coupons as $coupon ) {
+		foreach ( $coupons as $coupon ) {
 			if ( 'yes' === $coupon->get_meta( 'is_voucher', true ) ) {
 				$has_vouchers = true;
 			}
 		}
 
-		if ( ! $has_vouchers )
+		if ( ! $has_vouchers ) {
 			return;
+		}
 
-		$cart_contents          = $cart->get_cart();
-		$tax_rates              = array();
-		$tax_totals             = array();
-		
+		$cart_contents = $cart->get_cart();
+		$tax_rates     = array();
+		$tax_totals    = array();
+
 		/**
 		 * Calculate totals for items.
 		 */
@@ -218,7 +220,7 @@ class WC_GZD_Coupon_Helper {
 				$tax_rates[ $product->get_tax_class() ] = WC_Tax::get_rates( $product->get_tax_class() );
 
 				// Setup total tax amounts per rate
-				foreach( $tax_rates[ $product->get_tax_class() ] as $key => $rate ) {
+				foreach ( $tax_rates[ $product->get_tax_class() ] as $key => $rate ) {
 					if ( ! isset( $tax_totals[ $key ] ) ) {
 						$tax_totals[ $key ] = 0;
 					}
@@ -231,12 +233,15 @@ class WC_GZD_Coupon_Helper {
 			$cart->cart_contents[ $cart_item_key ]['line_tax']               = $values['line_subtotal_tax'];
 			$cart->cart_contents[ $cart_item_key ]['line_tax_data']['total'] = $values['line_tax_data']['subtotal'];
 
-			foreach( $item_tax_rates as $key => $rate ) {
+			foreach ( $item_tax_rates as $key => $rate ) {
 				$tax_totals[ $key ] = $tax_totals[ $key ] + $values['line_subtotal_tax'];
 			}
 		}
 
-		if ( is_callable( array( $cart, 'set_discount_total' ) ) && is_callable( array( $cart, 'set_cart_contents_taxes' ) ) ) {
+		if ( is_callable( array( $cart, 'set_discount_total' ) ) && is_callable( array(
+				$cart,
+				'set_cart_contents_taxes'
+			) ) ) {
 
 			$cart->set_cart_contents_taxes( $tax_totals );
 			$cart->set_discount_total( wc_cart_round_discount( ( $cart->get_discount_total() + $cart->get_discount_tax() ), $cart->dp ) );
@@ -245,7 +250,10 @@ class WC_GZD_Coupon_Helper {
 			// Total up/round taxes
 			if ( $cart->round_at_subtotal ) {
 				$cart->set_total_tax( WC_Tax::get_tax_total( $tax_totals ) );
-				$cart->set_cart_contents_taxes( array_map( array( 'WC_Tax', 'round' ), $cart->get_cart_contents_taxes() ) );
+				$cart->set_cart_contents_taxes( array_map( array(
+					'WC_Tax',
+					'round'
+				), $cart->get_cart_contents_taxes() ) );
 			} else {
 				$cart->set_total_tax( array_sum( $tax_totals ) );
 			}
@@ -255,15 +263,15 @@ class WC_GZD_Coupon_Helper {
 			$cart->taxes = $tax_totals;
 
 			// Remove discounted taxes (taxes are not being discounted for vouchers)
-			$cart->discount_cart          = wc_cart_round_discount( ( $cart->discount_cart + $cart->discount_cart_tax ), $cart->dp );
-			$cart->discount_cart_tax      = 0;
+			$cart->discount_cart     = wc_cart_round_discount( ( $cart->discount_cart + $cart->discount_cart_tax ), $cart->dp );
+			$cart->discount_cart_tax = 0;
 
 			// Total up/round taxes
 			if ( $cart->round_at_subtotal ) {
-				$cart->tax_total          = WC_Tax::get_tax_total( $tax_totals );
-				$cart->taxes              = array_map( array( 'WC_Tax', 'round' ), $cart->taxes );
+				$cart->tax_total = WC_Tax::get_tax_total( $tax_totals );
+				$cart->taxes     = array_map( array( 'WC_Tax', 'round' ), $cart->taxes );
 			} else {
-				$cart->tax_total          = array_sum( $tax_totals );
+				$cart->tax_total = array_sum( $tax_totals );
 			}
 		}
 	}

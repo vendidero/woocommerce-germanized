@@ -23,7 +23,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 do_action( 'woocommerce_email_header', $email_heading, $email ); ?>
 
-<p><?php printf( __( 'Hi there. Thank you! We have successfully received your payment for order %s. Your order is now being processed.', 'woocommerce-germanized' ), $order->get_order_number() ); ?></p>
+    <p><?php printf( __( 'Hi there. Thank you! We have successfully received your payment for order %s. Your order is now being processed.', 'woocommerce-germanized' ), $order->get_order_number() ); ?></p>
 
 <?php
 

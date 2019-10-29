@@ -2,11 +2,11 @@
 /**
  * WC_GZD_Cache_Helper class.
  *
- * @class 		WC_GZD_Cache_Helper
- * @version		1.9.8
- * @package		WooCommerce_Germanized/Classes
- * @category	Class
- * @author 		vendidero
+ * @class        WC_GZD_Cache_Helper
+ * @version        1.9.8
+ * @package        WooCommerce_Germanized/Classes
+ * @category    Class
+ * @author        vendidero
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -30,16 +30,17 @@ class WC_GZD_Cache_Helper {
 			call_user_func( 'w3tc_' . $type . 'cache_flush' );
 		}
 
-        /**
-         * Flush cache action.
-         *
-         * Trigger the flush cache action to indicate that Germanized wants to flush the cache.
-         *
-         * @since 1.0.0
-         *
-         * @param string $type Cache type e.g. db.
-         * @param array  $cache_args Additional arguments.
-         */
+		/**
+		 * Flush cache action.
+		 *
+		 * Trigger the flush cache action to indicate that Germanized wants to flush the cache.
+		 *
+		 * @param string $type Cache type e.g. db.
+		 * @param array $cache_args Additional arguments.
+		 *
+		 * @since 1.0.0
+		 *
+		 */
 		do_action( 'woocommerce_gzd_maybe_flush_cache', $type, $cache_args );
 	}
 }

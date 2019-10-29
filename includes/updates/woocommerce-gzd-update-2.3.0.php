@@ -1,7 +1,7 @@
 <?php
 
 if ( ! defined( 'ABSPATH' ) ) {
-    exit;
+	exit;
 }
 
 update_option( 'woocommerce_gzd_display_product_detail_delivery_time_info', get_option( 'woocommerce_gzd_display_product_detail_delivery_time' ) );

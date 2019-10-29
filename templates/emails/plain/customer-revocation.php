@@ -14,7 +14,9 @@
  * @package Germanized/Templates
  * @version 1.0.0
  */
-if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+} // Exit if accessed directly
 
 $fields = WC_GZD_Revocation::get_fields();
 
@@ -30,9 +32,9 @@ if ( ! empty( $fields ) ) {
 
 	foreach ( $fields as $name => $field ) {
 
-		if ( !empty( $user[ $name ] ) ) {
+		if ( ! empty( $user[ $name ] ) ) {
 
-			echo $field[ 'label' ] . ": " . $user[ $name ] . "\n";
+			echo $field['label'] . ": " . $user[ $name ] . "\n";
 
 		}
 

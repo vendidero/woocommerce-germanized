@@ -4,11 +4,13 @@
  *
  * WC_GZD legacy functions.
  *
- * @author 		Vendidero
+ * @author        Vendidero
  * @version     1.0.0
  */
 
-if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+} // Exit if accessed directly
 
 function wc_gzd_get_crud_data( $object, $key, $suppress_suffix = false ) {
 	wc_deprecated_function( __FUNCTION__, '3.0' );
@@ -49,7 +51,7 @@ function wc_gzd_unset_crud_term_data( $object, $taxonomy ) {
 function wc_gzd_get_order_item_product( $item, $order ) {
 	wc_deprecated_function( __FUNCTION__, '3.0' );
 
-    return $item->get_product();
+	return $item->get_product();
 }
 
 function wc_gzd_get_variable_visible_children( $product ) {
@@ -85,7 +87,7 @@ function wc_gzd_get_order_currency( $order ) {
 function wc_gzd_reduce_order_stock( $order_id ) {
 	wc_deprecated_function( __FUNCTION__, '3.0' );
 
-    wc_maybe_reduce_stock_levels( $order_id );
+	wc_maybe_reduce_stock_levels( $order_id );
 }
 
 function wc_gzd_get_product_type( $id ) {

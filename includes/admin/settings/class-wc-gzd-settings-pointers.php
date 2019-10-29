@@ -27,7 +27,7 @@ class WC_GZD_Settings_Pointers {
 	protected function get_settings() {
 		$pages = WC_Admin_Settings::get_settings_pages();
 
-		foreach( $pages as $page ) {
+		foreach ( $pages as $page ) {
 			if ( is_a( $page, 'WC_GZD_Settings_Germanized' ) ) {
 				return $page;
 			}
@@ -56,7 +56,7 @@ class WC_GZD_Settings_Pointers {
 
 			if ( 'germanized' === $tab ) {
 				$this->general_tutorial();
-			} elseif( array_key_exists( $tab_clean, $tabs ) ) {
+			} elseif ( array_key_exists( $tab_clean, $tabs ) ) {
 				$pointers = $tabs[ $tab_clean ]->get_pointers();
 
 				if ( ! empty( $pointers ) ) {
@@ -73,7 +73,7 @@ class WC_GZD_Settings_Pointers {
 		// These pointers will chain - they will not be shown at once.
 		$pointers = array(
 			'pointers' => array(
-				'tab'          => array(
+				'tab'     => array(
 					'target'       => '#wc-gzd-setting-tab-name-general .wc-gzd-setting-tab-link',
 					'next'         => 'enabled',
 					'next_url'     => '',
@@ -87,7 +87,7 @@ class WC_GZD_Settings_Pointers {
 						),
 					),
 				),
-				'enabled'        => array(
+				'enabled' => array(
 					'target'       => '#wc-gzd-setting-tab-enabled-double_opt_in .woocommerce-input-toggle',
 					'next'         => '',
 					'next_url'     => admin_url( 'admin.php?page=wc-settings&tab=germanized-general&tutorial=yes' ),

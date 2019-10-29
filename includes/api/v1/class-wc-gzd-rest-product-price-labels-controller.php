@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Class WC_GZD_REST_Product_Price_Labels_Controller
  *
@@ -31,9 +32,10 @@ class WC_GZD_REST_Product_Price_Labels_V1_Controller extends WC_REST_Terms_Contr
 	/**
 	 * Prepare a single delivery Time output for response.
 	 *
-	 * @param \WP_Term $item Term object.
-	 * @param \WP_REST_Request $request
-	 * @return \WP_REST_Response $response
+	 * @param WP_Term $item Term object.
+	 * @param WP_REST_Request $request
+	 *
+	 * @return WP_REST_Response $response
 	 */
 	public function prepare_item_for_response( $item, $request ) {
 
@@ -63,17 +65,17 @@ class WC_GZD_REST_Product_Price_Labels_V1_Controller extends WC_REST_Terms_Contr
 	 */
 	public function get_item_schema() {
 		$schema = array(
-			'$schema'              => 'http://json-schema.org/draft-04/schema#',
-			'title'                => $this->taxonomy,
-			'type'                 => 'object',
-			'properties'           => array(
-				'id' => array(
+			'$schema'    => 'http://json-schema.org/draft-04/schema#',
+			'title'      => $this->taxonomy,
+			'type'       => 'object',
+			'properties' => array(
+				'id'          => array(
 					'description' => __( 'Unique identifier for the resource.', 'woocommerce-germanized' ),
 					'type'        => 'integer',
 					'context'     => array( 'view', 'edit' ),
 					'readonly'    => true,
 				),
-				'name' => array(
+				'name'        => array(
 					'description' => __( 'Resource name.', 'woocommerce-germanized' ),
 					'type'        => 'string',
 					'context'     => array( 'view', 'edit' ),
@@ -81,7 +83,7 @@ class WC_GZD_REST_Product_Price_Labels_V1_Controller extends WC_REST_Terms_Contr
 						'sanitize_callback' => 'sanitize_text_field',
 					),
 				),
-				'slug' => array(
+				'slug'        => array(
 					'description' => __( 'An alphanumeric identifier for the resource unique to its type.', 'woocommerce-germanized' ),
 					'type'        => 'string',
 					'context'     => array( 'view', 'edit' ),
@@ -97,7 +99,7 @@ class WC_GZD_REST_Product_Price_Labels_V1_Controller extends WC_REST_Terms_Contr
 						'sanitize_callback' => 'wp_filter_post_kses',
 					),
 				),
-				'count' => array(
+				'count'       => array(
 					'description' => __( 'Number of published products for the resource.', 'woocommerce-germanized' ),
 					'type'        => 'integer',
 					'context'     => array( 'view', 'edit' ),

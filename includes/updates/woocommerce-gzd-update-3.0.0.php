@@ -49,7 +49,7 @@ $orders = wc_get_orders( array(
 ) );
 
 if ( ! empty( $orders ) ) {
-	foreach( $orders as $order ) {
+	foreach ( $orders as $order ) {
 		if ( ! $order->get_meta( '_shipping_address_type' ) ) {
 
 			// Germanized legacy parcel shop data

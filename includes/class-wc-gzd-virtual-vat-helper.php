@@ -1,19 +1,22 @@
 <?php
+
 /**
  * Virtual VAT Helper
  *
  *
- * @class 		WC_GZD_Virtual_VAT_Helper
- * @category	Class
- * @author 		vendidero
+ * @class        WC_GZD_Virtual_VAT_Helper
+ * @category    Class
+ * @author        vendidero
  */
 class WC_GZD_Virtual_VAT_Helper {
 
 	protected static $_instance = null;
 
 	public static function instance() {
-		if ( is_null( self::$_instance ) )
+		if ( is_null( self::$_instance ) ) {
 			self::$_instance = new self();
+		}
+
 		return self::$_instance;
 	}
 
@@ -41,46 +44,54 @@ class WC_GZD_Virtual_VAT_Helper {
 
 		// Prevent errors
 		if ( ! function_exists( 'wc_get_chosen_shipping_method_ids' ) ) {
-		    return $rates;
-        }
+			return $rates;
+		}
 
 		$location               = WC_Tax::get_tax_location( $tax_class );
-		$virtual_vat_applicable = in_array( $tax_class, array( 'virtual-rate', 'virtual-reduced-rate' ) ) && isset( $location[0] ) && sizeof( $location ) === 4 && $location[0] !== WC()->countries->get_base_country();
+		$virtual_vat_applicable = in_array( $tax_class, array(
+				'virtual-rate',
+				'virtual-reduced-rate'
+			) ) && isset( $location[0] ) && sizeof( $location ) === 4 && $location[0] !== WC()->countries->get_base_country();
 
-        /**
-         * Filter that allows disabling default customer VAT exempt check when handling virtual VAT rates.
-         *
-         * @since 1.0.0
-         *
-         * @param bool   $check Whether to check for VAT exempt or not.
-         * @param array  $rates Array containing tax rates.
-         * @param string $tax_class The current tax class.
-         */
-		if ( apply_filters( 'woocommerce_gzd_check_virtual_vat_exempt', true, $rates, $tax_class ) && is_callable( array( WC()->customer, 'is_vat_exempt' ) ) ) {
+		/**
+		 * Filter that allows disabling default customer VAT exempt check when handling virtual VAT rates.
+		 *
+		 * @param bool $check Whether to check for VAT exempt or not.
+		 * @param array $rates Array containing tax rates.
+		 * @param string $tax_class The current tax class.
+		 *
+		 * @since 1.0.0
+		 *
+		 */
+		if ( apply_filters( 'woocommerce_gzd_check_virtual_vat_exempt', true, $rates, $tax_class ) && is_callable( array(
+				WC()->customer,
+				'is_vat_exempt'
+			) ) ) {
 			if ( WC()->customer->is_vat_exempt() ) {
 				return $rates;
 			}
 		}
 
-        /**
-         * Filter to adjust whether virtual VAT is applicable or not.
-         * If set to true, Germanized will return tax rates based on the user country.
-         *
-         * @since 1.0.0
-         *
-         * @param bool   $virtual_vat_applicable Whether virtual VAT rates are applicable or not.
-         * @param string $tax_class The tax class.
-         * @param array  $location The tax location data.
-         */
+		/**
+		 * Filter to adjust whether virtual VAT is applicable or not.
+		 * If set to true, Germanized will return tax rates based on the user country.
+		 *
+		 * @param bool $virtual_vat_applicable Whether virtual VAT rates are applicable or not.
+		 * @param string $tax_class The tax class.
+		 * @param array $location The tax location data.
+		 *
+		 * @since 1.0.0
+		 *
+		 */
 		if ( apply_filters( 'woocommerce_gzd_force_tax_location_vat_base_rates', $virtual_vat_applicable, $tax_class, $location ) ) {
 
 			list( $country, $state, $postcode, $city ) = $location;
 
 			$rates = WC_Tax::find_rates( array(
-				'country' 	=> $country,
-				'state' 	=> $state,
-				'postcode' 	=> $postcode,
-				'city' 		=> $city,
+				'country'   => $country,
+				'state'     => $state,
+				'postcode'  => $postcode,
+				'city'      => $city,
 				'tax_class' => $tax_class
 			) );
 		}

@@ -1,12 +1,13 @@
 <?php
+
 /**
  * PolyLang Helper
  *
  * Specific configuration for PolyLang
  *
- * @class 		WC_GZD_Compatibility_PolyLang
- * @category	Class
- * @author 		vendidero
+ * @class        WC_GZD_Compatibility_PolyLang
+ * @category    Class
+ * @author        vendidero
  */
 class WC_GZD_Compatibility_Woo_Poly_Integration extends WC_GZD_Compatibility {
 
@@ -34,20 +35,21 @@ class WC_GZD_Compatibility_Woo_Poly_Integration extends WC_GZD_Compatibility {
 			'customer_revocation',
 		);
 
-		add_filter( 'woo-poly.pages.list', array( $this, 'register_pages') );
+		add_filter( 'woo-poly.pages.list', array( $this, 'register_pages' ) );
 
 		$this->setup_taxonomy_translation();
 		$this->setup_emails();
 
-        /**
-         * Hyyan WooCommerce Polylang Integration compatibility loaded.
-         *
-         * Fires after Germanized loaded it's Woo PolyLang compatibility script.
-         *
-         * @since 1.9.7
-         *
-         * @param WC_GZD_Compatibility_Woo_Poly_Integration $this The compatibility instance.
-         */
+		/**
+		 * Hyyan WooCommerce Polylang Integration compatibility loaded.
+		 *
+		 * Fires after Germanized loaded it's Woo PolyLang compatibility script.
+		 *
+		 * @param WC_GZD_Compatibility_Woo_Poly_Integration $this The compatibility instance.
+		 *
+		 * @since 1.9.7
+		 *
+		 */
 		do_action( 'woocommerce_gzd_polylang_compatibility_loaded', $this );
 	}
 
@@ -60,6 +62,7 @@ class WC_GZD_Compatibility_Woo_Poly_Integration extends WC_GZD_Compatibility {
 
 	public function unlock_fields( $fields ) {
 		$fields[] = '[name^="variable_mini_desc"]';
+
 		return $fields;
 	}
 
@@ -67,6 +70,7 @@ class WC_GZD_Compatibility_Woo_Poly_Integration extends WC_GZD_Compatibility {
 		if ( $this->pll_email_instance ) {
 			return $this->pll_email_instance;
 		}
+
 		return false;
 	}
 
@@ -75,26 +79,28 @@ class WC_GZD_Compatibility_Woo_Poly_Integration extends WC_GZD_Compatibility {
 	}
 
 	public function get_order_emails() {
-        /**
-         * Filter to add additional order emails to PolyLang.
-         *
-         * @since 1.8.5
-         *
-         * @param array                                     $order_mails Array containing additional email ids.
-         * @param WC_GZD_Compatibility_Woo_Poly_Integration $integration The integration instance.
-         */
+		/**
+		 * Filter to add additional order emails to PolyLang.
+		 *
+		 * @param array $order_mails Array containing additional email ids.
+		 * @param WC_GZD_Compatibility_Woo_Poly_Integration $integration The integration instance.
+		 *
+		 * @since 1.8.5
+		 *
+		 */
 		return apply_filters( 'woocommerce_gzd_polylang_order_emails', $this->order_emails, $this );
 	}
 
 	public function get_emails() {
-        /**
-         * Filter to get emails relevant for PolyLang.
-         *
-         * @since 1.8.5
-         *
-         * @param array                                     $mails Array containing additional email ids.
-         * @param WC_GZD_Compatibility_Woo_Poly_Integration $integration The integration instance.
-         */
+		/**
+		 * Filter to get emails relevant for PolyLang.
+		 *
+		 * @param array $mails Array containing additional email ids.
+		 * @param WC_GZD_Compatibility_Woo_Poly_Integration $integration The integration instance.
+		 *
+		 * @since 1.8.5
+		 *
+		 */
 		return apply_filters( 'woocommerce_gzd_polylang_emails', array_merge( $this->get_order_emails(), $this->other_emails ), $this );
 	}
 
@@ -106,7 +112,7 @@ class WC_GZD_Compatibility_Woo_Poly_Integration extends WC_GZD_Compatibility {
 	}
 
 	public function unload_textdomain() {
-		unload_textdomain('woocommerce-germanized' );
+		unload_textdomain( 'woocommerce-germanized' );
 	}
 
 	public function reload_textdomain() {
@@ -117,7 +123,7 @@ class WC_GZD_Compatibility_Woo_Poly_Integration extends WC_GZD_Compatibility {
 
 		$this->set_pll_email_instance( $pll_mail_instance );
 
-		foreach( $this->get_order_emails() as $mail_id ) {
+		foreach ( $this->get_order_emails() as $mail_id ) {
 			add_filter( 'woocommerce_email_subject_' . $mail_id, array( $this, 'translate_order_subject' ), 10, 2 );
 			add_filter( 'woocommerce_email_heading_' . $mail_id, array( $this, 'translate_order_heading' ), 10, 2 );
 		}
@@ -159,10 +165,11 @@ class WC_GZD_Compatibility_Woo_Poly_Integration extends WC_GZD_Compatibility {
 			return;
 		}
 
-		foreach( $translations as $lang => $translation ) {
+		foreach ( $translations as $lang => $translation ) {
 
-			if ( empty( $translation ) )
+			if ( empty( $translation ) ) {
 				continue;
+			}
 
 			$this->translate_product_taxonomies( $post_id, $translation, $lang );
 		}
@@ -170,8 +177,9 @@ class WC_GZD_Compatibility_Woo_Poly_Integration extends WC_GZD_Compatibility {
 
 	public function translate_product_taxonomies( $original_post_id, $new_post_id, $lang, $current_lang = '' ) {
 
-		if ( empty( $current_lang ) )
+		if ( empty( $current_lang ) ) {
 			$current_lang = pll_get_post_language( $original_post_id );
+		}
 
 		// If the subject has not yet a language, use default language.
 		if ( ! $current_lang ) {
@@ -181,16 +189,16 @@ class WC_GZD_Compatibility_Woo_Poly_Integration extends WC_GZD_Compatibility {
 		// Update germanized specific terms
 		$meta_to_tax = array(
 			'product_delivery_time' => false,
-			'product_unit' => array( '_unit' ),
-			'product_price_label' => array( '_sale_price_label', '_sale_price_regular_label' ),
+			'product_unit'          => array( '_unit' ),
+			'product_price_label'   => array( '_sale_price_label', '_sale_price_regular_label' ),
 		);
 
-		foreach( $meta_to_tax as $tax => $metas ) {
+		foreach ( $meta_to_tax as $tax => $metas ) {
 
 			$save_as_taxonomy = ( is_array( $metas ) ? false : true );
-			$metas = ( is_array( $metas ) ? $metas : array( $metas ) );
+			$metas            = ( is_array( $metas ) ? $metas : array( $metas ) );
 
-			foreach( $metas as $meta_key ) {
+			foreach ( $metas as $meta_key ) {
 
 				$term = false;
 
@@ -251,9 +259,9 @@ class WC_GZD_Compatibility_Woo_Poly_Integration extends WC_GZD_Compatibility {
 
 	public function add_fields( $metas ) {
 
-		$metas[ 'unit_price' ] = array(
-			'name' => _x( 'Unit Price Metas', 'polylang', 'woocommerce-germanized' ),
-			'desc' => _x( 'Note the last unit price field is the final unit price taking into account the effect of unit sale price', 'polylang', 'woocommerce-germanized' ),
+		$metas['unit_price'] = array(
+			'name'  => _x( 'Unit Price Metas', 'polylang', 'woocommerce-germanized' ),
+			'desc'  => _x( 'Note the last unit price field is the final unit price taking into account the effect of unit sale price', 'polylang', 'woocommerce-germanized' ),
 			'metas' => array(
 				'_unit_price',
 				'_unit_price_sale',
@@ -265,19 +273,19 @@ class WC_GZD_Compatibility_Woo_Poly_Integration extends WC_GZD_Compatibility {
 			),
 		);
 
-		$metas[ 'sale_price_labels' ] = array(
-			'name' => _x( 'Sale Price Labels', 'polylang', 'woocommerce-germanized' ),
-			'desc' => _x( 'Sale price labels used to mark old prices (e.g. Recommended Retail Price)', 'polylang', 'woocommerce-germanized' ),
+		$metas['sale_price_labels'] = array(
+			'name'  => _x( 'Sale Price Labels', 'polylang', 'woocommerce-germanized' ),
+			'desc'  => _x( 'Sale price labels used to mark old prices (e.g. Recommended Retail Price)', 'polylang', 'woocommerce-germanized' ),
 			'metas' => array(
 				'_sale_price_label',
 				'_sale_price_regular_label',
 			),
 		);
 
-		$metas[ 'shipping' ][ 'metas' ][] = '_free_shipping';
+		$metas['shipping']['metas'][] = '_free_shipping';
 
 		// General
-		$metas[ 'general' ][ 'metas' ][] = '_service';
+		$metas['general']['metas'][] = '_service';
 
 		return $metas;
 	}

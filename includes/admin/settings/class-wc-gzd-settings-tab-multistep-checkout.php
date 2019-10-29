@@ -7,9 +7,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Adds Germanized Tax settings.
  *
- * @class 		WC_GZD_Settings_Tab_Taxes
- * @version		3.0.0
- * @author 		Vendidero
+ * @class        WC_GZD_Settings_Tab_Taxes
+ * @version        3.0.0
+ * @author        Vendidero
  */
 class WC_GZD_Settings_Tab_Multistep_Checkout extends WC_GZD_Settings_Tab {
 
@@ -31,14 +31,14 @@ class WC_GZD_Settings_Tab_Multistep_Checkout extends WC_GZD_Settings_Tab {
 
 	public function get_tab_settings( $current_section = '' ) {
 		return array(
-			array(	'title' => '', 'type' => 'title', 'id' => 'multistep_checkout_options', 'desc' => '' ),
+			array( 'title' => '', 'type' => 'title', 'id' => 'multistep_checkout_options', 'desc' => '' ),
 
 			array(
-				'title' 	=> '',
-				'id' 		=> 'woocommerce_gzdp_multistep_checkout_enable',
-				'img'		=> WC_Germanized()->plugin_url() . '/assets/images/pro/settings-checkout.png?v=' . WC_germanized()->version,
-				'href'      => 'https://vendidero.de/woocommerce-germanized#multistep',
-				'type' 		=> 'image',
+				'title' => '',
+				'id'    => 'woocommerce_gzdp_multistep_checkout_enable',
+				'img'   => WC_Germanized()->plugin_url() . '/assets/images/pro/settings-checkout.png?v=' . WC_germanized()->version,
+				'href'  => 'https://vendidero.de/woocommerce-germanized#multistep',
+				'type'  => 'image',
 			),
 
 			array( 'type' => 'sectionend', 'id' => 'multistep_checkout_options' ),

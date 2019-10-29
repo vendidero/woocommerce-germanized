@@ -197,6 +197,10 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 * Fix: Only adjust item taxes if tax shares contain more than one rate
 * Fix: Ignore unit meta key on variation level
 
+= 2.3.4 =
+* Improvement: Hook into payment gateways later so that we can make sure the order button text replacement is loaded
+* Fix: Shipping address field warning with Woo >= 3.7
+
 = 2.3.3 =
 * Feature: Option to manually resend paid for order email
 * Feature: WooCommerce 3.7 support

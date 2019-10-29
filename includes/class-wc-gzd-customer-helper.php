@@ -5,8 +5,10 @@ class WC_GZD_Customer_Helper {
 	protected static $_instance = null;
 
 	public static function instance() {
-		if ( is_null( self::$_instance ) )
+		if ( is_null( self::$_instance ) ) {
 			self::$_instance = new self();
+		}
+
 		return self::$_instance;
 	}
 
@@ -44,9 +46,12 @@ class WC_GZD_Customer_Helper {
 
 			if ( $this->is_double_opt_in_login_enabled() ) {
 				// Disable login for unactivated users
-				add_filter( 'wp_authenticate_user', array( $this, 'login_restriction' ) , 10, 2 );
+				add_filter( 'wp_authenticate_user', array( $this, 'login_restriction' ), 10, 2 );
 				// Disable auto login after registration
-				add_filter( 'woocommerce_registration_auth_new_customer', array( $this, 'disable_registration_auto_login' ), 10, 2 );			
+				add_filter( 'woocommerce_registration_auth_new_customer', array(
+					$this,
+					'disable_registration_auto_login'
+				), 10, 2 );
 				// Redirect customers that are not logged in to customer account page
 				add_action( 'template_redirect', array( $this, 'disable_checkout' ), 10 );
 				// Show notices on customer account page
@@ -68,22 +73,24 @@ class WC_GZD_Customer_Helper {
 		$fields = WC_GZD_Checkout::instance()->custom_fields_admin;
 
 		if ( is_array( $fields ) ) {
-			foreach( $fields as $key => $field ) {
+			foreach ( $fields as $key => $field ) {
 
 				$types = array( 'shipping', 'billing' );
 
-				if ( isset( $field[ 'address_type' ] ) ) {
-					$types = array( $field[ 'address_type' ] );
+				if ( isset( $field['address_type'] ) ) {
+					$types = array( $field['address_type'] );
 				}
 
-				foreach( $types as $type ) {
-					if ( ! isset( $data[ $type ] ) )
+				foreach ( $types as $type ) {
+					if ( ! isset( $data[ $type ] ) ) {
 						continue;
+					}
 
-					$data[ $type ][ $key ] = get_user_meta( $user_id,  $type . '_' . $key, true );
+					$data[ $type ][ $key ] = get_user_meta( $user_id, $type . '_' . $key, true );
 				}
 			}
 		}
+
 		return $data;
 	}
 
@@ -99,21 +106,22 @@ class WC_GZD_Customer_Helper {
 
 	public function profile_field_title( $fields ) {
 
-		if ( get_option( 'woocommerce_gzd_checkout_address_field' ) !== 'yes' )
+		if ( get_option( 'woocommerce_gzd_checkout_address_field' ) !== 'yes' ) {
 			return $fields;
+		}
 
 		$fields['billing']['fields']['billing_title'] = array(
 			'label'       => __( 'Title', 'woocommerce-germanized' ),
-			'type'		  => 'select',
-			'options'	  => wc_gzd_get_customer_title_options(),
+			'type'        => 'select',
+			'options'     => wc_gzd_get_customer_title_options(),
 			'description' => '',
 			'class'       => '',
 		);
 
 		$fields['shipping']['fields']['shipping_title'] = array(
 			'label'       => __( 'Title', 'woocommerce-germanized' ),
-			'type'		  => 'select',
-			'options'	  => wc_gzd_get_customer_title_options(),
+			'type'        => 'select',
+			'options'     => wc_gzd_get_customer_title_options(),
 			'description' => '',
 			'class'       => '',
 		);
@@ -148,14 +156,15 @@ class WC_GZD_Customer_Helper {
 
 		if ( WC()->session->get( 'login_redirect' ) && 'checkout' === WC()->session->get( 'login_redirect' ) ) {
 
-            /**
-             * Filter URL to redirect customers to after a successfull opt-in which
-             * was related to a checkout request (e.g. customer was redirected to the register page before checkout).
-             *
-             * @since 1.0.0
-             *
-             * @param string $url The redirect URL.
-             */
+			/**
+			 * Filter URL to redirect customers to after a successfull opt-in which
+			 * was related to a checkout request (e.g. customer was redirected to the register page before checkout).
+			 *
+			 * @param string $url The redirect URL.
+			 *
+			 * @since 1.0.0
+			 *
+			 */
 			return apply_filters( 'woocommerce_gzd_customer_activation_checkout_redirect', wc_gzd_get_page_permalink( 'checkout' ) );
 		}
 
@@ -172,15 +181,15 @@ class WC_GZD_Customer_Helper {
 			unset( WC()->session->disable_checkout_signup );
 		}
 
-		if ( ( 'yes' === get_option( 'woocommerce_enable_guest_checkout' ) && isset( $_GET[ 'force-guest' ] ) ) || 'yes' !== get_option( 'woocommerce_enable_signup_and_login_from_checkout' ) ) {
+		if ( ( 'yes' === get_option( 'woocommerce_enable_guest_checkout' ) && isset( $_GET['force-guest'] ) ) || 'yes' !== get_option( 'woocommerce_enable_signup_and_login_from_checkout' ) ) {
 
-		    // Disable registration
+			// Disable registration
 			WC()->session->set( 'disable_checkout_signup', true );
 
 		} elseif ( ! WC()->session->get( 'disable_checkout_signup' ) ) {
 
 			if ( is_checkout() && ( ! is_user_logged_in() || ( $this->enable_double_opt_in_for_user() && ! wc_gzd_is_customer_activated() ) ) ) {
-				
+
 				WC()->session->set( 'login_redirect', 'checkout' );
 				wp_safe_redirect( $this->registration_redirect() );
 				exit;
@@ -193,8 +202,9 @@ class WC_GZD_Customer_Helper {
 
 	public function show_disabled_checkout_notice() {
 
-		if ( ! is_user_logged_in() && isset( $_GET[ 'account' ] ) && 'activate' === $_GET[ 'account' ] ) {
+		if ( ! is_user_logged_in() && isset( $_GET['account'] ) && 'activate' === $_GET['account'] ) {
 			wc_add_notice( __( 'Please activate your account through clicking on the activation link received via email.', 'woocommerce-germanized' ), 'notice' );
+
 			return;
 		}
 
@@ -222,15 +232,16 @@ class WC_GZD_Customer_Helper {
 
 	protected function registration_redirect( $query_args = array() ) {
 
-        /**
-         * Filter URL which serves as redirection if a customer has not yet activated it's account and
-         * wants to access checkout.
-         *
-         * @since 1.0.0
-         *
-         * @param string $url               The redirection URL.
-         * @param array[string] $query_args Arguments passed to the URL.
-         */
+		/**
+		 * Filter URL which serves as redirection if a customer has not yet activated it's account and
+		 * wants to access checkout.
+		 *
+		 * @param string $url The redirection URL.
+		 * @param array[string] $query_args Arguments passed to the URL.
+		 *
+		 * @since 1.0.0
+		 *
+		 */
 		return apply_filters( 'woocommerce_gzd_customer_registration_redirect', add_query_arg( $query_args, wc_gzd_get_page_permalink( 'myaccount' ) ), $query_args );
 	}
 
@@ -242,8 +253,8 @@ class WC_GZD_Customer_Helper {
 
 		// Has not been activated yet
 		if ( $this->enable_double_opt_in_for_user( $user_id ) && ! wc_gzd_is_customer_activated( $user_id ) ) {
-            wp_redirect( wp_validate_redirect( $this->registration_redirect( array( 'account' => 'activate' ) ) ) ); //phpcs:ignore WordPress.Security.SafeRedirect.wp_redirect_wp_redirect
-            exit;
+			wp_redirect( wp_validate_redirect( $this->registration_redirect( array( 'account' => 'activate' ) ) ) ); //phpcs:ignore WordPress.Security.SafeRedirect.wp_redirect_wp_redirect
+			exit;
 		}
 
 		return true;
@@ -251,22 +262,23 @@ class WC_GZD_Customer_Helper {
 
 	public function get_double_opt_in_user_roles() {
 
-        /**
-         * Filters supported DOI user roles. By default only the WooCommerce customer role is supported.
-         *
-         * ```php
-         * function ex_add_doi_roles( $roles ) {
-         *      $roles[] = 'my_custom_role';
-         *
-         *      return $roles;
-         * }
-         * add_filter( 'woocommerce_gzd_customer_double_opt_in_supported_user_roles', 'ex_add_doi_roles', 10, 1 );
-         * ```
-         *
-         * @since 1.0.0
-         *
-         * @param array $roles Array of roles to be supported.
-         */
+		/**
+		 * Filters supported DOI user roles. By default only the WooCommerce customer role is supported.
+		 *
+		 * ```php
+		 * function ex_add_doi_roles( $roles ) {
+		 *      $roles[] = 'my_custom_role';
+		 *
+		 *      return $roles;
+		 * }
+		 * add_filter( 'woocommerce_gzd_customer_double_opt_in_supported_user_roles', 'ex_add_doi_roles', 10, 1 );
+		 * ```
+		 *
+		 * @param array $roles Array of roles to be supported.
+		 *
+		 * @since 1.0.0
+		 *
+		 */
 		return apply_filters( 'woocommerce_gzd_customer_double_opt_in_supported_user_roles', array( 'customer' ) );
 	}
 
@@ -288,34 +300,36 @@ class WC_GZD_Customer_Helper {
 		$supports_double_opt_in = false;
 		$user_roles             = ( isset( $user->roles ) ? (array) $user->roles : array() );
 
-		foreach( $user_roles as $role ) {
+		foreach ( $user_roles as $role ) {
 			if ( in_array( $role, $supported_roles ) ) {
 				$supports_double_opt_in = true;
 				break;
 			}
 		}
 
-        /**
-         * Filter whether the DOI is supported for a certain user.
-         *
-         * @since 1.0.0
-         *
-         * @param bool    $supports_double_opt_in Whether the user is supported or not.
-         * @param WP_User $user The user instance.
-         */
+		/**
+		 * Filter whether the DOI is supported for a certain user.
+		 *
+		 * @param bool $supports_double_opt_in Whether the user is supported or not.
+		 * @param WP_User $user The user instance.
+		 *
+		 * @since 1.0.0
+		 *
+		 */
 		return apply_filters( 'woocommerce_gzd_customer_supports_double_opt_in', $supports_double_opt_in, $user );
 	}
 
 	public function login_restriction( $user, $password ) {
 
 		// Has not been activated yet
-		if ( $this->enable_double_opt_in_for_user( $user ) && ! wc_gzd_is_customer_activated( $user->ID ))
+		if ( $this->enable_double_opt_in_for_user( $user ) && ! wc_gzd_is_customer_activated( $user->ID ) ) {
 			return new WP_Error( 'woocommerce_gzd_login', __( 'Please activate your account through clicking on the activation link received via email.', 'woocommerce-germanized' ) );
+		}
 
 		return $user;
 	}
 
-		/**
+	/**
 	 * Check for activation codes on my account page
 	 */
 	public function customer_account_activation_check() {
@@ -331,13 +345,14 @@ class WC_GZD_Customer_Helper {
 						$url = remove_query_arg( 'activate', $url );
 						$url = remove_query_arg( 'suffix', $url );
 
-                        /**
-                         * Filters the URL after a successful DOI.
-                         *
-                         * @since 1.0.0
-                         *
-                         * @param string $url The URL to redirect to.
-                         */
+						/**
+						 * Filters the URL after a successful DOI.
+						 *
+						 * @param string $url The URL to redirect to.
+						 *
+						 * @since 1.0.0
+						 *
+						 */
 						wp_safe_redirect( apply_filters( 'woocommerce_gzd_double_opt_in_successful_redirect', $url ) );
 					} elseif ( is_wp_error( $result ) && 'expired_key' === $result->get_error_code() ) {
 						wc_add_notice( __( 'This activation code has expired. We have sent you a new activation code via e-mail.', 'woocommerce-germanized' ), 'error' );
@@ -345,7 +360,7 @@ class WC_GZD_Customer_Helper {
 						wc_add_notice( __( 'Sorry, but this activation code cannot be found.', 'woocommerce-germanized' ), 'error' );
 					}
 				}
-			} elseif( isset( $_GET['activated'] ) ) {
+			} elseif ( isset( $_GET['activated'] ) ) {
 				wc_add_notice( __( 'Thank you. You have successfully activated your account.', 'woocommerce-germanized' ), 'notice' );
 			}
 		}
@@ -356,12 +371,13 @@ class WC_GZD_Customer_Helper {
 	 */
 	public function account_cleanup() {
 
-		if ( ! get_option( 'woocommerce_gzd_customer_cleanup_interval' ) || get_option( 'woocommerce_gzd_customer_cleanup_interval' ) == 0 )
+		if ( ! get_option( 'woocommerce_gzd_customer_cleanup_interval' ) || get_option( 'woocommerce_gzd_customer_cleanup_interval' ) == 0 ) {
 			return;
+		}
 
 		$roles             = array_map( 'ucfirst', $this->get_double_opt_in_user_roles() );
 		$cleanup_days      = (int) get_option( 'woocommerce_gzd_customer_cleanup_interval' );
-		$registered_before = date('Y-m-d H:i:s', strtotime( "-{$cleanup_days} days" ) );
+		$registered_before = date( 'Y-m-d H:i:s', strtotime( "-{$cleanup_days} days" ) );
 
 		$user_query = new WP_User_Query(
 			array(
@@ -384,15 +400,16 @@ class WC_GZD_Customer_Helper {
 		if ( ! empty( $user_query->results ) ) {
 			foreach ( $user_query->results as $user ) {
 
-                /**
-                 * Filters whether a certain user which has not yet been activated
-                 * should be deleted.
-                 *
-                 * @since 1.0.0
-                 *
-                 * @param bool    $delete Whether to delete the unactivated customer or not.
-                 * @param WP_User $user The user instance.
-                 */
+				/**
+				 * Filters whether a certain user which has not yet been activated
+				 * should be deleted.
+				 *
+				 * @param bool $delete Whether to delete the unactivated customer or not.
+				 * @param WP_User $user The user instance.
+				 *
+				 * @since 1.0.0
+				 *
+				 */
 				if ( apply_filters( 'woocommerce_gzd_delete_unactivated_customer', true, $user ) ) {
 					require_once( ABSPATH . 'wp-admin/includes/user.php' );
 					wp_delete_user( $user->ID );
@@ -403,23 +420,25 @@ class WC_GZD_Customer_Helper {
 
 	/**
 	 * Activate customer account based on activation code
-	 *  
-	 * @param  string $activation_code hashed activation code
+	 *
+	 * @param string $activation_code hashed activation code
+	 *
 	 * @return boolean|WP_Error
 	 */
 	public function customer_account_activate( $activation_code, $login = false ) {
 		$roles = array_map( 'ucfirst', $this->get_double_opt_in_user_roles() );
 
-        /**
-         * Filter to adjust arguments for the customer activation user query.
-         *
-         * @since 1.0.0
-         *
-         * @param array  $args Arguments being passed to `WP_User_Query`.
-         * @param string $activation_code The activation code.
-         * @param bool   $login Whether the customer should be authenticated after activation or not.
-         */
-		$user_query = new WP_User_Query( apply_filters( 'woocommerce_gzd_customer_account_activation_query', array( 
+		/**
+		 * Filter to adjust arguments for the customer activation user query.
+		 *
+		 * @param array $args Arguments being passed to `WP_User_Query`.
+		 * @param string $activation_code The activation code.
+		 * @param bool $login Whether the customer should be authenticated after activation or not.
+		 *
+		 * @since 1.0.0
+		 *
+		 */
+		$user_query = new WP_User_Query( apply_filters( 'woocommerce_gzd_customer_account_activation_query', array(
 			'role__in'   => $roles,
 			'number'     => 1,
 			'meta_query' => array(
@@ -434,12 +453,13 @@ class WC_GZD_Customer_Helper {
 		/**
 		 * Filters the expiration time of customer activation keys.
 		 *
+		 * @param int $expiration The expiration time in seconds.
+		 *
 		 * @since 1.0.0
 		 *
-		 * @param int $expiration The expiration time in seconds.
 		 */
 		$expiration_duration = apply_filters( 'woocommerce_germanized_account_activation_expiration', DAY_IN_SECONDS );
-		
+
 		if ( ! empty( $user_query->results ) ) {
 
 			foreach ( $user_query->results as $user ) {
@@ -448,63 +468,67 @@ class WC_GZD_Customer_Helper {
 
 				if ( false !== strpos( $activation_code, ':' ) ) {
 					list( $activation_request_time, $activation_key ) = explode( ':', $activation_code, 2 );
-					$expiration_time                                  = $activation_request_time + $expiration_duration;
+					$expiration_time = $activation_request_time + $expiration_duration;
 				}
 
 				if ( $expiration_time && time() < $expiration_time ) {
 
-                    /**
-                     * Customer has opted-in.
-                     *
-                     * Fires whenever a customer has opted-in (DOI).
-                     * Triggers before the confirmation e-mail has been sent and the user meta has been deleted.
-                     *
-                     * @since 2.0.3
-                     *
-                     * @param WP_User $user The user instance.
-                     */
+					/**
+					 * Customer has opted-in.
+					 *
+					 * Fires whenever a customer has opted-in (DOI).
+					 * Triggers before the confirmation e-mail has been sent and the user meta has been deleted.
+					 *
+					 * @param WP_User $user The user instance.
+					 *
+					 * @since 2.0.3
+					 *
+					 */
 					do_action( 'woocommerce_gzd_customer_opted_in', $user );
 					delete_user_meta( $user->ID, '_woocommerce_activation' );
 
 					WC()->mailer()->customer_new_account( $user->ID );
 
-                    /**
-                     * Filter to optionally disable automatically authenticate activated customers.
-                     *
-                     * @since 1.0.0
-                     *
-                     * @param bool    $login Whether to authenticate the customer or not.
-                     * @param WP_User $user The user instance.
-                     */
+					/**
+					 * Filter to optionally disable automatically authenticate activated customers.
+					 *
+					 * @param bool $login Whether to authenticate the customer or not.
+					 * @param WP_User $user The user instance.
+					 *
+					 * @since 1.0.0
+					 *
+					 */
 					if ( apply_filters( 'woocommerce_gzd_user_activation_auto_login', $login, $user ) && ! is_user_logged_in() ) {
 						wc_set_customer_auth_cookie( $user->ID );
-                    }
+					}
 
-                    /**
-                     * Customer opt-in finished.
-                     *
-                     * Fires after a customer has been marked as opted-in and received the e-mail confirmation.
-                     * Customer may already be authenticated at this point.
-                     *
-                     * @since 2.0.3
-                     *
-                     * @param WP_User $user The user instance.
-                     */
+					/**
+					 * Customer opt-in finished.
+					 *
+					 * Fires after a customer has been marked as opted-in and received the e-mail confirmation.
+					 * Customer may already be authenticated at this point.
+					 *
+					 * @param WP_User $user The user instance.
+					 *
+					 * @since 2.0.3
+					 *
+					 */
 					do_action( 'woocommerce_gzd_customer_opt_in_finished', $user );
 
 					return true;
 				} else {
 
-                    /**
-                     * Customer activation code expired.
-                     *
-                     * Hook fires whenever a customer tries to acitvate it's account but the activation key
-                     * has already expired.
-                     *
-                     * @since 2.0.3
-                     *
-                     * @param WP_User $user The user instance.
-                     */
+					/**
+					 * Customer activation code expired.
+					 *
+					 * Hook fires whenever a customer tries to acitvate it's account but the activation key
+					 * has already expired.
+					 *
+					 * @param WP_User $user The user instance.
+					 *
+					 * @since 2.0.3
+					 *
+					 */
 					do_action( 'woocommerce_gzd_customer_activation_expired', $user );
 
 					delete_user_meta( $user->ID, '_woocommerce_activation' );
@@ -514,7 +538,7 @@ class WC_GZD_Customer_Helper {
 
 					if ( $email = WC_germanized()->emails->get_email_instance_by_id( 'customer_new_account_activation' ) ) {
 						$email->trigger( $user->ID, $activation_code, $user_activation_url );
-                    }
+					}
 
 					return new WP_Error( 'expired_key', __( 'Expired activation key', 'woocommerce-germanized' ) );
 				}
@@ -528,7 +552,10 @@ class WC_GZD_Customer_Helper {
 		// Add new customer activation
 		if ( 'yes' === get_option( 'woocommerce_gzd_customer_activation' ) ) {
 			remove_action( 'woocommerce_created_customer_notification', array( $mailer, 'customer_new_account' ), 10 );
-			add_action( 'woocommerce_created_customer_notification', array( $this, 'customer_new_account_activation' ), 9, 3 );
+			add_action( 'woocommerce_created_customer_notification', array(
+				$this,
+				'customer_new_account_activation'
+			), 9, 3 );
 		}
 	}
 
@@ -542,11 +569,11 @@ class WC_GZD_Customer_Helper {
 
 		if ( ! $customer_id ) {
 			return;
-        }
+		}
 
 		if ( ! $this->enable_double_opt_in_for_user( $customer_id ) ) {
 			return;
-        }
+		}
 
 		$user_pass           = ! empty( $new_customer_data['user_pass'] ) ? $new_customer_data['user_pass'] : '';
 		$user_activation     = $this->get_customer_activation_meta( $customer_id );
@@ -554,29 +581,35 @@ class WC_GZD_Customer_Helper {
 
 		if ( $email = WC_germanized()->emails->get_email_instance_by_id( 'customer_new_account_activation' ) ) {
 			$email->trigger( $customer_id, $user_activation, $user_activation_url, $user_pass, $password_generated );
-        }
+		}
 	}
 
 	public function get_customer_activation_url( $key ) {
-        /**
-         * Filter the customer activation URL.
-         * Added a custom suffix to prevent email clients from stripping points as last chars.
-         *
-         * @since 1.0.0
-         *
-         * @param string $url The activation URL.
-         */
-		return apply_filters( 'woocommerce_gzd_customer_activation_url', add_query_arg( array( 'activate' => $key, 'suffix' => 'yes' ), wc_gzd_get_page_permalink( 'myaccount' ) ) );
+		/**
+		 * Filter the customer activation URL.
+		 * Added a custom suffix to prevent email clients from stripping points as last chars.
+		 *
+		 * @param string $url The activation URL.
+		 *
+		 * @since 1.0.0
+		 *
+		 */
+		return apply_filters( 'woocommerce_gzd_customer_activation_url', add_query_arg( array(
+			'activate' => $key,
+			'suffix'   => 'yes'
+		), wc_gzd_get_page_permalink( 'myaccount' ) ) );
 	}
 
 	public function get_customer_activation_meta( $customer_id, $force_new = false ) {
 		global $wp_hasher;
 
-		if ( ! $customer_id )
+		if ( ! $customer_id ) {
 			return;
+		}
 
-		if ( ! $this->enable_double_opt_in_for_user( $customer_id ) )
+		if ( ! $this->enable_double_opt_in_for_user( $customer_id ) ) {
 			return;
+		}
 
 		// If meta does already exist - return activation code
 		if ( ! $force_new && ( $activation = get_user_meta( $customer_id, '_woocommerce_activation', true ) ) ) {

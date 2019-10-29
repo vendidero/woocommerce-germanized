@@ -22,6 +22,7 @@ class WP_Test_Spy_REST_Server extends WP_REST_Server {
 	 *
 	 * @param string $method Method to call
 	 * @param array $args Arguments to pass to the method
+	 *
 	 * @return mixed
 	 */
 	public function __call( $method, $args ) {
@@ -37,6 +38,7 @@ class WP_Test_Spy_REST_Server extends WP_REST_Server {
 		if ( is_wp_error( $result ) ) {
 			$result = $this->error_to_response( $result );
 		}
+
 		return apply_filters( 'rest_post_dispatch', rest_ensure_response( $result ), $this, $request );
 	}
 }

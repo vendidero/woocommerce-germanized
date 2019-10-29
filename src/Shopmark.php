@@ -4,6 +4,7 @@
  *
  * @package Vendidero/Germanized
  */
+
 namespace Vendidero\Germanized;
 
 defined( 'ABSPATH' ) || exit;
@@ -84,7 +85,7 @@ class Shopmark {
 		 *
 		 * Example hook name: `woocommerce_gzd_shopmark_single_product_unit_price_default_priority`
 		 *
-		 * @param integer                        $default_priority The default priority for the current shopmark.
+		 * @param integer $default_priority The default priority for the current shopmark.
 		 * @param Shopmark $shopmark The shopmark object.
 		 *
 		 * @since 3.0.0
@@ -102,7 +103,7 @@ class Shopmark {
 		 *
 		 * Example hook name: `woocommerce_gzd_shopmark_single_product_unit_price_default_filter`
 		 *
-		 * @param string                         $default_filter The default hook name for the current shopmark.
+		 * @param string $default_filter The default hook name for the current shopmark.
 		 * @param Shopmark $shopmark The shopmark object.
 		 *
 		 * @since 3.0.0
@@ -152,7 +153,7 @@ class Shopmark {
 		 *
 		 * Example hook name: `woocommerce_gzd_shopmark_single_product_unit_price_priority`
 		 *
-		 * @param integer                        $priority The priority for the current shopmark.
+		 * @param integer $priority The priority for the current shopmark.
 		 * @param Shopmark $shopmark The shopmark object.
 		 *
 		 * @since 3.0.0
@@ -174,7 +175,7 @@ class Shopmark {
 		 *
 		 * Example hook name: `woocommerce_gzd_shopmark_single_product_unit_price_filter`
 		 *
-		 * @param integer                        $filter The hook name for the current shopmark.
+		 * @param integer $filter The hook name for the current shopmark.
 		 * @param Shopmark $shopmark The shopmark object.
 		 *
 		 * @since 3.0.0

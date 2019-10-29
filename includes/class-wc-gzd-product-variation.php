@@ -1,14 +1,15 @@
 <?php
 
-if ( ! defined( 'ABSPATH' ) )
-	exit; // Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+} // Exit if accessed directly
 
 /**
  * Product Variation
  *
- * @class 		WC_GZD_Product_Variation
- * @version		3.0.0
- * @author 		Vendidero
+ * @class        WC_GZD_Product_Variation
+ * @version        3.0.0
+ * @author        Vendidero
  */
 class WC_GZD_Product_Variation extends WC_GZD_Product {
 
@@ -18,12 +19,12 @@ class WC_GZD_Product_Variation extends WC_GZD_Product {
 	protected $parent = null;
 
 	protected $gzd_variation_level_meta = array(
-		'unit_price' 		 		=> '',
-		'unit_price_regular' 		=> '',
-		'unit_price_sale' 	 		=> '',
-		'unit_price_auto'	 	   	=> '',
-		'service'					=> '',
-		'mini_desc'                 => '',
+		'unit_price'         => '',
+		'unit_price_regular' => '',
+		'unit_price_sale'    => '',
+		'unit_price_auto'    => '',
+		'service'            => '',
+		'mini_desc'          => '',
 	);
 
 	protected $gzd_variation_inherited_meta_data = array(
@@ -73,11 +74,12 @@ class WC_GZD_Product_Variation extends WC_GZD_Product {
 		 *
 		 * The dynamic portion of the hook name, `$prop` refers to the product property e.g. unit_price.
 		 *
+		 * @param mixed $value The property value.
+		 * @param WC_GZD_Product_Variation $gzd_product The GZD product instance.
+		 * @param WC_Product_Variation $product The product instance.
+		 *
 		 * @since 3.0.0
 		 *
-		 * @param mixed                    $value The property value.
-		 * @param WC_GZD_Product_Variation $gzd_product The GZD product instance.
-		 * @param WC_Product_Variation     $product The product instance.
 		 */
 		return apply_filters( "woocommerce_gzd_get_product_variation_{$prop}", $value, $this, $this->child );
 	}

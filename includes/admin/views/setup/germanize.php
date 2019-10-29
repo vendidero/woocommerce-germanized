@@ -4,9 +4,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
 
-$base_country  = in_array( WC()->countries->get_base_country(), array( 'DE', 'AT' ) ) ? WC()->countries->get_base_country() : 'DE';
-$countries     = WC()->countries->get_countries();
-$country_name  = isset( $countries[ $base_country ] ) ? $countries[ $base_country ] : __( 'Germany', 'woocommerce-germanized' );
+$base_country = in_array( WC()->countries->get_base_country(), array(
+	'DE',
+	'AT'
+) ) ? WC()->countries->get_base_country() : 'DE';
+$countries    = WC()->countries->get_countries();
+$country_name = isset( $countries[ $base_country ] ) ? $countries[ $base_country ] : __( 'Germany', 'woocommerce-germanized' );
 ?>
 <h1><?php _e( 'Germanize WooCommerce', 'woocommerce-germanized' ); ?></h1>
 

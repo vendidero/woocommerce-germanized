@@ -19,8 +19,8 @@ abstract class WP_HTTP_TestCase extends WP_UnitTestCase {
 	 *
 	 * Each of the requests has the following keys:
 	 * {
-	 *    @type string $url     The URL for the request.
-	 *    @type array  $request The request arguments.
+	 * @type string $url The URL for the request.
+	 * @type array $request The request arguments.
 	 * }
 	 *
 	 * @since 1.0.0
@@ -190,15 +190,15 @@ abstract class WP_HTTP_TestCase extends WP_UnitTestCase {
 	/**
 	 * Mock responses to HTTP requests coming from WordPress.
 	 *
+	 * @param mixed $preempt Response to the request, or false to not preempt it.
+	 * @param array $request The request arguments.
+	 * @param string $url The URL the request is being made to.
+	 *
+	 * @return mixed A response, or false.
 	 * @since 1.0.0
 	 *
 	 * @WordPress\filter pre_http_request Added by self::setUp().
 	 *
-	 * @param mixed  $preempt Response to the request, or false to not preempt it.
-	 * @param array  $request The request arguments.
-	 * @param string $url     The URL the request is being made to.
-	 *
-	 * @return mixed A response, or false.
 	 */
 	public function http_request_listner( $preempt, $request, $url ) {
 
@@ -217,12 +217,12 @@ abstract class WP_HTTP_TestCase extends WP_UnitTestCase {
 	/**
 	 * Route a request through to a predefined host, with optional caching.
 	 *
-	 * @since 1.1.0
-	 *
-	 * @param array  $request The request to route.
-	 * @param string $url     The URL the request is for.
+	 * @param array $request The request to route.
+	 * @param string $url The URL the request is for.
 	 *
 	 * @return array|bool|false|WP_Error The response.
+	 * @since 1.1.0
+	 *
 	 */
 	protected function route_request( $request, $url ) {
 
@@ -254,12 +254,12 @@ abstract class WP_HTTP_TestCase extends WP_UnitTestCase {
 	/**
 	 * Get the cache key for a request.
 	 *
-	 * @since 1.1.0
-	 *
-	 * @param array  $request The request.
+	 * @param array $request The request.
 	 * @param string $url The URL the request is for.
 	 *
 	 * @return string|false The cache key for the request. False if not caching.
+	 * @since 1.1.0
+	 *
 	 */
 	protected function get_cache_key( $request, $url ) {
 
@@ -275,11 +275,11 @@ abstract class WP_HTTP_TestCase extends WP_UnitTestCase {
 	/**
 	 * Get the cached response to a request.
 	 *
-	 * @since 1.1.0
-	 *
 	 * @param string $cache_key The cache key for the request.
 	 *
 	 * @return array|false The cached response, or false if none.
+	 * @since 1.1.0
+	 *
 	 */
 	protected function get_cached_response( $cache_key ) {
 
@@ -290,6 +290,7 @@ abstract class WP_HTTP_TestCase extends WP_UnitTestCase {
 		// If we're to skip the cache this time, return false.
 		if ( $this->skip_cache_next ) {
 			$this->skip_cache_next = false;
+
 			return false;
 		}
 
@@ -303,10 +304,11 @@ abstract class WP_HTTP_TestCase extends WP_UnitTestCase {
 	/**
 	 * Save a response to the cache.
 	 *
+	 * @param string $cache_key The cache key for the request.
+	 * @param array $response The response.
+	 *
 	 * @since 1.1.0
 	 *
-	 * @param string $cache_key The cache key for the request.
-	 * @param array  $response  The response.
 	 */
 	protected function cache_response( $cache_key, $response ) {
 
@@ -340,12 +342,12 @@ abstract class WP_HTTP_TestCase extends WP_UnitTestCase {
 	/**
 	 * Get an environment setting.
 	 *
-	 * @since 1.1.0
-	 *
-	 * @param string $var     The name of the setting to get.
-	 * @param mixed  $default The default value for this setting.
+	 * @param string $var The name of the setting to get.
+	 * @param mixed $default The default value for this setting.
 	 *
 	 * @return mixed|null|string
+	 * @since 1.1.0
+	 *
 	 */
 	protected static function get_env( $var, $default = null ) {
 
@@ -365,10 +367,11 @@ abstract class WP_HTTP_TestCase extends WP_UnitTestCase {
 	/**
 	 * Get an environment setting and assign it to the corresponding property.
 	 *
+	 * @param string $var The var name.
+	 * @param bool $is_bool Whether this is a boolean property.
+	 *
 	 * @since 1.2.0
 	 *
-	 * @param string $var     The var name.
-	 * @param bool   $is_bool Whether this is a boolean property.
 	 */
 	protected static function load_env( $var, $is_bool = false ) {
 
@@ -435,7 +438,8 @@ abstract class WP_HTTP_TestCase extends WP_UnitTestCase {
 }
 
 if ( ! defined( 'WP_HTTP_TC_NO_BACKPAT' ) ) {
-	abstract class WP_HTTP_UnitTestCase extends WP_HTTP_TestCase {}
+	abstract class WP_HTTP_UnitTestCase extends WP_HTTP_TestCase {
+	}
 }
 
 // EOF

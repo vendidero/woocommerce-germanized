@@ -64,7 +64,7 @@ if ( defined( 'WC_GZD_REMOVE_ALL_DATA' ) && true === WC_GZD_REMOVE_ALL_DATA ) {
 	);
 
 	// Delete gzd meta data
-	$wpdb->query( "DELETE meta FROM {$wpdb->postmeta} meta WHERE meta.meta_key IN ('".join("','", $meta_keys)."');" );
+	$wpdb->query( "DELETE meta FROM {$wpdb->postmeta} meta WHERE meta.meta_key IN ('" . join( "','", $meta_keys ) . "');" );
 
 	// Delete terms if > WP 4.2 (term splitting was added in 4.2)
 	if ( version_compare( $wp_version, '4.2', '>=' ) ) {

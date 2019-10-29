@@ -2,10 +2,12 @@
 /**
  * Action/filter hooks used for functions/templates
  *
- * @author 		Vendidero
+ * @author        Vendidero
  * @version     1
  */
-if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+} // Exit if accessed directly
 
 /**
  * Hide certain HTML output if activated via options
@@ -22,21 +24,21 @@ add_filter( 'woocommerce_get_price_html', 'woocommerce_gzd_template_sale_price_l
 /**
  * Single Product
  */
-foreach( wc_gzd_get_single_product_shopmarks() as $shopmark ) {
+foreach ( wc_gzd_get_single_product_shopmarks() as $shopmark ) {
 	$shopmark->execute();
 }
 
 /**
  * Single Product - Grouped
  */
-foreach( wc_gzd_get_single_product_grouped_shopmarks() as $shopmark ) {
+foreach ( wc_gzd_get_single_product_grouped_shopmarks() as $shopmark ) {
 	$shopmark->execute();
 }
 
 /**
  * Product Loop
  */
-foreach( wc_gzd_get_product_loop_shopmarks() as $shopmark ) {
+foreach ( wc_gzd_get_product_loop_shopmarks() as $shopmark ) {
 	$shopmark->execute();
 }
 
@@ -70,7 +72,7 @@ add_action( 'woocommerce_cart_totals_after_order_total', 'woocommerce_gzd_templa
 /**
  * Cart Hooks
  */
-foreach( wc_gzd_get_cart_shopmarks() as $shopmark ) {
+foreach ( wc_gzd_get_cart_shopmarks() as $shopmark ) {
 	$shopmark->execute();
 }
 
@@ -80,23 +82,24 @@ if ( get_option( 'woocommerce_gzd_small_enterprise' ) === 'yes' ) {
 	add_action( 'woocommerce_after_cart_totals', 'woocommerce_gzd_template_small_business_info', wc_gzd_get_hook_priority( 'cart_small_business_info' ) );
 	add_action( 'woocommerce_review_order_after_order_total', 'woocommerce_gzd_template_checkout_small_business_info', wc_gzd_get_hook_priority( 'checkout_small_business_info' ) );
 
-    /**
-     * Filter to show incl. VAT for small business after order/cart total.
-     *
-     * This filter serves for shops which want to enable a incl. VAT notice
-     * for small businesses. Some institutions (e.g. Händlerbund) state that this is necessary.
-     *
-     * ```php
-     * function ex_enable_small_business_vat_notice() {
-     *      return true;
-     * }
-     * add_filter( 'woocommerce_gzd_small_business_show_total_vat_notice', 'ex_enable_small_business_vat_notice', 10 );
-     * ```
-     *
-     * @since 1.8.7
-     *
-     * @param bool $enable Whether to enable the notice or not.
-     */
+	/**
+	 * Filter to show incl. VAT for small business after order/cart total.
+	 *
+	 * This filter serves for shops which want to enable a incl. VAT notice
+	 * for small businesses. Some institutions (e.g. Händlerbund) state that this is necessary.
+	 *
+	 * ```php
+	 * function ex_enable_small_business_vat_notice() {
+	 *      return true;
+	 * }
+	 * add_filter( 'woocommerce_gzd_small_business_show_total_vat_notice', 'ex_enable_small_business_vat_notice', 10 );
+	 * ```
+	 *
+	 * @param bool $enable Whether to enable the notice or not.
+	 *
+	 * @since 1.8.7
+	 *
+	 */
 	if ( apply_filters( 'woocommerce_gzd_small_business_show_total_vat_notice', false ) ) {
 		add_filter( 'woocommerce_get_formatted_order_total', 'woocommerce_gzd_template_small_business_total_vat_notice', 10, 1 );
 		add_filter( 'woocommerce_cart_totals_order_total_html', 'woocommerce_gzd_template_small_business_total_vat_notice', 10, 1 );
@@ -128,7 +131,7 @@ add_action( 'woocommerce_review_order_after_cart_contents', 'woocommerce_gzd_tem
 /**
  * Checkout Hooks
  */
-foreach( wc_gzd_get_checkout_shopmarks() as $shopmark ) {
+foreach ( wc_gzd_get_checkout_shopmarks() as $shopmark ) {
 	$shopmark->execute();
 }
 
@@ -216,9 +219,10 @@ if ( get_option( 'woocommerce_gzd_hide_order_success_details' ) == 'yes' ) {
  * Germanized disables the default WooCommerce privacy checkbox to replace it with it's own
  * data privacy checkbox instead.
  *
+ * @param bool $enable Set to `false` to re-enable Woo default privacy checkbox.
+ *
  * @since 1.9.10
  *
- * @param bool $enable Set to `false` to re-enable Woo default privacy checkbox.
  */
 if ( apply_filters( 'woocommerce_gzd_disable_wc_privacy_policy_checkbox', true ) ) {
 	remove_action( 'woocommerce_checkout_terms_and_conditions', 'wc_checkout_privacy_policy_text', 20 );
@@ -233,11 +237,11 @@ if ( apply_filters( 'woocommerce_gzd_disable_wc_privacy_policy_checkbox', true )
  * Footer
  */
 if ( 'yes' === get_option( 'woocommerce_gzd_display_footer_vat_notice' ) ) {
-	add_action ( 'woocommerce_gzd_footer_msg', 'woocommerce_gzd_template_footer_vat_info', wc_gzd_get_hook_priority( 'gzd_footer_vat_info' ) );
-	add_action ( 'wp_footer', 'woocommerce_gzd_template_footer_vat_info', wc_gzd_get_hook_priority( 'footer_vat_info' ) );
+	add_action( 'woocommerce_gzd_footer_msg', 'woocommerce_gzd_template_footer_vat_info', wc_gzd_get_hook_priority( 'gzd_footer_vat_info' ) );
+	add_action( 'wp_footer', 'woocommerce_gzd_template_footer_vat_info', wc_gzd_get_hook_priority( 'footer_vat_info' ) );
 }
 if ( 'yes' === get_option( 'woocommerce_gzd_display_footer_sale_price_notice' ) ) {
-	add_action ( 'woocommerce_gzd_footer_msg', 'woocommerce_gzd_template_footer_sale_info', wc_gzd_get_hook_priority( 'gzd_footer_sale_info' ) );
-	add_action ( 'wp_footer', 'woocommerce_gzd_template_footer_sale_info', wc_gzd_get_hook_priority( 'footer_sale_info' ) );
+	add_action( 'woocommerce_gzd_footer_msg', 'woocommerce_gzd_template_footer_sale_info', wc_gzd_get_hook_priority( 'gzd_footer_sale_info' ) );
+	add_action( 'wp_footer', 'woocommerce_gzd_template_footer_sale_info', wc_gzd_get_hook_priority( 'footer_sale_info' ) );
 }
 ?>

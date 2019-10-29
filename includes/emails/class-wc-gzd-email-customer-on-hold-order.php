@@ -11,11 +11,11 @@ if ( ! class_exists( 'WC_GZD_Email_Customer_On_Hold_Order' ) ) :
 	 *
 	 * An email sent to the customer when a new order is received/paid for.
 	 *
-	 * @class 		WC_Email_Customer_Processing_Order
-	 * @version		2.0.0
-	 * @package		WooCommerce/Classes/Emails
-	 * @author 		WooThemes
-	 * @extends 	WC_Email
+	 * @class        WC_Email_Customer_Processing_Order
+	 * @version        2.0.0
+	 * @package        WooCommerce/Classes/Emails
+	 * @author        WooThemes
+	 * @extends    WC_Email
 	 */
 	class WC_GZD_Email_Customer_On_Hold_Order extends WC_Email_Customer_On_Hold_Order {
 
@@ -33,26 +33,27 @@ if ( ! class_exists( 'WC_GZD_Email_Customer_On_Hold_Order' ) ) :
 
 		public function trigger( $order_id, $order = false ) {
 
-            /**
-             * Filter that allows re-enabling the on-hold order email which is by default
-             * replaced by the processing email used as order confirmation.
-             *
-             * @since 1.0.0
-             *
-             * @param bool $disable Whether to disable the on-hold email or not.
-             */
+			/**
+			 * Filter that allows re-enabling the on-hold order email which is by default
+			 * replaced by the processing email used as order confirmation.
+			 *
+			 * @param bool $disable Whether to disable the on-hold email or not.
+			 *
+			 * @since 1.0.0
+			 *
+			 */
 			if ( apply_filters( 'woocommerce_gzd_disable_on_hold_email', true ) ) {
 				return;
 			}
 
-			$requires_two_arguments     = true;
+			$requires_two_arguments = true;
 
 			try {
 				$method                 = new ReflectionMethod( get_parent_class( $this ), 'trigger' );
 				$num                    = $method->getNumberOfParameters();
 				$requires_two_arguments = ( $num == 2 );
 
-			} catch( Exception $e ) {
+			} catch ( Exception $e ) {
 
 			}
 

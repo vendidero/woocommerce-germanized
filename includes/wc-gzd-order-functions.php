@@ -4,11 +4,13 @@
  *
  * WC_GZD order functions.
  *
- * @author 		Vendidero
+ * @author        Vendidero
  * @version     1.0.0
  */
 
-if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+} // Exit if accessed directly
 
 /**
  * @param $total_rows
@@ -24,7 +26,7 @@ function wc_gzd_cart_forwarding_fee_notice_filter( $total_rows, $order ) {
 	if ( $gateway && $gateway->get_option( 'forwarding_fee' ) ) {
 		$total_rows['order_total_forwarding_fee'] = array(
 			'label' => '',
-			'value'	=> sprintf( __( 'Plus %s forwarding fee (charged by the transport agent)', 'woocommerce-germanized' ), wc_price( $gateway->get_option( 'forwarding_fee' ) ) ),
+			'value' => sprintf( __( 'Plus %s forwarding fee (charged by the transport agent)', 'woocommerce-germanized' ), wc_price( $gateway->get_option( 'forwarding_fee' ) ) ),
 		);
 	}
 
@@ -35,11 +37,11 @@ add_filter( 'woocommerce_get_order_item_totals', 'wc_gzd_cart_forwarding_fee_not
 
 function wc_gzd_order_supports_parcel_delivery_reminder( $order_id ) {
 	$order = wc_get_order( $order_id );
-	
-	if ( 'yes'  === $order->get_meta( '_parcel_delivery_opted_in', true ) ) {
+
+	if ( 'yes' === $order->get_meta( '_parcel_delivery_opted_in', true ) ) {
 		return true;
 	}
-	
+
 	return false;
 }
 
@@ -57,10 +59,11 @@ function wc_gzd_get_order_min_age( $order_id ) {
 	/**
 	 * Filters the minimum age required for a certain order.
 	 *
+	 * @param integer|boolean $min_age The minimum age for an order. False if not available.
+	 * @param integer $order_id The order id
+	 *
 	 * @since 3.0.0
 	 *
-	 * @param integer|boolean $min_age The minimum age for an order. False if not available.
-	 * @param integer         $order_id The order id
 	 */
 	return apply_filters( 'woocommerce_gzd_order_min_age', $min_age, $order_id );
 }
@@ -76,10 +79,11 @@ function wc_gzd_order_has_age_verification( $order_id ) {
 	/**
 	 * Filter to determine whether an order needs age verification or not.
 	 *
-	 * @since 3.0.0
-	 *
 	 * @param boolean $needs_verification Whether the order needs age verification or not.
 	 * @param integer $order_id The order id
+	 *
+	 * @since 3.0.0
+	 *
 	 */
 	return apply_filters( 'woocommerce_gzd_order_needs_age_verification', $needs_verification, $order_id );
 }
@@ -89,7 +93,7 @@ function wc_gzd_order_is_anonymized( $order ) {
 		$order = wc_get_order( $order );
 	}
 
-	$is_anyomized = $order->get_meta('_anonymized' );
+	$is_anyomized = $order->get_meta( '_anonymized' );
 
 	return 'yes' === $is_anyomized;
 }

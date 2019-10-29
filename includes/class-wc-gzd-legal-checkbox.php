@@ -54,14 +54,14 @@ class WC_GZD_Legal_Checkbox {
 		// Merge html classes to avoid core classes being overriden by empty option
 		$merge = array( 'html_classes', 'html_wrapper_classes' );
 
-		foreach( $merge as $merge_key ) {
+		foreach ( $merge as $merge_key ) {
 			if ( isset( $args[ $merge_key ] ) ) {
-				$getter = "get_" . $merge_key;
+				$getter             = "get_" . $merge_key;
 				$args[ $merge_key ] = array_merge( $this->$getter(), $args[ $merge_key ] );
 			}
 		}
 
-		foreach( $args as $prop => $value ) {
+		foreach ( $args as $prop => $value ) {
 			try {
 				$setter = "set_$prop";
 				if ( ! is_null( $value ) && is_callable( array( $this, $setter ) ) ) {
@@ -73,7 +73,8 @@ class WC_GZD_Legal_Checkbox {
 				} else {
 					$this->settings[ $prop ] = $value;
 				}
-			} catch ( Exception $e ) {}
+			} catch ( Exception $e ) {
+			}
 		}
 	}
 
@@ -87,7 +88,7 @@ class WC_GZD_Legal_Checkbox {
 	 */
 	public function get_option( $key, $default = '' ) {
 		$options = WC_GZD_Legal_Checkbox_Manager::instance()->get_options();
-		$value = $default;
+		$value   = $default;
 
 		if ( isset( $options[ $this->get_id() ] ) && isset( $options[ $this->get_id() ][ $key ] ) ) {
 			$value = $options[ $this->get_id() ][ $key ];
@@ -111,7 +112,7 @@ class WC_GZD_Legal_Checkbox {
 		}
 
 		$options[ $this->get_id() ][ $key ] = $value;
-		$this->settings[ $key ] = $value;
+		$this->settings[ $key ]             = $value;
 
 		return WC_GZD_Legal_Checkbox_Manager::instance()->update_options( $options );
 	}
@@ -268,15 +269,16 @@ class WC_GZD_Legal_Checkbox {
 			$label = wc_gzd_replace_label_shortcodes( $label, $this->get_label_args() );
 			$id    = $this->get_id();
 
-            /**
-             * Filter the label for a legal checkbox.
-             * `$id` equals the checkbox id.
-             *
-             * @since 2.0.0
-             *
-             * @param string                $label The HTML label.
-             * @param WC_GZD_Legal_Checkbox $checkbox The checkbox instance.
-             */
+			/**
+			 * Filter the label for a legal checkbox.
+			 * `$id` equals the checkbox id.
+			 *
+			 * @param string $label The HTML label.
+			 * @param WC_GZD_Legal_Checkbox $checkbox The checkbox instance.
+			 *
+			 * @since 2.0.0
+			 *
+			 */
 			return apply_filters( "woocommerce_gzd_legal_checkbox_{$id}_label", $label, $this );
 		}
 	}
@@ -319,15 +321,16 @@ class WC_GZD_Legal_Checkbox {
 			$error_text = wc_gzd_replace_label_shortcodes( $error_text, $this->get_label_args() );
 			$id         = $this->get_id();
 
-            /**
-             * Filter the error message for a legal checkbox.
-             * `$id` equals the checkbox id.
-             *
-             * @since 2.0.0
-             *
-             * @param string                $error_text The error message.
-             * @param WC_GZD_Legal_Checkbox $checkbox The checkbox instance.
-             */
+			/**
+			 * Filter the error message for a legal checkbox.
+			 * `$id` equals the checkbox id.
+			 *
+			 * @param string $error_text The error message.
+			 * @param WC_GZD_Legal_Checkbox $checkbox The checkbox instance.
+			 *
+			 * @since 2.0.0
+			 *
+			 */
 			return apply_filters( "woocommerce_gzd_legal_checkbox_{$id}_error_text", $error_text, $this );
 		}
 	}
@@ -633,16 +636,17 @@ class WC_GZD_Legal_Checkbox {
 		if ( $this->is_validateable() && $this->is_mandatory() ) {
 			if ( has_filter( "woocommerce_gzd_legal_checkbox_{$location}_{$id}_validate" ) ) {
 
-                /**
-                 * Filter whether a certain checkbox `$id` shall be validated for a certain
-                 * location `$location`.
-                 *
-                 * @since 2.0.0
-                 *
-                 * @param bool                  $validate Whether to validate the checkbox or not.
-                 * @param WC_GZD_Legal_Checkbox $checkbox The checkbox instance.
-                 */
-			    return apply_filters( "woocommerce_gzd_legal_checkbox_{$location}_{$id}_validate", true, $this );
+				/**
+				 * Filter whether a certain checkbox `$id` shall be validated for a certain
+				 * location `$location`.
+				 *
+				 * @param bool $validate Whether to validate the checkbox or not.
+				 * @param WC_GZD_Legal_Checkbox $checkbox The checkbox instance.
+				 *
+				 * @since 2.0.0
+				 *
+				 */
+				return apply_filters( "woocommerce_gzd_legal_checkbox_{$location}_{$id}_validate", true, $this );
 			} elseif ( empty( $value ) ) {
 				return false;
 			}
@@ -686,9 +690,9 @@ class WC_GZD_Legal_Checkbox {
 		}
 
 		$data['location_titles'] = array();
-		$titles = WC_GZD_Legal_Checkbox_Manager::instance()->get_locations();
+		$titles                  = WC_GZD_Legal_Checkbox_Manager::instance()->get_locations();
 
-		foreach( $this->get_locations() as $location ) {
+		foreach ( $this->get_locations() as $location ) {
 			$data['location_titles'][ $location ] = $titles[ $location ];
 		}
 
@@ -719,45 +723,46 @@ class WC_GZD_Legal_Checkbox {
 	 * @return array
 	 */
 	public function get_form_fields() {
-		$label_args = array_keys( $this->get_label_args() );
+		$label_args   = array_keys( $this->get_label_args() );
 		$placeholders = '';
 
 		if ( ! empty( $label_args ) ) {
 			$placeholders = implode( ', ', $label_args );
 		}
 
-		$locations = WC_GZD_Legal_Checkbox_Manager::instance()->get_locations();
+		$locations            = WC_GZD_Legal_Checkbox_Manager::instance()->get_locations();
 		$supporting_locations = array();
 
-		foreach( $this->get_supporting_locations() as $location ) {
+		foreach ( $this->get_supporting_locations() as $location ) {
 			$supporting_locations[ $location ] = $locations[ $location ];
 		}
 
-        /**
-         * Filters legal checkbox settings before titles.
-         *
-         * @since 2.0.0
-         *
-         * @param array                 $settings Array containing settings.
-         * @param WC_GZD_Legal_Checkbox $checkbox The checkbox instance.
-         */
+		/**
+		 * Filters legal checkbox settings before titles.
+		 *
+		 * @param array $settings Array containing settings.
+		 * @param WC_GZD_Legal_Checkbox $checkbox The checkbox instance.
+		 *
+		 * @since 2.0.0
+		 *
+		 */
 		$options = apply_filters( "woocommerce_gzd_legal_checkbox_fields_before_titles", array(
 
 			array(
-				'title'             => __( 'Status', 'woocommerce-germanized' ),
-				'type'              => 'checkbox',
-				'id'                => $this->get_form_field_id( 'is_enabled' ),
-				'desc'              => __( 'Enable checkbox', 'woocommerce-germanized' ),
-				'default'           => $this->get_is_enabled(),
+				'title'   => __( 'Status', 'woocommerce-germanized' ),
+				'type'    => 'checkbox',
+				'id'      => $this->get_form_field_id( 'is_enabled' ),
+				'desc'    => __( 'Enable checkbox', 'woocommerce-germanized' ),
+				'default' => $this->get_is_enabled(),
 			),
 
 			array(
-				'title'             => __( 'Name', 'woocommerce-germanized' ),
-				'type'              => 'text',
-				'id'                => $this->get_form_field_id( 'admin_name' ),
-				'desc_tip'          => true,
-				'desc'              => __( 'Choose a name to identify your checkbox. Upon creating a new checkbox, this value is being used to generate the Id.', 'woocommerce-germanized' ),
-				'default'           => $this->get_admin_name(),
+				'title'    => __( 'Name', 'woocommerce-germanized' ),
+				'type'     => 'text',
+				'id'       => $this->get_form_field_id( 'admin_name' ),
+				'desc_tip' => true,
+				'desc'     => __( 'Choose a name to identify your checkbox. Upon creating a new checkbox, this value is being used to generate the Id.', 'woocommerce-germanized' ),
+				'default'  => $this->get_admin_name(),
 			),
 
 			array(
@@ -771,85 +776,87 @@ class WC_GZD_Legal_Checkbox {
 			),
 
 			array(
-				'title'             => __( 'Description', 'woocommerce-germanized' ),
-				'type'              => 'text',
-				'id'                => $this->get_form_field_id( 'admin_desc' ),
-				'desc'              => __( 'Describe the use case of your checkbox.', 'woocommerce-germanized' ),
-				'desc_tip'          => true,
-				'default'           => $this->get_admin_desc(),
+				'title'    => __( 'Description', 'woocommerce-germanized' ),
+				'type'     => 'text',
+				'id'       => $this->get_form_field_id( 'admin_desc' ),
+				'desc'     => __( 'Describe the use case of your checkbox.', 'woocommerce-germanized' ),
+				'desc_tip' => true,
+				'default'  => $this->get_admin_desc(),
 			),
 
 			array(
-				'title'             => __( 'Label', 'woocommerce-germanized' ),
-				'type'              => 'textarea',
-				'id'                => $this->get_form_field_id( 'label' ),
-				'css' 		        => 'width:100%; height: 65px;',
-				'desc_tip'          => __( 'Choose a label to be inserted next to the checkbox.', 'woocommerce-germanized' ),
-				'desc'              => ! empty( $placeholders ) ? sprintf( __( 'You may use one of the following placeholders within the text: %s', 'woocommerce-germanized' ), '<code>' . $placeholders . '</code>' ) : '',
-				'default'           => $this->get_label( true ),
+				'title'    => __( 'Label', 'woocommerce-germanized' ),
+				'type'     => 'textarea',
+				'id'       => $this->get_form_field_id( 'label' ),
+				'css'      => 'width:100%; height: 65px;',
+				'desc_tip' => __( 'Choose a label to be inserted next to the checkbox.', 'woocommerce-germanized' ),
+				'desc'     => ! empty( $placeholders ) ? sprintf( __( 'You may use one of the following placeholders within the text: %s', 'woocommerce-germanized' ), '<code>' . $placeholders . '</code>' ) : '',
+				'default'  => $this->get_label( true ),
 			),
 
 			array(
-				'title'             => __( 'Error Message', 'woocommerce-germanized' ),
-				'type'              => 'textarea',
-				'id'                => $this->get_form_field_id( 'error_message' ),
-				'css' 		        => 'width:100%; height: 65px;',
-				'desc_tip'          => __( 'Choose an error message to be shown when the user has not confirmed the checkbox.', 'woocommerce-germanized' ),
-				'desc'              => ! empty( $placeholders ) ? sprintf( __( 'You may use one of the following placeholders within the text: %s', 'woocommerce-germanized' ), '<code>' . $placeholders . '</code>' ) : '',
-				'default'           => $this->get_error_message( true ),
+				'title'    => __( 'Error Message', 'woocommerce-germanized' ),
+				'type'     => 'textarea',
+				'id'       => $this->get_form_field_id( 'error_message' ),
+				'css'      => 'width:100%; height: 65px;',
+				'desc_tip' => __( 'Choose an error message to be shown when the user has not confirmed the checkbox.', 'woocommerce-germanized' ),
+				'desc'     => ! empty( $placeholders ) ? sprintf( __( 'You may use one of the following placeholders within the text: %s', 'woocommerce-germanized' ), '<code>' . $placeholders . '</code>' ) : '',
+				'default'  => $this->get_error_message( true ),
 			),
 
 			array(
-				'title'             => __( 'Hide input', 'woocommerce-germanized' ),
-				'type'              => 'checkbox',
-				'id'                => $this->get_form_field_id( 'hide_input' ),
-				'desc'              => __( 'Do only show a label and hide the actual checkbox.', 'woocommerce-germanized' ),
-				'default'           => $this->get_hide_input(),
+				'title'   => __( 'Hide input', 'woocommerce-germanized' ),
+				'type'    => 'checkbox',
+				'id'      => $this->get_form_field_id( 'hide_input' ),
+				'desc'    => __( 'Do only show a label and hide the actual checkbox.', 'woocommerce-germanized' ),
+				'default' => $this->get_hide_input(),
 			),
 
 			array(
-				'title'             => __( 'Mandatory', 'woocommerce-germanized' ),
-				'type'              => 'checkbox',
-				'id'                => $this->get_form_field_id( 'is_mandatory' ),
-				'desc'              => __( 'Mark the checkbox as mandatory.', 'woocommerce-germanized' ),
-				'default'           => $this->get_is_mandatory(),
+				'title'   => __( 'Mandatory', 'woocommerce-germanized' ),
+				'type'    => 'checkbox',
+				'id'      => $this->get_form_field_id( 'is_mandatory' ),
+				'desc'    => __( 'Mark the checkbox as mandatory.', 'woocommerce-germanized' ),
+				'default' => $this->get_is_mandatory(),
 			),
 
 			array(
-				'title'             => __( 'Locations', 'woocommerce-germanized' ),
-				'type'              => 'multiselect',
-				'class'             => 'wc-enhanced-select',
-				'id'                => $this->get_form_field_id( 'locations' ),
-				'label'             => __( 'Choose where to display your checkbox.', 'woocommerce-germanized' ),
-				'default'           => $this->get_locations(),
-				'options'           => $supporting_locations,
+				'title'   => __( 'Locations', 'woocommerce-germanized' ),
+				'type'    => 'multiselect',
+				'class'   => 'wc-enhanced-select',
+				'id'      => $this->get_form_field_id( 'locations' ),
+				'label'   => __( 'Choose where to display your checkbox.', 'woocommerce-germanized' ),
+				'default' => $this->get_locations(),
+				'options' => $supporting_locations,
 			),
 
 		), $this );
 
 		$id = $this->get_id();
 
-        /**
-         * Filters legal checkbox settings for `$id` before titles.
-         *
-         * @since 2.0.0
-         *
-         * @param array                 $settings Array containing settings.
-         * @param WC_GZD_Legal_Checkbox $checkbox The checkbox instance.
-         */
+		/**
+		 * Filters legal checkbox settings for `$id` before titles.
+		 *
+		 * @param array $settings Array containing settings.
+		 * @param WC_GZD_Legal_Checkbox $checkbox The checkbox instance.
+		 *
+		 * @since 2.0.0
+		 *
+		 */
 		$options = apply_filters( "woocommerce_gzd_legal_checkbox_{$id}_fields_before_titles", $options, $this );
 
 		array_unshift( $options, array( 'title' => '', 'type' => 'title', 'id' => "checkbox_options" ) );
 		array_push( $options, array( 'type' => 'sectionend', 'id' => 'checkbox_options' ) );
 
-        /**
-         * Filters legal checkbox settings.
-         *
-         * @since 2.0.0
-         *
-         * @param array                 $settings Array containing settings.
-         * @param WC_GZD_Legal_Checkbox $checkbox The checkbox instance.
-         */
+		/**
+		 * Filters legal checkbox settings.
+		 *
+		 * @param array $settings Array containing settings.
+		 * @param WC_GZD_Legal_Checkbox $checkbox The checkbox instance.
+		 *
+		 * @since 2.0.0
+		 *
+		 */
 		return apply_filters( "woocommerce_gzd_legal_checkbox_fields", $options, $this );
 	}
 
@@ -871,7 +878,7 @@ class WC_GZD_Legal_Checkbox {
 	 * Outputs the admin fields within the settings screen.
 	 */
 	public function admin_options() {
-		foreach( $this->get_form_fields() as $field ) {
+		foreach ( $this->get_form_fields() as $field ) {
 			if ( ! isset( $field['id'] ) || 'title' === $field['type'] ) {
 				continue;
 			}
@@ -881,7 +888,7 @@ class WC_GZD_Legal_Checkbox {
 
 		WC_Admin_Settings::output_fields( $this->get_form_fields() );
 
-		foreach( $this->get_form_fields() as $field ) {
+		foreach ( $this->get_form_fields() as $field ) {
 			if ( ! isset( $field['id'] ) || 'title' === $field['type'] ) {
 				continue;
 			}
@@ -894,7 +901,7 @@ class WC_GZD_Legal_Checkbox {
 	 * Saves the fields from the settings screen.
 	 */
 	public function save_fields() {
-		foreach( $this->get_form_fields() as $field ) {
+		foreach ( $this->get_form_fields() as $field ) {
 			if ( ! isset( $field['id'] ) ) {
 				continue;
 			}
@@ -904,7 +911,7 @@ class WC_GZD_Legal_Checkbox {
 
 		WC_Admin_Settings::save_fields( $this->get_form_fields() );
 
-		foreach( $this->get_form_fields() as $field ) {
+		foreach ( $this->get_form_fields() as $field ) {
 			if ( ! isset( $field['id'] ) ) {
 				continue;
 			}

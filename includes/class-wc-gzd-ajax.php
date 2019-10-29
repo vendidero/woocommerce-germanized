@@ -7,9 +7,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * AJAX Handler
  *
- * @class 		WC_GZD_AJAX
- * @version		1.0.0
- * @author 		Vendidero
+ * @class        WC_GZD_AJAX
+ * @version        1.0.0
+ * @author        Vendidero
  */
 class WC_GZD_AJAX {
 
@@ -41,15 +41,15 @@ class WC_GZD_AJAX {
 		check_ajax_referer( 'wc_gzd_tab_toggle_nonce', 'security' );
 
 		if ( ! current_user_can( 'manage_woocommerce' ) || ! isset( $_POST['tab'] ) || ! isset( $_POST['enable'] ) ) {
-			wp_die( -1 );
+			wp_die( - 1 );
 		}
 
-		$tab_id     = wc_clean( $_POST['tab'] );
-		$enable     = wc_string_to_bool( $_POST['enable'] );
+		$tab_id = wc_clean( $_POST['tab'] );
+		$enable = wc_string_to_bool( $_POST['enable'] );
 
 		$pages = WC_Admin_Settings::get_settings_pages();
 
-		foreach( $pages as $page ) {
+		foreach ( $pages as $page ) {
 
 			if ( is_a( $page, 'WC_GZD_Settings_Germanized' ) ) {
 				$tabs = $page->get_tabs();
@@ -123,17 +123,18 @@ class WC_GZD_AJAX {
 				continue;
 			}
 
-            /**
-             * Filters legal checkbox default option keys.
-             *
-             * @since 2.0.0
-             *
-             * @param array $args Option keys.
-             */
+			/**
+			 * Filters legal checkbox default option keys.
+			 *
+			 * @param array $args Option keys.
+			 *
+			 * @since 2.0.0
+			 *
+			 */
 			$keys = apply_filters( 'woocommerce_gzd_legal_checkboxes_option_keys', array(
-                'id'        => '',
-                'priority'  => 1,
-            ) );
+				'id'       => '',
+				'priority' => 1,
+			) );
 
 			$checkbox_data = array_intersect_key( $data, $keys );
 
@@ -160,31 +161,32 @@ class WC_GZD_AJAX {
 		ob_start();
 
 		check_ajax_referer( 'search-products', 'security' );
-		$term = (string) wc_clean( stripslashes( $_GET['term'] ) );
+		$term  = (string) wc_clean( stripslashes( $_GET['term'] ) );
 		$terms = array();
 
-		if ( empty( $term ) )
+		if ( empty( $term ) ) {
 			die();
+		}
 
 		$args = array(
 			'hide_empty' => false,
 		);
 
 		if ( is_numeric( $term ) ) {
-			$args[ 'include' ] = array( absint( $term ) ); 
+			$args['include'] = array( absint( $term ) );
 		} else {
-			$args[ 'name__like' ] = (string) $term;
- 		}
+			$args['name__like'] = (string) $term;
+		}
 
- 		$query = get_terms( 'product_delivery_time', $args );
- 		if ( ! empty( $query ) ) {
- 			foreach ( $query as $term ) {
- 				$terms[ $term->term_id ] = rawurldecode( $term->name );
- 			}
- 		} else {
- 			$terms[ rawurldecode( $term ) ] = rawurldecode( sprintf( __( "%s [new]", "woocommerce-germanized" ), $term ) );
- 		}
- 		wp_send_json( $terms );
+		$query = get_terms( 'product_delivery_time', $args );
+		if ( ! empty( $query ) ) {
+			foreach ( $query as $term ) {
+				$terms[ $term->term_id ] = rawurldecode( $term->name );
+			}
+		} else {
+			$terms[ rawurldecode( $term ) ] = rawurldecode( sprintf( __( "%s [new]", "woocommerce-germanized" ), $term ) );
+		}
+		wp_send_json( $terms );
 	}
 
 	/**
@@ -198,7 +200,7 @@ class WC_GZD_AJAX {
 			wp_send_json( array( 'result' => 'failure' ) );
 		}
 
-		$data = array();
+		$data   = array();
 		$fields = WC_GZD_Revocation::get_fields();
 
 		if ( ! empty( $fields ) ) {
@@ -206,27 +208,30 @@ class WC_GZD_AJAX {
 
 				if ( 'sep' !== $key ) {
 
-					if ( isset( $field[ 'required' ] ) && true === $field[ 'required' ] ) {
+					if ( isset( $field['required'] ) && true === $field['required'] ) {
 						if ( $key == 'address_mail' ) {
-							if ( ! is_email( $_POST[ $key ] ) )
+							if ( ! is_email( $_POST[ $key ] ) ) {
 								wc_add_notice( '<strong>' . $field['label'] . '</strong> ' . _x( 'is not a valid email address.', 'revocation-form', 'woocommerce-germanized' ), 'error' );
+							}
 						} elseif ( $key == 'address_postal' ) {
 							if ( ! WC_Validation::is_postcode( $_POST[ $key ], $_POST['address_country'] ) || empty( $_POST[ $key ] ) ) {
 								wc_add_notice( _x( 'Please enter a valid postcode/ZIP', 'revocation-form', 'woocommerce-germanized' ), 'error' );
 							}
-						} elseif( $key === 'privacy_checkbox' ) {
-							if ( isset( $field[ 'required' ] ) && empty( $_POST[ $key ] ) )
+						} elseif ( $key === 'privacy_checkbox' ) {
+							if ( isset( $field['required'] ) && empty( $_POST[ $key ] ) ) {
 								wc_add_notice( '<strong>' . $field['label'] . '</strong>', 'error' );
+							}
 						} else {
-							if ( isset( $field[ 'required' ] ) && empty( $_POST[ $key ] ) )
+							if ( isset( $field['required'] ) && empty( $_POST[ $key ] ) ) {
 								wc_add_notice( '<strong>' . $field['label'] . '</strong> ' . _x( 'is not valid.', 'revocation-form', 'woocommerce-germanized' ), 'error' );
+							}
 						}
 					}
 
 					if ( isset( $_POST[ $key ] ) && ! empty( $_POST[ $key ] ) ) {
 						if ( $field['type'] == 'country' ) {
-							$countries = WC()->countries->get_countries();
-							$country = wc_clean( $_POST[ $key ] );
+							$countries    = WC()->countries->get_countries();
+							$country      = wc_clean( $_POST[ $key ] );
 							$data[ $key ] = ( isset( $countries[ $country ] ) ? $countries[ $country ] : '' );
 						} else {
 							$data[ $key ] = wc_clean( $_POST[ $key ] );
@@ -235,23 +240,23 @@ class WC_GZD_AJAX {
 				}
 			}
 		}
-		
+
 		$error = false;
 		if ( wc_notice_count( 'error' ) == 0 ) {
-			
+
 			wc_add_notice( _x( 'Thank you. We have received your Revocation Request. You will receive a conformation email within a few minutes.', 'revocation-form', 'woocommerce-germanized' ), 'success' );
-			
+
 			// Send Mail
 			if ( $mail = WC_germanized()->emails->get_email_instance_by_id( 'customer_revocation' ) ) {
 
 				// Send to customer
 				$mail->trigger( $data );
-				
+
 				// Send to Admin
-				$data[ 'send_to_admin' ] = true;
+				$data['send_to_admin'] = true;
 				$mail->trigger( $data );
 			}
-	
+
 		} else {
 			$error = true;
 		}
@@ -262,7 +267,7 @@ class WC_GZD_AJAX {
 
 		$data = array(
 			'messages' => isset( $messages ) ? $messages : '',
-			'result' => ( $error ? 'failure' : 'success' ),
+			'result'   => ( $error ? 'failure' : 'success' ),
 		);
 
 		wp_send_json( $data );

@@ -27,20 +27,20 @@ class WC_GZD_Admin_Status extends WC_Admin_Status {
 	}
 
 	public static function status_default( $status ) {
-        /**
-         * Admin status screen.
-         *
-         * Executes for a default status page.
-         *
-         * @since 1.0.0
-         */
+		/**
+		 * Admin status screen.
+		 *
+		 * Executes for a default status page.
+		 *
+		 * @since 1.0.0
+		 */
 		do_action( 'woocommerce_gzd_status_' . $status );
 	}
 
 	public static function get_legal_pages() {
 
 		$return = array();
-		
+
 		$pages = array(
 			'terms'           => __( 'Terms & Conditions', 'woocommerce-germanized' ),
 			'revocation'      => __( 'Power of Revocation', 'woocommerce-germanized' ),
@@ -59,27 +59,27 @@ class WC_GZD_Admin_Status extends WC_Admin_Status {
 
 	public static function tax_tables_exist() {
 		global $wpdb;
-		
+
 		foreach ( self::$tax_tables as $table ) {
 
 			if ( ! $wpdb->get_var( "SHOW TABLES LIKE '{$wpdb->prefix}{$table}';" ) ) {
 				return false;
 			}
 		}
-		
+
 		return true;
 	}
 
 	public static function get_missing_tax_tables() {
 		global $wpdb;
 		$missing = array();
-		
+
 		foreach ( self::$tax_tables as $table ) {
 			if ( ! $wpdb->get_var( "SHOW TABLES LIKE '{$wpdb->prefix}{$table}';" ) ) {
 				array_push( $missing, $table );
 			}
 		}
-		
+
 		return $missing;
 	}
 

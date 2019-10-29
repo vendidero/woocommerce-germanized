@@ -118,7 +118,7 @@ if ( ! class_exists( 'WC_GZD_Admin_Setup_Wizard' ) ) :
 		}
 
 		public function _uasort_callback( $step1, $step2 ) {
-			if ( $step1['order'] == $step2['order'] ) return 0;
+			if ( $step1['order'] == $step2['order'] ) {return 0;}
 			return ( $step1['order'] < $step2['order'] ) ? -1 : 1;
 		}
 

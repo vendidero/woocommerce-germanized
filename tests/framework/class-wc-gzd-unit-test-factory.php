@@ -1,4 +1,5 @@
 <?php
+
 /**
  * WC Unit Test Factory
  *
@@ -21,7 +22,7 @@ class WC_GZD_Unit_Test_Factory extends WP_UnitTest_Factory {
 
 		parent::__construct();
 
-		$this->webhook = new WC_GZD_Unit_Test_Factory_For_Webhook( $this );
+		$this->webhook          = new WC_GZD_Unit_Test_Factory_For_Webhook( $this );
 		$this->webhook_delivery = new WC_GZD_Unit_Test_Factory_For_Webhook_Delivery( $this );
 	}
 }

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Webhook Delivery Test Factory
  *
@@ -10,8 +11,9 @@ class WC_GZD_Unit_Test_Factory_For_Webhook_Delivery extends WP_UnitTest_Factory_
 	/**
 	 * Setup factory.
 	 *
-	 * @since 2.2
 	 * @param null $factory
+	 *
+	 * @since 2.2
 	 */
 	public function __construct( $factory = null ) {
 
@@ -32,10 +34,11 @@ class WC_GZD_Unit_Test_Factory_For_Webhook_Delivery extends WP_UnitTest_Factory_
 	/**
 	 * Create a mock webhook delivery.
 	 *
+	 * @param array $args
+	 *
+	 * @return int webhook delivery (comment) ID
 	 * @since 2.2
 	 * @see WP_UnitTest_Factory_For_comment::create_object()
-	 * @param array $args
-	 * @return int webhook delivery (comment) ID
 	 */
 	public function create_object( $args ) {
 

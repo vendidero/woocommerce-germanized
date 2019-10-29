@@ -11,11 +11,11 @@ if ( ! class_exists( 'WC_GZD_Email_Customer_Processing_Order' ) ) :
 	 *
 	 * An email sent to the customer when a new order is received/paid for.
 	 *
-	 * @class 		WC_Email_Customer_Processing_Order
-	 * @version		2.0.0
-	 * @package		WooCommerce/Classes/Emails
-	 * @author 		WooThemes
-	 * @extends 	WC_Email
+	 * @class        WC_Email_Customer_Processing_Order
+	 * @version        2.0.0
+	 * @package        WooCommerce/Classes/Emails
+	 * @author        WooThemes
+	 * @extends    WC_Email
 	 */
 	class WC_GZD_Email_Customer_Processing_Order extends WC_Email_Customer_Processing_Order {
 
@@ -29,9 +29,18 @@ if ( ! class_exists( 'WC_GZD_Email_Customer_Processing_Order' ) ) :
 
 			if ( wc_gzd_send_instant_order_confirmation() ) {
 				// Remove Triggers for this email.
-				remove_action( 'woocommerce_order_status_failed_to_processing_notification', array( $this, 'trigger' ), 10 );
-				remove_action( 'woocommerce_order_status_on-hold_to_processing_notification', array( $this, 'trigger' ), 10 );
-				remove_action( 'woocommerce_order_status_pending_to_processing_notification', array( $this, 'trigger' ), 10 );
+				remove_action( 'woocommerce_order_status_failed_to_processing_notification', array(
+					$this,
+					'trigger'
+				), 10 );
+				remove_action( 'woocommerce_order_status_on-hold_to_processing_notification', array(
+					$this,
+					'trigger'
+				), 10 );
+				remove_action( 'woocommerce_order_status_pending_to_processing_notification', array(
+					$this,
+					'trigger'
+				), 10 );
 			}
 
 			$this->title = __( 'Order Confirmation', 'woocommerce-germanized' );
@@ -40,8 +49,8 @@ if ( ! class_exists( 'WC_GZD_Email_Customer_Processing_Order' ) ) :
 		/**
 		 * Get email subject.
 		 *
-		 * @since  3.1.0
 		 * @return string
+		 * @since  3.1.0
 		 */
 		public function get_default_subject() {
 			return __( 'Confirmation of your order {order_number}', 'woocommerce-germanized' );
@@ -50,8 +59,8 @@ if ( ! class_exists( 'WC_GZD_Email_Customer_Processing_Order' ) ) :
 		/**
 		 * Get email heading.
 		 *
-		 * @since  3.1.0
 		 * @return string
+		 * @since  3.1.0
 		 */
 		public function get_default_heading() {
 			return __( 'Thank you for your order', 'woocommerce-germanized' );

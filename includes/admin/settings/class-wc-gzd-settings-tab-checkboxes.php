@@ -7,9 +7,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Adds Germanized Checkboxes settings.
  *
- * @class 		WC_GZD_Settings_Tab_Checkboxes
- * @version		3.0.0
- * @author 		Vendidero
+ * @class        WC_GZD_Settings_Tab_Checkboxes
+ * @version        3.0.0
+ * @author        Vendidero
  */
 class WC_GZD_Settings_Tab_Checkboxes extends WC_GZD_Settings_Tab {
 
@@ -32,7 +32,7 @@ class WC_GZD_Settings_Tab_Checkboxes extends WC_GZD_Settings_Tab {
 		if ( false === $current ) {
 			$pointers = array(
 				'pointers' => array(
-					'default'          => array(
+					'default' => array(
 						'target'       => '.wc-gzd-legal-checkbox-rows tr:first td.wc-gzd-legal-checkbox-name a:first',
 						'next'         => '',
 						'next_url'     => admin_url( 'admin.php?page=wc-settings&tab=germanized-checkboxes&checkbox_id=terms&tutorial=yes' ),
@@ -48,10 +48,10 @@ class WC_GZD_Settings_Tab_Checkboxes extends WC_GZD_Settings_Tab {
 					),
 				),
 			);
-		} elseif( 'terms' === $current ) {
+		} elseif ( 'terms' === $current ) {
 			$pointers = array(
 				'pointers' => array(
-					'default'          => array(
+					'default' => array(
 						'target'       => '#woocommerce_gzd_checkboxes_terms_label',
 						'next'         => '',
 						'next_url'     => admin_url( 'admin.php?page=wc-settings&tab=germanized' ),
@@ -79,7 +79,7 @@ class WC_GZD_Settings_Tab_Checkboxes extends WC_GZD_Settings_Tab {
 	}
 
 	public function get_current_checkbox_id() {
-		$checkbox_id  = isset( $_GET['checkbox_id'] ) && ! empty( $_GET['checkbox_id'] ) ? wc_clean( $_GET['checkbox_id'] ) : false;
+		$checkbox_id = isset( $_GET['checkbox_id'] ) && ! empty( $_GET['checkbox_id'] ) ? wc_clean( $_GET['checkbox_id'] ) : false;
 
 		return $checkbox_id;
 	}
@@ -115,15 +115,16 @@ class WC_GZD_Settings_Tab_Checkboxes extends WC_GZD_Settings_Tab {
 	}
 
 	protected function get_breadcrumb() {
-		$breadcrumb          = parent::get_breadcrumb();
-		$checkbox_id         = $this->get_current_checkbox_id();
+		$breadcrumb  = parent::get_breadcrumb();
+		$checkbox_id = $this->get_current_checkbox_id();
 
 		/**
 		 * Filter to adjust new legal checkbox link for free version.
 		 *
+		 * @param string $link Link to vendidero website.
+		 *
 		 * @since 3.0.0
 		 *
-		 * @param string $link Link to vendidero website.
 		 */
 		$new_checkbox_link   = apply_filters( 'woocommerce_gzd_admin_new_legal_checkbox_link', 'https://vendidero.de/woocommerce-germanized' );
 		$new_checkbox_button = ' <a class="page-title-action" href="' . $new_checkbox_link . '" target="' . ( ! WC_germanized()->is_pro() ? '_blank' : '_self' ) . '">' . esc_html__( 'Add checkbox', 'woocommerce-germanized' ) . ' ' . ( ! WC_germanized()->is_pro() ? '<span class="wc-gzd-pro">pro</span>' : '' ) . '</a>';
@@ -158,10 +159,11 @@ class WC_GZD_Settings_Tab_Checkboxes extends WC_GZD_Settings_Tab {
 		/**
 		 * Adjust the checkbox within admin edit view.
 		 *
+		 * @param WC_GZD_Legal_Checkbox $checkbox The checkbox instance.
+		 * @param int $checkbox_id The checkbox id.
+		 *
 		 * @since 2.0.0
 		 *
-		 * @param WC_GZD_Legal_Checkbox $checkbox The checkbox instance.
-		 * @param int                   $checkbox_id The checkbox id.
 		 */
 		$checkbox = apply_filters( 'woocommerce_gzd_admin_legal_checkbox', $checkbox, $checkbox_id );
 
@@ -176,9 +178,10 @@ class WC_GZD_Settings_Tab_Checkboxes extends WC_GZD_Settings_Tab {
 			 *
 			 * This hook fires before a certain legal checkbox saves it's settings.
 			 *
+			 * @param WC_GZD_Legal_Checkbox $checkbox The checkbox to be saved.
+			 *
 			 * @since 2.0.0
 			 *
-			 * @param WC_GZD_Legal_Checkbox $checkbox The checkbox to be saved.
 			 */
 			do_action( 'woocommerce_gzd_before_save_legal_checkbox', $checkbox );
 
@@ -190,9 +193,10 @@ class WC_GZD_Settings_Tab_Checkboxes extends WC_GZD_Settings_Tab {
 				 *
 				 * This hook fires after a certain legal checkbox saves it's settings.
 				 *
+				 * @param WC_GZD_Legal_Checkbox $checkbox The checkbox containing the new settings.
+				 *
 				 * @since 2.0.0
 				 *
-				 * @param WC_GZD_Legal_Checkbox $checkbox The checkbox containing the new settings.
 				 */
 				do_action( 'woocommerce_gzd_after_save_legal_checkbox', $checkbox );
 			}
@@ -223,12 +227,12 @@ class WC_GZD_Settings_Tab_Checkboxes extends WC_GZD_Settings_Tab {
 
 		wp_localize_script(
 			'wc-gzd-admin-legal-checkboxes', 'wc_gzd_legal_checkboxes_params', array(
-				'checkboxes'              => $checkboxes,
-				'checkboxes_nonce'        => wp_create_nonce( 'wc_gzd_legal_checkbox_nonce' ),
-				'strings'                 => array(
-					'unload_confirmation_msg'     => __( 'Your changed data will be lost if you leave this page without saving.', 'woocommerce-germanized' ),
-					'delete_confirmation_msg'     => __( 'Are you sure you want to delete this checkbox? This action cannot be undone.', 'woocommerce-germanized' ),
-					'save_failed'                 => __( 'Your changes were not saved. Please retry.', 'woocommerce-germanized' ),
+				'checkboxes'       => $checkboxes,
+				'checkboxes_nonce' => wp_create_nonce( 'wc_gzd_legal_checkbox_nonce' ),
+				'strings'          => array(
+					'unload_confirmation_msg' => __( 'Your changed data will be lost if you leave this page without saving.', 'woocommerce-germanized' ),
+					'delete_confirmation_msg' => __( 'Are you sure you want to delete this checkbox? This action cannot be undone.', 'woocommerce-germanized' ),
+					'save_failed'             => __( 'Your changes were not saved. Please retry.', 'woocommerce-germanized' ),
 				),
 			)
 		);

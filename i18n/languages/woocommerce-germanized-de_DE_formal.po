@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce Germanized\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-10-25 15:53+0200\n"
-"PO-Revision-Date: 2019-10-25 15:55+0200\n"
+"POT-Creation-Date: 2019-10-29 14:34+0100\n"
+"PO-Revision-Date: 2019-10-29 14:34+0100\n"
 "Last-Translator: holzhannes <holzhannes@posteo.de>\n"
 "Language-Team: \n"
 "Language: de_DE@formal\n"
@@ -123,7 +123,7 @@ msgstr "Hausnummer"
 #: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:304
 #: woocommerce-germanized-dhl/src/Admin/Settings.php:707
 #: woocommerce-germanized-dhl/src/Admin/Settings.php:776
-#: woocommerce-germanized-dhl/templates/checkout/dhl/parcel-finder.php:19
+#: woocommerce-germanized-dhl/templates/checkout/dhl/parcel-finder.php:27
 msgctxt "dhl"
 msgid "Postcode"
 msgstr "Postleitzahl"
@@ -133,7 +133,7 @@ msgstr "Postleitzahl"
 #: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:305
 #: woocommerce-germanized-dhl/src/Admin/Settings.php:700
 #: woocommerce-germanized-dhl/src/Admin/Settings.php:769
-#: woocommerce-germanized-dhl/templates/checkout/dhl/parcel-finder.php:22
+#: woocommerce-germanized-dhl/templates/checkout/dhl/parcel-finder.php:30
 msgctxt "dhl"
 msgid "City"
 msgstr "Stadt"
@@ -401,7 +401,7 @@ msgstr "DHL Label zu Ihrer Bestellung: #{order_number}"
 # @ woocommerce-germanized
 #: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:35
 #: woocommerce-germanized-dhl/src/Api/Paket.php:279
-#: woocommerce-germanized-dhl/templates/checkout/dhl/preferred-services.php:74
+#: woocommerce-germanized-dhl/templates/checkout/dhl/preferred-services.php:81
 msgctxt "dhl time context"
 msgid "None"
 msgstr "Keine"
@@ -455,8 +455,8 @@ msgstr "Mindestens 18 Jahre"
 #: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:175
 #: woocommerce-germanized-dhl/src/Admin/Settings.php:184
 #: woocommerce-germanized-dhl/src/Admin/Settings.php:431
-#: woocommerce-germanized-dhl/src/ParcelLocator.php:789
-#: woocommerce-germanized-dhl/templates/checkout/dhl/parcel-finder.php:30
+#: woocommerce-germanized-dhl/src/ParcelLocator.php:790
+#: woocommerce-germanized-dhl/templates/checkout/dhl/parcel-finder.php:38
 msgctxt "dhl"
 msgid "Packstation"
 msgstr "Packstation"
@@ -1180,7 +1180,7 @@ msgstr "Kunden eine Packstation als Lieferadresse auswählen lassen."
 
 # @ woocommerce-germanized
 #: woocommerce-germanized-dhl/src/Admin/Settings.php:440
-#: woocommerce-germanized-dhl/templates/checkout/dhl/parcel-finder.php:42
+#: woocommerce-germanized-dhl/templates/checkout/dhl/parcel-finder.php:50
 msgctxt "dhl"
 msgid "Postoffice"
 msgstr "Postfiliale"
@@ -2000,25 +2000,25 @@ msgid "Germany"
 msgstr "Deutschland"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized-dhl/src/ParcelLocator.php:78
-#: woocommerce-germanized-dhl/src/ParcelLocator.php:802
-#: woocommerce-germanized-dhl/src/ParcelLocator.php:827
+#: woocommerce-germanized-dhl/src/ParcelLocator.php:79
+#: woocommerce-germanized-dhl/src/ParcelLocator.php:803
+#: woocommerce-germanized-dhl/src/ParcelLocator.php:828
 msgctxt "dhl"
 msgid "Address Type"
 msgstr "Adresstyp"
 
-#: woocommerce-germanized-dhl/src/ParcelLocator.php:81
+#: woocommerce-germanized-dhl/src/ParcelLocator.php:82
 msgctxt "dhl"
 msgid "Select whether delivery to DHL locations should be enabled."
 msgstr ""
 "Wählen Sie aus, ob die Lieferung an DHL Standorte aktiviert werden soll."
 
-#: woocommerce-germanized-dhl/src/ParcelLocator.php:86
+#: woocommerce-germanized-dhl/src/ParcelLocator.php:87
 msgctxt "dhl"
 msgid "Postnumber"
 msgstr "Postnummer"
 
-#: woocommerce-germanized-dhl/src/ParcelLocator.php:88
+#: woocommerce-germanized-dhl/src/ParcelLocator.php:89
 msgctxt "dhl"
 msgid ""
 "In case delivery to packstation is selected please fill in the corresponding "
@@ -2027,31 +2027,31 @@ msgstr ""
 "Insofern die Lieferung an eine Packstation erfolgt, bitte die Postnummer "
 "eintragen."
 
-#: woocommerce-germanized-dhl/src/ParcelLocator.php:174
-#: woocommerce-germanized-dhl/src/ParcelLocator.php:532
+#: woocommerce-germanized-dhl/src/ParcelLocator.php:175
+#: woocommerce-germanized-dhl/src/ParcelLocator.php:533
 msgctxt "dhl"
 msgid "Invalid address type."
 msgstr "Ungültiger Adresstyp."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized-dhl/src/ParcelLocator.php:595
+#: woocommerce-germanized-dhl/src/ParcelLocator.php:596
 msgctxt "dhl"
 msgid "Sorry, but delivery to packstation is not available."
 msgstr ""
 "Entschuldigung, die Lieferung an eine Packstation steht nicht zur Verfügung."
 
-#: woocommerce-germanized-dhl/src/ParcelLocator.php:600
+#: woocommerce-germanized-dhl/src/ParcelLocator.php:601
 msgctxt "dhl"
 msgid "Sorry, but delivery to parcel shops is not available."
 msgstr ""
 "Entschuldigung, die Lieferung an einen Paketshop steht nicht zur Verfügung."
 
-#: woocommerce-germanized-dhl/src/ParcelLocator.php:604
+#: woocommerce-germanized-dhl/src/ParcelLocator.php:605
 msgctxt "dhl"
 msgid "Sorry, but delivery to post offices is not available."
 msgstr "Entschuldigung, die Lieferung an Postfilialen ist nicht verfügbar."
 
-#: woocommerce-germanized-dhl/src/ParcelLocator.php:611
+#: woocommerce-germanized-dhl/src/ParcelLocator.php:612
 #, php-format
 msgctxt "dhl"
 msgid "Please indicate shipment to %s by one of the following values: %s."
@@ -2059,7 +2059,7 @@ msgstr ""
 "Bitte identifizieren Sie die Lieferung an %s durch die Eingabe einer der "
 "folgenden Werte: %s."
 
-#: woocommerce-germanized-dhl/src/ParcelLocator.php:619
+#: woocommerce-germanized-dhl/src/ParcelLocator.php:620
 msgctxt "dhl"
 msgid ""
 "Your DHL customer number (Post number) is needed to ship to a packstation."
@@ -2067,7 +2067,7 @@ msgstr ""
 "Ihre DHL Kundennummer (Postnummer) wird für den Versand an eine Packstation "
 "benötigt."
 
-#: woocommerce-germanized-dhl/src/ParcelLocator.php:621
+#: woocommerce-germanized-dhl/src/ParcelLocator.php:622
 msgctxt "dhl"
 msgid ""
 "Your DHL customer number (Post number) is not valid. Please check your "
@@ -2076,64 +2076,64 @@ msgstr ""
 "Ihre DHL Kundennummer (Postnummer) ist nicht gültig. Bitte überprüfen Sie "
 "Ihre Eingabe."
 
-#: woocommerce-germanized-dhl/src/ParcelLocator.php:666
-#: woocommerce-germanized-dhl/src/ParcelLocator.php:793
+#: woocommerce-germanized-dhl/src/ParcelLocator.php:667
+#: woocommerce-germanized-dhl/src/ParcelLocator.php:794
 msgctxt "dhl"
 msgid "Branch"
 msgstr "Filiale"
 
-#: woocommerce-germanized-dhl/src/ParcelLocator.php:667
+#: woocommerce-germanized-dhl/src/ParcelLocator.php:668
 msgctxt "dhl"
 msgid "Postnumber "
 msgstr "Postnummer "
 
-#: woocommerce-germanized-dhl/src/ParcelLocator.php:768
+#: woocommerce-germanized-dhl/src/ParcelLocator.php:769
 #, php-format
 msgctxt "dhl"
 msgid "e.g. %s 456"
 msgstr "z.B. %s 456"
 
-#: woocommerce-germanized-dhl/src/ParcelLocator.php:793
+#: woocommerce-germanized-dhl/src/ParcelLocator.php:794
 msgctxt "dhl"
 msgid "Branches"
 msgstr "Filialen"
 
-#: woocommerce-germanized-dhl/src/ParcelLocator.php:809
-#: woocommerce-germanized-dhl/src/ParcelLocator.php:837
+#: woocommerce-germanized-dhl/src/ParcelLocator.php:810
+#: woocommerce-germanized-dhl/src/ParcelLocator.php:838
 msgctxt "dhl"
 msgid "DHL customer number (Post number)"
 msgstr "DHL Kundennummer (Postnummer)"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized-dhl/src/ParcelLocator.php:819
+#: woocommerce-germanized-dhl/src/ParcelLocator.php:820
 msgctxt "dhl"
 msgid "Regular Address"
 msgstr "Normale Adresse"
 
-#: woocommerce-germanized-dhl/src/ParcelLocator.php:841
+#: woocommerce-germanized-dhl/src/ParcelLocator.php:842
 msgctxt "dhl"
 msgid "Not yet a DHL customer?"
 msgstr "Noch kein DHL Kunde?"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized-dhl/src/ParcelLocator.php:841
+#: woocommerce-germanized-dhl/src/ParcelLocator.php:842
 msgctxt "dhl"
 msgid "Register now"
 msgstr "Jetzt registrieren"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized-dhl/src/ParcelLocator.php:890
+#: woocommerce-germanized-dhl/src/ParcelLocator.php:891
 #, php-format
 msgctxt "dhl"
 msgid "Search %s"
 msgstr "%s suchen"
 
-#: woocommerce-germanized-dhl/src/ParcelLocator.php:986
+#: woocommerce-germanized-dhl/src/ParcelLocator.php:987
 msgctxt "dhl"
 msgid "No DHL locations found"
 msgstr "Keine DHL Standorte gefunden"
 
-#: woocommerce-germanized-dhl/src/ParcelLocator.php:1001
+#: woocommerce-germanized-dhl/src/ParcelLocator.php:1002
 #, php-format
 msgctxt "dhl"
 msgid ""
@@ -2144,12 +2144,12 @@ msgstr ""
 "einen %s oder %s."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized-dhl/src/ParcelLocator.php:1001
+#: woocommerce-germanized-dhl/src/ParcelLocator.php:1002
 msgctxt "dhl"
 msgid "DHL location"
 msgstr "DHL Standort"
 
-#: woocommerce-germanized-dhl/src/ParcelLocator.php:1001
+#: woocommerce-germanized-dhl/src/ParcelLocator.php:1002
 msgctxt "dhl"
 msgid "retry"
 msgstr "Erneut versuchen"
@@ -2169,27 +2169,27 @@ msgctxt "dhl"
 msgid "DHL Preferred Day"
 msgstr "DHL Wunschtag"
 
-#: woocommerce-germanized-dhl/src/ParcelServices.php:331
+#: woocommerce-germanized-dhl/src/ParcelServices.php:324
 msgctxt "dhl"
 msgid "Sorry, but the preferred day you have chosen is no longer available."
 msgstr ""
 "Entschuldigung, der von Ihnen ausgewählte Wunschtag steht leider nicht mehr "
 "zur Verfügung."
 
-#: woocommerce-germanized-dhl/src/ParcelServices.php:359
+#: woocommerce-germanized-dhl/src/ParcelServices.php:352
 msgctxt "dhl"
 msgid "Sorry, but the preferred time you have chosen is no longer available."
 msgstr ""
 "Entschuldigung, die von Ihren ausgewählte Wunschzeit steht leider nicht mehr "
 "zur Verfügung."
 
-#: woocommerce-germanized-dhl/src/ParcelServices.php:382
+#: woocommerce-germanized-dhl/src/ParcelServices.php:375
 msgctxt "dhl"
 msgid "Please choose a preferred location."
 msgstr "Bitte wählen Sie einen Wunschort aus."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized-dhl/src/ParcelServices.php:394
+#: woocommerce-germanized-dhl/src/ParcelServices.php:387
 msgctxt "dhl"
 msgid "Please choose name and address of your preferred neighbor."
 msgstr "Bitte wählen Sie einen Namen und die Adresse Ihres Wunschnachbars."
@@ -2201,66 +2201,66 @@ msgctxt "dhl full name"
 msgid "%1$s"
 msgstr "%1$s"
 
-#: woocommerce-germanized-dhl/templates/checkout/dhl/parcel-finder-result.php:23
+#: woocommerce-germanized-dhl/templates/checkout/dhl/parcel-finder-result.php:31
 msgctxt "dhl"
 msgid "Opening Times"
 msgstr "Öffnungszeiten"
 
-#: woocommerce-germanized-dhl/templates/checkout/dhl/parcel-finder-result.php:31
+#: woocommerce-germanized-dhl/templates/checkout/dhl/parcel-finder-result.php:39
 msgctxt "dhl"
 msgid "Services"
 msgstr "Dienstleistungen"
 
-#: woocommerce-germanized-dhl/templates/checkout/dhl/parcel-finder-result.php:33
+#: woocommerce-germanized-dhl/templates/checkout/dhl/parcel-finder-result.php:41
 msgctxt "dhl"
 msgid "Handicap Accessible"
 msgstr "Barrierefrei"
 
-#: woocommerce-germanized-dhl/templates/checkout/dhl/parcel-finder-result.php:33
-#: woocommerce-germanized-dhl/templates/checkout/dhl/parcel-finder-result.php:34
+#: woocommerce-germanized-dhl/templates/checkout/dhl/parcel-finder-result.php:41
+#: woocommerce-germanized-dhl/templates/checkout/dhl/parcel-finder-result.php:42
 msgctxt "dhl"
 msgid "Yes"
 msgstr "Ja"
 
-#: woocommerce-germanized-dhl/templates/checkout/dhl/parcel-finder-result.php:33
-#: woocommerce-germanized-dhl/templates/checkout/dhl/parcel-finder-result.php:34
+#: woocommerce-germanized-dhl/templates/checkout/dhl/parcel-finder-result.php:41
+#: woocommerce-germanized-dhl/templates/checkout/dhl/parcel-finder-result.php:42
 msgctxt "dhl"
 msgid "No"
 msgstr "Nein"
 
-#: woocommerce-germanized-dhl/templates/checkout/dhl/parcel-finder-result.php:34
+#: woocommerce-germanized-dhl/templates/checkout/dhl/parcel-finder-result.php:42
 msgctxt "dhl"
 msgid "Parking"
 msgstr "Parken"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized-dhl/templates/checkout/dhl/parcel-finder-result.php:39
+#: woocommerce-germanized-dhl/templates/checkout/dhl/parcel-finder-result.php:47
 msgctxt "dhl"
 msgid "Select "
 msgstr "Auswählen "
 
-#: woocommerce-germanized-dhl/templates/checkout/dhl/parcel-finder.php:25
+#: woocommerce-germanized-dhl/templates/checkout/dhl/parcel-finder.php:33
 msgctxt "dhl"
 msgid "Address"
 msgstr "Adresse"
 
-#: woocommerce-germanized-dhl/templates/checkout/dhl/parcel-finder.php:36
+#: woocommerce-germanized-dhl/templates/checkout/dhl/parcel-finder.php:44
 msgctxt "dhl"
 msgid "Parcelshop"
 msgstr "Paketshop"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized-dhl/templates/checkout/dhl/parcel-finder.php:47
+#: woocommerce-germanized-dhl/templates/checkout/dhl/parcel-finder.php:55
 msgctxt "dhl"
 msgid "Search"
 msgstr "Suchen"
 
-#: woocommerce-germanized-dhl/templates/checkout/dhl/preferred-services.php:20
+#: woocommerce-germanized-dhl/templates/checkout/dhl/preferred-services.php:27
 msgctxt "dhl"
 msgid "DHL Preferred Delivery. Delivered just as you wish."
 msgstr "DHL Wunschpaket. Gebracht wie gewünscht."
 
-#: woocommerce-germanized-dhl/templates/checkout/dhl/preferred-services.php:23
+#: woocommerce-germanized-dhl/templates/checkout/dhl/preferred-services.php:30
 msgctxt "dhl"
 msgid ""
 "Thanks to the ﬂexible recipient services of DHL Preferred Delivery, you "
@@ -2272,12 +2272,12 @@ msgstr ""
 "Pakete empfangen.<br/>\n"
 "Wählen Sie Ihre bevorzugte Lieferoption."
 
-#: woocommerce-germanized-dhl/templates/checkout/dhl/preferred-services.php:31
+#: woocommerce-germanized-dhl/templates/checkout/dhl/preferred-services.php:38
 msgctxt "dhl"
 msgid "Preferred day: Delivery at your preferred day."
 msgstr "Wunschtag: Lieferung zum gewünschten Tag."
 
-#: woocommerce-germanized-dhl/templates/checkout/dhl/preferred-services.php:31
+#: woocommerce-germanized-dhl/templates/checkout/dhl/preferred-services.php:38
 msgctxt "dhl"
 msgid ""
 "Choose one of the displayed days as your preferred day for your parcel "
@@ -2287,20 +2287,20 @@ msgstr ""
 "Lieferung Ihrer Waren auszuwählen. Andere Tage sind aufgrund der "
 "Lieferprozesse aktuell nicht möglich."
 
-#: woocommerce-germanized-dhl/templates/checkout/dhl/preferred-services.php:35
-#: woocommerce-germanized-dhl/templates/checkout/dhl/preferred-services.php:62
+#: woocommerce-germanized-dhl/templates/checkout/dhl/preferred-services.php:42
+#: woocommerce-germanized-dhl/templates/checkout/dhl/preferred-services.php:69
 #, php-format
 msgctxt "dhl"
 msgid "There is a surcharge of %s incl. VAT for this service.*"
 msgstr "Für diesen Service fällt ein Aufpreis in Höhe von %s inkl. MwSt. an.*"
 
-#: woocommerce-germanized-dhl/templates/checkout/dhl/preferred-services.php:58
+#: woocommerce-germanized-dhl/templates/checkout/dhl/preferred-services.php:65
 msgctxt "dhl"
 msgid "Preferred time: Delivery during your preferred time slot."
 msgstr "Wunschzeit: Lieferung im gewünschten Zeitfenster."
 
-#: woocommerce-germanized-dhl/templates/checkout/dhl/preferred-services.php:58
-#: woocommerce-germanized-dhl/templates/checkout/dhl/preferred-services.php:84
+#: woocommerce-germanized-dhl/templates/checkout/dhl/preferred-services.php:65
+#: woocommerce-germanized-dhl/templates/checkout/dhl/preferred-services.php:91
 msgctxt "dhl"
 msgid ""
 "Indicate a preferred time, which suits you best for your parcel delivery by "
@@ -2310,34 +2310,34 @@ msgstr ""
 "für die Lieferung auszuwählen. Sie können eine der dargestellten Zeiten für "
 "die Lieferung auswählen."
 
-#: woocommerce-germanized-dhl/templates/checkout/dhl/preferred-services.php:84
+#: woocommerce-germanized-dhl/templates/checkout/dhl/preferred-services.php:91
 msgctxt "dhl"
 msgid "Preferred location or neighbor"
 msgstr "Wunschort oder Wunschnachbar"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized-dhl/templates/checkout/dhl/preferred-services.php:90
+#: woocommerce-germanized-dhl/templates/checkout/dhl/preferred-services.php:97
 msgctxt "dhl location context"
 msgid "None"
 msgstr "Keine"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized-dhl/templates/checkout/dhl/preferred-services.php:95
+#: woocommerce-germanized-dhl/templates/checkout/dhl/preferred-services.php:102
 msgctxt "dhl"
 msgid "Location"
 msgstr "Ort"
 
-#: woocommerce-germanized-dhl/templates/checkout/dhl/preferred-services.php:101
+#: woocommerce-germanized-dhl/templates/checkout/dhl/preferred-services.php:108
 msgctxt "dhl"
 msgid "Neighbor"
 msgstr "Nachbar"
 
-#: woocommerce-germanized-dhl/templates/checkout/dhl/preferred-services.php:108
+#: woocommerce-germanized-dhl/templates/checkout/dhl/preferred-services.php:115
 msgctxt "dhl"
 msgid "Preferred location: Delivery to your preferred drop-off location"
 msgstr "Lieferung an den gewünschten Ablageort"
 
-#: woocommerce-germanized-dhl/templates/checkout/dhl/preferred-services.php:108
+#: woocommerce-germanized-dhl/templates/checkout/dhl/preferred-services.php:115
 msgctxt "dhl"
 msgid ""
 "Choose a weather-protected and non-visible place on your property, where we "
@@ -2347,17 +2347,17 @@ msgstr ""
 "Grundstück, an dem wir das Paket während Ihrer Abwesenheit hinterlegen "
 "dürfen."
 
-#: woocommerce-germanized-dhl/templates/checkout/dhl/preferred-services.php:110
+#: woocommerce-germanized-dhl/templates/checkout/dhl/preferred-services.php:117
 msgctxt "dhl"
 msgid "e.g. Garage, Terrace"
 msgstr "z.B. Garage, Terrasse"
 
-#: woocommerce-germanized-dhl/templates/checkout/dhl/preferred-services.php:117
+#: woocommerce-germanized-dhl/templates/checkout/dhl/preferred-services.php:124
 msgctxt "dhl"
 msgid "Preferred neighbour: Delivery to a neighbour of your choice"
 msgstr "Wunschnachbar: Lieferung an einen Nachbarn Ihrer Wahl"
 
-#: woocommerce-germanized-dhl/templates/checkout/dhl/preferred-services.php:117
+#: woocommerce-germanized-dhl/templates/checkout/dhl/preferred-services.php:124
 msgctxt "dhl"
 msgid ""
 "Determine a person in your immediate neighborhood whom we can hand out your "
@@ -2368,17 +2368,17 @@ msgstr ""
 "Ihr Paket während Ihrer Abwesenheit abgeben dürfen. Diese sollte im gleichen "
 "Haus, direkt gegenüber oder nebenan wohnen."
 
-#: woocommerce-germanized-dhl/templates/checkout/dhl/preferred-services.php:119
+#: woocommerce-germanized-dhl/templates/checkout/dhl/preferred-services.php:126
 msgctxt "dhl"
 msgid "First name, last name of neighbor"
 msgstr "Vorname, Nachname des Nachbars"
 
-#: woocommerce-germanized-dhl/templates/checkout/dhl/preferred-services.php:120
+#: woocommerce-germanized-dhl/templates/checkout/dhl/preferred-services.php:127
 msgctxt "dhl"
 msgid "Street, number, postal code, city"
 msgstr "Straße, Hausnummer, Postleitzahl, Stadt"
 
-#: woocommerce-germanized-dhl/templates/checkout/dhl/preferred-services.php:130
+#: woocommerce-germanized-dhl/templates/checkout/dhl/preferred-services.php:137
 #, php-format
 msgctxt "dhl"
 msgid ""
@@ -2549,7 +2549,7 @@ msgstr "%s #%s"
 #: woocommerce-germanized-shipments/src/Admin/Admin.php:111
 #: woocommerce-germanized-shipments/src/Admin/Admin.php:181
 #: woocommerce-germanized-shipments/src/Admin/Admin.php:248
-#: woocommerce-germanized-shipments/templates/myaccount/order-shipments.php:28
+#: woocommerce-germanized-shipments/templates/myaccount/order-shipments.php:35
 msgctxt "shipments"
 msgid "Shipments"
 msgstr "Sendungen"
@@ -3098,7 +3098,7 @@ msgid "Order"
 msgstr "Bestellung"
 
 #: woocommerce-germanized-shipments/src/Admin/Table.php:737
-#: woocommerce-germanized-shipments/templates/myaccount/order-shipments.php:66
+#: woocommerce-germanized-shipments/templates/myaccount/order-shipments.php:73
 #, php-format
 msgctxt "shipment title"
 msgid "%s #%s"
@@ -3460,12 +3460,12 @@ msgctxt "shipments"
 msgid "View shipment: %s"
 msgstr "Sendung anzeigen: %s"
 
-#: woocommerce-germanized-shipments/templates/myaccount/order-shipments.php:77
+#: woocommerce-germanized-shipments/templates/myaccount/order-shipments.php:84
 msgctxt "shipments"
 msgid "track now"
 msgstr "nachverfolgen"
 
-#: woocommerce-germanized-shipments/templates/myaccount/view-shipment.php:26
+#: woocommerce-germanized-shipments/templates/myaccount/view-shipment.php:24
 #, php-format
 msgctxt "shipments"
 msgid "Shipment #%1$s was created on %2$s and is currently %3$s."
@@ -3564,7 +3564,7 @@ msgstr "l"
 # @ woocommerce-germanized
 #: woocommerce-germanized/includes/abstracts/abstract-wc-gzd-product.php:533
 #: woocommerce-germanized/includes/abstracts/abstract-wc-gzd-product.php:543
-#: woocommerce-germanized/includes/wc-gzd-core-functions.php:312
+#: woocommerce-germanized/includes/wc-gzd-core-functions.php:308
 #: woocommerce-germanized/includes/wc-gzd-template-functions.php:535
 msgid "incl. VAT"
 msgstr "inkl. MwSt."
@@ -3576,7 +3576,7 @@ msgstr "exkl. MwSt."
 
 # @ woocommerce-germanized
 #: woocommerce-germanized/includes/abstracts/abstract-wc-gzd-product.php:535
-#: woocommerce-germanized/includes/wc-gzd-core-functions.php:312
+#: woocommerce-germanized/includes/wc-gzd-core-functions.php:308
 #, php-format
 msgid "incl. %s%% VAT"
 msgstr "inkl. %s %% MwSt."
@@ -3715,7 +3715,7 @@ msgstr "Virtuelles Produkt"
 
 #: woocommerce-germanized/includes/admin/class-wc-gzd-admin-legal-checkboxes.php:108
 #: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:45
-#: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:131
+#: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:149
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:374
 #: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:131
 msgid "Service"
@@ -3963,7 +3963,7 @@ msgstr "Zurück zu WP Admin"
 #: woocommerce-germanized/includes/admin/class-wc-gzd-admin-status.php:45
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-general.php:53
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-general.php:136
-#: woocommerce-germanized/includes/wc-gzd-core-functions.php:193
+#: woocommerce-germanized/includes/wc-gzd-core-functions.php:189
 msgid "Terms & Conditions"
 msgstr "AGB"
 
@@ -3977,7 +3977,7 @@ msgstr "Widerrufsbelehrung"
 #: woocommerce-germanized/includes/admin/class-wc-gzd-admin-status.php:47
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-general.php:84
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-general.php:136
-#: woocommerce-germanized/includes/wc-gzd-core-functions.php:195
+#: woocommerce-germanized/includes/wc-gzd-core-functions.php:191
 msgid "Imprint"
 msgstr "Impressum"
 
@@ -3989,7 +3989,7 @@ msgstr "Datenschutzerklärung"
 # @ woocommerce-germanized
 #: woocommerce-germanized/includes/admin/class-wc-gzd-admin-status.php:49
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-general.php:104
-#: woocommerce-germanized/includes/wc-gzd-core-functions.php:200
+#: woocommerce-germanized/includes/wc-gzd-core-functions.php:196
 msgid "Payment Methods"
 msgstr "Zahlungarten"
 
@@ -4051,37 +4051,37 @@ msgstr "Sie sind leider nicht berechtigt, diese Aktion durchzuführen."
 msgid "Germanized for WooCommerce"
 msgstr "Germanized für WooCommerce"
 
-#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:284
+#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:288
 #: woocommerce-germanized/includes/admin/settings/views/html-admin-settings-tabs.php:38
 #: woocommerce-germanized/includes/admin/settings/views/html-admin-settings-tabs.php:51
 msgid "Yes"
 msgstr "Ja"
 
-#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:284
+#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:288
 #: woocommerce-germanized/includes/admin/settings/views/html-admin-settings-tabs.php:51
 msgid "No"
 msgstr "Nein"
 
-#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:347
+#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:353
 msgid "Paid for order notification manually sent to customer."
 msgstr "Bestellung bezahlt manuell an den Kunden versendet."
 
-#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:363
+#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:373
 msgid "Order confirmation manually sent to customer."
 msgstr "Bestellbestätigung manuell an den Kunden versendet."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:380
+#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:392
 msgid "Resend order confirmation"
 msgstr "Bestellbestätigung erneut versenden"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:381
+#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:393
 msgid "Send paid for order notification"
 msgstr "Bestellung bezahlt manuell versenden"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:391
+#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:403
 #: woocommerce-germanized/includes/admin/settings/abstract-wc-gzd-settings-tab.php:103
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:23
 #: woocommerce-germanized/includes/admin/settings/views/html-admin-settings-tabs.php:9
@@ -4089,38 +4089,38 @@ msgstr "Bestellung bezahlt manuell versenden"
 msgid "Germanized"
 msgstr "Germanized"
 
-#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:403
+#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:415
 msgid "Parcel Delivery Data Transfer:"
 msgstr "Paketdienstleister Datenweitergabe:"
 
-#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:404
+#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:416
 msgid "allowed"
 msgstr "akzeptiert"
 
-#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:404
+#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:416
 msgid "not allowed"
 msgstr "nicht akzeptiert"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:488
+#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:500
 msgid "Optional Email Content"
 msgstr "Optionaler E-Mail Inhalt"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:497
+#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:509
 msgid "Add content which will be replacing default page content within emails."
 msgstr ""
 "Füllen Sie dieses Feld aus um einen abweichenden E-Mail Anhangstext für "
 "diese Seite zu bestimmen."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:508
+#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:520
 #: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:136
 msgid "Optional Mini Description"
 msgstr "Warenkorb Kurzbeschreibung"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:527
+#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:539
 msgid ""
 "This content will be shown as short product description within checkout and "
 "emails."
@@ -4129,23 +4129,23 @@ msgstr ""
 "Produkt Kurzbeschreibung angezeigt."
 
 #: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:45
-#: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:132
+#: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:150
 msgid "Service products do not sell physical products."
 msgstr "Dienstleistungen werden nicht in physikalischer Form verkauft."
 
 #: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:59
-#: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:158
+#: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:176
 msgid "Sale Label"
 msgstr "Regulärer Preishinweis"
 
 #: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:69
-#: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:159
+#: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:177
 msgid "Sale Regular Label"
 msgstr "Neuer Preis Hinweis"
 
 # @ woocommerce-germanized
 #: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:85
-#: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:162
+#: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:180
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:224
 #: woocommerce-germanized/includes/compatibility/elementor/widgets/class-wc-gzd-elementor-widget-product-units.php:10
 msgid "Product Units"
@@ -4162,7 +4162,7 @@ msgstr ""
 
 # @ woocommerce-germanized
 #: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:89
-#: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:182
+#: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:200
 msgid "Calculation"
 msgstr "Berechnung"
 
@@ -4196,7 +4196,7 @@ msgstr "Allgemein"
 
 # @ woocommerce-germanized
 #: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:110
-#: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:225
+#: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:243
 #: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:31
 #: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:203
 #: woocommerce-germanized/includes/compatibility/elementor/widgets/class-wc-gzd-elementor-widget-product-delivery-time.php:10
@@ -4209,25 +4209,25 @@ msgid "Same as parent"
 msgstr "Gleiche wie übergeordnet"
 
 #: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:124
-#: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:190
+#: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:208
 msgid "Minimum Age"
 msgstr "Mindestalter"
 
-#: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:139
+#: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:157
 msgid "Diff. Taxation"
 msgstr "Differenzbesteuerung"
 
-#: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:140
+#: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:158
 msgid "Product applies to differential taxation based on §25a UStG."
 msgstr "Produkt ist differenzbesteuert nach §25a UStG."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:158
-#: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:159
+#: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:176
+#: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:177
 msgid "Select Price Label"
 msgstr "Preishinweis auswählen"
 
-#: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:158
+#: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:176
 msgid ""
 "If the product is on sale you may want to show a price label right before "
 "outputting the old price to inform the customer."
@@ -4237,7 +4237,7 @@ msgstr ""
 "Preis). Mit diesem Hinweis können Sie genau festlegen, um welchen Preis es "
 "sich dabei handelte (z.B. UVP)."
 
-#: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:159
+#: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:177
 msgid ""
 "If the product is on sale you may want to show a price label right before "
 "outputting the new price to inform the customer."
@@ -4247,35 +4247,35 @@ msgstr ""
 "neuer Preis)."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:161
+#: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:179
 #: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:106
 #: woocommerce-germanized/includes/class-wc-gzd-post-types.php:94
 msgid "Unit"
 msgstr "Einheit"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:161
+#: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:179
 msgid "Select unit"
 msgstr "Einheit auswählen"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:161
+#: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:179
 msgid "Needed if selling on a per unit basis"
 msgstr "Notwendig falls auf pro-Einheit-Basis verkauft werden soll"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:162
+#: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:180
 msgid "Number of units included per default product price. Example: 1000 ml."
 msgstr ""
 "Anzahl der Produkteinheiten auf Basis des Produktpreises. Beispiel: 1000 ml."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:163
+#: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:181
 msgid "Base Price Units"
 msgstr "Grundpreiseinheiten"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:163
+#: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:181
 msgid ""
 "Base price units. Example base price: 0,99 € / 100 ml. Insert 100 as base "
 "price unit amount."
@@ -4284,37 +4284,37 @@ msgstr ""
 "hier 100 als Grundpreiseinheiten ein."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:182
+#: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:200
 msgid "Calculate base prices automatically."
 msgstr "Grundpreis automatisch berechnen."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:183
+#: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:201
 msgid "Regular Base Price"
 msgstr "Regulärer Grundpreis"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:184
+#: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:202
 msgid "Sale Base Price"
 msgstr "Angebotsgrundpreis"
 
-#: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:190
+#: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:208
 msgid "Adds an age verification checkbox while purchasing this product."
 msgstr "Fügt eine Checkbox zur Altersprüfung für dieses Produkt hinzu."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:199
-#: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:229
+#: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:217
+#: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:247
 msgid "Search for a delivery time&hellip;"
 msgstr "Lieferzeit suchen&hellip;"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:237
+#: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:255
 msgid "Free shipping?"
 msgstr "Versand kostenlos?"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:237
+#: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:255
 msgid "This option disables the \"plus shipping costs\" notice on product page"
 msgstr ""
 "Deaktiviert den „zzgl. Versandkosten“ Hinweis. Ohne Auswirkungen auf die "
@@ -5230,7 +5230,7 @@ msgstr ""
 "Passen Sie hier, falls notwending, den Kleinunternehmer Hinweistext an."
 
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-general.php:227
-#: woocommerce-germanized/includes/wc-gzd-core-functions.php:255
+#: woocommerce-germanized/includes/wc-gzd-core-functions.php:251
 msgid ""
 "Value added tax is not collected, as small businesses according to §19 (1) "
 "UStG."
@@ -5348,7 +5348,7 @@ msgstr ""
 "Platzhalter für den höchsten Preis."
 
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-general.php:304
-#: woocommerce-germanized/includes/wc-gzd-core-functions.php:641
+#: woocommerce-germanized/includes/wc-gzd-core-functions.php:637
 msgid "{min_price} &ndash; {max_price}"
 msgstr "{min_price} &ndash; {max_price}"
 
@@ -5658,7 +5658,7 @@ msgstr "Preisauszeichnung „Steuer“ anzeigen"
 # @ woocommerce-germanized
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:271
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:315
-#: woocommerce-germanized/includes/wc-gzd-core-functions.php:201
+#: woocommerce-germanized/includes/wc-gzd-core-functions.php:197
 msgid "Shipping Costs"
 msgstr "Versandkosten"
 
@@ -6944,50 +6944,42 @@ msgstr "Einheit Slug"
 
 # @ woocommerce-germanized
 #: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:129
-#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:295
 #: woocommerce-germanized/includes/compatibility/elementor/widgets/class-wc-gzd-elementor-widget-product-unit-price.php:10
 msgid "Unit Price"
 msgstr "Grundpreis"
 
 # @ woocommerce-germanized
 #: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:134
-#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:300
 msgid "Unit Base"
 msgstr "Anzahl Einheiten"
 
 # @ woocommerce-germanized
 #: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:139
-#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:305
 msgid "Unit Product"
 msgstr "Grundpreis-Produkt"
 
 # @ woocommerce-germanized
 #: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:144
-#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:310
 msgid "Unit Auto Calculation"
 msgstr "Grundpreis automatische Berechnung"
 
 # @ woocommerce-germanized
 #: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:150
-#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:316
 msgid "Current Unit Price"
 msgstr "Aktueller Grundpreis"
 
 # @ woocommerce-germanized
 #: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:155
-#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:321
 msgid "Unit Regular Price"
 msgstr "Regulärer Grundpreis"
 
 # @ woocommerce-germanized
 #: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:160
-#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:326
 msgid "Unit Sale Price"
 msgstr "Angebotsgrundpreis"
 
 # @ woocommerce-germanized
 #: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:165
-#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:331
 msgid "Unit Price HTML"
 msgstr "Grundpreis HTML"
 
@@ -7001,7 +6993,6 @@ msgid "Deactivate the hint for additional shipping costs"
 msgstr "Deaktiviert den „zzgl. Versandkosten“ Hinweis"
 
 #: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:184
-#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:289
 msgid "Age verification minimum age."
 msgstr "Mindestalter der Altersprüfung."
 
@@ -7143,11 +7134,11 @@ msgid "Invalid activation key"
 msgstr "Aktivierungscode ungültig"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-emails.php:97
+#: woocommerce-germanized/includes/class-wc-gzd-emails.php:98
 msgid "Confirmation text"
 msgstr "Bestätigung Text"
 
-#: woocommerce-germanized/includes/class-wc-gzd-emails.php:98
+#: woocommerce-germanized/includes/class-wc-gzd-emails.php:99
 msgid ""
 "Your order has been received and is now being processed. Your order details "
 "are shown below for your reference:"
@@ -7156,7 +7147,7 @@ msgstr ""
 "Ihrer Bestellung können Sie der nachfolgenden Tabelle entnehmen:"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-emails.php:99
+#: woocommerce-germanized/includes/class-wc-gzd-emails.php:100
 msgid ""
 "This text will be inserted within the order confirmation email. Use "
 "{order_number}, {site_title} or {order_date} as placeholder."
@@ -7164,7 +7155,7 @@ msgstr ""
 "Dieser Text wird in die Bestellbestätigung eingefügt. Verwenden Sie "
 "{order_number}, {site_title} oder {order_date} als Platzhalter."
 
-#: woocommerce-germanized/includes/class-wc-gzd-emails.php:213
+#: woocommerce-germanized/includes/class-wc-gzd-emails.php:214
 msgid ""
 "Your order has been received and is now being processed. Your order details "
 "are shown below for your reference."
@@ -7172,17 +7163,17 @@ msgstr ""
 "Ihre Bestellung ist eingegangen und wird nun bearbeitet. Die Einzelheiten "
 "Ihrer Bestellung können Sie der nachfolgenden Tabelle entnehmen."
 
-#: woocommerce-germanized/includes/class-wc-gzd-emails.php:260
+#: woocommerce-germanized/includes/class-wc-gzd-emails.php:261
 msgid "Someone requested a password reset for your account."
 msgstr "Jemand hat das Zurücksetzen des Passworts für Ihren Account beantragt."
 
-#: woocommerce-germanized/includes/class-wc-gzd-emails.php:273
+#: woocommerce-germanized/includes/class-wc-gzd-emails.php:274
 #, php-format
 msgid "Thanks for creating an account on %s."
 msgstr "Danke, dass Sie ein Konto bei %s erstellt haben."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-emails.php:932
+#: woocommerce-germanized/includes/class-wc-gzd-emails.php:933
 msgctxt "revocation-form"
 msgid "Forward your Revocation online"
 msgstr "Widerruf online erklären"
@@ -7560,14 +7551,14 @@ msgid "Choose where to display your checkbox."
 msgstr "Wählen Sie einen Ort aus, an dem die Checkbox platziert werden soll."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-payment-gateways.php:117
-#: woocommerce-germanized/includes/class-wc-gzd-payment-gateways.php:170
+#: woocommerce-germanized/includes/class-wc-gzd-payment-gateways.php:120
+#: woocommerce-germanized/includes/class-wc-gzd-payment-gateways.php:175
 #, php-format
 msgid "%s payment charge"
 msgstr "%s Zahlungsgebühr"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-payment-gateways.php:120
+#: woocommerce-germanized/includes/class-wc-gzd-payment-gateways.php:123
 #: woocommerce-germanized/includes/wc-gzd-order-functions.php:27
 #: woocommerce-germanized/includes/wc-gzd-template-functions.php:462
 #, php-format
@@ -7575,12 +7566,12 @@ msgid "Plus %s forwarding fee (charged by the transport agent)"
 msgstr "Zzgl. %s Übermittlungsentgelt (direkt an den Zusteller)"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-payment-gateways.php:204
+#: woocommerce-germanized/includes/class-wc-gzd-payment-gateways.php:209
 msgid "Fee"
 msgstr "Zahlungsgebühr"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-payment-gateways.php:206
+#: woocommerce-germanized/includes/class-wc-gzd-payment-gateways.php:211
 msgid ""
 "This fee is being added if customer selects payment method within checkout."
 msgstr ""
@@ -7588,22 +7579,22 @@ msgstr ""
 "Zahlungsart aktiviert."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-payment-gateways.php:211
+#: woocommerce-germanized/includes/class-wc-gzd-payment-gateways.php:217
 msgid "Fee is taxable?"
 msgstr "Mwst. berechnen?"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-payment-gateways.php:213
+#: woocommerce-germanized/includes/class-wc-gzd-payment-gateways.php:219
 msgid "Check if fee is taxable."
 msgstr "MwSt.-Berechnung für Gebühr aktivieren."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-payment-gateways.php:220
+#: woocommerce-germanized/includes/class-wc-gzd-payment-gateways.php:225
 msgid "Forwarding Fee"
 msgstr "Übermittlungsentgelt"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-payment-gateways.php:223
+#: woocommerce-germanized/includes/class-wc-gzd-payment-gateways.php:228
 msgid ""
 "Forwarding fee will be charged by the transport agent in addition to the "
 "cash of delivery fee e.g. DHL - tax free."
@@ -7612,7 +7603,7 @@ msgstr ""
 "kassiert - z.B. DHL (steuerfrei)."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-payment-gateways.php:267
+#: woocommerce-germanized/includes/class-wc-gzd-payment-gateways.php:273
 msgid "Payment charge"
 msgstr "Zahlungsgebühr"
 
@@ -7832,14 +7823,14 @@ msgstr "Anrede"
 
 # @ woocommerce-germanized
 #: woocommerce-germanized/includes/class-wc-gzd-revocation.php:49
-#: woocommerce-germanized/includes/wc-gzd-core-functions.php:411
+#: woocommerce-germanized/includes/wc-gzd-core-functions.php:407
 msgid "Mr."
 msgstr "Herr"
 
 # @ woocommerce-germanized
 #: woocommerce-germanized/includes/class-wc-gzd-revocation.php:50
-#: woocommerce-germanized/includes/wc-gzd-core-functions.php:411
-#: woocommerce-germanized/includes/wc-gzd-core-functions.php:427
+#: woocommerce-germanized/includes/wc-gzd-core-functions.php:407
+#: woocommerce-germanized/includes/wc-gzd-core-functions.php:423
 msgid "Ms."
 msgstr "Frau"
 
@@ -8691,18 +8682,18 @@ msgid "None"
 msgstr "Keines"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/wc-gzd-core-functions.php:194
+#: woocommerce-germanized/includes/wc-gzd-core-functions.php:190
 msgid "Right of Recission"
 msgstr "Widerrufsrecht"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/wc-gzd-core-functions.php:196
+#: woocommerce-germanized/includes/wc-gzd-core-functions.php:192
 msgid "Data Security"
 msgstr "Datenschutzerklärung"
 
 # @ woocommerce-germanized
 #: woocommerce-germanized/includes/wc-gzd-template-functions.php:217
-#: woocommerce-germanized/templates/checkout/edit-data-notice.php:16
+#: woocommerce-germanized/templates/checkout/edit-data-notice.php:23
 msgid "Edit Order"
 msgstr "Bestellung bearbeiten"
 
@@ -8909,7 +8900,7 @@ msgid "Cart Description"
 msgstr "Warenkorb Beschreibung"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/templates/checkout/edit-data-notice.php:16
+#: woocommerce-germanized/templates/checkout/edit-data-notice.php:23
 #, php-format
 msgid ""
 "Please check all of your entries carefully. You may change your entries with "
@@ -8919,7 +8910,7 @@ msgstr ""
 "Klicken des Buttons „%s“ korrigieren."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/templates/checkout/edit-data-notice.php:18
+#: woocommerce-germanized/templates/checkout/edit-data-notice.php:25
 msgid ""
 "Please check all of your entries carefully. You may change your entries with "
 "the help of the \"Back\" button in your browser"
@@ -8928,7 +8919,7 @@ msgstr ""
 "„Zurück“-Buttons Ihres Browsers korrigieren"
 
 # @ woocommerce
-#: woocommerce-germanized/templates/checkout/order-submit.php:19
+#: woocommerce-germanized/templates/checkout/order-submit.php:26
 msgid ""
 "Since your browser does not support JavaScript, or it is disabled, please "
 "ensure you click the <em>Update Totals</em> button before placing your "
@@ -8940,13 +8931,13 @@ msgstr ""
 "absenden."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/templates/checkout/order-submit.php:20
+#: woocommerce-germanized/templates/checkout/order-submit.php:27
 msgid "Update totals"
 msgstr "Betrag aktualisieren"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/templates/emails/customer-new-account-activation.php:18
-#: woocommerce-germanized/templates/emails/plain/customer-new-account-activation.php:18
+#: woocommerce-germanized/templates/emails/customer-new-account-activation.php:25
+#: woocommerce-germanized/templates/emails/plain/customer-new-account-activation.php:25
 #, php-format
 msgid ""
 "Thanks for creating an account on %s. Please follow the activation link to "
@@ -8956,20 +8947,20 @@ msgstr ""
 "Link, um Ihr Benutzerkonto zu bestätigen:"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/templates/emails/customer-new-account-activation.php:20
+#: woocommerce-germanized/templates/emails/customer-new-account-activation.php:27
 msgid "Activate your account"
 msgstr "Benutzerkonto aktivieren"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/templates/emails/customer-new-account-activation.php:24
-#: woocommerce-germanized/templates/emails/plain/customer-new-account-activation.php:28
+#: woocommerce-germanized/templates/emails/customer-new-account-activation.php:31
+#: woocommerce-germanized/templates/emails/plain/customer-new-account-activation.php:35
 #, php-format
 msgid "Your password has been automatically generated: <strong>%s</strong>"
 msgstr "Ihr Password wurde automatisch generiert: <strong>%s</strong>"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/templates/emails/customer-new-account-activation.php:28
-#: woocommerce-germanized/templates/emails/plain/customer-new-account-activation.php:32
+#: woocommerce-germanized/templates/emails/customer-new-account-activation.php:35
+#: woocommerce-germanized/templates/emails/plain/customer-new-account-activation.php:39
 #, php-format
 msgid "If you haven't created an account on %s please ignore this email."
 msgstr ""
@@ -8977,7 +8968,7 @@ msgstr ""
 "Mail bitte."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/templates/emails/customer-new-account-activation.php:30
+#: woocommerce-germanized/templates/emails/customer-new-account-activation.php:37
 #, php-format
 msgid ""
 "If you cannot follow the link above please copy this url and paste it to "
@@ -8986,8 +8977,8 @@ msgstr ""
 "Falls Sie dem Link nicht folgen können, kopieren Sie bitte folgende URL in "
 "die Adresszeile Ihres Browsers: %s"
 
-#: woocommerce-germanized/templates/emails/customer-paid-for-order.php:28
-#: woocommerce-germanized/templates/emails/plain/customer-paid-for-order.php:27
+#: woocommerce-germanized/templates/emails/customer-paid-for-order.php:26
+#: woocommerce-germanized/templates/emails/plain/customer-paid-for-order.php:25
 #, php-format
 msgid ""
 "Hi there. Thank you! We have successfully received your payment for order "
@@ -8997,8 +8988,8 @@ msgstr ""
 "Bestellung wird nun bearbeitet."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/templates/emails/customer-revocation.php:16
-#: woocommerce-germanized/templates/emails/plain/customer-revocation.php:16
+#: woocommerce-germanized/templates/emails/customer-revocation.php:24
+#: woocommerce-germanized/templates/emails/plain/customer-revocation.php:25
 msgctxt "revocation-form"
 msgid ""
 "By sending you this email we confirm your Revocation. Please review your "
@@ -9008,7 +8999,7 @@ msgstr ""
 "Bitte prüfen Sie Ihre Daten."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/templates/emails/customer-sepa-direct-debit-mandate.php:16
+#: woocommerce-germanized/templates/emails/customer-sepa-direct-debit-mandate.php:25
 #, php-format
 msgid ""
 "Please see the SEPA direct debit mandate for order %s attached to this email."
@@ -9017,47 +9008,47 @@ msgstr ""
 "Bestellung %s."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/templates/emails/email-sepa-data.php:20
+#: woocommerce-germanized/templates/emails/email-sepa-data.php:27
 msgid "SEPA Data"
 msgstr "SEPA Daten"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/templates/footer/sale-info.php:13
+#: woocommerce-germanized/templates/footer/sale-info.php:20
 msgid "All striked out prices refer to prices used to be charged at this shop."
 msgstr ""
 "Die durchgestrichenen Preise entsprechen dem bisherigen Preis in diesem "
 "Online-Shop."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/templates/footer/vat-info.php:13
+#: woocommerce-germanized/templates/footer/vat-info.php:20
 msgid "All prices incl. VAT."
 msgstr "Alle Preise inkl. der gesetzlichen MwSt."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/templates/footer/vat-info.php:13
+#: woocommerce-germanized/templates/footer/vat-info.php:20
 msgid "All prices excl. VAT."
 msgstr "Alle Preise exkl. der gesetzlichen MwSt."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/templates/forms/revocation-form.php:17
+#: woocommerce-germanized/templates/forms/revocation-form.php:24
 msgctxt "revocation-form"
 msgid "To"
 msgstr "An"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/templates/forms/revocation-form.php:39
+#: woocommerce-germanized/templates/forms/revocation-form.php:46
 msgctxt "revocation-form"
 msgid "Forward Revocation"
 msgstr "Widerruf erklären"
 
-#: woocommerce-germanized/templates/global/complaints.php:12
+#: woocommerce-germanized/templates/global/complaints.php:19
 msgid ""
 "Alternative Dispute Resolution in accordance with Art. 14 (1) ODR-VO and § "
 "36 VSBG:"
 msgstr "Alternative Streitbeilegung gemäß Art. 14 Abs. 1 ODR-VO und § 36 VSBG:"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/templates/order/order-pay-now-button.php:14
+#: woocommerce-germanized/templates/order/order-pay-now-button.php:22
 msgid "Pay now"
 msgstr "Jetzt bezahlen"
 

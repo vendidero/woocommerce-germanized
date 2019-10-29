@@ -14,36 +14,40 @@
  * @package Germanized/Templates
  * @version 1.0.0
  */
-if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+} // Exit if accessed directly
 
 $fields = WC_GZD_Revocation::get_fields();
 ?>
 
 <form name="revocation" method="post" id="woocommerce-gzd-revocation">
-	<p class="form-row" id="to_field">
-		<label for="to" class=""><?php echo _x( 'To', 'revocation-form', 'woocommerce-germanized' );?></label>
-		<span class="description"><?php echo wc_gzd_get_formatted_revocation_address();?></span>
-	</p>
+    <p class="form-row" id="to_field">
+        <label for="to" class=""><?php echo _x( 'To', 'revocation-form', 'woocommerce-germanized' ); ?></label>
+        <span class="description"><?php echo wc_gzd_get_formatted_revocation_address(); ?></span>
+    </p>
 	<?php if ( ! empty( $fields ) ) : ?>
 		<?php foreach ( $fields as $name => $field ) : ?>
 			<?php echo ( 'sep' === $name ) ? '<h3>' . $field . '</h3>' : woocommerce_form_field( $name, $field ); ?>
 		<?php endforeach; ?>
 	<?php endif; ?>
 
-    <?php
-    /**
-     * After revocation form fields.
-     *
-     * Executes after outputting revocation form fields.
-     *
-     * @since 1.8.11
-     */
-    do_action( 'woocommerce_gzd_after_revocation_form_fields' );
-    ?>
+	<?php
+	/**
+	 * After revocation form fields.
+	 *
+	 * Executes after outputting revocation form fields.
+	 *
+	 * @since 1.8.11
+	 */
+	do_action( 'woocommerce_gzd_after_revocation_form_fields' );
+	?>
 
-	<div class="form-row submit-revocation checkout-btn-wrap">
+    <div class="form-row submit-revocation checkout-btn-wrap">
 		<?php wp_nonce_field( 'woocommerce-revocation' ); ?>
-		<button class="button alt" name="woocommerce_gzd_revocation_submit" id="submit_revocation" value="<?php echo esc_attr( _x( 'Forward Revocation', 'revocation-form', 'woocommerce-germanized' ) ); ?>" data-value="<?php echo esc_attr( _x( 'Forward Revocation', 'revocation-form', 'woocommerce-germanized' ) ); ?>"><?php echo _x( 'Forward Revocation', 'revocation-form', 'woocommerce-germanized' ); ?></button>
-	</div>
+        <button class="button alt" name="woocommerce_gzd_revocation_submit" id="submit_revocation"
+                value="<?php echo esc_attr( _x( 'Forward Revocation', 'revocation-form', 'woocommerce-germanized' ) ); ?>"
+                data-value="<?php echo esc_attr( _x( 'Forward Revocation', 'revocation-form', 'woocommerce-germanized' ) ); ?>"><?php echo _x( 'Forward Revocation', 'revocation-form', 'woocommerce-germanized' ); ?></button>
+    </div>
 
 </form>

@@ -51,11 +51,11 @@ class WC_GZD_Tests_Install extends WC_GZD_Unit_Test_Case {
 		global $wpdb;
 
 		// Shipments
-		$table_name = $wpdb->get_var("SHOW TABLES LIKE '{$wpdb->prefix}woocommerce_gzd_shipments'" );
+		$table_name = $wpdb->get_var( "SHOW TABLES LIKE '{$wpdb->prefix}woocommerce_gzd_shipments'" );
 		$this->assertEquals( "{$wpdb->prefix}woocommerce_gzd_shipments", $table_name );
 
 		// DHL
-		$table_name = $wpdb->get_var("SHOW TABLES LIKE '{$wpdb->prefix}woocommerce_gzd_dhl_labels'" );
+		$table_name = $wpdb->get_var( "SHOW TABLES LIKE '{$wpdb->prefix}woocommerce_gzd_dhl_labels'" );
 		$this->assertEquals( "{$wpdb->prefix}woocommerce_gzd_dhl_labels", $table_name );
 
 		remove_filter( 'plugin_locale', array( $this, 'set_locale' ), 10 );
@@ -65,6 +65,7 @@ class WC_GZD_Tests_Install extends WC_GZD_Unit_Test_Case {
 		if ( 'woocommerce-germanized' === $textdomain ) {
 			return 'de_DE';
 		}
+
 		return $locale;
 	}
 
