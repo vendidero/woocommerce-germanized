@@ -5,15 +5,19 @@
  * @author vendidero
  */
 
-if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+} // Exit if accessed directly
 
 class WC_GZD_REST_API {
 
 	protected static $_instance = null;
 
 	public static function instance() {
-		if ( is_null( self::$_instance ) )
+		if ( is_null( self::$_instance ) ) {
 			self::$_instance = new self();
+		}
+
 		return self::$_instance;
 	}
 
@@ -22,9 +26,6 @@ class WC_GZD_REST_API {
 	}
 
 	public function init() {
-		if ( version_compare( wc_gzd_get_dependencies()->get_plugin_version( 'woocommerce' ), '2.6', '<' ) )
-			return;
-
 		$this->rest_api_includes();
 		$this->register_rest_routes();
 	}
@@ -47,13 +48,14 @@ class WC_GZD_REST_API {
 
 	public function register_rest_routes() {
 
-        /**
-         * Filter to add new REST controller to Germanized.
-         *
-         * @since 1.8.5
-         *
-         * @param array $controllers The controller classes.
-         */
+		/**
+		 * Filter to add new REST controller to Germanized.
+		 *
+		 * @param array $controllers The controller classes.
+		 *
+		 * @since 1.8.5
+		 *
+		 */
 		$controllers = apply_filters( 'woocommerce_gzd_rest_controller', array(
 			'WC_GZD_REST_Product_Delivery_Times_V1_Controller',
 			'WC_GZD_REST_Product_Delivery_Times_Controller',
@@ -69,11 +71,13 @@ class WC_GZD_REST_API {
 		foreach ( $controllers as $controller ) {
 			WC()->api->$controller = new $controller();
 
-			if ( method_exists( WC()->api->$controller, 'register_routes' ) )
+			if ( method_exists( WC()->api->$controller, 'register_routes' ) ) {
 				WC()->api->$controller->register_routes();
-			
-			if ( method_exists( WC()->api->$controller, 'register_fields' ) )
+			}
+
+			if ( method_exists( WC()->api->$controller, 'register_fields' ) ) {
 				WC()->api->$controller->register_fields();
+			}
 		}
 	}
 

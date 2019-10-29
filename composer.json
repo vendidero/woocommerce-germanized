@@ -1,25 +1,92 @@
 {
-  "name": "woocommerce-germanized/woocommerce-germanized",
+  "name": "vendidero/woocommerce-germanized",
   "description": "Adapt WooCommerce to the german market.",
   "homepage": "https://vendidero.de/",
   "type": "wordpress-plugin",
-  "license": "GPL-3.0+",
+  "license": "GPL-3.0-or-later",
+  "prefer-stable": true,
+  "prefer-dist": true,
+  "minimum-stability": "dev",
   "require": {
-    "composer/installers": "~1.2"
+    "automattic/jetpack-autoloader": "1.2.0",
+    "php": ">=5.6|>=7.0",
+    "composer/installers": "1.6.0",
+    "vendidero/woocommerce-trusted-shops": "4.0.0-beta-3",
+    "vendidero/woocommerce-germanized-dhl": "0.0.1-beta-5",
+    "vendidero/woocommerce-germanized-shipments": "0.0.1-beta-5"
   },
   "require-dev": {
-    "squizlabs/php_codesniffer": "*",
-    "wp-coding-standards/wpcs": "*",
-    "wimg/php-compatibility": "*",
-    "simplyadmire/composer-plugins" : "@dev",
-    "phpunit/phpunit": "*"
+    "myclabs/deep-copy": "1.7.0",
+    "phpunit/phpunit": "7.5.14",
+    "woocommerce/woocommerce-sniffs": "0.0.6"
+  },
+  "repositories": [
+    {
+      "type": "vcs",
+      "name": "vendidero/woocommerce-trusted-shops",
+      "url":  "git@github.com:vendidero/woocommerce-trusted-shops.git",
+      "no-api": true
+    },
+    {
+      "type": "vcs",
+      "name": "vendidero/woocommerce-germanized-dhl",
+      "url":  "git@github.com:vendidero/woocommerce-germanized-dhl.git",
+      "no-api": true
+    },
+    {
+      "type": "vcs",
+      "name": "vendidero/woocommerce-germanized-shipments",
+      "url":  "git@github.com:vendidero/woocommerce-germanized-shipments.git",
+      "no-api": true
+    }
+  ],
+  "config": {
+    "platform": {
+      "php": "7.1"
+    },
+    "preferred-install": "dist",
+    "sort-packages": true
+  },
+  "autoload": {
+    "exclude-from-classmap": [
+      "includes/legacy",
+      "includes/libraries",
+      "includes/gateways/direct-debit/libraries"
+    ],
+    "psr-4": {
+      "Vendidero\\Germanized\\": "src/"
+    }
   },
   "scripts": {
     "post-install-cmd": [
-      "\"vendor/bin/phpcs\" --config-set installed_paths vendor/wp-coding-standards/wpcs"
+      "sh ./bin/package-update.sh"
     ],
     "post-update-cmd": [
-      "\"vendor/bin/phpcs\" --config-set installed_paths vendor/wp-coding-standards/wpcs"
+      "sh ./bin/package-update.sh"
+    ],
+    "test": [
+      "phpunit"
+    ],
+    "phpcs": [
+      "phpcs -s -p"
+    ],
+    "phpcs-pre-commit": [
+      "phpcs -s -p -n"
+    ],
+    "phpcbf": [
+      "phpcbf -p"
     ]
+  },
+  "extra": {
+    "installer-paths": {
+      "packages/woocommerce-trusted-shops": ["vendidero/woocommerce-trusted-shops"],
+      "packages/woocommerce-germanized-dhl": ["vendidero/woocommerce-germanized-dhl"],
+      "packages/woocommerce-germanized-shipments": ["vendidero/woocommerce-germanized-shipments"]
+    },
+    "scripts-description": {
+      "test": "Run unit tests",
+      "phpcs": "Analyze code against the WordPress coding standards with PHP_CodeSniffer",
+      "phpcbf": "Fix coding standards warnings/errors automatically with PHP Code Beautifier"
+    }
   }
 }

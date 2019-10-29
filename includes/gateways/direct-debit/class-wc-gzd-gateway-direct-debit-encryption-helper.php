@@ -11,8 +11,10 @@ class WC_GZD_Gateway_Direct_Debit_Encryption_Helper {
 	protected static $_instance = null;
 
 	public static function instance() {
-		if ( is_null( self::$_instance ) )
+		if ( is_null( self::$_instance ) ) {
 			self::$_instance = new self();
+		}
+
 		return self::$_instance;
 	}
 
@@ -25,7 +27,8 @@ class WC_GZD_Gateway_Direct_Debit_Encryption_Helper {
 
 	public function get_random_key() {
 		$key = Crypto\Key::createNewRandomKey();
-   	 	return $key->saveToAsciiSafeString();
+
+		return $key->saveToAsciiSafeString();
 	}
 
 	public function is_configured() {
@@ -33,30 +36,34 @@ class WC_GZD_Gateway_Direct_Debit_Encryption_Helper {
 	}
 
 	public function encrypt( $string ) {
-		if ( empty( $string ) )
+		if ( empty( $string ) ) {
 			return $string;
+		}
 
 		return Crypto\Crypto::encrypt( $string, $this->get_key() );
 	}
 
 	public function decrypt( $string ) {
-		if ( empty( $string ) )
+		if ( empty( $string ) ) {
 			return $string;
+		}
 
 		$secret_data = $string;
 
 		try {
 			$secret_data = Crypto\Crypto::decrypt( $string, $this->get_key() );
-		} catch (Crypto\Exception\WrongKeyOrModifiedCiphertextException $ex) {
-   			
+		} catch ( Crypto\Exception\WrongKeyOrModifiedCiphertextException $ex ) {
+
 		}
 
 		return $secret_data;
 	}
 
-	private function get_key() {		
-		if ( defined( 'WC_GZD_DIRECT_DEBIT_KEY' ) )
+	private function get_key() {
+		if ( defined( 'WC_GZD_DIRECT_DEBIT_KEY' ) ) {
 			return Crypto\Key::loadFromAsciiSafeString( WC_GZD_DIRECT_DEBIT_KEY );
+		}
+
 		return false;
 	}
 

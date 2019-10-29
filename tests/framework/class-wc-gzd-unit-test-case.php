@@ -1,4 +1,5 @@
 <?php
+
 /**
  * WC Unit Test Case
  *
@@ -49,9 +50,10 @@ class WC_GZD_Unit_Test_Case extends WP_UnitTestCase {
 	/**
 	 * Asserts thing is not WP_Error.
 	 *
-	 * @since 2.2
-	 * @param mixed  $actual
+	 * @param mixed $actual
 	 * @param string $message
+	 *
+	 * @since 2.2
 	 */
 	public function assertNotWPError( $actual, $message = '' ) {
 		$this->assertNotInstanceOf( 'WP_Error', $actual, $message );
@@ -60,30 +62,10 @@ class WC_GZD_Unit_Test_Case extends WP_UnitTestCase {
 	/**
 	 * Asserts thing is WP_Error.
 	 *
-	 * @param mixed  $actual
+	 * @param mixed $actual
 	 * @param string $message
 	 */
 	public function assertIsWPError( $actual, $message = '' ) {
 		$this->assertInstanceOf( 'WP_Error', $actual, $message );
-	}
-
-	/**
-	 * Backport assertNotFalse to PHPUnit 3.6.12 which only runs in PHP 5.2.
-	 *
-	 * @since  2.2
-	 * @param  $condition
-	 * @param  string $message
-	 * @return mixed
-	 */
-	public static function assertNotFalse( $condition, $message = '' ) {
-
-		if ( version_compare( phpversion(), '5.3', '<' ) ) {
-
-			self::assertThat( $condition, self::logicalNot( self::isFalse() ), $message );
-
-		} else {
-
-			parent::assertNotFalse( $condition, $message );
-		}
 	}
 }

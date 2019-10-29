@@ -1,6 +1,7 @@
 <?php
-if ( ! defined( 'ABSPATH' ) )
+if ( ! defined( 'ABSPATH' ) ) {
 	exit;
+}
 
 /**
  * The Price Labels Class stores labels to be added as price suffixes.

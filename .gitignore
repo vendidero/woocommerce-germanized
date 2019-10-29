@@ -33,6 +33,7 @@ Thumbs.db
 # Composer
 /vendor/
 composer.phar
+auth.json
 
 # OS generated files #
 ######################

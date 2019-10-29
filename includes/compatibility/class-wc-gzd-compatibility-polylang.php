@@ -1,20 +1,22 @@
 <?php
+
 /**
  * PolyLang Helper
  *
  * Specific configuration for PolyLang
  *
- * @class 		WC_GZD_Compatibility_PolyLang
- * @category	Class
- * @author 		vendidero
+ * @class        WC_GZD_Compatibility_PolyLang
+ * @category    Class
+ * @author        vendidero
  */
 class WC_GZD_Compatibility_Polylang extends WC_GZD_Compatibility {
 
-	public function __construct() {
-		parent::__construct(
-			'PolyLang',
-			'polylang/polylang.php'
-		);
+	public static function get_name() {
+		return 'PolyLang';
+	}
+
+	public static function get_path() {
+		return 'polylang/polylang.php';
 	}
 
 	/**
@@ -43,7 +45,7 @@ class WC_GZD_Compatibility_Polylang extends WC_GZD_Compatibility {
 			$options = $manager->get_options( true );
 
 			// Make sure we are not registering core checkboxes again
-			foreach( $options as $id => $checkbox_args ) {
+			foreach ( $options as $id => $checkbox_args ) {
 				if ( isset( $checkbox_args['id'] ) ) {
 					unset( $checkbox_args['id'] );
 				}

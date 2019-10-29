@@ -40,10 +40,8 @@ window.germanized = window.germanized || {};
 
             if ( $terms.length > 0 ) {
                 if ( self.params.checkbox_hidden || $checkbox.is( ':checked' ) ) {
-                    $terms.attr( 'checked','checked' ).trigger( 'change' );
                     $terms.prop( 'checked', true ).trigger( 'change' );
                 } else {
-                    $terms.attr( 'checked','' ).trigger( 'change' );
                     $terms.prop( 'checked', false ).trigger( 'change' );
                 }
             }

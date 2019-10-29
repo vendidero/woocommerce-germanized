@@ -1,21 +1,19 @@
 <?php
 /**
- * Customer paid for order email
+ * Customer paid for order email.
  *
- * This template can be overridden by copying it to yourtheme/woocommerce-germanized/emails/customer-paif-for-order.php.
+ * This template can be overridden by copying it to yourtheme/woocommerce-germanized/emails/customer-paid-for-order.php.
  *
- * HOWEVER, on occasion WooCommerce will need to update template files and you
+ * HOWEVER, on occasion Germanized will need to update template files and you
  * (the theme developer) will need to copy the new files to your theme to
  * maintain compatibility. We try to do this as little as possible, but it does
  * happen. When this occurs the version of the template file will be bumped and
  * the readme will list any important changes.
  *
- * @see      https://docs.woothemes.com/document/template-structure/
- * @author   WooThemes
- * @package  WooCommerce/Templates/Emails
- * @version  2.5.0
+ * @see https://github.com/vendidero/woocommerce-germanized/wiki/Overriding-Germanized-Templates
+ * @package Germanized/Templates
+ * @version 2.5.0
  */
-
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -25,7 +23,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 do_action( 'woocommerce_email_header', $email_heading, $email ); ?>
 
-<p><?php printf( __( 'Hi there. Thank you! We have successfully received your payment for order %s. Your order is now being processed.', 'woocommerce-germanized' ), $order->get_order_number() ); ?></p>
+    <p><?php printf( __( 'Hi there. Thank you! We have successfully received your payment for order %s. Your order is now being processed.', 'woocommerce-germanized' ), $order->get_order_number() ); ?></p>
 
 <?php
 
@@ -46,6 +44,13 @@ do_action( 'woocommerce_email_order_meta', $order, $sent_to_admin, $plain_text, 
  * @hooked WC_Emails::email_address() Shows email address
  */
 do_action( 'woocommerce_email_customer_details', $order, $sent_to_admin, $plain_text, $email );
+
+/**
+ * Show user-defined additional content - this is set in each email's settings.
+ */
+if ( $additional_content ) {
+	echo wp_kses_post( wpautop( wptexturize( $additional_content ) ) );
+}
 
 /**
  * @hooked WC_Emails::email_footer() Output the email footer

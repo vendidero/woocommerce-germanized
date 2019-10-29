@@ -1,20 +1,22 @@
 <?php
+
 /**
  * PayPal Plus Helper for Inpsyde
  *
  * Specific configuration for Woo PayPal Plus by Inspyde
  *
- * @class 		WC_GZD_Compatibility_Woo_Paypalplus
- * @category	Class
- * @author 		vendidero
+ * @class        WC_GZD_Compatibility_Woo_Paypalplus
+ * @category    Class
+ * @author        vendidero
  */
-class WC_GZD_Compatibility_Woo_Paypalplus extends WC_GZD_Compatibility {
+class WC_GZD_Compatibility_Woo_PaypalPlus extends WC_GZD_Compatibility {
 
-	public function __construct() {
-		parent::__construct(
-			'PayPal Plus for WooCommerce',
-			'woo-paypalplus/paypalplus-woocommerce.php'
-		);
+	public static function get_name() {
+		return 'PayPal Plus for WooCommerce';
+	}
+
+	public static function get_path() {
+		return 'woo-paypalplus/paypalplus-woocommerce.php';
 	}
 
 	public function load() {
@@ -28,9 +30,9 @@ class WC_GZD_Compatibility_Woo_Paypalplus extends WC_GZD_Compatibility {
 	 */
 	public function clear_paypal_session() {
 		$gateways = WC_Payment_Gateways::instance()->get_available_payment_gateways();
-		$current = empty( $_POST['payment_method'] ) ? '' : wc_clean( $_POST['payment_method'] );
+		$current  = empty( $_POST['payment_method'] ) ? '' : wc_clean( $_POST['payment_method'] );
 
-		foreach( $gateways as $gateway ) {
+		foreach ( $gateways as $gateway ) {
 			if ( $current === $gateway->id && 'paypal_plus' === $gateway->id ) {
 				if ( is_callable( array( $gateway, 'clear_session_data' ) ) ) {
 					$gateway->clear_session_data();

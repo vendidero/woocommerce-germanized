@@ -2,10 +2,12 @@
 /**
  * Action/filter hooks used for functions/templates
  *
- * @author 		Vendidero
+ * @author        Vendidero
  * @version     1
  */
-if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+} // Exit if accessed directly
 
 /**
  * Hide certain HTML output if activated via options
@@ -13,40 +15,40 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 add_filter( 'woocommerce_germanized_hide_delivery_time_text', 'woocommerce_gzd_template_maybe_hide_delivery_time', 10, 2 );
 add_filter( 'woocommerce_germanized_hide_shipping_costs_text', 'woocommerce_gzd_template_maybe_hide_shipping_costs', 10, 2 );
 
-if ( get_option( 'woocommerce_gzd_display_digital_delivery_time_text' ) !== '' )
+if ( get_option( 'woocommerce_gzd_display_digital_delivery_time_text' ) !== '' ) {
 	add_filter( 'woocommerce_germanized_empty_delivery_time_text', 'woocommerce_gzd_template_digital_delivery_time_text', 10, 2 );
+}
 
 add_filter( 'woocommerce_get_price_html', 'woocommerce_gzd_template_sale_price_label_html', 50, 2 );
-
-// WC pre 2.7
-add_filter( 'woocommerce_get_variation_price_html', 'woocommerce_gzd_template_sale_price_label_html', 50, 2 );
 
 /**
  * Single Product
  */
-foreach( wc_gzd_get_legal_product_notice_types_by_location( 'single' ) as $type => $notice ) {
-    if ( $notice['is_action'] ) {
-        add_action( $notice['filter'], $notice['callback'], $notice['priority'], $notice['params'] );
-    } else {
-        add_filter( $notice['filter'], $notice['callback'], $notice['priority'], $notice['params'] );
-    }
+foreach ( wc_gzd_get_single_product_shopmarks() as $shopmark ) {
+	$shopmark->execute();
 }
+
+/**
+ * Single Product - Grouped
+ */
+foreach ( wc_gzd_get_single_product_grouped_shopmarks() as $shopmark ) {
+	$shopmark->execute();
+}
+
+/**
+ * Product Loop
+ */
+foreach ( wc_gzd_get_product_loop_shopmarks() as $shopmark ) {
+	$shopmark->execute();
+}
+
+// Add widget price HTML filters to Gutenberg blocks
+add_filter( 'woocommerce_get_price_html', 'woocommerce_gzd_template_product_blocks', 50, 2 );
 
 // Make sure to add a global product object to allow getting the grouped parent product within child display
 add_action( 'woocommerce_before_add_to_cart_form', 'woocommerce_gzd_template_single_setup_global_product' );
 
 add_filter( 'woocommerce_available_variation', 'woocommerce_gzd_add_variation_options', 0, 3 );
-
-/**
- * Product Loop Items
- */
-foreach( wc_gzd_get_legal_product_notice_types_by_location( 'loop' ) as $type => $notice ) {
-    if ( $notice['is_action'] ) {
-        add_action( $notice['filter'], $notice['callback'], $notice['priority'], $notice['params'] );
-    } else {
-        add_filter( $notice['filter'], $notice['callback'], $notice['priority'], $notice['params'] );
-    }
-}
 
 if ( get_option( 'woocommerce_gzd_display_listings_add_to_cart' ) == 'no' ) {
 	remove_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart' );
@@ -67,12 +69,11 @@ add_action( 'woocommerce_widget_product_item_end', 'woocommerce_gzd_template_pro
  */
 add_action( 'woocommerce_cart_totals_after_order_total', 'woocommerce_gzd_template_cart_total_tax', 1 );
 
-// Remove cart item name filter within checkout
-add_action( 'woocommerce_review_order_before_cart_contents', 'woocommerce_gzd_template_checkout_remove_cart_name_filter' );
-
-// Add cart product info
-foreach( wc_gzd_get_legal_cart_notice_types_by_location( 'cart' ) as $type => $notice ) {
-    add_filter( $notice['filter'], $notice['callback'], $notice['priority'], 3 );
+/**
+ * Cart Hooks
+ */
+foreach ( wc_gzd_get_cart_shopmarks() as $shopmark ) {
+	$shopmark->execute();
 }
 
 // Small enterprises
@@ -81,23 +82,24 @@ if ( get_option( 'woocommerce_gzd_small_enterprise' ) === 'yes' ) {
 	add_action( 'woocommerce_after_cart_totals', 'woocommerce_gzd_template_small_business_info', wc_gzd_get_hook_priority( 'cart_small_business_info' ) );
 	add_action( 'woocommerce_review_order_after_order_total', 'woocommerce_gzd_template_checkout_small_business_info', wc_gzd_get_hook_priority( 'checkout_small_business_info' ) );
 
-    /**
-     * Filter to show incl. VAT for small business after order/cart total.
-     *
-     * This filter serves for shops which want to enable a incl. VAT notice
-     * for small businesses. Some institutions (e.g. Händlerbund) state that this is necessary.
-     *
-     * ```php
-     * function ex_enable_small_business_vat_notice() {
-     *      return true;
-     * }
-     * add_filter( 'woocommerce_gzd_small_business_show_total_vat_notice', 'ex_enable_small_business_vat_notice', 10 );
-     * ```
-     *
-     * @since 1.8.7
-     *
-     * @param bool $enable Whether to enable the notice or not.
-     */
+	/**
+	 * Filter to show incl. VAT for small business after order/cart total.
+	 *
+	 * This filter serves for shops which want to enable a incl. VAT notice
+	 * for small businesses. Some institutions (e.g. Händlerbund) state that this is necessary.
+	 *
+	 * ```php
+	 * function ex_enable_small_business_vat_notice() {
+	 *      return true;
+	 * }
+	 * add_filter( 'woocommerce_gzd_small_business_show_total_vat_notice', 'ex_enable_small_business_vat_notice', 10 );
+	 * ```
+	 *
+	 * @param bool $enable Whether to enable the notice or not.
+	 *
+	 * @since 1.8.7
+	 *
+	 */
 	if ( apply_filters( 'woocommerce_gzd_small_business_show_total_vat_notice', false ) ) {
 		add_filter( 'woocommerce_get_formatted_order_total', 'woocommerce_gzd_template_small_business_total_vat_notice', 10, 1 );
 		add_filter( 'woocommerce_cart_totals_order_total_html', 'woocommerce_gzd_template_small_business_total_vat_notice', 10, 1 );
@@ -126,13 +128,16 @@ add_action( 'woocommerce_review_order_after_order_total', 'woocommerce_gzd_templ
 add_action( 'woocommerce_review_order_before_cart_contents', 'woocommerce_gzd_template_checkout_table_content_replacement' );
 add_action( 'woocommerce_review_order_after_cart_contents', 'woocommerce_gzd_template_checkout_table_product_hide_filter_removal' );
 
-// Add checkout product info
-foreach( wc_gzd_get_legal_cart_notice_types_by_location( 'checkout' ) as $type => $notice ) {
-    add_filter( $notice['filter'], $notice['callback'], $notice['priority'], 3 );
+/**
+ * Checkout Hooks
+ */
+foreach ( wc_gzd_get_checkout_shopmarks() as $shopmark ) {
+	$shopmark->execute();
 }
 
-if ( get_option( 'woocommerce_gzd_display_checkout_edit_data_notice' ) == 'yes' )
+if ( get_option( 'woocommerce_gzd_display_checkout_edit_data_notice' ) == 'yes' ) {
 	add_action( 'woocommerce_before_order_notes', 'woocommerce_gzd_template_checkout_edit_data_notice', wc_gzd_get_hook_priority( 'checkout_edit_data_notice' ), 1 );
+}
 
 // Remove default priorities
 remove_action( 'woocommerce_checkout_order_review', 'woocommerce_order_review', 10 );
@@ -162,8 +167,9 @@ add_filter( 'comment_form_submit_button', 'woocommerce_gzd_template_render_revie
 
 function woocommerce_gzd_checkout_load_ajax_relevant_hooks() {
 
-	if ( is_ajax() )
+	if ( is_ajax() ) {
 		return;
+	}
 
 	add_action( 'woocommerce_checkout_order_review', 'woocommerce_gzd_template_order_submit', wc_gzd_get_hook_priority( 'checkout_order_submit' ) );
 
@@ -180,8 +186,9 @@ function woocommerce_gzd_checkout_load_ajax_relevant_hooks() {
 }
 
 // Display back to cart button
-if ( get_option( 'woocommerce_gzd_display_checkout_back_to_cart_button' ) === 'yes' )
+if ( get_option( 'woocommerce_gzd_display_checkout_back_to_cart_button' ) === 'yes' ) {
 	add_action( 'woocommerce_review_order_after_cart_contents', 'woocommerce_gzd_template_checkout_back_to_cart' );
+}
 
 // Force order button text
 add_filter( 'woocommerce_order_button_text', 'woocommerce_gzd_template_order_button_text', 9999 );
@@ -212,9 +219,10 @@ if ( get_option( 'woocommerce_gzd_hide_order_success_details' ) == 'yes' ) {
  * Germanized disables the default WooCommerce privacy checkbox to replace it with it's own
  * data privacy checkbox instead.
  *
+ * @param bool $enable Set to `false` to re-enable Woo default privacy checkbox.
+ *
  * @since 1.9.10
  *
- * @param bool $enable Set to `false` to re-enable Woo default privacy checkbox.
  */
 if ( apply_filters( 'woocommerce_gzd_disable_wc_privacy_policy_checkbox', true ) ) {
 	remove_action( 'woocommerce_checkout_terms_and_conditions', 'wc_checkout_privacy_policy_text', 20 );
@@ -229,11 +237,11 @@ if ( apply_filters( 'woocommerce_gzd_disable_wc_privacy_policy_checkbox', true )
  * Footer
  */
 if ( 'yes' === get_option( 'woocommerce_gzd_display_footer_vat_notice' ) ) {
-	add_action ( 'woocommerce_gzd_footer_msg', 'woocommerce_gzd_template_footer_vat_info', wc_gzd_get_hook_priority( 'gzd_footer_vat_info' ) );
-	add_action ( 'wp_footer', 'woocommerce_gzd_template_footer_vat_info', wc_gzd_get_hook_priority( 'footer_vat_info' ) );
+	add_action( 'woocommerce_gzd_footer_msg', 'woocommerce_gzd_template_footer_vat_info', wc_gzd_get_hook_priority( 'gzd_footer_vat_info' ) );
+	add_action( 'wp_footer', 'woocommerce_gzd_template_footer_vat_info', wc_gzd_get_hook_priority( 'footer_vat_info' ) );
 }
 if ( 'yes' === get_option( 'woocommerce_gzd_display_footer_sale_price_notice' ) ) {
-	add_action ( 'woocommerce_gzd_footer_msg', 'woocommerce_gzd_template_footer_sale_info', wc_gzd_get_hook_priority( 'gzd_footer_sale_info' ) );
-	add_action ( 'wp_footer', 'woocommerce_gzd_template_footer_sale_info', wc_gzd_get_hook_priority( 'footer_sale_info' ) );
+	add_action( 'woocommerce_gzd_footer_msg', 'woocommerce_gzd_template_footer_sale_info', wc_gzd_get_hook_priority( 'gzd_footer_sale_info' ) );
+	add_action( 'wp_footer', 'woocommerce_gzd_template_footer_sale_info', wc_gzd_get_hook_priority( 'footer_sale_info' ) );
 }
 ?>

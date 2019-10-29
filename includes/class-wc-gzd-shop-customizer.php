@@ -31,7 +31,7 @@ class WC_GZD_Shop_Customizer {
 			'woocommerce_checkout_privacy_policy_text',
 		);
 
-		foreach( $settings as $setting ) {
+		foreach ( $settings as $setting ) {
 			if ( $wp_customize->get_setting( $setting ) ) {
 				$wp_customize->remove_setting( $setting );
 			}

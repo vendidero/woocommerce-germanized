@@ -1,43 +1,53 @@
 <?php
 /**
- * Single Product Price per Unit
+ * The Template for displaying revocation form.
  *
- * @author 		Vendidero
- * @package 	WooCommerceGermanized/Templates
- * @version     1.0
+ * This template can be overridden by copying it to yourtheme/woocommerce-germanized/forms/revocation-form.php.
+ *
+ * HOWEVER, on occasion Germanized will need to update template files and you
+ * (the theme developer) will need to copy the new files to your theme to
+ * maintain compatibility. We try to do this as little as possible, but it does
+ * happen. When this occurs the version of the template file will be bumped and
+ * the readme will list any important changes.
+ *
+ * @see https://github.com/vendidero/woocommerce-germanized/wiki/Overriding-Germanized-Templates
+ * @package Germanized/Templates
+ * @version 1.0.0
  */
-
-if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+} // Exit if accessed directly
 
 $fields = WC_GZD_Revocation::get_fields();
-
 ?>
 
 <form name="revocation" method="post" id="woocommerce-gzd-revocation">
-	<p class="form-row" id="to_field">
-		<label for="to" class=""><?php echo _x( 'To', 'revocation-form', 'woocommerce-germanized' );?></label>
-		<span class="description"><?php echo nl2br( get_option( 'woocommerce_gzd_revocation_address' ) );?></span>
-	</p>
+    <p class="form-row" id="to_field">
+        <label for="to" class=""><?php echo _x( 'To', 'revocation-form', 'woocommerce-germanized' ); ?></label>
+        <span class="description"><?php echo wc_gzd_get_formatted_revocation_address(); ?></span>
+    </p>
 	<?php if ( ! empty( $fields ) ) : ?>
 		<?php foreach ( $fields as $name => $field ) : ?>
 			<?php echo ( 'sep' === $name ) ? '<h3>' . $field . '</h3>' : woocommerce_form_field( $name, $field ); ?>
 		<?php endforeach; ?>
 	<?php endif; ?>
 
-    <?php
-    /**
-     * After revocation form fields.
-     *
-     * Executes after outputting revocation form fields.
-     *
-     * @since 1.8.11
-     */
-    do_action( 'woocommerce_gzd_after_revocation_form_fields' );
-    ?>
+	<?php
+	/**
+	 * After revocation form fields.
+	 *
+	 * Executes after outputting revocation form fields.
+	 *
+	 * @since 1.8.11
+	 */
+	do_action( 'woocommerce_gzd_after_revocation_form_fields' );
+	?>
 
-	<div class="form-row submit-revocation checkout-btn-wrap">
+    <div class="form-row submit-revocation checkout-btn-wrap">
 		<?php wp_nonce_field( 'woocommerce-revocation' ); ?>
-		<button class="button alt" name="woocommerce_gzd_revocation_submit" id="submit_revocation" value="<?php echo esc_attr( _x( 'Forward Revocation', 'revocation-form', 'woocommerce-germanized' ) ); ?>" data-value="<?php echo esc_attr( _x( 'Forward Revocation', 'revocation-form', 'woocommerce-germanized' ) ); ?>"><?php echo _x( 'Forward Revocation', 'revocation-form', 'woocommerce-germanized' ); ?></button>
-	</div>
+        <button class="button alt" name="woocommerce_gzd_revocation_submit" id="submit_revocation"
+                value="<?php echo esc_attr( _x( 'Forward Revocation', 'revocation-form', 'woocommerce-germanized' ) ); ?>"
+                data-value="<?php echo esc_attr( _x( 'Forward Revocation', 'revocation-form', 'woocommerce-germanized' ) ); ?>"><?php echo _x( 'Forward Revocation', 'revocation-form', 'woocommerce-germanized' ); ?></button>
+    </div>
 
 </form>

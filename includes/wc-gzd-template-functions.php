@@ -1,14 +1,17 @@
 <?php
-if ( ! defined( 'ABSPATH' ) )
+if ( ! defined( 'ABSPATH' ) ) {
 	exit;
+}
 
 /**
  * Template functions
  *
- * @author 		Vendidero
+ * @author        Vendidero
  * @version     1.0.0
  */
-if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+} // Exit if accessed directly
 
 if ( ! function_exists( 'woocommerce_gzd_template_single_legal_info' ) ) {
 
@@ -24,16 +27,16 @@ if ( ! function_exists( 'woocommerce_gzd_template_single_legal_info' ) ) {
 
 if ( ! function_exists( 'woocommerce_gzd_template_grouped_single_legal_info' ) ) {
 
-    /**
-     * Single Product delivery time info
-     */
-    function woocommerce_gzd_template_grouped_single_legal_info( $html, $grouped_child ) {
-        ob_start();
-        wc_get_template( 'single-product/legal-info.php' );
-        $legal_html = ob_get_clean();
+	/**
+	 * Single Product delivery time info
+	 */
+	function woocommerce_gzd_template_grouped_single_legal_info( $html, $grouped_child ) {
+		ob_start();
+		wc_get_template( 'single-product/legal-info.php' );
+		$legal_html = ob_get_clean();
 
-        return $html . $legal_html;
-    }
+		return $html . $legal_html;
+	}
 }
 
 if ( ! function_exists( 'woocommerce_gzd_template_single_price_unit' ) ) {
@@ -44,45 +47,50 @@ if ( ! function_exists( 'woocommerce_gzd_template_single_price_unit' ) ) {
 	function woocommerce_gzd_template_single_price_unit() {
 		global $product;
 
-		if ( in_array( $product->get_type(), apply_filters( 'woocommerce_gzd_product_types_supporting_unit_prices', array( 'simple', 'external', 'variable', 'grouped' ) ) ) ) {
+		if ( in_array( $product->get_type(), apply_filters( 'woocommerce_gzd_product_types_supporting_unit_prices', array(
+			'simple',
+			'external',
+			'variable',
+			'grouped'
+		) ) ) ) {
 			wc_get_template( 'single-product/price-unit.php' );
-        }
+		}
 	}
 }
 
 if ( ! function_exists( 'woocommerce_gzd_template_single_setup_global_product' ) ) {
 
-    function woocommerce_gzd_template_single_setup_global_product() {
-        global $product, $wc_gzd_global_product;
+	function woocommerce_gzd_template_single_setup_global_product() {
+		global $product, $wc_gzd_global_product;
 
-        $wc_gzd_global_product = $product;
-    }
+		$wc_gzd_global_product = wc_gzd_get_product( $product );
+	}
 }
 
 if ( ! function_exists( 'woocommerce_gzd_template_grouped_single_price_unit' ) ) {
 
-    /**
-     * Grouped Product price per unit.
-     * If grouped parent has unit price, recalculate child unit prices with grouped parent unit base.
-     */
-    function woocommerce_gzd_template_grouped_single_price_unit( $html, $grouped_child ) {
-        global $wc_gzd_global_product;
+	/**
+	 * Grouped Product price per unit.
+	 * If grouped parent has unit price, recalculate child unit prices with grouped parent unit base.
+	 */
+	function woocommerce_gzd_template_grouped_single_price_unit( $html, $grouped_child ) {
+		global $wc_gzd_global_product;
 
-        $gzd_product = wc_gzd_get_gzd_product( $wc_gzd_global_product );
-        $gzd_child   = wc_gzd_get_gzd_product( $grouped_child );
+		$gzd_product = wc_gzd_get_product( $wc_gzd_global_product );
+		$gzd_child   = wc_gzd_get_product( $grouped_child );
 
-        if( $gzd_product->has_unit() ) {
-            $gzd_child->recalculate_unit_price( array(
-                'base' => $gzd_product->get_unit_base_raw(),
-            ) );
-        }
+		if ( $gzd_product->has_unit() ) {
+			$gzd_child->recalculate_unit_price( array(
+				'base' => $gzd_product->get_unit_base(),
+			) );
+		}
 
-        ob_start();
-        wc_get_template( 'single-product/price-unit.php', array( 'gzd_product' => $gzd_child ) );
-        $unit_html = ob_get_clean();
+		ob_start();
+		wc_get_template( 'single-product/price-unit.php', array( 'gzd_product' => $gzd_child ) );
+		$unit_html = ob_get_clean();
 
-        return $html . $unit_html;
-    }
+		return $html . $unit_html;
+	}
 }
 
 if ( ! function_exists( 'woocommerce_gzd_template_single_shipping_costs_info' ) ) {
@@ -107,16 +115,16 @@ if ( ! function_exists( 'woocommerce_gzd_template_single_delivery_time_info' ) )
 
 if ( ! function_exists( 'woocommerce_gzd_template_grouped_single_delivery_time_info' ) ) {
 
-    /**
-     * Grouped single product delivery time info
-     */
-    function woocommerce_gzd_template_grouped_single_delivery_time_info( $html, $grouped_child ) {
-        ob_start();
-        wc_get_template( 'single-product/delivery-time-info.php' );
-        $legal_html = ob_get_clean();
+	/**
+	 * Grouped single product delivery time info
+	 */
+	function woocommerce_gzd_template_grouped_single_delivery_time_info( $html, $grouped_child ) {
+		ob_start();
+		wc_get_template( 'single-product/delivery-time-info.php' );
+		$legal_html = ob_get_clean();
 
-        return $html . $legal_html;
-    }
+		return $html . $legal_html;
+	}
 }
 
 if ( ! function_exists( 'woocommerce_gzd_template_single_tax_info' ) ) {
@@ -127,7 +135,7 @@ if ( ! function_exists( 'woocommerce_gzd_template_single_tax_info' ) ) {
 	function woocommerce_gzd_template_single_tax_info() {
 		wc_get_template( 'single-product/tax-info.php' );
 	}
-} 
+}
 
 if ( ! function_exists( 'woocommerce_gzd_template_single_product_units' ) ) {
 
@@ -138,13 +146,13 @@ if ( ! function_exists( 'woocommerce_gzd_template_single_product_units' ) ) {
 
 if ( ! function_exists( 'woocommerce_gzd_template_grouped_single_product_units' ) ) {
 
-    function woocommerce_gzd_template_grouped_single_product_units( $html, $grouped_child ) {
-        ob_start();
-        wc_get_template( 'single-product/units.php' );
-        $legal_html = ob_get_clean();
+	function woocommerce_gzd_template_grouped_single_product_units( $html, $grouped_child ) {
+		ob_start();
+		wc_get_template( 'single-product/units.php' );
+		$legal_html = ob_get_clean();
 
-        return $html . $legal_html;
-    }
+		return $html . $legal_html;
+	}
 }
 
 if ( ! function_exists( 'woocommerce_gzd_template_small_business_info' ) ) {
@@ -167,7 +175,7 @@ if ( ! function_exists( 'woocommerce_gzd_template_checkout_small_business_info' 
 		wc_get_template( 'global/small-business-info.php' );
 		echo '</td></tr>';
 	}
-} 
+}
 
 if ( ! function_exists( 'woocommerce_gzd_template_footer_vat_info' ) ) {
 
@@ -214,7 +222,7 @@ if ( ! function_exists( 'woocommerce_gzd_template_checkout_back_to_cart' ) ) {
 	 * Display back to cart button within checkout cart
 	 */
 	function woocommerce_gzd_template_checkout_back_to_cart() {
-		echo '<tr><td colspan="5" class="actions"><a class="button" href="' . wc_gzd_get_cart_url() . '">' . __( 'Edit Order', 'woocommerce-germanized' ) . '</a></td></tr>';
+		echo '<tr><td colspan="5" class="actions"><a class="button" href="' . wc_get_cart_url() . '">' . __( 'Edit Order', 'woocommerce-germanized' ) . '</a></td></tr>';
 	}
 
 }
@@ -258,8 +266,8 @@ if ( ! function_exists( 'woocommerce_gzd_template_checkout_table_product_hide' )
 
 	/**
 	 * Returns false to make sure default review order product table output is suppressed.
-	 *  
-	 * @return boolean 
+	 *
+	 * @return boolean
 	 */
 	function woocommerce_gzd_template_checkout_table_product_hide() {
 		return false;
@@ -274,19 +282,6 @@ if ( ! function_exists( 'woocommerce_gzd_template_checkout_table_product_hide_fi
 	 */
 	function woocommerce_gzd_template_checkout_table_product_hide_filter_removal() {
 		remove_filter( 'woocommerce_checkout_cart_item_visible', 'woocommerce_gzd_template_checkout_table_product_hide', PHP_INT_MAX );
-	}
-
-}
-
-if ( ! function_exists( 'woocommerce_gzd_template_checkout_remove_cart_name_filter' ) ) {
-
-	/**
-	 * Removes the cart item name filter (using checkout quantity html) if within checkout
-	 */
-	function woocommerce_gzd_template_checkout_remove_cart_name_filter() {
-		remove_filter( 'woocommerce_cart_item_name', 'wc_gzd_cart_product_units', wc_gzd_get_hook_priority( 'cart_product_units' ), 2 );
-		remove_filter( 'woocommerce_cart_item_name', 'wc_gzd_cart_product_delivery_time', wc_gzd_get_hook_priority( 'cart_product_delivery_time' ), 2 );
-		remove_filter( 'woocommerce_cart_item_name', 'wc_gzd_cart_product_item_desc', wc_gzd_get_hook_priority( 'cart_product_item_desc' ), 2 );
 	}
 
 }
@@ -309,30 +304,35 @@ if ( ! function_exists( 'woocommerce_gzd_add_variation_options' ) ) {
 	 */
 	function woocommerce_gzd_add_variation_options( $options, $product, $variation ) {
 
-		$gzd_product = wc_gzd_get_gzd_product( $variation );
+		$gzd_product = wc_gzd_get_product( $variation );
 
 		$options = array_merge( $options, array(
-			'delivery_time'         => '',
-			'unit_price'            => '',
-			'product_units'         => '',
-			'tax_info'              => '',
-			'shipping_costs_info'   => '',
+			'delivery_time'       => '',
+			'unit_price'          => '',
+			'product_units'       => '',
+			'tax_info'            => '',
+			'shipping_costs_info' => '',
 		) );
 
-		if ( get_option( 'woocommerce_gzd_display_product_detail_delivery_time_info' ) === 'yes' )
-			$options[ 'delivery_time' ] 		= $gzd_product->get_delivery_time_html();
+		if ( wc_gzd_shopmark_is_enabled( 'single_product', 'delivery_time' ) ) {
+			$options['delivery_time'] = $gzd_product->get_delivery_time_html();
+		}
 
-		if ( get_option( 'woocommerce_gzd_display_product_detail_price_unit' ) === 'yes' )
-			$options[ 'unit_price' ] 			= $gzd_product->get_unit_html();
+		if ( wc_gzd_shopmark_is_enabled( 'single_product', 'unit_price' ) ) {
+			$options['unit_price'] = $gzd_product->get_unit_price_html();
+		}
 
-		if ( get_option( 'woocommerce_gzd_display_product_detail_product_units' ) === 'yes' )
-			$options[ 'product_units' ] 		= $gzd_product->get_product_units_html();
+		if ( wc_gzd_shopmark_is_enabled( 'single_product', 'units' ) ) {
+			$options['product_units'] = $gzd_product->get_unit_product_html();
+		}
 
-		if ( get_option( 'woocommerce_gzd_display_product_detail_tax_info' ) === 'yes' )
-			$options[ 'tax_info' ] 				= $gzd_product->get_tax_info();
+		if ( wc_gzd_shopmark_is_enabled( 'single_product', 'legal' ) && 'yes' === get_option( 'woocommerce_gzd_display_product_detail_tax_info' ) ) {
+			$options['tax_info'] = $gzd_product->get_tax_info();
+		}
 
-		if ( get_option( 'woocommerce_gzd_display_product_detail_shipping_costs_info' ) === 'yes' )
-			$options[ 'shipping_costs_info' ] 	= $gzd_product->get_shipping_costs_html();
+		if ( wc_gzd_shopmark_is_enabled( 'single_product', 'legal' ) && 'yes' === get_option( 'woocommerce_gzd_display_product_detail_shipping_costs_info' ) ) {
+			$options['shipping_costs_info'] = $gzd_product->get_shipping_costs_html();
+		}
 
 		return $options;
 	}
@@ -356,7 +356,7 @@ if ( ! function_exists( 'woocommerce_gzd_template_loop_add_to_cart' ) ) {
 	 * Custom add to cart button
 	 */
 	function woocommerce_gzd_template_loop_add_to_cart( $text, $product ) {
-		return sprintf( 
+		return sprintf(
 			'<a href="%s" class="button">%s</a>',
 			esc_attr( $product->get_permalink() ),
 			esc_html( get_option( 'woocommerce_gzd_display_listings_link_details_text' ) )
@@ -372,9 +372,9 @@ if ( ! function_exists( 'woocommerce_gzd_template_order_submit' ) ) {
 	 */
 	function woocommerce_gzd_template_order_submit( $args = array() ) {
 		$args = wp_parse_args( $args, array(
-			'checkout'           => WC()->checkout(),
-			'order_button_text'  => apply_filters( 'woocommerce_order_button_text', __( 'Place order', 'woocommerce' ) ),
-			'include_nonce'      => false,
+			'checkout'          => WC()->checkout(),
+			'order_button_text' => apply_filters( 'woocommerce_order_button_text', __( 'Place order', 'woocommerce' ) ),
+			'include_nonce'     => false,
 		) );
 
 		wc_get_template( 'checkout/order-submit.php', $args );
@@ -383,7 +383,7 @@ if ( ! function_exists( 'woocommerce_gzd_template_order_submit' ) ) {
 }
 
 if ( ! function_exists( 'woocommerce_gzd_template_order_pay_now_button' ) ) {
-	
+
 	/**
 	 * Pay now button on success page
 	 */
@@ -391,14 +391,15 @@ if ( ! function_exists( 'woocommerce_gzd_template_order_pay_now_button' ) ) {
 
 		$show = ( isset( $_GET['retry'] ) && $_GET['retry'] );
 
-        /**
-         * Filter to allow disabling the pay now button.
-         *
-         * @since 1.0.0
-         *
-         * @param bool $show Whether to show or hide the button.
-         * @param int  $order_id The order id.
-         */
+		/**
+		 * Filter to allow disabling the pay now button.
+		 *
+		 * @param bool $show Whether to show or hide the button.
+		 * @param int $order_id The order id.
+		 *
+		 * @since 1.0.0
+		 *
+		 */
 		if ( apply_filters( 'woocommerce_gzd_show_pay_now_button', $show, $order_id ) ) {
 			WC_GZD_Checkout::instance()->add_payment_link( $order_id );
 		}
@@ -407,7 +408,7 @@ if ( ! function_exists( 'woocommerce_gzd_template_order_pay_now_button' ) ) {
 }
 
 if ( ! function_exists( 'woocommerce_gzd_template_set_order_button_remove_filter' ) ) {
-	
+
 	/**
 	 * Temporarily add a filter which removes order button html (that's how we get the order button at the end of checkout since WC 2.3)
 	 */
@@ -429,7 +430,7 @@ if ( ! function_exists( 'woocommerce_gzd_template_button_temporary_hide' ) ) {
 }
 
 if ( ! function_exists( 'woocommerce_gzd_template_set_order_button_show_filter' ) ) {
-	
+
 	/**
 	 * Remove the order button html filter after payment.php has been parsed
 	 */
@@ -452,37 +453,37 @@ if ( ! function_exists( 'woocommerce_gzd_template_checkout_forwarding_fee_notice
 	function woocommerce_gzd_template_checkout_forwarding_fee_notice() {
 
 		$gateways = WC()->payment_gateways()->get_available_payment_gateways();
-		
-		if ( ! ( $key = WC()->session->get('chosen_payment_method') ) || ! isset( $gateways[ $key ] ) ) {
+
+		if ( ! ( $key = WC()->session->get( 'chosen_payment_method' ) ) || ! isset( $gateways[ $key ] ) ) {
 			return;
-        }
-		
+		}
+
 		$gateway = $gateways[ $key ];
 
 		if ( $gateway->get_option( 'forwarding_fee' ) ) {
-            /**
-             * Filter to adjust the forwarding fee checkout notice.
-             *
-             * @since 1.0.0
-             *
-             * @param string $html The notice.
-             */
+			/**
+			 * Filter to adjust the forwarding fee checkout notice.
+			 *
+			 * @param string $html The notice.
+			 *
+			 * @since 1.0.0
+			 *
+			 */
 			echo apply_filters( 'woocommerce_gzd_forwarding_fee_checkout_text', '<tr><td colspan="2">' . sprintf( __( 'Plus %s forwarding fee (charged by the transport agent)', 'woocommerce-germanized' ), wc_price( $gateway->get_option( 'forwarding_fee' ) ) ) . '</td></tr>' );
-        }
+		}
 	}
 }
 
 if ( ! function_exists( 'woocommerce_gzd_template_maybe_hide_delivery_time' ) ) {
 
 	function woocommerce_gzd_template_maybe_hide_delivery_time( $hide, $product ) {
-
 		$types = get_option( 'woocommerce_gzd_display_delivery_time_hidden_types', array() );
 
-		if ( ! empty( $types ) && wc_gzd_product_matches_extended_type( $types, $product ) )
+		if ( ! empty( $types ) && wc_gzd_product_matches_extended_type( $types, $product ) ) {
 			return true;
+		}
 
 		return $hide;
-
 	}
 
 }
@@ -490,11 +491,11 @@ if ( ! function_exists( 'woocommerce_gzd_template_maybe_hide_delivery_time' ) ) 
 if ( ! function_exists( 'woocommerce_gzd_template_maybe_hide_shipping_costs' ) ) {
 
 	function woocommerce_gzd_template_maybe_hide_shipping_costs( $hide, $product ) {
-
 		$types = get_option( 'woocommerce_gzd_display_shipping_costs_hidden_types', array() );
 
-		if ( wc_gzd_product_matches_extended_type( $types, $product ) )
+		if ( wc_gzd_product_matches_extended_type( $types, $product ) ) {
 			return true;
+		}
 
 		return $hide;
 
@@ -507,16 +508,17 @@ if ( ! function_exists( 'woocommerce_gzd_template_digital_delivery_time_text' ) 
 	function woocommerce_gzd_template_digital_delivery_time_text( $text, $product ) {
 
 		if ( $product->is_downloadable() && get_option( 'woocommerce_gzd_display_digital_delivery_time_text' ) !== '' ) {
-            /**
-             * Filter to adjust delivery time text for digital products.
-             *
-             * @since 1.6.3
-             *
-             * @param string     $html The notice.
-             * @param WC_Product $product The product object.
-             */
+			/**
+			 * Filter to adjust delivery time text for digital products.
+			 *
+			 * @param string $html The notice.
+			 * @param WC_Product $product The product object.
+			 *
+			 * @since 1.6.3
+			 *
+			 */
 			return apply_filters( 'woocommerce_germanized_digital_delivery_time_text', get_option( 'woocommerce_gzd_display_digital_delivery_time_text' ), $product );
-        }
+		}
 
 		return $text;
 
@@ -529,11 +531,11 @@ if ( ! function_exists( 'woocommerce_gzd_template_sale_price_label_html' ) ) {
 
 		if ( ! is_product() && get_option( 'woocommerce_gzd_display_listings_sale_price_labels' ) === 'no' ) {
 			return $price;
-        } elseif ( is_product() && get_option( 'woocommerce_gzd_display_product_detail_sale_price_labels' ) === 'no' ) {
+		} elseif ( is_product() && get_option( 'woocommerce_gzd_display_product_detail_sale_price_labels' ) === 'no' ) {
 			return $price;
-        }
+		}
 
-		return wc_gzd_get_gzd_product( $product )->add_labels_to_price_html( $price );
+		return wc_gzd_get_product( $product )->add_labels_to_price_html( $price );
 	}
 
 }
@@ -549,13 +551,13 @@ if ( ! function_exists( 'woocommerce_gzd_template_small_business_total_vat_notic
 if ( ! function_exists( 'woocommerce_gzd_template_differential_taxation_notice_cart' ) ) {
 
 	function woocommerce_gzd_template_differential_taxation_notice_cart() {
-		$cart = WC()->cart;
+		$cart                           = WC()->cart;
 		$contains_differentail_taxation = false;
 
-		foreach( $cart->get_cart() as $cart_item_key => $values ) {
-			$_product = apply_filters( 'woocommerce_cart_item_product', $values[ 'data' ], $values, $cart_item_key );
+		foreach ( $cart->get_cart() as $cart_item_key => $values ) {
+			$_product = $values['data'];
 
-				if ( wc_gzd_get_gzd_product( $_product )->is_differential_taxed() ) {
+			if ( wc_gzd_get_product( $_product )->is_differential_taxed() ) {
 				$contains_differentail_taxation = true;
 				break;
 			}
@@ -563,16 +565,17 @@ if ( ! function_exists( 'woocommerce_gzd_template_differential_taxation_notice_c
 
 		if ( $contains_differentail_taxation ) {
 
-		    /** This filter is documented in includes/class-wc-gzd-emails.php */
-			$mark   = apply_filters( 'woocommerce_gzd_differential_taxation_notice_text_mark', '** ' );
+			/** This filter is documented in includes/class-wc-gzd-emails.php */
+			$mark = apply_filters( 'woocommerce_gzd_differential_taxation_notice_text_mark', '** ' );
 
-            /**
-             * Filter to adjust the differential taxation notice text during checkout.
-             *
-             * @since 1.9.3
-             *
-             * @param string $html The notice.
-             */
+			/**
+			 * Filter to adjust the differential taxation notice text during checkout.
+			 *
+			 * @param string $html The notice.
+			 *
+			 * @since 1.9.3
+			 *
+			 */
 			$notice = apply_filters( 'woocommerce_gzd_differential_taxation_notice_text_checkout', $mark . wc_gzd_get_differential_taxation_notice_text() );
 
 			wc_get_template( 'checkout/differential-taxation-notice.php', array( 'notice' => $notice ) );
@@ -595,8 +598,8 @@ if ( ! function_exists( 'woocommerce_gzd_template_mini_cart_taxes' ) ) {
 		$hidden_for_types = get_option( 'woocommerce_gzd_display_shipping_costs_hidden_types', array() );
 		$show_shipping    = empty( $hidden_for_types ) ? true : false;
 
-		foreach( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
-			if ( $_product = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key ) ) {
+		foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
+			if ( $_product = $cart_item['data'] ) {
 				if ( ! wc_gzd_product_matches_extended_type( $hidden_for_types, $_product ) ) {
 					$show_shipping = true;
 				}
@@ -611,23 +614,26 @@ if ( ! function_exists( 'woocommerce_gzd_template_mini_cart_taxes' ) ) {
 		}
 
 		wc_get_template( 'cart/mini-cart-totals.php', array(
-            /**
-             * Filter that allows disabling tax notices within mini cart.
-             *
-             * @since 2.0.2
-             *
-             * @param bool $enable Whether to enable or not.
-             */
-			'taxes'               => ( apply_filters( 'woocommerce_gzd_show_mini_cart_totals_taxes', true ) ) ? wc_gzd_get_cart_total_taxes( false ) : array(),
+				/**
+				 * Filter that allows disabling tax notices within mini cart.
+				 *
+				 * @param bool $enable Whether to enable or not.
+				 *
+				 * @since 2.0.2
+				 *
+				 */
+				'taxes'               => ( apply_filters( 'woocommerce_gzd_show_mini_cart_totals_taxes', true ) ) ? wc_gzd_get_cart_total_taxes( false ) : array(),
 
-            /**
-             * Filter that allows disabling shipping costs notice within mini cart.
-             *
-             * @since 2.0.2
-             *
-             * @param bool $enable Whether to enable or not.
-             */
-            'shipping_costs_info' => ( apply_filters( 'woocommerce_gzd_show_mini_cart_totals_shipping_costs_notice', $show_shipping ) ) ? wc_gzd_get_shipping_costs_text() : '' )
+				/**
+				 * Filter that allows disabling shipping costs notice within mini cart.
+				 *
+				 * @param bool $enable Whether to enable or not.
+				 *
+				 * @since 2.0.2
+				 *
+				 */
+				'shipping_costs_info' => ( apply_filters( 'woocommerce_gzd_show_mini_cart_totals_shipping_costs_notice', $show_shipping ) ) ? wc_gzd_get_shipping_costs_text() : ''
+			)
 		);
 	}
 
@@ -679,7 +685,7 @@ if ( ! function_exists( 'woocommerce_gzd_template_render_review_checkboxes' ) ) 
 			return $html;
 		}
 
-		$manager = WC_GZD_Legal_Checkbox_Manager::instance();
+		$manager       = WC_GZD_Legal_Checkbox_Manager::instance();
 		$checkbox_html = '';
 
 		ob_start();
@@ -693,6 +699,7 @@ if ( ! function_exists( 'woocommerce_gzd_template_render_review_checkboxes' ) ) 
 if ( ! function_exists( 'woocommerce_gzd_template_product_widget_filters_start' ) ) {
 
 	function woocommerce_gzd_template_product_widget_filters_start( $args ) {
+		remove_filter( 'woocommerce_get_price_html', 'woocommerce_gzd_template_product_blocks', 50 );
 		add_filter( 'woocommerce_get_price_html', 'woocommerce_gzd_template_product_widget_price_html', 100, 2 );
 	}
 }
@@ -701,6 +708,7 @@ if ( ! function_exists( 'woocommerce_gzd_template_product_widget_filters_end' ) 
 
 	function woocommerce_gzd_template_product_widget_filters_end( $args ) {
 		remove_filter( 'woocommerce_get_price_html', 'woocommerce_gzd_template_product_widget_price_html', 100 );
+		add_filter( 'woocommerce_get_price_html', 'woocommerce_gzd_template_product_blocks', 50, 2 );
 	}
 }
 
@@ -715,47 +723,81 @@ if ( ! function_exists( 'woocommerce_gzd_template_product_widget_price_html' ) )
 
 if ( ! function_exists( 'woocommerce_gzd_template_mini_cart_remove_hooks' ) ) {
 
-    function woocommerce_gzd_template_mini_cart_remove_hooks() {
+	function woocommerce_gzd_template_mini_cart_remove_hooks() {
 
-        if ( ! did_action( 'woocommerce_before_mini_cart_contents' ) ) {
-            return;
-        }
+		if ( ! did_action( 'woocommerce_before_mini_cart_contents' ) ) {
+			return;
+		}
 
-        foreach( wc_gzd_get_legal_cart_notice_types_by_location( 'mini_cart' ) as $type => $notice ) {
-            remove_filter( $notice['filter'], $notice['callback'], $notice['priority'] );
-        }
-    }
+		/**
+		 * Remove cart hooks to prevent duplicate notices
+		 */
+		foreach ( wc_gzd_get_cart_shopmarks() as $shopmark ) {
+			$shopmark->remove();
+		}
+	}
 }
 
 if ( ! function_exists( 'woocommerce_gzd_template_mini_cart_add_hooks' ) ) {
 
-    function woocommerce_gzd_template_mini_cart_add_hooks() {
+	function woocommerce_gzd_template_mini_cart_add_hooks() {
 
-        /**
-         * This filter serves to manually disable mini cart item legal details.
-         *
-         * @since 2.2.11
-         *
-         * @param bool $disable Whether to disable or not.
-         */
-        if ( apply_filters( 'woocommerce_gzd_disable_mini_cart_item_legal_details', false ) ) {
-            return;
-        }
+		/**
+		 * This filter serves to manually disable mini cart item legal details.
+		 *
+		 * @param bool $disable Whether to disable or not.
+		 *
+		 * @since 2.2.11
+		 *
+		 */
+		if ( apply_filters( 'woocommerce_gzd_disable_mini_cart_item_legal_details', false ) ) {
+			return;
+		}
 
-        // Add mini cart product info
-        foreach( wc_gzd_get_legal_cart_notice_types_by_location( 'mini_cart' ) as $type => $notice ) {
-            add_filter( $notice['filter'], $notice['callback'], $notice['priority'], 3 );
-        }
-    }
+		foreach ( wc_gzd_get_mini_cart_shopmarks() as $shopmark ) {
+			$shopmark->execute();
+		}
+	}
 }
 
 if ( ! function_exists( 'woocommerce_gzd_template_mini_cart_maybe_remove_hooks' ) ) {
 
-    function woocommerce_gzd_template_mini_cart_maybe_remove_hooks() {
-        if ( ! is_cart() ) {
-            woocommerce_gzd_template_mini_cart_remove_hooks();
-        }
-    }
+	function woocommerce_gzd_template_mini_cart_maybe_remove_hooks() {
+
+		if ( ! did_action( 'woocommerce_before_mini_cart_contents' ) ) {
+			return;
+		}
+
+		/**
+		 * Remove mini cart hooks after mini cart rendering finished
+		 */
+		foreach ( wc_gzd_get_mini_cart_shopmarks() as $shopmark ) {
+			$shopmark->remove();
+		}
+
+		/**
+		 * Readd cart hooks to make sure they are placed accordingly.
+		 */
+		if ( is_cart() ) {
+			foreach ( wc_gzd_get_cart_shopmarks() as $shopmark ) {
+				$shopmark->execute();
+			}
+		}
+	}
+}
+
+if ( ! function_exists( 'woocommerce_gzd_template_product_blocks' ) ) {
+
+	function woocommerce_gzd_template_product_blocks( $price_html, $product ) {
+
+		$post = get_post();
+
+		if ( $post && wc_gzd_post_has_woocommerce_block( $post->post_content ) ) {
+			$price_html = woocommerce_gzd_template_add_price_html_suffixes( $price_html, $product );
+		}
+
+		return $price_html;
+	}
 }
 
 if ( ! function_exists( 'woocommerce_gzd_template_add_price_html_suffixes' ) ) {
@@ -766,37 +808,38 @@ if ( ! function_exists( 'woocommerce_gzd_template_add_price_html_suffixes' ) ) {
 
 		$args = wp_parse_args( $args, array(
 			'price_unit'          => array(
-				'show'            => wc_gzd_string_to_bool( get_option( "woocommerce_gzd_display_{$location}_unit_price", true ) ),
-				'priority'        => 10,
+				'show'     => wc_string_to_bool( get_option( "woocommerce_gzd_display_{$location}_unit_price", true ) ),
+				'priority' => 10,
 			),
 			'tax_info'            => array(
-				'show'            => wc_gzd_string_to_bool( get_option( "woocommerce_gzd_display_{$location}_tax_info", true ) ),
-				'priority'        => 20,
+				'show'     => wc_string_to_bool( get_option( "woocommerce_gzd_display_{$location}_tax_info", true ) ),
+				'priority' => 20,
 			),
 			'shipping_costs_info' => array(
-				'show'            => wc_gzd_string_to_bool( get_option( "woocommerce_gzd_display_{$location}_shipping_costs", true ) ),
-				'priority'        => 30,
+				'show'     => wc_string_to_bool( get_option( "woocommerce_gzd_display_{$location}_shipping_costs", true ) ),
+				'priority' => 30,
 			),
 			'product_units'       => array(
-				'show'            => wc_gzd_string_to_bool( get_option( "woocommerce_gzd_display_{$location}_product_units", false ) ),
-				'priority'        => 40,
+				'show'     => wc_string_to_bool( get_option( "woocommerce_gzd_display_{$location}_product_units", false ) ),
+				'priority' => 40,
 			),
 			'delivery_time_info'  => array(
-				'show'            => wc_gzd_string_to_bool( get_option( "woocommerce_gzd_display_{$location}_delivery_time", true ) ),
-				'priority'        => 50,
+				'show'     => wc_string_to_bool( get_option( "woocommerce_gzd_display_{$location}_delivery_time", true ) ),
+				'priority' => 50,
 			),
 		) );
 
-        /**
-         * In some cases (e.g. product widgets) Germanized has to add legal information
-         * as a suffix because no other filters exist. This filter serves to decide which
-         * info to append and in which order.
-         *
-         * @since 2.2.0
-         *
-         * @param array  $args The data to be appended.
-         * @param string $location The location e.g. product_widget.
-         */
+		/**
+		 * In some cases (e.g. product widgets) Germanized has to add legal information
+		 * as a suffix because no other filters exist. This filter serves to decide which
+		 * info to append and in which order.
+		 *
+		 * @param array $args The data to be appended.
+		 * @param string $location The location e.g. product_widget.
+		 *
+		 * @since 2.2.0
+		 *
+		 */
 		$args = apply_filters( 'woocommerce_gzd_template_add_price_html_suffixes_args', $args, $location );
 
 		// Re-order tabs by priority.
@@ -806,13 +849,15 @@ if ( ! function_exists( 'woocommerce_gzd_template_add_price_html_suffixes' ) ) {
 			 *
 			 * @param array $a Comparison A.
 			 * @param array $b Comparison B.
+			 *
 			 * @return bool
 			 */
 			function _sort_priority_callback( $a, $b ) {
 				if ( ! isset( $a['priority'], $b['priority'] ) || $a['priority'] === $b['priority'] ) {
 					return 0;
 				}
-				return ( $a['priority'] < $b['priority'] ) ? -1 : 1;
+
+				return ( $a['priority'] < $b['priority'] ) ? - 1 : 1;
 			}
 		}
 
@@ -820,7 +865,7 @@ if ( ! function_exists( 'woocommerce_gzd_template_add_price_html_suffixes' ) ) {
 
 		$suffix = '';
 
-		foreach( $args as $method_suffix => $options ) {
+		foreach ( $args as $method_suffix => $options ) {
 			if ( ! $options['show'] ) {
 				continue;
 			}
@@ -838,15 +883,16 @@ if ( ! function_exists( 'woocommerce_gzd_template_add_price_html_suffixes' ) ) {
 			}
 		}
 
-        /**
-         * Filter that allows adjusting the HTML suffix for product widgets.
-         *
-         * @since 2.2.0
-         *
-         * @param string $html The suffix.
-         * @param array  $args The data which was appended.
-         * @param string $location The location.
-         */
+		/**
+		 * Filter that allows adjusting the HTML suffix for product widgets.
+		 *
+		 * @param string $html The suffix.
+		 * @param array $args The data which was appended.
+		 * @param string $location The location.
+		 *
+		 * @since 2.2.0
+		 *
+		 */
 		$suffix = apply_filters( 'woocommerce_gzd_template_add_price_html_suffix', $suffix, $args, $location );
 
 		return $price_html . $suffix;

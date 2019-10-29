@@ -8,6 +8,7 @@ class WC_GZD_Privacy {
 		if ( is_null( self::$_instance ) ) {
 			self::$_instance = new self();
 		}
+
 		return self::$_instance;
 	}
 
@@ -18,19 +19,23 @@ class WC_GZD_Privacy {
 
 		// Erase
 		add_filter( 'woocommerce_privacy_erase_personal_data_customer', array( $this, 'erase_customer_data' ), 10, 2 );
-		add_action( 'woocommerce_privacy_before_remove_order_personal_data', array( $this, 'erase_order_data' ), 10, 1 );
+		add_action( 'woocommerce_privacy_before_remove_order_personal_data', array(
+			$this,
+			'erase_order_data'
+		), 10, 1 );
 	}
 
 	public function erase_order_data( $order ) {
 
-        /**
-         * Filter to adjust personal order data to be anonymized while removing personal data from orders.
-         *
-         * @since 1.9.10
-         *
-         * @param array    $meta_keys Meta keys to be anonymized.
-         * @param WC_Order $order The order object.
-         */
+		/**
+		 * Filter to adjust personal order data to be anonymized while removing personal data from orders.
+		 *
+		 * @param array $meta_keys Meta keys to be anonymized.
+		 * @param WC_Order $order The order object.
+		 *
+		 * @since 1.9.10
+		 *
+		 */
 		$meta_data = apply_filters( 'woocommerce_gzd_privacy_erase_order_personal_metadata', array(
 			'_shipping_parcelshop_post_number' => 'text',
 			'_billing_title'                   => 'text',
@@ -41,7 +46,7 @@ class WC_GZD_Privacy {
 			'_direct_debit_mandate_mail'       => 'text',
 		), $order );
 
-		foreach( $meta_data as $prop => $data_type ) {
+		foreach ( $meta_data as $prop => $data_type ) {
 
 			$value = $order->get_meta( $prop );
 
@@ -64,14 +69,15 @@ class WC_GZD_Privacy {
 
 	public function erase_customer_data( $response, $customer ) {
 
-        /**
-         * Filter to adjust personal customer data to be anonymized while removing personal data from customers.
-         *
-         * @since 1.9.10
-         *
-         * @param array       $meta_keys Meta keys to be anonymized.
-         * @param WC_Customer $customer The customer object.
-         */
+		/**
+		 * Filter to adjust personal customer data to be anonymized while removing personal data from customers.
+		 *
+		 * @param array $meta_keys Meta keys to be anonymized.
+		 * @param WC_Customer $customer The customer object.
+		 *
+		 * @since 1.9.10
+		 *
+		 */
 		$meta_data = apply_filters( 'woocommerce_gzd_privacy_erase_customer_personal_metadata', array(
 			'shipping_parcelshop_post_number' => __( 'Postnumber', 'woocommerce-germanized' ),
 			'billing_title'                   => __( 'Billing Title', 'woocommerce-germanized' ),
@@ -81,12 +87,12 @@ class WC_GZD_Privacy {
 			'direct_debit_bic'                => __( 'BIC/SWIFT', 'woocommerce-germanized' ),
 		), $customer );
 
-		foreach( $meta_data as $prop => $title ) {
+		foreach ( $meta_data as $prop => $title ) {
 			if ( $value = $customer->get_meta( $prop ) ) {
 				$customer->delete_meta_data( $prop );
 
 				/* Translators: %s Prop name. */
-				$response['messages'][]    = sprintf( __( 'Removed customer "%s"', 'woocommerce-germanized' ), $title );
+				$response['messages'][] = sprintf( __( 'Removed customer "%s"', 'woocommerce-germanized' ), $title );
 			}
 		}
 
@@ -97,14 +103,15 @@ class WC_GZD_Privacy {
 
 	public function get_order_data( $data, $order ) {
 
-        /**
-         * Filter to allow exporting personal data added by Germanized to orders.
-         *
-         * @since 1.9.10
-         *
-         * @param array    $meta_keys Keys as well as titles to be exported.
-         * @param WC_Order $order The order object.
-         */
+		/**
+		 * Filter to allow exporting personal data added by Germanized to orders.
+		 *
+		 * @param array $meta_keys Keys as well as titles to be exported.
+		 * @param WC_Order $order The order object.
+		 *
+		 * @since 1.9.10
+		 *
+		 */
 		$meta_data = apply_filters( 'woocommerce_gzd_privacy_export_order_personal_metadata', array(
 			'_shipping_parcelshop_post_number' => __( 'Postnumber', 'woocommerce-germanized' ),
 			'_direct_debit_holder'             => __( 'Account Holder', 'woocommerce-germanized' ),
@@ -115,7 +122,7 @@ class WC_GZD_Privacy {
 			'_direct_debit_mandate_mail'       => __( 'Mandate Email', 'woocommerce-germanized' ),
 		), $order );
 
-		foreach( $meta_data as $prop => $title ) {
+		foreach ( $meta_data as $prop => $title ) {
 
 			if ( $value = $order->get_meta( $prop ) ) {
 
@@ -143,14 +150,15 @@ class WC_GZD_Privacy {
 
 	public function get_customer_data( $data, $customer ) {
 
-        /**
-         * Filter to allow exporting personal data added by Germanized to customers.
-         *
-         * @since 1.9.10
-         *
-         * @param array       $meta_keys Keys as well as titles to be exported.
-         * @param WC_Customer $customer The customer object.
-         */
+		/**
+		 * Filter to allow exporting personal data added by Germanized to customers.
+		 *
+		 * @param array $meta_keys Keys as well as titles to be exported.
+		 * @param WC_Customer $customer The customer object.
+		 *
+		 * @since 1.9.10
+		 *
+		 */
 		$meta_data = apply_filters( 'woocommerce_gzd_privacy_export_customer_personal_metadata', array(
 			'shipping_parcelshop_post_number' => __( 'Postnumber', 'woocommerce-germanized' ),
 			'billing_title'                   => __( 'Billing Title', 'woocommerce-germanized' ),
@@ -160,7 +168,7 @@ class WC_GZD_Privacy {
 			'direct_debit_bic'                => __( 'BIC/SWIFT', 'woocommerce-germanized' ),
 		), $customer );
 
-		foreach( $meta_data as $prop => $title ) {
+		foreach ( $meta_data as $prop => $title ) {
 			if ( $value = $customer->get_meta( $prop ) ) {
 
 				if ( in_array( $prop, array( 'billing_title', 'shipping_title' ) ) ) {

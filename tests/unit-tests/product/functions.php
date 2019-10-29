@@ -16,8 +16,8 @@ class WC_GZD_Tests_Product_Functions extends WC_GZD_Unit_Test_Case {
 
 		$simple = WC_Helper_Product::create_simple_product();
 		$variable = WC_Helper_Product::create_variation_product();
-
 		$virtual = WC_Helper_Product::create_simple_product();
+
 		$virtual->set_virtual( true );
 		$virtual->save();
 
@@ -29,10 +29,12 @@ class WC_GZD_Tests_Product_Functions extends WC_GZD_Unit_Test_Case {
 		$this->assertEquals( true, wc_gzd_product_matches_extended_type( 'variable', $variable ) );
 		$this->assertEquals( true, wc_gzd_product_matches_extended_type( 'virtual', $virtual ) );
 		$this->assertEquals( true, wc_gzd_product_matches_extended_type( 'downloadable', $downloadable ) );
-		$this->assertEquals( true, wc_gzd_product_matches_extended_type( array( 'downloadable', 'service' ), $downloadable ) );
+		$this->assertEquals( true, wc_gzd_product_matches_extended_type( array(
+			'downloadable',
+			'service'
+		), $downloadable ) );
 
 		$this->assertEquals( true, wc_gzd_product_matches_extended_type( array( 'simple', 'external' ), $simple ) );
 		$this->assertEquals( false, wc_gzd_product_matches_extended_type( 'external', $simple ) );
-
 	}
 }

@@ -1,7 +1,8 @@
 <?php
 
-if ( ! defined( 'ABSPATH' ) )
+if ( ! defined( 'ABSPATH' ) ) {
 	exit;
+}
 
 class WC_GZD_Dependencies_Mock {
 
@@ -16,11 +17,11 @@ class WC_GZD_Dependencies_Mock {
 
 	public $plugins_header = array(
 		'woocommerce' => array(
-			'name' 					=> 'WooCommerce',
-			'tested' 				=> '',
-			'requires' 				=> '',
-			'version' 				=> '',
-			'version_prefix' 		=> 'woocommerce',
+			'name'           => 'WooCommerce',
+			'tested'         => '',
+			'requires'       => '',
+			'version'        => '',
+			'version_prefix' => 'woocommerce',
 		),
 	);
 
@@ -28,6 +29,7 @@ class WC_GZD_Dependencies_Mock {
 		if ( is_null( self::$_instance ) ) {
 			self::$_instance = new self( $plugin );
 		}
+
 		return self::$_instance;
 	}
 
@@ -46,10 +48,11 @@ class WC_GZD_Dependencies_Mock {
 
 	public function is_plugin_activated( $plugin ) {
 
-		if ( isset( $this->plugins_header[ $plugin ][ 'constant' ] ) ) {
+		if ( isset( $this->plugins_header[ $plugin ]['constant'] ) ) {
 
-			if ( ! defined( $this->plugins_header[ $plugin ][ 'constant' ] ) )
+			if ( ! defined( $this->plugins_header[ $plugin ]['constant'] ) ) {
 				return false;
+			}
 		}
 
 		if ( strpos( $plugin, '.php' ) === false ) {
@@ -65,12 +68,12 @@ class WC_GZD_Dependencies_Mock {
 	public function compare_versions( $main_ver, $ver2, $operator ) {
 
 		$expl_main_ver = explode( '.', $main_ver );
-		$expl_ver2 = explode( '.', $ver2 );
+		$expl_ver2     = explode( '.', $ver2 );
 
 		// Check if ver2 string is more accurate than main_ver
 		if ( sizeof( $expl_main_ver ) == 2 && sizeof( $expl_ver2 ) > 2 ) {
 			$new_ver_2 = array_slice( $expl_ver2, 0, 2 );
-			$ver2 = implode( '.', $new_ver_2 );
+			$ver2      = implode( '.', $new_ver_2 );
 		}
 
 		return version_compare( $main_ver, $ver2, $operator );
@@ -78,6 +81,7 @@ class WC_GZD_Dependencies_Mock {
 
 	public function get_plugin_version( $plugin_slug ) {
 		$version = preg_replace( '#(\.0+)+($|-)#', '', get_option( $plugin_slug . '_version', '1.0' ) );
+
 		return $version;
 	}
 

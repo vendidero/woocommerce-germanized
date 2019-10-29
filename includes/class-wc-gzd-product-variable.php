@@ -1,87 +1,97 @@
 <?php
 
-if ( ! defined( 'ABSPATH' ) )
-	exit; // Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+} // Exit if accessed directly
 
 /**
  * WooCommerce Germanized Product Variable
  *
  * The WC_GZD_Product_Variable Class is used to offer additional functionality for every variable product.
  *
- * @class 		WC_GZD_Product
- * @version		1.0.0
- * @author 		Vendidero
+ * @class        WC_GZD_Product
+ * @version        1.0.0
+ * @author        Vendidero
  */
 class WC_GZD_Product_Variable extends WC_GZD_Product {
 
-    protected $unit_prices_array = array();
+	protected $unit_prices_array = array();
 
 	/**
 	 * Get the min or max variation unit regular price.
-	 * @param  string $min_or_max - min or max
-	 * @param  boolean  $display Whether the value is going to be displayed
+	 *
+	 * @param string $min_or_max - min or max
+	 * @param boolean $display Whether the value is going to be displayed
+	 *
 	 * @return string
 	 */
 	public function get_variation_unit_regular_price( $min_or_max = 'min', $display = false ) {
 		$prices = $this->get_variation_unit_prices( $display );
 		$price  = 'min' === $min_or_max ? current( $prices['regular_price'] ) : end( $prices['regular_price'] );
 
-        /**
-         * Filter to adjust the min or max variation regular unit price.
-         *
-         * @since 1.0.0
-         *
-         * @param string                  $price The price.
-         * @param WC_GZD_Product_Variable $product The product object.
-         * @param string                  $min_or_max Either `min` or `max`.
-         * @param bool                    $display Either for display purposes or not.
-         */
+		/**
+		 * Filter to adjust the min or max variation regular unit price.
+		 *
+		 * @param string $price The price.
+		 * @param WC_GZD_Product_Variable $product The product object.
+		 * @param string $min_or_max Either `min` or `max`.
+		 * @param bool $display Either for display purposes or not.
+		 *
+		 * @since 1.0.0
+		 *
+		 */
 		return apply_filters( 'woocommerce_gzd_get_variation_unit_regular_price', $price, $this, $min_or_max, $display );
 	}
 
 	/**
 	 * Get the min or max variation unit sale price.
-	 * @param  string $min_or_max - min or max
-	 * @param  boolean  $display Whether the value is going to be displayed
+	 *
+	 * @param string $min_or_max - min or max
+	 * @param boolean $display Whether the value is going to be displayed
+	 *
 	 * @return string
 	 */
 	public function get_variation_unit_sale_price( $min_or_max = 'min', $display = false ) {
 		$prices = $this->get_variation_unit_prices( $display );
 		$price  = 'min' === $min_or_max ? current( $prices['sale_price'] ) : end( $prices['sale_price'] );
 
-        /**
-         * Filter to adjust the min or max variation sale unit price.
-         *
-         * @since 1.0.0
-         *
-         * @param string                  $price The price.
-         * @param WC_GZD_Product_Variable $product The product object.
-         * @param string                  $min_or_max Either `min` or `max`.
-         * @param bool                    $display Either for display purposes or not.
-         */
+		/**
+		 * Filter to adjust the min or max variation sale unit price.
+		 *
+		 * @param string $price The price.
+		 * @param WC_GZD_Product_Variable $product The product object.
+		 * @param string $min_or_max Either `min` or `max`.
+		 * @param bool $display Either for display purposes or not.
+		 *
+		 * @since 1.0.0
+		 *
+		 */
 		return apply_filters( 'woocommerce_gzd_get_variation_unit_sale_price', $price, $this, $min_or_max, $display );
 	}
 
 	/**
 	 * Get the min or max variation (active) unit price.
-	 * @param  string $min_or_max - min or max
-	 * @param  boolean  $display Whether the value is going to be displayed
+	 *
+	 * @param string $min_or_max - min or max
+	 * @param boolean $display Whether the value is going to be displayed
+	 *
 	 * @return string
 	 */
 	public function get_variation_unit_price( $min_or_max = 'min', $display = false ) {
 		$prices = $this->get_variation_unit_prices( $display );
 		$price  = 'min' === $min_or_max ? current( $prices['price'] ) : end( $prices['price'] );
 
-        /**
-         * Filter to adjust the min or max variation unit price.
-         *
-         * @since 1.0.0
-         *
-         * @param string                  $price The price.
-         * @param WC_GZD_Product_Variable $product The product object.
-         * @param string                  $min_or_max Either `min` or `max`.
-         * @param bool                    $display Either for display purposes or not.
-         */
+		/**
+		 * Filter to adjust the min or max variation unit price.
+		 *
+		 * @param string $price The price.
+		 * @param WC_GZD_Product_Variable $product The product object.
+		 * @param string $min_or_max Either `min` or `max`.
+		 * @param bool $display Either for display purposes or not.
+		 *
+		 * @since 1.0.0
+		 *
+		 */
 		return apply_filters( 'woocommerce_gzd_get_variation_unit_price', $price, $this, $min_or_max, $display );
 	}
 
@@ -93,34 +103,35 @@ class WC_GZD_Product_Variable extends WC_GZD_Product {
 			$is_on_sale = true;
 		}
 
-        /** This filter is documented in includes/abstracts/abstract-wc-gzd-product.php */
+		/** This filter is documented in includes/abstracts/abstract-wc-gzd-product.php */
 		return apply_filters( 'woocommerce_gzd_product_is_on_unit_sale', $is_on_sale, $this );
 	}
 
 	public function has_unit() {
 		$prices = $this->get_variation_unit_prices();
 
-		if ( $this->unit && $prices['regular_price'] && $this->unit_base ) {
-            return true;
-        }
+		if ( $this->get_unit() && $prices['regular_price'] && $this->get_unit_base() ) {
+			return true;
+		}
 
 		return false;
 	}
 
 	public function has_unit_fields() {
-		if ( $this->unit && $this->unit_base )
+		if ( $this->get_unit() && $this->get_unit_base() ) {
 			return true;
+		}
+
 		return false;
 	}
 
 	public function get_price_html_from_to( $from, $to, $show_labels = true ) {
-
 		$sale_label         = ( $show_labels ? $this->get_sale_price_label() : '' );
 		$sale_regular_label = ( $show_labels ? $this->get_sale_price_regular_label() : '' );
 
 		$price = ( ! empty( $sale_label ) ? '<span class="wc-gzd-sale-price-label">' . $sale_label . '</span>' : '' ) . ' <del>' . ( ( is_numeric( $from ) ) ? wc_price( $from ) : $from ) . '</del> ' . ( ! empty( $sale_regular_label ) ? '<span class="wc-gzd-sale-price-label wc-gzd-sale-price-regular-label">' . $sale_regular_label . '</span> ' : '' ) . '<ins>' . ( ( is_numeric( $to ) ) ? wc_price( $to ) : $to ) . '</ins>';
 
-        /** This filter is documented in includes/abstracts/abstract-wc-gzd-product.php */
+		/** This filter is documented in includes/abstracts/abstract-wc-gzd-product.php */
 		return apply_filters( 'woocommerce_germanized_get_price_html_from_to', $price, $from, $to, $this );
 	}
 
@@ -128,15 +139,17 @@ class WC_GZD_Product_Variable extends WC_GZD_Product {
 	 * Returns the price in html format.
 	 *
 	 * @access public
+	 *
 	 * @param string $price (default: '')
+	 *
 	 * @return string
 	 */
-	public function get_unit_html( $price = '' ) {
+	public function get_unit_price_html( $price = '' ) {
 
 		if ( get_option( 'woocommerce_gzd_unit_price_enable_variable' ) === 'no' ) {
-            return '';
-        }
-		
+			return '';
+		}
+
 		$prices = $this->get_variation_unit_prices( true );
 		$text   = get_option( 'woocommerce_gzd_unit_price_text' );
 
@@ -144,72 +157,49 @@ class WC_GZD_Product_Variable extends WC_GZD_Product {
 
 			$min_price     = current( $prices['price'] );
 			$max_price     = end( $prices['price'] );
-            $min_reg_price = current( $prices['regular_price'] );
-            $max_reg_price = end( $prices['regular_price'] );
+			$min_reg_price = current( $prices['regular_price'] );
+			$max_reg_price = end( $prices['regular_price'] );
 
-			if ( wc_gzd_get_dependencies()->woocommerce_version_supports_crud() ) {
+			/** This filter is documented in includes/abstract/abstract-wc-gzd-product.php */
+			$separator = apply_filters( 'wc_gzd_unit_price_base_seperator', ' ' );
 
-                if ( $min_price !== $max_price ) {
-                    $price = wc_format_price_range( $min_price, $max_price );
-                } elseif ( $this->is_on_sale() && $min_reg_price === $max_reg_price ) {
-                    $price = wc_format_sale_price( wc_price( $max_reg_price ), wc_price( $min_price ) );
-                } else {
-                    $price = wc_price( $min_price );
-                }
+			if ( $min_price !== $max_price ) {
+				$price = wc_format_price_range( $min_price, $max_price );
+			} elseif ( $this->get_wc_product()->is_on_sale() && $min_reg_price === $max_reg_price ) {
+				$price = wc_format_sale_price( wc_price( $max_reg_price ), wc_price( $min_price ) );
+			} else {
+				$price = wc_price( $min_price );
+			}
 
-                /**
-                 * Filter to adjust variable product unit price.
-                 * In case of Woo version > 3.0.0 this filter can contain the formatted sale price too.
-                 *
-                 * @since 1.8.3
-                 *
-                 * @param string                  $price The price.
-                 * @param WC_GZD_Product_Variable $product The product object.
-                 */
-                $price = apply_filters( 'woocommerce_gzd_variable_unit_price_html', $price, $this );
+			/**
+			 * Filter to adjust variable product unit price.
+			 * In case of Woo version > 3.0.0 this filter can contain the formatted sale price too.
+			 *
+			 * @param string $price The price.
+			 * @param WC_GZD_Product_Variable $product The product object.
+			 *
+			 * @since 1.8.3
+			 *
+			 */
+			$price = apply_filters( 'woocommerce_gzd_variable_unit_price_html', $price, $this );
 
-            } else {
+			if ( strpos( $text, '{price}' ) !== false ) {
+				$replacements = array(
+					/** This filter is documented in includes/abstract/abstract-wc-gzd-product.php */
+					'{price}' => $price . apply_filters( 'wc_gzd_unit_price_seperator', ' / ' ) . $this->get_unit_base_html() . $separator . $this->get_unit_html(),
+				);
+			} else {
+				$replacements = array(
+					'{base_price}' => $price,
+					'{unit}'       => $this->get_unit_html(),
+					'{base}'       => $this->get_unit_base_html(),
+				);
+			}
 
-                $price = $min_price !== $max_price ? sprintf( _x( '%1$s&ndash;%2$s', 'Price range: from-to', 'woocommerce-germanized' ), wc_price( $min_price ), wc_price( $max_price ) ) : wc_price( $min_price );
-
-                if ( $this->is_on_sale() ) {
-                    $min_regular_price = current( $prices['regular_price'] );
-                    $max_regular_price = end( $prices['regular_price'] );
-                    $regular_price     = $min_regular_price !== $max_regular_price ? sprintf( _x( '%1$s&ndash;%2$s', 'Price range: from-to', 'woocommerce-germanized' ), wc_price( $min_regular_price ), wc_price( $max_regular_price ) ) : wc_price( $min_regular_price );
-
-                    /**
-                     * Filter to adjust variable product unit sale price for Woo version < 3.0.0.
-                     *
-                     * @since 1.8.3
-                     *
-                     * @param string                  $price The price range.
-                     * @param WC_GZD_Product_Variable $product The product object.
-                     */
-                    $price        	   = apply_filters( 'woocommerce_gzd_variable_unit_sale_price_html', $this->get_price_html_from_to( $regular_price, $price, false ), $this );
-                } else {
-
-                    /** This filter is documented in includes/class-wc-gzd-product-variable.php */
-                    $price 	   		   = apply_filters( 'woocommerce_gzd_variable_unit_price_html', $price, $this );
-                }
-            }
-
-            if ( strpos( $text, '{price}' ) !== false ) {
-                $replacements = array(
-                    /** This filter is documented in includes/abstract/abstract-wc-gzd-product.php */
-                    '{price}' => $price . apply_filters( 'wc_gzd_unit_price_seperator', ' / ' ) . $this->get_unit_base(),
-                );
-            } else {
-                $replacements = array(
-                    '{base_price}' => $price,
-                    '{unit}'       => '<span class="unit">' . $this->get_unit() . '</span>',
-                    '{base}'       => $this->get_unit_base(),
-                );
-            }
-
-            $price = wc_gzd_replace_label_shortcodes( $text, $replacements );
+			$price = wc_gzd_replace_label_shortcodes( $text, $replacements );
 		}
 
-        /** This filter is documented in includes/abstract/abstract-wc-gzd-product.php */
+		/** This filter is documented in includes/abstract/abstract-wc-gzd-product.php */
 		return apply_filters( 'woocommerce_gzd_unit_price_html', $price, $this );
 	}
 
@@ -219,21 +209,24 @@ class WC_GZD_Product_Variable extends WC_GZD_Product {
 	 * Can be filtered by plugins which modify costs, but otherwise will include the raw meta costs unlike get_price() which runs costs through the woocommerce_get_price filter.
 	 * This is to ensure modified prices are not cached, unless intended.
 	 *
-	 * @param  bool $display Are prices for display? If so, taxes will be calculated.
+	 * @param bool $display Are prices for display? If so, taxes will be calculated.
+	 *
 	 * @return array() Array of RAW prices, regular prices, and sale prices with keys set to variation ID.
 	 */
 	public function get_variation_unit_prices( $display = false ) {
 
-		if ( ! $this->is_type( 'variable' ) )
+		if ( ! $this->child->is_type( 'variable' ) ) {
 			return false;
+		}
 
 		// Product doesn't apply for unit pricing
-		if ( ! $this->has_unit_fields() )
+		if ( ! $this->has_unit_fields() ) {
 			return false;
+		}
 
 		global $wp_filter;
 
-		$transient_name = 'wc_gzd_var_unit_prices_' . wc_gzd_get_crud_data( $this, 'id' );
+		$transient_name = 'wc_gzd_var_unit_prices_' . $this->child->get_id();
 
 		/**
 		 * Create unique cache key based on the tax location (affects displayed/cached prices), product version and active price filters.
@@ -246,7 +239,11 @@ class WC_GZD_Product_Variable extends WC_GZD_Product {
 			$price_hash = array( false );
 		}
 
-		$filter_names = array( 'woocommerce_gzd_variation_unit_prices_price', 'woocommerce_gzd_variation_unit_prices_regular_price', 'woocommerce_gzd_variation_unit_prices_sale_price' );
+		$filter_names = array(
+			'woocommerce_gzd_variation_unit_prices_price',
+			'woocommerce_gzd_variation_unit_prices_regular_price',
+			'woocommerce_gzd_variation_unit_prices_sale_price'
+		);
 
 		foreach ( $filter_names as $filter_name ) {
 			if ( ! empty( $wp_filter[ $filter_name ] ) ) {
@@ -258,16 +255,17 @@ class WC_GZD_Product_Variable extends WC_GZD_Product {
 			}
 		}
 
-        /**
-         * Filter to adjust variable unit prices hash.
-         * This hash is used to get a transient with cached variable unit prices.
-         *
-         * @since 1.0.0
-         *
-         * @param string                  $price_hash The hash.
-         * @param WC_GZD_Product_Variable $product The producht object.
-         * @param bool                    $display Whether prices are for displaying purposes or not.
-         */
+		/**
+		 * Filter to adjust variable unit prices hash.
+		 * This hash is used to get a transient with cached variable unit prices.
+		 *
+		 * @param string $price_hash The hash.
+		 * @param WC_GZD_Product_Variable $product The producht object.
+		 * @param bool $display Whether prices are for displaying purposes or not.
+		 *
+		 * @since 1.0.0
+		 *
+		 */
 		$price_hash = md5( json_encode( apply_filters( 'woocommerce_gzd_get_variation_unit_prices_hash', $price_hash, $this, $display ) ) );
 
 		// If the value has already been generated, we don't need to grab the values again.
@@ -284,61 +282,65 @@ class WC_GZD_Product_Variable extends WC_GZD_Product {
 			// If the prices are not stored for this hash, generate them
 			if ( empty( $this->unit_prices_array[ $price_hash ] ) ) {
 
-				$prices           = array();
-				$regular_prices   = array();
-				$sale_prices      = array();
-				$variation_ids    = wc_gzd_get_variable_visible_children( $this->child );
+				$prices         = array();
+				$regular_prices = array();
+				$sale_prices    = array();
+				$variation_ids  = $this->child->get_visible_children();
 
 				foreach ( $variation_ids as $variation_id ) {
-					
-					if ( $variation = wc_gzd_get_variation( $this->child, $variation_id ) ) {
 
-						$gzd_variation = wc_gzd_get_gzd_product( $variation );
+					if ( $variation = wc_get_product( $variation_id ) ) {
 
-                        /**
-                         * Before retrieving variation unit price.
-                         *
-                         * Fires before a unit price for a certain variation is retrieved. May be useful for
-                         * recalculation purposes.
-                         *
-                         * @since 1.0.0
-                         *
-                         * @param WC_GZD_Product the variation product object.
-                         */
+						$gzd_variation = wc_gzd_get_product( $variation );
+
+						/**
+						 * Before retrieving variation unit price.
+						 *
+						 * Fires before a unit price for a certain variation is retrieved. May be useful for
+						 * recalculation purposes.
+						 *
+						 * @param WC_GZD_Product the variation product object.
+						 *
+						 * @since 1.0.0
+						 *
+						 */
 						do_action( 'woocommerce_gzd_before_get_variable_variation_unit_price', $gzd_variation );
 
-                        /**
-                         * Filters the variation unit price.
-                         *
-                         * @since 1.8.3
-                         *
-                         * @param string                  $price The unit price.
-                         * @param WC_Product_Variation    $product The product object.
-                         * @param WC_GZD_Product_Variable $parent The variable parent product object.
-                         */
-						$price         = apply_filters( 'woocommerce_gzd_variation_unit_prices_price', $gzd_variation->get_unit_price_raw(), $variation, $this );
+						/**
+						 * Filters the variation unit price.
+						 *
+						 * @param string $price The unit price.
+						 * @param WC_Product_Variation $product The product object.
+						 * @param WC_GZD_Product_Variable $parent The variable parent product object.
+						 *
+						 * @since 1.8.3
+						 *
+						 */
+						$price = apply_filters( 'woocommerce_gzd_variation_unit_prices_price', $gzd_variation->get_unit_price(), $variation, $this );
 
-                        /**
-                         * Filters the variation regular unit price.
-                         *
-                         * @since 1.8.3
-                         *
-                         * @param string                  $price The regular unit price.
-                         * @param WC_Product_Variation    $product The product object.
-                         * @param WC_GZD_Product_Variable $parent The variable parent product object.
-                         */
-						$regular_price = apply_filters( 'woocommerce_gzd_variation_unit_prices_regular_price', $gzd_variation->get_unit_regular_price(), $variation, $this );
+						/**
+						 * Filters the variation regular unit price.
+						 *
+						 * @param string $price The regular unit price.
+						 * @param WC_Product_Variation $product The product object.
+						 * @param WC_GZD_Product_Variable $parent The variable parent product object.
+						 *
+						 * @since 1.8.3
+						 *
+						 */
+						$regular_price = apply_filters( 'woocommerce_gzd_variation_unit_prices_regular_price', $gzd_variation->get_unit_price_regular(), $variation, $this );
 
-                        /**
-                         * Filters the variation sale unit price.
-                         *
-                         * @since 1.8.3
-                         *
-                         * @param string                  $price The sale unit price.
-                         * @param WC_Product_Variation    $product The product object.
-                         * @param WC_GZD_Product_Variable $parent The variable parent product object.
-                         */
-						$sale_price    = apply_filters( 'woocommerce_gzd_variation_unit_prices_sale_price', $gzd_variation->get_unit_sale_price(), $variation, $this );
+						/**
+						 * Filters the variation sale unit price.
+						 *
+						 * @param string $price The sale unit price.
+						 * @param WC_Product_Variation $product The product object.
+						 * @param WC_GZD_Product_Variable $parent The variable parent product object.
+						 *
+						 * @since 1.8.3
+						 *
+						 */
+						$sale_price = apply_filters( 'woocommerce_gzd_variation_unit_prices_sale_price', $gzd_variation->get_unit_price_sale(), $variation, $this );
 
 						// If sale price does not equal price, the product is not yet on sale
 						if ( $sale_price === $regular_price || $sale_price !== $price ) {
@@ -348,13 +350,31 @@ class WC_GZD_Product_Variable extends WC_GZD_Product {
 						// If we are getting prices for display, we need to account for taxes
 						if ( $display ) {
 							if ( 'incl' === get_option( 'woocommerce_tax_display_shop' ) ) {
-								$price         = '' === $price ? ''         : wc_gzd_get_price_including_tax( $variation, array( 'qty' => 1, 'price' => $price ) );
-								$regular_price = '' === $regular_price ? '' : wc_gzd_get_price_including_tax( $variation, array( 'qty' => 1, 'price' => $regular_price ) );
-								$sale_price    = '' === $sale_price ? ''    : wc_gzd_get_price_including_tax( $variation, array( 'qty' => 1, 'price' => $sale_price ) );
+								$price         = '' === $price ? '' : wc_get_price_including_tax( $variation, array(
+									'qty'   => 1,
+									'price' => $price
+								) );
+								$regular_price = '' === $regular_price ? '' : wc_get_price_including_tax( $variation, array(
+									'qty'   => 1,
+									'price' => $regular_price
+								) );
+								$sale_price    = '' === $sale_price ? '' : wc_get_price_including_tax( $variation, array(
+									'qty'   => 1,
+									'price' => $sale_price
+								) );
 							} else {
-								$price         = '' === $price ? ''         : wc_gzd_get_price_excluding_tax( $variation, array( 'qty' => 1, 'price' => $price ) );
-								$regular_price = '' === $regular_price ? '' : wc_gzd_get_price_excluding_tax( $variation, array( 'qty' => 1, 'price' => $regular_price ) );
-								$sale_price    = '' === $sale_price ? ''    : wc_gzd_get_price_excluding_tax( $variation, array( 'qty' => 1, 'price' => $sale_price ) );
+								$price         = '' === $price ? '' : wc_get_price_excluding_tax( $variation, array(
+									'qty'   => 1,
+									'price' => $price
+								) );
+								$regular_price = '' === $regular_price ? '' : wc_get_price_excluding_tax( $variation, array(
+									'qty'   => 1,
+									'price' => $regular_price
+								) );
+								$sale_price    = '' === $sale_price ? '' : wc_get_price_excluding_tax( $variation, array(
+									'qty'   => 1,
+									'price' => $sale_price
+								) );
 							}
 						}
 
@@ -377,20 +397,20 @@ class WC_GZD_Product_Variable extends WC_GZD_Product {
 				set_transient( $transient_name, json_encode( $this->unit_prices_array ), DAY_IN_SECONDS * 30 );
 			}
 
-            /**
-             * Filter to adjust the unit prices for a certain variation right before returning.
-             * Last change to adjust unit prices before handing them over for further processing.
-             *
-             * @since 1.8.3
-             *
-             * @param array                   $unit_prices Array containing unit price data.
-             * @param WC_GZD_Product_Variable $product The product object.
-             * @param bool                    $display Whether output is for display purposes or not.
-             */
+			/**
+			 * Filter to adjust the unit prices for a certain variation right before returning.
+			 * Last change to adjust unit prices before handing them over for further processing.
+			 *
+			 * @param array $unit_prices Array containing unit price data.
+			 * @param WC_GZD_Product_Variable $product The product object.
+			 * @param bool $display Whether output is for display purposes or not.
+			 *
+			 * @since 1.8.3
+			 *
+			 */
 			$this->unit_prices_array[ $price_hash ] = apply_filters( 'woocommerce_gzd_variation_unit_prices', $this->unit_prices_array[ $price_hash ], $this, $display );
 		}
 
 		return $this->unit_prices_array[ $price_hash ];
 	}
-
 }

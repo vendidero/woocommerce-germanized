@@ -19,8 +19,9 @@ class WC_GZD_Legal_Checkbox_Manager {
 	);
 
 	public static function instance() {
-		if ( is_null( self::$_instance ) )
+		if ( is_null( self::$_instance ) ) {
 			self::$_instance = new self();
+		}
 
 		return self::$_instance;
 	}
@@ -28,7 +29,7 @@ class WC_GZD_Legal_Checkbox_Manager {
 	public function __construct() {
 		$this->checkboxes = array();
 
-		add_action( 'woocommerce_after_checkout_validation', array( $this, 'validate_checkout' ), 1, 1 );
+		add_action( 'woocommerce_after_checkout_validation', array( $this, 'validate_checkout' ), 1, 2 );
 		add_filter( 'woocommerce_process_registration_errors', array( $this, 'validate_register' ), 10, 1 );
 		add_action( 'woocommerce_before_pay_action', array( $this, 'validate_pay_for_order' ), 10, 1 );
 		add_filter( 'pre_comment_approved', array( $this, 'validate_reviews' ), 10, 2 );
@@ -36,14 +37,22 @@ class WC_GZD_Legal_Checkbox_Manager {
 		// Cannot use after_setup_theme here because language packs are not yet loaded
 		add_action( 'init', array( $this, 'do_register_action' ), 50 );
 
-		add_action( 'woocommerce_gzd_run_legal_checkboxes_checkout', array( $this, 'show_conditionally_checkout' ), 10 );
+		add_action( 'woocommerce_gzd_run_legal_checkboxes_checkout', array(
+			$this,
+			'show_conditionally_checkout'
+		), 10 );
 		add_filter( 'woocommerce_update_order_review_fragments', array( $this, 'refresh_fragments_checkout' ), 10, 1 );
 	}
 
 	public function refresh_fragments_checkout( $fragments ) {
 		$this->maybe_do_hooks( 'checkout' );
 
-		foreach( $this->get_checkboxes( array( 'locations' => 'checkout', 'do_refresh_fragments' => true ) ) as $id => $checkbox ) {
+		foreach (
+			$this->get_checkboxes( array(
+				'locations'            => 'checkout',
+				'do_refresh_fragments' => true
+			) ) as $id => $checkbox
+		) {
 			ob_start();
 			$checkbox->render();
 			$html = ob_get_clean();
@@ -56,13 +65,14 @@ class WC_GZD_Legal_Checkbox_Manager {
 
 	public function get_core_checkbox_ids() {
 
-        /**
-         * Filter that returns the core checkbox ids.
-         *
-         * @since 2.0.0
-         *
-         * @param array $checkbox_ids Array containg checkbox ids.
-         */
+		/**
+		 * Filter that returns the core checkbox ids.
+		 *
+		 * @param array $checkbox_ids Array containg checkbox ids.
+		 *
+		 * @since 2.0.0
+		 *
+		 */
 		return apply_filters( 'woocommerce_gzd_legal_checkbox_core_ids', $this->core_checkboxes );
 	}
 
@@ -70,7 +80,7 @@ class WC_GZD_Legal_Checkbox_Manager {
 		return array(
 			'{term_link}'           => '<a href="' . esc_url( wc_gzd_get_page_permalink( 'terms' ) ) . '" target="_blank">',
 			'{/term_link}'          => '</a>',
-			'{revocation_link}'     =>'<a href="' . esc_url( wc_gzd_get_page_permalink( 'revocation' ) ) . '" target="_blank">',
+			'{revocation_link}'     => '<a href="' . esc_url( wc_gzd_get_page_permalink( 'revocation' ) ) . '" target="_blank">',
 			'{/revocation_link}'    => '</a>',
 			'{data_security_link}'  => '<a href="' . esc_url( wc_gzd_get_page_permalink( 'data_security' ) ) . '" target="_blank">',
 			'{/data_security_link}' => '</a>',
@@ -101,9 +111,9 @@ class WC_GZD_Legal_Checkbox_Manager {
 			'html_id'              => 'data-download',
 			'html_name'            => 'download-revocate',
 			'html_wrapper_classes' => array( 'legal' ),
-			'label'                =>  __( 'For digital products: I strongly agree that the execution of the agreement starts before the revocation period has expired. I am aware that my right of withdrawal ceases with the beginning of the agreement.', 'woocommerce-germanized' ),
+			'label'                => __( 'For digital products: I strongly agree that the execution of the agreement starts before the revocation period has expired. I am aware that my right of withdrawal ceases with the beginning of the agreement.', 'woocommerce-germanized' ),
 			'label_args'           => $this->get_legal_label_args(),
-			'error_message'        =>  __( 'To retrieve direct access to digital content you have to agree to the loss of your right of withdrawal.', 'woocommerce-germanized' ),
+			'error_message'        => __( 'To retrieve direct access to digital content you have to agree to the loss of your right of withdrawal.', 'woocommerce-germanized' ),
 			'is_mandatory'         => true,
 			'priority'             => 1,
 			'is_enabled'           => true,
@@ -121,7 +131,7 @@ class WC_GZD_Legal_Checkbox_Manager {
 			'html_wrapper_classes' => array( 'legal' ),
 			'label'                => __( 'For services: I demand and acknowledge the immediate performance of the service before the expiration of the withdrawal period. I acknowledge that thereby I lose my right to cancel once the service has begun.', 'woocommerce-germanized' ),
 			'label_args'           => $this->get_legal_label_args(),
-			'error_message'        =>  __( 'To allow the immediate performance of the services you have to agree to the loss of your right of withdrawal.', 'woocommerce-germanized' ),
+			'error_message'        => __( 'To allow the immediate performance of the services you have to agree to the loss of your right of withdrawal.', 'woocommerce-germanized' ),
 			'is_mandatory'         => true,
 			'priority'             => 2,
 			'is_enabled'           => true,
@@ -156,9 +166,9 @@ class WC_GZD_Legal_Checkbox_Manager {
 			'html_id'              => 'data-age-verification',
 			'html_name'            => 'age-verification',
 			'html_wrapper_classes' => array( 'legal' ),
-			'label'                =>  __( 'I hereby confirm that I\'m at least {age} years old.', 'woocommerce-germanized' ),
+			'label'                => __( 'I hereby confirm that I\'m at least {age} years old.', 'woocommerce-germanized' ),
 			'label_args'           => array_merge( $this->get_legal_label_args(), array( '{age}' => '' ) ),
-			'error_message'        =>  __( 'Please confirm your age.', 'woocommerce-germanized' ),
+			'error_message'        => __( 'Please confirm your age.', 'woocommerce-germanized' ),
 			'is_mandatory'         => true,
 			'priority'             => 5,
 			'is_enabled'           => true,
@@ -174,7 +184,7 @@ class WC_GZD_Legal_Checkbox_Manager {
 			'html_id'              => 'reg_data_privacy',
 			'html_name'            => 'privacy',
 			'html_wrapper_classes' => array( 'legal', 'form-row-wide', 'terms-privacy-policy' ),
-			'label'                =>  __( 'Yes, I’d like create a new account and have read and understood the {data_security_link}data privacy statement{/data_security_link}.', 'woocommerce-germanized' ),
+			'label'                => __( 'Yes, I’d like create a new account and have read and understood the {data_security_link}data privacy statement{/data_security_link}.', 'woocommerce-germanized' ),
 			'label_args'           => $this->get_legal_label_args(),
 			'is_mandatory'         => true,
 			'is_enabled'           => true,
@@ -197,7 +207,10 @@ class WC_GZD_Legal_Checkbox_Manager {
 				'html_name'            => 'direct_debit_legal',
 				'html_wrapper_classes' => array( 'legal', 'direct-debit-checkbox' ),
 				'label'                => __( 'I hereby agree to the {link}direct debit mandate{/link}.', 'woocommerce-germanized' ),
-				'label_args'           => array( '{link}' => '<a href="' . $ajax_url . '" id="show-direct-debit-trigger" rel="prettyPhoto">', '{/link}' => '</a>' ),
+				'label_args'           => array(
+					'{link}'  => '<a href="' . $ajax_url . '" id="show-direct-debit-trigger" rel="prettyPhoto">',
+					'{/link}' => '</a>'
+				),
 				'is_mandatory'         => true,
 				'error_message'        => __( 'Please accept the direct debit mandate.', 'woocommerce-germanized' ),
 				'priority'             => 5,
@@ -210,22 +223,24 @@ class WC_GZD_Legal_Checkbox_Manager {
 			) );
 		}
 
-        /**
-         * After core checkbox registration.
-         *
-         * Fires after Germanized has registered it's core legal checkboxes.
-         * Might be used to register additional checkboxes.
-         *
-         * ```php
-         * function ex_after_register_checkboxes( $manager ) {
-         *      wc_gzd_register_legal_checkbox( array() );
-         * }
-         * add_action( 'woocommerce_gzd_register_legal_core_checkboxes', 'ex_after_register_checkboxes', 10, 1 );
-         *
-         * @since 2.0.0
-         *
-         * @param WC_GZD_Legal_Checkbox_Manager $this The legal checkbox manager instance.
-         */
+		/**
+		 * After core checkbox registration.
+		 *
+		 * Fires after Germanized has registered it's core legal checkboxes.
+		 * Might be used to register additional checkboxes.
+		 *
+		 * ```php
+		 * function ex_after_register_checkboxes( $manager ) {
+		 *      wc_gzd_register_legal_checkbox( array() );
+		 * }
+		 * add_action( 'woocommerce_gzd_register_legal_core_checkboxes', 'ex_after_register_checkboxes', 10, 1 );
+		 * ```
+		 *
+		 * @param WC_GZD_Legal_Checkbox_Manager $this The legal checkbox manager instance.
+		 *
+		 * @since 2.0.0
+		 *
+		 */
 		do_action( 'woocommerce_gzd_register_legal_core_checkboxes', $this );
 	}
 
@@ -234,12 +249,13 @@ class WC_GZD_Legal_Checkbox_Manager {
 		if ( $checkbox = $this->get_checkbox( 'download' ) ) {
 			if ( $checkbox->is_enabled() ) {
 
-				$items = WC()->cart->get_cart();
+				$items           = WC()->cart->get_cart();
 				$is_downloadable = false;
 
 				if ( ! empty( $items ) ) {
 					foreach ( $items as $cart_item_key => $values ) {
-						$_product = apply_filters( 'woocommerce_cart_item_product', $values[ 'data' ], $values, $cart_item_key );
+						$_product = apply_filters( 'woocommerce_cart_item_product', $values['data'], $values, $cart_item_key );
+
 						if ( wc_gzd_is_revocation_exempt( $_product ) ) {
 							$is_downloadable = true;
 						}
@@ -257,7 +273,6 @@ class WC_GZD_Legal_Checkbox_Manager {
 		// Age verification
 		if ( $checkbox = $this->get_checkbox( 'age_verification' ) ) {
 			if ( $checkbox->is_enabled() ) {
-
 				if ( wc_gzd_cart_needs_age_verification() ) {
 					wc_gzd_update_legal_checkbox( 'age_verification', array(
 						'is_shown'   => true,
@@ -312,8 +327,8 @@ class WC_GZD_Legal_Checkbox_Manager {
 
 				if ( $is_enabled ) {
 					wc_gzd_update_legal_checkbox( 'parcel_delivery', array(
-						'label_args'   => array( '{shipping_method_title}' => implode( ', ', $titles ) ),
-						'is_shown'     => true,
+						'label_args' => array( '{shipping_method_title}' => implode( ', ', $titles ) ),
+						'is_shown'   => true,
 					) );
 				}
 			}
@@ -330,7 +345,7 @@ class WC_GZD_Legal_Checkbox_Manager {
 	}
 
 	public function update_options( $options ) {
-		$result = update_option( 'woocommerce_gzd_legal_checkboxes_settings', $options, false );
+		$result        = update_option( 'woocommerce_gzd_legal_checkboxes_settings', $options, false );
 		$this->options = $options;
 
 		return $result;
@@ -341,19 +356,20 @@ class WC_GZD_Legal_Checkbox_Manager {
 		$this->checkboxes = array();
 		$this->register_core_checkboxes();
 
-        /**
-         * Before legal checkbox registration.
-         *
-         * Register legal checkboxes and populate settings.
-         *
-         * @since 2.0.0
-         *
-         * @param WC_GZD_Legal_Checkbox_Manager $this The checkboxes manager instance.
-         */
+		/**
+		 * Before legal checkbox registration.
+		 *
+		 * Register legal checkboxes and populate settings.
+		 *
+		 * @param WC_GZD_Legal_Checkbox_Manager $this The checkboxes manager instance.
+		 *
+		 * @since 2.0.0
+		 *
+		 */
 		do_action( 'woocommerce_gzd_register_legal_checkboxes', $this );
 
 		// Make sure we are not registering core checkboxes again
-		foreach( $this->get_options() as $id => $checkbox_args ) {
+		foreach ( $this->get_options() as $id => $checkbox_args ) {
 			if ( isset( $checkbox_args['id'] ) ) {
 				unset( $checkbox_args['id'] );
 			}
@@ -365,41 +381,48 @@ class WC_GZD_Legal_Checkbox_Manager {
 			}
 		}
 
-        /**
-         * After legal checkbox registration.
-         *
-         * Fires after the registration is completed. Might be used to alter settings and registered checkboxes.
-         *
-         * @since 2.0.0
-         *
-         * @param WC_GZD_Legal_Checkbox_Manager $this The checkboxes manager instance.
-         */
+		/**
+		 * After legal checkbox registration.
+		 *
+		 * Fires after the registration is completed. Might be used to alter settings and registered checkboxes.
+		 *
+		 * @param WC_GZD_Legal_Checkbox_Manager $this The checkboxes manager instance.
+		 *
+		 * @since 2.0.0
+		 *
+		 */
 		do_action( 'woocommerce_gzd_registered_legal_checkboxes', $this );
 	}
 
 	public function validate_pay_for_order( $order ) {
 		$this->maybe_do_hooks( 'pay_for_order' );
 
-		foreach( $this->get_checkboxes( array( 'locations' => 'pay_for_order' ) ) as $id => $checkbox ) {
+		foreach ( $this->get_checkboxes( array( 'locations' => 'pay_for_order' ) ) as $id => $checkbox ) {
 			$value = isset( $_POST[ $checkbox->get_html_name() ] ) ? $_POST[ $checkbox->get_html_name() ] : '';
 
-			if( ! $checkbox->validate( $value, 'pay_for_order' ) ) {
+			if ( ! $checkbox->validate( $value, 'pay_for_order' ) ) {
 				wc_add_notice( $checkbox->get_error_message(), 'error' );
 			}
 		}
 	}
 
-	public function validate_checkout( $data ) {
-		if ( isset( $_POST[ 'woocommerce_checkout_update_totals' ] ) )
+	/**
+	 * @param array $data
+	 * @param WP_Error $errors
+	 */
+	public function validate_checkout( $data, $errors ) {
+
+		if ( isset( $_POST['woocommerce_checkout_update_totals'] ) ) {
 			return;
+		}
 
 		$this->maybe_do_hooks( 'checkout' );
 
-		foreach( $this->get_checkboxes( array( 'locations' => 'checkout' ) ) as $id => $checkbox ) {
+		foreach ( $this->get_checkboxes( array( 'locations' => 'checkout' ) ) as $id => $checkbox ) {
 			$value = isset( $_POST[ $checkbox->get_html_name() ] ) ? $_POST[ $checkbox->get_html_name() ] : '';
 
-			if( ! $checkbox->validate( $value, 'checkout' ) ) {
-				wc_add_notice( $checkbox->get_error_message(), 'error' );
+			if ( ! $checkbox->validate( $value, 'checkout' ) ) {
+				$errors->add( 'checkbox', $checkbox->get_error_message() );
 			}
 		}
 	}
@@ -412,11 +435,11 @@ class WC_GZD_Legal_Checkbox_Manager {
 
 		$this->maybe_do_hooks( 'reviews' );
 
-		foreach( $this->get_checkboxes( array( 'locations' => 'reviews' ) ) as $id => $checkbox ) {
+		foreach ( $this->get_checkboxes( array( 'locations' => 'reviews' ) ) as $id => $checkbox ) {
 
 			$value = isset( $_POST[ $checkbox->get_html_name() ] ) ? $_POST[ $checkbox->get_html_name() ] : '';
 
-			if( ! $checkbox->validate( $value, 'reviews' ) ) {
+			if ( ! $checkbox->validate( $value, 'reviews' ) ) {
 				return new WP_Error( $checkbox->get_html_name(), $checkbox->get_error_message(), 409 );
 			}
 		}
@@ -427,11 +450,11 @@ class WC_GZD_Legal_Checkbox_Manager {
 	public function validate_register( $validation_error ) {
 		$this->maybe_do_hooks( 'register' );
 
-		foreach( $this->get_checkboxes( array( 'locations' => 'register' ) ) as $id => $checkbox ) {
+		foreach ( $this->get_checkboxes( array( 'locations' => 'register' ) ) as $id => $checkbox ) {
 
 			$value = isset( $_POST[ $checkbox->get_html_name() ] ) ? $_POST[ $checkbox->get_html_name() ] : '';
 
-			if( ! $checkbox->validate( $value, 'register' ) ) {
+			if ( ! $checkbox->validate( $value, 'register' ) ) {
 				return new WP_Error( $checkbox->get_html_name(), $checkbox->get_error_message() );
 			}
 		}
@@ -441,13 +464,14 @@ class WC_GZD_Legal_Checkbox_Manager {
 
 	public function get_locations() {
 
-        /**
-         * Filter to add/remove legal checkbox locations.
-         *
-         * @since 2.0.0
-         *
-         * @param array $locations Key => value array containing location id and title.
-         */
+		/**
+		 * Filter to add/remove legal checkbox locations.
+		 *
+		 * @param array $locations Key => value array containing location id and title.
+		 *
+		 * @since 2.0.0
+		 *
+		 */
 		return apply_filters( 'woocommerce_gzd_legal_checkbox_locations', array(
 			'checkout'      => __( 'Checkout', 'woocommerce-germanized' ),
 			'register'      => __( 'Register form', 'woocommerce-germanized' ),
@@ -460,6 +484,7 @@ class WC_GZD_Legal_Checkbox_Manager {
 
 		if ( $this->get_checkbox( $id ) ) {
 			$this->checkboxes[ $id ]->update( $args );
+
 			return true;
 		}
 
@@ -469,6 +494,7 @@ class WC_GZD_Legal_Checkbox_Manager {
 	public function delete( $id ) {
 		if ( $checkbox = $this->get_checkbox( $id ) ) {
 			unset( $this->checkboxes[ $id ] );
+
 			return true;
 		}
 
@@ -496,8 +522,8 @@ class WC_GZD_Legal_Checkbox_Manager {
 		);
 
 		// Make sure we do understand yes and no as bools
-		foreach( $bools as $bool ) {
-			$args[ $bool ] = wc_gzd_string_to_bool( $args[ $bool ] );
+		foreach ( $bools as $bool ) {
+			$args[ $bool ] = wc_string_to_bool( $args[ $bool ] );
 		}
 
 		if ( empty( $args['html_name'] ) ) {
@@ -512,7 +538,7 @@ class WC_GZD_Legal_Checkbox_Manager {
 			$args['locations'] = array( $args['locations'] );
 		}
 
-		foreach( $args['locations'] as $location ) {
+		foreach ( $args['locations'] as $location ) {
 			if ( ! in_array( $location, array_keys( $this->get_locations() ) ) ) {
 				return new WP_Error( 'checkbox_location_inexistent', sprintf( __( 'Checkbox location %s does not exist.', 'woocommerce-germanized' ), $location ) );
 			}
@@ -522,8 +548,15 @@ class WC_GZD_Legal_Checkbox_Manager {
 			$args['supporting_locations'] = array_keys( $this->get_locations() );
 		}
 
-		$args['html_wrapper_classes'] = array_merge( $args['html_wrapper_classes'], array( 'form-row', 'checkbox-' . $args['html_id'] ) );
-		$args['html_classes']         = array_merge( $args['html_classes'], array( 'woocommerce-form__input', 'woocommerce-form__input-checkbox', 'input-checkbox' ) );
+		$args['html_wrapper_classes'] = array_merge( $args['html_wrapper_classes'], array(
+			'form-row',
+			'checkbox-' . $args['html_id']
+		) );
+		$args['html_classes']         = array_merge( $args['html_classes'], array(
+			'woocommerce-form__input',
+			'woocommerce-form__input-checkbox',
+			'input-checkbox'
+		) );
 
 		if ( $args['hide_input'] ) {
 			$args['is_mandatory'] = false;
@@ -541,23 +574,25 @@ class WC_GZD_Legal_Checkbox_Manager {
 			return new WP_Error( 'checkbox_exists', sprintf( __( 'Checkbox with name %s does already exist.', 'woocommerce-germanized' ), $id ) );
 		}
 
-        /**
-         * Filter legal checkbox arguments before registering.
-         *
-         * @since 2.0.0
-         *
-         * @param array $args Arguments passed to register checkbox.
-         * @param int   $id   Checkbox id.
-         */
-		$args      = apply_filters( 'woocommerce_gzd_register_legal_checkbox_args', $args, $id );
+		/**
+		 * Filter legal checkbox arguments before registering.
+		 *
+		 * @param array $args Arguments passed to register checkbox.
+		 * @param int $id Checkbox id.
+		 *
+		 * @since 2.0.0
+		 *
+		 */
+		$args = apply_filters( 'woocommerce_gzd_register_legal_checkbox_args', $args, $id );
 
-        /**
-         * Filter to adjust default checkbox classname. Defaults to `WC_GZD_Legal_Checkbox`.
-         *
-         * @since 2.0.0
-         *
-         * @param string $classname The name of the checkbox classname.
-         */
+		/**
+		 * Filter to adjust default checkbox classname. Defaults to `WC_GZD_Legal_Checkbox`.
+		 *
+		 * @param string $classname The name of the checkbox classname.
+		 *
+		 * @since 2.0.0
+		 *
+		 */
 		$classname = apply_filters( 'woocommerce_gzd_legal_checkbox_classname', 'WC_GZD_Legal_Checkbox' );
 
 		$this->checkboxes[ $id ] = new $classname( $id, $args );
@@ -583,7 +618,7 @@ class WC_GZD_Legal_Checkbox_Manager {
 		$checkboxes = $this->filter( $args, 'AND' );
 
 		if ( ! empty( $context ) && 'json' === $context ) {
-			foreach( $checkboxes as $id => $checkbox ) {
+			foreach ( $checkboxes as $id => $checkbox ) {
 				$checkboxes[ $id ] = $checkbox->get_data();
 			}
 		}
@@ -601,8 +636,8 @@ class WC_GZD_Legal_Checkbox_Manager {
 			foreach ( $args as $m_key => $m_value ) {
 
 				$getter_bool = $m_key;
-				$getter = 'get_' . $m_key;
-				$obj_value = null;
+				$getter      = 'get_' . $m_key;
+				$obj_value   = null;
 
 				if ( is_callable( array( $obj, $getter_bool ) ) ) {
 					$obj_value = $obj->$getter_bool();
@@ -615,11 +650,11 @@ class WC_GZD_Legal_Checkbox_Manager {
 				if ( ! is_null( $obj_value ) ) {
 					if ( is_array( $obj_value ) && ! is_array( $m_value ) ) {
 						if ( in_array( $m_value, $obj_value ) ) {
-							$matched++;
+							$matched ++;
 						}
 					} else {
 						if ( $m_value == $obj_value ) {
-							$matched++;
+							$matched ++;
 						}
 					}
 				}
@@ -645,7 +680,7 @@ class WC_GZD_Legal_Checkbox_Manager {
 		if ( ! empty( $checkboxes ) ) {
 			$checkboxes = $this->sort( $checkboxes );
 
-			foreach( $checkboxes as $id => $checkbox ) {
+			foreach ( $checkboxes as $id => $checkbox ) {
 				$checkbox->render();
 			}
 		}
@@ -653,55 +688,62 @@ class WC_GZD_Legal_Checkbox_Manager {
 
 	protected function sort( $checkboxes = array() ) {
 		uasort( $checkboxes, array( $this, '_uasort_callback' ) );
+
 		return $checkboxes;
 	}
 
 	public function _uasort_callback( $checkbox1, $checkbox2 ) {
-		if ( $checkbox1->get_priority() == $checkbox2->get_priority() ) return 0;
-		return ( $checkbox1->get_priority() < $checkbox2->get_priority() ) ? -1 : 1;
+		if ( $checkbox1->get_priority() == $checkbox2->get_priority() ) {
+			return 0;
+		}
+
+		return ( $checkbox1->get_priority() < $checkbox2->get_priority() ) ? - 1 : 1;
 	}
 
 	private function maybe_do_hooks( $location = 'checkout' ) {
 
 		if ( ! did_action( 'woocommerce_gzd_run_legal_checkboxes' ) ) {
 
-            /**
-             * Before render checkboxes.
-             *
-             * This hook is used to alter checkboxes before rendering and to
-             * dynamically choose whether to display or hide them.
-             *
-             * @since 2.0.0
-             *
-             * @param WC_GZD_Legal_Checkbox_Manager $this The checkboxes manager instance.
-             */
+			/**
+			 * Before render checkboxes.
+			 *
+			 * This hook is used to alter checkboxes before rendering and to
+			 * dynamically choose whether to display or hide them.
+			 *
+			 * @param WC_GZD_Legal_Checkbox_Manager $this The checkboxes manager instance.
+			 *
+			 * @since 2.0.0
+			 *
+			 */
 			do_action( 'woocommerce_gzd_run_legal_checkboxes', $this );
 		}
 
 		if ( ! did_action( 'woocommerce_gzd_run_legal_checkboxes_' . $location ) ) {
 
-            /**
-             * Before render checkboxes location.
-             *
-             * This hook is used to alter checkboxes before rendering a specific location `$location`
-             * e.g. checkout and to dynamically choose whether to display or hide them.
-             *
-             * @see WC_GZD_Legal_Checkbox_Manager::get_locations()
-             *
-             * ```php
-             * function ex_filter_checkboxes_checkout( $manager ) {
-             *      if ( $manager = $this->get_checkbox( 'download' ) ) {
-             *          wc_gzd_update_legal_checkbox( 'download', array(
-             *               'is_shown' => true,
-             *          ) );
-             *      }
-             * }
-             * add_action( 'woocommerce_gzd_run_legal_checkboxes_checkout', 'ex_filter_checkboxes_checkout', 10, 1 );
-             *
-             * @since 2.0.0
-             *
-             * @param WC_GZD_Legal_Checkbox_Manager $this The checkboxes manager instance.
-             */
+			/**
+			 * Before render checkboxes location.
+			 *
+			 * This hook is used to alter checkboxes before rendering a specific location `$location`
+			 * e.g. checkout and to dynamically choose whether to display or hide them.
+			 *
+			 * @param WC_GZD_Legal_Checkbox_Manager $this The checkboxes manager instance.
+			 *
+			 * @since 2.0.0
+			 *
+			 * @see WC_GZD_Legal_Checkbox_Manager::get_locations()
+			 *
+			 * ```php
+			 * function ex_filter_checkboxes_checkout( $manager ) {
+			 *      if ( $manager = $this->get_checkbox( 'download' ) ) {
+			 *          wc_gzd_update_legal_checkbox( 'download', array(
+			 *               'is_shown' => true,
+			 *          ) );
+			 *      }
+			 * }
+			 * add_action( 'woocommerce_gzd_run_legal_checkboxes_checkout', 'ex_filter_checkboxes_checkout', 10, 1 );
+			 * ```
+			 *
+			 */
 			do_action( 'woocommerce_gzd_run_legal_checkboxes_' . $location, $this );
 		}
 	}

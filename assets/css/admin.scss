@@ -1,0 +1,240 @@
+table.data_table tr td p.form-field {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.woocommerce-gzd-message {
+  position: relative;
+  overflow: hidden;
+  
+  ul {
+    list-style-type: disc;
+    padding-left: 1.5em;
+  }
+
+  .notice-dismiss {
+    position: static;
+    float: right;
+    padding: 0 15px 10px 28px;
+    margin-top: -10px;
+    font-size: 13px;
+    line-height: 1.2em;
+    text-decoration: none;
+
+    &::before {
+      position: relative;
+      top: 18px;
+      left: -20px;
+      -webkit-transition: all .1s ease-in-out;
+      transition: all .1s ease-in-out;
+    }
+  }
+
+  p.submit {
+    .button {
+      margin-right: 1em;
+    }
+  }
+}
+
+.variable_cart_mini_desc .wp-editor-tools {
+  margin-top: -3em;
+}
+
+.variable_cart_mini_desc_pre .wp-editor-tools {
+  margin-top: -2em;
+}
+
+.wc-gzd-resend-activation-link {
+  margin-top: 1em !important;
+}
+
+.wc-gzd-unit-price-disabled-notice {
+  margin: 1em 0 !important;
+  box-sizing: border-box;
+  display: none;
+  padding: 5px 12px;
+}
+
+._billing_title_field, ._billing_address_1_field, ._shipping_title_field, ._shipping_address_1_field  {
+  width: 100% !important;
+}
+
+.wc-gzd-button {
+  background-color: #639aff !important;
+  background-image: linear-gradient(120deg, #639aff 0, #9a4dff 100%) !important;
+  color: #fff !important;
+  box-shadow: inset 0 0 30px rgba(255, 255, 255, 0), 0 19px 25px -17px rgba(3, 39, 64, 0.4) !important;
+  border: 1px solid transparent !important;
+  text-shadow: none !important;
+  transition: transform .3s, box-shadow .3s ease-in-out, color .3s ease-in-out, -webkit-transform .3s;
+
+  &:hover {
+    -webkit-transform: scale(1.02);
+    transform: scale(1.02);
+    cursor: pointer;
+  }
+
+  .wc-gzd-pro {
+    background: #fff;
+    color: #000;
+
+    &:hover {
+      color: #000;
+    }
+  }
+}
+
+.wc-gzd-button-wrapper .button {
+  margin-right: 1em;
+}
+
+.wc-gzd-pro {
+  font-size: 9px;
+  border-radius: 3px;
+  line-height: 9px;
+  color: #FFF;
+  text-align: center;
+  text-transform: uppercase;
+  padding: 1px 3px;
+  position: relative;
+  top: -1px;
+  background: #222;
+  font-style: normal;
+  opacity: 1 !important;
+  text-decoration: none;
+}
+
+.wc-gzd-premium-section-tab {
+  background: #e4e4e4;
+  border: 1px solid #CCC;
+  color: #555;
+  padding: 0 3px;
+}
+
+.wc-gzd-pro:visited {
+  color: #FFF;
+}
+
+.wc-gzd-pro:hover {
+  color: #FFF;
+}
+
+.tourbus-leg-inner .wc-gzd-pro {
+  top: -3px;
+}
+
+p._unit_price_auto_field label {
+  display: block !important;
+  margin-bottom: 5px;
+}
+
+._unit_price_auto_field label, ._unit_price_auto_field input, ._unit_price_auto_field .wc-gzd-premium-desc {
+  opacity: 0.6;
+}
+
+table.wc-gzd-tax-example tr th, table.wc-gzd-tax-example tr td {
+  padding: 5px;
+  font-size: 0.9em;
+}
+
+table.wc-gzd-tax-example tr th:first-child, table.wc-gzd-tax-example tr td:first-child {
+  padding-left: 0;
+}
+
+#gzd-admin-sepa {
+  padding-top: 1em;
+  display: block;
+  clear: both;
+  width: 100%;
+}
+
+.wc-action-button-xml:after {
+  content: "\f475";
+}
+
+#order_data .order_data_column a.download_sepa_xml {
+  width: 14px;
+  height: 0;
+  padding: 14px 0 0;
+  margin: 0 0 0 6px;
+  overflow: hidden;
+  position: relative;
+  color: #999;
+  border: 0;
+  float: right;
+}
+
+#order_data .order_data_column a.download_sepa_xml::after {
+  font-family: Dashicons;
+  content: '\f546';
+  position: absolute;
+  top: 0;
+  left: 0;
+  text-align: center;
+  vertical-align: top;
+  line-height: 14px;
+  font-size: 14px;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+}
+
+#order_data .order_data_column ._direct_debit_holder_field, #order_data .order_data_column ._direct_debit_iban_field, #order_data .order_data_column ._direct_debit_bic_field, #order_data .order_data_column ._direct_debit_mandate_id_field {
+  clear: left;
+  width: 100% !important;
+}
+
+#order_data .order_data_column ._direct_debit_holder_field input, #order_data .order_data_column ._direct_debit_iban_field input, #order_data .order_data_column ._direct_debit_bic_field input, #order_data .order_data_column ._direct_debit_mandate_id_field input {
+  width: 100%;
+}
+
+#order_data ._shipping_parcelshop_post_number_field {
+  clear: left;
+  width: 100% !important;
+}
+
+.wc-gzd-text-red {
+  color: red;
+}
+
+.wc-gzd-status-text {
+  font-weight: 600;
+}
+
+.wc-gzd-text-green {
+  color: green;
+}
+
+.order_actions .xml {
+  display: block;
+  text-indent: -9999px;
+  position: relative;
+  padding: 0!important;
+  height: 2em!important;
+  width: 2em;
+}
+
+.order_actions .xml:after {
+  content: "\e00d";
+  font-family: WooCommerce;
+  text-indent: 0;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  speak: none;
+  font-variant: normal;
+  text-transform: none;
+  -webkit-font-smoothing: antialiased;
+  top: 0;
+  left: 0;
+  line-height: 1.85;
+  margin: 0;
+  text-align: center;
+  font-weight: 400;
+}
+
+.parcel-delivery-checkbox-status {
+  float: left;
+  width: 100%;
+  clear: both;
+}

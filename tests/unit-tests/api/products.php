@@ -39,7 +39,7 @@ class WC_GZD_Products_API extends WC_GZD_REST_Unit_Test_Case {
 		$this->assertEquals( '1', $product['unit_price']['product'] );
 		$this->assertEquals( '100.0', $product['unit_price']['price_regular'] );
 		$this->assertEquals( '90.0', $product['unit_price']['price_sale'] );
-		$this->assertEquals( 'This is a test', trim(strip_tags($product['mini_desc'])) );
+		$this->assertEquals( 'This is a test', trim( strip_tags( $product['mini_desc'] ) ) );
 		$this->assertEquals( true, $product['service'] );
 		$this->assertEquals( true, $product['differential_taxation'] );
 		$this->assertEquals( true, $product['free_shipping'] );
@@ -56,18 +56,18 @@ class WC_GZD_Products_API extends WC_GZD_REST_Unit_Test_Case {
 		wp_set_current_user( $this->user );
 
 		// test simple products
-		$simple   = WC_GZD_Helper_Product::create_simple_product();
-		$term     = wp_insert_term( '3-4 days', 'product_delivery_time', array( 'slug' => '3-4-days' ) );
+		$simple = WC_GZD_Helper_Product::create_simple_product();
+		$term   = wp_insert_term( '3-4 days', 'product_delivery_time', array( 'slug' => '3-4-days' ) );
 
 		$request = new WP_REST_Request( 'PUT', '/wc/v2/products/' . $simple->get_id() );
 		$request->set_body_params( array(
-			'delivery_time'             => array( 'id' => $term[ 'term_id' ] ),
-			'unit_price'                => array( 'price_regular' => '80.0', 'price_sale' => '70.0' ),
-			'differential_taxation'     => false,
+			'delivery_time'         => array( 'id' => $term['term_id'] ),
+			'unit_price'            => array( 'price_regular' => '80.0', 'price_sale' => '70.0' ),
+			'differential_taxation' => false,
 		) );
 
 		$response = $this->server->dispatch( $request );
-		$data  = $response->get_data();
+		$data     = $response->get_data();
 
 		// GET Product
 		$response = $this->server->dispatch( new WP_REST_Request( 'GET', '/wc/v2/products/' . $simple->get_id() ) );
@@ -80,7 +80,7 @@ class WC_GZD_Products_API extends WC_GZD_REST_Unit_Test_Case {
 		$this->assertEquals( 'new-price', $product['sale_price_label']['slug'] );
 		$this->assertEquals( 'old-price', $product['sale_price_regular_label']['slug'] );
 		$this->assertEquals( '1', $product['unit_price']['product'] );
-		$this->assertEquals( 'This is a test', trim(strip_tags($product['mini_desc'])) );
+		$this->assertEquals( 'This is a test', trim( strip_tags( $product['mini_desc'] ) ) );
 		$this->assertEquals( true, $product['free_shipping'] );
 		$this->assertEquals( false, $product['differential_taxation'] );
 		$this->assertEquals( true, $product['service'] );
@@ -97,17 +97,17 @@ class WC_GZD_Products_API extends WC_GZD_REST_Unit_Test_Case {
 		wp_set_current_user( $this->user );
 
 		$product = WC_Helper_Product::create_simple_product();
-		$product->set_regular_price(10);
-		$product->set_sale_price(9);
+		$product->set_regular_price( 10 );
+		$product->set_sale_price( 9 );
 
 		$data = array(
-			'_unit' => 'g',
-			'_unit_base' => '10',
-			'_unit_product' => '1',
+			'_unit'            => 'g',
+			'_unit_base'       => '10',
+			'_unit_product'    => '1',
 			'_unit_price_auto' => true,
 		);
 
-		foreach( $data as $key => $value ) {
+		foreach ( $data as $key => $value ) {
 			$product->update_meta_data( $key, $value );
 		}
 
@@ -118,12 +118,12 @@ class WC_GZD_Products_API extends WC_GZD_REST_Unit_Test_Case {
 		// Update the product without inserting unit_price_auto
 		$request = new WP_REST_Request( 'PUT', '/wc/v2/products/' . $simple->get_id() );
 		$request->set_body_params( array(
-			'regular_price'         => '20',
-			'sale_price'            => '10',
+			'regular_price' => '20',
+			'sale_price'    => '10',
 		) );
 
 		$response = $this->server->dispatch( $request );
-		$data  = $response->get_data();
+		$data     = $response->get_data();
 
 		// GET Product
 		$response = $this->server->dispatch( new WP_REST_Request( 'GET', '/wc/v2/products/' . $simple->get_id() ) );
@@ -153,18 +153,18 @@ class WC_GZD_Products_API extends WC_GZD_REST_Unit_Test_Case {
 		$request = new WP_REST_Request( 'PUT', '/wc/v2/products/' . $variable->get_id() . '/variations/' . $variation_id );
 
 		$request->set_body_params( array(
-			'delivery_time'             => array( 'id' => $term[ 'term_id' ] ),
-			'unit_price'                => array( 'price_regular' => '80.0', 'price_sale' => '70.0', 'base' => 20 ),
-			'mini_desc'                 => 'This is a test',
-			'service'                   => false,
+			'delivery_time' => array( 'id' => $term['term_id'] ),
+			'unit_price'    => array( 'price_regular' => '80.0', 'price_sale' => '70.0', 'base' => 20 ),
+			'mini_desc'     => 'This is a test',
+			'service'       => false,
 		) );
 
 		$response = $this->server->dispatch( $request );
 		$data     = $response->get_data();
 
 		// GET
-		$response  = $this->server->dispatch( new WP_REST_Request( 'GET', '/wc/v2/products/' . $variable->get_id() . '/variations/' . $variation_id ) );
-		$product   = $response->get_data();
+		$response = $this->server->dispatch( new WP_REST_Request( 'GET', '/wc/v2/products/' . $variable->get_id() . '/variations/' . $variation_id ) );
+		$product  = $response->get_data();
 
 		$this->assertEquals( '3-4-days', $product['delivery_time']['slug'] );
 		$this->assertEquals( '80.0', $product['unit_price']['price_regular'] );
@@ -185,29 +185,29 @@ class WC_GZD_Products_API extends WC_GZD_REST_Unit_Test_Case {
 		wp_set_current_user( $this->user );
 
 		// test simple products
-		$simple   = WC_GZD_Helper_Product::create_simple_product();
-		$term = wp_insert_term( '3-4 days', 'product_delivery_time', array( 'slug' => '3-4-days' ) );
+		$simple    = WC_GZD_Helper_Product::create_simple_product();
+		$term      = wp_insert_term( '3-4 days', 'product_delivery_time', array( 'slug' => '3-4-days' ) );
 		$sale_term = wp_insert_term( 'Test Sale', 'product_price_label', array( 'slug' => 'test-sale' ) );
 
 		$request = new WP_REST_Request( 'PUT', '/wc/v2/products/' . $simple->get_id() );
 		$request->set_body_params( array(
-			'delivery_time'             => array( 'id' => $term[ 'term_id' ] ),
-			'sale_price_label'          => array( 'id' => $sale_term[ 'term_id' ] ),
-			'sale_price_regular_label'  => array( 'id' => $sale_term[ 'term_id' ] ),
-			'differential_taxation'     => false,
+			'delivery_time'            => array( 'id' => $term['term_id'] ),
+			'sale_price_label'         => array( 'id' => $sale_term['term_id'] ),
+			'sale_price_regular_label' => array( 'id' => $sale_term['term_id'] ),
+			'differential_taxation'    => false,
 		) );
 
 		$response = $this->server->dispatch( $request );
-		$data  = $response->get_data();
+		$data     = $response->get_data();
 
 		// Test whether term data is being available after updating the product if no term data as transmitted
 		$request = new WP_REST_Request( 'PUT', '/wc/v2/products/' . $simple->get_id() );
 		$request->set_body_params( array(
-			'differential_taxation'     => true,
+			'differential_taxation' => true,
 		) );
 
 		$response = $this->server->dispatch( $request );
-		$data  = $response->get_data();
+		$data     = $response->get_data();
 
 		// GET Product
 		$response = $this->server->dispatch( new WP_REST_Request( 'GET', '/wc/v2/products/' . $simple->get_id() ) );
@@ -225,12 +225,12 @@ class WC_GZD_Products_API extends WC_GZD_REST_Unit_Test_Case {
 		wp_set_current_user( $this->user );
 
 		// test simple products
-		$simple   = WC_GZD_Helper_Product::create_simple_product();
+		$simple  = WC_GZD_Helper_Product::create_simple_product();
 		$request = new WP_REST_Request( 'PUT', '/wc/v2/products/' . $simple->get_id() );
 		$request->set_body_params( array(
-			'delivery_time'             => array(),
-			'sale_price_label'          => array(),
-			'sale_price_regular_label'  => array(),
+			'delivery_time'            => array(),
+			'sale_price_label'         => array(),
+			'sale_price_regular_label' => array(),
 		) );
 
 		$response = $this->server->dispatch( $request );

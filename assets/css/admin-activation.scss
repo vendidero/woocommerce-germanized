@@ -1,0 +1,145 @@
+.wc-gzd-news {
+
+  p.price {
+    font-size: .8em;
+  }
+
+  .columns {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: -1em;
+    margin-right: -1em;
+
+    * {
+      box-sizing: border-box;
+    }
+
+    .col {
+      margin-right: 0;
+      padding: 0 1em;
+      width: 33.3333%;
+
+      h4 {
+        .dashicons {
+          margin-right: 5px;
+        }
+      }
+
+      &.align-center {
+        display: inline-flex;
+        align-self: center;
+      }
+    }
+
+    &.two-col {
+      .col {
+        width: 50%;
+      }
+    }
+  }
+}
+
+.wc-gzd-logo {
+  display: inline-block !important;
+  text-indent: -9999px;
+  width: 298px;
+  vertical-align: top;
+  margin-top: 2rem;
+  height: 89px;
+  background: url(../images/germanized.svg) no-repeat;
+  background-size: 298px auto;
+}
+.about-text {
+  display: inline-block;
+  padding: 0;
+  max-width: 50%;
+  width: 50%;
+  margin: 0;
+  margin-top: 2rem;
+  margin-left: 5%;
+}
+.dashboard_page_wc-gzd-about h1 {
+  width: 100%;
+  margin-right: 0;
+}
+.dashboard_page_wc-gzd-about h3 .wc-gzd-pro {
+  font-size: 0.7em;
+  margin-left: 1em;
+}
+.dashboard_page_wc-gzd-about .wc-vendipro-features {
+  margin-top: 0;
+  border: none;
+  padding-bottom: 15px;
+}
+.dashboard_page_wc-gzd-about .wc-vendipro-features div h4 {
+  margin-top: 0.5em;
+  font-size: 1.1em;
+  line-height: 1.1em;
+}
+.vendipro-buttons a, .vendipro-buttons p {
+  display: inline-block;
+}
+.vendipro-buttons p {
+  font-size: 0.8em;
+  padding-top: 3px;
+  margin: 0 0 0 5px;
+}
+.dashboard_page_wc-gzd-about .changelog {
+  margin-top: 3em;
+  border-top: 1px solid #CCC;
+  padding-top: 0;
+}
+.dashboard_page_wc-gzd-about .feature-section {
+  border: none;
+}
+.dashboard_page_wc-gzd-about .vendipro .left {
+  display: inline-block;
+  width: 40%;
+  padding-right: 2em;
+  vertical-align: top;
+}
+.dashboard_page_wc-gzd-about .vendipro .right {
+  display: inline-block;
+  vertical-align: top;
+  width: 50%;
+}
+.dashboard_page_wc-gzd-about .vendipro .right p:first-child {
+  margin-top: 5px;
+}
+.dashboard_page_wc-gzd-about .vendipro .left img {
+  width: 100%;
+  border: 1px solid #CCC;
+  border-radius: 3px;
+}
+
+.wc-gzd-actions {
+  a.button {
+    margin-right: .5em;
+  }
+
+  a.button-primary, .woocommerce-gzd-message .button-primary {
+    background-color: #262626 !important;
+    border: 1px solid #000 !important;
+    text-shadow: none !important;
+
+    &:hover {
+      background-color: #363636 !important;
+      border: 1px solid #000 !important;
+      text-shadow: none !important;
+    }
+  }
+}
+
+.woocommerce-gzd-message .form-table tr td, .woocommerce-gzd-message .form-table tr th {
+  padding: 0.7rem 0;
+  margin: 0;
+}
+.woocommerce-gzd-message a.wc-gzd-skip {
+  opacity: .7;
+}
+div.woocommerce-gzd-message {
+  border-left: 4px solid #bb2525 !important;
+}
+div.woocommerce-gzd-message p {
+  max-width: 100% !important;
+}

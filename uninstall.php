@@ -17,8 +17,6 @@ if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 global $wpdb, $wp_version;
 
 wp_clear_scheduled_hook( 'woocommerce_gzd_customer_cleanup' );
-wp_clear_scheduled_hook( 'woocommerce_gzd_trusted_shops_reviews' );
-wp_clear_scheduled_hook( 'woocommerce_gzd_ekomi' );
 
 if ( defined( 'WC_GZD_REMOVE_ALL_DATA' ) && true === WC_GZD_REMOVE_ALL_DATA ) {
 
@@ -50,12 +48,10 @@ if ( defined( 'WC_GZD_REMOVE_ALL_DATA' ) && true === WC_GZD_REMOVE_ALL_DATA ) {
 		'_mini_desc',
 		'_free_shipping',
 		'_unit',
-		'_wc_gzd_ekomi_added',
 		'_service',
 		'_sale_price_label',
 		'_sale_price_regular_label',
 		'_legal_text',
-		'_trusted_shops_review_mail_sent',
 		'_direct_debit_bic',
 		'_direct_debit_iban',
 		'_direct_debit_holder',
@@ -68,16 +64,7 @@ if ( defined( 'WC_GZD_REMOVE_ALL_DATA' ) && true === WC_GZD_REMOVE_ALL_DATA ) {
 	);
 
 	// Delete gzd meta data
-	$wpdb->query( "DELETE meta FROM {$wpdb->postmeta} meta WHERE meta.meta_key IN ('".join("','", $meta_keys)."');" );
-
-	// Delete ekomi data
-	$user_id = get_user_by( 'email', 'ekomi@loremipsumdolorom.com' );
-
-	if ( $user_id ) {
-		$wpdb->query( "DELETE meta FROM {$wpdb->commentmeta} LEFT JOIN {$wpdb->comments} comments ON comments.comment_ID = meta.comment_id WHERE user_id = {$user_id};" );
-		$wpdb->query( "DELETE comments FROM {$wpdb->comments} WHERE user_id = {$user_id};" );
-		wp_delete_user( $user_id );
-	}
+	$wpdb->query( "DELETE meta FROM {$wpdb->postmeta} meta WHERE meta.meta_key IN ('" . join( "','", $meta_keys ) . "');" );
 
 	// Delete terms if > WP 4.2 (term splitting was added in 4.2)
 	if ( version_compare( $wp_version, '4.2', '>=' ) ) {
