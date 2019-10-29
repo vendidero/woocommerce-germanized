@@ -1,6 +1,6 @@
 === Germanized for WooCommerce ===
 Contributors: vendidero, vdwoocommercesupport
-Tags: woocommerce, woocommerce german, woocommerce DE, woocommerce germany, woocommerce deutsch, woo, woocommerce deutschland, woocommerce germanized, woocommerce addon, woocommerce plugin, woocommerce german addon, woocommerce germany addon
+Tags: woocommerce, woocommerce german, woocommerce DE, woocommerce germany, woocommerce deutsch, woo, woocommerce deutschland, woocommerce germanized, woocommerce addon, woocommerce plugin, woocommerce german addon, woocommerce germany addon, woocommerce dhl, dhl, shipments
 Requires at least: 4.9
 Tested up to: 5.3
 WC requires at least: 3.4
@@ -176,10 +176,11 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 
 == Screenshots ==
 
-1. Some of Germanized for WooCommerce checkout adjustments to comply with the button solution
+1. Some of the checkout adjustments to comply with the button solution
 2. General settings screen
 3. Germanized for WooCommerce Legal Checkboxes UI
 4. WooCommerce Multistep Checkout (Pro)
+5. Manage shipments for orders
 
 == Changelog ==
 
