@@ -38,7 +38,7 @@ class WC_GZD_Settings_Tab_DHL extends WC_GZD_Settings_Tab {
 	}
 
 	public function get_help_link() {
-		return 'https://vendidero.de';
+		return 'https://vendidero.de/dokument/dhl-integration-einrichten';
 	}
 
 	public function get_tab_settings( $current_section = '' ) {

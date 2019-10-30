@@ -27,6 +27,10 @@ class WC_GZD_Settings_Tab_Shipments extends WC_GZD_Settings_Tab {
 		return 'shipments';
 	}
 
+	public function get_help_link() {
+		return 'https://vendidero.de/dokument/sendungen-zu-bestellungen-erzeugen';
+	}
+
 	public function get_sections() {
 		return Settings::get_sections();
 	}
