@@ -11,9 +11,9 @@
     "automattic/jetpack-autoloader": "1.2.0",
     "php": ">=5.6|>=7.0",
     "composer/installers": "1.6.0",
-    "vendidero/woocommerce-trusted-shops": "4.0.0-beta-3",
-    "vendidero/woocommerce-germanized-dhl": "0.0.1-beta-5",
-    "vendidero/woocommerce-germanized-shipments": "0.0.1-beta-5"
+    "vendidero/woocommerce-trusted-shops": "4.0.0",
+    "vendidero/woocommerce-germanized-dhl": "1.0.0",
+    "vendidero/woocommerce-germanized-shipments": "1.0.0"
   },
   "require-dev": {
     "myclabs/deep-copy": "1.7.0",
@@ -23,21 +23,15 @@
   "repositories": [
     {
       "type": "vcs",
-      "name": "vendidero/woocommerce-trusted-shops",
-      "url":  "git@github.com:vendidero/woocommerce-trusted-shops.git",
-      "no-api": true
+      "url":  "https://github.com/vendidero/woocommerce-trusted-shops"
     },
     {
       "type": "vcs",
-      "name": "vendidero/woocommerce-germanized-dhl",
-      "url":  "git@github.com:vendidero/woocommerce-germanized-dhl.git",
-      "no-api": true
+      "url":  "https://github.com/vendidero/woocommerce-germanized-dhl"
     },
     {
       "type": "vcs",
-      "name": "vendidero/woocommerce-germanized-shipments",
-      "url":  "git@github.com:vendidero/woocommerce-germanized-shipments.git",
-      "no-api": true
+      "url":  "https://github.com/vendidero/woocommerce-germanized-shipments"
     }
   ],
   "config": {

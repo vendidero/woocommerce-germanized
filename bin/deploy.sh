@@ -154,7 +154,7 @@ done
 
 # Set deploy variables
 SVN_REPO="http://plugins.svn.wordpress.org/${PLUGIN_SLUG}/"
-GIT_REPO="git@github.com:${GITHUB_ORG}/${PLUGIN_SLUG}.git"
+GIT_REPO="https://${GITHUB_ORG}@github.com/${GITHUB_ORG}/${PLUGIN_SLUG}.git"
 SVN_PATH="${BUILD_PATH}/${PLUGIN_SLUG}-svn"
 GIT_PATH="${BUILD_PATH}/${PLUGIN_SLUG}-git"
 
