@@ -1,0 +1,102 @@
+#posts-filter .wc-gzd-dhl-bulk-downloads {
+  clear: both;
+  float: left;
+  margin: 1em 0; }
+
+.woocommerce_page_wc-gzd-return-shipments .wp-list-table .column-actions a.email::after {
+  content: "\f465"; }
+
+.wc-modal-shipping-method-settings .form-table td .wc-gzd-additional-desc {
+  margin-top: 1em;
+  line-height: 1.5em;
+  background: #efefef;
+  padding: .5em;
+  font-style: normal;
+  font-size: 13px;
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1); }
+
+.germanized-create-label .notice-wrapper .notice {
+  margin: 0;
+  margin-bottom: 1em; }
+  .germanized-create-label .notice-wrapper .notice p {
+    margin: 0.5em 0 !important;
+    padding: 2px !important;
+    font-size: 13px;
+    line-height: 1.5; }
+
+.germanized-create-label p.form-field {
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 5px !important;
+  margin-top: 5px !important; }
+  .germanized-create-label p.form-field:first-child, .germanized-create-label p.form-field:last-child {
+    margin-bottom: 5px !important;
+    margin-top: 5px !important; }
+
+.germanized-create-label .columns {
+  margin-left: -.5rem !important;
+  margin-right: -.5rem !important; }
+
+.germanized-create-label .column {
+  padding-left: .5rem !important;
+  padding-right: .5rem !important; }
+
+.germanized-create-label .show-services-trigger {
+  font-weight: bold;
+  margin-top: 15px;
+  margin-bottom: 0;
+  display: block;
+  text-align: right; }
+  .germanized-create-label .show-services-trigger a {
+    text-decoration: none; }
+
+.germanized-create-label .show-if, .germanized-create-label .hide-default {
+  display: none; }
+
+.germanized-create-label .show-if label {
+  color: #777; }
+
+.germanized-create-label p.form-field label {
+  width: 100%;
+  display: block;
+  margin-bottom: 5px; }
+
+.germanized-create-label p.form-field select, .germanized-create-label p.form-field input[type=text], .germanized-create-label p.form-field input[type=email] {
+  width: 100%; }
+
+.germanized-create-label p.form-field.form-field-checkbox {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: flex-start;
+  margin-top: 10px !important;
+  margin-bottom: 10px !important;
+  align-items: center; }
+  .germanized-create-label p.form-field.form-field-checkbox label {
+    width: auto;
+    margin-left: .5em;
+    order: 2;
+    margin-bottom: 0; }
+  .germanized-create-label p.form-field.form-field-checkbox input[type=checkbox] {
+    order: 1; }
+  .germanized-create-label p.form-field.form-field-checkbox .woocommerce-help-tip {
+    order: 3;
+    margin-left: 3px; }
+  .germanized-create-label p.form-field.form-field-checkbox .description {
+    width: 100%;
+    margin-top: 5px;
+    color: #777;
+    order: 4;
+    font-style: normal; }
+
+.wc-gzd-shipment-dhl-label h4 {
+  margin-top: 0; }
+
+.wc-gzd-shipment-dhl-label .shipment-dhl-label-actions .shipment-dhl-label-actions-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  margin-bottom: 1em;
+  align-items: center; }
+  .wc-gzd-shipment-dhl-label .shipment-dhl-label-actions .shipment-dhl-label-actions-wrapper a {
+    margin-right: 1em; }

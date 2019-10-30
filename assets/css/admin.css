@@ -20,6 +20,7 @@ table.data_table tr td p.form-field {
       position: relative;
       top: 18px;
       left: -20px;
+      -webkit-transition: all .1s ease-in-out;
       transition: all .1s ease-in-out; }
   .woocommerce-gzd-message p.submit .button {
     margin-right: 1em; }
@@ -49,8 +50,9 @@ table.data_table tr td p.form-field {
   box-shadow: inset 0 0 30px rgba(255, 255, 255, 0), 0 19px 25px -17px rgba(3, 39, 64, 0.4) !important;
   border: 1px solid transparent !important;
   text-shadow: none !important;
-  transition: transform .3s, box-shadow .3s ease-in-out, color .3s ease-in-out; }
+  transition: transform .3s, box-shadow .3s ease-in-out, color .3s ease-in-out, -webkit-transform .3s; }
   .wc-gzd-button:hover {
+    -webkit-transform: scale(1.02);
     transform: scale(1.02);
     cursor: pointer; }
   .wc-gzd-button .wc-gzd-pro {
