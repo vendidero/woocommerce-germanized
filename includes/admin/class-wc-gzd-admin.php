@@ -455,10 +455,10 @@ class WC_GZD_Admin {
 		}
 
 		array_unshift( $products, (object) array(
-			'title'   => 'Woo Germanized Pro',
+			'title'   => 'Germanized für WooCommerce Pro',
 			'excerpt' => 'Upgrade jetzt auf die Pro Version von Germanized und profitiere von weiteren nützliche Funktionen speziell für den deutschen Markt sowie professionellem Support.',
-			'link'    => 'https://vendidero.de/woocommerce-germanized#buy',
-			'price'   => '69,95 €',
+			'link'    => 'https://vendidero.de/woocommerce-germanized#upgrade',
+			'price'   => '69 €',
 		) );
 
 		return $products;

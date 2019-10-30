@@ -131,8 +131,7 @@ class WC_GZD_Admin_Welcome {
                    class="button button-primary">Einstellungen</a>
                 <a href="<?php echo admin_url( 'admin.php?page=wc-settings&tab=germanized&tutorial=yes' ); ?>"
                    target="_blank" class="button button-primary">Tutorial</a>
-
-                <a href="https://vendidero.de/woocommerce-germanized#buy" target="_blank" class="button wc-gzd-button">Upgrade
+                <a href="https://vendidero.de/woocommerce-germanized#upgrade" target="_blank" class="button wc-gzd-button wc-germanized-welcome-pro">Upgrade
                     zur <span class="wc-gzd-pro">pro</span> Version</a>
             </p>
 
@@ -160,14 +159,14 @@ class WC_GZD_Admin_Welcome {
                             <a href="https://vendidero.de/woocommerce-germanized#pro" target="_blank"
                                class="button button-primary wc-gzd-button"><span class="wc-gzd-pro">pro</span> Version
                                 entdecken</a>
-                            <p class="price smaller">ab 69,95 € inkl. MwSt. - inkl. 1 Jahr Updates & Premium
+                            <p class="price smaller">ab 69 € inkl. MwSt. - inkl. 1 Jahr Updates & Premium
                                 Support!</p>
                         </div>
 
                         <div class="wc-gzd-actions">
                             <a href="<?php echo admin_url( 'admin.php?page=wc-settings&tab=germanized-shipments' ); ?>"
                                class="button button-primary" target="_blank">Einstellungen anpassen</a>
-                            <a href="" class="button button-primary" target="_blank">Mehr erfahren</a>
+                            <a href="https://vendidero.de/dokument/sendungen-zu-bestellungen-erzeugen" class="button button-primary" target="_blank">Mehr erfahren</a>
                         </div>
                     </div>
                     <div class="col align-center">
@@ -205,7 +204,7 @@ class WC_GZD_Admin_Welcome {
                             <div class="wc-gzd-actions">
                                 <a href="<?php echo admin_url( 'admin.php?page=wc-settings&tab=germanized-dhl' ); ?>"
                                    class="button button-primary" target="_blank">Einstellungen anpassen</a>
-                                <a href="" class="button button-primary" target="_blank">Mehr erfahren</a>
+                                <a href="https://vendidero.de/dokument/dhl-integration-einrichten" class="button button-primary" target="_blank">Mehr erfahren</a>
                             </div>
                         </div>
                     </div>
