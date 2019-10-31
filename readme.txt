@@ -5,7 +5,7 @@ Requires at least: 4.9
 Tested up to: 5.3
 WC requires at least: 3.4
 WC tested up to: 3.8
-Stable tag: 3.0.1
+Stable tag: 3.0.2
 Requires PHP: 5.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -183,6 +183,10 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 5. Manage shipments for orders
 
 == Changelog ==
+
+= 3.0.2 =
+* Fix: Shipment weight sync unit calculation
+* Fix: Wrong tooltip within DHL preferred location
 
 = 3.0.1 =
 * Fix: WPML WooCommerce Multilingual Hotfix for shipments (prevent an infinite loop)
