@@ -88,7 +88,7 @@ function wc_gzd_cart_product_item_desc( $title, $cart_item, $cart_item_key = '' 
 		$product = $cart_item->get_product();
 
 		if ( $product && wc_gzd_get_gzd_product( $product )->get_mini_desc() ) {
-			$product_desc = wc_gzd_get_gzd_product( $product )->get_mini_desc();
+			$product_desc = wc_gzd_get_gzd_product( $product )->get_formatted_cart_description();
 		}
 	}
 

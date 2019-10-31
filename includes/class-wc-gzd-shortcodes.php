@@ -155,7 +155,7 @@ class WC_GZD_Shortcodes {
 		}
 
 		if ( ! empty( $product ) && is_a( $product, 'WC_Product' ) ) {
-			$content = '<div class="wc-gzd-item-desc item-desc">' . do_shortcode( wc_gzd_get_gzd_product( $product )->get_mini_desc() ) . '</div>';
+			$content = '<div class="wc-gzd-item-desc item-desc">' . do_shortcode( wc_gzd_get_gzd_product( $product )->get_formatted_cart_description() ) . '</div>';
 		}
 
 		return $content;
