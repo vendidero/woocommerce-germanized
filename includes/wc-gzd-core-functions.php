@@ -23,6 +23,10 @@ function wc_gzd_get_dependencies( $instance = null ) {
 
 function wc_gzd_post_has_woocommerce_block( $post_content ) {
 
+	if ( ! function_exists( 'has_blocks' ) ) {
+		return false;
+	}
+
 	if ( false === has_blocks( $post_content ) ) {
 		return false;
 	}
