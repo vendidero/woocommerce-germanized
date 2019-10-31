@@ -119,7 +119,9 @@ if ( ! class_exists( 'WC_GZD_Admin_Notices' ) ) :
 				remove_action( 'admin_notices', array( $this, 'theme_supported_notice' ) );
 			}
 
-			add_action( 'admin_notices', array( $this, 'dhl_importer_notice' ) );
+			if ( ! get_option( '_wc_gzd_hide_dhl_importer_notice' ) ) {
+				add_action( 'admin_notices', array( $this, 'dhl_importer_notice' ) );
+			}
 		}
 
 		public function dhl_importer_notice() {
@@ -169,6 +171,7 @@ if ( ! class_exists( 'WC_GZD_Admin_Notices' ) ) :
 				'wc-gzd-disable-review-notice',
 				'wc-gzd-hide-review-notice',
 				'wc-gzd-hide-pro-notice',
+				'wc-gzd-hide-dhl-importer-notice',
 				'wc-gzd-hide-template-outdated-notice'
 			);
 

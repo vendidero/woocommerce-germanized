@@ -5,7 +5,7 @@ Requires at least: 4.9
 Tested up to: 5.3
 WC requires at least: 3.4
 WC tested up to: 3.8
-Stable tag: 3.0.0
+Stable tag: 3.0.1
 Requires PHP: 5.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -183,6 +183,13 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 5. Manage shipments for orders
 
 == Changelog ==
+
+= 3.0.1 =
+* Fix: WPML WooCommerce Multilingual Hotfix for shipments (prevent an infinite loop)
+* Fix: Shipment weight and dimension units to use Woo defaults
+* Fix: DHL label weight calculation -> shipments.
+* Fix: Further redirection checks before setup
+* Fix: Age verification checkbox - hardened global check
 
 = 3.0.0 =
 * Feature: Add, edit and manage shipments for orders

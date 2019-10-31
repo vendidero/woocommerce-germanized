@@ -31,7 +31,8 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 			'2.0.1' => 'updates/woocommerce-gzd-update-2.0.1.php',
 			'2.2.5' => 'updates/woocommerce-gzd-update-2.2.5.php',
 			'2.3.0' => 'updates/woocommerce-gzd-update-2.3.0.php',
-			'3.0.0' => 'updates/woocommerce-gzd-update-3.0.0.php'
+			'3.0.0' => 'updates/woocommerce-gzd-update-3.0.0.php',
+			'3.0.1' => 'updates/woocommerce-gzd-update-3.0.1.php'
 		);
 
 		/**
@@ -49,6 +50,15 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 
 		public static function redirect() {
 			if ( get_option( '_wc_gzd_setup_wizard_redirect' ) ) {
+
+				// Bail if activating from network, or bulk, or within an iFrame
+				if ( is_network_admin() || isset( $_GET['activate-multi'] ) || defined( 'IFRAME_REQUEST' ) ) {
+					return;
+				}
+
+				if ( ( isset( $_GET['action'] ) && 'upgrade-plugin' == $_GET['action'] ) && ( isset( $_GET['plugin'] ) && strstr( $_GET['plugin'], 'woocommerce-germanized.php' ) ) ) {
+					return;
+				}
 
 				delete_option( '_wc_gzd_setup_wizard_redirect' );
 				wp_safe_redirect( admin_url( 'admin.php?page=wc-gzd-setup' ) );
@@ -186,6 +196,7 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 					delete_option( '_wc_gzd_hide_theme_notice' );
 					delete_option( '_wc_gzd_hide_pro_notice' );
 					delete_option( '_wc_gzd_hide_review_notice' );
+					delete_option( '_wc_gzd_hide_dhl_importer_notice' );
 				}
 			}
 

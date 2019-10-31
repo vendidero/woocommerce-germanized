@@ -69,7 +69,7 @@ class WC_GZD_Admin_Legal_Checkboxes {
 				'title'    => __( 'Global minimum age', 'woocommerce-germanized' ),
 				'id'       => $checkbox->get_form_field_id( 'min_age' ),
 				'type'     => 'select',
-				'options'  => array( "-1" => __( 'None', 'woocommerce-germanized' ) ) + wc_gzd_get_age_verification_min_ages(),
+				'options'  => wc_gzd_get_age_verification_min_ages_select(),
 				'desc_tip' => __( 'Choose a global minimum age necessary to buy your products. Can be overridden by product specific settings.', 'woocommerce-germanized' ),
 			)
 		) );

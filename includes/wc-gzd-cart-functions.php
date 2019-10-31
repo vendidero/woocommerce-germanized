@@ -284,9 +284,10 @@ function wc_gzd_cart_product_units( $title, $cart_item, $cart_item_key = '' ) {
 }
 
 function wc_gzd_cart_needs_age_verification( $items = false ) {
-	$items   = $items ? (array) $items : WC()->cart->get_cart();
-	$min_age = false;
-	$is_cart = true;
+	$items                  = $items ? (array) $items : WC()->cart->get_cart();
+	$min_age                = false;
+	$is_cart                = true;
+	$needs_age_verification = false;
 
 	if ( ! empty( $items ) ) {
 

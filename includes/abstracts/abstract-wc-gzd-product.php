@@ -256,7 +256,9 @@ class WC_GZD_Product {
 	}
 
 	public function needs_age_verification() {
-		return $this->get_min_age() !== '';
+		$min_age = $this->get_min_age();
+
+		return ! empty( $min_age ) ? true : false;
 	}
 
 	public function has_min_age() {
@@ -289,6 +291,11 @@ class WC_GZD_Product {
 
 					if ( $checkbox->is_enabled() && $checkbox->get_option( 'min_age' ) ) {
 						$product_min_age = $checkbox->get_option( 'min_age' );
+
+						// Fix -1 option
+						if ( ! is_numeric( $product_min_age ) || '-1' === $product_min_age ) {
+							$product_min_age = '';
+						}
 					}
 				}
 			}
