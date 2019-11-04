@@ -161,8 +161,8 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 			'validate_pay_order_checkbox'
 		) );
 
-		// Order Meta
-		add_action( 'woocommerce_checkout_create_order', array( $this, 'set_order_meta' ), 10, 1 );
+		// Order Meta - use woocommerce_checkout_update_order_meta to make sure order id exists when updating mandate id
+		add_action( 'woocommerce_checkout_update_order_meta', array( $this, 'set_order_meta' ), 10, 1 );
 		add_action( 'woocommerce_scheduled_subscription_payment', array( $this, 'set_order_meta' ), 10, 2 );
 
 		// Customer Emails
@@ -523,8 +523,10 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 		if ( ! $order ) {
 			$id = __( 'Will be notified separately', 'woocommerce-germanized' );
 		} else {
-			if ( $madate_id = $order->get_meta( '_direct_debit_mandate_id' ) ) {
-				$id = $madate_id;
+			$mandate_id = $order->get_meta( '_direct_debit_mandate_id' );
+
+			if ( $mandate_id && ! empty( $mandate_id ) ) {
+				$id = $mandate_id;
 			} else {
 				$id = ( $this->generate_mandate_id === 'yes' ? str_replace( '{id}', $order->get_order_number(), $this->mandate_id_format ) : '' );
 			}
@@ -651,6 +653,14 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 	 */
 	public function set_order_meta( $order ) {
 
+	    if ( is_numeric( $order ) ) {
+	        $order = wc_get_order( $order );
+        }
+
+	    if ( ! $order ) {
+	        return;
+        }
+
 		if ( ! $order->get_payment_method() === $this->id ) {
 			return;
 		}
@@ -672,6 +682,9 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 		$order->update_meta_data( '_direct_debit_mandate_type', Digitick\Sepa\PaymentInformation::S_ONEOFF );
 		$order->update_meta_data( '_direct_debit_mandate_date', current_time( 'timestamp', true ) );
 		$order->update_meta_data( '_direct_debit_mandate_mail', $order->get_billing_email() );
+
+		// Save the order data
+		$order->save();
 
 		/**
 		 * Updated direct debit order data.

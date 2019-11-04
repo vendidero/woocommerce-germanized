@@ -5,7 +5,7 @@ Requires at least: 4.9
 Tested up to: 5.3
 WC requires at least: 3.4
 WC tested up to: 3.8
-Stable tag: 3.0.2
+Stable tag: 3.0.3
 Requires PHP: 5.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -183,6 +183,15 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 5. Manage shipments for orders
 
 == Changelog ==
+
+= 3.0.3 =
+* Improvement: Added DHL shipment number tracking link to admin panel
+* Improvement: Added shipment option to allow hiding data in customer panel
+* Improvement: Added shipment option to mark order as completed as soon as it is fully shipped
+* Fix: Use order item variation id on shipment item sync if available
+* Fix: Allow manual choosing shipping provider for shipments with empty instance id (e.g. manual orders)
+* Fix: Direct debit mandate id
+
 
 = 3.0.2 =
 * Fix: Shipment weight sync unit calculation
