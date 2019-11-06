@@ -65,6 +65,9 @@ class WC_GZD_Checkout {
 			'set_title_field_mapping_editors'
 		), 10, 1 );
 
+		// Add title options to order address data
+		add_filter( 'woocommerce_get_order_address', array( $this, 'add_order_address_data' ), 10, 3 );
+
 		add_action( 'woocommerce_checkout_create_order_line_item', array( $this, 'set_order_item_meta_crud' ), 0, 4 );
 		add_filter( 'woocommerce_hidden_order_itemmeta', array( $this, 'set_order_meta_hidden' ), 0 );
 
@@ -118,6 +121,16 @@ class WC_GZD_Checkout {
 		// Make sure that, just like in Woo core, the order submit button gets refreshed
 		// Use a high priority to let other plugins do their adjustments beforehand
 		add_filter( 'woocommerce_update_order_review_fragments', array( $this, 'refresh_order_submit' ), 150, 1 );
+	}
+
+	public function add_order_address_data( $data, $type, $order ) {
+		if ( 'yes' === get_option( 'woocommerce_gzd_checkout_address_field' ) ) {
+			if ( $title = wc_gzd_get_order_customer_title( $order, $type ) ) {
+				$data['title'] = $title;
+			}
+		}
+
+		return $data;
 	}
 
 	public function refresh_order_submit( $fragments ) {

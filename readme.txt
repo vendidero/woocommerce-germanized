@@ -186,6 +186,8 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 
 = 3.0.4 =
 * Improvement: Added DHL automation option to allow marking shipment as shipped as soon as label has been created
+* Improvement: Transmit address_2 field to DHL API through name3 field
+* Fix: Excluding tax unit price
 * Fix: Added legacy support for calling get_additional_content in emails
 * Fix: Added extra check to wc_gzd_cart_forwarding_fee_notice_filter before calling get_payment_method on order
 

@@ -750,7 +750,7 @@ class WC_GZD_Product {
 		 * @since 1.0.0
 		 *
 		 */
-		return apply_filters( 'woocommerce_gzd_unit_price_excluding_tax', ( empty( $price ) ) ? '' : wc_get_price_including_tax( $this->child, array(
+		return apply_filters( 'woocommerce_gzd_unit_price_excluding_tax', ( empty( $price ) ) ? '' : wc_get_price_excluding_tax( $this->child, array(
 			'price' => $price,
 			'qty'   => $qty
 		) ), $price, $qty, $this );
