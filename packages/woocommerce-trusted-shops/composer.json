@@ -1,0 +1,29 @@
+{
+  "name": "vendidero/woocommerce-trusted-shops",
+  "description": "Trustbadge Reviews for WooCommerce.",
+  "homepage": "https://github.com/vendidero/woocommerce-trusted-shops",
+  "license": "GPL-3.0-or-later",
+  "type": "wordpress-plugin",
+  "prefer-stable": true,
+  "minimum-stability": "dev",
+  "require": {
+    "automattic/jetpack-autoloader": "1.2.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "6.5.14",
+    "woocommerce/woocommerce-sniffs": "0.0.6"
+  },
+  "scripts": {
+    "post-install-cmd": [
+      "composer dump-autoload"
+    ],
+    "post-update-cmd": [
+      "composer dump-autoload"
+    ]
+  },
+  "autoload": {
+    "psr-4": {
+      "Vendidero\\TrustedShops\\": "src"
+    }
+  }
+}
