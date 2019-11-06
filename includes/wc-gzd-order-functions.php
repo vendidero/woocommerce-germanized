@@ -19,6 +19,12 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @return mixed
  */
 function wc_gzd_cart_forwarding_fee_notice_filter( $total_rows, $order ) {
+
+	// Seems like it is a refund order other order type.
+	if ( ! is_callable( array( $order, 'get_payment_method' ) ) ) {
+		return $total_rows;
+	}
+
 	$gateways = WC()->payment_gateways()->get_available_payment_gateways();
 	$method   = $order->get_payment_method();
 	$gateway  = isset( $gateways[ $method ] ) ? $gateways[ $method ] : null;
