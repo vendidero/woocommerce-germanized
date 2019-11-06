@@ -552,8 +552,9 @@ class Shopmarks {
 	 * @return Shopmark[]
 	 */
 	public static function get( $location = '' ) {
-
 		if ( ! empty( $location ) ) {
+			$data = array();
+
 			if ( array_key_exists( $location, self::get_locations() ) ) {
 
 				if ( ! isset( self::$shopmarks[ $location ] ) ) {
