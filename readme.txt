@@ -5,7 +5,7 @@ Requires at least: 4.9
 Tested up to: 5.3
 WC requires at least: 3.4
 WC tested up to: 3.8
-Stable tag: 3.0.3
+Stable tag: 3.0.4
 Requires PHP: 5.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -183,6 +183,11 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 5. Manage shipments for orders
 
 == Changelog ==
+
+= 3.0.4 =
+* Improvement: Added DHL automation option to allow marking shipment as shipped as soon as label has been created
+* Fix: Added legacy support for calling get_additional_content in emails
+* Fix: Added extra check to wc_gzd_cart_forwarding_fee_notice_filter before calling get_payment_method on order
 
 = 3.0.3 =
 * Improvement: Added DHL shipment number tracking link to admin panel
