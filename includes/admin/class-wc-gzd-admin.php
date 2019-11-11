@@ -15,12 +15,6 @@ class WC_GZD_Admin {
 	 */
 	protected static $_instance = null;
 
-	/**
-	 * Contains an array of script handles localized by WC.
-	 * @var array
-	 */
-	private static $wp_localize_scripts = array();
-
 	protected $wizard = null;
 
 	public static function instance() {
@@ -55,9 +49,6 @@ class WC_GZD_Admin {
 		add_action( 'admin_menu', array( $this, 'hide_metaboxes' ), 10 );
 
 		add_action( 'admin_enqueue_scripts', array( $this, 'add_scripts' ) );
-		add_action( 'wp_print_scripts', array( $this, 'localize_printed_scripts' ), 5 );
-		add_action( 'wp_print_footer_scripts', array( $this, 'localize_printed_scripts' ), 5 );
-
 		add_action( 'save_post', array( $this, 'save_legal_page_content' ), 10, 3 );
 
 		add_filter( 'woocommerce_admin_status_tabs', array( $this, 'set_gzd_status_tab' ) );
@@ -498,6 +489,15 @@ class WC_GZD_Admin {
 			'woocommerce_settings'
 		), WC_GERMANIZED_VERSION, true );
 
+		wp_localize_script(
+			'wc-gzd-admin-settings',
+			'wc_gzd_admin_settings_params',
+			array(
+				'tab_toggle_nonce' => wp_create_nonce( 'wc_gzd_tab_toggle_nonce' ),
+				'ajax_url'         => admin_url( 'admin-ajax.php' ),
+			)
+		);
+
 		if ( in_array( $screen->id, array( 'product', 'edit-product' ) ) ) {
 			wp_enqueue_script( 'wc-gzd-admin-product-variations' );
 		}
@@ -515,31 +515,6 @@ class WC_GZD_Admin {
 		 *
 		 */
 		do_action( 'woocommerce_gzd_admin_assets', $this, $admin_script_path, $suffix );
-	}
-
-	public function localize_printed_scripts() {
-		/**
-		 * Filter to localize certain admin scripts.
-		 *
-		 * @param array $scripts Array containing handle => data.
-		 *
-		 * @since 1.0.0
-		 *
-		 */
-		$localized_scripts = apply_filters( 'woocommerce_gzd_admin_localized_scripts', array(
-			'wc-gzd-admin-settings' => array(
-				'tab_toggle_nonce' => wp_create_nonce( 'wc_gzd_tab_toggle_nonce' ),
-				'ajax_url'         => admin_url( 'admin-ajax.php' ),
-			),
-		) );
-
-		foreach ( $localized_scripts as $handle => $data ) {
-			if ( ! in_array( $handle, self::$wp_localize_scripts ) && wp_script_is( $handle ) ) {
-				$name                        = str_replace( '-', '_', $handle ) . '_params';
-				self::$wp_localize_scripts[] = $handle;
-				wp_localize_script( $handle, $name, $data );
-			}
-		}
 	}
 
 	public function add_legal_page_metabox() {
