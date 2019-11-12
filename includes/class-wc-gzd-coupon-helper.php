@@ -300,11 +300,18 @@ class WC_GZD_Coupon_Helper {
 	 * @param WC_Coupon $coupon
 	 */
 	public function coupon_save( $id, $coupon ) {
+		// Reassign coupon to prevent saving bug https://github.com/woocommerce/woocommerce/issues/24570
+		$coupon = new WC_Coupon( $id );
+
+		if ( ! $coupon ) {
+			return;
+		}
+
 		if ( isset( $_POST['is_voucher'] ) ) {
 			$this->convert_coupon_to_voucher( $coupon );
 		} else {
-			$coupon->update_meta_data( 'is_voucher', 'no' );
-			$coupon->save();
+			 $coupon->update_meta_data( 'is_voucher', 'no' );
+			 $coupon->save();
 		}
 	}
 }
