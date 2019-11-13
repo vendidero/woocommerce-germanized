@@ -225,7 +225,7 @@ class WC_Germanized_Meta_Box_Product_Data {
 
 		woocommerce_wp_checkbox( array( 'id'          => '_unit_price_auto',
 		                                'label'       => __( 'Calculation', 'woocommerce-germanized' ),
-		                                'description' => '<span class="wc-gzd-premium-desc">' . __( 'Calculate base prices automatically.', 'woocommerce-germanized' ) . '</span> <a href="https://vendidero.de/woocommerce-germanized#buy" target="_blank" class="wc-gzd-pro">pro</a>'
+		                                'description' => '<span class="wc-gzd-premium-desc">' . __( 'Calculate base prices automatically.', 'woocommerce-germanized' ) . '</span> <a href="https://vendidero.de/woocommerce-germanized#upgrade" target="_blank" class="wc-gzd-pro">pro</a>'
 		) );
 		woocommerce_wp_text_input( array( 'id'        => '_unit_price_regular',
 		                                  'label'     => __( 'Regular Base Price', 'woocommerce-germanized' ) . ' (' . get_woocommerce_currency_symbol() . ')',

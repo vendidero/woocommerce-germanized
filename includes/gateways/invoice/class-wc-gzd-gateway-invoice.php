@@ -86,7 +86,7 @@ class WC_GZD_Gateway_Invoice extends WC_Payment_Gateway {
                     <a class="button button-primary" href="https://vendidero.de/woocommerce-germanized"
                        target="_blank"><?php _e( 'Upgrade now', 'woocommerce-germanized' ); ?></a>
                     <a class="button button-secondary" style="margin-left: 1em"
-                       href="https://vendidero.de/woocommerce-germanized#accounting"
+                       href="https://vendidero.de/woocommerce-germanized/features#accounting"
                        target="_blank"><?php _e( 'Learn more about PDF invoicing', 'woocommerce-germanized' ); ?></a>
                 </p>
             </div>

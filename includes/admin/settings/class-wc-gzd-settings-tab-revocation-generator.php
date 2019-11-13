@@ -37,7 +37,7 @@ class WC_GZD_Settings_Tab_Revocation_Generator extends WC_GZD_Settings_Tab {
 				'title' => '',
 				'id'    => 'woocommerce_gzdp_terms_generator',
 				'img'   => WC_Germanized()->plugin_url() . '/assets/images/pro/settings-widerruf.png?v=' . WC_germanized()->version,
-				'href'  => 'https://vendidero.de/woocommerce-germanized#accounting',
+				'href'  => 'https://vendidero.de/woocommerce-germanized/features#accounting',
 				'type'  => 'image',
 			),
 

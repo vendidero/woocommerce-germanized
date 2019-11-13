@@ -125,7 +125,7 @@ class WC_GZD_Settings_Tab_Emails extends WC_GZD_Settings_Tab {
 				'title' => '',
 				'id'    => 'woocommerce_gzdp_legal_page_terms_enabled',
 				'img'   => WC_Germanized()->plugin_url() . '/assets/images/pro/settings-pdf.png?v=' . WC_germanized()->version,
-				'href'  => 'https://vendidero.de/woocommerce-germanized#legal-page',
+				'href'  => 'https://vendidero.de/woocommerce-germanized/features#legal',
 				'type'  => 'image',
 			),
 
@@ -146,7 +146,7 @@ class WC_GZD_Settings_Tab_Emails extends WC_GZD_Settings_Tab {
 				'title' => '',
 				'id'    => 'woocommerce_gzdp_legal_page_terms_enabled',
 				'img'   => WC_Germanized()->plugin_url() . '/assets/images/pro/settings-emails.png?v=' . WC_germanized()->version,
-				'href'  => 'https://vendidero.de/woocommerce-germanized#legal-page',
+				'href'  => 'https://vendidero.de/woocommerce-germanized/features#legal',
 				'type'  => 'image',
 			),
 

@@ -156,7 +156,7 @@ class WC_GZD_Admin_Welcome {
                         </p>
 
                         <div class="wc-germanized-welcome-pro">
-                            <a href="https://vendidero.de/woocommerce-germanized#pro" target="_blank"
+                            <a href="https://vendidero.de/woocommerce-germanized" target="_blank"
                                class="button button-primary wc-gzd-button"><span class="wc-gzd-pro">pro</span> Version
                                 entdecken</a>
                             <p class="price smaller">ab 69 € inkl. MwSt. - inkl. 1 Jahr Updates & Premium

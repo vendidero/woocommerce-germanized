@@ -37,7 +37,7 @@ class WC_GZD_Settings_Tab_Invoices extends WC_GZD_Settings_Tab {
 				'title' => '',
 				'id'    => 'woocommerce_gzdp_invoice_enable',
 				'img'   => WC_Germanized()->plugin_url() . '/assets/images/pro/settings-invoices.png?v=' . WC_germanized()->version,
-				'href'  => 'https://vendidero.de/woocommerce-germanized#accounting',
+				'href'  => 'https://vendidero.de/woocommerce-germanized/features#accounting',
 				'type'  => 'image',
 			),
 

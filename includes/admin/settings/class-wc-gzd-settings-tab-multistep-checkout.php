@@ -37,7 +37,7 @@ class WC_GZD_Settings_Tab_Multistep_Checkout extends WC_GZD_Settings_Tab {
 				'title' => '',
 				'id'    => 'woocommerce_gzdp_multistep_checkout_enable',
 				'img'   => WC_Germanized()->plugin_url() . '/assets/images/pro/settings-checkout.png?v=' . WC_germanized()->version,
-				'href'  => 'https://vendidero.de/woocommerce-germanized#multistep',
+				'href'  => 'https://vendidero.de/woocommerce-germanized/features#multistep-checkout',
 				'type'  => 'image',
 			),
 
