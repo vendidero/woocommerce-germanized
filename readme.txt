@@ -5,7 +5,7 @@ Requires at least: 4.9
 Tested up to: 5.3
 WC requires at least: 3.4
 WC tested up to: 3.8
-Stable tag: 3.0.4
+Stable tag: 3.0.5
 Requires PHP: 5.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -33,7 +33,7 @@ Furthermore we customized the WooCommerce checkout to make your store meet the b
 * *Tax Calculation for Shipping Costs and Fees* - Enable split tax calculation based on your WooCommerce cart taxes.
 * *Legal pages in Email Templates* - Attach legal pages content to certain WooCommerce e-mail templates.
 * *Trusted Shops Integration* - Integrate your Trusted Shops Products within your WooCommerce store
-* *DHL Integration* - Generate labels for shipments and returns right from your backend. Offer additional services to your customers.
+* *DHL Integration* - Generate labels for shipments and returns right from your backend. Offer Wunschpaket services to your customers.
 * *Payment Gateway: SEPA direct debit* - Receive payments via direct debit. We've added a XML export to transfer payments to your bank.
 * *Payment Gateway: Pay by Invoice* - Allow certain customers to pay by invoice. Best integration with our PDF invoices feature (Pro).
 * *Online Revocation Form* - Allow customers to submit revocations by filling out a form on your revocation page.
@@ -61,15 +61,19 @@ Most of the changes are made by using Hooks & Filters so that our plugin is comp
 = Pro: WooCommerce PDF invoices & packing slips =
 As a Pro User of Germanized you may automatically or manually create PDF Invoices and Packing Slips for your orders. Doing so you may customize the PDF layout to meet your Corporate Design.
 You may upload your head of a letter which will be used as background for your PDF's. With only a few clicks you may export (CSV, zip) invoices for your tax consultant or accountant.
-Learn more about [PDF Invoices for WooCommerce](https://vendidero.de/woocommerce-germanized#accounting "WooCommerce PDF Invoices")
+Learn more about [PDF Invoices for WooCommerce](https://vendidero.de/woocommerce-germanized/features#accounting "WooCommerce PDF Invoices")
 
 Furthermore you may attach legally relevant pages (e.g. Terms & Conditions) as PDF documents to specific WooCommerce emails instead of using plain text.
 
-= Shipments & DHL =
+= Shipments =
 Germanized adds a new abstraction layer to WooCommerce to make it easier for you to send your parcels to your customers. With Germanized you'll be able to generate (multiple) shipments to an order.
 You can then manage your shipments and it's statuses independently from your orders. Let your customers receive a notification email as soon as a shipment has been marked as shipped.
-With the help of our built-in DHL integration you can easily create labels for your shipments and add tracking information to the notification emails. You can even let your shipments
-and labels be generated automatically by Germanized to avoid further manual work.
+Learn more about our [Shipments for WooCommerce](https://vendidero.de/woocommerce-germanized/features#shipments "Shipments for WooCommerce") integration and find out how to automate your shipping process.
+
+= DHL Integration =
+With the help of our built-in DHL integration you can easily create labels for your shipments and add tracking information to the notification emails.
+Furthermore you can offer Wunschpaket Services to your customers including shipping to Packstation or choosing a preferred location, day and/or time within the checkout.
+You can even let your shipments and labels be generated automatically by Germanized to avoid further manual work. [Learn more](https://vendidero.de/dokumentation/woocommerce-germanized/sendungen-dhl "DHL for WooCommerce") about how our DHL integration works.
 
 = Pro: Premium Support =
 Customers of Germanized for WooCommerce Pro enjoy our high-quality support via tickets. Nevertheless we also seek to offer a good plugin support via our WordPress support forum.
@@ -183,6 +187,21 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 5. Manage shipments for orders
 
 == Changelog ==
+
+= 3.0.5 =
+* Improvement: Admin assets localization
+* Improvement: Use Woo order address filter to add custom title
+* Improvement: DHL address splitting now supports further address additions as name3
+* Improvement: DHL new filters to adjust shipment and customer reference
+* Improvement: DHL use formatted order number as placeholder in references
+* Improvement: DHL check if shipment dimensions are complete before transmitting them to the API
+* Improvement: DHL added contact person to label
+* Improvement: DHL added a shipping method placeholder impl to support custom method plugins
+* Improvement: Delete shipments (which are editable) after cancelling an order
+* Fix: Remove get_filter check in frontend to prevent race-conditions in shopmarks
+* Fix: DHL COD total calculation
+* Fix: Added missing shipments API schema return value
+* Tweak: Woo bug while saving coupons
 
 = 3.0.4 =
 * Improvement: Added DHL automation option to allow marking shipment as shipped as soon as label has been created
