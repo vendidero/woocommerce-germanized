@@ -94,6 +94,10 @@ abstract class WC_GZD_Settings_Tab extends WC_Settings_Page {
 		}
 	}
 
+	protected function get_additional_breadcrumb_items( $breadcrumb ) {
+	    return $breadcrumb;
+    }
+
 	protected function get_breadcrumb() {
 		$sections        = $this->get_sections();
 		$current_section = $this->get_current_section();
@@ -110,7 +114,7 @@ abstract class WC_GZD_Settings_Tab extends WC_Settings_Page {
 		$breadcrumb[] = array(
 			'class' => 'tab',
 			'href'  => ! empty( $current_section ) ? $this->get_link() : '',
-			'title' => $this->get_breadcrumb_label( $this->get_label() )
+			'title' => empty( $current_section ) ? $this->get_breadcrumb_label( $this->get_label() ) : $this->get_label()
 		);
 
 		if ( ! empty( $current_section ) ) {
@@ -120,6 +124,8 @@ abstract class WC_GZD_Settings_Tab extends WC_Settings_Page {
 				'title' => $this->get_breadcrumb_label( $section_label ),
 			);
 		}
+
+		$breadcrumb = $this->get_additional_breadcrumb_items( $breadcrumb );
 
 		/**
 		 * Filter to adjust the breadcrumb items for a certain settings tab.

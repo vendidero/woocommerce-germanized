@@ -56,6 +56,10 @@ class WC_GZD_Settings_Tab_Shipments extends WC_GZD_Settings_Tab {
 		}
 	}
 
+	protected function get_additional_breadcrumb_items( $breadcrumb ) {
+		return Settings::get_additional_breadcrumb_items( $breadcrumb );
+	}
+
 	protected function get_breadcrumb_label( $label ) {
 		$current_section = $this->get_current_section();
 
@@ -63,9 +67,9 @@ class WC_GZD_Settings_Tab_Shipments extends WC_GZD_Settings_Tab {
 
 		if ( empty( $current_section ) ) {
 			return $label . '<a href="' . admin_url( 'admin.php?page=wc-gzd-shipments' ) . '" class="page-title-action" target="_blank">' . _x( 'Manage', 'shipments', 'woocommerce-germanized' ) . '</a>';
+		} else {
+			return $label . Settings::get_section_title_link( $current_section );
 		}
-
-		return $label;
 	}
 
 	public function get_pointers() {
