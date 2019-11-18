@@ -38,11 +38,11 @@ class WC_Germanized_Meta_Box_Product_Data {
 		/**
 		 * Listen to product updates to actually transform term meta data to term relationships e.g. for product delivery time.
 		 */
-		add_action( 'woocommerce_update_product', array( __CLASS__, 'update_after_save' ), 10, 1 );
-		add_action( 'woocommerce_create_product', array( __CLASS__, 'update_after_save' ), 10, 1 );
+		add_action( 'woocommerce_update_product', array( __CLASS__, 'update_after_save' ), 10, 2 );
+		add_action( 'woocommerce_create_product', array( __CLASS__, 'update_after_save' ), 10, 2 );
 
-		add_action( 'woocommerce_update_product_variation', array( __CLASS__, 'update_after_save' ), 10, 1 );
-		add_action( 'woocommerce_new_product_variation', array( __CLASS__, 'update_after_save' ), 10, 1 );
+		add_action( 'woocommerce_update_product_variation', array( __CLASS__, 'update_after_save' ), 10, 2 );
+		add_action( 'woocommerce_new_product_variation', array( __CLASS__, 'update_after_save' ), 10, 2 );
 
 		/**
 		 * Product duplication
@@ -71,14 +71,14 @@ class WC_Germanized_Meta_Box_Product_Data {
 	 *
 	 * @param $product_id
 	 */
-	public static function update_after_save( $product_id ) {
+	public static function update_after_save( $product_id, $product = null ) {
 
 		// Do not update products on checkout - seems to cause problems with WPML
 		if ( function_exists( 'is_checkout' ) && is_checkout() ) {
 			return;
 		}
 
-		$product     = wc_get_product( $product_id );
+		$product     = ( ! is_null( $product) ) ? $product : wc_get_product( $product_id );
 		$gzd_product = wc_gzd_get_product( $product );
 
 		if ( $product && $product->get_id() > 0 ) {

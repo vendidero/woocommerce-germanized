@@ -42,6 +42,7 @@ class WC_GZD_Settings_Tab_Shopmarks extends WC_GZD_Settings_Tab {
 
 		$sections = array_merge( $sections, array(
 			'product_widgets' => __( 'Widgets & Blocks', 'woocommerce-germanized' ),
+			'emails'          => __( 'E-Mails', 'woocommerce-germanized' ),
 		) );
 
 		return $sections;
@@ -174,6 +175,8 @@ class WC_GZD_Settings_Tab_Shopmarks extends WC_GZD_Settings_Tab {
 			$settings = $this->get_price_label_settings();
 		} elseif ( 'product_widgets' === $current_section ) {
 			$settings = $this->get_product_widget_settings();
+		} elseif ( 'emails' === $current_section ) {
+			$settings = $this->get_email_settings();
 		} elseif ( array_key_exists( $current_section, $display_sections ) ) {
 			$settings = $this->get_display_settings( $current_section );
 		}
@@ -237,6 +240,47 @@ class WC_GZD_Settings_Tab_Shopmarks extends WC_GZD_Settings_Tab {
 			),
 
 			array( 'type' => 'sectionend', 'id' => 'product_widget_visibility_options' )
+		);
+	}
+
+	protected function get_email_settings() {
+		return array(
+			array( 'title' => '', 'type' => 'title', 'id' => 'email_visibility_options' ),
+
+			array(
+				'title' 	    => __( 'E-Mails', 'woocommerce-germanized' ),
+				'desc' 		    => __( 'Base Price', 'woocommerce-germanized' ),
+				'id' 		    => 'woocommerce_gzd_display_emails_unit_price',
+				'type'          => 'gzd_toggle',
+				'default'	    => 'yes',
+				'checkboxgroup'	=> 'start',
+			),
+
+			array(
+				'desc' 		    => __( 'Product Units', 'woocommerce-germanized' ),
+				'id' 		    => 'woocommerce_gzd_display_emails_product_units',
+				'type'          => 'gzd_toggle',
+				'default'	    => 'yes',
+				'checkboxgroup' => '',
+			),
+
+			array(
+				'desc' 		    => __( 'Delivery Time Notice', 'woocommerce-germanized' ),
+				'id' 		    => 'woocommerce_gzd_display_emails_delivery_time',
+				'type'          => 'gzd_toggle',
+				'default'	    => 'yes',
+				'checkboxgroup' => '',
+			),
+
+			array(
+				'desc' 		    => __( 'Short Description', 'woocommerce-germanized' ),
+				'id' 		    => 'woocommerce_gzd_display_emails_product_item_desc',
+				'type'          => 'gzd_toggle',
+				'default'	    => 'yes',
+				'checkboxgroup'	=> 'end',
+			),
+
+			array( 'type' => 'sectionend', 'id' => 'email_visibility_options' )
 		);
 	}
 

@@ -109,7 +109,6 @@ if ( get_option( 'woocommerce_gzd_small_enterprise' ) === 'yes' ) {
 // Differential Taxation
 if ( get_option( 'woocommerce_gzd_differential_taxation_checkout_notices' ) === 'yes' ) {
 	add_action( 'woocommerce_after_cart_totals', 'woocommerce_gzd_template_differential_taxation_notice_cart', wc_gzd_get_hook_priority( 'cart_small_business_info' ) );
-	add_filter( 'woocommerce_cart_item_name', 'wc_gzd_cart_product_differential_taxation_mark', wc_gzd_get_hook_priority( 'cart_product_differential_taxation' ), 3 );
 }
 
 /**

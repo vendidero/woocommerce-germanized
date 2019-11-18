@@ -614,15 +614,7 @@ class WC_GZD_Emails {
 
 			if ( get_option( 'woocommerce_gzd_differential_taxation_checkout_notices' ) === 'yes' && $is_differential_taxed && apply_filters( 'woocommerce_gzd_show_differential_taxation_in_emails', true, $type ) ) {
 
-				/**
-				 * Filters the general differential taxation notice mark.
-				 *
-				 * @param string $notice The notice mark, e.g. `*`.
-				 *
-				 * @since 1.5.0
-				 *
-				 */
-				$mark = apply_filters( 'woocommerce_gzd_differential_taxation_notice_text_mark', '** ' );
+				$mark = wc_gzd_get_differential_taxation_mark();
 
 				/**
 				 * Filters the differential taxation notice text for emails.

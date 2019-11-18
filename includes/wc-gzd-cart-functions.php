@@ -44,9 +44,8 @@ function wc_gzd_cart_product_differential_taxation_mark( $title, $cart_item, $ca
 			 * @param string $html The differential mark e.g. `*`.
 			 *
 			 * @since 1.9.1
-			 *
 			 */
-			$product_mark = apply_filters( 'woocommerce_gzd_differential_taxation_cart_item_mark', ' **' );
+			$product_mark = apply_filters( 'woocommerce_gzd_differential_taxation_cart_item_mark', wc_gzd_get_differential_taxation_mark() );
 		}
 	}
 
@@ -55,6 +54,22 @@ function wc_gzd_cart_product_differential_taxation_mark( $title, $cart_item, $ca
 	}
 
 	return $title;
+}
+
+function wc_gzd_cart_contains_differential_taxed_product() {
+	$cart                           = WC()->cart;
+	$contains_differentail_taxation = false;
+
+	foreach ( $cart->get_cart() as $cart_item_key => $values ) {
+		$_product = $values['data'];
+
+		if ( wc_gzd_get_product( $_product )->is_differential_taxed() ) {
+			$contains_differentail_taxation = true;
+			break;
+		}
+	}
+
+	return $contains_differentail_taxation;
 }
 
 /**

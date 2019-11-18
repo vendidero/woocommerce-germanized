@@ -551,34 +551,10 @@ if ( ! function_exists( 'woocommerce_gzd_template_small_business_total_vat_notic
 if ( ! function_exists( 'woocommerce_gzd_template_differential_taxation_notice_cart' ) ) {
 
 	function woocommerce_gzd_template_differential_taxation_notice_cart() {
-		$cart                           = WC()->cart;
-		$contains_differentail_taxation = false;
-
-		foreach ( $cart->get_cart() as $cart_item_key => $values ) {
-			$_product = $values['data'];
-
-			if ( wc_gzd_get_product( $_product )->is_differential_taxed() ) {
-				$contains_differentail_taxation = true;
-				break;
-			}
-		}
+		$contains_differentail_taxation = wc_gzd_cart_contains_differential_taxed_product();
 
 		if ( $contains_differentail_taxation ) {
-
-			/** This filter is documented in includes/class-wc-gzd-emails.php */
-			$mark = apply_filters( 'woocommerce_gzd_differential_taxation_notice_text_mark', '** ' );
-
-			/**
-			 * Filter to adjust the differential taxation notice text during checkout.
-			 *
-			 * @param string $html The notice.
-			 *
-			 * @since 1.9.3
-			 *
-			 */
-			$notice = apply_filters( 'woocommerce_gzd_differential_taxation_notice_text_checkout', $mark . wc_gzd_get_differential_taxation_notice_text() );
-
-			wc_get_template( 'checkout/differential-taxation-notice.php', array( 'notice' => $notice ) );
+			wc_get_template( 'checkout/differential-taxation-notice.php', array( 'notice' => wc_gzd_get_differential_taxation_checkout_notice() ) );
 		}
 	}
 }
@@ -595,8 +571,9 @@ if ( ! function_exists( 'woocommerce_gzd_template_order_item_hooks' ) ) {
 if ( ! function_exists( 'woocommerce_gzd_template_mini_cart_taxes' ) ) {
 
 	function woocommerce_gzd_template_mini_cart_taxes() {
-		$hidden_for_types = get_option( 'woocommerce_gzd_display_shipping_costs_hidden_types', array() );
-		$show_shipping    = empty( $hidden_for_types ) ? true : false;
+		$hidden_for_types           = get_option( 'woocommerce_gzd_display_shipping_costs_hidden_types', array() );
+		$show_shipping              = empty( $hidden_for_types ) ? true : false;
+		$show_differential_taxation = ( 'yes' === get_option( 'woocommerce_gzd_differential_taxation_checkout_notices' ) ? true : false );
 
 		foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
 			if ( $_product = $cart_item['data'] ) {
@@ -632,7 +609,17 @@ if ( ! function_exists( 'woocommerce_gzd_template_mini_cart_taxes' ) ) {
 				 * @since 2.0.2
 				 *
 				 */
-				'shipping_costs_info' => ( apply_filters( 'woocommerce_gzd_show_mini_cart_totals_shipping_costs_notice', $show_shipping ) ) ? wc_gzd_get_shipping_costs_text() : ''
+				'shipping_costs_info' => ( apply_filters( 'woocommerce_gzd_show_mini_cart_totals_shipping_costs_notice', $show_shipping ) ) ? wc_gzd_get_shipping_costs_text() : '',
+
+				/**
+				 * Filter that allows disabling differential taxation notice within mini cart.
+				 *
+				 * @param bool $enable Whether to enable or not.
+				 *
+				 * @since 2.0.2
+				 *
+				 */
+				'differential_taxation_info' => ( apply_filters( 'woocommerce_gzd_show_mini_cart_totals_differential_taxation_notice', $show_differential_taxation ) ) ? wc_gzd_get_differential_taxation_checkout_notice() : ''
 			)
 		);
 	}

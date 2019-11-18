@@ -12,6 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 } // Exit if accessed directly
 
+use Vendidero\Germanized\Shopmark;
 use Vendidero\Germanized\Shopmarks;
 
 require WC_GERMANIZED_ABSPATH . 'includes/wc-gzd-product-functions.php';
@@ -59,21 +60,59 @@ function wc_gzd_get_product_loop_shopmarks() {
  * @return Vendidero\Germanized\Shopmark[]
  */
 function wc_gzd_get_cart_shopmarks() {
-	return Shopmarks::get( 'cart' );
+
+	$cart = Shopmarks::get( 'cart' );
+
+	if ( 'yes' === get_option( 'woocommerce_gzd_differential_taxation_checkout_notices' ) ) {
+		$shopmark = _wc_gzd_get_differential_taxation_shopmark( 'cart' );
+
+		$cart[] = $shopmark;
+	}
+
+	return $cart;
 }
 
 /**
  * @return Vendidero\Germanized\Shopmark[]
  */
 function wc_gzd_get_mini_cart_shopmarks() {
-	return Shopmarks::get( 'mini_cart' );
+	$mini_cart = Shopmarks::get( 'mini_cart' );
+
+	if ( 'yes' === get_option( 'woocommerce_gzd_differential_taxation_checkout_notices' ) ) {
+		$shopmark = _wc_gzd_get_differential_taxation_shopmark( 'mini_cart' );
+
+		$mini_cart[] = $shopmark;
+	}
+
+	return $mini_cart;
+}
+
+function _wc_gzd_get_differential_taxation_shopmark( $location ) {
+	$shopmark = new Shopmark( array(
+		'default_priority' => wc_gzd_get_hook_priority( 'cart_product_differential_taxation' ),
+		'callback'         => 'wc_gzd_cart_product_differential_taxation_mark',
+		'default_filter'   => 'woocommerce_cart_item_name',
+		'location'         => $location,
+		'type'             => 'differential_taxation',
+		'default_enabled'  => true,
+	) );
+
+	return $shopmark;
 }
 
 /**
  * @return Vendidero\Germanized\Shopmark[]
  */
 function wc_gzd_get_checkout_shopmarks() {
-	return Shopmarks::get( 'checkout' );
+	$checkout = Shopmarks::get( 'checkout' );
+
+	if ( 'yes' === get_option( 'woocommerce_gzd_differential_taxation_checkout_notices' ) ) {
+		$shopmark = _wc_gzd_get_differential_taxation_shopmark( 'checkout' );
+
+		$checkout[] = $shopmark;
+	}
+
+	return $checkout;
 }
 
 /**
@@ -261,6 +300,32 @@ function wc_gzd_get_small_business_notice() {
 	 *
 	 */
 	return apply_filters( 'woocommerce_gzd_small_business_notice', get_option( 'woocommerce_gzd_small_enterprise_text', __( 'Value added tax is not collected, as small businesses according to §19 (1) UStG.', 'woocommerce-germanized' ) ) );
+}
+
+function wc_gzd_get_differential_taxation_mark() {
+	/**
+	 * Filters the general differential taxation notice mark.
+	 *
+	 * @param string $notice The notice mark, e.g. `*`.
+	 *
+	 * @since 1.5.0
+	 */
+	return apply_filters( 'woocommerce_gzd_differential_taxation_notice_text_mark', '** ' );
+}
+
+function wc_gzd_get_differential_taxation_checkout_notice() {
+	$mark = wc_gzd_get_differential_taxation_mark();
+
+	/**
+	 * Filter to adjust the differential taxation notice text during checkout.
+	 *
+	 * @param string $html The notice.
+	 *
+	 * @since 1.9.3
+	 */
+	$notice = apply_filters( 'woocommerce_gzd_differential_taxation_notice_text_checkout', $mark . wc_gzd_get_differential_taxation_notice_text() );
+
+	return $notice;
 }
 
 function wc_gzd_is_parcel_delivery_data_transfer_checkbox_enabled( $rate_ids = array() ) {
