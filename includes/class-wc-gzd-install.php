@@ -164,15 +164,15 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 			if ( ! in_array( 'virtual-rate', $tax_classes ) || ! in_array( 'virtual-reduced-rate', $tax_classes ) ) {
 
 				if ( ! in_array( 'virtual-rate', $tax_classes ) ) {
-					array_push( $new_tax_classes, 'Virtual Rate' );
+					array_push( $new_tax_classes, 'virtual-rate' );
 				}
 
 				if ( ! in_array( 'virtual-reduced-rate', $tax_classes ) ) {
-					array_push( $new_tax_classes, 'Virtual Reduced Rate' );
+					array_push( $new_tax_classes, 'virtual-reduced-rate' );
 				}
 
 				foreach ( $new_tax_classes as $new_tax_class ) {
-					WC_Tax::create_tax_class( $new_tax_class );
+					WC_Tax::create_tax_class( self::get_tax_class_name( $new_tax_class ), $new_tax_class );
 				}
 			}
 
@@ -418,8 +418,45 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 			self::import_rates( $rates, 'virtual-rate' );
 		}
 
+		protected static function get_tax_class_name( $class ) {
+			$name = $class;
+
+			if ( 'reduced-rate' === $class ) {
+				$name = __( 'Reduced rate', 'woocommerce-germanized' );
+			} elseif( 'virtual-rate' === $class ) {
+				$name = __( 'Virtual rate', 'woocommerce-germanized' );
+			} elseif( 'virtual-reduced-rate' === $class ) {
+				$name = __( 'Virtual reduced rate', 'woocommerce-germanized' );
+			}
+
+			return $name;
+		}
+
+		protected static function maybe_find_tax_class( $class ) {
+			$slugs = WC_Tax::get_tax_class_slugs();
+
+			foreach( $slugs as $slug ) {
+
+				if ( $slug === $class ) {
+					return $slug;
+				}
+			}
+
+			return false;
+		}
+
 		private static function import_rates( $rates = array(), $type = '' ) {
 			global $wpdb;
+
+			if ( ! empty( $type ) ) {
+				// Only import if we were able to find the right class slug
+				if ( $class_slug = self::maybe_find_tax_class( $type ) ) {
+					$type = $class_slug;
+				} else {
+					// Create tax class first
+					WC_Tax::create_tax_class( self::get_tax_class_name( $type ), $type );
+				}
+			}
 
 			if ( ! empty( $rates ) ) {
 				// Delete rates
@@ -431,7 +468,7 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 						'tax_rate_country'  => $iso,
 						'tax_rate_state'    => '',
 						'tax_rate'          => (string) number_format( (double) wc_clean( $rate ), 4, '.', '' ),
-						'tax_rate_name'     => 'MwSt. ' . $iso . ( ! empty( $type ) ? ' ' . $type : '' ),
+						'tax_rate_name'     => sprintf( _x( 'VAT %s', 'vat-rate-import', 'woocommerce-germanized' ), ( $iso . ( ! empty( $type ) ? ' ' . $type : '' ) ) ),
 						'tax_rate_priority' => 1,
 						'tax_rate_compound' => 0,
 						'tax_rate_shipping' => ( strpos( $type, 'virtual' ) !== false ? 0 : 1 ),

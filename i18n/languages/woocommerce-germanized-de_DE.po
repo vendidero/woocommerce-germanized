@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce Germanized\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-18 13:18+0100\n"
-"PO-Revision-Date: 2019-11-18 13:18+0100\n"
+"POT-Creation-Date: 2019-11-19 11:35+0100\n"
+"PO-Revision-Date: 2019-11-19 11:37+0100\n"
 "Last-Translator: holzhannes <holzhannes@posteo.de>\n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -3642,7 +3642,7 @@ msgstr "l"
 # @ woocommerce-germanized
 #: woocommerce-germanized/includes/abstracts/abstract-wc-gzd-product.php:549
 #: woocommerce-germanized/includes/abstracts/abstract-wc-gzd-product.php:559
-#: woocommerce-germanized/includes/wc-gzd-core-functions.php:322
+#: woocommerce-germanized/includes/wc-gzd-core-functions.php:387
 #: woocommerce-germanized/includes/wc-gzd-template-functions.php:546
 msgid "incl. VAT"
 msgstr "inkl. MwSt."
@@ -3654,7 +3654,7 @@ msgstr "exkl. MwSt."
 
 # @ woocommerce-germanized
 #: woocommerce-germanized/includes/abstracts/abstract-wc-gzd-product.php:551
-#: woocommerce-germanized/includes/wc-gzd-core-functions.php:322
+#: woocommerce-germanized/includes/wc-gzd-core-functions.php:387
 #, php-format
 msgid "incl. %s%% VAT"
 msgstr "inkl. %s %% MwSt."
@@ -4040,7 +4040,7 @@ msgstr "Zurück zu WP Admin"
 #: woocommerce-germanized/includes/admin/class-wc-gzd-admin-status.php:45
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-general.php:53
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-general.php:136
-#: woocommerce-germanized/includes/wc-gzd-core-functions.php:198
+#: woocommerce-germanized/includes/wc-gzd-core-functions.php:237
 msgid "Terms & Conditions"
 msgstr "AGB"
 
@@ -4054,7 +4054,7 @@ msgstr "Widerrufsbelehrung"
 #: woocommerce-germanized/includes/admin/class-wc-gzd-admin-status.php:47
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-general.php:84
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-general.php:136
-#: woocommerce-germanized/includes/wc-gzd-core-functions.php:200
+#: woocommerce-germanized/includes/wc-gzd-core-functions.php:239
 msgid "Imprint"
 msgstr "Impressum"
 
@@ -4066,7 +4066,7 @@ msgstr "Datenschutzerklärung"
 # @ woocommerce-germanized
 #: woocommerce-germanized/includes/admin/class-wc-gzd-admin-status.php:49
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-general.php:104
-#: woocommerce-germanized/includes/wc-gzd-core-functions.php:205
+#: woocommerce-germanized/includes/wc-gzd-core-functions.php:244
 msgid "Payment Methods"
 msgstr "Zahlungarten"
 
@@ -5305,7 +5305,7 @@ msgid ""
 msgstr "Passe hier, falls notwending, den Kleinunternehmer Hinweistext an."
 
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-general.php:227
-#: woocommerce-germanized/includes/wc-gzd-core-functions.php:263
+#: woocommerce-germanized/includes/wc-gzd-core-functions.php:302
 msgid ""
 "Value added tax is not collected, as small businesses according to §19 (1) "
 "UStG."
@@ -5423,7 +5423,7 @@ msgstr ""
 "Platzhalter für den höchsten Preis."
 
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-general.php:304
-#: woocommerce-germanized/includes/wc-gzd-core-functions.php:674
+#: woocommerce-germanized/includes/wc-gzd-core-functions.php:739
 msgid "{min_price} &ndash; {max_price}"
 msgstr "{min_price} &ndash; {max_price}"
 
@@ -5745,7 +5745,7 @@ msgstr "Preisauszeichnung „Steuer“ anzeigen"
 # @ woocommerce-germanized
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:316
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:361
-#: woocommerce-germanized/includes/wc-gzd-core-functions.php:206
+#: woocommerce-germanized/includes/wc-gzd-core-functions.php:245
 msgid "Shipping Costs"
 msgstr "Versandkosten"
 
@@ -7267,7 +7267,7 @@ msgid "Thanks for creating an account on %s."
 msgstr "Danke, dass du ein Konto bei %s erstellt hast."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-emails.php:1010
+#: woocommerce-germanized/includes/class-wc-gzd-emails.php:1002
 msgctxt "revocation-form"
 msgid "Forward your Revocation online"
 msgstr "Deinen Widerruf online erklären"
@@ -7282,74 +7282,94 @@ msgstr ""
 "Bitte installiere <a href=\"%s\" target=\"_blank\">WooCommerce</a> bevor du "
 "WooCommerce Germanized installierst. Vielen Dank!"
 
+#: woocommerce-germanized/includes/class-wc-gzd-install.php:425
+msgid "Reduced rate"
+msgstr "Ermäßigter Steuersatz"
+
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-install.php:538
+#: woocommerce-germanized/includes/class-wc-gzd-install.php:427
+msgid "Virtual rate"
+msgstr "Virtueller Steuersatz"
+
+# @ woocommerce-germanized
+#: woocommerce-germanized/includes/class-wc-gzd-install.php:429
+msgid "Virtual reduced rate"
+msgstr "Virtueller ermäßigter Steuersatz"
+
+#: woocommerce-germanized/includes/class-wc-gzd-install.php:471
+#, php-format
+msgctxt "vat-rate-import"
+msgid "VAT %s"
+msgstr "MwSt. %s"
+
+# @ woocommerce-germanized
+#: woocommerce-germanized/includes/class-wc-gzd-install.php:575
 msgctxt "Page slug"
 msgid "data-security"
 msgstr "datenschutzerklaerung"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-install.php:539
+#: woocommerce-germanized/includes/class-wc-gzd-install.php:576
 msgctxt "Page title"
 msgid "Data Security Statement"
 msgstr "Datenschutzerklärung"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-install.php:543
+#: woocommerce-germanized/includes/class-wc-gzd-install.php:580
 msgctxt "Page slug"
 msgid "imprint"
 msgstr "impressum"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-install.php:544
+#: woocommerce-germanized/includes/class-wc-gzd-install.php:581
 msgctxt "Page title"
 msgid "Imprint"
 msgstr "Impressum"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-install.php:548
+#: woocommerce-germanized/includes/class-wc-gzd-install.php:585
 msgctxt "Page slug"
 msgid "terms"
 msgstr "agb"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-install.php:549
+#: woocommerce-germanized/includes/class-wc-gzd-install.php:586
 msgctxt "Page title"
 msgid "Terms & Conditions"
 msgstr "AGB"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-install.php:553
+#: woocommerce-germanized/includes/class-wc-gzd-install.php:590
 msgctxt "Page slug"
 msgid "revocation"
 msgstr "widerrufsbelehrung"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-install.php:554
+#: woocommerce-germanized/includes/class-wc-gzd-install.php:591
 msgctxt "Page title"
 msgid "Power of Revocation"
 msgstr "Widerrufsbelehrung"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-install.php:558
+#: woocommerce-germanized/includes/class-wc-gzd-install.php:595
 msgctxt "Page slug"
 msgid "shipping-methods"
 msgstr "versandarten"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-install.php:559
+#: woocommerce-germanized/includes/class-wc-gzd-install.php:596
 msgctxt "Page title"
 msgid "Shipping Methods"
 msgstr "Versandarten"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-install.php:563
+#: woocommerce-germanized/includes/class-wc-gzd-install.php:600
 msgctxt "Page slug"
 msgid "payment-methods"
 msgstr "bezahlmoeglichkeiten"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-install.php:564
+#: woocommerce-germanized/includes/class-wc-gzd-install.php:601
 msgctxt "Page title"
 msgid "Payment Methods"
 msgstr "Zahlungsarten"
@@ -7915,14 +7935,14 @@ msgstr "Anrede"
 
 # @ woocommerce-germanized
 #: woocommerce-germanized/includes/class-wc-gzd-revocation.php:52
-#: woocommerce-germanized/includes/wc-gzd-core-functions.php:428
+#: woocommerce-germanized/includes/wc-gzd-core-functions.php:493
 msgid "Mr."
 msgstr "Herr"
 
 # @ woocommerce-germanized
 #: woocommerce-germanized/includes/class-wc-gzd-revocation.php:53
-#: woocommerce-germanized/includes/wc-gzd-core-functions.php:429
-#: woocommerce-germanized/includes/wc-gzd-core-functions.php:446
+#: woocommerce-germanized/includes/wc-gzd-core-functions.php:494
+#: woocommerce-germanized/includes/wc-gzd-core-functions.php:511
 msgid "Ms."
 msgstr "Frau"
 
@@ -8745,39 +8765,39 @@ msgstr ""
 "Aktiviere die Zahlungsart nur dann, wenn der Kunde bereits eine Bestellung "
 "erfolgreich abgeschlossen hat."
 
-#: woocommerce-germanized/includes/wc-gzd-core-functions.php:153
+#: woocommerce-germanized/includes/wc-gzd-core-functions.php:192
 msgid ">= 12 years"
 msgstr ">= 12 Jahre"
 
-#: woocommerce-germanized/includes/wc-gzd-core-functions.php:154
+#: woocommerce-germanized/includes/wc-gzd-core-functions.php:193
 msgid ">= 16 years"
 msgstr ">= 16 Jahre"
 
-#: woocommerce-germanized/includes/wc-gzd-core-functions.php:155
+#: woocommerce-germanized/includes/wc-gzd-core-functions.php:194
 msgid ">= 18 years"
 msgstr ">= 18 Jahre"
 
-#: woocommerce-germanized/includes/wc-gzd-core-functions.php:156
+#: woocommerce-germanized/includes/wc-gzd-core-functions.php:195
 msgid ">= 21 years"
 msgstr ">= 21 Jahre"
 
-#: woocommerce-germanized/includes/wc-gzd-core-functions.php:157
+#: woocommerce-germanized/includes/wc-gzd-core-functions.php:196
 msgid ">= 25 years"
 msgstr ">= 25 Jahre"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/wc-gzd-core-functions.php:162
+#: woocommerce-germanized/includes/wc-gzd-core-functions.php:201
 msgctxt "age"
 msgid "None"
 msgstr "Keines"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/wc-gzd-core-functions.php:199
+#: woocommerce-germanized/includes/wc-gzd-core-functions.php:238
 msgid "Right of Recission"
 msgstr "Widerrufsrecht"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/wc-gzd-core-functions.php:201
+#: woocommerce-germanized/includes/wc-gzd-core-functions.php:240
 msgid "Data Security"
 msgstr "Datenschutzerklärung"
 
