@@ -416,29 +416,36 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 			);
 
 			self::import_rates( $rates, 'virtual-rate' );
+			self::import_rates( array(), 'virtual-reduced-rate' );
 		}
 
 		protected static function get_tax_class_name( $class ) {
 			$name = $class;
 
 			if ( 'reduced-rate' === $class ) {
-				$name = __( 'Reduced rate', 'woocommerce-germanized' );
+				$name = __( 'Reduced rate', 'woocommerce' );
 			} elseif( 'virtual-rate' === $class ) {
-				$name = __( 'Virtual rate', 'woocommerce-germanized' );
+				$name = 'Virtual rate';
 			} elseif( 'virtual-reduced-rate' === $class ) {
-				$name = __( 'Virtual reduced rate', 'woocommerce-germanized' );
+				$name = 'Virtual reduced rate';
 			}
 
 			return $name;
 		}
 
-		protected static function maybe_find_tax_class( $class ) {
-			$slugs = WC_Tax::get_tax_class_slugs();
+		protected static function maybe_find_tax_class( $class, $name = '' ) {
+			$names = WC_Tax::get_tax_classes();
 
-			foreach( $slugs as $slug ) {
+			if ( 'reduced-rate' === $class ) {
+				$find = array( 'Reduced rate', __( 'Reduced rate', 'woocommerce' ) );
+			} else {
+				$find = array( self::get_tax_class_name( $name ) );
+			}
 
-				if ( $slug === $class ) {
-					return $slug;
+			foreach( $names as $name ) {
+
+				if ( in_array( $name, $find ) ) {
+					return $name;
 				}
 			}
 
@@ -450,8 +457,12 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 
 			if ( ! empty( $type ) ) {
 				// Only import if we were able to find the right class slug
-				if ( $class_slug = self::maybe_find_tax_class( $type ) ) {
-					$type = $class_slug;
+				if ( $class_name = self::maybe_find_tax_class( $type ) ) {
+					$class_data = WC_Tax::get_tax_class_by( 'name', $class_name );
+
+					if ( isset( $class_data['slug'] ) ) {
+						$type = $class_data['slug'];
+					}
 				} else {
 					// Create tax class first
 					WC_Tax::create_tax_class( self::get_tax_class_name( $type ), $type );
