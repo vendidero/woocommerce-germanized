@@ -540,7 +540,7 @@ class WC_Germanized_Meta_Box_Product_Data {
 		// Applies to differential taxation?
 		$gzd_product->set_differential_taxation( isset( $data['_differential_taxation'] ) ? 'yes' : 'no' );
 
-		if ( isset( $data['_differential_taxation'] ) ) {
+		if ( $gzd_product->is_differential_taxed() ) {
 			$product->set_tax_status( 'shipping' );
 		}
 
