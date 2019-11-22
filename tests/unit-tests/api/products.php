@@ -88,6 +88,31 @@ class WC_GZD_Products_API extends WC_GZD_REST_Unit_Test_Case {
 		$simple->delete( true );
 	}
 
+	public function test_update_product_bools() {
+		wp_set_current_user( $this->user );
+
+		// test simple products
+		$simple = WC_GZD_Helper_Product::create_simple_product();
+
+		$request = new WP_REST_Request( 'PUT', '/wc/v2/products/' . $simple->get_id() );
+		$request->set_body_params( array(
+			'unit_price' => array( 'price_regular' => '80.0', 'price_sale' => '70.0' ),
+		) );
+
+		$response = $this->server->dispatch( $request );
+		$data     = $response->get_data();
+
+		// GET Product
+		$response = $this->server->dispatch( new WP_REST_Request( 'GET', '/wc/v2/products/' . $simple->get_id() ) );
+		$product  = $response->get_data();
+
+		$this->assertEquals( '80.0', $product['unit_price']['price_regular'] );
+		$this->assertEquals( '70.0', $product['unit_price']['price_sale'] );
+		$this->assertEquals( true, $product['differential_taxation'] );
+
+		$simple->delete( true );
+	}
+
 	/**
 	 * Test editing a single product. Tests multiple product types.
 	 *
@@ -168,7 +193,7 @@ class WC_GZD_Products_API extends WC_GZD_REST_Unit_Test_Case {
 
 		$this->assertEquals( '3-4-days', $product['delivery_time']['slug'] );
 		$this->assertEquals( '80.0', $product['unit_price']['price_regular'] );
-		$this->assertEquals( '20', $product['unit_price']['base'] );
+		$this->assertEquals( '10', $product['unit_price']['base'] );
 		$this->assertEquals( '1', $product['unit_price']['product'] );
 
 		$this->assertEquals( 'new-price', $product['sale_price_label']['slug'] );
