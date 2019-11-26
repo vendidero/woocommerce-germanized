@@ -5,7 +5,7 @@ Requires at least: 4.9
 Tested up to: 5.3
 WC requires at least: 3.4
 WC tested up to: 3.8
-Stable tag: 3.0.5
+Stable tag: 3.0.6
 Requires PHP: 5.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -67,8 +67,8 @@ Furthermore you may attach legally relevant pages (e.g. Terms & Conditions) as P
 
 = Shipments =
 Germanized adds a new abstraction layer to WooCommerce to make it easier for you to send your parcels to your customers. With Germanized you'll be able to generate (multiple) shipments to an order.
-You can then manage your shipments and it's statuses independently from your orders. Let your customers receive a notification email as soon as a shipment has been marked as shipped.
-Learn more about our [Shipments for WooCommerce](https://vendidero.de/woocommerce-germanized/features#shipments "Shipments for WooCommerce") integration and find out how to automate your shipping process.
+You can then manage your shipments and it's statuses independently from your orders. Let your customers receive a notification email as soon as a shipment has been marked as shipped including tracking information
+from a built-in or manually added shipping provider. Learn more about our [Shipments for WooCommerce](https://vendidero.de/woocommerce-germanized/features#shipments "Shipments for WooCommerce") integration and find out how to automate your shipping process.
 
 = DHL Integration =
 With the help of our built-in DHL integration you can easily create labels for your shipments and add tracking information to the notification emails.
@@ -187,6 +187,20 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 5. Manage shipments for orders
 
 == Changelog ==
+
+= 3.0.6 =
+* Feature: Manually add shipping providers with custom tracking data
+* Improvement: Improved shipping provider integration code base
+* Improvement: New filters to allow adding custom data to shipment item admin output
+* Improvement: DHL added minimum weight setting
+* Improvement: DHL SOAP API use DE timezone date
+* Improvement: DHL Make sure shipping method data gets refreshed within checkout
+* Improvement: Tax rate importing now supports translated tax classes
+* Improvement: Added differential taxation notices to mini cart if necessary
+* Fix: Re-added email shopmark settings screen
+* Fix: WPML product saving bug
+* Fix: Force some product data to be inherited from parent (e.g. free_shipping)
+* Fix: Shipment item meta deletion
 
 = 3.0.5 =
 * Improvement: Admin assets localization
