@@ -24,8 +24,6 @@ window.germanized = window.germanized || {};
             }
 
             $( document )
-                .on( 'change', 'select#woocommerce_gzd_checkboxes_parcel_delivery_show_special', this.onParcelDeliveryShowSpecial )
-                .on( 'change', 'input#woocommerce_gzd_order_pay_now_button', this.onChangePayNow )
                 .on( 'change', 'input[name=woocommerce_gzd_dispute_resolution_type]', this.onChangeDisputeResolutionType )
                 .on( 'click', 'a.woocommerce-gzd-input-toggle-trigger', this.onInputToogleClick )
                 .on( 'change', '.wc-gzd-setting-tabs input.woocommerce-gzd-tab-status-checkbox', this.onChangeTabStatus )
@@ -36,9 +34,6 @@ window.germanized = window.germanized || {};
                 .on( 'woocommerce_gzd_setting_field_invisible', this.onHideField );
 
             $( '.wc-gzd-admin-settings :input' ).trigger( 'change' );
-
-            $( 'select#woocommerce_gzd_checkboxes_parcel_delivery_show_special' ).trigger( 'change' );
-            $( 'input#woocommerce_gzd_order_pay_now_button' ).trigger( 'change' );
             $( 'input[name=woocommerce_gzd_dispute_resolution_type]:checked' ).trigger( 'change' );
 
             this.initMailSortable();
@@ -229,14 +224,6 @@ window.germanized = window.germanized || {};
                 $( 'select#woocommerce_gzd_checkboxes_parcel_delivery_show_shipping_methods' ).parents( 'tr' ).show();
             } else {
                 $( 'select#woocommerce_gzd_checkboxes_parcel_delivery_show_shipping_methods' ).parents( 'tr' ).hide();
-            }
-        },
-
-        onChangePayNow: function() {
-            if ( $( this ).is( ':checked' ) ) {
-                $( 'select#woocommerce_gzd_order_pay_now_button_disabled_methods' ).parents( 'tr' ).show();
-            } else {
-                $( 'select#woocommerce_gzd_order_pay_now_button_disabled_methods' ).parents( 'tr' ).hide();
             }
         },
 

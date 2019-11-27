@@ -173,6 +173,9 @@ class WC_GZD_Admin_Legal_Checkboxes {
 				'id'       => $checkbox->get_form_field_id( 'show_shipping_methods' ),
 				'default'  => array(),
 				'class'    => 'chosen_select',
+				'custom_attributes' => array(
+					'data-show_if_' . $checkbox->get_form_field_id( 'show_special' ) => 'shipping_methods',
+				),
 				'options'  => $shipping_methods_options,
 				'type'     => 'multiselect',
 			),
