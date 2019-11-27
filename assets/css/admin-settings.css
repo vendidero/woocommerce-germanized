@@ -56,25 +56,32 @@
     font-weight: bold; }
 
 .wc-gzd-settings .wc-gzd-settings-breadcrumb {
+  display: -webkit-box;
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-start;
+  -webkit-box-pack: start;
+          justify-content: flex-start;
   font-size: 1.4em;
-  align-items: center;
+  -webkit-box-align: center;
+          align-items: center;
   margin-bottom: .5em; }
   .wc-gzd-settings .wc-gzd-settings-breadcrumb li.breadcrumb-item {
+    display: -webkit-box;
     display: flex;
     flex-wrap: wrap;
-    align-items: center; }
+    -webkit-box-align: center;
+            align-items: center; }
     .wc-gzd-settings .wc-gzd-settings-breadcrumb li.breadcrumb-item a.page-title-action {
       margin-left: 1em;
       position: inherit;
       top: 0; }
     .wc-gzd-settings .wc-gzd-settings-breadcrumb li.breadcrumb-item a.breadcrumb-link {
       text-decoration: none;
+      display: -webkit-inline-box;
       display: inline-flex;
       white-space: nowrap;
-      align-items: center;
+      -webkit-box-align: center;
+              align-items: center;
       color: #444; }
       .wc-gzd-settings .wc-gzd-settings-breadcrumb li.breadcrumb-item a.breadcrumb-link:hover {
         color: #000 !important; }
@@ -122,8 +129,10 @@
     width: 15%;
     text-align: right; }
   .wc-gzd-settings .wc-gzd-setting-tabs td.wc-gzd-setting-tab-actions {
+    display: -webkit-box;
     display: flex;
-    justify-content: flex-end;
+    -webkit-box-pack: end;
+            justify-content: flex-end;
     flex-wrap: wrap; }
     .wc-gzd-settings .wc-gzd-setting-tabs td.wc-gzd-setting-tab-actions .button {
       margin-right: 5px; }
@@ -138,9 +147,11 @@
     background: #f9f9f9; }
 
 .wc-gzd-admin-settings {
+  display: -webkit-box;
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-start;
+  -webkit-box-pack: start;
+          justify-content: flex-start;
   margin-top: 1em; }
   .wc-gzd-admin-settings.wc-gzd-admin-settings-has-sidebar {
     box-sizing: border-box; }
