@@ -4,7 +4,7 @@
 /composer.* export-ignore
 /tests export-ignore
 /bin export-ignore
-/phpcs.xml export-ignore
+/phpcs.* export-ignore
 /phpunit.* export-ignore
 /renovate.json export-ignore
 /package.json export-ignore
