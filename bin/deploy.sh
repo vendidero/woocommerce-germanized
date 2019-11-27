@@ -69,6 +69,7 @@ copy_dest_files() {
     --exclude=package.json \
     --exclude=package-lock.json \
     --exclude=phpcs.xml \
+    --exclude=phpcs.ruleset.xml \
     --exclude=phpunit.xml \
     --exclude=phpunit.xml.dist \
     --exclude=README.md \
@@ -91,10 +92,10 @@ while [ ! $# -eq 0 ]; do
       echo "Plugin from GitHub to WordPress.org command line client."
       echo
       echo "Examples:"
-      echo "./release.sh       # Regular release on GitHub and wp.org"
-      echo "./release.sh -t -u # Release a \"Stable tag\", and update trunk/readme.txt"
-      echo "./release.sh -s    # Release only on GitHub"
-      echo "./release.sh -g    # Release only on wp.org"
+      echo "./deploy.sh       # Regular release on GitHub and wp.org"
+      echo "./deploy.sh -t -u # Release a \"Stable tag\", and update trunk/readme.txt"
+      echo "./deploy.sh -s    # Release only on GitHub"
+      echo "./deploy.sh -g    # Release only on wp.org"
       echo
       echo "Available options:"
       echo "  -h [--help]              Shows help message"
@@ -145,7 +146,7 @@ while [ ! $# -eq 0 ]; do
       GITHUB_ORG=$1
       ;;
     *)
-      output 1 "\"${1}\" is not a valid command. See \"./release.sh --help\"."
+      output 1 "\"${1}\" is not a valid command. See \"./deploy.sh --help\"."
       exit 1;
       ;;
   esac
