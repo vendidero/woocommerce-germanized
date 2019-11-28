@@ -187,11 +187,12 @@
       position: absolute;
       right: 0;
       top: 50%; }
-  .wc-gzd-admin-settings td.forminp-gzd_toggle span.description {
+  .wc-gzd-admin-settings td.forminp-gzd_toggle span.description, .wc-gzd-admin-settings td.forminp-gzd_toggle p.description {
+    display: inline-block;
     font-style: normal;
     font-size: 14px;
     margin-left: 5px; }
-    .wc-gzd-admin-settings td.forminp-gzd_toggle span.description .wc-gzd-additional-desc {
+    .wc-gzd-admin-settings td.forminp-gzd_toggle span.description .wc-gzd-additional-desc, .wc-gzd-admin-settings td.forminp-gzd_toggle p.description .wc-gzd-additional-desc {
       margin-bottom: -1em; }
   .wc-gzd-admin-settings td.forminp-gzd_toggle fieldset {
     margin-top: 1.25em; }

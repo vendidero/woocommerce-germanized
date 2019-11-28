@@ -67,12 +67,10 @@ Furthermore you may attach legally relevant pages (e.g. Terms & Conditions) as P
 
 = Shipments =
 Germanized adds a new abstraction layer to WooCommerce to make it easier for you to send your parcels to your customers. With Germanized you'll be able to generate (multiple) shipments to an order.
-You can then manage your shipments and it's statuses independently from your orders. Let your customers receive a notification email as soon as a shipment has been marked as shipped including tracking information
-from a built-in or manually added shipping provider. Learn more about our [Shipments for WooCommerce](https://vendidero.de/woocommerce-germanized/features#shipments "Shipments for WooCommerce") integration and find out how to automate your shipping process.
+You can then manage your shipments and it's statuses independently from your orders. Let your customers receive a notification email as soon as a shipment has been marked as shipped including tracking information from a built-in or manually added shipping provider. Learn more about our [Shipments for WooCommerce](https://vendidero.de/woocommerce-germanized/features#shipments "Shipments for WooCommerce") integration and find out how to automate your shipping process.
 
 = DHL Integration =
-With the help of our built-in DHL integration you can easily create labels for your shipments and add tracking information to the notification emails.
-Furthermore you can offer Wunschpaket Services to your customers including shipping to Packstation or choosing a preferred location, day and/or time within the checkout.
+With the help of our built-in DHL integration you can easily create labels for your shipments and add tracking information to the notification emails. Furthermore you can offer Wunschpaket Services to your customers including shipping to Packstation or choosing a preferred location, day and/or time within the checkout.
 You can even let your shipments and labels be generated automatically by Germanized to avoid further manual work. [Learn more](https://vendidero.de/dokumentation/woocommerce-germanized/sendungen-dhl "DHL for WooCommerce") about how our DHL integration works.
 
 = Pro: Premium Support =

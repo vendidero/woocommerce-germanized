@@ -294,7 +294,8 @@
   }
 
   td.forminp-gzd_toggle {
-    span.description {
+    span.description, p.description {
+      display: inline-block;
       font-style: normal;
       font-size: 14px;
       margin-left: 5px;
