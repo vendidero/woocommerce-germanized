@@ -775,3 +775,16 @@ function wc_gzd_get_formatted_revocation_address() {
 
 	return nl2br( $address );
 }
+
+/**
+ * @param WP_Error $error
+ */
+function wc_gzd_wp_error_has_errors( $error ) {
+	if ( is_callable( array( $error, 'has_errors' ) ) ) {
+		return $error->has_errors();
+	} else {
+		$errors = $error->errors;
+
+		return ( ! empty( $errors ) ? true : false );
+	}
+}
