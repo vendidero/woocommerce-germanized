@@ -278,7 +278,12 @@ class WC_GZD_Admin {
 		$field_description = WC_Admin_Settings::get_field_description( $value );
 		$description       = $field_description['description'];
 		$tooltip_html      = $field_description['tooltip_html'];
-		$option_value      = WC_Admin_Settings::get_option( $value['id'], $value['default'] );
+
+		if ( ! isset( $value['value'] ) ) {
+			$value['value'] = WC_Admin_Settings::get_option( $value['id'], $value['default'] );
+		}
+
+		$option_value      = $value['value'];
 
 		if ( ! isset( $value['checkboxgroup'] ) || 'start' === $value['checkboxgroup'] ) {
 			?>
