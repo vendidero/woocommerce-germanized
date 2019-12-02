@@ -151,6 +151,13 @@ class WC_GZD_Settings_Tab_Taxes extends WC_GZD_Settings_Tab {
 				'type'    => 'gzd_toggle',
 			),
 			array(
+				'title'   => __( 'Mixed carts', 'woocommerce-germanized' ),
+				'desc'    => __( 'Disallow buying normal and differential taxed products at the same time.', 'woocommerce-germanized' ) . ' <div class="wc-gzd-additional-desc">' . sprintf( __( 'Shipping costs for differential taxed products may not be taxed (compare %s) or must be taxed separately which is impossible within a single order. This option will prevent your customers from buying normal products and differential taxed products at the same time to prevent taxation problems.', 'woocommerce-germanized' ), '<a href="https://www.hk24.de/produktmarken/beratung-service/recht_und_steuern/steuerrecht/umsatzsteuer_mehrwertsteuer/umsatzsteuer_mehrwertsteuer_national/grundsaetzliches-allgemeines/differenzbesteuerung-gebrauchtwarenhandel/1167726">' . __( 'HK Hamburg', 'woocommerce-germanized' ) . '</a>' ) . '</div>',
+				'id'      => 'woocommerce_gzd_differential_taxation_disallow_mixed_carts',
+				'default' => 'yes',
+				'type'    => 'gzd_toggle',
+			),
+			array(
 				'title'    => __( 'Notice Text', 'woocommerce-germanized' ),
 				'desc'     => __( 'This text will be shown as a further notice for the customer to inform him about differential taxation.', 'woocommerce-germanized' ),
 				'desc_tip' => true,

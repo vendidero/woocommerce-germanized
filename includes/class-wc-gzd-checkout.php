@@ -77,6 +77,10 @@ class WC_GZD_Checkout {
 		// Add better fee taxation
 		add_action( 'woocommerce_calculate_totals', array( $this, 'do_fee_tax_calculation' ), 1500, 1 );
 
+		if ( 'yes' === get_option( 'woocommerce_gzd_differential_taxation_disallow_mixed_carts' ) ) {
+			add_filter( 'woocommerce_add_to_cart_validation', array( $this, 'prevent_differential_mixed_carts' ), 10, 3 );
+		}
+
 		// Disallow user order cancellation
 		if ( 'yes' === get_option( 'woocommerce_gzd_checkout_stop_order_cancellation' ) ) {
 
@@ -121,6 +125,30 @@ class WC_GZD_Checkout {
 		// Make sure that, just like in Woo core, the order submit button gets refreshed
 		// Use a high priority to let other plugins do their adjustments beforehand
 		add_filter( 'woocommerce_update_order_review_fragments', array( $this, 'refresh_order_submit' ), 150, 1 );
+	}
+
+	public function prevent_differential_mixed_carts( $has_passed, $product_id, $quantity ) {
+		if ( $gzd_product = wc_gzd_get_gzd_product( $product_id ) ) {
+
+			$cart_count            = WC()->cart->get_cart_contents_count();
+			$contains_differential = wc_gzd_cart_contains_differential_taxed_product();
+
+			if ( $gzd_product->is_differential_taxed() ) {
+
+				if ( $cart_count > 0 && ! $contains_differential ) {
+					wc_add_notice( __( 'Sorry, but differential taxed products cannot be purchased with normal products at the same time.', 'woocommerce-germanized' ), 'error' );
+					$has_passed = false;
+				}
+			} else {
+
+				if ( $cart_count > 0 && $contains_differential ) {
+					wc_add_notice( __( 'Sorry, but normal products cannot be purchased together with differential taxed products at the same time.', 'woocommerce-germanized' ), 'error' );
+					$has_passed = false;
+				}
+			}
+		}
+
+		return $has_passed;
 	}
 
 	public function add_order_address_data( $data, $type, $order ) {

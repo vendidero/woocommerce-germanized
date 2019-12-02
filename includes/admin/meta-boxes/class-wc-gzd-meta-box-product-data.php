@@ -541,7 +541,17 @@ class WC_Germanized_Meta_Box_Product_Data {
 		$gzd_product->set_differential_taxation( isset( $data['_differential_taxation'] ) ? 'yes' : 'no' );
 
 		if ( $gzd_product->is_differential_taxed() ) {
-			$product->set_tax_status( 'shipping' );
+			/**
+			 * Filter the tax status of a differential taxed product.
+			 *
+			 * @param string     $tax_status The tax status, e.g. none or shipping.
+             * @param WC_Product $product The product instance.
+			 *
+			 * @since 3.0.7
+			 */
+		    $tax_status_diff = apply_filters( 'woocommerce_gzd_product_differential_taxed_tax_status', 'none', $product );
+
+			$product->set_tax_status( $tax_status_diff );
 		}
 
 		// Ignore variable data
