@@ -135,6 +135,11 @@ window.germanized = window.germanized || {};
 
                 if ( $input.is( ':checked' ) || $input.is( ':selected' ) ) {
                     checked = true;
+
+                    // Make sure that hidden fields are considered unchecked
+                    if ( ! $input.parents( 'tr' ).is( ':visible' ) ) {
+                        checked = false;
+                    }
                 }
 
                 if ( typeof nameOrg === typeof undefined || nameOrg === false ) {
@@ -149,6 +154,11 @@ window.germanized = window.germanized || {};
 
                 if ( $input.is( ':checkbox' ) ) {
                     val = $input.is( ':checked' ) ? 'yes' : 'no';
+
+                    // Make sure that hidden fields are considered unchecked
+                    if ( ! $input.parents( 'tr' ).is( ':visible' ) ) {
+                        val = 'no';
+                    }
                 }
 
                 $fields.each( function() {

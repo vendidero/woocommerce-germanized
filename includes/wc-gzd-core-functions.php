@@ -788,3 +788,45 @@ function wc_gzd_wp_error_has_errors( $error ) {
 		return ( ! empty( $errors ) ? true : false );
 	}
 }
+
+/**
+ * Switch Germanized to site language.
+ *
+ * @since 3.1.0
+ */
+function wc_gzd_switch_to_site_locale() {
+	if ( function_exists( 'switch_to_locale' ) ) {
+		switch_to_locale( get_locale() );
+
+		// Filter on plugin_locale so load_plugin_textdomain loads the correct locale.
+		add_filter( 'plugin_locale', 'get_locale' );
+
+		// Init WCG locale.
+		WC_germanized()->load_plugin_textdomain();
+
+		if ( function_exists( 'WC_germanized_pro' ) ) {
+			WC_germanized_pro()->load_plugin_textdomain();
+		}
+	}
+}
+
+/**
+ * Switch Germanized language to original.
+ *
+ * @since 3.1.0
+ */
+function wc_gzd_restore_locale() {
+	if ( function_exists( 'restore_previous_locale' ) ) {
+		restore_previous_locale();
+
+		// Remove filter.
+		remove_filter( 'plugin_locale', 'get_locale' );
+
+		// Init WCG locale.
+		WC_germanized()->load_plugin_textdomain();
+
+		if ( function_exists( 'WC_germanized_pro' ) ) {
+			WC_germanized_pro()->load_plugin_textdomain();
+		}
+	}
+}
