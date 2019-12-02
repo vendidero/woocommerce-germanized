@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce Germanized\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-12-02 12:11+0100\n"
-"PO-Revision-Date: 2019-12-02 12:14+0100\n"
+"POT-Creation-Date: 2019-12-02 12:49+0100\n"
+"PO-Revision-Date: 2019-12-02 12:50+0100\n"
 "Last-Translator: holzhannes <holzhannes@posteo.de>\n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -3740,7 +3740,7 @@ msgstr ""
 #: woocommerce-germanized-shipments/src/FormHandler.php:75
 msgctxt "shipments"
 msgid "Sorry, but this shipment is not returnable."
-msgstr "Entschuldige, diese Sendung kann nicht zurückgesendet werden."
+msgstr "Entschuldigung, diese Sendung kann nicht zurückgesendet werden."
 
 #: woocommerce-germanized-shipments/src/FormHandler.php:80
 msgctxt "shipments"
@@ -9560,14 +9560,16 @@ msgstr ""
 
 # @ woocommerce
 #: woocommerce-germanized/templates/checkout/order-submit.php:26
+#, php-format
 msgid ""
 "Since your browser does not support JavaScript, or it is disabled, please "
-"ensure you click the <em>Update Totals</em> button before placing your "
-"order. You may be charged more than the amount stated above if you fail to "
-"do so."
+"ensure you click the %1$sUpdate Totals%2$s button before placing your order. "
+"You may be charged more than the amount stated above if you fail to do so."
 msgstr ""
-"Da dein Browser kein JavaScript erlaubt, denke bitte daran, auf "
-"\"Gesamtsumme aktualisieren\" zu klicken, bevor du den Auftrag absendest."
+"Da dein Browser kein JavaScript unterstützt oder dieses deaktiviert ist, "
+"klicke bitte auf jeden Fall auf den Button %1$sGesamtbetrag aktualisieren"
+"%2$s, bevor du deine Bestellung abschließt. Anderenfalls könnte dir ein "
+"höherer Betrag in Rechnung gestellt werden, als derzeit oben angezeigt wird."
 
 # @ woocommerce-germanized
 #: woocommerce-germanized/templates/checkout/order-submit.php:29

@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce Germanized\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-12-02 12:12+0100\n"
-"PO-Revision-Date: 2019-12-02 12:17+0100\n"
+"POT-Creation-Date: 2019-12-02 12:50+0100\n"
+"PO-Revision-Date: 2019-12-02 12:51+0100\n"
 "Last-Translator: holzhannes <holzhannes@posteo.de>\n"
 "Language-Team: \n"
 "Language: de_DE@formal\n"
@@ -9563,15 +9563,17 @@ msgstr ""
 
 # @ woocommerce
 #: woocommerce-germanized/templates/checkout/order-submit.php:26
+#, php-format
 msgid ""
 "Since your browser does not support JavaScript, or it is disabled, please "
-"ensure you click the <em>Update Totals</em> button before placing your "
-"order. You may be charged more than the amount stated above if you fail to "
-"do so."
+"ensure you click the %1$sUpdate Totals%2$s button before placing your order. "
+"You may be charged more than the amount stated above if you fail to do so."
 msgstr ""
-"Da Ihr Browser kein JavaScript erlaubt, denken Sie bitte daran, auf "
-"<em>Gesamtsumme aktualisieren</em> zu klicken, bevor Sie den Auftrag "
-"absenden."
+"Da Ihr Browser kein JavaScript unterstützt oder dieses deaktiviert ist, "
+"klicken Sie bitte auf jeden Fall auf den Button %1$sGesamtbetrag "
+"aktualisieren%2$s, bevor Sie Ihre Bestellung abschließen. Anderenfalls "
+"könnte Ihnen ein höherer Betrag in Rechnung gestellt werden, als derzeit "
+"oben angezeigt wird."
 
 # @ woocommerce-germanized
 #: woocommerce-germanized/templates/checkout/order-submit.php:29
