@@ -573,7 +573,7 @@ if ( ! function_exists( 'woocommerce_gzd_template_mini_cart_taxes' ) ) {
 	function woocommerce_gzd_template_mini_cart_taxes() {
 		$hidden_for_types           = get_option( 'woocommerce_gzd_display_shipping_costs_hidden_types', array() );
 		$show_shipping              = empty( $hidden_for_types ) ? true : false;
-		$show_differential_taxation = ( 'yes' === get_option( 'woocommerce_gzd_differential_taxation_checkout_notices' ) ? true : false );
+		$show_differential_taxation = ( 'yes' === get_option( 'woocommerce_gzd_differential_taxation_checkout_notices' ) ? wc_gzd_cart_contains_differential_taxed_product() : false );
 
 		foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
 			if ( $_product = $cart_item['data'] ) {

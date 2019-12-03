@@ -60,6 +60,10 @@ function wc_gzd_cart_contains_differential_taxed_product() {
 	$cart                           = WC()->cart;
 	$contains_differentail_taxation = false;
 
+	if ( ! $cart ) {
+	    return false;
+    }
+
 	foreach ( $cart->get_cart() as $cart_item_key => $values ) {
 		$_product = $values['data'];
 

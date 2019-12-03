@@ -64,9 +64,10 @@ function wc_gzd_get_cart_shopmarks() {
 	$cart = Shopmarks::get( 'cart' );
 
 	if ( 'yes' === get_option( 'woocommerce_gzd_differential_taxation_checkout_notices' ) ) {
-		$shopmark = _wc_gzd_get_differential_taxation_shopmark( 'cart' );
-
-		$cart[] = $shopmark;
+		if ( wc_gzd_cart_contains_differential_taxed_product() ) {
+			$shopmark = _wc_gzd_get_differential_taxation_shopmark( 'cart' );
+			$cart[]   = $shopmark;
+		}
 	}
 
 	return $cart;
@@ -79,9 +80,10 @@ function wc_gzd_get_mini_cart_shopmarks() {
 	$mini_cart = Shopmarks::get( 'mini_cart' );
 
 	if ( 'yes' === get_option( 'woocommerce_gzd_differential_taxation_checkout_notices' ) ) {
-		$shopmark = _wc_gzd_get_differential_taxation_shopmark( 'mini_cart' );
-
-		$mini_cart[] = $shopmark;
+		if ( wc_gzd_cart_contains_differential_taxed_product() ) {
+			$shopmark    = _wc_gzd_get_differential_taxation_shopmark( 'mini_cart' );
+			$mini_cart[] = $shopmark;
+		}
 	}
 
 	return $mini_cart;
@@ -107,9 +109,10 @@ function wc_gzd_get_checkout_shopmarks() {
 	$checkout = Shopmarks::get( 'checkout' );
 
 	if ( 'yes' === get_option( 'woocommerce_gzd_differential_taxation_checkout_notices' ) ) {
-		$shopmark = _wc_gzd_get_differential_taxation_shopmark( 'checkout' );
-
-		$checkout[] = $shopmark;
+		if ( wc_gzd_cart_contains_differential_taxed_product() ) {
+			$shopmark    = _wc_gzd_get_differential_taxation_shopmark( 'checkout' );
+			$checkout[]  = $shopmark;
+		}
 	}
 
 	return $checkout;
