@@ -791,6 +791,13 @@ if ( ! function_exists( 'woocommerce_gzd_template_add_price_html_suffixes' ) ) {
 
 	function woocommerce_gzd_template_add_price_html_suffixes( $price_html, $org_product, $args = array(), $location = 'product_widget' ) {
 		global $product;
+
+		$old_product = false;
+
+		if ( $product && is_a( $product, 'WC_Product' ) ) {
+			$old_product = $product;
+		}
+
 		$product = $org_product;
 
 		$args = wp_parse_args( $args, array(
@@ -882,7 +889,14 @@ if ( ! function_exists( 'woocommerce_gzd_template_add_price_html_suffixes' ) ) {
 		 */
 		$suffix = apply_filters( 'woocommerce_gzd_template_add_price_html_suffix', $suffix, $args, $location );
 
-		return $price_html . $suffix;
+		$new_html = $price_html . $suffix;
+
+		// Restore old global variable
+		if ( $old_product ) {
+			$product = $old_product;
+		}
+
+		return $new_html;
 	}
 }
 

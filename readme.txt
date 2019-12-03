@@ -5,7 +5,7 @@ Requires at least: 4.9
 Tested up to: 5.3
 WC requires at least: 3.4
 WC tested up to: 3.8
-Stable tag: 3.0.6
+Stable tag: 3.0.7
 Requires PHP: 5.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -185,6 +185,14 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 5. Manage shipments for orders
 
 == Changelog ==
+
+= 3.0.7 =
+* Improvement: Added option to prevent differential taxed products from being purchased with normal products
+* Improvement: Choose "none" as tax_status for differential taxed products
+* Fix: Remove differential tax cart notice in case no product differential taxed product is included
+* Fix: DHL auto label creation use fallback global settings
+* Fix: Remove direct calls from WP_Error::has_errors for backwards comp
+* Fix: Hardened checks when using woocommerce_update_order_item hook
 
 = 3.0.6 =
 * Feature: Manually add shipping providers with custom tracking data
