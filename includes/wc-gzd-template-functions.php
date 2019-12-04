@@ -51,7 +51,8 @@ if ( ! function_exists( 'woocommerce_gzd_template_single_price_unit' ) ) {
 			'simple',
 			'external',
 			'variable',
-			'grouped'
+			'grouped',
+			'bundle'
 		) ) ) ) {
 			wc_get_template( 'single-product/price-unit.php' );
 		}

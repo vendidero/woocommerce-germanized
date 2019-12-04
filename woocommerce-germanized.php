@@ -888,7 +888,7 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 				wp_localize_script( 'wc-gzd-revocation', 'wc_gzd_revocation_params', apply_filters( 'wc_gzd_revocation_params', array(
 					'ajax_url'        => WC()->ajax_url(),
 					'wc_ajax_url'     => WC_AJAX::get_endpoint( "%%endpoint%%" ),
-					'ajax_loader_url' => apply_filters( 'woocommerce_ajax_loader_url', $assets_path . 'images/ajax-loader@2x.gif' ),
+					'ajax_loader_url' => apply_filters( 'woocommerce_ajax_loader_url', $assets_path . 'images/wpspin-2x.gif' ),
 				) ) );
 			}
 
