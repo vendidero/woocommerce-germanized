@@ -24,6 +24,17 @@ class WC_GZD_Compatibility_WooCommerce_Product_Bundles extends WC_GZD_Compatibil
 			$this,
 			'switch_bundle_tax_share_product'
 		), 10, 4 );
+
+		add_filter( 'woocommerce_gzd_product_types_supporting_unit_prices', array(
+			$this,
+			'enable_unit_prices'
+		), 10, 1 );
+	}
+
+	public function enable_unit_prices( $types ) {
+		$types[] = 'bundle';
+
+		return $types;
 	}
 
 	/**
