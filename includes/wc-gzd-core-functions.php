@@ -278,7 +278,12 @@ function wc_gzd_get_email_attachment_order() {
 
 function wc_gzd_get_page_permalink( $type ) {
 	$page_id = wc_get_page_id( $type );
-	$link    = $page_id ? get_permalink( $page_id ) : '';
+
+	if ( 'data_security' === $type ) {
+		$page_id = wc_gzd_get_privacy_policy_page_id();
+	}
+
+	$link = $page_id ? get_permalink( $page_id ) : '';
 
 	/**
 	 * Filters the page permalink for a certain legal page.
@@ -403,7 +408,7 @@ function wc_gzd_get_tax_rate_label( $rate_percentage ) {
 
 function wc_gzd_get_shipping_costs_text( $product = false ) {
 	$replacements = array(
-		'{link}'  => '<a href="' . esc_url( get_permalink( wc_get_page_id( 'shipping_costs' ) ) ) . '" target="_blank">',
+		'{link}'  => '<a href="' . esc_url( wc_gzd_get_page_permalink( 'shipping_costs' ) ) . '" target="_blank">',
 		'{/link}' => '</a>',
 	);
 
@@ -456,7 +461,6 @@ function wc_gzd_get_differential_taxation_notice_text() {
 }
 
 function wc_gzd_get_privacy_policy_page_id() {
-
 	/**
 	 * Filter to adjust the Germanized privacy page id.
 	 *
@@ -469,7 +473,7 @@ function wc_gzd_get_privacy_policy_page_id() {
 }
 
 function wc_gzd_get_privacy_policy_url() {
-	return get_permalink( wc_gzd_get_privacy_policy_page_id() );
+	return wc_gzd_get_page_permalink( 'data_security' );
 }
 
 function wc_gzd_get_customer_title_options() {
