@@ -12,7 +12,7 @@
  *
  * @see https://github.com/vendidero/woocommerce-germanized/wiki/Overriding-Germanized-Templates
  * @package Germanized/Templates
- * @version 1.7.0
+ * @version 1.7.1
  */
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -45,14 +45,16 @@ do_action( "woocommerce_gzd_before_legal_checkbox_{$checkbox_id}", $checkbox );
  * @param bool $hide Whether to hide the terms checkbox.
  *
  * @since 2.0.0
- *
  */
 if ( apply_filters( 'woocommerce_germanized_checkout_show_terms', true ) ) : ?>
 
-	<?php do_action( 'woocommerce_checkout_terms_and_conditions' ); ?>
+    <?php do_action( 'woocommerce_checkout_before_terms_and_conditions' ); ?>
 
     <p class="<?php $checkbox->render_classes( $checkbox->get_html_wrapper_classes() ); ?>"
        data-checkbox="<?php echo esc_attr( $checkbox->get_id() ); ?>">
+
+        <?php do_action( 'woocommerce_checkout_terms_and_conditions' ); ?>
+
         <label for="<?php echo esc_attr( $checkbox->get_html_id() ); ?>"
                class="woocommerce-form__label woocommerce-form__label-for-checkbox checkbox">
 			<?php if ( ! $checkbox->hide_input() ) : ?>
