@@ -15,7 +15,7 @@ if ( ! class_exists( 'WC_GZD_Email_Customer_Paid_For_Order' ) ) :
 	 * @version        1.0.0
 	 * @author        Vendidero
 	 */
-	class WC_GZD_Email_Customer_Paid_For_Order extends WC_Email {
+	class WC_GZD_Email_Customer_Paid_For_Order extends WC_GZD_Email {
 
 		/**
 		 * Constructor
@@ -70,21 +70,16 @@ if ( ! class_exists( 'WC_GZD_Email_Customer_Paid_For_Order' ) ) :
 		 * @return void
 		 */
 		public function trigger( $order_id ) {
-			if ( is_callable( array( $this, 'setup_locale' ) ) ) {
-				$this->setup_locale();
-			}
+			$this->setup_locale();
 
 			if ( $order_id ) {
 				$this->object    = wc_get_order( $order_id );
 				$this->recipient = $this->object->get_billing_email();
 
-				if ( property_exists( $this, 'placeholders' ) ) {
-					$this->placeholders['{order_number}'] = $this->object->get_order_number();
-				} else {
-					$this->find['order-number']    = '{order_number}';
-					$this->replace['order-number'] = $this->object->get_order_number();
-				}
+				$this->placeholders['{order_number}'] = $this->object->get_order_number();
 			}
+
+			$this->setup_customer_locale();
 
 			if ( $this->is_enabled() && $this->get_recipient() ) {
 
@@ -94,9 +89,8 @@ if ( ! class_exists( 'WC_GZD_Email_Customer_Paid_For_Order' ) ) :
 				$this->send( $this->get_recipient(), $this->get_subject(), $this->get_content(), $this->get_headers(), $this->get_attachments() );
 			}
 
-			if ( is_callable( array( $this, 'restore_locale' ) ) ) {
-				$this->restore_locale();
-			}
+			$this->restore_customer_locale();
+			$this->restore_locale();
 		}
 
 		/**

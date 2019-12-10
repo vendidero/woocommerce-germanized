@@ -15,7 +15,7 @@ if ( ! class_exists( 'WC_GZD_Email_Customer_Revocation' ) ) :
 	 * @version        1.0.0
 	 * @author        Vendidero
 	 */
-	class WC_GZD_Email_Customer_Revocation extends WC_Email {
+	class WC_GZD_Email_Customer_Revocation extends WC_GZD_Email {
 
 		public $user_email = '';
 
@@ -67,9 +67,7 @@ if ( ! class_exists( 'WC_GZD_Email_Customer_Revocation' ) ) :
 		 * @return void
 		 */
 		public function trigger( $user_data = array() ) {
-			if ( is_callable( array( $this, 'setup_locale' ) ) ) {
-				$this->setup_locale();
-			}
+			$this->setup_locale();
 
 			$this->object     = $user_data;
 			$this->user_email = $user_data['address_mail'];
@@ -81,13 +79,14 @@ if ( ! class_exists( 'WC_GZD_Email_Customer_Revocation' ) ) :
 
 			$this->recipient = $this->user_email;
 
+			$this->setup_customer_locale();
+
 			if ( $this->is_enabled() && $this->get_recipient() ) {
 				$this->send( $this->get_recipient(), $this->get_subject(), $this->get_content(), $this->get_headers(), $this->get_attachments() );
 			}
 
-			if ( is_callable( array( $this, 'restore_locale' ) ) ) {
-				$this->restore_locale();
-			}
+			$this->restore_customer_locale();
+			$this->restore_locale();
 		}
 
 		/**

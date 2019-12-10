@@ -251,7 +251,7 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 			add_action( 'wp_print_scripts', array( $this, 'localize_scripts' ), 5 );
 			add_action( 'wp_print_footer_scripts', array( $this, 'localize_scripts' ), 5 );
 
-			add_filter( 'woocommerce_email_classes', array( $this, 'add_emails' ), 10 );
+			add_filter( 'woocommerce_email_classes', array( $this, 'add_emails' ), 1 );
 			add_filter( 'woocommerce_locate_core_template', array( $this, 'email_templates' ), 0, 3 );
 			add_action( 'woocommerce_email_order_meta', array( $this, 'email_small_business_notice' ), 1 );
 
@@ -1020,6 +1020,9 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 		 * @return array
 		 */
 		public function add_emails( $mails ) {
+
+			include_once 'includes/emails/abstract-wc-gzd-email.php';
+
 			$mails['WC_GZD_Email_Customer_Paid_For_Order']         = include 'includes/emails/class-wc-gzd-email-customer-paid-for-order.php';
 			$mails['WC_GZD_Email_Customer_New_Account_Activation'] = include 'includes/emails/class-wc-gzd-email-customer-new-account-activation.php';
 			$mails['WC_GZD_Email_Customer_Revocation']             = include 'includes/emails/class-wc-gzd-email-customer-revocation.php';

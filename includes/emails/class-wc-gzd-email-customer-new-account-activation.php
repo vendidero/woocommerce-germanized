@@ -17,7 +17,7 @@ if ( ! class_exists( 'WC_GZD_Email_Customer_New_Account_Activation' ) ) :
 	 * @author        WooThemes
 	 * @extends    WC_Email
 	 */
-	class WC_GZD_Email_Customer_New_Account_Activation extends WC_Email {
+	class WC_GZD_Email_Customer_New_Account_Activation extends WC_GZD_Email {
 
 		public $user_login;
 		public $user_email;
@@ -90,13 +90,10 @@ if ( ! class_exists( 'WC_GZD_Email_Customer_New_Account_Activation' ) ) :
 		 * @return void
 		 */
 		public function trigger( $user_id, $user_activation, $user_activation_url, $user_pass = '', $password_generated = false ) {
-			if ( is_callable( array( $this, 'setup_locale' ) ) ) {
-				$this->setup_locale();
-			}
+			$this->setup_locale();
 
 			if ( $user_id ) {
-				$this->object = new WP_User( $user_id );
-
+				$this->object              = new WP_User( $user_id );
 				$this->user_pass           = $user_pass;
 				$this->user_activation     = $user_activation;
 				$this->user_activation_url = $user_activation_url;
@@ -106,6 +103,8 @@ if ( ! class_exists( 'WC_GZD_Email_Customer_New_Account_Activation' ) ) :
 				$this->password_generated  = $password_generated;
 			}
 
+			$this->setup_customer_locale();
+
 			if ( ! $this->is_enabled() || ! $this->get_recipient() ) {
 				return;
 			}
@@ -114,9 +113,8 @@ if ( ! class_exists( 'WC_GZD_Email_Customer_New_Account_Activation' ) ) :
 				$this->send( $this->get_recipient(), $this->get_subject(), $this->get_content(), $this->get_headers(), $this->get_attachments() );
 			}
 
-			if ( is_callable( array( $this, 'restore_locale' ) ) ) {
-				$this->restore_locale();
-			}
+			$this->restore_customer_locale();
+			$this->restore_locale();
 		}
 
 		/**
@@ -126,8 +124,7 @@ if ( ! class_exists( 'WC_GZD_Email_Customer_New_Account_Activation' ) ) :
 		 * @return string
 		 */
 		public function get_content_html() {
-			ob_start();
-			wc_get_template( $this->template_html, array(
+			return wc_get_template_html( $this->template_html, array(
 				'email_heading'       => $this->get_heading(),
 				'user_login'          => $this->user_login,
 				'user_activation'     => $this->user_activation,
@@ -140,8 +137,6 @@ if ( ! class_exists( 'WC_GZD_Email_Customer_New_Account_Activation' ) ) :
 				'plain_text'          => false,
 				'email'               => $this
 			) );
-
-			return ob_get_clean();
 		}
 
 		/**
@@ -151,8 +146,7 @@ if ( ! class_exists( 'WC_GZD_Email_Customer_New_Account_Activation' ) ) :
 		 * @return string
 		 */
 		public function get_content_plain() {
-			ob_start();
-			wc_get_template( $this->template_plain, array(
+			return wc_get_template_html( $this->template_plain, array(
 				'email_heading'       => $this->get_heading(),
 				'user_login'          => $this->user_login,
 				'user_activation'     => $this->user_activation,
@@ -165,8 +159,6 @@ if ( ! class_exists( 'WC_GZD_Email_Customer_New_Account_Activation' ) ) :
 				'plain_text'          => true,
 				'email'               => $this
 			) );
-
-			return ob_get_clean();
 		}
 	}
 

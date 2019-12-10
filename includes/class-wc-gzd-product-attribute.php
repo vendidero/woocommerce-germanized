@@ -27,16 +27,17 @@ class WC_GZD_Product_Attribute extends WC_Product_Attribute {
 			$attribute = new WC_Product_Attribute();
 		}
 
+		$this->attribute = $attribute;
+
 		/**
 		 * Filter whether a product attribute should be visible within checkout by default.
 		 *
-		 * @param bool $default_visible Set to `true` to enable default checkout visibility.
+		 * @param bool                     $default_visible Set to `true` to enable default checkout visibility.
+		 * @param WC_GZD_Product_Attribute $attribute The product attribute
 		 *
 		 * @since 2.0.0
-		 *
 		 */
-		$default_visible = apply_filters( 'woocommerce_gzd_product_attribute_checkout_visible_default_value', false );
-		$this->attribute = $attribute;
+		$default_visible = apply_filters( 'woocommerce_gzd_product_attribute_checkout_visible_default_value', false, $this );
 		$this->data      = array_merge( $this->attribute->get_data(), array(
 			'checkout_visible' => $default_visible,
 		) );

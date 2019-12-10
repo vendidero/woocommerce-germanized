@@ -796,6 +796,14 @@ function wc_gzd_wp_error_has_errors( $error ) {
 	}
 }
 
+function wc_gzd_switch_to_email_customer_locale( $email, $lang = false ) {
+	do_action( 'woocommerce_gzd_switch_email_customer_locale', $email, $lang );
+}
+
+function wc_gzd_restore_email_customer_locale( $email ) {
+	do_action( 'woocommerce_gzd_restore_email_customer_locale', $email );
+}
+
 /**
  * Switch Germanized to site language.
  *

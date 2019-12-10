@@ -65,10 +65,6 @@
             <key name="subject" />
             <key name="heading" />
         </key>
-        <key name="woocommerce_customer_ekomi_settings">
-            <key name="subject" />
-            <key name="heading" />
-        </key>
         <key name="woocommerce_customer_sepa_direct_debit_mandate_settings">
             <key name="subject" />
             <key name="heading" />
@@ -80,6 +76,16 @@
         <key name="woocommerce_customer_new_account_activation_settings">
             <key name="subject" />
             <key name="heading" />
+        </key>
+        <key name="woocommerce_customer_sepa_direct_debit_mandate_settings">
+            <key name="subject" />
+            <key name="heading" />
+        </key>
+        <key name="woocommerce_customer_shipment_settings">
+            <key name="subject_full" />
+            <key name="heading_full" />
+            <key name="subject_partial" />
+            <key name="heading_partial" />
         </key>
     </admin-texts>
 </wpml-config>
