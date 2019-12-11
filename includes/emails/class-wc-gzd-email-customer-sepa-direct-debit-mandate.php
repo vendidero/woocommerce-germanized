@@ -33,13 +33,11 @@ if ( ! class_exists( 'WC_GZD_Email_Customer_SEPA_Direct_Debit_Mandate' ) ) :
 			$this->template_html  = 'emails/customer-sepa-direct-debit-mandate.php';
 			$this->template_plain = 'emails/plain/customer-sepa-direct-debit-mandate.php';
 
-			if ( property_exists( $this, 'placeholders' ) ) {
-				$this->placeholders = array(
-					'{site_title}'   => $this->get_blogname(),
-					'{order_number}' => '',
-					'{order_date}'   => '',
-				);
-			}
+			$this->placeholders = array(
+				'{site_title}'   => $this->get_blogname(),
+				'{order_number}' => '',
+				'{order_date}'   => '',
+			);
 
 			// Call parent constuctor
 			parent::__construct();
@@ -81,23 +79,22 @@ if ( ! class_exists( 'WC_GZD_Email_Customer_SEPA_Direct_Debit_Mandate' ) ) :
 			}
 
 			if ( $order ) {
-				$this->object  = $order;
-				$gateways      = WC()->payment_gateways()->payment_gateways();
-				$this->gateway = $gateways['direct-debit'];
-
+				$this->object    = $order;
+				$gateways        = WC()->payment_gateways()->payment_gateways();
+				$this->gateway   = $gateways['direct-debit'];
 				$this->recipient = $this->object->get_billing_email();
 
 				$this->placeholders['{order_date}']   = wc_gzd_get_order_date( $this->object, wc_date_format() );
 				$this->placeholders['{order_number}'] = $this->object->get_order_number();
 			}
 
-			$this->setup_customer_locale();
+			$this->setup_email_locale();
 
 			if ( $this->is_enabled() && $this->get_recipient() ) {
 				$this->send( $this->get_recipient(), $this->get_subject(), $this->get_content(), $this->get_headers(), $this->get_attachments() );
 			}
 
-			$this->restore_customer_locale();
+			$this->restore_email_locale();
 			$this->restore_locale();
 		}
 

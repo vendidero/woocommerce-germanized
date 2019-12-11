@@ -97,7 +97,6 @@ class WC_GZD_AJAX {
 		}
 
 		$changes = $_POST['changes'];
-
 		$manager = WC_GZD_Legal_Checkbox_Manager::instance();
 		$options = $manager->get_options();
 

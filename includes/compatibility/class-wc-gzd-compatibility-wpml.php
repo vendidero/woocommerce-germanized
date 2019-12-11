@@ -19,8 +19,6 @@ class WC_GZD_Compatibility_WPML extends WC_GZD_Compatibility {
 
 	protected $email_lang = false;
 
-	protected $email_order_id = false;
-
 	public static function get_name() {
 		return 'WPML';
 	}
@@ -31,96 +29,6 @@ class WC_GZD_Compatibility_WPML extends WC_GZD_Compatibility {
 
 	public static function is_activated() {
 		return parent::is_activated() && wc_gzd_get_dependencies()->is_plugin_activated( 'woocommerce-multilingual/wpml-woocommerce.php' );
-	}
-
-	public function switch_email_lang( $lang ) {
-		global $woocommerce_wpml, $sitepress;
-
-		if ( isset( $woocommerce_wpml->emails ) && is_callable( array( $woocommerce_wpml->emails, 'change_email_language' ) ) ) {
-			$woocommerce_wpml->emails->change_email_language( $lang );
-			$this->email_locale = $sitepress->get_locale( $lang );
-			$this->reload_locale();
-		}
-	}
-
-	public function filter_email_lang( $p_lang ) {
-
-		if ( ! $this->email_lang ) {
-			$p_lang = $this->email_lang;
-		}
-
-		return $p_lang;
-	}
-
-	/**
-	 * Setup email locale based on customer.
-	 *
-	 * @param WC_Email       $email
-	 * @param string|boolean $lang
-	 */
-	public function setup_email_locale( $email, $lang ) {
-		$object = $email->object;
-
-		if ( $object ) {
-
-			if ( is_a( $object, 'WC_Order' ) ) {
-				$lang = $object->get_meta( 'wpml_language', true );
-			}
-
-			/**
-			 * This filter allows adjusting the language determined for the current email instance.
-			 * The WPML compatibility will then try to switch to the language (if not empty).
-			 *
-			 * @param string   $lang Language e.g. en
-			 * @param WC_Email $email The email instance.
-			 *
-			 * @since 3.0.8
-			 */
-			$lang = apply_filters( 'woocommerce_gzd_wpml_email_lang', $lang, $email );
-
-			if ( ! empty( $lang ) ) {
-				$this->email_lang = $lang;
-
-				add_filter( 'plugin_locale', array( $this, 'filter_email_locale' ), 50 );
-				add_filter( 'wcml_email_language', array( $this, 'filter_email_lang' ), 10 );
-
-				$this->switch_email_lang( $lang );
-
-				/*
-				 * Reload email settings to make sure that translated strings are loaded from DB.
-				 * This must happen before get_subject() and get_heading() etc. is called - therefor before triggering
-				 * the send method.
-				 */
-				$email->init_settings();
-			}
-		}
-	}
-
-	/**
-	 * Restore email locale after successfully sending the email
-	 */
-	public function restore_email_locale() {
-		global $sitepress;
-
-		if ( $this->email_locale ) {
-
-			$sitepress->switch_lang( $sitepress->get_default_language() );
-			remove_filter( 'plugin_locale', array( $this, 'filter_email_locale' ), 50 );
-			remove_filter( 'wcml_email_language', array( $this, 'filter_email_lang' ), 10 );
-
-			$this->email_lang   = false;
-			$this->email_locale = false;
-
-			$this->reload_locale();
-		}
-	}
-
-	public function filter_email_locale( $locale ) {
-		if ( $this->email_locale && ! empty( $this->email_locale ) ) {
-			$locale = $this->email_locale;
-		}
-
-		return $locale;
 	}
 
 	public function load() {
@@ -148,11 +56,16 @@ class WC_GZD_Compatibility_WPML extends WC_GZD_Compatibility {
 		add_action( 'woocommerce_gzd_get_term', array( $this, 'unhook_terms_clause' ), 10 );
 		add_action( 'woocommerce_gzd_after_get_term', array( $this, 'rehook_terms_clause' ), 10 );
 
+		// Add language field to revocation form
 		add_action( 'woocommerce_gzd_after_revocation_form_fields', array( $this, 'set_language_field' ), 10 );
 
 		// Setup and restore email customer locale
-		add_action( 'woocommerce_gzd_switch_email_customer_locale', array( $this, 'setup_email_locale' ), 10, 2 );
-		add_action( 'woocommerce_gzd_restore_email_customer_locale', array( $this, 'restore_email_locale' ), 10, 1 );
+		add_action( 'woocommerce_gzd_switch_email_locale', array( $this, 'setup_email_locale' ), 10, 2 );
+		add_action( 'woocommerce_gzd_restore_email_locale', array( $this, 'restore_email_locale' ), 10, 1 );
+
+		// Add compatibility with email string translation by WPML
+		add_filter( 'wcml_emails_options_to_translate', array( $this, 'register_email_options' ), 10, 1 );
+		add_filter( 'wcml_emails_section_name_prefix', array( $this, 'filter_email_section_prefix' ), 10, 2 );
 
 		$this->filter_page_ids();
 
@@ -166,39 +79,179 @@ class WC_GZD_Compatibility_WPML extends WC_GZD_Compatibility {
 	}
 
 	/**
-	 * @param string $type
-	 * @param string $string
-	 * @param string $class_name
+	 * Switch current email to a certain language by reloading locale and triggering Woo WPML.
 	 *
-	 * @return string
+	 * @param $lang
 	 */
-	protected function get_translated_email_string( $type, $string, $class_name ) {
-		$mailer = WC()->mailer();
+	public function switch_email_lang( $lang ) {
+		global $woocommerce_wpml, $sitepress;
 
-		if ( ! isset( $mailer->emails[ $class_name ] ) ) {
-			return $string;
+		if ( isset( $woocommerce_wpml->emails ) && is_callable( array( $woocommerce_wpml->emails, 'change_email_language' ) ) ) {
+			$woocommerce_wpml->emails->change_email_language( $lang );
+			$this->email_locale = $sitepress->get_locale( $lang );
+			$this->reload_locale();
 		}
-
-		$email = $mailer->emails[ $class_name ];
-		$email->init_settings();
-
-		var_dump($email->get_option('subject'));
-		var_dump(get_locale());
-		var_dump( $email->subject );
-		var_dump($string);
-		exit();
-
-		if ( 'heading' === $type ) {
-			$translated_string = $email->heading;
-		} elseif ( 'subject' === $type ) {
-			$translated_string = $email->subject;
-		} else {
-			return $string;
-		}
-
-		return $translated_string ? $email->format_string( $translated_string ) : $string;
 	}
 
+	/**
+	 * Filters the Woo WPML email language based on a global variable.
+	 *
+	 * @param $lang
+	 */
+	public function filter_email_lang( $p_lang ) {
+
+		if ( ! $this->email_lang ) {
+			$p_lang = $this->email_lang;
+		}
+
+		return $p_lang;
+	}
+
+	/**
+	 * Setup email locale based on customer.
+	 *
+	 * @param WC_Email       $email
+	 * @param string|boolean $lang
+	 */
+	public function setup_email_locale( $email, $lang ) {
+		global $sitepress;
+
+		$object = $email->object;
+
+		if ( ! $email->is_customer_email() ) {
+			// Lets check the recipients language
+			$recipients = explode( ',', $email->get_recipient() );
+
+			foreach ( $recipients as $recipient ) {
+				$user = get_user_by( 'email', $recipient );
+
+				if ( $user ) {
+					$lang = $sitepress->get_user_admin_language( $user->ID, true );
+				} else {
+					$lang = $sitepress->get_default_language();
+				}
+			}
+		} else {
+			if ( $object ) {
+
+				if ( is_a( $object, 'WC_Order' ) ) {
+					$lang = $object->get_meta( 'wpml_language', true );
+				}
+			}
+		}
+
+		/**
+		 * This filter allows adjusting the language determined for the current email instance.
+		 * The WPML compatibility will then try to switch to the language (if not empty).
+		 *
+		 * @param string   $lang Language e.g. en
+		 * @param WC_Email $email The email instance.
+		 *
+		 * @since 3.0.8
+		 */
+		$lang = apply_filters( 'woocommerce_gzd_wpml_email_lang', $lang, $email );
+
+		if ( ! empty( $lang ) ) {
+			$this->email_lang = $lang;
+
+			add_filter( 'plugin_locale', array( $this, 'filter_email_locale' ), 50 );
+			add_filter( 'wcml_email_language', array( $this, 'filter_email_lang' ), 10 );
+
+			$this->switch_email_lang( $lang );
+
+			/*
+			 * Reload email settings to make sure that translated strings are loaded from DB.
+			 * This must happen before get_subject() and get_heading() etc. is called - therefor before triggering
+			 * the send method.
+			 */
+			$email->init_settings();
+		}
+	}
+
+	/**
+	 * Restore email locale after successfully sending the email
+	 */
+	public function restore_email_locale() {
+		global $sitepress;
+
+		if ( $this->email_locale ) {
+
+			$sitepress->switch_lang( $sitepress->get_default_language() );
+			remove_filter( 'plugin_locale', array( $this, 'filter_email_locale' ), 50 );
+			remove_filter( 'wcml_email_language', array( $this, 'filter_email_lang' ), 10 );
+
+			$this->email_lang   = false;
+			$this->email_locale = false;
+
+			$this->reload_locale();
+		}
+	}
+
+	/**
+	 * Force the locale to be filtered while changing email language.
+	 *
+	 * @param $locale
+	 */
+	public function filter_email_locale( $locale ) {
+		if ( $this->email_locale && ! empty( $this->email_locale ) ) {
+			$locale = $this->email_locale;
+		}
+
+		return $locale;
+	}
+
+	protected function get_emails() {
+		/**
+		 * Filter to register custom emails for which to enable WPML email string translation compatibility.
+		 *
+		 * @param array $emails Class name as key and email id as value.
+		 *
+		 * @since 3.0.8
+		 */
+		return apply_filters( 'woocommerce_gzd_wpml_email_ids', array(
+			'WC_GZD_Email_Customer_Paid_For_Order'            => 'customer_paid_for_order',
+			'WC_GZD_Email_Customer_New_Account_Activation'    => 'customer_new_account_activation',
+			'WC_GZD_Email_Customer_Revocation'                => 'customer_revocation',
+			'WC_GZD_Email_Customer_SEPA_Direct_Debit_Mandate' => 'customer_sepa_direct_debit_mandate',
+		) );
+	}
+
+	protected function get_email_options() {
+		$email_options = array();
+
+		foreach( $this->get_emails() as $email_id ) {
+			$email_options[] = 'woocommerce_' . $email_id . '_settings';
+		}
+
+		return $email_options;
+	}
+
+	public function register_email_options( $options ) {
+		$email_options = $this->get_email_options();
+
+		return array_merge( $options, $email_options );
+	}
+
+	public function filter_email_section_prefix( $prefix, $email_option ) {
+		$email_options = $this->get_email_options();
+
+		if ( in_array( $email_option, $email_options ) ) {
+			$key    = array_search( $email_option, $email_options );
+			$prefix = 'wc_gzd_email_';
+
+			if ( $key && strpos( $key, 'gzdp_' ) !== false ) {
+				$prefix = 'wc_gzdp_email_';
+			} elseif( $key && strpos( $key, 'ts_' ) !== false ) {
+				$prefix = 'wc_ts_email_';
+			}
+		}
+
+		return $prefix;
+	}
+
+	/**
+	 * Reload default, WC and WC Germanized locale
+	 */
 	public function reload_locale() {
 		unload_textdomain( 'default' );
 		unload_textdomain( 'woocommerce' );
@@ -370,7 +423,6 @@ class WC_GZD_Compatibility_WPML extends WC_GZD_Compatibility {
 			 * @param string $wc_gzd_original_lang The old language code.
 			 *
 			 * @since 2.2.9
-			 *
 			 */
 			do_action( 'woocommerce_gzd_wpml_switched_language', $lang, $wc_gzd_original_lang );
 		}

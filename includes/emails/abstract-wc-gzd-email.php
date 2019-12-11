@@ -36,15 +36,15 @@ abstract class WC_GZD_Email extends WC_Email {
 	 * Should be called during trigger method after setting up the email object
 	 * so that e.g. order data is available.
 	 */
-	public function setup_customer_locale( $lang = false ) {
-		if ( $this->is_customer_email() && apply_filters( 'woocommerce_gzd_email_setup_customer_locale', true ) ) {
-			wc_gzd_switch_to_email_customer_locale( $this, $lang );
+	public function setup_email_locale( $lang = false ) {
+		if ( apply_filters( 'woocommerce_gzd_email_setup_locale', true ) ) {
+			wc_gzd_switch_to_email_locale( $this, $lang );
 		}
 	}
 
-	public function restore_customer_locale() {
-		if ( $this->is_customer_email() && apply_filters( 'woocommerce_gzd_email_restore_customer_locale', true ) ) {
-			wc_gzd_restore_email_customer_locale( $this );
+	public function restore_email_locale() {
+		if ( apply_filters( 'woocommerce_gzd_email_restore_locale', true ) ) {
+			wc_gzd_restore_email_locale( $this );
 		}
 	}
 }
