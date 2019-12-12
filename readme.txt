@@ -4,8 +4,8 @@ Tags: woocommerce, woocommerce german, woocommerce DE, woocommerce germany, wooc
 Requires at least: 4.9
 Tested up to: 5.3
 WC requires at least: 3.4
-WC tested up to: 3.8
-Stable tag: 3.0.7
+WC tested up to: 3.9
+Stable tag: 3.0.8
 Requires PHP: 5.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -185,6 +185,22 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 5. Manage shipments for orders
 
 == Changelog ==
+
+= 3.0.8 =
+* Improvement: WPML email translation compatibility
+* Improvement: DHL added street number fallback in case of non-EU-shipments
+* Improvement: DHL added option to force street number in address field during checkout (for EU only)
+* Improvement: DHL force max length for label references
+* Improvement: DHL API error reporting
+* Improvement: Shipping provider settings (e.g. tracking description placeholder) are now translatable via WPML
+* Improvement: Page permalink usage
+* Improvement: Support unit prices for bundles
+* Improvement: Label PDF export performance
+* Improvement: Readded export button in case of errors
+* Improvement: Add order_shipped date after an order has been shipped completely
+* Fix: Added woocommerce_checkout_before_terms_and_conditions hook to improve compatibility
+* Fix: Added backwards compatibility to WC < 3.7 (install script)
+* Fix: DHL improved assets localization
 
 = 3.0.7 =
 * Improvement: Added option to prevent differential taxed products from being purchased with normal products

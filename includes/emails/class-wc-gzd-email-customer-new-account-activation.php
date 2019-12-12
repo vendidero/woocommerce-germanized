@@ -17,7 +17,7 @@ if ( ! class_exists( 'WC_GZD_Email_Customer_New_Account_Activation' ) ) :
 	 * @author        WooThemes
 	 * @extends    WC_Email
 	 */
-	class WC_GZD_Email_Customer_New_Account_Activation extends WC_GZD_Email {
+	class WC_GZD_Email_Customer_New_Account_Activation extends WC_Email {
 
 		public $user_login;
 		public $user_email;
@@ -25,6 +25,8 @@ if ( ! class_exists( 'WC_GZD_Email_Customer_New_Account_Activation' ) ) :
 		public $user_activation_url;
 		public $user_pass;
 		public $password_generated;
+
+		public $helper = null;
 
 		/**
 		 * Constructor
@@ -40,6 +42,7 @@ if ( ! class_exists( 'WC_GZD_Email_Customer_New_Account_Activation' ) ) :
 
 			$this->template_html  = 'emails/customer-new-account-activation.php';
 			$this->template_plain = 'emails/plain/customer-new-account-activation.php';
+			$this->helper         = wc_gzd_get_email_helper( $this );
 
 			// Call parent constuctor
 			parent::__construct();
@@ -90,7 +93,7 @@ if ( ! class_exists( 'WC_GZD_Email_Customer_New_Account_Activation' ) ) :
 		 * @return void
 		 */
 		public function trigger( $user_id, $user_activation, $user_activation_url, $user_pass = '', $password_generated = false ) {
-			$this->setup_locale();
+			$this->helper->setup_locale();
 
 			if ( $user_id ) {
 				$this->object              = new WP_User( $user_id );
@@ -103,7 +106,7 @@ if ( ! class_exists( 'WC_GZD_Email_Customer_New_Account_Activation' ) ) :
 				$this->password_generated  = $password_generated;
 			}
 
-			$this->setup_email_locale();
+			$this->helper->setup_email_locale();
 
 			if ( ! $this->is_enabled() || ! $this->get_recipient() ) {
 				return;
@@ -113,8 +116,8 @@ if ( ! class_exists( 'WC_GZD_Email_Customer_New_Account_Activation' ) ) :
 				$this->send( $this->get_recipient(), $this->get_subject(), $this->get_content(), $this->get_headers(), $this->get_attachments() );
 			}
 
-			$this->restore_email_locale();
-			$this->restore_locale();
+			$this->helper->restore_email_locale();
+			$this->helper->restore_locale();
 		}
 
 		/**

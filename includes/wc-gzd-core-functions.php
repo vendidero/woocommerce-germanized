@@ -796,6 +796,13 @@ function wc_gzd_wp_error_has_errors( $error ) {
 	}
 }
 
+/**
+ * @param WC_Email $email
+ */
+function wc_gzd_get_email_helper( $email ) {
+	return new WC_GZD_Email_Helper( $email );
+}
+
 function wc_gzd_switch_to_email_locale( $email, $lang = false ) {
 	do_action( 'woocommerce_gzd_switch_email_locale', $email, $lang );
 }

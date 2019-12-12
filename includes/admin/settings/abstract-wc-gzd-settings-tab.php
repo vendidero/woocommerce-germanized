@@ -292,7 +292,6 @@ abstract class WC_GZD_Settings_Tab extends WC_Settings_Page {
 		 * @param array $settings Array containing the settings to be saved.
 		 *
 		 * @since 3.0.0
-		 *
 		 */
 		do_action( "woocommerce_gzd_admin_settings_before_save_{$this->get_name()}", $settings );
 
@@ -307,7 +306,6 @@ abstract class WC_GZD_Settings_Tab extends WC_Settings_Page {
 			 * @param array $settings Array containing the settings to be saved.
 			 *
 			 * @since 3.0.0
-			 *
 			 */
 			do_action( "woocommerce_gzd_admin_settings_before_save_{$this->get_name()}_{$current_section}", $settings );
 		}

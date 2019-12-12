@@ -219,8 +219,8 @@ class WC_GZD_Compatibility_WPML extends WC_GZD_Compatibility {
 	protected function get_email_options() {
 		$email_options = array();
 
-		foreach( $this->get_emails() as $email_id ) {
-			$email_options[] = 'woocommerce_' . $email_id . '_settings';
+		foreach( $this->get_emails() as $key => $email_id ) {
+			$email_options[ $key ] = 'woocommerce_' . $email_id . '_settings';
 		}
 
 		return $email_options;
@@ -239,9 +239,9 @@ class WC_GZD_Compatibility_WPML extends WC_GZD_Compatibility {
 			$key    = array_search( $email_option, $email_options );
 			$prefix = 'wc_gzd_email_';
 
-			if ( $key && strpos( $key, 'gzdp_' ) !== false ) {
+			if ( $key && strpos( $key, 'GZDP_' ) !== false ) {
 				$prefix = 'wc_gzdp_email_';
-			} elseif( $key && strpos( $key, 'ts_' ) !== false ) {
+			} elseif( $key && strpos( $key, 'TS_' ) !== false ) {
 				$prefix = 'wc_ts_email_';
 			}
 		}
