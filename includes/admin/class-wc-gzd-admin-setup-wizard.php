@@ -577,6 +577,11 @@ if ( ! class_exists( 'WC_GZD_Admin_Setup_Wizard' ) ) :
 			    WC_GZD_Admin::instance()->import_dhl_settings();
 			} elseif ( ! empty( $settings) ) {
 			     WC_Admin_Settings::save_fields( $settings );
+
+			     // Update default shipping provider after activating DHL during setup
+			     if ( isset( $_POST['woocommerce_gzd_dhl_enable'] ) ) {
+					update_option( 'woocommerce_gzd_shipments_default_shipping_provider', 'dhl' );
+			     }
 			}
 
 			wp_safe_redirect( $redirect );
