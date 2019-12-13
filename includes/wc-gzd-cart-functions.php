@@ -57,6 +57,12 @@ function wc_gzd_cart_product_differential_taxation_mark( $title, $cart_item, $ca
 }
 
 function wc_gzd_cart_contains_differential_taxed_product() {
+
+	// Might gets called from Shopmarks before init - return false to prevent cart errors
+	if ( ! did_action( 'before_woocommerce_init' ) || doing_action( 'before_woocommerce_init' ) ) {
+		return false;
+	}
+
 	$cart                           = WC()->cart;
 	$contains_differentail_taxation = false;
 
