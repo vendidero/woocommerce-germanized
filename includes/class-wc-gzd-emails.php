@@ -58,8 +58,13 @@ class WC_GZD_Emails {
 		// Disable paid order email for certain gateways (e.g. COD or invoice)
 		add_filter( 'woocommerce_allow_send_queued_transactional_email', array(
 			$this,
-			'maybe_disable_order_paid_email_notification'
+			'maybe_disable_order_paid_email_notification_queued'
 		), 10, 3 );
+
+		add_action( 'woocommerce_order_status_processing', array(
+			$this,
+			'maybe_disable_order_paid_email_notification'
+		), 5, 2 );
 
 		// Change email template path if is germanized email template
 		add_filter( 'woocommerce_template_directory', array( $this, 'set_woocommerce_template_dir' ), 10, 2 );
@@ -401,7 +406,7 @@ class WC_GZD_Emails {
 		return apply_filters( 'woocommerce_gzd_disable_gateways_paid_order_email', array( 'cod', 'invoice' ) );
 	}
 
-	public function maybe_disable_order_paid_email_notification( $send, $filter, $args ) {
+	public function maybe_disable_order_paid_email_notification_queued( $send, $filter, $args ) {
 		if ( isset( $args[0] ) && is_numeric( $args[0] ) ) {
 			$order = wc_get_order( absint( $args[0] ) );
 
@@ -418,6 +423,22 @@ class WC_GZD_Emails {
 		}
 
 		return $send;
+	}
+
+	public function maybe_disable_order_paid_email_notification( $order_id, $order = false ) {
+		if ( $order = wc_get_order( $order_id ) ) {
+			$method               = $order->get_payment_method();
+			$disable_for_gateways = $this->get_gateways_disabling_paid_for_order_mail();
+
+			if ( in_array( $method, $disable_for_gateways ) ) {
+				$emails = WC()->mailer()->emails;
+
+				if ( isset( $emails['WC_GZD_Email_Customer_Paid_For_Order'] ) ) {
+					// Remove notification
+					remove_action( 'woocommerce_order_status_pending_to_processing_notification', array( $emails['WC_GZD_Email_Customer_Paid_For_Order'], 'trigger' ), 30 );
+				}
+			}
+		}
 	}
 
 	public function resend_order_emails( $emails ) {

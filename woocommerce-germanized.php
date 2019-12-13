@@ -525,6 +525,7 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 					'woocommerce-product-bundles'                 => 'WC_GZD_Compatibility_WooCommerce_Product_Bundles',
 					'woocommerce-role-based-prices'               => 'WC_GZD_Compatibility_WooCommerce_Role_Based_Prices',
 					'woocommerce-role-based-price'                => 'WC_GZD_Compatibility_WooCommerce_Role_Based_Price',
+					'woo-discount-rules'                          => 'WC_GZD_Compatibility_Woo_Discount_Rules',
 					'woocommerce-gateway-paypal-express-checkout' => 'WC_GZD_Compatibility_WooCommerce_Gateway_Paypal_Express_Checkout',
 					'woocommerce-subscriptions'                   => 'WC_GZD_Compatibility_WooCommerce_Subscriptions',
 					'woo-paypalplus'                              => 'WC_GZD_Compatibility_Woo_PaypalPlus',
