@@ -21,8 +21,7 @@
 
         $form.on( 'click', '.reset_variations', { GermanizedvariationForm: self }, self.onReset );
         $form.on( 'reset_data', { GermanizedvariationForm: self }, self.onReset );
-        $form.on( 'update_variation_values', { GermanizedvariationForm: self }, self.onUpdate );
-        $form.on( 'found_variation', { GermanizedvariationForm: self }, self.onFoundVariation );
+        $form.on( 'show_variation', { GermanizedvariationForm: self }, self.onShowVariation );
     };
 
     /**
@@ -77,12 +76,9 @@
         }, 250);
     };
 
-    GermanizedVariationForm.prototype.onFoundVariation = function( event, variation ) {
+    GermanizedVariationForm.prototype.onShowVariation = function( event, variation, purchasable ) {
         var form              = event.data.GermanizedvariationForm,
             $wrapper          = form.$wrapper;
-
-        if ( ! variation.variation_is_visible )
-            return;
 
         if ( ! $wrapper.find( wc_gzd_add_to_cart_variation_params.price_selector + ':first' ).hasClass( 'variation_modified' ) ) {
 
