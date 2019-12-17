@@ -661,7 +661,7 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 	        return;
         }
 
-		if ( ! $order->get_payment_method() === $this->id ) {
+		if ( $order->get_payment_method() !== $this->id ) {
 			return;
 		}
 

@@ -196,6 +196,7 @@ class WC_GZD_Checkout {
 	 */
 	public function order_parcel_delivery_data_transfer( $order, $posted ) {
 		if ( $checkbox = wc_gzd_get_legal_checkbox( 'parcel_delivery' ) ) {
+
 			if ( ! $checkbox->is_enabled() ) {
 				return;
 			}
