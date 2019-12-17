@@ -195,6 +195,9 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 			// Recheck outdated templates
 			delete_option( '_wc_gzd_hide_template_outdated_notice' );
 
+			// Show the importer
+			delete_option( '_wc_gzd_hide_dhl_importer_notice' );
+
 			// Queue upgrades
 			$current_version    = get_option( 'woocommerce_gzd_version', null );
 			$current_db_version = get_option( 'woocommerce_gzd_db_version', null );
@@ -209,7 +212,6 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 					delete_option( '_wc_gzd_hide_theme_notice' );
 					delete_option( '_wc_gzd_hide_pro_notice' );
 					delete_option( '_wc_gzd_hide_review_notice' );
-					delete_option( '_wc_gzd_hide_dhl_importer_notice' );
 				}
 			}
 

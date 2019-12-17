@@ -18,11 +18,12 @@ $dismiss_url = add_query_arg( 'notice', 'wc-gzd-hide-dhl-importer-notice', add_q
 
     <ul>
         <li><?php _ex( 'No need to use an external plugin which might lead to incompatibilities', 'dhl', 'woocommerce-germanized' ); ?></li>
+        <li><?php printf( _x( 'Many improved features such as automation, services per shipping method and %s.', 'dhl', 'woocommerce-germanized' ), '<a href="https://vendidero.de/dokument/dhl-labels-zu-sendungen-erstellen" target="_blank">' . _x( 'many more', 'dhl', 'woocommerce-germanized' ) . '</a>' ); ?></li>
         <li><?php _ex( 'Perfectly integrated in Germanized &ndash; easily create labels for shipments', 'dhl', 'woocommerce-germanized' ); ?></li>
     </ul>
 
     <p class="submit alignleft">
-        <a class="button button-secondary" href=""
+        <a class="button button-secondary" href="https://vendidero.de/dokument/dhl-labels-zu-sendungen-erstellen"
            target="_blank"><?php echo esc_html_x( 'Learn more', 'dhl', 'woocommerce-germanized' ); ?></a>
         <a class="button button-primary"
            href="<?php echo esc_url( wp_nonce_url( add_query_arg( 'wc-gzd-dhl-import', 'yes' ), 'woocommerce_gzd_dhl_import_nonce' ) ); ?>"><?php echo esc_html_x( 'Import settings and activate', 'dhl', 'woocommerce-germanized' ); ?></a>
