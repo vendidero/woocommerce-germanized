@@ -33,15 +33,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 <ul id="sepa-filters" class="export-filters">
     <li>
         <label>
-			<?php echo _e( 'Start Date', 'woocommerce-germanized' ); ?>
+			<?php _e( 'Start Date', 'woocommerce-germanized' ); ?>
             <input type="date" name="sepa_start_date" value=""/>
         </label>
         <label>
-			<?php echo _e( 'End Date', 'woocommerce-germanized' ); ?>
+			<?php _e( 'End Date', 'woocommerce-germanized' ); ?>
             <input type="date" name="sepa_end_date" value=""/>
         </label>
         <label>
-			<?php echo _e( 'Unpaid only', 'woocommerce-germanized' ); ?>
+			<?php _e( 'Unpaid only', 'woocommerce-germanized' ); ?>
             <input type="checkbox" name="sepa_unpaid_only" value="1"/>
         </label>
     </li>

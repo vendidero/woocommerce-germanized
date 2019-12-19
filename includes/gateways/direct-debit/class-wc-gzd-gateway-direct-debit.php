@@ -322,11 +322,18 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 		);
 
 		if ( isset( $args['unpaid_only'] ) && $args['unpaid_only'] === 1 ) {
-			array_push( $meta_query, array(
-				'key'     => '_date_completed',
-				'value'   => '',
-				'compare' => '='
-			) );
+		    $meta_query[] = array(
+		        'relation' => 'OR',
+			    array(
+				    'key'     => '_date_completed',
+				    'compare' => 'NOT EXISTS'
+			    ),
+			    array(
+				    'key'     => '_date_completed',
+				    'compare' => '=',
+                    'value'   => '',
+			    ),
+            );
 		}
 
 		$query_args = array(
