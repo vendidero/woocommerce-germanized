@@ -373,15 +373,27 @@ class WC_GZD_Checkout {
 		// Unset all other rates
 		if ( ! empty( $keep ) && $hide ) {
 
+			$chosen_shipping_methods = array();
+
 			// Unset chosen shipping method to avoid key errors
 			if ( isset( WC()->session ) && ! is_null( WC()->session ) ) {
-				unset( WC()->session->chosen_shipping_methods );
+				$chosen_shipping_methods = WC()->session->get( 'chosen_shipping_methods' );
 			}
 
 			foreach ( $rates as $key => $rate ) {
 				if ( ! in_array( $key, $keep ) ) {
 					unset( $rates[ $key ] );
 				}
+			}
+
+			foreach( $chosen_shipping_methods as $key => $rate ) {
+				if ( ! in_array( $rate, $keep ) ) {
+					unset( $chosen_shipping_methods[ $key ] );
+				}
+			}
+
+			if ( isset( WC()->session ) && ! is_null( WC()->session ) ) {
+				WC()->session->set( 'chosen_shipping_methods', $chosen_shipping_methods );
 			}
 		}
 
