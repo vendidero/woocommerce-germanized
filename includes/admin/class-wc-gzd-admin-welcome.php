@@ -136,9 +136,48 @@ class WC_GZD_Admin_Welcome {
             </p>
 
             <div class="changelog new-feature">
+                <h3>Neu: Rücksendeanträge von Kunden entgegennehmen</h3>
+
+                <div class="columns two-col">
+                    <div class="col">
+                        <p>
+                            Germanized ermöglicht über das <a href="<?php echo admin_url( 'admin.php?page=wc-gzd-return-shipments' ); ?>" target="_blank">Retouren-Dashboard</a> eine übersichtliche Abwicklung von Retouren.
+                            Mit dem neuesten Update gehen wir den nächsten Schritt: Du kannst nun optional Rücksendeanträge von Kunden und Gästen entgegennehmen.
+                        </p>
+                        <p>
+                            Damit lässt sich die <strong>Abwicklung von Retouren komplett automatisieren</strong>. Der Kunde kann seine Retoure über den Kundenbereich aufgeben
+                            und dabei die gewünschten Produkte samt Anzahl und Rücksendegrund aus der Bestellung auswählen. Du kannst den Rücksendeantrag dann im Retouren-Dashboard
+                            einsehen und freigeben. Falls du unsere DHL-Integration verwendest, kannst du zu Retouren automatisch ein Label erzeugen lassen und das Label dem Kunden als Anhang der
+                            Bestätigungs-Mail bzw. Download bereitstellen.
+                        </p>
+
+                        <div class="wc-germanized-welcome-pro">
+                            <a href="https://vendidero.de/woocommerce-germanized" target="_blank"
+                               class="button button-primary wc-gzd-button"><span class="wc-gzd-pro">pro</span> Version
+                                entdecken</a>
+                            <p class="price smaller">ab 69 € inkl. MwSt. - inkl. 1 Jahr Updates & Premium
+                                Support!</p>
+                        </div>
+
+                        <div class="wc-gzd-actions">
+                            <a href="<?php echo admin_url( 'admin.php?page=wc-settings&tab=germanized-shipments#shipments_return_options-description' ); ?>"
+                               class="button button-primary" target="_blank">Einstellungen anpassen</a>
+                            <a href="https://vendidero.de/dokument/retouren-management" class="button button-primary" target="_blank">Mehr erfahren</a>
+                        </div>
+                    </div>
+                    <div class="col align-center">
+                        <img src="<?php echo WC_germanized()->plugin_url(); ?>/assets/images/shipments.png"/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="changelog new-feature">
                 <h3>Neu: Sendungen zu Bestellungen erstellen</h3>
 
                 <div class="columns two-col">
+                    <div class="col align-center">
+                        <img src="<?php echo WC_germanized()->plugin_url(); ?>/assets/images/shipments.png"/>
+                    </div>
                     <div class="col">
                         <p>
                             Version 3.0 führt eine neue Abstraktion zur (besseren) Verwaltung von Sendungen zu
@@ -168,9 +207,6 @@ class WC_GZD_Admin_Welcome {
                                class="button button-primary" target="_blank">Einstellungen anpassen</a>
                             <a href="https://vendidero.de/dokument/sendungen-zu-bestellungen-erzeugen" class="button button-primary" target="_blank">Mehr erfahren</a>
                         </div>
-                    </div>
-                    <div class="col align-center">
-                        <img src="<?php echo WC_germanized()->plugin_url(); ?>/assets/images/shipments.png"/>
                     </div>
                 </div>
             </div>

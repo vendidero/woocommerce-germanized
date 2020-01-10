@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce Germanized\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-12-13 15:14+0100\n"
-"PO-Revision-Date: 2019-12-13 15:14+0100\n"
+"POT-Creation-Date: 2020-01-10 12:15+0100\n"
+"PO-Revision-Date: 2020-01-10 12:34+0100\n"
 "Last-Translator: holzhannes <holzhannes@posteo.de>\n"
 "Language-Team: \n"
 "Language: de_DE@formal\n"
@@ -54,14 +54,14 @@ msgstr "Zollabgabe"
 
 #: woocommerce-germanized-dhl/includes/admin/views/html-shipment-label-backbone-form.php:66
 #: woocommerce-germanized-dhl/src/Admin/Settings.php:137
-#: woocommerce-germanized-dhl/src/Admin/Settings.php:946
+#: woocommerce-germanized-dhl/src/Admin/Settings.php:938
 #: woocommerce-germanized-dhl/src/ParcelServices.php:29
 msgctxt "dhl"
 msgid "Preferred Day"
 msgstr "Wunschtag"
 
 #: woocommerce-germanized-dhl/includes/admin/views/html-shipment-label-backbone-form.php:75
-#: woocommerce-germanized-dhl/src/Admin/Settings.php:966
+#: woocommerce-germanized-dhl/src/Admin/Settings.php:958
 #: woocommerce-germanized-dhl/src/ParcelServices.php:36
 msgctxt "dhl"
 msgid "Preferred Time"
@@ -70,14 +70,14 @@ msgstr "Wunschzeit"
 # @ woocommerce-germanized
 #: woocommerce-germanized-dhl/includes/admin/views/html-shipment-label-backbone-form.php:86
 #: woocommerce-germanized-dhl/src/Admin/Settings.php:165
-#: woocommerce-germanized-dhl/src/Admin/Settings.php:998
+#: woocommerce-germanized-dhl/src/Admin/Settings.php:990
 #: woocommerce-germanized-dhl/src/ParcelServices.php:43
 msgctxt "dhl"
 msgid "Preferred Location"
 msgstr "Wunschort"
 
 #: woocommerce-germanized-dhl/includes/admin/views/html-shipment-label-backbone-form.php:97
-#: woocommerce-germanized-dhl/src/Admin/Settings.php:1006
+#: woocommerce-germanized-dhl/src/Admin/Settings.php:998
 #: woocommerce-germanized-dhl/src/ParcelServices.php:48
 msgctxt "dhl"
 msgid "Preferred Neighbor"
@@ -90,24 +90,24 @@ msgstr "Beilage-Retourenlabel erstellen"
 
 # @ woocommerce-germanized
 #: woocommerce-germanized-dhl/includes/admin/views/html-shipment-label-backbone-form.php:120
-#: woocommerce-germanized-dhl/src/Admin/Settings.php:733
-#: woocommerce-germanized-dhl/src/Admin/Settings.php:802
+#: woocommerce-germanized-dhl/src/Admin/Settings.php:725
+#: woocommerce-germanized-dhl/src/Admin/Settings.php:794
 msgctxt "dhl"
 msgid "Name"
 msgstr "Name"
 
 #: woocommerce-germanized-dhl/includes/admin/views/html-shipment-label-backbone-form.php:129
-#: woocommerce-germanized-dhl/src/Admin/Settings.php:740
-#: woocommerce-germanized-dhl/src/Admin/Settings.php:809
+#: woocommerce-germanized-dhl/src/Admin/Settings.php:732
+#: woocommerce-germanized-dhl/src/Admin/Settings.php:801
 msgctxt "dhl"
 msgid "Company"
 msgstr "Firma"
 
 # @ woocommerce-germanized
 #: woocommerce-germanized-dhl/includes/admin/views/html-shipment-label-backbone-form.php:138
-#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:363
-#: woocommerce-germanized-dhl/src/Admin/Settings.php:747
-#: woocommerce-germanized-dhl/src/Admin/Settings.php:816
+#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:360
+#: woocommerce-germanized-dhl/src/Admin/Settings.php:739
+#: woocommerce-germanized-dhl/src/Admin/Settings.php:808
 msgctxt "dhl"
 msgid "Street"
 msgstr "Straße"
@@ -120,9 +120,9 @@ msgstr "Hausnummer"
 
 # @ woocommerce-germanized
 #: woocommerce-germanized-dhl/includes/admin/views/html-shipment-label-backbone-form.php:158
-#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:364
-#: woocommerce-germanized-dhl/src/Admin/Settings.php:768
-#: woocommerce-germanized-dhl/src/Admin/Settings.php:837
+#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:361
+#: woocommerce-germanized-dhl/src/Admin/Settings.php:760
+#: woocommerce-germanized-dhl/src/Admin/Settings.php:829
 #: woocommerce-germanized-dhl/templates/checkout/dhl/parcel-finder.php:27
 msgctxt "dhl"
 msgid "Postcode"
@@ -130,25 +130,24 @@ msgstr "Postleitzahl"
 
 # @ woocommerce-germanized
 #: woocommerce-germanized-dhl/includes/admin/views/html-shipment-label-backbone-form.php:167
-#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:365
-#: woocommerce-germanized-dhl/src/Admin/Settings.php:761
-#: woocommerce-germanized-dhl/src/Admin/Settings.php:830
+#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:362
+#: woocommerce-germanized-dhl/src/Admin/Settings.php:753
+#: woocommerce-germanized-dhl/src/Admin/Settings.php:822
 #: woocommerce-germanized-dhl/templates/checkout/dhl/parcel-finder.php:30
 msgctxt "dhl"
 msgid "City"
 msgstr "Stadt"
 
 #: woocommerce-germanized-dhl/includes/admin/views/html-shipment-label-backbone-form.php:178
-#: woocommerce-germanized-dhl/src/Admin/Settings.php:784
-#: woocommerce-germanized-dhl/src/Admin/Settings.php:853
+#: woocommerce-germanized-dhl/src/Admin/Settings.php:776
+#: woocommerce-germanized-dhl/src/Admin/Settings.php:845
 msgctxt "dhl"
 msgid "Phone"
 msgstr "Telefon"
 
 #: woocommerce-germanized-dhl/includes/admin/views/html-shipment-label-backbone-form.php:187
-#: woocommerce-germanized-dhl/src/Admin/Settings.php:638
-#: woocommerce-germanized-dhl/src/Admin/Settings.php:791
-#: woocommerce-germanized-dhl/src/Admin/Settings.php:860
+#: woocommerce-germanized-dhl/src/Admin/Settings.php:783
+#: woocommerce-germanized-dhl/src/Admin/Settings.php:852
 msgctxt "dhl"
 msgid "Email"
 msgstr "E-Mail"
@@ -312,32 +311,6 @@ msgstr ""
 "Einstellungen zum Versand an DHL Standorte anpassen. Änderungen "
 "überschreiben die <a href=\"%s\">globalen Einstellungen</a>."
 
-#: woocommerce-germanized-dhl/includes/emails/class-wc-gzd-dhl-email-customer-return-shipment-label.php:50
-msgctxt "dhl"
-msgid "DHL Return Label"
-msgstr "DHL Retourenlabel"
-
-# @ woocommerce-germanized
-#: woocommerce-germanized-dhl/includes/emails/class-wc-gzd-dhl-email-customer-return-shipment-label.php:51
-msgctxt "dhl"
-msgid "This email is being used to send the DHL return label to the customer."
-msgstr ""
-"Diese E-Mail wird verwendet um Kunden das DHL Retourenlabel zuzustellen."
-
-#: woocommerce-germanized-dhl/includes/emails/class-wc-gzd-dhl-email-customer-return-shipment-label.php:75
-msgctxt "dhl"
-msgid ""
-"New DHL label for your return #{shipment_number} to your order "
-"#{order_number}"
-msgstr ""
-"Neues DHL Label zur Retourensendung #{shipment_number} zu deiner Bestellung "
-"#{order_number}"
-
-#: woocommerce-germanized-dhl/includes/emails/class-wc-gzd-dhl-email-customer-return-shipment-label.php:85
-msgctxt "dhl"
-msgid "DHL label for your order: #{order_number}"
-msgstr "DHL Label zu Ihrer Bestellung: #{order_number}"
-
 # @ woocommerce-germanized
 #: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:35
 #: woocommerce-germanized-dhl/src/Api/Paket.php:285
@@ -391,23 +364,23 @@ msgctxt "dhl"
 msgid "Minimum age of 18"
 msgstr "Mindestens 18 Jahre"
 
-#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:120
+#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:118
 msgctxt "dhl"
 msgid "Shipment #{shipment_id} to order {order_id}"
 msgstr "Sendung #{shipment_id} zur Bestellung {order_id}"
 
-#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:137
+#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:134
 msgctxt "dhl"
-msgid "Return #{shipment_id} to shipment #{original_shipment_id}"
-msgstr "Retoure #{shipment_id} zur Sendung #{original_shipment_id}"
+msgid "Return #{shipment_id} to order {order_id}"
+msgstr "Retoure #{shipment_id} zur Bestellung {order_id}"
 
-#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:153
+#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:150
 msgctxt "dhl"
 msgid "Return shipment #{shipment_id} to order #{order_id}"
 msgstr "Retourensendung #{shipment_id} zur Bestellung #{order_id}"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:220
+#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:217
 #: woocommerce-germanized-dhl/src/Admin/Settings.php:184
 #: woocommerce-germanized-dhl/src/Admin/Settings.php:477
 #: woocommerce-germanized-dhl/src/ParcelLocator.php:814
@@ -417,63 +390,63 @@ msgid "Packstation"
 msgstr "Packstation"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:221
-#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:222
+#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:218
+#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:219
 msgctxt "dhl"
 msgid "Postfiliale"
 msgstr "Postfiliale"
 
-#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:306
+#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:303
 msgctxt "dhl"
 msgid "Receiver is missing or does not exist."
 msgstr "Empfänger fehlt oder existiert nicht."
 
-#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:339
+#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:336
 #, php-format
 msgctxt "dhl"
 msgid "Shipment order #%s does not exist"
 msgstr "Bestellung zur Sendung #%s existiert nicht"
 
-#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:370
+#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:367
 #, php-format
 msgctxt "dhl"
 msgid "%s of the return address is a mandatory field."
 msgstr "%s der Rücksendeadresse ist ein Pflichtfeld."
 
-#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:375
+#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:372
 msgctxt "dhl"
 msgid "Please either add a return company or name."
 msgstr ""
 "Bitte geben Sie entweder einen Firmennamen oder Namen für die "
 "Rücksendeadresse an."
 
-#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:394
+#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:391
 msgctxt "dhl"
 msgid "Error while parsing preferred day."
 msgstr "Fehler beim Einlesen des Wunschtags."
 
-#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:405
+#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:402
 msgctxt "dhl"
 msgid "Error while parsing preferred time."
 msgstr "Fehler beim Einlesen der Wunschzeit."
 
-#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:429
+#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:426
 msgctxt "dhl"
 msgid "The visual min age check is invalid."
 msgstr "Das Alter der Alterssichtprüfung ist ungültig."
 
-#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:445
+#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:442
 msgctxt "dhl"
 msgid "The ident min age check is invalid."
 msgstr "Das Alter des Ident-Checks ist ungültig."
 
-#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:452
+#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:449
 msgctxt "dhl"
 msgid "There was an error parsing the date of birth for the identity check."
 msgstr ""
 "Beim Einlesen des Geburtsdatums für den Ident-Check trat ein Problem auf."
 
-#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:457
+#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:454
 msgctxt "dhl"
 msgid ""
 "Either a minimum age or a date of birth must be added to the ident check."
@@ -482,84 +455,84 @@ msgstr ""
 "hinzugefügt werden."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:470
+#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:467
 #, php-format
 msgctxt "dhl"
 msgid "%s duties element does not exist."
 msgstr "%s Zollabgabe existiert nicht."
 
-#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:865
-#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:940
+#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:860
+#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:935
 msgctxt "dhl"
 msgid "Invalid shipment"
 msgstr "Ungültige Sendung"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:869
-#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:944
+#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:864
+#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:939
 msgctxt "dhl"
 msgid "Order does not exist"
 msgstr "Bestellung existiert nicht"
 
-#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:892
+#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:887
 msgctxt "dhl"
 msgid "Error while creating the label instance"
 msgstr "Fehler beim Erstellen der Label-Instanz"
 
-#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:1012
+#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:1007
 msgctxt "dhl"
 msgid "Invalid label"
 msgstr "Ungültiges Label"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:1100
+#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:1095
 msgctxt "dhl"
 msgid "DHL Retoure International A"
 msgstr "DHL Retoure International A"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:1101
+#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:1096
 msgctxt "dhl"
 msgid "DHL Retoure International B"
 msgstr "DHL Retoure International B"
 
-#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:1110
+#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:1105
 msgctxt "dhl"
 msgid "DHL Retoure Online"
 msgstr "DHL Retoure Online"
 
-#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:1121
+#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:1116
 msgctxt "dhl"
 msgid "DHL Paket Connect"
 msgstr "DHL Paket Connect"
 
-#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:1122
+#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:1117
 msgctxt "dhl"
 msgid "DHL Europaket (B2B)"
 msgstr "DHL Europaket (B2B)"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:1123
+#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:1118
 msgctxt "dhl"
 msgid "DHL Paket International"
 msgstr "DHL Paket International"
 
-#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:1189
+#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:1184
 msgctxt "dhl"
 msgid "DHL Paket"
 msgstr "DHL Paket"
 
-#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:1190
+#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:1185
 msgctxt "dhl"
 msgid "DHL Paket PRIO"
 msgstr "DHL Paket PRIO"
 
-#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:1191
+#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:1186
 msgctxt "dhl"
 msgid "DHL Paket Taggleich"
 msgstr "DHL Paket Taggleich"
 
-#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:1278
+#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:1273
 msgctxt "dhl"
 msgid "Error while uploading label."
 msgstr "Fehler beim Hochladen des Labels."
@@ -645,6 +618,7 @@ msgstr ""
 "Ordner %s manuell und stellen Sie sicher, dass der Ordner beschreibbar ist."
 
 #: woocommerce-germanized-dhl/src/Admin/Admin.php:202
+#: woocommerce-germanized-dhl/src/ShippingProviderDHL.php:34
 msgctxt "dhl"
 msgid "DHL"
 msgstr "DHL"
@@ -729,8 +703,8 @@ msgstr ""
 "sollten Sie diese Funktion standardmäßig aktivieren."
 
 #: woocommerce-germanized-dhl/src/Admin/Settings.php:90
-#: woocommerce-germanized-dhl/src/Admin/Settings.php:695
-#: woocommerce-germanized-dhl/src/Admin/Settings.php:925
+#: woocommerce-germanized-dhl/src/Admin/Settings.php:687
+#: woocommerce-germanized-dhl/src/Admin/Settings.php:917
 msgctxt "dhl"
 msgid "Retoure"
 msgstr "Retoure"
@@ -765,7 +739,7 @@ msgstr ""
 
 # @ woocommerce-germanized
 #: woocommerce-germanized-dhl/src/Admin/Settings.php:118
-#: woocommerce-germanized-dhl/src/Admin/Settings.php:719
+#: woocommerce-germanized-dhl/src/Admin/Settings.php:711
 msgctxt "dhl"
 msgid "Automation"
 msgstr "Automatisierung"
@@ -791,8 +765,8 @@ msgstr ""
 
 # @ woocommerce-germanized
 #: woocommerce-germanized-dhl/src/Admin/Settings.php:151
-#: woocommerce-germanized-dhl/src/Admin/Settings.php:954
-#: woocommerce-germanized-dhl/src/Admin/Settings.php:974
+#: woocommerce-germanized-dhl/src/Admin/Settings.php:946
+#: woocommerce-germanized-dhl/src/Admin/Settings.php:966
 msgctxt "dhl"
 msgid "Fee"
 msgstr "Gebühr"
@@ -825,7 +799,7 @@ msgstr ""
 "im Folgenden konfiguriert) als Lieferadresse auswählen."
 
 #: woocommerce-germanized-dhl/src/Admin/Settings.php:198
-#: woocommerce-germanized-dhl/src/Admin/Settings.php:1134
+#: woocommerce-germanized-dhl/src/Admin/Settings.php:1126
 msgctxt "dhl"
 msgid "Map"
 msgstr "Karte"
@@ -1269,7 +1243,7 @@ msgid "Premium delivery for international shipments."
 msgstr "Premium Lieferung für internationale Sendungen."
 
 #: woocommerce-germanized-dhl/src/Admin/Settings.php:592
-#: woocommerce-germanized-dhl/src/Admin/Settings.php:1185
+#: woocommerce-germanized-dhl/src/Admin/Settings.php:1177
 msgctxt "dhl"
 msgid "Labels"
 msgstr "Labels"
@@ -1325,12 +1299,7 @@ msgstr ""
 "Wählen Sie einen Sendungsstatus aus, der die Erzeugung eines Retourenlabels "
 "auslösen soll."
 
-#: woocommerce-germanized-dhl/src/Admin/Settings.php:639
-msgctxt "dhl"
-msgid "Send the return label to the customer by email after creating it."
-msgstr "Sende das Retourenlabel nach dem Erstellen per E-Mail an den Kunden."
-
-#: woocommerce-germanized-dhl/src/Admin/Settings.php:685
+#: woocommerce-germanized-dhl/src/Admin/Settings.php:677
 #, php-format
 msgctxt "dhl"
 msgid ""
@@ -1342,12 +1311,12 @@ msgstr ""
 "werden."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized-dhl/src/Admin/Settings.php:685
+#: woocommerce-germanized-dhl/src/Admin/Settings.php:677
 msgctxt "dhl"
 msgid "shipping method"
 msgstr "Versandmethode"
 
-#: woocommerce-germanized-dhl/src/Admin/Settings.php:695
+#: woocommerce-germanized-dhl/src/Admin/Settings.php:687
 #, php-format
 msgctxt "dhl"
 msgid ""
@@ -1358,18 +1327,18 @@ msgstr ""
 "API an. Stellen Sie sicher, dass Ihr %s DHL Retoure Online enthält."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized-dhl/src/Admin/Settings.php:695
+#: woocommerce-germanized-dhl/src/Admin/Settings.php:687
 msgctxt "dhl"
 msgid "contract"
 msgstr "Vertrag"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized-dhl/src/Admin/Settings.php:707
+#: woocommerce-germanized-dhl/src/Admin/Settings.php:699
 msgctxt "dhl"
 msgid "Default Services"
 msgstr "Standard-Services"
 
-#: woocommerce-germanized-dhl/src/Admin/Settings.php:707
+#: woocommerce-germanized-dhl/src/Admin/Settings.php:699
 #, php-format
 msgctxt "dhl"
 msgid ""
@@ -1379,12 +1348,12 @@ msgstr ""
 "Passen Sie hier an, welche der Services als Standard für Ihre Labels gebucht "
 "werden sollen. Finden Sie mehr über diese %s heraus."
 
-#: woocommerce-germanized-dhl/src/Admin/Settings.php:707
+#: woocommerce-germanized-dhl/src/Admin/Settings.php:699
 msgctxt "dhl"
 msgid "nationwide services"
 msgstr "nationalen Services"
 
-#: woocommerce-germanized-dhl/src/Admin/Settings.php:719
+#: woocommerce-germanized-dhl/src/Admin/Settings.php:711
 msgctxt "dhl"
 msgid ""
 "Choose whether and under which conditions labels for your shipments shall be "
@@ -1394,38 +1363,38 @@ msgstr ""
 "automatisch erzeugt werden sollen."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized-dhl/src/Admin/Settings.php:730
+#: woocommerce-germanized-dhl/src/Admin/Settings.php:722
 msgctxt "dhl"
 msgid "Shipper Address"
 msgstr "Absenderadresse"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized-dhl/src/Admin/Settings.php:754
-#: woocommerce-germanized-dhl/src/Admin/Settings.php:823
+#: woocommerce-germanized-dhl/src/Admin/Settings.php:746
+#: woocommerce-germanized-dhl/src/Admin/Settings.php:815
 msgctxt "dhl"
 msgid "Street Number"
 msgstr "Hausnummer"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized-dhl/src/Admin/Settings.php:775
-#: woocommerce-germanized-dhl/src/Admin/Settings.php:844
+#: woocommerce-germanized-dhl/src/Admin/Settings.php:767
+#: woocommerce-germanized-dhl/src/Admin/Settings.php:836
 msgctxt "dhl"
 msgid "Country"
 msgstr "Land"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized-dhl/src/Admin/Settings.php:799
+#: woocommerce-germanized-dhl/src/Admin/Settings.php:791
 msgctxt "dhl"
 msgid "Inlay Return Address"
 msgstr "Beilageretouren Adresse"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized-dhl/src/Admin/Settings.php:868
+#: woocommerce-germanized-dhl/src/Admin/Settings.php:860
 msgctxt "dhl"
 msgid "Bank Account"
 msgstr "Bankkonto"
 
-#: woocommerce-germanized-dhl/src/Admin/Settings.php:868
+#: woocommerce-germanized-dhl/src/Admin/Settings.php:860
 msgctxt "dhl"
 msgid "Enter your bank details needed for services that use COD."
 msgstr ""
@@ -1433,36 +1402,36 @@ msgstr ""
 "verwendet werden sollen."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized-dhl/src/Admin/Settings.php:871
+#: woocommerce-germanized-dhl/src/Admin/Settings.php:863
 msgctxt "dhl"
 msgid "Holder"
 msgstr "Kontoinhaber"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized-dhl/src/Admin/Settings.php:878
+#: woocommerce-germanized-dhl/src/Admin/Settings.php:870
 msgctxt "dhl"
 msgid "Bank Name"
 msgstr "Name der Bank"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized-dhl/src/Admin/Settings.php:885
+#: woocommerce-germanized-dhl/src/Admin/Settings.php:877
 msgctxt "dhl"
 msgid "IBAN"
 msgstr "IBAN"
 
-#: woocommerce-germanized-dhl/src/Admin/Settings.php:892
+#: woocommerce-germanized-dhl/src/Admin/Settings.php:884
 msgctxt "dhl"
 msgid "BIC"
 msgstr "BIC"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized-dhl/src/Admin/Settings.php:899
+#: woocommerce-germanized-dhl/src/Admin/Settings.php:891
 msgctxt "dhl"
 msgid "Payment Reference"
 msgstr "Zahlungsreferenz"
 
-#: woocommerce-germanized-dhl/src/Admin/Settings.php:903
-#: woocommerce-germanized-dhl/src/Admin/Settings.php:912
+#: woocommerce-germanized-dhl/src/Admin/Settings.php:895
+#: woocommerce-germanized-dhl/src/Admin/Settings.php:904
 #, php-format
 msgctxt "dhl"
 msgid ""
@@ -1473,18 +1442,18 @@ msgstr ""
 "hinzufügen: %s. Der Text ist auf 35 Zeichen begrenzt."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized-dhl/src/Admin/Settings.php:908
+#: woocommerce-germanized-dhl/src/Admin/Settings.php:900
 msgctxt "dhl"
 msgid "Payment Reference 2"
 msgstr "Zahlungsreferenz 2"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized-dhl/src/Admin/Settings.php:926
+#: woocommerce-germanized-dhl/src/Admin/Settings.php:918
 msgctxt "dhl"
 msgid "Enable creating labels for return shipments."
 msgstr "Automatisch Retourenlabels zu Retourensendungen erstellen."
 
-#: woocommerce-germanized-dhl/src/Admin/Settings.php:926
+#: woocommerce-germanized-dhl/src/Admin/Settings.php:918
 msgctxt "dhl"
 msgid ""
 "By enabling this option you might generate retoure labels for return "
@@ -1493,12 +1462,12 @@ msgstr ""
 "Mit der Aktivierung dieser Option können Sie Retourenlabels zu "
 "Retourensendungen erstellen und diese per E-Mail an den Kunden weiterleiten."
 
-#: woocommerce-germanized-dhl/src/Admin/Settings.php:947
+#: woocommerce-germanized-dhl/src/Admin/Settings.php:939
 msgctxt "dhl"
 msgid "Enable preferred day delivery."
 msgstr "Aktiviere die Lieferung am Wunschtag."
 
-#: woocommerce-germanized-dhl/src/Admin/Settings.php:947
+#: woocommerce-germanized-dhl/src/Admin/Settings.php:939
 msgctxt "dhl"
 msgid ""
 "Enabling this option will display options for the user to select their "
@@ -1507,7 +1476,7 @@ msgstr ""
 "Diese Option aktiviert die Auswahl eines Wunschtags durch den Kunden in der "
 "Kasse."
 
-#: woocommerce-germanized-dhl/src/Admin/Settings.php:956
+#: woocommerce-germanized-dhl/src/Admin/Settings.php:948
 msgctxt "dhl"
 msgid ""
 "Insert gross value as surcharge for preferred day delivery. Insert 0 to "
@@ -1516,12 +1485,12 @@ msgstr ""
 "Fügen Sie einen Bruttopreis als Gebühr für die Lieferung am Wunschtag hinzu. "
 "Setzen Sie den Wert auf 0 um den Service kostenlos anzubieten."
 
-#: woocommerce-germanized-dhl/src/Admin/Settings.php:967
+#: woocommerce-germanized-dhl/src/Admin/Settings.php:959
 msgctxt "dhl"
 msgid "Enable preferred time delivery."
 msgstr "Aktiviere die Lieferung zur Wunschzeit."
 
-#: woocommerce-germanized-dhl/src/Admin/Settings.php:967
+#: woocommerce-germanized-dhl/src/Admin/Settings.php:959
 msgctxt "dhl"
 msgid ""
 "Enabling this option will display options for the user to select their "
@@ -1530,7 +1499,7 @@ msgstr ""
 "Diese Option aktiviert die Auswahl einer Wunschzeit durch den Kunden in der "
 "Kasse."
 
-#: woocommerce-germanized-dhl/src/Admin/Settings.php:976
+#: woocommerce-germanized-dhl/src/Admin/Settings.php:968
 msgctxt "dhl"
 msgid ""
 "Insert gross value as surcharge for preferred time delivery. Insert 0 to "
@@ -1539,12 +1508,12 @@ msgstr ""
 "Fügen Sie einen Bruttopreis als Gebühr für die Lieferung zur Wunschzeit "
 "hinzu. Setzen Sie den Wert auf 0 um den Service kostenlos anzubieten."
 
-#: woocommerce-germanized-dhl/src/Admin/Settings.php:986
+#: woocommerce-germanized-dhl/src/Admin/Settings.php:978
 msgctxt "dhl"
 msgid "Combined Fee"
 msgstr "Kombinierte Gebühr"
 
-#: woocommerce-germanized-dhl/src/Admin/Settings.php:988
+#: woocommerce-germanized-dhl/src/Admin/Settings.php:980
 msgctxt "dhl"
 msgid ""
 "Insert gross value as surcharge for the combination of preferred day and "
@@ -1555,12 +1524,12 @@ msgstr ""
 "kostenlos anzubieten."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized-dhl/src/Admin/Settings.php:999
+#: woocommerce-germanized-dhl/src/Admin/Settings.php:991
 msgctxt "dhl"
 msgid "Enable preferred location delivery."
 msgstr "Lieferung an einen Wunschort aktivieren."
 
-#: woocommerce-germanized-dhl/src/Admin/Settings.php:999
+#: woocommerce-germanized-dhl/src/Admin/Settings.php:991
 msgctxt "dhl"
 msgid ""
 "Enabling this option will display options for the user to select their "
@@ -1569,12 +1538,12 @@ msgstr ""
 "Diese Option aktiviert die Auswahl eines Wunschorts durch den Kunden in der "
 "Kasse ."
 
-#: woocommerce-germanized-dhl/src/Admin/Settings.php:1007
+#: woocommerce-germanized-dhl/src/Admin/Settings.php:999
 msgctxt "dhl"
 msgid "Enable preferred neighbor delivery."
 msgstr "Aktiviere die Lieferung an einen Wunschnachbarn."
 
-#: woocommerce-germanized-dhl/src/Admin/Settings.php:1007
+#: woocommerce-germanized-dhl/src/Admin/Settings.php:999
 msgctxt "dhl"
 msgid ""
 "Enabling this option will display options for the user to deliver to their "
@@ -1583,12 +1552,12 @@ msgstr ""
 "Diese Option aktiviert die Auswahl eines Wunschnachbarn durch den Kunden in "
 "der Kasse."
 
-#: woocommerce-germanized-dhl/src/Admin/Settings.php:1033
+#: woocommerce-germanized-dhl/src/Admin/Settings.php:1025
 msgctxt "dhl"
 msgid "Cut-off time"
 msgstr "Cut-off-Zeit"
 
-#: woocommerce-germanized-dhl/src/Admin/Settings.php:1036
+#: woocommerce-germanized-dhl/src/Admin/Settings.php:1028
 msgctxt "dhl"
 msgid ""
 "The cut-off time is the latest possible order time up to which the minimum "
@@ -1601,12 +1570,12 @@ msgstr ""
 "Nach Überschreitung dieses Zeitpunktes, wird der früheste verfügbare "
 "Wunschtag in der Kasse um einen Tag erhöht (Tag der Bestellung + 3 Werktage)."
 
-#: woocommerce-germanized-dhl/src/Admin/Settings.php:1042
+#: woocommerce-germanized-dhl/src/Admin/Settings.php:1034
 msgctxt "dhl"
 msgid "Preparation days"
 msgstr "Bearbeitungstage"
 
-#: woocommerce-germanized-dhl/src/Admin/Settings.php:1045
+#: woocommerce-germanized-dhl/src/Admin/Settings.php:1037
 msgctxt "dhl"
 msgid ""
 "If you need more time to prepare your shipments you might want to add a "
@@ -1617,71 +1586,71 @@ msgstr ""
 "hier eine statische Anzahl an Tagen hinterlegen, die zum frühesten "
 "auswählbaren Wunschtag hinzugefügt werden."
 
-#: woocommerce-germanized-dhl/src/Admin/Settings.php:1052
+#: woocommerce-germanized-dhl/src/Admin/Settings.php:1044
 msgctxt "dhl"
 msgid "Exclude days of transfer"
 msgstr "Übergabetage ausschließen"
 
-#: woocommerce-germanized-dhl/src/Admin/Settings.php:1053
+#: woocommerce-germanized-dhl/src/Admin/Settings.php:1045
 #: woocommerce-germanized-dhl/src/Api/FinderSoap.php:31
 msgctxt "dhl"
 msgid "Monday"
 msgstr "Montag"
 
-#: woocommerce-germanized-dhl/src/Admin/Settings.php:1054
+#: woocommerce-germanized-dhl/src/Admin/Settings.php:1046
 msgctxt "dhl"
 msgid "Exclude days from transferring shipments to DHL."
 msgstr "Schließen Sie bestimmte Wochentage für die Übergabe an DHL aus."
 
-#: woocommerce-germanized-dhl/src/Admin/Settings.php:1063
+#: woocommerce-germanized-dhl/src/Admin/Settings.php:1055
 #: woocommerce-germanized-dhl/src/Api/FinderSoap.php:32
 msgctxt "dhl"
 msgid "Tuesday"
 msgstr "Dienstag"
 
-#: woocommerce-germanized-dhl/src/Admin/Settings.php:1072
+#: woocommerce-germanized-dhl/src/Admin/Settings.php:1064
 #: woocommerce-germanized-dhl/src/Api/FinderSoap.php:33
 msgctxt "dhl"
 msgid "Wednesday"
 msgstr "Mittwoch"
 
-#: woocommerce-germanized-dhl/src/Admin/Settings.php:1081
+#: woocommerce-germanized-dhl/src/Admin/Settings.php:1073
 #: woocommerce-germanized-dhl/src/Api/FinderSoap.php:34
 msgctxt "dhl"
 msgid "Thursday"
 msgstr "Donnerstag"
 
-#: woocommerce-germanized-dhl/src/Admin/Settings.php:1090
+#: woocommerce-germanized-dhl/src/Admin/Settings.php:1082
 #: woocommerce-germanized-dhl/src/Api/FinderSoap.php:35
 msgctxt "dhl"
 msgid "Friday"
 msgstr "Freitag"
 
-#: woocommerce-germanized-dhl/src/Admin/Settings.php:1099
+#: woocommerce-germanized-dhl/src/Admin/Settings.php:1091
 #: woocommerce-germanized-dhl/src/Api/FinderSoap.php:36
 msgctxt "dhl"
 msgid "Saturday"
 msgstr "Samstag"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized-dhl/src/Admin/Settings.php:1108
+#: woocommerce-germanized-dhl/src/Admin/Settings.php:1100
 msgctxt "dhl"
 msgid "Exclude gateways"
 msgstr "Zahlungsarten ausschließen"
 
-#: woocommerce-germanized-dhl/src/Admin/Settings.php:1110
+#: woocommerce-germanized-dhl/src/Admin/Settings.php:1102
 msgctxt "dhl"
 msgid "Select payment gateways to be excluded from showing preferred services."
 msgstr ""
 "Wählen Sie Zahlungsarten aus, für die die Wunschpaket-Services nicht zur "
 "Verfügung stehen sollen."
 
-#: woocommerce-germanized-dhl/src/Admin/Settings.php:1135
+#: woocommerce-germanized-dhl/src/Admin/Settings.php:1127
 msgctxt "dhl"
 msgid "Let customers find a DHL location on a map."
 msgstr "Lasse Kunden einen DHL Standort auf der Karte auswählen."
 
-#: woocommerce-germanized-dhl/src/Admin/Settings.php:1135
+#: woocommerce-germanized-dhl/src/Admin/Settings.php:1127
 msgctxt "dhl"
 msgid ""
 "Enable this option to let your customers choose a pickup option from a map "
@@ -1692,12 +1661,12 @@ msgstr ""
 "anhand einer Karten in der Kasse zu ermöglichen. Wenn diese Option "
 "deaktiviert ist, wird stattdessen auf die DHL Website verwiesen."
 
-#: woocommerce-germanized-dhl/src/Admin/Settings.php:1142
+#: woocommerce-germanized-dhl/src/Admin/Settings.php:1134
 msgctxt "dhl"
 msgid "Google Maps Key"
 msgstr "Google Maps Schlüssel"
 
-#: woocommerce-germanized-dhl/src/Admin/Settings.php:1146
+#: woocommerce-germanized-dhl/src/Admin/Settings.php:1138
 #, php-format
 msgctxt "dhl"
 msgid ""
@@ -1707,46 +1676,36 @@ msgstr ""
 "Um eine Karte integrieren zu können, benötigen Siee du einen gültigen API-"
 "Schlüssel für Google Maps. Sie können %s."
 
-#: woocommerce-germanized-dhl/src/Admin/Settings.php:1146
+#: woocommerce-germanized-dhl/src/Admin/Settings.php:1138
 msgctxt "dhl"
 msgid "retrieve a new one"
 msgstr "hier einen neuen erstellen"
 
-#: woocommerce-germanized-dhl/src/Admin/Settings.php:1151
+#: woocommerce-germanized-dhl/src/Admin/Settings.php:1143
 msgctxt "dhl"
 msgid "Limit results"
 msgstr "Suchergebnisse begrenzen"
 
-#: woocommerce-germanized-dhl/src/Admin/Settings.php:1155
+#: woocommerce-germanized-dhl/src/Admin/Settings.php:1147
 msgctxt "dhl"
 msgid "Limit the number of DHL locations shown on the map"
 msgstr "Begrenzt die Anzahl der angezeigten DHL Standorte auf der Karte"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized-dhl/src/Admin/Settings.php:1184
+#: woocommerce-germanized-dhl/src/Admin/Settings.php:1176
 msgctxt "dhl"
 msgid "General"
 msgstr "Allgemein"
 
-#: woocommerce-germanized-dhl/src/Admin/Settings.php:1186
+#: woocommerce-germanized-dhl/src/Admin/Settings.php:1178
 msgctxt "dhl"
 msgid "Preferred Services"
 msgstr "Wunschpaket"
 
-#: woocommerce-germanized-dhl/src/Admin/Settings.php:1187
+#: woocommerce-germanized-dhl/src/Admin/Settings.php:1179
 msgctxt "dhl"
 msgid "Parcel Pickup"
 msgstr "Standorte"
-
-#: woocommerce-germanized-dhl/src/Ajax.php:64
-msgctxt "dhl"
-msgid "Label successfully sent to customer."
-msgstr "Label erfolgreich an den Kunden zugestellt."
-
-#: woocommerce-germanized-dhl/src/Ajax.php:71
-msgctxt "dhl"
-msgid "There was an error while sending the label."
-msgstr "Beim Versendes des Labels ist ein Fehler aufgetreten."
 
 #: woocommerce-germanized-dhl/src/Api/FinderSoap.php:37
 msgctxt "dhl"
@@ -1798,7 +1757,7 @@ msgstr ""
 "oder erwägen Sie den Wechsel in den Sandbox-Modus."
 
 #: woocommerce-germanized-dhl/src/Api/LabelSoap.php:237
-#: woocommerce-germanized-dhl/src/Api/ReturnRest.php:157
+#: woocommerce-germanized-dhl/src/Api/ReturnRest.php:150
 msgctxt "dhl"
 msgid "Error while creating and uploading the label"
 msgstr "Fehler beim Erstellen und hochladen des Labels"
@@ -1942,13 +1901,7 @@ msgctxt "dhl"
 msgid "POST error or timeout occured. Please try again later."
 msgstr "POST Fehler oder Zeitüberschreitung. Bitte später erneut versuchen."
 
-#: woocommerce-germanized-dhl/src/Api/ReturnRest.php:38
-#, php-format
-msgctxt "dhl"
-msgid "Could not fetch parent shipment %d."
-msgstr "Eltern-Sendung %d konnte nicht initialisiert werden."
-
-#: woocommerce-germanized-dhl/src/DataStores/Label.php:308
+#: woocommerce-germanized-dhl/src/DataStores/Label.php:307
 msgctxt "dhl"
 msgid "Invalid label."
 msgstr "Ungültiges Label."
@@ -1960,7 +1913,7 @@ msgctxt "dhl time-span"
 msgid "%s-%s"
 msgstr "%s-%s"
 
-#: woocommerce-germanized-dhl/src/Package.php:237
+#: woocommerce-germanized-dhl/src/Package.php:235
 msgctxt "dhl"
 msgid ""
 "Please check the street field and make sure to provide a valid street number."
@@ -1969,7 +1922,7 @@ msgstr ""
 "angegeben wurde."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized-dhl/src/Package.php:673
+#: woocommerce-germanized-dhl/src/Package.php:671
 msgctxt "dhl"
 msgid "Germany"
 msgstr "Deutschland"
@@ -2169,21 +2122,14 @@ msgctxt "dhl"
 msgid "Please choose name and address of your preferred neighbor."
 msgstr "Bitte wählen Sie einen Namen und die Adresse Ihres Wunschnachbars."
 
-#: woocommerce-germanized-dhl/src/ReturnLabel.php:158
+#: woocommerce-germanized-dhl/src/ReturnLabel.php:125
 #: woocommerce-germanized-dhl/src/SimpleLabel.php:86
 #, php-format
 msgctxt "dhl full name"
 msgid "%1$s"
 msgstr "%1$s"
 
-#: woocommerce-germanized-dhl/src/ShippingProviderDHL.php:31
-#: woocommerce-germanized/includes/admin/class-wc-gzd-admin-setup-wizard.php:91
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-dhl.php:33
-#: woocommerce-germanized/includes/admin/views/setup/dhl.php:10
-msgid "DHL"
-msgstr "DHL"
-
-#: woocommerce-germanized-dhl/src/ShippingProviderDHL.php:39
+#: woocommerce-germanized-dhl/src/ShippingProviderDHL.php:42
 msgctxt "dhl"
 msgid ""
 "Complete DHL integration supporting labels, preferred services and "
@@ -2192,7 +2138,7 @@ msgstr ""
 "DHL Integration die das Erzeugen von Labels, Wunsch-Services und Lieferung "
 "an Packstationen unterstützt."
 
-#: woocommerce-germanized-dhl/src/ShippingProviderDHL.php:62
+#: woocommerce-germanized-dhl/src/ShippingProviderDHL.php:65
 msgctxt "dhl"
 msgid ""
 "Your shipment is being processed by {shipping_provider}. If you want to "
@@ -2392,34 +2338,6 @@ msgstr ""
 "* Bei einer Kombinationsbuchung von Wunschtag und Wunschzeit fällt ein "
 "Gesamtaufpreis in Höhe von %s inkl. MwSt. an"
 
-#: woocommerce-germanized-dhl/templates/emails/customer-dhl-return-shipment-label.php:27
-#: woocommerce-germanized-dhl/templates/emails/plain/customer-dhl-return-shipment-label.php:24
-#: woocommerce-germanized-shipments/templates/emails/customer-shipment.php:27
-#: woocommerce-germanized-shipments/templates/emails/plain/customer-shipment.php:24
-#, php-format
-msgid "Hi %s,"
-msgstr ""
-
-#: woocommerce-germanized-dhl/templates/emails/customer-dhl-return-shipment-label.php:31
-#: woocommerce-germanized-dhl/templates/emails/plain/customer-dhl-return-shipment-label.php:26
-#, php-format
-msgctxt "dhl"
-msgid ""
-"You've requested a return for your order #%s. Please find the DHL label "
-"attached to this email."
-msgstr ""
-"Sie haben eine Retoure zu Ihrer Bestellung #%s angefordert. Im Anhang an "
-"diese E-Mail finden Sie das dazugehörige DHL Label."
-
-#: woocommerce-germanized-dhl/templates/emails/customer-dhl-return-shipment-label.php:37
-msgctxt "dhl"
-msgid ""
-"Please print the DHL label attached to this email and stick it on your "
-"parcel."
-msgstr ""
-"Bitte drucken Sie das DHL Label im Anhang dieser E-Mail aus und kleben Sie "
-"es auf Ihre Retourensendung."
-
 #: woocommerce-germanized-dhl/woocommerce-germanized-dhl.php:40
 #: woocommerce-germanized-dhl/woocommerce-germanized-dhl.php:58
 #, php-format
@@ -2431,107 +2349,129 @@ msgstr ""
 "Ihre Installation des Germanized DHL Plugins ist unvollständig. Bitte führen "
 "Sie %1$s im %2$s Verzeichnis aus."
 
-#: woocommerce-germanized-shipments/includes/admin/views/html-order-shipment-content.php:29
+#: woocommerce-germanized-shipments/includes/admin/views/html-order-shipment-content.php:30
 #, php-format
 msgctxt "shipments"
 msgid "Weight (%s)"
 msgstr "Gewicht (%s)"
 
-#: woocommerce-germanized-shipments/includes/admin/views/html-order-shipment-content.php:34
+#: woocommerce-germanized-shipments/includes/admin/views/html-order-shipment-content.php:35
 #, php-format
 msgctxt "shipments"
 msgid "Dimensions (%s)"
 msgstr "Abmessungen (%s)"
 
-#: woocommerce-germanized-shipments/includes/admin/views/html-order-shipment-content.php:34
+#: woocommerce-germanized-shipments/includes/admin/views/html-order-shipment-content.php:35
 msgctxt "shipments"
 msgid "LxWxH in decimal form."
 msgstr "LxBxH in dezimaler Form."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized-shipments/includes/admin/views/html-order-shipment-content.php:66
-#: woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:871
+#: woocommerce-germanized-shipments/includes/admin/views/html-order-shipment-content.php:47
+#: woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:1002
 #: woocommerce-germanized-shipments/src/Admin/ReturnTable.php:24
-#: woocommerce-germanized-shipments/src/Admin/Table.php:650
+#: woocommerce-germanized-shipments/src/Admin/Table.php:660
 msgctxt "shipments"
 msgid "Status"
 msgstr "Status"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized-shipments/includes/admin/views/html-order-shipment-content.php:76
+#: woocommerce-germanized-shipments/includes/admin/views/html-order-shipment-content.php:57
 msgctxt "shipments"
 msgid "Shipping method"
 msgstr "Versandmethode"
 
-#: woocommerce-germanized-shipments/includes/admin/views/html-order-shipment-content.php:86
+#: woocommerce-germanized-shipments/includes/admin/views/html-order-shipment-content.php:67
 msgctxt "shipments"
 msgid "Shipping provider"
 msgstr "Versanddienstleister"
 
-#: woocommerce-germanized-shipments/includes/admin/views/html-order-shipment-content.php:97
+#: woocommerce-germanized-shipments/includes/admin/views/html-order-shipment-content.php:78
 msgctxt "shipments"
 msgid "Tracking Number"
 msgstr "Sendungsnummer"
 
-#: woocommerce-germanized-shipments/includes/admin/views/html-order-shipment-content.php:106
-#: woocommerce-germanized-shipments/includes/admin/views/html-order-shipment-content.php:162
-#: woocommerce-germanized-shipments/includes/admin/views/html-order-shipment-content.php:219
-msgctxt "shipments"
-msgid "Item"
-msgstr "Position"
-
-#: woocommerce-germanized-shipments/includes/admin/views/html-order-shipment-content.php:109
-#: woocommerce-germanized-shipments/includes/admin/views/html-order-shipment-content.php:163
-#: woocommerce-germanized-shipments/includes/admin/views/html-order-shipment-content.php:220
-#: woocommerce-germanized-shipments/templates/emails/email-shipment-details.php:55
-#: woocommerce-germanized-shipments/templates/shipment/shipment-details.php:50
-msgctxt "shipments"
-msgid "Quantity"
-msgstr "Anzahl"
-
 # @ woocommerce-germanized
-#: woocommerce-germanized-shipments/includes/admin/views/html-order-shipment-content.php:112
-#: woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:873
-#: woocommerce-germanized-shipments/src/Admin/ReturnTable.php:28
-#: woocommerce-germanized-shipments/src/Admin/Table.php:654
-msgctxt "shipments"
-msgid "Actions"
-msgstr "Aktionen"
-
-# @ woocommerce-germanized
-#: woocommerce-germanized-shipments/includes/admin/views/html-order-shipment-content.php:126
+#: woocommerce-germanized-shipments/includes/admin/views/html-order-shipment-content.php:144
 msgctxt "shipments"
 msgid "Add item"
 msgstr "Position hinzufügen"
 
-#: woocommerce-germanized-shipments/includes/admin/views/html-order-shipment-content.php:130
-msgctxt "shipments"
-msgid "Sync items"
-msgstr "Positionen synchronisieren"
-
-#: woocommerce-germanized-shipments/includes/admin/views/html-order-shipment-content.php:131
+#: woocommerce-germanized-shipments/includes/admin/views/html-order-shipment-content.php:148
 msgctxt "shipments"
 msgid "Automatically adjust items and quantities based on order item data."
 msgstr "Bestimmt Positionen und Anzahlen automatisch anhand der Bestelldaten."
 
-#: woocommerce-germanized-shipments/includes/admin/views/html-order-shipment-content.php:152
+#: woocommerce-germanized-shipments/includes/admin/views/html-order-shipment-content.php:148
+msgctxt "shipments"
+msgid "Sync items"
+msgstr "Positionen synchronisieren"
+
+#: woocommerce-germanized-shipments/includes/admin/views/html-order-shipment-content.php:168
 msgctxt "shipments"
 msgid "Add Item"
 msgstr "Position hinzufügen"
 
-#: woocommerce-germanized-shipments/includes/admin/views/html-order-shipment-content.php:181
-#: woocommerce-germanized-shipments/includes/admin/views/html-order-shipment-content.php:229
+#: woocommerce-germanized-shipments/includes/admin/views/html-order-shipment-content.php:178
+#: woocommerce-germanized-shipments/includes/admin/views/html-order-shipments.php:45
+#: woocommerce-germanized-shipments/src/Admin/Admin.php:50
+msgctxt "shipments"
+msgid "Item"
+msgstr "Position"
+
+#: woocommerce-germanized-shipments/includes/admin/views/html-order-shipment-content.php:179
+#: woocommerce-germanized-shipments/includes/admin/views/html-order-shipments.php:46
+#: woocommerce-germanized-shipments/src/Admin/Admin.php:55
+#: woocommerce-germanized-shipments/templates/emails/email-shipment-details.php:55
+#: woocommerce-germanized-shipments/templates/myaccount/add-return-shipment.php:37
+#: woocommerce-germanized-shipments/templates/shipment/shipment-details.php:60
+msgctxt "shipments"
+msgid "Quantity"
+msgstr "Anzahl"
+
+#: woocommerce-germanized-shipments/includes/admin/views/html-order-shipment-content.php:197
+#: woocommerce-germanized-shipments/includes/admin/views/html-order-shipments.php:55
 msgctxt "shipments"
 msgid "Add"
 msgstr "Hinzufügen"
 
-#: woocommerce-germanized-shipments/includes/admin/views/html-order-shipment-content.php:209
-#: woocommerce-germanized-shipments/includes/admin/views/html-order-shipment-content.php:269
+#: woocommerce-germanized-shipments/includes/admin/views/html-order-shipment-content.php:221
 msgctxt "shipments"
-msgid "Add Return"
-msgstr "Retoure hinzufügen"
+msgid ""
+"Send return instructions to your customer via email including return label "
+"as attachment (if available)."
+msgstr ""
+"Informationen zur Rücksendung inkl. Label, falls verfügbar an Kunden via E-"
+"Mail senden."
 
-#: woocommerce-germanized-shipments/includes/admin/views/html-order-shipment-content.php:273
+#: woocommerce-germanized-shipments/includes/admin/views/html-order-shipment-content.php:221
+msgctxt "shipments"
+msgid "Resend notification"
+msgstr "Benachrichtigung erneut versenden"
+
+#: woocommerce-germanized-shipments/includes/admin/views/html-order-shipment-content.php:221
+msgctxt "shipments"
+msgid "Notify customer"
+msgstr "Notify customer"
+
+#: woocommerce-germanized-shipments/includes/admin/views/html-order-shipment-content.php:223
+msgctxt "shipments"
+msgid ""
+"Confirm the return request to the customer. The customer receives an email "
+"notification possibly containing return instructions."
+msgstr ""
+"Bestätigen Sie dem Kunden seinen Rücksendeantrag. Der Kunde erhält eine E-"
+"Mail-Benachrichtigung, die möglicherweise Anweisungen zur Rücksendung "
+"enthält."
+
+# @ woocommerce-germanized
+#: woocommerce-germanized-shipments/includes/admin/views/html-order-shipment-content.php:223
+#: woocommerce-germanized-shipments/src/Admin/ReturnTable.php:64
+msgctxt "shipments"
+msgid "Confirm return request"
+msgstr "Rücksendeantrag bestätigen"
+
+#: woocommerce-germanized-shipments/includes/admin/views/html-order-shipment-content.php:227
 #, php-format
 msgctxt "shipments"
 msgid "Delete %s"
@@ -2545,12 +2485,29 @@ msgid_plural "%d of %d items"
 msgstr[0] "%d von %d Position"
 msgstr[1] "%d von %d Positionen"
 
-#: woocommerce-germanized-shipments/includes/admin/views/html-order-shipment-item.php:37
+# @ woocommerce-germanized
+#: woocommerce-germanized-shipments/includes/admin/views/html-order-shipment-item.php:28
+#: woocommerce-germanized-shipments/templates/shipment/add-return-shipment-item.php:58
+msgctxt "shipments return reason"
+msgid "None"
+msgstr "Keiner"
+
+#: woocommerce-germanized-shipments/includes/admin/views/html-order-shipment-item.php:41
 #: woocommerce-germanized-shipments/includes/admin/views/html-settings-provider-list.php:26
-#: woocommerce-germanized-shipments/includes/admin/views/label/html-shipment-label.php:39
+#: woocommerce-germanized-shipments/includes/admin/views/label/html-shipment-label.php:35
 msgctxt "shipments"
 msgid "Delete"
 msgstr "Löschen"
+
+#: woocommerce-germanized-shipments/includes/admin/views/html-order-shipment-list.php:22
+#: woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:76
+#: woocommerce-germanized-shipments/src/Admin/Admin.php:282
+#: woocommerce-germanized-shipments/src/Admin/Admin.php:403
+#: woocommerce-germanized-shipments/src/Admin/Settings.php:161
+#: woocommerce-germanized-shipments/templates/myaccount/order-shipments.php:36
+msgctxt "shipments"
+msgid "Returns"
+msgstr "Retouren"
 
 #: woocommerce-germanized-shipments/includes/admin/views/html-order-shipment.php:16
 #, php-format
@@ -2560,22 +2517,32 @@ msgstr "%s #%s"
 
 # @ woocommerce-germanized
 #: woocommerce-germanized-shipments/includes/admin/views/html-order-shipments.php:19
-#: woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:66
-#: woocommerce-germanized-shipments/src/Admin/Admin.php:74
-#: woocommerce-germanized-shipments/src/Admin/Admin.php:143
-#: woocommerce-germanized-shipments/src/Admin/Admin.php:231
-#: woocommerce-germanized-shipments/src/Admin/Admin.php:298
-#: woocommerce-germanized-shipments/templates/myaccount/order-shipments.php:35
+#: woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:69
+#: woocommerce-germanized-shipments/src/Admin/Admin.php:212
+#: woocommerce-germanized-shipments/src/Admin/Admin.php:281
+#: woocommerce-germanized-shipments/src/Admin/Admin.php:369
+#: woocommerce-germanized-shipments/src/Admin/Admin.php:436
+#: woocommerce-germanized-shipments/templates/myaccount/order-shipments.php:20
 msgctxt "shipments"
 msgid "Shipments"
 msgstr "Sendungen"
 
-#: woocommerce-germanized-shipments/includes/admin/views/html-order-shipments.php:36
+#: woocommerce-germanized-shipments/includes/admin/views/html-order-shipments.php:35
+msgctxt "shipments"
+msgid "Add Return"
+msgstr "Retoure hinzufügen"
+
+#: woocommerce-germanized-shipments/includes/admin/views/html-order-shipments.php:66
 msgctxt "shipments"
 msgid "Add shipment"
 msgstr "Sendung hinzufügen"
 
-#: woocommerce-germanized-shipments/includes/admin/views/html-order-shipments.php:40
+#: woocommerce-germanized-shipments/includes/admin/views/html-order-shipments.php:70
+msgctxt "shipments"
+msgid "Add return"
+msgstr "Retoure hinzufügen"
+
+#: woocommerce-germanized-shipments/includes/admin/views/html-order-shipments.php:76
 msgctxt "shipments"
 msgid "Save"
 msgstr "Speichern"
@@ -2584,15 +2551,15 @@ msgstr "Speichern"
 # @ woocommerce
 #: woocommerce-germanized-shipments/includes/admin/views/html-settings-provider-list.php:11
 #: woocommerce-germanized-shipments/src/Admin/ReturnTable.php:22
-#: woocommerce-germanized-shipments/src/Admin/Table.php:648
-#: woocommerce-germanized-shipments/src/ShippingProvider.php:419
+#: woocommerce-germanized-shipments/src/Admin/Table.php:658
+#: woocommerce-germanized-shipments/src/ShippingProvider.php:526
 msgctxt "shipments"
 msgid "Title"
 msgstr "Titel"
 
 # @ woocommerce-germanized
 #: woocommerce-germanized-shipments/includes/admin/views/html-settings-provider-list.php:12
-#: woocommerce-germanized-shipments/src/ShippingProvider.php:428
+#: woocommerce-germanized-shipments/src/ShippingProvider.php:535
 msgctxt "shipments"
 msgid "Description"
 msgstr "Beschreibung"
@@ -2626,7 +2593,7 @@ msgid "Manage"
 msgstr "Verwalten"
 
 #: woocommerce-germanized-shipments/includes/admin/views/label/html-shipment-label-backbone.php:13
-#: woocommerce-germanized-shipments/includes/admin/views/label/html-shipment-label.php:43
+#: woocommerce-germanized-shipments/includes/admin/views/label/html-shipment-label.php:39
 msgctxt "shipments"
 msgid "Create label"
 msgstr "Label erstellen"
@@ -2647,17 +2614,86 @@ msgctxt "shipments"
 msgid "Download"
 msgstr "Download"
 
-# @ woocommerce-germanized
-#: woocommerce-germanized-shipments/includes/admin/views/label/html-shipment-label.php:24
-msgctxt "shipments"
-msgid "Send to customer"
-msgstr "An den Kunden senden"
-
-#: woocommerce-germanized-shipments/includes/admin/views/label/html-shipment-label.php:43
-#: woocommerce-germanized-shipments/src/Admin/Admin.php:355
+#: woocommerce-germanized-shipments/includes/admin/views/label/html-shipment-label.php:39
+#: woocommerce-germanized-shipments/src/Admin/Admin.php:494
 msgctxt "shipments"
 msgid "Create new label"
 msgstr "Neues Label erstellen"
+
+# @ woocommerce-germanized
+#: woocommerce-germanized-shipments/includes/emails/class-wc-gzd-email-customer-guest-return-shipment-request.php:41
+msgctxt "shipments"
+msgid "Order guest return request"
+msgstr "Rücksendeantrag (Gast)"
+
+#: woocommerce-germanized-shipments/includes/emails/class-wc-gzd-email-customer-guest-return-shipment-request.php:42
+msgctxt "shipments"
+msgid ""
+"Order guest return request are sent to the customer after submitting a new "
+"return request as a guest."
+msgstr ""
+"Gäste erhalten bei Rücksendeanträgen einen einmaligen Link per E-Mail "
+"zugestellt über den der Antrag gestellt werden kann."
+
+#: woocommerce-germanized-shipments/includes/emails/class-wc-gzd-email-customer-guest-return-shipment-request.php:66
+msgctxt "shipments"
+msgid "Your return request to your order {order_number}"
+msgstr "Ihr Rücksendeantrag zu Ihrer Bestellung {order_number}"
+
+#: woocommerce-germanized-shipments/includes/emails/class-wc-gzd-email-customer-guest-return-shipment-request.php:76
+msgctxt "shipments"
+msgid "Return request to your order: {order_number}"
+msgstr "Rücksendeantrag zu Ihrer Bestellung: {order_number}"
+
+# @ woocommerce-germanized
+#: woocommerce-germanized-shipments/includes/emails/class-wc-gzd-email-customer-return-shipment-delivered.php:44
+msgctxt "shipments"
+msgid "Order return delivered"
+msgstr "Rücksendung eingegangen"
+
+#: woocommerce-germanized-shipments/includes/emails/class-wc-gzd-email-customer-return-shipment-delivered.php:45
+msgctxt "shipments"
+msgid ""
+"Order return notifications are sent to the customer after a return shipment "
+"has been returned (delivered) successfully."
+msgstr ""
+"Benachrichtigungen über den Eingang einer Retoure werden an den Kunden "
+"verschickt sobald eine Retoure als geliefert markiert wurde."
+
+#: woocommerce-germanized-shipments/includes/emails/class-wc-gzd-email-customer-return-shipment-delivered.php:75
+msgctxt "shipments"
+msgid "Return to your order {order_number} has been received"
+msgstr "Rücksendung zu Ihrer Bestellung {order_number} ist eingegangen"
+
+#: woocommerce-germanized-shipments/includes/emails/class-wc-gzd-email-customer-return-shipment-delivered.php:85
+msgctxt "shipments"
+msgid "Received return to your order: {order_number}"
+msgstr "Rücksendung erhalten zu Ihrer Bestellung: {order_number}"
+
+# @ woocommerce-germanized
+#: woocommerce-germanized-shipments/includes/emails/class-wc-gzd-email-customer-return-shipment.php:52
+msgctxt "shipments"
+msgid "Order return"
+msgstr "Retoure zur Bestellung"
+
+#: woocommerce-germanized-shipments/includes/emails/class-wc-gzd-email-customer-return-shipment.php:53
+msgctxt "shipments"
+msgid ""
+"Order return notifications are sent to the customer after a return shipment "
+"was marked as processing."
+msgstr ""
+"Benachrichtigungen über Retouren werden an den Kunden verschickt, nachdem "
+"eine Retoure als in Bearbeitung markiert wurde."
+
+#: woocommerce-germanized-shipments/includes/emails/class-wc-gzd-email-customer-return-shipment.php:83
+msgctxt "shipments"
+msgid "Return to your order {order_number}"
+msgstr "Rücksendung zu Ihrer Bestellung {order_number}"
+
+#: woocommerce-germanized-shipments/includes/emails/class-wc-gzd-email-customer-return-shipment.php:93
+msgctxt "shipments"
+msgid "Return to your order: {order_number}"
+msgstr "Rücksendung zu Ihrer Bestellung {order_number}"
 
 # @ woocommerce-germanized
 #: woocommerce-germanized-shipments/includes/emails/class-wc-gzd-email-customer-shipment.php:51
@@ -2694,242 +2730,336 @@ msgctxt "shipments"
 msgid "Shipment to your order: {order_number}"
 msgstr "Sendung zu Ihrer Bestellung {order_number}"
 
-#: woocommerce-germanized-shipments/includes/emails/class-wc-gzd-email-customer-shipment.php:283
-#: woocommerce-germanized-shipments/includes/emails/class-wc-gzd-email-customer-shipment.php:297
-#: woocommerce-germanized-shipments/includes/emails/class-wc-gzd-email-customer-shipment.php:306
-#: woocommerce-germanized-shipments/includes/emails/class-wc-gzd-email-customer-shipment.php:315
-#: woocommerce-germanized-shipments/includes/emails/class-wc-gzd-email-customer-shipment.php:324
+#: woocommerce-germanized-shipments/includes/emails/class-wc-gzd-email-customer-shipment.php:307
+#: woocommerce-germanized-shipments/includes/emails/class-wc-gzd-email-customer-shipment.php:321
+#: woocommerce-germanized-shipments/includes/emails/class-wc-gzd-email-customer-shipment.php:330
+#: woocommerce-germanized-shipments/includes/emails/class-wc-gzd-email-customer-shipment.php:339
+#: woocommerce-germanized-shipments/includes/emails/class-wc-gzd-email-customer-shipment.php:348
 #, php-format
 msgctxt "shipments"
 msgid "Available placeholders: %s"
 msgstr "Verfügbare Platzhalter: %s"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized-shipments/includes/emails/class-wc-gzd-email-customer-shipment.php:287
+#: woocommerce-germanized-shipments/includes/emails/class-wc-gzd-email-customer-shipment.php:311
 msgctxt "shipments"
 msgid "Enable/Disable"
 msgstr "Aktivieren/Deaktivieren"
 
-#: woocommerce-germanized-shipments/includes/emails/class-wc-gzd-email-customer-shipment.php:289
+#: woocommerce-germanized-shipments/includes/emails/class-wc-gzd-email-customer-shipment.php:313
 msgctxt "shipments"
 msgid "Enable this email notification"
 msgstr "Aktiviere diese E-Mail-Benachrichtigung"
 
-#: woocommerce-germanized-shipments/includes/emails/class-wc-gzd-email-customer-shipment.php:293
+#: woocommerce-germanized-shipments/includes/emails/class-wc-gzd-email-customer-shipment.php:317
 msgctxt "shipments"
 msgid "Full shipment subject"
 msgstr "Vollständige Sendung Betreff"
 
-#: woocommerce-germanized-shipments/includes/emails/class-wc-gzd-email-customer-shipment.php:302
+#: woocommerce-germanized-shipments/includes/emails/class-wc-gzd-email-customer-shipment.php:326
 msgctxt "shipments"
 msgid "Partial shipment subject"
 msgstr "Teilsendung Betreff"
 
-#: woocommerce-germanized-shipments/includes/emails/class-wc-gzd-email-customer-shipment.php:311
+#: woocommerce-germanized-shipments/includes/emails/class-wc-gzd-email-customer-shipment.php:335
 msgctxt "shipments"
 msgid "Full shipment email heading"
 msgstr "Vollständige Sendung Kopfzeile"
 
-#: woocommerce-germanized-shipments/includes/emails/class-wc-gzd-email-customer-shipment.php:320
+#: woocommerce-germanized-shipments/includes/emails/class-wc-gzd-email-customer-shipment.php:344
 msgctxt "shipments"
 msgid "Partial shipment email heading"
 msgstr "Teilsendung Kopfzeile"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized-shipments/includes/emails/class-wc-gzd-email-customer-shipment.php:329
+#: woocommerce-germanized-shipments/includes/emails/class-wc-gzd-email-customer-shipment.php:353
 msgctxt "shipments"
 msgid "Additional content"
 msgstr "Zusätzlicher Inhalt"
 
-#: woocommerce-germanized-shipments/includes/emails/class-wc-gzd-email-customer-shipment.php:330
+#: woocommerce-germanized-shipments/includes/emails/class-wc-gzd-email-customer-shipment.php:354
 msgctxt "shipments"
 msgid "Text to appear below the main email content."
 msgstr "Text der unterhalb des Inhalts der E-Mail angezeigt werden soll."
 
-#: woocommerce-germanized-shipments/includes/emails/class-wc-gzd-email-customer-shipment.php:332
-#: woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:807
-#: woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:835
+#: woocommerce-germanized-shipments/includes/emails/class-wc-gzd-email-customer-shipment.php:356
+#: woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:937
+#: woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:965
 #: woocommerce-germanized-shipments/templates/shipment/shipment-details-address.php:28
 msgctxt "shipments"
 msgid "N/A"
 msgstr "n.a."
 
-#: woocommerce-germanized-shipments/includes/emails/class-wc-gzd-email-customer-shipment.php:338
+#: woocommerce-germanized-shipments/includes/emails/class-wc-gzd-email-customer-shipment.php:362
 msgctxt "shipments"
 msgid "Email type"
 msgstr "E-Mail-Typ"
 
-#: woocommerce-germanized-shipments/includes/emails/class-wc-gzd-email-customer-shipment.php:340
+#: woocommerce-germanized-shipments/includes/emails/class-wc-gzd-email-customer-shipment.php:364
 msgctxt "shipments"
 msgid "Choose which format of email to send."
 msgstr "Format für E-Mail-Versand auswählen."
 
-#: woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:65
-#: woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:869
-#: woocommerce-germanized-shipments/src/Admin/ReturnTable.php:27
+#: woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:68
+#: woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:1000
 msgctxt "shipments"
 msgid "Shipment"
 msgstr "Sendung"
 
-#: woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:72
+#: woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:75
 msgctxt "shipments"
 msgid "Return"
 msgstr "Retoure"
 
-#: woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:73
-#: woocommerce-germanized-shipments/src/Admin/Admin.php:144
-#: woocommerce-germanized-shipments/src/Admin/Admin.php:265
-msgctxt "shipments"
-msgid "Returns"
-msgstr "Retouren"
-
-#: woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:99
+#: woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:102
 msgctxt "shipments"
 msgid "Not shipped"
 msgstr "Nicht versandt"
 
-#: woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:100
+#: woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:103
 msgctxt "shipments"
 msgid "Partially shipped"
 msgstr "Teilweise versandt"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:101
-#: woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:241
-#: woocommerce-germanized-shipments/src/Admin/Table.php:814
+#: woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:104
+#: woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:306
+#: woocommerce-germanized-shipments/src/Admin/Table.php:823
 msgctxt "shipments"
 msgid "Shipped"
 msgstr "Versandt"
 
-#: woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:239
+#: woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:121
+msgctxt "shipments"
+msgid "Open"
+msgstr "Offen"
+
+#: woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:122
+msgctxt "shipments"
+msgid "Partially returned"
+msgstr "Teilweise retourniert"
+
+#: woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:123
+msgctxt "shipments"
+msgid "Returned"
+msgstr "Retourniert"
+
+#: woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:304
 msgctxt "shipments"
 msgid "Draft"
 msgstr "Entwurf"
 
-#: woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:240
-#: woocommerce-germanized-shipments/src/Admin/Table.php:806
+#: woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:305
+#: woocommerce-germanized-shipments/src/Admin/Table.php:815
 msgctxt "shipments"
 msgid "Processing"
 msgstr "In Bearbeitung"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:242
+#: woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:307
 #: woocommerce-germanized-shipments/src/Admin/ReturnTable.php:48
 msgctxt "shipments"
 msgid "Delivered"
 msgstr "Geliefert"
 
-#: woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:243
+#: woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:308
 msgctxt "shipments"
-msgid "Returned"
-msgstr "Retourniert"
+msgid "Requested"
+msgstr "Beantragt"
 
-#: woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:286
-#: woocommerce-germanized-shipments/includes/wc-gzd-shipments-template-functions.php:101
-#: woocommerce-germanized-shipments/src/DataStores/Shipment.php:343
+#: woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:357
+#: woocommerce-germanized-shipments/includes/wc-gzd-shipments-template-functions.php:81
+#: woocommerce-germanized-shipments/includes/wc-gzd-shipments-template-functions.php:135
 msgctxt "shipments"
-msgid "Invalid shipment."
-msgstr "Ungültige Sendung."
+msgid "Invalid order."
+msgstr "Ungültige Bestellung."
 
-#: woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:290
+#: woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:361
 msgctxt "shipments"
-msgid "This shipment is already fully returned."
-msgstr "Diese Sendung ist bereits vollständig retourniert."
+msgid "This order is already fully returned."
+msgstr "Diese Bestellung wurde bereits vollständig zurückgesendet."
 
-#: woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:301
-#: woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:344
+#: woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:372
+#: woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:413
 msgctxt "shipments"
 msgid "Error while creating the shipment instance"
 msgstr "Fehler beim Erstellen der Sendungsinstanz"
 
-#: woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:329
-#: woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:333
-#: woocommerce-germanized-shipments/src/SimpleShipment.php:142
-#: woocommerce-germanized-shipments/src/SimpleShipment.php:225
+#: woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:398
+#: woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:402
+#: woocommerce-germanized-shipments/src/ReturnShipment.php:429
+#: woocommerce-germanized-shipments/src/ReturnShipment.php:489
+#: woocommerce-germanized-shipments/src/SimpleShipment.php:118
+#: woocommerce-germanized-shipments/src/SimpleShipment.php:202
 msgctxt "shipments"
 msgid "Invalid shipment order"
 msgstr "Ungültige Bestellung zur Sendung"
 
-#: woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:363
+#: woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:432
 msgctxt "shipments"
 msgid "Invalid order item"
 msgstr "Ungültige Bestellposition"
 
-#: woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:399
+#: woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:548
 msgctxt "shipments"
 msgid "Invalid shipment item"
 msgstr "Ungültige Sendungsposition"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:472
+#: woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:621
 msgctxt "shipments"
 msgid "None"
 msgstr "Keiner"
 
-#: woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:545
+#: woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:694
 msgctxt "shipments"
 msgid "Error while uploading file."
 msgstr "Fehler beim Hochladen der Datei."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:870
+#: woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:1001
 #: woocommerce-germanized-shipments/src/Admin/ReturnTable.php:23
-#: woocommerce-germanized-shipments/src/Admin/Table.php:649
+#: woocommerce-germanized-shipments/src/Admin/Table.php:659
 msgctxt "shipments"
 msgid "Date"
 msgstr "Datum"
 
-#: woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:872
+#: woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:1003
 #: woocommerce-germanized-shipments/templates/shipment/shipment-details-tracking.php:23
 msgctxt "shipments"
 msgid "Tracking"
 msgstr "Sendungsverfolgung"
 
-#: woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:897
+# @ woocommerce-germanized
+#: woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:1004
+#: woocommerce-germanized-shipments/src/Admin/Admin.php:60
+#: woocommerce-germanized-shipments/src/Admin/ReturnTable.php:28
+#: woocommerce-germanized-shipments/src/Admin/Table.php:664
+msgctxt "shipments"
+msgid "Actions"
+msgstr "Aktionen"
+
+#: woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:1240
 msgctxt "shipments"
 msgid "View"
 msgstr "Anzeigen"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized-shipments/includes/wc-gzd-shipments-template-functions.php:101
+#: woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:1247
+#: woocommerce-germanized-shipments/src/Admin/Table.php:834
+#: woocommerce-germanized-shipments/src/Ajax.php:332
+msgctxt "shipments"
+msgid "Download label"
+msgstr "Label downloaden"
+
+# @ woocommerce-germanized
+#: woocommerce-germanized-shipments/includes/wc-gzd-shipments-template-functions.php:81
+#: woocommerce-germanized-shipments/includes/wc-gzd-shipments-template-functions.php:115
+#: woocommerce-germanized-shipments/includes/wc-gzd-shipments-template-functions.php:135
 msgctxt "shipments"
 msgid "My account"
 msgstr "Mein Konto"
 
+#: woocommerce-germanized-shipments/includes/wc-gzd-shipments-template-functions.php:115
+#: woocommerce-germanized-shipments/src/DataStores/Shipment.php:343
+msgctxt "shipments"
+msgid "Invalid shipment."
+msgstr "Ungültige Sendung."
+
+#: woocommerce-germanized-shipments/includes/wc-gzd-shipments-template-functions.php:140
+msgctxt "shipments"
+msgid ""
+"Currently you cannot add new return requests to that order. If you have "
+"questions regarding the return of that order please contact us for further "
+"information."
+msgstr ""
+"Aktuell können keine Rücksendeanträge zu dieser Bestellung erstellt werden. "
+"Falls Sie Fragen zur Rücksendung dieser Bestellung haben, kontaktieren Sie "
+"uns bitte."
+
+# @ woocommerce
+#: woocommerce-germanized-shipments/includes/wc-gzd-shipments-template-functions.php:140
+msgctxt "shipments"
+msgid "View order"
+msgstr "Bestellung ansehen"
+
 # @ woocommerce-germanized
-#: woocommerce-germanized-shipments/src/Admin/Admin.php:128
+#: woocommerce-germanized-shipments/src/Admin/Admin.php:68
+#: woocommerce-germanized-shipments/src/Admin/Admin.php:133
+#: woocommerce-germanized-shipments/templates/myaccount/add-return-shipment.php:36
+msgctxt "shipments"
+msgid "Reason"
+msgstr "Rücksendegrund"
+
+# @ woocommerce-germanized
+#: woocommerce-germanized-shipments/src/Admin/Admin.php:125
+msgctxt "shipments"
+msgid "Return reasons"
+msgstr "Rücksendegründe"
+
+#: woocommerce-germanized-shipments/src/Admin/Admin.php:132
+msgctxt "shipments"
+msgid "Reason code"
+msgstr "Rücksendegrund (Code)"
+
+#: woocommerce-germanized-shipments/src/Admin/Admin.php:132
+msgctxt "shipments"
+msgid "The reason code is used to identify the reason."
+msgstr ""
+"Der Code für den Rücksendegrund wird verwendet um den Grund eindeutig "
+"identifizieren zu können."
+
+# @ woocommerce-germanized
+#: woocommerce-germanized-shipments/src/Admin/Admin.php:133
+msgctxt "shipments"
+msgid "Choose a reason text."
+msgstr "Beschreibung für den Grund."
+
+# @ woocommerce-germanized
+#: woocommerce-germanized-shipments/src/Admin/Admin.php:152
+msgctxt "shipments"
+msgid "+ Add reason"
+msgstr "+ Grund hinzufügen"
+
+#: woocommerce-germanized-shipments/src/Admin/Admin.php:152
+msgctxt "shipments"
+msgid "Remove selected reason(s)"
+msgstr "Ausgewählte Gründe löschen"
+
+# @ woocommerce-germanized
+#: woocommerce-germanized-shipments/src/Admin/Admin.php:266
 msgctxt "shipments"
 msgid "Create shipments"
 msgstr "Sendungen erstellen"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized-shipments/src/Admin/Admin.php:243
+#: woocommerce-germanized-shipments/src/Admin/Admin.php:381
 msgctxt "shipments"
 msgid "Search shipments"
 msgstr "Sendungen suchen"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized-shipments/src/Admin/Admin.php:277
+#: woocommerce-germanized-shipments/src/Admin/Admin.php:415
 msgctxt "shipments"
 msgid "Search returns"
 msgstr "Retouren suchen"
 
-#: woocommerce-germanized-shipments/src/Admin/Admin.php:350
+#: woocommerce-germanized-shipments/src/Admin/Admin.php:488
 msgctxt "shipments"
 msgid "Do you really want to delete the shipment?"
 msgstr "Möchten Sie die Sendung wirklich löschen?"
 
-#: woocommerce-germanized-shipments/src/Admin/Admin.php:354
+#: woocommerce-germanized-shipments/src/Admin/Admin.php:493
 msgctxt "shipments"
 msgid "Do you really want to delete the label?"
 msgstr "Möchten Sie das Label wirklich löschen?"
 
-#: woocommerce-germanized-shipments/src/Admin/Admin.php:356
+#: woocommerce-germanized-shipments/src/Admin/Admin.php:495
 msgctxt "shipments"
 msgid "Please save the shipment before creating a new label"
 msgstr "Bitte speichern Sie die Sendung bevor Sie ein neues Label erstellen"
 
-#: woocommerce-germanized-shipments/src/Admin/Admin.php:406
+#: woocommerce-germanized-shipments/src/Admin/Admin.php:545
 msgctxt "shipments"
 msgid ""
 "Do you really want to delete the shipping provider? Some of your existing "
@@ -2990,7 +3120,7 @@ msgid "shipment #%d"
 msgstr "Sendung #%d"
 
 #: woocommerce-germanized-shipments/src/Admin/ReturnTable.php:25
-#: woocommerce-germanized-shipments/src/Admin/Table.php:651
+#: woocommerce-germanized-shipments/src/Admin/Table.php:661
 msgctxt "shipments"
 msgid "Items"
 msgstr "Positionen"
@@ -3000,10 +3130,24 @@ msgctxt "shipments"
 msgid "Sender"
 msgstr "Absender"
 
-#: woocommerce-germanized-shipments/src/Admin/ReturnTable.php:58
+# @ woocommerce-germanized
+#: woocommerce-germanized-shipments/src/Admin/ReturnTable.php:27
+#: woocommerce-germanized-shipments/src/Admin/Table.php:663
 msgctxt "shipments"
-msgid "Send label to customer"
-msgstr "Label dem Kunden zusenden"
+msgid "Order"
+msgstr "Bestellung"
+
+# @ woocommerce-germanized
+#: woocommerce-germanized-shipments/src/Admin/ReturnTable.php:56
+msgctxt "shipments"
+msgid "Send notification to customer"
+msgstr "Benachrichtigung an den Kunden senden"
+
+# @ woocommerce-germanized
+#: woocommerce-germanized-shipments/src/Admin/ReturnTable.php:77
+msgctxt "shipments"
+msgid "Confirm open return requests"
+msgstr "Offene Rücksendeanträge bestätigen"
 
 # @ woocommerce-germanized
 #: woocommerce-germanized-shipments/src/Admin/Settings.php:38
@@ -3180,102 +3324,144 @@ msgstr ""
 "Diese Option sorgt dafür, dass der Sendungsstatus automatisch auf versandt "
 "gesetzt wird, sobald die Bestellung als fertiggestellt markiert wurde."
 
-# @ woocommerce-germanized
+#: woocommerce-germanized-shipments/src/Admin/Settings.php:161
+#, php-format
+msgctxt "shipments"
+msgid ""
+"Returns can be added manually by the shop manager or by the customer. Decide "
+"what suits you best by turning customer-added returns on or off in your %s."
+msgstr ""
+"Rücksendungen können manuell vom Shop Manager und/oder vom Kunden angelegt "
+"werden. Entscheiden Sie selbst ob Sie Kunden Rücksendungen anfordern lassen "
+"möchten indem Sie Ihre %s anpassen."
+
 #: woocommerce-germanized-shipments/src/Admin/Settings.php:161
 msgctxt "shipments"
-msgid "Customer Account"
-msgstr "Kundenkonto"
-
-#: woocommerce-germanized-shipments/src/Admin/Settings.php:164
-msgctxt "shipments"
-msgid "List"
-msgstr "Liste"
-
-#: woocommerce-germanized-shipments/src/Admin/Settings.php:165
-msgctxt "shipments"
-msgid "List shipments on customer account order screen."
-msgstr "Liste Sendungen im Kundenkonto in den Bestelldetails auf."
+msgid "shipping provider settings"
+msgstr "Versanddienstleister Einstellungen"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized-shipments/src/Admin/Settings.php:173
+#: woocommerce-germanized-shipments/src/Admin/Settings.php:168
+msgctxt "shipments"
+msgid "Days to return"
+msgstr "Zeitraum für Retouren"
+
+#: woocommerce-germanized-shipments/src/Admin/Settings.php:169
+#, php-format
+msgctxt "shipments"
+msgid ""
+"In case one of your %s supports returns added by customers you might want to "
+"limit the number of days a customer is allowed to add returns to an order. "
+"The days are counted starting with the date the order was shipped, completed "
+"or created (by checking for existance in this order)."
+msgstr ""
+"Falls einer Ihrer %s durch Kunden hinzugefügte Rücksendungen unterstützt "
+"können Sie hier die Anzahl der Tage beschränken, für die Rücksendungen "
+"beantragt werden dürfen. Die Tage werden startend mit dem Tag an dem die "
+"Bestellung als versandt oder fertiggestellt markiert bzw. Erstellt wurde (je "
+"nachdem welche Daten verfügbar sind für die jeweilige Bestellung) gezählt."
+
+#: woocommerce-germanized-shipments/src/Admin/Settings.php:169
+msgctxt "shipments"
+msgid "shipping providers"
+msgstr "Versanddienstleister"
+
+# @ woocommerce-germanized
+#: woocommerce-germanized-shipments/src/Admin/Settings.php:178
 msgctxt "shipments"
 msgid "Return Address"
 msgstr "Retouren Adresse"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized-shipments/src/Admin/Settings.php:176
+#: woocommerce-germanized-shipments/src/Admin/Settings.php:181
 msgctxt "shipments"
 msgid "First Name"
 msgstr "Vorname"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized-shipments/src/Admin/Settings.php:183
+#: woocommerce-germanized-shipments/src/Admin/Settings.php:188
 msgctxt "shipments"
 msgid "Last Name"
 msgstr "Nachname"
 
-#: woocommerce-germanized-shipments/src/Admin/Settings.php:190
+#: woocommerce-germanized-shipments/src/Admin/Settings.php:195
 msgctxt "shipments"
 msgid "Company"
 msgstr "Firma"
 
-#: woocommerce-germanized-shipments/src/Admin/Settings.php:197
+#: woocommerce-germanized-shipments/src/Admin/Settings.php:202
 msgctxt "shipments"
 msgid "Address 1"
 msgstr "Adresszeile 1"
 
-#: woocommerce-germanized-shipments/src/Admin/Settings.php:204
+#: woocommerce-germanized-shipments/src/Admin/Settings.php:209
 msgctxt "shipments"
 msgid "Address 2"
 msgstr "Adresszeile 2"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized-shipments/src/Admin/Settings.php:211
+#: woocommerce-germanized-shipments/src/Admin/Settings.php:216
 msgctxt "shipments"
 msgid "City"
 msgstr "Stadt"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized-shipments/src/Admin/Settings.php:218
+#: woocommerce-germanized-shipments/src/Admin/Settings.php:223
 msgctxt "shipments"
 msgid "Country / State"
 msgstr "Land / Bundesland"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized-shipments/src/Admin/Settings.php:226
+#: woocommerce-germanized-shipments/src/Admin/Settings.php:231
 msgctxt "shipments"
 msgid "Postcode"
 msgstr "Postleitzahl"
 
-#: woocommerce-germanized-shipments/src/Admin/Settings.php:307
+# @ woocommerce-germanized
+#: woocommerce-germanized-shipments/src/Admin/Settings.php:239
+msgctxt "shipments"
+msgid "Customer Account"
+msgstr "Kundenkonto"
+
+#: woocommerce-germanized-shipments/src/Admin/Settings.php:242
+msgctxt "shipments"
+msgid "List"
+msgstr "Liste"
+
+#: woocommerce-germanized-shipments/src/Admin/Settings.php:243
+msgctxt "shipments"
+msgid "List shipments on customer account order screen."
+msgstr "Liste Sendungen im Kundenkonto in den Bestelldetails auf."
+
+#: woocommerce-germanized-shipments/src/Admin/Settings.php:326
 msgctxt "shipments"
 msgid "New provider"
 msgstr "Neuer Dienstleister"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized-shipments/src/Admin/Settings.php:317
+#: woocommerce-germanized-shipments/src/Admin/Settings.php:336
 msgctxt "shipments"
 msgid "Additional settings"
 msgstr "Weiterführende Einstellungen"
 
-#: woocommerce-germanized-shipments/src/Admin/Settings.php:343
+#: woocommerce-germanized-shipments/src/Admin/Settings.php:362
 msgctxt "shipments"
 msgid "Add provider"
 msgstr "Dienstleister hinzufügen"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized-shipments/src/Admin/Settings.php:351
+#: woocommerce-germanized-shipments/src/Admin/Settings.php:370
 msgctxt "shipments"
 msgid "General"
 msgstr "Allgemein"
 
-#: woocommerce-germanized-shipments/src/Admin/Settings.php:352
+#: woocommerce-germanized-shipments/src/Admin/Settings.php:371
 #: woocommerce-germanized-shipments/src/ShippingProviderMethod.php:56
 msgctxt "shipments"
 msgid "Shipping Provider"
 msgstr "Versanddienstleister"
 
-#: woocommerce-germanized-shipments/src/Admin/Table.php:164
+#: woocommerce-germanized-shipments/src/Admin/Table.php:176
 #, php-format
 msgctxt "shipments"
 msgid "%d shipment deleted."
@@ -3283,7 +3469,7 @@ msgid_plural "%d shipments deleted."
 msgstr[0] "%d Sendung gelöscht."
 msgstr[1] "%d Sendungen gelöscht."
 
-#: woocommerce-germanized-shipments/src/Admin/Table.php:174
+#: woocommerce-germanized-shipments/src/Admin/Table.php:186
 #, php-format
 msgctxt "shipments"
 msgid "%d shipment status changed."
@@ -3291,12 +3477,12 @@ msgid_plural "%d shipment statuses changed."
 msgstr[0] "%d Sendungsstatus geändert."
 msgstr[1] "%d Sendungsstatus geändert."
 
-#: woocommerce-germanized-shipments/src/Admin/Table.php:331
+#: woocommerce-germanized-shipments/src/Admin/Table.php:343
 msgctxt "shipments"
 msgid "No shipments found"
 msgstr "Keine Sendungen gefunden"
 
-#: woocommerce-germanized-shipments/src/Admin/Table.php:371
+#: woocommerce-germanized-shipments/src/Admin/Table.php:383
 #, php-format
 msgctxt "shipments"
 msgid "All <span class=\"count\">(%s)</span>"
@@ -3304,7 +3490,7 @@ msgid_plural "All <span class=\"count\">(%s)</span>"
 msgstr[0] "Alle <span class=\"count\">(%s)</span>"
 msgstr[1] "Alle <span class=\"count\">(%s)</span>"
 
-#: woocommerce-germanized-shipments/src/Admin/Table.php:396
+#: woocommerce-germanized-shipments/src/Admin/Table.php:408
 #, php-format
 msgctxt "shipments"
 msgid " <span class=\"count\">(%s)</span>"
@@ -3312,199 +3498,201 @@ msgid_plural " <span class=\"count\">(%s)</span>"
 msgstr[0] " <span class=\"count\">(%s)</span>"
 msgstr[1] " <span class=\"count\">(%s)</span>"
 
-#: woocommerce-germanized-shipments/src/Admin/Table.php:486
+#: woocommerce-germanized-shipments/src/Admin/Table.php:498
 msgctxt "shipments"
 msgid "Filter by date"
 msgstr "Nach Datum filtern"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized-shipments/src/Admin/Table.php:488
+#: woocommerce-germanized-shipments/src/Admin/Table.php:500
 msgctxt "shipments"
 msgid "All dates"
 msgstr "Alle Daten"
 
-#: woocommerce-germanized-shipments/src/Admin/Table.php:503
+#: woocommerce-germanized-shipments/src/Admin/Table.php:515
 #, php-format
 msgid "%1$s %2$d"
 msgstr "%1$s %2$d"
 
-#: woocommerce-germanized-shipments/src/Admin/Table.php:524
+#: woocommerce-germanized-shipments/src/Admin/Table.php:536
 msgctxt "shipments"
 msgid "Processing bulk actions..."
 msgstr "Bearbeite Mehrfachaktionen.."
 
-#: woocommerce-germanized-shipments/src/Admin/Table.php:610
+#: woocommerce-germanized-shipments/src/Admin/Table.php:620
 msgctxt "shipments"
 msgid "Filter"
 msgstr "Filtern"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized-shipments/src/Admin/Table.php:626
-#: woocommerce-germanized-shipments/src/Ajax.php:757
+#: woocommerce-germanized-shipments/src/Admin/Table.php:636
+#: woocommerce-germanized-shipments/src/Ajax.php:811
 #, php-format
 msgctxt "shipments"
 msgid "Order #%s"
 msgstr "Bestellung #%s"
 
 # @ woocommerce
-#: woocommerce-germanized-shipments/src/Admin/Table.php:631
+#: woocommerce-germanized-shipments/src/Admin/Table.php:641
 msgctxt "shipments"
 msgid "Filter by order"
 msgstr "Nach Bestellung filtern"
 
-#: woocommerce-germanized-shipments/src/Admin/Table.php:652
+#: woocommerce-germanized-shipments/src/Admin/Table.php:662
 msgctxt "shipments"
 msgid "Address"
 msgstr "Adresse"
 
-# @ woocommerce-germanized
-#: woocommerce-germanized-shipments/src/Admin/Table.php:653
-msgctxt "shipments"
-msgid "Order"
-msgstr "Bestellung"
-
-#: woocommerce-germanized-shipments/src/Admin/Table.php:745
-#: woocommerce-germanized-shipments/templates/myaccount/order-shipments.php:73
+#: woocommerce-germanized-shipments/src/Admin/Table.php:754
+#: woocommerce-germanized-shipments/templates/myaccount/shipments.php:68
 #, php-format
 msgctxt "shipment title"
 msgid "%s #%s"
 msgstr "%s #%s"
 
-#: woocommerce-germanized-shipments/src/Admin/Table.php:758
+#: woocommerce-germanized-shipments/src/Admin/Table.php:767
 #, php-format
 msgctxt "shipments"
 msgid "via %s"
 msgstr "via %s"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized-shipments/src/Admin/Table.php:825
-#: woocommerce-germanized-shipments/src/Ajax.php:282
-msgctxt "shipments"
-msgid "Download label"
-msgstr "Label downloaden"
-
-# @ woocommerce-germanized
-#: woocommerce-germanized-shipments/src/Admin/Table.php:834
+#: woocommerce-germanized-shipments/src/Admin/Table.php:843
 msgctxt "shipments"
 msgid "Generate label"
 msgstr "Label erstellen"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized-shipments/src/Admin/Table.php:884
+#: woocommerce-germanized-shipments/src/Admin/Table.php:893
 #, php-format
 msgctxt "shipments"
 msgid "Select %s"
 msgstr "Wähle %s"
 
-#: woocommerce-germanized-shipments/src/Admin/Table.php:911
+#: woocommerce-germanized-shipments/src/Admin/Table.php:920
 msgctxt "shipments"
 msgid "SKU:"
 msgstr "Art.-Nr.:"
 
-#: woocommerce-germanized-shipments/src/Admin/Table.php:1005
+#: woocommerce-germanized-shipments/src/Admin/Table.php:1014
 #, php-format
 msgctxt "%s = human-readable time difference"
 msgid "%s ago"
 msgstr "vor %s"
 
-#: woocommerce-germanized-shipments/src/Admin/Table.php:1017
+#: woocommerce-germanized-shipments/src/Admin/Table.php:1026
 msgctxt "shipments"
 msgid "M j, Y"
 msgstr "d.m.Y"
 
-#: woocommerce-germanized-shipments/src/Admin/Table.php:1074
+#: woocommerce-germanized-shipments/src/Admin/Table.php:1083
 msgctxt "shipments"
 msgid "Delete Permanently"
 msgstr "Unwiderruflich löschen"
 
-#: woocommerce-germanized-shipments/src/Admin/Table.php:1077
+#: woocommerce-germanized-shipments/src/Admin/Table.php:1086
 msgctxt "shipments"
 msgid "Change status to processing"
 msgstr "Status zu in Bearbeitung ändern"
 
-#: woocommerce-germanized-shipments/src/Admin/Table.php:1078
+#: woocommerce-germanized-shipments/src/Admin/Table.php:1087
 msgctxt "shipments"
 msgid "Change status to shipped"
 msgstr "Status zu versandt ändern"
 
-#: woocommerce-germanized-shipments/src/Admin/Table.php:1079
+#: woocommerce-germanized-shipments/src/Admin/Table.php:1088
 msgctxt "shipments"
 msgid "Change status to delivered"
 msgstr "Status zu geliefert ändern"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized-shipments/src/Admin/Table.php:1080
+#: woocommerce-germanized-shipments/src/Admin/Table.php:1089
 msgctxt "shipments"
 msgid "Generate and download labels"
 msgstr "Labels erstellen und downloaden"
 
-#: woocommerce-germanized-shipments/src/Ajax.php:93
+#: woocommerce-germanized-shipments/src/Ajax.php:90
 msgctxt "shipments"
-msgid "Label successfully sent to customer."
-msgstr "Label erfolgreich an den Kunden zugestellt."
+msgid "Notification successfully sent to customer."
+msgstr "Kunde erfolgreich benachrichtigt."
 
-#: woocommerce-germanized-shipments/src/Ajax.php:100
+#: woocommerce-germanized-shipments/src/Ajax.php:97
 msgctxt "shipments"
-msgid "There was an error while sending the label."
-msgstr "Beim Versendes des Labels ist ein Fehler aufgetreten."
+msgid "There was an error while sending the notification."
+msgstr "Beim Versendes der Benachrichtigung ist ein Fehler aufgetreten."
 
-#: woocommerce-germanized-shipments/src/Ajax.php:120
+#: woocommerce-germanized-shipments/src/Ajax.php:137
+msgctxt "shipments"
+msgid "Return request confirmed successfully."
+msgstr "Rücksendeantrag erfolgreich bestätigt."
+
+#: woocommerce-germanized-shipments/src/Ajax.php:149
+msgctxt "shipments"
+msgid "There was an error while confirming the request."
+msgstr "Bei der Bestätigung des Antrags ist ein Fehler aufgetreten."
+
+#: woocommerce-germanized-shipments/src/Ajax.php:169
 msgctxt "shipments"
 msgid "There was an error creating the label."
 msgstr "Beim Erstellen des Labels ist ein Fehler aufgetreten."
 
-#: woocommerce-germanized-shipments/src/Ajax.php:156
+#: woocommerce-germanized-shipments/src/Ajax.php:205
 msgctxt "shipments"
 msgid "There was an error deleting the label."
 msgstr "Beim Löschen des Labels ist ein Fehler aufgetreten."
 
-#: woocommerce-germanized-shipments/src/Ajax.php:197
+#: woocommerce-germanized-shipments/src/Ajax.php:246
 msgctxt "shipments"
 msgid "There was an error processing the label."
 msgstr "Bei der Verarbeitung des Labels ist ein Fehler aufgetreten."
 
-#: woocommerce-germanized-shipments/src/Ajax.php:294
+#: woocommerce-germanized-shipments/src/Ajax.php:344
 msgctxt "shipments"
 msgid "There was an error while trying to save the shipping provider status."
 msgstr ""
 "Beim Speichern des Status des Versanddienstleisters trat ein Fehler auf."
 
-#: woocommerce-germanized-shipments/src/Ajax.php:332
+#: woocommerce-germanized-shipments/src/Ajax.php:382
 msgctxt "shipments"
 msgid "There was an error while trying to delete the shipping provider."
 msgstr "Beim Löschen des Versanddienstleisters trat ein Fehler auf."
 
-#: woocommerce-germanized-shipments/src/Ajax.php:365
+#: woocommerce-germanized-shipments/src/Ajax.php:415
 msgctxt "shipments"
 msgid "There was an error while bulk processing shipments."
 msgstr ""
 "Bei der Verarbeitung der Mehrfachaktionen von Sendungen trat ein Fehler auf."
 
-#: woocommerce-germanized-shipments/src/Ajax.php:477
-#: woocommerce-germanized-shipments/src/Ajax.php:575
-#: woocommerce-germanized-shipments/src/Ajax.php:631
-#: woocommerce-germanized-shipments/src/Ajax.php:668
-#: woocommerce-germanized-shipments/src/Ajax.php:789
-#: woocommerce-germanized-shipments/src/Ajax.php:855
-#: woocommerce-germanized-shipments/src/Ajax.php:898
+#: woocommerce-germanized-shipments/src/Ajax.php:527
+#: woocommerce-germanized-shipments/src/Ajax.php:628
+#: woocommerce-germanized-shipments/src/Ajax.php:685
+#: woocommerce-germanized-shipments/src/Ajax.php:722
+#: woocommerce-germanized-shipments/src/Ajax.php:849
+#: woocommerce-germanized-shipments/src/Ajax.php:916
 #: woocommerce-germanized-shipments/src/Ajax.php:949
-#: woocommerce-germanized-shipments/src/Ajax.php:1017
-#: woocommerce-germanized-shipments/src/Ajax.php:1062
-#: woocommerce-germanized-shipments/src/Ajax.php:1117
-#: woocommerce-germanized-shipments/src/Ajax.php:1161
+#: woocommerce-germanized-shipments/src/Ajax.php:998
+#: woocommerce-germanized-shipments/src/Ajax.php:1066
+#: woocommerce-germanized-shipments/src/Ajax.php:1107
+#: woocommerce-germanized-shipments/src/Ajax.php:1162
+#: woocommerce-germanized-shipments/src/Ajax.php:1206
 msgctxt "shipments"
 msgid "There was an error processing the shipment"
 msgstr "Fehler bei der Verarbeitung der Sendung"
 
-#: woocommerce-germanized-shipments/src/Ajax.php:518
+#: woocommerce-germanized-shipments/src/Ajax.php:569
 msgctxt "shipments"
 msgid "There was an error while adding the shipment"
 msgstr "Beim Hinzufügen der Sendung ist ein Fehler aufgetreten"
 
-#: woocommerce-germanized-shipments/src/Ajax.php:539
+#: woocommerce-germanized-shipments/src/Ajax.php:590
 msgctxt "shipments"
 msgid "This order contains enough shipments already."
 msgstr "Diese Bestellung beinhaltet bereits genug Sendungen."
+
+#: woocommerce-germanized-shipments/src/Ajax.php:647
+msgctxt "shipments"
+msgid "This order contains enough returns already."
+msgstr "Diese Bestellung beinhaltet bereits genügend Retouren."
 
 #: woocommerce-germanized-shipments/src/Api.php:104
 msgctxt "shipments"
@@ -3693,57 +3881,151 @@ msgctxt "shipments"
 msgid "Order is fully shipped."
 msgstr "Bestellung ist vollständig versandt."
 
-#: woocommerce-germanized-shipments/src/DataStores/ShipmentItem.php:191
+#: woocommerce-germanized-shipments/src/DataStores/ShipmentItem.php:193
 msgctxt "shipments"
 msgid "Invalid shipment item."
 msgstr "Ungültige Sendungsposition."
 
-#: woocommerce-germanized-shipments/src/DataStores/ShippingProvider.php:252
+#: woocommerce-germanized-shipments/src/DataStores/ShippingProvider.php:256
 msgctxt "shipments"
 msgid "Invalid shipping provider."
 msgstr "Versanddienstleister nicht bekannt."
 
-#: woocommerce-germanized-shipments/src/ReturnShipment.php:366
-#: woocommerce-germanized-shipments/src/Shipment.php:842
+#: woocommerce-germanized-shipments/src/FormHandler.php:35
+msgctxt "shipments"
+msgid ""
+"Your return request was submitted successfully. We will now review your "
+"request and get in contact with you as soon as possible."
+msgstr ""
+"Ihr Rücksendeantrag wurde erfolgreich abgeschickt. Wir prüfen Ihren Antrag "
+"nun und setzen uns mit Ihnen in Kontakt."
+
+#: woocommerce-germanized-shipments/src/FormHandler.php:37
+msgctxt "shipments"
+msgid ""
+"Your return request was submitted successfully. You'll receive an email with "
+"further instructions in a few minutes."
+msgstr ""
+"Ihr Rücksendeantrag wurde erfolgreich abgeschickt. Sie erhalten in Kürze "
+"eine E-Mail, die Sie über die nächsten Schritte informiert."
+
+#: woocommerce-germanized-shipments/src/FormHandler.php:103
+#: woocommerce-germanized-shipments/src/FormHandler.php:107
+msgctxt "shipments"
+msgid "Error:"
+msgstr "Fehler:"
+
+#: woocommerce-germanized-shipments/src/FormHandler.php:103
+msgctxt "shipments"
+msgid "We were not able to find a matching order."
+msgstr "Wir konnten leider keine passende Bestellung finden."
+
+#: woocommerce-germanized-shipments/src/FormHandler.php:107
+msgctxt "shipments"
+msgid ""
+"This order is currently not eligible for returns. Please contact us for "
+"further details."
+msgstr ""
+"Diese Bestellung ist aktuell nicht für Rücksendungen verfügbar. Bitte "
+"kontaktieren Sie uns für weitere Details."
+
+#: woocommerce-germanized-shipments/src/FormHandler.php:116
+msgctxt "shipments"
+msgid ""
+"Thank you. You'll receive an email containing a link to create a new return "
+"to your order."
+msgstr ""
+"Vielen Dank. Sie erhalten eine E-Mail mit einem Link über den Sie Ihren "
+"Rücksendeantrag stellen können."
+
+#: woocommerce-germanized-shipments/src/FormHandler.php:171
+msgctxt "shipments"
+msgid "You are not allowed to add returns to that order."
+msgstr ""
+"Sie sind nicht dazu berechtigt Rücksendungen zu dieser Bestellung "
+"hinzuzufügen."
+
+# @ woocommerce-germanized
+#: woocommerce-germanized-shipments/src/FormHandler.php:176
+msgctxt "shipments"
+msgid "Sorry, but this order does not support returns any longer."
+msgstr ""
+"Entschuldigen Sie, diese Sendung kann nicht mehr zurückgesendet werden."
+
+#: woocommerce-germanized-shipments/src/FormHandler.php:181
+msgctxt "shipments"
+msgid "Please choose one or more items from the list."
+msgstr "Bitte wählen Sie ein oder mehrere Produkt(e) aus."
+
+#: woocommerce-germanized-shipments/src/FormHandler.php:197
+msgctxt "shipments"
+msgid "The return reason you have chosen does not exist."
+msgstr "Der Rücksendegrund existiert nicht."
+
+#: woocommerce-germanized-shipments/src/FormHandler.php:200
+msgctxt "shipments"
+msgid "Please choose a return reason from the list."
+msgstr "Bitte wählen Sie aus der Liste einen Grund für die Rücksendung aus."
+
+#: woocommerce-germanized-shipments/src/FormHandler.php:205
+msgctxt "shipments"
+msgid ""
+"Please check your item quantities. Quantities must not exceed maximum "
+"quantities."
+msgstr ""
+"Bitte überprüfen Sie Ihre Angaben zur Anzahl. Die angegebene Anzahl ist zu "
+"hoch."
+
+#: woocommerce-germanized-shipments/src/FormHandler.php:247
+msgctxt "shipments"
+msgid ""
+"There was an error while creating the return. Please contact us for further "
+"information."
+msgstr ""
+"Es gab ein Problem beim Erstellen der Rücksendung. Bitte kontaktieren Sie "
+"uns für weitere Informationen."
+
+# @ woocommerce-germanized
+#: woocommerce-germanized-shipments/src/Package.php:78
+msgctxt "shipments"
+msgid "Sorry, this order is invalid and cannot be returned."
+msgstr "Sorry, diese Bestellung existiert nicht."
+
+#: woocommerce-germanized-shipments/src/ReturnShipment.php:365
+#: woocommerce-germanized-shipments/src/Shipment.php:843
 #, php-format
 msgctxt "full name"
 msgid "%1$s %2$s"
 msgstr "%1$s %2$s"
 
-#: woocommerce-germanized-shipments/src/ReturnShipment.php:430
-#: woocommerce-germanized-shipments/src/ReturnShipment.php:483
-msgctxt "shipments"
-msgid "Invalid shipment"
-msgstr "Ungültige Sendung"
-
-#: woocommerce-germanized-shipments/src/ShippingProvider.php:409
+#: woocommerce-germanized-shipments/src/ShippingProvider.php:516
 #, php-format
 msgctxt "shipments"
 msgid "%s supports many more options. Explore %s."
 msgstr "%s unterstützt viele weitere Einstellungen. Schauen Sie sich %s an."
 
-#: woocommerce-germanized-shipments/src/ShippingProvider.php:409
+#: woocommerce-germanized-shipments/src/ShippingProvider.php:516
 #, php-format
 msgctxt "shipments"
 msgid "%s specific settings"
 msgstr "%s spezifische Einstellungen"
 
-#: woocommerce-germanized-shipments/src/ShippingProvider.php:420
+#: woocommerce-germanized-shipments/src/ShippingProvider.php:527
 msgctxt "shipments"
 msgid "Choose a title for the shipping provider."
 msgstr "Wählen Sie einen Titel für den Versanddienstleister."
 
-#: woocommerce-germanized-shipments/src/ShippingProvider.php:429
+#: woocommerce-germanized-shipments/src/ShippingProvider.php:536
 msgctxt "shipments"
 msgid "Choose a description for the shipping provider."
 msgstr "Wählen Sie eine Beschreibung für den Versanddienstleister."
 
-#: woocommerce-germanized-shipments/src/ShippingProvider.php:441
+#: woocommerce-germanized-shipments/src/ShippingProvider.php:548
 msgctxt "shipments"
 msgid "Tracking URL"
 msgstr "Sendungsverfolgung URL"
 
-#: woocommerce-germanized-shipments/src/ShippingProvider.php:442
+#: woocommerce-germanized-shipments/src/ShippingProvider.php:549
 #, php-format
 msgctxt "shipments"
 msgid ""
@@ -3757,12 +4039,12 @@ msgstr ""
 "einzufügen: %s"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized-shipments/src/ShippingProvider.php:452
+#: woocommerce-germanized-shipments/src/ShippingProvider.php:559
 msgctxt "shipments"
 msgid "Tracking description"
 msgstr "Sendungsverfolgung Hinweis"
 
-#: woocommerce-germanized-shipments/src/ShippingProvider.php:453
+#: woocommerce-germanized-shipments/src/ShippingProvider.php:560
 #, php-format
 msgctxt "shipments"
 msgid ""
@@ -3776,7 +4058,7 @@ msgstr ""
 "folgenden Platzhalter verwenden um die Paketverfolgungsnummer oder andere "
 "dynamische Daten einzufügen: %s"
 
-#: woocommerce-germanized-shipments/src/ShippingProvider.php:457
+#: woocommerce-germanized-shipments/src/ShippingProvider.php:564
 msgctxt "shipments"
 msgid ""
 "Your shipment is being processed by {shipping_provider}. If you want to "
@@ -3789,6 +4071,105 @@ msgstr ""
 "{tracking_id}. Abhängig von der gewählten Versandoption kann es sein, dass "
 "die Paketverfolgungsdaten zum Zeitpunkt des Erhalts dieser E-Mail noch nicht "
 "den neuesten Stand wiedergeben."
+
+# @ woocommerce-germanized
+#: woocommerce-germanized-shipments/src/ShippingProvider.php:570
+msgctxt "shipments"
+msgid "Customer returns"
+msgstr "Rücksendungen"
+
+#: woocommerce-germanized-shipments/src/ShippingProvider.php:571
+msgctxt "shipments"
+msgid "Allow customers to submit return requests to shipments."
+msgstr "Erlauben Sie Kunden eine Rücksendung zu einer Sendung zu beantragen."
+
+#: woocommerce-germanized-shipments/src/ShippingProvider.php:571
+#, php-format
+msgctxt "shipments"
+msgid ""
+"This option will allow your customers to submit return requests to orders. "
+"Return requests will be visible within your return dashboard. To learn more "
+"about return requests by customers and/or guests, please check the %s."
+msgstr ""
+"Die Aktivierung dieser Option ermöglicht es Ihren Kunden Rücksendeanträge zu "
+"Bestellungen über den Kundenbereich zu stellen. Rücksendeanträge werden in "
+"Ihrem Retouren Dashboard aufgelistet. Um mehr über Rücksendeanträge von "
+"Kunden und/oder Gästen zu erfahren, lesen Sie bitte die %s."
+
+#: woocommerce-germanized-shipments/src/ShippingProvider.php:571
+msgctxt "shipments"
+msgid "docs"
+msgstr "Dokumentation"
+
+#: woocommerce-germanized-shipments/src/ShippingProvider.php:580
+msgctxt "shipments"
+msgid "Guest returns"
+msgstr "Retouren für Gäste"
+
+#: woocommerce-germanized-shipments/src/ShippingProvider.php:581
+msgctxt "shipments"
+msgid "Allow guests to submit return requests to shipments."
+msgstr "Erlauben Sie Gästen Rücksendeanträge zu Bestellungen zu beantragen."
+
+#: woocommerce-germanized-shipments/src/ShippingProvider.php:581
+#, php-format
+msgctxt "shipments"
+msgid ""
+"Guests will need to provide their email address and the order id to receive "
+"a one-time link to submit a return request. The placeholder %s might be used "
+"to place the request form on your site."
+msgstr ""
+"Gäste müssen die bei der Bestellung angegebene E-Mail-Adresse und die "
+"Bestellnummer angeben und erhalten einen einmaligen Link zum Stellen des "
+"Rücksendeantrags per E-Mail. Der Shortcode %s kann verwendet werden um das "
+"Rücksende-Formular für Gäste auf Ihrer Seite zu platzieren."
+
+# @ woocommerce-germanized
+#: woocommerce-germanized-shipments/src/ShippingProvider.php:592
+msgctxt "shipments"
+msgid "Manual confirmation"
+msgstr "Manuelle Bestätigung"
+
+# @ woocommerce-germanized
+#: woocommerce-germanized-shipments/src/ShippingProvider.php:593
+msgctxt "shipments"
+msgid "Return requests need manual confirmation."
+msgstr "Rücksendeanträge benötigen eine manuelle Bestätigung."
+
+#: woocommerce-germanized-shipments/src/ShippingProvider.php:593
+msgctxt "shipments"
+msgid ""
+"By default return request need manual confirmation e.g. a shop manager needs "
+"to review return requests which by default are added with the status "
+"\"requested\" after a customer submitted a return request. If you choose to "
+"disable this option, customer return requests will be added as \"processing"
+"\" and an email confirmation including instructions will be sent immediately "
+"to the customer."
+msgstr ""
+"Standardmäßig benötigen Rücksendeanträge eine manuelle Bestätigung durch den "
+"Shopbetreiber, d.h. Rücksendeanträge werden mit dem Status \"angefragt\" "
+"erstellt. Falls Sie diese Option deaktivieren, werden Rücksendungen mit dem "
+"Status \"in Bearbeitung\" angelegt und Kunden erhalten ggfs. Direkt eine E-"
+"Mail-Bestätigung samt Retouren-Label."
+
+# @ woocommerce-germanized
+#: woocommerce-germanized-shipments/src/ShippingProvider.php:605
+msgctxt "shipments"
+msgid "Return instructions"
+msgstr "Rücksende-Anweisungen"
+
+#: woocommerce-germanized-shipments/src/ShippingProvider.php:606
+msgctxt "shipments"
+msgid ""
+"Provide your customer with instructions on how to return the shipment after "
+"a return request has been confirmed e.g. explain how to prepare the return "
+"for shipment. In case a label cannot be generated automatically, make sure "
+"to provide your customer with information on how to obain a return label."
+msgstr ""
+"Informieren Sie Ihre Kunden darüber, wie eine Sendung für die Rücksendung "
+"vorbereitet werden muss. Falls ein Label nicht automatisch erzeugt werden "
+"kann, sollten Sie Ihre Kunden darüber informieren, woher ein Label für die "
+"Rücksendung bezogen werden kann."
 
 #: woocommerce-germanized-shipments/src/ShippingProviderMethod.php:50
 msgctxt "shipments"
@@ -3811,17 +4192,94 @@ msgstr ""
 "infrage kommende Sendung hinterlegt wird."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized-shipments/src/WPMLHelper.php:57
+#: woocommerce-germanized-shipments/src/WPMLHelper.php:73
 #, php-format
 msgctxt "shipments"
 msgid "%s tracking description"
 msgstr "%s Sendungsverfolgung"
 
-#: woocommerce-germanized-shipments/src/WPMLHelper.php:58
+#: woocommerce-germanized-shipments/src/WPMLHelper.php:74
 #, php-format
 msgctxt "shipments"
 msgid "%s tracking URL"
 msgstr "%s Sendungsverfolgung URL"
+
+# @ woocommerce-germanized
+#: woocommerce-germanized-shipments/src/WPMLHelper.php:75
+#, php-format
+msgctxt "shipments"
+msgid "%s return instructions"
+msgstr "%s Rücksende-Anweisungen"
+
+#: woocommerce-germanized-shipments/templates/emails/customer-guest-return-shipment-request.php:27
+#: woocommerce-germanized-shipments/templates/emails/customer-return-shipment-delivered.php:27
+#: woocommerce-germanized-shipments/templates/emails/customer-return-shipment.php:27
+#: woocommerce-germanized-shipments/templates/emails/customer-shipment.php:27
+#: woocommerce-germanized-shipments/templates/emails/plain/customer-guest-return-shipment-request.php:24
+#: woocommerce-germanized-shipments/templates/emails/plain/customer-return-shipment-delivered.php:24
+#: woocommerce-germanized-shipments/templates/emails/plain/customer-return-shipment.php:24
+#: woocommerce-germanized-shipments/templates/emails/plain/customer-shipment.php:24
+#, php-format
+msgid "Hi %s,"
+msgstr ""
+
+#: woocommerce-germanized-shipments/templates/emails/customer-guest-return-shipment-request.php:30
+#: woocommerce-germanized-shipments/templates/emails/plain/customer-guest-return-shipment-request.php:26
+#, php-format
+msgctxt "shipments"
+msgid ""
+"You've requested a return to your order %s. Please follow the link to add "
+"your return request."
+msgstr ""
+"Sie haben eine Rücksendung zu Ihrer Bestellung %s angefordert. Bitte klicken "
+"Sie auf nachfolgendem Link um Ihren Rücksendeantrag zu stellen."
+
+#: woocommerce-germanized-shipments/templates/emails/customer-guest-return-shipment-request.php:34
+#: woocommerce-germanized-shipments/templates/myaccount/order-shipments.php:30
+msgctxt "shipments"
+msgid "Add return request"
+msgstr "Rücksendeantrag stellen"
+
+# @ woocommerce-germanized
+#: woocommerce-germanized-shipments/templates/emails/customer-guest-return-shipment-request.php:37
+#, php-format
+msgctxt "shipments"
+msgid ""
+"If you cannot follow the link above please copy this url and paste it to "
+"your browser bar: %s"
+msgstr ""
+"Falls Sie dem Link nicht folgen können, kopieren Sie bitte folgende URL in "
+"die Adresszeile Ihres Browsers: %s"
+
+#: woocommerce-germanized-shipments/templates/emails/customer-return-shipment-delivered.php:30
+#: woocommerce-germanized-shipments/templates/emails/plain/customer-return-shipment-delivered.php:26
+msgctxt "shipments"
+msgid ""
+"Thank you! Your return has been received successfully. There are more "
+"details below for your reference:"
+msgstr ""
+"Vielen Dank! Ihre Rücksendung ist eingegangen. Nachfolgend finden Sie "
+"weitere Einzelheiten zu Ihrer Rücksendung:"
+
+#: woocommerce-germanized-shipments/templates/emails/customer-return-shipment.php:32
+#: woocommerce-germanized-shipments/templates/emails/plain/customer-return-shipment.php:28
+msgctxt "shipments"
+msgid ""
+"Your return request has been accepted. Please follow the instructions "
+"beneath to return your shipment."
+msgstr ""
+"Ihr Rücksendeantrag wurde akzeptiert. Nachfolgend finden Sie Informationen "
+"dazu, wie Sie Ihre Rücksendung für den Versand vorbereiten."
+
+#: woocommerce-germanized-shipments/templates/emails/customer-return-shipment.php:34
+#: woocommerce-germanized-shipments/templates/emails/plain/customer-return-shipment.php:30
+msgctxt "shipments"
+msgid ""
+"A new return has been added to your order. Please follow the instructions "
+"beneath to return your shipment."
+msgstr ""
+"Eine neue Rücksendung wurde zu Ihrer Bestellung angelegt. Nachfolgend finden "
+"Sie Informationen dazu, wie Sie Ihre Rücksendung für den Versand vorbereiten."
 
 #: woocommerce-germanized-shipments/templates/emails/customer-shipment.php:33
 #: woocommerce-germanized-shipments/templates/emails/plain/customer-shipment.php:28
@@ -3859,17 +4317,16 @@ msgstr "Details zu Ihrer %s"
 
 # @ woocommerce-germanized
 #: woocommerce-germanized-shipments/templates/emails/email-shipment-details.php:54
-#: woocommerce-germanized-shipments/templates/shipment/shipment-details.php:49
+#: woocommerce-germanized-shipments/templates/myaccount/add-return-shipment.php:35
+#: woocommerce-germanized-shipments/templates/shipment/shipment-details.php:59
 msgctxt "shipments"
 msgid "Product"
 msgstr "Produkt"
 
-# @ woocommerce-germanized
 #: woocommerce-germanized-shipments/templates/emails/email-shipment-tracking.php:27
-#: woocommerce-germanized-shipments/templates/emails/plain/email-shipment-tracking.php:21
 msgctxt "shipments"
-msgid "Delivery:"
-msgstr "Lieferung:"
+msgid "Tracking:"
+msgstr "Sendungsverfolgung:"
 
 #: woocommerce-germanized-shipments/templates/emails/email-shipment-tracking.php:30
 #: woocommerce-germanized-shipments/templates/emails/plain/email-shipment-tracking.php:24
@@ -3890,7 +4347,73 @@ msgctxt "shipments"
 msgid "View shipment: %s"
 msgstr "Sendung anzeigen: %s"
 
-#: woocommerce-germanized-shipments/templates/myaccount/order-shipments.php:84
+# @ woocommerce-germanized
+#: woocommerce-germanized-shipments/templates/emails/plain/email-shipment-tracking.php:21
+msgctxt "shipments"
+msgid "Delivery:"
+msgstr "Lieferung:"
+
+# @ woocommerce-germanized
+#: woocommerce-germanized-shipments/templates/global/form-return-request.php:29
+msgctxt "shipments"
+msgid "Order email"
+msgstr "E-Mail-Adresse der Bestellung"
+
+# @ woocommerce-germanized
+#: woocommerce-germanized-shipments/templates/global/form-return-request.php:34
+msgctxt "shipments"
+msgid "Order id"
+msgstr "Bestellnummer"
+
+#: woocommerce-germanized-shipments/templates/global/form-return-request.php:44
+msgctxt "shipments"
+msgid "Submit"
+msgstr "Absenden"
+
+#: woocommerce-germanized-shipments/templates/myaccount/add-return-shipment.php:18
+msgctxt "shipments"
+msgid "New return request"
+msgstr "Neuer Rücksendeantrag"
+
+#: woocommerce-germanized-shipments/templates/myaccount/add-return-shipment.php:20
+msgctxt "shipments"
+msgid "Please select one or more items to return."
+msgstr "Bitte wählen Sie ein oder mehrere Produkt(e) für Ihre Rücksendung aus."
+
+#: woocommerce-germanized-shipments/templates/myaccount/add-return-shipment.php:23
+msgctxt "shipments"
+msgid ""
+"After submitting your return request we will review it and notify you via "
+"email about the next steps."
+msgstr ""
+"Nach dem Absenden Ihres Rücksendeantrages werden wir den Antrag prüfen und "
+"Sie per E-Mail über die nächsten Schritte informieren."
+
+#: woocommerce-germanized-shipments/templates/myaccount/add-return-shipment.php:25
+msgctxt "shipments"
+msgid ""
+"After submitting your return request you'll receive an email with further "
+"information to the return process."
+msgstr ""
+"Nach dem Absenden Ihres Rücksendeantrages erhalten Sie eine E-Mail, die Sie "
+"über die weiteren Schritte zur Rücksendung informiert."
+
+#: woocommerce-germanized-shipments/templates/myaccount/add-return-shipment.php:81
+msgctxt "shipments"
+msgid "Send request"
+msgstr "Rücksendeantrag senden"
+
+#: woocommerce-germanized-shipments/templates/myaccount/order-shipments.php:32
+msgctxt "shipments"
+msgid ""
+"Adding return requests to this order is no longer available. You may contact "
+"us for further information."
+msgstr ""
+"Aktuell können keine Rücksendeanträge zu dieser Bestellung erstellt werden. "
+"Falls Sie Fragen zur Rücksendung dieser Bestellung haben, kontaktieren Sie "
+"uns bitte."
+
+#: woocommerce-germanized-shipments/templates/myaccount/shipments.php:79
 msgctxt "shipments"
 msgid "track now"
 msgstr "nachverfolgen"
@@ -3901,6 +4424,11 @@ msgctxt "shipments"
 msgid "Shipment #%1$s was created on %2$s and is currently %3$s."
 msgstr "Sendung #%1$s vom %2$s ist aktuell %3$s."
 
+#: woocommerce-germanized-shipments/templates/shipment/add-return-shipment-item.php:60
+msgctxt "shipments return reason"
+msgid "Please choose"
+msgstr "Bitte auswählen"
+
 # @ woocommerce-germanized
 #: woocommerce-germanized-shipments/templates/shipment/shipment-details-address.php:25
 msgctxt "shipments"
@@ -3908,7 +4436,7 @@ msgid "Shipment receiver"
 msgstr "Sendungsempfänger"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized-shipments/templates/shipment/shipment-details.php:43
+#: woocommerce-germanized-shipments/templates/shipment/shipment-details.php:53
 msgctxt "shipments"
 msgid "Shipment details"
 msgstr "Details zur Sendung"
@@ -4265,6 +4793,12 @@ msgstr "Erste Schritte"
 #: woocommerce-germanized/includes/admin/settings/views/html-admin-settings-tabs.php:17
 msgid "Start tutorial"
 msgstr "Tutorial starten"
+
+#: woocommerce-germanized/includes/admin/class-wc-gzd-admin-setup-wizard.php:91
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-dhl.php:33
+#: woocommerce-germanized/includes/admin/views/setup/dhl.php:10
+msgid "DHL"
+msgstr "DHL"
 
 # @ woocommerce-germanized
 #: woocommerce-germanized/includes/admin/class-wc-gzd-admin-setup-wizard.php:99
@@ -5291,8 +5825,8 @@ msgstr ""
 #: woocommerce-germanized/includes/api/class-wc-gzd-rest-customers-controller.php:140
 #: woocommerce-germanized/includes/api/class-wc-gzd-rest-orders-controller.php:138
 #: woocommerce-germanized/includes/api/class-wc-gzd-rest-orders-controller.php:145
-#: woocommerce-germanized/includes/class-wc-gzd-checkout.php:529
-#: woocommerce-germanized/includes/class-wc-gzd-checkout.php:540
+#: woocommerce-germanized/includes/class-wc-gzd-checkout.php:542
+#: woocommerce-germanized/includes/class-wc-gzd-checkout.php:553
 #: woocommerce-germanized/includes/class-wc-gzd-customer-helper.php:114
 #: woocommerce-germanized/includes/class-wc-gzd-customer-helper.php:122
 msgid "Title"
@@ -6625,7 +7159,7 @@ msgstr "Name"
 #: woocommerce-germanized/includes/admin/settings/views/html-admin-page-checkboxes.php:12
 #: woocommerce-germanized/includes/admin/settings/views/html-admin-settings-tabs.php:29
 #: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:779
-#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:886
+#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:893
 #: woocommerce-germanized/includes/gateways/invoice/class-wc-gzd-gateway-invoice.php:121
 msgid "Description"
 msgstr "Beschreibung"
@@ -6774,6 +7308,21 @@ msgstr ""
 "bessere Performance"
 
 #: woocommerce-germanized/includes/admin/views/html-notice-dhl.php:21
+#, php-format
+msgctxt "dhl"
+msgid ""
+"Many improved features such as automation, services per shipping method and "
+"%s."
+msgstr ""
+"Viele verbesserte Funktionen darunter Automatisierung, die Wahl bestimmter "
+"Services pro Versandart und %s."
+
+#: woocommerce-germanized/includes/admin/views/html-notice-dhl.php:21
+msgctxt "dhl"
+msgid "many more"
+msgstr "und viele mehr"
+
+#: woocommerce-germanized/includes/admin/views/html-notice-dhl.php:22
 msgctxt "dhl"
 msgid ""
 "Perfectly integrated in Germanized &ndash; easily create labels for shipments"
@@ -6781,18 +7330,18 @@ msgstr ""
 "Perfekt integriert in Germanized &ndash; erstellen Sie einfach DHL Labels "
 "für Sendungen und Retouren"
 
-#: woocommerce-germanized/includes/admin/views/html-notice-dhl.php:26
+#: woocommerce-germanized/includes/admin/views/html-notice-dhl.php:27
 msgctxt "dhl"
 msgid "Learn more"
 msgstr "Mehr erfahren"
 
-#: woocommerce-germanized/includes/admin/views/html-notice-dhl.php:28
+#: woocommerce-germanized/includes/admin/views/html-notice-dhl.php:29
 msgctxt "dhl"
 msgid "Import settings and activate"
 msgstr "Einstellungen importieren und loslegen"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/views/html-notice-dhl.php:32
+#: woocommerce-germanized/includes/admin/views/html-notice-dhl.php:33
 #: woocommerce-germanized/includes/admin/views/html-notice-pro.php:29
 #: woocommerce-germanized/includes/admin/views/html-notice-theme-supported.php:21
 msgid "Hide this notice"
@@ -7280,7 +7829,7 @@ msgstr ""
 #: woocommerce-germanized/includes/api/class-wc-gzd-rest-customers-controller.php:147
 #: woocommerce-germanized/includes/api/class-wc-gzd-rest-orders-controller.php:159
 #: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:39
-#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:882
+#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:889
 #: woocommerce-germanized/includes/gateways/direct-debit/views/html-export.php:30
 msgid "Direct Debit"
 msgstr "Lastschrift"
@@ -7292,9 +7841,9 @@ msgstr "Lastschrift"
 #: woocommerce-germanized/includes/class-wc-gzd-privacy.php:117
 #: woocommerce-germanized/includes/class-wc-gzd-privacy.php:166
 #: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:117
-#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:592
-#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:908
-#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1054
+#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:599
+#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:915
+#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1061
 msgid "Account Holder"
 msgstr "Kontoinhaber"
 
@@ -7305,10 +7854,10 @@ msgstr "Kontoinhaber"
 #: woocommerce-germanized/includes/class-wc-gzd-privacy.php:118
 #: woocommerce-germanized/includes/class-wc-gzd-privacy.php:167
 #: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:124
-#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:593
-#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:916
-#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1058
-#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1188
+#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:600
+#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:923
+#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1065
+#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1195
 msgid "IBAN"
 msgstr "IBAN"
 
@@ -7319,9 +7868,9 @@ msgstr "IBAN"
 #: woocommerce-germanized/includes/class-wc-gzd-privacy.php:119
 #: woocommerce-germanized/includes/class-wc-gzd-privacy.php:168
 #: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:131
-#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:594
-#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1062
-#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1189
+#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:601
+#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1069
+#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1196
 msgid "BIC/SWIFT"
 msgstr "BIC/SWIFT"
 
@@ -7332,7 +7881,7 @@ msgstr "Paketdienstleister Datenweitergabe"
 # @ woocommerce-germanized
 #: woocommerce-germanized/includes/api/class-wc-gzd-rest-orders-controller.php:179
 #: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:138
-#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:598
+#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:605
 msgid "Mandate Reference ID"
 msgstr "Mandat-Referenznummer"
 
@@ -7676,85 +8225,85 @@ msgstr ""
 "Bitte installieren Sie <a href=\"%s\" target=\"_blank\">WooCommerce</a> "
 "bevor Sie WooCommerce Germanized installieren. Vielen Dank!"
 
-#: woocommerce-germanized/includes/class-wc-gzd-install.php:439
-#: woocommerce-germanized/includes/class-wc-gzd-install.php:453
+#: woocommerce-germanized/includes/class-wc-gzd-install.php:441
+#: woocommerce-germanized/includes/class-wc-gzd-install.php:455
 msgid "Reduced rate"
 msgstr "Ermäßigter Steuersatz"
 
-#: woocommerce-germanized/includes/class-wc-gzd-install.php:495
+#: woocommerce-germanized/includes/class-wc-gzd-install.php:497
 #, php-format
 msgctxt "vat-rate-import"
 msgid "VAT %s"
 msgstr "MwSt. %s"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-install.php:599
+#: woocommerce-germanized/includes/class-wc-gzd-install.php:601
 msgctxt "Page slug"
 msgid "data-security"
 msgstr "datenschutzerklaerung"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-install.php:600
+#: woocommerce-germanized/includes/class-wc-gzd-install.php:602
 msgctxt "Page title"
 msgid "Data Security Statement"
 msgstr "Datenschutzerklärung"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-install.php:604
+#: woocommerce-germanized/includes/class-wc-gzd-install.php:606
 msgctxt "Page slug"
 msgid "imprint"
 msgstr "impressum"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-install.php:605
+#: woocommerce-germanized/includes/class-wc-gzd-install.php:607
 msgctxt "Page title"
 msgid "Imprint"
 msgstr "Impressum"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-install.php:609
+#: woocommerce-germanized/includes/class-wc-gzd-install.php:611
 msgctxt "Page slug"
 msgid "terms"
 msgstr "agb"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-install.php:610
+#: woocommerce-germanized/includes/class-wc-gzd-install.php:612
 msgctxt "Page title"
 msgid "Terms & Conditions"
 msgstr "AGB"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-install.php:614
+#: woocommerce-germanized/includes/class-wc-gzd-install.php:616
 msgctxt "Page slug"
 msgid "revocation"
 msgstr "widerrufsbelehrung"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-install.php:615
+#: woocommerce-germanized/includes/class-wc-gzd-install.php:617
 msgctxt "Page title"
 msgid "Power of Revocation"
 msgstr "Widerrufsbelehrung"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-install.php:619
+#: woocommerce-germanized/includes/class-wc-gzd-install.php:621
 msgctxt "Page slug"
 msgid "shipping-methods"
 msgstr "versandarten"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-install.php:620
+#: woocommerce-germanized/includes/class-wc-gzd-install.php:622
 msgctxt "Page title"
 msgid "Shipping Methods"
 msgstr "Versandarten"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-install.php:624
+#: woocommerce-germanized/includes/class-wc-gzd-install.php:626
 msgctxt "Page slug"
 msgid "payment-methods"
 msgstr "bezahlmoeglichkeiten"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-install.php:625
+#: woocommerce-germanized/includes/class-wc-gzd-install.php:627
 msgctxt "Page title"
 msgid "Payment Methods"
 msgstr "Zahlungsarten"
@@ -7925,7 +8474,7 @@ msgstr ""
 
 # @ woocommerce-germanized
 #: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:209
-#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:973
+#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:980
 msgid "I hereby agree to the {link}direct debit mandate{/link}."
 msgstr "Hiermit erteile ich das {link}SEPA Lastschriftmandat{/link}."
 
@@ -8704,16 +9253,16 @@ msgid "SEPA XML Export"
 msgstr "SEPA XML Export"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:497
+#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:504
 #, php-format
 msgid "Order %s"
 msgstr "Bestellung %s"
 
-#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:524
+#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:531
 msgid "Will be notified separately"
 msgstr "Wird separat mitgeteilt"
 
-#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:613
+#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:620
 #, php-format
 msgid ""
 "We will debit %s from your account by direct debit on or shortly after %s."
@@ -8722,105 +9271,105 @@ msgstr ""
 "%s ein."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:757
-#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:789
-#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:822
+#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:764
+#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:796
+#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:829
 msgid "a single payment"
 msgstr "eine einmalige Zahlung"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:873
+#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:880
 #: woocommerce-germanized/includes/gateways/invoice/class-wc-gzd-gateway-invoice.php:108
 msgid "Enable/Disable"
 msgstr "Aktivieren/Deaktivieren"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:875
+#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:882
 msgid "Enable Direct Debit Payment"
 msgstr "Bezahlung per Lastschrift aktivieren"
 
 # @ woocommerce-germanized
 # @ woocommerce
-#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:879
+#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:886
 #: woocommerce-germanized/includes/gateways/invoice/class-wc-gzd-gateway-invoice.php:114
 msgctxt "gateway"
 msgid "Title"
 msgstr "Bezeichnung"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:881
+#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:888
 #: woocommerce-germanized/includes/gateways/invoice/class-wc-gzd-gateway-invoice.php:116
 msgid "This controls the title which the user sees during checkout."
 msgstr ""
 "Beschreibungstext, den Benutzer bei der Auswahl dieser Zahlungsart sehen."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:888
+#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:895
 #: woocommerce-germanized/includes/gateways/invoice/class-wc-gzd-gateway-invoice.php:123
 msgid "Payment method description that the customer will see on your checkout."
 msgstr "Beschreibung der Zahlungsart, die Kunden auf ihrer Website sehen."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:889
+#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:896
 msgid "The order amount will be debited directly from your bank account."
 msgstr ""
 "Der Gesamtbestellbetrag wird per SEPA-Lastschrift direkt von Ihrem Konto "
 "abgebucht."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:893
+#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:900
 #: woocommerce-germanized/includes/gateways/invoice/class-wc-gzd-gateway-invoice.php:128
 msgid "Instructions"
 msgstr "Anweisungen"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:895
+#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:902
 #: woocommerce-germanized/includes/gateways/invoice/class-wc-gzd-gateway-invoice.php:130
 msgid "Instructions that will be added to the thank you page and emails."
 msgstr "Anweisung, die zur „Danke“-Seite und zu E-Mails hinzugefügt werden."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:900
+#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:907
 msgid "Debtee"
 msgstr "Gläubiger Informationen"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:902
+#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:909
 msgid "Insert your company information."
 msgstr "Fügen Sie hier die Informationen zu ihrem Unternehmen ein."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:904
+#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:911
 msgid "Company Inc, John Doe Street, New York"
 msgstr "Musterfirma GmbH, Musterstraße 12, 12203 Musterstadt"
 
-#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:910
+#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:917
 msgid "Insert the bank account holder name."
 msgstr "Fügen Sie hier den Namen des Kontoinhabers ein."
 
-#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:912
+#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:919
 msgid "Company Inc"
 msgstr "Muster GmbH"
 
-#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:918
+#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:925
 msgid "Insert the bank account IBAN."
 msgstr "Fügen Sie hier den IBAN ihres Kontos ein."
 
-#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:923
+#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:930
 msgid "BIC"
 msgstr "BIC"
 
-#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:925
+#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:932
 msgid "Insert the bank account BIC."
 msgstr "Fügen Sie hier den BIC ihres Kontos ein."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:930
+#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:937
 msgid "Debtee identification number"
 msgstr "Identifikationsnummer"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:932
+#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:939
 #, php-format
 msgid ""
 "Insert your debtee indentification number. More information can be found <a "
@@ -8830,16 +9379,16 @@ msgstr ""
 "Weitere Informationen zu dieser Nummer erhalten Sie <a href=\"%s\">hier</a>."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:936
+#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:943
 msgid "Generate Mandate ID"
 msgstr "Mandat-Referenz generieren"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:938
+#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:945
 msgid "Automatically generate Mandate ID."
 msgstr "Mandat-Referenznummer automatisch generieren."
 
-#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:939
+#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:946
 msgid ""
 "Automatically generate Mandate ID after order completion (based on Order ID)."
 msgstr ""
@@ -8847,11 +9396,11 @@ msgstr ""
 "basierend auf der Bestellnummer generieren."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:943
+#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:950
 msgid "XML Pain Format"
 msgstr "XML Pain Format"
 
-#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:945
+#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:952
 msgid ""
 "You may adjust the XML Export Pain Schema to your banks needs. Some banks "
 "may require pain.001.003.03."
@@ -8860,11 +9409,11 @@ msgstr ""
 "Einige Banken benötigen z.B. pain.001.003.03."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:949
+#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:956
 msgid "Mandate ID Format"
 msgstr "Mandat-Referenz Format"
 
-#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:951
+#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:958
 msgid ""
 "You may extend the Mandate ID format by adding a prefix and/or suffix. Use "
 "{id} as placeholder to insert the automatically generated ID."
@@ -8874,12 +9423,12 @@ msgstr ""
 "einzufügen."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:955
+#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:962
 msgid "Mandate Text"
 msgstr "Lastschriftmandat"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:957
+#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:964
 msgid ""
 "This text will be populated with live order/checkout data. Will be used as "
 "preview direct debit mandate and as email template text."
@@ -8890,29 +9439,29 @@ msgstr ""
 "Verfügung gestellt."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:963
+#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:970
 msgid "Checkbox"
 msgstr "Checkbox"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:964
+#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:971
 msgid "Enable \"agree to SEPA mandate\" checkbox"
 msgstr "Aktivieren Sie die Checkbox zur Bestätigung des Lastschriftmandates"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:966
+#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:973
 msgid "Enable a checkbox linking to a SEPA direct debit mandate preview."
 msgstr ""
 "Aktivieren Sie eine Checkbox, die zu einer Vorschau des Lastschrift-Mandats "
 "führt."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:970
+#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:977
 msgid "Checkbox label"
 msgstr "Checkbox Text"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:972
+#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:979
 msgid ""
 "Customize the checkbox label. Use {link}link name{/link} to insert the "
 "preview link."
@@ -8920,17 +9469,17 @@ msgstr ""
 "Passt den Checkbox Text an. Verwenden Sie {link}SEPA Lastschriftmandat{/"
 "link} um auf die Vorschau zu verlinken."
 
-#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:977
+#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:984
 msgid "Enable pre-notification"
 msgstr "Vorankündigung aktivieren"
 
-#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:978
+#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:985
 msgid "Insert pre-notification text within the order confirmation email."
 msgstr ""
 "Fügt einen Standard-Text zur Vorankündigung des SEPA-Einzugs in die "
 "Bestellbestätigung ein."
 
-#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:980
+#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:987
 msgid ""
 "This option inserts a standard text containing a pre-notification for the "
 "customer."
@@ -8939,11 +9488,11 @@ msgstr ""
 "die Bestellbestätigung ein. In der Ankündigung wird u.a. ein konkreter "
 "Fälligkeitstermin genannt."
 
-#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:984
+#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:991
 msgid "Debit days"
 msgstr "Fälligkeitstage"
 
-#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:986
+#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:993
 msgid ""
 "This option is used to calculate the debit date and is added to the order "
 "date."
@@ -8953,15 +9502,15 @@ msgstr ""
 "hier eingestellten Anzahl Tage."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:990
+#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:997
 msgid "Mask IBAN"
 msgstr "IBAN maskieren"
 
-#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:991
+#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:998
 msgid "Mask the IBAN within emails."
 msgstr "IBAN in E-Mails maskieren."
 
-#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:993
+#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1000
 msgid ""
 "This will lead to masked IBANs within emails (replaced by *). All but last 4 "
 "digits will be masked."
@@ -8969,15 +9518,15 @@ msgstr ""
 "Der IBAN wird in E-Mails (abgesehen von den letzten 4 Stellen) mit * "
 "maskiert."
 
-#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1003
+#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1010
 msgid "Remember"
 msgstr "Bankdaten merken"
 
-#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1004
+#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1011
 msgid "Remember account data for returning customers."
 msgstr "Bankverbindung für registrierte Kunden speichern."
 
-#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1006
+#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1013
 msgid "Save account data as user meta if user has/creates a customer account."
 msgstr ""
 "Speichert die Bankverbindung für registrierte Kunden in der user_meta "
@@ -8985,32 +9534,32 @@ msgstr ""
 "eigenständig aus."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1116
+#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1123
 msgid "Please insert your SEPA account data."
 msgstr "Bitte fügen Sie Ihre SEPA Kontoinformationen ein."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1138
+#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1145
 msgid "Your IBAN seems to be invalid."
 msgstr "Ihr IBAN scheint nicht gültig zu sein."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1140
+#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1147
 msgid "Your IBAN's country code doesn’t match with your billing country."
 msgstr "Der Ländercode des IBANs stimmt nicht mit dem Rechnungsland überein."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1145
+#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1152
 msgid "Your BIC seems to be invalid."
 msgstr "Ihr BIC/SWIFT scheint nicht gültig zu sein."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1190
+#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1197
 msgid "is invalid"
 msgstr "ist ungültig"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1237
+#: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1244
 msgid "Awaiting Direct Debit Payment"
 msgstr "Zahlung per Lastschrift ausstehend"
 
@@ -10807,6 +11356,67 @@ msgid "https://vendidero.de"
 msgstr "https://vendidero.de"
 
 #~ msgctxt "dhl"
+#~ msgid "DHL Return Label"
+#~ msgstr "DHL Retourenlabel"
+
+# @ woocommerce-germanized
+#~ msgctxt "dhl"
+#~ msgid ""
+#~ "This email is being used to send the DHL return label to the customer."
+#~ msgstr ""
+#~ "Diese E-Mail wird verwendet um Kunden das DHL Retourenlabel zuzustellen."
+
+#~ msgctxt "dhl"
+#~ msgid ""
+#~ "New DHL label for your return #{shipment_number} to your order "
+#~ "#{order_number}"
+#~ msgstr ""
+#~ "Neues DHL Label zur Retourensendung #{shipment_number} zu deiner "
+#~ "Bestellung #{order_number}"
+
+#~ msgctxt "dhl"
+#~ msgid "DHL label for your order: #{order_number}"
+#~ msgstr "DHL Label zu Ihrer Bestellung: #{order_number}"
+
+#~ msgctxt "dhl"
+#~ msgid "Return #{shipment_id} to shipment #{original_shipment_id}"
+#~ msgstr "Retoure #{shipment_id} zur Sendung #{original_shipment_id}"
+
+#~ msgctxt "dhl"
+#~ msgid "Send the return label to the customer by email after creating it."
+#~ msgstr ""
+#~ "Sende das Retourenlabel nach dem Erstellen per E-Mail an den Kunden."
+
+#~ msgctxt "dhl"
+#~ msgid "Label successfully sent to customer."
+#~ msgstr "Label erfolgreich an den Kunden zugestellt."
+
+#~ msgctxt "dhl"
+#~ msgid "There was an error while sending the label."
+#~ msgstr "Beim Versendes des Labels ist ein Fehler aufgetreten."
+
+#, php-format
+#~ msgctxt "dhl"
+#~ msgid "Could not fetch parent shipment %d."
+#~ msgstr "Eltern-Sendung %d konnte nicht initialisiert werden."
+
+#~ msgctxt "dhl"
+#~ msgid ""
+#~ "Please print the DHL label attached to this email and stick it on your "
+#~ "parcel."
+#~ msgstr ""
+#~ "Bitte drucken Sie das DHL Label im Anhang dieser E-Mail aus und kleben "
+#~ "Sie es auf Ihre Retourensendung."
+
+#~ msgctxt "shipments"
+#~ msgid "Send label to customer"
+#~ msgstr "Label dem Kunden zusenden"
+
+#~ msgctxt "shipments"
+#~ msgid "Invalid shipment"
+#~ msgstr "Ungültige Sendung"
+
+#~ msgctxt "dhl"
 #~ msgid "Tracking"
 #~ msgstr "Sendungsverfolgung"
 
@@ -10819,100 +11429,9 @@ msgstr "https://vendidero.de"
 #~ "Passen Sie die Instruktionen an um Kunden über die DHL Sendungsverfolgung "
 #~ "zu informieren. Sie können einen der folgenden Platzhalter verwenden: %s"
 
-# @ woocommerce-germanized
-#~ msgctxt "shipments"
-#~ msgid "Return reason"
-#~ msgstr "Rücksendegrund"
-
-# @ woocommerce-germanized
-#~ msgctxt "shipments return reason"
-#~ msgid "None"
-#~ msgstr "Keiner"
-
-# @ woocommerce-germanized
-#~ msgctxt "shipments"
-#~ msgid "Order return"
-#~ msgstr "Retoure zur Bestellung"
-
-#~ msgctxt "shipments"
-#~ msgid ""
-#~ "Order return notifications are sent to the customer after a return "
-#~ "shipment was marked as processing."
-#~ msgstr ""
-#~ "Benachrichtigungen über Retouren werden an den Kunden verschickt, nachdem "
-#~ "eine Retoure als in Bearbeitung markiert wurde."
-
-#~ msgctxt "shipments"
-#~ msgid "Return to your order {order_number}"
-#~ msgstr "Rücksendung zu Ihrer Bestellung {order_number}"
-
-#~ msgctxt "shipments"
-#~ msgid "Return to your order: {order_number}"
-#~ msgstr "Rücksendung zu Ihrer Bestellung {order_number}"
-
-#~ msgctxt "shipments"
-#~ msgid "Requested"
-#~ msgstr "Beantragt"
-
-#~ msgctxt "shipments"
-#~ msgid "Request return"
-#~ msgstr "Rücksendung beantragen"
-
 #~ msgctxt "shipments"
 #~ msgid "View shipment"
 #~ msgstr "Sendung anzeigen"
-
-# @ woocommerce-germanized
-#~ msgctxt "shipments"
-#~ msgid "Return reasons"
-#~ msgstr "Rücksendegründe"
-
-# @ woocommerce-germanized
-#~ msgctxt "shipments"
-#~ msgid "Choose a reason text."
-#~ msgstr "Beschreibung für den Grund."
-
-# @ woocommerce-germanized
-#~ msgctxt "shipments"
-#~ msgid "+ Add reason"
-#~ msgstr "+ Grund hinzufügen"
-
-#~ msgctxt "shipments"
-#~ msgid "Remove selected reason(s)"
-#~ msgstr "Ausgewählte Gründe löschen"
-
-# @ woocommerce-germanized
-#~ msgctxt "shipments"
-#~ msgid "Sorry, but this shipment is not returnable."
-#~ msgstr "Entschuldigung, diese Sendung kann nicht zurückgesendet werden."
-
-#~ msgctxt "shipments"
-#~ msgid ""
-#~ "There was an error while creating the return. Please contact us for "
-#~ "further information."
-#~ msgstr ""
-#~ "Es gab ein Problem beim Erstellen der Rücksendung. Bitte kontaktieren Sie "
-#~ "uns für weitere Informationen."
-
-# @ woocommerce-germanized
-#~ msgctxt "shipments"
-#~ msgid "Customer returns"
-#~ msgstr "Rücksendungen"
-
-#~ msgctxt "shipments"
-#~ msgid "Allow customers to submit return requests to shipments."
-#~ msgstr ""
-#~ "Erlauben Sie Kunden eine Rücksendung zu einer Sendung zu beantragen."
-
-# @ woocommerce-germanized
-#~ msgctxt "shipments"
-#~ msgid "Manual confirmation"
-#~ msgstr "Manuelle Bestätigung"
-
-# @ woocommerce-germanized
-#~ msgctxt "shipments"
-#~ msgid "Return instructions"
-#~ msgstr "Rücksende-Anweisungen"
 
 #~ msgctxt "dhl"
 #~ msgid "Delete"
