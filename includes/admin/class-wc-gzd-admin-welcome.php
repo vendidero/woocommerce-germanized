@@ -147,8 +147,8 @@ class WC_GZD_Admin_Welcome {
                         <p>
                             Damit lässt sich die <strong>Abwicklung von Retouren komplett automatisieren</strong>. Der Kunde kann seine Retoure über den Kundenbereich aufgeben
                             und dabei die gewünschten Produkte samt Anzahl und Rücksendegrund aus der Bestellung auswählen. Du kannst den Rücksendeantrag dann im Retouren-Dashboard
-                            einsehen und freigeben. Falls du unsere DHL-Integration verwendest, kannst du zu Retouren automatisch ein Label erzeugen lassen und das Label dem Kunden als Anhang der
-                            Bestätigungs-Mail bzw. Download bereitstellen.
+                            einsehen und freigeben. Falls du unsere DHL-Integration verwendest, kannst du zu Retouren automatisch Labels erzeugen lassen und das Label dem Kunden als Anhang der
+                            Bestätigungs-Mail bzw. als Download bereitstellen.
                         </p>
 
                         <div class="wc-germanized-welcome-pro">
@@ -162,7 +162,7 @@ class WC_GZD_Admin_Welcome {
                         <div class="wc-gzd-actions">
                             <a href="<?php echo admin_url( 'admin.php?page=wc-settings&tab=germanized-shipments#shipments_return_options-description' ); ?>"
                                class="button button-primary" target="_blank">Einstellungen anpassen</a>
-                            <a href="https://vendidero.de/dokument/retouren-management" class="button button-primary" target="_blank">Mehr erfahren</a>
+                            <a href="https://vendidero.de/dokument/retouren-konfigurieren-und-verwalten" class="button button-primary" target="_blank">Mehr erfahren</a>
                         </div>
                     </div>
                     <div class="col align-center">
