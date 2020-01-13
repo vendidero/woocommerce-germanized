@@ -381,6 +381,15 @@ class WC_GZD_Settings_Tab_Shopmarks extends WC_GZD_Settings_Tab {
 				'css'      => 'min-width:300px;',
 				'default'  => '',
 			),
+			array(
+				'title' 	=> __( 'Hide Notice', 'woocommerce-germanized' ),
+				'desc' 		=> __( 'Select product types for which you might want to disable the shipping costs notice.', 'woocommerce-germanized' ),				'desc_tip' => true,
+				'id'       => 'woocommerce_gzd_display_shipping_costs_hidden_types',
+				'class'    => 'wc-enhanced-select',
+				'type'     => 'multiselect',
+				'options'  => $this->get_digital_type_options(),
+				'default'  => array( 'downloadable', 'external', 'virtual' ),
+			),
 
 			array( 'type' => 'sectionend', 'id' => 'shipping_costs_options' ),
 
@@ -408,6 +417,17 @@ class WC_GZD_Settings_Tab_Shopmarks extends WC_GZD_Settings_Tab {
 		return $settings;
 	}
 
+	protected function get_digital_type_options() {
+		$product_types        = wc_get_product_types();
+		$digital_type_options = array_merge( array(
+			'downloadable' => __( 'Downloadable Product', 'woocommerce-germanized' ),
+			'virtual'      => __( 'Virtual Product', 'woocommerce-germanized' ),
+			'service'      => __( 'Service', 'woocommerce-germanized' )
+		), $product_types );
+
+		return $digital_type_options;
+	}
+
 	protected function get_delivery_time_settings() {
 		$delivery_terms = array( '' => __( 'None', 'woocommerce-germanized' ) );
 		$terms          = get_terms( 'product_delivery_time', array( 'fields' => 'id=>name', 'hide_empty' => false ) );
@@ -415,13 +435,6 @@ class WC_GZD_Settings_Tab_Shopmarks extends WC_GZD_Settings_Tab {
 		if ( ! is_wp_error( $terms ) ) {
 			$delivery_terms = $delivery_terms + $terms;
 		}
-
-		$product_types        = wc_get_product_types();
-		$digital_type_options = array_merge( array(
-			'downloadable' => __( 'Downloadable Product', 'woocommerce-germanized' ),
-			'virtual'      => __( 'Virtual Product', 'woocommerce-germanized' ),
-			'service'      => __( 'Service', 'woocommerce-germanized' )
-		), $product_types );
 
 		return array(
 			array( 'title' => '', 'type' => 'title', 'id' => 'delivery_time_options', 'desc' => '' ),
@@ -473,7 +486,7 @@ class WC_GZD_Settings_Tab_Shopmarks extends WC_GZD_Settings_Tab {
 				'id'       => 'woocommerce_gzd_display_delivery_time_hidden_types',
 				'class'    => 'wc-enhanced-select',
 				'type'     => 'multiselect',
-				'options'  => $digital_type_options,
+				'options'  => $this->get_digital_type_options(),
 				'default'  => array( 'external', 'virtual' ),
 			),
 
