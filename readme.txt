@@ -5,7 +5,7 @@ Requires at least: 4.9
 Tested up to: 5.3
 WC requires at least: 3.4
 WC tested up to: 3.9
-Stable tag: 3.0.9
+Stable tag: 3.1.0
 Requires PHP: 5.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -190,7 +190,7 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 
 == Changelog ==
 
-= 3.0.9 =
+= 3.1.0 =
 * Feature: Optionally let customers create return requests, see https://vendidero.de/dokument/retouren-konfigurieren-und-verwalten
 * Improvement: Create returns to orders instead to shipments
 * Improvement: New email notification as soon as a return is marked as delivered

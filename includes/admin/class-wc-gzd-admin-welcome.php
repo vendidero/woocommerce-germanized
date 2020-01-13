@@ -166,7 +166,7 @@ class WC_GZD_Admin_Welcome {
                         </div>
                     </div>
                     <div class="col align-center">
-                        <img src="<?php echo WC_germanized()->plugin_url(); ?>/assets/images/shipments.png"/>
+                        <img src="<?php echo WC_germanized()->plugin_url(); ?>/assets/images/add-return-request.png"/>
                     </div>
                 </div>
             </div>
