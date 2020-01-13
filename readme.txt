@@ -5,7 +5,7 @@ Requires at least: 4.9
 Tested up to: 5.3
 WC requires at least: 3.4
 WC tested up to: 3.9
-Stable tag: 3.0.8
+Stable tag: 3.0.9
 Requires PHP: 5.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -68,6 +68,10 @@ Furthermore you may attach legally relevant pages (e.g. Terms & Conditions) as P
 = Shipments =
 Germanized adds a new abstraction layer to WooCommerce to make it easier for you to send your parcels to your customers. With Germanized you'll be able to generate (multiple) shipments to an order.
 You can then manage your shipments and it's statuses independently from your orders. Let your customers receive a notification email as soon as a shipment has been marked as shipped including tracking information from a built-in or manually added shipping provider. Learn more about our [Shipments for WooCommerce](https://vendidero.de/woocommerce-germanized/features#shipments "Shipments for WooCommerce") integration and find out how to automate your shipping process.
+
+= Returns =
+Managing returns can be a time-consuming challenge. By using Germanized you might let your customers create return requests through their customer panel. All you need to do is confirm the request through your return dashboard and your customers will receive an email containing further steps on how to return their product(s).
+In case you are using our DHL integration you might as well (automatically) create a label to the return which will be attached to the email sent to the customer.
 
 = DHL Integration =
 With the help of our built-in DHL integration you can easily create labels for your shipments and add tracking information to the notification emails. Furthermore you can offer Wunschpaket Services to your customers including shipping to Packstation or choosing a preferred location, day and/or time within the checkout.
@@ -185,6 +189,19 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 5. Manage shipments for orders
 
 == Changelog ==
+
+= 3.0.9 =
+* Feature: Optionally let customers create return requests, see https://vendidero.de/dokument/retouren-konfigurieren-und-verwalten
+* Improvement: Create returns to orders instead to shipments
+* Improvement: New email notification as soon as a return is marked as delivered
+* Improvement: Optionally choose a return reason for each item returned
+* Improvement: DHL use 0 as placeholder street number in case it is a non-domestic shipment
+* Improvement: DHL reference sanitizing
+* Improvement: DHL parcel locator shipping method fallback handling
+* Improvement: Replace data for non-purchasable variations as well
+* Improvement: Order completed date check in direct debit SEPA XML exporter
+* Improvement: Restore WPML email language to the language chosen before
+* Fix: Free shipping auto select session handling
 
 = 3.0.8 =
 * Improvement: WPML email translation compatibility
