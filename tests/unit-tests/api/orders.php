@@ -28,7 +28,7 @@ class WC_GZD_Orders_API extends WC_GZD_REST_Unit_Test_Case {
 		wp_set_current_user( $this->user );
 
 		$order    = WC_GZD_Helper_Order::create_order();
-		$response = $this->server->dispatch( new WP_REST_Request( 'GET', '/wc/v2/orders/' . $order->get_id() ) );
+		$response = $this->server->dispatch( new WP_REST_Request( 'GET', '/wc/v3/orders/' . $order->get_id() ) );
 		$order    = $response->get_data();
 
 		$this->assertEquals( 200, $response->get_status() );
@@ -55,7 +55,7 @@ class WC_GZD_Orders_API extends WC_GZD_REST_Unit_Test_Case {
 		// test simple products
 		$simple = WC_GZD_Helper_Order::create_order();
 
-		$request = new WP_REST_Request( 'PUT', '/wc/v2/orders/' . $simple->get_id() );
+		$request = new WP_REST_Request( 'PUT', '/wc/v3/orders/' . $simple->get_id() );
 		$request->set_body_params( array(
 			'direct_debit' => array( 'holder'     => 'John Doe',
 			                         'iban'       => 'AT242424',
@@ -70,7 +70,7 @@ class WC_GZD_Orders_API extends WC_GZD_REST_Unit_Test_Case {
 		$data     = $response->get_data();
 
 		// GET Product
-		$response = $this->server->dispatch( new WP_REST_Request( 'GET', '/wc/v2/orders/' . $simple->get_id() ) );
+		$response = $this->server->dispatch( new WP_REST_Request( 'GET', '/wc/v3/orders/' . $simple->get_id() ) );
 		$customer = $response->get_data();
 
 		$this->assertEquals( 2, $customer['billing']['title'] );
