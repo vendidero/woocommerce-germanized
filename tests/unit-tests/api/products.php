@@ -67,10 +67,6 @@ class WC_GZD_Products_API extends WC_GZD_REST_Unit_Test_Case {
 		) );
 
 		$response = $this->server->dispatch( $request );
-		$data     = $response->get_data();
-
-		// GET Product
-		$response = $this->server->dispatch( new WP_REST_Request( 'GET', '/wc/v3/products/' . $simple->get_id() ) );
 		$product  = $response->get_data();
 
 		$this->assertEquals( '3-4-days', $product['delivery_time']['slug'] );
@@ -100,10 +96,6 @@ class WC_GZD_Products_API extends WC_GZD_REST_Unit_Test_Case {
 		) );
 
 		$response = $this->server->dispatch( $request );
-		$data     = $response->get_data();
-
-		// GET Product
-		$response = $this->server->dispatch( new WP_REST_Request( 'GET', '/wc/v3/products/' . $simple->get_id() ) );
 		$product  = $response->get_data();
 
 		$this->assertEquals( '80.0', $product['unit_price']['price_regular'] );
@@ -148,10 +140,6 @@ class WC_GZD_Products_API extends WC_GZD_REST_Unit_Test_Case {
 		) );
 
 		$response = $this->server->dispatch( $request );
-		$data     = $response->get_data();
-
-		// GET Product
-		$response = $this->server->dispatch( new WP_REST_Request( 'GET', '/wc/v3/products/' . $simple->get_id() ) );
 		$product  = $response->get_data();
 
 		$this->assertEquals( true, $product['unit_price']['price_auto'] );
@@ -185,10 +173,6 @@ class WC_GZD_Products_API extends WC_GZD_REST_Unit_Test_Case {
 		) );
 
 		$response = $this->server->dispatch( $request );
-		$data     = $response->get_data();
-
-		// GET
-		$response = $this->server->dispatch( new WP_REST_Request( 'GET', '/wc/v3/products/' . $variable->get_id() . '/variations/' . $variation_id ) );
 		$product  = $response->get_data();
 
 		$this->assertEquals( '3-4-days', $product['delivery_time']['slug'] );
@@ -232,10 +216,6 @@ class WC_GZD_Products_API extends WC_GZD_REST_Unit_Test_Case {
 		) );
 
 		$response = $this->server->dispatch( $request );
-		$data     = $response->get_data();
-
-		// GET Product
-		$response = $this->server->dispatch( new WP_REST_Request( 'GET', '/wc/v3/products/' . $simple->get_id() ) );
 		$product  = $response->get_data();
 
 		$this->assertEquals( 'test-sale', $product['sale_price_label']['slug'] );
@@ -259,9 +239,6 @@ class WC_GZD_Products_API extends WC_GZD_REST_Unit_Test_Case {
 		) );
 
 		$response = $this->server->dispatch( $request );
-
-		// GET Product
-		$response = $this->server->dispatch( new WP_REST_Request( 'GET', '/wc/v3/products/' . $simple->get_id() ) );
 		$product  = $response->get_data();
 
 		$this->assertEmpty( $product['delivery_time'] );

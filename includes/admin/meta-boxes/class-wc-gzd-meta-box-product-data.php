@@ -35,14 +35,7 @@ class WC_Germanized_Meta_Box_Product_Data {
 			add_filter( 'product_type_options', array( __CLASS__, 'service_type' ), 10, 1 );
 		}
 
-		/**
-		 * Listen to product updates to actually transform term meta data to term relationships e.g. for product delivery time.
-		 */
-		add_action( 'woocommerce_update_product', array( __CLASS__, 'update_after_save' ), 10, 2 );
-		add_action( 'woocommerce_create_product', array( __CLASS__, 'update_after_save' ), 10, 2 );
-
-		add_action( 'woocommerce_update_product_variation', array( __CLASS__, 'update_after_save' ), 10, 2 );
-		add_action( 'woocommerce_new_product_variation', array( __CLASS__, 'update_after_save' ), 10, 2 );
+		add_action( 'woocommerce_before_product_object_save', array( __CLASS__, 'on_save' ), 10, 1 );
 
 		/**
 		 * Product duplication
@@ -69,16 +62,15 @@ class WC_Germanized_Meta_Box_Product_Data {
 	 * manipulated instance. That's why we need to temporarily store term data as product meta.
 	 * After saving the product this hook checks whether term relationships need to be updated or deleted.
 	 *
-	 * @param $product_id
+	 * @param WC_Product $product
 	 */
-	public static function update_after_save( $product_id, $product = null ) {
+	public static function on_save( $product ) {
 
 		// Do not update products on checkout - seems to cause problems with WPML
 		if ( function_exists( 'is_checkout' ) && is_checkout() ) {
 			return;
 		}
 
-		$product     = ( ! is_null( $product) ) ? $product : wc_get_product( $product_id );
 		$gzd_product = wc_gzd_get_product( $product );
 
 		if ( $product && $product->get_id() > 0 ) {
@@ -109,7 +101,6 @@ class WC_Germanized_Meta_Box_Product_Data {
 				 * @param WC_Product $product The product object.
 				 *
 				 * @since 1.8.5
-				 *
 				 */
 				$data = apply_filters( 'woocommerce_gzd_save_display_unit_price_data', array(
 					'_unit_price_regular' => $gzd_product->get_unit_price_regular(),
@@ -127,18 +118,6 @@ class WC_Germanized_Meta_Box_Product_Data {
 					$gzd_product->set_unit_price( $data['_unit_price_regular'] );
 				}
 			}
-
-			remove_action( 'woocommerce_update_product', array( __CLASS__, 'update_after_save' ), 10 );
-			remove_action( 'woocommerce_create_product', array( __CLASS__, 'update_after_save' ), 10 );
-			remove_action( 'woocommerce_update_product_variation', array( __CLASS__, 'update_after_save' ), 10 );
-			remove_action( 'woocommerce_new_product_variation', array( __CLASS__, 'update_after_save' ), 10 );
-
-			$product->save();
-
-			add_action( 'woocommerce_update_product', array( __CLASS__, 'update_after_save' ), 10, 1 );
-			add_action( 'woocommerce_create_product', array( __CLASS__, 'update_after_save' ), 10, 1 );
-			add_action( 'woocommerce_update_product_variation', array( __CLASS__, 'update_after_save' ), 10, 1 );
-			add_action( 'woocommerce_new_product_variation', array( __CLASS__, 'update_after_save' ), 10, 1 );
 		}
 	}
 
