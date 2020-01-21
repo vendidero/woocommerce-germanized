@@ -5,7 +5,7 @@ Requires at least: 4.9
 Tested up to: 5.3
 WC requires at least: 3.4
 WC tested up to: 3.9
-Stable tag: 3.1.0
+Stable tag: 3.1.1
 Requires PHP: 5.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -189,6 +189,17 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 5. Manage shipments for orders
 
 == Changelog ==
+
+= 3.1.1 =
+* Improvement: Return request customer notices
+* Improvement: Explicitly support v3 REST API
+* Improvement: Use woocommerce_before_product_object_save to prevent re-saving product
+* Improvement: DHL explicitly check whether shipping method instance supports instance settings
+* Improvement: Maybe output Woo notices for guests when adding return requests
+* Improvement: Maybe delete shipments when the order has failed
+* Fix: DHL added missing inlay participation number option
+* Fix: DHL prevent default shipping provider adjustment override
+* Fix: Readded hidden shipping costs product type options
 
 = 3.1.0 =
 * Feature: Optionally let customers create return requests, see https://vendidero.de/dokument/retouren-konfigurieren-und-verwalten
