@@ -2,6 +2,7 @@
   font-size: .8em; }
 
 .wc-gzd-news .columns {
+  display: -webkit-box;
   display: flex;
   flex-wrap: wrap;
   margin-left: -1em;
@@ -15,6 +16,7 @@
     .wc-gzd-news .columns .col h4 .dashicons {
       margin-right: 5px; }
     .wc-gzd-news .columns .col.align-center {
+      display: -webkit-inline-box;
       display: inline-flex;
       align-self: center; }
   .wc-gzd-news .columns.two-col .col {
