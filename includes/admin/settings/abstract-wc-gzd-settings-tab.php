@@ -289,11 +289,12 @@ abstract class WC_GZD_Settings_Tab extends WC_Settings_Page {
 		 * The dynamic portion of the hook name, `$this->get_name()`,
 		 * refers to the current tab id e.g. checkboxes.
 		 *
-		 * @param array $settings Array containing the settings to be saved.
+		 * @param array  $settings Array containing the settings to be saved.
+         * @param string $current_section The current section.
 		 *
 		 * @since 3.0.0
 		 */
-		do_action( "woocommerce_gzd_admin_settings_before_save_{$this->get_name()}", $settings );
+		do_action( "woocommerce_gzd_admin_settings_before_save_{$this->get_name()}", $settings, $current_section );
 
 		if ( ! empty( $current_section ) ) {
 
@@ -318,12 +319,12 @@ abstract class WC_GZD_Settings_Tab extends WC_Settings_Page {
 		 * The dynamic portion of the hook name, `$this->get_name()`,
 		 * refers to the current tab id e.g. checkboxes.
 		 *
-		 * @param array $settings Array containing the settings to be saved.
+		 * @param array  $settings Array containing the settings to be saved.
+		 * @param string $current_section The current section.
 		 *
 		 * @since 3.0.0
-		 *
 		 */
-		do_action( "woocommerce_gzd_admin_settings_after_save_{$this->get_name()}", $settings );
+		do_action( "woocommerce_gzd_admin_settings_after_save_{$this->get_name()}", $settings, $current_section );
 
 		if ( ! empty( $current_section ) ) {
 
