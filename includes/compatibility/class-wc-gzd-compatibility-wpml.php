@@ -176,7 +176,42 @@ class WC_GZD_Compatibility_WPML extends WC_GZD_Compatibility {
 			 * the send method.
 			 */
 			$email->init_settings();
+
+			/**
+			 * Manually adjust subject + heading option which does seem to cause problems
+			 * for custom emails such as invoice and cancellation email.
+			 */
+			if ( $subject = $this->translate_email_setting( $email->id, 'subject' ) ) {
+				$email->settings['subject'] = $subject;
+			}
+
+			if ( $heading = $this->translate_email_setting( $email->id, 'heading' ) ) {
+				$email->settings['heading'] = $heading;
+			}
+
+			/**
+			 * This action fires as soon as the WPML email language has been switched by the Germanized compatibility script.
+			 *
+			 * @param string   $lang Language e.g. en
+			 * @param WC_Email $email The email instance.
+			 *
+			 * @since 3.1.2
+			 */
+			do_action( 'woocommerce_gzd_wpml_switched_email_language', $this->email_lang, $email );
 		}
+	}
+
+	protected function translate_email_setting( $email_id, $option_name = 'heading' ) {
+		global $woocommerce_wpml;
+
+		if ( ! is_callable( array( $woocommerce_wpml->emails, 'wcml_get_translated_email_string' ) ) ) {
+			return false;
+		}
+
+		$domain     = 'admin_texts_woocommerce_' . $email_id . '_settings';
+		$namePrefix = '[woocommerce_' . $email_id . '_settings]';
+
+		return $woocommerce_wpml->emails->wcml_get_translated_email_string( $domain, $namePrefix . $option_name, false, $this->email_lang );
 	}
 
 	/**
