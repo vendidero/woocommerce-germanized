@@ -377,7 +377,7 @@ class WC_GZD_Checkout {
 
 			// Unset chosen shipping method to avoid key errors
 			if ( isset( WC()->session ) && ! is_null( WC()->session ) ) {
-				$chosen_shipping_methods = WC()->session->get( 'chosen_shipping_methods' );
+				$chosen_shipping_methods = (array) WC()->session->get( 'chosen_shipping_methods' );
 			}
 
 			foreach ( $rates as $key => $rate ) {

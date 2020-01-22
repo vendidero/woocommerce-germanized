@@ -529,9 +529,21 @@ class WC_GZD_Emails {
 		 */
 		do_action( 'woocommerce_gzd_order_confirmation', $order );
 
-		// Always clear cart after order success
 		if ( get_option( 'woocommerce_gzd_checkout_stop_order_cancellation' ) === 'yes' && WC()->cart ) {
-			WC()->cart->empty_cart();
+
+			/**
+			 * Decide whether to clear the cart after sending the order confirmation email or not.
+			 * By default the cart is not cleared to prevent compatibility issues with payment providers
+			 * like Stripe or Klarna which depend on cart data.
+			 *
+			 * @param boolean  $clear Whether to clear cart or not.
+			 * @param WC_Order $order_id The order.
+			 *
+			 * @since 3.1.2
+			 */
+			if ( apply_filters( 'woocommerce_gzd_clear_cart_after_order_confirmation', false, $order ) ) {
+				WC()->cart->empty_cart();
+			}
 		}
 
 		return $result;
@@ -548,7 +560,6 @@ class WC_GZD_Emails {
 		 * @param integer $order_id The order id.
 		 *
 		 * @since 1.0.0
-		 *
 		 */
 		do_action( 'woocommerce_germanized_before_order_confirmation', $order_id );
 
