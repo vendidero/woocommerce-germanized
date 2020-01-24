@@ -423,6 +423,59 @@ function wc_gzd_cart_get_age_verification_min_age( $items = false ) {
 	}
 }
 
+function wc_gzd_item_is_tax_share_exempt( $item, $type = 'shipping', $key = false ) {
+	$exempt   = false;
+	$_product = false;
+	$is_cart  = false;
+
+	if ( is_a( $item, 'WC_Order_Item' ) ) {
+		$_product = $item->get_product();
+	} elseif ( isset( $item['data'] ) ) {
+		$_product = apply_filters( 'woocommerce_cart_item_product', $item['data'], $item, $key );
+		$is_cart  = true;
+	}
+
+	if ( 'shipping' === $type && $_product ) {
+		if ( $_product->is_virtual() || wc_gzd_get_product( $_product )->is_virtual_vat_exception() ) {
+			$exempt = true;
+		}
+
+		$tax_status = $_product->get_tax_status();
+		$tax_class  = $_product->get_tax_class();
+
+		if ( 'none' === $tax_status || 'zero-rate' === $tax_class ) {
+			$exempt = true;
+		}
+    }
+
+	if ( $is_cart ) {
+		/**
+		 * Filter whether cart item supports tax share calculation or not.
+		 *
+		 * @param bool   $exempt True if it is an exempt. False if not.
+		 * @param array  $item The cart item.
+		 * @param string $key The cart item hash if existent.
+		 * @param string $type The tax calculation type e.g. shipping or fees.
+		 *
+		 * @since 1.7.5
+		 */
+		$exempt = apply_filters( 'woocommerce_gzd_cart_item_not_supporting_tax_share', $exempt, $item, $key, $type );
+    } else {
+		/**
+		 * Filter whether order item supports tax share calculation or not.
+		 *
+		 * @param bool          $exempt True if it is an exempt. False if not.
+		 * @param WC_Order_Item $item The order item.
+		 * @param string        $type The tax calculation type e.g. shipping or fees.
+		 *
+		 * @since 3.1.2
+		 */
+		$exempt = apply_filters( 'woocommerce_gzd_order_item_tax_share_exempt', $exempt, $item, $type );
+	}
+
+	return $exempt;
+}
+
 /**
  * Calculates tax share for shipping/fees
  *
@@ -443,49 +496,9 @@ function wc_gzd_get_cart_tax_share( $type = 'shipping', $cart_contents = array()
 			 */
 			$_product = apply_filters( 'woocommerce_cart_item_product', $item['data'], $item, $key );
 
-			/**
-			 * Cart item tax share product.
-			 *
-			 * Filters the product containing shipping information for cart item tax share calculation.
-			 *
-			 * @param WC_Product $_product The product object.
-			 * @param array $item The cart item.
-			 * @param string $key The cart item hash.
-			 * @param string $type The tax calculation type e.g. shipping or fees.
-			 *
-			 * @since 2.0.2
-			 *
-			 */
-			$_product_shipping = apply_filters( 'woocommerce_gzd_cart_item_tax_share_product', $_product, $item, $key, $type );
-			$no_shipping       = false;
-
-			if ( 'shipping' === $type ) {
-				if ( $_product_shipping->is_virtual() || wc_gzd_get_product( $_product_shipping )->is_virtual_vat_exception() ) {
-					$no_shipping = true;
-				}
-
-				$tax_status = $_product->get_tax_status();
-				$tax_class  = $_product->get_tax_class();
-
-				if ( 'none' === $tax_status || 'zero-rate' === $tax_class ) {
-					$no_shipping = true;
-				}
-			}
-
-			/**
-			 * Filter whether cart item supports tax share calculation or not.
-			 *
-			 * @param bool $no_shipping True if supports calculation. False otherwise.
-			 * @param array $item The cart item.
-			 * @param string $key The cart item hash.
-			 * @param string $type The tax calculation type e.g. shipping or fees.
-			 *
-			 * @since 1.7.5
-			 *
-			 */
-			if ( apply_filters( 'woocommerce_gzd_cart_item_not_supporting_tax_share', $no_shipping, $item, $key, $type ) ) {
-				continue;
-			}
+			if ( wc_gzd_item_is_tax_share_exempt( $item, $type, $key ) ) {
+			    continue;
+            }
 
 			$class = $_product->get_tax_class();
 

@@ -45,7 +45,9 @@ class WC_GZD_Compatibility_WooCommerce_Subscriptions extends WC_GZD_Compatibilit
 	public function product_classname( $classname, $type ) {
 		if ( 'variable-subscription' === $type ) {
 			return 'WC_GZD_Product_Variable';
-		}
+		} elseif( 'subscription_variation' === $type ) {
+		    return 'WC_GZD_Product_Variation';
+        }
 
 		return $classname;
 	}
