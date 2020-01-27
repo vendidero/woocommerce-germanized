@@ -13,7 +13,7 @@
     "composer/installers": "1.7.0",
     "vendidero/woocommerce-trusted-shops": "4.0.3",
     "vendidero/woocommerce-germanized-dhl": "1.2.1",
-    "vendidero/woocommerce-germanized-shipments": "1.2.1"
+    "vendidero/woocommerce-germanized-shipments": "1.2.2"
   },
   "require-dev": {
     "myclabs/deep-copy": "1.7.0",
