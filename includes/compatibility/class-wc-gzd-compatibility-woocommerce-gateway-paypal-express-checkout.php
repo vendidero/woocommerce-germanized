@@ -20,7 +20,7 @@ class WC_GZD_Compatibility_WooCommerce_Gateway_Paypal_Express_Checkout extends W
 	}
 
 	public function load() {
-		add_filter( 'woocommerce_available_payment_gateways', array( $this, 'payment_gateways' ), 30, 1 );
+		add_filter( 'woocommerce_available_payment_gateways', array( $this, 'payment_gateways' ), 150, 1 );
 	}
 
 	/**
@@ -34,7 +34,8 @@ class WC_GZD_Compatibility_WooCommerce_Gateway_Paypal_Express_Checkout extends W
 	public function payment_gateways( $gateways ) {
 		$gateway = isset( $gateways['ppec_paypal'] ) ? $gateways['ppec_paypal'] : false;
 
-		if ( $gateway && is_a( $gateway, 'WC_Gateway_PPEC_With_SPB' ) ) {
+		if ( $gateway && ( is_a( $gateway, 'WC_Gateway_PPEC_With_SPB' ) || is_a( $gateway, 'WC_Gateway_PPEC_With_SPB_Addons' ) ) ) {
+
 			remove_action( 'woocommerce_review_order_after_submit', array( $gateway, 'display_paypal_button' ), 10 );
 			remove_action( 'woocommerce_gzd_review_order_before_submit', array(
 				$gateway,
