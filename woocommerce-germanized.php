@@ -43,9 +43,17 @@ if ( version_compare( PHP_VERSION, '5.6.0', '>=' ) ) {
 } else {
 	function wc_gzd_admin_php_notice() {
 		?>
-        <div id="message" class="error">
-            <p><?php printf( __( 'Germanized requires at least PHP 5.6 to work. Please %s your PHP version.', 'woocommerce-germanized' ), '<a href="https://wordpress.org/support/update-php/">' . __( 'upgrade', 'woocommerce-germanized' ) . '</a>' ); ?></p>
-        </div>
+		<div id="message" class="error">
+			<p>
+			<?php
+			printf(
+				/* translators: %s is the word upgrade with a link to a support page about upgrading */
+				__( 'Germanized requires at least PHP 5.6 to work. Please %s your PHP version.', 'woocommerce-germanized' ),
+				'<a href="https://wordpress.org/support/update-php/">' . esc_html__( 'upgrade', 'woocommerce-germanized' ) . '</a>'
+			);
+			?>
+			</p>
+		</div>
 		<?php
 	}
 
