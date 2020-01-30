@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: WooCommerce Germanized\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-01-20 13:08+0100\n"
-"PO-Revision-Date: 2020-01-20 13:08+0100\n"
+"PO-Revision-Date: 2020-01-30 11:38+0100\n"
 "Last-Translator: holzhannes <holzhannes@posteo.de>\n"
 "Language-Team: \n"
 "Language: de_DE@formal\n"
@@ -10142,12 +10142,12 @@ msgstr "Jetzt bezahlen"
 #, php-format
 msgid ""
 "Germanized requires at least PHP 5.6 to work. Please %s your PHP version."
-msgstr "Germanized benötigt mindestens PHP 5.6. Bitte %s deine PHP-Version."
+msgstr "Germanized benötigt mindestens PHP 5.6. Bitte %s Sie Ihre PHP-Version."
 
 # @ woocommerce-germanized
 #: woocommerce-germanized/woocommerce-germanized.php:47
 msgid "upgrade"
-msgstr "upgrade"
+msgstr "aktualisieren"
 
 #: woocommerce-germanized/woocommerce-germanized.php:933
 msgid "Pease wait while we are trying to redirect you to the payment provider."
