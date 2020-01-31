@@ -435,10 +435,13 @@ function wc_gzd_item_is_tax_share_exempt( $item, $type = 'shipping', $key = fals
 		$is_cart  = true;
 	}
 
-	if ( 'shipping' === $type && $_product ) {
-		if ( $_product->is_virtual() || wc_gzd_get_product( $_product )->is_virtual_vat_exception() ) {
-			$exempt = true;
-		}
+	if ( $_product ) {
+
+	    if ( 'shipping' === $type ) {
+		    if ( $_product->is_virtual() || wc_gzd_get_product( $_product )->is_virtual_vat_exception() ) {
+			    $exempt = true;
+		    }
+        }
 
 		$tax_status = $_product->get_tax_status();
 		$tax_class  = $_product->get_tax_class();
@@ -487,20 +490,37 @@ function wc_gzd_get_cart_tax_share( $type = 'shipping', $cart_contents = array()
 	$cart        = empty( $cart_contents ) ? WC()->cart->cart_contents : $cart_contents;
 	$tax_shares  = array();
 	$item_totals = 0;
+	$is_cart     = true;
 
 	// Get tax classes and tax amounts
 	if ( ! empty( $cart ) ) {
 		foreach ( $cart as $key => $item ) {
-			/**
-			 * @var WC_Product $_product
-			 */
-			$_product = apply_filters( 'woocommerce_cart_item_product', $item['data'], $item, $key );
+
+			if ( is_a( $item, 'WC_Order_Item' ) ) {
+				$class      = $item->get_tax_class();
+				$line_total = $item->get_total();
+				$line_tax   = $item->get_total_tax();
+				$taxes      = $item->get_taxes();
+				$tax_rate   = key( $taxes['total'] );
+
+				// Search for the first non-empty tax rate
+				foreach( $taxes['total'] as $rate_id => $tax ) {
+				    if ( ! empty( $tax ) ) {
+				        $tax_rate = $rate_id;
+				        break;
+                    }
+                }
+			} elseif ( isset( $item['data'] ) ) {
+				$_product   = apply_filters( 'woocommerce_cart_item_product', $item['data'], $item, $key );
+				$class      = $_product->get_tax_class();
+				$line_total = $item['line_total'];
+				$line_tax   = $item['line_tax'];
+				$tax_rate   = key( $item['line_tax_data']['total'] );
+			}
 
 			if ( wc_gzd_item_is_tax_share_exempt( $item, $type, $key ) ) {
 			    continue;
             }
-
-			$class = $_product->get_tax_class();
 
 			if ( ! isset( $tax_shares[ $class ] ) ) {
 				$tax_shares[ $class ]          = array();
@@ -509,10 +529,10 @@ function wc_gzd_get_cart_tax_share( $type = 'shipping', $cart_contents = array()
 			}
 
 			// Does not contain pricing data in case of recurring Subscriptions
-			$tax_shares[ $class ]['total'] += ( $item['line_total'] + $item['line_tax'] );
-			$tax_shares[ $class ]['key']   = key( $item['line_tax_data']['total'] );
+			$tax_shares[ $class ]['total'] += ( $line_total + $line_tax );
+			$tax_shares[ $class ]['key']   = $tax_rate;
 
-			$item_totals += ( $item['line_total'] + $item['line_tax'] );
+			$item_totals += ( $line_total + $line_tax );
 		}
 	}
 

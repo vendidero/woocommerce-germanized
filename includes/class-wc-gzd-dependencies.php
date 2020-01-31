@@ -21,8 +21,6 @@ class WC_GZD_Dependencies {
 
 	public $plugins = array();
 
-	public $wc_supports_crud = false;
-
 	public $plugins_header = array(
 		'woocommerce' => array(
 			'name'           => 'WooCommerce',
@@ -73,9 +71,6 @@ class WC_GZD_Dependencies {
 
 		$this->plugin = $plugin;
 
-		// Set whether current WooCommerce Version supports CRUD
-		$this->set_wc_supports_crud();
-
 		if ( $plugin->version != get_option( 'woocommerce_' . $this->prefix . '_version' ) ) {
 			$this->delete_cached_plugin_header_data();
 		}
@@ -104,7 +99,6 @@ class WC_GZD_Dependencies {
 			} elseif ( ! $this->is_plugin_tested( $plugin ) ) {
 				$this->plugins_result['untested'][ $plugin ] = $data;
 			}
-
 		}
 
 		if ( ! empty( $this->plugins_result['unactivated'] ) || ! empty( $this->plugins_result['outdated'] ) ) {
@@ -115,11 +109,6 @@ class WC_GZD_Dependencies {
 			remove_all_actions( 'admin_notices' );
 			add_action( 'admin_notices', array( $this, 'dependencies_notice' ) );
 		}
-
-	}
-
-	public function set_wc_supports_crud() {
-		$this->wc_supports_crud = ( $this->compare_versions( $this->get_plugin_version( 'woocommerce' ), '2.7', '>=' ) );
 	}
 
 	public function delete_cached_plugin_header_data() {
@@ -237,10 +226,6 @@ class WC_GZD_Dependencies {
 		}
 
 		return version_compare( $main_ver, $ver2, $operator );
-	}
-
-	public function woocommerce_version_supports_crud() {
-		return $this->wc_supports_crud;
 	}
 
 	/**

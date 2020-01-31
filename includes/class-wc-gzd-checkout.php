@@ -281,6 +281,10 @@ class WC_GZD_Checkout {
 	public function force_pay_order_redirect() {
 		global $wp;
 
+		if ( ! function_exists( 'is_wc_endpoint_url' ) ) {
+			return;
+		}
+
 		if ( is_wc_endpoint_url( 'order-pay' ) && isset( $_GET['force_pay_order'] ) ) {
 
 			// Manipulate $_POST
