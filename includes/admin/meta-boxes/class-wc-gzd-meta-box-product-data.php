@@ -29,7 +29,7 @@ class WC_Germanized_Meta_Box_Product_Data {
 
 		if ( is_admin() ) {
 			add_action( 'woocommerce_product_options_general_product_data', array( __CLASS__, 'output' ) );
-			add_action( 'woocommerce_product_options_shipping', array( __CLASS__, 'output_shipping' ) );
+			add_action( 'woocommerce_product_options_shipping', array( __CLASS__, 'output_shipping' ), 20 );
 
 			add_action( 'woocommerce_admin_process_product_object', array( __CLASS__, 'save' ), 10, 1 );
 			add_filter( 'product_type_options', array( __CLASS__, 'service_type' ), 10, 1 );
@@ -262,23 +262,27 @@ class WC_Germanized_Meta_Box_Product_Data {
 		$delivery_time = $gzd_product->get_delivery_time();
 		?>
 
-        <p class="form-field">
-            <label for="delivery_time"><?php _e( 'Delivery Time', 'woocommerce-germanized' ); ?></label>
-			<?php
-			self::output_delivery_time_select2( array(
-				'name'        => 'delivery_time',
-				'placeholder' => __( 'Search for a delivery time&hellip;', 'woocommerce-germanized' ),
-				'term'        => $delivery_time,
-			) );
-			?>
-        </p>
+        <div class="options_group">
+            <p class="form-field">
+                <label for="delivery_time"><?php _e( 'Delivery Time', 'woocommerce-germanized' ); ?></label>
+                <?php
+                self::output_delivery_time_select2( array(
+                    'name'        => 'delivery_time',
+                    'placeholder' => __( 'Search for a delivery time&hellip;', 'woocommerce-germanized' ),
+                    'term'        => $delivery_time,
+                ) );
+                ?>
+            </p>
 
-		<?php
-		// Free shipping
-		woocommerce_wp_checkbox( array( 'id'          => '_free_shipping',
-		                                'label'       => __( 'Free shipping?', 'woocommerce-germanized' ),
-		                                'description' => __( 'This option disables the "plus shipping costs" notice on product page', 'woocommerce-germanized' )
-		) );
+            <?php
+                // Free shipping
+                woocommerce_wp_checkbox( array( 'id'          => '_free_shipping',
+                                                'label'       => __( 'Free shipping?', 'woocommerce-germanized' ),
+                                                'description' => __( 'This option disables the "plus shipping costs" notice on product page', 'woocommerce-germanized' )
+                ) );
+            ?>
+        </div>
+        <?php
 	}
 
 	public static function get_fields() {

@@ -641,14 +641,14 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 	}
 
 	public function send_mail( $order_id ) {
-		$order = wc_get_order( $order_id );
+	    if ( $order = wc_get_order( $order_id ) ) {
+		    if ( $order->get_payment_method() == $this->id ) {
 
-		if ( $order->get_payment_method() == $this->id ) {
-
-			if ( $mail = WC_germanized()->emails->get_email_instance_by_id( 'customer_sepa_direct_debit_mandate' ) ) {
-				$mail->trigger( $order );
-			}
-		}
+			    if ( $mail = WC_germanized()->emails->get_email_instance_by_id( 'customer_sepa_direct_debit_mandate' ) ) {
+				    $mail->trigger( $order );
+			    }
+		    }
+        }
 	}
 
 	public function clean_whitespaces( $str ) {
