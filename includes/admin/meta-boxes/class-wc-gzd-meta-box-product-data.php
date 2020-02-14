@@ -144,11 +144,9 @@ class WC_Germanized_Meta_Box_Product_Data {
 
 	public static function output() {
 
-		global $post, $thepostid;
-		$thepostid = $post->ID;
+		global $post, $thepostid, $product_object;
 
-		$_product     = wc_get_product( $thepostid );
-		$_gzd_product = wc_gzd_get_product( $_product );
+		$_gzd_product = wc_gzd_get_product( $product_object );
 		$age_select   = wc_gzd_get_age_verification_min_ages_select();
 
 		echo '<div class="options_group show_if_simple show_if_external show_if_variable">';
@@ -187,7 +185,7 @@ class WC_Germanized_Meta_Box_Product_Data {
 
 		echo '</div>';
 
-		if ( $_product->is_virtual() ) {
+		if ( $product_object->is_virtual() ) {
 
 			// Show delivery time selection fallback if is virtual but delivery time should be visible on product
 			$types = get_option( 'woocommerce_gzd_display_delivery_time_hidden_types', array() );
@@ -254,11 +252,9 @@ class WC_Germanized_Meta_Box_Product_Data {
 	}
 
 	public static function output_shipping() {
-		global $post, $thepostid;
+		global $post, $thepostid, $product_object;
 
-		$thepostid     = $post->ID;
-		$_product      = wc_get_product( $thepostid );
-		$gzd_product   = wc_gzd_get_product( $_product );
+		$gzd_product   = wc_gzd_get_product( $product_object );
 		$delivery_time = $gzd_product->get_delivery_time();
 		?>
 
