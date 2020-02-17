@@ -198,6 +198,8 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 * Improvement: Use global $product_object in product meta boxes
 * Improvement: Prevent debugging error output during AJAX requests to prevent malformed JSON
 * Improvement: DHL try to locally cache WSDL files to reduce SOAP calls to the DHL API
+* Improvement: Maybe hide order_payment_heading in case no payment methods are available
+* Improvement: Added warning to admin when activating DOI
 * Fix: Shipment, DHL label automation race-condition leading to missing tracking links
 * Fix: Touchstart, keypress event support for label modals
 
