@@ -22,6 +22,10 @@ abstract class WC_GZD_Settings_Tab extends WC_Settings_Page {
 		add_action( "woocommerce_sections_{$this->id}", array( $this, 'header' ), 5 );
 	}
 
+	public function notice_on_activate() {
+	    return false;
+    }
+
 	public function get_current_section() {
 		$current_section = isset( $_GET['section'] ) && ! empty( $_GET['section'] ) ? wc_clean( $_GET['section'] ) : '';
 
@@ -309,6 +313,14 @@ abstract class WC_GZD_Settings_Tab extends WC_Settings_Page {
 			 * @since 3.0.0
 			 */
 			do_action( "woocommerce_gzd_admin_settings_before_save_{$this->get_name()}_{$current_section}", $settings );
+		}
+
+		if ( $this->notice_on_activate() && $this->supports_disabling() && ! empty( $this->get_enable_option_name() ) ) {
+
+		    // Option seems to be activated
+		    if ( 'yes' !== get_option( $this->get_enable_option_name() ) && ! empty( $_POST[ $this->get_enable_option_name() ] ) ) {
+			    WC_Admin_Settings::add_error( $this->notice_on_activate() );
+            }
 		}
 	}
 

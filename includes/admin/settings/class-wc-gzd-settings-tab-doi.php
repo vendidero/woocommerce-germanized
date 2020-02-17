@@ -25,6 +25,10 @@ class WC_GZD_Settings_Tab_DOI extends WC_GZD_Settings_Tab {
 		return 'double_opt_in';
 	}
 
+	public function notice_on_activate() {
+		return sprintf( __( 'Caution: New customers that register within your store and do not activate their account will be deleted after %d day(s). You might adjust that behaviour within the Double-Opt-In settings.', 'woocommerce-germanized' ), get_option( 'woocommerce_gzd_customer_cleanup_interval' ), admin_url( 'admin.php?page=wc-settings&tab=germanized-double_opt_in' ) );
+	}
+
 	public function get_tab_settings( $current_section = '' ) {
 		return array(
 			array( 'title' => '', 'type' => 'title', 'id' => 'doi_options' ),

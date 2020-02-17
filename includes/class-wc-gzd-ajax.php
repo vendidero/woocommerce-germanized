@@ -59,10 +59,16 @@ class WC_GZD_AJAX {
 
 					if ( $enable ) {
 						$tab->enable();
+						$data = array(
+							'data'    => true,
+							'message' => '',
+						);
 
-						wp_send_json( array(
-							'data' => true,
-						) );
+						if ( $tab->notice_on_activate() ) {
+							$data['message'] = $tab->notice_on_activate();
+						}
+
+						wp_send_json( $data );
 					} else {
 						$tab->disable();
 

@@ -80,6 +80,14 @@ window.germanized = window.germanized || {};
                         $toggle.removeClass( 'woocommerce-input-toggle--enabled, woocommerce-input-toggle--disabled' );
                         $toggle.addClass( 'woocommerce-input-toggle--enabled' );
                         $toggle.removeClass( 'woocommerce-input-toggle--loading' );
+
+                        if ( response.hasOwnProperty( 'message' ) && response.message.length > 0 ) {
+                            $( '.wc-gzd-setting-tabs' ).before( '<div class="error inline" id="message"><p>' + response.message +'</p></div>' );
+
+                            $( 'html, body' ).animate({
+                                scrollTop: ( $( '#message' ).offset().top - 32 )
+                            }, 1000 );
+                        }
                     } else if ( false === response.data ) {
                         $toggle.removeClass( 'woocommerce-input-toggle--enabled, woocommerce-input-toggle--disabled' );
                         $toggle.addClass( 'woocommerce-input-toggle--disabled' );
