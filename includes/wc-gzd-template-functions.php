@@ -233,7 +233,7 @@ if ( ! function_exists( 'woocommerce_gzd_template_checkout_payment_title' ) ) {
 	 * Checkout payment gateway title
 	 */
 	function woocommerce_gzd_template_checkout_payment_title() {
-		echo '<h3 id="order_payment_heading">' . __( 'Choose a Payment Gateway', 'woocommerce-germanized' ) . '</h3>';
+		echo '<h3 id="order_payment_heading" style="' . ( WC()->cart && WC()->cart->get_total( 'edit' ) <= 0 ? 'display: none;' : '' ) . '">' . __( 'Choose a Payment Gateway', 'woocommerce-germanized' ) . '</h3>';
 	}
 
 }

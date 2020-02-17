@@ -60,6 +60,17 @@ window.germanized = window.germanized || {};
         onUpdateCheckout: function() {
             var self      = germanized.checkout;
 
+            if ( self.params.adjust_heading ) {
+                if ( $( '.woocommerce-checkout' ).find( '#order_payment_heading' ).length > 0 ) {
+
+                    if ( $( '.woocommerce-checkout' ).find( '.wc_payment_methods' ).length <= 0 ) {
+                        $( '.woocommerce-checkout' ).find( '#order_payment_heading' ).hide();
+                    } else {
+                        $( '.woocommerce-checkout' ).find( '#order_payment_heading' ).show();
+                    }
+                }
+            }
+
             if ( $( '.wc-gzd-place-order' ).length > 0 ) {
                 if ( $( '.place-order:not(.wc-gzd-place-order)' ).length > 0 ) {
                     // Make sure we are removing the nonce from the old container to the new one.

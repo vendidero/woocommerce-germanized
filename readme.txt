@@ -5,7 +5,7 @@ Requires at least: 4.9
 Tested up to: 5.3
 WC requires at least: 3.4
 WC tested up to: 3.9
-Stable tag: 3.1.2
+Stable tag: 3.1.3
 Requires PHP: 5.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -189,6 +189,17 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 5. Manage shipments for orders
 
 == Changelog ==
+
+= 3.1.3 =
+* Improvement: PayPal Express Checkout compatibility
+* Improvement: Tax share calculation code cleanup
+* Improvement: Make sure that gzd-requested is not selectable as shipment status in settings
+* Improvement: Added open return request count to admin menu
+* Improvement: Use global $product_object in product meta boxes
+* Improvement: Prevent debugging error output during AJAX requests to prevent malformed JSON
+* Improvement: DHL try to locally cache WSDL files to reduce SOAP calls to the DHL API
+* Fix: Shipment, DHL label automation race-condition leading to missing tracking links
+* Fix: Touchstart, keypress event support for label modals
 
 = 3.1.2 =
 * Fix: Return shipments customer item quantity
