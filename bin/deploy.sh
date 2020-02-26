@@ -272,11 +272,12 @@ if ! $SKIP_SVN; then
 
     cd "$SVN_PATH" || exit
 
+    # Fetch tags directories without content
+    svn up --set-depth=immediates tags
+
     # Fetch main directories
     svn up assets branches trunk
 
-    # Fetch tags directories without content
-    svn up --set-depth=immediates tags
     # To fetch content for a tag, use:
     # svn up --set-depth=infinity tags/<tag_number>
   else
