@@ -31,8 +31,10 @@ class WC_GZD_Customer_Helper {
 	}
 
 	public function __construct() {
+
 		// Send customer account notification
 		add_action( 'woocommerce_email', array( $this, 'email_hooks' ), 0, 1 );
+
 		// Add Title to user profile
 		add_filter( 'woocommerce_customer_meta_fields', array( $this, 'profile_field_title' ), 10, 1 );
 		add_filter( 'woocommerce_ajax_get_customer_details', array( $this, 'load_customer_fields' ), 10, 3 );
@@ -41,27 +43,36 @@ class WC_GZD_Customer_Helper {
 
 			// Check for customer activation
 			add_action( 'template_redirect', array( $this, 'customer_account_activation_check' ) );
+
 			// Cronjob to delete unactivated users
 			add_action( 'woocommerce_gzd_customer_cleanup', array( $this, 'account_cleanup' ) );
 
 			if ( $this->is_double_opt_in_login_enabled() ) {
+
 				// Disable login for unactivated users
 				add_filter( 'wp_authenticate_user', array( $this, 'login_restriction' ), 10, 2 );
+
 				// Disable auto login after registration
 				add_filter( 'woocommerce_registration_auth_new_customer', array(
 					$this,
 					'disable_registration_auto_login'
 				), 10, 2 );
+
 				// Redirect customers that are not logged in to customer account page
 				add_action( 'template_redirect', array( $this, 'disable_checkout' ), 10 );
+
 				// Show notices on customer account page
 				add_action( 'template_redirect', array( $this, 'show_disabled_checkout_notice' ), 20 );
+
 				// Redirect customers to checkout after login
 				add_filter( 'woocommerce_login_redirect', array( $this, 'login_redirect' ), 10, 2 );
+
 				// Disable customer signup if customer has forced guest checkout
 				add_action( 'woocommerce_checkout_init', array( $this, 'disable_signup' ), 10, 1 );
+
 				// Remove the checkout signup cookie if customer logs out
 				add_action( 'wp_logout', array( $this, 'delete_checkout_signup_cookie' ) );
+
 				// WC Social Login comp
 				add_filter( 'wc_social_login_set_auth_cookie', array( $this, 'social_login_activation_check' ), 10, 2 );
 			}
@@ -371,12 +382,18 @@ class WC_GZD_Customer_Helper {
 	 */
 	public function account_cleanup() {
 
-		if ( ! get_option( 'woocommerce_gzd_customer_cleanup_interval' ) || get_option( 'woocommerce_gzd_customer_cleanup_interval' ) == 0 ) {
+		$cleanup_interval = get_option( 'woocommerce_gzd_customer_cleanup_interval' );
+
+		if ( ! $this->is_double_opt_in_enabled() || ! $cleanup_interval || empty( $cleanup_interval ) ) {
 			return;
 		}
 
+		var_dump($cleanup_interval);
+		var_dump("jaa");
+		exit();
+
 		$roles             = array_map( 'ucfirst', $this->get_double_opt_in_user_roles() );
-		$cleanup_days      = (int) get_option( 'woocommerce_gzd_customer_cleanup_interval' );
+		$cleanup_days      = (int) $cleanup_interval;
 		$registered_before = date( 'Y-m-d H:i:s', strtotime( "-{$cleanup_days} days" ) );
 
 		$user_query = new WP_User_Query(
