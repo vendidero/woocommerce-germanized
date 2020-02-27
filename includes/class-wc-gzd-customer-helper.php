@@ -568,12 +568,9 @@ class WC_GZD_Customer_Helper {
 
 	public function email_hooks( $mailer ) {
 		// Add new customer activation
-		if ( 'yes' === get_option( 'woocommerce_gzd_customer_activation' ) ) {
+		if ( $this->is_double_opt_in_enabled() ) {
 			remove_action( 'woocommerce_created_customer_notification', array( $mailer, 'customer_new_account' ), 10 );
-			add_action( 'woocommerce_created_customer_notification', array(
-				$this,
-				'customer_new_account_activation'
-			), 9, 3 );
+			add_action( 'woocommerce_created_customer_notification', array( $this, 'customer_new_account_activation' ), 9, 3 );
 		}
 	}
 
@@ -593,12 +590,15 @@ class WC_GZD_Customer_Helper {
 			return;
 		}
 
-		$user_pass           = ! empty( $new_customer_data['user_pass'] ) ? $new_customer_data['user_pass'] : '';
-		$user_activation     = $this->get_customer_activation_meta( $customer_id );
-		$user_activation_url = $this->get_customer_activation_url( $user_activation );
-
 		if ( $email = WC_germanized()->emails->get_email_instance_by_id( 'customer_new_account_activation' ) ) {
-			$email->trigger( $customer_id, $user_activation, $user_activation_url, $user_pass, $password_generated );
+
+			if ( $email->is_enabled() ) {
+				$user_pass           = ! empty( $new_customer_data['user_pass'] ) ? $new_customer_data['user_pass'] : '';
+				$user_activation     = $this->get_customer_activation_meta( $customer_id );
+				$user_activation_url = $this->get_customer_activation_url( $user_activation );
+
+				$email->trigger( $customer_id, $user_activation, $user_activation_url, $user_pass, $password_generated );
+			}
 		}
 	}
 
