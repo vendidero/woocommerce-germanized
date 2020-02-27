@@ -388,10 +388,6 @@ class WC_GZD_Customer_Helper {
 			return;
 		}
 
-		var_dump($cleanup_interval);
-		var_dump("jaa");
-		exit();
-
 		$roles             = array_map( 'ucfirst', $this->get_double_opt_in_user_roles() );
 		$cleanup_days      = (int) $cleanup_interval;
 		$registered_before = date( 'Y-m-d H:i:s', strtotime( "-{$cleanup_days} days" ) );
@@ -409,6 +405,11 @@ class WC_GZD_Customer_Helper {
 					array(
 						'key'     => '_woocommerce_activation',
 						'compare' => 'EXISTS',
+					),
+					array(
+						'key'     => '_woocommerce_activation',
+						'compare' => '!=',
+						'value'   => ''
 					),
 				),
 			)
