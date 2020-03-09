@@ -27,7 +27,71 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_styles' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_scripts' ) );
 
+		add_filter( 'woocommerce_navigation_is_connected_page', array( $this, 'add_wc_admin_breadcrumbs' ), 5, 2 );
+
 		parent::__construct();
+	}
+
+	public function add_wc_admin_breadcrumbs( $is_connected, $current_page ) {
+
+		if ( false === $is_connected && false === $current_page && $this->is_active() ) {
+			$page_id = 'wc-settings';
+
+			if ( ! class_exists( 'Automattic\WooCommerce\Admin\PageController' ) ) {
+				return $is_connected;
+			}
+
+			$page_controller = Automattic\WooCommerce\Admin\PageController::get_instance();
+
+			if ( ! is_callable( array( $page_controller, 'get_current_screen_id' ) ) ) {
+				return $is_connected;
+			}
+
+			$screen_id = $page_controller->get_current_screen_id();
+
+			if ( preg_match( "/^woocommerce_page_{$page_id}\-/", $screen_id ) ) {
+				add_filter( 'woocommerce_navigation_get_breadcrumbs', array( $this, 'filter_wc_admin_breadcrumbs' ), 20 );
+				return true;
+			}
+		}
+
+		return $is_connected;
+	}
+
+	public function filter_wc_admin_breadcrumbs( $breadcrumbs ) {
+
+		if ( ! function_exists( 'wc_admin_get_core_pages_to_connect' ) ) {
+			return $breadcrumbs;
+		}
+
+		$core_pages = wc_admin_get_core_pages_to_connect();
+		$tab        = wc_clean( $_GET['tab'] );
+		$tab_clean  = str_replace( 'germanized-', '', $tab );
+
+		$new_breadcrumbs = array(
+			array(
+				add_query_arg( 'page', 'wc-settings', 'admin.php' ),
+				$core_pages['wc-settings']['title']
+			),
+		);
+
+		if ( $this->id === $tab ) {
+			$new_breadcrumbs[] = $this->label;
+		} else {
+			$new_breadcrumbs[] = array(
+				add_query_arg( array( 'page' => 'wc-settings', 'tab' => 'germanized' ), 'admin.php' ),
+				$this->label
+			);
+		}
+
+		foreach( $this->get_tabs() as $tab ) {
+			if ( $tab_clean === $tab->get_name() ) {
+				$new_breadcrumbs[] = preg_replace('/<[^>]*>[^<]*<[^>]*>/' , '', $tab->get_label() );
+				break;
+			}
+		}
+
+		return $new_breadcrumbs;
 	}
 
 	public function get_settings() {
