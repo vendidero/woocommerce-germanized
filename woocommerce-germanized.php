@@ -3,7 +3,7 @@
  * Plugin Name: Germanized for WooCommerce
  * Plugin URI: https://www.vendidero.de/woocommerce-germanized
  * Description: Germanized for WooCommerce extends WooCommerce to become a legally compliant store in the german market.
- * Version: 3.1.3
+ * Version: 3.1.4
  * Author: Vendidero
  * Author URI: https://vendidero.de
  * Requires at least: 4.9
@@ -71,7 +71,7 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 		 *
 		 * @var string
 		 */
-		public $version = '3.1.3';
+		public $version = '3.1.4';
 
 		/**
 		 * @var WooCommerce_Germanized $instance of the plugin
@@ -191,6 +191,12 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 			register_activation_hook( __FILE__, array( 'WC_GZD_Install', 'install' ) );
 			register_deactivation_hook( __FILE__, array( 'WC_GZD_Install', 'deactivate' ) );
 
+			/**
+			 * Make sure the note hooks are available on install and during REST calls.
+			 */
+			add_action( 'woocommerce_note_updated', array( $this, 'on_update_admin_note' ) );
+			add_filter( 'woocommerce_note_statuses', array( $this, 'add_note_statuses' ), 10 );
+
 			add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), array( $this, 'action_links' ) );
 			add_action( 'after_setup_theme', array( $this, 'include_template_functions' ), 12 );
 
@@ -294,6 +300,37 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 			 */
 			do_action( 'woocommerce_germanized_init' );
 		}
+
+		public function add_note_statuses( $statuses ) {
+		    $statuses = array_merge( $statuses, array( 'disabled', 'deactivated' ) );
+
+		    return $statuses;
+        }
+
+		/**
+         * Add the option which indicates that a notices should be hidden from the admin user.
+         *
+		 * @param $note_id
+		 */
+		public function on_update_admin_note( $note_id ) {
+			$note = new \Automattic\WooCommerce\Admin\Notes\WC_Admin_Note( $note_id );
+
+			if ( $note ) {
+				if ( strpos( $note->get_name(), 'wc-gzd-admin-' ) !== false ) {
+					$note_name = str_replace( 'wc-gzd-admin-', '', $note->get_name() );
+					$note_name = str_replace( '-notice', '', $note_name );
+					$note_name = str_replace( '-', '_', $note_name );
+
+					if ( current_user_can( 'manage_woocommerce' ) ) {
+						if ( 'disabled' === $note->get_status() ) {
+							update_option( '_wc_gzd_hide_' . $note_name . '_notice', 'yes' );
+						} elseif( 'deactivated' === $note->get_status() ) {
+							update_option( '_wc_gzd_disable_' . $note_name . '_notice', 'yes' );
+						}
+                    }
+				}
+			}
+        }
 
 		/**
 		 * Auto-load WC_Germanized classes on demand to reduce memory consumption.

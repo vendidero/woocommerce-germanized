@@ -28,6 +28,8 @@ if ( ! class_exists( 'WC_GZD_Admin_Notices' ) ) :
 		 */
 		protected static $_instance = null;
 
+		protected $notes = null;
+
 		/**
 		 * Ensures that only one instance of this class is loaded or can be loaded.
 		 *
@@ -46,6 +48,14 @@ if ( ! class_exists( 'WC_GZD_Admin_Notices' ) ) :
 
 			add_action( 'after_switch_theme', array( $this, 'remove_theme_notice_hide' ) );
 			add_action( 'admin_print_styles', array( $this, 'add_notices' ), 1 );
+
+			include_once( 'notes/class-wc-gzd-admin-note.php' );
+			include_once( 'notes/class-wc-gzd-admin-note-theme-supported.php' );
+			include_once( 'notes/class-wc-gzd-admin-note-update.php' );
+			include_once( 'notes/class-wc-gzd-admin-note-review.php' );
+			include_once( 'notes/class-wc-gzd-admin-note-template-outdated.php' );
+			include_once( 'notes/class-wc-gzd-admin-note-pro.php' );
+			include_once( 'notes/class-wc-gzd-admin-note-dhl-importer.php' );
 		}
 
 		public function enable_notices() {
@@ -71,6 +81,48 @@ if ( ! class_exists( 'WC_GZD_Admin_Notices' ) ) :
 		}
 
 		/**
+		 * @return WC_GZD_Admin_Note[]
+		 */
+		public function get_notes() {
+			if ( is_null( $this->notes ) ) {
+
+				$notes = array(
+					'WC_GZD_Admin_Note_Theme_Supported',
+					'WC_GZD_Admin_Note_Update',
+					'WC_GZD_Admin_Note_Review',
+					'WC_GZD_Admin_Note_Template_Outdated',
+					'WC_GZD_Admin_Note_Pro',
+					'WC_GZD_Admin_Note_DHL_Importer'
+				);
+
+				$this->notes = array();
+
+				foreach( $notes as $note ) {
+					$note = new $note();
+
+					$this->notes[ $note->get_name() ] = $note;
+				}
+			}
+
+			return $this->notes;
+		}
+
+		/**
+		 * @param $name
+		 *
+		 * @return bool|WC_GZD_Admin_Note
+		 */
+		public function get_note( $name ) {
+			$notes = $this->get_notes();
+
+			if ( array_key_exists( $name, $notes ) ) {
+				return $notes[ $name ];
+			}
+
+			return false;
+		}
+
+		/**
 		 * Add notices + styles if needed.
 		 */
 		public function add_notices() {
@@ -82,115 +134,56 @@ if ( ! class_exists( 'WC_GZD_Admin_Notices' ) ) :
 			);
 
 			$wc_screen_ids = function_exists( 'wc_get_screen_ids' ) ? wc_get_screen_ids() : array();
+			$wc_screen_ids = array_merge ( $wc_screen_ids, array( 'woocommerce_page_wc-admin' ) );
 
 			// Notices should only show on WooCommerce screens, the main dashboard, and on the plugins screen.
 			if ( ! in_array( $screen_id, $wc_screen_ids, true ) && ! in_array( $screen_id, $show_on_screens, true ) ) {
 				return;
 			}
 
-			if ( get_option( '_wc_gzd_needs_update' ) == 1 ) {
-				if ( current_user_can( 'manage_woocommerce' ) ) {
-					$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
-					wp_enqueue_style( 'woocommerce-gzd-activation', WC_germanized()->plugin_url() . '/assets/css/admin-activation' . $suffix . '.css', array(), WC_GERMANIZED_VERSION );
-
-					add_action( 'admin_notices', array( $this, 'update_notice' ) );
-				}
-			}
-
-			if ( ! get_option( '_wc_gzd_hide_theme_notice' ) && ! WC_germanized()->is_pro() && $this->enable_notices() ) {
-				if ( $this->is_theme_supported_by_pro() ) {
-					add_action( 'admin_notices', array( $this, 'theme_supported_notice' ) );
-				}
-			}
-
-			if ( ! get_option( '_wc_gzd_hide_review_notice' ) && ! get_option( '_wc_gzd_disable_review_notice' ) && $this->enable_notices() ) {
-				add_action( 'admin_notices', array( $this, 'add_review_notice' ) );
-			}
-
-			if ( ! get_option( '_wc_gzd_hide_template_outdated_notice' ) ) {
-				add_action( 'admin_notices', array( $this, 'add_template_outdated_notice' ) );
-			}
-
-			if ( ! get_option( '_wc_gzd_hide_pro_notice' ) && ! WC_germanized()->is_pro() && $this->enable_notices() ) {
-				add_action( 'admin_notices', array( $this, 'add_pro_notice' ) );
-			}
-
-			if ( isset( $_GET['page'] ) && $_GET['page'] === 'wc-gzd-about' ) {
-				remove_action( 'admin_notices', array( $this, 'theme_supported_notice' ) );
-			}
-
-			if ( ! get_option( '_wc_gzd_hide_dhl_importer_notice' ) ) {
-				add_action( 'admin_notices', array( $this, 'dhl_importer_notice' ) );
-			}
-		}
-
-		public function dhl_importer_notice() {
-			if ( class_exists( 'Vendidero\Germanized\DHL\Admin\Importer' ) && Vendidero\Germanized\DHL\Admin\Importer::is_plugin_enabled() && Vendidero\Germanized\DHL\Admin\Importer::is_available() ) {
-				include( 'views/html-notice-dhl.php' );
-			}
-		}
-
-		public function add_template_outdated_notice() {
-			$templates = WC_GZD_Admin::instance()->get_template_version_check_result();
-			$show      = false;
-
-			foreach ( $templates as $plugin => $data ) {
-				if ( $data['has_outdated'] ) {
-					$show = true;
-					break;
-				}
-			}
-
-			if ( $show ) {
-				include( 'views/html-notice-templates-outdated.php' );
+			foreach( $this->get_notes() as $note_id => $note ) {
+				$note->queue();
 			}
 		}
 
 		public function remove_theme_notice_hide() {
-			delete_option( '_wc_gzd_hide_theme_notice' );
-			delete_option( '_wc_gzd_hide_template_outdated_notice' );
-		}
+			if ( $note = $this->get_note( 'theme_supported' ) ) {
+				$note->reset();
+			}
 
-		/**
-		 * Show the install notices
-		 */
-		public function update_notice() {
-			// If we need to update, include a message with the update button
-			if ( get_option( '_wc_gzd_needs_update' ) == 1 ) {
-				include( 'views/html-notice-update.php' );
+			if ( $note = $this->get_note( 'template_outdated' ) ) {
+				$note->reset();
 			}
 		}
 
 		public function check_notice_hide() {
+
 			if ( ! current_user_can( 'manage_woocommerce' ) ) {
 				return;
 			}
 
-			$notices = array(
-				'wc-gzd-hide-theme-notice',
-				'wc-gzd-disable-review-notice',
-				'wc-gzd-hide-review-notice',
-				'wc-gzd-hide-pro-notice',
-				'wc-gzd-hide-dhl-importer-notice',
-				'wc-gzd-hide-template-outdated-notice'
-			);
+			$notes = $this->get_notes();
 
-			if ( ! empty( $notices ) ) {
-				foreach ( $notices as $notice ) {
-					if ( isset( $_GET['notice'] ) && $_GET['notice'] == $notice && isset( $_GET['nonce'] ) && check_admin_referer( $notice, 'nonce' ) ) {
-						update_option( '_' . str_replace( '-', '_', $notice ), true );
-						$redirect_url = remove_query_arg( 'notice', remove_query_arg( 'nonce', $_SERVER['REQUEST_URI'] ) );
+			foreach( $notes as $note ) {
+				$notice            = 'wc-gzd-hide-' . str_replace( '_', '-', $note->get_name() ) . '-notice';
+				$notice_deactivate = 'wc-gzd-disable-' . str_replace( '_', '-', $note->get_name() ) . '-notice';
 
-						wp_safe_redirect( $redirect_url );
-						exit();
-					}
+				if ( isset( $_GET['notice'] ) && $_GET['notice'] === $notice && isset( $_GET['nonce'] ) && check_admin_referer( $notice, 'nonce' ) ) {
+
+					$note->dismiss();
+					$redirect_url = remove_query_arg( 'notice', remove_query_arg( 'nonce', $_SERVER['REQUEST_URI'] ) );
+
+					wp_safe_redirect( $redirect_url );
+					exit();
+				} elseif ( isset( $_GET['notice'] ) && $_GET['notice'] === $notice_deactivate && isset( $_GET['nonce'] ) && check_admin_referer( $notice_deactivate, 'nonce' ) ) {
+
+					$note->deactivate();
+					$redirect_url = remove_query_arg( 'notice', remove_query_arg( 'nonce', $_SERVER['REQUEST_URI'] ) );
+
+					wp_safe_redirect( $redirect_url );
+					exit();
 				}
 			}
-		}
-
-		public function theme_supported_notice() {
-			$current_theme = wp_get_theme();
-			include( 'views/html-notice-theme-supported.php' );
 		}
 
 		public function is_theme_ready() {
@@ -221,30 +214,6 @@ if ( ! class_exists( 'WC_GZD_Admin_Notices' ) ) :
 			}
 
 			return false;
-		}
-
-		public function add_review_notice() {
-			if ( get_option( 'woocommerce_gzd_activation_date' ) ) {
-				$this->queue_notice( 3, 'html-notice-review.php' );
-			}
-		}
-
-		public function add_pro_notice() {
-			if ( get_option( 'woocommerce_gzd_activation_date' ) ) {
-				$this->queue_notice( 4, 'html-notice-pro.php' );
-			}
-		}
-
-		public function queue_notice( $days, $view ) {
-			if ( get_option( 'woocommerce_gzd_activation_date' ) ) {
-
-				$activation_date = ( get_option( 'woocommerce_gzd_activation_date' ) ? get_option( 'woocommerce_gzd_activation_date' ) : date( 'Y-m-d' ) );
-				$diff            = WC_germanized()->get_date_diff( $activation_date, date( 'Y-m-d' ) );
-
-				if ( $diff['d'] >= absint( $days ) ) {
-					include( 'views/' . $view );
-				}
-			}
 		}
 
 		/**

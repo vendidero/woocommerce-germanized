@@ -198,7 +198,7 @@ add_action( 'woocommerce_review_order_after_order_total', 'woocommerce_gzd_templ
 /**
  * Order details & Thankyou
  */
-add_action( 'woocommerce_thankyou_order_received_text', 'woocommerce_gzd_template_order_success_text', 0, 1 );
+add_filter( 'woocommerce_thankyou_order_received_text', 'woocommerce_gzd_template_order_success_text', 0, 1 );
 add_action( 'woocommerce_thankyou', 'woocommerce_gzd_template_order_pay_now_button', wc_gzd_get_hook_priority( 'order_pay_now_button' ), 1 );
 
 // Set Hooks before order details table

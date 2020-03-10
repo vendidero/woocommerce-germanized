@@ -32,6 +32,7 @@ class WC_GZD_Payment_Gateways {
 		add_action( 'woocommerce_after_calculate_totals', array( $this, 'checkout' ) );
 
 		add_action( 'woocommerce_cart_calculate_fees', array( $this, 'init_fee' ), 0 );
+		add_filter( 'woocommerce_thankyou_order_received_text', array( $this, 'remove_paypal_filter' ), 5, 2 );
 
 		// Gateway admin export
 		add_action( 'current_screen', array( $this, 'gateway_admin_init' ), 20 );
@@ -41,6 +42,26 @@ class WC_GZD_Payment_Gateways {
 
 		// Init upon Pay action
 		add_action( 'woocommerce_before_pay_action', array( $this, 'gateway_pay_init' ), 5 );
+	}
+
+	/**
+	 * Remove PayPal thank you for payment text if the order has not been paid yet.
+	 *
+	 * @param $text
+	 * @param WC_Order $order
+	 *
+	 * @return mixed
+	 */
+	public function remove_paypal_filter( $text, $order ) {
+		if ( $order && 'paypal' === $order->get_payment_method() ) {
+			$gateways = WC()->payment_gateways->get_available_payment_gateways();
+
+			if ( isset( $gateways['paypal'] ) && $order->needs_payment() ) {
+				remove_filter( 'woocommerce_thankyou_order_received_text', array( $gateways['paypal'], 'order_received_text' ), 10 );
+			}
+		}
+
+		return $text;
 	}
 
 	public function gateway_admin_init() {
