@@ -227,6 +227,12 @@ abstract class WC_GZD_Admin_Note {
 		update_option( $this->get_dismiss_option_name(), 'yes' );
  	}
 
+ 	public function delete_note() {
+	    if ( $note = $this->get_note() ) {
+	    	$note->delete( true );
+	    }
+    }
+
 	public function deactivate( $and_note = true ) {
 
 		if ( $and_note && ( $note = $this->get_note() ) ) {
@@ -241,8 +247,7 @@ abstract class WC_GZD_Admin_Note {
 	    if ( $note = $this->get_note() ) {
 
 	    	if ( 'deactivate' !== $note->get_status() ) {
-			    $note->set_status( 'unactioned' );
-			    $note->save();
+			    $note->delete( true );
 		    }
 	    }
 

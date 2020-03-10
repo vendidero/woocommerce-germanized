@@ -198,6 +198,11 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 
 			$notices = WC_GZD_Admin_Notices::instance();
 
+			// Refresh notes
+			foreach( $notices->get_notes() as $note ) {
+				$note->delete_note();
+			}
+
 			// Recheck outdated templates
 			if ( $note = $notices->get_note( 'template_outdated' ) ) {
 				$note->reset();
