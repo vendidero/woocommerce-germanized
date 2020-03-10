@@ -146,7 +146,7 @@ abstract class WC_GZD_Admin_Note {
 				$action['title'],
 				$action['url'],
 				'disabled',
-				$action['is_primary'] ? true : false,
+				$action['is_primary'] ? true : false
 			);
 		}
 

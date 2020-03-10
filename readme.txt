@@ -190,6 +190,19 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 
 == Changelog ==
 
+= 3.1.4 =
+* Improvement: Woo 4.0 support
+* Improvement: WP 5.4 support
+* Improvement: Added better admin note integration with WC Admin
+* Improvement: Added deeper shipments search for newly created shipments
+* Improvement: Hardened DOI schedule check
+* Improvement: Added new subscription features to invoice gateway
+* Improvement: DHL better parcel number validation
+* Improvement: DHL force lowercase on usernames within settings
+* Improvement: DHL support international services in default arguments
+* Fix: DHL fixed customs per item weight/net total calculation
+* Fix: Fixed customer added return request reason and quantity input
+
 = 3.1.3 =
 * Improvement: PayPal Express Checkout compatibility
 * Improvement: Tax share calculation code cleanup
