@@ -575,6 +575,7 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 					'woocommerce-subscriptions'                   => 'WC_GZD_Compatibility_WooCommerce_Subscriptions',
 					'woo-paypalplus'                              => 'WC_GZD_Compatibility_Woo_PaypalPlus',
 					'elementor-pro'                               => 'WC_GZD_Compatibility_Elementor_Pro',
+					'klarna-checkout-for-woocommerce'             => 'WC_GZD_Compatibility_Klarna_Checkout_For_WooCommerce',
 				)
 			);
 
