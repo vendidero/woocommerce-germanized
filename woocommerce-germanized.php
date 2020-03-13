@@ -1085,6 +1085,8 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 				}
 			}
 
+			$mails['WC_GZD_Email_Customer_SEPA_Direct_Debit_Mandate'] = include 'includes/emails/class-wc-gzd-email-customer-sepa-direct-debit-mandate.php';
+
 			return $mails;
 		}
 

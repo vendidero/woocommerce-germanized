@@ -153,7 +153,6 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 		) );
 		add_action( 'woocommerce_thankyou_direct-debit', array( $this, 'thankyou_page' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'payment_scripts' ) );
-		add_filter( 'woocommerce_email_classes', array( $this, 'add_email_template' ) );
 
 		add_action( 'woocommerce_gzd_legal_checkbox_checkout_sepa_validate', array( $this, 'validate_checkbox' ) );
 		add_action( 'woocommerce_gzd_legal_checkbox_pay_for_order_sepa_validate', array(
@@ -727,12 +726,6 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 			 */
 			do_action( 'woocommerce_gzd_direct_debit_user_data_updated', $order, $user_id, $this );
 		}
-	}
-
-	public function add_email_template( $mails ) {
-		$mails['WC_GZD_Email_Customer_SEPA_Direct_Debit_Mandate'] = include WC_germanized()->plugin_path() . '/includes/emails/class-wc-gzd-email-customer-sepa-direct-debit-mandate.php';
-
-		return $mails;
 	}
 
 	public function generate_mandate() {
