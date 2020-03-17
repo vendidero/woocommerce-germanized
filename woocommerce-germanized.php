@@ -619,6 +619,11 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 		public function filter_templates( $template, $template_name, $template_path ) {
 			$template_path = $this->template_path();
 
+			// Tweak to make sure Germanized variation script loads when woocommerce_variable_add_to_cart() is called (just like Woo does)
+			if ( 'single-product/add-to-cart/variable.php' === $template_name ) {
+			    wp_enqueue_script( 'wc-gzd-add-to-cart-variation' );
+            }
+
 			if ( ! isset( $GLOBALS['wc_gzd_template_name'] ) || empty( $GLOBALS['wc_gzd_template_name'] ) || ! is_array( $GLOBALS['wc_gzd_template_name'] ) ) {
 				$GLOBALS['wc_gzd_template_name'] = array();
 			}
