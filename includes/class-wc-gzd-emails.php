@@ -408,16 +408,17 @@ class WC_GZD_Emails {
 
 	public function maybe_disable_order_paid_email_notification_queued( $send, $filter, $args ) {
 		if ( isset( $args[0] ) && is_numeric( $args[0] ) ) {
-			$order = wc_get_order( absint( $args[0] ) );
 
-			if ( $order ) {
+			if ( $order = wc_get_order( absint( $args[0] ) ) ) {
 
-				$method               = $order->get_payment_method();
-				$current_status       = $order->get_status();
-				$disable_for_gateways = $this->get_gateways_disabling_paid_for_order_mail();
+				if ( is_callable( array( $order, 'get_payment_method' ) ) ) {
+					$method               = $order->get_payment_method();
+					$current_status       = $order->get_status();
+					$disable_for_gateways = $this->get_gateways_disabling_paid_for_order_mail();
 
-				if ( in_array( $method, $disable_for_gateways ) && $filter === 'woocommerce_order_status_pending_to_processing' ) {
-					return false;
+					if ( in_array( $method, $disable_for_gateways ) && $filter === 'woocommerce_order_status_pending_to_processing' ) {
+						return false;
+					}
 				}
 			}
 		}
@@ -427,15 +428,21 @@ class WC_GZD_Emails {
 
 	public function maybe_disable_order_paid_email_notification( $order_id, $order = false ) {
 		if ( $order = wc_get_order( $order_id ) ) {
-			$method               = $order->get_payment_method();
-			$disable_for_gateways = $this->get_gateways_disabling_paid_for_order_mail();
+			if ( is_callable( array( $order, 'get_payment_method' ) ) ) {
 
-			if ( in_array( $method, $disable_for_gateways ) ) {
-				$emails = WC()->mailer()->emails;
+				$method = $order->get_payment_method();
+				$disable_for_gateways = $this->get_gateways_disabling_paid_for_order_mail();
 
-				if ( isset( $emails['WC_GZD_Email_Customer_Paid_For_Order'] ) ) {
-					// Remove notification
-					remove_action( 'woocommerce_order_status_pending_to_processing_notification', array( $emails['WC_GZD_Email_Customer_Paid_For_Order'], 'trigger' ), 30 );
+				if ( in_array( $method, $disable_for_gateways ) ) {
+					$emails = WC()->mailer()->emails;
+
+					if ( isset( $emails['WC_GZD_Email_Customer_Paid_For_Order'] ) ) {
+						// Remove notification
+						remove_action( 'woocommerce_order_status_pending_to_processing_notification', array(
+							$emails['WC_GZD_Email_Customer_Paid_For_Order'],
+							'trigger'
+						), 30 );
+					}
 				}
 			}
 		}
