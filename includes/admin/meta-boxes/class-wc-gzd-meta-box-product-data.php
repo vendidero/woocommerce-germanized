@@ -36,6 +36,7 @@ class WC_Germanized_Meta_Box_Product_Data {
 		}
 
 		add_action( 'woocommerce_before_product_object_save', array( __CLASS__, 'on_save' ), 10, 1 );
+		add_action( 'woocommerce_after_product_object_save', array( __CLASS__, 'after_save' ), 10, 1 );
 
 		/**
 		 * Product duplication
@@ -57,6 +58,87 @@ class WC_Germanized_Meta_Box_Product_Data {
 	}
 
 	/**
+     * This method adjusts product data after saving a newly created product (e.g. through REST API).
+     *
+	 * @param WC_Product $product
+	 */
+	public static function after_save( $product ) {
+
+	    // Do not update products on checkout - seems to cause problems with WPML
+		if ( function_exists( 'is_checkout' ) && is_checkout() ) {
+			return;
+		}
+
+		if ( $product && $product->get_id() > 0 && 'yes' === $product->get_meta( '_gzd_needs_after_save' ) ) {
+		    self::adjust_product( $product );
+
+		    $product->delete_meta_data( '_gzd_needs_after_save' );
+		    $product->save();
+		}
+    }
+
+	/**
+	 * @param WC_Product $product
+	 */
+    protected static function adjust_product( $product ) {
+
+	    $gzd_product = wc_gzd_get_product( $product );
+	    $taxonomies  = array( 'product_delivery_time' );
+	    $has_changed = false;
+
+	    foreach ( $taxonomies as $taxonomy ) {
+		    $term_data = $product->get_meta( '_' . $taxonomy, true );
+
+		    if ( $term_data ) {
+			    $term_data = ( is_numeric( $term_data ) ? absint( $term_data ) : $term_data );
+			    wp_set_object_terms( $product->get_id(), $term_data, $taxonomy );
+
+			    $product->delete_meta_data( '_' . $taxonomy );
+
+			    $has_changed = true;
+		    } elseif ( $product->get_meta( '_delete_' . $taxonomy, true ) ) {
+			    wp_delete_object_term_relationships( $product->get_id(), $taxonomy );
+
+			    $product->delete_meta_data( '_delete_' . $taxonomy );
+
+			    $has_changed = true;
+		    }
+	    }
+
+	    // Update unit price based on whether the product is on sale or not
+	    if ( $gzd_product->has_unit() ) {
+
+		    /**
+		     * Filter to adjust unit price data before saving a product.
+		     *
+		     * @param array $data The unit price data.
+		     * @param WC_Product $product The product object.
+		     *
+		     * @since 1.8.5
+		     */
+		    $data = apply_filters( 'woocommerce_gzd_save_display_unit_price_data', array(
+			    '_unit_price_regular' => $gzd_product->get_unit_price_regular(),
+			    '_unit_price_sale'    => $gzd_product->get_unit_price_sale(),
+		    ), $product );
+
+		    // Make sure we update automatically calculated prices
+		    $gzd_product->set_unit_price_regular( $data['_unit_price_regular'] );
+		    $gzd_product->set_unit_price_sale( $data['_unit_price_sale'] );
+
+		    // Lets update the display price
+		    if ( $product->is_on_sale() ) {
+			    $gzd_product->set_unit_price( $data['_unit_price_sale'] );
+		    } else {
+			    $gzd_product->set_unit_price( $data['_unit_price_regular'] );
+		    }
+
+		    $has_changed = true;
+	    }
+
+	    return $has_changed;
+    }
+
+	/**
 	 * Manipulating WooCommerce CRUD objects through REST API (saving) doesn't work
 	 * because we need to use filters which do only receive the product id as a parameter and not the actual
 	 * manipulated instance. That's why we need to temporarily store term data as product meta.
@@ -71,54 +153,11 @@ class WC_Germanized_Meta_Box_Product_Data {
 			return;
 		}
 
-		$gzd_product = wc_gzd_get_product( $product );
-
 		if ( $product && $product->get_id() > 0 ) {
-			$taxonomies = array( 'product_delivery_time' );
-
-			foreach ( $taxonomies as $taxonomy ) {
-				$term_data = $product->get_meta( '_' . $taxonomy, true );
-
-				if ( $term_data ) {
-					$term_data = ( is_numeric( $term_data ) ? absint( $term_data ) : $term_data );
-					wp_set_object_terms( $product->get_id(), $term_data, $taxonomy );
-
-					$product->delete_meta_data( '_' . $taxonomy );
-				} elseif ( $product->get_meta( '_delete_' . $taxonomy, true ) ) {
-					wp_delete_object_term_relationships( $product->get_id(), $taxonomy );
-
-					$product->delete_meta_data( '_delete_' . $taxonomy );
-				}
-			}
-
-			// Update unit price based on whether the product is on sale or not
-			if ( $gzd_product->has_unit() ) {
-
-				/**
-				 * Filter to adjust unit price data before saving a product.
-				 *
-				 * @param array $data The unit price data.
-				 * @param WC_Product $product The product object.
-				 *
-				 * @since 1.8.5
-				 */
-				$data = apply_filters( 'woocommerce_gzd_save_display_unit_price_data', array(
-					'_unit_price_regular' => $gzd_product->get_unit_price_regular(),
-					'_unit_price_sale'    => $gzd_product->get_unit_price_sale(),
-				), $product );
-
-				// Make sure we update automatically calculated prices
-				$gzd_product->set_unit_price_regular( $data['_unit_price_regular'] );
-				$gzd_product->set_unit_price_sale( $data['_unit_price_sale'] );
-
-				// Lets update the display price
-				if ( $product->is_on_sale() ) {
-					$gzd_product->set_unit_price( $data['_unit_price_sale'] );
-				} else {
-					$gzd_product->set_unit_price( $data['_unit_price_regular'] );
-				}
-			}
-		}
+			self::adjust_product( $product );
+		} elseif( $product && $product->get_id() <= 0 ) {
+		    $product->update_meta_data( '_gzd_needs_after_save', 'yes' );
+        }
 	}
 
 	public static function service_type( $types ) {

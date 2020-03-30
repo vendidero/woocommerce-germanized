@@ -47,6 +47,80 @@ class WC_GZD_Products_API extends WC_GZD_REST_Unit_Test_Case {
 		$simple->delete( true );
 	}
 
+	public function test_create_product() {
+		wp_set_current_user( $this->user );
+
+		$term      = wp_insert_term( '3-4 days', 'product_delivery_time', array( 'slug' => '3-4-days' ) );
+		$sale_term = wp_insert_term( 'Test Sale', 'product_price_label', array( 'slug' => 'test-sale' ) );
+
+		// Create simple.
+		$request = new WP_REST_Request( 'POST', '/wc/v3/products' );
+		$request->set_body_params(
+			array(
+				'type'                     => 'simple',
+				'name'                     => 'Test Simple Product',
+				'sku'                      => 'DUMMY SKU SIMPLE API',
+				'regular_price'            => '10',
+				'sale_price'               => '5',
+				'shipping_class'           => 'test',
+				'delivery_time'            => array( 'id' => $term['term_id'] ),
+				'unit_price'               => array( 'price_regular' => '80.0', 'price_sale' => '70.0' ),
+				'mini_desc'                => 'This is a test',
+				'sale_price_label'         => array( 'id' => $sale_term['term_id'] ),
+				'sale_price_regular_label' => array( 'id' => $sale_term['term_id'] ),
+				'differential_taxation'    => false,
+			)
+		);
+
+		$response = $this->server->dispatch( $request );
+		$data     = $response->get_data();
+
+		$this->assertEquals( 'test-sale', $data['sale_price_label']['slug'] );
+		$this->assertEquals( '3-4-days', $data['delivery_time']['slug'] );
+		$this->assertEquals( 'test-sale', $data['sale_price_regular_label']['slug'] );
+		$this->assertEquals( '80.0', $data['unit_price']['price_regular'] );
+		$this->assertEquals( '70.0', $data['unit_price']['price_sale'] );
+	}
+
+	public function test_create_product_variation() {
+		wp_set_current_user( $this->user );
+
+		$variable  = WC_GZD_Helper_Product::create_variation_product();
+		$term      = wp_insert_term( '3-4 days', 'product_delivery_time', array( 'slug' => '3-4-days' ) );
+		$sale_term = wp_insert_term( 'Test Sale', 'product_price_label', array( 'slug' => 'test-sale' ) );
+
+		$request = new WP_REST_Request( 'POST', '/wc/v3/products/' . $variable->get_id() . '/variations' );
+		$request->set_body_params(
+			array(
+				'sku'           => 'DUMMY SKU VARIABLE MEDIUM',
+				'regular_price' => '12',
+				'sale_price'    => '10',
+				'description'   => 'A medium size.',
+				'attributes'    => array(
+					array(
+						'name'   => 'pa_size',
+						'option' => 'medium',
+					),
+				),
+				'delivery_time'            => array( 'id' => $term['term_id'] ),
+				'unit_price'               => array( 'price_regular' => '80.0', 'price_sale' => '70.0' ),
+				'mini_desc'                => 'This is a test',
+				'sale_price_label'         => array( 'id' => $sale_term['term_id'] ),
+				'sale_price_regular_label' => array( 'id' => $sale_term['term_id'] ),
+				'differential_taxation'    => false,
+			)
+		);
+
+		$response  = $this->server->dispatch( $request );
+		$variation = $response->get_data();
+
+		$this->assertEquals( 'test-sale', $variation['sale_price_label']['slug'] );
+		$this->assertEquals( '3-4-days', $variation['delivery_time']['slug'] );
+		$this->assertEquals( 'test-sale', $variation['sale_price_regular_label']['slug'] );
+		$this->assertEquals( '80.0', $variation['unit_price']['price_regular'] );
+		$this->assertEquals( '70.0', $variation['unit_price']['price_sale'] );
+	}
+
 	/**
 	 * Test editing a single product. Tests multiple product types.
 	 *
