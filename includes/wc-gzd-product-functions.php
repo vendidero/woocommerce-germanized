@@ -94,6 +94,8 @@ function wc_gzd_get_small_business_product_notice() {
 }
 
 function wc_gzd_is_revocation_exempt( $product, $type = 'digital' ) {
+	$is_exempt = false;
+
 	if ( 'digital' === $type && ( $checkbox = wc_gzd_get_legal_checkbox( 'download' ) ) ) {
 
 		/**
@@ -107,33 +109,46 @@ function wc_gzd_is_revocation_exempt( $product, $type = 'digital' ) {
 		 */
 		$types = apply_filters( 'woocommerce_gzd_digital_product_types', $checkbox->types );
 
-		if ( ! $checkbox->is_enabled() ) {
-			return false;
-		}
+		if ( $checkbox->is_enabled() ) {
 
-		if ( empty( $types ) ) {
-			return false;
-		} elseif ( ! is_array( $types ) ) {
-			$types = array( $types );
-		}
+			if ( ! empty( $types ) ) {
+				if ( ! is_array( $types ) ) {
+					$types = array( $types );
+				}
 
-		foreach ( $types as $revo_type ) {
-			if ( wc_gzd_product_matches_extended_type( $revo_type, $product ) ) {
-				return true;
+				foreach ( $types as $revo_type ) {
+
+					/**
+					 * As soon as one type matches, mark the product as exemption
+					 */
+					if ( wc_gzd_product_matches_extended_type( $revo_type, $product ) ) {
+						$is_exempt = true;
+						break;
+					}
+				}
 			}
 		}
+
 	} elseif ( 'service' === $type && ( $checkbox = wc_gzd_get_legal_checkbox( 'service' ) ) ) {
 
-		if ( ! $checkbox->is_enabled() ) {
-			return false;
-		}
-
-		if ( wc_gzd_get_gzd_product( $product )->is_service() ) {
-			return true;
+		if ( $checkbox->is_enabled() ) {
+			if ( wc_gzd_get_gzd_product( $product )->is_service() ) {
+				$is_exempt = true;
+			}
 		}
 	}
 
-	return false;
+	/**
+	 * Filter that allows adjusting whether a certain product is a revocation exempt in terms of
+	 * a certain type (e.g. digital or service).
+	 *
+	 * @param boolean    $is_exempt Whether the product is an exempt or not.
+	 * @param WC_Product $product The product object.
+	 * @param string     $type The exempt type e.g. digital or service.
+	 *
+	 * @since 3.1.5
+	 */
+	return apply_filters( 'woocommerce_gzd_product_is_revocation_exempt', $is_exempt, $product, $type );
 }
 
 function wc_gzd_needs_age_verification( $product ) {
