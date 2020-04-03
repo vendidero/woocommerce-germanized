@@ -90,6 +90,22 @@ if ( defined( 'WC_GZD_REMOVE_ALL_DATA' ) && true === WC_GZD_REMOVE_ALL_DATA ) {
 		}
 	}
 
+	// Remove Tables
+	$custom_tables = array(
+		"{$wpdb->prefix}woocommerce_gzd_dhl_labels",
+		"{$wpdb->prefix}woocommerce_gzd_dhl_labelmeta",
+		"{$wpdb->prefix}woocommerce_gzd_shipment_items",
+		"{$wpdb->prefix}woocommerce_gzd_shipment_itemmeta",
+		"{$wpdb->prefix}woocommerce_gzd_shipments",
+		"{$wpdb->prefix}woocommerce_gzd_shipmentmeta",
+		"{$wpdb->prefix}woocommerce_gzd_shipping_provider",
+		"{$wpdb->prefix}woocommerce_gzd_shipping_providermeta"
+	);
+
+	foreach( $custom_tables as $table ) {
+		$result = $wpdb->query( "DROP TABLE IF EXISTS " . $table );
+	}
+
 	// Clear any cached data that has been removed
 	wp_cache_flush();
 }

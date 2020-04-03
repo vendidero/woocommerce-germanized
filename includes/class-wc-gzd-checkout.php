@@ -113,6 +113,7 @@ class WC_GZD_Checkout {
 		add_action( 'wp', array( $this, 'force_pay_order_redirect' ), 15 );
 
 		if ( 'yes' === get_option( 'woocommerce_gzd_checkout_disallow_belated_payment_method_selection' ) ) {
+
 			add_filter( 'woocommerce_get_checkout_payment_url', array(
 				$this,
 				'set_payment_url_to_force_payment'
