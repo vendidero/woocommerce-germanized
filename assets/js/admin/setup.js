@@ -1,7 +1,7 @@
 /*global woocommerce_admin_meta_boxes, woocommerce_admin, accounting, woocommerce_admin_meta_boxes_order */
 window.germanized = window.germanized || {};
 
-( function( $, wp, germanized ) {
+( function( $, germanized ) {
 
     /**
      * Order Data Panel
@@ -24,4 +24,4 @@ window.germanized = window.germanized || {};
         germanized.setup.init();
     });
 
-})( jQuery, wp, window.germanized );
+})( jQuery, window.germanized );

@@ -86,7 +86,8 @@ if ( ! class_exists( 'WC_GZD_Admin_Setup_Wizard' ) ) :
 				),
 			);
 
-			if ( class_exists( '\Vendidero\Germanized\DHL\Package' ) && Package::has_dependencies() && ! get_option( 'woocommerc_gzd_dhl_import_finished' ) ) {
+			if ( class_exists( '\Vendidero\Germanized\DHL\Package' ) && Package::has_dependencies() && ! get_option( 'woocommerc_gzd_dhl_import_finished' ) && 'yes' !== get_option( 'woocommerce_gzd_dhl_enable' ) ) {
+
 			    $default_steps['dhl'] = array(
                     'name'    => __( 'DHL', 'woocommerce-germanized' ),
 					'view'    => 'dhl.php',
@@ -172,9 +173,9 @@ if ( ! class_exists( 'WC_GZD_Admin_Setup_Wizard' ) ) :
 					),
 					array(
 						'title' 	=> __( 'Double Opt In', 'woocommerce-germanized' ),
-						'desc' 		=> __( 'Enable customer double opt in during registration.', 'woocommerce-germanized' ) . '<div class="wc-gzd-additional-desc">' . sprintf( __( 'If customer chooses to create a customer account an email with an activation link will be sent by mail. Customer account will be marked as activated if user clicks on the link within the email. More information on this topic can be found <a href="%s" target="_blank">here</a>.', 'woocommerce-germanized' ), 'http://t3n.de/news/urteil-anmeldebestatigungen-double-opt-in-pflicht-592304/' ) . '</div>',
+						'desc' 		=> __( 'Enable customer double opt in during registration.', 'woocommerce-germanized' ) . '<div class="wc-gzd-additional-desc">' . sprintf( __( 'Sends an email to the customer after registration to verify his account. <strong>By default unactivated customers will be deleted after 7 days</strong>. You may adjust your DOI <a href="%s" target="_blank">settings</a> accordingly.', 'woocommerce-germanized' ), admin_url( 'admin.php?page=wc-settings&tab=germanized-double_opt_in' ) ) . '</div>',
 						'id' 		=> 'woocommerce_gzd_customer_activation',
-						'default'	=> 'yes',
+						'default'	=> 'no',
 						'type' 		=> 'gzd_toggle',
 					),
 					array( 'type' => 'sectionend', 'id' => 'setting_options' ),
@@ -572,8 +573,9 @@ if ( ! class_exists( 'WC_GZD_Admin_Setup_Wizard' ) ) :
 			$redirect 	 = $this->get_step_url( $this->get_next_step() );
 			$current_url = $this->get_step_url( $this->step );
 			$settings    = $this->get_settings( $this->step );
+			$is_enabled  = get_option( 'woocommerce_gzd_dhl_enable' );
 
-			if ( Importer::is_available() ) {
+			if ( 'yes' !== $is_enabled && Importer::is_available() ) {
 			    WC_GZD_Admin::instance()->import_dhl_settings();
 			} elseif ( ! empty( $settings) ) {
 			     WC_Admin_Settings::save_fields( $settings );
