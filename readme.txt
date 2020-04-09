@@ -5,7 +5,7 @@ Requires at least: 4.9
 Tested up to: 5.4
 WC requires at least: 3.4
 WC tested up to: 4.0
-Stable tag: 3.1.4
+Stable tag: 3.1.5
 Requires PHP: 5.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -189,6 +189,17 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 5. Manage shipments for orders
 
 == Changelog ==
+
+= 3.1.5 =
+* Improvement: By default disable DOI feature to make sure admins receive warning upon activation
+* Improvement: Better revocation exempt check. Added new filter woocommerce_gzd_product_is_revocation_exempt
+* Improvement: Double check order when order paid notification is queued
+* Improvement: Klarna Checkout compatibility script to enable Germanized checkboxes (+ validation) during checkout
+* Improvement: Move email class registration away from payment method implementation
+* Improvement: Shipment weight + unit formatting
+* Tweak: Enqueue variable product JS file as soon as Woo's file is included
+* Fix: REST API delivery, unit price update for variations
+* Fix: PHP 7.4 deprecated Unparenthesized warning
 
 = 3.1.4 =
 * Improvement: Woo 4.0 support

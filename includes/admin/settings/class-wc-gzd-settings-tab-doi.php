@@ -62,7 +62,7 @@ class WC_GZD_Settings_Tab_DOI extends WC_GZD_Settings_Tab {
 				                              'step'                                             => 1,
 				                              'data-show_if_woocommerce_gzd_customer_activation' => ''
 				),
-				'default'           => 0,
+				'default'           => 7,
 			),
 
 			array( 'type' => 'sectionend', 'id' => 'doi_options' ),
