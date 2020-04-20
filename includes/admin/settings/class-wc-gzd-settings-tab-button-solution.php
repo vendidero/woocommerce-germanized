@@ -120,7 +120,7 @@ class WC_GZD_Settings_Tab_Button_Solution extends WC_GZD_Settings_Tab {
 				'title'    => __( 'Hide Shipping Select', 'woocommerce-germanized' ),
 				'desc'     => __( 'Hide shipping rate selection from checkout.', 'woocommerce-germanized' ),
 				'id'       => 'woocommerce_gzd_display_checkout_shipping_rate_select',
-				'default'  => 'yes',
+				'default'  => 'no',
 				'type'     => 'gzd_toggle',
 				'desc_tip' => __( 'This option will hide shipping rate selection from checkout. By then customers will only be able to change their shipping rate on cart page.', 'woocommerce-germanized' ),
 			),

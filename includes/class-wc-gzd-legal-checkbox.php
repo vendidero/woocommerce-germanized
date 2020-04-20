@@ -295,8 +295,19 @@ class WC_GZD_Legal_Checkbox {
 	 *
 	 * @return array
 	 */
-	public function get_Label_args() {
-		return $this->settings['label_args'];
+	public function get_label_args() {
+		$id = $this->get_id();
+
+		/**
+		 * Filter available label arguments for a legal checkbox.
+		 * `$id` equals the checkbox id.
+		 *
+		 * @param string[] $label_args Label arguments as key => value.
+		 * @param WC_GZD_Legal_Checkbox $checkbox The checkbox instance.
+		 *
+		 * @since 3.1.6
+		 */
+		return apply_filters( "woocommerce_gzd_legal_checkbox_{$id}_label_args", $this->settings['label_args'], $this );
 	}
 
 	/**

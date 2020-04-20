@@ -34,7 +34,8 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 			'3.0.0' => 'updates/woocommerce-gzd-update-3.0.0.php',
 			'3.0.1' => 'updates/woocommerce-gzd-update-3.0.1.php',
 			'3.0.6' => 'updates/woocommerce-gzd-update-3.0.6.php',
-			'3.0.8' => 'updates/woocommerce-gzd-update-3.0.8.php'
+			'3.0.8' => 'updates/woocommerce-gzd-update-3.0.8.php',
+			'3.1.6' => 'updates/woocommerce-gzd-update-3.1.6.php'
 		);
 
 		/**
