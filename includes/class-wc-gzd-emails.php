@@ -512,6 +512,17 @@ class WC_GZD_Emails {
 		}
 
 		/**
+		 * Triggers after WooCommerce has processed the order via checkout and payment gateway has been processed.
+		 *
+		 * This hook may be used to find a uniform way to process orders after the payment method has been triggered.
+		 *
+		 * @param WC_Order $order The order object.
+		 *
+		 * @since 3.1.6
+		 */
+		do_action( 'woocommerce_gzd_checkout_order_before_confirmation', $order );
+
+		/**
 		 * Last chance to force disabling the order confirmation for a certain order object.
 		 *
 		 * @param bool $disable Whether to disable notification or not.

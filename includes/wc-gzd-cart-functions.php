@@ -28,10 +28,10 @@ function wc_gzd_cart_product_differential_taxation_mark( $title, $cart_item, $ca
 	$product      = false;
 	$product_mark = '';
 
-	if ( isset( $cart_item['data'] ) ) {
-		$product = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
-	} elseif ( is_a( $cart_item, 'WC_Order_Item_Product' ) ) {
+	if ( is_a( $cart_item, 'WC_Order_Item_Product' ) ) {
 		$product = $cart_item->get_product();
+	} elseif ( isset( $cart_item['data'] ) ) {
+		$product = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
 	}
 
 	if ( $product ) {
@@ -101,20 +101,20 @@ function wc_gzd_cart_product_item_desc( $title, $cart_item, $cart_item_key = '' 
 		$echo          = true;
 	}
 
-	if ( isset( $cart_item['data'] ) ) {
+	if ( is_a( $cart_item, 'WC_Order_Item_Product' ) ) {
+		$product = $cart_item->get_product();
+
+		if ( is_a( $product, 'WC_Product' ) && wc_gzd_get_gzd_product( $product )->get_mini_desc() ) {
+			$product_desc = wc_gzd_get_gzd_product( $product )->get_formatted_cart_description();
+		}
+	} elseif ( isset( $cart_item['data'] ) ) {
 		$product = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
 
-		if ( wc_gzd_get_product( $product )->get_cart_description() ) {
+		if ( is_a( $product, 'WC_Product' ) && wc_gzd_get_product( $product )->get_cart_description() ) {
 			$product_desc = wc_gzd_get_product( $product )->get_formatted_cart_description();
 		}
 	} elseif ( isset( $cart_item['item_desc'] ) ) {
 		$product_desc = $cart_item['item_desc'];
-	} elseif ( is_a( $cart_item, 'WC_Order_Item_Product' ) ) {
-		$product = $cart_item->get_product();
-
-		if ( $product && wc_gzd_get_gzd_product( $product )->get_mini_desc() ) {
-			$product_desc = wc_gzd_get_gzd_product( $product )->get_formatted_cart_description();
-		}
 	}
 
 	if ( ! empty( $product_desc ) ) {
@@ -131,12 +131,15 @@ function wc_gzd_cart_product_item_desc( $title, $cart_item, $cart_item_key = '' 
 function wc_gzd_cart_product_attributes( $title, $cart_item, $cart_item_key = '' ) {
 	$item_data = array();
 
-	if ( isset( $cart_item['data'] ) ) {
-		$product   = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
-		$item_data = wc_gzd_get_gzd_product( $product )->get_checkout_attributes( array(), isset( $cart_item['variation'] ) ? $cart_item['variation'] : array() );
-	} elseif ( is_a( $cart_item, 'WC_Order_Item_Product' ) ) {
+	if ( is_a( $cart_item, 'WC_Order_Item_Product' ) ) {
 		if ( $product = $cart_item->get_product() ) {
 			$item_data = wc_gzd_get_product( $product )->get_checkout_attributes();
+		}
+	} elseif ( isset( $cart_item['data'] ) ) {
+		$product = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
+
+		if ( is_a( $product, 'WC_Product' ) ) {
+			$item_data = wc_gzd_get_gzd_product( $product )->get_checkout_attributes( array(), isset( $cart_item['variation'] ) ? $cart_item['variation'] : array() );
 		}
 	}
 
@@ -188,21 +191,21 @@ function wc_gzd_cart_product_delivery_time( $title, $cart_item, $cart_item_key =
 		$echo          = true;
 	}
 
-	if ( isset( $cart_item['data'] ) ) {
-		$product = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
-
-		if ( wc_gzd_get_product( $product )->get_delivery_time_term() ) {
-			$delivery_time = wc_gzd_get_product( $product )->get_delivery_time_html();
-		}
-
-	} elseif ( isset( $cart_item['delivery_time'] ) ) {
-		$delivery_time = $cart_item['delivery_time'];
-	} elseif ( is_a( $cart_item, 'WC_Order_Item_Product' ) ) {
+	if ( is_a( $cart_item, 'WC_Order_Item_Product' ) ) {
 		$product = $cart_item->get_product();
 
 		if ( $product && wc_gzd_get_product( $product )->get_delivery_time_term() ) {
 			$delivery_time = wc_gzd_get_product( $product )->get_delivery_time_html();
 		}
+	} elseif ( isset( $cart_item['data'] ) ) {
+		$product = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
+
+		if ( is_a( $product, 'WC_Product' ) && wc_gzd_get_product( $product )->get_delivery_time_term() ) {
+			$delivery_time = wc_gzd_get_product( $product )->get_delivery_time_html();
+		}
+
+	} elseif ( isset( $cart_item['delivery_time'] ) ) {
+		$delivery_time = $cart_item['delivery_time'];
 	}
 
 	if ( ! empty( $delivery_time ) ) {
@@ -235,20 +238,20 @@ function wc_gzd_cart_product_unit_price( $price, $cart_item, $cart_item_key = ''
 		$echo          = true;
 	}
 
-	if ( isset( $cart_item['data'] ) ) {
-		$product = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
-
-		if ( wc_gzd_get_product( $product )->has_unit() ) {
-			$unit_price = wc_gzd_get_product( $product )->get_unit_price_html( false );
-		}
-	} elseif ( isset( $cart_item['unit_price'] ) ) {
-		$unit_price = $cart_item['unit_price'];
-	} elseif ( is_a( $cart_item, 'WC_Order_Item_Product' ) ) {
+	if ( is_a( $cart_item, 'WC_Order_Item_Product' ) ) {
 		$product = $cart_item->get_product();
 
 		if ( $product && wc_gzd_get_product( $product )->has_unit() ) {
 			$unit_price = wc_gzd_get_product( $product )->get_unit_price_html( false );
 		}
+	} elseif ( isset( $cart_item['data'] ) ) {
+		$product = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
+
+		if ( is_a( $product, 'WC_Product' ) && wc_gzd_get_product( $product )->has_unit() ) {
+			$unit_price = wc_gzd_get_product( $product )->get_unit_price_html( false );
+		}
+	} elseif ( isset( $cart_item['unit_price'] ) ) {
+		$unit_price = $cart_item['unit_price'];
 	}
 
 	if ( ! empty( $unit_price ) ) {
@@ -281,20 +284,20 @@ function wc_gzd_cart_product_units( $title, $cart_item, $cart_item_key = '' ) {
 		$echo          = true;
 	}
 
-	if ( isset( $cart_item['data'] ) ) {
-		$product = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
-
-		if ( wc_gzd_get_product( $product )->has_unit_product() ) {
-			$units = wc_gzd_get_gzd_product( $product )->get_unit_product_html();
-		}
-	} elseif ( isset( $cart_item['units'] ) ) {
-		$units = $cart_item['units'];
-	} elseif ( is_a( $cart_item, 'WC_Order_Item_Product' ) ) {
+	if ( is_a( $cart_item, 'WC_Order_Item_Product' ) ) {
 		$product = $cart_item->get_product();
 
 		if ( $product && wc_gzd_get_product( $product )->has_unit_product() ) {
 			$units = wc_gzd_get_product( $product )->get_unit_product_html();
 		}
+	} elseif ( isset( $cart_item['data'] ) ) {
+		$product = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
+
+		if ( is_a( $product, 'WC_Product' ) && wc_gzd_get_product( $product )->has_unit_product() ) {
+			$units = wc_gzd_get_gzd_product( $product )->get_unit_product_html();
+		}
+	} elseif ( isset( $cart_item['units'] ) ) {
+		$units = $cart_item['units'];
 	}
 
 	if ( ! empty( $units ) ) {
@@ -326,7 +329,7 @@ function wc_gzd_cart_needs_age_verification( $items = false ) {
 				$_product = apply_filters( 'woocommerce_cart_item_product', $values['data'], $values, $cart_item_key );
 			}
 
-			if ( $_product && wc_gzd_needs_age_verification( $_product ) ) {
+			if ( is_a( $_product, 'WC_Product' ) && wc_gzd_needs_age_verification( $_product ) ) {
 				$needs_age_verification = true;
 			}
 		}
@@ -378,7 +381,7 @@ function wc_gzd_cart_get_age_verification_min_age( $items = false ) {
 				$_product = apply_filters( 'woocommerce_cart_item_product', $values['data'], $values, $cart_item_key );
 			}
 
-			if ( $_product ) {
+			if ( is_a( $_product, 'WC_Product' ) ) {
 				$_gzd_product = wc_gzd_get_gzd_product( $_product );
 
 				if ( wc_gzd_needs_age_verification( $_product ) ) {
@@ -435,7 +438,7 @@ function wc_gzd_item_is_tax_share_exempt( $item, $type = 'shipping', $key = fals
 		$is_cart  = true;
 	}
 
-	if ( $_product ) {
+	if ( is_a( $_product, 'WC_Product' ) ) {
 
 	    if ( 'shipping' === $type ) {
 		    if ( $_product->is_virtual() || wc_gzd_get_product( $_product )->is_virtual_vat_exception() ) {
