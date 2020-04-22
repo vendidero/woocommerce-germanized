@@ -447,7 +447,10 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 		private function includes() {
 
 			include_once WC_GERMANIZED_ABSPATH . 'includes/wc-gzd-core-functions.php';
+			include_once WC_GERMANIZED_ABSPATH . 'includes/wc-gzd-cart-functions.php';
+			include_once WC_GERMANIZED_ABSPATH . 'includes/wc-gzd-order-functions.php';
 			include_once WC_GERMANIZED_ABSPATH . 'includes/wc-gzd-legacy-functions.php';
+
 			include_once WC_GERMANIZED_ABSPATH . 'includes/class-wc-gzd-install.php';
 
 			if ( is_admin() ) {
@@ -508,9 +511,6 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 
 			// API
 			include_once WC_GERMANIZED_ABSPATH . 'includes/api/class-wc-gzd-rest-api.php';
-
-			include_once WC_GERMANIZED_ABSPATH . 'includes/wc-gzd-cart-functions.php';
-			include_once WC_GERMANIZED_ABSPATH . 'includes/wc-gzd-order-functions.php';
 
 			include_once WC_GERMANIZED_ABSPATH . 'includes/emails/class-wc-gzd-email-helper.php';
 			include_once WC_GERMANIZED_ABSPATH . 'includes/class-wc-gzd-ajax.php';
