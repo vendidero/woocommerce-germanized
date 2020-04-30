@@ -2,7 +2,7 @@ jQuery( function( $ ) {
     if ( $( '#order_review' ).length > 0 && $( 'input#payment_method_' + wc_gzd_force_pay_order_params.gateway ).length > 0 ) {
 
         $payment_box = $( 'div.payment_method_' + wc_gzd_force_pay_order_params.gateway );
-        do_submit = true;
+        do_submit    = wc_gzd_force_pay_order_params.auto_submit;
 
         if ( $payment_box.length > 0 ) {
             if ( $payment_box.find( ':input' ).length > 0 ) {

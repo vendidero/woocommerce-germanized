@@ -969,6 +969,7 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 				$order    = wc_get_order( $order_id );
 
 				$this->localized_scripts[] = 'wc-gzd-force-pay-order';
+				$auto_submit			   = true;
 
 				/**
 				 * Filters script localization paramaters for the `wc-gzd-force-pay-order` script.
@@ -976,11 +977,11 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 				 * @param array $params Key => value array containing parameter name and value.
 				 *
 				 * @since 1.0.0
-				 *
 				 */
 				wp_localize_script( 'wc-gzd-force-pay-order', 'wc_gzd_force_pay_order_params', apply_filters( 'wc_gzd_force_pay_order_params', array(
 					'order_id'      => $order_id,
-					'gateway'       => $order->get_payment_method(),
+					'gateway'       => $order ? $order->get_payment_method() : '',
+					'auto_submit'	=> $auto_submit,
 					'block_message' => __( 'Pease wait while we are trying to redirect you to the payment provider.', 'woocommerce-germanized' ),
 				) ) );
 			}

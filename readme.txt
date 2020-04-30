@@ -5,7 +5,7 @@ Requires at least: 4.9
 Tested up to: 5.4
 WC requires at least: 3.4
 WC tested up to: 4.0
-Stable tag: 3.1.5
+Stable tag: 3.1.6
 Requires PHP: 5.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -189,6 +189,12 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 5. Manage shipments for orders
 
 == Changelog ==
+= 3.1.6 =
+* Improvement: Removed default shipping costs hiding option within checkout
+* Improvement: Order by order id within shipments table
+* Improvement: Added new columns to shipment table (hidden by default)
+* Improvement: By default do not create shipments to orders containing local pickup method
+* Fix: Removed DHL Wunschzeit - service was terminated on 2020/05/01
 
 = 3.1.5 =
 * Improvement: By default disable DOI feature to make sure admins receive warning upon activation
