@@ -151,6 +151,10 @@ install_deps() {
 	# install composer
 	cd "woocommerce/"
 
+	git fetch --tags --all
+    latestTag=$(git describe --tags `git rev-list --tags --max-count=1`)
+    git checkout $latestTag
+
     composer install
 
 	cd "$WP_CORE_DIR"
