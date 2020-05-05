@@ -14,7 +14,8 @@
     "build-watch": "grunt watch",
     "makepot": "grunt makepot",
     "deploy": "sh ./bin/deploy.sh",
-    "package-plugin": "./bin/build-plugin-zip.sh"
+    "package-plugin": "./bin/build-plugin-zip.sh",
+    "phpunit": "docker-compose up -d db && docker-compose up -d --build wordpress-unit-tests && docker exec -it --workdir /var/www/html/wp-content/plugins/woocommerce-germanized wordpress_test php ./vendor/bin/phpunit"
   },
   "devDependencies": {
     "autoprefixer": "9.6.1",
