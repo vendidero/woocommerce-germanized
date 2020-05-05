@@ -123,50 +123,24 @@ install_test_suite() {
 }
 
 install_deps() {
+    # get built plugin from .org
+	download https://downloads.wordpress.org/plugin/woocommerce.zip "$TMPDIR/woocommerce.zip"
+	unzip -q $TMPDIR/woocommerce.zip -d "$WP_CORE_DIR/wp-content/plugins"
+
+    WORKING_DIR="$PWD"
 
 	# Script Variables
-	WP_SITE_URL="http://local.wordpress.test"
 	BRANCH=$TRAVIS_BRANCH
 	REPO=$TRAVIS_REPO_SLUG
-	WORKING_DIR="$PWD"
 
+	# Get github version
 	if [ "$TRAVIS_PULL_REQUEST_BRANCH" != "" ]; then
 		BRANCH=$TRAVIS_PULL_REQUEST_BRANCH
 		REPO=$TRAVIS_PULL_REQUEST_SLUG
 	fi
 
-	# Set up WordPress using wp-cli
-	mkdir -p "$WP_CORE_DIR"
-	cd "$WP_CORE_DIR"
-
-	curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
-	php wp-cli.phar core config --dbname=$DB_NAME --dbuser=$DB_USER --dbpass=$DB_PASS --dbhost=$DB_HOST --dbprefix=wptests_
-	php wp-cli.phar core install --url="$WP_SITE_URL" --title="Example" --admin_user=admin --admin_password=password --admin_email=info@example.com --path=$WP_CORE_DIR --skip-email
-
-	# Install WooCommerce and WooCommerce Admin
-	cd "wp-content/plugins/"
-
-	git clone --depth 1 https://github.com/woocommerce/woocommerce.git
-
-	# install composer
-	cd "woocommerce/"
-
-	git fetch --tags --all
-    latestTag=$(git describe --tags `git rev-list --tags --max-count=1`)
-    git checkout $latestTag
-
-    composer install
-
-	cd "$WP_CORE_DIR"
-	php wp-cli.phar plugin activate woocommerce
-
-	if [ "$BRANCH" != "" ]; then
-		# Install the correct branch of the plugin, if running from Travis CI.
-		php wp-cli.phar plugin install https://github.com/$REPO/archive/$BRANCH.zip --activate
-	fi
-
-	# Back to original dir
-	cd "$WORKING_DIR"
+	git clone --depth 1 "https://github.com/woocommerce/woocommerce.git" "$TMPDIR/woocommerce-git"
+	mv "$TMPDIR/woocommerce-git/tests" "$WP_CORE_DIR/wp-content/plugins/woocommerce"
 }
 
 install_db() {
