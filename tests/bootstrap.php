@@ -61,7 +61,7 @@ class WC_GZD_Unit_Tests_Bootstrap {
 	function get_woo_dir() {
 		static $dir = '';
 		if ( $dir === '' ) {
-			if ( file_exists( WP_CONTENT_DIR . '/woocommerce/woocommerce.php' ) ) {
+			if ( defined( 'WP_CONTENT_DIR' ) && file_exists( WP_CONTENT_DIR . '/woocommerce/woocommerce.php' ) ) {
 				$dir = WP_CONTENT_DIR . '/woocommerce';
 				echo "Found WooCommerce plugin in content dir." . PHP_EOL;
 			} elseif ( file_exists( dirname( dirname( __DIR__ ) ) . '/woocommerce/woocommerce.php' ) ) {
