@@ -635,6 +635,14 @@ class WC_GZD_Checkout {
 		if ( ! empty( $fees ) ) {
 
 			$tax_shares    = wc_gzd_get_cart_tax_share( 'fee' );
+
+			/**
+			 * Do not calculate fee taxes if tax shares are empty
+			 */
+			if ( empty( $tax_shares ) ) {
+				return;
+			}
+
 			$fee_tax_total = 0;
 			$fee_tax_data  = array();
 			$new_fees      = array();
