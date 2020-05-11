@@ -608,6 +608,35 @@ class WC_GZD_Checkout {
 		return $val;
 	}
 
+	protected function remove_fee_taxes( $cart ) {
+		$fees = $cart->get_fees();
+
+		if ( ! empty( $fees ) ) {
+			$new_fees = array();
+
+			foreach( $fees as $key => $fee ) {
+
+				if ( $fee->taxable ) {
+					$fee->taxable  = false;
+					$fee->total    = wc_format_decimal( $fee->amount + $fee->tax, '' );
+					$fee->amount   = $fee->total;
+					$fee->tax      = 0;
+					$fee->tax_data = array();
+				}
+
+				$new_fees[ $key ] = $fee;
+			}
+
+			$cart->fees_api()->set_fees( $new_fees );
+			$cart->set_fee_tax( 0 );
+			$cart->set_fee_taxes( array() );
+
+			$fee_total = array_sum( wp_list_pluck( $new_fees, 'total' ) );
+
+			$cart->set_fee_total( wc_format_decimal( $fee_total, '' ) );
+		}
+	}
+
 	/**
 	 * Recalculate fee taxes to split tax based on different tax rates contained within cart
 	 *
@@ -634,12 +663,15 @@ class WC_GZD_Checkout {
 
 		if ( ! empty( $fees ) ) {
 
-			$tax_shares    = wc_gzd_get_cart_tax_share( 'fee' );
+			$tax_shares = wc_gzd_get_cart_tax_share( 'fee' );
 
 			/**
-			 * Do not calculate fee taxes if tax shares are empty
+			 * Do not calculate fee taxes if tax shares are empty (e.g. zero-taxes only).
+			 * In this case, remove fee taxes altogether and force gross price.
 			 */
 			if ( empty( $tax_shares ) ) {
+				$this->remove_fee_taxes( $cart );
+
 				return;
 			}
 
