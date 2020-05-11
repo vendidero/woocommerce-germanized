@@ -196,7 +196,17 @@ class WC_GZD_Legal_Checkbox {
 	 * @return array
 	 */
 	public function get_html_wrapper_classes() {
-		return $this->settings['html_wrapper_classes'];
+		$classes = $this->settings['html_wrapper_classes'];
+
+		if ( ! is_array( $classes ) ) {
+			$classes = array();
+		}
+
+		if ( $this->is_mandatory() ) {
+			$classes = array_replace( $classes, array( 'validate-required' ) );
+		}
+
+		return $classes;
 	}
 
 	/**
