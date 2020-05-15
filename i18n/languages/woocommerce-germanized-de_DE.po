@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce Germanized\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-01 12:09+0200\n"
-"PO-Revision-Date: 2020-05-01 12:09+0200\n"
+"POT-Creation-Date: 2020-05-13 17:34+0200\n"
+"PO-Revision-Date: 2020-05-13 17:34+0200\n"
 "Last-Translator: holzhannes <holzhannes@posteo.de>\n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -1033,8 +1033,8 @@ msgstr ""
 # @ woocommerce-germanized
 #: woocommerce-germanized-dhl/src/Admin/Settings.php:428
 msgctxt "dhl"
-msgid "Default weight"
-msgstr "Standardgewicht"
+msgid "Default weight (kg)"
+msgstr "Standardgewicht (kg)"
 
 #: woocommerce-germanized-dhl/src/Admin/Settings.php:430
 msgctxt "dhl"
@@ -1047,8 +1047,8 @@ msgstr ""
 
 #: woocommerce-germanized-dhl/src/Admin/Settings.php:439
 msgctxt "dhl"
-msgid "Minimum weight"
-msgstr "Mindestgewicht"
+msgid "Minimum weight (kg)"
+msgstr "Mindestgewicht (kg)"
 
 #: woocommerce-germanized-dhl/src/Admin/Settings.php:441
 msgctxt "dhl"
@@ -5511,7 +5511,7 @@ msgstr ""
 
 # @ woocommerce-germanized
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-pointers.php:96
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:763
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:773
 msgid "Status"
 msgstr "Status"
 
@@ -5795,7 +5795,7 @@ msgstr ""
 "Checkbox bearbeiten indem du auf den Link klickst."
 
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-checkboxes.php:62
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:799
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:809
 msgid "Label"
 msgstr "Beschriftung"
 
@@ -7366,14 +7366,14 @@ msgstr ""
 # @ woocommerce-germanized
 #: woocommerce-germanized/includes/admin/settings/views/html-admin-page-checkboxes.php:11
 #: woocommerce-germanized/includes/admin/settings/views/html-admin-settings-tabs.php:27
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:771
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:781
 msgid "Name"
 msgstr "Name"
 
 # @ woocommerce-germanized
 #: woocommerce-germanized/includes/admin/settings/views/html-admin-page-checkboxes.php:12
 #: woocommerce-germanized/includes/admin/settings/views/html-admin-settings-tabs.php:29
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:790
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:800
 #: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:886
 #: woocommerce-germanized/includes/gateways/invoice/class-wc-gzd-gateway-invoice.php:124
 msgid "Description"
@@ -7386,7 +7386,7 @@ msgstr "Aktiviert"
 
 # @ woocommerce-germanized
 #: woocommerce-germanized/includes/admin/settings/views/html-admin-page-checkboxes.php:14
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:827
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:837
 msgid "Mandatory"
 msgstr "Pflichtfeld"
 
@@ -8508,11 +8508,11 @@ msgid "Checkbox with name %s does already exist."
 msgstr "Eine Checkbox mit dem Namen %s existiert bereits."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:766
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:776
 msgid "Enable checkbox"
 msgstr "Checkbox aktivieren"
 
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:775
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:785
 msgid ""
 "Choose a name to identify your checkbox. Upon creating a new checkbox, this "
 "value is being used to generate the Id."
@@ -8520,11 +8520,11 @@ msgstr ""
 "Wähle einen Namen aus, um deine Checkbox zu identifizieren. Bei Erstellung "
 "einer neuen Checkbox wird dieser Wert verwendet um eine Id zu erstellen."
 
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:780
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:790
 msgid "Id"
 msgstr "Id"
 
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:784
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:794
 msgid ""
 "The checkbox Id is the unique indentifier which is used to identify the "
 "checkbox within the code. Cannot be edited after creating the checkbox."
@@ -8533,25 +8533,25 @@ msgstr ""
 "Code heraus zugreifbar zu machen. Kann nach dem Erstellen einer Checkbox "
 "nicht mehr verändert werden."
 
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:793
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:803
 msgid "Describe the use case of your checkbox."
 msgstr "Beschreibe hier den Use-Case deiner Checkbox."
 
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:803
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:813
 msgid "Choose a label to be inserted next to the checkbox."
 msgstr "Wähle eine Beschriftung aus, die neben der Checkbox platziert wird."
 
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:804
 #: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:814
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:824
 #, php-format
 msgid "You may use one of the following placeholders within the text: %s"
 msgstr "Du kannst einen der folgenden Platzhalter in deinem Text verwenden: %s"
 
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:809
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:819
 msgid "Error Message"
 msgstr "Fehlermeldung"
 
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:813
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:823
 msgid ""
 "Choose an error message to be shown when the user has not confirmed the "
 "checkbox."
@@ -8560,25 +8560,25 @@ msgstr ""
 "die Checkbox nicht bestätigt hat."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:819
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:829
 msgid "Hide input"
 msgstr "Ausblenden"
 
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:822
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:832
 msgid "Do only show a label and hide the actual checkbox."
 msgstr ""
 "Zeige lediglich die Beschriftung und entferne die eigentliche Checkbox."
 
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:830
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:840
 msgid "Mark the checkbox as mandatory."
 msgstr "Checkbox zum Pflichtfeld machen."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:835
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:845
 msgid "Locations"
 msgstr "Orte"
 
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:839
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:849
 msgid "Choose where to display your checkbox."
 msgstr "Wähle einen Ort aus, an dem die Checkbox platziert werden soll."
 

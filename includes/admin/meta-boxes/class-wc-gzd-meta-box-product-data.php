@@ -190,36 +190,41 @@ class WC_Germanized_Meta_Box_Product_Data {
 
 		echo '<div class="options_group show_if_simple show_if_external show_if_variable">';
 
-		woocommerce_wp_select( array( 'id'          => '_sale_price_label',
-		                              'label'       => __( 'Sale Label', 'woocommerce-germanized' ),
-		                              'options'     => array_merge( array( "-1" => __( 'Select Price Label', 'woocommerce-germanized' ) ), WC_germanized()->price_labels->get_labels() ),
-		                              'desc_tip'    => true,
-		                              'description' => __( 'If the product is on sale you may want to show a price label right before outputting the old price to inform the customer.', 'woocommerce-germanized' )
+		woocommerce_wp_select( array(
+            'id'          => '_sale_price_label',
+            'label'       => __( 'Sale Label', 'woocommerce-germanized' ),
+            'options'     => array_merge( array( "-1" => __( 'Select Price Label', 'woocommerce-germanized' ) ), WC_germanized()->price_labels->get_labels() ),
+            'desc_tip'    => true,
+            'description' => __( 'If the product is on sale you may want to show a price label right before outputting the old price to inform the customer.', 'woocommerce-germanized' )
 		) );
-		woocommerce_wp_select( array( 'id'          => '_sale_price_regular_label',
-		                              'label'       => __( 'Sale Regular Label', 'woocommerce-germanized' ),
-		                              'options'     => array_merge( array( "-1" => __( 'Select Price Label', 'woocommerce-germanized' ) ), WC_germanized()->price_labels->get_labels() ),
-		                              'desc_tip'    => true,
-		                              'description' => __( 'If the product is on sale you may want to show a price label right before outputting the new price to inform the customer.', 'woocommerce-germanized' )
+		woocommerce_wp_select( array(
+            'id'          => '_sale_price_regular_label',
+            'label'       => __( 'Sale Regular Label', 'woocommerce-germanized' ),
+            'options'     => array_merge( array( "-1" => __( 'Select Price Label', 'woocommerce-germanized' ) ), WC_germanized()->price_labels->get_labels() ),
+            'desc_tip'    => true,
+            'description' => __( 'If the product is on sale you may want to show a price label right before outputting the new price to inform the customer.', 'woocommerce-germanized' )
 		) );
 
-		woocommerce_wp_select( array( 'id'          => '_unit',
-		                              'label'       => __( 'Unit', 'woocommerce-germanized' ),
-		                              'options'     => array_merge( array( "-1" => __( 'Select unit', 'woocommerce-germanized' ) ), WC_germanized()->units->get_units() ),
-		                              'desc_tip'    => true,
-		                              'description' => __( 'Needed if selling on a per unit basis', 'woocommerce-germanized' )
+		woocommerce_wp_select( array(
+            'id'          => '_unit',
+            'label'       => __( 'Unit', 'woocommerce-germanized' ),
+            'options'     => array_merge( array( "-1" => __( 'Select unit', 'woocommerce-germanized' ) ), WC_germanized()->units->get_units() ),
+            'desc_tip'    => true,
+            'description' => __( 'Needed if selling on a per unit basis', 'woocommerce-germanized' )
 		) );
-		woocommerce_wp_text_input( array( 'id'          => '_unit_product',
-		                                  'label'       => __( 'Product Units', 'woocommerce-germanized' ),
-		                                  'data_type'   => 'decimal',
-		                                  'desc_tip'    => true,
-		                                  'description' => __( 'Number of units included per default product price. Example: 1000 ml.', 'woocommerce-germanized' )
+		woocommerce_wp_text_input( array(
+            'id'          => '_unit_product',
+            'label'       => __( 'Product Units', 'woocommerce-germanized' ),
+            'data_type'   => 'decimal',
+            'desc_tip'    => true,
+            'description' => __( 'Number of units included per default product price. Example: 1000 ml.', 'woocommerce-germanized' )
 		) );
-		woocommerce_wp_text_input( array( 'id'          => '_unit_base',
-		                                  'label'       => __( 'Base Price Units', 'woocommerce-germanized' ),
-		                                  'data_type'   => 'decimal',
-		                                  'desc_tip'    => true,
-		                                  'description' => __( 'Base price units. Example base price: 0,99 € / 100 ml. Insert 100 as base price unit amount.', 'woocommerce-germanized' )
+		woocommerce_wp_text_input( array(
+            'id'          => '_unit_base',
+            'label'       => __( 'Base Price Units', 'woocommerce-germanized' ),
+            'data_type'   => 'decimal',
+            'desc_tip'    => true,
+            'description' => __( 'Base price units. Example base price: 0,99 € / 100 ml. Insert 100 as base price unit amount.', 'woocommerce-germanized' )
 		) );
 
 		echo '</div>';
@@ -239,28 +244,32 @@ class WC_Germanized_Meta_Box_Product_Data {
 
 		echo '<div class="options_group show_if_simple show_if_external">';
 
-		woocommerce_wp_checkbox( array( 'id'          => '_unit_price_auto',
-		                                'label'       => __( 'Calculation', 'woocommerce-germanized' ),
-		                                'description' => '<span class="wc-gzd-premium-desc">' . __( 'Calculate base prices automatically.', 'woocommerce-germanized' ) . '</span> <a href="https://vendidero.de/woocommerce-germanized#upgrade" target="_blank" class="wc-gzd-pro">pro</a>'
+		woocommerce_wp_checkbox( array(
+            'id'          => '_unit_price_auto',
+            'label'       => __( 'Calculation', 'woocommerce-germanized' ),
+            'description' => '<span class="wc-gzd-premium-desc">' . __( 'Calculate base prices automatically.', 'woocommerce-germanized' ) . '</span> <a href="https://vendidero.de/woocommerce-germanized#upgrade" target="_blank" class="wc-gzd-pro">pro</a>'
 		) );
-		woocommerce_wp_text_input( array( 'id'        => '_unit_price_regular',
-		                                  'label'     => __( 'Regular Base Price', 'woocommerce-germanized' ) . ' (' . get_woocommerce_currency_symbol() . ')',
-		                                  'data_type' => 'price'
+		woocommerce_wp_text_input( array(
+            'id'        => '_unit_price_regular',
+            'label'     => __( 'Regular Base Price', 'woocommerce-germanized' ) . ' (' . get_woocommerce_currency_symbol() . ')',
+            'data_type' => 'price'
 		) );
-		woocommerce_wp_text_input( array( 'id'        => '_unit_price_sale',
-		                                  'label'     => __( 'Sale Base Price', 'woocommerce-germanized' ) . ' (' . get_woocommerce_currency_symbol() . ')',
-		                                  'data_type' => 'price'
+		woocommerce_wp_text_input( array(
+            'id'        => '_unit_price_sale',
+            'label'     => __( 'Sale Base Price', 'woocommerce-germanized' ) . ' (' . get_woocommerce_currency_symbol() . ')',
+            'data_type' => 'price'
 		) );
 
 		echo '</div>';
 
-		echo '<div class="options_group show_if_simple show_if_external show_if_variable">';
+		echo '<div class="options_group show_if_simple show_if_external show_if_variable show_if_booking">';
 
-		woocommerce_wp_select( array( 'id'          => '_min_age',
-		                              'label'       => __( 'Minimum Age', 'woocommerce-germanized' ),
-		                              'desc_tip'    => true,
-		                              'description' => __( 'Adds an age verification checkbox while purchasing this product.', 'woocommerce-germanized' ),
-		                              'options'     => $age_select
+		woocommerce_wp_select( array(
+            'id'          => '_min_age',
+            'label'       => __( 'Minimum Age', 'woocommerce-germanized' ),
+            'desc_tip'    => true,
+            'description' => __( 'Adds an age verification checkbox while purchasing this product.', 'woocommerce-germanized' ),
+            'options'     => $age_select
 		) );
 
 		echo '</div>';
