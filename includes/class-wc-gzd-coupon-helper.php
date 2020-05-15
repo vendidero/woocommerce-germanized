@@ -40,8 +40,7 @@ class WC_GZD_Coupon_Helper {
 
 		// Tax Calculation
 		add_filter( 'woocommerce_after_calculate_totals', array( $this, 'recalculate_tax_totals' ), 10, 1 );
-		// Order Total Recalculation
-		add_action( 'woocommerce_before_order_object_save', array( $this, 'maybe_recalculate_tax_totals' ), 150, 1 );
+
 		// Add Hook before recalculating line taxes
 		add_action( 'wp_ajax_woocommerce_calc_line_taxes', array( $this, 'before_recalculate_totals' ), 0 );
 	}
@@ -115,16 +114,6 @@ class WC_GZD_Coupon_Helper {
 
 		$order->calculate_totals( false );
 
-		if ( array_key_exists( 'discount_total', $order->get_changes() ) ) {
-			$order->set_discount_total( $order->get_discount_total() + $order->get_cart_tax() );
-			$order->set_discount_tax( 0 );
-		}
-
-		// Look for changes made after recalculating totals
-		if ( array_key_exists( 'total', $order->get_changes() ) ) {
-			$order->set_total( $order->get_total() - $order->get_cart_tax() );
-		}
-
 		include( WC()->plugin_path() . '/includes/admin/meta-boxes/views/html-order-items.php' );
 		wp_die();
 	}
@@ -150,30 +139,6 @@ class WC_GZD_Coupon_Helper {
 			if ( 'yes' === $coupon->get_meta( 'is_voucher', true ) ) {
 				$item->update_meta_data( 'is_voucher', 'yes' );
 			}
-		}
-	}
-
-	/**
-	 * @param WC_Order $order
-	 */
-	public function maybe_recalculate_tax_totals( $order ) {
-
-		if ( ! is_admin() || is_checkout() ) {
-			return;
-		}
-
-		if ( ! $this->order_has_voucher( $order ) ) {
-			return;
-		}
-
-		// Look for changes made after recalculating totals
-		if ( array_key_exists( 'total', $order->get_changes() ) ) {
-			$order->set_total( $order->get_total() - $order->get_cart_tax() );
-		}
-
-		if ( array_key_exists( 'discount_total', $order->get_changes() ) ) {
-			$order->set_discount_total( $order->get_discount_total() + $order->get_discount_tax() );
-			$order->set_discount_tax( 0 );
 		}
 	}
 
