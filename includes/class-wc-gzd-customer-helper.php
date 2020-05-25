@@ -58,8 +58,14 @@ class WC_GZD_Customer_Helper {
 					'disable_registration_auto_login'
 				), 10, 2 );
 
-				// Redirect customers that are not logged in to customer account page
-				add_action( 'template_redirect', array( $this, 'disable_checkout' ), 10 );
+				/**
+				 * Maybe redirect customers that are not logged in to customer account page or
+				 * force guest checkouts.
+				 *
+				 * Use a low priority so that plugins that redirect the checkout page (e.g. cart-flows)
+				 * still receive our updates to the session before the actual redirect happens.
+				 */
+				add_action( 'template_redirect', array( $this, 'disable_checkout' ), 0 );
 
 				// Show notices on customer account page
 				add_action( 'template_redirect', array( $this, 'show_disabled_checkout_notice' ), 20 );

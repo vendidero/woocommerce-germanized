@@ -568,6 +568,7 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 					'woo-poly-integration'                        => 'WC_GZD_Compatibility_Woo_Poly_Integration',
 					'woocommerce-dynamic-pricing'                 => 'WC_GZD_Compatibility_WooCommerce_Dynamic_Pricing',
 					'woocommerce-product-bundles'                 => 'WC_GZD_Compatibility_WooCommerce_Product_Bundles',
+					'woocommerce-product-addons'                  => 'WC_GZD_Compatibility_WooCommerce_Product_Addons',
 					'woocommerce-role-based-prices'               => 'WC_GZD_Compatibility_WooCommerce_Role_Based_Prices',
 					'woocommerce-role-based-price'                => 'WC_GZD_Compatibility_WooCommerce_Role_Based_Price',
 					'woo-discount-rules'                          => 'WC_GZD_Compatibility_Woo_Discount_Rules',
