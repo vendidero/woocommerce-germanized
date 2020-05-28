@@ -5,7 +5,7 @@ Requires at least: 4.9
 Tested up to: 5.4
 WC requires at least: 3.4
 WC tested up to: 4.2
-Stable tag: 3.1.6
+Stable tag: 3.1.7
 Requires PHP: 5.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -189,6 +189,18 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 5. Manage shipments for orders
 
 == Changelog ==
+= 3.1.7 =
+* Feature: WC 4.2 support
+* Feature: WooCommerce Product Addons shopmarks support
+* Improvement: Prevent fee taxes in case no taxes or zero tax rate only is found
+* Improvement: Added validation-required class to checkbox container in case it is mandatory
+* Improvement: Show age verification product options for bookable products too
+* Improvement: Voucher tax (re)-calculation for latest Woo version
+* Improvement: Dependency checking
+* Improvement: DHL lowered min per item weight for customs
+* Fix: DHL customs weight calculation
+* Fix: DHL preferred neighbour in manual label requests
+
 = 3.1.6 =
 * Feature: WC 4.1 support
 * Improvement: Removed default shipping costs hiding option within checkout

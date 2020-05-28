@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce Germanized\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-13 17:34+0200\n"
-"PO-Revision-Date: 2020-05-13 17:34+0200\n"
+"POT-Creation-Date: 2020-05-28 13:45+0200\n"
+"PO-Revision-Date: 2020-05-28 13:47+0200\n"
 "Last-Translator: holzhannes <holzhannes@posteo.de>\n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Poedit 2.3\n"
+"X-Generator: Poedit 2.3.1\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
 "esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
@@ -4743,7 +4743,7 @@ msgstr "Germanize"
 #: woocommerce-germanized/includes/admin/class-wc-gzd-admin-setup-wizard.php:73
 #: woocommerce-germanized/includes/admin/class-wc-gzd-admin-setup-wizard.php:141
 #: woocommerce-germanized/includes/gateways/invoice/class-wc-gzd-gateway-invoice.php:79
-#: woocommerce-germanized/woocommerce-germanized.php:831
+#: woocommerce-germanized/woocommerce-germanized.php:830
 msgid "Settings"
 msgstr "Einstellungen"
 
@@ -4937,8 +4937,8 @@ msgstr "Germanized Einstellungen"
 #: woocommerce-germanized/includes/class-wc-gzd-coupon-helper.php:33
 #: woocommerce-germanized/includes/class-wc-gzd-customer-helper.php:21
 #: woocommerce-germanized/includes/class-wc-gzd-customer-helper.php:30
-#: woocommerce-germanized/includes/class-wc-gzd-dependencies.php:54
-#: woocommerce-germanized/includes/class-wc-gzd-dependencies.php:63
+#: woocommerce-germanized/includes/class-wc-gzd-dependencies.php:56
+#: woocommerce-germanized/includes/class-wc-gzd-dependencies.php:65
 #: woocommerce-germanized/includes/class-wc-gzd-hook-priorities.php:35
 #: woocommerce-germanized/includes/class-wc-gzd-hook-priorities.php:44
 #: woocommerce-germanized/includes/class-wc-gzd-product-attribute-helper.php:21
@@ -4947,59 +4947,59 @@ msgstr "Germanized Einstellungen"
 #: woocommerce-germanized/includes/export/class-wc-gzd-product-export.php:32
 #: woocommerce-germanized/includes/import/class-wc-gzd-product-import.php:23
 #: woocommerce-germanized/includes/import/class-wc-gzd-product-import.php:32
-#: woocommerce-germanized/woocommerce-germanized.php:127
-#: woocommerce-germanized/woocommerce-germanized.php:136
+#: woocommerce-germanized/woocommerce-germanized.php:125
+#: woocommerce-germanized/woocommerce-germanized.php:134
 msgid "Cheatin&#8217; huh?"
 msgstr "So geht das leider nicht.."
 
-#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:114
+#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:113
 msgctxt "dhl"
 msgid "Action failed. Please refresh the page and retry."
 msgstr ""
 "Aktion fehlgeschlagen. Bitte aktualisiere die Seite und versuchen es erneut."
 
-#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:118
+#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:117
 msgctxt "dhl"
 msgid "You don't have permission to do this."
 msgstr "Du bist leider nicht berechtigt, diese Aktion durchzuführen."
 
 # @ woocommerce-germanized
 #. Plugin Name of the plugin/theme
-#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:195
+#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:194
 msgid "Germanized for WooCommerce"
 msgstr "Germanized für WooCommerce"
 
-#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:305
+#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:304
 #: woocommerce-germanized/includes/admin/settings/views/html-admin-settings-tabs.php:45
 #: woocommerce-germanized/includes/admin/settings/views/html-admin-settings-tabs.php:58
 msgid "Yes"
 msgstr "Ja"
 
-#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:305
+#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:304
 #: woocommerce-germanized/includes/admin/settings/views/html-admin-settings-tabs.php:58
 msgid "No"
 msgstr "Nein"
 
-#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:377
+#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:376
 msgid "Paid for order notification manually sent to customer."
 msgstr "Bestellung bezahlt manuell an den Kunden versendet."
 
-#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:397
+#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:396
 msgid "Order confirmation manually sent to customer."
 msgstr "Bestellbestätigung manuell an den Kunden versendet."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:417
+#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:416
 msgid "Resend order confirmation"
 msgstr "Bestellbestätigung erneut versenden"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:418
+#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:417
 msgid "Send paid for order notification"
 msgstr "Bestellung bezahlt manuell versenden"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:428
+#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:427
 #: woocommerce-germanized/includes/admin/settings/abstract-wc-gzd-settings-tab.php:114
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:23
 #: woocommerce-germanized/includes/admin/settings/views/html-admin-settings-tabs.php:9
@@ -5007,38 +5007,38 @@ msgstr "Bestellung bezahlt manuell versenden"
 msgid "Germanized"
 msgstr "Germanized"
 
-#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:442
+#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:441
 msgid "Parcel Delivery Data Transfer:"
 msgstr "Paketdienstleister Datenweitergabe:"
 
-#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:443
+#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:442
 msgid "allowed"
 msgstr "akzeptiert"
 
-#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:443
+#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:442
 msgid "not allowed"
 msgstr "nicht akzeptiert"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:526
+#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:525
 msgid "Optional Email Content"
 msgstr "Optionaler E-Mail Inhalt"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:544
+#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:543
 msgid "Add content which will be replacing default page content within emails."
 msgstr ""
 "Fülle dieses Feld aus um einen abweichenden E-Mail Anhangstext für diese "
 "Seite zu bestimmen."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:558
+#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:557
 #: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:152
 msgid "Optional Mini Description"
 msgstr "Warenkorb Kurzbeschreibung"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:580
+#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:579
 msgid ""
 "This content will be shown as short product description within checkout and "
 "emails."
@@ -5052,18 +5052,18 @@ msgid "Service products do not sell physical products."
 msgstr "Dienstleistungen werden nicht in physikalischer Form verkauft."
 
 #: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:61
-#: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:194
+#: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:195
 msgid "Sale Label"
 msgstr "Streichpreis Hinweis"
 
 #: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:71
-#: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:200
+#: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:202
 msgid "Sale Regular Label"
 msgstr "Angebotspreis Hinweis"
 
 # @ woocommerce-germanized
 #: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:90
-#: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:213
+#: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:217
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:228
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:260
 #: woocommerce-germanized/includes/compatibility/elementor/widgets/class-wc-gzd-elementor-widget-product-units.php:10
@@ -5081,7 +5081,7 @@ msgstr ""
 
 # @ woocommerce-germanized
 #: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:97
-#: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:243
+#: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:249
 msgid "Calculation"
 msgstr "Berechnung"
 
@@ -5115,7 +5115,7 @@ msgstr "Allgemein"
 
 # @ woocommerce-germanized
 #: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:126
-#: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:301
+#: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:310
 #: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:32
 #: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:204
 #: woocommerce-germanized/includes/compatibility/elementor/widgets/class-wc-gzd-elementor-widget-product-delivery-time.php:10
@@ -5128,7 +5128,7 @@ msgid "Same as parent"
 msgstr "Gleiche wie übergeordnet"
 
 #: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:140
-#: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:260
+#: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:269
 msgid "Minimum Age"
 msgstr "Mindestalter"
 
@@ -5141,12 +5141,12 @@ msgid "Product applies to differential taxation based on §25a UStG."
 msgstr "Produkt ist differenzbesteuert nach §25a UStG."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:195
-#: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:201
+#: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:196
+#: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:203
 msgid "Select Price Label"
 msgstr "Preishinweis auswählen"
 
-#: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:197
+#: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:198
 msgid ""
 "If the product is on sale you may want to show a price label right before "
 "outputting the old price to inform the customer."
@@ -5156,7 +5156,7 @@ msgstr ""
 "Preis). Mit diesem Hinweis kannst du genau festlegen, um welchen Preis es "
 "sich dabei handelte (z.B. UVP)."
 
-#: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:203
+#: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:205
 msgid ""
 "If the product is on sale you may want to show a price label right before "
 "outputting the new price to inform the customer."
@@ -5166,35 +5166,35 @@ msgstr ""
 "Preis)."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:207
+#: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:210
 #: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:107
 #: woocommerce-germanized/includes/class-wc-gzd-post-types.php:98
 msgid "Unit"
 msgstr "Einheit"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:208
+#: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:211
 msgid "Select unit"
 msgstr "Einheit auswählen"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:210
+#: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:213
 msgid "Needed if selling on a per unit basis"
 msgstr "Notwendig falls auf pro-Einheit-Basis verkauft werden soll"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:216
+#: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:220
 msgid "Number of units included per default product price. Example: 1000 ml."
 msgstr ""
 "Anzahl der Produkteinheiten auf Basis des Produktpreises. Beispiel: 1000 ml."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:219
+#: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:224
 msgid "Base Price Units"
 msgstr "Grundpreiseinheiten"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:222
+#: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:227
 msgid ""
 "Base price units. Example base price: 0,99 € / 100 ml. Insert 100 as base "
 "price unit amount."
@@ -5203,37 +5203,37 @@ msgstr ""
 "hier 100 als Grundpreiseinheiten ein."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:244
+#: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:250
 msgid "Calculate base prices automatically."
 msgstr "Grundpreis automatisch berechnen."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:247
+#: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:254
 msgid "Regular Base Price"
 msgstr "Regulärer Grundpreis"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:251
+#: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:259
 msgid "Sale Base Price"
 msgstr "Angebotsgrundpreis"
 
-#: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:262
+#: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:271
 msgid "Adds an age verification checkbox while purchasing this product."
 msgstr "Fügt eine Checkbox zur Altersprüfung für dieses Produkt hinzu."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:273
-#: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:305
+#: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:282
+#: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:314
 msgid "Search for a delivery time&hellip;"
 msgstr "Lieferzeit suchen&hellip;"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:314
+#: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:323
 msgid "Free shipping?"
 msgstr "Versand kostenlos?"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:315
+#: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:324
 msgid "This option disables the \"plus shipping costs\" notice on product page"
 msgstr ""
 "Deaktiviert den „zzgl. Versandkosten“ Hinweis. Ohne Auswirkungen auf die "
@@ -6036,8 +6036,8 @@ msgstr ""
 #: woocommerce-germanized/includes/api/class-wc-gzd-rest-orders-controller.php:145
 #: woocommerce-germanized/includes/class-wc-gzd-checkout.php:547
 #: woocommerce-germanized/includes/class-wc-gzd-checkout.php:558
-#: woocommerce-germanized/includes/class-wc-gzd-customer-helper.php:125
-#: woocommerce-germanized/includes/class-wc-gzd-customer-helper.php:133
+#: woocommerce-germanized/includes/class-wc-gzd-customer-helper.php:131
+#: woocommerce-germanized/includes/class-wc-gzd-customer-helper.php:139
 msgid "Title"
 msgstr "Anrede"
 
@@ -7436,62 +7436,40 @@ msgstr "Einstellungen anpassen"
 msgid "Manage"
 msgstr "Verwalten"
 
-#: woocommerce-germanized/includes/admin/views/html-notice-dependencies.php:14
-msgid "Dependencies missing, outdated or not yet tested"
-msgstr "Wichtige Plugins fehlen oder sind veraltet"
+#: woocommerce-germanized/includes/admin/views/html-notice-dependencies.php:15
+msgid "WooCommerce missing or outdated"
+msgstr "WooCommerce fehlt oder ist veraltet"
 
-#: woocommerce-germanized/includes/admin/views/html-notice-dependencies.php:20
-msgid "To use Germanized you may at first install the following plugins:"
-msgstr ""
-"Um Germanized zuverlässig nutzen zu können, musst du erst folgende Plugins "
-"installieren:"
-
-#: woocommerce-germanized/includes/admin/views/html-notice-dependencies.php:34
-msgid ""
-"To use Germanized you may at first update the following plugins to a newer "
-"version:"
-msgstr ""
-"Um Germanized zuverlässig nutzen zu können, update bitte folgende Plugins:"
-
-#: woocommerce-germanized/includes/admin/views/html-notice-dependencies.php:39
+#: woocommerce-germanized/includes/admin/views/html-notice-dependencies.php:21
 #, php-format
-msgid "%s required in at least version %s"
-msgstr "%s wird mindestens in Version %s benötigt"
-
-#: woocommerce-germanized/includes/admin/views/html-notice-dependencies.php:46
 msgid ""
-"Seems like you are using a not yet supported version of a Plugin which "
-"Germanized requires. You may downgrade the Plugin or update to the latest "
-"version of Germanized."
+"%1$sGermanized is inactive.%2$s The %3$sWooCommerce plugin%4$s must be "
+"active for Germanized to work. Please %5$sinstall WooCommerce &raquo;%6$s"
 msgstr ""
-"Es scheint als würdest du eine in dieser Version von Germanized noch nicht "
-"unterstützte Version eines Plugins verwenden. Downgrade nachfolgende Plugins "
-"oder update Germanized auf die neueste Version."
+"%1$sGermanized ist inaktiv.%2$s Das %3$sWooCommerce Plugin%4$s muss "
+"aktiviert sein, damit Germanized funktioniert. Bitte %5$sinstalliere "
+"WooCommerce &raquo;%6$s"
 
-#: woocommerce-germanized/includes/admin/views/html-notice-dependencies.php:51
+#: woocommerce-germanized/includes/admin/views/html-notice-dependencies.php:27
 #, php-format
-msgid "%s %s is not yet supported - you may install an %s"
+msgid ""
+"%1$sGermanized is inactive.%2$s The %3$sWooCommerce plugin%4$s must be "
+"active for Germanized to work. Please %5$sactivate WooCommerce &raquo;%6$s"
 msgstr ""
-"%s %s wird in der aktuellen Version nicht unterstützt - du kannst eine %s "
-"installieren"
+"%1$sGermanized ist inaktiv.%2$s Das %3$sWooCommerce Plugin%4$s muss "
+"aktiviert sein, damit Germanized funktioniert. Bitte %5$saktiviere "
+"WooCommerce &raquo;%6$s"
 
-#: woocommerce-germanized/includes/admin/views/html-notice-dependencies.php:51
-msgid "older version"
-msgstr "ältere Version"
-
-# @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/views/html-notice-dependencies.php:64
-msgid "Check for Updates"
-msgstr "Nach Updates suchen"
-
-# @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/views/html-notice-dependencies.php:68
-msgid "or"
-msgstr "oder"
-
-#: woocommerce-germanized/includes/admin/views/html-notice-dependencies.php:71
-msgid "Install an older version"
-msgstr "Installiere eine ältere Version"
+#: woocommerce-germanized/includes/admin/views/html-notice-dependencies.php:33
+#, php-format
+msgid ""
+"%1$sGermanized is inactive.%2$s This version of Germanized requires "
+"WooCommerce %3$s or newer. Please %4$supdate WooCommerce to version %3$s or "
+"newer &raquo;%5$s"
+msgstr ""
+"%1$sGermanized ist inaktiv.%2$s Diese Version von Germanized benötigt "
+"WooCommerce %3$s oder neuer. Bitte %4$supdate WooCommerce auf Version %3$s "
+"oder neuer &raquo;%5$s"
 
 #: woocommerce-germanized/includes/admin/views/html-notice-fallback.php:13
 msgid "Hide"
@@ -7648,28 +7626,12 @@ msgstr ""
 msgid "Delete text options"
 msgstr "Text-Optionen löschen"
 
-#: woocommerce-germanized/includes/admin/views/html-page-status-germanized.php:263
-msgid "Delete Version Cache"
-msgstr "Versionen-Cache löschen"
-
-#: woocommerce-germanized/includes/admin/views/html-page-status-germanized.php:264
-msgid ""
-"This option deletes plugin version caches necessary to check whether "
-"activated plugins are compatible with Germanized."
-msgstr ""
-"Diese Option löscht den Cache der Plugin-Versionen, die geprüft werden um "
-"festzustellen ob Germanized kompatibel zu den jeweiligen Versionen ist."
-
-#: woocommerce-germanized/includes/admin/views/html-page-status-germanized.php:267
-msgid "Delete version cache"
-msgstr "Cache löschen"
-
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/views/html-page-status-germanized.php:270
+#: woocommerce-germanized/includes/admin/views/html-page-status-germanized.php:263
 msgid "Renew EU VAT Rates"
 msgstr "EU MwSt.-Sätze erneuern"
 
-#: woocommerce-germanized/includes/admin/views/html-page-status-germanized.php:271
+#: woocommerce-germanized/includes/admin/views/html-page-status-germanized.php:264
 msgid ""
 "Insert VAT rates (standard, recuded and virtual) for EU countries. This "
 "option deletes all of your standard, reduced and virtual rates before "
@@ -7680,17 +7642,17 @@ msgstr ""
 "eingefügt werden."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/views/html-page-status-germanized.php:274
+#: woocommerce-germanized/includes/admin/views/html-page-status-germanized.php:267
 msgid "Renew VAT Rates"
 msgstr "EU MwSt.-Sätze erneuern"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/views/html-page-status-germanized.php:277
-#: woocommerce-germanized/includes/admin/views/html-page-status-germanized.php:280
+#: woocommerce-germanized/includes/admin/views/html-page-status-germanized.php:270
+#: woocommerce-germanized/includes/admin/views/html-page-status-germanized.php:273
 msgid "Disable notices"
 msgstr "Meldungen deaktivieren"
 
-#: woocommerce-germanized/includes/admin/views/html-page-status-germanized.php:278
+#: woocommerce-germanized/includes/admin/views/html-page-status-germanized.php:271
 msgid ""
 "Germanized might ask you to leave a review or notices you of using a "
 "possibly unsupported theme. If you want to disable these notices, check this "
@@ -7701,27 +7663,27 @@ msgstr ""
 "deaktivieren willst, verwende diese Option."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/views/html-page-status-germanized.php:280
+#: woocommerce-germanized/includes/admin/views/html-page-status-germanized.php:273
 msgid "Enable notices"
 msgstr "Meldungen aktivieren"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/views/html-page-status-germanized.php:299
+#: woocommerce-germanized/includes/admin/views/html-page-status-germanized.php:292
 msgid "Templates"
 msgstr "Templates"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/views/html-page-status-germanized.php:305
+#: woocommerce-germanized/includes/admin/views/html-page-status-germanized.php:298
 msgid "Overrides"
 msgstr "Überschreibt"
 
-#: woocommerce-germanized/includes/admin/views/html-page-status-germanized.php:314
+#: woocommerce-germanized/includes/admin/views/html-page-status-germanized.php:307
 #, php-format
 msgid "Version %s is out of date. The core version is %s."
 msgstr "Version %s ist veraltet. Die aktuelle Version lautet %s."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/views/html-page-status-germanized.php:322
+#: woocommerce-germanized/includes/admin/views/html-page-status-germanized.php:315
 msgid "Learn how to update outdated templates"
 msgstr "Erfahre, wie du veraltete Templates aktualisierst"
 
@@ -8094,11 +8056,11 @@ msgstr ""
 "Entschuldigung, normale Produkte können nicht gemeinsam mit "
 "differenzbesteuerten Produkten gekauft werden."
 
-#: woocommerce-germanized/includes/class-wc-gzd-coupon-helper.php:292
+#: woocommerce-germanized/includes/class-wc-gzd-coupon-helper.php:257
 msgid "Is voucher?"
 msgstr "Wertgutschein?"
 
-#: woocommerce-germanized/includes/class-wc-gzd-coupon-helper.php:293
+#: woocommerce-germanized/includes/class-wc-gzd-coupon-helper.php:258
 #, php-format
 msgid ""
 "Whether or not this coupon is a voucher which has been sold to a customer "
@@ -8110,26 +8072,26 @@ msgstr ""
 "besteuert. Weitere Informationen findest du <a href=\"%s\" target=\"_blank"
 "\">hier</a>."
 
-#: woocommerce-germanized/includes/class-wc-gzd-customer-helper.php:112
-#: woocommerce-germanized/includes/class-wc-gzd-customer-helper.php:217
-#: woocommerce-germanized/includes/class-wc-gzd-customer-helper.php:337
+#: woocommerce-germanized/includes/class-wc-gzd-customer-helper.php:118
+#: woocommerce-germanized/includes/class-wc-gzd-customer-helper.php:223
+#: woocommerce-germanized/includes/class-wc-gzd-customer-helper.php:343
 msgid ""
 "Please activate your account through clicking on the activation link "
 "received via email."
 msgstr ""
 "Bitte aktiviere dein Kundenkonto indem du auf den Link in der E-Mail klickst."
 
-#: woocommerce-germanized/includes/class-wc-gzd-customer-helper.php:227
+#: woocommerce-germanized/includes/class-wc-gzd-customer-helper.php:233
 #, php-format
 msgid "Continue without creating an account? <a href=\"%s\">Click here</a>"
 msgstr "Weiter zur Kasse ohne Kundenkonto? <a href=\"%s\">Hier klicken</a>"
 
-#: woocommerce-germanized/includes/class-wc-gzd-customer-helper.php:229
+#: woocommerce-germanized/includes/class-wc-gzd-customer-helper.php:235
 msgid "Please create an account or login before continuing to checkout"
 msgstr ""
 "Bitte erstelle ein Kundenkonto oder logge dich ein, bevor du zur Kasse gehst"
 
-#: woocommerce-germanized/includes/class-wc-gzd-customer-helper.php:369
+#: woocommerce-germanized/includes/class-wc-gzd-customer-helper.php:375
 msgid ""
 "This activation code has expired. We have sent you a new activation code via "
 "e-mail."
@@ -8138,20 +8100,20 @@ msgstr ""
 "Code per E-Mail geschickt."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-customer-helper.php:371
+#: woocommerce-germanized/includes/class-wc-gzd-customer-helper.php:377
 msgid "Sorry, but this activation code cannot be found."
 msgstr "Sorry, dieser Aktivierungscode ist uns leider nicht bekannt."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-customer-helper.php:375
+#: woocommerce-germanized/includes/class-wc-gzd-customer-helper.php:381
 msgid "Thank you. You have successfully activated your account."
 msgstr "Vielen Dank. Dein Benutzerkonto wurde erfolgreich aktiviert."
 
-#: woocommerce-germanized/includes/class-wc-gzd-customer-helper.php:561
+#: woocommerce-germanized/includes/class-wc-gzd-customer-helper.php:567
 msgid "Expired activation key"
 msgstr "Abgelaufener Aktivierungscode"
 
-#: woocommerce-germanized/includes/class-wc-gzd-customer-helper.php:566
+#: woocommerce-germanized/includes/class-wc-gzd-customer-helper.php:572
 msgid "Invalid activation key"
 msgstr "Aktivierungscode ungültig"
 
@@ -10083,18 +10045,18 @@ msgstr "Alternative Streitbeilegung gemäß Art. 14 Abs. 1 ODR-VO und § 36 VSBG
 msgid "Pay now"
 msgstr "Jetzt bezahlen"
 
-#: woocommerce-germanized/woocommerce-germanized.php:51
+#: woocommerce-germanized/woocommerce-germanized.php:49
 #, php-format
 msgid ""
 "Germanized requires at least PHP 5.6 to work. Please %s your PHP version."
 msgstr "Germanized benötigt mindestens PHP 5.6. Bitte %s deine PHP-Version."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/woocommerce-germanized.php:52
+#: woocommerce-germanized/woocommerce-germanized.php:50
 msgid "upgrade"
 msgstr "Upgrade"
 
-#: woocommerce-germanized/woocommerce-germanized.php:985
+#: woocommerce-germanized/woocommerce-germanized.php:984
 msgid "Pease wait while we are trying to redirect you to the payment provider."
 msgstr "Einen Moment - wir versuchen dich zum Zahlungsanbieter weiterzuleiten."
 
@@ -11329,6 +11291,72 @@ msgstr "vendidero"
 #. Author URI of the plugin/theme
 msgid "https://vendidero.de"
 msgstr "https://vendidero.de"
+
+#~ msgid "install"
+#~ msgstr "installiere"
+
+#~ msgid "activate"
+#~ msgstr "aktiviere"
+
+#~ msgid "Dependencies missing, outdated or not yet tested"
+#~ msgstr "Wichtige Plugins fehlen oder sind veraltet"
+
+#~ msgid "To use Germanized you may at first install the following plugins:"
+#~ msgstr ""
+#~ "Um Germanized zuverlässig nutzen zu können, musst du erst folgende "
+#~ "Plugins installieren:"
+
+#~ msgid ""
+#~ "To use Germanized you may at first update the following plugins to a "
+#~ "newer version:"
+#~ msgstr ""
+#~ "Um Germanized zuverlässig nutzen zu können, update bitte folgende Plugins:"
+
+#, php-format
+#~ msgid "%s required in at least version %s"
+#~ msgstr "%s wird mindestens in Version %s benötigt"
+
+#~ msgid ""
+#~ "Seems like you are using a not yet supported version of a Plugin which "
+#~ "Germanized requires. You may downgrade the Plugin or update to the latest "
+#~ "version of Germanized."
+#~ msgstr ""
+#~ "Es scheint als würdest du eine in dieser Version von Germanized noch "
+#~ "nicht unterstützte Version eines Plugins verwenden. Downgrade "
+#~ "nachfolgende Plugins oder update Germanized auf die neueste Version."
+
+#, php-format
+#~ msgid "%s %s is not yet supported - you may install an %s"
+#~ msgstr ""
+#~ "%s %s wird in der aktuellen Version nicht unterstützt - du kannst eine %s "
+#~ "installieren"
+
+#~ msgid "older version"
+#~ msgstr "ältere Version"
+
+# @ woocommerce-germanized
+#~ msgid "Check for Updates"
+#~ msgstr "Nach Updates suchen"
+
+# @ woocommerce-germanized
+#~ msgid "or"
+#~ msgstr "oder"
+
+#~ msgid "Install an older version"
+#~ msgstr "Installiere eine ältere Version"
+
+#~ msgid "Delete Version Cache"
+#~ msgstr "Versionen-Cache löschen"
+
+#~ msgid ""
+#~ "This option deletes plugin version caches necessary to check whether "
+#~ "activated plugins are compatible with Germanized."
+#~ msgstr ""
+#~ "Diese Option löscht den Cache der Plugin-Versionen, die geprüft werden um "
+#~ "festzustellen ob Germanized kompatibel zu den jeweiligen Versionen ist."
+
+#~ msgid "Delete version cache"
+#~ msgstr "Cache löschen"
 
 #~ msgctxt "dhl"
 #~ msgid "Enable preferred time delivery."

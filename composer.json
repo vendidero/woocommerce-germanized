@@ -11,9 +11,9 @@
     "automattic/jetpack-autoloader": "^1.2.0",
     "php": ">=5.6|>=7.0",
     "composer/installers": "1.7.0",
-    "vendidero/woocommerce-trusted-shops": "4.0.4",
-    "vendidero/woocommerce-germanized-dhl": "1.2.5",
-    "vendidero/woocommerce-germanized-shipments": "1.2.6"
+    "vendidero/woocommerce-trusted-shops": "4.0.5",
+    "vendidero/woocommerce-germanized-dhl": "1.2.6",
+    "vendidero/woocommerce-germanized-shipments": "1.2.7"
   },
   "require-dev": {
     "myclabs/deep-copy": "1.7.0",
