@@ -607,7 +607,16 @@ function wc_gzd_get_cart_taxes( $cart, $include_shipping_taxes = true ) {
 		}
 	}
 
-	return $tax_array;
+	/**
+	 * Filter to adjust the cart tax items.
+	 *
+	 * @param array   $tax_array The array containing tax amounts.
+     * @param WC_Cart $cart The cart instance.
+     * @param bool    $include_shipping_taxes Whether to include shipping taxes or not.
+	 *
+	 * @since 3.1.8
+	 */
+	return apply_filters( 'woocommerce_gzd_cart_taxes', $tax_array, $cart, $include_shipping_taxes );
 }
 
 function wc_gzd_get_cart_total_taxes( $include_shipping_taxes = true ) {
@@ -684,7 +693,6 @@ function wc_gzd_get_legal_text_digital_email_notice() {
 	 * @param string $text The HTML output.
 	 *
 	 * @since 2.0.2
-	 *
 	 */
 	return apply_filters( 'woocommerce_gzd_legal_digital_email_text', $text );
 }
