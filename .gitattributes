@@ -2,6 +2,7 @@
 /*.md export-ignore
 /node_modules* export-ignore
 /composer.* export-ignore
+/docker-compose.* export-ignore
 /tests export-ignore
 /bin export-ignore
 /phpcs.* export-ignore

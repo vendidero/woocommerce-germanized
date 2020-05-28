@@ -70,6 +70,7 @@ copy_dest_files() {
     --exclude=package-lock.json \
     --exclude=phpcs.xml \
     --exclude=phpcs.ruleset.xml \
+    --exclude=docker-compose.yml \
     --exclude=phpunit.xml \
     --exclude=phpunit.xml.dist \
     --exclude=README.md \
