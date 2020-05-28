@@ -57,7 +57,6 @@ class WC_GZD_Admin {
 		add_action( 'admin_init', array( $this, 'check_language_install' ) );
 		add_action( 'admin_init', array( $this, 'check_text_options_deletion' ) );
 		add_action( 'admin_init', array( $this, 'check_complaints_shortcode_append' ) );
-		add_action( 'admin_init', array( $this, 'check_version_cache_deletion' ) );
 		add_action( 'admin_init', array( $this, 'check_insert_vat_rates' ) );
 		add_action( 'admin_init', array( $this, 'check_resend_activation_email' ) );
 		add_action( 'admin_init', array( $this, 'check_notices' ) );
@@ -654,22 +653,6 @@ class WC_GZD_Admin {
 
 			// Redirect to check for updates
 			wp_safe_redirect( admin_url( 'admin.php?page=wc-settings&tab=germanized' ) );
-		}
-	}
-
-	public function check_version_cache_deletion() {
-		if ( current_user_can( 'manage_woocommerce' ) && isset( $_GET['delete-version-cache'] ) && isset( $_GET['_wpnonce'] ) && check_admin_referer( 'wc-gzd-delete-version-cache' ) ) {
-
-			wc_gzd_get_dependencies()->delete_cached_plugin_header_data();
-
-			/**
-			 * After plugin header cache deletion.
-			 *
-			 * This hook fires after the dependency script has deleted it's cached plugin header data.
-			 *
-			 * @since 1.6.0
-			 */
-			do_action( 'woocommerce_gzd_deleted_cached_plugin_header_data' );
 		}
 	}
 

@@ -24,6 +24,20 @@ class WC_GZD_Tests_Install extends WC_GZD_Unit_Test_Case {
 	}
 
 	/**
+	 * Test check version.
+	 */
+	public function test_version_compare() {
+		$dep = WC_GZD_Dependencies::instance();
+
+		$this->assertTrue( $dep->compare_versions( '3.1.3', '3.1', '>' ) );
+		$this->assertFalse( $dep->compare_versions( '3.0.9', '3.1', '>' ) );
+
+		$this->assertTrue( $dep->compare_versions( '2.9.9', '3.0', '<' ) );
+		$this->assertFalse( $dep->compare_versions( '2.9.9', '2.9', '<' ) );
+		$this->assertTrue( $dep->compare_versions( '2.9.9', '3.0', '<' ) );
+	}
+
+	/**
 	 * Test - install.
 	 */
 	public function test_install() {

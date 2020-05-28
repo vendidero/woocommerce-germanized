@@ -9,9 +9,9 @@
  * Requires at least: 4.9
  * Tested up to: 5.4
  * WC requires at least: 3.4
- * WC tested up to: 4.1
+ * WC tested up to: 4.2
  * Requires at least WooCommerce: 3.4
- * Tested up to WooCommerce: 4.1
+ * Tested up to WooCommerce: 4.2
  *
  * Text Domain: woocommerce-germanized
  * Domain Path: /i18n/languages/

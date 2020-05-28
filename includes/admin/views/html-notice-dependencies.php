@@ -1,78 +1,34 @@
 <?php
 /**
- * Admin View: Generator Editor
+ * Admin View: Dep notice
  */
-
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * @var WC_GZD_Dependencies $dependencies
+ */
 ?>
 
 <div id="message" class="error woocommerce-gzd-message wc-connect">
+    <h3><?php _e( 'WooCommerce missing or outdated', 'woocommerce-germanized' ); ?></h3>
+    <p>
+	    <?php if ( ! $dependencies->is_woocommerce_activated() ) :
+		    $install_url  = wp_nonce_url( add_query_arg( array( 'action' => 'install-plugin', 'plugin' => 'woocommerce' ), admin_url( 'update.php' ) ), 'install-plugin_woocommerce' );
+		    $plugins      = array_keys( get_plugins() );
+		    $is_install   = true;
 
-    <h3><?php _e( 'Dependencies missing, outdated or not yet tested', 'woocommerce-germanized' ); ?></h3>
+		    if ( in_array( 'woocommerce/woocommerce.php', $plugins ) ) {
+			    $install_url = wp_nonce_url( add_query_arg( array( 'action' => 'activate', 'plugin' => urlencode( 'woocommerce/woocommerce.php' ) ), admin_url( 'plugins.php' ) ), 'activate-plugin_woocommerce/woocommerce.php' );
+			    $is_install  = false;
+		    }
 
-	<?php foreach ( $dependencies->plugins_result as $type => $plugins ) : ?>
-
-		<?php if ( $type === 'unactivated' && ! empty( $plugins ) ) : ?>
-
-            <p><?php _e( 'To use Germanized you may at first install the following plugins:', 'woocommerce-germanized' ); ?></p>
-
-            <ul>
-
-				<?php foreach ( $plugins as $plugin ) : ?>
-                    <li><a class=""
-                           href="<?php echo admin_url( "plugin-install.php?tab=search&s=" . urlencode( $plugin['name'] ) ); ?>"><?php echo $plugin['name']; ?></a>
-                    </li>
-				<?php endforeach; ?>
-
-            </ul>
-
-		<?php elseif ( $type === 'outdated' && ! empty( $plugins ) ) : ?>
-
-            <p><?php _e( 'To use Germanized you may at first update the following plugins to a newer version:', 'woocommerce-germanized' ); ?></p>
-
-            <ul>
-
-				<?php foreach ( $plugins as $plugin ) : ?>
-                    <li><?php printf( __( '%s required in at least version %s', 'woocommerce-germanized' ), $plugin['name'], '<strong>' . $plugin['requires'] . '</strong>' ); ?></li>
-				<?php endforeach; ?>
-
-            </ul>
-
-		<?php elseif ( $type === 'untested' && ! empty( $plugins ) ) : ?>
-
-            <p><?php _e( 'Seems like you are using a not yet supported version of a Plugin which Germanized requires. You may downgrade the Plugin or update to the latest version of Germanized.', 'woocommerce-germanized' ); ?></p>
-
-            <ul>
-
-				<?php foreach ( $plugins as $plugin => $plugin_data ) : ?>
-                    <li><?php printf( __( '%s %s is not yet supported - you may install an %s', 'woocommerce-germanized' ), $plugin_data['name'], '<strong>' . $plugin_data['version'] . '</strong>', '<a href="https://wordpress.org/plugins/' . $plugin . '/developers/" target="_blank">' . __( 'older version', 'woocommerce-germanized' ) . '</a>' ); ?></li>
-				<?php endforeach; ?>
-
-            </ul>
-
-		<?php endif; ?>
-
-	<?php endforeach; ?>
-
-	<?php if ( ! empty( $dependencies->plugins_result['outdated'] ) || ! empty( $dependencies->plugins_result['untested'] ) ) : ?>
-
-        <p>
-            <a class="button button-secondary"
-               href="<?php echo admin_url( "update-core.php" ); ?>"><?php _e( 'Check for Updates', 'woocommerce-germanized' ); ?></a>
-
-			<?php if ( ! empty( $dependencies->plugins_result['outdated'] ) ) : ?>
-
-				<?php _e( 'or', 'woocommerce-germanized' ); ?>
-
-                <a class="" href="https://wordpress.org/plugins/woocommerce-germanized/developers/"
-                   target="_blank"><?php _e( 'Install an older version', 'woocommerce-germanized' ); ?></a>
-
-			<?php endif; ?>
-        </p>
-
-	<?php endif; ?>
-
+		    // translators: 1$-2$: opening and closing <strong> tags, 3$-4$: link tags, takes to woocommerce plugin on wp.org, 5$-6$: opening and closing link tags, leads to plugins.php in admin
+		    printf( esc_html__( '%1$sGermanized Pro is inactive.%2$s The %3$sWooCommerce plugin%4$s must be active for Germanized Pro to work. Please %5$s %6$s WooCommerce &raquo;%7$s',  'woocommerce-germanized' ), '<strong>', '</strong>', '<a href="http://wordpress.org/extend/plugins/woocommerce/">', '</a>', '<a href="' .  esc_url( $install_url ) . '">', ( $is_install ? __( 'install', 'woocommerce-germanized' ) : __( 'activate', 'woocommerce-germanized' ) ), '</a>' );
+        elseif ( $dependencies->is_woocommerce_outdated() ) :
+	        // translators: 1$-2$: opening and closing <strong> tags, 3$: minimum supported WooCommerce version, 4$-5$: opening and closing link tags, leads to plugin admin
+	        printf( esc_html__( '%1$sGermanized is inactive.%2$s This version of Germanized requires WooCommerce %3$s or newer. Please %4$supdate WooCommerce to version %3$s or newer &raquo;%5$s', 'woocommerce-germanized' ), '<strong>', '</strong>', $dependencies->get_wc_min_version_required(), '<a href="' . esc_url( admin_url( 'plugins.php' ) ) . '">', '</a>' );
+        endif; ?>
+    </p>
 </div>

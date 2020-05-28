@@ -260,13 +260,6 @@ if ( ! defined( 'ABSPATH' ) ) {
                class="button button-secondary"><?php _e( 'Delete text options', 'woocommerce-germanized' ); ?></a></td>
     </tr>
     <tr>
-        <td><?php _e( 'Delete Version Cache', 'woocommerce-germanized' ); ?></td>
-        <td class="help"><?php echo wc_help_tip( esc_attr( __( 'This option deletes plugin version caches necessary to check whether activated plugins are compatible with Germanized.', 'woocommerce-germanized' ) ) ); ?></td>
-        <td>
-            <a href="<?php echo wp_nonce_url( add_query_arg( array( 'delete-version-cache' => true ) ), 'wc-gzd-delete-version-cache' ); ?>"
-               class="button button-secondary"><?php _e( 'Delete version cache', 'woocommerce-germanized' ); ?></a></td>
-    </tr>
-    <tr>
         <td><?php _e( 'Renew EU VAT Rates', 'woocommerce-germanized' ); ?></td>
         <td class="help"><?php echo wc_help_tip( esc_attr( __( 'Insert VAT rates (standard, recuded and virtual) for EU countries. This option deletes all of your standard, reduced and virtual rates before inserting.', 'woocommerce-germanized' ) ) ); ?></td>
         <td>
