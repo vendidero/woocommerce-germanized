@@ -38,6 +38,7 @@ class WC_GZD_Checkout {
 	public function __construct() {
 
 		add_action( 'init', array( $this, 'init_fields' ), 30 );
+
 		add_filter( 'woocommerce_billing_fields', array( $this, 'set_custom_fields' ), 0, 1 );
 		add_filter( 'woocommerce_shipping_fields', array( $this, 'set_custom_fields_shipping' ), 0, 1 );
 
@@ -57,6 +58,7 @@ class WC_GZD_Checkout {
 			$this,
 			'set_formatted_shipping_address'
 		), 0, 2 );
+
 		add_filter( 'woocommerce_formatted_address_replacements', array( $this, 'set_formatted_address' ), 0, 2 );
 
 		// Support Checkout Field Managers (which are unable to map options to values)
@@ -856,8 +858,11 @@ class WC_GZD_Checkout {
 		if ( isset( $args['title'] ) ) {
 			$placeholder['{title}']       = $args['title'];
 			$placeholder['{title_upper}'] = strtoupper( $args['title'] );
-			$placeholder['{name}']        = $placeholder['{title}'] . ' ' . $placeholder['{name}'];
-			$placeholder['{name_upper}']  = $placeholder['{title_upper}'] . ' ' . $placeholder['{name_upper}'];
+
+			if ( strpos( $placeholder['{name}'], '{title}' ) === false ) {
+				$placeholder['{name}']        = $placeholder['{title}'] . ' ' . $placeholder['{name}'];
+				$placeholder['{name_upper}']  = $placeholder['{title_upper}'] . ' ' . $placeholder['{name_upper}'];
+			}
 		}
 
 		return $placeholder;
