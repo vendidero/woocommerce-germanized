@@ -203,10 +203,10 @@ class WC_GZD_Legal_Checkbox {
 		}
 
 		if ( $this->is_mandatory() ) {
-			$classes = array_replace( $classes, array( 'validate-required' ) );
+			$classes = array_merge( $classes, array( 'validate-required' ) );
 		}
 
-		return $classes;
+		return array_unique( $classes );
 	}
 
 	/**
