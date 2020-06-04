@@ -555,18 +555,27 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 			}
 		}
 
-		public static function create_tax_rates() {
+		public static function create_tax_rates( $tax_rate = '', $tax_rate_reduced = '' ) {
 			$countries = WC()->countries->get_european_union_countries();
 
+			if ( empty( $tax_rate ) || ! is_numeric( $tax_rate ) ) {
+				$tax_rate = WC()->countries->get_base_country() === 'AT' ? 20 : 19;
+			}
+
+			if ( empty( $tax_rate_reduced ) || ! is_numeric( $tax_rate_reduced ) ) {
+				$tax_rate_reduced = WC()->countries->get_base_country() === 'AT' ? 10 : 7;
+			}
+
 			foreach ( $countries as $key => $country ) {
-				$countries[ $country ] = WC()->countries->get_base_country() === 'AT' ? 20 : 19;
+				$countries[ $country ] = $tax_rate;
+
 				unset( $countries[ $key ] );
 			}
 
 			self::import_rates( $countries, '' );
 
 			foreach ( $countries as $key => $country ) {
-				$countries[ $key ] = WC()->countries->get_base_country() === 'AT' ? 10 : 7;
+				$countries[ $key ] = $tax_rate_reduced;
 			}
 
 			self::import_rates( $countries, 'reduced-rate' );
