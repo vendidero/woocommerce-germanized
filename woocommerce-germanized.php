@@ -1140,8 +1140,8 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 		/**
 		 * Improve tax display within order totals
 		 *
-		 * @param array $order_totals
-		 * @param object $order
+		 * @param array    $order_totals
+		 * @param WC_Order $order
 		 *
 		 * @return array
 		 */
@@ -1152,14 +1152,11 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 
 			// Tax for inclusive prices
 			if ( 'yes' == get_option( 'woocommerce_calc_taxes' ) && 'incl' == get_option( 'woocommerce_tax_display_cart' ) ) {
-
 				$tax_array = array();
 
 				if ( 'itemized' == get_option( 'woocommerce_tax_total_display' ) ) {
-
 					foreach ( $order->get_tax_totals() as $code => $tax ) {
-
-						$tax->rate = WC_Tax::get_rate_percent( $tax->rate_id );
+						$tax->rate = wc_gzd_get_order_tax_rate_percentage( $tax->rate_id, $order );
 
 						if ( ! isset( $tax_array[ $tax->rate ] ) ) {
 							$tax_array[ $tax->rate ] = array(
@@ -1174,13 +1171,9 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 					}
 				} else {
 
-					$base_rate = ( is_callable( array(
-						'WC_Tax',
-						'get_base_tax_rates'
-					) ) ? WC_Tax::get_base_tax_rates() : WC_Tax::get_shop_base_rate() );
-
-					$rate    = reset( $base_rate );
-					$rate_id = key( $base_rate );
+					$base_rate = WC_Tax::get_base_tax_rates();
+					$rate      = reset( $base_rate );
+					$rate_id   = key( $base_rate );
 
 					$base_rate          = (object) $rate;
 					$base_rate->rate_id = $rate_id;
@@ -1194,7 +1187,6 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 
 				if ( ! empty( $tax_array ) ) {
 					foreach ( $tax_array as $tax ) {
-
 						$order_totals[ 'tax_' . WC_Tax::get_rate_code( $tax['tax']->rate_id ) ] = array(
 							'label' => wc_gzd_get_tax_rate_label( $tax['tax']->rate ),
 							'value' => wc_price( $tax['amount'] ),

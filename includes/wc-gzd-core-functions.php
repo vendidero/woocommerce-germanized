@@ -406,6 +406,38 @@ function wc_gzd_get_tax_rate_label( $rate_percentage ) {
 	return apply_filters( 'woocommerce_gzd_tax_rate_label', $label, $rate_percentage );
 }
 
+/**
+ * @param $tax_rate_id
+ * @param WC_Order $order
+ *
+ * @return mixed|void
+ */
+function wc_gzd_get_order_tax_rate_percentage( $tax_rate_id, $order ) {
+	$taxes      = $order->get_taxes();
+	$percentage = 0;
+
+	foreach( $taxes as $tax ) {
+		if ( $tax->get_rate_id() == $tax_rate_id ) {
+			if ( is_callable( array( $tax, 'get_rate_percent' ) ) ) {
+				$percentage = $tax->get_rate_percent();
+			} else {
+				$percentage = WC_Tax::get_rate_percent( $tax_rate_id );
+			}
+		}
+	}
+
+	/**
+	 * Allow adjusting the order tax rate percentage for a certain tax rate id.
+	 *
+	 * @param int $percentage The percentage e.g. 19.
+	 * @param int $tax_rate_id The tax rate id.
+	 * @param WC_Order $order The order object
+	 *
+	 * @since 3.1.9
+	 */
+	return apply_filters( 'woocommerce_gzd_order_tax_rate_percentage', $percentage, $tax_rate_id, $order );
+}
+
 function wc_gzd_get_shipping_costs_text( $product = false ) {
 	$replacements = array(
 		'{link}'  => '<a href="' . esc_url( wc_gzd_get_page_permalink( 'shipping_costs' ) ) . '" target="_blank">',
