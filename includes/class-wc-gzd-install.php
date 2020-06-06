@@ -303,6 +303,15 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 				$tools_controller = new WC_REST_System_Status_Tools_Controller;
 				$tools_controller->execute_tool( 'clear_sessions' );
 			}
+
+			/**
+			 * Remove notices.
+			 */
+			$notices = WC_GZD_Admin_Notices::instance();
+
+			foreach( $notices->get_notes() as $note ) {
+				$note->delete_note();
+			}
 		}
 
 		/**
