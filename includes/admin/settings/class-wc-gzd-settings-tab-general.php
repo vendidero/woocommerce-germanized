@@ -412,9 +412,9 @@ class WC_GZD_Settings_Tab_General extends WC_GZD_Settings_Tab {
 
 	protected function before_save( $settings, $current_section = '' ) {
 		if ( 'small_business' === $current_section ) {
-			if ( 'no' === get_option( 'woocommerce_gzd_small_enterprise' ) && ! empty( $_POST['woocommerce_gzd_small_enterprise'] ) ) {
+			if ( ! wc_gzd_is_small_business() && ! empty( $_POST['woocommerce_gzd_small_enterprise'] ) ) {
 				WC_GZD_Admin::instance()->enable_small_business_options();
-			} elseif ( 'yes' === get_option( 'woocommerce_gzd_small_enterprise' ) && ! isset( $_POST['woocommerce_gzd_small_enterprise'] ) ) {
+			} elseif ( wc_gzd_is_small_business() && ! isset( $_POST['woocommerce_gzd_small_enterprise'] ) ) {
 				WC_GZD_Admin::instance()->disable_small_business_options();
 			}
 		}

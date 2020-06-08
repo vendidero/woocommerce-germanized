@@ -1045,7 +1045,7 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 		 * Add small business global Email Footer
 		 */
 		public function email_small_business_notice() {
-			if ( get_option( 'woocommerce_gzd_small_enterprise' ) == 'yes' ) {
+			if ( wc_gzd_is_small_business() ) {
 				wc_get_template( 'global/small-business-info.php' );
 			}
 		}

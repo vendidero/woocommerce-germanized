@@ -77,7 +77,7 @@ foreach ( wc_gzd_get_cart_shopmarks() as $shopmark ) {
 }
 
 // Small enterprises
-if ( get_option( 'woocommerce_gzd_small_enterprise' ) === 'yes' ) {
+if ( wc_gzd_is_small_business() ) {
 
 	add_action( 'woocommerce_after_cart_totals', 'woocommerce_gzd_template_small_business_info', wc_gzd_get_hook_priority( 'cart_small_business_info' ) );
 	add_action( 'woocommerce_review_order_after_order_total', 'woocommerce_gzd_template_checkout_small_business_info', wc_gzd_get_hook_priority( 'checkout_small_business_info' ) );
@@ -87,7 +87,7 @@ if ( get_option( 'woocommerce_gzd_small_enterprise' ) === 'yes' ) {
  * Make sure to load woocommerce_gzd_maybe_add_small_business_vat_notice on init so that child-theme adjustments
  * for woocommerce_gzd_small_business_show_total_vat_notice might work.
  */
-if ( get_option( 'woocommerce_gzd_small_enterprise' ) === 'yes' ) {
+if ( wc_gzd_is_small_business() ) {
 	add_action( 'init', 'woocommerce_gzd_maybe_add_small_business_vat_notice', 20 );
 }
 

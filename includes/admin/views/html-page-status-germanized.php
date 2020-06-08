@@ -44,7 +44,7 @@ if ( ! defined( 'ABSPATH' ) ) {
             :
         </td>
         <td class="help">&nbsp;</td>
-        <td><?php echo 'yes' === get_option( 'woocommerce_gzd_small_enterprise' ) ? '<mark class="yes"><span class="dashicons dashicons-yes"></span></mark>' : '<mark class="no">' . '&ndash;' . '</mark>'; ?></td>
+        <td><?php echo ( wc_gzd_is_small_business() ? '<mark class="yes"><span class="dashicons dashicons-yes"></span></mark>' : '<mark class="no">' . '&ndash;' . '</mark>' ); ?></td>
     </tr>
     <tr>
         <td data-export-label="Default Delivery Time"><?php _e( 'Default Delivery Time', 'woocommerce-germanized' ); ?>

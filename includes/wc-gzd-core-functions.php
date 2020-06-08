@@ -297,6 +297,15 @@ function wc_gzd_get_page_permalink( $type ) {
 	return apply_filters( 'woocommerce_gzd_legal_page_permalink', $link, $type );
 }
 
+/**
+ * @return bool
+ *
+ * @since 3.1.9
+ */
+function wc_gzd_is_small_business() {
+	return 'yes' === get_option( 'woocommerce_gzd_small_enterprise' );
+}
+
 function wc_gzd_get_small_business_notice() {
 
 	/**

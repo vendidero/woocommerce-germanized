@@ -34,7 +34,7 @@ class WC_GZD_Settings_Tab_Taxes extends WC_GZD_Settings_Tab {
 	}
 
 	protected function get_vat_settings() {
-		$virtual_vat = 'yes' === get_option( 'woocommerce_gzd_small_enterprise' ) ? array() : array(
+		$virtual_vat = wc_gzd_is_small_business() ? array() : array(
 			'title'   => __( 'Virtual VAT', 'woocommerce-germanized' ),
 			'desc'    => __( 'Enable if you want to charge your customer\'s countries\' VAT for virtual products.', 'woocommerce-germanized' ) . '<div class="wc-gzd-additional-desc">' . sprintf( __( 'New EU VAT rule applies on 01.01.2015. Make sure that every digital or virtual product has chosen the right tax class (Virtual Rate or Virtual Reduced Rate). Gross prices will not differ from the prices you have chosen for affected products. In fact the net price will differ depending on the VAT rate of your customers\' country. Shop settings will be adjusted to show prices including tax. More information can be found <a href="%s" target="_blank">here</a>.', 'woocommerce-germanized' ), 'http://ec.europa.eu/taxation_customs/taxation/vat/how_vat_works/telecom/index_de.htm#new_rules' ) . '</div>',
 			'id'      => 'woocommerce_gzd_enable_virtual_vat',
@@ -196,7 +196,7 @@ class WC_GZD_Settings_Tab_Taxes extends WC_GZD_Settings_Tab {
 	protected function before_save( $settings, $current_section = '' ) {
 		if ( '' === $current_section ) {
 			if ( 'yes' !== get_option( 'woocommerce_gzd_enable_virtual_vat' ) && ! empty( $_POST['woocommerce_gzd_enable_virtual_vat'] ) ) {
-				if ( 'no' === get_option( 'woocommerce_gzd_small_enterprise' ) ) {
+				if ( ! wc_gzd_is_small_business() ) {
 					// Update WooCommerce options to show prices including taxes
 					update_option( 'woocommerce_prices_include_tax', 'yes' );
 					update_option( 'woocommerce_tax_display_shop', 'incl' );
@@ -211,7 +211,7 @@ class WC_GZD_Settings_Tab_Taxes extends WC_GZD_Settings_Tab {
 
 	protected function after_save( $settings, $current_section = '' ) {
 		if ( '' === $current_section ) {
-			if ( 'yes' === get_option( 'woocommerce_gzd_small_enterprise' ) ) {
+			if ( wc_gzd_is_small_business() ) {
 				if ( ! empty( $_POST['woocommerce_gzd_enable_virtual_vat'] ) ) {
 					update_option( 'woocommerce_gzd_enable_virtual_vat', 'no' );
 					WC_Admin_Settings::add_error( __( 'Sorry, but the new Virtual VAT rules cannot be applied to small business.', 'woocommerce-germanized' ) );
