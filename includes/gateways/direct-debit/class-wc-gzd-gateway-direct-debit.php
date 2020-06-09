@@ -430,6 +430,11 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 			// Group orders by their mandate type to only add one payment per mandate type group.
 			$mandate_type_groups = array();
 
+			/**
+			 * The XML to output
+			 */
+			$direct_debit_xml = '';
+
 			while ( $order_query->have_posts() ) {
 
 				$order_query->next_post();
@@ -448,62 +453,71 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 				array_push( $mandate_type_groups[ $mandate_type ], $order );
 			}
 
-			foreach ( $mandate_type_groups as $mandate_type => $orders ) {
+			try {
+				foreach ( $mandate_type_groups as $mandate_type => $orders ) {
 
-				$payment_id = 'PMT-ID-' . date( 'YmdHis', time() ) . '-' . strtolower( $mandate_type );
-
-				/**
-				 * Filter that allows adjusting direct debit SEPA XML Export payment data.
-				 *
-				 * @param array $args Payment arguments.
-				 * @param WC_GZD_Gateway_Direct_Debit $gateway The gateway instance.
-				 * @param string $mandate_type The mandate type.
-				 *
-				 * @since 1.8.5
-				 *
-				 */
-				$directDebit->addPaymentInfo( $payment_id, apply_filters( 'woocommerce_gzd_direct_debit_sepa_xml_exporter_payment_args', array(
-					'id'                  => $payment_id,
-					'creditorName'        => $this->company_account_holder,
-					'creditorAccountIBAN' => strtoupper( $this->clean_whitespaces( $this->company_account_iban ) ),
-					'creditorAgentBIC'    => strtoupper( $this->clean_whitespaces( $this->company_account_bic ) ),
-					'seqType'             => $mandate_type,
-					'creditorId'          => $this->clean_whitespaces( $this->company_identification_number ),
-					'dueDate'             => date_i18n( 'Y-m-d', $this->get_debit_date( $order ) ),
-				), $this, $mandate_type ) );
-
-				foreach ( $orders as $order ) {
+					$payment_id = 'PMT-ID-' . date( 'YmdHis', time() ) . '-' . strtolower( $mandate_type );
 
 					/**
-					 * Filter that allows adjusting direct debit SEPA XML Export transfer data per order.
+					 * Filter that allows adjusting direct debit SEPA XML Export payment data.
 					 *
-					 * @param array $args Transfer data.
+					 * @param array $args Payment arguments.
 					 * @param WC_GZD_Gateway_Direct_Debit $gateway The gateway instance.
-					 * @param WC_Order $order The order object.
+					 * @param string $mandate_type The mandate type.
 					 *
 					 * @since 1.8.5
 					 *
 					 */
-					$directDebit->addTransfer( $payment_id, apply_filters( 'woocommerce_gzd_direct_debit_sepa_xml_exporter_transfer_args', array(
-						'amount'                => $order->get_total(),
-						'debtorIban'            => strtoupper( $this->clean_whitespaces( $this->maybe_decrypt( $order->get_meta( '_direct_debit_iban' ) ) ) ),
-						'debtorBic'             => strtoupper( $this->clean_whitespaces( $this->maybe_decrypt( $order->get_meta( '_direct_debit_bic' ) ) ) ),
-						'debtorName'            => $order->get_meta( '_direct_debit_holder' ),
-						'debtorMandate'         => $this->get_mandate_id( $order ),
-						'debtorMandateSignDate' => date_i18n( 'Y-m-d', $this->get_mandate_sign_date( $order ) ),
+					$directDebit->addPaymentInfo( $payment_id, apply_filters( 'woocommerce_gzd_direct_debit_sepa_xml_exporter_payment_args', array(
+						'id'                  => $payment_id,
+						'creditorName'        => $this->company_account_holder,
+						'creditorAccountIBAN' => strtoupper( $this->clean_whitespaces( $this->company_account_iban ) ),
+						'creditorAgentBIC'    => strtoupper( $this->clean_whitespaces( $this->company_account_bic ) ),
+						'seqType'             => $mandate_type,
+						'creditorId'          => $this->clean_whitespaces( $this->company_identification_number ),
+						'dueDate'             => date_i18n( 'Y-m-d', $this->get_debit_date( $order ) ),
+					), $this, $mandate_type ) );
+
+					foreach ( $orders as $order ) {
+
 						/**
-						 * Filter that allows adjusting the purpose of a SEPA direct debit.
+						 * Filter that allows adjusting direct debit SEPA XML Export transfer data per order.
 						 *
-						 * @param string $purpose The SEPA purpose.
+						 * @param array $args Transfer data.
+						 * @param WC_GZD_Gateway_Direct_Debit $gateway The gateway instance.
 						 * @param WC_Order $order The order object.
 						 *
 						 * @since 1.8.5
 						 *
 						 */
-						'remittanceInformation' => apply_filters( 'woocommerce_germanized_direct_debit_purpose', sprintf( __( 'Order %s', 'woocommerce-germanized' ), $order->get_order_number() ), $order ),
-					), $this, $order ) );
+						$directDebit->addTransfer( $payment_id, apply_filters( 'woocommerce_gzd_direct_debit_sepa_xml_exporter_transfer_args', array(
+							'amount'                => $order->get_total(),
+							'debtorIban'            => strtoupper( $this->clean_whitespaces( $this->maybe_decrypt( $order->get_meta( '_direct_debit_iban' ) ) ) ),
+							'debtorBic'             => strtoupper( $this->clean_whitespaces( $this->maybe_decrypt( $order->get_meta( '_direct_debit_bic' ) ) ) ),
+							'debtorName'            => $order->get_meta( '_direct_debit_holder' ),
+							'debtorMandate'         => $this->get_mandate_id( $order ),
+							'debtorMandateSignDate' => date_i18n( 'Y-m-d', $this->get_mandate_sign_date( $order ) ),
+							/**
+							 * Filter that allows adjusting the purpose of a SEPA direct debit.
+							 *
+							 * @param string $purpose The SEPA purpose.
+							 * @param WC_Order $order The order object.
+							 *
+							 * @since 1.8.5
+							 *
+							 */
+							'remittanceInformation' => apply_filters( 'woocommerce_germanized_direct_debit_purpose', sprintf( __( 'Order %s', 'woocommerce-germanized' ), $order->get_order_number() ), $order ),
+						), $this, $order ) );
+					}
 				}
-			}
+
+				/**
+				 * Generate XML
+				 */
+				$direct_debit_xml = $directDebit->asXML();
+            } catch( Exception $e ) {
+			    wp_die( $e->getMessage() );
+            }
 		}
 
 		header( 'Content-Description: File Transfer' );
@@ -512,11 +526,7 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 		header( 'Cache-Control: no-cache, no-store, must-revalidate' );
 		header( 'Pragma: no-cache' );
 		header( 'Expires: 0' );
-
-		if ( $directDebit ) {
-			echo $directDebit->asXML();
-		}
-
+		echo $direct_debit_xml;
 		exit();
 	}
 
