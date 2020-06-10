@@ -206,16 +206,6 @@ class WC_GZD_Settings_Tab_General extends WC_GZD_Settings_Tab {
 				'type'    => 'gzd_toggle',
 			),
 			array(
-				'title'             => __( 'No VAT notice', 'woocommerce-germanized' ),
-				'desc'              => __( 'Show no VAT &#167;19 UStG notice on single product page.', 'woocommerce-germanized' ),
-				'id'                => 'woocommerce_gzd_display_product_detail_small_enterprise',
-				'type'              => 'gzd_toggle',
-				'custom_attributes' => array(
-					'data-show_if_woocommerce_gzd_small_enterprise' => '',
-				),
-				'default'           => 'no',
-			),
-			array(
 				'title'             => __( 'Notice Text', 'woocommerce-germanized' ),
 				'desc'              => __( 'You may want to adjust the small buisness notice text to meet your criteria.', 'woocommerce-germanized' ),
 				'desc_tip'          => true,
