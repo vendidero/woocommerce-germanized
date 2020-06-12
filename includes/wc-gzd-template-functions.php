@@ -548,6 +548,13 @@ if ( ! function_exists( 'woocommerce_gzd_template_small_business_total_vat_notic
 
 }
 
+if ( ! function_exists( 'woocommerce_gzd_template_small_business_mini_cart_vat_notice' ) ) {
+
+	function woocommerce_gzd_template_small_business_mini_cart_vat_notice() {
+		echo ' <span class="includes_tax wc-gzd-small-business-includes-tax">' . __( 'incl. VAT', 'woocommerce-germanized' ) . '</span>';
+	}
+}
+
 if ( ! function_exists( 'woocommerce_gzd_template_differential_taxation_notice_cart' ) ) {
 
 	function woocommerce_gzd_template_differential_taxation_notice_cart() {

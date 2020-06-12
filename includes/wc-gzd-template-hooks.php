@@ -113,6 +113,7 @@ function woocommerce_gzd_maybe_add_small_business_vat_notice() {
 	if ( apply_filters( 'woocommerce_gzd_small_business_show_total_vat_notice', false ) ) {
 		add_filter( 'woocommerce_get_formatted_order_total', 'woocommerce_gzd_template_small_business_total_vat_notice', 10, 1 );
 		add_filter( 'woocommerce_cart_totals_order_total_html', 'woocommerce_gzd_template_small_business_total_vat_notice', 10, 1 );
+		add_action( 'woocommerce_widget_shopping_cart_total', 'woocommerce_gzd_template_small_business_mini_cart_vat_notice', 12 );
 	}
 }
 
