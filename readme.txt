@@ -5,7 +5,7 @@ Requires at least: 4.9
 Tested up to: 5.4
 WC requires at least: 3.4
 WC tested up to: 4.2
-Stable tag: 3.1.8
+Stable tag: 3.1.9
 Requires PHP: 5.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -189,6 +189,18 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 5. Manage shipments for orders
 
 == Changelog ==
+= 3.1.9 =
+* Feature: Trusted Shops - Allow selecting multiple order statuses to send review reminder
+* Improvement: Added wc_gzd_is_small_business function
+* Improvement: Third party shipping costs compatibility for Shipments & DHL
+* Improvement: Better customer title support for Flexible Checkout Fields Plugin
+* Improvement: Use order item get_rate_percent if available
+* Improvement: Small business single product page tax notice shopmark
+* Improvement: Tax rate install adjustments
+* Improvement: Better SEPA XML error prevention
+* Fix: Remove queued Woo notices on deactivation
+* Fix: Prefer order item meta over product data
+
 = 3.1.8 =
 * Fix: Readded legal class to terms checkbox container
 * Improvement: Added woocommerce_gzd_cart_taxes filter to adjust cart tax displays
