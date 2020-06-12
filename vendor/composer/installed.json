@@ -1,0 +1,457 @@
+[
+    {
+        "name": "automattic/jetpack-autoloader",
+        "version": "v1.2.0",
+        "version_normalized": "1.2.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/Automattic/jetpack-autoloader.git",
+            "reference": "4ad9631e68e9da8b8a764615766287becfb27f81"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/Automattic/jetpack-autoloader/zipball/4ad9631e68e9da8b8a764615766287becfb27f81",
+            "reference": "4ad9631e68e9da8b8a764615766287becfb27f81",
+            "shasum": ""
+        },
+        "require": {
+            "composer-plugin-api": "^1.1"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "^5.7 || ^6.5 || ^7.5"
+        },
+        "time": "2019-06-24T15:13:23+00:00",
+        "type": "composer-plugin",
+        "extra": {
+            "class": "Automattic\\Jetpack\\Autoloader\\CustomAutoloaderPlugin"
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Automattic\\Jetpack\\Autoloader\\": "src"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "GPL-2.0-or-later"
+        ],
+        "description": "Creates a custom autoloader for a plugin or theme."
+    },
+    {
+        "name": "composer/installers",
+        "version": "v1.7.0",
+        "version_normalized": "1.7.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/composer/installers.git",
+            "reference": "141b272484481432cda342727a427dc1e206bfa0"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/composer/installers/zipball/141b272484481432cda342727a427dc1e206bfa0",
+            "reference": "141b272484481432cda342727a427dc1e206bfa0",
+            "shasum": ""
+        },
+        "require": {
+            "composer-plugin-api": "^1.0"
+        },
+        "replace": {
+            "roundcube/plugin-installer": "*",
+            "shama/baton": "*"
+        },
+        "require-dev": {
+            "composer/composer": "1.0.*@dev",
+            "phpunit/phpunit": "^4.8.36"
+        },
+        "time": "2019-08-12T15:00:31+00:00",
+        "type": "composer-plugin",
+        "extra": {
+            "class": "Composer\\Installers\\Plugin",
+            "branch-alias": {
+                "dev-master": "1.0-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Composer\\Installers\\": "src/Composer/Installers"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Kyle Robinson Young",
+                "email": "kyle@dontkry.com",
+                "homepage": "https://github.com/shama"
+            }
+        ],
+        "description": "A multi-framework Composer library installer",
+        "homepage": "https://composer.github.io/installers/",
+        "keywords": [
+            "Craft",
+            "Dolibarr",
+            "Eliasis",
+            "Hurad",
+            "ImageCMS",
+            "Kanboard",
+            "Lan Management System",
+            "MODX Evo",
+            "Mautic",
+            "Maya",
+            "OXID",
+            "Plentymarkets",
+            "Porto",
+            "RadPHP",
+            "SMF",
+            "Thelia",
+            "Whmcs",
+            "WolfCMS",
+            "agl",
+            "aimeos",
+            "annotatecms",
+            "attogram",
+            "bitrix",
+            "cakephp",
+            "chef",
+            "cockpit",
+            "codeigniter",
+            "concrete5",
+            "croogo",
+            "dokuwiki",
+            "drupal",
+            "eZ Platform",
+            "elgg",
+            "expressionengine",
+            "fuelphp",
+            "grav",
+            "installer",
+            "itop",
+            "joomla",
+            "known",
+            "kohana",
+            "laravel",
+            "lavalite",
+            "lithium",
+            "magento",
+            "majima",
+            "mako",
+            "mediawiki",
+            "modulework",
+            "modx",
+            "moodle",
+            "osclass",
+            "phpbb",
+            "piwik",
+            "ppi",
+            "puppet",
+            "pxcms",
+            "reindex",
+            "roundcube",
+            "shopware",
+            "silverstripe",
+            "sydes",
+            "symfony",
+            "typo3",
+            "wordpress",
+            "yawik",
+            "zend",
+            "zikula"
+        ]
+    },
+    {
+        "name": "setasign/fpdf",
+        "version": "1.8.2",
+        "version_normalized": "1.8.2.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/Setasign/FPDF.git",
+            "reference": "d77904018090c17dc9f3ab6e944679a7a47e710a"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/Setasign/FPDF/zipball/d77904018090c17dc9f3ab6e944679a7a47e710a",
+            "reference": "d77904018090c17dc9f3ab6e944679a7a47e710a",
+            "shasum": ""
+        },
+        "time": "2019-12-08T10:32:10+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "classmap": [
+                "fpdf.php"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Olivier Plathey",
+                "email": "oliver@fpdf.org",
+                "homepage": "http://fpdf.org/"
+            }
+        ],
+        "description": "FPDF is a PHP class which allows to generate PDF files with pure PHP. F from FPDF stands for Free: you may use it for any kind of usage and modify it to suit your needs.",
+        "homepage": "http://www.fpdf.org",
+        "keywords": [
+            "fpdf",
+            "pdf"
+        ]
+    },
+    {
+        "name": "setasign/fpdi",
+        "version": "v2.3.3",
+        "version_normalized": "2.3.3.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/Setasign/FPDI.git",
+            "reference": "50c388860a73191e010810ed57dbed795578e867"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/Setasign/FPDI/zipball/50c388860a73191e010810ed57dbed795578e867",
+            "reference": "50c388860a73191e010810ed57dbed795578e867",
+            "shasum": ""
+        },
+        "require": {
+            "ext-zlib": "*",
+            "php": "^5.6 || ^7.0"
+        },
+        "conflict": {
+            "setasign/tfpdf": "<1.31"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "~5.7",
+            "setasign/fpdf": "~1.8",
+            "setasign/tfpdf": "1.31",
+            "tecnickcom/tcpdf": "~6.2"
+        },
+        "suggest": {
+            "setasign/fpdf": "FPDI will extend this class but as it is also possible to use TCPDF or tFPDF as an alternative. There's no fixed dependency configured."
+        },
+        "time": "2020-04-28T12:40:35+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "setasign\\Fpdi\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Jan Slabon",
+                "email": "jan.slabon@setasign.com",
+                "homepage": "https://www.setasign.com"
+            },
+            {
+                "name": "Maximilian Kresse",
+                "email": "maximilian.kresse@setasign.com",
+                "homepage": "https://www.setasign.com"
+            }
+        ],
+        "description": "FPDI is a collection of PHP classes facilitating developers to read pages from existing PDF documents and use them as templates in FPDF. Because it is also possible to use FPDI with TCPDF, there are no fixed dependencies defined. Please see suggestions for packages which evaluates the dependencies automatically.",
+        "homepage": "https://www.setasign.com/fpdi",
+        "keywords": [
+            "fpdf",
+            "fpdi",
+            "pdf"
+        ]
+    },
+    {
+        "name": "setasign/fpdi-fpdf",
+        "version": "v2.3.0",
+        "version_normalized": "2.3.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/Setasign/FPDI-FPDF.git",
+            "reference": "f2fdc44e4d5247a3bb55ed2c2c1396ef05c02357"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/Setasign/FPDI-FPDF/zipball/f2fdc44e4d5247a3bb55ed2c2c1396ef05c02357",
+            "reference": "f2fdc44e4d5247a3bb55ed2c2c1396ef05c02357",
+            "shasum": ""
+        },
+        "require": {
+            "setasign/fpdf": "^1.8.2",
+            "setasign/fpdi": "^2.3"
+        },
+        "time": "2020-02-19T12:21:53+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Jan Slabon",
+                "email": "jan.slabon@setasign.com",
+                "homepage": "https://www.setasign.com"
+            }
+        ],
+        "description": "Kind of metadata package for dependencies of the latest versions of FPDI and FPDF.",
+        "homepage": "https://www.setasign.com/fpdi",
+        "keywords": [
+            "fpdf",
+            "fpdi",
+            "pdf"
+        ],
+        "abandoned": true
+    },
+    {
+        "name": "vendidero/woocommerce-germanized-dhl",
+        "version": "v1.2.7",
+        "version_normalized": "1.2.7.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/vendidero/woocommerce-germanized-dhl.git",
+            "reference": "f0196e6ff66c93a1394b33479fdcd4d838755ccc"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/vendidero/woocommerce-germanized-dhl/zipball/f0196e6ff66c93a1394b33479fdcd4d838755ccc",
+            "reference": "f0196e6ff66c93a1394b33479fdcd4d838755ccc",
+            "shasum": ""
+        },
+        "require": {
+            "automattic/jetpack-autoloader": "^1.2.0"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "6.5.14",
+            "woocommerce/woocommerce-sniffs": "0.0.6"
+        },
+        "time": "2020-06-12T09:24:18+00:00",
+        "type": "wordpress-plugin",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Vendidero\\Germanized\\DHL\\": "src"
+            }
+        },
+        "scripts": {
+            "post-install-cmd": [
+                "composer dump-autoload",
+                "python ./bin/update-holidays.py"
+            ],
+            "post-update-cmd": [
+                "composer dump-autoload",
+                "python ./bin/update-holidays.py"
+            ]
+        },
+        "license": [
+            "GPL-3.0-or-later"
+        ],
+        "description": "The Germanized DHL implementation.",
+        "homepage": "https://github.com/vendidero/woocommerce-germanized-dhl",
+        "support": {
+            "source": "https://github.com/vendidero/woocommerce-germanized-dhl/tree/v1.2.7",
+            "issues": "https://github.com/vendidero/woocommerce-germanized-dhl/issues"
+        }
+    },
+    {
+        "name": "vendidero/woocommerce-germanized-shipments",
+        "version": "v1.2.8",
+        "version_normalized": "1.2.8.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/vendidero/woocommerce-germanized-shipments.git",
+            "reference": "8291f4a6b12ded4c82313fa4331700ae514258a3"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/vendidero/woocommerce-germanized-shipments/zipball/8291f4a6b12ded4c82313fa4331700ae514258a3",
+            "reference": "8291f4a6b12ded4c82313fa4331700ae514258a3",
+            "shasum": ""
+        },
+        "require": {
+            "automattic/jetpack-autoloader": "^1.2.0",
+            "setasign/fpdi-fpdf": "^2.0"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "6.5.14",
+            "woocommerce/woocommerce-sniffs": "0.0.6"
+        },
+        "time": "2020-06-12T09:25:22+00:00",
+        "type": "wordpress-plugin",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Vendidero\\Germanized\\Shipments\\": "src"
+            }
+        },
+        "scripts": {
+            "post-install-cmd": [
+                "composer dump-autoload"
+            ],
+            "post-update-cmd": [
+                "composer dump-autoload"
+            ]
+        },
+        "license": [
+            "GPL-3.0-or-later"
+        ],
+        "description": "The Germanized Shipments implementation.",
+        "homepage": "https://github.com/vendidero/woocommerce-germanized-shipments",
+        "support": {
+            "source": "https://github.com/vendidero/woocommerce-germanized-shipments/tree/v1.2.8",
+            "issues": "https://github.com/vendidero/woocommerce-germanized-shipments/issues"
+        }
+    },
+    {
+        "name": "vendidero/woocommerce-trusted-shops",
+        "version": "v4.0.6",
+        "version_normalized": "4.0.6.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/vendidero/woocommerce-trusted-shops.git",
+            "reference": "f7a1b2a6420434638c8bd263e3b3f3799106f4cc"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/vendidero/woocommerce-trusted-shops/zipball/f7a1b2a6420434638c8bd263e3b3f3799106f4cc",
+            "reference": "f7a1b2a6420434638c8bd263e3b3f3799106f4cc",
+            "shasum": ""
+        },
+        "require": {
+            "automattic/jetpack-autoloader": "1.2.0"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "6.5.14",
+            "woocommerce/woocommerce-sniffs": "0.0.6"
+        },
+        "time": "2020-06-12T09:00:24+00:00",
+        "type": "wordpress-plugin",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Vendidero\\TrustedShops\\": "src"
+            }
+        },
+        "scripts": {
+            "post-install-cmd": [
+                "composer dump-autoload"
+            ],
+            "post-update-cmd": [
+                "composer dump-autoload"
+            ]
+        },
+        "license": [
+            "GPL-3.0-or-later"
+        ],
+        "description": "Trustbadge Reviews for WooCommerce.",
+        "homepage": "https://github.com/vendidero/woocommerce-trusted-shops",
+        "support": {
+            "source": "https://github.com/vendidero/woocommerce-trusted-shops/tree/v4.0.6",
+            "issues": "https://github.com/vendidero/woocommerce-trusted-shops/issues"
+        }
+    }
+]
