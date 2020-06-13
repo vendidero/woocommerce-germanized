@@ -59,6 +59,10 @@ class WC_GZD_REST_Customers_Controller {
 			'bic'    => $bic
 		);
 
+		if ( WC_GZD_Customer_Helper::instance()->is_double_opt_in_enabled() ) {
+			$response_customer_data['is_activated'] = wc_gzd_is_customer_activated( $customer->get_id() );
+		}
+
 		$response->set_data( $response_customer_data );
 
 		return $response;
@@ -143,6 +147,15 @@ class WC_GZD_REST_Customers_Controller {
 			'enum'        => array( 1, 2 )
 		);
 
+		if ( WC_GZD_Customer_Helper::instance()->is_double_opt_in_enabled() ) {
+			$schema_properties['is_activated'] = array(
+				'description' => __( 'Has been activated via DOI?', 'woocommerce-germanized' ),
+				'type'        => 'boolean',
+				'context'     => array( 'view', 'edit' ),
+				'readonly'    => true
+			);
+		}
+
 		$schema_properties['direct_debit'] = array(
 			'description' => __( 'Direct Debit', 'woocommerce-germanized' ),
 			'type'        => 'array',
@@ -168,5 +181,4 @@ class WC_GZD_REST_Customers_Controller {
 
 		return $schema_properties;
 	}
-
 }
