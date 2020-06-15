@@ -27,13 +27,13 @@ window.germanized = window.germanized || {};
                 .on( 'change', 'input[name=woocommerce_gzd_dispute_resolution_type]', this.onChangeDisputeResolutionType )
                 .on( 'click', 'a.woocommerce-gzd-input-toggle-trigger', this.onInputToogleClick )
                 .on( 'change', '.wc-gzd-setting-tabs input.woocommerce-gzd-tab-status-checkbox', this.onChangeTabStatus )
-                .on( 'change', '.wc-gzd-admin-settings :input', this.onChangeInput );
+                .on( 'change gzd_show_or_hide_fields', '.wc-gzd-admin-settings :input', this.onChangeInput );
 
             $( document.body )
                 .on( 'woocommerce_gzd_setting_field_visible', this.onShowField )
                 .on( 'woocommerce_gzd_setting_field_invisible', this.onHideField );
 
-            $( '.wc-gzd-admin-settings :input' ).trigger( 'change' );
+            $( '.wc-gzd-admin-settings :input' ).trigger( 'gzd_show_or_hide_fields' );
             $( 'input[name=woocommerce_gzd_dispute_resolution_type]:checked' ).trigger( 'change' );
 
             this.initMailSortable();
