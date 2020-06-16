@@ -408,15 +408,22 @@ class WC_GZD_Checkout {
 	}
 
 	public function add_payment_link( $order_id ) {
+		if ( is_a( $order_id, 'WC_Order' ) ) {
+			$order = $order_id;
+		} else {
+			$order = wc_get_order( $order_id );
+		}
+
+		if ( ! $order ) {
+			return;
+		}
 
 		$enabled = true;
 
 		if ( get_option( 'woocommerce_gzd_order_pay_now_button' ) === 'no' ) {
 			$enabled = false;
 		}
-
-		$order = wc_get_order( $order_id );
-
+		
 		if ( ! $order->needs_payment() ) {
 			$enabled = false;
 		}
