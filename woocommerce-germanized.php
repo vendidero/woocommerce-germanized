@@ -924,11 +924,10 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 		public function localize_scripts() {
 			global $wp;
 
-			$assets_path = str_replace( array( 'http:', 'https:' ), '', WC()->plugin_url() ) . '/assets/';
-
-			if ( wp_script_is( 'wc-gzd-revocation' ) && ! in_array( 'wc-gzd-revocation', $this->localized_scripts ) ) {
+			if ( wp_script_is( 'wc-gzd-revocation' ) && ! in_array( 'wc-gzd-revocation', $this->localized_scripts ) && function_exists( 'WC' ) ) {
 
 				$this->localized_scripts[] = 'wc-gzd-revocation';
+				$wc_assets_path            = str_replace( array( 'http:', 'https:' ), '', WC()->plugin_url() ) . '/assets/';
 
 				/**
 				 * Filters script localization paramaters for the `wc-gzd-revocation` script.
@@ -941,7 +940,7 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 				wp_localize_script( 'wc-gzd-revocation', 'wc_gzd_revocation_params', apply_filters( 'wc_gzd_revocation_params', array(
 					'ajax_url'        => WC()->ajax_url(),
 					'wc_ajax_url'     => WC_AJAX::get_endpoint( "%%endpoint%%" ),
-					'ajax_loader_url' => apply_filters( 'woocommerce_ajax_loader_url', $assets_path . 'images/wpspin-2x.gif' ),
+					'ajax_loader_url' => apply_filters( 'woocommerce_ajax_loader_url', $wc_assets_path . 'images/wpspin-2x.gif' ),
 				) ) );
 			}
 
@@ -1017,12 +1016,9 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 			 *
 			 * This hook fires after Germanized has localized it's scripts.
 			 *
-			 * @param string $assets_path The absolute URL to the plugins assets.
-			 *
 			 * @since 1.0.0
-			 *
 			 */
-			do_action( 'woocommerce_gzd_localized_scripts', $assets_path );
+			do_action( 'woocommerce_gzd_localized_scripts' );
 		}
 
 		/**
