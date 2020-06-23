@@ -181,7 +181,7 @@ class WC_GZD_REST_Products_Controller {
 			'default'     => false,
 			'context'     => array( 'view', 'edit' ),
 		);
-		$schema_properties['age_verification']                                              = array(
+		$schema_properties['min_age']                                              = array(
 			'description' => __( 'Age verification minimum age.', 'woocommerce-germanized' ),
 			'type'        => 'string',
 			'enum'        => array_merge( array( '' ), array_keys( wc_gzd_get_age_verification_min_ages() ) ),
