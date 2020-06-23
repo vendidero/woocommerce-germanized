@@ -935,7 +935,6 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 				 * @param array $params Key => value array containing parameter name and value.
 				 *
 				 * @since 1.0.0
-				 *
 				 */
 				wp_localize_script( 'wc-gzd-revocation', 'wc_gzd_revocation_params', apply_filters( 'wc_gzd_revocation_params', array(
 					'ajax_url'        => WC()->ajax_url(),

@@ -191,6 +191,13 @@ class WC_GZD_Customer_Helper {
 
 	public function disable_checkout() {
 
+		/**
+		 * Prevent errors in case this is not a frontend request
+		 */
+		if ( ! WC()->session ) {
+			return;
+		}
+
 		$user_id = get_current_user_id();
 
 		if ( is_cart() ) {
