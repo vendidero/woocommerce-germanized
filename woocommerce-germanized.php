@@ -839,10 +839,7 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 			global $post;
 
 			$suffix               = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
-			$assets_path          = str_replace( array(
-					'http:',
-					'https:'
-				), '', WC_germanized()->plugin_url() ) . '/assets/';
+			$assets_path          = WC_germanized()->plugin_url() . '/assets/';
 			$frontend_script_path = $assets_path . 'js/';
 
 			wp_register_script( 'wc-gzd-revocation', $frontend_script_path . 'revocation' . $suffix . '.js', array(

@@ -1182,7 +1182,7 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 		}
 
 		$suffix      = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
-		$assets_path = str_replace( array( 'http:', 'https:' ), '', WC()->plugin_url() ) . '/assets/';
+		$assets_path = WC()->plugin_url() . '/assets/';
 
 		// Ensure that prettyPhoto is being loaded
 		wp_register_script( 'prettyPhoto_debit', $assets_path . 'js/prettyPhoto/jquery.prettyPhoto' . $suffix . '.js', array( 'jquery' ), '3.1.6', true );
