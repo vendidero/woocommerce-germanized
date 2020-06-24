@@ -1,3 +1,28 @@
+.wc-gzd-news .about-logo-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start; }
+  .wc-gzd-news .about-logo-wrapper .wc-gzd-logo {
+    display: inline-block !important;
+    text-indent: -9999px;
+    width: 298px;
+    vertical-align: top;
+    margin-top: 2rem;
+    height: 89px;
+    background: url(../images/germanized.svg) no-repeat;
+    background-size: 298px auto; }
+  .wc-gzd-news .about-logo-wrapper .about-text {
+    display: inline-block;
+    padding: 0;
+    max-width: 50%;
+    width: 50%;
+    margin: 0;
+    margin-top: 1rem;
+    margin-left: 3%; }
+
+.wc-gzd-news .new-feature img {
+  align-self: flex-start; }
+
 .wc-gzd-news p.price {
   font-size: .8em; }
 
@@ -19,25 +44,6 @@
       align-self: center; }
   .wc-gzd-news .columns.two-col .col {
     width: 50%; }
-
-.wc-gzd-logo {
-  display: inline-block !important;
-  text-indent: -9999px;
-  width: 298px;
-  vertical-align: top;
-  margin-top: 2rem;
-  height: 89px;
-  background: url(../images/germanized.svg) no-repeat;
-  background-size: 298px auto; }
-
-.about-text {
-  display: inline-block;
-  padding: 0;
-  max-width: 50%;
-  width: 50%;
-  margin: 0;
-  margin-top: 2rem;
-  margin-left: 5%; }
 
 .dashboard_page_wc-gzd-about h1 {
   width: 100%;

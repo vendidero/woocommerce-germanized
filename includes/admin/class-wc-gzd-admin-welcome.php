@@ -109,21 +109,22 @@ class WC_GZD_Admin_Welcome {
         <div class="wc-gzd-news <?php echo( WC_germanized()->is_pro() ? 'wc-gzd-admin-welcome-hide-pro' : '' ); ?>">
 
             <h1>Willkommen bei Germanized</h1>
-            <a class="wc-gzd-logo" href="https://vendidero.de/woocommerce-germanized" target="_blank"
-               style="margin-right: 1em"></a>
-            <div class="about-text woocommerce-about-text">
-				<?php
-				if ( ! empty( $_GET['wc-gzd-installed'] ) ) {
-					$message = 'Super, alles erledigt!';
-				} elseif ( ! empty( $_GET['wc-gzd-updated'] ) ) {
-					$message = 'Danke, dass du auf die neueste Version aktualisiert hast!';
-				} else {
-					$message = 'Danke für die Installation!';
-				}
-				echo $message . '<br/>';
-				?>
-                Germanized <?php echo $major_version; ?> erweitert deine WooCommerce Installation um wichtige Funktionen
-                für den deutschen Markt.
+            <div class="about-logo-wrapper">
+                <a class="wc-gzd-logo" href="https://vendidero.de/woocommerce-germanized" target="_blank"></a>
+                <div class="about-text woocommerce-about-text">
+		            <?php
+		            if ( ! empty( $_GET['wc-gzd-installed'] ) ) {
+			            $message = 'Super, alles erledigt!';
+		            } elseif ( ! empty( $_GET['wc-gzd-updated'] ) ) {
+			            $message = 'Danke, dass du auf die neueste Version aktualisiert hast!';
+		            } else {
+			            $message = 'Danke für die Installation!';
+		            }
+		            echo $message . '<br/>';
+		            ?>
+                    Germanized <?php echo $major_version; ?> erweitert deine WooCommerce Installation um wichtige Funktionen
+                    für den deutschen Markt.
+                </div>
             </div>
 
             <p class="woocommerce-actions wc-gzd-actions">
