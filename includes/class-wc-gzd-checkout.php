@@ -863,6 +863,20 @@ class WC_GZD_Checkout {
 
 	public function set_formatted_address( $placeholder, $args ) {
 		if ( isset( $args['title'] ) ) {
+
+			if ( ! empty( $args['title'] ) ) {
+				$title = is_numeric( $args['title'] ) ? wc_gzd_get_customer_title( $args['title'] ) : $args['title'];
+
+				/**
+				 * Ugly hack to force accusative in addresses
+				 */
+				if ( __( 'Mr.', 'woocommerce-germanized' ) === $title ) {
+					$title = _x( 'Mr.', 'customer-title-male-address', 'woocommerce-germanized' );
+				}
+
+				$args['title'] = $title;
+			}
+
 			$placeholder['{title}']       = $args['title'];
 			$placeholder['{title_upper}'] = strtoupper( $args['title'] );
 
