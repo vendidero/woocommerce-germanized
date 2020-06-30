@@ -444,7 +444,7 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 				'BG' => 20,
 				'CZ' => 21,
 				'DK' => 25,
-				'DE' => 19,
+				'DE' => 16,
 				'EE' => 20,
 				'GR' => 23,
 				'ES' => 21,
@@ -568,11 +568,11 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 			$countries = WC()->countries->get_european_union_countries();
 
 			if ( empty( $tax_rate ) || ! is_numeric( $tax_rate ) ) {
-				$tax_rate = WC()->countries->get_base_country() === 'AT' ? 20 : 19;
+				$tax_rate = WC()->countries->get_base_country() === 'AT' ? 20 : 16;
 			}
 
 			if ( empty( $tax_rate_reduced ) || ! is_numeric( $tax_rate_reduced ) ) {
-				$tax_rate_reduced = WC()->countries->get_base_country() === 'AT' ? 10 : 7;
+				$tax_rate_reduced = WC()->countries->get_base_country() === 'AT' ? 10 : 5;
 			}
 
 			foreach ( $countries as $key => $country ) {

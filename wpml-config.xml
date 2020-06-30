@@ -10,6 +10,7 @@
         <custom-field action="copy">_sale_price_label</custom-field>
         <custom-field action="copy">_sale_price_regular_label</custom-field>
         <custom-field action="copy">_free_shipping</custom-field>
+        <custom-field action="copy">_min_age</custom-field>
         <custom-field action="translate">_mini_desc</custom-field>
         <custom-field action="copy">_service</custom-field>
         <custom-field action="copy">_differential_taxation</custom-field>
