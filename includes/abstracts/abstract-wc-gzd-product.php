@@ -595,27 +595,11 @@ class WC_GZD_Product {
 	 * @return string
 	 */
 	public function get_unit_base_html() {
-		/**
-		 * Filter that allows changing the amount which is used to determine whether
-		 * the base for the unit price should be skipped or not. Defaults to 1.
-		 *
-		 * @param int $amount The amount.
-		 *
-		 * @since 1.0.0
-		 *
-		 */
-		$hide_amount = apply_filters( 'woocommerce_gzd_unit_base_hide_amount', 1 );
-
-		return ( $this->get_unit_base() !== '' ) ? ( $this->get_unit_base() != $hide_amount ? '<span class="unit-base">' . $this->get_unit_base() . '</span>' : '' ) : '';
+		return wc_gzd_format_unit_base( $this->get_unit_base() );
 	}
 
 	public function get_unit_html() {
-
-		if ( $this->get_unit() !== '' ) {
-			return '<span class="unit">' . $this->get_unit_name() . '</span>';
-		}
-
-		return '';
+		return wc_gzd_format_unit( $this->get_unit_name() );
 	}
 
 	public function get_unit_term( $context = 'view' ) {
@@ -807,7 +791,6 @@ class WC_GZD_Product {
 		$html = '';
 
 		if ( $this->has_unit() ) {
-
 			/**
 			 * Before retrieving unit price HTML.
 			 *
@@ -820,46 +803,12 @@ class WC_GZD_Product {
 			 */
 			do_action( 'woocommerce_gzd_before_get_unit_price_html', $this );
 
-			$display_price = $this->get_formatted_unit_price();
-
+			$display_price         = $this->get_formatted_unit_price();
 			$display_regular_price = $this->get_formatted_unit_price( 1, $this->get_unit_price_regular() );
 			$display_sale_price    = $this->get_formatted_unit_price( 1, $this->get_unit_price_sale() );
 
-			$price_html   = ( ( $this->is_on_unit_sale() && $show_sale ) ? $this->get_price_html_from_to( $display_regular_price, $display_sale_price, false ) : wc_price( $display_price ) );
-			$text         = get_option( 'woocommerce_gzd_unit_price_text' );
-			$replacements = array();
-
-			/**
-			 * Filter to adjust the unit price base separator.
-			 *
-			 * @param string $separator The separator.
-			 *
-			 * @since 1.0.0
-			 *
-			 */
-			$separator = apply_filters( 'wc_gzd_unit_price_base_seperator', ' ' );
-
-			if ( strpos( $text, '{price}' ) !== false ) {
-				$replacements = array(
-					/**
-					 * Filter to adjust the unit price separator.
-					 *
-					 * @param string $separator The separator.
-					 *
-					 * @since 1.0.0
-					 *
-					 */
-					'{price}' => $price_html . apply_filters( 'wc_gzd_unit_price_seperator', ' / ' ) . $this->get_unit_base_html() . $separator . $this->get_unit_html(),
-				);
-			} else {
-				$replacements = array(
-					'{base_price}' => $price_html,
-					'{unit}'       => $this->get_unit_html(),
-					'{base}'       => $this->get_unit_base_html()
-				);
-			}
-
-			$html = wc_gzd_replace_label_shortcodes( $text, $replacements );
+			$price_html = ( ( $this->is_on_unit_sale() && $show_sale ) ? $this->get_price_html_from_to( $display_regular_price, $display_sale_price, false ) : wc_price( $display_price ) );
+			$html       = wc_gzd_format_unit_price( $price_html, $this->get_unit_html(), $this->get_unit_base_html() );
 		}
 
 		/**

@@ -893,3 +893,81 @@ function wc_gzd_restore_locale() {
 		}
 	}
 }
+
+function wc_gzd_format_unit( $unit ) {
+	$html = '';
+
+	if ( ! empty( $unit ) ) {
+		$html = '<span class="unit">' . $unit . '</span>';
+	}
+
+	return $html;
+}
+
+function wc_gzd_format_unit_base( $unit_base ) {
+	/**
+	 * Filter that allows changing the amount which is used to determine whether
+	 * the base for the unit price should be skipped or not. Defaults to 1.
+	 *
+	 * @param int $amount The amount.
+	 *
+	 * @since 1.0.0
+	 */
+	$hide_amount = apply_filters( 'woocommerce_gzd_unit_base_hide_amount', 1 );
+	$html        = '';
+
+	if ( '' !== $unit_base ) {
+		$html = ( $unit_base != $hide_amount ? '<span class="unit-base">' . $unit_base . '</span>' : '' );
+	}
+
+	return $html;
+}
+
+function wc_gzd_format_unit_price( $price, $unit, $unit_base ) {
+	$text         = get_option( 'woocommerce_gzd_unit_price_text' );
+	$replacements = array();
+
+	/**
+	 * Filter to adjust the unit price base separator.
+	 *
+	 * @param string $separator The separator.
+	 *
+	 * @since 1.0.0
+	 *
+	 */
+	$separator = apply_filters( 'wc_gzd_unit_price_base_seperator', ' ' );
+
+	if ( strpos( $text, '{price}' ) !== false ) {
+		$replacements = array(
+			/**
+			 * Filter to adjust the unit price separator.
+			 *
+			 * @param string $separator The separator.
+			 *
+			 * @since 1.0.0
+			 *
+			 */
+			'{price}' => $price . apply_filters( 'wc_gzd_unit_price_seperator', ' / ' ) . $unit_base . $separator . $unit,
+		);
+	} else {
+		$replacements = array(
+			'{base_price}' => $price,
+			'{unit}'       => $unit,
+			'{base}'       => $unit_base
+		);
+	}
+
+	$html = wc_gzd_replace_label_shortcodes( $text, $replacements );
+
+	/**
+	 * Filter to adjust the formatted unit price.
+	 *
+	 * @param string $html  The html output
+	 * @param string $price The price html
+	 * @param string $unit_base The unit base html
+	 * @param string $unit The unit html
+	 *
+	 * @since 3.2.0
+	 */
+	return apply_filters( 'woocommerce_gzd_formatted_unit_price', $html, $price, $unit_base, $unit );
+}

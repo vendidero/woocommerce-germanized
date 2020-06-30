@@ -46,6 +46,11 @@ class WC_GZD_Checkout {
 		add_filter( 'woocommerce_admin_billing_fields', array( $this, 'set_custom_fields_admin_billing' ), 0, 1 );
 		add_filter( 'woocommerce_admin_shipping_fields', array( $this, 'set_custom_fields_admin_shipping' ), 0, 1 );
 
+		/**
+		 * Recalculate order item unit price after tax adjustments.
+		 */
+		add_action( 'woocommerce_order_item_after_calculate_taxes', array( $this, 'recalculate_order_item_unit_price' ), 60, 1 );
+
 		// Save Fields on order
 		add_action( 'woocommerce_checkout_create_order', array( $this, 'save_fields' ) );
 
@@ -128,6 +133,14 @@ class WC_GZD_Checkout {
 		// Make sure that, just like in Woo core, the order submit button gets refreshed
 		// Use a high priority to let other plugins do their adjustments beforehand
 		add_filter( 'woocommerce_update_order_review_fragments', array( $this, 'refresh_order_submit' ), 150, 1 );
+	}
+
+	public function recalculate_order_item_unit_price( $order_item ) {
+		if ( is_a( $order_item, 'WC_Order_Item_Product' ) ) {
+			if ( $gzd_item = wc_gzd_get_order_item( $order_item ) ) {
+				$gzd_item->recalculate_unit_price();
+			}
+		}
 	}
 
 	public function prevent_differential_mixed_carts( $has_passed, $product_id, $quantity ) {
@@ -779,41 +792,34 @@ class WC_GZD_Checkout {
 	 * @param $order
 	 */
 	public function set_order_item_meta_crud( $item, $cart_item_key, $values, $order ) {
-		if ( is_a( $item, 'WC_Order_Item' ) && $item->get_product() ) {
+		if ( is_a( $item, 'WC_Order_Item_Product' ) && ( $product = $item->get_product() ) ) {
+			if ( $gzd_item = wc_gzd_get_order_item( $item ) ) {
+				$gzd_product = wc_gzd_get_product( $product );
 
-			$product     = $item->get_product();
-			$gzd_product = wc_gzd_get_product( $product );
+				$gzd_item->set_unit( $gzd_product->get_unit_name() );
+				$gzd_item->set_unit_base( $gzd_product->get_unit_base() );
+				$gzd_item->set_unit_product( $gzd_product->get_unit_product() );
 
-			/**
-			 * Add order item meta.
-			 *
-			 * Fires when Germanized adds order item meta.
-			 *
-			 * @param WC_Order_Item $item The order item.
-			 * @param WC_Order $order The order.
-			 * @param WC_GZD_Product $gzd_product The product object.
-			 *
-			 * @since 1.8.9
-			 *
-			 */
-			do_action( 'woocommerce_gzd_add_order_item_meta', $item, $order, $gzd_product );
+				$gzd_item->recalculate_unit_price();
 
-			$item->update_meta_data( '_units', $gzd_product->get_unit_product_html() );
-			$item->update_meta_data( '_delivery_time', $gzd_product->get_delivery_time_html() );
-			$item->update_meta_data( '_item_desc', $gzd_product->get_formatted_cart_description() );
+				$gzd_item->set_cart_description( $gzd_product->get_formatted_cart_description() );
+				$gzd_item->set_delivery_time( $gzd_product->get_delivery_time_html() );
+				$gzd_item->set_min_age( $gzd_product->get_min_age() );
 
-			/**
-			 * Filter that allow adjusting the order item unit price.
-			 *
-			 * @param string $price The unit price HTML.
-			 * @param WC_GZD_Product $gzd_product The product instance.
-			 * @param WC_Order_Item $item The order item instance.
-			 * @param WC_Order $order The order instance.
-			 *
-			 * @since 1.8.9
-			 *
-			 */
-			$item->update_meta_data( '_unit_price', apply_filters( 'woocommerce_gzd_order_item_unit_price', $gzd_product->get_unit_price_html( false ), $gzd_product, $item, $order ) );
+				/**
+				 * Add order item meta.
+				 *
+				 * Fires when Germanized adds order item meta.
+				 *
+				 * @param WC_Order_Item $item The order item.
+				 * @param WC_Order $order The order.
+				 * @param WC_GZD_Product $gzd_product The product object.
+				 * @param WC_GZD_Order_Item $gzd_item The order item object.
+				 *
+				 * @since 1.8.9
+				 */
+				do_action( 'woocommerce_gzd_add_order_item_meta', $item, $order, $gzd_product, $gzd_item );
+			}
 		}
 	}
 
@@ -827,6 +833,14 @@ class WC_GZD_Checkout {
 		array_push( $metas, '_units' );
 		array_push( $metas, '_delivery_time' );
 		array_push( $metas, '_unit_price' );
+		array_push( $metas, '_unit_price_raw' );
+		array_push( $metas, '_unit_price_subtotal_raw' );
+		array_push( $metas, '_unit_price_subtotal_net_raw' );
+		array_push( $metas, '_unit_price_net_raw' );
+		array_push( $metas, '_unit_product' );
+		array_push( $metas, '_unit' );
+		array_push( $metas, '_unit_base' );
+		array_push( $metas, '_min_age' );
 
 		return $metas;
 	}

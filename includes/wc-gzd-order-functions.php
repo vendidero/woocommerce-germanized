@@ -121,3 +121,22 @@ function wc_gzd_get_order_customer_title( $order, $type = 'billing' ) {
 
 	return $title_formatted;
 }
+
+/**
+ * @param WC_Order_Item $order_item
+ *
+ * @return WC_GZD_Order_Item|WC_GZD_Order_Item_Product
+ */
+function wc_gzd_get_order_item( $order_item ) {
+	$classname = 'WC_GZD_Order_Item';
+
+	if ( is_a( $order_item, 'WC_Order_Item_Product' ) ) {
+		$classname = 'WC_GZD_Order_Item_Product';
+	}
+
+	if ( ! class_exists( $classname ) ) {
+		$classname = 'WC_GZD_Order_Item';
+	}
+
+	return new $classname( $order_item );
+}
