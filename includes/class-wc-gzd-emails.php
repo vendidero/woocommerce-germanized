@@ -485,13 +485,14 @@ class WC_GZD_Emails {
 				$this->get_email_instance_by_id( 'customer_processing_order' ),
 				'trigger'
 			) );
+
 			remove_action( $status . '_notification', array(
 				$this->get_email_instance_by_id( 'new_order' ),
 				'trigger'
 			) );
 
 			if ( $this->get_email_instance_by_id( 'customer_on_hold_order' ) ) {
-				remove_action( 'woocommerce_order_status_pending_to_on-hold_notification', array(
+				remove_action( $status . '_notification', array(
 					$this->get_email_instance_by_id( 'customer_on_hold_order' ),
 					'trigger'
 				) );

@@ -26,6 +26,7 @@ if ( ! class_exists( 'WC_GZD_Email_Customer_Processing_Order' ) ) :
 			wc_gzd_remove_class_action( 'woocommerce_order_status_on-hold_to_processing_notification', 'WC_Email_Customer_Processing_Order', 'trigger', 10 );
 			wc_gzd_remove_class_action( 'woocommerce_order_status_pending_to_processing_notification', 'WC_Email_Customer_Processing_Order', 'trigger', 10 );
 			wc_gzd_remove_class_action( 'woocommerce_order_status_failed_to_processing_notification', 'WC_Email_Customer_Processing_Order', 'trigger', 10 );
+			wc_gzd_remove_class_action( 'woocommerce_order_status_cancelled_to_processing_notification', 'WC_Email_Customer_Processing_Order', 'trigger', 10 );
 
 			if ( wc_gzd_send_instant_order_confirmation() ) {
 				// Remove Triggers for this email.

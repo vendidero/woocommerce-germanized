@@ -9,7 +9,7 @@
  * Requires at least: 4.9
  * Tested up to: 5.4
  * WC requires at least: 3.4
- * WC tested up to: 4.2
+ * WC tested up to: 4.3
  *
  * Text Domain: woocommerce-germanized
  * Domain Path: /i18n/languages/
@@ -195,6 +195,11 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 			add_action( 'woocommerce_note_updated', array( $this, 'on_update_admin_note' ) );
 			add_filter( 'woocommerce_note_statuses', array( $this, 'add_note_statuses' ), 10 );
 
+			/**
+			 * Make sure to add emails globally.
+			 */
+			add_filter( 'woocommerce_email_classes', array( $this, 'add_emails' ), 1 );
+
 			add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), array( $this, 'action_links' ) );
 			add_action( 'after_setup_theme', array( $this, 'include_template_functions' ), 12 );
 
@@ -263,7 +268,6 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 			add_action( 'wp_print_scripts', array( $this, 'localize_scripts' ), 5 );
 			add_action( 'wp_print_footer_scripts', array( $this, 'localize_scripts' ), 5 );
 
-			add_filter( 'woocommerce_email_classes', array( $this, 'add_emails' ), 1 );
 			add_filter( 'woocommerce_locate_core_template', array( $this, 'email_templates' ), 0, 3 );
 			add_action( 'woocommerce_email_order_meta', array( $this, 'email_small_business_notice' ), 1 );
 
