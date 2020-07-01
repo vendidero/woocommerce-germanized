@@ -5,7 +5,7 @@ Requires at least: 4.9
 Tested up to: 5.4
 WC requires at least: 3.4
 WC tested up to: 4.3
-Stable tag: 3.1.10
+Stable tag: 3.1.11
 Requires PHP: 5.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -189,6 +189,9 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 5. Manage shipments for orders
 
 == Changelog ==
+= 3.1.11 =
+* Fix: Show WooCommerce Corona Tax notice to prevent readding tax rates through the plugin
+
 = 3.1.10 =
 * Feature: DHL - Warenpost integration
 * Improvement: Insert 16%, 5% tax rates for DE on install

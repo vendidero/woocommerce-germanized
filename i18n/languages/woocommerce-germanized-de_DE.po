@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce Germanized\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-28 11:04+0200\n"
-"PO-Revision-Date: 2020-06-28 11:04+0200\n"
+"POT-Creation-Date: 2020-07-01 19:17+0200\n"
+"PO-Revision-Date: 2020-07-01 19:17+0200\n"
 "Last-Translator: holzhannes <holzhannes@posteo.de>\n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -530,7 +530,12 @@ msgctxt "dhl"
 msgid "DHL Paket Taggleich"
 msgstr "DHL Paket Taggleich"
 
-#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:1367
+#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:1281
+msgctxt "dhl"
+msgid "Warenpost"
+msgstr "Warenpost"
+
+#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:1368
 msgctxt "dhl"
 msgid "Error while uploading label."
 msgstr "Fehler beim Hochladen des Labels."
@@ -4744,7 +4749,7 @@ msgstr "Germanize"
 #: woocommerce-germanized/includes/admin/class-wc-gzd-admin-setup-wizard.php:73
 #: woocommerce-germanized/includes/admin/class-wc-gzd-admin-setup-wizard.php:141
 #: woocommerce-germanized/includes/gateways/invoice/class-wc-gzd-gateway-invoice.php:79
-#: woocommerce-germanized/woocommerce-germanized.php:831
+#: woocommerce-germanized/woocommerce-germanized.php:865
 msgid "Settings"
 msgstr "Einstellungen"
 
@@ -6035,8 +6040,8 @@ msgstr ""
 #: woocommerce-germanized/includes/api/class-wc-gzd-rest-customers-controller.php:144
 #: woocommerce-germanized/includes/api/class-wc-gzd-rest-orders-controller.php:138
 #: woocommerce-germanized/includes/api/class-wc-gzd-rest-orders-controller.php:145
-#: woocommerce-germanized/includes/class-wc-gzd-checkout.php:556
-#: woocommerce-germanized/includes/class-wc-gzd-checkout.php:567
+#: woocommerce-germanized/includes/class-wc-gzd-checkout.php:569
+#: woocommerce-germanized/includes/class-wc-gzd-checkout.php:580
 #: woocommerce-germanized/includes/class-wc-gzd-customer-helper.php:131
 #: woocommerce-germanized/includes/class-wc-gzd-customer-helper.php:139
 msgid "Title"
@@ -8033,7 +8038,7 @@ msgstr ""
 "Vielen Dank. Wir haben deinen Widerruf erhalten. Du bekommst in Kürze eine E-"
 "Mail mit deinen Daten als Bestätigung."
 
-#: woocommerce-germanized/includes/class-wc-gzd-checkout.php:142
+#: woocommerce-germanized/includes/class-wc-gzd-checkout.php:155
 msgid ""
 "Sorry, but differential taxed products cannot be purchased with normal "
 "products at the same time."
@@ -8041,7 +8046,7 @@ msgstr ""
 "Entschuldigung, differenzbesteuerte Produkte können nicht gemeinsam mit "
 "normalen Produkten gekauft werden."
 
-#: woocommerce-germanized/includes/class-wc-gzd-checkout.php:148
+#: woocommerce-germanized/includes/class-wc-gzd-checkout.php:161
 msgid ""
 "Sorry, but normal products cannot be purchased together with differential "
 "taxed products at the same time."
@@ -8050,14 +8055,14 @@ msgstr ""
 "differenzbesteuerten Produkten gekauft werden."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-checkout.php:873
+#: woocommerce-germanized/includes/class-wc-gzd-checkout.php:887
 #: woocommerce-germanized/includes/class-wc-gzd-revocation.php:52
 #: woocommerce-germanized/includes/wc-gzd-core-functions.php:541
 msgid "Mr."
 msgstr "Herr"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-checkout.php:874
+#: woocommerce-germanized/includes/class-wc-gzd-checkout.php:888
 msgctxt "customer-title-male-address"
 msgid "Mr."
 msgstr "Herrn"
@@ -8164,7 +8169,7 @@ msgid "Thanks for creating an account on %s."
 msgstr "Danke, dass du ein Konto bei %s erstellt hast."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-emails.php:1052
+#: woocommerce-germanized/includes/class-wc-gzd-emails.php:1053
 msgctxt "revocation-form"
 msgid "Forward your Revocation online"
 msgstr "Deinen Widerruf online erklären"
@@ -8974,16 +8979,16 @@ msgid "Payment received"
 msgstr "Zahlung erhalten"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/emails/class-wc-gzd-email-customer-processing-order.php:46
+#: woocommerce-germanized/includes/emails/class-wc-gzd-email-customer-processing-order.php:47
 msgid "Order Confirmation"
 msgstr "Bestellbestätigung"
 
-#: woocommerce-germanized/includes/emails/class-wc-gzd-email-customer-processing-order.php:56
+#: woocommerce-germanized/includes/emails/class-wc-gzd-email-customer-processing-order.php:57
 msgid "Confirmation of your order {order_number}"
 msgstr "Bestätigung deiner Bestellung {order_number}"
 
 # @ woocommerce
-#: woocommerce-germanized/includes/emails/class-wc-gzd-email-customer-processing-order.php:66
+#: woocommerce-germanized/includes/emails/class-wc-gzd-email-customer-processing-order.php:67
 msgid "Thank you for your order"
 msgstr "Vielen Dank für deine Bestellung"
 
@@ -10056,7 +10061,19 @@ msgstr "Germanized benötigt mindestens PHP 5.6. Bitte %s deine PHP-Version."
 msgid "upgrade"
 msgstr "Upgrade"
 
-#: woocommerce-germanized/woocommerce-germanized.php:980
+#: woocommerce-germanized/woocommerce-germanized.php:331
+#, php-format
+msgid ""
+"This version of the Corona Helper Plugin includes a bug which could lead to "
+"tax rates being added multiple times. Please <a href=\"%s\">deactivate</a> "
+"the plugin and check our <a href=\"%s\" target=\"_blank\">blog post</a>."
+msgstr ""
+"Diese Version des Corona Helper Plugins beinhaltet einen Fehler, der dazu "
+"führen kann, dass Steuersätze regelmäßig gelöscht und neu erstellt werden. "
+"Bitte <a href=\"%s\">deaktiviere</a> das Plugin und lerne in unserem <a href="
+"\"%s\">Blog-Post</a> wie du das Plugin austauschen kannst."
+
+#: woocommerce-germanized/woocommerce-germanized.php:1014
 msgid "Pease wait while we are trying to redirect you to the payment provider."
 msgstr "Einen Moment - wir versuchen dich zum Zahlungsanbieter weiterzuleiten."
 

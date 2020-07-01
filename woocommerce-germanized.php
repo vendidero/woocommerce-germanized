@@ -3,7 +3,7 @@
  * Plugin Name: Germanized for WooCommerce
  * Plugin URI: https://www.vendidero.de/woocommerce-germanized
  * Description: Germanized for WooCommerce extends WooCommerce to become a legally compliant store in the german market.
- * Version: 3.1.10
+ * Version: 3.1.11
  * Author: vendidero
  * Author URI: https://vendidero.de
  * Requires at least: 4.9
@@ -69,7 +69,7 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 		 *
 		 * @var string
 		 */
-		public $version = '3.1.10';
+		public $version = '3.1.11';
 
 		/**
 		 * @var WooCommerce_Germanized $instance of the plugin
@@ -262,6 +262,10 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 
 			add_filter( 'woocommerce_get_settings_pages', array( $this, 'add_settings' ) );
 
+			if ( has_action( 'init', 'wc_corona_schedule_event' ) ) {
+			    $this->check_corona_notice();
+            }
+
 			// Load after WooCommerce Frontend scripts
 			add_action( 'wp_enqueue_scripts', array( $this, 'add_scripts' ), 15 );
 			add_action( 'wp_enqueue_scripts', array( $this, 'add_inline_styles' ), 20 );
@@ -302,6 +306,32 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 			 */
 			do_action( 'woocommerce_germanized_init' );
 		}
+
+		protected function check_corona_notice() {
+		    remove_action( 'init', 'wc_corona_schedule_event' );
+		    add_action( 'admin_notices', array( $this, 'show_corona_notice' ), 20 );
+        }
+
+        public function show_corona_notice() {
+		    $plugin_file = is_plugin_active( 'woocommerce-corona-taxes-master/woocommerce-corona-taxes.php' ) ? 'woocommerce-corona-taxes-master/woocommerce-corona-taxes.php' : 'woocommerce-corona-taxes/woocommerce-corona-taxes.php';
+		    $plugin_data = function_exists( 'get_plugin_data' ) ? get_plugin_data( WP_PLUGIN_DIR . '/' . $plugin_file ) : array();
+		    $version     = isset( $plugin_data['Version'] ) ? $plugin_data['Version'] : '1.0.0';
+
+		    if ( empty( $version ) ) {
+		        $version = '1.0.0';
+            }
+
+		    if ( version_compare( $version, '1.0.2', '>=' ) ) {
+		        return;
+            }
+
+	        $deactivate_plugin_url = wp_nonce_url( 'plugins.php?action=deactivate&amp;plugin=' . urlencode( $plugin_file ), 'deactivate-plugin_' . $plugin_file );
+		    ?>
+            <div id="message" class="error">
+                <p><?php printf( __( 'This version of the Corona Helper Plugin includes a bug which could lead to tax rates being added multiple times. Please <a href="%s">deactivate</a> the plugin and check our <a href="%s" target="_blank">blog post</a>.', 'woocommerce-germanized' ), $deactivate_plugin_url, 'https://vendidero.de/senkung-der-mehrwertsteuer-in-woocommerce-im-rahmen-der-corona-pandemie#update-vom-01-07-20' ); ?></p>
+            </div>
+            <?php
+        }
 
 		public function add_note_statuses( $statuses ) {
 		    $statuses = array_merge( $statuses, array( 'disabled', 'deactivated' ) );
