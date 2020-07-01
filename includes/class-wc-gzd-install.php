@@ -433,13 +433,10 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 			}
 		}
 
-		public static function create_virtual_tax_rates() {
+		public static function create_virtual_tax_rates( $rates = array() ) {
 			global $wpdb;
 
-			// Delete digital rates
-			$wpdb->delete( $wpdb->prefix . 'woocommerce_tax_rates', array( 'tax_rate_class' => 'virtual-rate' ), array( '%s' ) );
-
-			$rates = array(
+			$rates = wp_parse_args( $rates, array(
 				'BE' => 21,
 				'BG' => 20,
 				'CZ' => 21,
@@ -468,7 +465,10 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 				'FI' => 24,
 				'SE' => 25,
 				'GB' => 20,
-			);
+			) );
+
+			// Delete digital rates
+			$wpdb->delete( $wpdb->prefix . 'woocommerce_tax_rates', array( 'tax_rate_class' => 'virtual-rate' ), array( '%s' ) );
 
 			self::import_rates( $rates, 'virtual-rate' );
 			self::import_rates( array(), 'virtual-reduced-rate' );

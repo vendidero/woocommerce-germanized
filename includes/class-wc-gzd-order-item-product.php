@@ -7,6 +7,11 @@ defined( 'ABSPATH' ) || exit;
  */
 class WC_GZD_Order_Item_Product extends WC_GZD_Order_Item {
 
+	/**
+	 * @var WC_Order_Item_Product
+	 */
+	public $order_item = null;
+
 	public function get_unit() {
 		return $this->order_item->get_meta( '_unit', true );
 	}
@@ -226,6 +231,18 @@ class WC_GZD_Order_Item_Product extends WC_GZD_Order_Item {
 
 		$this->set_unit_price_net( $prices_net['regular'] );
 		$this->set_unit_price_subtotal_net( $prices_net['sale'] );
+
+		/**
+		 * Order item unit price recalculation
+		 *
+		 * This action fires before recalculating unit price for a certain order item (e.g. when taxes are recalculated).
+		 *
+		 * @param WC_Order_Item_Product     $order_item
+		 * @param WC_GZD_Order_Item_Product $gzd_order_item
+		 *
+		 * @since 3.1.10
+		 */
+		do_action( 'woocommerce_gzd_recalculate_order_item_unit_price', $this->order_item, $this );
 
 		return true;
 	}
