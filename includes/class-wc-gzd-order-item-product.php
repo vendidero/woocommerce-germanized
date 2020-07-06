@@ -158,7 +158,7 @@ class WC_GZD_Order_Item_Product extends WC_GZD_Order_Item {
 		 * @since 3.1.12
 		 *
 		 */
-		return apply_filters( 'woocommerce_gzd_product_units_html', $html, $this );
+		return apply_filters( 'woocommerce_gzd_order_item_product_units_html', $html, $this );
 	}
 
 	public function has_unit_product() {
