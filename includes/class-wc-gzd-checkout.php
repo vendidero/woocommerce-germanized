@@ -824,7 +824,7 @@ class WC_GZD_Checkout {
 				 *
 				 * @since 1.8.9
 				 */
-				do_action( 'woocommerce_gzd_add_order_item_meta', $item, $order, $gzd_product, $gzd_item );
+				do_action( 'woocommerce_gzd_add_order_item_meta', $item, $item->get_order(), $gzd_product, $gzd_item );
 			}
 		}
 	}
