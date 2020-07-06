@@ -76,6 +76,8 @@ class WC_GZD_Checkout {
 		add_filter( 'woocommerce_get_order_address', array( $this, 'add_order_address_data' ), 10, 3 );
 
 		add_action( 'woocommerce_checkout_create_order_line_item', array( $this, 'set_order_item_meta_crud' ), 0, 4 );
+		add_action( 'woocommerce_before_order_item_object_save', array( $this, 'on_order_item_update' ), 10 );
+
 		add_filter( 'woocommerce_hidden_order_itemmeta', array( $this, 'set_order_meta_hidden' ), 0 );
 
 		// Deactivate checkout shipping selection
@@ -792,6 +794,10 @@ class WC_GZD_Checkout {
 	 * @param $order
 	 */
 	public function set_order_item_meta_crud( $item, $cart_item_key, $values, $order ) {
+		$this->refresh_item_data( $item );
+	}
+
+	protected function refresh_item_data( $item ) {
 		if ( is_a( $item, 'WC_Order_Item_Product' ) && ( $product = $item->get_product() ) ) {
 			if ( $gzd_item = wc_gzd_get_order_item( $item ) ) {
 				$gzd_product = wc_gzd_get_product( $product );
@@ -820,6 +826,18 @@ class WC_GZD_Checkout {
 				 */
 				do_action( 'woocommerce_gzd_add_order_item_meta', $item, $order, $gzd_product, $gzd_item );
 			}
+		}
+	}
+
+	/**
+	 * @param WC_Order_Item $item
+	 */
+	public function on_order_item_update( $item ) {
+		/**
+		 * Refresh item data in case product id changes or it is a new item.
+		 */
+		if ( $item->get_id() <= 0 || in_array( 'product_id', $item->get_changes() ) ) {
+			$this->refresh_item_data( $item );
 		}
 	}
 
