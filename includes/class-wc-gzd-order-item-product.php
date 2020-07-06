@@ -149,7 +149,16 @@ class WC_GZD_Order_Item_Product extends WC_GZD_Order_Item {
 			$html = wc_gzd_replace_label_shortcodes( $text, $replacements );
 		}
 
-		return $html;
+		/**
+		 * Filter to adjust the product units HTML output.
+		 *
+		 * @param string $html The HTML output.
+		 * @param WC_GZD_Order_Item_Product $order_item The order item product object.
+		 *
+		 * @since 3.1.12
+		 *
+		 */
+		return apply_filters( 'woocommerce_gzd_order_item_product_units_html', $html, $this );
 	}
 
 	public function has_unit_product() {
