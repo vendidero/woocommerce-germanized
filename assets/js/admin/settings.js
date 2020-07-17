@@ -105,15 +105,7 @@ window.germanized = window.germanized || {};
             var $inputs = $field.parents( 'table' ).find( ':input[data-show_if_' + name + ']' );
 
             $inputs.each( function() {
-                var dataValue   = $( this ).data( 'show_if_' + name ),
-                    currentVal  = $( this ).val(),
-                    currentName = $( this ).attr( 'name' ).replace( /[\[\]']+/g, '' ),
-                    $field      = $( this ).parents( 'tr' );
-
-                $field.removeClass( 'wc-gzd-setting-invisible' );
-                $field.addClass( 'wc-gzd-setting-visible' );
-
-                $( document.body ).trigger( 'woocommerce_gzd_setting_field_visible', [ $field, currentName, currentVal ] );
+                $( this ).trigger( 'gzd_show_or_hide_fields' );
             });
         },
 
@@ -121,15 +113,7 @@ window.germanized = window.germanized || {};
             var $inputs = $field.parents( 'table' ).find( ':input[data-show_if_' + name + ']' );
 
             $inputs.each( function() {
-                var dataValue   = $( this ).data( 'show_if_' + name ),
-                    currentVal  = $( this ).val(),
-                    currentName = $( this ).attr( 'name' ).replace( /[\[\]']+/g, '' ),
-                    $field      = $( this ).parents( 'tr' );
-
-                $field.removeClass( 'wc-gzd-setting-visible' );
-                $field.addClass( 'wc-gzd-setting-invisible' );
-
-                $( document.body ).trigger( 'woocommerce_gzd_setting_field_invisible', [ $field, currentName, currentVal ] );
+                $( this ).trigger( 'gzd_show_or_hide_fields' );
             });
         },
 

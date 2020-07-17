@@ -1041,7 +1041,15 @@ class WC_GZD_Product {
 			$html = apply_filters( 'woocommerce_germanized_delivery_time_backorder_html', '', $this, $html );
 		}
 
-		return $html;
+		/**
+		 * Filter to adjust product delivery time html output.
+		 *
+		 * @param string $html The delivery time html.
+		 * @param WC_GZD_Product $product The product object.
+		 *
+		 * @since 3.1.12
+		 */
+		return apply_filters( 'woocommerce_gzd_product_delivery_time_html', $html, $this );
 	}
 
 	/**
