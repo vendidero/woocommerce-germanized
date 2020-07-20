@@ -439,32 +439,37 @@ function wc_gzd_cart_get_age_verification_min_age( $items = false ) {
 }
 
 function wc_gzd_item_is_tax_share_exempt( $item, $type = 'shipping', $key = false ) {
-	$exempt   = false;
-	$_product = false;
-	$is_cart  = false;
+	$exempt     = false;
+	$_product   = false;
+	$is_cart    = false;
+	$tax_class  = '';
+	$tax_status = '';
 
 	if ( is_a( $item, 'WC_Order_Item' ) ) {
-		$_product = $item->get_product();
+		$_product   = $item->get_product();
+		$tax_class  = $item->get_tax_class();
+		$tax_status = $item->get_tax_status();
 	} elseif ( isset( $item['data'] ) ) {
 		$_product = apply_filters( 'woocommerce_cart_item_product', $item['data'], $item, $key );
 		$is_cart  = true;
+
+		if ( is_a( $_product, 'WC_Product' ) ) {
+			$tax_status = $_product->get_tax_status();
+			$tax_class  = $_product->get_tax_class();
+        }
 	}
 
 	if ( is_a( $_product, 'WC_Product' ) ) {
-
 	    if ( 'shipping' === $type ) {
 		    if ( $_product->is_virtual() || wc_gzd_get_product( $_product )->is_virtual_vat_exception() ) {
 			    $exempt = true;
 		    }
         }
-
-		$tax_status = $_product->get_tax_status();
-		$tax_class  = $_product->get_tax_class();
-
-		if ( 'none' === $tax_status || 'zero-rate' === $tax_class ) {
-			$exempt = true;
-		}
     }
+
+	if ( 'none' === $tax_status || 'zero-rate' === $tax_class ) {
+		$exempt = true;
+	}
 
 	if ( $is_cart ) {
 		/**
@@ -514,7 +519,6 @@ function wc_gzd_get_cart_tax_share( $type = 'shipping', $cart_contents = array()
 			if ( is_a( $item, 'WC_Order_Item' ) ) {
 				$class      = $item->get_tax_class();
 				$line_total = $item->get_total();
-				$line_tax   = $item->get_total_tax();
 				$taxes      = $item->get_taxes();
 				$tax_rate   = key( $taxes['total'] );
 
@@ -529,7 +533,6 @@ function wc_gzd_get_cart_tax_share( $type = 'shipping', $cart_contents = array()
 				$_product   = apply_filters( 'woocommerce_cart_item_product', $item['data'], $item, $key );
 				$class      = $_product->get_tax_class();
 				$line_total = $item['line_total'];
-				$line_tax   = $item['line_tax'];
 				$tax_rate   = key( $item['line_tax_data']['total'] );
 			}
 
@@ -544,10 +547,10 @@ function wc_gzd_get_cart_tax_share( $type = 'shipping', $cart_contents = array()
 			}
 
 			// Does not contain pricing data in case of recurring Subscriptions
-			$tax_shares[ $class ]['total'] += ( $line_total + $line_tax );
+			$tax_shares[ $class ]['total'] += $line_total;
 			$tax_shares[ $class ]['key']   = $tax_rate;
 
-			$item_totals += ( $line_total + $line_tax );
+			$item_totals += $line_total;
 		}
 	}
 

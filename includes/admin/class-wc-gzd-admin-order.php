@@ -66,6 +66,8 @@ class WC_GZD_Admin_Order {
 				foreach ( $tax_share as $rate => $class ) {
 					$tax_rates = WC_Tax::get_rates( $rate );
 					$taxes     = $taxes + WC_Tax::calc_tax( ( $item_total * $class['share'] ), $tax_rates, true );
+					// Apply the same total tax rounding as we do in WC_GZD_Shipping_Rate::set_shared_taxes
+					$taxes     = array_map( 'wc_round_tax_total', $taxes );
 				}
 
 				$item->set_taxes( array( 'total' => $taxes ) );
@@ -83,70 +85,7 @@ class WC_GZD_Admin_Order {
 	 * @return array
 	 */
 	public function get_order_tax_share( $order, $type = 'shipping' ) {
-		$tax_shares  = array();
-		$item_totals = 0;
-
-		foreach ( $order->get_items() as $key => $item ) {
-
-			$_product    = $item->get_product();
-			$no_shipping = false;
-
-			if ( ! $_product ) {
-				continue;
-			}
-
-			if ( 'shipping' === $type ) {
-
-				if ( $_product->is_virtual() || wc_gzd_get_product( $_product )->is_virtual_vat_exception() ) {
-					$no_shipping = true;
-				}
-
-				$tax_status = $_product->get_tax_status();
-				$tax_class  = $_product->get_tax_class();
-
-				if ( 'none' === $tax_status || 'zero-rate' === $tax_class ) {
-					$no_shipping = true;
-				}
-			}
-
-			/**
-			 * Filter to disable tax share calculation for a certain order item.
-			 *
-			 * @param bool $no_shipping Set to false to disable tax share calculation for this item.
-			 * @param WC_Order_Item $item The order item.
-			 * @param string $key The item key.
-			 * @param string $type The tax share type e.g. shipping or fees.
-			 *
-			 * @since 2.3.0
-			 *
-			 */
-			if ( apply_filters( 'woocommerce_gzd_order_item_not_supporting_tax_share', $no_shipping, $item, $key, $type ) ) {
-				continue;
-			}
-
-			$class = $_product->get_tax_class();
-
-			if ( ! isset( $tax_shares[ $class ] ) ) {
-				$tax_shares[ $class ]          = array();
-				$tax_shares[ $class ]['total'] = 0;
-			}
-
-			$item_total = ( $item->get_total() + $item->get_total_tax() );
-
-			$tax_shares[ $class ]['total'] += $item_total;
-
-			$item_totals += $item_total;
-		}
-
-		if ( ! empty( $tax_shares ) ) {
-			$default = ( $item_totals == 0 ? 1 / sizeof( $tax_shares ) : 0 );
-
-			foreach ( $tax_shares as $key => $class ) {
-				$tax_shares[ $key ]['share'] = ( $item_totals > 0 ? $class['total'] / $item_totals : $default );
-			}
-		}
-
-		return $tax_shares;
+		return wc_gzd_get_cart_tax_share( $type, $order->get_items() );
 	}
 }
 
