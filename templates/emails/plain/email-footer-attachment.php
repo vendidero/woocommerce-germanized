@@ -19,9 +19,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 } // Exit if accessed directly
 
 global $post;
-$post = $post_attach;
-
-setup_postdata( $post );
 
 $content     = ( empty( $post->post_excerpt ) ? $post->post_content : $post->post_excerpt );
 $print_title = true;
@@ -39,13 +36,9 @@ if ( $print_title ) {
 }
 
 if ( empty( $post->post_excerpt ) ) {
-
 	the_content();
-
 } else {
-
 	the_excerpt();
-
 }
 
 wp_reset_postdata();
