@@ -423,18 +423,30 @@ function wc_gzd_get_tax_rate_label( $rate_percentage ) {
  */
 function wc_gzd_get_order_tax_rate_percentage( $tax_rate_id, $order ) {
 	$taxes      = $order->get_taxes();
-	$percentage = 0;
+	$percentage = null;
 
 	foreach( $taxes as $tax ) {
 		if ( $tax->get_rate_id() == $tax_rate_id ) {
 			if ( is_callable( array( $tax, 'get_rate_percent' ) ) ) {
 				$percentage = $tax->get_rate_percent();
-			} elseif ( is_callable( array( 'WC_Tax', 'get_rate_percent_value' ) ) ) {
-				$percentage = WC_Tax::get_rate_percent_value( $tax_rate_id );
-			} elseif ( is_callable( array( 'WC_Tax', 'get_rate_percent' ) ) ) {
-				$percentage = filter_var( WC_Tax::get_rate_percent( $tax_rate_id ), FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION );
+				break;
 			}
 		}
+	}
+
+	/**
+	 * In case order does not contain tax rate percentage. Look for the global percentage instead.
+	 */
+	if ( is_null( $percentage ) || '' === $percentage ) {
+		if ( is_callable( array( 'WC_Tax', 'get_rate_percent_value' ) ) ) {
+			$percentage = WC_Tax::get_rate_percent_value( $tax_rate_id );
+		} elseif ( is_callable( array( 'WC_Tax', 'get_rate_percent' ) ) ) {
+			$percentage = filter_var( WC_Tax::get_rate_percent( $tax_rate_id ), FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION );
+		}
+	}
+
+	if ( ! is_numeric( $percentage ) ) {
+		$percentage = 0;
 	}
 
 	/**

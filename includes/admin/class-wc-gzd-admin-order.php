@@ -40,6 +40,10 @@ class WC_GZD_Admin_Order {
 		}
 	}
 
+	/**
+	 * @param WC_Order_Item $item
+	 * @param $for
+	 */
 	public function adjust_item_taxes( $item, $for ) {
 
 		if ( $item->get_total() <= 0 ) {
@@ -47,7 +51,6 @@ class WC_GZD_Admin_Order {
 		}
 
 		if ( $order = $item->get_order() ) {
-
 			// Calculate tax shares
 			$tax_share = $this->get_order_tax_share( $order, is_a( $item, 'WC_Order_Item_Shipping' ) ? 'shipping' : 'fee' );
 
@@ -74,6 +77,12 @@ class WC_GZD_Admin_Order {
 
 				// The new net total equals old gross total minus new tax totals
 				$item->set_total( $item_total - $item->get_total_tax() );
+
+				$order->update_meta_data( '_has_split_tax', 'yes' );
+				$order->save();
+			} else {
+				$order->delete_meta_data( '_has_split_tax' );
+				$order->save();
 			}
 		}
 	}

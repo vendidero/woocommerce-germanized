@@ -129,12 +129,28 @@ class WC_GZD_Checkout {
 			), 10, 2 );
 		}
 
+		add_action( 'woocommerce_checkout_create_order', array( $this, 'order_meta' ), 5, 1 );
 		add_action( 'woocommerce_checkout_create_order', array( $this, 'order_parcel_delivery_data_transfer' ), 10, 2 );
 		add_action( 'woocommerce_checkout_create_order', array( $this, 'order_age_verification' ), 20, 2 );
 
 		// Make sure that, just like in Woo core, the order submit button gets refreshed
 		// Use a high priority to let other plugins do their adjustments beforehand
 		add_filter( 'woocommerce_update_order_review_fragments', array( $this, 'refresh_order_submit' ), 150, 1 );
+	}
+
+	/**
+	 * Flag the order as supporting split tax.
+	 *
+	 * @param WC_Order $order
+	 */
+	public function order_meta( $order ) {
+		if ( 'yes' === get_option( 'woocommerce_gzd_shipping_tax' ) ) {
+			$tax_shares = wc_gzd_get_cart_tax_share( 'shipping', $order->get_items() );
+
+			if ( sizeof( $tax_shares ) > 1 ) {
+				$order->update_meta_data( '_has_split_tax', 'yes' );
+			}
+		}
 	}
 
 	public function recalculate_order_item_unit_price( $order_item ) {
