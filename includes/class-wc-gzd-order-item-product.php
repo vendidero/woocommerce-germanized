@@ -235,11 +235,11 @@ class WC_GZD_Order_Item_Product extends WC_GZD_Order_Item {
 			'products'      => $this->get_unit_product(),
 		) );
 
-		$this->set_unit_price( $prices_gross['regular'] );
-		$this->set_unit_price_subtotal( $prices_gross['sale'] );
+		$this->set_unit_price( $prices_gross['regular_price'] );
+		$this->set_unit_price_subtotal( $prices_gross['sale_price'] );
 
-		$this->set_unit_price_net( $prices_net['regular'] );
-		$this->set_unit_price_subtotal_net( $prices_net['sale'] );
+		$this->set_unit_price_net( $prices_net['regular_price'] );
+		$this->set_unit_price_subtotal_net( $prices_net['sale_price'] );
 
 		/**
 		 * Order item unit price recalculation
