@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce Germanized\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-01 19:17+0200\n"
-"PO-Revision-Date: 2020-07-01 19:42+0200\n"
+"POT-Creation-Date: 2020-07-27 15:20+0200\n"
+"PO-Revision-Date: 2020-07-27 15:23+0200\n"
 "Last-Translator: holzhannes <holzhannes@posteo.de>\n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -3013,13 +3013,13 @@ msgctxt "shipments"
 msgid "Labels partially generated. %s"
 msgstr "Labels teilweise erzeugt. %s"
 
-#: woocommerce-germanized-shipments/src/Admin/BulkLabel.php:146
+#: woocommerce-germanized-shipments/src/Admin/BulkLabel.php:143
 #, php-format
 msgctxt "shipments"
 msgid "Error while creating label for %s: %s"
 msgstr "Fehler beim Erstellen des Labels für %s. %s"
 
-#: woocommerce-germanized-shipments/src/Admin/BulkLabel.php:146
+#: woocommerce-germanized-shipments/src/Admin/BulkLabel.php:143
 #, php-format
 msgctxt "shipments"
 msgid "shipment #%d"
@@ -4618,7 +4618,7 @@ msgid ""
 msgstr ""
 "Außerdem hast du ausdrücklich zugestimmt, dass für die Dienstleistungen "
 "deiner Bestellung mit der Ausführung des Vertrags bereits vor Ablauf der "
-"Widerrufsfrist begonnen wird. Du hast auch zur Kenntnis genommen, das mit "
+"Widerrufsfrist begonnen wird. Du hast auch zur Kenntnis genommen, dass mit "
 "vollständiger Erfüllung des Vertrags dein {link}Widerrufsrecht{/link} "
 "erlischt."
 
@@ -6040,8 +6040,8 @@ msgstr ""
 #: woocommerce-germanized/includes/api/class-wc-gzd-rest-customers-controller.php:144
 #: woocommerce-germanized/includes/api/class-wc-gzd-rest-orders-controller.php:138
 #: woocommerce-germanized/includes/api/class-wc-gzd-rest-orders-controller.php:145
-#: woocommerce-germanized/includes/class-wc-gzd-checkout.php:569
-#: woocommerce-germanized/includes/class-wc-gzd-checkout.php:580
+#: woocommerce-germanized/includes/class-wc-gzd-checkout.php:587
+#: woocommerce-germanized/includes/class-wc-gzd-checkout.php:598
 #: woocommerce-germanized/includes/class-wc-gzd-customer-helper.php:131
 #: woocommerce-germanized/includes/class-wc-gzd-customer-helper.php:139
 msgid "Title"
@@ -6507,7 +6507,7 @@ msgstr ""
 "Platzhalter für den höchsten Preis."
 
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-general.php:294
-#: woocommerce-germanized/includes/wc-gzd-core-functions.php:787
+#: woocommerce-germanized/includes/wc-gzd-core-functions.php:801
 msgid "{min_price} &ndash; {max_price}"
 msgstr "{min_price} &ndash; {max_price}"
 
@@ -8038,7 +8038,7 @@ msgstr ""
 "Vielen Dank. Wir haben deinen Widerruf erhalten. Du bekommst in Kürze eine E-"
 "Mail mit deinen Daten als Bestätigung."
 
-#: woocommerce-germanized/includes/class-wc-gzd-checkout.php:155
+#: woocommerce-germanized/includes/class-wc-gzd-checkout.php:173
 msgid ""
 "Sorry, but differential taxed products cannot be purchased with normal "
 "products at the same time."
@@ -8046,7 +8046,7 @@ msgstr ""
 "Entschuldigung, differenzbesteuerte Produkte können nicht gemeinsam mit "
 "normalen Produkten gekauft werden."
 
-#: woocommerce-germanized/includes/class-wc-gzd-checkout.php:161
+#: woocommerce-germanized/includes/class-wc-gzd-checkout.php:179
 msgid ""
 "Sorry, but normal products cannot be purchased together with differential "
 "taxed products at the same time."
@@ -8055,14 +8055,14 @@ msgstr ""
 "differenzbesteuerten Produkten gekauft werden."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-checkout.php:887
+#: woocommerce-germanized/includes/class-wc-gzd-checkout.php:921
 #: woocommerce-germanized/includes/class-wc-gzd-revocation.php:52
-#: woocommerce-germanized/includes/wc-gzd-core-functions.php:541
+#: woocommerce-germanized/includes/wc-gzd-core-functions.php:555
 msgid "Mr."
 msgstr "Herr"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-checkout.php:888
+#: woocommerce-germanized/includes/class-wc-gzd-checkout.php:922
 msgctxt "customer-title-male-address"
 msgid "Mr."
 msgstr "Herrn"
@@ -8169,7 +8169,7 @@ msgid "Thanks for creating an account on %s."
 msgstr "Danke, dass du ein Konto bei %s erstellt hast."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-emails.php:1053
+#: woocommerce-germanized/includes/class-wc-gzd-emails.php:1069
 msgctxt "revocation-form"
 msgid "Forward your Revocation online"
 msgstr "Deinen Widerruf online erklären"
@@ -8828,8 +8828,8 @@ msgstr "Anrede"
 
 # @ woocommerce-germanized
 #: woocommerce-germanized/includes/class-wc-gzd-revocation.php:53
-#: woocommerce-germanized/includes/wc-gzd-core-functions.php:542
-#: woocommerce-germanized/includes/wc-gzd-core-functions.php:559
+#: woocommerce-germanized/includes/wc-gzd-core-functions.php:556
+#: woocommerce-germanized/includes/wc-gzd-core-functions.php:573
 msgid "Ms."
 msgstr "Frau"
 
