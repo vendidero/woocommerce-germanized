@@ -41,6 +41,12 @@ class WC_GZD_Legal_Checkbox_Manager {
 			$this,
 			'show_conditionally_checkout'
 		), 10 );
+
+		add_action( 'woocommerce_gzd_run_legal_checkboxes_pay_for_order', array(
+			$this,
+			'show_conditionally_pay_for_order'
+		), 10 );
+
 		add_filter( 'woocommerce_update_order_review_fragments', array( $this, 'refresh_fragments_checkout' ), 10, 1 );
 	}
 
@@ -242,6 +248,102 @@ class WC_GZD_Legal_Checkbox_Manager {
 		 *
 		 */
 		do_action( 'woocommerce_gzd_register_legal_core_checkboxes', $this );
+	}
+
+	public function show_conditionally_pay_for_order() {
+		global $wp;
+
+		$order_id = absint( $wp->query_vars['order-pay'] );
+
+		if ( ! $order_id || ! ( $order = wc_get_order( $order_id ) ) ) {
+			return;
+		}
+
+		$items    = $order->get_items();
+		$products = array();
+
+		foreach ( $items as $key => $item ) {
+			if ( $item && is_callable( array( $item, 'get_product' ) ) && ( $product = $item->get_product() ) ) {
+				$products[] = $product;
+			}
+		}
+
+		if ( $checkbox = $this->get_checkbox( 'download' ) ) {
+			if ( $checkbox->is_enabled() ) {
+				$is_downloadable = false;
+
+				if ( ! empty( $products ) ) {
+					foreach ( $products as $key => $product ) {
+						if ( wc_gzd_is_revocation_exempt( $product ) ) {
+							$is_downloadable = true;
+						}
+					}
+				}
+
+				if ( $is_downloadable ) {
+					wc_gzd_update_legal_checkbox( 'download', array(
+						'is_shown' => true,
+					) );
+				}
+			}
+		}
+
+		// Age verification
+		if ( $checkbox = $this->get_checkbox( 'age_verification' ) ) {
+			if ( $checkbox->is_enabled() ) {
+				if ( wc_gzd_order_has_age_verification( $order_id ) ) {
+					wc_gzd_update_legal_checkbox( 'age_verification', array(
+						'is_shown'   => true,
+						'label_args' => array_merge( $this->get_legal_label_args(), array( '{age}' => wc_gzd_get_order_min_age( $order_id ) ) ),
+					) );
+				}
+			}
+		}
+
+		// Service checkbox
+		if ( $checkbox = $this->get_checkbox( 'service' ) ) {
+			if ( $checkbox->is_enabled() ) {
+				$is_service = false;
+
+				if ( ! empty( $products ) ) {
+					foreach ( $products as $key => $product ) {
+						if ( wc_gzd_is_revocation_exempt( $product, 'service' ) ) {
+							$is_service = true;
+						}
+					}
+				}
+
+				if ( $is_service ) {
+					wc_gzd_update_legal_checkbox( 'service', array(
+						'is_shown' => true,
+					) );
+				}
+			}
+		}
+
+		// Service checkbox
+		if ( $checkbox = $this->get_checkbox( 'parcel_delivery' ) ) {
+			if ( $checkbox->is_enabled() ) {
+
+				$ids    = array();
+				$items  = $order->get_shipping_methods();
+				$titles = array();
+
+				foreach( $items as $item ) {
+					$ids[]    = $item->get_method_id();
+					$titles[] = $item->get_method_title();
+				}
+
+				$is_enabled = wc_gzd_is_parcel_delivery_data_transfer_checkbox_enabled( $ids );
+
+				if ( $is_enabled ) {
+					wc_gzd_update_legal_checkbox( 'parcel_delivery', array(
+						'label_args' => array( '{shipping_method_title}' => implode( ', ', $titles ) ),
+						'is_shown'   => true,
+					) );
+				}
+			}
+		}
 	}
 
 	public function show_conditionally_checkout() {
