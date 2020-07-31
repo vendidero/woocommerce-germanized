@@ -48,16 +48,12 @@ class WC_GZD_Settings_Pointers {
 			$tab       = wc_clean( $_GET['tab'] );
 			$tab_clean = str_replace( 'germanized-', '', $tab );
 			$pages     = WC_Admin_Settings::get_settings_pages();
-			$tabs      = array();
-
-			if ( $settings = $this->get_settings() ) {
-				$tabs = $settings->get_tabs();
-			}
+			$settings  = $settings = $this->get_settings();
 
 			if ( 'germanized' === $tab ) {
 				$this->general_tutorial();
-			} elseif ( array_key_exists( $tab_clean, $tabs ) ) {
-				$pointers = $tabs[ $tab_clean ]->get_pointers();
+			} elseif ( $settings && ( $tab = $settings->get_tab_by_name( $tab_clean ) ) ) {
+				$pointers = $tab->get_pointers();
 
 				if ( ! empty( $pointers ) ) {
 					$this->enqueue_pointers( $pointers );

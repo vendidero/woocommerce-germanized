@@ -219,6 +219,21 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 		return $this->tabs;
 	}
 
+	/**
+	 * @param $name
+	 *
+	 * @return bool|WC_GZD_Settings_Tab
+	 */
+	public function get_tab_by_name( $name ) {
+		foreach( $this->get_tabs() as $tab ) {
+			if ( $name === $tab->get_name() ) {
+				return $tab;
+			}
+		}
+
+		return false;
+	}
+
 	public function output() {
 		$GLOBALS['hide_save_button'] = true;
 		$tabs                        = $this->get_tabs();

@@ -52,11 +52,7 @@ class WC_GZD_AJAX {
 		foreach ( $pages as $page ) {
 
 			if ( is_a( $page, 'WC_GZD_Settings_Germanized' ) ) {
-				$tabs = $page->get_tabs();
-
-				if ( array_key_exists( $tab_id, $tabs ) ) {
-					$tab = $tabs[ $tab_id ];
-
+				if ( $tab = $page->get_tab_by_name( $tab_id ) ) {
 					if ( $enable ) {
 						$tab->enable();
 						$data = array(

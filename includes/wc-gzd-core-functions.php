@@ -215,7 +215,7 @@ function wc_gzd_get_age_verification_min_ages_select() {
  * @return string
  */
 function wc_gzd_format_tax_rate_percentage( $rate, $percent = false ) {
-	return str_replace( '.', ',', wc_format_decimal( str_replace( '%', '', $rate ), true, true ) ) . ( $percent ? '%' : '' );
+	return str_replace( '.', ',', wc_format_decimal( str_replace( '%', '', $rate ), true, true ) ) . ( $percent ? ' %' : '' );
 }
 
 function wc_gzd_is_customer_activated( $user_id = '' ) {
