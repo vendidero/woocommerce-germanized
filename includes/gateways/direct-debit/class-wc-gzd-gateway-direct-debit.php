@@ -630,7 +630,7 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 
 		wc_get_template( 'emails/email-sepa-data.php', array(
 			'fields'                => $sepa_fields,
-			'send_pre_notification' => ( $this->enable_pre_notification === 'yes' && ! $sent_to_admin ),
+			'send_pre_notification' => apply_filters( 'woocommerce_gzd_direct_debit_send_pre_notification', ( $this->enable_pre_notification === 'yes' && ! $sent_to_admin ), $this ),
 			'pre_notification_text' => $pre_notification_text,
 		) );
 	}
