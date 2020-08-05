@@ -128,7 +128,6 @@ abstract class WC_GZD_Admin_Note {
 		$note->set_title( $this->get_title() );
 		$note->set_content( $this->get_content() );
 		$note->set_type( $this->get_type() );
-		$note->set_icon( $this->get_icon_type() );
 		$note->set_name( $this->get_name_prefixed() );
 		$note->set_content_data( (object) array() );
 		$note->set_source( 'woocommerce-germanized' );
