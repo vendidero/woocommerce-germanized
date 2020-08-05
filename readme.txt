@@ -5,7 +5,7 @@ Requires at least: 4.9
 Tested up to: 5.5
 WC requires at least: 3.4
 WC tested up to: 4.4
-Stable tag: 3.1.11
+Stable tag: 3.1.12
 Requires PHP: 5.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -39,7 +39,7 @@ Furthermore we customized the WooCommerce checkout to make your store meet the b
 * *Online Revocation Form* - Allow customers to submit revocations by filling out a form on your revocation page.
 * *Sale Price Labels* - Prepend your WooCommerce sale prices by certain tags e.g. old price and new price.
 * *Differential Taxation* - Insert special notices for products which a differential taxed.
-* *WPML and PolyLang Support* - Germanized adds compatibility for WPML and PolyLang.
+* *WPML Support* - Germanized can be used with WPML.
 * *REST API Support* - Data added by Germanized is adjustable via the WooCommerce REST API (v2)
 * *Product CSV Import/Export* - We've extended the WooCommerce product CSV import and export to support our custom fields (e.g. unit price, delivery time etc.)
 * *GDPR export/delete* - We do support the export/delete features of WordPress 4.6 and WooCommerce 3.4 and added new checkboxes to checkout and register form.
@@ -102,7 +102,7 @@ By default, Germanized works with every WooCommerce theme. Some themes may need 
 = Minimal Requirments =
 
 * WordPress 4.9 or newer
-* WooCommerce 3.0 (newest version recommended)
+* WooCommerce 3.4 (newest version recommended)
 * PHP Version 5.6 or newer
 
 = Automatic Installation =
@@ -189,6 +189,21 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 5. Manage shipments for orders
 
 == Changelog ==
+= 3.1.12 =
+* Feature: WC 4.4 support
+* Feature: WP 5.5 support
+* Improvement: Order item product data sync
+* Improvement: Admin settings show if JS impl
+* Improvement: Calculate tax shares for split tax calculation based on net sums
+* Improvement: Resetting (and restoring) global post data while adding email attachments
+* Improvement: Use get_rate_percent_value as fallback to determine tax rate percentage
+* Improvement: Order pay endpoint conditional checkbox rendering
+* Improvement: Added spacing between tax rate and percentage
+* Improvement: Added woocommerce_gzd_direct_debit_send_pre_notification filter
+* Improvement: DHL - Added global option to allow fore transferring customer email to DHL
+* Improvement: DHL - Added missing Google Maps API doc link
+* Improvement: DHL - Use COMMERCIAL_GOODS as export type
+
 = 3.1.11 =
 * Fix: Show WooCommerce Corona Tax notice to prevent readding tax rates through the plugin
 

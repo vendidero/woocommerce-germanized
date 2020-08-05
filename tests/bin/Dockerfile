@@ -13,7 +13,7 @@ ENV WP_CORE_DIR=/usr/src/wordpress
 
 COPY install.sh /usr/local/bin/dockerInit
 RUN chmod +x /usr/local/bin/dockerInit
-RUN dockerInit wordpress wordpress wordpress db latest latest true
+RUN dockerInit wordpress wordpress wordpress db latest true
 
 # This is the entrypoint script from the WordPress Docker package.
 CMD ["docker-entrypoint.sh"]
