@@ -67,7 +67,7 @@ class WC_GZD_Compatibility_WooCommerce_Subscriptions extends WC_GZD_Compatibilit
 		}
 
 		// Tax for inclusive prices
-		if ( 'yes' === get_option( 'woocommerce_calc_taxes' ) && 'incl' === $cart->tax_display_cart ) {
+		if ( 'yes' === get_option( 'woocommerce_calc_taxes' ) && 'incl' === wc_gzd_get_cart_tax_display_mode( $cart ) ) {
 			$tax_array = wc_gzd_get_cart_taxes( $cart );
 
 			ob_start();

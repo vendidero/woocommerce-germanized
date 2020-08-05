@@ -12,6 +12,27 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 } // Exit if accessed directly
 
+/**
+ * @param bool|WC_Cart $cart
+ *
+ * @return bool|string
+ */
+function wc_gzd_get_cart_tax_display_mode( $cart = false ) {
+    if ( ! $cart ) {
+        $cart = WC()->cart;
+    }
+
+    if ( ! $cart ) {
+        return 'incl';
+    }
+
+    if ( is_callable( array( $cart, 'get_tax_price_display_mode' ) ) ) {
+        return $cart->get_tax_price_display_mode();
+    }
+
+    return $cart->tax_display_cart;
+}
+
 function wc_gzd_get_tax_rate( $tax_rate_id ) {
 	global $wpdb;
 
@@ -573,7 +594,7 @@ function wc_gzd_get_cart_taxes( $cart, $include_shipping_taxes = true ) {
 	$tax_array = array();
 
 	// If prices are tax inclusive, show taxes here
-	if ( get_option( 'woocommerce_calc_taxes' ) === 'yes' && WC()->cart->tax_display_cart === 'incl' ) {
+	if ( get_option( 'woocommerce_calc_taxes' ) === 'yes' && wc_gzd_get_cart_tax_display_mode() === 'incl' ) {
 
 		if ( get_option( 'woocommerce_tax_total_display' ) == 'itemized' ) {
 

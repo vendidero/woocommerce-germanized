@@ -39,7 +39,7 @@ class WC_GZD_Shipping_Rate extends WC_Shipping_Rate {
 			foreach ( $this->tax_shares as $rate => $class ) {
 				$tax_rates                                       = WC_Tax::get_rates( $rate );
 				$this->tax_shares[ $rate ]['shipping_tax_share'] = $this->cost * $class['share'];
-				$this->tax_shares[ $rate ]['shipping_tax']       = WC_Tax::calc_tax( ( $this->cost * $class['share'] ), $tax_rates, ( WC()->cart->tax_display_cart === 'incl' ) );
+				$this->tax_shares[ $rate ]['shipping_tax']       = WC_Tax::calc_tax( ( $this->cost * $class['share'] ), $tax_rates, ( wc_gzd_get_cart_tax_display_mode() === 'incl' ) );
 			}
 
 			$taxes = array();
@@ -61,7 +61,7 @@ class WC_GZD_Shipping_Rate extends WC_Shipping_Rate {
 				$tax_rates = WC_Tax::get_shipping_tax_rates();
 
 				if ( ! empty( $tax_rates ) ) {
-					$taxes = WC_Tax::calc_tax( $this->cost, $tax_rates, ( WC()->cart->tax_display_cart === 'incl' ) );
+					$taxes = WC_Tax::calc_tax( $this->cost, $tax_rates, ( wc_gzd_get_cart_tax_display_mode() === 'incl' ) );
 
 					if ( is_callable( array( $this, 'set_taxes' ) ) ) {
 						$this->set_taxes( $taxes );
@@ -74,7 +74,7 @@ class WC_GZD_Shipping_Rate extends WC_Shipping_Rate {
 	}
 
 	public function set_costs() {
-		if ( WC()->cart->tax_display_cart === 'incl' || WC()->customer->is_vat_exempt() ) {
+		if ( wc_gzd_get_cart_tax_display_mode() === 'incl' || WC()->customer->is_vat_exempt() ) {
 
 			$cost = $this->cost - array_sum( $this->taxes );
 
