@@ -12,7 +12,7 @@
  *
  * @see https://github.com/vendidero/woocommerce-germanized/wiki/Overriding-Germanized-Templates
  * @package Germanized/Templates
- * @version 1.7.1
+ * @version 1.8.0
  */
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -65,5 +65,7 @@ if ( apply_filters( 'woocommerce_germanized_checkout_show_terms', true ) ) : ?>
             <span class="woocommerce-gzd-<?php echo esc_attr( $checkbox->get_html_id() ); ?>-checkbox-text"><?php echo $checkbox->get_label(); ?></span>
         </label>
     </p>
+
+	<?php do_action( 'woocommerce_checkout_after_terms_and_conditions' ); ?>
 
 <?php endif; ?>
