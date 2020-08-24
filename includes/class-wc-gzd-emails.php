@@ -316,7 +316,6 @@ class WC_GZD_Emails {
 	}
 
 	public function check_for_partial_refund_mail( $result, $mail_id, $tpl ) {
-
 		if ( $mail_id === 'customer_partially_refunded_order' && $tpl === 'customer_refunded_order' ) {
 			return true;
 		}

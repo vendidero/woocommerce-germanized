@@ -110,8 +110,7 @@ class WC_GZD_Compatibility_WPML extends WC_GZD_Compatibility {
 	 * @param $lang
 	 */
 	public function filter_email_lang( $p_lang ) {
-
-		if ( ! $this->email_lang ) {
+		if ( $this->email_lang ) {
 			$p_lang = $this->email_lang;
 		}
 
@@ -508,7 +507,8 @@ class WC_GZD_Compatibility_WPML extends WC_GZD_Compatibility {
 			'data_security_page_id',
 			'imprint_page_id',
 			'payment_methods_page_id',
-			'shipping_costs_page_id'
+			'shipping_costs_page_id',
+			'terms_page_id',
 		);
 
 		foreach ( $woo_pages as $page ) {
