@@ -241,7 +241,7 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 				}
 			}
 
-			$needs_db_update = ! is_null( $current_db_version ) && version_compare( $current_db_version, max( array_keys( self::$db_updates ) ), '<' );
+			$needs_db_update = ! is_null( $current_db_version ) && ! empty( $current_db_version ) && version_compare( $current_db_version, max( array_keys( self::$db_updates ) ), '<' );
 
 			/**
 			 * Decides whether Germanized needs a database update.
