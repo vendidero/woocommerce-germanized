@@ -637,6 +637,12 @@ class WC_GZD_Admin {
 				}
 			}
 
+			/**
+			 * Clear options cache before calling add_option again
+			 */
+			wp_cache_delete( 'notoptions', 'options' );
+			wp_cache_delete( 'alloptions', 'options' );
+
 			$manager->update_options( $options );
 
 			// Reinstall options

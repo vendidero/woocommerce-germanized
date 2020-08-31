@@ -737,6 +737,8 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 
 			foreach ( $options as $value ) {
 				if ( isset( $value['default'] ) && isset( $value['id'] ) ) {
+					wp_cache_delete( $value['id'], 'options' );
+
 					$autoload = isset( $value['autoload'] ) ? (bool) $value['autoload'] : true;
 					add_option( $value['id'], $value['default'], '', ( $autoload ? 'yes' : 'no' ) );
 				}
