@@ -155,9 +155,56 @@ window.germanized = window.germanized || {};
 
                 $fields.each( function() {
                     var dataValue   = $( this ).data( 'show_if_' + name ),
+                        data        = $( this ).data(),
                         currentVal  = $( this ).val(),
                         currentName = $( this ).attr( 'name' ).replace( /[\[\]']+/g, '' ),
-                        $field      = $( this ).parents( 'tr' );
+                        $field      = $( this ).parents( 'tr' ),
+                        skipField   = false;
+
+                    var isFieldVisible = $field.hasClass( 'wc-gzd-setting-visible' );
+                    var deps           = [];
+
+                    for ( var dataName in data ) {
+                        if ( data.hasOwnProperty( dataName ) ) {
+                            if ( dataName.substring( 0, 8 ) === 'show_if_' ) {
+                                var cleanName       = dataName.replace( 'show_if_', '' );
+                                var $dependendField = $( '.wc-gzd-admin-settings' ).find( ':input#' + cleanName );
+                                var index           = $dependendField.index( ':input' );
+
+                                deps[ index ] = cleanName;
+                            }
+                        }
+                    }
+
+                    deps = deps.filter(function(){return true;});
+
+                    if ( deps.length > 1 ) {
+                        if ( ! isFieldVisible ) {
+                            var nameToUse = deps.slice(-1)[0];
+
+                            if ( name !== nameToUse ) {
+                                skipField = true;
+
+                                if ( $( ':input#' + nameToUse ).parents( 'tr' ).is( ':visible' ) ) {
+                                    $( '.wc-gzd-admin-settings' ).find( ':input#' + nameToUse ).trigger( 'gzd_show_or_hide_fields' );
+                                }
+                            } else {
+                                if ( ! $( ':input#' + nameToUse ).parents( 'tr' ).is( ':visible' ) ) {
+                                    console.log(nameToUse);
+                                    console.log($field);
+
+                                    $field.addClass( 'wc-gzd-setting-invisible' );
+                                    $( document.body ).trigger( 'woocommerce_gzd_setting_field_invisible', [ $field, currentName, currentVal ] );
+
+                                    skipField = true;
+                                }
+                            }
+                        }
+                    }
+
+                    if ( skipField ) {
+                        return;
+                    }
 
                     $field.removeClass( 'wc-gzd-setting-visible wc-gzd-setting-invisible' );
 
