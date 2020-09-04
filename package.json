@@ -51,7 +51,7 @@
     "grunt-wp-i18n": "1.0.3",
     "istanbul": "1.0.0-alpha.2",
     "mocha": "6.2.0",
-    "node-sass": "4.12.0",
+    "node-sass": "4.14.1",
     "prettier": "github:automattic/calypso-prettier#c56b4251",
     "stylelint": "10.1.0",
     "stylelint-config-wordpress": "14.0.0",
