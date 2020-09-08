@@ -186,7 +186,8 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 2. General settings screen
 3. Germanized for WooCommerce Legal Checkboxes UI
 4. WooCommerce Multistep Checkout (Pro)
-5. Manage shipments for orders
+5. Manage shipments and invoices (Pro) for orders
+6. Edit pdf documents (Pro)
 
 == Changelog ==
 = 3.2.0 =
