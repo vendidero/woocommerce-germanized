@@ -1,11 +1,11 @@
 === Germanized for WooCommerce ===
 Contributors: vendidero, vdwoocommercesupport
 Tags: woocommerce, woocommerce german, woocommerce DE, woocommerce germany, woocommerce deutsch, woo, woocommerce deutschland, woocommerce germanized, woocommerce addon, woocommerce plugin, woocommerce german addon, woocommerce germany addon, woocommerce dhl, dhl, shipments
-Requires at least: 4.9
+Requires at least: 5.4
 Tested up to: 5.5
-WC requires at least: 3.4
-WC tested up to: 4.4
-Stable tag: 3.1.12
+WC requires at least: 3.9
+WC tested up to: 4.5
+Stable tag: 3.2.0
 Requires PHP: 5.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -59,8 +59,8 @@ While developing Germanized we have specifically considered clean integration wi
 Most of the changes are made by using Hooks & Filters so that our plugin is compatible to almost every Theme.
 
 = Pro: WooCommerce PDF invoices & packing slips =
-As a Pro User of Germanized you may automatically or manually create PDF Invoices and Packing Slips for your orders. Doing so you may customize the PDF layout to meet your Corporate Design.
-You may upload your head of a letter which will be used as background for your PDF's. With only a few clicks you may export (CSV, zip) invoices for your tax consultant or accountant.
+As a Pro User of Germanized you may automatically or manually create PDF Invoices and Packing Slips for your orders. Adjust your document layout by using the built-in visual document editor.
+Either export your documents (CSV, zip) for your tax consultant manually or use our integrations to transmit your documents to your lexoffice or sevDesk account.
 Learn more about [PDF Invoices for WooCommerce](https://vendidero.de/woocommerce-germanized/features#accounting "WooCommerce PDF Invoices")
 
 Furthermore you may attach legally relevant pages (e.g. Terms & Conditions) as PDF documents to specific WooCommerce emails instead of using plain text.
@@ -102,7 +102,7 @@ By default, Germanized works with every WooCommerce theme. Some themes may need 
 = Minimal Requirments =
 
 * WordPress 4.9 or newer
-* WooCommerce 3.4 (newest version recommended)
+* WooCommerce 3.9 (newest version recommended)
 * PHP Version 5.6 or newer
 
 = Automatic Installation =
@@ -189,6 +189,13 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 5. Manage shipments for orders
 
 == Changelog ==
+= 3.2.0 =
+* Feature: WC 4.5 support
+* Improvement: WPML compatibility
+* Improvement: Tax-exclusive price calculation for vouchers
+* Improvement: Added woocommerce_checkout_after_terms_and_condtions hook to T&C template
+* Improvement: DOI check signup disable on woocommerce_checkout_init
+
 = 3.1.12 =
 * Feature: WC 4.4 support
 * Feature: WP 5.5 support
