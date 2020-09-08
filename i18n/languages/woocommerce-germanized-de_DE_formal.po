@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce Germanized\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-05 14:00+0200\n"
-"PO-Revision-Date: 2020-08-05 14:01+0200\n"
+"POT-Creation-Date: 2020-09-08 13:00+0200\n"
+"PO-Revision-Date: 2020-09-08 13:02+0200\n"
 "Last-Translator: holzhannes <holzhannes@posteo.de>\n"
 "Language-Team: \n"
 "Language: de_DE@formal\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.3.1\n"
+"X-Generator: Poedit 2.4.1\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
 "esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
@@ -3974,7 +3974,7 @@ msgid "Sorry, this order is invalid and cannot be returned."
 msgstr "Sorry, diese Bestellung existiert nicht."
 
 #: woocommerce-germanized-shipments/src/ReturnShipment.php:365
-#: woocommerce-germanized-shipments/src/Shipment.php:843
+#: woocommerce-germanized-shipments/src/Shipment.php:851
 #, php-format
 msgctxt "full name"
 msgid "%1$s %2$s"
@@ -4209,7 +4209,7 @@ msgstr "%s Rücksende-Anweisungen"
 #: woocommerce-germanized-shipments/templates/emails/plain/customer-shipment.php:24
 #, php-format
 msgid "Hi %s,"
-msgstr ""
+msgstr "Hallo %s,"
 
 #: woocommerce-germanized-shipments/templates/emails/customer-guest-return-shipment-request.php:30
 #: woocommerce-germanized-shipments/templates/emails/plain/customer-guest-return-shipment-request.php:26
@@ -4947,7 +4947,7 @@ msgid "Welcome to Germanized"
 msgstr "Willkommen bei Germanized"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/class-wc-gzd-admin-welcome.php:281
+#: woocommerce-germanized/includes/admin/class-wc-gzd-admin-welcome.php:264
 msgid "Go to Germanized Settings"
 msgstr "Germanized Einstellungen"
 
@@ -5479,17 +5479,18 @@ msgstr ""
 msgid "Run the updater"
 msgstr "Update starten"
 
-#: woocommerce-germanized/includes/admin/notes/class-wc-gzd-admin-note.php:175
+#: woocommerce-germanized/includes/admin/notes/class-wc-gzd-admin-note.php:174
 msgid "Not now"
 msgstr "Nicht jetzt"
 
-#: woocommerce-germanized/includes/admin/notes/class-wc-gzd-admin-note.php:179
+#: woocommerce-germanized/includes/admin/notes/class-wc-gzd-admin-note.php:178
 msgctxt "woocommerce-germanized"
 msgid "Deactivate"
 msgstr "Deaktivieren"
 
 # @ woocommerce-germanized
 #: woocommerce-germanized/includes/admin/settings/abstract-wc-gzd-settings-tab.php:39
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-invoices.php:52
 #: woocommerce-germanized/includes/admin/views/html-settings-pro.php:23
 msgid "Get Germanized Pro to unlock"
 msgstr "Upgraden Sie zur Pro Version um dieses Feature zu nutzen"
@@ -5510,6 +5511,7 @@ msgstr ""
 # @ woocommerce-germanized
 #: woocommerce-germanized/includes/admin/settings/abstract-wc-gzd-settings-tab.php:42
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-pointers.php:177
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-invoices.php:63
 #: woocommerce-germanized/includes/admin/views/html-settings-pro.php:26
 #: woocommerce-germanized/includes/admin/views/setup/first-steps.php:35
 #: woocommerce-germanized/includes/compatibility/elementor/widgets/abstact-class-wc-gzd-elementor-widget.php:54
@@ -5518,6 +5520,7 @@ msgid "Upgrade now"
 msgstr "Jetzt upgraden"
 
 #: woocommerce-germanized/includes/admin/settings/abstract-wc-gzd-settings-tab.php:152
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-invoices.php:61
 msgid "Learn more"
 msgstr "Mehr erfahren"
 
@@ -5883,7 +5886,6 @@ msgstr "Verspäteter Vertragsschluss"
 
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-contract.php:21
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-emails.php:32
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-emails.php:33
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-invoices.php:21
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-multistep-checkout.php:21
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-revocation-generator.php:21
@@ -6003,20 +6005,16 @@ msgstr "Darstellung"
 
 # @ woocommerce-germanized
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-emails.php:32
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-emails.php:65
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-emails.php:64
 msgid "PDF Attachments"
 msgstr "PDF-Anhänge"
 
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-emails.php:33
-msgid "PDF Layout"
-msgstr "PDF Layout"
-
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-emails.php:50
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-emails.php:49
 msgid "Email attachments"
 msgstr "E-Mail-Anhänge"
 
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-emails.php:51
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-emails.php:50
 msgid ""
 "Choose which of your email templates (e.g. order confirmation) should "
 "contain your legal page content e.g. terms and conditions within it's footer."
@@ -6024,7 +6022,7 @@ msgstr ""
 "Wählen Sie aus, an welche der E-Mail-Templates (z.B. Bestellbestätigung), "
 "Ihre rechtlich relevanten Seiten z.B. AGB angefügt werden sollen."
 
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-emails.php:66
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-emails.php:65
 msgid ""
 "Customers of our pro version may attach PDF files instead of plain text "
 "content to emails."
@@ -6033,7 +6031,7 @@ msgstr ""
 "alternativ als PDF-Datei anhängen."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-emails.php:82
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-emails.php:81
 msgid ""
 "Use drag & drop to customize attachment order. Don't forget to save your "
 "changes."
@@ -6042,8 +6040,8 @@ msgstr ""
 "beeinflussen und speichern Sie anschließend Ihre Änderungen."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-emails.php:121
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-emails.php:142
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-emails.php:120
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-emails.php:141
 #, php-format
 msgid ""
 "Want to attach automatically generated PDF files to emails instead of plain "
@@ -6054,7 +6052,7 @@ msgstr ""
 
 # @ woocommerce-germanized
 # @ woocommerce
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-emails.php:164
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-emails.php:163
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-general.php:239
 #: woocommerce-germanized/includes/api/class-wc-gzd-rest-customers-controller.php:137
 #: woocommerce-germanized/includes/api/class-wc-gzd-rest-customers-controller.php:144
@@ -6068,7 +6066,7 @@ msgid "Title"
 msgstr "Anrede"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-emails.php:165
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-emails.php:164
 msgid ""
 "Adjust the title to be used within emails. Use {first_name}, {last_name} and "
 "{title} as placeholders."
@@ -6077,21 +6075,21 @@ msgstr ""
 "{last_name} und {title} als Platzhalter."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-emails.php:167
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-emails.php:166
 msgid "Hi {first_name},"
 msgstr "Sehr geehrte(r) {title} {last_name},"
 
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-emails.php:171
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-emails.php:170
 msgid "Hide Username"
 msgstr "Nutzernamen verstecken"
 
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-emails.php:172
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-emails.php:171
 msgid ""
 "Hide username from email content if password or password reset link is "
 "embedded."
 msgstr "Nutzernamen nicht zusammen mit einem Passwort versenden."
 
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-emails.php:172
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-emails.php:171
 msgid ""
 "Trusted Shops advises to not show the username together with an account "
 "password or password reset link. This option hides (or masks) the username "
@@ -6102,19 +6100,19 @@ msgstr ""
 "Trusted Shops Mitglied sind, sollten Sie diese Option aktivieren."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-emails.php:179
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-emails.php:178
 msgid "Pay now Button"
 msgstr "Jetzt bezahlen Button"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-emails.php:180
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-emails.php:179
 msgid "Add a pay now button to emails and order success page."
 msgstr ""
 "Fügt einen jetzt bezahlen - Button zur E-Mail und der Bestätigungs-Seite "
 "hinzu."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-emails.php:181
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-emails.php:180
 msgid ""
 "Add a pay now button to order confirmation email and order success page if "
 "the order awaits payment (PayPal etc)."
@@ -6124,33 +6122,33 @@ msgstr ""
 "benötigt (z.B. per PayPal)."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-emails.php:187
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-emails.php:186
 msgid "Disabled for"
 msgstr "Deaktiviert für"
 
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-emails.php:188
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-emails.php:187
 msgid "You may want to disable the pay now button for certain payment methods."
 msgstr ""
 "Sie können den jetzt bezahlen Button hier bei Bedarf für bestimmte "
 "Zahlungsarten deaktivieren."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-emails.php:215
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-emails.php:214
 msgid "Customer"
 msgstr "Kunde"
 
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-emails.php:215
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-emails.php:214
 msgid "Admin"
 msgstr "Admin"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-emails.php:232
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-emails.php:231
 #, php-format
 msgid "Attach %s"
 msgstr "%s"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-emails.php:233
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-emails.php:232
 #, php-format
 msgid "Attach %s to the following email templates"
 msgstr "%s an die folgenden E-Mail Templates anfügen"
@@ -6636,6 +6634,26 @@ msgstr ""
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-invoices.php:21
 msgid "Invoices & Packing Slips"
 msgstr "Rechnungen & Lieferscheine"
+
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-invoices.php:53
+msgid ""
+"Generate custom and professional PDF invoices, cancellations and packing "
+"slips automatically with Germanized Pro."
+msgstr ""
+"Erstellen Sie automatisch individuelle PDF Rechnungen, Stornierungen und "
+"Lieferscheine mit Germanized Pro."
+
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-invoices.php:55
+msgid "Customize your documents with the built-in document editor"
+msgstr "Passen Sie Ihre Dokumente mit dem integrierten visuellen Editor an"
+
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-invoices.php:56
+msgid "Transfer your documents to your lexoffice and/or sevDesk account"
+msgstr "Übertragen Sie Belege an Ihren lexoffice und/oder sevDesk Account"
+
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-invoices.php:57
+msgid "Export your documents as CSV and ZIP"
+msgstr "Exportieren Sie Dokumente als CSV und ZIP Datei"
 
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-multistep-checkout.php:17
 msgid "Transform your checkout into a multistep checkout process."
@@ -8109,8 +8127,8 @@ msgstr ""
 "\">hier</a>."
 
 #: woocommerce-germanized/includes/class-wc-gzd-customer-helper.php:118
-#: woocommerce-germanized/includes/class-wc-gzd-customer-helper.php:230
-#: woocommerce-germanized/includes/class-wc-gzd-customer-helper.php:350
+#: woocommerce-germanized/includes/class-wc-gzd-customer-helper.php:229
+#: woocommerce-germanized/includes/class-wc-gzd-customer-helper.php:349
 msgid ""
 "Please activate your account through clicking on the activation link "
 "received via email."
@@ -8118,18 +8136,18 @@ msgstr ""
 "Bitte aktivieren Sie Ihr Kundenkonto indem Sie auf den Link in der E-Mail "
 "klicken."
 
-#: woocommerce-germanized/includes/class-wc-gzd-customer-helper.php:240
+#: woocommerce-germanized/includes/class-wc-gzd-customer-helper.php:239
 #, php-format
 msgid "Continue without creating an account? <a href=\"%s\">Click here</a>"
 msgstr "Weiter zur Kasse ohne Kundenkonto? <a href=\"%s\">Hier klicken</a>"
 
-#: woocommerce-germanized/includes/class-wc-gzd-customer-helper.php:242
+#: woocommerce-germanized/includes/class-wc-gzd-customer-helper.php:241
 msgid "Please create an account or login before continuing to checkout"
 msgstr ""
 "Bitte erstellen Sie ein Kundenkonto oder loggen Sie sich ein, bevor Sie zur "
 "Kasse gehen"
 
-#: woocommerce-germanized/includes/class-wc-gzd-customer-helper.php:382
+#: woocommerce-germanized/includes/class-wc-gzd-customer-helper.php:381
 msgid ""
 "This activation code has expired. We have sent you a new activation code via "
 "e-mail."
@@ -8138,20 +8156,20 @@ msgstr ""
 "Code per E-Mail geschickt."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-customer-helper.php:384
+#: woocommerce-germanized/includes/class-wc-gzd-customer-helper.php:383
 msgid "Sorry, but this activation code cannot be found."
 msgstr "Sorry, dieser Aktivierungscode ist uns leider nicht bekannt."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-customer-helper.php:388
+#: woocommerce-germanized/includes/class-wc-gzd-customer-helper.php:387
 msgid "Thank you. You have successfully activated your account."
 msgstr "Vielen Dank. Ihr Benutzerkonto wurde erfolgreich aktiviert."
 
-#: woocommerce-germanized/includes/class-wc-gzd-customer-helper.php:574
+#: woocommerce-germanized/includes/class-wc-gzd-customer-helper.php:573
 msgid "Expired activation key"
 msgstr "Abgelaufener Aktivierungscode"
 
-#: woocommerce-germanized/includes/class-wc-gzd-customer-helper.php:579
+#: woocommerce-germanized/includes/class-wc-gzd-customer-helper.php:578
 msgid "Invalid activation key"
 msgstr "Aktivierungscode ungültig"
 
@@ -8195,7 +8213,7 @@ msgid "Thanks for creating an account on %s."
 msgstr "Danke, dass Sie ein Konto bei %s erstellt haben."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-emails.php:1067
+#: woocommerce-germanized/includes/class-wc-gzd-emails.php:1066
 msgctxt "revocation-form"
 msgid "Forward your Revocation online"
 msgstr "Widerruf online erklären"
@@ -11346,6 +11364,9 @@ msgstr "vendidero"
 #. Author URI of the plugin/theme
 msgid "https://vendidero.de"
 msgstr "https://vendidero.de"
+
+#~ msgid "PDF Layout"
+#~ msgstr "PDF Layout"
 
 # @ woocommerce-germanized
 #~ msgid "No VAT notice"

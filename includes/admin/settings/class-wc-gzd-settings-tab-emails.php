@@ -30,7 +30,6 @@ class WC_GZD_Settings_Tab_Emails extends WC_GZD_Settings_Tab {
 			''                => __( 'General', 'woocommerce-germanized' ),
 			'visibility'      => __( 'Visibility', 'woocommerce-germanized' ),
 			'attachments'     => __( 'PDF Attachments', 'woocommerce-germanized' ) . ( WC_germanized()->is_pro() ? '' : '<span class="wc-gzd-pro wc-gzd-pro-outlined">' . __( 'pro', 'woocommerce-germanized' ) . '</span>' ),
-			'attachments_pdf' => __( 'PDF Layout', 'woocommerce-germanized' ) . ( WC_germanized()->is_pro() ? '' : '<span class="wc-gzd-pro wc-gzd-pro-outlined">' . __( 'pro', 'woocommerce-germanized' ) . '</span>' ),
 		);
 	}
 

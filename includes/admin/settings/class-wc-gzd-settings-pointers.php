@@ -174,7 +174,7 @@ class WC_GZD_Settings_Pointers {
 							}	
 							
 							if ( pointer.hasOwnProperty( 'pro' ) ) {
-								var button_pro = $( '<a class=\"button button-secondary button-wc-gzd-pro\" target=\"_blank\" style=\"margin-right: 1em;\" href=\"https://vendidero.de/woocommerce-germanized\">" . esc_js( __( 'Upgrade now', 'woocommerce-germanized' ) ) . "</a>' );
+								var button_pro = $( '<a class=\"button button-secondary is-gzd-pro button-wc-gzd-pro\" target=\"_blank\" style=\"margin-right: 1em;\" href=\"https://vendidero.de/woocommerce-germanized\">" . esc_js( __( 'Upgrade now', 'woocommerce-germanized' ) ) . "</a>' );
 								wrapper.append( button_pro );
 							}			
 

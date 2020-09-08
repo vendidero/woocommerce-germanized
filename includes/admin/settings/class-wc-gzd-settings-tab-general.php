@@ -57,7 +57,7 @@ class WC_GZD_Settings_Tab_General extends WC_GZD_Settings_Tab {
 				'default'  => '',
 				'class'    => 'wc-enhanced-select-nostd',
 				'css'      => 'min-width:300px;',
-				'desc'     => ( ! get_option( 'woocommerce_terms_page_id' ) ? sprintf( __( 'Don\'t have terms & conditions yet? <a href="%s">Generate now</a>!', 'woocommerce-germanized' ), admin_url( 'admin.php?page=wc-settings&tab=germanized&section=agbs' ) ) : '' ),
+				'desc'     => ( ! get_option( 'woocommerce_terms_page_id' ) ? sprintf( __( 'Don\'t have terms & conditions yet? <a href="%s">Generate now</a>!', 'woocommerce-germanized' ), admin_url( 'admin.php?page=wc-settings&tab=germanized-terms_generator' ) ) : '' ),
 			),
 			array(
 				'title'    => __( 'Power of Revocation', 'woocommerce-germanized' ),
@@ -67,7 +67,7 @@ class WC_GZD_Settings_Tab_General extends WC_GZD_Settings_Tab {
 				'default'  => '',
 				'class'    => 'wc-enhanced-select-nostd',
 				'css'      => 'min-width:300px;',
-				'desc'     => ( ! get_option( 'woocommerce_revocation_page_id' ) ? sprintf( __( 'Don\'t have a revocation page yet? <a href="%s">Generate now</a>!', 'woocommerce-germanized' ), admin_url( 'admin.php?page=wc-settings&tab=germanized&section=widerruf' ) ) : '' ),
+				'desc'     => ( ! get_option( 'woocommerce_revocation_page_id' ) ? sprintf( __( 'Don\'t have a revocation page yet? <a href="%s">Generate now</a>!', 'woocommerce-germanized' ), admin_url( 'admin.php?page=wc-settings&tab=germanized-revocation_generator' ) ) : '' ),
 			),
 
 			array(

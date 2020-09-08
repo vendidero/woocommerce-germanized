@@ -155,6 +155,8 @@
     margin-bottom: 1em; }
   .wc-gzd-admin-settings th.forminp-image {
     padding-right: 0 !important; }
+  .wc-gzd-admin-settings.wc-gzd-admin-settings-germanized-emails-attachments th.forminp-image, .wc-gzd-admin-settings.wc-gzd-admin-settings-contract th.forminp-image, .wc-gzd-admin-settings.wc-gzd-admin-settings-invoices th.forminp-image, .wc-gzd-admin-settings.wc-gzd-admin-settings-multistep_checkout th.forminp-image, .wc-gzd-admin-settings.wc-gzd-admin-settings-terms_generator th.forminp-image, .wc-gzd-admin-settings.wc-gzd-admin-settings-revocation_generator th.forminp-image {
+    padding-top: 0; }
   .wc-gzd-admin-settings .wc-gzd-premium img, .wc-gzd-admin-settings .forminp-image img {
     max-width: 100%;
     height: auto;

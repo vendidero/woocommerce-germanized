@@ -49,7 +49,7 @@ class WC_GZD_Admin_Welcome {
 			return;
 		}
 
-		$welcome_page_name = __( 'About Germanized', 'woocommerce-germanized' );
+		$welcome_page_name  = __( 'About Germanized', 'woocommerce-germanized' );
 		$welcome_page_title = __( 'Welcome to Germanized', 'woocommerce-germanized' );
 
 		switch ( $_GET['page'] ) {
@@ -137,13 +137,23 @@ class WC_GZD_Admin_Welcome {
             </p>
 
             <div class="changelog new-feature">
-                <h3>Hinweis: Mehrwertsteuersenkung in Deutschland</h3>
+                <h3>Neu: PDF-Dokumente visuell bearbeiten <span class="wc-gzd-pro wc-gzd-pro-outlined">pro</span></h3>
 
-                <p>
-                    Damit ihr, was die Mehrwertsteuersenkung im Rahmen der Corona-Pandemie angeht, nicht in Zeitnot geratet, haben wir euch in unserem <a href="https://vendidero.de/senkung-der-mehrwertsteuer-in-woocommerce-im-rahmen-der-corona-pandemie" target="_blank">Blog-Eintrag</a> einige
-                    Möglichkeiten zur <a href="https://vendidero.de/senkung-der-mehrwertsteuer-in-woocommerce-im-rahmen-der-corona-pandemie#automatisches-update-der-steuersaetze" target="_blank">automatischen</a> oder manuellen Anpassung der Mehrwertsteuersätze in WooCommerce bereitgestellt.
-                    Mit Hilfe unseres kleinen Zusatz-Plugins könnt ihr eure Steuersätze einfach über Nacht automatisch anpassen lassen und damit hoffentlich ruhig(er) schlafen. Wir wünschen euch weiterhin viel Erfolg!
-                </p>
+                <div class="columns two-col">
+                    <div class="col">
+                        <p>
+                            Endlich ist es soweit: <a href="https://vendidero.de/germanized-pro-3-0" target="_blank">Germanized Pro 3.0</a> wurde veröffentlicht. Mit diesem neuen Update kannst du deine PDF-Dokumente (Rechnungen, Stornierungen, Lieferscheine, rechtl. Hinweisseiten)
+                            über den Gutenberg-Editor komplett frei gestalten. Dafür haben wir Gutenberg explizit für PDF-Dokumente vorbereitet und viele individuelle Blöcke hinzugefügt, mit denen du deine PDF-Dokumente an deine Bedürfnisse anpasst. Das Ergebnis siehst du als Live-Vorschau im Browser.
+                        </p>
+                        <p>
+                            Mit dem Dokumenten-Editor in Germanized Pro baust du deine Belege individuell auf. Über die Google Fonts Integration suchst du dir eine passende Schriftart für dein PDF Dokument aus. Auch die Tabelle der Positionen einer Rechnung kannst du individuell gestalten.
+                            Wähle aus welche Spalten, mit welcher Breite und welcher Bezeichnung angezeigt werden sollen. Damit hast du die volle Kontrolle.
+                        </p>
+                    </div>
+                    <div class="col col-center">
+                        <img src="<?php echo WC_germanized()->plugin_url(); ?>/assets/images/edit-pdf-documents.png"/>
+                    </div>
+                </div>
 
                 <div class="wc-germanized-welcome-pro">
                     <a href="https://vendidero.de/woocommerce-germanized" target="_blank"
@@ -154,86 +164,59 @@ class WC_GZD_Admin_Welcome {
                 </div>
 
                 <div class="wc-gzd-actions">
-                    <a href="https://vendidero.de/senkung-der-mehrwertsteuer-in-woocommerce-im-rahmen-der-corona-pandemie" class="button button-primary" target="_blank">Mehr erfahren</a>
+                    <a href="https://vendidero.de/germanized-pro-3-0" class="button button-primary" target="_blank">Mehr erfahren</a>
                 </div>
             </div>
 
             <div class="changelog new-feature">
-                <h3>Neu: Sendungen zu Bestellungen erstellen</h3>
+                <h3>Neu: Belege an lexoffice übertagen <span class="wc-gzd-pro">pro</span></h3>
 
                 <div class="columns two-col">
-                    <div class="col align-center">
-                        <img src="<?php echo WC_germanized()->plugin_url(); ?>/assets/images/shipments.png"/>
+                    <div class="col col-center">
+                        <img src="<?php echo WC_germanized()->plugin_url(); ?>/assets/images/lexoffice.png"/>
                     </div>
                     <div class="col">
                         <p>
-                            Version 3.0 führt eine neue Abstraktion zur (besseren) Verwaltung von Sendungen zu
-                            Bestellungen hinzu. Über eine einfache UI kannst du nun
-                            unkompliziert (mehrere) Sendungen zu deinen Bestellungen hinzufügen. Über eine eigene
-                            Benachrichtigungsmail werden deine Kunden einfach über neue Sendungen informiert.
-                            Zu jeder Sendung kannst du optional Retouren anlegen, falls dein Kunde Waren zurückschicken
-                            möchte.
+                            Damit eure Buchhaltung möglichst wenig Arbeit bereitet, haben wir in Germanized Pro 3.0 eine Schnittstelle zu lexoffice für euch parat.
+                            Mit der Integration von lexoffice könnt ihr eure Belege ganz einfach per API übertragen. Auf Wunsch geht das auch vollautomatisch, d.h. Germanized
+                            überträgt eure Belege nach Erzeugung automatisch an lexoffice. Verringert euren Zeitaufwand bei der Buchhaltung mit Germanized Pro und lexoffice.
                         </p>
-
-                        <p>
-                            Sendungen lassen sich auch automatisch bei Erreichen eines bestimmten Bestellstatus
-                            erzeugen.
-                            Als Kunde unserer Pro-Version kannst du zudem PDF-Lieferscheine zu Sendungen erzeugen.
-                        </p>
-
-                        <div class="wc-germanized-welcome-pro">
-                            <a href="https://vendidero.de/woocommerce-germanized" target="_blank"
-                               class="button button-primary wc-gzd-button"><span class="wc-gzd-pro">pro</span> Version
-                                entdecken</a>
-                            <p class="price smaller">ab 69 € inkl. MwSt. - inkl. 1 Jahr Updates & Premium
-                                Support!</p>
-                        </div>
-
-                        <div class="wc-gzd-actions">
-                            <a href="<?php echo admin_url( 'admin.php?page=wc-settings&tab=germanized-shipments' ); ?>"
-                               class="button button-primary" target="_blank">Einstellungen anpassen</a>
-                            <a href="https://vendidero.de/dokument/sendungen-zu-bestellungen-erzeugen" class="button button-primary" target="_blank">Mehr erfahren</a>
-                        </div>
                     </div>
+                </div>
+
+                <div class="wc-germanized-welcome-pro">
+                    <a href="https://vendidero.de/woocommerce-germanized" target="_blank"
+                       class="button button-primary wc-gzd-button"><span class="wc-gzd-pro">pro</span> Version
+                        entdecken</a>
+                    <p class="price smaller">ab 69 € inkl. MwSt. - inkl. 1 Jahr Updates & Premium
+                        Support!</p>
                 </div>
             </div>
 
-			<?php if ( Vendidero\Germanized\DHL\Package::base_country_is_supported() ) : ?>
+            <div class="changelog new-feature">
+                <h3>Neu: sevDesk Integration <span class="wc-gzd-pro">pro</span></h3>
 
-                <div class="changelog new-feature">
-                    <h3>Neu: Nahtlose Integration von DHL Produkten</h3>
-
-                    <div class="columns two-col">
-
-                        <div class="col align-center">
-                            <img src="<?php echo WC_germanized()->plugin_url(); ?>/assets/images/dhl.png"/>
-                        </div>
-
-                        <div class="col">
-                            <p>
-                                Germanized & DHL sind nun Partner. Wir haben beschlossen, die DHL Produkte nahtlos in
-                                Germanized zu integrieren, um euren Aufwand bei der Sendungsverwaltung zu verringern.
-                                Als DHL Geschäftskunde könnt ihr nun bequem Labels zu Sendungen und Retouren erzeugen.
-                                Unsere DHL Integration bietet umfangreiche Anpassungsmöglichkeiten.
-                                Du kannst z.B. je Versandmethode unterschiedliche DHL Services für deine Labels
-                                konfigurieren.
-                            </p>
-
-                            <p>
-                                Du kannst DHL Labels auch automatisch zu deinen Sendungen erstellen lassen und deinen
-                                Aufwand somit weiter verringern.
-                            </p>
-
-                            <div class="wc-gzd-actions">
-                                <a href="<?php echo admin_url( 'admin.php?page=wc-settings&tab=germanized-dhl' ); ?>"
-                                   class="button button-primary" target="_blank">Einstellungen anpassen</a>
-                                <a href="https://vendidero.de/dokument/dhl-integration-einrichten" class="button button-primary" target="_blank">Mehr erfahren</a>
-                            </div>
-                        </div>
+                <div class="columns two-col">
+                    <div class="col">
+                        <p>
+                            Mit sevDesk bieten wir euch eine Schnittstelle zu einer weiteren Cloud-Buchhaltungs-Lösung an. Auch mit unserer
+                            sevDesk Integration könnt ihr eure Belege, auf Wunsch vollautomatisch, per API an sevDesk übertragen. Optional
+                            habt ihr in den sevDesk Einstellungen die Möglichkeit, falls möglich, die Rechnung direkt mit einer konkreten Transaktion zu verknüpfen.
+                        </p>
+                    </div>
+                    <div class="col col-center">
+                        <img src="<?php echo WC_germanized()->plugin_url(); ?>/assets/images/sevdesk.png"/>
                     </div>
                 </div>
 
-			<?php endif; ?>
+                <div class="wc-germanized-welcome-pro">
+                    <a href="https://vendidero.de/woocommerce-germanized" target="_blank"
+                       class="button button-primary wc-gzd-button"><span class="wc-gzd-pro">pro</span> Version
+                        entdecken</a>
+                    <p class="price smaller">ab 69 € inkl. MwSt. - inkl. 1 Jahr Updates & Premium
+                        Support!</p>
+                </div>
+            </div>
 
             <div class="changelog">
                 <h3>Weitere Neuigkeiten in Germanized 3.0</h3>

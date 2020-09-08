@@ -443,7 +443,7 @@ class WC_GZD_Legal_Checkbox_Manager {
 			$this->options = get_option( 'woocommerce_gzd_legal_checkboxes_settings', array() );
 		}
 
-		return $this->options;
+		return (array) $this->options;
 	}
 
 	public function update_options( $options ) {

@@ -60,12 +60,12 @@ class WC_GZD_Customer_Helper {
 
 				/**
 				 * Maybe redirect customers that are not logged in to customer account page or
-				 * force guest checkouts.
+				 * force guest checkouts on checkout_init.
 				 *
 				 * Use a low priority so that plugins that redirect the checkout page (e.g. cart-flows)
 				 * still receive our updates to the session before the actual redirect happens.
 				 */
-				add_action( 'template_redirect', array( $this, 'disable_checkout' ), 0 );
+				add_action( 'woocommerce_checkout_init', array( $this, 'disable_checkout' ), 1 );
 
 				// Show notices on customer account page
 				add_action( 'template_redirect', array( $this, 'show_disabled_checkout_notice' ), 20 );
@@ -74,7 +74,7 @@ class WC_GZD_Customer_Helper {
 				add_filter( 'woocommerce_login_redirect', array( $this, 'login_redirect' ), 10, 2 );
 
 				// Disable customer signup if customer has forced guest checkout
-				add_action( 'woocommerce_checkout_init', array( $this, 'disable_signup' ), 10, 1 );
+				add_action( 'woocommerce_checkout_init', array( $this, 'disable_signup' ), 100, 1 );
 
 				// Remove the checkout signup cookie if customer logs out
 				add_action( 'wp_logout', array( $this, 'delete_checkout_signup_cookie' ) );
@@ -160,13 +160,12 @@ class WC_GZD_Customer_Helper {
 	}
 
 	public function disable_signup( $checkout ) {
-
-		remove_action( 'woocommerce_before_checkout_form', 'woocommerce_checkout_login_form', 10 );
-
 		if ( WC()->session && WC()->session->get( 'disable_checkout_signup' ) ) {
+			remove_action( 'woocommerce_before_checkout_form', 'woocommerce_checkout_login_form', 10 );
+			add_filter( 'woocommerce_checkout_registration_enabled', '__return_false', 100 );
+
 			$checkout->enable_signup = false;
 		}
-
 	}
 
 	public function login_redirect( $redirect, $user ) {
