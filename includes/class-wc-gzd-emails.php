@@ -89,8 +89,42 @@ class WC_GZD_Emails {
 			), 10, 4 );
 		}
 
+		add_action( 'woocommerce_email', array( $this, 'init_bcc_field' ), 10, 1 );
+		add_filter( 'woocommerce_email_headers', array( $this, 'add_bcc_email_headers' ), 10, 4 );
+
 		if ( is_admin() ) {
 			$this->admin_hooks();
+		}
+	}
+
+	public function add_bcc_email_headers( $headers, $id, $object, $email ) {
+		if ( $email ) {
+			$recipients = $email->get_option( 'bcc' );
+
+			if ( $recipients && ! empty( $recipients ) ) {
+				$recipients = array_map( 'trim', explode( ',', $recipients ) );
+				$recipients = array_filter( $recipients, 'is_email' );
+
+				if ( ! empty( $recipients ) ) {
+					$headers .= 'Bcc: ' . trim( implode( ',', $recipients ) ) . "\r\n";
+				}
+			}
+		}
+
+		return $headers;
+	}
+
+	public function init_bcc_field( $mailer ) {
+		$mails = $mailer->get_emails();
+
+		foreach ( $mails as $mail ) {
+			$mail->form_fields['bcc'] = array(
+				'title'         => __( 'BCC recipients', 'woocommerce-germanized' ),
+				'type'          => 'text',
+				'description'   => __( 'Enter blind-copy recipients (comma separated) for this email.', 'woocommerce-germanized' ),
+				'placeholder'   => '',
+				'default'       => ''
+			);
 		}
 	}
 

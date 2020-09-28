@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce Germanized\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-08 13:00+0200\n"
-"PO-Revision-Date: 2020-09-08 13:02+0200\n"
+"POT-Creation-Date: 2020-09-28 12:32+0200\n"
+"PO-Revision-Date: 2020-09-28 12:34+0200\n"
 "Last-Translator: holzhannes <holzhannes@posteo.de>\n"
 "Language-Team: \n"
 "Language: de_DE@formal\n"
@@ -37,6 +37,7 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-10: woocommerce-germanized-dhl/node_modules\n"
 "X-Poedit-SearchPathExcluded-11: woocommerce-germanized/build\n"
 "X-Poedit-SearchPathExcluded-12: woocommerce-trusted-shops/build\n"
+"X-Poedit-SearchPathExcluded-13: woocommerce-germanized/assets\n"
 
 # @ woocommerce-germanized
 #: woocommerce-germanized-dhl/includes/admin/views/html-shipment-label-backbone-form.php:18
@@ -2423,7 +2424,7 @@ msgstr[1] "%d von %d Positionen"
 
 # @ woocommerce-germanized
 #: woocommerce-germanized-shipments/includes/admin/views/html-order-shipment-item.php:28
-#: woocommerce-germanized-shipments/templates/shipment/add-return-shipment-item.php:58
+#: woocommerce-germanized-shipments/templates/shipment/add-return-shipment-item.php:59
 msgctxt "shipments return reason"
 msgid "None"
 msgstr "Keiner"
@@ -3904,7 +3905,7 @@ msgstr ""
 "Vielen Dank. Sie erhalten eine E-Mail mit einem Link über den Sie Ihren "
 "Rücksendeantrag stellen können."
 
-#: woocommerce-germanized-shipments/src/FormHandler.php:171
+#: woocommerce-germanized-shipments/src/FormHandler.php:172
 msgctxt "shipments"
 msgid "You are not allowed to add returns to that order."
 msgstr ""
@@ -3912,29 +3913,29 @@ msgstr ""
 "hinzuzufügen."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized-shipments/src/FormHandler.php:176
+#: woocommerce-germanized-shipments/src/FormHandler.php:177
 msgctxt "shipments"
 msgid "Sorry, but this order does not support returns any longer."
 msgstr ""
 "Entschuldigen Sie, diese Sendung kann nicht mehr zurückgesendet werden."
 
-#: woocommerce-germanized-shipments/src/FormHandler.php:181
-#: woocommerce-germanized-shipments/src/FormHandler.php:217
+#: woocommerce-germanized-shipments/src/FormHandler.php:182
+#: woocommerce-germanized-shipments/src/FormHandler.php:218
 msgctxt "shipments"
 msgid "Please choose one or more items from the list."
 msgstr "Bitte wählen Sie ein oder mehrere Produkt(e) aus."
 
-#: woocommerce-germanized-shipments/src/FormHandler.php:197
+#: woocommerce-germanized-shipments/src/FormHandler.php:198
 msgctxt "shipments"
 msgid "The return reason you have chosen does not exist."
 msgstr "Der Rücksendegrund existiert nicht."
 
-#: woocommerce-germanized-shipments/src/FormHandler.php:200
+#: woocommerce-germanized-shipments/src/FormHandler.php:201
 msgctxt "shipments"
 msgid "Please choose a return reason from the list."
 msgstr "Bitte wählen Sie aus der Liste einen Grund für die Rücksendung aus."
 
-#: woocommerce-germanized-shipments/src/FormHandler.php:205
+#: woocommerce-germanized-shipments/src/FormHandler.php:206
 msgctxt "shipments"
 msgid ""
 "Please check your item quantities. Quantities must not exceed maximum "
@@ -3943,7 +3944,7 @@ msgstr ""
 "Bitte überprüfen Sie Ihre Angaben zur Anzahl. Die angegebene Anzahl ist zu "
 "hoch."
 
-#: woocommerce-germanized-shipments/src/FormHandler.php:252
+#: woocommerce-germanized-shipments/src/FormHandler.php:253
 msgctxt "shipments"
 msgid ""
 "There was an error while creating the return. Please contact us for further "
@@ -4412,7 +4413,7 @@ msgctxt "shipments"
 msgid "Shipment #%1$s was created on %2$s and is currently %3$s."
 msgstr "Sendung #%1$s vom %2$s ist aktuell %3$s."
 
-#: woocommerce-germanized-shipments/templates/shipment/add-return-shipment-item.php:60
+#: woocommerce-germanized-shipments/templates/shipment/add-return-shipment-item.php:61
 msgctxt "shipments return reason"
 msgid "Please choose"
 msgstr "Bitte auswählen"
@@ -8110,11 +8111,11 @@ msgctxt "customer-title-male-address"
 msgid "Mr."
 msgstr "Herrn"
 
-#: woocommerce-germanized/includes/class-wc-gzd-coupon-helper.php:257
+#: woocommerce-germanized/includes/class-wc-gzd-coupon-helper.php:287
 msgid "Is voucher?"
 msgstr "Wertgutschein?"
 
-#: woocommerce-germanized/includes/class-wc-gzd-coupon-helper.php:258
+#: woocommerce-germanized/includes/class-wc-gzd-coupon-helper.php:288
 #, php-format
 msgid ""
 "Whether or not this coupon is a voucher which has been sold to a customer "
@@ -8173,12 +8174,21 @@ msgstr "Abgelaufener Aktivierungscode"
 msgid "Invalid activation key"
 msgstr "Aktivierungscode ungültig"
 
+#: woocommerce-germanized/includes/class-wc-gzd-emails.php:122
+msgid "BCC recipients"
+msgstr "BCC Empfänger"
+
+#: woocommerce-germanized/includes/class-wc-gzd-emails.php:124
+msgid "Enter blind-copy recipients (comma separated) for this email."
+msgstr ""
+"Fügen Sie Empfänger (kommasepariert) einer Blindkopie für diese E-Mail ein."
+
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-emails.php:129
+#: woocommerce-germanized/includes/class-wc-gzd-emails.php:163
 msgid "Confirmation text"
 msgstr "Bestätigung Text"
 
-#: woocommerce-germanized/includes/class-wc-gzd-emails.php:130
+#: woocommerce-germanized/includes/class-wc-gzd-emails.php:164
 msgid ""
 "Your order has been received and is now being processed. Your order details "
 "are shown below for your reference:"
@@ -8187,7 +8197,7 @@ msgstr ""
 "Ihrer Bestellung können Sie der nachfolgenden Tabelle entnehmen:"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-emails.php:131
+#: woocommerce-germanized/includes/class-wc-gzd-emails.php:165
 msgid ""
 "This text will be inserted within the order confirmation email. Use "
 "{order_number}, {site_title} or {order_date} as placeholder."
@@ -8195,7 +8205,7 @@ msgstr ""
 "Dieser Text wird in die Bestellbestätigung eingefügt. Verwenden Sie "
 "{order_number}, {site_title} oder {order_date} als Platzhalter."
 
-#: woocommerce-germanized/includes/class-wc-gzd-emails.php:249
+#: woocommerce-germanized/includes/class-wc-gzd-emails.php:283
 msgid ""
 "Your order has been received and is now being processed. Your order details "
 "are shown below for your reference."
@@ -8203,17 +8213,17 @@ msgstr ""
 "Ihre Bestellung ist eingegangen und wird nun bearbeitet. Die Einzelheiten "
 "Ihrer Bestellung können Sie der nachfolgenden Tabelle entnehmen."
 
-#: woocommerce-germanized/includes/class-wc-gzd-emails.php:297
+#: woocommerce-germanized/includes/class-wc-gzd-emails.php:331
 msgid "Someone requested a password reset for your account."
 msgstr "Jemand hat das Zurücksetzen des Passworts für Ihren Account beantragt."
 
-#: woocommerce-germanized/includes/class-wc-gzd-emails.php:312
+#: woocommerce-germanized/includes/class-wc-gzd-emails.php:346
 #, php-format
 msgid "Thanks for creating an account on %s."
 msgstr "Danke, dass Sie ein Konto bei %s erstellt haben."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-emails.php:1066
+#: woocommerce-germanized/includes/class-wc-gzd-emails.php:1100
 msgctxt "revocation-form"
 msgid "Forward your Revocation online"
 msgstr "Widerruf online erklären"

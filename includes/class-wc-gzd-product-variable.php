@@ -110,7 +110,7 @@ class WC_GZD_Product_Variable extends WC_GZD_Product {
 	public function has_unit() {
 		$prices = $this->get_variation_unit_prices();
 
-		if ( $this->get_unit() && $prices['regular_price'] && $this->get_unit_base() ) {
+		if ( $this->get_unit() && is_array( $prices ) && $prices['regular_price'] && $this->get_unit_base() ) {
 			return true;
 		}
 
