@@ -133,6 +133,10 @@ class WC_GZD_Payment_Gateways {
 	}
 
 	public function manipulate_gateways() {
+		if ( ! WC()->payment_gateways ) {
+			return;
+		}
+
 		$gateways = WC()->payment_gateways->get_available_payment_gateways();
 
 		foreach ( $gateways as $gateway ) {
