@@ -67,7 +67,7 @@ class WC_GZD_Shortcodes {
 			$product = wc_get_product( $atts['product'] );
 		}
 
-		if ( ! empty( $product ) && is_a( $product, 'WC_Product' ) ) {
+		if ( $product && is_a( $product, 'WC_Product' ) ) {
 			ob_start();
 			call_user_func( $function_name );
 			$content = ob_get_clean();

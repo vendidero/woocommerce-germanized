@@ -14,8 +14,8 @@
         <custom-field action="translate">_mini_desc</custom-field>
         <custom-field action="copy">_service</custom-field>
         <custom-field action="copy">_differential_taxation</custom-field>
-        <custom-field action="translate">_ts_mpn</custom-field>
-        <custom-field action="translate">_ts_gtin</custom-field>
+        <custom-field action="copy-once">_ts_mpn</custom-field>
+        <custom-field action="copy-once">_ts_gtin</custom-field>
         <custom-field action="translate">_legal_text</custom-field>
     </custom-fields>
     <taxonomies>
