@@ -69,6 +69,33 @@ class WC_GZD_Coupon_Helper {
 	}
 
 	/**
+	 * Checks whether an order has an voucher as coupon or not.
+	 *
+	 * @param $order
+	 *
+	 * @return bool
+	 */
+	public function order_voucher_total( $order, $inc_tax = true ) {
+		$order = is_numeric( $order ) ? $order = wc_get_order( $order ) : $order;
+
+		$total = 0;
+
+		if ( $coupons = $order->get_items( 'coupon' ) ) {
+			foreach ( $coupons as $coupon ) {
+				if ( 'yes' === $coupon->get_meta( 'is_voucher', true ) ) {
+					$total += $coupon->get_discount();
+
+					if ( $inc_tax ) {
+						$total += $coupon->get_discount_tax();
+					}
+				}
+			}
+		}
+
+		return wc_format_decimal( $total );
+	}
+
+	/**
 	 * Adjust WooCommerce order recalculation to make it compatible with vouchers.
 	 * Maybe some day we'll be able to hook into calculate_taxes or calculate_totals so that is not necessary anymore.
 	 */
