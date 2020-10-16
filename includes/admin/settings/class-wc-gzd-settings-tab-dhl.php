@@ -66,4 +66,20 @@ class WC_GZD_Settings_Tab_DHL extends WC_GZD_Settings_Tab {
 	public function supports_disabling() {
 		return true;
 	}
+
+	public function disable() {
+		parent::disable();
+
+		update_option( 'woocommerce_gzd_dhl_internetmarke_enable', 'no' );
+	}
+
+	public function is_enabled() {
+		$is_enabled = parent::is_enabled();
+
+		if ( \Vendidero\Germanized\DHL\Package::is_internetmarke_enabled() ) {
+			$is_enabled = true;
+		}
+
+		return $is_enabled;
+	}
 }
