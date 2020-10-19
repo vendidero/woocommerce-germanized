@@ -43,7 +43,7 @@ class WC_GZD_Gateway_Invoice extends WC_Payment_Gateway {
 		$this->enabled              = $this->get_option( 'enabled' );
 		$this->title                = $this->get_option( 'title' );
 		$this->description          = $this->get_option( 'description' );
-		$this->instructions         = $this->get_option( 'instructions', $this->description );
+		$this->instructions         = $this->get_option( 'instructions' );
 		$this->default_order_status = $this->get_option( 'default_order_status', 'on-hold' );
 		$this->customers_only       = $this->get_option( 'customers_only', 'no' );
 		$this->customers_completed  = $this->get_option( 'customers_completed', 'no' );
