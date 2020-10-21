@@ -22,13 +22,18 @@ class WC_GZD_Emails {
 	private $mailer = null;
 
 	/**
+	 * @var bool|WC_Email
+	 */
+	private $current_email_instance = false;
+
+	/**
 	 * Adds legal page ids to different options and adds a hook to the email footer
 	 */
 	public function __construct() {
-
 		$this->set_footer_attachments();
 
 		add_action( 'woocommerce_email', array( $this, 'email_hooks' ), 0, 1 );
+		add_filter( 'wc_get_template', array( $this, 'maybe_set_current_email_instance' ), 1000, 3 );
 
 		if ( wc_gzd_send_instant_order_confirmation() ) {
 
@@ -95,6 +100,45 @@ class WC_GZD_Emails {
 		if ( is_admin() ) {
 			$this->admin_hooks();
 		}
+	}
+
+	/**
+	 * On including a template (e.g. emails/customer-processing-order.php)
+	 * Woo adds arguments to the template. In this method we do check whether the arguments
+	 * contain an email (which indicates that an email template is included and send). We will then
+	 * set the global email instance to the included email instance and use that to determine whether to add certain
+	 * legal texts to it or not.
+	 *
+	 * @param $template
+	 * @param $template_name
+	 * @param $args
+	 *
+	 * @return mixed
+	 */
+	public function maybe_set_current_email_instance( $template, $template_name, $args ) {
+		if ( isset( $args['email'] ) && is_a( $args['email'], 'WC_Email' ) ) {
+			$this->current_email_instance = $args['email'];
+		}
+
+		return $template;
+	}
+
+	/**
+	 * Returns the current email instance (if available).
+	 *
+	 * @return bool|WC_Email
+	 */
+	public function get_current_email_instance() {
+		/**
+		 * Filters the current email instance (e.g. while sending an email) determined by Germanized.
+		 * This instance is being used to check whether to attach legal texts to this email or not.
+		 *
+		 * @param bool|WC_Email $email The current email instance.
+		 * @param WC_GZD_Emails $email_helper The email helper instance.
+		 *
+		 * @since 3.2.2
+		 */
+		return apply_filters( 'woocommerce_gzd_current_email_instance', $this->current_email_instance, $this );
 	}
 
 	public function add_bcc_email_headers( $headers, $id, $object, $email ) {
@@ -660,7 +704,6 @@ class WC_GZD_Emails {
 	 * @param $plain_text
 	 */
 	public function email_notices( $order, $sent_to_admin, $plain_text ) {
-
 		$type = $this->get_current_email_object();
 
 		if ( $type ) {
@@ -929,11 +972,12 @@ class WC_GZD_Emails {
 	/**
 	 * Add global footer Hooks to Email templates
 	 */
-	public function add_template_footers() {
-		$email = $this->get_current_email_object();
+	public function add_template_footers( $email = false ) {
+		if ( ! $email ) {
+			$email = $this->get_current_email_instance();
+		}
 
 		if ( $email ) {
-
 			$email_id = $email->id;
 
 			/**
@@ -952,78 +996,7 @@ class WC_GZD_Emails {
 	}
 
 	public function get_current_email_object() {
-
-		if ( isset( $GLOBALS['wc_gzd_template_name'] ) && ! empty( $GLOBALS['wc_gzd_template_name'] ) ) {
-
-			$object = $this->get_email_instance_by_tpl( $GLOBALS['wc_gzd_template_name'] );
-
-			if ( is_object( $object ) ) {
-				return $object;
-			}
-		}
-
-		return false;
-	}
-
-	/**
-	 * Returns Email Object by examining the template file
-	 *
-	 * @param string $tpl
-	 *
-	 * @return mixed
-	 */
-	private function get_email_instance_by_tpl( $tpls = array() ) {
-
-		if ( ! $this->mailer ) {
-			$this->set_mailer();
-		}
-
-		$found_mails = array();
-		$mails       = $this->mailer->get_emails();
-
-		foreach ( $tpls as $tpl ) {
-
-			/**
-			 * Filters the email template name for instance comparison.
-			 *
-			 * @param string $template_name The email template name.
-			 *
-			 * @since 1.0.0
-			 *
-			 */
-			$tpl = apply_filters( 'woocommerce_germanized_email_template_name', str_replace( array(
-				'admin-',
-				'-'
-			), array( '', '_' ), basename( $tpl, '.php' ) ), $tpl );
-
-			if ( ! empty( $mails ) ) {
-				foreach ( $mails as $mail ) {
-
-					if ( is_object( $mail ) ) {
-
-						/**
-						 * Filters whether an email template equals email id.
-						 *
-						 * @param bool $equals Whether template and email id match or not.
-						 * @param string $email_id The email id.
-						 * @param string $tpl The template name.
-						 *
-						 * @since 1.0.0
-						 *
-						 */
-						if ( apply_filters( 'woocommerce_gzd_email_template_id_comparison', ( $mail->id === $tpl ), $mail->id, $tpl ) ) {
-							array_push( $found_mails, $mail );
-						}
-					}
-				}
-			}
-		}
-
-		if ( ! empty( $found_mails ) ) {
-			return $found_mails[ sizeof( $found_mails ) - 1 ];
-		}
-
-		return null;
+		return $this->get_current_email_instance();
 	}
 
 	/**
@@ -1099,5 +1072,4 @@ class WC_GZD_Emails {
 	public function revocation_form_replacement( $atts ) {
 		return '<a href="' . esc_url( wc_gzd_get_page_permalink( 'revocation' ) ) . '">' . _x( 'Forward your Revocation online', 'revocation-form', 'woocommerce-germanized' ) . '</a>';
 	}
-
 }

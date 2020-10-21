@@ -658,12 +658,6 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 			    wp_enqueue_script( 'wc-gzd-add-to-cart-variation' );
             }
 
-			if ( ! isset( $GLOBALS['wc_gzd_template_name'] ) || empty( $GLOBALS['wc_gzd_template_name'] ) || ! is_array( $GLOBALS['wc_gzd_template_name'] ) ) {
-				$GLOBALS['wc_gzd_template_name'] = array();
-			}
-
-			$GLOBALS['wc_gzd_template_name'][] = $template_name;
-
 			// Check for Theme overrides
 			$theme_template = locate_template( array(
 				trailingslashit( $template_path ) . $template_name,
