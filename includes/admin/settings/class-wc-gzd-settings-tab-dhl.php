@@ -16,7 +16,7 @@ use Vendidero\Germanized\DHL\Admin\Settings;
 class WC_GZD_Settings_Tab_DHL extends WC_GZD_Settings_Tab {
 
 	public function get_description() {
-		return __( 'Integrate DHL Services such as Labels for Shipments and Returns and Delivery to Packstations.', 'woocommerce-germanized' );
+		return __( 'Integrate DHL & Deutsche Post Services such as Labels for Shipments and Returns.', 'woocommerce-germanized' );
 	}
 
 	protected function get_breadcrumb_label( $label ) {
@@ -24,13 +24,15 @@ class WC_GZD_Settings_Tab_DHL extends WC_GZD_Settings_Tab {
 
 		if ( empty( $this->get_current_section() ) ) {
 			$label .= '<a href="https://www.dhl.de/de/geschaeftskunden/paket/kunde-werden/angebot-dhl-geschaeftskunden-online.html" class="page-title-action" target="_blank">' . _x( 'Not yet a customer?', 'dhl', 'woocommerce-germanized' ) . '</a>';
+		} elseif( 'internetmarke' === $this->get_current_section() ) {
+			$label .= '<a href="https://portokasse.deutschepost.de/portokasse/#!/register/" class="page-title-action" target="_blank">' . _x( 'No Portokasse yet?', 'dhl', 'woocommerce-germanized' ) . '</a>';
 		}
 
 		return $label;
 	}
 
 	public function get_label() {
-		return __( 'DHL', 'woocommerce-germanized' );
+		return __( 'DHL & Deutsche Post', 'woocommerce-germanized' );
 	}
 
 	public function get_name() {
