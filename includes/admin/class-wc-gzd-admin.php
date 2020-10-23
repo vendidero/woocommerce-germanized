@@ -810,7 +810,6 @@ class WC_GZD_Admin {
 	}
 
 	public function get_shipping_method_instances_options() {
-
 		$methods                  = $this->get_shipping_method_instances();
 		$shipping_methods_options = array();
 

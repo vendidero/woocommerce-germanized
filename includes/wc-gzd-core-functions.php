@@ -345,6 +345,51 @@ function wc_gzd_get_differential_taxation_checkout_notice() {
 	return $notice;
 }
 
+function wc_gzd_shipping_method_id_matches_supported( $method_id, $supported = array() ) {
+	if ( ! is_array( $supported ) ) {
+		$supported = array( $supported );
+	}
+
+	$new_supported = $supported;
+	$new_method_id = $method_id;
+
+	/**
+	 * E.g. Flexible shipping uses underscores. Add them to the search array.
+	 */
+	foreach( $supported as $supported_method ) {
+		$supported_method = str_replace( ':', '_', $supported_method );
+		$new_supported[]  = $supported_method;
+	}
+
+	/**
+	 * Remove the last part of a compatible shipping method id. E.g.:
+	 * flexible_shipping_4_1 - remove _1 from the string to compare it to our search array.
+	 */
+	$method_parts = explode( '_', $new_method_id );
+
+	if ( ! empty( $method_parts ) ) {
+		$method_parts = array_slice( $method_parts, 0, ( sizeof( $method_parts ) - 1 ) );
+
+		if ( ! empty( $method_parts ) ) {
+			$new_method_id = implode( '_', $method_parts );
+		}
+	}
+
+	$is_supported = in_array( $new_method_id, $new_supported ) ? true : false;
+
+	/**
+	 * Filter to check whether a certain shipping method id matches one of the
+	 * shipping method expected (e.g. from the settings).
+	 *
+	 * @param bool   $return Whether the method id matches one of the expected methods or not.
+	 * @param string $method_id The shipping method id.
+	 * @param array  $supported The shipping method ids to search for.
+	 *
+	 * @since 3.2.2
+	 */
+	return apply_filters( 'woocommerce_gzd_shipping_method_id_matches_supported', $is_supported, $method_id, $supported );
+}
+
 function wc_gzd_is_parcel_delivery_data_transfer_checkbox_enabled( $rate_ids = array() ) {
 	$return = false;
 
@@ -366,9 +411,8 @@ function wc_gzd_is_parcel_delivery_data_transfer_checkbox_enabled( $rate_ids = a
 				$rate_is_supported = true;
 
 				if ( ! empty( $rate_ids ) ) {
-
 					foreach ( $rate_ids as $rate_id ) {
-						if ( ! in_array( $rate_id, $supported ) ) {
+						if ( ! wc_gzd_shipping_method_id_matches_supported( $rate_id, $supported ) ) {
 							$rate_is_supported = false;
 						}
 					}
