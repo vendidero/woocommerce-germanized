@@ -5,7 +5,7 @@ Requires at least: 5.4
 Tested up to: 5.5
 WC requires at least: 3.9
 WC tested up to: 4.6
-Stable tag: 3.2.1
+Stable tag: 3.2.2
 Requires PHP: 5.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -190,6 +190,19 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 6. Edit pdf documents (Pro)
 
 == Changelog ==
+= 3.2.2 =
+* Feature: Admin email notification for requested return shipments
+* Improvement: Label PDF merger to respect size and orientation of individual labels
+* Improvement: Prevent order item hook to run during post saving to prevent multiple shipment validations
+* Improvement: Do not force invoice gateway description as default instruction
+* Improvement: Email instance check for legal texts
+* Fix: Default empty direct debit XML export variable
+* Fix: DHL surname vs givenName within ident check
+
+* Improvement: Added SKU display to admin for shipments/returns
+* Fix: Customer return label download permission
+* Fix: Store variation id in shipments instead of parent product id
+
 = 3.2.1 =
 * Feature: BCC email option for every Woo email template
 * Improvement: Added SKU display to admin for shipments/returns

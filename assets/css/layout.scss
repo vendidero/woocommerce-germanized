@@ -147,3 +147,13 @@ table.product-details-inner tr td:last-child {
 #shipping_parcelshop_post_number_field .optional {
   display: none !important;
 }
+
+/**
+ * Twenty Twenty
+ */
+.theme-twentytwenty {
+  form.woocommerce-checkout #order_review_heading {
+    width: 100%;
+    padding-left: 0;
+  }
+}
