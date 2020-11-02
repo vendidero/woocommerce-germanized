@@ -96,10 +96,19 @@ class WC_GZD_Emails {
 
 		add_action( 'woocommerce_email', array( $this, 'init_bcc_field' ), 10, 1 );
 		add_filter( 'woocommerce_email_headers', array( $this, 'add_bcc_email_headers' ), 10, 4 );
+		add_filter( 'woocommerce_email_footer_text', array( $this, 'reset_email_instance' ), 1000 );
 
 		if ( is_admin() ) {
 			$this->admin_hooks();
 		}
+	}
+
+	public function reset_email_instance( $text ) {
+		$this->current_email_instance = false;
+
+		do_action( 'woocommerce_gzd_reset_email_instance', $this );
+
+		return $text;
 	}
 
 	/**
