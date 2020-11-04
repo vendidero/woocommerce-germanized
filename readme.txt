@@ -2,10 +2,10 @@
 Contributors: vendidero, vdwoocommercesupport
 Tags: woocommerce, woocommerce german, woocommerce DE, woocommerce germany, woocommerce deutsch, woo, woocommerce deutschland, woocommerce germanized, woocommerce addon, woocommerce plugin, woocommerce german addon, woocommerce germany addon, woocommerce dhl, dhl, shipments
 Requires at least: 5.4
-Tested up to: 5.5
+Tested up to: 5.6
 WC requires at least: 3.9
 WC tested up to: 4.6
-Stable tag: 3.2.2
+Stable tag: 3.2.3
 Requires PHP: 5.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -190,6 +190,14 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 6. Edit pdf documents (Pro)
 
 == Changelog ==
+= 3.2.3 =
+* Feature: WP 5.6 compatibility
+* Improvement: Report checkboxes with hidden inputs as checked
+* Improvement: Email instance resetting after email sent
+* Improvement: Add articleReference to DHL Retoure API (customs)
+* Improvement: Disable paid for order mail for free orders
+* Fix: Parcel delivery checkbox conditional display
+
 = 3.2.2 =
 * Feature: Admin email notification for requested return shipments
 * Improvement: Label PDF merger to respect size and orientation of individual labels
