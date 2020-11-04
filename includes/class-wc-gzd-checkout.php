@@ -243,6 +243,8 @@ class WC_GZD_Checkout {
 
 			if ( isset( $_POST[ $checkbox->get_html_name() ] ) ) {
 				$selected = true;
+			} elseif( $checkbox->hide_input() ) {
+				$selected = true;
 			}
 
 			$order->update_meta_data( '_parcel_delivery_opted_in', $selected ? 'yes' : 'no' );
@@ -284,7 +286,7 @@ class WC_GZD_Checkout {
 			}
 
 			// Checkbox has not been checked
-			if ( ! isset( $_POST[ $checkbox->get_html_name() ] ) ) {
+			if ( ! isset( $_POST[ $checkbox->get_html_name() ] ) && ! $checkbox->hide_input() ) {
 				return;
 			}
 

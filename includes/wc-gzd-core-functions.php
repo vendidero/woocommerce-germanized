@@ -368,10 +368,14 @@ function wc_gzd_shipping_method_id_matches_supported( $method_id, $supported = a
 	$method_parts = explode( '_', $new_method_id );
 
 	if ( ! empty( $method_parts ) ) {
-		$method_parts = array_slice( $method_parts, 0, ( sizeof( $method_parts ) - 1 ) );
+		$last_part = $method_parts[ sizeof( $method_parts ) - 1 ];
 
-		if ( ! empty( $method_parts ) ) {
-			$new_method_id = implode( '_', $method_parts );
+		if ( is_numeric( $last_part ) ) {
+			$method_parts = array_slice( $method_parts, 0, ( sizeof( $method_parts ) - 1 ) );
+
+			if ( ! empty( $method_parts ) ) {
+				$new_method_id = implode( '_', $method_parts );
+			}
 		}
 	}
 
@@ -407,18 +411,14 @@ function wc_gzd_is_parcel_delivery_data_transfer_checkbox_enabled( $rate_ids = a
 					$supported = array();
 				}
 
-				$return            = false;
-				$rate_is_supported = true;
+				$return = false;
 
 				if ( ! empty( $rate_ids ) ) {
 					foreach ( $rate_ids as $rate_id ) {
-						if ( ! wc_gzd_shipping_method_id_matches_supported( $rate_id, $supported ) ) {
-							$rate_is_supported = false;
+						if ( wc_gzd_shipping_method_id_matches_supported( $rate_id, $supported ) ) {
+							$return = true;
+							break;
 						}
-					}
-
-					if ( $rate_is_supported ) {
-						$return = true;
 					}
 				}
 			}
