@@ -20,20 +20,6 @@
     "phpunit/phpunit": "7.5.14",
     "woocommerce/woocommerce-sniffs": "0.0.6"
   },
-  "repositories": [
-    {
-      "type": "vcs",
-      "url":  "https://github.com/vendidero/woocommerce-trusted-shops"
-    },
-    {
-      "type": "vcs",
-      "url":  "https://github.com/vendidero/woocommerce-germanized-dhl"
-    },
-    {
-      "type": "vcs",
-      "url":  "https://github.com/vendidero/woocommerce-germanized-shipments"
-    }
-  ],
   "config": {
     "platform": {
       "php": "7.1"
