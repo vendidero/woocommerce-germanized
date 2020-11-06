@@ -24,9 +24,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v1
 
-      - uses: webfactory/ssh-agent@v0.4.1
-        with:
-          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+      - name: Setup Composer Access
+        run: composer config -g github-oauth.github.com ${{ secrets.DEPLOY_TOKEN }}
 
       - name: Composer install
         run: composer install --optimize-autoloader --prefer-dist
