@@ -27,8 +27,10 @@ jobs:
       - name: Setup Composer Access
         run: composer config -g github-oauth.github.com ${{ secrets.DEPLOY_TOKEN }}
 
-      - name: Composer install
-        run: composer install --optimize-autoloader --prefer-dist
+      - name: Install dependencies
+        uses: php-actions/composer@v1
+        with:
+          args: --optimize-autoloader --prefer-dist
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v1
@@ -37,8 +39,6 @@ jobs:
           extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, mysql, mysqli, pdo_mysql, bcmath, soap, intl, gd, exif, iconv, imagick
           ini-values: post_max_size=256M, short_open_tag=On #optional, setup php.ini configuration
           coverage: xdebug #optional, setup coverage driver
-        env:
-          COMPOSER_TOKEN: ${{ secrets.GITHUB_TOKEN }}  
 
       - name: Check PHP Version
         run: php -v
