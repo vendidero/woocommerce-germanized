@@ -1,0 +1,45 @@
+name: CI
+
+on: [push]
+
+jobs:
+  run:
+    runs-on: ${{ matrix.operating-system }}
+    services:
+      mysql:
+        image: mysql:5.7
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: wordpress_test
+        ports:
+          - 3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+    strategy:
+      matrix:
+        operating-system: [ubuntu-latest]
+        php: ['7.2', '7.3']
+        woo: ['latest']
+    name: PHP ${{ matrix.php }} test for Woo ${{ matrix.woo }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+
+      - name: Composer install
+        run: composer install --optimize-autoloader --prefer-dist
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v1
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, mysql, mysqli, pdo_mysql, bcmath, soap, intl, gd, exif, iconv, imagick
+          ini-values: post_max_size=256M, short_open_tag=On #optional, setup php.ini configuration
+          coverage: xdebug #optional, setup coverage driver
+
+      - name: Check PHP Version
+        run: php -v
+
+      - name: Install WP Tests
+        run: bash tests/bin/install.sh wordpress_test root root 127.0.0.1:${{ job.services.mysql.ports['3306'] }} latest ${{ matrix.woo }} true
+
+      - name: phpunit tests
+        run: ./vendor/bin/phpunit
