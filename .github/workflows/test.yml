@@ -22,11 +22,15 @@ jobs:
     name: PHP ${{ matrix.php }} test for Woo ${{ matrix.woo }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
-      - name: Install dependencies
-        uses: php-actions/composer@v2
+        uses: actions/checkout@v1
+
+      - uses: webfactory/ssh-agent@v0.4.1
         with:
-          args: --optimize-autoloader --prefer-dist
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Composer install
+        run: composer install --optimize-autoloader --prefer-dist
+
       - name: Setup PHP
         uses: shivammathur/setup-php@v1
         with:
