@@ -22,11 +22,11 @@ jobs:
     name: PHP ${{ matrix.php }} test for Woo ${{ matrix.woo }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v1
-
-      - name: Composer install
-        run: composer install --optimize-autoloader --prefer-dist
-
+        uses: actions/checkout@v2
+      - name: Install dependencies
+        uses: php-actions/composer@v2
+        with:
+          args: --optimize-autoloader --prefer-dist
       - name: Setup PHP
         uses: shivammathur/setup-php@v1
         with:
