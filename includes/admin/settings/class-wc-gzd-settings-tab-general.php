@@ -240,7 +240,7 @@ class WC_GZD_Settings_Tab_General extends WC_GZD_Settings_Tab {
 				'desc'    => __( 'Add a title field to the address within checkout.', 'woocommerce-germanized' ),
 				'id'      => 'woocommerce_gzd_checkout_address_field',
 				'type'    => 'gzd_toggle',
-				'default' => 'yes',
+				'default' => 'no',
 			),
 			array(
 				'title'   => __( 'Disallow cancellations', 'woocommerce-germanized' ),

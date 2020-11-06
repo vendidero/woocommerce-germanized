@@ -597,7 +597,8 @@ function wc_gzd_get_customer_title_options() {
 	 */
 	$titles = apply_filters( 'woocommerce_gzd_title_options', array(
 		1 => __( 'Mr.', 'woocommerce-germanized' ),
-		2 => __( 'Ms.', 'woocommerce-germanized' )
+		2 => __( 'Ms.', 'woocommerce-germanized' ),
+		3 => __( 'Mx', 'woocommerce-germanized' )
 	) );
 
 	return $titles;
