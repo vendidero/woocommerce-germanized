@@ -25,7 +25,7 @@ jobs:
         uses: actions/checkout@v1
         
       - name: Composer install
-        run: composer self-update --1 && composer config github-oauth.github.com ${{ secrets.GH_TOKEN }} && composer install --optimize-autoloader --prefer-dist
+        run: composer config github-oauth.github.com ${{ secrets.GH_TOKEN }} && composer install --optimize-autoloader --prefer-dist
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
 
