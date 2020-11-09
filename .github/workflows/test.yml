@@ -24,13 +24,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v1
 
-      - name: Setup Composer Access
-        run: composer config -g github-oauth.github.com ${{ secrets.DEPLOY_TOKEN }}
-
-      - name: Install dependencies
-        uses: php-actions/composer@v1
-        with:
-          args: --optimize-autoloader --prefer-dist
+      - name: Composer install
+        run: composer install --optimize-autoloader --prefer-dist
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v1
