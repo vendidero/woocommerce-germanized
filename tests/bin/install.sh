@@ -11,7 +11,8 @@ DB_USER=$2
 DB_PASS=$3
 DB_HOST=${4-localhost}
 WP_VERSION=${5-latest}
-SKIP_DB_CREATE=${6-false}
+WOO_VERSION=${6-latest}
+SKIP_DB_CREATE=${7-false}
 
 TMPDIR=${TMPDIR-/tmp}
 TMPDIR=$(echo $TMPDIR | sed -e "s/\/$//")
@@ -124,22 +125,21 @@ install_test_suite() {
 
 install_deps() {
     # get built plugin from .org
-	download https://downloads.wordpress.org/plugin/woocommerce.zip "$TMPDIR/woocommerce.zip"
-	unzip -q $TMPDIR/woocommerce.zip -d "$WP_CORE_DIR/wp-content/plugins"
+    # Get github version
+    FILE="woocommerce.zip"
+    BRANCH="master"
+
+	if [ "$WOO_VERSION" != "latest" ]; then
+		FILE="woocommerce.$WOO_VERSION.zip"
+		BRANCH=$WOO_VERSION
+	fi
+
+	download https://downloads.wordpress.org/plugin/$FILE "$TMPDIR/$FILE"
+	unzip -q $TMPDIR/$FILE -d "$WP_CORE_DIR/wp-content/plugins"
 
     WORKING_DIR="$PWD"
 
-	# Script Variables
-	BRANCH=$TRAVIS_BRANCH
-	REPO=$TRAVIS_REPO_SLUG
-
-	# Get github version
-	if [ "$TRAVIS_PULL_REQUEST_BRANCH" != "" ]; then
-		BRANCH=$TRAVIS_PULL_REQUEST_BRANCH
-		REPO=$TRAVIS_PULL_REQUEST_SLUG
-	fi
-
-	git clone --depth 1 "https://github.com/woocommerce/woocommerce.git" "$TMPDIR/woocommerce-git"
+	git clone --branch $BRANCH --depth 1 "https://github.com/woocommerce/woocommerce.git" "$TMPDIR/woocommerce-git"
 	mv "$TMPDIR/woocommerce-git/tests" "$WP_CORE_DIR/wp-content/plugins/woocommerce"
 }
 
