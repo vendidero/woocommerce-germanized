@@ -240,14 +240,18 @@ class WC_GZD_Coupon_Helper {
 				'set_cart_contents_taxes'
 			) ) ) {
 
-			$discount_tax   = $cart->get_discount_tax();
+			$discount_tax = $cart->get_discount_tax();
 
 			$cart->set_cart_contents_taxes( $tax_totals );
 
 			if ( wc_prices_include_tax() ) {
 				$cart->set_discount_total( wc_cart_round_discount( ( $cart->get_discount_total() + $cart->get_discount_tax() ), $cart->dp ) );
 			} else {
-				$cart->set_discount_total( wc_cart_round_discount( $cart->get_discount_total(), $cart->dp ) );
+				if ( $cart->display_prices_including_tax() ) {
+					$cart->set_discount_total( wc_cart_round_discount( $cart->get_discount_total() + $cart->get_discount_tax(), $cart->dp ) );
+				} else {
+					$cart->set_discount_total( wc_cart_round_discount( $cart->get_discount_total(), $cart->dp ) );
+				}
 			}
 
 			$cart->set_discount_tax( 0 );
@@ -255,7 +259,7 @@ class WC_GZD_Coupon_Helper {
 			/**
 			 * Necessary in case Woo prices do not include taxes
 			 */
-			if ( ! wc_prices_include_tax() ) {
+			if ( ! wc_prices_include_tax() && ! $cart->display_prices_including_tax() && $cart->get_total( 'edit' ) > 0 ) {
 				$cart->set_total( $cart->get_total( 'edit' ) + $discount_tax );
 
 				if ( is_callable( array( $cart, 'set_coupon_discount_tax_totals' ) ) ) {

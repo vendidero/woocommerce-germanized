@@ -15,7 +15,8 @@
     "makepot": "grunt makepot",
     "deploy": "sh ./bin/deploy.sh",
     "package-plugin": "./bin/build-plugin-zip.sh",
-    "phpunit": "docker-compose up -d db && docker-compose up -d --build wordpress-unit-tests && docker exec -it --workdir /var/www/html/wp-content/plugins/woocommerce-germanized wordpress_test php ./vendor/bin/phpunit"
+    "docker-clean": "docker-compose rm && docker-compose pull && docker-compose build --no-cache wordpress-unit-tests",
+    "phpunit": "docker-compose up -d --force-recreate --build db && docker-compose up -d --force-recreate --build wordpress-unit-tests && docker exec -it --workdir /var/www/html/wp-content/plugins/woocommerce-germanized wordpress_test php ./vendor/bin/phpunit"
   },
   "devDependencies": {
     "autoprefixer": "9.6.1",
