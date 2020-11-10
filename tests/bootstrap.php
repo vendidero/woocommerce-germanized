@@ -35,8 +35,6 @@ class WC_GZD_Unit_Tests_Bootstrap {
 	 * @since 2.2
 	 */
 	public function __construct() {
-		var_dump( 'WP TESTS DIR: ' . getenv( 'WP_TESTS_DIR' ) );
-
 		$this->wp_tests_dir = getenv( 'WP_TESTS_DIR' ) ? getenv( 'WP_TESTS_DIR' ) : rtrim( sys_get_temp_dir(), '/\\' ) . '/wordpress-tests-lib';
 		$this->tests_dir    = dirname( __FILE__ );
 		$this->plugin_dir   = dirname( $this->tests_dir );
@@ -48,8 +46,6 @@ class WC_GZD_Unit_Tests_Bootstrap {
 			// Travis.
 			$this->plugins_dir = getenv( 'WP_CORE_DIR' ) . '/wp-content/plugins';
 		}
-
-		var_dump( 'PLUGINS DIR: ' . $this->plugins_dir);
 
 		$this->wc_tests_dir = $this->get_woo_dir() . '/tests/legacy';
 
@@ -65,8 +61,6 @@ class WC_GZD_Unit_Tests_Bootstrap {
 	function get_woo_dir() {
 		static $dir = '';
 		if ( $dir === '' ) {
-			var_dump( dirname( dirname( __DIR__ ) ) . '/woocommerce/woocommerce.php' );
-
 			if ( defined( 'WP_CONTENT_DIR' ) && file_exists( WP_CONTENT_DIR . '/woocommerce/woocommerce.php' ) ) {
 				$dir = WP_CONTENT_DIR . '/woocommerce';
 				echo "Found WooCommerce plugin in content dir." . PHP_EOL;
@@ -81,7 +75,6 @@ class WC_GZD_Unit_Tests_Bootstrap {
 				exit( 1 );
 			}
 		}
-		var_dump("WOO DIR: " . $dir);
 
 		return $dir;
 	}
@@ -113,7 +106,7 @@ class WC_GZD_Unit_Tests_Bootstrap {
 		} );
 
 		tests_add_filter( 'muplugins_loaded', function () {
-			require_once $this->plugins_dir . '/woocommerce/woocommerce.php';
+			require_once $this->get_woo_dir()  . '/woocommerce.php';
 			require_once $this->plugin_dir . '/woocommerce-germanized.php';
 
 			foreach ( $this->packages as $package_slug => $namespace ) {
@@ -141,7 +134,7 @@ class WC_GZD_Unit_Tests_Bootstrap {
 			define( 'WP_UNINSTALL_PLUGIN', true );
 			define( 'WC_REMOVE_ALL_DATA', true );
 
-			include $this->plugins_dir . '/woocommerce/uninstall.php';
+			include $this->get_woo_dir() . '/uninstall.php';
 
 			WC_Install::install();
 
