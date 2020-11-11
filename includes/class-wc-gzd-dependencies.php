@@ -37,7 +37,7 @@ class WC_GZD_Dependencies {
 	 *
 	 * @var string
 	 */
-	public $wc_minimum_version_required = '3.4';
+	public $wc_minimum_version_required = '3.9';
 
 	public static function instance( $plugin = null ) {
 		if ( is_null( self::$_instance ) ) {

@@ -594,10 +594,9 @@ function wc_gzd_get_cart_taxes( $cart, $include_shipping_taxes = true ) {
 	$tax_array = array();
 
 	// If prices are tax inclusive, show taxes here
-	if ( get_option( 'woocommerce_calc_taxes' ) === 'yes' && wc_gzd_get_cart_tax_display_mode() === 'incl' ) {
+	if ( 'yes' === get_option( 'woocommerce_calc_taxes' ) && 'incl' === wc_gzd_get_cart_tax_display_mode() ) {
 
-		if ( get_option( 'woocommerce_tax_total_display' ) == 'itemized' ) {
-
+		if ( 'itemized' === get_option( 'woocommerce_tax_total_display' )  ) {
 			if ( ! $include_shipping_taxes ) {
 				add_filter( 'woocommerce_cart_get_taxes', 'wc_gzd_cart_remove_shipping_taxes', 10, 2 );
 			}

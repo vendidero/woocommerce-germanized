@@ -444,8 +444,12 @@ function wc_gzd_get_dispute_resolution_text() {
 	return get_option( 'woocommerce_gzd_alternative_complaints_text_' . $type );
 }
 
-function wc_gzd_get_tax_rate_label( $rate_percentage ) {
-	$label = ( get_option( 'woocommerce_tax_total_display' ) == 'itemized' ? sprintf( __( 'incl. %s%% VAT', 'woocommerce-germanized' ), wc_gzd_format_tax_rate_percentage( $rate_percentage ) ) : __( 'incl. VAT', 'woocommerce-germanized' ) );
+function wc_gzd_get_tax_rate_label( $rate_percentage, $type = 'incl' ) {
+	if ( 'incl' === $type ) {
+		$label = ( get_option( 'woocommerce_tax_total_display' ) == 'itemized' ? sprintf( __( 'incl. %s%% VAT', 'woocommerce-germanized' ), wc_gzd_format_tax_rate_percentage( $rate_percentage ) ) : __( 'incl. VAT', 'woocommerce-germanized' ) );
+	} else {
+		$label = ( get_option( 'woocommerce_tax_total_display' ) == 'itemized' ? sprintf( __( '%s%% VAT', 'woocommerce-germanized' ), wc_gzd_format_tax_rate_percentage( $rate_percentage ) ) : __( 'VAT', 'woocommerce-germanized' ) );
+	}
 
 	/**
 	 * Allow adjusting the tax rate label e.g. "incl. 19% tax".
@@ -456,7 +460,7 @@ function wc_gzd_get_tax_rate_label( $rate_percentage ) {
 	 * @since 2.3.3
 	 *
 	 */
-	return apply_filters( 'woocommerce_gzd_tax_rate_label', $label, $rate_percentage );
+	return apply_filters( 'woocommerce_gzd_tax_rate_label', $label, $rate_percentage, $type );
 }
 
 /**

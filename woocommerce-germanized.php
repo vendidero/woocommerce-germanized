@@ -9,7 +9,7 @@
  * Requires at least: 4.9
  * Tested up to: 5.6
  * WC requires at least: 3.9
- * WC tested up to: 4.6
+ * WC tested up to: 4.7
  *
  * Text Domain: woocommerce-germanized
  * Domain Path: /i18n/languages/
@@ -273,26 +273,12 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 			add_action( 'wp_print_footer_scripts', array( $this, 'localize_scripts' ), 5 );
 
 			add_filter( 'woocommerce_locate_core_template', array( $this, 'email_templates' ), 0, 3 );
-			add_action( 'woocommerce_email_order_meta', array( $this, 'email_small_business_notice' ), 1 );
-
-			// Add better tax display to order totals
-			add_filter( 'woocommerce_get_order_item_totals', array( $this, 'order_item_totals' ), 0, 2 );
-
-			// Unsure wether this could lead to future problems - tax classes with same name wont be merged anylonger
-			// add_filter( 'woocommerce_rate_code', array( $this, 'prevent_tax_name_merge' ), PHP_INT_MAX, 2 );
-			// Hide cart estimated text if chosen
-			add_action( 'woocommerce_cart_totals_after_order_total', array( $this, 'hide_cart_estimated_text' ) );
-			add_action( 'woocommerce_after_cart_totals', array( $this, 'remove_cart_tax_zero_filter' ) );
 
 			// Add better WooCommerce shipping taxation
 			add_filter( 'woocommerce_package_rates', array( $this, 'replace_shipping_rate_class' ), 0, 2 );
 
 			// Payment gateways
 			add_filter( 'woocommerce_payment_gateways', array( $this, 'register_gateways' ) );
-
-			// Remove cart subtotal filter
-			add_action( 'template_redirect', array( $this, 'maybe_remove_filters' ) );
-			add_action( 'woocommerce_checkout_update_order_review', array( $this, 'maybe_remove_filters' ) );
 
 			$this->emails = new WC_GZD_Emails();
 
@@ -547,6 +533,7 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 			include_once WC_GERMANIZED_ABSPATH . 'includes/emails/class-wc-gzd-email-helper.php';
 			include_once WC_GERMANIZED_ABSPATH . 'includes/class-wc-gzd-ajax.php';
 			include_once WC_GERMANIZED_ABSPATH . 'includes/class-wc-gzd-checkout.php';
+			include_once WC_GERMANIZED_ABSPATH . 'includes/class-wc-gzd-order-helper.php';
 			include_once WC_GERMANIZED_ABSPATH . 'includes/class-wc-gzd-customer-helper.php';
 			include_once WC_GERMANIZED_ABSPATH . 'includes/class-wc-gzd-cache-helper.php';
 			include_once WC_GERMANIZED_ABSPATH . 'includes/class-wc-gzd-coupon-helper.php';
@@ -772,36 +759,6 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 			}
 
 			return $rates;
-		}
-
-		/**
-		 * Calls a filter to temporarily set cart tax to zero. This is only done to hide the cart tax estimated text.
-		 * Filter is being remove right after get_cart_tax - check has been finished within cart-totals.php
-		 */
-		public function hide_cart_estimated_text() {
-			if ( get_option( 'woocommerce_gzd_display_hide_cart_tax_estimated' ) == 'yes' ) {
-				add_filter( 'woocommerce_get_cart_tax', array( $this, 'set_cart_tax_zero' ) );
-			}
-		}
-
-		/**
-		 * This will set the cart tax to zero
-		 *
-		 * @param float $tax current's cart tax
-		 *
-		 * @return int
-		 */
-		public function set_cart_tax_zero( $tax ) {
-			return 0;
-		}
-
-		/**
-		 * Removes the zero cart tax filter after get_cart_tax has been finished
-		 */
-		public function remove_cart_tax_zero_filter() {
-			if ( get_option( 'woocommerce_gzd_display_hide_cart_tax_estimated' ) == 'yes' ) {
-				remove_filter( 'woocommerce_get_cart_tax', array( $this, 'set_cart_tax_zero' ) );
-			}
 		}
 
 		/**
@@ -1062,15 +1019,6 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 		}
 
 		/**
-		 * Add small business global Email Footer
-		 */
-		public function email_small_business_notice() {
-			if ( wc_gzd_is_small_business() ) {
-				wc_get_template( 'global/small-business-info.php' );
-			}
-		}
-
-		/**
 		 * PHP 5.3 backwards compatibility for getting date diff in days
 		 *
 		 * @param string $from date from
@@ -1095,23 +1043,23 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 		 */
 		public function add_emails( $mails ) {
 
-			$mails['WC_GZD_Email_Customer_Paid_For_Order']         = include 'includes/emails/class-wc-gzd-email-customer-paid-for-order.php';
-			$mails['WC_GZD_Email_Customer_New_Account_Activation'] = include 'includes/emails/class-wc-gzd-email-customer-new-account-activation.php';
-			$mails['WC_GZD_Email_Customer_Revocation']             = include 'includes/emails/class-wc-gzd-email-customer-revocation.php';
+			$mails['WC_GZD_Email_Customer_Paid_For_Order']         = include WC_GERMANIZED_ABSPATH . 'includes/emails/class-wc-gzd-email-customer-paid-for-order.php';
+			$mails['WC_GZD_Email_Customer_New_Account_Activation'] = include WC_GERMANIZED_ABSPATH . 'includes/emails/class-wc-gzd-email-customer-new-account-activation.php';
+			$mails['WC_GZD_Email_Customer_Revocation']             = include WC_GERMANIZED_ABSPATH . 'includes/emails/class-wc-gzd-email-customer-revocation.php';
 
 			// Make sure the Processing Order Email is named Order Confirmation for better understanding
 			if ( isset( $mails['WC_Email_Customer_Processing_Order'] ) ) {
-				$mails['WC_Email_Customer_Processing_Order'] = include 'includes/emails/class-wc-gzd-email-customer-processing-order.php';
+				$mails['WC_Email_Customer_Processing_Order'] = include WC_GERMANIZED_ABSPATH . 'includes/emails/class-wc-gzd-email-customer-processing-order.php';
 			}
 
 			// Try to prevent the On Hold Email from being sent even though it is called directly via the trigger method
 			if ( wc_gzd_send_instant_order_confirmation() ) {
 				if ( isset( $mails['WC_Email_Customer_On_Hold_Order'] ) ) {
-					$mails['WC_Email_Customer_On_Hold_Order'] = include 'includes/emails/class-wc-gzd-email-customer-on-hold-order.php';
+					$mails['WC_Email_Customer_On_Hold_Order'] = include WC_GERMANIZED_ABSPATH . 'includes/emails/class-wc-gzd-email-customer-on-hold-order.php';
 				}
 			}
 
-			$mails['WC_GZD_Email_Customer_SEPA_Direct_Debit_Mandate'] = include 'includes/emails/class-wc-gzd-email-customer-sepa-direct-debit-mandate.php';
+			$mails['WC_GZD_Email_Customer_SEPA_Direct_Debit_Mandate'] = include WC_GERMANIZED_ABSPATH . 'includes/emails/class-wc-gzd-email-customer-sepa-direct-debit-mandate.php';
 
 			return $mails;
 		}
@@ -1155,105 +1103,6 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 
 			return $gateways;
 
-		}
-
-		/**
-		 * Improve tax display within order totals
-		 *
-		 * @param array    $order_totals
-		 * @param WC_Order $order
-		 *
-		 * @return array
-		 */
-		public function order_item_totals( $order_totals, $order ) {
-
-			// Set to formatted total without displaying tax info behind the price
-			$order_totals['order_total']['value'] = $order->get_formatted_order_total();
-
-			// Tax for inclusive prices
-			if ( 'yes' == get_option( 'woocommerce_calc_taxes' ) && 'incl' == get_option( 'woocommerce_tax_display_cart' ) ) {
-				$tax_array = array();
-
-				if ( 'itemized' == get_option( 'woocommerce_tax_total_display' ) ) {
-					foreach ( $order->get_tax_totals() as $code => $tax ) {
-						$tax->rate = wc_gzd_get_order_tax_rate_percentage( $tax->rate_id, $order );
-
-						if ( ! isset( $tax_array[ $tax->rate ] ) ) {
-							$tax_array[ $tax->rate ] = array(
-								'tax'      => $tax,
-								'amount'   => $tax->amount,
-								'contains' => array( $tax ),
-							);
-						} else {
-							array_push( $tax_array[ $tax->rate ]['contains'], $tax );
-							$tax_array[ $tax->rate ]['amount'] += $tax->amount;
-						}
-					}
-				} else {
-
-					$base_rate = WC_Tax::get_base_tax_rates();
-					$rate      = reset( $base_rate );
-					$rate_id   = key( $base_rate );
-
-					$base_rate          = (object) $rate;
-					$base_rate->rate_id = $rate_id;
-
-					$tax_array[] = array(
-						'tax'      => $base_rate,
-						'contains' => array( $base_rate ),
-						'amount'   => $order->get_total_tax(),
-					);
-				}
-
-				if ( ! empty( $tax_array ) ) {
-					foreach ( $tax_array as $tax ) {
-						$order_totals[ 'tax_' . WC_Tax::get_rate_code( $tax['tax']->rate_id ) ] = array(
-							'label' => wc_gzd_get_tax_rate_label( $tax['tax']->rate ),
-							'value' => wc_price( $tax['amount'] ),
-						);
-					}
-				}
-			}
-
-			return $order_totals;
-		}
-
-		/**
-		 * Remove cart unit price subtotal filter
-		 */
-		public function maybe_remove_filters() {
-			if ( is_cart() || is_checkout() ) {
-
-				foreach ( wc_gzd_get_checkout_shopmarks() as $shopmark ) {
-					$shopmark->remove();
-				}
-
-				foreach ( wc_gzd_get_cart_shopmarks() as $shopmark ) {
-					$shopmark->remove();
-				}
-
-				if ( is_cart() ) {
-					foreach ( wc_gzd_get_cart_shopmarks() as $shopmark ) {
-						$shopmark->execute();
-					}
-				} elseif ( is_checkout() ) {
-					foreach ( wc_gzd_get_checkout_shopmarks() as $shopmark ) {
-						$shopmark->execute();
-					}
-				}
-			}
-		}
-
-		/**
-		 * Prevent tax class merging. Could lead to future problems - not yet implemented
-		 *
-		 * @param string $code tax class code
-		 * @param int $rate_id
-		 *
-		 * @return string          unique tax class code
-		 */
-		public function prevent_tax_name_merge( $code, $rate_id ) {
-			return $code . '-' . $rate_id;
 		}
 	}
 

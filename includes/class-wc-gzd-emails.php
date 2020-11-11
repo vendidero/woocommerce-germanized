@@ -454,6 +454,8 @@ class WC_GZD_Emails {
 		add_filter( 'woocommerce_email_footer_text', array( $this, 'email_footer_plain' ), 0 );
 		add_filter( 'woocommerce_email_styles', array( $this, 'styles' ) );
 
+		add_action( 'woocommerce_email_order_meta', array( $this, 'small_business_notice' ), 1 );
+
 		$mails = $this->mailer->get_emails();
 
 		if ( ! empty( $mails ) ) {
@@ -476,6 +478,15 @@ class WC_GZD_Emails {
 
 		// Email notices right beneath order table
 		add_action( 'woocommerce_email_after_order_table', array( $this, 'email_notices' ), 5, 3 );
+	}
+
+	/**
+	 * Add small business global Email Footer
+	 */
+	public function small_business_notice() {
+		if ( wc_gzd_is_small_business() ) {
+			wc_get_template( 'global/small-business-info.php' );
+		}
 	}
 
 	public function get_gateways_disabling_paid_for_order_mail() {
