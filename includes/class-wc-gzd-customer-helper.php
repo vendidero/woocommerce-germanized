@@ -406,14 +406,15 @@ class WC_GZD_Customer_Helper {
 
 		$user_query = new WP_User_Query(
 			array(
-				'role'       => $roles,
-				'date_query' => array(
+				'role'         => $roles,
+				'role__not_in' => $this->get_account_cleanup_user_role_exclusions(),
+				'date_query'   => array(
 					array(
 						'before'    => $registered_before,
 						'inclusive' => true,
 					)
 				),
-				'meta_query' => array(
+				'meta_query'   => array(
 					array(
 						'key'     => '_woocommerce_activation',
 						'compare' => 'EXISTS',
@@ -660,6 +661,20 @@ class WC_GZD_Customer_Helper {
 		update_user_meta( $customer_id, '_woocommerce_activation', $user_activation );
 
 		return $user_activation;
+	}
+
+	public function get_account_cleanup_user_role_exclusions() {
+
+		/**
+		 * Filter user roles excluded in account cleanup.
+		 * By default user roles `administrator`, `editor`, `author` and `shop_manager` are excluded.
+		 *
+		 * @param array $roles Array of roles to be excluded form account cleanup.
+		 *
+		 * @since 3.3.0
+		 *
+		 */
+		return apply_filters( 'woocommerce_gzd_customer_account_cleanup_excluded_user_roles', array( 'administrator', 'editor', 'author', 'shop_manager' ) );
 	}
 
 }
