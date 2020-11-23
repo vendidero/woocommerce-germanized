@@ -150,7 +150,18 @@ class WC_GZD_Emails {
 		return apply_filters( 'woocommerce_gzd_current_email_instance', $this->current_email_instance, $this );
 	}
 
-	public function add_bcc_email_headers( $headers, $id, $object, $email ) {
+	/**
+	 * Add BCC headers depending on the current email template.
+	 * Make the last parameter option to potentially support Woo < 3.9.
+	 *
+	 * @param $headers
+	 * @param $id
+	 * @param $object
+	 * @param null $email
+	 *
+	 * @return string
+	 */
+	public function add_bcc_email_headers( $headers, $id, $object, $email = null ) {
 		if ( $email ) {
 			$recipients = $email->get_option( 'bcc' );
 
