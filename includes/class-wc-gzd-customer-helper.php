@@ -664,15 +664,13 @@ class WC_GZD_Customer_Helper {
 	}
 
 	public function get_account_cleanup_user_role_exclusions() {
-
 		/**
-		 * Filter user roles excluded in account cleanup.
+		 * Filter user roles excluded during account cleanup.
 		 * By default user roles `administrator`, `editor`, `author` and `shop_manager` are excluded.
 		 *
-		 * @param array $roles Array of roles to be excluded form account cleanup.
+		 * @param array $roles Array of roles to be excluded from account cleanup.
 		 *
 		 * @since 3.3.0
-		 *
 		 */
 		return apply_filters( 'woocommerce_gzd_customer_account_cleanup_excluded_user_roles', array( 'administrator', 'editor', 'author', 'shop_manager' ) );
 	}

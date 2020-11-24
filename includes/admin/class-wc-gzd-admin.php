@@ -714,7 +714,7 @@ class WC_GZD_Admin {
 	public function is_complaints_shortcode_inserted( $page_id ) {
 		$post = get_post( $page_id );
 		if ( $post ) {
-			return ( strpos( $post->post_content, '[gzd_complaints]' ) !== false ? true : false );
+			return ( strpos( $post->post_content, '[gzd_complaints' ) !== false ? true : false );
 		}
 
 		return false;

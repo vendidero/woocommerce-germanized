@@ -191,6 +191,12 @@ class WC_GZD_Shortcodes {
 	}
 
 	public static function gzd_complaints( $atts ) {
+		$atts = wp_parse_args( $atts, array(
+			'text_only' => 'no',
+		) );
+
+		$atts['text_only'] = wc_string_to_bool( $atts['text_only'] );
+
 		$texts = array(
 			'dispute' => wc_gzd_get_dispute_resolution_text(),
 		);
@@ -202,9 +208,13 @@ class WC_GZD_Shortcodes {
 			), '<a href="https://ec.europa.eu/consumers/odr" target="_blank">https://ec.europa.eu/consumers/odr</a>', $text ) );
 		}
 
+		if ( $atts['text_only'] ) {
+			$texts['dispute'] = preg_replace( '%<p(.*?)>|</p>%s', '', $texts['dispute'] );
+		}
+
 		ob_start();
-		wc_get_template( 'global/complaints.php', array( 'dispute_text' => $texts['dispute'] ) );
-		$return = '<div class="woocommerce woocommerce-gzd woocommerce-gzd-complaints-shortcode">' . ob_get_clean() . '</div>';
+		wc_get_template( 'global/complaints.php', array( 'dispute_text' => $texts['dispute'], 'text_only' => $atts['text_only'] ) );
+		$return = ( $atts['text_only'] ? '' : '<div class="woocommerce woocommerce-gzd woocommerce-gzd-complaints-shortcode">' ) . ob_get_clean() . ( $atts['text_only'] ? '' : '</div>' );
 
 		return $return;
 	}
