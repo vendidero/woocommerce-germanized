@@ -44,9 +44,9 @@ if ( ! class_exists( 'WC_GZD_Admin_Notices' ) ) :
 		}
 
 		protected function __construct() {
-			add_action( 'admin_init', array( $this, 'check_notice_hide' ) );
+			add_action( 'admin_init', array( $this, 'check_notice_hide' ), 25 );
 
-			add_action( 'after_switch_theme', array( $this, 'remove_theme_notice_hide' ) );
+			add_action( 'after_switch_theme', array( $this, 'remove_theme_notice_hide' ), 25 );
 			add_action( 'admin_print_styles', array( $this, 'add_notices' ), 1 );
 
 			include_once( 'notes/class-wc-gzd-admin-note.php' );
@@ -86,14 +86,14 @@ if ( ! class_exists( 'WC_GZD_Admin_Notices' ) ) :
 		public function get_notes() {
 			if ( is_null( $this->notes ) ) {
 
-				$notes = array(
+				$notes = apply_filters( 'woocommerce_gzd_admin_notes', array(
 					'WC_GZD_Admin_Note_Theme_Supported',
 					'WC_GZD_Admin_Note_Update',
 					'WC_GZD_Admin_Note_Review',
 					'WC_GZD_Admin_Note_Template_Outdated',
 					'WC_GZD_Admin_Note_Pro',
 					'WC_GZD_Admin_Note_DHL_Importer'
-				);
+				) );
 
 				$this->notes = array();
 
