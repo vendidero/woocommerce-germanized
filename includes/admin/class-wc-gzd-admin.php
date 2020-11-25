@@ -165,7 +165,7 @@ class WC_GZD_Admin {
 		deactivate_plugins( 'woo-dp-internetmarke/woo-dp-internetmarke.php' );
 
 		update_option( 'woocommerce_gzd_dhl_internetmarke_enable', 'yes' );
-		update_option( 'woocommerc_gzd_internetmarke_import_finished', 'yes' );
+		update_option( 'woocommerce_gzd_internetmarke_import_finished', 'yes' );
 	}
 
 	public function save_toggle_input_field( $value, $option, $raw_value ) {
