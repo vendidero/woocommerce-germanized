@@ -56,6 +56,7 @@ if ( ! class_exists( 'WC_GZD_Admin_Notices' ) ) :
 			include_once( 'notes/class-wc-gzd-admin-note-template-outdated.php' );
 			include_once( 'notes/class-wc-gzd-admin-note-pro.php' );
 			include_once( 'notes/class-wc-gzd-admin-note-dhl-importer.php' );
+			include_once( 'notes/class-wc-gzd-admin-note-internetmarke-importer.php' );
 		}
 
 		public function enable_notices() {
@@ -92,7 +93,8 @@ if ( ! class_exists( 'WC_GZD_Admin_Notices' ) ) :
 					'WC_GZD_Admin_Note_Review',
 					'WC_GZD_Admin_Note_Template_Outdated',
 					'WC_GZD_Admin_Note_Pro',
-					'WC_GZD_Admin_Note_DHL_Importer'
+					'WC_GZD_Admin_Note_DHL_Importer',
+					'WC_GZD_Admin_Note_Internetmarke_Importer'
 				);
 
 				$this->notes = array();

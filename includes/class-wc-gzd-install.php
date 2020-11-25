@@ -215,6 +215,11 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 				$note->reset();
 			}
 
+			// Show the importer
+			if ( $note = $notices->get_note( 'internetmarke_importer' ) ) {
+				$note->reset();
+			}
+
 			// Queue upgrades
 			$current_version    = get_option( 'woocommerce_gzd_version', null );
 			$current_db_version = get_option( 'woocommerce_gzd_db_version', null );

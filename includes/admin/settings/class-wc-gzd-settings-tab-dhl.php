@@ -16,7 +16,7 @@ use Vendidero\Germanized\DHL\Admin\Settings;
 class WC_GZD_Settings_Tab_DHL extends WC_GZD_Settings_Tab {
 
 	public function get_description() {
-		return __( 'Integrate DHL & Deutsche Post Services such as Labels for Shipments and Returns.', 'woocommerce-germanized' );
+		return __( 'Integrate Post & DHL Services such as Labels for Shipments and Returns.', 'woocommerce-germanized' );
 	}
 
 	protected function get_breadcrumb_label( $label ) {
@@ -32,7 +32,7 @@ class WC_GZD_Settings_Tab_DHL extends WC_GZD_Settings_Tab {
 	}
 
 	public function get_label() {
-		return __( 'DHL & Deutsche Post', 'woocommerce-germanized' );
+		return __( 'Post & DHL', 'woocommerce-germanized' );
 	}
 
 	public function get_name() {
