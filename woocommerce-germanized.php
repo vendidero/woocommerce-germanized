@@ -839,6 +839,17 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 				'wc-checkout',
 			), WC_GERMANIZED_VERSION, true );
 
+			if ( function_exists( 'WC' ) ) {
+				wp_register_script( 'accounting', WC()->plugin_url() . '/assets/js/accounting/accounting' . $suffix . '.js', array( 'jquery' ), '0.4.2' );
+			}
+
+			wp_register_script( 'wc-gzd-single-product', $frontend_script_path . 'single-product' . $suffix . '.js', array(
+				'jquery',
+				'woocommerce',
+                'accounting',
+				'wc-single-product',
+			), WC_GERMANIZED_VERSION, true );
+
 			wp_register_script( 'wc-gzd-add-to-cart-variation', $frontend_script_path . 'add-to-cart-variation' . $suffix . '.js', array(
 				'jquery',
 				'woocommerce',
@@ -858,13 +869,15 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 				wp_enqueue_script( 'wc-gzd-checkout' );
 			}
 
-			if ( is_singular( 'product' ) ) {
+			if ( is_product() ) {
 				$product = wc_get_product( $post->ID );
 
 				if ( $product && $product->is_type( 'variable' ) ) {
 					// Enqueue variation scripts
 					wp_enqueue_script( 'wc-gzd-add-to-cart-variation' );
 				}
+
+				wp_enqueue_script( 'wc-gzd-single-product' );
 			}
 
 			wp_register_style( 'woocommerce-gzd-layout', $assets_path . 'css/layout' . $suffix . '.css', array(), WC_GERMANIZED_VERSION );
@@ -926,7 +939,6 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 			}
 
 			if ( wp_script_is( 'wc-gzd-add-to-cart-variation' ) && ! in_array( 'wc-gzd-add-to-cart-variation', $this->localized_scripts ) ) {
-
 				$this->localized_scripts[] = 'wc-gzd-add-to-cart-variation';
 
 				/**
@@ -941,6 +953,35 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 					'wrapper'        => '.type-product',
 					'price_selector' => '.price',
 				) ) );
+			}
+
+			if ( wp_script_is( 'wc-gzd-single-product' ) && ! in_array( 'wc-gzd-single-product', $this->localized_scripts ) ) {
+				global $post;
+
+			    $this->localized_scripts[] = 'wc-gzd-single-product';
+
+				$params = apply_filters( 'woocommerce_gzd_add_to_cart_variation_params', array(
+					'wrapper'        => '.type-product',
+					'price_selector' => 'p.price',
+				) );
+
+				$params = array_merge( $params, array(
+					'ajax_url'                 => WC()->ajax_url(),
+					'wc_ajax_url'              => WC_AJAX::get_endpoint( "%%endpoint%%" ),
+                    'refresh_unit_price_nonce' => wp_create_nonce( 'wc-gzd-refresh-unit-price' ),
+                    'product_id'               => $post ? $post->ID : '',
+                    'price_decimal_sep'        => wc_get_price_decimal_separator(),
+                    'price_thousand_sep'       => wc_get_price_thousand_separator()
+                ) );
+
+				/**
+				 * Filters script localization paramaters for the `wc-gzd-single-product` script.
+				 *
+				 * @param array $params Key => value array containing parameter name and value.
+				 *
+				 * @since 3.3.0
+				 */
+				wp_localize_script( 'wc-gzd-single-product', 'wc_gzd_single_product_params', apply_filters( 'woocommerce_gzd_single_product_params', $params ) );
 			}
 
 			if ( wp_script_is( 'wc-gzd-force-pay-order' ) && ! in_array( 'wc-gzd-force-pay-order', $this->localized_scripts ) ) {

@@ -20,6 +20,7 @@ class WC_GZD_AJAX {
 
 		$ajax_events = array(
 			'gzd_revocation'                    => true,
+			'gzd_refresh_unit_price'            => true,
 			'gzd_json_search_delivery_time'     => false,
 			'gzd_legal_checkboxes_save_changes' => false,
 			'gzd_toggle_tab_enabled'            => false,
@@ -188,6 +189,35 @@ class WC_GZD_AJAX {
 			$terms[ rawurldecode( $term ) ] = rawurldecode( sprintf( __( "%s [new]", "woocommerce-germanized" ), $term ) );
 		}
 		wp_send_json( $terms );
+	}
+
+	public static function gzd_refresh_unit_price() {
+		check_ajax_referer( 'wc-gzd-refresh-unit-price', 'security' );
+
+		if ( ! isset( $_POST['product_id'], $_POST['price'] ) ) {
+			wp_send_json( array( 'result' => 'failure' ) );
+		}
+
+		$product_id = absint( $_POST['product_id'] );
+		$price      = wc_clean( $_POST['price'] );
+		$price_sale = isset( $_POST['price_sale'] ) ? wc_clean( $_POST['price_sale'] ) : '';
+
+		if ( ! $product = wc_gzd_get_product( $product_id ) ) {
+			wp_send_json( array( 'result' => 'failure' ) );
+		}
+
+		$args = array(
+			'regular_price' => $price,
+			'sale_price'    => ! empty( $price_sale ) ? $price_sale : $price,
+			'price'         => ! empty( $price_sale ) ? $price_sale : $price
+		);
+
+		$product->recalculate_unit_price( $args );
+
+		wp_send_json( array(
+			'result'          => 'success',
+			'unit_price_html' => $product->get_unit_price_html(),
+		) );
 	}
 
 	/**
