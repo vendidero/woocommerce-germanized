@@ -61,6 +61,7 @@ class WC_GZD_Admin {
 		add_action( 'admin_init', array( $this, 'check_resend_activation_email' ) );
 		add_action( 'admin_init', array( $this, 'check_notices' ) );
 		add_action( 'admin_init', array( $this, 'check_dhl_import' ) );
+		add_action( 'admin_init', array( $this, 'check_internetmarke_import' ) );
 
 		add_filter( 'woocommerce_addons_section_data', array( $this, 'set_addon' ), 10, 2 );
 		add_action( 'woocommerce_admin_order_data_after_shipping_address', array(
@@ -102,11 +103,11 @@ class WC_GZD_Admin {
 
 	public function check_dhl_import() {
 
-		if ( ! class_exists( '\Vendidero\Germanized\DHL\Admin\Importer' ) ) {
+		if ( ! class_exists( '\Vendidero\Germanized\DHL\Admin\Importer\DHL' ) ) {
 			return;
 		}
 
-		if ( Importer::is_available() ) {
+		if ( Importer\DHL::is_available() ) {
 			if ( isset( $_GET['wc-gzd-dhl-import'] ) && isset( $_GET['_wpnonce'] ) ) { // WPCS: input var ok, CSRF ok.
 
 				if ( ! wp_verify_nonce( sanitize_key( wp_unslash( $_GET['_wpnonce'] ) ), 'woocommerce_gzd_dhl_import_nonce' ) ) { // WPCS: input var ok, CSRF ok.
@@ -125,13 +126,46 @@ class WC_GZD_Admin {
 	}
 
 	public function import_dhl_settings() {
-		Importer::import_order_data( 50 );
-		Importer::import_settings();
+		Importer\DHL::import_order_data( 50 );
+		Importer\DHL::import_settings();
 
 		deactivate_plugins( 'dhl-for-woocommerce/pr-dhl-woocommerce.php' );
 
 		update_option( 'woocommerce_gzd_dhl_enable', 'yes' );
 		update_option( 'woocommerc_gzd_dhl_import_finished', 'yes' );
+	}
+
+	public function check_internetmarke_import() {
+
+		if ( ! class_exists( '\Vendidero\Germanized\DHL\Admin\Importer\Internetmarke' ) ) {
+			return;
+		}
+
+		if ( Importer\Internetmarke::is_available() ) {
+			if ( isset( $_GET['wc-gzd-internetmarke-import'] ) && isset( $_GET['_wpnonce'] ) ) { // WPCS: input var ok, CSRF ok.
+
+				if ( ! wp_verify_nonce( sanitize_key( wp_unslash( $_GET['_wpnonce'] ) ), 'woocommerce_gzd_internetmarke_import_nonce' ) ) { // WPCS: input var ok, CSRF ok.
+					wp_die( esc_html_x( 'Action failed. Please refresh the page and retry.', 'dhl', 'woocommerce-germanized' ) );
+				}
+
+				if ( ! current_user_can( 'manage_woocommerce' ) ) {
+					wp_die( esc_html_x( 'You don\'t have permission to do this.', 'dhl', 'woocommerce-germanized' ) );
+				}
+
+				$this->import_internetmarke_settings();
+
+				wp_safe_redirect( admin_url( 'admin.php?page=wc-settings&tab=germanized-dhl&section=internetmarke' ) );
+			}
+		}
+	}
+
+	public function import_internetmarke_settings() {
+		Importer\DHL::import_settings();
+
+		deactivate_plugins( 'woo-dp-internetmarke/woo-dp-internetmarke.php' );
+
+		update_option( 'woocommerce_gzd_dhl_internetmarke_enable', 'yes' );
+		update_option( 'woocommerce_gzd_internetmarke_import_finished', 'yes' );
 	}
 
 	public function save_toggle_input_field( $value, $option, $raw_value ) {

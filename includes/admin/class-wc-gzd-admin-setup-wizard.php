@@ -96,7 +96,7 @@ if ( ! class_exists( 'WC_GZD_Admin_Setup_Wizard' ) ) :
 					'errors'  => array(),
 			    );
 
-			    if ( Importer::is_available() ) {
+			    if ( Importer\DHL::is_available() ) {
 			        $default_steps['dhl']['button_next'] = __( 'Import settings', 'woocommerce-germanized' );
 			    }
             }
@@ -575,7 +575,7 @@ if ( ! class_exists( 'WC_GZD_Admin_Setup_Wizard' ) ) :
 			$settings    = $this->get_settings( $this->step );
 			$is_enabled  = get_option( 'woocommerce_gzd_dhl_enable' );
 
-			if ( 'yes' !== $is_enabled && Importer::is_available() ) {
+			if ( 'yes' !== $is_enabled && Importer\DHL::is_available() ) {
 			    WC_GZD_Admin::instance()->import_dhl_settings();
 			} elseif ( ! empty( $settings) ) {
 			     WC_Admin_Settings::save_fields( $settings );

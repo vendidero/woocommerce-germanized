@@ -16,12 +16,11 @@ use Vendidero\Germanized\DHL\Admin\Settings;
 class WC_GZD_Settings_Tab_DHL extends WC_GZD_Settings_Tab {
 
 	public function get_description() {
-		return __( 'Integrate DHL Services such as Labels for Shipments and Returns and Delivery to Packstations.', 'woocommerce-germanized' );
+		return __( 'Integrate Post & DHL Services such as Labels for Shipments and Returns.', 'woocommerce-germanized' );
 	}
 
 	protected function get_breadcrumb_label( $label ) {
 		$label = parent::get_breadcrumb_label( $label );
-
 		if ( empty( $this->get_current_section() ) ) {
 			$label .= Settings::get_new_customer_label();
 		}
@@ -30,7 +29,7 @@ class WC_GZD_Settings_Tab_DHL extends WC_GZD_Settings_Tab {
 	}
 
 	public function get_label() {
-		return __( 'DHL', 'woocommerce-germanized' );
+		return __( 'Post & DHL', 'woocommerce-germanized' );
 	}
 
 	public function get_name() {
@@ -65,5 +64,21 @@ class WC_GZD_Settings_Tab_DHL extends WC_GZD_Settings_Tab {
 
 	public function supports_disabling() {
 		return true;
+	}
+
+	public function disable() {
+		parent::disable();
+
+		update_option( 'woocommerce_gzd_dhl_internetmarke_enable', 'no' );
+	}
+
+	public function is_enabled() {
+		$is_enabled = parent::is_enabled();
+
+		if ( \Vendidero\Germanized\DHL\Package::is_internetmarke_enabled() ) {
+			$is_enabled = true;
+		}
+
+		return $is_enabled;
 	}
 }
