@@ -602,6 +602,7 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 			global $wpdb;
 
 			$base_country = ( isset( WC()->countries ) ) ? WC()->countries->get_base_country() : 'DE';
+			$eu_countries = ( isset( WC()->countries ) ) ? WC()->countries->get_european_union_countries() : array( $base_country );
 
 			$options = array(
 				'woocommerce_default_country'            => $base_country,
@@ -614,12 +615,13 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 				'woocommerce_dimension_unit'             => 'cm',
 				'woocommerce_calc_taxes'                 => 'yes',
 				'woocommerce_prices_include_tax'         => 'yes',
+				'woocommerce_tax_round_at_subtotal'      => 'yes',
 				'woocommerce_tax_display_cart'           => 'incl',
 				'woocommerce_tax_display_shop'           => 'incl',
 				'woocommerce_tax_total_display'          => 'itemized',
 				'woocommerce_tax_based_on'               => 'billing',
 				'woocommerce_allowed_countries'          => 'specific',
-				'woocommerce_specific_allowed_countries' => array( $base_country ),
+				'woocommerce_specific_allowed_countries' => $eu_countries,
 				'woocommerce_default_customer_address'   => 'base'
 			);
 

@@ -21,9 +21,7 @@ class WC_GZD_Settings_Tab_DHL extends WC_GZD_Settings_Tab {
 
 	protected function get_breadcrumb_label( $label ) {
 		$label = parent::get_breadcrumb_label( $label );
-		if ( empty( $this->get_current_section() ) ) {
-			$label .= Settings::get_new_customer_label();
-		}
+		$label .= Settings::get_new_customer_label( $this->get_current_section() );
 
 		return $label;
 	}

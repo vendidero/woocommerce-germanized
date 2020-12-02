@@ -86,7 +86,7 @@ if ( ! class_exists( 'WC_GZD_Admin_Setup_Wizard' ) ) :
 				),
 			);
 
-			if ( class_exists( '\Vendidero\Germanized\DHL\Package' ) && Package::has_dependencies() && ! get_option( 'woocommerc_gzd_dhl_import_finished' ) && 'yes' !== get_option( 'woocommerce_gzd_dhl_enable' ) ) {
+			if ( class_exists( '\Vendidero\Germanized\DHL\Package' ) && Package::has_dependencies() ) {
 
 			    $default_steps['dhl'] = array(
                     'name'    => __( 'DHL', 'woocommerce-germanized' ),
@@ -96,8 +96,20 @@ if ( ! class_exists( 'WC_GZD_Admin_Setup_Wizard' ) ) :
 					'errors'  => array(),
 			    );
 
-			    if ( Importer\DHL::is_available() ) {
-			        $default_steps['dhl']['button_next'] = __( 'Import settings', 'woocommerce-germanized' );
+                if ( Importer\DHL::is_available() ) {
+                    $default_steps['dhl']['button_next'] = __( 'Import settings', 'woocommerce-germanized' );
+                }
+
+                $default_steps['internetmarke'] = array(
+                    'name'    => __( 'Internetmarke', 'woocommerce-germanized' ),
+					'view'    => 'internetmarke.php',
+					'handler' => array( $this, 'wc_gzd_setup_internetmarke_save' ),
+					'order'   => 4,
+					'errors'  => array(),
+			    );
+
+			    if ( Importer\Internetmarke::is_available() ) {
+			        $default_steps['internetmarke']['button_next'] = __( 'Import settings', 'woocommerce-germanized' );
 			    }
             }
 
@@ -182,6 +194,8 @@ if ( ! class_exists( 'WC_GZD_Admin_Setup_Wizard' ) ) :
 				);
 			} elseif( 'dhl' === $step ) {
 			    $settings = Settings::get_setup_settings();
+			} elseif( 'internetmarke' === $step ) {
+			    $settings = Settings::get_internetmarke_setup_settings();
 			}
 
 			return $settings;
@@ -584,6 +598,22 @@ if ( ! class_exists( 'WC_GZD_Admin_Setup_Wizard' ) ) :
 			     if ( isset( $_POST['woocommerce_gzd_dhl_enable'] ) ) {
 					update_option( 'woocommerce_gzd_shipments_default_shipping_provider', 'dhl' );
 			     }
+			}
+
+			wp_safe_redirect( $redirect );
+			exit();
+		}
+
+		public function wc_gzd_setup_internetmarke_save() {
+			$redirect 	 = $this->get_step_url( $this->get_next_step() );
+			$current_url = $this->get_step_url( $this->step );
+			$settings    = $this->get_settings( $this->step );
+			$is_enabled  = get_option( 'woocommerce_gzd_dhl_internetmarke_enable' );
+
+			if ( 'yes' !== $is_enabled && Importer\Internetmarke::is_available() ) {
+			    WC_GZD_Admin::instance()->import_internetmarke_settings();
+			} elseif ( ! empty( $settings) ) {
+			     WC_Admin_Settings::save_fields( $settings );
 			}
 
 			wp_safe_redirect( $redirect );
