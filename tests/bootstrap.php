@@ -75,6 +75,7 @@ class WC_GZD_Unit_Tests_Bootstrap {
 				exit( 1 );
 			}
 		}
+
 		return $dir;
 	}
 
@@ -105,7 +106,7 @@ class WC_GZD_Unit_Tests_Bootstrap {
 		} );
 
 		tests_add_filter( 'muplugins_loaded', function () {
-			require_once $this->plugins_dir . '/woocommerce/woocommerce.php';
+			require_once $this->get_woo_dir()  . '/woocommerce.php';
 			require_once $this->plugin_dir . '/woocommerce-germanized.php';
 
 			foreach ( $this->packages as $package_slug => $namespace ) {
@@ -133,7 +134,7 @@ class WC_GZD_Unit_Tests_Bootstrap {
 			define( 'WP_UNINSTALL_PLUGIN', true );
 			define( 'WC_REMOVE_ALL_DATA', true );
 
-			include $this->plugins_dir . '/woocommerce/uninstall.php';
+			include $this->get_woo_dir() . '/uninstall.php';
 
 			WC_Install::install();
 

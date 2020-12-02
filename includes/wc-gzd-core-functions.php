@@ -345,6 +345,55 @@ function wc_gzd_get_differential_taxation_checkout_notice() {
 	return $notice;
 }
 
+function wc_gzd_shipping_method_id_matches_supported( $method_id, $supported = array() ) {
+	if ( ! is_array( $supported ) ) {
+		$supported = array( $supported );
+	}
+
+	$new_supported = $supported;
+	$new_method_id = $method_id;
+
+	/**
+	 * E.g. Flexible shipping uses underscores. Add them to the search array.
+	 */
+	foreach( $supported as $supported_method ) {
+		$supported_method = str_replace( ':', '_', $supported_method );
+		$new_supported[]  = $supported_method;
+	}
+
+	/**
+	 * Remove the last part of a compatible shipping method id. E.g.:
+	 * flexible_shipping_4_1 - remove _1 from the string to compare it to our search array.
+	 */
+	$method_parts = explode( '_', $new_method_id );
+
+	if ( ! empty( $method_parts ) ) {
+		$last_part = $method_parts[ sizeof( $method_parts ) - 1 ];
+
+		if ( is_numeric( $last_part ) ) {
+			$method_parts = array_slice( $method_parts, 0, ( sizeof( $method_parts ) - 1 ) );
+
+			if ( ! empty( $method_parts ) ) {
+				$new_method_id = implode( '_', $method_parts );
+			}
+		}
+	}
+
+	$is_supported = in_array( $new_method_id, $new_supported ) ? true : false;
+
+	/**
+	 * Filter to check whether a certain shipping method id matches one of the
+	 * shipping method expected (e.g. from the settings).
+	 *
+	 * @param bool   $return Whether the method id matches one of the expected methods or not.
+	 * @param string $method_id The shipping method id.
+	 * @param array  $supported The shipping method ids to search for.
+	 *
+	 * @since 3.2.2
+	 */
+	return apply_filters( 'woocommerce_gzd_shipping_method_id_matches_supported', $is_supported, $method_id, $supported );
+}
+
 function wc_gzd_is_parcel_delivery_data_transfer_checkbox_enabled( $rate_ids = array() ) {
 	$return = false;
 
@@ -362,19 +411,14 @@ function wc_gzd_is_parcel_delivery_data_transfer_checkbox_enabled( $rate_ids = a
 					$supported = array();
 				}
 
-				$return            = false;
-				$rate_is_supported = true;
+				$return = false;
 
 				if ( ! empty( $rate_ids ) ) {
-
 					foreach ( $rate_ids as $rate_id ) {
-						if ( ! in_array( $rate_id, $supported ) ) {
-							$rate_is_supported = false;
+						if ( wc_gzd_shipping_method_id_matches_supported( $rate_id, $supported ) ) {
+							$return = true;
+							break;
 						}
-					}
-
-					if ( $rate_is_supported ) {
-						$return = true;
 					}
 				}
 			}
@@ -400,8 +444,12 @@ function wc_gzd_get_dispute_resolution_text() {
 	return get_option( 'woocommerce_gzd_alternative_complaints_text_' . $type );
 }
 
-function wc_gzd_get_tax_rate_label( $rate_percentage ) {
-	$label = ( get_option( 'woocommerce_tax_total_display' ) == 'itemized' ? sprintf( __( 'incl. %s%% VAT', 'woocommerce-germanized' ), wc_gzd_format_tax_rate_percentage( $rate_percentage ) ) : __( 'incl. VAT', 'woocommerce-germanized' ) );
+function wc_gzd_get_tax_rate_label( $rate_percentage, $type = 'incl' ) {
+	if ( 'incl' === $type ) {
+		$label = ( get_option( 'woocommerce_tax_total_display' ) == 'itemized' ? sprintf( __( 'incl. %s%% VAT', 'woocommerce-germanized' ), wc_gzd_format_tax_rate_percentage( $rate_percentage ) ) : __( 'incl. VAT', 'woocommerce-germanized' ) );
+	} else {
+		$label = ( get_option( 'woocommerce_tax_total_display' ) == 'itemized' ? sprintf( __( '%s%% VAT', 'woocommerce-germanized' ), wc_gzd_format_tax_rate_percentage( $rate_percentage ) ) : __( 'VAT', 'woocommerce-germanized' ) );
+	}
 
 	/**
 	 * Allow adjusting the tax rate label e.g. "incl. 19% tax".
@@ -412,7 +460,7 @@ function wc_gzd_get_tax_rate_label( $rate_percentage ) {
 	 * @since 2.3.3
 	 *
 	 */
-	return apply_filters( 'woocommerce_gzd_tax_rate_label', $label, $rate_percentage );
+	return apply_filters( 'woocommerce_gzd_tax_rate_label', $label, $rate_percentage, $type );
 }
 
 /**
@@ -553,7 +601,8 @@ function wc_gzd_get_customer_title_options() {
 	 */
 	$titles = apply_filters( 'woocommerce_gzd_title_options', array(
 		1 => __( 'Mr.', 'woocommerce-germanized' ),
-		2 => __( 'Ms.', 'woocommerce-germanized' )
+		2 => __( 'Ms.', 'woocommerce-germanized' ),
+		3 => __( 'Mx', 'woocommerce-germanized' )
 	) );
 
 	return $titles;

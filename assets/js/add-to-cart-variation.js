@@ -80,9 +80,9 @@
         var form              = event.data.GermanizedvariationForm,
             $wrapper          = form.$wrapper;
 
-        if ( ! $wrapper.find( wc_gzd_add_to_cart_variation_params.price_selector + ':first' ).hasClass( 'variation_modified' ) ) {
+        if ( ! $wrapper.find( wc_gzd_add_to_cart_variation_params.price_selector + ':visible:first' ).hasClass( 'variation_modified' ) ) {
 
-            $wrapper.append( '<div class="org_price org_product_info">' + $wrapper.find( wc_gzd_add_to_cart_variation_params.price_selector + ':not(.price-unit):first' ).html() + '</div>' );
+            $wrapper.append( '<div class="org_price org_product_info">' + $wrapper.find( wc_gzd_add_to_cart_variation_params.price_selector + ':not(.price-unit):visible:first' ).html() + '</div>' );
 
             if ( $wrapper.find( '.delivery-time-info:first' ).length > 0 ) {
                 $wrapper.append( '<div class="org_delivery_time org_product_info">' + $wrapper.find( '.delivery-time-info:first' ).html() + '</div>' );
@@ -110,8 +110,8 @@
         if ( variation.price_html !== '' ) {
             form.$singleVariation.find( '.price' ).hide();
 
-            $wrapper.find( wc_gzd_add_to_cart_variation_params.price_selector + ':not(.price-unit):first' ).html( variation.price_html ).addClass( 'variation_modified' );
-            $wrapper.find( wc_gzd_add_to_cart_variation_params.price_selector + ':not(.price-unit):first' ).find( '.price' ).contents().unwrap();
+            $wrapper.find( wc_gzd_add_to_cart_variation_params.price_selector + ':not(.price-unit):visible:first' ).html( variation.price_html ).addClass( 'variation_modified' );
+            $wrapper.find( wc_gzd_add_to_cart_variation_params.price_selector + ':not(.price-unit):visible:first' ).find( '.price' ).contents().unwrap();
         }
 
         $wrapper.find( '.delivery-time-info:first' ).hide();
@@ -121,7 +121,7 @@
         $wrapper.find( '.product-units:first' ).hide();
 
         if ( variation.delivery_time !== '' ) {
-            $wrapper.find( 'p.delivery-time-info:first' ).html( variation.delivery_time ).addClass('variation_modified').show();
+            $wrapper.find( 'p.delivery-time-info:first' ).html( variation.delivery_time ).addClass( 'variation_modified' ).show();
         }
 
         if ( variation.tax_info !== '' ) {
@@ -136,20 +136,20 @@
 
             // Check if unit price for variable product exists and replace instead of insert
             if ( $wrapper.find( '.price-unit:first' ).length ) {
-                $wrapper.find( '.price-unit:first' ).html( variation.unit_price ).addClass('variation-modified').show();
+                $wrapper.find( '.price-unit:first' ).html( variation.unit_price ).addClass( 'variation-modified' ).show();
             } else {
                 $wrapper.find( '.price-unit:first' ).remove();
-                $wrapper.find( 'p.price:first' ).after('<p class="price price-unit smaller variation_modified">' + variation.unit_price + '</p>').show();
+                $wrapper.find( 'p.price:first' ).after( '<p class="price price-unit smaller variation_modified">' + variation.unit_price + '</p>' ).show();
             }
         }
 
         if ( variation.product_units !== '' ) {
             // Check if product units for variable product exist and replace instead of insert
             if ( $wrapper.find( '.product-units:first' ).length ) {
-                $wrapper.find( '.product-units:first' ).html( variation.product_units ).addClass('variation-modified').show();
+                $wrapper.find( '.product-units:first' ).html( variation.product_units ).addClass( 'variation-modified' ).show();
             } else {
                 $wrapper.find( '.product-units:first' ).remove();
-                $wrapper.find( '.product_meta:first' ).prepend('<p class="wc-gzd-additional-info product-units-wrapper product-units variation_modified">' + variation.product_units + '</p>').show();
+                $wrapper.find( '.product_meta:first' ).prepend( '<p class="wc-gzd-additional-info product-units-wrapper product-units variation_modified">' + variation.product_units + '</p>' ).show();
             }
         }
 

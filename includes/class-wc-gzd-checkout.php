@@ -46,23 +46,11 @@ class WC_GZD_Checkout {
 		add_filter( 'woocommerce_admin_billing_fields', array( $this, 'set_custom_fields_admin_billing' ), 0, 1 );
 		add_filter( 'woocommerce_admin_shipping_fields', array( $this, 'set_custom_fields_admin_shipping' ), 0, 1 );
 
-		/**
-		 * Recalculate order item unit price after tax adjustments.
-		 */
-		add_action( 'woocommerce_order_item_after_calculate_taxes', array( $this, 'recalculate_order_item_unit_price' ), 60, 1 );
+		// Format tax rate labels (percentage) in case prices during checkout are shown excl tax
+		add_filter( 'woocommerce_cart_tax_totals', array( $this, 'set_cart_excluding_tax_labels' ), 10, 2 );
 
 		// Save Fields on order
 		add_action( 'woocommerce_checkout_create_order', array( $this, 'save_fields' ) );
-
-		// Add Title to billing address format
-		add_filter( 'woocommerce_order_formatted_billing_address', array(
-			$this,
-			'set_formatted_billing_address'
-		), 0, 2 );
-		add_filter( 'woocommerce_order_formatted_shipping_address', array(
-			$this,
-			'set_formatted_shipping_address'
-		), 0, 2 );
 
 		add_filter( 'woocommerce_formatted_address_replacements', array( $this, 'set_formatted_address' ), 0, 2 );
 
@@ -72,13 +60,7 @@ class WC_GZD_Checkout {
 			'set_title_field_mapping_editors'
 		), 10, 1 );
 
-		// Add title options to order address data
-		add_filter( 'woocommerce_get_order_address', array( $this, 'add_order_address_data' ), 10, 3 );
-
 		add_action( 'woocommerce_checkout_create_order_line_item', array( $this, 'set_order_item_meta_crud' ), 0, 4 );
-		add_action( 'woocommerce_before_order_item_object_save', array( $this, 'on_order_item_update' ), 10 );
-
-		add_filter( 'woocommerce_hidden_order_itemmeta', array( $this, 'set_order_meta_hidden' ), 0 );
 
 		// Deactivate checkout shipping selection
 		add_action( 'woocommerce_review_order_before_shipping', array( $this, 'remove_shipping_rates' ), 0 );
@@ -88,28 +70,6 @@ class WC_GZD_Checkout {
 
 		if ( 'yes' === get_option( 'woocommerce_gzd_differential_taxation_disallow_mixed_carts' ) ) {
 			add_filter( 'woocommerce_add_to_cart_validation', array( $this, 'prevent_differential_mixed_carts' ), 10, 3 );
-		}
-
-		// Disallow user order cancellation
-		if ( 'yes' === get_option( 'woocommerce_gzd_checkout_stop_order_cancellation' ) ) {
-
-			add_filter( 'woocommerce_get_cancel_order_url', array( $this, 'cancel_order_url' ), 1500, 1 );
-			add_filter( 'woocommerce_get_cancel_order_url_raw', array( $this, 'cancel_order_url' ), 1500, 1 );
-			add_filter( 'user_has_cap', array( $this, 'disallow_user_order_cancellation' ), 15, 3 );
-
-			// Remove order stock right after confirmation is sent
-			add_action( 'woocommerce_germanized_order_confirmation_sent', array(
-				$this,
-				'maybe_reduce_order_stock'
-			), 5, 1 );
-			add_filter( 'woocommerce_my_account_my_orders_actions', array( $this, 'remove_cancel_button' ), 10, 2 );
-
-			// Woo 3.0 stock reducing checks - mark order as stock-reduced so that stock reducing fails upon second attempt
-			add_action( 'woocommerce_reduce_order_stock', array( $this, 'set_order_stock_reduced_meta' ), 10, 1 );
-			add_filter( 'woocommerce_can_reduce_order_stock', array(
-				$this,
-				'maybe_disallow_order_stock_reducing'
-			), 10, 2 );
 		}
 
 		// Free Shipping auto select
@@ -122,7 +82,6 @@ class WC_GZD_Checkout {
 		add_action( 'wp', array( $this, 'force_pay_order_redirect' ), 15 );
 
 		if ( 'yes' === get_option( 'woocommerce_gzd_checkout_disallow_belated_payment_method_selection' ) ) {
-
 			add_filter( 'woocommerce_get_checkout_payment_url', array(
 				$this,
 				'set_payment_url_to_force_payment'
@@ -136,6 +95,109 @@ class WC_GZD_Checkout {
 		// Make sure that, just like in Woo core, the order submit button gets refreshed
 		// Use a high priority to let other plugins do their adjustments beforehand
 		add_filter( 'woocommerce_update_order_review_fragments', array( $this, 'refresh_order_submit' ), 150, 1 );
+
+		// Unsure whether this could lead to future problems - tax classes with same name wont be merged anylonger
+		// add_filter( 'woocommerce_rate_code', array( $this, 'prevent_tax_name_merge' ), 1000, 2 );
+
+		// Hide cart estimated text if chosen
+		add_action( 'woocommerce_cart_totals_after_order_total', array( $this, 'hide_cart_estimated_text' ) );
+		add_action( 'woocommerce_after_cart_totals', array( $this, 'remove_cart_tax_zero_filter' ) );
+
+		// Remove cart subtotal filter
+		add_action( 'template_redirect', array( $this, 'maybe_remove_shopmark_filters' ) );
+		add_action( 'woocommerce_checkout_update_order_review', array( $this, 'maybe_remove_shopmark_filters' ) );
+	}
+
+	/**
+	 * Remove cart unit price subtotal filter
+	 */
+	public function maybe_remove_shopmark_filters() {
+		if ( is_cart() || is_checkout() ) {
+
+			foreach ( wc_gzd_get_checkout_shopmarks() as $shopmark ) {
+				$shopmark->remove();
+			}
+
+			foreach ( wc_gzd_get_cart_shopmarks() as $shopmark ) {
+				$shopmark->remove();
+			}
+
+			if ( is_cart() ) {
+				foreach ( wc_gzd_get_cart_shopmarks() as $shopmark ) {
+					$shopmark->execute();
+				}
+			} elseif ( is_checkout() ) {
+				foreach ( wc_gzd_get_checkout_shopmarks() as $shopmark ) {
+					$shopmark->execute();
+				}
+			}
+		}
+	}
+
+	/**
+	 * Prevent tax class merging. Could lead to future problems - not yet implemented
+	 *
+	 * @param string $code tax class code
+	 * @param int $rate_id
+	 *
+	 * @return string          unique tax class code
+	 */
+	public function prevent_tax_name_merge( $code, $rate_id ) {
+		return $code . '-' . $rate_id;
+	}
+
+	/**
+	 * Calls a filter to temporarily set cart tax to zero. This is only done to hide the cart tax estimated text.
+	 * Filter is being remove right after get_cart_tax - check has been finished within cart-totals.php
+	 */
+	public function hide_cart_estimated_text() {
+		if ( get_option( 'woocommerce_gzd_display_hide_cart_tax_estimated' ) == 'yes' ) {
+			add_filter( 'woocommerce_get_cart_tax', array( $this, 'set_cart_tax_zero' ) );
+		}
+	}
+
+	/**
+	 * Removes the zero cart tax filter after get_cart_tax has been finished
+	 */
+	public function remove_cart_tax_zero_filter() {
+		if ( get_option( 'woocommerce_gzd_display_hide_cart_tax_estimated' ) == 'yes' ) {
+			remove_filter( 'woocommerce_get_cart_tax', array( $this, 'set_cart_tax_zero' ) );
+		}
+	}
+
+	/**
+	 * This will set the cart tax to zero
+	 *
+	 * @param float $tax current's cart tax
+	 *
+	 * @return int
+	 */
+	public function set_cart_tax_zero( $tax ) {
+		return 0;
+	}
+
+	/**
+	 * @param array $tax_totals
+	 * @param WC_Cart $cart
+	 *
+	 * @return mixed
+	 */
+	public function set_cart_excluding_tax_labels( $tax_totals, $cart ) {
+		if ( ! empty( $tax_totals ) && ! $cart->display_prices_including_tax() && 'itemized' === get_option( 'woocommerce_tax_total_display' ) ) {
+			foreach( $tax_totals as $key => $tax ) {
+				$rate = wc_gzd_get_tax_rate( $tax->tax_rate_id );
+
+				if ( ! $rate ) {
+					continue;
+				}
+
+				if ( ! empty( $rate ) && isset( $rate->tax_rate ) ) {
+					$tax_totals[ $key ]->label = wc_gzd_get_tax_rate_label( $rate->tax_rate, 'excl' );
+				}
+			}
+		}
+
+		return $tax_totals;
 	}
 
 	/**
@@ -149,14 +211,6 @@ class WC_GZD_Checkout {
 
 			if ( sizeof( $tax_shares ) > 1 ) {
 				$order->update_meta_data( '_has_split_tax', 'yes' );
-			}
-		}
-	}
-
-	public function recalculate_order_item_unit_price( $order_item ) {
-		if ( is_a( $order_item, 'WC_Order_Item_Product' ) ) {
-			if ( $gzd_item = wc_gzd_get_order_item( $order_item ) ) {
-				$gzd_item->recalculate_unit_price();
 			}
 		}
 	}
@@ -185,16 +239,6 @@ class WC_GZD_Checkout {
 		return $has_passed;
 	}
 
-	public function add_order_address_data( $data, $type, $order ) {
-		if ( 'yes' === get_option( 'woocommerce_gzd_checkout_address_field' ) ) {
-			if ( $title = wc_gzd_get_order_customer_title( $order, $type ) ) {
-				$data['title'] = $title;
-			}
-		}
-
-		return $data;
-	}
-
 	public function refresh_order_submit( $fragments ) {
 
 		$args = array(
@@ -215,15 +259,6 @@ class WC_GZD_Checkout {
 		return $fragments;
 	}
 
-	public function remove_cancel_button( $actions, $order ) {
-
-		if ( isset( $actions['cancel'] ) ) {
-			unset( $actions['cancel'] );
-		}
-
-		return $actions;
-	}
-
 	/**
 	 * @param WC_Order $order
 	 * @param $posted
@@ -242,6 +277,8 @@ class WC_GZD_Checkout {
 			$selected = false;
 
 			if ( isset( $_POST[ $checkbox->get_html_name() ] ) ) {
+				$selected = true;
+			} elseif( $checkbox->hide_input() ) {
 				$selected = true;
 			}
 
@@ -284,7 +321,7 @@ class WC_GZD_Checkout {
 			}
 
 			// Checkbox has not been checked
-			if ( ! isset( $_POST[ $checkbox->get_html_name() ] ) ) {
+			if ( ! isset( $_POST[ $checkbox->get_html_name() ] ) && ! $checkbox->hide_input() ) {
 				return;
 			}
 
@@ -508,77 +545,6 @@ class WC_GZD_Checkout {
 		}
 	}
 
-	public function maybe_reduce_order_stock( $order_id ) {
-		wc_maybe_reduce_stock_levels( $order_id );
-	}
-
-	/**
-	 * @param WC_Order $order
-	 */
-	public function set_order_stock_reduced_meta( $order ) {
-		$order->update_meta_data( '_order_stock_reduced', 'yes' );
-		$order->save();
-	}
-
-	/**
-	 * @param $reduce_stock
-	 * @param WC_Order $order
-	 *
-	 * @return bool
-	 */
-	public function maybe_disallow_order_stock_reducing( $reduce_stock, $order ) {
-		if ( 'yes' === $order->get_meta( '_order_stock_reduced' ) ) {
-			// Delete the meta so that third party plugins may reduce/change order stock later
-			$order->delete_meta_data( '_order_stock_reduced' );
-			$order->save();
-
-			return false;
-		}
-
-		return $reduce_stock;
-	}
-
-	public function disallow_user_order_cancellation( $allcaps, $caps, $args ) {
-		if ( isset( $caps[0] ) ) {
-			switch ( $caps[0] ) {
-				case 'cancel_order' :
-					$allcaps['cancel_order'] = false;
-					break;
-			}
-		}
-
-		return $allcaps;
-	}
-
-	public function cancel_order_url( $url ) {
-
-		// Default to home url
-		$return = get_permalink( wc_get_page_id( 'shop' ) );
-
-		// Extract order id and use order success page as return url
-		$search = preg_match( '/order_id=([0-9]+)/', $url, $matches );
-
-		if ( $search && isset( $matches[1] ) ) {
-			$order_id = absint( $matches[1] );
-			$order    = wc_get_order( $order_id );
-
-			/**
-			 * Filter the order cancellation URL replacement when customer
-			 * order cancellation was disabled in the Germanized settings.
-			 * Defaults to the order-received page.
-			 *
-			 * @param string $url The return url.
-			 * @param WC_Order $order The order object.
-			 *
-			 * @since 1.0.0
-			 *
-			 */
-			$return = apply_filters( 'woocommerce_gzd_attempt_order_cancellation_url', add_query_arg( array( 'retry' => true ), $order->get_checkout_order_received_url(), $order ) );
-		}
-
-		return $return;
-	}
-
 	public function init_fields() {
 		if ( 'yes' === get_option( 'woocommerce_gzd_checkout_address_field' ) ) {
 			$this->custom_fields['title'] = array(
@@ -683,7 +649,6 @@ class WC_GZD_Checkout {
 	 * @param WC_Cart $cart
 	 */
 	public function do_fee_tax_calculation( $cart ) {
-
 		if ( 'yes' !== get_option( 'woocommerce_gzd_fee_tax' ) ) {
 			return;
 		}
@@ -702,7 +667,6 @@ class WC_GZD_Checkout {
 		$fees = $cart->get_fees();
 
 		if ( ! empty( $fees ) ) {
-
 			$tax_shares = wc_gzd_get_cart_tax_share( 'fee' );
 
 			/**
@@ -782,7 +746,6 @@ class WC_GZD_Checkout {
 	 * Temporarily removes all shipping rates (except chosen one) from packages to only show chosen package within checkout.
 	 */
 	public function remove_shipping_rates() {
-
 		if ( 'no' === get_option( 'woocommerce_gzd_display_checkout_shipping_rate_select' ) ) {
 			return;
 		}
@@ -810,103 +773,7 @@ class WC_GZD_Checkout {
 	 * @param $order
 	 */
 	public function set_order_item_meta_crud( $item, $cart_item_key, $values, $order ) {
-		$this->refresh_item_data( $item );
-	}
-
-	protected function refresh_item_data( $item ) {
-		if ( is_a( $item, 'WC_Order_Item_Product' ) && ( $product = $item->get_product() ) ) {
-			if ( $gzd_item = wc_gzd_get_order_item( $item ) ) {
-				$gzd_product = wc_gzd_get_product( $product );
-
-				$gzd_item->set_unit( $gzd_product->get_unit_name() );
-				$gzd_item->set_unit_base( $gzd_product->get_unit_base() );
-				$gzd_item->set_unit_product( $gzd_product->get_unit_product() );
-
-				$gzd_item->recalculate_unit_price();
-
-				$gzd_item->set_cart_description( $gzd_product->get_formatted_cart_description() );
-				$gzd_item->set_delivery_time( $gzd_product->get_delivery_time_html() );
-				$gzd_item->set_min_age( $gzd_product->get_min_age() );
-
-				/**
-				 * Add order item meta.
-				 *
-				 * Fires when Germanized adds order item meta.
-				 *
-				 * @param WC_Order_Item $item The order item.
-				 * @param WC_Order $order The order.
-				 * @param WC_GZD_Product $gzd_product The product object.
-				 * @param WC_GZD_Order_Item $gzd_item The order item object.
-				 *
-				 * @since 1.8.9
-				 */
-				do_action( 'woocommerce_gzd_add_order_item_meta', $item, $item->get_order(), $gzd_product, $gzd_item );
-			}
-		}
-	}
-
-	/**
-	 * @param WC_Order_Item $item
-	 */
-	public function on_order_item_update( $item ) {
-		/**
-		 * Refresh item data in case product id changes or it is a new item.
-		 */
-		if ( $item->get_id() <= 0 || in_array( 'product_id', $item->get_changes() ) ) {
-			$this->refresh_item_data( $item );
-		}
-	}
-
-	/**
-	 * Hide product description from order meta default output
-	 *
-	 * @param array $metas
-	 */
-	public function set_order_meta_hidden( $metas ) {
-		array_push( $metas, '_item_desc' );
-		array_push( $metas, '_units' );
-		array_push( $metas, '_delivery_time' );
-		array_push( $metas, '_unit_price' );
-		array_push( $metas, '_unit_price_raw' );
-		array_push( $metas, '_unit_price_subtotal_raw' );
-		array_push( $metas, '_unit_price_subtotal_net_raw' );
-		array_push( $metas, '_unit_price_net_raw' );
-		array_push( $metas, '_unit_product' );
-		array_push( $metas, '_unit' );
-		array_push( $metas, '_unit_base' );
-		array_push( $metas, '_min_age' );
-
-		return $metas;
-	}
-
-	public function set_formatted_billing_address( $fields, $order ) {
-
-		if ( 'yes' !== get_option( 'woocommerce_gzd_checkout_address_field' ) ) {
-			return $fields;
-		}
-
-		if ( $title = wc_gzd_get_order_customer_title( $order, 'billing' ) ) {
-			$fields['title'] = $title;
-		}
-
-		return $fields;
-	}
-
-	public function set_formatted_shipping_address( $fields, $order ) {
-
-		if ( empty( $fields ) || ! is_array( $fields ) ) {
-			return $fields;
-		}
-
-		if ( 'yes' !== get_option( 'woocommerce_gzd_checkout_address_field' ) ) {
-			return $fields;
-		}
-
-		if ( $title = wc_gzd_get_order_customer_title( $order, 'shipping' ) ) {
-			$fields['title'] = $title;
-		}
-
-		return $fields;
+		WC_GZD_Order_Helper::instance()->refresh_item_data( $item );
 	}
 
 	public function set_formatted_address( $placeholder, $args ) {

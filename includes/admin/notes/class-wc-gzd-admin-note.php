@@ -48,9 +48,13 @@ abstract class WC_GZD_Admin_Note {
 		return false;
 	}
 
+	public function enable_notices() {
+		return WC_GZD_Admin_Notices::instance()->enable_notices();
+	}
+
 	public function is_disabled() {
 
-		if ( ! WC_GZD_Admin_Notices::instance()->enable_notices() && $this->is_dismissable() ) {
+		if ( ! $this->enable_notices() && $this->is_dismissable() ) {
 			return true;
 		}
 

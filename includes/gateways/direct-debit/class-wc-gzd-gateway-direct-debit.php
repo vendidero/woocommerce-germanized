@@ -355,7 +355,6 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 				 * @param array $order_statuses Valid order statuses to be exported.
 				 *
 				 * @since 1.8.5
-				 *
 				 */
 				'post_status' => apply_filters( 'woocommerce_gzd_direct_debit_export_order_statuses', array(
 					'wc-pending',
@@ -370,14 +369,6 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 					),
 				),
 			) );
-
-			if ( ! empty( $args['start_date'] ) ) {
-				array_push( $parts, $args['start_date'] );
-			}
-
-			if ( ! empty( $args['end_date'] ) ) {
-				array_push( $parts, $args['end_date'] );
-			}
 		}
 
 		/**
@@ -402,7 +393,8 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 		 */
 		$filename = apply_filters( 'woocommerce_germanized_direct_debit_export_filename', implode( '-', $parts ) . '.xml', $args );
 
-		$directDebit = false;
+		$directDebit      = false;
+		$direct_debit_xml = '';
 
 		if ( $order_query->have_posts() ) {
 
@@ -491,7 +483,7 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 						 *
 						 */
 						$directDebit->addTransfer( $payment_id, apply_filters( 'woocommerce_gzd_direct_debit_sepa_xml_exporter_transfer_args', array(
-							'amount'                => $order->get_total(),
+							'amount'                => ( $order->get_total() - $order->get_total_refunded() ),
 							'debtorIban'            => strtoupper( $this->clean_whitespaces( $this->maybe_decrypt( $order->get_meta( '_direct_debit_iban' ) ) ) ),
 							'debtorBic'             => strtoupper( $this->clean_whitespaces( $this->maybe_decrypt( $order->get_meta( '_direct_debit_bic' ) ) ) ),
 							'debtorName'            => $order->get_meta( '_direct_debit_holder' ),

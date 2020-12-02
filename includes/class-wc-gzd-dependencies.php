@@ -37,7 +37,7 @@ class WC_GZD_Dependencies {
 	 *
 	 * @var string
 	 */
-	public $wc_minimum_version_required = '3.4';
+	public $wc_minimum_version_required = '3.9';
 
 	public static function instance( $plugin = null ) {
 		if ( is_null( self::$_instance ) ) {
@@ -147,7 +147,17 @@ class WC_GZD_Dependencies {
 	}
 
 	public function is_woocommerce_outdated() {
-		return $this->compare_versions( $this->parse_version( get_option( 'woocommerce_db_version' ) ), $this->get_wc_min_version_required(), '<' );
+		$woo_version = get_option( 'woocommerce_db_version' );
+
+		/**
+		 * Fallback to default Woo version to prevent issues
+		 * for installations which failed the last Woo DB update.
+		 */
+		if ( ! $woo_version || empty( $woo_version ) ) {
+			$woo_version = get_option( 'woocommerce_version' );
+		}
+
+		return $this->compare_versions( $this->parse_version( $woo_version ), $this->get_wc_min_version_required(), '<' );
 	}
 
 	public function is_element_pro_activated() {

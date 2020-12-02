@@ -748,7 +748,7 @@ class WC_GZD_Admin {
 	public function is_complaints_shortcode_inserted( $page_id ) {
 		$post = get_post( $page_id );
 		if ( $post ) {
-			return ( strpos( $post->post_content, '[gzd_complaints]' ) !== false ? true : false );
+			return ( strpos( $post->post_content, '[gzd_complaints' ) !== false ? true : false );
 		}
 
 		return false;
@@ -844,7 +844,6 @@ class WC_GZD_Admin {
 	}
 
 	public function get_shipping_method_instances_options() {
-
 		$methods                  = $this->get_shipping_method_instances();
 		$shipping_methods_options = array();
 

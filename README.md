@@ -1,4 +1,4 @@
-# [Germanized for WooCommerce](https://vendidero.de/woocommerce-germanized) [![Build Status](https://travis-ci.org/vendidero/woocommerce-germanized.svg?branch=master)](https://travis-ci.org/vendidero/woocommerce-germanized)
+# [Germanized for WooCommerce](https://vendidero.de/woocommerce-germanized)
 
 ### WooCommerce for the German Market
 This plugin helps to use WooCommerce in a legally compliant way in Germany.

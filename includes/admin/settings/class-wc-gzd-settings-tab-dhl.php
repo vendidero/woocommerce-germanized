@@ -21,11 +21,8 @@ class WC_GZD_Settings_Tab_DHL extends WC_GZD_Settings_Tab {
 
 	protected function get_breadcrumb_label( $label ) {
 		$label = parent::get_breadcrumb_label( $label );
-
 		if ( empty( $this->get_current_section() ) ) {
-			$label .= '<a href="https://www.dhl.de/de/geschaeftskunden/paket/kunde-werden/angebot-dhl-geschaeftskunden-online.html" class="page-title-action" target="_blank">' . _x( 'Not yet a customer?', 'dhl', 'woocommerce-germanized' ) . '</a>';
-		} elseif( 'internetmarke' === $this->get_current_section() ) {
-			$label .= '<a href="https://portokasse.deutschepost.de/portokasse/#!/register/" class="page-title-action" target="_blank">' . _x( 'No Portokasse yet?', 'dhl', 'woocommerce-germanized' ) . '</a>';
+			$label .= Settings::get_new_customer_label();
 		}
 
 		return $label;
