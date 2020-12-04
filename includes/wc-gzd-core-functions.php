@@ -600,9 +600,10 @@ function wc_gzd_get_customer_title_options() {
 	 *
 	 */
 	$titles = apply_filters( 'woocommerce_gzd_title_options', array(
-		1 => __( 'Mr.', 'woocommerce-germanized' ),
-		2 => __( 'Ms.', 'woocommerce-germanized' ),
-		3 => __( 'Mx', 'woocommerce-germanized' )
+		0 => _x( 'None', 'title-option', 'woocommerce-germanized' ),
+		1  => __( 'Mr.', 'woocommerce-germanized' ),
+		2  => __( 'Ms.', 'woocommerce-germanized' ),
+		3  => __( 'Mx', 'woocommerce-germanized' )
 	) );
 
 	return $titles;
@@ -624,9 +625,9 @@ function wc_gzd_get_customer_title( $value ) {
 	}
 
 	/**
-	 * In case the customer has chosen a gender-neutral title - do not use a specific title as output.
+	 * In case the customer has chosen a gender-neutral title or no title at all - do not use a specific title as output.
 	 */
-	if ( __( 'Mx', 'woocommerce-germanized' ) === $title ) {
+	if ( __( 'Mx', 'woocommerce-germanized' ) === $title || _x( 'None', 'title-option', 'woocommerce-germanized' ) === $title ) {
 		$title = '';
 	}
 

@@ -20,7 +20,21 @@ class WC_GZD_Settings_Tab_DHL extends WC_GZD_Settings_Tab {
 	}
 
 	protected function get_breadcrumb_label( $label ) {
-		$label = parent::get_breadcrumb_label( $label );
+		$current_section = $this->get_current_section();
+		$help_link       = false;
+
+		if ( empty( $current_section ) ) {
+			$help_link = 'https://vendidero.de/dokument/dhl-integration-einrichten';
+		} elseif( 'internetmarke' === $current_section ) {
+			$help_link = 'https://vendidero.de/dokument/internetmarke-integration-einrichten';
+		} elseif( 'labels' === $current_section ) {
+			$help_link = 'https://vendidero.de/dokument/dhl-labels-zu-sendungen-erstellen';
+		}
+
+		if ( $help_link ) {
+			$label = $label . '<a class="page-title-action" href="' . esc_url( $help_link ) . '" target="_blank">' . __( 'Learn more', 'woocommerce-germanized' ) . '</a>';
+		}
+
 		$label .= Settings::get_new_customer_label( $this->get_current_section() );
 
 		return $label;
@@ -35,7 +49,7 @@ class WC_GZD_Settings_Tab_DHL extends WC_GZD_Settings_Tab {
 	}
 
 	public function get_help_link() {
-		return 'https://vendidero.de/dokument/dhl-integration-einrichten';
+		return 'https://vendidero.de/dokumentation/post-dhl';
 	}
 
 	public function get_tab_settings( $current_section = '' ) {
