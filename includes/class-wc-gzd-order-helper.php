@@ -235,7 +235,7 @@ class WC_GZD_Order_Helper {
 
 	public function add_order_address_data( $data, $type, $order ) {
 		if ( 'yes' === get_option( 'woocommerce_gzd_checkout_address_field' ) ) {
-			if ( $title = wc_gzd_get_order_customer_title( $order, $type ) ) {
+			if ( $this->order_address_enable_customer_title( $data ) && ( $title = wc_gzd_get_order_customer_title( $order, $type ) ) ) {
 				$data['title'] = $title;
 			}
 		}
@@ -243,16 +243,33 @@ class WC_GZD_Order_Helper {
 		return $data;
 	}
 
+	/**
+	 * @param $fields
+	 * @param WC_Order $order
+	 *
+	 * @return mixed
+	 */
 	public function set_formatted_billing_address( $fields, $order ) {
 		if ( 'yes' !== get_option( 'woocommerce_gzd_checkout_address_field' ) ) {
 			return $fields;
 		}
 
-		if ( $title = wc_gzd_get_order_customer_title( $order, 'billing' ) ) {
+		if ( $this->order_address_enable_customer_title( $fields ) && ( $title = wc_gzd_get_order_customer_title( $order, 'billing' ) ) ) {
 			$fields['title'] = $title;
 		}
 
 		return $fields;
+	}
+
+	public function order_address_enable_customer_title( $fields ) {
+		/**
+		 * If no last name has been chosen, remove the title too
+		 */
+		if ( ! isset( $fields['last_name'] ) || empty( $fields['last_name'] ) ) {
+			return false;
+		}
+
+		return true;
 	}
 
 	public function set_formatted_shipping_address( $fields, $order ) {
@@ -264,7 +281,7 @@ class WC_GZD_Order_Helper {
 			return $fields;
 		}
 
-		if ( $title = wc_gzd_get_order_customer_title( $order, 'shipping' ) ) {
+		if ( $this->order_address_enable_customer_title( $fields ) && ( $title = wc_gzd_get_order_customer_title( $order, 'shipping' ) ) ) {
 			$fields['title'] = $title;
 		}
 

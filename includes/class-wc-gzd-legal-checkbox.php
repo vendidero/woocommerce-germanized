@@ -335,8 +335,14 @@ class WC_GZD_Legal_Checkbox {
 	 * @return string
 	 */
 	public function get_error_message( $plain = false ) {
+		$error_message = '';
+
 		if ( $plain ) {
-			return $this->settings['error_message'];
+			$error_message = $this->settings['error_message'];
+
+			if ( empty( $error_message ) ) {
+				$error_message = sprintf( __( '%s is a mandatory field.', 'woocommerce-germanized' ), $this->get_admin_name() );
+			}
 		} else {
 			$error_text = $this->settings['error_message'];
 			$error_text = wc_gzd_replace_label_shortcodes( $error_text, $this->get_label_args() );
@@ -352,8 +358,14 @@ class WC_GZD_Legal_Checkbox {
 			 * @since 2.0.0
 			 *
 			 */
-			return apply_filters( "woocommerce_gzd_legal_checkbox_{$id}_error_text", $error_text, $this );
+			$error_message = apply_filters( "woocommerce_gzd_legal_checkbox_{$id}_error_text", $error_text, $this );
+
+			if ( empty( $error_message ) ) {
+				$error_message = sprintf( __( '%s is a mandatory field.', 'woocommerce-germanized' ), $this->get_admin_name() );
+			}
 		}
+
+		return $error_message;
 	}
 
 	/**

@@ -3,7 +3,7 @@
  * Plugin Name: Germanized for WooCommerce
  * Plugin URI: https://www.vendidero.de/woocommerce-germanized
  * Description: Germanized for WooCommerce extends WooCommerce to become a legally compliant store in the german market.
- * Version: 3.2.3
+ * Version: 3.3.0
  * Author: vendidero
  * Author URI: https://vendidero.de
  * Requires at least: 4.9
@@ -69,7 +69,7 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 		 *
 		 * @var string
 		 */
-		public $version = '3.2.3';
+		public $version = '3.3.0';
 
 		/**
 		 * @var WooCommerce_Germanized $instance of the plugin
@@ -877,7 +877,9 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 					wp_enqueue_script( 'wc-gzd-add-to-cart-variation' );
 				}
 
-				wp_enqueue_script( 'wc-gzd-single-product' );
+				if ( apply_filters( 'woocommerce_gzd_refresh_unit_price_on_price_change', true ) ) {
+					wp_enqueue_script( 'wc-gzd-single-product' );
+				}
 			}
 
 			wp_register_style( 'woocommerce-gzd-layout', $assets_path . 'css/layout' . $suffix . '.css', array(), WC_GERMANIZED_VERSION );

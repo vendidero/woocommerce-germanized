@@ -5,7 +5,7 @@ Requires at least: 5.4
 Tested up to: 5.6
 WC requires at least: 3.9
 WC tested up to: 4.7
-Stable tag: 3.2.3
+Stable tag: 3.3.0
 Requires PHP: 5.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -73,9 +73,9 @@ You can then manage your shipments and it's statuses independently from your ord
 Managing returns can be a time-consuming challenge. By using Germanized you might let your customers create return requests through their customer panel. All you need to do is confirm the request through your return dashboard and your customers will receive an email containing further steps on how to return their product(s).
 In case you are using our DHL integration you might as well (automatically) create a label to the return which will be attached to the email sent to the customer.
 
-= DHL Integration =
-With the help of our built-in DHL integration you can easily create labels for your shipments and add tracking information to the notification emails. Furthermore you can offer Wunschpaket Services to your customers including shipping to Packstation or choosing a preferred location, day and/or time within the checkout.
-You can even let your shipments and labels be generated automatically by Germanized to avoid further manual work. [Learn more](https://vendidero.de/dokumentation/woocommerce-germanized/sendungen-dhl "DHL for WooCommerce") about how our DHL integration works.
+= Post & DHL Integration =
+With the help of our built-in Post & DHL integration you can easily create labels for your shipments and add tracking information to the notification emails. Furthermore you can offer DHL Wunschpaket Services to your customers including shipping to Packstation or choosing a preferred location, day and/or time within the checkout.
+You can even let your shipments and labels be generated automatically by Germanized to avoid further manual work. [Learn more](https://vendidero.de/dokumentation/woocommerce-germanized/post-dhl "Post & DHL for WooCommerce") about how our Post & DHL integration works.
 
 = Pro: Premium Support =
 Customers of Germanized for WooCommerce Pro enjoy our high-quality support via tickets. Nevertheless we also seek to offer a good plugin support via our WordPress support forum.
@@ -149,10 +149,6 @@ By adjusting parameter width=55 (55 means 55px width/height) you may optionally 
 
 `[trusted_shops_rich_snippets]`
 If you are using Trusted Shop's review functionality, you may insert a Google Rich Snippet to show your current shop's rating.
-
-`[ekomi_badge]`
-Inserts your eKomi badge as image.
-By adjusting width=55 (55 means 55px width/height) you may optionally set badge's width.
 
 = Updating Germanized for WooCommerce =
 

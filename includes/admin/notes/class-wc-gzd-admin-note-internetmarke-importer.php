@@ -33,7 +33,7 @@ class WC_GZD_Admin_Note_Internetmarke_Importer extends WC_GZD_Admin_Note {
 		$content = '<p>' . _x( 'It seems like you are currently using the Deutsche Post Internetmarke plugin. Germanized does now fully integrate Internetmarke and switching is as simple as can be. Check your advantages by using the Internetmarke integration in Germanized and let Germanized import your current settings for you.', 'dhl', 'woocommerce-germanized' ) . '</p>
 		    <ul>
 		        <li>✓  ' . _x( 'No need to use an external plugin which might lead to incompatibilities', 'dhl', 'woocommerce-germanized' ) . '</li>
-		        <li>✓  ' . sprintf( _x( 'Many improved features such as automation, services per shipping method and %s', 'dhl', 'woocommerce-germanized' ), '<a href="https://vendidero.de/dokument/dhl-labels-zu-sendungen-erstellen" target="_blank">' . _x( 'many more', 'dhl', 'woocommerce-germanized' ) . '</a>' ) . '</li>
+		        <li>✓  ' . sprintf( _x( 'Many improved features such as automation, services per shipping method and %s', 'dhl', 'woocommerce-germanized' ), '<a href="https://vendidero.de/dokument/internetmarke-integration-einrichten" target="_blank">' . _x( 'many more', 'dhl', 'woocommerce-germanized' ) . '</a>' ) . '</li>
 		        <li>✓  ' . _x( 'Perfectly integrated in Germanized &ndash; easily create stamps for shipments', 'dhl', 'woocommerce-germanized' ) . '</li>
 		    </ul>';
 
@@ -49,7 +49,7 @@ class WC_GZD_Admin_Note_Internetmarke_Importer extends WC_GZD_Admin_Note {
 				'is_primary' => true,
 			),
 			array(
-				'url'        => 'https://vendidero.de/dokument/dhl-labels-zu-sendungen-erstellen',
+				'url'        => 'https://vendidero.de/dokument/internetmarke-integration-einrichten',
 				'title'      => _x( 'Learn more', 'dhl', 'woocommerce-germanized' ),
 				'target'     => '_blank',
 				'is_primary' => false,

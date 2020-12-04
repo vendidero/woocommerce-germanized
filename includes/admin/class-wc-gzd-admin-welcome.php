@@ -136,6 +136,33 @@ class WC_GZD_Admin_Welcome {
                     zur <span class="wc-gzd-pro">pro</span> Version</a>
             </p>
 
+            <?php if ( \Vendidero\Germanized\DHL\Package::has_dependencies() ) : ?>
+                <div class="changelog new-feature">
+                    <h3>Neu: Integration der Internetmarke</h3>
+
+                    <div class="columns two-col">
+                        <div class="col col-center">
+                            <img src="<?php echo WC_germanized()->plugin_url(); ?>/assets/images/create-dp-label.png"/>
+                        </div>
+                        <div class="col">
+                            <p>
+                                Mit der neuesten Version kannst du nun (neben der DHL Integration) auch die Internetmarke nutzen um zu deinen Sendungen unkompliziert Labels zu erstellen. Ein DHL Geschäftskundenkonto benötigst du dafür nicht.
+                                Die Produkte der Deutschen Post (z.B. Warenpost International, Briefprodukte usw.) stehen dir damit direkt über Germanized zur Verfügung.
+                            </p>
+                            <p>
+                                Beim Erstellen der Labels erhältst du nützliche Informationen zu den Kosten, Größen und Beschränkungen der Produkte. Auch ein Vorschau des Labels wird dir angezeigt. Für die Warenpost International
+                                wird für dich direkt ein harmonized Label erzeugt und ggfs. eine CN23 Zollerklärung.
+                            </p>
+
+                            <div class="wc-gzd-actions">
+                                <a href="https://vendidero.de/dokument/internetmarke-integration-einrichten" target="_blank" class="button button-primary">Weitere Informationen</a>
+                                <a href="<?php echo \Vendidero\Germanized\DHL\Admin\Settings::get_settings_url( 'internetmarke' ); ?>" class="button button-primary" target="_blank">Zu den Einstellungen</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <?php endif; ?>
+
             <div class="changelog new-feature">
                 <h3>Neu: PDF-Dokumente visuell bearbeiten <span class="wc-gzd-pro wc-gzd-pro-outlined">pro</span></h3>
 
@@ -219,23 +246,22 @@ class WC_GZD_Admin_Welcome {
             </div>
 
             <div class="changelog">
-                <h3>Weitere Neuigkeiten in Germanized 3.0</h3>
+                <h3>Weitere Neuigkeiten in Germanized 3.3</h3>
 
                 <div class="three-col columns">
                     <div class="col">
-                        <h4><span class="dashicons dashicons-cart"></span> Preisauszeichnungen</h4>
+                        <h4><span class="dashicons dashicons-cart"></span> Verpackungen</h4>
                         <p>
-                            In Germanized 3.0 entscheidest du flexibel, wo, welche Preisauszeichnungen angezeigt werden
-                            sollen. Du kannst zudem die Priorität bzw. Reihenfolge bequem über die UI anpassen und
-                            verschiedene Orte im Template wählen.
+                            Mit Germanized 3.3 kannst du zu deinen Sendungen jetzt flexibel Verpackungsmaterial hinzufügen
+                            und damit das Gesamtgewicht der Sendungen (das z.B. für die Label-Erstellung benötigt wird) besser verwalten.
                         </p>
                     </div>
                     <div class="col">
-                        <h4><span class="dashicons dashicons-admin-appearance"></span> Strukturierte Einstellungen</h4>
+                        <h4><span class="dashicons dashicons-admin-appearance"></span> Grundpreisberechnung</h4>
                         <p>
-                            Wir haben die UI für die Einstellungen komplett überarbeitet. Dabei haben wir explizit Wert
-                            auf die Übersichtlichkeit gelegt. Die verschiedenen Rubriken können jetzt übersichtlich in
-                            einer Tabelle ausgewählt werden.
+                            Um Staffelpreise oder Rollen-basierte-Preise besser zu unterstützen, aktualisiert
+                            Germanized nun automatisch den Grundpreis wenn sich auf der Produktseite der Preis ändert
+                            oder durch ein Plugin dynamisch verändert wird.
                         </p>
                     </div>
                     <div class="col">

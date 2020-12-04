@@ -611,16 +611,26 @@ function wc_gzd_get_customer_title_options() {
 function wc_gzd_get_customer_title( $value ) {
 	$option = absint( $value );
 	$titles = wc_gzd_get_customer_title_options();
+	$title  = '';
 
 	if ( '[deleted]' === $value ) {
-		return $value;
+		$title = $value;
+	} else {
+		if ( array_key_exists( $option, $titles ) ) {
+			$title = $titles[ $option ];
+		} else {
+			$title = __( 'Ms.', 'woocommerce-germanized' );
+		}
 	}
 
-	if ( array_key_exists( $option, $titles ) ) {
-		return $titles[ $option ];
-	} else {
-		return __( 'Ms.', 'woocommerce-germanized' );
+	/**
+	 * In case the customer has chosen a gender-neutral title - do not use a specific title as output.
+	 */
+	if ( __( 'Mx', 'woocommerce-germanized' ) === $title ) {
+		$title = '';
 	}
+
+	return apply_filters( 'woocommerce_gzd_customer_formatted_title', $title, $value );
 }
 
 function wc_gzd_register_legal_checkbox( $id, $args ) {
