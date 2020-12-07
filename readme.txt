@@ -33,7 +33,7 @@ Furthermore we customized the WooCommerce checkout to make your store meet the b
 * *Tax Calculation for Shipping Costs and Fees* - Enable split tax calculation based on your WooCommerce cart taxes.
 * *Legal pages in Email Templates* - Attach legal pages content to certain WooCommerce e-mail templates.
 * *Trusted Shops Integration* - Integrate your Trusted Shops Products within your WooCommerce store
-* *DHL Integration* - Generate labels for shipments and returns right from your backend. Offer Wunschpaket services to your customers.
+* *Post & DHL Integration* - Generate labels for shipments and returns right from your backend. Offer Wunschpaket services to your customers.
 * *Payment Gateway: SEPA direct debit* - Receive payments via direct debit. We've added a XML export to transfer payments to your bank.
 * *Payment Gateway: Pay by Invoice* - Allow certain customers to pay by invoice. Best integration with our PDF invoices feature (Pro).
 * *Online Revocation Form* - Allow customers to submit revocations by filling out a form on your revocation page.
@@ -186,6 +186,17 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 6. Edit pdf documents (Pro)
 
 == Changelog ==
+= 3.3.0 =
+* Feature: Deutsche Post Internetmarke integration
+* Feature: Packaging options for shipments
+* Feature: Recalculate unit price via AJAX in case price HTML changes
+* Improvement: Added gender neutral title option and empty option
+* Improvement: Net price voucher tax calculation
+* Improvement: Explicitly exclude admins from possible account cleanup
+* Improvement: Make last parameter optional for BCC headers to prevent third party problems
+* Improvement: Add to cart variation JS price detecting
+* Fix: Use order total - refund total for SEPA Export
+
 = 3.2.3 =
 * Feature: WP 5.6 compatibility
 * Improvement: Report checkboxes with hidden inputs as checked

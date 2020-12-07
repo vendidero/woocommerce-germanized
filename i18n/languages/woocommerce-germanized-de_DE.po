@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce Germanized\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-03 14:18+0100\n"
-"PO-Revision-Date: 2020-12-03 14:40+0100\n"
+"POT-Creation-Date: 2020-12-07 11:55+0100\n"
+"PO-Revision-Date: 2020-12-07 11:56+0100\n"
 "Last-Translator: holzhannes <holzhannes@posteo.de>\n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -268,6 +268,7 @@ msgid "Receiver"
 msgstr "Empfänger"
 
 #: woocommerce-germanized-dhl/includes/admin/views/settings-shipping-method.php:15
+#: woocommerce-germanized-dhl/src/Admin/Settings.php:1461
 msgctxt "dhl"
 msgid "DHL Labels"
 msgstr "DHL Labels"
@@ -716,6 +717,7 @@ msgstr ""
 "Ordner %s manuell und stelle sicher, dass der Ordner beschreibbar ist."
 
 #: woocommerce-germanized-dhl/src/Admin/Admin.php:269
+#: woocommerce-germanized-dhl/src/Admin/Settings.php:1460
 #: woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:39
 msgctxt "dhl"
 msgid "DHL"
@@ -1412,7 +1414,6 @@ msgstr "Premium Lieferung für internationale Sendungen."
 
 #: woocommerce-germanized-dhl/src/Admin/Settings.php:626
 #: woocommerce-germanized-dhl/src/Admin/Settings.php:1242
-#: woocommerce-germanized-dhl/src/Admin/Settings.php:1461
 msgctxt "dhl"
 msgid "Labels"
 msgstr "Labels"
@@ -1965,12 +1966,6 @@ msgctxt "dhl"
 msgid "Not yet a customer?"
 msgstr "Noch kein Geschäftskunde?"
 
-# @ woocommerce-germanized
-#: woocommerce-germanized-dhl/src/Admin/Settings.php:1460
-msgctxt "dhl"
-msgid "General"
-msgstr "Allgemein"
-
 #: woocommerce-germanized-dhl/src/Admin/Settings.php:1462
 msgctxt "dhl"
 msgid "Internetmarke"
@@ -2061,23 +2056,23 @@ msgctxt "dhl"
 msgid "Missing shipment"
 msgstr "Fehlende Sendung"
 
-#: woocommerce-germanized-dhl/src/Api/ImWarenpostIntRest.php:166
+#: woocommerce-germanized-dhl/src/Api/ImWarenpostIntRest.php:168
 msgctxt "dhl"
 msgid "Invalid API response"
 msgstr "Fehlerhafte API Rückmeldung"
 
-#: woocommerce-germanized-dhl/src/Api/ImWarenpostIntRest.php:190
+#: woocommerce-germanized-dhl/src/Api/ImWarenpostIntRest.php:192
 msgctxt "dhl"
 msgid "Error while authenticating user."
 msgstr "Fehler beim Autorisieren des Benutzers."
 
-#: woocommerce-germanized-dhl/src/Api/ImWarenpostIntRest.php:276
+#: woocommerce-germanized-dhl/src/Api/ImWarenpostIntRest.php:278
 msgctxt "dhl"
 msgid "Error during Warenpost International request."
 msgstr "Fehler beim Aufruf der Warenpost International API."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized-dhl/src/Api/ImWarenpostIntRest.php:294
+#: woocommerce-germanized-dhl/src/Api/ImWarenpostIntRest.php:296
 #, php-format
 msgctxt "dhl"
 msgid "Error during request: %s"
@@ -2183,13 +2178,14 @@ msgstr ""
 "Fehler beim Kauf des Labels. Bitte <a href=\"%s\">aktualisiere</a>die "
 "Produktliste manuell und versuche es erneut."
 
-#: woocommerce-germanized-dhl/src/Api/Internetmarke.php:733
-#: woocommerce-germanized-dhl/src/Api/Internetmarke.php:761
+#: woocommerce-germanized-dhl/src/Api/Internetmarke.php:734
+#: woocommerce-germanized-dhl/src/Api/Internetmarke.php:741
+#: woocommerce-germanized-dhl/src/Api/Internetmarke.php:769
 msgctxt "dhl"
 msgid "Error while downloading the PDF stamp."
 msgstr "Fehler beim Download des PDF Labels."
 
-#: woocommerce-germanized-dhl/src/Api/Internetmarke.php:768
+#: woocommerce-germanized-dhl/src/Api/Internetmarke.php:776
 msgctxt "dhl"
 msgid "Invalid stamp response."
 msgstr "Fehlerhafte Label Rückmeldung."
@@ -2942,8 +2938,8 @@ msgstr "Löschen"
 #: woocommerce-germanized-shipments/includes/admin/views/html-order-shipment-list.php:22
 #: woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:76
 #: woocommerce-germanized-shipments/src/Admin/Admin.php:75
-#: woocommerce-germanized-shipments/src/Admin/Admin.php:504
-#: woocommerce-germanized-shipments/src/Admin/Admin.php:625
+#: woocommerce-germanized-shipments/src/Admin/Admin.php:509
+#: woocommerce-germanized-shipments/src/Admin/Admin.php:630
 #: woocommerce-germanized-shipments/src/Admin/Settings.php:80
 #: woocommerce-germanized-shipments/src/Admin/Settings.php:177
 #: woocommerce-germanized-shipments/templates/myaccount/order-shipments.php:36
@@ -2973,10 +2969,10 @@ msgstr "%s #%s"
 # @ woocommerce-germanized
 #: woocommerce-germanized-shipments/includes/admin/views/html-order-shipments.php:19
 #: woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:69
-#: woocommerce-germanized-shipments/src/Admin/Admin.php:434
-#: woocommerce-germanized-shipments/src/Admin/Admin.php:503
-#: woocommerce-germanized-shipments/src/Admin/Admin.php:591
-#: woocommerce-germanized-shipments/src/Admin/Admin.php:658
+#: woocommerce-germanized-shipments/src/Admin/Admin.php:439
+#: woocommerce-germanized-shipments/src/Admin/Admin.php:508
+#: woocommerce-germanized-shipments/src/Admin/Admin.php:596
+#: woocommerce-germanized-shipments/src/Admin/Admin.php:663
 #: woocommerce-germanized-shipments/templates/myaccount/order-shipments.php:20
 msgctxt "shipments"
 msgid "Shipments"
@@ -3014,7 +3010,7 @@ msgstr "Titel"
 
 # @ woocommerce-germanized
 #: woocommerce-germanized-shipments/includes/admin/views/html-settings-provider-list.php:12
-#: woocommerce-germanized-shipments/src/Admin/Admin.php:311
+#: woocommerce-germanized-shipments/src/Admin/Admin.php:316
 #: woocommerce-germanized-shipments/src/ShippingProvider.php:564
 msgctxt "shipments"
 msgid "Description"
@@ -3071,7 +3067,7 @@ msgid "Download"
 msgstr "Download"
 
 #: woocommerce-germanized-shipments/includes/admin/views/label/html-shipment-label.php:39
-#: woocommerce-germanized-shipments/src/Admin/Admin.php:717
+#: woocommerce-germanized-shipments/src/Admin/Admin.php:722
 msgctxt "shipments"
 msgid "Create new label"
 msgstr "Neues Label erstellen"
@@ -3487,24 +3483,24 @@ msgstr "Bestellung ansehen"
 
 # @ woocommerce-germanized
 #: woocommerce-germanized-shipments/src/Admin/Admin.php:106
-#: woocommerce-germanized-shipments/src/Admin/Admin.php:236
+#: woocommerce-germanized-shipments/src/Admin/Admin.php:241
 #: woocommerce-germanized-shipments/templates/myaccount/add-return-shipment.php:36
 msgctxt "shipments"
 msgid "Reason"
 msgstr "Rücksendegrund"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized-shipments/src/Admin/Admin.php:228
+#: woocommerce-germanized-shipments/src/Admin/Admin.php:233
 msgctxt "shipments"
 msgid "Return reasons"
 msgstr "Rücksendegründe"
 
-#: woocommerce-germanized-shipments/src/Admin/Admin.php:235
+#: woocommerce-germanized-shipments/src/Admin/Admin.php:240
 msgctxt "shipments"
 msgid "Reason code"
 msgstr "Rücksendegrund (Code)"
 
-#: woocommerce-germanized-shipments/src/Admin/Admin.php:235
+#: woocommerce-germanized-shipments/src/Admin/Admin.php:240
 msgctxt "shipments"
 msgid "The reason code is used to identify the reason."
 msgstr ""
@@ -3512,61 +3508,61 @@ msgstr ""
 "identifizieren zu können."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized-shipments/src/Admin/Admin.php:236
+#: woocommerce-germanized-shipments/src/Admin/Admin.php:241
 msgctxt "shipments"
 msgid "Choose a reason text."
 msgstr "Beschreibung für den Grund."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized-shipments/src/Admin/Admin.php:255
+#: woocommerce-germanized-shipments/src/Admin/Admin.php:260
 msgctxt "shipments"
 msgid "+ Add reason"
 msgstr "+ Grund hinzufügen"
 
-#: woocommerce-germanized-shipments/src/Admin/Admin.php:255
+#: woocommerce-germanized-shipments/src/Admin/Admin.php:260
 msgctxt "shipments"
 msgid "Remove selected reason(s)"
 msgstr "Ausgewählte Gründe löschen"
 
-#: woocommerce-germanized-shipments/src/Admin/Admin.php:288
+#: woocommerce-germanized-shipments/src/Admin/Admin.php:293
 msgctxt "shipments"
 msgid "Available Packaging"
 msgstr "Verfügbare Verpackungen"
 
-#: woocommerce-germanized-shipments/src/Admin/Admin.php:311
+#: woocommerce-germanized-shipments/src/Admin/Admin.php:316
 msgctxt "shipments"
 msgid "A description to help you identify the packaging."
 msgstr "Eine Beschreibung die dir dabei hilft Verpackungen zu identifizieren."
 
-#: woocommerce-germanized-shipments/src/Admin/Admin.php:312
+#: woocommerce-germanized-shipments/src/Admin/Admin.php:317
 msgctxt "shipments"
 msgid "Type"
 msgstr "Typ"
 
-#: woocommerce-germanized-shipments/src/Admin/Admin.php:313
+#: woocommerce-germanized-shipments/src/Admin/Admin.php:318
 #, php-format
 msgctxt "shipments"
 msgid "Weight (%s)"
 msgstr "Gewicht (%s)"
 
-#: woocommerce-germanized-shipments/src/Admin/Admin.php:313
+#: woocommerce-germanized-shipments/src/Admin/Admin.php:318
 msgctxt "shipments"
 msgid "The weight of the packaging."
 msgstr "Das Gewicht der Verpackung."
 
-#: woocommerce-germanized-shipments/src/Admin/Admin.php:314
+#: woocommerce-germanized-shipments/src/Admin/Admin.php:319
 #, php-format
 msgctxt "shipments"
 msgid "Dimensions (LxWxH, %s)"
 msgstr "Abmessungen (LxBxH, %s)"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized-shipments/src/Admin/Admin.php:315
+#: woocommerce-germanized-shipments/src/Admin/Admin.php:320
 msgctxt "shipments"
 msgid "Max weight (kg)"
 msgstr "Max. Gewicht (kg)"
 
-#: woocommerce-germanized-shipments/src/Admin/Admin.php:315
+#: woocommerce-germanized-shipments/src/Admin/Admin.php:320
 msgctxt "shipments"
 msgid ""
 "The maximum weight this packaging can hold. Leave empty to not restrict "
@@ -3575,68 +3571,68 @@ msgstr ""
 "Das maximale Gewicht, das diese Verpackung tragen kann. Leer lassen um das "
 "Gewicht nicht zu begrenzen."
 
-#: woocommerce-germanized-shipments/src/Admin/Admin.php:340
-#: woocommerce-germanized-shipments/src/Admin/Admin.php:381
+#: woocommerce-germanized-shipments/src/Admin/Admin.php:345
+#: woocommerce-germanized-shipments/src/Admin/Admin.php:386
 msgctxt "shipments"
 msgid "Length"
 msgstr "Länge"
 
-#: woocommerce-germanized-shipments/src/Admin/Admin.php:341
-#: woocommerce-germanized-shipments/src/Admin/Admin.php:382
+#: woocommerce-germanized-shipments/src/Admin/Admin.php:346
+#: woocommerce-germanized-shipments/src/Admin/Admin.php:387
 msgctxt "shipments"
 msgid "Width"
 msgstr "Breite"
 
-#: woocommerce-germanized-shipments/src/Admin/Admin.php:342
-#: woocommerce-germanized-shipments/src/Admin/Admin.php:383
+#: woocommerce-germanized-shipments/src/Admin/Admin.php:347
+#: woocommerce-germanized-shipments/src/Admin/Admin.php:388
 msgctxt "shipments"
 msgid "Height"
 msgstr "Höhe"
 
-#: woocommerce-germanized-shipments/src/Admin/Admin.php:355
+#: woocommerce-germanized-shipments/src/Admin/Admin.php:360
 msgctxt "shipments"
 msgid "+ Add packaging"
 msgstr "+ Verpackung hinzufügen"
 
-#: woocommerce-germanized-shipments/src/Admin/Admin.php:355
+#: woocommerce-germanized-shipments/src/Admin/Admin.php:360
 msgctxt "shipments"
 msgid "Remove selected packaging"
 msgstr "Ausgewählte Verpackung löschen"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized-shipments/src/Admin/Admin.php:488
+#: woocommerce-germanized-shipments/src/Admin/Admin.php:493
 msgctxt "shipments"
 msgid "Create shipments"
 msgstr "Sendungen erstellen"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized-shipments/src/Admin/Admin.php:603
+#: woocommerce-germanized-shipments/src/Admin/Admin.php:608
 msgctxt "shipments"
 msgid "Search shipments"
 msgstr "Sendungen suchen"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized-shipments/src/Admin/Admin.php:637
+#: woocommerce-germanized-shipments/src/Admin/Admin.php:642
 msgctxt "shipments"
 msgid "Search returns"
 msgstr "Retouren suchen"
 
-#: woocommerce-germanized-shipments/src/Admin/Admin.php:710
+#: woocommerce-germanized-shipments/src/Admin/Admin.php:715
 msgctxt "shipments"
 msgid "Do you really want to delete the shipment?"
 msgstr "Möchtest du die Sendung wirklich löschen?"
 
-#: woocommerce-germanized-shipments/src/Admin/Admin.php:716
+#: woocommerce-germanized-shipments/src/Admin/Admin.php:721
 msgctxt "shipments"
 msgid "Do you really want to delete the label?"
 msgstr "Möchtest du das Label wirklich löschen?"
 
-#: woocommerce-germanized-shipments/src/Admin/Admin.php:718
+#: woocommerce-germanized-shipments/src/Admin/Admin.php:723
 msgctxt "shipments"
 msgid "Please save the shipment before creating a new label"
 msgstr "Bitte speichere die Sendung bevor du ein neues Label erzeugst"
 
-#: woocommerce-germanized-shipments/src/Admin/Admin.php:768
+#: woocommerce-germanized-shipments/src/Admin/Admin.php:773
 msgctxt "shipments"
 msgid ""
 "Do you really want to delete the shipping provider? Some of your existing "
@@ -4624,20 +4620,45 @@ msgstr ""
 "Es gab ein Problem beim Erstellen der Rücksendung. Bitte kontaktiere uns für "
 "weitere Informationen."
 
-#: woocommerce-germanized-shipments/src/Install.php:28
+#: woocommerce-germanized-shipments/src/Install.php:31
 msgctxt "shipments"
 msgid "Wrong product or size ordered"
 msgstr "Falsches Produkt oder Größe bestellt"
 
-#: woocommerce-germanized-shipments/src/Install.php:33
+#: woocommerce-germanized-shipments/src/Install.php:36
 msgctxt "shipments"
 msgid "Product no longer needed"
 msgstr "Produkt wird nicht länger benötigt"
 
-#: woocommerce-germanized-shipments/src/Install.php:38
+#: woocommerce-germanized-shipments/src/Install.php:41
 msgctxt "shipments"
 msgid "Don't like the look"
 msgstr "Optik nicht wie erwartet"
+
+#: woocommerce-germanized-shipments/src/Install.php:60
+msgctxt "shipments"
+msgid "Cardboard S"
+msgstr "Karton S"
+
+#: woocommerce-germanized-shipments/src/Install.php:69
+msgctxt "shipments"
+msgid "Cardboard M"
+msgstr "Karton M"
+
+#: woocommerce-germanized-shipments/src/Install.php:78
+msgctxt "shipments"
+msgid "Cardboard L"
+msgstr "Karton L"
+
+#: woocommerce-germanized-shipments/src/Install.php:87
+msgctxt "shipments"
+msgid "Letter C5/6"
+msgstr "Brief C5/6"
+
+#: woocommerce-germanized-shipments/src/Install.php:96
+msgctxt "shipments"
+msgid "Letter C4"
+msgstr "Brief C4"
 
 # @ woocommerce-germanized
 #: woocommerce-germanized-shipments/src/Package.php:97
@@ -6255,6 +6276,7 @@ msgid "Upgrade now"
 msgstr "Jetzt upgraden"
 
 #: woocommerce-germanized/includes/admin/settings/abstract-wc-gzd-settings-tab.php:152
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-dhl.php:35
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-invoices.php:61
 msgid "Learn more"
 msgstr "Mehr erfahren"
@@ -6275,7 +6297,7 @@ msgstr ""
 
 # @ woocommerce-germanized
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-pointers.php:92
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:773
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:785
 msgid "Status"
 msgstr "Status"
 
@@ -6559,7 +6581,7 @@ msgstr ""
 "Checkbox bearbeiten indem du auf den Link klickst."
 
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-checkboxes.php:62
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:809
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:821
 msgid "Label"
 msgstr "Beschriftung"
 
@@ -6634,7 +6656,7 @@ msgstr ""
 "Erzeuge bequem Post & DHL Labels zu Sendungen und Retouren über dein Admin-"
 "Panel."
 
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-dhl.php:30
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-dhl.php:44
 msgid "Post & DHL"
 msgstr "Post & DHL"
 
@@ -6791,7 +6813,7 @@ msgstr ""
 #: woocommerce-germanized/includes/api/class-wc-gzd-rest-orders-controller.php:138
 #: woocommerce-germanized/includes/api/class-wc-gzd-rest-orders-controller.php:145
 #: woocommerce-germanized/includes/class-wc-gzd-checkout.php:553
-#: woocommerce-germanized/includes/class-wc-gzd-checkout.php:564
+#: woocommerce-germanized/includes/class-wc-gzd-checkout.php:566
 #: woocommerce-germanized/includes/class-wc-gzd-customer-helper.php:131
 #: woocommerce-germanized/includes/class-wc-gzd-customer-helper.php:139
 msgid "Title"
@@ -7257,7 +7279,7 @@ msgstr ""
 "Platzhalter für den höchsten Preis."
 
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-general.php:294
-#: woocommerce-germanized/includes/wc-gzd-core-functions.php:860
+#: woocommerce-germanized/includes/wc-gzd-core-functions.php:861
 msgid "{min_price} &ndash; {max_price}"
 msgstr "{min_price} &ndash; {max_price}"
 
@@ -8131,14 +8153,14 @@ msgstr ""
 # @ woocommerce-germanized
 #: woocommerce-germanized/includes/admin/settings/views/html-admin-page-checkboxes.php:11
 #: woocommerce-germanized/includes/admin/settings/views/html-admin-settings-tabs.php:27
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:781
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:793
 msgid "Name"
 msgstr "Name"
 
 # @ woocommerce-germanized
 #: woocommerce-germanized/includes/admin/settings/views/html-admin-page-checkboxes.php:12
 #: woocommerce-germanized/includes/admin/settings/views/html-admin-settings-tabs.php:29
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:800
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:812
 #: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:888
 #: woocommerce-germanized/includes/gateways/invoice/class-wc-gzd-gateway-invoice.php:124
 msgid "Description"
@@ -8151,7 +8173,7 @@ msgstr "Aktiviert"
 
 # @ woocommerce-germanized
 #: woocommerce-germanized/includes/admin/settings/views/html-admin-page-checkboxes.php:14
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:837
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:849
 msgid "Mandatory"
 msgstr "Pflichtfeld"
 
@@ -8846,14 +8868,14 @@ msgstr ""
 "differenzbesteuerten Produkten gekauft werden."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-checkout.php:788
+#: woocommerce-germanized/includes/class-wc-gzd-checkout.php:790
 #: woocommerce-germanized/includes/class-wc-gzd-revocation.php:52
-#: woocommerce-germanized/includes/wc-gzd-core-functions.php:603
+#: woocommerce-germanized/includes/wc-gzd-core-functions.php:604
 msgid "Mr."
 msgstr "Herr"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-checkout.php:789
+#: woocommerce-germanized/includes/class-wc-gzd-checkout.php:791
 msgctxt "customer-title-male-address"
 msgid "Mr."
 msgstr "Herrn"
@@ -9279,12 +9301,18 @@ msgstr "Kontrolliere bitte %s. Hier fehlt eine Einwilligung."
 msgid "Checkbox with name %s does already exist."
 msgstr "Eine Checkbox mit dem Namen %s existiert bereits."
 
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:344
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:364
+#, php-format
+msgid "%s is a mandatory field."
+msgstr "%s ist ein Pflichtfeld."
+
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:776
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:788
 msgid "Enable checkbox"
 msgstr "Checkbox aktivieren"
 
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:785
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:797
 msgid ""
 "Choose a name to identify your checkbox. Upon creating a new checkbox, this "
 "value is being used to generate the Id."
@@ -9292,11 +9320,11 @@ msgstr ""
 "Wähle einen Namen aus, um deine Checkbox zu identifizieren. Bei Erstellung "
 "einer neuen Checkbox wird dieser Wert verwendet um eine Id zu erstellen."
 
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:790
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:802
 msgid "Id"
 msgstr "Id"
 
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:794
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:806
 msgid ""
 "The checkbox Id is the unique indentifier which is used to identify the "
 "checkbox within the code. Cannot be edited after creating the checkbox."
@@ -9305,25 +9333,25 @@ msgstr ""
 "Code heraus zugreifbar zu machen. Kann nach dem Erstellen einer Checkbox "
 "nicht mehr verändert werden."
 
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:803
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:815
 msgid "Describe the use case of your checkbox."
 msgstr "Beschreibe hier den Use-Case deiner Checkbox."
 
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:813
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:825
 msgid "Choose a label to be inserted next to the checkbox."
 msgstr "Wähle eine Beschriftung aus, die neben der Checkbox platziert wird."
 
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:814
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:824
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:826
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:836
 #, php-format
 msgid "You may use one of the following placeholders within the text: %s"
 msgstr "Du kannst einen der folgenden Platzhalter in deinem Text verwenden: %s"
 
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:819
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:831
 msgid "Error Message"
 msgstr "Fehlermeldung"
 
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:823
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:835
 msgid ""
 "Choose an error message to be shown when the user has not confirmed the "
 "checkbox."
@@ -9332,25 +9360,25 @@ msgstr ""
 "die Checkbox nicht bestätigt hat."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:829
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:841
 msgid "Hide input"
 msgstr "Ausblenden"
 
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:832
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:844
 msgid "Do only show a label and hide the actual checkbox."
 msgstr ""
 "Zeige lediglich die Beschriftung und entferne die eigentliche Checkbox."
 
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:840
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:852
 msgid "Mark the checkbox as mandatory."
 msgstr "Checkbox zum Pflichtfeld machen."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:845
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:857
 msgid "Locations"
 msgstr "Orte"
 
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:849
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:861
 msgid "Choose where to display your checkbox."
 msgstr "Wähle einen Ort aus, an dem die Checkbox platziert werden soll."
 
@@ -9627,8 +9655,8 @@ msgstr "Anrede"
 
 # @ woocommerce-germanized
 #: woocommerce-germanized/includes/class-wc-gzd-revocation.php:53
-#: woocommerce-germanized/includes/wc-gzd-core-functions.php:604
-#: woocommerce-germanized/includes/wc-gzd-core-functions.php:622
+#: woocommerce-germanized/includes/wc-gzd-core-functions.php:605
+#: woocommerce-germanized/includes/wc-gzd-core-functions.php:623
 msgid "Ms."
 msgstr "Frau"
 
@@ -10493,8 +10521,15 @@ msgstr "Datenschutzerklärung"
 msgid "%s%% VAT"
 msgstr "%s %% MwSt."
 
-#: woocommerce-germanized/includes/wc-gzd-core-functions.php:605
-#: woocommerce-germanized/includes/wc-gzd-core-functions.php:629
+# @ woocommerce-germanized
+#: woocommerce-germanized/includes/wc-gzd-core-functions.php:603
+#: woocommerce-germanized/includes/wc-gzd-core-functions.php:630
+msgctxt "title-option"
+msgid "None"
+msgstr "Keine"
+
+#: woocommerce-germanized/includes/wc-gzd-core-functions.php:606
+#: woocommerce-germanized/includes/wc-gzd-core-functions.php:630
 msgid "Mx"
 msgstr "Divers"
 
@@ -10883,7 +10918,7 @@ msgstr ""
 "Bitte <a href=\"%s\">deaktiviere</a> das Plugin und lerne in unserem <a href="
 "\"%s\" target=\"_blank\">Blog-Post</a> wie du das Plugin austauschen kannst."
 
-#: woocommerce-germanized/woocommerce-germanized.php:1006
+#: woocommerce-germanized/woocommerce-germanized.php:1008
 msgid "Pease wait while we are trying to redirect you to the payment provider."
 msgstr "Einen Moment - wir versuchen dich zum Zahlungsanbieter weiterzuleiten."
 
@@ -12118,6 +12153,11 @@ msgstr "vendidero"
 #. Author URI of the plugin/theme
 msgid "https://vendidero.de"
 msgstr "https://vendidero.de"
+
+# @ woocommerce-germanized
+#~ msgctxt "dhl"
+#~ msgid "General"
+#~ msgstr "Allgemein"
 
 #, fuzzy
 #~| msgctxt "dhl"
