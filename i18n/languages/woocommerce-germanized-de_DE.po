@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: WooCommerce Germanized\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-12-07 11:55+0100\n"
-"PO-Revision-Date: 2020-12-07 11:56+0100\n"
+"PO-Revision-Date: 2020-12-07 15:49+0100\n"
 "Last-Translator: holzhannes <holzhannes@posteo.de>\n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -1964,7 +1964,7 @@ msgstr "Der Minimalbetrag beträgt %s"
 #: woocommerce-germanized-dhl/src/Admin/Settings.php:1434
 msgctxt "dhl"
 msgid "Not yet a customer?"
-msgstr "Noch kein Geschäftskunde?"
+msgstr "Noch kein Kunde?"
 
 #: woocommerce-germanized-dhl/src/Admin/Settings.php:1462
 msgctxt "dhl"
