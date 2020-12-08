@@ -4,7 +4,7 @@ Tags: woocommerce, woocommerce german, woocommerce DE, woocommerce germany, wooc
 Requires at least: 5.4
 Tested up to: 5.6
 WC requires at least: 3.9
-WC tested up to: 4.7
+WC tested up to: 4.8
 Stable tag: 3.3.0
 Requires PHP: 5.6
 License: GPLv3
@@ -190,6 +190,7 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 * Feature: Deutsche Post Internetmarke integration
 * Feature: Packaging options for shipments
 * Feature: Recalculate unit price via AJAX in case price HTML changes
+* Feature: Woo 4.8 compatibility
 * Improvement: Added gender neutral title option and empty option
 * Improvement: Net price voucher tax calculation
 * Improvement: Explicitly exclude admins from possible account cleanup
