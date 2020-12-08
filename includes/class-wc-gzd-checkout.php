@@ -546,7 +546,7 @@ class WC_GZD_Checkout {
 	}
 
 	public function init_fields() {
-		if ( 'yes' === get_option( 'woocommerce_gzd_checkout_address_field' ) ) {
+		if ( WC_GZD_Customer_Helper::instance()->is_customer_title_enabled() ) {
 			$this->custom_fields['title'] = array(
 				'type'     => 'select',
 				'required' => false,

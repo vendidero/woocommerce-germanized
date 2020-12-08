@@ -250,14 +250,14 @@ class WC_GZD_Admin_Welcome {
 
                 <div class="three-col columns">
                     <div class="col">
-                        <h4><span class="dashicons dashicons-cart"></span> Verpackungen</h4>
+                        <h4><span class="dashicons dashicons-archive"></span> Verpackungen</h4>
                         <p>
                             Mit Germanized 3.3 kannst du zu deinen Sendungen jetzt flexibel Verpackungsmaterial hinzufügen
                             und damit das Gesamtgewicht der Sendungen (das z.B. für die Label-Erstellung benötigt wird) besser verwalten.
                         </p>
                     </div>
                     <div class="col">
-                        <h4><span class="dashicons dashicons-admin-appearance"></span> Grundpreisberechnung</h4>
+                        <h4><span class="dashicons dashicons-admin-generic"></span> Grundpreisberechnung</h4>
                         <p>
                             Um Staffelpreise oder Rollen-basierte-Preise besser zu unterstützen, aktualisiert
                             Germanized nun automatisch den Grundpreis wenn sich auf der Produktseite der Preis ändert

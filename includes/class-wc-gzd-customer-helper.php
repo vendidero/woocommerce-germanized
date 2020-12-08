@@ -39,6 +39,9 @@ class WC_GZD_Customer_Helper {
 		add_filter( 'woocommerce_customer_meta_fields', array( $this, 'profile_field_title' ), 10, 1 );
 		add_filter( 'woocommerce_ajax_get_customer_details', array( $this, 'load_customer_fields' ), 10, 3 );
 
+		// Add Title to formatted my account address
+		add_filter( 'woocommerce_my_account_my_address_formatted_address', array( $this, 'set_user_address' ), 10, 3 );
+
 		if ( $this->is_double_opt_in_enabled() ) {
 
 			// Check for customer activation
@@ -85,8 +88,21 @@ class WC_GZD_Customer_Helper {
 		}
 	}
 
-	public function load_customer_fields( $data, $customer, $user_id ) {
+	public function is_customer_title_enabled() {
+		return 'yes' === get_option( 'woocommerce_gzd_checkout_address_field' );
+	}
 
+	public function set_user_address( $address, $customer_id, $type ) {
+		if ( ! $this->is_customer_title_enabled() ) {
+			return $address;
+		}
+
+		$address['title'] = wc_gzd_get_customer_title( get_user_meta( $customer_id, $type . '_title', true ) );
+
+		return $address;
+	}
+
+	public function load_customer_fields( $data, $customer, $user_id ) {
 		$fields = WC_GZD_Checkout::instance()->custom_fields_admin;
 
 		if ( is_array( $fields ) ) {
@@ -123,7 +139,7 @@ class WC_GZD_Customer_Helper {
 
 	public function profile_field_title( $fields ) {
 
-		if ( get_option( 'woocommerce_gzd_checkout_address_field' ) !== 'yes' ) {
+		if ( ! $this->is_customer_title_enabled() ) {
 			return $fields;
 		}
 

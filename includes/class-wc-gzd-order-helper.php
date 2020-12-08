@@ -234,7 +234,7 @@ class WC_GZD_Order_Helper {
 	}
 
 	public function add_order_address_data( $data, $type, $order ) {
-		if ( 'yes' === get_option( 'woocommerce_gzd_checkout_address_field' ) ) {
+		if ( WC_GZD_Customer_Helper::instance()->is_customer_title_enabled() ) {
 			if ( $this->order_address_enable_customer_title( $data ) && ( $title = wc_gzd_get_order_customer_title( $order, $type ) ) ) {
 				$data['title'] = $title;
 			}
@@ -250,7 +250,7 @@ class WC_GZD_Order_Helper {
 	 * @return mixed
 	 */
 	public function set_formatted_billing_address( $fields, $order ) {
-		if ( 'yes' !== get_option( 'woocommerce_gzd_checkout_address_field' ) ) {
+		if ( ! WC_GZD_Customer_Helper::instance()->is_customer_title_enabled() ) {
 			return $fields;
 		}
 
@@ -277,7 +277,7 @@ class WC_GZD_Order_Helper {
 			return $fields;
 		}
 
-		if ( 'yes' !== get_option( 'woocommerce_gzd_checkout_address_field' ) ) {
+		if ( ! WC_GZD_Customer_Helper::instance()->is_customer_title_enabled() ) {
 			return $fields;
 		}
 
