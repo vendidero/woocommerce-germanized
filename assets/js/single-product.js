@@ -29,7 +29,7 @@ window.germanized = window.germanized || {};
                 }
             }
 
-            $( self.params.wrapper + ' ' + self.params.price_selector + ':not(.price-unit):visible' ).bind( 'DOMSubtreeModified', self.onChangePrice );
+            $( self.params.wrapper + ' ' + self.params.price_selector + ':not(.price-unit):visible' ).on( 'DOMSubtreeModified', self.onChangePrice );
 
             /**
              * Maybe update variationId to make sure we are transmitting the
@@ -60,6 +60,7 @@ window.germanized = window.germanized || {};
         },
 
         onChangePrice: function( event ) {
+
             /**
              * Need to use a tweak here to make sure our variation listener
              * has already adjusted the variationId (in case necessary).
@@ -70,31 +71,46 @@ window.germanized = window.germanized || {};
 
                 event.preventDefault();
 
-                /**
-                 * Unbind the event because using :first selectors will trigger DOMSubtreeModified again (infinite loop)
-                 */
-                $( self.params.wrapper + ' ' + self.params.price_selector + ':not(.price-unit):visible' ).unbind( 'DOMSubtreeModified', self.onChangePrice );
+                if ( $price.length > 0 ) {
+                    /**
+                     * Unbind the event because using :first selectors will trigger DOMSubtreeModified again (infinite loop)
+                     */
+                    $( self.params.wrapper + ' ' + self.params.price_selector + ':not(.price-unit):visible' ).off( 'DOMSubtreeModified', self.onChangePrice );
 
-                var $unit_price = $price.parents( self.params.wrapper ).find( '.price-unit:first' ),
-                    price       = accounting.unformat( $price.find( '.amount:first' ).text() ),
-                    sale_price  = '';
+                    var $unit_price = $price.parents( self.params.wrapper ).find( '.price-unit:first' ),
+                        price       = self.getRawPrice( $price.find( '.amount:first' ) ),
+                        sale_price  = '';
 
-                /**
-                 * Is sale?
-                 */
-                if ( $price.find( '.amount' ).length > 1 ) {
-                    sale_price = accounting.unformat( $price.find( '.amount:last' ).text() );
+                    /**
+                     * Is sale?
+                     */
+                    if ( $price.find( '.amount' ).length > 1 ) {
+                        sale_price = self.getRawPrice( $price.find( '.amount:last' ) );
+                    }
+
+                    if ( $unit_price.length > 0 && price ) {
+                        self.refreshUnitPrice( price, $unit_price, sale_price );
+                    }
+
+                    /**
+                     * Rebind the event
+                     */
+                    $( self.params.wrapper + ' ' + self.params.price_selector + ':not(.price-unit):visible' ).on( 'DOMSubtreeModified', self.onChangePrice );
                 }
-
-                if ( $unit_price.length > 0 && price ) {
-                    self.refreshUnitPrice( price, $unit_price, sale_price );
-                }
-
-                /**
-                 * Rebind the event
-                 */
-                $( self.params.wrapper + ' ' + self.params.price_selector + ':not(.price-unit):visible' ).bind( 'DOMSubtreeModified', self.onChangePrice );
             }, 500 );
+        },
+
+        getRawPrice: function( $el ) {
+            var price_raw = $el.length > 0 ? $el.text() : '',
+                price     = false;
+
+            try {
+                price = accounting.unformat( price_raw );
+            } catch (e) {
+                price = false;
+            }
+
+            return price;
         },
 
         refreshUnitPrice: function( price, $unit_price, sale_price ) {
