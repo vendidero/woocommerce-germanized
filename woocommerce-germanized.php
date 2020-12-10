@@ -331,7 +331,11 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 		 * @param $note_id
 		 */
 		public function on_update_admin_note( $note_id ) {
-			$note = new \Automattic\WooCommerce\Admin\Notes\WC_Admin_Note( $note_id );
+			if ( class_exists( '\Automattic\WooCommerce\Admin\Notes\Note' ) ) {
+				$note = new \Automattic\WooCommerce\Admin\Notes\Note( $note_id );
+			} else {
+				$note = new \Automattic\WooCommerce\Admin\Notes\WC_Admin_Note( $note_id );
+			}
 
 			if ( $note ) {
 				if ( strpos( $note->get_name(), 'wc-gzd-admin-' ) !== false ) {
