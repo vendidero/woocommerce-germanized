@@ -15,20 +15,6 @@ window.germanized = window.germanized || {};
             self.params    = wc_gzd_single_product_params;
             self.productId = self.params.product_id;
 
-            /**
-             * Setup accounting jQuery script
-             */
-            accounting.settings = {
-                currency: {
-                    decimal : self.params.price_decimal_sep,
-                    thousand: self.params.price_thousand_sep,
-                },
-                number: {
-                    decimal : self.params.price_decimal_sep,
-                    thousand: self.params.price_thousand_sep,
-                }
-            }
-
             $( self.params.wrapper + ' ' + self.params.price_selector + ':not(.price-unit):visible' ).on( 'DOMSubtreeModified', self.onChangePrice );
 
             /**
@@ -101,11 +87,12 @@ window.germanized = window.germanized || {};
         },
 
         getRawPrice: function( $el ) {
-            var price_raw = $el.length > 0 ? $el.text() : '',
+            var self      = germanized.single_product,
+                price_raw = $el.length > 0 ? $el.text() : '',
                 price     = false;
 
             try {
-                price = accounting.unformat( price_raw );
+                price = accounting.unformat( price_raw, self.params.price_decimal_sep );
             } catch (e) {
                 price = false;
             }

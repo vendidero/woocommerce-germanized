@@ -37,6 +37,11 @@ class WC_GZD_Emails {
 
 		if ( wc_gzd_send_instant_order_confirmation() ) {
 
+			/**
+			 * Support WooCommerce Gutenberg checkout block
+			 */
+			add_action( '__experimental_woocommerce_blocks_checkout_order_processed', array( $this, 'confirm_order' ) );
+
 			// Send order notice directly after new order is being added - use these filters because order status has to be updated already
 			add_filter( 'woocommerce_payment_successful_result', array(
 				$this,
@@ -619,15 +624,16 @@ class WC_GZD_Emails {
 	}
 
 	/**
-	 * Send order confirmation mail directly after order is being sent
-	 *
-	 * @param mixed $return
-	 * @param mixed $order
+	 * @param WC_Order $order
 	 */
-	public function send_order_confirmation_mails( $result, $order ) {
+	public function confirm_order( $order ) {
 
 		if ( ! is_object( $order ) ) {
 			$order = wc_get_order( $order );
+		}
+
+		if ( ! $order ) {
+			return;
 		}
 
 		/**
@@ -651,7 +657,7 @@ class WC_GZD_Emails {
 		 *
 		 */
 		if ( ! apply_filters( 'woocommerce_germanized_send_instant_order_confirmation', true, $order ) ) {
-			return $result;
+			return;
 		}
 
 		/**
@@ -682,6 +688,16 @@ class WC_GZD_Emails {
 				WC()->cart->empty_cart();
 			}
 		}
+	}
+
+	/**
+	 * Send order confirmation mail directly after order is being sent
+	 *
+	 * @param mixed $return
+	 * @param mixed $order
+	 */
+	public function send_order_confirmation_mails( $result, $order ) {
+		$this->confirm_order( $order );
 
 		return $result;
 	}

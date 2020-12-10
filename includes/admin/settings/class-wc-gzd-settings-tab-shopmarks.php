@@ -24,6 +24,10 @@ class WC_GZD_Settings_Tab_Shopmarks extends WC_GZD_Settings_Tab {
 		return __( 'Shopmarks', 'woocommerce-germanized' );
 	}
 
+	public function get_help_link() {
+		return 'https://vendidero.de/dokumentation/woocommerce-germanized/preisauszeichnung';
+	}
+
 	public function get_name() {
 		return 'shopmarks';
 	}
