@@ -5,7 +5,7 @@ Requires at least: 5.4
 Tested up to: 5.6
 WC requires at least: 3.9
 WC tested up to: 4.8
-Stable tag: 3.3.0
+Stable tag: 3.3.1
 Requires PHP: 5.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -186,6 +186,13 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 6. Edit pdf documents (Pro)
 
 == Changelog ==
+= 3.3.1 =
+* Fix: DHL retoure label
+* Fix: Shipments namespace exception in item data store
+* Fix: Deprecated WC_Admin_Note usage
+* Improvement: Woo blocks gutenberg checkout support
+* Improvement: Error catch in case SOAP request throws error for IM
+
 = 3.3.0 =
 * Feature: Deutsche Post Internetmarke integration
 * Feature: Packaging options for shipments
