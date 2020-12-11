@@ -191,6 +191,18 @@ class WC_GZD_AJAX {
 		wp_send_json( $terms );
 	}
 
+	/**
+	 * @param $price
+	 * @param WC_Product $product
+	 */
+	protected static function get_price_excluding_tax( $price, $product ) {
+		$tax_rates      = WC_Tax::get_rates( $product->get_tax_class() );
+		$remove_taxes   = WC_Tax::calc_tax( $price, $tax_rates, true );
+		$price          = $price - array_sum( $remove_taxes ); // Unrounded since we're dealing with tax inclusive prices. Matches logic in cart-totals class. @see adjust_non_base_location_price.
+
+		return $price;
+	}
+
 	public static function gzd_refresh_unit_price() {
 		check_ajax_referer( 'wc-gzd-refresh-unit-price', 'security' );
 
@@ -204,6 +216,18 @@ class WC_GZD_AJAX {
 
 		if ( ! $product = wc_gzd_get_product( $product_id ) ) {
 			wp_send_json( array( 'result' => 'failure' ) );
+		}
+
+		/**
+		 * In case net prices are used and prices are being shown including tax
+		 * we will need to manually remove taxes from price before recalculating the unit price.
+		 */
+		if ( wc_tax_enabled() && ! wc_prices_include_tax() && 'incl' === get_option( 'woocommerce_tax_display_shop' ) ) {
+			$price = self::get_price_excluding_tax( $price, $product->get_wc_product() );
+
+			if ( ! empty( $price_sale ) ) {
+				$price_sale = self::get_price_excluding_tax( $price_sale, $product->get_wc_product() );
+			}
 		}
 
 		$args = array(

@@ -190,6 +190,7 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 * Fix: DHL retoure label
 * Fix: Shipments namespace exception in item data store
 * Fix: Deprecated WC_Admin_Note usage
+* Improvement: Unit price recalculation for net prices
 * Improvement: Woo blocks gutenberg checkout support
 * Improvement: Error catch in case SOAP request throws error for IM
 
