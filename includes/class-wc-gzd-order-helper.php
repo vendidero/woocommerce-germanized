@@ -348,10 +348,24 @@ class WC_GZD_Order_Helper {
 					'contains' => array( $base_rate ),
 					'amount'   => $order->get_total_tax(),
 				);
+
+				/**
+				 * Make sure no zero taxes are added for small businesses
+				 */
+				if ( wc_gzd_is_small_business() && $order->get_total_tax() <= 0 ) {
+					$tax_array = array();
+				}
 			}
 
 			if ( ! empty( $tax_array ) ) {
 				foreach ( $tax_array as $tax ) {
+					/**
+					 * Hide zero taxes
+					 */
+					if ( apply_filters( 'woocommerce_order_hide_zero_taxes', true ) && $tax['amount'] <= 0 ) {
+						continue;
+					}
+
 					$order_totals[ 'tax_' . WC_Tax::get_rate_code( $tax['tax']->rate_id ) ] = array(
 						'label' => wc_gzd_get_tax_rate_label( $tax['tax']->rate ),
 						'value' => wc_price( $tax['amount'], array( 'currency' => $order->get_currency() ) ),
