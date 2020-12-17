@@ -17,17 +17,12 @@ jobs:
     strategy:
       matrix:
         operating-system: [ubuntu-latest]
-        php: ['7.3', '7.4', '8.0']
+        php: ['7.3', '7.4']
         woo: ['latest']
     name: PHP ${{ matrix.php }} test for Woo ${{ matrix.woo }}
     steps:
       - name: Checkout
         uses: actions/checkout@v1
-        
-      - name: Composer install
-        run: composer config github-oauth.github.com ${{ secrets.GH_TOKEN }} && composer install --optimize-autoloader --prefer-dist
-        env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v1
@@ -36,6 +31,11 @@ jobs:
           extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, mysql, mysqli, pdo_mysql, bcmath, soap, intl, gd, exif, iconv, imagick
           ini-values: post_max_size=256M, short_open_tag=On #optional, setup php.ini configuration
           coverage: xdebug #optional, setup coverage driver
+
+      - name: Composer install
+        run: composer config github-oauth.github.com ${{ secrets.GH_TOKEN }} && composer install --optimize-autoloader --prefer-dist
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
 
       - name: Check PHP Version
         run: php -v

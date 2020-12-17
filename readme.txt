@@ -5,7 +5,7 @@ Requires at least: 5.4
 Tested up to: 5.6
 WC requires at least: 3.9
 WC tested up to: 4.8
-Stable tag: 3.3.1
+Stable tag: 3.3.2
 Requires PHP: 5.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -186,6 +186,14 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 6. Edit pdf documents (Pro)
 
 == Changelog ==
+= 3.3.2 =
+* Improvement: DOI - allow customers to resend activation mail
+* Improvement: Internetmarke child product selection
+* Improvement: Added Post & DHL status page to check for connection issues
+* Improvement: By default hide zero taxes within order totals
+* Fix: DHL customs weight calculation
+* Fix: Packaging admin table unit
+
 = 3.3.1 =
 * Fix: DHL retoure label
 * Fix: Shipments namespace exception in item data store
