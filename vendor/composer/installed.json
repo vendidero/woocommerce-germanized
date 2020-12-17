@@ -1,0 +1,644 @@
+{
+    "packages": [
+        {
+            "name": "automattic/jetpack-autoloader",
+            "version": "v2.6.0",
+            "version_normalized": "2.6.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Automattic/jetpack-autoloader.git",
+                "reference": "47dde8dbca6b1e30f176725f2f748a9abefcaf58"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Automattic/jetpack-autoloader/zipball/47dde8dbca6b1e30f176725f2f748a9abefcaf58",
+                "reference": "47dde8dbca6b1e30f176725f2f748a9abefcaf58",
+                "shasum": ""
+            },
+            "require": {
+                "composer-plugin-api": "^1.1 || ^2.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^5.7 || ^6.5 || ^7.5"
+            },
+            "time": "2020-11-19T21:20:12+00:00",
+            "type": "composer-plugin",
+            "extra": {
+                "class": "Automattic\\Jetpack\\Autoloader\\CustomAutoloaderPlugin"
+            },
+            "installation-source": "dist",
+            "autoload": {
+                "classmap": [
+                    "src/AutoloadGenerator.php"
+                ],
+                "psr-4": {
+                    "Automattic\\Jetpack\\Autoloader\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "description": "Creates a custom autoloader for a plugin or theme.",
+            "support": {
+                "source": "https://github.com/Automattic/jetpack-autoloader/tree/v2.6.0"
+            },
+            "install-path": "../automattic/jetpack-autoloader"
+        },
+        {
+            "name": "baltpeter/internetmarke-php",
+            "version": "v0.5.0",
+            "version_normalized": "0.5.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/baltpeter/internetmarke-php.git",
+                "reference": "7657ee5a55eb80c77a35e35ce71c465364d73ab4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/baltpeter/internetmarke-php/zipball/7657ee5a55eb80c77a35e35ce71c465364d73ab4",
+                "reference": "7657ee5a55eb80c77a35e35ce71c465364d73ab4",
+                "shasum": ""
+            },
+            "require": {
+                "myclabs/deep-copy": "^1.8"
+            },
+            "time": "2019-07-31T10:13:23+00:00",
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "baltpeter\\Internetmarke\\": "src/baltpeter/Internetmarke"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Benjamin Altpeter",
+                    "email": "hi@bn.al"
+                }
+            ],
+            "description": "A simple PHP wrapper for the Deutsche Post Internetmarke web service",
+            "support": {
+                "issues": "https://github.com/baltpeter/internetmarke-php/issues",
+                "source": "https://github.com/baltpeter/internetmarke-php/tree/master"
+            },
+            "install-path": "../baltpeter/internetmarke-php"
+        },
+        {
+            "name": "composer/installers",
+            "version": "v1.9.0",
+            "version_normalized": "1.9.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/composer/installers.git",
+                "reference": "b93bcf0fa1fccb0b7d176b0967d969691cd74cca"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/composer/installers/zipball/b93bcf0fa1fccb0b7d176b0967d969691cd74cca",
+                "reference": "b93bcf0fa1fccb0b7d176b0967d969691cd74cca",
+                "shasum": ""
+            },
+            "require": {
+                "composer-plugin-api": "^1.0 || ^2.0"
+            },
+            "replace": {
+                "roundcube/plugin-installer": "*",
+                "shama/baton": "*"
+            },
+            "require-dev": {
+                "composer/composer": "1.6.* || 2.0.*@dev",
+                "composer/semver": "1.0.* || 2.0.*@dev",
+                "phpunit/phpunit": "^4.8.36",
+                "sebastian/comparator": "^1.2.4",
+                "symfony/process": "^2.3"
+            },
+            "time": "2020-04-07T06:57:05+00:00",
+            "type": "composer-plugin",
+            "extra": {
+                "class": "Composer\\Installers\\Plugin",
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "Composer\\Installers\\": "src/Composer/Installers"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Kyle Robinson Young",
+                    "email": "kyle@dontkry.com",
+                    "homepage": "https://github.com/shama"
+                }
+            ],
+            "description": "A multi-framework Composer library installer",
+            "homepage": "https://composer.github.io/installers/",
+            "keywords": [
+                "Craft",
+                "Dolibarr",
+                "Eliasis",
+                "Hurad",
+                "ImageCMS",
+                "Kanboard",
+                "Lan Management System",
+                "MODX Evo",
+                "MantisBT",
+                "Mautic",
+                "Maya",
+                "OXID",
+                "Plentymarkets",
+                "Porto",
+                "RadPHP",
+                "SMF",
+                "Thelia",
+                "Whmcs",
+                "WolfCMS",
+                "agl",
+                "aimeos",
+                "annotatecms",
+                "attogram",
+                "bitrix",
+                "cakephp",
+                "chef",
+                "cockpit",
+                "codeigniter",
+                "concrete5",
+                "croogo",
+                "dokuwiki",
+                "drupal",
+                "eZ Platform",
+                "elgg",
+                "expressionengine",
+                "fuelphp",
+                "grav",
+                "installer",
+                "itop",
+                "joomla",
+                "known",
+                "kohana",
+                "laravel",
+                "lavalite",
+                "lithium",
+                "magento",
+                "majima",
+                "mako",
+                "mediawiki",
+                "modulework",
+                "modx",
+                "moodle",
+                "osclass",
+                "phpbb",
+                "piwik",
+                "ppi",
+                "puppet",
+                "pxcms",
+                "reindex",
+                "roundcube",
+                "shopware",
+                "silverstripe",
+                "sydes",
+                "sylius",
+                "symfony",
+                "typo3",
+                "wordpress",
+                "yawik",
+                "zend",
+                "zikula"
+            ],
+            "support": {
+                "issues": "https://github.com/composer/installers/issues",
+                "source": "https://github.com/composer/installers/tree/v1.9.0"
+            },
+            "funding": [
+                {
+                    "url": "https://packagist.com",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/composer/composer",
+                    "type": "tidelift"
+                }
+            ],
+            "install-path": "./installers"
+        },
+        {
+            "name": "myclabs/deep-copy",
+            "version": "1.10.2",
+            "version_normalized": "1.10.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/myclabs/DeepCopy.git",
+                "reference": "776f831124e9c62e1a2c601ecc52e776d8bb7220"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/myclabs/DeepCopy/zipball/776f831124e9c62e1a2c601ecc52e776d8bb7220",
+                "reference": "776f831124e9c62e1a2c601ecc52e776d8bb7220",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.1 || ^8.0"
+            },
+            "replace": {
+                "myclabs/deep-copy": "self.version"
+            },
+            "require-dev": {
+                "doctrine/collections": "^1.0",
+                "doctrine/common": "^2.6",
+                "phpunit/phpunit": "^7.1"
+            },
+            "time": "2020-11-13T09:40:50+00:00",
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "DeepCopy\\": "src/DeepCopy/"
+                },
+                "files": [
+                    "src/DeepCopy/deep_copy.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Create deep copies (clones) of your objects",
+            "keywords": [
+                "clone",
+                "copy",
+                "duplicate",
+                "object",
+                "object graph"
+            ],
+            "support": {
+                "issues": "https://github.com/myclabs/DeepCopy/issues",
+                "source": "https://github.com/myclabs/DeepCopy/tree/1.10.2"
+            },
+            "funding": [
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/myclabs/deep-copy",
+                    "type": "tidelift"
+                }
+            ],
+            "install-path": "../myclabs/deep-copy"
+        },
+        {
+            "name": "setasign/fpdf",
+            "version": "1.8.2",
+            "version_normalized": "1.8.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Setasign/FPDF.git",
+                "reference": "d77904018090c17dc9f3ab6e944679a7a47e710a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Setasign/FPDF/zipball/d77904018090c17dc9f3ab6e944679a7a47e710a",
+                "reference": "d77904018090c17dc9f3ab6e944679a7a47e710a",
+                "shasum": ""
+            },
+            "time": "2019-12-08T10:32:10+00:00",
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "classmap": [
+                    "fpdf.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Olivier Plathey",
+                    "email": "oliver@fpdf.org",
+                    "homepage": "http://fpdf.org/"
+                }
+            ],
+            "description": "FPDF is a PHP class which allows to generate PDF files with pure PHP. F from FPDF stands for Free: you may use it for any kind of usage and modify it to suit your needs.",
+            "homepage": "http://www.fpdf.org",
+            "keywords": [
+                "fpdf",
+                "pdf"
+            ],
+            "support": {
+                "source": "https://github.com/Setasign/FPDF/tree/1.8.2"
+            },
+            "install-path": "../setasign/fpdf"
+        },
+        {
+            "name": "setasign/fpdi",
+            "version": "v2.3.5",
+            "version_normalized": "2.3.5.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Setasign/FPDI.git",
+                "reference": "f2246c8669bd25834f5c264425eb0e250d7a9312"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Setasign/FPDI/zipball/f2246c8669bd25834f5c264425eb0e250d7a9312",
+                "reference": "f2246c8669bd25834f5c264425eb0e250d7a9312",
+                "shasum": ""
+            },
+            "require": {
+                "ext-zlib": "*",
+                "php": "^5.6 || ^7.0 || ^8.0"
+            },
+            "conflict": {
+                "setasign/tfpdf": "<1.31"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~5.7",
+                "setasign/fpdf": "~1.8",
+                "setasign/tfpdf": "1.31",
+                "squizlabs/php_codesniffer": "^3.5",
+                "tecnickcom/tcpdf": "~6.2"
+            },
+            "suggest": {
+                "setasign/fpdf": "FPDI will extend this class but as it is also possible to use TCPDF or tFPDF as an alternative. There's no fixed dependency configured."
+            },
+            "time": "2020-12-03T13:40:03+00:00",
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "setasign\\Fpdi\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jan Slabon",
+                    "email": "jan.slabon@setasign.com",
+                    "homepage": "https://www.setasign.com"
+                },
+                {
+                    "name": "Maximilian Kresse",
+                    "email": "maximilian.kresse@setasign.com",
+                    "homepage": "https://www.setasign.com"
+                }
+            ],
+            "description": "FPDI is a collection of PHP classes facilitating developers to read pages from existing PDF documents and use them as templates in FPDF. Because it is also possible to use FPDI with TCPDF, there are no fixed dependencies defined. Please see suggestions for packages which evaluates the dependencies automatically.",
+            "homepage": "https://www.setasign.com/fpdi",
+            "keywords": [
+                "fpdf",
+                "fpdi",
+                "pdf"
+            ],
+            "support": {
+                "issues": "https://github.com/Setasign/FPDI/issues",
+                "source": "https://github.com/Setasign/FPDI/tree/v2.3.5"
+            },
+            "funding": [
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/setasign/fpdi",
+                    "type": "tidelift"
+                }
+            ],
+            "install-path": "../setasign/fpdi"
+        },
+        {
+            "name": "vendidero/woocommerce-germanized-dhl",
+            "version": "v1.4.2",
+            "version_normalized": "1.4.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/vendidero/woocommerce-germanized-dhl.git",
+                "reference": "6429384329e525755bdc463ee09f04a5e1b628ef"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/vendidero/woocommerce-germanized-dhl/zipball/6429384329e525755bdc463ee09f04a5e1b628ef",
+                "reference": "6429384329e525755bdc463ee09f04a5e1b628ef",
+                "shasum": ""
+            },
+            "require": {
+                "automattic/jetpack-autoloader": "2.6.0",
+                "baltpeter/internetmarke-php": "^0.5.0",
+                "wsdltophp/wssecurity": "^1.1"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "6.5.14"
+            },
+            "time": "2020-12-17T11:49:46+00:00",
+            "type": "wordpress-plugin",
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "Vendidero\\Germanized\\DHL\\": "src"
+                }
+            },
+            "scripts": {
+                "post-install-cmd": [
+                    "composer dump-autoload",
+                    "python ./bin/update-holidays.py"
+                ],
+                "post-update-cmd": [
+                    "composer dump-autoload",
+                    "python ./bin/update-holidays.py"
+                ]
+            },
+            "license": [
+                "GPL-3.0-or-later"
+            ],
+            "description": "The Germanized DHL implementation.",
+            "homepage": "https://github.com/vendidero/woocommerce-germanized-dhl",
+            "support": {
+                "source": "https://github.com/vendidero/woocommerce-germanized-dhl/tree/v1.4.2",
+                "issues": "https://github.com/vendidero/woocommerce-germanized-dhl/issues"
+            },
+            "install-path": "../../packages/woocommerce-germanized-dhl"
+        },
+        {
+            "name": "vendidero/woocommerce-germanized-shipments",
+            "version": "v1.4.2",
+            "version_normalized": "1.4.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/vendidero/woocommerce-germanized-shipments.git",
+                "reference": "c9fd71a33b9731bcd7e7f674c0245c4c8ca67fc7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/vendidero/woocommerce-germanized-shipments/zipball/c9fd71a33b9731bcd7e7f674c0245c4c8ca67fc7",
+                "reference": "c9fd71a33b9731bcd7e7f674c0245c4c8ca67fc7",
+                "shasum": ""
+            },
+            "require": {
+                "automattic/jetpack-autoloader": "2.6.0",
+                "setasign/fpdf": "^1.8.2",
+                "setasign/fpdi": "^2.3"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "6.5.14"
+            },
+            "time": "2020-12-17T11:50:43+00:00",
+            "type": "wordpress-plugin",
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "Vendidero\\Germanized\\Shipments\\": "src"
+                }
+            },
+            "scripts": {
+                "post-install-cmd": [
+                    "composer dump-autoload"
+                ],
+                "post-update-cmd": [
+                    "composer dump-autoload"
+                ]
+            },
+            "license": [
+                "GPL-3.0-or-later"
+            ],
+            "description": "The Germanized Shipments implementation.",
+            "homepage": "https://github.com/vendidero/woocommerce-germanized-shipments",
+            "support": {
+                "source": "https://github.com/vendidero/woocommerce-germanized-shipments/tree/v1.4.2",
+                "issues": "https://github.com/vendidero/woocommerce-germanized-shipments/issues"
+            },
+            "install-path": "../../packages/woocommerce-germanized-shipments"
+        },
+        {
+            "name": "vendidero/woocommerce-trusted-shops",
+            "version": "v4.0.9",
+            "version_normalized": "4.0.9.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/vendidero/woocommerce-trusted-shops.git",
+                "reference": "d5dcf1487799eec37a827ffb75af76b0171bda2c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/vendidero/woocommerce-trusted-shops/zipball/d5dcf1487799eec37a827ffb75af76b0171bda2c",
+                "reference": "d5dcf1487799eec37a827ffb75af76b0171bda2c",
+                "shasum": ""
+            },
+            "require": {
+                "automattic/jetpack-autoloader": "^2.2.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "6.5.14"
+            },
+            "time": "2020-11-09T13:37:22+00:00",
+            "type": "wordpress-plugin",
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "Vendidero\\TrustedShops\\": "src"
+                }
+            },
+            "scripts": {
+                "post-install-cmd": [
+                    "composer dump-autoload"
+                ],
+                "post-update-cmd": [
+                    "composer dump-autoload"
+                ]
+            },
+            "license": [
+                "GPL-3.0-or-later"
+            ],
+            "description": "Trustbadge Reviews for WooCommerce.",
+            "homepage": "https://github.com/vendidero/woocommerce-trusted-shops",
+            "support": {
+                "source": "https://github.com/vendidero/woocommerce-trusted-shops/tree/v4.0.9",
+                "issues": "https://github.com/vendidero/woocommerce-trusted-shops/issues"
+            },
+            "install-path": "../../packages/woocommerce-trusted-shops"
+        },
+        {
+            "name": "wsdltophp/wssecurity",
+            "version": "1.2.2",
+            "version_normalized": "1.2.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/WsdlToPhp/WsSecurity.git",
+                "reference": "6a450af3cd462cbf73fdb3a09e80322da893af4f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/WsdlToPhp/WsSecurity/zipball/6a450af3cd462cbf73fdb3a09e80322da893af4f",
+                "reference": "6a450af3cd462cbf73fdb3a09e80322da893af4f",
+                "shasum": ""
+            },
+            "require": {
+                "ext-soap": "*",
+                "php": ">=5.4"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^2.0",
+                "phpunit/phpunit": "^4.8 || ^6.0"
+            },
+            "time": "2019-04-09T08:40:37+00:00",
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "WsdlToPhp\\WsSecurity\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mikaël DELSOL",
+                    "email": "contact@wsdltophp.com",
+                    "homepage": "https://www.wsdltophp.com",
+                    "role": "Owner"
+                },
+                {
+                    "name": "Alexey Anisimov",
+                    "email": "mne@lexa.in",
+                    "role": "Contributor"
+                },
+                {
+                    "name": "Tom Vaughan",
+                    "email": "tom.vaughan@farpoint.com",
+                    "role": "Contributor"
+                },
+                {
+                    "name": "NtlBldrv",
+                    "role": "Contributor"
+                },
+                {
+                    "name": "baijunyao",
+                    "email": "baijunyao@baijunyao.com",
+                    "role": "Contributor"
+                }
+            ],
+            "description": "Allows to easily add Ws Security header to a SOAP Request",
+            "keywords": [
+                "php",
+                "soap",
+                "wsse"
+            ],
+            "support": {
+                "email": "contact@wsdltophp.com",
+                "issues": "https://github.com/WsdlToPhp/WsSecurity/issues",
+                "source": "https://github.com/WsdlToPhp/WsSecurity/tree/master"
+            },
+            "install-path": "../wsdltophp/wssecurity"
+        }
+    ],
+    "dev": false,
+    "dev-package-names": []
+}
