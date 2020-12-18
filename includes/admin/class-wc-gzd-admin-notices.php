@@ -48,6 +48,8 @@ if ( ! class_exists( 'WC_GZD_Admin_Notices' ) ) :
 
 			add_action( 'after_switch_theme', array( $this, 'remove_theme_notice_hide' ), 25 );
 			add_action( 'admin_print_styles', array( $this, 'add_notices' ), 1 );
+			add_action( 'in_plugin_update_message-woocommerce-germanized/woocommerce-germanized.php', array( $this, 'pro_incompatibility_notice' ), 10, 2 );
+			add_filter( 'site_transient_update_plugins', array( $this, 'add_update_message' ), 10 );
 
 			include_once( 'notes/class-wc-gzd-admin-note.php' );
 			include_once( 'notes/class-wc-gzd-admin-note-theme-supported.php' );
@@ -57,6 +59,63 @@ if ( ! class_exists( 'WC_GZD_Admin_Notices' ) ) :
 			include_once( 'notes/class-wc-gzd-admin-note-pro.php' );
 			include_once( 'notes/class-wc-gzd-admin-note-dhl-importer.php' );
 			include_once( 'notes/class-wc-gzd-admin-note-internetmarke-importer.php' );
+		}
+
+		public function add_update_message( $data ) {
+			if ( isset( $data->response ) && array_key_exists( 'woocommerce-germanized/woocommerce-germanized.php', $data->response ) ) {
+				$plugin_data = $data->response['woocommerce-germanized/woocommerce-germanized.php'];
+
+				if ( ! isset( $plugin_data->upgrade_notice ) && ! $this->is_next_update_compatible_with_pro( $plugin_data->new_version ) ) {
+					$data->response['woocommerce-germanized/woocommerce-germanized.php']->upgrade_notice = $this->get_pro_incompatible_message( true );
+				}
+			}
+
+			return $data;
+		}
+
+		protected function is_next_update_compatible_with_pro( $new_version ) {
+			$is_supported = true;
+
+			if ( WC_germanized()->is_pro() ) {
+				// Check compatibility with next version
+				$max_version_supported = '';
+
+				if ( class_exists( 'WC_GZDP_Dependencies' ) ) {
+					$dep = WC_GZDP_Dependencies::instance();
+
+					if ( is_callable( array( $dep, 'get_wc_gzd_max_version_supported' ) ) ) {
+						$max_version_supported = WC_GZDP_Dependencies::instance()->get_wc_gzd_max_version_supported();
+					}
+				}
+
+				if ( ! empty( $max_version_supported ) ) {
+					/**
+					 * Explicitly use $max_version_supported as first parameter to make sure
+					 * the more accurate $new_version string is cut if necessary.
+					 */
+					if ( WC_GZD_Dependencies::instance()->compare_versions( $max_version_supported, $new_version, '<' ) ) {
+						$is_supported = false;
+					}
+				}
+			}
+
+			return $is_supported;
+		}
+
+		public function pro_incompatibility_notice( $data, $plugin ) {
+			if ( WC_germanized()->is_pro() && ! $this->is_next_update_compatible_with_pro( $plugin->new_version ) ) {
+				echo '</p>' . $this->get_pro_incompatible_message();
+ 			}
+		}
+
+		protected function get_pro_incompatible_message( $plain = false ) {
+			if ( $plain ) {
+				return sprintf( __( '<strong>Be aware!</strong> This update is not compatible with your current Germanized Pro version. Please check for updates (%s) before updating Germanized to prevent compatibility issues.', 'woocommerce-germanized' ), 'https://vendidero.de/dokument/germanized-pro-aktualisieren' );
+			} else {
+				ob_start();
+				include __DIR__ . '/views/html-notice-update-pro-incompatible.php';
+				return ob_get_clean();
+			}
 		}
 
 		public function enable_notices() {
