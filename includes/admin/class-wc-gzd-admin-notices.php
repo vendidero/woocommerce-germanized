@@ -49,7 +49,7 @@ if ( ! class_exists( 'WC_GZD_Admin_Notices' ) ) :
 			add_action( 'after_switch_theme', array( $this, 'remove_theme_notice_hide' ), 25 );
 			add_action( 'admin_print_styles', array( $this, 'add_notices' ), 1 );
 			add_action( 'in_plugin_update_message-woocommerce-germanized/woocommerce-germanized.php', array( $this, 'pro_incompatibility_notice' ), 10, 2 );
-			add_filter( 'site_transient_update_plugins', array( $this, 'add_update_message' ), 10 );
+			add_filter( 'site_transient_update_plugins', array( $this, 'pro_incompatibility_plain_update_message' ), 10 );
 
 			include_once( 'notes/class-wc-gzd-admin-note.php' );
 			include_once( 'notes/class-wc-gzd-admin-note-theme-supported.php' );
@@ -61,8 +61,8 @@ if ( ! class_exists( 'WC_GZD_Admin_Notices' ) ) :
 			include_once( 'notes/class-wc-gzd-admin-note-internetmarke-importer.php' );
 		}
 
-		public function add_update_message( $data ) {
-			if ( isset( $data->response ) && array_key_exists( 'woocommerce-germanized/woocommerce-germanized.php', $data->response ) ) {
+		public function pro_incompatibility_plain_update_message( $data ) {
+			if ( isset( $data->response ) && array_key_exists( 'woocommerce-germanized/woocommerce-germanized.php', $data->response ) && WC_germanized()->is_pro() ) {
 				$plugin_data = $data->response['woocommerce-germanized/woocommerce-germanized.php'];
 
 				if ( ! isset( $plugin_data->upgrade_notice ) && ! $this->is_next_update_compatible_with_pro( $plugin_data->new_version ) ) {
