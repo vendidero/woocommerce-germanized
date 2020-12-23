@@ -18,19 +18,19 @@ class WC_GZD_Shipping_Rate extends WC_Shipping_Rate {
 			parent::__construct( $rate->id, $rate->label, $rate->cost, $rate->taxes, $rate->method_id );
 		}
 
-		wc_deprecated_function( 'WC_GZD_Shipping_Rate::__construct', '3.4.0' );
+		wc_deprecated_function( 'WC_GZD_Shipping_Rate::__construct', '3.3.4' );
 	}
 
 	public function set_shared_taxes() {
-		wc_deprecated_function( 'WC_GZD_Shipping_Rate::set_shares_taxes', '3.4.0' );
+		wc_deprecated_function( 'WC_GZD_Shipping_Rate::set_shares_taxes', '3.3.4' );
 	}
 
 	public function set_costs() {
-		wc_deprecated_function( 'WC_GZD_Shipping_Rate::set_costs', '3.4.0' );
+		wc_deprecated_function( 'WC_GZD_Shipping_Rate::set_costs', '3.3.4' );
 	}
 
 	public function get_shared_taxes() {
-		wc_deprecated_function( 'WC_GZD_Shipping_Rate::get_shared_taxes', '3.4.0' );
+		wc_deprecated_function( 'WC_GZD_Shipping_Rate::get_shared_taxes', '3.3.4' );
 	}
 }
 ?>
