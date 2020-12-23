@@ -37,6 +37,11 @@ class WC_GZD_Admin_Order {
 				$this,
 				'adjust_item_taxes'
 			), 10, 2 );
+
+			add_action( 'woocommerce_order_item_after_calculate_taxes', array(
+				$this,
+				'adjust_item_taxes'
+			), 10, 2 );
 		}
 	}
 
@@ -45,14 +50,13 @@ class WC_GZD_Admin_Order {
 	 * @param $for
 	 */
 	public function adjust_item_taxes( $item, $for ) {
-
-		if ( $item->get_total() <= 0 ) {
+		if ( ! wc_tax_enabled() || $item->get_total() <= 0 || ! in_array( $item->get_type(), array( 'fee', 'shipping' ) ) ) {
 			return;
 		}
 
 		if ( $order = $item->get_order() ) {
 			// Calculate tax shares
-			$tax_share = $this->get_order_tax_share( $order, is_a( $item, 'WC_Order_Item_Shipping' ) ? 'shipping' : 'fee' );
+			$tax_share = $this->get_order_tax_share( $order, 'shipping' === $item->get_type() ? 'shipping' : 'fee' );
 
 			// Do only adjust taxes if tax share contains more than one tax rate
 			if ( $tax_share && ! empty( $tax_share ) && sizeof( $tax_share ) > 1 ) {
@@ -61,27 +65,39 @@ class WC_GZD_Admin_Order {
 
 				// Lets grab a fresh copy (loaded from DB) to make sure we are not dependent on Woo's calculated taxes in $item.
 				if ( $old_item ) {
-					$item_total = $old_item->get_total() + $old_item->get_total_tax();
+					$item_total = $old_item->get_total();
+
+					if ( wc_prices_include_tax() ) {
+						$item_total += $old_item->get_total_tax();
+					}
 				} else {
-					$item_total = $item->get_total() + $item->get_totaL_tax();
+					$item_total = $item->get_total();
+
+					if ( wc_prices_include_tax() ) {
+						$item_total += $item->get_total_tax();
+					}
 				}
 
 				foreach ( $tax_share as $rate => $class ) {
 					$tax_rates = WC_Tax::get_rates( $rate );
-					$taxes     = $taxes + WC_Tax::calc_tax( ( $item_total * $class['share'] ), $tax_rates, true );
-					// Apply the same total tax rounding as we do in WC_GZD_Shipping_Rate::set_shared_taxes
-					$taxes     = array_map( 'wc_round_tax_total', $taxes );
+					$taxes     = $taxes + WC_Tax::calc_tax( ( $item_total * $class['share'] ), $tax_rates, wc_prices_include_tax() );
 				}
 
 				$item->set_taxes( array( 'total' => $taxes ) );
 
 				// The new net total equals old gross total minus new tax totals
-				$item->set_total( $item_total - $item->get_total_tax() );
+				if ( wc_prices_include_tax() ) {
+					$item->set_total( $item_total - $item->get_total_tax() );
+				}
 
 				$order->update_meta_data( '_has_split_tax', 'yes' );
+				$order->update_meta_data( '_has_split_tax_new_rounding', 'yes' );
+
 				$order->save();
 			} else {
 				$order->delete_meta_data( '_has_split_tax' );
+				$order->delete_meta_data( '_has_split_tax_new_rounding' );
+
 				$order->save();
 			}
 		}

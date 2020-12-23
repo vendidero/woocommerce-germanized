@@ -368,9 +368,11 @@ class WC_GZD_Compatibility_WPML_String_Translation extends WC_GZD_Compatibility 
 			$args = $string_options[ $option ];
 
 			foreach ( $org_value as $id => $options ) {
-				foreach ( $options as $key => $value ) {
-					if ( in_array( $key, $args ) ) {
-						$org_value[ $id ][ $key ] = $this->translate_option( $value, "[{$option}][{$id}]{$key}", "admin_texts_{$option}" );
+				if ( is_array( $options ) ) {
+					foreach ( $options as $key => $value ) {
+						if ( in_array( $key, $args ) ) {
+							$org_value[ $id ][ $key ] = $this->translate_option( $value, "[{$option}][{$id}]{$key}", "admin_texts_{$option}" );
+						}
 					}
 				}
 			}

@@ -274,9 +274,6 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 
 			add_filter( 'woocommerce_locate_core_template', array( $this, 'email_templates' ), 0, 3 );
 
-			// Add better WooCommerce shipping taxation
-			add_filter( 'woocommerce_package_rates', array( $this, 'replace_shipping_rate_class' ), 0, 2 );
-
 			// Payment gateways
 			add_filter( 'woocommerce_payment_gateways', array( $this, 'register_gateways' ) );
 
@@ -729,40 +726,6 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 			}
 
 			return $template;
-		}
-
-		/**
-		 * Replace default WC_Shipping_Rate to enable exact taxation for shipping costs
-		 *
-		 * @param array $rates containing WC_Shipping_Rate objects
-		 * @param WC_Shipping_Rate $rate current object
-		 *
-		 * @return array
-		 */
-		public function replace_shipping_rate_class( $rates, $rate ) {
-
-			if ( get_option( 'woocommerce_gzd_shipping_tax' ) !== 'yes' ) {
-				return $rates;
-			}
-
-			foreach ( $rates as $key => $rate ) {
-
-				// Check for instance to make sure calculation is not done for multiple times
-				if ( ! $rate instanceof WC_GZD_Shipping_Rate ) {
-
-					// Replace rate with germanized placeholder
-					$rates[ $key ] = new WC_GZD_Shipping_Rate( $rate );
-
-					// Copy meta data if available
-					if ( is_callable( array( $rate, 'get_meta_data' ) ) ) {
-						foreach ( $rate->get_meta_data() as $meta_key => $meta_val ) {
-							$rates[ $key ]->add_meta_data( $meta_key, $meta_val );
-						}
-					}
-				}
-			}
-
-			return $rates;
 		}
 
 		/**

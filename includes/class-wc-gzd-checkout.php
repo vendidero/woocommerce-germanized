@@ -65,8 +65,12 @@ class WC_GZD_Checkout {
 		// Deactivate checkout shipping selection
 		add_action( 'woocommerce_review_order_before_shipping', array( $this, 'remove_shipping_rates' ), 0 );
 
-		// Add better fee taxation
-		add_action( 'woocommerce_calculate_totals', array( $this, 'do_fee_tax_calculation' ), 1500, 1 );
+		/**
+		 * Split tax calculation for fees and shipping
+		 */
+		add_filter( 'woocommerce_cart_totals_get_fees_from_cart_taxes', array( $this, 'adjust_fee_taxes' ), 100, 3 );
+		add_filter( 'woocommerce_package_rates', array( $this, 'adjust_shipping_taxes' ), 100, 2 );
+		add_filter( 'woocommerce_cart_tax_totals', array( $this, 'fix_cart_shipping_tax_rounding' ), 100, 2 );
 
 		if ( 'yes' === get_option( 'woocommerce_gzd_differential_taxation_disallow_mixed_carts' ) ) {
 			add_filter( 'woocommerce_add_to_cart_validation', array( $this, 'prevent_differential_mixed_carts' ), 10, 3 );
@@ -211,6 +215,7 @@ class WC_GZD_Checkout {
 
 			if ( sizeof( $tax_shares ) > 1 ) {
 				$order->update_meta_data( '_has_split_tax', 'yes' );
+				$order->update_meta_data( '_has_split_tax_new_rounding', 'yes' );
 			}
 		}
 	}
@@ -646,102 +651,194 @@ class WC_GZD_Checkout {
 	}
 
 	/**
-	 * Recalculate fee taxes to split tax based on different tax rates contained within cart
+	 * This filter is important to get the right (rounded) per tax rate tax amounts.
 	 *
+	 * By default Woo does round shipping taxes differently as shipping costs
+	 * are treated as net prices. Germanized does treat shipping costs as gross in
+	 * case prices include tax.
+	 *
+	 * @param $taxes
 	 * @param WC_Cart $cart
 	 */
-	public function do_fee_tax_calculation( $cart ) {
-		if ( 'yes' !== get_option( 'woocommerce_gzd_fee_tax' ) ) {
-			return;
+	public function fix_cart_shipping_tax_rounding( $taxes, $cart ) {
+
+		if ( ! wc_prices_include_tax() ) {
+			return $taxes;
 		}
 
-		if ( ! method_exists( $cart, 'set_fee_taxes' ) ) {
-			return;
+		// Remove the current filter before calling get_tax_totals to prevent infinite loops
+		remove_filter( 'woocommerce_cart_tax_totals', array( $this, 'fix_cart_shipping_tax_rounding' ), 100 );
+		// Remove shipping taxes to prevent different rounding for them within WC_Cart::get_tax_totals
+		add_filter( 'woocommerce_cart_get_shipping_taxes', array( $this, 'remove_shipping_taxes' ), 10 );
+		// Make sure that total taxes still include shipping taxes
+		add_filter( 'woocommerce_cart_get_taxes', array( $this, 'maybe_remove_shipping_tax_filter' ), 10, 2 );
+
+		$taxes = $cart->get_tax_totals();
+
+		// Remove cart tax filter
+		remove_filter( 'woocommerce_cart_get_taxes', array( $this, 'maybe_remove_shipping_tax_filter' ), 10 );
+		// Remove shipping tax filter
+		remove_filter( 'woocommerce_cart_get_shipping_taxes', array( $this, 'remove_shipping_taxes' ), 10 );
+		// Re add the filter
+		add_filter( 'woocommerce_cart_tax_totals', array( $this, 'fix_cart_shipping_tax_rounding' ), 100, 2 );
+
+		return $taxes;
+	}
+
+	/**
+	 * @param $taxes
+	 * @param WC_Cart $cart
+	 */
+	public function maybe_remove_shipping_tax_filter( $taxes, $cart ) {
+		remove_filter( 'woocommerce_cart_get_shipping_taxes', array( $this, 'remove_shipping_taxes' ), 10 );
+		remove_filter( 'woocommerce_cart_get_taxes', array( $this, 'maybe_remove_shipping_tax_filter' ), 10 );
+
+		return $cart->get_taxes();
+	}
+
+	public function remove_shipping_taxes( $taxes ) {
+		return array();
+	}
+
+	/**
+	 * @param WC_Shipping_Rate[] $rates
+	 * @param $package
+	 *
+	 * @return mixed
+	 */
+	public function adjust_shipping_taxes( $rates, $package ) {
+
+		if ( get_option( 'woocommerce_gzd_shipping_tax' ) !== 'yes' ) {
+			return $rates;
+		}
+
+		foreach( $rates as $key => $rate ) {
+			$original_taxes = $rate->get_taxes();
+			$cost           = $rate->get_cost();
+			$tax_shares     = wc_gzd_get_cart_tax_share( 'shipping' );
+
+			/**
+			 * Calculate split taxes if the cart contains more than one tax rate.
+			 * Tax rounding (e.g. for subtotal) is handled by WC_Cart_Totals::get_shipping_from_cart
+			 */
+			if ( ! empty( $original_taxes ) || get_option( 'woocommerce_gzd_shipping_tax_force' ) === 'yes' ) {
+				if ( $rate->get_shipping_tax() > 0 ) {
+					if ( ! empty( $tax_shares ) ) {
+						$taxes = array();
+
+						foreach ( $tax_shares as $tax_rate => $class ) {
+							$tax_rates  = WC_Tax::get_rates( $tax_rate );
+							$cost_share = $cost * $class['share'];
+							$taxes      = $taxes + WC_Tax::calc_tax( $cost_share, $tax_rates, wc_prices_include_tax() );
+						}
+
+						$rates[ $key ]->set_taxes( $taxes );
+					} else {
+						$original_tax_rates = array_keys( $original_taxes );
+
+						if ( ! empty( $original_tax_rates ) ) {
+							$tax_rates = WC_Tax::get_shipping_tax_rates();
+
+							if ( ! empty( $tax_rates ) ) {
+								$taxes = WC_Tax::calc_tax( $cost, $tax_rates, wc_prices_include_tax() );
+
+								$rates[ $key ]->set_taxes( $taxes );
+							}
+						}
+					}
+				}
+			}
+
+			/**
+			 * Convert shipping costs to gross prices in case prices include tax
+			 */
+			if ( wc_prices_include_tax() ) {
+				$tax_total = array_sum( $rates[ $key ]->get_taxes() );
+				$cost      = $rates[ $key ]->get_cost() - $tax_total;
+
+				if ( WC()->customer->is_vat_exempt() ) {
+					$shipping_rates = WC_Tax::get_shipping_tax_rates();
+					$shipping_taxes = WC_Tax::calc_inclusive_tax( $rate->get_cost(), $shipping_rates );
+					$cost           = ( $cost - array_sum( $shipping_taxes ) );
+				}
+
+				$rates[ $key ]->set_cost( $cost );
+			}
+		}
+
+		return $rates;
+	}
+
+	/**
+	 * @param $fee_taxes
+	 * @param $fee
+	 * @param $cart_totals
+	 */
+	public function adjust_fee_taxes( $fee_taxes, $fee, $cart_totals ) {
+
+		if ( 'yes' !== get_option( 'woocommerce_gzd_fee_tax' ) ) {
+			return $fee_taxes;
 		}
 
 		$calculate_taxes = wc_tax_enabled() && ! WC()->customer->is_vat_exempt();
 
 		// Do not calculate tax shares if tax calculation is disabled
 		if ( ! $calculate_taxes ) {
-			return;
+			return $fee_taxes;
 		}
 
-		$fees = $cart->get_fees();
+		$tax_shares = wc_gzd_get_cart_tax_share( 'fee' );
 
-		if ( ! empty( $fees ) ) {
-			$tax_shares = wc_gzd_get_cart_tax_share( 'fee' );
-
-			/**
-			 * Do not calculate fee taxes if tax shares are empty (e.g. zero-taxes only).
-			 * In this case, remove fee taxes altogether and force gross price.
-			 */
-			if ( empty( $tax_shares ) ) {
-				$this->remove_fee_taxes( $cart );
-
-				return;
+		/**
+		 * Do not calculate fee taxes if tax shares are empty (e.g. zero-taxes only).
+		 * In this case, remove fee taxes altogether and force gross price.
+		 */
+		if ( empty( $tax_shares ) ) {
+			if ( wc_prices_include_tax() ) {
+				$total_tax  = array_sum( array_map( array( $this, 'round_line_tax_in_cents' ), $fee_taxes ) );
+				$fee->total = $fee->total - $total_tax;
 			}
 
-			$fee_tax_total = 0;
-			$fee_tax_data  = array();
-			$new_fees      = array();
-
-			foreach ( $cart->get_fees() as $key => $fee ) {
-
-				if ( ! $fee->taxable && 'yes' !== get_option( 'woocommerce_gzd_fee_tax_force' ) ) {
-					continue;
-				}
-
-				// Calculate gross price if necessary
-				if ( $fee->taxable ) {
-					$fee_tax_rates = WC_Tax::get_rates( $fee->tax_class );
-					$fee_tax       = WC_Tax::calc_tax( $fee->amount, $fee_tax_rates, false );
-					$fee->amount   += array_sum( $fee_tax );
-				}
-
-				// Set fee to nontaxable to avoid WooCommerce default tax calculation
-				$fee->taxable = false;
-
-				// Calculate tax class share
-				if ( ! empty( $tax_shares ) ) {
-					$fee_taxes = array();
-
-					foreach ( $tax_shares as $rate => $class ) {
-						$tax_rates                            = WC_Tax::get_rates( $rate );
-						$tax_shares[ $rate ]['fee_tax_share'] = $fee->amount * $class['share'];
-						$tax_shares[ $rate ]['fee_tax']       = WC_Tax::calc_tax( ( $fee->amount * $class['share'] ), $tax_rates, true );
-
-						$fee_taxes += $tax_shares[ $rate ]['fee_tax'];
-					}
-
-					foreach ( $tax_shares as $rate => $class ) {
-						foreach ( $class['fee_tax'] as $rate_id => $tax ) {
-							if ( ! array_key_exists( $rate_id, $fee_tax_data ) ) {
-								$fee_tax_data[ $rate_id ] = 0;
-							}
-
-							$fee_tax_data[ $rate_id ] += $tax;
-						}
-
-						$fee_tax_total += array_sum( $class['fee_tax'] );
-					}
-
-					$fee->tax_data = $fee_taxes;
-					$fee->tax      = wc_round_tax_total( $fee_tax_total );
-					$fee->amount   = ( $fee->amount - $fee->tax );
-					$fee->total    = $fee->amount;
-
-					$new_fees[ $key ] = $fee;
-				}
-			}
-
-			$cart->fees_api()->set_fees( $new_fees );
-			$cart->set_fee_tax( array_sum( $fee_tax_data ) );
-			$cart->set_fee_taxes( $fee_tax_data );
-
-			$fee_total = array_sum( wp_list_pluck( $new_fees, 'total' ) );
-
-			$cart->set_fee_total( wc_format_decimal( $fee_total, wc_get_price_decimals() ) );
+			return array();
 		}
+
+		// Calculate tax class share
+		if ( ! empty( $tax_shares ) ) {
+			$fee_taxes = array();
+
+			foreach ( $tax_shares as $rate => $class ) {
+				$tax_rates = WC_Tax::get_rates( $rate );
+				$fee_taxes = $fee_taxes + WC_Tax::calc_tax( ( $fee->total * $class['share'] ), $tax_rates, wc_prices_include_tax() );
+			}
+
+			$total_tax = array_sum( array_map( array( $this, 'round_line_tax_in_cents' ), $fee_taxes ) );
+
+			if ( wc_prices_include_tax() ) {
+				$fee->total = $fee->total - $total_tax;
+			}
+		}
+
+		return $fee_taxes;
+	}
+
+	/**
+	 * Apply rounding to an array of taxes before summing. Rounds to store DP setting, ignoring precision.
+	 *
+	 * @since  3.2.6
+	 * @param  float $value    Tax value.
+	 * @param  bool  $in_cents Whether precision of value is in cents.
+	 * @return float
+	 */
+	public function round_line_tax( $value, $in_cents = false ) {
+		if ( 'yes' !== get_option( 'woocommerce_tax_round_at_subtotal' ) ) {
+			$value = wc_round_tax_total( $value, $in_cents ? 0 : null );
+		}
+
+		return $value;
+	}
+
+	public function round_line_tax_in_cents( $value ) {
+		return $this->round_line_tax( $value, true );
 	}
 
 	/**
