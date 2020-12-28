@@ -25,19 +25,19 @@ class WC_GZD_Compatibility_Flexible_Checkout_Fields extends WC_GZD_Compatibility
 
 		// Add Title to billing address format
 		add_filter( 'woocommerce_order_formatted_billing_address', array(
-			WC_GZD_Checkout::instance(),
+			WC_GZD_Order_Helper::instance(),
 			'set_formatted_billing_address'
 		), $priority, 2 );
 
 		add_filter( 'woocommerce_order_formatted_shipping_address', array(
-			WC_GZD_Checkout::instance(),
+			WC_GZD_Order_Helper::instance(),
 			'set_formatted_shipping_address'
 		), $priority, 2 );
 
 		/**
 		 * Prevent double-adding format.
 		 */
-		remove_filter( 'woocommerce_formatted_address_replacements', array( WC_GZD_Checkout::instance(), 'set_formatted_address' ), 0, 2 );
+		remove_filter( 'woocommerce_formatted_address_replacements', array( WC_GZD_Checkout::instance(), 'set_formatted_address' ), 0 );
 		add_filter( 'woocommerce_formatted_address_replacements', array( WC_GZD_Checkout::instance(), 'set_formatted_address' ), $priority, 2 );
 
 		/**
