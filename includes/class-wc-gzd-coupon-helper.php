@@ -43,6 +43,38 @@ class WC_GZD_Coupon_Helper {
 
 		// Add Hook before recalculating line taxes
 		add_action( 'wp_ajax_woocommerce_calc_line_taxes', array( $this, 'before_recalculate_totals' ), 0 );
+
+		// Disallow mixing normal coupons with vouchers to avoid taxation problems
+		add_filter( 'woocommerce_coupon_is_valid', array( $this, 'disallow_coupon_type_merging' ), 50, 3 );
+	}
+
+	/**
+	 * @param boolean $is_valid
+	 * @param WC_Coupon $coupon
+	 * @param WC_Discounts $discounts
+	 *
+	 * @throws Exception
+	 */
+	public function disallow_coupon_type_merging( $is_valid, $coupon, $discounts ) {
+		$object       = $discounts->get_object();
+		$has_vouchers = false;
+		$has_coupons  = false;
+
+		if ( is_a( $object, 'WC_Cart' ) ) {
+			$has_vouchers = $this->cart_has_voucher( $object );
+			$has_coupons  = sizeof( $object->get_coupons() ) > 0;
+		} elseif( is_a( $object, 'WC_Order' ) ) {
+			$has_vouchers = $this->order_has_voucher( $object );
+			$has_coupons  = sizeof( $object->get_coupons() ) > 0;
+		}
+
+		if ( $has_vouchers && ! $this->coupon_is_voucher( $coupon ) ) {
+			throw new Exception( __( 'The cart contains one or more vouchers. Vouchers cannot be mixed with normal coupons.', 'woocommerce-germanized' ) );
+		} elseif ( $has_coupons && ! $has_vouchers && $this->coupon_is_voucher( $coupon ) ) {
+			throw new Exception( __( 'The cart contains one or more coupons. Vouchers cannot be mixed with normal coupons. Please remove the coupon before adding your voucher.', 'woocommerce-germanized' ) );
+		}
+
+		return $is_valid;
 	}
 
 	/**
@@ -82,7 +114,7 @@ class WC_GZD_Coupon_Helper {
 
 		if ( $coupons = $order->get_items( 'coupon' ) ) {
 			foreach ( $coupons as $coupon ) {
-				if ( 'yes' === $coupon->get_meta( 'is_voucher', true ) ) {
+				if ( $this->coupon_is_voucher( $coupon ) ) {
 					$total += $coupon->get_discount();
 
 					if ( $inc_tax ) {
@@ -170,6 +202,38 @@ class WC_GZD_Coupon_Helper {
 	}
 
 	/**
+	 * @param WC_Coupon|WC_Order_Item_Coupon $coupon
+	 *
+	 * @return bool
+	 */
+	protected function coupon_is_voucher( $coupon ) {
+		return 'yes' === $coupon->get_meta( 'is_voucher', true );
+	}
+
+	protected function cart_has_voucher( $cart = null ) {
+		if ( is_null( $cart ) ) {
+			$cart = WC()->cart;
+		}
+
+		if ( is_null( $cart ) ) {
+			return false;
+		}
+
+		// Check for discounts and whether the coupon is a voucher
+		$coupons      = $cart->get_coupons();
+		$has_vouchers = false;
+
+		foreach ( $coupons as $coupon ) {
+			if ( $this->coupon_is_voucher( $coupon ) ) {
+				$has_vouchers = true;
+				break;
+			}
+		}
+
+		return $has_vouchers;
+	}
+
+	/**
 	 * @param WC_Cart $cart
 	 */
 	public function recalculate_tax_totals( $cart ) {
@@ -178,17 +242,7 @@ class WC_GZD_Coupon_Helper {
 			return;
 		}
 
-		// Check for discounts and whether the coupon is a voucher
-		$coupons      = $cart->get_coupons();
-		$has_vouchers = false;
-
-		foreach ( $coupons as $coupon ) {
-			if ( 'yes' === $coupon->get_meta( 'is_voucher', true ) ) {
-				$has_vouchers = true;
-			}
-		}
-
-		if ( ! $has_vouchers ) {
+		if ( ! $this->cart_has_voucher( $cart ) ) {
 			return;
 		}
 
@@ -307,7 +361,6 @@ class WC_GZD_Coupon_Helper {
 	 */
 	public function convert_coupon_to_voucher( $coupon ) {
 		$coupon->update_meta_data( 'is_voucher', 'yes' );
-		$coupon->set_individual_use( true );
 		$coupon->save();
 	}
 

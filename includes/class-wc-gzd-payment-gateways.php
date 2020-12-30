@@ -291,15 +291,8 @@ class WC_GZD_Payment_Gateways {
 	 * @param object $gateway
 	 */
 	public function set_fee( $gateway ) {
-
 		$is_taxable = ( ( 'no' === $gateway->get_option( 'fee_is_taxable', 'no' ) || get_option( 'woocommerce_calc_taxes' ) !== 'yes' ) ? false : true );
 		$fee        = $gateway->get_option( 'fee' );
-
-		if ( $is_taxable ) {
-			$tax_rates = WC_Tax::get_rates();
-			$fee_taxes = WC_Tax::calc_tax( $fee, $tax_rates, true );
-			$fee       = $fee - array_sum( $fee_taxes );
-		}
 
 		WC()->cart->add_fee( __( 'Payment charge', 'woocommerce-germanized' ), $fee, $is_taxable );
 	}
