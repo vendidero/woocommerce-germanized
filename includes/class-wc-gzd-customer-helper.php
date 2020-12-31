@@ -151,7 +151,11 @@ class WC_GZD_Customer_Helper {
 
 	public function maybe_add_activation_notice() {
 		if ( is_user_logged_in() && ! is_cart() && ! is_checkout() && ! wc_gzd_is_customer_activated() && ! isset( $_GET['wc-gzd-resent'] ) ) {
-			wc_add_notice( sprintf( __( 'Did not receive the activation email? <a href="%s">Try again</a>.', 'woocommerce-germanized' ), $this->get_resend_activation_url() ), 'notice' );
+			$notice_text = sprintf( __( 'Did not receive the activation email? <a href="%s">Try again</a>.', 'woocommerce-germanized' ), $this->get_resend_activation_url() );
+
+			if ( ! wc_has_notice( $notice_text, 'notice' ) ) {
+				wc_add_notice( $notice_text, 'notice' );
+			}
 		}
 	}
 
