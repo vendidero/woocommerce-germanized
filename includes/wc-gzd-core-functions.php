@@ -1055,5 +1055,5 @@ function wc_gzd_additional_costs_include_tax() {
 	 *
 	 * @since 3.3.4
 	 */
-	return ( ( 'yes' === get_option( 'woocommerce_gzd_shipping_tax' ) || 'yes' === get_option( 'woocommerce_gzd_fee_tax' ) ) && apply_filters( 'woocommerce_gzd_additional_costs_include_tax', true ) );
+	return ( ( 'yes' === get_option( 'woocommerce_gzd_shipping_tax' ) || 'yes' === get_option( 'woocommerce_gzd_fee_tax' ) ) && apply_filters( 'woocommerce_gzd_additional_costs_include_tax', wc_prices_include_tax() ) );
 }
