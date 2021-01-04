@@ -210,12 +210,12 @@ class WC_GZD_Checkout {
 	 * @param WC_Order $order
 	 */
 	public function order_meta( $order ) {
-		if ( 'yes' === get_option( 'woocommerce_gzd_shipping_tax' ) ) {
+		if ( 'yes' === get_option( 'woocommerce_gzd_shipping_tax' ) || 'yes' === get_option( 'woocommerce_gzd_fee_tax' ) ) {
 			$tax_shares = wc_gzd_get_cart_tax_share( 'shipping', $order->get_items() );
 
 			if ( sizeof( $tax_shares ) > 1 ) {
 				$order->update_meta_data( '_has_split_tax', 'yes' );
-				$order->update_meta_data( '_has_split_tax_new_rounding', 'yes' );
+				$order->update_meta_data( '_additional_costs_include_tax', wc_bool_to_string( wc_gzd_additional_costs_include_tax() ) );
 			}
 		}
 	}
@@ -662,7 +662,7 @@ class WC_GZD_Checkout {
 	 */
 	public function fix_cart_shipping_tax_rounding( $taxes, $cart ) {
 
-		if ( ! wc_prices_include_tax() ) {
+		if ( ! wc_gzd_additional_costs_include_tax() ) {
 			return $taxes;
 		}
 
@@ -729,7 +729,7 @@ class WC_GZD_Checkout {
 						foreach ( $tax_shares as $tax_rate => $class ) {
 							$tax_rates  = WC_Tax::get_rates( $tax_rate );
 							$cost_share = $cost * $class['share'];
-							$taxes      = $taxes + WC_Tax::calc_tax( $cost_share, $tax_rates, wc_prices_include_tax() );
+							$taxes      = $taxes + WC_Tax::calc_tax( $cost_share, $tax_rates, wc_gzd_additional_costs_include_tax() );
 						}
 
 						$rates[ $key ]->set_taxes( $taxes );
@@ -740,7 +740,7 @@ class WC_GZD_Checkout {
 							$tax_rates = WC_Tax::get_shipping_tax_rates();
 
 							if ( ! empty( $tax_rates ) ) {
-								$taxes = WC_Tax::calc_tax( $cost, $tax_rates, wc_prices_include_tax() );
+								$taxes = WC_Tax::calc_tax( $cost, $tax_rates, wc_gzd_additional_costs_include_tax() );
 
 								$rates[ $key ]->set_taxes( $taxes );
 							}
@@ -752,7 +752,7 @@ class WC_GZD_Checkout {
 			/**
 			 * Convert shipping costs to gross prices in case prices include tax
 			 */
-			if ( wc_prices_include_tax() ) {
+			if ( wc_gzd_additional_costs_include_tax() ) {
 				$tax_total = array_sum( $rates[ $key ]->get_taxes() );
 				$cost      = $rates[ $key ]->get_cost() - $tax_total;
 
@@ -794,7 +794,7 @@ class WC_GZD_Checkout {
 		 * In this case, remove fee taxes altogether and force gross price.
 		 */
 		if ( empty( $tax_shares ) ) {
-			if ( wc_prices_include_tax() ) {
+			if ( wc_gzd_additional_costs_include_tax() ) {
 				$total_tax  = array_sum( array_map( array( $this, 'round_line_tax_in_cents' ), $fee_taxes ) );
 				$fee->total = $fee->total - $total_tax;
 			}
@@ -808,12 +808,12 @@ class WC_GZD_Checkout {
 
 			foreach ( $tax_shares as $rate => $class ) {
 				$tax_rates = WC_Tax::get_rates( $rate );
-				$fee_taxes = $fee_taxes + WC_Tax::calc_tax( ( $fee->total * $class['share'] ), $tax_rates, wc_prices_include_tax() );
+				$fee_taxes = $fee_taxes + WC_Tax::calc_tax( ( $fee->total * $class['share'] ), $tax_rates, wc_gzd_additional_costs_include_tax() );
 			}
 
 			$total_tax = array_sum( array_map( array( $this, 'round_line_tax_in_cents' ), $fee_taxes ) );
 
-			if ( wc_prices_include_tax() ) {
+			if ( wc_gzd_additional_costs_include_tax() ) {
 				$fee->total = $fee->total - $total_tax;
 			}
 		}
@@ -876,6 +876,10 @@ class WC_GZD_Checkout {
 	}
 
 	public function set_formatted_address( $placeholder, $args ) {
+		if ( ! WC_GZD_Customer_Helper::instance()->is_customer_title_enabled() ) {
+			return $placeholder;
+		}
+
 		if ( isset( $args['title'] ) ) {
 
 			if ( ! empty( $args['title'] ) ) {

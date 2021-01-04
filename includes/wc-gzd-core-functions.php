@@ -1045,3 +1045,15 @@ function wc_gzd_format_unit_price( $price, $unit, $unit_base ) {
 	 */
 	return apply_filters( 'woocommerce_gzd_formatted_unit_price', $html, $price, $unit_base, $unit );
 }
+
+function wc_gzd_additional_costs_include_tax() {
+	/**
+	 * Filter to adjust whether additional costs (e.g. shipping costs, fees) are treated including taxes or not.
+	 * This filter will only be applied in case split tax calculation is enabled within the Germanized settings.
+	 *
+	 * @param boolean $include_tax Whether additional costs include taxes or not
+	 *
+	 * @since 3.3.4
+	 */
+	return ( ( 'yes' === get_option( 'woocommerce_gzd_shipping_tax' ) || 'yes' === get_option( 'woocommerce_gzd_fee_tax' ) ) && apply_filters( 'woocommerce_gzd_additional_costs_include_tax', true ) );
+}

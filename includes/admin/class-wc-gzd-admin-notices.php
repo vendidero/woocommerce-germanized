@@ -59,6 +59,7 @@ if ( ! class_exists( 'WC_GZD_Admin_Notices' ) ) :
 			include_once( 'notes/class-wc-gzd-admin-note-pro.php' );
 			include_once( 'notes/class-wc-gzd-admin-note-dhl-importer.php' );
 			include_once( 'notes/class-wc-gzd-admin-note-internetmarke-importer.php' );
+			include_once( 'notes/class-wc-gzd-admin-note-shipping-excl-tax.php' );
 		}
 
 		public function pro_incompatibility_plain_update_message( $data ) {
@@ -153,7 +154,8 @@ if ( ! class_exists( 'WC_GZD_Admin_Notices' ) ) :
 					'WC_GZD_Admin_Note_Template_Outdated',
 					'WC_GZD_Admin_Note_Pro',
 					'WC_GZD_Admin_Note_DHL_Importer',
-					'WC_GZD_Admin_Note_Internetmarke_Importer'
+					'WC_GZD_Admin_Note_Internetmarke_Importer',
+					'WC_GZD_Admin_Note_Shipping_Excl_Tax'
 				) );
 
 				$this->notes = array();

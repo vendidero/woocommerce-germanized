@@ -67,36 +67,36 @@ class WC_GZD_Admin_Order {
 				if ( $old_item ) {
 					$item_total = $old_item->get_total();
 
-					if ( wc_prices_include_tax() ) {
+					if ( wc_gzd_additional_costs_include_tax() ) {
 						$item_total += $old_item->get_total_tax();
 					}
 				} else {
 					$item_total = $item->get_total();
 
-					if ( wc_prices_include_tax() ) {
+					if ( wc_gzd_additional_costs_include_tax() ) {
 						$item_total += $item->get_total_tax();
 					}
 				}
 
 				foreach ( $tax_share as $rate => $class ) {
 					$tax_rates = WC_Tax::get_rates( $rate );
-					$taxes     = $taxes + WC_Tax::calc_tax( ( $item_total * $class['share'] ), $tax_rates, wc_prices_include_tax() );
+					$taxes     = $taxes + WC_Tax::calc_tax( ( $item_total * $class['share'] ), $tax_rates, wc_gzd_additional_costs_include_tax() );
 				}
 
 				$item->set_taxes( array( 'total' => $taxes ) );
 
 				// The new net total equals old gross total minus new tax totals
-				if ( wc_prices_include_tax() ) {
+				if ( wc_gzd_additional_costs_include_tax() ) {
 					$item->set_total( $item_total - $item->get_total_tax() );
 				}
 
 				$order->update_meta_data( '_has_split_tax', 'yes' );
-				$order->update_meta_data( '_has_split_tax_new_rounding', 'yes' );
+				$order->update_meta_data( '_additional_costs_include_tax', wc_bool_to_string( wc_gzd_additional_costs_include_tax() ) );
 
 				$order->save();
 			} else {
 				$order->delete_meta_data( '_has_split_tax' );
-				$order->delete_meta_data( '_has_split_tax_new_rounding' );
+				$order->delete_meta_data( '_additional_costs_include_tax' );
 
 				$order->save();
 			}
