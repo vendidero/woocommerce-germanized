@@ -33,6 +33,10 @@ class WC_GZD_Settings_Tab_Taxes extends WC_GZD_Settings_Tab {
 		);
 	}
 
+	public function get_help_link() {
+		return 'https://vendidero.de/dokumentation/woocommerce-germanized/steuern';
+	}
+
 	protected function get_vat_settings() {
 		$virtual_vat = wc_gzd_is_small_business() ? array() : array(
 			'title'   => __( 'Virtual VAT', 'woocommerce-germanized' ),
@@ -84,7 +88,7 @@ class WC_GZD_Settings_Tab_Taxes extends WC_GZD_Settings_Tab {
 
 	protected function get_split_tax_settings() {
 
-		$shipping_tax_example = sprintf( __( 'By choosing this option shipping cost taxation will be calculated based on tax rates within cart. Imagine the following example. Further information can be found <a href="%s" target="_blank">here</a>. %s', 'woocommerce-germanized' ), 'http://www.it-recht-kanzlei.de/umsatzsteuer-versandkosten-mehrwertsteuer.html', '<table class="wc-gzd-tax-example"><thead><tr><th>Produkt</th><th>Preis</th><th>MwSt.-Satz</th><th>Anteil</th><th>MwSt.</th></tr></thead><tbody><tr><td>Buch</td><td>' . wc_price( 40 ) . '</td><td>7%</td><td>40%</td><td>' . wc_price( 2.62 ) . '</td></tr><tr><td>DVD</td><td>' . wc_price( 60 ) . '</td><td>19%</td><td>60%</td><td>' . wc_price( 9.58 ) . '</td></tr><tr><td>Versand</td><td>' . wc_price( 5 ) . '</td><td>7% | 19%</td><td>40% | 60%</td><td>' . wc_price( 0.13 ) . ' | ' . wc_price( 0.48 ) . '</td></tr></tbody></table>' );
+		$shipping_tax_example = sprintf( __( 'By choosing this option shipping cost taxes will be calculated based on the tax rates included within the cart. Imagine the following example. The tax share is calculated based on net prices. Further information can be found <a href="%s" target="_blank">here</a>. %s', 'woocommerce-germanized' ), 'https://vendidero.de/dokument/steuerberechnung-fuer-versandkosten-und-gebuehren', '<table class="wc-gzd-tax-example"><thead><tr><th>' . __( 'Product', 'woocommerce-germanized' ) . '</th><th>' . __( 'Price', 'woocommerce-germanized' ) . '</th><th>' . __( 'Price (net)', 'woocommerce-germanized' ) . '</th><th>' . __( 'Tax rate', 'woocommerce-germanized' ) . '</th><th>' . __( 'Share', 'woocommerce-germanized' ) . '</th><th>' . __( 'Tax', 'woocommerce-germanized' ) . '</th></tr></thead><tbody><tr><td>' . __( 'Book', 'woocommerce-germanized' ) . '</td><td>' . wc_price( 40 ) . '</td><td>' . wc_price( 37.38 ) . '</td><td>7 %</td><td>42.56 %</td><td>' . wc_price( 2.62 ) . '</td></tr><tr><td>' . __( 'DVD', 'woocommerce-germanized' ) . '</td><td>' . wc_price( 60 ) . '</td><td>' . wc_price( 50.42 ) . '</td><td>19 %</td><td>57.43 %</td><td>' . wc_price( 9.58 ) . '</td></tr><tr><td>' . __( 'Shipping', 'woocommerce-germanized' ) . '</td><td>' . wc_price( 5 ) . '</td><td>' . wc_price( 4.40 ) . '</td><td>7 % | 19 %</td><td>42.56 % | 57.43 %</td><td>' . wc_price( 0.14 ) . ' | ' . wc_price( 0.46 ) . '</td></tr></tbody></table>' );
 
 		return array(
 			array(
