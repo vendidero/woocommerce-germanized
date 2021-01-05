@@ -447,7 +447,7 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 				'BG' => 20,
 				'CZ' => 21,
 				'DK' => 25,
-				'DE' => 16,
+				'DE' => 19,
 				'EE' => 20,
 				'GR' => 23,
 				'ES' => 21,
@@ -470,7 +470,7 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 				'SK' => 20,
 				'FI' => 24,
 				'SE' => 25,
-				'GB' => 20,
+				'MC' => 19.6
 			) );
 
 			// Delete digital rates
@@ -571,14 +571,14 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 		}
 
 		public static function create_tax_rates( $tax_rate = '', $tax_rate_reduced = '' ) {
-			$countries = WC()->countries->get_european_union_countries();
+			$countries = WC()->countries->get_european_union_countries( 'eu_vat' );
 
 			if ( empty( $tax_rate ) || ! is_numeric( $tax_rate ) ) {
-				$tax_rate = WC()->countries->get_base_country() === 'AT' ? 20 : 16;
+				$tax_rate = WC()->countries->get_base_country() === 'AT' ? 20 : 19;
 			}
 
 			if ( empty( $tax_rate_reduced ) || ! is_numeric( $tax_rate_reduced ) ) {
-				$tax_rate_reduced = WC()->countries->get_base_country() === 'AT' ? 10 : 5;
+				$tax_rate_reduced = WC()->countries->get_base_country() === 'AT' ? 10 : 7;
 			}
 
 			foreach ( $countries as $key => $country ) {
