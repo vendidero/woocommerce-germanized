@@ -88,58 +88,24 @@ class WC_GZD_Settings_Tab_Taxes extends WC_GZD_Settings_Tab {
 
 	protected function get_split_tax_settings() {
 
-		$shipping_tax_example = sprintf( __( 'By choosing this option shipping cost taxes will be calculated based on the tax rates included within the cart. Imagine the following example. The tax share is calculated based on net prices. Further information can be found <a href="%s" target="_blank">here</a>. %s', 'woocommerce-germanized' ), 'https://vendidero.de/dokument/steuerberechnung-fuer-versandkosten-und-gebuehren', '<table class="wc-gzd-tax-example"><thead><tr><th>' . __( 'Product', 'woocommerce-germanized' ) . '</th><th>' . __( 'Price', 'woocommerce-germanized' ) . '</th><th>' . __( 'Price (net)', 'woocommerce-germanized' ) . '</th><th>' . __( 'Tax rate', 'woocommerce-germanized' ) . '</th><th>' . __( 'Share', 'woocommerce-germanized' ) . '</th><th>' . __( 'Tax', 'woocommerce-germanized' ) . '</th></tr></thead><tbody><tr><td>' . __( 'Book', 'woocommerce-germanized' ) . '</td><td>' . wc_price( 40 ) . '</td><td>' . wc_price( 37.38 ) . '</td><td>7 %</td><td>42.56 %</td><td>' . wc_price( 2.62 ) . '</td></tr><tr><td>' . __( 'DVD', 'woocommerce-germanized' ) . '</td><td>' . wc_price( 60 ) . '</td><td>' . wc_price( 50.42 ) . '</td><td>19 %</td><td>57.43 %</td><td>' . wc_price( 9.58 ) . '</td></tr><tr><td>' . __( 'Shipping', 'woocommerce-germanized' ) . '</td><td>' . wc_price( 5 ) . '</td><td>' . wc_price( 4.40 ) . '</td><td>7 % | 19 %</td><td>42.56 % | 57.43 %</td><td>' . wc_price( 0.14 ) . ' | ' . wc_price( 0.46 ) . '</td></tr></tbody></table>' );
+		$shipping_tax_example = sprintf( __( 'By choosing this option shipping cost and fee taxes will be calculated based on the tax rates included within the cart. Imagine the following example. The tax share is calculated based on net prices. Further information can be found <a href="%s" target="_blank">here</a>. %s', 'woocommerce-germanized' ), 'https://vendidero.de/dokument/steuerberechnung-fuer-versandkosten-und-gebuehren', '<table class="wc-gzd-tax-example"><thead><tr><th>' . __( 'Product', 'woocommerce-germanized' ) . '</th><th>' . __( 'Price', 'woocommerce-germanized' ) . '</th><th>' . __( 'Price (net)', 'woocommerce-germanized' ) . '</th><th>' . __( 'Tax rate', 'woocommerce-germanized' ) . '</th><th>' . __( 'Share', 'woocommerce-germanized' ) . '</th><th>' . __( 'Tax', 'woocommerce-germanized' ) . '</th></tr></thead><tbody><tr><td>' . __( 'Book', 'woocommerce-germanized' ) . '</td><td>' . wc_price( 40 ) . '</td><td>' . wc_price( 37.38 ) . '</td><td>7 %</td><td>42.56 %</td><td>' . wc_price( 2.62 ) . '</td></tr><tr><td>' . __( 'DVD', 'woocommerce-germanized' ) . '</td><td>' . wc_price( 60 ) . '</td><td>' . wc_price( 50.42 ) . '</td><td>19 %</td><td>57.43 %</td><td>' . wc_price( 9.58 ) . '</td></tr><tr><td>' . __( 'Shipping', 'woocommerce-germanized' ) . '</td><td>' . wc_price( 5 ) . '</td><td>' . wc_price( 4.40 ) . '</td><td>7 % | 19 %</td><td>42.56 % | 57.43 %</td><td>' . wc_price( 0.14 ) . ' | ' . wc_price( 0.46 ) . '</td></tr></tbody></table>' );
 
 		return array(
 			array(
-				'title' => __( 'Shipping costs', 'woocommerce-germanized' ),
+				'title' => '',
 				'type'  => 'title',
-				'id'    => 'shipping_tax_options'
+				'id'    => 'split_tax_options'
 			),
 
 			array(
 				'title'   => __( 'Split-tax', 'woocommerce-germanized' ),
-				'desc'    => __( 'Enable split-tax calculation for shipping costs.', 'woocommerce-germanized' ) . '<div class="wc-gzd-additional-desc">' . $shipping_tax_example . '</div>',
+				'desc'    => __( 'Enable split-tax calculation for additional costs (shipping costs and fees).', 'woocommerce-germanized' ) . '<div class="wc-gzd-additional-desc">' . $shipping_tax_example . '</div>',
 				'id'      => 'woocommerce_gzd_shipping_tax',
 				'default' => 'yes',
 				'type'    => 'gzd_toggle',
 			),
-			array(
-				'title'             => __( 'Force', 'woocommerce-germanized' ),
-				'desc'              => __( 'Force split-tax calculation for shipping methods.', 'woocommerce-germanized' ),
-				'id'                => 'woocommerce_gzd_shipping_tax_force',
-				'default'           => 'yes',
-				'type'              => 'gzd_toggle',
-				'custom_attributes' => array(
-					'data-show_if_woocommerce_gzd_shipping_tax' => '',
-				),
-				'desc_tip'          => __( 'This option will overwrite settings for each individual shipping method to force tax calculation (instead of only calculating tax for those methods which are taxeable).', 'woocommerce-germanized' ),
-			),
 
-			array( 'type' => 'sectionend', 'id' => 'shipping_tax_options' ),
-
-			array( 'title' => __( 'Fees', 'woocommerce-germanized' ), 'type' => 'title', 'id' => 'fee_tax_options' ),
-
-			array(
-				'title'   => __( 'Split-tax', 'woocommerce-germanized' ),
-				'desc'    => __( 'Enable split-tax calculation for fees.', 'woocommerce-germanized' ),
-				'id'      => 'woocommerce_gzd_fee_tax',
-				'default' => 'yes',
-				'type'    => 'gzd_toggle',
-			),
-			array(
-				'title'             => __( 'Force', 'woocommerce-germanized' ),
-				'desc'              => __( 'Force split-tax calculation for fees.', 'woocommerce-germanized' ),
-				'id'                => 'woocommerce_gzd_fee_tax_force',
-				'default'           => 'yes',
-				'custom_attributes' => array(
-					'data-show_if_woocommerce_gzd_fee_tax' => '',
-				),
-				'type'              => 'gzd_toggle',
-				'desc_tip'          => __( 'This option will overwrite settings for each individual fee to force tax calculation (instead of only calculating tax for those fees which are taxeable).', 'woocommerce-germanized' ),
-			),
-
-			array( 'type' => 'sectionend', 'id' => 'fee_tax_options' ),
+			array( 'type' => 'sectionend', 'id' => 'split_tax_options' ),
 		);
 	}
 

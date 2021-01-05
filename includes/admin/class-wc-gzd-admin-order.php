@@ -25,23 +25,21 @@ class WC_GZD_Admin_Order {
 	}
 
 	public function __construct() {
-		if ( 'yes' === get_option( 'woocommerce_gzd_shipping_tax' ) ) {
+		if ( wc_gzd_enable_additional_costs_split_tax_calculation() ) {
 			add_action( 'woocommerce_order_item_shipping_after_calculate_taxes', array(
 				$this,
 				'adjust_item_taxes'
-			), 10, 2 );
-		}
+			), 10 );
 
-		if ( 'yes' === get_option( 'woocommerce_gzd_fee_tax' ) ) {
 			add_action( 'woocommerce_order_item_fee_after_calculate_taxes', array(
 				$this,
 				'adjust_item_taxes'
-			), 10, 2 );
+			), 10 );
 
 			add_action( 'woocommerce_order_item_after_calculate_taxes', array(
 				$this,
 				'adjust_item_taxes'
-			), 10, 2 );
+			), 10 );
 		}
 	}
 
@@ -49,7 +47,7 @@ class WC_GZD_Admin_Order {
 	 * @param WC_Order_Item $item
 	 * @param $for
 	 */
-	public function adjust_item_taxes( $item, $for ) {
+	public function adjust_item_taxes( $item ) {
 		if ( ! wc_tax_enabled() || $item->get_total() <= 0 || ! in_array( $item->get_type(), array( 'fee', 'shipping' ) ) ) {
 			return;
 		}
@@ -91,15 +89,12 @@ class WC_GZD_Admin_Order {
 				}
 
 				$order->update_meta_data( '_has_split_tax', 'yes' );
-				$order->update_meta_data( '_additional_costs_include_tax', wc_bool_to_string( wc_gzd_additional_costs_include_tax() ) );
-
-				$order->save();
 			} else {
 				$order->delete_meta_data( '_has_split_tax' );
-				$order->delete_meta_data( '_additional_costs_include_tax' );
-
-				$order->save();
 			}
+
+			$order->update_meta_data( '_additional_costs_include_tax', wc_bool_to_string( wc_gzd_additional_costs_include_tax() ) );
+			$order->save();
 		}
 	}
 

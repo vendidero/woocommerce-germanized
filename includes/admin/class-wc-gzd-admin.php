@@ -797,9 +797,6 @@ class WC_GZD_Admin {
 		update_option( 'woocommerce_price_display_suffix', '' );
 
 		update_option( 'woocommerce_gzd_shipping_tax', 'no' );
-		update_option( 'woocommerce_gzd_shipping_tax_force', 'no' );
-		update_option( 'woocommerce_gzd_fee_tax', 'no' );
-		update_option( 'woocommerce_gzd_fee_tax_force', 'no' );
 		update_option( 'woocommerce_gzd_enable_virtual_vat', 'no' );
 	}
 

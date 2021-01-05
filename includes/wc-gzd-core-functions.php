@@ -1046,6 +1046,10 @@ function wc_gzd_format_unit_price( $price, $unit, $unit_base ) {
 	return apply_filters( 'woocommerce_gzd_formatted_unit_price', $html, $price, $unit_base, $unit );
 }
 
+function wc_gzd_enable_additional_costs_split_tax_calculation() {
+	return 'yes' === get_option( 'woocommerce_gzd_shipping_tax' );
+}
+
 function wc_gzd_additional_costs_include_tax() {
 	/**
 	 * Filter to adjust whether additional costs (e.g. shipping costs, fees) are treated including taxes or not.
@@ -1055,5 +1059,5 @@ function wc_gzd_additional_costs_include_tax() {
 	 *
 	 * @since 3.3.4
 	 */
-	return ( ( 'yes' === get_option( 'woocommerce_gzd_shipping_tax' ) || 'yes' === get_option( 'woocommerce_gzd_fee_tax' ) ) && apply_filters( 'woocommerce_gzd_additional_costs_include_tax', wc_prices_include_tax() ) );
+	return ( wc_gzd_enable_additional_costs_split_tax_calculation() && apply_filters( 'woocommerce_gzd_additional_costs_include_tax', wc_prices_include_tax() ) );
 }

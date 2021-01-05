@@ -210,13 +210,14 @@ class WC_GZD_Checkout {
 	 * @param WC_Order $order
 	 */
 	public function order_meta( $order ) {
-		if ( 'yes' === get_option( 'woocommerce_gzd_shipping_tax' ) || 'yes' === get_option( 'woocommerce_gzd_fee_tax' ) ) {
+		if ( wc_gzd_enable_additional_costs_split_tax_calculation() ) {
 			$tax_shares = wc_gzd_get_cart_tax_share( 'shipping', $order->get_items() );
 
 			if ( sizeof( $tax_shares ) > 1 ) {
 				$order->update_meta_data( '_has_split_tax', 'yes' );
-				$order->update_meta_data( '_additional_costs_include_tax', wc_bool_to_string( wc_gzd_additional_costs_include_tax() ) );
 			}
+
+			$order->update_meta_data( '_additional_costs_include_tax', wc_bool_to_string( wc_gzd_additional_costs_include_tax() ) );
 		}
 	}
 
@@ -708,7 +709,7 @@ class WC_GZD_Checkout {
 	 */
 	public function adjust_shipping_taxes( $rates, $package ) {
 
-		if ( get_option( 'woocommerce_gzd_shipping_tax' ) !== 'yes' ) {
+		if ( ! wc_gzd_enable_additional_costs_split_tax_calculation() ) {
 			return $rates;
 		}
 
@@ -721,7 +722,7 @@ class WC_GZD_Checkout {
 			 * Calculate split taxes if the cart contains more than one tax rate.
 			 * Tax rounding (e.g. for subtotal) is handled by WC_Cart_Totals::get_shipping_from_cart
 			 */
-			if ( ! empty( $original_taxes ) || get_option( 'woocommerce_gzd_shipping_tax_force' ) === 'yes' ) {
+			if ( apply_filters( 'woocommerce_gzd_force_additional_costs_taxation', true ) ) {
 				if ( $rate->get_shipping_tax() > 0 ) {
 					if ( ! empty( $tax_shares ) ) {
 						$taxes = array();
@@ -776,7 +777,7 @@ class WC_GZD_Checkout {
 	 */
 	public function adjust_fee_taxes( $fee_taxes, $fee, $cart_totals ) {
 
-		if ( 'yes' !== get_option( 'woocommerce_gzd_fee_tax' ) ) {
+		if ( ! wc_gzd_enable_additional_costs_split_tax_calculation() ) {
 			return $fee_taxes;
 		}
 

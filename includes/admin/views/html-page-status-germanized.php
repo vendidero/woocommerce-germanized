@@ -88,14 +88,14 @@ if ( ! defined( 'ABSPATH' ) ) {
     </thead>
     <tbody>
     <tr>
-        <td data-export-label="Shipping Taxes"><?php _e( 'Shipping Taxes', 'woocommerce-germanized' ); ?>:</td>
+        <td data-export-label="Split Tax"><?php _e( 'Split-tax', 'woocommerce-germanized' ); ?>:</td>
         <td class="help">&nbsp;</td>
-        <td><?php echo 'yes' === get_option( 'woocommerce_gzd_shipping_tax' ) ? '<mark class="yes"><span class="dashicons dashicons-yes"></span></mark>' . ( 'yes' === get_option( 'woocommerce_gzd_shipping_tax_force' ) ? ' [' . __( 'Forced', 'woocommerce-germanized' ) . ']' : '' ) : '<mark class="no">' . '&ndash;' . '</mark>'; ?></td>
+        <td><?php echo 'yes' === get_option( 'woocommerce_gzd_shipping_tax' ) ? '<mark class="yes"><span class="dashicons dashicons-yes"></span></mark>' : '<mark class="no">' . '&ndash;' . '</mark>'; ?></td>
     </tr>
     <tr>
-        <td data-export-label="Fee Taxes"><?php _e( 'Fee Taxes', 'woocommerce-germanized' ); ?>:</td>
+        <td data-export-label="Split Tax"><?php _e( 'Additional costs include taxes', 'woocommerce-germanized' ); ?>:</td>
         <td class="help">&nbsp;</td>
-        <td><?php echo 'yes' === get_option( 'woocommerce_gzd_fee_tax' ) ? '<mark class="yes"><span class="dashicons dashicons-yes"></span></mark>' . ( 'yes' === get_option( 'woocommerce_gzd_fee_tax_force' ) ? ' [' . __( 'Forced', 'woocommerce-germanized' ) . ']' : '' ) : '<mark class="no">' . '&ndash;' . '</mark>'; ?></td>
+        <td><?php echo wc_gzd_additional_costs_include_tax() ? '<mark class="yes"><span class="dashicons dashicons-yes"></span></mark>' : '<mark class="no">' . '&ndash;' . '</mark>'; ?></td>
     </tr>
     <tr>
         <td data-export-label="Virtual VAT"><?php _e( 'Virtual VAT', 'woocommerce-germanized' ); ?>:</td>
