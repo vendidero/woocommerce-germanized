@@ -209,7 +209,7 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 			add_action( 'plugins_loaded', array( $this, 'setup_compatibility' ), 0 );
 
 			// Set template filter directly after load to ensure wc_get_template finds templates
-			add_filter( 'woocommerce_locate_template', array( $this, 'filter_templates' ), PHP_INT_MAX, 3 );
+			add_filter( 'woocommerce_locate_template', array( $this, 'filter_templates' ), 1500, 3 );
 
 			$this->units           = new WC_GZD_Units();
 			$this->price_labels    = new WC_GZD_Price_Labels();

@@ -257,7 +257,7 @@ if ( ! function_exists( 'woocommerce_gzd_template_checkout_table_content_replace
 	 */
 	function woocommerce_gzd_template_checkout_table_content_replacement() {
 		wc_get_template( 'checkout/review-order-product-table.php' );
-		add_filter( 'woocommerce_checkout_cart_item_visible', 'woocommerce_gzd_template_checkout_table_product_hide', PHP_INT_MAX );
+		add_filter( 'woocommerce_checkout_cart_item_visible', 'woocommerce_gzd_template_checkout_table_product_hide', 1500 );
 	}
 
 }
@@ -281,7 +281,7 @@ if ( ! function_exists( 'woocommerce_gzd_template_checkout_table_product_hide_fi
 	 * Remove review order product table cart item visibility filter after output has been suppressed.
 	 */
 	function woocommerce_gzd_template_checkout_table_product_hide_filter_removal() {
-		remove_filter( 'woocommerce_checkout_cart_item_visible', 'woocommerce_gzd_template_checkout_table_product_hide', PHP_INT_MAX );
+		remove_filter( 'woocommerce_checkout_cart_item_visible', 'woocommerce_gzd_template_checkout_table_product_hide', 1500 );
 	}
 
 }
@@ -413,7 +413,7 @@ if ( ! function_exists( 'woocommerce_gzd_template_set_order_button_remove_filter
 	 * Temporarily add a filter which removes order button html (that's how we get the order button at the end of checkout since WC 2.3)
 	 */
 	function woocommerce_gzd_template_set_order_button_remove_filter() {
-		add_filter( 'woocommerce_order_button_html', 'woocommerce_gzd_template_button_temporary_hide', PHP_INT_MAX );
+		add_filter( 'woocommerce_order_button_html', 'woocommerce_gzd_template_button_temporary_hide', 1500 );
 	}
 
 }
@@ -435,7 +435,7 @@ if ( ! function_exists( 'woocommerce_gzd_template_set_order_button_show_filter' 
 	 * Remove the order button html filter after payment.php has been parsed
 	 */
 	function woocommerce_gzd_template_set_order_button_show_filter() {
-		remove_filter( 'woocommerce_order_button_html', 'woocommerce_gzd_template_button_temporary_hide', PHP_INT_MAX );
+		remove_filter( 'woocommerce_order_button_html', 'woocommerce_gzd_template_button_temporary_hide', 1500 );
 	}
 
 }

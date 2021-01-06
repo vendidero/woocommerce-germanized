@@ -773,7 +773,7 @@ class WC_GZD_Checkout {
 	/**
 	 * @param $fee_taxes
 	 * @param $fee
-	 * @param $cart_totals
+	 * @param WC_Cart_Totals $cart_totals
 	 */
 	public function adjust_fee_taxes( $fee_taxes, $fee, $cart_totals ) {
 
@@ -781,7 +781,7 @@ class WC_GZD_Checkout {
 			return $fee_taxes;
 		}
 
-		$calculate_taxes = wc_tax_enabled() && ! WC()->customer->is_vat_exempt();
+		$calculate_taxes = wc_tax_enabled();
 
 		// Do not calculate tax shares if tax calculation is disabled
 		if ( ! $calculate_taxes ) {
@@ -792,12 +792,22 @@ class WC_GZD_Checkout {
 
 		/**
 		 * Do not calculate fee taxes if tax shares are empty (e.g. zero-taxes only).
-		 * In this case, remove fee taxes altogether and force gross price.
+		 * In this case, remove fee taxes altogether.
 		 */
-		if ( empty( $tax_shares ) ) {
+		if ( empty( $tax_shares ) || WC()->customer->is_vat_exempt() ) {
 			if ( wc_gzd_additional_costs_include_tax() ) {
 				$total_tax  = array_sum( array_map( array( $this, 'round_line_tax_in_cents' ), $fee_taxes ) );
 				$fee->total = $fee->total - $total_tax;
+
+				/**
+				 * In case the customer is a VAT exempt - use customer's tax rates
+				 * to find the fee net price.
+				 */
+				if ( WC()->customer->is_vat_exempt() ) {
+					$fee_rates  = WC_Tax::get_rates( '' );
+					$fee_taxes  = WC_Tax::calc_inclusive_tax( $fee->total, $fee_rates );
+					$fee->total = $fee->total - array_sum( $fee_taxes );
+				}
 			}
 
 			return array();
