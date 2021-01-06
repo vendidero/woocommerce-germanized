@@ -187,7 +187,18 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 
 == Changelog ==
 = 3.3.4 =
-Improvement: Use net prices for shipping costs and fees in case net option is enabled in Woo tax settings
+* Feature: WC 4.9 compatibility
+* Improvement: Use net prices for shipping costs and fees in case net option is enabled in Woo tax settings
+* Improvement: Simplified split tax calculation options to use a global option (additional costs) instead of single options
+* Improvement: Added notice before updating base version in case pro version is outdated
+* Improvement: Allow adding multiple vouchers to one cart (but do not allow mixing vouchers with discounts)
+* Improvement: Added new section (addresses) to Post  & DHL
+* Improvement: Internetmarke error reporting in case no matching product was found
+* Improvement: Sync label dimensions with package (shipment) data if available
+* Improvement: Make sure DOI activation notice is only added once
+* Fix: Internetmarke Warenpost state formatting
+* Fix: Internetmarke product code existence check
+* Fix: Flexible Shipping compatibility
 
 = 3.3.3 =
 * Fix: DHL WSDL download error
