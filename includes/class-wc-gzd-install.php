@@ -671,7 +671,7 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 				),
 				'revocation'      => array(
 					'name'    => _x( 'revocation', 'Page slug', 'woocommerce-germanized' ),
-					'title'   => _x( 'Power of Revocation', 'Page title', 'woocommerce-germanized' ),
+					'title'   => _x( 'Cancellation Policy', 'Page title', 'woocommerce-germanized' ),
 					'content' => ''
 				),
 				'shipping_costs'  => array(

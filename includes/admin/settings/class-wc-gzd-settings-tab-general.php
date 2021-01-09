@@ -60,8 +60,8 @@ class WC_GZD_Settings_Tab_General extends WC_GZD_Settings_Tab {
 				'desc'     => ( ! get_option( 'woocommerce_terms_page_id' ) ? sprintf( __( 'Don\'t have terms & conditions yet? <a href="%s">Generate now</a>!', 'woocommerce-germanized' ), admin_url( 'admin.php?page=wc-settings&tab=germanized-terms_generator' ) ) : '' ),
 			),
 			array(
-				'title'    => __( 'Power of Revocation', 'woocommerce-germanized' ),
-				'desc_tip' => __( 'This page should contain information regarding your customer\'s Right of Revocation.', 'woocommerce-germanized' ),
+				'title'    => __( 'Cancellation Policy', 'woocommerce-germanized' ),
+				'desc_tip' => __( 'This page should contain information regarding your customer\'s Right of Withdrawal.', 'woocommerce-germanized' ),
 				'id'       => 'woocommerce_revocation_page_id',
 				'type'     => 'single_select_page',
 				'default'  => '',
@@ -71,8 +71,8 @@ class WC_GZD_Settings_Tab_General extends WC_GZD_Settings_Tab {
 			),
 
 			array(
-				'title'    => __( 'Revocation Address', 'woocommerce-germanized' ),
-				'desc'     => __( 'Type in an address, telephone/telefax number, email address which is to be used as revocation address', 'woocommerce-germanized' ),
+				'title'    => __( 'Send withdrawal to', 'woocommerce-germanized' ),
+				'desc'     => __( 'Type in an address, telephone/telefax number, email address which is to be used as the recipient address of the withdrawal.', 'woocommerce-germanized' ),
 				'desc_tip' => true,
 				'css'      => 'width:100%; height: 65px;',
 				'id'       => 'woocommerce_gzd_revocation_address',

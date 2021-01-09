@@ -30,8 +30,8 @@ if ( ! class_exists( 'WC_GZD_Email_Customer_Revocation' ) ) :
 		public function __construct() {
 
 			$this->id          = 'customer_revocation';
-			$this->title       = __( 'Revocation', 'woocommerce-germanized' );
-			$this->description = __( 'Email being sent if a customer fills out the revocation form.', 'woocommerce-germanized' );
+			$this->title       = __( 'Withdrawal', 'woocommerce-germanized' );
+			$this->description = __( 'Email being sent if a customer fills out the form of withdrawal.', 'woocommerce-germanized' );
 
 			$this->template_html  = 'emails/customer-revocation.php';
 			$this->template_plain = 'emails/plain/customer-revocation.php';
@@ -174,7 +174,7 @@ if ( ! class_exists( 'WC_GZD_Email_Customer_Revocation' ) ) :
 					'title'       => __( 'Admin email', 'woocommerce-germanized' ),
 					'type'        => 'text',
 					'desc_tip'    => true,
-					'description' => __( 'Insert the email address of your shop manager here. A copy of the revocation email is being sent to this address.', 'woocommerce-germanized' ),
+					'description' => __( 'Insert the email address of your shop manager here. A copy of the withdrawal confirmation email is being sent to this address.', 'woocommerce-germanized' ),
 					'placeholder' => '',
 					'default'     => get_bloginfo( 'admin_email' ),
 				),

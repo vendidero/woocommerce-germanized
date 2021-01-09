@@ -238,7 +238,7 @@ function wc_gzd_get_hook_priority( $hook ) {
 function wc_gzd_get_legal_pages( $email_attachable_only = false ) {
 	$legal_pages = array(
 		'terms'         => __( 'Terms & Conditions', 'woocommerce-germanized' ),
-		'revocation'    => __( 'Right of Recission', 'woocommerce-germanized' ),
+		'revocation'    => __( 'Cancellation Policy', 'woocommerce-germanized' ),
 		'imprint'       => __( 'Imprint', 'woocommerce-germanized' ),
 		'data_security' => __( 'Data Security', 'woocommerce-germanized' ),
 	);

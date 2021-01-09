@@ -12,7 +12,7 @@
  *
  * @see https://github.com/vendidero/woocommerce-germanized/wiki/Overriding-Germanized-Templates
  * @package Germanized/Templates
- * @version 1.0.0
+ * @version 1.0.1
  */
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -46,8 +46,8 @@ $fields = WC_GZD_Revocation::get_fields();
     <div class="form-row submit-revocation checkout-btn-wrap">
 		<?php wp_nonce_field( 'woocommerce-revocation' ); ?>
         <button class="button alt" name="woocommerce_gzd_revocation_submit" id="submit_revocation"
-                value="<?php echo esc_attr( _x( 'Forward Revocation', 'revocation-form', 'woocommerce-germanized' ) ); ?>"
-                data-value="<?php echo esc_attr( _x( 'Forward Revocation', 'revocation-form', 'woocommerce-germanized' ) ); ?>"><?php echo _x( 'Forward Revocation', 'revocation-form', 'woocommerce-germanized' ); ?></button>
+                value="<?php echo esc_attr( _x( 'Forward Withdrawal', 'revocation-form', 'woocommerce-germanized' ) ); ?>"
+                data-value="<?php echo esc_attr( _x( 'Forward Withdrawal', 'revocation-form', 'woocommerce-germanized' ) ); ?>"><?php echo _x( 'Forward Withdrawal', 'revocation-form', 'woocommerce-germanized' ); ?></button>
     </div>
 
 </form>

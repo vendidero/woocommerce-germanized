@@ -43,7 +43,7 @@ class WC_GZD_Admin_Status extends WC_Admin_Status {
 
 		$pages = array(
 			'terms'           => __( 'Terms & Conditions', 'woocommerce-germanized' ),
-			'revocation'      => __( 'Power of Revocation', 'woocommerce-germanized' ),
+			'revocation'      => __( 'Cancellation Policy', 'woocommerce-germanized' ),
 			'imprint'         => __( 'Imprint', 'woocommerce-germanized' ),
 			'data_security'   => __( 'Data Security Statement', 'woocommerce-germanized' ),
 			'payment_methods' => __( 'Payment Methods', 'woocommerce-germanized' ),

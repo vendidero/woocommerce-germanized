@@ -106,7 +106,7 @@ class WC_GZD_Admin_Legal_Checkboxes {
 				'id'       => $checkbox->get_form_field_id( 'confirmation' ),
 				'css'      => 'width:100%; height: 65px;',
 				'desc_tip' => __( 'This text will be appended to your order processing email if the order contains service products.', 'woocommerce-germanized' ),
-				'desc'     => sprintf( __( 'To insert a link to your revocation page use the following placeholder: %s', 'woocommerce-germanized' ), '<code>{link}, {/link}</code>' ),
+				'desc'     => sprintf( __( 'To insert a link to your cancellation policy use the following placeholder: %s', 'woocommerce-germanized' ), '<code>{link}, {/link}</code>' ),
 				'default'  => __( 'Furthermore you have expressly agreed to start the performance of the contract for services before expiry of the withdrawal period. I have noted to lose my {link}right of withdrawal{/link} with the beginning of the performance of the contract.', 'woocommerce-germanized' ),
 			),
 		) );
@@ -131,12 +131,12 @@ class WC_GZD_Admin_Legal_Checkboxes {
 				'id'       => $checkbox->get_form_field_id( 'confirmation' ),
 				'css'      => 'width:100%; height: 65px;',
 				'desc_tip' => __( 'This text will be appended to your order processing email if the order contains digital products.', 'woocommerce-germanized' ),
-				'desc'     => sprintf( __( 'To insert a link to your revocation page use the following placeholder: %s', 'woocommerce-germanized' ), '<code>{link}, {/link}</code>' ),
+				'desc'     => sprintf( __( 'To insert a link to your cancellation policy use the following placeholder: %s', 'woocommerce-germanized' ), '<code>{link}, {/link}</code>' ),
 				'default'  => __( 'Furthermore you have expressly agreed to start the performance of the contract for digital items (e.g. downloads) before expiry of the withdrawal period. I have noted to lose my {link}right of withdrawal{/link} with the beginning of the performance of the contract.', 'woocommerce-germanized' ),
 			),
 			array(
 				'title'    => __( 'Digital Product types', 'woocommerce-germanized' ),
-				'desc'     => __( 'Select product types for which the loss of recission notice is shown. Product types like "simple product" may be redudant because they include virtual and downloadable products.', 'woocommerce-germanized' ),
+				'desc'     => __( 'Select product types for which the loss of the right of withdrawal notice is shown. Product types like "simple product" may be redundant because they include virtual and downloadable products.', 'woocommerce-germanized' ),
 				'desc_tip' => true,
 				'id'       => $checkbox->get_form_field_id( 'types' ),
 				'default'  => array( 'downloadable' ),

@@ -12,7 +12,7 @@
  *
  * @see https://github.com/vendidero/woocommerce-germanized/wiki/Overriding-Germanized-Templates
  * @package Germanized/Templates
- * @version 1.0.0
+ * @version 1.0.1
  */
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -23,7 +23,7 @@ $fields = WC_GZD_Revocation::get_fields();
 
 <?php do_action( 'woocommerce_email_header', $email_heading, $email ); ?>
 
-    <p><?php echo _x( 'By sending you this email we confirm your Revocation. Please review your data.', 'revocation-form', 'woocommerce-germanized' ); ?></p>
+    <p><?php echo _x( 'By sending you this email we confirm receiving your withdrawal. Please review your data.', 'revocation-form', 'woocommerce-germanized' ); ?></p>
 
     <table cellspacing="0" cellpadding="0" style="width: 100%; vertical-align: top;" border="0">
 		<?php if ( ! empty( $fields ) ) : ?>

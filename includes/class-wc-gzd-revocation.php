@@ -30,7 +30,7 @@ class WC_GZD_Revocation {
 		return apply_filters( 'woocommerce_gzd_revocation_fields', array(
 			'content'           => array(
 				'type'        => 'textarea',
-				'label'       => _x( 'Revocation', 'revocation-form', 'woocommerce-germanized' ),
+				'label'       => _x( 'Withdrawal', 'revocation-form', 'woocommerce-germanized' ),
 				'required'    => true,
 				'description' => _x( 'Tip: Delete whatever entry does not apply, and provide, as needed', 'revocation-form', 'woocommerce-germanized' ),
 				'default'     => _x( 'I/We hereby give notice that I/We withdraw from my/our contract of sale of the following goods/provision of the following service: ', 'revocation-form', 'woocommerce-germanized' ),

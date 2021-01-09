@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce Germanized\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-05 12:17+0100\n"
-"PO-Revision-Date: 2021-01-05 12:30+0100\n"
+"POT-Creation-Date: 2021-01-09 18:21+0100\n"
+"PO-Revision-Date: 2021-01-09 18:21+0100\n"
 "Last-Translator: holzhannes <holzhannes@posteo.de>\n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -45,7 +45,7 @@ msgctxt "dhl"
 msgid "Additional Services"
 msgstr "Zusätzliche Leistungen"
 
-#: woocommerce-germanized-dhl/includes/admin/views/html-shipment-deutsche-post-label-backbone-form.php:36
+#: woocommerce-germanized-dhl/includes/admin/views/html-shipment-deutsche-post-label-backbone-form.php:30
 #: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:514
 #, php-format
 msgid ""
@@ -58,13 +58,13 @@ msgstr ""
 "B. Gewicht) und versuche es erneut."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized-dhl/includes/admin/views/html-shipment-deutsche-post-label-backbone-form.php:43
+#: woocommerce-germanized-dhl/includes/admin/views/html-shipment-deutsche-post-label-backbone-form.php:37
 msgctxt "dhl"
 msgid "Product"
 msgstr "Produkt"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized-dhl/includes/admin/views/html-shipment-deutsche-post-label-backbone-form.php:59
+#: woocommerce-germanized-dhl/includes/admin/views/html-shipment-deutsche-post-label-backbone-form.php:50
 msgctxt "dhl"
 msgid "Page Format"
 msgstr "Seitenformat"
@@ -447,7 +447,7 @@ msgstr "Retourensendung #{shipment_id} zur Bestellung #{order_id}"
 #: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:376
 #: woocommerce-germanized-dhl/src/Admin/Settings.php:188
 #: woocommerce-germanized-dhl/src/Admin/Settings.php:488
-#: woocommerce-germanized-dhl/src/ParcelLocator.php:850
+#: woocommerce-germanized-dhl/src/ParcelLocator.php:866
 #: woocommerce-germanized-dhl/templates/checkout/dhl/parcel-finder.php:38
 msgctxt "dhl"
 msgid "Packstation"
@@ -536,83 +536,83 @@ msgctxt "dhl"
 msgid "%s duties element does not exist."
 msgstr "%s Zollabgabe existiert nicht."
 
-#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:1390
-#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:1474
+#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:1425
+#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:1509
 msgctxt "dhl"
 msgid "Invalid shipment"
 msgstr "Ungültige Sendung"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:1394
-#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:1478
+#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:1429
+#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:1513
 msgctxt "dhl"
 msgid "Order does not exist"
 msgstr "Bestellung existiert nicht"
 
-#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:1426
+#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:1461
 msgctxt "dhl"
 msgid "Error while creating the label instance"
 msgstr "Fehler beim Erstellen der Label-Instanz"
 
-#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:1549
+#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:1584
 msgctxt "dhl"
 msgid "Invalid label"
 msgstr "Ungültiges Label"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:1637
+#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:1672
 msgctxt "dhl"
 msgid "DHL Retoure International A"
 msgstr "DHL Retoure International A"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:1638
+#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:1673
 msgctxt "dhl"
 msgid "DHL Retoure International B"
 msgstr "DHL Retoure International B"
 
-#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:1647
+#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:1682
 msgctxt "dhl"
 msgid "DHL Retoure Online"
 msgstr "DHL Retoure Online"
 
-#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:1664
+#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:1699
 msgctxt "dhl"
 msgid "DHL Paket Connect"
 msgstr "DHL Paket Connect"
 
-#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:1665
+#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:1700
 msgctxt "dhl"
 msgid "DHL Europaket (B2B)"
 msgstr "DHL Europaket (B2B)"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:1666
+#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:1701
 msgctxt "dhl"
 msgid "DHL Paket International"
 msgstr "DHL Paket International"
 
-#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:1741
+#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:1776
 msgctxt "dhl"
 msgid "DHL Paket"
 msgstr "DHL Paket"
 
-#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:1742
+#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:1777
 msgctxt "dhl"
 msgid "DHL Paket PRIO"
 msgstr "DHL Paket PRIO"
 
-#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:1743
+#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:1778
 msgctxt "dhl"
 msgid "DHL Paket Taggleich"
 msgstr "DHL Paket Taggleich"
 
-#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:1744
+#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:1779
 msgctxt "dhl"
 msgid "DHL Warenpost"
 msgstr "DHL Warenpost"
 
-#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:1831
+#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:1866
 msgctxt "dhl"
 msgid "Error while uploading label."
 msgstr "Fehler beim Hochladen des Labels."
@@ -2075,7 +2075,7 @@ msgstr "Tracked"
 
 #: woocommerce-germanized-dhl/src/Api/ImWarenpostIntRest.php:43
 #: woocommerce-germanized-dhl/src/Api/ImWarenpostIntRest.php:52
-#: woocommerce-germanized-dhl/src/Api/Internetmarke.php:490
+#: woocommerce-germanized-dhl/src/Api/Internetmarke.php:508
 msgctxt "dhl"
 msgid "Error while fetching label PDF"
 msgstr "Fehler beim Download des PDF Labels"
@@ -2108,7 +2108,7 @@ msgctxt "dhl"
 msgid "Error during request: %s"
 msgstr "Fehler beim API Zugriff: %s"
 
-#: woocommerce-germanized-dhl/src/Api/Internetmarke.php:64
+#: woocommerce-germanized-dhl/src/Api/Internetmarke.php:66
 #: woocommerce-germanized-dhl/src/Api/Soap.php:54
 #: woocommerce-germanized-dhl/src/Package.php:84
 #, php-format
@@ -2123,69 +2123,69 @@ msgstr ""
 "Zweifel deinen Hoster und stelle sicher, dass der SOAPClient <a href=\"%s"
 "\">installiert</a> ist."
 
-#: woocommerce-germanized-dhl/src/Api/Internetmarke.php:69
+#: woocommerce-germanized-dhl/src/Api/Internetmarke.php:71
 #, php-format
 msgctxt "dhl"
 msgid "Error while instantiating main Internetmarke API: %s"
 msgstr "Fehler beim Aufruf der Internetmarke API: %s"
 
-#: woocommerce-germanized-dhl/src/Api/Internetmarke.php:73
+#: woocommerce-germanized-dhl/src/Api/Internetmarke.php:75
 msgctxt "dhl"
 msgid "Internetmarke is disabled. Please enable Internetmarke."
 msgstr "Internetmarke ist deaktiviert. Bitte aktiviere die Internetmarke."
 
-#: woocommerce-germanized-dhl/src/Api/Internetmarke.php:84
+#: woocommerce-germanized-dhl/src/Api/Internetmarke.php:86
 msgctxt "dhl"
 msgid "Wrong username or password"
 msgstr "Falscher Benutzername oder Passwort"
 
-#: woocommerce-germanized-dhl/src/Api/Internetmarke.php:252
+#: woocommerce-germanized-dhl/src/Api/Internetmarke.php:254
 #, php-format
 msgctxt "dhl"
 msgid "until %s"
 msgstr "bis %s"
 
-#: woocommerce-germanized-dhl/src/Api/Internetmarke.php:337
+#: woocommerce-germanized-dhl/src/Api/Internetmarke.php:355
 #, php-format
 msgctxt "dhl"
 msgid "Length: %s"
 msgstr "Länge: %s"
 
-#: woocommerce-germanized-dhl/src/Api/Internetmarke.php:341
+#: woocommerce-germanized-dhl/src/Api/Internetmarke.php:359
 #, php-format
 msgctxt "dhl"
 msgid "Width: %s"
 msgstr "Breite: %s"
 
-#: woocommerce-germanized-dhl/src/Api/Internetmarke.php:345
+#: woocommerce-germanized-dhl/src/Api/Internetmarke.php:363
 #, php-format
 msgctxt "dhl"
 msgid "Height: %s"
 msgstr "Höhe: %s"
 
-#: woocommerce-germanized-dhl/src/Api/Internetmarke.php:349
+#: woocommerce-germanized-dhl/src/Api/Internetmarke.php:367
 #, php-format
 msgctxt "dhl"
 msgid "Weight: %s"
 msgstr "Gewicht: %s"
 
-#: woocommerce-germanized-dhl/src/Api/Internetmarke.php:354
+#: woocommerce-germanized-dhl/src/Api/Internetmarke.php:372
 msgctxt "dhl"
 msgid "Total"
 msgstr "Gesamt"
 
-#: woocommerce-germanized-dhl/src/Api/Internetmarke.php:544
+#: woocommerce-germanized-dhl/src/Api/Internetmarke.php:562
 #, php-format
 msgctxt "dhl"
 msgid "Could not refund post label: %s"
 msgstr "Deutsche Post Label konnte nicht rückerstattet werden: %s"
 
-#: woocommerce-germanized-dhl/src/Api/Internetmarke.php:558
+#: woocommerce-germanized-dhl/src/Api/Internetmarke.php:576
 msgctxt "dhl"
 msgid "Refund API could not be instantiated"
 msgstr "Die API für Rückerstattungen konnte nicht initialisiert werden"
 
-#: woocommerce-germanized-dhl/src/Api/Internetmarke.php:647
+#: woocommerce-germanized-dhl/src/Api/Internetmarke.php:665
 #: woocommerce-germanized-dhl/src/Api/LabelSoap.php:379
 #: woocommerce-germanized-dhl/src/Api/ReturnRest.php:34
 #, php-format
@@ -2193,12 +2193,12 @@ msgctxt "dhl"
 msgid "Could not fetch shipment %d."
 msgstr "Sendung %d konnte nicht gefunden werden."
 
-#: woocommerce-germanized-dhl/src/Api/Internetmarke.php:687
+#: woocommerce-germanized-dhl/src/Api/Internetmarke.php:711
 msgctxt "dhl"
 msgid "Error while generating shop order id."
 msgstr "Fehler beim Erzeugen der Shop Order Id."
 
-#: woocommerce-germanized-dhl/src/Api/Internetmarke.php:697
+#: woocommerce-germanized-dhl/src/Api/Internetmarke.php:747
 #, php-format
 msgctxt "dhl"
 msgid ""
@@ -2208,14 +2208,14 @@ msgstr ""
 "Fehler beim Kauf des Labels. Bitte <a href=\"%s\">aktualisiere</a>die "
 "Produktliste manuell und versuche es erneut."
 
-#: woocommerce-germanized-dhl/src/Api/Internetmarke.php:740
-#: woocommerce-germanized-dhl/src/Api/Internetmarke.php:747
-#: woocommerce-germanized-dhl/src/Api/Internetmarke.php:775
+#: woocommerce-germanized-dhl/src/Api/Internetmarke.php:790
+#: woocommerce-germanized-dhl/src/Api/Internetmarke.php:797
+#: woocommerce-germanized-dhl/src/Api/Internetmarke.php:825
 msgctxt "dhl"
 msgid "Error while downloading the PDF stamp."
 msgstr "Fehler beim Download des PDF Labels."
 
-#: woocommerce-germanized-dhl/src/Api/Internetmarke.php:782
+#: woocommerce-germanized-dhl/src/Api/Internetmarke.php:832
 msgctxt "dhl"
 msgid "Invalid stamp response."
 msgstr "Fehlerhafte Label Rückmeldung."
@@ -2420,7 +2420,7 @@ msgctxt "dhl time-span"
 msgid "%s-%s"
 msgstr "%s-%s"
 
-#: woocommerce-germanized-dhl/src/Package.php:274
+#: woocommerce-germanized-dhl/src/Package.php:277
 msgctxt "dhl"
 msgid ""
 "Please check the street field and make sure to provide a valid street number."
@@ -2429,15 +2429,15 @@ msgstr ""
 "angibst."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized-dhl/src/Package.php:994
+#: woocommerce-germanized-dhl/src/Package.php:997
 msgctxt "dhl"
 msgid "Germany"
 msgstr "Deutschland"
 
 # @ woocommerce-germanized
 #: woocommerce-germanized-dhl/src/ParcelLocator.php:92
-#: woocommerce-germanized-dhl/src/ParcelLocator.php:863
-#: woocommerce-germanized-dhl/src/ParcelLocator.php:892
+#: woocommerce-germanized-dhl/src/ParcelLocator.php:879
+#: woocommerce-germanized-dhl/src/ParcelLocator.php:908
 msgctxt "dhl"
 msgid "Address Type"
 msgstr "Adresstyp"
@@ -2462,30 +2462,30 @@ msgstr ""
 "eintragen."
 
 #: woocommerce-germanized-dhl/src/ParcelLocator.php:188
-#: woocommerce-germanized-dhl/src/ParcelLocator.php:579
+#: woocommerce-germanized-dhl/src/ParcelLocator.php:583
 msgctxt "dhl"
 msgid "Invalid address type."
 msgstr "Ungültiger Adresstyp."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized-dhl/src/ParcelLocator.php:651
+#: woocommerce-germanized-dhl/src/ParcelLocator.php:655
 msgctxt "dhl"
 msgid "Sorry, but delivery to packstation is not available."
 msgstr ""
 "Entschuldigung, die Lieferung an eine Packstation steht nicht zur Verfügung."
 
-#: woocommerce-germanized-dhl/src/ParcelLocator.php:656
+#: woocommerce-germanized-dhl/src/ParcelLocator.php:660
 msgctxt "dhl"
 msgid "Sorry, but delivery to parcel shops is not available."
 msgstr ""
 "Entschuldigung, die Lieferung an einen Paketshop steht nicht zur Verfügung."
 
-#: woocommerce-germanized-dhl/src/ParcelLocator.php:660
+#: woocommerce-germanized-dhl/src/ParcelLocator.php:664
 msgctxt "dhl"
 msgid "Sorry, but delivery to post offices is not available."
 msgstr "Entschuldigung, die Lieferung an Postfilialen ist nicht verfügbar."
 
-#: woocommerce-germanized-dhl/src/ParcelLocator.php:667
+#: woocommerce-germanized-dhl/src/ParcelLocator.php:671
 #, php-format
 msgctxt "dhl"
 msgid "Please indicate shipment to %s by one of the following values: %s."
@@ -2493,7 +2493,7 @@ msgstr ""
 "Bitte identifiziere die Lieferung an %s durch die Eingabe einer der "
 "folgenden Werte: %s."
 
-#: woocommerce-germanized-dhl/src/ParcelLocator.php:675
+#: woocommerce-germanized-dhl/src/ParcelLocator.php:679
 msgctxt "dhl"
 msgid ""
 "Your DHL customer number (Post number) is not valid. Please check your "
@@ -2502,7 +2502,7 @@ msgstr ""
 "Deine DHL Kundennummer (Postnummer) ist nicht gültig. Bitte überprüfe deine "
 "Eingabe."
 
-#: woocommerce-germanized-dhl/src/ParcelLocator.php:678
+#: woocommerce-germanized-dhl/src/ParcelLocator.php:682
 msgctxt "dhl"
 msgid ""
 "Your DHL customer number (Post number) is needed to ship to a packstation."
@@ -2510,64 +2510,64 @@ msgstr ""
 "Deine DHL Kundennummer (Postnummer) wird für den Versand an eine Packstation "
 "benötigt."
 
-#: woocommerce-germanized-dhl/src/ParcelLocator.php:727
-#: woocommerce-germanized-dhl/src/ParcelLocator.php:854
+#: woocommerce-germanized-dhl/src/ParcelLocator.php:731
+#: woocommerce-germanized-dhl/src/ParcelLocator.php:870
 msgctxt "dhl"
 msgid "Branch"
 msgstr "Filiale"
 
-#: woocommerce-germanized-dhl/src/ParcelLocator.php:728
+#: woocommerce-germanized-dhl/src/ParcelLocator.php:732
 msgctxt "dhl"
 msgid "Postnumber "
 msgstr "Postnummer "
 
-#: woocommerce-germanized-dhl/src/ParcelLocator.php:829
+#: woocommerce-germanized-dhl/src/ParcelLocator.php:845
 #, php-format
 msgctxt "dhl"
 msgid "e.g. %s 456"
 msgstr "z.B. %s 456"
 
-#: woocommerce-germanized-dhl/src/ParcelLocator.php:854
+#: woocommerce-germanized-dhl/src/ParcelLocator.php:870
 msgctxt "dhl"
 msgid "Branches"
 msgstr "Filialen"
 
-#: woocommerce-germanized-dhl/src/ParcelLocator.php:870
-#: woocommerce-germanized-dhl/src/ParcelLocator.php:903
+#: woocommerce-germanized-dhl/src/ParcelLocator.php:886
+#: woocommerce-germanized-dhl/src/ParcelLocator.php:919
 msgctxt "dhl"
 msgid "DHL customer number (Post number)"
 msgstr "DHL Kundennummer (Postnummer)"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized-dhl/src/ParcelLocator.php:880
+#: woocommerce-germanized-dhl/src/ParcelLocator.php:896
 msgctxt "dhl"
 msgid "Regular Address"
 msgstr "Normale Adresse"
 
-#: woocommerce-germanized-dhl/src/ParcelLocator.php:907
+#: woocommerce-germanized-dhl/src/ParcelLocator.php:923
 msgctxt "dhl"
 msgid "Not yet a DHL customer?"
 msgstr "Noch kein DHL Kunde?"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized-dhl/src/ParcelLocator.php:907
+#: woocommerce-germanized-dhl/src/ParcelLocator.php:923
 msgctxt "dhl"
 msgid "Register now"
 msgstr "Jetzt registrieren"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized-dhl/src/ParcelLocator.php:956
+#: woocommerce-germanized-dhl/src/ParcelLocator.php:972
 #, php-format
 msgctxt "dhl"
 msgid "Search %s"
 msgstr "%s suchen"
 
-#: woocommerce-germanized-dhl/src/ParcelLocator.php:1061
+#: woocommerce-germanized-dhl/src/ParcelLocator.php:1077
 msgctxt "dhl"
 msgid "No DHL locations found"
 msgstr "Keine DHL Standorte gefunden"
 
-#: woocommerce-germanized-dhl/src/ParcelLocator.php:1076
+#: woocommerce-germanized-dhl/src/ParcelLocator.php:1092
 #, php-format
 msgctxt "dhl"
 msgid ""
@@ -2578,12 +2578,12 @@ msgstr ""
 "%s oder %s."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized-dhl/src/ParcelLocator.php:1076
+#: woocommerce-germanized-dhl/src/ParcelLocator.php:1092
 msgctxt "dhl"
 msgid "DHL location"
 msgstr "DHL Standort"
 
-#: woocommerce-germanized-dhl/src/ParcelLocator.php:1076
+#: woocommerce-germanized-dhl/src/ParcelLocator.php:1092
 msgctxt "dhl"
 msgid "retry"
 msgstr "Erneut versuchen"
@@ -5377,7 +5377,8 @@ msgstr ""
 #: woocommerce-germanized/includes/admin/class-wc-gzd-admin-legal-checkboxes.php:134
 #, php-format
 msgid ""
-"To insert a link to your revocation page use the following placeholder: %s"
+"To insert a link to your cancellation policy use the following placeholder: "
+"%s"
 msgstr ""
 "Um einen Link zu deiner Widerrufsbelehrung einzufügen, verwende den "
 "folgenden Platzhalter: %s"
@@ -5449,9 +5450,9 @@ msgstr "Digitale Produkttypen"
 # @ woocommerce-germanized
 #: woocommerce-germanized/includes/admin/class-wc-gzd-admin-legal-checkboxes.php:139
 msgid ""
-"Select product types for which the loss of recission notice is shown. "
-"Product types like \"simple product\" may be redudant because they include "
-"virtual and downloadable products."
+"Select product types for which the loss of the right of withdrawal notice is "
+"shown. Product types like \"simple product\" may be redundant because they "
+"include virtual and downloadable products."
 msgstr ""
 "Wähle die Produkttypen aus, für die ein Hinweis für den Verlust des "
 "Widerrufsrechts angezeigt werden soll. Produkttypen wie \"einfaches Produkt"
@@ -5686,7 +5687,8 @@ msgstr "AGB"
 # @ woocommerce-germanized
 #: woocommerce-germanized/includes/admin/class-wc-gzd-admin-status.php:46
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-general.php:63
-msgid "Power of Revocation"
+#: woocommerce-germanized/includes/wc-gzd-core-functions.php:241
+msgid "Cancellation Policy"
 msgstr "Widerrufsbelehrung"
 
 # @ woocommerce-germanized
@@ -6158,7 +6160,7 @@ msgstr "PDF Rechnungen & Lieferscheine"
 
 # @ woocommerce-germanized
 #: woocommerce-germanized/includes/admin/notes/class-wc-gzd-admin-note-pro.php:30
-msgid "Generator for terms & conditions and right of recission"
+msgid "Generator for terms & conditions and cancellation policy"
 msgstr "Schnittstelle für Mustertexte-Generatoren für AGB & Widerrufsbelehrung"
 
 # @ woocommerce-germanized
@@ -7055,7 +7057,7 @@ msgstr "Du hast noch keine AGB? <a href=\"%s\">Jetzt generieren</a>!"
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-general.php:64
 msgid ""
 "This page should contain information regarding your customer's Right of "
-"Revocation."
+"Withdrawal."
 msgstr ""
 "Diese Seite sollte deine Widerrufsbelehrung enthalten. Nutze folgenden "
 "Shortcode um ein Widerrufsformular in die Seite einzubinden: "
@@ -7068,16 +7070,15 @@ msgid "Don't have a revocation page yet? <a href=\"%s\">Generate now</a>!"
 msgstr ""
 "Du hast noch keine Widerrufsbelehrung? <a href=\"%s\">Jetzt generieren</a>!"
 
-# @ woocommerce-germanized
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-general.php:74
-msgid "Revocation Address"
+msgid "Send withdrawal to"
 msgstr "Widerruf richten an"
 
 # @ woocommerce-germanized
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-general.php:75
 msgid ""
 "Type in an address, telephone/telefax number, email address which is to be "
-"used as revocation address"
+"used as the recipient address of the withdrawal."
 msgstr ""
 "Gib hier deine Adresse, Telefon- und Faxnummer, E-Mail Adresse usw. an, an "
 "die deine Kunden ihren Widerruf richten sollen"
@@ -8939,14 +8940,14 @@ msgstr ""
 "differenzbesteuerten Produkten gekauft werden."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-checkout.php:892
+#: woocommerce-germanized/includes/class-wc-gzd-checkout.php:902
 #: woocommerce-germanized/includes/class-wc-gzd-revocation.php:52
 #: woocommerce-germanized/includes/wc-gzd-core-functions.php:604
 msgid "Mr."
 msgstr "Herr"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-checkout.php:893
+#: woocommerce-germanized/includes/class-wc-gzd-checkout.php:903
 msgctxt "customer-title-male-address"
 msgid "Mr."
 msgstr "Herrn"
@@ -9096,7 +9097,7 @@ msgstr "Danke, dass du ein Konto bei %s erstellt hast."
 # @ woocommerce-germanized
 #: woocommerce-germanized/includes/class-wc-gzd-emails.php:1130
 msgctxt "revocation-form"
-msgid "Forward your Revocation online"
+msgid "Forward your withdrawal online"
 msgstr "Deinen Widerruf online erklären"
 
 # @ woocommerce-germanized
@@ -9165,7 +9166,7 @@ msgstr "widerrufsbelehrung"
 # @ woocommerce-germanized
 #: woocommerce-germanized/includes/class-wc-gzd-install.php:674
 msgctxt "Page title"
-msgid "Power of Revocation"
+msgid "Cancellation Policy"
 msgstr "Widerrufsbelehrung"
 
 # @ woocommerce-germanized
@@ -9194,10 +9195,9 @@ msgstr "Zahlungsarten"
 
 # @ woocommerce-germanized
 #: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:104
-#: woocommerce-germanized/includes/updates/woocommerce-gzd-update-2.0.1.php:18
 msgid ""
 "With your order, you agree to have read and understood our {term_link}Terms "
-"and Conditions{/term_link} your {revocation_link}Right of Recission{/"
+"and Conditions{/term_link}, {revocation_link}Cancellation Policy{/"
 "revocation_link} and our {data_security_link}Privacy Policy{/"
 "data_security_link}."
 msgstr ""
@@ -9208,10 +9208,9 @@ msgstr ""
 
 # @ woocommerce-germanized
 #: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:105
-#: woocommerce-germanized/includes/updates/woocommerce-gzd-update-2.0.1.php:19
 msgid ""
-"To finish the order you have to accept to our {term_link}Terms and "
-"Conditions{/term_link}, {revocation_link}Right of Recission{/"
+"To complete the order you have to accept to our {term_link}Terms and "
+"Conditions{/term_link}, {revocation_link}Cancellation Policy{/"
 "revocation_link} and our {data_security_link}Privacy Policy{/"
 "data_security_link}."
 msgstr ""
@@ -9711,10 +9710,9 @@ msgstr "Mandat E-Mail"
 msgid "Visible during checkout"
 msgstr "Im Checkout anzeigen"
 
-# @ woocommerce-germanized
 #: woocommerce-germanized/includes/class-wc-gzd-revocation.php:33
 msgctxt "revocation-form"
-msgid "Revocation"
+msgid "Withdrawal"
 msgstr "Widerruf"
 
 # @ woocommerce-germanized
@@ -9923,14 +9921,13 @@ msgstr "Bestätigung deiner Bestellung {order_number}"
 msgid "Thank you for your order"
 msgstr "Vielen Dank für deine Bestellung"
 
-# @ woocommerce-germanized
 #: woocommerce-germanized/includes/emails/class-wc-gzd-email-customer-revocation.php:33
-msgid "Revocation"
+msgid "Withdrawal"
 msgstr "Widerruf"
 
 # @ woocommerce-germanized
 #: woocommerce-germanized/includes/emails/class-wc-gzd-email-customer-revocation.php:34
-msgid "Email being sent if a customer fills out the revocation form."
+msgid "Email being sent if a customer fills out the form of withdrawal."
 msgstr ""
 "Diese E-Mail wird als Bestätigung an den Kunden weitergeleitet, sobald er "
 "das Widerrufsformular ausgefüllt hat."
@@ -9947,8 +9944,8 @@ msgstr "Admin E-Mail"
 
 #: woocommerce-germanized/includes/emails/class-wc-gzd-email-customer-revocation.php:177
 msgid ""
-"Insert the email address of your shop manager here. A copy of the revocation "
-"email is being sent to this address."
+"Insert the email address of your shop manager here. A copy of the withdrawal "
+"confirmation email is being sent to this address."
 msgstr ""
 "Füge hier die E-Mail Adresse des Shop-Managers ein. Eine Kopie des Widerrufs "
 "wird an diese E-Mail Adresse versendet."
@@ -10583,6 +10580,31 @@ msgstr ""
 "Aktiviere die Zahlungsart nur dann, wenn der Kunde bereits eine Bestellung "
 "erfolgreich abgeschlossen hat."
 
+# @ woocommerce-germanized
+#: woocommerce-germanized/includes/updates/woocommerce-gzd-update-2.0.1.php:18
+msgid ""
+"With your order, you agree to have read and understood our {term_link}Terms "
+"and Conditions{/term_link} your {revocation_link}Right of Recission{/"
+"revocation_link} and our {data_security_link}Privacy Policy{/"
+"data_security_link}."
+msgstr ""
+"Mit deiner Bestellung erklärst du dich mit unseren {term_link}Allgemeinen "
+"Geschäftsbedingungen{/term_link}, {revocation_link}Widerrufsbestimmungen{/"
+"revocation_link} und {data_security_link}Datenschutzbestimmungen{/"
+"data_security_link} einverstanden."
+
+# @ woocommerce-germanized
+#: woocommerce-germanized/includes/updates/woocommerce-gzd-update-2.0.1.php:19
+msgid ""
+"To finish the order you have to accept to our {term_link}Terms and "
+"Conditions{/term_link}, {revocation_link}Right of Recission{/"
+"revocation_link} and our {data_security_link}Privacy Policy{/"
+"data_security_link}."
+msgstr ""
+"Bitte akzeptiere unsere {term_link}Allgemeinen Geschäftsbedingungen{/"
+"term_link}, {revocation_link}Widerrufsbestimmungen{/revocation_link} und "
+"{data_security_link}Datenschutzbestimmungen{/data_security_link}."
+
 #: woocommerce-germanized/includes/wc-gzd-core-functions.php:195
 msgid ">= 12 years"
 msgstr ">= 12 Jahre"
@@ -10608,11 +10630,6 @@ msgstr ">= 25 Jahre"
 msgctxt "age"
 msgid "None"
 msgstr "Keines"
-
-# @ woocommerce-germanized
-#: woocommerce-germanized/includes/wc-gzd-core-functions.php:241
-msgid "Right of Recission"
-msgstr "Widerrufsrecht"
 
 # @ woocommerce-germanized
 #: woocommerce-germanized/includes/wc-gzd-core-functions.php:243
@@ -10935,11 +10952,10 @@ msgstr ""
 
 # @ woocommerce-germanized
 #: woocommerce-germanized/templates/emails/customer-revocation.php:26
-#: woocommerce-germanized/templates/emails/plain/customer-revocation.php:27
 msgctxt "revocation-form"
 msgid ""
-"By sending you this email we confirm your Revocation. Please review your "
-"data."
+"By sending you this email we confirm receiving your withdrawal. Please "
+"review your data."
 msgstr ""
 "Mit der Zustellung dieser E-Mail bestätigen wir den Eingang deines "
 "Widerrufs. Bitte prüfe deine Daten."
@@ -10957,6 +10973,16 @@ msgstr ""
 #: woocommerce-germanized/templates/emails/email-sepa-data.php:29
 msgid "SEPA Data"
 msgstr "SEPA Daten"
+
+# @ woocommerce-germanized
+#: woocommerce-germanized/templates/emails/plain/customer-revocation.php:27
+msgctxt "revocation-form"
+msgid ""
+"By sending you this email we confirm your Revocation. Please review your "
+"data."
+msgstr ""
+"Mit der Zustellung dieser E-Mail bestätigen wir den Eingang deines "
+"Widerrufs. Bitte prüfe deine Daten."
 
 # @ woocommerce-germanized
 #: woocommerce-germanized/templates/footer/sale-info.php:22
@@ -10981,11 +11007,10 @@ msgctxt "revocation-form"
 msgid "To"
 msgstr "An"
 
-# @ woocommerce-germanized
 #: woocommerce-germanized/templates/forms/revocation-form.php:49
 #: woocommerce-germanized/templates/forms/revocation-form.php:50
 msgctxt "revocation-form"
-msgid "Forward Revocation"
+msgid "Forward Withdrawal"
 msgstr "Widerruf erklären"
 
 #: woocommerce-germanized/templates/global/complaints.php:22
@@ -12257,6 +12282,55 @@ msgstr "vendidero"
 #. Author URI of the plugin/theme
 msgid "https://vendidero.de"
 msgstr "https://vendidero.de"
+
+# @ woocommerce-germanized
+#, fuzzy
+#~| msgid ""
+#~| "With your order, you agree to have read and understood our {term_link}"
+#~| "Terms and Conditions{/term_link} your {revocation_link}Right of "
+#~| "Recission{/revocation_link} and our {data_security_link}Privacy Policy{/"
+#~| "data_security_link}."
+#~ msgid ""
+#~ "With your order, you agree to have read and understood our {term_link}"
+#~ "Terms and Conditions{/term_link} your {revocation_link}Right of "
+#~ "Withdrawal{/revocation_link} and our {data_security_link}Privacy Policy{/"
+#~ "data_security_link}."
+#~ msgstr ""
+#~ "Mit deiner Bestellung erklärst du dich mit unseren {term_link}Allgemeinen "
+#~ "Geschäftsbedingungen{/term_link}, {revocation_link}Widerrufsbestimmungen{/"
+#~ "revocation_link} und {data_security_link}Datenschutzbestimmungen{/"
+#~ "data_security_link} einverstanden."
+
+# @ woocommerce-germanized
+#~ msgid "Power of Revocation"
+#~ msgstr "Widerrufsbelehrung"
+
+# @ woocommerce-germanized
+#~ msgid "Revocation Address"
+#~ msgstr "Widerruf richten an"
+
+# @ woocommerce-germanized
+#~ msgctxt "Page title"
+#~ msgid "Power of Revocation"
+#~ msgstr "Widerrufsbelehrung"
+
+# @ woocommerce-germanized
+#~ msgctxt "revocation-form"
+#~ msgid "Revocation"
+#~ msgstr "Widerruf"
+
+# @ woocommerce-germanized
+#~ msgid "Revocation"
+#~ msgstr "Widerruf"
+
+# @ woocommerce-germanized
+#~ msgctxt "revocation-form"
+#~ msgid "Forward Revocation"
+#~ msgstr "Widerruf erklären"
+
+# @ woocommerce-germanized
+#~ msgid "Right of Recission"
+#~ msgstr "Widerrufsrecht"
 
 # @ woocommerce-germanized
 #~ msgid "Shipping costs"
