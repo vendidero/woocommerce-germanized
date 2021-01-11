@@ -182,6 +182,7 @@ function woocommerce_gzd_checkout_load_ajax_relevant_hooks() {
 	}
 
 	add_action( 'woocommerce_checkout_order_review', 'woocommerce_gzd_template_order_submit', wc_gzd_get_hook_priority( 'checkout_order_submit' ) );
+	add_action( 'woocommerce_checkout_after_order_review', 'woocommerce_gzd_template_order_submit_fallback', 50 );
 
 	// Render checkout checkboxes
 	add_action( 'woocommerce_review_order_after_payment', 'woocommerce_gzd_template_render_checkout_checkboxes', 10 );
