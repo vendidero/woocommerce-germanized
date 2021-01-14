@@ -22,6 +22,13 @@ if ( get_option( 'woocommerce_gzd_display_digital_delivery_time_text' ) !== '' )
 add_filter( 'woocommerce_get_price_html', 'woocommerce_gzd_template_sale_price_label_html', 50, 2 );
 
 /**
+ * Maybe add specific more variants available notice to price html in case
+ * explicitly activated via woocommerce_gzd_show_variable_more_variants_notice.
+ */
+add_filter( 'woocommerce_get_price_html', 'woocommerce_gzd_template_add_more_variants_price_notice', 100, 2 );
+add_filter( 'woocommerce_gzd_unit_price_html', 'woocommerce_gzd_template_add_more_variants_unit_price_notice', 100, 2 );
+
+/**
  * Single Product
  */
 foreach ( wc_gzd_get_single_product_shopmarks() as $shopmark ) {

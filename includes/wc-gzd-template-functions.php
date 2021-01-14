@@ -144,6 +144,65 @@ if ( ! function_exists( 'woocommerce_gzd_template_single_product_units' ) ) {
 	}
 }
 
+if ( ! function_exists( 'woocommerce_gzd_template_add_more_variants_unit_price_notice' ) ) {
+
+	/**
+	 * @param $price
+	 * @param WC_GZD_Product $product
+	 */
+	function woocommerce_gzd_template_add_more_variants_unit_price_notice( $price, $product ) {
+		if ( woocommerce_gzd_show_add_more_variants_notice( $product ) ) {
+			$price = $price . ' ' . woocommerce_gzd_get_more_variants_notice( $product );
+		}
+
+		return $price;
+	}
+}
+
+if ( ! function_exists( 'woocommerce_gzd_template_add_more_variants_price_notice' ) ) {
+
+	/**
+	 * @param $price
+	 * @param WC_GZD_Product $product
+	 */
+	function woocommerce_gzd_template_add_more_variants_price_notice( $price, $product ) {
+		if ( woocommerce_gzd_show_add_more_variants_notice( $product ) ) {
+			$gzd_product = wc_gzd_get_gzd_product( $product );
+
+			/**
+			 * In case the product has a unit price - add the notice to the unit price (which comes afterwards)
+			 */
+			if ( $gzd_product->has_unit() && 'no' !== get_option( 'woocommerce_gzd_unit_price_enable_variable' ) ) {
+				return $price;
+			} else {
+				$price = $price . ' ' . woocommerce_gzd_get_more_variants_notice( $product );
+			}
+		}
+
+		return $price;
+	}
+}
+
+/**
+ * @param $price
+ * @param WC_Product $product
+ *
+ * @return mixed
+ */
+function woocommerce_gzd_price_notice( $price, $product ) {
+	if ( woocommerce_gzd_show_add_more_variants_notice( $product ) ) {
+		$gzd_product = wc_gzd_get_gzd_product( $product );
+
+		if ( $gzd_product->has_unit() && 'no' !== get_option( 'woocommerce_gzd_unit_price_enable_variable' ) ) {
+			return $price;
+		} else {
+			$price = $price . ' ' . woocommerce_gzd_get_more_variants_notice( $product );
+		}
+	}
+
+	return $price;
+}
+
 if ( ! function_exists( 'woocommerce_gzd_template_grouped_single_product_units' ) ) {
 
 	function woocommerce_gzd_template_grouped_single_product_units( $html, $grouped_child ) {

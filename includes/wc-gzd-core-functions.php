@@ -839,6 +839,21 @@ function _wc_gzd_legal_page_shortcode( $atts, $content, $tag ) {
 	return _wc_gzd_page_shortcode( $atts, $content );
 }
 
+function woocommerce_gzd_show_add_more_variants_notice( $product ) {
+	if ( 'variable' === $product->get_type() && apply_filters( "woocommerce_gzd_show_variable_more_variants_notice", false, $product ) ) {
+		return true;
+	}
+
+	return false;
+}
+
+function woocommerce_gzd_get_more_variants_notice( $product ) {
+	$text  = apply_filters( "woocommerce_gzd_variable_more_variants_notice_text", __( 'More variants available', 'woocommerce-germanized' ), $product );
+	$html = '<span class="small smaller wc-gzd-additional-info more-variants-available-info">' . $text . '</span>';
+
+	return $html;
+}
+
 /**
  * Variable Pricing
  */
