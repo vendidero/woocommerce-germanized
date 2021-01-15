@@ -167,7 +167,7 @@ class WC_GZD_Emails {
 	 * @return string
 	 */
 	public function add_bcc_email_headers( $headers, $id, $object, $email = null ) {
-		if ( $email ) {
+		if ( $email && is_a( $email, 'WC_Email' ) ) {
 			$recipients = $email->get_option( 'bcc' );
 
 			if ( $recipients && ! empty( $recipients ) ) {
