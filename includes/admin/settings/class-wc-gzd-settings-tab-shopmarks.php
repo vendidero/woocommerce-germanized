@@ -222,7 +222,7 @@ class WC_GZD_Settings_Tab_Shopmarks extends WC_GZD_Settings_Tab {
 				'checkboxgroup' => '',
 			),
 			array(
-				'desc'          => __( 'Base Price', 'woocommerce-germanized' ),
+				'desc'          => __( 'Unit Price', 'woocommerce-germanized' ),
 				'id'            => 'woocommerce_gzd_display_product_widget_unit_price',
 				'type'          => 'gzd_toggle',
 				'default'       => 'yes',
@@ -253,7 +253,7 @@ class WC_GZD_Settings_Tab_Shopmarks extends WC_GZD_Settings_Tab {
 
 			array(
 				'title' 	    => __( 'E-Mails', 'woocommerce-germanized' ),
-				'desc' 		    => __( 'Base Price', 'woocommerce-germanized' ),
+				'desc' 		    => __( 'Unit Price', 'woocommerce-germanized' ),
 				'id' 		    => 'woocommerce_gzd_display_emails_unit_price',
 				'type'          => 'gzd_toggle',
 				'default'	    => 'yes',
@@ -361,6 +361,23 @@ class WC_GZD_Settings_Tab_Shopmarks extends WC_GZD_Settings_Tab {
 	protected function get_general_settings() {
 
 		$settings = array(
+			array(
+				'title' => __( 'Price Ranges', 'woocommerce-germanized' ),
+				'type'  => 'title',
+				'id'    => 'price_range_options'
+			),
+
+			array(
+				'title'   => __( 'Price Range Format', 'woocommerce-germanized' ),
+				'desc'    => '<div class="wc-gzd-additional-desc">' . __( 'Adjust the price range format e.g. for variable products. Use {min_price} as placeholder for the minimum price. Use {max_price} as placeholder for the maximum price.', 'woocommerce-germanized' ) . '</div>',
+				'id'      => 'woocommerce_gzd_price_range_format_text',
+				'type'    => 'text',
+				'css'     => 'min-width:300px;',
+				'default' => __( '{min_price} &ndash; {max_price}', 'woocommerce-germanized' ),
+			),
+
+			array( 'type' => 'sectionend', 'id' => 'price_range_options' ),
+
 			array(
 				'title' => __( 'Shipping Costs', 'woocommerce-germanized' ),
 				'type'  => 'title',
@@ -503,18 +520,11 @@ class WC_GZD_Settings_Tab_Shopmarks extends WC_GZD_Settings_Tab {
 			array( 'type' => 'title', 'title' => '', 'id' => 'unit_price_options' ),
 			array(
 				'title'    => __( 'Format', 'woocommerce-germanized' ),
-				'desc'     => '<div class="wc-gzd-additional-desc">' . __( 'This text will be used to display the base price. Use {price} to insert the price. If you want to specifically format base price output use {base}, {unit} and {base_price} as placeholders.', 'woocommerce-germanized' ) . '</div>',
+				'desc'     => '<div class="wc-gzd-additional-desc">' . __( 'This text will be used to display the unit price. Use {price} to insert the price. If you want to specifically format unit price output use {base}, {unit} and {unit_price} as placeholders.', 'woocommerce-germanized' ) . '</div>',
 				'desc_tip' => false,
 				'id'       => 'woocommerce_gzd_unit_price_text',
 				'type'     => 'text',
 				'default'  => __( '{price}', 'woocommerce-germanized' ),
-			),
-			array(
-				'title'   => __( 'Variable Price', 'woocommerce-germanized' ),
-				'desc'    => __( 'Enable price range base prices for variable products.', 'woocommerce-germanized' ),
-				'id'      => 'woocommerce_gzd_unit_price_enable_variable',
-				'default' => 'yes',
-				'type'    => 'gzd_toggle',
 			),
 			array(
 				'title'    => __( 'Product units format', 'woocommerce-germanized' ),
@@ -523,6 +533,13 @@ class WC_GZD_Settings_Tab_Shopmarks extends WC_GZD_Settings_Tab {
 				'id'       => 'woocommerce_gzd_product_units_text',
 				'type'     => 'text',
 				'default'  => __( 'Product contains: {product_units} {unit}', 'woocommerce-germanized' ),
+			),
+			array(
+				'title'   => __( 'Variable Unit Price', 'woocommerce-germanized' ),
+				'desc'    => __( 'Enable price range unit prices for variable products.', 'woocommerce-germanized' ),
+				'id'      => 'woocommerce_gzd_unit_price_enable_variable',
+				'default' => 'yes',
+				'type'    => 'gzd_toggle',
 			),
 			array( 'type' => 'sectionend', 'id' => 'unit_price_options' ),
 		);

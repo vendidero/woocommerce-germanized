@@ -31,86 +31,133 @@ class WC_GZD_Product_Grouped extends WC_GZD_Product {
 		return $product && is_a( $product, 'WC_GZD_Product' ) && ( 'publish' === $product->get_status() || current_user_can( 'edit_product', $product->get_id() ) );
 	}
 
+	protected function get_min_max_child_products() {
+		$tax_display_mode = get_option( 'woocommerce_tax_display_shop' );
+		$children         = array_filter( array_map( 'wc_get_product', $this->get_wc_product()->get_children() ), 'wc_products_array_filter_visible_grouped' );
+		$products         = array();
+		$sort             = false;
+
+		foreach ( $children as $child ) {
+			if ( '' !== $child->get_price() ) {
+				$child_prices[ $child->get_id() ] = 'incl' === $tax_display_mode ? wc_get_price_including_tax( $child ) : wc_get_price_excluding_tax( $child );
+			}
+		}
+
+		if ( ! empty( $child_prices ) ) {
+			$min_id = array_keys( $child_prices, min( $child_prices ) )[0];
+			$max_id = array_keys( $child_prices, max( $child_prices ) )[0];
+
+			/**
+			 * In case the current price range format includes a starting from price only
+			 * we will need to make sure that we do only check unit prices for variations
+			 * that match the minimum price.
+			 */
+			if ( woocommerce_gzd_price_range_format_is_min_price() ) {
+				asort( $child_prices );
+				$min_price = min( $child_prices );
+				$products  = array();
+				$sort      = true;
+
+				foreach( $child_prices as $child_id => $price ) {
+					if ( $price <= $min_price ) {
+						$products[] = $child_id;
+					}
+				}
+			} elseif ( $min_id === $max_id ) {
+				$products = $children;
+				$sort     = true;
+			} else {
+				$products = array(
+					wc_gzd_get_gzd_product( $min_id ),
+					wc_gzd_get_gzd_product( $max_id ),
+				);
+			}
+		}
+
+		return array( 'products' => $products, 'sort' => $sort );
+	}
+
 	protected function get_child_unit_data() {
-		if ( is_null( $this->child_prices ) ) {
-			$children           = array_filter( array_map( 'wc_gzd_get_gzd_product', $this->child->get_children() ), array(
-				$this,
-				'_filter_visible_grouped'
-			) );
+		if ( is_null( $this->child_prices )  ) {
+			$min_max            = $this->get_min_max_child_products();
 			$this->child_prices = array();
 
-			if ( ! empty( $children ) ) {
-				$this->has_unit_price = true;
+			if ( ! empty( $min_max['products'] ) ) {
+				$sort     = $min_max['sort'];
+				$children = $min_max['products'];
 
-				foreach ( $children as $child ) {
+				if ( ! empty( $children ) ) {
+					$this->has_unit_price = true;
 
-					if ( ! $child ) {
-						continue;
-					}
+					foreach ( $children as $child ) {
+						$child = wc_gzd_get_gzd_product( $child );
 
-					$gzd_child = wc_gzd_get_product( $child );
-
-					if ( $gzd_child->has_unit() ) {
-						$unit = $gzd_child->get_unit();
-
-						if ( ! isset( $this->child_prices[ $unit ] ) ) {
-							$this->child_prices[ $unit ]           = array();
-							$this->child_prices[ $unit ]['prices'] = array(
-								'incl' => array(
-									'price'         => array(),
-									'regular_price' => array(),
-									'sale_price'    => array(),
-								),
-								'excl' => array(
-									'price'         => array(),
-									'regular_price' => array(),
-									'sale_price'    => array(),
-								),
-							);
-						}
-
-						if ( ! isset( $this->child_prices[ $unit ]['base'] ) ) {
-							$this->child_prices[ $unit ]['base'] = $gzd_child->get_unit_base();
-						}
-
-						// Recalculate new prices
-						$prices_incl = wc_gzd_recalculate_unit_price( array(
-							'base'     => $this->child_prices[ $unit ]['base'],
-							'products' => $gzd_child->get_unit_product(),
-						), $child );
-
-						$prices_excl = wc_gzd_recalculate_unit_price( array(
-							'base'     => $this->child_prices[ $unit ]['base'],
-							'products' => $gzd_child->get_unit_product(),
-							'tax_mode' => 'excl',
-						), $child );
-
-						if ( empty( $prices_incl ) || empty( $prices_excl ) ) {
-							$this->has_unit_price = false;
+						if ( ! $child ) {
 							continue;
 						}
 
-						$this->child_prices[ $unit ]['prices']['incl']['price'][]         = $prices_incl['unit'];
-						$this->child_prices[ $unit ]['prices']['incl']['regular_price'][] = $prices_incl['regular'];
-						$this->child_prices[ $unit ]['prices']['incl']['sale_price'][]    = $prices_incl['sale'];
+						if ( $child->has_unit() ) {
+							$unit = $child->get_unit();
 
-						$this->child_prices[ $unit ]['prices']['excl']['price'][]         = $prices_excl['unit'];
-						$this->child_prices[ $unit ]['prices']['excl']['regular_price'][] = $prices_excl['regular'];
-						$this->child_prices[ $unit ]['prices']['excl']['sale_price'][]    = $prices_excl['sale'];
-					} else {
-						$this->has_unit_price = false;
+							if ( ! isset( $this->child_prices[ $unit ] ) ) {
+								$this->child_prices[ $unit ]           = array();
+								$this->child_prices[ $unit ]['prices'] = array(
+									'incl' => array(
+										'price'         => array(),
+										'regular_price' => array(),
+										'sale_price'    => array(),
+									),
+									'excl' => array(
+										'price'         => array(),
+										'regular_price' => array(),
+										'sale_price'    => array(),
+									),
+								);
+							}
+
+							if ( ! isset( $this->child_prices[ $unit ]['base'] ) ) {
+								$this->child_prices[ $unit ]['base'] = $child->get_unit_base();
+							}
+
+							// Recalculate new prices
+							$prices_incl = wc_gzd_recalculate_unit_price( array(
+								'base'     => $this->child_prices[ $unit ]['base'],
+								'products' => $child->get_unit_product(),
+							), $child );
+
+							$prices_excl = wc_gzd_recalculate_unit_price( array(
+								'base'     => $this->child_prices[ $unit ]['base'],
+								'products' => $child->get_unit_product(),
+								'tax_mode' => 'excl',
+							), $child );
+
+							if ( empty( $prices_incl ) || empty( $prices_excl ) ) {
+								$this->has_unit_price = false;
+								continue;
+							}
+
+							$this->child_prices[ $unit ]['prices']['incl']['price'][]         = $prices_incl['unit'];
+							$this->child_prices[ $unit ]['prices']['incl']['regular_price'][] = $prices_incl['regular'];
+							$this->child_prices[ $unit ]['prices']['incl']['sale_price'][]    = $prices_incl['sale'];
+
+							$this->child_prices[ $unit ]['prices']['excl']['price'][]         = $prices_excl['unit'];
+							$this->child_prices[ $unit ]['prices']['excl']['regular_price'][] = $prices_excl['regular'];
+							$this->child_prices[ $unit ]['prices']['excl']['sale_price'][]    = $prices_excl['sale'];
+						} else {
+							$this->has_unit_price = false;
+						}
 					}
 				}
-			}
 
-			if ( ! empty( $this->child_prices ) ) {
-				foreach ( $this->child_prices as $unit => $data ) {
-					asort( $this->child_prices[ $unit ]['prices']['incl']['price'] );
-					asort( $this->child_prices[ $unit ]['prices']['incl']['regular_price'] );
-					asort( $this->child_prices[ $unit ]['prices']['incl']['sale_price'] );
-					asort( $this->child_prices[ $unit ]['prices']['excl']['price'] );
-					asort( $this->child_prices[ $unit ]['prices']['excl']['regular_price'] );
-					asort( $this->child_prices[ $unit ]['prices']['excl']['sale_price'] );
+				if ( $sort && ! empty( $this->child_prices ) ) {
+					foreach ( $this->child_prices as $unit => $data ) {
+						asort( $this->child_prices[ $unit ]['prices']['incl']['price'] );
+						asort( $this->child_prices[ $unit ]['prices']['incl']['regular_price'] );
+						asort( $this->child_prices[ $unit ]['prices']['incl']['sale_price'] );
+						asort( $this->child_prices[ $unit ]['prices']['excl']['price'] );
+						asort( $this->child_prices[ $unit ]['prices']['excl']['regular_price'] );
+						asort( $this->child_prices[ $unit ]['prices']['excl']['sale_price'] );
+					}
 				}
 			}
 		}
@@ -211,16 +258,14 @@ class WC_GZD_Product_Grouped extends WC_GZD_Product {
 
 		if ( $this->has_unit() ) {
 
-			$prices = $this->get_child_unit_prices();
-			$text   = get_option( 'woocommerce_gzd_unit_price_text' );
-
+			$prices        = $this->get_child_unit_prices();
 			$min_price     = current( $prices['price'] );
 			$max_price     = end( $prices['price'] );
 			$min_reg_price = current( $prices['regular_price'] );
 			$max_reg_price = end( $prices['regular_price'] );
 
 			if ( $min_price !== $max_price ) {
-				$price = wc_format_price_range( $min_price, $max_price );
+				$price = woocommerce_gzd_format_unit_price_range( $min_price, $max_price );
 			} elseif ( $this->child->is_on_sale() && $min_reg_price === $max_reg_price ) {
 				$price = wc_format_sale_price( wc_price( $max_reg_price ), wc_price( $min_price ) );
 			} else {
@@ -238,24 +283,7 @@ class WC_GZD_Product_Grouped extends WC_GZD_Product {
 			 *
 			 */
 			$price = apply_filters( 'woocommerce_gzd_grouped_unit_price_html', $price, $this );
-
-			/** This filter is documented in includes/abstract/abstract-wc-gzd-product.php */
-			$separator = apply_filters( 'wc_gzd_unit_price_base_seperator', ' ' );
-
-			if ( strpos( $text, '{price}' ) !== false ) {
-				$replacements = array(
-					/** This filter is documented in includes/abstract/abstract-wc-gzd-product.php */
-					'{price}' => $price . apply_filters( 'wc_gzd_unit_price_seperator', ' / ' ) . $this->get_unit_base_html() . $separator . $this->get_unit_html(),
-				);
-			} else {
-				$replacements = array(
-					'{base_price}' => $price,
-					'{unit}'       => $this->get_unit_html(),
-					'{base}'       => $this->get_unit_base_html(),
-				);
-			}
-
-			$price = wc_gzd_replace_label_shortcodes( $text, $replacements );
+			$price = wc_gzd_format_unit_price( $price, $this->get_unit_html(), $this->get_unit_base_html() );
 		}
 
 		/** This filter is documented in includes/abstract/abstract-wc-gzd-product.php */

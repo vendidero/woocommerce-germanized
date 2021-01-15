@@ -286,15 +286,6 @@ class WC_GZD_Settings_Tab_General extends WC_GZD_Settings_Tab {
 			array( 'title' => '', 'type' => 'title', 'desc' => '', 'id' => 'shop_options' ),
 
 			array(
-				'title'   => __( 'Price Range Format', 'woocommerce-germanized' ),
-				'desc'    => '<div class="wc-gzd-additional-desc">' . __( 'Adjust the price range format e.g. for variable products. Use {min_price} as placeholder for the minimum price. Use {max_price} as placeholder for the maximum price.', 'woocommerce-germanized' ) . '</div>',
-				'id'      => 'woocommerce_gzd_price_range_format_text',
-				'type'    => 'text',
-				'css'     => 'min-width:300px;',
-				'default' => __( '{min_price} &ndash; {max_price}', 'woocommerce-germanized' ),
-			),
-
-			array(
 				'title'    => __( 'Add to Cart', 'woocommerce-germanized' ),
 				'desc'     => __( 'Show add to cart button on listings.', 'woocommerce-germanized' ),
 				'id'       => 'woocommerce_gzd_display_listings_add_to_cart',

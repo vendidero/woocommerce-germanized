@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce Germanized\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-09 18:21+0100\n"
-"PO-Revision-Date: 2021-01-09 18:21+0100\n"
+"POT-Creation-Date: 2021-01-15 12:26+0100\n"
+"PO-Revision-Date: 2021-01-15 12:27+0100\n"
 "Last-Translator: holzhannes <holzhannes@posteo.de>\n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -447,7 +447,7 @@ msgstr "Retourensendung #{shipment_id} zur Bestellung #{order_id}"
 #: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:376
 #: woocommerce-germanized-dhl/src/Admin/Settings.php:188
 #: woocommerce-germanized-dhl/src/Admin/Settings.php:488
-#: woocommerce-germanized-dhl/src/ParcelLocator.php:866
+#: woocommerce-germanized-dhl/src/ParcelLocator.php:864
 #: woocommerce-germanized-dhl/templates/checkout/dhl/parcel-finder.php:38
 msgctxt "dhl"
 msgid "Packstation"
@@ -2436,8 +2436,8 @@ msgstr "Deutschland"
 
 # @ woocommerce-germanized
 #: woocommerce-germanized-dhl/src/ParcelLocator.php:92
-#: woocommerce-germanized-dhl/src/ParcelLocator.php:879
-#: woocommerce-germanized-dhl/src/ParcelLocator.php:908
+#: woocommerce-germanized-dhl/src/ParcelLocator.php:877
+#: woocommerce-germanized-dhl/src/ParcelLocator.php:906
 msgctxt "dhl"
 msgid "Address Type"
 msgstr "Adresstyp"
@@ -2462,30 +2462,30 @@ msgstr ""
 "eintragen."
 
 #: woocommerce-germanized-dhl/src/ParcelLocator.php:188
-#: woocommerce-germanized-dhl/src/ParcelLocator.php:583
+#: woocommerce-germanized-dhl/src/ParcelLocator.php:581
 msgctxt "dhl"
 msgid "Invalid address type."
 msgstr "Ungültiger Adresstyp."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized-dhl/src/ParcelLocator.php:655
+#: woocommerce-germanized-dhl/src/ParcelLocator.php:653
 msgctxt "dhl"
 msgid "Sorry, but delivery to packstation is not available."
 msgstr ""
 "Entschuldigung, die Lieferung an eine Packstation steht nicht zur Verfügung."
 
-#: woocommerce-germanized-dhl/src/ParcelLocator.php:660
+#: woocommerce-germanized-dhl/src/ParcelLocator.php:658
 msgctxt "dhl"
 msgid "Sorry, but delivery to parcel shops is not available."
 msgstr ""
 "Entschuldigung, die Lieferung an einen Paketshop steht nicht zur Verfügung."
 
-#: woocommerce-germanized-dhl/src/ParcelLocator.php:664
+#: woocommerce-germanized-dhl/src/ParcelLocator.php:662
 msgctxt "dhl"
 msgid "Sorry, but delivery to post offices is not available."
 msgstr "Entschuldigung, die Lieferung an Postfilialen ist nicht verfügbar."
 
-#: woocommerce-germanized-dhl/src/ParcelLocator.php:671
+#: woocommerce-germanized-dhl/src/ParcelLocator.php:669
 #, php-format
 msgctxt "dhl"
 msgid "Please indicate shipment to %s by one of the following values: %s."
@@ -2493,7 +2493,7 @@ msgstr ""
 "Bitte identifiziere die Lieferung an %s durch die Eingabe einer der "
 "folgenden Werte: %s."
 
-#: woocommerce-germanized-dhl/src/ParcelLocator.php:679
+#: woocommerce-germanized-dhl/src/ParcelLocator.php:677
 msgctxt "dhl"
 msgid ""
 "Your DHL customer number (Post number) is not valid. Please check your "
@@ -2502,7 +2502,7 @@ msgstr ""
 "Deine DHL Kundennummer (Postnummer) ist nicht gültig. Bitte überprüfe deine "
 "Eingabe."
 
-#: woocommerce-germanized-dhl/src/ParcelLocator.php:682
+#: woocommerce-germanized-dhl/src/ParcelLocator.php:680
 msgctxt "dhl"
 msgid ""
 "Your DHL customer number (Post number) is needed to ship to a packstation."
@@ -2510,64 +2510,64 @@ msgstr ""
 "Deine DHL Kundennummer (Postnummer) wird für den Versand an eine Packstation "
 "benötigt."
 
-#: woocommerce-germanized-dhl/src/ParcelLocator.php:731
-#: woocommerce-germanized-dhl/src/ParcelLocator.php:870
+#: woocommerce-germanized-dhl/src/ParcelLocator.php:729
+#: woocommerce-germanized-dhl/src/ParcelLocator.php:868
 msgctxt "dhl"
 msgid "Branch"
 msgstr "Filiale"
 
-#: woocommerce-germanized-dhl/src/ParcelLocator.php:732
+#: woocommerce-germanized-dhl/src/ParcelLocator.php:730
 msgctxt "dhl"
 msgid "Postnumber "
 msgstr "Postnummer "
 
-#: woocommerce-germanized-dhl/src/ParcelLocator.php:845
+#: woocommerce-germanized-dhl/src/ParcelLocator.php:843
 #, php-format
 msgctxt "dhl"
 msgid "e.g. %s 456"
 msgstr "z.B. %s 456"
 
-#: woocommerce-germanized-dhl/src/ParcelLocator.php:870
+#: woocommerce-germanized-dhl/src/ParcelLocator.php:868
 msgctxt "dhl"
 msgid "Branches"
 msgstr "Filialen"
 
-#: woocommerce-germanized-dhl/src/ParcelLocator.php:886
-#: woocommerce-germanized-dhl/src/ParcelLocator.php:919
+#: woocommerce-germanized-dhl/src/ParcelLocator.php:884
+#: woocommerce-germanized-dhl/src/ParcelLocator.php:917
 msgctxt "dhl"
 msgid "DHL customer number (Post number)"
 msgstr "DHL Kundennummer (Postnummer)"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized-dhl/src/ParcelLocator.php:896
+#: woocommerce-germanized-dhl/src/ParcelLocator.php:894
 msgctxt "dhl"
 msgid "Regular Address"
 msgstr "Normale Adresse"
 
-#: woocommerce-germanized-dhl/src/ParcelLocator.php:923
+#: woocommerce-germanized-dhl/src/ParcelLocator.php:921
 msgctxt "dhl"
 msgid "Not yet a DHL customer?"
 msgstr "Noch kein DHL Kunde?"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized-dhl/src/ParcelLocator.php:923
+#: woocommerce-germanized-dhl/src/ParcelLocator.php:921
 msgctxt "dhl"
 msgid "Register now"
 msgstr "Jetzt registrieren"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized-dhl/src/ParcelLocator.php:972
+#: woocommerce-germanized-dhl/src/ParcelLocator.php:970
 #, php-format
 msgctxt "dhl"
 msgid "Search %s"
 msgstr "%s suchen"
 
-#: woocommerce-germanized-dhl/src/ParcelLocator.php:1077
+#: woocommerce-germanized-dhl/src/ParcelLocator.php:1075
 msgctxt "dhl"
 msgid "No DHL locations found"
 msgstr "Keine DHL Standorte gefunden"
 
-#: woocommerce-germanized-dhl/src/ParcelLocator.php:1092
+#: woocommerce-germanized-dhl/src/ParcelLocator.php:1090
 #, php-format
 msgctxt "dhl"
 msgid ""
@@ -2578,12 +2578,12 @@ msgstr ""
 "%s oder %s."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized-dhl/src/ParcelLocator.php:1092
+#: woocommerce-germanized-dhl/src/ParcelLocator.php:1090
 msgctxt "dhl"
 msgid "DHL location"
 msgstr "DHL Standort"
 
-#: woocommerce-germanized-dhl/src/ParcelLocator.php:1092
+#: woocommerce-germanized-dhl/src/ParcelLocator.php:1090
 msgctxt "dhl"
 msgid "retry"
 msgstr "Erneut versuchen"
@@ -5268,8 +5268,8 @@ msgstr "l"
 #: woocommerce-germanized/includes/abstracts/abstract-wc-gzd-product.php:549
 #: woocommerce-germanized/includes/abstracts/abstract-wc-gzd-product.php:559
 #: woocommerce-germanized/includes/wc-gzd-core-functions.php:449
-#: woocommerce-germanized/includes/wc-gzd-template-functions.php:546
-#: woocommerce-germanized/includes/wc-gzd-template-functions.php:554
+#: woocommerce-germanized/includes/wc-gzd-template-functions.php:614
+#: woocommerce-germanized/includes/wc-gzd-template-functions.php:622
 msgid "incl. VAT"
 msgstr "inkl. MwSt."
 
@@ -5400,20 +5400,20 @@ msgstr ""
 
 # @ woocommerce-germanized
 #: woocommerce-germanized/includes/admin/class-wc-gzd-admin-legal-checkboxes.php:122
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:427
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:452
 msgid "Downloadable Product"
 msgstr "Herunterladbares Produkt"
 
 # @ woocommerce-germanized
 #: woocommerce-germanized/includes/admin/class-wc-gzd-admin-legal-checkboxes.php:123
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:428
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:453
 msgid "Virtual Product"
 msgstr "Virtuelles Produkt"
 
 #: woocommerce-germanized/includes/admin/class-wc-gzd-admin-legal-checkboxes.php:124
 #: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:46
 #: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:168
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:429
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:454
 #: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:146
 msgid "Service"
 msgstr "Dienstleistung"
@@ -5521,8 +5521,8 @@ msgstr "Gleiche wie übergeordnet"
 
 # @ woocommerce-germanized
 #: woocommerce-germanized/includes/admin/class-wc-gzd-admin-product-categories.php:82
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:436
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:532
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:461
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:550
 msgid "None"
 msgstr "Keine"
 
@@ -5895,18 +5895,20 @@ msgstr "Grundpreis automatisch berechnen"
 
 # @ woocommerce-germanized
 #: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:107
+#: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:254
 msgid "Regular Unit Price"
 msgstr "Regulärer Grundpreis"
 
 # @ woocommerce-germanized
 #: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:114
+#: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:259
 msgid "Sale Unit Price"
 msgstr "Angebotsgrundpreis"
 
 #: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:121
 #, php-format
 msgid ""
-"To enable unit prices on variation level please choose a unit and base price "
+"To enable unit prices on variation level please choose a unit and unit price "
 "units within %s."
 msgstr ""
 "Um Grundpreise auf Variationen-Ebene zu aktivieren, bitte Einheit und "
@@ -5993,13 +5995,13 @@ msgstr ""
 
 # @ woocommerce-germanized
 #: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:224
-msgid "Base Price Units"
+msgid "Unit Price Units"
 msgstr "Grundpreiseinheiten"
 
 # @ woocommerce-germanized
 #: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:227
 msgid ""
-"Base price units. Example base price: 0,99 € / 100 ml. Insert 100 as base "
+"Unit price units. Example unit price: 0,99 € / 100 ml. Insert 100 as unit "
 "price unit amount."
 msgstr ""
 "Anzahl der Grundpreiseinheiten. Beispiel Grundpreis: 0,99 / 100 ml. Füge "
@@ -6007,18 +6009,8 @@ msgstr ""
 
 # @ woocommerce-germanized
 #: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:250
-msgid "Calculate base prices automatically."
-msgstr "Grundpreis automatisch berechnen."
-
-# @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:254
-msgid "Regular Base Price"
-msgstr "Regulärer Grundpreis"
-
-# @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:259
-msgid "Sale Base Price"
-msgstr "Angebotsgrundpreis"
+msgid "Calculate unit prices automatically."
+msgstr "Grundpreis automatisch berechnen"
 
 #: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data.php:271
 msgid "Adds an age verification checkbox while purchasing this product."
@@ -6998,7 +6990,7 @@ msgstr "Passe allgemeine Optionen z.B. deine rechtlich relevanten Seiten an."
 
 # @ woocommerce-germanized
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-general.php:30
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-general.php:370
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-general.php:361
 #: woocommerce-germanized/includes/admin/views/html-page-status-germanized.php:174
 msgid "Legal Pages"
 msgstr "Rechtlich relevante Seiten"
@@ -7234,7 +7226,7 @@ msgstr "Jetzt hinzufügen"
 
 # @ woocommerce-germanized
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-general.php:209
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:371
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:396
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:131
 msgid "Notice Text"
 msgstr "Hinweistext"
@@ -7349,36 +7341,16 @@ msgstr ""
 
 # @ woocommerce-germanized
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-general.php:289
-msgid "Price Range Format"
-msgstr "Preisspannen-Format"
-
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-general.php:290
-msgid ""
-"Adjust the price range format e.g. for variable products. Use {min_price} as "
-"placeholder for the minimum price. Use {max_price} as placeholder for the "
-"maximum price."
-msgstr ""
-"Passe das Format von Preisspannen z.B. für variable Produkte an. Verwende "
-"{min_price} als Platzhalter für den minimalen Preis und {max_price} als "
-"Platzhalter für den höchsten Preis."
-
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-general.php:294
-#: woocommerce-germanized/includes/wc-gzd-core-functions.php:861
-msgid "{min_price} &ndash; {max_price}"
-msgstr "{min_price} &ndash; {max_price}"
-
-# @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-general.php:298
 msgid "Add to Cart"
 msgstr "Zum Warenkorb Button"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-general.php:299
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-general.php:290
 msgid "Show add to cart button on listings."
 msgstr "Zeige den „zum Warenkorb“ Button in Produktlisten an."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-general.php:303
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-general.php:294
 msgid ""
 "unset this option if you don't want to show the add to cart button within "
 "the product listings"
@@ -7386,19 +7358,19 @@ msgstr ""
 "Deaktiviere diese Option, wenn du den zum Warenkorb Button nicht innerhalb "
 "von Produktauflistungen darstellen möchten"
 
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-general.php:306
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-general.php:297
 msgid "Link"
 msgstr "Verlinkung"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-general.php:307
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-general.php:298
 msgid "Link to product details page instead of add to cart within listings."
 msgstr ""
 "Ersetze den zum-Warenkorb-Link durch einen Link zur Produktdetailseite in "
 "Produktlisten."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-general.php:311
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-general.php:302
 msgid ""
 "Decide whether you like to link to your product's details page instead of "
 "displaying an add to cart button within product listings."
@@ -7408,17 +7380,17 @@ msgstr ""
 "diese Option."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-general.php:314
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-general.php:305
 msgid "Product Details Text"
 msgstr "Produktdetails Text"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-general.php:316
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-general.php:307
 msgid "Details"
 msgstr "Details"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-general.php:321
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-general.php:312
 msgid ""
 "If you have chosen to link to product details page instead of add to cart "
 "URL you may want to change the button text."
@@ -7428,11 +7400,11 @@ msgstr ""
 "einen Button-Text vergeben."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-general.php:342
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-general.php:333
 msgid "Overview"
 msgstr "Übersicht"
 
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-general.php:343
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-general.php:334
 msgid ""
 "You can always return to the settings overview by navigating through the "
 "breadcrumb navigation."
@@ -7441,17 +7413,17 @@ msgstr ""
 "indem du die Breadcrumb-Navigation nutzt."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-general.php:356
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-general.php:347
 msgid "Sections"
 msgstr "Rubriken"
 
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-general.php:357
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-general.php:348
 msgid ""
 "Each setting tab might have sub sections containing more specific options."
 msgstr ""
 "Jeder Tab kann weitere Unterbereiche mit spezifischen Optionen beinhalten."
 
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-general.php:371
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-general.php:362
 msgid ""
 "Adjust legal pages e.g. terms and conditions. These pages are used to add "
 "links within checkboxes and text attachments to emails."
@@ -7614,8 +7586,8 @@ msgstr ""
 "Lieferzeit zugeordnet wurde."
 
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:134
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:458
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:505
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:483
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:530
 msgid "Format"
 msgstr "Format"
 
@@ -7669,7 +7641,10 @@ msgstr "MwSt. Hinweis"
 # @ woocommerce-germanized
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:225
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:256
-msgid "Base Price"
+#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:130
+#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:296
+#: woocommerce-germanized/includes/compatibility/elementor/widgets/class-wc-gzd-elementor-widget-product-unit-price.php:10
+msgid "Unit Price"
 msgstr "Grundpreis"
 
 # @ woocommerce-germanized
@@ -7700,7 +7675,7 @@ msgstr "Preisauszeichnung „Steuer“ anzeigen"
 
 # @ woocommerce-germanized
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:320
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:365
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:390
 #: woocommerce-germanized/includes/wc-gzd-core-functions.php:248
 msgid "Shipping Costs"
 msgstr "Versandkosten"
@@ -7729,8 +7704,42 @@ msgstr ""
 "werden soll. Je höher die Priorität ist, desto später wird die "
 "Preisauszeichnung hinzugefügt. Standard ist %d."
 
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:365
+msgid "Price Ranges"
+msgstr "Preisspannen"
+
 # @ woocommerce-germanized
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:371
+msgid "Price Range Format"
+msgstr "Preisspannen-Format"
+
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:372
+msgid ""
+"Adjust the price range format e.g. for variable products. Use {min_price} as "
+"placeholder for the minimum price. Use {max_price} as placeholder for the "
+"maximum price."
+msgstr ""
+"Passe das Format von Preisspannen z.B. für variable Produkte an. Verwende "
+"{min_price} als Platzhalter für den minimalen Preis und {max_price} als "
+"Platzhalter für den höchsten Preis."
+
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:376
+#: woocommerce-germanized/includes/wc-gzd-core-functions.php:890
+#: woocommerce-germanized/includes/wc-gzd-core-functions.php:894
+msgid "{min_price} &ndash; {max_price}"
+msgstr "{min_price} &ndash; {max_price}"
+
+# @ woocommerce-germanized
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:380
+msgid "Variable Unit Price"
+msgstr "Variabler Grundpreis"
+
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:381
+msgid "Enable price range unit prices for variable products."
+msgstr "Aktiviere von-bis-Grundpreise für variable Produkte."
+
+# @ woocommerce-germanized
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:397
 msgid ""
 "This text will be used to inform the customer about shipping costs. Use "
 "{link}{/link} to insert link to shipping costs page."
@@ -7740,17 +7749,17 @@ msgstr ""
 "zur Versandkosten-Seite einzufügen."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:377
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:402
 msgid "plus {link}Shipping Costs{/link}"
 msgstr "zzgl. {link}Versandkosten{/link}"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:380
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:405
 msgid "Free Shipping Text"
 msgstr "Kostenloser Versand Text"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:381
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:406
 msgid ""
 "This text will be used to inform the customer about free shipping. Leave "
 "empty to disable notice. Use {link}{/link} to insert link to shipping costs "
@@ -7761,13 +7770,13 @@ msgstr ""
 "Versandkosten-Seite einzufügen."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:389
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:487
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:414
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:512
 msgid "Hide Notice"
 msgstr "Hinweis ausblenden"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:390
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:415
 msgid ""
 "Select product types for which you might want to disable the shipping costs "
 "notice."
@@ -7776,33 +7785,33 @@ msgstr ""
 "möchtest."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:400
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:425
 msgid "Footer"
 msgstr "Footer"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:403
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:428
 msgid "Notice"
 msgstr "Hinweis"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:404
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:429
 msgid "Attach a global VAT notice to your footer."
 msgstr "Einen seitenübergreifenden MwSt.-Hinweis im Footer einfügen."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:411
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:436
 msgid "Attach a global sale price notice to your footer."
 msgstr ""
 "Einen seitenübergreifenden Hinweis zu reduzierten Preisen im Footer einfügen."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:447
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:472
 msgid "Fallback"
 msgstr "Fallback"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:448
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:473
 msgid ""
 "This delivery time will be added to every product if no delivery time has "
 "been chosen individually"
@@ -7811,12 +7820,12 @@ msgstr ""
 "zugeordnet wurde"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:455
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:480
 msgid "Manage Delivery Times"
 msgstr "Lieferzeiten verwalten"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:459
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:484
 msgid ""
 "This text will be used to indicate delivery time for products. Use "
 "{delivery_time} as placeholder."
@@ -7825,15 +7834,15 @@ msgstr ""
 "{delivery_time} als Platzhalter verwenden."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:463
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:488
 msgid "Delivery time: {delivery_time}"
 msgstr "Lieferzeit: {delivery_time}"
 
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:466
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:491
 msgid "Digital text"
 msgstr "Digitaler Text"
 
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:470
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:495
 msgid ""
 "Enter a text which will be shown as digital delivery time text (replacement "
 "for default digital time on digital products)."
@@ -7843,24 +7852,24 @@ msgstr ""
 "lassen."
 
 # @ woocommerce
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:473
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:498
 msgid "Backorder"
 msgstr "Lieferrückstand"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:474
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:499
 msgid "Hide delivery time if a product is on backorder."
 msgstr "Lieferzeit ausblenden falls das Produkt im Lieferrückstand ist."
 
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:480
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:505
 msgid "Not in Stock"
 msgstr "Nicht auf Lager"
 
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:481
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:506
 msgid "Hide delivery time if a product is not in stock."
 msgstr "Lieferzeit ausblenden falls das Produkt nicht auf Lager ist."
 
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:488
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:513
 msgid ""
 "Select product types for which you might want to disable the delivery time "
 "notice."
@@ -7869,11 +7878,11 @@ msgstr ""
 "möchtest."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:506
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:531
 msgid ""
-"This text will be used to display the base price. Use {price} to insert the "
-"price. If you want to specifically format base price output use {base}, "
-"{unit} and {base_price} as placeholders."
+"This text will be used to display the unit price. Use {price} to insert the "
+"price. If you want to specifically format unit price output use {base}, "
+"{unit} and {unit_price} as placeholders."
 msgstr ""
 "Dieser Text wird für die Anzeige des Grundpreises verwendet. Nutze {price} "
 "als Platzhalter für den formatierten Grundpreis. Wenn du die Ausgabe "
@@ -7881,26 +7890,17 @@ msgstr ""
 "{base_price} für die einzelnen Elemente."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:510
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:535
 msgid "{price}"
 msgstr "{price}"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:513
-msgid "Variable Price"
-msgstr "Variabler Preis"
-
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:514
-msgid "Enable price range base prices for variable products."
-msgstr "Aktiviere von-bis-Grundpreise für variable Produkte."
-
-# @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:520
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:538
 msgid "Product units format"
 msgstr "Produkteinheiten Format"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:521
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:539
 msgid ""
 "This text will be used to display the product units. Use {product_units} to "
 "insert the amount of product units. Use {unit} to insert the unit. "
@@ -7912,21 +7912,21 @@ msgstr ""
 "Grundpreis."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:525
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:543
 msgid "Product contains: {product_units} {unit}"
 msgstr "Produkt enthält: {product_units} {unit}"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:537
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:555
 msgid "Fallback Sale Label"
 msgstr "Standard-Streichpreis"
 
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:544
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:554
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:562
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:572
 msgid "Manage Price Labels"
 msgstr "Preishinweise verwalten"
 
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:544
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:562
 msgid ""
 "Choose whether you would like to have a default sale price label to inform "
 "the customer about the regular price (e.g. Recommended Retail Price)."
@@ -7935,11 +7935,11 @@ msgstr ""
 "den Kunden auf den alten Preis (bei reduzierten Produkten, sog. "
 "Streichpreis) hinweist (z.B. UVP)."
 
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:547
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:565
 msgid "Fallback Regular Label"
 msgstr "Standard-Angebotspreis"
 
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:554
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:572
 msgid ""
 "Choose whether you would like to have a default sale price regular label to "
 "inform the customer about the sale price (e.g. New Price)."
@@ -7949,21 +7949,21 @@ msgstr ""
 "hinweist (z.B. Unser neuer Preis)."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:558
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:576
 #: woocommerce-germanized/src/Shopmarks.php:294
 msgid "Single Product"
 msgstr "Produktdetailseite"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:559
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:577
 msgid "Show price labels on single product page."
 msgstr "Zeige Preishinweise auf der Produktdetailseite."
 
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:566
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:584
 msgid "Loop"
 msgstr "Produktlisten"
 
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:567
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:585
 msgid "Show price labels in product loops."
 msgstr "Zeige Preishinweise in Produktlisten."
 
@@ -8787,13 +8787,6 @@ msgid "Unit Slug"
 msgstr "Einheit Slug"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:130
-#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:296
-#: woocommerce-germanized/includes/compatibility/elementor/widgets/class-wc-gzd-elementor-widget-product-unit-price.php:10
-msgid "Unit Price"
-msgstr "Grundpreis"
-
-# @ woocommerce-germanized
 #: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:135
 #: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:301
 msgid "Unit Base"
@@ -9495,7 +9488,7 @@ msgstr "%s Zahlungsgebühr"
 # @ woocommerce-germanized
 #: woocommerce-germanized/includes/class-wc-gzd-payment-gateways.php:153
 #: woocommerce-germanized/includes/wc-gzd-order-functions.php:35
-#: woocommerce-germanized/includes/wc-gzd-template-functions.php:472
+#: woocommerce-germanized/includes/wc-gzd-template-functions.php:540
 #, php-format
 msgid "Plus %s forwarding fee (charged by the transport agent)"
 msgstr "Zzgl. %s Übermittlungsentgelt (direkt an den Zusteller)"
@@ -10655,18 +10648,23 @@ msgid "Mx"
 msgstr "Divers"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/wc-gzd-template-functions.php:225
+#: woocommerce-germanized/includes/wc-gzd-core-functions.php:851
+msgid "More variants available"
+msgstr "Weitere Varianten verfügbar"
+
+# @ woocommerce-germanized
+#: woocommerce-germanized/includes/wc-gzd-template-functions.php:284
 #: woocommerce-germanized/templates/checkout/edit-data-notice.php:25
 msgid "Edit Order"
 msgstr "Bestellung bearbeiten"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/wc-gzd-template-functions.php:236
+#: woocommerce-germanized/includes/wc-gzd-template-functions.php:295
 msgid "Choose a Payment Gateway"
 msgstr "Zahlungsart auswählen"
 
 # @ woocommerce
-#: woocommerce-germanized/includes/wc-gzd-template-functions.php:376
+#: woocommerce-germanized/includes/wc-gzd-template-functions.php:435
 msgid "Place order"
 msgstr "Jetzt kaufen"
 
@@ -12282,6 +12280,26 @@ msgstr "vendidero"
 #. Author URI of the plugin/theme
 msgid "https://vendidero.de"
 msgstr "https://vendidero.de"
+
+# @ woocommerce-germanized
+#~ msgid "Base Price Units"
+#~ msgstr "Grundpreiseinheiten"
+
+# @ woocommerce-germanized
+#~ msgid "Calculate base prices automatically."
+#~ msgstr "Grundpreis automatisch berechnen."
+
+# @ woocommerce-germanized
+#~ msgid "Regular Base Price"
+#~ msgstr "Regulärer Grundpreis"
+
+# @ woocommerce-germanized
+#~ msgid "Sale Base Price"
+#~ msgstr "Angebotsgrundpreis"
+
+# @ woocommerce-germanized
+#~ msgid "Base Price"
+#~ msgstr "Grundpreis"
 
 # @ woocommerce-germanized
 #, fuzzy

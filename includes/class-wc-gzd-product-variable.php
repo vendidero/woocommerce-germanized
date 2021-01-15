@@ -151,7 +151,6 @@ class WC_GZD_Product_Variable extends WC_GZD_Product {
 		}
 
 		$prices = $this->get_variation_unit_prices( true );
-		$text   = get_option( 'woocommerce_gzd_unit_price_text' );
 
 		if ( $this->has_unit() ) {
 
@@ -160,11 +159,8 @@ class WC_GZD_Product_Variable extends WC_GZD_Product {
 			$min_reg_price = current( $prices['regular_price'] );
 			$max_reg_price = end( $prices['regular_price'] );
 
-			/** This filter is documented in includes/abstract/abstract-wc-gzd-product.php */
-			$separator = apply_filters( 'wc_gzd_unit_price_base_seperator', ' ' );
-
 			if ( $min_price !== $max_price ) {
-				$price = wc_format_price_range( $min_price, $max_price );
+				$price = woocommerce_gzd_format_unit_price_range( $min_price, $max_price );
 			} elseif ( $this->get_wc_product()->is_on_sale() && $min_reg_price === $max_reg_price ) {
 				$price = wc_format_sale_price( wc_price( $max_reg_price ), wc_price( $min_price ) );
 			} else {
@@ -182,21 +178,7 @@ class WC_GZD_Product_Variable extends WC_GZD_Product {
 			 *
 			 */
 			$price = apply_filters( 'woocommerce_gzd_variable_unit_price_html', $price, $this );
-
-			if ( strpos( $text, '{price}' ) !== false ) {
-				$replacements = array(
-					/** This filter is documented in includes/abstract/abstract-wc-gzd-product.php */
-					'{price}' => $price . apply_filters( 'wc_gzd_unit_price_seperator', ' / ' ) . $this->get_unit_base_html() . $separator . $this->get_unit_html(),
-				);
-			} else {
-				$replacements = array(
-					'{base_price}' => $price,
-					'{unit}'       => $this->get_unit_html(),
-					'{base}'       => $this->get_unit_base_html(),
-				);
-			}
-
-			$price = wc_gzd_replace_label_shortcodes( $text, $replacements );
+			$price = wc_gzd_format_unit_price( $price, $this->get_unit_html(), $this->get_unit_base_html() );
 		}
 
 		/** This filter is documented in includes/abstract/abstract-wc-gzd-product.php */
@@ -233,7 +215,7 @@ class WC_GZD_Product_Variable extends WC_GZD_Product {
 		 * DEVELOPERS should filter this hash if offering conditonal pricing to keep it unique.
 		 * @var string
 		 */
-		if ( $display ) {
+		if ( $display && wc_tax_enabled() ) {
 			$price_hash = array( get_option( 'woocommerce_tax_display_shop', 'excl' ), WC_Tax::get_rates() );
 		} else {
 			$price_hash = array( false );
@@ -282,15 +264,40 @@ class WC_GZD_Product_Variable extends WC_GZD_Product {
 			// If the prices are not stored for this hash, generate them
 			if ( empty( $this->unit_prices_array[ $price_hash ] ) ) {
 
-				$prices         = array();
-				$regular_prices = array();
-				$sale_prices    = array();
-				$variation_ids  = $this->child->get_visible_children();
+				/**
+				 * Use the (already sorted) variation prices of the parent product
+				 * to make sure the right unit price matches min max price ranges.
+				 */
+				$variation_prices = $this->get_wc_product()->get_variation_prices( $display );
+				$prices           = array();
+				$regular_prices   = array();
+				$sale_prices      = array();
+				$unique_values    = array_unique( $variation_prices['price'] );
+				/**
+				 * Allow sorting unit prices by value in case the variable
+				 * product contains only products of the same price
+				 */
+				$allow_sort       = sizeof( $unique_values ) === 1;
+				$is_min_price     = woocommerce_gzd_price_range_format_is_min_price();
 
-				foreach ( $variation_ids as $variation_id ) {
+				/**
+				 * In case the current price range format includes a starting from price only
+				 * we will need to make sure that we do only check unit prices for variations
+				 * that match the minimum price.
+				 */
+				if ( $is_min_price && ! empty( $variation_prices['price'] ) ) {
+					$min_price  = array_values( $variation_prices['price'] )[0];
+					$allow_sort = true;
 
+					foreach( $variation_prices['price'] as $variation_id => $price ) {
+						if ( $price > $min_price ) {
+							unset( $variation_prices['price'][ $variation_id ] );
+						}
+					}
+				}
+
+				foreach ( $variation_prices['price'] as $variation_id => $price ) {
 					if ( $variation = wc_get_product( $variation_id ) ) {
-
 						$gzd_variation = wc_gzd_get_product( $variation );
 
 						/**
@@ -384,9 +391,11 @@ class WC_GZD_Product_Variable extends WC_GZD_Product {
 					}
 				}
 
-				asort( $prices );
-				asort( $regular_prices );
-				asort( $sale_prices );
+				if ( $allow_sort ) {
+					asort( $prices );
+					asort( $regular_prices );
+					asort( $sale_prices );
+				}
 
 				$this->unit_prices_array[ $price_hash ] = array(
 					'price'         => $prices,

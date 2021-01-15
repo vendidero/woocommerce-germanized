@@ -118,7 +118,7 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
                        placeholder=""/>
             </p>
             <p class="form-row form-row-first wc-gzd-unit-price-disabled-notice notice notice-warning">
-				<?php printf( __( 'To enable unit prices on variation level please choose a unit and base price units within %s.', 'woocommerce-germanized' ), '<a href="#general_product_data" class="wc-gzd-general-product-data-tab">' . __( 'general product data', 'woocommerce-germanized' ) . '</a>' ); ?>
+				<?php printf( __( 'To enable unit prices on variation level please choose a unit and unit price units within %s.', 'woocommerce-germanized' ), '<a href="#general_product_data" class="wc-gzd-general-product-data-tab">' . __( 'general product data', 'woocommerce-germanized' ) . '</a>' ); ?>
             </p>
         </div>
         <div class="variable_shipping_time hide_if_variation_virtual">

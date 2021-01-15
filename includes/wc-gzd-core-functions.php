@@ -873,13 +873,33 @@ function woocommmerce_gzd_price_range( $price_html, $from, $to ) {
 		return $price_html;
 	}
 
-	$format     = get_option( 'woocommerce_gzd_price_range_format_text', __( '{min_price} &ndash; {max_price}', 'woocommerce-germanized' ) );
+	$format     = woocommerce_gzd_get_price_range_format();
 	$price_html = str_replace( array(
 		'{min_price}',
 		'{max_price}'
 	), array( is_numeric( $from ) ? wc_price( $from ) : $from, is_numeric( $to ) ? wc_price( $to ) : $to ), $format );
 
 	return $price_html;
+}
+
+function woocommerce_gzd_price_range_format_is_min_price() {
+	return strpos( woocommerce_gzd_get_price_range_format(), '{max_price}' ) === false;
+}
+
+function woocommerce_gzd_get_price_range_format() {
+	return apply_filters( 'woocommerce_gzd_price_range_format', get_option( 'woocommerce_gzd_price_range_format_text', __( '{min_price} &ndash; {max_price}', 'woocommerce-germanized' ) ) );
+}
+
+function woocommerce_gzd_get_unit_price_range_format() {
+	return apply_filters( 'woocommerce_gzd_unit_price_range_format', __( '{min_price} &ndash; {max_price}', 'woocommerce-germanized' ) );
+}
+
+function woocommerce_gzd_format_unit_price_range( $min_price, $max_price ) {
+	add_filter( 'woocommerce_gzd_price_range_format', 'woocommerce_gzd_get_unit_price_range_format', 10 );
+	$formatted = wc_format_price_range( $min_price, $max_price );
+	remove_filter( 'woocommerce_gzd_price_range_format', 'woocommerce_gzd_get_unit_price_range_format', 10 );
+
+	return $formatted;
 }
 
 function wc_gzd_get_default_revocation_address() {
@@ -1040,6 +1060,7 @@ function wc_gzd_format_unit_price( $price, $unit, $unit_base ) {
 		);
 	} else {
 		$replacements = array(
+			'{unit_price}' => $price,
 			'{base_price}' => $price,
 			'{unit}'       => $unit,
 			'{base}'       => $unit_base

@@ -221,10 +221,10 @@ class WC_Germanized_Meta_Box_Product_Data {
 		) );
 		woocommerce_wp_text_input( array(
             'id'          => '_unit_base',
-            'label'       => __( 'Base Price Units', 'woocommerce-germanized' ),
+            'label'       => __( 'Unit Price Units', 'woocommerce-germanized' ),
             'data_type'   => 'decimal',
             'desc_tip'    => true,
-            'description' => __( 'Base price units. Example base price: 0,99 € / 100 ml. Insert 100 as base price unit amount.', 'woocommerce-germanized' )
+            'description' => __( 'Unit price units. Example unit price: 0,99 € / 100 ml. Insert 100 as unit price unit amount.', 'woocommerce-germanized' )
 		) );
 
 		echo '</div>';
@@ -247,16 +247,16 @@ class WC_Germanized_Meta_Box_Product_Data {
 		woocommerce_wp_checkbox( array(
             'id'          => '_unit_price_auto',
             'label'       => __( 'Calculation', 'woocommerce-germanized' ),
-            'description' => '<span class="wc-gzd-premium-desc">' . __( 'Calculate base prices automatically.', 'woocommerce-germanized' ) . '</span> <a href="https://vendidero.de/woocommerce-germanized#upgrade" target="_blank" class="wc-gzd-pro">pro</a>'
+            'description' => '<span class="wc-gzd-premium-desc">' . __( 'Calculate unit prices automatically.', 'woocommerce-germanized' ) . '</span> <a href="https://vendidero.de/woocommerce-germanized#upgrade" target="_blank" class="wc-gzd-pro">pro</a>'
 		) );
 		woocommerce_wp_text_input( array(
             'id'        => '_unit_price_regular',
-            'label'     => __( 'Regular Base Price', 'woocommerce-germanized' ) . ' (' . get_woocommerce_currency_symbol() . ')',
+            'label'     => __( 'Regular Unit Price', 'woocommerce-germanized' ) . ' (' . get_woocommerce_currency_symbol() . ')',
             'data_type' => 'price'
 		) );
 		woocommerce_wp_text_input( array(
             'id'        => '_unit_price_sale',
-            'label'     => __( 'Sale Base Price', 'woocommerce-germanized' ) . ' (' . get_woocommerce_currency_symbol() . ')',
+            'label'     => __( 'Sale Unit Price', 'woocommerce-germanized' ) . ' (' . get_woocommerce_currency_symbol() . ')',
             'data_type' => 'price'
 		) );
 
