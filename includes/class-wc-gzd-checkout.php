@@ -715,8 +715,20 @@ class WC_GZD_Checkout {
 
 		foreach( $rates as $key => $rate ) {
 			$original_taxes = $rate->get_taxes();
-			$cost           = $rate->get_cost();
+			$original_cost  = $rate->get_cost();
 			$tax_shares     = wc_gzd_get_cart_tax_share( 'shipping' );
+
+			/**
+			 * Prevent bugs in plugins like Woo Subscriptions which
+			 * apply the woocommerce_package_rates filter twice (which might lead to costs being reduced twice).
+			 *
+			 * Store the original shipping costs (before removing tax) within the object.
+			 */
+			if ( isset( $rate->original_cost ) ) {
+				$original_cost = $rate->original_cost;
+			} else {
+				$rate->original_cost = $original_cost;
+			}
 
 			/**
 			 * Calculate split taxes if the cart contains more than one tax rate.
@@ -729,7 +741,7 @@ class WC_GZD_Checkout {
 
 						foreach ( $tax_shares as $tax_rate => $class ) {
 							$tax_rates  = WC_Tax::get_rates( $tax_rate );
-							$cost_share = $cost * $class['share'];
+							$cost_share = $original_cost * $class['share'];
 							$taxes      = $taxes + WC_Tax::calc_tax( $cost_share, $tax_rates, wc_gzd_additional_costs_include_tax() );
 						}
 
@@ -741,7 +753,7 @@ class WC_GZD_Checkout {
 							$tax_rates = WC_Tax::get_shipping_tax_rates();
 
 							if ( ! empty( $tax_rates ) ) {
-								$taxes = WC_Tax::calc_tax( $cost, $tax_rates, wc_gzd_additional_costs_include_tax() );
+								$taxes = WC_Tax::calc_tax( $original_cost, $tax_rates, wc_gzd_additional_costs_include_tax() );
 
 								$rates[ $key ]->set_taxes( $taxes );
 							}
@@ -755,15 +767,15 @@ class WC_GZD_Checkout {
 			 */
 			if ( wc_gzd_additional_costs_include_tax() ) {
 				$tax_total = array_sum( $rates[ $key ]->get_taxes() );
-				$cost      = $rates[ $key ]->get_cost() - $tax_total;
+				$new_cost  = $original_cost - $tax_total;
 
 				if ( WC()->customer->is_vat_exempt() ) {
 					$shipping_rates = WC_Tax::get_shipping_tax_rates();
-					$shipping_taxes = WC_Tax::calc_inclusive_tax( $rate->get_cost(), $shipping_rates );
-					$cost           = ( $cost - array_sum( $shipping_taxes ) );
+					$shipping_taxes = WC_Tax::calc_inclusive_tax( $original_cost, $shipping_rates );
+					$new_cost       = ( $new_cost - array_sum( $shipping_taxes ) );
 				}
 
-				$rates[ $key ]->set_cost( $cost );
+				$rates[ $key ]->set_cost( $new_cost );
 			}
 		}
 

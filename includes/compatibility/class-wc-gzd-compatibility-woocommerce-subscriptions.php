@@ -33,6 +33,25 @@ class WC_GZD_Compatibility_WooCommerce_Subscriptions extends WC_GZD_Compatibilit
 			$this,
 			'enable_unit_prices'
 		), 10, 1 );
+
+		/**
+		 * Subscriptions recalculates the cart total amount by summing up
+         * all total amounts (including rounded shipping amount). That may lead to
+         * rounding issues when the split tax option is enabled.
+		 */
+		add_filter( 'woocommerce_subscriptions_calculated_total', array( $this, 'adjust_subscription_rounded_shipping' ), 100, 1 );
+	}
+
+	public function adjust_subscription_rounded_shipping( $total ) {
+		if ( ! wc_gzd_enable_additional_costs_split_tax_calculation() ) {
+			return $total;
+		}
+
+		$shipping_methods = WC()->cart->calculate_shipping();
+		$shipping_total   = wc_format_decimal( array_sum( wp_list_pluck( $shipping_methods, 'cost' ) ) );
+		$total            = max( 0, round( WC()->cart->cart_contents_total + WC()->cart->tax_total + WC()->cart->shipping_tax_total + $shipping_total + WC()->cart->fee_total, WC()->cart->dp ) );
+
+		return $total;
 	}
 
 	public function enable_unit_prices( $types ) {
