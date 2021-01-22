@@ -229,13 +229,6 @@ class WC_GZD_Settings_Tab_General extends WC_GZD_Settings_Tab {
 			array( 'title' => '', 'type' => 'title', 'desc' => '', 'id' => 'checkout_options' ),
 
 			array(
-				'title'   => __( 'Phone', 'woocommerce-germanized' ),
-				'desc'    => __( 'Mark phone number as non-required within checkout.', 'woocommerce-germanized' ),
-				'id'      => 'woocommerce_gzd_checkout_phone_non_required',
-				'type'    => 'gzd_toggle',
-				'default' => 'yes',
-			),
-			array(
 				'title'   => __( 'Title', 'woocommerce-germanized' ),
 				'desc'    => __( 'Add a title field to the address within checkout.', 'woocommerce-germanized' ),
 				'id'      => 'woocommerce_gzd_checkout_address_field',

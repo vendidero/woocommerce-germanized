@@ -575,15 +575,6 @@ class WC_GZD_Checkout {
 			);
 		}
 
-		if ( 'yes' === get_option( 'woocommerce_gzd_checkout_phone_non_required' ) ) {
-			$this->custom_fields['phone'] = array(
-				'before'   => '',
-				'override' => true,
-				'required' => false,
-				'group'    => array( 'billing' )
-			);
-		}
-
 		/**
 		 * Filter to adjust custom checkout-related admin fields.
 		 *
