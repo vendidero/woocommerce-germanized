@@ -4,8 +4,8 @@ Tags: woocommerce, woocommerce german, woocommerce DE, woocommerce germany, wooc
 Requires at least: 5.4
 Tested up to: 5.6
 WC requires at least: 3.9
-WC tested up to: 4.9
-Stable tag: 3.3.4
+WC tested up to: 5.0
+Stable tag: 3.3.5
 Requires PHP: 5.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -186,6 +186,22 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 6. Edit pdf documents (Pro)
 
 == Changelog ==
+= 3.3.5 =
+* Feature: WC 5.0 compatibility
+* Improvement: Unit price ranges reflecting the matching unit price per min max price (not using the unit min max price)
+* Improvement: Consisting wording for cancellation policy and withdrawal
+* Improvement: Better Jetpack Builder compatibility
+* Improvement: Shipping costs tax calculation compatibility improvements
+* Improvement: Removed legacy checkout phone option in favor of Woo's customizer option
+* Improvement: Allow Packstation delivery and choosing for Internetmarke
+* Improvement: Internetmarke label print XY position options
+* Improvement: Internetmarke address 2 field
+* Improvement: Internetmarke default product selection
+* Improvement: Cache shipping method instances during frontend requests
+* Improvement: Maybe cancel shipments for refunded orders
+* Fix: Firefox packaging table dimensions display
+* Fix: DHL customs net weight calculation
+
 = 3.3.4 =
 * Feature: WC 4.9 compatibility
 * Improvement: Use net prices for shipping costs and fees in case net option is enabled in Woo tax settings
