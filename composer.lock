@@ -414,12 +414,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/vendidero/woocommerce-germanized-dhl.git",
-                "reference": "bc97d4b2343c9aa4194d0b93e78f38f76906f342"
+                "reference": "2930d1349b0112abae960d9e2ffd8eb309818316"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vendidero/woocommerce-germanized-dhl/zipball/bc97d4b2343c9aa4194d0b93e78f38f76906f342",
-                "reference": "bc97d4b2343c9aa4194d0b93e78f38f76906f342",
+                "url": "https://api.github.com/repos/vendidero/woocommerce-germanized-dhl/zipball/2930d1349b0112abae960d9e2ffd8eb309818316",
+                "reference": "2930d1349b0112abae960d9e2ffd8eb309818316",
                 "shasum": ""
             },
             "require": {
@@ -455,7 +455,7 @@
                 "source": "https://github.com/vendidero/woocommerce-germanized-dhl/tree/v1.4.5",
                 "issues": "https://github.com/vendidero/woocommerce-germanized-dhl/issues"
             },
-            "time": "2021-01-26T13:24:33+00:00"
+            "time": "2021-01-26T15:51:55+00:00"
         },
         {
             "name": "vendidero/woocommerce-germanized-shipments",
