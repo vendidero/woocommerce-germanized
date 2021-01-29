@@ -484,10 +484,10 @@ class WC_GZD_Emails {
 		}
 
 		// Set email filters
-		add_action( 'woocommerce_email_before_order_table', array( $this, 'set_order_email_filters' ), 10, 4 );
+		add_action( 'woocommerce_email_order_details', array( $this, 'set_order_email_filters' ), 5 );
 
 		// Remove them after total has been displayed
-		add_action( 'woocommerce_email_after_order_table', array( $this, 'remove_order_email_filters' ), 10, 4 );
+		add_action( 'woocommerce_email_after_order_table', array( $this, 'remove_order_email_filters' ), 10 );
 
 		// Pay now button
 		add_action( 'woocommerce_email_before_order_table', array( $this, 'email_pay_now_button' ), 0, 1 );
