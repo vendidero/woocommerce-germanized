@@ -883,6 +883,13 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 			wp_add_inline_style( 'woocommerce-gzd-layout', $custom_css );
 		}
 
+		public function get_variation_script_params() {
+		    return apply_filters( 'woocommerce_gzd_add_to_cart_variation_params', array(
+			    'wrapper'        => '.type-product',
+			    'price_selector' => '.price',
+		    ) );
+		}
+
 		/**
 		 * Localize Script to enable AJAX
 		 */
@@ -919,10 +926,7 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 				 * @since 1.0.0
 				 *
 				 */
-				wp_localize_script( 'wc-gzd-add-to-cart-variation', 'wc_gzd_add_to_cart_variation_params', apply_filters( 'woocommerce_gzd_add_to_cart_variation_params', array(
-					'wrapper'        => '.type-product',
-					'price_selector' => '.price',
-				) ) );
+				wp_localize_script( 'wc-gzd-add-to-cart-variation', 'wc_gzd_add_to_cart_variation_params', $this->get_variation_script_params() );
 			}
 
 			if ( wp_script_is( 'wc-gzd-single-product' ) && ! in_array( 'wc-gzd-single-product', $this->localized_scripts ) ) {
