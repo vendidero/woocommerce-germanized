@@ -45,6 +45,34 @@ window.germanized = window.germanized || {};
             self.variationId = 0;
         },
 
+        getCurrentPriceData: function() {
+            var self  = germanized.single_product,
+                $price = $( self.params.wrapper + ' ' + self.params.price_selector + ':not(.price-unit):visible' );
+
+            if ( $price.length > 0 ) {
+                var $unit_price = $price.parents( self.params.wrapper ).find( '.price-unit:first' ),
+                    price       = self.getRawPrice( $price.find( '.amount:first' ) ),
+                    sale_price  = '';
+
+                /**
+                 * Is sale?
+                 */
+                if ( $price.find( '.amount' ).length > 1 ) {
+                    sale_price = self.getRawPrice( $price.find( '.amount:last' ) );
+                }
+
+                if ( $unit_price.length > 0 && price ) {
+                    return {
+                        'price': price,
+                        'unit_price': $unit_price,
+                        'sale_price': sale_price
+                    };
+                }
+            }
+
+            return false;
+        },
+
         onChangePrice: function( event ) {
 
             /**
@@ -53,37 +81,48 @@ window.germanized = window.germanized || {};
              */
             setTimeout(function() {
                 var self  = germanized.single_product,
-                    $price = $( self.params.wrapper + ' ' + self.params.price_selector + ':not(.price-unit):visible' );
+                    priceData = self.getCurrentPriceData();
 
                 event.preventDefault();
 
-                if ( $price.length > 0 ) {
-                    /**
-                     * Unbind the event because using :first selectors will trigger DOMSubtreeModified again (infinite loop)
-                     */
-                    $( self.params.wrapper + ' ' + self.params.price_selector + ':not(.price-unit):visible' ).off( 'DOMSubtreeModified', self.onChangePrice );
+                /**
+                 * Unbind the event because using :first selectors will trigger DOMSubtreeModified again (infinite loop)
+                 */
+                $( self.params.wrapper + ' ' + self.params.price_selector + ':not(.price-unit):visible' ).off( 'DOMSubtreeModified', self.onChangePrice );
 
-                    var $unit_price = $price.parents( self.params.wrapper ).find( '.price-unit:first' ),
-                        price       = self.getRawPrice( $price.find( '.amount:first' ) ),
-                        sale_price  = '';
-
+                if ( priceData ) {
                     /**
-                     * Is sale?
+                     * In case AJAX requests are still running (e.g. price refreshes of other plugins) wait for them to finish
                      */
-                    if ( $price.find( '.amount' ).length > 1 ) {
-                        sale_price = self.getRawPrice( $price.find( '.amount:last' ) );
+                    if ( $.active > 0 ) {
+                        /**
+                         * Do not listen to our own requests
+                         */
+                        if ( self.requests.length <= 0 ) {
+                            $ ( document ).on( 'ajaxStop', self.onAjaxStopRefresh );
+                        }
+                    } else {
+                        console.log('directly stop');
+                        self.refreshUnitPrice( priceData.price, priceData.unit_price, priceData.sale_price );
                     }
-
-                    if ( $unit_price.length > 0 && price ) {
-                        self.refreshUnitPrice( price, $unit_price, sale_price );
-                    }
-
-                    /**
-                     * Rebind the event
-                     */
-                    $( self.params.wrapper + ' ' + self.params.price_selector + ':not(.price-unit):visible' ).on( 'DOMSubtreeModified', self.onChangePrice );
                 }
+
+                /**
+                 * Rebind the event
+                 */
+                $( self.params.wrapper + ' ' + self.params.price_selector + ':not(.price-unit):visible' ).on( 'DOMSubtreeModified', self.onChangePrice );
             }, 500 );
+        },
+
+        onAjaxStopRefresh: function( e ) {
+            var self = germanized.single_product;
+            var priceData = self.getCurrentPriceData();
+
+            if ( priceData ) {
+                self.refreshUnitPrice( priceData.price, priceData.unit_price, priceData.sale_price );
+            }
+
+            $ ( document ).off( 'ajaxStop', self.onAjaxStopRefresh );
         },
 
         getRawPrice: function( $el ) {

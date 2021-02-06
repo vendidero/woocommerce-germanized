@@ -444,7 +444,7 @@ if ( ! function_exists( 'woocommerce_gzd_template_order_submit' ) ) {
 if ( ! function_exists( 'woocommerce_gzd_template_order_submit_fallback' ) ) {
 
 	function woocommerce_gzd_template_order_submit_fallback() {
-		if ( ! did_action( 'woocommerce_checkout_order_review' ) ) {
+		if ( ! did_action( 'woocommerce_checkout_order_review' ) && apply_filters( 'woocommerce_gzd_insert_order_submit_fallback', true ) ) {
 			woocommerce_gzd_template_order_submit();
 		}
 	}

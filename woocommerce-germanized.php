@@ -598,7 +598,8 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 					'elementor-pro'                               => 'WC_GZD_Compatibility_Elementor_Pro',
 					'klarna-checkout-for-woocommerce'             => 'WC_GZD_Compatibility_Klarna_Checkout_For_WooCommerce',
 					'flexible-checkout-fields'                    => 'WC_GZD_Compatibility_Flexible_Checkout_Fields',
-					'woocommerce-all-products-for-subscriptions'  => 'WC_GZD_Compatibility_WooCommerce_All_Products_For_Subscriptions'
+					'woocommerce-all-products-for-subscriptions'  => 'WC_GZD_Compatibility_WooCommerce_All_Products_For_Subscriptions',
+					'b2b-market'                                  => 'WC_GZD_Compatibility_B2B_Market'
 				)
 			);
 
