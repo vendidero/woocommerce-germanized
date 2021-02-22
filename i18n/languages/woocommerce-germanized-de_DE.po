@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: WooCommerce Germanized\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-01-26 17:42+0100\n"
-"PO-Revision-Date: 2021-01-26 17:43+0100\n"
+"PO-Revision-Date: 2021-02-18 09:44+0100\n"
 "Last-Translator: holzhannes <holzhannes@posteo.de>\n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -10960,7 +10960,7 @@ msgstr "Benutzerkonto aktivieren"
 #: woocommerce-germanized/templates/emails/plain/customer-new-account-activation.php:35
 #, php-format
 msgid "Your password has been automatically generated: <strong>%s</strong>"
-msgstr "Dein Password wurde automatisch generiert: <strong>%s</strong>"
+msgstr "Dein Passwort wurde automatisch generiert: <strong>%s</strong>"
 
 # @ woocommerce-germanized
 #: woocommerce-germanized/templates/emails/customer-new-account-activation.php:37

@@ -120,7 +120,6 @@ class WC_GZD_Compatibility_Woo_Poly_Integration extends WC_GZD_Compatibility {
 	}
 
 	public function translate_emails( $pll_mail_instance ) {
-
 		$this->set_pll_email_instance( $pll_mail_instance );
 
 		foreach ( $this->get_order_emails() as $mail_id ) {
@@ -131,14 +130,24 @@ class WC_GZD_Compatibility_Woo_Poly_Integration extends WC_GZD_Compatibility {
 
 	public function translate_order_subject( $subject, $object ) {
 		$email_id = str_replace( 'woocommerce_email_subject_', '', current_filter() );
+		$instance = $this->get_pll_email_instance();
 
-		return $this->get_pll_email_instance()->translateEmailStringToOrderLanguage( $subject, $object, 'subject', $email_id );
+		if ( is_callable( array( $instance, 'translateEmailStringToObjectLanguage' ) ) ) {
+			return $instance->translateEmailStringToObjectLanguage( $subject, $object, 'subject', $email_id );
+		} else {
+			return $subject;
+		}
 	}
 
 	public function translate_order_heading( $heading, $object ) {
 		$email_id = str_replace( 'woocommerce_email_heading_', '', current_filter() );
+		$instance = $this->get_pll_email_instance();
 
-		return $this->get_pll_email_instance()->translateEmailStringToOrderLanguage( $heading, $object, 'heading', $email_id );
+		if ( is_callable( array( $instance, 'translateEmailStringToObjectLanguage' ) ) ) {
+			return $instance->translateEmailStringToObjectLanguage( $heading, $object, 'heading', $email_id );
+		} else {
+			return $heading;
+		}
 	}
 
 	public function register_emails( $mails, $pll_mail_instance ) {
