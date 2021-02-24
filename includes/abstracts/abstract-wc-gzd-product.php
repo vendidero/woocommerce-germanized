@@ -526,6 +526,12 @@ class WC_GZD_Product {
 		return apply_filters( 'woocommerce_germanized_get_price_html_from_to', $price, $from, $to, $this );
 	}
 
+	public function hide_shopmarks_due_to_missing_price() {
+		$has_empty_price = apply_filters( 'woocommerce_gzd_product_misses_price', '' === $this->get_price(), $this );
+
+		return apply_filters( 'woocommerce_gzd_product_hide_shopmarks_empty_price', true, $this ) && $has_empty_price;
+	}
+
 	/**
 	 * Gets a product's tax description (if is taxable)
 	 *
@@ -534,6 +540,10 @@ class WC_GZD_Product {
 	public function get_tax_info() {
 		$tax_notice    = false;
 		$is_vat_exempt = ( ! empty( WC()->customer ) ? WC()->customer->is_vat_exempt() : false );
+
+		if ( $this->hide_shopmarks_due_to_missing_price() ) {
+			return false;
+		}
 
 		if ( $this->child->is_taxable() || $this->is_differential_taxed() ) {
 
@@ -969,6 +979,8 @@ class WC_GZD_Product {
 			 *
 			 */
 			return apply_filters( 'woocommerce_germanized_disabled_delivery_time_text', '', $this );
+		} elseif ( $this->hide_shopmarks_due_to_missing_price() ) {
+			return '';
 		}
 
 		if ( $this->get_delivery_time_term() ) {
@@ -1080,6 +1092,10 @@ class WC_GZD_Product {
 			 *
 			 */
 			return apply_filters( 'woocommerce_germanized_disabled_shipping_text', '', $this );
+		}
+
+		if ( $this->hide_shopmarks_due_to_missing_price() ) {
+			return '';
 		}
 
 		return wc_gzd_get_shipping_costs_text( $this );
