@@ -1060,6 +1060,7 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 		public function add_emails( $mails ) {
 
 			$mails['WC_GZD_Email_Customer_Paid_For_Order']         = include WC_GERMANIZED_ABSPATH . 'includes/emails/class-wc-gzd-email-customer-paid-for-order.php';
+			$mails['WC_GZD_Email_Customer_Cancelled_Order']        = include WC_GERMANIZED_ABSPATH . 'includes/emails/class-wc-gzd-email-customer-cancelled-order.php';
 			$mails['WC_GZD_Email_Customer_New_Account_Activation'] = include WC_GERMANIZED_ABSPATH . 'includes/emails/class-wc-gzd-email-customer-new-account-activation.php';
 			$mails['WC_GZD_Email_Customer_Revocation']             = include WC_GERMANIZED_ABSPATH . 'includes/emails/class-wc-gzd-email-customer-revocation.php';
 
