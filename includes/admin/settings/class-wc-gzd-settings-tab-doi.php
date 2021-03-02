@@ -35,7 +35,7 @@ class WC_GZD_Settings_Tab_DOI extends WC_GZD_Settings_Tab {
 
 			array(
 				'title'   => __( 'Enable', 'woocommerce-germanized' ),
-				'desc'    => __( 'Enable customer double opt in during registration.', 'woocommerce-germanized' ) . '<div class="wc-gzd-additional-desc">' . sprintf( __( 'If customer chooses to create a customer account an email with an activation link will be sent by mail. Customer account will be marked as activated if user clicks on the link within the email. More information on this topic can be found <a href="%s" target="_blank">here</a>.', 'woocommerce-germanized' ), 'http://t3n.de/news/urteil-anmeldebestatigungen-double-opt-in-pflicht-592304/' ) . '</div>',
+				'desc'    => __( 'Enable customer double opt in during registration.', 'woocommerce-germanized' ) . '<div class="wc-gzd-additional-desc">' . sprintf( __( 'If customer chooses to create a customer account an email with an activation link will be sent by mail. Customer account will be marked as activated if user clicks on the link within the email.', 'woocommerce-germanized' ) ) . '</div>',
 				'id'      => 'woocommerce_gzd_customer_activation',
 				'default' => 'no',
 				'type'    => 'gzd_toggle',

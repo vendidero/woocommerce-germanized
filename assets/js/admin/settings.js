@@ -27,7 +27,8 @@ window.germanized = window.germanized || {};
                 .on( 'change', 'input[name=woocommerce_gzd_dispute_resolution_type]', this.onChangeDisputeResolutionType )
                 .on( 'click', 'a.woocommerce-gzd-input-toggle-trigger', this.onInputToogleClick )
                 .on( 'change', '.wc-gzd-setting-tabs input.woocommerce-gzd-tab-status-checkbox', this.onChangeTabStatus )
-                .on( 'change gzd_show_or_hide_fields', '.wc-gzd-admin-settings :input', this.onChangeInput );
+                .on( 'change gzd_show_or_hide_fields', '.wc-gzd-admin-settings :input', this.onChangeInput )
+                .on( 'change', '.wc-gzd-setting-tab-enabled :input', this.preventWarning );
 
             $( document.body )
                 .on( 'woocommerce_gzd_setting_field_visible', this.onShowField )
@@ -43,6 +44,14 @@ window.germanized = window.germanized || {};
             });
 
             self.initTipTip();
+        },
+
+        /**
+         * Prevents the unsaved settings warning for the main germanized tab
+         * as these toggles use AJAX requests to save the settings.
+         */
+        preventWarning: function() {
+            window.onbeforeunload = '';
         },
 
         initTipTip: function() {

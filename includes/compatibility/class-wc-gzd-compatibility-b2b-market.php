@@ -32,6 +32,7 @@ class WC_GZD_Compatibility_B2B_Market extends WC_GZD_Compatibility_Woocommerce_R
 		$prices           = array();
 		$price_count      = substr_count( $price_html, 'woocommerce-Price-currencySymbol' );
 		$start_pos_offset = 0;
+		$currency_pos     = get_option( 'woocommerce_currency_pos' );
 
 		if ( strpos( $price_html, 'b2b-' ) === false ) {
 			return $prices;
@@ -42,15 +43,14 @@ class WC_GZD_Compatibility_B2B_Market extends WC_GZD_Compatibility_Woocommerce_R
 
 			$start_pos  = strpos( $price_html, $needle, $start_pos_offset );
 			$start_pos_offset += ( $start_pos + strlen( $needle ) );
-
-			/**
-			 * @todo needs adjusting in case currency is shown before price
-			 */
 			$price_test = substr( $price_html, ( $start_pos - 30 ), 30 );
+
+			if ( in_array( $currency_pos, array( 'left_space', 'left' ) ) ) {
+				$price_test = substr( $price_html, ( $start_pos + 30 ), 30 );
+			}
+
 			$sep        = wc_get_price_decimal_separator();
 			$regex_sep  = '.' === $sep ? '\.' : $sep;
-
-			// $price_test = str_replace( ',', '.', $price_test );
 
 			preg_match_all('/\d+' . $regex_sep . '\d+/', $price_test, $matches );
 

@@ -7,7 +7,7 @@
         var self = this;
 
         self.$form                = $form;
-        self.$wrapper             = $form.parents( wc_gzd_add_to_cart_variation_params.wrapper );
+        self.$wrapper             = $form.closest( wc_gzd_add_to_cart_variation_params.wrapper );
         self.$product             = $form.closest( '.product' );
         self.variationData        = $form.data( 'product_variations' );
         self.$singleVariation     = $form.find( '.single_variation' );
@@ -16,7 +16,7 @@
         self.$button              = $form.find( '.single_add_to_cart_button' );
 
         if ( self.$wrapper.length <= 0 ) {
-            self.$wrapper         = self.$product;
+            self.$wrapper = self.$product;
         }
 
         $form.on( 'click', '.reset_variations', { GermanizedvariationForm: self }, self.onReset );
@@ -79,6 +79,8 @@
     GermanizedVariationForm.prototype.onShowVariation = function( event, variation, purchasable ) {
         var form              = event.data.GermanizedvariationForm,
             $wrapper          = form.$wrapper;
+
+        console.log($wrapper);
 
         if ( ! $wrapper.find( wc_gzd_add_to_cart_variation_params.price_selector + ':visible:first' ).hasClass( 'variation_modified' ) ) {
 

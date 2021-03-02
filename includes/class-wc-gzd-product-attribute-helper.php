@@ -129,9 +129,21 @@ class WC_GZD_Product_Attribute_Helper {
 		return $attribute;
 	}
 
+	protected function get_product_id( $maybe_product_id ) {
+	    $product_id = false;
+
+	    if ( is_numeric( $maybe_product_id ) ) {
+	        $product_id = $maybe_product_id;
+	    } elseif( is_a( $maybe_product_id, 'WC_Product' ) || is_a( $maybe_product_id, 'WC_GZD_Product' ) ) {
+	        $product_id = $maybe_product_id->get_id();
+	    }
+
+	    return $product_id;
+	}
+
 	public function get_attribute( $attribute, $product_id = false ) {
 		$new_attribute   = new WC_GZD_Product_Attribute( $attribute );
-		$product_id      = ( $product_id && ! is_numeric( $product_id ) ? $product_id->get_id() : $product_id );
+		$product_id      = $this->get_product_id( $product_id );
 		$meta_attributes = $product_id ? get_post_meta( $product_id, '_product_attributes', true ) : array();
 		$meta_key        = sanitize_title( $attribute->get_name() );
 
