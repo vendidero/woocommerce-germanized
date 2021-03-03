@@ -79,9 +79,7 @@
     GermanizedVariationForm.prototype.onShowVariation = function( event, variation, purchasable ) {
         var form              = event.data.GermanizedvariationForm,
             $wrapper          = form.$wrapper;
-
-        console.log($wrapper);
-
+        
         if ( ! $wrapper.find( wc_gzd_add_to_cart_variation_params.price_selector + ':visible:first' ).hasClass( 'variation_modified' ) ) {
 
             $wrapper.append( '<div class="org_price org_product_info">' + $wrapper.find( wc_gzd_add_to_cart_variation_params.price_selector + ':not(.price-unit):visible:first' ).html() + '</div>' );

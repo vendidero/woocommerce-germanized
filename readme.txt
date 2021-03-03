@@ -2,7 +2,7 @@
 Contributors: vendidero, vdwoocommercesupport
 Tags: woocommerce, woocommerce german, woocommerce DE, woocommerce germany, woocommerce deutsch, woo, woocommerce deutschland, woocommerce germanized, woocommerce addon, woocommerce plugin, woocommerce german addon, woocommerce germany addon, woocommerce dhl, dhl, shipments
 Requires at least: 5.4
-Tested up to: 5.6
+Tested up to: 5.7
 WC requires at least: 3.9
 WC tested up to: 5.0
 Stable tag: 3.3.6
