@@ -187,11 +187,20 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 
 == Changelog ==
 = 3.3.7 =
+* Feature: Added customer email notifications for cancelled/failed orders
 * Improvement: Allow deciding on a per label basis if tracking is supported or nor (e.g. DP labels)
 * Improvement: Added subtotal to shipment items for customs
 * Improvement: Added shipping provider title to customer notifications
 * Improvement: DHL customs weight calculation
 * Improvement: DHL customs value calculations
+* Improvement: Additional DOI warning message check
+* Improvement: Compatibility for Woo Discount Rules
+* Improvement: Compatibility for WooCommerce All Products for Subscriptions
+* Improvement: B2B Market unit price compatibility
+* Improvement: PHP 8 compatibility fixes
+* Improvement: By default hide shopmarks for empty prices
+* Improvement: Prefer using closest element for variation script
+* Fix: Woo Poly Integration
 * Fix: Wrong sort in packaging query
 * Fix: COD payment reference replacement for DHL
 
