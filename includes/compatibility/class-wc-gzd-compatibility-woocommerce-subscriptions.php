@@ -40,6 +40,23 @@ class WC_GZD_Compatibility_WooCommerce_Subscriptions extends WC_GZD_Compatibilit
          * rounding issues when the split tax option is enabled.
 		 */
 		add_filter( 'woocommerce_subscriptions_calculated_total', array( $this, 'adjust_subscription_rounded_shipping' ), 100, 1 );
+
+		/**
+		 * Exclude certain keys from being copied to renewals
+		 */
+		add_filter( 'wcs_renewal_order_meta', array( $this, 'exclude_meta' ), 10, 3 );
+	}
+
+	public function exclude_meta( $meta ) {
+		$excluded = array( '_dhl_services' );
+
+		foreach ( $meta as $index => $meta_data ) {
+			if ( ! empty( $meta_data['meta_key'] ) && in_array( $meta_data['meta_key'], $excluded ) ) {
+				unset( $meta[ $index ] );
+			}
+		}
+
+		return $meta;
 	}
 
 	public function adjust_subscription_rounded_shipping( $total ) {
