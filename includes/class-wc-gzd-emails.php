@@ -286,7 +286,6 @@ class WC_GZD_Emails {
 			if ( in_array( $original, $search ) ) {
 				if ( isset( $GLOBALS['wc_gzd_processing_order'] ) ) {
 					$order = $GLOBALS['wc_gzd_processing_order'];
-
 					return $this->get_processing_email_text( $order );
 				}
 			}
@@ -358,9 +357,7 @@ class WC_GZD_Emails {
 			'{order_date}'   => wc_gzd_get_order_date( $order ),
 		);
 
-		foreach ( $placeholders as $placeholder => $value ) {
-			$plain = str_replace( $placeholder, $value, $plain );
-		}
+		$plain = str_replace( array_keys( $placeholders ), array_values( $placeholders ), $plain );
 
 		/**
 		 * Filter the order confirmation introduction text.
