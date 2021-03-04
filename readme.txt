@@ -188,6 +188,8 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 == Changelog ==
 = 3.3.7 =
 * Feature: Added customer email notifications for cancelled/failed orders
+* Feature: WP 5.7 support
+* Feature: Woo 5.1 support
 * Improvement: Allow deciding on a per label basis if tracking is supported or nor (e.g. DP labels)
 * Improvement: Added subtotal to shipment items for customs
 * Improvement: Added shipping provider title to customer notifications
