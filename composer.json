@@ -70,6 +70,9 @@
     ],
     "phpcbf": [
       "phpcbf -p"
+    ],
+    "bin": [
+      "echo 'bin not installed'"
     ]
   },
   "extra": {
@@ -82,6 +85,9 @@
       "test": "Run unit tests",
       "phpcs": "Analyze code against the WordPress coding standards with PHP_CodeSniffer",
       "phpcbf": "Fix coding standards warnings/errors automatically with PHP Code Beautifier"
+    },
+    "bamarni-bin": {
+      "target-directory": "bin/composer"
     }
   }
 }
