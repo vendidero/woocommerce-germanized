@@ -17,7 +17,8 @@
   },
   "require-dev": {
     "myclabs/deep-copy": "^1.7.0",
-    "phpunit/phpunit": "7.5.14"
+    "phpunit/phpunit": "7.5.14",
+    "bamarni/composer-bin-plugin": "^1.4"
   },
   "repositories": [
     {
