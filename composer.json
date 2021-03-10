@@ -17,8 +17,7 @@
   },
   "require-dev": {
     "myclabs/deep-copy": "^1.7.0",
-    "phpunit/phpunit": "7.5.14",
-    "bamarni/composer-bin-plugin": "^1.4"
+    "phpunit/phpunit": "7.5.14"
   },
   "repositories": [
     {
@@ -70,9 +69,6 @@
     ],
     "phpcbf": [
       "phpcbf -p"
-    ],
-    "bin": [
-      "echo 'bin not installed'"
     ]
   },
   "extra": {
@@ -85,9 +81,6 @@
       "test": "Run unit tests",
       "phpcs": "Analyze code against the WordPress coding standards with PHP_CodeSniffer",
       "phpcbf": "Fix coding standards warnings/errors automatically with PHP Code Beautifier"
-    },
-    "bamarni-bin": {
-      "target-directory": "bin/composer"
     }
   }
 }
