@@ -268,11 +268,11 @@ function wc_gzd_recalculate_unit_price( $args = array(), $product = false ) {
 
 	$args = wp_parse_args( $args, $default_args );
 
-	$args['sale_price']    = wc_format_decimal( $args['sale_price'] );
-	$args['regular_price'] = wc_format_decimal( $args['regular_price'] );
-	$args['price']         = wc_format_decimal( $args['price'] );
-	$args['base']          = ! empty( $args['base'] ) ? wc_format_decimal( $args['base'] ) : 0;
-	$args['products']      = ! empty( $args['products'] ) ? wc_format_decimal( $args['products'] ) : 0;
+	$args['sale_price']    = floatval( $args['sale_price'] );
+	$args['regular_price'] = floatval( $args['regular_price'] );
+	$args['price']         = floatval( $args['price'] );
+	$args['base']          = ! empty( $args['base'] ) ? floatval( $args['base'] ) : 0;
+	$args['products']      = ! empty( $args['products'] ) ? floatval( $args['products'] ) : 0;
 
 	$base         = $args['base'];
 	$unit_product = $args['products'];
@@ -296,8 +296,8 @@ function wc_gzd_recalculate_unit_price( $args = array(), $product = false ) {
 	/**
 	 * Make sure same operand types are used here (PHP 8)
 	 */
-	$base         = wc_format_decimal( $base );
-	$product_base = wc_format_decimal( $product_base );
+	$base         = floatval( $base );
+	$product_base = floatval( $product_base );
 
 	$prices['regular'] = wc_format_decimal( ( $args['regular_price'] / $product_base ) * $base, wc_get_price_decimals() );
 	$prices['sale']    = '';

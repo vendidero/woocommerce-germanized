@@ -204,10 +204,10 @@ class WC_GZD_Order_Item_Product extends WC_GZD_Order_Item {
 			return false;
 		}
 
-		$net_total      = $this->order_item->get_total() / $this->order_item->get_quantity();
-		$gross_total    = $net_total + ( $this->order_item->get_total_tax() / $this->order_item->get_quantity() );
-		$net_subtotal   = $this->order_item->get_subtotal() / $this->order_item->get_quantity();
-		$gross_subtotal = $net_subtotal + ( $this->order_item->get_subtotal_tax() / $this->order_item->get_quantity() );
+		$net_total      = floatval( $this->order_item->get_total() ) / $this->order_item->get_quantity();
+		$gross_total    = $net_total + ( floatval( $this->order_item->get_total_tax() ) / $this->order_item->get_quantity() );
+		$net_subtotal   = floatval( $this->order_item->get_subtotal() ) / $this->order_item->get_quantity();
+		$gross_subtotal = $net_subtotal + ( floatval( $this->order_item->get_subtotal_tax() ) / $this->order_item->get_quantity() );
 
 		$net_total      = round( $net_total, wc_get_price_decimals() );
 		$gross_total    = round( $gross_total, wc_get_price_decimals() );
