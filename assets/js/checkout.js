@@ -14,7 +14,7 @@ window.germanized = window.germanized || {};
             this.params = wc_gzd_checkout_params;
 
             if ( $( '.payment_methods:first' ).parents( '#order_review' ).length ) {
-                $( document ).on( 'change', '.payment_methods input[name="payment_method"]', this.onChangePaymentMethod );
+                $( document ).on( 'change', '.payment_methods input[name="payment_method"]', this.triggerCheckoutRefresh );
             }
 
             $( 'body' ).bind( 'updated_checkout', this.onUpdateCheckout );
@@ -24,6 +24,10 @@ window.germanized = window.germanized || {};
                     $( '.woocommerce-checkout' ).find( '#payment' ).after( $( '.woocommerce-checkout' ).find( '#order_review_heading' ) );
                     $( '.woocommerce-checkout' ).find( '#order_review_heading' ).show();
                 }
+            }
+
+            if ( this.params.has_privacy_checkbox ) {
+                $( document ).on( 'change', 'input#createaccount', this.triggerCheckoutRefresh );
             }
 
             if ( this.params.checkbox_hidden ) {
@@ -53,7 +57,7 @@ window.germanized = window.germanized || {};
             self.maybeSetTermsCheckbox();
         },
 
-        onChangePaymentMethod: function() {
+        triggerCheckoutRefresh: function() {
             $( 'body' ).trigger( 'update_checkout' );
         },
 

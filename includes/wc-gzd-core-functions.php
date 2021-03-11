@@ -646,6 +646,11 @@ function wc_gzd_update_legal_checkbox( $id, $args ) {
 	return $manager->update( $id, $args );
 }
 
+/**
+ * @param $id
+ *
+ * @return false|WC_GZD_Legal_Checkbox
+ */
 function wc_gzd_get_legal_checkbox( $id ) {
 	$manager = WC_GZD_Legal_Checkbox_Manager::instance();
 

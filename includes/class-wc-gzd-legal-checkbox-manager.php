@@ -196,6 +196,8 @@ class WC_GZD_Legal_Checkbox_Manager {
 			'is_enabled'           => true,
 			'error_message'        => __( 'Please accept our privacy policy to create a new customer account', 'woocommerce-germanized' ),
 			'is_core'              => true,
+			'is_shown'             => true,
+			'refresh_fragments'    => true,
 			'priority'             => 4,
 			'admin_name'           => __( 'Privacy Policy', 'woocommerce-germanized' ),
 			'admin_desc'           => __( 'Let customers accept your privacy policy before registering.', 'woocommerce-germanized' ),
@@ -379,6 +381,45 @@ class WC_GZD_Legal_Checkbox_Manager {
 					wc_gzd_update_legal_checkbox( 'age_verification', array(
 						'is_shown'   => true,
 						'label_args' => array_merge( $this->get_legal_label_args(), array( '{age}' => wc_gzd_cart_get_age_verification_min_age() ) ),
+					) );
+				}
+			}
+		}
+
+		// Privacy
+		if ( $checkbox = $this->get_checkbox( 'privacy' ) ) {
+			if ( $checkbox->is_enabled() ) {
+
+				/**
+				 * Use raw post data in case available as only certain billing/shipping address
+				 * specific data is available during AJAX requests in get_posted_data.
+				 */
+				if ( isset( $_POST['post_data'] ) ) {
+					$posted = array();
+					parse_str( $_POST['post_data'], $posted );
+					$posted = wc_clean( $posted );
+
+					$posted['createaccount'] = isset( $posted['createaccount'] ) ? true : false;
+				} else {
+					$posted = WC()->checkout()->get_posted_data();
+				}
+
+				$create_account = isset( $posted['createaccount'] ) ? $posted['createaccount'] : false;
+
+				/**
+				 * This option will force creating a user within checkout.
+				 */
+				if ( 'no' === get_option( 'woocommerce_enable_guest_checkout' ) ) {
+					$create_account = true;
+				}
+
+				if ( is_user_logged_in() || ! WC()->checkout()->is_registration_enabled() || ! $create_account ) {
+					wc_gzd_update_legal_checkbox( 'privacy', array(
+						'is_shown' => false,
+					) );
+				} else {
+					wc_gzd_update_legal_checkbox( 'privacy', array(
+						'is_shown' => true,
 					) );
 				}
 			}

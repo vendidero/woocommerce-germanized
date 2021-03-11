@@ -987,10 +987,15 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 				$this->localized_scripts[] = 'wc-gzd-checkout';
 				$html_id                   = 'legal';
 				$hide_input                = false;
+				$has_privacy_checkbox      = false;
 
 				if ( $checkbox = wc_gzd_get_legal_checkbox( 'terms' ) ) {
 					$html_id    = $checkbox->get_html_id();
 					$hide_input = $checkbox->hide_input();
+				}
+
+				if ( $checkbox = wc_gzd_get_legal_checkbox( 'privacy' ) ) {
+				    $has_privacy_checkbox = in_array( 'checkout', $checkbox->get_locations() );
 				}
 
 				/**
@@ -1002,9 +1007,10 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 				 *
 				 */
 				wp_localize_script( 'wc-gzd-checkout', 'wc_gzd_checkout_params', apply_filters( 'wc_gzd_checkout_params', array(
-					'adjust_heading'  => true,
-					'checkbox_id'     => $html_id,
-					'checkbox_hidden' => $hide_input,
+					'adjust_heading'       => true,
+					'checkbox_id'          => $html_id,
+					'checkbox_hidden'      => $hide_input,
+                    'has_privacy_checkbox' => $has_privacy_checkbox,
 				) ) );
 			}
 
