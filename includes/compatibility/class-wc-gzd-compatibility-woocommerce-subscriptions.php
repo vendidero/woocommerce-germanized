@@ -45,7 +45,21 @@ class WC_GZD_Compatibility_WooCommerce_Subscriptions extends WC_GZD_Compatibilit
 		 * Exclude certain keys from being copied to renewals
 		 */
 		add_filter( 'wcs_renewal_order_meta', array( $this, 'exclude_meta' ), 10, 3 );
+
+		add_filter( 'woocommerce_gzd_enable_force_pay_order', array( $this, 'stop_forced_redirect' ), 10, 2 );
 	}
+
+	public function stop_forced_redirect( $redirect, $order ) {
+		/**
+		 * Woo Subscription specific payment method change flag.
+         * Always allow changing payment method for subscriptions.
+		 */
+	    if ( isset( $_GET['change_payment_method'] ) ) {
+	        $redirect = false;
+        }
+
+	    return $redirect;
+    }
 
 	public function exclude_meta( $meta ) {
 		$excluded = array( '_dhl_services' );
