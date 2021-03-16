@@ -31,7 +31,11 @@ defined( 'ABSPATH' ) || exit;
     </tr>
     </thead>
     <tbody class="wc-gzd-setting-tab-rows">
-	<?php foreach ( $tabs as $tab_id => $tab ) : ?>
+	<?php foreach ( $tabs as $tab_id => $tab ) :
+        if ( $tab->hide_from_main_panel() ) {
+            continue;
+        }
+        ?>
         <tr>
             <td class="wc-gzd-setting-tab-name"
                 id="wc-gzd-setting-tab-name-<?php echo esc_attr( $tab->get_name() ); ?>"><a

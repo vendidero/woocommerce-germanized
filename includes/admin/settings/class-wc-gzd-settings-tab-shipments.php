@@ -35,17 +35,6 @@ class WC_GZD_Settings_Tab_Shipments extends WC_GZD_Settings_Tab {
 		return Settings::get_sections();
 	}
 
-	public function save() {
-		global $current_section;
-
-		if ( 'provider' === $current_section && isset( $_GET['provider'] ) ) {
-			$provider = wc_clean( wp_unslash( $_REQUEST['provider'] ) );
-			Settings::save_provider( $provider );
-		} else {
-			parent::save();
-		}
-	}
-
 	public function output() {
 		$current_section = $this->get_current_section();
 

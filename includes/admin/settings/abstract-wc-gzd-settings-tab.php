@@ -226,6 +226,10 @@ abstract class WC_GZD_Settings_Tab extends WC_Settings_Page {
 		return ( $this->is_pro() && ! WC_germanized()->is_pro() ? false : true );
 	}
 
+	public function hide_from_main_panel() {
+	    return false;
+	}
+
 	public function output() {
 		$current_section  = $this->get_current_section();
 		$current_tab      = $this->get_id();
