@@ -19,6 +19,37 @@ class WC_GZD_Settings_Tab_Shipping_Provider extends WC_GZD_Settings_Tab {
 		return ProviderSettings::get_description();
 	}
 
+	/**
+	 * Output sections.
+	 */
+	public function output_sections() {
+		global $current_section;
+
+		$sections = $this->get_sections();
+
+		if ( empty( $sections ) || 1 === sizeof( $sections ) ) {
+			return;
+		}
+
+		echo '<ul class="subsubsub">';
+
+		$array_keys = array_keys( $sections );
+
+		foreach ( $sections as $id => $label ) {
+			echo '<li><a href="' . $this->get_section_link( $id ) . '" class="' . ( $current_section == $id ? 'current' : '' ) . '">' . $label . '</a> ' . ( end( $array_keys ) == $id ? '' : '|' ) . ' </li>';
+		}
+
+		echo '</ul><br class="clear" />';
+	}
+
+	protected function get_section_link( $section ) {
+		if ( $provider = ProviderSettings::get_current_provider() ) {
+			$provider_slug = sanitize_title( $provider->get_name() );
+		}
+
+		return add_query_arg( array( 'section' => sanitize_title( $section ), 'tab' => $this->id, 'provider' => $provider_slug ), admin_url( 'admin.php?page=wc-settings' ) );
+	}
+
 	protected function get_breadcrumb() {
 		$breadcrumb = array(
 			array(
