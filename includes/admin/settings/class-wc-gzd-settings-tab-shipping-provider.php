@@ -85,7 +85,9 @@ class WC_GZD_Settings_Tab_Shipping_Provider extends WC_GZD_Settings_Tab {
 	}
 
 	public function save() {
-		ProviderSettings::save();
+		global $current_section;
+
+		ProviderSettings::save( $current_section );
 	}
 
 	public function output() {
