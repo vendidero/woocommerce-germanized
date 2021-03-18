@@ -60,6 +60,18 @@ class WC_GZD_Settings_Tab_Taxes extends WC_GZD_Settings_Tab {
 				'desc_tip' => __( 'This option will make sure that within shop pages no specific tax rates are shown. Instead only incl. tax or excl. tax notice is shown.', 'woocommerce-germanized' ),
 			),
 
+			array(
+				'title'    => __( 'Tax totals', 'woocommerce-germanized' ),
+				'id'       => 'woocommerce_gzd_tax_totals_display',
+				'default'  => 'after',
+				'type'     => 'select',
+				'options'  => array(
+					'before' => _x( 'Before total amount', 'woocommerce-germanized' ),
+					'after'  => _x( 'After total amount', 'woocommerce-germanized' )
+				),
+				'desc_tip' => __( 'Decide whether to show tax totals before or after total amount.', 'woocommerce-germanized' ),
+			),
+
 			array( 'type' => 'sectionend', 'id' => 'vat_options' ),
 		);
 

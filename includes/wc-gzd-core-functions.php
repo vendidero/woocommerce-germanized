@@ -444,6 +444,10 @@ function wc_gzd_get_dispute_resolution_text() {
 	return get_option( 'woocommerce_gzd_alternative_complaints_text_' . $type );
 }
 
+function wc_gzd_show_taxes_before_total( $location = 'checkout' ) {
+	return apply_filters( 'woocommerce_gzd_show_taxes_before_total', 'before' === get_option( 'woocommerce_gzd_tax_totals_display' ), $location );
+}
+
 function wc_gzd_get_tax_rate_label( $rate_percentage, $type = 'incl' ) {
 	if ( 'incl' === $type ) {
 		$label = ( get_option( 'woocommerce_tax_total_display' ) == 'itemized' ? sprintf( __( 'incl. %s%% VAT', 'woocommerce-germanized' ), wc_gzd_format_tax_rate_percentage( $rate_percentage ) ) : __( 'incl. VAT', 'woocommerce-germanized' ) );
