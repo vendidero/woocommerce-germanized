@@ -87,7 +87,7 @@ class WC_GZD_Settings_Tab_DHL extends WC_GZD_Settings_Tab {
 	public function is_enabled() {
 		$is_enabled = parent::is_enabled();
 
-		if ( \Vendidero\Germanized\DHL\Package::is_internetmarke_enabled() ) {
+		if ( \Vendidero\Germanized\DHL\Package::is_deutsche_post_enabled() ) {
 			$is_enabled = true;
 		}
 
