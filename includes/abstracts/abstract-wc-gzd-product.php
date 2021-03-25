@@ -674,7 +674,7 @@ class WC_GZD_Product {
 	 *
 	 * @return string  formatted unit price
 	 */
-	public function get_formatted_unit_price( $qty = 1, $price = '' ) {
+	public function get_formatted_unit_price( $qty = 1, $price = '', $tax_display = '' ) {
 		/**
 		 * Before retrieving unit price.
 		 *
@@ -689,7 +689,7 @@ class WC_GZD_Product {
 		 */
 		do_action( 'woocommerce_gzd_before_get_unit_price', $this, $price, $qty );
 
-		$tax_display_mode = get_option( 'woocommerce_tax_display_shop' );
+		$tax_display_mode = $tax_display ? $tax_display : get_option( 'woocommerce_tax_display_shop' );
 
 		return ( 'incl' === $tax_display_mode ) ? $this->get_unit_price_including_tax( $qty, $price ) : $this->get_unit_price_excluding_tax( $qty, $price );
 	}
@@ -774,7 +774,7 @@ class WC_GZD_Product {
 	 *
 	 * @return string
 	 */
-	public function get_unit_price_html( $show_sale = true ) {
+	public function get_unit_price_html( $show_sale = true, $tax_display = '' ) {
 		/**
 		 * Filter that allows disabling the unit price output for a certain product.
 		 *
@@ -813,9 +813,9 @@ class WC_GZD_Product {
 			 */
 			do_action( 'woocommerce_gzd_before_get_unit_price_html', $this );
 
-			$display_price         = $this->get_formatted_unit_price();
-			$display_regular_price = $this->get_formatted_unit_price( 1, $this->get_unit_price_regular() );
-			$display_sale_price    = $this->get_formatted_unit_price( 1, $this->get_unit_price_sale() );
+			$display_price         = $this->get_formatted_unit_price( 1, '', $tax_display );
+			$display_regular_price = $this->get_formatted_unit_price( 1, $this->get_unit_price_regular(), $tax_display );
+			$display_sale_price    = $this->get_formatted_unit_price( 1, $this->get_unit_price_sale(), $tax_display );
 
 			$price_html = ( ( $this->is_on_unit_sale() && $show_sale ) ? $this->get_price_html_from_to( $display_regular_price, $display_sale_price, false ) : wc_price( $display_price ) );
 			$html       = wc_gzd_format_unit_price( $price_html, $this->get_unit_html(), $this->get_unit_base_html() );
