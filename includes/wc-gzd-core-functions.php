@@ -666,6 +666,17 @@ function wc_gzd_remove_legal_checkbox( $id ) {
 	$manager->remove( $id );
 }
 
+function wc_gzd_checkbox_is_enabled( $id ) {
+	$manager = WC_GZD_Legal_Checkbox_Manager::instance();
+	$enabled = false;
+
+	if ( $checkbox = $manager->get_checkbox( $id ) ) {
+		$enabled = $checkbox->is_enabled();
+	}
+
+	return $enabled;
+}
+
 if ( ! function_exists( 'is_ajax' ) ) {
 
 	/**
