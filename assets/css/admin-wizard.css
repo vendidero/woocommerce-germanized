@@ -50,7 +50,8 @@ body {
   margin: 30px auto 24px;
   box-shadow: none;
   background: #f1f1f1;
-  padding: 0; }
+  padding: 0;
+  border: none; }
 
 .wc-gzd-setup .logo-wrapper {
   display: flex;

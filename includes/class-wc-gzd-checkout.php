@@ -134,7 +134,9 @@ class WC_GZD_Checkout {
 					$countries = WC()->countries->get_european_union_countries();
 				}
 
-				$is_valid = true;
+				$is_valid          = true;
+				$ship_to_different = isset( $data['ship_to_different_address'] ) ? $data['ship_to_different_address'] : false;
+				$key               = ( $ship_to_different ? 'shipping' : 'billing' ) . '_address_1';
 
 				// Force street number
 				if ( in_array( $data['shipping_country'], $countries ) ) {
@@ -143,7 +145,7 @@ class WC_GZD_Checkout {
 				}
 
 				if ( ! apply_filters( 'woocommerce_gzd_checkout_is_valid_street_number', $is_valid, $data ) ) {
-					$errors->add( 'shipping', _x( 'Please check the street field and make sure to provide a valid street number.', 'woocommerce-germanized' ) );
+					$errors->add( $key, apply_filters( 'woocommerce_gzd_checkout_invalid_street_number_error_message', _x( 'Please check the street field and make sure to provide a valid street number.', 'woocommerce-germanized' ), $data ), array( 'id' => $key ) );
 				}
 			}
 		}

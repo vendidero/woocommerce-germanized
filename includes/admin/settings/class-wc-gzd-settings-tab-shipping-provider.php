@@ -16,7 +16,17 @@ use Vendidero\Germanized\Shipments\Admin\ProviderSettings;
 class WC_GZD_Settings_Tab_Shipping_Provider extends WC_GZD_Settings_Tab {
 
 	public function get_description() {
-		return ProviderSettings::get_description();
+		$desc = ProviderSettings::get_description();
+
+		if ( empty( $_GET['provider'] ) ) {
+			$desc = _x( 'Manage your shipping provider integrations.', 'woocommerce-germanized' );
+
+			if ( class_exists( '\Vendidero\Germanized\DHL\Package' ) && \Vendidero\Germanized\DHL\Package::has_dependencies() ) {
+				$desc = _x( 'Manage your shipping provider integrations for DHL & Deutsche Post.', 'woocommerce-germanized' );
+			}
+		}
+
+		return $desc;
 	}
 
 	/**
@@ -59,13 +69,13 @@ class WC_GZD_Settings_Tab_Shipping_Provider extends WC_GZD_Settings_Tab {
 			)
 		);
 
-		$breadcrumb = array_merge( $breadcrumb, ProviderSettings::get_breadcrumb() );
+		$breadcrumb = array_merge( $breadcrumb, ProviderSettings::get_breadcrumb( $this->get_current_section() ) );
 
 		return $breadcrumb;
 	}
 
-	public function hide_from_main_panel() {
-		return true;
+	public function get_pointers() {
+		return ProviderSettings::get_pointers( $this->get_current_section() );
 	}
 
 	public function get_label() {
@@ -91,7 +101,13 @@ class WC_GZD_Settings_Tab_Shipping_Provider extends WC_GZD_Settings_Tab {
 	}
 
 	public function output() {
-		parent::output();
+		$current_section = $this->get_current_section();
+
+		if ( '' === $current_section && ! isset( $_GET['provider'] ) ) {
+			ProviderSettings::output_providers();
+		} else {
+			parent::output();
+		}
 	}
 
 	public function get_tab_settings( $current_section = '' ) {

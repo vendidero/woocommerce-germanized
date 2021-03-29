@@ -35,16 +35,6 @@ class WC_GZD_Settings_Tab_Shipments extends WC_GZD_Settings_Tab {
 		return Settings::get_sections();
 	}
 
-	public function output() {
-		$current_section = $this->get_current_section();
-
-		if ( 'provider' === $current_section && ! isset( $_GET['provider'] ) ) {
-			Settings::output_providers();
-		} else {
-			parent::output();
-		}
-	}
-
 	protected function get_additional_breadcrumb_items( $breadcrumb ) {
 		return Settings::get_additional_breadcrumb_items( $breadcrumb );
 	}
@@ -57,7 +47,7 @@ class WC_GZD_Settings_Tab_Shipments extends WC_GZD_Settings_Tab {
 		if ( empty( $current_section ) ) {
 			return $label . '<a href="' . admin_url( 'admin.php?page=wc-gzd-shipments' ) . '" class="page-title-action" target="_blank">' . _x( 'Manage', 'shipments', 'woocommerce-germanized' ) . '</a>';
 		} else {
-			return $label . Settings::get_section_title_link( $current_section );
+			return $label;
 		}
 	}
 
