@@ -35,14 +35,9 @@ abstract class WC_GZD_Admin_Note {
 				return false;
 			}
 
-			$note_id  = $note_ids[0];
+			$note_id = $note_ids[0];
 
-			if ( class_exists( '\Automattic\WooCommerce\Admin\Notes\Note' ) ) {
-				return new \Automattic\WooCommerce\Admin\Notes\Note( $note_id );
-			} else {
-				return new \Automattic\WooCommerce\Admin\Notes\WC_Admin_Note( $note_id );
-			}
-
+			return WC_GZD_Admin_Notices::instance()->get_woo_note( $note_id );
 		} catch( Exception $e ) {
 			return false;
 		}
@@ -130,11 +125,7 @@ abstract class WC_GZD_Admin_Note {
 			return;
 		}
 
-		if ( class_exists( '\Automattic\WooCommerce\Admin\Notes\Note' ) ) {
-			$note = new \Automattic\WooCommerce\Admin\Notes\Note();
-		} else {
-			$note = new \Automattic\WooCommerce\Admin\Notes\WC_Admin_Note();
-		}
+		$note = WC_GZD_Admin_Notices::instance()->get_woo_note();
 
 		$note->set_title( $this->get_title() );
 		$note->set_content( $this->get_content() );
