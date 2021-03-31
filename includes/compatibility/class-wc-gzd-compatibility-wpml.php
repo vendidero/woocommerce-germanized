@@ -381,10 +381,9 @@ class WC_GZD_Compatibility_WPML extends WC_GZD_Compatibility {
 	}
 
 	public function unregister_order_confirmation_hooks() {
-
 		global $woocommerce_wpml;
 
-		if ( isset( $woocommerce_wpml ) ) {
+		if ( isset( $woocommerce_wpml ) && isset( $woocommerce_wpml->emails ) && is_object( $woocommerce_wpml->emails ) ) {
 			$statuses = array(
 				'woocommerce_order_status_pending_to_processing_notification',
 				'woocommerce_order_status_pending_to_completed_notification',
@@ -392,9 +391,9 @@ class WC_GZD_Compatibility_WPML extends WC_GZD_Compatibility {
 			);
 
 			foreach ( $statuses as $status ) {
-				if ( method_exists( $woocommerce_wpml->emails, 'admin_email' ) ) {
+				if ( is_callable( array( $woocommerce_wpml->emails, 'admin_email' ) ) ) {
 					remove_action( $status, array( $woocommerce_wpml->emails, 'admin_email' ), 9 );
-				} elseif ( method_exists( $woocommerce_wpml->emails, 'new_order_admin_email' ) ) {
+				} elseif ( is_callable( array( $woocommerce_wpml->emails, 'new_order_admin_email' ) ) ) {
 					remove_action( $status, array( $woocommerce_wpml->emails, 'new_order_admin_email' ), 9 );
 				}
 			}
