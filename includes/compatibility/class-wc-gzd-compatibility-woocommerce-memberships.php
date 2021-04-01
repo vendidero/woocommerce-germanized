@@ -20,16 +20,19 @@ class WC_GZD_Compatibility_WooCommerce_Memberships extends WC_GZD_Compatibility_
     
 	public function calculate_unit_price( $product ) 
     {
-        if( !function_exists( 'wc_memberships' ) ) {
+        if( ! function_exists( 'wc_memberships' ) ) {
                 return;
         }
         
-        if( wc_memberships_user_has_member_discount( $product->get_id() ) )
+        if( function_exists( 'wc_memberships_user_has_member_discount' ) ) 
         {
-            $product->recalculate_unit_price( array(
-                'sale_price'    => $product->get_sale_price(),
-                'regular_price' => $product->get_regular_price(),
-            ) );
+            if( wc_memberships_user_has_member_discount( $product->get_id() ) )
+            {
+                $product->recalculate_unit_price( array(
+                    'sale_price'    => $product->get_sale_price(),
+                    'regular_price' => $product->get_regular_price(),
+                ) );
+            }
         }
     }
 }
