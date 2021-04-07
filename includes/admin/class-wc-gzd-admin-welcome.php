@@ -136,9 +136,9 @@ class WC_GZD_Admin_Welcome {
                     zur <span class="wc-gzd-pro">pro</span> Version</a>
             </p>
 
-            <?php if ( \Vendidero\Germanized\DHL\Package::has_dependencies() ) : ?>
+            <?php if ( \Vendidero\Germanized\Shipments\Package::is_packing_supported() ) : ?>
                 <div class="changelog new-feature">
-                    <h3>Neu: Integration der Internetmarke</h3>
+                    <h3>Neu: Automatisiertes Packen von Sendungen <span class="wc-gzd-pro wc-gzd-pro-outlined">pro</span></h3>
 
                     <div class="columns two-col">
                         <div class="col col-center">
@@ -146,17 +146,26 @@ class WC_GZD_Admin_Welcome {
                         </div>
                         <div class="col">
                             <p>
-                                Mit der neuesten Version kannst du nun (neben der DHL Integration) auch die Internetmarke nutzen um zu deinen Sendungen unkompliziert Labels zu erstellen. Ein DHL Geschäftskundenkonto benötigst du dafür nicht.
-                                Die Produkte der Deutschen Post (z.B. Warenpost International, Briefprodukte usw.) stehen dir damit direkt über Germanized zur Verfügung.
-                            </p>
-                            <p>
-                                Beim Erstellen der Labels erhältst du nützliche Informationen zu den Kosten, Größen und Beschränkungen der Produkte. Auch ein Vorschau des Labels wird dir angezeigt. Für die Warenpost International
-                                wird für dich direkt ein harmonized Label erzeugt und ggfs. eine CN23 Zollerklärung.
+                                Wir machen es euch nun noch leichter bei der Sendungsverwaltung. Mit Germanized Pro könnt ihr nun mit Hilfe eines Algorithmus eure Sendungen
+                                automatisch packen lassen. Das Packen geschieht auf Basis der von euch hinterlegten Verpackungen. Damit lassen sich Bestellungen nun automatisch
+                                in mehrere Sendungen aufteilen, falls die Positionen nicht in eine der verfügbaren Verpackungen passen. Natürlich wird die jeweils ausgewählte Verpackung
+                                für die Sendung automatisch hinterlegt. Damit könnt ihr direkt und ohne weitere Kontrolle mit der Versandvorbereitung beginnen.
                             </p>
 
+                            <div class="wc-germanized-welcome-pro">
+                                <a href="https://vendidero.de/woocommerce-germanized" target="_blank"
+                                   class="button button-primary wc-gzd-button"><span class="wc-gzd-pro">pro</span> Version
+                                    entdecken</a>
+                                <p class="price smaller">ab 69 € inkl. MwSt. - inkl. 1 Jahr Updates & Premium
+                                    Support!</p>
+                            </div>
+
                             <div class="wc-gzd-actions">
-                                <a href="https://vendidero.de/dokument/internetmarke-integration-einrichten" target="_blank" class="button button-primary">Weitere Informationen</a>
-                                <a href="<?php echo \Vendidero\Germanized\DHL\Admin\Settings::get_settings_url( 'internetmarke' ); ?>" class="button button-primary" target="_blank">Zu den Einstellungen</a>
+                                <a href="https://vendidero.de/dokument/sendungen-automatisch-packen" target="_blank" class="button button-primary">Weitere Informationen</a>
+
+                                <?php if ( WC_germanized()->is_pro() ) : ?>
+                                    <a href="<?php echo esc_url( admin_url( 'admin.php?page=wc-settings&tab=germanized-shipments&section=packaging' ) ); ?>" target="_blank" class="button button-primary">Einstellungen</a>
+                                <?php endif; ?>
                             </div>
                         </div>
                     </div>
