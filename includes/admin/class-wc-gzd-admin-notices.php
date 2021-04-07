@@ -60,6 +60,7 @@ if ( ! class_exists( 'WC_GZD_Admin_Notices' ) ) :
 			include_once( 'notes/class-wc-gzd-admin-note-dhl-importer.php' );
 			include_once( 'notes/class-wc-gzd-admin-note-internetmarke-importer.php' );
 			include_once( 'notes/class-wc-gzd-admin-note-shipping-excl-tax.php' );
+			include_once( 'notes/class-wc-gzd-admin-note-encryption.php' );
 		}
 
 		public function pro_incompatibility_plain_update_message( $data ) {
@@ -147,7 +148,7 @@ if ( ! class_exists( 'WC_GZD_Admin_Notices' ) ) :
 		public function get_notes() {
 			if ( is_null( $this->notes ) ) {
 
-				$notes = apply_filters( 'woocommerce_gzd_admin_notes', array(
+				$core_notes = array(
 					'WC_GZD_Admin_Note_Theme_Supported',
 					'WC_GZD_Admin_Note_Update',
 					'WC_GZD_Admin_Note_Review',
@@ -156,8 +157,13 @@ if ( ! class_exists( 'WC_GZD_Admin_Notices' ) ) :
 					'WC_GZD_Admin_Note_DHL_Importer',
 					'WC_GZD_Admin_Note_Internetmarke_Importer',
 					'WC_GZD_Admin_Note_Shipping_Excl_Tax'
-				) );
+				);
 
+				if ( class_exists( 'WC_GZD_Secret_Box_Helper' ) ) {
+					$core_notes[] = 'WC_GZD_Admin_Note_Encryption';
+				}
+
+				$notes       = apply_filters( 'woocommerce_gzd_admin_notes', $core_notes );
 				$this->notes = array();
 
 				foreach( $notes as $note ) {
@@ -168,6 +174,16 @@ if ( ! class_exists( 'WC_GZD_Admin_Notices' ) ) :
 			}
 
 			return $this->notes;
+		}
+
+		public function get_woo_note( $id = '' ) {
+			if ( class_exists( '\Automattic\WooCommerce\Admin\Notes\Note' ) ) {
+				$note = new \Automattic\WooCommerce\Admin\Notes\Note( $id );
+			} else {
+				$note = new \Automattic\WooCommerce\Admin\Notes\WC_Admin_Note( $id );
+			}
+
+			return $note;
 		}
 
 		/**

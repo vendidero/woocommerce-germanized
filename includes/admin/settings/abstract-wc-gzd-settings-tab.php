@@ -102,6 +102,13 @@ abstract class WC_GZD_Settings_Tab extends WC_Settings_Page {
 	    return $breadcrumb;
     }
 
+	/**
+	 * Output sections.
+	 */
+	public function output_sections() {
+		parent::output_sections();
+	}
+
 	protected function get_breadcrumb() {
 		$sections        = $this->get_sections();
 		$current_section = $this->get_current_section();
@@ -224,6 +231,10 @@ abstract class WC_GZD_Settings_Tab extends WC_Settings_Page {
 
 	protected function is_saveable() {
 		return ( $this->is_pro() && ! WC_germanized()->is_pro() ? false : true );
+	}
+
+	public function hide_from_main_panel() {
+	    return false;
 	}
 
 	public function output() {

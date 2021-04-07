@@ -20,12 +20,10 @@ class WC_GZD_Compatibility_B2B_Market extends WC_GZD_Compatibility_Woocommerce_R
 	}
 
 	public function set_unit_price_filter() {
-		add_action( 'woocommerce_gzd_before_get_unit_price', array( $this, 'calculate_unit_price' ), 10, 1 );
-
-		add_filter( 'woocommerce_gzd_variable_unit_price_html', array(
-			$this,
-			'filter_variable_unit_price'
-		), 10, 2 );
+		if ( apply_filters( 'woocommerce_gzd_enable_b2b_market_unit_price_compatibility', true ) ) {
+			add_action( 'woocommerce_gzd_before_get_unit_price', array( $this, 'calculate_unit_price' ), 10, 1 );
+			add_filter( 'woocommerce_gzd_variable_unit_price_html', array( $this, 'filter_variable_unit_price' ), 10, 2 );
+		}
 	}
 
 	protected function get_prices_from_string( $price_html ) {

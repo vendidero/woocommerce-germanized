@@ -110,6 +110,45 @@ class WC_GZD_Checkout {
 		// Remove cart subtotal filter
 		add_action( 'template_redirect', array( $this, 'maybe_remove_shopmark_filters' ) );
 		add_action( 'woocommerce_checkout_update_order_review', array( $this, 'maybe_remove_shopmark_filters' ) );
+
+		if ( 'never' !== get_option( 'woocommerce_gzd_checkout_validate_street_number' ) ) {
+			// Maybe force street number during checkout
+			add_action( 'woocommerce_after_checkout_validation', array( $this, 'maybe_force_street_number' ), 10, 2 );
+		}
+	}
+
+	/**
+	 * @param array     $data
+	 * @param WP_Error $errors
+	 */
+	public function maybe_force_street_number( $data, $errors ) {
+		if ( function_exists( 'wc_gzd_split_shipment_street' ) ) {
+			if ( isset( $data['shipping_country'], $data['shipping_address_1'] ) && ! empty( $data['shipping_country'] ) ) {
+				$countries = array();
+
+				if ( 'always' === get_option( 'woocommerce_gzd_checkout_validate_street_number' ) ) {
+					$countries = WC()->countries->get_allowed_countries();
+				} elseif( 'base_only' === get_option( 'woocommerce_gzd_checkout_validate_street_number' ) ) {
+					$countries = array( WC()->countries->get_base_country() );
+				} elseif( 'eu_only' === get_option( 'woocommerce_gzd_checkout_validate_street_number' ) ) {
+					$countries = WC()->countries->get_european_union_countries();
+				}
+
+				$is_valid          = true;
+				$ship_to_different = isset( $data['ship_to_different_address'] ) ? $data['ship_to_different_address'] : false;
+				$key               = ( $ship_to_different ? 'shipping' : 'billing' ) . '_address_1';
+
+				// Force street number
+				if ( in_array( $data['shipping_country'], $countries ) ) {
+					$parts    = wc_gzd_split_shipment_street( $data['shipping_address_1'] );
+					$is_valid = empty( $parts['number'] ) ? false : true;
+				}
+
+				if ( ! apply_filters( 'woocommerce_gzd_checkout_is_valid_street_number', $is_valid, $data ) ) {
+					$errors->add( $key, apply_filters( 'woocommerce_gzd_checkout_invalid_street_number_error_message', _x( 'Please check the street field and make sure to provide a valid street number.', 'woocommerce-germanized' ), $data ), array( 'id' => $key ) );
+				}
+			}
+		}
 	}
 
 	/**

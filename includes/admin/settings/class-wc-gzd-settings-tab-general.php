@@ -236,6 +236,19 @@ class WC_GZD_Settings_Tab_General extends WC_GZD_Settings_Tab {
 				'default' => 'no',
 			),
 			array(
+				'title'   => __( 'Validate street number', 'woocommerce-germanized' ),
+				'desc'    => __( 'Force the existence of a street number within the first address field.', 'woocommerce-germanized' ),
+				'id'      => 'woocommerce_gzd_checkout_validate_street_number',
+				'type'    => 'select',
+				'default' => 'never',
+				'options' => array(
+					'never'      => __( 'Never', 'woocommerce-germanized' ),
+					'always'     => __( 'Always', 'woocommerce-germanized' ),
+					'base_only'  => __( 'Base country only', 'woocommerce-germanized' ),
+					'eu_only'    => __( 'EU countries only', 'woocommerce-germanized' ),
+				),
+			),
+			array(
 				'title'   => __( 'Disallow cancellations', 'woocommerce-germanized' ),
 				'desc'    => __( 'Don\'t allow customers to manually cancel orders.', 'woocommerce-germanized' ) . '<div class="wc-gzd-additional-desc">' . __( 'By default payment methods like PayPal allow order cancellation by clicking the abort link. This option will stop customers from manually cancel orders.', 'woocommerce-germanized' ) . '</div>',
 				'id'      => 'woocommerce_gzd_checkout_stop_order_cancellation',

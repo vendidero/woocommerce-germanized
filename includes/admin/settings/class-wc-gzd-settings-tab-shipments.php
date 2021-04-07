@@ -35,27 +35,6 @@ class WC_GZD_Settings_Tab_Shipments extends WC_GZD_Settings_Tab {
 		return Settings::get_sections();
 	}
 
-	public function save() {
-		global $current_section;
-
-		if ( 'provider' === $current_section && isset( $_GET['provider'] ) ) {
-			$provider = wc_clean( wp_unslash( $_REQUEST['provider'] ) );
-			Settings::save_provider( $provider );
-		} else {
-			parent::save();
-		}
-	}
-
-	public function output() {
-		$current_section = $this->get_current_section();
-
-		if ( 'provider' === $current_section && ! isset( $_GET['provider'] ) ) {
-			Settings::output_providers();
-		} else {
-			parent::output();
-		}
-	}
-
 	protected function get_additional_breadcrumb_items( $breadcrumb ) {
 		return Settings::get_additional_breadcrumb_items( $breadcrumb );
 	}
@@ -68,7 +47,7 @@ class WC_GZD_Settings_Tab_Shipments extends WC_GZD_Settings_Tab {
 		if ( empty( $current_section ) ) {
 			return $label . '<a href="' . admin_url( 'admin.php?page=wc-gzd-shipments' ) . '" class="page-title-action" target="_blank">' . _x( 'Manage', 'shipments', 'woocommerce-germanized' ) . '</a>';
 		} else {
-			return $label . Settings::get_section_title_link( $current_section );
+			return $label;
 		}
 	}
 
@@ -77,6 +56,32 @@ class WC_GZD_Settings_Tab_Shipments extends WC_GZD_Settings_Tab {
 	}
 
 	public function get_tab_settings( $current_section = '' ) {
-		return Settings::get_settings( $current_section );
+		$settings = Settings::get_settings( $current_section );
+
+		if ( 'packaging' === $current_section && \Vendidero\Germanized\Shipments\Package::is_packing_supported() ) {
+			$settings = array_merge( $settings, $this->get_auto_packing_settings() );
+		}
+
+		return $settings;
+	}
+
+	protected function get_auto_packing_settings() {
+		return array(
+			array(
+				'title' => __( 'Automated packing', 'woocommerce-germanized' ),
+				'type'  => 'title',
+				'id'    => 'automated_packing_options',
+				'desc'  => '<div class="notice inline notice-warning wc-gzd-premium-overlay"><p>' . sprintf( __( '%sUpgrade to %spro%s%s to unlock this feature and enjoy premium support.', 'woocommerce-germanized' ), '<a href="https://vendidero.de/woocommerce-germanized" class="button button-primary wc-gzd-button">', '<span class="wc-gzd-pro">', '</span>', '</a>' ) . '</p></div>'
+			),
+			array(
+				'title' => '',
+				'id'    => 'woocommerce_gzdp_enable_shipment_auto_packing',
+				'img'   => WC_Germanized()->plugin_url() . '/assets/images/pro/settings-inline-packing.png?v=' . WC_germanized()->version,
+				'href'  => 'https://vendidero.de/woocommerce-germanized/features#shipments',
+				'type'  => 'image',
+			),
+
+			array( 'type' => 'sectionend', 'id' => 'automated_packing_options' ),
+		);
 	}
 }

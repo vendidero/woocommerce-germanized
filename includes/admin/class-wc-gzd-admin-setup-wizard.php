@@ -76,6 +76,13 @@ if ( ! class_exists( 'WC_GZD_Admin_Setup_Wizard' ) ) :
 					'order'   => 2,
 					'errors'  => array(),
 				),
+				'shipping_provider' => array(
+                    'name'    => __( 'Shipping Provider', 'woocommerce-germanized' ),
+					'view'    => 'provider.php',
+					'handler' => array( $this, 'wc_gzd_setup_provider_save' ),
+					'order'   => 3,
+					'errors'  => array(),
+				),
 				'first_steps' 	       => array(
 					'name'             => __( 'First Steps', 'woocommerce-germanized' ),
 					'view'             => 'first-steps.php',
@@ -86,33 +93,6 @@ if ( ! class_exists( 'WC_GZD_Admin_Setup_Wizard' ) ) :
 				),
 			);
 
-			if ( class_exists( '\Vendidero\Germanized\DHL\Package' ) && Package::has_dependencies() ) {
-
-			    $default_steps['dhl'] = array(
-                    'name'    => __( 'DHL', 'woocommerce-germanized' ),
-					'view'    => 'dhl.php',
-					'handler' => array( $this, 'wc_gzd_setup_dhl_save' ),
-					'order'   => 3,
-					'errors'  => array(),
-			    );
-
-                if ( Importer\DHL::is_available() ) {
-                    $default_steps['dhl']['button_next'] = __( 'Import settings', 'woocommerce-germanized' );
-                }
-
-                $default_steps['internetmarke'] = array(
-                    'name'    => __( 'Internetmarke', 'woocommerce-germanized' ),
-					'view'    => 'internetmarke.php',
-					'handler' => array( $this, 'wc_gzd_setup_internetmarke_save' ),
-					'order'   => 4,
-					'errors'  => array(),
-			    );
-
-			    if ( Importer\Internetmarke::is_available() ) {
-			        $default_steps['internetmarke']['button_next'] = __( 'Import settings', 'woocommerce-germanized' );
-			    }
-            }
-
 			$this->steps   = $default_steps;
 			uasort( $this->steps, array( $this, '_uasort_callback' ) );
 
@@ -122,7 +102,7 @@ if ( ! class_exists( 'WC_GZD_Admin_Setup_Wizard' ) ) :
 			    $this->steps[ $key ]['order'] = ++$order;
 			}
 
-			$this->step    = isset( $_REQUEST['step'] ) ? sanitize_key( $_REQUEST['step'] ) : current( array_keys( $this->steps ) ); // WPCS: CSRF ok, input var ok.
+			$this->step = isset( $_REQUEST['step'] ) ? sanitize_key( $_REQUEST['step'] ) : current( array_keys( $this->steps ) ); // WPCS: CSRF ok, input var ok.
 
 			// Check if a step has been skipped and maybe delete som tmp options
 			if ( isset( $_GET['skip'] ) && isset( $_GET['_wpnonce'] ) && wp_verify_nonce( $_GET['_wpnonce'], 'wc-gzd-setup-skip' ) ) {
@@ -192,10 +172,24 @@ if ( ! class_exists( 'WC_GZD_Admin_Setup_Wizard' ) ) :
 					),
 					array( 'type' => 'sectionend', 'id' => 'setting_options' ),
 				);
-			} elseif( 'dhl' === $step ) {
-			    $settings = Settings::get_setup_settings();
-			} elseif( 'internetmarke' === $step ) {
-			    $settings = Settings::get_internetmarke_setup_settings();
+			} elseif( 'shipping_provider' === $step ) {
+			    foreach( wc_gzd_get_shipping_providers() as $provider ) {
+			        if ( $provider->is_manual_integration() ) {
+			            continue;
+			        }
+
+			        $settings = array_merge( $settings, array(
+                        array( 'title' => '', 'type' => 'title', 'desc' => '', 'id' => 'shipping_provider_' . $provider->get_name() ),
+                        array(
+                            'title' 	=> $provider->get_title(),
+                            'desc' 		=> sprintf( __( 'Enable %s integration', 'woocommerce-germanized' ), $provider->get_title() ),
+                            'id' 		=> 'woocommerce_gzd_' . $provider->get_name() . '_activate',
+                            'default'	=> wc_bool_to_string( $provider->is_activated() ),
+                            'type' 		=> 'gzd_toggle',
+                        ),
+                        array( 'type' => 'sectionend', 'id' => 'shipping_provider_' . $provider->get_name() ),
+			        ) );
+			    }
 			}
 
 			return $settings;
@@ -311,7 +305,8 @@ if ( ! class_exists( 'WC_GZD_Admin_Setup_Wizard' ) ) :
 				<?php do_action( 'admin_head' ); ?>
 			</head>
 			<body class="wc-gzd-setup wp-core-ui wc-gzd-setup-step-<?php echo esc_attr( $this->step ); ?>">
-				<div class="logo-wrapper"><div class="logo"></div></div>
+			    <div class="wc-gzd-setup-header">
+				    <div class="logo-wrapper"><div class="logo"></div></div>
 			<?php
 		}
 
@@ -329,6 +324,7 @@ if ( ! class_exists( 'WC_GZD_Admin_Setup_Wizard' ) ) :
 				}
 				?>
 			</ul>
+			</div>
 			<?php
 		}
 
@@ -540,6 +536,22 @@ if ( ! class_exists( 'WC_GZD_Admin_Setup_Wizard' ) ) :
 			call_user_func( $step['handler'] );
 		}
 
+		public function wc_gzd_setup_provider_save() {
+		    $redirect 	 = $this->get_step_url( $this->get_next_step() );
+			$current_url = $this->get_step_url( $this->step );
+			$providers   = wc_gzd_get_shipping_providers();
+
+			foreach( $providers as $provider ) {
+			    if ( isset( $_POST["woocommerce_gzd_{$provider->get_name()}_activate"] ) && 'yes' === wc_bool_to_string( $_POST["woocommerce_gzd_{$provider->get_name()}_activate"] ) ) {
+			        $provider->activate();
+			        update_option( '_wc_gzd_setup_shipping_provider_activated', 'yes' );
+			    }
+			}
+
+			wp_safe_redirect( $redirect );
+			exit();
+		}
+
 		public function wc_gzd_setup_germanize_save() {
 			$redirect 	 = $this->get_step_url( $this->get_next_step() );
 			$current_url = $this->get_step_url( $this->step );
@@ -577,43 +589,6 @@ if ( ! class_exists( 'WC_GZD_Admin_Setup_Wizard' ) ) :
 			    WC_GZD_Admin::instance()->enable_small_business_options();
 			} else {
 			    WC_GZD_Admin::instance()->disable_small_business_options();
-			}
-
-			wp_safe_redirect( $redirect );
-			exit();
-		}
-
-		public function wc_gzd_setup_dhl_save() {
-			$redirect 	 = $this->get_step_url( $this->get_next_step() );
-			$current_url = $this->get_step_url( $this->step );
-			$settings    = $this->get_settings( $this->step );
-			$is_enabled  = get_option( 'woocommerce_gzd_dhl_enable' );
-
-			if ( 'yes' !== $is_enabled && Importer\DHL::is_available() ) {
-			    WC_GZD_Admin::instance()->import_dhl_settings();
-			} elseif ( ! empty( $settings) ) {
-			     WC_Admin_Settings::save_fields( $settings );
-
-			     // Update default shipping provider after activating DHL during setup
-			     if ( isset( $_POST['woocommerce_gzd_dhl_enable'] ) ) {
-					update_option( 'woocommerce_gzd_shipments_default_shipping_provider', 'dhl' );
-			     }
-			}
-
-			wp_safe_redirect( $redirect );
-			exit();
-		}
-
-		public function wc_gzd_setup_internetmarke_save() {
-			$redirect 	 = $this->get_step_url( $this->get_next_step() );
-			$current_url = $this->get_step_url( $this->step );
-			$settings    = $this->get_settings( $this->step );
-			$is_enabled  = get_option( 'woocommerce_gzd_dhl_internetmarke_enable' );
-
-			if ( 'yes' !== $is_enabled && Importer\Internetmarke::is_available() ) {
-			    WC_GZD_Admin::instance()->import_internetmarke_settings();
-			} elseif ( ! empty( $settings) ) {
-			     WC_Admin_Settings::save_fields( $settings );
 			}
 
 			wp_safe_redirect( $redirect );

@@ -171,12 +171,9 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 		include_once dirname( __FILE__ ) . '/class-wc-gzd-settings-tab-terms-generator.php';
 		include_once dirname( __FILE__ ) . '/class-wc-gzd-settings-tab-revocation-generator.php';
 
-		if ( class_exists( '\Vendidero\Germanized\DHL\Package' ) && \Vendidero\Germanized\DHL\Package::has_dependencies() ) {
-			include_once dirname( __FILE__ ) . '/class-wc-gzd-settings-tab-dhl.php';
-		}
-
 		if ( class_exists( '\Vendidero\Germanized\Shipments\Package' ) && Package::has_dependencies() ) {
 			include_once dirname( __FILE__ ) . '/class-wc-gzd-settings-tab-shipments.php';
+			include_once dirname( __FILE__ ) . '/class-wc-gzd-settings-tab-shipping-provider.php';
 		}
 
 		/**
@@ -195,7 +192,7 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 			'contract'             => 'WC_GZD_Settings_Tab_Contract',
 			'button_solution'      => 'WC_GZD_Settings_Tab_Button_Solution',
 			'shipments'            => 'WC_GZD_Settings_Tab_Shipments',
-			'dhl'                  => 'WC_GZD_Settings_Tab_DHL',
+			'shipping_provider'    => 'WC_GZD_Settings_Tab_Shipping_Provider',
 			'emails'               => 'WC_GZD_Settings_Tab_Emails',
 			'checkboxes'           => 'WC_GZD_Settings_Tab_Checkboxes',
 			'double_opt_in'        => 'WC_GZD_Settings_Tab_DOI',
