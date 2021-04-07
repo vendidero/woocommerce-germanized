@@ -31,6 +31,7 @@ class WC_GZD_Order_Helper {
 	}
 
 	public function __construct() {
+
 		// Add better incl tax display to order totals
 		add_filter( 'woocommerce_get_order_item_totals', array( $this, 'order_item_tax_totals' ), 0, 3 );
 
@@ -270,6 +271,8 @@ class WC_GZD_Order_Helper {
 		// Set to formatted total without displaying tax info behind the price
 		$order_totals['order_total']['value'] = $order->get_formatted_order_total();
 
+		$tax_totals = array();
+
 		if ( 'excl' === $tax_display ) {
 			if ( 'itemized' === get_option( 'woocommerce_tax_total_display' ) ) {
 				foreach ( $order->get_tax_totals() as $code => $tax ) {
@@ -279,7 +282,8 @@ class WC_GZD_Order_Helper {
 						$percentage = wc_gzd_get_order_tax_rate_percentage( $tax->rate_id, $order );
 
 						if ( ! is_null( $percentage ) ) {
-							$order_totals[ $key ]['label'] = wc_gzd_get_tax_rate_label( $percentage, 'excl' );
+							$tax_totals[ $key ]          = $order_totals[ $key ];
+							$tax_totals[ $key ]['label'] = wc_gzd_get_tax_rate_label( $percentage, 'excl' );
 						}
 					}
 				}
@@ -334,12 +338,18 @@ class WC_GZD_Order_Helper {
 						continue;
 					}
 
-					$order_totals[ 'tax_' . WC_Tax::get_rate_code( $tax['tax']->rate_id ) ] = array(
+					$tax_totals[ 'tax_' . WC_Tax::get_rate_code( $tax['tax']->rate_id ) ] = array(
 						'label' => wc_gzd_get_tax_rate_label( $tax['tax']->rate ),
 						'value' => wc_price( $tax['amount'], array( 'currency' => $order->get_currency() ) ),
 					);
 				}
 			}
+		}
+
+		if ( wc_gzd_show_taxes_before_total( 'order' ) ) {
+			array_splice( $order_totals, -1, 0, $tax_totals );
+		} else {
+			$order_totals = array_merge( $order_totals, $tax_totals );
 		}
 
 		return $order_totals;

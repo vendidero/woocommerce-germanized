@@ -783,10 +783,10 @@ class WC_GZD_Legal_Checkbox {
 
 			array(
 				'title'   => __( 'Status', 'woocommerce-germanized' ),
-				'type'    => 'checkbox',
+				'type'    => 'gzd_toggle',
 				'id'      => $this->get_form_field_id( 'is_enabled' ),
 				'desc'    => __( 'Enable checkbox', 'woocommerce-germanized' ),
-				'default' => $this->get_is_enabled(),
+				'default' => wc_bool_to_string( $this->get_is_enabled() ),
 			),
 
 			array(
@@ -839,18 +839,18 @@ class WC_GZD_Legal_Checkbox {
 
 			array(
 				'title'   => __( 'Hide input', 'woocommerce-germanized' ),
-				'type'    => 'checkbox',
+				'type'    => 'gzd_toggle',
 				'id'      => $this->get_form_field_id( 'hide_input' ),
 				'desc'    => __( 'Do only show a label and hide the actual checkbox.', 'woocommerce-germanized' ),
-				'default' => $this->get_hide_input(),
+				'default' => wc_bool_to_string( $this->get_hide_input() ),
 			),
 
 			array(
 				'title'   => __( 'Mandatory', 'woocommerce-germanized' ),
-				'type'    => 'checkbox',
+				'type'    => 'gzd_toggle',
 				'id'      => $this->get_form_field_id( 'is_mandatory' ),
 				'desc'    => __( 'Mark the checkbox as mandatory.', 'woocommerce-germanized' ),
-				'default' => $this->get_is_mandatory(),
+				'default' => wc_bool_to_string( $this->get_is_mandatory() ),
 			),
 
 			array(

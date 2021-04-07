@@ -596,7 +596,8 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 					'flexible-checkout-fields'                    => 'WC_GZD_Compatibility_Flexible_Checkout_Fields',
 					'woocommerce-all-products-for-subscriptions'  => 'WC_GZD_Compatibility_WooCommerce_All_Products_For_Subscriptions',
 					'b2b-market'                                  => 'WC_GZD_Compatibility_B2B_Market',
-					'paypal-express-checkout'                     => 'WC_GZD_Compatibility_PayPal_Express_Checkout'
+					'paypal-express-checkout'                     => 'WC_GZD_Compatibility_PayPal_Express_Checkout',
+					'woocommerce-memberships'                     => 'WC_GZD_Compatibility_WooCommerce_Memberships'
 				)
 			);
 

@@ -165,8 +165,8 @@ class WC_GZD_Product_Grouped extends WC_GZD_Product {
 		return $this->child_prices;
 	}
 
-	protected function get_child_unit_prices() {
-		$tax_display = get_option( 'woocommerce_tax_display_shop', 'excl' );
+	protected function get_child_unit_prices( $tax_display = '' ) {
+		$tax_display = $tax_display ? $tax_display : get_option( 'woocommerce_tax_display_shop', 'excl' );
 		$data        = $this->get_child_unit_data();
 		$prices      = array();
 
@@ -253,12 +253,12 @@ class WC_GZD_Product_Grouped extends WC_GZD_Product {
 	 *
 	 * @return string
 	 */
-	public function get_unit_price_html( $show_sale = true ) {
+	public function get_unit_price_html( $show_sale = true, $tax_display = '' ) {
 		$price = '';
 
 		if ( $this->has_unit() ) {
 
-			$prices        = $this->get_child_unit_prices();
+			$prices        = $this->get_child_unit_prices( $tax_display );
 			$min_price     = current( $prices['price'] );
 			$max_price     = end( $prices['price'] );
 			$min_reg_price = current( $prices['regular_price'] );

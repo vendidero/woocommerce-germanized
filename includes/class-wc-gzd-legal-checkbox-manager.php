@@ -749,6 +749,11 @@ class WC_GZD_Legal_Checkbox_Manager {
 		}
 	}
 
+	/**
+	 * @param $id
+	 *
+	 * @return false|WC_GZD_Legal_Checkbox
+	 */
 	public function get_checkbox( $id ) {
 		if ( isset( $this->checkboxes[ $id ] ) ) {
 			return $this->checkboxes[ $id ];
