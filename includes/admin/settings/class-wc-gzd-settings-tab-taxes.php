@@ -66,8 +66,8 @@ class WC_GZD_Settings_Tab_Taxes extends WC_GZD_Settings_Tab {
 				'default'  => 'after',
 				'type'     => 'select',
 				'options'  => array(
-					'before' => _x( 'Before total amount', 'woocommerce-germanized' ),
-					'after'  => _x( 'After total amount', 'woocommerce-germanized' )
+					'before' => __( 'Before total amount', 'woocommerce-germanized' ),
+					'after'  => __( 'After total amount', 'woocommerce-germanized' )
 				),
 				'desc_tip' => __( 'Decide whether to show tax totals before or after total amount.', 'woocommerce-germanized' ),
 			),

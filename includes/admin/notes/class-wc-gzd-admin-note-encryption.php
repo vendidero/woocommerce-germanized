@@ -26,7 +26,7 @@ class WC_GZD_Admin_Note_Encryption extends WC_GZD_Admin_Note {
 	}
 
 	public function get_title() {
-		return _x( 'Encryption key is missing', 'woocommerce-germanized' );
+		return __( 'Encryption key is missing', 'woocommerce-germanized' );
 	}
 
 	public function get_content() {
@@ -39,7 +39,7 @@ class WC_GZD_Admin_Note_Encryption extends WC_GZD_Admin_Note {
 		return array(
 			array(
 				'url'        => 'https://vendidero.de/dokument/verschluesselung-sensibler-daten',
-				'title'      => _x( 'Learn more', 'woocommerce-germanized' ),
+				'title'      => __( 'Learn more', 'woocommerce-germanized' ),
 				'target'     => '_blank',
 				'is_primary' => false,
 			),

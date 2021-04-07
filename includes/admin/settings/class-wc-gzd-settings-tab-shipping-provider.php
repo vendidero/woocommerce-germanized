@@ -19,10 +19,10 @@ class WC_GZD_Settings_Tab_Shipping_Provider extends WC_GZD_Settings_Tab {
 		$desc = ProviderSettings::get_description();
 
 		if ( empty( $_GET['provider'] ) ) {
-			$desc = _x( 'Manage your shipping provider integrations.', 'woocommerce-germanized' );
+			$desc = __( 'Manage your shipping provider integrations.', 'woocommerce-germanized' );
 
 			if ( class_exists( '\Vendidero\Germanized\DHL\Package' ) && \Vendidero\Germanized\DHL\Package::has_dependencies() ) {
-				$desc = _x( 'Manage your shipping provider integrations for DHL & Deutsche Post.', 'woocommerce-germanized' );
+				$desc = __( 'Manage your shipping provider integrations, e.g. for DHL & Deutsche Post.', 'woocommerce-germanized' );
 			}
 		}
 

@@ -120,7 +120,7 @@ class WC_GZD_Admin {
 
 				$this->import_dhl_settings();
 
-				wp_safe_redirect( admin_url( 'admin.php?page=wc-settings&tab=germanized-dhl' ) );
+				wp_safe_redirect( wc_gzd_get_shipping_provider( 'dhl' )->get_edit_link() );
 			}
 		}
 	}
@@ -154,7 +154,7 @@ class WC_GZD_Admin {
 
 				$this->import_internetmarke_settings();
 
-				wp_safe_redirect( admin_url( 'admin.php?page=wc-settings&tab=germanized-dhl&section=internetmarke' ) );
+				wp_safe_redirect( wc_gzd_get_shipping_provider( 'deutsche_post' )->get_edit_link() );
 			}
 		}
 	}

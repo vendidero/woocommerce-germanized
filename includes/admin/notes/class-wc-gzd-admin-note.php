@@ -177,7 +177,7 @@ abstract class WC_GZD_Admin_Note {
 	}
 
 	public function get_deactivate_text() {
-		return _x( 'Deactivate', 'woocommerce-germanized' );
+		return __( 'Deactivate', 'woocommerce-germanized' );
 	}
 
 	public function add_fallback() {
