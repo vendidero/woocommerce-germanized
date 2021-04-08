@@ -42,6 +42,7 @@ copy_dest_files() {
 		--exclude=node_modules/ \
 		--exclude=tmp/ \
 		--exclude=tests/ \
+		--exclude=build/ \
 		--exclude=phpcs.xml \
 		--exclude=phpunit.xml \
 		--exclude=phpunit.xml.dist \
