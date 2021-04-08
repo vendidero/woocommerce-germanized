@@ -830,6 +830,11 @@ class WC_GZD_Checkout {
 			return $fee_taxes;
 		}
 
+		// In case the fee is not marked as taxable - allow skipping via filter
+		if ( ! $fee->taxable && ! apply_filters( 'woocommerce_gzd_force_fee_tax_calculation', true, $fee ) ) {
+			return $fee_taxes;
+		}
+
 		$tax_shares = wc_gzd_get_cart_tax_share( 'fee' );
 
 		/**
