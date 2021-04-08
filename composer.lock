@@ -535,12 +535,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/vendidero/woocommerce-germanized-dhl.git",
-                "reference": "8430f00b2756a84d510becb4cf7d29ce8ecefcf5"
+                "reference": "59c3e13f4897b46b2867775820eb0ea9438299b0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vendidero/woocommerce-germanized-dhl/zipball/8430f00b2756a84d510becb4cf7d29ce8ecefcf5",
-                "reference": "8430f00b2756a84d510becb4cf7d29ce8ecefcf5",
+                "url": "https://api.github.com/repos/vendidero/woocommerce-germanized-dhl/zipball/59c3e13f4897b46b2867775820eb0ea9438299b0",
+                "reference": "59c3e13f4897b46b2867775820eb0ea9438299b0",
                 "shasum": ""
             },
             "require": {
@@ -576,7 +576,7 @@
                 "source": "https://github.com/vendidero/woocommerce-germanized-dhl/tree/v1.5.0",
                 "issues": "https://github.com/vendidero/woocommerce-germanized-dhl/issues"
             },
-            "time": "2021-04-07T11:47:14+00:00"
+            "time": "2021-04-08T13:58:45+00:00"
         },
         {
             "name": "vendidero/woocommerce-germanized-shipments",
@@ -584,12 +584,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/vendidero/woocommerce-germanized-shipments.git",
-                "reference": "3dc4382ea097ce577fa8be9ac565d62953819afc"
+                "reference": "6bb9dce1783b7e6f355ba70930f0a193cb22d9a6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vendidero/woocommerce-germanized-shipments/zipball/3dc4382ea097ce577fa8be9ac565d62953819afc",
-                "reference": "3dc4382ea097ce577fa8be9ac565d62953819afc",
+                "url": "https://api.github.com/repos/vendidero/woocommerce-germanized-shipments/zipball/6bb9dce1783b7e6f355ba70930f0a193cb22d9a6",
+                "reference": "6bb9dce1783b7e6f355ba70930f0a193cb22d9a6",
                 "shasum": ""
             },
             "require": {
@@ -609,10 +609,10 @@
             },
             "scripts": {
                 "post-install-cmd": [
-                    "composer dump-autoload"
+                    "sh ./bin/vendor-clean.sh"
                 ],
                 "post-update-cmd": [
-                    "composer dump-autoload"
+                    "sh ./bin/vendor-clean.sh"
                 ]
             },
             "license": [
@@ -624,7 +624,7 @@
                 "source": "https://github.com/vendidero/woocommerce-germanized-shipments/tree/v1.5.0",
                 "issues": "https://github.com/vendidero/woocommerce-germanized-shipments/issues"
             },
-            "time": "2021-04-07T11:02:38+00:00"
+            "time": "2021-04-08T13:57:01+00:00"
         },
         {
             "name": "vendidero/woocommerce-trusted-shops",

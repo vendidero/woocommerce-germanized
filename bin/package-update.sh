@@ -43,6 +43,13 @@ rm -rf ./packages/woocommerce-trusted-shops/.wordpress-org
 rm -rf ./packages/woocommerce-germanized-shipments/vendor
 rm -rf ./packages/woocommerce-germanized-dhl/vendor
 
+output 3 "Clean vendor dirs to save space..."
+
+rm -rf ./vendor/dvdoug/boxpacker/visualiser/*
+rm -rf ./vendor/dvdoug/boxpacker/tests/data/*
+
+output 2 "Done!"
+
 # Cleanup backup files
 find ./packages -name "*.bak" -type f -delete
 output 2 "Done!"
