@@ -26,7 +26,7 @@ class WC_GZD_Admin_Note_Update extends WC_GZD_Admin_Note {
 	}
 
 	public function get_content() {
-		return __( 'We just need to update your install to the latest version. <strong>Make sure to backup your data before updating</strong>.', 'woocommerce-germanized' );
+		return __( 'We just need to update your install to the latest version.', 'woocommerce-germanized' );
 	}
 
 	public function is_dismissable() {
