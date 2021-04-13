@@ -13,4 +13,4 @@ Our most critical targets are:
 
 Germanized core (this repository)
 Shipments and DHL packages and plugins
-vendidero.de -- the primary marketplace and marketing site, and all of it subdomains, e.g. release.vendidero.de
+vendidero.de -- the primary marketplace and marketing site, and all of it subdomains, e.g. download.vendidero.de

@@ -5,7 +5,7 @@ Requires at least: 5.4
 Tested up to: 5.7
 WC requires at least: 3.9
 WC tested up to: 5.2
-Stable tag: 3.3.7
+Stable tag: 3.4.0
 Requires PHP: 5.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -186,6 +186,20 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 6. Edit pdf documents (Pro)
 
 == Changelog ==
+= 3.4.0 =
+* Feature: Improved packaging selection
+* Feature: Street number validation option
+* Improvement: Allow choosing whether to show tax total before total or after
+* Improvement: Refactored shipment label API to make custom shipping provider integrations much easier
+* Improvement: Sensitive data encryption (e.g. API keys)
+* Improvement: Warenpost international API password escaping
+* Improvement: Datetime handling for DHL/Post
+* Improvement: Privacy checkbox conditional show/hide on checkout
+* Improvement: Moved DHL & Post options to shipping providers
+* Improvement: Support excl tax display for unit prices within order totals
+* Fix: Warenpost international customs
+* Fix: Exclude certain meta for subscriptions (e.g. DHL services)
+
 = 3.3.7 =
 * Feature: Added customer email notifications for cancelled/failed orders
 * Feature: WP 5.7 support
