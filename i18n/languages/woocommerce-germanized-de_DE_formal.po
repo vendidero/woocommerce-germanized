@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: WooCommerce Germanized\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-04-14 11:50+0200\n"
-"PO-Revision-Date: 2021-04-14 11:50+0200\n"
+"PO-Revision-Date: 2021-04-14 13:03+0200\n"
 "Last-Translator: holzhannes <holzhannes@posteo.de>\n"
 "Language-Team: \n"
 "Language: de_DE@formal\n"
@@ -6145,9 +6145,7 @@ msgstr "Datenaktualisierung für Germanized erforderlich"
 # @ woocommerce-germanized
 #: woocommerce-germanized/includes/admin/notes/class-wc-gzd-admin-note-update.php:29
 msgid "We just need to update your install to the latest version."
-msgstr ""
-"<strong>Germanized Datenaktualisierung erforderlich</strong> &#8211; Wir "
-"müssen Ihre Installation auf die neueste Version updaten"
+msgstr "Wir müssen Ihre Installation auf die neueste Version updaten."
 
 # @ woocommerce-germanized
 #: woocommerce-germanized/includes/admin/notes/class-wc-gzd-admin-note-update.php:40
