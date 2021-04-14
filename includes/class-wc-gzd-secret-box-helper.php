@@ -1,6 +1,6 @@
 <?php
 
-if ( ! class_exists( 'WC_GZD_Secret_Box_Helper' ) && function_exists( 'sodium_crypto_secretbox_keygen' ) ) {
+if ( ! class_exists( 'WC_GZD_Secret_Box_Helper' ) && function_exists( 'sodium_crypto_secretbox_keygen' ) && defined( 'SODIUM_CRYPTO_PWHASH_SALTBYTES' ) ) {
 
 	class WC_GZD_Secret_Box_Helper {
 
