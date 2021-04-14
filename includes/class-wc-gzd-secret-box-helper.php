@@ -82,6 +82,10 @@ if ( ! class_exists( 'WC_GZD_Secret_Box_Helper' ) && function_exists( 'sodium_cr
 				$key_data = self::get_encryption_key_data( $encryption_type );
 				$nonce    = random_bytes( SODIUM_CRYPTO_SECRETBOX_NONCEBYTES );
 
+				if ( is_wp_error( $key_data ) ) {
+					return $key_data;
+				}
+
 				return base64_encode( $key_data['salt'] . $nonce . sodium_crypto_secretbox( $message, $nonce, $key_data['key'] ) );
 			} catch ( \Exception $e ) {
 				return self::log_error( new WP_Error( 'encrypt-error', sprintf( 'Error while encrypting data: %s', wc_print_r( $e, true ) ) ) );
@@ -113,6 +117,11 @@ if ( ! class_exists( 'WC_GZD_Secret_Box_Helper' ) && function_exists( 'sodium_cr
 
 				$salt       = mb_substr( $decoded, 0, SODIUM_CRYPTO_PWHASH_SALTBYTES, '8bit' );
 				$key_data   = self::get_encryption_key_data( $salt, $encryption_type );
+
+				if ( is_wp_error( $key_data ) ) {
+					return $key_data;
+				}
+
 				$key        = $key_data['key'];
 				$nonce      = mb_substr( $decoded, SODIUM_CRYPTO_PWHASH_SALTBYTES, SODIUM_CRYPTO_SECRETBOX_NONCEBYTES, '8bit' );
 				$ciphertext = mb_substr( $decoded, SODIUM_CRYPTO_PWHASH_SALTBYTES + SODIUM_CRYPTO_SECRETBOX_NONCEBYTES, null, '8bit' );
@@ -123,6 +132,11 @@ if ( ! class_exists( 'WC_GZD_Secret_Box_Helper' ) && function_exists( 'sodium_cr
 				 */
 				if ( $plain === false ) {
 					$key_data   = self::get_encryption_key_data( $salt, $encryption_type, true );
+
+					if ( is_wp_error( $key_data ) ) {
+						return $key_data;
+					}
+
 					$key        = $key_data['key'];
 					$plain      = sodium_crypto_secretbox_open( $ciphertext, $nonce, $key );
 				}
