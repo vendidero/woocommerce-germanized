@@ -1,6 +1,8 @@
 <?php
 /**
  * Admin View: Notice - Theme supported
+ *
+ * @var WC_GZD_Admin_Note $notice
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -8,7 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 ?>
 
-<div class="error fade woocommerce-gzd-message">
+<div class="notice <?php echo esc_attr( $notice->get_fallback_notice_type() ); ?> fade woocommerce-gzd-message">
     <?php if ( $notice->is_dismissable() ) : ?>
         <a class="woocommerce-gzd-message-close notice-dismiss" href="<?php echo esc_url( $notice->get_dismiss_url() ); ?>"><?php _e( 'Hide', 'woocommerce-germanized' ); ?></a>
     <?php endif; ?>

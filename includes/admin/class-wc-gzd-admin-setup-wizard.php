@@ -6,10 +6,6 @@
  * @since    2.0.0
  */
 
-use \Vendidero\Germanized\DHL\Admin\Importer;
-use \Vendidero\Germanized\DHL\Package;
-use \Vendidero\Germanized\DHL\Admin\Settings;
-
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -80,7 +76,7 @@ if ( ! class_exists( 'WC_GZD_Admin_Setup_Wizard' ) ) :
                     'name'    => __( 'Shipping Provider', 'woocommerce-germanized' ),
 					'view'    => 'provider.php',
 					'handler' => array( $this, 'wc_gzd_setup_provider_save' ),
-					'order'   => 3,
+					'order'   => 5,
 					'errors'  => array(),
 				),
 				'first_steps' 	       => array(
@@ -92,6 +88,21 @@ if ( ! class_exists( 'WC_GZD_Admin_Setup_Wizard' ) ) :
 					'button_next_link' => admin_url( 'admin.php?page=wc-settings&tab=germanized&tutorial=yes' ),
 				),
 			);
+
+			if ( class_exists( 'WC_GZD_Secret_Box_Helper' ) ) {
+			    $new_key = WC_GZD_Secret_Box_Helper::get_random_encryption_key();
+
+			    if ( ! is_wp_error( $new_key ) ) {
+			         $default_steps['encrypt'] = array(
+                        'name'    => __( 'Encryption', 'woocommerce-germanized' ),
+                        'view'    => 'encrypt.php',
+                        'handler' => array( $this, 'wc_gzd_setup_encrypt_save' ),
+                        'order'   => 3,
+                        'errors'  => array(),
+                        'button_next' => ( ! WC_GZD_Secret_Box_Helper::has_valid_encryption_key() && WC_GZD_Secret_Box_Helper::supports_auto_insert() ) ? esc_attr__( 'Insert key', 'woocommerce-germanized' ) : esc_attr__( 'Continue', 'woocommerce-germanized' ),
+                    );
+			    }
+			}
 
 			$this->steps   = $default_steps;
 			uasort( $this->steps, array( $this, '_uasort_callback' ) );
@@ -546,6 +557,19 @@ if ( ! class_exists( 'WC_GZD_Admin_Setup_Wizard' ) ) :
 			        $provider->activate();
 			        update_option( '_wc_gzd_setup_shipping_provider_activated', 'yes' );
 			    }
+			}
+
+			wp_safe_redirect( $redirect );
+			exit();
+		}
+
+		public function wc_gzd_setup_encrypt_save() {
+		    $redirect 	 = $this->get_step_url( $this->get_next_step() );
+			$current_url = $this->get_step_url( $this->step );
+
+			if ( WC_GZD_Secret_Box_Helper::supports_auto_insert() && ! WC_GZD_Secret_Box_Helper::has_valid_encryption_key() ) {
+			    $result   = WC_GZD_Secret_Box_Helper::maybe_insert_missing_key();
+			    $redirect = add_query_arg( array( 'encrypt-success' => wc_bool_to_string( $result ) ), $redirect );
 			}
 
 			wp_safe_redirect( $redirect );

@@ -62,6 +62,7 @@ class WC_GZD_Admin {
 		add_action( 'admin_init', array( $this, 'check_notices' ) );
 		add_action( 'admin_init', array( $this, 'check_dhl_import' ) );
 		add_action( 'admin_init', array( $this, 'check_internetmarke_import' ) );
+		add_action( 'admin_init', array( $this, 'check_encryption_key_insert' ) );
 
 		add_filter( 'woocommerce_addons_section_data', array( $this, 'set_addon' ), 10, 2 );
 		add_action( 'woocommerce_admin_order_data_after_shipping_address', array(
@@ -766,6 +767,21 @@ class WC_GZD_Admin {
 				'post_content' => $page->post_content . "\n[gzd_complaints]",
 			)
 		);
+	}
+
+	public function check_encryption_key_insert() {
+		if ( current_user_can( 'manage_woocommerce' ) && isset( $_GET['insert-encryption-key'] ) && isset( $_GET['_wpnonce'] ) && check_admin_referer( 'wc-gzd-insert-encryption-key' ) ) {
+			$result = false;
+
+		    if ( class_exists( 'WC_GZD_Secret_Box_Helper' ) ) {
+				if ( ! WC_GZD_Secret_Box_Helper::has_valid_encryption_key() ) {
+					$result = WC_GZD_Secret_Box_Helper::maybe_insert_missing_key();
+				}
+			}
+
+			// Redirect to check for updates
+			wp_safe_redirect( add_query_arg( array( 'added-encryption-key' => wc_bool_to_string( $result ) ), wp_get_referer() ) );
+		}
 	}
 
 	public function check_notices() {

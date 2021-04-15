@@ -7,6 +7,10 @@ defined( 'ABSPATH' ) || exit;
  */
 class WC_GZD_Admin_Note_Encryption extends WC_GZD_Admin_Note {
 
+	public function get_fallback_notice_type() {
+		return 'notice-warning';
+	}
+
 	public function is_disabled() {
 		$is_disabled = true;
 
@@ -36,7 +40,7 @@ class WC_GZD_Admin_Note_Encryption extends WC_GZD_Admin_Note {
 	}
 
 	public function get_actions() {
-		return array(
+		$buttons = array(
 			array(
 				'url'        => 'https://vendidero.de/dokument/verschluesselung-sensibler-daten',
 				'title'      => __( 'Learn more', 'woocommerce-germanized' ),
@@ -44,5 +48,16 @@ class WC_GZD_Admin_Note_Encryption extends WC_GZD_Admin_Note {
 				'is_primary' => false,
 			),
 		);
+
+		if ( WC_GZD_Secret_Box_Helper::supports_auto_insert() ) {
+			$buttons[] = array(
+				'url'        => wp_nonce_url( add_query_arg( 'insert-encryption-key', true ), 'wc-gzd-insert-encryption-key' ) ,
+				'title'      => __( 'Auto insert', 'woocommerce-germanized' ),
+				'target'     => '_self',
+				'is_primary' => true,
+			);
+		}
+
+		return $buttons;
 	}
 }

@@ -234,6 +234,10 @@ abstract class WC_GZD_Admin_Note {
 	    }
     }
 
+    public function get_fallback_notice_type() {
+		return 'error';
+    }
+
 	public function deactivate( $and_note = true ) {
 
 		if ( $and_note && ( $note = $this->get_note() ) ) {

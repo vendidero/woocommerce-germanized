@@ -61,7 +61,11 @@ class WC_GZD_Gateway_Direct_Debit_Encryption_Helper {
 
 	private function get_key() {
 		if ( defined( 'WC_GZD_DIRECT_DEBIT_KEY' ) ) {
-			return Crypto\Key::loadFromAsciiSafeString( WC_GZD_DIRECT_DEBIT_KEY );
+			try {
+				return Crypto\Key::loadFromAsciiSafeString( WC_GZD_DIRECT_DEBIT_KEY );
+			} catch( \Exception $e ) {
+				return false;
+			}
 		}
 
 		return false;

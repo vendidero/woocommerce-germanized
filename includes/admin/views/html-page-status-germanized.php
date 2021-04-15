@@ -34,22 +34,22 @@ if ( ! defined( 'ABSPATH' ) ) {
         <td><?php echo esc_html( WC_germanized()->version ); ?></td>
     </tr>
     <tr>
-        <td data-export-label="WC GZD Database Version"><?php _e( 'Database Version', 'woocommerce-germanized' ); ?>:
-        </td>
+        <td data-export-label="WC GZD Database Version"><?php _e( 'Database Version', 'woocommerce-germanized' ); ?>:</td>
         <td class="help">&nbsp;</td>
         <td><?php echo esc_html( get_option( 'woocommerce_gzd_db_version' ) ); ?></td>
     </tr>
     <tr>
-        <td data-export-label="Small Business"><?php _e( 'Small-Enterprise-Regulation', 'woocommerce-germanized' ); ?>
-            :
-        </td>
+        <td data-export-label="Small Business"><?php _e( 'Small-Enterprise-Regulation', 'woocommerce-germanized' ); ?>:</td>
         <td class="help">&nbsp;</td>
         <td><?php echo ( wc_gzd_is_small_business() ? '<mark class="yes"><span class="dashicons dashicons-yes"></span></mark>' : '<mark class="no">' . '&ndash;' . '</mark>' ); ?></td>
     </tr>
     <tr>
-        <td data-export-label="Default Delivery Time"><?php _e( 'Default Delivery Time', 'woocommerce-germanized' ); ?>
-            :
-        </td>
+        <td data-export-label="PHP Sodium"><?php _e( 'PHP Sodium Extension', 'woocommerce-germanized' ); ?>:</td>
+        <td class="help">&nbsp;</td>
+        <td><?php echo ( class_exists( 'WC_GZD_Secret_Box_Helper' ) && defined( 'SODIUM_LIBRARY_VERSION' ) ? SODIUM_LIBRARY_VERSION : '<mark class="no">' . '&ndash;' . '</mark>' ); ?></td>
+    </tr>
+    <tr>
+        <td data-export-label="Default Delivery Time"><?php _e( 'Default Delivery Time', 'woocommerce-germanized' ); ?>:</td>
         <td class="help">&nbsp;</td>
 		<?php
 		$term_id = get_option( 'woocommerce_gzd_default_delivery_time' );
@@ -273,6 +273,18 @@ if ( ! defined( 'ABSPATH' ) ) {
                class="button button-secondary"><?php echo 'yes' === get_option( 'woocommerce_gzd_disable_notices' ) ? __( 'Enable notices', 'woocommerce-germanized' ) : __( 'Disable notices', 'woocommerce-germanized' ); ?></a>
         </td>
     </tr>
+    <?php if ( class_exists( 'WC_GZD_Secret_Box_Helper' ) && ! WC_GZD_Secret_Box_Helper::has_valid_encryption_key() ) : ?>
+    <tr>
+        <td><?php _e( 'Encryption Key', 'woocommerce-germanized' ); ?></td>
+        <td class="help"></td>
+        <td><?php echo WC_GZD_Secret_Box_Helper::get_encryption_key_notice(); ?>
+            <?php if ( WC_GZD_Secret_Box_Helper::supports_auto_insert() ) : ?>
+                <a class="button button-primary" href="<?php echo wp_nonce_url( add_query_arg( array( 'insert-encryption-key' => true ) ), 'wc-gzd-insert-encryption-key' ); ?>"><?php _e( 'Auto insert', 'woocommerce-germanized' ); ?></a>
+            <?php endif; ?>
+            <a class="button button-secondary" href="https://vendidero.de/dokument/verschluesselung-sensibler-daten" target="_blank"><?php _e( 'Learn more', 'woocommerce-germanized' ); ?></a>
+        </td>
+    </tr>
+    <?php endif; ?>
 	<?php
 	/**
 	 * After tools section.
