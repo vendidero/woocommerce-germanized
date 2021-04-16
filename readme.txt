@@ -186,6 +186,9 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 6. Edit pdf documents (Pro)
 
 == Changelog ==
+= 3.4.4 =
+* Fix: DHL/DP customs data
+
 = 3.4.3 =
 * Improvement: Added option to auto-insert new encryption key to wp-config.php
 * Fix: Secret Box Helper sodium_compat exception

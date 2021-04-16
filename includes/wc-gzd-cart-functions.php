@@ -633,14 +633,16 @@ function wc_gzd_get_cart_taxes( $cart, $include_shipping_taxes = true ) {
 				}
 			}
 		} else {
-			$base_rate       = array_values( WC_Tax::get_base_tax_rates() );
-			$base_rate       = (object) $base_rate[0];
-			$base_rate->rate = $base_rate->rate;
-			$tax_array[]     = array(
-				'tax'      => $base_rate,
-				'contains' => array( $base_rate ),
-				'amount'   => WC()->cart->get_taxes_total( true, true )
-			);
+			$base_rate = array_values( WC_Tax::get_base_tax_rates() );
+
+			if ( ! empty( $base_rate ) ) {
+				$base_rate       = (object) $base_rate[0];
+				$tax_array[]     = array(
+					'tax'      => $base_rate,
+					'contains' => array( $base_rate ),
+					'amount'   => WC()->cart->get_taxes_total( true, true )
+				);
+            }
 		}
 	}
 

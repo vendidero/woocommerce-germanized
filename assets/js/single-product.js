@@ -74,7 +74,6 @@ window.germanized = window.germanized || {};
         },
 
         onChangePrice: function( event ) {
-
             /**
              * Need to use a tweak here to make sure our variation listener
              * has already adjusted the variationId (in case necessary).
@@ -85,12 +84,12 @@ window.germanized = window.germanized || {};
 
                 event.preventDefault();
 
-                /**
-                 * Unbind the event because using :first selectors will trigger DOMSubtreeModified again (infinite loop)
-                 */
-                $( self.params.wrapper + ' ' + self.params.price_selector + ':not(.price-unit):visible' ).off( 'DOMSubtreeModified', self.onChangePrice );
-
                 if ( priceData ) {
+                    /**
+                     * Unbind the event because using :first selectors will trigger DOMSubtreeModified again (infinite loop)
+                     */
+                    $( self.params.wrapper + ' ' + self.params.price_selector + ':not(.price-unit):visible' ).off( 'DOMSubtreeModified', self.onChangePrice );
+
                     /**
                      * In case AJAX requests are still running (e.g. price refreshes of other plugins) wait for them to finish
                      */
@@ -102,15 +101,9 @@ window.germanized = window.germanized || {};
                             $ ( document ).on( 'ajaxStop', self.onAjaxStopRefresh );
                         }
                     } else {
-                        console.log('directly stop');
                         self.refreshUnitPrice( priceData.price, priceData.unit_price, priceData.sale_price );
                     }
                 }
-
-                /**
-                 * Rebind the event
-                 */
-                $( self.params.wrapper + ' ' + self.params.price_selector + ':not(.price-unit):visible' ).on( 'DOMSubtreeModified', self.onChangePrice );
             }, 500 );
         },
 
@@ -164,6 +157,11 @@ window.germanized = window.germanized || {};
                     if ( data.hasOwnProperty( 'unit_price_html' ) ) {
                         $unit_price.html( data.unit_price_html );
                     }
+
+                    /**
+                     * Rebind the event
+                     */
+                    $( self.params.wrapper + ' ' + self.params.price_selector + ':not(.price-unit):visible' ).on( 'DOMSubtreeModified', self.onChangePrice );
                 },
                 error: function( data ) {},
                 dataType: 'json'
