@@ -1,0 +1,63 @@
+{
+    "name" : "wsdltophp/wssecurity",
+    "description" : "Allows to easily add Ws Security header to a SOAP Request",
+    "type" : "library",
+    "keywords" : ["soap","php","wsse"],
+    "license" : "MIT",
+    "authors" : [
+        {
+            "name": "Mikaël DELSOL",
+            "email": "contact@wsdltophp.com",
+            "homepage": "https://www.wsdltophp.com",
+            "role": "Owner"
+        },
+        {
+            "name": "Alexey Anisimov",
+            "email": "mne@lexa.in",
+            "role": "Contributor"
+        },
+        {
+            "name": "Tom Vaughan",
+            "email": "tom.vaughan@farpoint.com",
+            "role": "Contributor"
+        },
+        {
+            "name": "NtlBldrv",
+            "role": "Contributor"
+        },
+        {
+            "name": "baijunyao",
+            "email": "baijunyao@baijunyao.com",
+            "role": "Contributor"
+        }
+    ],
+    "support" : {
+        "email" : "contact@wsdltophp.com"
+    },
+    "require" : {
+        "php" : ">=5.4",
+        "ext-soap": "*"
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "lint": "vendor/bin/php-cs-fixer fix --ansi --diff --verbose"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^2.0",
+        "phpunit/phpunit": "^4.8 || ^6.0"
+    },
+    "autoload" : {
+        "psr-4" : {
+            "WsdlToPhp\\WsSecurity\\" : "src"
+        }
+    },
+    "autoload-dev" : {
+        "psr-4" : {
+            "WsdlToPhp\\WsSecurity\\Tests\\": "tests"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    }
+}
+
