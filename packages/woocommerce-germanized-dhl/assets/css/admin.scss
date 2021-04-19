@@ -1,0 +1,76 @@
+.germanized-create-label {
+  .wc-gzd-shipment-im-additional-services {
+    p.label {
+      margin-top: 10px;
+      width: 100%;
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+  }
+
+  .wc-gzd-dhl-im-product-data {
+    margin-top: 2em;
+    min-width: 700px;
+    margin-left: -1rem !important;
+    margin-right: -1rem !important;
+
+    .column {
+      padding-left: 1rem !important;
+      padding-right: 1rem !important;
+
+      p:first-child {
+        margin-top: 1.5em !important;
+      }
+    }
+
+    .wc-gzd-dhl-im-product-price {
+      background: #ffd633;
+      border-radius: 4px;
+      padding: .5em 1em;
+
+      .amount {
+        font-size: 18px;
+        font-weight: bold;
+      }
+      .price-suffix {
+        display: block;
+        font-size: 11px;
+        line-height: 15px;
+      }
+    }
+
+    .col-dimensions {
+      color: #999;
+    }
+
+    .col-preview {
+      .image-preview {
+        img {
+          height: auto;
+          max-height: 140px;
+        }
+      }
+    }
+
+    .wc-gzd-dhl-im-product-information-text, .wc-gzd-dhl-im-product-description {
+      font-size: 11px;
+      color: #999;
+      line-height: 1.5em;
+    }
+  }
+
+  .show-services-trigger {
+    font-weight: bold;
+    margin-top: 15px;
+    margin-bottom: 0;
+    display: block;
+    text-align: right;
+    vertical-align: middle;
+    line-height: 20px;
+
+    a {
+      text-decoration: none;
+    }
+  }
+}
