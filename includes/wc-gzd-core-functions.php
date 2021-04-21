@@ -806,8 +806,34 @@ function wc_gzd_remove_class_action( $tag, $class_name = '', $method_name = '', 
 }
 
 function wc_gzd_replace_label_shortcodes( $html, $replacements ) {
+	$needs_closing = array();
+	$original_html = $html;
+
 	foreach ( $replacements as $search => $replace ) {
+		if ( strstr( $search, '{/' ) ) {
+			$opener = str_replace( '{/', '{', $search );
+
+			// Check whether the closing tag is missing
+			if ( ! strstr( $original_html, $search ) && strstr( $original_html, $opener ) ) {
+				$needs_closing[ $search ] = $replace;
+			// Check whether the closing tag exists but the opener is missing
+			} elseif ( strstr( $original_html, $search ) && ! strstr( $original_html, $opener ) && array_key_exists( $opener, $replacements ) ) {
+				$needs_closing[ $opener ] = $replacements[ $opener ];
+			}
+		}
+
 		$html = str_replace( $search, $replace, $html );
+	}
+
+	/**
+	 * Close missing opened/closed placeholders
+	 */
+	foreach( $needs_closing as $search => $replace ) {
+		if ( strstr( $search, '{/' ) ) {
+			$html = $html . $replace;
+		} else {
+			$html = $replace . $html;
+		}
 	}
 
 	global $shortcode_tags;
