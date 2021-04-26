@@ -12,7 +12,7 @@
  *
  * @see https://github.com/vendidero/woocommerce-germanized/wiki/Overriding-Germanized-Templates
  * @package Germanized/Templates
- * @version 1.7.0
+ * @version 1.8.0
  */
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -43,5 +43,7 @@ do_action( "woocommerce_gzd_before_legal_checkbox_{$checkbox_id}", $checkbox );
                id="<?php echo esc_attr( $checkbox->get_html_id() ); ?>"/>
         <span class="woocommerce-gzd-<?php echo esc_attr( $checkbox->get_html_id() ); ?>-checkbox-text"><?php echo $checkbox->get_label(); ?></span>
         <a href="" rel="prettyPhoto" id="show-direct-debit-pretty" class="hidden"></a>
+
+        <input type="hidden" name="<?php echo esc_attr( $checkbox->get_html_name() ); ?>-field" value="1" />
     </label>
 </p>

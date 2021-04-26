@@ -33,6 +33,30 @@ class WC_GZD_Settings_Tab_Emails extends WC_GZD_Settings_Tab {
 		);
 	}
 
+	/**
+	 * Output sections.
+	 */
+	public function output_sections() {
+		global $current_section;
+
+		$sections = $this->get_sections();
+
+		if ( empty( $sections ) || 1 === count( $sections ) ) {
+			return;
+		}
+
+		echo '<ul class="subsubsub">';
+
+		$array_keys = array_keys( $sections );
+
+		foreach ( $sections as $id => $label ) {
+			// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			echo '<li><a href="' . admin_url( 'admin.php?page=wc-settings&tab=' . $this->id . '&section=' . sanitize_title( $id ) ) . '" class="' . ( $current_section === $id ? 'current' : '' ) . '">' . $label . '</a> ' . ( end( $array_keys ) === $id ? '' : '|' ) . ' </li>';
+		}
+
+		echo '</ul><br class="clear" />';
+	}
+
 	public function get_pointers() {
 		$current  = $this->get_current_section();
 		$pointers = array();

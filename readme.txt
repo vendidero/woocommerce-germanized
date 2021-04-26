@@ -15,10 +15,10 @@ Germanized extends WooCommerce to become a legally compliant shop in the german 
 == Description ==
 
 Germanized extends WooCommerce to technically match specific german legal conditions. The objective of this plugin is to adapt WooCommerce to the special requirements of german market.
-Users of [Germanized for WooCommerce Pro](https://vendidero.de/woocommerce-germanized "WooCommerce optimized for German Market") benefit from additional features such as PDF invoices, model text generators for terms and revocation pages, premium support and more!
+Users of [Germanized for WooCommerce Pro](https://vendidero.de/woocommerce-germanized "WooCommerce optimized for German Market") benefit from additional features, specifically designed for Germany, such as PDF invoices, model text generators for terms and revocation pages, premium support and more!
 
 = Legal certainty for WooCommerce =
-Germanized extends WooCommerce with typical german shop functionality: Delivery times, base prices, shipping costs and tax notices, option to attach legally relevant pages (e.g. terms, revocation page, privacy policy etc.) - even in emails, small business regulation notices and many more.
+Germanized extends WooCommerce with typical german shop functionality: Delivery times, base prices, shipping costs and tax notices, options to attach legally relevant pages (e.g. terms, revocation page, privacy policy etc.) - even in emails, small business regulation notices and many more.
 Furthermore we customized the WooCommerce checkout to make your store meet the button solution. See a list of our features for further details:
 
 * *Delivery Times* - Add and edit delivery times for WooCommerce products. Optionally set a default delivery time as fallback. Disable delivery times for certain product types.
@@ -53,10 +53,6 @@ Furthermore we customized the WooCommerce checkout to make your store meet the b
 Germanized has been approved by Trusted Shops and therefor offers best technical conditions to operate a legally binding WooCommerce Shop in Germany.
 Trusted Shops certifies Shops after selected and weighted criteria and has carefully examined our WooCommerce Plugin.
 Of course Trusted Shops customers may embed their quality seals or further Trusted Shops Products as genuine Seller and Product Reviews by adapting just a few options within Germanized for WooCommerce.
-
-= Code quality =
-While developing Germanized we have specifically considered clean integration within WooCommerce and WordPress by adapting core functionality.
-Most of the changes are made by using Hooks & Filters so that our plugin is compatible to almost every Theme.
 
 = Pro: WooCommerce PDF invoices & packing slips =
 As a Pro User of Germanized you may automatically or manually create PDF Invoices and Packing Slips for your orders. Adjust your document layout by using the built-in visual document editor.
@@ -157,15 +153,22 @@ You may of course Update Germanized for WooCommerce automatically through the Wo
 
 == Frequently Asked Questions ==
 
-= Where do I receive support for Germanized? =
+= Where can I find the documentation? =
+[Germanized Documentation](https://vendidero.de/dokumentation/woocommerce-germanized)
+
+= Need help? =
 
 You may ask your questions regarding Germanized for WooCommerce within our free [WordPress Support Forum](https://wordpress.org/support/plugin/woocommerce-germanized).
-Professional ticket-support is being offered to [Professional Users](https://vendidero.de/woocommerce-germanized "Support for WooCommerce Germanized") only.
+Professional help desk support is being offered to [Professional Users](https://vendidero.de/woocommerce-germanized "Support for WooCommerce Germanized") only.
 
 = Not every option fits my WooCommerce Theme =
 
 Unfortunately not every Theme does implement WooCommerce in the way it's meant to be or differs from the original structure which leads to layout and/or compatibility
 issues. For testing purposes, please activate a default WordPress Theme (such as TwentyX) and see whether the issues persist.
+
+= Using a Pagebuilder? =
+
+In case you are using a Pagebuilder (e.g. Elementor, Divi-Builder) you might want to remove the default [shopmarks](https://vendidero.de/dokument/preisauszeichnungen-anpassen) placed by Germanized with our custom [shortcodes](https://vendidero.de/dokument/preisauszeichnungen-anpassen#pagebuilder).
 
 = Email attachments not showing in WooCommerce order confirmation email =
 

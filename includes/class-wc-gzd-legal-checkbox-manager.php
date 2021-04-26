@@ -541,9 +541,10 @@ class WC_GZD_Legal_Checkbox_Manager {
 		$this->maybe_do_hooks( 'pay_for_order' );
 
 		foreach ( $this->get_checkboxes( array( 'locations' => 'pay_for_order' ) ) as $id => $checkbox ) {
-			$value = isset( $_POST[ $checkbox->get_html_name() ] ) ? $_POST[ $checkbox->get_html_name() ] : '';
+			$value   = isset( $_POST[ $checkbox->get_html_name() ] ) ? $_POST[ $checkbox->get_html_name() ] : '';
+			$visible = ! empty( $_POST[ $checkbox->get_html_name() . '-field' ] ) ? true : false;
 
-			if ( ! $checkbox->validate( $value, 'pay_for_order' ) ) {
+			if ( $visible && ! $checkbox->validate( $value, 'pay_for_order' ) ) {
 				wc_add_notice( $checkbox->get_error_message(), 'error' );
 			}
 		}
@@ -562,9 +563,10 @@ class WC_GZD_Legal_Checkbox_Manager {
 		$this->maybe_do_hooks( 'checkout' );
 
 		foreach ( $this->get_checkboxes( array( 'locations' => 'checkout' ) ) as $id => $checkbox ) {
-			$value = isset( $_POST[ $checkbox->get_html_name() ] ) ? $_POST[ $checkbox->get_html_name() ] : '';
+			$value   = isset( $_POST[ $checkbox->get_html_name() ] ) ? $_POST[ $checkbox->get_html_name() ] : '';
+			$visible = ! empty( $_POST[ $checkbox->get_html_name() . '-field' ] ) ? true : false;
 
-			if ( ! $checkbox->validate( $value, 'checkout' ) ) {
+			if ( $visible && ! $checkbox->validate( $value, 'checkout' ) ) {
 				$errors->add( 'checkbox', $checkbox->get_error_message() );
 			}
 		}
@@ -579,10 +581,10 @@ class WC_GZD_Legal_Checkbox_Manager {
 		$this->maybe_do_hooks( 'reviews' );
 
 		foreach ( $this->get_checkboxes( array( 'locations' => 'reviews' ) ) as $id => $checkbox ) {
+			$value   = isset( $_POST[ $checkbox->get_html_name() ] ) ? $_POST[ $checkbox->get_html_name() ] : '';
+			$visible = ! empty( $_POST[ $checkbox->get_html_name() . '-field' ] ) ? true : false;
 
-			$value = isset( $_POST[ $checkbox->get_html_name() ] ) ? $_POST[ $checkbox->get_html_name() ] : '';
-
-			if ( ! $checkbox->validate( $value, 'reviews' ) ) {
+			if ( $visible && ! $checkbox->validate( $value, 'reviews' ) ) {
 				return new WP_Error( $checkbox->get_html_name(), $checkbox->get_error_message(), 409 );
 			}
 		}
@@ -594,10 +596,10 @@ class WC_GZD_Legal_Checkbox_Manager {
 		$this->maybe_do_hooks( 'register' );
 
 		foreach ( $this->get_checkboxes( array( 'locations' => 'register' ) ) as $id => $checkbox ) {
+			$value   = isset( $_POST[ $checkbox->get_html_name() ] ) ? $_POST[ $checkbox->get_html_name() ] : '';
+			$visible = ! empty( $_POST[ $checkbox->get_html_name() . '-field' ] ) ? true : false;
 
-			$value = isset( $_POST[ $checkbox->get_html_name() ] ) ? $_POST[ $checkbox->get_html_name() ] : '';
-
-			if ( ! $checkbox->validate( $value, 'register' ) ) {
+			if ( $visible && ! $checkbox->validate( $value, 'register' ) ) {
 				return new WP_Error( $checkbox->get_html_name(), $checkbox->get_error_message() );
 			}
 		}
