@@ -5,7 +5,7 @@ Requires at least: 5.4
 Tested up to: 5.7
 WC requires at least: 3.9
 WC tested up to: 5.2
-Stable tag: 3.4.5
+Stable tag: 3.4.6
 Requires PHP: 5.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -189,6 +189,17 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 6. Edit pdf documents (Pro)
 
 == Changelog ==
+= 3.4.6 =
+* Improvement: Do only validate checkboxes in case they are rendered (added hidden input field)
+* Improvement: Allow choosing non-address-printable formats for DP via filter
+* Improvement: DHL incomplete shipper address notice
+* Improvement: Default label weights per shipping provider
+* Improvement: Shipment position number (e.g. 1 of 2) placeholders for email notifications
+* Improvement: Add list of shipped shipments to order completed mail notification
+* Improvement: Timestamp DB handling
+* Fix: Force filename filter removal
+* Fix: TS review export CSV new format
+
 = 3.4.5 =
 * Fix: DHL checkout services
 * Fix: Internetmarke library timezone side effect
