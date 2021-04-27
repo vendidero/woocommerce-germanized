@@ -54,9 +54,9 @@
     "mocha": "6.2.0",
     "node-sass": ">=4.13.1",
     "prettier": "github:automattic/calypso-prettier#c56b4251",
+    "spectre.css": "*",
     "stylelint": "10.1.0",
-    "stylelint-config-wordpress": "14.0.0",
-    "spectre.css": "*"
+    "stylelint-config-wordpress": "14.0.0"
   },
   "engines": {
     "node": ">=10.15.0",
