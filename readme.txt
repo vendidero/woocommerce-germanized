@@ -168,7 +168,7 @@ issues. For testing purposes, please activate a default WordPress Theme (such as
 
 = Using a Pagebuilder? =
 
-In case you are using a Pagebuilder (e.g. Elementor, Divi-Builder) you might want to remove the default [shopmarks](https://vendidero.de/dokument/preisauszeichnungen-anpassen) placed by Germanized with our custom [shortcodes](https://vendidero.de/dokument/preisauszeichnungen-anpassen#pagebuilder).
+In case you are using a Pagebuilder (e.g. Elementor, Divi-Builder) you might want to replace the default [shopmarks](https://vendidero.de/dokument/preisauszeichnungen-anpassen) placed by Germanized with our custom [shortcodes](https://vendidero.de/dokument/preisauszeichnungen-anpassen#pagebuilder).
 
 = Email attachments not showing in WooCommerce order confirmation email =
 
