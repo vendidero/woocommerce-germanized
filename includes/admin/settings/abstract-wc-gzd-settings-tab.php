@@ -289,6 +289,7 @@ abstract class WC_GZD_Settings_Tab extends WC_Settings_Page {
 	}
 
 	protected function get_enable_option_name() {
+	    return '';
 	}
 
 	public function get_link() {
