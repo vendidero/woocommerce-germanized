@@ -87,9 +87,9 @@ class WC_GZD_Admin {
 		), 10, 2 );
 
 		add_action( 'woocommerce_admin_field_gzd_toggle', array( $this, 'toggle_input_field' ), 10 );
-		add_action( 'woocommerce_admin_field_image', array( $this, 'image_field' ), 0, 1 );
-		add_action( 'woocommerce_admin_field_html', array( $this, 'html_field' ), 0, 1 );
-		add_action( 'woocommerce_admin_field_hidden', array( $this, 'hidden_field' ), 0, 1 );
+		add_action( 'woocommerce_admin_field_image', array( $this, 'image_field' ), 10, 1 );
+		add_action( 'woocommerce_admin_field_html', array( $this, 'html_field' ), 10, 1 );
+		add_action( 'woocommerce_admin_field_hidden', array( $this, 'hidden_field' ), 10, 1 );
 
 		add_filter( 'woocommerce_admin_settings_sanitize_option', array( $this, 'save_toggle_input_field' ), 0, 3 );
 

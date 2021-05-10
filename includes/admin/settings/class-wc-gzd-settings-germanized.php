@@ -165,6 +165,7 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 		include_once dirname( __FILE__ ) . '/class-wc-gzd-settings-tab-button-solution.php';
 		include_once dirname( __FILE__ ) . '/class-wc-gzd-settings-tab-checkboxes.php';
 		include_once dirname( __FILE__ ) . '/class-wc-gzd-settings-tab-doi.php';
+		include_once dirname( __FILE__ ) . '/class-wc-gzd-settings-tab-oss.php';
 		include_once dirname( __FILE__ ) . '/class-wc-gzd-settings-tab-contract.php';
 		include_once dirname( __FILE__ ) . '/class-wc-gzd-settings-tab-invoices.php';
 		include_once dirname( __FILE__ ) . '/class-wc-gzd-settings-tab-multistep-checkout.php';
@@ -195,6 +196,7 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 			'shipping_provider'    => 'WC_GZD_Settings_Tab_Shipping_Provider',
 			'emails'               => 'WC_GZD_Settings_Tab_Emails',
 			'checkboxes'           => 'WC_GZD_Settings_Tab_Checkboxes',
+			'oss'                  => 'WC_GZD_Settings_Tab_OSS',
 			'double_opt_in'        => 'WC_GZD_Settings_Tab_DOI',
 			'invoices'             => 'WC_GZD_Settings_Tab_Invoices',
 			'multistep_checkout'   => 'WC_GZD_Settings_Tab_Multistep_Checkout',
