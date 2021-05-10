@@ -207,7 +207,7 @@ class WC_GZD_Coupon_Helper {
 	 * @return bool
 	 */
 	protected function coupon_is_voucher( $coupon ) {
-		return 'yes' === $coupon->get_meta( 'is_voucher', true );
+		return apply_filters( 'woocommerce_gzd_coupon_is_voucher', ( 'yes' === $coupon->get_meta( 'is_voucher', true ) ), $coupon );
 	}
 
 	protected function cart_has_voucher( $cart = null ) {
