@@ -13,32 +13,6 @@ module.exports = function( grunt ) {
 			js: 'assets/js'
 		},
 
-        // Sass linting with Stylelint.
-        stylelint: {
-            options: {
-                configFile: '.stylelintrc'
-            },
-            all: [
-                '<%= dirs.css %>/*.scss'
-            ]
-        },
-
-		// JavaScript linting with JSHint.
-		jshint: {
-			options: {
-				jshintrc: '.jshintrc'
-			},
-			all: [
-				'Gruntfile.js',
-				'<%= dirs.js %>/admin/*.js',
-				'!<%= dirs.js %>/admin/*.min.js',
-				'<%= dirs.js %>/*.js',
-				'!<%= dirs.js %>/*.min.js',
-				'includes/gateways/direct-debit/assets/js/*.js',
-				'!includes/gateways/direct-debit/assets/js/*.min.js'
-			]
-		},
-
 		// Minify .js files.
 		uglify: {
 			options: {
@@ -135,29 +109,6 @@ module.exports = function( grunt ) {
 			}
 		},
 
-        // Generate POT files.
-        makepot: {
-            options: {
-                type: 'wp-plugin',
-                domainPath: 'i18n/languages',
-                potHeaders: {
-                    'report-msgid-bugs-to': 'https://github.com/vendidero/woocommerce-germanized/issues',
-                    'language-team': 'LANGUAGE <EMAIL@ADDRESS>'
-                }
-            },
-            dist: {
-                options: {
-                    potFilename: 'woocommerce-germanized.pot',
-                    exclude: [
-                        'vendor/.*',
-                        'node_modules/.*',
-                        'tests/.*',
-                        'tmp/.*'
-                    ]
-                }
-            }
-        },
-
         // Check textdomain errors.
         checktextdomain: {
             options:{
@@ -206,60 +157,20 @@ module.exports = function( grunt ) {
                     '<%= dirs.css %>/*.css'
                 ]
             }
-        },
-
-        // Exec shell commands.
-        shell: {
-            options: {
-                stdout: true,
-                stderr: true
-            },
-            e2e_test: {
-                command: 'npm run --silent test:single tests/e2e-tests/' + grunt.option( 'file' )
-            },
-            e2e_tests: {
-                command: 'npm run --silent test'
-            }
-        },
-
-        // PHP Code Sniffer.
-        phpcs: {
-            options: {
-                bin: 'vendor/bin/phpcs',
-                standard: './phpcs.ruleset.xml'
-            },
-            dist: {
-                src:  [
-                    '**/*.php',                                                  // Include all files
-                    '!apigen/**',                                                // Exclude apigen/
-                    '!includes/gateways/direct-debit/libraries/**', // Exclude simplify commerce SDK
-                    '!includes/libraries/**',                                    // Exclude libraries/
-                    '!node_modules/**',                                          // Exclude node_modules/
-                    '!tmp/**',                                                   // Exclude tmp/
-                    '!vendor/**'                                                 // Exclude vendor/
-                ]
-            }
         }
-
 	});
 
 	// Load NPM tasks to be used here
     grunt.loadNpmTasks( 'grunt-sass' );
     grunt.loadNpmTasks( 'grunt-shell' );
-    grunt.loadNpmTasks( 'grunt-phpcs' );
     grunt.loadNpmTasks( 'grunt-rtlcss' );
     grunt.loadNpmTasks( 'grunt-postcss' );
-    grunt.loadNpmTasks( 'grunt-stylelint' );
-    grunt.loadNpmTasks( 'grunt-wp-i18n' );
-    grunt.loadNpmTasks( 'grunt-checktextdomain' );
-    grunt.loadNpmTasks( 'grunt-contrib-jshint' );
     grunt.loadNpmTasks( 'grunt-contrib-uglify' );
     grunt.loadNpmTasks( 'grunt-contrib-cssmin' );
     grunt.loadNpmTasks( 'grunt-contrib-concat' );
     grunt.loadNpmTasks( 'grunt-contrib-copy' );
     grunt.loadNpmTasks( 'grunt-contrib-watch' );
     grunt.loadNpmTasks( 'grunt-contrib-clean' );
-    grunt.loadNpmTasks( 'grunt-prompt' );
 
 	// Register tasks
 	grunt.registerTask( 'default', [
@@ -277,14 +188,5 @@ module.exports = function( grunt ) {
     grunt.registerTask( 'assets', [
         'css',
         'uglify'
-    ]);
-
-    grunt.registerTask( 'i18n', [
-        'checktextdomain',
-        'makepot'
-    ]);
-
-    grunt.registerTask( 'makepot', [
-        'makepot'
     ]);
 };
