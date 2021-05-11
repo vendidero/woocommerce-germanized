@@ -261,7 +261,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     </tr>
     <tr>
         <td><?php _e( 'Renew EU VAT Rates', 'woocommerce-germanized' ); ?></td>
-        <td class="help"><?php echo wc_help_tip( esc_attr( __( 'Insert VAT rates (standard, recuded and virtual) for EU countries. This option deletes all of your standard, reduced and virtual rates before inserting.', 'woocommerce-germanized' ) ) ); ?></td>
+        <td class="help"><?php echo wc_help_tip( esc_attr( __( 'Insert VAT rates for EU countries based on your current OSS participation status. This option deletes all current rates before inserting.', 'woocommerce-germanized' ) ) ); ?></td>
         <td>
             <a href="<?php echo wp_nonce_url( add_query_arg( array( 'insert-vat-rates' => true ) ), 'wc-gzd-insert-vat-rates' ); ?>"
                class="button button-secondary"><?php _e( 'Renew VAT Rates', 'woocommerce-germanized' ); ?></a></td>

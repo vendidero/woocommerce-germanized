@@ -13,7 +13,8 @@
     "composer/installers": "^1.9.0",
     "vendidero/woocommerce-trusted-shops": "4.0.10",
     "vendidero/woocommerce-germanized-dhl": "1.5.5",
-    "vendidero/woocommerce-germanized-shipments": "1.5.4"
+    "vendidero/woocommerce-germanized-shipments": "1.5.4",
+    "vendidero/one-stop-shop-woocommerce": "1.0.0"
   },
   "require-dev": {
     "myclabs/deep-copy": "^1.7.0",
@@ -31,6 +32,10 @@
     {
       "type": "vcs",
       "url":  "https://github.com/vendidero/woocommerce-germanized-shipments"
+    },
+    {
+      "type": "vcs",
+      "url":  "https://github.com/vendidero/one-stop-shop-woocommerce"
     }
   ],
   "config": {
@@ -75,7 +80,8 @@
     "installer-paths": {
       "packages/woocommerce-trusted-shops": ["vendidero/woocommerce-trusted-shops"],
       "packages/woocommerce-germanized-dhl": ["vendidero/woocommerce-germanized-dhl"],
-      "packages/woocommerce-germanized-shipments": ["vendidero/woocommerce-germanized-shipments"]
+      "packages/woocommerce-germanized-shipments": ["vendidero/woocommerce-germanized-shipments"],
+      "packages/one-stop-shop-woocommerce": ["vendidero/one-stop-shop-woocommerce"]
     },
     "scripts-description": {
       "test": "Run unit tests",

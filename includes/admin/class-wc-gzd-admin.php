@@ -820,7 +820,6 @@ class WC_GZD_Admin {
 		if ( current_user_can( 'manage_woocommerce' ) && isset( $_GET['insert-vat-rates'] ) && isset( $_GET['_wpnonce'] ) && check_admin_referer( 'wc-gzd-insert-vat-rates' ) ) {
 
 			WC_GZD_Install::create_tax_rates();
-			WC_GZD_Install::create_virtual_tax_rates();
 
 			// Redirect to check for updates
 			wp_safe_redirect( admin_url( 'admin.php?page=wc-settings&tab=tax&section=standard' ) );

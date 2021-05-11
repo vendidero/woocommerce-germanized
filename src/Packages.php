@@ -31,6 +31,7 @@ class Packages {
 		'woocommerce-trusted-shops'        => '\\Vendidero\\TrustedShops\\Package',
 		'woocommerce-germanized-shipments' => '\\Vendidero\\Germanized\\Shipments\\Package',
 		'woocommerce-germanized-dhl'       => '\\Vendidero\\Germanized\\DHL\\Package',
+		'one-stop-shop-woocommerce'        => '\\Vendidero\\OneStopShop\\Package',
 	];
 
 	/**

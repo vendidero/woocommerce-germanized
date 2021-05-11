@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 class WC_GZD_Settings_Tab_OSS extends WC_GZD_Settings_Tab {
 
 	public function get_description() {
-		return __( '', 'woocommerce-germanized' );
+		return __( 'Comply with the OSS procedure and conveniently generate tax reports.', 'woocommerce-germanized' );
 	}
 
 	public function get_label() {
@@ -26,7 +26,7 @@ class WC_GZD_Settings_Tab_OSS extends WC_GZD_Settings_Tab {
 	}
 
 	public function get_help_link() {
-		return 'https://vendidero.de/dokument/sendungen-zu-bestellungen-erzeugen';
+		return 'https://vendidero.github.io/one-stop-shop-woocommerce';
 	}
 
 	public function get_sections() {

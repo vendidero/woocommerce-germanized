@@ -149,16 +149,16 @@ if ( ! class_exists( 'WC_GZD_Admin_Setup_Wizard' ) ) :
 					),
 					$pages,
 					array(
-						'title' 	=> _x( 'VAT', 'install', 'woocommerce-germanized' ),
-						'desc' 		=> __( 'Let Germanized insert EU VAT rates.', 'woocommerce-germanized' ),
-						'id' 		=> 'woocommerce_gzd_vat_rates',
-						'default'	=> 'yes',
+						'title' 	=> _x( 'OSS status', 'install', 'woocommerce-germanized' ),
+						'desc' 		=> sprintf( __( 'I\'m participating in the <a href="%s" target="_blank" rel="noopener">One Stop Shop procedure</a>.', 'woocommerce-germanized' ), 'https://ec.europa.eu/taxation_customs/business/vat/modernising-vat-cross-border-ecommerce_de' ),
+						'id' 		=> 'oss_use_oss_procedure',
+						'default'	=> 'no',
 						'type' 		=> 'gzd_toggle',
 					),
 					array(
-						'title' 	=> _x( 'Virtual VAT', 'install', 'woocommerce-germanized' ),
-						'desc' 		=> __( 'Let Germanized insert virtual EU VAT rates.', 'woocommerce-germanized' ),
-						'id' 		=> 'woocommerce_gzd_vat_virtual_rates',
+						'title' 	=> _x( 'VAT', 'install', 'woocommerce-germanized' ),
+						'desc' 		=> __( 'Let Germanized insert EU VAT rates.', 'woocommerce-germanized' ),
+						'id' 		=> 'woocommerce_gzd_vat_rates',
 						'default'	=> 'yes',
 						'type' 		=> 'gzd_toggle',
 					),
@@ -588,12 +588,12 @@ if ( ! class_exists( 'WC_GZD_Admin_Setup_Wizard' ) ) :
 			    WC_GZD_Install::create_pages();
 			}
 
-			if ( isset( $_POST['woocommerce_gzd_vat_rates'] ) && ! empty( $_POST['woocommerce_gzd_vat_rates'] ) ) {
-			    WC_GZD_Install::create_tax_rates();
+			if ( isset( $_POST['oss_use_oss_procedure'] ) && ! empty( $_POST['oss_use_oss_procedure'] ) ) {
+			    update_option( 'oss_use_oss_procedure', 'yes' );
 			}
 
-			if ( isset( $_POST['woocommerce_gzd_vat_virtual_rates'] ) && ! empty( $_POST['woocommerce_gzd_vat_virtual_rates'] ) ) {
-			    WC_GZD_Install::create_virtual_tax_rates();
+			if ( isset( $_POST['woocommerce_gzd_vat_rates'] ) && ! empty( $_POST['woocommerce_gzd_vat_rates'] ) ) {
+			    WC_GZD_Install::create_tax_rates();
 			}
 
 			wp_safe_redirect( $redirect );
