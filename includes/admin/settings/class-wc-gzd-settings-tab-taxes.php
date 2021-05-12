@@ -55,7 +55,7 @@ class WC_GZD_Settings_Tab_Taxes extends WC_GZD_Settings_Tab {
 				'title'    => __( 'Tax Rate', 'woocommerce-germanized' ),
 				'desc'     => __( 'Hide specific tax rate within shop pages.', 'woocommerce-germanized' ),
 				'id'       => 'woocommerce_gzd_hide_tax_rate_shop',
-				'default'  => 'no',
+				'default'  => 'yes',
 				'type'     => 'gzd_toggle',
 				'desc_tip' => __( 'This option will make sure that within shop pages no specific tax rates are shown. Instead only incl. tax or excl. tax notice is shown.', 'woocommerce-germanized' ),
 			),

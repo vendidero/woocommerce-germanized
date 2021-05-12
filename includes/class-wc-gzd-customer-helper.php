@@ -43,7 +43,6 @@ class WC_GZD_Customer_Helper {
 		add_filter( 'woocommerce_my_account_my_address_formatted_address', array( $this, 'set_user_address' ), 10, 3 );
 
 		if ( $this->is_double_opt_in_enabled() ) {
-
 			// Check for customer activation
 			add_action( 'template_redirect', array( $this, 'customer_account_activation_check' ) );
 
@@ -54,7 +53,6 @@ class WC_GZD_Customer_Helper {
 			add_action( 'woocommerce_gzd_customer_cleanup', array( $this, 'account_cleanup' ) );
 
 			if ( $this->is_double_opt_in_login_enabled() ) {
-
 				// Disable login for unactivated users
 				add_filter( 'wp_authenticate_user', array( $this, 'login_restriction' ), 10, 2 );
 
@@ -87,12 +85,34 @@ class WC_GZD_Customer_Helper {
 
 				// WC Social Login comp
 				add_filter( 'wc_social_login_set_auth_cookie', array( $this, 'social_login_activation_check' ), 10, 2 );
-			} else {
-				// Add user notice in case the account has not yet been activated
-				add_action( 'template_redirect', array( $this, 'maybe_add_activation_notice' ), 30 );
 			}
+
+			// Add user notice in case the account has not yet been activated
+			add_action( 'template_redirect', array( $this, 'maybe_add_activation_notice' ), 30 );
+
+			add_action( 'woocommerce_created_customer', array( $this, 'set_doi_session' ), 10, 1 );
+
+			// Remove session data
+			add_action( 'wp_login', array( $this, 'delete_doi_session' ) );
+			add_action( 'wp_logout', array( $this, 'delete_doi_session' ) );
 		}
 	}
+
+	public function set_doi_session( $user_id ) {
+		if ( ! is_null( WC()->session ) ) {
+			/**
+			 * Force initializing Woo session
+			 */
+			do_action( 'woocommerce_set_cart_cookies', true );
+			WC()->session->set( 'doi_user_id', $user_id );
+		}
+	}
+
+	public function delete_doi_session() {
+		if ( ! is_null( WC()->session ) && WC()->session->doi_user_id ) {
+			unset( WC()->session->doi_user_id );
+		}
+ 	}
 
 	public function resend_activation_check() {
 		if ( is_account_page() ) {
@@ -101,16 +121,9 @@ class WC_GZD_Customer_Helper {
 				'wc-gzd-resend-activation' === $_GET['action'] &&
 				wp_verify_nonce( $_GET['_wpnonce'], 'wc-gzd-resend-activation' )
 			) {
-				$user_mail = isset( $_GET['mail'] ) ? sanitize_email( wp_unslash( $_GET['mail'] ) ) : '';
-				$user_id   = false;
+				$user_id = ( ! is_null( WC()->session ) && WC()->session->get( 'doi_user_id' ) ) ? absint( WC()->session->get( 'doi_user_id' ) ) : false;
 
-				if ( ! empty( $user_mail ) ) {
-					$user = get_user_by( 'email', $user_mail );
-
-					if ( $user ) {
-						$user_id = $user->ID;
-					}
-				} else {
+				if ( is_user_logged_in() ) {
 					$user_id = get_current_user_id();
 				}
 
@@ -127,7 +140,7 @@ class WC_GZD_Customer_Helper {
 					 */
 					update_user_meta( $user_id, '_gzd_activation_email_sent', ( $time_sent + 1 ) );
 
-					$this->resend_customer_activation_email( $user_id, true );
+					$this->resend_customer_activation_email( $user_id, is_user_logged_in() ? false : true );
 
 					$url = add_query_arg( array( 'wc-gzd-resent' => 'yes' ) );
 					$url = remove_query_arg( array( 'action', '_wpnonce' ), $url );
@@ -150,7 +163,13 @@ class WC_GZD_Customer_Helper {
 	}
 
 	public function maybe_add_activation_notice() {
-		if ( is_user_logged_in() && ! is_cart() && ! is_checkout() && $this->enable_double_opt_in_for_user() && ! wc_gzd_is_customer_activated() && ! isset( $_GET['wc-gzd-resent'] ) ) {
+		$session_user_id = ! is_null( WC()->session ) ? WC()->session->get( 'doi_user_id' ) : false;
+
+		if ( is_user_logged_in() ) {
+			$session_user_id = get_current_user_id();
+		}
+
+		if ( $session_user_id && $session_user_id > 0 && ! is_cart() && ! is_checkout() && $this->enable_double_opt_in_for_user( $session_user_id ) && ! wc_gzd_is_customer_activated( $session_user_id ) && ! isset( $_GET['wc-gzd-resent'] ) ) {
 			$notice_text = sprintf( __( 'Did not receive the activation email? <a href="%s">Try again</a>.', 'woocommerce-germanized' ), $this->get_resend_activation_url() );
 
 			if ( ! wc_has_notice( $notice_text, 'notice' ) ) {
@@ -159,8 +178,8 @@ class WC_GZD_Customer_Helper {
 		}
 	}
 
-	protected function get_resend_activation_url( $user_mail = '' ) {
-		$url = add_query_arg( array( 'action' => 'wc-gzd-resend-activation', 'mail' => $user_mail ), wc_gzd_get_page_permalink( 'myaccount' ) );
+	protected function get_resend_activation_url() {
+		$url = add_query_arg( array( 'action' => 'wc-gzd-resend-activation' ), wc_gzd_get_page_permalink( 'myaccount' ) );
 		$url = wp_nonce_url( $url, 'wc-gzd-resend-activation' );
 
 		return $url;
@@ -363,7 +382,6 @@ class WC_GZD_Customer_Helper {
 	}
 
 	public function disable_registration_auto_login( $result, $user_id ) {
-
 		if ( is_a( $user_id, 'WP_User' ) ) {
 			$user_id = $user_id->ID;
 		}
@@ -437,10 +455,11 @@ class WC_GZD_Customer_Helper {
 	}
 
 	public function login_restriction( $user, $password ) {
-
 		// Has not been activated yet
 		if ( $this->enable_double_opt_in_for_user( $user ) && ! wc_gzd_is_customer_activated( $user->ID ) ) {
-			return new WP_Error( 'woocommerce_gzd_login', sprintf( __( 'Please activate your account through clicking on the activation link received via email. Did not receive the email? <a href="%s">Try again</a>.', 'woocommerce-germanized' ), $this->get_resend_activation_url( $user->user_email ) ) );
+			$this->set_doi_session( $user->ID );
+
+			return new WP_Error( 'woocommerce_gzd_login', sprintf( __( 'Please activate your account through clicking on the activation link received via email. Did not receive the email? <a href="%s">Try again</a>.', 'woocommerce-germanized' ), $this->get_resend_activation_url() ) );
 		}
 
 		return $user;
@@ -711,7 +730,6 @@ class WC_GZD_Customer_Helper {
 	 * @param array $new_customer_data
 	 */
 	public function customer_new_account_activation( $customer_id, $new_customer_data = array(), $password_generated = false ) {
-
 		if ( ! $customer_id ) {
 			return;
 		}
