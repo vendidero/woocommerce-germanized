@@ -1,0 +1,148 @@
+.wc-ts-admin-settings {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  margin-top: 1em; }
+  .wc-ts-admin-settings.wc-gzd-admin-settings-has-sidebar {
+    box-sizing: border-box; }
+    .wc-ts-admin-settings.wc-gzd-admin-settings-has-sidebar .wc-gzd-admin-settings-fields {
+      width: 65%;
+      padding-right: 5%; }
+    .wc-ts-admin-settings.wc-gzd-admin-settings-has-sidebar .wc-gzd-admin-settings-sidebar {
+      margin-top: 1em;
+      width: 30%;
+      box-sizing: border-box; }
+      .wc-ts-admin-settings.wc-gzd-admin-settings-has-sidebar .wc-gzd-admin-settings-sidebar .wc-gzd-admin-settings-sidebar-inner {
+        padding: 1em;
+        background: #FFF;
+        box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1); }
+        .wc-ts-admin-settings.wc-gzd-admin-settings-has-sidebar .wc-gzd-admin-settings-sidebar .wc-gzd-admin-settings-sidebar-inner.sticky {
+          position: sticky;
+          top: 50px; }
+      .wc-ts-admin-settings.wc-gzd-admin-settings-has-sidebar .wc-gzd-admin-settings-sidebar h1:first-of-type, .wc-ts-admin-settings.wc-gzd-admin-settings-has-sidebar .wc-gzd-admin-settings-sidebar h2:first-of-type, .wc-ts-admin-settings.wc-gzd-admin-settings-has-sidebar .wc-gzd-admin-settings-sidebar h3:first-of-type {
+        margin-top: 0; }
+
+.wc-gzd-admin-settings-sidebar a.button {
+  margin-top: 1em; }
+
+.wc-gzd-admin-settings-trusted_shops a.woocommerce-ts-input-toggle-trigger {
+  color: transparent;
+  border: none;
+  text-decoration: none; }
+  .wc-gzd-admin-settings-trusted_shops a.woocommerce-ts-input-toggle-trigger:focus {
+    color: transparent;
+    box-shadow: none;
+    border: none; }
+
+.wc-gzd-admin-settings-trusted_shops .wc-gzd-label-wrap {
+  position: relative;
+  display: block;
+  vertical-align: middle; }
+  .wc-gzd-admin-settings-trusted_shops .wc-gzd-label-wrap .woocommerce-help-tip {
+    margin: -8px -24px 0 0 !important;
+    position: absolute;
+    right: 0;
+    top: 50%; }
+
+.wc-gzd-admin-settings-trusted_shops textarea.wc-ts-has-error, .wc-gzd-admin-settings-trusted_shops input.wc-ts-has-error {
+  border: 1px solid #dc3232; }
+
+.wc-gzd-admin-settings-trusted_shops .wc-ts-error {
+  color: #dc3232;
+  font-weight: bold;
+  font-size: 11px;
+  margin-top: 0.5em;
+  display: block; }
+
+.wc-gzd-admin-settings-trusted_shops table.form-table td.forminp-number .description {
+  position: relative;
+  top: 5px;
+  left: 5px; }
+
+.wc-gzd-admin-settings-trusted_shops table.form-table td.forminp-ts_toggle .woocommerce-ts-input-toggle {
+  margin-right: 5px; }
+
+.wc-gzd-admin-settings-trusted_shops table.form-table td.forminp-select .description {
+  display: block;
+  margin-left: 0;
+  margin-top: 10px; }
+
+.wc-gzd-admin-settings-trusted_shops .trusted-shops-review-collector-wrap {
+  clear: both;
+  margin-top: 15px;
+  float: left;
+  width: 100%; }
+
+.wc-gzd-admin-settings-trusted_shops .review-collector-days {
+  float: left;
+  width: 100%; }
+
+.wc-gzd-admin-settings-trusted_shops .review-collector-days label {
+  padding-top: 5px;
+  display: inline-block;
+  padding-right: 5px; }
+
+.wc-gzd-admin-settings-trusted_shops .review-collector-days input[type=number] {
+  width: 50px !important; }
+
+.wc-gzd-admin-settings-trusted_shops .review-collector-buttons {
+  float: left;
+  width: 100%;
+  margin-top: 10px; }
+
+.wc-gzd-admin-settings-trusted_shops td.forminp-review-collector p.description {
+  clear: both;
+  margin-left: 0 !important;
+  top: 15px !important; }
+
+.wc-gzd-admin-settings-trusted_shops #trusted_shops_options-description .button {
+  margin-left: 10px; }
+
+.wc-gzd-admin-settings-trusted_shops #woocommerce_gzd_trusted_shops_rich_snippets_enable-toggle {
+  display: block;
+  margin-bottom: 15px; }
+
+.wc-gzd-trusted-shops-expert-mode-note {
+  display: none;
+  margin-top: 1em; }
+
+.wc-gzd-trusted-shops-expert-mode-note ul {
+  list-style-type: disc;
+  padding-left: 1.5em; }
+
+.wc-gzd-admin-settings-sidebar-trusted-shops {
+  position: sticky;
+  top: 50px; }
+
+.wc-ts-sidebar {
+  display: none; }
+  .wc-ts-sidebar h3 {
+    font-size: 1.1em; }
+  .wc-ts-sidebar.wc-ts-sidebar-active {
+    display: block; }
+    .wc-ts-sidebar.wc-ts-sidebar-active.wc-ts-sidebar-flex {
+      display: flex; }
+  .wc-ts-sidebar.wc-ts-sidebar-flex {
+    justify-content: flex-start;
+    width: 100%; }
+    .wc-ts-sidebar.wc-ts-sidebar-flex .wc-ts-sidebar-container {
+      flex-grow: 1;
+      flex-shrink: 1;
+      /* do not shrink - initial value: 1 */
+      flex-basis: 50%; }
+  .wc-ts-sidebar img {
+    width: auto;
+    max-width: 100%; }
+  .wc-ts-sidebar .wc-ts-sidebar-desc {
+    margin-top: 1em;
+    display: block; }
+
+#wc-ts-sidebar-product-reviews .wc-ts-sidebar-desc {
+  margin: 1em 0; }
+
+.wc-gzd-ts-notice {
+  border-left: 4px solid #d5e8f9;
+  margin: 5px 0 15px;
+  background: #fff;
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
+  padding: 1px 12px; }
