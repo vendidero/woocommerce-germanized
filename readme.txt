@@ -5,7 +5,7 @@ Requires at least: 5.4
 Tested up to: 5.7
 WC requires at least: 3.9
 WC tested up to: 5.3
-Stable tag: 3.4.6
+Stable tag: 3.4.7
 Requires PHP: 5.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -189,6 +189,16 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 6. Edit pdf documents (Pro)
 
 == Changelog ==
+= 3.4.7 =
+* Improvement: WooCommerce 5.3 compatibility
+* Improvement: Support new price range format (5.3) for sale labels
+* Improvement: DHL differentiate between EU and international products
+* Improvement: Always add variable shopmark data to improve pagebuilder support
+* Improvement: DOI allow resending activation email for non-logged in customers (session)
+* Fix: DHL adjust custom weights in case item total weight is greater than label weight
+* Fix: DHL added endorsement for international shipment
+* Fix: Additional legacy label fixes
+
 = 3.4.6 =
 * Improvement: Do only validate checkboxes in case they are rendered (added hidden input field)
 * Improvement: Allow choosing non-address-printable formats for DP via filter
