@@ -189,6 +189,9 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 6. Edit pdf documents (Pro)
 
 == Changelog ==
+= 3.4.8 =
+* Fix: Readded DHL Paket International for inner-EU shipments
+
 = 3.4.7 =
 * Improvement: WooCommerce 5.3 compatibility
 * Improvement: Support new price range format (5.3) for sale labels
