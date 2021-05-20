@@ -71,7 +71,7 @@ In case you are using our DHL integration you might as well (automatically) crea
 
 = Post & DHL Integration =
 With the help of our built-in Post & DHL integration you can easily create labels for your shipments and add tracking information to the notification emails. Furthermore you can offer DHL Wunschpaket Services to your customers including shipping to Packstation or choosing a preferred location, day and/or time within the checkout.
-You can even let your shipments and labels be generated automatically by Germanized to avoid further manual work. [Learn more](https://vendidero.de/dokumentation/woocommerce-germanized/post-dhl "Post & DHL for WooCommerce") about how our Post & DHL integration works.
+You can even let your shipments and labels be generated automatically by Germanized to avoid further manual work. [Learn more](https://vendidero.de/dokumentation/woocommerce-germanized/versanddienstleister "Post & DHL for WooCommerce") about how our Post & DHL integration works.
 
 = Pro: Premium Support =
 Customers of Germanized for WooCommerce Pro enjoy our high-quality support via tickets. Nevertheless we also seek to offer a good plugin support via our WordPress support forum.

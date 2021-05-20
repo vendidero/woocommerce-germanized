@@ -47,6 +47,10 @@ if ( ! function_exists( 'woocommerce_gzd_template_single_price_unit' ) ) {
 	function woocommerce_gzd_template_single_price_unit() {
 		global $product;
 
+		if ( ! is_a( $product, 'WC_Product' ) ) {
+			return;
+		}
+
 		if ( in_array( $product->get_type(), apply_filters( 'woocommerce_gzd_product_types_supporting_unit_prices', array(
 			'simple',
 			'external',

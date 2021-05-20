@@ -597,13 +597,13 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 					'woocommerce-all-products-for-subscriptions'  => 'WC_GZD_Compatibility_WooCommerce_All_Products_For_Subscriptions',
 					'b2b-market'                                  => 'WC_GZD_Compatibility_B2B_Market',
 					'paypal-express-checkout'                     => 'WC_GZD_Compatibility_PayPal_Express_Checkout',
-					'woocommerce-memberships'                     => 'WC_GZD_Compatibility_WooCommerce_Memberships'
+					'woocommerce-memberships'                     => 'WC_GZD_Compatibility_WooCommerce_Memberships',
+					'addify-role-based-pricing'                   => 'WC_GZD_Compatibility_Addify_Role_Based_Pricing'
 				)
 			);
 
 			foreach ( $plugins as $comp => $classname ) {
 				if ( class_exists( $classname ) && is_callable( array( $classname, 'is_applicable' ) ) ) {
-
 					if ( $classname::is_applicable() ) {
 						$this->compatibilities[ $comp ] = new $classname();
 					}
