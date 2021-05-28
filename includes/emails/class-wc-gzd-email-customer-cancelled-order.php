@@ -36,6 +36,7 @@ if ( ! class_exists( 'WC_GZD_Email_Customer_Cancelled_Order' ) ) :
 			add_action( 'woocommerce_order_status_pending_to_failed_notification', array( $this, 'trigger_failed' ), 10, 1 );
 			add_action( 'woocommerce_order_status_on-hold_to_failed_notification', array( $this, 'trigger_failed' ), 10, 1 );
 
+			add_action( 'woocommerce_order_status_pending_to_cancelled_notification', array( $this, 'trigger' ), 10, 1 );
 			add_action( 'woocommerce_order_status_processing_to_cancelled_notification', array( $this, 'trigger' ), 10, 1 );
 			add_action( 'woocommerce_order_status_on-hold_to_cancelled_notification', array( $this, 'trigger' ), 10, 1 );
 
