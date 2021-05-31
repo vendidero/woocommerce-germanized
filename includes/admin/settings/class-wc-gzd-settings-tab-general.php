@@ -92,7 +92,7 @@ class WC_GZD_Settings_Tab_General extends WC_GZD_Settings_Tab {
 			),
 			array(
 				'title'    => __( 'Privacy Policy', 'woocommerce-germanized' ),
-				'desc_tip' => __( 'This page should contain information regarding your data security policy.', 'woocommerce-germanized' ),
+				'desc_tip' => __( 'This page should contain information regarding your privacy policy.', 'woocommerce-germanized' ),
 				'id'       => 'woocommerce_data_security_page_id',
 				'type'     => 'single_select_page',
 				'default'  => '',

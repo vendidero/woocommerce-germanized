@@ -31,6 +31,19 @@ window.germanized = window.germanized || {};
             }
         },
 
+        abortAjaxRequests: function() {
+            var self = germanized.single_product;
+
+            /**
+             * Cancel requests
+             */
+            if ( self.requests.length > 0 ) {
+                for ( var i = 0; i < self.requests.length; i++ ) {
+                    self.requests[i].abort();
+                }
+            }
+        },
+
         onFoundVariation: function( event, variation ) {
             var self = germanized.single_product;
 
@@ -74,13 +87,14 @@ window.germanized = window.germanized || {};
         },
 
         onChangePrice: function( event ) {
+            var self = germanized.single_product;
+
             /**
              * Need to use a tweak here to make sure our variation listener
              * has already adjusted the variationId (in case necessary).
              */
             setTimeout(function() {
-                var self  = germanized.single_product,
-                    priceData = self.getCurrentPriceData();
+                var priceData = self.getCurrentPriceData();
 
                 event.preventDefault();
 
@@ -118,6 +132,17 @@ window.germanized = window.germanized || {};
             $ ( document ).off( 'ajaxStop', self.onAjaxStopRefresh );
         },
 
+        getCurrentProductId: function() {
+            var self      = germanized.single_product,
+                productId = self.productId;
+
+            if ( self.variationId > 0 ) {
+                productId = self.variationId;
+            }
+
+            return parseInt( productId );
+        },
+
         getRawPrice: function( $el ) {
             var self      = germanized.single_product,
                 price_raw = $el.length > 0 ? $el.text() : '',
@@ -134,15 +159,7 @@ window.germanized = window.germanized || {};
 
         refreshUnitPrice: function( price, $unit_price, sale_price ) {
             var self = germanized.single_product;
-
-            /**
-             * Cancel requests
-             */
-            if ( self.requests.length > 0 ) {
-                for ( var i = 0; i < self.requests.length; i++ ) {
-                    self.requests[i].abort();
-                }
-            }
+            self.abortAjaxRequests();
 
             self.requests.push( $.ajax({
                 type: "POST",
@@ -154,8 +171,14 @@ window.germanized = window.germanized || {};
                     'price_sale': sale_price
                 },
                 success: function( data ) {
-                    if ( data.hasOwnProperty( 'unit_price_html' ) ) {
-                        $unit_price.html( data.unit_price_html );
+                    /**
+                     * Do only adjust unit price in case current product id has not changed
+                     * in the meantime (e.g. variation change).
+                     */
+                    if ( parseInt( data.product_id ) === self.getCurrentProductId() ) {
+                        if ( data.hasOwnProperty( 'unit_price_html' ) ) {
+                            $unit_price.html( data.unit_price_html );
+                        }
                     }
 
                     /**

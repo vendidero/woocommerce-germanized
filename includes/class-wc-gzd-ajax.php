@@ -241,6 +241,7 @@ class WC_GZD_AJAX {
 		wp_send_json( array(
 			'result'          => 'success',
 			'unit_price_html' => $product->get_unit_price_html(),
+			'product_id'      => $product_id
 		) );
 	}
 
