@@ -208,8 +208,9 @@ class WC_GZD_Product_Variable extends WC_GZD_Product {
 
 		global $wp_filter;
 
-		$transient_name = 'wc_gzd_var_unit_prices_' . $this->child->get_id();
-		$tax_display = $tax_display ? $tax_display : get_option( 'woocommerce_tax_display_shop', 'excl' );
+		$transient_name    = 'wc_gzd_var_unit_prices_' . $this->child->get_id();
+		$transient_version = WC_Cache_Helper::get_transient_version( 'product' );
+		$tax_display       = $tax_display ? $tax_display : get_option( 'woocommerce_tax_display_shop', 'excl' );
 
 		/**
 		 * Create unique cache key based on the tax location (affects displayed/cached prices), product version and active price filters.
@@ -238,6 +239,13 @@ class WC_GZD_Product_Variable extends WC_GZD_Product {
 			}
 		}
 
+		// Check if prices array is stale.
+		if ( ! isset( $this->unit_prices_array['version'] ) || $this->unit_prices_array['version'] !== $transient_version ) {
+			$this->unit_prices_array = array(
+				'version' => $transient_version,
+			);
+		}
+
 		/**
 		 * Filter to adjust variable unit prices hash.
 		 * This hash is used to get a transient with cached variable unit prices.
@@ -258,8 +266,8 @@ class WC_GZD_Product_Variable extends WC_GZD_Product {
 			$this->unit_prices_array = array_filter( (array) json_decode( strval( get_transient( $transient_name ) ), true ) );
 
 			// If the product version has changed, reset cache
-			if ( empty( $this->unit_prices_array['version'] ) || $this->unit_prices_array['version'] !== WC_Cache_Helper::get_transient_version( 'product' ) ) {
-				$this->unit_prices_array = array( 'version' => WC_Cache_Helper::get_transient_version( 'product' ) );
+			if ( empty( $this->unit_prices_array['version'] ) || $this->unit_prices_array['version'] !== $transient_version ) {
+				$this->unit_prices_array = array( 'version' => $transient_version );
 			}
 
 			// If the prices are not stored for this hash, generate them
