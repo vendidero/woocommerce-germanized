@@ -235,7 +235,6 @@ class WC_Germanized_Meta_Box_Product_Data {
 			$types = get_option( 'woocommerce_gzd_display_delivery_time_hidden_types', array() );
 
 			if ( ! in_array( 'virtual', $types ) ) {
-
 				// Remove default delivery time selection - otherwise input would exist 2 times
 				remove_action( 'woocommerce_product_options_shipping', array( __CLASS__, 'output_shipping' ), 10 );
 				self::output_shipping();

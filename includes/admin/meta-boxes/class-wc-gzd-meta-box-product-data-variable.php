@@ -48,12 +48,24 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 		<?php
 	}
 
+	protected static function get_delivery_time_wrapper_classes() {
+		$delivery_time_classes = array( 'hide_if_variation_virtual' );
+		$hidden_types          = get_option( 'woocommerce_gzd_display_delivery_time_hidden_types', array() );
+
+		if ( ! in_array( 'virtual', $hidden_types ) ) {
+		    $delivery_time_classes = array_diff( $delivery_time_classes, array( 'hide_if_variation_virtual' ) );
+		}
+
+		return implode( ' ', $delivery_time_classes );
+	}
+
 	public static function output( $loop, $variation_data, $variation ) {
 		$_product           = wc_get_product( $variation );
 		$_parent            = wc_get_product( $_product->get_parent_id() );
 		$gzd_product        = wc_gzd_get_product( $_product );
 		$gzd_parent_product = wc_gzd_get_product( $_parent );
 		$delivery_time      = $gzd_product->get_delivery_time( 'edit' );
+
 		?>
 
         <div class="variable_pricing_labels">
@@ -121,7 +133,7 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 				<?php printf( __( 'To enable unit prices on variation level please choose a unit and unit price units within %s.', 'woocommerce-germanized' ), '<a href="#general_product_data" class="wc-gzd-general-product-data-tab">' . __( 'general product data', 'woocommerce-germanized' ) . '</a>' ); ?>
             </p>
         </div>
-        <div class="variable_shipping_time hide_if_variation_virtual">
+        <div class="variable_shipping_time variable_delivery_time <?php echo esc_attr( self::get_delivery_time_wrapper_classes() ); ?>">
             <p class="form-row form-row-first">
                 <label for="delivery_time"><?php _e( 'Delivery Time', 'woocommerce-germanized' ); ?></label>
 
