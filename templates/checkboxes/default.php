@@ -43,6 +43,9 @@ do_action( "woocommerce_gzd_before_legal_checkbox_{$checkbox_id}", $checkbox );
                    id="<?php echo esc_attr( $checkbox->get_html_id() ); ?>"/>
 		<?php endif; ?>
         <span class="woocommerce-gzd-<?php echo esc_attr( $checkbox->get_html_id() ); ?>-checkbox-text"><?php echo $checkbox->get_label(); ?></span>
+        <?php if ( $checkbox->is_mandatory() ) : ?>
+            &nbsp;<abbr class="required" title="<?php echo esc_attr__( 'required', 'woocommerce-germanized' ); ?>">*</abbr>
+        <?php endif; ?>
         <input type="hidden" name="<?php echo esc_attr( $checkbox->get_html_name() ); ?>-field" value="1" />
     </label>
 </p>

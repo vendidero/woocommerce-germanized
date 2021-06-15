@@ -42,8 +42,10 @@ do_action( "woocommerce_gzd_before_legal_checkbox_{$checkbox_id}", $checkbox );
                name="<?php echo esc_attr( $checkbox->get_html_name() ); ?>"
                id="<?php echo esc_attr( $checkbox->get_html_id() ); ?>"/>
         <span class="woocommerce-gzd-<?php echo esc_attr( $checkbox->get_html_id() ); ?>-checkbox-text"><?php echo $checkbox->get_label(); ?></span>
+	    <?php if ( $checkbox->is_mandatory() ) : ?>
+            &nbsp;<abbr class="required" title="<?php echo esc_attr__( 'required', 'woocommerce-germanized' ); ?>">*</abbr>
+	    <?php endif; ?>
         <a href="" rel="prettyPhoto" id="show-direct-debit-pretty" class="hidden"></a>
-
         <input type="hidden" name="<?php echo esc_attr( $checkbox->get_html_name() ); ?>-field" value="1" />
     </label>
 </p>
