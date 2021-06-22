@@ -572,9 +572,8 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 			 * @param array $settings The settings to be added as wp_option on install.
 			 *
 			 * @since 1.0.0
-			 *
 			 */
-			$options = apply_filters( 'woocommerce_gzd_installation_default_settings', $settings->get_settings() );
+			$options = apply_filters( 'woocommerce_gzd_installation_default_settings', $settings->get_settings_for_section( '' ) );
 
 			$manager = WC_GZD_Legal_Checkbox_Manager::instance();
 			$manager->do_register_action();
@@ -609,7 +608,6 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 				}
 			}
 		}
-
 	}
 
 endif;

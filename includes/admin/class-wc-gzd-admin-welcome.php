@@ -136,39 +136,27 @@ class WC_GZD_Admin_Welcome {
                     zur <span class="wc-gzd-pro">pro</span> Version</a>
             </p>
 
-            <?php if ( \Vendidero\Germanized\Shipments\Package::is_packing_supported() ) : ?>
-                <div class="changelog new-feature">
-                    <h3>Neu: Automatisiertes Packen von Sendungen <span class="wc-gzd-pro wc-gzd-pro-outlined">pro</span></h3>
+            <div class="changelog new-feature">
+                <h3>One Stop Shop (OSS)</h3>
 
-                    <div class="columns two-col">
-                        <div class="col col-center">
-                            <img src="<?php echo WC_germanized()->plugin_url(); ?>/assets/images/automated-packing.png"/>
-                        </div>
-                        <div class="col">
-                            <p>
-                                Wir machen es euch nun noch leichter bei der Sendungsverwaltung: Mit Germanized Pro könnt ihr nun mit Hilfe eines Algorithmus eure Sendungen
-                                automatisch packen lassen. Das Packen geschieht auf Basis der von euch hinterlegten Verpackungen. Damit lassen sich Bestellungen nun automatisch
-                                in mehrere Sendungen aufteilen, falls die Positionen nicht in eine der verfügbaren Verpackungen passen. <br/><br/>Damit könnt ihr direkt und ohne weitere Kontrolle mit der Versandvorbereitung beginnen.</p>
+                <div class="columns two-col">
+                    <div class="col col-center">
+                        <img src="<?php echo WC_germanized()->plugin_url(); ?>/assets/images/oss.png" style="max-width: 450px;"/>
+                    </div>
+                    <div class="col">
+                        <p>
+                            Ab dem 01.07.2021 gilt das <a href="https://ec.europa.eu/taxation_customs/business/vat/oss_de" target="_blank">One Stop Shop Verfahren</a> für B2C Lieferung in das EU-Ausland. Damit du prüfen kannst ob du vom Verfahren betroffen bist, stellt
+                            Germanized umfassende Werkzeuge bereit. Mit Hilfe der Berichte kannst du schnell entscheiden, ob du über die Lieferschwelle von 10.000 Euro gerätst oder nicht.<br/><br/>Solltest du das OSS Verfahren nutzen (müssen) hilft dir
+                            Germanized dabei regelmäßig Berichte zu erstellen und sicherzustellen, dass die Steuer für Kunden aus dem EU-Ausland weiterhin korrekt berechnet wird.
+                        </p>
 
-                            <div class="wc-germanized-welcome-pro">
-                                <a href="https://vendidero.de/woocommerce-germanized" target="_blank"
-                                   class="button button-primary wc-gzd-button"><span class="wc-gzd-pro">pro</span> Version
-                                    entdecken</a>
-                                <p class="price smaller">ab 69 € inkl. MwSt. - inkl. 1 Jahr Updates & Premium
-                                    Support!</p>
-                            </div>
-
-                            <div class="wc-gzd-actions">
-                                <a href="https://vendidero.de/dokument/sendungen-automatisiert-packen" target="_blank" class="button button-primary">Weitere Informationen</a>
-
-                                <?php if ( WC_germanized()->is_pro() ) : ?>
-                                    <a href="<?php echo esc_url( admin_url( 'admin.php?page=wc-settings&tab=germanized-shipments&section=packaging' ) ); ?>" target="_blank" class="button button-primary">Einstellungen</a>
-                                <?php endif; ?>
-                            </div>
+                        <div class="wc-gzd-actions">
+                            <a href="<?php echo admin_url( 'admin.php?page=wc-settings&tab=germanized-oss' ); ?>" class="button button-primary">Einstellungen anpassen</a>
+                            <a href="https://vendidero.de/one-stop-shop-verfahren-oss-in-woocommerce-einfach-umsetzen" target="_blank" class="button button-secondary">Mehr erfahren</a>
                         </div>
                     </div>
                 </div>
-            <?php endif; ?>
+            </div>
 
             <div class="changelog new-feature">
                 <h3>Neu: PDF-Dokumente visuell bearbeiten <span class="wc-gzd-pro wc-gzd-pro-outlined">pro</span></h3>

@@ -170,10 +170,10 @@ abstract class WC_GZD_Settings_Tab extends WC_Settings_Page {
 		return false;
 	}
 
-	public function get_settings( $current_section = '' ) {
-		$settings = $this->get_tab_settings( $current_section );
+	private function _get_settings( $section_id ) {
+		$settings = $this->get_tab_settings( $section_id );
 
-		if ( empty( $current_section ) ) {
+		if ( empty( $section_id ) ) {
 			/**
 			 * Filter to adjust the settings for a certain settings tab.
 			 *
@@ -182,7 +182,6 @@ abstract class WC_GZD_Settings_Tab extends WC_Settings_Page {
 			 * @param array $settings Array containing settings data.
 			 *
 			 * @since 3.0.0
-			 *
 			 */
 			$settings = apply_filters( "woocommerce_gzd_admin_settings_tab_{$this->get_name()}", $settings );
 		} else {
@@ -195,9 +194,8 @@ abstract class WC_GZD_Settings_Tab extends WC_Settings_Page {
 			 * @param array $settings Array containing settings data.
 			 *
 			 * @since 3.0.0
-			 *
 			 */
-			$settings = apply_filters( "woocommerce_gzd_admin_settings_tab_{$this->get_name()}_{$current_section}", $settings );
+			$settings = apply_filters( "woocommerce_gzd_admin_settings_tab_{$this->get_name()}_{$section_id}", $settings );
 		}
 
 		/**
@@ -205,12 +203,20 @@ abstract class WC_GZD_Settings_Tab extends WC_Settings_Page {
 		 *
 		 * @param array $settings Array containing settings data.
 		 * @param string $tab_name The name of the tab e.g. checkboxes
-		 * @param string $current_section The section name e.g. product_widgets. Might be empty too.
+		 * @param string $section_id The section name e.g. product_widgets. Might be empty too.
 		 *
 		 * @since 3.0.0
 		 *
 		 */
-		return apply_filters( "woocommerce_gzd_admin_settings", $settings, $this->get_name(), $current_section );
+		return apply_filters( "woocommerce_gzd_admin_settings", $settings, $this->get_name(), $section_id );
+	}
+
+	public function get_settings_for_section_core( $section_id ) {
+		return $this->_get_settings( $section_id );
+	}
+
+	public function get_settings( $section_id = '' ) {
+		return $this->_get_settings( $section_id );
 	}
 
 	abstract public function get_tab_settings( $current_section = '' );
@@ -241,7 +247,7 @@ abstract class WC_GZD_Settings_Tab extends WC_Settings_Page {
 		$current_section  = $this->get_current_section();
 		$current_tab      = $this->get_id();
 		$current_tab_name = $this->get_name();
-		$settings         = $this->get_settings( $this->get_current_section() );
+		$settings         = $this->get_settings_for_section( $this->get_current_section() );
 		$sidebar          = $this->get_sidebar( $this->get_current_section() );
 
 		if ( ! $this->is_saveable() ) {
@@ -370,7 +376,7 @@ abstract class WC_GZD_Settings_Tab extends WC_Settings_Page {
 	public function save() {
 		global $current_section;
 
-		$settings = $this->get_settings( $current_section );
+		$settings = $this->get_settings_for_section( $current_section );
 
 		$this->before_save( $settings, $current_section );
 		WC_Admin_Settings::save_fields( $settings );

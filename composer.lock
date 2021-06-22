@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "822a8db7e765d42a175169fe3b7860ab",
+    "content-hash": "03f26ff450c6861069156c1aafd0d755",
     "packages": [
         {
             "name": "automattic/jetpack-autoloader",
@@ -537,16 +537,16 @@
         },
         {
             "name": "vendidero/one-stop-shop-woocommerce",
-            "version": "v1.0.0",
+            "version": "v1.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vendidero/one-stop-shop-woocommerce.git",
-                "reference": "97067e4678c126097ba3719594bfbdc6ab7aa847"
+                "reference": "46fa15ef3aaa676acc3ddfe928f1a92cbd79e8fd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vendidero/one-stop-shop-woocommerce/zipball/97067e4678c126097ba3719594bfbdc6ab7aa847",
-                "reference": "97067e4678c126097ba3719594bfbdc6ab7aa847",
+                "url": "https://api.github.com/repos/vendidero/one-stop-shop-woocommerce/zipball/46fa15ef3aaa676acc3ddfe928f1a92cbd79e8fd",
+                "reference": "46fa15ef3aaa676acc3ddfe928f1a92cbd79e8fd",
                 "shasum": ""
             },
             "require": {
@@ -575,10 +575,10 @@
             "description": "One Stop Shop Helper for WooCommerce",
             "homepage": "https://github.com/vendidero/one-stop-shop-woocommerce",
             "support": {
-                "source": "https://github.com/vendidero/one-stop-shop-woocommerce/tree/v1.0.0",
+                "source": "https://github.com/vendidero/one-stop-shop-woocommerce/tree/v1.0.3",
                 "issues": "https://github.com/vendidero/one-stop-shop-woocommerce/issues"
             },
-            "time": "2021-05-11T07:48:47+00:00"
+            "time": "2021-06-16T08:24:54+00:00"
         },
         {
             "name": "vendidero/woocommerce-germanized-dhl",
@@ -2247,16 +2247,16 @@
         },
         {
             "name": "symfony/polyfill-ctype",
-            "version": "v1.22.1",
+            "version": "v1.23.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-ctype.git",
-                "reference": "c6c942b1ac76c82448322025e084cadc56048b4e"
+                "reference": "46cd95797e9df938fdd2b03693b5fca5e64b01ce"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-ctype/zipball/c6c942b1ac76c82448322025e084cadc56048b4e",
-                "reference": "c6c942b1ac76c82448322025e084cadc56048b4e",
+                "url": "https://api.github.com/repos/symfony/polyfill-ctype/zipball/46cd95797e9df938fdd2b03693b5fca5e64b01ce",
+                "reference": "46cd95797e9df938fdd2b03693b5fca5e64b01ce",
                 "shasum": ""
             },
             "require": {
@@ -2268,7 +2268,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "1.22-dev"
+                    "dev-main": "1.23-dev"
                 },
                 "thanks": {
                     "name": "symfony/polyfill",
@@ -2306,7 +2306,7 @@
                 "portable"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-ctype/tree/v1.22.1"
+                "source": "https://github.com/symfony/polyfill-ctype/tree/v1.23.0"
             },
             "funding": [
                 {
@@ -2322,7 +2322,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-01-07T16:49:33+00:00"
+            "time": "2021-02-19T12:13:01+00:00"
         },
         {
             "name": "theseer/tokenizer",

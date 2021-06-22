@@ -150,7 +150,7 @@ if ( ! class_exists( 'WC_GZD_Admin_Setup_Wizard' ) ) :
 					$pages,
 					array(
 						'title' 	=> _x( 'OSS status', 'install', 'woocommerce-germanized' ),
-						'desc' 		=> sprintf( __( 'I\'m participating in the <a href="%s" target="_blank" rel="noopener">One Stop Shop procedure</a>.', 'woocommerce-germanized' ), 'https://ec.europa.eu/taxation_customs/business/vat/modernising-vat-cross-border-ecommerce_de' ),
+						'desc' 		=> sprintf( __( 'I\'m participating in the <a href="%s" target="_blank" rel="noopener">One Stop Shop procedure</a>.', 'woocommerce-germanized' ), 'https://ec.europa.eu/taxation_customs/business/vat/oss_de' ),
 						'id' 		=> 'oss_use_oss_procedure',
 						'default'	=> 'no',
 						'type' 		=> 'gzd_toggle',
