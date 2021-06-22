@@ -3,13 +3,13 @@
  * Plugin Name: Germanized for WooCommerce
  * Plugin URI: https://www.vendidero.de/woocommerce-germanized
  * Description: Germanized for WooCommerce extends WooCommerce to become a legally compliant store in the german market.
- * Version: 3.4.6
+ * Version: 3.4.8
  * Author: vendidero
  * Author URI: https://vendidero.de
  * Requires at least: 4.9
  * Tested up to: 5.7
  * WC requires at least: 3.9
- * WC tested up to: 5.2
+ * WC tested up to: 5.3
  *
  * Text Domain: woocommerce-germanized
  * Domain Path: /i18n/languages/
@@ -69,7 +69,7 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 		 *
 		 * @var string
 		 */
-		public $version = '3.4.6';
+		public $version = '3.4.8';
 
 		/**
 		 * @var WooCommerce_Germanized $instance of the plugin
@@ -597,13 +597,13 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 					'woocommerce-all-products-for-subscriptions'  => 'WC_GZD_Compatibility_WooCommerce_All_Products_For_Subscriptions',
 					'b2b-market'                                  => 'WC_GZD_Compatibility_B2B_Market',
 					'paypal-express-checkout'                     => 'WC_GZD_Compatibility_PayPal_Express_Checkout',
-					'woocommerce-memberships'                     => 'WC_GZD_Compatibility_WooCommerce_Memberships'
+					'woocommerce-memberships'                     => 'WC_GZD_Compatibility_WooCommerce_Memberships',
+					'addify-role-based-pricing'                   => 'WC_GZD_Compatibility_Addify_Role_Based_Pricing'
 				)
 			);
 
 			foreach ( $plugins as $comp => $classname ) {
 				if ( class_exists( $classname ) && is_callable( array( $classname, 'is_applicable' ) ) ) {
-
 					if ( $classname::is_applicable() ) {
 						$this->compatibilities[ $comp ] = new $classname();
 					}

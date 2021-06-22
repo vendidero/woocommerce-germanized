@@ -5,7 +5,7 @@ Requires at least: 5.4
 Tested up to: 5.7
 WC requires at least: 3.9
 WC tested up to: 5.3
-Stable tag: 3.4.6
+Stable tag: 3.4.8
 Requires PHP: 5.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -71,7 +71,7 @@ In case you are using our DHL integration you might as well (automatically) crea
 
 = Post & DHL Integration =
 With the help of our built-in Post & DHL integration you can easily create labels for your shipments and add tracking information to the notification emails. Furthermore you can offer DHL Wunschpaket Services to your customers including shipping to Packstation or choosing a preferred location, day and/or time within the checkout.
-You can even let your shipments and labels be generated automatically by Germanized to avoid further manual work. [Learn more](https://vendidero.de/dokumentation/woocommerce-germanized/post-dhl "Post & DHL for WooCommerce") about how our Post & DHL integration works.
+You can even let your shipments and labels be generated automatically by Germanized to avoid further manual work. [Learn more](https://vendidero.de/dokumentation/woocommerce-germanized/versanddienstleister "Post & DHL for WooCommerce") about how our Post & DHL integration works.
 
 = Pro: Premium Support =
 Customers of Germanized for WooCommerce Pro enjoy our high-quality support via tickets. Nevertheless we also seek to offer a good plugin support via our WordPress support forum.
@@ -189,6 +189,19 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 6. Edit pdf documents (Pro)
 
 == Changelog ==
+= 3.4.8 =
+* Fix: Readded DHL Paket International for inner-EU shipments
+
+= 3.4.7 =
+* Improvement: WooCommerce 5.3 compatibility
+* Improvement: Support new price range format (5.3) for sale labels
+* Improvement: DHL differentiate between EU and international products
+* Improvement: Always add variable shopmark data to improve pagebuilder support
+* Improvement: DOI allow resending activation email for non-logged in customers (session)
+* Fix: DHL adjust custom weights in case item total weight is greater than label weight
+* Fix: DHL added endorsement for international shipment
+* Fix: Additional legacy label fixes
+
 = 3.4.6 =
 * Improvement: Do only validate checkboxes in case they are rendered (added hidden input field)
 * Improvement: Allow choosing non-address-printable formats for DP via filter

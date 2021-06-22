@@ -240,7 +240,7 @@ function wc_gzd_get_legal_pages( $email_attachable_only = false ) {
 		'terms'         => __( 'Terms & Conditions', 'woocommerce-germanized' ),
 		'revocation'    => __( 'Cancellation Policy', 'woocommerce-germanized' ),
 		'imprint'       => __( 'Imprint', 'woocommerce-germanized' ),
-		'data_security' => __( 'Data Security', 'woocommerce-germanized' ),
+		'data_security' => __( 'Privacy Policy', 'woocommerce-germanized' ),
 	);
 
 	$secondary_pages = array(

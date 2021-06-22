@@ -472,8 +472,8 @@ class WC_GZD_Product {
 			return $price_html;
 		}
 
-		preg_match( "/<del>(.*?)<\\/del>/si", $price_html, $match_regular );
-		preg_match( "/<ins>(.*?)<\\/ins>/si", $price_html, $match_sale );
+		preg_match( "/<del.*>(.*?)<\\/del>/si", $price_html, $match_regular );
+		preg_match( "/<ins.*>(.*?)<\\/ins>/si", $price_html, $match_sale );
 		preg_match( "/<small .*>(.*?)<\\/small>/si", $price_html, $match_suffix );
 
 		if ( empty( $match_sale ) || empty( $match_regular ) ) {

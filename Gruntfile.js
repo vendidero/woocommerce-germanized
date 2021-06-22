@@ -1,17 +1,17 @@
 /* jshint node:true */
 module.exports = function( grunt ) {
-	'use strict';
+    'use strict';
     var sass = require( 'node-sass' );
 
-	grunt.initConfig({
+    grunt.initConfig({
 
-		// Setting folder templates.
-		dirs: {
-			css: 'assets/css',
-			fonts: 'assets/fonts',
-			images: 'assets/images',
-			js: 'assets/js'
-		},
+        // Setting folder templates.
+        dirs: {
+            css: 'assets/css',
+            fonts: 'assets/fonts',
+            images: 'assets/images',
+            js: 'assets/js'
+        },
 
 		// Minify .js files.
 		uglify: {
@@ -56,7 +56,6 @@ module.exports = function( grunt ) {
 				}]
 			}
 		},
-
         // Compile all .scss files.
         sass: {
             compile: {
@@ -74,16 +73,16 @@ module.exports = function( grunt ) {
             }
         },
 
-		// Minify all .css files.
-		cssmin: {
-			minify: {
-				expand: true,
-				cwd: '<%= dirs.css %>/',
-				src: ['*.css', '!*.min.css'],
-				dest: '<%= dirs.css %>/',
-				ext: '.min.css'
-			}
-		},
+        // Minify all .css files.
+        cssmin: {
+            minify: {
+                expand: true,
+                cwd: '<%= dirs.css %>/',
+                src: ['*.css', '!*.min.css'],
+                dest: '<%= dirs.css %>/',
+                ext: '.min.css'
+            }
+        },
 
         // Concatenate select2.css onto the admin.css files.
         concat: {
@@ -92,8 +91,8 @@ module.exports = function( grunt ) {
             }
         },
 
-		// Watch changes for assets.
-		watch: {
+        // Watch changes for assets.
+        watch: {
             css: {
                 files: ['<%= dirs.css %>/*.scss'],
                 tasks: ['sass', 'postcss', 'cssmin', 'concat']
@@ -172,18 +171,18 @@ module.exports = function( grunt ) {
     grunt.loadNpmTasks( 'grunt-contrib-watch' );
     grunt.loadNpmTasks( 'grunt-contrib-clean' );
 
-	// Register tasks
-	grunt.registerTask( 'default', [
-		'css',
-		'uglify'
-	]);
+    // Register tasks
+    grunt.registerTask( 'default', [
+        'css',
+        'uglify'
+    ]);
 
-	grunt.registerTask( 'css', [
+    grunt.registerTask( 'css', [
         'sass',
         'postcss',
         'cssmin',
         'concat'
-	]);
+    ]);
 
     grunt.registerTask( 'assets', [
         'css',

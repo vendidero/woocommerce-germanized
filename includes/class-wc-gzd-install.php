@@ -513,7 +513,7 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 			$pages = apply_filters( 'woocommerce_gzd_create_pages', array(
 				'data_security'   => array(
 					'name'    => _x( 'data-security', 'Page slug', 'woocommerce-germanized' ),
-					'title'   => _x( 'Data Security Statement', 'Page title', 'woocommerce-germanized' ),
+					'title'   => _x( 'Privacy Policy', 'Page title', 'woocommerce-germanized' ),
 					'content' => ''
 				),
 				'imprint'         => array(
