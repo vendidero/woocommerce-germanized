@@ -13,50 +13,49 @@ module.exports = function( grunt ) {
             js: 'assets/js'
         },
 
-        // Minify .js files.
-        uglify: {
-            options: {
-                preserveComments: 'some'
-            },
-            admin: {
-                files: [{
-                    expand: true,
-                    cwd: '<%= dirs.js %>/admin/',
-                    src: [
-                        '*.js',
-                        '!*.min.js',
-                        '!Gruntfile.js'
-                    ],
-                    dest: '<%= dirs.js %>/admin/',
-                    ext: '.min.js'
-                }]
-            },
-            frontend: {
-                files: [{
-                    expand: true,
-                    cwd: '<%= dirs.js %>/',
-                    src: [
-                        '*.js',
-                        '!*.min.js'
-                    ],
-                    dest: '<%= dirs.js %>/',
-                    ext: '.min.js'
-                }]
-            },
-            direct_debit: {
-                files: [{
-                    expand: true,
-                    cwd: 'includes/gateways/direct-debit/assets/js/',
-                    src: [
-                        '*.js',
-                        '!*.min.js'
-                    ],
-                    dest: 'includes/gateways/direct-debit/assets/js/',
-                    ext: '.min.js'
-                }]
-            }
-        },
-
+		// Minify .js files.
+		uglify: {
+			options: {
+				preserveComments: 'some'
+			},
+			admin: {
+				files: [{
+					expand: true,
+					cwd: '<%= dirs.js %>/admin/',
+					src: [
+						'*.js',
+						'!*.min.js',
+						'!Gruntfile.js'
+					],
+					dest: '<%= dirs.js %>/admin/',
+					ext: '.min.js'
+				}]
+			},
+			frontend: {
+				files: [{
+					expand: true,
+					cwd: '<%= dirs.js %>/',
+					src: [
+						'*.js',
+						'!*.min.js'
+					],
+					dest: '<%= dirs.js %>/',
+					ext: '.min.js'
+				}]
+			},
+			direct_debit: {
+				files: [{
+					expand: true,
+					cwd: 'includes/gateways/direct-debit/assets/js/',
+					src: [
+						'*.js',
+						'!*.min.js'
+					],
+					dest: 'includes/gateways/direct-debit/assets/js/',
+					ext: '.min.js'
+				}]
+			}
+		},
         // Compile all .scss files.
         sass: {
             compile: {
@@ -98,16 +97,16 @@ module.exports = function( grunt ) {
                 files: ['<%= dirs.css %>/*.scss'],
                 tasks: ['sass', 'postcss', 'cssmin', 'concat']
             },
-            js: {
-                files: [
-                    '<%= dirs.js %>/admin/*js',
-                    '<%= dirs.js %>/*js',
-                    '!<%= dirs.js %>/admin/*.min.js',
-                    '!<%= dirs.js %>/*.min.js'
-                ],
-                tasks: ['uglify']
-            }
-        },
+			js: {
+				files: [
+					'<%= dirs.js %>/admin/*js',
+					'<%= dirs.js %>/*js',
+					'!<%= dirs.js %>/admin/*.min.js',
+					'!<%= dirs.js %>/*.min.js'
+				],
+				tasks: ['uglify']
+			}
+		},
 
         // Check textdomain errors.
         checktextdomain: {
@@ -158,9 +157,9 @@ module.exports = function( grunt ) {
                 ]
             }
         }
-    });
+	});
 
-    // Load NPM tasks to be used here
+	// Load NPM tasks to be used here
     grunt.loadNpmTasks( 'grunt-sass' );
     grunt.loadNpmTasks( 'grunt-shell' );
     grunt.loadNpmTasks( 'grunt-rtlcss' );

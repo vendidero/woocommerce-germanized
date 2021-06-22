@@ -95,7 +95,7 @@ By default, Germanized works with every WooCommerce theme. Some themes may need 
 
 == Installation ==
 
-= Minimal Requirments =
+= Minimal Requirements =
 
 * WordPress 4.9 or newer
 * WooCommerce 3.9 (newest version recommended)
