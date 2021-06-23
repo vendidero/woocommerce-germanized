@@ -76,12 +76,21 @@ class WC_GZD_Admin_Order {
 					}
 				}
 
+				$taxable_amounts = array();
+
 				foreach ( $tax_share as $tax_class => $class ) {
-					$tax_rates = WC_Tax::get_rates_from_location( $tax_class, $this->get_order_taxable_location( $order ) );
-					$taxes     = $taxes + WC_Tax::calc_tax( ( $item_total * $class['share'] ), $tax_rates, wc_gzd_additional_costs_include_tax() );
+					$tax_rates      = WC_Tax::get_rates_from_location( $tax_class, $this->get_order_taxable_location( $order ) );
+					$taxable_amount = $item_total * $class['share'];
+					$taxes          = $taxes + WC_Tax::calc_tax( $taxable_amount, $tax_rates, wc_gzd_additional_costs_include_tax() );
+
+					$taxable_amounts[ $tax_class ] = array(
+						'taxable_amount' => $taxable_amount,
+						'tax_share'      => $class['share']
+					);
 				}
 
 				$item->set_taxes( array( 'total' => $taxes ) );
+				$item->update_meta_data( '_split_taxes', $taxable_amounts );
 
 				// The new net total equals old gross total minus new tax totals
 				if ( wc_gzd_additional_costs_include_tax() ) {
@@ -90,6 +99,7 @@ class WC_GZD_Admin_Order {
 
 				$order->update_meta_data( '_has_split_tax', 'yes' );
 			} else {
+				$item->delete_meta_data( '_split_taxes' );
 				$order->delete_meta_data( '_has_split_tax' );
 			}
 

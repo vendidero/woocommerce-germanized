@@ -767,15 +767,22 @@ class WC_GZD_Checkout {
 			if ( apply_filters( 'woocommerce_gzd_force_additional_costs_taxation', true ) ) {
 				if ( $rate->get_shipping_tax() > 0 ) {
 					if ( ! empty( $tax_shares ) ) {
-						$taxes = array();
+						$taxes           = array();
+						$taxable_amounts = array();
 
 						foreach ( $tax_shares as $tax_rate => $class ) {
 							$tax_rates  = WC_Tax::get_rates( $tax_rate );
 							$cost_share = $original_cost * $class['share'];
 							$taxes      = $taxes + WC_Tax::calc_tax( $cost_share, $tax_rates, wc_gzd_additional_costs_include_tax() );
+
+							$taxable_amounts[ $tax_rate ] = array(
+								'taxable_amount' => $cost_share,
+								'tax_share'      => $class['share']
+							);
 						}
 
 						$rates[ $key ]->set_taxes( $taxes );
+						$rates[ $key ]->add_meta_data( '_split_taxes', $taxable_amounts );
 					} else {
 						$original_tax_rates = array_keys( $original_taxes );
 
@@ -862,11 +869,18 @@ class WC_GZD_Checkout {
 
 		// Calculate tax class share
 		if ( ! empty( $tax_shares ) ) {
-			$fee_taxes = array();
+			$fee_taxes       = array();
+			$taxable_amounts = array();
 
 			foreach ( $tax_shares as $rate => $class ) {
-				$tax_rates = WC_Tax::get_rates( $rate );
-				$fee_taxes = $fee_taxes + WC_Tax::calc_tax( ( $fee->total * $class['share'] ), $tax_rates, wc_gzd_additional_costs_include_tax() );
+				$tax_rates      = WC_Tax::get_rates( $rate );
+				$taxable_amount = $fee->total * $class['share'];
+				$fee_taxes      = $fee_taxes + WC_Tax::calc_tax( $taxable_amount, $tax_rates, wc_gzd_additional_costs_include_tax() );
+
+				$taxable_amounts[ $rate ] = array(
+					'taxable_amount' => $taxable_amount,
+					'tax_share'      => $class['share']
+				);
 			}
 
 			$total_tax = array_sum( array_map( array( $this, 'round_line_tax_in_cents' ), $fee_taxes ) );
@@ -874,6 +888,8 @@ class WC_GZD_Checkout {
 			if ( wc_gzd_additional_costs_include_tax() ) {
 				$fee->total = $fee->total - $total_tax;
 			}
+
+			$fee->split_taxes = $taxable_amounts;
 		}
 
 		return $fee_taxes;

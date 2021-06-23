@@ -56,6 +56,8 @@ class WC_GZD_Order_Helper {
 		add_action( 'woocommerce_before_order_item_object_save', array( $this, 'on_order_item_update' ), 10 );
 		add_filter( 'woocommerce_hidden_order_itemmeta', array( $this, 'set_order_meta_hidden' ), 0 );
 
+		add_action( 'woocommerce_checkout_create_order_fee_item', array( $this, 'set_fee_split_tax_meta' ), 10, 4 );
+
 		// Disallow user order cancellation
 		if ( 'yes' === get_option( 'woocommerce_gzd_checkout_stop_order_cancellation' ) ) {
 
@@ -70,6 +72,18 @@ class WC_GZD_Order_Helper {
 				$this,
 				'maybe_reduce_order_stock'
 			), 5, 1 );
+		}
+	}
+
+	/**
+	 * @param WC_Order_Item_Fee $item
+	 * @param $fee_key
+	 * @param $fee
+	 * @param WC_Order $order
+	 */
+	public function set_fee_split_tax_meta( $item, $fee_key, $fee, $order ) {
+		if ( isset( $fee->split_taxes ) && ! empty( $fee->split_taxes ) ) {
+			$item->update_meta_data( '_split_taxes', $fee->split_taxes );
 		}
 	}
 
