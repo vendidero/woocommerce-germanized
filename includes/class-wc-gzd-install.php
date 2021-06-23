@@ -480,7 +480,8 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 				'woocommerce_tax_based_on'               => 'shipping',
 				'woocommerce_allowed_countries'          => 'specific',
 				'woocommerce_specific_allowed_countries' => $eu_countries,
-				'woocommerce_default_customer_address'   => 'base'
+				'woocommerce_default_customer_address'   => 'base',
+				'woocommerce_gzd_hide_tax_rate_shop'     => \Vendidero\OneStopShop\Package::oss_procedure_is_enabled() ? 'yes' : 'no'
 			);
 
 			if ( ! empty( $options ) ) {

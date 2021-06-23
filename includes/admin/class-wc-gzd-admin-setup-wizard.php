@@ -580,16 +580,16 @@ if ( ! class_exists( 'WC_GZD_Admin_Setup_Wizard' ) ) :
 			$redirect 	 = $this->get_step_url( $this->get_next_step() );
 			$current_url = $this->get_step_url( $this->step );
 
+			if ( isset( $_POST['oss_use_oss_procedure'] ) && ! empty( $_POST['oss_use_oss_procedure'] ) ) {
+			    update_option( 'oss_use_oss_procedure', 'yes' );
+			}
+
 			if ( isset( $_POST['woocommerce_gzd_germanize_settings'] ) && ! empty( $_POST['woocommerce_gzd_germanize_settings'] ) ) {
 			    WC_GZD_Install::set_default_settings();
 			}
 
 			if ( isset( $_POST['woocommerce_gzd_create_legal_pages'] ) && ! empty( $_POST['woocommerce_gzd_create_legal_pages'] ) ) {
 			    WC_GZD_Install::create_pages();
-			}
-
-			if ( isset( $_POST['oss_use_oss_procedure'] ) && ! empty( $_POST['oss_use_oss_procedure'] ) ) {
-			    update_option( 'oss_use_oss_procedure', 'yes' );
 			}
 
 			if ( isset( $_POST['woocommerce_gzd_vat_rates'] ) && ! empty( $_POST['woocommerce_gzd_vat_rates'] ) ) {

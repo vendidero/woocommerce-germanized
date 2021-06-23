@@ -777,7 +777,8 @@ class WC_GZD_Checkout {
 
 							$taxable_amounts[ $tax_rate ] = array(
 								'taxable_amount' => $cost_share,
-								'tax_share'      => $class['share']
+								'tax_share'      => $class['share'],
+								'tax_rates'      => array_keys( $tax_rates )
 							);
 						}
 
@@ -879,7 +880,8 @@ class WC_GZD_Checkout {
 
 				$taxable_amounts[ $rate ] = array(
 					'taxable_amount' => $taxable_amount,
-					'tax_share'      => $class['share']
+					'tax_share'      => $class['share'],
+					'tax_rates'      => array_keys( $tax_rates )
 				);
 			}
 
