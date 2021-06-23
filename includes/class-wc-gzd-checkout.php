@@ -740,6 +740,13 @@ class WC_GZD_Checkout {
 	public function adjust_shipping_taxes( $rates, $package ) {
 
 		if ( ! wc_gzd_enable_additional_costs_split_tax_calculation() ) {
+			foreach( $rates as $key => $rate ) {
+				/**
+				 * Reset split tax data
+				 */
+				$rates[ $key ]->add_meta_data( '_split_taxes', array() );
+			}
+
 			return $rates;
 		}
 
@@ -747,6 +754,11 @@ class WC_GZD_Checkout {
 			$original_taxes = $rate->get_taxes();
 			$original_cost  = $rate->get_cost();
 			$tax_shares     = wc_gzd_get_cart_tax_share( 'shipping' );
+
+			/**
+			 * Reset split tax data
+			 */
+			$rates[ $key ]->add_meta_data( '_split_taxes', array() );
 
 			/**
 			 * Prevent bugs in plugins like Woo Subscriptions which
@@ -792,7 +804,6 @@ class WC_GZD_Checkout {
 
 							if ( ! empty( $tax_rates ) ) {
 								$taxes = WC_Tax::calc_tax( $original_cost, $tax_rates, wc_gzd_additional_costs_include_tax() );
-
 								$rates[ $key ]->set_taxes( $taxes );
 							}
 						}
@@ -845,6 +856,9 @@ class WC_GZD_Checkout {
 
 		$tax_shares = wc_gzd_get_cart_tax_share( 'fee' );
 
+		// Reset
+		$fee->split_tax = array();
+
 		/**
 		 * Do not calculate fee taxes if tax shares are empty (e.g. zero-taxes only).
 		 * In this case, remove fee taxes altogether.
@@ -861,6 +875,7 @@ class WC_GZD_Checkout {
 				if ( WC()->customer->is_vat_exempt() ) {
 					$fee_rates  = WC_Tax::get_rates( '' );
 					$fee_taxes  = WC_Tax::calc_inclusive_tax( $fee->total, $fee_rates );
+
 					$fee->total = $fee->total - array_sum( $fee_taxes );
 				}
 			}

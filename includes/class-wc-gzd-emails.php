@@ -108,6 +108,12 @@ class WC_GZD_Emails {
 		}
 	}
 
+	public function prevent_html_url_auto_link( $url ) {
+		$url = str_replace( array( '.', ':', 'http' ), array( '<span>.</span>', '<span>:</span>', 'ht<span>tp</span>' ), $url );
+
+		return $url;
+	}
+
 	public function reset_email_instance( $text ) {
 		$this->current_email_instance = false;
 
