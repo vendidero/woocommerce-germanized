@@ -2,7 +2,7 @@
 Contributors: vendidero, vdwoocommercesupport
 Tags: woocommerce, woocommerce german, woocommerce DE, woocommerce germany, woocommerce deutsch, woo, woocommerce deutschland, woocommerce germanized, woocommerce addon, woocommerce plugin, woocommerce german addon, woocommerce germany addon, woocommerce dhl, dhl, shipments
 Requires at least: 5.4
-Tested up to: 5.7
+Tested up to: 5.8
 WC requires at least: 3.9
 WC tested up to: 5.5
 Stable tag: 3.5.0
@@ -29,6 +29,7 @@ Furthermore we customized the WooCommerce checkout to make your store meet the b
 * *Terms, Revocation, Privacy Policy* - Display checkboxes within your checkout to make sure customers agree to your conditions.
 * *Legal Checkboxes UI* - Adjust your legal WooCommerce checkboxes (e.g. terms & conditions) through a fluent user interface.
 * *Button Solution* - We adjust your checkout and submit button to comply with german button solution.
+* *OSS compliance* - Germanized helps your WooCommerce shop to be compliant with the new One Stop Shop procedure
 * *Double opt-in (DOI) for Customers* - Make sure customers opted in while registering within your shop. Optionally disable checkout until the customer opted in.
 * *Tax Calculation for Shipping Costs and Fees* - Enable split tax calculation based on your WooCommerce cart taxes.
 * *Legal pages in Email Templates* - Attach legal pages content to certain WooCommerce e-mail templates.
@@ -61,17 +62,21 @@ Learn more about [PDF Invoices for WooCommerce](https://vendidero.de/woocommerce
 
 Furthermore you may attach legally relevant pages (e.g. Terms & Conditions) as PDF documents to specific WooCommerce emails instead of using plain text.
 
-= Shipments =
+= Add shipments to WooCommerce orders =
 Germanized adds a new abstraction layer to WooCommerce to make it easier for you to send your parcels to your customers. With Germanized you'll be able to generate (multiple) shipments to an order.
 You can then manage your shipments and it's statuses independently from your orders. Let your customers receive a notification email as soon as a shipment has been marked as shipped including tracking information from a built-in or manually added shipping provider. Learn more about our [Shipments for WooCommerce](https://vendidero.de/woocommerce-germanized/features#shipments "Shipments for WooCommerce") integration and find out how to automate your shipping process.
 
-= Returns =
+= Handle returns with ease =
 Managing returns can be a time-consuming challenge. By using Germanized you might let your customers create return requests through their customer panel. All you need to do is confirm the request through your return dashboard and your customers will receive an email containing further steps on how to return their product(s).
 In case you are using our DHL integration you might as well (automatically) create a label to the return which will be attached to the email sent to the customer.
 
 = Post & DHL Integration =
 With the help of our built-in Post & DHL integration you can easily create labels for your shipments and add tracking information to the notification emails. Furthermore you can offer DHL Wunschpaket Services to your customers including shipping to Packstation or choosing a preferred location, day and/or time within the checkout.
 You can even let your shipments and labels be generated automatically by Germanized to avoid further manual work. [Learn more](https://vendidero.de/dokumentation/woocommerce-germanized/versanddienstleister "Post & DHL for WooCommerce") about how our Post & DHL integration works.
+
+= Extended One Stop Shop compliance =
+With a little help from our [One Stop Shop compliance plugin for WooCommerce](https://wordpress.org/plugins/one-stop-shop-woocommerce/) bundled within Germanized you'll handle the new EU VAT regulations with ease. Generate new VAT reports for different time frames and let the plugin
+observe the delivery threshold automatically to make sure you'll get notified in case you are close to reaching the threshold and need to take action.
 
 = Pro: Premium Support =
 Customers of Germanized for WooCommerce Pro enjoy our high-quality support via tickets. Nevertheless we also seek to offer a good plugin support via our WordPress support forum.
@@ -85,7 +90,7 @@ We've added some specific compatibility and tests for certain popular WooCommerc
 * WooCommerce Product Bundles
 
 = Tested WooCommerce Themes =
-By default, Germanized works with every WooCommerce theme. Some themes may need adjustments due to not using WooCommerce standards hooks or styles. Within our professional version we've tested certain third-party WooCommerce themes to ensure better compatibility with Germanized for WooCommerce:
+By default, Germanized works with *every WooCommerce theme*. Some themes may need adjustments due to not using WooCommerce standards hooks or styles. Within our professional version we've tested certain third-party WooCommerce themes to ensure better compatibility with Germanized for WooCommerce:
 
 * Flatsome
 * Enfold
@@ -189,6 +194,18 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 6. Edit pdf documents (Pro)
 
 == Changelog ==
+= 3.5.0 =
+* Feature: OSS compliance helper
+* Feature: WP 5.8 support
+* Feature: Woo 5.5 support
+* Improvement: Unit price auto (re) calculation on single product page
+* Improvement: Addify role based pricing compatibility
+* Improvement: Mark checkbox as mandatory just like other checkout fields
+* Improvement: DHL - Trim strings in case exceeds API limit
+* Improvement: DHL - Do not catch weak errors
+* Improvement: DP - Allow product selection to be overridden from shipping method
+* Fix: Supports customer returns method
+
 = 3.4.8 =
 * Fix: Readded DHL Paket International for inner-EU shipments
 

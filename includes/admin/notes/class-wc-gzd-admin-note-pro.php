@@ -26,10 +26,10 @@ class WC_GZD_Admin_Note_Pro extends WC_GZD_Admin_Note {
 	public function get_content() {
 		$content = '<p>' . __( 'Do you enjoy Germanized? Do you want to benefit from even more and better features? You may consider an uprade to Pro. Check out some of the main Pro features:', 'woocommerce-germanized' ) . '</p>
 		    <ul>
-		        <li>✓ ' . __( 'PDF invoices and packing slips', 'woocommerce-germanized' ) . '</li>
-		        <li>✓ ' . __( 'Generator for terms & conditions and cancellation policy', 'woocommerce-germanized' ) . '</li>
-		        <li>✓ ' . __( 'Multistep Checkout', 'woocommerce-germanized' ) . '</li>
-		        <li>✓ <strong>' . __( 'Premium Ticket Support', 'woocommerce-germanized' ) . '</strong></li>
+		        <li>' . __( 'PDF invoices and packing slips', 'woocommerce-germanized' ) . '</li>
+		        <li>' . __( 'Generator for terms & conditions and cancellation policy', 'woocommerce-germanized' ) . '</li>
+		        <li>' . __( 'Multistep Checkout', 'woocommerce-germanized' ) . '</li>
+		        <li><strong>' . __( 'Premium Ticket Support', 'woocommerce-germanized' ) . '</strong></li>
 		    </ul>
 	    ';
 

@@ -128,7 +128,7 @@ abstract class WC_GZD_Admin_Note {
 		$note = WC_GZD_Admin_Notices::instance()->get_woo_note();
 
 		$note->set_title( $this->get_title() );
-		$note->set_content( $this->get_content() );
+		$note->set_content( $this->convert_content( $this->get_content() )   );
 		$note->set_type( $this->get_type() );
 		$note->set_name( $this->get_name_prefixed() );
 		$note->set_content_data( (object) array() );
@@ -170,6 +170,14 @@ abstract class WC_GZD_Admin_Note {
 		}
 
 		$note->save();
+	}
+
+	protected function convert_content( $content ) {
+		// Convert list tags to <br/> to enable at least some kind of formatting.
+		$content = str_replace( '</li>', '<br/>', $content );
+		$content = str_replace( '<li>', '✓ &nbsp;', $content );
+
+		return $content;
 	}
 
 	public function get_dismiss_text() {
@@ -267,7 +275,6 @@ abstract class WC_GZD_Admin_Note {
 			$days  = $this->get_days_until_show();
 
 			if ( get_option( 'woocommerce_gzd_activation_date' ) ) {
-
 				$activation_date = ( get_option( 'woocommerce_gzd_activation_date' ) ? get_option( 'woocommerce_gzd_activation_date' ) : date( 'Y-m-d' ) );
 				$diff            = WC_germanized()->get_date_diff( $activation_date, date( 'Y-m-d' ) );
 

@@ -344,29 +344,33 @@ class WC_GZD_Customer_Helper {
 			return;
 		}
 
-		if ( is_account_page() && WC()->session->get( 'login_redirect' ) ) {
-
+		/**
+		 * Show guest checkout redirection notice only in case the cart is not empty.
+		 */
+		if ( is_account_page() && WC()->session->get( 'login_redirect' ) && WC()->cart && WC()->cart->get_cart_contents_count() > 0 ) {
 			if ( ! is_user_logged_in() ) {
-
-				if ( get_option( 'woocommerce_enable_guest_checkout' ) === 'yes' ) {
-					wc_add_notice( sprintf( __( 'Continue without creating an account? <a href="%s">Click here</a>', 'woocommerce-germanized' ), add_query_arg( array( 'force-guest' => 'yes' ), wc_gzd_get_page_permalink( 'checkout' ) ) ), 'notice' );
-				} else {
-					wc_add_notice( __( 'Please create an account or login before continuing to checkout', 'woocommerce-germanized' ), 'notice' );
+				if ( isset( $_GET['show_checkout_notice'] ) && 'yes' === $_GET['show_checkout_notice'] ) {
+					if ( get_option( 'woocommerce_enable_guest_checkout' ) === 'yes' ) {
+						wc_add_notice( sprintf( __( 'Continue without creating an account? <a href="%s">Click here</a>', 'woocommerce-germanized' ), add_query_arg( array( 'force-guest' => 'yes' ), wc_gzd_get_page_permalink( 'checkout' ) ) ), 'notice' );
+					} else {
+						wc_add_notice( __( 'Please create an account or login before continuing to checkout', 'woocommerce-germanized' ), 'notice' );
+					}
 				}
-
 			} else {
-
 				// Redirect to checkout
 				unset( WC()->session->login_redirect );
+
 				/** This filter is documented in includes/class-wc-gzd-customer-helper.php */
 				wp_safe_redirect( apply_filters( 'woocommerce_gzd_customer_activation_checkout_redirect', wc_gzd_get_page_permalink( 'checkout' ) ) );
 				exit;
-
 			}
 		}
 	}
 
 	protected function registration_redirect( $query_args = array() ) {
+		$query_args = wp_parse_args( $query_args, array(
+			'show_checkout_notice' => 'yes'
+		) );
 
 		/**
 		 * Filter URL which serves as redirection if a customer has not yet activated it's account and
@@ -376,7 +380,6 @@ class WC_GZD_Customer_Helper {
 		 * @param array[string] $query_args Arguments passed to the URL.
 		 *
 		 * @since 1.0.0
-		 *
 		 */
 		return apply_filters( 'woocommerce_gzd_customer_registration_redirect', add_query_arg( $query_args, wc_gzd_get_page_permalink( 'myaccount' ) ), $query_args );
 	}
