@@ -782,16 +782,21 @@ class WC_GZD_Checkout {
 						$taxes           = array();
 						$taxable_amounts = array();
 
-						foreach ( $tax_shares as $tax_rate => $class ) {
-							$tax_rates  = WC_Tax::get_rates( $tax_rate );
-							$cost_share = $original_cost * $class['share'];
-							$taxes      = $taxes + WC_Tax::calc_tax( $cost_share, $tax_rates, wc_gzd_additional_costs_include_tax() );
+						foreach ( $tax_shares as $tax_class => $class ) {
+							$tax_rates       = WC_Tax::get_rates( $tax_class );
+							$taxable_amount  = $original_cost * $class['share'];
+							$tax_class_taxes = WC_Tax::calc_tax( $taxable_amount, $tax_rates, wc_gzd_additional_costs_include_tax() );
+							$net_base        = wc_gzd_additional_costs_include_tax() ? ( $taxable_amount - array_sum( $tax_class_taxes ) ) : $taxable_amount;
 
-							$taxable_amounts[ $tax_rate ] = array(
-								'taxable_amount' => $cost_share,
+							$taxable_amounts[ $tax_class ] = array(
+								'taxable_amount' => $taxable_amount,
 								'tax_share'      => $class['share'],
-								'tax_rates'      => array_keys( $tax_rates )
+								'tax_rates'      => array_keys( $tax_rates ),
+								'net_amount'     => $net_base,
+								'includes_tax'   => wc_gzd_additional_costs_include_tax()
 							);
+
+							$taxes = $taxes + $tax_class_taxes;
 						}
 
 						$rates[ $key ]->set_taxes( $taxes );
@@ -888,16 +893,21 @@ class WC_GZD_Checkout {
 			$fee_taxes       = array();
 			$taxable_amounts = array();
 
-			foreach ( $tax_shares as $rate => $class ) {
-				$tax_rates      = WC_Tax::get_rates( $rate );
+			foreach ( $tax_shares as $tax_class => $class ) {
+				$tax_rates      = WC_Tax::get_rates( $tax_class );
 				$taxable_amount = $fee->total * $class['share'];
-				$fee_taxes      = $fee_taxes + WC_Tax::calc_tax( $taxable_amount, $tax_rates, wc_gzd_additional_costs_include_tax() );
+				$tax_class_taxes = WC_Tax::calc_tax( $taxable_amount, $tax_rates, wc_gzd_additional_costs_include_tax() );
+				$net_base        = wc_gzd_additional_costs_include_tax() ? ( $taxable_amount - array_sum( $tax_class_taxes ) ) : $taxable_amount;
 
-				$taxable_amounts[ $rate ] = array(
+				$taxable_amounts[ $tax_class ] = array(
 					'taxable_amount' => $taxable_amount,
 					'tax_share'      => $class['share'],
-					'tax_rates'      => array_keys( $tax_rates )
+					'tax_rates'      => array_keys( $tax_rates ),
+					'net_amount'     => $net_base,
+					'includes_tax'   => wc_gzd_additional_costs_include_tax()
 				);
+
+				$fee_taxes = $fee_taxes + $tax_class_taxes;
 			}
 
 			$total_tax = array_sum( array_map( array( $this, 'round_line_tax_in_cents' ), $fee_taxes ) );

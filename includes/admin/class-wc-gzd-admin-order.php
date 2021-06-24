@@ -79,15 +79,20 @@ class WC_GZD_Admin_Order {
 				$taxable_amounts = array();
 
 				foreach ( $tax_share as $tax_class => $class ) {
-					$tax_rates        = WC_Tax::get_rates_from_location( $tax_class, $this->get_order_taxable_location( $order ) );
-					$taxable_amount   = $item_total * $class['share'];
-					$taxes            = $taxes + WC_Tax::calc_tax( $taxable_amount, $tax_rates, wc_gzd_additional_costs_include_tax() );
+					$tax_rates       = WC_Tax::get_rates_from_location( $tax_class, $this->get_order_taxable_location( $order ) );
+					$taxable_amount  = $item_total * $class['share'];
+					$tax_class_taxes = WC_Tax::calc_tax( $taxable_amount, $tax_rates, wc_gzd_additional_costs_include_tax() );
+					$net_base        = wc_gzd_additional_costs_include_tax() ? ( $taxable_amount - array_sum( $tax_class_taxes ) ) : $taxable_amount;
 
 					$taxable_amounts[ $tax_class ] = array(
 						'taxable_amount' => $taxable_amount,
 						'tax_share'      => $class['share'],
-						'tax_rates'      => array_keys( $tax_rates )
+						'tax_rates'      => array_keys( $tax_rates ),
+						'net_amount'     => $net_base,
+						'includes_tax'   => wc_gzd_additional_costs_include_tax()
 					);
+
+					$taxes = $taxes + $tax_class_taxes;
 				}
 
 				$item->set_taxes( array( 'total' => $taxes ) );
