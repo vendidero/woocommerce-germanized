@@ -247,7 +247,7 @@ abstract class WC_GZD_Settings_Tab extends WC_Settings_Page {
 		$current_section  = $this->get_current_section();
 		$current_tab      = $this->get_id();
 		$current_tab_name = $this->get_name();
-		$settings         = $this->get_settings_for_section( $this->get_current_section() );
+		$settings         = $this->get_settings_for_section_core( $this->get_current_section() );
 		$sidebar          = $this->get_sidebar( $this->get_current_section() );
 
 		if ( ! $this->is_saveable() ) {
@@ -376,7 +376,7 @@ abstract class WC_GZD_Settings_Tab extends WC_Settings_Page {
 	public function save() {
 		global $current_section;
 
-		$settings = $this->get_settings_for_section( $current_section );
+		$settings = $this->get_settings_for_section_core( $current_section );
 
 		$this->before_save( $settings, $current_section );
 		WC_Admin_Settings::save_fields( $settings );

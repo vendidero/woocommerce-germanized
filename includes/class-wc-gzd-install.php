@@ -574,7 +574,7 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 			 *
 			 * @since 1.0.0
 			 */
-			$options = apply_filters( 'woocommerce_gzd_installation_default_settings', $settings->get_settings_for_section( '' ) );
+			$options = apply_filters( 'woocommerce_gzd_installation_default_settings', $settings->get_settings_for_section_core( '' ) );
 
 			$manager = WC_GZD_Legal_Checkbox_Manager::instance();
 			$manager->do_register_action();
