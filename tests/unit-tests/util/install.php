@@ -60,6 +60,7 @@ class WC_GZD_Tests_Install extends WC_GZD_Unit_Test_Case {
 		// Check if package settings are added too (e.g. DHL, Shipments)
 		$this->assertEquals( 'yes', get_option( 'woocommerce_gzd_shipments_auto_enable' ) );
 		$this->assertEquals( 'V01PAK', wc_gzd_get_shipping_provider( 'dhl' )->get_setting( 'label_default_product_dom' ) );
+		$this->assertEquals( 'no', get_option( 'oss_use_oss_procedure' ) );
 
 		// Check if Tables are installed
 		global $wpdb;
