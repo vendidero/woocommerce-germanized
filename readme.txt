@@ -205,6 +205,7 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 * Improvement: DHL - Do not catch weak errors
 * Improvement: DP - Allow product selection to be overridden from shipping method
 * Fix: Supports customer returns method
+* Fix: DP - Add tracking to Einschreiben services
 
 = 3.4.8 =
 * Fix: Readded DHL Paket International for inner-EU shipments
