@@ -412,39 +412,6 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 			}
 		}
 
-		protected static function get_tax_class_name( $class ) {
-			$name = $class;
-
-			if ( 'reduced-rate' === $class ) {
-				$name = __( 'Reduced rate', 'woocommerce' );
-			} elseif( 'virtual-rate' === $class ) {
-				$name = 'Virtual rate';
-			} elseif( 'virtual-reduced-rate' === $class ) {
-				$name = 'Virtual reduced rate';
-			}
-
-			return $name;
-		}
-
-		protected static function maybe_find_tax_class( $class, $name = '' ) {
-			$names = WC_Tax::get_tax_classes();
-
-			if ( 'reduced-rate' === $class ) {
-				$find = array( 'Reduced rate', __( 'Reduced rate', 'woocommerce' ) );
-			} else {
-				$find = array( self::get_tax_class_name( $name ) );
-			}
-
-			foreach( $names as $name ) {
-
-				if ( in_array( $name, $find ) ) {
-					return $name;
-				}
-			}
-
-			return false;
-		}
-
 		public static function create_tax_rates() {
 			if ( \Vendidero\OneStopShop\Package::oss_procedure_is_enabled() ) {
 				\Vendidero\OneStopShop\Tax::import_oss_tax_rates();
