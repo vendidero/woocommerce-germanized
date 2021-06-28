@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: WooCommerce Germanized\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-28 16:24+0200\n"
-"PO-Revision-Date: 2021-06-28 16:26+0200\n"
+"PO-Revision-Date: 2021-06-28 16:35+0200\n"
 "Last-Translator: holzhannes <holzhannes@posteo.de>\n"
 "Language-Team: \n"
 "Language: de_DE@formal\n"
@@ -8013,6 +8013,8 @@ msgstr "Mehrstufige Kasse"
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-oss.php:17
 msgid "Comply with the OSS procedure and conveniently generate tax reports."
 msgstr ""
+"Überwachen Sie Ihren One Stop Shop Status und erstellen Sie umfangreiche "
+"Auswertungen."
 
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-oss.php:21
 msgid "One Stop Shop"
