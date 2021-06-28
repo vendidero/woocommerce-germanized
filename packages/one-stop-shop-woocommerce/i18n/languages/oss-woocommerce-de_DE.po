@@ -1,0 +1,1280 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: One Stop Shop for WooCommerce\n"
+"POT-Creation-Date: 2021-06-16 10:20+0200\n"
+"PO-Revision-Date: 2021-06-16 10:23+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: de_DE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.4.3\n"
+"X-Poedit-Basepath: ../..\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
+"X-Poedit-WPHeader: one-stop-shop-woocommerce.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.min.js\n"
+"X-Poedit-SearchPathExcluded-1: vendor\n"
+"X-Poedit-SearchPathExcluded-2: node_modules\n"
+
+#. translators: 1: composer command. 2: plugin directory
+#: build/one-stop-shop-woocommerce-git/one-stop-shop-woocommerce.php:43
+#: build/one-stop-shop-woocommerce-git/one-stop-shop-woocommerce.php:61
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/one-stop-shop-woocommerce.php:43
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/one-stop-shop-woocommerce.php:61
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/one-stop-shop-woocommerce.php:43
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/one-stop-shop-woocommerce.php:61
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/one-stop-shop-woocommerce.php:43
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/one-stop-shop-woocommerce.php:61
+#: build/one-stop-shop-woocommerce-svn/trunk/one-stop-shop-woocommerce.php:43
+#: build/one-stop-shop-woocommerce-svn/trunk/one-stop-shop-woocommerce.php:61
+#: one-stop-shop-woocommerce.php:43 one-stop-shop-woocommerce.php:61
+#, php-format
+msgctxt "oss"
+msgid ""
+"Your installation of the One Stop Shop feature plugin is incomplete. Please "
+"run %1$s within the %2$s directory."
+msgstr ""
+"Deine Installation des One Stop Shop Feature Plugins ist nicht komplett. "
+"Bitte führe %1$s innerhalb des %2$s Verzeichnisses aus."
+
+#: build/one-stop-shop-woocommerce-git/src/Admin.php:153
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/src/Admin.php:153
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/src/Admin.php:153
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/src/Admin.php:153
+#: build/one-stop-shop-woocommerce-svn/trunk/src/Admin.php:153
+#: src/Admin.php:178
+#, php-format
+msgctxt "oss"
+msgid ""
+"Seems like you have reached (or are close to reaching) the delivery "
+"threshold for the current year. Please make sure to check the <a href=\"%s\" "
+"target=\"_blank\">report details</a> and take action in case necessary."
+msgstr ""
+"Du bist kurz davor oder hast bereits die Lieferschwelle für das aktuelle "
+"Jahr überschritten. Bitte prüfe die <a href=\"%s\" target=\"_blank\">Details "
+"des Berichts</a> und unternimm weitere Schritte."
+
+#: build/one-stop-shop-woocommerce-git/src/Admin.php:157
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/src/Admin.php:157
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/src/Admin.php:157
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/src/Admin.php:157
+#: build/one-stop-shop-woocommerce-svn/trunk/src/Admin.php:157
+#: src/Admin.php:182
+msgctxt "oss"
+msgid "Delivery threshold reached (OSS)"
+msgstr "Lieferschwelle erreicht (OSS)"
+
+#: build/one-stop-shop-woocommerce-git/src/Admin.php:344
+#: build/one-stop-shop-woocommerce-git/src/SettingsPage.php:17
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/src/Admin.php:342
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/src/SettingsPage.php:17
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/src/Admin.php:344
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/src/SettingsPage.php:17
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/src/Admin.php:344
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/src/SettingsPage.php:17
+#: build/one-stop-shop-woocommerce-svn/trunk/src/Admin.php:344
+#: build/one-stop-shop-woocommerce-svn/trunk/src/SettingsPage.php:17
+#: src/Admin.php:369 src/SettingsPage.php:17
+msgctxt "oss"
+msgid "OSS"
+msgstr "OSS"
+
+#: build/one-stop-shop-woocommerce-git/src/Admin.php:344
+#: build/one-stop-shop-woocommerce-git/src/Admin.php:462
+#: build/one-stop-shop-woocommerce-git/src/SettingsPage.php:23
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/src/Admin.php:342
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/src/Admin.php:460
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/src/SettingsPage.php:23
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/src/Admin.php:344
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/src/Admin.php:462
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/src/SettingsPage.php:23
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/src/Admin.php:344
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/src/Admin.php:462
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/src/SettingsPage.php:23
+#: build/one-stop-shop-woocommerce-svn/trunk/src/Admin.php:344
+#: build/one-stop-shop-woocommerce-svn/trunk/src/Admin.php:462
+#: build/one-stop-shop-woocommerce-svn/trunk/src/SettingsPage.php:23
+#: src/Admin.php:369 src/Admin.php:487 src/SettingsPage.php:23
+msgctxt "oss"
+msgid "One Stop Shop"
+msgstr "One Stop Shop"
+
+#: build/one-stop-shop-woocommerce-git/src/Admin.php:365
+#: build/one-stop-shop-woocommerce-git/src/Package.php:267
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/src/Admin.php:363
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/src/Package.php:267
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/src/Admin.php:365
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/src/Package.php:267
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/src/Admin.php:365
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/src/Package.php:267
+#: build/one-stop-shop-woocommerce-svn/trunk/src/Admin.php:365
+#: build/one-stop-shop-woocommerce-svn/trunk/src/Package.php:267
+#: src/Admin.php:390 src/Package.php:267
+#, php-format
+msgctxt "oss"
+msgid "Q%1$s/%2$s"
+msgstr "Q%1$s/%2$s"
+
+#: build/one-stop-shop-woocommerce-git/src/Admin.php:374
+#: build/one-stop-shop-woocommerce-git/src/Package.php:272
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/src/Admin.php:372
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/src/Package.php:272
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/src/Admin.php:374
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/src/Package.php:272
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/src/Admin.php:374
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/src/Package.php:272
+#: build/one-stop-shop-woocommerce-svn/trunk/src/Admin.php:374
+#: build/one-stop-shop-woocommerce-svn/trunk/src/Package.php:272
+#: src/Admin.php:399 src/Package.php:272
+#, php-format
+msgctxt "oss"
+msgid "%1$s/%2$s"
+msgstr "%1$s/%2$s"
+
+#: build/one-stop-shop-woocommerce-git/src/Admin.php:382
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/src/Admin.php:380
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/src/Admin.php:382
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/src/Admin.php:382
+#: build/one-stop-shop-woocommerce-svn/trunk/src/Admin.php:382
+#: src/Admin.php:407
+msgctxt "oss"
+msgid "New Report"
+msgstr "Neuer Bericht"
+
+#: build/one-stop-shop-woocommerce-git/src/Admin.php:389
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/src/Admin.php:387
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/src/Admin.php:389
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/src/Admin.php:389
+#: build/one-stop-shop-woocommerce-svn/trunk/src/Admin.php:389
+#: src/Admin.php:414
+msgctxt "oss"
+msgid "Type"
+msgstr "Typ"
+
+#: build/one-stop-shop-woocommerce-git/src/Admin.php:401
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/src/Admin.php:399
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/src/Admin.php:401
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/src/Admin.php:401
+#: build/one-stop-shop-woocommerce-svn/trunk/src/Admin.php:401
+#: src/Admin.php:426
+msgctxt "storeabill-core"
+msgid "Year"
+msgstr "Jahr"
+
+#: build/one-stop-shop-woocommerce-git/src/Admin.php:413
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/src/Admin.php:411
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/src/Admin.php:413
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/src/Admin.php:413
+#: build/one-stop-shop-woocommerce-svn/trunk/src/Admin.php:413
+#: src/Admin.php:438
+msgctxt "storeabill-core"
+msgid "Quarter"
+msgstr "Quartal"
+
+#: build/one-stop-shop-woocommerce-git/src/Admin.php:425
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/src/Admin.php:423
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/src/Admin.php:425
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/src/Admin.php:425
+#: build/one-stop-shop-woocommerce-svn/trunk/src/Admin.php:425
+#: src/Admin.php:450
+msgctxt "storeabill-core"
+msgid "Month"
+msgstr "Monat"
+
+#: build/one-stop-shop-woocommerce-git/src/Admin.php:437
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/src/Admin.php:435
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/src/Admin.php:437
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/src/Admin.php:437
+#: build/one-stop-shop-woocommerce-svn/trunk/src/Admin.php:437
+#: src/Admin.php:462
+msgctxt "storeabill-core"
+msgid "Date range"
+msgstr "Zeitraum"
+
+#: build/one-stop-shop-woocommerce-git/src/Admin.php:449
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/src/Admin.php:447
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/src/Admin.php:449
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/src/Admin.php:449
+#: build/one-stop-shop-woocommerce-svn/trunk/src/Admin.php:449
+#: src/Admin.php:474
+msgctxt "oss"
+msgid "Start report"
+msgstr "Bericht starten"
+
+#: build/one-stop-shop-woocommerce-git/src/Admin.php:463
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/src/Admin.php:461
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/src/Admin.php:463
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/src/Admin.php:463
+#: build/one-stop-shop-woocommerce-svn/trunk/src/Admin.php:463
+#: src/Admin.php:488
+msgctxt "oss"
+msgid "New report"
+msgstr "Neuer Bericht"
+
+#: build/one-stop-shop-woocommerce-git/src/Admin.php:505
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/src/Admin.php:503
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/src/Admin.php:505
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/src/Admin.php:505
+#: build/one-stop-shop-woocommerce-svn/trunk/src/Admin.php:505
+#: src/Admin.php:530
+msgctxt "oss"
+msgid "View"
+msgstr "Ansehen"
+
+#: build/one-stop-shop-woocommerce-git/src/Admin.php:509
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/src/Admin.php:507
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/src/Admin.php:509
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/src/Admin.php:509
+#: build/one-stop-shop-woocommerce-svn/trunk/src/Admin.php:509
+#: src/Admin.php:534
+msgctxt "oss"
+msgid "Export"
+msgstr "Exportieren"
+
+#: build/one-stop-shop-woocommerce-git/src/Admin.php:513
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/src/Admin.php:511
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/src/Admin.php:513
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/src/Admin.php:513
+#: build/one-stop-shop-woocommerce-svn/trunk/src/Admin.php:513
+#: src/Admin.php:538
+msgctxt "oss"
+msgid "Refresh"
+msgstr "Aktualisieren"
+
+#: build/one-stop-shop-woocommerce-git/src/Admin.php:517
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/src/Admin.php:515
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/src/Admin.php:517
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/src/Admin.php:517
+#: build/one-stop-shop-woocommerce-svn/trunk/src/Admin.php:517
+#: src/Admin.php:542
+msgctxt "oss"
+msgid "Delete"
+msgstr "Löschen"
+
+#: build/one-stop-shop-woocommerce-git/src/Admin.php:523
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/src/Admin.php:521
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/src/Admin.php:523
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/src/Admin.php:523
+#: build/one-stop-shop-woocommerce-svn/trunk/src/Admin.php:523
+#: src/Admin.php:548
+msgctxt "oss"
+msgid "Cancel"
+msgstr "Abbrechen"
+
+#: build/one-stop-shop-woocommerce-git/src/Admin.php:552
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/src/Admin.php:550
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/src/Admin.php:552
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/src/Admin.php:552
+#: build/one-stop-shop-woocommerce-svn/trunk/src/Admin.php:552
+#: src/Admin.php:577
+msgctxt "oss"
+msgid "Country"
+msgstr "Land"
+
+#: build/one-stop-shop-woocommerce-git/src/Admin.php:553
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/src/Admin.php:551
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/src/Admin.php:553
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/src/Admin.php:553
+#: build/one-stop-shop-woocommerce-svn/trunk/src/Admin.php:553
+#: src/Admin.php:578
+msgctxt "oss"
+msgid "Tax Rate"
+msgstr "Steuersatz"
+
+#: build/one-stop-shop-woocommerce-git/src/Admin.php:554
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/src/Admin.php:552
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/src/Admin.php:554
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/src/Admin.php:554
+#: build/one-stop-shop-woocommerce-svn/trunk/src/Admin.php:554
+#: src/Admin.php:579
+msgctxt "oss"
+msgid "Net Total"
+msgstr "Nettobetrag"
+
+#: build/one-stop-shop-woocommerce-git/src/Admin.php:555
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/src/Admin.php:553
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/src/Admin.php:555
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/src/Admin.php:555
+#: build/one-stop-shop-woocommerce-svn/trunk/src/Admin.php:555
+#: src/Admin.php:580
+msgctxt "oss"
+msgid "Tax Total"
+msgstr "Steuerbertrag"
+
+#: build/one-stop-shop-woocommerce-git/src/Admin.php:586
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/src/Admin.php:584
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/src/Admin.php:586
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/src/Admin.php:586
+#: build/one-stop-shop-woocommerce-svn/trunk/src/Admin.php:586
+#: src/Admin.php:611
+#, php-format
+msgctxt "oss"
+msgid "%1$s %%"
+msgstr "%1$s %%"
+
+#: build/one-stop-shop-woocommerce-git/src/Admin.php:598
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/src/Admin.php:596
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/src/Admin.php:598
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/src/Admin.php:598
+#: build/one-stop-shop-woocommerce-svn/trunk/src/Admin.php:598
+#: src/Admin.php:623
+#, php-format
+msgctxt "oss"
+msgid ""
+"Currently processed %1$s orders. Next iteration is scheduled for %2$s. <a "
+"href=\"%3$s\">Find pending actions</a>"
+msgstr ""
+"Aktuell %1$s Bestellung verarbeitet. Nächster Durchlauf planmäßig am %2$s. "
+"<a href=\"%3$s\">Offene Aktionen finden</a>"
+
+#: build/one-stop-shop-woocommerce-git/src/Admin.php:598
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/src/Admin.php:596
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/src/Admin.php:598
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/src/Admin.php:598
+#: build/one-stop-shop-woocommerce-svn/trunk/src/Admin.php:598
+#: src/Admin.php:623
+msgctxt "oss"
+msgid "Not yet known"
+msgstr "Noch nicht bekannt"
+
+#: build/one-stop-shop-woocommerce-git/src/Admin.php:629
+#: build/one-stop-shop-woocommerce-git/src/ReportTable.php:39
+#: build/one-stop-shop-woocommerce-git/src/SettingsPage.php:23
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/src/Admin.php:627
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/src/ReportTable.php:39
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/src/SettingsPage.php:23
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/src/Admin.php:629
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/src/ReportTable.php:39
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/src/SettingsPage.php:23
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/src/Admin.php:629
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/src/ReportTable.php:39
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/src/SettingsPage.php:23
+#: build/one-stop-shop-woocommerce-svn/trunk/src/Admin.php:629
+#: build/one-stop-shop-woocommerce-svn/trunk/src/ReportTable.php:39
+#: build/one-stop-shop-woocommerce-svn/trunk/src/SettingsPage.php:23
+#: src/Admin.php:654 src/ReportTable.php:39 src/SettingsPage.php:23
+msgctxt "oss"
+msgid "Reports"
+msgstr "Berichte"
+
+#: build/one-stop-shop-woocommerce-git/src/AdminNote.php:39
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/src/AdminNote.php:39
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/src/AdminNote.php:39
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/src/AdminNote.php:39
+#: build/one-stop-shop-woocommerce-svn/trunk/src/AdminNote.php:39
+#: src/AdminNote.php:39
+msgctxt "oss"
+msgid "Dismiss"
+msgstr "Ausblenden"
+
+#: build/one-stop-shop-woocommerce-git/src/AsyncReportGenerator.php:172
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/src/AsyncReportGenerator.php:172
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/src/AsyncReportGenerator.php:172
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/src/AsyncReportGenerator.php:172
+#: build/one-stop-shop-woocommerce-svn/trunk/src/AsyncReportGenerator.php:172
+#: src/AsyncReportGenerator.php:195
+msgctxt "oss"
+msgid "No orders found."
+msgstr "Keine Bestellungen gefunden."
+
+#: build/one-stop-shop-woocommerce-git/src/CSVExporter.php:52
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/src/CSVExporter.php:52
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/src/CSVExporter.php:52
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/src/CSVExporter.php:52
+#: build/one-stop-shop-woocommerce-svn/trunk/src/CSVExporter.php:52
+#: src/CSVExporter.php:52
+msgctxt "oss"
+msgid "Country code"
+msgstr "Land des Verbrauchs"
+
+#: build/one-stop-shop-woocommerce-git/src/CSVExporter.php:53
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/src/CSVExporter.php:53
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/src/CSVExporter.php:53
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/src/CSVExporter.php:53
+#: build/one-stop-shop-woocommerce-svn/trunk/src/CSVExporter.php:53
+#: src/CSVExporter.php:53
+msgctxt "oss"
+msgid "Tax rate"
+msgstr "Umsatzsteuersatz"
+
+#: build/one-stop-shop-woocommerce-git/src/CSVExporter.php:54
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/src/CSVExporter.php:54
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/src/CSVExporter.php:54
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/src/CSVExporter.php:54
+#: build/one-stop-shop-woocommerce-svn/trunk/src/CSVExporter.php:54
+#: src/CSVExporter.php:54
+msgctxt "oss"
+msgid "Taxable base"
+msgstr "Nettobetrag"
+
+#: build/one-stop-shop-woocommerce-git/src/CSVExporter.php:55
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/src/CSVExporter.php:55
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/src/CSVExporter.php:55
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/src/CSVExporter.php:55
+#: build/one-stop-shop-woocommerce-svn/trunk/src/CSVExporter.php:55
+#: src/CSVExporter.php:55
+msgctxt "oss"
+msgid "Amount"
+msgstr "Umsatzsteuerbetrag"
+
+#: build/one-stop-shop-woocommerce-git/src/DeliveryThresholdEmailNotification.php:19
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/src/DeliveryThresholdEmailNotification.php:19
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/src/DeliveryThresholdEmailNotification.php:19
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/src/DeliveryThresholdEmailNotification.php:19
+#: build/one-stop-shop-woocommerce-svn/trunk/src/DeliveryThresholdEmailNotification.php:19
+#: src/DeliveryThresholdEmailNotification.php:19
+msgctxt "oss"
+msgid "OSS Delivery Threshold Notification"
+msgstr "OSS Lieferschwelle Benachrichtigung"
+
+#: build/one-stop-shop-woocommerce-git/src/DeliveryThresholdEmailNotification.php:20
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/src/DeliveryThresholdEmailNotification.php:20
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/src/DeliveryThresholdEmailNotification.php:20
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/src/DeliveryThresholdEmailNotification.php:20
+#: build/one-stop-shop-woocommerce-svn/trunk/src/DeliveryThresholdEmailNotification.php:20
+#: src/DeliveryThresholdEmailNotification.php:20
+msgctxt "oss"
+msgid ""
+"This email notifies shop owners in case the delivery threshold (OSS) is "
+"close to being reached."
+msgstr ""
+"Diese E-Mail benachrichtigt den Shopbetreiber über eine in Kürze anstehende "
+"Überschreitung der Lieferschwelle (OSS)."
+
+#: build/one-stop-shop-woocommerce-git/src/DeliveryThresholdEmailNotification.php:38
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/src/DeliveryThresholdEmailNotification.php:38
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/src/DeliveryThresholdEmailNotification.php:38
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/src/DeliveryThresholdEmailNotification.php:38
+#: build/one-stop-shop-woocommerce-svn/trunk/src/DeliveryThresholdEmailNotification.php:38
+#: src/DeliveryThresholdEmailNotification.php:38
+msgctxt "oss"
+msgid "[{site_title}]: OSS delivery threshold reached"
+msgstr "[{site_title}]: OSS Lieferschwelle erreicht"
+
+#: build/one-stop-shop-woocommerce-git/src/DeliveryThresholdEmailNotification.php:48
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/src/DeliveryThresholdEmailNotification.php:48
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/src/DeliveryThresholdEmailNotification.php:48
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/src/DeliveryThresholdEmailNotification.php:48
+#: build/one-stop-shop-woocommerce-svn/trunk/src/DeliveryThresholdEmailNotification.php:48
+#: src/DeliveryThresholdEmailNotification.php:48
+msgctxt "oss"
+msgid "OSS delivery threshold reached"
+msgstr "OSS Lieferschwelle erreicht"
+
+#: build/one-stop-shop-woocommerce-git/src/DeliveryThresholdWarning.php:13
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/src/DeliveryThresholdWarning.php:13
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/src/DeliveryThresholdWarning.php:13
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/src/DeliveryThresholdWarning.php:13
+#: build/one-stop-shop-woocommerce-svn/trunk/src/DeliveryThresholdWarning.php:13
+#: src/DeliveryThresholdWarning.php:13
+msgctxt "oss"
+msgid "See details"
+msgstr "Details ansehen"
+
+#: build/one-stop-shop-woocommerce-git/src/Package.php:83
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/src/Package.php:83
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/src/Package.php:83
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/src/Package.php:83
+#: build/one-stop-shop-woocommerce-svn/trunk/src/Package.php:83
+#: src/Package.php:83
+msgctxt "oss"
+msgid ""
+"To use the OSS for WooCommerce plugin please make sure that WooCommerce is "
+"installed and activated."
+msgstr ""
+"Um das OSS für WooCommerce Plugin nutzen zu können muss WooCommerce "
+"installiert und aktiviert sein."
+
+#: build/one-stop-shop-woocommerce-git/src/Package.php:252
+#: build/one-stop-shop-woocommerce-git/src/ReportTable.php:40
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/src/Package.php:252
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/src/ReportTable.php:40
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/src/Package.php:252
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/src/ReportTable.php:40
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/src/Package.php:252
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/src/ReportTable.php:40
+#: build/one-stop-shop-woocommerce-svn/trunk/src/Package.php:252
+#: build/one-stop-shop-woocommerce-svn/trunk/src/ReportTable.php:40
+#: src/Package.php:252 src/ReportTable.php:40
+msgctxt "oss"
+msgid "Report"
+msgstr "Bericht"
+
+#: build/one-stop-shop-woocommerce-git/src/Package.php:276
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/src/Package.php:276
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/src/Package.php:276
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/src/Package.php:276
+#: build/one-stop-shop-woocommerce-svn/trunk/src/Package.php:276
+#: src/Package.php:276
+#, php-format
+msgctxt "oss"
+msgid "%1$s"
+msgstr "%1$s"
+
+#: build/one-stop-shop-woocommerce-git/src/Package.php:281
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/src/Package.php:281
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/src/Package.php:281
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/src/Package.php:281
+#: build/one-stop-shop-woocommerce-svn/trunk/src/Package.php:281
+#: src/Package.php:281
+#, php-format
+msgctxt "oss"
+msgid "%1$s - %2$s"
+msgstr "%1$s - %2$s"
+
+#: build/one-stop-shop-woocommerce-git/src/Package.php:286
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/src/Package.php:286
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/src/Package.php:286
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/src/Package.php:286
+#: build/one-stop-shop-woocommerce-svn/trunk/src/Package.php:286
+#: src/Package.php:286
+#, php-format
+msgctxt "oss"
+msgid "Observer %1$s"
+msgstr "Beobachter %1$s"
+
+#: build/one-stop-shop-woocommerce-git/src/Package.php:463
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/src/Package.php:463
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/src/Package.php:463
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/src/Package.php:463
+#: build/one-stop-shop-woocommerce-svn/trunk/src/Package.php:463
+#: src/Package.php:463
+msgctxt "oss"
+msgid "Quarterly"
+msgstr "Quartalsweise"
+
+#: build/one-stop-shop-woocommerce-git/src/Package.php:464
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/src/Package.php:464
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/src/Package.php:464
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/src/Package.php:464
+#: build/one-stop-shop-woocommerce-svn/trunk/src/Package.php:464
+#: src/Package.php:464
+msgctxt "oss"
+msgid "Yearly"
+msgstr "Jährlich"
+
+#: build/one-stop-shop-woocommerce-git/src/Package.php:465
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/src/Package.php:465
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/src/Package.php:465
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/src/Package.php:465
+#: build/one-stop-shop-woocommerce-svn/trunk/src/Package.php:465
+#: src/Package.php:465
+msgctxt "oss"
+msgid "Monthly"
+msgstr "Monatlich"
+
+#: build/one-stop-shop-woocommerce-git/src/Package.php:466
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/src/Package.php:466
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/src/Package.php:466
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/src/Package.php:466
+#: build/one-stop-shop-woocommerce-svn/trunk/src/Package.php:466
+#: src/Package.php:466
+msgctxt "oss"
+msgid "Custom"
+msgstr "Individuell"
+
+#: build/one-stop-shop-woocommerce-git/src/Package.php:470
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/src/Package.php:470
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/src/Package.php:470
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/src/Package.php:470
+#: build/one-stop-shop-woocommerce-svn/trunk/src/Package.php:470
+#: src/Package.php:470
+msgctxt "oss"
+msgid "Observer"
+msgstr "Beobachter"
+
+#: build/one-stop-shop-woocommerce-git/src/Package.php:484
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/src/Package.php:484
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/src/Package.php:484
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/src/Package.php:484
+#: build/one-stop-shop-woocommerce-svn/trunk/src/Package.php:484
+#: src/Package.php:484
+msgctxt "oss"
+msgid "Pending"
+msgstr "In Bearbeitung"
+
+#: build/one-stop-shop-woocommerce-git/src/Package.php:485
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/src/Package.php:485
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/src/Package.php:485
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/src/Package.php:485
+#: build/one-stop-shop-woocommerce-svn/trunk/src/Package.php:485
+#: src/Package.php:485
+msgctxt "oss"
+msgid "Completed"
+msgstr "Fertiggestellt"
+
+#: build/one-stop-shop-woocommerce-git/src/Package.php:486
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/src/Package.php:486
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/src/Package.php:486
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/src/Package.php:486
+#: build/one-stop-shop-woocommerce-svn/trunk/src/Package.php:486
+#: src/Package.php:486
+msgctxt "oss"
+msgid "Failed"
+msgstr "Fehlgeschlagen"
+
+#: build/one-stop-shop-woocommerce-git/src/ReportTable.php:121
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/src/ReportTable.php:121
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/src/ReportTable.php:121
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/src/ReportTable.php:121
+#: build/one-stop-shop-woocommerce-svn/trunk/src/ReportTable.php:121
+#: src/ReportTable.php:121
+#, php-format
+msgctxt "oss"
+msgid "%d report deleted."
+msgid_plural "%d reports deleted."
+msgstr[0] "%d Bericht gelöscht."
+msgstr[1] "%d Berichte gelöscht."
+
+#: build/one-stop-shop-woocommerce-git/src/ReportTable.php:184
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/src/ReportTable.php:184
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/src/ReportTable.php:184
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/src/ReportTable.php:184
+#: build/one-stop-shop-woocommerce-svn/trunk/src/ReportTable.php:184
+#: src/ReportTable.php:184
+msgctxt "oss"
+msgid "No reports found"
+msgstr "Keine Berichte gefunden"
+
+#: build/one-stop-shop-woocommerce-git/src/ReportTable.php:225
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/src/ReportTable.php:225
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/src/ReportTable.php:225
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/src/ReportTable.php:225
+#: build/one-stop-shop-woocommerce-svn/trunk/src/ReportTable.php:225
+#: src/ReportTable.php:225
+#, php-format
+msgctxt "oss"
+msgid "All <span class=\"count\">(%s)</span>"
+msgid_plural "All <span class=\"count\">(%s)</span>"
+msgstr[0] "Alle <span class=\"count\">(%s)</span>"
+msgstr[1] "Alle <span class=\"count\">(%s)</span>"
+
+#: build/one-stop-shop-woocommerce-git/src/ReportTable.php:250
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/src/ReportTable.php:250
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/src/ReportTable.php:250
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/src/ReportTable.php:250
+#: build/one-stop-shop-woocommerce-svn/trunk/src/ReportTable.php:250
+#: src/ReportTable.php:250
+#, php-format
+msgctxt "oss"
+msgid " <span class=\"count\">(%s)</span>"
+msgid_plural " <span class=\"count\">(%s)</span>"
+msgstr[0] " <span class=\"count\">(%s)</span>"
+msgstr[1] " <span class=\"count\">(%s)</span>"
+
+#: build/one-stop-shop-woocommerce-git/src/ReportTable.php:323
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/src/ReportTable.php:323
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/src/ReportTable.php:323
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/src/ReportTable.php:323
+#: build/one-stop-shop-woocommerce-svn/trunk/src/ReportTable.php:323
+#: src/ReportTable.php:323
+msgctxt "oss"
+msgid "Filter"
+msgstr "Filtern"
+
+#: build/one-stop-shop-woocommerce-git/src/ReportTable.php:350
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/src/ReportTable.php:350
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/src/ReportTable.php:350
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/src/ReportTable.php:350
+#: build/one-stop-shop-woocommerce-svn/trunk/src/ReportTable.php:350
+#: src/ReportTable.php:350
+msgctxt "oss"
+msgid "Title"
+msgstr "Titel"
+
+#: build/one-stop-shop-woocommerce-git/src/ReportTable.php:351
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/src/ReportTable.php:351
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/src/ReportTable.php:351
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/src/ReportTable.php:351
+#: build/one-stop-shop-woocommerce-svn/trunk/src/ReportTable.php:351
+#: src/ReportTable.php:351
+msgctxt "oss"
+msgid "Start"
+msgstr "Start"
+
+#: build/one-stop-shop-woocommerce-git/src/ReportTable.php:352
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/src/ReportTable.php:352
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/src/ReportTable.php:352
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/src/ReportTable.php:352
+#: build/one-stop-shop-woocommerce-svn/trunk/src/ReportTable.php:352
+#: src/ReportTable.php:352
+msgctxt "oss"
+msgid "End"
+msgstr "Ende"
+
+#: build/one-stop-shop-woocommerce-git/src/ReportTable.php:353
+#: build/one-stop-shop-woocommerce-git/templates/emails/admin-delivery-threshold.php:25
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/src/ReportTable.php:353
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/templates/emails/admin-delivery-threshold.php:25
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/src/ReportTable.php:353
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/templates/emails/admin-delivery-threshold.php:25
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/src/ReportTable.php:353
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/templates/emails/admin-delivery-threshold.php:25
+#: build/one-stop-shop-woocommerce-svn/trunk/src/ReportTable.php:353
+#: build/one-stop-shop-woocommerce-svn/trunk/templates/emails/admin-delivery-threshold.php:25
+#: src/ReportTable.php:353 templates/emails/admin-delivery-threshold.php:25
+msgctxt "oss"
+msgid "Net total"
+msgstr "Nettobetrag"
+
+#: build/one-stop-shop-woocommerce-git/src/ReportTable.php:354
+#: build/one-stop-shop-woocommerce-git/templates/emails/admin-delivery-threshold.php:26
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/src/ReportTable.php:354
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/templates/emails/admin-delivery-threshold.php:26
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/src/ReportTable.php:354
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/templates/emails/admin-delivery-threshold.php:26
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/src/ReportTable.php:354
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/templates/emails/admin-delivery-threshold.php:26
+#: build/one-stop-shop-woocommerce-svn/trunk/src/ReportTable.php:354
+#: build/one-stop-shop-woocommerce-svn/trunk/templates/emails/admin-delivery-threshold.php:26
+#: src/ReportTable.php:354 templates/emails/admin-delivery-threshold.php:26
+msgctxt "oss"
+msgid "Tax total"
+msgstr "Steuerbertrag"
+
+#: build/one-stop-shop-woocommerce-git/src/ReportTable.php:355
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/src/ReportTable.php:355
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/src/ReportTable.php:355
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/src/ReportTable.php:355
+#: build/one-stop-shop-woocommerce-svn/trunk/src/ReportTable.php:355
+#: src/ReportTable.php:355
+msgctxt "oss"
+msgid "Status"
+msgstr "Status"
+
+#: build/one-stop-shop-woocommerce-git/src/ReportTable.php:356
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/src/ReportTable.php:356
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/src/ReportTable.php:356
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/src/ReportTable.php:356
+#: build/one-stop-shop-woocommerce-svn/trunk/src/ReportTable.php:356
+#: src/ReportTable.php:356
+msgctxt "oss"
+msgid "Actions"
+msgstr "Aktionen"
+
+#: build/one-stop-shop-woocommerce-git/src/ReportTable.php:420
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/src/ReportTable.php:420
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/src/ReportTable.php:420
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/src/ReportTable.php:420
+#: build/one-stop-shop-woocommerce-svn/trunk/src/ReportTable.php:420
+#: src/ReportTable.php:420
+#, php-format
+msgctxt "oss"
+msgid "Select %s"
+msgstr "%s auswählen"
+
+#: build/one-stop-shop-woocommerce-git/src/ReportTable.php:513
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/src/ReportTable.php:513
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/src/ReportTable.php:513
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/src/ReportTable.php:513
+#: build/one-stop-shop-woocommerce-svn/trunk/src/ReportTable.php:513
+#: src/ReportTable.php:513
+msgctxt "oss"
+msgid "Delete Permanently"
+msgstr "Unwiderruflich löschen"
+
+#: build/one-stop-shop-woocommerce-git/src/Settings.php:14
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/src/Settings.php:14
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/src/Settings.php:14
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/src/Settings.php:14
+#: build/one-stop-shop-woocommerce-svn/trunk/src/Settings.php:14
+#: src/Settings.php:14
+msgctxt "oss"
+msgid "General"
+msgstr "Allgemein"
+
+#: build/one-stop-shop-woocommerce-git/src/Settings.php:19
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/src/Settings.php:19
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/src/Settings.php:19
+#: build/one-stop-shop-woocommerce-svn/trunk/src/Settings.php:19
+#: src/Settings.php:19
+msgctxt "oss"
+msgid ""
+"Find useful options regarding the <a href=\"https://ec.europa.eu/"
+"taxation_customs/business/vat/oss_en\" target=\"_blank\" rel=\"noopener"
+"\">One Stop Shop procedure</a> here."
+msgstr ""
+"Finde hier nützliche Optionen zum <a href=\"https://ec.europa.eu/"
+"taxation_customs/business/vat/oss_de\" target=\"_blank\" rel=\"noopener"
+"\">One Stop Shop Verfahren</a>."
+
+#: build/one-stop-shop-woocommerce-git/src/Settings.php:31
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/src/Settings.php:31
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/src/Settings.php:31
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/src/Settings.php:31
+#: build/one-stop-shop-woocommerce-svn/trunk/src/Settings.php:31
+#: src/Settings.php:31
+msgctxt "oss"
+msgid "OSS status"
+msgstr "OSS Status"
+
+#: build/one-stop-shop-woocommerce-git/src/Settings.php:32
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/src/Settings.php:32
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/src/Settings.php:32
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/src/Settings.php:32
+#: build/one-stop-shop-woocommerce-svn/trunk/src/Settings.php:32
+#: src/Settings.php:32
+msgctxt "oss"
+msgid "Yes, I'm currently participating in the OSS procedure."
+msgstr "Ja, ich nehme aktuell am One Stop Shop Verfahren teil."
+
+#: build/one-stop-shop-woocommerce-git/src/Settings.php:39
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/src/Settings.php:39
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/src/Settings.php:39
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/src/Settings.php:39
+#: build/one-stop-shop-woocommerce-svn/trunk/src/Settings.php:39
+#: src/Settings.php:39
+msgctxt "oss"
+msgid "Observation"
+msgstr "Überwachung"
+
+#: build/one-stop-shop-woocommerce-git/src/Settings.php:40
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/src/Settings.php:40
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/src/Settings.php:40
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/src/Settings.php:40
+#: build/one-stop-shop-woocommerce-svn/trunk/src/Settings.php:40
+#: src/Settings.php:40
+msgctxt "oss"
+msgid "Automatically observe the delivery threshold of the current year."
+msgstr "Überwache die Lieferschwelle des aktuellen Jahres automatisch."
+
+#: build/one-stop-shop-woocommerce-git/src/Settings.php:40
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/src/Settings.php:40
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/src/Settings.php:40
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/src/Settings.php:40
+#: build/one-stop-shop-woocommerce-svn/trunk/src/Settings.php:40
+#: src/Settings.php:40
+msgctxt "oss"
+msgid ""
+"This option will automatically calculate the amount applicable for the OSS "
+"procedure delivery threshold once per day for the current year. The report "
+"will only recalculated for the days which are not yet subject to the "
+"observation to save processing time."
+msgstr ""
+"Diese Option überwacht automatisch die Lieferschwelle des OSS Verfahrens für "
+"das aktuelle Jahr, indem der dazugehörige Bericht täglich erweitert und "
+"nachberechnet wird. Der Bericht wird nur für die Tage nachberechnet, für die "
+"aktuell noch keine Überwachung stattfindet."
+
+#: build/one-stop-shop-woocommerce-git/src/Settings.php:50
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/src/Settings.php:50
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/src/Settings.php:50
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/src/Settings.php:50
+#: build/one-stop-shop-woocommerce-svn/trunk/src/Settings.php:50
+#: src/Settings.php:50
+msgctxt "oss"
+msgid "Delivery threshold"
+msgstr "Lieferschwelle"
+
+#: build/one-stop-shop-woocommerce-git/src/Settings.php:60
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/src/Settings.php:60
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/src/Settings.php:60
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/src/Settings.php:60
+#: build/one-stop-shop-woocommerce-svn/trunk/src/Settings.php:60
+#: src/Settings.php:60
+msgctxt "oss"
+msgid "Participation"
+msgstr "Teilnahme"
+
+#: build/one-stop-shop-woocommerce-git/src/Settings.php:80
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/src/Settings.php:80
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/src/Settings.php:80
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/src/Settings.php:80
+#: build/one-stop-shop-woocommerce-svn/trunk/src/Settings.php:80
+#: src/Settings.php:80
+msgctxt "oss"
+msgid "Are you sure? Please backup your tax rates before proceeding."
+msgstr "Bist du sicher? Bitte erstelle vorab ein Backup deiner Steuersätze."
+
+#: build/one-stop-shop-woocommerce-git/src/Settings.php:80
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/src/Settings.php:80
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/src/Settings.php:80
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/src/Settings.php:80
+#: build/one-stop-shop-woocommerce-svn/trunk/src/Settings.php:80
+#: src/Settings.php:80
+msgctxt "oss"
+msgid "End OSS participation"
+msgstr "OSS Teilnahme beenden"
+
+#: build/one-stop-shop-woocommerce-git/src/Settings.php:80
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/src/Settings.php:80
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/src/Settings.php:80
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/src/Settings.php:80
+#: build/one-stop-shop-woocommerce-svn/trunk/src/Settings.php:80
+#: src/Settings.php:80
+msgctxt "oss"
+msgid "Start OSS participation"
+msgstr "OSS Teilnahme starten"
+
+#: build/one-stop-shop-woocommerce-git/src/Settings.php:81
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/src/Settings.php:81
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/src/Settings.php:81
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/src/Settings.php:81
+#: build/one-stop-shop-woocommerce-svn/trunk/src/Settings.php:81
+#: src/Settings.php:81
+msgctxt "oss"
+msgid "learn more"
+msgstr "Mehr erfahren"
+
+#: build/one-stop-shop-woocommerce-git/src/Settings.php:83
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/src/Settings.php:83
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/src/Settings.php:83
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/src/Settings.php:83
+#: build/one-stop-shop-woocommerce-svn/trunk/src/Settings.php:83
+#: src/Settings.php:83
+msgctxt "oss"
+msgid ""
+"Use this option to automatically adjust tax-related options in WooCommerce. "
+"Warning: This option will delete your current tax rates and add new tax "
+"rates based on your OSS participation status."
+msgstr ""
+"Nutze diese Option um deine Steuereinstellungen in WooCommerce automatisch "
+"anpassen zu lassen. Achtung: Diese Option löscht deine aktuellen Steuersätze "
+"und fügt neue Steuersätze basierend auf deinem OSS Status hinzu."
+
+#: build/one-stop-shop-woocommerce-git/src/Settings.php:105
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/src/Settings.php:105
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/src/Settings.php:105
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/src/Settings.php:105
+#: build/one-stop-shop-woocommerce-svn/trunk/src/Settings.php:105
+#: src/Settings.php:105
+msgctxt "oss"
+msgid "See status"
+msgstr "Status ansehen"
+
+#: build/one-stop-shop-woocommerce-git/src/Settings.php:105
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/src/Settings.php:105
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/src/Settings.php:105
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/src/Settings.php:105
+#: build/one-stop-shop-woocommerce-svn/trunk/src/Settings.php:105
+#: src/Settings.php:105
+msgctxt "oss"
+msgid "Start initial report"
+msgstr "Initialen Bericht erstellen"
+
+#: build/one-stop-shop-woocommerce-git/src/Settings.php:106
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/src/Settings.php:106
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/src/Settings.php:106
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/src/Settings.php:106
+#: build/one-stop-shop-woocommerce-svn/trunk/src/Settings.php:106
+#: src/Settings.php:106
+#, php-format
+msgctxt "oss"
+msgid "Report not yet completed. %s"
+msgstr "Bericht noch nicht abgeschlossen. %s"
+
+#: build/one-stop-shop-woocommerce-git/src/Settings.php:106
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/src/Settings.php:106
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/src/Settings.php:106
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/src/Settings.php:106
+#: build/one-stop-shop-woocommerce-svn/trunk/src/Settings.php:106
+#: src/Settings.php:106
+#, php-format
+msgctxt "oss"
+msgid "Report not yet started. %s"
+msgstr "Bericht noch nicht gestartet. %s"
+
+#: build/one-stop-shop-woocommerce-git/src/Settings.php:124
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/src/Settings.php:124
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/src/Settings.php:124
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/src/Settings.php:124
+#: build/one-stop-shop-woocommerce-svn/trunk/src/Settings.php:124
+#: src/Settings.php:124
+msgctxt "oss-amounts"
+msgid "of"
+msgstr "von"
+
+#: build/one-stop-shop-woocommerce-git/src/Settings.php:124
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/src/Settings.php:124
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/src/Settings.php:124
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/src/Settings.php:124
+#: build/one-stop-shop-woocommerce-svn/trunk/src/Settings.php:124
+#: src/Settings.php:124
+msgctxt "oss"
+msgid "see details"
+msgstr "Details ansehen"
+
+#: build/one-stop-shop-woocommerce-git/src/Settings.php:125
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/src/Settings.php:125
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/src/Settings.php:125
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/src/Settings.php:125
+#: build/one-stop-shop-woocommerce-svn/trunk/src/Settings.php:125
+#: src/Settings.php:125
+#, php-format
+msgctxt "oss"
+msgid ""
+"This value indicates your current net total amount applicable for the One "
+"Stop Shop procedure delivery threshold of the current year. You should take "
+"action in case the delivery threshold is or is close to being exceeded. <a "
+"href=\"%s\">Find out more</a> about the calculation."
+msgstr ""
+"Dieser Wert entspricht der Bemessungsgrundlage (Nettobetrag) des aktuellen "
+"Jahres für die Lieferschwelle des One Stop Shop Verfahrens. Du solltest "
+"tätig werden, wenn die Lieferschwelle kurz vor einer Überschreitung steht "
+"oder bereits überschritten wurde. <a href=\"%s\">Erfahre mehr</a> über die "
+"Berechnung."
+
+#: build/one-stop-shop-woocommerce-git/src/SettingsPage.php:23
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/src/SettingsPage.php:23
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/src/SettingsPage.php:23
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/src/SettingsPage.php:23
+#: build/one-stop-shop-woocommerce-svn/trunk/src/SettingsPage.php:23
+#: src/SettingsPage.php:23
+msgctxt "oss"
+msgid "Learn More"
+msgstr "Mehr erfahren"
+
+#: build/one-stop-shop-woocommerce-git/src/Tax.php:167
+#: build/one-stop-shop-woocommerce-git/src/Tax.php:225
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/src/Tax.php:167
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/src/Tax.php:225
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/src/Tax.php:167
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/src/Tax.php:225
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/src/Tax.php:167
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/src/Tax.php:225
+#: build/one-stop-shop-woocommerce-svn/trunk/src/Tax.php:167
+#: build/one-stop-shop-woocommerce-svn/trunk/src/Tax.php:225 src/Tax.php:168
+#: src/Tax.php:226
+#, php-format
+msgctxt "oss"
+msgid "Tax class (%s)"
+msgstr "Steuerklasse (%s)"
+
+#: build/one-stop-shop-woocommerce-git/src/Tax.php:168
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/src/Tax.php:168
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/src/Tax.php:168
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/src/Tax.php:168
+#: build/one-stop-shop-woocommerce-svn/trunk/src/Tax.php:168 src/Tax.php:169
+msgctxt "oss"
+msgid "Same as parent"
+msgstr "Gleiche wie übergeordnet"
+
+#: build/one-stop-shop-woocommerce-git/src/Tax.php:170
+#: build/one-stop-shop-woocommerce-git/src/Tax.php:203
+#: build/one-stop-shop-woocommerce-git/src/Tax.php:227
+#: build/one-stop-shop-woocommerce-git/src/Tax.php:261
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/src/Tax.php:170
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/src/Tax.php:203
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/src/Tax.php:227
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/src/Tax.php:261
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/src/Tax.php:170
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/src/Tax.php:203
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/src/Tax.php:227
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/src/Tax.php:261
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/src/Tax.php:170
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/src/Tax.php:203
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/src/Tax.php:227
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/src/Tax.php:261
+#: build/one-stop-shop-woocommerce-svn/trunk/src/Tax.php:170
+#: build/one-stop-shop-woocommerce-svn/trunk/src/Tax.php:203
+#: build/one-stop-shop-woocommerce-svn/trunk/src/Tax.php:227
+#: build/one-stop-shop-woocommerce-svn/trunk/src/Tax.php:261 src/Tax.php:171
+#: src/Tax.php:204 src/Tax.php:228 src/Tax.php:262
+msgctxt "oss"
+msgid "remove"
+msgstr "Löschen"
+
+#: build/one-stop-shop-woocommerce-git/src/Tax.php:180
+#: build/one-stop-shop-woocommerce-git/src/Tax.php:238
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/src/Tax.php:180
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/src/Tax.php:238
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/src/Tax.php:180
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/src/Tax.php:238
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/src/Tax.php:180
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/src/Tax.php:238
+#: build/one-stop-shop-woocommerce-svn/trunk/src/Tax.php:180
+#: build/one-stop-shop-woocommerce-svn/trunk/src/Tax.php:238 src/Tax.php:181
+#: src/Tax.php:239
+msgctxt "oss"
+msgid "Add country specific tax class (OSS)"
+msgstr "Länderspezifische Steuerklasse hinzufügen (OSS)"
+
+#: build/one-stop-shop-woocommerce-git/src/Tax.php:187
+#: build/one-stop-shop-woocommerce-git/src/Tax.php:245
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/src/Tax.php:187
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/src/Tax.php:245
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/src/Tax.php:187
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/src/Tax.php:245
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/src/Tax.php:187
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/src/Tax.php:245
+#: build/one-stop-shop-woocommerce-svn/trunk/src/Tax.php:187
+#: build/one-stop-shop-woocommerce-svn/trunk/src/Tax.php:245 src/Tax.php:188
+#: src/Tax.php:246
+msgctxt "oss"
+msgid "Select country"
+msgstr "Land auswählen"
+
+#. translators: Do not translate
+#: build/one-stop-shop-woocommerce-git/src/Tax.php:333
+#: build/one-stop-shop-woocommerce-git/src/Tax.php:412
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/src/Tax.php:333
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/src/Tax.php:406
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/src/Tax.php:333
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/src/Tax.php:412
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/src/Tax.php:333
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/src/Tax.php:412
+#: build/one-stop-shop-woocommerce-svn/trunk/src/Tax.php:333
+#: build/one-stop-shop-woocommerce-svn/trunk/src/Tax.php:412 src/Tax.php:341
+#: src/Tax.php:420
+msgid "Reduced rate"
+msgstr ""
+
+#: build/one-stop-shop-woocommerce-git/src/Tax.php:336
+#: build/one-stop-shop-woocommerce-git/src/Tax.php:404
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/src/Tax.php:336
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/src/Tax.php:402
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/src/Tax.php:336
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/src/Tax.php:404
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/src/Tax.php:336
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/src/Tax.php:404
+#: build/one-stop-shop-woocommerce-svn/trunk/src/Tax.php:336
+#: build/one-stop-shop-woocommerce-svn/trunk/src/Tax.php:404 src/Tax.php:344
+#: src/Tax.php:412
+msgctxt "oss"
+msgid "Greater reduced rate"
+msgstr "Zusätzlicher reduzierter Preis"
+
+#: build/one-stop-shop-woocommerce-git/src/Tax.php:339
+#: build/one-stop-shop-woocommerce-git/src/Tax.php:408
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/src/Tax.php:339
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/src/Tax.php:404
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/src/Tax.php:339
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/src/Tax.php:408
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/src/Tax.php:339
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/src/Tax.php:408
+#: build/one-stop-shop-woocommerce-svn/trunk/src/Tax.php:339
+#: build/one-stop-shop-woocommerce-svn/trunk/src/Tax.php:408 src/Tax.php:347
+#: src/Tax.php:416
+msgctxt "oss"
+msgid "Super reduced rate"
+msgstr "Stark reduzierter Preis"
+
+#: build/one-stop-shop-woocommerce-git/src/Tax.php:567
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/src/Tax.php:561
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/src/Tax.php:567
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/src/Tax.php:567
+#: build/one-stop-shop-woocommerce-svn/trunk/src/Tax.php:567 src/Tax.php:607
+#, php-format
+msgctxt "oss-tax-rate-import"
+msgid "VAT %s"
+msgstr "MwSt. %s"
+
+#. translators: %s: Customer billing full name
+#: build/one-stop-shop-woocommerce-git/templates/emails/admin-delivery-threshold.php:19
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/templates/emails/admin-delivery-threshold.php:19
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/templates/emails/admin-delivery-threshold.php:19
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/templates/emails/admin-delivery-threshold.php:19
+#: build/one-stop-shop-woocommerce-svn/trunk/templates/emails/admin-delivery-threshold.php:19
+#: templates/emails/admin-delivery-threshold.php:19
+#, php-format
+msgctxt "oss"
+msgid ""
+"Your OSS delivery threshold of %1$s has been reached. Please take action "
+"immediately. Visit the <a href=\"%2$s\">OSS Settings Panel</a> for details."
+msgstr ""
+"Deine OSS Lieferschwelle von %1$s wurde erreicht. Bitte werde umgehend "
+"tätig. Besuche die <a href=\"%2$s\">OSS Einstellungen</a> um Details zu "
+"erfahren."
+
+#: build/one-stop-shop-woocommerce-git/templates/emails/admin-delivery-threshold.php:21
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/templates/emails/admin-delivery-threshold.php:21
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/templates/emails/admin-delivery-threshold.php:21
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/templates/emails/admin-delivery-threshold.php:21
+#: build/one-stop-shop-woocommerce-svn/trunk/templates/emails/admin-delivery-threshold.php:21
+#: templates/emails/admin-delivery-threshold.php:21
+msgctxt "oss"
+msgid "Report Details"
+msgstr "Details des Berichts"
+
+#: build/one-stop-shop-woocommerce-git/templates/emails/admin-delivery-threshold.php:24
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/templates/emails/admin-delivery-threshold.php:24
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/templates/emails/admin-delivery-threshold.php:24
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/templates/emails/admin-delivery-threshold.php:24
+#: build/one-stop-shop-woocommerce-svn/trunk/templates/emails/admin-delivery-threshold.php:24
+#: templates/emails/admin-delivery-threshold.php:24
+msgctxt "oss"
+msgid "Period"
+msgstr "Periode"
+
+#: build/one-stop-shop-woocommerce-git/templates/emails/admin-delivery-threshold.php:29
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/templates/emails/admin-delivery-threshold.php:29
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/templates/emails/admin-delivery-threshold.php:29
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/templates/emails/admin-delivery-threshold.php:29
+#: build/one-stop-shop-woocommerce-svn/trunk/templates/emails/admin-delivery-threshold.php:29
+#: templates/emails/admin-delivery-threshold.php:29
+msgctxt "oss"
+msgid "See report details"
+msgstr "Details des Berichts abrufen"
+
+#: build/one-stop-shop-woocommerce-git/templates/emails/plain/admin-delivery-threshold.php:17
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/templates/emails/plain/admin-delivery-threshold.php:17
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.1/templates/emails/plain/admin-delivery-threshold.php:17
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.2/templates/emails/plain/admin-delivery-threshold.php:17
+#: build/one-stop-shop-woocommerce-svn/trunk/templates/emails/plain/admin-delivery-threshold.php:17
+#: templates/emails/plain/admin-delivery-threshold.php:17
+#, php-format
+msgctxt "oss"
+msgid ""
+"Your OSS delivery threshold of %1$s has been reached. Please take action "
+"immediately. Visit the OSS Settings Panel (%2$s) for details."
+msgstr ""
+"Deine OSS Lieferschwelle von %1$s wurde erreicht. Bitte werde umgehend "
+"tätig. Besuche die OSS Einstellungen (%2$s) um Details zu erfahren."
+
+#: build/one-stop-shop-woocommerce-svn/tags/1.0.0/src/Settings.php:19
+msgctxt "oss"
+msgid ""
+"Find useful options regarding the <a href=\"https://ec.europa.eu/"
+"taxation_customs/business/vat/modernising-vat-cross-border-ecommerce_en\" "
+"target=\"_blank\" rel=\"noopener\">One Stop Shop procedure</a> here."
+msgstr ""
+"Finde hier nützliche Optionen zum <a href=\"https://ec.europa.eu/"
+"taxation_customs/business/vat/modernising-vat-cross-border-ecommerce_de\" "
+"target=\"_blank\" rel=\"noopener\">One Stop Shop Verfahren</a>."
+
+#: src/Admin.php:54 src/Admin.php:55
+msgctxt "oss"
+msgid "Refresh VAT rates (OSS)"
+msgstr "EU Steuersätze erneuern (OSS)"
+
+#: src/Admin.php:59
+msgctxt "oss"
+msgid "Note:"
+msgstr "Hinweis:"
+
+#: src/Admin.php:60
+#, php-format
+msgctxt "oss"
+msgid ""
+"This option will delete all of your current EU VAT rates and re-import them "
+"based on your current <a href=\"%s\">OSS status</a>."
+msgstr ""
+"Diese Option löscht alle deine aktuellen EU Steuersätze und importiert sie "
+"anschließend auf Basis deines <a href=\"%s\">OSS Status</a> neu."
+
+#. Plugin Name of the plugin/theme
+msgid "One Stop Shop for WooCommerce"
+msgstr "One Stop Shop für WooCommerce"
+
+#. Plugin URI of the plugin/theme
+msgid "https://github.com/vendidero/one-stop-shop-woocommerce"
+msgstr "https://github.com/vendidero/one-stop-shop-woocommerce"
+
+#. Description of the plugin/theme
+msgid "Comply with the One Stop Shop procedure while using WooCommerce."
+msgstr "Nutze das One Stop Shop Verfahren zusammen mit WooCommerce."
+
+#. Author of the plugin/theme
+msgid "vendidero"
+msgstr "vendidero"
+
+#. Author URI of the plugin/theme
+msgid "https://vendidero.de"
+msgstr "https://vendidero.de"
