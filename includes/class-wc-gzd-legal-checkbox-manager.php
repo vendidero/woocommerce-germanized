@@ -208,7 +208,18 @@ class WC_GZD_Legal_Checkbox_Manager {
 
 		// For validation, refresh and adjustments see WC_GZD_Gateway_Direct_Debit
 		if ( is_array( $direct_debit_settings ) && 'yes' === $direct_debit_settings['enabled'] ) {
-			$ajax_url = wp_nonce_url( add_query_arg( array( 'action' => 'show_direct_debit' ), admin_url( 'admin-ajax.php' ) ), 'show_direct_debit' );
+
+			$order_secret = isset( $_GET['key'], $_GET['pay_for_order'] ) ? wc_clean( wp_unslash( $_GET['key'] ) ) : '';
+			$ajax_url     = wp_nonce_url( add_query_arg( array( 'action' => 'show_direct_debit', 'order_key' => $order_secret ), admin_url( 'admin-ajax.php' ) ), 'show_direct_debit' );
+
+			/**
+			 * Filter to adjust the direct debit mandate link.
+			 *
+			 * @param string $link The link.
+			 *
+			 * @since 1.8.5
+			 */
+			$ajax_url = apply_filters( 'woocommerce_gzd_direct_debit_ajax_url', $ajax_url );
 
 			wc_gzd_register_legal_checkbox( 'sepa', array(
 				'html_id'              => 'direct-debit-checkbox',

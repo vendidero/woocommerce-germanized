@@ -162,6 +162,7 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 
 		// Order Meta - use woocommerce_checkout_update_order_meta to make sure order id exists when updating mandate id
 		add_action( 'woocommerce_checkout_update_order_meta', array( $this, 'set_order_meta' ), 10, 1 );
+		add_action( 'woocommerce_before_pay_action', array( $this, 'on_pay_for_order' ), 10, 1 );
 		add_action( 'woocommerce_scheduled_subscription_payment', array( $this, 'set_order_meta' ), 10, 2 );
 
 		// Customer Emails
@@ -643,7 +644,7 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 
 	public function send_mail( $order_id ) {
 	    if ( $order = wc_get_order( $order_id ) ) {
-		    if ( $order->get_payment_method() == $this->id ) {
+		    if ( $order->get_payment_method() === $this->id ) {
 
 			    if ( $mail = WC_germanized()->emails->get_email_instance_by_id( 'customer_sepa_direct_debit_mandate' ) ) {
 				    $mail->trigger( $order );
@@ -659,20 +660,35 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 	/**
 	 * @param WC_Order $order
 	 */
-	public function set_order_meta( $order ) {
+	public function on_pay_for_order( $order ) {
+		if ( is_numeric( $order ) ) {
+			$order = wc_get_order( $order );
+		}
 
-	    if ( is_numeric( $order ) ) {
-	        $order = wc_get_order( $order );
-        }
-
-	    if ( ! $order ) {
-	        return;
-        }
-
-		if ( $order->get_payment_method() !== $this->id ) {
+		if ( ! $order ) {
 			return;
 		}
 
+		$payment_method_id = isset( $_POST['payment_method'] ) ? wc_clean( wp_unslash( $_POST['payment_method'] ) ) : false;
+
+		if ( $payment_method_id !== $this->id) {
+			return;
+		}
+
+		$available_gateways = WC()->payment_gateways->get_available_payment_gateways();
+		$payment_method     = isset( $available_gateways[ $payment_method_id ] ) ? $available_gateways[ $payment_method_id ] : false;
+
+		if ( ! $payment_method ) {
+			return;
+		}
+
+		$this->update_order( $order );
+	}
+
+	/**
+	 * @param WC_Order $order
+	 */
+	protected function update_order( $order, $save = false ) {
 		$holder  = ( isset( $_POST['direct_debit_account_holder'] ) ? wc_clean( $_POST['direct_debit_account_holder'] ) : '' );
 		$iban    = ( isset( $_POST['direct_debit_account_iban'] ) ? $this->maybe_encrypt( strtoupper( $this->clean_whitespaces( wc_clean( $_POST['direct_debit_account_iban'] ) ) ) ) : '' );
 		$bic     = ( isset( $_POST['direct_debit_account_bic'] ) ? $this->maybe_encrypt( strtoupper( $this->clean_whitespaces( wc_clean( $_POST['direct_debit_account_bic'] ) ) ) ) : '' );
@@ -691,8 +707,10 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 		$order->update_meta_data( '_direct_debit_mandate_date', current_time( 'timestamp', true ) );
 		$order->update_meta_data( '_direct_debit_mandate_mail', $order->get_billing_email() );
 
-		// Save the order data
-		$order->save();
+		if ( $save ) {
+			// Save the order data
+			$order->save();
+		}
 
 		/**
 		 * Updated direct debit order data.
@@ -730,6 +748,26 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 		}
 	}
 
+	/**
+	 * @param WC_Order $order
+	 */
+	public function set_order_meta( $order ) {
+
+	    if ( is_numeric( $order ) ) {
+	        $order = wc_get_order( $order );
+        }
+
+	    if ( ! $order ) {
+	        return;
+        }
+
+		if ( $order->get_payment_method() !== $this->id) {
+			return;
+		}
+
+		$this->update_order( $order, true );
+	}
+
 	public function generate_mandate() {
 
 		if ( ! $this->is_available() ) {
@@ -758,6 +796,21 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 			 */
 			'mandate_type_text' => apply_filters( 'woocommerce_gzd_direct_debit_mandate_type_text', __( 'a single payment', 'woocommerce-germanized' ) ),
 		);
+
+		$order_key = isset( $_GET['order_key'] ) ? wc_clean( wp_unslash( $_GET['order_key'] ) ) : '';
+
+		if ( ! empty( $order_key ) ) {
+            $order_id = wc_get_order_id_by_order_key( $order_key );
+
+		    if ( $order_id && ( $order = wc_get_order( $order_id ) ) ) {
+			    if ( current_user_can( 'pay_for_order', $order_id ) ) {
+				    $params['street']   = $order->get_billing_address_1();
+				    $params['postcode'] = $order->get_billing_postcode();
+				    $params['city']     = $order->get_billing_city();
+				    $params['country']  = $order->get_billing_country();
+			    }
+		    }
+		}
 
 		echo $this->generate_mandate_text( $params );
 		exit();
@@ -836,33 +889,6 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 		$GLOBALS['post'] = $tmp_post;
 
 		return $content;
-	}
-
-	public function checkbox() {
-		if ( $this->is_available() && $this->enable_checkbox === 'yes' ) {
-			wc_get_template( 'checkout/terms-sepa.php', array( 'checkbox_label' => $this->get_checkbox_label() ) );
-		}
-	}
-
-	public function get_checkbox_label() {
-		$ajax_url = wp_nonce_url( add_query_arg( array( 'action' => 'show_direct_debit' ), admin_url( 'admin-ajax.php' ) ), 'show_direct_debit' );
-
-		/**
-		 * Filter to adjust the direct debit mandate link.
-		 *
-		 * @param string $link The link.
-		 * @param WC_GZD_Gateway_Direct_Debit $gateway The gateway instance.
-		 *
-		 * @since 1.8.5
-		 *
-		 */
-		return apply_filters( 'woocommerce_gzd_direct_debit_ajax_url', str_replace( array(
-			'{link}',
-			'{/link}'
-		), array(
-			'<a href="' . $ajax_url . '" id="show-direct-debit-trigger" rel="prettyPhoto">',
-			'</a>'
-		), $this->checkbox_label ), $this );
 	}
 
 	/**
@@ -1218,6 +1244,37 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 		}
 	}
 
+	public function checkbox() {
+		wc_deprecated_function( 'WC_GZD_Gateway_Direct_Debit::checkbox', '3.5.0' );
+
+		if ( $this->is_available() && $this->enable_checkbox === 'yes' ) {
+			wc_get_template( 'checkout/terms-sepa.php' );
+		}
+	}
+
+	public function get_checkbox_label() {
+		wc_deprecated_function( 'WC_GZD_Gateway_Direct_Debit::get_checkbox_label', '3.5.0' );
+
+		$ajax_url = wp_nonce_url( add_query_arg( array( 'action' => 'show_direct_debit' ), admin_url( 'admin-ajax.php' ) ), 'show_direct_debit' );
+
+		/**
+		 * Filter to adjust the direct debit mandate link.
+		 *
+		 * @param string $link The link.
+		 * @param WC_GZD_Gateway_Direct_Debit $gateway The gateway instance.
+		 *
+		 * @since 1.8.5
+		 *
+		 */
+		return apply_filters( 'woocommerce_gzd_direct_debit_ajax_url', str_replace( array(
+			'{link}',
+			'{/link}'
+		), array(
+			'<a href="' . $ajax_url . '" id="show-direct-debit-trigger" rel="prettyPhoto">',
+			'</a>'
+		), $this->checkbox_label ), $this );
+	}
+
 	/**
 	 * Process the payment and return the result
 	 *
@@ -1237,6 +1294,13 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 		 *
 		 */
 		$order->update_status( apply_filters( 'woocommerce_gzd_direct_debit_default_status', 'on-hold' ), __( 'Awaiting Direct Debit Payment', 'woocommerce-germanized' ) );
+
+		/**
+		 * Manually trigger the mandate mail for custom order pay actions which is by default only triggered for the order confirmation mail
+		 */
+		if ( did_action( 'woocommerce_before_pay_action' ) ) {
+		    $this->send_mail( $order_id );
+		}
 
 		// Reduce stock level
 		wc_maybe_reduce_stock_levels( $order_id );
