@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "82712b95367827fdce5b7338f084d58e",
+    "content-hash": "d325c4b588885aced0f61033a24de977",
     "packages": [
         {
             "name": "automattic/jetpack-autoloader",
@@ -537,16 +537,16 @@
         },
         {
             "name": "vendidero/one-stop-shop-woocommerce",
-            "version": "v1.0.4",
+            "version": "v1.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vendidero/one-stop-shop-woocommerce.git",
-                "reference": "dac5b9b0d3592fa23622e17e86e1ad2919c9f49c"
+                "reference": "16993cb7f9eb06f8e63014bf5ca33a93401471f0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vendidero/one-stop-shop-woocommerce/zipball/dac5b9b0d3592fa23622e17e86e1ad2919c9f49c",
-                "reference": "dac5b9b0d3592fa23622e17e86e1ad2919c9f49c",
+                "url": "https://api.github.com/repos/vendidero/one-stop-shop-woocommerce/zipball/16993cb7f9eb06f8e63014bf5ca33a93401471f0",
+                "reference": "16993cb7f9eb06f8e63014bf5ca33a93401471f0",
                 "shasum": ""
             },
             "require": {
@@ -575,10 +575,10 @@
             "description": "One Stop Shop Helper for WooCommerce",
             "homepage": "https://github.com/vendidero/one-stop-shop-woocommerce",
             "support": {
-                "source": "https://github.com/vendidero/one-stop-shop-woocommerce/tree/v1.0.4",
+                "source": "https://github.com/vendidero/one-stop-shop-woocommerce/tree/v1.0.5",
                 "issues": "https://github.com/vendidero/one-stop-shop-woocommerce/issues"
             },
-            "time": "2021-06-24T09:35:52+00:00"
+            "time": "2021-06-28T15:18:24+00:00"
         },
         {
             "name": "vendidero/woocommerce-germanized-dhl",
