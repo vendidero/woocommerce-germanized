@@ -3,8 +3,11 @@ jQuery( function( $ ) {
     var wc_gzd_direct_debit = {
 
         $checkoutForm: $( 'form.checkout, form#order_review' ),
+        params: {},
 
         init: function() {
+            this.params = direct_debit_params;
+
             this.$checkoutForm.on( 'blur input change', '#direct-debit-form input#direct-debit-account-holder', this.onValidateHolder );
             this.$checkoutForm.on( 'blur input change', '#direct-debit-form input#direct-debit-account-iban', this.onValidateIBAN );
             this.$checkoutForm.on( 'blur input change', '#direct-debit-form input#direct-debit-account-bic', this.onValidateSWIFT );
@@ -70,21 +73,20 @@ jQuery( function( $ ) {
         },
 
         onPrettyPhotoOpen: function( e ) {
+            var self = wc_gzd_direct_debit;
+
             e.preventDefault();
 
-            var url = $( this ).attr( 'href' );
+            var url  = $( this ).attr( 'href' );
+            var data = {};
 
-            var data		= {
-                country: 		$( '#billing_country' ).val(),
-                postcode:		$( 'input#billing_postcode' ).val(),
-                city:			$( '#billing_city' ).val(),
-                address:		$( 'input#billing_address_1' ).val(),
-                address_2:		$( 'input#billing_address_2' ).val(),
-                debit_holder:	$( 'input#direct-debit-account-holder' ).val(),
-                debit_iban: 	$( 'input#direct-debit-account-iban' ).val(),
-                debit_swift: 	$( 'input#direct-debit-account-bic' ).val(),
-                user:			$( 'input#createaccount' ).val()
-            };
+            $.each( self.params.mandate_fields, function( key, selector ) {
+                if ( $( 'input' + selector + ', select' + selector ).length > 0 ) {
+                    data[ key ] = $( 'input' + selector + ', select' + selector ).val();
+                } else {
+                    data[ key ] = '';
+                }
+            } );
 
             url += '&ajax=true&' + jQuery.param( data );
 

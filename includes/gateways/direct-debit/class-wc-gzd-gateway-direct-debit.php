@@ -778,24 +778,24 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 			exit();
 		}
 
-		$params = array(
-			'account_holder'    => wc_clean( isset( $_GET['debit_holder'] ) ? $_GET['debit_holder'] : '' ),
-			'account_iban'      => strtoupper( wc_clean( isset( $_GET['debit_iban'] ) ? $_GET['debit_iban'] : '' ) ),
-			'account_swift'     => strtoupper( wc_clean( isset( $_GET['debit_swift'] ) ? $_GET['debit_swift'] : '' ) ),
-			'street'            => wc_clean( isset( $_GET['address'] ) ? $_GET['address'] : '' ),
-			'postcode'          => wc_clean( isset( $_GET['postcode'] ) ? $_GET['postcode'] : '' ),
-			'city'              => wc_clean( isset( $_GET['city'] ) ? $_GET['city'] : '' ),
-			'country'           => ( isset( $_GET['country'] ) && isset( WC()->countries->countries[ $_GET['country'] ] ) ? WC()->countries->countries[ $_GET['country'] ] : '' ),
-			/**
-			 * Filter to adjust the default mandate type text.
-			 *
-			 * @param string $text The mandate type text.
-			 *
-			 * @since 1.8.5
-			 *
-			 */
-			'mandate_type_text' => apply_filters( 'woocommerce_gzd_direct_debit_mandate_type_text', __( 'a single payment', 'woocommerce-germanized' ) ),
-		);
+		$params = array();
+
+		foreach( array_keys( $this->get_mandate_text_checkout_fields() ) as $field_name ) {
+		    $params[ $field_name ] = wc_clean( isset( $_GET[ $field_name ] ) ? $_GET[ $field_name ] : '' );
+		}
+
+		$params['account_iban']  = strtoupper( wc_clean( isset( $_GET['account_iban'] ) ? $_GET['account_iban'] : '' ) );
+		$params['account_swift'] = strtoupper( wc_clean( isset( $_GET['account_swift'] ) ? $_GET['account_swift'] : '' ) );
+		$params['country']       = ( isset( $_GET['country'] ) && isset( WC()->countries->countries[ $_GET['country'] ] ) ? WC()->countries->countries[ $_GET['country'] ] : '' );
+
+		/**
+		 * Filter to adjust the default mandate type text.
+		 *
+		 * @param string $text The mandate type text.
+		 *
+		 * @since 1.8.5
+		 */
+		$params['mandate_type_text'] = apply_filters( 'woocommerce_gzd_direct_debit_mandate_type_text', __( 'a single payment', 'woocommerce-germanized' ) );
 
 		$order_key = isset( $_GET['order_key'] ) ? wc_clean( wp_unslash( $_GET['order_key'] ) ) : '';
 
@@ -1213,11 +1213,26 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 
 		wp_register_script( 'wc-gzd-direct-debit', WC_germanized()->plugin_url() . '/includes/gateways/direct-debit/assets/js/direct-debit' . $suffix . '.js', array( 'wc-gzd-iban' ), WC_GERMANIZED_VERSION, true );
 		wp_localize_script( 'wc-gzd-direct-debit', 'direct_debit_params', array(
-			'iban'       => __( 'IBAN', 'woocommerce-germanized' ),
-			'swift'      => __( 'BIC/SWIFT', 'woocommerce-germanized' ),
-			'is_invalid' => __( 'is invalid', 'woocommerce-germanized' ),
+			'iban'           => __( 'IBAN', 'woocommerce-germanized' ),
+			'swift'          => __( 'BIC/SWIFT', 'woocommerce-germanized' ),
+			'is_invalid'     => __( 'is invalid', 'woocommerce-germanized' ),
+            'mandate_fields' => $this->get_mandate_text_checkout_fields(),
 		) );
 		wp_enqueue_script( 'wc-gzd-direct-debit' );
+	}
+
+	protected function get_mandate_text_checkout_fields() {
+		return apply_filters( 'woocommerce_gzd_direct_debit_mandate_text_checkout_fields', array(
+			'country'        => '#billing_country',
+			'postcode'       => '#billing_postcode',
+			'city'	         => '#billing_city',
+			'street'         => '#billing_address_1',
+			'address_2'      => '#billing_address_2',
+			'account_holder' => '#direct-debit-account-holder',
+			'account_iban'   => '#direct-debit-account-iban',
+			'account_swift'  => '#direct-debit-account-bic',
+			'user'		     => '#createaccount'
+		) );
 	}
 
 	/**

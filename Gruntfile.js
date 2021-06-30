@@ -10,7 +10,8 @@ module.exports = function( grunt ) {
             css: 'assets/css',
             fonts: 'assets/fonts',
             images: 'assets/images',
-            js: 'assets/js'
+            js: 'assets/js',
+            direct_debit: 'includes/gateways/direct-debit/assets/js'
         },
 
 		// Minify .js files.
@@ -101,8 +102,10 @@ module.exports = function( grunt ) {
 				files: [
 					'<%= dirs.js %>/admin/*js',
 					'<%= dirs.js %>/*js',
+                    '<%= dirs.direct_debit %>/*js',
 					'!<%= dirs.js %>/admin/*.min.js',
-					'!<%= dirs.js %>/*.min.js'
+					'!<%= dirs.js %>/*.min.js',
+                    '!<%= dirs.direct_debit %>/*.min.js'
 				],
 				tasks: ['uglify']
 			}
