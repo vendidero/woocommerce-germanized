@@ -812,7 +812,7 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 		    }
 		}
 
-		echo $this->generate_mandate_text( $params );
+		echo $this->generate_mandate_text( apply_filters( 'woocommerce_gzd_direct_debit_mandate_checkout_placeholders', $params ) );
 		exit();
 	}
 
@@ -844,7 +844,7 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 			'mandate_type_text' => apply_filters( 'woocommerce_gzd_direct_debit_mandate_type_order_text', __( 'a single payment', 'woocommerce-germanized' ), $order ),
 		);
 
-		return $this->generate_mandate_text( $params );
+		return $this->generate_mandate_text( apply_filters( 'woocommerce_gzd_direct_debit_mandate_order_placeholders', $params, $order ) );
 	}
 
 	public function mask( $data ) {
@@ -869,13 +869,13 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 		$tmp_post        = isset( $GLOBALS['post'] ) ? $GLOBALS['post'] : false;
 		$GLOBALS['post'] = false;
 
-		$args = wp_parse_args( $args, array(
+		$args = apply_filters( 'woocommerce_gzd_direct_debit_mandate_text_placeholders', wp_parse_args( $args, array(
 			'company_info'                  => $this->company_info,
 			'company_identification_number' => $this->company_identification_number,
 			'date'                          => date_i18n( wc_date_format(), strtotime( "now" ) ),
 			'mandate_id'                    => $this->get_mandate_id(),
 			'mandate_type_text'             => __( 'a single payment', 'woocommerce-germanized' ),
-		) );
+		) ) );
 
 		$text = $this->mandate_text;
 
@@ -888,7 +888,7 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 		// Enable $post again
 		$GLOBALS['post'] = $tmp_post;
 
-		return $content;
+		return apply_filters( 'woocommerce_gzd_direct_debit_mandate_text', $content, $args );
 	}
 
 	/**
