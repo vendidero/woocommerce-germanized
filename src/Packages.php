@@ -76,7 +76,13 @@ class Packages {
 				self::missing_package( $package_name );
 				continue;
 			}
-			call_user_func( [ $package_class, 'init' ] );
+
+			/**
+			 * Prevent calling init twice in case feature plugin is installed
+			 */
+			if ( ! has_action( 'plugins_loaded', array( $package_class, 'init' ) ) ) {
+				call_user_func( [ $package_class, 'init' ] );
+            }
 		}
 	}
 
