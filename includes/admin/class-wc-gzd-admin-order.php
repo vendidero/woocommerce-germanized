@@ -40,7 +40,52 @@ class WC_GZD_Admin_Order {
 				$this,
 				'adjust_item_taxes'
 			), 10 );
+
+			add_action( 'woocommerce_order_before_calculate_totals', array(
+				$this,
+				'set_shipping_total_filter'
+			), 500, 2 );
+
+			add_action( 'woocommerce_order_after_calculate_totals', array(
+				$this,
+				'remove_shipping_total_filter'
+			), 500 );
 		}
+	}
+
+	/**
+	 * When (re-) calculation order totals Woo does round shipping total to current price decimals.
+	 * That is not the case within cart/checkout and leads to rounding issues. This filter forces recalculating
+	 * the exact shipping total instead of using the already calculated shipping total amount while calculating order totals.
+	 *
+	 * @see WC_Abstract_Order::calculate_totals()
+	 *
+	 * @param $and_taxes
+	 * @param WC_Order $order
+	 */
+	public function set_shipping_total_filter( $and_taxes, $order ) {
+		add_filter( 'woocommerce_order_get_shipping_total', array( $this, 'force_shipping_total_exact' ), 10, 2 );
+	}
+
+	/**
+	 * Remove the filter after order totals have been calculated successfully.
+	 */
+	public function remove_shipping_total_filter() {
+		remove_filter( 'woocommerce_order_get_shipping_total', array( $this, 'force_shipping_total_exact' ), 10 );
+	}
+
+	/**
+	 * @param $total
+	 * @param WC_Order $order
+	 */
+	public function force_shipping_total_exact( $total, $order ) {
+		$total = 0;
+
+		foreach( $order->get_shipping_methods() as $method ) {
+			$total += floatval( $method->get_total() );
+		}
+
+		return $total;
 	}
 
 	/**

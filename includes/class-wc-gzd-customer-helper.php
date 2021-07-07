@@ -324,7 +324,7 @@ class WC_GZD_Customer_Helper {
 
 		} elseif ( ! WC()->session->get( 'disable_checkout_signup' ) ) {
 
-			if ( is_checkout() && ( ! is_user_logged_in() || ( $this->enable_double_opt_in_for_user() && ! wc_gzd_is_customer_activated() ) ) ) {
+			if ( is_checkout() && WC()->cart && WC()->cart->get_cart_contents_count() > 0 && ( ! is_user_logged_in() || ( $this->enable_double_opt_in_for_user() && ! wc_gzd_is_customer_activated() ) ) ) {
 
 				WC()->session->set( 'login_redirect', 'checkout' );
 				wp_safe_redirect( $this->registration_redirect() );

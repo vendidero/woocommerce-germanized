@@ -527,7 +527,14 @@ class WC_GZD_Product {
 	}
 
 	public function hide_shopmarks_due_to_missing_price() {
-		$has_empty_price = apply_filters( 'woocommerce_gzd_product_misses_price', ( '' === $this->get_price() && '' === $this->child->get_price_html() ), $this );
+		$price_html_checked = true;
+
+		// Prevent infinite loops in case the shopmark is added via the price_html filter
+		if ( ! doing_action( 'woocommerce_get_price_html' ) ) {
+			$price_html_checked = ( '' === $this->child->get_price_html() );
+		}
+
+		$has_empty_price = apply_filters( 'woocommerce_gzd_product_misses_price', ( '' === $this->get_price() && $price_html_checked ), $this );
 
 		return apply_filters( 'woocommerce_gzd_product_hide_shopmarks_empty_price', true, $this ) && $has_empty_price;
 	}
@@ -1070,7 +1077,6 @@ class WC_GZD_Product {
 	 * @return string
 	 */
 	public function get_shipping_costs_html() {
-
 		/**
 		 * Filter to optionally disable shipping costs info for a certain product.
 		 *
