@@ -5,7 +5,7 @@ Requires at least: 5.4
 Tested up to: 5.8
 WC requires at least: 3.9
 WC tested up to: 5.5
-Stable tag: 3.5.0
+Stable tag: 3.5.1
 Requires PHP: 5.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -194,6 +194,14 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 6. Edit pdf documents (Pro)
 
 == Changelog ==
+= 3.5.1 =
+* Improvement: Unit price observer now uses MutationObserver
+* Improvement: Move product customs options from DHL to shipments package for general usage
+* Improvement: Added shipping domestic, EU and international detection to shipments package
+* Improvement: Updated OSS plugin to 1. - for a changelog see: https://wordpress.org/plugins/one-stop-shop-woocommerce/#developers
+* Fix: Prevent infinite loops while empty price checking for shopmarks within get_product_html filter
+* Fix: Prevent duplicate feature plugin loading (e.g. OSS)
+
 = 3.5.0 =
 * Feature: OSS compliance helper
 * Feature: WP 5.8 support

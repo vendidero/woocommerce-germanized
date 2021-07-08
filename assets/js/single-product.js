@@ -1,4 +1,4 @@
-/*global wc_gzd_single_product_params */
+/*global wc_gzd_single_product_params, accounting */
 ;(function ( $, window, document, undefined ) {
     var GermanizedSingleProductWatcher = function( $form ) {
         var self = this;
@@ -8,21 +8,78 @@
         self.$wrapper   = $form.closest( wc_gzd_single_product_params.wrapper );
         self.$product   = $form.closest( '.product' );
         self.requests   = [];
+        self.observer   = false;
+        self.timeout    = false;
 
         if ( self.$wrapper.length <= 0 ) {
             self.$wrapper = self.$product;
         }
 
-        self.$wrapper.find( self.params.price_selector + ':not(.price-unit):visible' ).on( 'DOMSubtreeModified', { GermanizedSingleProductWatcher: self }, self.onChangePrice );
+        if ( "MutationObserver" in window || "WebKitMutationObserver" in window || "MozMutationObserver" in window ) {
+            self.initObserver( self );
 
-        if ( $form.hasClass( 'variations_form' ) ) {
-            self.productId  = $form.find( 'input[name=product_id]' ).length > 0 ? $form.find( 'input[name=product_id]' ).val() : self.params.product_id;
-            self.variatonId = $form.find( 'input[name=variation_id]' ).length > 0 ? $form.find( 'input[name=variation_id]' ).val() : 0;
+            if ( $form.hasClass( 'variations_form' ) ) {
+                self.productId  = $form.find( 'input[name=product_id]' ).length > 0 ? $form.find( 'input[name=product_id]' ).val() : self.params.product_id;
+                self.variatonId = $form.find( 'input[name=variation_id]' ).length > 0 ? $form.find( 'input[name=variation_id]' ).val() : 0;
 
-            $form.on( 'reset_data', { GermanizedSingleProductWatcher: self }, self.onResetVariation );
-            $form.on( 'found_variation.wc-variation-form', { GermanizedSingleProductWatcher: self }, self.onFoundVariation );
-        } else {
-            self.productId = $form.find( '*[name=add-to-cart][type=submit]' ).length > 0 ? $form.find( '*[name=add-to-cart][type=submit]' ).val() : self.params.product_id;
+                $form.on( 'reset_data', { GermanizedSingleProductWatcher: self }, self.onResetVariation );
+                $form.on( 'found_variation.wc-variation-form', { GermanizedSingleProductWatcher: self }, self.onFoundVariation );
+            } else {
+                self.productId = $form.find( '*[name=add-to-cart][type=submit]' ).length > 0 ? $form.find( '*[name=add-to-cart][type=submit]' ).val() : self.params.product_id;
+            }
+        }
+    };
+
+    GermanizedSingleProductWatcher.prototype.initObserver = function( self ) {
+        var $node = self.$wrapper.find( self.params.price_selector + ':not(.price-unit):visible' );
+
+        if ( $node.length > 0 && ! self.observer ) {
+
+            // Callback function to execute when mutations are observed
+            var callback = function( mutationsList, observer ) {
+                /**
+                 * Clear the timeout and abort open AJAX requests as
+                 * a new mutation has been observed
+                 */
+                if ( self.timeout ) {
+                    clearTimeout( self.timeout );
+                    self.abortAjaxRequests( self );
+                }
+
+                /**
+                 * Need to use a tweak here to make sure our variation listener
+                 * has already adjusted the variationId (in case necessary).
+                 */
+                self.timeout = setTimeout(function() {
+                    var priceData = self.getCurrentPriceData( self );
+
+                    if ( priceData ) {
+                        /**
+                         * Do only fire AJAX requests in case no other requests (e.g. from other plugins) are currently running.
+                         */
+                        if ( $.active <= 0 ) {
+                            self.refreshUnitPrice( self, priceData.price, priceData.unit_price, priceData.sale_price );
+                        }
+                    }
+                }, 500 );
+            };
+
+            if ( "MutationObserver" in window ) {
+                self.observer = new window.MutationObserver( callback );
+            } else if ( "WebKitMutationObserver" in window ) {
+                self.observer = new window.WebKitMutationObserver( callback );
+            } else if ( "MozMutationObserver" in window ) {
+                self.observer = new window.MozMutationObserver( callback );
+            }
+
+            self.observer.observe( $node[0], { childList: true, subtree: true, characterData: true } );
+        }
+    };
+
+    GermanizedSingleProductWatcher.prototype.cancelObserver = function( self ) {
+        if ( self.observer ) {
+            self.observer.disconnect();
+            self.observer = false;
         }
     };
 
@@ -81,51 +138,6 @@
         return false;
     };
 
-    GermanizedSingleProductWatcher.prototype.onChangePrice = function( event ) {
-        var self = event.data.GermanizedSingleProductWatcher;
-
-        /**
-         * Need to use a tweak here to make sure our variation listener
-         * has already adjusted the variationId (in case necessary).
-         */
-        setTimeout(function() {
-            var priceData = self.getCurrentPriceData( self );
-            event.preventDefault();
-
-            if ( priceData ) {
-                /**
-                 * Unbind the event because using :first selectors will trigger DOMSubtreeModified again (infinite loop)
-                 */
-                self.$wrapper.find( self.params.price_selector + ':not(.price-unit):visible' ).off( 'DOMSubtreeModified', { GermanizedSingleProductWatcher: self }, self.onChangePrice );
-
-                /**
-                 * In case AJAX requests are still running (e.g. price refreshes of other plugins) wait for them to finish
-                 */
-                if ( $.active > 0 ) {
-                    /**
-                     * Do not listen to our own requests
-                     */
-                    if ( self.requests.length <= 0 ) {
-                        $ ( document ).on( 'ajaxStop', { GermanizedSingleProductWatcher: self }, self.onAjaxStopRefresh );
-                    }
-                } else {
-                    self.refreshUnitPrice( self, priceData.price, priceData.unit_price, priceData.sale_price );
-                }
-            }
-        }, 500 );
-    };
-
-    GermanizedSingleProductWatcher.prototype.onAjaxStopRefresh = function( event ) {
-        var self = event.data.GermanizedSingleProductWatcher;
-        var priceData = self.getCurrentPriceData( self );
-
-        if ( priceData ) {
-            self.refreshUnitPrice( self, priceData.price, priceData.unit_price, priceData.sale_price );
-        }
-
-        $ ( document ).off( 'ajaxStop', { GermanizedSingleProductWatcher: self }, self.onAjaxStopRefresh );
-    };
-
     GermanizedSingleProductWatcher.prototype.getCurrentProductId = function( self ) {
         var productId = self.productId;
 
@@ -171,11 +183,6 @@
                         $unit_price.html( data.unit_price_html );
                     }
                 }
-
-                /**
-                 * Rebind the event
-                 */
-                self.$wrapper.find( self.params.price_selector + ':not(.price-unit):visible' ).on( 'DOMSubtreeModified', { GermanizedSingleProductWatcher: self }, self.onChangePrice );
             },
             error: function( data ) {},
             dataType: 'json'
@@ -192,7 +199,7 @@
 
     $( function() {
         if ( typeof wc_gzd_single_product_params !== 'undefined' ) {
-            $( '.variations_form, ' + wc_gzd_single_product_params.wrapper + ' .cart' ).each( function() {
+            $( 'form.variations_form, ' + wc_gzd_single_product_params.wrapper + ' form.cart' ).each( function() {
                 $( this ).wc_germanized_single_product_watch();
             });
         }
