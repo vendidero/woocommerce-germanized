@@ -127,7 +127,7 @@ class WC_GZD_Checkout {
 				$countries = array();
 
 				if ( 'always' === get_option( 'woocommerce_gzd_checkout_validate_street_number' ) ) {
-					$countries = WC()->countries->get_allowed_countries();
+					$countries = array_keys( WC()->countries->get_allowed_countries() );
 				} elseif( 'base_only' === get_option( 'woocommerce_gzd_checkout_validate_street_number' ) ) {
 					$countries = array( WC()->countries->get_base_country() );
 				} elseif( 'eu_only' === get_option( 'woocommerce_gzd_checkout_validate_street_number' ) ) {

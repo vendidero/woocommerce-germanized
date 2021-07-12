@@ -20,27 +20,41 @@ jQuery( function( $ ) {
         },
 
         onValidateIBAN: function() {
-            var self = wc_gzd_direct_debit;
+            var self     = wc_gzd_direct_debit,
+                $wrapper = $( this ).parents( 'p.form-row' );
 
             if ( ! self.isValidIBAN( $( this ).val() ) ) {
-                $( this ).parents( 'p.form-row' ).removeClass( 'woocommerce-validated' );
-                $( this ).parents( 'p.form-row' ).addClass( 'woocommerce-invalid woocommerce-invalid-required-field' );
+                $wrapper.removeClass( 'woocommerce-validated' );
+                $wrapper.addClass( 'woocommerce-invalid woocommerce-invalid-required-field' );
+            } else {
+                $wrapper.addClass( 'woocommerce-validated' );
+                $wrapper.removeClass( 'woocommerce-invalid woocommerce-invalid-required-field' );
             }
         },
 
         onValidateSWIFT: function() {
-            var self = wc_gzd_direct_debit;
+            var self     = wc_gzd_direct_debit,
+                $wrapper = $( this ).parents( 'p.form-row' );
 
             if ( ! self.isValidSWIFT( $( this ).val() ) ) {
-                $( this ).parents( 'p.form-row' ).removeClass( 'woocommerce-validated' );
-                $( this ).parents( 'p.form-row' ).addClass( 'woocommerce-invalid woocommerce-invalid-required-field' );
+                $wrapper.removeClass( 'woocommerce-validated' );
+                $wrapper.addClass( 'woocommerce-invalid woocommerce-invalid-required-field' );
+            } else {
+                $wrapper.addClass( 'woocommerce-validated' );
+                $wrapper.removeClass( 'woocommerce-invalid woocommerce-invalid-required-field' );
             }
         },
 
         onValidateHolder: function() {
+            var self     = wc_gzd_direct_debit,
+                $wrapper = $( this ).parents( 'p.form-row' );
+
             if ( ! $( this ).val() ) {
-                $( this ).parents( 'p.form-row' ).removeClass( 'woocommerce-validated' );
-                $( this ).parents( 'p.form-row' ).addClass( 'woocommerce-invalid woocommerce-invalid-required-field' );
+                $wrapper.removeClass( 'woocommerce-validated' );
+                $wrapper.addClass( 'woocommerce-invalid woocommerce-invalid-required-field' );
+            } else {
+                $wrapper.addClass( 'woocommerce-validated' );
+                $wrapper.removeClass( 'woocommerce-invalid woocommerce-invalid-required-field' );
             }
         },
 
