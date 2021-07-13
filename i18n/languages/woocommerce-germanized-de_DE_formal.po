@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce Germanized\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-08 14:19+0200\n"
-"PO-Revision-Date: 2021-07-08 14:20+0200\n"
+"POT-Creation-Date: 2021-07-13 12:48+0200\n"
+"PO-Revision-Date: 2021-07-13 12:48+0200\n"
 "Last-Translator: holzhannes <holzhannes@posteo.de>\n"
 "Language-Team: \n"
 "Language: de_DE@formal\n"
@@ -647,44 +647,44 @@ msgctxt "oss"
 msgid "Select country"
 msgstr "Land auswählen"
 
-#: one-stop-shop-woocommerce/src/Tax.php:452
-#: one-stop-shop-woocommerce/src/Tax.php:579
+#: one-stop-shop-woocommerce/src/Tax.php:453
+#: one-stop-shop-woocommerce/src/Tax.php:580
 msgid "Reduced rate"
 msgstr ""
 
-#: one-stop-shop-woocommerce/src/Tax.php:455
-#: one-stop-shop-woocommerce/src/Tax.php:571
+#: one-stop-shop-woocommerce/src/Tax.php:456
+#: one-stop-shop-woocommerce/src/Tax.php:572
 msgctxt "oss"
 msgid "Greater reduced rate"
 msgstr "Zusätzlicher reduzierter Preis"
 
-#: one-stop-shop-woocommerce/src/Tax.php:458
-#: one-stop-shop-woocommerce/src/Tax.php:575
+#: one-stop-shop-woocommerce/src/Tax.php:459
+#: one-stop-shop-woocommerce/src/Tax.php:576
 msgctxt "oss"
 msgid "Super reduced rate"
 msgstr "Stark reduzierter Preis"
 
-#: one-stop-shop-woocommerce/src/Tax.php:751
+#: one-stop-shop-woocommerce/src/Tax.php:752
 msgctxt "oss"
 msgid "Madeira"
 msgstr "Madeira"
 
-#: one-stop-shop-woocommerce/src/Tax.php:758
+#: one-stop-shop-woocommerce/src/Tax.php:759
 msgctxt "oss"
 msgid "Acores"
 msgstr "Azoren"
 
-#: one-stop-shop-woocommerce/src/Tax.php:794
+#: one-stop-shop-woocommerce/src/Tax.php:795
 msgctxt "oss"
 msgid "Northern Ireland"
 msgstr "Nordirland"
 
-#: one-stop-shop-woocommerce/src/Tax.php:807
+#: one-stop-shop-woocommerce/src/Tax.php:808
 msgctxt "oss-tax-rate-import"
 msgid "Exempt"
 msgstr "Ausnahme"
 
-#: one-stop-shop-woocommerce/src/Tax.php:873
+#: one-stop-shop-woocommerce/src/Tax.php:874
 #, php-format
 msgctxt "oss-tax-rate-import"
 msgid "VAT %1$s %% %2$s"
@@ -727,67 +727,67 @@ msgstr ""
 "tätig. Besuchen Sie die OSS Einstellungen (%2$s) um Details zu erfahren."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:208
+#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:75
 #: woocommerce-germanized-dhl/src/Api/Paket.php:274
 msgctxt "dhl day context"
 msgid "None"
 msgstr "Keiner"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:239
+#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:106
 msgctxt "dhl"
 msgid "Delivery Duty Unpaid"
 msgstr "Delivery Duty Unpaid"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:240
+#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:107
 msgctxt "dhl"
 msgid "Delivery Duty Paid"
 msgstr "Delivery Duty Paid"
 
-#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:241
+#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:108
 msgctxt "dhl"
 msgid "Delivery Duty Paid (excl. VAT )"
 msgstr "Delivered Duty Paid (exkl. MwSt.)"
 
-#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:242
+#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:109
 msgctxt "dhl"
 msgid "Delivery Duty Paid (excl. Duties, taxes and VAT)"
 msgstr "Delivery Duty Paid (exkl. Zölle, Steuern und MwSt.)"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:270
+#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:137
 msgctxt "age context"
 msgid "None"
 msgstr "Keine"
 
-#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:271
+#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:138
 msgctxt "dhl"
 msgid "Minimum age of 16"
 msgstr "Mindestens 16 Jahre"
 
-#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:272
+#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:139
 msgctxt "dhl"
 msgid "Minimum age of 18"
 msgstr "Mindestens 18 Jahre"
 
-#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:303
+#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:170
 msgctxt "dhl"
 msgid "Shipment #{shipment_id} to order {order_id}"
 msgstr "Sendung #{shipment_id} zur Bestellung {order_id}"
 
-#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:339
+#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:206
 msgctxt "dhl"
 msgid "Return #{shipment_id} to order {order_id}"
 msgstr "Retoure #{shipment_id} zur Bestellung {order_id}"
 
-#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:355
+#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:222
 msgctxt "dhl"
 msgid "Return shipment #{shipment_id} to order #{order_id}"
 msgstr "Retourensendung #{shipment_id} zur Bestellung #{order_id}"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:428
+#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:295
 #: woocommerce-germanized-dhl/src/ParcelLocator.php:890
 #: woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1055
 #: woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1717
@@ -797,62 +797,62 @@ msgid "Packstation"
 msgstr "Packstation"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:429
-#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:430
+#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:296
+#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:297
 msgctxt "dhl"
 msgid "Postfiliale"
 msgstr "Postfiliale"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:836
+#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:703
 msgctxt "dhl"
 msgid "DHL Retoure International A"
 msgstr "DHL Retoure International A"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:837
+#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:704
 msgctxt "dhl"
 msgid "DHL Retoure International B"
 msgstr "DHL Retoure International B"
 
-#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:846
+#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:713
 msgctxt "dhl"
 msgid "DHL Retoure Online"
 msgstr "DHL Retoure Online"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:862
-#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:882
+#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:729
+#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:749
 msgctxt "dhl"
 msgid "DHL Paket International"
 msgstr "DHL Paket International"
 
-#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:883
+#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:750
 msgctxt "dhl"
 msgid "DHL Paket Connect"
 msgstr "DHL Paket Connect"
 
-#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:884
+#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:751
 msgctxt "dhl"
 msgid "DHL Europaket (B2B)"
 msgstr "DHL Europaket (B2B)"
 
-#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:953
+#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:820
 msgctxt "dhl"
 msgid "DHL Paket"
 msgstr "DHL Paket"
 
-#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:954
+#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:821
 msgctxt "dhl"
 msgid "DHL Paket PRIO"
 msgstr "DHL Paket PRIO"
 
-#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:955
+#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:822
 msgctxt "dhl"
 msgid "DHL Paket Taggleich"
 msgstr "DHL Paket Taggleich"
 
-#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:956
+#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:823
 msgctxt "dhl"
 msgid "DHL Warenpost"
 msgstr "DHL Warenpost"
@@ -1093,7 +1093,7 @@ msgstr "Fehler beim API Zugriff: %s"
 
 #: woocommerce-germanized-dhl/src/Api/Internetmarke.php:65
 #: woocommerce-germanized-dhl/src/Api/Soap.php:54
-#: woocommerce-germanized-dhl/src/Package.php:105
+#: woocommerce-germanized-dhl/src/Package.php:104
 #, php-format
 msgctxt "dhl"
 msgid ""
@@ -1418,7 +1418,7 @@ msgid "Invalid label."
 msgstr "Ungültiges Label."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized-dhl/src/Package.php:1004
+#: woocommerce-germanized-dhl/src/Package.php:1003
 msgctxt "dhl"
 msgid "Germany"
 msgstr "Deutschland"
@@ -3745,7 +3745,7 @@ msgstr "Anzeigen"
 # @ woocommerce-germanized
 #: woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:1319
 #: woocommerce-germanized-shipments/src/Admin/Table.php:871
-#: woocommerce-germanized-shipments/src/Ajax.php:335
+#: woocommerce-germanized-shipments/src/Ajax.php:340
 #: woocommerce-germanized-shipments/templates/shipment/shipment-return-instructions.php:29
 msgctxt "shipments"
 msgid "Download label"
@@ -4606,7 +4606,7 @@ msgstr "Filtern"
 
 # @ woocommerce-germanized
 #: woocommerce-germanized-shipments/src/Admin/Table.php:665
-#: woocommerce-germanized-shipments/src/Ajax.php:812
+#: woocommerce-germanized-shipments/src/Ajax.php:817
 #, php-format
 msgctxt "shipments"
 msgid "Order #%s"
@@ -4732,54 +4732,65 @@ msgctxt "shipments"
 msgid "There was an error processing the label."
 msgstr "Bei der Verarbeitung des Labels ist ein Fehler aufgetreten."
 
-#: woocommerce-germanized-shipments/src/Ajax.php:347
+#: woocommerce-germanized-shipments/src/Ajax.php:352
 msgctxt "shipments"
 msgid "There was an error while trying to save the shipping provider status."
 msgstr ""
 "Beim Speichern des Status des Versanddienstleisters trat ein Fehler auf."
 
-#: woocommerce-germanized-shipments/src/Ajax.php:385
+#: woocommerce-germanized-shipments/src/Ajax.php:390
 msgctxt "shipments"
 msgid "There was an error while trying to delete the shipping provider."
 msgstr "Beim Löschen des Versanddienstleisters trat ein Fehler auf."
 
-#: woocommerce-germanized-shipments/src/Ajax.php:418
+#: woocommerce-germanized-shipments/src/Ajax.php:423
 msgctxt "shipments"
 msgid "There was an error while bulk processing shipments."
 msgstr ""
 "Bei der Verarbeitung der Mehrfachaktionen von Sendungen trat ein Fehler auf."
 
-#: woocommerce-germanized-shipments/src/Ajax.php:530
-#: woocommerce-germanized-shipments/src/Ajax.php:631
-#: woocommerce-germanized-shipments/src/Ajax.php:688
-#: woocommerce-germanized-shipments/src/Ajax.php:725
-#: woocommerce-germanized-shipments/src/Ajax.php:850
-#: woocommerce-germanized-shipments/src/Ajax.php:896
-#: woocommerce-germanized-shipments/src/Ajax.php:963
-#: woocommerce-germanized-shipments/src/Ajax.php:996
-#: woocommerce-germanized-shipments/src/Ajax.php:1045
-#: woocommerce-germanized-shipments/src/Ajax.php:1113
-#: woocommerce-germanized-shipments/src/Ajax.php:1154
-#: woocommerce-germanized-shipments/src/Ajax.php:1209
-#: woocommerce-germanized-shipments/src/Ajax.php:1253
+#: woocommerce-germanized-shipments/src/Ajax.php:535
+#: woocommerce-germanized-shipments/src/Ajax.php:636
+#: woocommerce-germanized-shipments/src/Ajax.php:693
+#: woocommerce-germanized-shipments/src/Ajax.php:730
+#: woocommerce-germanized-shipments/src/Ajax.php:904
+#: woocommerce-germanized-shipments/src/Ajax.php:950
+#: woocommerce-germanized-shipments/src/Ajax.php:1022
+#: woocommerce-germanized-shipments/src/Ajax.php:1055
+#: woocommerce-germanized-shipments/src/Ajax.php:1104
+#: woocommerce-germanized-shipments/src/Ajax.php:1172
+#: woocommerce-germanized-shipments/src/Ajax.php:1213
+#: woocommerce-germanized-shipments/src/Ajax.php:1268
+#: woocommerce-germanized-shipments/src/Ajax.php:1312
 msgctxt "shipments"
 msgid "There was an error processing the shipment"
 msgstr "Fehler bei der Verarbeitung der Sendung"
 
-#: woocommerce-germanized-shipments/src/Ajax.php:572
+#: woocommerce-germanized-shipments/src/Ajax.php:577
 msgctxt "shipments"
 msgid "There was an error while adding the shipment"
 msgstr "Beim Hinzufügen der Sendung ist ein Fehler aufgetreten"
 
-#: woocommerce-germanized-shipments/src/Ajax.php:593
+#: woocommerce-germanized-shipments/src/Ajax.php:598
 msgctxt "shipments"
 msgid "This order contains enough shipments already."
 msgstr "Diese Bestellung beinhaltet bereits genug Sendungen."
 
-#: woocommerce-germanized-shipments/src/Ajax.php:650
+#: woocommerce-germanized-shipments/src/Ajax.php:655
 msgctxt "shipments"
 msgid "This order contains enough returns already."
 msgstr "Diese Bestellung beinhaltet bereits genügend Retouren."
+
+# @ woocommerce-germanized
+#: woocommerce-germanized-shipments/src/Ajax.php:864
+msgctxt "shipments"
+msgid "Status:"
+msgstr "Status:"
+
+#: woocommerce-germanized-shipments/src/Ajax.php:869
+msgctxt "shipments"
+msgid "Customer payment page &rarr;"
+msgstr "Kundenbezahlungsseite &rarr;"
 
 #: woocommerce-germanized-shipments/src/Api.php:104
 msgctxt "shipments"
@@ -5157,6 +5168,11 @@ msgstr "Sorry, diese Bestellung existiert nicht."
 msgctxt "shipments-packaging-title"
 msgid "%1$s (%2$s, %3$s)"
 msgstr "%1$s (%2$s, %3$s)"
+
+#: woocommerce-germanized-shipments/src/Product.php:35
+msgctxt "shipments"
+msgid "Invalid product."
+msgstr "Produkt nicht verfügbar."
 
 #: woocommerce-germanized-shipments/src/ReturnShipment.php:362
 #: woocommerce-germanized-shipments/src/Shipment.php:1047

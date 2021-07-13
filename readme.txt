@@ -5,7 +5,7 @@ Requires at least: 5.4
 Tested up to: 5.8
 WC requires at least: 3.9
 WC tested up to: 5.5
-Stable tag: 3.5.1
+Stable tag: 3.5.2
 Requires PHP: 5.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -194,6 +194,14 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 6. Edit pdf documents (Pro)
 
 == Changelog ==
+= 3.5.2 =
+* Improvement: OSS product tax class WPML
+* Improvement: Move customs data aggregation to shipments package
+* Improvement: IBAN/BIC JS validation during checkout
+* Improvement: Replace order status HTML in case it gets updated during shipment AJAX updates
+* Fix: Allow missing product while syncing shipment item data
+* Fix: Street number validation for the always option
+
 = 3.5.1 =
 * Improvement: Unit price observer now uses MutationObserver
 * Improvement: Move product customs options from DHL to shipments package for general usage
