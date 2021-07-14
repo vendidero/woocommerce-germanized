@@ -215,9 +215,9 @@ class WC_GZD_Emails {
 		$needs_confirmation = true;
 
 		/**
-		 * If the order has been created by the customer (e.g. via checkout) disable another order confirmation.
+		 * If the order has been created by the customer (e.g. via checkout) or new order notification has been sent disable another order confirmation.
 		 */
-		if ( 'checkout' === $order->get_created_via() ) {
+		if ( 'checkout' === $order->get_created_via() || $order->get_meta( '_new_order_email_sent' ) ) {
 			$needs_confirmation = false;
 		}
 

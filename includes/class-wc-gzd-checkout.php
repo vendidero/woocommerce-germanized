@@ -70,6 +70,7 @@ class WC_GZD_Checkout {
 		 */
 		add_filter( 'woocommerce_cart_totals_get_fees_from_cart_taxes', array( $this, 'adjust_fee_taxes' ), 100, 3 );
 		add_filter( 'woocommerce_package_rates', array( $this, 'adjust_shipping_taxes' ), 100, 2 );
+		add_filter( 'oss_shipping_costs_include_taxes', array( $this, 'shipping_costs_include_taxes' ), 10 );
 		add_filter( 'woocommerce_cart_tax_totals', array( $this, 'fix_cart_shipping_tax_rounding' ), 100, 2 );
 
 		if ( 'yes' === get_option( 'woocommerce_gzd_differential_taxation_disallow_mixed_carts' ) ) {
@@ -732,13 +733,21 @@ class WC_GZD_Checkout {
 	}
 
 	/**
+	 * Tell the OSS package that shipping costs include tax for improved compatibility.
+	 *
+	 * @return bool
+	 */
+	public function shipping_costs_include_taxes() {
+		return wc_gzd_additional_costs_include_tax();
+	}
+
+	/**
 	 * @param WC_Shipping_Rate[] $rates
 	 * @param $package
 	 *
 	 * @return mixed
 	 */
 	public function adjust_shipping_taxes( $rates, $package ) {
-
 		if ( ! wc_gzd_enable_additional_costs_split_tax_calculation() ) {
 			foreach( $rates as $key => $rate ) {
 				/**
