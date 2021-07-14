@@ -58,12 +58,12 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 		public static function redirect() {
 			if ( get_option( '_wc_gzd_setup_wizard_redirect' ) ) {
 
-				// Bail if activating from network, or bulk, or within an iFrame
-				if ( is_network_admin() || isset( $_GET['activate-multi'] ) || defined( 'IFRAME_REQUEST' ) ) {
+				// Bail if activating from network, or bulk, or within an iFrame, or AJAX (e.g. plugins screen)
+				if ( is_network_admin() || isset( $_GET['activate-multi'] ) || defined( 'IFRAME_REQUEST' ) || ( defined( 'DOING_AJAX' ) && DOING_AJAX ) ) {
 					return;
 				}
 
-				if ( ( isset( $_GET['action'] ) && 'upgrade-plugin' == $_GET['action'] ) && ( isset( $_GET['plugin'] ) && strstr( $_GET['plugin'], 'woocommerce-germanized.php' ) ) ) {
+				if ( ( isset( $_REQUEST['action'] ) && 'upgrade-plugin' == $_REQUEST['action'] ) && ( isset( $_REQUEST['plugin'] ) && strstr( $_REQUEST['plugin'], 'woocommerce-germanized.php' ) ) ) {
 					return;
 				}
 
@@ -81,12 +81,12 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 					return;
 				}
 
-				// Bail if activating from network, or bulk, or within an iFrame
-				if ( is_network_admin() || isset( $_GET['activate-multi'] ) || defined( 'IFRAME_REQUEST' ) ) {
+				// Bail if activating from network, or bulk, or within an iFrame, or AJAX (e.g. plugins screen)
+				if ( is_network_admin() || isset( $_GET['activate-multi'] ) || defined( 'IFRAME_REQUEST' ) || ( defined( 'DOING_AJAX' ) && DOING_AJAX ) ) {
 					return;
 				}
 
-				if ( ( isset( $_GET['action'] ) && 'upgrade-plugin' == $_GET['action'] ) && ( isset( $_GET['plugin'] ) && strstr( $_GET['plugin'], 'woocommerce-germanized.php' ) ) ) {
+				if ( ( isset( $_REQUEST['action'] ) && 'upgrade-plugin' == $_REQUEST['action'] ) && ( isset( $_REQUEST['plugin'] ) && strstr( $_REQUEST['plugin'], 'woocommerce-germanized.php' ) ) ) {
 					return;
 				}
 
