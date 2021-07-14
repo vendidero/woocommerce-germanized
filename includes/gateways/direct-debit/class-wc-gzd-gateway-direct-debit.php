@@ -1311,9 +1311,9 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 		$order->update_status( apply_filters( 'woocommerce_gzd_direct_debit_default_status', 'on-hold' ), __( 'Awaiting Direct Debit Payment', 'woocommerce-germanized' ) );
 
 		/**
-		 * Manually trigger the mandate mail for custom order pay actions which is by default only triggered for the order confirmation mail
+		 * Manually trigger the mandate mail for custom order pay actions in case another confirmation is not being sent.
 		 */
-		if ( did_action( 'woocommerce_before_pay_action' ) ) {
+		if ( did_action( 'woocommerce_before_pay_action' ) && ! WC_germanized()->emails->pay_for_order_request_needs_confirmation( $order ) ) {
 		    $this->send_mail( $order_id );
 		}
 

@@ -203,12 +203,46 @@ class WC_GZD_Emails {
 		}
 	}
 
+	public function pay_for_order_request_needs_confirmation( $order ) {
+		if ( is_numeric( $order ) ) {
+			$order = wc_get_order( $order );
+		}
+
+		if ( ! $order ) {
+			return false;
+		}
+
+		$needs_confirmation = true;
+
+		/**
+		 * If the order has been created by the customer (e.g. via checkout) disable another order confirmation.
+		 */
+		if ( 'checkout' === $order->get_created_via() ) {
+			$needs_confirmation = false;
+		}
+
+		/**
+		 * Filter to decide whether a pay for order request needs email confirmation or not.
+		 *
+		 * @param boolean  $needs_confirmation Needs confirmation or not.
+		 * @param WC_Order $order The order instance
+		 *
+		 * @since 3.5.3
+		 */
+		return apply_filters( 'woocommerce_gzd_pay_for_order_request_needs_confirmation', $needs_confirmation, $order );
+	}
+
+	/**
+	 * @param WC_Order $order
+	 */
 	public function disable_pay_order_confirmation( $order ) {
-		remove_filter( 'woocommerce_payment_successful_result', array( $this, 'send_order_confirmation_mails' ), 0 );
-		remove_filter( 'woocommerce_checkout_no_payment_needed_redirect', array(
-			$this,
-			'send_order_confirmation_mails'
-		), 0 );
+		/**
+		 * If the order has been created by the customer (e.g. via checkout) disable another order confirmation.
+		 */
+		if ( ! $this->pay_for_order_request_needs_confirmation( $order ) ) {
+			remove_filter( 'woocommerce_payment_successful_result', array( $this, 'send_order_confirmation_mails' ), 0 );
+			remove_filter( 'woocommerce_checkout_no_payment_needed_redirect', array( $this, 'send_order_confirmation_mails' ), 0 );
+		}
 	}
 
 	public function save_confirmation_text_option() {
@@ -726,7 +760,6 @@ class WC_GZD_Emails {
 		 * @param int $order_id The order id.
 		 *
 		 * @since 1.0.0
-		 *
 		 */
 		if ( apply_filters( 'woocommerce_germanized_order_email_customer_confirmation_sent', false, $order_id ) === false && $processing = $this->get_email_instance_by_id( 'customer_processing_order' ) ) {
 			$processing->trigger( $order_id );
@@ -739,7 +772,6 @@ class WC_GZD_Emails {
 		 * @param int $order_id The order id.
 		 *
 		 * @since 1.0.0
-		 *
 		 */
 		if ( apply_filters( 'woocommerce_germanized_order_email_admin_confirmation_sent', false, $order_id ) === false && $new_order = $this->get_email_instance_by_id( 'new_order' ) ) {
 			$new_order->trigger( $order_id );
