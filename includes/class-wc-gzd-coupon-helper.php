@@ -197,8 +197,32 @@ class WC_GZD_Coupon_Helper {
 		if ( is_a( $coupon, 'WC_Coupon' ) ) {
 			if ( 'yes' === $coupon->get_meta( 'is_voucher', true ) ) {
 				$item->update_meta_data( 'is_voucher', 'yes' );
+				/**
+				 * Store the current tax_display_mode used to calculate coupon totals
+				 * as the coupon tax amount may differ depending on which mode is being used.
+				 */
+				$item->update_meta_data( 'tax_display_mode', $this->get_tax_display_mode( $order ) );
 			}
 		}
+	}
+
+	/**
+	 * @param WC_Order $order
+	 */
+	protected function get_tax_display_mode( $order ) {
+		$is_vat_exempt = wc_string_to_bool( $order->get_meta( 'is_vat_exempt', true ) );
+
+		if ( ! $is_vat_exempt ) {
+			$is_vat_exempt = apply_filters( 'woocommerce_order_is_vat_exempt', $is_vat_exempt, $order );
+		}
+
+		if ( $is_vat_exempt ) {
+			$tax_display_mode = 'excl';
+		} else {
+			$tax_display_mode = get_option( 'woocommerce_tax_display_cart' );
+		}
+
+		return apply_filters( 'woocommerce_gzd_order_coupon_tax_display_mode', $tax_display_mode, $order );
 	}
 
 	/**
@@ -254,7 +278,6 @@ class WC_GZD_Coupon_Helper {
 		 * Calculate totals for items.
 		 */
 		foreach ( $cart_contents as $cart_item_key => $values ) {
-
 			$product = $values['data'];
 
 			if ( ! $product->is_taxable() ) {
@@ -298,6 +321,18 @@ class WC_GZD_Coupon_Helper {
 
 			$cart->set_cart_contents_taxes( $tax_totals );
 
+			$tax_total = 0;
+
+			foreach ( $tax_totals as $total ) {
+				if ( 'yes' !== get_option( 'woocommerce_tax_round_at_subtotal' ) ) {
+					$tax_total += wc_round_tax_total( $total );
+				} else {
+					$tax_total += $total;
+				}
+			}
+
+			$cart->set_cart_contents_tax( $tax_total );
+
 			if ( wc_prices_include_tax() ) {
 				$cart->set_discount_total( wc_cart_round_discount( ( $cart->get_discount_total() + $cart->get_discount_tax() ), $cart->dp ) );
 			} else {
@@ -337,9 +372,7 @@ class WC_GZD_Coupon_Helper {
 			} else {
 				$cart->set_total_tax( array_sum( $tax_totals ) );
 			}
-
 		} else {
-
 			$cart->taxes = $tax_totals;
 
 			// Remove discounted taxes (taxes are not being discounted for vouchers)
