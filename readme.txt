@@ -194,6 +194,17 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 6. Edit pdf documents (Pro)
 
 == Changelog ==
+= 3.5.3 =
+* Improvement: DHL Preferred services renaming
+* Improvement: OSS forced shipping tax recalculation during checkout
+* Improvement: Store tax display mode for vouchers
+* Improvement: PayPal Payments compatibility script
+* Improvement: Allow adding new shipments after full returns
+* Improvement: Removed explicit port 8443 from IM SOAP URL
+* Fix: Shipment address sender phone
+* Fix: Return shipment addresses
+* Fix: Deutsche Post default service manual label requests
+
 = 3.5.2 =
 * Improvement: OSS product tax class WPML
 * Improvement: Move customs data aggregation to shipments package
