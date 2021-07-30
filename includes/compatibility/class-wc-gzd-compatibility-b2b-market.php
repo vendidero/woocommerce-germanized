@@ -68,6 +68,11 @@ class WC_GZD_Compatibility_B2B_Market extends WC_GZD_Compatibility_Woocommerce_R
 	 * @param WC_GZD_Product $gzd_product
 	 */
 	public function filter_variable_unit_price( $price, $gzd_product ) {
+		// Prevent infinite loops in case recalculation is called via the price_html filter
+		if ( doing_action( 'woocommerce_get_price_html' ) ) {
+			return $price;
+		}
+
 		$price_html = $gzd_product->get_wc_product()->get_price_html();
 		$prices     = $this->get_prices_from_string( $price_html );
 
@@ -96,6 +101,11 @@ class WC_GZD_Compatibility_B2B_Market extends WC_GZD_Compatibility_Woocommerce_R
 	 * @param WC_GZD_Product $gzd_product
 	 */
 	public function calculate_unit_price( $gzd_product ) {
+		// Prevent infinite loops in case recalculation is called via the price_html filter
+		if ( doing_action( 'woocommerce_get_price_html' ) ) {
+			return;
+		}
+
 		$price_html = $gzd_product->get_wc_product()->get_price_html();
 		$prices     = $this->get_prices_from_string( $price_html );
 
