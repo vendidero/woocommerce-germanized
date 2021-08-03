@@ -125,9 +125,13 @@ function wc_gzd_get_order_customer_title( $order, $type = 'billing' ) {
 /**
  * @param WC_Order_Item $order_item
  *
- * @return WC_GZD_Order_Item|WC_GZD_Order_Item_Product
+ * @return WC_GZD_Order_Item|WC_GZD_Order_Item_Product|false
  */
 function wc_gzd_get_order_item( $order_item ) {
+	if ( ! $order_item ) {
+		return false;
+	}
+
 	$classname = 'WC_GZD_Order_Item';
 
 	if ( is_a( $order_item, 'WC_Order_Item_Product' ) ) {

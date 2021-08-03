@@ -68,7 +68,7 @@ class WC_GZD_Gateway_Invoice extends WC_Payment_Gateway {
 			'process_admin_options'
 		) );
 		add_action( 'woocommerce_thankyou_invoice', array( $this, 'thankyou_page' ) );
-		add_action( 'woocommerce_scheduled_subscription_payment' . $this->id, array( $this, 'process_admin_options' ) );
+		add_action( 'woocommerce_scheduled_subscription_payment_' . $this->id, array( $this, 'process_subscription_payment' ), 10, 2 );
 
 		// Customer Emails
 		add_action( 'woocommerce_email_before_order_table', array( $this, 'email_instructions' ), 10, 3 );
@@ -208,6 +208,10 @@ class WC_GZD_Gateway_Invoice extends WC_Payment_Gateway {
 		return true;
 	}
 
+	public function process_subscription_payment( $order_total, $order_id ) {
+	    $this->process_payment( $order_id );
+	}
+
 	/**
 	 * Process the payment and return the result
 	 *
@@ -216,7 +220,6 @@ class WC_GZD_Gateway_Invoice extends WC_Payment_Gateway {
 	 * @return array
 	 */
 	public function process_payment( $order_id ) {
-
 		$order = wc_get_order( $order_id );
 
 		$order->update_status( $this->default_order_status );
