@@ -538,7 +538,6 @@ function wc_gzd_get_cart_tax_share( $type = 'shipping', $cart_contents = array()
 	// Get tax classes and tax amounts
 	if ( ! empty( $cart ) ) {
 		foreach ( $cart as $key => $item ) {
-
 			if ( is_a( $item, 'WC_Order_Item' ) ) {
 				$class      = $item->get_tax_class();
 				$line_total = $item->get_total();
@@ -552,11 +551,14 @@ function wc_gzd_get_cart_tax_share( $type = 'shipping', $cart_contents = array()
 				        break;
                     }
                 }
+
+				$tax_rate = apply_filters( 'woocommerce_gzd_tax_share_order_item_tax_rate', $tax_rate, $item, $type );
 			} elseif ( isset( $item['data'] ) ) {
 				$_product   = apply_filters( 'woocommerce_cart_item_product', $item['data'], $item, $key );
 				$class      = $_product->get_tax_class();
 				$line_total = $item['line_total'];
 				$tax_rate   = key( $item['line_tax_data']['total'] );
+				$tax_rate   = apply_filters( 'woocommerce_gzd_tax_share_cart_item_tax_rate', $tax_rate, $item, $type );
 			}
 
 			if ( wc_gzd_item_is_tax_share_exempt( $item, $type, $key ) ) {
