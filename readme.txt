@@ -34,7 +34,7 @@ Furthermore we customized the WooCommerce checkout to make your store meet the b
 * *Tax Calculation for Shipping Costs and Fees* - Enable split tax calculation based on your WooCommerce cart taxes.
 * *Legal pages in Email Templates* - Attach legal pages content to certain WooCommerce e-mail templates.
 * *Trusted Shops Integration* - Integrate your Trusted Shops Products within your WooCommerce store
-* *Post & DHL Integration* - Generate labels for shipments and returns right from your backend. Offer Wunschpaket services to your customers.
+* *Post & DHL Integration* - Generate labels for shipments and returns right from your backend. Offer preferred delivery services to your customers.
 * *Payment Gateway: SEPA direct debit* - Receive payments via direct debit. We've added a XML export to transfer payments to your bank.
 * *Payment Gateway: Pay by Invoice* - Allow certain customers to pay by invoice. Best integration with our PDF invoices feature (Pro).
 * *Online Revocation Form* - Allow customers to submit revocations by filling out a form on your revocation page.
@@ -71,7 +71,7 @@ Managing returns can be a time-consuming challenge. By using Germanized you migh
 In case you are using our DHL integration you might as well (automatically) create a label to the return which will be attached to the email sent to the customer.
 
 = Post & DHL Integration =
-With the help of our built-in Post & DHL integration you can easily create labels for your shipments and add tracking information to the notification emails. Furthermore you can offer DHL Wunschpaket Services to your customers including shipping to Packstation or choosing a preferred location, day and/or time within the checkout.
+With the help of our built-in Post & DHL integration you can easily create labels for your shipments and add tracking information to the notification emails. Furthermore you can offer DHL preferred delivery services to your customers including shipping to Packstation or choosing a drop-off location and/or day within the checkout.
 You can even let your shipments and labels be generated automatically by Germanized to avoid further manual work. [Learn more](https://vendidero.de/dokumentation/woocommerce-germanized/versanddienstleister "Post & DHL for WooCommerce") about how our Post & DHL integration works.
 
 = Extended One Stop Shop compliance =
@@ -615,7 +615,6 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 * Fix: Use order item variation id on shipment item sync if available
 * Fix: Allow manual choosing shipping provider for shipments with empty instance id (e.g. manual orders)
 * Fix: Direct debit mandate id
-
 
 = 3.0.2 =
 * Fix: Shipment weight sync unit calculation

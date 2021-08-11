@@ -22,6 +22,11 @@ class WC_GZD_Product {
 	protected $child;
 
 	/**
+	 * @var null|WP_Term[]
+	 */
+	protected $delivery_times = null;
+
+	/**
 	 * Construct new WC_GZD_Product
 	 *
 	 * @param WC_Product $product
@@ -856,7 +861,6 @@ class WC_GZD_Product {
 	 * @return string
 	 */
 	public function get_unit_product_html() {
-
 		/**
 		 * Filter that allows disabling product units output for a specific product.
 		 *
@@ -906,26 +910,118 @@ class WC_GZD_Product {
 	}
 
 	/**
+	 * @return WP_Term[]
+	 */
+	public function get_delivery_times( $context = 'view' ) {
+		if ( is_null( $this->delivery_times ) ) {
+			$term_ids     = $this->get_delivery_time_ids( $context );
+			$cached_terms = array();
+
+			foreach( $term_ids as $term_id ) {
+				$term = get_term_by( 'id', $term_id, 'product_delivery_time' );
+
+				if ( is_wp_error( $term ) || empty( $term ) ) {
+					continue;
+				}
+
+				$cached_terms[ $term->slug ] = $term;
+			}
+
+			$this->delivery_times = $cached_terms;
+		}
+
+		return $this->delivery_times;
+	}
+
+	public function get_delivery_time_ids( $context = 'view' ) {
+		/**
+		 * Normally (view context) we are using the term relationship model to retrieve
+		 * the delivery times mapped to the product. While saving we are using the props model
+		 * to enable saving the current object state.
+		 */
+		if ( 'save' === $context ) {
+			return $this->get_prop( 'delivery_time_ids', $context );
+		} else {
+			$object_id = $this->get_wc_product()->get_id();
+			$terms     = get_the_terms( $object_id, 'product_delivery_time' );
+
+			if ( false === $terms || is_wp_error( $terms ) ) {
+				return array();
+			}
+
+			return wp_list_pluck( $terms, 'term_id' );
+		}
+	}
+
+	public function set_delivery_time_ids( $term_ids ) {
+		$this->set_prop( 'delivery_time_ids', array_unique( array_map( 'intval', $term_ids ) ) );
+
+		$this->delivery_times = null;
+	}
+
+	/**
 	 * Returns the current products delivery time term without falling back to default term
 	 *
-	 * @return bool|object false returns false if term does not exist otherwise returns term object
+	 * @return false|WP_Term false returns false if term does not exist otherwise returns term object
 	 */
 	public function get_delivery_time( $context = 'view' ) {
-		$terms = get_the_terms( $this->child->get_id(), 'product_delivery_time' );
+		$delivery_time = $this->get_default_delivery_time( $context );
 
-		if ( 'view' === $context && ( empty( $terms ) && $this->child->is_type( 'variation' ) ) ) {
-			$parent_terms = get_the_terms( $this->child->get_parent_id(), 'product_delivery_time' );
+		if ( 'view' === $context && WC()->customer ) {
+			$country = '' === WC()->customer->get_shipping_country() ? WC()->customer->get_billing_country() : WC()->customer->get_shipping_country();
 
-			if ( ! empty( $parent_terms ) && ! is_wp_error( $parent_terms ) ) {
-				$terms = $parent_terms;
+			if ( ! empty( $country ) ) {
+				$delivery_time_country = $this->get_delivery_time_by_country( $country );
+
+				if ( $delivery_time_country ) {
+					$delivery_time = $delivery_time_country;
+				}
 			}
 		}
 
-		if ( is_wp_error( $terms ) || empty( $terms ) ) {
-			return false;
+		return $delivery_time;
+	}
+
+	public function get_default_delivery_time( $context = 'view' ) {
+		$term_slug     = $this->get_prop( "delivery_time_default", $context );
+		$times         = $this->get_delivery_times( $context );
+		$delivery_time = false;
+
+		if ( ! empty( $term_slug ) && array_key_exists( $term_slug, $times ) ) {
+			$delivery_time = $times[ $term_slug ];
+		} elseif ( ! empty( $times ) ) {
+			$delivery_time = array_values( $times )[0];
 		}
 
-		return $terms[0];
+		return $delivery_time;
+	}
+
+	public function get_country_specific_delivery_times( $context = 'view' ) {
+		$countries = $this->get_prop( "delivery_time_countries", $context );
+		$countries = ( ! is_array( $countries ) || empty( $countries ) ) ? array() : $countries;
+
+		return $countries;
+	}
+
+	public function get_delivery_time_by_country( $country = '', $context = 'view' ) {
+		$country       = strtoupper( empty( $country ) ? '' : $country );
+		$countries     = $this->get_country_specific_delivery_times( $context );
+		$times         = $this->get_delivery_times( $context );
+		$delivery_time = false;
+
+		if ( array_key_exists( $country, $countries ) ) {
+			$delivery_time_slug = $countries[ $country ];
+
+			if ( array_key_exists( $delivery_time_slug, $times ) ) {
+				$delivery_time = $times[ $delivery_time_slug ];
+			}
+		}
+
+		if ( 'view' === $context && ! $delivery_time ) {
+			$delivery_time = $this->get_default_delivery_time();
+		}
+
+		return $delivery_time;
 	}
 
 	/**
@@ -937,11 +1033,10 @@ class WC_GZD_Product {
 		$delivery_time = $this->get_delivery_time();
 
 		if ( 'view' === $context && ( empty( $delivery_time ) && get_option( 'woocommerce_gzd_default_delivery_time' ) && ! $this->is_downloadable() ) ) {
-
 			$delivery_time = array( get_term_by( 'id', get_option( 'woocommerce_gzd_default_delivery_time' ), 'product_delivery_time' ) );
 
 			if ( is_array( $delivery_time ) ) {
-				array_values( $delivery_time );
+				$delivery_time = array_values( $delivery_time );
 				$delivery_time = $delivery_time[0];
 			}
 		}

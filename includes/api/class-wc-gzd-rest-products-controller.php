@@ -345,11 +345,9 @@ class WC_GZD_REST_Products_Controller {
 
 		// Add variations to variable products.
 		if ( $product->is_type( 'variable' ) && $product->has_child() ) {
-
 			$data               = $response->data;
 			$data['variations'] = $this->set_product_variation_fields( $response->data['variations'], $product );
 			$response->set_data( $data );
-
 		}
 
 		$response->set_data( array_merge( $response->data, $this->get_product_data( $product ) ) );
@@ -380,7 +378,6 @@ class WC_GZD_REST_Products_Controller {
 	 * @return array
 	 */
 	public function get_product_saveable_data( $request, $product ) {
-
 		$data_saveable = WC_Germanized_Meta_Box_Product_Data::get_fields();
 		$gzd_product   = wc_gzd_get_product( $product );
 		$data          = array();
@@ -388,14 +385,9 @@ class WC_GZD_REST_Products_Controller {
 		$data['product-type'] = $product->get_type();
 
 		// Delivery time
-		$current = get_the_terms( $product->get_id(), 'product_delivery_time' );
-		$default = '';
+		$default = $gzd_product->get_default_delivery_time();
 
-		if ( ! empty( $current ) ) {
-			$default = $current[0]->term_id;
-		}
-
-		$data['delivery_time'] = $this->get_term_data( isset( $request['delivery_time'] ) ? $request['delivery_time'] : false, $default );
+		$data['delivery_time'] = $this->get_term_data( isset( $request['delivery_time'] ) ? $request['delivery_time'] : false, ( $default ? $default->term_id : false ) );
 
 		// Price Labels + Unit
 		$meta_data = array(
@@ -510,7 +502,7 @@ class WC_GZD_REST_Products_Controller {
 		$data['is_rest'] = true;
 		$data['save']    = false;
 
-		$product = WC_Germanized_Meta_Box_Product_Data::save_product_data( $product, $data );
+		WC_Germanized_Meta_Box_Product_Data::save_product_data( $product, $data );
 
 		return $product;
 	}
@@ -531,7 +523,6 @@ class WC_GZD_REST_Products_Controller {
 	 * @return array
 	 */
 	private function get_product_data( $product ) {
-
 		$gzd_product = wc_gzd_get_product( $product );
 		$data        = array();
 

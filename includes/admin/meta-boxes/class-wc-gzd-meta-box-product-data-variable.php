@@ -42,8 +42,8 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 		$gzd_product = wc_gzd_get_product( $_product );
 		$is_service  = $gzd_product->get_service();
 		?>
-        <label><input type="checkbox" class="checkbox variable_service"
-                      name="variable_service[<?php echo $loop; ?>]" <?php checked( $is_service ? 'yes' : 'no', 'yes' ); ?> /> <?php _e( 'Service', 'woocommerce-germanized' ); ?> <?php echo wc_help_tip( __( 'Service products do not sell physical products.', 'woocommerce-germanized' ) ); ?>
+        <label>
+            <input type="checkbox" class="checkbox variable_service" name="variable_service[<?php echo $loop; ?>]" <?php checked( $is_service ? 'yes' : 'no', 'yes' ); ?> /> <?php _e( 'Service', 'woocommerce-germanized' ); ?> <?php echo wc_help_tip( __( 'Service products do not sell physical products.', 'woocommerce-germanized' ) ); ?>
         </label>
 		<?php
 	}
@@ -65,9 +65,7 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 		$gzd_product        = wc_gzd_get_product( $_product );
 		$gzd_parent_product = wc_gzd_get_product( $_parent );
 		$delivery_time      = $gzd_product->get_delivery_time( 'edit' );
-
 		?>
-
         <div class="variable_pricing_labels">
             <p class="form-row form-row-first">
                 <label><?php _e( 'Sale Label', 'woocommerce-germanized' ); ?></label>
@@ -92,12 +90,9 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 
         <div class="variable_pricing_unit">
             <p class="form-row form-row-first">
-                <input type="hidden" name="variable_parent_unit_product[<?php echo $loop; ?>]"
-                       class="wc-gzd-parent-unit_product" value=""/>
-                <input type="hidden" name="variable_parent_unit[<?php echo $loop; ?>]" class="wc-gzd-parent-unit"
-                       value=""/>
-                <input type="hidden" name="variable_parent_unit_base[<?php echo $loop; ?>]"
-                       class="wc-gzd-parent-unit_base" value=""/>
+                <input type="hidden" name="variable_parent_unit_product[<?php echo $loop; ?>]" class="wc-gzd-parent-unit_product" value=""/>
+                <input type="hidden" name="variable_parent_unit[<?php echo $loop; ?>]" class="wc-gzd-parent-unit" value=""/>
+                <input type="hidden" name="variable_parent_unit_base[<?php echo $loop; ?>]" class="wc-gzd-parent-unit_base" value=""/>
 
                 <label for="variable_unit_product"><?php echo __( 'Product Units', 'woocommerce-germanized' ); ?><?php echo wc_help_tip( __( 'Number of units included per default product price. Example: 1000 ml. Leave blank to use parent value.', 'woocommerce-germanized' ) ); ?></label>
                 <input class="input-text wc_input_decimal" size="6" type="text"
@@ -163,15 +158,15 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
             <p class="form-row form-row-full">
                 <label for="variable_mini_desc"><?php echo __( 'Optional Mini Description', 'woocommerce-germanized' ); ?></label>
                 <textarea rows="3" style="width: 100%" name="variable_mini_desc[<?php echo $loop; ?>]"
-                          id="variable_mini_desc_<?php echo $loop; ?>"
-                          class="variable_mini_desc"><?php echo htmlspecialchars_decode( $gzd_product->get_mini_desc( 'edit' ) ); ?></textarea>
+                      id="variable_mini_desc_<?php echo $loop; ?>"
+                      class="variable_mini_desc"><?php echo htmlspecialchars_decode( $gzd_product->get_mini_desc( 'edit' ) ); ?>
+                </textarea>
             </p>
         </div>
 		<?php
 	}
 
 	public static function save( $variation_id, $i ) {
-
 		$data = array(
 			'_unit_product'             => '',
 			'_unit_price_auto'          => '',
@@ -215,7 +210,7 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 		$data['_sale_price_dates_to']   = $_POST['variable_sale_price_dates_to'][ $i ];
 		$data['_sale_price']            = $_POST['variable_sale_price'][ $i ];
 
-		$product = WC_Germanized_Meta_Box_Product_Data::save_product_data( $product, $data, true );
+		WC_Germanized_Meta_Box_Product_Data::save_product_data( $product, $data, true );
 	}
 }
 

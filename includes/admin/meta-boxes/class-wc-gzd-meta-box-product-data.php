@@ -26,7 +26,6 @@ class WC_Germanized_Meta_Box_Product_Data {
 	}
 
 	private function __construct() {
-
 		if ( is_admin() ) {
 			add_action( 'woocommerce_product_options_general_product_data', array( __CLASS__, 'output' ) );
 			add_action( 'woocommerce_product_options_shipping', array( __CLASS__, 'output_shipping' ) );
@@ -35,8 +34,8 @@ class WC_Germanized_Meta_Box_Product_Data {
 			add_filter( 'product_type_options', array( __CLASS__, 'service_type' ), 10, 1 );
 		}
 
-		add_action( 'woocommerce_before_product_object_save', array( __CLASS__, 'on_save' ), 10, 1 );
-		add_action( 'woocommerce_after_product_object_save', array( __CLASS__, 'after_save' ), 10, 1 );
+		add_action( 'woocommerce_product_object_updated_props', array( __CLASS__, 'update_terms' ), 10, 1 );
+		add_action( 'woocommerce_before_product_object_save', array( __CLASS__, 'before_save' ), 10, 1 );
 
 		/**
 		 * Product duplication
@@ -45,123 +44,74 @@ class WC_Germanized_Meta_Box_Product_Data {
 	}
 
 	/**
+	 * @param WC_Product $product
+	 */
+	public static function update_terms( $product ) {
+	    if ( $gzd_product = wc_gzd_get_gzd_product( $product ) ) {
+		    /**
+		     * Update delivery time term ids if they have been explicitly set during the
+             * save request.
+		     */
+		    $term_ids = $gzd_product->get_delivery_time_ids( 'save' );
+
+		    if ( '' !== $term_ids ) {
+			    wp_set_post_terms( $product->get_id(), $term_ids, 'product_delivery_time', false );
+
+			    $product->delete_meta_data( '_delivery_time_ids' );
+			    $product->save();
+            }
+        }
+    }
+
+	/**
 	 * @param WC_Product $duplicate
 	 * @param WC_Product $product
 	 */
 	public static function update_before_duplicate( $duplicate, $product ) {
-		if ( $gzd_product = wc_gzd_get_gzd_product( $product ) ) {
+		if ( $gzd_product = wc_gzd_get_product( $product ) ) {
+		    $gzd_duplicate = wc_gzd_get_product( $duplicate );
 
-			if ( $delivery_time = $gzd_product->get_delivery_time() ) {
-				$duplicate->update_meta_data( '_product_delivery_time', $delivery_time->term_id );
+			if ( $gzd_product->get_delivery_time_ids() ) {
+				$gzd_duplicate->set_delivery_time_ids( $gzd_product->get_delivery_time_ids() );
 			}
 		}
 	}
 
 	/**
-     * This method adjusts product data after saving a newly created product (e.g. through REST API).
-     *
 	 * @param WC_Product $product
 	 */
-	public static function after_save( $product ) {
+	public static function before_save( $product ) {
+		$gzd_product = wc_gzd_get_product( $product );
 
-	    // Do not update products on checkout - seems to cause problems with WPML
-		if ( function_exists( 'is_checkout' ) && is_checkout() ) {
-			return;
+		// Update unit price based on whether the product is on sale or not
+		if ( $gzd_product->has_unit() ) {
+			/**
+			 * Filter to adjust unit price data before saving a product.
+			 *
+			 * @param array $data The unit price data.
+			 * @param WC_Product $product The product object.
+			 *
+			 * @since 1.8.5
+			 */
+			$data = apply_filters( 'woocommerce_gzd_save_display_unit_price_data', array(
+				'_unit_price_regular' => $gzd_product->get_unit_price_regular(),
+				'_unit_price_sale'    => $gzd_product->get_unit_price_sale(),
+			), $product );
+
+			// Make sure we update automatically calculated prices
+			$gzd_product->set_unit_price_regular( $data['_unit_price_regular'] );
+			$gzd_product->set_unit_price_sale( $data['_unit_price_sale'] );
+
+			// Lets update the display price
+			if ( $product->is_on_sale() ) {
+				$gzd_product->set_unit_price( $data['_unit_price_sale'] );
+			} else {
+				$gzd_product->set_unit_price( $data['_unit_price_regular'] );
+			}
 		}
-
-		if ( $product && $product->get_id() > 0 && 'yes' === $product->get_meta( '_gzd_needs_after_save' ) ) {
-		    self::adjust_product( $product );
-
-		    $product->delete_meta_data( '_gzd_needs_after_save' );
-		    $product->save();
-		}
-    }
-
-	/**
-	 * @param WC_Product $product
-	 */
-    protected static function adjust_product( $product ) {
-
-	    $gzd_product = wc_gzd_get_product( $product );
-	    $taxonomies  = array( 'product_delivery_time' );
-	    $has_changed = false;
-
-	    foreach ( $taxonomies as $taxonomy ) {
-		    $term_data = $product->get_meta( '_' . $taxonomy, true );
-
-		    if ( $term_data ) {
-			    $term_data = ( is_numeric( $term_data ) ? absint( $term_data ) : $term_data );
-			    wp_set_object_terms( $product->get_id(), $term_data, $taxonomy );
-
-			    $product->delete_meta_data( '_' . $taxonomy );
-
-			    $has_changed = true;
-		    } elseif ( $product->get_meta( '_delete_' . $taxonomy, true ) ) {
-			    wp_delete_object_term_relationships( $product->get_id(), $taxonomy );
-
-			    $product->delete_meta_data( '_delete_' . $taxonomy );
-
-			    $has_changed = true;
-		    }
-	    }
-
-	    // Update unit price based on whether the product is on sale or not
-	    if ( $gzd_product->has_unit() ) {
-
-		    /**
-		     * Filter to adjust unit price data before saving a product.
-		     *
-		     * @param array $data The unit price data.
-		     * @param WC_Product $product The product object.
-		     *
-		     * @since 1.8.5
-		     */
-		    $data = apply_filters( 'woocommerce_gzd_save_display_unit_price_data', array(
-			    '_unit_price_regular' => $gzd_product->get_unit_price_regular(),
-			    '_unit_price_sale'    => $gzd_product->get_unit_price_sale(),
-		    ), $product );
-
-		    // Make sure we update automatically calculated prices
-		    $gzd_product->set_unit_price_regular( $data['_unit_price_regular'] );
-		    $gzd_product->set_unit_price_sale( $data['_unit_price_sale'] );
-
-		    // Lets update the display price
-		    if ( $product->is_on_sale() ) {
-			    $gzd_product->set_unit_price( $data['_unit_price_sale'] );
-		    } else {
-			    $gzd_product->set_unit_price( $data['_unit_price_regular'] );
-		    }
-
-		    $has_changed = true;
-	    }
-
-	    return $has_changed;
-    }
-
-	/**
-	 * Manipulating WooCommerce CRUD objects through REST API (saving) doesn't work
-	 * because we need to use filters which do only receive the product id as a parameter and not the actual
-	 * manipulated instance. That's why we need to temporarily store term data as product meta.
-	 * After saving the product this hook checks whether term relationships need to be updated or deleted.
-	 *
-	 * @param WC_Product $product
-	 */
-	public static function on_save( $product ) {
-
-		// Do not update products on checkout - seems to cause problems with WPML
-		if ( function_exists( 'is_checkout' ) && is_checkout() ) {
-			return;
-		}
-
-		if ( $product && $product->get_id() > 0 ) {
-			self::adjust_product( $product );
-		} elseif( $product && $product->get_id() <= 0 ) {
-		    $product->update_meta_data( '_gzd_needs_after_save', 'yes' );
-        }
 	}
 
 	public static function service_type( $types ) {
-
 		$types['service'] = array(
 			'id'            => '_service',
 			'wrapper_class' => 'show_if_simple',
@@ -182,7 +132,6 @@ class WC_Germanized_Meta_Box_Product_Data {
 	}
 
 	public static function output() {
-
 		global $post, $thepostid, $product_object;
 
 		$_gzd_product = wc_gzd_get_product( $product_object );
@@ -275,7 +224,6 @@ class WC_Germanized_Meta_Box_Product_Data {
 	}
 
 	public static function output_delivery_time_select2( $args = array() ) {
-
 		$args = wp_parse_args( $args, array(
 			'name'        => 'delivery_time',
 			'placeholder' => __( 'Search for a delivery time&hellip;', 'woocommerce-germanized' ),
@@ -302,26 +250,82 @@ class WC_Germanized_Meta_Box_Product_Data {
 		global $post, $thepostid, $product_object;
 
 		$gzd_product   = wc_gzd_get_product( $product_object );
-		$delivery_time = $gzd_product->get_delivery_time();
+		$delivery_time = $gzd_product->get_delivery_time( 'edit' );
 		?>
-
         <p class="form-field">
             <label for="delivery_time"><?php _e( 'Delivery Time', 'woocommerce-germanized' ); ?></label>
 			<?php
-			self::output_delivery_time_select2( array(
-				'name'        => 'delivery_time',
-				'placeholder' => __( 'Search for a delivery time&hellip;', 'woocommerce-germanized' ),
-				'term'        => $delivery_time,
-			) );
+                self::output_delivery_time_select2( array(
+                    'name'        => 'delivery_time',
+                    'placeholder' => __( 'Search for a delivery time&hellip;', 'woocommerce-germanized' ),
+                    'term'        => $delivery_time,
+                ) );
 			?>
         </p>
-
 		<?php
-		// Free shipping
-		woocommerce_wp_checkbox( array( 'id'          => '_free_shipping',
-		                                'label'       => __( 'Free shipping?', 'woocommerce-germanized' ),
-		                                'description' => __( 'This option disables the "plus shipping costs" notice on product page', 'woocommerce-germanized' )
-		) );
+            self::delivery_time_by_country( $product_object );
+
+            // Free shipping
+            woocommerce_wp_checkbox( array(
+                'id'          => '_free_shipping',
+                'label'       => __( 'Free shipping?', 'woocommerce-germanized' ),
+                'description' => __( 'This option disables the "plus shipping costs" notice on product page', 'woocommerce-germanized' )
+            ) );
+	}
+
+	/**
+	 * @param WC_Product $product_object
+	 */
+	public static function delivery_time_by_country( $product_object ) {
+		$gzd_product               = wc_gzd_get_product( $product_object );
+		$countries_left            = WC()->countries->get_shipping_countries();
+		$delivery_times            = $gzd_product->get_delivery_times( 'edit' );
+		$delivery_times_by_country = $gzd_product->get_country_specific_delivery_times( 'edit' );
+	    ?>
+
+        <?php if ( ! empty( $delivery_times_by_country ) ) {
+			foreach( $delivery_times_by_country as $country => $term_slug ) {
+				$countries_left = array_diff( $countries_left, array( $country ) );
+
+				self::output_delivery_time_select2( array(
+					'name'        => "country_specific_delivery_times[$country]",
+					'placeholder' => __( 'Search for a delivery time&hellip;', 'woocommerce-germanized' ),
+					'term'        => $delivery_times[ $term_slug ],
+				) );
+			}
+		} ?>
+
+        <div class="wc-gzd-new-delivery-time-by-country-placeholder"></div>
+
+        <p class="form-field wc-gzd-add-delivery-time-by-country">
+            <label>&nbsp;</label>
+            <a href="#" class="wc-gzd-add-new-delivery-time-by-country">+ <?php _e( 'Add country specific delivery time', 'woocommerce-germanized' ); ?></a>
+        </p>
+
+        <div class="wc-gzd-add-delivery-time-by-country-template">
+            <p class="form-field">
+                <label for="country_specific_delivery_times">
+                    <select class="enhanced select" name="new_country_specific_delivery_times_countries[]">
+                        <option value="" selected="selected"><?php _e( 'Select country', 'woocommerce-germanized' ); ?></option>
+						<?php
+						foreach ( $countries_left as $country_code => $country_name ) {
+							echo '<option value="' . esc_attr( $country_code ) . '">' . esc_html( $country_name ) . '</option>';
+						}
+						?>
+                    </select>
+                </label>
+                <?php
+                    self::output_delivery_time_select2( array(
+                        'name'        => "new_country_specific_delivery_times_terms[]",
+                        'placeholder' => __( 'Search for a delivery time&hellip;', 'woocommerce-germanized' ),
+                    ) );
+                ?>
+                <span class="description">
+                    <a href="#" class="dashicons dashicons-no-alt wc-gzd-remove-delivery-time-by-country"><?php _e( 'remove', 'woocommerce-germanized' ); ?></a>
+                </span>
+            </p>
+        </div>
+        <?php
 	}
 
 	public static function get_fields() {
@@ -360,7 +364,7 @@ class WC_Germanized_Meta_Box_Product_Data {
 		}
 
 		$data['save'] = false;
-		$product      = self::save_product_data( $product, $data );
+		self::save_product_data( $product, $data );
 
 		return $product;
 	}
@@ -391,7 +395,6 @@ class WC_Germanized_Meta_Box_Product_Data {
 	}
 
 	public static function save_unit_price( &$product, $data, $is_variation = false ) {
-
 		$data = wp_parse_args( $data, array(
 			'save'    => true,
 			'is_rest' => false,
@@ -442,14 +445,11 @@ class WC_Germanized_Meta_Box_Product_Data {
 
 		// Ignore variable data
 		if ( in_array( $product_type, array( 'variable', 'grouped' ) ) && ! $is_variation ) {
-
 			$gzd_product->set_unit_price_regular( '' );
 			$gzd_product->set_unit_price_sale( '' );
 			$gzd_product->set_unit_price( '' );
 			$gzd_product->set_unit_price_auto( false );
-
 		} else {
-
 			$date_from  = isset( $data['_sale_price_dates_from'] ) ? wc_clean( $data['_sale_price_dates_from'] ) : '';
 			$date_to    = isset( $data['_sale_price_dates_to'] ) ? wc_clean( $data['_sale_price_dates_to'] ) : '';
 			$is_on_sale = isset( $data['_is_on_sale'] ) ? $data['_is_on_sale'] : null;
@@ -485,11 +485,41 @@ class WC_Germanized_Meta_Box_Product_Data {
 		}
 	}
 
-	public static function save_product_data( $product, $data, $is_variation = false ) {
-		if ( is_numeric( $product ) ) {
-			$product = wc_get_product( $product );
-		}
+	/**
+	 * @param array|integer|string|WP_Term $maybe_id
+	 */
+	protected static function get_delivery_time_ids( $maybe_id ) {
+	    if ( is_array( $maybe_id ) ) {
+	        return array_map( array( __CLASS__, 'get_delivery_time_id' ), $maybe_id );
+	    } else {
+	        $ids = array();
 
+	        if ( is_numeric( $maybe_id ) ) {
+	            $ids[] = absint( $maybe_id );
+	        } elseif ( is_a( $maybe_id, 'WP_Term' ) ) {
+	            $ids[] = $maybe_id->term_id;
+	        } elseif ( is_string( $maybe_id ) ) {
+	            $term = get_term_by( 'slug', $maybe_id, 'product_delivery_time' );
+
+	            if ( ! $term ) {
+	                $term = get_term_by( 'name', $maybe_id, 'product_delivery_time' );
+	            }
+
+	            if ( $term ) {
+	                $ids[] = $term->term_id;
+	            }
+	        }
+
+	        return array_unique( $ids );
+	    }
+	}
+
+	/**
+	 * @param WC_Product $product
+	 * @param $data
+	 * @param false $is_variation
+	 */
+	public static function save_product_data( &$product, $data, $is_variation = false ) {
 		$data = wp_parse_args( $data, array(
 			'is_rest' => false,
 		) );
@@ -547,11 +577,13 @@ class WC_Germanized_Meta_Box_Product_Data {
 			$gzd_product->set_min_age( '' );
 		}
 
+		$delivery_time_ids = array();
+
 		if ( isset( $data['delivery_time'] ) && ! empty( $data['delivery_time'] ) ) {
-			$product->update_meta_data( '_product_delivery_time', $data['delivery_time'] );
-		} else {
-			$product->update_meta_data( '_delete_product_delivery_time', true );
+			$delivery_time_ids = array_replace( $delivery_time_ids, self::get_delivery_time_ids( $data['delivery_time'] ) );
 		}
+
+		$gzd_product->set_delivery_time_ids( $delivery_time_ids );
 
 		// Free shipping
 		$gzd_product->set_free_shipping( isset( $data['_free_shipping'] ) ? 'yes' : 'no' );
@@ -584,8 +616,6 @@ class WC_Germanized_Meta_Box_Product_Data {
 		if ( $data['save'] ) {
 			$product->save();
 		}
-
-		return $product;
 	}
 }
 
