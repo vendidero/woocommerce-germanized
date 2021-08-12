@@ -18,6 +18,8 @@
         <custom-field action="copy-once">_ts_mpn</custom-field>
         <custom-field action="copy-once">_ts_gtin</custom-field>
         <custom-field action="translate">_legal_text</custom-field>
+        <custom-field action="copy">_hs_code</custom-field>
+        <custom-field action="copy">_manufacture_country</custom-field>
     </custom-fields>
     <taxonomies>
         <taxonomy translate="1">product_price_label</taxonomy>

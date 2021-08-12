@@ -750,10 +750,14 @@ class WC_GZD_Checkout {
 	public function adjust_shipping_taxes( $rates, $package ) {
 		if ( ! wc_gzd_enable_additional_costs_split_tax_calculation() ) {
 			foreach( $rates as $key => $rate ) {
+				$meta_data = $rates[ $key ]->get_meta_data();
+
 				/**
-				 * Reset split tax data
+				 * Reset meta data in case it exists
 				 */
-				$rates[ $key ]->add_meta_data( '_split_taxes', array() );
+				if ( array_key_exists( '_split_taxes', $meta_data ) ) {
+					$rates[ $key ]->add_meta_data( '_split_taxes', array() );
+				}
 			}
 
 			return $rates;
