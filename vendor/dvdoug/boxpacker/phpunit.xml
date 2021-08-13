@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- https://phpunit.readthedocs.io/en/latest/configuration.html -->
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
+         colors="true"
+         bootstrap="vendor/autoload.php"
+>
+
+  <testsuites>
+    <testsuite name="BoxPacker">
+      <directory>tests</directory>
+    </testsuite>
+  </testsuites>
+
+  <filter>
+    <whitelist processUncoveredFilesFromWhitelist="true">
+      <directory suffix=".php">src</directory>
+    </whitelist>
+  </filter>
+
+  <logging>
+    <log type="coverage-text" target="php://stdout" showUncoveredFiles="true"/>
+    <log type="coverage-html" target="build/coverage-phpunit" showUncoveredFiles="true"/>
+    <log type="coverage-clover" target="build/coverage-phpunit/clover.xml" showUncoveredFiles="true"/>
+  </logging>
+
+  <php>
+    <ini name="date.timezone" value="UTC"/>
+    <ini name="error_reporting" value="2147483647"/>
+  </php>
+</phpunit>
