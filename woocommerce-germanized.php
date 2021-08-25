@@ -6,7 +6,7 @@
  * Version: 3.5.4
  * Author: vendidero
  * Author URI: https://vendidero.de
- * Requires at least: 4.9
+ * Requires at least: 5.4
  * Tested up to: 5.8
  * WC requires at least: 3.9
  * WC tested up to: 5.6

@@ -990,17 +990,17 @@ class WC_GZD_Emails {
 	}
 
 	public function remove_order_email_filters() {
-		// Make sure to explicitly remove order item name filters - removing "woocommerce_gzd_template_order_item_hooks" may not be sufficient thankyou hooks have already been applied
-		remove_filter( 'woocommerce_order_item_name', 'wc_gzd_cart_product_units', wc_gzd_get_hook_priority( 'order_product_units' ) );
-		remove_filter( 'woocommerce_order_item_name', 'wc_gzd_cart_product_delivery_time', wc_gzd_get_hook_priority( 'order_product_delivery_time' ) );
-		remove_filter( 'woocommerce_order_item_name', 'wc_gzd_cart_product_item_desc', wc_gzd_get_hook_priority( 'order_product_item_desc' ) );
+		/**
+		 * Remove order shopmarks
+		 */
+		foreach ( wc_gzd_get_order_shopmarks() as $shopmark ) {
+			$shopmark->remove();
+		}
 
-		// Remove actions and filters from template hooks
-		remove_filter( 'woocommerce_order_formatted_line_subtotal', 'wc_gzd_cart_product_unit_price', wc_gzd_get_hook_priority( 'order_product_unit_price' ) );
 		remove_action( 'woocommerce_thankyou', 'woocommerce_gzd_template_order_item_hooks', 0 );
 		remove_action( 'before_woocommerce_pay', 'woocommerce_gzd_template_order_item_hooks', 10 );
 
-		// Add order item name actions
+		// Remove order email filters
 		remove_filter( 'woocommerce_order_item_name', 'wc_gzd_cart_product_differential_taxation_mark', wc_gzd_get_hook_priority( 'email_product_differential_taxation' ) );
 		remove_filter( 'woocommerce_order_item_name', 'wc_gzd_cart_product_units', wc_gzd_get_hook_priority( 'email_product_units' ) );
 		remove_filter( 'woocommerce_order_item_name', 'wc_gzd_cart_product_delivery_time', wc_gzd_get_hook_priority( 'email_product_delivery_time' ) );

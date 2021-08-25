@@ -134,9 +134,11 @@ function woocommerce_gzd_maybe_add_small_business_vat_notice() {
 	}
 }
 
-// Differential Taxation
+// Differential Taxation for cart & order
 if ( get_option( 'woocommerce_gzd_differential_taxation_checkout_notices' ) === 'yes' ) {
 	add_action( 'woocommerce_after_cart_totals', 'woocommerce_gzd_template_differential_taxation_notice_cart', wc_gzd_get_hook_priority( 'cart_small_business_info' ) );
+	add_action( 'woocommerce_order_details_after_order_table', 'woocommerce_gzd_template_differential_taxation_notice_order', 10 );
+	add_action( 'woocommerce_pay_order_before_submit', 'woocommerce_gzd_template_differential_taxation_notice_order', 10 );
 }
 
 /**
@@ -231,10 +233,9 @@ add_action( 'woocommerce_thankyou', 'woocommerce_gzd_template_order_pay_now_butt
 
 // Set Hooks before order details table
 add_action( 'woocommerce_thankyou', 'woocommerce_gzd_template_order_item_hooks', 0 );
+
 // Add Hooks to pay form
 add_action( 'before_woocommerce_pay', 'woocommerce_gzd_template_order_item_hooks', 10 );
-
-add_filter( 'woocommerce_order_formatted_line_subtotal', 'wc_gzd_cart_product_unit_price', wc_gzd_get_hook_priority( 'order_product_unit_price' ), 3 );
 
 if ( get_option( 'woocommerce_gzd_hide_order_success_details' ) == 'yes' ) {
 	remove_action( 'woocommerce_thankyou', 'woocommerce_order_details_table', WC_GZD_Hook_Priorities::instance()->get_priority( 'woocommerce_thankyou', 'woocommerce_order_details_table' ) );
