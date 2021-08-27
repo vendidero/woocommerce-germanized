@@ -95,6 +95,7 @@ class WC_GZD_Settings_Tab_General extends WC_GZD_Settings_Tab {
 				'type'     => 'single_select_page',
 				'default'  => '',
 				'class'    => 'wc-enhanced-select-nostd',
+				'desc'     => '<div class="wc-gzd-additional-desc">' . sprintf( __( 'Please make sure to place your privacy policy to be directly accessible to the user on the website, e.g. as a link within your footer.', 'woocommerce-germanized' ) ) . '</div>',
 				'css'      => 'min-width:300px;'
 			),
 			array(
