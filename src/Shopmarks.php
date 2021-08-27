@@ -289,17 +289,17 @@ class Shopmarks {
 				'callback'         => 'wc_gzd_cart_product_unit_price',
 			),
 			'delivery_time' => array(
-				'default_filter'   => 'woocommerce_order_item_quantity_html',
+				'default_filter'   => 'woocommerce_order_item_name',
 				'default_priority' => 10,
 				'callback'         => 'wc_gzd_cart_product_delivery_time',
 			),
 			'units'         => array(
-				'default_filter'   => 'woocommerce_order_item_quantity_html',
+				'default_filter'   => 'woocommerce_order_item_name',
 				'default_priority' => 11,
 				'callback'         => 'wc_gzd_cart_product_units',
 			),
 			'item_desc'     => array(
-				'default_filter'   => 'woocommerce_order_item_quantity_html',
+				'default_filter'   => 'woocommerce_order_item_name',
 				'default_priority' => 12,
 				'callback'         => 'wc_gzd_cart_product_item_desc',
 			),
