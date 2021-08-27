@@ -44,8 +44,6 @@ class WC_GZD_Settings_Tab_General extends WC_GZD_Settings_Tab {
 	}
 
 	protected function get_legal_page_settings() {
-		$additional_data_privacy_info = sprintf( __( 'Checkbox status: %s', 'woocommerce-germanized' ), WC_GZD_Admin_Legal_Checkboxes::instance()->get_terms_policy_status_html() );
-
 		return array(
 			array( 'title' => '', 'type' => 'title', 'id' => 'legal_page_options' ),
 
@@ -97,8 +95,7 @@ class WC_GZD_Settings_Tab_General extends WC_GZD_Settings_Tab {
 				'type'     => 'single_select_page',
 				'default'  => '',
 				'class'    => 'wc-enhanced-select-nostd',
-				'css'      => 'min-width:300px;',
-				'desc'     => '<div class="wc-gzd-additional-desc">' . $additional_data_privacy_info . '</div>',
+				'css'      => 'min-width:300px;'
 			),
 			array(
 				'title'    => __( 'Payment Methods', 'woocommerce-germanized' ),
