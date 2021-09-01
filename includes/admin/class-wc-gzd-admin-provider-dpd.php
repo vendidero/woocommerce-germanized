@@ -25,6 +25,10 @@ class WC_GZD_Admin_Provider_DPD extends Simple {
 		return false;
 	}
 
+	public function is_pro() {
+		return true;
+	}
+
 	public function is_activated() {
 		return false;
 	}
