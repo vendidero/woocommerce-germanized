@@ -184,20 +184,42 @@ if ( ! class_exists( 'WC_GZD_Admin_Setup_Wizard' ) ) :
 					array( 'type' => 'sectionend', 'id' => 'setting_options' ),
 				);
 			} elseif( 'shipping_provider' === $step ) {
-			    foreach( wc_gzd_get_shipping_providers() as $provider ) {
+			    $providers = apply_filters( 'woocommerce_gzd_shipment_admin_provider_list', wc_gzd_get_shipping_providers() );
+
+			    foreach( $providers as $provider ) {
 			        if ( $provider->is_manual_integration() ) {
 			            continue;
 			        }
 
+			        $title_clean = strip_tags( preg_replace( "/>.*?</s", "><", $provider->get_title() ) );
+
 			        $settings = array_merge( $settings, array(
                         array( 'title' => '', 'type' => 'title', 'desc' => '', 'id' => 'shipping_provider_' . $provider->get_name() ),
-                        array(
-                            'title' 	=> $provider->get_title(),
-                            'desc' 		=> sprintf( __( 'Enable %s integration', 'woocommerce-germanized' ), $provider->get_title() ),
-                            'id' 		=> 'woocommerce_gzd_' . $provider->get_name() . '_activate',
-                            'default'	=> wc_bool_to_string( $provider->is_activated() ),
-                            'type' 		=> 'gzd_toggle',
-                        ),
+                    ) );
+
+			        if ( $provider->is_pro() && ! WC_germanized()->is_pro() ) {
+			            $settings = array_merge( $settings, array(
+                            array(
+                                'title' 	=> $title_clean,
+                                'id' 		=> 'woocommerce_gzd_' . $provider->get_name() . '_activate',
+                                'default'	=> wc_bool_to_string( $provider->is_activated() ),
+                                'type' 		=> 'html',
+                                'html'      => '<p><span class="status-disabled" style="display: inline-block; vertical-align: middle; margin-right: 3px;"></span> ' . sprintf( __( 'Upgrade to %s to activate %s integration.', 'woocommerce-germanized' ), '<a href="https://vendidero.de/woocommerce-germanized#upgrade" class="wc-gzd-pro wc-gzd-pro-outlined" target="_blank" rel="noreferrer">pro</a>', $title_clean ) . '</p>',
+                            )
+                        ) );
+			        } else {
+			            $settings = array_merge( $settings, array(
+                            array(
+                                'title' 	=> $title_clean,
+                                'desc' 		=> sprintf( __( 'Enable %s integration', 'woocommerce-germanized' ), $provider->get_title() ),
+                                'id' 		=> 'woocommerce_gzd_' . $provider->get_name() . '_activate',
+                                'default'	=> wc_bool_to_string( $provider->is_activated() ),
+                                'type' 		=> 'gzd_toggle',
+                            )
+                        ) );
+			        }
+
+			        $settings = array_merge( $settings, array(
                         array( 'type' => 'sectionend', 'id' => 'shipping_provider_' . $provider->get_name() ),
 			        ) );
 			    }

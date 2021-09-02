@@ -70,6 +70,7 @@ class WC_GZD_Checkout {
 		 */
 		add_filter( 'woocommerce_cart_totals_get_fees_from_cart_taxes', array( $this, 'adjust_fee_taxes' ), 100, 3 );
 		add_filter( 'woocommerce_package_rates', array( $this, 'adjust_shipping_taxes' ), 100, 2 );
+		add_filter( 'woocommerce_shipping_method_add_rate_args', array( $this, 'maybe_remove_default_shipping_taxes' ), 500, 2 );
 		add_filter( 'oss_shipping_costs_include_taxes', array( $this, 'shipping_costs_include_taxes' ), 10 );
 		add_filter( 'woocommerce_cart_tax_totals', array( $this, 'fix_cart_shipping_tax_rounding' ), 100, 2 );
 
@@ -730,6 +731,27 @@ class WC_GZD_Checkout {
 
 	public function remove_shipping_taxes( $taxes ) {
 		return array();
+	}
+
+	/**
+	 * @param $args
+	 * @param WC_Shipping_Method $method
+	 *
+	 * @return mixed
+	 */
+	public function maybe_remove_default_shipping_taxes( $args, $method ) {
+		/**
+		 * Prevent shipping methods from individually calculating taxes (e.g. as per custom incl/excl tax settings)
+		 * as Germanized handles tax calculation globally for all shipping methods.
+		 */
+		if ( wc_gzd_enable_additional_costs_split_tax_calculation() ) {
+			if ( ! empty( $args['taxes'] ) && apply_filters( 'woocommerce_gzd_disable_custom_shipping_method_tax_calculation', true, $method ) ) {
+				$args['cost']  = $args['cost'] + array_sum( $args['taxes'] );
+				$args['taxes'] = '';
+			}
+		}
+
+		return $args;
 	}
 
 	/**

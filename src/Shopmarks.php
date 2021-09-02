@@ -25,7 +25,6 @@ class Shopmarks {
 		 * @param array $defaults Array containing the default configuration.
 		 *
 		 * @since 3.0.0
-		 *
 		 */
 		$shopmarks_single_product = apply_filters( 'woocommerce_gzd_shopmark_single_product_defaults', array(
 			'unit_price'    => array(
@@ -275,6 +274,47 @@ class Shopmarks {
 		}
 	}
 
+	protected static function register_order() {
+		/**
+		 * Filter to adjust default shopmark configuration for the order (thankyou, pay for order).
+		 *
+		 * @param array $defaults Array containing the default configuration.
+		 *
+		 * @since 3.0.0
+		 */
+		$shopmarks_order = apply_filters( 'woocommerce_gzd_shopmark_order_defaults', array(
+			'unit_price'    => array(
+				'default_filter'   => 'woocommerce_order_formatted_line_subtotal',
+				'default_priority' => 0,
+				'callback'         => 'wc_gzd_cart_product_unit_price',
+			),
+			'delivery_time' => array(
+				'default_filter'   => 'woocommerce_order_item_name',
+				'default_priority' => 10,
+				'callback'         => 'wc_gzd_cart_product_delivery_time',
+			),
+			'units'         => array(
+				'default_filter'   => 'woocommerce_order_item_name',
+				'default_priority' => 11,
+				'callback'         => 'wc_gzd_cart_product_units',
+			),
+			'item_desc'     => array(
+				'default_filter'   => 'woocommerce_order_item_name',
+				'default_priority' => 12,
+				'callback'         => 'wc_gzd_cart_product_item_desc',
+			),
+		) );
+
+		self::$shopmarks['order'] = array();
+
+		foreach ( $shopmarks_order as $type => $args ) {
+			$args['location'] = 'order';
+			$args['type']     = $type;
+
+			self::$shopmarks['order'][] = new Shopmark( $args );
+		}
+	}
+
 	/**
 	 * @param Shopmark $shopmark1
 	 * @param Shopmark $shopmark2
@@ -296,7 +336,8 @@ class Shopmarks {
 			'product_loop'           => __( 'Product Loop', 'woocommerce-germanized' ),
 			'cart'                   => __( 'Cart', 'woocommerce-germanized' ),
 			'mini_cart'              => __( 'Mini Cart', 'woocommerce-germanized' ),
-			'checkout'               => __( 'Checkout', 'woocommerce-germanized' )
+			'checkout'               => __( 'Checkout', 'woocommerce-germanized' ),
+			'order'                  => __( 'Order', 'woocommerce-germanized' )
 		);
 	}
 
@@ -430,6 +471,28 @@ class Shopmarks {
 					'number_of_params' => 3,
 				),
 			),
+			'order'               => array(
+				'woocommerce_order_formatted_line_subtotal' => array(
+					'title'            => __( 'Subtotal', 'woocommerce-germanized' ),
+					'is_action'        => false,
+					'number_of_params' => 3,
+				),
+				'woocommerce_order_item_name' => array(
+					'title'            => __( 'Item Name', 'woocommerce-germanized' ),
+					'is_action'        => false,
+					'number_of_params' => 3,
+				),
+				'woocommerce_order_item_quantity_html' => array(
+					'title'            => __( 'After Item Quantity', 'woocommerce-germanized' ),
+					'is_action'        => false,
+					'number_of_params' => 3,
+				),
+				'woocommerce_order_item_meta_end' => array(
+					'title'            => __( 'After Meta', 'woocommerce-germanized' ),
+					'is_action'        => true,
+					'number_of_params' => 3,
+				),
+			),
 		);
 
 		$filter_data = isset( $filters[ $location ] ) ? $filters[ $location ] : array();
@@ -482,6 +545,12 @@ class Shopmarks {
 				'item_desc'     => _x( 'Cart Description', 'shopmark', 'woocommerce-germanized' ),
 			),
 			'checkout'               => array(
+				'unit_price'    => _x( 'Unit Price', 'shopmark', 'woocommerce-germanized' ),
+				'units'         => _x( 'Product Units', 'shopmark', 'woocommerce-germanized' ),
+				'delivery_time' => _x( 'Delivery Time', 'shopmark', 'woocommerce-germanized' ),
+				'item_desc'     => _x( 'Cart Description', 'shopmark', 'woocommerce-germanized' ),
+			),
+			'order'               => array(
 				'unit_price'    => _x( 'Unit Price', 'shopmark', 'woocommerce-germanized' ),
 				'units'         => _x( 'Product Units', 'shopmark', 'woocommerce-germanized' ),
 				'delivery_time' => _x( 'Delivery Time', 'shopmark', 'woocommerce-germanized' ),

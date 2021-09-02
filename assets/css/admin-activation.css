@@ -71,19 +71,23 @@
 .dashboard_page_wc-gzd-about .feature-section {
   border: none; }
 
-.wc-gzd-actions a.button {
-  margin-right: .5em; }
-
-.wc-gzd-actions a.button-primary, .wc-gzd-actions .woocommerce-gzd-message .button-primary {
-  background-color: #262626 !important;
-  border: 1px solid #000 !important;
-  text-shadow: none !important;
-  background-image: none !important; }
-  .wc-gzd-actions a.button-primary:hover, .wc-gzd-actions .woocommerce-gzd-message .button-primary:hover {
-    background-color: #363636 !important;
+.wc-gzd-actions {
+  width: 100%;
+  clear: both; }
+  .wc-gzd-actions.wc-gzd-actions-right {
+    text-align: right; }
+  .wc-gzd-actions a.button {
+    margin-right: .5em; }
+  .wc-gzd-actions a.wc-gzd-default-button, .wc-gzd-actions .woocommerce-gzd-message .button-primary {
+    background-color: #262626 !important;
     border: 1px solid #000 !important;
-    background-image: none !important;
-    text-shadow: none !important; }
+    text-shadow: none !important;
+    background-image: none !important; }
+    .wc-gzd-actions a.wc-gzd-default-button:hover, .wc-gzd-actions .woocommerce-gzd-message .button-primary:hover {
+      background-color: #363636 !important;
+      border: 1px solid #000 !important;
+      background-image: none !important;
+      text-shadow: none !important; }
 
 .woocommerce-gzd-message .form-table tr td, .woocommerce-gzd-message .form-table tr th {
   padding: 0.7rem 0;

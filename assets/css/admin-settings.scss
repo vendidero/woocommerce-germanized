@@ -30,21 +30,6 @@
     }
   }
 
-  .wc-gzd-pro-outlined {
-    margin-left: 5px;
-    margin-top: 3px;
-    border: 1px solid #222;
-    color: #222;
-    background: transparent;
-  }
-
-  a {
-    .wc-gzd-pro-outlined {
-      border: 1px solid #0073aa;
-      color: #0073aa;
-    }
-  }
-
   .wc-gzd-dash-button {
     margin-right: 5px;
     text-indent: 9999px;
@@ -336,19 +321,6 @@
       color: transparent;
       box-shadow: none;
       border: none;
-    }
-  }
-}
-
-a.page-title-action {
-  .wc-gzd-pro {
-    background: #0073aa;
-  }
-
-  &:hover {
-    .wc-gzd-pro {
-      background: #fff;
-      color: #0073aa;
     }
   }
 }

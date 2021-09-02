@@ -102,7 +102,7 @@ class WC_GZD_Admin_Welcome {
 		$major_version = substr( WC_germanized()->version, 0, 3 );
 		?>
         <style>
-            .wc-gzd-admin-welcome-hide-pro .wc-germanized-welcome-pro {
+            .wc-gzd-admin-welcome-hide-pro .wc-germanized-welcome-pro, .wc-gzd-admin-welcome-hide-pro .wc-gzd-pro-version {
                 display: none;
             }
         </style>
@@ -129,30 +129,32 @@ class WC_GZD_Admin_Welcome {
 
             <p class="woocommerce-actions wc-gzd-actions">
                 <a href="<?php echo admin_url( 'admin.php?page=wc-settings&tab=germanized' ); ?>" target="_blank"
-                   class="button button-primary">Einstellungen</a>
+                   class="wc-gzd-default-button button button-primary">Einstellungen</a>
                 <a href="<?php echo admin_url( 'admin.php?page=wc-settings&tab=germanized&tutorial=yes' ); ?>"
-                   target="_blank" class="button button-primary">Tutorial</a>
+                   target="_blank" class="wc-gzd-default-button button button-primary">Tutorial</a>
                 <a href="https://vendidero.de/woocommerce-germanized#upgrade" target="_blank" class="button wc-gzd-button wc-germanized-welcome-pro">Upgrade
-                    zur <span class="wc-gzd-pro">pro</span> Version</a>
+                    zur <span class="wc-gzd-pro wc-gzd-pro-outlined">pro</span> Version</a>
             </p>
 
             <div class="changelog new-feature">
-                <h3>One Stop Shop (OSS)</h3>
+                <h3>Neu: DPD Labels zu Sendungen erstellen <span class="wc-gzd-pro wc-gzd-pro-outlined">pro</span></h3>
 
                 <div class="columns two-col">
                     <div class="col col-center">
-                        <img src="<?php echo WC_germanized()->plugin_url(); ?>/assets/images/oss.png" style="max-width: 450px;"/>
+                        <img src="<?php echo WC_germanized()->plugin_url(); ?>/assets/images/dpd.png" style="max-width: 450px;"/>
                     </div>
                     <div class="col">
                         <p>
-                            Ab dem 01.07.2021 gilt das <a href="https://ec.europa.eu/taxation_customs/business/vat/oss_de" target="_blank">One Stop Shop Verfahren</a> für B2C Lieferung in das EU-Ausland. Damit du prüfen kannst ob du vom Verfahren betroffen bist, stellt
-                            Germanized umfassende Werkzeuge bereit. Mit Hilfe der Berichte kannst du schnell entscheiden, ob du über die Lieferschwelle von 10.000 Euro gerätst oder nicht.<br/><br/>Solltest du das OSS Verfahren nutzen (müssen) hilft dir
-                            Germanized dabei regelmäßig Berichte zu erstellen und sicherzustellen, dass die Steuer für Kunden aus dem EU-Ausland weiterhin korrekt berechnet wird.
+                            Neben DHL und Deutsche Post bietet Germanized Pro nun eine weitere, automatische Integration des Versanddienstleisters DPD an. Über die DPD Schnittstelle könnt ihr
+                            bequem Labels zu Sendungen und Retouren erstellen. Selbstverständlich greifen auch hier die vielfältigen Möglichkeiten der Automatisierung, d.h. ihr könnt von
+                            der Erstellung der Sendungen und Zuordnung der passenden Verpackung bis hin zur Label-Erstellung via DPD euren Versandprozess bestmöglich automatisieren.
                         </p>
 
-                        <div class="wc-gzd-actions">
-                            <a href="<?php echo admin_url( 'admin.php?page=wc-settings&tab=germanized-oss' ); ?>" class="button button-primary">Einstellungen anpassen</a>
-                            <a href="https://vendidero.de/one-stop-shop-verfahren-oss-in-woocommerce-einfach-umsetzen" target="_blank" class="button button-secondary">Mehr erfahren</a>
+                        <div class="wc-gzd-actions wc-gzd-actions-right">
+                            <a href="https://vendidero.de/woocommerce-germanized" target="_blank" class="wc-gzd-pro-version button button-primary wc-gzd-button"><span class="wc-gzd-pro wc-gzd-pro-outlined">pro</span> Version entdecken</a>
+                            <a href="https://vendidero.de/dokument/dpd-integration-einrichten" class="wc-gzd-default-button button button-primary" target="_blank">Mehr erfahren</a>
+
+                            <p class="price smaller wc-gzd-pro-version">ab 69 € inkl. MwSt. - inkl. 1 Jahr Updates & Premium Support!</p>
                         </div>
                     </div>
                 </div>
@@ -171,22 +173,17 @@ class WC_GZD_Admin_Welcome {
                             Mit dem Dokumenten-Editor in Germanized Pro baust du deine Belege individuell auf. Über die Google Fonts Integration suchst du dir eine passende Schriftart für dein PDF Dokument aus. Auch die Tabelle der Positionen einer Rechnung kannst du individuell gestalten.
                             Wähle aus welche Spalten, mit welcher Breite und welcher Bezeichnung angezeigt werden sollen. Damit hast du die volle Kontrolle.
                         </p>
+
+                        <div class="wc-gzd-actions">
+                            <a href="https://vendidero.de/woocommerce-germanized" target="_blank" class="wc-gzd-pro-version button button-primary wc-gzd-button"><span class="wc-gzd-pro wc-gzd-pro-outlined">pro</span> Version entdecken</a>
+                            <a href="https://vendidero.de/germanized-pro-3-0" class="wc-gzd-default-button button button-primary" target="_blank">Mehr erfahren</a>
+
+                            <p class="price smaller wc-gzd-pro-version">ab 69 € inkl. MwSt. - inkl. 1 Jahr Updates & Premium Support!</p>
+                        </div>
                     </div>
                     <div class="col col-center">
                         <img src="<?php echo WC_germanized()->plugin_url(); ?>/assets/images/edit-pdf-documents.png"/>
                     </div>
-                </div>
-
-                <div class="wc-germanized-welcome-pro">
-                    <a href="https://vendidero.de/woocommerce-germanized" target="_blank"
-                       class="button button-primary wc-gzd-button"><span class="wc-gzd-pro">pro</span> Version
-                        entdecken</a>
-                    <p class="price smaller">ab 69 € inkl. MwSt. - inkl. 1 Jahr Updates & Premium
-                        Support!</p>
-                </div>
-
-                <div class="wc-gzd-actions">
-                    <a href="https://vendidero.de/germanized-pro-3-0" class="button button-primary" target="_blank">Mehr erfahren</a>
                 </div>
             </div>
 
@@ -203,15 +200,12 @@ class WC_GZD_Admin_Welcome {
                             Mit der Integration von lexoffice könnt ihr eure Belege ganz einfach per API übertragen. Auf Wunsch geht das auch vollautomatisch, d.h. Germanized
                             überträgt eure Belege nach Erzeugung automatisch an lexoffice. Verringert euren Zeitaufwand bei der Buchhaltung mit Germanized Pro und lexoffice.
                         </p>
-                    </div>
-                </div>
 
-                <div class="wc-germanized-welcome-pro">
-                    <a href="https://vendidero.de/woocommerce-germanized" target="_blank"
-                       class="button button-primary wc-gzd-button"><span class="wc-gzd-pro">pro</span> Version
-                        entdecken</a>
-                    <p class="price smaller">ab 69 € inkl. MwSt. - inkl. 1 Jahr Updates & Premium
-                        Support!</p>
+                        <div class="wc-gzd-actions wc-gzd-actions-right">
+                            <a href="https://vendidero.de/woocommerce-germanized" target="_blank" class="wc-gzd-pro-version button button-primary wc-gzd-button"><span class="wc-gzd-pro wc-gzd-pro-outlined">pro</span> Version entdecken</a>
+                            <p class="price smaller wc-gzd-pro-version">ab 69 € inkl. MwSt. - inkl. 1 Jahr Updates & Premium Support!</p>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -225,23 +219,20 @@ class WC_GZD_Admin_Welcome {
                             sevDesk Integration könnt ihr eure Belege, auf Wunsch vollautomatisch, per API an sevDesk übertragen. Optional
                             habt ihr in den sevDesk Einstellungen die Möglichkeit, falls möglich, die Rechnung direkt mit einer konkreten Transaktion zu verknüpfen.
                         </p>
+
+                        <div class="wc-gzd-actions">
+                            <a href="https://vendidero.de/woocommerce-germanized" target="_blank" class="wc-gzd-pro-version button button-primary wc-gzd-button"><span class="wc-gzd-pro wc-gzd-pro-outlined">pro</span> Version entdecken</a>
+                            <p class="price smaller wc-gzd-pro-version">ab 69 € inkl. MwSt. - inkl. 1 Jahr Updates & Premium Support!</p>
+                        </div>
                     </div>
                     <div class="col col-center">
                         <img src="<?php echo WC_germanized()->plugin_url(); ?>/assets/images/sevdesk.png"/>
                     </div>
                 </div>
-
-                <div class="wc-germanized-welcome-pro">
-                    <a href="https://vendidero.de/woocommerce-germanized" target="_blank"
-                       class="button button-primary wc-gzd-button"><span class="wc-gzd-pro">pro</span> Version
-                        entdecken</a>
-                    <p class="price smaller">ab 69 € inkl. MwSt. - inkl. 1 Jahr Updates & Premium
-                        Support!</p>
-                </div>
             </div>
 
             <div class="changelog">
-                <h3>Weitere Neuigkeiten in Germanized 3.3</h3>
+                <h3>Weitere Neuigkeiten in Germanized <?php echo $major_version; ?></h3>
 
                 <div class="three-col columns">
                     <div class="col">
@@ -260,7 +251,7 @@ class WC_GZD_Admin_Welcome {
                         </p>
                     </div>
                     <div class="col">
-                        <h4><span class="dashicons dashicons-admin-tools"></span> Under the Hook</h4>
+                        <h4><span class="dashicons dashicons-admin-tools"></span> Under the Hood</h4>
                         <p>
                             Unter der Haube hat sich einiges in Germanized 3.0 verändert. Germanized unterstützt von nun
                             an nur noch WooCommerce ab Version 3. Damit konnten einige, veraltete Legacy-Bestandteile

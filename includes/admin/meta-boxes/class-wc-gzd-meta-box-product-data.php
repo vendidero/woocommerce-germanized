@@ -246,7 +246,7 @@ class WC_Germanized_Meta_Box_Product_Data {
 		woocommerce_wp_checkbox( array(
             'id'          => '_unit_price_auto',
             'label'       => __( 'Calculation', 'woocommerce-germanized' ),
-            'description' => '<span class="wc-gzd-premium-desc">' . __( 'Calculate unit prices automatically.', 'woocommerce-germanized' ) . '</span> <a href="https://vendidero.de/woocommerce-germanized#upgrade" target="_blank" class="wc-gzd-pro">pro</a>'
+            'description' => '<span class="wc-gzd-premium-desc">' . __( 'Calculate unit prices automatically.', 'woocommerce-germanized' ) . '</span> <a href="https://vendidero.de/woocommerce-germanized#upgrade" target="_blank" class="wc-gzd-pro wc-gzd-pro-outlined">pro</a>'
 		) );
 		woocommerce_wp_text_input( array(
             'id'        => '_unit_price_regular',
