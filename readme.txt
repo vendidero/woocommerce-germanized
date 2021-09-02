@@ -4,8 +4,8 @@ Tags: woocommerce, woocommerce german, woocommerce DE, woocommerce germany, wooc
 Requires at least: 5.4
 Tested up to: 5.8
 WC requires at least: 3.9
-WC tested up to: 5.6
-Stable tag: 3.5.4
+WC tested up to: 5.7
+Stable tag: 3.6.0
 Requires PHP: 5.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -194,6 +194,15 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 6. Edit pdf documents (Pro)
 
 == Changelog ==
+= 3.6.0 =
+* Feature: Adjust order shopmarks (e.g. thankyou, pay for order)
+* Feature: Woo 5.7 support
+* Improvement: On new installs: Remove privacy page from general checkbox label and disable privacy registration checkbox
+* Improvement: OSS query performance optimization
+* Improvement: Post: Allow switching page position on a per-label basis
+* Improvement: Warenpost tracking support detection
+* Improvement: Favour default packaging in case exists and fits
+
 = 3.5.4 =
 * Improvement: New order hook usage while syncing shipments
 * Improvement: Update jetpack autoloader version

@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce Germanized\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-25 11:18+0200\n"
-"PO-Revision-Date: 2021-09-02 12:42+0200\n"
+"POT-Creation-Date: 2021-09-02 12:50+0200\n"
+"PO-Revision-Date: 2021-09-02 12:51+0200\n"
 "Last-Translator: holzhannes <holzhannes@posteo.de>\n"
 "Language-Team: \n"
 "Language: de_DE@formal\n"
@@ -107,14 +107,14 @@ msgid "One Stop Shop"
 msgstr "One Stop Shop"
 
 #: one-stop-shop-woocommerce/src/Admin.php:453
-#: one-stop-shop-woocommerce/src/Package.php:368
+#: one-stop-shop-woocommerce/src/Package.php:353
 #, php-format
 msgctxt "oss"
 msgid "Q%1$s/%2$s"
 msgstr "Q%1$s/%2$s"
 
 #: one-stop-shop-woocommerce/src/Admin.php:462
-#: one-stop-shop-woocommerce/src/Package.php:373
+#: one-stop-shop-woocommerce/src/Package.php:358
 #, php-format
 msgctxt "oss"
 msgid "%1$s/%2$s"
@@ -292,7 +292,7 @@ msgctxt "oss"
 msgid "See details"
 msgstr "Details ansehen"
 
-#: one-stop-shop-woocommerce/src/Package.php:184
+#: one-stop-shop-woocommerce/src/Package.php:169
 msgctxt "oss"
 msgid ""
 "To use the OSS for WooCommerce plugin please make sure that WooCommerce is "
@@ -301,66 +301,66 @@ msgstr ""
 "Um das OSS für WooCommerce Plugin nutzen zu können muss WooCommerce "
 "installiert und aktiviert sein."
 
-#: one-stop-shop-woocommerce/src/Package.php:353
+#: one-stop-shop-woocommerce/src/Package.php:338
 #: one-stop-shop-woocommerce/src/ReportTable.php:40
 msgctxt "oss"
 msgid "Report"
 msgstr "Bericht"
 
-#: one-stop-shop-woocommerce/src/Package.php:377
+#: one-stop-shop-woocommerce/src/Package.php:362
 #, php-format
 msgctxt "oss"
 msgid "%1$s"
 msgstr "%1$s"
 
-#: one-stop-shop-woocommerce/src/Package.php:382
+#: one-stop-shop-woocommerce/src/Package.php:367
 #, php-format
 msgctxt "oss"
 msgid "%1$s - %2$s"
 msgstr "%1$s - %2$s"
 
-#: one-stop-shop-woocommerce/src/Package.php:387
+#: one-stop-shop-woocommerce/src/Package.php:372
 #, php-format
 msgctxt "oss"
 msgid "Observer %1$s"
 msgstr "Beobachter %1$s"
 
-#: one-stop-shop-woocommerce/src/Package.php:623
+#: one-stop-shop-woocommerce/src/Package.php:608
 msgctxt "oss"
 msgid "Quarterly"
 msgstr "Quartalsweise"
 
-#: one-stop-shop-woocommerce/src/Package.php:624
+#: one-stop-shop-woocommerce/src/Package.php:609
 msgctxt "oss"
 msgid "Yearly"
 msgstr "Jährlich"
 
-#: one-stop-shop-woocommerce/src/Package.php:625
+#: one-stop-shop-woocommerce/src/Package.php:610
 msgctxt "oss"
 msgid "Monthly"
 msgstr "Monatlich"
 
-#: one-stop-shop-woocommerce/src/Package.php:626
+#: one-stop-shop-woocommerce/src/Package.php:611
 msgctxt "oss"
 msgid "Custom"
 msgstr "Individuell"
 
-#: one-stop-shop-woocommerce/src/Package.php:630
+#: one-stop-shop-woocommerce/src/Package.php:615
 msgctxt "oss"
 msgid "Observer"
 msgstr "Beobachter"
 
-#: one-stop-shop-woocommerce/src/Package.php:644
+#: one-stop-shop-woocommerce/src/Package.php:629
 msgctxt "oss"
 msgid "Pending"
 msgstr "In Bearbeitung"
 
-#: one-stop-shop-woocommerce/src/Package.php:645
+#: one-stop-shop-woocommerce/src/Package.php:630
 msgctxt "oss"
 msgid "Completed"
 msgstr "Fertiggestellt"
 
-#: one-stop-shop-woocommerce/src/Package.php:646
+#: one-stop-shop-woocommerce/src/Package.php:631
 msgctxt "oss"
 msgid "Failed"
 msgstr "Fehlgeschlagen"
@@ -615,76 +615,76 @@ msgctxt "oss"
 msgid "Learn More"
 msgstr "Mehr erfahren"
 
-#: one-stop-shop-woocommerce/src/Tax.php:344
-#: one-stop-shop-woocommerce/src/Tax.php:402
+#: one-stop-shop-woocommerce/src/Tax.php:352
+#: one-stop-shop-woocommerce/src/Tax.php:410
 #, php-format
 msgctxt "oss"
 msgid "Tax class (%s)"
 msgstr "Steuerklasse (%s)"
 
-#: one-stop-shop-woocommerce/src/Tax.php:345
+#: one-stop-shop-woocommerce/src/Tax.php:353
 msgctxt "oss"
 msgid "Same as parent"
 msgstr "Gleiche wie übergeordnet"
 
-#: one-stop-shop-woocommerce/src/Tax.php:347
-#: one-stop-shop-woocommerce/src/Tax.php:380
-#: one-stop-shop-woocommerce/src/Tax.php:404
-#: one-stop-shop-woocommerce/src/Tax.php:438
+#: one-stop-shop-woocommerce/src/Tax.php:355
+#: one-stop-shop-woocommerce/src/Tax.php:388
+#: one-stop-shop-woocommerce/src/Tax.php:412
+#: one-stop-shop-woocommerce/src/Tax.php:446
 msgctxt "oss"
 msgid "remove"
 msgstr "Löschen"
 
-#: one-stop-shop-woocommerce/src/Tax.php:357
-#: one-stop-shop-woocommerce/src/Tax.php:415
+#: one-stop-shop-woocommerce/src/Tax.php:365
+#: one-stop-shop-woocommerce/src/Tax.php:423
 msgctxt "oss"
 msgid "Add country specific tax class (OSS)"
 msgstr "Länderspezifische Steuerklasse hinzufügen (OSS)"
 
-#: one-stop-shop-woocommerce/src/Tax.php:364
-#: one-stop-shop-woocommerce/src/Tax.php:422
+#: one-stop-shop-woocommerce/src/Tax.php:372
+#: one-stop-shop-woocommerce/src/Tax.php:430
 msgctxt "oss"
 msgid "Select country"
 msgstr "Land auswählen"
 
-#: one-stop-shop-woocommerce/src/Tax.php:520
-#: one-stop-shop-woocommerce/src/Tax.php:647
+#: one-stop-shop-woocommerce/src/Tax.php:528
+#: one-stop-shop-woocommerce/src/Tax.php:655
 msgid "Reduced rate"
 msgstr ""
 
-#: one-stop-shop-woocommerce/src/Tax.php:523
-#: one-stop-shop-woocommerce/src/Tax.php:639
+#: one-stop-shop-woocommerce/src/Tax.php:531
+#: one-stop-shop-woocommerce/src/Tax.php:647
 msgctxt "oss"
 msgid "Greater reduced rate"
 msgstr "Zusätzlicher reduzierter Preis"
 
-#: one-stop-shop-woocommerce/src/Tax.php:526
-#: one-stop-shop-woocommerce/src/Tax.php:643
+#: one-stop-shop-woocommerce/src/Tax.php:534
+#: one-stop-shop-woocommerce/src/Tax.php:651
 msgctxt "oss"
 msgid "Super reduced rate"
 msgstr "Stark reduzierter Preis"
 
-#: one-stop-shop-woocommerce/src/Tax.php:819
+#: one-stop-shop-woocommerce/src/Tax.php:827
 msgctxt "oss"
 msgid "Madeira"
 msgstr "Madeira"
 
-#: one-stop-shop-woocommerce/src/Tax.php:826
+#: one-stop-shop-woocommerce/src/Tax.php:834
 msgctxt "oss"
 msgid "Acores"
 msgstr "Azoren"
 
-#: one-stop-shop-woocommerce/src/Tax.php:862
+#: one-stop-shop-woocommerce/src/Tax.php:870
 msgctxt "oss"
 msgid "Northern Ireland"
 msgstr "Nordirland"
 
-#: one-stop-shop-woocommerce/src/Tax.php:875
+#: one-stop-shop-woocommerce/src/Tax.php:883
 msgctxt "oss-tax-rate-import"
 msgid "Exempt"
 msgstr "Ausnahme"
 
-#: one-stop-shop-woocommerce/src/Tax.php:941
+#: one-stop-shop-woocommerce/src/Tax.php:949
 #, php-format
 msgctxt "oss-tax-rate-import"
 msgid "VAT %1$s %% %2$s"
@@ -6129,8 +6129,8 @@ msgid "Insert key"
 msgstr "Schlüssel einfügen"
 
 #: woocommerce-germanized/includes/admin/class-wc-gzd-admin-setup-wizard.php:102
-#: woocommerce-germanized/includes/admin/class-wc-gzd-admin-setup-wizard.php:386
-#: woocommerce-germanized/includes/admin/class-wc-gzd-admin-setup-wizard.php:388
+#: woocommerce-germanized/includes/admin/class-wc-gzd-admin-setup-wizard.php:408
+#: woocommerce-germanized/includes/admin/class-wc-gzd-admin-setup-wizard.php:410
 msgid "Continue"
 msgstr "Weiter"
 
@@ -6222,49 +6222,54 @@ msgstr ""
 "7 Tagen gelöscht</strong>. Die Double-Opt-In <a href=\"%s\" target=\"_blank"
 "\">Einstellungen</a> können nachträglich angepasst werden."
 
+#: woocommerce-germanized/includes/admin/class-wc-gzd-admin-setup-wizard.php:207
+#, php-format
+msgid "Upgrade to %s to activate %s integration."
+msgstr "Upgraden Sie auf %s um die %s Integration zu aktivieren."
+
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/class-wc-gzd-admin-setup-wizard.php:196
+#: woocommerce-germanized/includes/admin/class-wc-gzd-admin-setup-wizard.php:214
 #, php-format
 msgid "Enable %s integration"
 msgstr "%s Integration aktivieren."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/class-wc-gzd-admin-setup-wizard.php:213
+#: woocommerce-germanized/includes/admin/class-wc-gzd-admin-setup-wizard.php:235
 msgid "Setup"
 msgstr "Setup"
 
-#: woocommerce-germanized/includes/admin/class-wc-gzd-admin-setup-wizard.php:311
+#: woocommerce-germanized/includes/admin/class-wc-gzd-admin-setup-wizard.php:333
 msgid "Germanized &rsaquo; Setup Wizard"
 msgstr "Germanized &rsaquo; Setup"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/class-wc-gzd-admin-setup-wizard.php:382
+#: woocommerce-germanized/includes/admin/class-wc-gzd-admin-setup-wizard.php:404
 msgid "Skip Step"
 msgstr "Schritt überspringen"
 
-#: woocommerce-germanized/includes/admin/class-wc-gzd-admin-setup-wizard.php:394
+#: woocommerce-germanized/includes/admin/class-wc-gzd-admin-setup-wizard.php:416
 msgid "Return to WP Admin"
 msgstr "Zurück zu WP Admin"
 
 # @ woocommerce-germanized
 #: woocommerce-germanized/includes/admin/class-wc-gzd-admin-status.php:45
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-general.php:53
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-general.php:136
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-general.php:51
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-general.php:134
 #: woocommerce-germanized/includes/wc-gzd-core-functions.php:269
 msgid "Terms & Conditions"
 msgstr "AGB"
 
 # @ woocommerce-germanized
 #: woocommerce-germanized/includes/admin/class-wc-gzd-admin-status.php:46
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-general.php:63
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-general.php:61
 #: woocommerce-germanized/includes/wc-gzd-core-functions.php:270
 msgid "Cancellation Policy"
 msgstr "Widerrufsbelehrung"
 
 # @ woocommerce-germanized
 #: woocommerce-germanized/includes/admin/class-wc-gzd-admin-status.php:47
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-general.php:84
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-general.php:136
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-general.php:82
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-general.php:134
 #: woocommerce-germanized/includes/wc-gzd-core-functions.php:271
 msgid "Imprint"
 msgstr "Impressum"
@@ -6278,7 +6283,7 @@ msgstr "Datenschutz"
 
 # @ woocommerce-germanized
 #: woocommerce-germanized/includes/admin/class-wc-gzd-admin-status.php:49
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-general.php:104
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-general.php:102
 #: woocommerce-germanized/includes/wc-gzd-core-functions.php:276
 msgid "Payment Methods"
 msgstr "Zahlungarten"
@@ -6294,7 +6299,7 @@ msgid "Welcome to Germanized"
 msgstr "Willkommen bei Germanized"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/class-wc-gzd-admin-welcome.php:285
+#: woocommerce-germanized/includes/admin/class-wc-gzd-admin-welcome.php:276
 msgid "Go to Germanized Settings"
 msgstr "Germanized Einstellungen"
 
@@ -6991,11 +6996,11 @@ msgid "Button Solution"
 msgstr "Button-Lösung"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:41
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:45
 msgid "Buy now button"
 msgstr "„Jetzt kaufen“ Button"
 
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:42
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:46
 msgid ""
 "These settings help you comply to the button solution. The buy now button "
 "text is forced and static so that no payment gateway might override it."
@@ -7005,11 +7010,11 @@ msgstr ""
 "Zahlungsart den Text überschreiben kann."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:55
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:59
 msgid "Product table background"
 msgstr "Produkttabelle Hintergrund"
 
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:56
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:60
 msgid ""
 "The product table within your checkout should be noticeable for your "
 "customers. You might want to choose a different background color for it."
@@ -7017,31 +7022,31 @@ msgstr ""
 "Die Produkttabelle in der Kasse sollte für Ihre Kunden klar erkennbar sein. "
 "Fall gewünscht, können Sie eine abweichende Hintergrundfarbe dafür auswählen."
 
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:74
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:78
 msgid "Button Text"
 msgstr "Button-Text"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:75
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:79
 msgid "This text serves as Button text for the Order Submit Button."
 msgstr ""
 "Dieser Text wird als Beschriftung für den „Kauf abschließen“ Button "
 "verwendet."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:79
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:83
 msgid "Buy Now"
 msgstr "Jetzt kaufen"
 
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:82
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:86
 msgid "Product attributes"
 msgstr "Produktmerkmale"
 
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:83
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:87
 msgid "List all product attributes during cart and checkout."
 msgstr "Listet alle Produkteigenschaften im Warenkorb und in der Kasse auf."
 
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:87
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:91
 msgid ""
 "This option forces WooCommerce to output a list of all product attributes "
 "during cart and checkout."
@@ -7050,17 +7055,17 @@ msgstr ""
 "Warenkorb und in der Kasse."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:90
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:94
 msgid "Back to cart"
 msgstr "Zurück zum Warenkorb"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:91
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:95
 msgid "Add a back to cart button to the checkout table."
 msgstr "„Bestellung bearbeiten“ Button in der Bestellübersicht anzeigen."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:91
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:95
 msgid ""
 "This button may let your customer edit their order before submitting. Some "
 "people state that this button should be hidden to avoid legal problems."
@@ -7072,27 +7077,27 @@ msgstr ""
 "weitere Informationen abgedruckt werden sollten."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:97
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:101
 msgid "Edit data notice"
 msgstr "„Bestellung prüfen“ Hinweis"
 
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:98
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:102
 msgid "Display an edit-your-data notice within checkout."
 msgstr "Zeige einen „Bestellung bearbeiten“ Hinweis in der Kasse an."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:102
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:106
 msgid "This notice will be added right before the order comments field."
 msgstr ""
 "Dieser Hinweis wird direkt oberhalb des Bestellhinweise-Feldes eingefügt."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:105
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:109
 msgid "Product Table Color"
 msgstr "Hintergrund der Tabelle"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:107
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:111
 msgid ""
 "Choose the color of your checkout product table. This table should be "
 "highlighted within your checkout page."
@@ -7101,17 +7106,17 @@ msgstr ""
 "Tabelle sollte sich farblich vom Rest des Inhalts abheben."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:112
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:116
 msgid "Thumbnails"
 msgstr "Thumbnails"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:113
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:117
 msgid "Show product thumbnails within checkout table."
 msgstr "Zeige Produktbilder in der Tabelle der Kasse an."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:117
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:121
 msgid ""
 "Uncheck if you don't want to show your product thumbnails within checkout "
 "table."
@@ -7120,17 +7125,17 @@ msgstr ""
 "zu bekommen."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:120
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:124
 msgid "Hide Shipping Select"
 msgstr "Versandarten Auswahl"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:121
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:125
 msgid "Hide shipping rate selection from checkout."
 msgstr "Deaktiviere die Auswahl von Versandarten in der Kasse."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:125
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:129
 msgid ""
 "This option will hide shipping rate selection from checkout. By then "
 "customers will only be able to change their shipping rate on cart page."
@@ -7139,19 +7144,19 @@ msgstr ""
 "Checkout. Kunden können von nun an nur noch über den Warenkorb die "
 "Versandmethode ändern."
 
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:128
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:132
 msgid "Estimated taxes"
 msgstr "Steuern geschätzt"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:129
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:133
 msgid "Hide the \"taxes and shipping estimated\" text from the cart."
 msgstr ""
 "Entferne den Hinweis „Versandkosten und Steuern werden geschätzt“ im "
 "Warenkorb."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:133
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:137
 msgid ""
 "By default WooCommerce adds a \"taxes and shipping estimated\" text to your "
 "cart. This might puzzle your customers and may not meet german law."
@@ -7161,17 +7166,17 @@ msgstr ""
 "Markt geeignet."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:136
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:140
 #: woocommerce-germanized/includes/admin/views/html-page-status-germanized.php:65
 msgid "Fallback Mode"
 msgstr "Fallback Modus"
 
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:137
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:141
 msgid "Force default WooCommerce checkout template."
 msgstr "Standard Kasse-Template erzwingen."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:137
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:141
 msgid ""
 "If you are facing problems within your checkout e.g. legally relevant data "
 "is not showing (terms, delivery time, unit price etc.) your theme seems to "
@@ -7184,28 +7189,28 @@ msgstr ""
 "aktivieren. Diese Option hindert ihr Theme relevante Templates für den "
 "Checkout (review-order.php und form-checkout.php) zu überschreiben."
 
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:145
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:149
 msgid "Thankyou Page"
 msgstr "Danke-Seite"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:151
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:155
 msgid "Information"
 msgstr "Information"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:152
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:156
 msgid "Hide product table and customer data on order thankyou page."
 msgstr ""
 "Produktdetails (Tabelle, Kundeninfos) von der Bestätigungsseite entfernen."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:158
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:162
 msgid "Order Success Text"
 msgstr "Bestellung eingegangen"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:159
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:163
 msgid "Choose a custom text to display on order success page."
 msgstr ""
 "Hier können Sie einen individuellen kurzen Text eingeben, der nach der "
@@ -7797,7 +7802,7 @@ msgid ""
 msgstr ""
 "Passen Sie hier, falls notwending, den Kleinunternehmer Hinweistext an."
 
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-general.php:217
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-general.php:215
 #: woocommerce-germanized/includes/wc-gzd-core-functions.php:348
 msgid ""
 "Value added tax is not collected, as small businesses according to §19 (1) "
@@ -9631,7 +9636,7 @@ msgstr ""
 
 # @ woocommerce-germanized
 #: woocommerce-germanized/includes/class-wc-gzd-checkout.php:1027
-#: woocommerce-germanized/includes/class-wc-gzd-revocation.php:52
+#: woocommerce-germanized/includes/class-wc-gzd-revocation.php:51
 #: woocommerce-germanized/includes/wc-gzd-core-functions.php:637
 msgid "Mr."
 msgstr "Herr"
@@ -10431,7 +10436,7 @@ msgid "Title"
 msgstr "Anrede"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-revocation.php:53
+#: woocommerce-germanized/includes/class-wc-gzd-revocation.php:52
 #: woocommerce-germanized/includes/wc-gzd-core-functions.php:638
 #: woocommerce-germanized/includes/wc-gzd-core-functions.php:656
 msgid "Ms."
