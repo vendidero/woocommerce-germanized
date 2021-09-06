@@ -217,7 +217,7 @@ function wc_gzd_is_checkout_action() {
             }
         }
 
-        if ( in_array( $filter_name, $actions ) ) {
+        if ( in_array( $current_filter, $actions ) ) {
             return true;
         }
     }
