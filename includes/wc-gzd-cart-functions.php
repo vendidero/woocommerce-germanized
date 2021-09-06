@@ -127,7 +127,7 @@ function wc_gzd_cart_product_item_desc( $title, $cart_item, $cart_item_key = '' 
 		$cart_item_key = $cart_item;
 		$title         = "";
 		$echo          = true;
-	} elseif( is_numeric( $title ) && doing_action() && is_a( $cart_item, 'WC_Order_Item_Product' ) ) {
+	} elseif( is_numeric( $title ) && wc_gzd_is_checkout_action() && is_a( $cart_item, 'WC_Order_Item_Product' ) ) {
 		$echo          = true;
 		$cart_item_key = $title;
 		$title         = '';
@@ -204,6 +204,27 @@ function wc_gzd_cart_product_attributes( $title, $cart_item, $cart_item_key = ''
 	return $title;
 }
 
+function wc_gzd_is_checkout_action() {
+    $current_filter = current_filter();
+
+    if ( $current_filter ) {
+        $filters = array_merge( \Vendidero\Germanized\Shopmarks::get_filters( 'cart' ), \Vendidero\Germanized\Shopmarks::get_filters( 'checkout' ), \Vendidero\Germanized\Shopmarks::get_filters( 'order' ) );
+        $actions = array();
+
+        foreach( $filters as $filter_name => $filter ) {
+            if ( $filter['is_action'] ) {
+                $actions[] = $filter_name;
+            }
+        }
+
+        if ( in_array( $filter_name, $actions ) ) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
 /**
  * Appends delivery time live data (while checkout) or order meta to product name
  *
@@ -221,7 +242,7 @@ function wc_gzd_cart_product_delivery_time( $title, $cart_item, $cart_item_key =
 		$cart_item_key = $cart_item;
 		$title         = "";
 		$echo          = true;
-	} elseif( is_numeric( $title ) && doing_action() && is_a( $cart_item, 'WC_Order_Item_Product' ) ) {
+	} elseif( is_numeric( $title ) && wc_gzd_is_checkout_action() && is_a( $cart_item, 'WC_Order_Item_Product' ) ) {
 		$echo          = true;
 		$cart_item_key = $title;
 		$title         = '';
@@ -272,7 +293,7 @@ function wc_gzd_cart_product_unit_price( $price, $cart_item, $cart_item_key = ''
 		$cart_item_key = $cart_item;
 		$price         = "";
 		$echo          = true;
-	} elseif( is_numeric( $price ) && doing_action() && is_a( $cart_item, 'WC_Order_Item_Product' ) ) {
+	} elseif( is_numeric( $price ) && wc_gzd_is_checkout_action() && is_a( $cart_item, 'WC_Order_Item_Product' ) ) {
 		$echo          = true;
 		$cart_item_key = $price;
 		$price         = '';
@@ -324,7 +345,7 @@ function wc_gzd_cart_product_units( $title, $cart_item, $cart_item_key = '' ) {
 		$cart_item_key = $cart_item;
 		$title         = "";
 		$echo          = true;
-	} elseif( is_numeric( $title ) && doing_action() && is_a( $cart_item, 'WC_Order_Item_Product' ) ) {
+	} elseif( is_numeric( $title ) && wc_gzd_is_checkout_action() && is_a( $cart_item, 'WC_Order_Item_Product' ) ) {
 	    $echo          = true;
 	    $cart_item_key = $title;
 	    $title         = '';

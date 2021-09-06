@@ -347,6 +347,11 @@ class Shopmarks {
 		return isset( $locations[ $location ] ) ? $locations[ $location ] : '';
 	}
 
+	/**
+	 * @param string $location
+	 *
+	 * @return string[]
+	 */
 	public static function get_filters( $location = 'single_product' ) {
 		$filters = array(
 			'single_product'         => array(
