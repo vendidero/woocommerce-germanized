@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce Germanized\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-02 12:50+0200\n"
-"PO-Revision-Date: 2021-09-02 17:11+0200\n"
+"POT-Creation-Date: 2021-09-16 11:51+0200\n"
+"PO-Revision-Date: 2021-09-16 11:51+0200\n"
 "Last-Translator: holzhannes <holzhannes@posteo.de>\n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -238,7 +238,7 @@ msgctxt "oss"
 msgid "Dismiss"
 msgstr "Ausblenden"
 
-#: one-stop-shop-woocommerce/src/AsyncReportGenerator.php:244
+#: one-stop-shop-woocommerce/src/AsyncReportGenerator.php:253
 msgctxt "oss"
 msgid "No orders found."
 msgstr "Keine Bestellungen gefunden."
@@ -3677,7 +3677,7 @@ msgstr "Fehler beim Erstellen der Sendungsinstanz"
 #: woocommerce-germanized-shipments/src/ReturnShipment.php:248
 #: woocommerce-germanized-shipments/src/ReturnShipment.php:320
 #: woocommerce-germanized-shipments/src/SimpleShipment.php:118
-#: woocommerce-germanized-shipments/src/SimpleShipment.php:240
+#: woocommerce-germanized-shipments/src/SimpleShipment.php:223
 msgctxt "shipments"
 msgid "Invalid shipment order"
 msgstr "Ungültige Bestellung zur Sendung"
@@ -9647,7 +9647,7 @@ msgctxt "customer-title-male-address"
 msgid "Mr."
 msgstr "Herrn"
 
-#: woocommerce-germanized/includes/class-wc-gzd-coupon-helper.php:72
+#: woocommerce-germanized/includes/class-wc-gzd-coupon-helper.php:78
 msgid ""
 "The cart contains one or more vouchers. Vouchers cannot be mixed with normal "
 "coupons."
@@ -9655,7 +9655,7 @@ msgstr ""
 "Dein Warenkorb beinhaltet einen oder mehrere Wertgutscheine. Wertgutscheine "
 "können nicht mit normalen Gutscheinen gemischt werden."
 
-#: woocommerce-germanized/includes/class-wc-gzd-coupon-helper.php:74
+#: woocommerce-germanized/includes/class-wc-gzd-coupon-helper.php:80
 msgid ""
 "The cart contains one or more coupons. Vouchers cannot be mixed with normal "
 "coupons. Please remove the coupon before adding your voucher."
@@ -9664,11 +9664,11 @@ msgstr ""
 "können nicht mit normalen Gutscheinen gemischt werden. Bitte lösche den "
 "Gutschein bevor du deinen Wertgutschein hinzufügst."
 
-#: woocommerce-germanized/includes/class-wc-gzd-coupon-helper.php:404
+#: woocommerce-germanized/includes/class-wc-gzd-coupon-helper.php:410
 msgid "Is voucher?"
 msgstr "Wertgutschein?"
 
-#: woocommerce-germanized/includes/class-wc-gzd-coupon-helper.php:405
+#: woocommerce-germanized/includes/class-wc-gzd-coupon-helper.php:411
 #, php-format
 msgid ""
 "Whether or not this coupon is a voucher which has been sold to a customer "
@@ -11513,152 +11513,152 @@ msgstr "Warenkorb Dropdown"
 msgid "Order"
 msgstr "Bestellung"
 
-#: woocommerce-germanized/src/Shopmarks.php:354
+#: woocommerce-germanized/src/Shopmarks.php:359
 msgid "Summary"
 msgstr "Übersicht"
 
-#: woocommerce-germanized/src/Shopmarks.php:359
+#: woocommerce-germanized/src/Shopmarks.php:364
 msgid "Meta"
 msgstr "Produktmeta"
 
-#: woocommerce-germanized/src/Shopmarks.php:364
-#: woocommerce-germanized/src/Shopmarks.php:491
+#: woocommerce-germanized/src/Shopmarks.php:369
+#: woocommerce-germanized/src/Shopmarks.php:496
 msgid "After Meta"
 msgstr "Produktmeta - nachher"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/src/Shopmarks.php:369
+#: woocommerce-germanized/src/Shopmarks.php:374
 msgid "Before add to cart"
 msgstr "Zum Warenkorb - vorher"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/src/Shopmarks.php:374
+#: woocommerce-germanized/src/Shopmarks.php:379
 msgid "After add to cart"
 msgstr "Zum Warenkorb - nachher"
 
-#: woocommerce-germanized/src/Shopmarks.php:379
+#: woocommerce-germanized/src/Shopmarks.php:384
 msgid "After Summary"
 msgstr "Übersicht - nachher"
 
-#: woocommerce-germanized/src/Shopmarks.php:386
+#: woocommerce-germanized/src/Shopmarks.php:391
 msgid "Price Column"
 msgstr "Spalte - Preis"
 
-#: woocommerce-germanized/src/Shopmarks.php:391
+#: woocommerce-germanized/src/Shopmarks.php:396
 msgid "Label Column"
 msgstr "Spalte - Beschriftung"
 
-#: woocommerce-germanized/src/Shopmarks.php:396
+#: woocommerce-germanized/src/Shopmarks.php:401
 msgid "Quantity Column"
 msgstr "Spalte - Anzahl"
 
-#: woocommerce-germanized/src/Shopmarks.php:403
+#: woocommerce-germanized/src/Shopmarks.php:408
 msgid "After Item Title"
 msgstr "Produkttitel - nachher"
 
-#: woocommerce-germanized/src/Shopmarks.php:408
+#: woocommerce-germanized/src/Shopmarks.php:413
 msgid "Before Item Title"
 msgstr "Produkttitel - vorher"
 
 # @ woocommerce-germanized
 # @ woocommerce
-#: woocommerce-germanized/src/Shopmarks.php:413
+#: woocommerce-germanized/src/Shopmarks.php:418
 msgid "Item Title"
 msgstr "Produkttitel"
 
-#: woocommerce-germanized/src/Shopmarks.php:418
+#: woocommerce-germanized/src/Shopmarks.php:423
 msgid "After Item"
 msgstr "Produkt - nachher"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/src/Shopmarks.php:425
-#: woocommerce-germanized/src/Shopmarks.php:447
+#: woocommerce-germanized/src/Shopmarks.php:430
+#: woocommerce-germanized/src/Shopmarks.php:452
 msgid "Item Price"
 msgstr "Produktpreis"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/src/Shopmarks.php:430
-#: woocommerce-germanized/src/Shopmarks.php:452
-#: woocommerce-germanized/src/Shopmarks.php:464
-#: woocommerce-germanized/src/Shopmarks.php:481
+#: woocommerce-germanized/src/Shopmarks.php:435
+#: woocommerce-germanized/src/Shopmarks.php:457
+#: woocommerce-germanized/src/Shopmarks.php:469
+#: woocommerce-germanized/src/Shopmarks.php:486
 msgid "Item Name"
 msgstr "Produkttitel"
 
-#: woocommerce-germanized/src/Shopmarks.php:435
+#: woocommerce-germanized/src/Shopmarks.php:440
 msgid "After Item Name"
 msgstr "Titel - nachher"
 
-#: woocommerce-germanized/src/Shopmarks.php:440
-#: woocommerce-germanized/src/Shopmarks.php:459
-#: woocommerce-germanized/src/Shopmarks.php:476
+#: woocommerce-germanized/src/Shopmarks.php:445
+#: woocommerce-germanized/src/Shopmarks.php:464
+#: woocommerce-germanized/src/Shopmarks.php:481
 msgid "Subtotal"
 msgstr "Zwischensumme"
 
-#: woocommerce-germanized/src/Shopmarks.php:469
-#: woocommerce-germanized/src/Shopmarks.php:486
+#: woocommerce-germanized/src/Shopmarks.php:474
+#: woocommerce-germanized/src/Shopmarks.php:491
 msgid "After Item Quantity"
 msgstr "Anzahl - nachher"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/src/Shopmarks.php:517
-#: woocommerce-germanized/src/Shopmarks.php:523
-#: woocommerce-germanized/src/Shopmarks.php:529
-#: woocommerce-germanized/src/Shopmarks.php:536
-#: woocommerce-germanized/src/Shopmarks.php:542
-#: woocommerce-germanized/src/Shopmarks.php:548
-#: woocommerce-germanized/src/Shopmarks.php:554
+#: woocommerce-germanized/src/Shopmarks.php:522
+#: woocommerce-germanized/src/Shopmarks.php:528
+#: woocommerce-germanized/src/Shopmarks.php:534
+#: woocommerce-germanized/src/Shopmarks.php:541
+#: woocommerce-germanized/src/Shopmarks.php:547
+#: woocommerce-germanized/src/Shopmarks.php:553
+#: woocommerce-germanized/src/Shopmarks.php:559
 msgctxt "shopmark"
 msgid "Unit Price"
 msgstr "Grundpreis"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/src/Shopmarks.php:518
-#: woocommerce-germanized/src/Shopmarks.php:524
-#: woocommerce-germanized/src/Shopmarks.php:530
-#: woocommerce-germanized/src/Shopmarks.php:538
-#: woocommerce-germanized/src/Shopmarks.php:544
-#: woocommerce-germanized/src/Shopmarks.php:550
-#: woocommerce-germanized/src/Shopmarks.php:556
+#: woocommerce-germanized/src/Shopmarks.php:523
+#: woocommerce-germanized/src/Shopmarks.php:529
+#: woocommerce-germanized/src/Shopmarks.php:535
+#: woocommerce-germanized/src/Shopmarks.php:543
+#: woocommerce-germanized/src/Shopmarks.php:549
+#: woocommerce-germanized/src/Shopmarks.php:555
+#: woocommerce-germanized/src/Shopmarks.php:561
 msgctxt "shopmark"
 msgid "Delivery Time"
 msgstr "Lieferzeit"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/src/Shopmarks.php:519
-#: woocommerce-germanized/src/Shopmarks.php:525
+#: woocommerce-germanized/src/Shopmarks.php:524
+#: woocommerce-germanized/src/Shopmarks.php:530
 msgctxt "shopmark"
 msgid "General"
 msgstr "Allgemein"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/src/Shopmarks.php:520
-#: woocommerce-germanized/src/Shopmarks.php:526
-#: woocommerce-germanized/src/Shopmarks.php:533
-#: woocommerce-germanized/src/Shopmarks.php:537
-#: woocommerce-germanized/src/Shopmarks.php:543
-#: woocommerce-germanized/src/Shopmarks.php:549
-#: woocommerce-germanized/src/Shopmarks.php:555
+#: woocommerce-germanized/src/Shopmarks.php:525
+#: woocommerce-germanized/src/Shopmarks.php:531
+#: woocommerce-germanized/src/Shopmarks.php:538
+#: woocommerce-germanized/src/Shopmarks.php:542
+#: woocommerce-germanized/src/Shopmarks.php:548
+#: woocommerce-germanized/src/Shopmarks.php:554
+#: woocommerce-germanized/src/Shopmarks.php:560
 msgctxt "shopmark"
 msgid "Product Units"
 msgstr "Produkteinheiten"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/src/Shopmarks.php:531
+#: woocommerce-germanized/src/Shopmarks.php:536
 msgctxt "shopmark"
 msgid "Tax"
 msgstr "Steuer"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/src/Shopmarks.php:532
+#: woocommerce-germanized/src/Shopmarks.php:537
 msgctxt "shopmark"
 msgid "Shipping Costs"
 msgstr "Versandkosten"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/src/Shopmarks.php:539
-#: woocommerce-germanized/src/Shopmarks.php:545
-#: woocommerce-germanized/src/Shopmarks.php:551
-#: woocommerce-germanized/src/Shopmarks.php:557
+#: woocommerce-germanized/src/Shopmarks.php:544
+#: woocommerce-germanized/src/Shopmarks.php:550
+#: woocommerce-germanized/src/Shopmarks.php:556
+#: woocommerce-germanized/src/Shopmarks.php:562
 msgctxt "shopmark"
 msgid "Cart Description"
 msgstr "Warenkorbkurzbeschreibung"

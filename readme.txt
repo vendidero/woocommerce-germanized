@@ -5,7 +5,7 @@ Requires at least: 5.4
 Tested up to: 5.8
 WC requires at least: 3.9
 WC tested up to: 5.7
-Stable tag: 3.6.0
+Stable tag: 3.6.1
 Requires PHP: 5.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -194,6 +194,14 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 6. Edit pdf documents (Pro)
 
 == Changelog ==
+= 3.6.1 =
+* Improvement: Checkout action check during shopmark execution
+* Improvement: Prefer using total over subtotal amount for customs (except vouchers)
+* Improvement: Packaging dimension reset handling
+* Improvement: Round packaging/item dimensions to prevent packaging errors with fine grained dimensions (e.g. < 1mm)
+* Improvement: Tighten DP auth check to prevent auth errors
+* Fix: Multiple shipments customs additional total split calculation
+
 = 3.6.0 =
 * Feature: Adjust order shopmarks (e.g. thankyou, pay for order)
 * Feature: Woo 5.7 support
