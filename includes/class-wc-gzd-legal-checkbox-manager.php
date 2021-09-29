@@ -185,7 +185,7 @@ class WC_GZD_Legal_Checkbox_Manager {
 			'locations'            => array( 'checkout' ),
 		) );
 
-		// Privacy Policy
+		// New account
 		wc_gzd_register_legal_checkbox( 'privacy', array(
 			'html_id'              => 'reg_data_privacy',
 			'html_name'            => 'privacy',
@@ -199,8 +199,8 @@ class WC_GZD_Legal_Checkbox_Manager {
 			'is_shown'             => true,
 			'refresh_fragments'    => true,
 			'priority'             => 4,
-			'admin_name'           => __( 'Privacy Policy', 'woocommerce-germanized' ),
-			'admin_desc'           => __( 'Let customers accept your privacy policy before registering.', 'woocommerce-germanized' ),
+			'admin_name'           => __( 'New account', 'woocommerce-germanized' ),
+			'admin_desc'           => __( 'Let customers accept your privacy policy before creating a new account.', 'woocommerce-germanized' ),
 			'locations'            => array( 'register' ),
 		) );
 
@@ -524,6 +524,12 @@ class WC_GZD_Legal_Checkbox_Manager {
 
 		// Make sure we are not registering core checkboxes again
 		foreach ( $this->get_options() as $id => $checkbox_args ) {
+			$checkbox_args = wp_parse_args( $checkbox_args, array(
+				'label_args' => array(),
+			) );
+
+			$checkbox_args['label_args'] = array_merge( $checkbox_args['label_args'], $this->get_legal_label_args() );
+
 			if ( isset( $checkbox_args['id'] ) ) {
 				unset( $checkbox_args['id'] );
 			}

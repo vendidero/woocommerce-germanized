@@ -1,14 +1,20 @@
 p.wc-gzd-additional-info:empty {
   display: none;
 }
-#order_review .legal {
-  text-align: left;
-  padding: 0 1em 0 0;
-  float: left;
+#order_review .wc-gzd-checkbox-placeholder {
+  clear: both;
+
+  p.form-row {
+    text-align: left;
+    padding: 0 1em 0 0;
+    float: none;
+
+    label {
+      display: inline;
+    }
+  }
 }
-#order_review .legal label {
-  display: inline;
-}
+
 .woocommerce-checkout .shop_table {
   background-color: #EEE;
 }
@@ -141,14 +147,6 @@ table.product-details-inner tr td:last-child {
   max-width: 15%;
   margin-right: 1em;
 }
-#eKomiSeal_default img {
-  width: 100% !important;
-  height: 100% !important;
-}
-.wc-gzd-parcel-finder-open-button {
-  display: inline;
-  margin-left: 5px;
-}
 #order_review .blockMsg {
   line-height: 1.5em;
 }
@@ -159,9 +157,11 @@ table.product-details-inner tr td:last-child {
 /**
  * Twenty Twenty
  */
-.theme-twentytwenty {
+.theme-twentytwenty, .theme-twentytwentyone {
   form.woocommerce-checkout #order_review_heading {
     width: 100%;
     padding-left: 0;
+    text-align: left;
+    margin-bottom: 2rem;
   }
 }
