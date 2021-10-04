@@ -80,7 +80,7 @@ class WC_GZD_Checkout {
 
 		// Free Shipping auto select
 		if ( 'yes' === get_option( 'woocommerce_gzd_display_checkout_free_shipping_select' ) ) {
-			add_filter( 'woocommerce_package_rates', array( $this, 'free_shipping_auto_select' ) );
+			add_filter( 'woocommerce_package_rates', array( $this, 'free_shipping_auto_select' ), 300 );
 			add_action( 'woocommerce_before_calculate_totals', array( $this, 'set_free_shipping_filter' ) );
 		}
 
