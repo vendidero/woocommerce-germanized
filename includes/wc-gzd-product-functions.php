@@ -245,7 +245,11 @@ function wc_gzd_recalculate_unit_price( $args = array(), $product = false ) {
 	);
 
 	if ( $product ) {
-		$wc_product = $product->get_wc_product();
+		$wc_product = is_a( $product, 'WC_GZD_Product' ) ? $product->get_wc_product() : $product;
+
+		if ( is_a( $product, 'WC_Product' ) ) {
+			$product = wc_gzd_get_gzd_product( $product );
+		}
 
 		$default_args = array(
 			'regular_price' => $wc_product->get_regular_price(),
