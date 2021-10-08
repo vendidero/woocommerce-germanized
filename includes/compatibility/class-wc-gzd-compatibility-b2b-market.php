@@ -106,7 +106,8 @@ class WC_GZD_Compatibility_B2B_Market extends WC_GZD_Compatibility_Woocommerce_R
 			return;
 		}
 
-		$price_html = $gzd_product->get_wc_product()->get_price_html();
+		$product    = $gzd_product->get_wc_product();
+		$price_html = $product->get_price_html();
 		$prices     = $this->get_prices_from_string( $price_html );
 
 		if ( empty( $prices ) ) {
@@ -114,10 +115,29 @@ class WC_GZD_Compatibility_B2B_Market extends WC_GZD_Compatibility_Woocommerce_R
 		}
 
 		$args = array(
-			'regular_price' => $prices[0]['number'],
-			'sale_price'    => isset( $prices[1] ) ? $prices[1]['number'] : $prices[0]['number'],
-			'price'         => isset( $prices[1] ) ? $prices[1]['number'] : $prices[0]['number'],
+			'regular_price' => wc_format_decimal( $prices[0]['number'], '' ),
+			'sale_price'    => wc_format_decimal( isset( $prices[1] ) ? $prices[1]['number'] : $prices[0]['number'], '' ),
+			'price'         => wc_format_decimal( isset( $prices[1] ) ? $prices[1]['number'] : $prices[0]['number'], '' ),
 		);
+
+		if ( wc_tax_enabled() ) {
+			if ( $product->is_taxable() ) {
+				/**
+				 * Prices are net based - let's get the net price first and use that to recalculate the unit price
+				 */
+				if ( 'incl' === get_option( 'woocommerce_tax_display_shop' ) && ! wc_prices_include_tax() ) {
+					$tax_rates      = WC_Tax::get_rates( $product->get_tax_class() );
+					$base_tax_rates = WC_Tax::get_base_tax_rates( $product->get_tax_class( 'unfiltered' ) );
+
+					foreach( $args as $key => $line_price ) {
+						$remove_taxes = apply_filters( 'woocommerce_adjust_non_base_location_prices', true ) ? WC_Tax::calc_tax( $line_price, $base_tax_rates, true ) : WC_Tax::calc_tax( $line_price, $tax_rates, true );
+						$return_price = $line_price - array_sum( $remove_taxes );
+
+						$args[ $key ] = $return_price;
+					}
+				}
+			}
+		}
 
 		$gzd_product->recalculate_unit_price( $args );
 	}
