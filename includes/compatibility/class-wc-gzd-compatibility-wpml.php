@@ -523,5 +523,4 @@ class WC_GZD_Compatibility_WPML extends WC_GZD_Compatibility {
 
 		return apply_filters( 'translate_object_id', $id, 'page', true );
 	}
-
 }
