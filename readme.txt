@@ -5,7 +5,7 @@ Requires at least: 5.4
 Tested up to: 5.8
 WC requires at least: 3.9
 WC tested up to: 5.7
-Stable tag: 3.6.1
+Stable tag: 3.6.2
 Requires PHP: 5.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -194,6 +194,25 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 6. Edit pdf documents (Pro)
 
 == Changelog ==
+= 3.6.2 =
+* Improvement: Checkbox default layout
+* Improvement: Added default legal page placeholders to all checkboxes
+* Improvement: WooCommerce Bundles shopmarks
+* Improvement: WooCommerce Composite Products shopmarks
+* Improvement: Added customer cancelled order mail to WPML compatibility
+* Improvement: WooCommerce subscriptions recurring tax totals in cart/checkout
+* Improvement: By default add a link to tracking id placeholder within shipments
+* Improvement: Added customs reference number to shipping address (e.g. for DHL customs)
+* Improvement: DHL northern cyprus detection
+* Improvement: Allow setting DHL shipper reference via settings
+* Improvement: Added WSDL core files to assets dir to improve API performance
+* Improvement: OSS BOP compatible CSV export
+* Improvement: Allow choosing between order date types for OSS reports
+* Fix: OSS date_paid include range
+* Fix: Prevent multiple order status change events from firing in case shipment automation updates the status
+* Fix: Prevent showing taxes twice within order details in specific setups
+* Fix: B2B market net unit prices
+
 = 3.6.1 =
 * Improvement: Checkout action check during shopmark execution
 * Improvement: Prefer using total over subtotal amount for customs (except vouchers)
