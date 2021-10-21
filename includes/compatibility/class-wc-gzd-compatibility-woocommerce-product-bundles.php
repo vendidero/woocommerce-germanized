@@ -89,6 +89,19 @@ class WC_GZD_Compatibility_WooCommerce_Product_Bundles extends WC_GZD_Compatibil
 		$original_product = $product;
 
 		if ( $product = $org_product->get_product() ) {
+			/**
+			 * Recalculate the unit price in case the bundle is individually priced
+			 */
+			if ( is_callable( array( $org_product, 'is_priced_individually' ) ) && $org_product->is_priced_individually() ) {
+				if ( is_callable( array( $org_product, 'get_raw_price' ) ) && is_callable( array( $org_product, 'get_raw_regular_price' ) ) ) {
+					wc_gzd_get_gzd_product( $product )->recalculate_unit_price( array(
+						'regular_price' => wc_format_decimal( $org_product->get_raw_regular_price(), '' ),
+						'price'         => wc_format_decimal( $org_product->get_raw_price(), '' ),
+						'sale_price'    => wc_format_decimal( $org_product->get_raw_price(), '' )
+					) );
+				}
+			}
+
 			ob_start();
 			woocommerce_gzd_template_single_tax_info();
 			$legal = ob_get_clean();
