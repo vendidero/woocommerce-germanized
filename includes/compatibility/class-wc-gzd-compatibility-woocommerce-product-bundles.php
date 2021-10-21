@@ -86,11 +86,12 @@ class WC_GZD_Compatibility_WooCommerce_Product_Bundles extends WC_GZD_Compatibil
 	public function add_price_suffixes( $price, $org_price, $org_product ) {
 		global $product;
 
+		// Store global $product variable in tmp variable
 		$original_product = $product;
 
 		if ( $product = $org_product->get_product() ) {
 			/**
-			 * Recalculate the unit price in case the bundle is individually priced
+			 * Recalculate the unit price in case the bundle is individually priced (e.g. may have discounts)
 			 */
 			if ( is_callable( array( $org_product, 'is_priced_individually' ) ) && $org_product->is_priced_individually() ) {
 				if ( is_callable( array( $org_product, 'get_raw_price' ) ) && is_callable( array( $org_product, 'get_raw_regular_price' ) ) ) {
@@ -113,6 +114,7 @@ class WC_GZD_Compatibility_WooCommerce_Product_Bundles extends WC_GZD_Compatibil
 			$price = $price . '<span class="wc-gzd-legal-price-info">' . $this->replace_p_tags( $unit ) . $this->replace_p_tags( $legal ) . '</span>';
 		}
 
+		// Restore global $product variable
 		$product = $original_product;
 
 		return $price;

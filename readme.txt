@@ -4,8 +4,8 @@ Tags: woocommerce, woocommerce german, woocommerce DE, woocommerce germany, wooc
 Requires at least: 5.4
 Tested up to: 5.8
 WC requires at least: 3.9
-WC tested up to: 5.7
-Stable tag: 3.6.2
+WC tested up to: 5.9
+Stable tag: 3.6.3
 Requires PHP: 5.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -194,6 +194,13 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 6. Edit pdf documents (Pro)
 
 == Changelog ==
+= 3.6.3 =
+* Improvement: Do not cache available packaging for non-persisted shipments
+* Improvement: Recalculate individually priced bundle unit price
+* Improvement: IBAN/BIC formatting
+* Fix: Infinite loop bundle price html check
+* Fix: Restore global $product variable for bundles
+
 = 3.6.2 =
 * Improvement: Checkbox default layout
 * Improvement: Added default legal page placeholders to all checkboxes
