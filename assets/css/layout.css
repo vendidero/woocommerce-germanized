@@ -44,14 +44,18 @@ p.wc-gzd-additional-info:empty {
   text-align: right; }
 
 .cart_totals .wc-gzd-additional-wrapper {
-  text-align: right; }
+  text-align: right;
+  clear: both; }
 
 .cart_totals p.wc-gzd-additional-info {
-  font-size: 0.8em;
   width: 60%;
   border-top: 1px solid #CCC;
   padding-top: 0.5rem;
   display: inline-block; }
+
+.cart_totals p.wc-gzd-additional-info, tr.order-total p.wc-gzd-additional-info {
+  font-size: 0.8em;
+  font-weight: normal; }
 
 .entry-content .woocommerce #payment {
   margin-bottom: 1em; }

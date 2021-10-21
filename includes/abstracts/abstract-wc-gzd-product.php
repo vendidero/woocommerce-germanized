@@ -526,11 +526,15 @@ class WC_GZD_Product {
 		return apply_filters( 'woocommerce_germanized_get_price_html_from_to', $price, $from, $to, $this );
 	}
 
+	protected function is_doing_price_html_action() {
+		return apply_filters( "woocommerce_gzd_product_is_doing_price_html_action", doing_action( 'woocommerce_get_price_html' ), $this );
+	}
+
 	public function hide_shopmarks_due_to_missing_price() {
 		$price_html_checked = true;
 
 		// Prevent infinite loops in case the shopmark is added via the price_html filter
-		if ( ! doing_action( 'woocommerce_get_price_html' ) ) {
+		if ( ! $this->is_doing_price_html_action() ) {
 			$price_html_checked = ( '' === $this->child->get_price_html() );
 		}
 

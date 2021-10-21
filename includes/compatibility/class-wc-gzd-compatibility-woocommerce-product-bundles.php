@@ -40,6 +40,25 @@ class WC_GZD_Compatibility_WooCommerce_Product_Bundles extends WC_GZD_Compatibil
 		 * Add single product shopmarks to the bundle total price
 		 */
 		add_action( 'woocommerce_after_bundle_price', array( $this, 'output_bundle_shopmarks' ), 10 );
+
+		add_filter( 'woocommerce_gzd_product_is_doing_price_html_action', array( $this, 'is_doing_price_html_action' ), 10 );
+	}
+
+	/**
+	 * Prevent bundle price HTML infinite loops
+	 *
+	 * @see WC_GZD_Product::is_doing_price_html_action()
+	 *
+	 * @param $is_doing_action
+	 *
+	 * @return bool|mixed
+	 */
+	public function is_doing_price_html_action( $is_doing_action ) {
+		if ( ! $is_doing_action && doing_action( 'woocommerce_bundled_item_price_html' ) ) {
+			$is_doing_action = true;
+		}
+
+		return $is_doing_action;
 	}
 
 	public function output_bundle_shopmarks() {
@@ -66,6 +85,9 @@ class WC_GZD_Compatibility_WooCommerce_Product_Bundles extends WC_GZD_Compatibil
 
 	public function add_price_suffixes( $price, $org_price, $org_product ) {
 		global $product;
+
+		$original_product = $product;
+
 		if ( $product = $org_product->get_product() ) {
 			ob_start();
 			woocommerce_gzd_template_single_tax_info();
@@ -77,6 +99,8 @@ class WC_GZD_Compatibility_WooCommerce_Product_Bundles extends WC_GZD_Compatibil
 
 			$price = $price . '<span class="wc-gzd-legal-price-info">' . $this->replace_p_tags( $unit ) . $this->replace_p_tags( $legal ) . '</span>';
 		}
+
+		$product = $original_product;
 
 		return $price;
 	}
