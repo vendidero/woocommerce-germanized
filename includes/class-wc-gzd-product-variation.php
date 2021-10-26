@@ -35,7 +35,9 @@ class WC_GZD_Product_Variation extends WC_GZD_Product {
 		'sale_price_regular_label',
 		'free_shipping',
 		'differential_taxation',
-		'min_age'
+		'min_age',
+		'default_delivery_time',
+		'delivery_time_countries',
 	);
 
 	protected $gzd_variation_forced_inherited_meta_data = array(
@@ -145,5 +147,33 @@ class WC_GZD_Product_Variation extends WC_GZD_Product {
 	 */
 	public function set_differential_taxation( $diff_taxation ) {
 		$this->set_prop( 'differential_taxation', '' );
+	}
+
+	protected function is_valid_country_specific_delivery_time( $slug, $country ) {
+		$delivery_times_parent = array();
+		$default_parent = false;
+
+		if ( $parent = $this->get_gzd_parent() ) {
+			$delivery_times_parent = $parent->get_country_specific_delivery_times();
+			$default_parent        = $parent->get_default_delivery_time_slug();
+		}
+
+		$is_valid = parent::is_valid_country_specific_delivery_time( $slug, $country );
+
+		/**
+		 * Do now allow storing duplicate country-specific delivery times
+		 */
+		if ( $is_valid && array_key_exists( $country, $delivery_times_parent ) && $delivery_times_parent[ $country ] == $slug ) {
+			$is_valid = false;
+		}
+
+		/**
+		 * Do not allow a variation to include country-specific delivery times matching the parent's default time
+		 */
+		if ( $is_valid && $default_parent && $slug == $default_parent ) {
+			$is_valid = false;
+		}
+
+		return $is_valid;
 	}
 }

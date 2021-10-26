@@ -320,3 +320,51 @@ function wc_gzd_recalculate_unit_price( $args = array(), $product = false ) {
 	 */
 	return apply_filters( 'woocommerce_gzd_recalculated_unit_prices', $prices, $product, $args );
 }
+
+/**
+ * @param $maybe_slug
+ *
+ * @return array|string|boolean
+ */
+function wc_gzd_get_valid_product_delivery_time_slugs( $maybe_slug, $allow_add_new = true ) {
+	if ( is_array( $maybe_slug ) ) {
+		return array_filter( array_map( function( $maybe_slug ) use ( $allow_add_new ) {
+			return wc_gzd_get_valid_product_delivery_time_slugs( $maybe_slug, $allow_add_new );
+		}, $maybe_slug ), function( $x ) {
+			return false !== $x;
+		} );
+	} else {
+		$slug = false;
+
+		if ( is_a( $maybe_slug, 'WP_Term' ) ) {
+			$slug = $maybe_slug->slug;
+		} elseif ( is_numeric( $maybe_slug ) ) {
+			$term = get_term_by( 'term_id', $maybe_slug, 'product_delivery_time' );
+
+			if ( $term ) {
+				$slug = $term->slug;
+			}
+		}
+
+		if ( ! $slug ) {
+			$possible_name = $maybe_slug;
+			$term          = get_term_by( 'slug', sanitize_title( $possible_name ), 'product_delivery_time' );
+
+			if ( ! $term ) {
+				$slug = false;
+
+				if ( $allow_add_new ) {
+					$term = wp_insert_term( $possible_name, 'product_delivery_time' );
+
+					if ( ! is_wp_error( $term ) ) {
+						$slug = sanitize_title( $slug );
+					}
+				}
+ 			} else {
+				$slug = $term->slug;
+			}
+		}
+
+		return $slug;
+	}
+}

@@ -57,6 +57,45 @@ class WC_GZD_REST_Products_Controller {
 				),
 			)
 		);
+
+		$schema_properties['country_specific_delivery_times']                                                 = array(
+			'description' => __( 'Country specific delivery times', 'woocommerce-germanized' ),
+			'type'        => 'array',
+			'context'     => array( 'view', 'edit' ),
+			'items'       => array(
+				'type' => 'object',
+				'properties'  => array(
+					'id'   => array(
+						'description' => __( 'Delivery Time ID', 'woocommerce-germanized' ),
+						'type'        => 'integer',
+						'context'     => array( 'view', 'edit' ),
+					),
+					'name' => array(
+						'description' => __( 'Delivery Time Name', 'woocommerce-germanized' ),
+						'type'        => 'string',
+						'context'     => array( 'view', 'edit' ),
+						'readonly'    => true,
+					),
+					'country' => array(
+						'description' => __( 'ISO code of the country.', 'woocommerce' ),
+						'type'        => 'string',
+						'context'     => array( 'view', 'edit' ),
+					),
+					'slug' => array(
+						'description' => __( 'Delivery Time Slug', 'woocommerce-germanized' ),
+						'type'        => 'string',
+						'context'     => array( 'view', 'edit' )
+					),
+					'html' => array(
+						'description' => __( 'Delivery Time HTML', 'woocommerce-germanized' ),
+						'type'        => 'string',
+						'context'     => array( 'view', 'edit' ),
+						'readonly'    => true,
+					),
+				)
+			),
+		);
+
 		$schema_properties['sale_price_label']                                              = array(
 			'description' => __( 'Price Label', 'woocommerce-germanized' ),
 			'type'        => 'object',
@@ -552,11 +591,14 @@ class WC_GZD_REST_Products_Controller {
 		$data['sale_price_regular_label'] = $this->prepare_term( WC_germanized()->price_labels->get_term_object( $gzd_product->get_sale_price_regular_label() ) );
 
 		// Delivery Time
-		$data['delivery_time'] = $this->prepare_term( $gzd_product->get_delivery_time_term() );
+		$data['delivery_time'] = $this->prepare_term( $gzd_product->get_default_delivery_time( 'edit' ) );
 
 		if ( ! empty( $data['delivery_time'] ) ) {
-			$data['delivery_time']['html'] = $gzd_product->get_delivery_time_html();
+			$data['delivery_time']['html'] = $gzd_product->get_delivery_time_html( 'edit' );
 		}
+
+		// Country specific delivery times
+		$data['country_specific_delivery_times'] = $this->prepare_country_specific_delivery_times( $gzd_product->get_country_specific_delivery_times( 'edit' ) );
 
 		// Shipping costs hidden?
 		$data['free_shipping'] = $gzd_product->has_free_shipping();
@@ -580,5 +622,21 @@ class WC_GZD_REST_Products_Controller {
 		}
 
 		return array();
+	}
+
+	private function prepare_country_specific_delivery_times( $terms ) {
+		$return = array();
+
+		foreach( $terms as $country => $term ) {
+			$term_data = $this->prepare_term( $term );
+
+			if ( ! empty( $term_data ) ) {
+				$term_data['country'] = $country;
+
+				$return[] = $term_data;
+			}
+		}
+
+		return $return;
 	}
 }

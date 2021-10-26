@@ -189,3 +189,11 @@ table.wc-gzd-tax-example tr th:first-child, table.wc-gzd-tax-example tr td:first
   float: left;
   width: 100%;
   clear: both; }
+
+.woocommerce_variation .variable_delivery_time .select2-container .select2-selection--single {
+  height: 40px; }
+  .woocommerce_variation .variable_delivery_time .select2-container .select2-selection--single .select2-selection__rendered {
+    line-height: 40px; }
+  .woocommerce_variation .variable_delivery_time .select2-container .select2-selection--single .select2-selection__arrow {
+    right: 3px;
+    height: 36px; }

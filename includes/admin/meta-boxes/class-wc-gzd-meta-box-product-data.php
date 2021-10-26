@@ -49,17 +49,23 @@ class WC_Germanized_Meta_Box_Product_Data {
 	public static function update_terms( $product ) {
 	    if ( $gzd_product = wc_gzd_get_gzd_product( $product ) ) {
 		    /**
-		     * Update delivery time term ids if they have been explicitly set during the
+		     * Update delivery time term slugs if they have been explicitly set during the
              * save request.
 		     */
-		    $term_ids = $gzd_product->get_delivery_time_ids( 'save' );
+		    $slugs = $gzd_product->get_delivery_time_slugs( 'save' );
 
-		    if ( '' !== $term_ids ) {
-			    wp_set_post_terms( $product->get_id(), $term_ids, 'product_delivery_time', false );
+		    if ( false !== $slugs ) {
+		        $slugs = array_unique( array_map( 'sanitize_title', $slugs ) );
 
-			    $product->delete_meta_data( '_delivery_time_ids' );
+		        if ( empty( $slugs ) ) {
+			        wp_delete_object_term_relationships( $product->get_id(), 'product_delivery_time' );
+                } else {
+			        wp_set_post_terms( $product->get_id(), $slugs, 'product_delivery_time', false );
+                }
+
+		        $gzd_product->set_delivery_times_need_update( false );
 			    $product->save();
-            }
+		    }
         }
     }
 
@@ -71,9 +77,9 @@ class WC_Germanized_Meta_Box_Product_Data {
 		if ( $gzd_product = wc_gzd_get_product( $product ) ) {
 		    $gzd_duplicate = wc_gzd_get_product( $duplicate );
 
-			if ( $gzd_product->get_delivery_time_ids() ) {
-				$gzd_duplicate->set_delivery_time_ids( $gzd_product->get_delivery_time_ids() );
-			}
+		    $gzd_duplicate->set_default_delivery_time_slug( $gzd_product->get_default_delivery_time_slug( 'edit' ) );
+		    $gzd_duplicate->set_country_specific_delivery_times( $gzd_product->get_country_specific_delivery_times( 'edit' ) );
+            $gzd_duplicate->set_delivery_times_need_update();
 		}
 	}
 
@@ -263,7 +269,7 @@ class WC_Germanized_Meta_Box_Product_Data {
 			?>
         </p>
 		<?php
-            self::delivery_time_by_country( $product_object );
+            self::output_delivery_time_by_country( $product_object );
 
             // Free shipping
             woocommerce_wp_checkbox( array(
@@ -273,25 +279,46 @@ class WC_Germanized_Meta_Box_Product_Data {
             ) );
 	}
 
+	public static function get_available_delivery_time_countries() {
+	    $countries    = WC()->countries->get_shipping_countries();
+		$base_country = wc_get_base_location()['country'];
+
+		if ( array_key_exists( $base_country, $countries ) ) {
+		    unset( $countries[ $base_country] );
+		}
+
+		return $countries;
+	}
+
 	/**
 	 * @param WC_Product $product_object
 	 */
-	public static function delivery_time_by_country( $product_object ) {
+	public static function output_delivery_time_by_country( $product_object ) {
 		$gzd_product               = wc_gzd_get_product( $product_object );
-		$countries_left            = WC()->countries->get_shipping_countries();
+		$countries_left            = self::get_available_delivery_time_countries();
 		$delivery_times            = $gzd_product->get_delivery_times( 'edit' );
 		$delivery_times_by_country = $gzd_product->get_country_specific_delivery_times( 'edit' );
 	    ?>
 
         <?php if ( ! empty( $delivery_times_by_country ) ) {
 			foreach( $delivery_times_by_country as $country => $term_slug ) {
-				$countries_left = array_diff( $countries_left, array( $country ) );
-
-				self::output_delivery_time_select2( array(
-					'name'        => "country_specific_delivery_times[$country]",
-					'placeholder' => __( 'Search for a delivery time&hellip;', 'woocommerce-germanized' ),
-					'term'        => $delivery_times[ $term_slug ],
-				) );
+				$countries_left = array_diff_key( $countries_left, array( $country => '' ) );
+				?>
+                <p class="form-field field _country_specific_delivery_times_-<?php echo esc_attr( $country ); ?>_field">
+                    <label for="country_specific_delivery_times-<?php echo esc_attr( $country ); ?>"><?php printf( __( 'Delivery Time (%s)', 'woocommerce-germanized' ), esc_html( $country ) ); ?></label>
+                    <?php
+                        self::output_delivery_time_select2( array(
+                            'name'        => "country_specific_delivery_times[$country]",
+                            'placeholder' => __( 'Same as default', 'woocommerce-germanized' ),
+                            'term'        => $delivery_times[ $term_slug ],
+                            'id'          => 'country_specific_delivery_times-' . esc_attr( $country )
+                        ) );
+                    ?>
+                    <span class="description">
+                        <a href="#" class="dashicons dashicons-no-alt wc-gzd-remove-delivery-time-by-country"><?php _e( 'remove', 'woocommerce-germanized' ); ?></a>
+                    </span>
+                </p>
+                <?php
 			}
 		} ?>
 
@@ -302,30 +329,31 @@ class WC_Germanized_Meta_Box_Product_Data {
             <a href="#" class="wc-gzd-add-new-delivery-time-by-country">+ <?php _e( 'Add country specific delivery time', 'woocommerce-germanized' ); ?></a>
         </p>
 
-        <div class="wc-gzd-add-delivery-time-by-country-template">
-            <p class="form-field">
-                <label for="country_specific_delivery_times">
-                    <select class="enhanced select" name="new_country_specific_delivery_times_countries[]">
-                        <option value="" selected="selected"><?php _e( 'Select country', 'woocommerce-germanized' ); ?></option>
-						<?php
-						foreach ( $countries_left as $country_code => $country_name ) {
-							echo '<option value="' . esc_attr( $country_code ) . '">' . esc_html( $country_name ) . '</option>';
-						}
-						?>
-                    </select>
-                </label>
-                <?php
-                    self::output_delivery_time_select2( array(
-                        'name'        => "new_country_specific_delivery_times_terms[]",
-                        'placeholder' => __( 'Search for a delivery time&hellip;', 'woocommerce-germanized' ),
-                    ) );
-                ?>
-                <span class="description">
-                    <a href="#" class="dashicons dashicons-no-alt wc-gzd-remove-delivery-time-by-country"><?php _e( 'remove', 'woocommerce-germanized' ); ?></a>
-                </span>
-            </p>
-        </div>
-        <?php
+        <?php if ( ! empty( $countries_left ) ) : ?>
+            <div class="wc-gzd-add-delivery-time-by-country-template">
+                <p class="form-field">
+                    <label for="country_specific_delivery_times">
+                        <select class="enhanced select" name="new_country_specific_delivery_times_countries[]">
+                            <option value="" selected="selected"><?php _e( 'Select country', 'woocommerce-germanized' ); ?></option>
+                            <?php
+                            foreach ( $countries_left as $country_code => $country_name ) {
+                                echo '<option value="' . esc_attr( $country_code ) . '">' . esc_html( $country_name ) . '</option>';
+                            }
+                            ?>
+                        </select>
+                    </label>
+                    <?php
+                        self::output_delivery_time_select2( array(
+                            'name'        => "new_country_specific_delivery_times_terms[]",
+                            'placeholder' => __( 'Search for a delivery time&hellip;', 'woocommerce-germanized' ),
+                        ) );
+                    ?>
+                    <span class="description">
+                        <a href="#" class="dashicons dashicons-no-alt wc-gzd-remove-delivery-time-by-country"><?php _e( 'remove', 'woocommerce-germanized' ); ?></a>
+                    </span>
+                </p>
+            </div>
+        <?php endif;
 	}
 
 	public static function get_fields() {
@@ -341,6 +369,9 @@ class WC_Germanized_Meta_Box_Product_Data {
 			'_sale_price_regular_label' => '',
 			'_mini_desc'                => '',
 			'delivery_time'             => '',
+			'country_specific_delivery_times' => '',
+			'new_country_specific_delivery_times_countries' => '',
+			'new_country_specific_delivery_times_terms' => '',
 			'_sale_price_dates_from'    => '',
 			'_sale_price_dates_to'      => '',
 			'_sale_price'               => '',
@@ -352,7 +383,6 @@ class WC_Germanized_Meta_Box_Product_Data {
 	}
 
 	public static function save( $product ) {
-
 		if ( is_numeric( $product ) ) {
 			$product = wc_get_product( $product );
 		}
@@ -486,32 +516,59 @@ class WC_Germanized_Meta_Box_Product_Data {
 	}
 
 	/**
-	 * @param array|integer|string|WP_Term $maybe_id
+	 * @param WC_GZD_Product $gzd_product
+	 * @param $data
+     *
+     * @TODO need to check for REST API compatibility in case country-specific delivery times are missing during the request
 	 */
-	protected static function get_delivery_time_ids( $maybe_id ) {
-	    if ( is_array( $maybe_id ) ) {
-	        return array_map( array( __CLASS__, 'get_delivery_time_id' ), $maybe_id );
-	    } else {
-	        $ids = array();
+	protected static function save_delivery_times( $gzd_product, $data ) {
+		if ( isset( $data['delivery_time'] ) ) {
+		    if ( $slug = wc_gzd_get_valid_product_delivery_time_slugs( $data['delivery_time'] ) ) {
+			    $gzd_product->set_default_delivery_time_slug( $slug );
+		    } else {
+			    $gzd_product->set_default_delivery_time_slug( '' );
+		    }
+		} elseif( $gzd_product->get_default_delivery_time_slug() ) {
+			$gzd_product->set_default_delivery_time_slug( '' );
+		}
 
-	        if ( is_numeric( $maybe_id ) ) {
-	            $ids[] = absint( $maybe_id );
-	        } elseif ( is_a( $maybe_id, 'WP_Term' ) ) {
-	            $ids[] = $maybe_id->term_id;
-	        } elseif ( is_string( $maybe_id ) ) {
-	            $term = get_term_by( 'slug', $maybe_id, 'product_delivery_time' );
+        $country_specific_delivery_times = $gzd_product->get_country_specific_delivery_times();
 
-	            if ( ! $term ) {
-	                $term = get_term_by( 'name', $maybe_id, 'product_delivery_time' );
-	            }
+        $posted        = isset( $data['country_specific_delivery_times'] ) ? wc_clean( (array) $data['country_specific_delivery_times'] ) : array();
+        $new_terms     = isset( $data['new_country_specific_delivery_times_terms'] ) ? wc_clean( (array) $data['new_country_specific_delivery_times_terms'] ) : array();
+        $new_countries = isset( $data['new_country_specific_delivery_times_countries'] ) ? wc_clean( (array) $data['new_country_specific_delivery_times_countries'] ) : array();
 
-	            if ( $term ) {
-	                $ids[] = $term->term_id;
-	            }
-	        }
+        foreach( $country_specific_delivery_times as $country => $slug ) {
+            // Maybe delete missing country-specific delivery times (e.g. removed by the user)
+            if ( ! isset( $posted[ $country ] ) ) {
+                unset( $country_specific_delivery_times[ $country ] );
+            } else {
+                if ( ! empty( $posted[ $country ] ) ) {
+                    if ( $slug = wc_gzd_get_valid_product_delivery_time_slugs( $posted[ $country ] ) ) {
+                        $country_specific_delivery_times[ $country ] = $slug;
+                    } else {
+                        unset( $country_specific_delivery_times[ $country ] );
+                    }
+                } else {
+                    unset( $country_specific_delivery_times[ $country ] );
+                }
+            }
+        }
 
-	        return array_unique( $ids );
-	    }
+        // Add new countries
+        foreach( $new_countries as $key => $country ) {
+            if ( empty( $country ) ) {
+                continue;
+            }
+
+            if ( ! array_key_exists( $country, $country_specific_delivery_times ) && isset( $new_terms[ $key ] ) ) {
+                if ( $slug = wc_gzd_get_valid_product_delivery_time_slugs( $new_terms[ $key ] ) ) {
+                    $country_specific_delivery_times[ $country ] = $slug;
+                }
+            }
+        }
+
+        $gzd_product->set_country_specific_delivery_times( $country_specific_delivery_times );
 	}
 
 	/**
@@ -577,13 +634,7 @@ class WC_Germanized_Meta_Box_Product_Data {
 			$gzd_product->set_min_age( '' );
 		}
 
-		$delivery_time_ids = array();
-
-		if ( isset( $data['delivery_time'] ) && ! empty( $data['delivery_time'] ) ) {
-			$delivery_time_ids = array_replace( $delivery_time_ids, self::get_delivery_time_ids( $data['delivery_time'] ) );
-		}
-
-		$gzd_product->set_delivery_time_ids( $delivery_time_ids );
+		self::save_delivery_times( $gzd_product, $data );
 
 		// Free shipping
 		$gzd_product->set_free_shipping( isset( $data['_free_shipping'] ) ? 'yes' : 'no' );
@@ -612,6 +663,8 @@ class WC_Germanized_Meta_Box_Product_Data {
 		if ( in_array( $product_type, array( 'variable', 'grouped' ) ) && ! $is_variation ) {
 			$gzd_product->set_mini_desc( '' );
 		}
+
+		$gzd_product->set_gzd_version( WC_GERMANIZED_VERSION );
 
 		if ( $data['save'] ) {
 			$product->save();
