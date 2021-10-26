@@ -100,7 +100,6 @@ class WC_GZD_Legal_Checkbox_Manager {
 			'html_name'            => 'legal',
 			'html_wrapper_classes' => array( 'legal' ),
 			'hide_input'           => false,
-			'label_args'           => $this->get_legal_label_args(),
 			'label'                => __( 'With your order, you agree to have read and understood our {term_link}Terms and Conditions{/term_link} and {revocation_link}Cancellation Policy{/revocation_link}.', 'woocommerce-germanized' ),
 			'error_message'        => __( 'To complete the order you have to accept to our {term_link}Terms and Conditions{/term_link} and {revocation_link}Cancellation Policy{/revocation_link}.', 'woocommerce-germanized' ),
 			'is_mandatory'         => true,
@@ -118,7 +117,6 @@ class WC_GZD_Legal_Checkbox_Manager {
 			'html_name'            => 'download-revocate',
 			'html_wrapper_classes' => array( 'legal' ),
 			'label'                => __( 'For digital products: I strongly agree that the execution of the agreement starts before the revocation period has expired. I am aware that my right of withdrawal ceases with the beginning of the agreement.', 'woocommerce-germanized' ),
-			'label_args'           => $this->get_legal_label_args(),
 			'error_message'        => __( 'To retrieve direct access to digital content you have to agree to the loss of your right of withdrawal.', 'woocommerce-germanized' ),
 			'is_mandatory'         => true,
 			'priority'             => 1,
@@ -136,7 +134,6 @@ class WC_GZD_Legal_Checkbox_Manager {
 			'html_name'            => 'service-revocate',
 			'html_wrapper_classes' => array( 'legal' ),
 			'label'                => __( 'For services: I demand and acknowledge the immediate performance of the service before the expiration of the withdrawal period. I acknowledge that thereby I lose my right to cancel once the service has begun.', 'woocommerce-germanized' ),
-			'label_args'           => $this->get_legal_label_args(),
 			'error_message'        => __( 'To allow the immediate performance of the services you have to agree to the loss of your right of withdrawal.', 'woocommerce-germanized' ),
 			'is_mandatory'         => true,
 			'priority'             => 2,
@@ -173,7 +170,7 @@ class WC_GZD_Legal_Checkbox_Manager {
 			'html_name'            => 'age-verification',
 			'html_wrapper_classes' => array( 'legal' ),
 			'label'                => __( 'I hereby confirm that I\'m at least {age} years old.', 'woocommerce-germanized' ),
-			'label_args'           => array_merge( $this->get_legal_label_args(), array( '{age}' => '' ) ),
+			'label_args'           => array( '{age}' => '' ),
 			'error_message'        => __( 'Please confirm your age.', 'woocommerce-germanized' ),
 			'is_mandatory'         => true,
 			'priority'             => 5,
@@ -191,7 +188,6 @@ class WC_GZD_Legal_Checkbox_Manager {
 			'html_name'            => 'privacy',
 			'html_wrapper_classes' => array( 'legal', 'form-row-wide', 'terms-privacy-policy' ),
 			'label'                => __( 'Yes, I’d like create a new account and have read and understood the {data_security_link}data privacy statement{/data_security_link}.', 'woocommerce-germanized' ),
-			'label_args'           => $this->get_legal_label_args(),
 			'is_mandatory'         => true,
 			'is_enabled'           => false,
 			'error_message'        => __( 'Please accept our privacy policy to create a new customer account', 'woocommerce-germanized' ),
@@ -307,7 +303,7 @@ class WC_GZD_Legal_Checkbox_Manager {
 				if ( wc_gzd_order_has_age_verification( $order_id ) ) {
 					wc_gzd_update_legal_checkbox( 'age_verification', array(
 						'is_shown'   => true,
-						'label_args' => array_merge( $this->get_legal_label_args(), array( '{age}' => wc_gzd_get_order_min_age( $order_id ) ) ),
+						'label_args' => array( '{age}' => wc_gzd_get_order_min_age( $order_id ) ),
 					) );
 				}
 			}
@@ -391,7 +387,7 @@ class WC_GZD_Legal_Checkbox_Manager {
 				if ( wc_gzd_cart_needs_age_verification() ) {
 					wc_gzd_update_legal_checkbox( 'age_verification', array(
 						'is_shown'   => true,
-						'label_args' => array_merge( $this->get_legal_label_args(), array( '{age}' => wc_gzd_cart_get_age_verification_min_age() ) ),
+						'label_args' => array( '{age}' => wc_gzd_cart_get_age_verification_min_age() ),
 					) );
 				}
 			}
@@ -524,12 +520,6 @@ class WC_GZD_Legal_Checkbox_Manager {
 
 		// Make sure we are not registering core checkboxes again
 		foreach ( $this->get_options() as $id => $checkbox_args ) {
-			$checkbox_args = wp_parse_args( $checkbox_args, array(
-				'label_args' => array(),
-			) );
-
-			$checkbox_args['label_args'] = array_merge( $checkbox_args['label_args'], $this->get_legal_label_args() );
-
 			if ( isset( $checkbox_args['id'] ) ) {
 				unset( $checkbox_args['id'] );
 			}
@@ -673,6 +663,7 @@ class WC_GZD_Legal_Checkbox_Manager {
 			'supporting_locations' => array(),
 			'html_wrapper_classes' => array(),
 			'html_classes'         => array(),
+			'label_args'           => array(),
 			'hide_input'           => false,
 			'error_message'        => '',
 			'admin_name'           => '',
@@ -699,6 +690,8 @@ class WC_GZD_Legal_Checkbox_Manager {
 		if ( ! is_array( $args['locations'] ) ) {
 			$args['locations'] = array( $args['locations'] );
 		}
+
+		$args['label_args'] = array_merge( $args['label_args'], $this->get_legal_label_args() );
 
 		foreach ( $args['locations'] as $location ) {
 			if ( ! in_array( $location, array_keys( $this->get_locations() ) ) ) {
