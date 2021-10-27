@@ -1013,6 +1013,9 @@ class WC_GZD_Product {
 	 * @return false|WP_Term false returns false if term does not exist otherwise returns term object
 	 */
 	public function get_delivery_time( $context = 'view' ) {
+		/**
+		 * Use the edit context to disable global setting fallback
+		 */
 		$delivery_time = $this->get_default_delivery_time( $context );
 
 		if ( 'view' === $context && WC()->customer ) {
@@ -1105,6 +1108,7 @@ class WC_GZD_Product {
 		}
 
 		$this->set_prop( "delivery_time_countries", $terms );
+		$this->delivery_times = null;
 
 		if ( $current !== $terms ) {
 			$this->set_delivery_times_need_update();
@@ -1140,15 +1144,11 @@ class WC_GZD_Product {
 	public function get_delivery_time_term( $context = 'view' ) {
 		$delivery_time = $this->get_delivery_time( $context );
 
-		if ( 'view' === $context && empty( $delivery_time ) ) {
-			$delivery_time = $this->get_default_delivery_time( $context );
-		}
-
 		return ( ! is_wp_error( $delivery_time ) && ! empty( $delivery_time ) ) ? $delivery_time : false;
 	}
 
 	public function get_delivery_time_name( $context = 'view' ) {
-		if ( $term = $this->get_delivery_time_term( $context ) ) {
+		if ( $term = $this->get_delivery_time( $context ) ) {
 			return $term->name;
 		}
 
@@ -1188,7 +1188,7 @@ class WC_GZD_Product {
 			return '';
 		}
 
-		if ( $this->get_delivery_time_term( $context ) ) {
+		if ( $this->get_delivery_time( $context ) ) {
 			$html = $this->get_delivery_time_name( $context );
 		} else {
 			/**

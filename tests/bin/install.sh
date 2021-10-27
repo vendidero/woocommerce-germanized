@@ -134,13 +134,18 @@ install_deps() {
 		BRANCH=$WOO_VERSION
 	fi
 
-	download https://downloads.wordpress.org/plugin/$FILE "$TMPDIR/$FILE"
-	unzip -q $TMPDIR/$FILE -d "$WP_CORE_DIR/wp-content/plugins"
+    # make sure paths are reset/cleared
+    rm -rf "$WP_CORE_DIR/wp-content/plugins/woocommerce"
+    rm -rf $TMPDIR/$FILE
+
+    download https://downloads.wordpress.org/plugin/$FILE "$TMPDIR/$FILE"
+    unzip -q $TMPDIR/$FILE -d "$WP_CORE_DIR/wp-content/plugins"
 
     WORKING_DIR="$PWD"
+    rm -rf "$TMPDIR/woocommerce-git"
 
-	git clone --branch $BRANCH --depth 1 "https://github.com/woocommerce/woocommerce.git" "$TMPDIR/woocommerce-git"
-	mv "$TMPDIR/woocommerce-git/tests" "$WP_CORE_DIR/wp-content/plugins/woocommerce"
+    git clone --branch $BRANCH --depth 1 "https://github.com/woocommerce/woocommerce.git" "$TMPDIR/woocommerce-git"
+    mv "$TMPDIR/woocommerce-git/tests" "$WP_CORE_DIR/wp-content/plugins/woocommerce"
 }
 
 install_db() {

@@ -33,9 +33,15 @@ class WC_GZD_Products_API extends WC_GZD_REST_Unit_Test_Case {
 
 		$this->assertEquals( 200, $response->get_status() );
 
+		$country_specific = array_values( $product['country_specific_delivery_times'] );
+
 		$this->assertEquals( 'new-price', $product['sale_price_label']['slug'] );
 		$this->assertEquals( 'old-price', $product['sale_price_regular_label']['slug'] );
+
 		$this->assertEquals( '2-3-days', $product['delivery_time']['slug'] );
+		$this->assertEquals( '3-4-days', $country_specific[0]['slug'] );
+		$this->assertEquals( 'BG', $country_specific[0]['country'] );
+
 		$this->assertEquals( '1', $product['unit_price']['product'] );
 		$this->assertEquals( '100.0', $product['unit_price']['price_regular'] );
 		$this->assertEquals( '90.0', $product['unit_price']['price_sale'] );
@@ -64,6 +70,12 @@ class WC_GZD_Products_API extends WC_GZD_REST_Unit_Test_Case {
 				'sale_price'               => '5',
 				'shipping_class'           => 'test',
 				'delivery_time'            => array( 'id' => $term['term_id'] ),
+				'country_specific_delivery_times' => array(
+					array(
+						'slug'    => '4-5-days',
+						'country' => 'CH'
+					),
+				),
 				'unit_price'               => array( 'price_regular' => '80.0', 'price_sale' => '70.0' ),
 				'mini_desc'                => 'This is a test',
 				'sale_price_label'         => array( 'id' => $sale_term['term_id'] ),
@@ -77,6 +89,8 @@ class WC_GZD_Products_API extends WC_GZD_REST_Unit_Test_Case {
 
 		$this->assertEquals( 'test-sale', $data['sale_price_label']['slug'] );
 		$this->assertEquals( '3-4-days', $data['delivery_time']['slug'] );
+		$this->assertEquals( '4-5-days', $data['country_specific_delivery_times'][0]['slug'] );
+		$this->assertEquals( 'CH', $data['country_specific_delivery_times'][0]['country'] );
 		$this->assertEquals( 'test-sale', $data['sale_price_regular_label']['slug'] );
 		$this->assertEquals( '80.0', $data['unit_price']['price_regular'] );
 		$this->assertEquals( '70.0', $data['unit_price']['price_sale'] );
@@ -86,8 +100,8 @@ class WC_GZD_Products_API extends WC_GZD_REST_Unit_Test_Case {
 		wp_set_current_user( $this->user );
 
 		$variable  = WC_GZD_Helper_Product::create_variation_product();
-		$term      = wp_insert_term( '3-4 days', 'product_delivery_time', array( 'slug' => '3-4-days' ) );
 		$sale_term = wp_insert_term( 'Test Sale', 'product_price_label', array( 'slug' => 'test-sale' ) );
+		$term      = get_term_by( 'slug', '3-4-days', 'product_delivery_time' );
 
 		$request = new WP_REST_Request( 'POST', '/wc/v3/products/' . $variable->get_id() . '/variations' );
 		$request->set_body_params(
@@ -102,7 +116,13 @@ class WC_GZD_Products_API extends WC_GZD_REST_Unit_Test_Case {
 						'option' => 'medium',
 					),
 				),
-				'delivery_time'            => array( 'id' => $term['term_id'] ),
+				'delivery_time'            => array( 'id' => $term->term_id ),
+				'country_specific_delivery_times' => array(
+					array(
+						'slug'    => '4-5-days',
+						'country' => 'CH'
+					),
+				),
 				'unit_price'               => array( 'price_regular' => '80.0', 'price_sale' => '70.0' ),
 				'mini_desc'                => 'This is a test',
 				'sale_price_label'         => array( 'id' => $sale_term['term_id'] ),
@@ -116,6 +136,8 @@ class WC_GZD_Products_API extends WC_GZD_REST_Unit_Test_Case {
 
 		$this->assertEquals( 'test-sale', $variation['sale_price_label']['slug'] );
 		$this->assertEquals( '3-4-days', $variation['delivery_time']['slug'] );
+		$this->assertEquals( '4-5-days', $variation['country_specific_delivery_times'][0]['slug'] );
+		$this->assertEquals( 'CH', $variation['country_specific_delivery_times'][0]['country'] );
 		$this->assertEquals( 'test-sale', $variation['sale_price_regular_label']['slug'] );
 		$this->assertEquals( '80.0', $variation['unit_price']['price_regular'] );
 		$this->assertEquals( '70.0', $variation['unit_price']['price_sale'] );
@@ -131,11 +153,21 @@ class WC_GZD_Products_API extends WC_GZD_REST_Unit_Test_Case {
 
 		// test simple products
 		$simple = WC_GZD_Helper_Product::create_simple_product();
-		$term   = wp_insert_term( '3-4 days', 'product_delivery_time', array( 'slug' => '3-4-days' ) );
+		$term   = get_term_by( 'slug', '3-4-days', 'product_delivery_time' );
 
 		$request = new WP_REST_Request( 'PUT', '/wc/v3/products/' . $simple->get_id() );
 		$request->set_body_params( array(
-			'delivery_time'         => array( 'id' => $term['term_id'] ),
+			'delivery_time'         => array( 'id' => $term->term_id ),
+			'country_specific_delivery_times' => array(
+				array(
+					'slug'    => '4-5-days',
+					'country' => 'CH'
+				),
+				array(
+					'slug'    => '8-9-days',
+					'country' => 'AT'
+				),
+			),
 			'unit_price'            => array( 'price_regular' => '80.0', 'price_sale' => '70.0' ),
 			'differential_taxation' => false,
 		) );
@@ -144,6 +176,15 @@ class WC_GZD_Products_API extends WC_GZD_REST_Unit_Test_Case {
 		$product  = $response->get_data();
 
 		$this->assertEquals( '3-4-days', $product['delivery_time']['slug'] );
+		/**
+		 * BE will be automatically dropped as it equals the newly added default delivery time (3-4 days)
+		 */
+		$this->assertEquals( '8-9-days', $product['country_specific_delivery_times'][0]['slug'] );
+		$this->assertEquals( 'AT', $product['country_specific_delivery_times'][0]['country'] );
+		$this->assertEquals( '4-5-days', $product['country_specific_delivery_times'][1]['slug'] );
+		$this->assertEquals( 'CH', $product['country_specific_delivery_times'][1]['country'] );
+		$this->assertEquals( 2, sizeof( $product['country_specific_delivery_times'] ) );
+
 		$this->assertEquals( '80.0', $product['unit_price']['price_regular'] );
 		$this->assertEquals( '70.0', $product['unit_price']['price_sale'] );
 
@@ -235,12 +276,22 @@ class WC_GZD_Products_API extends WC_GZD_REST_Unit_Test_Case {
 		$children          = $variable->get_children();
 		$variation_id      = $children[0];
 		$variation_product = wc_get_product( $variation_id );
-		$term              = wp_insert_term( '3-4 days', 'product_delivery_time', array( 'slug' => '3-4-days' ) );
+		$term              = get_term_by( 'slug', '3-4-days', 'product_delivery_time' );
 
 		$request = new WP_REST_Request( 'PUT', '/wc/v3/products/' . $variable->get_id() . '/variations/' . $variation_id );
 
 		$request->set_body_params( array(
-			'delivery_time' => array( 'id' => $term['term_id'] ),
+			'delivery_time' => array( 'id' => $term->term_id ),
+			'country_specific_delivery_times' => array(
+				array(
+					'slug'    => '4-5-days',
+					'country' => 'CH'
+				),
+				array(
+					'slug'    => '8-9-days',
+					'country' => 'BG'
+				),
+			),
 			'unit_price'    => array( 'price_regular' => '80.0', 'price_sale' => '70.0', 'base' => 20 ),
 			'mini_desc'     => 'This is a test',
 			'service'       => false,
@@ -250,6 +301,12 @@ class WC_GZD_Products_API extends WC_GZD_REST_Unit_Test_Case {
 		$product  = $response->get_data();
 
 		$this->assertEquals( '3-4-days', $product['delivery_time']['slug'] );
+		$this->assertEquals( '4-5-days', $product['country_specific_delivery_times'][0]['slug'] );
+		$this->assertEquals( 'CH', $product['country_specific_delivery_times'][0]['country'] );
+		$this->assertEquals( '8-9-days', $product['country_specific_delivery_times'][1]['slug'] );
+		$this->assertEquals( 'BG', $product['country_specific_delivery_times'][1]['country'] );
+		$this->assertEquals( 2, sizeof( $product['country_specific_delivery_times'] ) );
+
 		$this->assertEquals( '80.0', $product['unit_price']['price_regular'] );
 		$this->assertEquals( '10', $product['unit_price']['base'] );
 		$this->assertEquals( '1', $product['unit_price']['product'] );
@@ -269,12 +326,12 @@ class WC_GZD_Products_API extends WC_GZD_REST_Unit_Test_Case {
 
 		// test simple products
 		$simple    = WC_GZD_Helper_Product::create_simple_product();
-		$term      = wp_insert_term( '3-4 days', 'product_delivery_time', array( 'slug' => '3-4-days' ) );
 		$sale_term = wp_insert_term( 'Test Sale', 'product_price_label', array( 'slug' => 'test-sale' ) );
+		$term      = get_term_by( 'slug', '3-4-days', 'product_delivery_time' );
 
 		$request = new WP_REST_Request( 'PUT', '/wc/v3/products/' . $simple->get_id() );
 		$request->set_body_params( array(
-			'delivery_time'            => array( 'id' => $term['term_id'] ),
+			'delivery_time'            => array( 'id' => $term->term_id ),
 			'sale_price_label'         => array( 'id' => $sale_term['term_id'] ),
 			'sale_price_regular_label' => array( 'id' => $sale_term['term_id'] ),
 			'differential_taxation'    => false,
@@ -294,6 +351,7 @@ class WC_GZD_Products_API extends WC_GZD_REST_Unit_Test_Case {
 
 		$this->assertEquals( 'test-sale', $product['sale_price_label']['slug'] );
 		$this->assertEquals( '3-4-days', $product['delivery_time']['slug'] );
+		$this->assertEquals( '4-5-days', $product['country_specific_delivery_times'][0]['slug'] );
 		$this->assertEquals( 'test-sale', $product['sale_price_regular_label']['slug'] );
 		$this->assertEquals( true, $product['differential_taxation'] );
 
@@ -308,6 +366,7 @@ class WC_GZD_Products_API extends WC_GZD_REST_Unit_Test_Case {
 		$request = new WP_REST_Request( 'PUT', '/wc/v3/products/' . $simple->get_id() );
 		$request->set_body_params( array(
 			'delivery_time'            => array(),
+			'country_specific_delivery_times' => array(),
 			'sale_price_label'         => array(),
 			'sale_price_regular_label' => array(),
 		) );
@@ -316,6 +375,7 @@ class WC_GZD_Products_API extends WC_GZD_REST_Unit_Test_Case {
 		$product  = $response->get_data();
 
 		$this->assertEmpty( $product['delivery_time'] );
+		$this->assertEmpty( $product['country_specific_delivery_times'] );
 		$this->assertEmpty( $product['sale_price_label'] );
 		$this->assertEmpty( $product['sale_price_regular_label'] );
 

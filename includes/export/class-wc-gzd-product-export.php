@@ -115,9 +115,8 @@ class WC_GZD_Product_Export {
 	}
 
 	public function get_column_value_delivery_time( $product ) {
-
 		// Get delivery time without falling back to default
-		$term = wc_gzd_get_product( $product )->get_delivery_time();
+		$term = wc_gzd_get_product( $product )->get_delivery_time( 'edit' );
 
 		if ( ! empty( $term ) ) {
 			return $term->name;

@@ -26,7 +26,13 @@ class WC_GZD_Helper_Product {
 			'_mini_desc'                => 'This is a test',
 			'_free_shipping'            => 'yes',
 			'_service'                  => 'yes',
-			'_differential_taxation'    => 'yes'
+			'_differential_taxation'    => 'yes',
+			'_default_delivery_time'    => '2-3-days',
+			'_gzd_version'              => '3.7.0',
+			'_delivery_time_countries'  => array(
+				'BG' => '3-4-days',
+				'AT' => '4-5-days'
+			),
 		);
 
 		foreach ( $data as $key => $value ) {
@@ -35,7 +41,7 @@ class WC_GZD_Helper_Product {
 
 		$product->save();
 
-		wp_set_object_terms( $product->get_id(), '2-3 Days', 'product_delivery_time' );
+		wp_set_object_terms( $product->get_id(), array( '2-3 Days', '3-4 Days', '4-5 Days' ), 'product_delivery_time' );
 
 		return wc_gzd_get_gzd_product( $product );
 	}
@@ -53,7 +59,13 @@ class WC_GZD_Helper_Product {
 			'_sale_price_regular_label' => 'old-price',
 			'_free_shipping'            => 'yes',
 			'_service'                  => 'yes',
-			'_differential_taxation'    => 'yes'
+			'_differential_taxation'    => 'yes',
+			'_default_delivery_time'    => '2-3-days',
+			'_gzd_version'              => '3.7.0',
+			'_delivery_time_countries'  => array(
+				'BG' => '3-4-days',
+				'AT' => '4-5-days'
+			),
 		);
 
 		foreach ( $data as $key => $value ) {
@@ -62,7 +74,7 @@ class WC_GZD_Helper_Product {
 
 		$product->save();
 
-		wp_set_object_terms( $product->get_id(), '2-3 Days', 'product_delivery_time' );
+		wp_set_object_terms( $product->get_id(), array( '2-3 Days', '3-4 Days', '4-5 Days' ), 'product_delivery_time' );
 
 		return wc_gzd_get_gzd_product( $product );
 	}

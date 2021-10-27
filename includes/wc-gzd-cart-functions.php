@@ -215,13 +215,13 @@ function wc_gzd_cart_product_delivery_time( $title, $cart_item, $cart_item_key =
 	if ( is_a( $cart_item, 'WC_Order_Item_Product' ) ) {
 		if ( $gzd_item = wc_gzd_get_order_item( $cart_item ) ) {
 			$delivery_time = $gzd_item->get_delivery_time();
-		} elseif( ( $product = $cart_item->get_product() ) && wc_gzd_get_product( $product )->get_delivery_time_term() ) {
+		} elseif( ( $product = $cart_item->get_product() ) && wc_gzd_get_product( $product )->get_delivery_time() ) {
 			$delivery_time = wc_gzd_get_product( $product )->get_delivery_time_html();
 		}
 	} elseif ( isset( $cart_item['data'] ) ) {
 		$product = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
 
-		if ( is_a( $product, 'WC_Product' ) && wc_gzd_get_product( $product )->get_delivery_time_term() ) {
+		if ( is_a( $product, 'WC_Product' ) && wc_gzd_get_product( $product )->get_delivery_time() ) {
 			$delivery_time = wc_gzd_get_product( $product )->get_delivery_time_html();
 		}
 

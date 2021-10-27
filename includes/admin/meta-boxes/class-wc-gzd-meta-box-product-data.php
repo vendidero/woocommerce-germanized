@@ -290,6 +290,12 @@ class WC_Germanized_Meta_Box_Product_Data {
 		return $countries;
 	}
 
+	public static function is_available_delivery_time_country( $country ) {
+	    $countries = self::get_available_delivery_time_countries();
+
+	    return array_key_exists( $country, $countries ) ? true : false;
+	}
+
 	/**
 	 * @param WC_Product $product_object
 	 */
@@ -555,7 +561,14 @@ class WC_Germanized_Meta_Box_Product_Data {
             }
         }
 
-        // Add new countries
+		/**
+		 * Allow posting/adding new pairs via country_specific_delivery_times too (e.g. REST API)
+		 */
+        $country_specific_delivery_times = array_replace_recursive( $country_specific_delivery_times, $posted );
+
+		/**
+		 * New countries added via separate request field (e.g. edit product page)
+		 */
         foreach( $new_countries as $key => $country ) {
             if ( empty( $country ) ) {
                 continue;
@@ -565,6 +578,12 @@ class WC_Germanized_Meta_Box_Product_Data {
                 if ( $slug = wc_gzd_get_valid_product_delivery_time_slugs( $new_terms[ $key ] ) ) {
                     $country_specific_delivery_times[ $country ] = $slug;
                 }
+            }
+        }
+
+        foreach( $country_specific_delivery_times as $country => $slug ) {
+            if ( ! wc_gzd_get_valid_product_delivery_time_slugs( $slug ) || ! self::is_available_delivery_time_country( $country ) ) {
+                unset( $country_specific_delivery_times[ $country ] );
             }
         }
 
