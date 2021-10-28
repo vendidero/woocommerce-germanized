@@ -999,7 +999,9 @@ class WC_GZD_Product {
 	}
 
 	public function set_default_delivery_time_slug( $slug ) {
+		$slug    = wc_gzd_get_valid_product_delivery_time_slugs( $slug );
 		$current = $this->get_default_delivery_time_slug();
+
 		$this->set_prop( 'default_delivery_time', $slug );
 
 		if ( $current !== $slug ) {
@@ -1127,7 +1129,6 @@ class WC_GZD_Product {
 	}
 
 	public function get_delivery_time_by_country( $country = '', $context = 'view' ) {
-		$country            = strtoupper( empty( $country ) ? '' : $country );
 		$countries          = $this->get_country_specific_delivery_times( $context );
 		$times              = $this->get_delivery_times( $context );
 		$delivery_time      = false;
