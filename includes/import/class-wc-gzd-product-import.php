@@ -145,9 +145,9 @@ class WC_GZD_Product_Import {
 	public function import( $product, $data ) {
 		$formattings  = $this->get_formatting_callbacks();
 		$gzd_product  = wc_gzd_get_product( $product );
-		$column_names = array_merge( $this->get_columns(), array( 'country_specific_delivery_times' ) );
+		$column_names = array_merge( $this->get_columns(), array( 'country_specific_delivery_times' => '' ) );
 
-		foreach ( $column_names as $column_name => $column ) {
+		foreach ( array_keys( $column_names ) as $column_name ) {
 			if ( isset( $data[ $column_name ] ) ) {
 				$value = $data[ $column_name ];
 
