@@ -151,7 +151,7 @@ class WC_GZD_Product_Variation extends WC_GZD_Product {
 
 	protected function is_valid_country_specific_delivery_time( $slug, $country ) {
 		$delivery_times_parent = array();
-		$default_parent = false;
+		$default_parent        = false;
 
 		if ( $parent = $this->get_gzd_parent() ) {
 			$delivery_times_parent = $parent->get_country_specific_delivery_times();

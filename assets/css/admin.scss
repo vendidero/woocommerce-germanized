@@ -257,3 +257,68 @@ table.wc-gzd-tax-example tr th:first-child, table.wc-gzd-tax-example tr td:first
     }
   }
 }
+
+.wc-gzd-add-country-specific-delivery-time-template {
+  display: none;
+}
+
+#shipping_product_data {
+  .wc-gzd-add-country-specific-delivery-time {
+    margin-top: -9px;
+    margin-bottom: -9px;
+  }
+}
+
+.woocommerce_variable_attributes {
+  .wc-gzd-add-country-specific-delivery-time {
+    margin-bottom: 0;
+  }
+}
+
+.wc-gzd-country-specific-delivery-time-field {
+  .wc-gzd-remove-country-specific-delivery-time {
+    text-indent: 0;
+    overflow: hidden;
+    color: #b32d2e;
+    text-decoration: none;
+    vertical-align: middle;
+  }
+
+  &.wc-gzd-country-specific-delivery-time-field-variation {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+
+    label {
+      width: 100%;
+    }
+
+    .select2-container {
+      max-width: 95% !important;
+      width: 95% !important;
+    }
+
+    .wc-gzd-remove-country-specific-delivery-time {
+      margin-left: .5em;
+    }
+  }
+
+  &.wc-gzd-add-country-specific-delivery-time-field-variation {
+    display: flex;
+    align-items: center;
+    width: 100%;
+
+    label {
+      width: auto;
+      flex-grow: 0;
+      flex-shrink: 0;
+      flex-basis: 30%;
+      margin-right: 2%;
+    }
+
+    .select2-container {
+      max-width: 63% !important;
+      width: 63% !important;
+    }
+  }
+}

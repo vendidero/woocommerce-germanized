@@ -39,8 +39,10 @@ class WC_GZD_Products_API extends WC_GZD_REST_Unit_Test_Case {
 		$this->assertEquals( 'old-price', $product['sale_price_regular_label']['slug'] );
 
 		$this->assertEquals( '2-3-days', $product['delivery_time']['slug'] );
-		$this->assertEquals( '3-4-days', $country_specific[0]['slug'] );
-		$this->assertEquals( 'BG', $country_specific[0]['country'] );
+		$this->assertEquals( '4-5-days', $country_specific[0]['slug'] );
+		$this->assertEquals( 'AT', $country_specific[0]['country'] );
+		$this->assertEquals( '3-4-days', $country_specific[1]['slug'] );
+		$this->assertEquals( 'BG', $country_specific[1]['country'] );
 
 		$this->assertEquals( '1', $product['unit_price']['product'] );
 		$this->assertEquals( '100.0', $product['unit_price']['price_regular'] );
@@ -284,11 +286,15 @@ class WC_GZD_Products_API extends WC_GZD_REST_Unit_Test_Case {
 			'delivery_time' => array( 'id' => $term->term_id ),
 			'country_specific_delivery_times' => array(
 				array(
-					'slug'    => '4-5-days',
-					'country' => 'CH'
+					'slug'    => '9-12 Days',
+					'country' => 'AT'
 				),
 				array(
-					'slug'    => '8-9-days',
+					'slug'    => '10-15 Days',
+					'country' => 'DK'
+				),
+				array(
+					'slug'    => '8-9 Days',
 					'country' => 'BG'
 				),
 			),
@@ -301,11 +307,13 @@ class WC_GZD_Products_API extends WC_GZD_REST_Unit_Test_Case {
 		$product  = $response->get_data();
 
 		$this->assertEquals( '3-4-days', $product['delivery_time']['slug'] );
-		$this->assertEquals( '4-5-days', $product['country_specific_delivery_times'][0]['slug'] );
-		$this->assertEquals( 'CH', $product['country_specific_delivery_times'][0]['country'] );
+		$this->assertEquals( '9-12-days', $product['country_specific_delivery_times'][0]['slug'] );
+		$this->assertEquals( 'AT', $product['country_specific_delivery_times'][0]['country'] );
 		$this->assertEquals( '8-9-days', $product['country_specific_delivery_times'][1]['slug'] );
 		$this->assertEquals( 'BG', $product['country_specific_delivery_times'][1]['country'] );
-		$this->assertEquals( 2, sizeof( $product['country_specific_delivery_times'] ) );
+		$this->assertEquals( '10-15-days', $product['country_specific_delivery_times'][2]['slug'] );
+		$this->assertEquals( 'DK', $product['country_specific_delivery_times'][2]['country'] );
+		$this->assertEquals( 3, sizeof( $product['country_specific_delivery_times'] ) );
 
 		$this->assertEquals( '80.0', $product['unit_price']['price_regular'] );
 		$this->assertEquals( '10', $product['unit_price']['base'] );

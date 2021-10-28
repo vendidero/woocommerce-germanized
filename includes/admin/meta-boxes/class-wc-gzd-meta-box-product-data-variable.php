@@ -149,8 +149,8 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 		        foreach( $delivery_times_by_country as $country => $term_slug ) {
 			        $countries_left = array_diff_key( $countries_left, array( $country => '' ) );
 			        ?>
-                    <p class="form-row form-row-full">
-                        <label for="country_specific_delivery_times-<?php echo esc_attr( $country ); ?>"><?php printf( __( 'Delivery Time (%s)', 'woocommerce-germanized' ), esc_html( $country ) ); ?></label>
+                    <p class="form-row form-row-full wc-gzd-country-specific-delivery-time-field wc-gzd-country-specific-delivery-time-field-variation">
+                        <label for="country_specific_delivery_times-<?php echo esc_attr( $country ); ?>"><?php printf( __( 'Delivery Time (%s)', 'woocommerce-germanized' ), esc_html( WC_Germanized_Meta_Box_Product_Data::get_label_by_delivery_time_country( $country )  ) ); ?></label>
 				        <?php
                             WC_Germanized_Meta_Box_Product_Data::output_delivery_time_select2( array(
                                 'name'        => "variable_country_specific_delivery_times[{$loop}][{$country}]",
@@ -161,23 +161,24 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
                             ) );
 				        ?>
                         <span class="description">
-                        <a href="#" class="dashicons dashicons-no-alt wc-gzd-remove-delivery-time-by-country"><?php _e( 'remove', 'woocommerce-germanized' ); ?></a>
+                        <a href="#" class="dashicons dashicons-no-alt wc-gzd-remove-country-specific-delivery-time"><?php _e( 'remove', 'woocommerce-germanized' ); ?></a>
                     </span>
                     </p>
 			        <?php
 		        }
 	        } ?>
 
-            <div class="wc-gzd-new-delivery-time-by-country-placeholder"></div>
+	        <?php if ( ! empty( $countries_left ) ) : ?>
 
-            <p class="form-row wc-gzd-add-delivery-time-by-country">
-                <label>&nbsp;</label>
-                <a href="#" class="wc-gzd-add-new-delivery-time-by-country">+ <?php _e( 'Add country specific delivery time', 'woocommerce-germanized' ); ?></a>
-            </p>
+                <div class="wc-gzd-new-country-specific-delivery-time-placeholder"></div>
 
-            <?php if ( ! empty( $countries_left ) ) : ?>
-                <div class="wc-gzd-add-delivery-time-by-country-template">
-                    <p class="form-row form-row-full">
+                <p class="form-row wc-gzd-add-country-specific-delivery-time">
+                    <label>&nbsp;</label>
+                    <a href="#" class="wc-gzd-add-new-country-specific-delivery-time">+ <?php _e( 'Add country specific delivery time', 'woocommerce-germanized' ); ?></a>
+                </p>
+
+                <div class="wc-gzd-add-country-specific-delivery-time-template">
+                    <p class="form-row form-row-full wc-gzd-country-specific-delivery-time-field wc-gzd-country-specific-delivery-time-field-variation wc-gzd-add-country-specific-delivery-time-field-variation">
                         <label for="country_specific_delivery_times">
                             <select class="enhanced select short" name="variable_new_country_specific_delivery_times_countries[<?php echo $loop; ?>][]">
                                 <option value="" selected="selected"><?php _e( 'Select country', 'woocommerce-germanized' ); ?></option>
@@ -195,7 +196,7 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
                             ) );
                         ?>
                         <span class="description">
-                            <a href="#" class="dashicons dashicons-no-alt wc-gzd-remove-delivery-time-by-country"><?php _e( 'remove', 'woocommerce-germanized' ); ?></a>
+                            <a href="#" class="dashicons dashicons-no-alt wc-gzd-remove-country-specific-delivery-time"><?php _e( 'remove', 'woocommerce-germanized' ); ?></a>
                         </span>
                     </p>
                 </div>
@@ -203,7 +204,7 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
         </div>
 
         <div class="variable_min_age">
-            <p class="form-row form-row-last">
+            <p class="form-row form-row-full">
                 <label><?php _e( 'Minimum Age', 'woocommerce-germanized' ); ?></label>
                 <select name="variable_min_age[<?php echo $loop; ?>]">
                     <option value="" <?php selected( $gzd_product->get_min_age( 'edit' ) === '', true ); ?>><?php _e( 'Same as Parent', 'woocommerce-germanized' ); ?></option>
@@ -228,22 +229,22 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 
 	public static function save( $variation_id, $i ) {
 		$data = array(
-			'_unit_product'             => '',
-			'_unit_price_auto'          => '',
-			'_unit_price_regular'       => '',
-			'_sale_price_label'         => '',
-			'_sale_price_regular_label' => '',
-			'_unit_price_sale'          => '',
-			'_parent_unit_product'      => '',
-			'_parent_unit'              => '',
-			'_parent_unit_base'         => '',
-			'_mini_desc'                => '',
-			'_service'                  => '',
-			'delivery_time'             => '',
-			'country_specific_delivery_times' => '',
+			'_unit_product'                                 => '',
+			'_unit_price_auto'                              => '',
+			'_unit_price_regular'                           => '',
+			'_sale_price_label'                             => '',
+			'_sale_price_regular_label'                     => '',
+			'_unit_price_sale'                              => '',
+			'_parent_unit_product'                          => '',
+			'_parent_unit'                                  => '',
+			'_parent_unit_base'                             => '',
+			'_mini_desc'                                    => '',
+			'_service'                                      => '',
+			'delivery_time'                                 => '',
+			'country_specific_delivery_times'               => '',
 			'new_country_specific_delivery_times_countries' => '',
-			'new_country_specific_delivery_times_terms' => '',
-			'_min_age'                  => '',
+			'new_country_specific_delivery_times_terms'     => '',
+			'_min_age'                                      => '',
 		);
 
 		foreach ( $data as $k => $v ) {

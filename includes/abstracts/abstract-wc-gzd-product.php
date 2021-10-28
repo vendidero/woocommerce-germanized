@@ -941,7 +941,7 @@ class WC_GZD_Product {
 		 * the delivery times mapped to the product. While saving we are using the props model
 		 * to enable saving the current object state.
 		 */
-		if ( 'save' === $context ) {
+		if ( 'save' === $context || $this->delivery_times_need_update() ) {
 			$slugs = false;
 
 			if ( $this->delivery_times_need_update() ) {
@@ -1041,6 +1041,13 @@ class WC_GZD_Product {
 		return $this->get_prop( "gzd_version", $context );
 	}
 
+	/**
+	 * @param string $context
+	 *
+	 * @return false|WP_Term
+	 *
+	 * @TODO Needs version_compare adjustment
+	 */
 	public function get_default_delivery_time( $context = 'view' ) {
 		$default_slug  = $this->get_default_delivery_time_slug( $context );
 		$times         = $this->get_delivery_times( $context );
@@ -1080,6 +1087,8 @@ class WC_GZD_Product {
 		$countries = $this->get_prop( "delivery_time_countries", $context );
 		$countries = ( ! is_array( $countries ) || empty( $countries ) ) ? array() : $countries;
 
+		ksort( $countries );
+
 		return $countries;
 	}
 
@@ -1107,6 +1116,8 @@ class WC_GZD_Product {
 			}
 		}
 
+		ksort($terms );
+
 		$this->set_prop( "delivery_time_countries", $terms );
 		$this->delivery_times = null;
 
@@ -1116,17 +1127,40 @@ class WC_GZD_Product {
 	}
 
 	public function get_delivery_time_by_country( $country = '', $context = 'view' ) {
-		$country       = strtoupper( empty( $country ) ? '' : $country );
-		$countries     = $this->get_country_specific_delivery_times( $context );
-		$times         = $this->get_delivery_times( $context );
-		$delivery_time = false;
+		$country            = strtoupper( empty( $country ) ? '' : $country );
+		$countries          = $this->get_country_specific_delivery_times( $context );
+		$times              = $this->get_delivery_times( $context );
+		$delivery_time      = false;
+		$eu_countries       = WC()->countries->get_european_union_countries();
+		$base_country       = wc_get_base_location()['country'];
+		$delivery_time_slug = false;
 
+		/**
+		 * EU-wide delivery times in case target country does not match base country
+		 */
+		if ( in_array( $country, $eu_countries ) && $base_country !== $country && array_key_exists( 'EU-wide', $countries ) ) {
+			$delivery_time_slug = $countries['EU-wide'];
+		}
+
+		/**
+		 * Non-EU-wide delivery times in case target country does not match base country
+		 */
+		if ( ! in_array( $country, $eu_countries ) && $base_country !== $country && array_key_exists( 'Non-EU-wide', $countries ) ) {
+			$delivery_time_slug = $countries['Non-EU-wide'];
+		}
+
+		/**
+		 * Allow overriding by custom country rules
+		 */
 		if ( array_key_exists( $country, $countries ) ) {
 			$delivery_time_slug = $countries[ $country ];
+		}
 
-			if ( array_key_exists( $delivery_time_slug, $times ) ) {
-				$delivery_time = $times[ $delivery_time_slug ];
-			}
+		/**
+		 * Make sure delivery time is related to product
+		 */
+		if ( $delivery_time_slug && array_key_exists( $delivery_time_slug, $times ) ) {
+			$delivery_time = $times[ $delivery_time_slug ];
 		}
 
 		if ( 'view' === $context && ! $delivery_time ) {

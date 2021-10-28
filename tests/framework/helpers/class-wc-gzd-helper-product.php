@@ -28,7 +28,7 @@ class WC_GZD_Helper_Product {
 			'_service'                  => 'yes',
 			'_differential_taxation'    => 'yes',
 			'_default_delivery_time'    => '2-3-days',
-			'_gzd_version'              => '3.7.0',
+			'_gzd_version'              => WC_GERMANIZED_VERSION,
 			'_delivery_time_countries'  => array(
 				'BG' => '3-4-days',
 				'AT' => '4-5-days'
@@ -61,7 +61,7 @@ class WC_GZD_Helper_Product {
 			'_service'                  => 'yes',
 			'_differential_taxation'    => 'yes',
 			'_default_delivery_time'    => '2-3-days',
-			'_gzd_version'              => '3.7.0',
+			'_gzd_version'              => WC_GERMANIZED_VERSION,
 			'_delivery_time_countries'  => array(
 				'BG' => '3-4-days',
 				'AT' => '4-5-days'

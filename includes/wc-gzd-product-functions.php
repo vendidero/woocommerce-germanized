@@ -354,10 +354,12 @@ function wc_gzd_get_valid_product_delivery_time_slugs( $maybe_slug, $allow_add_n
 				$slug = false;
 
 				if ( $allow_add_new ) {
-					$term = wp_insert_term( $possible_name, 'product_delivery_time' );
+					$term_details = wp_insert_term( $possible_name, 'product_delivery_time' );
 
-					if ( ! is_wp_error( $term ) ) {
-						$slug = sanitize_title( $slug );
+					if ( ! is_wp_error( $term_details ) ) {
+						if ( $term = get_term_by( 'id', $term_details['term_id'], 'product_delivery_time' ) ) {
+							$slug = $term->slug;
+						}
 					}
 				}
  			} else {
