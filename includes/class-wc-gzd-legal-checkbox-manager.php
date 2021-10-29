@@ -109,7 +109,7 @@ class WC_GZD_Legal_Checkbox_Manager {
 			'is_core'              => true,
 			'admin_name'           => __( 'Legal', 'woocommerce-germanized' ),
 			'admin_desc'           => __( 'General legal checkbox which shall include terms and cancellation policy.', 'woocommerce-germanized' ),
-			'locations'            => array( 'checkout' ),
+			'locations'            => array( 'checkout', 'pay_for_order' ),
 		) );
 
 		wc_gzd_register_legal_checkbox( 'download', array(

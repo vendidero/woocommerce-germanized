@@ -193,6 +193,9 @@ add_action( 'woocommerce_pay_order_before_submit', 'woocommerce_gzd_template_ren
 add_action( 'woocommerce_register_form', 'woocommerce_gzd_template_render_register_checkboxes', 19 );
 add_filter( 'comment_form_submit_button', 'woocommerce_gzd_template_render_review_checkboxes', 10, 2 );
 
+// Add terms placeholder in case validation takes place by third-party plugins (e.g. WooCommerce PayPal Payments)
+add_action( 'woocommerce_pay_order_before_submit', 'woocommerce_gzd_template_checkout_set_terms_manually', 0 );
+
 function woocommerce_gzd_checkout_load_ajax_relevant_hooks() {
 
 	if ( is_ajax() ) {

@@ -22,19 +22,20 @@ class WC_GZD_Shortcodes {
 
 		// Define shortcodes
 		$shortcodes = array(
-			'revocation_form'             => __CLASS__ . '::revocation_form',
-			'payment_methods_info'        => __CLASS__ . '::payment_methods_info',
-			'add_to_cart'                 => __CLASS__ . '::gzd_add_to_cart',
-			'gzd_feature'                 => __CLASS__ . '::gzd_feature',
-			'gzd_vat_info'                => __CLASS__ . '::gzd_vat_info',
-			'gzd_sale_info'               => __CLASS__ . '::gzd_sale_info',
-			'gzd_complaints'              => __CLASS__ . '::gzd_complaints',
-			'gzd_product_unit_price'      => __CLASS__ . '::gzd_product_unit_price',
-			'gzd_product_units'           => __CLASS__ . '::gzd_product_units',
-			'gzd_product_delivery_time'   => __CLASS__ . '::gzd_product_delivery_time',
-			'gzd_product_tax_notice'      => __CLASS__ . '::gzd_product_tax_notice',
-			'gzd_product_shipping_notice' => __CLASS__ . '::gzd_product_shipping_notice',
-			'gzd_product_cart_desc'       => __CLASS__ . '::gzd_product_cart_desc',
+			'revocation_form'                  => __CLASS__ . '::revocation_form',
+			'payment_methods_info'             => __CLASS__ . '::payment_methods_info',
+			'add_to_cart'                      => __CLASS__ . '::gzd_add_to_cart',
+			'gzd_feature'                      => __CLASS__ . '::gzd_feature',
+			'gzd_vat_info'                     => __CLASS__ . '::gzd_vat_info',
+			'gzd_sale_info'                    => __CLASS__ . '::gzd_sale_info',
+			'gzd_complaints'                   => __CLASS__ . '::gzd_complaints',
+			'gzd_product_unit_price'           => __CLASS__ . '::gzd_product_unit_price',
+			'gzd_product_units'                => __CLASS__ . '::gzd_product_units',
+			'gzd_product_delivery_time'        => __CLASS__ . '::gzd_product_delivery_time',
+			'gzd_product_tax_notice'           => __CLASS__ . '::gzd_product_tax_notice',
+			'gzd_product_shipping_notice'      => __CLASS__ . '::gzd_product_shipping_notice',
+			'gzd_product_cart_desc'            => __CLASS__ . '::gzd_product_cart_desc',
+			'gzd_email_legal_page_attachments' => __CLASS__ . '::gzd_email_legal_page_attachments'
 		);
 
 		foreach ( $shortcodes as $shortcode => $function ) {
@@ -139,6 +140,26 @@ class WC_GZD_Shortcodes {
 		 *
 		 */
 		return apply_filters( 'woocommerce_gzd_shortcode_product_shipping_notice_html', self::get_gzd_product_shortcode( $atts, 'woocommerce_gzd_template_single_shipping_costs_info' ), $atts );
+	}
+
+	/**
+	 * This shortcode attaches legal page content to the footer for a certain email template.
+	 * Is useful in case an email customizer plugin is used to style emails.
+	 *
+	 * @param $atts
+	 */
+	public static function gzd_email_legal_page_attachments( $atts ) {
+		$atts = wp_parse_args( $atts, array(
+			'email_id' => '',
+		) );
+
+		$instance = false;
+
+		if ( ! empty( $atts['email_id'] ) ) {
+			$instance = WC_germanized()->emails->get_email_instance_by_id( $atts['email_id'] );
+		}
+
+		WC_germanized()->emails->add_template_footers( $instance );
 	}
 
 	public static function gzd_product_cart_desc( $atts ) {

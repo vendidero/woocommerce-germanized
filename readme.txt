@@ -141,6 +141,10 @@ Inserts online revocation form within your WooCommerce store. Customer and shop 
 `[payment_methods_info]`
 Very useful as page to inform the user of your WooCommerce payment gateways - Inserts an overview of all enabled payment gateways plus their descriptions.
 
+`[gzd_email_legal_page_attachments email_id="customer_processing_order"]`
+This shortcode outputs the legal page content attached to a specific email template. In case the email_id attribute is missing the shortcode tries to determine the current email template being sent.
+The shortcode is useful to output the legal page attachments in custom email templates built via a GUI (e.g. email customizer plugins).
+
 `[gzd_complaints]`
 Inserts a text that informs the customer about the EU Online Dispute Platform - this Shortcode should be inserted within your imprint. Find more information [here](http://shop.trustedshops.com/de/rechtstipps/jetzt-handeln-link-auf-eu-online-schlichtungs-plattform-ab-9.1.2016).
 

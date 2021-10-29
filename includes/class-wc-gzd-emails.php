@@ -498,12 +498,14 @@ class WC_GZD_Emails {
 			$this->prevent_confirmation_email_sending();
 		}
 
-		// Hook before WooCommerce Footer is applied
-		remove_action( 'woocommerce_email_footer', array( $this->mailer, 'email_footer' ) );
+		/**
+		 * Use 5 as a priority to hook before global WooCommerce email footer (10)
+		 */
+		add_action( 'woocommerce_email_footer', array( $this, 'add_template_footers' ), 5 );
 
-		add_action( 'woocommerce_email_footer', array( $this, 'add_template_footers' ), 0 );
-		add_action( 'woocommerce_email_footer', array( $this->mailer, 'email_footer' ), 1 );
-
+		/**
+		 * The plain email templates do only include a filter to display a footer text
+		 */
 		add_filter( 'woocommerce_email_footer_text', array( $this, 'email_footer_plain' ), 0 );
 		add_filter( 'woocommerce_email_styles', array( $this, 'styles' ) );
 
