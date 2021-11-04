@@ -8,7 +8,7 @@
         self.$wrapper   = $form.closest( wc_gzd_single_product_params.wrapper );
         self.$product   = $form.closest( '.product' );
         self.requests   = [];
-        self.observer   = false;
+        self.observer   = {};
         self.timeout    = false;
 
         if ( self.$wrapper.length <= 0 ) {
@@ -31,55 +31,69 @@
     };
 
     GermanizedSingleProductWatcher.prototype.initObserver = function( self ) {
-        var $node = self.$wrapper.find( self.params.price_selector + ':not(.price-unit):visible' );
+        if ( Object.keys( self.observer ).length !== 0 ) {
+            return;
+        }
 
-        if ( $node.length > 0 && ! self.observer ) {
+        $.each( self.params.price_selector, function( priceSelector, priceArgs ) {
+            var $node           = self.$wrapper.find( priceSelector + ':not(.price-unit):visible' ),
+                currentObserver = false;
 
-            // Callback function to execute when mutations are observed
-            var callback = function( mutationsList, observer ) {
-                /**
-                 * Clear the timeout and abort open AJAX requests as
-                 * a new mutation has been observed
-                 */
-                if ( self.timeout ) {
-                    clearTimeout( self.timeout );
-                    self.abortAjaxRequests( self );
+            if ( $node.length > 0 ) {
+
+                // Callback function to execute when mutations are observed
+                var callback = function( mutationsList, observer ) {
+                    /**
+                     * Clear the timeout and abort open AJAX requests as
+                     * a new mutation has been observed
+                     */
+                    if ( self.timeout ) {
+                        clearTimeout( self.timeout );
+                        self.abortAjaxRequests( self );
+                    }
+
+                    /**
+                     * Need to use a tweak here to make sure our variation listener
+                     * has already adjusted the variationId (in case necessary).
+                     */
+                    self.timeout = setTimeout(function() {
+                        var priceData = self.getCurrentPriceData( self, priceSelector, priceArgs['is_total_price'] );
+
+                        if ( priceData ) {
+                            /**
+                             * Do only fire AJAX requests in case no other requests (e.g. from other plugins) are currently running.
+                             */
+                            if ( $.active <= 0 ) {
+                                self.refreshUnitPrice( self, priceData.price, priceData.unit_price, priceData.sale_price, priceData.quantity );
+                            }
+                        }
+                    }, 500 );
+                };
+
+                if ( "MutationObserver" in window ) {
+                    currentObserver = new window.MutationObserver( callback );
+                } else if ( "WebKitMutationObserver" in window ) {
+                    currentObserver = new window.WebKitMutationObserver( callback );
+                } else if ( "MozMutationObserver" in window ) {
+                    currentObserver = new window.MozMutationObserver( callback );
                 }
 
-                /**
-                 * Need to use a tweak here to make sure our variation listener
-                 * has already adjusted the variationId (in case necessary).
-                 */
-                self.timeout = setTimeout(function() {
-                    var priceData = self.getCurrentPriceData( self );
-
-                    if ( priceData ) {
-                        /**
-                         * Do only fire AJAX requests in case no other requests (e.g. from other plugins) are currently running.
-                         */
-                        if ( $.active <= 0 ) {
-                            self.refreshUnitPrice( self, priceData.price, priceData.unit_price, priceData.sale_price );
-                        }
-                    }
-                }, 500 );
-            };
-
-            if ( "MutationObserver" in window ) {
-                self.observer = new window.MutationObserver( callback );
-            } else if ( "WebKitMutationObserver" in window ) {
-                self.observer = new window.WebKitMutationObserver( callback );
-            } else if ( "MozMutationObserver" in window ) {
-                self.observer = new window.MozMutationObserver( callback );
+                if ( currentObserver ) {
+                    self.observer[ priceSelector ] = currentObserver;
+                    self.observer[ priceSelector ].observe( $node[0], { childList: true, subtree: true, characterData: true } );
+                }
             }
-
-            self.observer.observe( $node[0], { childList: true, subtree: true, characterData: true } );
-        }
+        });
     };
 
     GermanizedSingleProductWatcher.prototype.cancelObserver = function( self ) {
-        if ( self.observer ) {
-            self.observer.disconnect();
-            self.observer = false;
+        if ( self.observer.length > 0 ) {
+            for ( var key in self.observer ) {
+                if ( self.observer.hasOwnProperty( key ) ) {
+                    self.observer[ key ].disconnect();
+                    delete self.observer[ key ];
+                }
+            }
         }
     };
 
@@ -111,13 +125,33 @@
         }
     };
 
-    GermanizedSingleProductWatcher.prototype.getCurrentPriceData = function( self ) {
-        var $price = $( self.params.wrapper + ' ' + self.params.price_selector + ':not(.price-unit):visible' );
+    GermanizedSingleProductWatcher.prototype.getCurrentPriceData = function( self, priceSelector, isTotalPrice ) {
+        var $price = $( self.params.wrapper + ' ' + priceSelector + ':not(.price-unit):visible' );
 
         if ( $price.length > 0 ) {
             var $unit_price = $price.parents( self.params.wrapper ).find( '.price-unit:first' ),
-                price       = self.getRawPrice( $price.find( '.amount:first' ), self.params.price_decimal_sep ),
-                sale_price  = '';
+                sale_price  = '',
+                $priceInner = $price.find( '.amount:first' ),
+                $qty        = $( self.params.wrapper + ' ' + self.params.qty_selector + ':first' ),
+                qty         = 1;
+
+            if ( $qty.length > 0 ) {
+                qty = parseFloat( $qty.val() );
+            }
+
+            /**
+             * In case the price element does not contain the default Woo price structure
+             * search the whole element.
+             */
+            if ( $priceInner.length <= 0 ) {
+                if ( $price.find( '.price' ).length > 0 ) {
+                    $priceInner = $price.find( '.price' );
+                } else {
+                    $priceInner = $price;
+                }
+            }
+
+            var price = self.getRawPrice( $priceInner, self.params.price_decimal_sep );
 
             /**
              * Is sale?
@@ -127,10 +161,19 @@
             }
 
             if ( $unit_price.length > 0 && price ) {
+                if ( isTotalPrice ) {
+                    price = parseFloat( price ) / qty;
+
+                    if ( sale_price.length > 0 ) {
+                        sale_price = parseFloat( sale_price ) / qty;
+                    }
+                }
+
                 return {
-                    'price': price,
+                    'price'     : price,
                     'unit_price': $unit_price,
-                    'sale_price': sale_price
+                    'sale_price': sale_price,
+                    'quantity'  : qty,
                 };
             }
         }
@@ -161,7 +204,7 @@
         return price;
     };
 
-    GermanizedSingleProductWatcher.prototype.refreshUnitPrice = function( self, price, $unit_price, sale_price ) {
+    GermanizedSingleProductWatcher.prototype.refreshUnitPrice = function( self, price, $unit_price, sale_price, quantity ) {
         self.abortAjaxRequests( self );
 
         self.requests.push( $.ajax({
@@ -171,7 +214,8 @@
                 'security'  : self.params.refresh_unit_price_nonce,
                 'product_id': self.getCurrentProductId( self ),
                 'price'     : price,
-                'price_sale': sale_price
+                'price_sale': sale_price,
+                'quantity'  : quantity,
             },
             success: function( data ) {
                 /**

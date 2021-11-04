@@ -645,7 +645,8 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 					'b2b-market'                                  => 'WC_GZD_Compatibility_B2B_Market',
 					'paypal-express-checkout'                     => 'WC_GZD_Compatibility_PayPal_Express_Checkout',
 					'woocommerce-memberships'                     => 'WC_GZD_Compatibility_WooCommerce_Memberships',
-					'addify-role-based-pricing'                   => 'WC_GZD_Compatibility_Addify_Role_Based_Pricing'
+					'addify-role-based-pricing'                   => 'WC_GZD_Compatibility_Addify_Role_Based_Pricing',
+					'customer-specific-pricing-for-woocommerce'   => 'WC_GZD_Compatibility_Customer_Specific_Pricing_For_WooCommerce'
 				)
 			);
 
@@ -991,7 +992,18 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
                     'refresh_unit_price_nonce' => wp_create_nonce( 'wc-gzd-refresh-unit-price' ),
                     'product_id'               => $post ? $post->ID : '',
                     'price_decimal_sep'        => wc_get_price_decimal_separator(),
-                    'price_thousand_sep'       => wc_get_price_thousand_separator()
+                    'price_thousand_sep'       => wc_get_price_thousand_separator(),
+                    'qty_selector'             => 'input.quantity, input.qty',
+                ) );
+
+				/**
+				 * Allow multiple price selectors to be observed
+				 */
+				$params['price_selector'] = apply_filters( 'woocommerce_gzd_single_product_unit_price_refresh_price_selectors', array(
+                    $params['price_selector'] => array(
+                        // Indicates whether the product price is a total price (e.g. price * quantity) or not (which is the default option)
+                        'is_total_price' => false,
+                    )
                 ) );
 
 				/**
