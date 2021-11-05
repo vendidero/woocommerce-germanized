@@ -368,6 +368,8 @@ if ( ! function_exists( 'woocommerce_gzd_add_variation_options' ) ) {
 	function woocommerce_gzd_add_variation_options( $options, $product, $variation ) {
 		$gzd_product = wc_gzd_get_product( $variation );
 
+		do_action( 'woocommerce_gzd_before_add_variation_options', $options, $gzd_product, $product );
+
 		$options = array_merge( $options, array(
 			'delivery_time'       => $gzd_product->get_delivery_time_html(),
 			'unit_price'          => $gzd_product->get_unit_price_html(),

@@ -55,7 +55,7 @@ add_filter( 'woocommerce_get_price_html', 'woocommerce_gzd_template_product_bloc
 // Make sure to add a global product object to allow getting the grouped parent product within child display
 add_action( 'woocommerce_before_add_to_cart_form', 'woocommerce_gzd_template_single_setup_global_product' );
 
-add_filter( 'woocommerce_available_variation', 'woocommerce_gzd_add_variation_options', 0, 3 );
+add_filter( 'woocommerce_available_variation', 'woocommerce_gzd_add_variation_options', 5000, 3 );
 
 if ( get_option( 'woocommerce_gzd_display_listings_add_to_cart' ) == 'no' ) {
 	remove_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart' );

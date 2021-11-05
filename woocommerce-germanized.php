@@ -314,6 +314,7 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 			// Load after WooCommerce Frontend scripts
 			add_action( 'wp_enqueue_scripts', array( $this, 'add_scripts' ), 15 );
 			add_action( 'wp_enqueue_scripts', array( $this, 'add_inline_styles' ), 20 );
+
 			add_action( 'wp_print_scripts', array( $this, 'localize_scripts' ), 5 );
 			add_action( 'wp_print_footer_scripts', array( $this, 'localize_scripts' ), 5 );
 
@@ -690,7 +691,7 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 			$template_path = $this->template_path();
 
 			// Tweak to make sure Germanized variation script loads when woocommerce_variable_add_to_cart() is called (just like Woo does)
-			if ( 'single-product/add-to-cart/variable.php' === $template_name ) {
+			if ( in_array( $template_name, apply_filters( 'woocommerce_gzd_templates_requiring_variation_script', array( 'single-product/add-to-cart/variable.php' ) ) ) ) {
 			    wp_enqueue_script( 'wc-gzd-add-to-cart-variation' );
             }
 
@@ -858,7 +859,7 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 				wp_register_script( 'accounting', WC()->plugin_url() . '/assets/js/accounting/accounting' . $suffix . '.js', array( 'jquery' ), '0.4.2' );
 			}
 
-			wp_register_script( 'wc-gzd-single-product', $frontend_script_path . 'single-product' . $suffix . '.js', array(
+			wp_register_script( 'wc-gzd-unit-price-observer', $frontend_script_path . 'unit-price-observer' . $suffix . '.js', array(
 				'jquery',
 				'woocommerce',
                 'accounting',
@@ -893,7 +894,7 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 				}
 
 				if ( apply_filters( 'woocommerce_gzd_refresh_unit_price_on_price_change', true ) ) {
-					wp_enqueue_script( 'wc-gzd-single-product' );
+					wp_enqueue_script( 'wc-gzd-unit-price-observer' );
 				}
 			}
 
@@ -932,8 +933,9 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 
 		public function get_variation_script_params() {
 		    return apply_filters( 'woocommerce_gzd_add_to_cart_variation_params', array(
-			    'wrapper'        => '.type-product',
+			    'wrapper'        => '.product',
 			    'price_selector' => '.price',
+                'replace_price'  => true,
 		    ) );
 		}
 
@@ -976,15 +978,16 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 				wp_localize_script( 'wc-gzd-add-to-cart-variation', 'wc_gzd_add_to_cart_variation_params', $this->get_variation_script_params() );
 			}
 
-			if ( wp_script_is( 'wc-gzd-single-product' ) && ! in_array( 'wc-gzd-single-product', $this->localized_scripts ) ) {
+			if ( wp_script_is( 'wc-gzd-unit-price-observer' ) && ! in_array( 'wc-gzd-unit-price-observer', $this->localized_scripts ) ) {
 				global $post;
 
-			    $this->localized_scripts[] = 'wc-gzd-single-product';
+			    $this->localized_scripts[] = 'wc-gzd-unit-price-observer';
 
-				$params = apply_filters( 'woocommerce_gzd_add_to_cart_variation_params', array(
-					'wrapper'        => '.type-product',
-					'price_selector' => 'p.price',
-				) );
+				$params = $this->get_variation_script_params();
+
+				if ( '.price' === $params['price_selector'] ) {
+				    $params['price_selector'] = 'p.price';
+				}
 
 				$params = array_merge( $params, array(
 					'ajax_url'                 => WC()->ajax_url(),
@@ -999,21 +1002,29 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 				/**
 				 * Allow multiple price selectors to be observed
 				 */
-				$params['price_selector'] = apply_filters( 'woocommerce_gzd_single_product_unit_price_refresh_price_selectors', array(
+				$params['price_selector'] = apply_filters( 'woocommerce_gzd_unit_price_observer_price_selectors', array(
                     $params['price_selector'] => array(
                         // Indicates whether the product price is a total price (e.g. price * quantity) or not (which is the default option)
-                        'is_total_price' => false,
+                        'is_total_price'      => false,
+                        'is_primary_selector' => true,
                     )
                 ) );
 
+				foreach( $params['price_selector'] as $selector => $args ) {
+					$params['price_selector'][ $selector ] = wp_parse_args( $args, array(
+                        'is_total_price'      => false,
+                        'is_primary_selector' => false,
+                    ) );
+				}
+
 				/**
-				 * Filters script localization paramaters for the `wc-gzd-single-product` script.
+				 * Filters script localization paramaters for the `wc-gzd-unit-price-observer` script.
 				 *
 				 * @param array $params Key => value array containing parameter name and value.
 				 *
 				 * @since 3.3.0
 				 */
-				wp_localize_script( 'wc-gzd-single-product', 'wc_gzd_single_product_params', apply_filters( 'woocommerce_gzd_single_product_params', $params ) );
+				wp_localize_script( 'wc-gzd-unit-price-observer', 'wc_gzd_unit_price_observer_params', apply_filters( 'woocommerce_gzd_unit_price_observer_params', $params ) );
 			}
 
 			if ( wp_script_is( 'wc-gzd-force-pay-order' ) && ! in_array( 'wc-gzd-force-pay-order', $this->localized_scripts ) ) {

@@ -1,11 +1,11 @@
-/*global wc_gzd_single_product_params, accounting */
+/*global wc_gzd_unit_price_observer_params, accounting */
 ;(function ( $, window, document, undefined ) {
-    var GermanizedSingleProductWatcher = function( $form ) {
+    var GermanizedUnitPriceObserver = function( $form ) {
         var self = this;
 
         self.$form      = $form;
-        self.params     = wc_gzd_single_product_params;
-        self.$wrapper   = $form.closest( wc_gzd_single_product_params.wrapper );
+        self.params     = wc_gzd_unit_price_observer_params;
+        self.$wrapper   = $form.closest( self.params.wrapper );
         self.$product   = $form.closest( '.product' );
         self.requests   = [];
         self.observer   = {};
@@ -16,27 +16,45 @@
         }
 
         if ( "MutationObserver" in window || "WebKitMutationObserver" in window || "MozMutationObserver" in window ) {
+            self.$form.addClass( 'has-unit-price-observer' );
             self.initObserver( self );
 
             if ( $form.hasClass( 'variations_form' ) ) {
-                self.productId  = $form.find( 'input[name=product_id]' ).length > 0 ? $form.find( 'input[name=product_id]' ).val() : self.params.product_id;
-                self.variatonId = $form.find( 'input[name=variation_id]' ).length > 0 ? $form.find( 'input[name=variation_id]' ).val() : 0;
+                self.productId   = $form.find( 'input[name=product_id]' ).length > 0 ? $form.find( 'input[name=product_id]' ).val() : $form.data( 'product_id' );
+                self.variationId = $form.find( 'input[name=variation_id]' ).length > 0 ? $form.find( 'input[name=variation_id]' ).val() : 0;
 
-                $form.on( 'reset_data', { GermanizedSingleProductWatcher: self }, self.onResetVariation );
-                $form.on( 'found_variation.wc-variation-form', { GermanizedSingleProductWatcher: self }, self.onFoundVariation );
+                if ( $form.find( 'input[name=variation_id]' ).length <= 0 ) {
+                    self.variationId = $form.find( 'input.variation_id' ).length > 0 ? $form.find( 'input.variation_id' ).val() : 0;
+                }
+
+                $form.on( 'reset_data', { GermanizedUnitPriceObserver: self }, self.onResetVariation );
+                $form.on( 'found_variation.wc-variation-form', { GermanizedUnitPriceObserver: self }, self.onFoundVariation );
             } else {
                 self.productId = $form.find( '*[name=add-to-cart][type=submit]' ).length > 0 ? $form.find( '*[name=add-to-cart][type=submit]' ).val() : self.params.product_id;
             }
         }
     };
 
-    GermanizedSingleProductWatcher.prototype.initObserver = function( self ) {
+    GermanizedUnitPriceObserver.prototype.getPriceNode = function( self, priceSelector, isPrimarySelector ) {
+        isPrimarySelector = ( typeof isPrimarySelector === 'undefined' ) ? false : isPrimarySelector;
+
+        var $node = self.$wrapper.find( priceSelector + ':not(.price-unit):visible:last' );
+
+        if ( isPrimarySelector && $node.length <= 0 && self.$form.hasClass( 'variations_form' ) ) {
+            $node = self.$wrapper.find( '.woocommerce-variation-price span.price:not(.price-unit):visible:last' );
+        }
+
+        return $node;
+    };
+
+    GermanizedUnitPriceObserver.prototype.initObserver = function( self ) {
         if ( Object.keys( self.observer ).length !== 0 ) {
             return;
         }
 
         $.each( self.params.price_selector, function( priceSelector, priceArgs ) {
-            var $node           = self.$wrapper.find( priceSelector + ':not(.price-unit):visible' ),
+            var isPrimary       = priceArgs.hasOwnProperty( 'is_primary_selector' ) ? priceArgs['is_primary_selector'] : false,
+                $node           = self.getPriceNode( self, priceSelector, isPrimary ),
                 currentObserver = false;
 
             if ( $node.length > 0 ) {
@@ -57,7 +75,7 @@
                      * has already adjusted the variationId (in case necessary).
                      */
                     self.timeout = setTimeout(function() {
-                        var priceData = self.getCurrentPriceData( self, priceSelector, priceArgs['is_total_price'] );
+                        var priceData = self.getCurrentPriceData( self, priceSelector, priceArgs['is_total_price'], isPrimary );
 
                         if ( priceData ) {
                             /**
@@ -86,7 +104,7 @@
         });
     };
 
-    GermanizedSingleProductWatcher.prototype.cancelObserver = function( self ) {
+    GermanizedUnitPriceObserver.prototype.cancelObserver = function( self ) {
         if ( self.observer.length > 0 ) {
             for ( var key in self.observer ) {
                 if ( self.observer.hasOwnProperty( key ) ) {
@@ -97,7 +115,7 @@
         }
     };
 
-    GermanizedSingleProductWatcher.prototype.abortAjaxRequests = function( self ) {
+    GermanizedUnitPriceObserver.prototype.abortAjaxRequests = function( self ) {
         /**
          * Cancel requests
          */
@@ -111,22 +129,24 @@
     /**
      * Reset all fields.
      */
-    GermanizedSingleProductWatcher.prototype.onResetVariation = function( event ) {
-        var self = event.data.GermanizedSingleProductWatcher;
+    GermanizedUnitPriceObserver.prototype.onResetVariation = function( event ) {
+        var self = event.data.GermanizedUnitPriceObserver;
 
         self.variationId = 0;
     };
 
-    GermanizedSingleProductWatcher.prototype.onFoundVariation = function( event, variation ) {
-        var self = event.data.GermanizedSingleProductWatcher;
+    GermanizedUnitPriceObserver.prototype.onFoundVariation = function( event, variation ) {
+        var self = event.data.GermanizedUnitPriceObserver;
 
         if ( variation.hasOwnProperty( 'variation_id' ) ) {
             self.variationId = variation.variation_id;
         }
+
+        self.initObserver( self );
     };
 
-    GermanizedSingleProductWatcher.prototype.getCurrentPriceData = function( self, priceSelector, isTotalPrice ) {
-        var $price = $( self.params.wrapper + ' ' + priceSelector + ':not(.price-unit):visible' );
+    GermanizedUnitPriceObserver.prototype.getCurrentPriceData = function( self, priceSelector, isTotalPrice, isPrimary ) {
+        var $price = self.getPriceNode( self, priceSelector, isPrimary );
 
         if ( $price.length > 0 ) {
             var $unit_price = $price.parents( self.params.wrapper ).find( '.price-unit:first' ),
@@ -181,7 +201,7 @@
         return false;
     };
 
-    GermanizedSingleProductWatcher.prototype.getCurrentProductId = function( self ) {
+    GermanizedUnitPriceObserver.prototype.getCurrentProductId = function( self ) {
         var productId = self.productId;
 
         if ( self.variationId > 0 ) {
@@ -191,7 +211,7 @@
         return parseInt( productId );
     };
 
-    GermanizedSingleProductWatcher.prototype.getRawPrice = function( $el, decimal_sep ) {
+    GermanizedUnitPriceObserver.prototype.getRawPrice = function( $el, decimal_sep ) {
         var price_raw = $el.length > 0 ? $el.text() : '',
             price     = false;
 
@@ -204,7 +224,7 @@
         return price;
     };
 
-    GermanizedSingleProductWatcher.prototype.refreshUnitPrice = function( self, price, $unit_price, sale_price, quantity ) {
+    GermanizedUnitPriceObserver.prototype.refreshUnitPrice = function( self, price, $unit_price, sale_price, quantity ) {
         self.abortAjaxRequests( self );
 
         self.requests.push( $.ajax({
@@ -236,15 +256,15 @@
     /**
      * Function to call wc_gzd_variation_form on jquery selector.
      */
-    $.fn.wc_germanized_single_product_watch = function() {
-        new GermanizedSingleProductWatcher( this );
+    $.fn.wc_germanized_unit_price_observer = function() {
+        new GermanizedUnitPriceObserver( this );
         return this;
     };
 
     $( function() {
-        if ( typeof wc_gzd_single_product_params !== 'undefined' ) {
-            $( 'form.variations_form, ' + wc_gzd_single_product_params.wrapper + ' form.cart' ).each( function() {
-                $( this ).wc_germanized_single_product_watch();
+        if ( typeof wc_gzd_unit_price_observer_params !== 'undefined' ) {
+            $( '.variations_form, ' + wc_gzd_unit_price_observer_params.wrapper + ' form.cart' ).each( function() {
+                $( this ).wc_germanized_unit_price_observer();
             });
         }
     });
