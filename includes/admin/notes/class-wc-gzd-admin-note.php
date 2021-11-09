@@ -25,7 +25,7 @@ abstract class WC_GZD_Admin_Note {
 		try {
 			$data_store = \WC_Data_Store::load( 'admin-note' );
 
-			if ( ! $data_store ) {
+			if ( ! $data_store || $this->use_wp_notice_api() ) {
 				return false;
 			}
 
@@ -104,16 +104,32 @@ abstract class WC_GZD_Admin_Note {
 		return empty( $actions ) ? false : true;
 	}
 
-	protected function add() {
-		$screen         = get_current_screen();
-		$screen_id      = $screen ? $screen->id : '';
-		$supports_notes = true;
+	protected function use_wp_notice_api() {
+		$use_wp_notice_api = false;
 
 		try {
 			$data_store = \WC_Data_Store::load( 'admin-note' );
 		} catch( Exception $e ) {
-			$supports_notes = false;
+			$use_wp_notice_api = true;
 		}
+
+		/**
+		 * Check whether the WC Admin loader (which is bundled into Woo core since 5.9) does really
+		 * remove/replace notices and decide whether using it or not.
+		 */
+		if ( ! $use_wp_notice_api ) {
+			if ( class_exists( 'Automattic\WooCommerce\Admin\Loader' ) && method_exists( 'Automattic\WooCommerce\Admin\Loader', 'remove_notices' ) ) {
+				$use_wp_notice_api = ! has_action( 'admin_head', array( 'Automattic\WooCommerce\Admin\Loader', 'remove_notices' ) );
+			}
+		}
+
+		return $use_wp_notice_api;
+	}
+
+	protected function add() {
+		$screen         = get_current_screen();
+		$screen_id      = $screen ? $screen->id : '';
+		$supports_notes = self::use_wp_notice_api() ? false : true;
 
 		if ( ! $supports_notes || in_array( $screen_id, array( 'dashboard', 'plugins' ) ) ) {
 			// Use fallback

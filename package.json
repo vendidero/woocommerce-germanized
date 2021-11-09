@@ -1,7 +1,7 @@
 {
   "name": "woocommerce-germanized",
   "title": "Germanized for WooCommerce",
-  "version": "3.5.3",
+  "version": "3.6.3",
   "homepage": "https://vendidero.de/woocommerce-germanized",
   "repository": {
     "type": "git",
@@ -18,6 +18,8 @@
     "phpunit": "docker-compose up -d db && docker-compose up -d wordpress-unit-tests && docker exec -it --workdir /var/www/html/wp-content/plugins/woocommerce-germanized wordpress_test php ./vendor/bin/phpunit"
   },
   "devDependencies": {
+    "getobject": ">=1.0.0",
+    "tar": ">=6.1.9",
     "autoprefixer": "^9.0.0",
     "babel": "6.23.0",
     "babel-cli": "^6.18.0",

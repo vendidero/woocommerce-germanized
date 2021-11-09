@@ -4,8 +4,8 @@ Tags: woocommerce, woocommerce german, woocommerce DE, woocommerce germany, wooc
 Requires at least: 5.4
 Tested up to: 5.8
 WC requires at least: 3.9
-WC tested up to: 5.6
-Stable tag: 3.5.3
+WC tested up to: 5.9
+Stable tag: 3.6.3
 Requires PHP: 5.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -34,7 +34,7 @@ Furthermore we customized the WooCommerce checkout to make your store meet the b
 * *Tax Calculation for Shipping Costs and Fees* - Enable split tax calculation based on your WooCommerce cart taxes.
 * *Legal pages in Email Templates* - Attach legal pages content to certain WooCommerce e-mail templates.
 * *Trusted Shops Integration* - Integrate your Trusted Shops Products within your WooCommerce store
-* *Post & DHL Integration* - Generate labels for shipments and returns right from your backend. Offer preferred delivery services to your customers.
+* *Post, DHL and DPD (Pro) Integration* - Generate labels for shipments and returns right from your backend. Offer preferred delivery services to your customers.
 * *Payment Gateway: SEPA direct debit* - Receive payments via direct debit. We've added a XML export to transfer payments to your bank.
 * *Payment Gateway: Pay by Invoice* - Allow certain customers to pay by invoice. Best integration with our PDF invoices feature (Pro).
 * *Online Revocation Form* - Allow customers to submit revocations by filling out a form on your revocation page.
@@ -70,9 +70,9 @@ You can then manage your shipments and it's statuses independently from your ord
 Managing returns can be a time-consuming challenge. By using Germanized you might let your customers create return requests through their customer panel. All you need to do is confirm the request through your return dashboard and your customers will receive an email containing further steps on how to return their product(s).
 In case you are using our DHL integration you might as well (automatically) create a label to the return which will be attached to the email sent to the customer.
 
-= Post & DHL Integration =
-With the help of our built-in Post & DHL integration you can easily create labels for your shipments and add tracking information to the notification emails. Furthermore you can offer DHL preferred delivery services to your customers including shipping to Packstation or choosing a drop-off location and/or day within the checkout.
-You can even let your shipments and labels be generated automatically by Germanized to avoid further manual work. [Learn more](https://vendidero.de/dokumentation/woocommerce-germanized/versanddienstleister "Post & DHL for WooCommerce") about how our Post & DHL integration works.
+= Post, DHL and DPD (Pro) Integration =
+With the help of our built-in Post, DHL and DPD (Pro) integration you can easily create labels for your shipments and add tracking information to the notification emails. Furthermore you can offer DHL preferred delivery services to your customers including shipping to Packstation or choosing a drop-off location and/or day within the checkout.
+You can even let your shipments and labels be generated automatically by Germanized to avoid further manual work. [Learn more](https://vendidero.de/dokumentation/woocommerce-germanized/versanddienstleister "Post & DHL for WooCommerce") about how our shipping provider integrations work.
 
 = Extended One Stop Shop compliance =
 With a little help from our [One Stop Shop compliance plugin for WooCommerce](https://wordpress.org/plugins/one-stop-shop-woocommerce/) bundled within Germanized you'll handle the new EU VAT regulations with ease. Generate new VAT reports for different time frames and let the plugin
@@ -141,6 +141,10 @@ Inserts online revocation form within your WooCommerce store. Customer and shop 
 `[payment_methods_info]`
 Very useful as page to inform the user of your WooCommerce payment gateways - Inserts an overview of all enabled payment gateways plus their descriptions.
 
+`[gzd_email_legal_page_attachments email_id="customer_processing_order"]`
+This shortcode outputs the legal page content attached to a specific email template. In case the email_id attribute is missing the shortcode tries to determine the current email template being sent.
+The shortcode is useful to output the legal page attachments in custom email templates built via a GUI (e.g. email customizer plugins).
+
 `[gzd_complaints]`
 Inserts a text that informs the customer about the EU Online Dispute Platform - this Shortcode should be inserted within your imprint. Find more information [here](http://shop.trustedshops.com/de/rechtstipps/jetzt-handeln-link-auf-eu-online-schlichtungs-plattform-ab-9.1.2016).
 
@@ -194,6 +198,59 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 6. Edit pdf documents (Pro)
 
 == Changelog ==
+= 3.6.3 =
+* Improvement: Do not cache available packaging for non-persisted shipments
+* Improvement: Recalculate individually priced bundle unit price
+* Improvement: IBAN/BIC formatting
+* Fix: Infinite loop bundle price html check
+* Fix: Restore global $product variable for bundles
+
+= 3.6.2 =
+* Improvement: Checkbox default layout
+* Improvement: Added default legal page placeholders to all checkboxes
+* Improvement: WooCommerce Bundles shopmarks
+* Improvement: WooCommerce Composite Products shopmarks
+* Improvement: Added customer cancelled order mail to WPML compatibility
+* Improvement: WooCommerce subscriptions recurring tax totals in cart/checkout
+* Improvement: By default add a link to tracking id placeholder within shipments
+* Improvement: Added customs reference number to shipping address (e.g. for DHL customs)
+* Improvement: DHL northern cyprus detection
+* Improvement: Allow setting DHL shipper reference via settings
+* Improvement: Added WSDL core files to assets dir to improve API performance
+* Improvement: OSS BOP compatible CSV export
+* Improvement: Allow choosing between order date types for OSS reports
+* Fix: OSS date_paid include range
+* Fix: Prevent multiple order status change events from firing in case shipment automation updates the status
+* Fix: Prevent showing taxes twice within order details in specific setups
+* Fix: B2B market net unit prices
+
+= 3.6.1 =
+* Improvement: Checkout action check during shopmark execution
+* Improvement: Prefer using total over subtotal amount for customs (except vouchers)
+* Improvement: Packaging dimension reset handling
+* Improvement: Round packaging/item dimensions to prevent packaging errors with fine grained dimensions (e.g. < 1mm)
+* Improvement: Tighten DP auth check to prevent auth errors
+* Fix: Multiple shipments customs additional total split calculation
+
+= 3.6.0 =
+* Feature: Adjust order shopmarks (e.g. thankyou, pay for order)
+* Feature: Woo 5.7 support
+* Improvement: On new installs: Remove privacy page from general checkbox label and disable privacy registration checkbox
+* Improvement: OSS query performance optimization
+* Improvement: Post: Allow switching page position on a per-label basis
+* Improvement: Warenpost tracking support detection
+* Improvement: Favour default packaging in case exists and fits
+
+= 3.5.4 =
+* Improvement: New order hook usage while syncing shipments
+* Improvement: Update jetpack autoloader version
+* Fix: Subscription invoice gateway hook
+* Fix: DHL order existence check
+* Fix: WPML shipping provider translation filters
+* Fix: Additional check before deleting legacy DHL customs meta
+* Fix: Infinite loop avoidance in B2B market compatibility script
+* Fix: Trusted Shops default jQuery selector reset
+
 = 3.5.3 =
 * Improvement: DHL Preferred services renaming
 * Improvement: OSS forced shipping tax recalculation during checkout

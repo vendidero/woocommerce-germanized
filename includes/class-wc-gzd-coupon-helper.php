@@ -46,6 +46,12 @@ class WC_GZD_Coupon_Helper {
 
 		// Disallow mixing normal coupons with vouchers to avoid taxation problems
 		add_filter( 'woocommerce_coupon_is_valid', array( $this, 'disallow_coupon_type_merging' ), 50, 3 );
+
+		add_filter( 'woocommerce_gzd_shipments_order_has_voucher', array( $this, 'shipments_order_has_voucher' ), 10, 2 );
+	}
+
+	public function shipments_order_has_voucher( $has_voucher, $order ) {
+		return $this->order_has_voucher( $order );
 	}
 
 	/**

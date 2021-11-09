@@ -90,10 +90,12 @@ function wc_gzd_get_mini_cart_shopmarks() {
 }
 
 function _wc_gzd_get_differential_taxation_shopmark( $location ) {
+	$default_filter = 'order' === $location ? 'woocommerce_order_item_name' : 'woocommerce_cart_item_name';
+
 	$shopmark = new Shopmark( array(
 		'default_priority' => wc_gzd_get_hook_priority( 'cart_product_differential_taxation' ),
 		'callback'         => 'wc_gzd_cart_product_differential_taxation_mark',
-		'default_filter'   => 'woocommerce_cart_item_name',
+		'default_filter'   => $default_filter,
 		'location'         => $location,
 		'type'             => 'differential_taxation',
 		'default_enabled'  => true,
@@ -116,6 +118,33 @@ function wc_gzd_get_checkout_shopmarks() {
 	}
 
 	return $checkout;
+}
+
+/**
+ * @return Vendidero\Germanized\Shopmark[]
+ */
+function wc_gzd_get_order_shopmarks() {
+	$order_shopmarks = Shopmarks::get( 'order' );
+
+	if ( 'yes' === get_option( 'woocommerce_gzd_differential_taxation_checkout_notices' ) ) {
+		global $wp;
+		$order_id = false;
+
+		if ( is_wc_endpoint_url( 'order-received' ) ) {
+			$order_id = $wp->query_vars['order-received'];
+		} elseif ( is_wc_endpoint_url( 'order-pay' ) ) {
+			$order_id = $wp->query_vars['order-pay'];
+		}
+
+		if ( $order_id && ( $order = wc_get_order( $order_id ) ) ) {
+			if ( wc_gzd_cart_contains_differential_taxed_product( $order->get_items() ) ) {
+				$shopmark          = _wc_gzd_get_differential_taxation_shopmark( 'order' );
+				$order_shopmarks[] = $shopmark;
+			}
+		}
+	}
+
+	return $order_shopmarks;
 }
 
 /**

@@ -44,4 +44,12 @@ class WC_GZD_Settings_Tab_OSS extends WC_GZD_Settings_Tab {
 
 		parent::before_save( $settings, $current_section );
 	}
+
+	public function is_enabled() {
+		if ( \Vendidero\OneStopShop\Package::oss_procedure_is_enabled() || \Vendidero\OneStopShop\Package::enable_auto_observer() ) {
+			return true;
+		}
+
+		return false;
+	}
 }

@@ -253,6 +253,12 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 					$data = strtoupper( $data );
 				}
 
+				if ( 'direct_debit_iban' === $field ) {
+				    $data = $this->sanitize_iban( $data );
+				} elseif( 'direct_debit_bic' === $field ) {
+				    $data = $this->sanitize_bic( $data );
+				}
+
 				if ( ! empty( $data ) && $field['encrypt'] ) {
 					$data = $this->maybe_encrypt( $data );
 				}
@@ -464,8 +470,8 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 					$directDebit->addPaymentInfo( $payment_id, apply_filters( 'woocommerce_gzd_direct_debit_sepa_xml_exporter_payment_args', array(
 						'id'                  => $payment_id,
 						'creditorName'        => $this->company_account_holder,
-						'creditorAccountIBAN' => strtoupper( $this->clean_whitespaces( $this->company_account_iban ) ),
-						'creditorAgentBIC'    => strtoupper( $this->clean_whitespaces( $this->company_account_bic ) ),
+						'creditorAccountIBAN' => $this->sanitize_iban( $this->company_account_iban ),
+						'creditorAgentBIC'    => $this->sanitize_bic( $this->company_account_bic ),
 						'seqType'             => $mandate_type,
 						'creditorId'          => $this->clean_whitespaces( $this->company_identification_number ),
 						'dueDate'             => date_i18n( 'Y-m-d', $this->get_debit_date( $order ) ),
@@ -485,8 +491,8 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 						 */
 						$directDebit->addTransfer( $payment_id, apply_filters( 'woocommerce_gzd_direct_debit_sepa_xml_exporter_transfer_args', array(
 							'amount'                => ( $order->get_total() - $order->get_total_refunded() ),
-							'debtorIban'            => strtoupper( $this->clean_whitespaces( $this->maybe_decrypt( $order->get_meta( '_direct_debit_iban' ) ) ) ),
-							'debtorBic'             => strtoupper( $this->clean_whitespaces( $this->maybe_decrypt( $order->get_meta( '_direct_debit_bic' ) ) ) ),
+							'debtorIban'            => $this->sanitize_iban( $this->maybe_decrypt( $order->get_meta( '_direct_debit_iban' ) ) ),
+							'debtorBic'             => $this->sanitize_bic( $this->maybe_decrypt( $order->get_meta( '_direct_debit_bic' ) ) ),
 							'debtorName'            => $order->get_meta( '_direct_debit_holder' ),
 							'debtorMandate'         => $this->get_mandate_id( $order ),
 							'debtorMandateSignDate' => date_i18n( 'Y-m-d', $this->get_mandate_sign_date( $order ) ),
@@ -654,7 +660,11 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 	}
 
 	public function clean_whitespaces( $str ) {
-		return preg_replace( '/\s+/', '', $str );
+		$str = preg_replace( '/\s+/', '', $str );
+		// remove non-breaking spaces
+		$str = preg_replace( '~\x{00a0}~','', $str );
+
+		return $str;
 	}
 
 	/**
@@ -685,13 +695,27 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 		$this->update_order( $order );
 	}
 
+	protected function sanitize_iban( $iban ) {
+		$iban = strtoupper( $this->clean_whitespaces( wc_clean( $iban ) ) );
+		$iban = preg_replace( "/[^A-Z0-9]/","", $iban );
+
+		return $iban;
+	}
+
+	protected function sanitize_bic( $bic ) {
+		$bic = strtoupper( $this->clean_whitespaces( wc_clean( $bic ) ) );
+		$bic = preg_replace( "/[^A-Z0-9]/","", $bic );
+
+		return $bic;
+	}
+
 	/**
 	 * @param WC_Order $order
 	 */
 	protected function update_order( $order, $save = false ) {
 		$holder  = ( isset( $_POST['direct_debit_account_holder'] ) ? wc_clean( $_POST['direct_debit_account_holder'] ) : '' );
-		$iban    = ( isset( $_POST['direct_debit_account_iban'] ) ? $this->maybe_encrypt( strtoupper( $this->clean_whitespaces( wc_clean( $_POST['direct_debit_account_iban'] ) ) ) ) : '' );
-		$bic     = ( isset( $_POST['direct_debit_account_bic'] ) ? $this->maybe_encrypt( strtoupper( $this->clean_whitespaces( wc_clean( $_POST['direct_debit_account_bic'] ) ) ) ) : '' );
+		$iban    = ( isset( $_POST['direct_debit_account_iban'] ) ? $this->maybe_encrypt( $this->sanitize_iban( $_POST['direct_debit_account_iban'] ) ) : '' );
+		$bic     = ( isset( $_POST['direct_debit_account_bic'] ) ? $this->maybe_encrypt( $this->sanitize_bic( $_POST['direct_debit_account_bic'] ) ) : '' );
 		$user_id = $order->get_customer_id();
 
 		// Always save account details to order
@@ -784,8 +808,8 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 		    $params[ $field_name ] = wc_clean( isset( $_GET[ $field_name ] ) ? $_GET[ $field_name ] : '' );
 		}
 
-		$params['account_iban']  = strtoupper( wc_clean( isset( $_GET['account_iban'] ) ? $_GET['account_iban'] : '' ) );
-		$params['account_swift'] = strtoupper( wc_clean( isset( $_GET['account_swift'] ) ? $_GET['account_swift'] : '' ) );
+		$params['account_iban']  = $this->sanitize_iban( isset( $_GET['account_iban'] ) ? $_GET['account_iban'] : '' );
+		$params['account_swift'] = $this->sanitize_bic( isset( $_GET['account_swift'] ) ? $_GET['account_swift'] : '' );
 		$params['country']       = ( isset( $_GET['country'] ) && isset( WC()->countries->countries[ $_GET['country'] ] ) ? WC()->countries->countries[ $_GET['country'] ] : '' );
 
 		/**
@@ -1058,8 +1082,8 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 
 		$data = array(
 			'holder' => $this->maybe_decrypt( get_user_meta( $user_id, 'direct_debit_holder', true ) ),
-			'iban'   => $this->maybe_decrypt( get_user_meta( $user_id, 'direct_debit_iban', true ) ),
-			'bic'    => $this->maybe_decrypt( get_user_meta( $user_id, 'direct_debit_bic', true ) ),
+			'iban'   => $this->sanitize_iban( $this->maybe_decrypt( get_user_meta( $user_id, 'direct_debit_iban', true ) ) ),
+			'bic'    => $this->sanitize_bic( $this->maybe_decrypt( get_user_meta( $user_id, 'direct_debit_bic', true ) ) ),
 		);
 
 		return $data;
@@ -1135,9 +1159,9 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 			return;
 		}
 
-		$iban    = ( isset( $_POST['direct_debit_account_iban'] ) ? wc_clean( $_POST['direct_debit_account_iban'] ) : '' );
+		$iban    = ( isset( $_POST['direct_debit_account_iban'] ) ? $this->sanitize_iban( $_POST['direct_debit_account_iban'] ) : '' );
 		$holder  = ( isset( $_POST['direct_debit_account_holder'] ) ? wc_clean( $_POST['direct_debit_account_holder'] ) : '' );
-		$bic     = ( isset( $_POST['direct_debit_account_bic'] ) ? wc_clean( $_POST['direct_debit_account_bic'] ) : '' );
+		$bic     = ( isset( $_POST['direct_debit_account_bic'] ) ? $this->sanitize_bic( $_POST['direct_debit_account_bic'] ) : '' );
 		$country = ( isset( $_POST['billing_country'] ) ? wc_clean( $_POST['billing_country'] ) : WC()->countries->get_base_country() );
 
 		if ( empty( $iban ) || empty( $holder ) || empty( $bic ) ) {

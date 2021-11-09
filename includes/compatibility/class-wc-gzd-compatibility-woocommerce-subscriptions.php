@@ -119,11 +119,8 @@ class WC_GZD_Compatibility_WooCommerce_Subscriptions extends WC_GZD_Compatibilit
 		// Tax for inclusive prices
 		if ( 'yes' === get_option( 'woocommerce_calc_taxes' ) && 'incl' === wc_gzd_get_cart_tax_display_mode( $cart ) ) {
 			$tax_array = wc_gzd_get_cart_taxes( $cart );
-
 			ob_start();
-
 			echo $price;
-			echo '</td></tr>';
 
 			if ( ! empty( $tax_array ) ) {
 				$count = 0;
@@ -131,15 +128,10 @@ class WC_GZD_Compatibility_WooCommerce_Subscriptions extends WC_GZD_Compatibilit
 					$count ++;
 					$label = wc_gzd_get_tax_rate_label( $tax['tax']->rate );
 					?>
-
-                    <tr class="order-tax">
-                    <th><?php echo $label; ?></th>
-                    <td data-title="<?php echo esc_attr( $label ); ?>"><?php echo wc_price( $tax['amount'] ); ?>
-
-					<?php if ( sizeof( $tax_array ) != $count ) : ?>
-                        </td></tr>
-					<?php endif; ?>
-
+                    <small class="wc-gzd-recurring-tax-total">
+                        <span class="wc-gzd-recurring-tax-total-label"><?php echo $label; ?>:</span>
+                        <span class="wc-gzd-recurring-tax-total-amount"><?php echo wc_price( $tax['amount'] ); ?></span>
+                    </small>
 					<?php
 				}
 			}

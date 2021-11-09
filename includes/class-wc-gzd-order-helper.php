@@ -299,6 +299,13 @@ class WC_GZD_Order_Helper {
 							$tax_totals[ $key ]          = $order_totals[ $key ];
 							$tax_totals[ $key ]['label'] = wc_gzd_get_tax_rate_label( $percentage, 'excl' );
 						}
+
+						/**
+						 * Prevent showing taxes twice
+						 */
+						if ( wc_gzd_show_taxes_before_total( 'order' ) ) {
+							unset( $order_totals[ $key ] );
+						}
 					}
 				}
 			}

@@ -22,10 +22,6 @@ class WC_GZD_Admin_Legal_Checkboxes {
 	}
 
 	public function __construct() {
-		add_filter( "woocommerce_gzd_legal_checkbox_terms_fields_before_titles", array(
-			$this,
-			'additional_terms_fields'
-		), 10, 2 );
 		add_filter( "woocommerce_gzd_legal_checkbox_age_verification_fields_before_titles", array(
 			$this,
 			'additional_age_verification_fields'
@@ -44,25 +40,6 @@ class WC_GZD_Admin_Legal_Checkboxes {
 		), 10, 2 );
 	}
 
-	public function get_terms_policy_status_html() {
-		$manager  = WC_GZD_Legal_Checkbox_Manager::instance();
-		$checkbox = $manager->get_checkbox( 'terms' );
-
-		if ( ! $checkbox ) {
-			return;
-		}
-
-		$is_privacy_policy_inserted = false;
-
-		$legal_text = $checkbox->get_label( true );
-
-		if ( $legal_text && strpos( $legal_text, '{data_security_link}' ) !== false ) {
-			$is_privacy_policy_inserted = true;
-		}
-
-		return '<p>' . ( wc_get_page_id( 'data_security' ) == - 1 ? '<span class="wc-gzd-status-text wc-gzd-text-red">' . __( 'Please choose a page as your privacy policy first.', 'woocommerce-germanized' ) . '</span>' : '<span class="wc-gzd-status-text wc-gzd-text-' . ( $is_privacy_policy_inserted ? 'green' : 'red' ) . '"> ' . ( $is_privacy_policy_inserted ? __( 'Found', 'woocommerce-germanized' ) : __( 'Not found within label.', 'woocommerce-germanized' ) ) . '</span> ' . ( ! $is_privacy_policy_inserted ? '<a class="button button-secondary" style="margin-left: 1em" href="' . admin_url( 'admin.php?page=wc-settings&tab=germanized&section=checkboxes&checkbox_id=terms#woocommerce_gzd_legal_checkboxes_settings_terms_label' ) . '">' . __( 'Adjust label', 'woocommerce-germanized' ) . '</a></p>' : '' ) );
-	}
-
 	public function additional_age_verification_fields( $fields, $checkbox ) {
 		$fields = WC_GZD_Admin::instance()->insert_setting_after( $fields, $checkbox->get_form_field_id( 'is_enabled' ), array(
 			array(
@@ -71,27 +48,6 @@ class WC_GZD_Admin_Legal_Checkboxes {
 				'type'     => 'select',
 				'options'  => wc_gzd_get_age_verification_min_ages_select(),
 				'desc_tip' => __( 'Choose a global minimum age necessary to buy your products. Can be overridden by product specific settings.', 'woocommerce-germanized' ),
-			)
-		) );
-
-		return $fields;
-	}
-
-	public function additional_terms_fields( $fields, $checkbox ) {
-
-		foreach ( $fields as $key => $field ) {
-			if ( isset( $field['id'] ) && $checkbox->get_form_field_id( 'label' ) === $field['id'] ) {
-				$fields[ $key ]['desc'] = $field['desc'] . '<span class="gzd-small-desc">' . __( 'e.g. include your privacy policy: {data_security_page}Privacy Policy{/data_security_page}', 'woocommerce-germanized' ) . '</span>';
-			}
-		}
-
-		$fields = WC_GZD_Admin::instance()->insert_setting_after( $fields, $checkbox->get_form_field_id( 'is_enabled' ), array(
-			array(
-				'title'    => __( 'Policy Status', 'woocommerce-germanized' ),
-				'id'       => 'woocommerce_gzd_privacy_policy_status',
-				'type'     => 'html',
-				'desc_tip' => __( 'This option shows whether you have already embedded your privacy policy within your legal text.', 'woocommerce-germanized' ),
-				'html'     => $this->get_terms_policy_status_html( $checkbox ),
 			)
 		) );
 

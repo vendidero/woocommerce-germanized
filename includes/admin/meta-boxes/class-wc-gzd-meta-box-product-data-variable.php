@@ -110,7 +110,7 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
                        value="yes" <?php checked( 'yes', $gzd_product->get_unit_price_auto( 'edit' ) ? 'yes' : 'no' ); ?> />
                 <span class="description">
 					<span class="wc-gzd-premium-desc"><?php echo __( 'Calculate unit prices automatically', 'woocommerce-germanized' ); ?></span>
-					<a href="https://vendidero.de/woocommerce-germanized#upgrade" target="_blank" class="wc-gzd-pro">pro</a>
+					<a href="https://vendidero.de/woocommerce-germanized#upgrade" target="_blank" class="wc-gzd-pro wc-gzd-pro-outlined">pro</a>
 				</span>
             </p>
             <p class="form-row form-row-first">

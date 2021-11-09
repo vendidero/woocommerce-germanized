@@ -143,9 +143,12 @@ class WC_GZD_Compatibility_WPML extends WC_GZD_Compatibility {
 			}
 		} else {
 			if ( $object ) {
-
 				if ( is_a( $object, 'WC_Order' ) ) {
-					$lang = $object->get_meta( 'wpml_language', true );
+					$lang = $object->get_meta( 'wpml_language' );
+				} elseif( is_a( $object, '\Vendidero\Germanized\Shipments\Shipment' ) ) {
+					if ( $order = $object->get_order() ) {
+						$lang = $order->get_meta( 'wpml_language' );
+					}
 				}
 			}
 		}
@@ -256,12 +259,7 @@ class WC_GZD_Compatibility_WPML extends WC_GZD_Compatibility {
 		 *
 		 * @since 3.0.8
 		 */
-		return apply_filters( 'woocommerce_gzd_wpml_email_ids', array(
-			'WC_GZD_Email_Customer_Paid_For_Order'            => 'customer_paid_for_order',
-			'WC_GZD_Email_Customer_New_Account_Activation'    => 'customer_new_account_activation',
-			'WC_GZD_Email_Customer_Revocation'                => 'customer_revocation',
-			'WC_GZD_Email_Customer_SEPA_Direct_Debit_Mandate' => 'customer_sepa_direct_debit_mandate',
-		) );
+		return apply_filters( 'woocommerce_gzd_wpml_email_ids', WC_germanized()->get_custom_email_ids() );
 	}
 
 	protected function get_email_options() {
@@ -525,5 +523,4 @@ class WC_GZD_Compatibility_WPML extends WC_GZD_Compatibility {
 
 		return apply_filters( 'translate_object_id', $id, 'page', true );
 	}
-
 }

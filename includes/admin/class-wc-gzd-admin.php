@@ -95,8 +95,22 @@ class WC_GZD_Admin {
 
 		add_action( 'woocommerce_oss_enabled_oss_procedure', array( $this, 'oss_enable_hide_tax_percentage' ), 10 );
 
+		add_filter( 'woocommerce_gzd_shipment_admin_provider_list', array( $this, 'maybe_register_shipping_providers' ), 10 );
+
 		$this->wizward = require 'class-wc-gzd-admin-setup-wizard.php';
 	}
+
+	/**
+	 * @param \Vendidero\Germanized\Shipments\Interfaces\ShippingProvider $providers
+	 */
+	public function maybe_register_shipping_providers( $providers ) {
+	    if ( ! WC_germanized()->is_pro() && in_array( \Vendidero\Germanized\Shipments\Package::get_base_country(), array( 'DE', 'AT' ) ) ) {
+	        $dpd = new WC_GZD_Admin_Provider_DPD();
+	        $providers['_dpd'] = $dpd;
+        }
+
+	    return $providers;
+    }
 
 	public function oss_enable_hide_tax_percentage() {
 	    update_option( 'woocommerce_gzd_hide_tax_rate_shop', 'yes' );

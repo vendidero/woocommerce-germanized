@@ -25,6 +25,10 @@ class WC_GZD_Settings_Tab_Button_Solution extends WC_GZD_Settings_Tab {
 		return 'button_solution';
 	}
 
+	public function get_help_link() {
+		return 'https://vendidero.de/dokument/umsetzung-der-button-loesung-im-woocommerce-checkout';
+	}
+
 	public function get_pointers() {
 		$current  = $this->get_current_section();
 		$pointers = array();

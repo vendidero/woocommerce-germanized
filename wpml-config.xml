@@ -18,6 +18,8 @@
         <custom-field action="copy-once">_ts_mpn</custom-field>
         <custom-field action="copy-once">_ts_gtin</custom-field>
         <custom-field action="translate">_legal_text</custom-field>
+        <custom-field action="copy">_hs_code</custom-field>
+        <custom-field action="copy">_manufacture_country</custom-field>
     </custom-fields>
     <taxonomies>
         <taxonomy translate="1">product_price_label</taxonomy>
@@ -94,6 +96,13 @@
         <key name="woocommerce_customer_sepa_direct_debit_mandate_settings">
             <key name="subject" />
             <key name="heading" />
+            <key name="additional_content" />
+        </key>
+        <key name="woocommerce_customer_cancelled_order_settings">
+            <key name="subject_full" />
+            <key name="subject_partial" />
+            <key name="heading_full" />
+            <key name="heading_partial" />
             <key name="additional_content" />
         </key>
     </admin-texts>

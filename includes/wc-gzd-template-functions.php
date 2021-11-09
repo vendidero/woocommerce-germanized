@@ -368,6 +368,8 @@ if ( ! function_exists( 'woocommerce_gzd_add_variation_options' ) ) {
 	function woocommerce_gzd_add_variation_options( $options, $product, $variation ) {
 		$gzd_product = wc_gzd_get_product( $variation );
 
+		do_action( 'woocommerce_gzd_before_add_variation_options', $options, $gzd_product, $product );
+
 		$options = array_merge( $options, array(
 			'delivery_time'       => $gzd_product->get_delivery_time_html(),
 			'unit_price'          => $gzd_product->get_unit_price_html(),
@@ -617,12 +619,35 @@ if ( ! function_exists( 'woocommerce_gzd_template_differential_taxation_notice_c
 	}
 }
 
+if ( ! function_exists( 'woocommerce_gzd_template_differential_taxation_notice_order' ) ) {
+
+	function woocommerce_gzd_template_differential_taxation_notice_order() {
+		global $wp;
+		$order_id = false;
+
+		if ( is_wc_endpoint_url( 'order-received' ) ) {
+			$order_id = $wp->query_vars['order-received'];
+		} elseif ( is_wc_endpoint_url( 'order-pay' ) ) {
+			$order_id = $wp->query_vars['order-pay'];
+		}
+
+		if ( $order_id && ( $order = wc_get_order( $order_id ) ) ) {
+			if ( wc_gzd_cart_contains_differential_taxed_product( $order->get_items() ) ) {
+				wc_get_template( 'checkout/differential-taxation-notice.php', array( 'notice' => wc_gzd_get_differential_taxation_checkout_notice() ) );
+			}
+		}
+	}
+}
+
 if ( ! function_exists( 'woocommerce_gzd_template_order_item_hooks' ) ) {
 
 	function woocommerce_gzd_template_order_item_hooks() {
-		add_filter( 'woocommerce_order_item_name', 'wc_gzd_cart_product_units', wc_gzd_get_hook_priority( 'order_product_units' ), 3 );
-		add_filter( 'woocommerce_order_item_name', 'wc_gzd_cart_product_delivery_time', wc_gzd_get_hook_priority( 'order_product_delivery_time' ), 3 );
-		add_filter( 'woocommerce_order_item_name', 'wc_gzd_cart_product_item_desc', wc_gzd_get_hook_priority( 'order_product_item_desc' ), 3 );
+		/**
+		 * Checkout Hooks
+		 */
+		foreach ( wc_gzd_get_order_shopmarks() as $shopmark ) {
+			$shopmark->execute();
+		}
 	}
 }
 
