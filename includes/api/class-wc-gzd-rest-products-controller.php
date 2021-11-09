@@ -57,6 +57,45 @@ class WC_GZD_REST_Products_Controller {
 				),
 			)
 		);
+
+		$schema_properties['country_specific_delivery_times']                                                 = array(
+			'description' => __( 'Country specific delivery times', 'woocommerce-germanized' ),
+			'type'        => 'array',
+			'context'     => array( 'view', 'edit' ),
+			'items'       => array(
+				'type' => 'object',
+				'properties'  => array(
+					'id'   => array(
+						'description' => __( 'Delivery Time ID', 'woocommerce-germanized' ),
+						'type'        => 'integer',
+						'context'     => array( 'view', 'edit' ),
+					),
+					'name' => array(
+						'description' => __( 'Delivery Time Name', 'woocommerce-germanized' ),
+						'type'        => 'string',
+						'context'     => array( 'view', 'edit' ),
+						'readonly'    => true,
+					),
+					'country' => array(
+						'description' => __( 'ISO code of the country.', 'woocommerce' ),
+						'type'        => 'string',
+						'context'     => array( 'view', 'edit' ),
+					),
+					'slug' => array(
+						'description' => __( 'Delivery Time Slug', 'woocommerce-germanized' ),
+						'type'        => 'string',
+						'context'     => array( 'view', 'edit' )
+					),
+					'html' => array(
+						'description' => __( 'Delivery Time HTML', 'woocommerce-germanized' ),
+						'type'        => 'string',
+						'context'     => array( 'view', 'edit' ),
+						'readonly'    => true,
+					),
+				)
+			),
+		);
+
 		$schema_properties['sale_price_label']                                              = array(
 			'description' => __( 'Price Label', 'woocommerce-germanized' ),
 			'type'        => 'object',
@@ -345,11 +384,9 @@ class WC_GZD_REST_Products_Controller {
 
 		// Add variations to variable products.
 		if ( $product->is_type( 'variable' ) && $product->has_child() ) {
-
 			$data               = $response->data;
 			$data['variations'] = $this->set_product_variation_fields( $response->data['variations'], $product );
 			$response->set_data( $data );
-
 		}
 
 		$response->set_data( array_merge( $response->data, $this->get_product_data( $product ) ) );
@@ -380,22 +417,39 @@ class WC_GZD_REST_Products_Controller {
 	 * @return array
 	 */
 	public function get_product_saveable_data( $request, $product ) {
-
-		$data_saveable = WC_Germanized_Meta_Box_Product_Data::get_fields();
-		$gzd_product   = wc_gzd_get_product( $product );
-		$data          = array();
-
+		$data_saveable        = WC_Germanized_Meta_Box_Product_Data::get_fields();
+		$gzd_product          = wc_gzd_get_product( $product );
+		$data                 = array();
 		$data['product-type'] = $product->get_type();
 
 		// Delivery time
-		$current = get_the_terms( $product->get_id(), 'product_delivery_time' );
-		$default = '';
+		$default                                 = $gzd_product->get_delivery_time( 'edit' );
+		$data['delivery_time']                   = $this->get_term_data( isset( $request['delivery_time'] ) ? $request['delivery_time'] : false, ( $default ? $default->term_id : false ) );
+		$data['country_specific_delivery_times'] = array();
 
-		if ( ! empty( $current ) ) {
-			$default = $current[0]->term_id;
+		$country_specific_delivery_times_current = $gzd_product->get_country_specific_delivery_times( 'edit' );
+
+		if ( isset( $request['country_specific_delivery_times'] ) ) {
+			foreach( (array) $request['country_specific_delivery_times'] as $delivery_time ) {
+				$country = isset( $delivery_time['country'] ) ? strtoupper( wc_clean( $delivery_time['country'] ) ) : '';
+
+				if ( ! empty( $country ) ) {
+					$default_slug = isset( $country_specific_delivery_times_current[ $country ] ) ? $country_specific_delivery_times_current[ $country ] : false;
+
+					$data['country_specific_delivery_times'][ $country ] = $this->get_term_data( $delivery_time, ( $default_slug ? $default_slug : false ) );
+				}
+			}
 		}
 
-		$data['delivery_time'] = $this->get_term_data( isset( $request['delivery_time'] ) ? $request['delivery_time'] : false, $default );
+		/**
+		 * Allow unsetting country specific delivery times in case the parameter is sent without content
+		 */
+		if ( ! isset( $request['country_specific_delivery_times'] ) || ! empty( $request['country_specific_delivery_times'] ) ) {
+			/**
+			 * Merge current data which might be missing within the request.
+			 */
+			$data['country_specific_delivery_times'] = array_replace_recursive( $country_specific_delivery_times_current, $data['country_specific_delivery_times'] );
+		}
 
 		// Price Labels + Unit
 		$meta_data = array(
@@ -510,7 +564,7 @@ class WC_GZD_REST_Products_Controller {
 		$data['is_rest'] = true;
 		$data['save']    = false;
 
-		$product = WC_Germanized_Meta_Box_Product_Data::save_product_data( $product, $data );
+		WC_Germanized_Meta_Box_Product_Data::save_product_data( $product, $data );
 
 		return $product;
 	}
@@ -531,7 +585,6 @@ class WC_GZD_REST_Products_Controller {
 	 * @return array
 	 */
 	private function get_product_data( $product ) {
-
 		$gzd_product = wc_gzd_get_product( $product );
 		$data        = array();
 
@@ -561,11 +614,14 @@ class WC_GZD_REST_Products_Controller {
 		$data['sale_price_regular_label'] = $this->prepare_term( WC_germanized()->price_labels->get_term_object( $gzd_product->get_sale_price_regular_label() ) );
 
 		// Delivery Time
-		$data['delivery_time'] = $this->prepare_term( $gzd_product->get_delivery_time_term() );
+		$data['delivery_time'] = $this->prepare_term( $gzd_product->get_default_delivery_time( 'edit' ) );
 
 		if ( ! empty( $data['delivery_time'] ) ) {
-			$data['delivery_time']['html'] = $gzd_product->get_delivery_time_html();
+			$data['delivery_time']['html'] = $gzd_product->get_delivery_time_html( 'edit' );
 		}
+
+		// Country specific delivery times
+		$data['country_specific_delivery_times'] = $this->prepare_country_specific_delivery_times( $gzd_product->get_country_specific_delivery_times( 'edit' ) );
 
 		// Shipping costs hidden?
 		$data['free_shipping'] = $gzd_product->has_free_shipping();
@@ -589,5 +645,23 @@ class WC_GZD_REST_Products_Controller {
 		}
 
 		return array();
+	}
+
+	private function prepare_country_specific_delivery_times( $terms ) {
+		$return = array();
+
+		foreach( $terms as $country => $slug ) {
+			if ( $term = get_term_by( 'slug', $slug, 'product_delivery_time' ) ) {
+				$term_data = $this->prepare_term( $term );
+
+				if ( ! empty( $term_data ) ) {
+					$term_data['country'] = $country;
+
+					$return[] = $term_data;
+				}
+			}
+		}
+
+		return $return;
 	}
 }

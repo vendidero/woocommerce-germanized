@@ -533,7 +533,9 @@ class WC_GZD_Admin {
 			'woocommerce-gzd-admin'
 		), WC_GERMANIZED_VERSION );
 
-		wp_register_script( 'wc-gzd-admin-product-variations', $admin_script_path . 'product-variations' . $suffix . '.js', array( 'wc-admin-variation-meta-boxes' ), WC_GERMANIZED_VERSION );
+		wp_register_script( 'wc-gzd-admin-product', $admin_script_path . 'product' . $suffix . '.js', array( 'wc-admin-product-meta-boxes' ), WC_GERMANIZED_VERSION );
+
+		wp_register_script( 'wc-gzd-admin-product-variations', $admin_script_path . 'product-variations' . $suffix . '.js', array( 'wc-gzd-admin-product', 'wc-admin-variation-meta-boxes' ), WC_GERMANIZED_VERSION );
 		wp_register_script( 'wc-gzd-admin-legal-checkboxes', $admin_script_path . 'legal-checkboxes' . $suffix . '.js', array(
 			'jquery',
 			'wp-util',
@@ -558,6 +560,7 @@ class WC_GZD_Admin {
 		);
 
 		if ( in_array( $screen->id, array( 'product', 'edit-product' ) ) ) {
+			wp_enqueue_script( 'wc-gzd-admin-product' );
 			wp_enqueue_script( 'wc-gzd-admin-product-variations' );
 		}
 

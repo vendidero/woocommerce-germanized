@@ -1172,3 +1172,10 @@ function wc_gzd_additional_costs_include_tax() {
 	 */
 	return ( wc_gzd_enable_additional_costs_split_tax_calculation() && apply_filters( 'woocommerce_gzd_additional_costs_include_tax', wc_prices_include_tax() ) );
 }
+
+function wc_gzd_base_country_is_eu() {
+	$eu_countries = WC()->countries->get_european_union_countries();
+	$base_country = wc_get_base_location()['country'];
+
+	return in_array( $base_country, $eu_countries );
+}

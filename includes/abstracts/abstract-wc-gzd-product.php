@@ -22,6 +22,13 @@ class WC_GZD_Product {
 	protected $child;
 
 	/**
+	 * @var null|WP_Term[]
+	 */
+	protected $delivery_times = null;
+
+	protected $delivery_times_need_update = false;
+
+	/**
 	 * Construct new WC_GZD_Product
 	 *
 	 * @param WC_Product $product
@@ -860,7 +867,6 @@ class WC_GZD_Product {
 	 * @return string
 	 */
 	public function get_unit_product_html() {
-
 		/**
 		 * Filter that allows disabling product units output for a specific product.
 		 *
@@ -910,26 +916,263 @@ class WC_GZD_Product {
 	}
 
 	/**
+	 * @return WP_Term[]
+	 */
+	public function get_delivery_times( $context = 'view' ) {
+		if ( is_null( $this->delivery_times ) ) {
+			$slugs        = $this->get_delivery_time_slugs( $context );
+			$cached_terms = array();
+
+			foreach( $slugs as $slug ) {
+				$term = get_term_by( 'slug', $slug, 'product_delivery_time' );
+
+				if ( is_wp_error( $term ) || empty( $term ) ) {
+					continue;
+				}
+
+				$cached_terms[ $term->slug ] = $term;
+			}
+
+			$this->delivery_times = $cached_terms;
+		}
+
+		return $this->delivery_times;
+	}
+
+	public function get_delivery_time_slugs( $context = 'view' ) {
+		/**
+		 * Normally (view context) we are using the term relationship model to retrieve
+		 * the delivery times mapped to the product. While saving we are using the props model
+		 * to enable saving the current object state.
+		 */
+		if ( 'save' === $context || $this->delivery_times_need_update() ) {
+			$slugs = false;
+
+			if ( $this->delivery_times_need_update() ) {
+				$slugs            = array();
+				$default_slug     = $this->get_default_delivery_time_slug( 'save' );
+				$country_specific = array_values( array_unique( $this->get_country_specific_delivery_times( 'save' ) ) );
+
+				if ( ! empty( $default_slug ) ) {
+					$slugs = array_merge( array( $default_slug ), $slugs );
+				}
+
+				if ( ! empty( $country_specific ) ) {
+					$slugs = array_merge( $country_specific, $slugs );
+				}
+
+				$slugs = array_unique( $slugs );
+			}
+
+			return $slugs;
+		} else {
+			$object_id = $this->get_wc_product()->get_id();
+			$terms     = get_the_terms( $object_id, 'product_delivery_time' );
+
+			if ( false === $terms || is_wp_error( $terms ) ) {
+				return array();
+			}
+
+			return wp_list_pluck( $terms, 'slug' );
+		}
+	}
+
+	protected function set_delivery_time_slugs( $slugs ) {
+		$slugs = wc_gzd_get_valid_product_delivery_time_slugs( $slugs );
+
+		$this->set_prop( 'delivery_time_slugs', array_unique( array_map( 'sanitize_title', $slugs ) ) );
+		$this->delivery_times = null;
+	}
+
+	public function delivery_times_need_update() {
+		return $this->delivery_times_need_update;
+	}
+
+	public function set_delivery_times_need_update( $need_update = true ) {
+		$this->delivery_times_need_update = $need_update;
+	}
+
+	protected function maybe_add_delivery_time_slug( $slug ) {
+		$slugs = '' === $this->get_delivery_time_slugs( 'save' ) ? array() : (array) $this->get_delivery_time_slugs( 'save' );
+		$slug  = sanitize_title( $slug );
+
+		if ( ! in_array( $slug, $slugs ) ) {
+			$slugs[] = $slug;
+			$this->set_delivery_time_slugs( $slugs );
+		}
+	}
+
+	public function set_default_delivery_time_slug( $slug ) {
+		$slug    = wc_gzd_get_valid_product_delivery_time_slugs( $slug );
+		$current = $this->get_default_delivery_time_slug();
+
+		$this->set_prop( 'default_delivery_time', $slug );
+
+		if ( $current !== $slug ) {
+			$this->set_delivery_times_need_update();
+		}
+	}
+
+	/**
 	 * Returns the current products delivery time term without falling back to default term
 	 *
-	 * @return bool|object false returns false if term does not exist otherwise returns term object
+	 * @return false|WP_Term false returns false if term does not exist otherwise returns term object
 	 */
 	public function get_delivery_time( $context = 'view' ) {
-		$terms = get_the_terms( $this->child->get_id(), 'product_delivery_time' );
+		/**
+		 * Use the edit context to disable global setting fallback
+		 */
+		$delivery_time = $this->get_default_delivery_time( $context );
 
-		if ( 'view' === $context && ( empty( $terms ) && $this->child->is_type( 'variation' ) ) ) {
-			$parent_terms = get_the_terms( $this->child->get_parent_id(), 'product_delivery_time' );
+		if ( 'view' === $context && WC()->customer ) {
+			$country = '' === WC()->customer->get_shipping_country() ? WC()->customer->get_billing_country() : WC()->customer->get_shipping_country();
 
-			if ( ! empty( $parent_terms ) && ! is_wp_error( $parent_terms ) ) {
-				$terms = $parent_terms;
+			if ( ! empty( $country ) ) {
+				$delivery_time_country = $this->get_delivery_time_by_country( $country );
+
+				if ( $delivery_time_country ) {
+					$delivery_time = $delivery_time_country;
+				}
 			}
 		}
 
-		if ( is_wp_error( $terms ) || empty( $terms ) ) {
+		return $delivery_time;
+	}
+
+	public function get_default_delivery_time_slug( $context = 'view' ) {
+		return $this->get_prop( "default_delivery_time", $context );
+	}
+
+	public function get_gzd_version( $context = 'view' ) {
+		return $this->get_prop( "gzd_version", $context );
+	}
+
+	/**
+	 * @param string $context
+	 *
+	 * @return false|WP_Term
+	 *
+	 * @TODO Needs version_compare adjustment
+	 */
+	public function get_default_delivery_time( $context = 'view' ) {
+		$default_slug  = $this->get_default_delivery_time_slug( $context );
+		$times         = $this->get_delivery_times( $context );
+		$delivery_time = false;
+
+		/**
+		 * In case of older Germanized version which did not support multiple delivery times per product (e.g. per country)
+		 * the default delivery time matches the first (only) delivery time set for the product.
+		 *
+		 * Newer versions include a separate meta field (_default_delivery_time) to indicate the default delivery time.
+		 */
+		if ( ! empty( $default_slug ) && array_key_exists( $default_slug, $times ) ) {
+			$delivery_time = $times[ $default_slug ];
+		} elseif ( ( empty( $this->get_gzd_version() ) || version_compare( $this->get_gzd_version(), '3.5.3', '<' ) ) && ! empty( $times ) ) {
+			$delivery_time = array_values( $times )[0];
+		}
+
+		/**
+		 * Use a global default delivery time from settings as a fallback in case no default delivery time was selected for this product.
+		 */
+		if ( 'view' === $context && ( empty( $delivery_time ) && get_option( 'woocommerce_gzd_default_delivery_time' ) && ! $this->is_downloadable() ) ) {
+			$delivery_time = array( get_term_by( 'id', get_option( 'woocommerce_gzd_default_delivery_time' ), 'product_delivery_time' ) );
+
+			if ( is_array( $delivery_time ) ) {
+				$delivery_time = array_values( $delivery_time )[0];
+			}
+
+			if ( is_wp_error( $delivery_time ) ) {
+				$delivery_time = false;
+			}
+		}
+
+		return $delivery_time;
+	}
+
+	public function get_country_specific_delivery_times( $context = 'view' ) {
+		$countries = $this->get_prop( "delivery_time_countries", $context );
+		$countries = ( ! is_array( $countries ) || empty( $countries ) ) ? array() : $countries;
+
+		ksort( $countries );
+
+		return $countries;
+	}
+
+	public function set_gzd_version( $version ) {
+		$this->set_prop( "gzd_version", $version );
+	}
+
+	protected function is_valid_country_specific_delivery_time( $slug, $country ) {
+		$default_slug = $this->get_default_delivery_time_slug();
+
+		if ( $slug === $default_slug || $country === wc_get_base_location()['country'] ) {
 			return false;
 		}
 
-		return $terms[0];
+		return true;
+	}
+
+	public function set_country_specific_delivery_times( $terms ) {
+		$current = $this->get_country_specific_delivery_times();
+		$terms   = wc_gzd_get_valid_product_delivery_time_slugs( $terms );
+
+		foreach( $terms as $country => $slug ) {
+			if ( ! $this->is_valid_country_specific_delivery_time( $slug, $country ) ) {
+				unset( $terms[ $country ] );
+			}
+		}
+
+		ksort($terms );
+
+		$this->set_prop( "delivery_time_countries", $terms );
+		$this->delivery_times = null;
+
+		if ( $current !== $terms ) {
+			$this->set_delivery_times_need_update();
+		}
+	}
+
+	public function get_delivery_time_by_country( $country = '', $context = 'view' ) {
+		$countries          = $this->get_country_specific_delivery_times( $context );
+		$times              = $this->get_delivery_times( $context );
+		$delivery_time      = false;
+		$eu_countries       = WC()->countries->get_european_union_countries();
+		$base_country       = wc_get_base_location()['country'];
+		$delivery_time_slug = false;
+
+		/**
+		 * EU-wide delivery times in case target country does not match base country
+		 */
+		if ( in_array( $country, $eu_countries ) && $base_country !== $country && array_key_exists( 'EU-wide', $countries ) ) {
+			$delivery_time_slug = $countries['EU-wide'];
+		}
+
+		/**
+		 * Non-EU-wide delivery times in case target country does not match base country
+		 */
+		if ( ! in_array( $country, $eu_countries ) && $base_country !== $country && array_key_exists( 'Non-EU-wide', $countries ) ) {
+			$delivery_time_slug = $countries['Non-EU-wide'];
+		}
+
+		/**
+		 * Allow overriding by custom country rules
+		 */
+		if ( array_key_exists( $country, $countries ) ) {
+			$delivery_time_slug = $countries[ $country ];
+		}
+
+		/**
+		 * Make sure delivery time is related to product
+		 */
+		if ( $delivery_time_slug && array_key_exists( $delivery_time_slug, $times ) ) {
+			$delivery_time = $times[ $delivery_time_slug ];
+		}
+
+		if ( 'view' === $context && ! $delivery_time ) {
+			$delivery_time = $this->get_default_delivery_time();
+		}
+
+		return $delivery_time;
 	}
 
 	/**
@@ -938,23 +1181,13 @@ class WC_GZD_Product {
 	 * @return WP_Term|false
 	 */
 	public function get_delivery_time_term( $context = 'view' ) {
-		$delivery_time = $this->get_delivery_time();
-
-		if ( 'view' === $context && ( empty( $delivery_time ) && get_option( 'woocommerce_gzd_default_delivery_time' ) && ! $this->is_downloadable() ) ) {
-
-			$delivery_time = array( get_term_by( 'id', get_option( 'woocommerce_gzd_default_delivery_time' ), 'product_delivery_time' ) );
-
-			if ( is_array( $delivery_time ) ) {
-				array_values( $delivery_time );
-				$delivery_time = $delivery_time[0];
-			}
-		}
+		$delivery_time = $this->get_delivery_time( $context );
 
 		return ( ! is_wp_error( $delivery_time ) && ! empty( $delivery_time ) ) ? $delivery_time : false;
 	}
 
 	public function get_delivery_time_name( $context = 'view' ) {
-		if ( $term = $this->get_delivery_time_term( $context ) ) {
+		if ( $term = $this->get_delivery_time( $context ) ) {
 			return $term->name;
 		}
 
@@ -966,7 +1199,7 @@ class WC_GZD_Product {
 	 *
 	 * @return string
 	 */
-	public function get_delivery_time_html() {
+	public function get_delivery_time_html( $context = 'view' ) {
 		$html = '';
 
 		/**
@@ -994,8 +1227,8 @@ class WC_GZD_Product {
 			return '';
 		}
 
-		if ( $this->get_delivery_time_term() ) {
-			$html = $this->get_delivery_time_name();
+		if ( $this->get_delivery_time( $context ) ) {
+			$html = $this->get_delivery_time_name( $context );
 		} else {
 			/**
 			 * Filter to adjust empty delivery time text.

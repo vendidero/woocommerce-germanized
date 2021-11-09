@@ -42,8 +42,8 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 		$gzd_product = wc_gzd_get_product( $_product );
 		$is_service  = $gzd_product->get_service();
 		?>
-        <label><input type="checkbox" class="checkbox variable_service"
-                      name="variable_service[<?php echo $loop; ?>]" <?php checked( $is_service ? 'yes' : 'no', 'yes' ); ?> /> <?php _e( 'Service', 'woocommerce-germanized' ); ?> <?php echo wc_help_tip( __( 'Service products do not sell physical products.', 'woocommerce-germanized' ) ); ?>
+        <label>
+            <input type="checkbox" class="checkbox variable_service" name="variable_service[<?php echo $loop; ?>]" <?php checked( $is_service ? 'yes' : 'no', 'yes' ); ?> /> <?php _e( 'Service', 'woocommerce-germanized' ); ?> <?php echo wc_help_tip( __( 'Service products do not sell physical products.', 'woocommerce-germanized' ) ); ?>
         </label>
 		<?php
 	}
@@ -60,14 +60,15 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 	}
 
 	public static function output( $loop, $variation_data, $variation ) {
-		$_product           = wc_get_product( $variation );
-		$_parent            = wc_get_product( $_product->get_parent_id() );
-		$gzd_product        = wc_gzd_get_product( $_product );
-		$gzd_parent_product = wc_gzd_get_product( $_parent );
-		$delivery_time      = $gzd_product->get_delivery_time( 'edit' );
-
+		$_product                  = wc_get_product( $variation );
+		$_parent                   = wc_get_product( $_product->get_parent_id() );
+		$gzd_product               = wc_gzd_get_product( $_product );
+		$gzd_parent_product        = wc_gzd_get_product( $_parent );
+		$delivery_time             = $gzd_product->get_delivery_time( 'edit' );
+		$countries_left            = WC_Germanized_Meta_Box_Product_Data::get_available_delivery_time_countries();
+		$delivery_times            = $gzd_product->get_delivery_times( 'edit' );
+		$delivery_times_by_country = $gzd_product->get_country_specific_delivery_times( 'edit' );
 		?>
-
         <div class="variable_pricing_labels">
             <p class="form-row form-row-first">
                 <label><?php _e( 'Sale Label', 'woocommerce-germanized' ); ?></label>
@@ -92,12 +93,9 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 
         <div class="variable_pricing_unit">
             <p class="form-row form-row-first">
-                <input type="hidden" name="variable_parent_unit_product[<?php echo $loop; ?>]"
-                       class="wc-gzd-parent-unit_product" value=""/>
-                <input type="hidden" name="variable_parent_unit[<?php echo $loop; ?>]" class="wc-gzd-parent-unit"
-                       value=""/>
-                <input type="hidden" name="variable_parent_unit_base[<?php echo $loop; ?>]"
-                       class="wc-gzd-parent-unit_base" value=""/>
+                <input type="hidden" name="variable_parent_unit_product[<?php echo $loop; ?>]" class="wc-gzd-parent-unit_product" value=""/>
+                <input type="hidden" name="variable_parent_unit[<?php echo $loop; ?>]" class="wc-gzd-parent-unit" value=""/>
+                <input type="hidden" name="variable_parent_unit_base[<?php echo $loop; ?>]" class="wc-gzd-parent-unit_base" value=""/>
 
                 <label for="variable_unit_product"><?php echo __( 'Product Units', 'woocommerce-germanized' ); ?><?php echo wc_help_tip( __( 'Number of units included per default product price. Example: 1000 ml. Leave blank to use parent value.', 'woocommerce-germanized' ) ); ?></label>
                 <input class="input-text wc_input_decimal" size="6" type="text"
@@ -134,21 +132,79 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
             </p>
         </div>
         <div class="variable_shipping_time variable_delivery_time <?php echo esc_attr( self::get_delivery_time_wrapper_classes() ); ?>">
-            <p class="form-row form-row-first">
+            <p class="form-row form-row-full">
                 <label for="delivery_time"><?php _e( 'Delivery Time', 'woocommerce-germanized' ); ?></label>
-
-				<?php WC_Germanized_Meta_Box_Product_Data::output_delivery_time_select2( array(
-					'name'        => 'variable_delivery_time[' . $loop . ']',
-					'id'          => 'variable_delivery_time_' . $loop,
-					'placeholder' => __( 'Same as parent', 'woocommerce-germanized' ),
-					'term'        => $delivery_time,
-					'style'       => 'width: 100%',
-				) ); ?>
+				<?php
+                    WC_Germanized_Meta_Box_Product_Data::output_delivery_time_select2( array(
+                        'name'        => 'variable_delivery_time[' . $loop . ']',
+                        'id'          => 'variable_delivery_time_' . $loop,
+                        'placeholder' => __( 'Same as parent', 'woocommerce-germanized' ),
+                        'term'        => $delivery_time,
+                        'style'       => 'width: 100%',
+                    ) );
+                ?>
             </p>
+
+	        <?php if ( ! empty( $delivery_times_by_country ) ) {
+		        foreach( $delivery_times_by_country as $country => $term_slug ) {
+			        $countries_left = array_diff_key( $countries_left, array( $country => '' ) );
+			        ?>
+                    <p class="form-row form-row-full wc-gzd-country-specific-delivery-time-field wc-gzd-country-specific-delivery-time-field-variation">
+                        <label for="country_specific_delivery_times-<?php echo esc_attr( $country ); ?>"><?php printf( __( 'Delivery Time (%s)', 'woocommerce-germanized' ), esc_html( WC_Germanized_Meta_Box_Product_Data::get_label_by_delivery_time_country( $country )  ) ); ?></label>
+				        <?php
+                            WC_Germanized_Meta_Box_Product_Data::output_delivery_time_select2( array(
+                                'name'        => "variable_country_specific_delivery_times[{$loop}][{$country}]",
+                                'placeholder' => __( 'Same as parent', 'woocommerce-germanized' ),
+                                'term'        => $delivery_times[ $term_slug ],
+                                'id'          => "variable_country_specific_delivery_times{$loop}-" . esc_attr( $country ),
+                                'style'       => 'width: 100%',
+                            ) );
+				        ?>
+                        <span class="description">
+                        <a href="#" class="dashicons dashicons-no-alt wc-gzd-remove-country-specific-delivery-time"><?php _e( 'remove', 'woocommerce-germanized' ); ?></a>
+                    </span>
+                    </p>
+			        <?php
+		        }
+	        } ?>
+
+	        <?php if ( ! empty( $countries_left ) ) : ?>
+
+                <div class="wc-gzd-new-country-specific-delivery-time-placeholder"></div>
+
+                <p class="form-row wc-gzd-add-country-specific-delivery-time">
+                    <label>&nbsp;</label>
+                    <a href="#" class="wc-gzd-add-new-country-specific-delivery-time">+ <?php _e( 'Add country-specific delivery time', 'woocommerce-germanized' ); ?></a>
+                </p>
+
+                <div class="wc-gzd-add-country-specific-delivery-time-template">
+                    <p class="form-row form-row-full wc-gzd-country-specific-delivery-time-field wc-gzd-country-specific-delivery-time-field-variation wc-gzd-add-country-specific-delivery-time-field-variation">
+                        <label for="country_specific_delivery_times">
+                            <select class="enhanced select short" name="variable_new_country_specific_delivery_times_countries[<?php echo $loop; ?>][]">
+                                <option value="" selected="selected"><?php _e( 'Select country', 'woocommerce-germanized' ); ?></option>
+                                <?php
+                                foreach ( $countries_left as $country_code => $country_name ) {
+                                    echo '<option value="' . esc_attr( $country_code ) . '">' . esc_html( $country_name ) . '</option>';
+                                }
+                                ?>
+                            </select>
+                        </label>
+                        <?php
+                            WC_Germanized_Meta_Box_Product_Data::output_delivery_time_select2( array(
+                                'name'        => "variable_new_country_specific_delivery_times_terms[{$loop}][]",
+                                'placeholder' => __( 'Search for a delivery time&hellip;', 'woocommerce-germanized' ),
+                            ) );
+                        ?>
+                        <span class="description">
+                            <a href="#" class="dashicons dashicons-no-alt wc-gzd-remove-country-specific-delivery-time"><?php _e( 'remove', 'woocommerce-germanized' ); ?></a>
+                        </span>
+                    </p>
+                </div>
+            <?php endif; ?>
         </div>
 
         <div class="variable_min_age">
-            <p class="form-row form-row-last">
+            <p class="form-row form-row-full">
                 <label><?php _e( 'Minimum Age', 'woocommerce-germanized' ); ?></label>
                 <select name="variable_min_age[<?php echo $loop; ?>]">
                     <option value="" <?php selected( $gzd_product->get_min_age( 'edit' ) === '', true ); ?>><?php _e( 'Same as Parent', 'woocommerce-germanized' ); ?></option>
@@ -163,29 +219,32 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
             <p class="form-row form-row-full">
                 <label for="variable_mini_desc"><?php echo __( 'Optional Mini Description', 'woocommerce-germanized' ); ?></label>
                 <textarea rows="3" style="width: 100%" name="variable_mini_desc[<?php echo $loop; ?>]"
-                          id="variable_mini_desc_<?php echo $loop; ?>"
-                          class="variable_mini_desc"><?php echo htmlspecialchars_decode( $gzd_product->get_mini_desc( 'edit' ) ); ?></textarea>
+                      id="variable_mini_desc_<?php echo $loop; ?>"
+                      class="variable_mini_desc"><?php echo htmlspecialchars_decode( $gzd_product->get_mini_desc( 'edit' ) ); ?>
+                </textarea>
             </p>
         </div>
 		<?php
 	}
 
 	public static function save( $variation_id, $i ) {
-
 		$data = array(
-			'_unit_product'             => '',
-			'_unit_price_auto'          => '',
-			'_unit_price_regular'       => '',
-			'_sale_price_label'         => '',
-			'_sale_price_regular_label' => '',
-			'_unit_price_sale'          => '',
-			'_parent_unit_product'      => '',
-			'_parent_unit'              => '',
-			'_parent_unit_base'         => '',
-			'_mini_desc'                => '',
-			'_service'                  => '',
-			'delivery_time'             => '',
-			'_min_age'                  => '',
+			'_unit_product'                                 => '',
+			'_unit_price_auto'                              => '',
+			'_unit_price_regular'                           => '',
+			'_sale_price_label'                             => '',
+			'_sale_price_regular_label'                     => '',
+			'_unit_price_sale'                              => '',
+			'_parent_unit_product'                          => '',
+			'_parent_unit'                                  => '',
+			'_parent_unit_base'                             => '',
+			'_mini_desc'                                    => '',
+			'_service'                                      => '',
+			'delivery_time'                                 => '',
+			'country_specific_delivery_times'               => '',
+			'new_country_specific_delivery_times_countries' => '',
+			'new_country_specific_delivery_times_terms'     => '',
+			'_min_age'                                      => '',
 		);
 
 		foreach ( $data as $k => $v ) {
@@ -215,7 +274,7 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 		$data['_sale_price_dates_to']   = $_POST['variable_sale_price_dates_to'][ $i ];
 		$data['_sale_price']            = $_POST['variable_sale_price'][ $i ];
 
-		$product = WC_Germanized_Meta_Box_Product_Data::save_product_data( $product, $data, true );
+		WC_Germanized_Meta_Box_Product_Data::save_product_data( $product, $data, true );
 	}
 }
 
