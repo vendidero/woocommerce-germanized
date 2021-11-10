@@ -1175,7 +1175,7 @@ function wc_gzd_additional_costs_include_tax() {
 
 function wc_gzd_base_country_is_eu() {
 	$eu_countries = WC()->countries->get_european_union_countries();
-	$base_country = wc_get_base_location()['country'];
+	$base_country = WC()->countries->get_base_country();
 
 	return in_array( $base_country, $eu_countries );
 }

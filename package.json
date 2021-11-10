@@ -44,7 +44,10 @@
     "grunt-sass": "^3.0.2",
     "grunt-shell": "^3.0.1",
     "grunt-wp-i18n": "^1.0.3",
-    "node-sass": ">=4.13.1",
+    "node-sass": "^6.0.1",
+    "set-value": ">=4.0.1",
+    "glob-parent": ">=5.1.2",
+    "trim": ">=0.0.3",
     "prettier": "github:automattic/calypso-prettier#c56b4251",
     "spectre.css": "*"
   },

@@ -48,24 +48,7 @@ class WC_Germanized_Meta_Box_Product_Data {
 	 */
 	public static function update_terms( $product ) {
 	    if ( $gzd_product = wc_gzd_get_gzd_product( $product ) ) {
-		    /**
-		     * Update delivery time term slugs if they have been explicitly set during the
-             * save request.
-		     */
-		    $slugs = $gzd_product->get_delivery_time_slugs( 'save' );
-
-		    if ( false !== $slugs ) {
-		        $slugs = array_unique( array_map( 'sanitize_title', $slugs ) );
-
-		        if ( empty( $slugs ) ) {
-			        wp_delete_object_term_relationships( $product->get_id(), 'product_delivery_time' );
-                } else {
-			        wp_set_post_terms( $product->get_id(), $slugs, 'product_delivery_time', false );
-                }
-
-		        $gzd_product->set_delivery_times_need_update( false );
-			    $product->save();
-		    }
+		    $gzd_product->save();
         }
     }
 
@@ -284,7 +267,7 @@ class WC_Germanized_Meta_Box_Product_Data {
 
 	public static function get_available_delivery_time_countries() {
 	    $countries    = WC()->countries->get_shipping_countries();
-		$base_country = wc_get_base_location()['country'];
+		$base_country = WC()->countries->get_base_country();
 
 		if ( array_key_exists( $base_country, $countries ) ) {
 		    unset( $countries[ $base_country] );

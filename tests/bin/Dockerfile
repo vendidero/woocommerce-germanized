@@ -3,8 +3,8 @@ FROM wordpress:latest
 CMD echo "Installing dependencies..."
 
 RUN apt-get update && \
-	apt-get -y install subversion unzip wget git-all && \
-	apt-get -y install mariadb-client
+	apt-get -f -y install subversion unzip wget git && \
+	apt-get -f -y install mariadb-client
 
 CMD echo "Installing tests..."
 

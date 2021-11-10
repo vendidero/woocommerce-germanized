@@ -992,16 +992,6 @@ class WC_GZD_Product {
 		$this->delivery_times_need_update = $need_update;
 	}
 
-	protected function maybe_add_delivery_time_slug( $slug ) {
-		$slugs = '' === $this->get_delivery_time_slugs( 'save' ) ? array() : (array) $this->get_delivery_time_slugs( 'save' );
-		$slug  = sanitize_title( $slug );
-
-		if ( ! in_array( $slug, $slugs ) ) {
-			$slugs[] = $slug;
-			$this->set_delivery_time_slugs( $slugs );
-		}
-	}
-
 	public function set_default_delivery_time_slug( $slug ) {
 		$slug    = wc_gzd_get_valid_product_delivery_time_slugs( $slug );
 		$current = $this->get_default_delivery_time_slug();
@@ -1011,6 +1001,18 @@ class WC_GZD_Product {
 		if ( $current !== $slug ) {
 			$this->set_delivery_times_need_update();
 		}
+	}
+
+	protected function get_current_customer_shipping_country() {
+		$country = false;
+
+		if ( WC()->customer ) {
+			$country = '' === WC()->customer->get_shipping_country() ? WC()->customer->get_billing_country() : WC()->customer->get_shipping_country();
+		} elseif ( 'base' === get_option( 'woocommerce_default_customer_address' ) ) {
+			$country = WC()->countries->get_base_country();
+		}
+
+		return empty( $country ) ? false : $country;
 	}
 
 	/**
@@ -1024,10 +1026,8 @@ class WC_GZD_Product {
 		 */
 		$delivery_time = $this->get_default_delivery_time( $context );
 
-		if ( 'view' === $context && WC()->customer ) {
-			$country = '' === WC()->customer->get_shipping_country() ? WC()->customer->get_billing_country() : WC()->customer->get_shipping_country();
-
-			if ( ! empty( $country ) ) {
+		if ( 'view' === $context ) {
+			if ( $country = $this->get_current_customer_shipping_country() ) {
 				$delivery_time_country = $this->get_delivery_time_by_country( $country );
 
 				if ( $delivery_time_country ) {
@@ -1051,8 +1051,6 @@ class WC_GZD_Product {
 	 * @param string $context
 	 *
 	 * @return false|WP_Term
-	 *
-	 * @TODO Needs version_compare adjustment
 	 */
 	public function get_default_delivery_time( $context = 'view' ) {
 		$default_slug  = $this->get_default_delivery_time_slug( $context );
@@ -1067,18 +1065,33 @@ class WC_GZD_Product {
 		 */
 		if ( ! empty( $default_slug ) && array_key_exists( $default_slug, $times ) ) {
 			$delivery_time = $times[ $default_slug ];
-		} elseif ( ( empty( $this->get_gzd_version() ) || version_compare( $this->get_gzd_version(), '3.5.3', '<' ) ) && ! empty( $times ) ) {
+		} elseif ( ( empty( $this->get_gzd_version() ) || version_compare( $this->get_gzd_version(), '3.7.0', '<' ) ) && ! empty( $times ) ) {
 			$delivery_time = array_values( $times )[0];
 		}
 
 		/**
 		 * Use a global default delivery time from settings as a fallback in case no default delivery time was selected for this product.
 		 */
-		if ( 'view' === $context && ( empty( $delivery_time ) && get_option( 'woocommerce_gzd_default_delivery_time' ) && ! $this->is_downloadable() ) ) {
-			$delivery_time = array( get_term_by( 'id', get_option( 'woocommerce_gzd_default_delivery_time' ), 'product_delivery_time' ) );
+		if ( 'view' === $context && ( empty( $delivery_time ) && ! $this->is_downloadable() ) ) {
+			$eu_countries   = WC()->countries->get_european_union_countries();
+			$base_country   = WC()->countries->get_base_country();
+			$delivery_time  = false;
+			$default_option = false;
 
-			if ( is_array( $delivery_time ) ) {
-				$delivery_time = array_values( $delivery_time )[0];
+			if ( ( $country = $this->get_current_customer_shipping_country() ) && $base_country !== $country ) {
+				if ( in_array( $country, $eu_countries ) ) {
+					$default_option = get_option( 'woocommerce_gzd_default_delivery_time_eu' );
+				} elseif ( ! in_array( $country, $eu_countries ) ) {
+					$default_option = get_option( 'woocommerce_gzd_default_delivery_time_third_countries' );
+				}
+
+				if ( $default_option ) {
+					$delivery_time = get_term_by( 'id', $default_option, 'product_delivery_time' );
+				}
+			}
+
+			if ( ! $delivery_time && get_option( 'woocommerce_gzd_default_delivery_time' ) ) {
+				$delivery_time = get_term_by( 'id', get_option( 'woocommerce_gzd_default_delivery_time' ), 'product_delivery_time' );
 			}
 
 			if ( is_wp_error( $delivery_time ) ) {
@@ -1105,7 +1118,7 @@ class WC_GZD_Product {
 	protected function is_valid_country_specific_delivery_time( $slug, $country ) {
 		$default_slug = $this->get_default_delivery_time_slug();
 
-		if ( $slug === $default_slug || $country === wc_get_base_location()['country'] ) {
+		if ( $slug === $default_slug || $country === WC()->countries->get_base_country() ) {
 			return false;
 		}
 
@@ -1137,7 +1150,7 @@ class WC_GZD_Product {
 		$times              = $this->get_delivery_times( $context );
 		$delivery_time      = false;
 		$eu_countries       = WC()->countries->get_european_union_countries();
-		$base_country       = wc_get_base_location()['country'];
+		$base_country       = WC()->countries->get_base_country();
 		$delivery_time_slug = false;
 
 		/**
@@ -1169,7 +1182,7 @@ class WC_GZD_Product {
 		}
 
 		if ( 'view' === $context && ! $delivery_time ) {
-			$delivery_time = $this->get_default_delivery_time();
+			$delivery_time = $this->get_default_delivery_time( $context );
 		}
 
 		return $delivery_time;
@@ -1342,6 +1355,32 @@ class WC_GZD_Product {
 		}
 
 		return wc_gzd_get_shipping_costs_text( $this );
+	}
+
+	public function save() {
+		/**
+		 * Update delivery time term slugs if they have been explicitly set during the
+		 * save request.
+		 */
+		$slugs = $this->get_delivery_time_slugs( 'save' );
+
+		if ( false !== $slugs ) {
+			$this->set_delivery_times_need_update( false );
+
+			$id = $this->child->save();
+		}
+
+		if ( false !== $slugs && $id ) {
+			$slugs = array_unique( array_map( 'sanitize_title', $slugs ) );
+
+			if ( empty( $slugs ) ) {
+				wp_delete_object_term_relationships( $id, 'product_delivery_time' );
+			} else {
+				wp_set_post_terms( $id, $slugs, 'product_delivery_time', false );
+			}
+
+			$this->delivery_times = null;
+		}
 	}
 }
 
