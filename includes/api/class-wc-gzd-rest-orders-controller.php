@@ -82,11 +82,11 @@ class WC_GZD_REST_Orders_Controller {
 	 */
 	public function save_update_order_data( $order, $request ) {
 		if ( isset( $request['billing']['title'] ) ) {
-			$order->update_meta_data( '_billing_title', absint( $request['billing']['title'] ) );
+			$order->update_meta_data( '_billing_title', wc_clean( $request['billing']['title'] ) );
 		}
 
 		if ( isset( $request['shipping']['title'] ) ) {
-			$order->update_meta_data( '_shipping_title', absint( $request['shipping']['title'] ) );
+			$order->update_meta_data( '_shipping_title', wc_clean( $request['shipping']['title'] ) );
 		}
 
 		if ( isset( $request['direct_debit'] ) ) {
@@ -136,16 +136,14 @@ class WC_GZD_REST_Orders_Controller {
 
 		$schema_properties['billing']['properties']['title'] = array(
 			'description' => __( 'Title', 'woocommerce-germanized' ),
-			'type'        => 'integer',
+			'type'        => 'string',
 			'context'     => array( 'view', 'edit' ),
-			'enum'        => array( 1, 2 )
 		);
 
 		$schema_properties['shipping']['properties']['title'] = array(
 			'description' => __( 'Title', 'woocommerce-germanized' ),
-			'type'        => 'integer',
+			'type'        => 'string',
 			'context'     => array( 'view', 'edit' ),
-			'enum'        => array( 1, 2 )
 		);
 
 		$schema_properties['parcel_delivery_opted_in'] = array(

@@ -1019,7 +1019,7 @@ class WC_GZD_Checkout {
 		if ( isset( $args['title'] ) ) {
 
 			if ( ! empty( $args['title'] ) ) {
-				$title = is_numeric( $args['title'] ) ? wc_gzd_get_customer_title( $args['title'] ) : $args['title'];
+				$title = wc_gzd_get_customer_title( $args['title'] );
 
 				/**
 				 * Ugly hack to force accusative in addresses

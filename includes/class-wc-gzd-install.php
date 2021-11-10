@@ -154,7 +154,7 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 
 			load_textdomain( 'woocommerce-germanized', $mofile );
 
-			if ( ! wc_gzd_get_dependencies()->is_woocommerce_activated() ) {
+			if ( ! wc_gzd_get_dependencies()->is_woocommerce_activated() || ! function_exists( 'WC' ) ) {
 				deactivate_plugins( WC_GERMANIZED_PLUGIN_FILE );
 				wp_die( sprintf( __( 'Please install <a href="%s" target="_blank">WooCommerce</a> before installing WooCommerce Germanized. Thank you!', 'woocommerce-germanized' ), 'http://wordpress.org/plugins/woocommerce/' ) );
 			}

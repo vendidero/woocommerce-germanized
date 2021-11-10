@@ -84,11 +84,11 @@ class WC_GZD_REST_Customers_Controller {
 		$customer = new WC_Customer( $user_data->ID );
 
 		if ( isset( $request['billing']['title'] ) ) {
-			$customer->update_meta_data( 'billing_title', absint( $request['billing']['title'] ) );
+			$customer->update_meta_data( 'billing_title', wc_clean( $request['billing']['title'] ) );
 		}
 
 		if ( isset( $request['shipping']['title'] ) ) {
-			$customer->update_meta_data( 'shipping_title', absint( $request['shipping']['title'] ) );
+			$customer->update_meta_data( 'shipping_title', wc_clean( $request['shipping']['title'] ) );
 		}
 
 		if ( isset( $request['direct_debit'] ) ) {

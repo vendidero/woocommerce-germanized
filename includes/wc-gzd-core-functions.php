@@ -643,7 +643,7 @@ function wc_gzd_get_customer_title_options() {
 }
 
 function wc_gzd_get_customer_title( $value ) {
-	$option = absint( $value );
+	$option = is_numeric( $value ) ? absint( $value ) : $value;
 	$titles = wc_gzd_get_customer_title_options();
 	$title  = '';
 
@@ -652,6 +652,8 @@ function wc_gzd_get_customer_title( $value ) {
 	} else {
 		if ( array_key_exists( $option, $titles ) ) {
 			$title = $titles[ $option ];
+		} elseif ( ! is_numeric( $title ) ) {
+			$title = $option;
 		} else {
 			$title = __( 'Ms.', 'woocommerce-germanized' );
 		}
