@@ -217,8 +217,7 @@ class WC_GZD_Product_Grouped extends WC_GZD_Product {
 		return $base;
 	}
 
-	public function get_delivery_time_html() {
-
+	public function get_delivery_time_html( $context = 'view' ) {
 		/**
 		 * Filter that decides whether to hide delivery time for grouped products or not.
 		 *
@@ -232,7 +231,7 @@ class WC_GZD_Product_Grouped extends WC_GZD_Product {
 			return '';
 		}
 
-		return parent::get_delivery_time_html();
+		return parent::get_delivery_time_html( $context );
 	}
 
 	/**
