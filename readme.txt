@@ -5,7 +5,7 @@ Requires at least: 5.4
 Tested up to: 5.8
 WC requires at least: 3.9
 WC tested up to: 5.9
-Stable tag: 3.6.3
+Stable tag: 3.7.0
 Requires PHP: 5.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -21,7 +21,7 @@ Users of [Germanized for WooCommerce Pro](https://vendidero.de/woocommerce-germa
 Germanized extends WooCommerce with typical german shop functionality: Delivery times, base prices, shipping costs and tax notices, options to attach legally relevant pages (e.g. terms, revocation page, privacy policy etc.) - even in emails, small business regulation notices and many more.
 Furthermore we customized the WooCommerce checkout to make your store meet the button solution. See a list of our features for further details:
 
-* *Delivery Times* - Add and edit delivery times for WooCommerce products. Optionally set a default delivery time as fallback. Disable delivery times for certain product types.
+* *Delivery Times* - Add and edit delivery times (optionally on a per-country base) for WooCommerce products. Set a default delivery time as fallback. Disable delivery times for certain product types.
 * *Small Business Regulation* - Show special tax notices if you are a operating a WooCommerce shop as a small business.
 * *Shipping Costs and Tax notices* - Display notices beneath your WooCommerce product prices and within cart/checkout/e-mails.
 * *Base Prices* - Display additional per unit prices for your products. Let unit prices be calculated automatically (Pro).
@@ -198,6 +198,16 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 6. Edit pdf documents (Pro)
 
 == Changelog ==
+= 3.7.0 =
+* Feature: Configure delivery times on a per-country base
+* Improvement: Support observing multiple price wrappers for unit price auto calculation
+* Improvement: Woo Bundles variable products compatibility
+* Improvement: Allow non-numerical customer titles
+* Improvement: Address data handling for (return) shipments
+* Improvement: Added additional VAT exempts for certain postcodes
+* Fix: Legal checkbox placeholder replacement
+* Fix: Tax rate import
+
 = 3.6.3 =
 * Improvement: Do not cache available packaging for non-persisted shipments
 * Improvement: Recalculate individually priced bundle unit price

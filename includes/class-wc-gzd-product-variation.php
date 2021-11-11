@@ -161,7 +161,7 @@ class WC_GZD_Product_Variation extends WC_GZD_Product {
 		$is_valid = parent::is_valid_country_specific_delivery_time( $slug, $country );
 
 		/**
-		 * Do now allow storing duplicate country-specific delivery times
+		 * Do now allow storing duplicate country specific delivery times
 		 */
 		if ( $is_valid && array_key_exists( $country, $delivery_times_parent ) && $delivery_times_parent[ $country ] == $slug ) {
 			$is_valid = false;

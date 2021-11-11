@@ -236,10 +236,10 @@ class WC_GZD_Admin_Welcome {
 
                 <div class="three-col columns">
                     <div class="col">
-                        <h4><span class="dashicons dashicons-archive"></span> Verpackungen</h4>
+                        <h4><span class="dashicons dashicons-admin-site"></span> Lieferzeiten je Land</h4>
                         <p>
-                            Mit Germanized 3.3 kannst du zu deinen Sendungen jetzt flexibel Verpackungsmaterial hinzufügen
-                            und damit das Gesamtgewicht der Sendungen (das z.B. für die Label-Erstellung benötigt wird) besser verwalten.
+                            Mit Germanized 3.7 kannst du jetzt optional abweichende Lieferzeiten je Land hinterlegen. Du kannst
+                            ebenfalls Lieferzeiten für alle EU-Länder bzw. Nicht-EU-Länder hinterlegen und <a href="<?php echo esc_url( admin_url( 'admin.php?page=wc-settings&tab=germanized-shopmarks&section=delivery_times' ) ); ?>">individuelle Fallbacks</a> dafür nutzen.
                         </p>
                     </div>
                     <div class="col">

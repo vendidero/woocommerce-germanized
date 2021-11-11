@@ -125,7 +125,7 @@ class WC_GZD_Product_Import {
 		$columns = array_merge( $columns, $this->get_columns() );
 		$country = str_replace( 'delivery_time:', '', $item );
 
-		$columns['delivery_time:' . $country] = __( 'Country-specific delivery times', 'woocommerce-germanized' );
+		$columns['delivery_time:' . $country] = __( 'Country specific delivery times', 'woocommerce-germanized' );
 
 		return $columns;
 	}

@@ -174,7 +174,7 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 
                 <p class="form-row wc-gzd-add-country-specific-delivery-time">
                     <label>&nbsp;</label>
-                    <a href="#" class="wc-gzd-add-new-country-specific-delivery-time">+ <?php _e( 'Add country-specific delivery time', 'woocommerce-germanized' ); ?></a>
+                    <a href="#" class="wc-gzd-add-new-country-specific-delivery-time">+ <?php _e( 'Add country specific delivery time', 'woocommerce-germanized' ); ?></a>
                 </p>
 
                 <div class="wc-gzd-add-country-specific-delivery-time-template">
