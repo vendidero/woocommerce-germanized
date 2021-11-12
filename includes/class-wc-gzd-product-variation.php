@@ -149,6 +149,27 @@ class WC_GZD_Product_Variation extends WC_GZD_Product {
 		$this->set_prop( 'differential_taxation', '' );
 	}
 
+	public function get_delivery_time_slugs( $context = 'view' ) {
+		$slugs = parent::get_delivery_time_slugs( $context );
+
+		if ( 'save' !== $context && ! $this->delivery_times_need_update() ) {
+			if ( $parent = $this->get_gzd_parent() ) {
+				$object_id = $parent->get_id();
+				$terms     = get_the_terms( $object_id, 'product_delivery_time' );
+
+				/**
+				 * Merge available delivery time slugs with parent slugs to make sure
+				 * to allow parent delivery time as fallback.
+				 */
+				if ( false !== $terms && ! is_wp_error( $terms ) ) {
+					$slugs = array_unique( array_merge( $slugs, wp_list_pluck( $terms, 'slug' ) ) );
+				}
+			}
+		}
+
+		return $slugs;
+	}
+
 	protected function is_valid_country_specific_delivery_time( $slug, $country ) {
 		$delivery_times_parent = array();
 		$default_parent        = false;

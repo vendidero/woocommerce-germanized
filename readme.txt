@@ -198,6 +198,9 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 6. Edit pdf documents (Pro)
 
 == Changelog ==
+= 3.7.1 =
+* Fix: Same as parent delivery time option for variations
+
 = 3.7.0 =
 * Feature: Configure delivery times on a per-country base
 * Improvement: Support observing multiple price wrappers for unit price auto calculation
