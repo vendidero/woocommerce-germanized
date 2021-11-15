@@ -592,6 +592,10 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 			// Product Attribute
 			include_once WC_GERMANIZED_ABSPATH . 'includes/class-wc-gzd-product-attribute.php';
 			include_once WC_GERMANIZED_ABSPATH . 'includes/class-wc-gzd-product-attribute-helper.php';
+
+			if ( defined( 'WP_CLI' ) && WP_CLI ) {
+				include_once WC_GERMANIZED_ABSPATH . 'includes/class-wc-gzd-cli.php';
+			}
 		}
 
 		public function is_frontend() {

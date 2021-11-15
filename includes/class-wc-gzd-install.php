@@ -305,9 +305,13 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 		/**
 		 * Update DB version to current
 		 */
-		private static function update_db_version( $version = null ) {
+		public static function update_db_version( $version = null ) {
 			delete_option( 'woocommerce_gzd_db_version' );
 			add_option( 'woocommerce_gzd_db_version', is_null( $version ) ? WC_germanized()->version : $version );
+		}
+
+		public static function get_db_update_callbacks() {
+			return self::$db_updates;
 		}
 
 		/**
