@@ -80,9 +80,10 @@
     };
 
     GermanizedVariationForm.prototype.onShowVariation = function( event, variation, purchasable ) {
-        var form              = event.data.GermanizedvariationForm,
-            $wrapper          = form.$wrapper,
-            hasPrice          = variation.price_html !== '';
+        var form            = event.data.GermanizedvariationForm,
+            $wrapper        = form.$wrapper,
+            hasCustomPrice  = variation.hasOwnProperty( 'price_html' ) && variation.price_html !== '',
+            hasDisplayPrice = variation.hasOwnProperty( 'display_price' ) && variation.display_price !== '';
         
         if ( $wrapper.find( '.org_product_info' ).length <= 0 ) {
 
@@ -111,7 +112,7 @@
             $wrapper.find( '.org_product_info' ).hide();
         }
 
-        if ( hasPrice && form.replacePrice ) {
+        if ( hasCustomPrice && form.replacePrice ) {
             form.$singleVariation.find( '.price' ).hide();
 
             $wrapper.find( wc_gzd_add_to_cart_variation_params.price_selector + ':not(.price-unit):visible:first' ).html( variation.price_html ).addClass( 'variation_modified' );
@@ -128,15 +129,15 @@
             $wrapper.find( 'p.delivery-time-info:first' ).html( variation.delivery_time ).addClass( 'variation_modified' ).show();
         }
 
-        if ( hasPrice && variation.tax_info !== '' ) {
+        if ( variation.tax_info !== '' && hasDisplayPrice ) {
             $wrapper.find( '.tax-info:first' ).html( variation.tax_info ).addClass('variation_modified').show();
         }
 
-        if ( hasPrice && variation.shipping_costs_info !== '' ) {
+        if ( variation.shipping_costs_info !== '' && hasDisplayPrice ) {
             $wrapper.find( '.shipping-costs-info:first' ).html( variation.shipping_costs_info ).addClass('variation_modified').show();
         }
 
-        if ( hasPrice && variation.unit_price !== '' ) {
+        if ( variation.unit_price !== '' && hasDisplayPrice ) {
 
             // Check if unit price for variable product exists and replace instead of insert
             if ( $wrapper.find( '.price-unit:first' ).length ) {
