@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce Germanized\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-11 14:12+0100\n"
-"PO-Revision-Date: 2021-11-11 14:12+0100\n"
+"POT-Creation-Date: 2021-11-17 11:53+0100\n"
+"PO-Revision-Date: 2021-11-17 11:55+0100\n"
 "Last-Translator: Dennis Nissle <info@vendidero.de>\n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -1098,7 +1098,7 @@ msgstr "Tracked"
 
 #: woocommerce-germanized-dhl/src/Api/ImWarenpostIntRest.php:45
 #: woocommerce-germanized-dhl/src/Api/ImWarenpostIntRest.php:51
-#: woocommerce-germanized-dhl/src/Api/Internetmarke.php:511
+#: woocommerce-germanized-dhl/src/Api/Internetmarke.php:537
 msgctxt "dhl"
 msgid "Error while fetching label PDF"
 msgstr "Fehler beim Download des PDF Labels"
@@ -1131,7 +1131,12 @@ msgctxt "dhl"
 msgid "Error during request: %s"
 msgstr "Fehler beim API Zugriff: %s"
 
-#: woocommerce-germanized-dhl/src/Api/Internetmarke.php:65
+#: woocommerce-germanized-dhl/src/Api/Internetmarke.php:64
+msgctxt "dhl"
+msgid "Internetmarke is disabled. Please enable Internetmarke."
+msgstr "Internetmarke ist deaktiviert. Bitte aktiviere die Internetmarke."
+
+#: woocommerce-germanized-dhl/src/Api/Internetmarke.php:72
 #: woocommerce-germanized-dhl/src/Api/Soap.php:54
 #: woocommerce-germanized-dhl/src/Package.php:103
 #, php-format
@@ -1146,69 +1151,64 @@ msgstr ""
 "Zweifel deinen Hoster und stelle sicher, dass der SOAPClient <a href=\"%s"
 "\">installiert</a> ist."
 
-#: woocommerce-germanized-dhl/src/Api/Internetmarke.php:70
+#: woocommerce-germanized-dhl/src/Api/Internetmarke.php:78
 #, php-format
 msgctxt "dhl"
 msgid "Error while instantiating main Internetmarke API: %s"
 msgstr "Fehler beim Aufruf der Internetmarke API: %s"
 
-#: woocommerce-germanized-dhl/src/Api/Internetmarke.php:74
-msgctxt "dhl"
-msgid "Internetmarke is disabled. Please enable Internetmarke."
-msgstr "Internetmarke ist deaktiviert. Bitte aktiviere die Internetmarke."
-
-#: woocommerce-germanized-dhl/src/Api/Internetmarke.php:89
+#: woocommerce-germanized-dhl/src/Api/Internetmarke.php:90
 msgctxt "dhl"
 msgid "Wrong username or password"
 msgstr "Falscher Benutzername oder Passwort"
 
-#: woocommerce-germanized-dhl/src/Api/Internetmarke.php:257
+#: woocommerce-germanized-dhl/src/Api/Internetmarke.php:277
 #, php-format
 msgctxt "dhl"
 msgid "until %s"
 msgstr "bis %s"
 
-#: woocommerce-germanized-dhl/src/Api/Internetmarke.php:358
+#: woocommerce-germanized-dhl/src/Api/Internetmarke.php:378
 #, php-format
 msgctxt "dhl"
 msgid "Length: %s"
 msgstr "Länge: %s"
 
-#: woocommerce-germanized-dhl/src/Api/Internetmarke.php:362
+#: woocommerce-germanized-dhl/src/Api/Internetmarke.php:382
 #, php-format
 msgctxt "dhl"
 msgid "Width: %s"
 msgstr "Breite: %s"
 
-#: woocommerce-germanized-dhl/src/Api/Internetmarke.php:366
+#: woocommerce-germanized-dhl/src/Api/Internetmarke.php:386
 #, php-format
 msgctxt "dhl"
 msgid "Height: %s"
 msgstr "Höhe: %s"
 
-#: woocommerce-germanized-dhl/src/Api/Internetmarke.php:370
+#: woocommerce-germanized-dhl/src/Api/Internetmarke.php:390
 #, php-format
 msgctxt "dhl"
 msgid "Weight: %s"
 msgstr "Gewicht: %s"
 
-#: woocommerce-germanized-dhl/src/Api/Internetmarke.php:375
+#: woocommerce-germanized-dhl/src/Api/Internetmarke.php:395
 msgctxt "dhl"
 msgid "Total"
 msgstr "Gesamt"
 
-#: woocommerce-germanized-dhl/src/Api/Internetmarke.php:565
+#: woocommerce-germanized-dhl/src/Api/Internetmarke.php:591
 #, php-format
 msgctxt "dhl"
 msgid "Could not refund post label: %s"
 msgstr "Deutsche Post Label konnte nicht rückerstattet werden: %s"
 
-#: woocommerce-germanized-dhl/src/Api/Internetmarke.php:579
+#: woocommerce-germanized-dhl/src/Api/Internetmarke.php:605
 msgctxt "dhl"
 msgid "Refund API could not be instantiated"
 msgstr "Die API für Rückerstattungen konnte nicht initialisiert werden"
 
-#: woocommerce-germanized-dhl/src/Api/Internetmarke.php:701
+#: woocommerce-germanized-dhl/src/Api/Internetmarke.php:727
 #: woocommerce-germanized-dhl/src/Api/LabelSoap.php:332
 #: woocommerce-germanized-dhl/src/Api/ReturnRest.php:34
 #, php-format
@@ -1216,12 +1216,12 @@ msgctxt "dhl"
 msgid "Could not fetch shipment %d."
 msgstr "Sendung %d konnte nicht gefunden werden."
 
-#: woocommerce-germanized-dhl/src/Api/Internetmarke.php:716
+#: woocommerce-germanized-dhl/src/Api/Internetmarke.php:742
 msgctxt "dhl"
 msgid "Error while generating shop order id."
 msgstr "Fehler beim Erzeugen der Shop Order Id."
 
-#: woocommerce-germanized-dhl/src/Api/Internetmarke.php:752
+#: woocommerce-germanized-dhl/src/Api/Internetmarke.php:778
 #, php-format
 msgctxt "dhl"
 msgid ""
@@ -1231,12 +1231,12 @@ msgstr ""
 "Fehler beim Kauf des Labels. Bitte <a href=\"%s\">aktualisiere</a>die "
 "Produktliste manuell und versuche es erneut."
 
-#: woocommerce-germanized-dhl/src/Api/Internetmarke.php:790
+#: woocommerce-germanized-dhl/src/Api/Internetmarke.php:816
 msgctxt "dhl"
 msgid "Error while downloading the PDF stamp."
 msgstr "Fehler beim Download des PDF Labels."
 
-#: woocommerce-germanized-dhl/src/Api/Internetmarke.php:797
+#: woocommerce-germanized-dhl/src/Api/Internetmarke.php:823
 msgctxt "dhl"
 msgid "Invalid stamp response."
 msgstr "Fehlerhafte Label Rückmeldung."
@@ -6210,7 +6210,7 @@ msgstr "Germanize"
 #: woocommerce-germanized/includes/admin/class-wc-gzd-admin-setup-wizard.php:69
 #: woocommerce-germanized/includes/admin/class-wc-gzd-admin-setup-wizard.php:144
 #: woocommerce-germanized/includes/gateways/invoice/class-wc-gzd-gateway-invoice.php:79
-#: woocommerce-germanized/woocommerce-germanized.php:831
+#: woocommerce-germanized/woocommerce-germanized.php:835
 msgid "Settings"
 msgstr "Einstellungen"
 
@@ -9834,6 +9834,27 @@ msgctxt "customer-title-male-address"
 msgid "Mr."
 msgstr "Herrn"
 
+#: woocommerce-germanized/includes/class-wc-gzd-cli.php:47
+#, php-format
+msgid "No updates required. Database version is %s"
+msgstr "Keine Updates benötigt. Datenbank-Version lautet %s"
+
+#: woocommerce-germanized/includes/class-wc-gzd-cli.php:52
+#, php-format
+msgid "Found %1$d updates (%2$s)"
+msgstr "%1$d Updates gefunden (%2$s)"
+
+# @ woocommerce-germanized
+# @ woocommerce
+#: woocommerce-germanized/includes/class-wc-gzd-cli.php:54
+msgid "Updating database"
+msgstr "Datenbank wird aktualisiert"
+
+#: woocommerce-germanized/includes/class-wc-gzd-cli.php:75
+#, php-format
+msgid "%1$d update functions completed. Database version is %2$s"
+msgstr "%1$d Updates fertiggestellt. Datenbank-Version lautet %2$s"
+
 #: woocommerce-germanized/includes/class-wc-gzd-coupon-helper.php:78
 msgid ""
 "The cart contains one or more vouchers. Vouchers cannot be mixed with normal "
@@ -9993,72 +10014,72 @@ msgstr ""
 "WooCommerce Germanized installierst. Vielen Dank!"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-install.php:484
+#: woocommerce-germanized/includes/class-wc-gzd-install.php:488
 msgctxt "Page slug"
 msgid "data-security"
 msgstr "datenschutzerklaerung"
 
-#: woocommerce-germanized/includes/class-wc-gzd-install.php:485
+#: woocommerce-germanized/includes/class-wc-gzd-install.php:489
 msgctxt "Page title"
 msgid "Privacy Policy"
 msgstr "Datenschutzerklärung"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-install.php:489
+#: woocommerce-germanized/includes/class-wc-gzd-install.php:493
 msgctxt "Page slug"
 msgid "imprint"
 msgstr "impressum"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-install.php:490
+#: woocommerce-germanized/includes/class-wc-gzd-install.php:494
 msgctxt "Page title"
 msgid "Imprint"
 msgstr "Impressum"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-install.php:494
+#: woocommerce-germanized/includes/class-wc-gzd-install.php:498
 msgctxt "Page slug"
 msgid "terms"
 msgstr "agb"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-install.php:495
+#: woocommerce-germanized/includes/class-wc-gzd-install.php:499
 msgctxt "Page title"
 msgid "Terms & Conditions"
 msgstr "AGB"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-install.php:499
+#: woocommerce-germanized/includes/class-wc-gzd-install.php:503
 msgctxt "Page slug"
 msgid "revocation"
 msgstr "widerrufsbelehrung"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-install.php:500
+#: woocommerce-germanized/includes/class-wc-gzd-install.php:504
 msgctxt "Page title"
 msgid "Cancellation Policy"
 msgstr "Widerrufsbelehrung"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-install.php:504
+#: woocommerce-germanized/includes/class-wc-gzd-install.php:508
 msgctxt "Page slug"
 msgid "shipping-methods"
 msgstr "versandarten"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-install.php:505
+#: woocommerce-germanized/includes/class-wc-gzd-install.php:509
 msgctxt "Page title"
 msgid "Shipping Methods"
 msgstr "Versandarten"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-install.php:509
+#: woocommerce-germanized/includes/class-wc-gzd-install.php:513
 msgctxt "Page slug"
 msgid "payment-methods"
 msgstr "bezahlmoeglichkeiten"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-install.php:510
+#: woocommerce-germanized/includes/class-wc-gzd-install.php:514
 msgctxt "Page title"
 msgid "Payment Methods"
 msgstr "Zahlungsarten"
@@ -12068,7 +12089,7 @@ msgstr ""
 "Bitte <a href=\"%s\">deaktiviere</a> das Plugin und lerne in unserem <a href="
 "\"%s\" target=\"_blank\">Blog-Post</a> wie du das Plugin austauschen kannst."
 
-#: woocommerce-germanized/woocommerce-germanized.php:1048
+#: woocommerce-germanized/woocommerce-germanized.php:1052
 msgid "Pease wait while we are trying to redirect you to the payment provider."
 msgstr "Einen Moment - wir versuchen dich zum Zahlungsanbieter weiterzuleiten."
 
@@ -13918,10 +13939,6 @@ msgstr "https://vendidero.de"
 #~ "newer version:"
 #~ msgstr ""
 #~ "Um Germanized zuverlässig nutzen zu können, update bitte folgende Plugins:"
-
-#, php-format
-#~ msgid "%s required in at least version %s"
-#~ msgstr "%s wird mindestens in Version %s benötigt"
 
 #~ msgid ""
 #~ "Seems like you are using a not yet supported version of a Plugin which "
