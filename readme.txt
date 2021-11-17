@@ -5,7 +5,7 @@ Requires at least: 5.4
 Tested up to: 5.8
 WC requires at least: 3.9
 WC tested up to: 5.9
-Stable tag: 3.7.1
+Stable tag: 3.7.2
 Requires PHP: 5.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -198,6 +198,10 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 6. Edit pdf documents (Pro)
 
 == Changelog ==
+= 3.7.2 =
+* Improvement: Added WP CLI command (wp wc_gzd update) to run DB updates via CLI
+* Fix: Do not use empty price_html (e.g. variable product with same prices) as indicator to hide shopmarks
+
 = 3.7.1 =
 * Fix: Same as parent delivery time option for variations
 
