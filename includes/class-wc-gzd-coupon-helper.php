@@ -339,34 +339,50 @@ class WC_GZD_Coupon_Helper {
 
 			$cart->set_cart_contents_tax( $tax_total );
 
-			if ( wc_prices_include_tax() ) {
+			if ( wc_prices_include_tax() || $cart->display_prices_including_tax() ) {
 				$cart->set_discount_total( wc_cart_round_discount( ( $cart->get_discount_total() + $cart->get_discount_tax() ), $cart->dp ) );
-			} else {
-				if ( $cart->display_prices_including_tax() ) {
-					$cart->set_discount_total( wc_cart_round_discount( $cart->get_discount_total() + $cart->get_discount_tax(), $cart->dp ) );
-				} else {
-					$cart->set_discount_total( wc_cart_round_discount( $cart->get_discount_total(), $cart->dp ) );
+
+				if ( is_callable( array( $cart, 'set_coupon_discount_tax_totals' ) ) ) {
+					$tax_totals = $cart->get_coupon_discount_tax_totals();
+					$totals     = $cart->get_coupon_discount_totals();
+
+					/**
+					 * Add tax amount to discount total
+					 */
+					foreach( $totals as $key => $total ) {
+						$totals[ $key ] = $totals[ $key ] + ( isset( $tax_totals[ $key ] ) ? $tax_totals[ $key ] : 0 );
+					}
+
+					/**
+					 * Remove tax amounts
+					 */
+					foreach( $tax_totals as $key => $total ) {
+						$tax_totals[ $key ] = 0;
+					}
+
+					$cart->set_coupon_discount_totals( $totals );
+					$cart->set_coupon_discount_tax_totals( $tax_totals );
+				}
+			} elseif ( ! wc_prices_include_tax() ) {
+				$cart->set_discount_total( wc_cart_round_discount( $cart->get_discount_total(), $cart->dp ) );
+
+				if ( $cart->get_total( 'edit' ) > 0 ) {
+					/**
+					 * Remove discount tax amounts
+					 */
+					if ( is_callable( array( $cart, 'set_coupon_discount_tax_totals' ) ) ) {
+						$totals = $cart->get_coupon_discount_tax_totals();
+
+						foreach( $totals as $key => $total ) {
+							$totals[ $key ] = 0;
+						}
+
+						$cart->set_coupon_discount_tax_totals( $totals );
+					}
 				}
 			}
 
 			$cart->set_discount_tax( 0 );
-
-			/**
-			 * Necessary in case Woo prices do not include taxes
-			 */
-			if ( ! wc_prices_include_tax() && ! $cart->display_prices_including_tax() && $cart->get_total( 'edit' ) > 0 ) {
-				$cart->set_total( $cart->get_total( 'edit' ) + $discount_tax );
-
-				if ( is_callable( array( $cart, 'set_coupon_discount_tax_totals' ) ) ) {
-					$totals = $cart->get_coupon_discount_tax_totals();
-
-					foreach( $totals as $key => $total ) {
-						$totals[ $key ] = 0;
-					}
-
-					$cart->set_coupon_discount_tax_totals( $totals );
-				}
-			}
 
 			// Total up/round taxes
 			if ( $cart->round_at_subtotal ) {
