@@ -523,7 +523,7 @@ class WC_GZD_Emails {
 		}
 
 		// Set email filters
-		add_action( 'woocommerce_email_order_details', array( $this, 'set_order_email_filters' ), 5 );
+		add_action( 'woocommerce_email_order_details', array( $this, 'set_order_email_filters' ), 5, 4 );
 
 		// Remove them after total has been displayed
 		add_action( 'woocommerce_email_after_order_table', array( $this, 'remove_order_email_filters' ), 10 );
@@ -931,9 +931,11 @@ class WC_GZD_Emails {
 		return false;
 	}
 
-	public function set_order_email_filters() {
+	public function set_order_email_filters( $order, $sent_to_admin, $plain_text, $current = null ) {
 
-		$current = $this->get_current_email_object();
+		if ( ! $current ) {
+			$current = $this->get_current_email_object();
+		}
 
 		if ( ! $current || empty( $current ) ) {
 			return;

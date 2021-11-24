@@ -276,7 +276,8 @@ class WC_GZD_Product {
 		$product_min_age = $this->get_prop( 'min_age', $context );
 
 		if ( 'view' === $context ) {
-			$categories = wc_get_product_cat_ids( $this->get_id() );
+			// Force using parent product categories in case of variations
+			$categories = wc_get_product_cat_ids( $this->child->get_parent_id() > 0 ? $this->child->get_parent_id() : $this->get_id() );
 
 			// Use product category age as fallback
 			if ( empty( $product_min_age ) ) {
