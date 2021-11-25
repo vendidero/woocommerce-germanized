@@ -467,7 +467,7 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 					 * @since 1.8.5
 					 *
 					 */
-					$directDebit->addPaymentInfo( $payment_id, apply_filters( 'woocommerce_gzd_direct_debit_sepa_xml_exporter_payment_args', array(
+					$payment_info = $directDebit->addPaymentInfo( $payment_id, apply_filters( 'woocommerce_gzd_direct_debit_sepa_xml_exporter_payment_args', array(
 						'id'                  => $payment_id,
 						'creditorName'        => $this->company_account_holder,
 						'creditorAccountIBAN' => $this->sanitize_iban( $this->company_account_iban ),
@@ -476,6 +476,12 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 						'creditorId'          => $this->clean_whitespaces( $this->company_identification_number ),
 						'dueDate'             => date_i18n( 'Y-m-d', $this->get_debit_date( $order ) ),
 					), $this, $mandate_type ) );
+
+					$batch_booking = apply_filters( "woocommerce_gzd_direct_debit_sepa_xml_exporter_batch_booking", null, $this );
+
+                    if ( ! is_null( $batch_booking ) ) {
+                        $payment_info->setBatchBooking( $batch_booking );
+                    }
 
 					foreach ( $orders as $order ) {
 
