@@ -97,8 +97,19 @@ class WC_GZD_Admin {
 
 		add_filter( 'woocommerce_gzd_shipment_admin_provider_list', array( $this, 'maybe_register_shipping_providers' ), 10 );
 
+        // Hide custom product taxonomies from quick-edit/bulk-edit
+        add_filter( 'quick_edit_show_taxonomy', array( $this, 'hide_taxonomies_quick_edit' ), 10, 2 );
+
 		$this->wizward = require 'class-wc-gzd-admin-setup-wizard.php';
 	}
+
+    public function hide_taxonomies_quick_edit( $show_in_quick_edit, $taxonomy_name ) {
+        if ( in_array( $taxonomy_name, array( 'product_delivery_time', 'product_price_label', 'product_unit' ) ) ) {
+            return false;
+        }
+
+        return $show_in_quick_edit;
+    }
 
 	/**
 	 * @param \Vendidero\Germanized\Shipments\Interfaces\ShippingProvider $providers
@@ -536,7 +547,17 @@ class WC_GZD_Admin {
 		wp_register_script( 'wc-gzd-admin-product', $admin_script_path . 'product' . $suffix . '.js', array( 'wc-admin-product-meta-boxes' ), WC_GERMANIZED_VERSION );
 
 		wp_register_script( 'wc-gzd-admin-product-variations', $admin_script_path . 'product-variations' . $suffix . '.js', array( 'wc-gzd-admin-product', 'wc-admin-variation-meta-boxes' ), WC_GERMANIZED_VERSION );
-		wp_register_script( 'wc-gzd-admin-legal-checkboxes', $admin_script_path . 'legal-checkboxes' . $suffix . '.js', array(
+
+		wp_localize_script(
+			'wc-gzd-admin-product-variations',
+			'wc_gzd_admin_product_variations_params',
+			array(
+				'i18n_set_delivery_time' => __( 'Insert delivery time name, slug or id.', 'woocommerce-germanized' ),
+				'i18n_set_product_unit'  => __( 'Insert product units amount.', 'woocommerce-germanized' )
+			)
+		);
+
+        wp_register_script( 'wc-gzd-admin-legal-checkboxes', $admin_script_path . 'legal-checkboxes' . $suffix . '.js', array(
 			'jquery',
 			'wp-util',
 			'underscore',

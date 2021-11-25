@@ -35,7 +35,88 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 			add_action( 'woocommerce_save_product_variation', array( __CLASS__, 'save' ), 0, 2 );
 			add_action( 'woocommerce_variation_options', array( __CLASS__, 'service' ), 0, 3 );
 		}
+
+        add_action( 'woocommerce_variable_product_bulk_edit_actions', array( __CLASS__, 'bulk_edit' ), 10 );
+        add_action( 'woocommerce_bulk_edit_variations', array( __CLASS__, 'bulk_save' ), 10, 4 );
 	}
+
+    public static function bulk_save( $bulk_action, $data, $product_id, $variations ) {
+        $actions = array(
+            'variable_unit_product',
+            'variable_unit_auto',
+            'variable_delivery_time'
+        );
+
+        if ( in_array( $bulk_action, $actions ) ) {
+	        if ( method_exists( __CLASS__, "bulk_action_$bulk_action" ) ) {
+		        call_user_func( array( __CLASS__, "bulk_action_$bulk_action" ), $variations, $data );
+	        }
+        }
+    }
+
+    protected static function bulk_action_variable_delivery_time( $variations, $data ) {
+        if ( isset( $data['value'] ) ) {
+	        $slug = '';
+
+            if ( ! empty( wc_clean( $data['value'] ) ) ) {
+	            $slug = wc_gzd_get_valid_product_delivery_time_slugs( wc_clean( $data['value'] ) );
+            }
+
+	        foreach ( $variations as $variation_id ) {
+		        if ( $variation = wc_get_product( $variation_id ) ) {
+			        $gzd_variation = wc_gzd_get_gzd_product( $variation );
+			        $gzd_variation->set_default_delivery_time_slug( $slug );
+
+			        $gzd_variation->save();
+			        $variation->save();
+		        }
+	        }
+        }
+    }
+
+	protected static function bulk_action_variable_unit_product( $variations, $data ) {
+		if ( isset( $data['value'] ) ) {
+			$products = '';
+
+			if ( ! empty( wc_clean( $data['value'] ) ) ) {
+				$products = wc_format_decimal( wc_clean( $data['value'] ) );
+			}
+
+			foreach ( $variations as $variation_id ) {
+				if ( $variation = wc_get_product( $variation_id ) ) {
+					$gzd_variation = wc_gzd_get_gzd_product( $variation );
+					$gzd_variation->set_unit_product( $products );
+
+					$variation->save();
+				}
+			}
+		}
+	}
+
+	protected static function bulk_action_variable_unit_auto( $variations, $data ) {
+		foreach ( $variations as $variation_id ) {
+			if ( $variation = wc_get_product( $variation_id ) ) {
+				$gzd_variation = wc_gzd_get_gzd_product( $variation );
+                $gzd_variation->set_unit_price_auto( ( $gzd_variation->is_unit_price_auto() ? false : true ) );
+
+                $variation->save();
+			}
+		}
+	}
+
+    public static function bulk_edit() {
+        ?>
+        <optgroup label="<?php esc_attr_e( 'Unit Price', 'woocommerce-germanized' ); ?>">
+            <option value="variable_unit_product"><?php esc_html_e( 'Set product units', 'woocommerce-germanized' ); ?></option>
+            <?php if ( WC_germanized()->is_pro() ) : ?>
+                <option value="variable_unit_auto"><?php esc_html_e( 'Toggle auto calculation', 'woocommerce-germanized' ); ?></option>
+            <?php endif; ?>
+        </optgroup>
+        <optgroup label="<?php esc_attr_e( 'Delivery Time', 'woocommerce-germanized' ); ?>">
+            <option value="variable_delivery_time"><?php esc_html_e( 'Set delivery time', 'woocommerce-germanized' ); ?></option>
+        </optgroup>
+        <?php
+    }
 
 	public static function service( $loop, $variation_data, $variation ) {
 		$_product    = wc_get_product( $variation );

@@ -2,7 +2,11 @@ jQuery( function ( $ ) {
 
     var wc_gzd_product_variations_actions = {
 
+        params: {},
+
         init: function() {
+            this.params = wc_gzd_admin_product_variations_params;
+
             $( '#woocommerce-product-data' ).on( 'click', '.woocommerce_variation', this.show_or_hide_unit_variation );
             $( '#general_product_data' ).on( 'blur', 'input#_unit_base', this.show_or_hide_unit_variation );
             $( '#general_product_data' ).on( 'change', 'select#_unit', this.show_or_hide_unit_variation );
@@ -11,6 +15,29 @@ jQuery( function ( $ ) {
             $( document ).bind( 'woocommerce_variations_save_variations_on_submit', this.save_variations );
 
             $( document ).on( 'click', '.wc-gzd-general-product-data-tab', this.on_click_general_product_data );
+
+            $( 'select.variation_actions' ).on( 'variable_delivery_time_ajax_data', this.onSetDeliveryTime );
+            $( 'select.variation_actions' ).on( 'variable_unit_product_ajax_data', this.onSetProductUnit );
+        },
+
+        onSetDeliveryTime: function( e, data ) {
+            return wc_gzd_product_variations_actions.onVariationAction( data, 'set_delivery_time' );
+        },
+
+        onSetProductUnit: function( e, data ) {
+            return wc_gzd_product_variations_actions.onVariationAction( data, 'set_product_unit' );
+        },
+
+        onVariationAction: function( data, type ) {
+            var value = window.prompt( wc_gzd_product_variations_actions.params['i18n_' + type] );
+
+            if ( value !== null ) {
+                data.value = value;
+
+                return data;
+            } else {
+                return;
+            }
         },
 
         on_click_general_product_data: function() {

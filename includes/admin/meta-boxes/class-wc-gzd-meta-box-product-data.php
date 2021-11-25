@@ -37,11 +37,105 @@ class WC_Germanized_Meta_Box_Product_Data {
 		add_action( 'woocommerce_product_object_updated_props', array( __CLASS__, 'update_terms' ), 10, 1 );
 		add_action( 'woocommerce_before_product_object_save', array( __CLASS__, 'before_save' ), 10, 1 );
 
+		add_action( 'woocommerce_product_bulk_edit_end', array( __CLASS__, 'bulk_edit' ) );
+		add_action( 'woocommerce_product_bulk_edit_save', array( __CLASS__, 'bulk_save' ) );
+
 		/**
 		 * Product duplication
 		 */
 		add_action( 'woocommerce_product_duplicate_before_save', array( __CLASS__, 'update_before_duplicate' ), 10, 2 );
 	}
+
+    public static function quick_edit() {
+
+    }
+
+    public static function bulk_save( $product ) {
+        if ( $gzd_product = wc_gzd_get_gzd_product( $product ) ) {
+            $needs_update         = false;
+            $change_delivery_time = isset( $_REQUEST['change_delivery_time'] ) ? absint( $_REQUEST['change_delivery_time'] ) : '';
+
+	        if ( ! empty( $change_delivery_time ) && in_array( $change_delivery_time, array( 1, 2 ) ) ) {
+		        $delivery_time = isset( $_REQUEST['_delivery_time'] ) ? wc_clean( $_REQUEST['_delivery_time'] ) : '';
+
+		        if ( ! empty( $delivery_time ) && 1 === $change_delivery_time ) {
+                    $needs_update = true;
+
+			        if ( $slug = wc_gzd_get_valid_product_delivery_time_slugs( $delivery_time ) ) {
+				        $gzd_product->set_default_delivery_time_slug( $slug );
+			        }
+		        } elseif ( 2 === $change_delivery_time ) {
+			        $needs_update = true;
+
+			        $gzd_product->set_default_delivery_time_slug( '' );
+                }
+	        }
+
+	        if ( isset( $_REQUEST['_unit'] ) ) {
+		        $unit = wc_clean( $_REQUEST['_unit'] );
+
+		        if ( ! empty( $unit ) ) {
+			        $needs_update = true;
+
+			        if ( '_no_unit' === $unit ) {
+				        $gzd_product->set_unit( '' );
+			        } elseif ( $term = get_term_by( 'slug', $unit, 'product_unit' ) ) {
+				        $gzd_product->set_unit( $term->slug );
+			        }
+		        }
+	        }
+
+            if ( $needs_update ) {
+	            $gzd_product->get_wc_product()->save();
+	            $gzd_product->save();
+            }
+        }
+    }
+
+    public static function bulk_edit() {
+        ?>
+        <div class="inline-edit-group delivery-time">
+            <label class="alignleft">
+                <span class="title"><?php _e( 'Delivery Time', 'woocommerce-germanized' ); ?></span>
+                <span class="input-text-wrap">
+						<select class="change_delivery_time change_to" name="change_delivery_time">
+							<?php
+							$options = array(
+								''  => __( '— No change —', 'woocommerce-germanized' ),
+								'1' => __( 'Change to:', 'woocommerce-germanized' ),
+								'2' => __( 'No delivery time', 'woocommerce-germanized' ),
+							);
+							foreach ( $options as $key => $value ) {
+								echo '<option value="' . esc_attr( $key ) . '">' . esc_html( $value ) . '</option>';
+							}
+							?>
+						</select>
+					</span>
+            </label>
+            <label class="change-input">
+                <select class="wc-product-search wc-gzd-delivery-time-search" style="width: 100%; min-width: 150px;" name="_delivery_time"
+                        data-minimum_input_length="1" data-allow_clear="true"
+                        data-placeholder="<?php echo esc_attr( __( '— No change —', 'woocommerce-germanized' ) ); ?>"
+                        data-action="woocommerce_gzd_json_search_delivery_time" data-multiple="false">
+                </select>
+            </label>
+        </div>
+        <label class="alignleft">
+            <span class="title"><?php _e( 'Unit', 'woocommerce-germanized' ); ?></span>
+            <span class="input-text-wrap">
+                <select class="unit" name="_unit">
+                    <option value=""><?php _e( '— No change —', 'woocommerce-germanized' ); ?></option>
+                    <option value="_no_unit"><?php _e( 'No unit', 'woocommerce-germanized' ); ?></option>
+					<?php
+                        foreach ( WC_germanized()->units->get_units() as $key => $value ) {
+                            echo '<option value="' . esc_attr( $key ) . '">' . esc_html( $value ) . '</option>';
+                        }
+					?>
+                </select>
+            </span>
+        </label>
+        <?php
+    }
 
 	/**
 	 * @param WC_Product $product
@@ -468,7 +562,18 @@ class WC_Germanized_Meta_Box_Product_Data {
 			$gzd_product->set_unit_product( $data['_unit_product'] );
 		}
 
-		$gzd_product->set_unit_price_auto( ( isset( $data['_unit_price_auto'] ) ) ? 'yes' : 'no' );
+        $unit_price_auto = 'no';
+
+        if ( isset( $data['_unit_price_auto'] ) ) {
+	        /**
+	         * Respect false/no to unset auto price calculation
+	         */
+            if ( false !== $data['_unit_price_auto'] && 'no' !== $data['_unit_price_auto'] ) {
+                $unit_price_auto = 'yes';
+            }
+        }
+
+		$gzd_product->set_unit_price_auto( $unit_price_auto );
 
 		if ( isset( $data['_unit_price_regular'] ) ) {
 			$gzd_product->set_unit_price_regular( $data['_unit_price_regular'] );
