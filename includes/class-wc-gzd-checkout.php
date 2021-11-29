@@ -125,7 +125,11 @@ class WC_GZD_Checkout {
 	 */
 	public function maybe_force_street_number( $data, $errors ) {
 		if ( function_exists( 'wc_gzd_split_shipment_street' ) ) {
-			if ( isset( $data['shipping_country'], $data['shipping_address_1'] ) && ! empty( $data['shipping_country'] ) ) {
+			$ship_to_different  = isset( $data['ship_to_different_address'] ) ? $data['ship_to_different_address'] : false;
+			$shipping_country   = $ship_to_different && isset( $data['shipping_country'] ) ? $data['shipping_country'] : $data['billing_country'];
+			$shipping_address_1 = $ship_to_different && isset( $data['shipping_address_1'] ) ? $data['shipping_address_1'] : $data['billing_address_1'];
+
+			if ( ! empty( $shipping_country ) && ! empty( $shipping_address_1 ) && apply_filters( 'woocommerce_gzd_checkout_validate_street_number', true, $data ) ) {
 				$countries = array();
 
 				if ( 'always' === get_option( 'woocommerce_gzd_checkout_validate_street_number' ) ) {
@@ -136,18 +140,28 @@ class WC_GZD_Checkout {
 					$countries = WC()->countries->get_european_union_countries();
 				}
 
-				$is_valid          = true;
-				$ship_to_different = isset( $data['ship_to_different_address'] ) ? $data['ship_to_different_address'] : false;
-				$key               = ( $ship_to_different ? 'shipping' : 'billing' ) . '_address_1';
+				$is_shipping_valid = true;
+				$field_key         = ( $ship_to_different ? 'shipping' : 'billing' ) . '_address_1';
 
-				// Force street number
-				if ( in_array( $data['shipping_country'], $countries ) ) {
-					$parts    = wc_gzd_split_shipment_street( $data['shipping_address_1'] );
-					$is_valid = empty( $parts['number'] ) ? false : true;
+				if ( in_array( $shipping_country, $countries ) ) {
+					$shipping_parts    = wc_gzd_split_shipment_street( $shipping_address_1 );
+					$is_shipping_valid = empty( $shipping_parts['number'] ) ? false : true;
+
+					/**
+					 * In case shipping to another address is chosen make sure to validate the separate billing address as well.
+					 */
+					if ( true === $ship_to_different && isset( $data['billing_address_1'] ) && apply_filters( 'woocommerce_gzd_checkout_validate_billing_street_number', true ) ) {
+						$billing_parts    = wc_gzd_split_shipment_street( $data['billing_address_1'] );
+						$is_billing_valid = empty( $billing_parts['number'] ) ? false : true;
+
+						if ( ! apply_filters( 'woocommerce_gzd_checkout_is_valid_billing_street_number', $is_billing_valid, $data ) ) {
+							$errors->add( 'billing_address_1_validation', apply_filters( 'woocommerce_gzd_checkout_invalid_billing_street_number_error_message', __( 'Please check the street field and make sure to provide a valid street number.', 'woocommerce-germanized' ), $data ), array( 'id' => 'billing_address_1' ) );
+						}
+					}
 				}
 
-				if ( ! apply_filters( 'woocommerce_gzd_checkout_is_valid_street_number', $is_valid, $data ) ) {
-					$errors->add( $key . '_validation', apply_filters( 'woocommerce_gzd_checkout_invalid_street_number_error_message', __( 'Please check the street field and make sure to provide a valid street number.', 'woocommerce-germanized' ), $data ), array( 'id' => $key ) );
+				if ( ! apply_filters( 'woocommerce_gzd_checkout_is_valid_street_number', $is_shipping_valid, $data ) ) {
+					$errors->add( $field_key . '_validation', apply_filters( 'woocommerce_gzd_checkout_invalid_street_number_error_message', __( 'Please check the street field and make sure to provide a valid street number.', 'woocommerce-germanized' ), $data ), array( 'id' => $field_key ) );
 				}
 			}
 		}
