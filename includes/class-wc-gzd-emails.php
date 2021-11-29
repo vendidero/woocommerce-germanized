@@ -40,7 +40,11 @@ class WC_GZD_Emails {
 			/**
 			 * Support WooCommerce Gutenberg checkout block
 			 */
-			add_action( '__experimental_woocommerce_blocks_checkout_order_processed', array( $this, 'confirm_order' ) );
+			if ( defined( 'WC_VERSION' ) && version_compare( WC_VERSION, '6.0.0', '>=' ) ) {
+				add_action( 'woocommerce_blocks_checkout_order_processed', array( $this, 'confirm_order' ) );
+			} else {
+				add_action( '__experimental_woocommerce_blocks_checkout_order_processed', array( $this, 'confirm_order' ) );
+			}
 
 			// Send order notice directly after new order is being added - use these filters because order status has to be updated already
 			add_filter( 'woocommerce_payment_successful_result', array(

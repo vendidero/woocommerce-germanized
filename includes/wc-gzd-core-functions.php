@@ -17,6 +17,11 @@ use Vendidero\Germanized\Shopmarks;
 
 require WC_GERMANIZED_ABSPATH . 'includes/wc-gzd-product-functions.php';
 
+/**
+ * @param null $instance
+ *
+ * @return WC_GZD_Dependencies
+ */
 function wc_gzd_get_dependencies( $instance = null ) {
 	/** This filter is documented in woocommerce-germanized.php */
 	return apply_filters( 'woocommerce_gzd_dependencies_instance', WC_GZD_Dependencies::instance( $instance ) );
