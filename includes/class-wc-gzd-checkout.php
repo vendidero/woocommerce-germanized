@@ -443,6 +443,10 @@ class WC_GZD_Checkout {
 			if ( apply_filters( 'woocommerce_gzd_enable_force_pay_order', true, $order ) ) {
 				add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_force_pay_script' ), 20 );
 				add_action( 'woocommerce_after_pay_action', array( $this, 'maybe_disable_force_pay_script' ), 20 );
+
+				if ( ! defined( 'WC_GZD_FORCE_PAY_ORDER' ) ) {
+					define( 'WC_GZD_FORCE_PAY_ORDER', true );
+				}
 			}
 		}
 	}

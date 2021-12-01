@@ -33,6 +33,7 @@ class WC_GZD_Legal_Checkbox_Manager {
 		add_filter( 'woocommerce_process_registration_errors', array( $this, 'validate_register' ), 10, 1 );
 		add_action( 'woocommerce_before_pay_action', array( $this, 'validate_pay_for_order' ), 10, 1 );
 		add_filter( 'pre_comment_approved', array( $this, 'validate_reviews' ), 10, 2 );
+		add_action( 'before_woocommerce_pay', array( $this, 'maybe_hide_terms_checkbox' ), 10 );
 
 		// Cannot use after_setup_theme here because language packs are not yet loaded
 		add_action( 'init', array( $this, 'do_register_action' ), 50 );
@@ -48,6 +49,22 @@ class WC_GZD_Legal_Checkbox_Manager {
 		), 10 );
 
 		add_filter( 'woocommerce_update_order_review_fragments', array( $this, 'refresh_fragments_checkout' ), 10, 1 );
+	}
+
+	public function maybe_hide_terms_checkbox() {
+		/**
+		 * Disable terms checkbox on pay for order page in case redirection is forced.
+		 */
+		if ( defined( 'WC_GZD_FORCE_PAY_ORDER' ) && WC_GZD_FORCE_PAY_ORDER ) {
+			if ( $checkbox = $this->get_checkbox( 'terms' ) ) {
+				$locations = $checkbox->get_locations();
+
+				if ( in_array( 'pay_for_order', $locations ) ) {
+					$locations = array_diff( $locations, array( 'pay_for_order' ) );
+					$checkbox->set_locations( $locations );
+				}
+			}
+		}
 	}
 
 	public function refresh_fragments_checkout( $fragments ) {
