@@ -1077,7 +1077,7 @@ class WC_GZD_Emails {
 			$email = $this->get_current_email_instance();
 		}
 
-		if ( $email ) {
+		if ( is_a( $email, 'WC_Email' ) ) {
 			$email_id = $email->id;
 
 			/**
@@ -1092,6 +1092,17 @@ class WC_GZD_Emails {
 			 *
 			 */
 			do_action( 'woocommerce_germanized_email_footer_' . $email_id, $email );
+		} else {
+			/**
+			 * Global email footer (after content) hook.
+			 *
+			 * This hook serves as entry point for legal attachment texts within emails in case
+			 * not email instance (e.g. sent without an instance) could be detected.
+			 *
+			 * @since 3.7.3
+			 *
+			 */
+			do_action( 'woocommerce_germanized_email_footer_fallback' );
 		}
 	}
 
