@@ -405,8 +405,6 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 
 			$matcher = array(
 				'wc_gzd_',
-				'digitick\sepa',
-				'defuse\crypto',
 			);
 
 			$is_match = ( str_replace( $matcher, '', $class ) != $class );
@@ -424,12 +422,6 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 				$path = $this->plugin_path() . '/includes/gateways/' . substr( str_replace( '_', '-', $class ), 15 ) . '/';
 			} elseif ( strpos( $class, 'wc_gzd_compatibility' ) !== false ) {
 				$path = $this->plugin_path() . '/includes/compatibility/';
-			} elseif ( strpos( $class, 'defuse\crypto' ) !== false ) {
-				$path = $this->plugin_path() . '/includes/gateways/direct-debit/libraries/php-encryption/';
-				$file = ucfirst( str_replace( 'Defuse/Crypto/', '', str_replace( '\\', '/', $original_class ) ) . '.php' );
-			} elseif ( strpos( $class, 'digitick\sepa' ) !== false ) {
-				$path = $this->plugin_path() . '/includes/gateways/direct-debit/libraries/php-sepa-xml/';
-				$file = ucfirst( str_replace( 'Digitick/Sepa/', '', str_replace( '\\', '/', $original_class ) ) . '.php' );
 			}
 
 			if ( $path && is_readable( $path . $file ) ) {
@@ -437,7 +429,6 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 
 				return;
 			}
-
 		}
 
 		/**

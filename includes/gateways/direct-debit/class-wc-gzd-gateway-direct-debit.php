@@ -48,7 +48,6 @@ class WC_GZD_Gateway_Direct_Debit extends WC_Payment_Gateway {
 		$this->title                         = $this->get_option( 'title' );
 		$this->description                   = $this->get_option( 'description' );
 		$this->instructions                  = $this->get_option( 'instructions', $this->description );
-		$this->enable_checkbox               = $this->get_option( 'enable_checkbox', 'yes' );
 		$this->enable_pre_notification       = $this->get_option( 'enable_pre_notification', 'yes' );
 		$this->debit_days                    = $this->get_option( 'debit_days', 5 );
 		$this->generate_mandate_id           = $this->get_option( 'generate_mandate_id', 'yes' );
@@ -58,8 +57,7 @@ class WC_GZD_Gateway_Direct_Debit extends WC_Payment_Gateway {
 		$this->company_account_holder        = $this->get_option( 'company_account_holder' );
 		$this->company_account_iban          = $this->get_option( 'company_account_iban' );
 		$this->company_account_bic           = $this->get_option( 'company_account_bic' );
-		$this->pain_format                   = $this->get_option( 'pain_format', 'pain.008.002.02' );
-		$this->checkbox_label                = $this->get_option( 'checkbox_label' );
+		$this->pain_format                   = $this->get_option( 'pain_format', 'pain.008.001.02' );
 		$this->remember                      = $this->get_option( 'remember', 'no' );
 		$this->mask                          = $this->get_option( 'mask', 'yes' );
 		$this->mandate_text                  = $this->get_option( 'mandate_text', __( '[company_info]
@@ -484,6 +482,7 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
                     }
 
 					foreach ( $orders as $order ) {
+                        $amount_in_cents = wc_add_number_precision_deep( ( $order->get_total() - $order->get_total_refunded() ) );
 
 						/**
 						 * Filter that allows adjusting direct debit SEPA XML Export transfer data per order.
@@ -496,7 +495,7 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 						 *
 						 */
 						$directDebit->addTransfer( $payment_id, apply_filters( 'woocommerce_gzd_direct_debit_sepa_xml_exporter_transfer_args', array(
-							'amount'                => ( $order->get_total() - $order->get_total_refunded() ),
+							'amount'                => $amount_in_cents,
 							'debtorIban'            => $this->sanitize_iban( $this->maybe_decrypt( $order->get_meta( '_direct_debit_iban' ) ) ),
 							'debtorBic'             => $this->sanitize_bic( $this->maybe_decrypt( $order->get_meta( '_direct_debit_bic' ) ) ),
 							'debtorName'            => $order->get_meta( '_direct_debit_holder' ),
@@ -987,7 +986,7 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 			'company_identification_number' => array(
 				'title'       => __( 'Debtee identification number', 'woocommerce-germanized' ),
 				'type'        => 'text',
-				'description' => sprintf( __( 'Insert your debtee indentification number. More information can be found <a href="%s">here</a>.', 'woocommerce-germanized' ), 'http://www.bundesbank.de/Navigation/DE/Aufgaben/Unbarer_Zahlungsverkehr/SEPA/Glaeubiger_Identifikationsnummer/glaeubiger_identifikationsnummer.html' ),
+				'description' => sprintf( __( 'Insert your debtee indentification number. More information can be found <a href="%s">here</a>.', 'woocommerce-germanized' ), 'https://www.bundesbank.de/de/aufgaben/unbarer-zahlungsverkehr/serviceangebot/sepa/glaeubiger-identifikationsnummer' ),
 				'default'     => '',
 			),
 			'generate_mandate_id'           => array(
@@ -1001,7 +1000,7 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 				'title'       => __( 'XML Pain Format', 'woocommerce-germanized' ),
 				'type'        => 'text',
 				'description' => __( 'You may adjust the XML Export Pain Schema to your banks needs. Some banks may require pain.001.003.03.', 'woocommerce-germanized' ),
-				'default'     => 'pain.008.002.02',
+				'default'     => 'pain.008.001.02',
 			),
 			'mandate_id_format'             => array(
 				'title'       => __( 'Mandate ID Format', 'woocommerce-germanized' ),
@@ -1015,20 +1014,6 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 				'description' => __( 'This text will be populated with live order/checkout data. Will be used as preview direct debit mandate and as email template text.', 'woocommerce-germanized' ),
 				'default'     => '',
 				'css'         => 'min-height: 250px;',
-				'desc_tip'    => true,
-			),
-			'enable_checkbox'               => array(
-				'title'       => __( 'Checkbox', 'woocommerce-germanized' ),
-				'label'       => __( 'Enable "agree to SEPA mandate" checkbox', 'woocommerce-germanized' ),
-				'type'        => 'checkbox',
-				'description' => __( 'Enable a checkbox linking to a SEPA direct debit mandate preview.', 'woocommerce-germanized' ),
-				'default'     => 'yes',
-			),
-			'checkbox_label'                => array(
-				'title'       => __( 'Checkbox label', 'woocommerce-germanized' ),
-				'type'        => 'text',
-				'description' => __( 'Customize the checkbox label. Use {link}link name{/link} to insert the preview link.', 'woocommerce-germanized' ),
-				'default'     => __( 'I hereby agree to the {link}direct debit mandate{/link}.', 'woocommerce-germanized' ),
 				'desc_tip'    => true,
 			),
 			'enable_pre_notification'       => array(
@@ -1177,8 +1162,7 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 		}
 
 		// Validate IBAN
-		include_once WC_GERMANIZED_ABSPATH . 'includes/libraries/iban/oophp-iban.php';
-		$iban_validator = new IBAN( $iban );
+		$iban_validator = new \PHP_IBAN\IBAN( $iban );
 
 		/**
 		 * Filter that allows enabling IBAN country validation.
@@ -1202,16 +1186,10 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 		if ( ! preg_match( '/^([a-zA-Z]){4}([a-zA-Z]){2}([0-9a-zA-Z]){2}([0-9a-zA-Z]{3})?$/', $bic ) ) {
 			wc_add_notice( __( 'Your BIC seems to be invalid.', 'woocommerce-germanized' ), 'error' );
 		}
-
-		// Make sure that checkbox gets validated if on woocommerce_pay for order page
-		if ( isset( $_POST['woocommerce_pay'] ) ) {
-			// Gateways are being lazy loaded - make sure that the checkbox exists even after submit
-			$this->validate_checkbox();
-		}
 	}
 
 	public function validate_checkbox() {
-		if ( isset( $_POST['payment_method'] ) && $_POST['payment_method'] === $this->id && $this->enable_checkbox === 'yes' && ( ! isset( $_POST['direct_debit_legal'] ) && empty( $_POST['direct_debit_legal'] ) ) ) {
+		if ( isset( $_POST['payment_method'] ) && $_POST['payment_method'] === $this->id && ( ! isset( $_POST['direct_debit_legal'] ) && empty( $_POST['direct_debit_legal'] ) ) ) {
 			return false;
 		}
 
@@ -1287,37 +1265,6 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 		if ( $this->instructions && ! $sent_to_admin && 'direct-debit' === $order->get_payment_method() && $order->has_status( 'processing' ) ) {
 			echo wpautop( wptexturize( $this->instructions ) ) . PHP_EOL;
 		}
-	}
-
-	public function checkbox() {
-		wc_deprecated_function( 'WC_GZD_Gateway_Direct_Debit::checkbox', '3.5.0' );
-
-		if ( $this->is_available() && $this->enable_checkbox === 'yes' ) {
-			wc_get_template( 'checkout/terms-sepa.php' );
-		}
-	}
-
-	public function get_checkbox_label() {
-		wc_deprecated_function( 'WC_GZD_Gateway_Direct_Debit::get_checkbox_label', '3.5.0' );
-
-		$ajax_url = wp_nonce_url( add_query_arg( array( 'action' => 'show_direct_debit' ), admin_url( 'admin-ajax.php' ) ), 'show_direct_debit' );
-
-		/**
-		 * Filter to adjust the direct debit mandate link.
-		 *
-		 * @param string $link The link.
-		 * @param WC_GZD_Gateway_Direct_Debit $gateway The gateway instance.
-		 *
-		 * @since 1.8.5
-		 *
-		 */
-		return apply_filters( 'woocommerce_gzd_direct_debit_ajax_url', str_replace( array(
-			'{link}',
-			'{/link}'
-		), array(
-			'<a href="' . $ajax_url . '" id="show-direct-debit-trigger" rel="prettyPhoto">',
-			'</a>'
-		), $this->checkbox_label ), $this );
 	}
 
 	/**
