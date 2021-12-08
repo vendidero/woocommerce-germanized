@@ -586,14 +586,16 @@ function wc_gzd_get_cart_tax_share( $type = 'shipping', $cart_contents = array()
 				$class      = $item->get_tax_class();
 				$line_total = $item->get_total();
 				$taxes      = $item->get_taxes();
-				$tax_rate   = key( $taxes['total'] );
+				$tax_rate   = ! empty( $taxes ) ? key( $taxes['total'] ) : null;
 
 				// Search for the first non-empty tax rate
-				foreach( $taxes['total'] as $rate_id => $tax ) {
-				    if ( ! empty( $tax ) ) {
-				        $tax_rate = $rate_id;
-				        break;
-                    }
+                if ( ! empty( $taxes ) ) {
+	                foreach( $taxes['total'] as $rate_id => $tax ) {
+		                if ( ! empty( $tax ) ) {
+			                $tax_rate = $rate_id;
+			                break;
+		                }
+	                }
                 }
 
 				$tax_rate = apply_filters( 'woocommerce_gzd_tax_share_order_item_tax_rate', $tax_rate, $item, $type );
@@ -601,7 +603,8 @@ function wc_gzd_get_cart_tax_share( $type = 'shipping', $cart_contents = array()
 				$_product   = apply_filters( 'woocommerce_cart_item_product', $item['data'], $item, $key );
 				$class      = $_product->get_tax_class();
 				$line_total = $item['line_total'];
-				$tax_rate   = key( $item['line_tax_data']['total'] );
+				$tax_rate   = ! empty( $item['line_tax_data'] ) ? key( $item['line_tax_data']['total'] ) : null;
+
 				$tax_rate   = apply_filters( 'woocommerce_gzd_tax_share_cart_item_tax_rate', $tax_rate, $item, $type );
 			}
 

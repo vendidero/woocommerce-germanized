@@ -97,6 +97,16 @@ class WC_GZD_Dependencies {
 		return ( in_array( $plugin_slug, $this->active_plugins ) || array_key_exists( $plugin_slug, $this->active_plugins ) );
 	}
 
+	public function is_theme_activated( $theme_slug ) {
+		if ( $current = wp_get_theme() ) {
+			if ( $current->get_template() === $theme_slug ) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
 	public function get_wc_min_version_required() {
 		return $this->wc_minimum_version_required;
 	}

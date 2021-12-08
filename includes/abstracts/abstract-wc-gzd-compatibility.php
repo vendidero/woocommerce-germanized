@@ -57,7 +57,15 @@ abstract class WC_GZD_Compatibility {
 	}
 
 	public static function is_activated() {
-		return wc_gzd_get_dependencies()->is_plugin_activated( static::get_path() );
+		if ( ! static::is_plugin() ) {
+			return wc_gzd_get_dependencies()->is_theme_activated( static::get_path() );
+		} else {
+			return wc_gzd_get_dependencies()->is_plugin_activated( static::get_path() );
+		}
+	}
+
+	public static function is_plugin() {
+		return true;
 	}
 
 	public static function is_supported() {

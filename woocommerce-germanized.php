@@ -92,6 +92,8 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 
 		public $compatibilities = array();
 
+		public $theme_compatibilities = array();
+
 		private $localized_scripts = array();
 
 		/**
@@ -207,6 +209,7 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 			add_action( 'init', array( 'WC_GZD_Shortcodes', 'init' ), 2 );
 
 			add_action( 'plugins_loaded', array( $this, 'setup_compatibility' ), 0 );
+			add_action( 'after_setup_theme', array( $this, 'setup_theme_compatibility' ), 0 );
 
 			// Set template filter directly after load to ensure wc_get_template finds templates
 			add_filter( 'woocommerce_locate_template', array( $this, 'filter_templates' ), 1500, 3 );
@@ -610,7 +613,7 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 			 * Filter compatibility classes.
 			 *
 			 * This filter allows third party developers to register compatibility scripts
-			 * for certain plugins or themes. Make sure to include your class accordingly before adding your script.
+			 * for certain plugins. Make sure to include your class accordingly before adding your script.
 			 *
 			 * @param array[string] $comp Array containing compatibility plugin slug => class name.
 			 *
@@ -641,7 +644,7 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 					'paypal-express-checkout'                     => 'WC_GZD_Compatibility_PayPal_Express_Checkout',
 					'woocommerce-memberships'                     => 'WC_GZD_Compatibility_WooCommerce_Memberships',
 					'addify-role-based-pricing'                   => 'WC_GZD_Compatibility_Addify_Role_Based_Pricing',
-					'customer-specific-pricing-for-woocommerce'   => 'WC_GZD_Compatibility_Customer_Specific_Pricing_For_WooCommerce'
+					'customer-specific-pricing-for-woocommerce'   => 'WC_GZD_Compatibility_Customer_Specific_Pricing_For_WooCommerce',
 				)
 			);
 
@@ -654,8 +657,39 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 			}
 		}
 
+		public function setup_theme_compatibility() {
+			/**
+			 * Filter theme compatibility classes.
+			 *
+			 * This filter allows third party developers to register compatibility scripts
+			 * for certain themes. Make sure to include your class accordingly before adding your script.
+			 *
+			 * @param array[string] $comp Array containing compatibility theme slug => class name.
+			 *
+			 * @since 1.9.1
+			 *
+			 */
+			$themes = apply_filters( 'woocommerce_gzd_theme_compatibilities',
+				array(
+					'et-builder' => 'WC_GZD_Compatibility_ET_Builder'
+				)
+			);
+
+			foreach ( $themes as $comp => $classname ) {
+				if ( class_exists( $classname ) && is_callable( array( $classname, 'is_applicable' ) ) ) {
+					if ( $classname::is_applicable() ) {
+						$this->theme_compatibilities[ $comp ] = new $classname();
+					}
+				}
+			}
+		}
+
 		public function get_compatibility( $name ) {
 			return ( isset( $this->compatibilities[ $name ] ) ? $this->compatibilities[ $name ] : false );
+		}
+
+		public function get_theme_compatibility( $name ) {
+			return ( isset( $this->theme_compatibilities[ $name ] ) ? $this->theme_compatibilities[ $name ] : false );
 		}
 
 		/**
