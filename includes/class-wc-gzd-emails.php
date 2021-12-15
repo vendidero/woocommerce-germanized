@@ -34,6 +34,7 @@ class WC_GZD_Emails {
 
 		add_action( 'woocommerce_email', array( $this, 'email_hooks' ), 0, 1 );
 		add_filter( 'wc_get_template', array( $this, 'maybe_set_current_email_instance' ), 1000, 3 );
+		add_filter( 'woocommerce_email_actions', array( $this, 'register_custom_email_actions' ), 10 );
 
 		if ( wc_gzd_send_instant_order_confirmation() ) {
 
@@ -110,6 +111,14 @@ class WC_GZD_Emails {
 		if ( is_admin() ) {
 			$this->admin_hooks();
 		}
+	}
+
+	public function register_custom_email_actions( $actions ) {
+		$actions = array_merge( $actions, array(
+			'woocommerce_order_status_pending_to_cancelled',
+		) );
+
+		return $actions;
 	}
 
 	public function prevent_html_url_auto_link( $url ) {
