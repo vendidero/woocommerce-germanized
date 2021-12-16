@@ -1,5 +1,7 @@
 <?php
 
+defined( 'ABSPATH' ) || exit;
+
 /**
  * WC GZD Role Based Pricing Compatibility Base Helper
  *
@@ -35,6 +37,22 @@ abstract class WC_GZD_Compatibility_Woocommerce_Role_Based_Pricing extends WC_GZ
 		 * Germanized adds hooks on `woocommerce_before_mini_cart_contents`.
 		 */
 		add_action( 'woocommerce_before_mini_cart_contents', array( $this, 'adjust_cart_hooks' ), 40 );
+
+		/**
+		 * Force refreshing unit prices via AJAX on load.
+		 */
+		add_filter( 'woocommerce_gzd_unit_price_observer_params', array( $this, 'refresh_on_load' ) );
+
+		/**
+		 * Recalculate unit price during cart & checkout via cart data.
+		 */
+		add_filter( 'woocommerce_gzd_recalculate_unit_price_cart', '__return_true' );
+	}
+
+	public function refresh_on_load( $params ) {
+		$params['refresh_on_load'] = true;
+
+		return $params;
 	}
 
 	public function adjust_cart_hooks() {
@@ -71,6 +89,9 @@ abstract class WC_GZD_Compatibility_Woocommerce_Role_Based_Pricing extends WC_GZ
 		), 10, 1 );
 	}
 
+	/**
+	 * @param WC_GZD_Product $product
+	 */
 	public function calculate_unit_price( $product ) {
 		$product->recalculate_unit_price();
 	}

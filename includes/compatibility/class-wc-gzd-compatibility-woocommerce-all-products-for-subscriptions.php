@@ -1,5 +1,7 @@
 <?php
 
+defined( 'ABSPATH' ) || exit;
+
 class WC_GZD_Compatibility_WooCommerce_All_Products_For_Subscriptions extends WC_GZD_Compatibility {
 
 	public static function get_name() {

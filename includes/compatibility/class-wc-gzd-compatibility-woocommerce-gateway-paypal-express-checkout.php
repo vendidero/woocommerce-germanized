@@ -1,5 +1,7 @@
 <?php
 
+defined( 'ABSPATH' ) || exit;
+
 /**
  * Woo Gateway PayPal Express Checkout Helper
  *

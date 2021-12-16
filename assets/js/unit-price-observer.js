@@ -32,7 +32,47 @@
             } else {
                 self.productId = $form.find( '*[name=add-to-cart][type=submit]' ).length > 0 ? $form.find( '*[name=add-to-cart][type=submit]' ).val() : self.params.product_id;
             }
+
+            if ( self.params.refresh_on_load ) {
+                $.each( self.params.price_selector, function( priceSelector, priceArgs ) {
+                    var isPrimary  = priceArgs.hasOwnProperty( 'is_primary_selector' ) ? priceArgs['is_primary_selector'] : false,
+                        $price     = self.getPriceNode( self, priceSelector, isPrimary ),
+                        $unitPrice = self.getUnitPriceNode( self, $price );
+
+                    if ( $unitPrice.length > 0 ) {
+                        var unitPriceOrg = $unitPrice.html(),
+                            textWidth    = self.getTextWidth( $unitPrice ),
+                            textHeight   = $unitPrice.find( 'span' ).length > 0 ? $unitPrice.find( 'span' ).innerHeight() : $unitPrice.height();
+
+                        /**
+                         * @see https://github.com/zalog/placeholder-loading
+                         */
+                        $unitPrice.html( '<span class="wc-gzd-placeholder-loading"><span class="wc-gzd-placeholder-row" style="height: ' + $unitPrice.height() + 'px;"><span class="wc-gzd-placeholder-row-col-4" style="width: ' + textWidth + 'px; height: ' + textHeight + 'px;"></span></span></span>' );
+
+                        setTimeout( function() {
+                            var priceData = self.getCurrentPriceData( self, priceSelector, priceArgs['is_total_price'], isPrimary );
+
+                            if ( priceData ) {
+                                self.refreshUnitPrice( self, priceData.price, priceData.unit_price, priceData.sale_price, priceData.quantity );
+                            } else {
+                                $unitPrice.html( unitPriceOrg );
+                            }
+                        }, 250 );
+                    }
+                } );
+            }
         }
+    };
+
+    GermanizedUnitPriceObserver.prototype.getTextWidth = function( $element ) {
+        var htmlOrg = $element.html();
+        var html_calc = '<span>' + htmlOrg + '</span>';
+
+        $element.html( html_calc );
+        var textWidth = $element.find( 'span:first' ).width();
+        $element.html( htmlOrg );
+
+        return textWidth;
     };
 
     GermanizedUnitPriceObserver.prototype.getPriceNode = function( self, priceSelector, isPrimarySelector ) {
@@ -45,6 +85,14 @@
         }
 
         return $node;
+    };
+
+    GermanizedUnitPriceObserver.prototype.getUnitPriceNode = function( self, $price ) {
+        if ( $price.length <= 0 ) {
+            return [];
+        }
+
+        return $price.parents( self.params.wrapper ).find( '.price-unit:first' );
     };
 
     GermanizedUnitPriceObserver.prototype.initObserver = function( self ) {
@@ -149,7 +197,7 @@
         var $price = self.getPriceNode( self, priceSelector, isPrimary );
 
         if ( $price.length > 0 ) {
-            var $unit_price = $price.parents( self.params.wrapper ).find( '.price-unit:first' ),
+            var $unit_price = self.getUnitPriceNode( self, $price ),
                 sale_price  = '',
                 $priceInner = $price.find( '.amount:first' ),
                 $qty        = $( self.params.wrapper + ' ' + self.params.qty_selector + ':first' ),
@@ -226,6 +274,7 @@
 
     GermanizedUnitPriceObserver.prototype.refreshUnitPrice = function( self, price, $unit_price, sale_price, quantity ) {
         self.abortAjaxRequests( self );
+        $unit_price.addClass( 'loading' );
 
         self.requests.push( $.ajax({
             type: "POST",
@@ -245,6 +294,7 @@
                 if ( parseInt( data.product_id ) === self.getCurrentProductId( self ) ) {
                     if ( data.hasOwnProperty( 'unit_price_html' ) ) {
                         $unit_price.html( data.unit_price_html );
+                        $unit_price.removeClass( 'loading' ).show();
                     }
                 }
             },

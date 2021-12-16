@@ -1,5 +1,7 @@
 <?php
 
+defined( 'ABSPATH' ) || exit;
+
 /**
  *
  * Ensure compatibility between WooCommerce Germanized and WooCommerce Memberships 

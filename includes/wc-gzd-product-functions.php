@@ -234,7 +234,6 @@ function wc_gzd_product_matches_extended_type( $types, $product ) {
  * @return array|mixed|void
  */
 function wc_gzd_recalculate_unit_price( $args = array(), $product = false ) {
-
 	$default_args = array(
 		'regular_price' => 0,
 		'sale_price'    => 0,
@@ -267,6 +266,16 @@ function wc_gzd_recalculate_unit_price( $args = array(), $product = false ) {
 			$default_args['regular_price'] = wc_get_price_excluding_tax( $wc_product, array( 'price' => $default_args['regular_price'] ) );
 			$default_args['sale_price']    = wc_get_price_excluding_tax( $wc_product, array( 'price' => $default_args['sale_price'] ) );
 			$default_args['price']         = wc_get_price_excluding_tax( $wc_product, array( 'price' => $default_args['price'] ) );
+		}
+	} else {
+		if ( ! isset( $args['price'] ) && isset( $args['regular_price'] ) ) {
+			$args['price'] = $args['regular_price'];
+		} elseif ( ! isset( $args['regular_price'] ) ) {
+			$args['regular_price'] = $args['price'];
+		}
+
+		if ( ! isset( $args['sale_price'] ) ) {
+			$args['sale_price'] = $args['regular_price'];
 		}
 	}
 

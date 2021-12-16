@@ -1025,6 +1025,7 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
                     'price_decimal_sep'        => wc_get_price_decimal_separator(),
                     'price_thousand_sep'       => wc_get_price_thousand_separator(),
                     'qty_selector'             => 'input.quantity, input.qty',
+                    'refresh_on_load'          => false,
                 ) );
 
 				/**

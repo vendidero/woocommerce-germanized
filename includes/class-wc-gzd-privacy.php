@@ -1,5 +1,7 @@
 <?php
 
+defined( 'ABSPATH' ) || exit;
+
 class WC_GZD_Privacy {
 
 	protected static $_instance = null;

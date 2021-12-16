@@ -1,5 +1,7 @@
 <?php
 
+defined( 'ABSPATH' ) || exit;
+
 /**
  * Attaches legal relevant Pages to WooCommerce Emails if has been set by WooCommerce Germanized Options
  *

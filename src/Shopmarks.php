@@ -160,7 +160,7 @@ class Shopmarks {
 		$shopmarks_cart = apply_filters( 'woocommerce_gzd_shopmark_cart_defaults', array(
 			'unit_price'    => array(
 				'default_filter'   => 'woocommerce_cart_item_price',
-				'default_priority' => 0,
+				'default_priority' => 5000,
 				'callback'         => 'wc_gzd_cart_product_unit_price',
 			),
 			'delivery_time' => array(
@@ -202,7 +202,7 @@ class Shopmarks {
 		$shopmarks_cart = apply_filters( 'woocommerce_gzd_shopmark_mini_cart_defaults', array(
 			'unit_price'    => array(
 				'default_filter'   => 'woocommerce_cart_item_price',
-				'default_priority' => 0,
+				'default_priority' => 5000,
 				'callback'         => 'wc_gzd_cart_product_unit_price',
 			),
 			'delivery_time' => array(

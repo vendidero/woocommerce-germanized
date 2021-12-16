@@ -1,5 +1,7 @@
 <?php
 
+defined( 'ABSPATH' ) || exit;
+
 /**
  * Helper for PayPal Express Checkout Gateway Plugin
  *

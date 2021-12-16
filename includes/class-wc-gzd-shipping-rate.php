@@ -1,5 +1,7 @@
 <?php
 
+defined( 'ABSPATH' ) || exit;
+
 class WC_GZD_Shipping_Rate extends WC_Shipping_Rate {
 
 	public $tax_shares = array();

@@ -1,5 +1,7 @@
 <?php
 
+defined( 'ABSPATH' ) || exit;
+
 class WC_GZD_Product_Attribute extends WC_Product_Attribute {
 
 	/**

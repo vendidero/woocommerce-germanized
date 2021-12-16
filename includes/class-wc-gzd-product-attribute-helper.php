@@ -1,5 +1,7 @@
 <?php
 
+defined( 'ABSPATH' ) || exit;
+
 class WC_GZD_Product_Attribute_Helper {
 
 	protected static $_instance = null;

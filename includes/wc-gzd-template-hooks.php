@@ -146,7 +146,8 @@ if ( get_option( 'woocommerce_gzd_differential_taxation_checkout_notices' ) === 
  */
 add_action( 'woocommerce_before_mini_cart_contents', 'woocommerce_gzd_template_mini_cart_remove_hooks', 5 );
 add_action( 'woocommerce_before_mini_cart_contents', 'woocommerce_gzd_template_mini_cart_add_hooks', 10 );
-add_action( 'woocommerce_after_mini_cart', 'woocommerce_gzd_template_mini_cart_maybe_remove_hooks', 10 );
+// Some themes/plugins (e.g. Elementor pro) might not execute the woocommerce_after_mini_cart hook
+add_action( 'woocommerce_mini_cart_contents', 'woocommerce_gzd_template_mini_cart_maybe_remove_hooks', 10000 );
 
 add_action( 'woocommerce_widget_shopping_cart_before_buttons', 'woocommerce_gzd_template_mini_cart_taxes', 10 );
 

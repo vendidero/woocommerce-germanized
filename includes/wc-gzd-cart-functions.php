@@ -311,7 +311,28 @@ function wc_gzd_cart_product_unit_price( $price, $cart_item, $cart_item_key = ''
 		$product = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
 
 		if ( is_a( $product, 'WC_Product' ) && wc_gzd_get_product( $product )->has_unit() ) {
-		    $unit_price = wc_gzd_get_product( $product )->get_unit_price_html( false, $tax_display );
+            $gzd_product  = wc_gzd_get_product( $product );
+
+            if ( apply_filters( 'woocommerce_gzd_recalculate_unit_price_cart', true ) && isset( $cart_item['line_subtotal'], $cart_item['line_subtotal_tax'], $cart_item['quantity'] ) ) {
+	            $unit_product = $gzd_product->get_unit_product();
+	            $unit_base    = $gzd_product->get_unit_base();
+
+	            if ( WC()->cart->display_prices_including_tax() ) {
+		            $total = round( ( $cart_item['line_subtotal'] + $cart_item['line_subtotal_tax'] ) / $cart_item['quantity'], wc_get_price_decimals() );
+	            } else {
+		            $total = round( ( $cart_item['line_subtotal'] ) / $cart_item['quantity'], wc_get_price_decimals() );
+	            }
+
+	            $prices = wc_gzd_recalculate_unit_price( array(
+		            'regular_price' => $total,
+		            'base'          => $unit_base,
+		            'products'      => $unit_product,
+	            ) );
+
+	            $unit_price = wc_gzd_format_unit_price( wc_price( $prices['unit'] ), $gzd_product->get_unit_html(), $gzd_product->get_unit_base_html() );
+            } else {
+	            $unit_price = wc_gzd_get_product( $product )->get_unit_price_html( false, $tax_display );
+            }
 		}
 	} elseif ( isset( $cart_item['unit_price'] ) ) {
 		$unit_price = $cart_item['unit_price'];

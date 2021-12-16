@@ -1,5 +1,7 @@
 <?php
 
+defined( 'ABSPATH' ) || exit;
+
 class WC_GZD_Legal_Checkbox_Manager {
 
 	protected $checkboxes = array();

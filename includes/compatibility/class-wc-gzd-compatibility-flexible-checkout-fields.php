@@ -1,5 +1,7 @@
 <?php
 
+defined( 'ABSPATH' ) || exit;
+
 /**
  * Compatibility script for https://wordpress.org/plugins/flexible-checkout-fields/
  *
