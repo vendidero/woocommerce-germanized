@@ -30,7 +30,39 @@ class WC_GZD_Admin_Customer {
 		add_action( 'edit_user_profile', array( $this, 'profile_add_activation_field' ) );
 		add_action( 'personal_options_update', array( $this, 'profile_save_activation_field' ) );
 		add_action( 'edit_user_profile_update', array( $this, 'profile_save_activation_field' ) );
+
+        if ( get_option( 'woocommerce_gzd_customer_activation' ) === 'yes' ) {
+	        add_filter( 'manage_users_columns', array( $this, 'add_user_column' ), 12, 1 );
+	        add_filter( 'manage_users_custom_column', array( $this, 'add_user_column_value' ), 12, 3 );
+        }
 	}
+
+    public function add_user_column_value( $value, $column_name, $user_id ) {
+	    if ( 'woocommerce_doi' === $column_name ) {
+            if (  WC_GZD_Customer_Helper::instance()->enable_double_opt_in_for_user( $user_id ) ) {
+	            if ( wc_gzd_is_customer_activated( $user_id ) ) {
+		            $value = '<span class="status-enabled">' . __( 'Yes', 'woocommerce-germanized' ) . '</span>';
+	            } else {
+		            $value = '<span class="status-disabled">' . __( 'No', 'woocommerce-germanized' ) . '</span>';
+	            }
+            } else {
+	            $value = '<span>—</span>';
+            }
+	    }
+
+	    return $value;
+    }
+
+    public function add_user_column( $columns ) {
+	    if ( current_user_can( 'manage_woocommerce' ) ) {
+		    $last_column = array_slice( $columns, -1, 1, true );
+		    array_pop( $columns );
+		    $columns['woocommerce_doi'] = __( 'DOI Confirmed?', 'woocommerce-germanized' );
+		    $columns += $last_column;
+	    }
+
+        return $columns;
+    }
 
 	/**
 	 * Adds customer activation option to profile
