@@ -11,10 +11,11 @@ defined( 'ABSPATH' ) || exit;
 	<?php if ( ! WC_germanized()->is_pro() ) : ?>
         <a class="page-title-action" href="https://vendidero.de/woocommerce-germanized"
            target="_blank"><?php printf( __( 'Upgrade to %s', 'woocommerce-germanized' ), '<span class="wc-gzd-pro">pro</span>' ); ?></a>
-	<?php endif; ?>
+	<?php elseif ( function_exists( 'VD' ) ) : ?>
+        <a class="page-title-action" href="<?php echo admin_url( 'index.php?page=vendidero' ); ?>"><?php _e( 'Manage license', 'woocommerce-germanized' ); ?></a>
+    <?php endif; ?>
 
-    <a class="page-title-action"
-       href="<?php echo add_query_arg( array( 'tutorial' => 'yes' ) ); ?>"><?php _e( 'Start tutorial', 'woocommerce-germanized' ); ?></a>
+    <a class="page-title-action" href="<?php echo add_query_arg( array( 'tutorial' => 'yes' ) ); ?>"><?php _e( 'Start tutorial', 'woocommerce-germanized' ); ?></a>
 </h2>
 
 <p class="tab-description">
