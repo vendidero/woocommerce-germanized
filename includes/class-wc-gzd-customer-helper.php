@@ -476,7 +476,7 @@ class WC_GZD_Customer_Helper {
 	public function customer_account_activation_check() {
 		if ( is_account_page() ) {
 			if ( isset( $_GET['activate'] ) ) {
-				$activation_code = wc_clean( wp_unslash( $_GET['activate'] ) );
+				$activation_code = urldecode( wc_clean( wp_unslash( $_GET['activate'] ) ) );
 
 				if ( ! empty( $activation_code ) ) {
 					$result = $this->customer_account_activate( $activation_code, true );
@@ -575,7 +575,8 @@ class WC_GZD_Customer_Helper {
 	 * @return boolean|WP_Error
 	 */
 	public function customer_account_activate( $activation_code, $login = false ) {
-		$roles = array_map( 'ucfirst', $this->get_double_opt_in_user_roles() );
+		$activation_code = urldecode( $activation_code );
+		$roles           = array_map( 'ucfirst', $this->get_double_opt_in_user_roles() );
 
 		/**
 		 * Filter to adjust arguments for the customer activation user query.
@@ -766,7 +767,7 @@ class WC_GZD_Customer_Helper {
 		 *
 		 */
 		return apply_filters( 'woocommerce_gzd_customer_activation_url', add_query_arg( array(
-			'activate' => $key,
+			'activate' => urlencode( $key ),
 			'suffix'   => 'yes'
 		), wc_gzd_get_page_permalink( 'myaccount' ) ) );
 	}
