@@ -721,8 +721,17 @@ if ( ! function_exists( 'is_ajax' ) ) {
 	 * @return bool
 	 */
 	function is_ajax() {
-		return defined( 'DOING_AJAX' );
+		return wc_gzd_is_ajax();
 	}
+}
+
+/**
+ * Is_ajax - Returns true when the page is loaded via ajax.
+ *
+ * @return bool
+ */
+function wc_gzd_is_ajax() {
+	return function_exists( 'wp_doing_ajax' ) ? wp_doing_ajax() : defined( 'DOING_AJAX' );
 }
 
 /**

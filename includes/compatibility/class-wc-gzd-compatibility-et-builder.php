@@ -131,7 +131,7 @@ class WC_GZD_Compatibility_ET_Builder extends WC_GZD_Compatibility {
 	}
 
 	public function before_checkout() {
-		if ( is_ajax() && isset( $_POST['post_data'] ) ) {
+		if ( wc_gzd_is_ajax() && isset( $_POST['post_data'] ) ) {
 			$result = array();
 			$data   = wp_unslash( $_POST['post_data'] );
 			parse_str( $data, $result );
