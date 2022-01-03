@@ -21,8 +21,8 @@
   },
   "require-dev": {
     "myclabs/deep-copy": "^1.7.0",
-    "phpunit/phpunit": "7.5.14",
-    "yoast/phpunit-polyfills": "^1.0"
+    "yoast/phpunit-polyfills": "^1.0",
+    "phpunit/phpunit": "6.5.14"
   },
   "repositories": [
     {
