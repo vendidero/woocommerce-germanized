@@ -199,7 +199,7 @@ add_action( 'woocommerce_pay_order_before_submit', 'woocommerce_gzd_template_che
 
 function woocommerce_gzd_checkout_load_ajax_relevant_hooks() {
 
-	if ( wc_gzd_is_ajax() ) {
+	if ( wp_doing_ajax() ) {
 		return;
 	}
 
