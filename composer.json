@@ -45,7 +45,7 @@
     "optimize-autoloader": true,
     "allow-plugins": true,
     "platform": {
-      "php": "7.2"
+      "php": "7.0"
     },
     "preferred-install": "dist",
     "sort-packages": true
