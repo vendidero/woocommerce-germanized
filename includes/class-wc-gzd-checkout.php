@@ -63,6 +63,7 @@ class WC_GZD_Checkout {
 		), 10, 1 );
 
 		add_action( 'woocommerce_checkout_create_order_line_item', array( $this, 'set_order_item_meta_crud' ), 0, 4 );
+		add_action( 'woocommerce_checkout_create_order_line_item', array( $this, 'set_order_item_meta_crud' ), 1000, 4 );
 
 		// Deactivate checkout shipping selection
 		add_action( 'woocommerce_review_order_before_shipping', array( $this, 'remove_shipping_rates' ), 0 );

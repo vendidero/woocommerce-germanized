@@ -255,11 +255,12 @@ class WC_GZD_Product {
 		 * Executes whenever the unit price is recalculated.
 		 *
 		 * @param WC_GZD_Product $product The product object.
+		 * @param array $args Arguments passed to the recalculation method.
 		 *
 		 * @since 1.9.1
 		 *
 		 */
-		do_action( 'woocommerce_gzd_recalculated_unit_price', $this );
+		do_action( 'woocommerce_gzd_recalculated_unit_price', $this, $args );
 	}
 
 	public function needs_age_verification() {

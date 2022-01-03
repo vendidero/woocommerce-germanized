@@ -313,14 +313,34 @@ function wc_gzd_cart_product_unit_price( $price, $cart_item, $cart_item_key = ''
 		if ( is_a( $product, 'WC_Product' ) && wc_gzd_get_product( $product )->has_unit() ) {
             $gzd_product  = wc_gzd_get_product( $product );
 
-            if ( apply_filters( 'woocommerce_gzd_recalculate_unit_price_cart', true ) && isset( $cart_item['line_subtotal'], $cart_item['line_subtotal_tax'], $cart_item['quantity'] ) ) {
+			/**
+			 * Filter that allows to enable/disable calculating the unit price based on the actual cart content instead of falling back to
+             * actual product data. Using cart data improves compatibility with dynamic pricing plugins.
+			 *
+			 * @param bool $enable_recalculation Whether to enable recalculating the unit price with cart data or not.
+			 * @param array $cart_item The cart item data.
+			 * @param string $cart_item_key The cart item key.
+			 *
+			 * @since 3.7.3
+			 */
+            if ( apply_filters( 'woocommerce_gzd_recalculate_unit_price_cart', true, $cart_item, $cart_item_key ) && isset( $cart_item['line_subtotal'], $cart_item['line_subtotal_tax'], $cart_item['quantity'] ) ) {
 	            $unit_product = $gzd_product->get_unit_product();
 	            $unit_base    = $gzd_product->get_unit_base();
+	            /**
+	             * Determines the quantity used to calculate the item total used for unit price (re-) calculation within the cart.
+                 *
+	             * @param float $quantity The item quantity.
+	             * @param array $cart_item The cart item data.
+                 * @param string $cart_item_key The cart item key.
+	             *
+	             * @since 3.7.3
+	             */
+                $quantity = apply_filters( 'woocommerce_gzd_unit_price_cart_quantity', $cart_item['quantity'], $cart_item, $gzd_product );
 
 	            if ( WC()->cart->display_prices_including_tax() ) {
-		            $total = round( ( $cart_item['line_subtotal'] + $cart_item['line_subtotal_tax'] ) / $cart_item['quantity'], wc_get_price_decimals() );
+		            $total = ( $cart_item['line_subtotal'] + $cart_item['line_subtotal_tax'] ) / floatval( $quantity );
 	            } else {
-		            $total = round( ( $cart_item['line_subtotal'] ) / $cart_item['quantity'], wc_get_price_decimals() );
+		            $total = $cart_item['line_subtotal'] / floatval( $quantity );
 	            }
 
 	            $prices = wc_gzd_recalculate_unit_price( array(
@@ -387,6 +407,17 @@ function wc_gzd_cart_product_units( $title, $cart_item, $cart_item_key = '' ) {
 	} elseif ( isset( $cart_item['units'] ) ) {
 		$units = $cart_item['units'];
 	}
+
+	/**
+	 * Filter that allows adjusting the product units HTML content before outputting within cart.
+	 *
+	 * @param string $product_units_html The HTML content.
+	 * @param array  $cart_item The cart item data.
+	 * @param string $cart_item_key The cart item key.
+	 *
+	 * @since 3.7.3
+	 */
+    $units = apply_filters( 'woocommerce_gzd_cart_product_units_html', $units, $cart_item, $cart_item_key );
 
 	if ( ! empty( $units ) ) {
 		$title .= '<p class="wc-gzd-cart-info units-info">' . $units . '</p>';

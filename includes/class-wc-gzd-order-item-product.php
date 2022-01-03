@@ -199,32 +199,47 @@ class WC_GZD_Order_Item_Product extends WC_GZD_Order_Item {
 		$this->order_item->update_meta_data( '_unit_price_subtotal_net_raw', wc_format_decimal( $price, '' ) );
 	}
 
-	public function recalculate_unit_price() {
-		if ( ! $this->has_unit_price() ) {
-			return false;
-		}
-
+	public function get_quantity() {
 		$quantity = $this->order_item->get_quantity();
 
 		if ( empty( $quantity ) ) {
 			$quantity = 1;
 		}
 
+		/**
+		 * Determines the quantity used to calculate the item total used for unit price (re-) calculation for an order item.
+		 *
+		 * @param float $quantity The item quantity.
+		 * @param WC_GZD_Order_Item_Product $gzd_order_item Germanized order item instance.
+		 * @param WC_Order_Item_Product $order_item The order item instance.
+		 *
+		 * @since 3.7.3
+		 */
+		return apply_filters( 'woocommerce_gzd_order_item_quantity', $quantity, $this, $this->order_item );
+	}
+
+	public function recalculate_unit_price() {
+		if ( ! $this->has_unit_price() ) {
+			return false;
+		}
+
+		$quantity       = floatval( $this->get_quantity() );
 		$net_total      = floatval( $this->order_item->get_total() ) / $quantity;
 		$gross_total    = $net_total + ( floatval( $this->order_item->get_total_tax() ) / $quantity );
 		$net_subtotal   = floatval( $this->order_item->get_subtotal() ) / $quantity;
 		$gross_subtotal = $net_subtotal + ( floatval( $this->order_item->get_subtotal_tax() ) / $quantity );
 
-		$net_total      = round( $net_total, wc_get_price_decimals() );
-		$gross_total    = round( $gross_total, wc_get_price_decimals() );
-		$net_subtotal   = round( $net_subtotal, wc_get_price_decimals() );
-		$gross_subtotal = round( $gross_subtotal, wc_get_price_decimals() );
-
-		if ( $order = $this->order_item->get_order() ) {
-			$net_total      = $order->get_item_total( $this->order_item, false );
-			$gross_total    = $order->get_item_total( $this->order_item, true );
-			$net_subtotal   = $order->get_item_subtotal( $this->order_item, false );
-			$gross_subtotal = $order->get_item_subtotal( $this->order_item, true );
+		/**
+		 * Prefer using (filterable) order methods to determine the item total in case the quantity
+		 * used for unit price calculation has not been changed via filter.
+		 *
+		 * @see WC_GZD_Compatibility_WooCommerce_Measurement_Price_Calculator
+		 */
+		if ( ( $order = $this->order_item->get_order() ) && $this->get_quantity() === $this->order_item->get_quantity() ) {
+			$net_total      = $order->get_item_total( $this->order_item, false, false );
+			$gross_total    = $order->get_item_total( $this->order_item, true, false );
+			$net_subtotal   = $order->get_item_subtotal( $this->order_item, false, false );
+			$gross_subtotal = $order->get_item_subtotal( $this->order_item, true, false );
 		}
 
 		$prices_net = wc_gzd_recalculate_unit_price( array(

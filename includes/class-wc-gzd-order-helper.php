@@ -143,16 +143,6 @@ class WC_GZD_Order_Helper {
 	}
 
 	/**
-	 * @param WC_Order_Item_Product $item
-	 * @param $cart_item_key
-	 * @param $values
-	 * @param $order
-	 */
-	public function set_order_item_meta_crud( $item, $cart_item_key, $values, $order ) {
-		$this->refresh_item_data( $item );
-	}
-
-	/**
 	 * @param WC_Order_Item $item
 	 */
 	public function on_order_item_update( $item ) {
