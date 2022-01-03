@@ -40,14 +40,13 @@ jobs:
       - name: PHP 8 fixes
         run: |
           if [ "$(php -r "echo version_compare(PHP_VERSION,'8.0','>=');")" ]; then
-             curl -L https://github.com/woocommerce/phpunit/archive/add-compatibility-with-php8-to-phpunit-7.zip -o /tmp/phpunit-7.5-fork.zip
-             unzip -d /tmp/phpunit-7.5-fork /tmp/phpunit-7.5-fork.zip
-             composer bin phpunit config --unset platform
-             composer bin phpunit config repositories.0 '{"type": "path", "url": "/tmp/phpunit-7.5-fork/phpunit-add-compatibility-with-php8-to-phpunit-7", "options": {"symlink": false}}'
-             composer bin phpunit require --dev -W phpunit/phpunit:@dev --ignore-platform-reqs
-             rm -rf ./vendor/phpunit/
-             pnpm nx composer-dump-autoload woocommerce-germanized
-           fi
+            curl -L https://github.com/woocommerce/phpunit/archive/add-compatibility-with-php8-to-phpunit-7.zip -o /tmp/phpunit-7.5-fork.zip
+            unzip -d /tmp/phpunit-7.5-fork /tmp/phpunit-7.5-fork.zip
+            composer config --unset platform
+            composer config repositories.0 '{"type": "path", "url": "/tmp/phpunit-7.5-fork/phpunit-add-compatibility-with-php8-to-phpunit-7", "options": {"symlink": false}}'
+            composer require --dev -W phpunit/phpunit:@dev --ignore-platform-reqs
+            rm -rf ./vendor/phpunit/
+          fi
 
       - name: Install WP Tests
         run: bash tests/bin/install.sh wordpress_test root root 127.0.0.1:${{ job.services.mysql.ports['3306'] }} latest ${{ matrix.woo }} true
