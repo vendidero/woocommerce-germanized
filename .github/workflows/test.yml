@@ -34,14 +34,6 @@ jobs:
           ini-values: post_max_size=256M, short_open_tag=On #optional, setup php.ini configuration
           coverage: xdebug #optional, setup coverage driver
 
-      - name: Get cached composer directories
-        uses: actions/cache@v2
-        with:
-          path: |
-            ./packages
-            ./vendor
-          key: ${{ runner.os }}-${{ hashFiles('./composer.lock') }}
-
       - name: Composer install
         run: composer config github-oauth.github.com ${{ secrets.GH_TOKEN }} && composer install
         env:
