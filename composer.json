@@ -7,6 +7,7 @@
   "prefer-stable": true,
   "prefer-dist": true,
   "minimum-stability": "dev",
+  "allow-plugins": null,
   "require": {
     "automattic/jetpack-autoloader": "2.10.1",
     "php": ">=5.6|>=7.0",
