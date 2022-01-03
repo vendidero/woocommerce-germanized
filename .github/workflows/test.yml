@@ -15,6 +15,7 @@ jobs:
           - 3306
         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
     strategy:
+      fail-fast: false
       matrix:
         operating-system: [ubuntu-latest]
         php: ['7.3', '7.4', '8.0']
@@ -22,15 +23,24 @@ jobs:
     name: PHP ${{ matrix.php }} test for Woo ${{ matrix.woo }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
 
       - name: Setup PHP
-        uses: shivammathur/setup-php@v1
+        uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
+          tools: composer
           extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, mysql, mysqli, pdo_mysql, bcmath, soap, intl, gd, exif, iconv, imagick
           ini-values: post_max_size=256M, short_open_tag=On #optional, setup php.ini configuration
           coverage: xdebug #optional, setup coverage driver
+
+      - name: Get cached composer directories
+        uses: actions/cache@v2
+        with:
+          path: |
+            ./packages
+            ./vendor
+          key: ${{ runner.os }}-${{ hashFiles('./composer.lock') }}
 
       - name: Composer install
         run: composer config github-oauth.github.com ${{ secrets.GH_TOKEN }} && composer install
