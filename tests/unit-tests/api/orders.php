@@ -23,6 +23,7 @@ class WC_GZD_Orders_API extends WC_GZD_REST_Unit_Test_Case {
 	 * Test getting a single product.
 	 *
 	 * @since 3.0.0
+	 * @expectedDeprecated is_ajax
 	 */
 	public function test_get_order() {
 		wp_set_current_user( $this->user );
@@ -48,6 +49,7 @@ class WC_GZD_Orders_API extends WC_GZD_REST_Unit_Test_Case {
 	 * Test editing a single product. Tests multiple product types.
 	 *
 	 * @since 3.0.0
+	 * @expectedDeprecated is_ajax
 	 */
 	public function test_update_order() {
 		wp_set_current_user( $this->user );
