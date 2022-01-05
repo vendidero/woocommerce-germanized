@@ -191,6 +191,10 @@ function wc_gzd_product_matches_extended_type( $types, $product ) {
 		foreach ( $types as $type ) {
 			if ( 'service' === $type ) {
 				$matches_type = wc_gzd_get_product( $product )->is_service();
+			} elseif ( 'used_good' === $type ) {
+				$matches_type = wc_gzd_get_product( $product )->is_used_good();
+			} elseif ( 'defective_copy' === $type ) {
+				$matches_type = wc_gzd_get_product( $product )->is_defective_copy();
 			} else {
 				$getter = "is_" . $type;
 				try {

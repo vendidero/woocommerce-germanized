@@ -223,6 +223,25 @@ class WC_GZD_Settings_Tab_Emails extends WC_GZD_Settings_Tab {
 		);
 	}
 
+	protected function get_default_email_ids_by_attachment_type( $type ) {
+		$email_ids = array();
+
+		switch( $type ) {
+			case "revocation":
+				$email_ids = array( 'customer_processing_order' );
+			break;
+			case "warranties":
+				$email_ids = array( 'customer_completed_order' );
+			break;
+			case "data_security":
+			case "terms":
+				$email_ids = array( 'customer_processing_order', 'customer_new_account', 'customer_new_account_activation' );
+			break;
+		}
+
+		return $email_ids;
+	}
+
 	protected function get_general_settings() {
 		$mailer          = WC()->mailer();
 		$email_templates = $mailer->get_emails();
@@ -246,7 +265,7 @@ class WC_GZD_Settings_Tab_Emails extends WC_GZD_Settings_Tab {
 				'title'   => '',
 				'id'      => 'woocommerce_gzd_mail_attach_order',
 				'type'    => 'hidden',
-				'default' => 'terms,revocation,data_security,imprint',
+				'default' => wc_gzd_get_default_email_attachment_order(),
 			),
 		);
 
@@ -257,6 +276,7 @@ class WC_GZD_Settings_Tab_Emails extends WC_GZD_Settings_Tab {
 				'id'       => 'woocommerce_gzd_mail_attach_' . $key,
 				'type'     => 'multiselect',
 				'class'    => 'wc-enhanced-select',
+				'default'  => $this->get_default_email_ids_by_attachment_type( $key ),
 				'desc_tip' => true,
 				'options'  => $email_select,
 			) );

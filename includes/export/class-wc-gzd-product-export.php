@@ -48,10 +48,12 @@ class WC_GZD_Product_Export {
 		 * @param array $export_data Product export data.
 		 *
 		 * @since 1.9.1
-		 *
 		 */
 		$this->columns = apply_filters( 'woocommerce_gzd_product_export_default_columns', array(
 			'service'                  => _x( 'Is service?', 'exporter', 'woocommerce-germanized' ),
+			'used_good'                => _x( 'Is used good?', 'exporter', 'woocommerce-germanized' ),
+			'defective_copy'           => _x( 'Is defective copy?', 'exporter', 'woocommerce-germanized' ),
+			'warranty_attachment_id'   => _x( 'Warranty attachment id (PDF)', 'exporter', 'woocommerce-germanized' ),
 			'differential_taxation'    => _x( 'Is differential taxed?', 'exporter', 'woocommerce-germanized' ),
 			'free_shipping'            => _x( 'Has free shipping?', 'exporter', 'woocommerce-germanized' ),
 			'unit_price_regular'       => _x( 'Unit price regular', 'exporter', 'woocommerce-germanized' ),
@@ -61,6 +63,8 @@ class WC_GZD_Product_Export {
 			'unit_base'                => _x( 'Unit base', 'exporter', 'woocommerce-germanized' ),
 			'unit_product'             => _x( 'Unit product', 'exporter', 'woocommerce-germanized' ),
 			'mini_desc'                => _x( 'Cart description', 'exporter', 'woocommerce-germanized' ),
+			'min_age'                  => _x( 'Minimum age', 'exporter', 'woocommerce-germanized' ),
+			'defect_description'       => _x( 'Defect description', 'exporter', 'woocommerce-germanized' ),
 			'delivery_time'            => _x( 'Delivery time', 'exporter', 'woocommerce-germanized' ),
 			'sale_price_label'         => _x( 'Sale price label', 'exporter', 'woocommerce-germanized' ),
 			'sale_price_regular_label' => _x( 'Sale price regular label', 'exporter', 'woocommerce-germanized' ),

@@ -22,6 +22,6 @@ if ( ! defined( 'ABSPATH' ) ) {
     <div class="wc-gzd-sidebar-action">
         <a class="button button-primary wc-gzd-button" href="https://vendidero.de/woocommerce-germanized"
            target="_blank">jetzt entdecken</a>
-        <span class="small">ab 69 € inkl. Mwst. und 1 Jahr Updates & Support!</span>
+        <span class="small">ab 79 € inkl. Mwst. und 1 Jahr Updates & Support!</span>
     </div>
 </div>

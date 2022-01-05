@@ -3,13 +3,13 @@
     var GermanizedUnitPriceObserver = function( $form ) {
         var self = this;
 
-        self.$form      = $form;
-        self.params     = wc_gzd_unit_price_observer_params;
-        self.$wrapper   = $form.closest( self.params.wrapper );
-        self.$product   = $form.closest( '.product' );
-        self.requests   = [];
-        self.observer   = {};
-        self.timeout    = false;
+        self.$form    = $form;
+        self.params   = wc_gzd_unit_price_observer_params;
+        self.$wrapper = $form.closest( self.params.wrapper );
+        self.$product = $form.closest( '.product' );
+        self.requests = [];
+        self.observer = {};
+        self.timeout  = false;
 
         if ( self.$wrapper.length <= 0 ) {
             self.$wrapper = self.$product;
@@ -35,27 +35,20 @@
 
             if ( self.params.refresh_on_load ) {
                 $.each( self.params.price_selector, function( priceSelector, priceArgs ) {
-                    var isPrimary  = priceArgs.hasOwnProperty( 'is_primary_selector' ) ? priceArgs['is_primary_selector'] : false,
-                        $price     = self.getPriceNode( self, priceSelector, isPrimary ),
-                        $unitPrice = self.getUnitPriceNode( self, $price );
+                    var isPrimary    = priceArgs.hasOwnProperty( 'is_primary_selector' ) ? priceArgs['is_primary_selector'] : false,
+                        $price       = self.getPriceNode( self, priceSelector, isPrimary ),
+                        $unitPrice   = self.getUnitPriceNode( self, $price );
 
                     if ( $unitPrice.length > 0 ) {
-                        var unitPriceOrg = $unitPrice.html(),
-                            textWidth    = self.getTextWidth( $unitPrice ),
-                            textHeight   = $unitPrice.find( 'span' ).length > 0 ? $unitPrice.find( 'span' ).innerHeight() : $unitPrice.height();
-
-                        /**
-                         * @see https://github.com/zalog/placeholder-loading
-                         */
-                        $unitPrice.html( '<span class="wc-gzd-placeholder-loading"><span class="wc-gzd-placeholder-row" style="height: ' + $unitPrice.height() + 'px;"><span class="wc-gzd-placeholder-row-col-4" style="width: ' + textWidth + 'px; height: ' + textHeight + 'px;"></span></span></span>' );
+                        self.setUnitPriceLoading( self, $unitPrice );
 
                         setTimeout( function() {
                             var priceData = self.getCurrentPriceData( self, priceSelector, priceArgs['is_total_price'], isPrimary );
 
                             if ( priceData ) {
                                 self.refreshUnitPrice( self, priceData.price, priceData.unit_price, priceData.sale_price, priceData.quantity );
-                            } else {
-                                $unitPrice.html( unitPriceOrg );
+                            } else if ( $unitPrice.length > 0 ) {
+                                self.unsetUnitPriceLoading( self, $unitPrice );
                             }
                         }, 250 );
                     }
@@ -118,6 +111,13 @@
                         self.abortAjaxRequests( self );
                     }
 
+                    var $unitPrice   = self.getUnitPriceNode( self, $node ),
+                        hasRefreshed = false;
+
+                    if ( $unitPrice.length > 0 ) {
+                        self.setUnitPriceLoading( self, $unitPrice );
+                    }
+
                     /**
                      * Need to use a tweak here to make sure our variation listener
                      * has already adjusted the variationId (in case necessary).
@@ -130,8 +130,13 @@
                              * Do only fire AJAX requests in case no other requests (e.g. from other plugins) are currently running.
                              */
                             if ( $.active <= 0 ) {
+                                hasRefreshed = true;
                                 self.refreshUnitPrice( self, priceData.price, priceData.unit_price, priceData.sale_price, priceData.quantity );
                             }
+                        }
+
+                        if ( ! hasRefreshed && $unitPrice.length > 0 ) {
+                            self.unsetUnitPriceLoading( self, $unitPrice );
                         }
                     }, 500 );
                 };
@@ -272,9 +277,38 @@
         return price;
     };
 
+    GermanizedUnitPriceObserver.prototype.setUnitPriceLoading = function( self, $unit_price ) {
+        var unitPriceOrg = $unit_price.html();
+
+        if ( ! $unit_price.hasClass( 'loading' ) ) {
+            var textWidth  = self.getTextWidth( $unit_price ),
+                textHeight = $unit_price.find( 'span' ).length > 0 ? $unit_price.find( 'span' ).innerHeight() : $unit_price.height();
+            /**
+             * @see https://github.com/zalog/placeholder-loading
+             */
+            $unit_price.html( '<span class="wc-gzd-placeholder-loading"><span class="wc-gzd-placeholder-row" style="height: ' + $unit_price.height() + 'px;"><span class="wc-gzd-placeholder-row-col-4" style="width: ' + textWidth + 'px; height: ' + textHeight + 'px;"></span></span></span>' );
+            $unit_price.addClass( 'loading' );
+            $unit_price.data( 'org-html', unitPriceOrg );
+        } else {
+            unitPriceOrg = $unit_price.data( 'org-html' );
+        }
+
+        return unitPriceOrg;
+    };
+
+    GermanizedUnitPriceObserver.prototype.unsetUnitPriceLoading = function( self, $unit_price, newHtml ) {
+        newHtml = newHtml || $unit_price.data( 'org-html' );
+
+        if ( $unit_price.hasClass( 'loading' ) ) {
+            $unit_price.html( newHtml );
+            $unit_price.removeClass( 'loading' ).show();
+        }
+    };
+
     GermanizedUnitPriceObserver.prototype.refreshUnitPrice = function( self, price, $unit_price, sale_price, quantity ) {
         self.abortAjaxRequests( self );
-        $unit_price.addClass( 'loading' );
+
+        var unitPriceOrgHtml = self.setUnitPriceLoading( self, $unit_price );
 
         self.requests.push( $.ajax({
             type: "POST",
@@ -293,12 +327,17 @@
                  */
                 if ( parseInt( data.product_id ) === self.getCurrentProductId( self ) ) {
                     if ( data.hasOwnProperty( 'unit_price_html' ) ) {
-                        $unit_price.html( data.unit_price_html );
-                        $unit_price.removeClass( 'loading' ).show();
+                        self.unsetUnitPriceLoading( self, $unit_price, data.unit_price_html );
+                    } else {
+                        self.unsetUnitPriceLoading( self, $unit_price );
                     }
+                } else {
+                    self.unsetUnitPriceLoading( self, $unit_price );
                 }
             },
-            error: function( data ) {},
+            error: function( data ) {
+                self.unsetUnitPriceLoading( self, $unit_price );
+            },
             dataType: 'json'
         } ) );
     };

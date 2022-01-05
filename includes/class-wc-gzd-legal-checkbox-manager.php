@@ -18,6 +18,8 @@ class WC_GZD_Legal_Checkbox_Manager {
 		'privacy',
 		'sepa',
 		'review_reminder',
+		'used_goods_warranty',
+		'defective_copy'
 	);
 
 	public static function instance() {
@@ -257,6 +259,39 @@ class WC_GZD_Legal_Checkbox_Manager {
 			) );
 		}
 
+		wc_gzd_register_legal_checkbox( 'used_goods_warranty', array(
+			'html_id'              => 'data-used-goods-warranty',
+			'html_name'            => 'used-goods-warranty',
+			'html_wrapper_classes' => array( 'legal' ),
+			'label'                => __( 'For used goods: I have taken note that my warranty period is shortened to 12 months.', 'woocommerce-germanized' ),
+			'error_message'        => __( 'Please make sure to check our warranty note on used goods.', 'woocommerce-germanized' ),
+			'is_mandatory'         => true,
+			'priority'             => 6,
+			'is_enabled'           => false,
+			'is_core'              => true,
+			'is_shown'             => false,
+			'admin_name'           => __( 'Used Goods', 'woocommerce-germanized' ),
+			'admin_desc'           => __( 'Inform customers about shortened warranty for used goods.', 'woocommerce-germanized' ),
+			'locations'            => array( 'checkout' )
+		) );
+
+		wc_gzd_register_legal_checkbox( 'defective_copy', array(
+			'html_id'              => 'data-defective-copy',
+			'html_name'            => 'defective-copy',
+			'html_wrapper_classes' => array( 'legal' ),
+			'label_args'           => array( '{defect_descriptions}' => '' ),
+			'label'                => __( 'For defective copies: I have taken note that the goods contain defects and deviate from objective requirements.', 'woocommerce-germanized' ),
+			'error_message'        => __( 'Please make sure to check our note on defective copies.', 'woocommerce-germanized' ),
+			'is_mandatory'         => true,
+			'priority'             => 7,
+			'is_enabled'           => true,
+			'is_core'              => true,
+			'is_shown'             => false,
+			'admin_name'           => __( 'Defective Copies', 'woocommerce-germanized' ),
+			'admin_desc'           => __( 'Inform customers about product defects.', 'woocommerce-germanized' ),
+			'locations'            => array( 'checkout' )
+		) );
+
 		/**
 		 * After core checkbox registration.
 		 *
@@ -287,27 +322,34 @@ class WC_GZD_Legal_Checkbox_Manager {
 			return;
 		}
 
-		$items    = $order->get_items();
-		$products = array();
+		$is_downloadable      = false;
+		$is_service           = false;
+		$has_defective_copies = false;
+		$has_used_goods       = false;
+		$items                = $order->get_items();
 
 		foreach ( $items as $key => $item ) {
-			if ( $item && is_callable( array( $item, 'get_product' ) ) && ( $product = $item->get_product() ) ) {
-				$products[] = $product;
+			if ( $item && is_callable( array( $item, 'get_product' ) ) && ( $_product = $item->get_product() ) ) {
+				if ( wc_gzd_is_revocation_exempt( $_product ) ) {
+					$is_downloadable = true;
+				}
+
+				if ( wc_gzd_is_revocation_exempt( $_product, 'service' ) ) {
+					$is_service = true;
+				}
+
+				if ( wc_gzd_get_product( $_product )->is_used_good() ) {
+					$has_used_goods = true;
+				}
+
+				if ( wc_gzd_get_product( $_product )->is_defective_copy() ) {
+					$has_defective_copies = true;
+				}
 			}
 		}
 
 		if ( $checkbox = $this->get_checkbox( 'download' ) ) {
 			if ( $checkbox->is_enabled() ) {
-				$is_downloadable = false;
-
-				if ( ! empty( $products ) ) {
-					foreach ( $products as $key => $product ) {
-						if ( wc_gzd_is_revocation_exempt( $product ) ) {
-							$is_downloadable = true;
-						}
-					}
-				}
-
 				if ( $is_downloadable ) {
 					wc_gzd_update_legal_checkbox( 'download', array(
 						'is_shown' => true,
@@ -331,19 +373,32 @@ class WC_GZD_Legal_Checkbox_Manager {
 		// Service checkbox
 		if ( $checkbox = $this->get_checkbox( 'service' ) ) {
 			if ( $checkbox->is_enabled() ) {
-				$is_service = false;
-
-				if ( ! empty( $products ) ) {
-					foreach ( $products as $key => $product ) {
-						if ( wc_gzd_is_revocation_exempt( $product, 'service' ) ) {
-							$is_service = true;
-						}
-					}
-				}
-
 				if ( $is_service ) {
 					wc_gzd_update_legal_checkbox( 'service', array(
 						'is_shown' => true,
+					) );
+				}
+			}
+		}
+
+		// Used goods checkbox
+		if ( $checkbox = $this->get_checkbox( 'used_goods_warranty' ) ) {
+			if ( $checkbox->is_enabled() ) {
+				if ( $has_used_goods ) {
+					wc_gzd_update_legal_checkbox( 'used_goods_warranty', array(
+						'is_shown' => true,
+					) );
+				}
+			}
+		}
+
+		// Defective copies
+		if ( $checkbox = $this->get_checkbox( 'defective_copy' ) ) {
+			if ( $checkbox->is_enabled() ) {
+				if ( $has_defective_copies ) {
+					wc_gzd_update_legal_checkbox( 'defective_copy', array(
+						'is_shown'   => true,
+						'label_args' => array( '{defect_descriptions}' => wc_gzd_print_item_defect_descriptions( wc_gzd_get_order_defect_descriptions( $order_id ) ) ),
 					) );
 				}
 			}
@@ -375,23 +430,36 @@ class WC_GZD_Legal_Checkbox_Manager {
 	}
 
 	public function show_conditionally_checkout() {
+		$is_downloadable      = false;
+		$is_service           = false;
+		$has_defective_copies = false;
+		$has_used_goods       = false;
+		$items                = WC()->cart->get_cart();
+
+		if ( ! empty( $items ) ) {
+			foreach ( $items as $cart_item_key => $values ) {
+				$_product = apply_filters( 'woocommerce_cart_item_product', $values['data'], $values, $cart_item_key );
+
+				if ( wc_gzd_is_revocation_exempt( $_product ) ) {
+					$is_downloadable = true;
+				}
+
+				if ( wc_gzd_is_revocation_exempt( $_product, 'service' ) ) {
+					$is_service = true;
+				}
+
+				if ( wc_gzd_get_product( $_product )->is_used_good() ) {
+					$has_used_goods = true;
+				}
+
+				if ( wc_gzd_get_product( $_product )->is_defective_copy() ) {
+					$has_defective_copies = true;
+				}
+			}
+		}
 
 		if ( $checkbox = $this->get_checkbox( 'download' ) ) {
 			if ( $checkbox->is_enabled() ) {
-
-				$items           = WC()->cart->get_cart();
-				$is_downloadable = false;
-
-				if ( ! empty( $items ) ) {
-					foreach ( $items as $cart_item_key => $values ) {
-						$_product = apply_filters( 'woocommerce_cart_item_product', $values['data'], $values, $cart_item_key );
-
-						if ( wc_gzd_is_revocation_exempt( $_product ) ) {
-							$is_downloadable = true;
-						}
-					}
-				}
-
 				if ( $is_downloadable ) {
 					wc_gzd_update_legal_checkbox( 'download', array(
 						'is_shown' => true,
@@ -454,22 +522,32 @@ class WC_GZD_Legal_Checkbox_Manager {
 		// Service checkbox
 		if ( $checkbox = $this->get_checkbox( 'service' ) ) {
 			if ( $checkbox->is_enabled() ) {
-
-				$items      = WC()->cart->get_cart();
-				$is_service = false;
-
-				if ( ! empty( $items ) ) {
-					foreach ( $items as $cart_item_key => $values ) {
-						$_product = apply_filters( 'woocommerce_cart_item_product', $values['data'], $values, $cart_item_key );
-						if ( wc_gzd_is_revocation_exempt( $_product, 'service' ) ) {
-							$is_service = true;
-						}
-					}
-				}
-
 				if ( $is_service ) {
 					wc_gzd_update_legal_checkbox( 'service', array(
 						'is_shown' => true,
+					) );
+				}
+			}
+		}
+
+		// Used good checkbox
+		if ( $checkbox = $this->get_checkbox( 'used_goods_warranty' ) ) {
+			if ( $checkbox->is_enabled() ) {
+				if ( $has_used_goods ) {
+					wc_gzd_update_legal_checkbox( 'used_goods_warranty', array(
+						'is_shown' => true,
+					) );
+				}
+			}
+		}
+
+		// Defective copies checkbox
+		if ( $checkbox = $this->get_checkbox( 'defective_copy' ) ) {
+			if ( $checkbox->is_enabled() ) {
+				if ( $has_defective_copies ) {
+					wc_gzd_update_legal_checkbox( 'defective_copy', array(
+						'is_shown' => true,
+						'label_args' => array( '{defect_descriptions}' => wc_gzd_print_item_defect_descriptions( wc_gzd_get_cart_defect_descriptions() ) ),
 					) );
 				}
 			}

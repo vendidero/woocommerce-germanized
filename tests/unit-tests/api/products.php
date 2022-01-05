@@ -48,7 +48,10 @@ class WC_GZD_Products_API extends WC_GZD_REST_Unit_Test_Case {
 		$this->assertEquals( '100.0', $product['unit_price']['price_regular'] );
 		$this->assertEquals( '90.0', $product['unit_price']['price_sale'] );
 		$this->assertEquals( 'This is a test', trim( strip_tags( $product['mini_desc'] ) ) );
+		$this->assertEquals( 'This is a defect desc', trim( strip_tags( $product['defect_description'] ) ) );
 		$this->assertEquals( true, $product['service'] );
+		$this->assertEquals( true, $product['used_good'] );
+		$this->assertEquals( true, $product['defective_copy'] );
 		$this->assertEquals( true, $product['differential_taxation'] );
 		$this->assertEquals( true, $product['free_shipping'] );
 
@@ -80,6 +83,7 @@ class WC_GZD_Products_API extends WC_GZD_REST_Unit_Test_Case {
 				),
 				'unit_price'               => array( 'price_regular' => '80.0', 'price_sale' => '70.0' ),
 				'mini_desc'                => 'This is a test',
+				'defect_description'       => 'This is a defect desc',
 				'sale_price_label'         => array( 'id' => $sale_term['term_id'] ),
 				'sale_price_regular_label' => array( 'id' => $sale_term['term_id'] ),
 				'differential_taxation'    => false,
@@ -127,6 +131,7 @@ class WC_GZD_Products_API extends WC_GZD_REST_Unit_Test_Case {
 				),
 				'unit_price'               => array( 'price_regular' => '80.0', 'price_sale' => '70.0' ),
 				'mini_desc'                => 'This is a test',
+				'defect_description'       => 'This is a defect desc',
 				'sale_price_label'         => array( 'id' => $sale_term['term_id'] ),
 				'sale_price_regular_label' => array( 'id' => $sale_term['term_id'] ),
 				'differential_taxation'    => false,
@@ -194,14 +199,17 @@ class WC_GZD_Products_API extends WC_GZD_REST_Unit_Test_Case {
 		$this->assertEquals( 'old-price', $product['sale_price_regular_label']['slug'] );
 		$this->assertEquals( '1', $product['unit_price']['product'] );
 		$this->assertEquals( 'This is a test', trim( strip_tags( $product['mini_desc'] ) ) );
+		$this->assertEquals( 'This is a defect desc', trim( strip_tags( $product['defect_description'] ) ) );
 		$this->assertEquals( true, $product['free_shipping'] );
 		$this->assertEquals( false, $product['differential_taxation'] );
 		$this->assertEquals( true, $product['service'] );
+		$this->assertEquals( true, $product['used_good'] );
+		$this->assertEquals( true, $product['defective_copy'] );
 
 		$simple->delete( true );
 	}
 
-	public function test_update_product_bools() {
+	public function test_update_product_booleans() {
 		wp_set_current_user( $this->user );
 
 		// test simple products
@@ -217,7 +225,12 @@ class WC_GZD_Products_API extends WC_GZD_REST_Unit_Test_Case {
 
 		$this->assertEquals( '80.0', $product['unit_price']['price_regular'] );
 		$this->assertEquals( '70.0', $product['unit_price']['price_sale'] );
+
+		/**
+		 * Make sure booleans are not unset in case not included within request
+		 */
 		$this->assertEquals( true, $product['differential_taxation'] );
+		$this->assertEquals( true, $product['service'] );
 
 		$simple->delete( true );
 	}
@@ -298,9 +311,13 @@ class WC_GZD_Products_API extends WC_GZD_REST_Unit_Test_Case {
 					'country' => 'BG'
 				),
 			),
-			'unit_price'    => array( 'price_regular' => '80.0', 'price_sale' => '70.0', 'base' => 20 ),
-			'mini_desc'     => 'This is a test',
-			'service'       => false,
+			'unit_price'            => array( 'price_regular' => '80.0', 'price_sale' => '70.0', 'base' => 20 ),
+			'mini_desc'             => 'This is a test',
+			'defect_description'    => 'This is a defect desc',
+			'differential_taxation' => true,
+			'service'               => false,
+			'used_good'             => false,
+			'defective_copy'        => false,
 		) );
 
 		$response = $this->server->dispatch( $request );
@@ -322,9 +339,11 @@ class WC_GZD_Products_API extends WC_GZD_REST_Unit_Test_Case {
 		$this->assertEquals( 'new-price', $product['sale_price_label']['slug'] );
 		$this->assertEquals( 'old-price', $product['sale_price_regular_label']['slug'] );
 		$this->assertEquals( 'This is a test', trim( strip_tags( $product['mini_desc'] ) ) );
+		$this->assertEquals( 'This is a defect desc', trim( strip_tags( $product['defect_description'] ) ) );
 		$this->assertEquals( true, $product['free_shipping'] );
-		$this->assertEquals( true, $product['differential_taxation'] );
 		$this->assertEquals( false, $product['service'] );
+		$this->assertEquals( false, $product['defective_copy'] );
+		$this->assertEquals( false, $product['used_good'] );
 
 		$variable->delete( true );
 	}

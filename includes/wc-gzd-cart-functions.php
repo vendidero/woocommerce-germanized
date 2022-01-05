@@ -160,6 +160,56 @@ function wc_gzd_cart_product_item_desc( $title, $cart_item, $cart_item_key = '' 
 	return $title;
 }
 
+/**
+ * Appends product defect description live data (while checkout) or order meta to product name
+ *
+ * @param string $title
+ * @param array|WC_Order_Item_Product $cart_item
+ *
+ * @return string
+ */
+function wc_gzd_cart_product_defect_description( $title, $cart_item, $cart_item_key = '' ) {
+	$product_desc = "";
+	$echo         = false;
+
+	if ( is_array( $title ) && isset( $title['data'] ) ) {
+		$cart_item     = $title;
+		$cart_item_key = $cart_item;
+		$title         = "";
+		$echo          = true;
+	} elseif( is_numeric( $title ) && wc_gzd_is_checkout_action() && is_a( $cart_item, 'WC_Order_Item_Product' ) ) {
+		$echo          = true;
+		$cart_item_key = $title;
+		$title         = '';
+	}
+
+	if ( is_a( $cart_item, 'WC_Order_Item_Product' ) ) {
+		if ( $gzd_item = wc_gzd_get_order_item( $cart_item ) ) {
+			$product_desc = $gzd_item->get_defect_description();
+		} elseif( ( $product = $cart_item->get_product() ) && wc_gzd_get_gzd_product( $product )->get_defect_description() ) {
+			$product_desc = wc_gzd_get_gzd_product( $product )->get_formatted_defect_description();
+		}
+	} elseif ( isset( $cart_item['data'] ) ) {
+		$product = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
+
+		if ( is_a( $product, 'WC_Product' ) && wc_gzd_get_product( $product )->get_defect_description() ) {
+			$product_desc = wc_gzd_get_product( $product )->get_formatted_defect_description();
+		}
+	} elseif ( isset( $cart_item['item_desc'] ) ) {
+		$product_desc = $cart_item['item_desc'];
+	}
+
+	if ( ! empty( $product_desc ) ) {
+		$title .= '<div class="wc-gzd-cart-info wc-gzd-item-defect-description item-defect-description">' . do_shortcode( $product_desc ) . '</div>';
+	}
+
+	if ( $echo ) {
+		echo $title;
+	}
+
+	return $title;
+}
+
 function wc_gzd_cart_product_attributes( $title, $cart_item, $cart_item_key = '' ) {
 	$item_data = array();
 

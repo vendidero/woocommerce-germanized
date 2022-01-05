@@ -13,8 +13,10 @@
         <custom-field action="copy">_min_age</custom-field>
         <custom-field action="copy">_tax_class_by_countries</custom-field>
         <custom-field action="translate">_mini_desc</custom-field>
+        <custom-field action="translate">_defect_description</custom-field>
         <custom-field action="copy">_service</custom-field>
         <custom-field action="copy">_differential_taxation</custom-field>
+        <custom-field action="translate">_warranty_attachment_id</custom-field>
         <custom-field action="copy-once">_ts_mpn</custom-field>
         <custom-field action="copy-once">_ts_gtin</custom-field>
         <custom-field action="translate">_legal_text</custom-field>

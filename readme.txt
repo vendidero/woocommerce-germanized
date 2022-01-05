@@ -5,7 +5,7 @@ Requires at least: 5.4
 Tested up to: 5.8
 WC requires at least: 3.9
 WC tested up to: 5.9
-Stable tag: 3.7.2
+Stable tag: 3.7.3
 Requires PHP: 5.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -198,6 +198,20 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 6. Edit pdf documents (Pro)
 
 == Changelog ==
+= 3.7.3 =
+* Feature: Woo 6.0 support
+* Improvement: Bulk editing delivery times and units
+* Improvement: ET Builder (Divi) compatibility for checkout and single product
+* Improvement: WooCommerce Measurement Price Calculator unit price compatibility
+* Improvement: Added DOI status column to user table
+* Improvement: Calculate unit price within cart based on cart item data instead of product data
+* Improvement: Unit price compatibility via AJAX refresh
+* Improvement: Refactored library usage via composer
+* Improvement: Remove terms checkbox from pay for order page in case of WC_GZD_FORCE_PAY_ORDER is defined
+* Improvement: Street number validation for separate shipping addresses
+* Fix: DOI activation code encoding
+* Fix: Register missing email notification action (pending to cancelled)
+
 = 3.7.2 =
 * Improvement: Added WP CLI command (wp wc_gzd update) to run DB updates via CLI
 * Fix: Do not use empty price_html (e.g. variable product with same prices) as indicator to hide shopmarks

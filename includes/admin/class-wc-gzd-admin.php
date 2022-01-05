@@ -45,7 +45,7 @@ class WC_GZD_Admin {
 
 	public function __construct() {
 		add_action( 'add_meta_boxes', array( $this, 'add_legal_page_metabox' ) );
-		add_action( 'add_meta_boxes', array( $this, 'add_product_mini_desc' ) );
+		add_action( 'add_meta_boxes', array( $this, 'register_product_meta_boxes' ) );
 		add_action( 'admin_menu', array( $this, 'hide_metaboxes' ), 10 );
 
 		add_action( 'admin_enqueue_scripts', array( $this, 'add_scripts' ) );
@@ -519,7 +519,7 @@ class WC_GZD_Admin {
 			'title'   => 'Germanized für WooCommerce Pro',
 			'excerpt' => 'Upgrade jetzt auf die Pro Version von Germanized und profitiere von weiteren nützliche Funktionen speziell für den deutschen Markt sowie professionellem Support.',
 			'link'    => 'https://vendidero.de/woocommerce-germanized#upgrade',
-			'price'   => '69 €',
+			'price'   => '79 €',
 		) );
 
 		return $products;
@@ -544,7 +544,7 @@ class WC_GZD_Admin {
 			'woocommerce-gzd-admin'
 		), WC_GERMANIZED_VERSION );
 
-		wp_register_script( 'wc-gzd-admin-product', $admin_script_path . 'product' . $suffix . '.js', array( 'wc-admin-product-meta-boxes' ), WC_GERMANIZED_VERSION );
+		wp_register_script( 'wc-gzd-admin-product', $admin_script_path . 'product' . $suffix . '.js', array( 'wc-admin-product-meta-boxes', 'media-models' ), WC_GERMANIZED_VERSION );
 
 		wp_register_script( 'wc-gzd-admin-product-variations', $admin_script_path . 'product-variations' . $suffix . '.js', array( 'wc-gzd-admin-product', 'wc-admin-variation-meta-boxes' ), WC_GERMANIZED_VERSION );
 
@@ -626,17 +626,22 @@ class WC_GZD_Admin {
 		) );
 	}
 
-	public function add_product_mini_desc() {
+	public function register_product_meta_boxes() {
 		global $post;
 
-		if ( is_object( $post ) && $post->post_type === 'product' ) {
+		if ( is_object( $post ) && 'product' === $post->post_type ) {
 			$product = wc_get_product( $post );
 
 			if ( $product && ( ! $product->is_type( 'variable' ) ) ) {
-				add_meta_box( 'wc-gzd-product-mini-desc', __( 'Optional Mini Description', 'woocommerce-germanized' ), array(
+				add_meta_box( 'wc-gzd-product-mini-desc', __( 'Cart description', 'woocommerce-germanized' ), array(
 					$this,
 					'init_product_mini_desc'
 				), 'product', 'advanced', 'high' );
+
+                add_meta_box( 'wc-gzd-product-defect-description', __( 'Defect description', 'woocommerce-germanized' ), array(
+                    $this,
+                    'init_product_defect_description'
+                ), 'product', 'advanced', 'high' );
 			}
 		}
 	}
@@ -663,6 +668,16 @@ class WC_GZD_Admin {
 			'media_buttons' => false
 		) );
 	}
+
+    public function init_product_defect_description( $post ) {
+	    echo '<p class="small">' . __( 'Inform your customers about product defects. This description will be shown on top of your product description and during cart/checkout.', 'woocommerce-germanized' ) . '</p>';
+
+	    wp_editor( htmlspecialchars_decode( get_post_meta( $post->ID, '_defect_description', true ) ), 'wc_gzd_product_defect_description', array(
+		    'textarea_name' => '_defect_description',
+		    'textarea_rows' => 5,
+		    'media_buttons' => false
+	    ) );
+    }
 
 	public function check_language_install() {
 		if ( current_user_can( 'manage_woocommerce' ) && isset( $_GET['install-language'] ) && isset( $_GET['_wpnonce'] ) && check_admin_referer( 'wc-gzd-install-language' ) ) {

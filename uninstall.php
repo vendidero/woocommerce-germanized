@@ -49,6 +49,8 @@ if ( defined( 'WC_GZD_REMOVE_ALL_DATA' ) && true === WC_GZD_REMOVE_ALL_DATA ) {
 		'_free_shipping',
 		'_unit',
 		'_service',
+		'_used_good',
+		'_defective_copy',
 		'_sale_price_label',
 		'_sale_price_regular_label',
 		'_legal_text',

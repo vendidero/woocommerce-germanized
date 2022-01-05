@@ -74,6 +74,16 @@ function wc_gzd_get_order_min_age( $order_id ) {
 	return apply_filters( 'woocommerce_gzd_order_min_age', $min_age, $order_id );
 }
 
+function wc_gzd_get_order_defect_descriptions( $order_id ) {
+	$defect_descriptions = array();
+
+	if ( $order = wc_get_order( $order_id ) ) {
+		$defect_descriptions = wc_gzd_get_cart_defect_descriptions( $order->get_items( 'line_item' ) );
+	}
+
+	return $defect_descriptions;
+}
+
 function wc_gzd_order_has_age_verification( $order_id ) {
 	$age                = wc_gzd_get_order_min_age( $order_id );
 	$needs_verification = false;

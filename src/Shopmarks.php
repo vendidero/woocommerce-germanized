@@ -47,6 +47,11 @@ class Shopmarks {
 				'default_priority' => 5,
 				'callback'         => 'woocommerce_gzd_template_single_product_units',
 			),
+			'defect_description' => array(
+				'default_filter'   => 'woocommerce_single_product_summary',
+				'default_priority' => 21,
+				'callback'         => 'woocommerce_gzd_template_single_defect_description',
+			),
 		) );
 
 		self::$shopmarks['single_product'] = array();
@@ -88,6 +93,11 @@ class Shopmarks {
 				'default_filter'   => 'woocommerce_grouped_product_list_column_price',
 				'default_priority' => 20,
 				'callback'         => 'woocommerce_gzd_template_grouped_single_product_units',
+			),
+			'defect_description' => array(
+				'default_filter'   => 'woocommerce_grouped_product_list_column_label',
+				'default_priority' => 11,
+				'callback'         => 'woocommerce_gzd_template_grouped_single_defect_description',
 			),
 		) );
 
@@ -178,6 +188,11 @@ class Shopmarks {
 				'default_priority' => 12,
 				'callback'         => 'wc_gzd_cart_product_item_desc',
 			),
+			'defect_description'   => array(
+				'default_filter'   => 'woocommerce_cart_item_name',
+				'default_priority' => 13,
+				'callback'         => 'wc_gzd_cart_product_defect_description',
+			),
 		) );
 
 		self::$shopmarks['cart'] = array();
@@ -219,6 +234,11 @@ class Shopmarks {
 				'default_filter'   => 'woocommerce_cart_item_name',
 				'default_priority' => 12,
 				'callback'         => 'wc_gzd_cart_product_item_desc',
+			),
+			'defect_description'   => array(
+				'default_filter'   => 'woocommerce_cart_item_name',
+				'default_priority' => 13,
+				'callback'         => 'wc_gzd_cart_product_defect_description',
 			),
 		) );
 
@@ -262,6 +282,11 @@ class Shopmarks {
 				'default_priority' => 12,
 				'callback'         => 'wc_gzd_cart_product_item_desc',
 			),
+			'defect_description'   => array(
+				'default_filter'   => 'woocommerce_checkout_cart_item_quantity',
+				'default_priority' => 13,
+				'callback'         => 'wc_gzd_cart_product_defect_description',
+			),
 		) );
 
 		self::$shopmarks['checkout'] = array();
@@ -289,19 +314,24 @@ class Shopmarks {
 				'callback'         => 'wc_gzd_cart_product_unit_price',
 			),
 			'delivery_time' => array(
-				'default_filter'   => 'woocommerce_order_item_name',
-				'default_priority' => 10,
+				'default_filter'   => 'woocommerce_order_item_meta_start',
+				'default_priority' => 20,
 				'callback'         => 'wc_gzd_cart_product_delivery_time',
 			),
 			'units'         => array(
-				'default_filter'   => 'woocommerce_order_item_name',
-				'default_priority' => 11,
+				'default_filter'   => 'woocommerce_order_item_meta_start',
+				'default_priority' => 25,
 				'callback'         => 'wc_gzd_cart_product_units',
 			),
 			'item_desc'     => array(
-				'default_filter'   => 'woocommerce_order_item_name',
-				'default_priority' => 12,
+				'default_filter'   => 'woocommerce_order_item_meta_start',
+				'default_priority' => 10,
 				'callback'         => 'wc_gzd_cart_product_item_desc',
+			),
+			'defect_description'   => array(
+				'default_filter'   => 'woocommerce_order_item_meta_start',
+				'default_priority' => 15,
+				'callback'         => 'wc_gzd_cart_product_defect_description',
 			),
 		) );
 
@@ -497,6 +527,11 @@ class Shopmarks {
 					'is_action'        => true,
 					'number_of_params' => 3,
 				),
+				'woocommerce_order_item_meta_start' => array(
+					'title'            => __( 'Before Meta', 'woocommerce-germanized' ),
+					'is_action'        => true,
+					'number_of_params' => 3,
+				),
 			),
 		);
 
@@ -519,16 +554,18 @@ class Shopmarks {
 	public static function get_types( $location = 'single_product' ) {
 		$types = array(
 			'single_product'         => array(
-				'unit_price'    => _x( 'Unit Price', 'shopmark', 'woocommerce-germanized' ),
-				'delivery_time' => _x( 'Delivery Time', 'shopmark', 'woocommerce-germanized' ),
-				'legal'         => _x( 'General', 'shopmark', 'woocommerce-germanized' ),
-				'units'         => _x( 'Product Units', 'shopmark', 'woocommerce-germanized' ),
+				'unit_price'         => _x( 'Unit Price', 'shopmark', 'woocommerce-germanized' ),
+				'delivery_time'      => _x( 'Delivery Time', 'shopmark', 'woocommerce-germanized' ),
+				'legal'              => _x( 'General', 'shopmark', 'woocommerce-germanized' ),
+				'units'              => _x( 'Product Units', 'shopmark', 'woocommerce-germanized' ),
+				'defect_description' => _x( 'Defect Description', 'shopmark', 'woocommerce-germanized' ),
 			),
 			'single_product_grouped' => array(
-				'unit_price'    => _x( 'Unit Price', 'shopmark', 'woocommerce-germanized' ),
-				'delivery_time' => _x( 'Delivery Time', 'shopmark', 'woocommerce-germanized' ),
-				'legal'         => _x( 'General', 'shopmark', 'woocommerce-germanized' ),
-				'units'         => _x( 'Product Units', 'shopmark', 'woocommerce-germanized' ),
+				'unit_price'         => _x( 'Unit Price', 'shopmark', 'woocommerce-germanized' ),
+				'delivery_time'      => _x( 'Delivery Time', 'shopmark', 'woocommerce-germanized' ),
+				'legal'              => _x( 'General', 'shopmark', 'woocommerce-germanized' ),
+				'units'              => _x( 'Product Units', 'shopmark', 'woocommerce-germanized' ),
+				'defect_description' => _x( 'Defect Description', 'shopmark', 'woocommerce-germanized' ),
 			),
 			'product_loop'           => array(
 				'unit_price'     => _x( 'Unit Price', 'shopmark', 'woocommerce-germanized' ),
@@ -538,28 +575,32 @@ class Shopmarks {
 				'units'          => _x( 'Product Units', 'shopmark', 'woocommerce-germanized' ),
 			),
 			'cart'                   => array(
-				'unit_price'    => _x( 'Unit Price', 'shopmark', 'woocommerce-germanized' ),
-				'units'         => _x( 'Product Units', 'shopmark', 'woocommerce-germanized' ),
-				'delivery_time' => _x( 'Delivery Time', 'shopmark', 'woocommerce-germanized' ),
-				'item_desc'     => _x( 'Cart Description', 'shopmark', 'woocommerce-germanized' ),
+				'unit_price'         => _x( 'Unit Price', 'shopmark', 'woocommerce-germanized' ),
+				'units'              => _x( 'Product Units', 'shopmark', 'woocommerce-germanized' ),
+				'delivery_time'      => _x( 'Delivery Time', 'shopmark', 'woocommerce-germanized' ),
+				'item_desc'          => _x( 'Cart Description', 'shopmark', 'woocommerce-germanized' ),
+				'defect_description' => _x( 'Defect Description', 'shopmark', 'woocommerce-germanized' ),
 			),
 			'mini_cart'              => array(
-				'unit_price'    => _x( 'Unit Price', 'shopmark', 'woocommerce-germanized' ),
-				'units'         => _x( 'Product Units', 'shopmark', 'woocommerce-germanized' ),
-				'delivery_time' => _x( 'Delivery Time', 'shopmark', 'woocommerce-germanized' ),
-				'item_desc'     => _x( 'Cart Description', 'shopmark', 'woocommerce-germanized' ),
+				'unit_price'         => _x( 'Unit Price', 'shopmark', 'woocommerce-germanized' ),
+				'units'              => _x( 'Product Units', 'shopmark', 'woocommerce-germanized' ),
+				'delivery_time'      => _x( 'Delivery Time', 'shopmark', 'woocommerce-germanized' ),
+				'item_desc'          => _x( 'Cart Description', 'shopmark', 'woocommerce-germanized' ),
+				'defect_description' => _x( 'Defect Description', 'shopmark', 'woocommerce-germanized' ),
 			),
 			'checkout'               => array(
-				'unit_price'    => _x( 'Unit Price', 'shopmark', 'woocommerce-germanized' ),
-				'units'         => _x( 'Product Units', 'shopmark', 'woocommerce-germanized' ),
-				'delivery_time' => _x( 'Delivery Time', 'shopmark', 'woocommerce-germanized' ),
-				'item_desc'     => _x( 'Cart Description', 'shopmark', 'woocommerce-germanized' ),
+				'unit_price'         => _x( 'Unit Price', 'shopmark', 'woocommerce-germanized' ),
+				'units'              => _x( 'Product Units', 'shopmark', 'woocommerce-germanized' ),
+				'delivery_time'      => _x( 'Delivery Time', 'shopmark', 'woocommerce-germanized' ),
+				'item_desc'          => _x( 'Cart Description', 'shopmark', 'woocommerce-germanized' ),
+				'defect_description' => _x( 'Defect Description', 'shopmark', 'woocommerce-germanized' ),
 			),
-			'order'               => array(
-				'unit_price'    => _x( 'Unit Price', 'shopmark', 'woocommerce-germanized' ),
-				'units'         => _x( 'Product Units', 'shopmark', 'woocommerce-germanized' ),
-				'delivery_time' => _x( 'Delivery Time', 'shopmark', 'woocommerce-germanized' ),
-				'item_desc'     => _x( 'Cart Description', 'shopmark', 'woocommerce-germanized' ),
+			'order'                  => array(
+				'unit_price'         => _x( 'Unit Price', 'shopmark', 'woocommerce-germanized' ),
+				'units'              => _x( 'Product Units', 'shopmark', 'woocommerce-germanized' ),
+				'delivery_time'      => _x( 'Delivery Time', 'shopmark', 'woocommerce-germanized' ),
+				'item_desc'          => _x( 'Cart Description', 'shopmark', 'woocommerce-germanized' ),
+				'defect_description' => _x( 'Defect Description', 'shopmark', 'woocommerce-germanized' ),
 			),
 		);
 

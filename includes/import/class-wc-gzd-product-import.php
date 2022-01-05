@@ -69,18 +69,23 @@ class WC_GZD_Product_Import {
 		 */
 		return apply_filters( 'woocommerce_gzd_product_import_formatting_callbacks', array(
 			'mini_desc'                => 'wp_filter_post_kses',
+			'defect_description'       => 'wp_filter_post_kses',
 			'unit_price_regular'       => 'wc_format_decimal',
 			'unit_price_sale'          => 'wc_format_decimal',
 			'unit_base'                => 'wc_format_decimal',
 			'unit_product'             => 'wc_format_decimal',
 			'unit_price_auto'          => array( $this, 'parse_bool_str' ),
 			'service'                  => array( $this, 'parse_bool_str' ),
+			'used_good'                => array( $this, 'parse_bool_str' ),
+			'defective_copy'           => array( $this, 'parse_bool_str' ),
 			'differential_taxation'    => array( $this, 'parse_bool_str' ),
 			'free_shipping'            => array( $this, 'parse_bool_str' ),
 			'delivery_time'            => array( $this, 'parse_delivery_time' ),
+			'min_age'                  => array( $this, 'parse_min_age' ),
 			'sale_price_label'         => array( $this, 'parse_sale_price_label' ),
 			'sale_price_regular_label' => array( $this, 'parse_sale_price_label' ),
 			'unit'                     => array( $this, 'parse_unit' ),
+			'warranty_attachment_id'   => 'absint',
 		) );
 	}
 
@@ -209,6 +214,14 @@ class WC_GZD_Product_Import {
 		}
 
 		return $this->parse_term( $name, 'product_delivery_time' );
+	}
+
+	public function parse_min_age( $min_age ) {
+		if ( array_key_exists( (int) $min_age, wc_gzd_get_age_verification_min_ages() ) ) {
+			return (int) $min_age;
+		}
+
+		return '';
 	}
 
 	public function parse_term( $name, $taxonomy, $output = 'term_id' ) {

@@ -110,9 +110,46 @@ class WC_GZD_Emails {
 		add_filter( 'woocommerce_email_headers', array( $this, 'add_bcc_email_headers' ), 10, 4 );
 		add_filter( 'woocommerce_email_footer_text', array( $this, 'reset_email_instance' ), 1000 );
 
+		add_filter( 'woocommerce_email_attachments', array( $this, 'attach_product_warranties' ), 100, 3 );
+
 		if ( is_admin() ) {
 			$this->admin_hooks();
 		}
+	}
+
+	public function attach_product_warranties( $attachments, $mail_id, $object = false ) {
+		$warranty_email_ids = array_filter( (array) get_option( 'woocommerce_gzd_mail_attach_warranties', array() ) );
+
+		if ( $object && in_array( $mail_id, $warranty_email_ids ) ) {
+			$product_ids = array();
+
+			if ( is_a( $object, 'WC_Order' ) ) {
+				foreach( $object->get_items( 'line_item' ) as $item ) {
+					$product_ids[] = $item->get_variation_id() ? $item->get_variation_id() : $item->get_product_id();
+				}
+			} elseif ( is_a( $object, '\Vendidero\Germanized\Shipments\Shipment' ) ) {
+				foreach( $object->get_items() as $item ) {
+					$product_ids[] = $item->get_product_id();
+				}
+			}
+
+			$product_ids = apply_filters( "woocommerce_gzd_product_warranties_email_product_ids", $product_ids, $object, $mail_id );
+			$product_ids = array_filter( array_unique( $product_ids ) );
+
+			if ( ! empty( $product_ids ) ) {
+				foreach( $product_ids as $product_id ) {
+					if ( $gzd_product = wc_gzd_get_gzd_product( $product_id ) ) {
+						if ( $gzd_product->has_warranty() ) {
+							if ( ! in_array( $gzd_product->get_warranty_file(), $attachments ) ) {
+								$attachments[] = $gzd_product->get_warranty_file();
+							}
+						}
+					}
+				}
+			}
+		}
+
+		return $attachments;
 	}
 
 	public function register_custom_email_actions( $actions ) {
@@ -488,7 +525,7 @@ class WC_GZD_Emails {
 
 	private function set_footer_attachments() {
 		// Order attachments
-		$attachment_order         = wc_gzd_get_email_attachment_order();
+		$attachment_order         = wc_gzd_get_email_attachment_order( true );
 		$this->footer_attachments = array();
 
 		foreach ( $attachment_order as $key => $order ) {
@@ -986,6 +1023,10 @@ class WC_GZD_Emails {
 			add_filter( 'woocommerce_order_item_name', 'wc_gzd_cart_product_item_desc', wc_gzd_get_hook_priority( 'email_product_item_desc' ), 2 );
 		}
 
+		if ( 'yes' === get_option( 'woocommerce_gzd_display_emails_product_defect_description' ) ) {
+			add_filter( 'woocommerce_order_item_name', 'wc_gzd_cart_product_defect_description', wc_gzd_get_hook_priority( 'email_product_defect_description' ), 2 );
+		}
+
 		if ( 'yes' === get_option( 'woocommerce_gzd_display_emails_product_attributes' ) ) {
 			add_filter( 'woocommerce_order_item_name', 'wc_gzd_cart_product_attributes', wc_gzd_get_hook_priority( 'email_product_attributes' ), 2 );
 		}
@@ -1024,6 +1065,7 @@ class WC_GZD_Emails {
 		remove_filter( 'woocommerce_order_item_name', 'wc_gzd_cart_product_units', wc_gzd_get_hook_priority( 'email_product_units' ) );
 		remove_filter( 'woocommerce_order_item_name', 'wc_gzd_cart_product_delivery_time', wc_gzd_get_hook_priority( 'email_product_delivery_time' ) );
 		remove_filter( 'woocommerce_order_item_name', 'wc_gzd_cart_product_item_desc', wc_gzd_get_hook_priority( 'email_product_item_desc' ) );
+		remove_filter( 'woocommerce_order_item_name', 'wc_gzd_cart_product_defect_description', wc_gzd_get_hook_priority( 'email_product_defect_description' ) );
 		remove_filter( 'woocommerce_order_item_name', 'wc_gzd_cart_product_attributes', wc_gzd_get_hook_priority( 'email_product_attributes' ) );
 
 		remove_filter( 'woocommerce_order_formatted_line_subtotal', 'wc_gzd_cart_product_unit_price', wc_gzd_get_hook_priority( 'email_product_unit_price' ) );

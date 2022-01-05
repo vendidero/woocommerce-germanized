@@ -24,7 +24,10 @@ class WC_GZD_Product_Variation extends WC_GZD_Product {
 		'unit_price_sale'    => '',
 		'unit_price_auto'    => '',
 		'service'            => '',
+		'used_good'          => '',
+		'defective_copy'     => '',
 		'mini_desc'          => '',
+		'defect_description' => '',
 	);
 
 	protected $gzd_variation_inherited_meta_data = array(
@@ -38,6 +41,7 @@ class WC_GZD_Product_Variation extends WC_GZD_Product {
 		'min_age',
 		'default_delivery_time',
 		'delivery_time_countries',
+		'warranty_attachment_id'
 	);
 
 	protected $gzd_variation_forced_inherited_meta_data = array(
@@ -78,9 +82,11 @@ class WC_GZD_Product_Variation extends WC_GZD_Product {
 			}
 
 			// Handle meta data keys which can be empty at variation level to cause inheritance
-			if ( 'view' === $context && ( ! $value || '' === $value ) ) {
-				if ( $parent = $this->get_gzd_parent() ) {
-					$value = $parent->get_wc_product()->get_meta( $meta_key, true, $context );
+			if ( ! $value || '' === $value ) {
+				if ( in_array( $prop, $this->gzd_variation_forced_inherited_meta_data ) || 'view' === $context ) {
+					if ( $parent = $this->get_gzd_parent() ) {
+						$value = $parent->get_wc_product()->get_meta( $meta_key, true, $context );
+					}
 				}
 			}
 		} else {

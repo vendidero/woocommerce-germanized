@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "290218db12917578f80b54b72f2e3093",
+    "content-hash": "81fa50a2dca8259ec49f98ac92e389fc",
     "packages": [
         {
             "name": "automattic/jetpack-autoloader",
@@ -795,16 +795,16 @@
         },
         {
             "name": "vendidero/woocommerce-germanized-dhl",
-            "version": "v1.6.4",
+            "version": "v1.6.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vendidero/woocommerce-germanized-dhl.git",
-                "reference": "653f9daaeaf507b2da3554ebff2649dcdb91650b"
+                "reference": "50a96f11c900cd0e54aa67df99642c6bba1e382d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vendidero/woocommerce-germanized-dhl/zipball/653f9daaeaf507b2da3554ebff2649dcdb91650b",
-                "reference": "653f9daaeaf507b2da3554ebff2649dcdb91650b",
+                "url": "https://api.github.com/repos/vendidero/woocommerce-germanized-dhl/zipball/50a96f11c900cd0e54aa67df99642c6bba1e382d",
+                "reference": "50a96f11c900cd0e54aa67df99642c6bba1e382d",
                 "shasum": ""
             },
             "require": {
@@ -839,23 +839,23 @@
             "description": "The Germanized DHL implementation.",
             "homepage": "https://github.com/vendidero/woocommerce-germanized-dhl",
             "support": {
-                "source": "https://github.com/vendidero/woocommerce-germanized-dhl/tree/v1.6.4",
+                "source": "https://github.com/vendidero/woocommerce-germanized-dhl/tree/v1.6.5",
                 "issues": "https://github.com/vendidero/woocommerce-germanized-dhl/issues"
             },
-            "time": "2021-11-17T10:00:39+00:00"
+            "time": "2022-01-04T10:08:52+00:00"
         },
         {
             "name": "vendidero/woocommerce-germanized-shipments",
-            "version": "v1.6.4",
+            "version": "v1.6.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vendidero/woocommerce-germanized-shipments.git",
-                "reference": "7e99cea55ac6bc396cca54c00059e57f1a6740b0"
+                "reference": "9428526b1ae3ab2ef5f93b28133286a64e90fd40"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vendidero/woocommerce-germanized-shipments/zipball/7e99cea55ac6bc396cca54c00059e57f1a6740b0",
-                "reference": "7e99cea55ac6bc396cca54c00059e57f1a6740b0",
+                "url": "https://api.github.com/repos/vendidero/woocommerce-germanized-shipments/zipball/9428526b1ae3ab2ef5f93b28133286a64e90fd40",
+                "reference": "9428526b1ae3ab2ef5f93b28133286a64e90fd40",
                 "shasum": ""
             },
             "require": {
@@ -888,10 +888,10 @@
             "description": "The Germanized Shipments implementation.",
             "homepage": "https://github.com/vendidero/woocommerce-germanized-shipments",
             "support": {
-                "source": "https://github.com/vendidero/woocommerce-germanized-shipments/tree/v1.6.4",
+                "source": "https://github.com/vendidero/woocommerce-germanized-shipments/tree/v1.6.5",
                 "issues": "https://github.com/vendidero/woocommerce-germanized-shipments/issues"
             },
-            "time": "2021-11-11T12:55:08+00:00"
+            "time": "2022-01-04T10:10:16+00:00"
         },
         {
             "name": "vendidero/woocommerce-trusted-shops",
@@ -1353,16 +1353,16 @@
         },
         {
             "name": "phpspec/prophecy",
-            "version": "1.14.0",
+            "version": "v1.15.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpspec/prophecy.git",
-                "reference": "d86dfc2e2a3cd366cee475e52c6bb3bbc371aa0e"
+                "reference": "bbcd7380b0ebf3961ee21409db7b38bc31d69a13"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpspec/prophecy/zipball/d86dfc2e2a3cd366cee475e52c6bb3bbc371aa0e",
-                "reference": "d86dfc2e2a3cd366cee475e52c6bb3bbc371aa0e",
+                "url": "https://api.github.com/repos/phpspec/prophecy/zipball/bbcd7380b0ebf3961ee21409db7b38bc31d69a13",
+                "reference": "bbcd7380b0ebf3961ee21409db7b38bc31d69a13",
                 "shasum": ""
             },
             "require": {
@@ -1414,9 +1414,9 @@
             ],
             "support": {
                 "issues": "https://github.com/phpspec/prophecy/issues",
-                "source": "https://github.com/phpspec/prophecy/tree/1.14.0"
+                "source": "https://github.com/phpspec/prophecy/tree/v1.15.0"
             },
-            "time": "2021-09-10T09:02:12+00:00"
+            "time": "2021-12-08T12:19:24+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",

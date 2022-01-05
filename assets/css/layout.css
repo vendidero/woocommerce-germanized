@@ -98,6 +98,13 @@ p.wc-gzd-additional-info:empty {
   font-size: 0.9em;
   clear: left; }
 
+.product .defect-description:not(:empty) {
+  padding: .5em;
+  border: 2px solid #4b4f58;
+  margin: 1em 0; }
+  .product .defect-description:not(:empty) p:last-child {
+    margin-bottom: 0; }
+
 .product .product_meta {
   margin-top: 1rem; }
 
@@ -106,8 +113,9 @@ p.footer-info {
   font-size: 0.9em;
   padding-bottom: 0.5rem; }
 
-.wc-gzd-item-desc p {
-  font-size: 0.9em; }
+.wc-gzd-item-desc p, .wc-gzd-item-defect-description p {
+  font-size: 0.9em;
+  font-weight: normal; }
 
 .wc-gzd-edit-data-notice {
   background: #EEE;

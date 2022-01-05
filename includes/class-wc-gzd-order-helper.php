@@ -172,6 +172,7 @@ class WC_GZD_Order_Helper {
 		array_push( $metas, '_unit' );
 		array_push( $metas, '_unit_base' );
 		array_push( $metas, '_min_age' );
+		array_push( $metas, '_defect_description' );
 
 		return $metas;
 	}
@@ -188,6 +189,7 @@ class WC_GZD_Order_Helper {
 				$gzd_item->recalculate_unit_price();
 
 				$gzd_item->set_cart_description( $gzd_product->get_formatted_cart_description() );
+				$gzd_item->set_defect_description( $gzd_product->get_formatted_defect_description() );
 				$gzd_item->set_delivery_time( $gzd_product->get_delivery_time_html() );
 				$gzd_item->set_min_age( $gzd_product->get_min_age() );
 

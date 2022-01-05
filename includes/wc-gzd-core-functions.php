@@ -18,6 +18,23 @@ use Vendidero\Germanized\Shopmarks;
 require WC_GERMANIZED_ABSPATH . 'includes/wc-gzd-product-functions.php';
 
 /**
+ * Defect Description.
+ */
+if ( function_exists( 'do_blocks' ) ) {
+	add_filter( 'woocommerce_gzd_defect_description', 'do_blocks', 9 );
+}
+add_filter( 'woocommerce_gzd_defect_description', 'wptexturize' );
+add_filter( 'woocommerce_gzd_defect_description', 'convert_smilies' );
+add_filter( 'woocommerce_gzd_defect_description', 'convert_chars' );
+add_filter( 'woocommerce_gzd_defect_description', 'wpautop' );
+add_filter( 'woocommerce_gzd_defect_description', 'shortcode_unautop' );
+add_filter( 'woocommerce_gzd_defect_description', 'prepend_attachment' );
+add_filter( 'woocommerce_gzd_defect_description', 'do_shortcode', 11 ); // After wpautop().
+add_filter( 'woocommerce_gzd_defect_description', 'wc_format_product_short_description', 9999999 );
+add_filter( 'woocommerce_gzd_defect_description', 'wc_do_oembeds' );
+add_filter( 'woocommerce_gzd_defect_description', array( $GLOBALS['wp_embed'], 'run_shortcode' ), 8 ); // Before wpautop().
+
+/**
  * @param null $instance
  *
  * @return WC_GZD_Dependencies
@@ -298,13 +315,24 @@ function wc_gzd_get_legal_pages( $email_attachable_only = false ) {
 	return apply_filters( 'woocommerce_gzd_legal_pages', $legal_pages, $email_attachable_only );
 }
 
-function wc_gzd_get_email_attachment_order() {
-	$order       = explode( ',', get_option( 'woocommerce_gzd_mail_attach_order', 'terms,revocation,data_security,imprint' ) );
-	$items       = array();
-	$legal_pages = wc_gzd_get_legal_pages( true );
+function wc_gzd_get_default_email_attachment_order() {
+	return 'terms,revocation,data_security,imprint,warranties';
+}
 
-	foreach ( $order as $key => $item ) {
-		$items[ $item ] = ( isset( $legal_pages[ $item ] ) ? $legal_pages[ $item ] : '' );
+function wc_gzd_get_email_attachment_order( $legal_pages_only = false ) {
+	$available = wc_gzd_get_legal_pages( true );
+
+	if ( ! $legal_pages_only ) {
+		$available += array( 'warranties' => _x( 'Product Warranties', 'woocommerce-germanized' ) );
+	}
+
+	$current_order = explode( ',', get_option( 'woocommerce_gzd_mail_attach_order', wc_gzd_get_default_email_attachment_order() ) );
+	// Mare sure all default items exist within option order array
+	$current_order = array_replace( array_keys( $available ), $current_order );
+	$items         = array();
+
+	foreach ( $current_order as $key => $item ) {
+		$items[ $item ] = ( isset( $available[ $item ] ) ? $available[ $item ] : '' );
 	}
 
 	return $items;
@@ -1173,4 +1201,74 @@ function wc_gzd_base_country_is_eu() {
 	$base_country = WC()->countries->get_base_country();
 
 	return in_array( $base_country, $eu_countries );
+}
+
+function wc_gzd_get_cart_defect_descriptions( $items = false ) {
+	$items        = $items ? (array) $items : WC()->cart->get_cart();
+	$descriptions = array();
+	$is_cart      = true;
+
+	if ( ! empty( $items ) ) {
+		foreach ( $items as $cart_item_key => $values ) {
+			if ( is_a( $values, 'WC_Order_Item_Product' ) ) {
+				if ( $gzd_item = wc_gzd_get_order_item( $values ) ) {
+					if ( $gzd_item->get_defect_description() ) {
+						if ( ! empty( $values->get_product_id() ) && ! array_key_exists( $values->get_product_id(), $descriptions ) ) {
+							$descriptions[ wp_kses_post( $values->get_name() ) ] = $gzd_item->get_defect_description();
+						}
+					}
+				}
+
+				$is_cart  = false;
+			} elseif ( isset( $values['data'] ) ) {
+				$_product = apply_filters( 'woocommerce_cart_item_product', $values['data'], $values, $cart_item_key );
+
+				if ( is_a( $_product, 'WC_Product' ) ) {
+					$_gzd_product = wc_gzd_get_gzd_product( $_product );
+
+					if ( $_gzd_product->is_defective_copy() && ! array_key_exists( $_product->get_id(), $descriptions ) ) {
+						$descriptions[ wp_kses_post( $_product->get_name() ) ] = $_gzd_product->get_formatted_defect_description();
+					}
+				}
+			}
+		}
+	}
+
+	if ( ! $is_cart ) {
+		/**
+		 * Returns a list of defect descriptions on a per product base.
+		 *
+		 * @param string[] $descriptions The defect descriptions as key => value pairs.
+		 * @param array $items The order items.
+		 *
+		 * @since 3.8.0
+		 */
+		return apply_filters( 'woocommerce_gzd_order_defect_descriptions', $descriptions, $items );
+	} else {
+		/**
+		 * Returns a list of defect descriptions on a per product base.
+		 *
+		 * @param string[] $descriptions The defect descriptions as key => value pairs.
+		 * @param array $items The cart items.
+		 *
+		 * @since 3.8.0
+		 */
+		return apply_filters( 'woocommerce_gzd_cart_defect_descriptions', $descriptions, $items );
+	}
+}
+
+function wc_gzd_print_item_defect_descriptions( $descriptions, $echo = false ) {
+	$strings = array();
+
+	foreach( $descriptions as $name => $description ) {
+		$strings[] = sprintf( _x( '%1$s (%2$s)', 'defect-descriptions', 'woocommerce-germanized' ), wp_kses( $description, array( 'strong' => array(), 'i' => array(), 'em' => array(), 'a' => array(), 'b' => array() ) ), $name );
+	}
+
+	$string = implode( apply_filters( 'woocommerce_gzd_item_defect_descriptions_separator', '; ' ), $strings );
+
+	if ( $echo ) {
+		echo $string;
+	}
+
+	return $string;
 }

@@ -28,6 +28,8 @@ class WC_GZD_Product {
 
 	protected $delivery_times_need_update = false;
 
+	protected $warranty_attachment = false;
+
 	/**
 	 * Construct new WC_GZD_Product
 	 *
@@ -86,6 +88,10 @@ class WC_GZD_Product {
 		return $this->get_prop( 'unit_base', $context );
 	}
 
+	public function get_warranty_attachment_id( $context = 'view' ) {
+		return $this->get_prop( 'warranty_attachment_id', $context );
+	}
+
 	public function get_unit_product( $context = 'view' ) {
 		return $this->get_prop( 'unit_product', $context );
 	}
@@ -134,8 +140,54 @@ class WC_GZD_Product {
 		return $this->get_prop( 'mini_desc', $context );
 	}
 
+	public function get_defect_description( $context = 'view' ) {
+		return $this->get_prop( 'defect_description', $context );
+	}
+
 	public function get_cart_description( $context = 'view' ) {
 		return $this->get_mini_desc();
+	}
+
+	public function get_warranty_attachment( $context = 'view' ) {
+		$warranty_attachment_id = $this->get_warranty_attachment_id( $context );
+
+		if ( ! empty( $warranty_attachment_id ) ) {
+			if ( $post = get_post( $warranty_attachment_id ) ) {
+				$this->warranty_attachment = $post;
+
+				return $this->warranty_attachment;
+			}
+		}
+
+		return false;
+	}
+
+	public function get_warranty_file( $context = 'view' ) {
+		if ( $attachment = $this->get_warranty_attachment( $context ) ) {
+			return get_attached_file( $attachment->ID );
+		}
+
+		return false;
+	}
+
+	public function get_warranty_url( $context = 'view' ) {
+		if ( $this->has_warranty( $context ) ) {
+			return wp_get_attachment_url( $this->get_warranty_attachment_id() );
+		}
+
+		return false;
+	}
+
+	public function get_warranty_filename( $context = 'view' ) {
+		if ( $file = $this->get_warranty_file( $context ) ) {
+			return basename( $file );
+		}
+
+		return false;
+	}
+
+	public function has_warranty( $context = 'view' ) {
+		return $this->get_warranty_attachment_id( $context ) && $this->get_warranty_attachment( $context ) ? true : false;
 	}
 
 	public function has_cart_description() {
@@ -159,7 +211,29 @@ class WC_GZD_Product {
 	}
 
 	public function is_service( $context = 'view' ) {
-		return $this->get_service() === true;
+		return $this->get_service( $context ) === true;
+	}
+
+	public function get_used_good( $context = 'view' ) {
+		$is_used_good = wc_string_to_bool( $this->get_prop( 'used_good', $context ) );
+
+		if ( 'view' === $context && $this->is_differential_taxed( $context ) ) {
+			$is_used_good = apply_filters( "woocommerce_gzd_product_differential_taxed_is_used_good", true, $this );
+		}
+
+		return $is_used_good;
+	}
+
+	public function is_used_good( $context = 'view' ) {
+		return $this->get_used_good( $context ) === true;
+	}
+
+	public function get_defective_copy( $context = 'view' ) {
+		return wc_string_to_bool( $this->get_prop( 'defective_copy', $context ) );
+	}
+
+	public function is_defective_copy( $context = 'view' ) {
+		return $this->get_defective_copy( $context ) === true;
 	}
 
 	public function get_free_shipping( $context = 'view' ) {
@@ -167,7 +241,7 @@ class WC_GZD_Product {
 	}
 
 	public function has_free_shipping( $context = 'view' ) {
-		return $this->get_free_shipping() === true;
+		return $this->get_free_shipping( $context ) === true;
 	}
 
 	public function get_differential_taxation( $context = 'view' ) {
@@ -175,7 +249,12 @@ class WC_GZD_Product {
 	}
 
 	public function is_differential_taxed( $context = 'view' ) {
-		return $this->get_differential_taxation() === true;
+		return $this->get_differential_taxation( $context ) === true;
+	}
+
+	public function set_warranty_attachment_id( $id ) {
+		$this->set_prop( 'warranty_attachment_id', absint( $id ) );
+		$this->warranty_attachment = false;
 	}
 
 	public function set_unit_price( $price ) {
@@ -210,6 +289,14 @@ class WC_GZD_Product {
 		$this->set_prop( 'service', wc_bool_to_string( $service ) );
 	}
 
+	public function set_defective_copy( $is_defective_copy ) {
+		$this->set_prop( 'defective_copy', wc_bool_to_string( $is_defective_copy ) );
+	}
+
+	public function set_used_good( $is_used_good ) {
+		$this->set_prop( 'used_good', wc_bool_to_string( $is_used_good ) );
+	}
+
 	public function set_free_shipping( $shipping ) {
 		$this->set_prop( 'free_shipping', wc_bool_to_string( $shipping ) );
 	}
@@ -228,6 +315,10 @@ class WC_GZD_Product {
 
 	public function set_mini_desc( $desc ) {
 		$this->set_prop( 'mini_desc', $desc );
+	}
+
+	public function set_defect_description( $desc ) {
+		$this->set_prop( 'defect_description', $desc );
 	}
 
 	public function set_cart_description( $desc ) {
@@ -1321,6 +1412,19 @@ class WC_GZD_Product {
 		 * @since 3.1.12
 		 */
 		return apply_filters( 'woocommerce_gzd_product_delivery_time_html', $html, $this );
+	}
+
+	/**
+	 * Returns the defect description html output
+	 *
+	 * @return string
+	 */
+	public function get_formatted_defect_description() {
+		if ( $this->is_defective_copy() ) {
+			return apply_filters( 'woocommerce_gzd_defect_description', htmlspecialchars_decode( $this->get_defect_description() ) );
+		}
+
+		return '';
 	}
 
 	/**

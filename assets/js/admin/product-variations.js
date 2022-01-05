@@ -7,6 +7,7 @@ jQuery( function ( $ ) {
         init: function() {
             this.params = wc_gzd_admin_product_variations_params;
 
+            $( '#woocommerce-product-data' ).on( 'woocommerce_variations_loaded', this.variations_loaded );
             $( '#woocommerce-product-data' ).on( 'click', '.woocommerce_variation', this.show_or_hide_unit_variation );
             $( '#general_product_data' ).on( 'blur', 'input#_unit_base', this.show_or_hide_unit_variation );
             $( '#general_product_data' ).on( 'change', 'select#_unit', this.show_or_hide_unit_variation );
@@ -18,6 +19,47 @@ jQuery( function ( $ ) {
 
             $( 'select.variation_actions' ).on( 'variable_delivery_time_ajax_data', this.onSetDeliveryTime );
             $( 'select.variation_actions' ).on( 'variable_unit_product_ajax_data', this.onSetProductUnit );
+
+            $( '#variable_product_options' )
+                .on( 'change', 'input.variable_service', this.variable_is_service )
+                .on( 'change', 'input.variable_used_good', this.variable_is_used_good )
+                .on( 'change', 'input.variable_defective_copy', this.variable_is_defective_copy );
+
+            $( 'input.variable_service, input.variable_used_good, input.variable_defective_copy' ).trigger( 'change' );
+        },
+
+        variations_loaded: function( event, needsUpdate ) {
+            needsUpdate = needsUpdate || false;
+
+            var wrapper = $( '#woocommerce-product-data' );
+
+            if ( ! needsUpdate ) {
+                $( 'input.variable_service, input.variable_used_good, input.variable_defective_copy', wrapper ).trigger( 'change' );
+            }
+        },
+
+        variable_is_service: function() {
+            $( this ).closest( '.woocommerce_variation' ).find( '.show_if_variation_service' ).hide();
+
+            if ( $( this ).is( ':checked' ) ) {
+                $( this ).closest( '.woocommerce_variation' ).find( '.show_if_variation_service' ).show();
+            }
+        },
+
+        variable_is_used_good: function() {
+            $( this ).closest( '.woocommerce_variation' ).find( '.show_if_variation_used_good' ).hide();
+
+            if ( $( this ).is( ':checked' ) ) {
+                $( this ).closest( '.woocommerce_variation' ).find( '.show_if_variation_used_good' ).show();
+            }
+        },
+
+        variable_is_defective_copy: function() {
+            $( this ).closest( '.woocommerce_variation' ).find( '.show_if_variation_defective_copy' ).hide();
+
+            if ( $( this ).is( ':checked' ) ) {
+                $( this ).closest( '.woocommerce_variation' ).find( '.show_if_variation_defective_copy' ).show();
+            }
         },
 
         onSetDeliveryTime: function( e, data ) {

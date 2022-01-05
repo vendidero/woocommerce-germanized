@@ -281,6 +281,14 @@ class WC_GZD_Settings_Tab_Shopmarks extends WC_GZD_Settings_Tab {
 				'id' 		    => 'woocommerce_gzd_display_emails_product_item_desc',
 				'type'          => 'gzd_toggle',
 				'default'	    => 'yes',
+				'checkboxgroup'	=> '',
+			),
+
+			array(
+				'desc' 		    => __( 'Defect Description', 'woocommerce-germanized' ),
+				'id' 		    => 'woocommerce_gzd_display_emails_product_defect_description',
+				'type'          => 'gzd_toggle',
+				'default'	    => 'yes',
 				'checkboxgroup'	=> 'end',
 			),
 

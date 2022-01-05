@@ -48,8 +48,16 @@ class WC_GZD_Order_Item_Product extends WC_GZD_Order_Item {
 		return $this->order_item->get_meta( '_item_desc', true );
 	}
 
+	public function get_defect_description() {
+		return $this->order_item->get_meta( '_defect_description', true );
+	}
+
 	public function set_cart_description( $item_desc ) {
 		$this->order_item->update_meta_data( '_item_desc', $item_desc );
+	}
+
+	public function set_defect_description( $item_desc ) {
+		$this->order_item->update_meta_data( '_defect_description', $item_desc );
 	}
 
 	public function get_delivery_time() {

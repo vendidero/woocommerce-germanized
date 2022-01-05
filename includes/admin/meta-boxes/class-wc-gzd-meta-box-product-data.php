@@ -31,7 +31,7 @@ class WC_Germanized_Meta_Box_Product_Data {
 			add_action( 'woocommerce_product_options_shipping', array( __CLASS__, 'output_shipping' ) );
 
 			add_action( 'woocommerce_admin_process_product_object', array( __CLASS__, 'save' ), 10, 1 );
-			add_filter( 'product_type_options', array( __CLASS__, 'service_type' ), 10, 1 );
+			add_filter( 'product_type_options', array( __CLASS__, 'product_types' ), 10, 1 );
 		}
 
 		add_action( 'woocommerce_product_object_updated_props', array( __CLASS__, 'update_terms' ), 10, 1 );
@@ -197,7 +197,7 @@ class WC_Germanized_Meta_Box_Product_Data {
 		}
 	}
 
-	public static function service_type( $types ) {
+	public static function product_types( $types ) {
 		$types['service'] = array(
 			'id'            => '_service',
 			'wrapper_class' => 'show_if_simple',
@@ -206,10 +206,26 @@ class WC_Germanized_Meta_Box_Product_Data {
 			'default'       => 'no'
 		);
 
+		$types['used_good'] = array(
+			'id'            => '_used_good',
+			'wrapper_class' => 'show_if_simple',
+			'label'         => __( 'Used Good', 'woocommerce-germanized' ),
+			'description'   => __( 'Product is a used good/factory second.', 'woocommerce-germanized' ),
+			'default'       => 'no'
+		);
+
+		$types['defective_copy'] = array(
+			'id'            => '_defective_copy',
+			'wrapper_class' => 'show_if_simple',
+			'label'         => __( 'Defective Copy', 'woocommerce-germanized' ),
+			'description'   => __( 'Product has defects.', 'woocommerce-germanized' ),
+			'default'       => 'no'
+		);
+
 		$types['differential_taxation'] = array(
 			'id'            => '_differential_taxation',
 			'wrapper_class' => '',
-			'label'         => __( 'Diff. Taxation', 'woocommerce-germanized' ),
+			'label'         => __( 'Differential taxed', 'woocommerce-germanized' ),
 			'description'   => __( 'Product applies to differential taxation based on §25a UStG.', 'woocommerce-germanized' ),
 			'default'       => 'no'
 		);
@@ -232,6 +248,7 @@ class WC_Germanized_Meta_Box_Product_Data {
             'desc_tip'    => true,
             'description' => __( 'If the product is on sale you may want to show a price label right before outputting the old price to inform the customer.', 'woocommerce-germanized' )
 		) );
+
 		woocommerce_wp_select( array(
             'id'          => '_sale_price_regular_label',
             'label'       => __( 'Sale Regular Label', 'woocommerce-germanized' ),
@@ -247,6 +264,7 @@ class WC_Germanized_Meta_Box_Product_Data {
             'desc_tip'    => true,
             'description' => __( 'Needed if selling on a per unit basis', 'woocommerce-germanized' )
 		) );
+
 		woocommerce_wp_text_input( array(
             'id'          => '_unit_product',
             'label'       => __( 'Product Units', 'woocommerce-germanized' ),
@@ -254,6 +272,7 @@ class WC_Germanized_Meta_Box_Product_Data {
             'desc_tip'    => true,
             'description' => __( 'Number of units included per default product price. Example: 1000 ml.', 'woocommerce-germanized' )
 		) );
+
 		woocommerce_wp_text_input( array(
             'id'          => '_unit_base',
             'label'       => __( 'Unit Price Units', 'woocommerce-germanized' ),
@@ -283,11 +302,13 @@ class WC_Germanized_Meta_Box_Product_Data {
             'label'       => __( 'Calculation', 'woocommerce-germanized' ),
             'description' => '<span class="wc-gzd-premium-desc">' . __( 'Calculate unit prices automatically.', 'woocommerce-germanized' ) . '</span> <a href="https://vendidero.de/woocommerce-germanized#upgrade" target="_blank" class="wc-gzd-pro wc-gzd-pro-outlined">pro</a>'
 		) );
+
 		woocommerce_wp_text_input( array(
             'id'        => '_unit_price_regular',
             'label'     => __( 'Regular Unit Price', 'woocommerce-germanized' ) . ' (' . get_woocommerce_currency_symbol() . ')',
             'data_type' => 'price'
 		) );
+
 		woocommerce_wp_text_input( array(
             'id'        => '_unit_price_sale',
             'label'     => __( 'Sale Unit Price', 'woocommerce-germanized' ) . ' (' . get_woocommerce_currency_symbol() . ')',
@@ -305,6 +326,12 @@ class WC_Germanized_Meta_Box_Product_Data {
             'description' => __( 'Adds an age verification checkbox while purchasing this product.', 'woocommerce-germanized' ),
             'options'     => $age_select
 		) );
+
+		echo '</div>';
+
+		echo '<div class="options_group show_if_simple show_if_variable show_if_external">';
+
+        self::output_warranty_upload();
 
 		echo '</div>';
 	}
@@ -357,6 +384,20 @@ class WC_Germanized_Meta_Box_Product_Data {
                 'label'       => __( 'Free shipping?', 'woocommerce-germanized' ),
                 'description' => __( 'This option disables the "plus shipping costs" notice on product page', 'woocommerce-germanized' )
             ) );
+	}
+
+	public static function output_warranty_upload() {
+		global $post, $thepostid, $product_object;
+
+		$gzd_product = wc_gzd_get_product( $product_object );
+		?>
+        <p class="form-field wc-gzd-warranty-upload-wrapper">
+            <label for="upload_warranty_button"><?php _e( 'Warranty (PDF)', 'woocommerce-germanized' ); ?></label>
+            <a href="#" class="button upload_warranty_button" data-default-label="<?php echo esc_html__( 'Choose file', 'woocommerce-germanized' ); ?>" data-choose="<?php esc_attr_e( 'Choose file', 'woocommerce-germanized' ); ?>" data-update="<?php esc_attr_e( 'Select warranty file', 'woocommerce-germanized' ); ?>"><?php echo ( $gzd_product->has_warranty() ? $gzd_product->get_warranty_filename() : esc_html__( 'Choose file', 'woocommerce-germanized' ) ); ?></a>
+            <input type="hidden" name="_warranty_attachment_id" value="<?php echo ( $gzd_product->has_warranty() ? $gzd_product->get_warranty_attachment_id() : '' ); ?>" class="wc-gzd-warranty-attachment" />
+            <a href="#" class="wc-gzd-warranty-delete <?php echo ( ! $gzd_product->has_warranty() ? 'file-missing' : '' ); ?>"><?php _e( 'Delete', 'woocommerce-germanized' ); ?></a>
+        </p>
+        <?php
 	}
 
 	public static function get_available_delivery_time_countries() {
@@ -473,6 +514,8 @@ class WC_Germanized_Meta_Box_Product_Data {
 			'_sale_price_label'                             => '',
 			'_sale_price_regular_label'                     => '',
 			'_mini_desc'                                    => '',
+			'_defect_description'                           => '',
+            '_warranty_attachment_id'                       => '',
 			'delivery_time'                                 => '',
 			'country_specific_delivery_times'               => '',
 			'new_country_specific_delivery_times_countries' => '',
@@ -482,6 +525,8 @@ class WC_Germanized_Meta_Box_Product_Data {
 			'_sale_price'                                   => '',
 			'_free_shipping'                                => '',
 			'_service'                                      => '',
+			'_used_good'                                    => '',
+			'_defective_copy'                               => '',
 			'_differential_taxation'                        => '',
 			'_min_age'                                      => '',
 		);
@@ -757,6 +802,26 @@ class WC_Germanized_Meta_Box_Product_Data {
 			$gzd_product->set_mini_desc( $data['_mini_desc'] === '' ? '' : wc_gzd_sanitize_html_text_field( $data['_mini_desc'] ) );
 		}
 
+		if ( isset( $data['_defect_description'] ) ) {
+			$gzd_product->set_defect_description( $data['_defect_description'] === '' ? '' : wc_gzd_sanitize_html_text_field( $data['_defect_description'] ) );
+		}
+
+        $warranty_attachment_id = isset( $data['_warranty_attachment_id'] ) ? absint( $data['_warranty_attachment_id'] ) : 0;
+
+		if ( ! empty( $warranty_attachment_id ) && ( $warranty_post = get_post( $warranty_attachment_id ) ) ) {
+			if ( $file_url = wp_get_attachment_url( $warranty_attachment_id ) ) {
+				$filetype = wp_check_filetype( $file_url );
+
+				if ( 'application/pdf' === $filetype['type'] ) {
+					$gzd_product->set_warranty_attachment_id( $warranty_attachment_id );
+				} else {
+					$gzd_product->set_warranty_attachment_id( 0 );
+				}
+			}
+		} else {
+			$gzd_product->set_warranty_attachment_id( 0 );
+		}
+
 		if ( isset( $data['_min_age'] ) && array_key_exists( (int) $data['_min_age'], wc_gzd_get_age_verification_min_ages() ) ) {
 			$gzd_product->set_min_age( absint( $data['_min_age'] ) );
 		} else {
@@ -770,6 +835,12 @@ class WC_Germanized_Meta_Box_Product_Data {
 
 		// Is a service?
 		$gzd_product->set_service( isset( $data['_service'] ) ? 'yes' : 'no' );
+
+		// Is a used good?
+		$gzd_product->set_used_good( isset( $data['_used_good'] ) ? 'yes' : 'no' );
+
+		// Is a defective copy?
+		$gzd_product->set_defective_copy( isset( $data['_defective_copy'] ) ? 'yes' : 'no' );
 
 		// Applies to differential taxation?
 		$gzd_product->set_differential_taxation( isset( $data['_differential_taxation'] ) ? 'yes' : 'no' );
@@ -791,6 +862,7 @@ class WC_Germanized_Meta_Box_Product_Data {
 		// Ignore variable data
 		if ( in_array( $product_type, array( 'variable', 'grouped' ) ) && ! $is_variation ) {
 			$gzd_product->set_mini_desc( '' );
+			$gzd_product->set_defect_description( '' );
 		}
 
 		$gzd_product->set_gzd_version( WC_GERMANIZED_VERSION );

@@ -33,7 +33,7 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 		if ( is_admin() ) {
 			add_action( 'woocommerce_product_after_variable_attributes', array( __CLASS__, 'output' ), 20, 3 );
 			add_action( 'woocommerce_save_product_variation', array( __CLASS__, 'save' ), 0, 2 );
-			add_action( 'woocommerce_variation_options', array( __CLASS__, 'service' ), 0, 3 );
+			add_action( 'woocommerce_variation_options', array( __CLASS__, 'product_types' ), 0, 3 );
 		}
 
         add_action( 'woocommerce_variable_product_bulk_edit_actions', array( __CLASS__, 'bulk_edit' ), 10 );
@@ -44,14 +44,50 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
         $actions = array(
             'variable_unit_product',
             'variable_unit_auto',
-            'variable_delivery_time'
+            'variable_delivery_time',
         );
 
         if ( in_array( $bulk_action, $actions ) ) {
 	        if ( method_exists( __CLASS__, "bulk_action_$bulk_action" ) ) {
 		        call_user_func( array( __CLASS__, "bulk_action_$bulk_action" ), $variations, $data );
 	        }
+        } elseif ( 'toggle_' === substr( $bulk_action, 0, 7 ) ) {
+            $type = substr( $bulk_action, 7 );
+
+            if ( in_array( $type, array( 'service', 'used_good', 'defective_copy' ) ) ) {
+                self::bulk_action_variable_status_toggle( $variations, $type );
+            }
         }
+    }
+
+    protected static function bulk_action_variable_status_toggle( $variations, $type = 'service' ) {
+	    foreach ( $variations as $variation_id ) {
+		    if ( $variation = wc_get_product( $variation_id ) ) {
+			    $gzd_variation = wc_gzd_get_gzd_product( $variation );
+
+			    if ( 'service' === $type ) {
+				    if ( $gzd_variation->is_service( 'edit' ) ) {
+					    $gzd_variation->set_service( false );
+				    } else {
+					    $gzd_variation->set_service( true );
+				    }
+			    } elseif ( 'used_good' === $type ) {
+				    if ( $gzd_variation->is_used_good( 'edit' ) ) {
+					    $gzd_variation->set_used_good( false );
+				    } else {
+					    $gzd_variation->set_used_good( true );
+				    }
+                } elseif ( 'defective_copy' === $type ) {
+				    if ( $gzd_variation->is_defective_copy( 'edit' ) ) {
+					    $gzd_variation->set_defective_copy( false );
+				    } else {
+					    $gzd_variation->set_defective_copy( true );
+				    }
+			    }
+
+                $variation->save();
+		    }
+	    }
     }
 
     protected static function bulk_action_variable_delivery_time( $variations, $data ) {
@@ -115,16 +151,29 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
         <optgroup label="<?php esc_attr_e( 'Delivery Time', 'woocommerce-germanized' ); ?>">
             <option value="variable_delivery_time"><?php esc_html_e( 'Set delivery time', 'woocommerce-germanized' ); ?></option>
         </optgroup>
+        <optgroup label="<?php esc_attr_e( 'Status', 'woocommerce-germanized' ); ?>">
+            <option value="toggle_service"><?php esc_html_e( 'Toggle &quot;Service&quot;', 'woocommerce-germanized' ); ?></option>
+            <option value="toggle_used_good"><?php esc_html_e( 'Toggle &quot;Used Good&quot;', 'woocommerce-germanized' ); ?></option>
+            <option value="toggle_defective_copy"><?php esc_html_e( 'Toggle &quot;Defective Copy&quot;', 'woocommerce-germanized' ); ?></option>
+        </optgroup>
         <?php
     }
 
-	public static function service( $loop, $variation_data, $variation ) {
-		$_product    = wc_get_product( $variation );
-		$gzd_product = wc_gzd_get_product( $_product );
-		$is_service  = $gzd_product->get_service();
+	public static function product_types( $loop, $variation_data, $variation ) {
+		$_product          = wc_get_product( $variation );
+		$gzd_product       = wc_gzd_get_product( $_product );
+		$is_service        = $gzd_product->get_service( 'edit' );
+		$is_used_good      = $gzd_product->get_used_good( 'edit' );
+		$is_defective_copy = $gzd_product->get_defective_copy( 'edit' );
 		?>
         <label>
-            <input type="checkbox" class="checkbox variable_service" name="variable_service[<?php echo $loop; ?>]" <?php checked( $is_service ? 'yes' : 'no', 'yes' ); ?> /> <?php _e( 'Service', 'woocommerce-germanized' ); ?> <?php echo wc_help_tip( __( 'Service products do not sell physical products.', 'woocommerce-germanized' ) ); ?>
+            <input type="checkbox" class="checkbox variable_service" name="variable_service[<?php echo $loop; ?>]" <?php checked( $is_service ? 'yes' : 'no', 'yes' ); ?> /> <?php _e( 'Service', 'woocommerce-germanized' ); ?>
+        </label>
+        <label>
+            <input type="checkbox" class="checkbox variable_used_good" name="variable_used_good[<?php echo $loop; ?>]" <?php checked( $is_used_good ? 'yes' : 'no', 'yes' ); ?> /> <?php _e( 'Used Good', 'woocommerce-germanized' ); ?> <?php echo wc_help_tip( __( 'Product is a used good/factory second.', 'woocommerce-germanized' ) ); ?>
+        </label>
+        <label>
+            <input type="checkbox" class="checkbox variable_defective_copy" name="variable_defective_copy[<?php echo $loop; ?>]" <?php checked( $is_defective_copy ? 'yes' : 'no', 'yes' ); ?> /> <?php _e( 'Defective Copy', 'woocommerce-germanized' ); ?> <?php echo wc_help_tip( __( 'Product has defects.', 'woocommerce-germanized' ) ); ?>
         </label>
 		<?php
 	}
@@ -296,12 +345,31 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
             </p>
         </div>
 
+        <div class="variable_warranty_attachment">
+            <p class="form-row form-row-full wc-gzd-warranty-upload-wrapper">
+                <label><?php _e( 'Warranty (PDF)', 'woocommerce-germanized' ); ?></label>
+                <a href="#" class="button upload_warranty_button" data-default-label="<?php echo esc_html__( 'Same as parent', 'woocommerce-germanized' ); ?>" data-choose="<?php esc_attr_e( 'Choose file', 'woocommerce-germanized' ); ?>" data-update="<?php esc_attr_e( 'Select warranty file', 'woocommerce-germanized' ); ?>"><?php echo ( $gzd_product->has_warranty( 'edit' ) ? $gzd_product->get_warranty_filename() : esc_html__( 'Same as parent', 'woocommerce-germanized' ) ); ?></a>
+                <input type="hidden" name="variable_warranty_attachment_id[<?php echo $loop; ?>]" value="<?php echo ( $gzd_product->has_warranty( 'edit' ) ? $gzd_product->get_warranty_attachment_id( 'edit' ) : '' ); ?>" class="wc-gzd-warranty-attachment" />
+                <a href="#" class="wc-gzd-warranty-delete <?php echo ( ! $gzd_product->has_warranty( 'edit' ) ? 'file-missing' : '' ); ?>"><?php _e( 'Delete', 'woocommerce-germanized' ); ?></a>
+            </p>
+        </div>
+
         <div class="variable_cart_mini_desc">
             <p class="form-row form-row-full">
                 <label for="variable_mini_desc"><?php echo __( 'Optional Mini Description', 'woocommerce-germanized' ); ?></label>
                 <textarea rows="3" style="width: 100%" name="variable_mini_desc[<?php echo $loop; ?>]"
                       id="variable_mini_desc_<?php echo $loop; ?>"
                       class="variable_mini_desc"><?php echo htmlspecialchars_decode( $gzd_product->get_mini_desc( 'edit' ) ); ?>
+                </textarea>
+            </p>
+        </div>
+
+        <div class="variable_cart_defect_description show_if_variation_defective_copy">
+            <p class="form-row form-row-full">
+                <label for="variable_defect_description"><?php echo __( 'Defect Description', 'woocommerce-germanized' ); ?> <?php echo wc_help_tip( __( 'Inform your customers about product defects. This description will be shown on top of your product description and during cart/checkout.', 'woocommerce-germanized' ) ); ?></label>
+                <textarea rows="3" style="width: 100%" name="variable_defect_description[<?php echo $loop; ?>]"
+                          id="variable_defect_description_<?php echo $loop; ?>"
+                          class="variable_defect_description"><?php echo htmlspecialchars_decode( $gzd_product->get_defect_description( 'edit' ) ); ?>
                 </textarea>
             </p>
         </div>
@@ -320,12 +388,16 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 			'_parent_unit'                                  => '',
 			'_parent_unit_base'                             => '',
 			'_mini_desc'                                    => '',
+			'_defect_description'                           => '',
 			'_service'                                      => '',
+			'_used_good'                                    => '',
+            '_defective_copy'                               => '',
 			'delivery_time'                                 => '',
 			'country_specific_delivery_times'               => '',
 			'new_country_specific_delivery_times_countries' => '',
 			'new_country_specific_delivery_times_terms'     => '',
 			'_min_age'                                      => '',
+            '_warranty_attachment_id'                       => '',
 		);
 
 		foreach ( $data as $k => $v ) {
