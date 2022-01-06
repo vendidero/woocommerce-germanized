@@ -210,7 +210,7 @@ class WC_Germanized_Meta_Box_Product_Data {
 			'id'            => '_used_good',
 			'wrapper_class' => 'show_if_simple',
 			'label'         => __( 'Used Good', 'woocommerce-germanized' ),
-			'description'   => __( 'Product is a used good/factory second.', 'woocommerce-germanized' ),
+			'description'   => __( 'Product is a used good.', 'woocommerce-germanized' ),
 			'default'       => 'no'
 		);
 

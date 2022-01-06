@@ -633,8 +633,12 @@ class WC_GZD_Product {
 	public function hide_shopmarks_due_to_missing_price() {
 		$price_html_checked = true;
 
-		// Prevent infinite loops in case the shopmark is added via the price_html filter
-		if ( ! $this->is_doing_price_html_action() ) {
+		/**
+		 * Prevent infinite loops in case the shopmark is added via the price_html filter.
+		 * Calling get_price_html during cart/checkout may cause side-effects (e.g. subtotal calculation in Measurement Plugin)
+		 * within shopmarks - prevent calls here too.
+	     */
+		if ( ! $this->is_doing_price_html_action() && ! is_cart() && ! is_checkout() ) {
 			$price_html_checked = ( '' === $this->child->get_price_html() );
 		}
 

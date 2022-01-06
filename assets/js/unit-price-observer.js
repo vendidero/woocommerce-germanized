@@ -43,7 +43,7 @@
                         self.setUnitPriceLoading( self, $unitPrice );
 
                         setTimeout( function() {
-                            var priceData = self.getCurrentPriceData( self, priceSelector, priceArgs['is_total_price'], isPrimary );
+                            var priceData = self.getCurrentPriceData( self, priceSelector, priceArgs['is_total_price'], isPrimary, priceArgs['quantity_selector'] );
 
                             if ( priceData ) {
                                 self.refreshUnitPrice( self, priceData.price, priceData.unit_price, priceData.sale_price, priceData.quantity );
@@ -123,7 +123,7 @@
                      * has already adjusted the variationId (in case necessary).
                      */
                     self.timeout = setTimeout(function() {
-                        var priceData = self.getCurrentPriceData( self, priceSelector, priceArgs['is_total_price'], isPrimary );
+                        var priceData = self.getCurrentPriceData( self, priceSelector, priceArgs['is_total_price'], isPrimary, priceArgs['quantity_selector'] );
 
                         if ( priceData ) {
                             /**
@@ -198,14 +198,15 @@
         self.initObserver( self );
     };
 
-    GermanizedUnitPriceObserver.prototype.getCurrentPriceData = function( self, priceSelector, isTotalPrice, isPrimary ) {
-        var $price = self.getPriceNode( self, priceSelector, isPrimary );
+    GermanizedUnitPriceObserver.prototype.getCurrentPriceData = function( self, priceSelector, isTotalPrice, isPrimary, quantitySelector ) {
+        quantitySelector = quantitySelector && '' !== quantitySelector ? quantitySelector : self.params.qty_selector;
+        var $price       = self.getPriceNode( self, priceSelector, isPrimary );
 
         if ( $price.length > 0 ) {
             var $unit_price = self.getUnitPriceNode( self, $price ),
                 sale_price  = '',
                 $priceInner = $price.find( '.amount:first' ),
-                $qty        = $( self.params.wrapper + ' ' + self.params.qty_selector + ':first' ),
+                $qty        = $( self.params.wrapper + ' ' + quantitySelector + ':first' ),
                 qty         = 1;
 
             if ( $qty.length > 0 ) {

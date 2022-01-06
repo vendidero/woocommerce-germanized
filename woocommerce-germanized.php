@@ -1044,6 +1044,7 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
                         // Indicates whether the product price is a total price (e.g. price * quantity) or not (which is the default option)
                         'is_total_price'      => false,
                         'is_primary_selector' => true,
+                        'quantity_selector'   => '',
                     )
                 ) );
 
@@ -1051,6 +1052,7 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 					$params['price_selector'][ $selector ] = wp_parse_args( $args, array(
                         'is_total_price'      => false,
                         'is_primary_selector' => false,
+                        'quantity_selector'   => '',
                     ) );
 				}
 

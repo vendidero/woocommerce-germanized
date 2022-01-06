@@ -19,6 +19,39 @@ class WC_GZD_Compatibility_WooCommerce_Measurement_Price_Calculator extends WC_G
 
 	public function load() {
 		/**
+		 * This plugin does not adjust product price via PHP but adds a completely separate price
+		 * wrapper to the single product price page. This price wrapper contains the total product price (including discounts).
+		 * Register a custom observer for the selector which is marked as containing a total price.
+		 */
+		add_filter( 'woocommerce_gzd_unit_price_observer_price_selectors', function( $price_selectors ) {
+
+			return $price_selectors;
+		} );
+
+		add_filter( 'woocommerce_gzd_unit_price_observer_params', function( $params ) {
+			if ( function_exists( 'is_singular' ) && is_singular( 'product' ) ) {
+				global $post;
+
+				if ( $post && ( $product = wc_get_product( $post ) ) ) {
+					if ( $measurement = $product->get_meta( '_wc_price_calculator' ) ) {
+						if ( isset( $measurement['calculator_type'] ) && ! empty( $measurement['calculator_type'] ) ) {
+							$params['refresh_on_load'] = true;
+
+							$params['price_selector']['tr.calculated-price .product_price'] = array(
+								'is_total_price'      => true,
+								'quantity_selector'   => '.amount_needed',
+								'is_primary_selector' => false
+							);
+
+						}
+					}
+				}
+			}
+
+			return $params;
+		} );
+
+		/**
 		 * Adjust unit price quantity to the quantity chosen by the customer.
 		 */
 		add_filter( 'woocommerce_gzd_unit_price_cart_quantity', function( $quantity, $cart_item, $gzd_product ) {

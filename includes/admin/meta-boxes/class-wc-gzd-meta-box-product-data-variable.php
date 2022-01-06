@@ -170,7 +170,7 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
             <input type="checkbox" class="checkbox variable_service" name="variable_service[<?php echo $loop; ?>]" <?php checked( $is_service ? 'yes' : 'no', 'yes' ); ?> /> <?php _e( 'Service', 'woocommerce-germanized' ); ?>
         </label>
         <label>
-            <input type="checkbox" class="checkbox variable_used_good" name="variable_used_good[<?php echo $loop; ?>]" <?php checked( $is_used_good ? 'yes' : 'no', 'yes' ); ?> /> <?php _e( 'Used Good', 'woocommerce-germanized' ); ?> <?php echo wc_help_tip( __( 'Product is a used good/factory second.', 'woocommerce-germanized' ) ); ?>
+            <input type="checkbox" class="checkbox variable_used_good" name="variable_used_good[<?php echo $loop; ?>]" <?php checked( $is_used_good ? 'yes' : 'no', 'yes' ); ?> /> <?php _e( 'Used Good', 'woocommerce-germanized' ); ?> <?php echo wc_help_tip( __( 'Product is a used good.', 'woocommerce-germanized' ) ); ?>
         </label>
         <label>
             <input type="checkbox" class="checkbox variable_defective_copy" name="variable_defective_copy[<?php echo $loop; ?>]" <?php checked( $is_defective_copy ? 'yes' : 'no', 'yes' ); ?> /> <?php _e( 'Defective Copy', 'woocommerce-germanized' ); ?> <?php echo wc_help_tip( __( 'Product has defects.', 'woocommerce-germanized' ) ); ?>

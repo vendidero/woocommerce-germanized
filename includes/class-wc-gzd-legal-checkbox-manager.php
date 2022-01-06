@@ -280,7 +280,7 @@ class WC_GZD_Legal_Checkbox_Manager {
 			'html_name'            => 'defective-copy',
 			'html_wrapper_classes' => array( 'legal' ),
 			'label_args'           => array( '{defect_descriptions}' => '' ),
-			'label'                => __( 'For defective copies: I have taken note that the goods contain defects and deviate from objective requirements.', 'woocommerce-germanized' ),
+			'label'                => __( 'I have taken note of the following defects: {defect_descriptions}.', 'woocommerce-germanized' ),
 			'error_message'        => __( 'Please make sure to check our note on defective copies.', 'woocommerce-germanized' ),
 			'is_mandatory'         => true,
 			'priority'             => 7,
