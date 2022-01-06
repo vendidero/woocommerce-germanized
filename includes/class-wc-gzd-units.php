@@ -27,12 +27,7 @@ class WC_GZD_Units extends WC_GZD_Taxonomy {
 		return parent::get_term_object( $key, $by );
 	}
 
-	/**
-	 * Returns mixed units array
-	 *
-	 * @return mixed units as array
-	 */
-	public function get_units() {
-		return $this->get_terms();
+	public function get_units( $args = array() ) {
+		return $this->get_terms( $args );
 	}
 }

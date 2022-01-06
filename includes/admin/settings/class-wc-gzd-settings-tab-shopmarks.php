@@ -460,7 +460,7 @@ class WC_GZD_Settings_Tab_Shopmarks extends WC_GZD_Settings_Tab {
 	protected function get_delivery_time_settings() {
 		$delivery_terms             = array( '' => __( 'None', 'woocommerce-germanized' ) );
 		$delivery_terms_per_country = array( '' => __( 'Same as global fallback', 'woocommerce-germanized' ) );
-		$terms                      = get_terms( 'product_delivery_time', array( 'fields' => 'id=>name', 'hide_empty' => false ) );
+		$terms                      = WC_germanized()->delivery_times->get_terms();
 
 		if ( ! is_wp_error( $terms ) ) {
 			$delivery_terms             = $delivery_terms + $terms;

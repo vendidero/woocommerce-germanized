@@ -35,6 +35,7 @@ class WC_GZD_Shortcodes {
 			'gzd_product_tax_notice'           => __CLASS__ . '::gzd_product_tax_notice',
 			'gzd_product_shipping_notice'      => __CLASS__ . '::gzd_product_shipping_notice',
 			'gzd_product_cart_desc'            => __CLASS__ . '::gzd_product_cart_desc',
+			'gzd_product_defect_description'   => __CLASS__ . '::gzd_product_defect_description',
 			'gzd_email_legal_page_attachments' => __CLASS__ . '::gzd_email_legal_page_attachments'
 		);
 
@@ -180,6 +181,19 @@ class WC_GZD_Shortcodes {
 		}
 
 		return $content;
+	}
+
+	public static function gzd_product_defect_description( $atts ) {
+		/**
+		 * Filter shortcode product defect description output.
+		 *
+		 * @param string $html The output.
+		 * @param array $atts The shortcode arguments.
+		 *
+		 * @since 3.8.0
+		 *
+		 */
+		return apply_filters( 'woocommerce_gzd_shortcode_product_defect_description_html', self::get_gzd_product_shortcode( $atts, 'woocommerce_gzd_template_single_defect_description' ), $atts );
 	}
 
 	public static function gzd_add_price_suffixes( $price, $org_product ) {

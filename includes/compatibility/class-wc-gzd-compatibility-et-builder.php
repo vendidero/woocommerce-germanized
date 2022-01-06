@@ -60,6 +60,7 @@ class WC_GZD_Compatibility_ET_Builder extends WC_GZD_Compatibility {
 									<li>[gzd_product_shipping_notice]</li>
 									<li>[gzd_product_delivery_time]</li>
 									<li>[gzd_product_unit_price]</li>
+                                    <li>[gzd_product_defect_description]</li>
 								</ul>
 							</div>
 						<?php

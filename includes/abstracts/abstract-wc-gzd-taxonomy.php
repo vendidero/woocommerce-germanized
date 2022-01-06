@@ -4,11 +4,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * The Units Class stores units/measurements data.
+ * Taxonomy base class.
  *
- * @class WC_Germanized_Units
+ * @class    WC_GZD_Taxonomy
  * @version  1.0.0
- * @author   Vendidero
+ * @author   vendidero
  */
 class WC_GZD_Taxonomy {
 
@@ -32,9 +32,29 @@ class WC_GZD_Taxonomy {
 		return $this->get_term( $key );
 	}
 
+	/**
+	 * @param $key
+	 * @param $by
+	 *
+	 * @return false|WP_Term
+	 */
 	public function get_term_object( $key, $by = 'slug' ) {
-
 		$taxonomy = $this->taxonomy;
+
+		/**
+		 * In case a numeric key is available, prefer retrieving by id over slug.
+		 */
+		if ( 'slug_fallback' === $by ) {
+			$by = 'slug';
+
+			if ( is_numeric( $key ) ) {
+				$term = $this->get_term_object( $key, 'id' );
+
+				if ( $term ) {
+					return $term;
+				}
+			}
+		}
 
 		/**
 		 * Before retrieving a certain term.
@@ -51,6 +71,10 @@ class WC_GZD_Taxonomy {
 		do_action( 'woocommerce_gzd_get_term', $key, $by, $taxonomy );
 
 		$term = get_term_by( $by, $key, $taxonomy );
+
+		if ( is_array( $term ) ) {
+			$term = $term[0];
+		}
 
 		if ( ! $term || is_wp_error( $term ) ) {
 			$term = false;
@@ -73,6 +97,14 @@ class WC_GZD_Taxonomy {
 		return $term;
 	}
 
+	/**
+	 * Returns the term name.
+	 *
+	 * @param $key
+	 * @param $by
+	 *
+	 * @return false|string
+	 */
 	public function get_term( $key, $by = 'slug' ) {
 		if ( $term = $this->get_term_object( $key, $by ) ) {
 			return $term->name;
@@ -86,16 +118,16 @@ class WC_GZD_Taxonomy {
 	}
 
 	/**
-	 * Returns mixed units array
+	 * Returns a list of terms slug=>name
 	 *
-	 * @return mixed units as array
+	 * @return string[] terms as array
 	 */
-	public function get_terms() {
+	public function get_terms( $args = array() ) {
+		$args  = wp_parse_args( $args, array( 'hide_empty' => false ) );
 		$list  = array();
-		$terms = get_terms( $this->taxonomy, array( 'hide_empty' => false ) );
+		$terms = get_terms( $this->taxonomy, $args );
 
 		if ( ! empty( $terms ) && ! is_wp_error( $terms ) ) {
-
 			foreach ( $terms as $term ) {
 				$list[ $term->slug ] = $term->name;
 			}

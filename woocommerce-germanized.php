@@ -7,9 +7,9 @@
  * Author: vendidero
  * Author URI: https://vendidero.de
  * Requires at least: 5.4
- * Tested up to: 5.8
+ * Tested up to: 5.9
  * WC requires at least: 3.9
- * WC tested up to: 5.9
+ * WC tested up to: 6.1
  *
  * Text Domain: woocommerce-germanized
  * Domain Path: /i18n/languages/
@@ -77,13 +77,19 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 		protected static $_instance = null;
 
 		/**
-		 * Instance of WC_GZD_Units
-		 *
-		 * @var object
+		 * @var WC_GZD_Units|null
 		 */
 		public $units = null;
 
+		/**
+		 * @var WC_GZD_Price_Labels|null
+		 */
 		public $price_labels = null;
+
+		/**
+		 * @var WC_GZD_Delivery_Times|null
+		 */
+		public $delivery_times = null;
 
 		/**
 		 * @var WC_GZD_Emails|null
@@ -216,6 +222,7 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 
 			$this->units           = new WC_GZD_Units();
 			$this->price_labels    = new WC_GZD_Price_Labels();
+			$this->delivery_times  = new WC_GZD_Delivery_Times();
 			$this->product_factory = new WC_GZD_Product_Factory();
 
 			/**

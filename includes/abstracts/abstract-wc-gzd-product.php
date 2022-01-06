@@ -1017,9 +1017,9 @@ class WC_GZD_Product {
 			$cached_terms = array();
 
 			foreach( $slugs as $slug ) {
-				$term = get_term_by( 'slug', $slug, 'product_delivery_time' );
+				$term = WC_germanized()->delivery_times->get_delivery_time_term( $slug );
 
-				if ( is_wp_error( $term ) || empty( $term ) ) {
+				if ( ! $term ) {
 					continue;
 				}
 
@@ -1179,16 +1179,13 @@ class WC_GZD_Product {
 				}
 
 				if ( $default_option ) {
-					$delivery_time = get_term_by( 'id', $default_option, 'product_delivery_time' );
+					$delivery_time = WC_germanized()->delivery_times->get_delivery_time_term( $default_option, 'slug_fallback' );
 				}
 			}
 
 			if ( ! $delivery_time && get_option( 'woocommerce_gzd_default_delivery_time' ) ) {
-				$delivery_time = get_term_by( 'id', get_option( 'woocommerce_gzd_default_delivery_time' ), 'product_delivery_time' );
-			}
-
-			if ( is_wp_error( $delivery_time ) ) {
-				$delivery_time = false;
+				$default_option = get_option( 'woocommerce_gzd_default_delivery_time' );
+				$delivery_time  = WC_germanized()->delivery_times->get_delivery_time_term( $default_option, 'slug_fallback' );
 			}
 		}
 

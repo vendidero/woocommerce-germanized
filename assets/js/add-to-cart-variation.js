@@ -39,26 +39,50 @@
 
         if ( $wrapper.find( '.org_delivery_time' ).length > 0 ) {
             $wrapper.find( '.delivery-time-info:first' ).html( $wrapper.find( '.org_delivery_time' ).html() ).removeClass( 'variation_modified' ).show();
+
+            if ( $wrapper.find( '.delivery-time-info:first' ).is( ':empty' ) ) {
+                $wrapper.find( '.delivery-time-info:first' ).addClass( 'wc-gzd-additional-info-placeholder' ).hide();
+            }
         }
 
         if ( $wrapper.find( '.org_unit_price' ).length > 0 ) {
             $wrapper.find( '.price-unit:first' ).html( $wrapper.find( '.org_unit_price' ).html() ).removeClass( 'variation_modified' ).show();
+
+            if ( $wrapper.find( '.price-unit:first' ).is( ':empty' ) ) {
+                $wrapper.find( '.price-unit:first' ).addClass( 'wc-gzd-additional-info-placeholder' ).hide();
+            }
         }
 
         if ( $wrapper.find( '.org_tax_info' ).length > 0 ) {
             $wrapper.find( '.tax-info:first' ).html( $wrapper.find( '.org_tax_info' ).html() ).removeClass( 'variation_modified' ).show();
+
+            if ( $wrapper.find( '.tax-info:first' ).is( ':empty' ) ) {
+                $wrapper.find( '.tax-info:first' ).addClass( 'wc-gzd-additional-info-placeholder' ).hide();
+            }
         }
 
         if ( $wrapper.find( '.org_defect_description' ).length > 0 ) {
             $wrapper.find( '.defect-description:first' ).html( $wrapper.find( '.org_defect_description' ).html() ).removeClass( 'variation_modified' ).show();
+
+            if ( $wrapper.find( '.defect-description:first' ).is( ':empty' ) ) {
+                $wrapper.find( '.defect-description:first' ).addClass( 'wc-gzd-additional-info-placeholder' ).hide();
+            }
         }
 
         if ( $wrapper.find( '.org_shipping_costs_info' ).length > 0 ) {
             $wrapper.find( '.shipping-costs-info:first' ).html( $wrapper.find( '.org_shipping_costs_info' ).html() ).removeClass( 'variation_modified' ).show();
+
+            if ( $wrapper.find( '.shipping-costs-info:first' ).is( ':empty' ) ) {
+                $wrapper.find( '.shipping-costs-info:first' ).addClass( 'wc-gzd-additional-info-placeholder' ).hide();
+            }
         }
 
         if ( $wrapper.find( '.org_product_units' ).length > 0 ) {
             $wrapper.find( '.product-units:first' ).html( $wrapper.find( '.org_product_units' ).html() ).removeClass( 'variation_modified' ).show();
+
+            if ( $wrapper.find( '.product-units:first' ).is( ':empty' ) ) {
+                $wrapper.find( '.product-units:first' ).addClass( 'wc-gzd-additional-info-placeholder' ).hide();
+            }
         }
 
         $wrapper.find( '.org_product_info' ).remove();
@@ -137,25 +161,25 @@
         $wrapper.find( '.product-units:first' ).hide();
 
         if ( variation.delivery_time !== '' ) {
-            $wrapper.find( 'p.delivery-time-info:first' ).html( variation.delivery_time ).addClass( 'variation_modified' ).show();
+            $wrapper.find( 'p.delivery-time-info:first' ).html( variation.delivery_time ).addClass( 'variation_modified' ).removeClass( 'wc-gzd-additional-info-placeholder' ).show();
         }
 
         if ( variation.defect_description !== '' ) {
-            $wrapper.find( '.defect-description:first' ).html( variation.defect_description ).addClass( 'variation_modified' ).show();
+            $wrapper.find( '.defect-description:first' ).html( variation.defect_description ).addClass( 'variation_modified' ).removeClass( 'wc-gzd-additional-info-placeholder' ).show();
         }
 
         if ( variation.tax_info !== '' && hasDisplayPrice ) {
-            $wrapper.find( '.tax-info:first' ).html( variation.tax_info ).addClass('variation_modified').show();
+            $wrapper.find( '.tax-info:first' ).html( variation.tax_info ).addClass('variation_modified').removeClass( 'wc-gzd-additional-info-placeholder' ).show();
         }
 
         if ( variation.shipping_costs_info !== '' && hasDisplayPrice ) {
-            $wrapper.find( '.shipping-costs-info:first' ).html( variation.shipping_costs_info ).addClass('variation_modified').show();
+            $wrapper.find( '.shipping-costs-info:first' ).html( variation.shipping_costs_info ).addClass( 'variation_modified' ).removeClass( 'wc-gzd-additional-info-placeholder' ).show();
         }
 
         if ( variation.unit_price !== '' && hasDisplayPrice ) {
             // Check if unit price for variable product exists and replace instead of insert
             if ( $wrapper.find( '.price-unit:first' ).length ) {
-                $wrapper.find( '.price-unit:first' ).html( variation.unit_price ).addClass( 'variation-modified' ).show();
+                $wrapper.find( '.price-unit:first' ).html( variation.unit_price ).addClass( 'variation-modified' ).removeClass( 'wc-gzd-additional-info-placeholder' ).show();
             } else {
                 $wrapper.find( '.price-unit:first' ).remove();
                 $wrapper.find( 'p.price:first' ).after( '<p class="price price-unit smaller variation_modified">' + variation.unit_price + '</p>' ).show();
@@ -165,7 +189,7 @@
         if ( variation.product_units !== '' ) {
             // Check if product units for variable product exist and replace instead of insert
             if ( $wrapper.find( '.product-units:first' ).length ) {
-                $wrapper.find( '.product-units:first' ).html( variation.product_units ).addClass( 'variation-modified' ).show();
+                $wrapper.find( '.product-units:first' ).html( variation.product_units ).addClass( 'variation-modified' ).removeClass( 'wc-gzd-additional-info-placeholder' ).show();
             } else {
                 $wrapper.find( '.product-units:first' ).remove();
                 $wrapper.find( '.product_meta:first' ).prepend( '<p class="wc-gzd-additional-info product-units-wrapper product-units variation_modified">' + variation.product_units + '</p>' ).show();
