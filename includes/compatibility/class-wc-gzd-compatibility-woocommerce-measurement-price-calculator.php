@@ -38,9 +38,8 @@ class WC_GZD_Compatibility_WooCommerce_Measurement_Price_Calculator extends WC_G
 							$params['refresh_on_load'] = true;
 
 							$params['price_selector']['tr.calculated-price .product_price'] = array(
-								'is_total_price'      => true,
-								'quantity_selector'   => '.amount_needed',
-								'is_primary_selector' => false
+								'is_total_price'    => true,
+								'quantity_selector' => '.amount_needed',
 							);
 
 						}

@@ -25,12 +25,14 @@ class WC_GZD_Compatibility_Customer_Specific_Pricing_For_WooCommerce extends WC_
 		 * wrapper to the single product price page. This price wrapper contains the total product price (including discounts).
 		 * Register a custom observer for the selector which is marked as containing a total price.
 		 */
-		add_filter( 'woocommerce_gzd_unit_price_observer_price_selectors', function( $price_selectors ) {
-			$price_selectors['div#product_total_price'] = array(
-                'is_total_price' => true,
-            );
+		add_filter( 'woocommerce_gzd_unit_price_observer_params', function( $params ) {
+			$params['refresh_on_load'] = true;
 
-			return $price_selectors;
+			$params['price_selector']['div#product_total_price'] = array(
+				'is_total_price' => true,
+			);
+
+			return $params;
 		} );
 	}
 }

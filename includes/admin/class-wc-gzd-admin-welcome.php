@@ -141,8 +141,8 @@ class WC_GZD_Admin_Welcome {
 
                 <div>
                     <p>
-                        Ab dem 01.01.2022 gilt ein <a href="https://www.ihk-muenchen.de/de/Service/Recht-und-Steuern/Vertragsrecht/Kaufrecht-2022/">neues Kaufrecht</a>. Insbesondere Verkäufer von Gebraucht- und/oder B-Waren sind davon betroffen.
-                        Aus diesem Grund haben wir in Germanized 3.8 neue Funktionalitäten umgesetzt, die es dir erlauben, deine Produkte sowohl als Gebrauchtware wie als Ware mit Mängeln zu markieren. Die Mängel kannst du in einer eigens dafür zur Verfügung
+                        Ab dem 01.01.2022 gilt ein <a href="https://www.ihk-muenchen.de/de/Service/Recht-und-Steuern/Vertragsrecht/Kaufrecht-2022/">neues Kaufrecht</a>. Insbesondere Verkäufer von Gebraucht- und/oder Mängelexemplaren sind davon betroffen.
+                        Aus diesem Grund haben wir in Germanized 3.8 neue Funktionalitäten integriert, die es dir erlauben, deine Produkte sowohl als Gebrauchtware wie als Ware mit Mängeln zu markieren. Die Mängel kannst du in einer eigens dafür zur Verfügung
                         stehenden Mängelbeschreibung erläutern. Über die <a href="https://vendidero.de/dokument/preisauszeichnungen-anpassen" target="_blank">Preisauszeichnungen</a> kannst du die Ausgabe der Beschreibung wie gewohnt steuern. Zudem haben wir <a href="<?php echo esc_url( admin_url( 'admin.php?page=wc-settings&tab=germanized-checkboxes' ) ); ?>" target="_blank">neue Checkboxen</a> registriert, die ihr nutzen könnt um eure Kunden über Mängel vor dem Kauf zu informieren
                         und/oder die Gewährleistungsfrist zu verkürzen. Zum Versand von Produktgarantien <a href="<?php echo esc_url( admin_url( 'admin.php?page=wc-settings&tab=germanized-emails' ) ); ?>" target="_blank">per E-Mail</a> haben wir ein entsprechendes Produktfeld hinzugefügt.
                     </p>

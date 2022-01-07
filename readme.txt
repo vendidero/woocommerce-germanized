@@ -40,6 +40,7 @@ Furthermore we customized the WooCommerce checkout to make your store meet the b
 * *Online Revocation Form* - Allow customers to submit revocations by filling out a form on your revocation page.
 * *Sale Price Labels* - Prepend your WooCommerce sale prices by certain tags e.g. old price and new price.
 * *Differential Taxation* - Insert special notices for products which a differential taxed.
+* *Used Goods and Defective Copies* - Show defect descriptions on your product page and during checkout.
 * *WPML Support* - Germanized can be used with WPML.
 * *REST API Support* - Data added by Germanized is adjustable via the WooCommerce REST API (v2)
 * *Product CSV Import/Export* - We've extended the WooCommerce product CSV import and export to support our custom fields (e.g. unit price, delivery time etc.)
@@ -88,6 +89,9 @@ We've added some specific compatibility and tests for certain popular WooCommerc
 * WooCommerce Dynamic Pricing
 * WooCommerce Role Based Pricing
 * WooCommerce Product Bundles
+* WooCommerce Subscriptions
+* WooCommerce Measurement Price Calculator
+* Elementor
 
 = Tested WooCommerce Themes =
 By default, Germanized works with *every WooCommerce theme*. Some themes may need adjustments due to not using WooCommerce standards hooks or styles. Within our professional version we've tested certain third-party WooCommerce themes to ensure better compatibility with Germanized for WooCommerce:
@@ -129,6 +133,9 @@ Outputs tax notice for a product.
 
 `[gzd_product_shipping_notice product="123"]`
 Outputs shipping costs notice for a product.
+
+`[gzd_product_defect_description product="123"]`
+Outputs defect description for a defective copy.
 
 `[gzd_product_cart_desc product="123"]`
 Outputs mini cart description for a product.
@@ -198,6 +205,24 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 6. Edit pdf documents (Pro)
 
 == Changelog ==
+= 3.8.0 =
+* Feature: Woo 6.1 Support
+* Feature: WP 5.9 Support
+* Feature: Explicitly support used goods and defective copies
+* Feature: Product warranty PDF upload option and email attachment
+* Improvement: Bulk-edit support for delivery time and units
+* Improvement: Variation bulk-edit options
+* Improvement: Street number validation for separate shipping addresses
+* Improvement: Extended Divi support
+* Improvement: Dynamically calculate unit price within cart
+* Improvement: AJAX refresh unit prices with loading placeholder
+* Improvement: Added DOI confirmation status column to users table
+* Improvement: urlencode DOI link
+* Improvement: WooCommerce Measurement Price Calculator compatibility
+* Improvement: Prevent deprecated is_ajax usage
+* Fix: Minimum age for category-wide usage
+* Fix: Register missing pending to cancelled email notification
+
 = 3.7.3 =
 * Feature: Woo 6.0 support
 * Improvement: Bulk editing delivery times and units

@@ -1048,14 +1048,6 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
                     )
                 ) );
 
-				foreach( $params['price_selector'] as $selector => $args ) {
-					$params['price_selector'][ $selector ] = wp_parse_args( $args, array(
-                        'is_total_price'      => false,
-                        'is_primary_selector' => false,
-                        'quantity_selector'   => '',
-                    ) );
-				}
-
 				/**
 				 * Filters script localization paramaters for the `wc-gzd-unit-price-observer` script.
 				 *
@@ -1063,7 +1055,17 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 				 *
 				 * @since 3.3.0
 				 */
-				wp_localize_script( 'wc-gzd-unit-price-observer', 'wc_gzd_unit_price_observer_params', apply_filters( 'woocommerce_gzd_unit_price_observer_params', $params ) );
+                $params = apply_filters( 'woocommerce_gzd_unit_price_observer_params', $params );
+
+				foreach( $params['price_selector'] as $selector => $args ) {
+					$params['price_selector'][ $selector ] = wp_parse_args( $args, array(
+						'is_total_price'      => false,
+						'is_primary_selector' => false,
+						'quantity_selector'   => '',
+					) );
+				}
+
+				wp_localize_script( 'wc-gzd-unit-price-observer', 'wc_gzd_unit_price_observer_params', $params );
 			}
 
 			if ( wp_script_is( 'wc-gzd-force-pay-order' ) && ! in_array( 'wc-gzd-force-pay-order', $this->localized_scripts ) ) {
