@@ -12,7 +12,7 @@
  *
  * @see https://github.com/vendidero/woocommerce-germanized/wiki/Overriding-Germanized-Templates
  * @package Germanized/Templates
- * @version 1.0.0
+ * @version 3.8.1
  */
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -20,4 +20,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 ?>
 
-<p class="wc-gzd-differential-taxation-notice-cart"><?php echo $notice; ?></p>
+<tr class="order-total order-total-differential-taxation-notice">
+    <td colspan="2">
+        <div class="wc-gzd-additional-wrapper">
+            <p class="wc-gzd-additional-info wc-gzd-differential-taxation-notice-cart"><?php echo $notice; ?></p>
+        </div>
+    </td>
+</tr>

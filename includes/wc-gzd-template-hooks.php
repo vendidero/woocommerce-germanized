@@ -95,8 +95,7 @@ foreach ( wc_gzd_get_cart_shopmarks() as $shopmark ) {
 
 // Small enterprises
 if ( wc_gzd_is_small_business() ) {
-
-	add_action( 'woocommerce_after_cart_totals', 'woocommerce_gzd_template_small_business_info', wc_gzd_get_hook_priority( 'cart_small_business_info' ) );
+	add_action( 'woocommerce_cart_totals_after_order_total', 'woocommerce_gzd_template_checkout_small_business_info', wc_gzd_get_hook_priority( 'cart_small_business_info' ) );
 	add_action( 'woocommerce_review_order_after_order_total', 'woocommerce_gzd_template_checkout_small_business_info', wc_gzd_get_hook_priority( 'checkout_small_business_info' ) );
 }
 
@@ -136,9 +135,10 @@ function woocommerce_gzd_maybe_add_small_business_vat_notice() {
 
 // Differential Taxation for cart & order
 if ( get_option( 'woocommerce_gzd_differential_taxation_checkout_notices' ) === 'yes' ) {
-	add_action( 'woocommerce_after_cart_totals', 'woocommerce_gzd_template_differential_taxation_notice_cart', wc_gzd_get_hook_priority( 'cart_small_business_info' ) );
+	add_action( 'woocommerce_cart_totals_after_order_total', 'woocommerce_gzd_template_differential_taxation_notice_cart', wc_gzd_get_hook_priority( 'cart_small_business_info' ) );
 	add_action( 'woocommerce_order_details_after_order_table', 'woocommerce_gzd_template_differential_taxation_notice_order', 10 );
 	add_action( 'woocommerce_pay_order_before_submit', 'woocommerce_gzd_template_differential_taxation_notice_order', 10 );
+	add_action( 'woocommerce_review_order_after_order_total', 'woocommerce_gzd_template_differential_taxation_notice_cart', wc_gzd_get_hook_priority( 'checkout_small_business_info' ) );
 }
 
 /**
@@ -212,10 +212,6 @@ function woocommerce_gzd_checkout_load_ajax_relevant_hooks() {
 
 	// Add payment title heading
 	add_action( 'woocommerce_review_order_before_payment', 'woocommerce_gzd_template_checkout_payment_title' );
-
-	if ( get_option( 'woocommerce_gzd_differential_taxation_checkout_notices' ) === 'yes' ) {
-		add_action( 'woocommerce_review_order_after_order_total', 'woocommerce_gzd_template_differential_taxation_notice_cart', wc_gzd_get_hook_priority( 'checkout_small_business_info' ) );
-	}
 }
 
 // Display back to cart button

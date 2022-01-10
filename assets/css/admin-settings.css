@@ -275,6 +275,12 @@ table.wc-gzd-legal-checkboxes tbody.wc-gzd-legal-checkbox-rows tr:nth-child(odd)
     margin-top: 0.5em;
     color: #888; }
 
+/**
+ * Add bigger distance to Woo admin header if active
+ */
+body.woocommerce-feature-enabled-store-alerts .wc-gzd-admin-settings-sidebar .wc-gzd-admin-settings-sidebar-inner.sticky {
+  top: 120px; }
+
 .wc-gzd-admin-settings-checkboxes td.forminp-textarea p code {
   margin: .5em 0;
   display: block; }

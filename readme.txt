@@ -219,23 +219,11 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 * Improvement: Added DOI confirmation status column to users table
 * Improvement: urlencode DOI link
 * Improvement: WooCommerce Measurement Price Calculator compatibility
+* Improvement: Remove terms checkbox from pay for order page in case of WC_GZD_FORCE_PAY_ORDER is defined
+* Improvement: Refactored library usage via composer
 * Improvement: Prevent deprecated is_ajax usage
 * Fix: Minimum age for category-wide usage
 * Fix: Register missing pending to cancelled email notification
-
-= 3.7.3 =
-* Feature: Woo 6.0 support
-* Improvement: Bulk editing delivery times and units
-* Improvement: ET Builder (Divi) compatibility for checkout and single product
-* Improvement: WooCommerce Measurement Price Calculator unit price compatibility
-* Improvement: Added DOI status column to user table
-* Improvement: Calculate unit price within cart based on cart item data instead of product data
-* Improvement: Unit price compatibility via AJAX refresh
-* Improvement: Refactored library usage via composer
-* Improvement: Remove terms checkbox from pay for order page in case of WC_GZD_FORCE_PAY_ORDER is defined
-* Improvement: Street number validation for separate shipping addresses
-* Fix: DOI activation code encoding
-* Fix: Register missing email notification action (pending to cancelled)
 
 = 3.7.2 =
 * Improvement: Added WP CLI command (wp wc_gzd update) to run DB updates via CLI

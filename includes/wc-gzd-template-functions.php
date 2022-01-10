@@ -252,7 +252,7 @@ if ( ! function_exists( 'woocommerce_gzd_template_checkout_small_business_info' 
 	 * small business info within checkout
 	 */
 	function woocommerce_gzd_template_checkout_small_business_info() {
-		echo '<tr class="order-total"><td colspan="2">';
+		echo '<tr class="order-total order-total-small-business-notice"><td colspan="2">';
 		wc_get_template( 'global/small-business-info.php' );
 		echo '</td></tr>';
 	}
