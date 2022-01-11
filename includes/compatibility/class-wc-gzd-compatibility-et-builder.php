@@ -32,6 +32,18 @@ class WC_GZD_Compatibility_ET_Builder extends WC_GZD_Compatibility {
 	public function load() {
 		add_action( 'woocommerce_checkout_init', array( $this, 'before_checkout' ) );
 
+		/**
+		 * Disable empty price HTML shopmark check during builder requests to prevent incompatibilities from being
+         * triggered by Germanized.
+		 */
+        add_filter( 'woocommerce_gzd_shopmarks_empty_price_html_check_enabled', function( $is_enabled ) {
+	        if ( isset( $_GET['et_fb'] ) && ! empty( $_GET['et_fb'] ) ) {
+		        $is_enabled = false;
+	        }
+
+	        return $is_enabled;
+        } );
+
 		// Disable adjusting payment and order review heading
 		add_filter( 'wc_gzd_checkout_params', function( $params ) {
 			if ( $this->is_et_builder_checkout() ) {

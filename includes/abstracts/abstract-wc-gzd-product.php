@@ -638,7 +638,7 @@ class WC_GZD_Product {
 		 * Calling get_price_html during cart/checkout may cause side-effects (e.g. subtotal calculation in Measurement Plugin)
 		 * within shopmarks - prevent calls here too.
 	     */
-		if ( ! $this->is_doing_price_html_action() && ! is_cart() && ! is_checkout() ) {
+		if ( ! $this->is_doing_price_html_action() && ! is_cart() && ! is_checkout() && apply_filters( 'woocommerce_gzd_shopmarks_empty_price_html_check_enabled', true, $this ) ) {
 			$price_html_checked = ( '' === $this->child->get_price_html() );
 		}
 
