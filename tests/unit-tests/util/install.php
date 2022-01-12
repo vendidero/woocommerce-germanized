@@ -56,6 +56,7 @@ class WC_GZD_Tests_Install extends WC_GZD_Unit_Test_Case {
 
 		$this->assertTrue( get_option( 'woocommerce_gzd_version' ) === WC_germanized()->version );
 		$this->assertEquals( 'Jetzt kaufen', get_option( 'woocommerce_gzd_order_submit_btn_text' ) );
+		$this->assertEquals( array( 'customer_processing_order', 'customer_new_account', 'customer_new_account_activation' ), get_option( 'woocommerce_gzd_mail_attach_terms' ) );
 
 		// Check if package settings are added too (e.g. DHL, Shipments)
 		$this->assertEquals( 'yes', get_option( 'woocommerce_gzd_shipments_auto_enable' ) );

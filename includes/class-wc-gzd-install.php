@@ -573,11 +573,22 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 
 			$manager->update_options( $checkbox_options );
 
+			$current_version = get_option( 'woocommerce_gzd_version', null );
+
 			foreach ( $options as $value ) {
 				if ( isset( $value['default'] ) && isset( $value['id'] ) ) {
 					wp_cache_delete( $value['id'], 'options' );
 
 					$autoload = isset( $value['autoload'] ) ? (bool) $value['autoload'] : true;
+
+					/**
+					 * Older versions of Germanized did not include a default field for email
+					 * attachment options. Skip adding the option in updates (which would override the empty default)
+					 */
+					if ( ! empty( $current_version ) && strstr( $value['id'], 'woocommerce_gzd_mail_attach_' ) ) {
+						continue;
+					}
+
 					add_option( $value['id'], $value['default'], '', ( $autoload ? 'yes' : 'no' ) );
 				}
 			}
