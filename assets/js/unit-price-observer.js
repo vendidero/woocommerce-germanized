@@ -231,7 +231,10 @@
              * Is sale?
              */
             if ( $price.find( '.amount' ).length > 1 ) {
-                sale_price = self.getRawPrice( $price.find( '.amount:last' ), self.params.price_decimal_sep );
+                // The second .amount element is the sale price
+                var $sale_price = $( $price.find( '.amount' )[1] );
+
+                sale_price = self.getRawPrice( $sale_price, self.params.price_decimal_sep );
             }
 
             if ( $unit_price.length > 0 && price ) {
