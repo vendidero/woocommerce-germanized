@@ -6,6 +6,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 /**
  * ET Builder (e.g. Divi) compatibility
+ *
+ * Divi uses a custom hook-builder for WooCommerce (see Divi/includes/builder/feature/woocommerce-modules.php et_builder_wc_relocate_single_product_summary)
+ * to dynamically relocate hooks (e.g. shopmarks) to the right place/widget in the builder.
  */
 class WC_GZD_Compatibility_ET_Builder extends WC_GZD_Compatibility {
 
@@ -56,37 +59,6 @@ class WC_GZD_Compatibility_ET_Builder extends WC_GZD_Compatibility {
 		if ( wp_doing_ajax() && function_exists( 'et_builder_is_loading_data' ) && et_builder_is_loading_data() ) {
 			$this->remove_checkout_adjustments( true );
 		}
-
-		add_action( 'woocommerce_before_single_product', function() {
-			if ( $this->is_et_builder_single_product() ) {
-				if ( ! wc_post_content_has_shortcode( 'gzd_product_tax_notice' ) || ! wc_post_content_has_shortcode( 'gzd_product_shipping_notice' ) ) {
-					if ( current_user_can( 'manage_woocommerce' ) && apply_filters( 'woocommerce_gzd_show_missing_et_builder_shortcodes_notice', true ) ) {
-						?>
-							<div class="wc-gzd-builder-notice" style="background: rgba(255,83,83,.1);color: #ff5353;border-radius: 6px;font-size: .9em;     display: block;margin-bottom: 1em;padding: 0.5em;width: 100%;">
-								<p>
-									<?php printf( __( 'Seems like you are using the Divi builder to build your product page. Please do make sure to place your <a %1$s>shopmarks</a> (e.g. VAT notice) accordingly by using <a %2$s>shortcodes</a>.', 'woocommerce-germanized' ), 'style="color: #ff5353; text-decoration: underline;" href="https://vendidero.de/dokument/preisauszeichnungen-anpassen#pagebuilder"', 'style="color: #ff5353; text-decoration: underline;" href="https://wordpress.org/plugins/woocommerce-germanized/#installation"' ); ?>
-									<?php printf( __( 'Place them by inserting a text widget to the builder and paste one of the following shortcodes:', 'woocommerce-germanized' ) ); ?>
-								</p>
-								<ul style="margin-left: 1em; margin-bottom: 0; padding-bottom: 0;">
-									<li>[gzd_product_tax_notice]</li>
-									<li>[gzd_product_shipping_notice]</li>
-									<li>[gzd_product_delivery_time]</li>
-									<li>[gzd_product_unit_price]</li>
-                                    <li>[gzd_product_defect_description]</li>
-								</ul>
-							</div>
-						<?php
-					}
-				} else {
-					/**
-					 * Remove default shopmarks which are shown at wrong places due to Builder structure
-					 */
-					foreach( wc_gzd_get_single_product_shopmarks() as $shopmark ) {
-						$shopmark->remove();
-					}
-				}
-			}
-		} );
 	}
 
 	protected function is_et_builder_single_product() {
