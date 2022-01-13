@@ -1350,9 +1350,15 @@ class WC_GZD_Product {
 		}
 
 		if ( ! empty( $html ) ) {
+			$delivery_time_str = get_option( 'woocommerce_gzd_delivery_time_text' );
+
 			$replacements = array(
 				'{delivery_time}' => $html,
 			);
+
+			if ( strstr( $delivery_time_str, '{stock_status}' ) ) {
+				$replacements['{stock_status}'] = str_replace( array( '<p ', '</p>' ), array( '<span ', '</span>' ), wc_get_stock_html( $this->child ) );
+			}
 
 			/**
 			 * Filter to adjust product delivery time HTML.
@@ -1366,8 +1372,8 @@ class WC_GZD_Product {
 			 *
 			 */
 			$html = apply_filters( 'woocommerce_germanized_delivery_time_html',
-				wc_gzd_replace_label_shortcodes( get_option( 'woocommerce_gzd_delivery_time_text' ), $replacements ),
-				get_option( 'woocommerce_gzd_delivery_time_text' ),
+				wc_gzd_replace_label_shortcodes( $delivery_time_str, $replacements ),
+				$delivery_time_str,
 				$html,
 				$this
 			);

@@ -505,7 +505,7 @@ class WC_GZD_Settings_Tab_Shopmarks extends WC_GZD_Settings_Tab {
 			),
 			array(
 				'title'    => __( 'Format', 'woocommerce-germanized' ),
-				'desc'     => '<div class="wc-gzd-additional-desc"> ' . __( 'This text will be used to indicate delivery time for products. Use {delivery_time} as placeholder.', 'woocommerce-germanized' ) . '</div>',
+				'desc'     => '<div class="wc-gzd-additional-desc"> ' . __( 'This text will be used to indicate delivery time for products. Use {delivery_time} as placeholder. Use {stock_status} to output the current stock status.', 'woocommerce-germanized' ) . '</div>',
 				'desc_tip' => false,
 				'id'       => 'woocommerce_gzd_delivery_time_text',
 				'type'     => 'text',

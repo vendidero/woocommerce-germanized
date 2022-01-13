@@ -58,9 +58,9 @@ class WC_GZD_Compatibility_ET_Builder extends WC_GZD_Compatibility {
 		}
 
 		add_action( 'woocommerce_before_single_product', function() {
-			if ( $this->is_et_builder_single_product() && apply_filters( 'woocommerce_gzd_show_missing_et_builder_shortcodes_notice', true ) ) {
+			if ( $this->is_et_builder_single_product() ) {
 				if ( ! wc_post_content_has_shortcode( 'gzd_product_tax_notice' ) || ! wc_post_content_has_shortcode( 'gzd_product_shipping_notice' ) ) {
-					if ( current_user_can( 'manage_woocommerce' ) ) {
+					if ( current_user_can( 'manage_woocommerce' ) && apply_filters( 'woocommerce_gzd_show_missing_et_builder_shortcodes_notice', true ) ) {
 						?>
 							<div class="wc-gzd-builder-notice" style="background: rgba(255,83,83,.1);color: #ff5353;border-radius: 6px;font-size: .9em;     display: block;margin-bottom: 1em;padding: 0.5em;width: 100%;">
 								<p>
