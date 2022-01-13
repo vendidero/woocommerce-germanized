@@ -58,7 +58,7 @@ class WC_GZD_Compatibility_ET_Builder extends WC_GZD_Compatibility {
 		}
 
 		add_action( 'woocommerce_before_single_product', function() {
-			if ( $this->is_et_builder_single_product() ) {
+			if ( $this->is_et_builder_single_product() && apply_filters( 'woocommerce_gzd_show_missing_et_builder_shortcodes_notice', true ) ) {
 				if ( ! wc_post_content_has_shortcode( 'gzd_product_tax_notice' ) || ! wc_post_content_has_shortcode( 'gzd_product_shipping_notice' ) ) {
 					if ( current_user_can( 'manage_woocommerce' ) ) {
 						?>

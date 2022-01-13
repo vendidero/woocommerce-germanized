@@ -282,7 +282,7 @@ class WC_GZD_Product_Grouped extends WC_GZD_Product {
 			 *
 			 */
 			$price = apply_filters( 'woocommerce_gzd_grouped_unit_price_html', $price, $this );
-			$price = wc_gzd_format_unit_price( $price, $this->get_unit_html(), $this->get_unit_base_html() );
+			$price = wc_gzd_format_unit_price( $price, $this->get_unit_html(), $this->get_unit_base_html(), wc_gzd_format_product_units_decimal( $this->get_unit_product() ) );
 		}
 
 		/** This filter is documented in includes/abstract/abstract-wc-gzd-product.php */

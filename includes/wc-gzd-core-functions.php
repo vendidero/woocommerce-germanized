@@ -1130,9 +1130,12 @@ function wc_gzd_format_unit_base( $unit_base ) {
 	return $html;
 }
 
-function wc_gzd_format_unit_price( $price, $unit, $unit_base ) {
-	$text         = get_option( 'woocommerce_gzd_unit_price_text' );
-	$replacements = array();
+function wc_gzd_format_product_units_decimal( $unit_product ) {
+	return str_replace( '.', ',', $unit_product );
+}
+
+function wc_gzd_format_unit_price( $price, $unit, $unit_base, $product_units = '' ) {
+	$text = get_option( 'woocommerce_gzd_unit_price_text' );
 
 	/**
 	 * Filter to adjust the unit price base separator.
@@ -1140,29 +1143,20 @@ function wc_gzd_format_unit_price( $price, $unit, $unit_base ) {
 	 * @param string $separator The separator.
 	 *
 	 * @since 1.0.0
-	 *
 	 */
 	$separator = apply_filters( 'wc_gzd_unit_price_base_seperator', ' ' );
 
-	if ( strpos( $text, '{price}' ) !== false ) {
-		$replacements = array(
-			/**
-			 * Filter to adjust the unit price separator.
-			 *
-			 * @param string $separator The separator.
-			 *
-			 * @since 1.0.0
-			 *
-			 */
-			'{price}' => $price . apply_filters( 'wc_gzd_unit_price_seperator', ' / ' ) . $unit_base . $separator . $unit,
-		);
-	} else {
-		$replacements = array(
-			'{unit_price}' => $price,
-			'{base_price}' => $price,
-			'{unit}'       => $unit,
-			'{base}'       => $unit_base
-		);
+	$replacements = array(
+		'{product_units}' => $product_units,
+		'{unit_price}'    => $price,
+		'{base_price}'    => $price,
+		'{unit}'          => $unit,
+		'{base}'          => $unit_base,
+		'{price}'         => $price . apply_filters( 'wc_gzd_unit_price_seperator', ' / ' ) . $unit_base . $separator . $unit,
+	);
+
+	if ( ! empty( $replacements['{product_units}'] ) ) {
+		$replacements['{product_units}'] = '<span class="product-units">' . $replacements['{product_units}'] . '</span>';
 	}
 
 	$html = wc_gzd_replace_label_shortcodes( $text, $replacements );

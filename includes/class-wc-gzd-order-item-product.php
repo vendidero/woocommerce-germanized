@@ -128,7 +128,7 @@ class WC_GZD_Order_Item_Product extends WC_GZD_Order_Item {
 				$price = $after_discounts ? $this->get_unit_price_net() : $this->get_unit_price_subtotal_net();
 			}
 
-			$html = wc_gzd_format_unit_price( wc_price( $price, $price_args ), $this->get_formatted_unit(), $this->get_formatted_unit_base() );
+			$html = wc_gzd_format_unit_price( wc_price( $price, $price_args ), $this->get_formatted_unit(), $this->get_formatted_unit_base(), wc_gzd_format_product_units_decimal( $this->get_unit_product() ) );
 		}
 
 		return $html;

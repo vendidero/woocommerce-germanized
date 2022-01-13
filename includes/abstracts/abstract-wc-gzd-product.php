@@ -933,7 +933,7 @@ class WC_GZD_Product {
 			$display_sale_price    = $this->get_formatted_unit_price( 1, $this->get_unit_price_sale(), $tax_display );
 
 			$price_html = ( ( $this->is_on_unit_sale() && $show_sale ) ? $this->get_price_html_from_to( $display_regular_price, $display_sale_price, false ) : wc_price( $display_price ) );
-			$html       = wc_gzd_format_unit_price( $price_html, $this->get_unit_html(), $this->get_unit_base_html() );
+			$html       = wc_gzd_format_unit_price( $price_html, $this->get_unit_html(), $this->get_unit_base_html(), wc_gzd_format_product_units_decimal( $this->get_unit_product() ) );
 		}
 
 		/**
@@ -992,7 +992,7 @@ class WC_GZD_Product {
 
 		if ( $this->has_unit_product() ) {
 			$replacements = array(
-				'{product_units}' => str_replace( '.', ',', $this->get_unit_product() ),
+				'{product_units}' => wc_gzd_format_product_units_decimal( $this->get_unit_product() ),
 				'{unit}'          => $this->get_unit_html(),
 				'{unit_price}'    => $this->get_unit_price_html(),
 			);
