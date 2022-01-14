@@ -361,7 +361,7 @@ class WC_GZD_Emails {
 		 * @since 3.0.0
 		 *
 		 */
-		if ( strpos( $template_name, 'emails/' ) !== false && isset( $args['order'] ) && apply_filters( 'woocommerce_gzd_replace_email_titles', true ) ) {
+		if ( strpos( $template_name, 'emails/' ) !== false && isset( $args['order'] ) && get_option( 'woocommerce_gzd_email_title_text' ) && apply_filters( 'woocommerce_gzd_replace_email_titles', true ) ) {
 			$GLOBALS['wc_gzd_email_order'] = $args['order'];
 			add_filter( 'gettext', array( $this, 'replace_title_email_text' ), 10, 3 );
 		}

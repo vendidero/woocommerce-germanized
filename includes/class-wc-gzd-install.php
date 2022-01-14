@@ -94,7 +94,10 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 
 				wp_redirect( admin_url( 'index.php?page=wc-gzd-about' ) );
 				exit;
-			} elseif ( ! empty( $_GET['do_update_woocommerce_gzd'] ) ) {
+			}
+
+			if ( ! empty( $_GET['do_update_woocommerce_gzd'] ) ) {
+				check_admin_referer( 'wc_gzd_db_update', 'wc_gzd_db_update_nonce' );
 
 				self::update();
 

@@ -36,7 +36,7 @@ class WC_GZD_Admin_Note_Update extends WC_GZD_Admin_Note {
 	public function get_actions() {
 		return array(
 			array(
-				'url'    => add_query_arg( 'do_update_woocommerce_gzd', 'true', admin_url( 'admin.php?page=wc-settings&tab=germanized' ) ),
+				'url'    => wp_nonce_url( add_query_arg( 'do_update_woocommerce_gzd', 'true', admin_url( 'admin.php?page=wc-settings&tab=germanized' ) ), 'wc_gzd_db_update', 'wc_gzd_db_update_nonce' ),
 				'title'  => __( 'Run the updater', 'woocommerce-germanized' ),
 				'target' => '_self',
 			)
