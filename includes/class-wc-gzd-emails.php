@@ -117,6 +117,36 @@ class WC_GZD_Emails {
 		}
 	}
 
+	public function get_email_plain_content( $content_post ) {
+		$shortcodes_allowed = apply_filters( 'woocommerce_gzd_email_attachment_content_shortcodes_allowed', array( 'revocation_form', 'gzd_complaints', 'payment_methods_info' ) );
+		$content            = '';
+		$post               = is_numeric( $content_post ) ? get_post( $content_post ) : $content_post;
+
+		if ( is_a( $post, 'WP_Post' ) ) {
+			remove_shortcode( 'revocation_form' );
+			add_shortcode( 'revocation_form', array( $this, 'revocation_form_replacement' ) );
+
+			if ( ! get_post_meta( $post->ID, '_legal_text', true ) ) {
+				$content = wc_gzd_get_post_plain_content( $post, $shortcodes_allowed );
+			} else {
+				/**
+				 * Filter that allows disabling the `the_content` filter for optional legal page content.
+				 *
+				 * @param bool $enable Enable or disable the `the_content` filter.
+				 * @param string $content The content.
+				 */
+				$apply_content_filters = apply_filters( 'woocommerce_gzd_apply_optional_content_filter_email_attachment', true, $content );
+				$plain_content         = htmlspecialchars_decode( get_post_meta( $post->ID, '_legal_text', true ) );
+				$content               = $apply_content_filters ? apply_filters( 'the_content', $plain_content ) : $plain_content;
+				$content               = str_replace( ']]>', ']]&gt;', $content );
+			}
+
+			add_shortcode( 'revocation_form', 'WC_GZD_Shortcodes::revocation_form' );
+		}
+
+		return apply_filters( 'woocommerce_gzd_email_plain_content', $content );
+	}
+
 	public function attach_product_warranties( $attachments, $mail_id, $object = false ) {
 		$warranty_email_ids = array_filter( (array) get_option( 'woocommerce_gzd_mail_attach_warranties', array() ) );
 
@@ -1169,6 +1199,8 @@ class WC_GZD_Emails {
 	 * @param integer $page_id
 	 */
 	public function attach_page_content( $page_id, $mail, $email_type = 'html' ) {
+		global $post;
+		$reset_post = $post;
 
 		/**
 		 * Attach email footer.
@@ -1194,36 +1226,37 @@ class WC_GZD_Emails {
 		 */
 		$page_id = apply_filters( 'woocommerce_germanized_attach_email_footer_page_id', $page_id, $mail );
 
-		remove_shortcode( 'revocation_form' );
-		add_shortcode( 'revocation_form', array( $this, 'revocation_form_replacement' ) );
-
 		$template = 'emails/email-footer-attachment.php';
 
 		if ( $email_type == 'plain' ) {
 			$template = 'emails/plain/email-footer-attachment.php';
 		}
 
-		global $post;
+		$content = $this->get_email_plain_content( $page_id );
 
-		$reset_post = $post;
-		$post       = get_post( $page_id );
+		if ( ! empty( $content ) ) {
+			$post = get_post( $page_id );
 
-		if ( $post ) {
-			setup_postdata( $post );
+			if ( is_a( $post, 'WP_Post' ) ) {
+				setup_postdata( $post );
 
-			wc_get_template( $template, array(
-				'post_attach' => $post,
-			) );
+				if ( ! empty( $content ) ) {
+					wc_get_template( $template, array(
+						'print_title'  => ( substr( trim( $content ), 0, 2 ) == '<h' ) ? false : true,
+						'post_content' => $content,
+						'post_id'      => $page_id,
+						'post_attach'  => $post,
+					) );
+				}
 
-			/**
-			 * Reset post data to keep global loop valid.
-			 */
-			if ( $reset_post ) {
-				setup_postdata( $reset_post );
+				/**
+				 * Reset post data to keep global loop valid.
+				 */
+				if ( $reset_post ) {
+					setup_postdata( $reset_post );
+				}
 			}
 		}
-
-		add_shortcode( 'revocation_form', 'WC_GZD_Shortcodes::revocation_form' );
 	}
 
 	/**

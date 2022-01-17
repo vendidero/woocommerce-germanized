@@ -1266,3 +1266,49 @@ function wc_gzd_print_item_defect_descriptions( $descriptions, $echo = false ) {
 
 	return $string;
 }
+
+function wc_gzd_get_post_plain_content( $content_post, $shortcodes_allowed = array() ) {
+	global $post;
+	$reset_post = $post;
+
+	if ( is_numeric( $content_post ) ) {
+		$post = get_post( $content_post );
+	} else {
+		$post = $content_post;
+	}
+
+	$keep_active = implode( "|", $shortcodes_allowed );
+	$content     = '';
+
+	if ( is_a( $post, 'WP_Post' ) ) {
+		setup_postdata( $post );
+
+		$content = $post->post_content;
+
+		/**
+		 * Remove non-exempted shortcodes from content
+		 */
+		if ( ! empty( $keep_active ) ) {
+			$content = preg_replace("~(?:\[/?)(?!(?:$keep_active))[^/\]]+/?\]~s", '', $content );
+		} else {
+			$content = preg_replace("~(?:\[/?)[^/\]]+/?\]~s", '', $content );
+		}
+
+		$content = preg_replace( "/<p[^>]*>(?:\s|&nbsp;)*<\/p>/",  '', $content );
+		$content = apply_filters( 'the_content', $content );
+		$content = str_replace( ']]>', ']]&gt;', $content );
+
+		/**
+		 * Reset post data to keep global loop valid.
+		 */
+		if ( $reset_post ) {
+			setup_postdata( $reset_post );
+		}
+	}
+
+	// Remove empty html tags
+	$content = preg_replace( "/<p[^>]*>(?:\s|&nbsp;)*<\/p>/",  '', $content );
+	$content = trim( $content );
+
+	return apply_filters( 'woocommerce_gzd_post_plain_content', $content, $content_post );
+}
