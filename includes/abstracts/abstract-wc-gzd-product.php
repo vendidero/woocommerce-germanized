@@ -59,11 +59,12 @@ class WC_GZD_Product {
 		 * @param mixed $value The property value.
 		 * @param WC_GZD_Product $gzd_product The GZD product instance.
 		 * @param WC_Product $product The product instance.
+		 * @param string $context
 		 *
 		 * @since 3.0.0
 		 *
 		 */
-		return apply_filters( "woocommerce_gzd_get_product_{$prop}", $value, $this, $this->child );
+		return apply_filters( "woocommerce_gzd_get_product_{$prop}", $value, $this, $this->child, $context );
 	}
 
 	protected function set_prop( $prop, $value ) {
