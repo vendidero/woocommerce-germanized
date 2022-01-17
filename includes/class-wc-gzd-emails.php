@@ -1242,7 +1242,7 @@ class WC_GZD_Emails {
 
 				if ( ! empty( $content ) ) {
 					wc_get_template( $template, array(
-						'print_title'  => ( substr( trim( $content ), 0, 2 ) == '<h' ) ? false : true,
+						'print_title'  => ( substr( trim( $content ), 0, 2 ) === '<h' ) ? false : true,
 						'post_content' => $content,
 						'post_id'      => $page_id,
 						'post_attach'  => $post,

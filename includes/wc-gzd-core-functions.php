@@ -512,9 +512,9 @@ function wc_gzd_show_taxes_before_total( $location = 'checkout' ) {
 
 function wc_gzd_get_tax_rate_label( $rate_percentage, $type = 'incl' ) {
 	if ( 'incl' === $type ) {
-		$label = ( get_option( 'woocommerce_tax_total_display' ) == 'itemized' ? sprintf( __( 'incl. %s%% VAT', 'woocommerce-germanized' ), wc_gzd_format_tax_rate_percentage( $rate_percentage ) ) : __( 'incl. VAT', 'woocommerce-germanized' ) );
+		$label = ( 'itemized' === get_option( 'woocommerce_tax_total_display' ) ? sprintf( __( 'incl. %s%% VAT', 'woocommerce-germanized' ), wc_gzd_format_tax_rate_percentage( $rate_percentage ) ) : __( 'incl. VAT', 'woocommerce-germanized' ) );
 	} else {
-		$label = ( get_option( 'woocommerce_tax_total_display' ) == 'itemized' ? sprintf( __( '%s%% VAT', 'woocommerce-germanized' ), wc_gzd_format_tax_rate_percentage( $rate_percentage ) ) : __( 'VAT', 'woocommerce-germanized' ) );
+		$label = ( 'itemized' === get_option( 'woocommerce_tax_total_display' ) ? sprintf( __( '%s%% VAT', 'woocommerce-germanized' ), wc_gzd_format_tax_rate_percentage( $rate_percentage ) ) : __( 'VAT', 'woocommerce-germanized' ) );
 	}
 
 	/**
@@ -1306,7 +1306,7 @@ function wc_gzd_get_post_plain_content( $content_post, $shortcodes_allowed = arr
 		}
 	}
 
-	// Remove empty html tags
+	// Remove empty p tags
 	$content = preg_replace( "/<p[^>]*>(?:\s|&nbsp;)*<\/p>/",  '', $content );
 	$content = trim( $content );
 
