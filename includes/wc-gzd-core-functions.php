@@ -1283,6 +1283,8 @@ function wc_gzd_get_post_plain_content( $content_post, $shortcodes_allowed = arr
 	if ( is_a( $post, 'WP_Post' ) ) {
 		setup_postdata( $post );
 
+		do_action( 'woocommerce_gzd_before_get_post_plain_content', $post, $shortcodes_allowed );
+
 		$content = $post->post_content;
 
 		/**
@@ -1296,7 +1298,10 @@ function wc_gzd_get_post_plain_content( $content_post, $shortcodes_allowed = arr
 
 		$content = preg_replace( "/<p[^>]*>(?:\s|&nbsp;)*<\/p>/",  '', $content );
 		$content = apply_filters( 'the_content', $content );
+
 		$content = str_replace( ']]>', ']]&gt;', $content );
+
+		do_action( 'woocommerce_gzd_after_get_post_plain_content', $post, $shortcodes_allowed );
 
 		/**
 		 * Reset post data to keep global loop valid.
