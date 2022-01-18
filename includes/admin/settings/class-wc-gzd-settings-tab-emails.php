@@ -190,6 +190,7 @@ class WC_GZD_Settings_Tab_Emails extends WC_GZD_Settings_Tab {
 				'default' => __( 'Hi {first_name},', 'woocommerce-germanized' ),
 				'type'    => 'text',
 			),
+
 			array(
 				'title'   => __( 'Hide Username', 'woocommerce-germanized' ),
 				'desc'    => __( 'Hide username from email content if password or password reset link is embedded.', 'woocommerce-germanized' ) . '<div class="wc-gzd-additional-desc">' . __( 'Trusted Shops advises to not show the username together with an account password or password reset link. This option hides (or masks) the username in those specific cases.', 'woocommerce-germanized' ) . '</div>',

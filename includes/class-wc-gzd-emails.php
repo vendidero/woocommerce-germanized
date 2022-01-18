@@ -374,7 +374,7 @@ class WC_GZD_Emails {
 			if ( isset( $args['order'] ) ) {
 				$GLOBALS['wc_gzd_processing_order'] = $args['order'];
 
-				add_filter( 'gettext', array( $this, 'replace_processing_email_text' ), 10, 3 );
+				add_filter( 'gettext', array( $this, 'replace_processing_email_text' ), 9999, 3 );
 			}
 		}
 
@@ -393,7 +393,8 @@ class WC_GZD_Emails {
 		 */
 		if ( strpos( $template_name, 'emails/' ) !== false && isset( $args['order'] ) && get_option( 'woocommerce_gzd_email_title_text' ) && apply_filters( 'woocommerce_gzd_replace_email_titles', true ) ) {
 			$GLOBALS['wc_gzd_email_order'] = $args['order'];
-			add_filter( 'gettext', array( $this, 'replace_title_email_text' ), 10, 3 );
+
+			add_filter( 'gettext', array( $this, 'replace_title_email_text' ), 9999, 3 );
 		}
 	}
 
@@ -408,6 +409,7 @@ class WC_GZD_Emails {
 			if ( in_array( $original, $search ) ) {
 				if ( isset( $GLOBALS['wc_gzd_processing_order'] ) ) {
 					$order = $GLOBALS['wc_gzd_processing_order'];
+
 					return $this->get_processing_email_text( $order );
 				}
 			}
