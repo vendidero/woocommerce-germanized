@@ -19,9 +19,14 @@ window.germanized = window.germanized || {};
 
             $( 'body' ).bind( 'updated_checkout', this.onUpdateCheckout );
 
-            if ( this.params.adjust_heading ) {
-                if ( $( '.woocommerce-checkout' ).find( '#order_review_heading' ).length > 0 ) {
-                    $( '.woocommerce-checkout' ).find( '#payment' ).after( $( '.woocommerce-checkout' ).find( '#order_review_heading' ) );
+            if ( this.params.adjust_heading && $( 'body' ).hasClass( 'woocommerce-gzd-checkout' ) ) {
+                var $theFirst = $( '.woocommerce-checkout' ).find( '.shop_table, #payment' ).first();
+
+                if ( $( '.woocommerce-checkout' ).find( '#order_review_heading' ).length > 0 )  {
+                    if ( $theFirst.length > 0 && 'payment' === $theFirst.attr( 'id' ) ) {
+                        $( '.woocommerce-checkout' ).find( '#payment' ).after( $( '.woocommerce-checkout' ).find( '#order_review_heading' ) );
+                    }
+
                     $( '.woocommerce-checkout' ).find( '#order_review_heading' ).show();
                 }
             }

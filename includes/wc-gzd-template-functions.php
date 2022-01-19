@@ -1004,4 +1004,15 @@ if ( ! function_exists( 'woocommerce_gzd_template_add_price_html_suffixes' ) ) {
 	}
 }
 
+function wc_gzd_body_class( $classes ) {
+	/**
+	 * Add Germanized specific body class in case the checkout is being germanized.
+	 */
+	if ( is_checkout() && ! wc_gzd_checkout_adjustments_disabled() ) {
+		$classes[] = 'woocommerce-gzd-checkout';
+	}
+
+	return $classes;
+}
+
 ?>

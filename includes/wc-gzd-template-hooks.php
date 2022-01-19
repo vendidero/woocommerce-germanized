@@ -10,6 +10,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 } // Exit if accessed directly
 
 /**
+ * Add germanized body classes
+ */
+add_filter( 'body_class', 'wc_gzd_body_class' );
+
+/**
  * Hide certain HTML output if activated via options
  */
 add_filter( 'woocommerce_germanized_hide_delivery_time_text', 'woocommerce_gzd_template_maybe_hide_delivery_time', 10, 2 );
@@ -196,6 +201,9 @@ add_filter( 'comment_form_submit_button', 'woocommerce_gzd_template_render_revie
 
 // Add terms placeholder in case validation takes place by third-party plugins (e.g. WooCommerce PayPal Payments)
 add_action( 'woocommerce_pay_order_before_submit', 'woocommerce_gzd_template_checkout_set_terms_manually', 0 );
+
+// Maybe remove checkout adjustments during AJAX requests and before rendering checkout
+add_action( 'woocommerce_checkout_init', 'wc_gzd_maybe_disable_checkout_adjustments', 20 );
 
 function woocommerce_gzd_checkout_load_ajax_relevant_hooks() {
 

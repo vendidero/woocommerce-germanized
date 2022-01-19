@@ -62,7 +62,7 @@ function wc_gzd_get_product( $product ) {
  */
 function wc_gzd_get_gzd_product( $product ) {
 
-	if ( is_numeric( $product ) ) {
+	if ( is_numeric( $product ) || is_a( $product, 'WP_Post' ) ) {
 		$product = wc_get_product( $product );
 	} elseif ( is_a( $product, 'WC_GZD_Product' ) ) {
 		return $product;

@@ -33,8 +33,6 @@ class WC_GZD_Compatibility_ET_Builder extends WC_GZD_Compatibility {
 	}
 
 	public function load() {
-		add_action( 'woocommerce_checkout_init', array( $this, 'before_checkout' ) );
-
 		/**
 		 * Disable empty price HTML shopmark check during builder requests to prevent incompatibilities from being
          * triggered by Germanized.
@@ -47,17 +45,43 @@ class WC_GZD_Compatibility_ET_Builder extends WC_GZD_Compatibility {
 	        return $is_enabled;
         } );
 
-		// Disable adjusting payment and order review heading
-		add_filter( 'wc_gzd_checkout_params', function( $params ) {
-			if ( $this->is_et_builder_checkout() ) {
-				$params['adjust_heading'] = false;
+		add_action( 'woocommerce_checkout_init', function() {
+			if ( $this->is_et_builder_checkout() && ! defined( 'WC_GZD_DISABLE_CHECKOUT_ADJUSTMENTS' ) ) {
+				define( 'WC_GZD_DISABLE_CHECKOUT_ADJUSTMENTS', true );
 			}
+		} );
 
-			return $params;
-		}, 10 );
+		/**
+		 * Divi seems to set hooks on its own - make sure Germanized does not restore defaults
+		 */
+		add_action( 'woocommerce_gzd_disabled_checkout_adjustments', function() {
+			if ( wp_doing_ajax() && function_exists( 'et_builder_is_loading_data' ) && et_builder_is_loading_data() ) {
+				remove_action( 'woocommerce_checkout_order_review', 'woocommerce_order_review', 10 );
+				remove_action( 'woocommerce_checkout_order_review', 'woocommerce_checkout_payment', 20 );
 
+				/**
+				 * By default, do not re-add default order_review hooks - only in case the module matches
+				 */
+				if ( isset( $_REQUEST['module_type'] ) ) {
+					if ( 'et_pb_wc_checkout_order_details' === $_REQUEST['module_type'] ) {
+						add_action( 'woocommerce_checkout_order_review', 'woocommerce_order_review', 10 );
+					} elseif ( 'et_pb_wc_checkout_payment_info' === $_REQUEST['module_type'] ) {
+						add_action( 'woocommerce_checkout_order_review', 'woocommerce_checkout_payment', 20 );
+					}
+				}
+			} else {
+				remove_action( 'woocommerce_checkout_order_review', 'woocommerce_order_review', 10 );
+				remove_action( 'woocommerce_checkout_order_review', 'woocommerce_checkout_payment', 20 );
+			}
+		} );
+
+		/**
+		 * Disable checkout adjustments during editor requests
+		 */
 		if ( wp_doing_ajax() && function_exists( 'et_builder_is_loading_data' ) && et_builder_is_loading_data() ) {
-			$this->remove_checkout_adjustments( true );
+			if ( ! defined( 'WC_GZD_DISABLE_CHECKOUT_ADJUSTMENTS' ) ) {
+				define( 'WC_GZD_DISABLE_CHECKOUT_ADJUSTMENTS', true );
+			}
 		}
 	}
 
@@ -83,52 +107,5 @@ class WC_GZD_Compatibility_ET_Builder extends WC_GZD_Compatibility {
 		}
 
 		return false;
-	}
-
-	protected function remove_checkout_adjustments( $is_builder_request = false ) {
-		remove_action( 'woocommerce_checkout_order_review', 'woocommerce_order_review', 20 );
-		remove_action( 'woocommerce_checkout_order_review', 'woocommerce_checkout_payment', 10 );
-
-		// Restore defaults
-		if ( $is_builder_request ) {
-			add_action( 'woocommerce_checkout_order_review', 'woocommerce_order_review', 10 );
-			add_action( 'woocommerce_checkout_order_review', 'woocommerce_checkout_payment', 20 );
-		}
-
-		remove_action( 'woocommerce_review_order_before_submit', 'woocommerce_gzd_template_set_order_button_remove_filter', 1500 );
-		remove_action( 'woocommerce_review_order_after_submit', 'woocommerce_gzd_template_set_order_button_show_filter', 1500 );
-		remove_action( 'woocommerce_gzd_review_order_before_submit', 'woocommerce_gzd_template_set_order_button_show_filter', 1500 );
-
-		remove_action( 'woocommerce_checkout_order_review', 'woocommerce_gzd_template_order_submit', wc_gzd_get_hook_priority( 'checkout_order_submit' ) );
-		remove_action( 'woocommerce_checkout_after_order_review', 'woocommerce_gzd_template_order_submit_fallback', 50 );
-
-		remove_action( 'woocommerce_review_order_after_payment', 'woocommerce_gzd_template_render_checkout_checkboxes', 10 );
-		remove_action( 'woocommerce_review_order_after_payment', 'woocommerce_gzd_template_checkout_set_terms_manually', wc_gzd_get_hook_priority( 'checkout_set_terms' ) );
-
-		add_action( 'woocommerce_review_order_before_payment', 'woocommerce_gzd_template_render_checkout_checkboxes', 10 );
-		add_action( 'woocommerce_review_order_before_payment', 'woocommerce_gzd_template_checkout_set_terms_manually', wc_gzd_get_hook_priority( 'checkout_set_terms' ) );
-
-		add_action( 'woocommerce_review_order_before_payment', function() {
-			echo '<input type="hidden" name="is_et_compatibility_checkout" value="yes" />';
-		}, 50 );
-
-		remove_action( 'woocommerce_review_order_before_payment', 'woocommerce_gzd_template_checkout_payment_title' );
-	}
-
-	public function before_checkout() {
-		if ( wp_doing_ajax() && isset( $_POST['post_data'] ) ) {
-			$result = array();
-			$data   = wp_unslash( $_POST['post_data'] );
-			parse_str( $data, $result );
-
-			/**
-			 * Make sure to remove these hooks on AJAX requests too.
-			 */
-			if ( isset( $result['is_et_compatibility_checkout'] ) ) {
-				$this->remove_checkout_adjustments();
-			}
-		} elseif ( $this->is_et_builder_checkout() ) {
-			$this->remove_checkout_adjustments();
-		}
 	}
 }

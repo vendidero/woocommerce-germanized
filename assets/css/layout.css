@@ -24,7 +24,7 @@ p.wc-gzd-additional-info:empty {
   font-size: 0.9em;
   padding-left: 3px; }
 
-#order_review_heading {
+.woocommerce-gzd-checkout #order_review_heading {
   display: none; }
 
 .woocommerce-checkout .shop_table tr td p {

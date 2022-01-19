@@ -40,14 +40,99 @@ class WC_Germanized_Meta_Box_Product_Data {
 		add_action( 'woocommerce_product_bulk_edit_end', array( __CLASS__, 'bulk_edit' ) );
 		add_action( 'woocommerce_product_bulk_edit_save', array( __CLASS__, 'bulk_save' ) );
 
+        add_action( 'woocommerce_product_quick_edit_end', array( __CLASS__, 'quick_edit' ) );
+        add_action( 'add_inline_data', array( __CLASS__, 'quick_edit_data' ), 10, 2 );
+        add_action( 'woocommerce_product_quick_edit_save', array( __CLASS__, 'quick_edit_save' ) );
+
 		/**
 		 * Product duplication
 		 */
 		add_action( 'woocommerce_product_duplicate_before_save', array( __CLASS__, 'update_before_duplicate' ), 10, 2 );
 	}
 
-    public static function quick_edit() {
+	/**
+	 * @param WC_Product $product
+	 *
+	 * @return void
+	 */
+    public static function quick_edit_save( $product ) {
+	    if ( $gzd_product = wc_gzd_get_gzd_product( $product ) ) {
+            $delivery_time = isset( $_REQUEST['_delivery_time'] ) ? wc_clean( $_REQUEST['_delivery_time'] ) : '';
 
+            if ( ! empty( $delivery_time ) ) {
+                $needs_update = true;
+
+                if ( $slug = wc_gzd_get_valid_product_delivery_time_slugs( $delivery_time ) ) {
+                    $gzd_product->set_default_delivery_time_slug( $slug );
+                }
+            } else {
+                $needs_update = true;
+                $gzd_product->set_default_delivery_time_slug( '' );
+            }
+
+		    if ( isset( $_REQUEST['_unit'] ) ) {
+			    $unit = wc_clean( $_REQUEST['_unit'] );
+
+			    if ( ! empty( $unit ) ) {
+				    $needs_update = true;
+
+				    if ( '_no_unit' === $unit ) {
+					    $gzd_product->set_unit( '' );
+				    } elseif ( $term = get_term_by( 'slug', $unit, 'product_unit' ) ) {
+					    $gzd_product->set_unit( $term->slug );
+				    }
+			    }
+		    }
+
+		    if ( $needs_update ) {
+			    $gzd_product->get_wc_product()->save();
+			    $gzd_product->save();
+		    }
+	    }
+    }
+
+    public static function quick_edit_data( $post, $post_type_object ) {
+        if ( 'product' === $post_type_object->name ) {
+            if ( $gzd_product = wc_gzd_get_product( $post ) ) {
+                $default_delivery_time = $gzd_product->get_default_delivery_time( 'edit' );
+
+                echo '
+                    <div class="gzd_delivery_time_slug">' . esc_html( $default_delivery_time ? $default_delivery_time->slug : '' ) . '</div>
+                    <div class="gzd_delivery_time_name">' . esc_html( $default_delivery_time ? $default_delivery_time->name : '' ) . '</div>
+                    <div class="gzd_unit_slug">' . esc_html( $gzd_product->get_unit( 'edit' ) ) . '</div>
+                ';
+            }
+        }
+    }
+
+    public static function quick_edit() {
+        ?>
+        <div class="inline-edit-group gzd_fields">
+            <label class="gzd_delivery_time_field">
+                <span class="title"><?php esc_html_e( 'Delivery Time', 'woocommerce-germanized' ); ?></span>
+                <span class="input-text-wrap">
+                    <select class="wc-gzd-delivery-time-select-placeholder" style="width: 100%; min-width: 150px;" name="_delivery_time"
+                            data-minimum_input_length="1" data-allow_clear="true"
+                            data-placeholder="<?php echo esc_attr( __( 'Search for a delivery time&hellip;', 'woocommerce-germanized' ) ); ?>"
+                            data-action="woocommerce_gzd_json_search_delivery_time" data-multiple="false">
+                    </select>
+                </span>
+            </label>
+            <label class="gzd_unit_field">
+                <span class="title"><?php esc_html_e( 'Unit', 'woocommerce-germanized' ); ?></span>
+                <span class="input-text-wrap">
+                    <select class="unit" name="_unit">
+                        <option value="_no_unit"><?php _e( 'No unit', 'woocommerce-germanized' ); ?></option>
+                        <?php
+                        foreach ( WC_germanized()->units->get_units() as $key => $value ) {
+                            echo '<option value="' . esc_attr( $key ) . '">' . esc_html( $value ) . '</option>';
+                        }
+                        ?>
+                    </select>
+                </span>
+            </label>
+        </div>
+        <?php
     }
 
     public static function bulk_save( $product ) {
