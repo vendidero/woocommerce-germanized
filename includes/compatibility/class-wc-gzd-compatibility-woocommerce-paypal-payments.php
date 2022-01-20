@@ -26,6 +26,10 @@ class WC_GZD_Compatibility_WooCommerce_PayPal_Payments extends WC_GZD_Compatibil
 	}
 
 	public function move_paypal_payment_button( $filter ) {
-		return 'woocommerce_gzd_review_order_before_submit';
+		if ( ! wc_gzd_checkout_adjustments_disabled() ) {
+			return 'woocommerce_gzd_review_order_before_submit';
+		}
+
+		return $filter;
 	}
 }

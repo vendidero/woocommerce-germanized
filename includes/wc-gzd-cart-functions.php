@@ -376,6 +376,7 @@ function wc_gzd_cart_product_unit_price( $price, $cart_item, $cart_item_key = ''
             if ( apply_filters( 'woocommerce_gzd_recalculate_unit_price_cart', true, $cart_item, $cart_item_key ) && isset( $cart_item['line_subtotal'], $cart_item['line_subtotal_tax'], $cart_item['quantity'] ) ) {
 	            $unit_product = $gzd_product->get_unit_product();
 	            $unit_base    = $gzd_product->get_unit_base();
+
 	            /**
 	             * Determines the quantity used to calculate the item total used for unit price (re-) calculation within the cart.
                  *
@@ -385,12 +386,16 @@ function wc_gzd_cart_product_unit_price( $price, $cart_item, $cart_item_key = ''
 	             *
 	             * @since 3.7.3
 	             */
-                $quantity = apply_filters( 'woocommerce_gzd_unit_price_cart_quantity', $cart_item['quantity'], $cart_item, $gzd_product );
+                $quantity = floatval( apply_filters( 'woocommerce_gzd_unit_price_cart_quantity', $cart_item['quantity'], $cart_item, $gzd_product ) );
+
+                if ( $quantity <= 0 ) {
+                    $quantity = 1;
+                }
 
 	            if ( WC()->cart->display_prices_including_tax() ) {
-		            $total = ( $cart_item['line_subtotal'] + $cart_item['line_subtotal_tax'] ) / floatval( $quantity );
+		            $total = ( $cart_item['line_subtotal'] + $cart_item['line_subtotal_tax'] ) / $quantity;
 	            } else {
-		            $total = $cart_item['line_subtotal'] / floatval( $quantity );
+		            $total = $cart_item['line_subtotal'] / $quantity;
 	            }
 
 	            $prices = wc_gzd_recalculate_unit_price( array(
