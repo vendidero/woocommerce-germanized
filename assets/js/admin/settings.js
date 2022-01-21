@@ -199,9 +199,6 @@ window.germanized = window.germanized || {};
                                 }
                             } else {
                                 if ( ! $( ':input#' + nameToUse ).parents( 'tr' ).is( ':visible' ) ) {
-                                    console.log(nameToUse);
-                                    console.log($field);
-
                                     $field.addClass( 'wc-gzd-setting-invisible' );
                                     $( document.body ).trigger( 'woocommerce_gzd_setting_field_invisible', [ $field, currentName, currentVal ] );
 

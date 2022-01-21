@@ -24,8 +24,6 @@ jQuery( function ( $ ) {
 
             var $inline_data = $( '#inline_' + post_id );
 
-            console.log($inline_data);
-
             if ( $inline_data.find( '.gzd_delivery_time_slug' ).length > 0 ) {
                 var delivery_time      = $inline_data.find( '.gzd_delivery_time_slug' ).text(),
                     delivery_time_name = $inline_data.find( '.gzd_delivery_time_name' ).text(),

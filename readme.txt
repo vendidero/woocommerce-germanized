@@ -5,7 +5,7 @@ Requires at least: 5.4
 Tested up to: 5.9
 WC requires at least: 3.9
 WC tested up to: 6.1
-Stable tag: 3.8.0
+Stable tag: 3.8.1
 Requires PHP: 5.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -205,6 +205,17 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 6. Edit pdf documents (Pro)
 
 == Changelog ==
+= 3.8.1 =
+* Improvement: Email attachment plain text pagebuilder support
+* Improvement: Allow using {stock_status} in delivery time placeholder
+* Improvement: Increase email title gettext replacement filter priority
+* Improvement: Allow disabling checkout adjustments via WC_GZD_DISABLE_CHECKOUT_ADJUSTMENTS constant
+* Improvement: Quick edit support for delivery times and units
+* Improvement: Small business notice placement in cart
+* Improvement: Allow tracking Deutsche Post letter products (basic tracking)
+* Fix: Make sure cart quantity is not zero when (re-) calculating unit price
+* Fix: Shipment packaging dimension conversion
+
 = 3.8.0 =
 * Feature: Woo 6.1 Support
 * Feature: WP 5.9 Support
