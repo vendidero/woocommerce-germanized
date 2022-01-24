@@ -26,6 +26,16 @@
         $form.on( 'show_variation', { GermanizedvariationForm: self }, self.onShowVariation );
     };
 
+    GermanizedVariationForm.prototype.getPriceElement = function( self ) {
+        var $wrapper = self.$wrapper;
+
+        /**
+         * Ignore the price wrapper inside the variation form to make sure the right
+         * price is being replaced even if the price element is located beneath the form.
+         */
+        return $wrapper.find( wc_gzd_add_to_cart_variation_params.price_selector + ':not(.price-unit):visible' ).not( '.variations_form .price' ).first();
+    };
+
     /**
      * Reset all fields.
      */
@@ -115,7 +125,7 @@
         
         if ( $wrapper.find( '.org_product_info' ).length <= 0 ) {
 
-            $wrapper.append( '<div class="org_price org_product_info">' + $wrapper.find( wc_gzd_add_to_cart_variation_params.price_selector + ':not(.price-unit):visible:first' ).html() + '</div>' );
+            $wrapper.append( '<div class="org_price org_product_info">' + form.getPriceElement( form ).html() + '</div>' );
 
             if ( $wrapper.find( '.delivery-time-info:first' ).length > 0 ) {
                 $wrapper.append( '<div class="org_delivery_time org_product_info">' + $wrapper.find( '.delivery-time-info:first' ).html() + '</div>' );
@@ -145,7 +155,7 @@
         }
 
         if ( hasCustomPrice && form.replacePrice ) {
-            var $priceElement = $wrapper.find( wc_gzd_add_to_cart_variation_params.price_selector + ':not(.price-unit):visible:first' );
+            var $priceElement = form.getPriceElement( form );
 
             form.$singleVariation.find( '.price' ).hide();
 
