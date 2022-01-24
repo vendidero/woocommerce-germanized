@@ -482,7 +482,7 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
                     }
 
 					foreach ( $orders as $order ) {
-                        $amount_in_cents = wc_add_number_precision_deep( ( $order->get_total() - $order->get_total_refunded() ) );
+						$amount_in_cents = round( ( $order->get_total() - $order->get_total_refunded() ) * 100 );
 
 						/**
 						 * Filter that allows adjusting direct debit SEPA XML Export transfer data per order.
