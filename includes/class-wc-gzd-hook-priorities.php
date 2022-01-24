@@ -152,7 +152,12 @@ class WC_GZD_Hook_Priorities {
 			return false;
 		}
 
-		$this->queue[] = array( 'hook' => $hook, 'function' => $function, 'new_prio' => $new_prio );
+		if ( ! did_action( 'after_setup_theme' ) ) {
+			$this->queue[] = array( 'hook' => $hook, 'function' => $function, 'new_prio' => $new_prio );
+		} else {
+			remove_action( $hook, $function, $this->get_priority( $hook, $function ) );
+			add_action( $hook, $function, $new_prio );
+		}
 	}
 
 	/**

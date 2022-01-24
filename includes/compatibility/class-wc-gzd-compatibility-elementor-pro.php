@@ -16,6 +16,47 @@ class WC_GZD_Compatibility_Elementor_Pro extends WC_GZD_Compatibility {
 		return 'elementor-pro/elementor-pro.php';
 	}
 
+	public function after_plugins_loaded() {
+		/**
+		 * On Editor - Register Germanized frontend hooks before the Editor init to load checkout adjustments.
+		 */
+		if ( ! empty( $_REQUEST['action'] ) && 'elementor' === $_REQUEST['action'] && is_admin() ) {
+			add_action( 'init', function() {
+				if ( wc_gzd_checkout_adjustments_disabled() ) {
+					return;
+				}
+
+				WC_germanized()->frontend_includes();
+			}, 6 );
+		}
+
+		add_action( 'woocommerce_checkout_init', function() {
+			if ( isset( $_POST['action'], $_POST['editor_post_id'] ) && 'elementor_ajax' === $_POST['action'] ) {
+				if ( wc_gzd_checkout_adjustments_disabled() ) {
+					return;
+				}
+
+				/**
+				 * woocommerce_review_order_after_payment hooks is not executed during ajax requests (see checkout/payment.php) which will fail loading the hooks accordingly.
+				 * Use a static filter to make sure AJAX hooks are still firing.
+				 */
+				add_action( 'woocommerce_checkout_before_order_review', function() {
+					add_filter( 'wp_doing_ajax', array( $this, 'disable_ajax_callback' ), 1000 );
+				}, 0 );
+
+				add_action( 'woocommerce_checkout_after_order_review', function() {
+					remove_filter( 'wp_doing_ajax', array( $this, 'disable_ajax_callback' ), 1000 );
+				}, 5000 );
+
+				woocommerce_gzd_checkout_load_ajax_relevant_hooks();
+			}
+		}, 100 );
+	}
+
+	public static function disable_ajax_callback() {
+		return false;
+	}
+
 	public function load() {
 		add_action( 'elementor/widgets/widgets_registered', array( $this, 'init_widgets' ), 10 );
 
@@ -54,7 +95,7 @@ class WC_GZD_Compatibility_Elementor_Pro extends WC_GZD_Compatibility {
 
 		add_action( 'elementor/frontend/widget/before_render', function ( $element ) {
 			if ( is_a( $element, '\ElementorPro\Modules\Woocommerce\Widgets\Checkout' ) ) {
-				if ( ! defined( 'WC_GZD_DISABLE_CHECKOUT_ADJUSTMENTS' ) && apply_filters( 'woocommerce_gzd_elementor_pro_disable_checkout_adjustments', true ) ) {
+				if ( ! defined( 'WC_GZD_DISABLE_CHECKOUT_ADJUSTMENTS' ) && apply_filters( 'woocommerce_gzd_elementor_pro_disable_checkout_adjustments', false ) ) {
 					define( 'WC_GZD_DISABLE_CHECKOUT_ADJUSTMENTS', true );
 					wc_gzd_maybe_disable_checkout_adjustments();
 				}

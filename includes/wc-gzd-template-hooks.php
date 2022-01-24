@@ -181,8 +181,18 @@ remove_action( 'woocommerce_checkout_order_review', 'woocommerce_checkout_paymen
 WC_GZD_Hook_Priorities::instance()->change_priority( 'woocommerce_checkout_order_review', 'woocommerce_order_review', wc_gzd_get_hook_priority( 'checkout_order_review' ) );
 WC_GZD_Hook_Priorities::instance()->change_priority( 'woocommerce_checkout_order_review', 'woocommerce_checkout_payment', wc_gzd_get_hook_priority( 'checkout_payment' ) );
 
-// Load ajax relevant hooks
-add_action( 'init', 'woocommerce_gzd_checkout_load_ajax_relevant_hooks' );
+// Load ajax relevant hooks on init with fallback
+if ( did_action( 'init' ) ) {
+	if ( ! wp_doing_ajax() ) {
+		woocommerce_gzd_checkout_load_ajax_relevant_hooks();
+	}
+} else {
+	add_action( 'init', function() {
+		if ( ! wp_doing_ajax() ) {
+			woocommerce_gzd_checkout_load_ajax_relevant_hooks();
+		}
+	} );
+}
 
 // Remove WooCommerce Terms checkbox
 add_filter( 'woocommerce_checkout_show_terms', 'woocommerce_gzd_template_set_wc_terms_hide', 100 );
@@ -206,11 +216,6 @@ add_action( 'woocommerce_pay_order_before_submit', 'woocommerce_gzd_template_che
 add_action( 'woocommerce_checkout_init', 'wc_gzd_maybe_disable_checkout_adjustments', 20 );
 
 function woocommerce_gzd_checkout_load_ajax_relevant_hooks() {
-
-	if ( wp_doing_ajax() ) {
-		return;
-	}
-
 	add_action( 'woocommerce_checkout_order_review', 'woocommerce_gzd_template_order_submit', wc_gzd_get_hook_priority( 'checkout_order_submit' ) );
 	add_action( 'woocommerce_checkout_after_order_review', 'woocommerce_gzd_template_order_submit_fallback', 50 );
 
