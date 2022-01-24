@@ -49,6 +49,13 @@ class WC_GZD_Emails {
 				add_action( '__experimental_woocommerce_blocks_checkout_order_processed', array( $this, 'confirm_order' ) );
 			}
 
+			/**
+			 * Register a custom shutdown handler to make sure the order is being confirmed even though the
+			 * woocommerce_payment_successful_result or woocommerce_checkout_no_payment_needed_redirect hooks
+			 * are not executed (e.g. custom gateway logic).
+			 */
+			add_action( 'woocommerce_checkout_order_processed', array( $this, 'register_confirmation_fallback' ), 30 );
+
 			// Send order notice directly after new order is being added - use these filters because order status has to be updated already
 			add_filter( 'woocommerce_payment_successful_result', array(
 				$this,
@@ -114,6 +121,16 @@ class WC_GZD_Emails {
 
 		if ( is_admin() ) {
 			$this->admin_hooks();
+		}
+	}
+
+	public function register_confirmation_fallback( $order_id ) {
+		register_shutdown_function( array( $this, 'after_order_shutdown' ), $order_id );
+	}
+
+	public function after_order_shutdown( $order_id ) {
+		if ( ! did_action( 'woocommerce_germanized_order_confirmation_sent' ) ) {
+			$this->confirm_order( $order_id );
 		}
 	}
 
