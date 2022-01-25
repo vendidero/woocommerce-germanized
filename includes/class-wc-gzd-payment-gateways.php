@@ -80,7 +80,7 @@ class WC_GZD_Payment_Gateways {
 	}
 
 	public function gateway_ajax_init() {
-		if ( wp_doing_ajax() ) {
+		if ( wp_doing_ajax() && class_exists( 'WC_Payment_Gateway' ) ) {
 			$direct_debit = new WC_GZD_Gateway_Direct_Debit();
 		}
 	}

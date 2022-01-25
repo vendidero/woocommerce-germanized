@@ -24,8 +24,6 @@ jQuery( function ( $ ) {
                 .on( 'change', 'input.variable_service', this.variable_is_service )
                 .on( 'change', 'input.variable_used_good', this.variable_is_used_good )
                 .on( 'change', 'input.variable_defective_copy', this.variable_is_defective_copy );
-
-            $( 'input.variable_service, input.variable_used_good, input.variable_defective_copy' ).trigger( 'change' );
         },
 
         variations_loaded: function( event, needsUpdate ) {
@@ -34,7 +32,16 @@ jQuery( function ( $ ) {
             var wrapper = $( '#woocommerce-product-data' );
 
             if ( ! needsUpdate ) {
+                /**
+                 * This will mark variations as needing updates (which is not the case)
+                 */
                 $( 'input.variable_service, input.variable_used_good, input.variable_defective_copy', wrapper ).trigger( 'change' );
+
+                // Remove variation-needs-update classes
+                $( '.woocommerce_variations .variation-needs-update', wrapper ).removeClass( 'variation-needs-update' );
+
+                // Disable cancel and save buttons
+                $( 'button.cancel-variation-changes, button.save-variation-changes', wrapper ).attr( 'disabled', 'disabled' );
             }
         },
 
