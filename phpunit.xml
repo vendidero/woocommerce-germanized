@@ -35,7 +35,4 @@
             </exclude>
         </whitelist>
     </filter>
-    <listeners>
-        <listener class="SpeedTrapListener" file="tests/includes/listener-loader.php" />
-    </listeners>
 </phpunit>
