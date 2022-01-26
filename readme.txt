@@ -205,6 +205,15 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 6. Edit pdf documents (Pro)
 
 == Changelog ==
+= 3.8.2 =
+* Improvement: Elementor Pro Checkout widget compatibility
+* Improvement: Variation main price detection
+* Improvement: Checkout shutdown handler to send fallback order confirmation
+* Improvement: Updated DHL wsdl files to 3.2
+* Improvement: Insert DHL preferred services checkout selection after checkboxes
+* Fix: Mark variations as not needing update after triggering checkbox change event
+* Fix: Direct Debit SEPA XML export > 2 decimals support
+
 = 3.8.1 =
 * Improvement: Email attachment plain text pagebuilder support
 * Improvement: Allow using {stock_status} in delivery time placeholder
