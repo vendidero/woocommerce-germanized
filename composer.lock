@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a28f2779ea66e8f98185ad04b4c7abf7",
+    "content-hash": "530f370f65f27e3153803c0f5ab2acb5",
     "packages": [
         {
             "name": "automattic/jetpack-autoloader",
@@ -795,16 +795,16 @@
         },
         {
             "name": "vendidero/woocommerce-germanized-dhl",
-            "version": "v1.6.6",
+            "version": "v1.6.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vendidero/woocommerce-germanized-dhl.git",
-                "reference": "51cc2ae185acc4c8ec3acbd308df90e0b37ce544"
+                "reference": "1efac138f842d86314207c52958cea1d6a215c6d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vendidero/woocommerce-germanized-dhl/zipball/51cc2ae185acc4c8ec3acbd308df90e0b37ce544",
-                "reference": "51cc2ae185acc4c8ec3acbd308df90e0b37ce544",
+                "url": "https://api.github.com/repos/vendidero/woocommerce-germanized-dhl/zipball/1efac138f842d86314207c52958cea1d6a215c6d",
+                "reference": "1efac138f842d86314207c52958cea1d6a215c6d",
                 "shasum": ""
             },
             "require": {
@@ -839,10 +839,10 @@
             "description": "The Germanized DHL implementation.",
             "homepage": "https://github.com/vendidero/woocommerce-germanized-dhl",
             "support": {
-                "source": "https://github.com/vendidero/woocommerce-germanized-dhl/tree/v1.6.6",
+                "source": "https://github.com/vendidero/woocommerce-germanized-dhl/tree/v1.6.7",
                 "issues": "https://github.com/vendidero/woocommerce-germanized-dhl/issues"
             },
-            "time": "2022-01-21T13:46:45+00:00"
+            "time": "2022-01-26T10:21:11+00:00"
         },
         {
             "name": "vendidero/woocommerce-germanized-shipments",

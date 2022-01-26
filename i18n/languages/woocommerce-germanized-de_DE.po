@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce Germanized\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-21 15:22+0100\n"
-"PO-Revision-Date: 2022-01-21 15:24+0100\n"
+"POT-Creation-Date: 2022-01-26 11:23+0100\n"
+"PO-Revision-Date: 2022-01-26 11:24+0100\n"
 "Last-Translator: Dennis Nissle <info@vendidero.de>\n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -844,55 +844,62 @@ msgid "Postfiliale"
 msgstr "Postfiliale"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:699
+#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:707
 msgctxt "dhl"
 msgid "DHL Retoure International A"
 msgstr "DHL Retoure International A"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:700
+#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:708
 msgctxt "dhl"
 msgid "DHL Retoure International B"
 msgstr "DHL Retoure International B"
 
-#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:709
+#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:717
 msgctxt "dhl"
 msgid "DHL Retoure Online"
 msgstr "DHL Retoure Online"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:725
-#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:745
+#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:744
+#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:768
 msgctxt "dhl"
 msgid "DHL Paket International"
 msgstr "DHL Paket International"
 
-#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:746
+# @ woocommerce-germanized
+#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:748
+#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:774
+msgctxt "dhl"
+msgid "DHL Warenpost International"
+msgstr "DHL Warenpost International"
+
+#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:769
 msgctxt "dhl"
 msgid "DHL Paket Connect"
 msgstr "DHL Paket Connect"
 
-#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:747
+#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:770
 msgctxt "dhl"
 msgid "DHL Europaket (B2B)"
 msgstr "DHL Europaket (B2B)"
 
-#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:816
+#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:843
 msgctxt "dhl"
 msgid "DHL Paket"
 msgstr "DHL Paket"
 
-#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:817
+#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:844
 msgctxt "dhl"
 msgid "DHL Paket PRIO"
 msgstr "DHL Paket PRIO"
 
-#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:818
+#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:845
 msgctxt "dhl"
 msgid "DHL Paket Taggleich"
 msgstr "DHL Paket Taggleich"
 
-#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:819
+#: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:846
 msgctxt "dhl"
 msgid "DHL Warenpost"
 msgstr "DHL Warenpost"
@@ -1624,7 +1631,7 @@ msgid "retry"
 msgstr "Erneut versuchen"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized-dhl/src/ParcelServices.php:29
+#: woocommerce-germanized-dhl/src/ParcelServices.php:56
 #: woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:242
 #: woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1155
 #: woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1708
@@ -1634,13 +1641,13 @@ msgid "Delivery day"
 msgstr "Liefertag"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized-dhl/src/ParcelServices.php:36
+#: woocommerce-germanized-dhl/src/ParcelServices.php:63
 msgctxt "dhl"
 msgid "Delivery time"
 msgstr "Lieferzeit"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized-dhl/src/ParcelServices.php:43
+#: woocommerce-germanized-dhl/src/ParcelServices.php:70
 #: woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:252
 #: woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1177
 #: woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1736
@@ -1649,7 +1656,7 @@ msgctxt "dhl"
 msgid "Drop-off location"
 msgstr "Ablageort"
 
-#: woocommerce-germanized-dhl/src/ParcelServices.php:48
+#: woocommerce-germanized-dhl/src/ParcelServices.php:75
 #: woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:264
 #: woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1186
 #: woocommerce-germanized-dhl/templates/checkout/dhl/preferred-services.php:82
@@ -1659,25 +1666,25 @@ msgid "Neighbor"
 msgstr "Nachbar"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized-dhl/src/ParcelServices.php:133
+#: woocommerce-germanized-dhl/src/ParcelServices.php:160
 msgctxt "dhl"
 msgid "DHL Delivery day"
 msgstr "DHL Liefertag"
 
-#: woocommerce-germanized-dhl/src/ParcelServices.php:276
+#: woocommerce-germanized-dhl/src/ParcelServices.php:303
 msgctxt "dhl"
 msgid "Sorry, but the delivery day you have chosen is no longer available."
 msgstr ""
 "Entschuldigung, der von dir ausgewählte Liefertag steht leider nicht mehr "
 "zur Verfügung."
 
-#: woocommerce-germanized-dhl/src/ParcelServices.php:299
+#: woocommerce-germanized-dhl/src/ParcelServices.php:326
 msgctxt "dhl"
 msgid "Please choose a drop-off location."
 msgstr "Bitte wähle einen Ablageort aus."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized-dhl/src/ParcelServices.php:311
+#: woocommerce-germanized-dhl/src/ParcelServices.php:338
 msgctxt "dhl"
 msgid "Please choose name and address of your preferred neighbor."
 msgstr "Bitte wähle einen Namen und die Adresse deines Wunschnachbars."
@@ -5737,7 +5744,7 @@ msgstr "Voraussichtliches Zustellungsdatum:"
 #: woocommerce-germanized-shipments/templates/shipment/shipment-details-tracking.php:26
 msgctxt "shipments"
 msgid "Track your shipment"
-msgstr "Sendungsverfolgung"
+msgstr "Sendung verfolgen"
 
 # @ woocommerce-germanized
 #: woocommerce-germanized-shipments/templates/emails/email-order-shipments.php:45
@@ -10109,20 +10116,20 @@ msgstr "Abgelaufener Aktivierungscode"
 msgid "Invalid activation key"
 msgstr "Aktivierungscode ungültig"
 
-#: woocommerce-germanized/includes/class-wc-gzd-emails.php:279
+#: woocommerce-germanized/includes/class-wc-gzd-emails.php:296
 msgid "BCC recipients"
 msgstr "BCC Empfänger"
 
-#: woocommerce-germanized/includes/class-wc-gzd-emails.php:281
+#: woocommerce-germanized/includes/class-wc-gzd-emails.php:298
 msgid "Enter blind-copy recipients (comma separated) for this email."
 msgstr "Füge Empfänger (kommasepariert) einer Blindkopie für diese E-Mail ein."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-emails.php:354
+#: woocommerce-germanized/includes/class-wc-gzd-emails.php:371
 msgid "Confirmation text"
 msgstr "Bestätigung Text"
 
-#: woocommerce-germanized/includes/class-wc-gzd-emails.php:355
+#: woocommerce-germanized/includes/class-wc-gzd-emails.php:372
 msgid ""
 "Your order has been received and is now being processed. Your order details "
 "are shown below for your reference:"
@@ -10131,7 +10138,7 @@ msgstr ""
 "deiner Bestellung kannst du der nachfolgenden Tabelle entnehmen:"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-emails.php:356
+#: woocommerce-germanized/includes/class-wc-gzd-emails.php:373
 msgid ""
 "This text will be inserted within the order confirmation email. Use "
 "{order_number}, {site_title} or {order_date} as placeholder."
@@ -10139,7 +10146,7 @@ msgstr ""
 "Dieser Text wird in die Bestellbestätigung eingefügt. Verwende "
 "{order_number}, {site_title} oder {order_date} als Platzhalter."
 
-#: woocommerce-germanized/includes/class-wc-gzd-emails.php:475
+#: woocommerce-germanized/includes/class-wc-gzd-emails.php:492
 msgid ""
 "Your order has been received and is now being processed. Your order details "
 "are shown below for your reference."
@@ -10147,18 +10154,18 @@ msgstr ""
 "Deine Bestellung ist eingegangen und wird nun bearbeitet. Die Einzelheiten "
 "deiner Bestellung kannst du der nachfolgenden Tabelle entnehmen."
 
-#: woocommerce-germanized/includes/class-wc-gzd-emails.php:521
+#: woocommerce-germanized/includes/class-wc-gzd-emails.php:538
 msgid "Someone requested a password reset for your account."
 msgstr ""
 "Jemand hat das Zurücksetzen des Passworts für deinen Account beantragt."
 
-#: woocommerce-germanized/includes/class-wc-gzd-emails.php:536
+#: woocommerce-germanized/includes/class-wc-gzd-emails.php:553
 #, php-format
 msgid "Thanks for creating an account on %s."
 msgstr "Danke, dass du ein Konto bei %s erstellt hast."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-emails.php:1272
+#: woocommerce-germanized/includes/class-wc-gzd-emails.php:1289
 msgctxt "revocation-form"
 msgid "Forward your withdrawal online"
 msgstr "Deinen Widerruf online erklären"
