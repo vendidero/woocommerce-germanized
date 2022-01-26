@@ -757,7 +757,6 @@ class WC_GZD_Admin {
 	}
 
 	public function get_complaints_shortcode_pages() {
-
 		$pages = array(
 			'imprint' => wc_get_page_id( 'imprint' ),
 		);
@@ -790,18 +789,15 @@ class WC_GZD_Admin {
 
 	public function check_complaints_shortcode_append() {
 		if ( current_user_can( 'manage_woocommerce' ) && isset( $_GET['complaints'] ) && 'add' === $_GET['complaints'] && isset( $_GET['_wpnonce'] ) && check_admin_referer( 'append-complaints-shortcode' ) ) {
-
 			$pages = $this->get_complaints_shortcode_pages();
 
 			foreach ( $pages as $page_name => $page_id ) {
-
 				if ( $page_id != 1 ) {
 					$this->insert_complaints_shortcode( $page_id );
 				}
 			}
 
-			// Redirect to check for updates
-			wp_safe_redirect( admin_url( 'admin.php?page=wc-settings&tab=germanized' ) );
+			wp_safe_redirect( admin_url( 'admin.php?page=wc-settings&tab=germanized-general&section=disputes' ) );
 		}
 	}
 
@@ -820,12 +816,22 @@ class WC_GZD_Admin {
 		}
 
 		$page = get_post( $page_id );
-		wp_update_post(
-			array(
-				'ID'           => $page_id,
-				'post_content' => $page->post_content . "\n[gzd_complaints]",
-			)
-		);
+
+        if ( function_exists( 'has_blocks' ) && has_blocks( $page_id ) ) {
+	        wp_update_post(
+		        array(
+			        'ID'           => $page_id,
+			        'post_content' => $page->post_content . "\n" . "<!-- wp:shortcode -->\n" . " [gzd_complaints] " . "\n  <!-- /wp:shortcode -->",
+		        )
+	        );
+        } else {
+	        wp_update_post(
+		        array(
+			        'ID'           => $page_id,
+			        'post_content' => $page->post_content . "\n[gzd_complaints]",
+		        )
+	        );
+        }
 	}
 
 	public function check_encryption_key_insert() {
