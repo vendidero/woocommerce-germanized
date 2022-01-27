@@ -406,8 +406,7 @@ class WC_GZD_Legal_Checkbox_Manager {
 
 		// Service checkbox
 		if ( $checkbox = $this->get_checkbox( 'parcel_delivery' ) ) {
-			if ( $checkbox->is_enabled() ) {
-
+			if ( $checkbox->is_enabled() && $order->has_shipping_address() ) {
 				$ids    = array();
 				$items  = $order->get_shipping_methods();
 				$titles = array();
@@ -555,8 +554,7 @@ class WC_GZD_Legal_Checkbox_Manager {
 
 		// Service checkbox
 		if ( $checkbox = $this->get_checkbox( 'parcel_delivery' ) ) {
-			if ( $checkbox->is_enabled() ) {
-
+			if ( $checkbox->is_enabled() && WC()->cart && WC()->cart->needs_shipping() ) {
 				$rates  = wc_gzd_get_chosen_shipping_rates();
 				$ids    = array();
 				$titles = array();
