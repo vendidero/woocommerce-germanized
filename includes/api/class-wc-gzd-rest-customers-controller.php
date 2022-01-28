@@ -43,8 +43,10 @@ class WC_GZD_REST_Customers_Controller {
 		$customer               = new WC_Customer( $user_data->ID );
 		$response_customer_data = $response->get_data();
 
-		$response_customer_data['billing']['title']  = $customer->get_meta( 'billing_title' );
-		$response_customer_data['shipping']['title'] = $customer->get_meta( 'shipping_title' );
+		$response_customer_data['billing']['title']           = $customer->get_meta( 'billing_title' );
+		$response_customer_data['billing']['title_formatted'] = wc_gzd_get_customer_title( $customer->get_meta( 'billing_title' ) );
+		$response_customer_data['shipping']['title']          = $customer->get_meta( 'shipping_title' );
+		$response_customer_data['shipping']['title_formatted'] = wc_gzd_get_customer_title( $customer->get_meta( 'shipping_title' ) );
 
 		$holder = $customer->get_meta( 'direct_debit_holder' );
 		$iban   = $customer->get_meta( 'direct_debit_iban' );
@@ -137,16 +139,28 @@ class WC_GZD_REST_Customers_Controller {
 
 		$schema_properties['billing']['properties']['title'] = array(
 			'description' => __( 'Title', 'woocommerce-germanized' ),
-			'type'        => 'integer',
+			'type'        => 'string',
 			'context'     => array( 'view', 'edit' ),
-			'enum'        => array( 1, 2 )
+		);
+
+		$schema_properties['billing']['properties']['title_formatted'] = array(
+			'description' => __( 'Formatted title', 'woocommerce-germanized' ),
+			'type'        => 'string',
+			'context'     => array( 'view', 'edit' ),
+			'readonly'    => true,
 		);
 
 		$schema_properties['shipping']['properties']['title'] = array(
 			'description' => __( 'Title', 'woocommerce-germanized' ),
-			'type'        => 'integer',
+			'type'        => 'string',
 			'context'     => array( 'view', 'edit' ),
-			'enum'        => array( 1, 2 )
+		);
+
+		$schema_properties['shipping']['properties']['title_formatted'] = array(
+			'description' => __( 'Formatted title', 'woocommerce-germanized' ),
+			'type'        => 'string',
+			'context'     => array( 'view', 'edit' ),
+			'readonly'    => true,
 		);
 
 		if ( WC_GZD_Customer_Helper::instance()->is_double_opt_in_enabled() ) {

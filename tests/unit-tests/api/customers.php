@@ -33,6 +33,9 @@ class WC_GZD_Customers_API extends WC_GZD_REST_Unit_Test_Case {
 		$this->assertEquals( 1, $customer['billing']['title'] );
 		$this->assertEquals( 1, $customer['shipping']['title'] );
 
+		$this->assertEquals( 'Mr.', $customer['billing']['title_formatted'] );
+		$this->assertEquals( 'Mr.', $customer['shipping']['title_formatted'] );
+
 		$this->assertEquals( array(
 			'holder' => 'Holder',
 			'iban'   => 'DE2424242424',
@@ -69,6 +72,9 @@ class WC_GZD_Customers_API extends WC_GZD_REST_Unit_Test_Case {
 
 		$this->assertEquals( 2, $customer['billing']['title'] );
 		$this->assertEquals( 2, $customer['shipping']['title'] );
+
+		$this->assertEquals( 'Ms.', $customer['billing']['title_formatted'] );
+		$this->assertEquals( 'Ms.', $customer['shipping']['title_formatted'] );
 
 		$this->assertEquals( array(
 			'holder' => 'John Doe',
