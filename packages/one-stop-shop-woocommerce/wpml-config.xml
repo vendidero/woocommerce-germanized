@@ -1,0 +1,5 @@
+<wpml-config>
+    <custom-fields>
+        <custom-field action="copy">_tax_class_by_countries</custom-field>
+    </custom-fields>
+</wpml-config>
