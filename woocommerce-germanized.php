@@ -970,9 +970,10 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 
 		public function get_variation_script_params() {
 		    return apply_filters( 'woocommerce_gzd_add_to_cart_variation_params', array(
-			    'wrapper'        => '.product',
-			    'price_selector' => '.price',
-                'replace_price'  => true,
+			    'wrapper'               => '.product',
+			    'price_selector'        => '.price',
+                'ignore_price_selector' => '.variations_form .price',
+                'replace_price'         => true,
 		    ) );
 		}
 
