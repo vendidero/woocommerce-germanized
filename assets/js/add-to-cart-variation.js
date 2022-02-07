@@ -33,7 +33,7 @@
          * Ignore the price wrapper inside the variation form to make sure the right
          * price is being replaced even if the price element is located beneath the form.
          */
-        return $wrapper.find( wc_gzd_add_to_cart_variation_params.price_selector + ':not(.price-unit):visible' ).not( '.variations_form .price' ).first();
+        return $wrapper.find( wc_gzd_add_to_cart_variation_params.price_selector + ':not(.price-unit):visible' ).not( '.variations_form .single_variation .price' ).first();
     };
 
     /**
