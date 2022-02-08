@@ -1052,11 +1052,12 @@ class WC_GZD_Emails {
 		 *
 		 * @param WC_GZD_Emails $this The email helper class.
 		 * @param WC_Email $current The current email object.
+		 * @param boolean $sent_to_admin Whether this mail is being sent to admin or not.
 		 *
 		 * @since 1.9.1
 		 *
 		 */
-		do_action( 'woocommerce_gzd_before_set_email_cart_item_filters', $this, $current );
+		do_action( 'woocommerce_gzd_before_set_email_cart_item_filters', $this, $current, $sent_to_admin );
 
 		// Add order item name actions
 		add_filter( 'woocommerce_order_item_name', 'wc_gzd_cart_product_differential_taxation_mark', wc_gzd_get_hook_priority( 'email_product_differential_taxation' ), 2 );
@@ -1091,11 +1092,12 @@ class WC_GZD_Emails {
 		 *
 		 * @param WC_GZD_Emails $this The email helper class.
 		 * @param WC_Email $current The current email object.
+		 * @param boolean $sent_to_admin Whether this mail is being sent to admin or not.
 		 *
 		 * @since 1.9.1
 		 *
 		 */
-		do_action( 'woocommerce_gzd_after_set_email_cart_item_filters', $this, $current );
+		do_action( 'woocommerce_gzd_after_set_email_cart_item_filters', $this, $current, $sent_to_admin );
 	}
 
 	public function remove_order_email_filters() {

@@ -50,6 +50,71 @@ class WC_GZD_Admin_Order {
 				$this,
 				'remove_shipping_total_filter'
 			), 500 );
+
+			add_action( 'woocommerce_create_refund', array(
+				$this,
+				'fix_refund_precision'
+			), 1, 2 );
+		}
+	}
+
+	/**
+	 * WooCommerce does by default not show full precision amounts for shipping and fees in admin panel
+	 * that's why the refund (tax) amount entered by the shop owner might differ from the actual amount (with full precision)
+	 * in the corresponding parent item. In case the rounded amounts equal, use the higher-precision amounts from the parent item instead.
+	 *
+	 * @param WC_Order_Refund $refund
+	 * @param $args
+	 *
+	 * @return void
+	 */
+	public function fix_refund_precision( $refund, $args ) {
+		if ( count( $args['line_items'] ) > 0 ) {
+			if ( $order = wc_get_order( $refund->get_parent_id() ) ) {
+				$refund_needs_save = false;
+				$items             = $order->get_items( array( 'fee', 'shipping' ) );
+				$refund_items      = $refund->get_items( array( 'fee', 'shipping' ) );
+
+				foreach ( $refund_items as $refunded_item ) {
+					$item_id = absint( $refunded_item->get_meta( '_refunded_item_id' ) );
+
+					if ( isset( $items[ $item_id ] ) ) {
+						$item                 = $items[ $item_id ];
+						$needs_save           = false;
+						$item_total_rounded   = wc_format_decimal( $item->get_total(), '' );
+						$refund_total_rounded = wc_format_decimal( $refunded_item->get_total() * -1, '' );
+
+						$item_tax_rounded     = wc_format_decimal( $item->get_total_tax(), '' );
+						$refund_tax_rounded   = wc_format_decimal( $refunded_item->get_total_tax() * -1, '' );
+
+						if ( $item_total_rounded == $refund_total_rounded ) {
+							$needs_save = true;
+							$refunded_item->set_total( wc_format_refund_total( $item->get_total() ) );
+						}
+
+						if ( $item_tax_rounded == $refund_tax_rounded ) {
+							$needs_save = true;
+							$refunded_item->set_taxes(
+								array(
+									'total'    => array_map( 'wc_format_refund_total', $item->get_taxes()['total'] ),
+									'subtotal' => array_map( 'wc_format_refund_total', isset( $item->get_taxes()['subtotal'] ) ? $item->get_taxes()['subtotal'] : $item->get_taxes()['total'] ),
+								)
+							);
+						}
+
+						if ( $needs_save ) {
+							$refund_needs_save = true;
+
+							$refunded_item->save();
+						}
+					}
+				}
+
+				if ( $refund_needs_save ) {
+					$refund->update_taxes();
+					$refund->calculate_totals( false );
+				}
+			}
 		}
 	}
 
