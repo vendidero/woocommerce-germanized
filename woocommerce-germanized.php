@@ -892,6 +892,10 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 				'wc-checkout',
 			), WC_GERMANIZED_VERSION, true );
 
+			wp_register_script( 'wc-gzd-cart-voucher', $frontend_script_path . 'cart-voucher' . $suffix . '.js', array(
+				'jquery',
+			), WC_GERMANIZED_VERSION, true );
+
 			if ( function_exists( 'WC' ) ) {
 				wp_register_script( 'accounting', WC()->plugin_url() . '/assets/js/accounting/accounting' . $suffix . '.js', array( 'jquery' ), '0.4.2' );
 			}
@@ -920,6 +924,12 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 
 			if ( is_checkout() ) {
 				wp_enqueue_script( 'wc-gzd-checkout' );
+			}
+
+			if ( is_checkout() || is_cart() ) {
+                if ( WC()->cart && ! WC()->cart->display_prices_including_tax() ) {
+	                wp_enqueue_script( 'wc-gzd-cart-voucher' );
+                }
 			}
 
 			if ( is_product() ) {
@@ -1089,6 +1099,22 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 					'gateway'       => $order ? $order->get_payment_method() : '',
 					'auto_submit'	=> $auto_submit,
 					'block_message' => __( 'Pease wait while we are trying to redirect you to the payment provider.', 'woocommerce-germanized' ),
+				) ) );
+			}
+
+			if ( wp_script_is( 'wc-gzd-cart-voucher' ) && ! in_array( 'wc-gzd-cart-voucher', $this->localized_scripts ) ) {
+				$this->localized_scripts[] = 'wc-gzd-cart-voucher';
+
+				/**
+				 * Filters script localization paramaters for the `wc-gzd-cart-voucher` script.
+				 *
+				 * @param array $params Key => value array containing parameter name and value.
+				 *
+				 * @since 3.8.5
+				 */
+				wp_localize_script( 'wc-gzd-cart-voucher', 'wc_gzd_cart_voucher_params', apply_filters( 'wc_gzd_cart_voucher_params', array(
+					'display_prices_including_tax' => WC()->cart->display_prices_including_tax(),
+                    'voucher_prefix'               => trim( apply_filters( 'woocommerce_gzd_voucher_name', sprintf( __( 'Voucher: %1$s', 'woocommerce-germanized' ), '' ), '' ) )
 				) ) );
 			}
 

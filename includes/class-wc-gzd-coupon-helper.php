@@ -1,5 +1,7 @@
 <?php
 
+use Automattic\WooCommerce\Utilities\NumberUtil;
+
 defined( 'ABSPATH' ) || exit;
 
 /**
@@ -8,6 +10,10 @@ defined( 'ABSPATH' ) || exit;
 class WC_GZD_Coupon_Helper {
 
 	protected static $_instance = null;
+
+	protected $vouchers_hidden = array();
+
+	protected $added_discount_tax_left = false;
 
 	public static function instance() {
 		if ( is_null( self::$_instance ) ) {
@@ -40,16 +46,153 @@ class WC_GZD_Coupon_Helper {
 		add_action( 'woocommerce_coupon_options_save', array( $this, 'coupon_save' ), 10, 2 );
 		add_action( 'woocommerce_checkout_create_order_coupon_item', array( $this, 'coupon_item_save' ), 10, 4 );
 
-		// Tax Calculation
-		add_filter( 'woocommerce_after_calculate_totals', array( $this, 'recalculate_tax_totals' ), 10, 1 );
+		add_action( 'woocommerce_applied_coupon', array( $this, 'on_apply_voucher' ), 10, 1 );
 
-		// Add Hook before recalculating line taxes
-		add_action( 'wp_ajax_woocommerce_calc_line_taxes', array( $this, 'before_recalculate_totals' ), 0 );
+		add_filter( 'woocommerce_coupon_is_valid_for_product', array( $this, 'is_valid' ), 1000, 2 );
+		add_filter( 'woocommerce_coupon_is_valid_for_cart', array( $this, 'is_valid' ), 1000, 2 );
 
-		// Disallow mixing normal coupons with vouchers to avoid taxation problems
-		add_filter( 'woocommerce_coupon_is_valid', array( $this, 'disallow_coupon_type_merging' ), 50, 3 );
+		add_action( 'woocommerce_cart_calculate_fees', array( $this, 'vouchers_as_fees' ), 10000 );
 
-		add_filter( 'woocommerce_gzd_shipments_order_has_voucher', array( $this, 'shipments_order_has_voucher' ), 10, 2 );
+		add_filter( 'woocommerce_gzd_force_fee_tax_calculation', array( $this, 'exclude_vouchers_from_forced_tax' ), 10, 2 );
+		add_filter( 'woocommerce_cart_totals_get_fees_from_cart_taxes', array( $this, 'remove_taxes_for_vouchers' ), 10, 3 );
+
+		// add_action( 'woocommerce_before_cart_totals', array( $this, 'hide_vouchers' ) );
+		// add_action( 'woocommerce_after_cart_totals', array( $this, 'show_vouchers' ) );
+
+		// add_action( 'woocommerce_review_order_after_cart_contents', array( $this, 'hide_vouchers' ) );
+		// add_action( 'woocommerce_review_order_before_order_total', array( $this, 'show_vouchers' ) );
+	}
+
+	public function fee_is_voucher( $fee ) {
+		return strstr( $fee->object->id, 'voucher_' );
+	}
+
+	/**
+	 * Should always round at subtotal?
+	 *
+	 * @since 3.9.0
+	 * @return bool
+	 */
+	protected static function round_at_subtotal() {
+		return 'yes' === get_option( 'woocommerce_tax_round_at_subtotal' );
+	}
+
+	/**
+	 * Apply rounding to an array of taxes before summing. Rounds to store DP setting, ignoring precision.
+	 *
+	 * @since  3.2.6
+	 * @param  float $value    Tax value.
+	 * @param  bool  $in_cents Whether precision of value is in cents.
+	 * @return float
+	 */
+	protected static function round_line_tax( $value, $in_cents = true ) {
+		if ( ! self::round_at_subtotal() ) {
+			$value = wc_round_tax_total( $value, $in_cents ? 0 : null );
+		}
+		return $value;
+	}
+
+	/**
+	 * Woo seems to ignore the non-taxable status for negative fees @see WC_Cart_Totals::get_fees_from_cart()
+	 *
+	 * @param $taxes
+	 * @param $fee
+	 * @param WC_Cart_Totals $cart_totals
+	 *
+	 * @return array|mixed
+	 */
+	public function remove_taxes_for_vouchers( $taxes, $fee, $cart_totals ) {
+		if ( $this->fee_is_voucher( $fee ) ) {
+			$max_discount_tax_left = NumberUtil::round( $cart_totals->get_total( 'items_total_tax', true ) + $cart_totals->get_total( 'shipping_tax_total', true ) ) * -1;
+
+			if ( ! $this->added_discount_tax_left && wc_add_number_precision_deep( $fee->object->amount ) < $fee->total ) {
+				$fee->total += $max_discount_tax_left;
+
+				$this->added_discount_tax_left = true;
+			}
+
+			$taxes = array();
+		}
+
+		return $taxes;
+	}
+
+	/**
+	 * @param boolean $force_tax
+	 * @param $fee
+	 *
+	 * @return boolean
+	 */
+	public function exclude_vouchers_from_forced_tax( $force_tax, $fee ) {
+		if ( $this->fee_is_voucher( $fee ) ) {
+			$force_tax = false;
+		}
+
+		return $force_tax;
+	}
+
+	public function vouchers_as_fees() {
+		$this->added_discount_tax_left = false;
+
+		foreach( WC()->cart->get_applied_coupons() as $key => $coupon_code ) {
+			$coupon = new WC_Coupon( $coupon_code );
+
+			if ( $this->coupon_is_voucher( $coupon ) ) {
+				WC()->cart->fees_api()->add_fee(
+					array(
+						'name'      => apply_filters( 'woocommerce_gzd_voucher_name', sprintf( __( 'Voucher: %1$s', 'woocommerce-germanized' ), $coupon_code ), $coupon_code ),
+						'amount'    => floatval( $coupon->get_amount() ) * -1,
+						'taxable'   => false,
+						'id'        => 'voucher_' . $coupon_code,
+						'tax_class' => ''
+					)
+				);
+			}
+		}
+	}
+
+	public function hide_vouchers() {
+		$this->vouchers_hidden = array();
+
+		foreach( WC()->cart->get_applied_coupons() as $key => $coupon_code ) {
+			$coupon = new WC_Coupon( $coupon_code );
+
+			if ( $this->coupon_is_voucher( $coupon ) ) {
+				$this->vouchers_hidden[] = $coupon_code;
+
+				unset( WC()->cart->applied_coupons[ $key ] );
+			}
+		}
+	}
+
+	public function show_vouchers() {
+		foreach( $this->vouchers_hidden as $coupon_code ) {
+			if ( ! in_array( $coupon_code, WC()->cart->get_applied_coupons() ) ) {
+				WC()->cart->applied_coupons[] = $coupon_code;
+			}
+		}
+	}
+
+	/**
+	 * @param boolean $is_valid
+	 * @param WC_Coupon $coupon
+	 *
+	 * @return boolean
+	 */
+	public function is_valid( $is_valid, $coupon ) {
+		if ( $this->coupon_is_voucher( $coupon ) ) {
+			return false;
+		}
+
+		return $is_valid;
+	}
+
+	public function on_apply_voucher( $coupon_code ) {
+		$coupon = new WC_Coupon( $coupon_code );
+
+		if ( $coupon->get_id() > 0 && $this->coupon_is_voucher( $coupon ) ) {
+
+		}
 	}
 
 	public function shipments_order_has_voucher( $has_voucher, $order ) {
@@ -239,6 +382,10 @@ class WC_GZD_Coupon_Helper {
 	 * @return bool
 	 */
 	protected function coupon_is_voucher( $coupon ) {
+		if ( is_string( $coupon ) ) {
+			$coupon = new WC_Coupon( $coupon );
+		}
+
 		return apply_filters( 'woocommerce_gzd_coupon_is_voucher', ( 'yes' === $coupon->get_meta( 'is_voucher', true ) ), $coupon );
 	}
 
