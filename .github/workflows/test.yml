@@ -47,7 +47,6 @@ jobs:
             composer config --unset platform
             composer config repositories.0 '{"type": "path", "canonical": false, "url": "/tmp/phpunit-7.5-fork/phpunit-add-compatibility-with-php8-to-phpunit-7", "options": {"symlink": false}}'
             composer require --dev -W phpunit/phpunit:@dev --ignore-platform-reqs
-            rm -rf ./vendor/phpunit/
           fi
 
       - name: Install WP Tests
