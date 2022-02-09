@@ -52,6 +52,7 @@ class WC_GZD_Coupon_Helper {
 		add_filter( 'woocommerce_coupon_is_valid_for_cart', array( $this, 'is_valid' ), 1000, 2 );
 
 		add_action( 'woocommerce_cart_calculate_fees', array( $this, 'vouchers_as_fees' ), 10000 );
+		add_action( 'woocommerce_checkout_create_order_fee_item', array( $this, 'fee_item_save' ), 10, 4 );
 
 		add_filter( 'woocommerce_gzd_force_fee_tax_calculation', array( $this, 'exclude_vouchers_from_forced_tax' ), 10, 2 );
 		add_filter( 'woocommerce_cart_totals_get_fees_from_cart_taxes', array( $this, 'remove_taxes_for_vouchers' ), 10, 3 );
@@ -64,7 +65,9 @@ class WC_GZD_Coupon_Helper {
 	}
 
 	public function fee_is_voucher( $fee ) {
-		return strstr( $fee->object->id, 'voucher_' );
+		$fee_id = isset( $fee->object ) ? $fee->object->id : $fee->id;
+
+		return strstr( $fee_id, 'voucher_' );
 	}
 
 	/**
@@ -144,7 +147,8 @@ class WC_GZD_Coupon_Helper {
 						'amount'    => floatval( $coupon->get_amount() ) * -1,
 						'taxable'   => false,
 						'id'        => 'voucher_' . $coupon_code,
-						'tax_class' => ''
+						'tax_class' => '',
+						'code'      => $coupon_code
 					)
 				);
 			}
@@ -354,6 +358,24 @@ class WC_GZD_Coupon_Helper {
 				 */
 				$item->update_meta_data( 'tax_display_mode', $this->get_tax_display_mode( $order ) );
 			}
+		}
+	}
+
+	/**
+	 * Sets voucher coupon data if available.
+	 *
+	 * @param WC_Order_Item_Fee $item
+	 * @param $fee_key
+	 * @param object $fee
+	 * @param WC_Order $order
+	 */
+	public function fee_item_save( $item, $fee_key, $fee, $order ) {
+		if ( $this->fee_is_voucher( $fee ) ) {
+			$item->update_meta_data( '_is_voucher', 'yes' );
+			$item->update_meta_data( '_code', wc_clean( $fee->code ) );
+
+			$item->set_tax_status( 'none' );
+			$item->set_tax_class( '' );
 		}
 	}
 
