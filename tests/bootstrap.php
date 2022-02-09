@@ -173,7 +173,7 @@ class WC_GZD_Unit_Tests_Bootstrap {
 		require_once( $this->tests_dir . '/framework/vendor/class-wp-test-spy-rest-server.php' );
 
 		// test cases
-		require_once( $this->tests_dir . '/includes/wp-http-testcase.php' );
+		//require_once( $this->tests_dir . '/includes/wp-http-testcase.php' );
 		require_once( $this->tests_dir . '/framework/class-wc-gzd-unit-test-case.php' );
 		require_once( $this->tests_dir . '/framework/class-wc-gzd-rest-unit-test-case.php' );
 
