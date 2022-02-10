@@ -56,6 +56,7 @@ class WC_GZD_Coupon_Helper {
 
 		add_filter( 'woocommerce_gzd_force_fee_tax_calculation', array( $this, 'exclude_vouchers_from_forced_tax' ), 10, 2 );
 		add_filter( 'woocommerce_cart_totals_get_fees_from_cart_taxes', array( $this, 'remove_taxes_for_vouchers' ), 10, 3 );
+		add_action( 'woocommerce_order_item_fee_after_calculate_taxes', array( $this, 'remove_order_item_fee_taxes' ), 10 );
 
 		// add_action( 'woocommerce_before_cart_totals', array( $this, 'hide_vouchers' ) );
 		// add_action( 'woocommerce_after_cart_totals', array( $this, 'show_vouchers' ) );
@@ -93,6 +94,19 @@ class WC_GZD_Coupon_Helper {
 			$value = wc_round_tax_total( $value, $in_cents ? 0 : null );
 		}
 		return $value;
+	}
+
+	/**
+	 * Woo seems to ignore the non-taxable status for negative fees @see WC_Order_Item_Fee::calculate_taxes()
+	 *
+	 * @param WC_Order_Item_Fee $fee
+	 *
+	 * @return void
+	 */
+	public function remove_order_item_fee_taxes( $fee ) {
+		if ( 'yes' === $fee->get_meta( '_is_voucher' ) ) {
+			$fee->set_taxes( false );
+		}
 	}
 
 	/**
