@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: WooCommerce Germanized\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-01-28 12:09+0100\n"
-"PO-Revision-Date: 2022-01-28 12:10+0100\n"
+"PO-Revision-Date: 2022-02-10 11:43+0100\n"
 "Last-Translator: Dennis Nissle <info@vendidero.de>\n"
 "Language-Team: \n"
 "Language: de_DE@formal\n"
@@ -825,7 +825,7 @@ msgstr "Retoure #{shipment_id} zur Bestellung {order_id}"
 #: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:222
 msgctxt "dhl"
 msgid "Return shipment #{shipment_id} to order #{order_id}"
-msgstr "Retourensendung #{shipment_id} zur Bestellung #{order_id}"
+msgstr "Retoure #{shipment_id} zur Bestellung #{order_id}"
 
 # @ woocommerce-germanized
 #: woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:291
