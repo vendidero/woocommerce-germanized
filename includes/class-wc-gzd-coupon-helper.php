@@ -57,6 +57,7 @@ class WC_GZD_Coupon_Helper {
 		add_filter( 'woocommerce_gzd_force_fee_tax_calculation', array( $this, 'exclude_vouchers_from_forced_tax' ), 10, 2 );
 		add_filter( 'woocommerce_cart_totals_get_fees_from_cart_taxes', array( $this, 'remove_taxes_for_vouchers' ), 10, 3 );
 		add_action( 'woocommerce_order_item_fee_after_calculate_taxes', array( $this, 'remove_order_item_fee_taxes' ), 10 );
+		add_action( 'woocommerce_order_after_calculate_totals', array( $this, 'allow_order_fee_total_incl_tax' ), 15, 2 );
 
 		// add_action( 'woocommerce_before_cart_totals', array( $this, 'hide_vouchers' ) );
 		// add_action( 'woocommerce_after_cart_totals', array( $this, 'show_vouchers' ) );
@@ -65,10 +66,71 @@ class WC_GZD_Coupon_Helper {
 		// add_action( 'woocommerce_review_order_before_order_total', array( $this, 'show_vouchers' ) );
 	}
 
-	public function fee_is_voucher( $fee ) {
-		$fee_id = isset( $fee->object ) ? $fee->object->id : $fee->id;
+	/**
+	 * Woo calculates max discounts for fees based on net amounts. By doing so
+	 * negative fees will never be able to reach 0 order total in case of prices excluding taxes.
+	 *
+	 * @see WC_Order::calculate_totals()
+	 *
+	 * @param $and_taxes
+	 * @param WC_Order $order
+	 *
+	 * @return void
+	 */
+	public function allow_order_fee_total_incl_tax( $and_taxes, $order ) {
+		$fees_total           = 0;
+		$voucher_item_updated = false;
+		$fees_total_before    = $order->get_total_fees();
 
-		return strstr( $fee_id, 'voucher_' );
+		foreach ( $order->get_fees() as $item ) {
+			$fee_total = $item->get_total();
+
+			if ( $this->fee_is_voucher( $item ) && 0 > $fee_total ) {
+				$voucher_fee_total = array_reduce(
+					$order->get_fees(),
+					function( $carry, $item ) {
+						if ( $this->fee_is_voucher( $item ) && 0 > $item->get_total() ) {
+							return $carry + $item->get_total();
+						} else {
+							return $carry;
+						}
+					}
+				);
+
+				$max_voucher_total = '' !== $item->get_meta( '_voucher_amount' ) ? ( wc_format_decimal( $item->get_meta( '_voucher_amount' ) ) ) * -1 : $item->get_total();
+				$max_discount      = NumberUtil::round( ( $order->get_total() + ( $voucher_fee_total * -1 ) ), wc_get_price_decimals() ) * -1;
+
+				if ( 0 > $max_discount ) {
+					$voucher_fee_total = $max_discount < $max_voucher_total ? $max_voucher_total : $max_discount;
+
+					if ( $item->get_total() != $voucher_fee_total ) {
+						$voucher_item_updated = true;
+						$item->set_total( $voucher_fee_total );
+					}
+				}
+			}
+
+			$fees_total += $item->get_total();
+		}
+
+		if ( $voucher_item_updated ) {
+			$fees_diff = NumberUtil::round( $fees_total_before - $fees_total, wc_get_price_decimals() );
+
+			if ( $fees_diff > 0 ) {
+				$order->set_total( $order->get_total() - $fees_diff );
+				$order->save();
+			}
+		}
+	}
+
+	public function fee_is_voucher( $fee ) {
+		if ( is_a( $fee, 'WC_Order_Item_Fee' ) ) {
+			return 'yes' === $fee->get_meta( '_is_voucher' );
+		} else {
+			$fee_id = isset( $fee->object ) ? $fee->object->id : $fee->id;
+
+			return strstr( $fee_id, 'voucher_' );
+		}
 	}
 
 	/**
@@ -157,12 +219,13 @@ class WC_GZD_Coupon_Helper {
 			if ( $this->coupon_is_voucher( $coupon ) ) {
 				WC()->cart->fees_api()->add_fee(
 					array(
-						'name'      => apply_filters( 'woocommerce_gzd_voucher_name', sprintf( __( 'Voucher: %1$s', 'woocommerce-germanized' ), $coupon_code ), $coupon_code ),
-						'amount'    => floatval( $coupon->get_amount() ) * -1,
-						'taxable'   => false,
-						'id'        => 'voucher_' . $coupon_code,
-						'tax_class' => '',
-						'code'      => $coupon_code
+						'name'           => apply_filters( 'woocommerce_gzd_voucher_name', sprintf( __( 'Voucher: %1$s', 'woocommerce-germanized' ), $coupon_code ), $coupon_code ),
+						'amount'         => floatval( $coupon->get_amount() ) * -1,
+						'taxable'        => false,
+						'id'             => 'voucher_' . $coupon_code,
+						'tax_class'      => '',
+						'code'           => $coupon_code,
+						'voucher_amount' => $coupon->get_amount(),
 					)
 				);
 			}
@@ -387,6 +450,7 @@ class WC_GZD_Coupon_Helper {
 		if ( $this->fee_is_voucher( $fee ) ) {
 			$item->update_meta_data( '_is_voucher', 'yes' );
 			$item->update_meta_data( '_code', wc_clean( $fee->code ) );
+			$item->update_meta_data( '_voucher_amount', wc_format_decimal( $fee->voucher_amount ) );
 
 			$item->set_tax_status( 'none' );
 			$item->set_tax_class( '' );
