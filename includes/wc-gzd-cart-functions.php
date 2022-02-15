@@ -969,7 +969,7 @@ function wc_gzd_maybe_disable_checkout_adjustments() {
 		}
 	} elseif ( ! wp_doing_ajax() && wc_gzd_checkout_adjustments_disabled() ) {
 		add_action( 'woocommerce_review_order_before_payment', function() {
-			echo '<input type="checkbox" name="wc_gzd_checkout_disabled" value="1" checked="checked" style="display: none !important; visibility: hidden !important;" />';
+			echo '<input type="checkbox" name="wc_gzd_checkout_disabled" id="wc_gzd_checkout_disabled" value="1" checked="checked" style="display: none !important; visibility: hidden !important;" />';
 		}, 50 );
 	}
 
