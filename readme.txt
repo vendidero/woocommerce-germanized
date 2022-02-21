@@ -155,6 +155,9 @@ The shortcode is useful to output the legal page attachments in custom email tem
 `[gzd_complaints]`
 Inserts a text that informs the customer about the EU Online Dispute Platform - this Shortcode should be inserted within your imprint. Find more information [here](http://shop.trustedshops.com/de/rechtstipps/jetzt-handeln-link-auf-eu-online-schlichtungs-plattform-ab-9.1.2016).
 
+`[gzd_return_request_form]`
+Insert the guest return request form which allows guests to submit [return requests](https://vendidero.de/dokument/retouren-konfigurieren-und-verwalten).
+
 `[trusted_shops_badge]`
 If you are a Trusted Shops Customer, you may insert this shortcode to insert the Trusted Shops Badge at your favourite place.
 By adjusting parameter width=55 (55 means 55px width/height) you may optionally set badge's width.

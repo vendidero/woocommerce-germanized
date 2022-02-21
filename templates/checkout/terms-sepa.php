@@ -27,7 +27,7 @@ $checkbox_id = $checkbox->get_id();
  *
  * @param WC_GZD_Legal_Checkbox $checkbox The checkbox instance.
  *
- * @since 2.0.0
+ * @since 2.0.1
  *
  */
 do_action( "woocommerce_gzd_before_legal_checkbox_{$checkbox_id}", $checkbox );
@@ -37,15 +37,18 @@ do_action( "woocommerce_gzd_before_legal_checkbox_{$checkbox_id}", $checkbox );
    style="<?php echo esc_attr( $checkbox->get_html_style() ); ?>"
    data-checkbox="<?php echo esc_attr( $checkbox->get_id() ); ?>">
     <label for="<?php echo esc_attr( $checkbox->get_html_id() ); ?>"
-           class="woocommerce-form__label woocommerce-form__label-for-checkbox checkbox">
-        <input type="checkbox" class="<?php $checkbox->render_classes( $checkbox->get_html_classes() ); ?>"
-               name="<?php echo esc_attr( $checkbox->get_html_name() ); ?>"
-               id="<?php echo esc_attr( $checkbox->get_html_id() ); ?>"/>
+           class="woocommerce-form__label <?php echo ( ! $checkbox->hide_input() ? 'woocommerce-form__label-for-checkbox checkbox' : '' ); ?>">
+	    <?php if ( ! $checkbox->hide_input() ) : ?>
+            <input type="checkbox" class="<?php $checkbox->render_classes( $checkbox->get_html_classes() ); ?>"
+                   name="<?php echo esc_attr( $checkbox->get_html_name() ); ?>"
+                   id="<?php echo esc_attr( $checkbox->get_html_id() ); ?>"/>
+        <?php endif; ?>
         <span class="woocommerce-gzd-<?php echo esc_attr( $checkbox->get_html_id() ); ?>-checkbox-text"><?php echo $checkbox->get_label(); ?></span>
 	    <?php if ( $checkbox->is_mandatory() ) : ?>
             &nbsp;<abbr class="required" title="<?php echo esc_attr__( 'required', 'woocommerce-germanized' ); ?>">*</abbr>
 	    <?php endif; ?>
         <a href="" rel="prettyPhoto" id="show-direct-debit-pretty" class="hidden"></a>
-        <input type="hidden" name="<?php echo esc_attr( $checkbox->get_html_name() ); ?>-field" value="1" />
     </label>
+
+    <input type="hidden" name="<?php echo esc_attr( $checkbox->get_html_name() ); ?>-field" value="1" />
 </p>
