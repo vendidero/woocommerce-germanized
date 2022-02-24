@@ -4,8 +4,8 @@ Tags: woocommerce, woocommerce german, woocommerce DE, woocommerce germany, wooc
 Requires at least: 5.4
 Tested up to: 5.9
 WC requires at least: 3.9
-WC tested up to: 6.2
-Stable tag: 3.8.3
+WC tested up to: 6.3
+Stable tag: 3.8.4
 Requires PHP: 5.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -208,6 +208,17 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 6. Edit pdf documents (Pro)
 
 == Changelog ==
+= 3.8.4 =
+* Improvement: Added formatted customer title to REST API
+* Improvement: Variation price detection
+* Improvement: Shipping costs refund tax precision
+* Improvement: Divi checkout module compatibility
+* Improvement: Divi product builder compatibility
+* Improvement: Unit price price observer price detection
+* Improvement: Return request parsing order ids
+* Improvement: Connection status check for DHL API
+* Fix: Allow booking DHL premium for EU and third countries
+
 = 3.8.3 =
 * Improvement: Prevent DHL preferred services from showing in non-shipping carts
 * Improvement: Prevent parcel delivery checkbox from showing in non-shipping carts
