@@ -927,7 +927,7 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 			}
 
 			if ( is_checkout() || is_cart() ) {
-                if ( WC()->cart && ! WC()->cart->display_prices_including_tax() ) {
+                if ( WC()->cart ) {
 	                wp_enqueue_script( 'wc-gzd-cart-voucher' );
                 }
 			}
@@ -1102,8 +1102,20 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 				) ) );
 			}
 
-			if ( wp_script_is( 'wc-gzd-cart-voucher' ) && ! in_array( 'wc-gzd-cart-voucher', $this->localized_scripts ) ) {
+			/**
+			 * The voucher script should only be localized in footer to make sure cart is fully initialized
+			 */
+			if ( wp_script_is( 'wc-gzd-cart-voucher' ) && ! in_array( 'wc-gzd-cart-voucher', $this->localized_scripts ) && doing_action( 'wp_print_footer_scripts' ) ) {
 				$this->localized_scripts[] = 'wc-gzd-cart-voucher';
+
+                $args = array(
+	                'ajax_url'                     => WC()->ajax_url(),
+	                'wc_ajax_url'                  => WC_AJAX::get_endpoint( "%%endpoint%%" ),
+	                'refresh_cart_vouchers_nonce'  => wp_create_nonce( 'wc-gzd-refresh-cart-vouchers' ),
+	                'display_prices_including_tax' => WC()->cart->display_prices_including_tax(),
+	                'voucher_prefix'               => trim( apply_filters( 'woocommerce_gzd_voucher_name', sprintf( __( 'Voucher: %1$s', 'woocommerce-germanized' ), '' ), '' ) ),
+                    'vouchers'                     => WC_GZD_Coupon_Helper::instance()->get_voucher_data_from_cart(),
+                );
 
 				/**
 				 * Filters script localization paramaters for the `wc-gzd-cart-voucher` script.
@@ -1112,10 +1124,7 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 				 *
 				 * @since 3.8.5
 				 */
-				wp_localize_script( 'wc-gzd-cart-voucher', 'wc_gzd_cart_voucher_params', apply_filters( 'wc_gzd_cart_voucher_params', array(
-					'display_prices_including_tax' => WC()->cart->display_prices_including_tax(),
-                    'voucher_prefix'               => trim( apply_filters( 'woocommerce_gzd_voucher_name', sprintf( __( 'Voucher: %1$s', 'woocommerce-germanized' ), '' ), '' ) )
-				) ) );
+				wp_localize_script( 'wc-gzd-cart-voucher', 'wc_gzd_cart_voucher_params', apply_filters( 'wc_gzd_cart_voucher_params', $args ) );
 			}
 
 			if ( wp_script_is( 'wc-gzd-checkout' ) && ! in_array( 'wc-gzd-checkout', $this->localized_scripts ) ) {

@@ -11,8 +11,6 @@ class WC_GZD_Coupon_Helper {
 
 	protected static $_instance = null;
 
-	protected $vouchers_hidden = array();
-
 	protected $added_discount_tax_left = false;
 
 	public static function instance() {
@@ -56,14 +54,188 @@ class WC_GZD_Coupon_Helper {
 
 		add_filter( 'woocommerce_gzd_force_fee_tax_calculation', array( $this, 'exclude_vouchers_from_forced_tax' ), 10, 2 );
 		add_filter( 'woocommerce_cart_totals_get_fees_from_cart_taxes', array( $this, 'remove_taxes_for_vouchers' ), 10, 3 );
+
 		add_action( 'woocommerce_order_item_fee_after_calculate_taxes', array( $this, 'remove_order_item_fee_taxes' ), 10 );
 		add_action( 'woocommerce_order_after_calculate_totals', array( $this, 'allow_order_fee_total_incl_tax' ), 15, 2 );
 
-		// add_action( 'woocommerce_before_cart_totals', array( $this, 'hide_vouchers' ) );
-		// add_action( 'woocommerce_after_cart_totals', array( $this, 'show_vouchers' ) );
+		add_filter( 'woocommerce_order_recalculate_coupons_coupon_object', function( $coupon_object, $coupon_code, $coupon_item, $order ) {
+			/**
+			 * @TODO for legacy purposes need to check whether this is a legacy voucher or not
+			 */
+			if ( $this->coupon_is_voucher( $coupon_object ) ) {
+				$this->convert_order_item_coupon_to_voucher( $coupon_item, $this->get_tax_display_mode( $order ) );
+			}
 
-		// add_action( 'woocommerce_review_order_after_cart_contents', array( $this, 'hide_vouchers' ) );
-		// add_action( 'woocommerce_review_order_before_order_total', array( $this, 'show_vouchers' ) );
+			return $coupon_object;
+		}, 10, 4 );
+
+		add_filter( 'woocommerce_update_order_review_fragments', array( $this, 'voucher_fragments' ), 10, 1 );
+
+		/**
+		 * Do only add the discount total filter for the admin edit order view to make
+		 * sure calculating totals does not produce wrong results.
+		 */
+		add_action( 'woocommerce_admin_order_items_after_line_items', function() {
+			add_filter( 'woocommerce_order_item_get_discount', array( $this, 'voucher_discount' ), 10, 2 );
+		} );
+
+		add_action( 'woocommerce_admin_order_totals_after_discount', function() {
+			remove_filter( 'woocommerce_order_item_get_discount', array( $this, 'voucher_discount' ), 10 );
+		} );
+
+		add_action( 'woocommerce_order_before_calculate_totals', array( $this, 'observe_voucher_status' ), 10, 2 );
+	}
+
+	/**
+	 * @param WC_Order_Item_Coupon $item
+	 *
+	 * @return void
+	 */
+	protected function convert_order_item_coupon_to_voucher( $item, $tax_display_mode = 'incl' ) {
+		$item->update_meta_data( 'is_voucher', 'yes' );
+		$item->update_meta_data( 'is_stored_as_fee', 'yes' );
+
+		/**
+		 * Store the current tax_display_mode used to calculate coupon totals
+		 * as the coupon tax amount may differ depending on which mode is being used.
+		 */
+		$item->update_meta_data( 'tax_display_mode', $tax_display_mode );
+	}
+
+	/**
+	 * As Woo does not offer a hook on coupon removal we'll need to observe the
+	 * calculate totals event and remove the fee in case the coupon is missing.
+	 *
+	 * @param boolean $and_taxes
+	 * @param WC_Order $order
+	 *
+	 * @return void
+	 */
+	public function observe_voucher_status( $and_taxes, $order ) {
+		if ( $and_taxes ) {
+			foreach( $order->get_fees() as $item_id => $fee ) {
+				if ( $this->fee_is_voucher( $fee ) ) {
+					// Check if the corresponding coupon has been removed
+					if ( ! $this->get_order_item_coupon_by_fee( $fee, $order ) ) {
+						$order->remove_item( $item_id );
+					}
+				}
+			}
+
+			foreach( $order->get_coupons() as $item_id => $coupon ) {
+				if ( $this->order_item_coupon_is_voucher( $coupon ) ) {
+					// Check if a voucher has been added which misses a fee
+					if ( ! $this->get_order_item_fee_by_coupon( $coupon, $order ) ) {
+						$this->add_voucher_to_order( $coupon, $order );
+					}
+				}
+			}
+		}
+	}
+
+	/**
+	 * @param WC_Order_Item_Coupon $coupon
+	 * @param WC_Order $order
+	 *
+	 * @return void
+	 */
+	public function add_voucher_to_order( $coupon, $order ) {
+		$coupon_data = $this->get_fee_data_from_coupon( $coupon );
+
+		$fee = new WC_Order_Item_Fee();
+
+		$fee->set_props( $coupon_data );
+		$fee->update_meta_data( '_is_voucher', 'yes' );
+		$fee->update_meta_data( '_code', $coupon_data['code'] );
+		$fee->update_meta_data( '_voucher_amount', wc_format_decimal( floatval( $coupon_data['amount'] ) * -1 ) );
+
+		$fee->set_tax_status( 'none' );
+
+		// Add a placeholder negative amount to trigger the recalculation in WC_GZD_Discount_Helper::allow_order_fee_total_incl_tax()
+		$fee->set_total( -1 );
+		$fee->set_total_tax( 0 );
+
+		$order->add_item( $fee );
+	}
+
+	/**
+	 * @param WC_Order_Item_Coupon $coupon
+	 * @param WC_Order|false $order
+	 *
+	 * @return WC_Order_Item_Fee|false
+	 */
+	public function get_order_item_fee_by_coupon( $coupon, $order = false ) {
+		$fee   = false;
+		$order = $order ? $order : $coupon->get_order();
+
+		if ( $order ) {
+			foreach( $order->get_fees() as $fee ) {
+				if ( $this->fee_is_voucher( $fee ) && 0 > $fee->get_total() ) {
+					if ( $fee->get_meta( '_code' ) === $coupon->get_code() ) {
+						return $fee;
+					}
+				}
+			}
+		}
+
+		return $fee;
+	}
+
+	/**
+	 * @param WC_Order_Item_Fee $fee
+	 * @param WC_Order|false $order
+	 *
+	 * @return WC_Order_Item_Coupon|false
+	 */
+	public function get_order_item_coupon_by_fee( $fee, $order = false ) {
+		$coupon = false;
+		$order  = $order ? $order : $fee->get_order();
+
+		if ( $order ) {
+			foreach( $order->get_coupons() as $coupon ) {
+				if ( $this->order_item_coupon_is_voucher( $coupon ) ) {
+					if ( $fee->get_meta( '_code' ) === $coupon->get_code() ) {
+						return $coupon;
+					}
+				}
+			}
+		}
+
+		return $coupon;
+	}
+
+	public function voucher_discount( $discount, $item ) {
+		if ( is_a( $item, 'WC_Order_Item_Coupon' ) ) {
+			if ( $this->order_item_coupon_is_voucher( $item ) && empty( $discount ) ) {
+				if ( $fee = $this->get_order_item_fee_by_coupon( $item ) ) {
+					return floatval( $fee->get_total() ) * -1;
+				}
+			}
+		}
+
+		return $discount;
+	}
+
+	public function get_voucher_data_from_cart() {
+		$voucher_data = array();
+
+		foreach( WC()->cart->get_fees() as $fee ) {
+			if ( WC_GZD_Coupon_Helper::instance()->fee_is_voucher( $fee ) ) {
+				$voucher_data[ $fee->id ] = array(
+					'name'         => esc_attr( $fee->name ),
+					'coupon_name'  => esc_attr( wc_cart_totals_coupon_label( $fee->code, false ) ),
+					'coupon_class' => 'coupon-' . esc_attr( sanitize_title( $fee->code ) ),
+				);
+			}
+		}
+
+		return $voucher_data;
+	}
+
+	public function voucher_fragments( $fragments ) {
+		$fragments['.gzd-vouchers'] = $this->get_voucher_data_from_cart();
+
+		return $fragments;
 	}
 
 	/**
@@ -210,46 +382,60 @@ class WC_GZD_Coupon_Helper {
 		return $force_tax;
 	}
 
+	/**
+	 * @param WC_Coupon $coupon
+	 *
+	 * @return void
+	 */
+	protected function register_coupon_as_fee( $coupon ) {
+		$id         = 'voucher_' . $coupon->get_code();
+		$fee_exists = false;
+
+		foreach( WC()->cart->get_fees() as $fee ) {
+			if ( $fee->id === $id ) {
+				$fee_exists = true;
+				break;
+			}
+		}
+
+		if ( ! $fee_exists ) {
+			WC()->cart->fees_api()->add_fee( $this->get_fee_data_from_coupon( $coupon ) );
+		}
+	}
+
+	/**
+	 * @param WC_Coupon|WC_Order_Item_Coupon $coupon
+	 *
+	 * @return array
+	 */
+	protected function get_fee_data_from_coupon( $coupon ) {
+		if ( is_a( $coupon, 'WC_Order_Item_Coupon' ) ) {
+			$coupon = $this->get_voucher_by_code( $coupon->get_code() );
+		}
+
+		if ( ! $coupon ) {
+			return array();
+		}
+
+		$id = 'voucher_' . $coupon->get_code();
+
+		return array(
+			'name'           => apply_filters( 'woocommerce_gzd_voucher_name', sprintf( __( 'Voucher: %1$s', 'woocommerce-germanized' ), $coupon->get_code() ), $coupon->get_code() ),
+			'amount'         => floatval( $coupon->get_amount() ) * -1,
+			'taxable'        => false,
+			'id'             => $id,
+			'tax_class'      => '',
+			'code'           => $coupon->get_code(),
+			'voucher_amount' => $coupon->get_amount(),
+		);
+	}
+
 	public function vouchers_as_fees() {
 		$this->added_discount_tax_left = false;
 
 		foreach( WC()->cart->get_applied_coupons() as $key => $coupon_code ) {
-			$coupon = new WC_Coupon( $coupon_code );
-
-			if ( $this->coupon_is_voucher( $coupon ) ) {
-				WC()->cart->fees_api()->add_fee(
-					array(
-						'name'           => apply_filters( 'woocommerce_gzd_voucher_name', sprintf( __( 'Voucher: %1$s', 'woocommerce-germanized' ), $coupon_code ), $coupon_code ),
-						'amount'         => floatval( $coupon->get_amount() ) * -1,
-						'taxable'        => false,
-						'id'             => 'voucher_' . $coupon_code,
-						'tax_class'      => '',
-						'code'           => $coupon_code,
-						'voucher_amount' => $coupon->get_amount(),
-					)
-				);
-			}
-		}
-	}
-
-	public function hide_vouchers() {
-		$this->vouchers_hidden = array();
-
-		foreach( WC()->cart->get_applied_coupons() as $key => $coupon_code ) {
-			$coupon = new WC_Coupon( $coupon_code );
-
-			if ( $this->coupon_is_voucher( $coupon ) ) {
-				$this->vouchers_hidden[] = $coupon_code;
-
-				unset( WC()->cart->applied_coupons[ $key ] );
-			}
-		}
-	}
-
-	public function show_vouchers() {
-		foreach( $this->vouchers_hidden as $coupon_code ) {
-			if ( ! in_array( $coupon_code, WC()->cart->get_applied_coupons() ) ) {
-				WC()->cart->applied_coupons[] = $coupon_code;
+			if ( $coupon = $this->get_voucher_by_code( $coupon_code ) ) {
+				$this->register_coupon_as_fee( $coupon );
 			}
 		}
 	}
@@ -269,10 +455,8 @@ class WC_GZD_Coupon_Helper {
 	}
 
 	public function on_apply_voucher( $coupon_code ) {
-		$coupon = new WC_Coupon( $coupon_code );
-
-		if ( $coupon->get_id() > 0 && $this->coupon_is_voucher( $coupon ) ) {
-
+		if ( $coupon = $this->get_voucher_by_code( $coupon_code ) ) {
+			$this->register_coupon_as_fee( $coupon );
 		}
 	}
 
@@ -420,22 +604,32 @@ class WC_GZD_Coupon_Helper {
 	/**
 	 * Sets voucher coupon data if available.
 	 *
-	 * @param WC_Order_Item $item
-	 * @param $code
-	 * @param WC_Order_Item_Coupon $coupon
+	 * @param WC_Order_Item_Coupon $item
+	 * @param string $code
+	 * @param WC_Coupon $coupon
 	 * @param WC_Order $order
 	 */
 	public function coupon_item_save( $item, $code, $coupon, $order ) {
 		if ( is_a( $coupon, 'WC_Coupon' ) ) {
 			if ( 'yes' === $coupon->get_meta( 'is_voucher', true ) ) {
-				$item->update_meta_data( 'is_voucher', 'yes' );
-				/**
-				 * Store the current tax_display_mode used to calculate coupon totals
-				 * as the coupon tax amount may differ depending on which mode is being used.
-				 */
-				$item->update_meta_data( 'tax_display_mode', $this->get_tax_display_mode( $order ) );
+				$this->convert_order_item_coupon_to_voucher( $item, $this->get_tax_display_mode( $order ) );
 			}
 		}
+	}
+
+	/**
+	 * @param string $code
+	 *
+	 * @return WC_Coupon|boolean
+	 */
+	protected function get_voucher_by_code( $code ) {
+		$voucher = new WC_Coupon( $code );
+
+		if ( ! $this->coupon_is_voucher( $voucher ) ) {
+			return false;
+		}
+
+		return apply_filters( 'woocommerce_gzd_voucher', $voucher, $code );
 	}
 
 	/**
@@ -477,7 +671,7 @@ class WC_GZD_Coupon_Helper {
 	}
 
 	/**
-	 * @param WC_Coupon|WC_Order_Item_Coupon $coupon
+	 * @param WC_Coupon $coupon
 	 *
 	 * @return bool
 	 */
@@ -487,6 +681,15 @@ class WC_GZD_Coupon_Helper {
 		}
 
 		return apply_filters( 'woocommerce_gzd_coupon_is_voucher', ( 'yes' === $coupon->get_meta( 'is_voucher', true ) ), $coupon );
+	}
+
+	/**
+	 * @param WC_Order_Item_Coupon $coupon
+	 *
+	 * @return bool
+	 */
+	protected function order_item_coupon_is_voucher( $coupon ) {
+		return apply_filters( 'woocommerce_gzd_order_item_coupon_is_voucher', ( 'yes' === $coupon->get_meta( 'is_voucher', true ) &&  'yes' === $coupon->get_meta( 'is_stored_as_fee', true ) ), $coupon );
 	}
 
 	protected function cart_has_voucher( $cart = null ) {
