@@ -915,7 +915,7 @@ class WC_GZD_Checkout {
 			return $fee_taxes;
 		}
 
-		$tax_shares = wc_gzd_get_cart_tax_share( 'fee' );
+		$tax_shares = apply_filters( 'woocommerce_gzd_fee_tax_shares', wc_gzd_get_cart_tax_share( 'fee' ), $fee );
 
 		// Reset
 		$fee->split_tax = array();

@@ -70,6 +70,7 @@ class WC_GZD_Post_Types {
 				'rewrite'               => false,
 			) )
 		);
+
 		// Units
 		register_taxonomy( 'product_unit',
 			/**
@@ -116,6 +117,7 @@ class WC_GZD_Post_Types {
 				'rewrite'               => false,
 			) )
 		);
+
 		// Price labels
 		register_taxonomy( 'product_price_label',
 			/**
@@ -149,6 +151,51 @@ class WC_GZD_Post_Types {
 					'update_item'   => __( 'Update Price Label', 'woocommerce-germanized' ),
 					'add_new_item'  => __( 'Add New Price Label', 'woocommerce-germanized' ),
 					'new_item_name' => __( 'New Price Label Name', 'woocommerce-germanized' )
+				),
+				'show_ui'               => true,
+				'query_var'             => true,
+				'public'                => false,
+				'capabilities'          => array(
+					'manage_terms' => 'manage_product_terms',
+					'edit_terms'   => 'edit_product_terms',
+					'delete_terms' => 'delete_product_terms',
+					'assign_terms' => 'assign_product_terms',
+				),
+				'rewrite'               => false,
+			) )
+		);
+
+		// Deposit classes
+		register_taxonomy( 'product_deposit_type',
+			/**
+			 * Filter post types which are capable of storing deposit types.
+			 *
+			 * @param array $post_types The post types to support `product_deposit_type` taxonomy.
+			 *
+			 * @since 3.9.0
+			 */
+			apply_filters( 'woocommerce_germanized_taxonomy_objects_product_deposit_type', array( 'product' ) ),
+			/**
+			 * Filter to adjust arguments passed to register the `product_deposit_type` taxonomy.
+			 *
+			 * @param array $args Arguments passed to `register_taxonomy`.
+			 *
+			 * @since 3.9.0
+			 */
+			apply_filters( 'woocommerce_germanized_taxonomy_args_product_deposit_type', array(
+				'hierarchical'          => false,
+				'update_count_callback' => '_wc_term_recount',
+				'label'                 => __( 'Product Deposit Types', 'woocommerce-germanized' ),
+				'labels'                => array(
+					'name'          => __( 'Product Deposit Types', 'woocommerce-germanized' ),
+					'singular_name' => __( 'Product Deposit Types', 'woocommerce-germanized' ),
+					'menu_name'     => _x( 'Deposit Types', 'Admin menu name', 'woocommerce-germanized' ),
+					'search_items'  => __( 'Search Deposit Types', 'woocommerce-germanized' ),
+					'all_items'     => __( 'All Deposit Types', 'woocommerce-germanized' ),
+					'edit_item'     => __( 'Edit Deposit Types', 'woocommerce-germanized' ),
+					'update_item'   => __( 'Update Deposit Type', 'woocommerce-germanized' ),
+					'add_new_item'  => __( 'Add New Deposit Type', 'woocommerce-germanized' ),
+					'new_item_name' => __( 'New Deposit Type Name', 'woocommerce-germanized' )
 				),
 				'show_ui'               => true,
 				'query_var'             => true,

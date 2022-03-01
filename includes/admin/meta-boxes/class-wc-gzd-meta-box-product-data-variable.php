@@ -201,6 +201,16 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 		?>
         <div class="variable_pricing_labels">
             <p class="form-row form-row-first">
+                <label><?php _e( 'Deposit Type', 'woocommerce-germanized' ); ?></label>
+                <select name="variable_deposit_type[<?php echo $loop; ?>]">
+                    <option value="" <?php selected( empty( $gzd_product->get_deposit_type( 'edit' ) ), true ); ?>><?php _e( 'Same as Parent', 'woocommerce-germanized' ); ?></option>
+			        <?php foreach ( WC_germanized()->deposit_types->get_deposit_types() as $key => $value ) : ?>
+                        <option value="<?php echo esc_attr( $key ); ?>" <?php selected( $key === $gzd_product->get_deposit_type( 'edit' ), true ); ?>><?php echo esc_html( $value ); ?></option>
+			        <?php endforeach; ?>
+                </select>
+            </p>
+
+            <p class="form-row form-row-first">
                 <label><?php _e( 'Sale Label', 'woocommerce-germanized' ); ?></label>
                 <select name="variable_sale_price_label[<?php echo $loop; ?>]">
                     <option value="" <?php selected( empty( $gzd_product->get_sale_price_label( 'edit' ) ), true ); ?>><?php _e( 'Same as Parent', 'woocommerce-germanized' ); ?></option>
@@ -381,6 +391,7 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 			'_unit_product'                                 => '',
 			'_unit_price_auto'                              => '',
 			'_unit_price_regular'                           => '',
+            '_deposit_type'                                 => '',
 			'_sale_price_label'                             => '',
 			'_sale_price_regular_label'                     => '',
 			'_unit_price_sale'                              => '',

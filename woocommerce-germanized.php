@@ -92,6 +92,11 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 		public $delivery_times = null;
 
 		/**
+		 * @var WC_GZD_Deposit_Types|null
+		 */
+		public $deposit_types = null;
+
+		/**
 		 * @var WC_GZD_Emails|null
 		 */
 		public $emails = null;
@@ -223,6 +228,7 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 			$this->units           = new WC_GZD_Units();
 			$this->price_labels    = new WC_GZD_Price_Labels();
 			$this->delivery_times  = new WC_GZD_Delivery_Times();
+			$this->deposit_types   = new WC_GZD_Deposit_Types();
 			$this->product_factory = new WC_GZD_Product_Factory();
 
 			/**
@@ -523,6 +529,7 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 				include_once WC_GERMANIZED_ABSPATH . 'includes/admin/class-wc-gzd-admin-legal-checkboxes.php';
 				include_once WC_GERMANIZED_ABSPATH . 'includes/admin/settings/class-wc-gzd-settings-pointers.php';
 				include_once WC_GERMANIZED_ABSPATH . 'includes/admin/class-wc-gzd-admin-product-categories.php';
+				include_once WC_GERMANIZED_ABSPATH . 'includes/admin/class-wc-gzd-admin-deposit-types.php';
 				include_once WC_GERMANIZED_ABSPATH . 'includes/export/class-wc-gzd-product-export.php';
 				include_once WC_GERMANIZED_ABSPATH . 'includes/import/class-wc-gzd-product-import.php';
 			}

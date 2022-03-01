@@ -327,6 +327,14 @@ class WC_Germanized_Meta_Box_Product_Data {
 		echo '<div class="options_group show_if_simple show_if_external show_if_variable">';
 
 		woocommerce_wp_select( array(
+			'id'          => '_deposit_type',
+			'label'       => __( 'Deposit Type', 'woocommerce-germanized' ),
+			'options'     => array_merge( array( "-1" => __( 'Select Deposit Type', 'woocommerce-germanized' ) ), WC_germanized()->deposit_types->get_deposit_types() ),
+			'desc_tip'    => true,
+			'description' => __( 'In case this product is reusable and has deposits, select the deposit type.', 'woocommerce-germanized' )
+		) );
+
+		woocommerce_wp_select( array(
             'id'          => '_sale_price_label',
             'label'       => __( 'Sale Label', 'woocommerce-germanized' ),
             'options'     => array_merge( array( "-1" => __( 'Select Price Label', 'woocommerce-germanized' ) ), WC_germanized()->price_labels->get_labels() ),
@@ -596,6 +604,7 @@ class WC_Germanized_Meta_Box_Product_Data {
 			'_unit_price_auto'                              => '',
 			'_unit_price_regular'                           => '',
 			'_unit_price_sale'                              => '',
+            '_deposit_type'                                 => '',
 			'_sale_price_label'                             => '',
 			'_sale_price_regular_label'                     => '',
 			'_mini_desc'                                    => '',
@@ -867,17 +876,17 @@ class WC_Germanized_Meta_Box_Product_Data {
 
 		$gzd_product       = wc_gzd_get_product( $product );
 		$product_type      = ( ! isset( $data['product-type'] ) || empty( $data['product-type'] ) ) ? 'simple' : sanitize_title( stripslashes( $data['product-type'] ) );
-		$sale_price_labels = array( '_sale_price_label', '_sale_price_regular_label' );
+		$term_selects      = array( '_sale_price_label', '_sale_price_regular_label', '_deposit_type' );
 
-		foreach ( $sale_price_labels as $label ) {
-			if ( isset( $data[ $label ] ) ) {
-				$setter = "set{$label}";
+		foreach ( $term_selects as $term_select ) {
+			if ( isset( $data[ $term_select ] ) ) {
+				$setter = "set{$term_select}";
 
 				if ( is_callable( array( $gzd_product, $setter ) ) ) {
-					if ( empty( $data[ $label ] ) || in_array( $data[ $label ], array( 'none', '-1' ) ) ) {
+					if ( empty( $data[ $term_select ] ) || in_array( $data[ $term_select ], array( 'none', '-1' ) ) ) {
 						$gzd_product->$setter( '' );
 					} else {
-						$gzd_product->$setter( wc_clean( $data[ $label ] ) );
+						$gzd_product->$setter( wc_clean( $data[ $term_select ] ) );
 					}
 				}
 			}

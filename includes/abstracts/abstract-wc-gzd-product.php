@@ -93,6 +93,20 @@ class WC_GZD_Product {
 		return $this->get_prop( 'warranty_attachment_id', $context );
 	}
 
+	public function get_deposit_type_term( $context = 'view'  ) {
+		$type = $this->get_deposit_type( $context );
+
+		if ( ! empty( $type ) ) {
+			return WC_germanized()->deposit_types->get_deposit_type_term( $type );
+		}
+
+		return false;
+	}
+
+	public function get_deposit_type( $context = 'view' ) {
+		return $this->get_prop( 'deposit_type', $context );
+	}
+
 	public function get_unit_product( $context = 'view' ) {
 		return $this->get_prop( 'unit_product', $context );
 	}
@@ -251,6 +265,10 @@ class WC_GZD_Product {
 
 	public function is_differential_taxed( $context = 'view' ) {
 		return $this->get_differential_taxation( $context ) === true;
+	}
+
+	public function set_deposit_type( $deposit_type ) {
+		$this->set_prop( 'deposit_type', $deposit_type );
 	}
 
 	public function set_warranty_attachment_id( $id ) {
@@ -1477,6 +1495,7 @@ class WC_GZD_Product {
 		 * save request.
 		 */
 		$slugs = $this->get_delivery_time_slugs( 'save' );
+		$id    = false;
 
 		if ( false !== $slugs ) {
 			$this->set_delivery_times_need_update( false );
@@ -1494,6 +1513,15 @@ class WC_GZD_Product {
 			}
 
 			$this->delivery_times = null;
+		}
+
+		/**
+		 * Update deposit type term relationships
+		 */
+		if ( $deposit_type = $this->get_deposit_type_term( 'edit' ) ) {
+			wp_set_post_terms( $this->get_wc_product()->get_id(), array( $deposit_type->slug ), 'product_deposit_type', false );
+		} else {
+			wp_delete_object_term_relationships( $this->get_wc_product()->get_id(), 'product_deposit_type' );
 		}
 	}
 }
