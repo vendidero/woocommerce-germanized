@@ -60,6 +60,10 @@ class WC_GZD_Order_Helper {
 
 		add_action( 'woocommerce_checkout_create_order_fee_item', array( $this, 'set_fee_split_tax_meta' ), 10, 4 );
 
+		add_action( 'woocommerce_before_order_object_save', array( $this, 'set_order_version' ), 10 );
+		// The woocommerce_before_order_object_save hook might fail in case an order has been created manually
+		add_action( 'woocommerce_new_order', array( $this, 'on_create_order' ), 10 );
+
 		// Disallow user order cancellation
 		if ( 'yes' === get_option( 'woocommerce_gzd_checkout_stop_order_cancellation' ) ) {
 
@@ -75,6 +79,50 @@ class WC_GZD_Order_Helper {
 				'maybe_reduce_order_stock'
 			), 5, 1 );
 		}
+	}
+
+	/**
+	 * @param $order_id
+	 * @param WC_Order $order
+	 *
+	 * @return void
+	 */
+	public function on_create_order( $order_id ) {
+		if ( $order = wc_get_order( $order_id ) ) {
+			if ( ! $order->get_meta( '_gzd_version' ) ) {
+				$order->update_meta_data( '_gzd_version', WC_germanized()->version );
+				$order->save();
+			}
+		}
+	}
+
+	/**
+	 * @param WC_Abstract_Order $order
+	 *
+	 * @return void
+	 */
+	public function set_order_version( $order ) {
+		if ( ! $order->get_id() ) {
+			$order->update_meta_data( '_gzd_version', WC_germanized()->version );
+		}
+	}
+
+	public function get_order_version( $order ) {
+		$version = '1.0.0';
+
+		if ( is_numeric( $order ) ) {
+			$order = wc_get_order( $order );
+		}
+
+		if ( $order ) {
+			$version = $order->get_meta( '_gzd_version', true );
+
+			if ( ! $version ) {
+				$version = '1.0.0';
+			}
+		}
+
+		return $version;
 	}
 
 	/**
