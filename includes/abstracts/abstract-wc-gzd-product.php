@@ -107,6 +107,20 @@ class WC_GZD_Product {
 		return $this->get_prop( 'deposit_type', $context );
 	}
 
+	public function get_deposit_amount( $context = 'view' ) {
+		$amount = wc_format_decimal( 0 );
+
+		if ( $term = $this->get_deposit_type_term( $context ) ) {
+			$amount = WC_germanized()->deposit_types->get_deposit( $term );
+		}
+
+		return apply_filters( "woocommerce_gzd_product_deposit_amount", $amount, $this, $context );
+	}
+
+	public function has_deposit( $context = 'view' ) {
+		return apply_filters( "woocommerce_gzd_product_has_deposit", $this->get_deposit_amount() > 0, $this, $context );
+	}
+
 	public function get_unit_product( $context = 'view' ) {
 		return $this->get_prop( 'unit_product', $context );
 	}

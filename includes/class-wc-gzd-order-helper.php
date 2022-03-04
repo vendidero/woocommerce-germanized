@@ -173,6 +173,8 @@ class WC_GZD_Order_Helper {
 		array_push( $metas, '_unit_base' );
 		array_push( $metas, '_min_age' );
 		array_push( $metas, '_defect_description' );
+		array_push( $metas, '_deposit_type' );
+		array_push( $metas, '_deposit_amount' );
 
 		return $metas;
 	}
@@ -192,6 +194,8 @@ class WC_GZD_Order_Helper {
 				$gzd_item->set_defect_description( $gzd_product->get_formatted_defect_description() );
 				$gzd_item->set_delivery_time( $gzd_product->get_delivery_time_html() );
 				$gzd_item->set_min_age( $gzd_product->get_min_age() );
+				$gzd_item->set_deposit_type( $gzd_product->get_deposit_type() );
+				$gzd_item->set_deposit_amount( $gzd_product->get_deposit_amount() );
 
 				/**
 				 * Add order item meta.

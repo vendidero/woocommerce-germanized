@@ -677,14 +677,14 @@ function wc_gzd_item_is_tax_share_exempt( $item, $type = 'shipping', $key = fals
  * Calculates tax share for shipping/fees
  *
  * @param string $type
+ * @param array $cart_contents
  *
  * @return array
  */
 function wc_gzd_get_cart_tax_share( $type = 'shipping', $cart_contents = array() ) {
-	$cart        = empty( $cart_contents ) ? WC()->cart->cart_contents : $cart_contents;
+	$cart        = empty( $cart_contents ) && WC()->cart ? WC()->cart->get_cart_contents() : $cart_contents;
 	$tax_shares  = array();
 	$item_totals = 0;
-	$is_cart     = true;
 
 	// Get tax classes and tax amounts
 	if ( ! empty( $cart ) ) {
