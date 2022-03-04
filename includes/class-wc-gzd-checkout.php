@@ -116,10 +116,34 @@ class WC_GZD_Checkout {
 		add_action( 'template_redirect', array( $this, 'maybe_remove_shopmark_filters' ) );
 		add_action( 'woocommerce_checkout_update_order_review', array( $this, 'maybe_remove_shopmark_filters' ) );
 
+		// Hide the newly introduced state field for Germany since Woo 6.3
+		add_filter( 'woocommerce_billing_fields', array( $this, 'hide_de_state' ), 500, 2 );
+		add_filter( 'woocommerce_shipping_fields', array( $this, 'hide_de_state' ), 500, 2 );
+
 		if ( 'never' !== get_option( 'woocommerce_gzd_checkout_validate_street_number' ) ) {
 			// Maybe force street number during checkout
 			add_action( 'woocommerce_after_checkout_validation', array( $this, 'maybe_force_street_number' ), 10, 2 );
 		}
+	}
+
+	public function hide_de_state( $fields, $country ) {
+		if ( 'DE' === $country && ( isset( $fields['billing_state'] ) || isset( $fields['shipping_state'] ) ) && apply_filters( 'woocommerce_gzd_disable_de_checkout_state_select', true ) ) {
+			if ( isset( $fields['billing_state'] ) ) {
+				unset( $fields['billing_state'] );
+			} elseif ( isset( $fields['shipping_state'] ) ) {
+				unset( $fields['shipping_state'] );
+			}
+		}
+
+		return $fields;
+	}
+
+	public function remove_state_from_locale( $locale ) {
+		if ( isset( $locale['DE']['state'] ) ) {
+			unset( $locale['DE']['state'] );
+		}
+
+		return $locale;
 	}
 
 	/**
