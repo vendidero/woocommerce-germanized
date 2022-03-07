@@ -24,8 +24,68 @@ class WC_GZD_Deposit_Types extends WC_GZD_Taxonomy {
 		return parent::get_term_object( $key, $by );
 	}
 
+	/**
+	 * Returns a list of terms slug=>name
+	 *
+	 * @return string[] terms as array
+	 */
+	public function get_terms( $args = array() ) {
+		$args  = wp_parse_args( $args, array( 'hide_empty' => false ) );
+		$list  = array();
+		$terms = get_terms( $this->get_taxonomy(), $args );
+
+		if ( ! empty( $terms ) && ! is_wp_error( $terms ) ) {
+			foreach ( $terms as $term ) {
+				$list[ $term->slug ] = sprintf( _x( '%1$s (%2$s)', 'deposit-type-title', 'woocommerce-germanized' ), $term->name, $this->get_packaging_type_title( $term ) );
+			}
+		}
+
+		return $list;
+	}
+
 	public function get_deposit_types( $args = array() ) {
 		return $this->get_terms( $args );
+	}
+
+	public function get_packaging_types() {
+		return apply_filters( 'woocommerce_gzd_deposit_packaging_types', array(
+			'reusable'   => _x( 'Reusable', 'deposit-packaging-type', 'woocommerce-germanized' ),
+			'disposable' => _x( 'Disposable', 'deposit-packaging-type', 'woocommerce-germanized' )
+		) );
+	}
+
+	public function get_packaging_type( $term ) {
+		$packaging_types = $this->get_packaging_types();
+		$packaging_type  = false;
+
+		if ( ! is_a( $term, 'WP_Term' ) ) {
+			$term = $this->get_deposit_type_term( $term );
+		}
+
+		if ( $term ) {
+			$packaging_type_term = get_term_meta( $term->term_id, 'deposit_packaging_type', true );
+
+			if ( array_key_exists( $packaging_type_term, $packaging_types ) ) {
+				$packaging_type = $packaging_type_term;
+			}
+		}
+
+		return $packaging_type;
+	}
+
+	public function get_packaging_type_title( $type ) {
+		if ( is_a( $type, 'WP_Term' ) ) {
+			$type = $this->get_packaging_type( $type );
+		}
+
+		$packaging_types = $this->get_packaging_types();
+		$title           = _x( 'None', 'deposit-packaging-type', 'woocommerce-germanized' );
+
+		if ( array_key_exists( $type, $packaging_types ) ) {
+			$title = $packaging_types[ $type ];
+		}
+
+		return apply_filters( 'woocommerce_gzd_deposit_packaging_type_title', $title, $type );
 	}
 
 	public function get_deposit( $term ) {

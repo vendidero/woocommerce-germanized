@@ -63,6 +63,22 @@
             }
         }
 
+        if ( $wrapper.find( '.org_deposit_amount' ).length > 0 ) {
+            $wrapper.find( '.deposit-amount:first' ).html( $wrapper.find( '.org_deposit_amount' ).html() ).removeClass( 'variation_modified' ).show();
+
+            if ( $wrapper.find( '.deposit-amount:first' ).is( ':empty' ) ) {
+                $wrapper.find( '.deposit-amount:first' ).addClass( 'wc-gzd-additional-info-placeholder' ).hide();
+            }
+        }
+
+        if ( $wrapper.find( '.org_deposit_packaging_type' ).length > 0 ) {
+            $wrapper.find( '.deposit-packaging-type:first' ).html( $wrapper.find( '.org_deposit_packaging_type' ).html() ).removeClass( 'variation_modified' ).show();
+
+            if ( $wrapper.find( '.deposit-packaging-type:first' ).is( ':empty' ) ) {
+                $wrapper.find( '.deposit-packaging-type:first' ).addClass( 'wc-gzd-additional-info-placeholder' ).hide();
+            }
+        }
+
         if ( $wrapper.find( '.org_tax_info' ).length > 0 ) {
             $wrapper.find( '.tax-info:first' ).html( $wrapper.find( '.org_tax_info' ).html() ).removeClass( 'variation_modified' ).show();
 
@@ -147,6 +163,14 @@
                 $wrapper.append( '<div class="org_unit_price org_product_info">' + $wrapper.find( '.price-unit:first' ).html() + '</div>' );
             }
 
+            if ( $wrapper.find( '.deposit-amount:first' ).length > 0 ) {
+                $wrapper.append( '<div class="org_deposit_amount org_product_info">' + $wrapper.find( '.deposit-amount:first' ).html() + '</div>' );
+            }
+
+            if ( $wrapper.find( '.deposit-packaging-type:first' ).length > 0 ) {
+                $wrapper.append( '<div class="org_deposit_packaging_type org_product_info">' + $wrapper.find( '.deposit-packaging-type:first' ).html() + '</div>' );
+            }
+
             if ( $wrapper.find( '.product-units:first' ).length > 0 ) {
                 $wrapper.append( '<div class="org_product_units org_product_info">' + $wrapper.find( '.product-units:first' ).html() + '</div>' );
             }
@@ -166,6 +190,8 @@
         $wrapper.find( '.delivery-time-info:first' ).hide();
         $wrapper.find( '.defect-description:first' ).hide();
         $wrapper.find( '.price-unit:first' ).hide();
+        $wrapper.find( '.deposit-amount:first' ).hide();
+        $wrapper.find( '.deposit-packaging-type:first' ).hide();
         $wrapper.find( '.tax-info:first' ).hide();
         $wrapper.find( '.shipping-costs-info:first' ).hide();
         $wrapper.find( '.product-units:first' ).hide();
@@ -179,7 +205,15 @@
         }
 
         if ( variation.tax_info !== '' && hasDisplayPrice ) {
-            $wrapper.find( '.tax-info:first' ).html( variation.tax_info ).addClass('variation_modified').removeClass( 'wc-gzd-additional-info-placeholder' ).show();
+            $wrapper.find( '.tax-info:first' ).html( variation.tax_info ).addClass( 'variation_modified' ).removeClass( 'wc-gzd-additional-info-placeholder' ).show();
+        }
+
+        if ( variation.deposit_amount !== '' && hasDisplayPrice ) {
+            $wrapper.find( '.deposit-amount:first' ).html( variation.deposit_amount ).addClass( 'variation_modified' ).removeClass( 'wc-gzd-additional-info-placeholder' ).show();
+        }
+
+        if ( variation.deposit_packaging_type !== '' && hasDisplayPrice ) {
+            $wrapper.find( '.deposit-packaging-type:first' ).html( variation.deposit_packaging_type ).addClass( 'variation_modified' ).removeClass( 'wc-gzd-additional-info-placeholder' ).show();
         }
 
         if ( variation.shipping_costs_info !== '' && hasDisplayPrice ) {

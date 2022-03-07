@@ -104,6 +104,13 @@ p.wc-gzd-additional-info:empty {
   .product .defect-description:not(:empty) p:last-child {
     margin-bottom: 0; }
 
+.deposit-packaging-type {
+  text-transform: uppercase;
+  font-weight: bold; }
+
+.product p.deposit-packaging-type {
+  font-size: 1.2em; }
+
 .product .product_meta {
   margin-top: 1rem; }
 

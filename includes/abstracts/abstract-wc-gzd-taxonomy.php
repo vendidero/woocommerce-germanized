@@ -39,7 +39,7 @@ class WC_GZD_Taxonomy {
 	 * @return false|WP_Term
 	 */
 	public function get_term_object( $key, $by = 'slug' ) {
-		$taxonomy = $this->taxonomy;
+		$taxonomy = $this->get_taxonomy();
 
 		/**
 		 * In case a numeric key is available, prefer retrieving by id over slug.
@@ -125,7 +125,7 @@ class WC_GZD_Taxonomy {
 	public function get_terms( $args = array() ) {
 		$args  = wp_parse_args( $args, array( 'hide_empty' => false ) );
 		$list  = array();
-		$terms = get_terms( $this->taxonomy, $args );
+		$terms = get_terms( $this->get_taxonomy(), $args );
 
 		if ( ! empty( $terms ) && ! is_wp_error( $terms ) ) {
 			foreach ( $terms as $term ) {

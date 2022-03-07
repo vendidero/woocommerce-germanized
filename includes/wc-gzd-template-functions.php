@@ -107,6 +107,26 @@ if ( ! function_exists( 'woocommerce_gzd_template_single_shipping_costs_info' ) 
 	}
 }
 
+if ( ! function_exists( 'woocommerce_gzd_template_single_deposit_amount' ) ) {
+
+	/**
+	 * Single Deposit info
+	 */
+	function woocommerce_gzd_template_single_deposit_amount() {
+		wc_get_template( 'single-product/deposit-amount.php' );
+	}
+}
+
+if ( ! function_exists( 'woocommerce_gzd_template_single_deposit_packaging_type' ) ) {
+
+	/**
+	 * Single Deposit info
+	 */
+	function woocommerce_gzd_template_single_deposit_packaging_type() {
+		wc_get_template( 'single-product/deposit-packaging-type.php' );
+	}
+}
+
 if ( ! function_exists( 'woocommerce_gzd_template_single_delivery_time_info' ) ) {
 
 	/**
@@ -125,6 +145,34 @@ if ( ! function_exists( 'woocommerce_gzd_template_grouped_single_delivery_time_i
 	function woocommerce_gzd_template_grouped_single_delivery_time_info( $html, $grouped_child ) {
 		ob_start();
 		wc_get_template( 'single-product/delivery-time-info.php' );
+		$legal_html = ob_get_clean();
+
+		return $html . $legal_html;
+	}
+}
+
+if ( ! function_exists( 'woocommerce_gzd_template_grouped_single_deposit_amount' ) ) {
+
+	/**
+	 * Grouped single product deposit amount
+	 */
+	function woocommerce_gzd_template_grouped_single_deposit_amount( $html, $grouped_child ) {
+		ob_start();
+		wc_get_template( 'single-product/deposit-amount.php' );
+		$legal_html = ob_get_clean();
+
+		return $html . $legal_html;
+	}
+}
+
+if ( ! function_exists( 'woocommerce_gzd_template_grouped_single_deposit_packaging_type' ) ) {
+
+	/**
+	 * Grouped single product deposit packaging type
+	 */
+	function woocommerce_gzd_template_grouped_single_deposit_packaging_type( $html, $grouped_child ) {
+		ob_start();
+		wc_get_template( 'single-product/deposit-packaging-type.php' );
 		$legal_html = ob_get_clean();
 
 		return $html . $legal_html;
@@ -390,12 +438,14 @@ if ( ! function_exists( 'woocommerce_gzd_add_variation_options' ) ) {
 			do_action( 'woocommerce_gzd_before_add_variation_options', $options, $gzd_product, $product );
 
 			$options = array_merge( $options, array(
-				'delivery_time'       => $gzd_product->get_delivery_time_html(),
-				'unit_price'          => $gzd_product->get_unit_price_html(),
-				'product_units'       => $gzd_product->get_unit_product_html(),
-				'tax_info'            => $gzd_product->get_tax_info(),
-				'shipping_costs_info' => $gzd_product->get_shipping_costs_html(),
-				'defect_description'  => $gzd_product->get_formatted_defect_description(),
+				'delivery_time'          => $gzd_product->get_delivery_time_html(),
+				'unit_price'             => $gzd_product->get_unit_price_html(),
+				'product_units'          => $gzd_product->get_unit_product_html(),
+				'tax_info'               => $gzd_product->get_tax_info(),
+				'shipping_costs_info'    => $gzd_product->get_shipping_costs_html(),
+				'defect_description'     => $gzd_product->get_formatted_defect_description(),
+				'deposit_amount'         => $gzd_product->get_deposit_amount_html(),
+				'deposit_packaging_type' => $gzd_product->get_deposit_packaging_type_title(),
 			) );
 		}
 

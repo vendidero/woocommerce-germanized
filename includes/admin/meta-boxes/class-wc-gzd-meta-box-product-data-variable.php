@@ -200,15 +200,26 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 		$delivery_times_by_country = $gzd_product->get_country_specific_delivery_times( 'edit' );
 		?>
         <div class="variable_pricing_labels">
-            <p class="form-row form-row-first">
-                <label><?php _e( 'Deposit Type', 'woocommerce-germanized' ); ?></label>
-                <select name="variable_deposit_type[<?php echo $loop; ?>]">
-                    <option value="" <?php selected( empty( $gzd_product->get_deposit_type( 'edit' ) ), true ); ?>><?php _e( 'Same as Parent', 'woocommerce-germanized' ); ?></option>
-			        <?php foreach ( WC_germanized()->deposit_types->get_deposit_types() as $key => $value ) : ?>
-                        <option value="<?php echo esc_attr( $key ); ?>" <?php selected( $key === $gzd_product->get_deposit_type( 'edit' ), true ); ?>><?php echo esc_html( $value ); ?></option>
-			        <?php endforeach; ?>
-                </select>
-            </p>
+
+            <div class="variable_deposit_pricing">
+                <p class="form-row form-row-first">
+                    <label><?php _e( 'Deposit Type', 'woocommerce-germanized' ); ?></label>
+                    <select name="variable_deposit_type[<?php echo $loop; ?>]">
+                        <option value="" <?php selected( empty( $gzd_product->get_deposit_type( 'edit' ) ), true ); ?>><?php _e( 'Same as Parent', 'woocommerce-germanized' ); ?></option>
+                        <?php foreach ( WC_germanized()->deposit_types->get_deposit_types() as $key => $value ) : ?>
+                            <option value="<?php echo esc_attr( $key ); ?>" <?php selected( $key === $gzd_product->get_deposit_type( 'edit' ), true ); ?>><?php echo esc_html( $value ); ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </p>
+
+                <p class="form-row form-row-last">
+                    <label><?php _e( 'Deposit Quantity', 'woocommerce-germanized' ); ?></label>
+                    <input type="number"
+                           name="variable_deposit_quantity[<?php echo $loop; ?>]"
+                           value="<?php echo( ! empty( $gzd_product->get_deposit_quantity( 'edit' ) ) ? esc_attr( $gzd_product->get_deposit_quantity( 'edit' ) ) : '' ); ?>"
+                           placeholder="<?php echo esc_attr( $gzd_parent_product->get_deposit_quantity() ? $gzd_parent_product->get_deposit_quantity() : 1 ); ?>" min="1" />
+                </p>
+            </div>
 
             <p class="form-row form-row-first">
                 <label><?php _e( 'Sale Label', 'woocommerce-germanized' ); ?></label>
@@ -392,6 +403,7 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 			'_unit_price_auto'                              => '',
 			'_unit_price_regular'                           => '',
             '_deposit_type'                                 => '',
+			'_deposit_quantity'                             => '',
 			'_sale_price_label'                             => '',
 			'_sale_price_regular_label'                     => '',
 			'_unit_price_sale'                              => '',

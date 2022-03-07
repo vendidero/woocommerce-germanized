@@ -37,6 +37,7 @@ class WC_GZD_Product_Variation extends WC_GZD_Product {
 		'sale_price_label',
 		'sale_price_regular_label',
 		'deposit_type',
+		'deposit_quantity',
 		'free_shipping',
 		'differential_taxation',
 		'min_age',

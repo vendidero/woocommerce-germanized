@@ -1134,6 +1134,42 @@ function wc_gzd_format_product_units_decimal( $unit_product ) {
 	return str_replace( '.', ',', $unit_product );
 }
 
+function wc_gzd_format_deposit_amount( $amount, $deposit_type, $deposit_quantity = 1 ) {
+	$text              = get_option( 'woocommerce_gzd_deposit_text' );
+	$deposit_type_name = '';
+
+	if ( ! is_a( $deposit_type, 'WP_Term' ) ) {
+		if ( $deposit_type_term = WC_germanized()->deposit_types->get_deposit_type_term( $deposit_type ) ) {
+			$deposit_type_name = $deposit_type_term->name;
+		} else {
+			$deposit_type_name = $deposit_type;
+		}
+	} else {
+		$deposit_type_name = $deposit_type->name;
+		$deposit_type      = $deposit_type->slug;
+	}
+
+	$replacements = array(
+		'{amount}'           => $amount,
+		'{deposit_type}'     => $deposit_type_name,
+		'{deposit_quantity}' => $deposit_quantity
+	);
+
+	$html = wc_gzd_replace_label_shortcodes( $text, $replacements );
+
+	/**
+	 * Filter to adjust the formatted deposit amount.
+	 *
+	 * @param string $html              The html output
+	 * @param string $price             The price html
+	 * @param string $deposit_type      The deposit type slug
+	 * @param integer $deposit_quantity The deposit quantity
+	 *
+	 * @since 3.9.0
+	 */
+	return apply_filters( 'woocommerce_gzd_formatted_deposit_price', $html, $amount, $deposit_type, $deposit_quantity );
+}
+
 function wc_gzd_format_unit_price( $price, $unit, $unit_base, $product_units = '' ) {
 	$text = get_option( 'woocommerce_gzd_unit_price_text' );
 

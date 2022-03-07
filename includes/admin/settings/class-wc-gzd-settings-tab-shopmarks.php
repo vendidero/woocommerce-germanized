@@ -37,6 +37,7 @@ class WC_GZD_Settings_Tab_Shopmarks extends WC_GZD_Settings_Tab {
 			''               => __( 'General', 'woocommerce-germanized' ),
 			'delivery_times' => __( 'Delivery times', 'woocommerce-germanized' ),
 			'unit_prices'    => __( 'Unit prices', 'woocommerce-germanized' ),
+			'deposit'        => __( 'Deposit', 'woocommerce-germanized' ),
 			'price_labels'   => __( 'Price labels', 'woocommerce-germanized' ),
 		);
 
@@ -175,6 +176,8 @@ class WC_GZD_Settings_Tab_Shopmarks extends WC_GZD_Settings_Tab {
 			$settings = $this->get_delivery_time_settings();
 		} elseif ( 'unit_prices' === $current_section ) {
 			$settings = $this->get_unit_price_settings();
+		} elseif ( 'deposit' === $current_section ) {
+			$settings = $this->get_deposit_settings();
 		} elseif ( 'price_labels' === $current_section ) {
 			$settings = $this->get_price_label_settings();
 		} elseif ( 'product_widgets' === $current_section ) {
@@ -544,6 +547,21 @@ class WC_GZD_Settings_Tab_Shopmarks extends WC_GZD_Settings_Tab {
 			),
 
 			array( 'type' => 'sectionend', 'id' => 'delivery_time_options' ),
+		);
+	}
+
+	protected function get_deposit_settings() {
+		return array(
+			array( 'type' => 'title', 'title' => '', 'id' => 'deposit_options' ),
+			array(
+				'title'    => __( 'Format', 'woocommerce-germanized' ),
+				'desc'     => '<div class="wc-gzd-additional-desc">' . __( 'This text will be used to display the deposit notice. Use {amount} to insert the deposit amount. Use {deposit_type} to output the deposit type name.', 'woocommerce-germanized' ) . '</div>',
+				'desc_tip' => false,
+				'id'       => 'woocommerce_gzd_deposit_text',
+				'type'     => 'text',
+				'default'  => __( 'Plus {amount} deposit', 'woocommerce-germanized' ),
+			),
+			array( 'type' => 'sectionend', 'id' => 'deposit_options' ),
 		);
 	}
 

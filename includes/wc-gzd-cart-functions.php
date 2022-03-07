@@ -425,6 +425,119 @@ function wc_gzd_cart_product_unit_price( $price, $cart_item, $cart_item_key = ''
 }
 
 /**
+ * Appends deposit amount to product price live data (while checkout) or order meta to product price
+ *
+ * @param string $price
+ * @param array $cart_item
+ *
+ * @return string
+ */
+function wc_gzd_cart_product_deposit_amount( $price, $cart_item, $cart_item_key = '' ) {
+	$deposit_amount = "";
+	$echo           = false;
+
+	if ( is_array( $price ) && isset( $price['data'] ) ) {
+		$cart_item     = $price;
+		$cart_item_key = $cart_item;
+		$price         = "";
+		$echo          = true;
+	} elseif( is_numeric( $price ) && wc_gzd_is_checkout_action() && is_a( $cart_item, 'WC_Order_Item_Product' ) ) {
+		$echo          = true;
+		$cart_item_key = $price;
+		$price         = '';
+	}
+
+	$tax_display = get_option( 'woocommerce_tax_display_cart' );
+
+	if ( is_a( $cart_item, 'WC_Order_Item_Product' ) ) {
+		if ( $gzd_item = wc_gzd_get_order_item( $cart_item ) ) {
+			$deposit_amount = $gzd_item->get_deposit_amount_html();
+		} elseif( ( $product = $cart_item->get_product() ) && wc_gzd_get_product( $product )->has_unit() ) {
+			$deposit_amount = wc_gzd_get_product( $product )->get_deposit_amount_html( 'view', $tax_display );
+		}
+	} elseif ( isset( $cart_item['data'] ) ) {
+		$product = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
+
+		if ( is_a( $product, 'WC_Product' ) && wc_gzd_get_product( $product )->has_deposit() ) {
+			$deposit_amount = wc_gzd_get_product( $product )->get_deposit_amount_html( 'view', $tax_display );
+		}
+	} elseif ( isset( $cart_item['deposit_amount'] ) ) {
+		$deposit_amount = $cart_item['deposit_amount'];
+	}
+
+	if ( ! empty( $deposit_amount ) ) {
+		$price .= ' <span class="wc-gzd-cart-info deposit-amount deposit-amount-cart">' . $deposit_amount . '</span>';
+	}
+
+	if ( $echo ) {
+		echo $price;
+	}
+
+	return $price;
+}
+
+/**
+ * Appends deposit packaging type live data (while checkout) or order meta to product name
+ *
+ * @param string $title
+ * @param array $cart_item
+ *
+ * @return string
+ */
+function wc_gzd_cart_product_deposit_packaging_type( $title, $cart_item, $cart_item_key = '' ) {
+	$packaging_title = "";
+	$echo            = false;
+
+	if ( is_array( $title ) && isset( $title['data'] ) ) {
+		$cart_item     = $title;
+		$cart_item_key = $cart_item;
+		$title         = "";
+		$echo          = true;
+	} elseif( is_numeric( $title ) && wc_gzd_is_checkout_action() && is_a( $cart_item, 'WC_Order_Item_Product' ) ) {
+		$echo          = true;
+		$cart_item_key = $title;
+		$title         = '';
+	}
+
+	if ( is_a( $cart_item, 'WC_Order_Item_Product' ) ) {
+		if ( $gzd_item = wc_gzd_get_order_item( $cart_item ) ) {
+			$packaging_title = $gzd_item->get_deposit_packaging_type_title();
+		} elseif( ( $product = $cart_item->get_product() ) && wc_gzd_get_product( $product )->has_deposit() ) {
+			$packaging_title = wc_gzd_get_product( $product )->get_deposit_packaging_type_title();
+		}
+	} elseif ( isset( $cart_item['data'] ) ) {
+		$product = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
+
+		if ( is_a( $product, 'WC_Product' ) && wc_gzd_get_product( $product )->has_deposit() ) {
+			$packaging_title = wc_gzd_get_gzd_product( $product )->get_deposit_packaging_type_title();
+		}
+	} elseif ( isset( $cart_item['units'] ) ) {
+		$packaging_title = $cart_item['units'];
+	}
+
+	/**
+	 * Filter that allows adjusting the product deposit packaging type HTML content before outputting within cart.
+	 *
+	 * @param string $packaging_title_html The HTML content.
+	 * @param array  $cart_item The cart item data.
+	 * @param string $cart_item_key The cart item key.
+	 *
+	 * @since 3.7.3
+	 */
+	$packaging_title = apply_filters( 'woocommerce_gzd_cart_product_deposit_packaging_type_html', $packaging_title, $cart_item, $cart_item_key );
+
+	if ( ! empty( $packaging_title ) ) {
+		$title .= '<p class="wc-gzd-cart-info deposit-packaging-type">' . $packaging_title . '</p>';
+	}
+
+	if ( $echo ) {
+		echo $title;
+	}
+
+	return $title;
+}
+
+/**
  * Appends product units live data (while checkout) or order meta to product name
  *
  * @param string $title

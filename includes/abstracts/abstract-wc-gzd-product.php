@@ -107,18 +107,124 @@ class WC_GZD_Product {
 		return $this->get_prop( 'deposit_type', $context );
 	}
 
-	public function get_deposit_amount( $context = 'view' ) {
+	public function get_deposit_packaging_type( $context = 'view' ) {
+		$returnable_type = false;
+
+		if ( $this->has_deposit( $context ) && ( $term = $this->get_deposit_type_term( $context ) ) ) {
+			$returnable_type = WC_germanized()->deposit_types->get_packaging_type( $term );
+		}
+
+		return apply_filters( 'woocommerce_gzd_product_deposit_packaging_type', $returnable_type );
+	}
+
+	public function get_deposit_packaging_type_title( $context = 'view' ) {
+		$returnable_type_title = '';
+
+		if ( $returnable_type = $this->get_deposit_packaging_type( $context ) ) {
+			$returnable_type_title = WC_germanized()->deposit_types->get_packaging_type_title( $returnable_type );
+		}
+
+		return apply_filters( 'woocommerce_gzd_product_deposit_packaging_type_title', $returnable_type_title );
+	}
+
+	/**
+	 * Returns the total deposit amount.
+	 *
+	 * @param string $tax_display
+	 * @param string $context
+	 *
+	 * @return string formatted deposit amount
+	 */
+	public function get_deposit_amount( $tax_display = '', $context = 'view' ) {
+		$quantity = 1;
+		$price    = $this->get_deposit_amount_per_unit( $context );
+
+		if ( $this->get_deposit_quantity() > 1 ) {
+			$quantity = $this->get_deposit_quantity();
+		}
+
+		$tax_display_mode = $tax_display ? $tax_display : get_option( 'woocommerce_tax_display_shop' );
+
+		return ( 'incl' === $tax_display_mode ) ? $this->get_deposit_amount_including_tax( $quantity, $price ) : $this->get_deposit_amount_excluding_tax( $quantity, $price );
+	}
+
+	/**
+	 * Returns unit price including tax
+	 *
+	 * @param integer $qty
+	 * @param string $price
+	 *
+	 * @return string  unit price including tax
+	 */
+	public function get_deposit_amount_including_tax( $qty = 1, $price = '' ) {
+		$price = ( $price == '' ) ? $this->get_deposit_amount_per_unit() : $price;
+
+		/**
+		 * Filter to adjust the deposit amount including tax.
+		 *
+		 * @param string $deposit_amount The calculated deposit amount.
+		 * @param string $price The price passed.
+		 * @param int $qty The quantity.
+		 * @param WC_GZD_Product $product The product object.
+		 *
+		 * @since 3.9.0
+		 */
+		return apply_filters( 'woocommerce_gzd_deposit_amount_including_tax', ( empty( $price ) ) ? '' : wc_get_price_including_tax( $this->child, array(
+			'price' => $price,
+			'qty'   => $qty
+		) ), $price, $qty, $this );
+	}
+
+	/**
+	 * Returns deposit amount excluding tax
+	 *
+	 * @param integer $qty
+	 * @param string $price
+	 *
+	 * @return string deposit amount excluding tax
+	 */
+	public function get_deposit_amount_excluding_tax( $qty = 1, $price = '' ) {
+		$price = ( $price == '' ) ? $this->get_deposit_amount_per_unit() : $price;
+
+		/**
+		 * Filter to adjust the deposit amount excluding tax.
+		 *
+		 * @param string $deposit_amount The calculated deposit amount.
+		 * @param string $price The price passed.
+		 * @param int $qty The quantity.
+		 * @param WC_GZD_Product $product The product object.
+		 *
+		 * @since 3.9,0
+		 *
+		 */
+		return apply_filters( 'woocommerce_gzd_deposit_amount_excluding_tax', ( empty( $price ) ) ? '' : wc_get_price_excluding_tax( $this->child, array(
+			'price' => $price,
+			'qty'   => $qty
+		) ), $price, $qty, $this );
+	}
+
+	public function get_deposit_amount_per_unit( $context = 'view' ) {
 		$amount = wc_format_decimal( 0 );
 
 		if ( $term = $this->get_deposit_type_term( $context ) ) {
 			$amount = WC_germanized()->deposit_types->get_deposit( $term );
 		}
 
-		return apply_filters( "woocommerce_gzd_product_deposit_amount", $amount, $this, $context );
+		return apply_filters( "woocommerce_gzd_product_deposit_amount_per_unit", $amount, $this, $context );
+	}
+
+	public function get_deposit_quantity( $context = 'view' ) {
+		$quantity = $this->get_prop( 'deposit_quantity', $context );
+
+		if ( 'view' === $context && '' === $quantity ) {
+			$quantity = 1;
+		}
+
+		return $quantity;
 	}
 
 	public function has_deposit( $context = 'view' ) {
-		return apply_filters( "woocommerce_gzd_product_has_deposit", $this->get_deposit_amount() > 0, $this, $context );
+		return apply_filters( "woocommerce_gzd_product_has_deposit", $this->get_deposit_amount_per_unit() > 0, $this, $context );
 	}
 
 	public function get_unit_product( $context = 'view' ) {
@@ -283,6 +389,10 @@ class WC_GZD_Product {
 
 	public function set_deposit_type( $deposit_type ) {
 		$this->set_prop( 'deposit_type', $deposit_type );
+	}
+
+	public function set_deposit_quantity( $quantity ) {
+		$this->set_prop( 'deposit_quantity', absint( $quantity ) );
 	}
 
 	public function set_warranty_attachment_id( $id ) {
@@ -918,6 +1028,54 @@ class WC_GZD_Product {
 	}
 
 	/**
+	 * Returns the deposit time html output
+	 *
+	 * @return string
+	 */
+	public function get_deposit_amount_html( $context = 'view', $tax_display = '' ) {
+		/**
+		 * Filter that allows disabling the deposit text output for a certain product.
+		 *
+		 * @param bool $hide Whether to hide the output or not.
+		 * @param WC_GZD_Product $product The product object.
+		 *
+		 * @since 3.9.0
+		 *
+		 */
+		if ( apply_filters( 'woocommerce_gzd_hide_deposit_amount_text', false, $this ) ) {
+
+			/**
+			 * Filter to adjust the output of a disabled product deposit text.
+			 *
+			 * @param string $output The output.
+			 * @param WC_GZD_Product $product The product object.
+			 *
+			 * @since 3.9.0
+			 *
+			 */
+			return apply_filters( 'woocommerce_gzd_disabled_deposit_amount_text', '', $this );
+		}
+
+		$html = '';
+
+		if ( $this->has_deposit() ) {
+			$price_html = wc_price( $this->get_deposit_amount( $tax_display ) );
+			$html       = wc_gzd_format_deposit_amount( $price_html, $this->get_deposit_type( $context ), $this->get_deposit_quantity() );
+		}
+
+		/**
+		 * Filter to adjust the product's deposit HTML output.
+		 *
+		 * @param string $html The deposit as HTML.
+		 * @param WC_GZD_Product $product The product object.
+		 *
+		 * @since 3.9.0
+		 *
+		 */
+		return apply_filters( 'woocommerce_gzd_deposit_amount_html', $html, $this, $tax_display );
+	}
+
+	/**
 	 * Returns unit price html output
 	 *
 	 * @return string
@@ -978,7 +1136,7 @@ class WC_GZD_Product {
 		 * @since 1.0.0
 		 *
 		 */
-		return apply_filters( 'woocommerce_gzd_unit_price_html', $html, $this );
+		return apply_filters( 'woocommerce_gzd_unit_price_html', $html, $this, $tax_display );
 	}
 
 	public function is_unit_price_calculated_automatically() {

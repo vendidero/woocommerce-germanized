@@ -334,6 +334,16 @@ class WC_Germanized_Meta_Box_Product_Data {
 			'description' => __( 'In case this product is reusable and has deposits, select the deposit type.', 'woocommerce-germanized' )
 		) );
 
+		woocommerce_wp_text_input( array(
+			'id'          => '_deposit_quantity',
+			'label'       => __( 'Deposit Quantity', 'woocommerce-germanized' ),
+			'type'        => 'number',
+            'placeholder' => 1,
+            'custom_attributes' => array( 'min' => 1 ),
+			'desc_tip'    => true,
+			'description' => __( 'Number of units for deposit.', 'woocommerce-germanized' )
+		) );
+
 		woocommerce_wp_select( array(
             'id'          => '_sale_price_label',
             'label'       => __( 'Sale Label', 'woocommerce-germanized' ),
@@ -605,6 +615,7 @@ class WC_Germanized_Meta_Box_Product_Data {
 			'_unit_price_regular'                           => '',
 			'_unit_price_sale'                              => '',
             '_deposit_type'                                 => '',
+			'_deposit_quantity'                             => '',
 			'_sale_price_label'                             => '',
 			'_sale_price_regular_label'                     => '',
 			'_mini_desc'                                    => '',
@@ -923,6 +934,10 @@ class WC_Germanized_Meta_Box_Product_Data {
 		}
 
 		self::save_delivery_times( $gzd_product, $data );
+
+        if ( isset( $data['_deposit_quantity'] ) ) {
+	        $gzd_product->set_deposit_quantity( absint( $data['_deposit_quantity'] ) );
+        }
 
 		// Free shipping
 		$gzd_product->set_free_shipping( isset( $data['_free_shipping'] ) ? 'yes' : 'no' );
