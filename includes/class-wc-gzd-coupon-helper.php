@@ -46,8 +46,13 @@ class WC_GZD_Coupon_Helper {
 
 		add_action( 'woocommerce_applied_coupon', array( $this, 'on_apply_voucher' ), 10, 1 );
 
-		add_filter( 'woocommerce_coupon_is_valid_for_product', array( $this, 'is_valid' ), 1000, 2 );
-		add_filter( 'woocommerce_coupon_is_valid_for_cart', array( $this, 'is_valid' ), 1000, 2 );
+		add_filter( 'woocommerce_coupon_is_valid_for_product', function( $is_valid, $product, $coupon ) {
+			return $this->is_valid( $is_valid, $coupon );
+		}, 1000, 3 );
+
+		add_filter( 'woocommerce_coupon_is_valid_for_cart', function( $is_valid, $coupon ) {
+			return $this->is_valid( $is_valid, $coupon );
+		}, 1000, 2 );
 
 		add_action( 'woocommerce_cart_calculate_fees', array( $this, 'vouchers_as_fees' ), 10000 );
 		add_action( 'woocommerce_checkout_create_order_fee_item', array( $this, 'fee_item_save' ), 10, 4 );
@@ -668,6 +673,10 @@ class WC_GZD_Coupon_Helper {
 	protected function coupon_is_voucher( $coupon ) {
 		if ( is_string( $coupon ) ) {
 			$coupon = new WC_Coupon( $coupon );
+		}
+
+		if ( ! is_a( $coupon, 'WC_Coupon' ) ) {
+			return false;
 		}
 
 		return apply_filters( 'woocommerce_gzd_coupon_is_voucher', ( 'yes' === $coupon->get_meta( 'is_voucher', true ) ), $coupon );
