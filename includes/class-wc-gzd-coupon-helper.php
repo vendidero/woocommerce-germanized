@@ -1,6 +1,6 @@
 <?php
 
-use Automattic\WooCommerce\Utilities\NumberUtil;
+use Vendidero\Germanized\Utilities\NumberUtil;
 
 defined( 'ABSPATH' ) || exit;
 
