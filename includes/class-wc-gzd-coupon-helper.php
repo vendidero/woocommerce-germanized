@@ -54,6 +54,14 @@ class WC_GZD_Coupon_Helper {
 			return $this->is_valid( $is_valid, $coupon );
 		}, 1000, 2 );
 
+		add_filter( 'woocommerce_coupon_get_free_shipping', function( $free_shipping, $coupon ) {
+			if ( $this->coupon_is_voucher( $coupon ) ) {
+				return false;
+			}
+
+			return $free_shipping;
+		}, 1000, 2 );
+
 		add_action( 'woocommerce_cart_calculate_fees', array( $this, 'vouchers_as_fees' ), 10000 );
 		add_action( 'woocommerce_checkout_create_order_fee_item', array( $this, 'fee_item_save' ), 10, 4 );
 
@@ -65,7 +73,7 @@ class WC_GZD_Coupon_Helper {
 
 		add_filter( 'woocommerce_order_recalculate_coupons_coupon_object', function( $coupon_object, $coupon_code, $coupon_item, $order ) {
 			if ( $this->coupon_is_voucher( $coupon_object ) && $this->order_supports_fee_vouchers( $order ) ) {
-				$this->convert_order_item_coupon_to_voucher( $coupon_item, $this->get_tax_display_mode( $order ) );
+				$this->convert_order_item_coupon_to_voucher( $coupon_item, $coupon_object, $this->get_tax_display_mode( $order ) );
 			}
 
 			return $coupon_object;
@@ -96,12 +104,15 @@ class WC_GZD_Coupon_Helper {
 
 	/**
 	 * @param WC_Order_Item_Coupon $item
+	 * @param WC_Coupon $coupon
+	 * @param string $tax_display_mode
 	 *
 	 * @return void
 	 */
-	protected function convert_order_item_coupon_to_voucher( $item, $tax_display_mode = 'incl' ) {
+	protected function convert_order_item_coupon_to_voucher( $item, $coupon, $tax_display_mode = 'incl' ) {
 		$item->update_meta_data( 'is_voucher', 'yes' );
 		$item->update_meta_data( 'is_stored_as_fee', 'yes' );
+		$item->update_meta_data( 'voucher_includes_shipping_costs', wc_bool_to_string( $this->voucher_includes_shipping_costs( $coupon ) ) );
 
 		/**
 		 * Store the current tax_display_mode used to calculate coupon totals
@@ -261,11 +272,14 @@ class WC_GZD_Coupon_Helper {
 		$fees_total           = 0;
 		$voucher_item_updated = false;
 		$fees_total_before    = $order->get_total_fees();
+		$shipping_total       = (float) $order->get_shipping_total() + (float) $order->get_shipping_tax();
 
 		foreach ( $order->get_fees() as $item ) {
 			$fee_total = $item->get_total();
 
 			if ( $this->fee_is_voucher( $item ) && 0 > $fee_total ) {
+				$coupon = $this->get_order_item_coupon_by_fee( $item, $order );
+
 				$voucher_fee_total = array_reduce(
 					$order->get_fees(),
 					function( $carry, $item ) {
@@ -278,7 +292,7 @@ class WC_GZD_Coupon_Helper {
 				);
 
 				$max_voucher_total = '' !== $item->get_meta( '_voucher_amount' ) ? ( wc_format_decimal( $item->get_meta( '_voucher_amount' ) ) ) * -1 : $item->get_total();
-				$max_discount      = NumberUtil::round( ( $order->get_total() + ( $voucher_fee_total * -1 ) ), wc_get_price_decimals() ) * -1;
+				$max_discount      = NumberUtil::round( ( (float) $order->get_total() - ( ( $coupon && ! $this->voucher_includes_shipping_costs( $coupon ) ) ? $shipping_total : 0 ) + ( $voucher_fee_total * -1 ) ), wc_get_price_decimals() ) * -1;
 
 				if ( 0 > $max_discount ) {
 					$voucher_fee_total = $max_discount < $max_voucher_total ? $max_voucher_total : $max_discount;
@@ -352,6 +366,23 @@ class WC_GZD_Coupon_Helper {
 	}
 
 	/**
+	 * @param WC_Coupon|WC_Order_Item_Coupon $coupon
+	 *
+	 * @return boolean
+	 */
+	public function voucher_includes_shipping_costs( $coupon ) {
+		$allow_free_shipping = false;
+
+		if ( is_a( $coupon, 'WC_Coupon' ) ) {
+			$allow_free_shipping = $coupon->get_free_shipping( 'edit' );
+		} elseif ( is_a( $coupon, 'WC_Order_Item_Coupon' ) ) {
+			$allow_free_shipping = 'yes' === $coupon->get_meta( 'voucher_includes_shipping_costs' );
+		}
+
+		return apply_filters( 'woocommerce_gzd_voucher_includes_shipping_costs', $allow_free_shipping, $coupon );
+	}
+
+	/**
 	 * Woo seems to ignore the non-taxable status for negative fees @see WC_Cart_Totals::get_fees_from_cart()
 	 *
 	 * @param $taxes
@@ -362,12 +393,62 @@ class WC_GZD_Coupon_Helper {
 	 */
 	public function remove_taxes_for_vouchers( $taxes, $fee, $cart_totals ) {
 		if ( $this->fee_is_voucher( $fee ) ) {
-			$max_discount_tax_left = NumberUtil::round( $cart_totals->get_total( 'items_total_tax', true ) + $cart_totals->get_total( 'shipping_tax_total', true ) ) * -1;
+			$fee_running_total = 0;
 
-			if ( ! $this->added_discount_tax_left && wc_add_number_precision_deep( $fee->object->amount ) < $fee->total ) {
-				$fee->total += $max_discount_tax_left;
+			/**
+			 * Need to (re) calculate the running fee total to allow adjusting voucher total amounts.
+			 */
+			foreach ( WC()->cart->get_fees() as $fee_key => $fee_object ) {
+				$tmp_fee = (object) array(
+					'object'    => null,
+					'tax_class' => '',
+					'taxable'   => false,
+					'total_tax' => 0,
+					'taxes'     => array(),
+				);
 
-				$this->added_discount_tax_left = true;
+				$tmp_fee->object    = $fee_object;
+				$tmp_fee->tax_class = $tmp_fee->object->tax_class;
+				$tmp_fee->taxable   = $tmp_fee->object->taxable;
+				$tmp_fee->total     = wc_add_number_precision_deep( $tmp_fee->object->amount );
+
+				// Negative fees should not make the order total go negative.
+				if ( 0 > $tmp_fee->total ) {
+
+					if ( $this->fee_is_voucher( $tmp_fee ) ) {
+						$allow_free_shipping = false;
+
+						if ( $tmp_fee->object->coupon && $this->voucher_includes_shipping_costs( $tmp_fee->object->coupon ) ) {
+							$allow_free_shipping = true;
+						}
+
+						// Max voucher total may include taxes and maybe shipping
+						$max_discount = NumberUtil::round( $cart_totals->get_total( 'items_total', true ) + $fee_running_total + ( $allow_free_shipping ? $cart_totals->get_total( 'shipping_total', true ) : 0 ) + $cart_totals->get_total( 'items_total_tax', true ) + ( $allow_free_shipping ? $cart_totals->get_total( 'shipping_tax_total', true ) : 0 ) ) * -1;
+					} else {
+						$max_discount = NumberUtil::round( $cart_totals->get_total( 'items_total', true ) + $fee_running_total + $cart_totals->get_total( 'shipping_total', true ) ) * -1;
+					}
+
+					/**
+					 * We've reached the current voucher object
+					 */
+					if ( $fee_object === $fee->object ) {
+						// Make sure the max voucher amount does not exceed the coupon amount
+						$max_voucher_amount = max( wc_add_number_precision_deep( $fee->object->amount ), $max_discount );
+						$fee->total         = $max_voucher_amount;
+
+						break;
+					}
+
+					if ( $tmp_fee->total < $max_discount ) {
+						$tmp_fee->total = $max_discount;
+					}
+				}
+
+				$fee_running_total += $tmp_fee->total;
+
+				if ( $fee_object === $fee->object ) {
+					break;
+				}
 			}
 
 			$taxes = array();
@@ -435,6 +516,7 @@ class WC_GZD_Coupon_Helper {
 			'tax_class'      => '',
 			'code'           => $coupon->get_code(),
 			'voucher_amount' => $coupon->get_amount(),
+			'coupon'         => $coupon,
 		);
 	}
 
@@ -578,9 +660,9 @@ class WC_GZD_Coupon_Helper {
 		wc_save_order_items( $order_id, $items );
 
 		// Add item hook to make sure taxes are being (re)calculated correctly
-		add_filter( 'woocommerce_order_item_get_total', array( $this, 'adjust_item_total' ), 10, 2 );
+		add_filter( 'woocommerce_order_item_get_total', array( $this, 'legacy_adjust_item_total' ), 10, 2 );
 		$order->calculate_taxes( $calculate_tax_args );
-		remove_filter( 'woocommerce_order_item_get_total', array( $this, 'adjust_item_total' ), 10 );
+		remove_filter( 'woocommerce_order_item_get_total', array( $this, 'legacy_adjust_item_total' ), 10 );
 
 		$order->calculate_totals( false );
 
@@ -588,7 +670,7 @@ class WC_GZD_Coupon_Helper {
 		wp_die();
 	}
 
-	public function adjust_item_total( $value, $item ) {
+	public function legacy_adjust_item_total( $value, $item ) {
 		if ( is_a( $item, 'WC_Order_Item_Product' ) ) {
 			return $item->get_subtotal();
 		}
@@ -607,7 +689,7 @@ class WC_GZD_Coupon_Helper {
 	public function coupon_item_save( $item, $code, $coupon, $order ) {
 		if ( is_a( $coupon, 'WC_Coupon' ) ) {
 			if ( $this->coupon_is_voucher( $coupon ) ) {
-				$this->convert_order_item_coupon_to_voucher( $item, $this->get_tax_display_mode( $order ) );
+				$this->convert_order_item_coupon_to_voucher( $item, $coupon, $this->get_tax_display_mode( $order ) );
 			}
 		}
 	}

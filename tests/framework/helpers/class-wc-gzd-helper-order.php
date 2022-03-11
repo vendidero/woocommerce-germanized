@@ -77,7 +77,7 @@ class WC_GZD_Helper_Order {
 					array(
 						'method_title' => 'shipping',
 						// Woo treats these as net
-						'total'        => sab_format_decimal( 8.40 ),
+						'total'        => wc_format_decimal( 8.40 ),
 					)
 				);
 			}
