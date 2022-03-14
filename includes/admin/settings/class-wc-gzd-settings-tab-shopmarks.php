@@ -555,7 +555,7 @@ class WC_GZD_Settings_Tab_Shopmarks extends WC_GZD_Settings_Tab {
 			array( 'type' => 'title', 'title' => '', 'id' => 'deposit_options' ),
 			array(
 				'title'    => __( 'Format', 'woocommerce-germanized' ),
-				'desc'     => '<div class="wc-gzd-additional-desc">' . __( 'This text will be used to display the deposit notice. Use {amount} to insert the deposit amount. Use {deposit_type} to output the deposit type name.', 'woocommerce-germanized' ) . '</div>',
+				'desc'     => '<div class="wc-gzd-additional-desc">' . __( 'This text will be used to display the deposit notice. Use {amount} to insert the deposit amount. {type} for the deposit type name, {amount_per_unit} for the deposit amount per unit, {packaging_type} for the packaging type and {quantity} for the deposit quantity.', 'woocommerce-germanized' ) . '</div>',
 				'desc_tip' => false,
 				'id'       => 'woocommerce_gzd_deposit_text',
 				'type'     => 'text',

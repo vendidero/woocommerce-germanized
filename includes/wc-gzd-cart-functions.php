@@ -447,26 +447,70 @@ function wc_gzd_cart_product_deposit_amount( $price, $cart_item, $cart_item_key 
 		$price         = '';
 	}
 
-	$tax_display = get_option( 'woocommerce_tax_display_cart' );
+	$tax_display             = get_option( 'woocommerce_tax_display_cart' );
+	$deposit_amount          = 0;
+	$deposit_quantity        = 0;
+	$deposit_type            = '';
+	$deposit_packaging_type  = '';
+	$deposit_html            = '';
+	$deposit_amount_per_unit = '';
+	$quantity                = 1;
+	$price_args              = array();
+	$use_total_deposit       = doing_action( 'woocommerce_cart_item_subtotal' ) || doing_action( 'woocommerce_order_formatted_line_subtotal' );
 
 	if ( is_a( $cart_item, 'WC_Order_Item_Product' ) ) {
+        $quantity = floatval( $cart_item->get_quantity() );
+
 		if ( $gzd_item = wc_gzd_get_order_item( $cart_item ) ) {
-			$deposit_amount = $gzd_item->get_deposit_amount_html();
-		} elseif( ( $product = $cart_item->get_product() ) && wc_gzd_get_product( $product )->has_unit() ) {
-			$deposit_amount = wc_gzd_get_product( $product )->get_deposit_amount_html( 'view', $tax_display );
+			$deposit_amount          = $gzd_item->get_deposit_amount();
+			$deposit_amount_per_unit = $gzd_item->get_deposit_amount_per_unit();
+            $deposit_quantity        = $gzd_item->get_deposit_quantity();
+			$deposit_type            = $gzd_item->get_deposit_type();
+			$deposit_packaging_type  = $gzd_item->get_deposit_packaging_type();
+		} elseif( ( $product = $cart_item->get_product() ) && wc_gzd_get_product( $product )->has_deposit() ) {
+			$deposit_amount          = wc_gzd_get_product( $product )->get_deposit_amount( 'view', $tax_display );
+			$deposit_quantity        = wc_gzd_get_product( $product )->get_deposit_quantity();
+			$deposit_type            = wc_gzd_get_product( $product )->get_deposit_type();
+			$deposit_packaging_type  = wc_gzd_get_product( $product )->get_deposit_packaging_type();
+			$deposit_amount_per_unit = wc_gzd_get_product( $product )->get_deposit_amount_per_unit( 'view', $tax_display );
 		}
+
+        if ( $order = $cart_item->get_order() ) {
+            $price_args = array(
+                'currency' => $order->get_currency()
+            );
+        }
 	} elseif ( isset( $cart_item['data'] ) ) {
-		$product = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
+		$product  = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
+		$quantity = floatval( $cart_item['quantity'] );
 
 		if ( is_a( $product, 'WC_Product' ) && wc_gzd_get_product( $product )->has_deposit() ) {
-			$deposit_amount = wc_gzd_get_product( $product )->get_deposit_amount_html( 'view', $tax_display );
+			$deposit_amount          = wc_gzd_get_product( $product )->get_deposit_amount( 'view', $tax_display );
+			$deposit_quantity        = wc_gzd_get_product( $product )->get_deposit_quantity();
+			$deposit_type            = wc_gzd_get_product( $product )->get_deposit_type();
+			$deposit_packaging_type  = wc_gzd_get_product( $product )->get_deposit_packaging_type();
+			$deposit_amount_per_unit = wc_gzd_get_product( $product )->get_deposit_amount_per_unit( 'view', $tax_display );
 		}
-	} elseif ( isset( $cart_item['deposit_amount'] ) ) {
-		$deposit_amount = $cart_item['deposit_amount'];
 	}
 
-	if ( ! empty( $deposit_amount ) ) {
-		$price .= ' <span class="wc-gzd-cart-info deposit-amount deposit-amount-cart">' . $deposit_amount . '</span>';
+    if ( $quantity <= 0 ) {
+        $quantity = 1;
+    }
+
+    if ( $deposit_amount > 0 && $deposit_quantity > 0 ) {
+        $deposit_quantity        = $use_total_deposit ? $deposit_quantity * $quantity : $deposit_quantity;
+        $deposit_total           = wc_price( ( $use_total_deposit ? $deposit_amount * $quantity : $deposit_amount ), $price_args );
+	    $deposit_amount_per_unit = wc_price( $deposit_amount_per_unit, $price_args );
+	    $deposit_html            = wc_gzd_format_deposit_amount( $deposit_total, array(
+            'quantity'        => $deposit_quantity,
+            'type'            => $deposit_type,
+            'packaging_type'  => $deposit_packaging_type,
+            'amount_per_unit' => $deposit_amount_per_unit,
+        ) );
+    }
+
+	if ( ! empty( $deposit_html ) ) {
+		$price .= ' <span class="wc-gzd-cart-info deposit-amount deposit-amount-cart">' . $deposit_html . '</span>';
 	}
 
 	if ( $echo ) {

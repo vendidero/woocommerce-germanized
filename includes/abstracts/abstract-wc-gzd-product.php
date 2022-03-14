@@ -135,7 +135,7 @@ class WC_GZD_Product {
 	 *
 	 * @return string formatted deposit amount
 	 */
-	public function get_deposit_amount( $tax_display = '', $context = 'view' ) {
+	public function get_deposit_amount( $context = 'view', $tax_display = '' ) {
 		$quantity = 1;
 		$price    = $this->get_deposit_amount_per_unit( $context );
 
@@ -157,7 +157,7 @@ class WC_GZD_Product {
 	 * @return string  unit price including tax
 	 */
 	public function get_deposit_amount_including_tax( $qty = 1, $price = '' ) {
-		$price = ( $price == '' ) ? $this->get_deposit_amount_per_unit() : $price;
+		$price = ( $price == '' ) ? $this->get_deposit_amount_per_unit( 'view', 'incl' ) : $price;
 
 		/**
 		 * Filter to adjust the deposit amount including tax.
@@ -184,7 +184,7 @@ class WC_GZD_Product {
 	 * @return string deposit amount excluding tax
 	 */
 	public function get_deposit_amount_excluding_tax( $qty = 1, $price = '' ) {
-		$price = ( $price == '' ) ? $this->get_deposit_amount_per_unit() : $price;
+		$price = ( $price == '' ) ? $this->get_deposit_amount_per_unit( 'view', 'excl' ) : $price;
 
 		/**
 		 * Filter to adjust the deposit amount excluding tax.
@@ -203,14 +203,20 @@ class WC_GZD_Product {
 		) ), $price, $qty, $this );
 	}
 
-	public function get_deposit_amount_per_unit( $context = 'view' ) {
+	public function get_deposit_amount_per_unit( $context = 'view', $tax_display = '' ) {
 		$amount = wc_format_decimal( 0 );
 
 		if ( $term = $this->get_deposit_type_term( $context ) ) {
 			$amount = WC_germanized()->deposit_types->get_deposit( $term );
 		}
 
-		return apply_filters( "woocommerce_gzd_product_deposit_amount_per_unit", $amount, $this, $context );
+		$tax_display_mode = $tax_display ? $tax_display : get_option( 'woocommerce_tax_display_shop' );
+
+		if ( 'view' === $context && $amount > 0 ) {
+			$amount = ( 'incl' === $tax_display_mode ) ? $this->get_deposit_amount_including_tax( 1, $amount ) : $this->get_deposit_amount_excluding_tax( 1, $amount );
+		}
+
+		return apply_filters( "woocommerce_gzd_product_deposit_amount_per_unit", $amount, $this, $context, $tax_display_mode );
 	}
 
 	public function get_deposit_quantity( $context = 'view' ) {
@@ -1059,8 +1065,13 @@ class WC_GZD_Product {
 		$html = '';
 
 		if ( $this->has_deposit() ) {
-			$price_html = wc_price( $this->get_deposit_amount( $tax_display ) );
-			$html       = wc_gzd_format_deposit_amount( $price_html, $this->get_deposit_type( $context ), $this->get_deposit_quantity() );
+			$price_html = wc_price( $this->get_deposit_amount( 'view', $tax_display ) );
+			$html       = wc_gzd_format_deposit_amount( $price_html, array(
+				'type'            => $this->get_deposit_type( $context ),
+				'quantity'        => $this->get_deposit_quantity( $context ),
+				'packaging_type'  => $this->get_deposit_packaging_type( $context ),
+				'amount_per_unit' => wc_price( $this->get_deposit_amount_per_unit( $context, $tax_display ) ),
+			) );
 		}
 
 		/**

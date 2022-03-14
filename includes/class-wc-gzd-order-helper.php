@@ -177,6 +177,7 @@ class WC_GZD_Order_Helper {
 		array_push( $metas, '_deposit_amount' );
 		array_push( $metas, '_deposit_quantity' );
 		array_push( $metas, '_deposit_amount_per_unit' );
+		array_push( $metas, '_deposit_packaging_type' );
 
 		return $metas;
 	}
@@ -201,7 +202,8 @@ class WC_GZD_Order_Helper {
 				$gzd_item->set_deposit_type( $gzd_product->get_deposit_type() );
 				$gzd_item->set_deposit_amount_per_unit( $gzd_product->get_deposit_amount_per_unit() );
 				$gzd_item->set_deposit_quantity( $gzd_product->get_deposit_quantity() );
-				$gzd_item->set_deposit_amount( $gzd_product->get_deposit_amount( $tax_display_mode ) );
+				$gzd_item->set_deposit_amount( $gzd_product->get_deposit_amount( 'view', $tax_display_mode ) );
+				$gzd_item->set_deposit_packaging_type( $gzd_product->get_deposit_packaging_type() );
 
 				/**
 				 * Add order item meta.

@@ -47,7 +47,12 @@ class WC_GZD_Order_Item_Product extends WC_GZD_Order_Item {
 
 		$price_html = wc_price( $this->get_deposit_amount(), $args );
 
-		return wc_gzd_format_deposit_amount( $price_html, $this->get_deposit_quantity(), $this->get_deposit_type() );
+		return wc_gzd_format_deposit_amount( $price_html, array(
+			'type'            => $this->get_deposit_type(),
+			'quantity'        => $this->get_deposit_quantity(),
+			'packaging_type'  => $this->get_deposit_packaging_type(),
+			'amount_per_unit' => $this->get_deposit_amount_per_unit(),
+		) );
 	}
 
 	public function get_deposit_quantity() {
@@ -58,6 +63,10 @@ class WC_GZD_Order_Item_Product extends WC_GZD_Order_Item {
 		}
 
 		return $quantity;
+	}
+
+	public function get_deposit_packaging_type() {
+		return $this->order_item->get_meta( '_deposit_packaging_type', true );
 	}
 
 	public function get_deposit_amount_per_unit() {
@@ -88,6 +97,10 @@ class WC_GZD_Order_Item_Product extends WC_GZD_Order_Item {
 
 	public function set_deposit_type( $deposit_type ) {
 		$this->order_item->update_meta_data( '_deposit_type', $deposit_type );
+	}
+
+	public function set_deposit_packaging_type( $packaging_type ) {
+		$this->order_item->update_meta_data( '_deposit_packaging_type', $packaging_type );
 	}
 
 	public function set_deposit_amount( $amount ) {
