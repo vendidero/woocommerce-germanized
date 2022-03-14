@@ -462,11 +462,13 @@ function wc_gzd_cart_product_deposit_amount( $price, $cart_item, $cart_item_key 
         $quantity = floatval( $cart_item->get_quantity() );
 
 		if ( $gzd_item = wc_gzd_get_order_item( $cart_item ) ) {
-			$deposit_amount          = $gzd_item->get_deposit_amount();
-			$deposit_amount_per_unit = $gzd_item->get_deposit_amount_per_unit();
-            $deposit_quantity        = $gzd_item->get_deposit_quantity();
-			$deposit_type            = $gzd_item->get_deposit_type();
-			$deposit_packaging_type  = $gzd_item->get_deposit_packaging_type();
+            if ( $gzd_item->has_deposit() ) {
+	            $deposit_amount          = $gzd_item->get_deposit_amount();
+	            $deposit_amount_per_unit = $gzd_item->get_deposit_amount_per_unit();
+	            $deposit_quantity        = $gzd_item->get_deposit_quantity();
+	            $deposit_type            = $gzd_item->get_deposit_type();
+	            $deposit_packaging_type  = $gzd_item->get_deposit_packaging_type();
+            }
 		} elseif( ( $product = $cart_item->get_product() ) && wc_gzd_get_product( $product )->has_deposit() ) {
 			$deposit_amount          = wc_gzd_get_product( $product )->get_deposit_amount( 'view', $tax_display );
 			$deposit_quantity        = wc_gzd_get_product( $product )->get_deposit_quantity();
@@ -498,8 +500,8 @@ function wc_gzd_cart_product_deposit_amount( $price, $cart_item, $cart_item_key 
     }
 
     if ( $deposit_amount > 0 && $deposit_quantity > 0 ) {
-        $deposit_quantity        = $use_total_deposit ? $deposit_quantity * $quantity : $deposit_quantity;
-        $deposit_total           = wc_price( ( $use_total_deposit ? $deposit_amount * $quantity : $deposit_amount ), $price_args );
+        $deposit_quantity        = $use_total_deposit ? ( (float) $deposit_quantity * (float) $quantity ) : $deposit_quantity;
+        $deposit_total           = wc_price( ( $use_total_deposit ? ( (float) $deposit_amount * (float) $quantity ) : $deposit_amount ), $price_args );
 	    $deposit_amount_per_unit = wc_price( $deposit_amount_per_unit, $price_args );
 	    $deposit_html            = wc_gzd_format_deposit_amount( $deposit_total, array(
             'quantity'        => $deposit_quantity,
