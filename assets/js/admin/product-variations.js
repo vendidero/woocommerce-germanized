@@ -23,7 +23,8 @@ jQuery( function ( $ ) {
             $( '#variable_product_options' )
                 .on( 'change', 'input.variable_service', this.variable_is_service )
                 .on( 'change', 'input.variable_used_good', this.variable_is_used_good )
-                .on( 'change', 'input.variable_defective_copy', this.variable_is_defective_copy );
+                .on( 'change', 'input.variable_defective_copy', this.variable_is_defective_copy )
+                .on( 'change', 'input.variable_is_food', this.variable_is_food );
         },
 
         variations_loaded: function( event, needsUpdate ) {
@@ -58,6 +59,14 @@ jQuery( function ( $ ) {
 
             if ( $( this ).is( ':checked' ) ) {
                 $( this ).closest( '.woocommerce_variation' ).find( '.show_if_variation_used_good' ).show();
+            }
+        },
+
+        variable_is_food: function() {
+            $( this ).closest( '.woocommerce_variation' ).find( '.show_if_variation_is_food' ).hide();
+
+            if ( $( this ).is( ':checked' ) ) {
+                $( this ).closest( '.woocommerce_variation' ).find( '.show_if_variation_is_food' ).show();
             }
         },
 

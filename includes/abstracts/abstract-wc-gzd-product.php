@@ -365,6 +365,16 @@ class WC_GZD_Product {
 		return $is_used_good;
 	}
 
+	public function is_food( $context = 'view' ) {
+		return $this->get_is_food( $context ) === true;
+	}
+
+	public function get_is_food( $context = 'view' ) {
+		$is_food = wc_string_to_bool( $this->get_prop( 'is_food', $context ) );
+
+		return $is_food;
+	}
+
 	public function is_used_good( $context = 'view' ) {
 		return $this->get_used_good( $context ) === true;
 	}
@@ -444,6 +454,10 @@ class WC_GZD_Product {
 
 	public function set_used_good( $is_used_good ) {
 		$this->set_prop( 'used_good', wc_bool_to_string( $is_used_good ) );
+	}
+
+	public function set_is_food( $is_food ) {
+		$this->set_prop( 'is_food', wc_bool_to_string( $is_food ) );
 	}
 
 	public function set_free_shipping( $shipping ) {

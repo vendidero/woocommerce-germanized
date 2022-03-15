@@ -43,7 +43,8 @@ class WC_GZD_Product_Variation extends WC_GZD_Product {
 		'min_age',
 		'default_delivery_time',
 		'delivery_time_countries',
-		'warranty_attachment_id'
+		'warranty_attachment_id',
+		'is_food',
 	);
 
 	protected $gzd_variation_forced_inherited_meta_data = array(

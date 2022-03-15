@@ -9,13 +9,48 @@ jQuery( function ( $ ) {
             $( document )
                 .on( 'click', 'a.wc-gzd-add-new-country-specific-delivery-time', self.onAddNewDeliveryTime )
                 .on( 'click', 'a.wc-gzd-remove-country-specific-delivery-time', self.onRemoveDeliveryTime )
-                .on( 'change', 'input[name=_defective_copy]', self.onChangeDefectiveCopy )
                 .on( 'click', '.upload_warranty_button', self.onUploadWarranty )
-                .on( 'click', 'a.wc-gzd-warranty-delete', self.onRemoveWarranty );
+                .on( 'click', 'a.wc-gzd-warranty-delete', self.onRemoveWarranty )
+                .on( 'woocommerce-product-type-change', self.onProductTypeChange );
 
-            $( 'input[name=_defective_copy]' ).trigger( 'change' );
+            $( 'input#_is_food, input#_defective_copy' ).on( 'change', function() {
+                self.showHidePanels();
+            });
+
+            $( 'input#_defective_copy' ).trigger( 'change' );
 
             $( '#the-list' ).on('click', '.editinline', self.onQuickEdit );
+        },
+
+        onProductTypeChange: function() {
+            wc_gzd_product.showHidePanels();
+        },
+
+        showHidePanels: function() {
+            var is_food           = $( 'input#_is_food:checked' ).length,
+                is_defective_copy = $( 'input#_defective_copy:checked' ).length
+
+            var hide_classes = '.hide_if_is_food, .hide_if_defective_copy';
+            var show_classes = '.show_if_is_food, .show_if_defective_copy';
+
+            $( hide_classes ).show();
+            $( show_classes ).hide();
+
+            if ( is_food ) {
+                $( '.show_if_is_food' ).show();
+            } else {
+                if ( $( '.food_options.food_tab' ).hasClass( 'active' ) ) {
+                    $( '.general_options.general_tab > a' ).trigger( 'click' );
+                }
+            }
+
+            if ( is_defective_copy ) {
+                $( '.show_if_defective_copy' ).show();
+
+                $( '#wc-gzd-product-defect-description' ).show();
+            } else {
+                $( '#wc-gzd-product-defect-description' ).hide();
+            }
         },
 
         onQuickEdit: function() {
@@ -123,14 +158,6 @@ jQuery( function ( $ ) {
             $field.find( 'a.wc-gzd-warranty-delete' ).addClass( 'file-missing' ).hide();
 
             return false;
-        },
-
-        onChangeDefectiveCopy: function() {
-            if ( $( this ).is( ':checked' ) ) {
-                $( '#wc-gzd-product-defect-description' ).addClass( 'show' ).show();
-            } else {
-                $( '#wc-gzd-product-defect-description' ).removeClass( 'show' ).hide();
-            }
         },
 
         onAddNewDeliveryTime: function() {

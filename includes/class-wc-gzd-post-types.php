@@ -209,6 +209,98 @@ class WC_GZD_Post_Types {
 				'rewrite'               => false,
 			) )
 		);
+
+		// Nutrients
+		register_taxonomy( 'product_nutrient',
+			/**
+			 * Filter post types which are capable of storing deposit types.
+			 *
+			 * @param array $post_types The post types to support `product_nutrient` taxonomy.
+			 *
+			 * @since 3.9.0
+			 */
+			apply_filters( 'woocommerce_germanized_taxonomy_objects_product_nutrient', array( 'product' ) ),
+			/**
+			 * Filter to adjust arguments passed to register the `product_nutrient` taxonomy.
+			 *
+			 * @param array $args Arguments passed to `register_taxonomy`.
+			 *
+			 * @since 3.9.0
+			 */
+			apply_filters( 'woocommerce_germanized_taxonomy_args_product_nutrient', array(
+				'hierarchical'          => true,
+				'update_count_callback' => '_wc_term_recount',
+				'label'                 => __( 'Product Nutrients', 'woocommerce-germanized' ),
+				'labels'                => array(
+					'name'              => __( 'Product Nutrients', 'woocommerce-germanized' ),
+					'singular_name'     => __( 'Product Nutrients', 'woocommerce-germanized' ),
+					'menu_name'         => _x( 'Nutrients', 'Admin menu name', 'woocommerce-germanized' ),
+					'search_items'      => __( 'Search Nutrients', 'woocommerce-germanized' ),
+					'all_items'         => __( 'All Nutrients', 'woocommerce-germanized' ),
+					'parent_item'       => __( 'Parent nutrient', 'woocommerce-germanized' ),
+					'parent_item_colon' => __( 'Parent nutrient:', 'woocommerce-germanized' ),
+					'edit_item'         => __( 'Edit Nutrient', 'woocommerce-germanized' ),
+					'update_item'       => __( 'Update Nutrient', 'woocommerce-germanized' ),
+					'add_new_item'      => __( 'Add New Nutrient', 'woocommerce-germanized' ),
+					'new_item_name'     => __( 'New Deposit Nutrient Name', 'woocommerce-germanized' )
+				),
+				'show_ui'               => true,
+				'query_var'             => true,
+				'public'                => false,
+				'capabilities'          => array(
+					'manage_terms' => 'manage_product_terms',
+					'edit_terms'   => 'edit_product_terms',
+					'delete_terms' => 'delete_product_terms',
+					'assign_terms' => 'assign_product_terms',
+				),
+				'rewrite'               => false,
+			) )
+		);
+
+		// Allergen
+		register_taxonomy( 'product_allergen',
+			/**
+			 * Filter post types which are capable of storing allergenic.
+			 *
+			 * @param array $post_types The post types to support `product_allergen` taxonomy.
+			 *
+			 * @since 3.9.0
+			 */
+			apply_filters( 'woocommerce_germanized_taxonomy_objects_product_allergen', array( 'product' ) ),
+			/**
+			 * Filter to adjust arguments passed to register the `product_allergen` taxonomy.
+			 *
+			 * @param array $args Arguments passed to `register_taxonomy`.
+			 *
+			 * @since 3.9.0
+			 */
+			apply_filters( 'woocommerce_germanized_taxonomy_args_product_allergen', array(
+				'hierarchical'          => false,
+				'update_count_callback' => '_wc_term_recount',
+				'label'                 => __( 'Product Allergenic', 'woocommerce-germanized' ),
+				'labels'                => array(
+					'name'          => __( 'Product Allergenic', 'woocommerce-germanized' ),
+					'singular_name' => __( 'Product Allergenic', 'woocommerce-germanized' ),
+					'menu_name'     => _x( 'Allergenic', 'Admin menu name', 'woocommerce-germanized' ),
+					'search_items'  => __( 'Search Allergenic', 'woocommerce-germanized' ),
+					'all_items'     => __( 'All Allergenic', 'woocommerce-germanized' ),
+					'edit_item'     => __( 'Edit Allergenic', 'woocommerce-germanized' ),
+					'update_item'   => __( 'Update Allergen', 'woocommerce-germanized' ),
+					'add_new_item'  => __( 'Add New Allergen', 'woocommerce-germanized' ),
+					'new_item_name' => __( 'New Allergen Name', 'woocommerce-germanized' )
+				),
+				'show_ui'               => true,
+				'query_var'             => true,
+				'public'                => false,
+				'capabilities'          => array(
+					'manage_terms' => 'manage_product_terms',
+					'edit_terms'   => 'edit_product_terms',
+					'delete_terms' => 'delete_product_terms',
+					'assign_terms' => 'assign_product_terms',
+				),
+				'rewrite'               => false,
+			) )
+		);
 	}
 }
 

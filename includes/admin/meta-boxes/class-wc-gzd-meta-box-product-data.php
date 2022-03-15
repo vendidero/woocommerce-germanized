@@ -34,6 +34,9 @@ class WC_Germanized_Meta_Box_Product_Data {
 			add_filter( 'product_type_options', array( __CLASS__, 'product_types' ), 10, 1 );
 		}
 
+		add_filter( 'woocommerce_product_data_tabs', array( __CLASS__, 'register_product_tab' ) );
+		add_action( 'woocommerce_product_data_panels', array( __CLASS__, 'food_tab' ) );
+
 		add_action( 'woocommerce_product_object_updated_props', array( __CLASS__, 'update_terms' ), 10, 1 );
 		add_action( 'woocommerce_before_product_object_save', array( __CLASS__, 'before_save' ), 10, 1 );
 
@@ -48,6 +51,48 @@ class WC_Germanized_Meta_Box_Product_Data {
 		 * Product duplication
 		 */
 		add_action( 'woocommerce_product_duplicate_before_save', array( __CLASS__, 'update_before_duplicate' ), 10, 2 );
+	}
+
+	public static function food_tab() {
+		global $post, $thepostid, $product_object;
+
+		$_gzd_product = wc_gzd_get_product( $product_object );
+		?>
+        <div id="food_product_data" class="panel woocommerce_options_panel hidden">
+            <div class="options_group show_if_simple show_if_external show_if_variable">
+                <?php
+                    woocommerce_wp_select( array(
+                        'id'          => '_deposit_type',
+                        'label'       => __( 'Deposit Type', 'woocommerce-germanized' ),
+                        'options'     => array_merge( array( "-1" => __( 'Select Deposit Type', 'woocommerce-germanized' ) ), WC_germanized()->deposit_types->get_deposit_types() ),
+                        'desc_tip'    => true,
+                        'description' => __( 'In case this product is reusable and has deposits, select the deposit type.', 'woocommerce-germanized' )
+                    ) );
+
+                    woocommerce_wp_text_input( array(
+                        'id'          => '_deposit_quantity',
+                        'label'       => __( 'Deposit Quantity', 'woocommerce-germanized' ),
+                        'type'        => 'number',
+                        'placeholder' => 1,
+                        'custom_attributes' => array( 'min' => 1 ),
+                        'desc_tip'    => true,
+                        'description' => __( 'Number of units for deposit.', 'woocommerce-germanized' )
+                    ) );
+                ?>
+            </div>
+        </div>
+		<?php
+	}
+
+	public static function register_product_tab( $tabs ) {
+		$tabs['food'] = array(
+			'label'    => __( 'Food', 'woocommerce-germanized-pro' ),
+			'target'   => 'food_product_data',
+			'class'    => array( 'show_if_is_food' ),
+			'priority' => 35,
+		);
+
+		return $tabs;
 	}
 
 	/**
@@ -315,6 +360,14 @@ class WC_Germanized_Meta_Box_Product_Data {
 			'default'       => 'no'
 		);
 
+		$types['is_food'] = array(
+			'id'            => '_is_food',
+			'wrapper_class' => '',
+			'label'         => __( 'Food', 'woocommerce-germanized' ),
+			'description'   => __( 'This product is a food product.', 'woocommerce-germanized' ),
+			'default'       => 'no'
+		);
+
 		return $types;
 	}
 
@@ -325,24 +378,6 @@ class WC_Germanized_Meta_Box_Product_Data {
 		$age_select   = wc_gzd_get_age_verification_min_ages_select();
 
 		echo '<div class="options_group show_if_simple show_if_external show_if_variable">';
-
-		woocommerce_wp_select( array(
-			'id'          => '_deposit_type',
-			'label'       => __( 'Deposit Type', 'woocommerce-germanized' ),
-			'options'     => array_merge( array( "-1" => __( 'Select Deposit Type', 'woocommerce-germanized' ) ), WC_germanized()->deposit_types->get_deposit_types() ),
-			'desc_tip'    => true,
-			'description' => __( 'In case this product is reusable and has deposits, select the deposit type.', 'woocommerce-germanized' )
-		) );
-
-		woocommerce_wp_text_input( array(
-			'id'          => '_deposit_quantity',
-			'label'       => __( 'Deposit Quantity', 'woocommerce-germanized' ),
-			'type'        => 'number',
-            'placeholder' => 1,
-            'custom_attributes' => array( 'min' => 1 ),
-			'desc_tip'    => true,
-			'description' => __( 'Number of units for deposit.', 'woocommerce-germanized' )
-		) );
 
 		woocommerce_wp_select( array(
             'id'          => '_sale_price_label',
@@ -633,6 +668,7 @@ class WC_Germanized_Meta_Box_Product_Data {
 			'_used_good'                                    => '',
 			'_defective_copy'                               => '',
 			'_differential_taxation'                        => '',
+			'_is_food'                                      => '',
 			'_min_age'                                      => '',
 		);
 	}
@@ -950,6 +986,9 @@ class WC_Germanized_Meta_Box_Product_Data {
 
 		// Is a defective copy?
 		$gzd_product->set_defective_copy( isset( $data['_defective_copy'] ) ? 'yes' : 'no' );
+
+		// Is food?
+		$gzd_product->set_is_food( isset( $data['_is_food'] ) ? 'yes' : 'no' );
 
 		// Applies to differential taxation?
 		$gzd_product->set_differential_taxation( isset( $data['_differential_taxation'] ) ? 'yes' : 'no' );
