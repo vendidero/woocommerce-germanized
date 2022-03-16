@@ -101,11 +101,12 @@ class WC_GZD_Product_Variation extends WC_GZD_Product {
 		 * @param mixed $value The property value.
 		 * @param WC_GZD_Product_Variation $gzd_product The GZD product instance.
 		 * @param WC_Product_Variation $product The product instance.
+		 * @param string $context The context
 		 *
 		 * @since 3.0.0
 		 *
 		 */
-		return apply_filters( "woocommerce_gzd_get_product_variation_{$prop}", $value, $this, $this->child );
+		return apply_filters( "woocommerce_gzd_get_product_variation_{$prop}", $value, $this, $this->child, $context );
 	}
 
 	public function get_unit( $context = 'view' ) {

@@ -23,6 +23,8 @@ class WC_GZD_Compatibility_WPML extends WC_GZD_Compatibility {
 
 	protected $email_lang = false;
 
+	protected static $removed_get_term_filter = false;
+
 	public static function get_name() {
 		return 'WPML';
 	}
@@ -60,6 +62,14 @@ class WC_GZD_Compatibility_WPML extends WC_GZD_Compatibility {
 		add_action( 'woocommerce_gzd_get_term', array( $this, 'unhook_terms_clause' ), 10 );
 		add_action( 'woocommerce_gzd_after_get_term', array( $this, 'rehook_terms_clause' ), 10 );
 
+		// Support delivery time slug translation at runtime (e.g. default delivery time, country-specific)
+		add_filter( 'woocommerce_gzd_product_delivery_times', array( $this, 'filter_product_delivery_times' ), 10, 4 );
+		add_filter( 'woocommerce_gzd_get_product_default_delivery_time', array( $this, 'filter_product_default_delivery_time' ), 10, 4 );
+		add_filter( 'woocommerce_gzd_get_product_delivery_time_countries', array( $this, 'filter_product_country_specific_delivery_times' ), 10, 4 );
+
+		add_filter( 'woocommerce_gzd_get_product_variation_default_delivery_time', array( $this, 'filter_product_default_delivery_time' ), 10, 4 );
+		add_filter( 'woocommerce_gzd_get_product_variation_delivery_time_countries', array( $this, 'filter_product_country_specific_delivery_times' ), 10, 4 );
+
 		// Add language field to revocation form
 		add_action( 'woocommerce_gzd_after_revocation_form_fields', array( $this, 'set_language_field' ), 10 );
 
@@ -80,6 +90,59 @@ class WC_GZD_Compatibility_WPML extends WC_GZD_Compatibility {
 		 * @since 3.0.8
 		 */
 		do_action( 'woocommerce_gzd_wpml_compatibility_loaded', $this );
+	}
+
+	public function filter_product_delivery_times( $delivery_times, $gzd_product, $product, $context ) {
+		if ( 'view' === $context ) {
+			global $sitepress;
+
+			if ( $sitepress->get_default_language() !== $sitepress->get_current_language() ) {
+				foreach( $delivery_times as $term ) {
+					$translated_id = (int) apply_filters( 'wpml_object_id', $term->term_id, 'product_delivery_time', false, $sitepress->get_default_language() );
+
+					if ( $translated_id !== $term->term_id ) {
+						if ( $org_term = WC_germanized()->delivery_times->get_term_object( $translated_id, 'id' ) ) {
+							$delivery_times[ $org_term->slug ] = $org_term;
+
+							$delivery_times[ $org_term->slug ]->translated_term_id   = $term->term_id;
+							$delivery_times[ $org_term->slug ]->translated_term_slug = $term->slug;
+						}
+					}
+				}
+			}
+		}
+
+		return $delivery_times;
+	}
+
+	public function filter_product_country_specific_delivery_times( $delivery_time_countries, $gzd_product, $product, $context ) {
+		global $sitepress;
+
+		if ( 'view' === $context && ! empty( $delivery_time_countries ) && $sitepress->get_default_language() !== $sitepress->get_current_language() ) {
+			$delivery_times = $gzd_product->get_delivery_times();
+
+			foreach( $delivery_time_countries as $country => $delivery_time_country ) {
+				if ( array_key_exists( $delivery_time_country, $delivery_times ) ) {
+					$delivery_time_countries[ $country ] = $delivery_times[ $delivery_time_country ]->translated_term_slug;
+				}
+			}
+		}
+
+		return $delivery_time_countries;
+	}
+
+	public function filter_product_default_delivery_time( $default_delivery_time, $gzd_product, $product, $context ) {
+		global $sitepress;
+
+		if ( 'view' === $context && $sitepress->get_default_language() !== $sitepress->get_current_language() ) {
+			$delivery_times = $gzd_product->get_delivery_times();
+
+			if ( array_key_exists( $default_delivery_time, $delivery_times ) ) {
+				$default_delivery_time = $delivery_times[ $default_delivery_time ]->translated_term_slug;
+			}
+		}
+
+		return $default_delivery_time;
 	}
 
 	/**
@@ -334,12 +397,22 @@ class WC_GZD_Compatibility_WPML extends WC_GZD_Compatibility {
 		global $sitepress;
 
 		remove_filter( 'terms_clauses', array( $sitepress, 'terms_clauses' ), 10 );
+
+		if ( has_filter( 'get_term', array( $sitepress, 'get_term_adjust_id' ) ) ) {
+			self::$removed_get_term_filter = true;
+			remove_filter( 'get_term', array( $sitepress, 'get_term_adjust_id' ), 1 );
+		}
 	}
 
 	public function rehook_terms_clause() {
 		global $sitepress;
 
 		add_filter( 'terms_clauses', array( $sitepress, 'terms_clauses' ), 10, 4 );
+
+		if ( self::$removed_get_term_filter ) {
+			add_filter( 'get_term', array( $sitepress, 'get_term_adjust_id' ), 1 );
+			self::$removed_get_term_filter = false;
+		}
 	}
 
 	public function send_order_admin_confirmation( $order_id ) {

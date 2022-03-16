@@ -1031,7 +1031,7 @@ class WC_GZD_Product {
 				$cached_terms[ $term->slug ] = $term;
 			}
 
-			$this->delivery_times = $cached_terms;
+			$this->delivery_times = apply_filters( 'woocommerce_gzd_product_delivery_times', $cached_terms, $this, $this->child, $context );
 		}
 
 		return $this->delivery_times;
