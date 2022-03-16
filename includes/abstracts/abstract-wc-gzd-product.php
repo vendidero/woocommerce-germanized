@@ -1211,7 +1211,7 @@ class WC_GZD_Product {
 	}
 
 	protected function is_valid_country_specific_delivery_time( $slug, $country ) {
-		$default_slug = $this->get_default_delivery_time_slug();
+		$default_slug = $this->get_default_delivery_time_slug( 'edit' );
 
 		if ( $slug === $default_slug || $country === WC()->countries->get_base_country() ) {
 			return false;
