@@ -80,6 +80,8 @@ class WC_Germanized_Meta_Box_Product_Data {
                     ) );
                 ?>
             </div>
+
+	        <?php do_action(  'woocommerce_gzd_edit_product_food_panel' ); ?>
         </div>
 		<?php
 	}
@@ -656,6 +658,8 @@ class WC_Germanized_Meta_Box_Product_Data {
 			'_mini_desc'                                    => '',
 			'_defect_description'                           => '',
             '_warranty_attachment_id'                       => '',
+            '_nutrient_ids'                                 => '',
+			'_nutrient_reference_value'                     => '',
 			'delivery_time'                                 => '',
 			'country_specific_delivery_times'               => '',
 			'new_country_specific_delivery_times_countries' => '',
@@ -945,6 +949,14 @@ class WC_Germanized_Meta_Box_Product_Data {
 
 		if ( isset( $data['_defect_description'] ) ) {
 			$gzd_product->set_defect_description( $data['_defect_description'] === '' ? '' : wc_gzd_sanitize_html_text_field( $data['_defect_description'] ) );
+		}
+
+		if ( isset( $data['_nutrient_ids'] ) ) {
+			$gzd_product->set_nutrient_ids( (array) wc_clean( $data['_nutrient_ids'] ) );
+		}
+
+		if ( isset( $data['_nutrient_reference_value'] ) ) {
+			$gzd_product->set_nutrient_reference_value( sanitize_key( wc_clean( $data['_nutrient_reference_value'] ) ) );
 		}
 
         $warranty_attachment_id = isset( $data['_warranty_attachment_id'] ) ? absint( $data['_warranty_attachment_id'] ) : 0;

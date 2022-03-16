@@ -45,6 +45,8 @@ class WC_GZD_Product_Variation extends WC_GZD_Product {
 		'delivery_time_countries',
 		'warranty_attachment_id',
 		'is_food',
+		'nutrient_ids',
+		'nutrient_reference_value'
 	);
 
 	protected $gzd_variation_forced_inherited_meta_data = array(
@@ -156,6 +158,17 @@ class WC_GZD_Product_Variation extends WC_GZD_Product {
 	 */
 	public function set_differential_taxation( $diff_taxation ) {
 		$this->set_prop( 'differential_taxation', '' );
+	}
+
+	public function get_nutrient_ids( $context = 'view' ) {
+		$nutrient_ids = parent::get_nutrient_ids( $context );
+
+		if ( 'view' === $context ) {
+			$variation_level_nutrient_ids = array_filter( (array) $this->get_prop( 'nutrient_ids', 'edit' ), 'is_numeric' );
+			$nutrient_ids                 = array_replace_recursive( $nutrient_ids, $variation_level_nutrient_ids );
+		}
+
+		return $nutrient_ids;
 	}
 
 	public function get_delivery_time_slugs( $context = 'view' ) {

@@ -212,7 +212,7 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 		?>
         <div class="variable_pricing_labels">
 
-            <div class="variable_deposit_pricing">
+            <div class="variable_food show_if_variation_is_food">
                 <p class="form-row form-row-first">
                     <label><?php _e( 'Deposit Type', 'woocommerce-germanized' ); ?></label>
                     <select name="variable_deposit_type[<?php echo $loop; ?>]">
@@ -230,6 +230,8 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
                            value="<?php echo( ! empty( $gzd_product->get_deposit_quantity( 'edit' ) ) ? esc_attr( $gzd_product->get_deposit_quantity( 'edit' ) ) : '' ); ?>"
                            placeholder="<?php echo esc_attr( $gzd_parent_product->get_deposit_quantity() ? $gzd_parent_product->get_deposit_quantity() : 1 ); ?>" min="1" />
                 </p>
+
+                <?php do_action( 'woocommerce_gzd_edit_product_variation_food_wrapper', $loop, $variation_data, $variation ); ?>
             </div>
 
             <p class="form-row form-row-first">
@@ -433,6 +435,8 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 			'new_country_specific_delivery_times_terms'     => '',
 			'_min_age'                                      => '',
             '_warranty_attachment_id'                       => '',
+            '_nutrient_ids'                                 => '',
+			'_nutrient_reference_value'                     => '',
 		);
 
 		foreach ( $data as $k => $v ) {

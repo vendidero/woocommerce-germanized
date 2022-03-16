@@ -93,6 +93,16 @@ class WC_GZD_Product {
 		return $this->get_prop( 'warranty_attachment_id', $context );
 	}
 
+	public function get_nutrient_ids( $context = 'view' ) {
+		$nutrients = $this->get_prop( 'nutrient_ids', $context );
+
+		return array_filter( (array) $nutrients, 'is_numeric' );
+	}
+
+	public function get_nutrient_reference_value( $context = 'view' ) {
+		return $this->get_prop( 'nutrient_reference_value', $context );
+	}
+
 	public function get_deposit_type_term( $context = 'view'  ) {
 		$type = $this->get_deposit_type( $context );
 
@@ -416,6 +426,14 @@ class WC_GZD_Product {
 		$this->warranty_attachment = false;
 	}
 
+	public function set_nutrient_ids( $ids ) {
+		$this->set_prop( 'nutrient_ids', array_map( 'wc_format_decimal', array_filter( (array) $ids, 'is_numeric' ) ) );
+	}
+
+	public function set_nutrient_reference_value( $value ) {
+		$this->set_prop( 'nutrient_reference_value', $value );
+	}
+
 	public function set_unit_price( $price ) {
 		$this->set_prop( 'unit_price', wc_format_decimal( $price ) );
 	}
@@ -525,6 +543,23 @@ class WC_GZD_Product {
 
 	public function has_min_age() {
 		return $this->needs_age_verification();
+	}
+
+	public function has_nutrient( $id, $context = 'view' ) {
+		$nutrients = $this->get_nutrient_ids( $context );
+
+		return array_key_exists( $id, $nutrients );
+	}
+
+	public function get_nutrient( $id, $context = 'view' ) {
+		$nutrients = $this->get_nutrient_ids( $context );
+		$nutrient  = '';
+
+		if ( array_key_exists( $id, $nutrients ) ) {
+			$nutrient = $nutrients[ $id ];
+		}
+
+		return apply_filters( 'woocommerce_gzd_product_nutrient', $nutrient, $id, $this, $this->child, $context );
 	}
 
 	public function get_min_age( $context = 'view' ) {
