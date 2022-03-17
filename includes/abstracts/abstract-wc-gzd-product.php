@@ -99,8 +99,38 @@ class WC_GZD_Product {
 		return array_filter( (array) $nutrients, 'is_numeric' );
 	}
 
+	public function get_allergen_ids( $context = 'view' ) {
+		$nutrients = $this->get_prop( 'allergen_ids', $context );
+
+		return array_filter( (array) $nutrients );
+	}
+
+	public function get_ingredients( $context = 'view' ) {
+		return $this->get_prop( 'ingredients', $context );
+	}
+
 	public function get_nutrient_reference_value( $context = 'view' ) {
 		return $this->get_prop( 'nutrient_reference_value', $context );
+	}
+
+	public function get_nutri_score( $context = 'view' ) {
+		return $this->get_prop( 'nutri_score', $context );
+	}
+
+	public function get_alcohol_content( $context = 'view' ) {
+		return $this->get_prop( 'alcohol_content', $context );
+	}
+
+	public function get_food_distributor( $context = 'view' ) {
+		return $this->get_prop( 'food_distributor', $context );
+	}
+
+	public function get_food_place_of_origin( $context = 'view' ) {
+		return $this->get_prop( 'food_place_of_origin', $context );
+	}
+
+	public function get_food_description( $context = 'view' ) {
+		return $this->get_prop( 'food_description', $context );
 	}
 
 	public function get_deposit_type_term( $context = 'view'  ) {
@@ -232,7 +262,7 @@ class WC_GZD_Product {
 	public function get_deposit_quantity( $context = 'view' ) {
 		$quantity = $this->get_prop( 'deposit_quantity', $context );
 
-		if ( 'view' === $context && '' === $quantity ) {
+		if ( 'view' === $context && empty( $quantity ) ) {
 			$quantity = 1;
 		}
 
@@ -418,11 +448,11 @@ class WC_GZD_Product {
 	}
 
 	public function set_deposit_quantity( $quantity ) {
-		$this->set_prop( 'deposit_quantity', absint( $quantity ) );
+		$this->set_prop( 'deposit_quantity', ! empty( $quantity ) ? absint( $quantity ) : '' );
 	}
 
 	public function set_warranty_attachment_id( $id ) {
-		$this->set_prop( 'warranty_attachment_id', absint( $id ) );
+		$this->set_prop( 'warranty_attachment_id', ! empty( $id ) ? absint( $id ) : '' );
 		$this->warranty_attachment = false;
 	}
 
@@ -432,6 +462,34 @@ class WC_GZD_Product {
 
 	public function set_nutrient_reference_value( $value ) {
 		$this->set_prop( 'nutrient_reference_value', $value );
+	}
+
+	public function set_allergen_ids( $ids ) {
+		$this->set_prop( 'allergen_ids', array_map( 'absint', array_filter( (array) $ids ) ) );
+	}
+
+	public function set_ingredients( $ingredients ) {
+		$this->set_prop( 'ingredients', $ingredients );
+	}
+
+	public function set_nutri_score( $score ) {
+		$this->set_prop( 'nutri_score', $score );
+	}
+
+	public function set_alcohol_content( $content ) {
+		$this->set_prop( 'alcohol_content', wc_format_decimal( $content ) );
+	}
+
+	public function set_food_distributor( $distributor ) {
+		$this->set_prop( 'food_distributor', $distributor );
+	}
+
+	public function set_food_place_of_origin( $place_of_origin ) {
+		$this->set_prop( 'food_place_of_origin', $place_of_origin );
+	}
+
+	public function set_food_description( $description ) {
+		$this->set_prop( 'food_description', $description );
 	}
 
 	public function set_unit_price( $price ) {

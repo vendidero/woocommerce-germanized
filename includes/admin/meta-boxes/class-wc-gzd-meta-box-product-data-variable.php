@@ -211,29 +211,6 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 		$delivery_times_by_country = $gzd_product->get_country_specific_delivery_times( 'edit' );
 		?>
         <div class="variable_pricing_labels">
-
-            <div class="variable_food show_if_variation_is_food">
-                <p class="form-row form-row-first">
-                    <label><?php _e( 'Deposit Type', 'woocommerce-germanized' ); ?></label>
-                    <select name="variable_deposit_type[<?php echo $loop; ?>]">
-                        <option value="" <?php selected( empty( $gzd_product->get_deposit_type( 'edit' ) ), true ); ?>><?php _e( 'Same as Parent', 'woocommerce-germanized' ); ?></option>
-                        <?php foreach ( WC_germanized()->deposit_types->get_deposit_types() as $key => $value ) : ?>
-                            <option value="<?php echo esc_attr( $key ); ?>" <?php selected( $key === $gzd_product->get_deposit_type( 'edit' ), true ); ?>><?php echo esc_html( $value ); ?></option>
-                        <?php endforeach; ?>
-                    </select>
-                </p>
-
-                <p class="form-row form-row-last">
-                    <label><?php _e( 'Deposit Quantity', 'woocommerce-germanized' ); ?></label>
-                    <input type="number"
-                           name="variable_deposit_quantity[<?php echo $loop; ?>]"
-                           value="<?php echo( ! empty( $gzd_product->get_deposit_quantity( 'edit' ) ) ? esc_attr( $gzd_product->get_deposit_quantity( 'edit' ) ) : '' ); ?>"
-                           placeholder="<?php echo esc_attr( $gzd_parent_product->get_deposit_quantity() ? $gzd_parent_product->get_deposit_quantity() : 1 ); ?>" min="1" />
-                </p>
-
-                <?php do_action( 'woocommerce_gzd_edit_product_variation_food_wrapper', $loop, $variation_data, $variation ); ?>
-            </div>
-
             <p class="form-row form-row-first">
                 <label><?php _e( 'Sale Label', 'woocommerce-germanized' ); ?></label>
                 <select name="variable_sale_price_label[<?php echo $loop; ?>]">
@@ -390,22 +367,38 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 
         <div class="variable_cart_mini_desc">
             <p class="form-row form-row-full">
-                <label for="variable_mini_desc"><?php echo __( 'Optional Mini Description', 'woocommerce-germanized' ); ?></label>
-                <textarea rows="3" style="width: 100%" name="variable_mini_desc[<?php echo $loop; ?>]"
-                      id="variable_mini_desc_<?php echo $loop; ?>"
-                      class="variable_mini_desc"><?php echo htmlspecialchars_decode( $gzd_product->get_mini_desc( 'edit' ) ); ?>
-                </textarea>
+                <label for="variable_mini_desc_<?php echo esc_attr( $loop ); ?>"><?php echo __( 'Optional Mini Description', 'woocommerce-germanized' ); ?></label>
+                <textarea rows="3" style="width: 100%" name="variable_mini_desc[<?php echo $loop; ?>]" id="variable_mini_desc_<?php echo esc_attr( $loop ); ?>" class="variable_mini_desc"><?php echo htmlspecialchars_decode( $gzd_product->get_mini_desc( 'edit' ) ); ?></textarea>
             </p>
         </div>
 
         <div class="variable_cart_defect_description show_if_variation_defective_copy">
             <p class="form-row form-row-full">
-                <label for="variable_defect_description"><?php echo __( 'Defect Description', 'woocommerce-germanized' ); ?> <?php echo wc_help_tip( __( 'Inform your customers about product defects. This description will be shown on top of your product description and during cart/checkout.', 'woocommerce-germanized' ) ); ?></label>
-                <textarea rows="3" style="width: 100%" name="variable_defect_description[<?php echo $loop; ?>]"
-                          id="variable_defect_description_<?php echo $loop; ?>"
-                          class="variable_defect_description"><?php echo htmlspecialchars_decode( $gzd_product->get_defect_description( 'edit' ) ); ?>
-                </textarea>
+                <label for="variable_defect_description_<?php echo esc_attr( $loop ); ?>"><?php echo __( 'Defect Description', 'woocommerce-germanized' ); ?> <?php echo wc_help_tip( __( 'Inform your customers about product defects. This description will be shown on top of your product description and during cart/checkout.', 'woocommerce-germanized' ) ); ?></label>
+                <textarea rows="3" style="width: 100%" name="variable_defect_description[<?php echo $loop; ?>]" id="variable_defect_description_<?php echo esc_attr( $loop ); ?>" class="variable_defect_description"><?php echo htmlspecialchars_decode( $gzd_product->get_defect_description( 'edit' ) ); ?></textarea>
             </p>
+        </div>
+
+        <div class="variable_food show_if_variation_is_food">
+            <p class="form-row form-row-first">
+                <label><?php _e( 'Deposit Type', 'woocommerce-germanized' ); ?></label>
+                <select name="variable_deposit_type[<?php echo $loop; ?>]">
+                    <option value="" <?php selected( empty( $gzd_product->get_deposit_type( 'edit' ) ), true ); ?>><?php _e( 'Same as Parent', 'woocommerce-germanized' ); ?></option>
+					<?php foreach ( WC_germanized()->deposit_types->get_deposit_types() as $key => $value ) : ?>
+                        <option value="<?php echo esc_attr( $key ); ?>" <?php selected( $key === $gzd_product->get_deposit_type( 'edit' ), true ); ?>><?php echo esc_html( $value ); ?></option>
+					<?php endforeach; ?>
+                </select>
+            </p>
+
+            <p class="form-row form-row-last">
+                <label><?php _e( 'Deposit Quantity', 'woocommerce-germanized' ); ?></label>
+                <input type="number"
+                       name="variable_deposit_quantity[<?php echo $loop; ?>]"
+                       value="<?php echo( ! empty( $gzd_product->get_deposit_quantity( 'edit' ) ) ? esc_attr( $gzd_product->get_deposit_quantity( 'edit' ) ) : '' ); ?>"
+                       placeholder="<?php echo esc_attr( $gzd_parent_product->get_deposit_quantity() ? $gzd_parent_product->get_deposit_quantity() : 1 ); ?>" min="0" />
+            </p>
+
+			<?php do_action( 'woocommerce_gzd_edit_product_variation_food_wrapper', $loop, $variation_data, $variation ); ?>
         </div>
 		<?php
 	}
@@ -415,7 +408,7 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 			'_unit_product'                                 => '',
 			'_unit_price_auto'                              => '',
 			'_unit_price_regular'                           => '',
-            '_deposit_type'                                 => '',
+			'_deposit_type'                                 => '',
 			'_deposit_quantity'                             => '',
 			'_sale_price_label'                             => '',
 			'_sale_price_regular_label'                     => '',
@@ -428,15 +421,22 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 			'_service'                                      => '',
 			'_is_food'                                      => '',
 			'_used_good'                                    => '',
-            '_defective_copy'                               => '',
+			'_defective_copy'                               => '',
 			'delivery_time'                                 => '',
 			'country_specific_delivery_times'               => '',
 			'new_country_specific_delivery_times_countries' => '',
 			'new_country_specific_delivery_times_terms'     => '',
 			'_min_age'                                      => '',
-            '_warranty_attachment_id'                       => '',
-            '_nutrient_ids'                                 => '',
+			'_warranty_attachment_id'                       => '',
+			'_nutrient_ids'                                 => '',
 			'_nutrient_reference_value'                     => '',
+			'_allergen_ids'                                 => '',
+			'_ingredients'                                  => '',
+			'_nutri_score'                                  => '',
+			'_alcohol_content'                              => '',
+			'_food_distributor'                             => '',
+			'_food_place_of_origin'                         => '',
+			'_food_description'                             => '',
 		);
 
 		foreach ( $data as $k => $v ) {

@@ -74,7 +74,7 @@ class WC_Germanized_Meta_Box_Product_Data {
                         'label'       => __( 'Deposit Quantity', 'woocommerce-germanized' ),
                         'type'        => 'number',
                         'placeholder' => 1,
-                        'custom_attributes' => array( 'min' => 1 ),
+                        'custom_attributes' => array( 'min' => 0 ),
                         'desc_tip'    => true,
                         'description' => __( 'Number of units for deposit.', 'woocommerce-germanized' )
                     ) );
@@ -651,15 +651,13 @@ class WC_Germanized_Meta_Box_Product_Data {
 			'_unit_price_auto'                              => '',
 			'_unit_price_regular'                           => '',
 			'_unit_price_sale'                              => '',
-            '_deposit_type'                                 => '',
+			'_deposit_type'                                 => '',
 			'_deposit_quantity'                             => '',
 			'_sale_price_label'                             => '',
 			'_sale_price_regular_label'                     => '',
 			'_mini_desc'                                    => '',
 			'_defect_description'                           => '',
-            '_warranty_attachment_id'                       => '',
-            '_nutrient_ids'                                 => '',
-			'_nutrient_reference_value'                     => '',
+			'_warranty_attachment_id'                       => '',
 			'delivery_time'                                 => '',
 			'country_specific_delivery_times'               => '',
 			'new_country_specific_delivery_times_countries' => '',
@@ -674,6 +672,15 @@ class WC_Germanized_Meta_Box_Product_Data {
 			'_differential_taxation'                        => '',
 			'_is_food'                                      => '',
 			'_min_age'                                      => '',
+			'_nutrient_ids'                                 => '',
+			'_nutrient_reference_value'                     => '',
+			'_allergen_ids'                                 => '',
+			'_ingredients'                                  => '',
+			'_nutri_score'                                  => '',
+			'_alcohol_content'                              => '',
+			'_food_distributor'                             => '',
+			'_food_place_of_origin'                         => '',
+			'_food_description'                             => '',
 		);
 	}
 
@@ -957,6 +964,34 @@ class WC_Germanized_Meta_Box_Product_Data {
 
 		if ( isset( $data['_nutrient_reference_value'] ) ) {
 			$gzd_product->set_nutrient_reference_value( sanitize_key( wc_clean( $data['_nutrient_reference_value'] ) ) );
+		}
+
+		if ( isset( $data['_allergen_ids'] ) ) {
+			$gzd_product->set_allergen_ids( array_map( 'absint', (array) wc_clean( $data['_allergen_ids'] ) ) );
+		}
+
+		if ( isset( $data['_ingredients'] ) ) {
+			$gzd_product->set_ingredients( $data['_ingredients'] === '' ? '' : wc_gzd_sanitize_html_text_field( $data['_ingredients'] ) );
+		}
+
+		if ( isset( $data['_nutri_score'] ) ) {
+			$gzd_product->set_nutri_score( wc_clean( $data['_nutri_score'] ) );
+		}
+
+		if ( isset( $data['_alcohol_content'] ) ) {
+			$gzd_product->set_alcohol_content( wc_clean( $data['_alcohol_content'] ) );
+		}
+
+		if ( isset( $data['_food_distributor'] ) ) {
+			$gzd_product->set_food_distributor( $data['_food_distributor'] === '' ? '' : wc_gzd_sanitize_html_text_field( $data['_food_distributor'] ) );
+		}
+
+		if ( isset( $data['_food_description'] ) ) {
+			$gzd_product->set_food_description( $data['_food_description'] === '' ? '' : wc_gzd_sanitize_html_text_field( $data['_food_description'] ) );
+		}
+
+		if ( isset( $data['_food_place_of_origin'] ) ) {
+			$gzd_product->set_food_place_of_origin( $data['_food_place_of_origin'] === '' ? '' : wc_gzd_sanitize_html_text_field( $data['_food_place_of_origin'] ) );
 		}
 
         $warranty_attachment_id = isset( $data['_warranty_attachment_id'] ) ? absint( $data['_warranty_attachment_id'] ) : 0;

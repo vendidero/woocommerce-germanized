@@ -68,6 +68,8 @@ class WC_GZD_Post_Types {
 					'assign_terms' => 'assign_product_terms',
 				),
 				'rewrite'               => false,
+				'meta_box_cb'           => false,
+				'show_in_quick_edit'    => false,
 			) )
 		);
 
@@ -115,6 +117,8 @@ class WC_GZD_Post_Types {
 					'assign_terms' => 'assign_product_terms',
 				),
 				'rewrite'               => false,
+				'meta_box_cb'           => false,
+				'show_in_quick_edit'    => false,
 			) )
 		);
 
@@ -162,6 +166,8 @@ class WC_GZD_Post_Types {
 					'assign_terms' => 'assign_product_terms',
 				),
 				'rewrite'               => false,
+				'meta_box_cb'           => false,
+				'show_in_quick_edit'    => false,
 			) )
 		);
 
@@ -207,6 +213,7 @@ class WC_GZD_Post_Types {
 					'assign_terms' => 'assign_product_terms',
 				),
 				'rewrite'               => false,
+				'meta_box_cb'           => false,
 			) )
 		);
 
@@ -254,6 +261,8 @@ class WC_GZD_Post_Types {
 					'assign_terms' => 'assign_product_terms',
 				),
 				'rewrite'               => false,
+				'meta_box_cb'           => false,
+				'show_in_quick_edit'    => false,
 			) )
 		);
 
@@ -299,6 +308,8 @@ class WC_GZD_Post_Types {
 					'assign_terms' => 'assign_product_terms',
 				),
 				'rewrite'               => false,
+				'meta_box_cb'           => false,
+				'show_in_quick_edit'    => false,
 			) )
 		);
 	}

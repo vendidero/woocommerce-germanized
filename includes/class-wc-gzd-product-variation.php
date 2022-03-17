@@ -46,7 +46,18 @@ class WC_GZD_Product_Variation extends WC_GZD_Product {
 		'warranty_attachment_id',
 		'is_food',
 		'nutrient_ids',
-		'nutrient_reference_value'
+		'nutrient_reference_value',
+		'allergen_ids',
+		'ingredients',
+		'nutri_score',
+		'alcohol_content',
+		'food_distributor',
+		'food_place_of_origin',
+		'food_description'
+	);
+
+	protected $gzd_variation_prevent_zero_inherit_meta_data = array(
+		'alcohol_content'
 	);
 
 	protected $gzd_variation_forced_inherited_meta_data = array(
@@ -79,15 +90,24 @@ class WC_GZD_Product_Variation extends WC_GZD_Product {
 			}
 
 		} elseif ( in_array( $prop, $this->gzd_variation_inherited_meta_data ) ) {
-			$value = $this->child->get_meta( $meta_key, true, $context ) ? $this->child->get_meta( $meta_key, true, $context ) : '';
+			$value = $this->child->get_meta( $meta_key, true, $context );
 
 			// Make sure forced inherited meta data (e.g. not choosable from admin view) is rejected if available
 			if ( in_array( $prop, $this->gzd_variation_forced_inherited_meta_data ) ) {
 				$value = '';
 			}
 
+			$variation_misses_value = ! $value || '' === $value;
+
+			/**
+			 * Some fields should be able to override parent values with 0, e.g. decimal fields
+			 */
+			if ( in_array( $prop, $this->gzd_variation_prevent_zero_inherit_meta_data ) && "0" === strval( $value ) ) {
+				$variation_misses_value = false;
+			}
+
 			// Handle meta data keys which can be empty at variation level to cause inheritance
-			if ( ! $value || '' === $value ) {
+			if ( $variation_misses_value ) {
 				if ( in_array( $prop, $this->gzd_variation_forced_inherited_meta_data ) || 'view' === $context ) {
 					if ( $parent = $this->get_gzd_parent() ) {
 						$value = $parent->get_wc_product()->get_meta( $meta_key, true, $context );

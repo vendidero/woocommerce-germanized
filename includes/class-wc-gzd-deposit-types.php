@@ -30,13 +30,21 @@ class WC_GZD_Deposit_Types extends WC_GZD_Taxonomy {
 	 * @return string[] terms as array
 	 */
 	public function get_terms( $args = array() ) {
-		$args  = wp_parse_args( $args, array( 'hide_empty' => false ) );
-		$list  = array();
-		$terms = get_terms( $this->get_taxonomy(), $args );
+		$args = wp_parse_args( $args, array(
+			'hide_empty' => false,
+			'as'         => 'slug=>name'
+		) );
+
+		$list    = array();
+		$terms   = get_terms( $this->get_taxonomy(), array_diff_key( $args, array( 'as' => '' ) ) );
+		$as_data = array_map( 'trim', explode( '=>', $args['as'] ) );
+		$key     = isset( $as_data[0] ) ? $as_data[0] : 'slug';
+		$value   = isset( $as_data[1] ) ? $as_data[1] : 'name';
 
 		if ( ! empty( $terms ) && ! is_wp_error( $terms ) ) {
 			foreach ( $terms as $term ) {
-				$list[ $term->slug ] = sprintf( _x( '%1$s (%2$s)', 'deposit-type-title', 'woocommerce-germanized' ), $term->name, $this->get_packaging_type_title( $term ) );
+				$term_value = 'name' === $value ? sprintf( _x( '%1$s (%2$s)', 'deposit-type-title', 'woocommerce-germanized' ), $term->name, $this->get_packaging_type_title( $term ) ) : ( isset( $term->{$value} ) ? $term->{$value} : $term->name );
+				$list[ ( isset( $term->{$key} ) ? $term->{$key} : $term->slug ) ] = $term_value;
 			}
 		}
 
