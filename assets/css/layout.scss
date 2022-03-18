@@ -1,9 +1,23 @@
 p.wc-gzd-additional-info:empty {
   display: none;
 }
+
 .wc-gzd-additional-info-placeholder {
   display: none;
 }
+
+.woocommerce .product-type-variable {
+  .woocommerce-tabs #tab-title-ingredients_nutrients {
+    display: none;
+  }
+
+  &.is-food {
+    .woocommerce-tabs #tab-title-ingredients_nutrients {
+      display: inline-block;
+    }
+  }
+}
+
 #order_review .wc-gzd-checkbox-placeholder {
   clear: both;
 

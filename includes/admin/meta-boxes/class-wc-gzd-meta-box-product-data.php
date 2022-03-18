@@ -64,7 +64,7 @@ class WC_Germanized_Meta_Box_Product_Data {
                     woocommerce_wp_select( array(
                         'id'          => '_deposit_type',
                         'label'       => __( 'Deposit Type', 'woocommerce-germanized' ),
-                        'options'     => array_merge( array( "-1" => __( 'Select Deposit Type', 'woocommerce-germanized' ) ), WC_germanized()->deposit_types->get_deposit_types() ),
+                        'options'     => array( "-1" => __( 'Select Deposit Type', 'woocommerce-germanized' ) ) + WC_germanized()->deposit_types->get_deposit_types(),
                         'desc_tip'    => true,
                         'description' => __( 'In case this product is reusable and has deposits, select the deposit type.', 'woocommerce-germanized' )
                     ) );
@@ -74,7 +74,7 @@ class WC_Germanized_Meta_Box_Product_Data {
                         'label'       => __( 'Deposit Quantity', 'woocommerce-germanized' ),
                         'type'        => 'number',
                         'placeholder' => 1,
-                        'custom_attributes' => array( 'min' => 0 ),
+                        'custom_attributes' => array( 'min' => 1 ),
                         'desc_tip'    => true,
                         'description' => __( 'Number of units for deposit.', 'woocommerce-germanized' )
                     ) );

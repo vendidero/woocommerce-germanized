@@ -394,8 +394,8 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
                 <label><?php _e( 'Deposit Quantity', 'woocommerce-germanized' ); ?></label>
                 <input type="number"
                        name="variable_deposit_quantity[<?php echo $loop; ?>]"
-                       value="<?php echo( ! empty( $gzd_product->get_deposit_quantity( 'edit' ) ) ? esc_attr( $gzd_product->get_deposit_quantity( 'edit' ) ) : '' ); ?>"
-                       placeholder="<?php echo esc_attr( $gzd_parent_product->get_deposit_quantity() ? $gzd_parent_product->get_deposit_quantity() : 1 ); ?>" min="0" />
+                       value="<?php echo esc_attr( $gzd_product->get_deposit_quantity( 'edit' ) ); ?>"
+                       placeholder="<?php echo esc_attr( $gzd_parent_product->get_deposit_quantity() ? $gzd_parent_product->get_deposit_quantity() : 1 ); ?>" min="1" />
             </p>
 
 			<?php do_action( 'woocommerce_gzd_edit_product_variation_food_wrapper', $loop, $variation_data, $variation ); ?>

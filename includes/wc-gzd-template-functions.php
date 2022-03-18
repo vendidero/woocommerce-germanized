@@ -446,7 +446,27 @@ if ( ! function_exists( 'woocommerce_gzd_add_variation_options' ) ) {
 				'defect_description'     => $gzd_product->get_formatted_defect_description(),
 				'deposit_amount'         => $gzd_product->get_deposit_amount_html(),
 				'deposit_packaging_type' => $gzd_product->get_deposit_packaging_type_title(),
+				'is_food'                => $gzd_product->is_food() ? 'yes' : 'no',
+				'food_description'       => $gzd_product->is_food() ? wpautop( $gzd_product->get_food_description() ) : '',
+				'food_place_of_origin'   => $gzd_product->is_food() ? wpautop( $gzd_product->get_food_place_of_origin() ) : '',
+				'food_distributor'       => $gzd_product->is_food() ? wpautop( $gzd_product->get_food_distributor() ) : '',
+				'alcohol_content'        => $gzd_product->is_food() && $gzd_product->includes_alcohol() ? $gzd_product->get_formatted_alcohol_content() : '',
+				'ingredients'            => $gzd_product->is_food() ? wpautop( $gzd_product->get_formatted_ingredients() ) : '',
+				'allergenic'             => $gzd_product->is_food() ? wpautop( $gzd_product->get_formatted_allergenic() ) : '',
+				'nutrients'              => $gzd_product->is_food() ? $gzd_product->get_nutrients_html() : '',
 			) );
+
+			if ( ! empty( $options['ingredients'] ) ) {
+				$options['ingredients_heading'] = esc_html( apply_filters( 'woocommerce_gzd_product_ingredients_heading', __( 'Ingredients', 'woocommerce-germanized' ) ) );
+			}
+
+			if ( ! empty( $options['allergenic'] ) ) {
+				$options['allergenic_heading'] = esc_html( apply_filters( 'woocommerce_gzd_product_allergenic_heading', __( 'Allergenic', 'woocommerce-germanized' ) ) );
+			}
+
+			if ( ! empty( $options['nutrients'] ) ) {
+				$options['nutrients_heading'] = esc_html( apply_filters( 'woocommerce_gzd_product_nutrients_heading', __( 'Nutrients', 'woocommerce-germanized' ) ) );
+			}
 		}
 
 		return $options;

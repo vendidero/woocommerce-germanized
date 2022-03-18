@@ -269,6 +269,10 @@ function wc_gzd_format_tax_rate_percentage( $rate, $percent = false ) {
 	return str_replace( '.', ',', wc_format_decimal( str_replace( '%', '', $rate ), true, true ) ) . ( $percent ? ' %' : '' );
 }
 
+function wc_gzd_format_alcohol_content( $alcohol_content ) {
+	return apply_filters( 'woocommerce_gzd_formatted_alcohol_content', sprintf( '%1$s %% vol', wc_format_localized_decimal( $alcohol_content ) ) );
+}
+
 function wc_gzd_is_customer_activated( $user_id = '' ) {
 
 	if ( is_user_logged_in() && empty( $user_id ) ) {

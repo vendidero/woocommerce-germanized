@@ -30,6 +30,10 @@ class WC_GZD_Product {
 
 	protected $warranty_attachment = false;
 
+	protected $allergenic = null;
+
+	protected $nutrients = null;
+
 	/**
 	 * Construct new WC_GZD_Product
 	 *
@@ -99,14 +103,64 @@ class WC_GZD_Product {
 		return array_filter( (array) $nutrients, 'is_numeric' );
 	}
 
+	public function get_nutrients( $context = 'view' ) {
+		if ( is_null( $this->nutrients ) ) {
+			$this->nutrients = apply_filters( 'woocommerce_gzd_get_product_nutrients', array(), $this, $context );
+		}
+
+		return $this->nutrients;
+	}
+
+	public function has_nutrients() {
+		return ! empty( $this->get_nutrients() );
+	}
+
+	public function get_nutrients_html( $context = 'view' ) {
+		return apply_filters( 'woocommerce_gzd_get_product_nutrients_html', '', $this, $context );
+	}
+
 	public function get_allergen_ids( $context = 'view' ) {
 		$nutrients = $this->get_prop( 'allergen_ids', $context );
 
 		return array_filter( (array) $nutrients );
 	}
 
+	public function has_allergenic() {
+		return ! empty( $this->get_allergenic() );
+	}
+
+	public function get_allergenic( $context = 'view' ) {
+		if ( is_null( $this->allergenic ) ) {
+			$this->allergenic = apply_filters( 'woocommerce_gzd_get_product_allergenic', array(), $this, $context );
+		}
+
+		return $this->allergenic;
+	}
+
+	public function get_formatted_allergenic( $context = 'view' ) {
+		$allergenic = '';
+
+		if ( $this->has_allergenic() ) {
+			$allergenic_list = implode( ', ', $this->get_allergenic( $context ) );
+			$allergenic      = sprintf( __( 'Contains: %1$s', 'woocommerce-germanized' ), $allergenic_list );
+		}
+
+		return apply_filters( 'woocommerce_gzd_get_product_formatted_allergenic', $allergenic, $this, $context );
+	}
+
 	public function get_ingredients( $context = 'view' ) {
 		return $this->get_prop( 'ingredients', $context );
+	}
+
+	/**
+	 * @return string
+	 */
+	public function get_formatted_ingredients() {
+		if ( $ingredients = $this->get_ingredients() ) {
+			return htmlspecialchars_decode( $ingredients );
+		}
+
+		return '';
 	}
 
 	public function get_nutrient_reference_value( $context = 'view' ) {
@@ -118,7 +172,21 @@ class WC_GZD_Product {
 	}
 
 	public function get_alcohol_content( $context = 'view' ) {
-		return $this->get_prop( 'alcohol_content', $context );
+		$alcohol_content = $this->get_prop( 'alcohol_content', $context );
+
+		if ( empty( $alcohol_content ) && 'view' === $alcohol_content ) {
+			$alcohol_content = 0;
+		}
+
+		return $alcohol_content;
+	}
+
+	public function get_formatted_alcohol_content( $context = 'view' ) {
+		return wc_gzd_format_alcohol_content( $this->get_alcohol_content( $context ) );
+	}
+
+	public function includes_alcohol( $context = 'view' ) {
+		return apply_filters( 'woocommerce_gzd_product_includes_alcohol', ( (float) $this->get_alcohol_content( $context ) > 0 ), $this, $context );
 	}
 
 	public function get_food_distributor( $context = 'view' ) {
@@ -448,7 +516,7 @@ class WC_GZD_Product {
 	}
 
 	public function set_deposit_quantity( $quantity ) {
-		$this->set_prop( 'deposit_quantity', ! empty( $quantity ) ? absint( $quantity ) : '' );
+		$this->set_prop( 'deposit_quantity', empty( $quantity ) ? '' : absint( $quantity ) );
 	}
 
 	public function set_warranty_attachment_id( $id ) {
@@ -466,6 +534,8 @@ class WC_GZD_Product {
 
 	public function set_allergen_ids( $ids ) {
 		$this->set_prop( 'allergen_ids', array_map( 'absint', array_filter( (array) $ids ) ) );
+
+		$this->allergenic = null;
 	}
 
 	public function set_ingredients( $ingredients ) {
