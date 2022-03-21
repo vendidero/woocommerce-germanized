@@ -6,11 +6,12 @@ defined( 'ABSPATH' ) || exit;
  * Virtual VAT Helper
  *
  *
- * @class        WC_GZD_Virtual_VAT_Helper
- * @category    Class
- * @author        vendidero
+ * @class    WC_GZD_Deprecated_Virtual_VAT_Helper
+ * @category Class
+ * @author   vendidero
+ * @deprecated
  */
-class WC_GZD_Virtual_VAT_Helper {
+class WC_GZD_Deprecated_Virtual_VAT_Helper {
 
 	protected static $_instance = null;
 
@@ -103,4 +104,4 @@ class WC_GZD_Virtual_VAT_Helper {
 
 }
 
-return WC_GZD_Virtual_VAT_Helper::instance();
+return WC_GZD_Deprecated_Virtual_VAT_Helper::instance();
