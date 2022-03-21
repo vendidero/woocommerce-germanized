@@ -684,10 +684,10 @@ class WC_GZD_Product {
 		$nutrient  = '';
 
 		if ( array_key_exists( $id, $nutrients ) ) {
-			$nutrient = $nutrients[ $id ];
+			$nutrient = (float) $nutrients[ $id ];
 		}
 
-		return apply_filters( 'woocommerce_gzd_product_nutrient', $nutrient, $id, $this, $this->child, $context );
+		return apply_filters( 'woocommerce_gzd_product_nutrient', $nutrient, $id, $this, $context );
 	}
 
 	public function get_min_age( $context = 'view' ) {

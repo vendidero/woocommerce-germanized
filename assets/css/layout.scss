@@ -6,13 +6,13 @@ p.wc-gzd-additional-info:empty {
   display: none;
 }
 
-.woocommerce .product-type-variable {
-  .woocommerce-tabs #tab-title-ingredients_nutrients {
+.woocommerce div.product-type-variable {
+  .woocommerce-tabs ul.tabs li#tab-title-ingredients_nutrients {
     display: none;
   }
 
   &.is-food {
-    .woocommerce-tabs #tab-title-ingredients_nutrients {
+    .woocommerce-tabs ul.tabs li#tab-title-ingredients_nutrients {
       display: inline-block;
     }
   }

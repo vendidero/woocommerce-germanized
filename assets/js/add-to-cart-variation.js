@@ -37,10 +37,6 @@
                 $tr.addClass( 'wc-gzd-additional-info-placeholder' );
             }
         } );
-
-        if ( ! self.$wrapper.hasClass( 'is-food' ) && self.$wrapper.hasClass( 'product-type-variable' ) ) {
-            self.$wrapper.find( '.ingredients_nutrients_tab' ).hide();
-        }
     };
 
     GermanizedVariationForm.prototype.getPriceElement = function( self ) {
@@ -105,7 +101,7 @@
         }
 
         if ( 'yes' === variation.is_food ) {
-            $wrapper.find( '.ingredients_nutrients_tab' ).show();
+            $wrapper.find( '.ingredients_nutrients_tab' ).css( 'display', 'inline-block' );
         } else {
             $wrapper.find( '.ingredients_nutrients_tab' ).hide();
         }
