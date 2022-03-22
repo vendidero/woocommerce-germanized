@@ -54,7 +54,7 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
         } elseif ( 'toggle_' === substr( $bulk_action, 0, 7 ) ) {
             $type = substr( $bulk_action, 7 );
 
-            if ( in_array( $type, array( 'service', 'used_good', 'defective_copy', 'is_food' ) ) ) {
+            if ( in_array( $type, array( 'service', 'used_good', 'defective_copy' ) ) ) {
                 self::bulk_action_variable_status_toggle( $variations, $type );
             }
         }
@@ -82,12 +82,6 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 					    $gzd_variation->set_defective_copy( false );
 				    } else {
 					    $gzd_variation->set_defective_copy( true );
-				    }
-			    } elseif ( 'is_food' === $type ) {
-				    if ( $gzd_variation->is_food( 'edit' ) ) {
-					    $gzd_variation->set_is_food( false );
-				    } else {
-					    $gzd_variation->set_is_food( true );
 				    }
 			    }
 
@@ -161,7 +155,6 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
             <option value="toggle_service"><?php esc_html_e( 'Toggle &quot;Service&quot;', 'woocommerce-germanized' ); ?></option>
             <option value="toggle_used_good"><?php esc_html_e( 'Toggle &quot;Used Good&quot;', 'woocommerce-germanized' ); ?></option>
             <option value="toggle_defective_copy"><?php esc_html_e( 'Toggle &quot;Defective Copy&quot;', 'woocommerce-germanized' ); ?></option>
-            <option value="toggle_is_food"><?php esc_html_e( 'Toggle &quot;Food&quot;', 'woocommerce-germanized' ); ?></option>
         </optgroup>
         <?php
     }
@@ -172,13 +165,9 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 		$is_service        = $gzd_product->get_service( 'edit' );
 		$is_used_good      = $gzd_product->get_used_good( 'edit' );
 		$is_defective_copy = $gzd_product->get_defective_copy( 'edit' );
-		$is_food           = $gzd_product->get_is_food();
 		?>
         <label>
             <input type="checkbox" class="checkbox variable_service" name="variable_service[<?php echo $loop; ?>]" <?php checked( $is_service ? 'yes' : 'no', 'yes' ); ?> /> <?php _e( 'Service', 'woocommerce-germanized' ); ?>
-        </label>
-        <label>
-            <input type="checkbox" class="checkbox variable_is_food" name="variable_is_food[<?php echo $loop; ?>]" <?php checked( $is_food ? 'yes' : 'no', 'yes' ); ?> /> <?php _e( 'Food', 'woocommerce-germanized' ); ?> <?php echo wc_help_tip( __( 'This product is a food product.', 'woocommerce-germanized' ) ); ?>
         </label>
         <label>
             <input type="checkbox" class="checkbox variable_used_good" name="variable_used_good[<?php echo $loop; ?>]" <?php checked( $is_used_good ? 'yes' : 'no', 'yes' ); ?> /> <?php _e( 'Used Good', 'woocommerce-germanized' ); ?> <?php echo wc_help_tip( __( 'Product is a used good.', 'woocommerce-germanized' ) ); ?>
@@ -379,7 +368,7 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
             </p>
         </div>
 
-        <div class="variable_food show_if_variation_is_food">
+        <div class="variable_food show_if_is_food">
             <p class="form-row form-row-first">
                 <label><?php _e( 'Deposit Type', 'woocommerce-germanized' ); ?></label>
                 <select name="variable_deposit_type[<?php echo $loop; ?>]">
@@ -419,7 +408,6 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 			'_mini_desc'                                    => '',
 			'_defect_description'                           => '',
 			'_service'                                      => '',
-			'_is_food'                                      => '',
 			'_used_good'                                    => '',
 			'_defective_copy'                               => '',
 			'delivery_time'                                 => '',
@@ -434,6 +422,8 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 			'_ingredients'                                  => '',
 			'_nutri_score'                                  => '',
 			'_alcohol_content'                              => '',
+			'_drained_weight'                               => '',
+			'_net_filling_quantity'                         => '',
 			'_food_distributor'                             => '',
 			'_food_place_of_origin'                         => '',
 			'_food_description'                             => '',

@@ -28,6 +28,8 @@
         self.$wrapper.find( '' +
             '.woocommerce-product-attributes-item--food_description, ' +
             '.woocommerce-product-attributes-item--alcohol_content, ' +
+            '.woocommerce-product-attributes-item--net_filling_quantity, ' +
+            '.woocommerce-product-attributes-item--drained_weight, ' +
             '.woocommerce-product-attributes-item--food_place_of_origin, ' +
             '.woocommerce-product-attributes-item--food_distributor'
         ).each( function() {
@@ -61,10 +63,6 @@
         } );
 
         $wrapper.find( '.variation_gzd_modified' ).remove();
-
-        if ( ! $wrapper.hasClass( 'is-food' ) && $wrapper.hasClass( 'product-type-variable' ) ) {
-            $wrapper.find( '.ingredients_nutrients_tab' ).hide();
-        }
 
         event.data.GermanizedvariationForm.$form.trigger( 'germanized_reset_data' );
     };
@@ -100,12 +98,6 @@
             $priceElement.find( '.price' ).contents().unwrap();
         }
 
-        if ( 'yes' === variation.is_food ) {
-            $wrapper.find( '.ingredients_nutrients_tab' ).css( 'display', 'inline-block' );
-        } else {
-            $wrapper.find( '.ingredients_nutrients_tab' ).hide();
-        }
-
         if ( variation.delivery_time !== '' ) {
             $wrapper.find( 'p.delivery-time-info:first' ).wc_gzd_set_content( variation.delivery_time );
         } else {
@@ -137,35 +129,39 @@
         }
 
         if ( variation.food_description !== '' ) {
-            $wrapper.find( '.food-description:first' ).wc_gzd_set_content( variation.food_description );
-            $wrapper.find( '.woocommerce-product-attributes-item--food_description:first' ).wc_gzd_set_content( variation.food_description );
+            $wrapper.find( '.wc-gzd-food-description:first' ).wc_gzd_set_content( variation.food_description );
         } else {
-            $wrapper.find( '.food-description:first' ).wc_gzd_reset_content();
-            $wrapper.find( '.woocommerce-product-attributes-item--food_description:first' ).wc_gzd_reset_content();
+            $wrapper.find( '.wc-gzd-food-description:first' ).wc_gzd_reset_content();
         }
 
         if ( variation.food_distributor !== '' ) {
-            $wrapper.find( '.food-distributor:first' ).wc_gzd_set_content( variation.food_distributor );
-            $wrapper.find( '.woocommerce-product-attributes-item--food_distributor:first' ).wc_gzd_set_content( variation.food_distributor );
+            $wrapper.find( '.wc-gzd-food-distributor:first' ).wc_gzd_set_content( variation.food_distributor );
         } else {
-            $wrapper.find( '.food-distributor:first' ).wc_gzd_reset_content();
-            $wrapper.find( '.woocommerce-product-attributes-item--food_distributor:first' ).wc_gzd_reset_content();
+            $wrapper.find( '.wc-gzd-food-distributor:first' ).wc_gzd_reset_content();
         }
 
         if ( variation.food_place_of_origin !== '' ) {
-            $wrapper.find( '.food-place-of-origin:first' ).wc_gzd_set_content( variation.food_place_of_origin );
-            $wrapper.find( '.woocommerce-product-attributes-item--food_place_of_origin:first' ).wc_gzd_set_content( variation.food_place_of_origin );
+            $wrapper.find( '.wc-gzd-food-place-of-origin:first' ).wc_gzd_set_content( variation.food_place_of_origin );
         } else {
-            $wrapper.find( '.food-place-of-origin:first' ).wc_gzd_reset_content();
-            $wrapper.find( '.woocommerce-product-attributes-item--food_place_of_origin:first' ).wc_gzd_reset_content();
+            $wrapper.find( '.wc-gzd-food-place-of-origin:first' ).wc_gzd_reset_content();
         }
 
-        if ( variation.alcohol_content !== '' ) {
-            $wrapper.find( '.alcohol-content:first' ).wc_gzd_set_content( variation.alcohol_content );
-            $wrapper.find( '.woocommerce-product-attributes-item--alcohol_content:first' ).wc_gzd_set_content( variation.alcohol_content );
+        if ( variation.net_filling_quantity !== '' ) {
+            $wrapper.find( '.wc-gzd-net-filling-quantity:first' ).wc_gzd_set_content( variation.net_filling_quantity );
         } else {
-            $wrapper.find( '.alcohol-content:first' ).wc_gzd_reset_content();
-            $wrapper.find( '.woocommerce-product-attributes-item--alcohol_content:first' ).wc_gzd_reset_content();
+            $wrapper.find( '.wc-gzd-net-filling-quantity:first' ).wc_gzd_reset_content();
+        }
+
+        if ( variation.drained_weight !== '' ) {
+            $wrapper.find( '.wc-gzd-drained-weight:first' ).wc_gzd_set_content( variation.drained_weight );
+        } else {
+            $wrapper.find( '.wc-gzd-drained-weight:first' ).wc_gzd_reset_content();
+        }
+
+        if ( variation.alcohol_content !== '' || 'no' === variation.includes_alcohol ) {
+            $wrapper.find( '.wc-gzd-alcohol-content:first' ).wc_gzd_set_content( variation.alcohol_content );
+        } else {
+            $wrapper.find( '.wc-gzd-alcohol-content:first' ).wc_gzd_reset_content();
         }
 
         if ( variation.nutrients !== '' ) {
@@ -239,10 +235,6 @@
     $.fn.wc_gzd_set_content = function( content ) {
         var $content_elem = this;
 
-        if ( this.hasClass( 'woocommerce-product-attributes-item' ) ) {
-            $content_elem = this.find( '.woocommerce-product-attributes-item__value' );
-        }
-
         if ( undefined === this.attr( 'data-o_content' ) ) {
             this.attr( 'data-o_content', $content_elem.html() );
         }
@@ -250,6 +242,18 @@
         $content_elem.html( content );
 
         this.addClass( 'variation_modified variation_gzd_modified' ).removeClass( 'wc-gzd-additional-info-placeholder' ).show();
+
+        if ( $content_elem.is( ':empty' ) ) {
+            this.hide();
+
+            if ( this.parents( '.woocommerce-product-attributes-item' ).length > 0 ) {
+                this.parents( '.woocommerce-product-attributes-item' ).hide();
+            }
+        } else {
+            if ( this.parents( '.woocommerce-product-attributes-item' ).length > 0 ) {
+                this.parents( '.woocommerce-product-attributes-item' ).show();
+            }
+        }
     };
 
     /**
@@ -257,10 +261,6 @@
      */
     $.fn.wc_gzd_reset_content = function() {
         var $content_elem = this;
-
-        if ( this.hasClass( 'woocommerce-product-attributes-item' ) ) {
-            $content_elem = this.find( '.woocommerce-product-attributes-item__value' );
-        }
 
         if ( undefined !== this.attr( 'data-o_content' ) ) {
             $content_elem.html( this.attr( 'data-o_content' ) );
@@ -270,6 +270,14 @@
 
         if ( $content_elem.is( ':empty' ) ) {
             this.addClass( 'wc-gzd-additional-info-placeholder' ).hide();
+
+            if ( this.parents( '.woocommerce-product-attributes-item' ).length > 0 ) {
+                this.parents( '.woocommerce-product-attributes-item' ).hide();
+            }
+        } else {
+            if ( this.parents( '.woocommerce-product-attributes-item' ).length > 0 ) {
+                this.parents( '.woocommerce-product-attributes-item' ).show();
+            }
         }
     };
 

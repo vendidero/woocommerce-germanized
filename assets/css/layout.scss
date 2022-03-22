@@ -6,18 +6,6 @@ p.wc-gzd-additional-info:empty {
   display: none;
 }
 
-.woocommerce div.product-type-variable {
-  .woocommerce-tabs ul.tabs li#tab-title-ingredients_nutrients {
-    display: none;
-  }
-
-  &.is-food {
-    .woocommerce-tabs ul.tabs li#tab-title-ingredients_nutrients {
-      display: inline-block;
-    }
-  }
-}
-
 #order_review .wc-gzd-checkbox-placeholder {
   clear: both;
 

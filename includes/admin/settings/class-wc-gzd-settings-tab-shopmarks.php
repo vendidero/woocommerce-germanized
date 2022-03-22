@@ -243,7 +243,23 @@ class WC_GZD_Settings_Tab_Shopmarks extends WC_GZD_Settings_Tab {
 				'id'            => 'woocommerce_gzd_display_product_widget_delivery_time',
 				'type'          => 'gzd_toggle',
 				'default'       => 'yes',
-				'checkboxgroup' => 'end',
+				'checkboxgroup' => '',
+			),
+
+			array(
+				'desc' 		    => __( 'Deposit', 'woocommerce-germanized' ),
+				'id' 		    => 'woocommerce_gzd_display_product_widget_product_deposit',
+				'type'          => 'gzd_toggle',
+				'default'	    => 'yes',
+				'checkboxgroup'	=> '',
+			),
+
+			array(
+				'desc' 		    => __( 'Deposit Packaging Type', 'woocommerce-germanized' ),
+				'id' 		    => 'woocommerce_gzd_display_product_widget_deposit_packaging_type',
+				'type'          => 'gzd_toggle',
+				'default'	    => 'yes',
+				'checkboxgroup'	=> 'end',
 			),
 
 			array( 'type' => 'sectionend', 'id' => 'product_widget_visibility_options' )
@@ -290,6 +306,22 @@ class WC_GZD_Settings_Tab_Shopmarks extends WC_GZD_Settings_Tab {
 			array(
 				'desc' 		    => __( 'Defect Description', 'woocommerce-germanized' ),
 				'id' 		    => 'woocommerce_gzd_display_emails_product_defect_description',
+				'type'          => 'gzd_toggle',
+				'default'	    => 'yes',
+				'checkboxgroup'	=> '',
+			),
+
+			array(
+				'desc' 		    => __( 'Deposit', 'woocommerce-germanized' ),
+				'id' 		    => 'woocommerce_gzd_display_emails_product_deposit',
+				'type'          => 'gzd_toggle',
+				'default'	    => 'yes',
+				'checkboxgroup'	=> '',
+			),
+
+			array(
+				'desc' 		    => __( 'Deposit Packaging Type', 'woocommerce-germanized' ),
+				'id' 		    => 'woocommerce_gzd_display_emails_product_deposit_packaging_type',
 				'type'          => 'gzd_toggle',
 				'default'	    => 'yes',
 				'checkboxgroup'	=> 'end',

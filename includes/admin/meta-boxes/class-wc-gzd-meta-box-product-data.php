@@ -678,6 +678,8 @@ class WC_Germanized_Meta_Box_Product_Data {
 			'_ingredients'                                  => '',
 			'_nutri_score'                                  => '',
 			'_alcohol_content'                              => '',
+			'_drained_weight'                               => '',
+			'_net_filling_quantity'                         => '',
 			'_food_distributor'                             => '',
 			'_food_place_of_origin'                         => '',
 			'_food_description'                             => '',
@@ -980,6 +982,14 @@ class WC_Germanized_Meta_Box_Product_Data {
 
 		if ( isset( $data['_alcohol_content'] ) ) {
 			$gzd_product->set_alcohol_content( wc_clean( $data['_alcohol_content'] ) );
+		}
+
+		if ( isset( $data['_drained_weight'] ) ) {
+			$gzd_product->set_drained_weight( wc_clean( $data['_drained_weight'] ) );
+		}
+
+		if ( isset( $data['_net_filling_quantity'] ) ) {
+			$gzd_product->set_net_filling_quantity( wc_clean( $data['_net_filling_quantity'] ) );
 		}
 
 		if ( isset( $data['_food_distributor'] ) ) {

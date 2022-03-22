@@ -42,7 +42,6 @@ class WC_GZD_Product_Variation extends WC_GZD_Product {
 		'default_delivery_time',
 		'delivery_time_countries',
 		'warranty_attachment_id',
-		'is_food',
 		'deposit_type',
 		'deposit_quantity',
 		'nutrient_ids',
@@ -50,10 +49,13 @@ class WC_GZD_Product_Variation extends WC_GZD_Product {
 		'allergen_ids',
 		'ingredients',
 		'nutri_score',
+		'drained_weight',
+		'net_filling_quantity',
 		'alcohol_content',
 		'food_distributor',
 		'food_place_of_origin',
-		'food_description'
+		'food_description',
+		'is_food'
 	);
 
 	protected $gzd_variation_prevent_zero_inherit_meta_data = array(
@@ -65,6 +67,7 @@ class WC_GZD_Product_Variation extends WC_GZD_Product {
 		'unit_base',
 		'free_shipping',
 		'differential_taxation',
+		'is_food'
 	);
 
 	public function get_gzd_parent() {

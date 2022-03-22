@@ -171,6 +171,41 @@ class WC_GZD_Product {
 		return $this->get_prop( 'nutri_score', $context );
 	}
 
+	public function get_drained_weight( $context = 'view' ) {
+		return $this->get_prop( 'drained_weight', $context );
+	}
+
+	public function get_net_filling_quantity( $context = 'view' ) {
+		return $this->get_prop( 'net_filling_quantity', $context );
+	}
+
+	public function get_formatted_net_filling_quantity() {
+		$quantity = $this->get_net_filling_quantity();
+
+		if ( '' === $quantity ) {
+			$quantity = $this->get_unit_product();
+		}
+
+		if ( '' !== $quantity ) {
+			$unit     = apply_filters( "woocommerce_gzd_product_net_filling_quantity_unit", $this->get_unit(), $this );
+			$quantity = sprintf( '%1$s %2$s', wc_format_localized_decimal( $quantity ), $unit );
+		}
+
+		return apply_filters( "woocommerce_gzd_product_formatted_net_filling_quantity", $quantity, $this );
+	}
+
+	public function get_formatted_drain_weight() {
+		$weight = '';
+
+		if ( '' !== $this->get_drained_weight() ) {
+			$drain_weight_unit = apply_filters( "woocommerce_gzd_drain_weight_unit", "g" );
+			$weight_in_g       = wc_get_weight( (float) $this->get_drained_weight(), $drain_weight_unit, get_option( 'woocommerce_weight_unit' ) );
+			$weight            = sprintf( '%1$s %2$s', wc_format_localized_decimal( $weight_in_g ), $drain_weight_unit );
+		}
+
+		return apply_filters( "woocommerce_gzd_product_formatted_drain_weight", $weight, $this );
+	}
+
 	public function get_alcohol_content( $context = 'view' ) {
 		$alcohol_content = $this->get_prop( 'alcohol_content', $context );
 
@@ -193,12 +228,36 @@ class WC_GZD_Product {
 		return $this->get_prop( 'food_distributor', $context );
 	}
 
+	public function get_formatted_food_distributor() {
+		if ( $distributor = $this->get_food_distributor() ) {
+			return wpautop( htmlspecialchars_decode( $distributor ) );
+		}
+
+		return '';
+	}
+
 	public function get_food_place_of_origin( $context = 'view' ) {
 		return $this->get_prop( 'food_place_of_origin', $context );
 	}
 
+	public function get_formatted_food_place_of_origin() {
+		if ( $origin = $this->get_food_place_of_origin() ) {
+			return wpautop( htmlspecialchars_decode( $origin ) );
+		}
+
+		return '';
+	}
+
 	public function get_food_description( $context = 'view' ) {
 		return $this->get_prop( 'food_description', $context );
+	}
+
+	public function get_formatted_food_description() {
+		if ( $description = $this->get_food_description() ) {
+			return wpautop( htmlspecialchars_decode( $description ) );
+		}
+
+		return '';
 	}
 
 	public function get_deposit_type_term( $context = 'view'  ) {
@@ -544,6 +603,14 @@ class WC_GZD_Product {
 
 	public function set_nutri_score( $score ) {
 		$this->set_prop( 'nutri_score', $score );
+	}
+
+	public function set_drained_weight( $weight ) {
+		$this->set_prop( 'drained_weight', wc_format_decimal( $weight ) );
+	}
+
+	public function set_net_filling_quantity( $quantity ) {
+		$this->set_prop( 'net_filling_quantity', wc_format_decimal( $quantity ) );
 	}
 
 	public function set_alcohol_content( $content ) {
@@ -1807,7 +1874,7 @@ class WC_GZD_Product {
 	 */
 	public function get_formatted_defect_description() {
 		if ( $this->is_defective_copy() ) {
-			return apply_filters( 'woocommerce_gzd_defect_description', htmlspecialchars_decode( $this->get_defect_description() ) );
+			return apply_filters( 'woocommerce_gzd_defect_description', wpautop( htmlspecialchars_decode( $this->get_defect_description() ) ) );
 		}
 
 		return '';

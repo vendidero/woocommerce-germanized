@@ -107,13 +107,13 @@ if ( ! function_exists( 'woocommerce_gzd_template_single_shipping_costs_info' ) 
 	}
 }
 
-if ( ! function_exists( 'woocommerce_gzd_template_single_deposit_amount' ) ) {
+if ( ! function_exists( 'woocommerce_gzd_template_single_deposit' ) ) {
 
 	/**
 	 * Single Deposit info
 	 */
-	function woocommerce_gzd_template_single_deposit_amount() {
-		wc_get_template( 'single-product/deposit-amount.php' );
+	function woocommerce_gzd_template_single_deposit() {
+		wc_get_template( 'single-product/deposit.php' );
 	}
 }
 
@@ -447,10 +447,13 @@ if ( ! function_exists( 'woocommerce_gzd_add_variation_options' ) ) {
 				'deposit_amount'         => $gzd_product->get_deposit_amount_html(),
 				'deposit_packaging_type' => $gzd_product->get_deposit_packaging_type_title(),
 				'is_food'                => $gzd_product->is_food() ? 'yes' : 'no',
-				'food_description'       => $gzd_product->is_food() ? wpautop( $gzd_product->get_food_description() ) : '',
-				'food_place_of_origin'   => $gzd_product->is_food() ? wpautop( $gzd_product->get_food_place_of_origin() ) : '',
-				'food_distributor'       => $gzd_product->is_food() ? wpautop( $gzd_product->get_food_distributor() ) : '',
+				'food_description'       => $gzd_product->is_food() ? $gzd_product->get_formatted_food_description() : '',
+				'food_place_of_origin'   => $gzd_product->is_food() ? $gzd_product->get_formatted_food_place_of_origin() : '',
+				'food_distributor'       => $gzd_product->is_food() ? $gzd_product->get_formatted_food_distributor() : '',
 				'alcohol_content'        => $gzd_product->is_food() && $gzd_product->includes_alcohol() ? $gzd_product->get_formatted_alcohol_content() : '',
+				'includes_alcohol'       => $gzd_product->is_food() && $gzd_product->includes_alcohol() ? 'yes' : 'no',
+				'drained_weight'         => $gzd_product->is_food() ? $gzd_product->get_formatted_drain_weight() : '',
+				'net_filling_quantity'   => $gzd_product->is_food() ? $gzd_product->get_formatted_net_filling_quantity() : '',
 				'ingredients'            => $gzd_product->is_food() ? wpautop( $gzd_product->get_formatted_ingredients() ) : '',
 				'allergenic'             => $gzd_product->is_food() ? wpautop( $gzd_product->get_formatted_allergenic() ) : '',
 				'nutrients'              => $gzd_product->is_food() ? $gzd_product->get_nutrients_html() : '',
@@ -975,25 +978,33 @@ if ( ! function_exists( 'woocommerce_gzd_template_add_price_html_suffixes' ) ) {
 		$product = $org_product;
 
 		$args = wp_parse_args( $args, array(
-			'price_unit'          => array(
-				'show'     => wc_string_to_bool( get_option( "woocommerce_gzd_display_{$location}_unit_price", true ) ),
+			'deposit_packaging_type' => array(
+				'show'     => wc_string_to_bool( get_option( "woocommerce_gzd_display_{$location}_deposit_packaging_type", true ) ),
 				'priority' => 10,
 			),
-			'tax_info'            => array(
-				'show'     => wc_string_to_bool( get_option( "woocommerce_gzd_display_{$location}_tax_info", true ) ),
+			'price_unit'             => array(
+				'show'     => wc_string_to_bool( get_option( "woocommerce_gzd_display_{$location}_unit_price", true ) ),
 				'priority' => 20,
 			),
-			'shipping_costs_info' => array(
-				'show'     => wc_string_to_bool( get_option( "woocommerce_gzd_display_{$location}_shipping_costs", true ) ),
+			'tax_info'               => array(
+				'show'     => wc_string_to_bool( get_option( "woocommerce_gzd_display_{$location}_tax_info", true ) ),
 				'priority' => 30,
 			),
-			'product_units'       => array(
-				'show'     => wc_string_to_bool( get_option( "woocommerce_gzd_display_{$location}_product_units", false ) ),
+			'deposit'                => array(
+				'show'     => wc_string_to_bool( get_option( "woocommerce_gzd_display_{$location}_deposit", true ) ),
 				'priority' => 40,
 			),
-			'delivery_time_info'  => array(
-				'show'     => wc_string_to_bool( get_option( "woocommerce_gzd_display_{$location}_delivery_time", true ) ),
+			'shipping_costs_info'    => array(
+				'show'     => wc_string_to_bool( get_option( "woocommerce_gzd_display_{$location}_shipping_costs", true ) ),
 				'priority' => 50,
+			),
+			'product_units'          => array(
+				'show'     => wc_string_to_bool( get_option( "woocommerce_gzd_display_{$location}_product_units", false ) ),
+				'priority' => 60,
+			),
+			'delivery_time_info'     => array(
+				'show'     => wc_string_to_bool( get_option( "woocommerce_gzd_display_{$location}_delivery_time", true ) ),
+				'priority' => 70,
 			),
 		) );
 

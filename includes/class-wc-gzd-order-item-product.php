@@ -69,6 +69,24 @@ class WC_GZD_Order_Item_Product extends WC_GZD_Order_Item {
 		return $this->order_item->get_meta( '_deposit_packaging_type', true );
 	}
 
+	public function get_deposit_packaging_type_title() {
+		$returnable_type_title = '';
+
+		if ( $returnable_type = $this->get_deposit_packaging_type() ) {
+			$returnable_type_title = WC_germanized()->deposit_types->get_packaging_type_title( $returnable_type );
+		}
+
+		/**
+		 * Filter to adjust the deposit packaging type title for an order item.
+		 *
+		 * @param string $title The title.
+		 * @param WC_GZD_Order_Item_Product $order_item The order item product object.
+		 *
+		 * @since 3.9.0
+		 */
+		return apply_filters( 'woocommerce_gzd_order_item_product_deposit_packaging_type_title', $returnable_type_title, $this );
+	}
+
 	public function get_deposit_amount_per_unit() {
 		$amount = $this->order_item->get_meta( '_deposit_amount_per_unit', true );
 

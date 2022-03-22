@@ -55,7 +55,7 @@ class Shopmarks {
 			'deposit' => array(
 				'default_filter'   => 'woocommerce_single_product_summary',
 				'default_priority' => 13,
-				'callback'         => 'woocommerce_gzd_template_single_deposit_amount',
+				'callback'         => 'woocommerce_gzd_template_single_deposit',
 			),
 			'deposit_packaging_type' => array(
 				'default_filter'   => 'woocommerce_single_product_summary',
@@ -169,7 +169,7 @@ class Shopmarks {
 			'deposit'     => array(
 				'default_filter'   => 'woocommerce_after_shop_loop_item_title',
 				'default_priority' => 12,
-				'callback'         => 'woocommerce_gzd_template_single_deposit_amount',
+				'callback'         => 'woocommerce_gzd_template_single_deposit',
 			),
 			'deposit_packaging_type' => array(
 				'default_filter'   => 'woocommerce_after_shop_loop_item_title',

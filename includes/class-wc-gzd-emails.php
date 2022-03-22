@@ -1065,6 +1065,7 @@ class WC_GZD_Emails {
 		if ( 'yes' === get_option( 'woocommerce_gzd_display_emails_product_units' ) ) {
 			add_filter( 'woocommerce_order_item_name', 'wc_gzd_cart_product_units', wc_gzd_get_hook_priority( 'email_product_units' ), 2 );
 		}
+
 		if ( 'yes' === get_option( 'woocommerce_gzd_display_emails_delivery_time' ) ) {
 			add_filter( 'woocommerce_order_item_name', 'wc_gzd_cart_product_delivery_time', wc_gzd_get_hook_priority( 'email_product_delivery_time' ), 2 );
 		}
@@ -1083,6 +1084,14 @@ class WC_GZD_Emails {
 
 		if ( 'yes' === get_option( 'woocommerce_gzd_display_emails_unit_price' ) ) {
 			add_filter( 'woocommerce_order_formatted_line_subtotal', 'wc_gzd_cart_product_unit_price', wc_gzd_get_hook_priority( 'email_product_unit_price' ), 2 );
+		}
+
+		if ( 'yes' === get_option( 'woocommerce_gzd_display_emails_deposit_packaging_type' ) ) {
+			add_filter( 'woocommerce_order_item_name', 'wc_gzd_cart_product_deposit_packaging_type', wc_gzd_get_hook_priority( 'email_deposit_packaging_type' ), 2 );
+		}
+
+		if ( 'yes' === get_option( 'woocommerce_gzd_display_emails_deposit' ) ) {
+			add_filter( 'woocommerce_order_formatted_line_subtotal', 'wc_gzd_cart_product_deposit_amount', wc_gzd_get_hook_priority( 'email_product_deposit_amount' ), 2 );
 		}
 
 		/**
@@ -1118,7 +1127,9 @@ class WC_GZD_Emails {
 		remove_filter( 'woocommerce_order_item_name', 'wc_gzd_cart_product_item_desc', wc_gzd_get_hook_priority( 'email_product_item_desc' ) );
 		remove_filter( 'woocommerce_order_item_name', 'wc_gzd_cart_product_defect_description', wc_gzd_get_hook_priority( 'email_product_defect_description' ) );
 		remove_filter( 'woocommerce_order_item_name', 'wc_gzd_cart_product_attributes', wc_gzd_get_hook_priority( 'email_product_attributes' ) );
+		remove_filter( 'woocommerce_order_item_name', 'wc_gzd_cart_product_deposit_packaging_type', wc_gzd_get_hook_priority( 'email_deposit_packaging_type' ) );
 
+		remove_filter( 'woocommerce_order_formatted_line_subtotal', 'wc_gzd_cart_product_deposit_amount', wc_gzd_get_hook_priority( 'email_product_deposit_amount' ) );
 		remove_filter( 'woocommerce_order_formatted_line_subtotal', 'wc_gzd_cart_product_unit_price', wc_gzd_get_hook_priority( 'email_product_unit_price' ) );
 	}
 
@@ -1130,13 +1141,16 @@ class WC_GZD_Emails {
 	 * @return string
 	 */
 	public function styles( $css ) {
-		return $css .= '
+		return $css . '
 			.unit-price-cart {
 				display: block;
 				font-size: 0.9em;
 			}
 			.gzd-digital-notice-text, .gzd-differential-taxation-notice-email, .gzd-service-notice-text {
 				margin-top: 16px;
+			}
+			.deposit-packaging-type {
+				text-transform: uppercase;
 			}
 		';
 	}

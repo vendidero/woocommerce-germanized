@@ -22,7 +22,7 @@ global $product;
 ?>
 
 <?php if ( $html = wc_gzd_get_gzd_product( $product )->get_deposit_amount_html() ) : ?>
-	<p class="wc-gzd-additional-info deposit-amount"><?php echo $html; ?></p>
+	<p class="wc-gzd-additional-info deposit-amount deposit"><?php echo $html; ?></p>
 <?php elseif ( $product->is_type( 'variable' ) ) : ?>
-	<p class="wc-gzd-additional-info deposit-amount wc-gzd-additional-info-placeholder"></p>
+	<p class="wc-gzd-additional-info deposit-amount deposit wc-gzd-additional-info-placeholder"></p>
 <?php endif; ?>
