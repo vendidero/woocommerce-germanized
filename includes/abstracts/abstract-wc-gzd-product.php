@@ -171,6 +171,16 @@ class WC_GZD_Product {
 		return $this->get_prop( 'nutri_score', $context );
 	}
 
+	public function get_formatted_nutri_score() {
+		$nutri_score = $this->get_nutri_score();
+
+		if ( '' !== $nutri_score ) {
+			$nutri_score = '<span title="' . sprintf( esc_html__( 'Nutri-Score %1$s', 'woocommerce-germanized' ), strtoupper( $nutri_score ) ) . '" aria-label="' . sprintf( esc_html__( 'Nutri-Score %1$s', 'woocommerce-germanized' ), strtoupper( $nutri_score ) ) . '" class="wc-gzd-nutri-score-value wc-gzd-nutri-score-value-' . esc_attr( $nutri_score ) . '">' . esc_html( strtoupper( $nutri_score ) ) . '</span>';
+		}
+
+		return apply_filters( "woocommerce_gzd_product_formatted_nutri_score", $nutri_score, $this );
+	}
+
 	public function get_drained_weight( $context = 'view' ) {
 		return $this->get_prop( 'drained_weight', $context );
 	}

@@ -62,6 +62,11 @@ class Shopmarks {
 				'default_priority' => 10,
 				'callback'         => 'woocommerce_gzd_template_single_deposit_packaging_type',
 			),
+			'nutri_score'           => array(
+				'default_filter'   => 'woocommerce_single_product_summary',
+				'default_priority' => 15,
+				'callback'         => 'woocommerce_gzd_template_single_nutri_score',
+			),
 		) );
 
 		self::$shopmarks['single_product'] = array();
@@ -119,6 +124,11 @@ class Shopmarks {
 				'default_priority' => 10,
 				'callback'         => 'woocommerce_gzd_template_grouped_single_deposit_packaging_type',
 			),
+			'nutri_score'           => array(
+				'default_filter'   => 'woocommerce_grouped_product_list_column_label',
+				'default_priority' => 20,
+				'callback'         => 'woocommerce_gzd_template_grouped_single_nutri_score',
+			),
 		) );
 
 		self::$shopmarks['single_product_grouped'] = array();
@@ -144,37 +154,42 @@ class Shopmarks {
 			'unit_price'     => array(
 				'default_filter'   => 'woocommerce_after_shop_loop_item_title',
 				'default_priority' => 11,
-				'callback'         => 'woocommerce_gzd_template_single_price_unit',
+				'callback'         => 'woocommerce_gzd_template_loop_price_unit',
 			),
 			'tax'            => array(
 				'default_filter'   => 'woocommerce_after_shop_loop_item',
 				'default_priority' => 6,
-				'callback'         => 'woocommerce_gzd_template_single_tax_info',
+				'callback'         => 'woocommerce_gzd_template_loop_tax_info',
 			),
 			'shipping_costs' => array(
 				'default_filter'   => 'woocommerce_after_shop_loop_item',
 				'default_priority' => 7,
-				'callback'         => 'woocommerce_gzd_template_single_shipping_costs_info',
+				'callback'         => 'woocommerce_gzd_template_loop_shipping_costs_info',
 			),
 			'delivery_time'  => array(
 				'default_filter'   => 'woocommerce_after_shop_loop_item',
 				'default_priority' => 8,
-				'callback'         => 'woocommerce_gzd_template_single_delivery_time_info',
+				'callback'         => 'woocommerce_gzd_template_loop_delivery_time_info',
 			),
 			'units'          => array(
 				'default_filter'   => 'woocommerce_after_shop_loop_item',
 				'default_priority' => 9,
-				'callback'         => 'woocommerce_gzd_template_single_product_units',
+				'callback'         => 'woocommerce_gzd_template_loop_product_units',
 			),
 			'deposit'     => array(
 				'default_filter'   => 'woocommerce_after_shop_loop_item_title',
 				'default_priority' => 12,
-				'callback'         => 'woocommerce_gzd_template_single_deposit',
+				'callback'         => 'woocommerce_gzd_template_loop_deposit',
 			),
 			'deposit_packaging_type' => array(
 				'default_filter'   => 'woocommerce_after_shop_loop_item_title',
 				'default_priority' => 10,
-				'callback'         => 'woocommerce_gzd_template_single_deposit_packaging_type',
+				'callback'         => 'woocommerce_gzd_template_loop_deposit_packaging_type',
+			),
+			'nutri_score'           => array(
+				'default_filter'   => 'woocommerce_after_shop_loop_item',
+				'default_priority' => 15,
+				'callback'         => 'woocommerce_gzd_template_loop_nutri_score',
 			),
 		) );
 
@@ -631,6 +646,7 @@ class Shopmarks {
 				'defect_description'     => _x( 'Defect Description', 'shopmark', 'woocommerce-germanized' ),
 				'deposit'                => _x( 'Deposit', 'shopmark', 'woocommerce-germanized' ),
 				'deposit_packaging_type' => _x( 'Type of Packaging', 'shopmark', 'woocommerce-germanized' ),
+				'nutri_score'            => _x( 'Nutri-Score', 'shopmark', 'woocommerce-germanized' ),
 			),
 			'single_product_grouped' => array(
 				'unit_price'             => _x( 'Unit Price', 'shopmark', 'woocommerce-germanized' ),
@@ -640,6 +656,7 @@ class Shopmarks {
 				'defect_description'     => _x( 'Defect Description', 'shopmark', 'woocommerce-germanized' ),
 				'deposit'                => _x( 'Deposit', 'shopmark', 'woocommerce-germanized' ),
 				'deposit_packaging_type' => _x( 'Type of Packaging', 'shopmark', 'woocommerce-germanized' ),
+				'nutri_score'            => _x( 'Nutri-Score', 'shopmark', 'woocommerce-germanized' ),
 			),
 			'product_loop'           => array(
 				'unit_price'             => _x( 'Unit Price', 'shopmark', 'woocommerce-germanized' ),
@@ -649,6 +666,7 @@ class Shopmarks {
 				'units'                  => _x( 'Product Units', 'shopmark', 'woocommerce-germanized' ),
 				'deposit'                => _x( 'Deposit', 'shopmark', 'woocommerce-germanized' ),
 				'deposit_packaging_type' => _x( 'Type of Packaging', 'shopmark', 'woocommerce-germanized' ),
+				'nutri_score'            => _x( 'Nutri-Score', 'shopmark', 'woocommerce-germanized' ),
 			),
 			'cart'                   => array(
 				'unit_price'             => _x( 'Unit Price', 'shopmark', 'woocommerce-germanized' ),
@@ -658,6 +676,7 @@ class Shopmarks {
 				'defect_description'     => _x( 'Defect Description', 'shopmark', 'woocommerce-germanized' ),
 				'deposit'                => _x( 'Deposit', 'shopmark', 'woocommerce-germanized' ),
 				'deposit_packaging_type' => _x( 'Type of Packaging', 'shopmark', 'woocommerce-germanized' ),
+				'nutri_score'            => _x( 'Nutri-Score', 'shopmark', 'woocommerce-germanized' ),
 			),
 			'mini_cart'              => array(
 				'unit_price'             => _x( 'Unit Price', 'shopmark', 'woocommerce-germanized' ),
@@ -667,6 +686,7 @@ class Shopmarks {
 				'defect_description'     => _x( 'Defect Description', 'shopmark', 'woocommerce-germanized' ),
 				'deposit'                => _x( 'Deposit', 'shopmark', 'woocommerce-germanized' ),
 				'deposit_packaging_type' => _x( 'Type of Packaging', 'shopmark', 'woocommerce-germanized' ),
+				'nutri_score'            => _x( 'Nutri-Score', 'shopmark', 'woocommerce-germanized' ),
 			),
 			'checkout'               => array(
 				'unit_price'             => _x( 'Unit Price', 'shopmark', 'woocommerce-germanized' ),
@@ -676,6 +696,7 @@ class Shopmarks {
 				'defect_description'     => _x( 'Defect Description', 'shopmark', 'woocommerce-germanized' ),
 				'deposit'                => _x( 'Deposit', 'shopmark', 'woocommerce-germanized' ),
 				'deposit_packaging_type' => _x( 'Type of Packaging', 'shopmark', 'woocommerce-germanized' ),
+				'nutri_score'            => _x( 'Nutri-Score', 'shopmark', 'woocommerce-germanized' ),
 			),
 			'order'                  => array(
 				'unit_price'             => _x( 'Unit Price', 'shopmark', 'woocommerce-germanized' ),
@@ -685,6 +706,7 @@ class Shopmarks {
 				'defect_description'     => _x( 'Defect Description', 'shopmark', 'woocommerce-germanized' ),
 				'deposit'                => _x( 'Deposit', 'shopmark', 'woocommerce-germanized' ),
 				'deposit_packaging_type' => _x( 'Type of Packaging', 'shopmark', 'woocommerce-germanized' ),
+				'nutri_score'            => _x( 'Nutri-Score', 'shopmark', 'woocommerce-germanized' ),
 			),
 		);
 

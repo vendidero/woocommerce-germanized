@@ -1,8 +1,8 @@
 <?php
 /**
- * The Template for displaying the deposit amount for a certain product.
+ * The Template for displaying delivery time notice for a certain product.
  *
- * This template can be overridden by copying it to yourtheme/woocommerce-germanized/single-product/deposit.php.
+ * This template can be overridden by copying it to yourtheme/woocommerce-germanized/loop/defect-description.php.
  *
  * HOWEVER, on occasion Germanized will need to update template files and you
  * (the theme developer) will need to copy the new files to your theme to
@@ -12,17 +12,17 @@
  *
  * @see https://github.com/vendidero/woocommerce-germanized/wiki/Overriding-Germanized-Templates
  * @package Germanized/Templates
- * @version 3.8.0
+ * @version 3.9.0
  */
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 } // Exit if accessed directly
 
 global $product;
+
+$defect_description = wc_gzd_get_gzd_product( $product )->get_formatted_defect_description();
 ?>
 
-<?php if ( $html = wc_gzd_get_gzd_product( $product )->get_deposit_amount_html() ) : ?>
-	<p class="wc-gzd-additional-info deposit-amount deposit"><?php echo $html; ?></p>
-<?php elseif ( $product->is_type( 'variable' ) ) : ?>
-	<p class="wc-gzd-additional-info deposit-amount deposit wc-gzd-additional-info-placeholder"></p>
+<?php if ( $defect_description ) : ?>
+	<div class="wc-gzd-additional-info defect-description wc-gzd-additional-info-loop"><?php echo $defect_description; ?></div>
 <?php endif; ?>

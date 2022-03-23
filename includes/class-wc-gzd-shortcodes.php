@@ -51,6 +51,7 @@ class WC_GZD_Shortcodes {
 			'nutrients',
 			'allergenic',
 			'ingredients',
+			'nutri_score'
 		);
 
 		foreach( $food_types as $food_type ) {

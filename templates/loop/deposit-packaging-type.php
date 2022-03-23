@@ -1,8 +1,8 @@
 <?php
 /**
- * The Template for displaying the deposit amount for a certain product.
+ * The Template for displaying the deposit packaging type for a certain product.
  *
- * This template can be overridden by copying it to yourtheme/woocommerce-germanized/single-product/deposit.php.
+ * This template can be overridden by copying it to yourtheme/woocommerce-germanized/loop/deposit-packaging-type.php.
  *
  * HOWEVER, on occasion Germanized will need to update template files and you
  * (the theme developer) will need to copy the new files to your theme to
@@ -21,8 +21,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 global $product;
 ?>
 
-<?php if ( $html = wc_gzd_get_gzd_product( $product )->get_deposit_amount_html() ) : ?>
-	<p class="wc-gzd-additional-info deposit-amount deposit"><?php echo $html; ?></p>
-<?php elseif ( $product->is_type( 'variable' ) ) : ?>
-	<p class="wc-gzd-additional-info deposit-amount deposit wc-gzd-additional-info-placeholder"></p>
+<?php if ( $title = wc_gzd_get_gzd_product( $product )->get_deposit_packaging_type_title() ) : ?>
+	<p class="wc-gzd-additional-info wc-gzd-additional-info-loop deposit-packaging-type"><?php echo $title; ?></p>
 <?php endif; ?>

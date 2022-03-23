@@ -11,7 +11,15 @@ jQuery( function ( $ ) {
                 .on( 'click', 'a.wc-gzd-remove-country-specific-delivery-time', self.onRemoveDeliveryTime )
                 .on( 'click', '.upload_warranty_button', self.onUploadWarranty )
                 .on( 'click', 'a.wc-gzd-warranty-delete', self.onRemoveWarranty )
-                .on( 'woocommerce-product-type-change', self.onProductTypeChange );
+                .on( 'woocommerce-product-type-change wc-gzd-product-type-change', self.onProductTypeChange )
+                .on( 'wc-gzd-show-hide-panels', self.showHidePanels );
+
+            try {
+                $( document.body ).on( 'wc-enhanced-select-init wc-gzd-enhanced-select-init', this.onEnhancedSelectInit ).trigger( 'wc-gzd-enhanced-select-init' );
+            } catch( err ) {
+                // If select2 failed (conflict?) log the error but don't stop other scripts breaking.
+                window.console.log( err );
+            }
 
             $( 'input#_is_food, input#_defective_copy' ).on( 'change', function() {
                 self.showHidePanels();
@@ -22,16 +30,48 @@ jQuery( function ( $ ) {
             $( '#the-list' ).on('click', '.editinline', self.onQuickEdit );
         },
 
+        onEnhancedSelectInit: function() {
+            var self = wc_gzd_product;
+
+            // Tag select
+            $( ':input.wc-gzd-enhanced-nutri-score' ).filter( ':not(.enhanced)' ).each( function () {
+                var select2_args = {
+                    minimumResultsForSearch: 10,
+                    allowClear:  $( this ).data( 'allow_clear' ) ? true : false,
+                    placeholder: $( this ).data( 'placeholder' ),
+                    // There seems to be a bug in WooSelect: https://github.com/woocommerce/selectWoo/issues/39
+                    // templateSelection: self.formatNutriScore,
+                    templateResult: self.formatNutriScore,
+                };
+
+                $( this ).selectWoo( select2_args ).addClass( 'enhanced' );
+            });
+        },
+
+        formatNutriScore: function( nutriScore ) {
+            if ( ! nutriScore.id ) {
+                return nutriScore.text;
+            }
+
+            var $nutri = $(
+                '<span><i class="nutri-score-select-value nutri-score-select-value-' + nutriScore.element.value + '">&#9679;</i> ' + nutriScore.text + '</span>'
+            );
+
+            return $nutri;
+        },
+
         onProductTypeChange: function() {
             wc_gzd_product.showHidePanels();
         },
 
         showHidePanels: function() {
             var is_food           = $( 'input#_is_food:checked' ).length,
-                is_defective_copy = $( 'input#_defective_copy:checked' ).length
+                is_defective_copy = $( 'input#_defective_copy:checked' ).length;
 
             var hide_classes = '.hide_if_is_food, .hide_if_defective_copy';
             var show_classes = '.show_if_is_food, .show_if_defective_copy';
+
+            console.log('show or hide');
 
             $( hide_classes ).show();
             $( show_classes ).hide();

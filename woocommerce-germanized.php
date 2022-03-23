@@ -972,6 +972,24 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 				$custom_css .= " p.woocommerce-shipping-destination { display: none; }";
 			}
 
+            $custom_css .= "
+                .wc-gzd-nutri-score-value-a {
+                    background: url(" . $this->plugin_url() . '/assets/images/nutri-score-a.svg' . ") no-repeat;
+                }
+                .wc-gzd-nutri-score-value-b {
+                    background: url(" . $this->plugin_url() . '/assets/images/nutri-score-b.svg' . ") no-repeat;
+                }
+                .wc-gzd-nutri-score-value-c {
+                    background: url(" . $this->plugin_url() . '/assets/images/nutri-score-c.svg' . ") no-repeat;
+                }
+                .wc-gzd-nutri-score-value-d {
+                    background: url(" . $this->plugin_url() . '/assets/images/nutri-score-d.svg' . ") no-repeat;
+                }
+                .wc-gzd-nutri-score-value-e {
+                    background: url(" . $this->plugin_url() . '/assets/images/nutri-score-e.svg' . ") no-repeat;
+                }
+            ";
+
 			wp_add_inline_style( 'woocommerce-gzd-layout', $custom_css );
 		}
 

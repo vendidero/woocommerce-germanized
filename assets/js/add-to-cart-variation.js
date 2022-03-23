@@ -99,123 +99,117 @@
         }
 
         if ( variation.delivery_time !== '' ) {
-            $wrapper.find( 'p.delivery-time-info:first' ).wc_gzd_set_content( variation.delivery_time );
+            $wrapper.find( 'p.delivery-time-info' ).wc_gzd_set_content( variation.delivery_time );
         } else {
-            $wrapper.find( 'p.delivery-time-info:first' ).wc_gzd_reset_content();
+            $wrapper.find( 'p.delivery-time-info' ).wc_gzd_reset_content();
         }
 
         if ( variation.defect_description !== '' ) {
-            $wrapper.find( 'p.defect-description:first' ).wc_gzd_set_content( variation.defect_description );
+            $wrapper.find( 'p.defect-description' ).wc_gzd_set_content( variation.defect_description );
         } else {
-            $wrapper.find( 'p.defect-description:first' ).wc_gzd_reset_content();
+            $wrapper.find( 'p.defect-description' ).wc_gzd_reset_content();
         }
 
         if ( variation.tax_info !== '' && hasDisplayPrice ) {
-            $wrapper.find( '.tax-info:first' ).wc_gzd_set_content( variation.tax_info );
+            $wrapper.find( '.tax-info' ).wc_gzd_set_content( variation.tax_info );
         } else {
-            $wrapper.find( '.tax-info:first' ).wc_gzd_reset_content();
+            $wrapper.find( '.tax-info' ).wc_gzd_reset_content();
         }
 
         if ( variation.deposit_amount !== '' && hasDisplayPrice ) {
-            $wrapper.find( '.deposit-amount:first' ).wc_gzd_set_content( variation.deposit_amount );
+            $wrapper.find( '.deposit-amount' ).wc_gzd_set_content( variation.deposit_amount );
         } else {
-            $wrapper.find( '.deposit-amount:first' ).wc_gzd_reset_content();
+            $wrapper.find( '.deposit-amount' ).wc_gzd_reset_content();
         }
 
         if ( variation.deposit_packaging_type !== '' && hasDisplayPrice ) {
-            $wrapper.find( '.deposit-packaging-type:first' ).wc_gzd_set_content( variation.deposit_packaging_type );
+            $wrapper.find( '.deposit-packaging-type' ).wc_gzd_set_content( variation.deposit_packaging_type );
         } else {
-            $wrapper.find( '.deposit-packaging-type:first' ).wc_gzd_reset_content();
+            $wrapper.find( '.deposit-packaging-type' ).wc_gzd_reset_content();
         }
 
         if ( variation.food_description !== '' ) {
-            $wrapper.find( '.wc-gzd-food-description:first' ).wc_gzd_set_content( variation.food_description );
+            $wrapper.find( '.wc-gzd-food-description' ).wc_gzd_set_content( variation.food_description );
         } else {
-            $wrapper.find( '.wc-gzd-food-description:first' ).wc_gzd_reset_content();
+            $wrapper.find( '.wc-gzd-food-description' ).wc_gzd_reset_content();
+        }
+
+        if ( variation.nutri_score !== '' ) {
+            $wrapper.find( '.wc-gzd-nutri-score' ).wc_gzd_set_content( variation.nutri_score );
+        } else {
+            $wrapper.find( '.wc-gzd-nutri-score' ).wc_gzd_reset_content();
         }
 
         if ( variation.food_distributor !== '' ) {
-            $wrapper.find( '.wc-gzd-food-distributor:first' ).wc_gzd_set_content( variation.food_distributor );
+            $wrapper.find( '.wc-gzd-food-distributor' ).wc_gzd_set_content( variation.food_distributor );
         } else {
-            $wrapper.find( '.wc-gzd-food-distributor:first' ).wc_gzd_reset_content();
+            $wrapper.find( '.wc-gzd-food-distributor' ).wc_gzd_reset_content();
         }
 
         if ( variation.food_place_of_origin !== '' ) {
-            $wrapper.find( '.wc-gzd-food-place-of-origin:first' ).wc_gzd_set_content( variation.food_place_of_origin );
+            $wrapper.find( '.wc-gzd-food-place-of-origin' ).wc_gzd_set_content( variation.food_place_of_origin );
         } else {
-            $wrapper.find( '.wc-gzd-food-place-of-origin:first' ).wc_gzd_reset_content();
+            $wrapper.find( '.wc-gzd-food-place-of-origin' ).wc_gzd_reset_content();
         }
 
         if ( variation.net_filling_quantity !== '' ) {
-            $wrapper.find( '.wc-gzd-net-filling-quantity:first' ).wc_gzd_set_content( variation.net_filling_quantity );
+            $wrapper.find( '.wc-gzd-net-filling-quantity' ).wc_gzd_set_content( variation.net_filling_quantity );
         } else {
-            $wrapper.find( '.wc-gzd-net-filling-quantity:first' ).wc_gzd_reset_content();
+            $wrapper.find( '.wc-gzd-net-filling-quantity' ).wc_gzd_reset_content();
         }
 
         if ( variation.drained_weight !== '' ) {
-            $wrapper.find( '.wc-gzd-drained-weight:first' ).wc_gzd_set_content( variation.drained_weight );
+            $wrapper.find( '.wc-gzd-drained-weight' ).wc_gzd_set_content( variation.drained_weight );
         } else {
-            $wrapper.find( '.wc-gzd-drained-weight:first' ).wc_gzd_reset_content();
+            $wrapper.find( '.wc-gzd-drained-weight' ).wc_gzd_reset_content();
         }
 
         if ( variation.alcohol_content !== '' || 'no' === variation.includes_alcohol ) {
-            $wrapper.find( '.wc-gzd-alcohol-content:first' ).wc_gzd_set_content( variation.alcohol_content );
+            $wrapper.find( '.wc-gzd-alcohol-content' ).wc_gzd_set_content( variation.alcohol_content );
         } else {
-            $wrapper.find( '.wc-gzd-alcohol-content:first' ).wc_gzd_reset_content();
+            $wrapper.find( '.wc-gzd-alcohol-content' ).wc_gzd_reset_content();
         }
 
         if ( variation.nutrients !== '' ) {
-            $wrapper.find( '.wc-gzd-nutrients:first' ).wc_gzd_set_content( variation.nutrients );
-            $wrapper.find( '.wc-gzd-nutrients-heading:first' ).wc_gzd_set_content( variation.nutrients_heading );
+            $wrapper.find( '.wc-gzd-nutrients' ).wc_gzd_set_content( variation.nutrients );
+            $wrapper.find( '.wc-gzd-nutrients-heading' ).wc_gzd_set_content( variation.nutrients_heading );
         } else {
-            $wrapper.find( '.wc-gzd-nutrients:first' ).wc_gzd_reset_content();
-            $wrapper.find( '.wc-gzd-nutrients-heading:first' ).wc_gzd_reset_content();
+            $wrapper.find( '.wc-gzd-nutrients' ).wc_gzd_reset_content();
+            $wrapper.find( '.wc-gzd-nutrients-heading' ).wc_gzd_reset_content();
         }
 
         if ( variation.ingredients !== '' ) {
-            $wrapper.find( '.wc-gzd-ingredients:first' ).wc_gzd_set_content( variation.ingredients );
-            $wrapper.find( '.wc-gzd-ingredients-heading:first' ).wc_gzd_set_content( variation.ingredients_heading );
+            $wrapper.find( '.wc-gzd-ingredients' ).wc_gzd_set_content( variation.ingredients );
+            $wrapper.find( '.wc-gzd-ingredients-heading' ).wc_gzd_set_content( variation.ingredients_heading );
         } else {
-            $wrapper.find( '.wc-gzd-ingredients:first' ).wc_gzd_reset_content();
-            $wrapper.find( '.wc-gzd-ingredients-heading:first' ).wc_gzd_reset_content();
+            $wrapper.find( '.wc-gzd-ingredients' ).wc_gzd_reset_content();
+            $wrapper.find( '.wc-gzd-ingredients-heading' ).wc_gzd_reset_content();
         }
 
         if ( variation.allergenic !== '' ) {
-            $wrapper.find( '.wc-gzd-allergenic:first' ).wc_gzd_set_content( variation.allergenic );
-            $wrapper.find( '.wc-gzd-allergenic-heading:first' ).wc_gzd_set_content( variation.allergenic_heading );
+            $wrapper.find( '.wc-gzd-allergenic' ).wc_gzd_set_content( variation.allergenic );
+            $wrapper.find( '.wc-gzd-allergenic-heading' ).wc_gzd_set_content( variation.allergenic_heading );
         } else {
-            $wrapper.find( '.wc-gzd-allergenic:first' ).wc_gzd_reset_content();
-            $wrapper.find( '.wc-gzd-allergenic-heading:first' ).wc_gzd_reset_content();
+            $wrapper.find( '.wc-gzd-allergenic' ).wc_gzd_reset_content();
+            $wrapper.find( '.wc-gzd-allergenic-heading' ).wc_gzd_reset_content();
         }
 
         if ( variation.shipping_costs_info !== '' && hasDisplayPrice ) {
-            $wrapper.find( '.shipping-costs-info:first' ).wc_gzd_set_content( variation.shipping_costs_info );
+            $wrapper.find( '.shipping-costs-info' ).wc_gzd_set_content( variation.shipping_costs_info );
         } else {
-            $wrapper.find( '.shipping-costs-info:first' ).wc_gzd_reset_content();
+            $wrapper.find( '.shipping-costs-info' ).wc_gzd_reset_content();
         }
 
         if ( variation.unit_price !== '' && hasDisplayPrice ) {
-            // Check if unit price for variable product exists and replace instead of insert
-            if ( $wrapper.find( '.price-unit:first' ).length ) {
-                $wrapper.find( '.price-unit:first' ).wc_gzd_set_content( variation.unit_price );
-            } else {
-                $wrapper.find( '.price-unit:first' ).remove();
-                $wrapper.find( 'p.price:first' ).after( '<p class="price price-unit smaller variation_modified variation_gzd_modified">' + variation.unit_price + '</p>' ).show();
-            }
+            $wrapper.find( '.price-unit' ).wc_gzd_set_content( variation.unit_price );
         } else {
-            $wrapper.find( '.price-unit:first' ).wc_gzd_reset_content();
+            $wrapper.find( '.price-unit' ).wc_gzd_reset_content();
         }
 
         if ( variation.product_units !== '' ) {
-            // Check if product units for variable product exist and replace instead of insert
-            if ( $wrapper.find( '.product-units:first' ).length ) {
-                $wrapper.find( '.product-units:first' ).wc_gzd_set_content( variation.product_units );
-            } else {
-                $wrapper.find( '.product-units:first' ).remove();
-                $wrapper.find( '.product_meta:first' ).prepend( '<p class="wc-gzd-additional-info product-units-wrapper product-units variation_modified variation_gzd_modified">' + variation.product_units + '</p>' ).show();
-            }
+            $wrapper.find( '.product-units' ).wc_gzd_set_content( variation.product_units );
         } else {
-            $wrapper.find( '.product-units:first' ).wc_gzd_reset_content();
+            $wrapper.find( '.product-units' ).wc_gzd_reset_content();
         }
 
         form.$form.trigger( 'germanized_variation_data', variation, $wrapper );
@@ -233,25 +227,29 @@
      * Stores the default text for an element so it can be reset later
      */
     $.fn.wc_gzd_set_content = function( content ) {
-        var $content_elem = this;
+        /**
+         * Explicitly exclude loop wrappers to prevent information
+         * to be replaced within the main product wrapper (e.g. cross-sells).
+         */
+        var $this = this.not( '.wc-gzd-additional-info-loop' );
 
-        if ( undefined === this.attr( 'data-o_content' ) ) {
-            this.attr( 'data-o_content', $content_elem.html() );
+        if ( undefined === $this.attr( 'data-o_content' ) ) {
+            $this.attr( 'data-o_content', $this.html() );
         }
 
-        $content_elem.html( content );
+        $this.html( content );
 
-        this.addClass( 'variation_modified variation_gzd_modified' ).removeClass( 'wc-gzd-additional-info-placeholder' ).show();
+        $this.addClass( 'variation_modified variation_gzd_modified' ).removeClass( 'wc-gzd-additional-info-placeholder' ).show();
 
-        if ( $content_elem.is( ':empty' ) ) {
-            this.hide();
+        if ( $this.is( ':empty' ) ) {
+            $this.hide();
 
-            if ( this.parents( '.woocommerce-product-attributes-item' ).length > 0 ) {
-                this.parents( '.woocommerce-product-attributes-item' ).hide();
+            if ( $this.parents( '.woocommerce-product-attributes-item' ).length > 0 ) {
+                $this.parents( '.woocommerce-product-attributes-item' ).hide();
             }
         } else {
-            if ( this.parents( '.woocommerce-product-attributes-item' ).length > 0 ) {
-                this.parents( '.woocommerce-product-attributes-item' ).show();
+            if ( $this.parents( '.woocommerce-product-attributes-item' ).length > 0 ) {
+                $this.parents( '.woocommerce-product-attributes-item' ).show();
             }
         }
     };
@@ -260,23 +258,23 @@
      * Stores the default text for an element so it can be reset later
      */
     $.fn.wc_gzd_reset_content = function() {
-        var $content_elem = this;
+        var $this = this.not( '.wc-gzd-additional-info-loop' );
 
-        if ( undefined !== this.attr( 'data-o_content' ) ) {
-            $content_elem.html( this.attr( 'data-o_content' ) );
+        if ( undefined !== $this.attr( 'data-o_content' ) ) {
+            $this.html( $this.attr( 'data-o_content' ) );
 
-            this.removeClass( 'variation_modified variation_gzd_modified' ).show();
+            $this.removeClass( 'variation_modified variation_gzd_modified' ).show();
         }
 
-        if ( $content_elem.is( ':empty' ) ) {
-            this.addClass( 'wc-gzd-additional-info-placeholder' ).hide();
+        if ( $this.is( ':empty' ) ) {
+            $this.addClass( 'wc-gzd-additional-info-placeholder' ).hide();
 
-            if ( this.parents( '.woocommerce-product-attributes-item' ).length > 0 ) {
-                this.parents( '.woocommerce-product-attributes-item' ).hide();
+            if ( $this.parents( '.woocommerce-product-attributes-item' ).length > 0 ) {
+                $this.parents( '.woocommerce-product-attributes-item' ).hide();
             }
         } else {
-            if ( this.parents( '.woocommerce-product-attributes-item' ).length > 0 ) {
-                this.parents( '.woocommerce-product-attributes-item' ).show();
+            if ( $this.parents( '.woocommerce-product-attributes-item' ).length > 0 ) {
+                $this.parents( '.woocommerce-product-attributes-item' ).show();
             }
         }
     };

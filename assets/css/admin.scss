@@ -299,10 +299,14 @@ table.wc-gzd-tax-example tr th:first-child, table.wc-gzd-tax-example tr td:first
 }
 
 .woocommerce_variation {
-  .variable_delivery_time {
+  .variable_delivery_time, .variable-nutri-score {
     .select2-container {
       .select2-selection--single {
         height: 40px;
+
+        .select2-selection__clear {
+          margin-right: 10px;
+        }
 
         .select2-selection__rendered {
           line-height: 40px;
@@ -401,5 +405,23 @@ table.wc-gzd-tax-example tr th:first-child, table.wc-gzd-tax-example tr td:first
       max-width: 63% !important;
       width: 63% !important;
     }
+  }
+}
+
+.nutri-score-select-value {
+  &.nutri-score-select-value-a {
+    color: #038141;
+  }
+  &.nutri-score-select-value-b {
+    color: #85bb2f;
+  }
+  &.nutri-score-select-value-c {
+    color: #fecb02;
+  }
+  &.nutri-score-select-value-d {
+    color: #ee8100;
+  }
+  &.nutri-score-select-value-e {
+    color: #e63e11;
   }
 }

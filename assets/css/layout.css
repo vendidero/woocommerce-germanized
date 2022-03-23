@@ -164,6 +164,12 @@ table.product-details-inner tr td:last-child {
 #shipping_parcelshop_post_number_field .optional {
   display: none !important; }
 
+.wc-gzd-nutri-score-value {
+  height: 4rem;
+  width: 7.0625rem;
+  display: block;
+  text-indent: -9999px; }
+
 .wc-gzd-placeholder-loading {
   position: relative;
   display: flex;
