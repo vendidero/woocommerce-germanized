@@ -929,7 +929,7 @@ class WC_GZD_Checkout {
 		 * In this case, remove fee taxes altogether.
 		 */
 		if ( empty( $tax_shares ) || WC()->customer->is_vat_exempt() ) {
-			if ( wc_gzd_additional_costs_include_tax() ) {
+			if ( apply_filters( "woocommerce_gzd_fee_costs_include_tax", wc_gzd_additional_costs_include_tax(), $fee ) ) {
 				$total_tax  = array_sum( array_map( array( $this, 'round_line_tax_in_cents' ), $fee_taxes ) );
 				$fee->total = $fee->total - $total_tax;
 

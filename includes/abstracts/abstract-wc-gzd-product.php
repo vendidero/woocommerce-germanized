@@ -314,15 +314,15 @@ class WC_GZD_Product {
 	 */
 	public function get_deposit_amount( $context = 'view', $tax_display = '' ) {
 		$quantity = 1;
-		$price    = $this->get_deposit_amount_per_unit( $context );
+		$price    = $this->get_deposit_amount_per_unit( $context, $tax_display );
 
 		if ( $this->get_deposit_quantity() > 1 ) {
 			$quantity = $this->get_deposit_quantity();
 		}
 
-		$tax_display_mode = $tax_display ? $tax_display : get_option( 'woocommerce_tax_display_shop' );
+		$amount = (float) $price * (float) $quantity;
 
-		return ( 'incl' === $tax_display_mode ) ? $this->get_deposit_amount_including_tax( $quantity, $price ) : $this->get_deposit_amount_excluding_tax( $quantity, $price );
+		return apply_filters( "woocommerce_gzd_product_deposit_amount", $amount, $quantity, $this, $context, $tax_display );
 	}
 
 	/**
