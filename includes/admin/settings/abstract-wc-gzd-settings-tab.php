@@ -106,7 +106,35 @@ abstract class WC_GZD_Settings_Tab extends WC_Settings_Page {
 	 * Output sections.
 	 */
 	public function output_sections() {
-		parent::output_sections();
+		global $current_section;
+
+		$sections = $this->get_sections();
+
+		if ( empty( $sections ) || 1 === count( $sections ) ) {
+			return;
+		}
+
+		echo '<ul class="subsubsub">';
+
+		$array_keys = array_keys( $sections );
+
+		foreach ( $sections as $id => $label ) {
+			$url       = $this->get_section_url( $id );
+			$class     = ( $current_section === $id ? 'current' : '' );
+			$separator = ( end( $array_keys ) === $id ? '' : '|' );
+			$text      = esc_html( $label ) . ( $this->section_is_pro( $id ) && ! WC_germanized()->is_pro() ? '<span class="wc-gzd-pro wc-gzd-pro-outlined">pro</span>' : '' );
+			echo "<li><a href='$url' class='$class'>$text</a> $separator </li>"; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		}
+
+		echo '</ul><br class="clear" />';
+	}
+
+    protected function section_is_pro( $section_id ) {
+        return false;
+    }
+
+	protected function get_section_url( $section_id ) {
+		return admin_url( 'admin.php?page=wc-settings&tab=' . $this->id . '&section=' . sanitize_title( $section_id ) );
 	}
 
 	protected function get_breadcrumb() {
@@ -155,8 +183,12 @@ abstract class WC_GZD_Settings_Tab extends WC_Settings_Page {
 	}
 
 	protected function get_breadcrumb_label( $label ) {
-		if ( empty( $this->get_current_section() ) && $this->has_help_link() ) {
+        $section = $this->get_current_section();
+
+		if ( empty( $section ) && $this->has_help_link() ) {
 			$label = $label . '<a class="page-title-action" href="' . esc_url( $this->get_help_link() ) . '" target="_blank">' . __( 'Learn more', 'woocommerce-germanized' ) . '</a>';
+		} elseif ( ! empty( $section ) && ! WC_germanized()->is_pro() && $this->section_is_pro( $section ) ) {
+			$label = $label . '<span class="wc-gzd-pro wc-gzd-pro-outlined">pro</span>';
 		}
 
 		return $label;

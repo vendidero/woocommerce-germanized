@@ -100,7 +100,7 @@ class WC_GZD_Product {
 	public function get_nutrient_ids( $context = 'view' ) {
 		$nutrients = $this->get_prop( 'nutrient_ids', $context );
 
-		return array_filter( (array) $nutrients, 'is_numeric' );
+		return (array) $nutrients;
 	}
 
 	public function get_nutrients( $context = 'view' ) {
@@ -594,7 +594,34 @@ class WC_GZD_Product {
 	}
 
 	public function set_nutrient_ids( $ids ) {
-		$this->set_prop( 'nutrient_ids', array_map( 'wc_format_decimal', array_filter( (array) $ids, 'is_numeric' ) ) );
+		$ids = (array) $ids;
+
+		foreach( $ids as $k => $value ) {
+			if ( is_array( $value ) ) {
+				$value = wp_parse_args( $value, array(
+					'value'     => 0,
+					'ref_value' => 0,
+				) );
+
+				if ( ! is_numeric( $value['value'] ) || ! is_numeric( $value['ref_value'] ) ) {
+					unset( $ids[ $k ] );
+				} else {
+					$value['value']     = wc_format_decimal( $value['value'] );
+					$value['ref_value'] = wc_format_decimal( $value['ref_value'] );
+
+					$ids[ $k ] = $value;
+				}
+			} elseif ( ! is_numeric( $value ) ) {
+				unset( $ids[ $k ] );
+			} else {
+				$ids[ $k ] = array(
+					'value'     => wc_format_decimal( $value ),
+					'ref_value' => '',
+				);
+			}
+		}
+
+		$this->set_prop( 'nutrient_ids', $ids );
 	}
 
 	public function set_nutrient_reference_value( $value ) {
@@ -756,12 +783,38 @@ class WC_GZD_Product {
 		return array_key_exists( $id, $nutrients );
 	}
 
+	public function get_nutrient_value( $id, $context = 'view' ) {
+		$nutrient_value = '';
+
+		if ( $nutrient = $this->get_nutrient( $id, $context ) ) {
+			$nutrient_value = (float) $nutrient['value'];
+		}
+
+		return apply_filters( 'woocommerce_gzd_product_nutrient_value', $nutrient_value, $id, $this, $context );
+	}
+
+	public function get_nutrient_reference( $id, $context = 'view' ) {
+		$ref_value = '';
+
+		if ( $nutrient = $this->get_nutrient( $id, $context ) ) {
+			$ref_value = (float) $nutrient['ref_value'];
+		}
+
+		return apply_filters( 'woocommerce_gzd_product_nutrient_reference', $ref_value, $id, $this, $context );
+	}
+
 	public function get_nutrient( $id, $context = 'view' ) {
 		$nutrients = $this->get_nutrient_ids( $context );
-		$nutrient  = '';
+		$nutrient  = false;
 
-		if ( array_key_exists( $id, $nutrients ) ) {
-			$nutrient = (float) $nutrients[ $id ];
+		if ( array_key_exists( $id, $nutrients ) && is_array( $nutrients[ $id ] ) ) {
+			$nutrient = wp_parse_args( $nutrients[ $id ], array(
+				'value'     => 0,
+				'ref_value' => 0,
+			) );
+
+			$nutrient['value']     = (float) $nutrient['value'];
+			$nutrient['ref_value'] = (float) $nutrient['ref_value'];
 		}
 
 		return apply_filters( 'woocommerce_gzd_product_nutrient', $nutrient, $id, $this, $context );

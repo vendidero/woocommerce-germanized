@@ -59,27 +59,37 @@ class WC_Germanized_Meta_Box_Product_Data {
 		$_gzd_product = wc_gzd_get_product( $product_object );
 		?>
         <div id="food_product_data" class="panel woocommerce_options_panel hidden">
-            <div class="options_group show_if_simple show_if_external show_if_variable">
-                <?php
-                    woocommerce_wp_select( array(
-                        'id'          => '_deposit_type',
-                        'label'       => __( 'Deposit Type', 'woocommerce-germanized' ),
-                        'options'     => array( "-1" => __( 'Select Deposit Type', 'woocommerce-germanized' ) ) + WC_germanized()->deposit_types->get_deposit_types(),
-                        'desc_tip'    => true,
-                        'description' => __( 'In case this product is reusable and has deposits, select the deposit type.', 'woocommerce-germanized' )
-                    ) );
+            <?php if ( WC_germanized()->is_pro() ) : ?>
+                <div class="options_group show_if_simple show_if_external show_if_variable">
+                    <?php
+                        woocommerce_wp_select( array(
+                            'id'          => '_deposit_type',
+                            'label'       => __( 'Deposit Type', 'woocommerce-germanized' ),
+                            'options'     => array( "-1" => __( 'Select Deposit Type', 'woocommerce-germanized' ) ) + WC_germanized()->deposit_types->get_deposit_types(),
+                            'desc_tip'    => true,
+                            'description' => __( 'In case this product is reusable and has deposits, select the deposit type.', 'woocommerce-germanized' )
+                        ) );
 
-                    woocommerce_wp_text_input( array(
-                        'id'          => '_deposit_quantity',
-                        'label'       => __( 'Deposit Quantity', 'woocommerce-germanized' ),
-                        'type'        => 'number',
-                        'placeholder' => 1,
-                        'custom_attributes' => array( 'min' => 1 ),
-                        'desc_tip'    => true,
-                        'description' => __( 'Number of units for deposit.', 'woocommerce-germanized' )
-                    ) );
-                ?>
-            </div>
+                        woocommerce_wp_text_input( array(
+                            'id'          => '_deposit_quantity',
+                            'label'       => __( 'Deposit Quantity', 'woocommerce-germanized' ),
+                            'type'        => 'number',
+                            'placeholder' => 1,
+                            'custom_attributes' => array( 'min' => 1 ),
+                            'desc_tip'    => true,
+                            'description' => __( 'Number of units for deposit.', 'woocommerce-germanized' )
+                        ) );
+                    ?>
+                </div>
+            <?php else: ?>
+                <div class="wc-gzd-inner-product-pro-tab-wrapper">
+                    <div class="wc-gzd-premium-overlay notice notice-warning inline">
+                        <h3><?php _e( 'Get Germanized Pro to unlock', 'woocommerce-germanized' ); ?></h3>
+                        <p><?php _e( 'Sell your food legally showing nutrients, allergenes, ingredients, the Nutri-Score, deposits and more.', 'woocommerce-germanized' ); ?></p>
+                        <p><a class="button button-primary wc-gzd-button" href="https://vendidero.de/woocommerce-germanized" target="_blank"><?php _e( 'Upgrade now', 'woocommerce-germanized' ); ?></a></p>
+                    </div>
+                </div>
+            <?php endif; ?>
 
 	        <?php do_action(  'woocommerce_gzd_edit_product_food_panel' ); ?>
         </div>
@@ -87,10 +97,16 @@ class WC_Germanized_Meta_Box_Product_Data {
 	}
 
 	public static function register_product_tab( $tabs ) {
+        $classes = array( 'show_if_is_food' );
+
+        if ( ! WC_germanized()->is_pro() ) {
+            $classes[] = 'product_tab_gzd_pro';
+        }
+
 		$tabs['food'] = array(
-			'label'    => __( 'Food', 'woocommerce-germanized-pro' ),
+			'label'    => __( 'Food', 'woocommerce-germanized' ),
 			'target'   => 'food_product_data',
-			'class'    => array( 'show_if_is_food' ),
+			'class'    => $classes,
 			'priority' => 35,
 		);
 
@@ -364,10 +380,10 @@ class WC_Germanized_Meta_Box_Product_Data {
 
 		$types['is_food'] = array(
 			'id'            => '_is_food',
-			'wrapper_class' => '',
+			'wrapper_class' => WC_germanized()->is_pro() ? '' : 'product_type_gzd_pro',
 			'label'         => __( 'Food', 'woocommerce-germanized' ),
 			'description'   => __( 'This product is a food product.', 'woocommerce-germanized' ),
-			'default'       => 'no'
+			'default'       => 'no',
 		);
 
 		return $types;

@@ -187,7 +187,7 @@ class WC_GZD_Product_Variation extends WC_GZD_Product {
 		$nutrient_ids = parent::get_nutrient_ids( $context );
 
 		if ( 'view' === $context ) {
-			$variation_level_nutrient_ids = array_filter( (array) $this->get_prop( 'nutrient_ids', 'edit' ), 'is_numeric' );
+			$variation_level_nutrient_ids = (array) $this->get_prop( 'nutrient_ids', 'edit' );
 			$nutrient_ids                 = array_replace_recursive( $nutrient_ids, $variation_level_nutrient_ids );
 		}
 

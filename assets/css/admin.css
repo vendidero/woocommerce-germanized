@@ -70,7 +70,7 @@ table.data_table tr td p.form-field {
 .wc-gzd-button-wrapper .button {
   margin-right: 1em; }
 
-.wc-gzd-pro {
+.wc-gzd-pro, .product_tab_gzd_pro a::after, .product_type_gzd_pro::after {
   font-size: 9px;
   border-radius: 3px;
   line-height: 9px;
@@ -89,14 +89,41 @@ a.wc-gzd-pro:not(.wc-gzd-pro-outlined):hover {
   background: #4a4a4a;
   color: #FFF; }
 
-.wc-gzd-pro-outlined {
+.wc-gzd-pro-outlined, .product_tab_gzd_pro a::after, .product_type_gzd_pro::after {
   margin-left: 5px;
   margin-top: 3px;
   border: 1px solid #222;
   color: #222;
   background: transparent; }
-  .wc-gzd-pro-outlined:hover {
+  .wc-gzd-pro-outlined:hover, .product_tab_gzd_pro a::after:hover, .product_type_gzd_pro::after:hover {
     color: #222; }
+
+.product_type_gzd_pro::after {
+  content: "pro";
+  font-weight: normal; }
+
+.product_tab_gzd_pro a::after {
+  margin-left: 0;
+  color: #2271b1;
+  border-color: #2271b1;
+  content: "pro"; }
+
+.product_tab_gzd_pro a:hover::after {
+  border-color: #135e96;
+  color: #135e96; }
+
+.product_tab_gzd_pro.active a::after {
+  border-color: #555;
+  color: #555; }
+
+.wc-gzd-premium-overlay {
+  border-left-color: #639aff !important; }
+
+.wc-gzd-inner-product-pro-tab-wrapper {
+  padding: 20px; }
+  .wc-gzd-inner-product-pro-tab-wrapper .wc-gzd-premium-overlay p {
+    padding: 2px;
+    font-size: 13px; }
 
 a .wc-gzd-pro-outlined {
   text-decoration: none;
@@ -247,6 +274,15 @@ table.wc-gzd-tax-example tr th:first-child, table.wc-gzd-tax-example tr td:first
 .woocommerce_variable_attributes .wc-gzd-add-country-specific-delivery-time {
   margin-bottom: 0; }
 
+.woocommerce_options_panel .nutrient_vitamins_field {
+  width: 50%; }
+  .woocommerce_options_panel .nutrient_vitamins_field .wrap input {
+    width: 30.75%; }
+  .woocommerce_options_panel .nutrient_vitamins_field .wrap .unit {
+    float: left;
+    margin-right: 2.8%;
+    margin-left: 1%; }
+
 .variable_warranty_attachment label {
   display: block;
   width: 100%;
@@ -259,6 +295,15 @@ table.wc-gzd-tax-example tr th:first-child, table.wc-gzd-tax-example tr td:first
   color: #b32d2e; }
   .wc-gzd-warranty-upload-wrapper .wc-gzd-warranty-delete.file-missing {
     display: none; }
+
+.wc-gzd-allergenic-field .select2-container .select2-selection--multiple {
+  line-height: inherit; }
+
+.wc-gzd-allergenic-field .select2-container--default .select2-selection--multiple li.select2-search--inline {
+  line-height: 1;
+  margin-top: 0; }
+  .wc-gzd-allergenic-field .select2-container--default .select2-selection--multiple li.select2-search--inline input.select2-search__field {
+    min-height: 25px; }
 
 .wc-gzd-country-specific-delivery-time-field .wc-gzd-remove-country-specific-delivery-time {
   text-indent: 0;

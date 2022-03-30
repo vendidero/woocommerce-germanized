@@ -37,7 +37,7 @@ class WC_GZD_Settings_Tab_Shopmarks extends WC_GZD_Settings_Tab {
 			''               => __( 'General', 'woocommerce-germanized' ),
 			'delivery_times' => __( 'Delivery times', 'woocommerce-germanized' ),
 			'unit_prices'    => __( 'Unit prices', 'woocommerce-germanized' ),
-			'deposit'        => __( 'Deposit', 'woocommerce-germanized' ),
+			'food'           => __( 'Food', 'woocommerce-germanized' ),
 			'price_labels'   => __( 'Price labels', 'woocommerce-germanized' ),
 		);
 
@@ -51,6 +51,16 @@ class WC_GZD_Settings_Tab_Shopmarks extends WC_GZD_Settings_Tab {
 		) );
 
 		return $sections;
+	}
+
+	protected function section_is_pro( $section_id ) {
+		$is_pro = parent::section_is_pro( $section_id );
+
+		if ( 'food' === $section_id ) {
+			$is_pro = true;
+		}
+
+		return $is_pro;
 	}
 
 	public function get_pointers() {
@@ -176,8 +186,8 @@ class WC_GZD_Settings_Tab_Shopmarks extends WC_GZD_Settings_Tab {
 			$settings = $this->get_delivery_time_settings();
 		} elseif ( 'unit_prices' === $current_section ) {
 			$settings = $this->get_unit_price_settings();
-		} elseif ( 'deposit' === $current_section ) {
-			$settings = $this->get_deposit_settings();
+		} elseif ( 'food' === $current_section ) {
+			$settings = $this->get_food_settings();
 		} elseif ( 'price_labels' === $current_section ) {
 			$settings = $this->get_price_label_settings();
 		} elseif ( 'product_widgets' === $current_section ) {
@@ -582,7 +592,7 @@ class WC_GZD_Settings_Tab_Shopmarks extends WC_GZD_Settings_Tab {
 		);
 	}
 
-	protected function get_deposit_settings() {
+	protected function get_food_settings() {
 		return array(
 			array( 'type' => 'title', 'title' => '', 'id' => 'deposit_options' ),
 			array(

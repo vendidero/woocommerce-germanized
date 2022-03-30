@@ -43,7 +43,7 @@ class WC_GZD_Deposit_Types extends WC_GZD_Taxonomy {
 
 		if ( ! empty( $terms ) && ! is_wp_error( $terms ) ) {
 			foreach ( $terms as $term ) {
-				$term_value = 'name' === $value ? sprintf( _x( '%1$s (%2$s)', 'deposit-type-title', 'woocommerce-germanized' ), $term->name, $this->get_packaging_type_title( $term ) ) : ( isset( $term->{$value} ) ? $term->{$value} : $term->name );
+				$term_value = 'name' === $value ? sprintf( _x( '%1$s (%2$s, %3$s)', 'deposit-type-title', 'woocommerce-germanized' ), $term->name, $this->get_packaging_type_title( $term ), wp_strip_all_tags( wc_price( $this->get_deposit( $term ) ) ) ) : ( isset( $term->{$value} ) ? $term->{$value} : $term->name );
 				$list[ ( isset( $term->{$key} ) ? $term->{$key} : $term->slug ) ] = $term_value;
 			}
 		}
