@@ -59,8 +59,13 @@ class WC_Germanized_Meta_Box_Product_Data {
 		$_gzd_product = wc_gzd_get_product( $product_object );
 		?>
         <div id="food_product_data" class="panel woocommerce_options_panel hidden">
-            <?php if ( WC_germanized()->is_pro() ) : ?>
-                <div class="options_group show_if_simple show_if_external show_if_variable">
+            <div class="options_group show_if_simple show_if_external show_if_variable">
+                <?php if ( WC_germanized()->is_pro() ) : ?>
+                    <p class="wc-gzd-product-settings-subtitle">
+		                <?php _e( 'Deposit', 'woocommerce-germanized-pro' ); ?>
+                        <a class="page-title-action" href=""><?php _e( 'Help', 'woocommerce-germanized' ); ?></a>
+                    </p>
+
                     <?php
                         woocommerce_wp_select( array(
                             'id'          => '_deposit_type',
@@ -77,19 +82,19 @@ class WC_Germanized_Meta_Box_Product_Data {
                             'placeholder' => 1,
                             'custom_attributes' => array( 'min' => 1 ),
                             'desc_tip'    => true,
-                            'description' => __( 'Number of units for deposit.', 'woocommerce-germanized' )
+                            'description' => __( 'Number of units included for deposit purposes, e.g. 6 bottles.', 'woocommerce-germanized' )
                         ) );
                     ?>
-                </div>
-            <?php else: ?>
-                <div class="wc-gzd-inner-product-pro-tab-wrapper">
-                    <div class="wc-gzd-premium-overlay notice notice-warning inline">
-                        <h3><?php _e( 'Get Germanized Pro to unlock', 'woocommerce-germanized' ); ?></h3>
-                        <p><?php _e( 'Sell your food legally showing nutrients, allergenes, ingredients, the Nutri-Score, deposits and more.', 'woocommerce-germanized' ); ?></p>
-                        <p><a class="button button-primary wc-gzd-button" href="https://vendidero.de/woocommerce-germanized" target="_blank"><?php _e( 'Upgrade now', 'woocommerce-germanized' ); ?></a></p>
+                <?php else: ?>
+                    <div class="wc-gzd-inner-product-pro-tab-wrapper">
+                        <div class="wc-gzd-premium-overlay notice notice-warning inline">
+                            <h3><?php _e( 'Get Germanized Pro to unlock', 'woocommerce-germanized' ); ?></h3>
+                            <p><?php _e( 'Sell your food legally showing nutrients, allergenes, ingredients, the Nutri-Score, deposits and more.', 'woocommerce-germanized' ); ?></p>
+                            <p><a class="button button-primary wc-gzd-button" href="https://vendidero.de/woocommerce-germanized" target="_blank"><?php _e( 'Upgrade now', 'woocommerce-germanized' ); ?></a></p>
+                        </div>
                     </div>
-                </div>
-            <?php endif; ?>
+                <?php endif; ?>
+            </div>
 
 	        <?php do_action(  'woocommerce_gzd_edit_product_food_panel' ); ?>
         </div>

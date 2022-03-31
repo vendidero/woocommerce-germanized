@@ -369,23 +369,46 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
         </div>
 
         <div class="variable_food show_if_is_food">
-            <p class="form-row form-row-first">
-                <label><?php _e( 'Deposit Type', 'woocommerce-germanized' ); ?></label>
-                <select name="variable_deposit_type[<?php echo $loop; ?>]">
-                    <option value="" <?php selected( empty( $gzd_product->get_deposit_type( 'edit' ) ), true ); ?>><?php _e( 'Same as Parent', 'woocommerce-germanized' ); ?></option>
-					<?php foreach ( WC_germanized()->deposit_types->get_deposit_types() as $key => $value ) : ?>
-                        <option value="<?php echo esc_attr( $key ); ?>" <?php selected( $key === $gzd_product->get_deposit_type( 'edit' ), true ); ?>><?php echo esc_html( $value ); ?></option>
-					<?php endforeach; ?>
-                </select>
-            </p>
+            <?php if ( WC_germanized()->is_pro() ) : ?>
+                <p class="wc-gzd-product-settings-subtitle">
+		            <?php _e( 'Deposit', 'woocommerce-germanized-pro' ); ?>
+                    <a class="page-title-action" href=""><?php _e( 'Help', 'woocommerce-germanized' ); ?></a>
+                </p>
 
-            <p class="form-row form-row-last">
-                <label><?php _e( 'Deposit Quantity', 'woocommerce-germanized' ); ?></label>
-                <input type="number"
-                       name="variable_deposit_quantity[<?php echo $loop; ?>]"
-                       value="<?php echo esc_attr( $gzd_product->get_deposit_quantity( 'edit' ) ); ?>"
-                       placeholder="<?php echo esc_attr( $gzd_parent_product->get_deposit_quantity() ? $gzd_parent_product->get_deposit_quantity() : 1 ); ?>" min="1" />
-            </p>
+	            <?php
+	            woocommerce_wp_select( array(
+		            'wrapper_class' => 'form-row form-row-first',
+		            'id'          => 'variable_deposit_type',
+		            'name'        => "variable_deposit_type[{$loop}]",
+		            'label'       => __( 'Deposit Type', 'woocommerce-germanized' ),
+		            'options'     => array( "-1" => __( 'Select Deposit Type', 'woocommerce-germanized' ) ) + WC_germanized()->deposit_types->get_deposit_types(),
+		            'desc_tip'    => true,
+                    'value'       => $gzd_product->get_deposit_type( 'edit' ) ? $gzd_product->get_deposit_type( 'edit' ) : $gzd_parent_product->get_deposit_type(),
+		            'description' => __( 'In case this product is reusable and has deposits, select the deposit type.', 'woocommerce-germanized' )
+	            ) );
+
+	            woocommerce_wp_text_input( array(
+		            'wrapper_class' => 'form-row form-row-last',
+		            'id'            => "variable_deposit_quantity{$loop}",
+		            'name'          => "variable_deposit_quantity[{$loop}]",
+		            'label'         => __( 'Deposit Quantity', 'woocommerce-germanized' ),
+		            'value'         => $gzd_product->get_deposit_quantity( 'edit' ),
+		            'placeholder'   => $gzd_parent_product->get_deposit_quantity() ? $gzd_parent_product->get_deposit_quantity() : 1,
+		            'data_type'     => 'number',
+                    'custom_attributes' => array( 'min' => 1 ),
+		            'description'   => __( 'Number of units included for deposit purposes, e.g. 6 bottles.', 'woocommerce-germanized' ),
+                    'desc_tip'      => true,
+	            ) );
+	            ?>
+		    <?php else: ?>
+                <div class="wc-gzd-inner-product-pro-tab-wrapper">
+                    <div class="wc-gzd-premium-overlay notice notice-warning inline">
+                        <h3><?php _e( 'Get Germanized Pro to unlock', 'woocommerce-germanized' ); ?></h3>
+                        <p><?php _e( 'Sell your food legally showing nutrients, allergenes, ingredients, the Nutri-Score, deposits and more.', 'woocommerce-germanized' ); ?></p>
+                        <p><a class="button button-primary wc-gzd-button" href="https://vendidero.de/woocommerce-germanized" target="_blank"><?php _e( 'Upgrade now', 'woocommerce-germanized' ); ?></a></p>
+                    </div>
+                </div>
+		    <?php endif; ?>
 
 			<?php do_action( 'woocommerce_gzd_edit_product_variation_food_wrapper', $loop, $variation_data, $variation ); ?>
         </div>

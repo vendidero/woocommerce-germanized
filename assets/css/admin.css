@@ -119,12 +119,6 @@ a.wc-gzd-pro:not(.wc-gzd-pro-outlined):hover {
 .wc-gzd-premium-overlay {
   border-left-color: #639aff !important; }
 
-.wc-gzd-inner-product-pro-tab-wrapper {
-  padding: 20px; }
-  .wc-gzd-inner-product-pro-tab-wrapper .wc-gzd-premium-overlay p {
-    padding: 2px;
-    font-size: 13px; }
-
 a .wc-gzd-pro-outlined {
   text-decoration: none;
   border: 1px solid #0073aa;
@@ -273,6 +267,43 @@ table.wc-gzd-tax-example tr th:first-child, table.wc-gzd-tax-example tr td:first
 
 .woocommerce_variable_attributes .wc-gzd-add-country-specific-delivery-time {
   margin-bottom: 0; }
+
+.wc-metaboxes-wrapper .wc-metabox.woocommerce_variation .wc-gzd-inner-product-pro-tab-wrapper {
+  margin: 1em 0; }
+  .wc-metaboxes-wrapper .wc-metabox.woocommerce_variation .wc-gzd-inner-product-pro-tab-wrapper .wc-gzd-premium-overlay.notice {
+    margin: 0 !important; }
+    .wc-metaboxes-wrapper .wc-metabox.woocommerce_variation .wc-gzd-inner-product-pro-tab-wrapper .wc-gzd-premium-overlay.notice p {
+      padding: 2px;
+      font-size: 13px; }
+    .wc-metaboxes-wrapper .wc-metabox.woocommerce_variation .wc-gzd-inner-product-pro-tab-wrapper .wc-gzd-premium-overlay.notice h3 {
+      padding-left: 0 !important; }
+
+.wc-metaboxes-wrapper .wc-metabox.woocommerce_variation p.wc-gzd-product-settings-subtitle {
+  float: left;
+  clear: both;
+  width: 100%;
+  margin-left: -2em;
+  padding: 10px 2em;
+  font-weight: bold;
+  font-size: 1em;
+  background: #eee; }
+  .wc-metaboxes-wrapper .wc-metabox.woocommerce_variation p.wc-gzd-product-settings-subtitle .page-title-action {
+    top: -1px; }
+
+.woocommerce_options_panel .wc-gzd-inner-product-pro-tab-wrapper {
+  padding: 20px; }
+  .woocommerce_options_panel .wc-gzd-inner-product-pro-tab-wrapper .wc-gzd-premium-overlay p {
+    padding: 2px;
+    font-size: 13px; }
+
+.woocommerce_options_panel p.wc-gzd-product-settings-subtitle {
+  padding: 10px 20px 10px 10px;
+  font-weight: bold;
+  font-size: 1em;
+  background: #eee;
+  margin-top: -1px; }
+  .woocommerce_options_panel p.wc-gzd-product-settings-subtitle .page-title-action {
+    top: -1px; }
 
 .woocommerce_options_panel .nutrient_vitamins_field {
   width: 50%; }
