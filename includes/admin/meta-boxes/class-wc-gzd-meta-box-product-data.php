@@ -967,7 +967,22 @@ class WC_Germanized_Meta_Box_Product_Data {
 					if ( empty( $data[ $term_select ] ) || in_array( $data[ $term_select ], array( 'none', '-1' ) ) ) {
 						$gzd_product->$setter( '' );
 					} else {
-						$gzd_product->$setter( wc_clean( $data[ $term_select ] ) );
+                        $term = wc_clean( $data[ $term_select ] );
+
+						/**
+						 * Convert term ids to slugs
+						 */
+                        if ( is_numeric( $term ) ) {
+                            $term_data = get_term_by( 'id', absint( $term ), ( '_deposit_type' === $term_select ? 'product_deposit_type' : 'product_price_label' ) );
+
+                            if ( ! is_wp_error( $term_data ) ) {
+                                $term = $term_data->slug;
+                            } else {
+                                $term = '';
+                            }
+                        }
+
+						$gzd_product->$setter( $term );
 					}
 				}
 			}
@@ -998,7 +1013,13 @@ class WC_Germanized_Meta_Box_Product_Data {
 		}
 
 		if ( isset( $data['_nutri_score'] ) ) {
-			$gzd_product->set_nutri_score( wc_clean( $data['_nutri_score'] ) );
+            $nutri_score = wc_clean( $data['_nutri_score'] );
+
+            if ( array_key_exists( $nutri_score, WC_GZD_Food_Helper::get_nutri_score_values() ) ) {
+	            $gzd_product->set_nutri_score( $nutri_score );
+            } else {
+	            $gzd_product->set_nutri_score( '' );
+            }
 		}
 
 		if ( isset( $data['_alcohol_content'] ) ) {

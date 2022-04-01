@@ -34,6 +34,8 @@ class WC_GZD_Product {
 
 	protected $nutrients = null;
 
+	protected $deposit_type = null;
+
 	/**
 	 * Construct new WC_GZD_Product
 	 *
@@ -155,9 +157,9 @@ class WC_GZD_Product {
 	/**
 	 * @return string
 	 */
-	public function get_formatted_ingredients() {
-		if ( $ingredients = $this->get_ingredients() ) {
-			return htmlspecialchars_decode( $ingredients );
+	public function get_formatted_ingredients( $context = 'view' ) {
+		if ( $ingredients = $this->get_ingredients( $context ) ) {
+			return wpautop( do_shortcode( wp_kses_post( htmlspecialchars_decode( $ingredients ) ) ) );
 		}
 
 		return '';
@@ -238,9 +240,9 @@ class WC_GZD_Product {
 		return $this->get_prop( 'food_distributor', $context );
 	}
 
-	public function get_formatted_food_distributor() {
-		if ( $distributor = $this->get_food_distributor() ) {
-			return wpautop( htmlspecialchars_decode( $distributor ) );
+	public function get_formatted_food_distributor( $context = 'view' ) {
+		if ( $distributor = $this->get_food_distributor( $context ) ) {
+			return wpautop( do_shortcode( wp_kses_post( htmlspecialchars_decode( $distributor ) ) ) );
 		}
 
 		return '';
@@ -250,9 +252,9 @@ class WC_GZD_Product {
 		return $this->get_prop( 'food_place_of_origin', $context );
 	}
 
-	public function get_formatted_food_place_of_origin() {
-		if ( $origin = $this->get_food_place_of_origin() ) {
-			return wpautop( htmlspecialchars_decode( $origin ) );
+	public function get_formatted_food_place_of_origin( $context = 'view' ) {
+		if ( $origin = $this->get_food_place_of_origin( $context ) ) {
+			return wpautop( do_shortcode( wp_kses_post( htmlspecialchars_decode( $origin ) ) ) );
 		}
 
 		return '';
@@ -262,22 +264,26 @@ class WC_GZD_Product {
 		return $this->get_prop( 'food_description', $context );
 	}
 
-	public function get_formatted_food_description() {
-		if ( $description = $this->get_food_description() ) {
-			return wpautop( htmlspecialchars_decode( $description ) );
+	public function get_formatted_food_description( $context = 'view' ) {
+		if ( $description = $this->get_food_description( $context ) ) {
+			return wpautop( do_shortcode( wp_kses_post( htmlspecialchars_decode( $description ) ) ) );
 		}
 
 		return '';
 	}
 
 	public function get_deposit_type_term( $context = 'view'  ) {
-		$type = $this->get_deposit_type( $context );
+		if ( is_null( $this->deposit_type ) ) {
+			$this->deposit_type = false;
 
-		if ( ! empty( $type ) ) {
-			return WC_germanized()->deposit_types->get_deposit_type_term( $type );
+			$type = $this->get_deposit_type( $context );
+
+			if ( ! empty( $type ) ) {
+				$this->deposit_type = WC_germanized()->deposit_types->get_deposit_type_term( $type );
+			}
 		}
 
-		return false;
+		return $this->deposit_type;
 	}
 
 	public function get_deposit_type( $context = 'view' ) {
@@ -514,11 +520,15 @@ class WC_GZD_Product {
 		return ( ! empty( $desc ) ) ? true : false;
 	}
 
-	public function get_formatted_cart_description() {
-		$desc = $this->get_cart_description();
+	public function get_formatted_mini_desc( $context = 'view' ) {
+		return $this->get_formatted_cart_description( $context );
+	}
+
+	public function get_formatted_cart_description( $context = 'view' ) {
+		$desc = $this->get_cart_description( $context );
 
 		if ( ! empty( $desc ) ) {
-			return wpautop( htmlspecialchars_decode( $desc ) );
+			return wpautop( do_shortcode( wp_kses_post( htmlspecialchars_decode( $desc ) ) ) );
 		} else {
 			return '';
 		}
@@ -582,6 +592,7 @@ class WC_GZD_Product {
 
 	public function set_deposit_type( $deposit_type ) {
 		$this->set_prop( 'deposit_type', $deposit_type );
+		$this->deposit_type = null;
 	}
 
 	public function set_deposit_quantity( $quantity ) {
@@ -600,14 +611,14 @@ class WC_GZD_Product {
 			if ( is_array( $value ) ) {
 				$value = wp_parse_args( $value, array(
 					'value'     => 0,
-					'ref_value' => 0,
+					'ref_value' => '',
 				) );
 
-				if ( ! is_numeric( $value['value'] ) || ! is_numeric( $value['ref_value'] ) ) {
+				if ( ! is_numeric( $value['value'] ) ) {
 					unset( $ids[ $k ] );
 				} else {
 					$value['value']     = wc_format_decimal( $value['value'] );
-					$value['ref_value'] = wc_format_decimal( $value['ref_value'] );
+					$value['ref_value'] = is_numeric( $value['ref_value'] ) ? wc_format_decimal( $value['ref_value'] ) : '';
 
 					$ids[ $k ] = $value;
 				}
@@ -1935,9 +1946,9 @@ class WC_GZD_Product {
 	 *
 	 * @return string
 	 */
-	public function get_formatted_defect_description() {
-		if ( $this->is_defective_copy() ) {
-			return apply_filters( 'woocommerce_gzd_defect_description', wpautop( htmlspecialchars_decode( $this->get_defect_description() ) ) );
+	public function get_formatted_defect_description( $context = 'view' ) {
+		if ( $this->is_defective_copy( $context ) ) {
+			return apply_filters( 'woocommerce_gzd_defect_description', wpautop( do_shortcode( wp_kses_post( htmlspecialchars_decode( $this->get_defect_description( $context ) ) ) ) ) );
 		}
 
 		return '';

@@ -52,6 +52,7 @@ class WC_GZD_Product_Import {
 
 	public function set_special_columns( $columns ) {
 		$columns[ __( 'Delivery Time: %s', 'woocommerce-germanized' ) ] = 'delivery_time:';
+		$columns[ __( 'Nutrients: %s', 'woocommerce-germanized' ) ]     = 'nutrients:';
 
 		return $columns;
 	}
@@ -68,8 +69,8 @@ class WC_GZD_Product_Import {
 		 *
 		 */
 		return apply_filters( 'woocommerce_gzd_product_import_formatting_callbacks', array(
-			'mini_desc'                => 'wp_filter_post_kses',
-			'defect_description'       => 'wp_filter_post_kses',
+			'mini_desc'                => array( $this, 'parse_html_field' ),
+			'defect_description'       => array( $this, 'parse_html_field' ),
 			'unit_price_regular'       => 'wc_format_decimal',
 			'unit_price_sale'          => 'wc_format_decimal',
 			'unit_base'                => 'wc_format_decimal',
@@ -86,6 +87,19 @@ class WC_GZD_Product_Import {
 			'sale_price_regular_label' => array( $this, 'parse_sale_price_label' ),
 			'unit'                     => array( $this, 'parse_unit' ),
 			'warranty_attachment_id'   => 'absint',
+			'is_food'                  => array( $this, 'parse_bool_str' ),
+			'alcohol_content'          => 'wc_format_decimal',
+			'drained_weight'           => 'wc_format_decimal',
+			'net_filling_quantity'     => 'wc_format_decimal',
+			'deposit_quantity'         => 'absint',
+			'deposit_type'             => array( $this, 'parse_deposit_type' ),
+			'allergen_ids'             => array( $this, 'parse_allergenic' ),
+			'nutri_score'              => array( $this, 'parse_nutri_score' ),
+			'ingredients'              => array( $this, 'parse_html_field' ),
+			'food_description'         => array( $this, 'parse_html_field' ),
+			'food_place_of_origin'     => array( $this, 'parse_html_field' ),
+			'food_distributor'         => array( $this, 'parse_html_field' ),
+			'nutrient_reference_value' => array( $this, 'parse_nutrient_reference_value' ),
 		) );
 	}
 
@@ -106,12 +120,20 @@ class WC_GZD_Product_Import {
 		}
 
 		$country_specific_delivery_times = array();
+		$nutrients                       = array();
 
 		foreach( $data as $key => $value ) {
 			if ( $this->starts_with( $key, 'delivery_time:' ) ) {
-				$country = str_replace( 'delivery_time:', '', $key );
-
+				$country                                     = str_replace( 'delivery_time:', '', $key );
 				$country_specific_delivery_times[ $country ] = $this->parse_delivery_time( $value );
+
+				unset( $data[ $key ] );
+			} elseif ( $this->starts_with( $key, 'nutrients:' ) ) {
+				$nutrient = str_replace( 'nutrients:', '', $key );
+
+				if ( $nutrient_id = $this->parse_term( $nutrient, 'product_nutrient' ) ) {
+					$nutrients[ $nutrient_id ] = $this->parse_nutrient( $value );
+				}
 
 				unset( $data[ $key ] );
 			}
@@ -121,7 +143,29 @@ class WC_GZD_Product_Import {
 			$data['country_specific_delivery_times'] = $country_specific_delivery_times;
 		}
 
+		if ( ! empty( $nutrients ) ) {
+			$data['nutrient_ids'] = $nutrients;
+		} else {
+			$data['nutrient_ids'] = array();
+		}
+
 		return $data;
+	}
+
+	/**
+	 * Parse a description value field
+	 *
+	 * @param string $description field value.
+	 *
+	 * @return string
+	 */
+	public function parse_html_field( $description ) {
+		$parts = explode( "\\\\n", $description );
+		foreach ( $parts as $key => $part ) {
+			$parts[ $key ] = str_replace( '\n', "\n", $part );
+		}
+
+		return wc_gzd_sanitize_html_text_field( implode( '\\\n', $parts ) );
 	}
 
 	protected function starts_with( $haystack, $needle ) {
@@ -129,10 +173,12 @@ class WC_GZD_Product_Import {
 	}
 
 	public function set_columns( $columns, $item ) {
-		$columns = array_merge( $columns, $this->get_columns() );
-		$country = str_replace( 'delivery_time:', '', $item );
+		$columns  = array_merge( $columns, $this->get_columns() );
+		$country  = str_replace( 'delivery_time:', '', $item );
+		$nutrient = str_replace( 'nutrients:', '', $item );
 
-		$columns['delivery_time:' . $country] = __( 'Country specific delivery times', 'woocommerce-germanized' );
+		$columns["delivery_time:{$country}"] = __( 'Country specific delivery times', 'woocommerce-germanized' );
+		$columns["nutrients:{$nutrient}"]    = __( 'Nutrients', 'woocommerce-germanized' );
 
 		return $columns;
 	}
@@ -152,7 +198,7 @@ class WC_GZD_Product_Import {
 	public function import( $product, $data ) {
 		$formattings  = $this->get_formatting_callbacks();
 		$gzd_product  = wc_gzd_get_product( $product );
-		$column_names = array_merge( $this->get_columns(), array( 'country_specific_delivery_times' => '' ) );
+		$column_names = array_merge( $this->get_columns(), array( 'country_specific_delivery_times' => '', 'nutrient_ids' => '' ) );
 
 		foreach ( array_keys( $column_names ) as $column_name ) {
 			if ( isset( $data[ $column_name ] ) ) {
@@ -192,6 +238,43 @@ class WC_GZD_Product_Import {
 		return ( $value ? 'yes' : '' );
 	}
 
+	public function parse_allergenic( $allergenic ) {
+		$allergenic   = array_map( 'trim', explode( '|', $allergenic ) );
+		$allergen_ids = array();
+
+		foreach( $allergenic as $allergen ) {
+			if ( $term_id = $this->parse_term( $allergen, 'product_allergen' ) ) {
+				$allergen_ids[] = $term_id;
+			}
+		}
+
+		return $allergen_ids;
+	}
+
+	public function parse_nutrient_reference_value( $ref_value ) {
+		if ( array_key_exists( $ref_value, WC_GZD_Food_Helper::get_nutrient_reference_values() ) ) {
+			return $ref_value;
+		} else {
+			return '';
+		}
+	}
+
+	public function parse_nutri_score( $nutri_score ) {
+		if ( array_key_exists( $nutri_score, WC_GZD_Food_Helper::get_nutri_score_values() ) ) {
+			return $nutri_score;
+		} else {
+			return '';
+		}
+	}
+
+	public function parse_deposit_type( $name ) {
+		if ( empty( $name ) ) {
+			return 0;
+		}
+
+		return $this->parse_term( $name, 'product_deposit_type', 'slug' );
+	}
+
 	public function parse_unit( $name ) {
 		if ( empty( $name ) ) {
 			return 0;
@@ -216,6 +299,24 @@ class WC_GZD_Product_Import {
 		return $this->parse_term( $name, 'product_delivery_time' );
 	}
 
+	public function parse_nutrient( $nutrient_data ) {
+		$nutrient_data = explode( '|', $nutrient_data );
+		$return_data   = array(
+			'value'     => 0,
+			'ref_value' => '',
+		);
+
+		if ( ! empty( $nutrient_data ) ) {
+			$return_data['value'] = wc_format_decimal( $nutrient_data[0] );
+
+			if ( sizeof( $nutrient_data ) > 1 ) {
+				$return_data['ref_value'] = wc_format_decimal( $nutrient_data[1] );
+			}
+		}
+
+		return $return_data;
+	}
+
 	public function parse_min_age( $min_age ) {
 		if ( array_key_exists( (int) $min_age, wc_gzd_get_age_verification_min_ages() ) ) {
 			return (int) $min_age;
@@ -225,7 +326,15 @@ class WC_GZD_Product_Import {
 	}
 
 	public function parse_term( $name, $taxonomy, $output = 'term_id' ) {
-		$term = get_term_by( 'name', $name, $taxonomy );
+		if ( is_numeric( $name ) ) {
+			$term = get_term_by( 'id', $name, $taxonomy );
+		} else {
+			$term = get_term_by( 'name', $name, $taxonomy );
+
+			if ( ! $term || is_wp_error( $term ) ) {
+				$term = get_term_by( 'slug', $name, $taxonomy );
+			}
+		}
 
 		if ( ! $term || is_wp_error( $term ) ) {
 			$term = (object) wp_insert_term( $name, $taxonomy );

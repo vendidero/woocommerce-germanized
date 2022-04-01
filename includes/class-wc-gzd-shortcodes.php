@@ -41,21 +41,10 @@ class WC_GZD_Shortcodes {
 			'gzd_email_legal_page_attachments'   => __CLASS__ . '::gzd_email_legal_page_attachments'
 		);
 
-		$food_types = array(
-			'description',
-			'alcohol_content',
-			'drained_weight',
-			'net_filling_quantity',
-			'distributor',
-			'place_of_origin',
-			'nutrients',
-			'allergenic',
-			'ingredients',
-			'nutri_score'
-		);
+		foreach( array_keys( WC_GZD_Food_Helper::get_food_attribute_types() ) as $food_type ) {
+			$suffix_type = strstr( $food_type, 'food_' ) ? $food_type : 'food_' . $food_type;
 
-		foreach( $food_types as $food_type ) {
-			$shortcodes["gzd_product_food_{$food_type}"] = __CLASS__ . '::gzd_product_food';
+			$shortcodes["gzd_product_{$suffix_type}"] = __CLASS__ . '::gzd_product_food';
 		}
 
 		foreach ( $shortcodes as $shortcode => $function ) {

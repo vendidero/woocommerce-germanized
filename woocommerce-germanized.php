@@ -97,6 +97,16 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 		public $deposit_types = null;
 
 		/**
+		 * @var WC_GZD_Nutrients|null
+		 */
+		public $nutrients = null;
+
+		/**
+		 * @var WC_GZD_Allergenic|null
+		 */
+		public $allergenic = null;
+
+		/**
 		 * @var WC_GZD_Emails|null
 		 */
 		public $emails = null;
@@ -229,6 +239,8 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 			$this->price_labels    = new WC_GZD_Price_Labels();
 			$this->delivery_times  = new WC_GZD_Delivery_Times();
 			$this->deposit_types   = new WC_GZD_Deposit_Types();
+			$this->nutrients       = new WC_GZD_Nutrients();
+			$this->allergenic      = new WC_GZD_Allergenic();
 			$this->product_factory = new WC_GZD_Product_Factory();
 
 			/**
@@ -585,6 +597,7 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 			include_once WC_GERMANIZED_ABSPATH . 'includes/class-wc-gzd-ajax.php';
 			include_once WC_GERMANIZED_ABSPATH . 'includes/class-wc-gzd-checkout.php';
 			include_once WC_GERMANIZED_ABSPATH . 'includes/class-wc-gzd-order-helper.php';
+			include_once WC_GERMANIZED_ABSPATH . 'includes/class-wc-gzd-food-helper.php';
 			include_once WC_GERMANIZED_ABSPATH . 'includes/class-wc-gzd-customer-helper.php';
 			include_once WC_GERMANIZED_ABSPATH . 'includes/class-wc-gzd-cache-helper.php';
 			include_once WC_GERMANIZED_ABSPATH . 'includes/class-wc-gzd-coupon-helper.php';
