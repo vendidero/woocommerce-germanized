@@ -97,15 +97,11 @@ table.data_table tr td p.form-field {
   }
 }
 
-#wc-gzd-product-defect-description {
-  display: none;
-}
-
 .wc-gzd-button-wrapper .button {
   margin-right: 1em;
 }
 
-.wc-gzd-pro {
+.wc-gzd-pro, .product_tab_gzd_pro a::after, .product_type_gzd_pro::after {
   font-size: 9px;
   border-radius: 3px;
   line-height: 9px;
@@ -128,7 +124,7 @@ a.wc-gzd-pro:not(.wc-gzd-pro-outlined) {
   }
 }
 
-.wc-gzd-pro-outlined {
+.wc-gzd-pro-outlined, .product_tab_gzd_pro a::after, .product_type_gzd_pro::after {
   margin-left: 5px;
   margin-top: 3px;
   border: 1px solid #222;
@@ -138,6 +134,36 @@ a.wc-gzd-pro:not(.wc-gzd-pro-outlined) {
   &:hover {
     color: #222;
   }
+}
+
+.product_type_gzd_pro::after {
+  content: "pro";
+  font-weight: normal;
+}
+
+.product_tab_gzd_pro {
+  a {
+    &::after {
+      margin-left: 0;
+      color: #2271b1;
+      border-color: #2271b1;
+      content: "pro";
+    }
+
+    &:hover::after {
+      border-color: #135e96;
+      color: #135e96;
+    }
+  }
+
+  &.active a::after {
+    border-color: #555;
+    color: #555;
+  }
+}
+
+.wc-gzd-premium-overlay {
+  border-left-color: #639aff !important;
 }
 
 a {
@@ -303,10 +329,14 @@ table.wc-gzd-tax-example tr th:first-child, table.wc-gzd-tax-example tr td:first
 }
 
 .woocommerce_variation {
-  .variable_delivery_time {
+  .variable_delivery_time, .variable-nutri-score {
     .select2-container {
       .select2-selection--single {
         height: 40px;
+
+        .select2-selection__clear {
+          margin-right: 10px;
+        }
 
         .select2-selection__rendered {
           line-height: 40px;
@@ -338,6 +368,80 @@ table.wc-gzd-tax-example tr th:first-child, table.wc-gzd-tax-example tr td:first
   }
 }
 
+.wc-metaboxes-wrapper .wc-metabox.woocommerce_variation {
+  .wc-gzd-inner-product-pro-tab-wrapper {
+    margin: 1em 0;
+
+    .wc-gzd-premium-overlay.notice {
+      margin: 0 !important;
+
+      p {
+        padding: 2px;
+        font-size: 13px;
+      }
+
+      h3 {
+        padding-left: 0 !important;
+      }
+    }
+  }
+
+  p.wc-gzd-product-settings-subtitle {
+    float: left;
+    clear: both;
+    width: 100%;
+    margin-left: -2em;
+    padding: 10px 2em;
+    font-weight: bold;
+    font-size: 1em;
+    background: #eee;
+
+    .page-title-action {
+      top: -1px;
+    }
+  }
+}
+
+.woocommerce_options_panel {
+  .wc-gzd-inner-product-pro-tab-wrapper {
+    padding: 20px;
+
+    .wc-gzd-premium-overlay {
+      p {
+        padding: 2px;
+        font-size: 13px;
+      }
+    }
+  }
+
+  p.wc-gzd-product-settings-subtitle {
+    padding: 10px 20px 10px 10px;
+    font-weight: bold;
+    font-size: 1em;
+    background: #eee;
+    margin-top: -1px;
+
+    .page-title-action {
+      top: -1px;
+    }
+  }
+
+  .nutrient_vitamins_field {
+    width: 50%;
+
+    .wrap {
+      input {
+        width: 30.75%;
+      }
+      .unit {
+        float: left;
+        margin-right: 2.8%;
+        margin-left: 1%;
+      }
+    }
+  }
+}
+
 .variable_warranty_attachment {
   label {
     display: block;
@@ -356,6 +460,21 @@ table.wc-gzd-tax-example tr th:first-child, table.wc-gzd-tax-example tr td:first
 
     &.file-missing {
       display: none;
+    }
+  }
+}
+
+.wc-gzd-allergenic-field {
+  .select2-container .select2-selection--multiple {
+    line-height: inherit;
+  }
+
+  .select2-container--default .select2-selection--multiple li.select2-search--inline {
+    line-height: 1;
+    margin-top: 0;
+
+    input.select2-search__field {
+      min-height: 25px;
     }
   }
 }
@@ -405,5 +524,23 @@ table.wc-gzd-tax-example tr th:first-child, table.wc-gzd-tax-example tr td:first
       max-width: 63% !important;
       width: 63% !important;
     }
+  }
+}
+
+.nutri-score-select-value {
+  &.nutri-score-select-value-a {
+    color: #038141;
+  }
+  &.nutri-score-select-value-b {
+    color: #85bb2f;
+  }
+  &.nutri-score-select-value-c {
+    color: #fecb02;
+  }
+  &.nutri-score-select-value-d {
+    color: #ee8100;
+  }
+  &.nutri-score-select-value-e {
+    color: #e63e11;
   }
 }

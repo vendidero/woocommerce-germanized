@@ -22,22 +22,30 @@ class WC_GZD_Shortcodes {
 
 		// Define shortcodes
 		$shortcodes = array(
-			'revocation_form'                  => __CLASS__ . '::revocation_form',
-			'payment_methods_info'             => __CLASS__ . '::payment_methods_info',
-			'add_to_cart'                      => __CLASS__ . '::gzd_add_to_cart',
-			'gzd_feature'                      => __CLASS__ . '::gzd_feature',
-			'gzd_vat_info'                     => __CLASS__ . '::gzd_vat_info',
-			'gzd_sale_info'                    => __CLASS__ . '::gzd_sale_info',
-			'gzd_complaints'                   => __CLASS__ . '::gzd_complaints',
-			'gzd_product_unit_price'           => __CLASS__ . '::gzd_product_unit_price',
-			'gzd_product_units'                => __CLASS__ . '::gzd_product_units',
-			'gzd_product_delivery_time'        => __CLASS__ . '::gzd_product_delivery_time',
-			'gzd_product_tax_notice'           => __CLASS__ . '::gzd_product_tax_notice',
-			'gzd_product_shipping_notice'      => __CLASS__ . '::gzd_product_shipping_notice',
-			'gzd_product_cart_desc'            => __CLASS__ . '::gzd_product_cart_desc',
-			'gzd_product_defect_description'   => __CLASS__ . '::gzd_product_defect_description',
-			'gzd_email_legal_page_attachments' => __CLASS__ . '::gzd_email_legal_page_attachments'
+			'revocation_form'                    => __CLASS__ . '::revocation_form',
+			'payment_methods_info'               => __CLASS__ . '::payment_methods_info',
+			'add_to_cart'                        => __CLASS__ . '::gzd_add_to_cart',
+			'gzd_feature'                        => __CLASS__ . '::gzd_feature',
+			'gzd_vat_info'                       => __CLASS__ . '::gzd_vat_info',
+			'gzd_sale_info'                      => __CLASS__ . '::gzd_sale_info',
+			'gzd_complaints'                     => __CLASS__ . '::gzd_complaints',
+			'gzd_product_unit_price'             => __CLASS__ . '::gzd_product_unit_price',
+			'gzd_product_units'                  => __CLASS__ . '::gzd_product_units',
+			'gzd_product_delivery_time'          => __CLASS__ . '::gzd_product_delivery_time',
+			'gzd_product_tax_notice'             => __CLASS__ . '::gzd_product_tax_notice',
+			'gzd_product_shipping_notice'        => __CLASS__ . '::gzd_product_shipping_notice',
+			'gzd_product_cart_desc'              => __CLASS__ . '::gzd_product_cart_desc',
+			'gzd_product_defect_description'     => __CLASS__ . '::gzd_product_defect_description',
+			'gzd_product_deposit'                => __CLASS__ . '::gzd_product_deposit',
+			'gzd_product_deposit_packaging_type' => __CLASS__ . '::gzd_product_deposit_packaging_type',
+			'gzd_email_legal_page_attachments'   => __CLASS__ . '::gzd_email_legal_page_attachments'
 		);
+
+		foreach( array_keys( WC_GZD_Food_Helper::get_food_attribute_types() ) as $food_type ) {
+			$suffix_type = strstr( $food_type, 'food_' ) ? $food_type : 'food_' . $food_type;
+
+			$shortcodes["gzd_product_{$suffix_type}"] = __CLASS__ . '::gzd_product_food';
+		}
 
 		foreach ( $shortcodes as $shortcode => $function ) {
 			/**
@@ -53,26 +61,35 @@ class WC_GZD_Shortcodes {
 	}
 
 	protected static function get_gzd_product_shortcode( $atts, $function_name = '' ) {
-		if ( empty( $function_name ) || ! function_exists( $function_name ) ) {
+		if ( empty( $function_name ) || ! is_callable( $function_name ) ) {
 			return;
 		}
 
 		global $product;
 
-		$content = '';
+		$content     = '';
+		$org_product = false;
 
 		$atts = wp_parse_args( $atts, array(
 			'product' => '',
 		) );
 
 		if ( ! empty( $atts['product'] ) ) {
-			$product = wc_get_product( $atts['product'] );
+			$org_product = $product;
+			$product     = wc_get_product( $atts['product'] );
 		}
 
 		if ( $product && is_a( $product, 'WC_Product' ) ) {
 			ob_start();
 			call_user_func( $function_name );
 			$content = ob_get_clean();
+		}
+
+		/**
+		 * Reset global product data
+		 */
+		if ( $org_product ) {
+			$product = $org_product;
 		}
 
 		return $content;
@@ -194,6 +211,48 @@ class WC_GZD_Shortcodes {
 		 *
 		 */
 		return apply_filters( 'woocommerce_gzd_shortcode_product_defect_description_html', self::get_gzd_product_shortcode( $atts, 'woocommerce_gzd_template_single_defect_description' ), $atts );
+	}
+
+	public static function gzd_product_deposit( $atts ) {
+		/**
+		 * Filter shortcode product deposit output.
+		 *
+		 * @param string $html The output.
+		 * @param array $atts The shortcode arguments.
+		 *
+		 * @since 3.9.0
+		 */
+		return apply_filters( 'woocommerce_gzd_shortcode_product_deposit_html', self::get_gzd_product_shortcode( $atts, 'woocommerce_gzd_template_single_deposit' ), $atts );
+	}
+
+	public static function gzd_product_food( $atts, $content, $tag ) {
+		$food_type = sanitize_key( str_replace( 'gzd_product_food_', '', $tag ) );
+
+		if ( in_array( $food_type, array( 'place_of_origin', 'description', 'distributor' ) ) ) {
+			$food_type = 'food_' . $food_type;
+		}
+
+		/**
+		 * Filter shortcode product food output.
+		 *
+		 * @param string $html The output.
+		 * @param array $atts The shortcode arguments.
+		 *
+		 * @since 3.9.0
+		 */
+		return apply_filters( 'woocommerce_gzd_shortcode_product_food_html', '', $food_type, $atts );
+	}
+
+	public static function gzd_product_deposit_packaging_type( $atts ) {
+		/**
+		 * Filter shortcode product deposit packaging type output.
+		 *
+		 * @param string $html The output.
+		 * @param array $atts The shortcode arguments.
+		 *
+		 * @since 3.9.0
+		 */
+		return apply_filters( 'woocommerce_gzd_shortcode_product_deposit_packaging_type_html', self::get_gzd_product_shortcode( $atts, 'woocommerce_gzd_template_single_deposit_packaging_type' ), $atts );
 	}
 
 	public static function gzd_add_price_suffixes( $price, $org_product ) {

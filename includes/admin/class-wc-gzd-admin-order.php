@@ -163,8 +163,10 @@ class WC_GZD_Admin_Order {
 		}
 
 		if ( $order = $item->get_order() ) {
+			$tax_share_type = 'shipping' === $item->get_type() ? 'shipping' : 'fee';
+
 			// Calculate tax shares
-			$tax_share = $this->get_order_tax_share( $order, 'shipping' === $item->get_type() ? 'shipping' : 'fee' );
+			$tax_share = apply_filters( "woocommerce_gzd_{$tax_share_type}_order_tax_shares", $this->get_order_tax_share( $order, $tax_share_type ), $item );
 
 			// Do only adjust taxes if tax share contains more than one tax rate
 			if ( $tax_share && ! empty( $tax_share ) && sizeof( $tax_share ) > 1 ) {
@@ -207,6 +209,7 @@ class WC_GZD_Admin_Order {
 
 				$item->set_taxes( array( 'total' => $taxes ) );
 				$item->update_meta_data( '_split_taxes', $taxable_amounts );
+				$item->update_meta_data( '_tax_shares', $tax_share );
 
 				// The new net total equals old gross total minus new tax totals
 				if ( wc_gzd_additional_costs_include_tax() ) {
@@ -216,6 +219,8 @@ class WC_GZD_Admin_Order {
 				$order->update_meta_data( '_has_split_tax', 'yes' );
 			} else {
 				$item->delete_meta_data( '_split_taxes' );
+				$item->delete_meta_data( '_tax_shares' );
+
 				$order->delete_meta_data( '_has_split_tax' );
 			}
 
@@ -227,7 +232,7 @@ class WC_GZD_Admin_Order {
 	/**
 	 * @param WC_Order $order
 	 */
-	protected function get_order_taxable_location( $order ) {
+	public function get_order_taxable_location( $order ) {
 		$taxable_address = array(
 			WC()->countries->get_base_country(),
 			WC()->countries->get_base_state(),

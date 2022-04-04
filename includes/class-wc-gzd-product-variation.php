@@ -41,7 +41,25 @@ class WC_GZD_Product_Variation extends WC_GZD_Product {
 		'min_age',
 		'default_delivery_time',
 		'delivery_time_countries',
-		'warranty_attachment_id'
+		'warranty_attachment_id',
+		'deposit_type',
+		'deposit_quantity',
+		'nutrient_ids',
+		'nutrient_reference_value',
+		'allergen_ids',
+		'ingredients',
+		'nutri_score',
+		'drained_weight',
+		'net_filling_quantity',
+		'alcohol_content',
+		'food_distributor',
+		'food_place_of_origin',
+		'food_description',
+		'is_food'
+	);
+
+	protected $gzd_variation_prevent_zero_inherit_meta_data = array(
+		'alcohol_content'
 	);
 
 	protected $gzd_variation_forced_inherited_meta_data = array(
@@ -49,6 +67,7 @@ class WC_GZD_Product_Variation extends WC_GZD_Product {
 		'unit_base',
 		'free_shipping',
 		'differential_taxation',
+		'is_food'
 	);
 
 	public function get_gzd_parent() {
@@ -74,15 +93,24 @@ class WC_GZD_Product_Variation extends WC_GZD_Product {
 			}
 
 		} elseif ( in_array( $prop, $this->gzd_variation_inherited_meta_data ) ) {
-			$value = $this->child->get_meta( $meta_key, true, $context ) ? $this->child->get_meta( $meta_key, true, $context ) : '';
+			$value = $this->child->get_meta( $meta_key, true, $context );
 
 			// Make sure forced inherited meta data (e.g. not choosable from admin view) is rejected if available
 			if ( in_array( $prop, $this->gzd_variation_forced_inherited_meta_data ) ) {
 				$value = '';
 			}
 
+			$variation_misses_value = ! $value || '' === $value;
+
+			/**
+			 * Some fields should be able to override parent values with 0, e.g. decimal fields
+			 */
+			if ( in_array( $prop, $this->gzd_variation_prevent_zero_inherit_meta_data ) && "0" === strval( $value ) ) {
+				$variation_misses_value = false;
+			}
+
 			// Handle meta data keys which can be empty at variation level to cause inheritance
-			if ( ! $value || '' === $value ) {
+			if ( $variation_misses_value ) {
 				if ( in_array( $prop, $this->gzd_variation_forced_inherited_meta_data ) || 'view' === $context ) {
 					if ( $parent = $this->get_gzd_parent() ) {
 						$value = $parent->get_wc_product()->get_meta( $meta_key, true, $context );
@@ -154,6 +182,17 @@ class WC_GZD_Product_Variation extends WC_GZD_Product {
 	 */
 	public function set_differential_taxation( $diff_taxation ) {
 		$this->set_prop( 'differential_taxation', '' );
+	}
+
+	public function get_nutrient_ids( $context = 'view' ) {
+		$nutrient_ids = parent::get_nutrient_ids( $context );
+
+		if ( 'view' === $context ) {
+			$variation_level_nutrient_ids = (array) $this->get_prop( 'nutrient_ids', 'edit' );
+			$nutrient_ids                 = array_replace_recursive( $nutrient_ids, $variation_level_nutrient_ids );
+		}
+
+		return $nutrient_ids;
 	}
 
 	public function get_delivery_time_slugs( $context = 'view' ) {

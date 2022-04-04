@@ -168,6 +168,12 @@ class WC_GZD_Compatibility_Elementor_Pro extends WC_GZD_Compatibility {
 			'WC_GZD_Elementor_Widget_Product_Units',
 			'WC_GZD_Elementor_Widget_Product_Delivery_Time',
 			'WC_GZD_Elementor_Widget_Product_Defect_Description',
+			'WC_GZD_Elementor_Widget_Product_Deposit',
+			'WC_GZD_Elementor_Widget_Product_Deposit_Packaging_Type',
+			'WC_GZD_Elementor_Widget_Product_Nutrients',
+			'WC_GZD_Elementor_Widget_Product_Ingredients',
+			'WC_GZD_Elementor_Widget_Product_Allergenic',
+			'WC_GZD_Elementor_Widget_Product_Nutri_Score',
 		);
 
 		$widget_manager = Plugin::$instance->widgets_manager;

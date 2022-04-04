@@ -173,6 +173,11 @@ class WC_GZD_Order_Helper {
 		array_push( $metas, '_unit_base' );
 		array_push( $metas, '_min_age' );
 		array_push( $metas, '_defect_description' );
+		array_push( $metas, '_deposit_type' );
+		array_push( $metas, '_deposit_amount' );
+		array_push( $metas, '_deposit_quantity' );
+		array_push( $metas, '_deposit_amount_per_unit' );
+		array_push( $metas, '_deposit_packaging_type' );
 
 		return $metas;
 	}
@@ -180,7 +185,8 @@ class WC_GZD_Order_Helper {
 	public function refresh_item_data( $item ) {
 		if ( is_a( $item, 'WC_Order_Item_Product' ) && ( $product = $item->get_product() ) ) {
 			if ( $gzd_item = wc_gzd_get_order_item( $item ) ) {
-				$gzd_product = wc_gzd_get_product( $product );
+				$tax_display_mode = get_option( 'woocommerce_tax_display_shop' );
+				$gzd_product      = wc_gzd_get_product( $product );
 
 				$gzd_item->set_unit( $gzd_product->get_unit_name() );
 				$gzd_item->set_unit_base( $gzd_product->get_unit_base() );
@@ -192,6 +198,12 @@ class WC_GZD_Order_Helper {
 				$gzd_item->set_defect_description( $gzd_product->get_formatted_defect_description() );
 				$gzd_item->set_delivery_time( $gzd_product->get_delivery_time_html() );
 				$gzd_item->set_min_age( $gzd_product->get_min_age() );
+
+				$gzd_item->set_deposit_type( $gzd_product->get_deposit_type() );
+				$gzd_item->set_deposit_amount_per_unit( $gzd_product->get_deposit_amount_per_unit() );
+				$gzd_item->set_deposit_quantity( $gzd_product->get_deposit_quantity() );
+				$gzd_item->set_deposit_amount( $gzd_product->get_deposit_amount( 'view', $tax_display_mode ) );
+				$gzd_item->set_deposit_packaging_type( $gzd_product->get_deposit_packaging_type() );
 
 				/**
 				 * Add order item meta.

@@ -34,6 +34,9 @@ class WC_Germanized_Meta_Box_Product_Data {
 			add_filter( 'product_type_options', array( __CLASS__, 'product_types' ), 10, 1 );
 		}
 
+		add_filter( 'woocommerce_product_data_tabs', array( __CLASS__, 'register_product_tab' ) );
+		add_action( 'woocommerce_product_data_panels', array( __CLASS__, 'food_tab' ) );
+
 		add_action( 'woocommerce_product_object_updated_props', array( __CLASS__, 'update_terms' ), 10, 1 );
 		add_action( 'woocommerce_before_product_object_save', array( __CLASS__, 'before_save' ), 10, 1 );
 
@@ -48,6 +51,71 @@ class WC_Germanized_Meta_Box_Product_Data {
 		 * Product duplication
 		 */
 		add_action( 'woocommerce_product_duplicate_before_save', array( __CLASS__, 'update_before_duplicate' ), 10, 2 );
+	}
+
+	public static function food_tab() {
+		global $post, $thepostid, $product_object;
+
+		$_gzd_product = wc_gzd_get_product( $product_object );
+		?>
+        <div id="food_product_data" class="panel woocommerce_options_panel hidden">
+            <div class="options_group show_if_simple show_if_external show_if_variable">
+                <?php if ( WC_germanized()->is_pro() ) : ?>
+                    <p class="wc-gzd-product-settings-subtitle">
+		                <?php _e( 'Deposit', 'woocommerce-germanized-pro' ); ?>
+                        <a class="page-title-action" href=""><?php _e( 'Help', 'woocommerce-germanized' ); ?></a>
+                    </p>
+
+                    <?php
+                        woocommerce_wp_select( array(
+                            'id'          => '_deposit_type',
+                            'label'       => __( 'Deposit Type', 'woocommerce-germanized' ),
+                            'options'     => array( "-1" => __( 'Select Deposit Type', 'woocommerce-germanized' ) ) + WC_germanized()->deposit_types->get_deposit_types(),
+                            'desc_tip'    => true,
+                            'description' => __( 'In case this product is reusable and has deposits, select the deposit type.', 'woocommerce-germanized' )
+                        ) );
+
+                        woocommerce_wp_text_input( array(
+                            'id'          => '_deposit_quantity',
+                            'label'       => __( 'Deposit Quantity', 'woocommerce-germanized' ),
+                            'type'        => 'number',
+                            'placeholder' => 1,
+                            'custom_attributes' => array( 'min' => 1 ),
+                            'desc_tip'    => true,
+                            'description' => __( 'Number of units included for deposit purposes, e.g. 6 bottles.', 'woocommerce-germanized' )
+                        ) );
+                    ?>
+                <?php else: ?>
+                    <div class="wc-gzd-inner-product-pro-tab-wrapper">
+                        <div class="wc-gzd-premium-overlay notice notice-warning inline">
+                            <h3><?php _e( 'Get Germanized Pro to unlock', 'woocommerce-germanized' ); ?></h3>
+                            <p><?php _e( 'Sell your food legally showing nutrients, allergenes, ingredients, the Nutri-Score, deposits and more.', 'woocommerce-germanized' ); ?></p>
+                            <p><a class="button button-primary wc-gzd-button" href="https://vendidero.de/woocommerce-germanized" target="_blank"><?php _e( 'Upgrade now', 'woocommerce-germanized' ); ?></a></p>
+                        </div>
+                    </div>
+                <?php endif; ?>
+            </div>
+
+	        <?php do_action(  'woocommerce_gzd_edit_product_food_panel' ); ?>
+        </div>
+		<?php
+	}
+
+	public static function register_product_tab( $tabs ) {
+        $classes = array( 'show_if_is_food' );
+
+        if ( ! WC_germanized()->is_pro() ) {
+            $classes[] = 'product_tab_gzd_pro';
+        }
+
+		$tabs['food'] = array(
+			'label'    => __( 'Food', 'woocommerce-germanized' ),
+			'target'   => 'food_product_data',
+			'class'    => $classes,
+			'priority' => 35,
+		);
+
+		return $tabs;
 	}
 
 	/**
@@ -313,6 +381,14 @@ class WC_Germanized_Meta_Box_Product_Data {
 			'label'         => __( 'Differential taxed', 'woocommerce-germanized' ),
 			'description'   => __( 'Product applies to differential taxation based on §25a UStG.', 'woocommerce-germanized' ),
 			'default'       => 'no'
+		);
+
+		$types['is_food'] = array(
+			'id'            => '_is_food',
+			'wrapper_class' => WC_germanized()->is_pro() ? '' : 'product_type_gzd_pro',
+			'label'         => __( 'Food', 'woocommerce-germanized' ),
+			'description'   => __( 'This product is a food product.', 'woocommerce-germanized' ),
+			'default'       => 'no',
 		);
 
 		return $types;
@@ -596,11 +672,13 @@ class WC_Germanized_Meta_Box_Product_Data {
 			'_unit_price_auto'                              => '',
 			'_unit_price_regular'                           => '',
 			'_unit_price_sale'                              => '',
+			'_deposit_type'                                 => '',
+			'_deposit_quantity'                             => '',
 			'_sale_price_label'                             => '',
 			'_sale_price_regular_label'                     => '',
 			'_mini_desc'                                    => '',
 			'_defect_description'                           => '',
-            '_warranty_attachment_id'                       => '',
+			'_warranty_attachment_id'                       => '',
 			'delivery_time'                                 => '',
 			'country_specific_delivery_times'               => '',
 			'new_country_specific_delivery_times_countries' => '',
@@ -613,7 +691,19 @@ class WC_Germanized_Meta_Box_Product_Data {
 			'_used_good'                                    => '',
 			'_defective_copy'                               => '',
 			'_differential_taxation'                        => '',
+			'_is_food'                                      => '',
 			'_min_age'                                      => '',
+			'_nutrient_ids'                                 => '',
+			'_nutrient_reference_value'                     => '',
+			'_allergen_ids'                                 => '',
+			'_ingredients'                                  => '',
+			'_nutri_score'                                  => '',
+			'_alcohol_content'                              => '',
+			'_drained_weight'                               => '',
+			'_net_filling_quantity'                         => '',
+			'_food_distributor'                             => '',
+			'_food_place_of_origin'                         => '',
+			'_food_description'                             => '',
 		);
 	}
 
@@ -867,17 +957,32 @@ class WC_Germanized_Meta_Box_Product_Data {
 
 		$gzd_product       = wc_gzd_get_product( $product );
 		$product_type      = ( ! isset( $data['product-type'] ) || empty( $data['product-type'] ) ) ? 'simple' : sanitize_title( stripslashes( $data['product-type'] ) );
-		$sale_price_labels = array( '_sale_price_label', '_sale_price_regular_label' );
+		$term_selects      = array( '_sale_price_label', '_sale_price_regular_label', '_deposit_type' );
 
-		foreach ( $sale_price_labels as $label ) {
-			if ( isset( $data[ $label ] ) ) {
-				$setter = "set{$label}";
+		foreach ( $term_selects as $term_select ) {
+			if ( isset( $data[ $term_select ] ) ) {
+				$setter = "set{$term_select}";
 
 				if ( is_callable( array( $gzd_product, $setter ) ) ) {
-					if ( empty( $data[ $label ] ) || in_array( $data[ $label ], array( 'none', '-1' ) ) ) {
+					if ( empty( $data[ $term_select ] ) || in_array( $data[ $term_select ], array( 'none', '-1' ) ) ) {
 						$gzd_product->$setter( '' );
 					} else {
-						$gzd_product->$setter( wc_clean( $data[ $label ] ) );
+                        $term = wc_clean( $data[ $term_select ] );
+
+						/**
+						 * Convert term ids to slugs
+						 */
+                        if ( is_numeric( $term ) ) {
+                            $term_data = get_term_by( 'id', absint( $term ), ( '_deposit_type' === $term_select ? 'product_deposit_type' : 'product_price_label' ) );
+
+                            if ( ! is_wp_error( $term_data ) ) {
+                                $term = $term_data->slug;
+                            } else {
+                                $term = '';
+                            }
+                        }
+
+						$gzd_product->$setter( $term );
 					}
 				}
 			}
@@ -889,6 +994,56 @@ class WC_Germanized_Meta_Box_Product_Data {
 
 		if ( isset( $data['_defect_description'] ) ) {
 			$gzd_product->set_defect_description( $data['_defect_description'] === '' ? '' : wc_gzd_sanitize_html_text_field( $data['_defect_description'] ) );
+		}
+
+		if ( isset( $data['_nutrient_ids'] ) ) {
+			$gzd_product->set_nutrient_ids( (array) wc_clean( $data['_nutrient_ids'] ) );
+		}
+
+		if ( isset( $data['_nutrient_reference_value'] ) ) {
+			$gzd_product->set_nutrient_reference_value( sanitize_key( wc_clean( $data['_nutrient_reference_value'] ) ) );
+		}
+
+		if ( isset( $data['_allergen_ids'] ) ) {
+			$gzd_product->set_allergen_ids( array_map( 'absint', (array) wc_clean( $data['_allergen_ids'] ) ) );
+		}
+
+		if ( isset( $data['_ingredients'] ) ) {
+			$gzd_product->set_ingredients( $data['_ingredients'] === '' ? '' : wc_gzd_sanitize_html_text_field( $data['_ingredients'] ) );
+		}
+
+		if ( isset( $data['_nutri_score'] ) ) {
+            $nutri_score = wc_clean( $data['_nutri_score'] );
+
+            if ( array_key_exists( $nutri_score, WC_GZD_Food_Helper::get_nutri_score_values() ) ) {
+	            $gzd_product->set_nutri_score( $nutri_score );
+            } else {
+	            $gzd_product->set_nutri_score( '' );
+            }
+		}
+
+		if ( isset( $data['_alcohol_content'] ) ) {
+			$gzd_product->set_alcohol_content( wc_clean( $data['_alcohol_content'] ) );
+		}
+
+		if ( isset( $data['_drained_weight'] ) ) {
+			$gzd_product->set_drained_weight( wc_clean( $data['_drained_weight'] ) );
+		}
+
+		if ( isset( $data['_net_filling_quantity'] ) ) {
+			$gzd_product->set_net_filling_quantity( wc_clean( $data['_net_filling_quantity'] ) );
+		}
+
+		if ( isset( $data['_food_distributor'] ) ) {
+			$gzd_product->set_food_distributor( $data['_food_distributor'] === '' ? '' : wc_gzd_sanitize_html_text_field( $data['_food_distributor'] ) );
+		}
+
+		if ( isset( $data['_food_description'] ) ) {
+			$gzd_product->set_food_description( $data['_food_description'] === '' ? '' : wc_gzd_sanitize_html_text_field( $data['_food_description'] ) );
+		}
+
+		if ( isset( $data['_food_place_of_origin'] ) ) {
+			$gzd_product->set_food_place_of_origin( $data['_food_place_of_origin'] === '' ? '' : wc_gzd_sanitize_html_text_field( $data['_food_place_of_origin'] ) );
 		}
 
         $warranty_attachment_id = isset( $data['_warranty_attachment_id'] ) ? absint( $data['_warranty_attachment_id'] ) : 0;
@@ -915,6 +1070,10 @@ class WC_Germanized_Meta_Box_Product_Data {
 
 		self::save_delivery_times( $gzd_product, $data );
 
+        if ( isset( $data['_deposit_quantity'] ) ) {
+	        $gzd_product->set_deposit_quantity( absint( $data['_deposit_quantity'] ) );
+        }
+
 		// Free shipping
 		$gzd_product->set_free_shipping( isset( $data['_free_shipping'] ) ? 'yes' : 'no' );
 
@@ -926,6 +1085,9 @@ class WC_Germanized_Meta_Box_Product_Data {
 
 		// Is a defective copy?
 		$gzd_product->set_defective_copy( isset( $data['_defective_copy'] ) ? 'yes' : 'no' );
+
+		// Is food?
+		$gzd_product->set_is_food( isset( $data['_is_food'] ) ? 'yes' : 'no' );
 
 		// Applies to differential taxation?
 		$gzd_product->set_differential_taxation( isset( $data['_differential_taxation'] ) ? 'yes' : 'no' );

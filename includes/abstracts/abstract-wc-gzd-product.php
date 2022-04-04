@@ -30,6 +30,12 @@ class WC_GZD_Product {
 
 	protected $warranty_attachment = false;
 
+	protected $allergenic = null;
+
+	protected $nutrients = null;
+
+	protected $deposit_type = null;
+
 	/**
 	 * Construct new WC_GZD_Product
 	 *
@@ -91,6 +97,323 @@ class WC_GZD_Product {
 
 	public function get_warranty_attachment_id( $context = 'view' ) {
 		return $this->get_prop( 'warranty_attachment_id', $context );
+	}
+
+	public function get_nutrient_ids( $context = 'view' ) {
+		$nutrients = $this->get_prop( 'nutrient_ids', $context );
+
+		return (array) $nutrients;
+	}
+
+	public function get_nutrients( $context = 'view' ) {
+		if ( is_null( $this->nutrients ) ) {
+			$this->nutrients = apply_filters( 'woocommerce_gzd_get_product_nutrients', array(), $this, $context );
+		}
+
+		return $this->nutrients;
+	}
+
+	public function has_nutrients() {
+		return ! empty( $this->get_nutrients() );
+	}
+
+	public function get_nutrients_html( $context = 'view' ) {
+		return apply_filters( 'woocommerce_gzd_get_product_nutrients_html', '', $this, $context );
+	}
+
+	public function get_allergen_ids( $context = 'view' ) {
+		$nutrients = $this->get_prop( 'allergen_ids', $context );
+
+		return array_filter( (array) $nutrients );
+	}
+
+	public function has_allergenic() {
+		return ! empty( $this->get_allergenic() );
+	}
+
+	public function get_allergenic( $context = 'view' ) {
+		if ( is_null( $this->allergenic ) ) {
+			$this->allergenic = apply_filters( 'woocommerce_gzd_get_product_allergenic', array(), $this, $context );
+		}
+
+		return $this->allergenic;
+	}
+
+	public function get_formatted_allergenic( $context = 'view' ) {
+		$allergenic = '';
+
+		if ( $this->has_allergenic() ) {
+			$allergenic_list = implode( ', ', $this->get_allergenic( $context ) );
+			$allergenic      = sprintf( __( 'Contains: %1$s', 'woocommerce-germanized' ), $allergenic_list );
+		}
+
+		return apply_filters( 'woocommerce_gzd_get_product_formatted_allergenic', $allergenic, $this, $context );
+	}
+
+	public function get_ingredients( $context = 'view' ) {
+		return $this->get_prop( 'ingredients', $context );
+	}
+
+	/**
+	 * @return string
+	 */
+	public function get_formatted_ingredients( $context = 'view' ) {
+		if ( $ingredients = $this->get_ingredients( $context ) ) {
+			return wpautop( do_shortcode( wp_kses_post( htmlspecialchars_decode( $ingredients ) ) ) );
+		}
+
+		return '';
+	}
+
+	public function get_nutrient_reference_value( $context = 'view' ) {
+		return $this->get_prop( 'nutrient_reference_value', $context );
+	}
+
+	public function get_nutri_score( $context = 'view' ) {
+		return $this->get_prop( 'nutri_score', $context );
+	}
+
+	public function get_formatted_nutri_score() {
+		$nutri_score = $this->get_nutri_score();
+
+		if ( '' !== $nutri_score ) {
+			$nutri_score = '<span title="' . sprintf( esc_html__( 'Nutri-Score %1$s', 'woocommerce-germanized' ), strtoupper( $nutri_score ) ) . '" aria-label="' . sprintf( esc_html__( 'Nutri-Score %1$s', 'woocommerce-germanized' ), strtoupper( $nutri_score ) ) . '" class="wc-gzd-nutri-score-value wc-gzd-nutri-score-value-' . esc_attr( $nutri_score ) . '">' . esc_html( strtoupper( $nutri_score ) ) . '</span>';
+		}
+
+		return apply_filters( "woocommerce_gzd_product_formatted_nutri_score", $nutri_score, $this );
+	}
+
+	public function get_drained_weight( $context = 'view' ) {
+		return $this->get_prop( 'drained_weight', $context );
+	}
+
+	public function get_net_filling_quantity( $context = 'view' ) {
+		return $this->get_prop( 'net_filling_quantity', $context );
+	}
+
+	public function get_formatted_net_filling_quantity() {
+		$quantity = $this->get_net_filling_quantity();
+
+		if ( '' === $quantity ) {
+			$quantity = $this->get_unit_product();
+		}
+
+		if ( '' !== $quantity ) {
+			$unit     = apply_filters( "woocommerce_gzd_product_net_filling_quantity_unit", $this->get_unit(), $this );
+			$quantity = sprintf( '%1$s %2$s', wc_format_localized_decimal( $quantity ), $unit );
+		}
+
+		return apply_filters( "woocommerce_gzd_product_formatted_net_filling_quantity", $quantity, $this );
+	}
+
+	public function get_formatted_drain_weight() {
+		$weight = '';
+
+		if ( '' !== $this->get_drained_weight() ) {
+			$drain_weight_unit = apply_filters( "woocommerce_gzd_drain_weight_unit", "g" );
+			$weight_in_g       = wc_get_weight( (float) $this->get_drained_weight(), $drain_weight_unit, get_option( 'woocommerce_weight_unit' ) );
+			$weight            = sprintf( '%1$s %2$s', wc_format_localized_decimal( $weight_in_g ), $drain_weight_unit );
+		}
+
+		return apply_filters( "woocommerce_gzd_product_formatted_drain_weight", $weight, $this );
+	}
+
+	public function get_alcohol_content( $context = 'view' ) {
+		$alcohol_content = $this->get_prop( 'alcohol_content', $context );
+
+		if ( empty( $alcohol_content ) && 'view' === $alcohol_content ) {
+			$alcohol_content = 0;
+		}
+
+		return $alcohol_content;
+	}
+
+	public function get_formatted_alcohol_content( $context = 'view' ) {
+		return wc_gzd_format_alcohol_content( $this->get_alcohol_content( $context ) );
+	}
+
+	public function includes_alcohol( $context = 'view' ) {
+		return apply_filters( 'woocommerce_gzd_product_includes_alcohol', ( (float) $this->get_alcohol_content( $context ) > 0 ), $this, $context );
+	}
+
+	public function get_food_distributor( $context = 'view' ) {
+		return $this->get_prop( 'food_distributor', $context );
+	}
+
+	public function get_formatted_food_distributor( $context = 'view' ) {
+		if ( $distributor = $this->get_food_distributor( $context ) ) {
+			return wpautop( do_shortcode( wp_kses_post( htmlspecialchars_decode( $distributor ) ) ) );
+		}
+
+		return '';
+	}
+
+	public function get_food_place_of_origin( $context = 'view' ) {
+		return $this->get_prop( 'food_place_of_origin', $context );
+	}
+
+	public function get_formatted_food_place_of_origin( $context = 'view' ) {
+		if ( $origin = $this->get_food_place_of_origin( $context ) ) {
+			return wpautop( do_shortcode( wp_kses_post( htmlspecialchars_decode( $origin ) ) ) );
+		}
+
+		return '';
+	}
+
+	public function get_food_description( $context = 'view' ) {
+		return $this->get_prop( 'food_description', $context );
+	}
+
+	public function get_formatted_food_description( $context = 'view' ) {
+		if ( $description = $this->get_food_description( $context ) ) {
+			return wpautop( do_shortcode( wp_kses_post( htmlspecialchars_decode( $description ) ) ) );
+		}
+
+		return '';
+	}
+
+	public function get_deposit_type_term( $context = 'view'  ) {
+		if ( is_null( $this->deposit_type ) ) {
+			$this->deposit_type = false;
+
+			$type = $this->get_deposit_type( $context );
+
+			if ( ! empty( $type ) ) {
+				$this->deposit_type = WC_germanized()->deposit_types->get_deposit_type_term( $type );
+			}
+		}
+
+		return $this->deposit_type;
+	}
+
+	public function get_deposit_type( $context = 'view' ) {
+		return $this->get_prop( 'deposit_type', $context );
+	}
+
+	public function get_deposit_packaging_type( $context = 'view' ) {
+		$returnable_type = false;
+
+		if ( $this->has_deposit( $context ) && ( $term = $this->get_deposit_type_term( $context ) ) ) {
+			$returnable_type = WC_germanized()->deposit_types->get_packaging_type( $term );
+		}
+
+		return apply_filters( 'woocommerce_gzd_product_deposit_packaging_type', $returnable_type );
+	}
+
+	public function get_deposit_packaging_type_title( $context = 'view' ) {
+		$returnable_type_title = '';
+
+		if ( $returnable_type = $this->get_deposit_packaging_type( $context ) ) {
+			$returnable_type_title = WC_germanized()->deposit_types->get_packaging_type_title( $returnable_type );
+		}
+
+		return apply_filters( 'woocommerce_gzd_product_deposit_packaging_type_title', $returnable_type_title );
+	}
+
+	/**
+	 * Returns the total deposit amount.
+	 *
+	 * @param string $tax_display
+	 * @param string $context
+	 *
+	 * @return string formatted deposit amount
+	 */
+	public function get_deposit_amount( $context = 'view', $tax_display = '' ) {
+		$quantity = 1;
+		$price    = $this->get_deposit_amount_per_unit( $context, $tax_display );
+
+		if ( $this->get_deposit_quantity() > 1 ) {
+			$quantity = $this->get_deposit_quantity();
+		}
+
+		$amount = (float) $price * (float) $quantity;
+
+		return apply_filters( "woocommerce_gzd_product_deposit_amount", $amount, $quantity, $this, $context, $tax_display );
+	}
+
+	/**
+	 * Returns unit price including tax
+	 *
+	 * @param integer $qty
+	 * @param string $price
+	 *
+	 * @return string  unit price including tax
+	 */
+	public function get_deposit_amount_including_tax( $qty = 1, $price = '' ) {
+		$price = ( $price == '' ) ? $this->get_deposit_amount_per_unit( 'view', 'incl' ) : $price;
+
+		/**
+		 * Filter to adjust the deposit amount including tax.
+		 *
+		 * @param string $deposit_amount The calculated deposit amount.
+		 * @param string $price The price passed.
+		 * @param int $qty The quantity.
+		 * @param WC_GZD_Product $product The product object.
+		 *
+		 * @since 3.9.0
+		 */
+		return apply_filters( 'woocommerce_gzd_deposit_amount_including_tax', ( empty( $price ) ) ? '' : wc_get_price_including_tax( $this->child, array(
+			'price' => $price,
+			'qty'   => $qty
+		) ), $price, $qty, $this );
+	}
+
+	/**
+	 * Returns deposit amount excluding tax
+	 *
+	 * @param integer $qty
+	 * @param string $price
+	 *
+	 * @return string deposit amount excluding tax
+	 */
+	public function get_deposit_amount_excluding_tax( $qty = 1, $price = '' ) {
+		$price = ( $price == '' ) ? $this->get_deposit_amount_per_unit( 'view', 'excl' ) : $price;
+
+		/**
+		 * Filter to adjust the deposit amount excluding tax.
+		 *
+		 * @param string $deposit_amount The calculated deposit amount.
+		 * @param string $price The price passed.
+		 * @param int $qty The quantity.
+		 * @param WC_GZD_Product $product The product object.
+		 *
+		 * @since 3.9,0
+		 *
+		 */
+		return apply_filters( 'woocommerce_gzd_deposit_amount_excluding_tax', ( empty( $price ) ) ? '' : wc_get_price_excluding_tax( $this->child, array(
+			'price' => $price,
+			'qty'   => $qty
+		) ), $price, $qty, $this );
+	}
+
+	public function get_deposit_amount_per_unit( $context = 'view', $tax_display = '' ) {
+		$amount = wc_format_decimal( 0 );
+
+		if ( $term = $this->get_deposit_type_term( $context ) ) {
+			$amount = WC_germanized()->deposit_types->get_deposit( $term );
+		}
+
+		$tax_display_mode = $tax_display ? $tax_display : get_option( 'woocommerce_tax_display_shop' );
+
+		if ( 'view' === $context && $amount > 0 ) {
+			$amount = ( 'incl' === $tax_display_mode ) ? $this->get_deposit_amount_including_tax( 1, $amount ) : $this->get_deposit_amount_excluding_tax( 1, $amount );
+		}
+
+		return apply_filters( "woocommerce_gzd_product_deposit_amount_per_unit", $amount, $this, $context, $tax_display_mode );
+	}
+
+	public function get_deposit_quantity( $context = 'view' ) {
+		$quantity = $this->get_prop( 'deposit_quantity', $context );
+
+		if ( 'view' === $context && empty( $quantity ) ) {
+			$quantity = 1;
+		}
+
+		return $quantity;
+	}
+
+	public function has_deposit( $context = 'view' ) {
+		return apply_filters( "woocommerce_gzd_product_has_deposit", $this->get_deposit_amount_per_unit() > 0, $this, $context );
 	}
 
 	public function get_unit_product( $context = 'view' ) {
@@ -197,11 +520,15 @@ class WC_GZD_Product {
 		return ( ! empty( $desc ) ) ? true : false;
 	}
 
-	public function get_formatted_cart_description() {
-		$desc = $this->get_cart_description();
+	public function get_formatted_mini_desc( $context = 'view' ) {
+		return $this->get_formatted_cart_description( $context );
+	}
+
+	public function get_formatted_cart_description( $context = 'view' ) {
+		$desc = $this->get_cart_description( $context );
 
 		if ( ! empty( $desc ) ) {
-			return wpautop( htmlspecialchars_decode( $desc ) );
+			return wpautop( do_shortcode( wp_kses_post( htmlspecialchars_decode( $desc ) ) ) );
 		} else {
 			return '';
 		}
@@ -223,6 +550,16 @@ class WC_GZD_Product {
 		}
 
 		return $is_used_good;
+	}
+
+	public function is_food( $context = 'view' ) {
+		return $this->get_is_food( $context ) === true;
+	}
+
+	public function get_is_food( $context = 'view' ) {
+		$is_food = wc_string_to_bool( $this->get_prop( 'is_food', $context ) );
+
+		return $is_food;
 	}
 
 	public function is_used_good( $context = 'view' ) {
@@ -253,9 +590,91 @@ class WC_GZD_Product {
 		return $this->get_differential_taxation( $context ) === true;
 	}
 
+	public function set_deposit_type( $deposit_type ) {
+		$this->set_prop( 'deposit_type', $deposit_type );
+		$this->deposit_type = null;
+	}
+
+	public function set_deposit_quantity( $quantity ) {
+		$this->set_prop( 'deposit_quantity', empty( $quantity ) ? '' : absint( $quantity ) );
+	}
+
 	public function set_warranty_attachment_id( $id ) {
-		$this->set_prop( 'warranty_attachment_id', absint( $id ) );
+		$this->set_prop( 'warranty_attachment_id', ! empty( $id ) ? absint( $id ) : '' );
 		$this->warranty_attachment = false;
+	}
+
+	public function set_nutrient_ids( $ids ) {
+		$ids = (array) $ids;
+
+		foreach( $ids as $k => $value ) {
+			if ( is_array( $value ) ) {
+				$value = wp_parse_args( $value, array(
+					'value'     => 0,
+					'ref_value' => '',
+				) );
+
+				if ( ! is_numeric( $value['value'] ) ) {
+					unset( $ids[ $k ] );
+				} else {
+					$value['value']     = wc_format_decimal( $value['value'] );
+					$value['ref_value'] = is_numeric( $value['ref_value'] ) ? wc_format_decimal( $value['ref_value'] ) : '';
+
+					$ids[ $k ] = $value;
+				}
+			} elseif ( ! is_numeric( $value ) ) {
+				unset( $ids[ $k ] );
+			} else {
+				$ids[ $k ] = array(
+					'value'     => wc_format_decimal( $value ),
+					'ref_value' => '',
+				);
+			}
+		}
+
+		$this->set_prop( 'nutrient_ids', $ids );
+	}
+
+	public function set_nutrient_reference_value( $value ) {
+		$this->set_prop( 'nutrient_reference_value', $value );
+	}
+
+	public function set_allergen_ids( $ids ) {
+		$this->set_prop( 'allergen_ids', array_map( 'absint', array_filter( (array) $ids ) ) );
+
+		$this->allergenic = null;
+	}
+
+	public function set_ingredients( $ingredients ) {
+		$this->set_prop( 'ingredients', $ingredients );
+	}
+
+	public function set_nutri_score( $score ) {
+		$this->set_prop( 'nutri_score', $score );
+	}
+
+	public function set_drained_weight( $weight ) {
+		$this->set_prop( 'drained_weight', wc_format_decimal( $weight ) );
+	}
+
+	public function set_net_filling_quantity( $quantity ) {
+		$this->set_prop( 'net_filling_quantity', wc_format_decimal( $quantity ) );
+	}
+
+	public function set_alcohol_content( $content ) {
+		$this->set_prop( 'alcohol_content', wc_format_decimal( $content ) );
+	}
+
+	public function set_food_distributor( $distributor ) {
+		$this->set_prop( 'food_distributor', $distributor );
+	}
+
+	public function set_food_place_of_origin( $place_of_origin ) {
+		$this->set_prop( 'food_place_of_origin', $place_of_origin );
+	}
+
+	public function set_food_description( $description ) {
+		$this->set_prop( 'food_description', $description );
 	}
 
 	public function set_unit_price( $price ) {
@@ -296,6 +715,10 @@ class WC_GZD_Product {
 
 	public function set_used_good( $is_used_good ) {
 		$this->set_prop( 'used_good', wc_bool_to_string( $is_used_good ) );
+	}
+
+	public function set_is_food( $is_food ) {
+		$this->set_prop( 'is_food', wc_bool_to_string( $is_food ) );
 	}
 
 	public function set_free_shipping( $shipping ) {
@@ -363,6 +786,49 @@ class WC_GZD_Product {
 
 	public function has_min_age() {
 		return $this->needs_age_verification();
+	}
+
+	public function has_nutrient( $id, $context = 'view' ) {
+		$nutrients = $this->get_nutrient_ids( $context );
+
+		return array_key_exists( $id, $nutrients );
+	}
+
+	public function get_nutrient_value( $id, $context = 'view' ) {
+		$nutrient_value = '';
+
+		if ( $nutrient = $this->get_nutrient( $id, $context ) ) {
+			$nutrient_value = (float) $nutrient['value'];
+		}
+
+		return apply_filters( 'woocommerce_gzd_product_nutrient_value', $nutrient_value, $id, $this, $context );
+	}
+
+	public function get_nutrient_reference( $id, $context = 'view' ) {
+		$ref_value = '';
+
+		if ( $nutrient = $this->get_nutrient( $id, $context ) ) {
+			$ref_value = (float) $nutrient['ref_value'];
+		}
+
+		return apply_filters( 'woocommerce_gzd_product_nutrient_reference', $ref_value, $id, $this, $context );
+	}
+
+	public function get_nutrient( $id, $context = 'view' ) {
+		$nutrients = $this->get_nutrient_ids( $context );
+		$nutrient  = false;
+
+		if ( array_key_exists( $id, $nutrients ) && is_array( $nutrients[ $id ] ) ) {
+			$nutrient = wp_parse_args( $nutrients[ $id ], array(
+				'value'     => 0,
+				'ref_value' => 0,
+			) );
+
+			$nutrient['value']     = (float) $nutrient['value'];
+			$nutrient['ref_value'] = (float) $nutrient['ref_value'];
+		}
+
+		return apply_filters( 'woocommerce_gzd_product_nutrient', $nutrient, $id, $this, $context );
 	}
 
 	public function get_min_age( $context = 'view' ) {
@@ -885,6 +1351,59 @@ class WC_GZD_Product {
 	}
 
 	/**
+	 * Returns the deposit time html output
+	 *
+	 * @return string
+	 */
+	public function get_deposit_amount_html( $context = 'view', $tax_display = '' ) {
+		/**
+		 * Filter that allows disabling the deposit text output for a certain product.
+		 *
+		 * @param bool $hide Whether to hide the output or not.
+		 * @param WC_GZD_Product $product The product object.
+		 *
+		 * @since 3.9.0
+		 *
+		 */
+		if ( apply_filters( 'woocommerce_gzd_hide_deposit_amount_text', false, $this ) ) {
+
+			/**
+			 * Filter to adjust the output of a disabled product deposit text.
+			 *
+			 * @param string $output The output.
+			 * @param WC_GZD_Product $product The product object.
+			 *
+			 * @since 3.9.0
+			 *
+			 */
+			return apply_filters( 'woocommerce_gzd_disabled_deposit_amount_text', '', $this );
+		}
+
+		$html = '';
+
+		if ( $this->has_deposit() ) {
+			$price_html = wc_price( $this->get_deposit_amount( 'view', $tax_display ) );
+			$html       = wc_gzd_format_deposit_amount( $price_html, array(
+				'type'            => $this->get_deposit_type( $context ),
+				'quantity'        => $this->get_deposit_quantity( $context ),
+				'packaging_type'  => $this->get_deposit_packaging_type( $context ),
+				'amount_per_unit' => wc_price( $this->get_deposit_amount_per_unit( $context, $tax_display ) ),
+			) );
+		}
+
+		/**
+		 * Filter to adjust the product's deposit HTML output.
+		 *
+		 * @param string $html The deposit as HTML.
+		 * @param WC_GZD_Product $product The product object.
+		 *
+		 * @since 3.9.0
+		 *
+		 */
+		return apply_filters( 'woocommerce_gzd_deposit_amount_html', $html, $this, $tax_display );
+	}
+
+	/**
 	 * Returns unit price html output
 	 *
 	 * @return string
@@ -945,7 +1464,7 @@ class WC_GZD_Product {
 		 * @since 1.0.0
 		 *
 		 */
-		return apply_filters( 'woocommerce_gzd_unit_price_html', $html, $this );
+		return apply_filters( 'woocommerce_gzd_unit_price_html', $html, $this, $tax_display );
 	}
 
 	public function is_unit_price_calculated_automatically() {
@@ -1426,9 +1945,9 @@ class WC_GZD_Product {
 	 *
 	 * @return string
 	 */
-	public function get_formatted_defect_description() {
-		if ( $this->is_defective_copy() ) {
-			return apply_filters( 'woocommerce_gzd_defect_description', htmlspecialchars_decode( $this->get_defect_description() ) );
+	public function get_formatted_defect_description( $context = 'view' ) {
+		if ( $this->is_defective_copy( $context ) ) {
+			return apply_filters( 'woocommerce_gzd_defect_description', wpautop( do_shortcode( wp_kses_post( htmlspecialchars_decode( $this->get_defect_description( $context ) ) ) ) ) );
 		}
 
 		return '';
@@ -1476,6 +1995,7 @@ class WC_GZD_Product {
 		 * save request.
 		 */
 		$slugs = $this->get_delivery_time_slugs( 'save' );
+		$id    = false;
 
 		if ( false !== $slugs ) {
 			$this->set_delivery_times_need_update( false );
@@ -1493,6 +2013,15 @@ class WC_GZD_Product {
 			}
 
 			$this->delivery_times = null;
+		}
+
+		/**
+		 * Update deposit type term relationships
+		 */
+		if ( $deposit_type = $this->get_deposit_type_term( 'edit' ) ) {
+			wp_set_post_terms( $this->get_wc_product()->get_id(), array( $deposit_type->slug ), 'product_deposit_type', false );
+		} else {
+			wp_delete_object_term_relationships( $this->get_wc_product()->get_id(), 'product_deposit_type' );
 		}
 	}
 }

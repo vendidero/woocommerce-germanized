@@ -269,6 +269,10 @@ function wc_gzd_format_tax_rate_percentage( $rate, $percent = false ) {
 	return str_replace( '.', ',', wc_format_decimal( str_replace( '%', '', $rate ), true, true ) ) . ( $percent ? ' %' : '' );
 }
 
+function wc_gzd_format_alcohol_content( $alcohol_content ) {
+	return apply_filters( 'woocommerce_gzd_formatted_alcohol_content', sprintf( '%1$s %% vol', wc_format_localized_decimal( $alcohol_content ) ) );
+}
+
 function wc_gzd_is_customer_activated( $user_id = '' ) {
 
 	if ( is_user_logged_in() && empty( $user_id ) ) {
@@ -1132,6 +1136,51 @@ function wc_gzd_format_unit_base( $unit_base ) {
 
 function wc_gzd_format_product_units_decimal( $unit_product ) {
 	return str_replace( '.', ',', $unit_product );
+}
+
+function wc_gzd_format_deposit_amount( $amount, $args ) {
+	$args = wp_parse_args( $args, array(
+		'type'            => '',
+		'quantity'        => 1,
+		'packaging_type'  => '',
+		'amount_per_unit' => ''
+	) );
+
+	$text                        = get_option( 'woocommerce_gzd_deposit_text' );
+	$deposit_type_name           = '';
+	$deposit_packaging_type_name = ! empty( $args['packaging_type'] ) ? WC_germanized()->deposit_types->get_packaging_type_title( $args['packaging_type'] ) : '';
+
+	if ( ! is_a( $args['type'], 'WP_Term' ) ) {
+		if ( $deposit_type_term = WC_germanized()->deposit_types->get_deposit_type_term( $args['type'] ) ) {
+			$deposit_type_name = $deposit_type_term->name;
+		} else {
+			$deposit_type_name = $args['type'];
+		}
+	} else {
+		$deposit_type_name = $args['type']->name;
+		$deposit_type      = $args['type']->slug;
+	}
+
+	$replacements = array(
+		'{amount}'          => $amount,
+		'{type}'            => '' === $deposit_type_name ? '' : '<span class="deposit-type">' . esc_html( $deposit_type_name ) . '</span>',
+		'{packaging_type}'  => '' === $deposit_packaging_type_name ? '' : '<span class="deposit-packaging-type">' . esc_html( $deposit_packaging_type_name ) . '</span>',
+		'{quantity}'        => '' === $args['quantity'] ? '' : '<span class="deposit-quantity">' . esc_html( $args['quantity'] ) . '</span>',
+		'{amount_per_unit}' => '' === $args['amount_per_unit'] ? '' : '<span class="deposit-amount-per-unit">' . $args['amount_per_unit'] . '</span>'
+	);
+
+	$html = wc_gzd_replace_label_shortcodes( $text, $replacements );
+
+	/**
+	 * Filter to adjust the formatted deposit amount.
+	 *
+	 * @param string $html  The html output
+	 * @param string $price The price html
+	 * @param array $args   Additional arguments
+	 *
+	 * @since 3.9.0
+	 */
+	return apply_filters( 'woocommerce_gzd_formatted_deposit_price', $html, $amount, $args );
 }
 
 function wc_gzd_format_unit_price( $price, $unit, $unit_base, $product_units = '' ) {

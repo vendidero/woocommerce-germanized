@@ -54,15 +54,43 @@ class WC_GZD_Products_API extends WC_GZD_REST_Unit_Test_Case {
 		$this->assertEquals( true, $product['defective_copy'] );
 		$this->assertEquals( true, $product['differential_taxation'] );
 		$this->assertEquals( true, $product['free_shipping'] );
+		$this->assertEquals( true, $product['is_food'] );
 
+		$nutrient = get_term_by( 'slug', 'energy', 'product_nutrient' );
+		$allergen = get_term_by( 'slug', 'hazelnut', 'product_allergen' );
+
+		$this->assertEquals( 5, $product['food']['deposit_quantity'] );
+		$this->assertEquals( 'can', $product['food']['deposit_type']['slug'] );
+		$this->assertEquals( '<p><strong>Hazelnut</strong>, Fish</p>', trim( $product['food']['ingredients'] ) );
+		$this->assertEquals( 'A sample food description', trim( strip_tags( $product['food']['description'] ) ) );
+		$this->assertEquals( 'Germany, Berlin', trim( strip_tags( $product['food']['place_of_origin'] ) ) );
+		$this->assertEquals( 'John Doe Ltd.', trim( strip_tags ( $product['food']['distributor'] ) ) );
+		$this->assertEquals( '100ml', $product['food']['nutrient_reference_value'] );
+		$this->assertEquals( 25.31, $product['food']['drained_weight'] );
+		$this->assertEquals( 30.22, $product['food']['net_filling_quantity'] );
+		$this->assertEquals( 15.1, $product['food']['alcohol_content'] );
+		$this->assertEquals( 'b', $product['food']['nutri_score'] );
+		$this->assertEquals( array(
+			$nutrient->term_id => array(
+				'value' => 20.31,
+				'ref_value' => 22.1,
+			)
+		), $product['food']['nutrient_ids'] );
+
+		$this->assertEquals( array( $allergen->term_id ), $product['food']['allergen_ids'] );
 		$simple->delete( true );
 	}
 
 	public function test_create_product() {
 		wp_set_current_user( $this->user );
 
-		$term      = wp_insert_term( '3-4 days', 'product_delivery_time', array( 'slug' => '3-4-days' ) );
-		$sale_term = wp_insert_term( 'Test Sale', 'product_price_label', array( 'slug' => 'test-sale' ) );
+		WC_GZD_Helper_Product::create_deposit_type();
+
+		$term       = wp_insert_term( '3-4 days', 'product_delivery_time', array( 'slug' => '3-4-days' ) );
+		$sale_term  = wp_insert_term( 'Test Sale', 'product_price_label', array( 'slug' => 'test-sale' ) );
+		$nutrient   = wp_insert_term( 'Salt', 'product_nutrient', array( 'slug' => 'salt' ) );
+		$nutrient_2 = wp_insert_term( 'Natrium', 'product_nutrient', array( 'slug' => 'natrium' ) );
+		$allergen   = wp_insert_term( 'Nut', 'product_allergen', array( 'slug' => 'nut' ) );
 
 		// Create simple.
 		$request = new WP_REST_Request( 'POST', '/wc/v3/products' );
@@ -87,6 +115,29 @@ class WC_GZD_Products_API extends WC_GZD_REST_Unit_Test_Case {
 				'sale_price_label'         => array( 'id' => $sale_term['term_id'] ),
 				'sale_price_regular_label' => array( 'id' => $sale_term['term_id'] ),
 				'differential_taxation'    => false,
+				'is_food'                  => true,
+				'food'                     => array(
+					'ingredients'  => '<strong>Test</strong>, another',
+					'description'  => 'Test',
+					'place_of_origin'  => 'Test',
+					'distributor'  => 'Test Ltd.',
+					'deposit_type' => array( 'slug' => 'can' ),
+					'deposit_quantity' => 3,
+					'nutri_score'  => 'a',
+					'net_filling_quantity' => 3.2,
+					'drained_weight' => 5.4,
+					'alcohol_content' => 1.4,
+					'nutrient_reference_value' => '100g',
+					'nutrient_ids' => array(
+						$nutrient['term_id'] => array(
+							'value' => 3.2
+						),
+						$nutrient_2['term_id'] => array(
+							'value' => 3.5
+						),
+					),
+					'allergen_ids' => array( $allergen['term_id'] ),
+				)
 			)
 		);
 
@@ -100,6 +151,30 @@ class WC_GZD_Products_API extends WC_GZD_REST_Unit_Test_Case {
 		$this->assertEquals( 'test-sale', $data['sale_price_regular_label']['slug'] );
 		$this->assertEquals( '80.0', $data['unit_price']['price_regular'] );
 		$this->assertEquals( '70.0', $data['unit_price']['price_sale'] );
+
+		$this->assertEquals( true, $data['is_food'] );
+		$this->assertEquals( 'can', $data['food']['deposit_type']['slug'] );
+		$this->assertEquals( 3, $data['food']['deposit_quantity'] );
+		$this->assertEquals( '<p><strong>Test</strong>, another</p>', trim( $data['food']['ingredients'] ) );
+		$this->assertEquals( 'Test', trim( strip_tags( $data['food']['description'] ) ) );
+		$this->assertEquals( 'Test', trim( strip_tags( $data['food']['place_of_origin'] ) ) );
+		$this->assertEquals( 'Test Ltd.', trim( strip_tags( $data['food']['distributor'] ) ) );
+		$this->assertEquals( 'a', $data['food']['nutri_score'] );
+		$this->assertEquals( '100g', $data['food']['nutrient_reference_value'] );
+		$this->assertEquals( 1.4, $data['food']['alcohol_content'] );
+		$this->assertEquals( 5.4, $data['food']['drained_weight'] );
+		$this->assertEquals( 3.2, $data['food']['net_filling_quantity'] );
+		$this->assertEquals( array(
+			$nutrient['term_id'] => array(
+				'value' => 3.2,
+				'ref_value' => '',
+			),
+			$nutrient_2['term_id'] => array(
+				'value' => 3.5,
+				'ref_value' => '',
+			),
+		), $data['food']['nutrient_ids'] );
+		$this->assertEquals( array( $allergen['term_id'] ), $data['food']['allergen_ids'] );
 	}
 
 	public function test_create_product_variation() {
@@ -108,6 +183,10 @@ class WC_GZD_Products_API extends WC_GZD_REST_Unit_Test_Case {
 		$variable  = WC_GZD_Helper_Product::create_variation_product();
 		$sale_term = wp_insert_term( 'Test Sale', 'product_price_label', array( 'slug' => 'test-sale' ) );
 		$term      = get_term_by( 'slug', '3-4-days', 'product_delivery_time' );
+
+		$nutrient   = wp_insert_term( 'Salt', 'product_nutrient', array( 'slug' => 'salt' ) );
+		$nutrient_2 = wp_insert_term( 'Natrium', 'product_nutrient', array( 'slug' => 'natrium' ) );
+		$allergen   = wp_insert_term( 'Fish', 'product_allergen', array( 'slug' => 'fish' ) );
 
 		$request = new WP_REST_Request( 'POST', '/wc/v3/products/' . $variable->get_id() . '/variations' );
 		$request->set_body_params(
@@ -135,6 +214,21 @@ class WC_GZD_Products_API extends WC_GZD_REST_Unit_Test_Case {
 				'sale_price_label'         => array( 'id' => $sale_term['term_id'] ),
 				'sale_price_regular_label' => array( 'id' => $sale_term['term_id'] ),
 				'differential_taxation'    => false,
+				'food'                     => array(
+					'deposit_quantity' => 7,
+					'deposit_type' => array( 'slug' => 'can' ),
+					'nutrient_ids' => array(
+						$nutrient['term_id'] => array(
+							'value' => 3.2
+						),
+					),
+					'allergen_ids' => array( $allergen['term_id'] ),
+					'ingredients' => 'Variation test',
+					'distributor' => 'Variation test',
+					'nutri_score' => 'c',
+					'nutrient_reference_value' => '100g',
+					'alcohol_content' => 5.4,
+				),
 			)
 		);
 
@@ -148,6 +242,22 @@ class WC_GZD_Products_API extends WC_GZD_REST_Unit_Test_Case {
 		$this->assertEquals( 'test-sale', $variation['sale_price_regular_label']['slug'] );
 		$this->assertEquals( '80.0', $variation['unit_price']['price_regular'] );
 		$this->assertEquals( '70.0', $variation['unit_price']['price_sale'] );
+
+		$this->assertEquals( true, $variation['is_food'] );
+		$this->assertEquals( array(
+			$nutrient['term_id'] => array(
+				'value' => 3.2,
+				'ref_value' => '',
+			)
+		), $variation['food']['nutrient_ids'] );
+		$this->assertEquals( array( $allergen['term_id'] ), $variation['food']['allergen_ids'] );
+		$this->assertEquals( '<p>Variation test</p>', trim( $variation['food']['ingredients'] ) );
+		$this->assertEquals( '<p>Variation test</p>', trim( $variation['food']['distributor'] ) );
+		$this->assertEquals( 'c', $variation['food']['nutri_score'] );
+		$this->assertEquals( '100g', $variation['food']['nutrient_reference_value'] );
+		$this->assertEquals( 5.4, $variation['food']['alcohol_content'] );
+		$this->assertEquals( 7, $variation['food']['deposit_quantity'] );
+		$this->assertEquals( 1.75, $variation['food']['deposit'] );
 	}
 
 	/**
@@ -177,6 +287,11 @@ class WC_GZD_Products_API extends WC_GZD_REST_Unit_Test_Case {
 			),
 			'unit_price'            => array( 'price_regular' => '80.0', 'price_sale' => '70.0' ),
 			'differential_taxation' => false,
+			'is_food'               => false,
+			'food'                  => array(
+				'ingredients'      => 'testing it',
+				'deposit_quantity' => 7,
+			),
 		) );
 
 		$response = $this->server->dispatch( $request );
@@ -205,6 +320,9 @@ class WC_GZD_Products_API extends WC_GZD_REST_Unit_Test_Case {
 		$this->assertEquals( true, $product['service'] );
 		$this->assertEquals( true, $product['used_good'] );
 		$this->assertEquals( true, $product['defective_copy'] );
+		$this->assertEquals( false, $product['is_food'] );
+		$this->assertEquals( '<p>testing it</p>', trim( $product['food']['ingredients'] ) );
+		$this->assertEquals( 1.75, $product['food']['deposit'] );
 
 		$simple->delete( true );
 	}
@@ -231,6 +349,7 @@ class WC_GZD_Products_API extends WC_GZD_REST_Unit_Test_Case {
 		 */
 		$this->assertEquals( true, $product['differential_taxation'] );
 		$this->assertEquals( true, $product['service'] );
+		$this->assertEquals( true, $product['is_food'] );
 
 		$simple->delete( true );
 	}
@@ -296,6 +415,8 @@ class WC_GZD_Products_API extends WC_GZD_REST_Unit_Test_Case {
 		$request = new WP_REST_Request( 'PUT', '/wc/v3/products/' . $variable->get_id() . '/variations/' . $variation_id );
 
 		$request->set_body_params( array(
+			'sale_price_label' => array( 'slug' => 'old-price' ),
+			'sale_price_regular_label' => array( 'slug' => 'new-price' ),
 			'delivery_time' => array( 'id' => $term->term_id ),
 			'country_specific_delivery_times' => array(
 				array(
@@ -311,13 +432,13 @@ class WC_GZD_Products_API extends WC_GZD_REST_Unit_Test_Case {
 					'country' => 'BG'
 				),
 			),
-			'unit_price'            => array( 'price_regular' => '80.0', 'price_sale' => '70.0', 'base' => 20 ),
+			'unit_price'            => array( 'price_regular' => '80.0', 'price_sale' => '70.0', 'base' => 20, 'product' => 1 ),
 			'mini_desc'             => 'This is a test',
+			'defective_copy'        => 'yes',
 			'defect_description'    => 'This is a defect desc',
 			'differential_taxation' => true,
 			'service'               => false,
 			'used_good'             => false,
-			'defective_copy'        => false,
 		) );
 
 		$response = $this->server->dispatch( $request );
@@ -336,13 +457,13 @@ class WC_GZD_Products_API extends WC_GZD_REST_Unit_Test_Case {
 		$this->assertEquals( '10', $product['unit_price']['base'] );
 		$this->assertEquals( '1', $product['unit_price']['product'] );
 
-		$this->assertEquals( 'new-price', $product['sale_price_label']['slug'] );
-		$this->assertEquals( 'old-price', $product['sale_price_regular_label']['slug'] );
+		$this->assertEquals( 'old-price', $product['sale_price_label']['slug'] );
+		$this->assertEquals( 'new-price', $product['sale_price_regular_label']['slug'] );
 		$this->assertEquals( 'This is a test', trim( strip_tags( $product['mini_desc'] ) ) );
 		$this->assertEquals( 'This is a defect desc', trim( strip_tags( $product['defect_description'] ) ) );
 		$this->assertEquals( true, $product['free_shipping'] );
 		$this->assertEquals( false, $product['service'] );
-		$this->assertEquals( false, $product['defective_copy'] );
+		$this->assertEquals( true, $product['defective_copy'] );
 		$this->assertEquals( false, $product['used_good'] );
 
 		$variable->delete( true );
@@ -380,7 +501,10 @@ class WC_GZD_Products_API extends WC_GZD_REST_Unit_Test_Case {
 		$this->assertEquals( '3-4-days', $product['delivery_time']['slug'] );
 		$this->assertEquals( '4-5-days', $product['country_specific_delivery_times'][0]['slug'] );
 		$this->assertEquals( 'test-sale', $product['sale_price_regular_label']['slug'] );
+		$this->assertEquals( 'can', $product['food']['deposit_type']['slug'] );
+
 		$this->assertEquals( true, $product['differential_taxation'] );
+		$this->assertEquals( true, $product['is_food'] );
 
 		$simple->delete( true );
 	}

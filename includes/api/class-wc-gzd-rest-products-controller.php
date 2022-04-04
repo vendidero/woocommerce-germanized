@@ -264,6 +264,158 @@ class WC_GZD_REST_Products_Controller {
 			'default'     => false,
 			'context'     => array( 'view', 'edit' ),
 		);
+
+		$schema_properties['is_food']                                         = array(
+			'description' => __( 'Whether this product is a food product or not', 'woocommerce-germanized' ),
+			'type'        => 'boolean',
+			'default'     => false,
+			'context'     => array( 'view', 'edit' ),
+		);
+
+		$food_schema = array(
+			'description' => __( 'Food attributes', 'woocommerce-germanized' ),
+			'type'        => 'object',
+			'context'     => array( 'view', 'edit' ),
+			'properties'  => array(
+				'deposit_type'          => array(
+					'description' => __( 'Deposit Type', 'woocommerce-germanized' ),
+					'type'        => 'object',
+					'context'     => array( 'view', 'edit' ),
+					'properties'  => array(
+						'id'   => array(
+							'description' => __( 'Deposit type ID', 'woocommerce-germanized' ),
+							'type'        => 'integer',
+							'context'     => array( 'view', 'edit' ),
+						),
+						'name' => array(
+							'description' => __( 'Deposit type name', 'woocommerce-germanized' ),
+							'type'        => 'string',
+							'context'     => array( 'view', 'edit' ),
+							'readonly'    => true,
+						),
+						'slug' => array(
+							'description' => __( 'Deposit type slug', 'woocommerce-germanized' ),
+							'type'        => 'string',
+							'context'     => array( 'view', 'edit' )
+						)
+					)
+				),
+				'deposit_quantity'          => array(
+					'description' => __( 'Deposit quantity', 'woocommerce-germanized' ),
+					'type'        => 'integer',
+					'default'     => 1,
+					'context'     => array( 'view', 'edit' ),
+					'arg_options' => array(
+						'sanitize_callback' => 'absint',
+					),
+				),
+				'deposit'          => array(
+					'description' => __( 'Deposit amount', 'woocommerce-germanized' ),
+					'type'        => 'string',
+					'context'     => array( 'view', 'edit' ),
+					'readonly'    => true,
+				),
+				'nutrient_reference_value'      => array(
+					'description' => __( 'Nutrient reference value', 'woocommerce-germanized' ),
+					'type'        => 'string',
+					'enum'        => array( '' ) + array_keys( WC_GZD_Food_Helper::get_nutrient_reference_values() ),
+					'context'     => array( 'view', 'edit' ),
+					'arg_options' => array(
+						'sanitize_callback' => 'sanitize_title',
+					),
+				),
+				'nutri_score'      => array(
+					'description' => __( 'Nutri Score', 'woocommerce-germanized' ),
+					'type'        => 'string',
+					'enum'        => array( '' ) + array_keys( WC_GZD_Food_Helper::get_nutri_score_values() ),
+					'context'     => array( 'view', 'edit' ),
+					'arg_options' => array(
+						'sanitize_callback' => 'sanitize_title',
+					),
+				),
+				'drained_weight'      => array(
+					'description' => __( 'Drained weight', 'woocommerce-germanized' ),
+					'type'        => 'string',
+					'context'     => array( 'view', 'edit' ),
+				),
+				'net_filling_quantity'      => array(
+					'description' => __( 'Net filling quantity', 'woocommerce-germanized' ),
+					'type'        => 'string',
+					'context'     => array( 'view', 'edit' ),
+				),
+				'alcohol_content'      => array(
+					'description' => __( 'Alcohol content', 'woocommerce-germanized' ),
+					'type'        => 'string',
+					'context'     => array( 'view', 'edit' ),
+				),
+				'distributor'      => array(
+					'description' => __( 'Food distributor', 'woocommerce-germanized' ),
+					'type'        => 'string',
+					'context'     => array( 'view', 'edit' ),
+					'arg_options' => array(
+						'sanitize_callback' => 'wp_filter_post_kses',
+					),
+				),
+				'place_of_origin'      => array(
+					'description' => __( 'Place of origin', 'woocommerce-germanized' ),
+					'type'        => 'string',
+					'context'     => array( 'view', 'edit' ),
+					'arg_options' => array(
+						'sanitize_callback' => 'wp_filter_post_kses',
+					),
+				),
+				'description'      => array(
+					'description' => __( 'Description', 'woocommerce-germanized' ),
+					'type'        => 'string',
+					'context'     => array( 'view', 'edit' ),
+					'arg_options' => array(
+						'sanitize_callback' => 'wp_filter_post_kses',
+					),
+				),
+				'nutrient_ids'      => array(
+					'description' => __( 'Nutrient term ids', 'woocommerce-germanized' ),
+					'type'        => 'array',
+					'context'     => array( 'view', 'edit' ),
+					'items'       => array(
+						'type' => 'object',
+						'properties'  => array(
+							'value'   => array(
+								'description' => __( 'Nutrient value', 'woocommerce-germanized' ),
+								'type'        => 'number',
+								'context'     => array( 'view', 'edit' ),
+							),
+							'ref_value' => array(
+								'description' => __( 'Nutrient reference value (for vitamins & minerals)', 'woocommerce-germanized' ),
+								'type'        => 'number',
+								'context'     => array( 'view', 'edit' ),
+							)
+						)
+					)
+				),
+				'allergen_ids'      => array(
+					'description' => __( 'Allergen ids', 'woocommerce-germanized' ),
+					'type'        => 'array',
+					'context'     => array( 'view', 'edit' ),
+					'items'       => array(
+						'description' => __( 'Allergen term id', 'woocommerce-germanized' ),
+						'type'        => 'integer',
+						'context'     => array( 'view', 'edit' ),
+					)
+				),
+				'ingredients'      => array(
+					'description' => __( 'Ingredients', 'woocommerce-germanized' ),
+					'type'        => 'string',
+					'context'     => array( 'view', 'edit' ),
+					'arg_options' => array(
+						'sanitize_callback' => 'wp_filter_post_kses',
+					),
+				),
+			)
+		);
+
+		$schema_properties['food'] = $food_schema;
+		$schema_properties['variations']['items']['properties']['food'] = $food_schema;
+
 		$schema_properties['variations']['items']['properties']['delivery_time']            = array(
 			'description' => __( 'Delivery Time', 'woocommerce-germanized' ),
 			'type'        => 'object',
@@ -428,15 +580,16 @@ class WC_GZD_REST_Products_Controller {
 
 	public function prepare( $response, $post, $request ) {
 		$product = wc_get_product( $post );
+		$context = ! empty( $request['context'] ) ? $request['context'] : 'view';
 
 		// Add variations to variable products.
 		if ( $product->is_type( 'variable' ) && $product->has_child() ) {
 			$data               = $response->data;
-			$data['variations'] = $this->set_product_variation_fields( $response->data['variations'], $product );
+			$data['variations'] = $this->set_product_variation_fields( $response->data['variations'], $product, $context );
 			$response->set_data( $data );
 		}
 
-		$response->set_data( array_merge( $response->data, $this->get_product_data( $product ) ) );
+		$response->set_data( array_merge( $response->data, $this->get_product_data( $product, $context ) ) );
 
 		/**
 		 * Filter to adjust the REST response after preparing the product.
@@ -510,7 +663,7 @@ class WC_GZD_REST_Products_Controller {
 			$getter  = "get_{$meta}";
 
 			if ( is_callable( array( $gzd_product, $getter ) ) ) {
-				$current = $gzd_product->$getter();
+				$current = $gzd_product->$getter( 'edit' );
 			}
 
 			$term_data           = $this->get_term_data( isset( $request[ $meta ] ) ? $request[ $meta ] : false, $current );
@@ -579,7 +732,7 @@ class WC_GZD_REST_Products_Controller {
 			$data['_warranty_attachment_id'] = $gzd_product->get_warranty_attachment_id();
 		}
 
-		foreach ( array( 'free_shipping', 'service', 'differential_taxation', 'used_good', 'defective_copy' ) as $bool_meta ) {
+		foreach ( array( 'free_shipping', 'service', 'differential_taxation', 'used_good', 'defective_copy', 'is_food' ) as $bool_meta ) {
 			if ( isset( $request[ $bool_meta ] ) ) {
 				if ( ! empty( $request[ $bool_meta ] ) ) {
 					$data["_{$bool_meta}"] = true;
@@ -595,6 +748,61 @@ class WC_GZD_REST_Products_Controller {
 			// Do only add boolean values if is set so saving works (checkbox-style).
 			if ( empty( $data["_{$bool_meta}"] ) || ! $data["_{$bool_meta}"] ) {
 				unset( $data["_{$bool_meta}"] );
+			}
+		}
+
+		if ( isset( $request['food'] ) ) {
+			$food_data = $request['food'];
+
+			if ( isset( $food_data['ingredients'] ) ) {
+				$data['_ingredients'] = wc_gzd_sanitize_html_text_field( $food_data['ingredients'] );
+			}
+
+			if ( isset( $food_data['description'] ) ) {
+				$data['_food_description'] = wc_gzd_sanitize_html_text_field( $food_data['description'] );
+			}
+
+			if ( isset( $food_data['place_of_origin'] ) ) {
+				$data['_food_place_of_origin'] = wc_gzd_sanitize_html_text_field( $food_data['place_of_origin'] );
+			}
+
+			if ( isset( $food_data['distributor'] ) ) {
+				$data['_food_distributor'] = wc_gzd_sanitize_html_text_field( $food_data['distributor'] );
+			}
+
+			if ( isset( $food_data['nutrient_ids'] ) ) {
+				$data['_nutrient_ids'] = wc_clean( $food_data['nutrient_ids'] );
+			}
+
+			if ( isset( $food_data['allergen_ids'] ) ) {
+				$data['_allergen_ids'] = wc_clean( $food_data['allergen_ids'] );
+			}
+
+			if ( isset( $food_data['nutrient_reference_value'] ) ) {
+				$data['_nutrient_reference_value'] = wc_clean( $food_data['nutrient_reference_value'] );
+			}
+
+			if ( isset( $food_data['net_filling_quantity'] ) ) {
+				$data['_net_filling_quantity'] = wc_format_decimal( $food_data['net_filling_quantity'], '' );
+			}
+
+			if ( isset( $food_data['drained_weight'] ) ) {
+				$data['_drained_weight'] = wc_format_decimal( $food_data['drained_weight'], '' );
+			}
+
+			if ( isset( $food_data['alcohol_content'] ) ) {
+				$data['_alcohol_content'] = wc_format_decimal( $food_data['alcohol_content'], '' );
+			}
+
+			if ( isset( $food_data['nutri_score'] ) ) {
+				$data['_nutri_score'] = wc_clean( $food_data['nutri_score'] );
+			}
+
+			$default               = $gzd_product->get_deposit_type_term( 'edit' );
+			$data['_deposit_type'] = $this->get_term_data( isset( $food_data['deposit_type'] ) ? $food_data['deposit_type'] : false, ( $default ? $default->term_id : false ) );
+
+			if ( isset( $food_data['deposit_quantity'] ) ) {
+				$data['_deposit_quantity'] = absint( $food_data['deposit_quantity'] );
 			}
 		}
 
@@ -633,10 +841,10 @@ class WC_GZD_REST_Products_Controller {
 		return $product;
 	}
 
-	private function set_product_variation_fields( $variations, $product ) {
+	private function set_product_variation_fields( $variations, $product, $context = 'view' ) {
 		foreach ( $variations as $key => $variation ) {
 			if ( isset( $variation['id'] ) ) {
-				$variations[ $key ] = array_merge( $variation, $this->get_product_data( wc_get_product( $variation['id'] ) ) );
+				$variations[ $key ] = array_merge( $variation, $this->get_product_data( wc_get_product( $variation['id'] ), $context ) );
 			}
 		}
 
@@ -645,65 +853,86 @@ class WC_GZD_REST_Products_Controller {
 
 	/**
 	 * @param WC_Product $product
+	 * @param string $context
 	 *
 	 * @return array
 	 */
-	private function get_product_data( $product ) {
+	private function get_product_data( $product, $context = 'view' ) {
 		$gzd_product = wc_gzd_get_product( $product );
 		$data        = array();
 
 		if ( ! $product->is_type( 'variation' ) ) {
-			$data['unit'] = $this->prepare_term( WC_germanized()->units->get_term_object( $gzd_product->get_unit() ) );
+			$data['unit'] = $this->prepare_term( WC_germanized()->units->get_term_object( $gzd_product->get_unit( $context ) ) );
 		}
 
 		// Unit Price
 		$data['unit_price'] = array(
-			'base'          => $gzd_product->get_unit_base(),
-			'product'       => $gzd_product->get_unit_product(),
+			'base'          => $gzd_product->get_unit_base( $context ),
+			'product'       => $gzd_product->get_unit_product( $context ),
 			'price_auto'    => $gzd_product->is_unit_price_calculated_automatically(),
-			'price'         => $gzd_product->get_unit_price(),
-			'price_regular' => $gzd_product->get_unit_price_regular(),
-			'price_sale'    => $gzd_product->get_unit_price_sale(),
+			'price'         => $gzd_product->get_unit_price( $context ),
+			'price_regular' => $gzd_product->get_unit_price_regular( $context ),
+			'price_sale'    => $gzd_product->get_unit_price_sale( $context ),
 			'price_html'    => $gzd_product->get_unit_price_html(),
 		);
 
 		// Cart Mini Description
-		$data['mini_desc'] = $gzd_product->get_cart_description() ? $gzd_product->get_cart_description() : '';
+		$data['mini_desc'] = $gzd_product->get_cart_description( $context ) ? $gzd_product->get_formatted_cart_description( $context ) : '';
 
 		// Defect Description
-		$data['defect_description'] = $gzd_product->get_defect_description() ? $gzd_product->get_defect_description() : '';
+		$data['defect_description'] = $gzd_product->get_defect_description( $context ) ? $gzd_product->get_formatted_defect_description( $context ) : '';
 
 		// Age verification
-		$data['min_age'] = $gzd_product->get_min_age( 'edit' );
+		$data['min_age'] = $gzd_product->get_min_age( $context );
 
 		// Sale Labels
-		$data['sale_price_label']         = $this->prepare_term( WC_germanized()->price_labels->get_term_object( $gzd_product->get_sale_price_label() ) );
-		$data['sale_price_regular_label'] = $this->prepare_term( WC_germanized()->price_labels->get_term_object( $gzd_product->get_sale_price_regular_label() ) );
+		$data['sale_price_label']         = $this->prepare_term( WC_germanized()->price_labels->get_term_object( $gzd_product->get_sale_price_label( $context ) ) );
+		$data['sale_price_regular_label'] = $this->prepare_term( WC_germanized()->price_labels->get_term_object( $gzd_product->get_sale_price_regular_label( $context ) ) );
 
 		// Delivery Time
-		$data['delivery_time'] = $this->prepare_term( $gzd_product->get_default_delivery_time( 'edit' ) );
+		$data['delivery_time'] = $this->prepare_term( $gzd_product->get_default_delivery_time( $context ) );
 
 		if ( ! empty( $data['delivery_time'] ) ) {
-			$data['delivery_time']['html'] = $gzd_product->get_delivery_time_html( 'edit' );
+			$data['delivery_time']['html'] = $gzd_product->get_delivery_time_html( $context );
 		}
 
 		// Country specific delivery times
-		$data['country_specific_delivery_times'] = $this->prepare_country_specific_delivery_times( $gzd_product->get_country_specific_delivery_times( 'edit' ) );
+		$data['country_specific_delivery_times'] = $this->prepare_country_specific_delivery_times( $gzd_product->get_country_specific_delivery_times( $context ) );
 
 		// Shipping costs hidden?
-		$data['free_shipping'] = $gzd_product->has_free_shipping( 'edit' );
+		$data['free_shipping'] = $gzd_product->has_free_shipping( $context );
 
 		// Is service?
-		$data['service'] = $gzd_product->is_service( 'edit' );
+		$data['service'] = $gzd_product->is_service( $context );
 
 		// Is used good?
-		$data['used_good'] = $gzd_product->is_used_good( 'edit' );
+		$data['used_good'] = $gzd_product->is_used_good( $context );
 
 		// Is defective copy?
-		$data['defective_copy'] = $gzd_product->is_defective_copy( 'edit' );
+		$data['defective_copy'] = $gzd_product->is_defective_copy( $context );
 
 		// Differential taxed?
-		$data['differential_taxation'] = $gzd_product->is_differential_taxed( 'edit' );
+		$data['differential_taxation'] = $gzd_product->is_differential_taxed( $context );
+
+		// Is food?
+		$data['is_food'] = $gzd_product->is_food( $context );
+
+		$data['food'] = array(
+			'deposit_type'             => $this->prepare_term( WC_germanized()->deposit_types->get_term_object( $gzd_product->get_deposit_type( $context ) ) ),
+			'deposit_quantity'         => $gzd_product->get_deposit_quantity( $context ),
+			'deposit'                  => $gzd_product->get_deposit_amount( $context ),
+			'ingredients'              => $gzd_product->get_formatted_ingredients( $context ),
+			'nutrient_reference_value' => $gzd_product->get_nutrient_reference_value( $context ),
+			'nutri_score'              => $gzd_product->get_nutri_score( $context ),
+			'alcohol_content'          => $gzd_product->get_alcohol_content( $context ),
+			'allergen_ids'             => $gzd_product->get_allergen_ids( $context ),
+			'nutrient_ids'             => $gzd_product->get_nutrient_ids( $context ),
+			'net_filling_quantity'     => $gzd_product->get_net_filling_quantity( $context ),
+			'drained_weight'           => $gzd_product->get_drained_weight( $context ),
+			'description'              => $gzd_product->get_formatted_food_description( $context ),
+			'distributor'              => $gzd_product->get_formatted_food_distributor( $context ),
+			'place_of_origin'          => $gzd_product->get_formatted_food_place_of_origin( $context ),
+		);
 
 		return $data;
 	}

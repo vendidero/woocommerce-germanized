@@ -85,7 +85,7 @@
             return [];
         }
 
-        return $price.parents( self.params.wrapper ).find( '.price-unit:first' );
+        return $price.parents( self.params.wrapper ).find( '.price-unit:not(.wc-gzd-additional-info-placeholder, .wc-gzd-additional-info-loop)' );
     };
 
     GermanizedUnitPriceObserver.prototype.initObserver = function( self ) {
