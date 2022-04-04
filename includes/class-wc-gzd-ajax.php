@@ -21,6 +21,7 @@ class WC_GZD_AJAX {
 		$ajax_events = array(
 			'gzd_revocation'                    => true,
 			'gzd_refresh_unit_price'            => true,
+			'gzd_refresh_cart_vouchers'         => true,
 			'gzd_json_search_delivery_time'     => false,
 			'gzd_legal_checkboxes_save_changes' => false,
 			'gzd_toggle_tab_enabled'            => false,
@@ -201,6 +202,24 @@ class WC_GZD_AJAX {
 		$price          = $price - array_sum( $remove_taxes ); // Unrounded since we're dealing with tax inclusive prices. Matches logic in cart-totals class. @see adjust_non_base_location_price.
 
 		return $price;
+	}
+
+	public static function gzd_refresh_cart_vouchers() {
+		check_ajax_referer( 'wc-gzd-refresh-cart-vouchers', 'security' );
+
+		$return = array(
+			'vouchers' => array(),
+			'result'   => 'success'
+		);
+
+		if ( WC()->cart ) {
+			// Make sure vouchers are already registered as fees.
+			WC()->cart->calculate_totals();
+
+			$return['vouchers'] = WC_GZD_Coupon_Helper::instance()->get_voucher_data_from_cart();
+		}
+
+		wp_send_json( $return );
 	}
 
 	public static function gzd_refresh_unit_price() {
