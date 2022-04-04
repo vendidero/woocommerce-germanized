@@ -13,13 +13,23 @@ window.germanized = window.germanized || {};
         init: function() {
             this.params = wc_gzd_checkout_params;
 
+            var checkout_adjustments_disabled = ! $( 'body' ).hasClass( 'woocommerce-gzd-checkout' ) || $( 'input#wc_gzd_checkout_disabled' ).length > 0;
+
+            /**
+             * Support lazy-disabling the checkout adjustments e.g. within compatibility scripts.
+             * Lazy-loading will lead to the input#wc_gzd_checkout_disabled to be rendered.
+             */
+            if ( checkout_adjustments_disabled ) {
+                $( 'body' ).removeClass( 'woocommerce-gzd-checkout' );
+            }
+
             if ( $( '.payment_methods:first' ).parents( '#order_review' ).length ) {
                 $( document ).on( 'change', '.payment_methods input[name="payment_method"]', this.triggerCheckoutRefresh );
             }
 
             $( 'body' ).bind( 'updated_checkout', this.onUpdateCheckout );
 
-            if ( this.params.adjust_heading && $( 'body' ).hasClass( 'woocommerce-gzd-checkout' ) ) {
+            if ( this.params.adjust_heading && ! checkout_adjustments_disabled ) {
                 var $theFirst = $( '.woocommerce-checkout' ).find( '.shop_table, #payment' ).first();
 
                 if ( $( '.woocommerce-checkout' ).find( '#order_review_heading' ).length > 0 )  {

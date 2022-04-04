@@ -46,7 +46,6 @@ class WC_GZD_Admin {
 	public function __construct() {
 		add_action( 'add_meta_boxes', array( $this, 'add_legal_page_metabox' ) );
 		add_action( 'add_meta_boxes', array( $this, 'register_product_meta_boxes' ) );
-		add_action( 'admin_menu', array( $this, 'hide_metaboxes' ), 10 );
 
 		add_action( 'admin_enqueue_scripts', array( $this, 'add_scripts' ) );
 		add_action( 'save_post', array( $this, 'save_legal_page_content' ), 10, 3 );
@@ -97,19 +96,8 @@ class WC_GZD_Admin {
 
 		add_filter( 'woocommerce_gzd_shipment_admin_provider_list', array( $this, 'maybe_register_shipping_providers' ), 10 );
 
-        // Hide custom product taxonomies from quick-edit/bulk-edit
-        add_filter( 'quick_edit_show_taxonomy', array( $this, 'hide_taxonomies_quick_edit' ), 10, 2 );
-
 		$this->wizward = require 'class-wc-gzd-admin-setup-wizard.php';
 	}
-
-    public function hide_taxonomies_quick_edit( $show_in_quick_edit, $taxonomy_name ) {
-        if ( in_array( $taxonomy_name, array( 'product_delivery_time', 'product_price_label', 'product_unit' ) ) ) {
-            return false;
-        }
-
-        return $show_in_quick_edit;
-    }
 
 	/**
 	 * @param \Vendidero\Germanized\Shipments\Interfaces\ShippingProvider $providers
@@ -126,12 +114,6 @@ class WC_GZD_Admin {
 	public function oss_enable_hide_tax_percentage() {
 	    update_option( 'woocommerce_gzd_hide_tax_rate_shop', 'yes' );
     }
-
-	public function hide_metaboxes() {
-		remove_meta_box( 'tagsdiv-product_unit', 'product', 'side' );
-		remove_meta_box( 'tagsdiv-product_delivery_time', 'product', 'side' );
-		remove_meta_box( 'tagsdiv-product_price_label', 'product', 'side' );
-	}
 
 	public function check_dhl_import() {
 
@@ -878,7 +860,6 @@ class WC_GZD_Admin {
 		update_option( 'woocommerce_price_display_suffix', '' );
 
 		update_option( 'woocommerce_gzd_shipping_tax', 'no' );
-		update_option( 'woocommerce_gzd_enable_virtual_vat', 'no' );
 	}
 
 	public function check_insert_vat_rates() {

@@ -9,7 +9,7 @@
  * Requires at least: 5.4
  * Tested up to: 5.9
  * WC requires at least: 3.9
- * WC tested up to: 6.2
+ * WC tested up to: 6.3
  *
  * Text Domain: woocommerce-germanized
  * Domain Path: /i18n/languages/
@@ -90,6 +90,21 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 		 * @var WC_GZD_Delivery_Times|null
 		 */
 		public $delivery_times = null;
+
+		/**
+		 * @var WC_GZD_Deposit_Types|null
+		 */
+		public $deposit_types = null;
+
+		/**
+		 * @var WC_GZD_Nutrients|null
+		 */
+		public $nutrients = null;
+
+		/**
+		 * @var WC_GZD_Allergenic|null
+		 */
+		public $allergenic = null;
 
 		/**
 		 * @var WC_GZD_Emails|null
@@ -223,6 +238,9 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 			$this->units           = new WC_GZD_Units();
 			$this->price_labels    = new WC_GZD_Price_Labels();
 			$this->delivery_times  = new WC_GZD_Delivery_Times();
+			$this->deposit_types   = new WC_GZD_Deposit_Types();
+			$this->nutrients       = new WC_GZD_Nutrients();
+			$this->allergenic      = new WC_GZD_Allergenic();
 			$this->product_factory = new WC_GZD_Product_Factory();
 
 			/**
@@ -523,6 +541,7 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 				include_once WC_GERMANIZED_ABSPATH . 'includes/admin/class-wc-gzd-admin-legal-checkboxes.php';
 				include_once WC_GERMANIZED_ABSPATH . 'includes/admin/settings/class-wc-gzd-settings-pointers.php';
 				include_once WC_GERMANIZED_ABSPATH . 'includes/admin/class-wc-gzd-admin-product-categories.php';
+				include_once WC_GERMANIZED_ABSPATH . 'includes/admin/class-wc-gzd-admin-deposit-types.php';
 				include_once WC_GERMANIZED_ABSPATH . 'includes/export/class-wc-gzd-product-export.php';
 				include_once WC_GERMANIZED_ABSPATH . 'includes/import/class-wc-gzd-product-import.php';
 			}
@@ -578,11 +597,17 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 			include_once WC_GERMANIZED_ABSPATH . 'includes/class-wc-gzd-ajax.php';
 			include_once WC_GERMANIZED_ABSPATH . 'includes/class-wc-gzd-checkout.php';
 			include_once WC_GERMANIZED_ABSPATH . 'includes/class-wc-gzd-order-helper.php';
+			include_once WC_GERMANIZED_ABSPATH . 'includes/class-wc-gzd-food-helper.php';
 			include_once WC_GERMANIZED_ABSPATH . 'includes/class-wc-gzd-customer-helper.php';
 			include_once WC_GERMANIZED_ABSPATH . 'includes/class-wc-gzd-cache-helper.php';
 			include_once WC_GERMANIZED_ABSPATH . 'includes/class-wc-gzd-coupon-helper.php';
 
-			include_once WC_GERMANIZED_ABSPATH . 'includes/class-wc-gzd-virtual-vat-helper.php';
+			/**
+			 * Legacy MOSS helper
+			 */
+            if ( 'yes' === get_option( 'woocommerce_gzd_enable_virtual' ) ) {
+	            include_once WC_GERMANIZED_ABSPATH . 'includes/class-wc-gzd-virtual-vat-helper.php';
+            }
 		}
 
 		public function woocommerce_loaded_includes() {
@@ -974,6 +999,24 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 			if ( 'yes' === get_option( 'woocommerce_gzd_display_hide_cart_tax_estimated' ) ) {
 				$custom_css .= " p.woocommerce-shipping-destination { display: none; }";
 			}
+
+            $custom_css .= "
+                .wc-gzd-nutri-score-value-a {
+                    background: url(" . $this->plugin_url() . '/assets/images/nutri-score-a.svg' . ") no-repeat;
+                }
+                .wc-gzd-nutri-score-value-b {
+                    background: url(" . $this->plugin_url() . '/assets/images/nutri-score-b.svg' . ") no-repeat;
+                }
+                .wc-gzd-nutri-score-value-c {
+                    background: url(" . $this->plugin_url() . '/assets/images/nutri-score-c.svg' . ") no-repeat;
+                }
+                .wc-gzd-nutri-score-value-d {
+                    background: url(" . $this->plugin_url() . '/assets/images/nutri-score-d.svg' . ") no-repeat;
+                }
+                .wc-gzd-nutri-score-value-e {
+                    background: url(" . $this->plugin_url() . '/assets/images/nutri-score-e.svg' . ") no-repeat;
+                }
+            ";
 
 			wp_add_inline_style( 'woocommerce-gzd-layout', $custom_css );
 		}

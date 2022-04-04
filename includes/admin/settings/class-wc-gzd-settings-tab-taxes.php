@@ -30,6 +30,7 @@ class WC_GZD_Settings_Tab_Taxes extends WC_GZD_Settings_Tab {
 			''                      => __( 'VAT', 'woocommerce-germanized' ),
 			'split_tax'             => __( 'Split-tax', 'woocommerce-germanized' ),
 			'differential_taxation' => __( 'Differential Taxation', 'woocommerce-germanized' ),
+			'oss'                   => __( 'One Stop Shop', 'woocommerce-germanized' )
 		);
 	}
 
@@ -38,7 +39,7 @@ class WC_GZD_Settings_Tab_Taxes extends WC_GZD_Settings_Tab {
 	}
 
 	protected function get_vat_settings() {
-		$virtual_vat = wc_gzd_is_small_business() ? array() : array(
+		$virtual_vat = 'yes' !== get_option( 'woocommerce_gzd_enable_virtual_vat' ) ? array() : array(
 			'title'   => __( 'Virtual VAT', 'woocommerce-germanized' ),
 			'desc'    => __( 'Enable if you want to charge your customer\'s countries\' VAT for virtual products.', 'woocommerce-germanized' ) . '<div class="wc-gzd-additional-desc">' . sprintf( __( 'New EU VAT rule applies on 01.01.2015. Make sure that every digital or virtual product has chosen the right tax class (Virtual Rate or Virtual Reduced Rate). Gross prices will not differ from the prices you have chosen for affected products. In fact the net price will differ depending on the VAT rate of your customers\' country. Shop settings will be adjusted to show prices including tax. More information can be found <a href="%s" target="_blank">here</a>.', 'woocommerce-germanized' ), 'http://ec.europa.eu/taxation_customs/taxation/vat/how_vat_works/telecom/index_de.htm#new_rules' ) . '</div>',
 			'id'      => 'woocommerce_gzd_enable_virtual_vat',
@@ -161,6 +162,14 @@ class WC_GZD_Settings_Tab_Taxes extends WC_GZD_Settings_Tab {
 		);
 	}
 
+	protected function get_section_url( $section_id ) {
+		if ( 'oss' === $section_id ) {
+			return admin_url( 'admin.php?page=wc-settings&tab=germanized-oss' );
+		}
+
+		return parent::get_section_url( $section_id );
+	}
+
 	public function get_tab_settings( $current_section = '' ) {
 		$settings = array();
 
@@ -173,39 +182,5 @@ class WC_GZD_Settings_Tab_Taxes extends WC_GZD_Settings_Tab {
 		}
 
 		return $settings;
-	}
-
-	protected function before_save( $settings, $current_section = '' ) {
-		if ( '' === $current_section ) {
-			if ( 'yes' !== get_option( 'woocommerce_gzd_enable_virtual_vat' ) && ! empty( $_POST['woocommerce_gzd_enable_virtual_vat'] ) ) {
-				if ( ! wc_gzd_is_small_business() ) {
-					// Update WooCommerce options to show prices including taxes
-					update_option( 'woocommerce_prices_include_tax', 'yes' );
-					update_option( 'woocommerce_tax_display_shop', 'incl' );
-					update_option( 'woocommerce_tax_display_cart', 'incl' );
-					update_option( 'woocommerce_tax_total_display', 'itemized' );
-				}
-			}
-		}
-
-		parent::before_save( $settings, $current_section );
-	}
-
-	protected function after_save( $settings, $current_section = '' ) {
-		if ( '' === $current_section ) {
-			if ( wc_gzd_is_small_business() ) {
-				if ( ! empty( $_POST['woocommerce_gzd_enable_virtual_vat'] ) ) {
-					update_option( 'woocommerce_gzd_enable_virtual_vat', 'no' );
-					WC_Admin_Settings::add_error( __( 'Sorry, but the new Virtual VAT rules cannot be applied to small business.', 'woocommerce-germanized' ) );
-				}
-			} elseif ( 'yes' === get_option( 'woocommerce_gzd_enable_virtual_vat' ) ) {
-				// Make sure that tax based location is set to billing address
-				if ( 'base' === get_option( 'woocommerce_tax_based_on' ) ) {
-					update_option( 'woocommerce_tax_based_on', 'billing' );
-				}
-			}
-		}
-
-		parent::after_save( $settings, $current_section );
 	}
 }

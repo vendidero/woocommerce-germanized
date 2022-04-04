@@ -13,6 +13,44 @@ class WC_GZD_Tests_GZD_Product extends WC_GZD_Unit_Test_Case {
 		$this->assertInstanceOf( 'WC_GZD_Product', wc_gzd_get_product( $copy ) );
 	}
 
+	function test_new_product() {
+		add_action( 'woocommerce_before_product_object_save', array( $this, 'before_product_save' ), 10 );
+
+		$product = new WC_Product_Variable();
+
+		$product->set_regular_price( 10.50 );
+		$product->set_price( 10.50 );
+
+		wc_gzd_get_gzd_product( $product )->set_unit_base( '100' );
+		wc_gzd_get_gzd_product( $product )->set_unit( 'g' );
+
+		$product->save();
+
+		$variation = new WC_Product_Variation();
+		$variation->set_price( 20 );
+		$variation->set_regular_price( 20 );
+		$variation->set_parent_id( $product->get_id() );
+
+		wc_gzd_get_gzd_product( $variation )->set_unit_product( 10 );
+		wc_gzd_get_gzd_product( $variation )->set_unit_price_auto( true );
+
+		$variation_id = $variation->save();
+		$variation    = wc_get_product( $variation_id );
+
+		$this->assertEquals( true, wc_gzd_get_gzd_product( $variation )->has_unit() );
+		$this->assertEquals( 200, wc_gzd_get_gzd_product( $variation )->get_unit_price() );
+		$this->assertEquals( 200, wc_gzd_get_gzd_product( $variation )->get_unit_price_regular() );
+		$this->assertEquals( 10, wc_gzd_get_gzd_product( $variation )->get_unit_product() );
+	}
+
+	public function before_product_save( $product ) {
+		$gzd_product = wc_gzd_get_product( $product );
+
+		if ( $gzd_product->get_unit_price_auto() ) {
+			$gzd_product->recalculate_unit_price();
+		}
+	}
+
 	function test_product_data() {
 
 		$gzd_product = WC_GZD_Helper_Product::create_simple_product();

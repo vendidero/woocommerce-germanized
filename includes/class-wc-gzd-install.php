@@ -49,15 +49,35 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 		 */
 		public function __construct() {
 			add_action( 'admin_init', array( __CLASS__, 'check_version' ), 10 );
+			add_action( 'admin_init', array( __CLASS__, 'redirect' ), 15 );
+
 			add_action( 'in_plugin_update_message-woocommerce-germanized/woocommerce-germanized.php', array(
 				__CLASS__,
 				'in_plugin_update_message'
 			) );
-
-			add_action( 'admin_init', array( __CLASS__, 'redirect' ) );
 		}
 
 		public static function redirect() {
+			if ( ! empty( $_GET['do_update_woocommerce_gzd'] ) && current_user_can( 'manage_woocommerce' ) ) {
+				check_admin_referer( 'wc_gzd_db_update', 'wc_gzd_db_update_nonce' );
+
+				self::update();
+
+				// Update complete
+				delete_option( '_wc_gzd_needs_pages' );
+				delete_option( '_wc_gzd_needs_update' );
+
+				if ( $note = WC_GZD_Admin_Notices::instance()->get_note( 'update' ) ) {
+					$note->dismiss();
+				}
+
+				delete_transient( '_wc_gzd_activation_redirect' );
+
+				// What's new redirect
+				wp_redirect( admin_url( 'index.php?page=wc-gzd-about&wc-gzd-updated=true' ) );
+				exit;
+			}
+
 			if ( get_option( '_wc_gzd_setup_wizard_redirect' ) ) {
 
 				// Bail if activating from network, or bulk, or within an iFrame, or AJAX (e.g. plugins screen)
@@ -93,26 +113,6 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 				}
 
 				wp_redirect( admin_url( 'index.php?page=wc-gzd-about' ) );
-				exit;
-			}
-
-			if ( ! empty( $_GET['do_update_woocommerce_gzd'] ) ) {
-				check_admin_referer( 'wc_gzd_db_update', 'wc_gzd_db_update_nonce' );
-
-				self::update();
-
-				// Update complete
-				delete_option( '_wc_gzd_needs_pages' );
-				delete_option( '_wc_gzd_needs_update' );
-
-				if ( $note = WC_GZD_Admin_Notices::instance()->get_note( 'update' ) ) {
-					$note->dismiss();
-				}
-
-				delete_transient( '_wc_gzd_activation_redirect' );
-
-				// What's new redirect
-				wp_redirect( admin_url( 'index.php?page=wc-gzd-about&wc-gzd-updated=true' ) );
 				exit;
 			}
 		}

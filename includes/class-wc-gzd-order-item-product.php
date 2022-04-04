@@ -24,6 +24,83 @@ class WC_GZD_Order_Item_Product extends WC_GZD_Order_Item {
 		return $this->order_item->get_meta( '_unit_base', true );
 	}
 
+	public function get_deposit_type() {
+		return $this->order_item->get_meta( '_deposit_type', true );
+	}
+
+	public function get_deposit_amount() {
+		$amount = $this->order_item->get_meta( '_deposit_amount', true );
+
+		if ( '' === $amount ) {
+			$amount = wc_format_decimal( 0 );
+		}
+
+		return $amount;
+	}
+
+	public function get_deposit_amount_html() {
+		$args = array();
+
+		if ( $order = $this->get_order_item()->get_order() ) {
+			$args['currency'] = $order->get_currency();
+		}
+
+		$price_html = wc_price( $this->get_deposit_amount(), $args );
+
+		return wc_gzd_format_deposit_amount( $price_html, array(
+			'type'            => $this->get_deposit_type(),
+			'quantity'        => $this->get_deposit_quantity(),
+			'packaging_type'  => $this->get_deposit_packaging_type(),
+			'amount_per_unit' => $this->get_deposit_amount_per_unit(),
+		) );
+	}
+
+	public function get_deposit_quantity() {
+		$quantity = $this->order_item->get_meta( '_deposit_quantity', true );
+
+		if ( '' === $quantity ) {
+			$quantity = 1;
+		}
+
+		return $quantity;
+	}
+
+	public function get_deposit_packaging_type() {
+		return $this->order_item->get_meta( '_deposit_packaging_type', true );
+	}
+
+	public function get_deposit_packaging_type_title() {
+		$returnable_type_title = '';
+
+		if ( $returnable_type = $this->get_deposit_packaging_type() ) {
+			$returnable_type_title = WC_germanized()->deposit_types->get_packaging_type_title( $returnable_type );
+		}
+
+		/**
+		 * Filter to adjust the deposit packaging type title for an order item.
+		 *
+		 * @param string $title The title.
+		 * @param WC_GZD_Order_Item_Product $order_item The order item product object.
+		 *
+		 * @since 3.9.0
+		 */
+		return apply_filters( 'woocommerce_gzd_order_item_product_deposit_packaging_type_title', $returnable_type_title, $this );
+	}
+
+	public function get_deposit_amount_per_unit() {
+		$amount = $this->order_item->get_meta( '_deposit_amount_per_unit', true );
+
+		if ( '' === $amount ) {
+			$amount = wc_format_decimal( 0 );
+		}
+
+		return $amount;
+	}
+
+	public function has_deposit() {
+		return ! empty( $this->get_deposit_type() ) && $this->get_deposit_amount() > 0;
+	}
+
 	public function get_formatted_unit_base() {
 		return wc_gzd_format_unit_base( $this->get_unit_base() );
 	}
@@ -34,6 +111,26 @@ class WC_GZD_Order_Item_Product extends WC_GZD_Order_Item {
 
 	public function set_unit_base( $unit ) {
 		$this->order_item->update_meta_data( '_unit_base', $unit );
+	}
+
+	public function set_deposit_type( $deposit_type ) {
+		$this->order_item->update_meta_data( '_deposit_type', $deposit_type );
+	}
+
+	public function set_deposit_packaging_type( $packaging_type ) {
+		$this->order_item->update_meta_data( '_deposit_packaging_type', $packaging_type );
+	}
+
+	public function set_deposit_amount( $amount ) {
+		$this->order_item->update_meta_data( '_deposit_amount', wc_format_decimal( $amount ) );
+	}
+
+	public function set_deposit_quantity( $amount ) {
+		$this->order_item->update_meta_data( '_deposit_quantity', absint( $amount ) );
+	}
+
+	public function set_deposit_amount_per_unit( $amount ) {
+		$this->order_item->update_meta_data( '_deposit_amount_per_unit', wc_format_decimal( $amount ) );
 	}
 
 	public function get_unit_product() {

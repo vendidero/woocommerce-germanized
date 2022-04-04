@@ -116,10 +116,34 @@ class WC_GZD_Checkout {
 		add_action( 'template_redirect', array( $this, 'maybe_remove_shopmark_filters' ) );
 		add_action( 'woocommerce_checkout_update_order_review', array( $this, 'maybe_remove_shopmark_filters' ) );
 
+		// Hide the newly introduced state field for Germany since Woo 6.3
+		add_filter( 'woocommerce_billing_fields', array( $this, 'hide_de_state' ), 500, 2 );
+		add_filter( 'woocommerce_shipping_fields', array( $this, 'hide_de_state' ), 500, 2 );
+
 		if ( 'never' !== get_option( 'woocommerce_gzd_checkout_validate_street_number' ) ) {
 			// Maybe force street number during checkout
 			add_action( 'woocommerce_after_checkout_validation', array( $this, 'maybe_force_street_number' ), 10, 2 );
 		}
+	}
+
+	public function hide_de_state( $fields, $country ) {
+		if ( 'DE' === $country && ( isset( $fields['billing_state'] ) || isset( $fields['shipping_state'] ) ) && apply_filters( 'woocommerce_gzd_disable_de_checkout_state_select', true ) ) {
+			if ( isset( $fields['billing_state'] ) ) {
+				unset( $fields['billing_state'] );
+			} elseif ( isset( $fields['shipping_state'] ) ) {
+				unset( $fields['shipping_state'] );
+			}
+		}
+
+		return $fields;
+	}
+
+	public function remove_state_from_locale( $locale ) {
+		if ( isset( $locale['DE']['state'] ) ) {
+			unset( $locale['DE']['state'] );
+		}
+
+		return $locale;
 	}
 
 	/**
@@ -800,6 +824,7 @@ class WC_GZD_Checkout {
 				 */
 				if ( array_key_exists( '_split_taxes', $meta_data ) ) {
 					$rates[ $key ]->add_meta_data( '_split_taxes', array() );
+					$rates[ $key ]->add_meta_data( '_tax_shares', array() );
 				}
 			}
 
@@ -809,12 +834,13 @@ class WC_GZD_Checkout {
 		foreach( $rates as $key => $rate ) {
 			$original_taxes = $rate->get_taxes();
 			$original_cost  = $rate->get_cost();
-			$tax_shares     = wc_gzd_get_cart_tax_share( 'shipping' );
+			$tax_shares     = apply_filters( "woocommerce_gzd_shipping_tax_shares", wc_gzd_get_cart_tax_share( 'shipping' ), $rate );
 
 			/**
 			 * Reset split tax data
 			 */
 			$rates[ $key ]->add_meta_data( '_split_taxes', array() );
+			$rates[ $key ]->add_meta_data( '_tax_shares', array() );
 
 			/**
 			 * Prevent bugs in plugins like Woo Subscriptions which
@@ -857,6 +883,7 @@ class WC_GZD_Checkout {
 
 						$rates[ $key ]->set_taxes( $taxes );
 						$rates[ $key ]->add_meta_data( '_split_taxes', $taxable_amounts );
+						$rates[ $key ]->add_meta_data( '_tax_shares', $tax_shares );
 					} else {
 						$original_tax_rates = array_keys( $original_taxes );
 
@@ -915,17 +942,18 @@ class WC_GZD_Checkout {
 			return $fee_taxes;
 		}
 
-		$tax_shares = wc_gzd_get_cart_tax_share( 'fee' );
+		$tax_shares = apply_filters( 'woocommerce_gzd_fee_tax_shares', wc_gzd_get_cart_tax_share( 'fee' ), $fee );
 
 		// Reset
-		$fee->split_tax = array();
+		$fee->split_tax  = array();
+		$fee->tax_shares = array();
 
 		/**
 		 * Do not calculate fee taxes if tax shares are empty (e.g. zero-taxes only).
 		 * In this case, remove fee taxes altogether.
 		 */
 		if ( empty( $tax_shares ) || WC()->customer->is_vat_exempt() ) {
-			if ( wc_gzd_additional_costs_include_tax() ) {
+			if ( apply_filters( "woocommerce_gzd_fee_costs_include_tax", wc_gzd_additional_costs_include_tax(), $fee ) ) {
 				$total_tax  = array_sum( array_map( array( $this, 'round_line_tax_in_cents' ), $fee_taxes ) );
 				$fee->total = $fee->total - $total_tax;
 
@@ -973,6 +1001,7 @@ class WC_GZD_Checkout {
 			}
 
 			$fee->split_taxes = $taxable_amounts;
+			$fee->tax_shares  = $tax_shares;
 		}
 
 		return $fee_taxes;

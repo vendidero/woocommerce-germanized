@@ -98,11 +98,6 @@ if ( ! defined( 'ABSPATH' ) ) {
         <td><?php echo wc_gzd_additional_costs_include_tax() ? '<mark class="yes"><span class="dashicons dashicons-yes"></span></mark>' : '<mark class="no">' . '&ndash;' . '</mark>'; ?></td>
     </tr>
     <tr>
-        <td data-export-label="Virtual VAT"><?php _e( 'Virtual VAT', 'woocommerce-germanized' ); ?>:</td>
-        <td class="help">&nbsp;</td>
-        <td><?php echo 'yes' === get_option( 'woocommerce_gzd_enable_virtual_vat' ) ? '<mark class="yes"><span class="dashicons dashicons-yes"></span></mark>' : '<mark class="no">' . '&ndash;' . '</mark>'; ?></td>
-    </tr>
-    <tr>
         <td data-export-label="Tax Rate Name Collision"><?php _e( 'Tax Rate Name Collision', 'woocommerce-germanized' ); ?>
             :
         </td>

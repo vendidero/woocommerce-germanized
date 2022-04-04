@@ -43,6 +43,8 @@ jQuery( function ( $ ) {
                 // Disable cancel and save buttons
                 $( 'button.cancel-variation-changes, button.save-variation-changes', wrapper ).attr( 'disabled', 'disabled' );
             }
+
+            $( document.body ).trigger( 'wc-gzd-show-hide-panels' );
         },
 
         variable_is_service: function() {

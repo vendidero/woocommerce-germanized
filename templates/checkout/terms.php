@@ -12,7 +12,7 @@
  *
  * @see https://github.com/vendidero/woocommerce-germanized/wiki/Overriding-Germanized-Templates
  * @package Germanized/Templates
- * @version 1.9.0
+ * @version 1.9.1
  */
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -55,7 +55,7 @@ if ( apply_filters( 'woocommerce_germanized_checkout_show_terms', true ) ) : ?>
         <?php do_action( 'woocommerce_checkout_terms_and_conditions' ); ?>
 
         <label for="<?php echo esc_attr( $checkbox->get_html_id() ); ?>"
-               class="woocommerce-form__label woocommerce-form__label-for-checkbox checkbox">
+               class="woocommerce-form__label <?php echo ( ! $checkbox->hide_input() ? 'woocommerce-form__label-for-checkbox checkbox' : '' ); ?>">
 			<?php if ( ! $checkbox->hide_input() ) : ?>
                 <input type="checkbox" class="<?php $checkbox->render_classes( $checkbox->get_html_classes() ); ?>"
                        name="<?php echo esc_attr( $checkbox->get_html_name() ); ?>"

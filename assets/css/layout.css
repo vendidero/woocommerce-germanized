@@ -104,6 +104,13 @@ p.wc-gzd-additional-info:empty {
   .product .defect-description:not(:empty) p:last-child {
     margin-bottom: 0; }
 
+.deposit-packaging-type {
+  text-transform: uppercase;
+  font-weight: bold; }
+
+.product p.deposit-packaging-type {
+  font-size: 1.2em; }
+
 .product .product_meta {
   margin-top: 1rem; }
 
@@ -124,6 +131,9 @@ p.footer-info {
 .wc-gzd-edit-data-notice p.wc-gzd-info {
   margin: 0;
   padding: 0; }
+
+.wc-gzd-cart-info {
+  display: block; }
 
 table.product-details-inner {
   table-layout: fixed;
@@ -153,6 +163,12 @@ table.product-details-inner tr td:last-child {
 
 #shipping_parcelshop_post_number_field .optional {
   display: none !important; }
+
+.wc-gzd-nutri-score-value {
+  height: 4rem;
+  width: 7.0625rem;
+  display: block;
+  text-indent: -9999px; }
 
 .wc-gzd-placeholder-loading {
   position: relative;

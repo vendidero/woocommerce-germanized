@@ -7,7 +7,56 @@
  */
 class WC_GZD_Helper_Product {
 
+	public static function create_deposit_type() {
+		$term = get_term_by( 'slug', 'Can', 'product_deposit_type' );
+
+		if ( is_wp_error( $term ) || ! $term ) {
+			$term = wp_insert_term( 'Can', 'product_deposit_type' );
+
+			if ( ! is_wp_error( $term ) ) {
+				update_term_meta( $term['term_id'], 'deposit', wc_format_decimal( 0.25, '' ) );
+				update_term_meta( $term['term_id'], 'deposit_packaging_type', 'disposable' );
+
+				$term = get_term_by( 'id', $term['term_id'], 'product_deposit_type' );
+			}
+		}
+
+		return $term;
+	}
+
+	public static function create_nutrient() {
+		$term = get_term_by( 'slug', 'energy', 'product_nutrient' );
+
+		if ( is_wp_error( $term ) || ! $term ) {
+			$term = wp_insert_term( 'Energy', 'product_nutrient' );
+
+			if ( ! is_wp_error( $term ) ) {
+				$term = get_term_by( 'id', $term['term_id'], 'product_nutrient' );
+			}
+		}
+
+		return $term;
+	}
+
+	public static function create_allergen() {
+		$term = get_term_by( 'slug', 'hazelnut', 'product_allergen' );
+
+		if ( is_wp_error( $term ) || ! $term ) {
+			$term = wp_insert_term( 'Hazelnut', 'product_allergen' );
+
+			if ( ! is_wp_error( $term ) ) {
+				$term = get_term_by( 'id', $term['term_id'], 'product_allergen' );
+			}
+		}
+
+		return $term;
+	}
+
 	public static function create_simple_product() {
+		$deposit_type = self::create_deposit_type();
+		$allergen     = self::create_allergen();
+		$nutrient     = self::create_nutrient();
+
 		$product = WC_Helper_Product::create_simple_product();
 
 		$product->set_regular_price( 10 );
@@ -36,6 +85,27 @@ class WC_GZD_Helper_Product {
 				'BG' => '3-4-days',
 				'AT' => '4-5-days'
 			),
+			'_is_food'      => 'yes',
+			'_deposit_type' => $deposit_type->slug,
+			'_deposit_quantity' => 5,
+			'_ingredients' => '<strong>Hazelnut</strong>, Fish',
+			'_food_description' => 'A sample food description',
+			'_food_place_of_origin' => 'Germany, Berlin',
+			'_food_distributor' => 'John Doe Ltd.',
+			'_nutrient_reference_value' => '100ml',
+			'_drained_weight' => 25.31,
+			'_net_filling_quantity' => 30.22,
+			'_alcohol_content' => 15.1,
+			'_nutri_score' => 'b',
+			'_nutrient_ids' => array(
+				$nutrient->term_id => array(
+					'value'     => 20.31,
+					'ref_value' => 22.1,
+				),
+			),
+			'_allergen_ids' => array(
+				$allergen->term_id,
+			),
 		);
 
 		foreach ( $data as $key => $value ) {
@@ -45,6 +115,7 @@ class WC_GZD_Helper_Product {
 		$product->save();
 
 		wp_set_object_terms( $product->get_id(), array( '2-3 Days', '3-4 Days', '4-5 Days' ), 'product_delivery_time' );
+		wp_set_object_terms( $product->get_id(), array( $deposit_type->slug ), 'product_deposit_type' );
 
 		return wc_gzd_get_gzd_product( $product );
 	}
@@ -53,6 +124,10 @@ class WC_GZD_Helper_Product {
 		$product      = WC_Helper_Product::create_variation_product();
 		$children     = $product->get_children();
 		$variation_id = $children[0];
+
+		$deposit_type = self::create_deposit_type();
+		$allergen     = self::create_allergen();
+		$nutrient     = self::create_nutrient();
 
 		$data = array(
 			'_unit'                     => 'g',
@@ -70,6 +145,27 @@ class WC_GZD_Helper_Product {
 			'_delivery_time_countries'  => array(
 				'BG' => '3-4-days',
 				'AT' => '4-5-days'
+			),
+			'_is_food'      => 'yes',
+			'_deposit_type' => $deposit_type->slug,
+			'_deposit_quantity' => 5,
+			'_ingredients' => '<strong>Hazelnut</strong>, Fish',
+			'_food_description' => 'A sample food description',
+			'_food_place_of_origin' => 'Germany, Berlin',
+			'_food_distributor' => 'John Doe Ltd.',
+			'_nutrient_reference_value' => '100ml',
+			'_drained_weight' => 25.31,
+			'_net_filling_quantity' => 30.22,
+			'_alcohol_content' => 15.1,
+			'_nutri_score' => 'b',
+			'_nutrient_ids' => array(
+				$nutrient->term_id => array(
+					'value'     => 20.31,
+					'ref_value' => 22.1,
+				),
+			),
+			'_allergen_ids' => array(
+				$allergen->term_id,
 			),
 		);
 

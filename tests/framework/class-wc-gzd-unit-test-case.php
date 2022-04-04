@@ -18,7 +18,7 @@ class WC_GZD_Unit_Test_Case extends WP_UnitTestCase {
 	 *
 	 * @since 2.2
 	 */
-	public function setUp() {
+	public function setUp() : void {
 
 		parent::setUp();
 

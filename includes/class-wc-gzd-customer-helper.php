@@ -111,7 +111,7 @@ class WC_GZD_Customer_Helper {
 	}
 
 	public function delete_doi_session() {
-		if ( ! is_null( WC()->session ) && WC()->session->doi_user_id ) {
+		if ( function_exists( 'WC' ) && ! is_null( WC()->session ) && WC()->session->doi_user_id ) {
 			unset( WC()->session->doi_user_id );
 		}
  	}

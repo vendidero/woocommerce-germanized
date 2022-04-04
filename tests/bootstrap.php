@@ -138,9 +138,15 @@ class WC_GZD_Unit_Tests_Bootstrap {
 
 			WC_Install::install();
 
-			// Initialize the WC API extensions.
-			\Automattic\WooCommerce\Admin\Install::create_tables();
-			\Automattic\WooCommerce\Admin\Install::create_events();
+			if ( class_exists( '\Automattic\WooCommerce\Admin\Install' ) ) {
+				// Initialize the WC API extensions.
+				\Automattic\WooCommerce\Admin\Install::create_tables();
+				\Automattic\WooCommerce\Admin\Install::create_events();
+			} elseif ( class_exists( '\Automattic\WooCommerce\Internal\Admin\Install' ) ) {
+				// Initialize the WC API extensions.
+				\Automattic\WooCommerce\Internal\Admin\Install::create_tables();
+				\Automattic\WooCommerce\Internal\Admin\Install::create_events();
+			}
 
 			echo esc_html( 'Installing Germanized...' . PHP_EOL );
 
@@ -173,7 +179,6 @@ class WC_GZD_Unit_Tests_Bootstrap {
 		require_once( $this->tests_dir . '/framework/vendor/class-wp-test-spy-rest-server.php' );
 
 		// test cases
-		require_once( $this->tests_dir . '/includes/wp-http-testcase.php' );
 		require_once( $this->tests_dir . '/framework/class-wc-gzd-unit-test-case.php' );
 		require_once( $this->tests_dir . '/framework/class-wc-gzd-rest-unit-test-case.php' );
 

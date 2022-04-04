@@ -49,6 +49,9 @@ class WC_GZD_REST_API {
 		include_once( dirname( __FILE__ ) . '/class-wc-gzd-rest-product-price-labels-controller.php' );
 		include_once( dirname( __FILE__ ) . '/class-wc-gzd-rest-product-units-controller.php' );
 		include_once( dirname( __FILE__ ) . '/class-wc-gzd-rest-products-controller.php' );
+		include_once( dirname( __FILE__ ) . '/class-wc-gzd-rest-nutrients-controller.php' );
+		include_once( dirname( __FILE__ ) . '/class-wc-gzd-rest-allergenic-controller.php' );
+		include_once( dirname( __FILE__ ) . '/class-wc-gzd-rest-product-deposit-types.php' );
 	}
 
 	public function register_rest_routes() {
@@ -66,11 +69,14 @@ class WC_GZD_REST_API {
 			'WC_GZD_REST_Product_Delivery_Times_Controller',
 			'WC_GZD_REST_Product_Price_Labels_V1_Controller',
 			'WC_GZD_REST_Product_Price_Labels_Controller',
+			'WC_GZD_REST_Product_Deposit_Types_Controller',
 			'WC_GZD_REST_Product_Units_V1_Controller',
 			'WC_GZD_REST_Product_Units_Controller',
 			'WC_GZD_REST_Customers_Controller',
 			'WC_GZD_REST_Orders_Controller',
 			'WC_GZD_REST_Products_Controller',
+			'WC_GZD_REST_Nutrients_Controller',
+			'WC_GZD_REST_Allergenic_Controller',
 		) );
 
 		foreach ( $controllers as $controller ) {

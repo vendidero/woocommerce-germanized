@@ -39,7 +39,7 @@ class WC_GZD_Taxonomy {
 	 * @return false|WP_Term
 	 */
 	public function get_term_object( $key, $by = 'slug' ) {
-		$taxonomy = $this->taxonomy;
+		$taxonomy = $this->get_taxonomy();
 
 		/**
 		 * In case a numeric key is available, prefer retrieving by id over slug.
@@ -123,13 +123,20 @@ class WC_GZD_Taxonomy {
 	 * @return string[] terms as array
 	 */
 	public function get_terms( $args = array() ) {
-		$args  = wp_parse_args( $args, array( 'hide_empty' => false ) );
-		$list  = array();
-		$terms = get_terms( $this->taxonomy, $args );
+		$args = wp_parse_args( $args, array(
+			'hide_empty' => false,
+			'as'         => 'slug=>name'
+		) );
+
+		$list    = array();
+		$terms   = get_terms( $this->get_taxonomy(), array_diff_key( $args, array( 'as' => '' ) ) );
+		$as_data = array_map( 'trim', explode( '=>', $args['as'] ) );
+		$key     = isset( $as_data[0] ) ? $as_data[0] : 'slug';
+		$value   = isset( $as_data[1] ) ? $as_data[1] : 'name';
 
 		if ( ! empty( $terms ) && ! is_wp_error( $terms ) ) {
 			foreach ( $terms as $term ) {
-				$list[ $term->slug ] = $term->name;
+				$list[ ( isset( $term->{$key} ) ? $term->{$key} : $term->slug ) ] = ( isset( $term->{$value} ) ? $term->{$value} : $term->name );
 			}
 		}
 

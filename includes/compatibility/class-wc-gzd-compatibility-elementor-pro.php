@@ -104,6 +104,18 @@ class WC_GZD_Compatibility_Elementor_Pro extends WC_GZD_Compatibility {
 
 		add_action( 'elementor/frontend/after_enqueue_styles', function() {
 			wp_add_inline_style( 'elementor-pro', '
+				.elementor-widget-woocommerce-checkout-page .woocommerce table.woocommerce-checkout-review-order-table {
+				    border-radius: var(--sections-border-radius, 3px);
+				    padding: var(--sections-padding, 16px 30px);
+				    margin: var(--sections-margin, 0 0 24px 0);
+				    border-style: var(--sections-border-type, solid);
+				    border-color: var(--sections-border-color, #D4D4D4);
+				    border-width: 1px;
+				}
+				.elementor-widget-woocommerce-checkout-page .woocommerce .woocommerce-checkout #payment {
+					border: none;
+					padding: 0;
+				}
 				.elementor-widget-woocommerce-checkout-page .woocommerce-checkout .place-order {
 					display: -webkit-box;
 					display: -ms-flexbox;
@@ -156,6 +168,12 @@ class WC_GZD_Compatibility_Elementor_Pro extends WC_GZD_Compatibility {
 			'WC_GZD_Elementor_Widget_Product_Units',
 			'WC_GZD_Elementor_Widget_Product_Delivery_Time',
 			'WC_GZD_Elementor_Widget_Product_Defect_Description',
+			'WC_GZD_Elementor_Widget_Product_Deposit',
+			'WC_GZD_Elementor_Widget_Product_Deposit_Packaging_Type',
+			'WC_GZD_Elementor_Widget_Product_Nutrients',
+			'WC_GZD_Elementor_Widget_Product_Ingredients',
+			'WC_GZD_Elementor_Widget_Product_Allergenic',
+			'WC_GZD_Elementor_Widget_Product_Nutri_Score',
 		);
 
 		$widget_manager = Plugin::$instance->widgets_manager;

@@ -85,7 +85,7 @@
             return [];
         }
 
-        return $price.parents( self.params.wrapper ).find( '.price-unit:first' );
+        return $price.parents( self.params.wrapper ).find( '.price-unit:not(.wc-gzd-additional-info-placeholder, .wc-gzd-additional-info-loop)' );
     };
 
     GermanizedUnitPriceObserver.prototype.initObserver = function( self ) {
@@ -204,8 +204,13 @@
 
         if ( $price.length > 0 ) {
             var $unit_price = self.getUnitPriceNode( self, $price ),
-                sale_price  = '',
-                $priceInner = $price.find( '.amount:first' ),
+                $priceCloned = $price.clone();
+
+            // Remove price suffix from cloned DOM element to prevent finding the wrong price within suffix
+            $priceCloned.find( '.woocommerce-price-suffix' ).remove();
+
+            var sale_price  = '',
+                $priceInner = $priceCloned.find( '.amount:first' ),
                 $qty        = $( self.params.wrapper + ' ' + quantitySelector + ':first' ),
                 qty         = 1;
 
@@ -218,10 +223,10 @@
              * search the whole element.
              */
             if ( $priceInner.length <= 0 ) {
-                if ( $price.find( '.price' ).length > 0 ) {
-                    $priceInner = $price.find( '.price' );
+                if ( $priceCloned.find( '.price' ).length > 0 ) {
+                    $priceInner = $priceCloned.find( '.price' );
                 } else {
-                    $priceInner = $price;
+                    $priceInner = $priceCloned;
                 }
             }
 
@@ -230,9 +235,9 @@
             /**
              * Is sale?
              */
-            if ( $price.find( '.amount' ).length > 1 ) {
+            if ( $priceCloned.find( '.amount' ).length > 1 ) {
                 // The second .amount element is the sale price
-                var $sale_price = $( $price.find( '.amount' )[1] );
+                var $sale_price = $( $priceCloned.find( '.amount' )[1] );
 
                 sale_price = self.getRawPrice( $sale_price, self.params.price_decimal_sep );
             }

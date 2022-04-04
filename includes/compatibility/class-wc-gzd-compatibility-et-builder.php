@@ -52,6 +52,21 @@ class WC_GZD_Compatibility_ET_Builder extends WC_GZD_Compatibility {
 		} );
 
 		/**
+		 * Divi has a bug: In case the summary hooks are moved within their custom logic to the actual Divi module, Divi does not recognize which hook
+		 * adds which output. Instead, it appends the whole hook output each time the hook is being applied which leads to multiple outputs of the same content.
+		 * Use a static priority to make sure the output is only added once until Divi fixes the problem.
+		 *
+		 * Last tested with Divi 4.14.7.
+		 */
+		add_filter( 'et_builder_wc_relocate_single_product_summary_output_priority', function( $output_priority, $callback_name ) {
+			if ( strstr( $callback_name, 'woocommerce_gzd_' ) ) {
+				return 5;
+			}
+
+			return $output_priority;
+		}, 10, 2 );
+
+		/**
 		 * Divi seems to set hooks on its own - make sure Germanized does not restore defaults
 		 */
 		add_action( 'woocommerce_gzd_disabled_checkout_adjustments', function() {

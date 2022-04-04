@@ -14,7 +14,7 @@ class WC_GZD_REST_Unit_Test_Case extends WC_GZD_Unit_Test_Case {
 	/**
 	 * Setup our test server.
 	 */
-	public function setUp() {
+	public function setUp() : void {
 		parent::setUp();
 		global $wp_rest_server;
 		$this->server = $wp_rest_server = new WP_Test_Spy_REST_Server;
@@ -24,7 +24,7 @@ class WC_GZD_REST_Unit_Test_Case extends WC_GZD_Unit_Test_Case {
 	/**
 	 * Unset the server.
 	 */
-	public function tearDown() {
+	public function tearDown() : void {
 		parent::tearDown();
 		global $wp_rest_server;
 		$wp_rest_server = null;
