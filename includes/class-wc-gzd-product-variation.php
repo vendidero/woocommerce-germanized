@@ -129,11 +129,12 @@ class WC_GZD_Product_Variation extends WC_GZD_Product {
 		 * @param mixed $value The property value.
 		 * @param WC_GZD_Product_Variation $gzd_product The GZD product instance.
 		 * @param WC_Product_Variation $product The product instance.
+		 * @param string $context The context
 		 *
 		 * @since 3.0.0
 		 *
 		 */
-		return apply_filters( "woocommerce_gzd_get_product_variation_{$prop}", $value, $this, $this->child );
+		return apply_filters( "woocommerce_gzd_get_product_variation_{$prop}", $value, $this, $this->child, $context );
 	}
 
 	public function get_unit( $context = 'view' ) {
@@ -218,6 +219,7 @@ class WC_GZD_Product_Variation extends WC_GZD_Product {
 	protected function is_valid_country_specific_delivery_time( $slug, $country ) {
 		$delivery_times_parent = array();
 		$default_parent        = false;
+		$default_child         = $this->get_default_delivery_time_slug();
 
 		if ( $parent = $this->get_gzd_parent() ) {
 			$delivery_times_parent = $parent->get_country_specific_delivery_times();
@@ -235,8 +237,10 @@ class WC_GZD_Product_Variation extends WC_GZD_Product {
 
 		/**
 		 * Do not allow a variation to include country-specific delivery times matching the parent's default time
+		 * in case the default delivery time of the child does not differ from the parent and the parent did not
+		 * define any country-specific times.
 		 */
-		if ( $is_valid && $default_parent && $slug == $default_parent ) {
+		if ( $is_valid && empty( $delivery_times_parent ) && $default_parent && $default_child == $default_parent && $slug == $default_parent ) {
 			$is_valid = false;
 		}
 

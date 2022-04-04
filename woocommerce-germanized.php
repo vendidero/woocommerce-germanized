@@ -602,7 +602,12 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 			include_once WC_GERMANIZED_ABSPATH . 'includes/class-wc-gzd-cache-helper.php';
 			include_once WC_GERMANIZED_ABSPATH . 'includes/class-wc-gzd-coupon-helper.php';
 
-			include_once WC_GERMANIZED_ABSPATH . 'includes/class-wc-gzd-virtual-vat-helper.php';
+			/**
+			 * Legacy MOSS helper
+			 */
+            if ( 'yes' === get_option( 'woocommerce_gzd_enable_virtual' ) ) {
+	            include_once WC_GERMANIZED_ABSPATH . 'includes/class-wc-gzd-virtual-vat-helper.php';
+            }
 		}
 
 		public function woocommerce_loaded_includes() {

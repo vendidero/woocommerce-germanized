@@ -860,7 +860,6 @@ class WC_GZD_Admin {
 		update_option( 'woocommerce_price_display_suffix', '' );
 
 		update_option( 'woocommerce_gzd_shipping_tax', 'no' );
-		update_option( 'woocommerce_gzd_enable_virtual_vat', 'no' );
 	}
 
 	public function check_insert_vat_rates() {

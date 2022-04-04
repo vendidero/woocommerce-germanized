@@ -1015,13 +1015,12 @@ class WC_GZD_Product {
 		/**
 		 * Filter that allows marking a product as virtual vat exception.
 		 *
-		 * @param bool $is_exception Whether it is a exception or not.
+		 * @param bool $is_exception Whether it is an exception or not.
 		 * @param WC_GZD_Product $product The product object.
 		 *
 		 * @since 1.8.5
-		 *
 		 */
-		return apply_filters( 'woocommerce_gzd_product_virtual_vat_exception', ( ( get_option( 'woocommerce_gzd_enable_virtual_vat' ) === 'yes' ) && ( $this->is_downloadable() || $this->is_virtual() ) ? true : false ), $this );
+		return apply_filters( 'woocommerce_gzd_product_virtual_vat_exception', ( ( 'yes' === get_option( 'woocommerce_gzd_enable_virtual_vat' ) || \Vendidero\OneStopShop\Package::oss_procedure_is_enabled() ) && ( $this->is_downloadable() || $this->is_virtual() ) ? true : false ), $this );
 	}
 
 	public function add_labels_to_price_html( $price_html ) {
@@ -1550,7 +1549,7 @@ class WC_GZD_Product {
 				$cached_terms[ $term->slug ] = $term;
 			}
 
-			$this->delivery_times = $cached_terms;
+			$this->delivery_times = apply_filters( 'woocommerce_gzd_product_delivery_times', $cached_terms, $this, $this->child, $context );
 		}
 
 		return $this->delivery_times;
@@ -1730,7 +1729,7 @@ class WC_GZD_Product {
 	}
 
 	protected function is_valid_country_specific_delivery_time( $slug, $country ) {
-		$default_slug = $this->get_default_delivery_time_slug();
+		$default_slug = $this->get_default_delivery_time_slug( 'edit' );
 
 		if ( $slug === $default_slug || $country === WC()->countries->get_base_country() ) {
 			return false;

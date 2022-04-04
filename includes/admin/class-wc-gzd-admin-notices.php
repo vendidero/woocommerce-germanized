@@ -61,6 +61,7 @@ if ( ! class_exists( 'WC_GZD_Admin_Notices' ) ) :
 			include_once( 'notes/class-wc-gzd-admin-note-internetmarke-importer.php' );
 			include_once( 'notes/class-wc-gzd-admin-note-shipping-excl-tax.php' );
 			include_once( 'notes/class-wc-gzd-admin-note-encryption.php' );
+			include_once( 'notes/class-wc-gzd-admin-note-virtual-vat.php' );
 		}
 
 		public function pro_incompatibility_plain_update_message( $data ) {
@@ -156,11 +157,15 @@ if ( ! class_exists( 'WC_GZD_Admin_Notices' ) ) :
 					'WC_GZD_Admin_Note_Pro',
 					'WC_GZD_Admin_Note_DHL_Importer',
 					'WC_GZD_Admin_Note_Internetmarke_Importer',
-					'WC_GZD_Admin_Note_Shipping_Excl_Tax'
+					'WC_GZD_Admin_Note_Shipping_Excl_Tax',
 				);
 
 				if ( class_exists( 'WC_GZD_Secret_Box_Helper' ) ) {
 					$core_notes[] = 'WC_GZD_Admin_Note_Encryption';
+				}
+
+				if ( 'yes' === get_option( 'woocommerce_gzd_enable_virtual_vat' ) ) {
+					$core_notes[] = 'WC_GZD_Admin_Note_Virtual_Vat';
 				}
 
 				$notes       = apply_filters( 'woocommerce_gzd_admin_notes', $core_notes );
