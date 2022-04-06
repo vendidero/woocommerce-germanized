@@ -63,7 +63,7 @@ class WC_Germanized_Meta_Box_Product_Data {
                 <?php if ( WC_germanized()->is_pro() ) : ?>
                     <p class="wc-gzd-product-settings-subtitle">
 		                <?php _e( 'Deposit', 'woocommerce-germanized-pro' ); ?>
-                        <a class="page-title-action" href=""><?php _e( 'Help', 'woocommerce-germanized' ); ?></a>
+                        <a class="page-title-action" href="https://vendidero.de/dokument/lebensmittel-auszeichnen#pfand"><?php _e( 'Help', 'woocommerce-germanized' ); ?></a>
                     </p>
 
                     <?php
