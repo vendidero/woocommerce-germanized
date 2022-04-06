@@ -304,7 +304,9 @@ class WC_GZD_Coupon_Helper {
 				}
 			}
 
-			$fees_total += $item->get_total();
+			if ( apply_filters( 'woocommerce_gzd_voucher_order_allow_fee_reduction', true, $item ) ) {
+				$fees_total += $item->get_total();
+			}
 		}
 
 		if ( $voucher_item_updated ) {
@@ -414,7 +416,6 @@ class WC_GZD_Coupon_Helper {
 
 				// Negative fees should not make the order total go negative.
 				if ( 0 > $tmp_fee->total ) {
-
 					if ( $this->fee_is_voucher( $tmp_fee ) ) {
 						$allow_free_shipping = false;
 
@@ -444,7 +445,9 @@ class WC_GZD_Coupon_Helper {
 					}
 				}
 
-				$fee_running_total += $tmp_fee->total;
+				if ( apply_filters( 'woocommerce_gzd_voucher_cart_allow_fee_reduction', true, $tmp_fee ) ) {
+					$fee_running_total += $tmp_fee->total;
+				}
 
 				if ( $fee_object === $fee->object ) {
 					break;

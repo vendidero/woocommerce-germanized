@@ -40,8 +40,6 @@ window.germanized = window.germanized || {};
                         security: self.params.refresh_cart_vouchers_nonce,
                     },
                     success: function( data ) {
-                        console.log(data);
-
                         self.vouchers = data.vouchers;
                         self.manipulate_cart_totals();
                     },
@@ -83,16 +81,11 @@ window.germanized = window.germanized || {};
                 }
             }
 
-            console.log('updating cart totals');
-            console.log(self.vouchers);
-
             self.manipulate_coupons( $table );
         },
 
         manipulate_coupons: function( $table ) {
             var self = germanized.cart_voucher;
-
-            console.log(self.vouchers);
 
             $.each( self.vouchers, function( voucherId, voucher ) {
                 var $coupon = self.get_voucher_coupon( voucher, $table ),
