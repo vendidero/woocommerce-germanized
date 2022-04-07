@@ -593,18 +593,29 @@ class WC_GZD_Settings_Tab_Shopmarks extends WC_GZD_Settings_Tab {
 	}
 
 	protected function get_food_settings() {
-		return array(
-			array( 'type' => 'title', 'title' => '', 'id' => 'deposit_options' ),
+		$food_settings = array_merge( array( array( 'type' => 'title', 'title' => __( 'Deposits', 'woocommerce-germanized' ), 'id' => 'deposit_options' ), ), apply_filters( 'woocommerce_gzd_food_deposit_settings', array(
 			array(
 				'title'    => __( 'Format', 'woocommerce-germanized' ),
 				'desc'     => '<div class="wc-gzd-additional-desc">' . __( 'This text will be used to display the deposit notice. Use {amount} to insert the deposit amount. {type} for the deposit type name, {amount_per_unit} for the deposit amount per unit, {packaging_type} for the packaging type and {quantity} for the deposit quantity.', 'woocommerce-germanized' ) . '</div>',
 				'desc_tip' => false,
 				'id'       => 'woocommerce_gzd_deposit_text',
 				'type'     => 'text',
-				'default'  => __( 'Plus {amount} deposit', 'woocommerce-germanized' ),
+				'default'  => __( 'plus {amount} deposit', 'woocommerce-germanized' ),
 			),
-			array( 'type' => 'sectionend', 'id' => 'deposit_options' ),
-		);
+			array(
+				'title'    => __( 'Packaging Font Size', 'woocommerce-germanized' ),
+				'desc'     => '<div class="wc-gzd-additional-desc">' . sprintf( __( 'Adjust the packaging type title font size which must <a href="%s" target="_blank">at least correspond to the price labeling</a> for the respective product.', 'woocommerce-germanized' ), 'https://www.it-recht-kanzlei.de/hinweispflichten-einweg-mehrweg-getraenkeverpackungen.html' ) . '</div>',
+				'desc_tip' => false,
+				'id'       => 'woocommerce_gzd_deposit_packaging_type_font_size',
+				'type'     => 'text',
+				'css'      => 'max-width: 100px',
+				'default'  => '1.2em',
+			),
+		) ) );
+
+		$food_settings[] = array( 'type' => 'sectionend', 'id' => 'deposit_options' );
+
+		return $food_settings;
 	}
 
 	protected function get_unit_price_settings() {

@@ -1158,7 +1158,6 @@ function wc_gzd_format_deposit_amount( $amount, $args ) {
 		}
 	} else {
 		$deposit_type_name = $args['type']->name;
-		$deposit_type      = $args['type']->slug;
 	}
 
 	$replacements = array(
