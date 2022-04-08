@@ -26,6 +26,7 @@ return array(
 	'yd'  => __( 'yd', 'woocommerce' ),
 	'ml'  => __( 'ml', 'woocommerce-germanized' ),
 	'l'   => __( 'l', 'woocommerce-germanized' ),
+	'µg'  => __( 'µg', 'woocommerce-germanized' ),
 );
 
 ?>

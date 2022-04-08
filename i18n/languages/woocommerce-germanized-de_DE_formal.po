@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce Germanized\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-07 15:37+0200\n"
-"PO-Revision-Date: 2022-04-07 15:37+0200\n"
+"POT-Creation-Date: 2022-04-08 12:10+0200\n"
+"PO-Revision-Date: 2022-04-08 12:10+0200\n"
 "Last-Translator: Dennis Nissle <info@vendidero.de>\n"
 "Language-Team: \n"
 "Language: de_DE@formal\n"
@@ -5978,6 +5978,10 @@ msgstr "ml"
 msgid "l"
 msgstr "l"
 
+#: woocommerce-germanized/i18n/units.php:29
+msgid "µg"
+msgstr "µg"
+
 # @ woocommerce-germanized
 #: woocommerce-germanized/includes/abstracts/abstract-wc-gzd-product.php:147
 #, php-format
@@ -6503,8 +6507,8 @@ msgstr "Germanized Einstellungen"
 #: woocommerce-germanized/includes/class-wc-gzd-order-helper.php:32
 #: woocommerce-germanized/includes/class-wc-gzd-product-attribute-helper.php:23
 #: woocommerce-germanized/includes/class-wc-gzd-product-attribute-helper.php:32
-#: woocommerce-germanized/includes/export/class-wc-gzd-product-export.php:29
-#: woocommerce-germanized/includes/export/class-wc-gzd-product-export.php:38
+#: woocommerce-germanized/includes/export/class-wc-gzd-product-export.php:27
+#: woocommerce-germanized/includes/export/class-wc-gzd-product-export.php:36
 #: woocommerce-germanized/includes/import/class-wc-gzd-product-import.php:25
 #: woocommerce-germanized/includes/import/class-wc-gzd-product-import.php:34
 #: woocommerce-germanized/woocommerce-germanized.php:148
@@ -10548,10 +10552,12 @@ msgid "Forward your withdrawal online"
 msgstr "Widerruf online erklären"
 
 #: woocommerce-germanized/includes/class-wc-gzd-food-helper.php:13
+msgctxt "nutrient-reference-value"
 msgid "per 100 g"
 msgstr "pro 100 g"
 
 #: woocommerce-germanized/includes/class-wc-gzd-food-helper.php:14
+msgctxt "nutrient-reference-value"
 msgid "per 100 ml"
 msgstr "pro 100 ml"
 
@@ -11803,187 +11809,187 @@ msgstr ""
 "Dieses E-Mail Template enthält eine Kopie des SEPA Mandates, welches "
 "basierend auf den Bestelldaten und Kontodaten des Käufers generiert wird."
 
-#: woocommerce-germanized/includes/export/class-wc-gzd-product-export.php:55
+#: woocommerce-germanized/includes/export/class-wc-gzd-product-export.php:75
 msgctxt "exporter"
 msgid "Is service?"
 msgstr "Ist Dienstleistung?"
 
-#: woocommerce-germanized/includes/export/class-wc-gzd-product-export.php:56
+#: woocommerce-germanized/includes/export/class-wc-gzd-product-export.php:76
 msgctxt "exporter"
 msgid "Is used good?"
 msgstr "Ist Gebrauchtware?"
 
-#: woocommerce-germanized/includes/export/class-wc-gzd-product-export.php:57
+#: woocommerce-germanized/includes/export/class-wc-gzd-product-export.php:77
 msgctxt "exporter"
 msgid "Is defective copy?"
 msgstr "Ist Mängelexemplar?"
 
-#: woocommerce-germanized/includes/export/class-wc-gzd-product-export.php:58
+#: woocommerce-germanized/includes/export/class-wc-gzd-product-export.php:78
 msgctxt "exporter"
 msgid "Warranty attachment id (PDF)"
 msgstr "Medien-ID der Garantie (PDF)"
 
-#: woocommerce-germanized/includes/export/class-wc-gzd-product-export.php:59
+#: woocommerce-germanized/includes/export/class-wc-gzd-product-export.php:79
 msgctxt "exporter"
 msgid "Is differential taxed?"
 msgstr "Ist differenzbesteuert?"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/export/class-wc-gzd-product-export.php:60
+#: woocommerce-germanized/includes/export/class-wc-gzd-product-export.php:80
 msgctxt "exporter"
 msgid "Has free shipping?"
 msgstr "Versand kostenlos?"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/export/class-wc-gzd-product-export.php:61
+#: woocommerce-germanized/includes/export/class-wc-gzd-product-export.php:81
 msgctxt "exporter"
 msgid "Unit price regular"
 msgstr "Regulärer Grundpreis"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/export/class-wc-gzd-product-export.php:62
+#: woocommerce-germanized/includes/export/class-wc-gzd-product-export.php:82
 msgctxt "exporter"
 msgid "Unit price sale"
 msgstr "Angebotsgrundpreis"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/export/class-wc-gzd-product-export.php:63
+#: woocommerce-germanized/includes/export/class-wc-gzd-product-export.php:83
 msgctxt "exporter"
 msgid "Unit price calculated automatically?"
 msgstr "Grundpreis automatisch berechnen?"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/export/class-wc-gzd-product-export.php:64
+#: woocommerce-germanized/includes/export/class-wc-gzd-product-export.php:84
 msgctxt "exporter"
 msgid "Unit"
 msgstr "Einheit"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/export/class-wc-gzd-product-export.php:65
+#: woocommerce-germanized/includes/export/class-wc-gzd-product-export.php:85
 msgctxt "exporter"
 msgid "Unit base"
 msgstr "Grundpreiseinheit"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/export/class-wc-gzd-product-export.php:66
+#: woocommerce-germanized/includes/export/class-wc-gzd-product-export.php:86
 msgctxt "exporter"
 msgid "Unit product"
 msgstr "Produkteinheit"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/export/class-wc-gzd-product-export.php:67
+#: woocommerce-germanized/includes/export/class-wc-gzd-product-export.php:87
 msgctxt "exporter"
 msgid "Cart description"
 msgstr "Warenkorbkurzbeschreibung"
 
-#: woocommerce-germanized/includes/export/class-wc-gzd-product-export.php:68
+#: woocommerce-germanized/includes/export/class-wc-gzd-product-export.php:88
 msgctxt "exporter"
 msgid "Minimum age"
 msgstr "Mindestalter"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/export/class-wc-gzd-product-export.php:69
+#: woocommerce-germanized/includes/export/class-wc-gzd-product-export.php:89
 msgctxt "exporter"
 msgid "Defect description"
 msgstr "Mängelbeschreibung"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/export/class-wc-gzd-product-export.php:70
+#: woocommerce-germanized/includes/export/class-wc-gzd-product-export.php:90
 msgctxt "exporter"
 msgid "Delivery time"
 msgstr "Lieferzeit"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/export/class-wc-gzd-product-export.php:71
+#: woocommerce-germanized/includes/export/class-wc-gzd-product-export.php:91
 msgctxt "exporter"
 msgid "Sale price label"
 msgstr "Streichpreis Hinweis"
 
-#: woocommerce-germanized/includes/export/class-wc-gzd-product-export.php:72
+#: woocommerce-germanized/includes/export/class-wc-gzd-product-export.php:92
 msgctxt "exporter"
 msgid "Sale price regular label"
 msgstr "Angebotspreis Hinweis"
 
-#: woocommerce-germanized/includes/export/class-wc-gzd-product-export.php:73
+#: woocommerce-germanized/includes/export/class-wc-gzd-product-export.php:93
 msgctxt "exporter"
 msgid "Is food?"
 msgstr "Ist Lebensmittel?"
 
-#: woocommerce-germanized/includes/export/class-wc-gzd-product-export.php:74
+#: woocommerce-germanized/includes/export/class-wc-gzd-product-export.php:94
 msgctxt "exporter"
 msgid "Nutrients"
 msgstr "Nährwerte"
 
-#: woocommerce-germanized/includes/export/class-wc-gzd-product-export.php:75
+#: woocommerce-germanized/includes/export/class-wc-gzd-product-export.php:95
 msgctxt "exporter"
 msgid "Allergenic"
 msgstr "Allergene"
 
-#: woocommerce-germanized/includes/export/class-wc-gzd-product-export.php:76
+#: woocommerce-germanized/includes/export/class-wc-gzd-product-export.php:96
 msgctxt "exporter"
 msgid "Deposit Type"
 msgstr "Pfandtyp"
 
-#: woocommerce-germanized/includes/export/class-wc-gzd-product-export.php:77
+#: woocommerce-germanized/includes/export/class-wc-gzd-product-export.php:97
 msgctxt "exporter"
 msgid "Deposit Quantity"
 msgstr "Pfand-Anzahl"
 
-#: woocommerce-germanized/includes/export/class-wc-gzd-product-export.php:78
+#: woocommerce-germanized/includes/export/class-wc-gzd-product-export.php:98
 msgctxt "exporter"
 msgid "Ingredients"
 msgstr "Zutaten"
 
-#: woocommerce-germanized/includes/export/class-wc-gzd-product-export.php:79
+#: woocommerce-germanized/includes/export/class-wc-gzd-product-export.php:99
 msgctxt "exporter"
 msgid "Nutrient reference value slug"
 msgstr "Nährwert Referenzmenge Titelform"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/export/class-wc-gzd-product-export.php:80
+#: woocommerce-germanized/includes/export/class-wc-gzd-product-export.php:100
 msgctxt "exporter"
 msgid "Alcohol content"
 msgstr "Alkoholgehalt"
 
-#: woocommerce-germanized/includes/export/class-wc-gzd-product-export.php:81
+#: woocommerce-germanized/includes/export/class-wc-gzd-product-export.php:101
 msgctxt "exporter"
 msgid "Drained weight"
 msgstr "Abtropfgewicht"
 
-#: woocommerce-germanized/includes/export/class-wc-gzd-product-export.php:82
+#: woocommerce-germanized/includes/export/class-wc-gzd-product-export.php:102
 msgctxt "exporter"
 msgid "Net filling quantity"
 msgstr "Nettofüllmenge"
 
-#: woocommerce-germanized/includes/export/class-wc-gzd-product-export.php:83
+#: woocommerce-germanized/includes/export/class-wc-gzd-product-export.php:103
 msgctxt "exporter"
 msgid "Nutri-Score"
 msgstr "Nutri-Score"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/export/class-wc-gzd-product-export.php:84
+#: woocommerce-germanized/includes/export/class-wc-gzd-product-export.php:104
 msgctxt "exporter"
 msgid "Food Description"
 msgstr "Lebensmittelbezeichnung"
 
-#: woocommerce-germanized/includes/export/class-wc-gzd-product-export.php:85
+#: woocommerce-germanized/includes/export/class-wc-gzd-product-export.php:105
 msgctxt "exporter"
 msgid "Food Place of Origin"
 msgstr "Lebensmittel Herkunftsort"
 
-#: woocommerce-germanized/includes/export/class-wc-gzd-product-export.php:86
+#: woocommerce-germanized/includes/export/class-wc-gzd-product-export.php:106
 msgctxt "exporter"
 msgid "Food Distributor"
 msgstr "Lebensmittelunternehmer"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/export/class-wc-gzd-product-export.php:139
+#: woocommerce-germanized/includes/export/class-wc-gzd-product-export.php:142
 #: woocommerce-germanized/includes/import/class-wc-gzd-product-import.php:54
 #, php-format
 msgid "Delivery Time: %s"
 msgstr "Lieferzeit: %s"
 
-#: woocommerce-germanized/includes/export/class-wc-gzd-product-export.php:167
+#: woocommerce-germanized/includes/export/class-wc-gzd-product-export.php:170
 #: woocommerce-germanized/includes/import/class-wc-gzd-product-import.php:55
 #, php-format
 msgid "Nutrients: %s"

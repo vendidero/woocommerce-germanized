@@ -10,8 +10,8 @@ class WC_GZD_Food_Helper {
 
 	public static function get_nutrient_reference_values() {
 		return apply_filters( 'woocommerce_gzd_nutrient_reference_values', array(
-			'100g'  => __( 'per 100 g', 'woocommerce-germanized-pro' ),
-			'100ml' => __( 'per 100 ml', 'woocommerce-germanized-pro' )
+			'100g'  => _x( 'per 100 g', 'nutrient-reference-value', 'woocommerce-germanized' ),
+			'100ml' => _x( 'per 100 ml', 'nutrient-reference-value', 'woocommerce-germanized' )
 		) );
 	}
 
