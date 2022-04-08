@@ -289,14 +289,14 @@
     GermanizedUnitPriceObserver.prototype.setUnitPriceLoading = function( self, $unit_price ) {
         var unitPriceOrg = $unit_price.html();
 
-        if ( ! $unit_price.hasClass( 'loading' ) ) {
+        if ( ! $unit_price.hasClass( 'wc-gzd-loading' ) ) {
             var textWidth  = self.getTextWidth( $unit_price ),
                 textHeight = $unit_price.find( 'span' ).length > 0 ? $unit_price.find( 'span' ).innerHeight() : $unit_price.height();
             /**
              * @see https://github.com/zalog/placeholder-loading
              */
             $unit_price.html( '<span class="wc-gzd-placeholder-loading"><span class="wc-gzd-placeholder-row" style="height: ' + $unit_price.height() + 'px;"><span class="wc-gzd-placeholder-row-col-4" style="width: ' + textWidth + 'px; height: ' + textHeight + 'px;"></span></span></span>' );
-            $unit_price.addClass( 'loading' );
+            $unit_price.addClass( 'wc-gzd-loading' );
             $unit_price.data( 'org-html', unitPriceOrg );
         } else {
             unitPriceOrg = $unit_price.data( 'org-html' );
@@ -308,9 +308,9 @@
     GermanizedUnitPriceObserver.prototype.unsetUnitPriceLoading = function( self, $unit_price, newHtml ) {
         newHtml = newHtml || $unit_price.data( 'org-html' );
 
-        if ( $unit_price.hasClass( 'loading' ) ) {
+        if ( $unit_price.hasClass( 'wc-gzd-loading' ) ) {
             $unit_price.html( newHtml );
-            $unit_price.removeClass( 'loading' ).show();
+            $unit_price.removeClass( 'wc-gzd-loading' ).show();
         }
     };
 
