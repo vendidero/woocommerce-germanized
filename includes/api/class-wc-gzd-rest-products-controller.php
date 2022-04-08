@@ -325,7 +325,7 @@ class WC_GZD_REST_Products_Controller {
 					),
 				),
 				'nutri_score'      => array(
-					'description' => __( 'Nutri Score', 'woocommerce-germanized' ),
+					'description' => __( 'Nutri-Score', 'woocommerce-germanized' ),
 					'type'        => 'string',
 					'enum'        => array( '' ) + array_keys( WC_GZD_Food_Helper::get_nutri_score_values() ),
 					'context'     => array( 'view', 'edit' ),
@@ -349,7 +349,7 @@ class WC_GZD_REST_Products_Controller {
 					'context'     => array( 'view', 'edit' ),
 				),
 				'distributor'      => array(
-					'description' => __( 'Food distributor', 'woocommerce-germanized' ),
+					'description' => _x( 'Distributor', 'food', 'woocommerce-germanized' ),
 					'type'        => 'string',
 					'context'     => array( 'view', 'edit' ),
 					'arg_options' => array(
@@ -357,7 +357,7 @@ class WC_GZD_REST_Products_Controller {
 					),
 				),
 				'place_of_origin'      => array(
-					'description' => __( 'Place of origin', 'woocommerce-germanized' ),
+					'description' => _x( 'Place of origin', 'food', 'woocommerce-germanized' ),
 					'type'        => 'string',
 					'context'     => array( 'view', 'edit' ),
 					'arg_options' => array(
@@ -365,7 +365,7 @@ class WC_GZD_REST_Products_Controller {
 					),
 				),
 				'description'      => array(
-					'description' => __( 'Description', 'woocommerce-germanized' ),
+					'description' => _x( 'Description', 'food', 'woocommerce-germanized' ),
 					'type'        => 'string',
 					'context'     => array( 'view', 'edit' ),
 					'arg_options' => array(

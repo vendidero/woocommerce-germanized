@@ -495,6 +495,16 @@ class Shopmarks {
 					'is_action'        => true,
 					'number_of_params' => 1,
 				),
+				'woocommerce_before_add_to_cart_quantity' => array(
+					'title'            => __( 'Before add to cart quantity', 'woocommerce-germanized' ),
+					'is_action'        => true,
+					'number_of_params' => 1,
+				),
+				'woocommerce_after_add_to_cart_quantity' => array(
+					'title'            => __( 'After add to cart quantity', 'woocommerce-germanized' ),
+					'is_action'        => true,
+					'number_of_params' => 1,
+				),
 				'woocommerce_after_single_product_summary' => array(
 					'title'            => __( 'After Summary', 'woocommerce-germanized' ),
 					'is_action'        => true,

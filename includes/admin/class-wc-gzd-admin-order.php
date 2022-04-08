@@ -242,6 +242,14 @@ class WC_GZD_Admin_Order {
 
 		$tax_based_on = get_option( 'woocommerce_tax_based_on' );
 
+		if ( is_a( $order, 'WC_Order_Refund' ) ) {
+			$order = wc_get_order( $order->get_parent_id() );
+
+			if ( ! $order ) {
+				return $taxable_address;
+			}
+		}
+
 		if ( 'shipping' === $tax_based_on && ! $order->get_shipping_country() ) {
 			$tax_based_on = 'billing';
 		}

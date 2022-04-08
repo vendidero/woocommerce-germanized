@@ -404,7 +404,7 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
                 <div class="wc-gzd-inner-product-pro-tab-wrapper">
                     <div class="wc-gzd-premium-overlay notice notice-warning inline">
                         <h3><?php _e( 'Get Germanized Pro to unlock', 'woocommerce-germanized' ); ?></h3>
-                        <p><?php _e( 'Sell your food legally showing nutrients, allergenes, ingredients, the Nutri-Score, deposits and more.', 'woocommerce-germanized' ); ?></p>
+                        <p><?php _e( 'Want to sell your food in a legally compliant way? Include nutrients, allergenes, ingredients, the Nutri-Score, deposits and more with Germanized Pro.', 'woocommerce-germanized' ); ?></p>
                         <p><a class="button button-primary wc-gzd-button" href="https://vendidero.de/woocommerce-germanized" target="_blank"><?php _e( 'Upgrade now', 'woocommerce-germanized' ); ?></a></p>
                     </div>
                 </div>

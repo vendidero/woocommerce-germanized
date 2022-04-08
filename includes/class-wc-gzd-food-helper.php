@@ -30,9 +30,9 @@ class WC_GZD_Food_Helper {
 			'ingredients'          => __( 'Ingredients', 'woocommerce-germanized' ),
 			'nutrients'            => __( 'Nutrients', 'woocommerce-germanized' ),
 			'allergenic'           => __( 'Allergenic', 'woocommerce-germanized' ),
-			'food_description'     => __( 'Food Description', 'woocommerce-germanized' ),
-			'food_distributor'     => __( 'Food Distributor', 'woocommerce-germanized' ),
-			'food_place_of_origin' => __( 'Food Place of origin', 'woocommerce-germanized' ),
+			'food_description'     => _x( 'Description', 'food', 'woocommerce-germanized' ),
+			'food_distributor'     => _x( 'Distributor', 'food', 'woocommerce-germanized' ),
+			'food_place_of_origin' => _x( 'Place of origin', 'food', 'woocommerce-germanized' ),
 			'alcohol_content'      => __( 'Alcohol content', 'woocommerce-germanized' ),
 			'drained_weight'       => __( 'Drained weight', 'woocommerce-germanized' ),
 			'net_filling_quantity' => __( 'Net filling quantity', 'woocommerce-germanized' ),
@@ -42,9 +42,9 @@ class WC_GZD_Food_Helper {
 
 	public static function get_nutrient_types() {
 		return apply_filters( 'woocommerce_gzd_nutrient_types', array(
-			'numeric'  => __( 'Numeric', 'woocommerce-germanized' ),
-			'vitamins' => __( 'Vitamins & Minerals', 'woocommerce-germanized' ),
-			'title'    => __( 'Title', 'woocommerce-germanized' ),
+			'numeric'  => _x( 'Numeric', 'food-type', 'woocommerce-germanized' ),
+			'vitamins' => _x( 'Vitamins & Minerals', 'food-type', 'woocommerce-germanized' ),
+			'title'    => _x( 'Title', 'food-type', 'woocommerce-germanized' ),
 		) );
 	}
 

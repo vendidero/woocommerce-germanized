@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 class WC_GZD_Elementor_Widget_Product_Nutri_Score extends WC_GZD_Elementor_Widget {
 
 	public function get_title_raw() {
-		return __( 'Nutri Score', 'woocommerce-germanized' );
+		return __( 'Nutri-Score', 'woocommerce-germanized' );
 	}
 
 	public function get_postfix() {

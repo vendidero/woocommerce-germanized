@@ -249,7 +249,7 @@ class WC_GZD_Post_Types {
 					'edit_item'         => __( 'Edit Nutrient', 'woocommerce-germanized' ),
 					'update_item'       => __( 'Update Nutrient', 'woocommerce-germanized' ),
 					'add_new_item'      => __( 'Add New Nutrient', 'woocommerce-germanized' ),
-					'new_item_name'     => __( 'New Deposit Nutrient Name', 'woocommerce-germanized' )
+					'new_item_name'     => __( 'New Nutrient Name', 'woocommerce-germanized' )
 				),
 				'show_ui'               => WC_germanized()->is_pro() ? true : false,
 				'query_var'             => true,
@@ -289,11 +289,11 @@ class WC_GZD_Post_Types {
 				'label'                 => __( 'Product Allergenic', 'woocommerce-germanized' ),
 				'labels'                => array(
 					'name'          => __( 'Product Allergenic', 'woocommerce-germanized' ),
-					'singular_name' => __( 'Product Allergenic', 'woocommerce-germanized' ),
+					'singular_name' => __( 'Product Allergen', 'woocommerce-germanized' ),
 					'menu_name'     => _x( 'Allergenic', 'Admin menu name', 'woocommerce-germanized' ),
 					'search_items'  => __( 'Search Allergenic', 'woocommerce-germanized' ),
 					'all_items'     => __( 'All Allergenic', 'woocommerce-germanized' ),
-					'edit_item'     => __( 'Edit Allergenic', 'woocommerce-germanized' ),
+					'edit_item'     => __( 'Edit Allergen', 'woocommerce-germanized' ),
 					'update_item'   => __( 'Update Allergen', 'woocommerce-germanized' ),
 					'add_new_item'  => __( 'Add New Allergen', 'woocommerce-germanized' ),
 					'new_item_name' => __( 'New Allergen Name', 'woocommerce-germanized' )
