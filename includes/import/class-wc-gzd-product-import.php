@@ -35,19 +35,15 @@ class WC_GZD_Product_Import {
 	}
 
 	public function __construct() {
-		add_action( 'admin_init', array( $this, 'init' ), 30 );
-	}
-
-	public function get_columns() {
-		return WC_GZD_Product_Export::instance()->get_columns();
-	}
-
-	public function init() {
 		add_filter( 'woocommerce_csv_product_import_mapping_options', array( $this, 'set_columns' ), 10, 2 );
 		add_filter( 'woocommerce_csv_product_import_mapping_default_columns', array( $this, 'set_mappings' ), 10 );
 		add_filter( 'woocommerce_csv_product_import_mapping_special_columns', array( $this, 'set_special_columns' ), 10 );
 		add_filter( 'woocommerce_product_import_pre_insert_product_object', array( $this, 'import' ), 10, 2 );
 		add_filter( 'woocommerce_product_importer_parsed_data', array( $this, 'parse_data' ), 10, 1 );
+	}
+
+	public function get_columns() {
+		return WC_GZD_Product_Export::instance()->get_columns();
 	}
 
 	public function set_special_columns( $columns ) {
