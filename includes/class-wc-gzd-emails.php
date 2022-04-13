@@ -589,6 +589,22 @@ class WC_GZD_Emails {
 			$this,
 			'save_confirmation_text_option'
 		) );
+
+		add_action( 'woocommerce_order_status_pending_to_processing_notification', array( $this, 'send_manual_order_confirmation' ), 10 );
+		add_action( 'woocommerce_order_status_pending_to_completed_notification', array( $this, 'send_manual_order_confirmation' ), 10 );
+		add_action( 'woocommerce_order_status_pending_to_on-hold_notification', array( $this, 'send_manual_order_confirmation' ), 10 );
+	}
+
+	public function send_manual_order_confirmation( $order_id ) {
+		if ( ! wc_gzd_send_instant_order_confirmation() ) {
+			return;
+		}
+
+		if ( $order = wc_get_order( $order_id ) ) {
+			if ( 'admin' === $order->get_created_via() && apply_filters( 'woocommerce_gzd_send_order_confirmation_for_manual_order', true, $order_id ) ) {
+				$this->confirm_order( $order );
+			}
+		}
 	}
 
 	public function email_hooks( $mailer ) {
