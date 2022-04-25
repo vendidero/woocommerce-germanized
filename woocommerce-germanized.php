@@ -759,11 +759,6 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 			    wp_enqueue_script( 'wc-gzd-add-to-cart-variation' );
             }
 
-			// Check for Theme overrides
-			$theme_template = locate_template( array(
-				trailingslashit( $template_path ) . $template_name,
-			) );
-
 			/**
 			 * Filters the template name.
 			 *
@@ -775,19 +770,26 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 			$template_name = apply_filters( 'woocommerce_gzd_template_name', $template_name );
 
 			/** This filter is documented in woocommerce-germanized.php */
-			if ( ! $theme_template && file_exists( apply_filters( 'woocommerce_gzd_default_plugin_template', $this->plugin_path() . '/templates/' . $template_name, $template_name ) ) ) {
-				/**
-				 * Filter the default plugin template file.
-				 *
-				 * This file is being loaded as a default template if no theme template was found.
-				 *
-				 * @since 1.0.0
-				 *
-				 * @params string $path The absolute path to the template.
-				 */
-				$template = apply_filters( 'woocommerce_gzd_default_plugin_template', $this->plugin_path() . '/templates/' . $template_name, $template_name );
-			} elseif ( $theme_template ) {
-				$template = $theme_template;
+			if ( file_exists( apply_filters( 'woocommerce_gzd_default_plugin_template', $this->plugin_path() . '/templates/' . $template_name, $template_name ) ) ) {
+				// Check for Theme overrides
+				$theme_template = locate_template( array(
+					trailingslashit( $template_path ) . $template_name,
+				) );
+
+                if ( ! $theme_template ) {
+	                /**
+	                 * Filter the default plugin template file.
+	                 *
+	                 * This file is being loaded as a default template if no theme template was found.
+	                 *
+	                 * @since 1.0.0
+	                 *
+	                 * @params string $path The absolute path to the template.
+	                 */
+	                $template = apply_filters( 'woocommerce_gzd_default_plugin_template', $this->plugin_path() . '/templates/' . $template_name, $template_name );
+                } else {
+	                $template = $theme_template;
+                }
 			}
 
 			/**
