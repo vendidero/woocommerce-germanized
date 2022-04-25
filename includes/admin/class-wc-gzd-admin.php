@@ -818,8 +818,9 @@ class WC_GZD_Admin {
 
 	public function is_complaints_shortcode_inserted( $page_id ) {
 		$post = get_post( $page_id );
+
 		if ( $post ) {
-			return ( strpos( $post->post_content, '[gzd_complaints' ) !== false ? true : false );
+			return wc_gzd_content_has_shortcode( $post->post_content, 'gzd_complaints' );
 		}
 
 		return false;
@@ -830,23 +831,7 @@ class WC_GZD_Admin {
 			return;
 		}
 
-		$page = get_post( $page_id );
-
-        if ( function_exists( 'has_blocks' ) && has_blocks( $page_id ) ) {
-	        wp_update_post(
-		        array(
-			        'ID'           => $page_id,
-			        'post_content' => $page->post_content . "\n" . "<!-- wp:shortcode -->\n" . " [gzd_complaints] " . "\n  <!-- /wp:shortcode -->",
-		        )
-	        );
-        } else {
-	        wp_update_post(
-		        array(
-			        'ID'           => $page_id,
-			        'post_content' => $page->post_content . "\n[gzd_complaints]",
-		        )
-	        );
-        }
+		wc_gzd_update_page_content( $page_id, '[gzd_complaints]' );
 	}
 
 	protected function check_encryption_key_insert() {

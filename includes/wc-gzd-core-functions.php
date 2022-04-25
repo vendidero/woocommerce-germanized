@@ -1299,6 +1299,52 @@ function wc_gzd_get_cart_defect_descriptions( $items = false ) {
 	}
 }
 
+function wc_gzd_update_page_content( $page_id, $content, $append = true ) {
+	$page = get_post( $page_id );
+
+	if ( $page ) {
+		$is_shortcode    = preg_match( '/^\[[a-z]+(?:_[a-z]+)*]$/m', $content ) > 0;
+		$current_content = $append ? $page->post_content . "\n" : '';
+		$new_content     = $current_content . wp_kses_post( $content );
+
+		if ( function_exists( 'has_blocks' ) && has_blocks( $page_id ) ) {
+			if ( $is_shortcode ) {
+				$new_content = $current_content . "<!-- wp:shortcode -->\n" . " " . esc_html( $content ) . " " . "\n  <!-- /wp:shortcode -->";
+			} else {
+				$new_content = $current_content . wp_kses_post( $content );
+			}
+		}
+
+		wp_update_post(
+			array(
+				'ID'           => $page_id,
+				'post_content' => apply_filters( "woocommerce_gzd_update_page_content", $new_content, $page_id, $content, $page->post_content, $append, $is_shortcode ),
+			)
+		);
+	}
+}
+
+function wc_gzd_content_has_shortcode( $content, $shortcode ) {
+	global $shortcode_tags;
+
+	$shortcode_exists = shortcode_exists( $shortcode );
+
+	/**
+	 * Temporarily register the shortcode to enable finding non-registered shortcodes too.
+	 */
+	if ( ! $shortcode_exists ) {
+		$shortcode_tags[ $shortcode ] = '__return_false';
+	}
+
+	$has_shortcode = has_shortcode( $content, $shortcode );
+
+	if ( ! $shortcode_exists ) {
+		unset( $shortcode_tags[ $shortcode ] );
+	}
+
+	return $has_shortcode;
+}
+
 function wc_gzd_print_item_defect_descriptions( $descriptions, $echo = false ) {
 	$strings = array();
 

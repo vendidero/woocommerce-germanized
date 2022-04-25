@@ -33,6 +33,20 @@ class WC_GZD_Compatibility_ET_Builder extends WC_GZD_Compatibility {
 	}
 
 	public function load() {
+		add_filter( "woocommerce_gzd_update_page_content", function( $new_page_content, $page_id, $content, $original_content, $append, $is_shortcode ) {
+			if ( $append && wc_gzd_content_has_shortcode( $original_content, 'et_pb_section' ) ) {
+				$shortcode_to_replace = 'et_pb_section';
+
+				if ( wc_gzd_content_has_shortcode( $original_content, 'et_pb_column' ) ) {
+					$shortcode_to_replace = 'et_pb_column';
+				}
+
+				$new_page_content = preg_replace( '/\[\/' . $shortcode_to_replace . ']/', '[et_pb_text _module_preset="default"]' . wpautop( $content ) . '[/et_pb_text][/' . $shortcode_to_replace . ']', $original_content, 1 );
+			}
+
+			return $new_page_content;
+		}, 10, 6 );
+
 		/**
 		 * Disable empty price HTML shopmark check during builder requests to prevent incompatibilities from being
          * triggered by Germanized.
