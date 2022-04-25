@@ -7,9 +7,9 @@
  * Author: vendidero
  * Author URI: https://vendidero.de
  * Requires at least: 5.4
- * Tested up to: 5.9
+ * Tested up to: 6.0
  * WC requires at least: 3.9
- * WC tested up to: 6.4
+ * WC tested up to: 6.5
  *
  * Text Domain: woocommerce-germanized
  * Domain Path: /i18n/languages/
