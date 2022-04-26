@@ -31,7 +31,9 @@ class WC_GZD_Payment_Gateways {
 
 		// Init gateway fields
 		add_action( 'woocommerce_settings_checkout', array( $this, 'init_fields' ), 0 );
-		add_action( 'woocommerce_after_calculate_totals', array( $this, 'checkout' ) );
+
+		// Use a lower priority to prevent infinite loops with gateway plugins which use the same hook to detect availability
+		add_action( 'woocommerce_after_calculate_totals', array( $this, 'checkout' ), 5 );
 
 		add_action( 'woocommerce_cart_calculate_fees', array( $this, 'init_fee' ), 0 );
 		add_filter( 'woocommerce_thankyou_order_received_text', array( $this, 'remove_paypal_filter' ), 5, 2 );
