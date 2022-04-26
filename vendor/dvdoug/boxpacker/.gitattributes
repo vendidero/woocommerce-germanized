@@ -1,6 +1,0 @@
-# Auto detect text files and perform LF normalization
-* text=auto eol=lf
-
-*.pdf -text
-*.PDF -text
-*.xlsx -text
