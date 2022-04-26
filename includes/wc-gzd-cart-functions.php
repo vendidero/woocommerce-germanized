@@ -392,10 +392,13 @@ function wc_gzd_cart_product_unit_price( $price, $cart_item, $cart_item_key = ''
                     $quantity = 1;
                 }
 
+	            $cart_subtotal     = \Vendidero\Germanized\Utilities\NumberUtil::round( $cart_item['line_subtotal'], wc_get_price_decimals() );
+                $cart_subtotal_tax = wc_round_tax_total( $cart_item['line_subtotal_tax'] );
+
 	            if ( WC()->cart->display_prices_including_tax() ) {
-		            $total = ( $cart_item['line_subtotal'] + $cart_item['line_subtotal_tax'] ) / $quantity;
+		            $total = ( $cart_subtotal + $cart_subtotal_tax ) / $quantity;
 	            } else {
-		            $total = $cart_item['line_subtotal'] / $quantity;
+		            $total = $cart_subtotal / $quantity;
 	            }
 
 	            $prices = wc_gzd_recalculate_unit_price( array(
