@@ -158,7 +158,7 @@ class WC_GZD_Admin_Order {
 	 * @param $for
 	 */
 	public function adjust_item_taxes( $item ) {
-		if ( ! wc_tax_enabled() || $item->get_total() <= 0 || ! in_array( $item->get_type(), array( 'fee', 'shipping' ) ) ) {
+		if ( ! wc_tax_enabled() || $item->get_total() <= 0 || ! in_array( $item->get_type(), array( 'fee', 'shipping' ) ) || apply_filters( 'woocommerce_gzd_skip_order_item_split_tax_calculation', false, $item ) ) {
 			return;
 		}
 

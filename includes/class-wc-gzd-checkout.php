@@ -933,7 +933,7 @@ class WC_GZD_Checkout {
 		$calculate_taxes = wc_tax_enabled();
 
 		// Do not calculate tax shares if tax calculation is disabled
-		if ( ! $calculate_taxes ) {
+		if ( ! $calculate_taxes || apply_filters( 'woocommerce_gzd_skip_fee_split_tax_calculation', false, $fee ) ) {
 			return $fee_taxes;
 		}
 

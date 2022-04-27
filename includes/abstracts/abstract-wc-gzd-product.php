@@ -319,14 +319,22 @@ class WC_GZD_Product {
 	 * @return string formatted deposit amount
 	 */
 	public function get_deposit_amount( $context = 'view', $tax_display = '' ) {
-		$quantity = 1;
-		$price    = $this->get_deposit_amount_per_unit( $context, $tax_display );
+		$tax_display_mode = $tax_display ? $tax_display : get_option( 'woocommerce_tax_display_shop' );
+		$quantity         = 1;
+
+		// Use the raw deposit amount and calculate taxes for the total deposit amount, not per unit
+		$price = $this->get_deposit_amount_per_unit( 'edit', $tax_display );
 
 		if ( $this->get_deposit_quantity() > 1 ) {
 			$quantity = $this->get_deposit_quantity();
 		}
 
 		$amount = (float) $price * (float) $quantity;
+
+		// Calculate taxes
+		if ( 'view' === $context && $amount > 0 ) {
+			$amount = ( 'incl' === $tax_display_mode ) ? $this->get_deposit_amount_including_tax( 1, $amount ) : $this->get_deposit_amount_excluding_tax( 1, $amount );
+		}
 
 		return apply_filters( "woocommerce_gzd_product_deposit_amount", $amount, $quantity, $this, $context, $tax_display );
 	}

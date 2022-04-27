@@ -28,7 +28,21 @@ class WC_GZD_Order_Item_Product extends WC_GZD_Order_Item {
 		return $this->order_item->get_meta( '_deposit_type', true );
 	}
 
-	public function get_deposit_amount() {
+	public function get_deposit_net_amount() {
+		$amount = $this->order_item->get_meta( '_deposit_net_amount', true );
+
+		if ( '' === $amount ) {
+			$amount = wc_format_decimal( 0 );
+		}
+
+		return $amount;
+	}
+
+	public function get_deposit_amount( $incl_tax = false ) {
+		if ( false === $incl_tax ) {
+			return $this->get_deposit_net_amount();
+		}
+
 		$amount = $this->order_item->get_meta( '_deposit_amount', true );
 
 		if ( '' === $amount ) {
@@ -38,20 +52,21 @@ class WC_GZD_Order_Item_Product extends WC_GZD_Order_Item {
 		return $amount;
 	}
 
-	public function get_deposit_amount_html() {
-		$args = array();
+	public function get_deposit_amount_html( $tax_display = '' ) {
+		$args        = array();
+		$tax_display = $tax_display ? $tax_display : get_option( 'woocommerce_tax_display_cart' );
 
 		if ( $order = $this->get_order_item()->get_order() ) {
 			$args['currency'] = $order->get_currency();
 		}
 
-		$price_html = wc_price( $this->get_deposit_amount(), $args );
+		$price_html = wc_price( $this->get_deposit_amount( 'incl' === $tax_display ? true : false  ), $args );
 
 		return wc_gzd_format_deposit_amount( $price_html, array(
 			'type'            => $this->get_deposit_type(),
 			'quantity'        => $this->get_deposit_quantity(),
 			'packaging_type'  => $this->get_deposit_packaging_type(),
-			'amount_per_unit' => $this->get_deposit_amount_per_unit(),
+			'amount_per_unit' => $this->get_deposit_amount_per_unit( 'incl' === $tax_display ? true : false ),
 		) );
 	}
 
@@ -87,7 +102,21 @@ class WC_GZD_Order_Item_Product extends WC_GZD_Order_Item {
 		return apply_filters( 'woocommerce_gzd_order_item_product_deposit_packaging_type_title', $returnable_type_title, $this );
 	}
 
-	public function get_deposit_amount_per_unit() {
+	public function get_deposit_net_amount_per_unit() {
+		$amount = $this->order_item->get_meta( '_deposit_net_amount_per_unit', true );
+
+		if ( '' === $amount ) {
+			$amount = wc_format_decimal( 0 );
+		}
+
+		return $amount;
+	}
+
+	public function get_deposit_amount_per_unit( $incl_tax = false ) {
+		if ( false === $incl_tax ) {
+			return $this->get_deposit_net_amount_per_unit();
+		}
+
 		$amount = $this->order_item->get_meta( '_deposit_amount_per_unit', true );
 
 		if ( '' === $amount ) {
@@ -125,12 +154,20 @@ class WC_GZD_Order_Item_Product extends WC_GZD_Order_Item {
 		$this->order_item->update_meta_data( '_deposit_amount', wc_format_decimal( $amount ) );
 	}
 
+	public function set_deposit_net_amount( $amount ) {
+		$this->order_item->update_meta_data( '_deposit_net_amount', wc_format_decimal( $amount ) );
+	}
+
 	public function set_deposit_quantity( $amount ) {
 		$this->order_item->update_meta_data( '_deposit_quantity', absint( $amount ) );
 	}
 
 	public function set_deposit_amount_per_unit( $amount ) {
 		$this->order_item->update_meta_data( '_deposit_amount_per_unit', wc_format_decimal( $amount ) );
+	}
+
+	public function set_deposit_net_amount_per_unit( $amount ) {
+		$this->order_item->update_meta_data( '_deposit_net_amount_per_unit', wc_format_decimal( $amount ) );
 	}
 
 	public function get_unit_product() {

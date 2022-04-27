@@ -223,8 +223,10 @@ class WC_GZD_Order_Helper {
 		array_push( $metas, '_defect_description' );
 		array_push( $metas, '_deposit_type' );
 		array_push( $metas, '_deposit_amount' );
+		array_push( $metas, '_deposit_net_amount' );
 		array_push( $metas, '_deposit_quantity' );
 		array_push( $metas, '_deposit_amount_per_unit' );
+		array_push( $metas, '_deposit_net_amount_per_unit' );
 		array_push( $metas, '_deposit_packaging_type' );
 
 		return $metas;
@@ -233,8 +235,10 @@ class WC_GZD_Order_Helper {
 	public function refresh_item_data( $item ) {
 		if ( is_a( $item, 'WC_Order_Item_Product' ) && ( $product = $item->get_product() ) ) {
 			if ( $gzd_item = wc_gzd_get_order_item( $item ) ) {
-				$tax_display_mode = get_option( 'woocommerce_tax_display_shop' );
-				$gzd_product      = wc_gzd_get_product( $product );
+				$tax_display_mode   = get_option( 'woocommerce_tax_display_cart' );
+				$gzd_product        = wc_gzd_get_product( $product );
+				$order              = $item->get_order();
+				$prices_include_tax = $order ? $order->get_prices_include_tax() : wc_prices_include_tax();
 
 				$gzd_item->set_unit( $gzd_product->get_unit_name() );
 				$gzd_item->set_unit_base( $gzd_product->get_unit_base() );
@@ -248,9 +252,14 @@ class WC_GZD_Order_Helper {
 				$gzd_item->set_min_age( $gzd_product->get_min_age() );
 
 				$gzd_item->set_deposit_type( $gzd_product->get_deposit_type() );
-				$gzd_item->set_deposit_amount_per_unit( $gzd_product->get_deposit_amount_per_unit() );
+				$gzd_item->set_deposit_amount_per_unit( $gzd_product->get_deposit_amount_per_unit( 'view', 'incl' ) );
+				$gzd_item->set_deposit_net_amount_per_unit( $gzd_product->get_deposit_amount_per_unit( 'view', 'excl' ) );
+
 				$gzd_item->set_deposit_quantity( $gzd_product->get_deposit_quantity() );
-				$gzd_item->set_deposit_amount( $gzd_product->get_deposit_amount( 'view', $tax_display_mode ) );
+
+				$gzd_item->set_deposit_amount( $gzd_product->get_deposit_amount( 'view', 'incl' ) );
+				$gzd_item->set_deposit_net_amount( $gzd_product->get_deposit_amount( 'view', 'excl' ) );
+
 				$gzd_item->set_deposit_packaging_type( $gzd_product->get_deposit_packaging_type() );
 
 				/**
