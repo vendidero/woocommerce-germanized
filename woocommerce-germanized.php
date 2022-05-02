@@ -1000,8 +1000,9 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 			$color      = ( get_option( 'woocommerce_gzd_display_checkout_table_color' ) ? get_option( 'woocommerce_gzd_display_checkout_table_color' ) : '#eee' );
 			$custom_css = ".woocommerce-checkout .shop_table { background-color: $color; }";
 
-            $deposit_packaging_type_font_size = esc_html( ( get_option( 'woocommerce_gzd_deposit_packaging_type_font_size' ) ? get_option( 'woocommerce_gzd_deposit_packaging_type_font_size' ) : '1.2em' ) );
-			$custom_css .= ".product p.deposit-packaging-type { font-size: $deposit_packaging_type_font_size !important; }";
+            $deposit_packaging_type_font_size        = esc_html( ( get_option( 'woocommerce_gzd_deposit_packaging_type_font_size' ) ? wc_format_decimal( get_option( 'woocommerce_gzd_deposit_packaging_type_font_size' ) ) : '1.25' ) );
+            $deposit_packaging_type_font_size_string = apply_filters( "woocommerce_gzd_deposit_packaging_type_font_size_css", $deposit_packaging_type_font_size . 'em !important' );
+			$custom_css .= ".product p.deposit-packaging-type { font-size: {$deposit_packaging_type_font_size_string}; }";
 
 			if ( 'yes' === get_option( 'woocommerce_gzd_display_hide_cart_tax_estimated' ) ) {
 				$custom_css .= " p.woocommerce-shipping-destination { display: none; }";

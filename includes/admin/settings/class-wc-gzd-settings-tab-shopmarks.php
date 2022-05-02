@@ -616,12 +616,13 @@ class WC_GZD_Settings_Tab_Shopmarks extends WC_GZD_Settings_Tab {
 				),
 				array(
 					'title'    => __( 'Packaging Font Size', 'woocommerce-germanized' ),
-					'desc'     => '<div class="wc-gzd-additional-desc">' . sprintf( __( 'Adjust the packaging type title font size which must <a href="%s" target="_blank">at least correspond to the price labeling</a> for the respective product.', 'woocommerce-germanized' ), 'https://www.it-recht-kanzlei.de/hinweispflichten-einweg-mehrweg-getraenkeverpackungen.html' ) . '</div>',
+					'desc'     => '<span class="unit">em</span><div class="wc-gzd-additional-desc">' . sprintf( __( 'Adjust the packaging type title font size which must <a href="%s" target="_blank">at least correspond to the price labeling</a> for the respective product.', 'woocommerce-germanized' ), 'https://www.it-recht-kanzlei.de/hinweispflichten-einweg-mehrweg-getraenkeverpackungen.html' ) . '</div>',
 					'desc_tip' => false,
 					'id'       => 'woocommerce_gzd_deposit_packaging_type_font_size',
-					'type'     => 'text',
+					'type'     => 'number',
 					'css'      => 'max-width: 100px',
-					'default'  => '1.2em',
+					'custom_attributes' => array( 'min' => 0, 'step' => 0.01 ),
+					'default'  => '1.25',
 				),
 			) ) );
 
