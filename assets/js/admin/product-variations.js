@@ -44,6 +44,7 @@ jQuery( function ( $ ) {
                 $( 'button.cancel-variation-changes, button.save-variation-changes', wrapper ).attr( 'disabled', 'disabled' );
             }
 
+            $( document.body ).trigger( 'wc-gzd-refresh-unit-placeholder' );
             $( document.body ).trigger( 'wc-gzd-show-hide-panels' );
         },
 

@@ -12,6 +12,8 @@ jQuery( function ( $ ) {
                 .on( 'click', '.upload_warranty_button', self.onUploadWarranty )
                 .on( 'click', 'a.wc-gzd-warranty-delete', self.onRemoveWarranty )
                 .on( 'woocommerce-product-type-change wc-gzd-product-type-change', self.onProductTypeChange )
+                .on( 'wc-gzd-refresh-unit-placeholder', self.onRefreshProductUnitPlaceholder )
+                .on( 'change', ':input#_unit', self.onChangeUnit )
                 .on( 'wc-gzd-show-hide-panels', self.showHidePanels );
 
             try {
@@ -28,6 +30,20 @@ jQuery( function ( $ ) {
             $( 'input#_defective_copy' ).trigger( 'change' );
 
             $( '#the-list' ).on('click', '.editinline', self.onQuickEdit );
+        },
+
+        onRefreshProductUnitPlaceholder: function() {
+            var $selected = $( ':input#_unit' ).find( ":selected" );
+
+            if ( $selected.length > 0 ) {
+                $( '.wc-gzd-unit-placeholder' ).text( $selected.text() );
+            } else {
+                $( '.wc-gzd-unit-placeholder' ).text( '' );
+            }
+        },
+
+        onChangeUnit: function() {
+            $( document.body ).trigger( 'wc-gzd-refresh-unit-placeholder' );
         },
 
         onEnhancedSelectInit: function() {
@@ -70,8 +86,6 @@ jQuery( function ( $ ) {
 
             var hide_classes = '.hide_if_is_food, .hide_if_defective_copy';
             var show_classes = '.show_if_is_food, .show_if_defective_copy';
-
-            console.log('show or hide');
 
             $( hide_classes ).show();
             $( show_classes ).hide();
