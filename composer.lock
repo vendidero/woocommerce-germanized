@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f31f402cb5cd99ea1cfd2451bb020399",
+    "content-hash": "f3f70ca84cf07890301cb8e5e73f611f",
     "packages": [
         {
             "name": "automattic/jetpack-autoloader",
@@ -315,16 +315,16 @@
         },
         {
             "name": "digitick/sepa-xml",
-            "version": "2.1.0",
+            "version": "2.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-sepa-xml/php-sepa-xml.git",
-                "reference": "0f66774120139555a6a1f532cb30870898004119"
+                "reference": "cfab29eefd13a4d94d495bd79bad15fc322c1f47"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-sepa-xml/php-sepa-xml/zipball/0f66774120139555a6a1f532cb30870898004119",
-                "reference": "0f66774120139555a6a1f532cb30870898004119",
+                "url": "https://api.github.com/repos/php-sepa-xml/php-sepa-xml/zipball/cfab29eefd13a4d94d495bd79bad15fc322c1f47",
+                "reference": "cfab29eefd13a4d94d495bd79bad15fc322c1f47",
                 "shasum": ""
             },
             "require": {
@@ -365,9 +365,9 @@
             ],
             "support": {
                 "issues": "https://github.com/php-sepa-xml/php-sepa-xml/issues",
-                "source": "https://github.com/php-sepa-xml/php-sepa-xml/tree/2.1.0"
+                "source": "https://github.com/php-sepa-xml/php-sepa-xml/tree/2.1.1"
             },
-            "time": "2021-05-20T13:47:04+00:00"
+            "time": "2022-03-11T13:41:21+00:00"
         },
         {
             "name": "dvdoug/boxpacker",
@@ -474,28 +474,29 @@
         },
         {
             "name": "myclabs/deep-copy",
-            "version": "1.10.2",
+            "version": "1.11.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/myclabs/DeepCopy.git",
-                "reference": "776f831124e9c62e1a2c601ecc52e776d8bb7220"
+                "reference": "14daed4296fae74d9e3201d2c4925d1acb7aa614"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/myclabs/DeepCopy/zipball/776f831124e9c62e1a2c601ecc52e776d8bb7220",
-                "reference": "776f831124e9c62e1a2c601ecc52e776d8bb7220",
+                "url": "https://api.github.com/repos/myclabs/DeepCopy/zipball/14daed4296fae74d9e3201d2c4925d1acb7aa614",
+                "reference": "14daed4296fae74d9e3201d2c4925d1acb7aa614",
                 "shasum": ""
             },
             "require": {
                 "php": "^7.1 || ^8.0"
             },
-            "replace": {
-                "myclabs/deep-copy": "self.version"
+            "conflict": {
+                "doctrine/collections": "<1.6.8",
+                "doctrine/common": "<2.13.3 || >=3,<3.2.2"
             },
             "require-dev": {
-                "doctrine/collections": "^1.0",
-                "doctrine/common": "^2.6",
-                "phpunit/phpunit": "^7.1"
+                "doctrine/collections": "^1.6.8",
+                "doctrine/common": "^2.13.3 || ^3.2.2",
+                "phpunit/phpunit": "^7.5.20 || ^8.5.23 || ^9.5.13"
             },
             "type": "library",
             "autoload": {
@@ -520,7 +521,7 @@
             ],
             "support": {
                 "issues": "https://github.com/myclabs/DeepCopy/issues",
-                "source": "https://github.com/myclabs/DeepCopy/tree/1.10.2"
+                "source": "https://github.com/myclabs/DeepCopy/tree/1.11.0"
             },
             "funding": [
                 {
@@ -528,7 +529,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-11-13T09:40:50+00:00"
+            "time": "2022-03-03T13:19:32+00:00"
         },
         {
             "name": "paragonie/random_compat",
@@ -750,16 +751,16 @@
         },
         {
             "name": "vendidero/one-stop-shop-woocommerce",
-            "version": "v1.2.0",
+            "version": "v1.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vendidero/one-stop-shop-woocommerce.git",
-                "reference": "e5fd7e3f05937a9b967531143d8ebf30f6ee78d3"
+                "reference": "31d4c0826ba2e9ae433ad39a91d260ab5f7e299f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vendidero/one-stop-shop-woocommerce/zipball/e5fd7e3f05937a9b967531143d8ebf30f6ee78d3",
-                "reference": "e5fd7e3f05937a9b967531143d8ebf30f6ee78d3",
+                "url": "https://api.github.com/repos/vendidero/one-stop-shop-woocommerce/zipball/31d4c0826ba2e9ae433ad39a91d260ab5f7e299f",
+                "reference": "31d4c0826ba2e9ae433ad39a91d260ab5f7e299f",
                 "shasum": ""
             },
             "require": {
@@ -788,23 +789,23 @@
             "description": "One Stop Shop Helper for WooCommerce",
             "homepage": "https://github.com/vendidero/one-stop-shop-woocommerce",
             "support": {
-                "source": "https://github.com/vendidero/one-stop-shop-woocommerce/tree/v1.2.0",
+                "source": "https://github.com/vendidero/one-stop-shop-woocommerce/tree/v1.2.1",
                 "issues": "https://github.com/vendidero/one-stop-shop-woocommerce/issues"
             },
-            "time": "2022-02-21T12:00:19+00:00"
+            "time": "2022-04-13T10:03:13+00:00"
         },
         {
             "name": "vendidero/woocommerce-germanized-dhl",
-            "version": "v1.6.9",
+            "version": "v1.6.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vendidero/woocommerce-germanized-dhl.git",
-                "reference": "2b87aaa89b42441f25e4cbd3777e29476aff32de"
+                "reference": "158f608a4ef3a1fc8dfae7f5dccd864c9833cb91"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vendidero/woocommerce-germanized-dhl/zipball/2b87aaa89b42441f25e4cbd3777e29476aff32de",
-                "reference": "2b87aaa89b42441f25e4cbd3777e29476aff32de",
+                "url": "https://api.github.com/repos/vendidero/woocommerce-germanized-dhl/zipball/158f608a4ef3a1fc8dfae7f5dccd864c9833cb91",
+                "reference": "158f608a4ef3a1fc8dfae7f5dccd864c9833cb91",
                 "shasum": ""
             },
             "require": {
@@ -839,23 +840,23 @@
             "description": "The Germanized DHL implementation.",
             "homepage": "https://github.com/vendidero/woocommerce-germanized-dhl",
             "support": {
-                "source": "https://github.com/vendidero/woocommerce-germanized-dhl/tree/v1.6.9",
+                "source": "https://github.com/vendidero/woocommerce-germanized-dhl/tree/v1.6.11",
                 "issues": "https://github.com/vendidero/woocommerce-germanized-dhl/issues"
             },
-            "time": "2022-02-24T10:29:12+00:00"
+            "time": "2022-05-02T08:39:46+00:00"
         },
         {
             "name": "vendidero/woocommerce-germanized-shipments",
-            "version": "v1.6.7",
+            "version": "v1.6.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vendidero/woocommerce-germanized-shipments.git",
-                "reference": "21beacc0ef8b915446c0e26e3547143d28f4bf13"
+                "reference": "057067cf3a6bdeaa19348f0d7790479660e62381"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vendidero/woocommerce-germanized-shipments/zipball/21beacc0ef8b915446c0e26e3547143d28f4bf13",
-                "reference": "21beacc0ef8b915446c0e26e3547143d28f4bf13",
+                "url": "https://api.github.com/repos/vendidero/woocommerce-germanized-shipments/zipball/057067cf3a6bdeaa19348f0d7790479660e62381",
+                "reference": "057067cf3a6bdeaa19348f0d7790479660e62381",
                 "shasum": ""
             },
             "require": {
@@ -888,10 +889,10 @@
             "description": "The Germanized Shipments implementation.",
             "homepage": "https://github.com/vendidero/woocommerce-germanized-shipments",
             "support": {
-                "source": "https://github.com/vendidero/woocommerce-germanized-shipments/tree/v1.6.7",
+                "source": "https://github.com/vendidero/woocommerce-germanized-shipments/tree/v1.6.8",
                 "issues": "https://github.com/vendidero/woocommerce-germanized-shipments/issues"
             },
-            "time": "2022-02-24T10:11:22+00:00"
+            "time": "2022-05-02T08:38:19+00:00"
         },
         {
             "name": "vendidero/woocommerce-trusted-shops",
@@ -1014,29 +1015,30 @@
     "packages-dev": [
         {
             "name": "doctrine/instantiator",
-            "version": "1.4.0",
+            "version": "1.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/instantiator.git",
-                "reference": "d56bf6102915de5702778fe20f2de3b2fe570b5b"
+                "reference": "10dcfce151b967d20fde1b34ae6640712c3891bc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/instantiator/zipball/d56bf6102915de5702778fe20f2de3b2fe570b5b",
-                "reference": "d56bf6102915de5702778fe20f2de3b2fe570b5b",
+                "url": "https://api.github.com/repos/doctrine/instantiator/zipball/10dcfce151b967d20fde1b34ae6640712c3891bc",
+                "reference": "10dcfce151b967d20fde1b34ae6640712c3891bc",
                 "shasum": ""
             },
             "require": {
                 "php": "^7.1 || ^8.0"
             },
             "require-dev": {
-                "doctrine/coding-standard": "^8.0",
+                "doctrine/coding-standard": "^9",
                 "ext-pdo": "*",
                 "ext-phar": "*",
-                "phpbench/phpbench": "^0.13 || 1.0.0-alpha2",
-                "phpstan/phpstan": "^0.12",
-                "phpstan/phpstan-phpunit": "^0.12",
-                "phpunit/phpunit": "^7.0 || ^8.0 || ^9.0"
+                "phpbench/phpbench": "^0.16 || ^1",
+                "phpstan/phpstan": "^1.4",
+                "phpstan/phpstan-phpunit": "^1",
+                "phpunit/phpunit": "^7.5 || ^8.5 || ^9.5",
+                "vimeo/psalm": "^4.22"
             },
             "type": "library",
             "autoload": {
@@ -1063,7 +1065,7 @@
             ],
             "support": {
                 "issues": "https://github.com/doctrine/instantiator/issues",
-                "source": "https://github.com/doctrine/instantiator/tree/1.4.0"
+                "source": "https://github.com/doctrine/instantiator/tree/1.4.1"
             },
             "funding": [
                 {
@@ -1079,7 +1081,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-11-10T18:47:58+00:00"
+            "time": "2022-03-03T08:28:38+00:00"
         },
         {
             "name": "phar-io/manifest",
@@ -1303,16 +1305,16 @@
         },
         {
             "name": "phpdocumentor/type-resolver",
-            "version": "1.6.0",
+            "version": "1.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/TypeResolver.git",
-                "reference": "93ebd0014cab80c4ea9f5e297ea48672f1b87706"
+                "reference": "77a32518733312af16a44300404e945338981de3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/TypeResolver/zipball/93ebd0014cab80c4ea9f5e297ea48672f1b87706",
-                "reference": "93ebd0014cab80c4ea9f5e297ea48672f1b87706",
+                "url": "https://api.github.com/repos/phpDocumentor/TypeResolver/zipball/77a32518733312af16a44300404e945338981de3",
+                "reference": "77a32518733312af16a44300404e945338981de3",
                 "shasum": ""
             },
             "require": {
@@ -1347,9 +1349,9 @@
             "description": "A PSR-5 based resolver of Class names, Types and Structural Element Names",
             "support": {
                 "issues": "https://github.com/phpDocumentor/TypeResolver/issues",
-                "source": "https://github.com/phpDocumentor/TypeResolver/tree/1.6.0"
+                "source": "https://github.com/phpDocumentor/TypeResolver/tree/1.6.1"
             },
-            "time": "2022-01-04T19:58:01+00:00"
+            "time": "2022-03-15T21:29:03+00:00"
         },
         {
             "name": "phpspec/prophecy",
@@ -2463,7 +2465,7 @@
         },
         {
             "name": "symfony/polyfill-ctype",
-            "version": "v1.24.0",
+            "version": "v1.25.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-ctype.git",
@@ -2495,12 +2497,12 @@
                 }
             },
             "autoload": {
-                "psr-4": {
-                    "Symfony\\Polyfill\\Ctype\\": ""
-                },
                 "files": [
                     "bootstrap.php"
-                ]
+                ],
+                "psr-4": {
+                    "Symfony\\Polyfill\\Ctype\\": ""
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -2525,7 +2527,7 @@
                 "portable"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-ctype/tree/v1.24.0"
+                "source": "https://github.com/symfony/polyfill-ctype/tree/v1.25.0"
             },
             "funding": [
                 {

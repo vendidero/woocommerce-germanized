@@ -1,15 +1,11 @@
 <?php
 /**
- * WooCommerce GZD Uninstall
+ * Germanized uninstall script
  *
- * Uninstalling WooCommerce Germanized deletes pages, tables, and options.
+ * Uninstalling Germanized deletes pages, tables, and options.
  *
- * @author      WooThemes
- * @category    Core
- * @package     WooCommerce/Uninstaller
- * @version     2.3.0
+ * @author vendidero
  */
-
 if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 	exit;
 }
@@ -51,6 +47,28 @@ if ( defined( 'WC_GZD_REMOVE_ALL_DATA' ) && true === WC_GZD_REMOVE_ALL_DATA ) {
 		'_service',
 		'_used_good',
 		'_defective_copy',
+		'_is_food',
+		'_differential_taxation',
+		'_hs_code',
+		'_gzd_version',
+		'_deposit_type',
+		'_deposit_quantity',
+		'_nutrient_ids',
+		'_nutrient_reference_value',
+		'_allergen_ids',
+		'_ingredients',
+		'_alcohol_content',
+		'_food_distributor',
+		'_food_description',
+		'_food_place_of_origin',
+		'_drained_weight',
+		'_net_filling_quantity',
+		'_nutri_score',
+		'_manufacture_country',
+		'_warranty_attachment_id',
+		'_min_age',
+		'_default_delivery_time',
+		'_delivery_time_countries',
 		'_sale_price_label',
 		'_sale_price_regular_label',
 		'_legal_text',
@@ -71,7 +89,7 @@ if ( defined( 'WC_GZD_REMOVE_ALL_DATA' ) && true === WC_GZD_REMOVE_ALL_DATA ) {
 	// Delete terms if > WP 4.2 (term splitting was added in 4.2)
 	if ( version_compare( $wp_version, '4.2', '>=' ) ) {
 		// Delete term taxonomies
-		foreach ( array( 'product_delivery_time', 'product_unit', 'product_price_label' ) as $taxonomy ) {
+		foreach ( array( 'product_delivery_time', 'product_unit', 'product_price_label', 'product_deposit_type', 'product_nutrient', 'product_allergen' ) as $taxonomy ) {
 			$wpdb->delete(
 				$wpdb->term_taxonomy,
 				array(
@@ -102,6 +120,8 @@ if ( defined( 'WC_GZD_REMOVE_ALL_DATA' ) && true === WC_GZD_REMOVE_ALL_DATA ) {
 		"{$wpdb->prefix}woocommerce_gzd_shipment_itemmeta",
 		"{$wpdb->prefix}woocommerce_gzd_shipments",
 		"{$wpdb->prefix}woocommerce_gzd_shipmentmeta",
+		"{$wpdb->prefix}woocommerce_gzd_shipment_labels",
+		"{$wpdb->prefix}woocommerce_gzd_shipment_labelmeta",
 		"{$wpdb->prefix}woocommerce_gzd_packaging",
 		"{$wpdb->prefix}woocommerce_gzd_packagingmeta",
 		"{$wpdb->prefix}woocommerce_gzd_shipping_provider",

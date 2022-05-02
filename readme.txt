@@ -5,7 +5,7 @@ Requires at least: 5.4
 Tested up to: 6.0
 WC requires at least: 3.9
 WC tested up to: 6.5
-Stable tag: 3.8.4
+Stable tag: 3.9.0
 Requires PHP: 5.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -29,6 +29,7 @@ Furthermore we customized the WooCommerce checkout to make your store meet the b
 * *Terms, Revocation, Privacy Policy* - Display checkboxes within your checkout to make sure customers agree to your conditions.
 * *Legal Checkboxes UI* - Adjust your legal WooCommerce checkboxes (e.g. terms & conditions) through a fluent user interface.
 * *Button Solution* - We adjust your checkout and submit button to comply with german button solution.
+* *Sell Food (Pro)* - Label your food (nutrients, ingredients, allergenic), sell deposit bottles, show the Nutri-Score.
 * *OSS compliance* - Germanized helps your WooCommerce shop to be compliant with the new One Stop Shop procedure
 * *Double opt-in (DOI) for Customers* - Make sure customers opted in while registering within your shop. Optionally disable checkout until the customer opted in.
 * *Tax Calculation for Shipping Costs and Fees* - Enable split tax calculation based on your WooCommerce cart taxes.
@@ -208,6 +209,22 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 6. Edit pdf documents (Pro)
 
 == Changelog ==
+= 3.9.0 =
+* Feature: WP 6.0 compatibility
+* Feature: Sell food in a legally secure way (Pro)
+* Improvement: Store vouchers as fees to allow mixing vouchers and discounts in cart
+* Improvement: Hide the state field for Germany (which was introduced in Woo 6.3)
+* Improvement: Use Woo-like data-attributes for variation script
+* Improvement: New, separate shopmark templates for product loops
+* Improvement: Send order confirmation for manually created orders
+* Improvement: Import/Export handling during cron requests
+* Fix: WPML delivery times (per country) translation
+* Fix: Unit price cart calculation rounding
+
+= 3.8.5 =
+* Improvement: Updated DHL signup links
+* Improvement: Updated to latest OSS version
+
 = 3.8.4 =
 * Improvement: Added formatted customer title to REST API
 * Improvement: Variation price detection

@@ -137,25 +137,31 @@ class WC_GZD_Admin_Welcome {
             </p>
 
             <div class="changelog new-feature">
-                <h3>Achtung: Neues Kaufrecht ab 01.01.2022</h3>
+                <h3>Neu: Verkaufe Lebensmittel rechtssicher <span class="wc-gzd-pro wc-gzd-pro-outlined">pro</span></h3>
 
-                <div>
-                    <p>
-                        Ab dem 01.01.2022 gilt ein <a href="https://www.ihk-muenchen.de/de/Service/Recht-und-Steuern/Vertragsrecht/Kaufrecht-2022/">neues Kaufrecht</a>. Insbesondere Verkäufer von Gebraucht- und/oder Mängelexemplaren sind davon betroffen.
-                        Aus diesem Grund haben wir in Germanized 3.8 neue Funktionalitäten integriert, die es dir erlauben, deine Produkte sowohl als Gebrauchtware wie als Ware mit Mängeln zu markieren. Die Mängel kannst du in einer eigens dafür zur Verfügung
-                        stehenden Mängelbeschreibung erläutern. Über die <a href="https://vendidero.de/dokument/preisauszeichnungen-anpassen" target="_blank">Preisauszeichnungen</a> kannst du die Ausgabe der Beschreibung wie gewohnt steuern. Zudem haben wir <a href="<?php echo esc_url( admin_url( 'admin.php?page=wc-settings&tab=germanized-checkboxes' ) ); ?>" target="_blank">neue Checkboxen</a> registriert, die ihr nutzen könnt um eure Kunden über Mängel vor dem Kauf zu informieren
-                        und/oder die Gewährleistungsfrist zu verkürzen. Zum Versand von Produktgarantien <a href="<?php echo esc_url( admin_url( 'admin.php?page=wc-settings&tab=germanized-emails' ) ); ?>" target="_blank">per E-Mail</a> haben wir ein entsprechendes Produktfeld hinzugefügt.
-                    </p>
+                <div class="columns two-col">
+                    <div class="col">
+                        <p>
+                            Mit Germanized Pro verkaufst du nun auch Lebensmittel rechtssicher online. Neben der Lebensmittelkennzeichnung (Nährwerte, Zutaten, Allergene, weitere Pflichtinformationen)
+                            kannst du mit Germanized auch den Nutri-Score für deine Lebensmittel anzeigen. Auch dem Thema Pfand haben wir uns intensiv gewidmet. Mit Germanized Pro
+                            kannst du nun auch Getränke verkaufen und den Pfand einfach und verlässlich abrechnen. In diesem Fall kümmert sich Germanized auch um die spezielle Kennzeichnung von Mehrweg- bzw. Einweg.
+                        </p>
 
-                    <div class="wc-gzd-actions">
-                        <a href="https://vendidero.de/germanized-3-8" class="button button-primary wc-gzd-button" target="_blank">Mehr zu Germanized 3.8</a>
-                        <a href="https://vendidero.de/dokument/gebrauchtware-und-maengelexemplare-auszeichnen" class="wc-gzd-default-button button button-primary" target="_blank">Gebrauchtware und Mängelexemplare auszeichnen</a>
+                        <div class="wc-gzd-actions">
+                            <a href="https://vendidero.de/woocommerce-germanized" target="_blank" class="wc-gzd-pro-version button button-primary wc-gzd-button"><span class="wc-gzd-pro wc-gzd-pro-outlined">pro</span> Version entdecken</a>
+                            <a href="https://vendidero.de/dokument/lebensmittel-auszeichnen" class="wc-gzd-default-button button button-primary" target="_blank">Mehr erfahren</a>
+
+                            <p class="price smaller wc-gzd-pro-version">ab 79 € inkl. MwSt. - inkl. 1 Jahr Updates & Premium Support!</p>
+                        </div>
+                    </div>
+                    <div class="col col-center">
+                        <img src="<?php echo WC_germanized()->plugin_url(); ?>/assets/images/sell-food.png" style="max-width: 450px;"/>
                     </div>
                 </div>
             </div>
 
             <div class="changelog new-feature">
-                <h3>Neu: DPD Labels zu Sendungen erstellen <span class="wc-gzd-pro wc-gzd-pro-outlined">pro</span></h3>
+                <h3>DPD Labels zu Sendungen erstellen <span class="wc-gzd-pro wc-gzd-pro-outlined">pro</span></h3>
 
                 <div class="columns two-col">
                     <div class="col col-center">
@@ -179,7 +185,7 @@ class WC_GZD_Admin_Welcome {
             </div>
 
             <div class="changelog new-feature">
-                <h3>Neu: PDF-Dokumente visuell bearbeiten <span class="wc-gzd-pro wc-gzd-pro-outlined">pro</span></h3>
+                <h3>PDF-Dokumente visuell bearbeiten <span class="wc-gzd-pro wc-gzd-pro-outlined">pro</span></h3>
 
                 <div class="columns two-col">
                     <div class="col">

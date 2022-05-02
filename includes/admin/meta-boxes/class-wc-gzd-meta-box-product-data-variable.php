@@ -200,6 +200,11 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 		$delivery_times_by_country = $gzd_product->get_country_specific_delivery_times( 'edit' );
 		?>
         <div class="variable_pricing_labels">
+            <p class="wc-gzd-product-settings-subtitle">
+		        <?php _e( 'Price Labeling', 'woocommerce-germanized' ); ?>
+                <a class="page-title-action" href="https://vendidero.de/dokumentation/woocommerce-germanized/preisauszeichnung"><?php _e( 'Help', 'woocommerce-germanized' ); ?></a>
+            </p>
+
             <p class="form-row form-row-first">
                 <label><?php _e( 'Sale Label', 'woocommerce-germanized' ); ?></label>
                 <select name="variable_sale_price_label[<?php echo $loop; ?>]">
@@ -261,7 +266,13 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 				<?php printf( __( 'To enable unit prices on variation level please choose a unit and unit price units within %s.', 'woocommerce-germanized' ), '<a href="#general_product_data" class="wc-gzd-general-product-data-tab">' . __( 'general product data', 'woocommerce-germanized' ) . '</a>' ); ?>
             </p>
         </div>
+
         <div class="variable_shipping_time variable_delivery_time <?php echo esc_attr( self::get_delivery_time_wrapper_classes() ); ?>">
+            <p class="wc-gzd-product-settings-subtitle">
+		        <?php _e( 'Delivery Time', 'woocommerce-germanized' ); ?>
+                <a class="page-title-action" href="https://vendidero.de/dokument/lieferzeiten-verwalten"><?php _e( 'Help', 'woocommerce-germanized' ); ?></a>
+            </p>
+
             <p class="form-row form-row-full">
                 <label for="delivery_time"><?php _e( 'Delivery Time', 'woocommerce-germanized' ); ?></label>
 				<?php

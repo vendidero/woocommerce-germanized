@@ -62,7 +62,7 @@ class WC_Germanized_Meta_Box_Product_Data {
             <div class="options_group show_if_simple show_if_external show_if_variable">
                 <?php if ( WC_germanized()->is_pro() ) : ?>
                     <p class="wc-gzd-product-settings-subtitle">
-		                <?php _e( 'Deposit', 'woocommerce-germanized-pro' ); ?>
+		                <?php _e( 'Deposit', 'woocommerce-germanized' ); ?>
                         <a class="page-title-action" href="https://vendidero.de/dokument/lebensmittel-auszeichnen#pfand"><?php _e( 'Help', 'woocommerce-germanized' ); ?></a>
                     </p>
 
@@ -399,8 +399,14 @@ class WC_Germanized_Meta_Box_Product_Data {
 
 		$_gzd_product = wc_gzd_get_product( $product_object );
 		$age_select   = wc_gzd_get_age_verification_min_ages_select();
-
-		echo '<div class="options_group show_if_simple show_if_external show_if_variable">';
+        ?>
+        <div class="options_group">
+            <div class="show_if_simple show_if_external show_if_variable">
+                <p class="wc-gzd-product-settings-subtitle">
+                    <?php _e( 'Price Labeling', 'woocommerce-germanized' ); ?>
+                    <a class="page-title-action" href="https://vendidero.de/dokumentation/woocommerce-germanized/preisauszeichnung"><?php _e( 'Help', 'woocommerce-germanized' ); ?></a>
+                </p>
+        <?php
 
 		woocommerce_wp_select( array(
             'id'          => '_sale_price_label',
@@ -444,19 +450,7 @@ class WC_Germanized_Meta_Box_Product_Data {
 
 		echo '</div>';
 
-		if ( $product_object->is_virtual() ) {
-
-			// Show delivery time selection fallback if is virtual but delivery time should be visible on product
-			$types = get_option( 'woocommerce_gzd_display_delivery_time_hidden_types', array() );
-
-			if ( ! in_array( 'virtual', $types ) ) {
-				// Remove default delivery time selection - otherwise input would exist 2 times
-				remove_action( 'woocommerce_product_options_shipping', array( __CLASS__, 'output_shipping' ), 10 );
-				self::output_shipping();
-			}
-		}
-
-		echo '<div class="options_group show_if_simple show_if_external">';
+		echo '<div class="show_if_simple show_if_external">';
 
 		woocommerce_wp_checkbox( array(
             'id'          => '_unit_price_auto',
@@ -476,7 +470,19 @@ class WC_Germanized_Meta_Box_Product_Data {
             'data_type' => 'price'
 		) );
 
-		echo '</div>';
+		echo '</div></div>';
+
+		if ( $product_object->is_virtual() ) {
+
+			// Show delivery time selection fallback if is virtual but delivery time should be visible on product
+			$types = get_option( 'woocommerce_gzd_display_delivery_time_hidden_types', array() );
+
+			if ( ! in_array( 'virtual', $types ) ) {
+				// Remove default delivery time selection - otherwise input would exist 2 times
+				remove_action( 'woocommerce_product_options_shipping', array( __CLASS__, 'output_shipping' ), 10 );
+				self::output_shipping();
+			}
+		}
 
 		echo '<div class="options_group show_if_simple show_if_external show_if_variable show_if_booking">';
 
@@ -526,6 +532,11 @@ class WC_Germanized_Meta_Box_Product_Data {
 		$gzd_product   = wc_gzd_get_product( $product_object );
 		$delivery_time = $gzd_product->get_delivery_time( 'edit' );
 		?>
+		<p class="wc-gzd-product-settings-subtitle">
+            <?php _e( 'Delivery Time', 'woocommerce-germanized' ); ?>
+            <a class="page-title-action" href="https://vendidero.de/dokument/lieferzeiten-verwalten"><?php _e( 'Help', 'woocommerce-germanized' ); ?></a>
+        </p>
+
         <p class="form-field">
             <label for="delivery_time"><?php _e( 'Delivery Time', 'woocommerce-germanized' ); ?></label>
 			<?php
