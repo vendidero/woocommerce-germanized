@@ -466,8 +466,8 @@ function wc_gzd_cart_product_deposit_amount( $price, $cart_item, $cart_item_key 
 
 		if ( $gzd_item = wc_gzd_get_order_item( $cart_item ) ) {
             if ( $gzd_item->has_deposit() ) {
-	            $deposit_amount          = $gzd_item->get_deposit_amount();
-	            $deposit_amount_per_unit = $gzd_item->get_deposit_amount_per_unit();
+	            $deposit_amount          = $gzd_item->get_deposit_amount( $tax_display );
+	            $deposit_amount_per_unit = $gzd_item->get_deposit_amount_per_unit( $tax_display );
 	            $deposit_quantity        = $gzd_item->get_deposit_quantity();
 	            $deposit_type            = $gzd_item->get_deposit_type();
 	            $deposit_packaging_type  = $gzd_item->get_deposit_packaging_type();

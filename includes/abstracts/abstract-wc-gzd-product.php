@@ -823,6 +823,7 @@ class WC_GZD_Product {
 	}
 
 	public function get_nutrient( $id, $context = 'view' ) {
+		$id        = apply_filters( 'woocommerce_gzd_product_nutrient_value_term_id', $id, $this, $context );
 		$nutrients = $this->get_nutrient_ids( $context );
 		$nutrient  = false;
 

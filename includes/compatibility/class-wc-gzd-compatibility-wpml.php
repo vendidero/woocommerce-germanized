@@ -70,6 +70,9 @@ class WC_GZD_Compatibility_WPML extends WC_GZD_Compatibility {
 		add_filter( 'woocommerce_gzd_get_product_variation_default_delivery_time', array( $this, 'filter_product_default_delivery_time' ), 10, 4 );
 		add_filter( 'woocommerce_gzd_get_product_variation_delivery_time_countries', array( $this, 'filter_product_country_specific_delivery_times' ), 10, 4 );
 
+		// Force using the original term id for nutrient values to map to product data
+		add_filter( 'woocommerce_gzd_product_nutrient_value_term_id', array( $this, 'filter_product_nutrient_value_term' ), 10, 3 );
+
 		// Add language field to revocation form
 		add_action( 'woocommerce_gzd_after_revocation_form_fields', array( $this, 'set_language_field' ), 10 );
 
@@ -90,6 +93,22 @@ class WC_GZD_Compatibility_WPML extends WC_GZD_Compatibility {
 		 * @since 3.0.8
 		 */
 		do_action( 'woocommerce_gzd_wpml_compatibility_loaded', $this );
+	}
+
+	public function filter_product_nutrient_value_term( $term_id, $product, $context ) {
+		if ( 'view' === $context ) {
+			global $sitepress;
+
+			if ( $sitepress->get_default_language() !== $sitepress->get_current_language() ) {
+				$original_id = (int) apply_filters( 'wpml_object_id', $term_id, 'product_nutrient', false, $sitepress->get_default_language() );
+
+				if ( ! empty( $original_id ) && $original_id !== $term_id ) {
+					$term_id = $original_id;
+				}
+			}
+		}
+
+		return $term_id;
 	}
 
 	public function filter_product_delivery_times( $delivery_times, $gzd_product, $product, $context ) {

@@ -11,6 +11,17 @@
         <custom-field action="copy">_sale_price_regular_label</custom-field>
         <custom-field action="copy">_free_shipping</custom-field>
         <custom-field action="copy">_min_age</custom-field>
+        <custom-field action="copy">_is_food</custom-field>
+        <custom-field action="copy">_used_good</custom-field>
+        <custom-field action="copy">_nutrient_ids</custom-field>
+        <custom-field action="copy">_nutrient_reference_value</custom-field>
+        <custom-field action="copy">_allergen_ids</custom-field>
+        <custom-field action="copy">_nutri_score</custom-field>
+        <custom-field action="copy">_alcohol_content</custom-field>
+        <custom-field action="copy">_drained_weight</custom-field>
+        <custom-field action="copy">_net_filling_quantity</custom-field>
+        <custom-field action="copy">_deposit_type</custom-field>
+        <custom-field action="copy">_deposit_quantity</custom-field>
         <custom-field action="copy">_tax_class_by_countries</custom-field>
         <custom-field action="translate">_mini_desc</custom-field>
         <custom-field action="translate">_defect_description</custom-field>
@@ -26,6 +37,8 @@
         <custom-field action="translate">_legal_text</custom-field>
         <custom-field action="copy">_hs_code</custom-field>
         <custom-field action="copy">_manufacture_country</custom-field>
+        <custom-field action="copy">_rounding_rule</custom-field>
+        <custom-field action="copy">_nutrient_type</custom-field>
     </custom-fields>
     <taxonomies>
         <taxonomy translate="1">product_price_label</taxonomy>
@@ -44,6 +57,7 @@
     	<key name="woocommerce_gzd_delivery_time_text" />
     	<key name="woocommerce_gzd_unit_price_text" />
         <key name="woocommerce_gzd_product_units_text" />
+        <key name="woocommerce_gzd_deposit_text" />
     	<key name="woocommerce_gzd_display_listings_link_details_text" />
         <key name="woocommerce_gzd_display_digital_delivery_time_text" />
     	<key name="woocommerce_gzd_order_success_text" />

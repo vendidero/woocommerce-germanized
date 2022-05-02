@@ -38,7 +38,21 @@ class WC_GZD_Order_Item_Product extends WC_GZD_Order_Item {
 		return $amount;
 	}
 
+	private function parse_incl_tax( $incl_tax ) {
+		if ( 'incl' === $incl_tax ) {
+			$incl_tax = true;
+		} elseif ( 'excl' === $incl_tax ) {
+			$incl_tax = false;
+		} elseif ( '' === $incl_tax ) {
+			$incl_tax = false;
+		}
+
+		return wc_string_to_bool( $incl_tax );
+	}
+
 	public function get_deposit_amount( $incl_tax = false ) {
+		$incl_tax = $this->parse_incl_tax( $incl_tax );
+
 		if ( false === $incl_tax ) {
 			return $this->get_deposit_net_amount();
 		}
@@ -113,6 +127,8 @@ class WC_GZD_Order_Item_Product extends WC_GZD_Order_Item {
 	}
 
 	public function get_deposit_amount_per_unit( $incl_tax = false ) {
+		$incl_tax = $this->parse_incl_tax( $incl_tax );
+
 		if ( false === $incl_tax ) {
 			return $this->get_deposit_net_amount_per_unit();
 		}
