@@ -186,8 +186,10 @@ class Shopmark {
 		$filter       = $filtered;
 
 		// In case the filter was not adjusted by a third party, make sure the filter does really exist to prevent errors.
-		if ( ( ! $has_filtered || ( is_admin() && ! defined( 'DOING_AJAX' ) ) ) && ! Shopmarks::get_filter( $this->get_location(), $filter ) ) {
-			$filter = $this->get_default_filter();
+		if ( ! $has_filtered && ( 'woocommerce_' === substr( $filter, 0, 12 ) || ( is_admin() && ! defined( 'DOING_AJAX' ) ) ) ) {
+			if ( ! Shopmarks::get_filter( $this->get_location(), $filter ) ) {
+				$filter = $this->get_default_filter();
+			}
 		}
 
 		return $filter;
