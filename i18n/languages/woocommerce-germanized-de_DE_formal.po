@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce Germanized\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-02 10:42+0200\n"
-"PO-Revision-Date: 2022-05-02 10:42+0200\n"
+"POT-Creation-Date: 2022-05-03 14:02+0200\n"
+"PO-Revision-Date: 2022-05-03 14:03+0200\n"
 "Last-Translator: Dennis Nissle <info@vendidero.de>\n"
 "Language-Team: \n"
 "Language: de_DE@formal\n"
@@ -5997,8 +5997,8 @@ msgid "Nutri-Score %1$s"
 msgstr "Nutri-Score %1$s"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/abstracts/abstract-wc-gzd-product.php:1148
-#: woocommerce-germanized/includes/abstracts/abstract-wc-gzd-product.php:1158
+#: woocommerce-germanized/includes/abstracts/abstract-wc-gzd-product.php:1149
+#: woocommerce-germanized/includes/abstracts/abstract-wc-gzd-product.php:1159
 #: woocommerce-germanized/includes/wc-gzd-core-functions.php:519
 #: woocommerce-germanized/includes/wc-gzd-template-functions.php:804
 #: woocommerce-germanized/includes/wc-gzd-template-functions.php:812
@@ -6006,19 +6006,19 @@ msgid "incl. VAT"
 msgstr "inkl. MwSt."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/abstracts/abstract-wc-gzd-product.php:1148
+#: woocommerce-germanized/includes/abstracts/abstract-wc-gzd-product.php:1149
 msgid "excl. VAT"
 msgstr "exkl. MwSt."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/abstracts/abstract-wc-gzd-product.php:1150
+#: woocommerce-germanized/includes/abstracts/abstract-wc-gzd-product.php:1151
 #: woocommerce-germanized/includes/wc-gzd-core-functions.php:519
 #, php-format
 msgid "incl. %s%% VAT"
 msgstr "inkl. %s %% MwSt."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/abstracts/abstract-wc-gzd-product.php:1150
+#: woocommerce-germanized/includes/abstracts/abstract-wc-gzd-product.php:1151
 #, php-format
 msgid "excl. %s%% VAT"
 msgstr "exkl. %s %% MwSt."
@@ -6254,7 +6254,7 @@ msgstr "Gleiche wie übergeordnet"
 # @ woocommerce-germanized
 #: woocommerce-germanized/includes/admin/class-wc-gzd-admin-product-categories.php:82
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:506
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:676
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:677
 msgid "None"
 msgstr "Keine"
 
@@ -7141,7 +7141,7 @@ msgstr "Schlüssel zur Datenverschlüsselung fehlt"
 
 #: woocommerce-germanized/includes/admin/notes/class-wc-gzd-admin-note-encryption.php:46
 #: woocommerce-germanized/includes/admin/notes/class-wc-gzd-admin-note-shipping-excl-tax.php:45
-#: woocommerce-germanized/includes/admin/notes/class-wc-gzd-admin-note-virtual-vat.php:39
+#: woocommerce-germanized/includes/admin/notes/class-wc-gzd-admin-note-virtual-vat.php:41
 #: woocommerce-germanized/includes/admin/settings/abstract-wc-gzd-settings-tab.php:189
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-invoices.php:61
 #: woocommerce-germanized/includes/admin/views/html-page-status-germanized.php:285
@@ -7363,24 +7363,26 @@ msgid "Run the updater"
 msgstr "Update starten"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/notes/class-wc-gzd-admin-note-virtual-vat.php:23
+#: woocommerce-germanized/includes/admin/notes/class-wc-gzd-admin-note-virtual-vat.php:25
 msgid "Virtual VAT option (MOSS)"
 msgstr "USt. Änderung (MOSS)"
 
-#: woocommerce-germanized/includes/admin/notes/class-wc-gzd-admin-note-virtual-vat.php:27
+#: woocommerce-germanized/includes/admin/notes/class-wc-gzd-admin-note-virtual-vat.php:29
 #, php-format
 msgid ""
-"Seems like you activated the <a href=\"%1$s\">virtual VAT option</a> which "
+"Seems like you activated the <a href=\"%1$s\">virtual VAT option</a> (or one "
+"of your products uses the custom <code>virtual-rate</code> tax class) which "
 "is now deprecated as the OSS procedure replaces the MOSS procedure. Please "
 "consider <a href=\"%2$s\">migrating to the OSS procedure</a>, if applicable."
 msgstr ""
-"Scheinbar nutzen Sie die <a href=\"%1$s\">USt. Änderung (MOSS)</a> Option, "
-"die mittlerweile durch das OSS Verfahren abgelöst wurde. Bitte führen Sie "
-"eine Migration zum <a href=\"%2$s\">OSS Verfahren</a> durch, insofern Sie "
-"daran teilnimmst."
+"Scheinbar nutzen Sie die <a href=\"%1$s\">USt. Änderung (MOSS)</a> Option "
+"(oder ein Produkt verwendet die <code>virtual-rate</code> Steuerklasse), die "
+"mittlerweile durch das OSS Verfahren abgelöst wurde. Bitte führen Sie eine "
+"Migration zum <a href=\"%2$s\">OSS Verfahren</a> durch, insofern Sie daran "
+"teilnimmst."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/notes/class-wc-gzd-admin-note-virtual-vat.php:34
+#: woocommerce-germanized/includes/admin/notes/class-wc-gzd-admin-note-virtual-vat.php:36
 msgid "Manage OSS settings"
 msgstr "OSS Einstellungen anpassen"
 
@@ -8670,7 +8672,7 @@ msgstr ""
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:145
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:552
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:610
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:649
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:650
 msgid "Format"
 msgstr "Format"
 
@@ -9015,7 +9017,7 @@ msgstr ""
 "sollte <a href=\"%s\" target=\"_blank\">mindestens der Preisauszeichnung</a> "
 "für das jeweilige Produkt entsprechen."
 
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:635
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:636
 #, php-format
 msgid ""
 "Want to sell your food in a legally compliant way? Include nutrients, "
@@ -9027,7 +9029,7 @@ msgstr ""
 "%s"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:650
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:651
 msgid ""
 "This text will be used to display the unit price. Use {price} to insert the "
 "price. If you want to specifically format unit price output use {base}, "
@@ -9039,17 +9041,17 @@ msgstr ""
 "{unit} und {base_price} für die einzelnen Elemente."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:654
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:655
 msgid "{price}"
 msgstr "{price}"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:657
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:658
 msgid "Product units format"
 msgstr "Produkteinheiten Format"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:658
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:659
 msgid ""
 "This text will be used to display the product units. Use {product_units} to "
 "insert the amount of product units. Use {unit} to insert the unit. "
@@ -9061,30 +9063,30 @@ msgstr ""
 "formatierten Grundpreis."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:662
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:663
 msgid "Product contains: {product_units} {unit}"
 msgstr "Produkt enthält: {product_units} {unit}"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:665
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:666
 msgid "Variable Unit Price"
 msgstr "Variabler Grundpreis"
 
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:666
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:667
 msgid "Enable price range unit prices for variable products."
 msgstr "Aktiviert von-bis-Grundpreise für variable Produkte."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:681
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:682
 msgid "Fallback Sale Label"
 msgstr "Standard-Streichpreis-Hinweis"
 
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:688
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:698
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:689
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:699
 msgid "Manage Price Labels"
 msgstr "Preishinweise verwalten"
 
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:688
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:689
 msgid ""
 "Choose whether you would like to have a default sale price label to inform "
 "the customer about the regular price (e.g. Recommended Retail Price)."
@@ -9093,11 +9095,11 @@ msgstr ""
 "Sie den Kunden auf den alten Preis (bei reduzierten Produkten, sog. "
 "Streichpreis) hinweisen (z.B. UVP)."
 
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:691
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:692
 msgid "Fallback Regular Label"
 msgstr "Standard-Angebotspreis"
 
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:698
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:699
 msgid ""
 "Choose whether you would like to have a default sale price regular label to "
 "inform the customer about the sale price (e.g. New Price)."
@@ -9107,21 +9109,21 @@ msgstr ""
 "Angebotspreis) hinweisen (z.B. Unser neuer Preis)."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:702
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:703
 #: woocommerce-germanized/src/Shopmarks.php:449
 msgid "Single Product"
 msgstr "Produktseite"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:703
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:704
 msgid "Show price labels on single product page."
 msgstr "Zeige Preishinweise auf der Produktseite."
 
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:710
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:711
 msgid "Loop"
 msgstr "Produktlisten"
 
-#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:711
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:712
 msgid "Show price labels in product loops."
 msgstr "Zeige Preishinweise in Produktlisten."
 
@@ -10409,7 +10411,7 @@ msgid "%1$d update functions completed. Database version is %2$s"
 msgstr "%1$d Updates fertiggestellt. Datenbank-Version lautet %2$s"
 
 #: woocommerce-germanized/includes/class-wc-gzd-coupon-helper.php:515
-#: woocommerce-germanized/woocommerce-germanized.php:1166
+#: woocommerce-germanized/woocommerce-germanized.php:1167
 #, php-format
 msgid "Voucher: %1$s"
 msgstr "Wertgutschein: %1$s"
@@ -10670,7 +10672,7 @@ msgid "Other Vitamins & Minerals"
 msgstr "Andere Vitamine & Mineralien"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-install.php:163
+#: woocommerce-germanized/includes/class-wc-gzd-install.php:164
 #, php-format
 msgid ""
 "Please install <a href=\"%s\" target=\"_blank\">WooCommerce</a> before "
@@ -10680,72 +10682,72 @@ msgstr ""
 "bevor Sie WooCommerce Germanized installieren. Vielen Dank!"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-install.php:492
+#: woocommerce-germanized/includes/class-wc-gzd-install.php:493
 msgctxt "Page slug"
 msgid "data-security"
 msgstr "datenschutzerklaerung"
 
-#: woocommerce-germanized/includes/class-wc-gzd-install.php:493
+#: woocommerce-germanized/includes/class-wc-gzd-install.php:494
 msgctxt "Page title"
 msgid "Privacy Policy"
 msgstr "Datenschutzerklärung"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-install.php:497
+#: woocommerce-germanized/includes/class-wc-gzd-install.php:498
 msgctxt "Page slug"
 msgid "imprint"
 msgstr "impressum"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-install.php:498
+#: woocommerce-germanized/includes/class-wc-gzd-install.php:499
 msgctxt "Page title"
 msgid "Imprint"
 msgstr "Impressum"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-install.php:502
+#: woocommerce-germanized/includes/class-wc-gzd-install.php:503
 msgctxt "Page slug"
 msgid "terms"
 msgstr "agb"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-install.php:503
+#: woocommerce-germanized/includes/class-wc-gzd-install.php:504
 msgctxt "Page title"
 msgid "Terms & Conditions"
 msgstr "AGB"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-install.php:507
+#: woocommerce-germanized/includes/class-wc-gzd-install.php:508
 msgctxt "Page slug"
 msgid "revocation"
 msgstr "widerrufsbelehrung"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-install.php:508
+#: woocommerce-germanized/includes/class-wc-gzd-install.php:509
 msgctxt "Page title"
 msgid "Cancellation Policy"
 msgstr "Widerrufsbelehrung"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-install.php:512
+#: woocommerce-germanized/includes/class-wc-gzd-install.php:513
 msgctxt "Page slug"
 msgid "shipping-methods"
 msgstr "versandarten"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-install.php:513
+#: woocommerce-germanized/includes/class-wc-gzd-install.php:514
 msgctxt "Page title"
 msgid "Shipping Methods"
 msgstr "Versandarten"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-install.php:517
+#: woocommerce-germanized/includes/class-wc-gzd-install.php:518
 msgctxt "Page slug"
 msgid "payment-methods"
 msgstr "bezahlmoeglichkeiten"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-install.php:518
+#: woocommerce-germanized/includes/class-wc-gzd-install.php:519
 msgctxt "Page title"
 msgid "Payment Methods"
 msgstr "Zahlungsarten"
@@ -13086,7 +13088,7 @@ msgstr ""
 "unserem <a href=\"%s\" target=\"_blank\">Blog-Post</a> wie Sie das Plugin "
 "austauschen können."
 
-#: woocommerce-germanized/woocommerce-germanized.php:1151
+#: woocommerce-germanized/woocommerce-germanized.php:1152
 msgid "Pease wait while we are trying to redirect you to the payment provider."
 msgstr "Einen Moment - wir versuchen Sie zum Zahlungsanbieter weiterzuleiten."
 

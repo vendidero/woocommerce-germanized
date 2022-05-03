@@ -5,7 +5,7 @@ Requires at least: 5.4
 Tested up to: 6.0
 WC requires at least: 3.9
 WC tested up to: 6.5
-Stable tag: 3.9.0
+Stable tag: 3.9.1
 Requires PHP: 5.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -209,6 +209,12 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 6. Edit pdf documents (Pro)
 
 == Changelog ==
+= 3.9.1 =
+* Fix: Default shopmark filter for deposits in mini-cart dropdown
+* Fix: Deprecated virtual VAT helper legacy load
+* Improvement: Validate filter existence before executing shopmarks
+* Improvement: DP Internetmarke products transient expiration
+
 = 3.9.0 =
 * Feature: WP 6.0 compatibility
 * Feature: Sell food in a legally secure way (Pro)
