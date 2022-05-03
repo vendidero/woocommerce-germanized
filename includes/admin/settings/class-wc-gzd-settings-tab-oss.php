@@ -47,6 +47,7 @@ class WC_GZD_Settings_Tab_OSS extends WC_GZD_Settings_Tab {
 
 	protected function after_save( $settings, $current_section = '' ) {
 		if ( 'yes' === get_option( 'oss_use_oss_procedure' ) ) {
+			// Delete legacy options while migrating to OSS.
 			delete_option( 'woocommerce_gzd_enable_virtual_vat' );
 		}
 

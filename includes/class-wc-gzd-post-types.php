@@ -203,7 +203,7 @@ class WC_GZD_Post_Types {
 					'add_new_item'  => __( 'Add New Deposit Type', 'woocommerce-germanized' ),
 					'new_item_name' => __( 'New Deposit Type Name', 'woocommerce-germanized' )
 				),
-				'show_ui'               => WC_germanized()->is_pro() ? true : false,
+				'show_ui'               => ( WC_germanized()->is_pro() && apply_filters( 'woocommerce_gzd_show_food_ui', true ) ) ? true : false,
 				'query_var'             => true,
 				'public'                => false,
 				'capabilities'          => array(
@@ -251,7 +251,7 @@ class WC_GZD_Post_Types {
 					'add_new_item'      => __( 'Add New Nutrient', 'woocommerce-germanized' ),
 					'new_item_name'     => __( 'New Nutrient Name', 'woocommerce-germanized' )
 				),
-				'show_ui'               => WC_germanized()->is_pro() ? true : false,
+				'show_ui'               => ( WC_germanized()->is_pro() && apply_filters( 'woocommerce_gzd_show_food_ui', true ) ) ? true : false,
 				'query_var'             => true,
 				'public'                => false,
 				'capabilities'          => array(
@@ -298,7 +298,7 @@ class WC_GZD_Post_Types {
 					'add_new_item'  => __( 'Add New Allergen', 'woocommerce-germanized' ),
 					'new_item_name' => __( 'New Allergen Name', 'woocommerce-germanized' )
 				),
-				'show_ui'               => WC_germanized()->is_pro() ? true : false,
+				'show_ui'               => ( WC_germanized()->is_pro() && apply_filters( 'woocommerce_gzd_show_food_ui', true ) ) ? true : false,
 				'query_var'             => true,
 				'public'                => false,
 				'capabilities'          => array(

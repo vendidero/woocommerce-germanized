@@ -296,7 +296,7 @@ class Shopmarks {
 				'callback'         => 'wc_gzd_cart_product_defect_description',
 			),
 			'deposit'   => array(
-				'default_filter'   => 'woocommerce_cart_item_subtotal',
+				'default_filter'   => 'woocommerce_cart_item_price',
 				'default_priority' => 5000,
 				'callback'         => 'wc_gzd_cart_product_deposit_amount',
 			),

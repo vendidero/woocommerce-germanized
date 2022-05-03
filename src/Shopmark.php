@@ -181,10 +181,12 @@ class Shopmark {
 		 * @since 3.0.0
 		 *
 		 */
-		$filter = apply_filters( $this->get_hook_prefix() . 'filter', $filter, $this );
+		$filtered     = apply_filters( $this->get_hook_prefix() . 'filter', $filter, $this );
+		$has_filtered = $filter !== $filtered;
+		$filter       = $filtered;
 
-		// Make sure that the current filter name exists during admin requests e.g. for custom theme support
-		if ( ( is_admin() && ! defined( 'DOING_AJAX' ) ) && ! Shopmarks::get_filter( $this->get_location(), $filter ) ) {
+		// In case the filter was not adjusted by a third party, make sure the filter does really exist to prevent errors.
+		if ( ( ! $has_filtered || ( is_admin() && ! defined( 'DOING_AJAX' ) ) ) && ! Shopmarks::get_filter( $this->get_location(), $filter ) ) {
 			$filter = $this->get_default_filter();
 		}
 
