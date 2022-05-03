@@ -44,6 +44,14 @@ class WC_GZD_Settings_Tab_General extends WC_GZD_Settings_Tab {
 	}
 
 	protected function get_legal_page_settings() {
+		$page_type = 'single_select_page';
+		$class     = 'wc-enhanced-select-nostd';
+
+		if ( function_exists( 'WC' ) && version_compare( WC()->version, '5.3.3', '>=' ) ) {
+			$page_type = 'single_select_page_with_search';
+			$class     = 'wc-page-search';
+		}
+
 		return array(
 			array( 'title' => '', 'type' => 'title', 'id' => 'legal_page_options' ),
 
@@ -51,9 +59,12 @@ class WC_GZD_Settings_Tab_General extends WC_GZD_Settings_Tab {
 				'title'    => __( 'Terms & Conditions', 'woocommerce-germanized' ),
 				'desc_tip' => __( 'This page should contain your terms & conditions.', 'woocommerce-germanized' ),
 				'id'       => 'woocommerce_terms_page_id',
-				'type'     => 'single_select_page',
+				'args'     => array(
+					'exclude' => array(),
+				),
+				'type'     => $page_type,
 				'default'  => '',
-				'class'    => 'wc-enhanced-select-nostd',
+				'class'    => $class,
 				'css'      => 'min-width:300px;',
 				'desc'     => ( ! get_option( 'woocommerce_terms_page_id' ) ? sprintf( __( 'Don\'t have terms & conditions yet? <a href="%s">Generate now</a>!', 'woocommerce-germanized' ), admin_url( 'admin.php?page=wc-settings&tab=germanized-terms_generator' ) ) : '' ),
 			),
@@ -61,9 +72,12 @@ class WC_GZD_Settings_Tab_General extends WC_GZD_Settings_Tab {
 				'title'    => __( 'Cancellation Policy', 'woocommerce-germanized' ),
 				'desc_tip' => __( 'This page should contain information regarding your customer\'s Right of Withdrawal.', 'woocommerce-germanized' ),
 				'id'       => 'woocommerce_revocation_page_id',
-				'type'     => 'single_select_page',
+				'args'     => array(
+					'exclude' => array(),
+				),
+				'type'     => $page_type,
 				'default'  => '',
-				'class'    => 'wc-enhanced-select-nostd',
+				'class'    => $class,
 				'css'      => 'min-width:300px;',
 				'desc'     => ( ! get_option( 'woocommerce_revocation_page_id' ) ? sprintf( __( 'Don\'t have a revocation page yet? <a href="%s">Generate now</a>!', 'woocommerce-germanized' ), admin_url( 'admin.php?page=wc-settings&tab=germanized-revocation_generator' ) ) : '' ),
 			),
@@ -82,9 +96,12 @@ class WC_GZD_Settings_Tab_General extends WC_GZD_Settings_Tab {
 				'title'    => __( 'Imprint', 'woocommerce-germanized' ),
 				'desc'     => __( 'This page should contain an imprint with your company\'s information.', 'woocommerce-germanized' ),
 				'id'       => 'woocommerce_imprint_page_id',
-				'type'     => 'single_select_page',
+				'args'     => array(
+					'exclude' => array(),
+				),
+				'type'     => $page_type,
 				'default'  => '',
-				'class'    => 'wc-enhanced-select-nostd',
+				'class'    => $class,
 				'css'      => 'min-width:300px;',
 				'desc_tip' => true,
 			),
@@ -92,9 +109,12 @@ class WC_GZD_Settings_Tab_General extends WC_GZD_Settings_Tab {
 				'title'    => __( 'Privacy Policy', 'woocommerce-germanized' ),
 				'desc_tip' => __( 'This page should contain information regarding your privacy policy.', 'woocommerce-germanized' ),
 				'id'       => 'woocommerce_data_security_page_id',
-				'type'     => 'single_select_page',
+				'args'     => array(
+					'exclude' => array(),
+				),
+				'type'     => $page_type,
 				'default'  => '',
-				'class'    => 'wc-enhanced-select-nostd',
+				'class'    => $class,
 				'desc'     => '<div class="wc-gzd-additional-desc">' . sprintf( __( 'Please make sure to place your privacy policy to be directly accessible to the user on the website, e.g. as a link within your footer.', 'woocommerce-germanized' ) ) . '</div>',
 				'css'      => 'min-width:300px;'
 			),
@@ -102,9 +122,12 @@ class WC_GZD_Settings_Tab_General extends WC_GZD_Settings_Tab {
 				'title'    => __( 'Payment Methods', 'woocommerce-germanized' ),
 				'desc'     => __( 'This page should contain information regarding the Payment Methods that are chooseable during checkout.', 'woocommerce-germanized' ),
 				'id'       => 'woocommerce_payment_methods_page_id',
-				'type'     => 'single_select_page',
+				'args'     => array(
+					'exclude' => array(),
+				),
+				'type'     => $page_type,
 				'default'  => '',
-				'class'    => 'wc-enhanced-select-nostd',
+				'class'    => $class,
 				'css'      => 'min-width:300px;',
 				'desc_tip' => true,
 			),
@@ -112,9 +135,12 @@ class WC_GZD_Settings_Tab_General extends WC_GZD_Settings_Tab {
 				'title'    => __( 'Shipping Methods', 'woocommerce-germanized' ),
 				'desc'     => __( 'This page should contain information regarding shipping methods that are chooseable during checkout.', 'woocommerce-germanized' ),
 				'id'       => 'woocommerce_shipping_costs_page_id',
-				'type'     => 'single_select_page',
+				'args'     => array(
+					'exclude' => array(),
+				),
+				'type'     => $page_type,
 				'default'  => '',
-				'class'    => 'wc-enhanced-select-nostd',
+				'class'    => $class,
 				'css'      => 'min-width:300px;',
 				'desc_tip' => true,
 			),
