@@ -270,7 +270,41 @@ function wc_gzd_format_tax_rate_percentage( $rate, $percent = false ) {
 }
 
 function wc_gzd_format_alcohol_content( $alcohol_content ) {
-	return apply_filters( 'woocommerce_gzd_formatted_alcohol_content', sprintf( '%1$s %% vol', wc_format_localized_decimal( $alcohol_content ) ) );
+	return apply_filters( 'woocommerce_gzd_formatted_alcohol_content', sprintf( '%1$s %% vol', wc_gzd_format_food_attribute_value( $alcohol_content, array( 'attribute_type' => 'alcohol_content' ) ) ) );
+}
+
+function wc_gzd_format_food_attribute_value( $decimal, $args = array() ) {
+	/**
+	 * Some strings might not be numeric, e.g. < 0,5 g - do not format them again.
+	 */
+	if ( ! is_numeric( $decimal ) ) {
+		return $decimal;
+	}
+
+	$args = apply_filters(
+		'wc_gzdp_food_attribute_args',
+		wp_parse_args(
+			$args,
+			array(
+				'decimal_separator'  => wc_get_price_decimal_separator(),
+				'thousand_separator' => '',
+				'decimals'           => 3,
+				'attribute_type'     => 'nutrient'
+			)
+		)
+	);
+
+	$original_decimal = $decimal;
+
+	// Convert to float to avoid issues on PHP 8.
+	$decimal = (float) $decimal;
+	$decimal = apply_filters( 'woocommerce_gzd_formatted_food_attribute_value', number_format( $decimal, $args['decimals'], $args['decimal_separator'], $args['thousand_separator'] ), $decimal, $args, $original_decimal );
+
+	if ( apply_filters( 'woocommerce_gzd_food_attribute_trim_zeros', true, $args ) && $args['decimals'] > 0 ) {
+		$decimal = preg_replace( '/' . preg_quote( $args['decimal_separator'], '/' ) . '*(0+)$/', '', $decimal );
+	}
+
+	return $decimal;
 }
 
 function wc_gzd_is_customer_activated( $user_id = '' ) {

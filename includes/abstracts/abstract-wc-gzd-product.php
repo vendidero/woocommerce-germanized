@@ -200,7 +200,7 @@ class WC_GZD_Product {
 
 		if ( '' !== $quantity ) {
 			$unit     = apply_filters( "woocommerce_gzd_product_net_filling_quantity_unit", $this->get_unit(), $this );
-			$quantity = sprintf( '%1$s %2$s', wc_format_localized_decimal( $quantity ), $unit );
+			$quantity = sprintf( '%1$s %2$s', wc_gzd_format_food_attribute_value( $quantity, array( 'attribute_type' => 'net_filling_quantity' ) ), $unit );
 		}
 
 		return apply_filters( "woocommerce_gzd_product_formatted_net_filling_quantity", $quantity, $this );
@@ -212,7 +212,7 @@ class WC_GZD_Product {
 		if ( '' !== $this->get_drained_weight() ) {
 			$drain_weight_unit = apply_filters( "woocommerce_gzd_drain_weight_unit", "g" );
 			$weight_in_g       = wc_get_weight( (float) $this->get_drained_weight(), $drain_weight_unit, get_option( 'woocommerce_weight_unit' ) );
-			$weight            = sprintf( '%1$s %2$s', wc_format_localized_decimal( $weight_in_g ), $drain_weight_unit );
+			$weight            = sprintf( '%1$s %2$s', wc_gzd_format_food_attribute_value( $weight_in_g, array( 'attribute_type' => 'drained_weight' ) ), $drain_weight_unit );
 		}
 
 		return apply_filters( "woocommerce_gzd_product_formatted_drain_weight", $weight, $this );
@@ -622,7 +622,7 @@ class WC_GZD_Product {
 					'ref_value' => '',
 				) );
 
-				if ( ! is_numeric( $value['value'] ) ) {
+				if ( '' === $value['value'] ) {
 					unset( $ids[ $k ] );
 				} else {
 					$value['value']     = wc_format_decimal( $value['value'] );
@@ -630,7 +630,7 @@ class WC_GZD_Product {
 
 					$ids[ $k ] = $value;
 				}
-			} elseif ( ! is_numeric( $value ) ) {
+			} elseif ( '' === $value ) {
 				unset( $ids[ $k ] );
 			} else {
 				$ids[ $k ] = array(
@@ -809,7 +809,13 @@ class WC_GZD_Product {
 			$nutrient_value = (float) $nutrient['value'];
 		}
 
-		return apply_filters( 'woocommerce_gzd_product_nutrient_value', $nutrient_value, $id, $this, $context );
+		$nutrient_value = apply_filters( 'woocommerce_gzd_product_nutrient_value', $nutrient_value, $id, $this, $context );
+
+		if ( 'view' === $context ) {
+			$nutrient_value = wc_gzd_format_food_attribute_value( $nutrient_value );
+		}
+
+		return $nutrient_value;
 	}
 
 	public function get_nutrient_reference( $id, $context = 'view' ) {
@@ -819,7 +825,13 @@ class WC_GZD_Product {
 			$ref_value = (float) $nutrient['ref_value'];
 		}
 
-		return apply_filters( 'woocommerce_gzd_product_nutrient_reference', $ref_value, $id, $this, $context );
+		$ref_value = apply_filters( 'woocommerce_gzd_product_nutrient_reference', $ref_value, $id, $this, $context );
+
+		if ( 'view' === $context ) {
+			$ref_value = wc_gzd_format_food_attribute_value( $ref_value, array( 'attribute_type' => 'nutrient_reference' ) );
+		}
+
+		return $ref_value;
 	}
 
 	public function get_nutrient( $id, $context = 'view' ) {
