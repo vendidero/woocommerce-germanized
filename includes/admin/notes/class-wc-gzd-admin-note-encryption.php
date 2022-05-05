@@ -39,6 +39,10 @@ class WC_GZD_Admin_Note_Encryption extends WC_GZD_Admin_Note {
 		return $content;
 	}
 
+	protected function has_nonce_action() {
+		return true;
+	}
+
 	public function get_actions() {
 		$buttons = array(
 			array(
@@ -51,10 +55,11 @@ class WC_GZD_Admin_Note_Encryption extends WC_GZD_Admin_Note {
 
 		if ( WC_GZD_Secret_Box_Helper::supports_auto_insert() ) {
 			$buttons[] = array(
-				'url'        => wp_nonce_url( add_query_arg( 'wc-gzd-check-encryption_key_insert', true ), 'wc-gzd-check-encryption_key_insert' ) ,
+				'url'        => add_query_arg( 'wc-gzd-check-encryption_key_insert', true, admin_url( 'admin.php?page=wc-settings&tab=germanized' ) ),
 				'title'      => __( 'Auto insert', 'woocommerce-germanized' ),
 				'target'     => '_self',
 				'is_primary' => true,
+				'nonce_action' => 'wc-gzd-check-encryption_key_insert',
 			);
 		}
 

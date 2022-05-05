@@ -107,17 +107,17 @@ class WC_GZD_Admin {
 
 	    if ( current_user_can( 'manage_woocommerce' ) ) {
             foreach( $actions as $action ) {
-	            $nonce_name = "wc-gzd-check-{$action}";
+	            $nonce_action = "wc-gzd-check-{$action}";
 
 	            /**
 	             * Legacy notice support
 	             */
                 if ( 'encryption_key_insert' === $action && isset( $_GET['insert-encryption-key'] ) ) {
-                    $nonce_name = 'wc-gzd-insert-encryption-key';
+	                $nonce_action = 'wc-gzd-insert-encryption-key';
 	                $_GET["wc-gzd-check-{$action}"] = true;
                 }
 
-	            if ( isset( $_GET["wc-gzd-check-{$action}"] ) && isset( $_GET['_wpnonce'] ) && check_admin_referer( $nonce_name ) ) {
+	            if ( isset( $_GET["wc-gzd-check-{$action}"] ) && isset( $_GET['_wpnonce'] ) && check_admin_referer( $nonce_action ) ) {
                     $method = "check_{$action}";
 
                     if ( is_callable( array( $this, $method ) ) ) {

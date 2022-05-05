@@ -40,13 +40,18 @@ class WC_GZD_Admin_Note_Internetmarke_Importer extends WC_GZD_Admin_Note {
 		return $content;
 	}
 
+	protected function has_nonce_action() {
+		return true;
+	}
+
 	public function get_actions() {
 		return array(
 			array(
-				'url'        => wp_nonce_url( add_query_arg( 'wc-gzd-internetmarke-import', 'yes' ), 'woocommerce_gzd_internetmarke_import_nonce' ) ,
-				'title'      => _x( 'Import settings and activate', 'dhl', 'woocommerce-germanized' ),
-				'target'     => '_self',
-				'is_primary' => true,
+				'url'          => add_query_arg( 'wc-gzd-internetmarke-import', 'yes', admin_url( 'admin.php?page=wc-settings&tab=germanized-shipping_provider&provider=deutsche_post' ) ),
+				'title'        => _x( 'Import settings and activate', 'dhl', 'woocommerce-germanized' ),
+				'target'       => '_self',
+				'is_primary'   => true,
+				'nonce_action' => 'woocommerce_gzd_internetmarke_import_nonce'
 			),
 			array(
 				'url'        => 'https://vendidero.de/dokument/internetmarke-integration-einrichten',

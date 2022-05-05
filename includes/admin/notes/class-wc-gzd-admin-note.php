@@ -21,6 +21,33 @@ abstract class WC_GZD_Admin_Note {
 		return false;
 	}
 
+	public function get_action_url( $action ) {
+		$action = wp_parse_args( $action, array(
+			'url'          => '',
+			'nonce_name'   => '',
+			'nonce_action' => '',
+		) );
+
+		if ( ! empty( $action['nonce_action'] ) ) {
+			$action['url'] = wp_nonce_url( $action['url'], $action['nonce_action'], ( empty( $action['nonce_name'] ) ? '_wpnonce' : $action['nonce_name'] ) );
+		}
+
+		return $action['url'];
+	}
+
+	protected function has_nonce_action() {
+		$has_nonce = false;
+
+		foreach( $this->get_actions() as $action ) {
+			if ( isset( $action['nonce_action'] ) && ! empty( $action['nonce_action'] ) ) {
+				$has_nonce = true;
+				break;
+			}
+		}
+
+		return $has_nonce;
+	}
+
 	protected function get_note() {
 		try {
 			$data_store = \WC_Data_Store::load( 'admin-note' );
@@ -126,6 +153,67 @@ abstract class WC_GZD_Admin_Note {
 		return $use_wp_notice_api;
 	}
 
+	/**
+	 * @param \Automattic\WooCommerce\Admin\Notes\Note $note
+	 *
+	 * @return void
+	 */
+	private function register_note_actions( $note ) {
+		foreach( $this->get_actions() as $action ) {
+			$action = wp_parse_args( $action, array(
+				'title'        => '',
+				'url'          => '',
+				'is_primary'   => true,
+				'nonce_name'   => '',
+				'nonce_action' => '',
+			) );
+
+			$add_separate_nonce = false;
+
+			if ( is_callable( array( $note, 'add_nonce_to_action' ) ) ) {
+				$add_separate_nonce = true;
+			}
+
+			if ( ! $add_separate_nonce && ! empty( $action['nonce_action'] ) ) {
+				$action['url'] = wp_nonce_url( $action['url'], $action['nonce_action'], ( empty( $action['nonce_name'] ) ? '_wpnonce' : $action['nonce_name'] ) );
+			}
+
+			$note_name = sanitize_key( $action['title'] );
+
+			$note->add_action(
+				$note_name,
+				$action['title'],
+				$action['url'],
+				'disabled',
+				$action['is_primary'] ? true : false
+			);
+
+			if ( $add_separate_nonce && ! empty( $action['nonce_action'] ) ) {
+				try {
+					$note->add_nonce_to_action( $note_name, $action['nonce_action'], ( empty( $action['nonce_name'] ) ? '_wpnonce' : $action['nonce_name'] ) );
+				} catch ( \Exception $e ) {}
+			}
+		}
+
+		if ( $this->is_dismissable() ) {
+			$note->add_action(
+				'close',
+				$this->get_dismiss_text(),
+				false,
+				'disabled'
+			);
+		}
+
+		if ( $this->is_deactivatable() ) {
+			$note->add_action(
+				'deactivate',
+				$this->get_deactivate_text(),
+				false,
+				'deactivated'
+			);
+		}
+	}
+
 	protected function add() {
 		$screen         = get_current_screen();
 		$screen_id      = $screen ? $screen->id : '';
@@ -150,41 +238,7 @@ abstract class WC_GZD_Admin_Note {
 		$note->set_content_data( (object) array() );
 		$note->set_source( 'woocommerce-germanized' );
 
-		foreach( $this->get_actions() as $action ) {
-
-			$action = wp_parse_args( $action, array(
-				'title'      => '',
-				'url'        => '',
-				'is_primary' => true,
-			) );
-
-			$note->add_action(
-				sanitize_key( $action['title'] ),
-				$action['title'],
-				$action['url'],
-				'disabled',
-				$action['is_primary'] ? true : false
-			);
-		}
-
-		if ( $this->is_dismissable() ) {
-			$note->add_action(
-				'close',
-				$this->get_dismiss_text(),
-				false,
-				'disabled'
-			);
-		}
-
-		if ( $this->is_deactivatable() ) {
-			$note->add_action(
-				'deactivate',
-				$this->get_deactivate_text(),
-				false,
-				'deactivated'
-			);
-		}
-
+		$this->register_note_actions( $note );
 		$note->save();
 	}
 

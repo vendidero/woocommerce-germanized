@@ -30,7 +30,7 @@ if ( ! defined( 'ABSPATH' ) ) {
                     'target'     => '_blank'
 	            ) );
                 ?>
-                <a class="button button-<?php echo ( $action['is_primary'] ? 'primary' : 'secondary' ); ?> wc-gzd-action-button-link" href="<?php echo esc_url( $action['url'] ); ?>" target="<?php echo esc_attr( $action['target'] ); ?>"><?php echo $action['title']; ?></a>
+                <a class="button button-<?php echo ( $action['is_primary'] ? 'primary' : 'secondary' ); ?> wc-gzd-action-button-link" href="<?php echo esc_url( $notice->get_action_url( $action ) ); ?>" target="<?php echo esc_attr( $action['target'] ); ?>"><?php echo $action['title']; ?></a>
             <?php endforeach; ?>
         </p>
 
