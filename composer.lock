@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2c2d4a3addde819ea181c1461532018d",
+    "content-hash": "a452e7250a4f12156bc84d84559a5660",
     "packages": [
         {
             "name": "automattic/jetpack-autoloader",
@@ -796,16 +796,16 @@
         },
         {
             "name": "vendidero/woocommerce-germanized-dhl",
-            "version": "v1.6.12",
+            "version": "v1.6.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vendidero/woocommerce-germanized-dhl.git",
-                "reference": "3e21d473264488b8df9bd591ccac0f13460541cb"
+                "reference": "f8d416b87ffff8c8cd879884c0f493710444ffb8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vendidero/woocommerce-germanized-dhl/zipball/3e21d473264488b8df9bd591ccac0f13460541cb",
-                "reference": "3e21d473264488b8df9bd591ccac0f13460541cb",
+                "url": "https://api.github.com/repos/vendidero/woocommerce-germanized-dhl/zipball/f8d416b87ffff8c8cd879884c0f493710444ffb8",
+                "reference": "f8d416b87ffff8c8cd879884c0f493710444ffb8",
                 "shasum": ""
             },
             "require": {
@@ -827,11 +827,11 @@
             "scripts": {
                 "post-install-cmd": [
                     "composer dump-autoload",
-                    "python ./bin/update-holidays.py"
+                    "python3 ./bin/update-holidays.py"
                 ],
                 "post-update-cmd": [
                     "composer dump-autoload",
-                    "python ./bin/update-holidays.py"
+                    "python3 ./bin/update-holidays.py"
                 ]
             },
             "license": [
@@ -840,10 +840,10 @@
             "description": "The Germanized DHL implementation.",
             "homepage": "https://github.com/vendidero/woocommerce-germanized-dhl",
             "support": {
-                "source": "https://github.com/vendidero/woocommerce-germanized-dhl/tree/v1.6.12",
+                "source": "https://github.com/vendidero/woocommerce-germanized-dhl/tree/v1.6.13",
                 "issues": "https://github.com/vendidero/woocommerce-germanized-dhl/issues"
             },
-            "time": "2022-05-03T14:11:49+00:00"
+            "time": "2022-05-06T10:15:04+00:00"
         },
         {
             "name": "vendidero/woocommerce-germanized-shipments",

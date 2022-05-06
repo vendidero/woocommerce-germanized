@@ -439,6 +439,15 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 			$base_country = ( isset( WC()->countries ) ) ? WC()->countries->get_base_country() : 'DE';
 			$eu_countries = ( isset( WC()->countries ) ) ? WC()->countries->get_european_union_countries() : array( $base_country );
 
+			/**
+			 * Woo introduced state field for DE
+			 */
+			if ( version_compare( WC()->version, '6.3.1', '>=' ) ) {
+				if ( 'DE' === $base_country ) {
+					$base_country = 'DE:DE-BE';
+				}
+			}
+
 			$options = array(
 				'woocommerce_default_country'            => $base_country,
 				'woocommerce_currency'                   => 'EUR',

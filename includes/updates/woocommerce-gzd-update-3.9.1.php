@@ -5,6 +5,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 global $wpdb;
+$wpdb->hide_errors();
 
 if ( 'woocommerce_cart_item_subtotal' === get_option( 'woocommerce_gzd_display_mini_cart_deposit_filter' ) ) {
 	update_option( 'woocommerce_gzd_display_mini_cart_deposit_filter', 'woocommerce_cart_item_price' );
