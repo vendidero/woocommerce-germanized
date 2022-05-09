@@ -24,10 +24,10 @@ window.germanized = window.germanized || {};
             }
 
             if ( $( '.payment_methods:first' ).parents( '#order_review' ).length ) {
-                $( 'body' ).on( 'payment_method_selected', this.triggerCheckoutRefresh );
+                $( document.body ).on( 'payment_method_selected', this.triggerCheckoutRefresh );
             }
 
-            $( 'body' ).bind( 'updated_checkout', this.onUpdateCheckout );
+            $( document.body ).on( 'updated_checkout', this.onUpdateCheckout );
 
             if ( this.params.adjust_heading && ! checkout_adjustments_disabled ) {
                 var $theFirst = $( '.woocommerce-checkout' ).find( '.shop_table, #payment' ).first();

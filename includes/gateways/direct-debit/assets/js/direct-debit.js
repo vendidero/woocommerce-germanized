@@ -13,7 +13,7 @@ jQuery( function( $ ) {
             this.$checkoutForm.on( 'blur input change', '#direct-debit-form input#direct-debit-account-bic', this.onValidateSWIFT );
             this.$checkoutForm.on( 'blur input change', 'input, select', this.maybeShowCheckbox );
 
-            $( 'body' ).bind( 'updated_checkout', this.maybeShowCheckbox );
+            $( document.body ).on( 'updated_checkout', this.maybeShowCheckbox );
             $( document ).on( 'click', 'a#show-direct-debit-trigger', this.onPrettyPhotoOpen );
 
             this.initPrettyPhoto();
