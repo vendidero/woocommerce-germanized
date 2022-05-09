@@ -24,7 +24,7 @@ window.germanized = window.germanized || {};
             }
 
             if ( $( '.payment_methods:first' ).parents( '#order_review' ).length ) {
-                $( document ).on( 'change', '.payment_methods input[name="payment_method"]', this.triggerCheckoutRefresh );
+                $( 'body' ).on( 'payment_method_selected', this.triggerCheckoutRefresh );
             }
 
             $( 'body' ).bind( 'updated_checkout', this.onUpdateCheckout );
