@@ -54,7 +54,7 @@ class WC_GZD_Deprecated_Virtual_VAT_Helper {
 		$virtual_vat_applicable = in_array( $tax_class, array(
 				'virtual-rate',
 				'virtual-reduced-rate'
-			) ) && isset( $location[0] ) && sizeof( $location ) === 4 && $location[0] !== WC()->countries->get_base_country();
+			) ) && isset( $location[0] ) && sizeof( $location ) === 4 && $location[0] !== wc_gzd_get_base_country();
 
 		/**
 		 * Filter that allows disabling default customer VAT exempt check when handling virtual VAT rates.

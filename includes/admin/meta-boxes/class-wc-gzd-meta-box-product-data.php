@@ -574,7 +574,7 @@ class WC_Germanized_Meta_Box_Product_Data {
 
 	public static function get_available_delivery_time_countries() {
 	    $countries    = WC()->countries->get_shipping_countries();
-		$base_country = WC()->countries->get_base_country();
+		$base_country = wc_gzd_get_base_country();
 
 		if ( array_key_exists( $base_country, $countries ) ) {
 		    unset( $countries[ $base_country] );

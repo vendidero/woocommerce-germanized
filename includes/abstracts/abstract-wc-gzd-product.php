@@ -333,7 +333,12 @@ class WC_GZD_Product {
 
 		// Calculate taxes
 		if ( 'view' === $context && $amount > 0 ) {
-			$amount = ( 'incl' === $tax_display_mode ) ? $this->get_deposit_amount_including_tax( 1, $amount ) : $this->get_deposit_amount_excluding_tax( 1, $amount );
+			$amount           = ( 'incl' === $tax_display_mode ) ? $this->get_deposit_amount_including_tax( 1, $amount ) : $this->get_deposit_amount_excluding_tax( 1, $amount );
+			$shipping_country = $this->get_current_customer_shipping_country();
+
+			if ( apply_filters( 'woocommerce_gzd_shipping_country_skips_deposit', false, $shipping_country ) ) {
+				$amount = 0;
+			}
 		}
 
 		return apply_filters( "woocommerce_gzd_product_deposit_amount", $amount, $quantity, $this, $context, $tax_display );
@@ -1643,13 +1648,21 @@ class WC_GZD_Product {
 	protected function get_current_customer_shipping_country() {
 		$country = false;
 
-		if ( WC()->customer ) {
+		if ( is_cart() || is_checkout() ) {
+			$country = '' === WC()->cart->get_customer()->get_shipping_country() ? WC()->cart->get_customer()->get_billing_country() : WC()->cart->get_customer()->get_shipping_country();
+		} elseif ( wc_gzd_is_admin_order_request() ) {
+			if ( $order = wc_get_order( absint( $_POST['order_id'] ) ) ) {
+				if ( is_callable( array( $order, 'get_shipping_country' ) ) ) {
+					$country = '' === $order->get_shipping_country() ? $order->get_billing_country() : $order->get_shipping_country();
+				}
+			}
+		} elseif ( WC()->customer ) {
 			$country = '' === WC()->customer->get_shipping_country() ? WC()->customer->get_billing_country() : WC()->customer->get_shipping_country();
 		} elseif ( 'base' === get_option( 'woocommerce_default_customer_address' ) ) {
-			$country = WC()->countries->get_base_country();
+			$country = wc_gzd_get_base_country();
 		}
 
-		return empty( $country ) ? false : $country;
+		return empty( $country ) ? wc_gzd_get_base_country() : $country;
 	}
 
 	/**
@@ -1711,7 +1724,7 @@ class WC_GZD_Product {
 		 */
 		if ( 'view' === $context && ( empty( $delivery_time ) && ! $this->is_downloadable() ) ) {
 			$eu_countries   = WC()->countries->get_european_union_countries();
-			$base_country   = WC()->countries->get_base_country();
+			$base_country   = wc_gzd_get_base_country();
 			$delivery_time  = false;
 			$default_option = false;
 
@@ -1752,7 +1765,7 @@ class WC_GZD_Product {
 	protected function is_valid_country_specific_delivery_time( $slug, $country ) {
 		$default_slug = $this->get_default_delivery_time_slug( 'edit' );
 
-		if ( $slug === $default_slug || $country === WC()->countries->get_base_country() ) {
+		if ( $slug === $default_slug || $country === wc_gzd_get_base_country() ) {
 			return false;
 		}
 
@@ -1784,7 +1797,7 @@ class WC_GZD_Product {
 		$times              = $this->get_delivery_times( $context );
 		$delivery_time      = false;
 		$eu_countries       = WC()->countries->get_european_union_countries();
-		$base_country       = WC()->countries->get_base_country();
+		$base_country       = wc_gzd_get_base_country();
 		$delivery_time_slug = false;
 
 		/**

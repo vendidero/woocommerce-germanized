@@ -1274,7 +1274,7 @@ function wc_gzd_additional_costs_include_tax() {
 
 function wc_gzd_base_country_is_eu() {
 	$eu_countries = WC()->countries->get_european_union_countries();
-	$base_country = WC()->countries->get_base_country();
+	$base_country = wc_gzd_get_base_country();
 
 	return in_array( $base_country, $eu_countries );
 }
@@ -1452,4 +1452,24 @@ add_filter( 'oss_woocommerce_enable_extended_logging', 'wc_gzd_is_extended_debug
 
 function wc_gzd_is_extended_debug_mode_enabled() {
 	return 'yes' === get_option( 'woocommerce_gzd_extended_debug_mode' );
+}
+
+function wc_gzd_get_base_country() {
+	if ( WC()->countries ) {
+		return WC()->countries->get_base_country();
+	} elseif ( function_exists( 'wc_get_base_location' ) ) {
+		return wc_get_base_location()['country'];
+	} else {
+		return 'DE';
+	}
+}
+
+function _wc_gzd_is_admin_order_ajax_request() {
+	$order_actions = array( 'woocommerce_calc_line_taxes', 'woocommerce_save_order_items', 'add_coupon_discount', 'refund_line_items', 'delete_refund' );
+
+	return isset( $_POST['action'], $_POST['order_id'] ) && ( strstr( $_POST['action'], '_order_' ) || in_array( $_POST['action'], $order_actions ) );
+}
+
+function wc_gzd_is_admin_order_request() {
+	return is_admin() && current_user_can( 'edit_shop_orders' ) && _wc_gzd_is_admin_order_ajax_request();
 }

@@ -436,7 +436,7 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 		public static function set_default_settings() {
 			global $wpdb;
 
-			$base_country = ( isset( WC()->countries ) ) ? WC()->countries->get_base_country() : 'DE';
+			$base_country = wc_gzd_get_base_country();
 			$eu_countries = ( isset( WC()->countries ) ) ? WC()->countries->get_european_union_countries() : array( $base_country );
 
 			/**
