@@ -1648,7 +1648,7 @@ class WC_GZD_Product {
 	protected function get_current_customer_shipping_country() {
 		$country = false;
 
-		if ( is_cart() || is_checkout() ) {
+		if ( ( is_cart() || is_checkout() ) && WC()->cart && WC()->cart->get_customer() ) {
 			$country = '' === WC()->cart->get_customer()->get_shipping_country() ? WC()->cart->get_customer()->get_billing_country() : WC()->cart->get_customer()->get_shipping_country();
 		} elseif ( wc_gzd_is_admin_order_request() ) {
 			if ( $order = wc_get_order( absint( $_POST['order_id'] ) ) ) {
@@ -1662,7 +1662,7 @@ class WC_GZD_Product {
 			$country = wc_gzd_get_base_country();
 		}
 
-		return empty( $country ) ? wc_gzd_get_base_country() : $country;
+		return empty( $country ) ? false : $country;
 	}
 
 	/**
