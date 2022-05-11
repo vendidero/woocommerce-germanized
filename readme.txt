@@ -102,6 +102,8 @@ By default, Germanized works with *every WooCommerce theme*. Some themes may nee
 * Storefront
 * Virtue
 * Shopkeeper
+* Astra
+* OceanWP
 
 == Installation ==
 

@@ -288,7 +288,8 @@ if ( ! class_exists( 'WC_GZD_Admin_Notices' ) ) :
 				'storefront',
 				'virtue',
 				'shopkeeper',
-				'astra'
+				'astra',
+				'oceanwp'
 			);
 
 			$current = wp_get_theme();
