@@ -15,15 +15,18 @@
         self.$resetVariations     = $form.find( '.reset_variations' );
         self.$button              = $form.find( '.single_add_to_cart_button' );
 
+        self.$form.addClass( 'has-gzd-variation-form' );
+        self.$form.off( '.wc-gzd-variation-form' );
+
         if ( self.$wrapper.length <= 0 ) {
             self.$wrapper = self.$product;
         }
 
         self.replacePrice = self.$wrapper.hasClass( 'bundled_product' ) ? false : wc_gzd_add_to_cart_variation_params.replace_price;
 
-        $form.on( 'click', '.reset_variations', { GermanizedvariationForm: self }, self.onReset );
-        $form.on( 'reset_data', { GermanizedvariationForm: self }, self.onReset );
-        $form.on( 'show_variation', { GermanizedvariationForm: self }, self.onShowVariation );
+        $form.on( 'click.wc-gzd-variation-form', '.reset_variations', { GermanizedvariationForm: self }, self.onReset );
+        $form.on( 'reset_data.wc-gzd-variation-form', { GermanizedvariationForm: self }, self.onReset );
+        $form.on( 'show_variation.wc-gzd-variation-form', { GermanizedvariationForm: self }, self.onShowVariation );
 
         self.$wrapper.find( '' +
             '.woocommerce-product-attributes-item--food_description, ' +
@@ -284,6 +287,20 @@
             $( '.variations_form' ).each( function() {
                 $( this ).wc_germanized_variation_form();
             });
+
+            /**
+             * Improve compatibility with custom implementations which might
+             * manually construct wc_variation_form() (e.g. quick view).
+             */
+            $( document.body ).on( 'wc_variation_form', function( e, variationForm ) {
+                var $form = $( variationForm.$form );
+
+                if ( ! $form.hasClass( 'has-gzd-variation-form' ) ) {
+                    $form.wc_germanized_variation_form();
+                    // Make sure to reload variation to apply our logic
+                    $form.trigger( 'check_variations' );
+                }
+            } );
         }
     });
 
