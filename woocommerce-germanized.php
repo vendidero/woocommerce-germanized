@@ -769,8 +769,11 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 			 */
 			$template_name = apply_filters( 'woocommerce_gzd_template_name', $template_name );
 
+            $gzd_original_template = apply_filters( 'woocommerce_gzd_default_plugin_template', $this->plugin_path() . '/templates/' . $template_name, $template_name );
+            $is_checkbox           = strstr( $template_name, 'checkboxes/' );
+
 			/** This filter is documented in woocommerce-germanized.php */
-			if ( file_exists( apply_filters( 'woocommerce_gzd_default_plugin_template', $this->plugin_path() . '/templates/' . $template_name, $template_name ) ) ) {
+			if ( file_exists( $gzd_original_template ) || $is_checkbox ) {
 				// Check for Theme overrides
 				$theme_template = locate_template( array(
 					trailingslashit( $template_path ) . $template_name,
@@ -787,6 +790,14 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 	                 * @params string $path The absolute path to the template.
 	                 */
 	                $template = apply_filters( 'woocommerce_gzd_default_plugin_template', $this->plugin_path() . '/templates/' . $template_name, $template_name );
+
+	                /**
+	                 * Fallback to default checkbox template if a user has chosen a custom template in the settings
+                     * which does not exist.
+	                 */
+                    if ( $is_checkbox && ! file_exists( $template ) ) {
+	                    $template = $this->plugin_path() . '/templates/checkboxes/default.php';
+                    }
                 } else {
 	                $template = $theme_template;
                 }
