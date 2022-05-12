@@ -27,7 +27,7 @@ abstract class WC_GZD_Elementor_Widget extends ElementorPro\Modules\Woocommerce\
 		return $this->get_title_prefix() . $this->get_title_raw();
 	}
 
-	protected function _register_controls() {
+	protected function register_controls() {
 
 		$this->start_controls_section(
 			'section_' . $this->get_postfix() . '_style',
