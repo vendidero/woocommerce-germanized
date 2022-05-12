@@ -407,12 +407,21 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 					$note_name = str_replace( 'wc-gzd-admin-', '', $note->get_name() );
 					$note_name = str_replace( '-notice', '', $note_name );
 					$note_name = str_replace( '-', '_', $note_name );
+                    $gzd_node  = WC_GZD_Admin_Notices::instance()->get_note( $note_name );
 
 					if ( current_user_can( 'manage_woocommerce' ) ) {
 						if ( 'disabled' === $note->get_status() ) {
 							update_option( '_wc_gzd_hide_' . $note_name . '_notice', 'yes' );
+
+                            if ( $gzd_node ) {
+                                $gzd_node->dismiss( false );
+                            }
 						} elseif( 'deactivated' === $note->get_status() ) {
 							update_option( '_wc_gzd_disable_' . $note_name . '_notice', 'yes' );
+
+							if ( $gzd_node ) {
+								$gzd_node->deactivate( false );
+							}
 						}
                     }
 				}
