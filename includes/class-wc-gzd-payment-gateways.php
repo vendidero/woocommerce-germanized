@@ -137,13 +137,17 @@ class WC_GZD_Payment_Gateways {
 	}
 
 	public function manipulate_gateways() {
-		if ( ! WC()->payment_gateways ) {
+		if ( ! WC()->payment_gateways() ) {
 			return;
 		}
 
-		$gateways = WC()->payment_gateways->get_available_payment_gateways();
+		$gateways = WC()->payment_gateways()->payment_gateways();
 
 		foreach ( $gateways as $gateway ) {
+
+			if ( $gateway->enabled !== 'yes' ) {
+				continue;
+			}
 
 			$this->maybe_set_gateway_data( $gateway );
 			$this->maybe_force_gateway_button_text( $gateway );
@@ -184,41 +188,10 @@ class WC_GZD_Payment_Gateways {
 	}
 
 	/**
-	 * Manipualte payment gateway title
-	 *
-	 * @param string $title
-	 * @param string $id gateway id
-	 */
-	public function set_title( $title, $id ) {
-		$gateways = WC()->payment_gateways->get_available_payment_gateways();
-
-		foreach ( $gateways as $gateway ) {
-
-			if ( $gateway->id != $id ) {
-				continue;
-			}
-
-			if ( ! $this->gateway_supports_fees( $gateway->id ) ) {
-				return $title;
-			}
-
-			$this->maybe_set_gateway_data( $gateway );
-
-			$title = $this->gateway_data[ $gateway->id ]['title'];
-
-			if ( $gateway->get_option( 'fee' ) && ( is_payment_methods() || ( is_checkout() || ( defined( 'DOING_AJAX' ) && isset( $_POST['action'] ) && $_POST['action'] == 'woocommerce_update_order_review' ) ) ) ) {
-				$title = $title . ' <span class="small">(' . sprintf( __( '%s payment charge', 'woocommerce-germanized' ), wc_price( $gateway->get_option( 'fee' ) ) ) . ')</span>';
-			}
-
-			return $title;
-		}
-	}
-
-	/**
 	 * Dynamically set filter to show additional fields
 	 */
 	public function init_fields() {
-		$gateways = WC()->payment_gateways->payment_gateways;
+		$gateways = WC()->payment_gateways()->payment_gateways();
 
 		if ( ! empty( $gateways ) ) {
 			foreach ( $gateways as $key => $gateway ) {
@@ -272,13 +245,17 @@ class WC_GZD_Payment_Gateways {
 	 * Update fee for cart if feeable gateway has been selected as payment method
 	 */
 	public function init_fee() {
-		$gateways = WC()->payment_gateways()->get_available_payment_gateways();
+		$gateways = WC()->payment_gateways()->payment_gateways();
 
 		if ( ! ( $key = WC()->session->get( 'chosen_payment_method' ) ) || ! isset( $gateways[ $key ] ) ) {
 			return;
 		}
 
 		$gateway = $gateways[ $key ];
+
+		if ( $gateway->enabled !== 'yes' ) {
+			return;
+		}
 
 		if ( ! $this->gateway_supports_fees( $gateway->id ) ) {
 			return;
