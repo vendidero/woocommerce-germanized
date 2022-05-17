@@ -332,8 +332,12 @@ class WC_GZD_Product_Import {
 			}
 		}
 
-		if ( ! $term || is_wp_error( $term ) ) {
+		if ( ! is_a( $term, 'WP_Term' ) ) {
 			$term = (object) wp_insert_term( $name, $taxonomy );
+		}
+
+		if ( ! is_a( $term, 'WP_Term' ) ) {
+			return '';
 		}
 
 		return $term->{$output};
