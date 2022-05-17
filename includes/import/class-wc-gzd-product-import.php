@@ -235,7 +235,7 @@ class WC_GZD_Product_Import {
 	}
 
 	public function parse_allergenic( $allergenic ) {
-		$allergenic   = array_map( 'trim', explode( '|', $allergenic ) );
+		$allergenic   = array_filter( array_map( 'trim', explode( '|', $allergenic ) ) );
 		$allergen_ids = array();
 
 		foreach( $allergenic as $allergen ) {
@@ -322,6 +322,10 @@ class WC_GZD_Product_Import {
 	}
 
 	public function parse_term( $name, $taxonomy, $output = 'term_id' ) {
+		if ( empty( $name ) ) {
+			return false;
+		}
+
 		if ( is_numeric( $name ) ) {
 			$term = get_term_by( 'id', $name, $taxonomy );
 		} else {
@@ -332,8 +336,15 @@ class WC_GZD_Product_Import {
 			}
 		}
 
+		/**
+		 * If the term does not exist, try to insert
+		 */
 		if ( ! is_a( $term, 'WP_Term' ) ) {
-			$term = (object) wp_insert_term( $name, $taxonomy );
+			$term_data = wp_insert_term( $name, $taxonomy );
+
+			if ( ! is_wp_error( $term_data ) ) {
+				$term = get_term_by( 'id', $term_data['term_id'], $taxonomy );
+			}
 		}
 
 		if ( ! is_a( $term, 'WP_Term' ) ) {
