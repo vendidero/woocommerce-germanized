@@ -600,7 +600,7 @@ class WC_GZD_Admin {
 		wp_register_script( 'wc-gzd-admin-settings', $assets_path . 'js/admin/settings' . $suffix . '.js', array(
 			'jquery',
 			'woocommerce_admin'
-		), WC_GERMANIZED_VERSION, true );
+		), WC_GERMANIZED_VERSION );
 
 		wp_localize_script(
 			'wc-gzd-admin-settings',
