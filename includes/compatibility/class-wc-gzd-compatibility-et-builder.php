@@ -116,25 +116,55 @@ class WC_GZD_Compatibility_ET_Builder extends WC_GZD_Compatibility {
 
 	protected function is_et_builder_single_product() {
 		global $post;
+		$is_enabled = false;
 
 		if ( $post && is_singular( 'product' ) ) {
-			if ( wc_post_content_has_shortcode( 'et_pb_wc_price' ) || wc_post_content_has_shortcode( 'et_pb_wc_description' ) ) {
-				return true;
+			$is_enabled = $this->post_is_et_builder( $this->get_divi_builder_post(), 'single_product' );
+		}
+
+		return $is_enabled;
+	}
+
+	protected function post_is_et_builder( $post, $type = 'checkout' ) {
+		$post_content = is_a( $post, 'WP_Post' ) ? $post->post_content : '';
+		$is_enabled   = false;
+
+		if ( 'checkout' === $type ) {
+			if ( wc_gzd_content_has_shortcode( $post_content, 'et_pb_wc_checkout_billing' ) || wc_gzd_content_has_shortcode( $post_content, 'et_pb_wc_checkout_payment_info' ) || wc_gzd_content_has_shortcode( $post_content, 'et_pb_wc_checkout_order_details' ) ) {
+				$is_enabled = true;
+			}
+		} elseif ( 'single_product' === $type ) {
+			if ( wc_gzd_content_has_shortcode( $post_content, 'et_pb_wc_price' ) || wc_gzd_content_has_shortcode( $post_content, 'et_pb_wc_description' ) ) {
+				$is_enabled = true;
 			}
 		}
 
-		return false;
+		return $is_enabled;
+	}
+
+	/**
+	 * Either use the global post object or the current Divi builder template post.
+	 *
+	 * @return WP_Post|null
+	 */
+	protected function get_divi_builder_post() {
+		global $post;
+
+		if ( function_exists( 'et_theme_builder_get_template_layouts' ) && defined( 'ET_THEME_BUILDER_BODY_LAYOUT_POST_TYPE' ) && function_exists( 'et_theme_builder_overrides_layout' ) ) {
+			if ( et_theme_builder_overrides_layout( ET_THEME_BUILDER_BODY_LAYOUT_POST_TYPE ) ) {
+				$layouts     = et_theme_builder_get_template_layouts();
+				$body_layout = $layouts[ ET_THEME_BUILDER_BODY_LAYOUT_POST_TYPE ];
+
+				if ( isset( $body_layout['id'] ) && ( $body_post = get_post( $body_layout['id'] ) ) ) {
+					return $body_post;
+				}
+			}
+		}
+
+		return $post;
 	}
 
 	protected function is_et_builder_checkout() {
-		global $post;
-
-		if ( $post ) {
-			if ( wc_post_content_has_shortcode( 'et_pb_wc_checkout_billing' ) || wc_post_content_has_shortcode( 'et_pb_wc_checkout_payment_info' ) || wc_post_content_has_shortcode( 'et_pb_wc_checkout_order_details' ) ) {
-				return true;
-			}
-		}
-
-		return false;
+		return $this->post_is_et_builder( $this->get_divi_builder_post(), 'checkout' );
 	}
 }
