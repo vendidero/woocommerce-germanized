@@ -267,6 +267,37 @@ table.product-details-inner tr td:last-child {
 }
 
 /**
+ * Blocks
+ */
+.wc-block-featured-product {
+  .wc-gzd-additional-info {
+    width: 100%;
+    padding: 5px 48px 0;
+    z-index: 1;
+    color: inherit;
+    text-align: center;
+    margin: 0;
+    font-size: .9em;
+  }
+  .wc-gzd-nutri-score {
+    width: auto;
+  }
+}
+
+ul.wc-block-grid__products {
+  li.wc-block-grid__product {
+    .wc-gzd-additional-info {
+      margin: .5em 0;
+    }
+
+    .wc-gzd-additional-info:not(.deposit-packaging-type) {
+      font-size: .9em;
+      font-weight: normal;
+    }
+  }
+}
+
+/**
  * Twenty Twenty
  */
 .theme-twentytwenty, .theme-twentytwentyone {

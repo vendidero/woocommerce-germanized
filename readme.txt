@@ -212,7 +212,7 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 
 == Changelog ==
 = 3.9.3 =
-* Feature: Omnibus-Policy compliance (authenticity of customer reviews)
+* Feature: Omnibus-Policy compliance (notify customers about the authenticity of customer reviews)
 * Improvement: Quick-View general compatibility
 * Improvement: Do not use deprecated elementor _register_controls
 * Improvement: Allergenic product import handling
