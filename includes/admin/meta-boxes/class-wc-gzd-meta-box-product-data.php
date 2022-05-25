@@ -1017,6 +1017,9 @@ class WC_Germanized_Meta_Box_Product_Data {
 
 		if ( isset( $data['_allergen_ids'] ) ) {
 			$gzd_product->set_allergen_ids( array_map( 'absint', (array) wc_clean( $data['_allergen_ids'] ) ) );
+		} elseif ( ! $data['is_rest'] ) {
+            // Reset data as the request misses the select2 field.
+            $gzd_product->set_allergen_ids( array() );
 		}
 
 		if ( isset( $data['_ingredients'] ) ) {

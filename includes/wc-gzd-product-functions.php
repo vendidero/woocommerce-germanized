@@ -387,3 +387,62 @@ function wc_gzd_get_valid_product_delivery_time_slugs( $maybe_slug, $allow_add_n
 		return $slug;
 	}
 }
+
+function wc_gzd_product_review_is_verified( $comment_id ) {
+	return apply_filters( 'woocommerce_gzd_product_review_is_verified', wc_review_is_from_verified_owner( $comment_id ), $comment_id );
+}
+
+function wc_gzd_product_rating_is_verified( $product_id ) {
+	return apply_filters( 'woocommerce_gzd_product_rating_is_verified', 'yes' === get_option( 'woocommerce_gzd_product_ratings_verified' ), $product_id );
+}
+
+function wc_gzd_get_legal_product_rating_authenticity_notice( $product_id ) {
+	$product_id = is_a( $product_id, 'WC_Product' ) ? $product_id->get_id() : $product_id;
+	$verified   = wc_gzd_product_rating_is_verified( $product_id );
+	$text       = $verified ? get_option( 'woocommerce_gzd_product_rating_verified_text', __( '{link}Verified overall ratings{/link}', 'woocommerce-germanized' ) ) : get_option( 'woocommerce_gzd_product_rating_unverified_text', __( '{link}Unverified overall ratings{/link}', 'woocommerce-germanized' ) );
+
+	if ( $text ) {
+		$replacements = array(
+			'{link}'  => '<a href="' . esc_url( wc_gzd_get_page_permalink( 'review_authenticity' ) ) . '" target="_blank">',
+			'{/link}' => '</a>',
+		);
+
+		$text = wc_gzd_replace_label_shortcodes( $text, $replacements );
+	}
+
+	/**
+	 * Filter to adjust the legal product rating authenticity text for products.
+	 *
+	 * @param string $text The HTML output.
+	 * @param integer $product_id
+	 *
+	 * @since 3.9.3
+	 */
+	return apply_filters( 'woocommerce_gzd_legal_product_rating_authenticity_text', $text, $product_id );
+}
+
+function wc_gzd_get_legal_product_review_authenticity_notice( $comment_id ) {
+	$comment_id = is_a( $comment_id, 'WP_Comment' ) ? $comment_id->comment_ID : $comment_id;
+	$verified   = wc_gzd_product_review_is_verified( $comment_id );
+	$text       = $verified ? get_option( 'woocommerce_gzd_product_review_verified_text', __( 'Verified purchase. {link}Find out more{/link}', 'woocommerce-germanized' ) ) : get_option( 'woocommerce_gzd_product_review_unverified_text', __( 'Purchase not verified. {link}Find out more{/link}', 'woocommerce-germanized' ) );
+
+	if ( $text ) {
+		$replacements = array(
+			'{link}'  => '<a href="' . esc_url( wc_gzd_get_page_permalink( 'review_authenticity' ) ) . '" target="_blank">',
+			'{/link}' => '</a>',
+		);
+
+		$text = wc_gzd_replace_label_shortcodes( $text, $replacements );
+	}
+
+	/**
+	 * Filter to adjust the legal product review authenticity text for a single review.
+	 *
+	 * @param string $text The HTML output.
+	 * @param bool $verified
+	 * @param integer $comment_id
+	 *
+	 * @since 3.9.3
+	 */
+	return apply_filters( 'woocommerce_gzd_legal_product_review_authenticity_text', $text, $verified, $comment_id );
+}

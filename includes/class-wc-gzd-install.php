@@ -42,7 +42,8 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 			'3.4.0' => 'updates/woocommerce-gzd-update-3.4.0.php',
 			'3.7.0' => 'updates/woocommerce-gzd-update-3.7.0.php',
 			'3.8.0' => 'updates/woocommerce-gzd-update-3.8.0.php',
-			'3.9.1' => 'updates/woocommerce-gzd-update-3.9.1.php'
+			'3.9.1' => 'updates/woocommerce-gzd-update-3.9.1.php',
+			'3.9.3' => 'updates/woocommerce-gzd-update-3.9.3.php'
 		);
 
 		/**
@@ -528,10 +529,19 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 					'title'   => _x( 'Payment Methods', 'Page title', 'woocommerce-germanized' ),
 					'content' => '[payment_methods_info]'
 				),
+				'review_authenticity' => array(
+					'name'    => _x( 'review-authenticity', 'Page slug', 'woocommerce-germanized' ),
+					'title'   => _x( 'Review Authenticity', 'Page title', 'woocommerce-germanized' ),
+					'content' => ''
+				),
 			) );
 
 			foreach ( $pages as $key => $page ) {
-				wc_create_page( esc_sql( $page['name'] ), 'woocommerce_' . $key . '_page_id', $page['title'], $page['content'], ! empty( $page['parent'] ) ? wc_get_page_id( $page['parent'] ) : '' );
+				$page_id = wc_create_page( esc_sql( $page['name'] ), 'woocommerce_' . $key . '_page_id', $page['title'], '', ! empty( $page['parent'] ) ? wc_get_page_id( $page['parent'] ) : '' );
+
+				if ( $page_id && ! empty( $page['content'] ) ) {
+					wc_gzd_update_page_content( $page_id, $page['content'] );
+				}
 			}
 		}
 

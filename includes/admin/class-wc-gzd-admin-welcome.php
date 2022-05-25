@@ -137,6 +137,17 @@ class WC_GZD_Admin_Welcome {
             </p>
 
             <div class="changelog new-feature">
+                <h3>Achtung: Neue Preisangabeverordnung und Omnibus-Richtlinie ab dem 28.05.22</h3>
+                <p>
+                    Ab dem 28.05.2022 gilt eine neue <a href="https://www.it-recht-kanzlei.de/preisangabenverordnung-2022-wichtige-aenderungen.html" target="_blank">Preisangabeverordnung</a>. Bei Grundpreisen ändern sich die zulässigen Einheiten. Ihr solltet also eure in Germanized hinterlegten <a href="https://vendidero.de/dokument/grundpreise-hinterlegen" target="_blank">Grundpreise</a> kontrollieren und ggf. korrigieren.
+                    Auch bei Preisermäßigungen gibt es neue Pflichten, die zu beachten sind. Insofern du Lebensmittel mit Pfand verkaufst, muss der Pfand von nun an separat ausgewiesen werden. Das ist mit Germanized <span class="wc-gzd-pro wc-gzd-pro-outlined">pro</span> kein Problem.
+                    <br/><br/>
+                    Zusätzlich tritt die <a href="https://www.haendlerbund.de/de/news/aktuelles/rechtliches/4145-omnibus-rezensionen-gekennzeichnet" target="_blank">Omnibus-Richtlinie</a> in Kraft. Du musst von nun an Informationen zur Authentizität von Kundenbewertungen bereitstellen. Wenn du deine Kundenbewertungen über die in WooCommerce integrierte Funktion
+                    bereitstellst, unterstützt dich Germanized dabei. Wir haben dafür eine neue rechtliche <a target="_blank" href="<?php echo esc_url( wc_gzd_get_page_permalink( 'review_authenticity' ) ); ?>">Hinweisseite</a> angelegt und entsprechende <a href="<?php echo esc_url( admin_url( 'admin.php?page=wc-settings&tab=germanized-general&section=shop' ) ); ?>">Hinweise platziert</a>.
+                </p>
+            </div>
+
+            <div class="changelog new-feature">
                 <h3>Neu: Verkaufe Lebensmittel rechtssicher <span class="wc-gzd-pro wc-gzd-pro-outlined">pro</span></h3>
 
                 <div class="columns two-col">

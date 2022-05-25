@@ -5,7 +5,7 @@ Requires at least: 5.4
 Tested up to: 6.0
 WC requires at least: 3.9
 WC tested up to: 6.5
-Stable tag: 3.9.2
+Stable tag: 3.9.3
 Requires PHP: 5.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -211,6 +211,15 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 6. Edit pdf documents (Pro)
 
 == Changelog ==
+= 3.9.3 =
+* Feature: Omnibus-Policy compliance (authenticity of customer reviews)
+* Improvement: Quick-View general compatibility
+* Improvement: Do not use deprecated elementor _register_controls
+* Improvement: Allergenic product import handling
+* Improvement: Voucher discount calculation
+* Improvement: Divi template builder checkout
+* Fix: Template locating for checkboxes
+
 = 3.9.2 =
 * Fix: State select hide for DE
 * Fix: Food nutrients variation parent merge

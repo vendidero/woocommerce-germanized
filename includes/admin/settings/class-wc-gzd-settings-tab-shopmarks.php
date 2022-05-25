@@ -46,7 +46,7 @@ class WC_GZD_Settings_Tab_Shopmarks extends WC_GZD_Settings_Tab {
 		}
 
 		$sections = array_merge( $sections, array(
-			'product_widgets' => __( 'Widgets & Blocks', 'woocommerce-germanized' ),
+			'product_widgets' => __( 'Widgets', 'woocommerce-germanized' ),
 			'emails'          => __( 'E-Mails', 'woocommerce-germanized' ),
 		) );
 

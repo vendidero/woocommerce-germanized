@@ -54,8 +54,12 @@ foreach ( wc_gzd_get_product_loop_shopmarks() as $shopmark ) {
 	$shopmark->execute();
 }
 
-// Add widget price HTML filters to Gutenberg blocks
-add_filter( 'woocommerce_get_price_html', 'woocommerce_gzd_template_product_blocks', 50, 2 );
+/**
+ * Product Block
+ */
+foreach ( wc_gzd_get_product_block_shopmarks() as $shopmark ) {
+	$shopmark->execute();
+}
 
 // Make sure to add a global product object to allow getting the grouped parent product within child display
 add_action( 'woocommerce_before_add_to_cart_form', 'woocommerce_gzd_template_single_setup_global_product' );
@@ -71,10 +75,36 @@ if ( get_option( 'woocommerce_gzd_display_listings_link_details' ) == 'yes' ) {
 }
 
 /**
+ * Review Omnibus-Policy.
+ *
+ * @see https://www.haendlerbund.de/de/news/aktuelles/rechtliches/4145-omnibus-rezensionen-gekennzeichnet
+ */
+if ( 'yes' === get_option( 'woocommerce_gzd_display_rating_authenticity_notice' ) ) {
+	add_filter( 'woocommerce_product_get_rating_html', 'woocommerce_gzd_template_product_rating_authenticity_status_filter', 500 );
+	add_action( 'woocommerce_gzd_after_product_grid_block_after_rating', 'woocommerce_gzd_template_product_rating_authenticity_status_loop', 20 );
+}
+
+if ( 'yes' === get_option( 'woocommerce_gzd_display_review_authenticity_notice' ) ) {
+	add_action( 'woocommerce_review_after_comment_text', 'woocommerce_gzd_template_product_review_authenticity_status', 20 );
+	add_filter( 'pre_option_woocommerce_review_rating_verification_label', function() {
+		return 'no';
+	}, 500 );
+}
+
+/**
  * Widgets
  */
 add_action( 'woocommerce_widget_product_item_start', 'woocommerce_gzd_template_product_widget_filters_start', 10, 1 );
 add_action( 'woocommerce_widget_product_item_end', 'woocommerce_gzd_template_product_widget_filters_end', 10, 1 );
+
+/**
+ * Add hooks to blocks via DOM adjustments.
+ */
+add_filter( 'woocommerce_blocks_product_grid_item_html', 'wc_gzd_template_adjust_product_grid_block_html', 1, 3 );
+// Additional product blocks which do not inherit from \Automattic\WooCommerce\Blocks\BlockTypes\AbstractProductGrid
+foreach( array( 'woocommerce/featured-product' ) as $block_type ) {
+	add_filter( 'render_block_woocommerce/featured-product', 'wc_gzd_template_adjust_product_block_html', 150, 2 );
+}
 
 /**
  * Cart, Checkout taxes

@@ -291,6 +291,7 @@ class WC_GZD_Products_API extends WC_GZD_REST_Unit_Test_Case {
 			'food'                  => array(
 				'ingredients'      => 'testing it',
 				'deposit_quantity' => 7,
+				'allergen_ids'     => array(),
 			),
 		) );
 
@@ -323,6 +324,7 @@ class WC_GZD_Products_API extends WC_GZD_REST_Unit_Test_Case {
 		$this->assertEquals( false, $product['is_food'] );
 		$this->assertEquals( '<p>testing it</p>', trim( $product['food']['ingredients'] ) );
 		$this->assertEquals( 1.75, $product['food']['deposit'] );
+		$this->assertEquals( array(), $product['food']['allergen_ids'] );
 
 		$simple->delete( true );
 	}
@@ -340,6 +342,7 @@ class WC_GZD_Products_API extends WC_GZD_REST_Unit_Test_Case {
 
 		$response = $this->server->dispatch( $request );
 		$product  = $response->get_data();
+		$allergen_term = get_term_by( 'slug', 'hazelnut', 'product_allergen' );
 
 		$this->assertEquals( '80.0', $product['unit_price']['price_regular'] );
 		$this->assertEquals( '70.0', $product['unit_price']['price_sale'] );
@@ -350,6 +353,7 @@ class WC_GZD_Products_API extends WC_GZD_REST_Unit_Test_Case {
 		$this->assertEquals( true, $product['differential_taxation'] );
 		$this->assertEquals( true, $product['service'] );
 		$this->assertEquals( true, $product['is_food'] );
+		$this->assertEquals( array( $allergen_term->term_id ), $product['food']['allergen_ids'] );
 
 		$simple->delete( true );
 	}

@@ -15,18 +15,20 @@ if ( ! defined( 'ABSPATH' ) ) {
 } // Exit if accessed directly
 
 return array(
-	'kg'  => __( 'kg', 'woocommerce' ),
-	'g'   => __( 'g', 'woocommerce' ),
-	'lbs' => __( 'lbs', 'woocommerce' ),
-	'oz'  => __( 'oz', 'woocommerce' ),
-	'm'   => __( 'm', 'woocommerce' ),
-	'cm'  => __( 'cm', 'woocommerce' ),
-	'mm'  => __( 'mm', 'woocommerce' ),
-	'in'  => __( 'in', 'woocommerce' ),
-	'yd'  => __( 'yd', 'woocommerce' ),
-	'ml'  => __( 'ml', 'woocommerce-germanized' ),
-	'l'   => __( 'l', 'woocommerce-germanized' ),
-	'µg'  => __( 'µg', 'woocommerce-germanized' ),
+	'kg'   => __( 'kg', 'woocommerce' ),
+	'g'    => __( 'g', 'woocommerce' ),
+	'lbs'  => __( 'lbs', 'woocommerce' ),
+	'oz'   => __( 'oz', 'woocommerce' ),
+	'm'    => __( 'm', 'woocommerce' ),
+	'cm'   => __( 'cm', 'woocommerce' ),
+	'mm'   => __( 'mm', 'woocommerce' ),
+	'in'   => __( 'in', 'woocommerce' ),
+	'yd'   => __( 'yd', 'woocommerce' ),
+	'ml'   => __( 'ml', 'woocommerce-germanized' ),
+	'l'    => __( 'l', 'woocommerce-germanized' ),
+	'µg'   => __( 'µg', 'woocommerce-germanized' ),
+	'kcal' => __( 'kcal', 'woocommerce-germanized' ),
+	'kj'   => __( 'kJ', 'woocommerce-germanized' ),
 );
 
 ?>

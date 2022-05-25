@@ -47,6 +47,120 @@ if ( ! function_exists( 'woocommerce_gzd_template_grouped_single_legal_info' ) )
 	}
 }
 
+if ( ! function_exists( 'woocommerce_gzd_template_product_review_authenticity_status' ) ) {
+	function woocommerce_gzd_template_product_review_authenticity_status( $comment ) {
+		if ( apply_filters( 'woocommerce_gzd_show_product_review_authenticity_status', true, $comment->comment_ID ) ) {
+			wc_get_template( 'single-product/review-authenticity-status.php' );
+		}
+	}
+}
+
+if ( ! function_exists( 'woocommerce_gzd_template_product_rating_authenticity_status_loop' ) ) {
+	function woocommerce_gzd_template_product_rating_authenticity_status_loop() {
+		global $product;
+
+		if ( ! is_a( $product, 'WC_Product' ) ) {
+			return;
+		}
+
+		if ( apply_filters( 'woocommerce_gzd_show_product_rating_authenticity_status', true, $product->get_id() ) ) {
+			wc_get_template( 'loop/rating-authenticity-status.php' );
+		}
+	}
+}
+
+if ( ! function_exists( 'woocommerce_gzd_template_product_rating_authenticity_status_single' ) ) {
+	function woocommerce_gzd_template_product_rating_authenticity_status_single() {
+		global $product;
+
+		if ( ! is_a( $product, 'WC_Product' ) ) {
+			return;
+		}
+
+		if ( apply_filters( 'woocommerce_gzd_show_product_rating_authenticity_status', true, $product->get_id() ) ) {
+			wc_get_template( 'single-product/rating-authenticity-status.php' );
+		}
+	}
+}
+
+if ( ! function_exists( 'woocommerce_gzd_template_product_rating_authenticity_status_filter' ) ) {
+	function woocommerce_gzd_template_product_rating_authenticity_status_filter( $html ) {
+		global $product;
+
+		if ( $product && is_a( $product, 'WC_Product' ) ) {
+			$stack         = debug_backtrace( DEBUG_BACKTRACE_IGNORE_ARGS,7 );
+			$show_notice   = false;
+			$is_loop       = false;
+
+			foreach( $stack as $backtrace ) {
+				if ( ! isset( $backtrace['file'] ) ) {
+					continue;
+				}
+
+				if ( strstr( $backtrace['file'], 'single-product/rating.php' ) ) {
+					$show_notice = true;
+					break;
+				} elseif ( strstr( $backtrace['file'], 'loop/rating.php' ) || strstr( $backtrace['file'], 'content-widget-product.php' ) ) {
+					$show_notice = true;
+					$is_loop     = true;
+					break;
+				}
+			}
+
+			if ( $show_notice ) {
+				ob_start();
+				if ( $is_loop ) {
+					woocommerce_gzd_template_product_rating_authenticity_status_loop();
+				} else {
+					woocommerce_gzd_template_product_rating_authenticity_status_single();
+				}
+				$legal_html = ob_get_clean();
+
+				$html = $html . $legal_html;
+			}
+		}
+
+		return $html;
+	}
+}
+
+
+if ( ! function_exists( 'wc_gzd_template_adjust_product_block_html' ) ) {
+	function wc_gzd_template_adjust_product_block_html( $html, $block ) {
+		$block_name  = str_replace(  'woocommerce/', '', $block['blockName'] );
+		$org_product = isset( $block['attrs']['productId'] ) ? wc_get_product( absint( $block['attrs']['productId'] ) ) : false;
+
+		if ( ! $org_product ) {
+			return $html;
+		}
+
+		$elements = array(
+			'price'  => apply_filters( "woocommerce_gzd_product_{$block_name}_block_price_xpath", sprintf( "//div[contains(@class, '%s')]", "wc-block-{$block_name}__price" ) ),
+			'title'  => apply_filters( "woocommerce_gzd_product_{$block_name}_block_title_xpath", sprintf( "//div[contains(@class, '%s')]", "wc-block-{$block_name}__title" ) ),
+			'rating' => apply_filters( "woocommerce_gzd_product_{$block_name}_block_rating_xpath", sprintf( "//div[contains(@class, '%s')]", "wc-block-{$block_name}__rating" ) )
+		);
+
+		$html = wc_gzd_register_hooks_in_product_block_html( $html, $elements, $org_product );
+
+		return $html;
+	}
+}
+
+if ( ! function_exists( 'wc_gzd_template_adjust_product_grid_block_html' ) ) {
+
+	function wc_gzd_template_adjust_product_grid_block_html( $html, $data, $org_product ) {
+		$elements = array(
+			'price'  => apply_filters( "woocommerce_gzd_product_grid_block_price_xpath", sprintf( "//div[contains(@class, '%s')]", "wc-block-grid__product-price" ) ),
+			'title'  => apply_filters( "woocommerce_gzd_product_grid_block_title_xpath", sprintf( "//a[contains(@class, '%s')]", "wc-block-grid__product-link" ) ),
+			'rating' => apply_filters( "woocommerce_gzd_product_grid_block_rating_xpath", sprintf( "//div[contains(@class, '%s')]", "wc-block-grid__product-rating" ) )
+		);
+
+		$html = wc_gzd_register_hooks_in_product_block_html( $html, $elements, $org_product );
+
+		return $html;
+	}
+}
+
 if ( ! function_exists( 'woocommerce_gzd_template_loop_price_unit' ) ) {
 
 	function woocommerce_gzd_template_loop_price_unit() {
@@ -974,7 +1088,6 @@ if ( ! function_exists( 'woocommerce_gzd_template_render_review_checkboxes' ) ) 
 if ( ! function_exists( 'woocommerce_gzd_template_product_widget_filters_start' ) ) {
 
 	function woocommerce_gzd_template_product_widget_filters_start( $args ) {
-		remove_filter( 'woocommerce_get_price_html', 'woocommerce_gzd_template_product_blocks', 50 );
 		add_filter( 'woocommerce_get_price_html', 'woocommerce_gzd_template_product_widget_price_html', 100, 2 );
 	}
 }
@@ -983,7 +1096,6 @@ if ( ! function_exists( 'woocommerce_gzd_template_product_widget_filters_end' ) 
 
 	function woocommerce_gzd_template_product_widget_filters_end( $args ) {
 		remove_filter( 'woocommerce_get_price_html', 'woocommerce_gzd_template_product_widget_price_html', 100 );
-		add_filter( 'woocommerce_get_price_html', 'woocommerce_gzd_template_product_blocks', 50, 2 );
 	}
 }
 

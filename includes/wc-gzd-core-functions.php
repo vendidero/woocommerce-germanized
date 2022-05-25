@@ -81,6 +81,13 @@ function wc_gzd_get_product_loop_shopmarks() {
 /**
  * @return Vendidero\Germanized\Shopmark[]
  */
+function wc_gzd_get_product_block_shopmarks() {
+	return Shopmarks::get( 'product_block' );
+}
+
+/**
+ * @return Vendidero\Germanized\Shopmark[]
+ */
 function wc_gzd_get_cart_shopmarks() {
 
 	$cart = Shopmarks::get( 'cart' );
@@ -333,8 +340,9 @@ function wc_gzd_get_legal_pages( $email_attachable_only = false ) {
 	);
 
 	$secondary_pages = array(
-		'payment_methods' => __( 'Payment Methods', 'woocommerce-germanized' ),
-		'shipping_costs'  => __( 'Shipping Costs', 'woocommerce-germanized' ),
+		'payment_methods'     => __( 'Payment Methods', 'woocommerce-germanized' ),
+		'shipping_costs'      => __( 'Shipping Costs', 'woocommerce-germanized' ),
+		'review_authenticity' => __( 'Review Authenticity', 'woocommerce-germanized' ),
 	);
 
 	if ( ! $email_attachable_only ) {
@@ -354,7 +362,7 @@ function wc_gzd_get_legal_pages( $email_attachable_only = false ) {
 }
 
 function wc_gzd_get_default_email_attachment_order() {
-	return 'terms,revocation,data_security,imprint,warranties';
+	return 'terms,revocation,data_security,imprint,warranties,review_authenticity';
 }
 
 function wc_gzd_get_email_attachment_order( $legal_pages_only = false ) {
@@ -1472,4 +1480,100 @@ function _wc_gzd_is_admin_order_ajax_request() {
 
 function wc_gzd_is_admin_order_request() {
 	return is_admin() && current_user_can( 'edit_shop_orders' ) && _wc_gzd_is_admin_order_ajax_request();
+}
+
+function wc_gzd_get_dom_document( $html ) {
+	if ( ! class_exists( 'DOMDocument' ) ) {
+		return false;
+	}
+
+	$html = trim( $html );
+
+	if ( empty( $html ) ) {
+		return false;
+	}
+
+	libxml_use_internal_errors( true );
+	$dom = new DOMDocument( '1.0', 'utf-8' );
+	$dom->preserveWhiteSpace  = true;
+	$dom->formatOutput        = false;
+	$dom->strictErrorChecking = false;
+
+	// Load without HTML wrappers
+	@$dom->loadHTML( '<?xml version="1.0" encoding="UTF-8"?>' . "\n" . $html );
+	// Explicitly force utf-8 encoding
+	$dom->encoding = 'UTF-8';
+
+	libxml_clear_errors();
+
+	if ( ! $dom->getElementsByTagName( 'body' )->item( 0 ) ) {
+		return false;
+	}
+
+	return $dom;
+}
+
+function wc_gzd_register_hooks_in_product_block_html( $html, $x_paths, $org_product, $hook_prefix = 'woocommerce_gzd_after_product_grid_block_after_' ) {
+	$dom = wc_gzd_get_dom_document( $html );
+
+	if ( ! $dom ) {
+		return $html;
+	}
+
+	$finder       = new DomXPath( $dom );
+	$html_updated = false;
+
+	foreach( $x_paths as $location => $x_path ) {
+		$nodes = $finder->query( $x_path );
+
+		if ( sizeof( $nodes ) <= 0 ) {
+			continue;
+		}
+
+		$node = $nodes->item( 0 );
+
+		ob_start();
+		global $product;
+		$old_product = false;
+
+		if ( $product && is_a( $product, 'WC_Product' ) ) {
+			$old_product = $product;
+		}
+
+		$product = $org_product;
+
+		do_action( $hook_prefix . $location );
+		$hook_html = ob_get_clean();
+
+		if ( $old_product ) {
+			$product = $org_product;
+		}
+
+		if ( ! empty( $hook_html ) ) {
+			$tmp_dom = wc_gzd_get_dom_document( $hook_html );
+
+			if ( $tmp_dom ) {
+				$fragment = $node->ownerDocument->createDocumentFragment();
+
+				foreach ( $tmp_dom->getElementsByTagName( 'body' )->item( 0 )->childNodes as $child ) {
+					$fragment->appendChild( $fragment->ownerDocument->importNode( $child, true ) );
+				}
+
+				if ( sizeof( $fragment->childNodes ) > 0 ) {
+					$node->parentNode->insertBefore( $fragment, $node->nextSibling );
+					$html_updated = true;
+				}
+			}
+		}
+	}
+
+	if ( $html_updated ) {
+		$new_html = $dom->saveHTML();
+
+		if ( $new_html ) {
+			$html = $new_html;
+		}
+	}
+
+	return $html;
 }

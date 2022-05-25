@@ -144,6 +144,19 @@ class WC_GZD_Settings_Tab_General extends WC_GZD_Settings_Tab {
 				'css'      => 'min-width:300px;',
 				'desc_tip' => true,
 			),
+			array(
+				'title'    => __( 'Review Authenticity', 'woocommerce-germanized' ),
+				'desc'     => __( 'This page should contain information about the authenticity of customer reviews.', 'woocommerce-germanized' ),
+				'id'       => 'woocommerce_review_authenticity_page_id',
+				'args'     => array(
+					'exclude' => array(),
+				),
+				'type'     => $page_type,
+				'default'  => '',
+				'class'    => $class,
+				'css'      => 'min-width:300px;',
+				'desc_tip' => true,
+			),
 
 			array( 'type' => 'sectionend', 'id' => 'legal_page_options' ),
 		);
@@ -344,6 +357,83 @@ class WC_GZD_Settings_Tab_General extends WC_GZD_Settings_Tab {
 			),
 
 			array( 'type' => 'sectionend', 'id' => 'shop_options' ),
+
+			array( 'title' => __( 'Review Authenticity', 'woocommerce-germanized' ), 'type' => 'title', 'desc' => sprintf( __( 'Provide information on the authenticity of customer reviews. Learn more about the <a href="%1$s">Omnibus-Policy</a>.', 'woocommerce-germanized' ), 'https://www.haendlerbund.de/de/news/aktuelles/rechtliches/4145-omnibus-rezensionen-gekennzeichnet' ), 'id' => 'review_authenticity_options' ),
+
+			array(
+				'title'    => __( 'Overall notice', 'woocommerce-germanized' ),
+				'desc'     => sprintf( __( 'Notify customers about the authenticity of overall product ratings.', 'woocommerce-germanized' ) ),
+				'id'       => 'woocommerce_gzd_display_rating_authenticity_notice',
+				'default'  => 'yes',
+				'type'     => 'gzd_toggle',
+			),
+
+			array(
+				'title'    => __( 'Verified?', 'woocommerce-germanized' ),
+				'desc'     => sprintf( __( 'Whether your current product ratings are verified, e.g. only verified owners were able to submit reviews.', 'woocommerce-germanized' ) ),
+				'id'       => 'woocommerce_gzd_product_ratings_verified',
+				'default'  => get_option( 'woocommerce_review_rating_verification_required' ) === 'yes' ? 'yes' : 'no',
+				'type'     => 'gzd_toggle',
+				'custom_attributes' => array(
+					'data-show_if_woocommerce_gzd_display_rating_authenticity_notice' => '',
+				),
+			),
+
+			array(
+				'title'    => __( 'Format', 'woocommerce-germanized' ),
+				'id'       => 'woocommerce_gzd_product_rating_verified_text',
+				'default'  => __( '{link}Verified overall ratings{/link}', 'woocommerce-germanized' ),
+				'type'     => 'text',
+				'custom_attributes' => array(
+					'data-show_if_woocommerce_gzd_display_rating_authenticity_notice' => '',
+					'data-show_if_woocommerce_gzd_product_ratings_verified' => 'yes',
+				),
+				'desc'     => '<div class="wc-gzd-additional-desc">' . sprintf( __( 'Customize the format used to notify customers about the authenticity of the ratings. Use {link}{/link} as placeholders to link your <a href="%1$s">review information page</a>.', 'woocommerce-germanized' ), admin_url( 'admin.php?page=wc-settings&tab=germanized-general' ) ) . '</div>',
+			),
+
+			array(
+				'title'    => __( 'Format', 'woocommerce-germanized' ),
+				'id'       => 'woocommerce_gzd_product_rating_unverified_text',
+				'default'  => __( '{link}Unverified overall ratings{/link}', 'woocommerce-germanized' ),
+				'type'     => 'text',
+				'custom_attributes' => array(
+					'data-show_if_woocommerce_gzd_display_rating_authenticity_notice' => '',
+					'data-show_if_woocommerce_gzd_product_ratings_verified' => 'no',
+				),
+				'desc'     => '<div class="wc-gzd-additional-desc">' . sprintf( __( 'Customize the format used to notify customers about the authenticity of the ratings. Use {link}{/link} as placeholders to link your <a href="%1$s">review information page</a>.', 'woocommerce-germanized' ), admin_url( 'admin.php?page=wc-settings&tab=germanized-general' ) ) . '</div>',
+			),
+
+			array(
+				'title'    => __( 'Review notice', 'woocommerce-germanized' ),
+				'desc'     => sprintf( __( 'Display an authenticity notice on a per-review basis.', 'woocommerce-germanized' ) ),
+				'id'       => 'woocommerce_gzd_display_review_authenticity_notice',
+				'default'  => 'yes',
+				'type'     => 'gzd_toggle',
+			),
+
+			array(
+				'title'    => __( 'Verified Format', 'woocommerce-germanized' ),
+				'id'       => 'woocommerce_gzd_product_review_verified_text',
+				'default'  => __( 'Verified purchase. {link}Find out more{/link}', 'woocommerce-germanized' ) ,
+				'type'     => 'text',
+				'custom_attributes' => array(
+					'data-show_if_woocommerce_gzd_display_review_authenticity_notice' => '',
+				),
+				'desc'     => '<div class="wc-gzd-additional-desc">' . sprintf( __( 'Customize the format used to notify customers about the authenticity of the review. Use {link}{/link} as placeholders to link your <a href="%1$s">review information page</a>.', 'woocommerce-germanized' ), admin_url( 'admin.php?page=wc-settings&tab=germanized-general' ) ) . '</div>',
+			),
+
+			array(
+				'title'    => __( 'Unverified Format', 'woocommerce-germanized' ),
+				'id'       => 'woocommerce_gzd_product_review_unverified_text',
+				'default'  => __( 'Purchase not verified. {link}Find out more{/link}', 'woocommerce-germanized' ),
+				'type'     => 'text',
+				'custom_attributes' => array(
+					'data-show_if_woocommerce_gzd_display_review_authenticity_notice' => '',
+				),
+				'desc'     => '<div class="wc-gzd-additional-desc">' . sprintf( __( 'Customize the format used to notify customers about the authenticity of the review. Use {link}{/link} as placeholders to link your <a href="%1$s">review information page</a>.', 'woocommerce-germanized' ), admin_url( 'admin.php?page=wc-settings&tab=germanized-general' ) ) . '</div>',
+			),
+
+			array( 'type' => 'sectionend', 'id' => 'review_authenticity_options' ),
 		);
 	}
 

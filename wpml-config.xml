@@ -57,6 +57,10 @@
     	<key name="woocommerce_gzd_delivery_time_text" />
     	<key name="woocommerce_gzd_unit_price_text" />
         <key name="woocommerce_gzd_product_units_text" />
+        <key name="woocommerce_gzd_product_review_verified_text" />
+        <key name="woocommerce_gzd_product_review_unverified_text" />
+        <key name="woocommerce_gzd_product_rating_verified_text" />
+        <key name="woocommerce_gzd_product_rating_unverified_text" />
         <key name="woocommerce_gzd_deposit_text" />
     	<key name="woocommerce_gzd_display_listings_link_details_text" />
         <key name="woocommerce_gzd_display_digital_delivery_time_text" />

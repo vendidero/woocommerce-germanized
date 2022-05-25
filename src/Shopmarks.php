@@ -203,6 +203,69 @@ class Shopmarks {
 		}
 	}
 
+	protected static function register_product_block() {
+		/**
+		 * Filter to adjust default shopmark configuration for product grid blocks.
+		 *
+		 * @param array $defaults Array containing the default configuration.
+		 *
+		 * @since 3.0.0
+		 *
+		 */
+		$shopmarks_product_loop = apply_filters( 'woocommerce_gzd_shopmark_product_block_defaults', array(
+			'unit_price'     => array(
+				'default_filter'   => 'woocommerce_gzd_after_product_grid_block_after_price',
+				'default_priority' => 5,
+				'callback'         => 'woocommerce_gzd_template_loop_price_unit',
+			),
+			'tax'            => array(
+				'default_filter'   => 'woocommerce_gzd_after_product_grid_block_after_price',
+				'default_priority' => 10,
+				'callback'         => 'woocommerce_gzd_template_loop_tax_info',
+			),
+			'shipping_costs' => array(
+				'default_filter'   => 'woocommerce_gzd_after_product_grid_block_after_price',
+				'default_priority' => 11,
+				'callback'         => 'woocommerce_gzd_template_loop_shipping_costs_info',
+			),
+			'delivery_time'  => array(
+				'default_filter'   => 'woocommerce_gzd_after_product_grid_block_after_price',
+				'default_priority' => 12,
+				'callback'         => 'woocommerce_gzd_template_loop_delivery_time_info',
+			),
+			'units'          => array(
+				'default_filter'   => 'woocommerce_gzd_after_product_grid_block_after_price',
+				'default_priority' => 15,
+				'callback'         => 'woocommerce_gzd_template_loop_product_units',
+				'default_enabled'  => false,
+			),
+			'deposit'     => array(
+				'default_filter'   => 'woocommerce_gzd_after_product_grid_block_after_price',
+				'default_priority' => 6,
+				'callback'         => 'woocommerce_gzd_template_loop_deposit',
+			),
+			'deposit_packaging_type' => array(
+				'default_filter'   => 'woocommerce_gzd_after_product_grid_block_after_title',
+				'default_priority' => 10,
+				'callback'         => 'woocommerce_gzd_template_loop_deposit_packaging_type',
+			),
+			'nutri_score'           => array(
+				'default_filter'   => 'woocommerce_gzd_after_product_grid_block_after_price',
+				'default_priority' => 20,
+				'callback'         => 'woocommerce_gzd_template_loop_nutri_score',
+			),
+		) );
+
+		self::$shopmarks['product_block'] = array();
+
+		foreach ( $shopmarks_product_loop as $type => $args ) {
+			$args['location'] = 'product_block';
+			$args['type']     = $type;
+
+			self::$shopmarks['product_block'][] = new Shopmark( $args );
+		}
+	}
+
 	protected static function register_cart() {
 		/**
 		 * Filter to adjust default shopmark configuration for the cart.
@@ -449,10 +512,11 @@ class Shopmarks {
 			'single_product'         => __( 'Single Product', 'woocommerce-germanized' ),
 			'single_product_grouped' => __( 'Single Product (Grouped)', 'woocommerce-germanized' ),
 			'product_loop'           => __( 'Product Loop', 'woocommerce-germanized' ),
+			'product_block'          => __( 'Blocks', 'woocommerce-germanized' ),
 			'cart'                   => __( 'Cart', 'woocommerce-germanized' ),
 			'mini_cart'              => __( 'Mini Cart', 'woocommerce-germanized' ),
 			'checkout'               => __( 'Checkout', 'woocommerce-germanized' ),
-			'order'                  => __( 'Order', 'woocommerce-germanized' )
+			'order'                  => __( 'Order', 'woocommerce-germanized' ),
 		);
 	}
 
@@ -546,6 +610,18 @@ class Shopmarks {
 				),
 				'woocommerce_after_shop_loop_item'        => array(
 					'title'            => __( 'After Item', 'woocommerce-germanized' ),
+					'is_action'        => true,
+					'number_of_params' => 1,
+				),
+			),
+			'product_block'           => array(
+				'woocommerce_gzd_after_product_grid_block_after_title'  => array(
+					'title'            => __( 'After Item Title', 'woocommerce-germanized' ),
+					'is_action'        => true,
+					'number_of_params' => 1,
+				),
+				'woocommerce_gzd_after_product_grid_block_after_price' => array(
+					'title'            => __( 'After Item Price', 'woocommerce-germanized' ),
 					'is_action'        => true,
 					'number_of_params' => 1,
 				),
@@ -669,6 +745,16 @@ class Shopmarks {
 				'nutri_score'            => _x( 'Nutri-Score', 'shopmark', 'woocommerce-germanized' ),
 			),
 			'product_loop'           => array(
+				'unit_price'             => _x( 'Unit Price', 'shopmark', 'woocommerce-germanized' ),
+				'delivery_time'          => _x( 'Delivery Time', 'shopmark', 'woocommerce-germanized' ),
+				'tax'                    => _x( 'Tax', 'shopmark', 'woocommerce-germanized' ),
+				'shipping_costs'         => _x( 'Shipping Costs', 'shopmark', 'woocommerce-germanized' ),
+				'units'                  => _x( 'Product Units', 'shopmark', 'woocommerce-germanized' ),
+				'deposit'                => _x( 'Deposit', 'shopmark', 'woocommerce-germanized' ),
+				'deposit_packaging_type' => _x( 'Type of Packaging', 'shopmark', 'woocommerce-germanized' ),
+				'nutri_score'            => _x( 'Nutri-Score', 'shopmark', 'woocommerce-germanized' ),
+			),
+			'product_block'           => array(
 				'unit_price'             => _x( 'Unit Price', 'shopmark', 'woocommerce-germanized' ),
 				'delivery_time'          => _x( 'Delivery Time', 'shopmark', 'woocommerce-germanized' ),
 				'tax'                    => _x( 'Tax', 'shopmark', 'woocommerce-germanized' ),
