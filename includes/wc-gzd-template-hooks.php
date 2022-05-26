@@ -79,17 +79,21 @@ if ( get_option( 'woocommerce_gzd_display_listings_link_details' ) == 'yes' ) {
  *
  * @see https://www.haendlerbund.de/de/news/aktuelles/rechtliches/4145-omnibus-rezensionen-gekennzeichnet
  */
-if ( 'yes' === get_option( 'woocommerce_gzd_display_rating_authenticity_notice' ) ) {
-	add_filter( 'woocommerce_product_get_rating_html', 'woocommerce_gzd_template_product_rating_authenticity_status_filter', 500 );
-	add_action( 'woocommerce_gzd_after_product_grid_block_after_rating', 'woocommerce_gzd_template_product_rating_authenticity_status_loop', 20 );
-}
+add_action( 'init', function() {
+	if ( apply_filters( 'woocommerce_gzd_enable_rating_authenticity_notices', wc_reviews_enabled() ) ) {
+		if ( 'yes' === get_option( 'woocommerce_gzd_display_rating_authenticity_notice' ) ) {
+			add_filter( 'woocommerce_product_get_rating_html', 'woocommerce_gzd_template_product_rating_authenticity_status_filter', 500 );
+			add_action( 'woocommerce_gzd_after_product_grid_block_after_rating', 'woocommerce_gzd_template_product_rating_authenticity_status_loop', 20 );
+		}
 
-if ( 'yes' === get_option( 'woocommerce_gzd_display_review_authenticity_notice' ) ) {
-	add_action( 'woocommerce_review_after_comment_text', 'woocommerce_gzd_template_product_review_authenticity_status', 20 );
-	add_filter( 'pre_option_woocommerce_review_rating_verification_label', function() {
-		return 'no';
-	}, 500 );
-}
+		if ( 'yes' === get_option( 'woocommerce_gzd_display_review_authenticity_notice' ) ) {
+			add_action( 'woocommerce_review_after_comment_text', 'woocommerce_gzd_template_product_review_authenticity_status', 20 );
+			add_filter( 'pre_option_woocommerce_review_rating_verification_label', function() {
+				return 'no';
+			}, 500 );
+		}
+	}
+}, 50 );
 
 /**
  * Widgets

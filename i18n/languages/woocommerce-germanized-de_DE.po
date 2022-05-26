@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce Germanized\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-25 14:48+0200\n"
-"PO-Revision-Date: 2022-05-25 14:48+0200\n"
+"POT-Creation-Date: 2022-05-26 12:52+0200\n"
+"PO-Revision-Date: 2022-05-26 12:57+0200\n"
 "Last-Translator: Dennis Nissle <info@vendidero.de>\n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -6244,7 +6244,7 @@ msgstr ""
 "Wähle Versandmethoden aus für die die Paketdienstleister Checkbox angezeigt "
 "werden soll."
 
-#: woocommerce-germanized/includes/admin/class-wc-gzd-admin-notices.php:116
+#: woocommerce-germanized/includes/admin/class-wc-gzd-admin-notices.php:117
 #, php-format
 msgid ""
 "<strong>Be aware!</strong> This update is not compatible with your current "
@@ -7156,6 +7156,7 @@ msgid "Encryption key is missing"
 msgstr "Schlüssel zur Datenverschlüsselung fehlt"
 
 #: woocommerce-germanized/includes/admin/notes/class-wc-gzd-admin-note-encryption.php:50
+#: woocommerce-germanized/includes/admin/notes/class-wc-gzd-admin-note-legal-news.php:47
 #: woocommerce-germanized/includes/admin/notes/class-wc-gzd-admin-note-shipping-excl-tax.php:45
 #: woocommerce-germanized/includes/admin/notes/class-wc-gzd-admin-note-virtual-vat.php:41
 #: woocommerce-germanized/includes/admin/settings/abstract-wc-gzd-settings-tab.php:189
@@ -7197,6 +7198,33 @@ msgid ""
 "Perfectly integrated in Germanized &ndash; easily create stamps for shipments"
 msgstr ""
 "Perfekt integriert in Germanized &ndash; erzeuge einfach Labels für Sendungen"
+
+#: woocommerce-germanized/includes/admin/notes/class-wc-gzd-admin-note-legal-news.php:30
+msgid "Attention: New Regulations"
+msgstr "Achtung: Neue Regulierungen"
+
+#: woocommerce-germanized/includes/admin/notes/class-wc-gzd-admin-note-legal-news.php:34
+#, php-format
+msgid ""
+"As of 2022-05-28, a new <a href=\"%1$s\">price indication regulation</a> "
+"will apply. In addition, the <a href=\"%2$s\">Omnibus-Directive</a> goes "
+"into effect. From now on, you must provide information about the "
+"authenticity of customer reviews. Germanized added a <a href=\"%3$s\">new "
+"information page</a> for you, which you should use to provide information on "
+"the authenticity of reviews. Additionally, Germanized inserts notices when "
+"showing ratings."
+msgstr ""
+"Ab dem 28.05.2022 gilt eine neue <a href=\"%1$s\">Preisangabeverordnung</a>. "
+"Zusätzlich tritt die <a href=\"%2$s\">Omnibus-Richtlinie</a> in Kraft. Du "
+"musst von nun an Informationen zur Authentizität von Kundenbewertungen "
+"bereitstellen. Wir haben dafür eine neue <a href=\"%3$s\">rechtliche "
+"Hinweisseite</a> angelegt, die du verwenden solltest um deine Kunden über "
+"die Echtheit der Bewertungen zu informieren. Zusätzlich platziert Germanized "
+"Hinweise bei der Anzeige von Bewertungen im Shop."
+
+#: woocommerce-germanized/includes/admin/notes/class-wc-gzd-admin-note-legal-news.php:41
+msgid "Manage review authenticity settings"
+msgstr "Einstellungen anpassen"
 
 # @ woocommerce-germanized
 #: woocommerce-germanized/includes/admin/notes/class-wc-gzd-admin-note-pro.php:23

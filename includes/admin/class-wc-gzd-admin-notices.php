@@ -62,6 +62,7 @@ if ( ! class_exists( 'WC_GZD_Admin_Notices' ) ) :
 			include_once( 'notes/class-wc-gzd-admin-note-shipping-excl-tax.php' );
 			include_once( 'notes/class-wc-gzd-admin-note-encryption.php' );
 			include_once( 'notes/class-wc-gzd-admin-note-virtual-vat.php' );
+			include_once( 'notes/class-wc-gzd-admin-note-legal-news.php' );
 		}
 
 		public function pro_incompatibility_plain_update_message( $data ) {
@@ -158,6 +159,7 @@ if ( ! class_exists( 'WC_GZD_Admin_Notices' ) ) :
 					'WC_GZD_Admin_Note_DHL_Importer',
 					'WC_GZD_Admin_Note_Internetmarke_Importer',
 					'WC_GZD_Admin_Note_Shipping_Excl_Tax',
+					'WC_GZD_Admin_Note_Legal_News',
 				);
 
 				if ( class_exists( 'WC_GZD_Secret_Box_Helper' ) ) {
@@ -227,6 +229,17 @@ if ( ! class_exists( 'WC_GZD_Admin_Notices' ) ) :
 
 			foreach( $this->get_notes() as $note_id => $note ) {
 				$note->queue();
+			}
+		}
+
+		public function activate_legal_news_note() {
+			update_option( '_wc_gzd_has_legal_news', 'yes' );
+
+			/**
+			 * Reset to make sure the note is not dismissed.
+			 */
+			if ( $note = $this->get_note( 'legal_news' ) ) {
+				$note->reset();
 			}
 		}
 

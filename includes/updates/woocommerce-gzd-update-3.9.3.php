@@ -16,6 +16,24 @@ $pages = array(
 	),
 );
 
+/**
+ * Temporarily patch bug in WooCommerce Multilingual
+ *
+ * @see https://wordpress.org/support/topic/fatal-error-wcml_store_pages-does-not-have-a-method-check_store_page_id/
+ */
+if ( class_exists( 'woocommerce_wpml' ) && class_exists( 'WCML_Store_Pages' ) ) {
+	global $woocommerce_wpml;
+
+	if ( $woocommerce_wpml && isset( $woocommerce_wpml->store ) ) {
+		remove_filter( 'woocommerce_create_page_id', array( $woocommerce_wpml->store, 'check_store_page_id' ), 10 );
+	}
+}
+
 foreach ( $pages as $key => $page ) {
 	wc_create_page( esc_sql( $page['name'] ), 'woocommerce_' . $key . '_page_id', $page['title'] );
 }
+
+/**
+ * Show legal news note
+ */
+WC_GZD_Admin_Notices::instance()->activate_legal_news_note();

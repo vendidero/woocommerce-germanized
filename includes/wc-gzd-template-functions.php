@@ -63,7 +63,7 @@ if ( ! function_exists( 'woocommerce_gzd_template_product_rating_authenticity_st
 			return;
 		}
 
-		if ( apply_filters( 'woocommerce_gzd_show_product_rating_authenticity_status', $product->get_rating_count() > 0, $product->get_id() ) ) {
+		if ( apply_filters( 'woocommerce_gzd_show_product_rating_authenticity_status', ( wc_review_ratings_enabled() && $product->get_rating_count() > 0 ), $product->get_id() ) ) {
 			wc_get_template( 'loop/rating-authenticity-status.php' );
 		}
 	}
@@ -77,7 +77,7 @@ if ( ! function_exists( 'woocommerce_gzd_template_product_rating_authenticity_st
 			return;
 		}
 
-		if ( apply_filters( 'woocommerce_gzd_show_product_rating_authenticity_status', $product->get_rating_count() > 0, $product->get_id() ) ) {
+		if ( apply_filters( 'woocommerce_gzd_show_product_rating_authenticity_status', ( wc_review_ratings_enabled() && $product->get_rating_count() > 0 ), $product->get_id() ) ) {
 			wc_get_template( 'single-product/rating-authenticity-status.php' );
 		}
 	}
