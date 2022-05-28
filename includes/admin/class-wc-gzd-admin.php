@@ -44,8 +44,8 @@ class WC_GZD_Admin {
 	}
 
 	public function __construct() {
-		add_action( 'add_meta_boxes', array( $this, 'add_legal_page_metabox' ) );
-		add_action( 'add_meta_boxes', array( $this, 'register_product_meta_boxes' ) );
+		add_action( 'add_meta_boxes', array( $this, 'add_legal_page_metabox' ), 10, 2 );
+		add_action( 'add_meta_boxes', array( $this, 'register_product_meta_boxes' ), 10, 2 );
 
 		add_action( 'admin_enqueue_scripts', array( $this, 'add_scripts' ) );
 		add_action( 'save_post', array( $this, 'save_legal_page_content' ), 10, 3 );
@@ -631,25 +631,25 @@ class WC_GZD_Admin {
 		do_action( 'woocommerce_gzd_admin_assets', $this, $admin_script_path, $suffix );
 	}
 
-	public function add_legal_page_metabox() {
-		add_meta_box( 'wc-gzd-legal-page-email-content', __( 'Optional Email Content', 'woocommerce-germanized' ), array(
-			$this,
-			'init_legal_page_metabox'
-		), 'page' );
+	/**
+	 * @param string $post_type
+	 * @param WP_Post $post
+	 *
+	 * @return void
+	 */
+	public function add_legal_page_metabox( $post_type, $post ) {
+		$legal_pages = array();
+
+        foreach( array_keys( wc_gzd_get_legal_pages( true ) ) as $page ) {
+	        $legal_pages[] = wc_get_page_id( $page );
+        }
+
+		if ( $post && in_array( $post->ID, $legal_pages ) ) {
+			add_meta_box( 'wc-gzd-legal-page-email-content', __( 'Optional Email Content', 'woocommerce-germanized' ), array( $this, 'init_legal_page_metabox' ), 'page' );
+		}
 	}
 
 	public function init_legal_page_metabox( $post ) {
-		$legal_pages = array(
-			wc_get_page_id( 'revocation' ),
-			wc_get_page_id( 'data_security' ),
-			wc_get_page_id( 'imprint' ),
-			wc_get_page_id( 'terms' )
-		);
-		if ( ! in_array( $post->ID, $legal_pages ) ) {
-			echo '<style type="text/css">#wc-gzd-legal-page-email-content { display: none; }</style>';
-
-			return;
-		}
 		echo '<p class="small">' . __( 'Add content which will be replacing default page content within emails.', 'woocommerce-germanized' ) . '</p>';
 		wp_editor( htmlspecialchars_decode( get_post_meta( $post->ID, '_legal_text', true ) ), 'legal_page_email_content', array(
 			'textarea_name' => '_legal_text',
@@ -657,10 +657,14 @@ class WC_GZD_Admin {
 		) );
 	}
 
-	public function register_product_meta_boxes() {
-		global $post;
-
-		if ( is_object( $post ) && 'product' === $post->post_type ) {
+	/**
+	 * @param string $post_type
+	 * @param WP_Post $post
+	 *
+	 * @return void
+	 */
+	public function register_product_meta_boxes( $post_type, $post ) {
+		if ( 'product' === $post_type && $post ) {
 			$product = wc_get_product( $post );
 
 			if ( $product && ( ! $product->is_type( 'variable' ) ) ) {
@@ -678,7 +682,6 @@ class WC_GZD_Admin {
 	}
 
 	public function save_legal_page_content( $post_id, $post, $update ) {
-
 		if ( $post->post_type != 'page' ) {
 			return;
 		}

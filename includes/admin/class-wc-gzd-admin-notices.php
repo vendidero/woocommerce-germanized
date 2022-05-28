@@ -254,31 +254,32 @@ if ( ! class_exists( 'WC_GZD_Admin_Notices' ) ) :
 		}
 
 		public function check_notice_hide() {
-
 			if ( ! current_user_can( 'manage_woocommerce' ) ) {
 				return;
 			}
 
-			$notes = $this->get_notes();
+			if ( isset( $_GET['notice'] ) ) {
+				$notes = $this->get_notes();
 
-			foreach( $notes as $note ) {
-				$notice            = 'wc-gzd-hide-' . str_replace( '_', '-', $note->get_name() ) . '-notice';
-				$notice_deactivate = 'wc-gzd-disable-' . str_replace( '_', '-', $note->get_name() ) . '-notice';
+				foreach( $notes as $note ) {
+					$notice            = 'wc-gzd-hide-' . str_replace( '_', '-', $note->get_name() ) . '-notice';
+					$notice_deactivate = 'wc-gzd-disable-' . str_replace( '_', '-', $note->get_name() ) . '-notice';
 
-				if ( isset( $_GET['notice'] ) && $_GET['notice'] === $notice && isset( $_GET['nonce'] ) && check_admin_referer( $notice, 'nonce' ) ) {
+					if ( $_GET['notice'] === $notice && isset( $_GET['nonce'] ) && check_admin_referer( $notice, 'nonce' ) ) {
 
-					$note->dismiss();
-					$redirect_url = remove_query_arg( 'notice', remove_query_arg( 'nonce', $_SERVER['REQUEST_URI'] ) );
+						$note->dismiss();
+						$redirect_url = remove_query_arg( 'notice', remove_query_arg( 'nonce', $_SERVER['REQUEST_URI'] ) );
 
-					wp_safe_redirect( $redirect_url );
-					exit();
-				} elseif ( isset( $_GET['notice'] ) && $_GET['notice'] === $notice_deactivate && isset( $_GET['nonce'] ) && check_admin_referer( $notice_deactivate, 'nonce' ) ) {
+						wp_safe_redirect( $redirect_url );
+						exit();
+					} elseif ( $_GET['notice'] === $notice_deactivate && isset( $_GET['nonce'] ) && check_admin_referer( $notice_deactivate, 'nonce' ) ) {
 
-					$note->deactivate();
-					$redirect_url = remove_query_arg( 'notice', remove_query_arg( 'nonce', $_SERVER['REQUEST_URI'] ) );
+						$note->deactivate();
+						$redirect_url = remove_query_arg( 'notice', remove_query_arg( 'nonce', $_SERVER['REQUEST_URI'] ) );
 
-					wp_safe_redirect( $redirect_url );
-					exit();
+						wp_safe_redirect( $redirect_url );
+						exit();
+					}
 				}
 			}
 		}

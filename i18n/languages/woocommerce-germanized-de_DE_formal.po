@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce Germanized\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-26 12:55+0200\n"
-"PO-Revision-Date: 2022-05-26 12:57+0200\n"
+"POT-Creation-Date: 2022-05-28 12:39+0200\n"
+"PO-Revision-Date: 2022-05-28 12:39+0200\n"
 "Last-Translator: Dennis Nissle <info@vendidero.de>\n"
 "Language-Team: \n"
 "Language: de_DE@formal\n"
@@ -6597,7 +6597,7 @@ msgid "Insert product units amount."
 msgstr "Fügen Sie die Anzahl der Produkteinheiten ein."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:635
+#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:648
 msgid "Optional Email Content"
 msgstr "Optionaler E-Mail Inhalt"
 
@@ -6609,18 +6609,18 @@ msgstr ""
 "diese Seite zu bestimmen."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:667
+#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:671
 msgid "Cart description"
 msgstr "Warenkorbkurzbeschreibung"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:672
+#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:676
 #: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:518
 msgid "Defect description"
 msgstr "Mängelbeschreibung"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:694
+#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:697
 msgid ""
 "This content will be shown as short product description within checkout and "
 "emails."
@@ -6628,7 +6628,7 @@ msgstr ""
 "Dieser Inhalt wird während des Bezahlvorganges und in den E-Mails als "
 "Produkt Kurzbeschreibung angezeigt."
 
-#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:704
+#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:707
 #: woocommerce-germanized/includes/admin/meta-boxes/class-wc-gzd-meta-box-product-data-variable.php:377
 msgid ""
 "Inform your customers about product defects. This description will be shown "
@@ -16099,26 +16099,26 @@ msgstr "https://vendidero.de"
 # @ woocommerce-germanized
 #~ msgctxt "trusted-shops"
 #~ msgid ""
-#~ "This option will enable a Widget which shows your Trusted Shops Reviews "
+#~ "This option will enable a Widgets which shows your Trusted Shops Reviews "
 #~ "as a graphic. You may configure your Widgets <a href=\"%s\">here</a>."
 #~ msgstr ""
-#~ "Diese Option aktiviert ein Widget, mit dem du das Trusted Shops Review "
-#~ "Widget in deinem Shop platzieren kannst. <a href=\"%s\">Hier</a> kannst "
+#~ "Diese Option aktiviert ein Widgets, mit dem du das Trusted Shops Review "
+#~ "Widgets in deinem Shop platzieren kannst. <a href=\"%s\">Hier</a> kannst "
 #~ "du deine Widgets zuweisen."
 
 # @ woocommerce-germanized
 #~ msgctxt "trusted-shops"
-#~ msgid "Enable Rich Snippets Widget."
-#~ msgstr "Rich Snippets Widget aktivieren"
+#~ msgid "Enable Rich Snippets Widgets."
+#~ msgstr "Rich Snippets Widgets aktivieren"
 
 # @ woocommerce-germanized
 #~ msgctxt "trusted-shops"
 #~ msgid ""
 #~ "This option will update your reviews received via Trusted Shops once per "
-#~ "day and enables a Widget to show your reviews as Rich Snippets"
+#~ "day and enables a Widgets to show your reviews as Rich Snippets"
 #~ msgstr ""
 #~ "Diese Option bewirkt, dass deine über Trusted Shops empfangenen "
-#~ "Bewertungen als Rich Snippets im Shop als Widget verfügbar sind. "
+#~ "Bewertungen als Rich Snippets im Shop als Widgets verfügbar sind. "
 
 # @ woocommerce-germanized
 #~ msgctxt "trusted-shops"
