@@ -228,10 +228,6 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 
         <div class="variable_pricing_unit">
             <p class="form-row form-row-first">
-                <input type="hidden" name="variable_parent_unit_product[<?php echo $loop; ?>]" class="wc-gzd-parent-unit_product" value=""/>
-                <input type="hidden" name="variable_parent_unit[<?php echo $loop; ?>]" class="wc-gzd-parent-unit" value=""/>
-                <input type="hidden" name="variable_parent_unit_base[<?php echo $loop; ?>]" class="wc-gzd-parent-unit_base" value=""/>
-
                 <label for="variable_unit_product"><?php echo __( 'Product Units', 'woocommerce-germanized' ); ?><?php echo wc_help_tip( __( 'Number of units included per default product price. Example: 1000 ml. Leave blank to use parent value.', 'woocommerce-germanized' ) ); ?></label>
                 <input class="input-text wc_input_decimal" size="6" type="text"
                        name="variable_unit_product[<?php echo $loop; ?>]"
@@ -436,9 +432,6 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 			'_sale_price_label'                             => '',
 			'_sale_price_regular_label'                     => '',
 			'_unit_price_sale'                              => '',
-			'_parent_unit_product'                          => '',
-			'_parent_unit'                                  => '',
-			'_parent_unit_base'                             => '',
 			'_mini_desc'                                    => '',
 			'_defect_description'                           => '',
 			'_service'                                      => '',
@@ -472,6 +465,13 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 		$product_parent     = wc_get_product( $product->get_parent_id() );
 		$gzd_product        = wc_gzd_get_product( $product );
 		$gzd_parent_product = wc_gzd_get_product( $product_parent );
+
+		/**
+		 * Parent unit data is passed as global (non-variation-level) data.
+		 */
+		$data['_parent_unit_product'] = isset( $_POST['_unit_product'] ) ? wc_clean( $_POST ) : $gzd_parent_product->get_unit_product( 'edit' );
+		$data['_parent_unit']         = isset( $_POST['_unit'] ) ? wc_clean( $_POST ) : $gzd_parent_product->get_unit( 'edit' );
+		$data['_parent_unit_base']    = isset( $_POST['_unit_base'] ) ? wc_clean( $_POST ) : $gzd_parent_product->get_unit_base( 'edit' );
 
 		// Check if parent has unit_base + unit otherwise ignore data
 		if ( empty( $data['_parent_unit'] ) || empty( $data['_parent_unit_base'] ) ) {

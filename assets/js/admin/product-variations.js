@@ -12,18 +12,56 @@ jQuery( function ( $ ) {
             $( '#general_product_data' ).on( 'blur', 'input#_unit_base', this.show_or_hide_unit_variation );
             $( '#general_product_data' ).on( 'change', 'select#_unit', this.show_or_hide_unit_variation );
 
-            $( document ).bind( 'woocommerce_variations_save_variations_button', this.save_variations );
-            $( document ).bind( 'woocommerce_variations_save_variations_on_submit', this.save_variations );
-
             $( document ).on( 'click', '.wc-gzd-general-product-data-tab', this.on_click_general_product_data );
 
             $( 'select.variation_actions' ).on( 'variable_delivery_time_ajax_data', this.onSetDeliveryTime );
             $( 'select.variation_actions' ).on( 'variable_unit_product_ajax_data', this.onSetProductUnit );
 
+            $( document ).ajaxSend( this.appendParentUnitData );
+
             $( '#variable_product_options' )
                 .on( 'change', 'input.variable_service', this.variable_is_service )
                 .on( 'change', 'input.variable_used_good', this.variable_is_used_good )
                 .on( 'change', 'input.variable_defective_copy', this.variable_is_defective_copy );
+        },
+
+        parseAjaxData: function( rawData ) {
+            var data = false;
+
+            try {
+                data = JSON.parse('{"' + rawData.replace( /&/g, '","' ).replace( /=/g,'":"' ) + '"}', function( key, value ) { return key ==="" ? value : decodeURIComponent( value ) });
+            } catch (e) {
+                data = false;
+            }
+
+            return data;
+        },
+
+        /**
+         * Append variable parent data to the woocommerce_save_variations event.
+         *
+         * @param e
+         * @param jqXHR
+         * @param settings
+         */
+        appendParentUnitData: function( e, jqXHR, settings ) {
+            if ( jqXHR != null ) {
+                if ( settings.hasOwnProperty( 'data' ) ) {
+                    var search = settings.data;
+                    var data   = wc_gzd_product_variations_actions.parseAjaxData( search );
+
+                    if ( data && data.hasOwnProperty( 'action' ) && data.action === 'woocommerce_save_variations' ) {
+                        var fields = [ 'unit', 'unit_base', 'unit_product' ];
+                        var parent_data = {}
+
+                        $.each( fields, function( index, id ) {
+                            parent_data[ '_' + id ] = $( '#_' + id ).val();
+                        });
+
+                        settings.data += ( '&' + $.param( parent_data ) );
+                    }
+                }
+            }
         },
 
         variations_loaded: function( event, needsUpdate ) {
@@ -97,21 +135,6 @@ jQuery( function ( $ ) {
         	return false;
 		},
 
-        save_variations: function() {
-
-            var fields = [ 'unit', 'unit_base', 'unit_product' ];
-            var variations = $( '.woocommerce_variations' ).find( '.woocommerce_variation' );
-
-            $.each( fields, function( index, id ) {
-                var parent_val = $( '#_' + id ).val();
-
-                variations.each( function() {
-                    $( this ).find( '.wc-gzd-parent-' + id ).val( parent_val );
-                });
-            });
-
-        },
-
         show_or_hide_unit_variation: function() {
             if ( wc_gzd_product_variations_actions.is_variable() ) {
 
@@ -151,9 +174,7 @@ jQuery( function ( $ ) {
         has_unit_price: function() {
             return $( '#_unit' ).val() !== '0' && $( '#_unit_base' ).val().length !== 0;
         }
-
     };
 
     wc_gzd_product_variations_actions.init();
-
 });
