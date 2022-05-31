@@ -212,9 +212,9 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 
 == Changelog ==
 = 3.9.5 =
+* Security: Hardened URL escaping to prevent XSS attack vectors
 * Improvement: Register meta boxes for legal page email content for legal pages only
 * Improvement: Variable unit price data transmission while saving variations
-* Security: Hardened URL escaping to prevent XSS attack vectors
 
 = 3.9.4 =
 * Tweak: Temporarily patch WooCommerce Multilingual bug which leads to update issues
