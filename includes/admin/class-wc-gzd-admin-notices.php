@@ -270,14 +270,14 @@ if ( ! class_exists( 'WC_GZD_Admin_Notices' ) ) :
 						$note->dismiss();
 						$redirect_url = remove_query_arg( 'notice', remove_query_arg( 'nonce', $_SERVER['REQUEST_URI'] ) );
 
-						wp_safe_redirect( $redirect_url );
+						wp_safe_redirect( esc_url_raw( $redirect_url ) );
 						exit();
 					} elseif ( $_GET['notice'] === $notice_deactivate && isset( $_GET['nonce'] ) && check_admin_referer( $notice_deactivate, 'nonce' ) ) {
 
 						$note->deactivate();
 						$redirect_url = remove_query_arg( 'notice', remove_query_arg( 'nonce', $_SERVER['REQUEST_URI'] ) );
 
-						wp_safe_redirect( $redirect_url );
+						wp_safe_redirect( esc_url_raw( $redirect_url ) );
 						exit();
 					}
 				}

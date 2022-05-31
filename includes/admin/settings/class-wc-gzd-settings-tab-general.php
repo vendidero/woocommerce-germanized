@@ -224,7 +224,7 @@ class WC_GZD_Settings_Tab_General extends WC_GZD_Settings_Tab {
 				'id'       => 'woocommerce_gzd_complaints_procedure_status',
 				'type'     => 'html',
 				'desc_tip' => false,
-				'html'     => '<p><span class="wc-gzd-status-text wc-gzd-text-' . ( $is_complaints_shortcode_inserted ? 'green' : 'red' ) . '"> ' . ( $is_complaints_shortcode_inserted ? __( 'Found', 'woocommerce-germanized' ) : sprintf( __( 'Not found within %s', 'woocommerce-germanized' ), implode( ', ', $complaints_shortcode_missing ) ) ) . '</span> ' . ( ! $is_complaints_shortcode_inserted ? '<a class="button button-secondary" style="margin-left: 1em" href="' . wp_nonce_url( add_query_arg( array( 'wc-gzd-check-complaints_shortcode_append' => true ) ), 'wc-gzd-check-complaints_shortcode_append' ) . '">' . __( 'Append it now', 'woocommerce-germanized' ) . '</a></p>' : '' ) . '<div class="wc-gzd-additional-desc">' . $additional_shortcode_info . '</div>',
+				'html'     => '<p><span class="wc-gzd-status-text wc-gzd-text-' . ( $is_complaints_shortcode_inserted ? 'green' : 'red' ) . '"> ' . ( $is_complaints_shortcode_inserted ? __( 'Found', 'woocommerce-germanized' ) : sprintf( __( 'Not found within %s', 'woocommerce-germanized' ), implode( ', ', $complaints_shortcode_missing ) ) ) . '</span> ' . ( ! $is_complaints_shortcode_inserted ? '<a class="button button-secondary" style="margin-left: 1em" href="' . esc_url( wp_nonce_url( add_query_arg( array( 'wc-gzd-check-complaints_shortcode_append' => true ) ), 'wc-gzd-check-complaints_shortcode_append' ) ) . '">' . __( 'Append it now', 'woocommerce-germanized' ) . '</a></p>' : '' ) . '<div class="wc-gzd-additional-desc">' . $additional_shortcode_info . '</div>',
 			),
 
 			array( 'type' => 'sectionend', 'id' => 'complaints_options' ),

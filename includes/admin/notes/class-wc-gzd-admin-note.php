@@ -267,13 +267,13 @@ abstract class WC_GZD_Admin_Note {
 	public function get_dismiss_url() {
 		$name = str_replace( '_', '-', $this->get_name() );
 
-		return add_query_arg( 'notice', 'wc-gzd-hide-' . $name . '-notice', add_query_arg( 'nonce', wp_create_nonce( 'wc-gzd-hide-' . $name . '-notice' ) ) );
+		return esc_url_raw( add_query_arg( 'notice', 'wc-gzd-hide-' . $name . '-notice', add_query_arg( 'nonce', wp_create_nonce( 'wc-gzd-hide-' . $name . '-notice' ) ) ) );
 	}
 
 	public function get_deactivate_url() {
 		$name = str_replace( '_', '-', $this->get_name() );
 
-		return add_query_arg( 'notice', 'wc-gzd-disable-' . $name . '-notice', add_query_arg( 'nonce', wp_create_nonce( 'wc-gzd-disable-' . $name . '-notice' ) ) );
+		return esc_url_raw( add_query_arg( 'notice', 'wc-gzd-disable-' . $name . '-notice', add_query_arg( 'nonce', wp_create_nonce( 'wc-gzd-disable-' . $name . '-notice' ) ) ) );
 	}
 
 	protected function get_dismiss_option_name() {

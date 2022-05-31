@@ -187,7 +187,7 @@ class WC_GZD_Order_Helper {
 			$return = apply_filters( 'woocommerce_gzd_attempt_order_cancellation_url', add_query_arg( array( 'retry' => true ), $order->get_checkout_order_received_url(), $order ) );
 		}
 
-		return $return;
+		return esc_url_raw( $return );
 	}
 
 	/**

@@ -45,7 +45,7 @@ class WC_GZD_Settings_Tab_Shipments extends WC_GZD_Settings_Tab {
 		$label = parent::get_breadcrumb_label( $label );
 
 		if ( empty( $current_section ) ) {
-			return $label . '<a href="' . admin_url( 'admin.php?page=wc-gzd-shipments' ) . '" class="page-title-action" target="_blank">' . _x( 'Manage', 'shipments', 'woocommerce-germanized' ) . '</a>';
+			return $label . '<a href="' . esc_url( admin_url( 'admin.php?page=wc-gzd-shipments' ) ) . '" class="page-title-action" target="_blank">' . _x( 'Manage', 'shipments', 'woocommerce-germanized' ) . '</a>';
 		} else {
 			return $label;
 		}

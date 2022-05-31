@@ -3,7 +3,7 @@
  * Plugin Name: Germanized for WooCommerce
  * Plugin URI: https://www.vendidero.de/woocommerce-germanized
  * Description: Germanized for WooCommerce extends WooCommerce to become a legally compliant store in the german market.
- * Version: 3.9.4
+ * Version: 3.9.5
  * Author: vendidero
  * Author URI: https://vendidero.de
  * Requires at least: 5.4
@@ -69,7 +69,7 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 		 *
 		 * @var string
 		 */
-		public $version = '3.9.4';
+		public $version = '3.9.5';
 
 		/**
 		 * @var WooCommerce_Germanized $instance of the plugin
@@ -385,7 +385,7 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 	        $deactivate_plugin_url = wp_nonce_url( 'plugins.php?action=deactivate&amp;plugin=' . urlencode( $plugin_file ), 'deactivate-plugin_' . $plugin_file );
 		    ?>
             <div id="message" class="error">
-                <p><?php printf( __( 'This version of the Corona Helper Plugin includes a bug which could lead to tax rates being added multiple times. Please <a href="%s">deactivate</a> the plugin and check our <a href="%s" target="_blank">blog post</a>.', 'woocommerce-germanized' ), $deactivate_plugin_url, 'https://vendidero.de/senkung-der-mehrwertsteuer-in-woocommerce-im-rahmen-der-corona-pandemie#update-vom-01-07-20' ); ?></p>
+                <p><?php printf( __( 'This version of the Corona Helper Plugin includes a bug which could lead to tax rates being added multiple times. Please <a href="%s">deactivate</a> the plugin and check our <a href="%s" target="_blank">blog post</a>.', 'woocommerce-germanized' ), esc_url( $deactivate_plugin_url ), 'https://vendidero.de/senkung-der-mehrwertsteuer-in-woocommerce-im-rahmen-der-corona-pandemie#update-vom-01-07-20' ); ?></p>
             </div>
             <?php
         }
@@ -916,7 +916,7 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 		 */
 		public function action_links( $links ) {
 			return array_merge( array(
-				'<a href="' . admin_url( 'admin.php?page=wc-settings&tab=germanized' ) . '">' . __( 'Settings', 'woocommerce-germanized' ) . '</a>',
+				'<a href="' . esc_url( admin_url( 'admin.php?page=wc-settings&tab=germanized' ) ) . '">' . __( 'Settings', 'woocommerce-germanized' ) . '</a>',
 			), $links );
 		}
 

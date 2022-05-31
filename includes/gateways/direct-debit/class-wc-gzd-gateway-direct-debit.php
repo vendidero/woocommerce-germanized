@@ -200,11 +200,11 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 			<?php _e( 'SEPA', 'woocommerce-germanized' ); ?>
 
 			<?php if ( ! wc_gzd_order_is_anonymized( $order ) ) : ?>
-                <a href="<?php echo add_query_arg( array(
+                <a href="<?php echo esc_url( add_query_arg( array(
 					'download'      => 'true',
 					'content'       => 'sepa',
 					'sepa_order_id' => $order->get_id()
-				), admin_url( 'export.php' ) ); ?>" target="_blank"
+				), admin_url( 'export.php' ) ) ); ?>" target="_blank"
                    class="download_sepa_xml"><?php _e( 'SEPA XML', 'woocommerce-germanized' ); ?></a>
 			<?php endif; ?>
         </h3>
@@ -276,11 +276,11 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 
 		if ( ! wc_gzd_order_is_anonymized( $order ) && $order->get_payment_method() === $this->id ) {
 			$actions['download-sepa'] = array(
-				'url'    => add_query_arg( array(
+				'url'    => esc_url_raw( add_query_arg( array(
 					'download'      => 'true',
 					'content'       => 'sepa',
 					'sepa_order_id' => $order->get_id()
-				), admin_url( 'export.php' ) ),
+				), admin_url( 'export.php' ) ) ),
 				'name'   => __( 'SEPA XML Export', 'woocommerce-germanized' ),
 				'action' => "xml"
 			);

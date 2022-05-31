@@ -12,7 +12,7 @@
  *
  * @see https://github.com/vendidero/woocommerce-germanized/wiki/Overriding-Germanized-Templates
  * @package Germanized/Templates
- * @version 1.0.0
+ * @version 1.0.1
  */
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -21,6 +21,6 @@ $order = wc_get_order( $order_id );
 ?>
 
 <p>
-    <a href="<?php echo $url; ?>"
+    <a href="<?php echo esc_url( $url ); ?>"
        class="button wc-gzdp-order-pay-button"><?php _e( 'Pay now', 'woocommerce-germanized' ); ?></a>
 </p>

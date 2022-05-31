@@ -244,7 +244,7 @@ class WC_GZD_Legal_Checkbox_Manager {
 				'html_wrapper_classes' => array( 'legal', 'direct-debit-checkbox' ),
 				'label'                => __( 'I hereby agree to the {link}direct debit mandate{/link}.', 'woocommerce-germanized' ),
 				'label_args'           => array(
-					'{link}'  => '<a href="' . $ajax_url . '" id="show-direct-debit-trigger" rel="prettyPhoto">',
+					'{link}'  => '<a href="' . esc_url( $ajax_url ) . '" id="show-direct-debit-trigger" rel="prettyPhoto">',
 					'{/link}' => '</a>'
 				),
 				'is_mandatory'         => true,

@@ -524,7 +524,7 @@ class WC_GZD_Settings_Tab_Shopmarks extends WC_GZD_Settings_Tab {
 				'type'     => 'select',
 				'class'    => 'wc-enhanced-select',
 				'options'  => $delivery_terms,
-				'desc'     => '<a href="' . admin_url( 'edit-tags.php?taxonomy=product_delivery_time&post_type=product' ) . '">' . __( 'Manage Delivery Times', 'woocommerce-germanized' ) . '</a>',
+				'desc'     => '<a href="' . esc_url( admin_url( 'edit-tags.php?taxonomy=product_delivery_time&post_type=product' ) ) . '">' . __( 'Manage Delivery Times', 'woocommerce-germanized' ) . '</a>',
 			),
 			array(
 				'title'    => __( 'Fallback EU Countries', 'woocommerce-germanized' ),
@@ -535,7 +535,7 @@ class WC_GZD_Settings_Tab_Shopmarks extends WC_GZD_Settings_Tab {
 				'type'     => 'select',
 				'class'    => 'wc-enhanced-select',
 				'options'  => $delivery_terms_per_country,
-				'desc'     => '<a href="' . admin_url( 'edit-tags.php?taxonomy=product_delivery_time&post_type=product' ) . '">' . __( 'Manage Delivery Times', 'woocommerce-germanized' ) . '</a>',
+				'desc'     => '<a href="' . esc_url( admin_url( 'edit-tags.php?taxonomy=product_delivery_time&post_type=product' ) ) . '">' . __( 'Manage Delivery Times', 'woocommerce-germanized' ) . '</a>',
 			),
 			array(
 				'title'    => __( 'Fallback Third Countries', 'woocommerce-germanized' ),
@@ -546,7 +546,7 @@ class WC_GZD_Settings_Tab_Shopmarks extends WC_GZD_Settings_Tab {
 				'type'     => 'select',
 				'class'    => 'wc-enhanced-select',
 				'options'  => $delivery_terms_per_country,
-				'desc'     => '<a href="' . admin_url( 'edit-tags.php?taxonomy=product_delivery_time&post_type=product' ) . '">' . __( 'Manage Delivery Times', 'woocommerce-germanized' ) . '</a>',
+				'desc'     => '<a href="' . esc_url( admin_url( 'edit-tags.php?taxonomy=product_delivery_time&post_type=product' ) ) . '">' . __( 'Manage Delivery Times', 'woocommerce-germanized' ) . '</a>',
 			),
 			array(
 				'title'    => __( 'Format', 'woocommerce-germanized' ),
@@ -686,7 +686,7 @@ class WC_GZD_Settings_Tab_Shopmarks extends WC_GZD_Settings_Tab {
 				'type'    => 'select',
 				'class'   => 'wc-enhanced-select',
 				'options' => $labels,
-				'desc'    => '<a href="' . admin_url( 'edit-tags.php?taxonomy=product_price_label&post_type=product' ) . '">' . __( 'Manage Price Labels', 'woocommerce-germanized' ) . '</a><div class="wc-gzd-additional-desc">' . __( 'Choose whether you would like to have a default sale price label to inform the customer about the regular price (e.g. Recommended Retail Price).', 'woocommerce-germanized' ) . '</div>',
+				'desc'    => '<a href="' . esc_url( admin_url( 'edit-tags.php?taxonomy=product_price_label&post_type=product' ) ) . '">' . __( 'Manage Price Labels', 'woocommerce-germanized' ) . '</a><div class="wc-gzd-additional-desc">' . __( 'Choose whether you would like to have a default sale price label to inform the customer about the regular price (e.g. Recommended Retail Price).', 'woocommerce-germanized' ) . '</div>',
 			),
 			array(
 				'title'   => __( 'Fallback Regular Label', 'woocommerce-germanized' ),
@@ -696,7 +696,7 @@ class WC_GZD_Settings_Tab_Shopmarks extends WC_GZD_Settings_Tab {
 				'type'    => 'select',
 				'class'   => 'wc-enhanced-select',
 				'options' => $labels,
-				'desc'    => '<a href="' . admin_url( 'edit-tags.php?taxonomy=product_price_label&post_type=product' ) . '">' . __( 'Manage Price Labels', 'woocommerce-germanized' ) . '</a><div class="wc-gzd-additional-desc">' . __( 'Choose whether you would like to have a default sale price regular label to inform the customer about the sale price (e.g. New Price).', 'woocommerce-germanized' ) . '</div>',
+				'desc'    => '<a href="' . esc_url( admin_url( 'edit-tags.php?taxonomy=product_price_label&post_type=product' ) ) . '">' . __( 'Manage Price Labels', 'woocommerce-germanized' ) . '</a><div class="wc-gzd-additional-desc">' . __( 'Choose whether you would like to have a default sale price regular label to inform the customer about the sale price (e.g. New Price).', 'woocommerce-germanized' ) . '</div>',
 			),
 
 			array(

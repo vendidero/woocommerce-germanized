@@ -244,34 +244,34 @@ if ( ! defined( 'ABSPATH' ) ) {
         <td><?php _e( 'German Formal', 'woocommerce-germanized' ); ?></td>
         <td class="help"><?php echo wc_help_tip( esc_attr( __( 'This option will install and activate German formal as your WordPress and WooCommerce language.', 'woocommerce-germanized' ) ) ); ?></td>
         <td>
-            <a href="<?php echo wp_nonce_url( add_query_arg( array( 'wc-gzd-check-language_install' => 'de_DE_formal' ) ), 'wc-gzd-check-language_install' ); ?>"
+            <a href="<?php echo esc_url( wp_nonce_url( add_query_arg( array( 'wc-gzd-check-language_install' => 'de_DE_formal' ) ), 'wc-gzd-check-language_install' ) ); ?>"
                class="button button-secondary"><?php _e( 'Install de_DE_formal', 'woocommerce-germanized' ); ?></a></td>
     </tr>
     <tr>
         <td><?php _e( 'Text Options', 'woocommerce-germanized' ); ?></td>
         <td class="help"><?php echo wc_help_tip( esc_attr( __( 'This option removes custom Germanized text options (e.g. Pay-Button-Text) and installs default options. You may use this options to reinstall text options e.g. after a language switch.', 'woocommerce-germanized' ) ) ); ?></td>
         <td>
-            <a href="<?php echo wp_nonce_url( add_query_arg( array( 'wc-gzd-check-text_options_deletion' => true ) ), 'wc-gzd-check-text_options_deletion' ); ?>"
+            <a href="<?php echo esc_url( wp_nonce_url( add_query_arg( array( 'wc-gzd-check-text_options_deletion' => true ) ), 'wc-gzd-check-text_options_deletion' ) ); ?>"
                class="button button-secondary"><?php _e( 'Delete text options', 'woocommerce-germanized' ); ?></a></td>
     </tr>
     <tr>
         <td><?php _e( 'Renew EU VAT Rates', 'woocommerce-germanized' ); ?></td>
         <td class="help"><?php echo wc_help_tip( esc_attr( __( 'Insert VAT rates for EU countries based on your current OSS participation status. This option deletes all current rates before inserting.', 'woocommerce-germanized' ) ) ); ?></td>
         <td>
-            <a href="<?php echo wp_nonce_url( add_query_arg( array( 'wc-gzd-check-insert_vat_rates' => true ) ), 'wc-gzd-check-insert_vat_rates' ); ?>"
+            <a href="<?php echo esc_url( wp_nonce_url( add_query_arg( array( 'wc-gzd-check-insert_vat_rates' => true ) ), 'wc-gzd-check-insert_vat_rates' ) ); ?>"
                class="button button-secondary"><?php _e( 'Renew VAT Rates', 'woocommerce-germanized' ); ?></a></td>
     </tr>
     <tr>
         <td><?php _e( 'Disable notices', 'woocommerce-germanized' ); ?></td>
         <td class="help"><?php echo wc_help_tip( esc_attr( __( 'Germanized might ask you to leave a review or notices you of using a possibly unsupported theme. If you want to disable these notices, check this option.', 'woocommerce-germanized' ) ) ); ?></td>
-        <td><a href="<?php echo wp_nonce_url( add_query_arg( array( 'wc-gzd-check-disable_notices' => true ) ), 'wc-gzd-check-disable_notices' ); ?>"
+        <td><a href="<?php echo esc_url( wp_nonce_url( add_query_arg( array( 'wc-gzd-check-disable_notices' => true ) ), 'wc-gzd-check-disable_notices' ) ); ?>"
                class="button button-secondary"><?php echo 'yes' === get_option( 'woocommerce_gzd_disable_notices' ) ? __( 'Enable notices', 'woocommerce-germanized' ) : __( 'Disable notices', 'woocommerce-germanized' ); ?></a>
         </td>
     </tr>
     <tr>
         <td><?php _e( 'Extended debug mode', 'woocommerce-germanized' ); ?></td>
         <td class="help"><?php echo wc_help_tip( esc_attr( __( 'Enable/disable extended debug mode via log files. Check your logs via WooCommerce > Status > Logs.', 'woocommerce-germanized' ) ) ); ?></td>
-        <td><a href="<?php echo wp_nonce_url( add_query_arg( array( 'wc-gzd-check-enable_debug_mode' => true ) ), 'wc-gzd-check-enable_debug_mode' ); ?>" class="button button-secondary"><?php echo 'yes' === get_option( 'woocommerce_gzd_extended_debug_mode' ) ? __( 'Disable debug mode', 'woocommerce-germanized' ) : __( 'Enable debug mode', 'woocommerce-germanized' ); ?></a>
+        <td><a href="<?php echo esc_url( wp_nonce_url( add_query_arg( array( 'wc-gzd-check-enable_debug_mode' => true ) ), 'wc-gzd-check-enable_debug_mode' ) ); ?>" class="button button-secondary"><?php echo 'yes' === get_option( 'woocommerce_gzd_extended_debug_mode' ) ? __( 'Disable debug mode', 'woocommerce-germanized' ) : __( 'Enable debug mode', 'woocommerce-germanized' ); ?></a>
         </td>
     </tr>
     <?php if ( class_exists( 'WC_GZD_Secret_Box_Helper' ) && ! WC_GZD_Secret_Box_Helper::has_valid_encryption_key() ) : ?>
@@ -280,7 +280,7 @@ if ( ! defined( 'ABSPATH' ) ) {
         <td class="help"></td>
         <td><?php echo WC_GZD_Secret_Box_Helper::get_encryption_key_notice(); ?>
             <?php if ( WC_GZD_Secret_Box_Helper::supports_auto_insert() ) : ?>
-                <a class="button button-primary" href="<?php echo wp_nonce_url( add_query_arg( array( 'wc-gzd-check-encryption_key_insert' => true ) ), 'wc-gzd-check-encryption_key_insert' ); ?>"><?php _e( 'Auto insert', 'woocommerce-germanized' ); ?></a>
+                <a class="button button-primary" href="<?php echo esc_url( wp_nonce_url( add_query_arg( array( 'wc-gzd-check-encryption_key_insert' => true ) ), 'wc-gzd-check-encryption_key_insert' ) ); ?>"><?php _e( 'Auto insert', 'woocommerce-germanized' ); ?></a>
             <?php endif; ?>
             <a class="button button-secondary" href="https://vendidero.de/dokument/verschluesselung-sensibler-daten" target="_blank"><?php _e( 'Learn more', 'woocommerce-germanized' ); ?></a>
         </td>

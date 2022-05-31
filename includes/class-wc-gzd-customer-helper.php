@@ -155,7 +155,7 @@ class WC_GZD_Customer_Helper {
 					 *
 					 * @since 3.3.2
 					 */
-					wp_safe_redirect( apply_filters( 'woocommerce_gzd_double_opt_resent_activation_redirect', $url, $user_id ) );
+					wp_safe_redirect( esc_url_raw( apply_filters( 'woocommerce_gzd_double_opt_resent_activation_redirect', $url, $user_id ) ) );
 					exit();
 				}
 			} elseif( isset( $_GET['wc-gzd-resent'] ) ) {
@@ -172,7 +172,7 @@ class WC_GZD_Customer_Helper {
 		}
 
 		if ( $session_user_id && $session_user_id > 0 && ! is_cart() && ! is_checkout() && $this->enable_double_opt_in_for_user( $session_user_id ) && ! wc_gzd_is_customer_activated( $session_user_id ) && ! isset( $_GET['wc-gzd-resent'] ) ) {
-			$notice_text = sprintf( __( 'Did not receive the activation email? <a href="%s">Try again</a>.', 'woocommerce-germanized' ), $this->get_resend_activation_url() );
+			$notice_text = sprintf( __( 'Did not receive the activation email? <a href="%s">Try again</a>.', 'woocommerce-germanized' ), esc_url( $this->get_resend_activation_url() ) );
 
 			if ( ! wc_has_notice( $notice_text, 'notice' ) ) {
 				wc_add_notice( $notice_text, 'notice' );
@@ -184,7 +184,7 @@ class WC_GZD_Customer_Helper {
 		$url = add_query_arg( array( 'action' => 'wc-gzd-resend-activation' ), wc_gzd_get_page_permalink( 'myaccount' ) );
 		$url = wp_nonce_url( $url, 'wc-gzd-resend-activation' );
 
-		return $url;
+		return esc_url_raw( $url );
 	}
 
 	public function is_customer_title_enabled() {
@@ -329,7 +329,7 @@ class WC_GZD_Customer_Helper {
 			if ( is_checkout() && WC()->cart && WC()->cart->get_cart_contents_count() > 0 && ( ! is_user_logged_in() || ( $this->enable_double_opt_in_for_user() && ! wc_gzd_is_customer_activated() ) ) ) {
 
 				WC()->session->set( 'login_redirect', 'checkout' );
-				wp_safe_redirect( $this->registration_redirect() );
+				wp_safe_redirect( esc_url_raw( $this->registration_redirect() ) );
 				exit;
 
 			} elseif ( is_checkout() ) {
@@ -353,7 +353,7 @@ class WC_GZD_Customer_Helper {
 			if ( ! is_user_logged_in() ) {
 				if ( isset( $_GET['show_checkout_notice'] ) && 'yes' === $_GET['show_checkout_notice'] ) {
 					if ( get_option( 'woocommerce_enable_guest_checkout' ) === 'yes' ) {
-						wc_add_notice( sprintf( __( 'Continue without creating an account? <a href="%s">Click here</a>', 'woocommerce-germanized' ), add_query_arg( array( 'force-guest' => 'yes' ), wc_gzd_get_page_permalink( 'checkout' ) ) ), 'notice' );
+						wc_add_notice( sprintf( __( 'Continue without creating an account? <a href="%s">Click here</a>', 'woocommerce-germanized' ), esc_url( add_query_arg( array( 'force-guest' => 'yes' ), wc_gzd_get_page_permalink( 'checkout' ) ) ) ), 'notice' );
 					} else {
 						wc_add_notice( __( 'Please create an account or login before continuing to checkout', 'woocommerce-germanized' ), 'notice' );
 					}
@@ -363,7 +363,7 @@ class WC_GZD_Customer_Helper {
 				unset( WC()->session->login_redirect );
 
 				/** This filter is documented in includes/class-wc-gzd-customer-helper.php */
-				wp_safe_redirect( apply_filters( 'woocommerce_gzd_customer_activation_checkout_redirect', wc_gzd_get_page_permalink( 'checkout' ) ) );
+				wp_safe_redirect( esc_url_raw( apply_filters( 'woocommerce_gzd_customer_activation_checkout_redirect', wc_gzd_get_page_permalink( 'checkout' ) ) ) );
 				exit;
 			}
 		}
@@ -383,7 +383,7 @@ class WC_GZD_Customer_Helper {
 		 *
 		 * @since 1.0.0
 		 */
-		return apply_filters( 'woocommerce_gzd_customer_registration_redirect', add_query_arg( $query_args, wc_gzd_get_page_permalink( 'myaccount' ) ), $query_args );
+		return apply_filters( 'woocommerce_gzd_customer_registration_redirect', esc_url_raw( add_query_arg( $query_args, wc_gzd_get_page_permalink( 'myaccount' ) ) ), $query_args );
 	}
 
 	public function disable_registration_auto_login( $result, $user_id ) {
@@ -393,7 +393,7 @@ class WC_GZD_Customer_Helper {
 
 		// Has not been activated yet
 		if ( $this->enable_double_opt_in_for_user( $user_id ) && ! wc_gzd_is_customer_activated( $user_id ) ) {
-			wp_redirect( wp_validate_redirect( $this->registration_redirect( array( 'account' => 'activate' ) ) ) ); //phpcs:ignore WordPress.Security.SafeRedirect.wp_redirect_wp_redirect
+			wp_redirect( esc_url_raw( wp_validate_redirect( $this->registration_redirect( array( 'account' => 'activate' ) ) ) ) ); //phpcs:ignore WordPress.Security.SafeRedirect.wp_redirect_wp_redirect
 			exit;
 		}
 
@@ -464,7 +464,7 @@ class WC_GZD_Customer_Helper {
 		if ( $this->enable_double_opt_in_for_user( $user ) && ! wc_gzd_is_customer_activated( $user->ID ) ) {
 			$this->set_doi_session( $user->ID );
 
-			return new WP_Error( 'woocommerce_gzd_login', sprintf( __( 'Please activate your account through clicking on the activation link received via email. Did not receive the email? <a href="%s">Try again</a>.', 'woocommerce-germanized' ), $this->get_resend_activation_url() ) );
+			return new WP_Error( 'woocommerce_gzd_login', sprintf( __( 'Please activate your account through clicking on the activation link received via email. Did not receive the email? <a href="%s">Try again</a>.', 'woocommerce-germanized' ), esc_url( $this->get_resend_activation_url() ) ) );
 		}
 
 		return $user;
@@ -494,7 +494,7 @@ class WC_GZD_Customer_Helper {
 						 * @since 1.0.0
 						 *
 						 */
-						wp_safe_redirect( apply_filters( 'woocommerce_gzd_double_opt_in_successful_redirect', $url ) );
+						wp_safe_redirect( esc_url_raw( apply_filters( 'woocommerce_gzd_double_opt_in_successful_redirect', $url ) ) );
 					} elseif ( is_wp_error( $result ) && 'expired_key' === $result->get_error_code() ) {
 						wc_add_notice( __( 'This activation code has expired. We have sent you a new activation code via e-mail.', 'woocommerce-germanized' ), 'error' );
 					} else {
@@ -766,10 +766,10 @@ class WC_GZD_Customer_Helper {
 		 * @since 1.0.0
 		 *
 		 */
-		return apply_filters( 'woocommerce_gzd_customer_activation_url', add_query_arg( array(
+		return apply_filters( 'woocommerce_gzd_customer_activation_url', esc_url_raw( add_query_arg( array(
 			'activate' => urlencode( $key ),
 			'suffix'   => 'yes'
-		), wc_gzd_get_page_permalink( 'myaccount' ) ) );
+		), wc_gzd_get_page_permalink( 'myaccount' ) ) ) );
 	}
 
 	public function get_customer_activation_meta( $customer_id, $force_new = false ) {

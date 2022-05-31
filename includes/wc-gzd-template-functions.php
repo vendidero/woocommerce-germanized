@@ -575,7 +575,7 @@ if ( ! function_exists( 'woocommerce_gzd_template_checkout_back_to_cart' ) ) {
 	 * Display back to cart button within checkout cart
 	 */
 	function woocommerce_gzd_template_checkout_back_to_cart() {
-		echo '<tr><td colspan="5" class="actions"><a class="button" href="' . wc_get_cart_url() . '">' . __( 'Edit Order', 'woocommerce-germanized' ) . '</a></td></tr>';
+		echo '<tr><td colspan="5" class="actions"><a class="button" href="' . esc_url( wc_get_cart_url() ) . '">' . __( 'Edit Order', 'woocommerce-germanized' ) . '</a></td></tr>';
 	}
 
 }
@@ -721,7 +721,7 @@ if ( ! function_exists( 'woocommerce_gzd_template_loop_add_to_cart' ) ) {
 	function woocommerce_gzd_template_loop_add_to_cart( $text, $product ) {
 		return sprintf(
 			'<a href="%s" class="button">%s</a>',
-			esc_attr( $product->get_permalink() ),
+			esc_url( $product->get_permalink() ),
 			esc_html( get_option( 'woocommerce_gzd_display_listings_link_details_text' ) )
 		);
 	}

@@ -70,7 +70,7 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 
 		$new_breadcrumbs = array(
 			array(
-				add_query_arg( 'page', 'wc-settings', 'admin.php' ),
+				esc_url_raw( add_query_arg( 'page', 'wc-settings', 'admin.php' ) ),
 				$core_pages['wc-settings']['title']
 			),
 		);
@@ -79,7 +79,7 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 			$new_breadcrumbs[] = $this->label;
 		} else {
 			$new_breadcrumbs[] = array(
-				add_query_arg( array( 'page' => 'wc-settings', 'tab' => 'germanized' ), 'admin.php' ),
+				esc_url_raw( add_query_arg( array( 'page' => 'wc-settings', 'tab' => 'germanized' ), 'admin.php' ) ),
 				$this->label
 			);
 		}

@@ -363,7 +363,7 @@ if ( ! class_exists( 'WC_GZD_Admin_Setup_Wizard' ) ) :
 
 		protected function content() {
 			?>
-			<form class="wc-gzd-setup-form" method="post" action="<?php echo admin_url( 'admin-post.php' ); ?>">
+			<form class="wc-gzd-setup-form" method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
 				<div class="wc-gzd-setup-content">
 
 				<?php if ( $error_message = $this->get_error_message() ) : ?>
@@ -401,7 +401,7 @@ if ( ! class_exists( 'WC_GZD_Admin_Setup_Wizard' ) ) :
 					<?php wp_nonce_field( 'wc-gzd-setup' ); ?>
 
 					<?php if ( $current['order'] < sizeof( $this->steps ) ) : ?>
-						<a class="wc-gzd-setup-link wc-gzd-setup-link-skip" href="<?php echo wp_nonce_url( add_query_arg( array( 'skip' => esc_attr( $this->step ) ), $this->get_step_url( $this->get_next_step() ) ), 'wc-gzd-setup-skip' ); ?>"><?php esc_html_e( 'Skip Step', 'woocommerce-germanized' ); ?></a>
+						<a class="wc-gzd-setup-link wc-gzd-setup-link-skip" href="<?php echo esc_url( wp_nonce_url( add_query_arg( array( 'skip' => esc_attr( $this->step ) ), $this->get_step_url( $this->get_next_step() ) ) ), 'wc-gzd-setup-skip' ); ?>"><?php esc_html_e( 'Skip Step', 'woocommerce-germanized' ); ?></a>
 					<?php endif; ?>
 
 					<?php if ( isset( $current['button_next_link'] ) && ! empty( $current['button_next_link'] ) ) : ?>
@@ -581,7 +581,7 @@ if ( ! class_exists( 'WC_GZD_Admin_Setup_Wizard' ) ) :
 			    }
 			}
 
-			wp_safe_redirect( $redirect );
+			wp_safe_redirect( esc_url_raw( $redirect ) );
 			exit();
 		}
 
@@ -594,7 +594,7 @@ if ( ! class_exists( 'WC_GZD_Admin_Setup_Wizard' ) ) :
 			    $redirect = add_query_arg( array( 'encrypt-success' => wc_bool_to_string( $result ) ), $redirect );
 			}
 
-			wp_safe_redirect( $redirect );
+			wp_safe_redirect( esc_url_raw( $redirect ) );
 			exit();
 		}
 
@@ -618,7 +618,7 @@ if ( ! class_exists( 'WC_GZD_Admin_Setup_Wizard' ) ) :
 			    WC_GZD_Install::create_tax_rates();
 			}
 
-			wp_safe_redirect( $redirect );
+			wp_safe_redirect( esc_url_raw( $redirect ) );
 			exit();
 		}
 
@@ -637,7 +637,7 @@ if ( ! class_exists( 'WC_GZD_Admin_Setup_Wizard' ) ) :
 			    WC_GZD_Admin::instance()->disable_small_business_options();
 			}
 
-			wp_safe_redirect( $redirect );
+			wp_safe_redirect( esc_url_raw( $redirect ) );
 			exit();
 		}
 	}

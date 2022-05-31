@@ -5,7 +5,7 @@ Requires at least: 5.4
 Tested up to: 6.0
 WC requires at least: 3.9
 WC tested up to: 6.5
-Stable tag: 3.9.4
+Stable tag: 3.9.5
 Requires PHP: 5.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -211,6 +211,11 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 6. Edit pdf documents (Pro)
 
 == Changelog ==
+= 3.9.5 =
+* Improvement: Register meta boxes for legal page email content for legal pages only
+* Improvement: Variable unit price data transmission while saving variations
+* Security: Hardened URL escaping to prevent XSS attack vectors
+
 = 3.9.4 =
 * Tweak: Temporarily patch WooCommerce Multilingual bug which leads to update issues
 * Improvement: Added additional checks to determine whether WooCommerce reviews are enabled

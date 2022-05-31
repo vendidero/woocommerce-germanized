@@ -418,7 +418,7 @@ class WC_GZD_Checkout {
 		 *
 		 */
 		if ( strpos( $url, 'pay_for_order' ) !== false && apply_filters( 'woocommerce_gzd_enable_force_pay_order', true, $order ) ) {
-			$url = add_query_arg( array( 'force_pay_order' => true ), $url );
+			$url = esc_url_raw( add_query_arg( array( 'force_pay_order' => true ), $url ) );
 		}
 
 		return $url;
@@ -468,7 +468,7 @@ class WC_GZD_Checkout {
 	public function maybe_disable_force_pay_script() {
 		// Make sure we are not retrying to redirect if an error ocurred
 		if ( wc_notice_count( 'error' ) > 0 ) {
-			wp_safe_redirect( remove_query_arg( 'force_pay_order' ) );
+			wp_safe_redirect( esc_url_raw( remove_query_arg( 'force_pay_order' ) ) );
 			exit;
 		}
 	}
@@ -617,7 +617,7 @@ class WC_GZD_Checkout {
 			 *
 			 */
 			if ( apply_filters( 'woocommerce_gzd_add_force_pay_order_parameter', true, $order_id ) ) {
-				$url = add_query_arg( array( 'force_pay_order' => true ), $url );
+				$url = esc_url_raw( add_query_arg( array( 'force_pay_order' => true ), $url ) );
 			}
 
 			wc_get_template( 'order/order-pay-now-button.php', array( 'url' => $url, 'order_id' => $order_id ) );

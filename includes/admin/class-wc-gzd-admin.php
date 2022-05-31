@@ -123,7 +123,7 @@ class WC_GZD_Admin {
                     if ( is_callable( array( $this, $method ) ) ) {
                         $this->$method();
 
-                        wp_safe_redirect( admin_url( 'admin.php?page=wc-status&tab=germanized' ) );
+                        wp_safe_redirect( esc_url_raw( admin_url( 'admin.php?page=wc-status&tab=germanized' ) ) );
                         exit();
                     }
                 }
@@ -174,7 +174,7 @@ class WC_GZD_Admin {
 
 				$this->import_dhl_settings();
 
-				wp_safe_redirect( wc_gzd_get_shipping_provider( 'dhl' )->get_edit_link() );
+				wp_safe_redirect( esc_url_raw( wc_gzd_get_shipping_provider( 'dhl' )->get_edit_link() ) );
 			}
 		}
 	}
@@ -208,7 +208,7 @@ class WC_GZD_Admin {
 
 				$this->import_internetmarke_settings();
 
-				wp_safe_redirect( wc_gzd_get_shipping_provider( 'deutsche_post' )->get_edit_link() );
+				wp_safe_redirect( esc_url_raw( wc_gzd_get_shipping_provider( 'deutsche_post' )->get_edit_link() ) );
 			}
 		}
 	}
@@ -234,8 +234,8 @@ class WC_GZD_Admin {
 		?>
         <tr valign="top">
             <th class="forminp forminp-image" colspan="2" id="<?php echo esc_attr( $value['id'] ); ?>">
-                <a href="<?php echo esc_attr( $value['href'] ); ?>" target="_blank"><img
-                            src="<?php echo $value['img']; ?>"/></a>
+                <a href="<?php echo esc_url( $value['href'] ); ?>" target="_blank"><img
+                            src="<?php echo esc_url( $value['img'] ); ?>"/></a>
             </th>
         </tr>
 		<?php
@@ -726,7 +726,7 @@ class WC_GZD_Admin {
         load_default_textdomain( $loaded_language );
 
         // Redirect to check for updates
-        wp_safe_redirect( admin_url( 'update-core.php?force-check=1' ) );
+        wp_safe_redirect( esc_url_raw( admin_url( 'update-core.php?force-check=1' ) ) );
         exit();
 	}
 
@@ -780,7 +780,7 @@ class WC_GZD_Admin {
         do_action( 'woocommerce_gzd_deleted_text_options' );
 
         // Redirect to check for updates
-        wp_safe_redirect( admin_url( 'admin.php?page=wc-settings&tab=germanized' ) );
+        wp_safe_redirect( esc_url_raw( admin_url( 'admin.php?page=wc-settings&tab=germanized' ) ) );
         exit();
 	}
 
@@ -811,7 +811,7 @@ class WC_GZD_Admin {
 			}
 
 			// Redirect to check for updates
-			wp_safe_redirect( admin_url( sprintf( 'user-edit.php?user_id=%d&gzd-sent=yes', $user_id ) ) );
+			wp_safe_redirect( esc_url_raw( admin_url( sprintf( 'user-edit.php?user_id=%d&gzd-sent=yes', $user_id ) ) ) );
 		}
 	}
 
@@ -824,7 +824,7 @@ class WC_GZD_Admin {
             }
         }
 
-        wp_safe_redirect( admin_url( 'admin.php?page=wc-settings&tab=germanized-general&section=disputes' ) );
+        wp_safe_redirect( esc_url_raw( admin_url( 'admin.php?page=wc-settings&tab=germanized-general&section=disputes' ) ) );
         exit();
 	}
 
@@ -856,7 +856,7 @@ class WC_GZD_Admin {
         }
 
         // Redirect to check for updates
-        wp_safe_redirect( add_query_arg( array( 'added-encryption-key' => wc_bool_to_string( $result ) ), wp_get_referer() ) );
+        wp_safe_redirect( esc_url_raw( add_query_arg( array( 'added-encryption-key' => wc_bool_to_string( $result ) ), wp_get_referer() ) ) );
         exit();
 	}
 
@@ -889,7 +889,7 @@ class WC_GZD_Admin {
         WC_GZD_Install::create_tax_rates();
 
         // Redirect to check for updates
-        wp_safe_redirect( admin_url( 'admin.php?page=wc-settings&tab=tax&section=standard' ) );
+        wp_safe_redirect( esc_url_raw( admin_url( 'admin.php?page=wc-settings&tab=tax&section=standard' ) ) );
 		exit();
 	}
 

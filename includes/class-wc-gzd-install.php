@@ -76,7 +76,7 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 				delete_transient( '_wc_gzd_activation_redirect' );
 
 				// What's new redirect
-				wp_redirect( admin_url( 'index.php?page=wc-gzd-about&wc-gzd-updated=true' ) );
+				wp_safe_redirect( esc_url_raw( admin_url( 'index.php?page=wc-gzd-about&wc-gzd-updated=true' ) ) );
 				exit;
 			}
 
@@ -92,7 +92,7 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 				}
 
 				delete_option( '_wc_gzd_setup_wizard_redirect' );
-				wp_safe_redirect( admin_url( 'admin.php?page=wc-gzd-setup' ) );
+				wp_safe_redirect( esc_url_raw( admin_url( 'admin.php?page=wc-gzd-setup' ) ) );
 				exit();
 
 			} elseif ( get_transient( '_wc_gzd_activation_redirect' ) ) {
@@ -114,7 +114,7 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 					return;
 				}
 
-				wp_redirect( admin_url( 'index.php?page=wc-gzd-about' ) );
+				wp_safe_redirect( esc_url_raw( admin_url( 'index.php?page=wc-gzd-about' ) ) );
 				exit;
 			}
 		}

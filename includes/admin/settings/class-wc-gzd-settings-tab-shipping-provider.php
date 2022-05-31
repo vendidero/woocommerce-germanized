@@ -58,7 +58,7 @@ class WC_GZD_Settings_Tab_Shipping_Provider extends WC_GZD_Settings_Tab {
 			$provider_slug = sanitize_title( $provider->get_name() );
 		}
 
-		return add_query_arg( array( 'section' => sanitize_title( $section ), 'tab' => $this->id, 'provider' => $provider_slug ), admin_url( 'admin.php?page=wc-settings' ) );
+		return esc_url_raw( add_query_arg( array( 'section' => sanitize_title( $section ), 'tab' => $this->id, 'provider' => $provider_slug ), admin_url( 'admin.php?page=wc-settings' ) ) );
 	}
 
 	protected function get_breadcrumb() {

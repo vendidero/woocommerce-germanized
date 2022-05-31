@@ -101,7 +101,7 @@ class WC_GZD_Revocation {
 					 *
 					 * @since 1.9.10
 					 */
-					'label'    => apply_filters( 'woocommerce_gzd_revocation_privacy_notice_label', sprintf( _x( 'Please accept our <a href="%s" target="_blank">Privacy Policy</a> so that we can process your inquiry.', 'revocation-form', 'woocommerce-germanized' ), wc_gzd_get_privacy_policy_url() ) ),
+					'label'    => apply_filters( 'woocommerce_gzd_revocation_privacy_notice_label', sprintf( _x( 'Please accept our <a href="%s" target="_blank">Privacy Policy</a> so that we can process your inquiry.', 'revocation-form', 'woocommerce-germanized' ), esc_url( wc_gzd_get_privacy_policy_url() ) ) ),
 					'required' => true,
 				),
 			) );

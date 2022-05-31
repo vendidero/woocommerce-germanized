@@ -119,7 +119,7 @@ abstract class WC_GZD_Settings_Tab extends WC_Settings_Page {
 		$array_keys = array_keys( $sections );
 
 		foreach ( $sections as $id => $label ) {
-			$url       = $this->get_section_url( $id );
+			$url       = esc_url( $this->get_section_url( $id ) );
 			$class     = ( $current_section === $id ? 'current' : '' );
 			$separator = ( end( $array_keys ) === $id ? '' : '|' );
 			$text      = esc_html( $label ) . ( $this->section_is_pro( $id ) && ! WC_germanized()->is_pro() ? '<span class="wc-gzd-pro wc-gzd-pro-outlined">pro</span>' : '' );

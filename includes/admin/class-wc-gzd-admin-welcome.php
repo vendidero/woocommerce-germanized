@@ -128,9 +128,9 @@ class WC_GZD_Admin_Welcome {
             </div>
 
             <p class="woocommerce-actions wc-gzd-actions">
-                <a href="<?php echo admin_url( 'admin.php?page=wc-settings&tab=germanized' ); ?>" target="_blank"
+                <a href="<?php echo esc_url( admin_url( 'admin.php?page=wc-settings&tab=germanized' ) ); ?>" target="_blank"
                    class="wc-gzd-default-button button button-primary">Einstellungen</a>
-                <a href="<?php echo admin_url( 'admin.php?page=wc-settings&tab=germanized&tutorial=yes' ); ?>"
+                <a href="<?php echo esc_url( admin_url( 'admin.php?page=wc-settings&tab=germanized&tutorial=yes' ) ); ?>"
                    target="_blank" class="wc-gzd-default-button button button-primary">Tutorial</a>
                 <a href="https://vendidero.de/woocommerce-germanized#upgrade" target="_blank" class="button wc-gzd-button wc-germanized-welcome-pro">Upgrade
                     zur <span class="wc-gzd-pro wc-gzd-pro-outlined">pro</span> Version</a>
@@ -166,7 +166,7 @@ class WC_GZD_Admin_Welcome {
                         </div>
                     </div>
                     <div class="col col-center">
-                        <img src="<?php echo WC_germanized()->plugin_url(); ?>/assets/images/sell-food.png" style="max-width: 450px;"/>
+                        <img src="<?php echo esc_url( WC_germanized()->plugin_url() ); ?>/assets/images/sell-food.png" style="max-width: 450px;"/>
                     </div>
                 </div>
             </div>
@@ -176,7 +176,7 @@ class WC_GZD_Admin_Welcome {
 
                 <div class="columns two-col">
                     <div class="col col-center">
-                        <img src="<?php echo WC_germanized()->plugin_url(); ?>/assets/images/dpd.png" style="max-width: 450px;"/>
+                        <img src="<?php echo esc_url( WC_germanized()->plugin_url() ); ?>/assets/images/dpd.png" style="max-width: 450px;"/>
                     </div>
                     <div class="col">
                         <p>
@@ -217,7 +217,7 @@ class WC_GZD_Admin_Welcome {
                         </div>
                     </div>
                     <div class="col col-center">
-                        <img src="<?php echo WC_germanized()->plugin_url(); ?>/assets/images/edit-pdf-documents.png"/>
+                        <img src="<?php echo esc_url( WC_germanized()->plugin_url() ); ?>/assets/images/edit-pdf-documents.png"/>
                     </div>
                 </div>
             </div>
@@ -227,7 +227,7 @@ class WC_GZD_Admin_Welcome {
 
                 <div class="columns two-col">
                     <div class="col col-center">
-                        <img src="<?php echo WC_germanized()->plugin_url(); ?>/assets/images/lexoffice.png"/>
+                        <img src="<?php echo esc_url( WC_germanized()->plugin_url() ); ?>/assets/images/lexoffice.png"/>
                     </div>
                     <div class="col">
                         <p>
@@ -261,7 +261,7 @@ class WC_GZD_Admin_Welcome {
                         </div>
                     </div>
                     <div class="col col-center">
-                        <img src="<?php echo WC_germanized()->plugin_url(); ?>/assets/images/sevdesk.png"/>
+                        <img src="<?php echo esc_url( WC_germanized()->plugin_url() ); ?>/assets/images/sevdesk.png"/>
                     </div>
                 </div>
             </div>

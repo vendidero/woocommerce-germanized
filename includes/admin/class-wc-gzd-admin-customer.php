@@ -91,7 +91,7 @@ class WC_GZD_Admin_Customer {
                         </label>
 						<?php if ( ! wc_gzd_is_customer_activated( $user->ID ) ) : ?>
                             <br/> <a class="wc-gzd-resend-activation-link button button-secondary"
-                                     href="<?php echo wp_nonce_url( add_query_arg( array( 'gzd-resend-activation' => 'yes' ) ), 'resend-activation-link' ); ?>"><?php _e( 'Resend activation link', 'woocommerce-germanized' ); ?></a>
+                                     href="<?php echo esc_url( wp_nonce_url( add_query_arg( array( 'gzd-resend-activation' => 'yes' ) ), 'resend-activation-link' ) ); ?>"><?php _e( 'Resend activation link', 'woocommerce-germanized' ); ?></a>
 						<?php endif; ?>
                     </td>
                 </tr>
