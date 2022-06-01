@@ -12,7 +12,7 @@
  *
  * @see https://github.com/vendidero/woocommerce-germanized/wiki/Overriding-Germanized-Templates
  * @package Germanized/Templates
- * @version 3.8.0
+ * @version 3.8.1
  */
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -21,6 +21,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 global $product;
 ?>
 
-<?php if ( $title = wc_gzd_get_gzd_product( $product )->get_deposit_packaging_type_title() ) : ?>
-	<p class="wc-gzd-additional-info wc-gzd-additional-info-loop deposit-packaging-type"><?php echo $title; ?></p>
+<?php if ( $packaging_type_title = wc_gzd_get_gzd_product( $product )->get_deposit_packaging_type_title() ) : ?>
+	<p class="wc-gzd-additional-info wc-gzd-additional-info-loop deposit-packaging-type"><?php echo esc_html( $packaging_type_title ); ?></p>
 <?php endif; ?>

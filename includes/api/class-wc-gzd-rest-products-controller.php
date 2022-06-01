@@ -30,7 +30,7 @@ class WC_GZD_REST_Products_Controller {
 	 */
 	public function schema( $schema_properties ) {
 
-		$schema_properties['delivery_time']                                                 = array(
+		$schema_properties['delivery_time'] = array(
 			'description' => __( 'Delivery Time', 'woocommerce-germanized' ),
 			'type'        => 'object',
 			'context'     => array( 'view', 'edit' ),
@@ -49,7 +49,7 @@ class WC_GZD_REST_Products_Controller {
 				'slug' => array(
 					'description' => __( 'Delivery Time Slug', 'woocommerce-germanized' ),
 					'type'        => 'string',
-					'context'     => array( 'view', 'edit' )
+					'context'     => array( 'view', 'edit' ),
 				),
 				'html' => array(
 					'description' => __( 'Delivery Time HTML', 'woocommerce-germanized' ),
@@ -57,22 +57,22 @@ class WC_GZD_REST_Products_Controller {
 					'context'     => array( 'view', 'edit' ),
 					'readonly'    => true,
 				),
-			)
+			),
 		);
 
-		$schema_properties['country_specific_delivery_times']                                                 = array(
+		$schema_properties['country_specific_delivery_times'] = array(
 			'description' => __( 'Country specific delivery times', 'woocommerce-germanized' ),
 			'type'        => 'array',
 			'context'     => array( 'view', 'edit' ),
 			'items'       => array(
-				'type' => 'object',
-				'properties'  => array(
-					'id'   => array(
+				'type'       => 'object',
+				'properties' => array(
+					'id'      => array(
 						'description' => __( 'Delivery Time ID', 'woocommerce-germanized' ),
 						'type'        => 'integer',
 						'context'     => array( 'view', 'edit' ),
 					),
-					'name' => array(
+					'name'    => array(
 						'description' => __( 'Delivery Time Name', 'woocommerce-germanized' ),
 						'type'        => 'string',
 						'context'     => array( 'view', 'edit' ),
@@ -83,22 +83,22 @@ class WC_GZD_REST_Products_Controller {
 						'type'        => 'string',
 						'context'     => array( 'view', 'edit' ),
 					),
-					'slug' => array(
+					'slug'    => array(
 						'description' => __( 'Delivery Time Slug', 'woocommerce-germanized' ),
 						'type'        => 'string',
-						'context'     => array( 'view', 'edit' )
+						'context'     => array( 'view', 'edit' ),
 					),
-					'html' => array(
+					'html'    => array(
 						'description' => __( 'Delivery Time HTML', 'woocommerce-germanized' ),
 						'type'        => 'string',
 						'context'     => array( 'view', 'edit' ),
 						'readonly'    => true,
 					),
-				)
+				),
 			),
 		);
 
-		$schema_properties['sale_price_label']                                              = array(
+		$schema_properties['sale_price_label']         = array(
 			'description' => __( 'Price Label', 'woocommerce-germanized' ),
 			'type'        => 'object',
 			'context'     => array( 'view', 'edit' ),
@@ -117,11 +117,11 @@ class WC_GZD_REST_Products_Controller {
 				'slug' => array(
 					'description' => __( 'Price Label Slug', 'woocommerce-germanized' ),
 					'type'        => 'string',
-					'context'     => array( 'view', 'edit' )
-				)
-			)
+					'context'     => array( 'view', 'edit' ),
+				),
+			),
 		);
-		$schema_properties['sale_price_regular_label']                                      = array(
+		$schema_properties['sale_price_regular_label'] = array(
 			'description' => __( 'Price Label', 'woocommerce-germanized' ),
 			'type'        => 'object',
 			'context'     => array( 'view', 'edit' ),
@@ -140,11 +140,11 @@ class WC_GZD_REST_Products_Controller {
 				'slug' => array(
 					'description' => __( 'Price Label Slug', 'woocommerce-germanized' ),
 					'type'        => 'string',
-					'context'     => array( 'view', 'edit' )
-				)
-			)
+					'context'     => array( 'view', 'edit' ),
+				),
+			),
 		);
-		$schema_properties['unit']                                                          = array(
+		$schema_properties['unit']                     = array(
 			'description' => __( 'Unit', 'woocommerce-germanized' ),
 			'type'        => 'object',
 			'context'     => array( 'view', 'edit' ),
@@ -163,11 +163,11 @@ class WC_GZD_REST_Products_Controller {
 				'slug' => array(
 					'description' => __( 'Unit Slug', 'woocommerce-germanized' ),
 					'type'        => 'string',
-					'context'     => array( 'view', 'edit' )
-				)
-			)
+					'context'     => array( 'view', 'edit' ),
+				),
+			),
 		);
-		$schema_properties['unit_price']                                                    = array(
+		$schema_properties['unit_price']               = array(
 			'description' => __( 'Unit Price', 'woocommerce-germanized' ),
 			'type'        => 'object',
 			'context'     => array( 'view', 'edit' ),
@@ -175,33 +175,33 @@ class WC_GZD_REST_Products_Controller {
 				'base'          => array(
 					'description' => __( 'Unit Base', 'woocommerce-germanized' ),
 					'type'        => 'string',
-					'context'     => array( 'view', 'edit' )
+					'context'     => array( 'view', 'edit' ),
 				),
 				'product'       => array(
 					'description' => __( 'Unit Product', 'woocommerce-germanized' ),
 					'type'        => 'string',
-					'context'     => array( 'view', 'edit' )
+					'context'     => array( 'view', 'edit' ),
 				),
 				'price_auto'    => array(
 					'description' => __( 'Unit Auto Calculation', 'woocommerce-germanized' ),
 					'type'        => 'boolean',
 					'default'     => false,
-					'context'     => array( 'view', 'edit' )
+					'context'     => array( 'view', 'edit' ),
 				),
 				'price'         => array(
 					'description' => __( 'Current Unit Price', 'woocommerce-germanized' ),
 					'type'        => 'string',
-					'context'     => array( 'view', 'edit' )
+					'context'     => array( 'view', 'edit' ),
 				),
 				'price_regular' => array(
 					'description' => __( 'Unit Regular Price', 'woocommerce-germanized' ),
 					'type'        => 'string',
-					'context'     => array( 'view', 'edit' )
+					'context'     => array( 'view', 'edit' ),
 				),
 				'price_sale'    => array(
 					'description' => __( 'Unit Sale Price', 'woocommerce-germanized' ),
 					'type'        => 'string',
-					'context'     => array( 'view', 'edit' )
+					'context'     => array( 'view', 'edit' ),
 				),
 				'price_html'    => array(
 					'description' => __( 'Unit Price HTML', 'woocommerce-germanized' ),
@@ -209,63 +209,63 @@ class WC_GZD_REST_Products_Controller {
 					'context'     => array( 'view', 'edit' ),
 					'readonly'    => true,
 				),
-			)
+			),
 		);
-		$schema_properties['mini_desc']                                                     = array(
+		$schema_properties['mini_desc']                = array(
 			'description' => __( 'Small Cart Product Description', 'woocommerce-germanized' ),
 			'type'        => 'string',
 			'context'     => array( 'view', 'edit' ),
 		);
-		$schema_properties['defect_description']                                             = array(
+		$schema_properties['defect_description']       = array(
 			'description' => __( 'Defect Description', 'woocommerce-germanized' ),
 			'type'        => 'string',
 			'context'     => array( 'view', 'edit' ),
 		);
-		$schema_properties['free_shipping']                                                 = array(
+		$schema_properties['free_shipping']            = array(
 			'description' => __( 'Deactivate the hint for additional shipping costs', 'woocommerce-germanized' ),
 			'type'        => 'boolean',
 			'default'     => false,
 			'context'     => array( 'view', 'edit' ),
 		);
-		$schema_properties['min_age']                                              = array(
+		$schema_properties['min_age']                  = array(
 			'description' => __( 'Age verification minimum age.', 'woocommerce-germanized' ),
 			'type'        => 'string',
 			'enum'        => array_merge( array( '' ), array_keys( wc_gzd_get_age_verification_min_ages() ) ),
 			'default'     => '',
 			'context'     => array( 'view', 'edit' ),
 		);
-		$schema_properties['warranty_attachment_id']                               = array(
+		$schema_properties['warranty_attachment_id']   = array(
 			'description' => __( 'Warranty attachment id (PDF)', 'woocommerce-germanized' ),
 			'type'        => 'string',
 			'default'     => '',
 			'context'     => array( 'view', 'edit' ),
 		);
-		$schema_properties['service']                                                       = array(
+		$schema_properties['service']                  = array(
 			'description' => __( 'Whether this product is a service or not', 'woocommerce-germanized' ),
 			'type'        => 'boolean',
 			'default'     => false,
 			'context'     => array( 'view', 'edit' ),
 		);
-		$schema_properties['used_good']                                                     = array(
+		$schema_properties['used_good']                = array(
 			'description' => __( 'Whether this product is a used good or not', 'woocommerce-germanized' ),
 			'type'        => 'boolean',
 			'default'     => false,
 			'context'     => array( 'view', 'edit' ),
 		);
-		$schema_properties['defective_copy']                                                 = array(
+		$schema_properties['defective_copy']           = array(
 			'description' => __( 'Whether this product is a defective copy or not', 'woocommerce-germanized' ),
 			'type'        => 'boolean',
 			'default'     => false,
 			'context'     => array( 'view', 'edit' ),
 		);
-		$schema_properties['differential_taxation']                                         = array(
+		$schema_properties['differential_taxation']    = array(
 			'description' => __( 'Whether this product applies for differential taxation or not', 'woocommerce-germanized' ),
 			'type'        => 'boolean',
 			'default'     => false,
 			'context'     => array( 'view', 'edit' ),
 		);
 
-		$schema_properties['is_food']                                         = array(
+		$schema_properties['is_food'] = array(
 			'description' => __( 'Whether this product is a food product or not', 'woocommerce-germanized' ),
 			'type'        => 'boolean',
 			'default'     => false,
@@ -277,7 +277,7 @@ class WC_GZD_REST_Products_Controller {
 			'type'        => 'object',
 			'context'     => array( 'view', 'edit' ),
 			'properties'  => array(
-				'deposit_type'          => array(
+				'deposit_type'             => array(
 					'description' => __( 'Deposit Type', 'woocommerce-germanized' ),
 					'type'        => 'object',
 					'context'     => array( 'view', 'edit' ),
@@ -296,11 +296,11 @@ class WC_GZD_REST_Products_Controller {
 						'slug' => array(
 							'description' => __( 'Deposit type slug', 'woocommerce-germanized' ),
 							'type'        => 'string',
-							'context'     => array( 'view', 'edit' )
-						)
-					)
+							'context'     => array( 'view', 'edit' ),
+						),
+					),
 				),
-				'deposit_quantity'          => array(
+				'deposit_quantity'         => array(
 					'description' => __( 'Deposit quantity', 'woocommerce-germanized' ),
 					'type'        => 'integer',
 					'default'     => 1,
@@ -309,13 +309,13 @@ class WC_GZD_REST_Products_Controller {
 						'sanitize_callback' => 'absint',
 					),
 				),
-				'deposit'          => array(
+				'deposit'                  => array(
 					'description' => __( 'Deposit amount', 'woocommerce-germanized' ),
 					'type'        => 'string',
 					'context'     => array( 'view', 'edit' ),
 					'readonly'    => true,
 				),
-				'nutrient_reference_value'      => array(
+				'nutrient_reference_value' => array(
 					'description' => __( 'Nutrient reference value', 'woocommerce-germanized' ),
 					'type'        => 'string',
 					'enum'        => array( '' ) + array_keys( WC_GZD_Food_Helper::get_nutrient_reference_values() ),
@@ -324,7 +324,7 @@ class WC_GZD_REST_Products_Controller {
 						'sanitize_callback' => 'sanitize_title',
 					),
 				),
-				'nutri_score'      => array(
+				'nutri_score'              => array(
 					'description' => __( 'Nutri-Score', 'woocommerce-germanized' ),
 					'type'        => 'string',
 					'enum'        => array( '' ) + array_keys( WC_GZD_Food_Helper::get_nutri_score_values() ),
@@ -333,22 +333,22 @@ class WC_GZD_REST_Products_Controller {
 						'sanitize_callback' => 'sanitize_title',
 					),
 				),
-				'drained_weight'      => array(
+				'drained_weight'           => array(
 					'description' => __( 'Drained weight', 'woocommerce-germanized' ),
 					'type'        => 'string',
 					'context'     => array( 'view', 'edit' ),
 				),
-				'net_filling_quantity'      => array(
+				'net_filling_quantity'     => array(
 					'description' => __( 'Net filling quantity', 'woocommerce-germanized' ),
 					'type'        => 'string',
 					'context'     => array( 'view', 'edit' ),
 				),
-				'alcohol_content'      => array(
+				'alcohol_content'          => array(
 					'description' => __( 'Alcohol content', 'woocommerce-germanized' ),
 					'type'        => 'string',
 					'context'     => array( 'view', 'edit' ),
 				),
-				'distributor'      => array(
+				'distributor'              => array(
 					'description' => _x( 'Distributor', 'food', 'woocommerce-germanized' ),
 					'type'        => 'string',
 					'context'     => array( 'view', 'edit' ),
@@ -356,7 +356,7 @@ class WC_GZD_REST_Products_Controller {
 						'sanitize_callback' => 'wp_filter_post_kses',
 					),
 				),
-				'place_of_origin'      => array(
+				'place_of_origin'          => array(
 					'description' => _x( 'Place of origin', 'food', 'woocommerce-germanized' ),
 					'type'        => 'string',
 					'context'     => array( 'view', 'edit' ),
@@ -364,7 +364,7 @@ class WC_GZD_REST_Products_Controller {
 						'sanitize_callback' => 'wp_filter_post_kses',
 					),
 				),
-				'description'      => array(
+				'description'              => array(
 					'description' => _x( 'Description', 'food', 'woocommerce-germanized' ),
 					'type'        => 'string',
 					'context'     => array( 'view', 'edit' ),
@@ -372,14 +372,14 @@ class WC_GZD_REST_Products_Controller {
 						'sanitize_callback' => 'wp_filter_post_kses',
 					),
 				),
-				'nutrient_ids'      => array(
+				'nutrient_ids'             => array(
 					'description' => __( 'Nutrient term ids', 'woocommerce-germanized' ),
 					'type'        => 'array',
 					'context'     => array( 'view', 'edit' ),
 					'items'       => array(
-						'type' => 'object',
-						'properties'  => array(
-							'value'   => array(
+						'type'       => 'object',
+						'properties' => array(
+							'value'     => array(
 								'description' => __( 'Nutrient value', 'woocommerce-germanized' ),
 								'type'        => 'number',
 								'context'     => array( 'view', 'edit' ),
@@ -388,11 +388,11 @@ class WC_GZD_REST_Products_Controller {
 								'description' => __( 'Nutrient reference value (for vitamins & minerals)', 'woocommerce-germanized' ),
 								'type'        => 'number',
 								'context'     => array( 'view', 'edit' ),
-							)
-						)
-					)
+							),
+						),
+					),
 				),
-				'allergen_ids'      => array(
+				'allergen_ids'             => array(
 					'description' => __( 'Allergen ids', 'woocommerce-germanized' ),
 					'type'        => 'array',
 					'context'     => array( 'view', 'edit' ),
@@ -400,9 +400,9 @@ class WC_GZD_REST_Products_Controller {
 						'description' => __( 'Allergen term id', 'woocommerce-germanized' ),
 						'type'        => 'integer',
 						'context'     => array( 'view', 'edit' ),
-					)
+					),
 				),
-				'ingredients'      => array(
+				'ingredients'              => array(
 					'description' => __( 'Ingredients', 'woocommerce-germanized' ),
 					'type'        => 'string',
 					'context'     => array( 'view', 'edit' ),
@@ -410,10 +410,10 @@ class WC_GZD_REST_Products_Controller {
 						'sanitize_callback' => 'wp_filter_post_kses',
 					),
 				),
-			)
+			),
 		);
 
-		$schema_properties['food'] = $food_schema;
+		$schema_properties['food']                                      = $food_schema;
 		$schema_properties['variations']['items']['properties']['food'] = $food_schema;
 
 		$schema_properties['variations']['items']['properties']['delivery_time']            = array(
@@ -435,7 +435,7 @@ class WC_GZD_REST_Products_Controller {
 				'slug' => array(
 					'description' => __( 'Delivery Time Slug', 'woocommerce-germanized' ),
 					'type'        => 'string',
-					'context'     => array( 'view', 'edit' )
+					'context'     => array( 'view', 'edit' ),
 				),
 				'html' => array(
 					'description' => __( 'Delivery Time HTML', 'woocommerce-germanized' ),
@@ -443,7 +443,7 @@ class WC_GZD_REST_Products_Controller {
 					'context'     => array( 'view', 'edit' ),
 					'readonly'    => true,
 				),
-			)
+			),
 		);
 		$schema_properties['variations']['items']['properties']['sale_price_label']         = array(
 			'description' => __( 'Price Label', 'woocommerce-germanized' ),
@@ -464,9 +464,9 @@ class WC_GZD_REST_Products_Controller {
 				'slug' => array(
 					'description' => __( 'Price Label Slug', 'woocommerce-germanized' ),
 					'type'        => 'string',
-					'context'     => array( 'view', 'edit' )
-				)
-			)
+					'context'     => array( 'view', 'edit' ),
+				),
+			),
 		);
 		$schema_properties['variations']['items']['properties']['sale_price_regular_label'] = array(
 			'description' => __( 'Price Label', 'woocommerce-germanized' ),
@@ -487,9 +487,9 @@ class WC_GZD_REST_Products_Controller {
 				'slug' => array(
 					'description' => __( 'Price Label Slug', 'woocommerce-germanized' ),
 					'type'        => 'string',
-					'context'     => array( 'view', 'edit' )
-				)
-			)
+					'context'     => array( 'view', 'edit' ),
+				),
+			),
 		);
 		$schema_properties['variations']['items']['properties']['service']                  = array(
 			'description' => __( 'Whether this product is a service or not', 'woocommerce-germanized' ),
@@ -514,7 +514,7 @@ class WC_GZD_REST_Products_Controller {
 			'type'        => 'string',
 			'context'     => array( 'view', 'edit' ),
 		);
-		$schema_properties['variations']['items']['properties']['defect_description']        = array(
+		$schema_properties['variations']['items']['properties']['defect_description']       = array(
 			'description' => __( 'Defect description', 'woocommerce-germanized' ),
 			'type'        => 'string',
 			'context'     => array( 'view', 'edit' ),
@@ -525,7 +525,7 @@ class WC_GZD_REST_Products_Controller {
 			'enum'        => array_merge( array( '' ), array_keys( wc_gzd_get_age_verification_min_ages() ) ),
 			'context'     => array( 'view', 'edit' ),
 		);
-		$schema_properties['variations']['items']['properties']['warranty_attachment_id']    = array(
+		$schema_properties['variations']['items']['properties']['warranty_attachment_id']   = array(
 			'description' => __( 'Warranty attachment id (PDF)', 'woocommerce-germanized' ),
 			'type'        => 'string',
 			'context'     => array( 'view', 'edit' ),
@@ -538,33 +538,33 @@ class WC_GZD_REST_Products_Controller {
 				'base'          => array(
 					'description' => __( 'Unit Base', 'woocommerce-germanized' ),
 					'type'        => 'string',
-					'context'     => array( 'view', 'edit' )
+					'context'     => array( 'view', 'edit' ),
 				),
 				'product'       => array(
 					'description' => __( 'Unit Product', 'woocommerce-germanized' ),
 					'type'        => 'string',
-					'context'     => array( 'view', 'edit' )
+					'context'     => array( 'view', 'edit' ),
 				),
 				'price_auto'    => array(
 					'description' => __( 'Unit Auto Calculation', 'woocommerce-germanized' ),
 					'type'        => 'boolean',
 					'default'     => false,
-					'context'     => array( 'view', 'edit' )
+					'context'     => array( 'view', 'edit' ),
 				),
 				'price'         => array(
 					'description' => __( 'Current Unit Price', 'woocommerce-germanized' ),
 					'type'        => 'string',
-					'context'     => array( 'view', 'edit' )
+					'context'     => array( 'view', 'edit' ),
 				),
 				'price_regular' => array(
 					'description' => __( 'Unit Regular Price', 'woocommerce-germanized' ),
 					'type'        => 'string',
-					'context'     => array( 'view', 'edit' )
+					'context'     => array( 'view', 'edit' ),
 				),
 				'price_sale'    => array(
 					'description' => __( 'Unit Sale Price', 'woocommerce-germanized' ),
 					'type'        => 'string',
-					'context'     => array( 'view', 'edit' )
+					'context'     => array( 'view', 'edit' ),
 				),
 				'price_html'    => array(
 					'description' => __( 'Unit Price HTML', 'woocommerce-germanized' ),
@@ -572,7 +572,7 @@ class WC_GZD_REST_Products_Controller {
 					'context'     => array( 'view', 'edit' ),
 					'readonly'    => true,
 				),
-			)
+			),
 		);
 
 		return $schema_properties;
@@ -630,7 +630,7 @@ class WC_GZD_REST_Products_Controller {
 		$country_specific_delivery_times_current = $gzd_product->get_country_specific_delivery_times( 'edit' );
 
 		if ( isset( $request['country_specific_delivery_times'] ) ) {
-			foreach( (array) $request['country_specific_delivery_times'] as $delivery_time ) {
+			foreach ( (array) $request['country_specific_delivery_times'] as $delivery_time ) {
 				$country = isset( $delivery_time['country'] ) ? strtoupper( wc_clean( $delivery_time['country'] ) ) : '';
 
 				if ( ! empty( $country ) ) {
@@ -735,19 +735,19 @@ class WC_GZD_REST_Products_Controller {
 		foreach ( array( 'free_shipping', 'service', 'differential_taxation', 'used_good', 'defective_copy', 'is_food' ) as $bool_meta ) {
 			if ( isset( $request[ $bool_meta ] ) ) {
 				if ( ! empty( $request[ $bool_meta ] ) ) {
-					$data["_{$bool_meta}"] = true;
+					$data[ "_{$bool_meta}" ] = true;
 				}
 			} else {
 				$getter = "get_{$bool_meta}";
 
 				if ( is_callable( array( $gzd_product, $getter ) ) ) {
-					$data["_{$bool_meta}"] = $gzd_product->$getter( 'edit' );
+					$data[ "_{$bool_meta}" ] = $gzd_product->$getter( 'edit' );
 				}
 			}
 
 			// Do only add boolean values if is set so saving works (checkbox-style).
-			if ( empty( $data["_{$bool_meta}"] ) || ! $data["_{$bool_meta}"] ) {
-				unset( $data["_{$bool_meta}"] );
+			if ( empty( $data[ "_{$bool_meta}" ] ) || ! $data[ "_{$bool_meta}" ] ) {
+				unset( $data[ "_{$bool_meta}" ] );
 			}
 		}
 
@@ -952,7 +952,7 @@ class WC_GZD_REST_Products_Controller {
 	private function prepare_country_specific_delivery_times( $terms ) {
 		$return = array();
 
-		foreach( $terms as $country => $slug ) {
+		foreach ( $terms as $country => $slug ) {
 			if ( $term = get_term_by( 'slug', $slug, 'product_delivery_time' ) ) {
 				$term_data = $this->prepare_term( $term );
 

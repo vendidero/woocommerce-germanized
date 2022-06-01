@@ -23,8 +23,8 @@ abstract class WC_GZD_Settings_Tab extends WC_Settings_Page {
 	}
 
 	public function notice_on_activate() {
-	    return false;
-    }
+		return false;
+	}
 
 	public function get_current_section() {
 		$current_section = isset( $_GET['section'] ) && ! empty( $_GET['section'] ) ? wc_clean( $_GET['section'] ) : '';
@@ -35,12 +35,12 @@ abstract class WC_GZD_Settings_Tab extends WC_Settings_Page {
 	protected function get_pro_content_html() {
 		ob_start();
 		?>
-        <div class="wc-gzd-premium-overlay notice notice-warning inline">
-            <h3><?php _e( 'Get Germanized Pro to unlock', 'woocommerce-germanized' ); ?></h3>
-            <p><?php _e( 'Enjoy even more professional features such as invoices, legal text generators, B2B VAT settings and premium support!', 'woocommerce-germanized' ); ?></p>
-            <p><a class="button button-primary wc-gzd-button" href="https://vendidero.de/woocommerce-germanized"
-                  target="_blank"><?php _e( 'Upgrade now', 'woocommerce-germanized' ); ?></a></p>
-        </div>
+		<div class="wc-gzd-premium-overlay notice notice-warning inline">
+			<h3><?php _e( 'Get Germanized Pro to unlock', 'woocommerce-germanized' ); ?></h3>
+			<p><?php _e( 'Enjoy even more professional features such as invoices, legal text generators, B2B VAT settings and premium support!', 'woocommerce-germanized' ); ?></p>
+			<p><a class="button button-primary wc-gzd-button" href="https://vendidero.de/woocommerce-germanized"
+				  target="_blank"><?php _e( 'Upgrade now', 'woocommerce-germanized' ); ?></a></p>
+		</div>
 		<?php
 		$html = ob_get_clean();
 
@@ -99,8 +99,8 @@ abstract class WC_GZD_Settings_Tab extends WC_Settings_Page {
 	}
 
 	protected function get_additional_breadcrumb_items( $breadcrumb ) {
-	    return $breadcrumb;
-    }
+		return $breadcrumb;
+	}
 
 	/**
 	 * Output sections.
@@ -129,9 +129,9 @@ abstract class WC_GZD_Settings_Tab extends WC_Settings_Page {
 		echo '</ul><br class="clear" />';
 	}
 
-    protected function section_is_pro( $section_id ) {
-        return false;
-    }
+	protected function section_is_pro( $section_id ) {
+		return false;
+	}
 
 	protected function get_section_url( $section_id ) {
 		return admin_url( 'admin.php?page=wc-settings&tab=' . $this->id . '&section=' . sanitize_title( $section_id ) );
@@ -146,14 +146,14 @@ abstract class WC_GZD_Settings_Tab extends WC_Settings_Page {
 			array(
 				'class' => 'main',
 				'href'  => admin_url( 'admin.php?page=wc-settings&tab=germanized' ),
-				'title' => __( 'Germanized', 'woocommerce-germanized' )
-			)
+				'title' => __( 'Germanized', 'woocommerce-germanized' ),
+			),
 		);
 
 		$breadcrumb[] = array(
 			'class' => 'tab',
 			'href'  => ! empty( $current_section ) ? $this->get_link() : '',
-			'title' => empty( $current_section ) ? $this->get_breadcrumb_label( $this->get_label() ) : $this->get_label()
+			'title' => empty( $current_section ) ? $this->get_breadcrumb_label( $this->get_label() ) : $this->get_label(),
 		);
 
 		if ( ! empty( $current_section ) ) {
@@ -183,7 +183,7 @@ abstract class WC_GZD_Settings_Tab extends WC_Settings_Page {
 	}
 
 	protected function get_breadcrumb_label( $label ) {
-        $section = $this->get_current_section();
+		$section = $this->get_current_section();
 
 		if ( empty( $section ) && $this->has_help_link() ) {
 			$label = $label . '<a class="page-title-action" href="' . esc_url( $this->get_help_link() ) . '" target="_blank">' . __( 'Learn more', 'woocommerce-germanized' ) . '</a>';
@@ -240,7 +240,7 @@ abstract class WC_GZD_Settings_Tab extends WC_Settings_Page {
 		 * @since 3.0.0
 		 *
 		 */
-		return apply_filters( "woocommerce_gzd_admin_settings", $settings, $this->get_name(), $section_id );
+		return apply_filters( 'woocommerce_gzd_admin_settings', $settings, $this->get_name(), $section_id );
 	}
 
 	public function get_settings_for_section_core( $section_id ) {
@@ -272,7 +272,7 @@ abstract class WC_GZD_Settings_Tab extends WC_Settings_Page {
 	}
 
 	public function hide_from_main_panel() {
-	    return false;
+		return false;
 	}
 
 	public function output() {
@@ -327,7 +327,7 @@ abstract class WC_GZD_Settings_Tab extends WC_Settings_Page {
 	}
 
 	protected function get_enable_option_name() {
-	    return '';
+		return '';
 	}
 
 	public function get_link() {
@@ -344,7 +344,7 @@ abstract class WC_GZD_Settings_Tab extends WC_Settings_Page {
 		 * refers to the current tab id e.g. checkboxes.
 		 *
 		 * @param array  $settings Array containing the settings to be saved.
-         * @param string $current_section The current section.
+		 * @param string $current_section The current section.
 		 *
 		 * @since 3.0.0
 		 */
@@ -367,10 +367,10 @@ abstract class WC_GZD_Settings_Tab extends WC_Settings_Page {
 
 		if ( $this->notice_on_activate() && $this->supports_disabling() && ! empty( $this->get_enable_option_name() ) ) {
 
-		    // Option seems to be activated
-		    if ( 'yes' !== get_option( $this->get_enable_option_name() ) && ! empty( $_POST[ $this->get_enable_option_name() ] ) ) {
-			    WC_Admin_Settings::add_error( $this->notice_on_activate() );
-            }
+			// Option seems to be activated
+			if ( 'yes' !== get_option( $this->get_enable_option_name() ) && ! empty( $_POST[ $this->get_enable_option_name() ] ) ) {
+				WC_Admin_Settings::add_error( $this->notice_on_activate() );
+			}
 		}
 	}
 

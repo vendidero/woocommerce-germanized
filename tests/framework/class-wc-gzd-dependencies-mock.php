@@ -59,7 +59,7 @@ class WC_GZD_Dependencies_Mock {
 			$plugin = trailingslashit( $plugin ) . $plugin . '.php';
 		}
 
-		return ( in_array( $plugin, $this->plugins ) || array_key_exists( $plugin, $this->plugins ) );
+		return ( in_array( $plugin, $this->plugins, true ) || array_key_exists( $plugin, $this->plugins ) );
 	}
 
 	/**

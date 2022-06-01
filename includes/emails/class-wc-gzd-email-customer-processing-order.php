@@ -30,18 +30,30 @@ if ( ! class_exists( 'WC_GZD_Email_Customer_Processing_Order' ) ) :
 
 			if ( wc_gzd_send_instant_order_confirmation() ) {
 				// Remove Triggers for this email.
-				remove_action( 'woocommerce_order_status_failed_to_processing_notification', array(
-					$this,
-					'trigger'
-				), 10 );
-				remove_action( 'woocommerce_order_status_on-hold_to_processing_notification', array(
-					$this,
-					'trigger'
-				), 10 );
-				remove_action( 'woocommerce_order_status_pending_to_processing_notification', array(
-					$this,
-					'trigger'
-				), 10 );
+				remove_action(
+					'woocommerce_order_status_failed_to_processing_notification',
+					array(
+						$this,
+						'trigger',
+					),
+					10
+				);
+				remove_action(
+					'woocommerce_order_status_on-hold_to_processing_notification',
+					array(
+						$this,
+						'trigger',
+					),
+					10
+				);
+				remove_action(
+					'woocommerce_order_status_pending_to_processing_notification',
+					array(
+						$this,
+						'trigger',
+					),
+					10
+				);
 			}
 
 			$this->title = __( 'Order Confirmation', 'woocommerce-germanized' );

@@ -53,7 +53,7 @@ class WC_GZD_Dependencies {
 	 * @since 1.0
 	 */
 	public function __clone() {
-		_doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?', 'woocommerce-germanized' ), '1.0' );
+		_doing_it_wrong( __FUNCTION__, esc_html__( 'Cheating huh?', 'woocommerce-germanized' ), '1.0' );
 	}
 
 	/**
@@ -62,7 +62,7 @@ class WC_GZD_Dependencies {
 	 * @since 1.0
 	 */
 	public function __wakeup() {
-		_doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?', 'woocommerce-germanized' ), '1.0' );
+		_doing_it_wrong( __FUNCTION__, esc_html__( 'Cheating huh?', 'woocommerce-germanized' ), '1.0' );
 	}
 
 	public function __construct( $plugin = null ) {
@@ -94,7 +94,7 @@ class WC_GZD_Dependencies {
 			$plugin_slug = trailingslashit( $plugin_slug ) . $plugin_slug . '.php';
 		}
 
-		return ( in_array( $plugin_slug, $this->active_plugins ) || array_key_exists( $plugin_slug, $this->active_plugins ) );
+		return ( in_array( $plugin_slug, $this->active_plugins, true ) || array_key_exists( $plugin_slug, $this->active_plugins ) );
 	}
 
 	public function is_theme_activated( $theme_slug ) {
@@ -125,7 +125,7 @@ class WC_GZD_Dependencies {
 		$expl_ver2     = explode( '.', $ver2 );
 
 		// Check if ver2 string is more accurate than main_ver
-		if ( sizeof( $expl_main_ver ) == 2 && sizeof( $expl_ver2 ) > 2 ) {
+		if ( 2 === count( $expl_main_ver ) && count( $expl_ver2 ) > 2 ) {
 			$new_ver_2 = array_slice( $expl_ver2, 0, 2 );
 			$ver2      = implode( '.', $new_ver_2 );
 		}

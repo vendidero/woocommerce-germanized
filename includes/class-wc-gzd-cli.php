@@ -54,7 +54,7 @@ class WC_GZD_CLI {
 		$progress = \WP_CLI\Utils\make_progress_bar( __( 'Updating database', 'woocommerce-germanized' ), count( $scripts_to_run ) ); // phpcs:ignore PHPCompatibility.LanguageConstructs.NewLanguageConstructs.t_ns_separatorFound
 
 		foreach ( $scripts_to_run as $version => $script ) {
-			include( $script );
+			include $script;
 			WC_GZD_Install::update_db_version( $version );
 			$update_count ++;
 			$progress->tick();

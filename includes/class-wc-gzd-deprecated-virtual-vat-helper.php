@@ -51,10 +51,14 @@ class WC_GZD_Deprecated_Virtual_VAT_Helper {
 		}
 
 		$location               = WC_Tax::get_tax_location( $tax_class );
-		$virtual_vat_applicable = in_array( $tax_class, array(
+		$virtual_vat_applicable = in_array(
+			$tax_class,
+			array(
 				'virtual-rate',
-				'virtual-reduced-rate'
-			) ) && isset( $location[0] ) && sizeof( $location ) === 4 && $location[0] !== wc_gzd_get_base_country();
+				'virtual-reduced-rate',
+			),
+			true
+		) && isset( $location[0] ) && count( $location ) === 4 && wc_gzd_get_base_country() !== $location[0];
 
 		/**
 		 * Filter that allows disabling default customer VAT exempt check when handling virtual VAT rates.
@@ -66,10 +70,12 @@ class WC_GZD_Deprecated_Virtual_VAT_Helper {
 		 * @since 1.0.0
 		 *
 		 */
-		if ( apply_filters( 'woocommerce_gzd_check_virtual_vat_exempt', true, $rates, $tax_class ) && is_callable( array(
+		if ( apply_filters( 'woocommerce_gzd_check_virtual_vat_exempt', true, $rates, $tax_class ) && is_callable(
+			array(
 				WC()->customer,
-				'is_vat_exempt'
-			) ) ) {
+				'is_vat_exempt',
+			)
+		) ) {
 			if ( WC()->customer->is_vat_exempt() ) {
 				return $rates;
 			}
@@ -90,13 +96,15 @@ class WC_GZD_Deprecated_Virtual_VAT_Helper {
 
 			list( $country, $state, $postcode, $city ) = $location;
 
-			$rates = WC_Tax::find_rates( array(
-				'country'   => $country,
-				'state'     => $state,
-				'postcode'  => $postcode,
-				'city'      => $city,
-				'tax_class' => $tax_class
-			) );
+			$rates = WC_Tax::find_rates(
+				array(
+					'country'   => $country,
+					'state'     => $state,
+					'postcode'  => $postcode,
+					'city'      => $city,
+					'tax_class' => $tax_class,
+				)
+			);
 		}
 
 		return $rates;

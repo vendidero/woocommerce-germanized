@@ -12,14 +12,14 @@
  *
  * @see https://github.com/vendidero/woocommerce-germanized/wiki/Overriding-Germanized-Templates
  * @package Germanized/Templates
- * @version 1.0.1
+ * @version 1.0.2
  */
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 } // Exit if accessed directly
 ?>
 <?php if ( ! wc_gzd_is_small_business() ) : ?>
-    <p class="footer-info vat-info"><?php echo ( get_option( 'woocommerce_tax_display_shop' ) == 'incl' ) ? __( 'All prices incl. VAT.', 'woocommerce-germanized' ) : __( 'All prices excl. VAT.', 'woocommerce-germanized' ) ?></p>
+	<p class="footer-info vat-info"><?php echo ( 'incl' === get_option( 'woocommerce_tax_display_shop' ) ) ? esc_html__( 'All prices incl. VAT.', 'woocommerce-germanized' ) : esc_html__( 'All prices excl. VAT.', 'woocommerce-germanized' ); ?></p>
 <?php else : ?>
-    <p class="footer-info vat-info"><?php echo wc_gzd_get_small_business_notice(); ?></p>
+	<p class="footer-info vat-info"><?php echo wp_kses_post( wc_gzd_get_small_business_notice() ); ?></p>
 <?php endif; ?>

@@ -25,6 +25,7 @@ if ( ! class_exists( 'WC_GZD_Email_Customer_New_Account_Activation' ) ) :
 		public $user_activation_url;
 		public $user_pass;
 		public $password_generated;
+		public $set_password_url;
 
 		public $helper = null;
 
@@ -87,6 +88,27 @@ if ( ! class_exists( 'WC_GZD_Email_Customer_New_Account_Activation' ) ) :
 		}
 
 		/**
+		 * Generate set password URL link for a new user.
+		 *
+		 * See also Automattic\WooCommerce\Blocks\Domain\Services\Email\CustomerNewAccount and wp_new_user_notification.
+		 *
+		 * @since 6.0.0
+		 * @return string
+		 */
+		protected function generate_set_password_url() {
+			// Generate a magic link so user can set initial password.
+			$key = get_password_reset_key( $this->object );
+
+			if ( ! is_wp_error( $key ) ) {
+				$action = 'newaccount';
+				return wc_get_account_endpoint_url( 'lost-password' ) . "?action=$action&key=$key&login=" . rawurlencode( $this->object->user_login );
+			} else {
+				// Something went wrong while getting the key for new password URL, send customer to the generic password reset.
+				return wc_get_account_endpoint_url( 'lost-password' );
+			}
+		}
+
+		/**
 		 * trigger function.
 		 *
 		 * @access public
@@ -104,6 +126,7 @@ if ( ! class_exists( 'WC_GZD_Email_Customer_New_Account_Activation' ) ) :
 				$this->user_email          = stripslashes( $this->object->user_email );
 				$this->recipient           = $this->user_email;
 				$this->password_generated  = $password_generated;
+				$this->set_password_url    = $this->generate_set_password_url();
 			}
 
 			$this->helper->setup_email_locale();
@@ -125,19 +148,23 @@ if ( ! class_exists( 'WC_GZD_Email_Customer_New_Account_Activation' ) ) :
 		 * @return string
 		 */
 		public function get_content_html() {
-			return wc_get_template_html( $this->template_html, array(
-				'email_heading'       => $this->get_heading(),
-				'user_login'          => $this->user_login,
-				'user_activation'     => $this->user_activation,
-				'user_activation_url' => $this->user_activation_url,
-				'user_pass'           => $this->user_pass,
-				'password_generated'  => $this->password_generated,
-				'blogname'            => $this->get_blogname(),
-				'additional_content'  => $this->get_additional_content(),
-				'sent_to_admin'       => false,
-				'plain_text'          => false,
-				'email'               => $this
-			) );
+			return wc_get_template_html(
+				$this->template_html,
+				array(
+					'email_heading'       => $this->get_heading(),
+					'user_login'          => $this->user_login,
+					'user_activation'     => $this->user_activation,
+					'user_activation_url' => $this->user_activation_url,
+					'user_pass'           => $this->user_pass,
+					'password_generated'  => $this->password_generated,
+					'set_password_url'    => $this->set_password_url,
+					'blogname'            => $this->get_blogname(),
+					'additional_content'  => $this->get_additional_content(),
+					'sent_to_admin'       => false,
+					'plain_text'          => false,
+					'email'               => $this,
+				)
+			);
 		}
 
 		/**
@@ -147,19 +174,23 @@ if ( ! class_exists( 'WC_GZD_Email_Customer_New_Account_Activation' ) ) :
 		 * @return string
 		 */
 		public function get_content_plain() {
-			return wc_get_template_html( $this->template_plain, array(
-				'email_heading'       => $this->get_heading(),
-				'user_login'          => $this->user_login,
-				'user_activation'     => $this->user_activation,
-				'user_activation_url' => $this->user_activation_url,
-				'user_pass'           => $this->user_pass,
-				'password_generated'  => $this->password_generated,
-				'blogname'            => $this->get_blogname(),
-				'additional_content'  => $this->get_additional_content(),
-				'sent_to_admin'       => false,
-				'plain_text'          => true,
-				'email'               => $this
-			) );
+			return wc_get_template_html(
+				$this->template_plain,
+				array(
+					'email_heading'       => $this->get_heading(),
+					'user_login'          => $this->user_login,
+					'user_activation'     => $this->user_activation,
+					'user_activation_url' => $this->user_activation_url,
+					'user_pass'           => $this->user_pass,
+					'password_generated'  => $this->password_generated,
+					'set_password_url'    => $this->set_password_url,
+					'blogname'            => $this->get_blogname(),
+					'additional_content'  => $this->get_additional_content(),
+					'sent_to_admin'       => false,
+					'plain_text'          => true,
+					'email'               => $this,
+				)
+			);
 		}
 	}
 

@@ -26,35 +26,61 @@ class WC_GZD_Admin_Order {
 
 	public function __construct() {
 		if ( wc_gzd_enable_additional_costs_split_tax_calculation() ) {
-			add_action( 'woocommerce_order_item_shipping_after_calculate_taxes', array(
-				$this,
-				'adjust_item_taxes'
-			), 10 );
+			add_action(
+				'woocommerce_order_item_shipping_after_calculate_taxes',
+				array(
+					$this,
+					'adjust_item_taxes',
+				),
+				10
+			);
 
-			add_action( 'woocommerce_order_item_fee_after_calculate_taxes', array(
-				$this,
-				'adjust_item_taxes'
-			), 10 );
+			add_action(
+				'woocommerce_order_item_fee_after_calculate_taxes',
+				array(
+					$this,
+					'adjust_item_taxes',
+				),
+				10
+			);
 
-			add_action( 'woocommerce_order_item_after_calculate_taxes', array(
-				$this,
-				'adjust_item_taxes'
-			), 10 );
+			add_action(
+				'woocommerce_order_item_after_calculate_taxes',
+				array(
+					$this,
+					'adjust_item_taxes',
+				),
+				10
+			);
 
-			add_action( 'woocommerce_order_before_calculate_totals', array(
-				$this,
-				'set_shipping_total_filter'
-			), 500, 2 );
+			add_action(
+				'woocommerce_order_before_calculate_totals',
+				array(
+					$this,
+					'set_shipping_total_filter',
+				),
+				500,
+				2
+			);
 
-			add_action( 'woocommerce_order_after_calculate_totals', array(
-				$this,
-				'remove_shipping_total_filter'
-			), 500 );
+			add_action(
+				'woocommerce_order_after_calculate_totals',
+				array(
+					$this,
+					'remove_shipping_total_filter',
+				),
+				500
+			);
 
-			add_action( 'woocommerce_create_refund', array(
-				$this,
-				'fix_refund_precision'
-			), 1, 2 );
+			add_action(
+				'woocommerce_create_refund',
+				array(
+					$this,
+					'fix_refund_precision',
+				),
+				1,
+				2
+			);
 		}
 	}
 
@@ -84,15 +110,15 @@ class WC_GZD_Admin_Order {
 						$item_total_rounded   = wc_format_decimal( $item->get_total(), '' );
 						$refund_total_rounded = wc_format_decimal( $refunded_item->get_total() * -1, '' );
 
-						$item_tax_rounded     = wc_format_decimal( $item->get_total_tax(), '' );
-						$refund_tax_rounded   = wc_format_decimal( $refunded_item->get_total_tax() * -1, '' );
+						$item_tax_rounded   = wc_format_decimal( $item->get_total_tax(), '' );
+						$refund_tax_rounded = wc_format_decimal( $refunded_item->get_total_tax() * -1, '' );
 
-						if ( $item_total_rounded == $refund_total_rounded ) {
+						if ( $item_total_rounded === $refund_total_rounded ) {
 							$needs_save = true;
 							$refunded_item->set_total( wc_format_refund_total( $item->get_total() ) );
 						}
 
-						if ( $item_tax_rounded == $refund_tax_rounded ) {
+						if ( $item_tax_rounded === $refund_tax_rounded ) {
 							$needs_save = true;
 							$refunded_item->set_taxes(
 								array(
@@ -146,7 +172,7 @@ class WC_GZD_Admin_Order {
 	public function force_shipping_total_exact( $total, $order ) {
 		$total = 0;
 
-		foreach( $order->get_shipping_methods() as $method ) {
+		foreach ( $order->get_shipping_methods() as $method ) {
 			$total += floatval( $method->get_total() );
 		}
 
@@ -158,7 +184,7 @@ class WC_GZD_Admin_Order {
 	 * @param $for
 	 */
 	public function adjust_item_taxes( $item ) {
-		if ( ! wc_tax_enabled() || $item->get_total() <= 0 || ! in_array( $item->get_type(), array( 'fee', 'shipping' ) ) || apply_filters( 'woocommerce_gzd_skip_order_item_split_tax_calculation', false, $item ) ) {
+		if ( ! wc_tax_enabled() || $item->get_total() <= 0 || ! in_array( $item->get_type(), array( 'fee', 'shipping' ), true ) || apply_filters( 'woocommerce_gzd_skip_order_item_split_tax_calculation', false, $item ) ) {
 			return;
 		}
 
@@ -169,7 +195,7 @@ class WC_GZD_Admin_Order {
 			$tax_share = apply_filters( "woocommerce_gzd_{$tax_share_type}_order_tax_shares", $this->get_order_tax_share( $order, $tax_share_type ), $item );
 
 			// Do only adjust taxes if tax share contains more than one tax rate
-			if ( $tax_share && ! empty( $tax_share ) && sizeof( $tax_share ) > 1 ) {
+			if ( $tax_share && ! empty( $tax_share ) && count( $tax_share ) > 1 ) {
 				$taxes    = array();
 				$old_item = $order->get_item( $item->get_id() );
 
@@ -201,7 +227,7 @@ class WC_GZD_Admin_Order {
 						'tax_share'      => $class['share'],
 						'tax_rates'      => array_keys( $tax_rates ),
 						'net_amount'     => $net_base,
-						'includes_tax'   => wc_gzd_additional_costs_include_tax()
+						'includes_tax'   => wc_gzd_additional_costs_include_tax(),
 					);
 
 					$taxes = $taxes + $tax_class_taxes;
@@ -236,7 +262,7 @@ class WC_GZD_Admin_Order {
 			WC()->countries->get_base_country(),
 			WC()->countries->get_base_state(),
 			WC()->countries->get_base_postcode(),
-			WC()->countries->get_base_city()
+			WC()->countries->get_base_city(),
 		);
 
 		$tax_based_on = get_option( 'woocommerce_tax_based_on' );

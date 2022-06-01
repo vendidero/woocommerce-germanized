@@ -26,15 +26,25 @@ class WC_GZD_Compatibility_Flexible_Checkout_Fields extends WC_GZD_Compatibility
 		$priority = 999999;
 
 		// Add Title to billing address format
-		add_filter( 'woocommerce_order_formatted_billing_address', array(
-			WC_GZD_Order_Helper::instance(),
-			'set_formatted_billing_address'
-		), $priority, 2 );
+		add_filter(
+			'woocommerce_order_formatted_billing_address',
+			array(
+				WC_GZD_Order_Helper::instance(),
+				'set_formatted_billing_address',
+			),
+			$priority,
+			2
+		);
 
-		add_filter( 'woocommerce_order_formatted_shipping_address', array(
-			WC_GZD_Order_Helper::instance(),
-			'set_formatted_shipping_address'
-		), $priority, 2 );
+		add_filter(
+			'woocommerce_order_formatted_shipping_address',
+			array(
+				WC_GZD_Order_Helper::instance(),
+				'set_formatted_shipping_address',
+			),
+			$priority,
+			2
+		);
 
 		/**
 		 * Prevent double-adding format.
@@ -50,7 +60,7 @@ class WC_GZD_Compatibility_Flexible_Checkout_Fields extends WC_GZD_Compatibility
 
 	public function filter_customer_title( $meta_value, $field ) {
 
-		if ( in_array( $field['name'], array( 'billing_title', 'shipping_title' ) ) ) {
+		if ( in_array( $field['name'], array( 'billing_title', 'shipping_title' ), true ) ) {
 			return '';
 		}
 

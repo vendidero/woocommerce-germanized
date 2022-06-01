@@ -31,7 +31,12 @@ class WC_GZD_Settings_Tab_Contract extends WC_GZD_Settings_Tab {
 
 	public function get_tab_settings( $current_section = '' ) {
 		return array(
-			array( 'title' => '', 'desc' => '', 'type' => 'title', 'id' => 'manual_contract_options' ),
+			array(
+				'title' => '',
+				'desc'  => '',
+				'type'  => 'title',
+				'id'    => 'manual_contract_options',
+			),
 
 			array(
 				'title' => '',
@@ -41,7 +46,10 @@ class WC_GZD_Settings_Tab_Contract extends WC_GZD_Settings_Tab {
 				'type'  => 'image',
 			),
 
-			array( 'type' => 'sectionend', 'id' => 'manual_contract_options' ),
+			array(
+				'type' => 'sectionend',
+				'id'   => 'manual_contract_options',
+			),
 		);
 	}
 

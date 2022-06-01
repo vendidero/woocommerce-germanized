@@ -8,7 +8,7 @@ $checkbox_id = $checkbox->get_id()
 ?>
 
 <div class="wc-gzd-admin-settings wc-gzd-admin-settings-checkboxes <?php echo( ! WC_germanized()->is_pro() ? 'wc-gzd-admin-settings-has-sidebar' : '' ); ?>">
-    <div class="wc-gzd-admin-settings-fields">
+	<div class="wc-gzd-admin-settings-fields">
 		<?php
 
 		/**
@@ -40,11 +40,11 @@ $checkbox_id = $checkbox->get_id()
 		 */
 		do_action( "woocommerce_gzd_settings_section_after_checkbox_options_{$checkbox_id}", $checkbox );
 		?>
-    </div>
+	</div>
 
 	<?php if ( ! WC_germanized()->is_pro() ) : ?>
-        <div class="wc-gzd-admin-settings-sidebar">
-			<?php include_once( 'html-admin-page-checkbox-sidebar.php' ); ?>
-        </div>
+		<div class="wc-gzd-admin-settings-sidebar">
+			<?php include_once 'html-admin-page-checkbox-sidebar.php'; ?>
+		</div>
 	<?php endif; ?>
 </div>

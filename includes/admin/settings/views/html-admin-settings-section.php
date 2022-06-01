@@ -10,8 +10,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 $section_key = sanitize_key( $current_section );
 ?>
 
-<div class="wc-gzd-admin-settings <?php echo( ! empty( $sidebar ) ? 'wc-gzd-admin-settings-has-sidebar' : '' ); ?> wc-gzd-admin-settings-<?php echo $current_tab_name; ?> <?php echo( ! empty( $current_section ) ? 'wc-gzd-admin-settings-' . $current_tab . '-' . $current_section : '' ); ?>">
-    <div class="wc-gzd-admin-settings-fields">
+<div class="wc-gzd-admin-settings <?php echo( ! empty( $sidebar ) ? 'wc-gzd-admin-settings-has-sidebar' : '' ); ?> wc-gzd-admin-settings-<?php echo esc_attr( $current_tab_name ); ?> <?php echo( ! empty( $current_section ) ? 'wc-gzd-admin-settings-' . esc_attr( $current_tab ) . '-' . esc_attr( $current_section ) : '' ); ?>">
+	<div class="wc-gzd-admin-settings-fields">
 		<?php
 		/**
 		 * Before admin tab settings output.
@@ -66,11 +66,11 @@ $section_key = sanitize_key( $current_section );
 			do_action( 'woocommerce_gzd_admin_settings_after_' . $current_tab_name . '_' . $current_section, $settings );
 		}
 		?>
-    </div>
+	</div>
 
 	<?php if ( ! empty( $sidebar ) ) : ?>
-        <div class="wc-gzd-admin-settings-sidebar">
-			<?php echo $sidebar; ?>
-        </div>
+		<div class="wc-gzd-admin-settings-sidebar">
+			<?php echo wp_kses_post( $sidebar ); ?>
+		</div>
 	<?php endif; ?>
 </div>

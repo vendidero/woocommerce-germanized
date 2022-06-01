@@ -123,10 +123,13 @@ class WC_GZD_Taxonomy {
 	 * @return string[] terms as array
 	 */
 	public function get_terms( $args = array() ) {
-		$args = wp_parse_args( $args, array(
-			'hide_empty' => false,
-			'as'         => 'slug=>name'
-		) );
+		$args = wp_parse_args(
+			$args,
+			array(
+				'hide_empty' => false,
+				'as'         => 'slug=>name',
+			)
+		);
 
 		$list    = array();
 		$terms   = get_terms( $this->get_taxonomy(), array_diff_key( $args, array( 'as' => '' ) ) );

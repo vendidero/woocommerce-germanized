@@ -12,7 +12,7 @@
  *
  * @see https://github.com/vendidero/woocommerce-germanized/wiki/Overriding-Germanized-Templates
  * @package Germanized/Templates
- * @version 1.0.0
+ * @version 1.0.1
  */
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -20,11 +20,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 ?>
 <div class="wc-gzd-edit-data-notice">
-    <p class="wc-gzd-info">
-		<?php if ( get_option( 'woocommerce_gzd_display_checkout_back_to_cart_button' ) === 'yes' ) : ?>
-			<?php printf( __( 'Please check all of your entries carefully. You may change your entries with the help of the button "%s".', 'woocommerce-germanized' ), __( 'Edit Order', 'woocommerce-germanized' ) ); ?>
+	<p class="wc-gzd-info">
+		<?php if ( 'yes' === get_option( 'woocommerce_gzd_display_checkout_back_to_cart_button' ) ) : ?>
+			<?php printf( esc_html__( 'Please check all of your entries carefully. You may change your entries with the help of the button "%s".', 'woocommerce-germanized' ), esc_html__( 'Edit Order', 'woocommerce-germanized' ) ); ?>
 		<?php else : ?>
-			<?php _e( 'Please check all of your entries carefully. You may change your entries with the help of the "Back" button in your browser', 'woocommerce-germanized' ); ?>
+			<?php esc_html_e( 'Please check all of your entries carefully. You may change your entries with the help of the "Back" button in your browser', 'woocommerce-germanized' ); ?>
 		<?php endif; ?>
-    </p>
+	</p>
 </div>

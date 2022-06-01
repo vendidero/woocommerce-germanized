@@ -20,13 +20,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 ?>
 
 <?php do_action( 'woocommerce_email_header', $email_heading, $email ); ?>
-    <p><?php printf( __( "Thanks for creating an account on %s. Please follow the activation link to activate your account:", 'woocommerce-germanized' ), esc_html( $blogname ) ); ?></p>
-    <p><a class="wc-button button" href="<?php echo esc_url( $user_activation_url ); ?>" target="_blank"><?php _e( 'Activate your account', 'woocommerce-germanized' ); ?></a></p>
-<?php if ( get_option( 'woocommerce_registration_generate_password' ) == 'yes' && $password_generated ) : ?>
-    <p><?php printf( __( "Your password has been automatically generated: <strong>%s</strong>", 'woocommerce-germanized' ), esc_html( $user_pass ) ); ?></p>
+<p><?php printf( esc_html__( 'Thanks for creating an account on %s. Please follow the activation link to activate your account:', 'woocommerce-germanized' ), esc_html( $blogname ) ); ?></p>
+<p><a class="wc-button button" href="<?php echo esc_url( $user_activation_url ); ?>" target="_blank"><?php esc_html_e( 'Activate your account', 'woocommerce-germanized' ); ?></a></p>
+
+<?php if ( 'yes' === get_option( 'woocommerce_registration_generate_password' ) && $password_generated && $set_password_url ) : ?>
+	<?php // If the password has not been set by the user during the sign up process, send them a link to set a new password ?>
+    <p><a href="<?php echo esc_attr( $set_password_url ); ?>"><?php printf( esc_html__( 'Click here to set your new password.', 'woocommerce-germanized' ) ); ?></a></p>
 <?php endif; ?>
-    <p><?php printf( __( "If you haven't created an account on %s please ignore this email.", "woocommerce-germanized" ), esc_html( $blogname ) ); ?></p>
-    <p><?php printf( __( 'If you cannot follow the link above please copy this url and paste it to your browser bar: %s', 'woocommerce-germanized' ), WC_germanized()->emails->prevent_html_url_auto_link( esc_url( $user_activation_url ) ) ); ?></p>
+
+<p><?php printf( esc_html__( "If you haven't created an account on %s please ignore this email.", 'woocommerce-germanized' ), esc_html( $blogname ) ); ?></p>
+<p><?php printf( esc_html__( 'If you cannot follow the link above please copy this url and paste it to your browser bar: %s', 'woocommerce-germanized' ), WC_germanized()->emails->prevent_html_url_auto_link( esc_url( $user_activation_url ) ) ); ?></p>
 <?php
 /**
  * Show user-defined additional content - this is set in each email's settings.

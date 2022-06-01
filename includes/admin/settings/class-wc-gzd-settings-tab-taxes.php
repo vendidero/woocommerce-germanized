@@ -30,7 +30,7 @@ class WC_GZD_Settings_Tab_Taxes extends WC_GZD_Settings_Tab {
 			''                      => __( 'VAT', 'woocommerce-germanized' ),
 			'split_tax'             => __( 'Split-tax', 'woocommerce-germanized' ),
 			'differential_taxation' => __( 'Differential Taxation', 'woocommerce-germanized' ),
-			'oss'                   => __( 'One Stop Shop', 'woocommerce-germanized' )
+			'oss'                   => __( 'One Stop Shop', 'woocommerce-germanized' ),
 		);
 	}
 
@@ -48,7 +48,12 @@ class WC_GZD_Settings_Tab_Taxes extends WC_GZD_Settings_Tab {
 		);
 
 		$settings = array(
-			array( 'title' => '', 'type' => 'title', 'desc' => '', 'id' => 'vat_options' ),
+			array(
+				'title' => '',
+				'type'  => 'title',
+				'desc'  => '',
+				'id'    => 'vat_options',
+			),
 
 			$virtual_vat,
 
@@ -68,12 +73,15 @@ class WC_GZD_Settings_Tab_Taxes extends WC_GZD_Settings_Tab {
 				'type'     => 'select',
 				'options'  => array(
 					'before' => __( 'Before total amount', 'woocommerce-germanized' ),
-					'after'  => __( 'After total amount', 'woocommerce-germanized' )
+					'after'  => __( 'After total amount', 'woocommerce-germanized' ),
 				),
 				'desc_tip' => __( 'Decide whether to show tax totals before or after total amount.', 'woocommerce-germanized' ),
 			),
 
-			array( 'type' => 'sectionend', 'id' => 'vat_options' ),
+			array(
+				'type' => 'sectionend',
+				'id'   => 'vat_options',
+			),
 		);
 
 		return array_merge( $settings, $this->get_vat_id_settings() );
@@ -85,7 +93,7 @@ class WC_GZD_Settings_Tab_Taxes extends WC_GZD_Settings_Tab {
 				'title' => __( 'VAT ID', 'woocommerce-germanized' ),
 				'type'  => 'title',
 				'id'    => 'vat_id_options',
-				'desc'  => '<div class="notice inline notice-warning wc-gzd-premium-overlay"><p>' . sprintf( __( '%sUpgrade to %spro%s%s to unlock this feature and enjoy premium support.', 'woocommerce-germanized' ), '<a href="https://vendidero.de/woocommerce-germanized" class="button button-primary wc-gzd-button">', '<span class="wc-gzd-pro">', '</span>', '</a>' ) . '</p></div>'
+				'desc'  => '<div class="notice inline notice-warning wc-gzd-premium-overlay"><p>' . sprintf( __( '%1$sUpgrade to %2$spro%3$s%4$s to unlock this feature and enjoy premium support.', 'woocommerce-germanized' ), '<a href="https://vendidero.de/woocommerce-germanized" class="button button-primary wc-gzd-button">', '<span class="wc-gzd-pro">', '</span>', '</a>' ) . '</p></div>',
 			),
 			array(
 				'title' => '',
@@ -95,19 +103,22 @@ class WC_GZD_Settings_Tab_Taxes extends WC_GZD_Settings_Tab {
 				'type'  => 'image',
 			),
 
-			array( 'type' => 'sectionend', 'id' => 'vat_id_options' ),
+			array(
+				'type' => 'sectionend',
+				'id'   => 'vat_id_options',
+			),
 		);
 	}
 
 	protected function get_split_tax_settings() {
 
-		$shipping_tax_example = sprintf( __( 'By choosing this option shipping cost and fee taxes will be calculated based on the tax rates included within the cart. Imagine the following example. The tax share is calculated based on net prices. Further information can be found <a href="%s" target="_blank">here</a>. %s', 'woocommerce-germanized' ), 'https://vendidero.de/dokument/steuerberechnung-fuer-versandkosten-und-gebuehren', '<table class="wc-gzd-tax-example"><thead><tr><th>' . __( 'Product', 'woocommerce-germanized' ) . '</th><th>' . __( 'Price', 'woocommerce-germanized' ) . '</th><th>' . __( 'Price (net)', 'woocommerce-germanized' ) . '</th><th>' . __( 'Tax rate', 'woocommerce-germanized' ) . '</th><th>' . __( 'Share', 'woocommerce-germanized' ) . '</th><th>' . __( 'Tax', 'woocommerce-germanized' ) . '</th></tr></thead><tbody><tr><td>' . __( 'Book', 'woocommerce-germanized' ) . '</td><td>' . wc_price( 40 ) . '</td><td>' . wc_price( 37.38 ) . '</td><td>7 %</td><td>42.56 %</td><td>' . wc_price( 2.62 ) . '</td></tr><tr><td>' . __( 'DVD', 'woocommerce-germanized' ) . '</td><td>' . wc_price( 60 ) . '</td><td>' . wc_price( 50.42 ) . '</td><td>19 %</td><td>57.43 %</td><td>' . wc_price( 9.58 ) . '</td></tr><tr><td>' . __( 'Shipping', 'woocommerce-germanized' ) . '</td><td>' . wc_price( 5 ) . '</td><td>' . wc_price( 4.40 ) . '</td><td>7 % | 19 %</td><td>42.56 % | 57.43 %</td><td>' . wc_price( 0.14 ) . ' | ' . wc_price( 0.46 ) . '</td></tr></tbody></table>' );
+		$shipping_tax_example = sprintf( __( 'By choosing this option shipping cost and fee taxes will be calculated based on the tax rates included within the cart. Imagine the following example. The tax share is calculated based on net prices. Further information can be found <a href="%1$s" target="_blank">here</a>. %2$s', 'woocommerce-germanized' ), 'https://vendidero.de/dokument/steuerberechnung-fuer-versandkosten-und-gebuehren', '<table class="wc-gzd-tax-example"><thead><tr><th>' . __( 'Product', 'woocommerce-germanized' ) . '</th><th>' . __( 'Price', 'woocommerce-germanized' ) . '</th><th>' . __( 'Price (net)', 'woocommerce-germanized' ) . '</th><th>' . __( 'Tax rate', 'woocommerce-germanized' ) . '</th><th>' . __( 'Share', 'woocommerce-germanized' ) . '</th><th>' . __( 'Tax', 'woocommerce-germanized' ) . '</th></tr></thead><tbody><tr><td>' . __( 'Book', 'woocommerce-germanized' ) . '</td><td>' . wc_price( 40 ) . '</td><td>' . wc_price( 37.38 ) . '</td><td>7 %</td><td>42.56 %</td><td>' . wc_price( 2.62 ) . '</td></tr><tr><td>' . __( 'DVD', 'woocommerce-germanized' ) . '</td><td>' . wc_price( 60 ) . '</td><td>' . wc_price( 50.42 ) . '</td><td>19 %</td><td>57.43 %</td><td>' . wc_price( 9.58 ) . '</td></tr><tr><td>' . __( 'Shipping', 'woocommerce-germanized' ) . '</td><td>' . wc_price( 5 ) . '</td><td>' . wc_price( 4.40 ) . '</td><td>7 % | 19 %</td><td>42.56 % | 57.43 %</td><td>' . wc_price( 0.14 ) . ' | ' . wc_price( 0.46 ) . '</td></tr></tbody></table>' );
 
 		return array(
 			array(
 				'title' => '',
 				'type'  => 'title',
-				'id'    => 'split_tax_options'
+				'id'    => 'split_tax_options',
 			),
 
 			array(
@@ -118,13 +129,21 @@ class WC_GZD_Settings_Tab_Taxes extends WC_GZD_Settings_Tab {
 				'type'    => 'gzd_toggle',
 			),
 
-			array( 'type' => 'sectionend', 'id' => 'split_tax_options' ),
+			array(
+				'type' => 'sectionend',
+				'id'   => 'split_tax_options',
+			),
 		);
 	}
 
 	protected function get_differential_taxation_settings() {
 		return array(
-			array( 'title' => '', 'type' => 'title', 'desc' => '', 'id' => 'differential_taxation_options' ),
+			array(
+				'title' => '',
+				'type'  => 'title',
+				'desc'  => '',
+				'id'    => 'differential_taxation_options',
+			),
 
 			array(
 				'title'   => __( 'Taxation Notice', 'woocommerce-germanized' ),
@@ -158,7 +177,10 @@ class WC_GZD_Settings_Tab_Taxes extends WC_GZD_Settings_Tab {
 				'type'    => 'gzd_toggle',
 			),
 
-			array( 'type' => 'sectionend', 'id' => 'differential_taxation_options' ),
+			array(
+				'type' => 'sectionend',
+				'id'   => 'differential_taxation_options',
+			),
 		);
 	}
 

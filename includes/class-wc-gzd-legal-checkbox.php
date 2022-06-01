@@ -58,7 +58,7 @@ class WC_GZD_Legal_Checkbox {
 
 		foreach ( $merge as $merge_key ) {
 			if ( isset( $args[ $merge_key ] ) ) {
-				$getter             = "get_" . $merge_key;
+				$getter             = 'get_' . $merge_key;
 				$args[ $merge_key ] = array_merge( $this->$getter(), $args[ $merge_key ] );
 			}
 		}
@@ -781,91 +781,95 @@ class WC_GZD_Legal_Checkbox {
 		 * @since 2.0.0
 		 *
 		 */
-		$options = apply_filters( "woocommerce_gzd_legal_checkbox_fields_before_titles", array(
-
+		$options = apply_filters(
+			'woocommerce_gzd_legal_checkbox_fields_before_titles',
 			array(
-				'title'   => __( 'Status', 'woocommerce-germanized' ),
-				'type'    => 'gzd_toggle',
-				'id'      => $this->get_form_field_id( 'is_enabled' ),
-				'desc'    => __( 'Enable checkbox', 'woocommerce-germanized' ),
-				'default' => wc_bool_to_string( $this->get_is_enabled() ),
-			),
 
-			array(
-				'title'    => __( 'Name', 'woocommerce-germanized' ),
-				'type'     => 'text',
-				'id'       => $this->get_form_field_id( 'admin_name' ),
-				'desc_tip' => true,
-				'desc'     => __( 'Choose a name to identify your checkbox. Upon creating a new checkbox, this value is being used to generate the Id.', 'woocommerce-germanized' ),
-				'default'  => $this->get_admin_name(),
-			),
+				array(
+					'title'   => __( 'Status', 'woocommerce-germanized' ),
+					'type'    => 'gzd_toggle',
+					'id'      => $this->get_form_field_id( 'is_enabled' ),
+					'desc'    => __( 'Enable checkbox', 'woocommerce-germanized' ),
+					'default' => wc_bool_to_string( $this->get_is_enabled() ),
+				),
 
-			array(
-				'title'             => __( 'Id', 'woocommerce-germanized' ),
-				'type'              => 'text',
-				'id'                => $this->get_form_field_id( 'id' ),
-				'desc_tip'          => true,
-				'desc'              => __( 'The checkbox Id is the unique indentifier which is used to identify the checkbox within the code. Cannot be edited after creating the checkbox.', 'woocommerce-germanized' ),
-				'default'           => $this->get_id(),
-				'custom_attributes' => array( 'disabled' => 'disabled' ),
-			),
+				array(
+					'title'    => __( 'Name', 'woocommerce-germanized' ),
+					'type'     => 'text',
+					'id'       => $this->get_form_field_id( 'admin_name' ),
+					'desc_tip' => true,
+					'desc'     => __( 'Choose a name to identify your checkbox. Upon creating a new checkbox, this value is being used to generate the Id.', 'woocommerce-germanized' ),
+					'default'  => $this->get_admin_name(),
+				),
 
-			array(
-				'title'    => __( 'Description', 'woocommerce-germanized' ),
-				'type'     => 'text',
-				'id'       => $this->get_form_field_id( 'admin_desc' ),
-				'desc'     => __( 'Describe the use case of your checkbox.', 'woocommerce-germanized' ),
-				'desc_tip' => true,
-				'default'  => $this->get_admin_desc(),
-			),
+				array(
+					'title'             => __( 'Id', 'woocommerce-germanized' ),
+					'type'              => 'text',
+					'id'                => $this->get_form_field_id( 'id' ),
+					'desc_tip'          => true,
+					'desc'              => __( 'The checkbox Id is the unique indentifier which is used to identify the checkbox within the code. Cannot be edited after creating the checkbox.', 'woocommerce-germanized' ),
+					'default'           => $this->get_id(),
+					'custom_attributes' => array( 'disabled' => 'disabled' ),
+				),
 
-			array(
-				'title'    => __( 'Label', 'woocommerce-germanized' ),
-				'type'     => 'textarea',
-				'id'       => $this->get_form_field_id( 'label' ),
-				'css'      => 'width:100%; height: 65px;',
-				'desc_tip' => __( 'Choose a label to be inserted next to the checkbox.', 'woocommerce-germanized' ),
-				'desc'     => ! empty( $placeholders ) ? sprintf( __( 'You may use one of the following placeholders within the text: %s', 'woocommerce-germanized' ), '<code>' . $placeholders . '</code>' ) : '',
-				'default'  => $this->get_label( true ),
-			),
+				array(
+					'title'    => __( 'Description', 'woocommerce-germanized' ),
+					'type'     => 'text',
+					'id'       => $this->get_form_field_id( 'admin_desc' ),
+					'desc'     => __( 'Describe the use case of your checkbox.', 'woocommerce-germanized' ),
+					'desc_tip' => true,
+					'default'  => $this->get_admin_desc(),
+				),
 
-			array(
-				'title'    => __( 'Error Message', 'woocommerce-germanized' ),
-				'type'     => 'textarea',
-				'id'       => $this->get_form_field_id( 'error_message' ),
-				'css'      => 'width:100%; height: 65px;',
-				'desc_tip' => __( 'Choose an error message to be shown when the user has not confirmed the checkbox.', 'woocommerce-germanized' ),
-				'desc'     => ! empty( $placeholders ) ? sprintf( __( 'You may use one of the following placeholders within the text: %s', 'woocommerce-germanized' ), '<code>' . $placeholders . '</code>' ) : '',
-				'default'  => $this->get_error_message( true ),
-			),
+				array(
+					'title'    => __( 'Label', 'woocommerce-germanized' ),
+					'type'     => 'textarea',
+					'id'       => $this->get_form_field_id( 'label' ),
+					'css'      => 'width:100%; height: 65px;',
+					'desc_tip' => __( 'Choose a label to be inserted next to the checkbox.', 'woocommerce-germanized' ),
+					'desc'     => ! empty( $placeholders ) ? sprintf( __( 'You may use one of the following placeholders within the text: %s', 'woocommerce-germanized' ), '<code>' . $placeholders . '</code>' ) : '',
+					'default'  => $this->get_label( true ),
+				),
 
-			array(
-				'title'   => __( 'Hide input', 'woocommerce-germanized' ),
-				'type'    => 'gzd_toggle',
-				'id'      => $this->get_form_field_id( 'hide_input' ),
-				'desc'    => __( 'Do only show a label and hide the actual checkbox.', 'woocommerce-germanized' ),
-				'default' => wc_bool_to_string( $this->get_hide_input() ),
-			),
+				array(
+					'title'    => __( 'Error Message', 'woocommerce-germanized' ),
+					'type'     => 'textarea',
+					'id'       => $this->get_form_field_id( 'error_message' ),
+					'css'      => 'width:100%; height: 65px;',
+					'desc_tip' => __( 'Choose an error message to be shown when the user has not confirmed the checkbox.', 'woocommerce-germanized' ),
+					'desc'     => ! empty( $placeholders ) ? sprintf( __( 'You may use one of the following placeholders within the text: %s', 'woocommerce-germanized' ), '<code>' . $placeholders . '</code>' ) : '',
+					'default'  => $this->get_error_message( true ),
+				),
 
-			array(
-				'title'   => __( 'Mandatory', 'woocommerce-germanized' ),
-				'type'    => 'gzd_toggle',
-				'id'      => $this->get_form_field_id( 'is_mandatory' ),
-				'desc'    => __( 'Mark the checkbox as mandatory.', 'woocommerce-germanized' ),
-				'default' => wc_bool_to_string( $this->get_is_mandatory() ),
-			),
+				array(
+					'title'   => __( 'Hide input', 'woocommerce-germanized' ),
+					'type'    => 'gzd_toggle',
+					'id'      => $this->get_form_field_id( 'hide_input' ),
+					'desc'    => __( 'Do only show a label and hide the actual checkbox.', 'woocommerce-germanized' ),
+					'default' => wc_bool_to_string( $this->get_hide_input() ),
+				),
 
-			array(
-				'title'   => __( 'Locations', 'woocommerce-germanized' ),
-				'type'    => 'multiselect',
-				'class'   => 'wc-enhanced-select',
-				'id'      => $this->get_form_field_id( 'locations' ),
-				'label'   => __( 'Choose where to display your checkbox.', 'woocommerce-germanized' ),
-				'default' => $this->get_locations(),
-				'options' => $supporting_locations,
-			),
+				array(
+					'title'   => __( 'Mandatory', 'woocommerce-germanized' ),
+					'type'    => 'gzd_toggle',
+					'id'      => $this->get_form_field_id( 'is_mandatory' ),
+					'desc'    => __( 'Mark the checkbox as mandatory.', 'woocommerce-germanized' ),
+					'default' => wc_bool_to_string( $this->get_is_mandatory() ),
+				),
 
-		), $this );
+				array(
+					'title'   => __( 'Locations', 'woocommerce-germanized' ),
+					'type'    => 'multiselect',
+					'class'   => 'wc-enhanced-select',
+					'id'      => $this->get_form_field_id( 'locations' ),
+					'label'   => __( 'Choose where to display your checkbox.', 'woocommerce-germanized' ),
+					'default' => $this->get_locations(),
+					'options' => $supporting_locations,
+				),
+
+			),
+			$this
+		);
 
 		$id = $this->get_id();
 
@@ -880,8 +884,21 @@ class WC_GZD_Legal_Checkbox {
 		 */
 		$options = apply_filters( "woocommerce_gzd_legal_checkbox_{$id}_fields_before_titles", $options, $this );
 
-		array_unshift( $options, array( 'title' => '', 'type' => 'title', 'id' => "checkbox_options" ) );
-		array_push( $options, array( 'type' => 'sectionend', 'id' => 'checkbox_options' ) );
+		array_unshift(
+			$options,
+			array(
+				'title' => '',
+				'type'  => 'title',
+				'id'    => 'checkbox_options',
+			)
+		);
+		array_push(
+			$options,
+			array(
+				'type' => 'sectionend',
+				'id'   => 'checkbox_options',
+			)
+		);
 
 		/**
 		 * Filters legal checkbox settings.
@@ -892,7 +909,7 @@ class WC_GZD_Legal_Checkbox {
 		 * @since 2.0.0
 		 *
 		 */
-		return apply_filters( "woocommerce_gzd_legal_checkbox_fields", $options, $this );
+		return apply_filters( 'woocommerce_gzd_legal_checkbox_fields', $options, $this );
 	}
 
 	public function pre_update_option( $value, $old_value, $name ) {
@@ -956,4 +973,4 @@ class WC_GZD_Legal_Checkbox {
 	}
 }
 
-?>
+

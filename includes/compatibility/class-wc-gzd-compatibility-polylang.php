@@ -25,7 +25,7 @@ class WC_GZD_Compatibility_Polylang extends WC_GZD_Compatibility {
 	 * Maybe define AJAX for Woo requests right after plugins are loaded so that PolyLang changes to the right language by default.
 	 */
 	public function after_plugins_loaded() {
-		if ( ! empty( $_GET['wc-ajax'] ) ) {
+		if ( ! empty( $_GET['wc-ajax'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			wc_maybe_define_constant( 'DOING_AJAX', true );
 			wc_maybe_define_constant( 'WC_DOING_AJAX', true );
 		}

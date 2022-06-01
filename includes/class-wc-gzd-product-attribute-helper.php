@@ -20,7 +20,7 @@ class WC_GZD_Product_Attribute_Helper {
 	 * @since 1.0
 	 */
 	public function __clone() {
-		_doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?', 'woocommerce-germanized' ), '1.0' );
+		_doing_it_wrong( __FUNCTION__, esc_html__( 'Cheating huh?', 'woocommerce-germanized' ), '1.0' );
 	}
 
 	/**
@@ -29,15 +29,20 @@ class WC_GZD_Product_Attribute_Helper {
 	 * @since 1.0
 	 */
 	public function __wakeup() {
-		_doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?', 'woocommerce-germanized' ), '1.0' );
+		_doing_it_wrong( __FUNCTION__, esc_html__( 'Cheating huh?', 'woocommerce-germanized' ), '1.0' );
 	}
 
 	public function __construct() {
 		// Make sure Woo uses our implementation when updating the attributes via AJAX
-		add_filter( 'woocommerce_admin_meta_boxes_prepare_attribute', array(
-			$this,
-			'prepare_attributes_filter'
-		), 10, 3 );
+		add_filter(
+			'woocommerce_admin_meta_boxes_prepare_attribute',
+			array(
+				$this,
+				'prepare_attributes_filter',
+			),
+			10,
+			3
+		);
 		// This is the only nice way to update attributes after Woo has updated product attributes
 		add_action( 'woocommerce_product_object_updated_props', array( $this, 'update_attributes' ), 10, 2 );
 		// Adjust cart item data to include attributes visible during cart/checkout
@@ -61,15 +66,11 @@ class WC_GZD_Product_Attribute_Helper {
 
 		$gzd_product_attribute = ( is_a( $attribute, 'WC_GZD_Product_Attribute' ) ? $attribute : $this->get_attribute( $attribute, $gzd_product ) );
 		?>
-        <tr>
-            <td>
-                <label><input type="checkbox"
-                              class="checkbox" <?php checked( $gzd_product_attribute->is_checkout_visible(), true ); ?>
-                              name="attribute_checkout_visibility[<?php echo esc_attr( $i ); ?>]"
-                              value="1"/> <?php esc_html_e( 'Visible during checkout', 'woocommerce-germanized' ); ?>
-                </label>
-            </td>
-        </tr>
+		<tr>
+			<td>
+				<label><input type="checkbox" class="checkbox" <?php checked( $gzd_product_attribute->is_checkout_visible(), true ); ?>name="attribute_checkout_visibility[<?php echo esc_attr( $i ); ?>]" value="1"/> <?php esc_html_e( 'Visible during checkout', 'woocommerce-germanized' ); ?></label>
+			</td>
+		</tr>
 		<?php
 	}
 
@@ -77,7 +78,7 @@ class WC_GZD_Product_Attribute_Helper {
 		$cart_product = $cart_item['data'];
 
 		if ( ! $cart_product ) {
-		    return $item_data;
+			return $item_data;
 		}
 
 		$item_data_product = wc_gzd_get_gzd_product( $cart_product )->get_checkout_attributes( $item_data, isset( $cart_item['variation'] ) ? $cart_item['variation'] : array() );
@@ -132,15 +133,15 @@ class WC_GZD_Product_Attribute_Helper {
 	}
 
 	protected function get_product_id( $maybe_product_id ) {
-	    $product_id = false;
+		$product_id = false;
 
-	    if ( is_numeric( $maybe_product_id ) ) {
-	        $product_id = $maybe_product_id;
-	    } elseif( is_a( $maybe_product_id, 'WC_Product' ) || is_a( $maybe_product_id, 'WC_GZD_Product' ) ) {
-	        $product_id = $maybe_product_id->get_id();
-	    }
+		if ( is_numeric( $maybe_product_id ) ) {
+			$product_id = $maybe_product_id;
+		} elseif ( is_a( $maybe_product_id, 'WC_Product' ) || is_a( $maybe_product_id, 'WC_GZD_Product' ) ) {
+			$product_id = $maybe_product_id->get_id();
+		}
 
-	    return $product_id;
+		return $product_id;
 	}
 
 	public function get_attribute( $attribute, $product_id = false ) {

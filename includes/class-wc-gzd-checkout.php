@@ -4,7 +4,7 @@ defined( 'ABSPATH' ) || exit;
 
 class WC_GZD_Checkout {
 
-	public $custom_fields = array();
+	public $custom_fields       = array();
 	public $custom_fields_admin = array();
 
 	protected static $force_free_shipping_filter = false;
@@ -25,7 +25,7 @@ class WC_GZD_Checkout {
 	 * @since 1.0
 	 */
 	public function __clone() {
-		_doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?', 'woocommerce-germanized' ), '1.0' );
+		_doing_it_wrong( __FUNCTION__, esc_html__( 'Cheating huh?', 'woocommerce-germanized' ), '1.0' );
 	}
 
 	/**
@@ -34,7 +34,7 @@ class WC_GZD_Checkout {
 	 * @since 1.0
 	 */
 	public function __wakeup() {
-		_doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?', 'woocommerce-germanized' ), '1.0' );
+		_doing_it_wrong( __FUNCTION__, esc_html__( 'Cheating huh?', 'woocommerce-germanized' ), '1.0' );
 	}
 
 	public function __construct() {
@@ -57,10 +57,15 @@ class WC_GZD_Checkout {
 		add_filter( 'woocommerce_formatted_address_replacements', array( $this, 'set_formatted_address' ), 0, 2 );
 
 		// Support Checkout Field Managers (which are unable to map options to values)
-		add_filter( 'woocommerce_gzd_custom_title_field_value', array(
-			$this,
-			'set_title_field_mapping_editors'
-		), 10, 1 );
+		add_filter(
+			'woocommerce_gzd_custom_title_field_value',
+			array(
+				$this,
+				'set_title_field_mapping_editors',
+			),
+			10,
+			1
+		);
 
 		add_action( 'woocommerce_checkout_create_order_line_item', array( $this, 'set_order_item_meta_crud' ), 0, 4 );
 		add_action( 'woocommerce_checkout_create_order_line_item', array( $this, 'set_order_item_meta_crud' ), 1000, 4 );
@@ -91,10 +96,15 @@ class WC_GZD_Checkout {
 		add_action( 'wp', array( $this, 'force_pay_order_redirect' ), 15 );
 
 		if ( 'yes' === get_option( 'woocommerce_gzd_checkout_disallow_belated_payment_method_selection' ) ) {
-			add_filter( 'woocommerce_get_checkout_payment_url', array(
-				$this,
-				'set_payment_url_to_force_payment'
-			), 10, 2 );
+			add_filter(
+				'woocommerce_get_checkout_payment_url',
+				array(
+					$this,
+					'set_payment_url_to_force_payment',
+				),
+				10,
+				2
+			);
 		}
 
 		add_action( 'woocommerce_checkout_create_order', array( $this, 'order_meta' ), 5, 1 );
@@ -148,16 +158,16 @@ class WC_GZD_Checkout {
 
 				if ( 'always' === get_option( 'woocommerce_gzd_checkout_validate_street_number' ) ) {
 					$countries = array_keys( WC()->countries->get_allowed_countries() );
-				} elseif( 'base_only' === get_option( 'woocommerce_gzd_checkout_validate_street_number' ) ) {
+				} elseif ( 'base_only' === get_option( 'woocommerce_gzd_checkout_validate_street_number' ) ) {
 					$countries = array( wc_gzd_get_base_country() );
-				} elseif( 'eu_only' === get_option( 'woocommerce_gzd_checkout_validate_street_number' ) ) {
+				} elseif ( 'eu_only' === get_option( 'woocommerce_gzd_checkout_validate_street_number' ) ) {
 					$countries = WC()->countries->get_european_union_countries();
 				}
 
 				$is_shipping_valid = true;
 				$field_key         = ( $ship_to_different ? 'shipping' : 'billing' ) . '_address_1';
 
-				if ( in_array( $shipping_country, $countries ) ) {
+				if ( in_array( $shipping_country, $countries, true ) ) {
 					$shipping_parts    = wc_gzd_split_shipment_street( $shipping_address_1 );
 					$is_shipping_valid = empty( $shipping_parts['number'] ) ? false : true;
 
@@ -257,7 +267,7 @@ class WC_GZD_Checkout {
 	 */
 	public function set_cart_excluding_tax_labels( $tax_totals, $cart ) {
 		if ( ! empty( $tax_totals ) && ! $cart->display_prices_including_tax() && 'itemized' === get_option( 'woocommerce_tax_total_display' ) ) {
-			foreach( $tax_totals as $key => $tax ) {
+			foreach ( $tax_totals as $key => $tax ) {
 				$rate = wc_gzd_get_tax_rate( $tax->tax_rate_id );
 
 				if ( ! $rate ) {
@@ -353,7 +363,7 @@ class WC_GZD_Checkout {
 
 			if ( isset( $_POST[ $checkbox->get_html_name() ] ) ) {
 				$selected = true;
-			} elseif( $checkbox->hide_input() ) {
+			} elseif ( $checkbox->hide_input() ) {
 				$selected = true;
 			}
 
@@ -434,7 +444,7 @@ class WC_GZD_Checkout {
 		if ( is_wc_endpoint_url( 'order-pay' ) && isset( $_GET['force_pay_order'] ) ) {
 
 			// Manipulate $_POST
-			$order_key = $_GET['key'];
+			$order_key = isset( $_GET['key'] ) ? wc_clean( wp_unslash( $_GET['key'] ) ) : '';
 			$order_id  = absint( $wp->query_vars['order-pay'] );
 			$order     = wc_get_order( $order_id );
 
@@ -516,7 +526,7 @@ class WC_GZD_Checkout {
 					$keep[] = $key;
 				} elseif ( $rate->cost == 0 ) {
 					$keep[] = $key;
-				} elseif ( in_array( $key, $excluded ) ) {
+				} elseif ( in_array( $key, $excluded ) ) { // phpcs:ignore WordPress.PHP.StrictInArray.MissingTrueStrict
 					$keep[] = $key;
 				} elseif ( $is_excluded ) {
 					$keep[] = $key;
@@ -535,13 +545,13 @@ class WC_GZD_Checkout {
 			}
 
 			foreach ( $rates as $key => $rate ) {
-				if ( ! in_array( $key, $keep ) ) {
+				if ( ! in_array( $key, $keep ) ) { // phpcs:ignore WordPress.PHP.StrictInArray.MissingTrueStrict
 					unset( $rates[ $key ] );
 				}
 			}
 
-			foreach( $chosen_shipping_methods as $key => $rate ) {
-				if ( ! in_array( $rate, $keep ) ) {
+			foreach ( $chosen_shipping_methods as $key => $rate ) {
+				if ( ! in_array( $rate, $keep ) ) { // phpcs:ignore WordPress.PHP.StrictInArray.MissingTrueStrict
 					unset( $chosen_shipping_methods[ $key ] );
 				}
 			}
@@ -570,14 +580,14 @@ class WC_GZD_Checkout {
 		if ( get_option( 'woocommerce_gzd_order_pay_now_button' ) === 'no' ) {
 			$enabled = false;
 		}
-		
+
 		if ( ! $order->needs_payment() ) {
 			$enabled = false;
 		}
 
 		$disabled_methods = get_option( 'woocommerce_gzd_order_pay_now_button_disabled_methods', array() );
 
-		if ( is_array( $disabled_methods ) && in_array( $order->get_payment_method(), $disabled_methods ) ) {
+		if ( is_array( $disabled_methods ) && in_array( $order->get_payment_method(), $disabled_methods, true ) ) {
 			$enabled = false;
 		}
 
@@ -620,7 +630,13 @@ class WC_GZD_Checkout {
 				$url = esc_url_raw( add_query_arg( array( 'force_pay_order' => true ), $url ) );
 			}
 
-			wc_get_template( 'order/order-pay-now-button.php', array( 'url' => $url, 'order_id' => $order_id ) );
+			wc_get_template(
+				'order/order-pay-now-button.php',
+				array(
+					'url'      => $url,
+					'order_id' => $order_id,
+				)
+			);
 		}
 	}
 
@@ -692,7 +708,7 @@ class WC_GZD_Checkout {
 		if ( ! empty( $fees ) ) {
 			$new_fees = array();
 
-			foreach( $fees as $key => $fee ) {
+			foreach ( $fees as $key => $fee ) {
 
 				if ( $fee->taxable ) {
 					$fee->taxable  = false;
@@ -803,7 +819,7 @@ class WC_GZD_Checkout {
 	 */
 	public function adjust_shipping_taxes( $rates, $package ) {
 		if ( ! wc_gzd_enable_additional_costs_split_tax_calculation() ) {
-			foreach( $rates as $key => $rate ) {
+			foreach ( $rates as $key => $rate ) {
 				$meta_data = $rates[ $key ]->get_meta_data();
 
 				/**
@@ -818,10 +834,10 @@ class WC_GZD_Checkout {
 			return $rates;
 		}
 
-		foreach( $rates as $key => $rate ) {
+		foreach ( $rates as $key => $rate ) {
 			$original_taxes = $rate->get_taxes();
 			$original_cost  = $rate->get_cost();
-			$tax_shares     = apply_filters( "woocommerce_gzd_shipping_tax_shares", wc_gzd_get_cart_tax_share( 'shipping' ), $rate );
+			$tax_shares     = apply_filters( 'woocommerce_gzd_shipping_tax_shares', wc_gzd_get_cart_tax_share( 'shipping' ), $rate );
 
 			/**
 			 * Reset split tax data
@@ -862,7 +878,7 @@ class WC_GZD_Checkout {
 								'tax_share'      => $class['share'],
 								'tax_rates'      => array_keys( $tax_rates ),
 								'net_amount'     => $net_base,
-								'includes_tax'   => wc_gzd_additional_costs_include_tax()
+								'includes_tax'   => wc_gzd_additional_costs_include_tax(),
 							);
 
 							$taxes = $taxes + $tax_class_taxes;
@@ -940,7 +956,7 @@ class WC_GZD_Checkout {
 		 * In this case, remove fee taxes altogether.
 		 */
 		if ( empty( $tax_shares ) || WC()->customer->is_vat_exempt() ) {
-			if ( apply_filters( "woocommerce_gzd_fee_costs_include_tax", wc_gzd_additional_costs_include_tax(), $fee ) ) {
+			if ( apply_filters( 'woocommerce_gzd_fee_costs_include_tax', wc_gzd_additional_costs_include_tax(), $fee ) ) {
 				$total_tax  = array_sum( array_map( array( $this, 'round_line_tax_in_cents' ), $fee_taxes ) );
 				$fee->total = $fee->total - $total_tax;
 
@@ -949,8 +965,8 @@ class WC_GZD_Checkout {
 				 * to find the fee net price.
 				 */
 				if ( WC()->customer->is_vat_exempt() ) {
-					$fee_rates  = WC_Tax::get_rates( '' );
-					$fee_taxes  = WC_Tax::calc_inclusive_tax( $fee->total, $fee_rates );
+					$fee_rates = WC_Tax::get_rates( '' );
+					$fee_taxes = WC_Tax::calc_inclusive_tax( $fee->total, $fee_rates );
 
 					$fee->total = $fee->total - array_sum( $fee_taxes );
 				}
@@ -965,8 +981,8 @@ class WC_GZD_Checkout {
 			$taxable_amounts = array();
 
 			foreach ( $tax_shares as $tax_class => $class ) {
-				$tax_rates      = WC_Tax::get_rates( $tax_class );
-				$taxable_amount = $fee->total * $class['share'];
+				$tax_rates       = WC_Tax::get_rates( $tax_class );
+				$taxable_amount  = $fee->total * $class['share'];
 				$tax_class_taxes = WC_Tax::calc_tax( $taxable_amount, $tax_rates, wc_gzd_additional_costs_include_tax() );
 				$net_base        = wc_gzd_additional_costs_include_tax() ? ( $taxable_amount - array_sum( $tax_class_taxes ) ) : $taxable_amount;
 
@@ -975,7 +991,7 @@ class WC_GZD_Checkout {
 					'tax_share'      => $class['share'],
 					'tax_rates'      => array_keys( $tax_rates ),
 					'net_amount'     => $net_base,
-					'includes_tax'   => wc_gzd_additional_costs_include_tax()
+					'includes_tax'   => wc_gzd_additional_costs_include_tax(),
 				);
 
 				$fee_taxes = $fee_taxes + $tax_class_taxes;
@@ -1072,8 +1088,8 @@ class WC_GZD_Checkout {
 			$placeholder['{title_upper}'] = strtoupper( $args['title'] );
 
 			if ( strpos( $placeholder['{name}'], '{title}' ) === false ) {
-				$placeholder['{name}']        = $placeholder['{title}'] . ' ' . $placeholder['{name}'];
-				$placeholder['{name_upper}']  = $placeholder['{title_upper}'] . ' ' . $placeholder['{name_upper}'];
+				$placeholder['{name}']       = $placeholder['{title}'] . ' ' . $placeholder['{name}'];
+				$placeholder['{name_upper}'] = $placeholder['{title_upper}'] . ' ' . $placeholder['{name_upper}'];
 			}
 		}
 
@@ -1084,7 +1100,7 @@ class WC_GZD_Checkout {
 		if ( ! empty( $this->custom_fields ) ) {
 			foreach ( $this->custom_fields as $key => $custom_field ) {
 				$new = array();
-				if ( in_array( $type, $custom_field['group'] ) ) {
+				if ( in_array( $type, $custom_field['group'], true ) ) {
 					if ( ! empty( $fields ) ) {
 						foreach ( $fields as $name => $field ) {
 							if ( $name == $type . '_' . $custom_field['before'] && ! isset( $custom_field['override'] ) ) {

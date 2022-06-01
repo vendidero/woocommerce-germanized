@@ -12,7 +12,7 @@
  *
  * @see https://github.com/vendidero/woocommerce-germanized/wiki/Overriding-Germanized-Templates
  * @package Germanized/Templates
- * @version 3.0.0
+ * @version 3.0.1
  */
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -33,36 +33,35 @@ foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
 
 	if ( $_product && $_product->exists() && $cart_item['quantity'] > 0 && apply_filters( 'woocommerce_checkout_cart_item_visible', true, $cart_item, $cart_item_key ) ) {
 		?>
-        <tr class="<?php echo esc_attr( apply_filters( 'woocommerce_cart_item_class', 'cart_item', $cart_item, $cart_item_key ) ); ?>">
-            <td class="product-name">
+		<tr class="<?php echo esc_attr( apply_filters( 'woocommerce_cart_item_class', 'cart_item', $cart_item, $cart_item_key ) ); ?>">
+			<td class="product-name">
+				<?php if ( 'yes' === get_option( 'woocommerce_gzd_display_checkout_thumbnails' ) ) : ?>
 
-				<?php if ( get_option( 'woocommerce_gzd_display_checkout_thumbnails' ) == 'yes' ) : ?>
+				<div class="wc-gzd-product-name-left">
+					<?php echo wp_kses_post( apply_filters( 'woocommerce_cart_item_thumbnail', $_product->get_image(), $cart_item, $cart_item_key ) ); ?>
+				</div>
 
-                <div class="wc-gzd-product-name-left">
-					<?php echo apply_filters( 'woocommerce_cart_item_thumbnail', $_product->get_image(), $cart_item, $cart_item_key ); ?>
-                </div>
-
-                <div class="wc-gzd-product-name-right">
+				<div class="wc-gzd-product-name-right">
 
 					<?php endif; ?>
 
-					<?php echo apply_filters( 'woocommerce_cart_item_name', $_product->get_name(), $cart_item, $cart_item_key ) . '&nbsp;'; ?>
-					<?php echo apply_filters( 'woocommerce_checkout_cart_item_quantity', ' <strong class="product-quantity">' . sprintf( '&times; %s', $cart_item['quantity'] ) . '</strong>', $cart_item, $cart_item_key ); ?>
+					<?php echo wp_kses_post( apply_filters( 'woocommerce_cart_item_name', $_product->get_name(), $cart_item, $cart_item_key ) ) . '&nbsp;'; ?>
+					<?php echo apply_filters( 'woocommerce_checkout_cart_item_quantity', ' <strong class="product-quantity">' . sprintf( '&times; %s', $cart_item['quantity'] ) . '</strong>', $cart_item, $cart_item_key ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped; ?>
 
-					<?php echo wc_get_formatted_cart_item_data( $cart_item ); ?>
+					<?php echo wc_get_formatted_cart_item_data( $cart_item ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped; ?>
 
 					<?php if ( get_option( 'woocommerce_gzd_display_checkout_thumbnails' ) == 'yes' ) : ?>
 
-                </div>
-                <div class="clear"></div>
+				</div>
+				<div class="clear"></div>
 
 			<?php endif; ?>
 
-            </td>
-            <td class="product-total">
-				<?php echo apply_filters( 'woocommerce_cart_item_subtotal', WC()->cart->get_product_subtotal( $_product, $cart_item['quantity'] ), $cart_item, $cart_item_key ); ?>
-            </td>
-        </tr>
+			</td>
+			<td class="product-total">
+				<?php echo apply_filters( 'woocommerce_cart_item_subtotal', WC()->cart->get_product_subtotal( $_product, $cart_item['quantity'] ), $cart_item, $cart_item_key ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped; ?>
+			</td>
+		</tr>
 		<?php
 	}
 }

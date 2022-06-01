@@ -24,15 +24,21 @@ class WC_GZD_Compatibility_WooCommerce_PayPal_Payments extends WC_GZD_Compatibil
 	public function load() {
 		add_filter( 'woocommerce_paypal_payments_checkout_button_renderer_hook', array( $this, 'move_paypal_payment_button' ), 10 );
 
-		add_action( 'woocommerce_gzd_review_order_before_submit', function() {
-			do_action( 'woocommerce_gzd_render_paypal_payments_smart_button' );
-		} );
-
-		add_action( 'woocommerce_review_order_before_submit', function() {
-			if ( wc_gzd_checkout_adjustments_disabled() ) {
+		add_action(
+			'woocommerce_gzd_review_order_before_submit',
+			function() {
 				do_action( 'woocommerce_gzd_render_paypal_payments_smart_button' );
 			}
-		} );
+		);
+
+		add_action(
+			'woocommerce_review_order_before_submit',
+			function() {
+				if ( wc_gzd_checkout_adjustments_disabled() ) {
+					do_action( 'woocommerce_gzd_render_paypal_payments_smart_button' );
+				}
+			}
+		);
 	}
 
 	public function move_paypal_payment_button( $filter ) {

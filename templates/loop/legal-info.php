@@ -12,7 +12,7 @@
  *
  * @see https://github.com/vendidero/woocommerce-germanized/wiki/Overriding-Germanized-Templates
  * @package Germanized/Templates
- * @version 3.0.1
+ * @version 3.0.2
  */
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -21,14 +21,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 global $product;
 ?>
 <div class="legal-price-info">
-    <p class="wc-gzd-additional-info wc-gzd-additional-info-loop">
-		<?php if ( wc_gzd_get_product( $product )->get_tax_info() && get_option( 'woocommerce_gzd_display_product_detail_tax_info' ) == 'yes' ) : ?>
-            <span class="wc-gzd-additional-info wc-gzd-additional-info-loop tax-info"><?php echo wc_gzd_get_product( $product )->get_tax_info(); ?></span>
-		<?php elseif ( ( wc_gzd_is_small_business() && get_option( 'woocommerce_gzd_display_product_detail_tax_info' ) == 'yes' ) ) : ?>
-            <span class="wc-gzd-additional-info wc-gzd-additional-info-loop small-business-info"><?php echo wc_gzd_get_small_business_product_notice(); ?></span>
+	<p class="wc-gzd-additional-info wc-gzd-additional-info-loop">
+		<?php if ( wc_gzd_get_product( $product )->get_tax_info() && 'yes' === get_option( 'woocommerce_gzd_display_product_detail_tax_info' ) ) : ?>
+			<span class="wc-gzd-additional-info wc-gzd-additional-info-loop tax-info"><?php echo wp_kses_post( wc_gzd_get_product( $product )->get_tax_info() ); ?></span>
+		<?php elseif ( ( wc_gzd_is_small_business() && 'yes' === get_option( 'woocommerce_gzd_display_product_detail_tax_info' ) ) ) : ?>
+			<span class="wc-gzd-additional-info wc-gzd-additional-info-loop small-business-info"><?php echo wp_kses_post( wc_gzd_get_small_business_product_notice() ); ?></span>
 		<?php endif; ?>
-		<?php if ( wc_gzd_get_product( $product )->get_shipping_costs_html() && get_option( 'woocommerce_gzd_display_product_detail_shipping_costs_info' ) == 'yes' ) : ?>
-            <span class="wc-gzd-additional-info wc-gzd-additional-info-loop shipping-costs-info"><?php echo wc_gzd_get_product( $product )->get_shipping_costs_html(); ?></span>
+		<?php if ( wc_gzd_get_product( $product )->get_shipping_costs_html() && 'yes' === get_option( 'woocommerce_gzd_display_product_detail_shipping_costs_info' ) ) : ?>
+			<span class="wc-gzd-additional-info wc-gzd-additional-info-loop shipping-costs-info"><?php echo wp_kses_post( wc_gzd_get_product( $product )->get_shipping_costs_html() ); ?></span>
 		<?php endif; ?>
-    </p>
+	</p>
 </div>

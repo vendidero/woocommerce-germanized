@@ -4,12 +4,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-$shipments = wc_gzd_get_shipments( array(
-	'limit' => 50,
-	'type'  => array( 'simple', 'return' ),
-) );
+$shipments = wc_gzd_get_shipments(
+	array(
+		'limit' => 50,
+		'type'  => array( 'simple', 'return' ),
+	)
+);
 
-foreach( $shipments as $shipment ) {
+foreach ( $shipments as $shipment ) {
 
 	$weight_unit    = get_option( 'woocommerce_weight_unit', 'kg' );
 	$dimension_unit = get_option( 'woocommerce_dimension_unit', 'cm' );
@@ -34,7 +36,7 @@ foreach( $shipments as $shipment ) {
 		$shipment->set_height( wc_get_dimension( $shipment->get_height( 'edit' ), $dimension_unit, 'cm' ) );
 	}
 
-	foreach( $shipment->get_items() as $item ) {
+	foreach ( $shipment->get_items() as $item ) {
 
 		if ( '' !== $item->get_weight() ) {
 			$item->set_weight( wc_get_weight( $item->get_weight(), $weight_unit, 'kg' ) );

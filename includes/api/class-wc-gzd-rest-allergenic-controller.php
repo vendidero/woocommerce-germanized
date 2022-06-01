@@ -41,10 +41,10 @@ class WC_GZD_REST_Allergenic_Controller extends WC_REST_Terms_Controller {
 	 */
 	public function prepare_item_for_response( $item, $request ) {
 		$data = array(
-			'id'            => (int) $item->term_id,
-			'name'          => $item->name,
-			'slug'          => $item->slug,
-			'description'   => $item->description,
+			'id'          => (int) $item->term_id,
+			'name'        => $item->name,
+			'slug'        => $item->slug,
+			'description' => $item->description,
 		);
 
 		$context = ! empty( $request['context'] ) ? $request['context'] : 'view';

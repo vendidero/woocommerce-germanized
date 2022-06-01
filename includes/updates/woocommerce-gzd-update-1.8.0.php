@@ -12,4 +12,4 @@ if ( $terms != - 1 ) {
 	WC_GZD_Admin::instance()->insert_complaints_shortcode( $terms );
 }
 
-?>
+

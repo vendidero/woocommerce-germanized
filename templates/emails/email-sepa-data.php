@@ -12,39 +12,31 @@
  *
  * @see https://github.com/vendidero/woocommerce-germanized/wiki/Overriding-Germanized-Templates
  * @package Germanized/Templates
- * @version 2.4.0
+ * @version 2.4.1
  */
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
-
 ?>
 <table id="sepa" cellspacing="0" cellpadding="0" style="width: 100%; vertical-align: top;" border="0">
+	<tr>
+		<td class="td" style="text-align:left; font-family: 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;"
+			valign="top" width="50%">
 
-    <tr>
+			<h2><?php esc_html_e( 'SEPA Data', 'woocommerce-germanized' ); ?></h2>
 
-        <td class="td" style="text-align:left; font-family: 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;"
-            valign="top" width="50%">
-
-            <h2><?php _e( 'SEPA Data', 'woocommerce-germanized' ); ?></h2>
-
-            <p class="text">
+			<p class="text">
 				<?php foreach ( $fields as $label => $data ) : ?>
-                    <span class="text-label"><?php echo wptexturize( $label ); ?>: </span>
-                    <span class="text-data"><?php echo wptexturize( $data ); ?></span><br/>
+					<span class="text-label"><?php echo esc_html( wptexturize( $label ) ); ?>: </span>
+					<span class="text-data"><?php echo esc_html( wptexturize( $data ) ); ?></span><br/>
 				<?php endforeach; ?>
-            </p>
+			</p>
 
 			<?php if ( $send_pre_notification ) : ?>
-
-                <p class="pre-notification text">
-					<?php echo $pre_notification_text; ?>
-                </p>
-
+				<p class="pre-notification text">
+					<?php echo wp_kses_post( $pre_notification_text ); ?>
+				</p>
 			<?php endif; ?>
-
-        </td>
-
-    </tr>
-
+		</td>
+	</tr>
 </table>

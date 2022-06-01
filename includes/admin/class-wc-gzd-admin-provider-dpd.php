@@ -18,7 +18,7 @@ class WC_GZD_Admin_Provider_DPD extends Simple {
 	}
 
 	public function get_title( $context = 'view' ) {
-		return __( 'DPD', 'woocommerce-germanized' ) . ' ' . '<span class="wc-gzd-pro wc-gzd-pro-outlined">' . __( 'pro', 'woocommerce-germanized' ) . '</span>';
+		return __( 'DPD', 'woocommerce-germanized' ) . ' <span class="wc-gzd-pro wc-gzd-pro-outlined">' . __( 'pro', 'woocommerce-germanized' ) . '</span>';
 	}
 
 	public function is_manual_integration() {

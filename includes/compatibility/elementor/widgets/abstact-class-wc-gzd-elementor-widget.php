@@ -12,7 +12,7 @@ use Elementor\Scheme_Typography;
 abstract class WC_GZD_Elementor_Widget extends ElementorPro\Modules\Woocommerce\Widgets\Products_Base {
 
 	public function get_keywords() {
-		return [ 'woocommerce', 'shop', 'product' ];
+		return array( 'woocommerce', 'shop', 'product' );
 	}
 
 	public function get_name() {
@@ -21,7 +21,7 @@ abstract class WC_GZD_Elementor_Widget extends ElementorPro\Modules\Woocommerce\
 
 	abstract public function get_postfix();
 
-	protected abstract function get_title_raw();
+	abstract protected function get_title_raw();
 
 	public function get_title() {
 		return $this->get_title_prefix() . $this->get_title_raw();
@@ -31,10 +31,10 @@ abstract class WC_GZD_Elementor_Widget extends ElementorPro\Modules\Woocommerce\
 
 		$this->start_controls_section(
 			'section_' . $this->get_postfix() . '_style',
-			[
+			array(
 				'label' => $this->get_title_raw(),
 				'tab'   => Controls_Manager::TAB_STYLE,
-			]
+			)
 		);
 
 		/**
@@ -48,11 +48,11 @@ abstract class WC_GZD_Elementor_Widget extends ElementorPro\Modules\Woocommerce\
 		if ( apply_filters( 'woocommerce_gzd_show_elementor_upgrade_notice', true ) ) {
 			$this->add_responsive_control(
 				'upgrade',
-				[
+				array(
 					'label' => '',
 					'type'  => Controls_Manager::RAW_HTML,
 					'raw'   => sprintf( __( 'Upgrade to WooCommerce Germanized Pro to use your our custom Elementor Widgets. %s', 'woocommerce-germanized' ), '<a class="button button-primary elementor-button" href="https://vendidero.de/woocommerce-germanized" target="_blank" style="margin-top: 10px;">' . __( 'Upgrade now', 'woocommerce-germanized' ) . '</a>' ),
-				]
+				)
 			);
 		}
 

@@ -20,7 +20,7 @@ class WC_GZD_Order_Helper {
 	 * @since 1.0
 	 */
 	public function __clone() {
-		_doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?', 'woocommerce-germanized' ), '1.0' );
+		_doing_it_wrong( __FUNCTION__, esc_html__( 'Cheating huh?', 'woocommerce-germanized' ), '1.0' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
 
 	/**
@@ -29,7 +29,7 @@ class WC_GZD_Order_Helper {
 	 * @since 1.0
 	 */
 	public function __wakeup() {
-		_doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?', 'woocommerce-germanized' ), '1.0' );
+		_doing_it_wrong( __FUNCTION__, esc_html__( 'Cheating huh?', 'woocommerce-germanized' ), '1.0' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
 
 	public function __construct() {
@@ -43,14 +43,24 @@ class WC_GZD_Order_Helper {
 		add_action( 'woocommerce_order_item_after_calculate_taxes', array( $this, 'recalculate_order_item_unit_price' ), 60, 1 );
 
 		// Add Title to billing address format
-		add_filter( 'woocommerce_order_formatted_billing_address', array(
-			$this,
-			'set_formatted_billing_address'
-		), 0, 2 );
-		add_filter( 'woocommerce_order_formatted_shipping_address', array(
-			$this,
-			'set_formatted_shipping_address'
-		), 0, 2 );
+		add_filter(
+			'woocommerce_order_formatted_billing_address',
+			array(
+				$this,
+				'set_formatted_billing_address',
+			),
+			0,
+			2
+		);
+		add_filter(
+			'woocommerce_order_formatted_shipping_address',
+			array(
+				$this,
+				'set_formatted_shipping_address',
+			),
+			0,
+			2
+		);
 
 		// Add title options to order address data
 		add_filter( 'woocommerce_get_order_address', array( $this, 'add_order_address_data' ), 10, 3 );
@@ -74,10 +84,15 @@ class WC_GZD_Order_Helper {
 			add_filter( 'woocommerce_my_account_my_orders_actions', array( $this, 'remove_cancel_button' ), 10, 2 );
 
 			// Remove order stock right after confirmation is sent
-			add_action( 'woocommerce_germanized_order_confirmation_sent', array(
-				$this,
-				'maybe_reduce_order_stock'
-			), 5, 1 );
+			add_action(
+				'woocommerce_germanized_order_confirmation_sent',
+				array(
+					$this,
+					'maybe_reduce_order_stock',
+				),
+				5,
+				1
+			);
 		}
 	}
 
@@ -152,7 +167,7 @@ class WC_GZD_Order_Helper {
 	public function disallow_user_order_cancellation( $allcaps, $caps, $args ) {
 		if ( isset( $caps[0] ) ) {
 			switch ( $caps[0] ) {
-				case 'cancel_order' :
+				case 'cancel_order':
 					$allcaps['cancel_order'] = false;
 					break;
 			}
@@ -197,7 +212,7 @@ class WC_GZD_Order_Helper {
 		/**
 		 * Refresh item data in case product id changes or it is a new item.
 		 */
-		if ( $item->get_id() <= 0 || in_array( 'product_id', $item->get_changes() ) ) {
+		if ( $item->get_id() <= 0 || in_array( 'product_id', $item->get_changes(), true ) ) {
 			$this->refresh_item_data( $item );
 		}
 	}

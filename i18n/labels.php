@@ -20,4 +20,4 @@ return array(
 	'old-price' => __( 'Old Price: ', 'woocommerce-germanized' ),
 );
 
-?>
+

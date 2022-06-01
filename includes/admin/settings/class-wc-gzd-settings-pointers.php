@@ -76,7 +76,7 @@ class WC_GZD_Settings_Pointers {
 					'next_trigger' => array(),
 					'options'      => array(
 						'content'  => '<h3>' . esc_html__( 'Setting tabs', 'woocommerce-germanized' ) . '</h3>' .
-						              '<p>' . esc_html__( 'To make it more comfortable for you, we\'ve splitted the settings into multiple tabs.', 'woocommerce-germanized' ) . '</p>',
+									  '<p>' . esc_html__( 'To make it more comfortable for you, we\'ve splitted the settings into multiple tabs.', 'woocommerce-germanized' ) . '</p>',
 						'position' => array(
 							'edge'  => 'top',
 							'align' => 'left',
@@ -90,7 +90,7 @@ class WC_GZD_Settings_Pointers {
 					'next_trigger' => array(),
 					'options'      => array(
 						'content'  => '<h3>' . esc_html__( 'Status', 'woocommerce-germanized' ) . '</h3>' .
-						              '<p>' . esc_html__( 'Some features can be switched on or off explicitly by toggling the input.', 'woocommerce-germanized' ) . '</p>',
+									  '<p>' . esc_html__( 'Some features can be switched on or off explicitly by toggling the input.', 'woocommerce-germanized' ) . '</p>',
 						'position' => array(
 							'edge'  => 'bottom',
 							'align' => 'left',

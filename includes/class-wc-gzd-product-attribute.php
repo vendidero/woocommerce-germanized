@@ -40,9 +40,12 @@ class WC_GZD_Product_Attribute extends WC_Product_Attribute {
 		 * @since 2.0.0
 		 */
 		$default_visible = apply_filters( 'woocommerce_gzd_product_attribute_checkout_visible_default_value', false, $this );
-		$this->data      = array_merge( $this->attribute->get_data(), array(
-			'checkout_visible' => $default_visible,
-		) );
+		$this->data      = array_merge(
+			$this->attribute->get_data(),
+			array(
+				'checkout_visible' => $default_visible,
+			)
+		);
 	}
 
 	/**

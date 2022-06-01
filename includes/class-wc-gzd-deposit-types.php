@@ -30,10 +30,13 @@ class WC_GZD_Deposit_Types extends WC_GZD_Taxonomy {
 	 * @return string[] terms as array
 	 */
 	public function get_terms( $args = array() ) {
-		$args = wp_parse_args( $args, array(
-			'hide_empty' => false,
-			'as'         => 'slug=>name'
-		) );
+		$args = wp_parse_args(
+			$args,
+			array(
+				'hide_empty' => false,
+				'as'         => 'slug=>name',
+			)
+		);
 
 		$list    = array();
 		$terms   = get_terms( $this->get_taxonomy(), array_diff_key( $args, array( 'as' => '' ) ) );
@@ -56,10 +59,13 @@ class WC_GZD_Deposit_Types extends WC_GZD_Taxonomy {
 	}
 
 	public function get_packaging_types() {
-		return apply_filters( 'woocommerce_gzd_deposit_packaging_types', array(
-			'reusable'   => _x( 'Reusable', 'deposit-packaging-type', 'woocommerce-germanized' ),
-			'disposable' => _x( 'Disposable', 'deposit-packaging-type', 'woocommerce-germanized' )
-		) );
+		return apply_filters(
+			'woocommerce_gzd_deposit_packaging_types',
+			array(
+				'reusable'   => _x( 'Reusable', 'deposit-packaging-type', 'woocommerce-germanized' ),
+				'disposable' => _x( 'Disposable', 'deposit-packaging-type', 'woocommerce-germanized' ),
+			)
+		);
 	}
 
 	public function get_packaging_type( $term ) {

@@ -226,7 +226,7 @@ class WC_GZD_Product_Variable extends WC_GZD_Product {
 		$filter_names = array(
 			'woocommerce_gzd_variation_unit_prices_price',
 			'woocommerce_gzd_variation_unit_prices_regular_price',
-			'woocommerce_gzd_variation_unit_prices_sale_price'
+			'woocommerce_gzd_variation_unit_prices_sale_price',
 		);
 
 		foreach ( $filter_names as $filter_name ) {
@@ -257,7 +257,7 @@ class WC_GZD_Product_Variable extends WC_GZD_Product {
 		 * @since 1.0.0
 		 *
 		 */
-		$price_hash = md5( json_encode( apply_filters( 'woocommerce_gzd_get_variation_unit_prices_hash', $price_hash, $this, $display ) ) );
+		$price_hash = md5( wp_json_encode( apply_filters( 'woocommerce_gzd_get_variation_unit_prices_hash', $price_hash, $this, $display ) ) );
 
 		// If the value has already been generated, we don't need to grab the values again.
 		if ( empty( $this->unit_prices_array[ $price_hash ] ) ) {
@@ -286,8 +286,8 @@ class WC_GZD_Product_Variable extends WC_GZD_Product {
 				 * Allow sorting unit prices by value in case the variable
 				 * product contains only products of the same price
 				 */
-				$allow_sort       = sizeof( $unique_values ) === 1;
-				$is_min_price     = woocommerce_gzd_price_range_format_is_min_price();
+				$allow_sort   = count( $unique_values ) === 1;
+				$is_min_price = woocommerce_gzd_price_range_format_is_min_price();
 
 				/**
 				 * In case the current price range format includes a starting from price only
@@ -298,7 +298,7 @@ class WC_GZD_Product_Variable extends WC_GZD_Product {
 					$min_price  = array_values( $variation_prices['price'] )[0];
 					$allow_sort = true;
 
-					foreach( $variation_prices['price'] as $variation_id => $price ) {
+					foreach ( $variation_prices['price'] as $variation_id => $price ) {
 						if ( $price > $min_price ) {
 							unset( $variation_prices['price'][ $variation_id ] );
 						}
@@ -366,31 +366,49 @@ class WC_GZD_Product_Variable extends WC_GZD_Product {
 						// If we are getting prices for display, we need to account for taxes
 						if ( $display ) {
 							if ( 'incl' === $tax_display ) {
-								$price         = '' === $price ? '' : wc_get_price_including_tax( $variation, array(
-									'qty'   => 1,
-									'price' => $price
-								) );
-								$regular_price = '' === $regular_price ? '' : wc_get_price_including_tax( $variation, array(
-									'qty'   => 1,
-									'price' => $regular_price
-								) );
-								$sale_price    = '' === $sale_price ? '' : wc_get_price_including_tax( $variation, array(
-									'qty'   => 1,
-									'price' => $sale_price
-								) );
+								$price         = '' === $price ? '' : wc_get_price_including_tax(
+									$variation,
+									array(
+										'qty'   => 1,
+										'price' => $price,
+									)
+								);
+								$regular_price = '' === $regular_price ? '' : wc_get_price_including_tax(
+									$variation,
+									array(
+										'qty'   => 1,
+										'price' => $regular_price,
+									)
+								);
+								$sale_price    = '' === $sale_price ? '' : wc_get_price_including_tax(
+									$variation,
+									array(
+										'qty'   => 1,
+										'price' => $sale_price,
+									)
+								);
 							} else {
-								$price         = '' === $price ? '' : wc_get_price_excluding_tax( $variation, array(
-									'qty'   => 1,
-									'price' => $price
-								) );
-								$regular_price = '' === $regular_price ? '' : wc_get_price_excluding_tax( $variation, array(
-									'qty'   => 1,
-									'price' => $regular_price
-								) );
-								$sale_price    = '' === $sale_price ? '' : wc_get_price_excluding_tax( $variation, array(
-									'qty'   => 1,
-									'price' => $sale_price
-								) );
+								$price         = '' === $price ? '' : wc_get_price_excluding_tax(
+									$variation,
+									array(
+										'qty'   => 1,
+										'price' => $price,
+									)
+								);
+								$regular_price = '' === $regular_price ? '' : wc_get_price_excluding_tax(
+									$variation,
+									array(
+										'qty'   => 1,
+										'price' => $regular_price,
+									)
+								);
+								$sale_price    = '' === $sale_price ? '' : wc_get_price_excluding_tax(
+									$variation,
+									array(
+										'qty'   => 1,
+										'price' => $sale_price,
+									)
+								);
 							}
 						}
 
@@ -409,10 +427,10 @@ class WC_GZD_Product_Variable extends WC_GZD_Product {
 				$this->unit_prices_array[ $price_hash ] = array(
 					'price'         => $prices,
 					'regular_price' => $regular_prices,
-					'sale_price'    => $sale_prices
+					'sale_price'    => $sale_prices,
 				);
 
-				set_transient( $transient_name, json_encode( $this->unit_prices_array ), DAY_IN_SECONDS * 30 );
+				set_transient( $transient_name, wp_json_encode( $this->unit_prices_array ), DAY_IN_SECONDS * 30 );
 			}
 
 			/**

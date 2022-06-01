@@ -22,7 +22,7 @@ if ( class_exists( 'WC_Shipping_Zones' ) ) {
 			foreach ( $shipping_methods_options as $key => $option ) {
 				$key_method = explode( ':', $key );
 
-				if ( isset( $key_method[0] ) && $key_method[0] == $method ) {
+				if ( isset( $key_method[0] ) && $key_method[0] === $method ) {
 					array_push( $new_options, $key );
 				}
 			}
@@ -33,4 +33,4 @@ if ( class_exists( 'WC_Shipping_Zones' ) ) {
 
 }
 
-?>
+

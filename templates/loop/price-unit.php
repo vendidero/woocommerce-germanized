@@ -22,5 +22,5 @@ global $product;
 ?>
 
 <?php if ( wc_gzd_get_product( $product )->has_unit() ) : ?>
-    <p class="price price-unit smaller wc-gzd-additional-info wc-gzd-additional-info-loop"><?php echo wc_gzd_get_product( $product )->get_unit_price_html(); ?></p>
+	<p class="price price-unit smaller wc-gzd-additional-info wc-gzd-additional-info-loop"><?php echo wp_kses_post( wc_gzd_get_product( $product )->get_unit_price_html() ); ?></p>
 <?php endif; ?>

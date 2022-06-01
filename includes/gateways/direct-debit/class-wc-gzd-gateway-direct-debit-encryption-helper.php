@@ -52,8 +52,7 @@ class WC_GZD_Gateway_Direct_Debit_Encryption_Helper {
 
 		try {
 			$secret_data = Crypto\Crypto::decrypt( $string, $this->get_key() );
-		} catch ( Crypto\Exception\WrongKeyOrModifiedCiphertextException $ex ) {
-
+		} catch ( Crypto\Exception\WrongKeyOrModifiedCiphertextException $ex ) { // phpcs:ignore Generic.CodeAnalysis.EmptyStatement.DetectedCatch
 		}
 
 		return $secret_data;
@@ -63,7 +62,7 @@ class WC_GZD_Gateway_Direct_Debit_Encryption_Helper {
 		if ( defined( 'WC_GZD_DIRECT_DEBIT_KEY' ) ) {
 			try {
 				return Crypto\Key::loadFromAsciiSafeString( WC_GZD_DIRECT_DEBIT_KEY );
-			} catch( \Exception $e ) {
+			} catch ( \Exception $e ) {
 				return false;
 			}
 		}

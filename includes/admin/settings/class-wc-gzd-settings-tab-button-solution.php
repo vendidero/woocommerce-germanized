@@ -43,7 +43,7 @@ class WC_GZD_Settings_Tab_Button_Solution extends WC_GZD_Settings_Tab {
 						'next_trigger' => array(),
 						'options'      => array(
 							'content'  => '<h3>' . esc_html__( 'Buy now button', 'woocommerce-germanized' ) . '</h3>' .
-							              '<p>' . esc_html__( 'These settings help you comply to the button solution. The buy now button text is forced and static so that no payment gateway might override it.', 'woocommerce-germanized' ) . '</p>',
+										  '<p>' . esc_html__( 'These settings help you comply to the button solution. The buy now button text is forced and static so that no payment gateway might override it.', 'woocommerce-germanized' ) . '</p>',
 							'position' => array(
 								'edge'  => 'left',
 								'align' => 'left',
@@ -57,7 +57,7 @@ class WC_GZD_Settings_Tab_Button_Solution extends WC_GZD_Settings_Tab {
 						'next_trigger' => array(),
 						'options'      => array(
 							'content'  => '<h3>' . esc_html__( 'Product table background', 'woocommerce-germanized' ) . '</h3>' .
-							              '<p>' . esc_html__( 'The product table within your checkout should be noticeable for your customers. You might want to choose a different background color for it.', 'woocommerce-germanized' ) . '</p>',
+										  '<p>' . esc_html__( 'The product table within your checkout should be noticeable for your customers. You might want to choose a different background color for it.', 'woocommerce-germanized' ) . '</p>',
 							'position' => array(
 								'edge'  => 'left',
 								'align' => 'left',
@@ -73,7 +73,11 @@ class WC_GZD_Settings_Tab_Button_Solution extends WC_GZD_Settings_Tab {
 
 	public function get_tab_settings( $current_section = '' ) {
 		return array(
-			array( 'title' => '', 'type' => 'title', 'id' => 'button_solution_options' ),
+			array(
+				'title' => '',
+				'type'  => 'title',
+				'id'    => 'button_solution_options',
+			),
 			array(
 				'title'    => __( 'Button Text', 'woocommerce-germanized' ),
 				'desc'     => __( 'This text serves as Button text for the Order Submit Button.', 'woocommerce-germanized' ),
@@ -143,12 +147,15 @@ class WC_GZD_Settings_Tab_Button_Solution extends WC_GZD_Settings_Tab {
 				'default' => 'no',
 				'type'    => 'gzd_toggle',
 			),
-			array( 'type' => 'sectionend', 'id' => 'button_solution_options' ),
+			array(
+				'type' => 'sectionend',
+				'id'   => 'button_solution_options',
+			),
 
 			array(
 				'title' => __( 'Thankyou Page', 'woocommerce-germanized' ),
 				'type'  => 'title',
-				'id'    => 'thankyou_options'
+				'id'    => 'thankyou_options',
 			),
 
 			array(
@@ -166,7 +173,10 @@ class WC_GZD_Settings_Tab_Button_Solution extends WC_GZD_Settings_Tab {
 				'id'       => 'woocommerce_gzd_order_success_text',
 				'type'     => 'textarea',
 			),
-			array( 'type' => 'sectionend', 'id' => 'thankyou_options' ),
+			array(
+				'type' => 'sectionend',
+				'id'   => 'thankyou_options',
+			),
 		);
 	}
 }

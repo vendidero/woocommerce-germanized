@@ -83,13 +83,13 @@ class WC_GZD_REST_Nutrients_Controller extends WC_REST_Terms_Controller {
 			'title'      => $this->taxonomy,
 			'type'       => 'object',
 			'properties' => array(
-				'id'          => array(
+				'id'            => array(
 					'description' => __( 'Unique identifier for the resource.', 'woocommerce-germanized' ),
 					'type'        => 'integer',
 					'context'     => array( 'view', 'edit' ),
 					'readonly'    => true,
 				),
-				'name'        => array(
+				'name'          => array(
 					'description' => __( 'Nutrient name.', 'woocommerce-germanized' ),
 					'type'        => 'string',
 					'context'     => array( 'view', 'edit' ),
@@ -97,13 +97,13 @@ class WC_GZD_REST_Nutrients_Controller extends WC_REST_Terms_Controller {
 						'sanitize_callback' => 'sanitize_text_field',
 					),
 				),
-				'label'        => array(
+				'label'         => array(
 					'description' => __( 'Nutrient label.', 'woocommerce-germanized' ),
 					'type'        => 'string',
 					'context'     => array( 'view', 'edit' ),
 					'readonly'    => true,
 				),
-				'slug'        => array(
+				'slug'          => array(
 					'description' => __( 'An alphanumeric identifier for the resource unique to its type.', 'woocommerce-germanized' ),
 					'type'        => 'string',
 					'context'     => array( 'view', 'edit' ),
@@ -111,7 +111,7 @@ class WC_GZD_REST_Nutrients_Controller extends WC_REST_Terms_Controller {
 						'sanitize_callback' => 'sanitize_title',
 					),
 				),
-				'description' => array(
+				'description'   => array(
 					'description' => __( 'HTML description of the nutrient.', 'woocommerce-germanized' ),
 					'type'        => 'string',
 					'context'     => array( 'view', 'edit' ),
@@ -119,7 +119,7 @@ class WC_GZD_REST_Nutrients_Controller extends WC_REST_Terms_Controller {
 						'sanitize_callback' => 'wp_filter_post_kses',
 					),
 				),
-				'order'       => array(
+				'order'         => array(
 					'description' => __( 'The current nutrient order.', 'woocommerce-germanized' ),
 					'type'        => 'integer',
 					'context'     => array( 'view', 'edit' ),
@@ -127,7 +127,7 @@ class WC_GZD_REST_Nutrients_Controller extends WC_REST_Terms_Controller {
 						'sanitize_callback' => 'absint',
 					),
 				),
-				'unit'    => array(
+				'unit'          => array(
 					'description' => __( 'The current nutrient unit term by slug or id.', 'woocommerce-germanized' ),
 					'type'        => 'string',
 					'context'     => array( 'view', 'edit' ),
@@ -135,7 +135,7 @@ class WC_GZD_REST_Nutrients_Controller extends WC_REST_Terms_Controller {
 						'sanitize_callback' => 'sanitize_title',
 					),
 				),
-				'type'    => array(
+				'type'          => array(
 					'description' => __( 'The current nutrient type.', 'woocommerce-germanized' ),
 					'type'        => 'string',
 					'enum'        => array_keys( WC_GZD_Food_Helper::get_nutrient_types() ),
@@ -144,7 +144,7 @@ class WC_GZD_REST_Nutrients_Controller extends WC_REST_Terms_Controller {
 						'sanitize_callback' => 'sanitize_title',
 					),
 				),
-				'rounding_rule'    => array(
+				'rounding_rule' => array(
 					'description' => __( 'The current nutrient rounding rule.', 'woocommerce-germanized' ),
 					'type'        => 'string',
 					'context'     => array( 'view', 'edit' ),
@@ -153,11 +153,11 @@ class WC_GZD_REST_Nutrients_Controller extends WC_REST_Terms_Controller {
 						'sanitize_callback' => 'sanitize_title',
 					),
 				),
-				'unit_label'      => array(
+				'unit_label'    => array(
 					'description' => __( 'The current nutrient unit.', 'woocommerce-germanized' ),
 					'type'        => 'string',
 					'context'     => array( 'view', 'edit' ),
-					'readonly'    => true
+					'readonly'    => true,
 				),
 			),
 		);

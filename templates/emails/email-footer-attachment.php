@@ -12,7 +12,7 @@
  *
  * @see https://github.com/vendidero/woocommerce-germanized/wiki/Overriding-Germanized-Templates
  * @package Germanized/Templates
- * @version 1.1.0
+ * @version 1.1.1
  *
  * @var int $post_id
  * @var string $post_content
@@ -22,12 +22,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 } // Exit if accessed directly
 ?>
-<div class="wc-gzd-email-attach-post smaller" id="wc-gzd-email-attach-post-<?php the_id(); ?>">
-    <?php if ( $print_title ) : ?>
-        <h4 class="wc-gzd-mail-main-title"><?php the_title(); ?></h4>
-    <?php endif; ?>
+<div class="wc-gzd-email-attach-post smaller" id="wc-gzd-email-attach-post-<?php echo esc_attr( get_the_ID() ); ?>">
+	<?php if ( $print_title ) : ?>
+		<h4 class="wc-gzd-mail-main-title"><?php the_title(); ?></h4>
+	<?php endif; ?>
 
-    <div class="wc-gzd-email-attached-content">
-        <?php echo $post_content; ?>
-    </div>
+	<div class="wc-gzd-email-attached-content">
+		<?php echo wp_kses_post( $post_content ); ?>
+	</div>
 </div>

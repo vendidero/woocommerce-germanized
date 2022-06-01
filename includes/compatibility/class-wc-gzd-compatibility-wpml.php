@@ -44,19 +44,27 @@ class WC_GZD_Compatibility_WPML extends WC_GZD_Compatibility {
 			$this->dynamic_unit_pricing = new WC_GZD_Compatibility_Woocommerce_Dynamic_Pricing();
 			$this->dynamic_unit_pricing->load();
 
-			add_action( 'woocommerce_gzd_before_get_unit_price_html', array(
-				$this,
-				'before_show_product_unit_price'
-			), 10, 1 );
+			add_action(
+				'woocommerce_gzd_before_get_unit_price_html',
+				array(
+					$this,
+					'before_show_product_unit_price',
+				),
+				10,
+				1
+			);
 		}
 
 		// Prevent double sending order confirmation email to admin
 		if ( wc_gzd_send_instant_order_confirmation() ) {
 			add_action( 'wp_loaded', array( $this, 'unregister_order_confirmation_hooks' ) );
-			add_action( 'woocommerce_germanized_before_order_confirmation', array(
-				$this,
-				'send_order_admin_confirmation'
-			) );
+			add_action(
+				'woocommerce_germanized_before_order_confirmation',
+				array(
+					$this,
+					'send_order_admin_confirmation',
+				)
+			);
 		}
 
 		add_action( 'woocommerce_gzd_get_term', array( $this, 'unhook_terms_clause' ), 10 );
@@ -116,7 +124,7 @@ class WC_GZD_Compatibility_WPML extends WC_GZD_Compatibility {
 			global $sitepress;
 
 			if ( $sitepress->get_default_language() !== $sitepress->get_current_language() ) {
-				foreach( $delivery_times as $term ) {
+				foreach ( $delivery_times as $term ) {
 					$translated_id = (int) apply_filters( 'wpml_object_id', $term->term_id, 'product_delivery_time', false, $sitepress->get_default_language() );
 
 					if ( $translated_id !== $term->term_id ) {
@@ -140,7 +148,7 @@ class WC_GZD_Compatibility_WPML extends WC_GZD_Compatibility {
 		if ( 'view' === $context && ! empty( $delivery_time_countries ) && $sitepress->get_default_language() !== $sitepress->get_current_language() ) {
 			$delivery_times = $gzd_product->get_delivery_times();
 
-			foreach( $delivery_time_countries as $country => $delivery_time_country ) {
+			foreach ( $delivery_time_countries as $country => $delivery_time_country ) {
 				if ( array_key_exists( $delivery_time_country, $delivery_times ) ) {
 					$delivery_time_countries[ $country ] = $delivery_times[ $delivery_time_country ]->translated_term_slug;
 				}
@@ -229,7 +237,7 @@ class WC_GZD_Compatibility_WPML extends WC_GZD_Compatibility {
 			if ( $object ) {
 				if ( is_a( $object, 'WC_Order' ) ) {
 					$lang = $object->get_meta( 'wpml_language' );
-				} elseif( is_a( $object, '\Vendidero\Germanized\Shipments\Shipment' ) ) {
+				} elseif ( is_a( $object, '\Vendidero\Germanized\Shipments\Shipment' ) ) {
 					if ( $order = $object->get_order() ) {
 						$lang = $order->get_meta( 'wpml_language' );
 					}
@@ -294,10 +302,10 @@ class WC_GZD_Compatibility_WPML extends WC_GZD_Compatibility {
 			return false;
 		}
 
-		$domain     = 'admin_texts_woocommerce_' . $email_id . '_settings';
-		$namePrefix = '[woocommerce_' . $email_id . '_settings]';
+		$domain      = 'admin_texts_woocommerce_' . $email_id . '_settings';
+		$name_prefix = '[woocommerce_' . $email_id . '_settings]';
 
-		return $woocommerce_wpml->emails->wcml_get_translated_email_string( $domain, $namePrefix . $option_name, false, $this->email_lang );
+		return $woocommerce_wpml->emails->wcml_get_translated_email_string( $domain, $name_prefix . $option_name, false, $this->email_lang );
 	}
 
 	/**
@@ -349,7 +357,7 @@ class WC_GZD_Compatibility_WPML extends WC_GZD_Compatibility {
 	protected function get_email_options() {
 		$email_options = array();
 
-		foreach( $this->get_emails() as $key => $email_id ) {
+		foreach ( $this->get_emails() as $key => $email_id ) {
 			$email_options[ $key ] = 'woocommerce_' . $email_id . '_settings';
 		}
 
@@ -365,13 +373,13 @@ class WC_GZD_Compatibility_WPML extends WC_GZD_Compatibility {
 	public function filter_email_section_prefix( $prefix, $email_option ) {
 		$email_options = $this->get_email_options();
 
-		if ( in_array( $email_option, $email_options ) ) {
-			$key    = array_search( $email_option, $email_options );
+		if ( in_array( $email_option, $email_options, true ) ) {
+			$key    = array_search( $email_option, $email_options, true );
 			$prefix = 'wc_gzd_email_';
 
 			if ( $key && strpos( $key, 'GZDP_' ) !== false ) {
 				$prefix = 'wc_gzdp_email_';
-			} elseif( $key && strpos( $key, 'TS_' ) !== false ) {
+			} elseif ( $key && strpos( $key, 'TS_' ) !== false ) {
 				$prefix = 'wc_ts_email_';
 			}
 		}
@@ -441,14 +449,22 @@ class WC_GZD_Compatibility_WPML extends WC_GZD_Compatibility {
 
 			// Remove duplicate filters which lead to non-replaced placeholders
 			if ( method_exists( $woocommerce_wpml->emails, 'new_order_email_heading' ) ) {
-				remove_filter( 'woocommerce_email_heading_new_order', array(
-					$woocommerce_wpml->emails,
-					'new_order_email_heading'
-				), 10 );
-				remove_filter( 'woocommerce_email_subject_new_order', array(
-					$woocommerce_wpml->emails,
-					'new_order_email_subject'
-				), 10 );
+				remove_filter(
+					'woocommerce_email_heading_new_order',
+					array(
+						$woocommerce_wpml->emails,
+						'new_order_email_heading',
+					),
+					10
+				);
+				remove_filter(
+					'woocommerce_email_subject_new_order',
+					array(
+						$woocommerce_wpml->emails,
+						'new_order_email_subject',
+					),
+					10
+				);
 			}
 
 			// Instantiate mailer to make sure that new order email is known
@@ -461,10 +477,13 @@ class WC_GZD_Compatibility_WPML extends WC_GZD_Compatibility {
 			}
 
 			// Stop Germanized from sending the notification
-			add_filter( 'woocommerce_germanized_order_email_admin_confirmation_sent', array(
-				$this,
-				'set_order_admin_confirmation'
-			) );
+			add_filter(
+				'woocommerce_germanized_order_email_admin_confirmation_sent',
+				array(
+					$this,
+					'set_order_admin_confirmation',
+				)
+			);
 		}
 	}
 
@@ -525,12 +544,14 @@ class WC_GZD_Compatibility_WPML extends WC_GZD_Compatibility {
 			}
 		}
 
-		if ( isset( $sitepress ) && is_callable( array(
+		if ( isset( $sitepress ) && is_callable(
+			array(
 				$sitepress,
-				'get_current_language'
-			) ) && is_callable( array( $sitepress, 'switch_lang' ) ) ) {
+				'get_current_language',
+			)
+		) && is_callable( array( $sitepress, 'switch_lang' ) ) ) {
 
-			if ( $sitepress->get_current_language() != $lang ) {
+			if ( $sitepress->get_current_language() !== $lang ) {
 				$this->new_language = $lang;
 			}
 
@@ -611,7 +632,7 @@ class WC_GZD_Compatibility_WPML extends WC_GZD_Compatibility {
 	public function translate_page( $id ) {
 		global $pagenow;
 
-		if ( is_admin() && $pagenow === 'options-permalink.php' ) {
+		if ( is_admin() && 'options-permalink.php' === $pagenow ) {
 			return $id;
 		}
 

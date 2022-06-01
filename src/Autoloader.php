@@ -54,8 +54,8 @@ class Autoloader {
 			'admin_notices',
 			function () {
 				?>
-                <div class="notice notice-error">
-                    <p>
+				<div class="notice notice-error">
+					<p>
 						<?php
 						printf(
 						/* translators: 1: is a link to a support document. 2: closing link */
@@ -64,8 +64,8 @@ class Autoloader {
 							'</a>'
 						);
 						?>
-                    </p>
-                </div>
+					</p>
+				</div>
 				<?php
 			}
 		);

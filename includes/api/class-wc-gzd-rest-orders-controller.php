@@ -49,7 +49,7 @@ class WC_GZD_REST_Orders_Controller {
 		$response_order_data['shipping']['title']           = $order->get_meta( '_shipping_title' );
 		$response_order_data['shipping']['title_formatted'] = wc_gzd_get_order_customer_title( $order, 'shipping' );
 
-		$response_order_data['parcel_delivery_opted_in']    = $order->get_meta( '_parcel_delivery_opted_in' );
+		$response_order_data['parcel_delivery_opted_in'] = $order->get_meta( '_parcel_delivery_opted_in' );
 
 		$holder     = $order->get_meta( '_direct_debit_holder' );
 		$iban       = $order->get_meta( '_direct_debit_iban' );
@@ -65,7 +65,7 @@ class WC_GZD_REST_Orders_Controller {
 			'holder'     => $holder,
 			'iban'       => $iban,
 			'bic'        => $bic,
-			'mandate_id' => $mandate_id
+			'mandate_id' => $mandate_id,
 		);
 
 		$response->set_data( $response_order_data );
@@ -180,24 +180,24 @@ class WC_GZD_REST_Orders_Controller {
 				'holder'     => array(
 					'description' => __( 'Account Holder', 'woocommerce-germanized' ),
 					'type'        => 'string',
-					'context'     => array( 'view', 'edit' )
+					'context'     => array( 'view', 'edit' ),
 				),
 				'iban'       => array(
 					'description' => __( 'IBAN', 'woocommerce-germanized' ),
 					'type'        => 'string',
-					'context'     => array( 'view', 'edit' )
+					'context'     => array( 'view', 'edit' ),
 				),
 				'bic'        => array(
 					'description' => __( 'BIC/SWIFT', 'woocommerce-germanized' ),
 					'type'        => 'string',
-					'context'     => array( 'view', 'edit' )
+					'context'     => array( 'view', 'edit' ),
 				),
 				'mandate_id' => array(
 					'description' => __( 'Mandate Reference ID', 'woocommerce-germanized' ),
 					'type'        => 'string',
-					'context'     => array( 'view', 'edit' )
-				)
-			)
+					'context'     => array( 'view', 'edit' ),
+				),
+			),
 		);
 
 		return $schema_properties;

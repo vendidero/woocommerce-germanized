@@ -20,7 +20,7 @@ class WC_GZD_Customer_Helper {
 	 * @since 1.0
 	 */
 	public function __clone() {
-		_doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?', 'woocommerce-germanized' ), '1.0' );
+		_doing_it_wrong( __FUNCTION__, esc_html__( 'Cheating huh?', 'woocommerce-germanized' ), '1.0' );
 	}
 
 	/**
@@ -29,7 +29,7 @@ class WC_GZD_Customer_Helper {
 	 * @since 1.0
 	 */
 	public function __wakeup() {
-		_doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?', 'woocommerce-germanized' ), '1.0' );
+		_doing_it_wrong( __FUNCTION__, esc_html__( 'Cheating huh?', 'woocommerce-germanized' ), '1.0' );
 	}
 
 	public function __construct() {
@@ -59,10 +59,15 @@ class WC_GZD_Customer_Helper {
 				add_filter( 'wp_authenticate_user', array( $this, 'login_restriction' ), 10, 2 );
 
 				// Disable auto login after registration
-				add_filter( 'woocommerce_registration_auth_new_customer', array(
-					$this,
-					'disable_registration_auto_login'
-				), 10, 2 );
+				add_filter(
+					'woocommerce_registration_auth_new_customer',
+					array(
+						$this,
+						'disable_registration_auto_login',
+					),
+					10,
+					2
+				);
 
 				/**
 				 * Maybe redirect customers that are not logged in to customer account page or
@@ -114,14 +119,14 @@ class WC_GZD_Customer_Helper {
 		if ( function_exists( 'WC' ) && ! is_null( WC()->session ) && WC()->session->doi_user_id ) {
 			unset( WC()->session->doi_user_id );
 		}
- 	}
+	}
 
 	public function resend_activation_check() {
 		if ( is_account_page() ) {
 			if (
 				isset( $_GET['action'], $_GET['_wpnonce'] ) &&
 				'wc-gzd-resend-activation' === $_GET['action'] &&
-				wp_verify_nonce( $_GET['_wpnonce'], 'wc-gzd-resend-activation' )
+				wp_verify_nonce( wp_unslash( $_GET['_wpnonce'] ), 'wc-gzd-resend-activation' ) // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 			) {
 				$user_id = ( ! is_null( WC()->session ) && WC()->session->get( 'doi_user_id' ) ) ? absint( WC()->session->get( 'doi_user_id' ) ) : false;
 
@@ -158,7 +163,7 @@ class WC_GZD_Customer_Helper {
 					wp_safe_redirect( esc_url_raw( apply_filters( 'woocommerce_gzd_double_opt_resent_activation_redirect', $url, $user_id ) ) );
 					exit();
 				}
-			} elseif( isset( $_GET['wc-gzd-resent'] ) ) {
+			} elseif ( isset( $_GET['wc-gzd-resent'] ) ) {
 				wc_add_notice( __( 'Please activate your account through clicking on the activation link received via email.', 'woocommerce-germanized' ), 'notice' );
 			}
 		}
@@ -171,7 +176,7 @@ class WC_GZD_Customer_Helper {
 			$session_user_id = get_current_user_id();
 		}
 
-		if ( $session_user_id && $session_user_id > 0 && ! is_cart() && ! is_checkout() && $this->enable_double_opt_in_for_user( $session_user_id ) && ! wc_gzd_is_customer_activated( $session_user_id ) && ! isset( $_GET['wc-gzd-resent'] ) ) {
+		if ( $session_user_id && $session_user_id > 0 && ! is_cart() && ! is_checkout() && $this->enable_double_opt_in_for_user( $session_user_id ) && ! wc_gzd_is_customer_activated( $session_user_id ) && ! isset( $_GET['wc-gzd-resent'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			$notice_text = sprintf( __( 'Did not receive the activation email? <a href="%s">Try again</a>.', 'woocommerce-germanized' ), esc_url( $this->get_resend_activation_url() ) );
 
 			if ( ! wc_has_notice( $notice_text, 'notice' ) ) {
@@ -319,7 +324,7 @@ class WC_GZD_Customer_Helper {
 			unset( WC()->session->disable_checkout_signup );
 		}
 
-		if ( ( 'yes' === get_option( 'woocommerce_enable_guest_checkout' ) && isset( $_GET['force-guest'] ) ) || 'yes' !== get_option( 'woocommerce_enable_signup_and_login_from_checkout' ) ) {
+		if ( ( 'yes' === get_option( 'woocommerce_enable_guest_checkout' ) && isset( $_GET['force-guest'] ) ) || 'yes' !== get_option( 'woocommerce_enable_signup_and_login_from_checkout' ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 
 			// Disable registration
 			WC()->session->set( 'disable_checkout_signup', true );
@@ -340,7 +345,7 @@ class WC_GZD_Customer_Helper {
 
 	public function show_disabled_checkout_notice() {
 
-		if ( ! is_user_logged_in() && isset( $_GET['account'] ) && 'activate' === $_GET['account'] ) {
+		if ( ! is_user_logged_in() && isset( $_GET['account'] ) && 'activate' === $_GET['account'] ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			wc_add_notice( __( 'Please activate your account through clicking on the activation link received via email.', 'woocommerce-germanized' ), 'notice' );
 
 			return;
@@ -351,7 +356,7 @@ class WC_GZD_Customer_Helper {
 		 */
 		if ( is_account_page() && WC()->session->get( 'login_redirect' ) && WC()->cart && WC()->cart->get_cart_contents_count() > 0 ) {
 			if ( ! is_user_logged_in() ) {
-				if ( isset( $_GET['show_checkout_notice'] ) && 'yes' === $_GET['show_checkout_notice'] ) {
+				if ( isset( $_GET['show_checkout_notice'] ) && 'yes' === $_GET['show_checkout_notice'] ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 					if ( get_option( 'woocommerce_enable_guest_checkout' ) === 'yes' ) {
 						wc_add_notice( sprintf( __( 'Continue without creating an account? <a href="%s">Click here</a>', 'woocommerce-germanized' ), esc_url( add_query_arg( array( 'force-guest' => 'yes' ), wc_gzd_get_page_permalink( 'checkout' ) ) ) ), 'notice' );
 					} else {
@@ -370,9 +375,12 @@ class WC_GZD_Customer_Helper {
 	}
 
 	protected function registration_redirect( $query_args = array() ) {
-		$query_args = wp_parse_args( $query_args, array(
-			'show_checkout_notice' => 'yes'
-		) );
+		$query_args = wp_parse_args(
+			$query_args,
+			array(
+				'show_checkout_notice' => 'yes',
+			)
+		);
 
 		/**
 		 * Filter URL which serves as redirection if a customer has not yet activated it's account and
@@ -441,7 +449,7 @@ class WC_GZD_Customer_Helper {
 		$user_roles             = ( isset( $user->roles ) ? (array) $user->roles : array() );
 
 		foreach ( $user_roles as $role ) {
-			if ( in_array( $role, $supported_roles ) ) {
+			if ( in_array( $role, $supported_roles, true ) ) {
 				$supports_double_opt_in = true;
 				break;
 			}
@@ -475,13 +483,13 @@ class WC_GZD_Customer_Helper {
 	 */
 	public function customer_account_activation_check() {
 		if ( is_account_page() ) {
-			if ( isset( $_GET['activate'] ) ) {
-				$activation_code = urldecode( wc_clean( wp_unslash( $_GET['activate'] ) ) );
+			if ( isset( $_GET['activate'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+				$activation_code = urldecode( wc_clean( wp_unslash( $_GET['activate'] ) ) ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 
 				if ( ! empty( $activation_code ) ) {
 					$result = $this->customer_account_activate( $activation_code, true );
 
-					if ( $result === true ) {
+					if ( true === $result ) {
 						$url = add_query_arg( array( 'activated' => 'yes' ) );
 						$url = remove_query_arg( 'activate', $url );
 						$url = remove_query_arg( 'suffix', $url );
@@ -501,7 +509,7 @@ class WC_GZD_Customer_Helper {
 						wc_add_notice( __( 'Sorry, but this activation code cannot be found.', 'woocommerce-germanized' ), 'error' );
 					}
 				}
-			} elseif ( isset( $_GET['activated'] ) ) {
+			} elseif ( isset( $_GET['activated'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 				wc_add_notice( __( 'Thank you. You have successfully activated your account.', 'woocommerce-germanized' ), 'notice' );
 			}
 		}
@@ -511,7 +519,6 @@ class WC_GZD_Customer_Helper {
 	 * Check for customer that didn't activate their accounts within a couple of time and delete them
 	 */
 	public function account_cleanup() {
-
 		$cleanup_interval = get_option( 'woocommerce_gzd_customer_cleanup_interval' );
 
 		if ( ! $this->is_double_opt_in_enabled() || ! $cleanup_interval || empty( $cleanup_interval ) ) {
@@ -520,7 +527,7 @@ class WC_GZD_Customer_Helper {
 
 		$roles             = array_map( 'ucfirst', $this->get_double_opt_in_user_roles() );
 		$cleanup_days      = (int) $cleanup_interval;
-		$registered_before = date( 'Y-m-d H:i:s', strtotime( "-{$cleanup_days} days" ) );
+		$registered_before = gmdate( 'Y-m-d H:i:s', strtotime( "-{$cleanup_days} days" ) );
 
 		$user_query = new WP_User_Query(
 			array(
@@ -530,9 +537,9 @@ class WC_GZD_Customer_Helper {
 					array(
 						'before'    => $registered_before,
 						'inclusive' => true,
-					)
+					),
 				),
-				'meta_query'   => array(
+				'meta_query'   => array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query
 					array(
 						'key'     => '_woocommerce_activation',
 						'compare' => 'EXISTS',
@@ -540,7 +547,7 @@ class WC_GZD_Customer_Helper {
 					array(
 						'key'     => '_woocommerce_activation',
 						'compare' => '!=',
-						'value'   => ''
+						'value'   => '',
 					),
 				),
 			)
@@ -560,7 +567,7 @@ class WC_GZD_Customer_Helper {
 				 *
 				 */
 				if ( apply_filters( 'woocommerce_gzd_delete_unactivated_customer', true, $user ) ) {
-					require_once( ABSPATH . 'wp-admin/includes/user.php' );
+					require_once ABSPATH . 'wp-admin/includes/user.php';
 					wp_delete_user( $user->ID );
 				}
 			}
@@ -588,17 +595,24 @@ class WC_GZD_Customer_Helper {
 		 * @since 1.0.0
 		 *
 		 */
-		$user_query = new WP_User_Query( apply_filters( 'woocommerce_gzd_customer_account_activation_query', array(
-			'role__in'   => $roles,
-			'number'     => 1,
-			'meta_query' => array(
+		$user_query = new WP_User_Query(
+			apply_filters(
+				'woocommerce_gzd_customer_account_activation_query',
 				array(
-					'key'     => '_woocommerce_activation',
-					'value'   => $activation_code,
-					'compare' => '=',
+					'role__in'   => $roles,
+					'number'     => 1,
+					'meta_query' => array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query
+						array(
+							'key'     => '_woocommerce_activation',
+							'value'   => $activation_code,
+							'compare' => '=',
+						),
+					),
 				),
-			),
-		), $activation_code, $login ) );
+				$activation_code,
+				$login
+			)
+		);
 
 		/**
 		 * Filters the expiration time of customer activation keys.
@@ -618,7 +632,7 @@ class WC_GZD_Customer_Helper {
 
 				if ( false !== strpos( $activation_code, ':' ) ) {
 					list( $activation_request_time, $activation_key ) = explode( ':', $activation_code, 2 );
-					$expiration_time = $activation_request_time + $expiration_duration;
+					$expiration_time                                  = $activation_request_time + $expiration_duration;
 				}
 
 				if ( $expiration_time && time() < $expiration_time ) {
@@ -766,10 +780,18 @@ class WC_GZD_Customer_Helper {
 		 * @since 1.0.0
 		 *
 		 */
-		return apply_filters( 'woocommerce_gzd_customer_activation_url', esc_url_raw( add_query_arg( array(
-			'activate' => urlencode( $key ),
-			'suffix'   => 'yes'
-		), wc_gzd_get_page_permalink( 'myaccount' ) ) ) );
+		return apply_filters(
+			'woocommerce_gzd_customer_activation_url',
+			esc_url_raw(
+				add_query_arg(
+					array(
+						'activate' => rawurlencode( $key ),
+						'suffix'   => 'yes',
+					),
+					wc_gzd_get_page_permalink( 'myaccount' )
+				)
+			)
+		);
 	}
 
 	public function get_customer_activation_meta( $customer_id, $force_new = false ) {
@@ -794,7 +816,7 @@ class WC_GZD_Customer_Helper {
 		// Now insert the key, hashed, into the DB.
 		if ( empty( $wp_hasher ) ) {
 			require_once ABSPATH . WPINC . '/class-phpass.php';
-			$wp_hasher = new PasswordHash( 8, true );
+			$wp_hasher = new PasswordHash( 8, true ); // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
 		}
 
 		$user_activation = time() . ':' . $wp_hasher->HashPassword( $key );

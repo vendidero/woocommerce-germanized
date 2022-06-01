@@ -1,0 +1,108 @@
+<?xml version="1.0"?>
+<ruleset name="WordPress Coding Standards">
+    <description>Germanized dev PHP_CodeSniffer ruleset.</description>
+
+    <file>.</file>
+
+    <!-- Exclude paths -->
+    <exclude-pattern>tests/</exclude-pattern>
+    <exclude-pattern>*/node_modules/*</exclude-pattern>
+    <exclude-pattern>*/vendor/*</exclude-pattern>
+    <exclude-pattern>*/packages/*</exclude-pattern>
+    <exclude-pattern>*/build/*</exclude-pattern>
+    <exclude-pattern>lib/</exclude-pattern>
+
+    <!-- Show progress, show the error codes for each message (source). -->
+    <arg value="ps" />
+
+    <!-- Strip the filepaths in reports down to the relevant bit. -->
+    <arg name="basepath" value="./" />
+
+    <arg name="extensions" value="php" />
+
+    <!-- Check up to 8 files simultaneously. -->
+    <arg name="parallel" value="8" />
+
+    <!-- Configs -->
+    <config name="minimum_supported_wp_version" value="5.4" />
+    <config name="testVersion" value="7.2-" />
+
+    <!-- Rules -->
+    <rule ref="WooCommerce-Core" />
+
+    <rule ref="WooCommerce.Functions.InternalInjectionMethod">
+        <include-pattern>src/</include-pattern>
+        <properties>
+            <property name="injectionMethod" value="init"/>
+        </properties>
+    </rule>
+
+    <rule ref="WordPress.WP.I18n">
+        <properties>
+            <property name="text_domain" type="array" value="woocommerce-germanized" />
+        </properties>
+    </rule>
+
+    <rule ref="PHPCompatibility">
+        <exclude-pattern>tests/</exclude-pattern>
+    </rule>
+
+    <rule ref="WordPress.Files.FileName.InvalidClassFileName">
+        <exclude-pattern>includes/**/abstract-*.php</exclude-pattern>
+        <exclude-pattern>tests/</exclude-pattern>
+        <exclude-pattern>src/</exclude-pattern>
+    </rule>
+
+    <rule ref="Squiz.Classes.ClassFileName">
+        <include-pattern>src/</include-pattern>
+    </rule>
+
+    <rule ref="Squiz.Classes.ValidClassName">
+        <include-pattern>src/</include-pattern>
+    </rule>
+
+    <rule ref="WordPress.Files.FileName.NotHyphenatedLowercase">
+        <exclude-pattern>i18n/</exclude-pattern>
+        <exclude-pattern>src/</exclude-pattern>
+    </rule>
+
+    <rule ref="PSR2.Classes.PropertyDeclaration.Underscore">
+        <exclude-pattern>*</exclude-pattern>
+    </rule>
+
+    <rule ref="Generic.Commenting">
+        <exclude-pattern>*</exclude-pattern>
+    </rule>
+
+    <rule ref="Squiz.Commenting.FunctionComment">
+        <exclude-pattern>*</exclude-pattern>
+    </rule>
+
+    <rule ref="Squiz.Commenting.InlineComment">
+        <exclude-pattern>*</exclude-pattern>
+    </rule>
+
+    <rule ref="WooCommerce.Commenting.CommentTags">
+        <exclude-pattern>*</exclude-pattern>
+    </rule>
+
+    <rule ref="Squiz.Commenting">
+        <exclude-pattern>*</exclude-pattern>
+    </rule>
+
+    <rule ref="WooCommerce.Commenting">
+        <exclude-pattern>*</exclude-pattern>
+    </rule>
+
+    <rule ref="WordPress.WP.I18n.MissingTranslatorsComment">
+        <exclude-pattern>*</exclude-pattern>
+    </rule>
+
+    <rule ref="Squiz.PHP.DisallowMultipleAssignments">
+        <exclude-pattern>*</exclude-pattern>
+    </rule>
+
+    <rule ref="WordPress.CodeAnalysis.AssignmentInCondition">
+        <exclude-pattern>*</exclude-pattern>
+    </rule>
+</ruleset>

@@ -37,30 +37,31 @@ if ( 'yes' === get_option( 'woocommerce_gzd_dhl_parcel_shops' ) ) {
 
 // Support old post numbers
 $wpdb->hide_errors();
-$wpdb->update( $wpdb->usermeta, array( 'meta_key' => 'shipping_parcelshop_post_number' ), array( 'meta_key' => 'shipping_dhl_postnumber' ) );
+$wpdb->update( $wpdb->usermeta, array( 'meta_key' => 'shipping_parcelshop_post_number' ), array( 'meta_key' => 'shipping_dhl_postnumber' ) ); // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key
 
 // Update last 50 orders parcelshop legacy data
-$orders = wc_get_orders( array(
-	'limit'   => 50,
-	'offset'  => 0,
-	'orderby' => 'date',
-	'order'   => 'DESC',
-	'type'    => 'shop_order'
-) );
+$orders = wc_get_orders(
+	array(
+		'limit'   => 50,
+		'offset'  => 0,
+		'orderby' => 'date',
+		'order'   => 'DESC',
+		'type'    => 'shop_order',
+	)
+);
 
 if ( ! empty( $orders ) ) {
-	foreach ( $orders as $order ) {
-		if ( ! $order->get_meta( '_shipping_address_type' ) ) {
+	foreach ( $orders as $wc_order ) {
+		if ( ! $wc_order->get_meta( '_shipping_address_type' ) ) {
 
 			// Germanized legacy parcel shop data
-			if ( $order->get_meta( '_shipping_parcelshop_post_number' ) && $order->get_meta( '_shipping_parcelshop' ) ) {
+			if ( $wc_order->get_meta( '_shipping_parcelshop_post_number' ) && $wc_order->get_meta( '_shipping_parcelshop' ) ) {
+				$wc_order->update_meta_data( '_shipping_address_type', 'dhl' );
+				$wc_order->update_meta_data( '_shipping_dhl_postnumber', $wc_order->get_meta( '_shipping_parcelshop_post_number' ) );
 
-				$order->update_meta_data( '_shipping_address_type', 'dhl' );
-				$order->update_meta_data( '_shipping_dhl_postnumber', $order->get_meta( '_shipping_parcelshop_post_number' ) );
-
-				$order->save();
+				$wc_order->save();
 			}
 		}
 	}
 }
-?>
+

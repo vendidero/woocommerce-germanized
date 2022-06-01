@@ -17,10 +17,6 @@ class WC_GZD_Compatibility_B2B_Market extends WC_GZD_Compatibility_Woocommerce_R
 		return 'b2b-market/b2b-market.php';
 	}
 
-	protected function hooks() {
-		parent::hooks();
-	}
-
 	public function set_unit_price_filter() {
 		if ( apply_filters( 'woocommerce_gzd_enable_b2b_market_unit_price_compatibility', true ) ) {
 			add_action( 'woocommerce_gzd_before_get_unit_price', array( $this, 'calculate_unit_price' ), 10, 1 );
@@ -41,23 +37,23 @@ class WC_GZD_Compatibility_B2B_Market extends WC_GZD_Compatibility_Woocommerce_R
 		for ( $i = 0; $i < $price_count; $i++ ) {
 			$needle = 'woocommerce-Price-currencySymbol';
 
-			$start_pos  = strpos( $price_html, $needle, $start_pos_offset );
+			$start_pos         = strpos( $price_html, $needle, $start_pos_offset );
 			$start_pos_offset += ( $start_pos + strlen( $needle ) );
-			$price_test = substr( $price_html, ( $start_pos - 30 ), 30 );
+			$price_test        = substr( $price_html, ( $start_pos - 30 ), 30 );
 
-			if ( in_array( $currency_pos, array( 'left_space', 'left' ) ) ) {
+			if ( in_array( $currency_pos, array( 'left_space', 'left' ), true ) ) {
 				$price_test = substr( $price_html, ( $start_pos + 30 ), 30 );
 			}
 
-			$sep        = wc_get_price_decimal_separator();
-			$regex_sep  = '.' === $sep ? '\.' : $sep;
+			$sep       = wc_get_price_decimal_separator();
+			$regex_sep = '.' === $sep ? '\.' : $sep;
 
-			preg_match_all('/\d+' . $regex_sep . '\d+/', $price_test, $matches );
+			preg_match_all( '/\d+' . $regex_sep . '\d+/', $price_test, $matches );
 
 			if ( ! empty( $matches[0] ) ) {
 				$prices[] = array(
 					'string' => $matches[0][0],
-					'number' => floatval( str_replace( ',', '.', $matches[0][0] ) )
+					'number' => floatval( str_replace( ',', '.', $matches[0][0] ) ),
 				);
 			}
 		}
@@ -84,7 +80,7 @@ class WC_GZD_Compatibility_B2B_Market extends WC_GZD_Compatibility_Woocommerce_R
 
 		$new_unit_price_html = $price_html;
 
-		foreach( $prices as $price_data ) {
+		foreach ( $prices as $price_data ) {
 			$args = array(
 				'regular_price' => $price_data['number'],
 				'sale_price'    => $price_data['number'],
@@ -131,7 +127,7 @@ class WC_GZD_Compatibility_B2B_Market extends WC_GZD_Compatibility_Woocommerce_R
 					$tax_rates      = WC_Tax::get_rates( $product->get_tax_class() );
 					$base_tax_rates = WC_Tax::get_base_tax_rates( $product->get_tax_class( 'unfiltered' ) );
 
-					foreach( $args as $key => $line_price ) {
+					foreach ( $args as $key => $line_price ) {
 						$remove_taxes = apply_filters( 'woocommerce_adjust_non_base_location_prices', true ) ? WC_Tax::calc_tax( $line_price, $base_tax_rates, true ) : WC_Tax::calc_tax( $line_price, $tax_rates, true );
 						$return_price = $line_price - array_sum( $remove_taxes );
 

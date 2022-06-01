@@ -29,14 +29,17 @@ class Shopmark {
 	protected $default_enabled = true;
 
 	public function __construct( $args = array() ) {
-		$args = wp_parse_args( $args, array(
-			'default_priority' => 10,
-			'callback'         => null,
-			'default_filter'   => '',
-			'location'         => '',
-			'type'             => '',
-			'default_enabled'  => true,
-		) );
+		$args = wp_parse_args(
+			$args,
+			array(
+				'default_priority' => 10,
+				'callback'         => null,
+				'default_filter'   => '',
+				'location'         => '',
+				'type'             => '',
+				'default_enabled'  => true,
+			)
+		);
 
 		$this->default_priority = $args['default_priority'];
 		$this->callback         = $args['callback'];

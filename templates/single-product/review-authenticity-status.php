@@ -12,7 +12,7 @@
  *
  * @see https://github.com/vendidero/woocommerce-germanized/wiki/Overriding-Germanized-Templates
  * @package Germanized/Templates
- * @version 3.0.1
+ * @version 3.0.2
  */
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -27,5 +27,5 @@ if ( '0' === $comment->comment_approved ) {
 ?>
 
 <p class="wc-gzd-additional-info wc-gzd-review-authenticity-status <?php echo ( $verified ? 'is-verified' : 'is-unverified' ); ?>">
-    <?php echo wc_gzd_get_legal_product_review_authenticity_notice( $comment->comment_ID ); ?>
+	<?php echo wp_kses_post( wc_gzd_get_legal_product_review_authenticity_notice( $comment->comment_ID ) ); ?>
 </p>

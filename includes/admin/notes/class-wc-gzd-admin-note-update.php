@@ -14,7 +14,7 @@ class WC_GZD_Admin_Note_Update extends WC_GZD_Admin_Note {
 	public function is_disabled() {
 		$is_disabled = true;
 
-		if ( get_option( '_wc_gzd_needs_update' ) == 1 && current_user_can( 'manage_woocommerce' ) ) {
+		if ( 1 === (int) get_option( '_wc_gzd_needs_update' ) && current_user_can( 'manage_woocommerce' ) ) {
 			$is_disabled = false;
 		}
 
@@ -41,7 +41,7 @@ class WC_GZD_Admin_Note_Update extends WC_GZD_Admin_Note {
 				'target'       => '_self',
 				'nonce_name'   => 'wc_gzd_db_update_nonce',
 				'nonce_action' => 'wc_gzd_db_update',
-			)
+			),
 		);
 	}
 }

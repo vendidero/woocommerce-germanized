@@ -31,7 +31,11 @@ class WC_GZD_Settings_Tab_DOI extends WC_GZD_Settings_Tab {
 
 	public function get_tab_settings( $current_section = '' ) {
 		return array(
-			array( 'title' => '', 'type' => 'title', 'id' => 'doi_options' ),
+			array(
+				'title' => '',
+				'type'  => 'title',
+				'id'    => 'doi_options',
+			),
 
 			array(
 				'title'   => __( 'Enable', 'woocommerce-germanized' ),
@@ -58,14 +62,18 @@ class WC_GZD_Settings_Tab_DOI extends WC_GZD_Settings_Tab {
 				'id'                => 'woocommerce_gzd_customer_cleanup_interval',
 				'type'              => 'number',
 				'css'               => 'width: 80px;',
-				'custom_attributes' => array( 'min'                                              => 0,
-				                              'step'                                             => 1,
-				                              'data-show_if_woocommerce_gzd_customer_activation' => ''
+				'custom_attributes' => array(
+					'min'  => 0,
+					'step' => 1,
+					'data-show_if_woocommerce_gzd_customer_activation' => '',
 				),
 				'default'           => 7,
 			),
 
-			array( 'type' => 'sectionend', 'id' => 'doi_options' ),
+			array(
+				'type' => 'sectionend',
+				'id'   => 'doi_options',
+			),
 		);
 	}
 

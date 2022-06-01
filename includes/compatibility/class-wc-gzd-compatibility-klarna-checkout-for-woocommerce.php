@@ -80,7 +80,7 @@ class WC_GZD_Compatibility_Klarna_Checkout_For_WooCommerce extends WC_GZD_Compat
 			if ( ! $this->add_klarna_checkboxes() ) {
 				$checkboxes = WC_GZD_Legal_Checkbox_Manager::instance()->get_checkboxes( array( 'locations' => 'checkout' ) );
 
-				foreach( $checkboxes as $checkbox ) {
+				foreach ( $checkboxes as $checkbox ) {
 					$checkbox->set_is_mandatory( false );
 				}
 			}

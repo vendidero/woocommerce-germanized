@@ -19,7 +19,7 @@ class WC_GZD_Legal_Checkbox_Manager {
 		'sepa',
 		'review_reminder',
 		'used_goods_warranty',
-		'defective_copy'
+		'defective_copy',
 	);
 
 	public static function instance() {
@@ -42,15 +42,23 @@ class WC_GZD_Legal_Checkbox_Manager {
 		// Cannot use after_setup_theme here because language packs are not yet loaded
 		add_action( 'init', array( $this, 'do_register_action' ), 50 );
 
-		add_action( 'woocommerce_gzd_run_legal_checkboxes_checkout', array(
-			$this,
-			'show_conditionally_checkout'
-		), 10 );
+		add_action(
+			'woocommerce_gzd_run_legal_checkboxes_checkout',
+			array(
+				$this,
+				'show_conditionally_checkout',
+			),
+			10
+		);
 
-		add_action( 'woocommerce_gzd_run_legal_checkboxes_pay_for_order', array(
-			$this,
-			'show_conditionally_pay_for_order'
-		), 10 );
+		add_action(
+			'woocommerce_gzd_run_legal_checkboxes_pay_for_order',
+			array(
+				$this,
+				'show_conditionally_pay_for_order',
+			),
+			10
+		);
 
 		add_filter( 'woocommerce_update_order_review_fragments', array( $this, 'refresh_fragments_checkout' ), 10, 1 );
 	}
@@ -63,7 +71,7 @@ class WC_GZD_Legal_Checkbox_Manager {
 			if ( $checkbox = $this->get_checkbox( 'terms' ) ) {
 				$locations = $checkbox->get_locations();
 
-				if ( in_array( 'pay_for_order', $locations ) ) {
+				if ( in_array( 'pay_for_order', $locations, true ) ) {
 					$locations = array_diff( $locations, array( 'pay_for_order' ) );
 					$checkbox->set_locations( $locations );
 				}
@@ -75,10 +83,12 @@ class WC_GZD_Legal_Checkbox_Manager {
 		$this->maybe_do_hooks( 'checkout' );
 
 		foreach (
-			$this->get_checkboxes( array(
-				'locations'            => 'checkout',
-				'do_refresh_fragments' => true
-			) ) as $id => $checkbox
+			$this->get_checkboxes(
+				array(
+					'locations'            => 'checkout',
+					'do_refresh_fragments' => true,
+				)
+			) as $id => $checkbox
 		) {
 			ob_start();
 			$checkbox->render();
@@ -116,110 +126,128 @@ class WC_GZD_Legal_Checkbox_Manager {
 
 	public function register_core_checkboxes() {
 
-		wc_gzd_register_legal_checkbox( 'terms', array(
-			'html_id'              => 'legal',
-			'html_name'            => 'legal',
-			'html_wrapper_classes' => array( 'legal' ),
-			'hide_input'           => false,
-			'label'                => __( 'With your order, you agree to have read and understood our {term_link}Terms and Conditions{/term_link} and {revocation_link}Cancellation Policy{/revocation_link}.', 'woocommerce-germanized' ),
-			'error_message'        => __( 'To complete the order you have to accept to our {term_link}Terms and Conditions{/term_link} and {revocation_link}Cancellation Policy{/revocation_link}.', 'woocommerce-germanized' ),
-			'is_mandatory'         => true,
-			'priority'             => 0,
-			'template_name'        => 'checkout/terms.php',
-			'template_args'        => array( 'gzd_checkbox' => true ),
-			'is_core'              => true,
-			'admin_name'           => __( 'Legal', 'woocommerce-germanized' ),
-			'admin_desc'           => __( 'General legal checkbox which shall include terms and cancellation policy.', 'woocommerce-germanized' ),
-			'locations'            => array( 'checkout', 'pay_for_order' ),
-		) );
+		wc_gzd_register_legal_checkbox(
+			'terms',
+			array(
+				'html_id'              => 'legal',
+				'html_name'            => 'legal',
+				'html_wrapper_classes' => array( 'legal' ),
+				'hide_input'           => false,
+				'label'                => __( 'With your order, you agree to have read and understood our {term_link}Terms and Conditions{/term_link} and {revocation_link}Cancellation Policy{/revocation_link}.', 'woocommerce-germanized' ),
+				'error_message'        => __( 'To complete the order you have to accept to our {term_link}Terms and Conditions{/term_link} and {revocation_link}Cancellation Policy{/revocation_link}.', 'woocommerce-germanized' ),
+				'is_mandatory'         => true,
+				'priority'             => 0,
+				'template_name'        => 'checkout/terms.php',
+				'template_args'        => array( 'gzd_checkbox' => true ),
+				'is_core'              => true,
+				'admin_name'           => __( 'Legal', 'woocommerce-germanized' ),
+				'admin_desc'           => __( 'General legal checkbox which shall include terms and cancellation policy.', 'woocommerce-germanized' ),
+				'locations'            => array( 'checkout', 'pay_for_order' ),
+			)
+		);
 
-		wc_gzd_register_legal_checkbox( 'download', array(
-			'html_id'              => 'data-download',
-			'html_name'            => 'download-revocate',
-			'html_wrapper_classes' => array( 'legal' ),
-			'label'                => __( 'For digital products: I strongly agree that the execution of the agreement starts before the revocation period has expired. I am aware that my right of withdrawal ceases with the beginning of the agreement.', 'woocommerce-germanized' ),
-			'error_message'        => __( 'To retrieve direct access to digital content you have to agree to the loss of your right of withdrawal.', 'woocommerce-germanized' ),
-			'is_mandatory'         => true,
-			'priority'             => 1,
-			'is_enabled'           => true,
-			'is_core'              => true,
-			'is_shown'             => false,
-			'admin_name'           => __( 'Digital', 'woocommerce-germanized' ),
-			'admin_desc'           => __( 'Asks the customer to skip revocation period for digital products.', 'woocommerce-germanized' ),
-			'locations'            => array( 'checkout' ),
-			'types'                => array( 'downloadable' ),
-		) );
+		wc_gzd_register_legal_checkbox(
+			'download',
+			array(
+				'html_id'              => 'data-download',
+				'html_name'            => 'download-revocate',
+				'html_wrapper_classes' => array( 'legal' ),
+				'label'                => __( 'For digital products: I strongly agree that the execution of the agreement starts before the revocation period has expired. I am aware that my right of withdrawal ceases with the beginning of the agreement.', 'woocommerce-germanized' ),
+				'error_message'        => __( 'To retrieve direct access to digital content you have to agree to the loss of your right of withdrawal.', 'woocommerce-germanized' ),
+				'is_mandatory'         => true,
+				'priority'             => 1,
+				'is_enabled'           => true,
+				'is_core'              => true,
+				'is_shown'             => false,
+				'admin_name'           => __( 'Digital', 'woocommerce-germanized' ),
+				'admin_desc'           => __( 'Asks the customer to skip revocation period for digital products.', 'woocommerce-germanized' ),
+				'locations'            => array( 'checkout' ),
+				'types'                => array( 'downloadable' ),
+			)
+		);
 
-		wc_gzd_register_legal_checkbox( 'service', array(
-			'html_id'              => 'data-service',
-			'html_name'            => 'service-revocate',
-			'html_wrapper_classes' => array( 'legal' ),
-			'label'                => __( 'For services: I demand and acknowledge the immediate performance of the service before the expiration of the withdrawal period. I acknowledge that thereby I lose my right to cancel once the service has begun.', 'woocommerce-germanized' ),
-			'error_message'        => __( 'To allow the immediate performance of the services you have to agree to the loss of your right of withdrawal.', 'woocommerce-germanized' ),
-			'is_mandatory'         => true,
-			'priority'             => 2,
-			'is_enabled'           => true,
-			'is_core'              => true,
-			'is_shown'             => false,
-			'admin_name'           => __( 'Service', 'woocommerce-germanized' ),
-			'admin_desc'           => __( 'Asks the customer to skip revocation period for services.', 'woocommerce-germanized' ),
-			'locations'            => array( 'checkout' )
-		) );
+		wc_gzd_register_legal_checkbox(
+			'service',
+			array(
+				'html_id'              => 'data-service',
+				'html_name'            => 'service-revocate',
+				'html_wrapper_classes' => array( 'legal' ),
+				'label'                => __( 'For services: I demand and acknowledge the immediate performance of the service before the expiration of the withdrawal period. I acknowledge that thereby I lose my right to cancel once the service has begun.', 'woocommerce-germanized' ),
+				'error_message'        => __( 'To allow the immediate performance of the services you have to agree to the loss of your right of withdrawal.', 'woocommerce-germanized' ),
+				'is_mandatory'         => true,
+				'priority'             => 2,
+				'is_enabled'           => true,
+				'is_core'              => true,
+				'is_shown'             => false,
+				'admin_name'           => __( 'Service', 'woocommerce-germanized' ),
+				'admin_desc'           => __( 'Asks the customer to skip revocation period for services.', 'woocommerce-germanized' ),
+				'locations'            => array( 'checkout' ),
+			)
+		);
 
-		wc_gzd_register_legal_checkbox( 'parcel_delivery', array(
-			'html_id'              => 'parcel-delivery-checkbox',
-			'html_name'            => 'parcel_delivery_checkbox',
-			'html_wrapper_classes' => array( 'legal' ),
-			'label'                => __( 'Yes, I would like to be reminded via E-mail about parcel delivery ({shipping_method_title}). Your E-mail Address will only be transferred to our parcel service provider for that particular reason.', 'woocommerce-germanized' ),
-			'label_args'           => array( '{shipping_method_title}' => '' ),
-			'is_mandatory'         => false,
-			'priority'             => 4,
-			'is_enabled'           => false,
-			'error_message'        => __( 'Please accept our parcel delivery agreement', 'woocommerce-germanized' ),
-			'is_core'              => true,
-			'refresh_fragments'    => true,
-			'is_shown'             => false,
-			'supporting_locations' => array( 'checkout' ),
-			'admin_name'           => __( 'Parcel Delivery', 'woocommerce-germanized' ),
-			'admin_desc'           => __( 'Asks the customer to hand over data to the parcel delivery service provider.', 'woocommerce-germanized' ),
-			'locations'            => array( 'checkout' )
-		) );
+		wc_gzd_register_legal_checkbox(
+			'parcel_delivery',
+			array(
+				'html_id'              => 'parcel-delivery-checkbox',
+				'html_name'            => 'parcel_delivery_checkbox',
+				'html_wrapper_classes' => array( 'legal' ),
+				'label'                => __( 'Yes, I would like to be reminded via E-mail about parcel delivery ({shipping_method_title}). Your E-mail Address will only be transferred to our parcel service provider for that particular reason.', 'woocommerce-germanized' ),
+				'label_args'           => array( '{shipping_method_title}' => '' ),
+				'is_mandatory'         => false,
+				'priority'             => 4,
+				'is_enabled'           => false,
+				'error_message'        => __( 'Please accept our parcel delivery agreement', 'woocommerce-germanized' ),
+				'is_core'              => true,
+				'refresh_fragments'    => true,
+				'is_shown'             => false,
+				'supporting_locations' => array( 'checkout' ),
+				'admin_name'           => __( 'Parcel Delivery', 'woocommerce-germanized' ),
+				'admin_desc'           => __( 'Asks the customer to hand over data to the parcel delivery service provider.', 'woocommerce-germanized' ),
+				'locations'            => array( 'checkout' ),
+			)
+		);
 
 		// Age verification
-		wc_gzd_register_legal_checkbox( 'age_verification', array(
-			'html_id'              => 'data-age-verification',
-			'html_name'            => 'age-verification',
-			'html_wrapper_classes' => array( 'legal' ),
-			'label'                => __( 'I hereby confirm that I\'m at least {age} years old.', 'woocommerce-germanized' ),
-			'label_args'           => array( '{age}' => '' ),
-			'error_message'        => __( 'Please confirm your age.', 'woocommerce-germanized' ),
-			'is_mandatory'         => true,
-			'priority'             => 5,
-			'is_enabled'           => true,
-			'is_core'              => true,
-			'is_shown'             => false,
-			'admin_name'           => __( 'Age Verification', 'woocommerce-germanized' ),
-			'admin_desc'           => __( 'Asks the customer to confirm a minimum age.', 'woocommerce-germanized' ),
-			'locations'            => array( 'checkout' ),
-		) );
+		wc_gzd_register_legal_checkbox(
+			'age_verification',
+			array(
+				'html_id'              => 'data-age-verification',
+				'html_name'            => 'age-verification',
+				'html_wrapper_classes' => array( 'legal' ),
+				'label'                => __( 'I hereby confirm that I\'m at least {age} years old.', 'woocommerce-germanized' ),
+				'label_args'           => array( '{age}' => '' ),
+				'error_message'        => __( 'Please confirm your age.', 'woocommerce-germanized' ),
+				'is_mandatory'         => true,
+				'priority'             => 5,
+				'is_enabled'           => true,
+				'is_core'              => true,
+				'is_shown'             => false,
+				'admin_name'           => __( 'Age Verification', 'woocommerce-germanized' ),
+				'admin_desc'           => __( 'Asks the customer to confirm a minimum age.', 'woocommerce-germanized' ),
+				'locations'            => array( 'checkout' ),
+			)
+		);
 
 		// New account
-		wc_gzd_register_legal_checkbox( 'privacy', array(
-			'html_id'              => 'reg_data_privacy',
-			'html_name'            => 'privacy',
-			'html_wrapper_classes' => array( 'legal', 'form-row-wide', 'terms-privacy-policy' ),
-			'label'                => __( 'Yes, I’d like create a new account and have read and understood the {data_security_link}data privacy statement{/data_security_link}.', 'woocommerce-germanized' ),
-			'is_mandatory'         => true,
-			'is_enabled'           => false,
-			'error_message'        => __( 'Please accept our privacy policy to create a new customer account', 'woocommerce-germanized' ),
-			'is_core'              => true,
-			'is_shown'             => true,
-			'refresh_fragments'    => true,
-			'priority'             => 4,
-			'admin_name'           => __( 'New account', 'woocommerce-germanized' ),
-			'admin_desc'           => __( 'Let customers accept your privacy policy before creating a new account.', 'woocommerce-germanized' ),
-			'locations'            => array( 'register' ),
-		) );
+		wc_gzd_register_legal_checkbox(
+			'privacy',
+			array(
+				'html_id'              => 'reg_data_privacy',
+				'html_name'            => 'privacy',
+				'html_wrapper_classes' => array( 'legal', 'form-row-wide', 'terms-privacy-policy' ),
+				'label'                => __( 'Yes, I’d like create a new account and have read and understood the {data_security_link}data privacy statement{/data_security_link}.', 'woocommerce-germanized' ),
+				'is_mandatory'         => true,
+				'is_enabled'           => false,
+				'error_message'        => __( 'Please accept our privacy policy to create a new customer account', 'woocommerce-germanized' ),
+				'is_core'              => true,
+				'is_shown'             => true,
+				'refresh_fragments'    => true,
+				'priority'             => 4,
+				'admin_name'           => __( 'New account', 'woocommerce-germanized' ),
+				'admin_desc'           => __( 'Let customers accept your privacy policy before creating a new account.', 'woocommerce-germanized' ),
+				'locations'            => array( 'register' ),
+			)
+		);
 
 		$direct_debit_settings = get_option( 'woocommerce_direct-debit_settings' );
 
@@ -227,7 +255,16 @@ class WC_GZD_Legal_Checkbox_Manager {
 		if ( is_array( $direct_debit_settings ) && 'yes' === $direct_debit_settings['enabled'] ) {
 
 			$order_secret = isset( $_GET['key'], $_GET['pay_for_order'] ) ? wc_clean( wp_unslash( $_GET['key'] ) ) : '';
-			$ajax_url     = wp_nonce_url( add_query_arg( array( 'action' => 'show_direct_debit', 'order_key' => $order_secret ), admin_url( 'admin-ajax.php' ) ), 'show_direct_debit' );
+			$ajax_url     = wp_nonce_url(
+				add_query_arg(
+					array(
+						'action'    => 'show_direct_debit',
+						'order_key' => $order_secret,
+					),
+					admin_url( 'admin-ajax.php' )
+				),
+				'show_direct_debit'
+			);
 
 			/**
 			 * Filter to adjust the direct debit mandate link.
@@ -238,59 +275,68 @@ class WC_GZD_Legal_Checkbox_Manager {
 			 */
 			$ajax_url = apply_filters( 'woocommerce_gzd_direct_debit_ajax_url', $ajax_url );
 
-			wc_gzd_register_legal_checkbox( 'sepa', array(
-				'html_id'              => 'direct-debit-checkbox',
-				'html_name'            => 'direct_debit_legal',
-				'html_wrapper_classes' => array( 'legal', 'direct-debit-checkbox' ),
-				'label'                => __( 'I hereby agree to the {link}direct debit mandate{/link}.', 'woocommerce-germanized' ),
-				'label_args'           => array(
-					'{link}'  => '<a href="' . esc_url( $ajax_url ) . '" id="show-direct-debit-trigger" rel="prettyPhoto">',
-					'{/link}' => '</a>'
-				),
-				'is_mandatory'         => true,
-				'error_message'        => __( 'Please accept the direct debit mandate.', 'woocommerce-germanized' ),
-				'priority'             => 5,
-				'template_name'        => 'checkout/terms-sepa.php',
-				'is_enabled'           => true,
-				'is_core'              => true,
-				'admin_name'           => __( 'SEPA', 'woocommerce-germanized' ),
-				'admin_desc'           => __( 'Asks the customer to issue the SEPA mandate.', 'woocommerce-germanized' ),
-				'locations'            => array( 'checkout', 'pay_for_order' )
-			) );
+			wc_gzd_register_legal_checkbox(
+				'sepa',
+				array(
+					'html_id'              => 'direct-debit-checkbox',
+					'html_name'            => 'direct_debit_legal',
+					'html_wrapper_classes' => array( 'legal', 'direct-debit-checkbox' ),
+					'label'                => __( 'I hereby agree to the {link}direct debit mandate{/link}.', 'woocommerce-germanized' ),
+					'label_args'           => array(
+						'{link}'  => '<a href="' . esc_url( $ajax_url ) . '" id="show-direct-debit-trigger" rel="prettyPhoto">',
+						'{/link}' => '</a>',
+					),
+					'is_mandatory'         => true,
+					'error_message'        => __( 'Please accept the direct debit mandate.', 'woocommerce-germanized' ),
+					'priority'             => 5,
+					'template_name'        => 'checkout/terms-sepa.php',
+					'is_enabled'           => true,
+					'is_core'              => true,
+					'admin_name'           => __( 'SEPA', 'woocommerce-germanized' ),
+					'admin_desc'           => __( 'Asks the customer to issue the SEPA mandate.', 'woocommerce-germanized' ),
+					'locations'            => array( 'checkout', 'pay_for_order' ),
+				)
+			);
 		}
 
-		wc_gzd_register_legal_checkbox( 'used_goods_warranty', array(
-			'html_id'              => 'data-used-goods-warranty',
-			'html_name'            => 'used-goods-warranty',
-			'html_wrapper_classes' => array( 'legal' ),
-			'label'                => __( 'For used goods: I have taken note that my warranty period is shortened to 12 months.', 'woocommerce-germanized' ),
-			'error_message'        => __( 'Please make sure to check our warranty note on used goods.', 'woocommerce-germanized' ),
-			'is_mandatory'         => true,
-			'priority'             => 6,
-			'is_enabled'           => false,
-			'is_core'              => true,
-			'is_shown'             => false,
-			'admin_name'           => __( 'Used Goods', 'woocommerce-germanized' ),
-			'admin_desc'           => __( 'Inform customers about shortened warranty for used goods.', 'woocommerce-germanized' ),
-			'locations'            => array( 'checkout' )
-		) );
+		wc_gzd_register_legal_checkbox(
+			'used_goods_warranty',
+			array(
+				'html_id'              => 'data-used-goods-warranty',
+				'html_name'            => 'used-goods-warranty',
+				'html_wrapper_classes' => array( 'legal' ),
+				'label'                => __( 'For used goods: I have taken note that my warranty period is shortened to 12 months.', 'woocommerce-germanized' ),
+				'error_message'        => __( 'Please make sure to check our warranty note on used goods.', 'woocommerce-germanized' ),
+				'is_mandatory'         => true,
+				'priority'             => 6,
+				'is_enabled'           => false,
+				'is_core'              => true,
+				'is_shown'             => false,
+				'admin_name'           => __( 'Used Goods', 'woocommerce-germanized' ),
+				'admin_desc'           => __( 'Inform customers about shortened warranty for used goods.', 'woocommerce-germanized' ),
+				'locations'            => array( 'checkout' ),
+			)
+		);
 
-		wc_gzd_register_legal_checkbox( 'defective_copy', array(
-			'html_id'              => 'data-defective-copy',
-			'html_name'            => 'defective-copy',
-			'html_wrapper_classes' => array( 'legal' ),
-			'label_args'           => array( '{defect_descriptions}' => '' ),
-			'label'                => __( 'I have taken note of the following defects: {defect_descriptions}.', 'woocommerce-germanized' ),
-			'error_message'        => __( 'Please make sure to check our note on defective copies.', 'woocommerce-germanized' ),
-			'is_mandatory'         => true,
-			'priority'             => 7,
-			'is_enabled'           => true,
-			'is_core'              => true,
-			'is_shown'             => false,
-			'admin_name'           => __( 'Defective Copies', 'woocommerce-germanized' ),
-			'admin_desc'           => __( 'Inform customers about product defects.', 'woocommerce-germanized' ),
-			'locations'            => array( 'checkout' )
-		) );
+		wc_gzd_register_legal_checkbox(
+			'defective_copy',
+			array(
+				'html_id'              => 'data-defective-copy',
+				'html_name'            => 'defective-copy',
+				'html_wrapper_classes' => array( 'legal' ),
+				'label_args'           => array( '{defect_descriptions}' => '' ),
+				'label'                => __( 'I have taken note of the following defects: {defect_descriptions}.', 'woocommerce-germanized' ),
+				'error_message'        => __( 'Please make sure to check our note on defective copies.', 'woocommerce-germanized' ),
+				'is_mandatory'         => true,
+				'priority'             => 7,
+				'is_enabled'           => true,
+				'is_core'              => true,
+				'is_shown'             => false,
+				'admin_name'           => __( 'Defective Copies', 'woocommerce-germanized' ),
+				'admin_desc'           => __( 'Inform customers about product defects.', 'woocommerce-germanized' ),
+				'locations'            => array( 'checkout' ),
+			)
+		);
 
 		/**
 		 * After core checkbox registration.
@@ -351,9 +397,12 @@ class WC_GZD_Legal_Checkbox_Manager {
 		if ( $checkbox = $this->get_checkbox( 'download' ) ) {
 			if ( $checkbox->is_enabled() ) {
 				if ( $is_downloadable ) {
-					wc_gzd_update_legal_checkbox( 'download', array(
-						'is_shown' => true,
-					) );
+					wc_gzd_update_legal_checkbox(
+						'download',
+						array(
+							'is_shown' => true,
+						)
+					);
 				}
 			}
 		}
@@ -362,10 +411,13 @@ class WC_GZD_Legal_Checkbox_Manager {
 		if ( $checkbox = $this->get_checkbox( 'age_verification' ) ) {
 			if ( $checkbox->is_enabled() ) {
 				if ( wc_gzd_order_has_age_verification( $order_id ) ) {
-					wc_gzd_update_legal_checkbox( 'age_verification', array(
-						'is_shown'   => true,
-						'label_args' => array( '{age}' => wc_gzd_get_order_min_age( $order_id ) ),
-					) );
+					wc_gzd_update_legal_checkbox(
+						'age_verification',
+						array(
+							'is_shown'   => true,
+							'label_args' => array( '{age}' => wc_gzd_get_order_min_age( $order_id ) ),
+						)
+					);
 				}
 			}
 		}
@@ -374,9 +426,12 @@ class WC_GZD_Legal_Checkbox_Manager {
 		if ( $checkbox = $this->get_checkbox( 'service' ) ) {
 			if ( $checkbox->is_enabled() ) {
 				if ( $is_service ) {
-					wc_gzd_update_legal_checkbox( 'service', array(
-						'is_shown' => true,
-					) );
+					wc_gzd_update_legal_checkbox(
+						'service',
+						array(
+							'is_shown' => true,
+						)
+					);
 				}
 			}
 		}
@@ -385,9 +440,12 @@ class WC_GZD_Legal_Checkbox_Manager {
 		if ( $checkbox = $this->get_checkbox( 'used_goods_warranty' ) ) {
 			if ( $checkbox->is_enabled() ) {
 				if ( $has_used_goods ) {
-					wc_gzd_update_legal_checkbox( 'used_goods_warranty', array(
-						'is_shown' => true,
-					) );
+					wc_gzd_update_legal_checkbox(
+						'used_goods_warranty',
+						array(
+							'is_shown' => true,
+						)
+					);
 				}
 			}
 		}
@@ -396,10 +454,13 @@ class WC_GZD_Legal_Checkbox_Manager {
 		if ( $checkbox = $this->get_checkbox( 'defective_copy' ) ) {
 			if ( $checkbox->is_enabled() ) {
 				if ( $has_defective_copies ) {
-					wc_gzd_update_legal_checkbox( 'defective_copy', array(
-						'is_shown'   => true,
-						'label_args' => array( '{defect_descriptions}' => wc_gzd_print_item_defect_descriptions( wc_gzd_get_order_defect_descriptions( $order_id ) ) ),
-					) );
+					wc_gzd_update_legal_checkbox(
+						'defective_copy',
+						array(
+							'is_shown'   => true,
+							'label_args' => array( '{defect_descriptions}' => wc_gzd_print_item_defect_descriptions( wc_gzd_get_order_defect_descriptions( $order_id ) ) ),
+						)
+					);
 				}
 			}
 		}
@@ -411,7 +472,7 @@ class WC_GZD_Legal_Checkbox_Manager {
 				$items  = $order->get_shipping_methods();
 				$titles = array();
 
-				foreach( $items as $item ) {
+				foreach ( $items as $item ) {
 					$ids[]    = $item->get_method_id();
 					$titles[] = $item->get_method_title();
 				}
@@ -419,10 +480,13 @@ class WC_GZD_Legal_Checkbox_Manager {
 				$is_enabled = wc_gzd_is_parcel_delivery_data_transfer_checkbox_enabled( $ids );
 
 				if ( $is_enabled ) {
-					wc_gzd_update_legal_checkbox( 'parcel_delivery', array(
-						'label_args' => array( '{shipping_method_title}' => implode( ', ', $titles ) ),
-						'is_shown'   => true,
-					) );
+					wc_gzd_update_legal_checkbox(
+						'parcel_delivery',
+						array(
+							'label_args' => array( '{shipping_method_title}' => implode( ', ', $titles ) ),
+							'is_shown'   => true,
+						)
+					);
 				}
 			}
 		}
@@ -460,9 +524,12 @@ class WC_GZD_Legal_Checkbox_Manager {
 		if ( $checkbox = $this->get_checkbox( 'download' ) ) {
 			if ( $checkbox->is_enabled() ) {
 				if ( $is_downloadable ) {
-					wc_gzd_update_legal_checkbox( 'download', array(
-						'is_shown' => true,
-					) );
+					wc_gzd_update_legal_checkbox(
+						'download',
+						array(
+							'is_shown' => true,
+						)
+					);
 				}
 			}
 		}
@@ -471,10 +538,13 @@ class WC_GZD_Legal_Checkbox_Manager {
 		if ( $checkbox = $this->get_checkbox( 'age_verification' ) ) {
 			if ( $checkbox->is_enabled() ) {
 				if ( wc_gzd_cart_needs_age_verification() ) {
-					wc_gzd_update_legal_checkbox( 'age_verification', array(
-						'is_shown'   => true,
-						'label_args' => array( '{age}' => wc_gzd_cart_get_age_verification_min_age() ),
-					) );
+					wc_gzd_update_legal_checkbox(
+						'age_verification',
+						array(
+							'is_shown'   => true,
+							'label_args' => array( '{age}' => wc_gzd_cart_get_age_verification_min_age() ),
+						)
+					);
 				}
 			}
 		}
@@ -507,13 +577,19 @@ class WC_GZD_Legal_Checkbox_Manager {
 				}
 
 				if ( is_user_logged_in() || ! WC()->checkout()->is_registration_enabled() || ! $create_account ) {
-					wc_gzd_update_legal_checkbox( 'privacy', array(
-						'is_shown' => false,
-					) );
+					wc_gzd_update_legal_checkbox(
+						'privacy',
+						array(
+							'is_shown' => false,
+						)
+					);
 				} else {
-					wc_gzd_update_legal_checkbox( 'privacy', array(
-						'is_shown' => true,
-					) );
+					wc_gzd_update_legal_checkbox(
+						'privacy',
+						array(
+							'is_shown' => true,
+						)
+					);
 				}
 			}
 		}
@@ -522,9 +598,12 @@ class WC_GZD_Legal_Checkbox_Manager {
 		if ( $checkbox = $this->get_checkbox( 'service' ) ) {
 			if ( $checkbox->is_enabled() ) {
 				if ( $is_service ) {
-					wc_gzd_update_legal_checkbox( 'service', array(
-						'is_shown' => true,
-					) );
+					wc_gzd_update_legal_checkbox(
+						'service',
+						array(
+							'is_shown' => true,
+						)
+					);
 				}
 			}
 		}
@@ -533,9 +612,12 @@ class WC_GZD_Legal_Checkbox_Manager {
 		if ( $checkbox = $this->get_checkbox( 'used_goods_warranty' ) ) {
 			if ( $checkbox->is_enabled() ) {
 				if ( $has_used_goods ) {
-					wc_gzd_update_legal_checkbox( 'used_goods_warranty', array(
-						'is_shown' => true,
-					) );
+					wc_gzd_update_legal_checkbox(
+						'used_goods_warranty',
+						array(
+							'is_shown' => true,
+						)
+					);
 				}
 			}
 		}
@@ -544,10 +626,13 @@ class WC_GZD_Legal_Checkbox_Manager {
 		if ( $checkbox = $this->get_checkbox( 'defective_copy' ) ) {
 			if ( $checkbox->is_enabled() ) {
 				if ( $has_defective_copies ) {
-					wc_gzd_update_legal_checkbox( 'defective_copy', array(
-						'is_shown' => true,
-						'label_args' => array( '{defect_descriptions}' => wc_gzd_print_item_defect_descriptions( wc_gzd_get_cart_defect_descriptions() ) ),
-					) );
+					wc_gzd_update_legal_checkbox(
+						'defective_copy',
+						array(
+							'is_shown'   => true,
+							'label_args' => array( '{defect_descriptions}' => wc_gzd_print_item_defect_descriptions( wc_gzd_get_cart_defect_descriptions() ) ),
+						)
+					);
 				}
 			}
 		}
@@ -571,10 +656,13 @@ class WC_GZD_Legal_Checkbox_Manager {
 				$is_enabled = wc_gzd_is_parcel_delivery_data_transfer_checkbox_enabled( $ids );
 
 				if ( $is_enabled ) {
-					wc_gzd_update_legal_checkbox( 'parcel_delivery', array(
-						'label_args' => array( '{shipping_method_title}' => implode( ', ', $titles ) ),
-						'is_shown'   => true,
-					) );
+					wc_gzd_update_legal_checkbox(
+						'parcel_delivery',
+						array(
+							'label_args' => array( '{shipping_method_title}' => implode( ', ', $titles ) ),
+							'is_shown'   => true,
+						)
+					);
 				}
 			}
 		}
@@ -621,7 +709,7 @@ class WC_GZD_Legal_Checkbox_Manager {
 
 			if ( $checkbox = $this->get_checkbox( $id ) ) {
 				$checkbox->update( $checkbox_args );
-			} elseif ( ! in_array( $id, $this->get_core_checkbox_ids() ) ) {
+			} elseif ( ! in_array( $id, $this->get_core_checkbox_ids() ) ) { // phpcs:ignore WordPress.PHP.StrictInArray.MissingTrueStrict
 				$this->register( $id, $checkbox_args );
 			}
 		}
@@ -719,12 +807,15 @@ class WC_GZD_Legal_Checkbox_Manager {
 		 * @since 2.0.0
 		 *
 		 */
-		return apply_filters( 'woocommerce_gzd_legal_checkbox_locations', array(
-			'checkout'      => __( 'Checkout', 'woocommerce-germanized' ),
-			'register'      => __( 'Register form', 'woocommerce-germanized' ),
-			'pay_for_order' => __( 'Pay for order', 'woocommerce-germanized' ),
-			'reviews'       => __( 'Reviews', 'woocommerce-germanized' )
-		) );
+		return apply_filters(
+			'woocommerce_gzd_legal_checkbox_locations',
+			array(
+				'checkout'      => __( 'Checkout', 'woocommerce-germanized' ),
+				'register'      => __( 'Register form', 'woocommerce-germanized' ),
+				'pay_for_order' => __( 'Pay for order', 'woocommerce-germanized' ),
+				'reviews'       => __( 'Reviews', 'woocommerce-germanized' ),
+			)
+		);
 	}
 
 	public function update( $id, $args ) {
@@ -750,23 +841,26 @@ class WC_GZD_Legal_Checkbox_Manager {
 
 	public function register( $id, $args ) {
 
-		$args = wp_parse_args( $args, array(
-			'html_name'            => '',
-			'html_id'              => '',
-			'is_mandatory'         => false,
-			'locations'            => array(),
-			'supporting_locations' => array(),
-			'html_wrapper_classes' => array(),
-			'html_classes'         => array(),
-			'label_args'           => array(),
-			'hide_input'           => false,
-			'error_message'        => '',
-			'admin_name'           => '',
-		) );
+		$args = wp_parse_args(
+			$args,
+			array(
+				'html_name'            => '',
+				'html_id'              => '',
+				'is_mandatory'         => false,
+				'locations'            => array(),
+				'supporting_locations' => array(),
+				'html_wrapper_classes' => array(),
+				'html_classes'         => array(),
+				'label_args'           => array(),
+				'hide_input'           => false,
+				'error_message'        => '',
+				'admin_name'           => '',
+			)
+		);
 
 		$bools = array(
 			'is_mandatory',
-			'hide_input'
+			'hide_input',
 		);
 
 		// Make sure we do understand yes and no as bools
@@ -789,7 +883,7 @@ class WC_GZD_Legal_Checkbox_Manager {
 		$args['label_args'] = array_merge( $args['label_args'], $this->get_legal_label_args() );
 
 		foreach ( $args['locations'] as $location ) {
-			if ( ! in_array( $location, array_keys( $this->get_locations() ) ) ) {
+			if ( ! in_array( $location, array_keys( $this->get_locations() ), true ) ) {
 				return new WP_Error( 'checkbox_location_inexistent', sprintf( __( 'Checkbox location %s does not exist.', 'woocommerce-germanized' ), $location ) );
 			}
 		}
@@ -798,15 +892,21 @@ class WC_GZD_Legal_Checkbox_Manager {
 			$args['supporting_locations'] = array_keys( $this->get_locations() );
 		}
 
-		$args['html_wrapper_classes'] = array_merge( $args['html_wrapper_classes'], array(
-			'form-row',
-			'checkbox-' . $args['html_id']
-		) );
-		$args['html_classes']         = array_merge( $args['html_classes'], array(
-			'woocommerce-form__input',
-			'woocommerce-form__input-checkbox',
-			'input-checkbox'
-		) );
+		$args['html_wrapper_classes'] = array_merge(
+			$args['html_wrapper_classes'],
+			array(
+				'form-row',
+				'checkbox-' . $args['html_id'],
+			)
+		);
+		$args['html_classes']         = array_merge(
+			$args['html_classes'],
+			array(
+				'woocommerce-form__input',
+				'woocommerce-form__input-checkbox',
+				'input-checkbox',
+			)
+		);
 
 		if ( $args['hide_input'] ) {
 			$args['is_mandatory'] = false;
@@ -904,7 +1004,7 @@ class WC_GZD_Legal_Checkbox_Manager {
 
 				if ( ! is_null( $obj_value ) ) {
 					if ( is_array( $obj_value ) && ! is_array( $m_value ) ) {
-						if ( in_array( $m_value, $obj_value ) ) {
+						if ( in_array( $m_value, $obj_value ) ) { // phpcs:ignore WordPress.PHP.StrictInArray.MissingTrueStrict
 							$matched ++;
 						}
 					} else {

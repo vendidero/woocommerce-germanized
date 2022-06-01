@@ -12,9 +12,11 @@ class WC_GZD_Shipping_Rate extends WC_Shipping_Rate {
 		try {
 			$method = new ReflectionMethod( 'WC_Shipping_Rate', '__construct' );
 			$num    = $method->getNumberOfParameters();
-		} catch ( Exception $e ) {}
+		} catch ( Exception $e ) { // phpcs:ignore Generic.CodeAnalysis.EmptyStatement.DetectedCatch
 
-		if ( $num === 6 ) {
+		}
+
+		if ( 6 === $num ) {
 			parent::__construct( $rate->id, $rate->label, $rate->cost, $rate->taxes, $rate->method_id, $rate->instance_id );
 		} else {
 			parent::__construct( $rate->id, $rate->label, $rate->cost, $rate->taxes, $rate->method_id );
@@ -35,4 +37,4 @@ class WC_GZD_Shipping_Rate extends WC_Shipping_Rate {
 		wc_deprecated_function( 'WC_GZD_Shipping_Rate::get_shared_taxes', '3.3.4' );
 	}
 }
-?>
+

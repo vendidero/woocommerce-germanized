@@ -25,7 +25,7 @@ class WC_GZD_Coupon_Helper {
 	 * @since 1.0
 	 */
 	public function __clone() {
-		_doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?', 'woocommerce-germanized' ), '1.0' );
+		_doing_it_wrong( __FUNCTION__, esc_html__( 'Cheating huh?', 'woocommerce-germanized' ), '1.0' );
 	}
 
 	/**
@@ -34,7 +34,7 @@ class WC_GZD_Coupon_Helper {
 	 * @since 1.0
 	 */
 	public function __wakeup() {
-		_doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?', 'woocommerce-germanized' ), '1.0' );
+		_doing_it_wrong( __FUNCTION__, esc_html__( 'Cheating huh?', 'woocommerce-germanized' ), '1.0' );
 	}
 
 	public function __construct() {
@@ -62,13 +62,19 @@ class WC_GZD_Coupon_Helper {
 		 * Do only add the discount total filter for the admin edit order view to make
 		 * sure calculating totals does not produce wrong results.
 		 */
-		add_action( 'woocommerce_admin_order_items_after_line_items', function() {
-			add_filter( 'woocommerce_order_item_get_discount', array( $this, 'voucher_discount' ), 10, 2 );
-		} );
+		add_action(
+			'woocommerce_admin_order_items_after_line_items',
+			function() {
+				add_filter( 'woocommerce_order_item_get_discount', array( $this, 'voucher_discount' ), 10, 2 );
+			}
+		);
 
-		add_action( 'woocommerce_admin_order_totals_after_discount', function() {
-			remove_filter( 'woocommerce_order_item_get_discount', array( $this, 'voucher_discount' ), 10 );
-		} );
+		add_action(
+			'woocommerce_admin_order_totals_after_discount',
+			function() {
+				remove_filter( 'woocommerce_order_item_get_discount', array( $this, 'voucher_discount' ), 10 );
+			}
+		);
 
 		add_action( 'woocommerce_order_before_calculate_totals', array( $this, 'observe_order_voucher_removal' ), 10, 2 );
 		/**
@@ -147,9 +153,9 @@ class WC_GZD_Coupon_Helper {
 		 * the coupon may not be applied.
 		 */
 		if ( $this->coupon_is_voucher( $coupon ) && $coupon->is_type( wc_get_product_coupon_types() ) ) {
-			$stack = debug_backtrace( DEBUG_BACKTRACE_IGNORE_ARGS,5 );
+			$stack = debug_backtrace( DEBUG_BACKTRACE_IGNORE_ARGS, 5 );
 
-			foreach( $stack as $backtrace ) {
+			foreach ( $stack as $backtrace ) {
 				if ( ! isset( $backtrace['class'], $backtrace['function'] ) ) {
 					continue;
 				}
@@ -213,7 +219,7 @@ class WC_GZD_Coupon_Helper {
 	protected function maybe_remove_order_vouchers( $order ) {
 		$has_updated = false;
 
-		foreach( $order->get_fees() as $item_id => $fee ) {
+		foreach ( $order->get_fees() as $item_id => $fee ) {
 			if ( $this->fee_is_voucher( $fee ) ) {
 				// Check if the corresponding coupon has been removed
 				if ( ! $this->get_order_item_coupon_by_fee( $fee, $order ) ) {
@@ -238,7 +244,7 @@ class WC_GZD_Coupon_Helper {
 	protected function refresh_order_vouchers( $order, $force_refresh = true ) {
 		$has_updated = false;
 
-		foreach( $order->get_coupons() as $item_id => $coupon ) {
+		foreach ( $order->get_coupons() as $item_id => $coupon ) {
 			if ( $this->order_item_coupon_is_voucher( $coupon ) ) {
 				// Check if a voucher has been added which misses a fee
 				$fee = $this->get_order_item_fee_by_coupon( $coupon, $order );
@@ -267,7 +273,7 @@ class WC_GZD_Coupon_Helper {
 			$is_new = false;
 		} else {
 			$is_new = true;
-			$fee = new WC_Order_Item_Fee();
+			$fee    = new WC_Order_Item_Fee();
 		}
 
 		$coupon_data = $this->get_fee_data_from_coupon( $coupon, $order );
@@ -302,7 +308,7 @@ class WC_GZD_Coupon_Helper {
 		$order = $order ? $order : $coupon->get_order();
 
 		if ( $order ) {
-			foreach( $order->get_fees() as $order_item_fee ) {
+			foreach ( $order->get_fees() as $order_item_fee ) {
 				if ( $this->fee_is_voucher( $order_item_fee ) ) {
 					if ( $order_item_fee->get_meta( '_code' ) === $coupon->get_code() ) {
 						$fee = $order_item_fee;
@@ -326,7 +332,7 @@ class WC_GZD_Coupon_Helper {
 		$order  = $order ? $order : $fee->get_order();
 
 		if ( $order ) {
-			foreach( $order->get_coupons() as $coupon_order_item ) {
+			foreach ( $order->get_coupons() as $coupon_order_item ) {
 				if ( $this->order_item_coupon_is_voucher( $coupon_order_item ) ) {
 					if ( $fee->get_meta( '_code' ) === $coupon_order_item->get_code() ) {
 						$coupon = $coupon_order_item;
@@ -354,8 +360,8 @@ class WC_GZD_Coupon_Helper {
 	public function get_voucher_data_from_cart() {
 		$voucher_data = array();
 
-		foreach( WC()->cart->get_fees() as $fee ) {
-			if ( WC_GZD_Coupon_Helper::instance()->fee_is_voucher( $fee ) ) {
+		foreach ( WC()->cart->get_fees() as $fee ) {
+			if ( self::instance()->fee_is_voucher( $fee ) ) {
 				$voucher_data[ $fee->id ] = array(
 					'name'         => esc_attr( $fee->name ),
 					'coupon_name'  => esc_attr( wc_cart_totals_coupon_label( $fee->code, false ) ),
@@ -622,7 +628,7 @@ class WC_GZD_Coupon_Helper {
 		$id         = 'voucher_' . $coupon->get_code();
 		$fee_exists = false;
 
-		foreach( WC()->cart->get_fees() as $fee ) {
+		foreach ( WC()->cart->get_fees() as $fee ) {
 			if ( $fee->id === $id ) {
 				$fee_exists = true;
 				break;
@@ -698,7 +704,7 @@ class WC_GZD_Coupon_Helper {
 	}
 
 	public function vouchers_as_fees() {
-		foreach( WC()->cart->get_applied_coupons() as $key => $coupon_code ) {
+		foreach ( WC()->cart->get_applied_coupons() as $key => $coupon_code ) {
 			if ( $coupon = $this->get_voucher_by_code( $coupon_code ) ) {
 				$this->register_coupon_as_fee( $coupon );
 			}
@@ -784,7 +790,7 @@ class WC_GZD_Coupon_Helper {
 				}
 			}
 		} else {
-			foreach( $order->get_items( 'fee' ) as $fee ) {
+			foreach ( $order->get_items( 'fee' ) as $fee ) {
 				if ( $this->fee_is_voucher( $fee ) ) {
 					$total += floatval( $fee->get_total() ) * -1;
 				}
@@ -841,7 +847,7 @@ class WC_GZD_Coupon_Helper {
 
 		$order->calculate_totals( false );
 
-		include( WC()->plugin_path() . '/includes/admin/meta-boxes/views/html-order-items.php' );
+		include WC()->plugin_path() . '/includes/admin/meta-boxes/views/html-order-items.php';
 		wp_die();
 	}
 
@@ -964,11 +970,13 @@ class WC_GZD_Coupon_Helper {
 	}
 
 	public function coupon_options( $id, $coupon ) {
-		woocommerce_wp_checkbox( array(
-			'id'          => 'is_voucher',
-			'label'       => __( 'Is voucher?', 'woocommerce-germanized' ),
-			'description' => sprintf( __( 'Whether or not this coupon is a voucher which has been sold to a customer without VAT and needs to be taxed as soon as the customer redeems the voucher. Find more information <a href="%s" target="_blank">here</a>.', 'woocommerce-germanized' ), 'https://www.haufe.de/finance/steuern-finanzen/umsatzsteuer-wie-gutscheine-zu-behandeln-sind_190_76132.html' ),
-		) );
+		woocommerce_wp_checkbox(
+			array(
+				'id'          => 'is_voucher',
+				'label'       => __( 'Is voucher?', 'woocommerce-germanized' ),
+				'description' => sprintf( __( 'Whether or not this coupon is a voucher which has been sold to a customer without VAT and needs to be taxed as soon as the customer redeems the voucher. Find more information <a href="%s" target="_blank">here</a>.', 'woocommerce-germanized' ), 'https://www.haufe.de/finance/steuern-finanzen/umsatzsteuer-wie-gutscheine-zu-behandeln-sind_190_76132.html' ),
+			)
+		);
 	}
 
 	/**

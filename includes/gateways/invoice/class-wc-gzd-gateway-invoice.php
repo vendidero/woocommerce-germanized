@@ -57,16 +57,19 @@ class WC_GZD_Gateway_Invoice extends WC_Payment_Gateway {
 			'subscription_amount_changes',
 			'subscription_date_changes',
 			'subscription_payment_method_change',
-            'subscription_payment_method_change_customer',
-            'subscription_payment_method_change_admin',
-            'multiple_subscriptions'
+			'subscription_payment_method_change_customer',
+			'subscription_payment_method_change_admin',
+			'multiple_subscriptions',
 		);
 
 		// Actions
-		add_action( 'woocommerce_update_options_payment_gateways_' . $this->id, array(
-			$this,
-			'process_admin_options'
-		) );
+		add_action(
+			'woocommerce_update_options_payment_gateways_' . $this->id,
+			array(
+				$this,
+				'process_admin_options',
+			)
+		);
 		add_action( 'woocommerce_thankyou_invoice', array( $this, 'thankyou_page' ) );
 		add_action( 'woocommerce_scheduled_subscription_payment_' . $this->id, array( $this, 'process_subscription_payment' ), 10, 2 );
 
@@ -76,29 +79,30 @@ class WC_GZD_Gateway_Invoice extends WC_Payment_Gateway {
 
 	public function admin_options() { ?>
 
-        <h3><?php echo ( ! empty( $this->method_title ) ) ? $this->method_title : __( 'Settings', 'woocommerce-germanized' ); ?></h3>
+		<h3><?php echo ( ! empty( $this->method_title ) ) ? $this->method_title : __( 'Settings', 'woocommerce-germanized' ); ?></h3>
 
 		<?php echo ( ! empty( $this->method_description ) ) ? wpautop( $this->method_description ) : ''; ?>
 
 		<?php if ( ! WC_germanized()->is_pro() ) : ?>
 
-            <div class="wc-gzd-premium-overlay notice notice-warning inline">
-                <h3><?php _e( 'Automatically generate PDF invoices for this gateway?', 'woocommerce-germanized' ); ?></h3>
-                <p><?php _e( 'By upgrading to the professional version you\'ll be able to automatically generate PDF invoices to this payment gateway. Furthermore you\'ll benefit from even more professional features such as a multistep checkout page, legal text generators, B2B VAT settings and premium support!', 'woocommerce-germanized' ); ?></p>
-                <p>
-                    <a class="button button-primary" href="https://vendidero.de/woocommerce-germanized"
-                       target="_blank"><?php _e( 'Upgrade now', 'woocommerce-germanized' ); ?></a>
-                    <a class="button button-secondary" style="margin-left: 1em"
-                       href="https://vendidero.de/woocommerce-germanized/features#accounting"
-                       target="_blank"><?php _e( 'Learn more about PDF invoicing', 'woocommerce-germanized' ); ?></a>
-                </p>
-            </div>
+			<div class="wc-gzd-premium-overlay notice notice-warning inline">
+				<h3><?php _e( 'Automatically generate PDF invoices for this gateway?', 'woocommerce-germanized' ); ?></h3>
+				<p><?php _e( 'By upgrading to the professional version you\'ll be able to automatically generate PDF invoices to this payment gateway. Furthermore you\'ll benefit from even more professional features such as a multistep checkout page, legal text generators, B2B VAT settings and premium support!', 'woocommerce-germanized' ); ?></p>
+				<p>
+					<a class="button button-primary" href="https://vendidero.de/woocommerce-germanized"
+					   target="_blank"><?php _e( 'Upgrade now', 'woocommerce-germanized' ); ?></a>
+					<a class="button button-secondary" style="margin-left: 1em"
+					   href="https://vendidero.de/woocommerce-germanized/features#accounting"
+					   target="_blank"><?php _e( 'Learn more about PDF invoicing', 'woocommerce-germanized' ); ?></a>
+				</p>
+			</div>
 
 		<?php endif; ?>
 
-        <table class="form-table">
+		<table class="form-table">
 		<?php $this->generate_settings_html(); ?>
-        </table><?php
+		</table>
+		<?php
 	}
 
 	/**
@@ -111,7 +115,7 @@ class WC_GZD_Gateway_Invoice extends WC_Payment_Gateway {
 				'title'   => __( 'Enable/Disable', 'woocommerce-germanized' ),
 				'type'    => 'checkbox',
 				'label'   => __( 'Enable Pay by Invoice', 'woocommerce-germanized' ),
-				'default' => 'no'
+				'default' => 'no',
 			),
 			'title'                => array(
 				'title'       => _x( 'Title', 'gateway', 'woocommerce-germanized' ),
@@ -209,7 +213,7 @@ class WC_GZD_Gateway_Invoice extends WC_Payment_Gateway {
 	}
 
 	public function process_subscription_payment( $order_total, $order_id ) {
-	    $this->process_payment( $order_id );
+		$this->process_payment( $order_id );
 	}
 
 	/**
@@ -236,7 +240,7 @@ class WC_GZD_Gateway_Invoice extends WC_Payment_Gateway {
 		// Return thankyou redirect
 		return array(
 			'result'   => 'success',
-			'redirect' => $this->get_return_url( $order )
+			'redirect' => $this->get_return_url( $order ),
 		);
 	}
 }

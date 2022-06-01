@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<div class="notice inline updated" style="margin: 0">
 			<p><?php _e( 'We\'ve found out that you have been using the Internetmarke standalone Plugin already. We will automatically import your settings and you can start using our integration instead.', 'woocommerce-germanized' ); ?></p>
 		</div>
-	<?php else: ?>
+	<?php else : ?>
 		<?php WC_Admin_Settings::output_fields( $settings ); ?>
 	<?php endif; ?>
 </div>

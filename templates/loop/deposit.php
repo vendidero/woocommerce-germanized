@@ -12,7 +12,7 @@
  *
  * @see https://github.com/vendidero/woocommerce-germanized/wiki/Overriding-Germanized-Templates
  * @package Germanized/Templates
- * @version 3.9.0
+ * @version 3.9.1
  */
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -22,5 +22,5 @@ global $product;
 ?>
 
 <?php if ( $html = wc_gzd_get_gzd_product( $product )->get_deposit_amount_html() ) : ?>
-	<p class="wc-gzd-additional-info wc-gzd-additional-info-loop deposit-amount deposit"><?php echo $html; ?></p>
+	<p class="wc-gzd-additional-info wc-gzd-additional-info-loop deposit-amount deposit"><?php echo wp_kses_post( $html ); ?></p>
 <?php endif; ?>

@@ -12,7 +12,7 @@
  *
  * @see https://github.com/vendidero/woocommerce-germanized/wiki/Overriding-Germanized-Templates
  * @package Germanized/Templates
- * @version 3.8.0
+ * @version 3.8.1
  */
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -24,7 +24,7 @@ $defect_description = wc_gzd_get_gzd_product( $product )->get_formatted_defect_d
 ?>
 
 <?php if ( $defect_description ) : ?>
-	<div class="wc-gzd-additional-info defect-description"><?php echo $defect_description; ?></div>
+	<div class="wc-gzd-additional-info defect-description"><?php echo wp_kses_post( $defect_description ); ?></div>
 <?php elseif ( $product->is_type( 'variable' ) ) : ?>
 	<div class="wc-gzd-additional-info defect-description wc-gzd-additional-info-placeholder"></div>
 <?php endif; ?>

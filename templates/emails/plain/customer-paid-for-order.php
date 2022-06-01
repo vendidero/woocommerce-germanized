@@ -12,7 +12,7 @@
  *
  * @see https://github.com/vendidero/woocommerce-germanized/wiki/Overriding-Germanized-Templates
  * @package Germanized/Templates
- * @version 2.5.0
+ * @version 2.5.1
  */
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -22,7 +22,7 @@ echo "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n";
 echo esc_html( wp_strip_all_tags( $email_heading ) );
 echo "\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n\n";
 
-echo sprintf( __( "Hi there. Thank you! We have successfully received your payment for order %s. Your order is now being processed.", 'woocommerce-germanized' ), $order->get_order_number() ) . "\n\n";
+echo sprintf( esc_html__( 'Hi there. Thank you! We have successfully received your payment for order %s. Your order is now being processed.', 'woocommerce-germanized' ), $order->get_order_number() ) . "\n\n";
 
 echo "\n----------------------------------------\n\n";
 
@@ -56,4 +56,4 @@ if ( $additional_content ) {
 	echo "\n\n----------------------------------------\n\n";
 }
 
-echo apply_filters( 'woocommerce_email_footer_text', get_option( 'woocommerce_email_footer_text' ) );
+echo wp_kses_post( apply_filters( 'woocommerce_email_footer_text', get_option( 'woocommerce_email_footer_text' ) ) );

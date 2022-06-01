@@ -43,9 +43,9 @@ class WC_GZD_REST_Customers_Controller {
 		$customer               = new WC_Customer( $user_data->ID );
 		$response_customer_data = $response->get_data();
 
-		$response_customer_data['billing']['title']           = $customer->get_meta( 'billing_title' );
-		$response_customer_data['billing']['title_formatted'] = wc_gzd_get_customer_title( $customer->get_meta( 'billing_title' ) );
-		$response_customer_data['shipping']['title']          = $customer->get_meta( 'shipping_title' );
+		$response_customer_data['billing']['title']            = $customer->get_meta( 'billing_title' );
+		$response_customer_data['billing']['title_formatted']  = wc_gzd_get_customer_title( $customer->get_meta( 'billing_title' ) );
+		$response_customer_data['shipping']['title']           = $customer->get_meta( 'shipping_title' );
 		$response_customer_data['shipping']['title_formatted'] = wc_gzd_get_customer_title( $customer->get_meta( 'shipping_title' ) );
 
 		$holder = $customer->get_meta( 'direct_debit_holder' );
@@ -60,7 +60,7 @@ class WC_GZD_REST_Customers_Controller {
 		$response_customer_data['direct_debit'] = array(
 			'holder' => $holder,
 			'iban'   => $iban,
-			'bic'    => $bic
+			'bic'    => $bic,
 		);
 
 		if ( WC_GZD_Customer_Helper::instance()->is_double_opt_in_enabled() ) {
@@ -168,7 +168,7 @@ class WC_GZD_REST_Customers_Controller {
 				'description' => __( 'Has been activated via DOI?', 'woocommerce-germanized' ),
 				'type'        => 'boolean',
 				'context'     => array( 'view', 'edit' ),
-				'readonly'    => true
+				'readonly'    => true,
 			);
 		}
 
@@ -180,19 +180,19 @@ class WC_GZD_REST_Customers_Controller {
 				'holder' => array(
 					'description' => __( 'Account Holder', 'woocommerce-germanized' ),
 					'type'        => 'string',
-					'context'     => array( 'view', 'edit' )
+					'context'     => array( 'view', 'edit' ),
 				),
 				'iban'   => array(
 					'description' => __( 'IBAN', 'woocommerce-germanized' ),
 					'type'        => 'string',
-					'context'     => array( 'view', 'edit' )
+					'context'     => array( 'view', 'edit' ),
 				),
 				'bic'    => array(
 					'description' => __( 'BIC/SWIFT', 'woocommerce-germanized' ),
 					'type'        => 'string',
-					'context'     => array( 'view', 'edit' )
-				)
-			)
+					'context'     => array( 'view', 'edit' ),
+				),
+			),
 		);
 
 		return $schema_properties;

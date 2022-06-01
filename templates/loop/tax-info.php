@@ -22,7 +22,7 @@ global $product;
 ?>
 
 <?php if ( wc_gzd_get_product( $product )->get_tax_info() ) : ?>
-    <p class="wc-gzd-additional-info wc-gzd-additional-info-loop tax-info"><?php echo wc_gzd_get_product( $product )->get_tax_info(); ?></p>
+	<p class="wc-gzd-additional-info wc-gzd-additional-info-loop tax-info"><?php echo wp_kses_post( wc_gzd_get_product( $product )->get_tax_info() ); ?></p>
 <?php elseif ( wc_gzd_is_small_business() ) : ?>
-    <p class="wc-gzd-additional-info wc-gzd-additional-info-loop small-business-info"><?php echo wc_gzd_get_small_business_product_notice(); ?></p>
+	<p class="wc-gzd-additional-info wc-gzd-additional-info-loop small-business-info"><?php echo wp_kses_post( wc_gzd_get_small_business_product_notice() ); ?></p>
 <?php endif; ?>

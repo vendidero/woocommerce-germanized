@@ -29,6 +29,6 @@ class WC_GZD_Allergenic extends WC_GZD_Taxonomy {
 	}
 
 	public function get_allergen_object( $term ) {
-		return apply_filters( "woocommerce_gzd_get_allergen_object", false, $term );
+		return apply_filters( 'woocommerce_gzd_get_allergen_object', false, $term );
 	}
 }

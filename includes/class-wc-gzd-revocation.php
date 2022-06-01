@@ -49,7 +49,7 @@ class WC_GZD_Revocation {
 				'required' => false,
 				'options'  => array(
 					__( 'Mr.', 'woocommerce-germanized' ) => __( 'Mr.', 'woocommerce-germanized' ),
-					__( 'Ms.', 'woocommerce-germanized' ) => __( 'Ms.', 'woocommerce-germanized' )
+					__( 'Ms.', 'woocommerce-germanized' ) => __( 'Ms.', 'woocommerce-germanized' ),
 				),
 			),
 			'address_firstname' => array(
@@ -84,27 +84,30 @@ class WC_GZD_Revocation {
 			),
 			'address_mail'      => array(
 				'type'     => 'text',
-				'validate' => array( "email" ),
+				'validate' => array( 'email' ),
 				'label'    => _x( 'Mail', 'revocation-form', 'woocommerce-germanized' ),
 				'required' => true,
-			)
+			),
 		);
 
 		if ( apply_filters( 'woocommerce_gzd_revocation_show_privacy_notice_checkbox', false ) ) {
-			$fields = array_merge( $fields, array(
-				'privacy_checkbox'  => array(
-					'type'     => 'checkbox',
-					/**
-					 * Filter to adjust the privacy field label for revocation form.
-					 *
-					 * @param string $html The label.
-					 *
-					 * @since 1.9.10
-					 */
-					'label'    => apply_filters( 'woocommerce_gzd_revocation_privacy_notice_label', sprintf( _x( 'Please accept our <a href="%s" target="_blank">Privacy Policy</a> so that we can process your inquiry.', 'revocation-form', 'woocommerce-germanized' ), esc_url( wc_gzd_get_privacy_policy_url() ) ) ),
-					'required' => true,
-				),
-			) );
+			$fields = array_merge(
+				$fields,
+				array(
+					'privacy_checkbox' => array(
+						'type'     => 'checkbox',
+						/**
+						 * Filter to adjust the privacy field label for revocation form.
+						 *
+						 * @param string $html The label.
+						 *
+						 * @since 1.9.10
+						 */
+						'label'    => apply_filters( 'woocommerce_gzd_revocation_privacy_notice_label', sprintf( _x( 'Please accept our <a href="%s" target="_blank">Privacy Policy</a> so that we can process your inquiry.', 'revocation-form', 'woocommerce-germanized' ), esc_url( wc_gzd_get_privacy_policy_url() ) ) ),
+						'required' => true,
+					),
+				)
+			);
 		}
 
 		return apply_filters( 'woocommerce_gzd_revocation_fields', $fields );

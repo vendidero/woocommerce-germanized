@@ -31,4 +31,4 @@ return array(
 	'kj'   => __( 'kJ', 'woocommerce-germanized' ),
 );
 
-?>
+

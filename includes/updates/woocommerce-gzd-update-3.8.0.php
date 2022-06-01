@@ -7,13 +7,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 $term_options = array(
 	'woocommerce_gzd_default_delivery_time',
 	'woocommerce_gzd_default_delivery_time_eu',
-	'woocommerce_gzd_default_delivery_time_third_countries'
+	'woocommerce_gzd_default_delivery_time_third_countries',
 );
 
 /**
  * Convert term id options to slug
  */
-foreach( $term_options as $term_option ) {
+foreach ( $term_options as $term_option ) {
 	if ( get_option( $term_option ) ) {
 		$term = get_term_by( 'id', get_option( $term_option ), 'product_delivery_time' );
 

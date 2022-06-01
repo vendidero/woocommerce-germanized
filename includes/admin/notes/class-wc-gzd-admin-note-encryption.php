@@ -55,10 +55,10 @@ class WC_GZD_Admin_Note_Encryption extends WC_GZD_Admin_Note {
 
 		if ( WC_GZD_Secret_Box_Helper::supports_auto_insert() ) {
 			$buttons[] = array(
-				'url'        => add_query_arg( 'wc-gzd-check-encryption_key_insert', true, admin_url( 'admin.php?page=wc-settings&tab=germanized' ) ),
-				'title'      => __( 'Auto insert', 'woocommerce-germanized' ),
-				'target'     => '_self',
-				'is_primary' => true,
+				'url'          => add_query_arg( 'wc-gzd-check-encryption_key_insert', true, admin_url( 'admin.php?page=wc-settings&tab=germanized' ) ),
+				'title'        => __( 'Auto insert', 'woocommerce-germanized' ),
+				'target'       => '_self',
+				'is_primary'   => true,
 				'nonce_action' => 'wc-gzd-check-encryption_key_insert',
 			);
 		}

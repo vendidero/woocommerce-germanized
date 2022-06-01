@@ -22,7 +22,7 @@ class WC_GZD_Product_Import {
 	 * @since 1.0
 	 */
 	public function __clone() {
-		_doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?', 'woocommerce-germanized' ), '1.0' );
+		_doing_it_wrong( __FUNCTION__, esc_html__( 'Cheating huh?', 'woocommerce-germanized' ), '1.0' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
 
 	/**
@@ -31,7 +31,7 @@ class WC_GZD_Product_Import {
 	 * @since 1.0
 	 */
 	public function __wakeup() {
-		_doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?', 'woocommerce-germanized' ), '1.0' );
+		_doing_it_wrong( __FUNCTION__, esc_html__( 'Cheating huh?', 'woocommerce-germanized' ), '1.0' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
 
 	public function __construct() {
@@ -64,39 +64,42 @@ class WC_GZD_Product_Import {
 		 * @since 1.8.5
 		 *
 		 */
-		return apply_filters( 'woocommerce_gzd_product_import_formatting_callbacks', array(
-			'mini_desc'                => array( $this, 'parse_html_field' ),
-			'defect_description'       => array( $this, 'parse_html_field' ),
-			'unit_price_regular'       => 'wc_format_decimal',
-			'unit_price_sale'          => 'wc_format_decimal',
-			'unit_base'                => 'wc_format_decimal',
-			'unit_product'             => 'wc_format_decimal',
-			'unit_price_auto'          => array( $this, 'parse_bool_str' ),
-			'service'                  => array( $this, 'parse_bool_str' ),
-			'used_good'                => array( $this, 'parse_bool_str' ),
-			'defective_copy'           => array( $this, 'parse_bool_str' ),
-			'differential_taxation'    => array( $this, 'parse_bool_str' ),
-			'free_shipping'            => array( $this, 'parse_bool_str' ),
-			'delivery_time'            => array( $this, 'parse_delivery_time' ),
-			'min_age'                  => array( $this, 'parse_min_age' ),
-			'sale_price_label'         => array( $this, 'parse_sale_price_label' ),
-			'sale_price_regular_label' => array( $this, 'parse_sale_price_label' ),
-			'unit'                     => array( $this, 'parse_unit' ),
-			'warranty_attachment_id'   => 'absint',
-			'is_food'                  => array( $this, 'parse_bool_str' ),
-			'alcohol_content'          => 'wc_format_decimal',
-			'drained_weight'           => 'wc_format_decimal',
-			'net_filling_quantity'     => 'wc_format_decimal',
-			'deposit_quantity'         => 'absint',
-			'deposit_type'             => array( $this, 'parse_deposit_type' ),
-			'allergen_ids'             => array( $this, 'parse_allergenic' ),
-			'nutri_score'              => array( $this, 'parse_nutri_score' ),
-			'ingredients'              => array( $this, 'parse_html_field' ),
-			'food_description'         => array( $this, 'parse_html_field' ),
-			'food_place_of_origin'     => array( $this, 'parse_html_field' ),
-			'food_distributor'         => array( $this, 'parse_html_field' ),
-			'nutrient_reference_value' => array( $this, 'parse_nutrient_reference_value' ),
-		) );
+		return apply_filters(
+			'woocommerce_gzd_product_import_formatting_callbacks',
+			array(
+				'mini_desc'                => array( $this, 'parse_html_field' ),
+				'defect_description'       => array( $this, 'parse_html_field' ),
+				'unit_price_regular'       => 'wc_format_decimal',
+				'unit_price_sale'          => 'wc_format_decimal',
+				'unit_base'                => 'wc_format_decimal',
+				'unit_product'             => 'wc_format_decimal',
+				'unit_price_auto'          => array( $this, 'parse_bool_str' ),
+				'service'                  => array( $this, 'parse_bool_str' ),
+				'used_good'                => array( $this, 'parse_bool_str' ),
+				'defective_copy'           => array( $this, 'parse_bool_str' ),
+				'differential_taxation'    => array( $this, 'parse_bool_str' ),
+				'free_shipping'            => array( $this, 'parse_bool_str' ),
+				'delivery_time'            => array( $this, 'parse_delivery_time' ),
+				'min_age'                  => array( $this, 'parse_min_age' ),
+				'sale_price_label'         => array( $this, 'parse_sale_price_label' ),
+				'sale_price_regular_label' => array( $this, 'parse_sale_price_label' ),
+				'unit'                     => array( $this, 'parse_unit' ),
+				'warranty_attachment_id'   => 'absint',
+				'is_food'                  => array( $this, 'parse_bool_str' ),
+				'alcohol_content'          => 'wc_format_decimal',
+				'drained_weight'           => 'wc_format_decimal',
+				'net_filling_quantity'     => 'wc_format_decimal',
+				'deposit_quantity'         => 'absint',
+				'deposit_type'             => array( $this, 'parse_deposit_type' ),
+				'allergen_ids'             => array( $this, 'parse_allergenic' ),
+				'nutri_score'              => array( $this, 'parse_nutri_score' ),
+				'ingredients'              => array( $this, 'parse_html_field' ),
+				'food_description'         => array( $this, 'parse_html_field' ),
+				'food_place_of_origin'     => array( $this, 'parse_html_field' ),
+				'food_distributor'         => array( $this, 'parse_html_field' ),
+				'nutrient_reference_value' => array( $this, 'parse_nutrient_reference_value' ),
+			)
+		);
 	}
 
 	public function parse_data( $data ) {
@@ -118,7 +121,7 @@ class WC_GZD_Product_Import {
 		$country_specific_delivery_times = array();
 		$nutrients                       = array();
 
-		foreach( $data as $key => $value ) {
+		foreach ( $data as $key => $value ) {
 			if ( $this->starts_with( $key, 'delivery_time:' ) ) {
 				$country                                     = str_replace( 'delivery_time:', '', $key );
 				$country_specific_delivery_times[ $country ] = $this->parse_delivery_time( $value );
@@ -173,8 +176,8 @@ class WC_GZD_Product_Import {
 		$country  = str_replace( 'delivery_time:', '', $item );
 		$nutrient = str_replace( 'nutrients:', '', $item );
 
-		$columns["delivery_time:{$country}"] = __( 'Country specific delivery times', 'woocommerce-germanized' );
-		$columns["nutrients:{$nutrient}"]    = __( 'Nutrients', 'woocommerce-germanized' );
+		$columns[ "delivery_time:{$country}" ] = __( 'Country specific delivery times', 'woocommerce-germanized' );
+		$columns[ "nutrients:{$nutrient}" ]    = __( 'Nutrients', 'woocommerce-germanized' );
 
 		return $columns;
 	}
@@ -194,7 +197,13 @@ class WC_GZD_Product_Import {
 	public function import( $product, $data ) {
 		$formattings  = $this->get_formatting_callbacks();
 		$gzd_product  = wc_gzd_get_product( $product );
-		$column_names = array_merge( $this->get_columns(), array( 'country_specific_delivery_times' => '', 'nutrient_ids' => '' ) );
+		$column_names = array_merge(
+			$this->get_columns(),
+			array(
+				'country_specific_delivery_times' => '',
+				'nutrient_ids'                    => '',
+			)
+		);
 
 		foreach ( array_keys( $column_names ) as $column_name ) {
 			if ( isset( $data[ $column_name ] ) ) {
@@ -238,7 +247,7 @@ class WC_GZD_Product_Import {
 		$allergenic   = array_filter( array_map( 'trim', explode( '|', $allergenic ) ) );
 		$allergen_ids = array();
 
-		foreach( $allergenic as $allergen ) {
+		foreach ( $allergenic as $allergen ) {
 			if ( $term_id = $this->parse_term( $allergen, 'product_allergen' ) ) {
 				$allergen_ids[] = $term_id;
 			}
@@ -305,7 +314,7 @@ class WC_GZD_Product_Import {
 		if ( ! empty( $nutrient_data ) ) {
 			$return_data['value'] = wc_format_decimal( $nutrient_data[0] );
 
-			if ( sizeof( $nutrient_data ) > 1 ) {
+			if ( count( $nutrient_data ) > 1 ) {
 				$return_data['ref_value'] = wc_format_decimal( $nutrient_data[1] );
 			}
 		}

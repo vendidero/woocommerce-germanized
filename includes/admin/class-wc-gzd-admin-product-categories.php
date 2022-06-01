@@ -40,9 +40,9 @@ class WC_GZD_Admin_Product_Categories {
 	 * @param string $taxonomy Taxonomy slug.
 	 */
 	public function save_category_fields( $term_id, $tt_id = '', $taxonomy = '' ) {
-		if ( isset( $_POST['age_verification'] ) && 'product_cat' === $taxonomy ) {
-			if ( ! empty( $_POST['age_verification'] ) && array_key_exists( absint( $_POST['age_verification'] ), wc_gzd_get_age_verification_min_ages() ) ) {
-				update_term_meta( $term_id, 'age_verification', absint( $_POST['age_verification'] ) );
+		if ( isset( $_POST['age_verification'] ) && 'product_cat' === $taxonomy ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
+			if ( ! empty( $_POST['age_verification'] ) && array_key_exists( absint( $_POST['age_verification'] ), wc_gzd_get_age_verification_min_ages() ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
+				update_term_meta( $term_id, 'age_verification', absint( $_POST['age_verification'] ) ); // phpcs:ignore WordPress.Security.NonceVerification.Missing
 			} else {
 				delete_term_meta( $term_id, 'age_verification' );
 			}
@@ -54,15 +54,15 @@ class WC_GZD_Admin_Product_Categories {
 	 */
 	public function add_category_fields() {
 		?>
-        <div class="form-field term-age-verification-wrap">
-            <label for="age_verification"><?php esc_html_e( 'Age Verification', 'woocommerce-germanized' ); ?></label>
-            <select id="age_verification" name="age_verification" class="postform">
-                <option value="" <?php selected( empty( $variation_data['_age_verification'] ), true ); ?>><?php _e( 'Same as Parent', 'woocommerce-germanized' ); ?></option>
+		<div class="form-field term-age-verification-wrap">
+			<label for="age_verification"><?php esc_html_e( 'Age Verification', 'woocommerce-germanized' ); ?></label>
+			<select id="age_verification" name="age_verification" class="postform">
+				<option value="" <?php selected( empty( $variation_data['_age_verification'] ), true ); ?>><?php esc_html_e( 'Same as Parent', 'woocommerce-germanized' ); ?></option>
 				<?php foreach ( wc_gzd_get_age_verification_min_ages() as $key => $value ) : ?>
-                    <option value="<?php echo esc_attr( $key ); ?>"><?php echo esc_html( $value ); ?></option>
+					<option value="<?php echo esc_attr( $key ); ?>"><?php echo esc_html( $value ); ?></option>
 				<?php endforeach; ?>
-            </select>
-        </div>
+			</select>
+		</div>
 		<?php
 	}
 
@@ -74,18 +74,18 @@ class WC_GZD_Admin_Product_Categories {
 	public function edit_category_fields( $term ) {
 		$age_verification = get_term_meta( $term->term_id, 'age_verification', true );
 		?>
-        <tr class="form-field term-display-type-wrap">
-            <th scope="row" valign="top">
-                <label><?php esc_html_e( 'Age Verification', 'woocommerce-germanized' ); ?></label></th>
-            <td>
-                <select id="age_verification" name="age_verification" class="postform">
-                    <option value="" <?php selected( empty( $age_verification ), true ); ?>><?php _e( 'None', 'woocommerce-germanized' ); ?></option>
+		<tr class="form-field term-display-type-wrap">
+			<th scope="row" valign="top">
+				<label><?php esc_html_e( 'Age Verification', 'woocommerce-germanized' ); ?></label></th>
+			<td>
+				<select id="age_verification" name="age_verification" class="postform">
+					<option value="" <?php selected( empty( $age_verification ), true ); ?>><?php esc_html_e( 'None', 'woocommerce-germanized' ); ?></option>
 					<?php foreach ( wc_gzd_get_age_verification_min_ages() as $key => $value ) : ?>
-                        <option value="<?php echo esc_attr( $key ); ?>" <?php selected( $key, $age_verification ); ?>><?php echo esc_html( $value ); ?></option>
+						<option value="<?php echo esc_attr( $key ); ?>" <?php selected( $key, $age_verification ); ?>><?php echo esc_html( $value ); ?></option>
 					<?php endforeach; ?>
-                </select>
-            </td>
-        </tr>
+				</select>
+			</td>
+		</tr>
 		<?php
 	}
 }

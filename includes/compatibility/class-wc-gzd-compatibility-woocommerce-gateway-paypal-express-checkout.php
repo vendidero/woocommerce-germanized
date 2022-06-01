@@ -39,10 +39,14 @@ class WC_GZD_Compatibility_WooCommerce_Gateway_Paypal_Express_Checkout extends W
 		if ( $gateway && ( is_a( $gateway, 'WC_Gateway_PPEC_With_SPB' ) || is_a( $gateway, 'WC_Gateway_PPEC_With_SPB_Addons' ) ) ) {
 
 			remove_action( 'woocommerce_review_order_after_submit', array( $gateway, 'display_paypal_button' ), 10 );
-			remove_action( 'woocommerce_gzd_review_order_before_submit', array(
-				$gateway,
-				'display_paypal_button'
-			), 10 );
+			remove_action(
+				'woocommerce_gzd_review_order_before_submit',
+				array(
+					$gateway,
+					'display_paypal_button',
+				),
+				10
+			);
 
 			add_action( 'woocommerce_gzd_review_order_before_submit', array( $gateway, 'display_paypal_button' ), 10 );
 		}

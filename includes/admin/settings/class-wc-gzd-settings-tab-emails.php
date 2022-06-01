@@ -27,9 +27,9 @@ class WC_GZD_Settings_Tab_Emails extends WC_GZD_Settings_Tab {
 
 	public function get_sections() {
 		return array(
-			''                => __( 'General', 'woocommerce-germanized' ),
-			'visibility'      => __( 'Visibility', 'woocommerce-germanized' ),
-			'attachments'     => __( 'PDF Attachments', 'woocommerce-germanized' ),
+			''            => __( 'General', 'woocommerce-germanized' ),
+			'visibility'  => __( 'Visibility', 'woocommerce-germanized' ),
+			'attachments' => __( 'PDF Attachments', 'woocommerce-germanized' ),
 		);
 	}
 
@@ -56,8 +56,7 @@ class WC_GZD_Settings_Tab_Emails extends WC_GZD_Settings_Tab {
 						'next_url'     => '',
 						'next_trigger' => array(),
 						'options'      => array(
-							'content'  => '<h3>' . esc_html__( 'Email attachments', 'woocommerce-germanized' ) . '</h3>' .
-							              '<p>' . esc_html__( 'Choose which of your email templates (e.g. order confirmation) should contain your legal page content e.g. terms and conditions within it\'s footer.', 'woocommerce-germanized' ) . '</p>',
+							'content'  => '<h3>' . esc_html__( 'Email attachments', 'woocommerce-germanized' ) . '</h3><p>' . esc_html__( 'Choose which of your email templates (e.g. order confirmation) should contain your legal page content e.g. terms and conditions within it\'s footer.', 'woocommerce-germanized' ) . '</p>',
 							'position' => array(
 								'edge'  => 'left',
 								'align' => 'left',
@@ -71,8 +70,7 @@ class WC_GZD_Settings_Tab_Emails extends WC_GZD_Settings_Tab {
 						'next_trigger' => array(),
 						'pro'          => true,
 						'options'      => array(
-							'content'  => '<h3>' . esc_html__( 'PDF Attachments', 'woocommerce-germanized' ) . '</h3>' .
-							              '<p>' . esc_html__( 'Customers of our pro version may attach PDF files instead of plain text content to emails.', 'woocommerce-germanized' ) . '</p>',
+							'content'  => '<h3>' . esc_html__( 'PDF Attachments', 'woocommerce-germanized' ) . '</h3><p>' . esc_html__( 'Customers of our pro version may attach PDF files instead of plain text content to emails.', 'woocommerce-germanized' ) . '</p>',
 							'position' => array(
 								'edge'  => 'top',
 								'align' => 'left',
@@ -98,7 +96,7 @@ class WC_GZD_Settings_Tab_Emails extends WC_GZD_Settings_Tab {
 		$is_saveable     = parent::is_saveable();
 		$current_section = $this->get_current_section();
 
-		if ( in_array( $current_section, array( 'attachments', 'attachments_pdf' ) ) && ! WC_germanized()->is_pro() ) {
+		if ( in_array( $current_section, array( 'attachments', 'attachments_pdf' ), true ) && ! WC_germanized()->is_pro() ) {
 			$is_saveable = false;
 		}
 
@@ -127,7 +125,7 @@ class WC_GZD_Settings_Tab_Emails extends WC_GZD_Settings_Tab {
 				'title' => '',
 				'type'  => 'title',
 				'id'    => 'email_pdf_options',
-				'desc'  => '<div class="notice inline notice-warning wc-gzd-premium-overlay"><p>' . sprintf( __( 'Want to attach automatically generated PDF files to emails instead of plain text? %sUpgrade to %spro%s%s', 'woocommerce-germanized' ), '<a style="margin-left: 1em" href="https://vendidero.de/woocommerce-germanized" class="button button-primary wc-gzd-button">', '<span class="wc-gzd-pro">', '</span>', '</a>' ) . '</p></div>'
+				'desc'  => '<div class="notice inline notice-warning wc-gzd-premium-overlay"><p>' . sprintf( __( 'Want to attach automatically generated PDF files to emails instead of plain text? %1$sUpgrade to %2$spro%3$s%4$s', 'woocommerce-germanized' ), '<a style="margin-left: 1em" href="https://vendidero.de/woocommerce-germanized" class="button button-primary wc-gzd-button">', '<span class="wc-gzd-pro">', '</span>', '</a>' ) . '</p></div>',
 			),
 
 			array(
@@ -138,7 +136,10 @@ class WC_GZD_Settings_Tab_Emails extends WC_GZD_Settings_Tab {
 				'type'  => 'image',
 			),
 
-			array( 'type' => 'sectionend', 'id' => 'email_pdf_options' ),
+			array(
+				'type' => 'sectionend',
+				'id'   => 'email_pdf_options',
+			),
 		);
 	}
 
@@ -148,7 +149,7 @@ class WC_GZD_Settings_Tab_Emails extends WC_GZD_Settings_Tab {
 				'title' => '',
 				'type'  => 'title',
 				'id'    => 'email_attachment_options',
-				'desc'  => '<div class="notice inline notice-warning wc-gzd-premium-overlay"><p>' . sprintf( __( 'Want to attach automatically generated PDF files to emails instead of plain text? %sUpgrade to %spro%s%s', 'woocommerce-germanized' ), '<a style="margin-left: 1em" href="https://vendidero.de/woocommerce-germanized" class="button button-primary wc-gzd-button">', '<span class="wc-gzd-pro">', '</span>', '</a>' ) . '</p></div>'
+				'desc'  => '<div class="notice inline notice-warning wc-gzd-premium-overlay"><p>' . sprintf( __( 'Want to attach automatically generated PDF files to emails instead of plain text? %1$sUpgrade to %2$spro%3$s%4$s', 'woocommerce-germanized' ), '<a style="margin-left: 1em" href="https://vendidero.de/woocommerce-germanized" class="button button-primary wc-gzd-button">', '<span class="wc-gzd-pro">', '</span>', '</a>' ) . '</p></div>',
 			),
 
 			array(
@@ -159,7 +160,10 @@ class WC_GZD_Settings_Tab_Emails extends WC_GZD_Settings_Tab {
 				'type'  => 'image',
 			),
 
-			array( 'type' => 'sectionend', 'id' => 'email_attachment_options' ),
+			array(
+				'type' => 'sectionend',
+				'id'   => 'email_attachment_options',
+			),
 		);
 	}
 
@@ -167,7 +171,12 @@ class WC_GZD_Settings_Tab_Emails extends WC_GZD_Settings_Tab {
 		$payment_gateway_options = WC_GZD_Admin::instance()->get_payment_gateway_options();
 
 		return array(
-			array( 'title' => '', 'type' => 'title', 'desc' => '', 'id' => 'visibility_options' ),
+			array(
+				'title' => '',
+				'type'  => 'title',
+				'desc'  => '',
+				'id'    => 'visibility_options',
+			),
 
 			array(
 				'title'   => __( 'Title', 'woocommerce-germanized' ),
@@ -206,24 +215,27 @@ class WC_GZD_Settings_Tab_Emails extends WC_GZD_Settings_Tab {
 				'type'              => 'multiselect',
 			),
 
-			array( 'type' => 'sectionend', 'id' => 'visibility_options' )
+			array(
+				'type' => 'sectionend',
+				'id'   => 'visibility_options',
+			),
 		);
 	}
 
 	protected function get_default_email_ids_by_attachment_type( $type ) {
 		$email_ids = array();
 
-		switch( $type ) {
-			case "revocation":
+		switch ( $type ) {
+			case 'revocation':
 				$email_ids = array( 'customer_processing_order' );
-			break;
-			case "warranties":
+				break;
+			case 'warranties':
 				$email_ids = array( 'customer_completed_order' );
-			break;
-			case "data_security":
-			case "terms":
+				break;
+			case 'data_security':
+			case 'terms':
 				$email_ids = array( 'customer_processing_order', 'customer_new_account', 'customer_new_account_activation' );
-			break;
+				break;
 		}
 
 		return $email_ids;
@@ -246,7 +258,11 @@ class WC_GZD_Settings_Tab_Emails extends WC_GZD_Settings_Tab {
 
 		$email_order = wc_gzd_get_email_attachment_order();
 		$settings    = array(
-			array( 'title' => '', 'type' => 'title', 'id' => 'email_options' ),
+			array(
+				'title' => '',
+				'type'  => 'title',
+				'id'    => 'email_options',
+			),
 
 			array(
 				'title'   => '',
@@ -257,19 +273,25 @@ class WC_GZD_Settings_Tab_Emails extends WC_GZD_Settings_Tab {
 		);
 
 		foreach ( $email_order as $key => $order ) {
-			array_push( $settings, array(
-				'title'    => sprintf( __( 'Attach %s', 'woocommerce-germanized' ), $order ),
-				'desc'     => sprintf( __( 'Attach %s to the following email templates', 'woocommerce-germanized' ), $order ),
-				'id'       => 'woocommerce_gzd_mail_attach_' . $key,
-				'type'     => 'multiselect',
-				'class'    => 'wc-enhanced-select',
-				'default'  => $this->get_default_email_ids_by_attachment_type( $key ),
-				'desc_tip' => true,
-				'options'  => $email_select,
-			) );
+			array_push(
+				$settings,
+				array(
+					'title'    => sprintf( __( 'Attach %s', 'woocommerce-germanized' ), $order ),
+					'desc'     => sprintf( __( 'Attach %s to the following email templates', 'woocommerce-germanized' ), $order ),
+					'id'       => 'woocommerce_gzd_mail_attach_' . $key,
+					'type'     => 'multiselect',
+					'class'    => 'wc-enhanced-select',
+					'default'  => $this->get_default_email_ids_by_attachment_type( $key ),
+					'desc_tip' => true,
+					'options'  => $email_select,
+				)
+			);
 		}
 
-		$settings[] = array( 'type' => 'sectionend', 'id' => 'email_options' );
+		$settings[] = array(
+			'type' => 'sectionend',
+			'id'   => 'email_options',
+		);
 
 		return $settings;
 	}

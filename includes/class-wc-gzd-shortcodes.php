@@ -25,7 +25,6 @@ class WC_GZD_Shortcodes {
 			'revocation_form'                    => __CLASS__ . '::revocation_form',
 			'payment_methods_info'               => __CLASS__ . '::payment_methods_info',
 			'add_to_cart'                        => __CLASS__ . '::gzd_add_to_cart',
-			'gzd_feature'                        => __CLASS__ . '::gzd_feature',
 			'gzd_vat_info'                       => __CLASS__ . '::gzd_vat_info',
 			'gzd_sale_info'                      => __CLASS__ . '::gzd_sale_info',
 			'gzd_complaints'                     => __CLASS__ . '::gzd_complaints',
@@ -38,13 +37,13 @@ class WC_GZD_Shortcodes {
 			'gzd_product_defect_description'     => __CLASS__ . '::gzd_product_defect_description',
 			'gzd_product_deposit'                => __CLASS__ . '::gzd_product_deposit',
 			'gzd_product_deposit_packaging_type' => __CLASS__ . '::gzd_product_deposit_packaging_type',
-			'gzd_email_legal_page_attachments'   => __CLASS__ . '::gzd_email_legal_page_attachments'
+			'gzd_email_legal_page_attachments'   => __CLASS__ . '::gzd_email_legal_page_attachments',
 		);
 
-		foreach( array_keys( WC_GZD_Food_Helper::get_food_attribute_types() ) as $food_type ) {
+		foreach ( array_keys( WC_GZD_Food_Helper::get_food_attribute_types() ) as $food_type ) {
 			$suffix_type = strstr( $food_type, 'food_' ) ? $food_type : 'food_' . $food_type;
 
-			$shortcodes["gzd_product_{$suffix_type}"] = __CLASS__ . '::gzd_product_food';
+			$shortcodes[ "gzd_product_{$suffix_type}" ] = __CLASS__ . '::gzd_product_food';
 		}
 
 		foreach ( $shortcodes as $shortcode => $function ) {
@@ -70,9 +69,12 @@ class WC_GZD_Shortcodes {
 		$content     = '';
 		$org_product = false;
 
-		$atts = wp_parse_args( $atts, array(
-			'product' => '',
-		) );
+		$atts = wp_parse_args(
+			$atts,
+			array(
+				'product' => '',
+			)
+		);
 
 		if ( ! empty( $atts['product'] ) ) {
 			$org_product = $product;
@@ -167,9 +169,12 @@ class WC_GZD_Shortcodes {
 	 * @param $atts
 	 */
 	public static function gzd_email_legal_page_attachments( $atts ) {
-		$atts = wp_parse_args( $atts, array(
-			'email_id' => '',
-		) );
+		$atts = wp_parse_args(
+			$atts,
+			array(
+				'email_id' => '',
+			)
+		);
 
 		$instance = false;
 
@@ -185,9 +190,12 @@ class WC_GZD_Shortcodes {
 
 		$content = '';
 
-		$atts = wp_parse_args( $atts, array(
-			'product' => '',
-		) );
+		$atts = wp_parse_args(
+			$atts,
+			array(
+				'product' => '',
+			)
+		);
 
 		if ( ! empty( $atts['product'] ) ) {
 			$product = wc_get_product( $atts['product'] );
@@ -228,7 +236,7 @@ class WC_GZD_Shortcodes {
 	public static function gzd_product_food( $atts, $content, $tag ) {
 		$food_type = sanitize_key( str_replace( 'gzd_product_food_', '', $tag ) );
 
-		if ( in_array( $food_type, array( 'place_of_origin', 'description', 'distributor' ) ) ) {
+		if ( in_array( $food_type, array( 'place_of_origin', 'description', 'distributor' ), true ) ) {
 			$food_type = 'food_' . $food_type;
 		}
 
@@ -285,9 +293,12 @@ class WC_GZD_Shortcodes {
 	}
 
 	public static function gzd_complaints( $atts ) {
-		$atts = wp_parse_args( $atts, array(
-			'text_only' => 'no',
-		) );
+		$atts = wp_parse_args(
+			$atts,
+			array(
+				'text_only' => 'no',
+			)
+		);
 
 		$atts['text_only'] = wc_string_to_bool( $atts['text_only'] );
 
@@ -296,10 +307,16 @@ class WC_GZD_Shortcodes {
 		);
 
 		foreach ( $texts as $key => $text ) {
-			$texts[ $key ] = wpautop( str_replace( array(
-				'https://ec.europa.eu/consumers/odr',
-				'http://ec.europa.eu/consumers/odr/'
-			), '<a href="https://ec.europa.eu/consumers/odr" target="_blank">https://ec.europa.eu/consumers/odr</a>', $text ) );
+			$texts[ $key ] = wpautop(
+				str_replace(
+					array(
+						'https://ec.europa.eu/consumers/odr',
+						'http://ec.europa.eu/consumers/odr/',
+					),
+					'<a href="https://ec.europa.eu/consumers/odr" target="_blank">https://ec.europa.eu/consumers/odr</a>',
+					$text
+				)
+			);
 		}
 
 		if ( $atts['text_only'] ) {
@@ -307,7 +324,13 @@ class WC_GZD_Shortcodes {
 		}
 
 		ob_start();
-		wc_get_template( 'global/complaints.php', array( 'dispute_text' => $texts['dispute'], 'text_only' => $atts['text_only'] ) );
+		wc_get_template(
+			'global/complaints.php',
+			array(
+				'dispute_text' => $texts['dispute'],
+				'text_only'    => $atts['text_only'],
+			)
+		);
 		$return = ( $atts['text_only'] ? '' : '<div class="woocommerce woocommerce-gzd woocommerce-gzd-complaints-shortcode">' ) . ob_get_clean() . ( $atts['text_only'] ? '' : '</div>' );
 
 		return $return;
@@ -344,22 +367,6 @@ class WC_GZD_Shortcodes {
 		$return = '<div class="woocommerce woocommerce-gzd">' . ob_get_clean() . '</div>';
 
 		return $return;
-
-	}
-
-	/**
-	 * Returns header feature shortcode
-	 *
-	 * @param array $atts
-	 * @param string $content
-	 *
-	 * @return string
-	 */
-	public static function gzd_feature( $atts, $content = '' ) {
-
-		extract( shortcode_atts( array( 'icon' => '' ), $atts ) );
-
-		return ( ! empty( $icon ) ? '<i class="fa fa-' . $icon . '"></i> ' : '' ) . $content;
 
 	}
 

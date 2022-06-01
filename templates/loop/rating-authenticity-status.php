@@ -12,7 +12,7 @@
  *
  * @see https://github.com/vendidero/woocommerce-germanized/wiki/Overriding-Germanized-Templates
  * @package Germanized/Templates
- * @version 3.0.1
+ * @version 3.0.2
  */
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -22,5 +22,5 @@ global $product;
 $verified = wc_gzd_product_rating_is_verified( $product->get_id() );
 ?>
 <p class="wc-gzd-additional-info wc-gzd-additional-info-loop wc-gzd-rating-authenticity-status <?php echo ( $verified ? 'is-verified' : 'is-unverified' ); ?>">
-	<?php echo wc_gzd_get_legal_product_rating_authenticity_notice( $product->get_id() ); ?>
+	<?php echo wp_kses_post( wc_gzd_get_legal_product_rating_authenticity_notice( $product->get_id() ) ); ?>
 </p>

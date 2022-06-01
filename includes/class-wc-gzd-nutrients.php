@@ -29,6 +29,6 @@ class WC_GZD_Nutrients extends WC_GZD_Taxonomy {
 	}
 
 	public function get_nutrient_object( $term ) {
-		return apply_filters( "woocommerce_gzd_get_nutrient_object", false, $term );
+		return apply_filters( 'woocommerce_gzd_get_nutrient_object', false, $term );
 	}
 }

@@ -46,8 +46,8 @@ class WC_GZD_AJAX {
 			wp_die( - 1 );
 		}
 
-		$tab_id = wc_clean( $_POST['tab'] );
-		$enable = wc_string_to_bool( $_POST['enable'] );
+		$tab_id = wc_clean( wp_unslash( $_POST['tab'] ) );
+		$enable = wc_string_to_bool( wc_clean( wp_unslash( $_POST['enable'] ) ) );
 
 		$pages = WC_Admin_Settings::get_settings_pages();
 
@@ -70,17 +70,21 @@ class WC_GZD_AJAX {
 					} else {
 						$tab->disable();
 
-						wp_send_json( array(
-							'data' => false,
-						) );
+						wp_send_json(
+							array(
+								'data' => false,
+							)
+						);
 					}
 				}
 			}
 		}
 
-		wp_send_json( array(
-			'data' => false,
-		) );
+		wp_send_json(
+			array(
+				'data' => false,
+			)
+		);
 	}
 
 	public static function gzd_legal_checkboxes_save_changes() {
@@ -89,7 +93,7 @@ class WC_GZD_AJAX {
 			wp_die();
 		}
 
-		if ( ! wp_verify_nonce( $_POST['wc_gzd_legal_checkbox_nonce'], 'wc_gzd_legal_checkbox_nonce' ) ) {
+		if ( ! wp_verify_nonce( wp_unslash( $_POST['wc_gzd_legal_checkbox_nonce'] ), 'wc_gzd_legal_checkbox_nonce' ) ) { // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 			wp_send_json_error( 'bad_nonce' );
 			wp_die();
 		}
@@ -100,7 +104,7 @@ class WC_GZD_AJAX {
 			wp_die();
 		}
 
-		$changes = $_POST['changes'];
+		$changes = wc_clean( wp_unslash( $_POST['changes'] ) );
 		$manager = WC_GZD_Legal_Checkbox_Manager::instance();
 		$options = $manager->get_options();
 
@@ -134,10 +138,13 @@ class WC_GZD_AJAX {
 			 * @since 2.0.0
 			 *
 			 */
-			$keys = apply_filters( 'woocommerce_gzd_legal_checkboxes_option_keys', array(
-				'id'       => '',
-				'priority' => 1,
-			) );
+			$keys = apply_filters(
+				'woocommerce_gzd_legal_checkboxes_option_keys',
+				array(
+					'id'       => '',
+					'priority' => 1,
+				)
+			);
 
 			$checkbox_data = array_intersect_key( $data, $keys );
 
@@ -164,7 +171,7 @@ class WC_GZD_AJAX {
 		ob_start();
 
 		check_ajax_referer( 'search-products', 'security' );
-		$term  = (string) wc_clean( stripslashes( $_GET['term'] ) );
+		$term  = isset( $_GET['term'] ) ? (string) wc_clean( wp_unslash( $_GET['term'] ) ) : '';
 		$terms = array();
 
 		if ( empty( $term ) ) {
@@ -187,7 +194,7 @@ class WC_GZD_AJAX {
 				$terms[ $term->term_id ] = rawurldecode( $term->name );
 			}
 		} else {
-			$terms[ rawurldecode( $term ) ] = rawurldecode( sprintf( __( "%s [new]", "woocommerce-germanized" ), $term ) );
+			$terms[ rawurldecode( $term ) ] = rawurldecode( sprintf( __( '%s [new]', 'woocommerce-germanized' ), $term ) );
 		}
 		wp_send_json( $terms );
 	}
@@ -197,9 +204,9 @@ class WC_GZD_AJAX {
 	 * @param WC_Product $product
 	 */
 	protected static function get_price_excluding_tax( $price, $product ) {
-		$tax_rates      = WC_Tax::get_rates( $product->get_tax_class() );
-		$remove_taxes   = WC_Tax::calc_tax( $price, $tax_rates, true );
-		$price          = $price - array_sum( $remove_taxes ); // Unrounded since we're dealing with tax inclusive prices. Matches logic in cart-totals class. @see adjust_non_base_location_price.
+		$tax_rates    = WC_Tax::get_rates( $product->get_tax_class() );
+		$remove_taxes = WC_Tax::calc_tax( $price, $tax_rates, true );
+		$price        = $price - array_sum( $remove_taxes ); // Unrounded since we're dealing with tax inclusive prices. Matches logic in cart-totals class. @see adjust_non_base_location_price.
 
 		return $price;
 	}
@@ -209,7 +216,7 @@ class WC_GZD_AJAX {
 
 		$return = array(
 			'vouchers' => array(),
-			'result'   => 'success'
+			'result'   => 'success',
 		);
 
 		if ( WC()->cart ) {
@@ -229,9 +236,9 @@ class WC_GZD_AJAX {
 			wp_send_json( array( 'result' => 'failure' ) );
 		}
 
-		$product_id = absint( $_POST['product_id'] );
-		$price      = wc_clean( $_POST['price'] );
-		$price_sale = isset( $_POST['price_sale'] ) ? wc_clean( $_POST['price_sale'] ) : '';
+		$product_id = absint( wp_unslash( $_POST['product_id'] ) );
+		$price      = wc_clean( wp_unslash( $_POST['price'] ) );
+		$price_sale = isset( $_POST['price_sale'] ) ? wc_clean( wp_unslash( $_POST['price_sale'] ) ) : '';
 
 		if ( ! $product = wc_gzd_get_product( $product_id ) ) {
 			wp_send_json( array( 'result' => 'failure' ) );
@@ -252,26 +259,27 @@ class WC_GZD_AJAX {
 		$args = array(
 			'regular_price' => $price,
 			'sale_price'    => ! empty( $price_sale ) ? $price_sale : $price,
-			'price'         => ! empty( $price_sale ) ? $price_sale : $price
+			'price'         => ! empty( $price_sale ) ? $price_sale : $price,
 		);
 
 		$product->recalculate_unit_price( $args );
 
-		wp_send_json( array(
-			'result'          => 'success',
-			'unit_price_html' => $product->get_unit_price_html(),
-			'product_id'      => $product_id
-		) );
+		wp_send_json(
+			array(
+				'result'          => 'success',
+				'unit_price_html' => $product->get_unit_price_html(),
+				'product_id'      => $product_id,
+			)
+		);
 	}
 
 	/**
 	 * Checks revocation form and sends Email to customer and Admin
 	 */
 	public static function gzd_revocation() {
-
 		check_ajax_referer( 'woocommerce-revocation', 'security' );
 
-		if ( ! wp_verify_nonce( $_POST['_wpnonce'], 'woocommerce-revocation' ) ) {
+		if ( ! isset( $_POST['_wpnonce'] ) || ! wp_verify_nonce( wp_unslash( $_POST['_wpnonce'] ), 'woocommerce-revocation' ) ) { // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 			wp_send_json( array( 'result' => 'failure' ) );
 		}
 
@@ -280,19 +288,17 @@ class WC_GZD_AJAX {
 
 		if ( ! empty( $fields ) ) {
 			foreach ( $fields as $key => $field ) {
-
 				if ( 'sep' !== $key ) {
-
 					if ( isset( $field['required'] ) && true === $field['required'] ) {
-						if ( $key == 'address_mail' ) {
-							if ( ! is_email( $_POST[ $key ] ) ) {
+						if ( 'address_mail' === $key ) {
+							if ( ! isset( $_POST[ $key ] ) || ! is_email( wp_unslash( $_POST[ $key ] ) ) ) {
 								wc_add_notice( '<strong>' . $field['label'] . '</strong> ' . _x( 'is not a valid email address.', 'revocation-form', 'woocommerce-germanized' ), 'error' );
 							}
-						} elseif ( $key == 'address_postal' ) {
-							if ( ! WC_Validation::is_postcode( $_POST[ $key ], $_POST['address_country'] ) || empty( $_POST[ $key ] ) ) {
+						} elseif ( 'address_postal' === $key ) {
+							if ( ! isset( $_POST['address_country'] ) || ! isset( $_POST[ $key ] ) || ! WC_Validation::is_postcode( wc_clean( wp_unslash( $_POST[ $key ] ) ), wc_clean( wp_unslash( $_POST['address_country'] ) ) ) || empty( $_POST[ $key ] ) ) {
 								wc_add_notice( _x( 'Please enter a valid postcode/ZIP', 'revocation-form', 'woocommerce-germanized' ), 'error' );
 							}
-						} elseif ( $key === 'privacy_checkbox' ) {
+						} elseif ( 'privacy_checkbox' === $key ) {
 							if ( isset( $field['required'] ) && empty( $_POST[ $key ] ) ) {
 								wc_add_notice( '<strong>' . $field['label'] . '</strong>', 'error' );
 							}
@@ -304,12 +310,12 @@ class WC_GZD_AJAX {
 					}
 
 					if ( isset( $_POST[ $key ] ) && ! empty( $_POST[ $key ] ) ) {
-						if ( $field['type'] == 'country' ) {
+						if ( 'country' === $field['type'] ) {
 							$countries    = WC()->countries->get_countries();
-							$country      = wc_clean( $_POST[ $key ] );
+							$country      = wc_clean( wp_unslash( $_POST[ $key ] ) );
 							$data[ $key ] = ( isset( $countries[ $country ] ) ? $countries[ $country ] : '' );
 						} else {
-							$data[ $key ] = wc_clean( $_POST[ $key ] );
+							$data[ $key ] = wc_clean( wp_unslash( $_POST[ $key ] ) );
 						}
 					}
 				}
@@ -317,13 +323,12 @@ class WC_GZD_AJAX {
 		}
 
 		$error = false;
-		if ( wc_notice_count( 'error' ) == 0 ) {
 
+		if ( 0 === wc_notice_count( 'error' ) ) {
 			wc_add_notice( _x( 'Thank you. We have received your Revocation Request. You will receive a conformation email within a few minutes.', 'revocation-form', 'woocommerce-germanized' ), 'success' );
 
 			// Send Mail
 			if ( $mail = WC_germanized()->emails->get_email_instance_by_id( 'customer_revocation' ) ) {
-
 				// Send to customer
 				$mail->trigger( $data );
 
@@ -331,7 +336,6 @@ class WC_GZD_AJAX {
 				$data['send_to_admin'] = true;
 				$mail->trigger( $data );
 			}
-
 		} else {
 			$error = true;
 		}
@@ -347,7 +351,6 @@ class WC_GZD_AJAX {
 
 		wp_send_json( $data );
 	}
-
 }
 
 WC_GZD_AJAX::init();

@@ -16,4 +16,4 @@ if ( ! empty( $status ) && ! is_array( $status ) ) {
 if ( 'yes' === get_option( 'woocommerce_gzd_small_enterprise' ) && 'yes' === get_option( 'woocommerce_gzd_display_product_detail_small_enterprise' ) ) {
 	update_option( 'woocommerce_gzd_display_product_detail_tax_info', 'yes' );
 }
-?>
+

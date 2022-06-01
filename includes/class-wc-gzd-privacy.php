@@ -21,10 +21,15 @@ class WC_GZD_Privacy {
 
 		// Erase
 		add_filter( 'woocommerce_privacy_erase_personal_data_customer', array( $this, 'erase_customer_data' ), 10, 2 );
-		add_action( 'woocommerce_privacy_before_remove_order_personal_data', array(
-			$this,
-			'erase_order_data'
-		), 10, 1 );
+		add_action(
+			'woocommerce_privacy_before_remove_order_personal_data',
+			array(
+				$this,
+				'erase_order_data',
+			),
+			10,
+			1
+		);
 	}
 
 	public function erase_order_data( $order ) {
@@ -38,15 +43,19 @@ class WC_GZD_Privacy {
 		 * @since 1.9.10
 		 *
 		 */
-		$meta_data = apply_filters( 'woocommerce_gzd_privacy_erase_order_personal_metadata', array(
-			'_shipping_parcelshop_post_number' => 'text',
-			'_billing_title'                   => 'text',
-			'_shipping_title'                  => 'text',
-			'_direct_debit_holder'             => 'text',
-			'_direct_debit_iban'               => 'text',
-			'_direct_debit_bic'                => 'text',
-			'_direct_debit_mandate_mail'       => 'text',
-		), $order );
+		$meta_data = apply_filters(
+			'woocommerce_gzd_privacy_erase_order_personal_metadata',
+			array(
+				'_shipping_parcelshop_post_number' => 'text',
+				'_billing_title'                   => 'text',
+				'_shipping_title'                  => 'text',
+				'_direct_debit_holder'             => 'text',
+				'_direct_debit_iban'               => 'text',
+				'_direct_debit_bic'                => 'text',
+				'_direct_debit_mandate_mail'       => 'text',
+			),
+			$order
+		);
 
 		foreach ( $meta_data as $prop => $data_type ) {
 
@@ -80,14 +89,18 @@ class WC_GZD_Privacy {
 		 * @since 1.9.10
 		 *
 		 */
-		$meta_data = apply_filters( 'woocommerce_gzd_privacy_erase_customer_personal_metadata', array(
-			'shipping_parcelshop_post_number' => __( 'Postnumber', 'woocommerce-germanized' ),
-			'billing_title'                   => __( 'Billing Title', 'woocommerce-germanized' ),
-			'shipping_title'                  => __( 'Shipping Title', 'woocommerce-germanized' ),
-			'direct_debit_holder'             => __( 'Account Holder', 'woocommerce-germanized' ),
-			'direct_debit_iban'               => __( 'IBAN', 'woocommerce-germanized' ),
-			'direct_debit_bic'                => __( 'BIC/SWIFT', 'woocommerce-germanized' ),
-		), $customer );
+		$meta_data = apply_filters(
+			'woocommerce_gzd_privacy_erase_customer_personal_metadata',
+			array(
+				'shipping_parcelshop_post_number' => __( 'Postnumber', 'woocommerce-germanized' ),
+				'billing_title'                   => __( 'Billing Title', 'woocommerce-germanized' ),
+				'shipping_title'                  => __( 'Shipping Title', 'woocommerce-germanized' ),
+				'direct_debit_holder'             => __( 'Account Holder', 'woocommerce-germanized' ),
+				'direct_debit_iban'               => __( 'IBAN', 'woocommerce-germanized' ),
+				'direct_debit_bic'                => __( 'BIC/SWIFT', 'woocommerce-germanized' ),
+			),
+			$customer
+		);
 
 		foreach ( $meta_data as $prop => $title ) {
 			if ( $value = $customer->get_meta( $prop ) ) {
@@ -114,21 +127,25 @@ class WC_GZD_Privacy {
 		 * @since 1.9.10
 		 *
 		 */
-		$meta_data = apply_filters( 'woocommerce_gzd_privacy_export_order_personal_metadata', array(
-			'_shipping_parcelshop_post_number' => __( 'Postnumber', 'woocommerce-germanized' ),
-			'_direct_debit_holder'             => __( 'Account Holder', 'woocommerce-germanized' ),
-			'_direct_debit_iban'               => __( 'IBAN', 'woocommerce-germanized' ),
-			'_direct_debit_bic'                => __( 'BIC/SWIFT', 'woocommerce-germanized' ),
-			'_direct_debit_mandate_date'       => __( 'Mandate Date', 'woocommerce-germanized' ),
-			'_direct_debit_mandate_id'         => __( 'Mandate ID', 'woocommerce-germanized' ),
-			'_direct_debit_mandate_mail'       => __( 'Mandate Email', 'woocommerce-germanized' ),
-		), $order );
+		$meta_data = apply_filters(
+			'woocommerce_gzd_privacy_export_order_personal_metadata',
+			array(
+				'_shipping_parcelshop_post_number' => __( 'Postnumber', 'woocommerce-germanized' ),
+				'_direct_debit_holder'             => __( 'Account Holder', 'woocommerce-germanized' ),
+				'_direct_debit_iban'               => __( 'IBAN', 'woocommerce-germanized' ),
+				'_direct_debit_bic'                => __( 'BIC/SWIFT', 'woocommerce-germanized' ),
+				'_direct_debit_mandate_date'       => __( 'Mandate Date', 'woocommerce-germanized' ),
+				'_direct_debit_mandate_id'         => __( 'Mandate ID', 'woocommerce-germanized' ),
+				'_direct_debit_mandate_mail'       => __( 'Mandate Email', 'woocommerce-germanized' ),
+			),
+			$order
+		);
 
 		foreach ( $meta_data as $prop => $title ) {
 
 			if ( $value = $order->get_meta( $prop ) ) {
 
-				if ( in_array( $prop, array( '_direct_debit_iban', '_direct_debit_bic' ) ) ) {
+				if ( in_array( $prop, array( '_direct_debit_iban', '_direct_debit_bic' ), true ) ) {
 					// Maybe Decrypt
 					$value = $this->decrypt( $value );
 				}
@@ -161,23 +178,27 @@ class WC_GZD_Privacy {
 		 * @since 1.9.10
 		 *
 		 */
-		$meta_data = apply_filters( 'woocommerce_gzd_privacy_export_customer_personal_metadata', array(
-			'shipping_parcelshop_post_number' => __( 'Postnumber', 'woocommerce-germanized' ),
-			'billing_title'                   => __( 'Billing Title', 'woocommerce-germanized' ),
-			'shipping_title'                  => __( 'Shipping Title', 'woocommerce-germanized' ),
-			'direct_debit_holder'             => __( 'Account Holder', 'woocommerce-germanized' ),
-			'direct_debit_iban'               => __( 'IBAN', 'woocommerce-germanized' ),
-			'direct_debit_bic'                => __( 'BIC/SWIFT', 'woocommerce-germanized' ),
-		), $customer );
+		$meta_data = apply_filters(
+			'woocommerce_gzd_privacy_export_customer_personal_metadata',
+			array(
+				'shipping_parcelshop_post_number' => __( 'Postnumber', 'woocommerce-germanized' ),
+				'billing_title'                   => __( 'Billing Title', 'woocommerce-germanized' ),
+				'shipping_title'                  => __( 'Shipping Title', 'woocommerce-germanized' ),
+				'direct_debit_holder'             => __( 'Account Holder', 'woocommerce-germanized' ),
+				'direct_debit_iban'               => __( 'IBAN', 'woocommerce-germanized' ),
+				'direct_debit_bic'                => __( 'BIC/SWIFT', 'woocommerce-germanized' ),
+			),
+			$customer
+		);
 
 		foreach ( $meta_data as $prop => $title ) {
 			if ( $value = $customer->get_meta( $prop ) ) {
 
-				if ( in_array( $prop, array( 'billing_title', 'shipping_title' ) ) ) {
+				if ( in_array( $prop, array( 'billing_title', 'shipping_title' ), true ) ) {
 					$value = wc_gzd_get_customer_title( $value );
 				}
 
-				if ( in_array( $prop, array( 'direct_debit_iban', 'direct_debit_bic' ) ) ) {
+				if ( in_array( $prop, array( 'direct_debit_iban', 'direct_debit_bic' ), true ) ) {
 					// Maybe Decrypt
 					$value = $this->decrypt( $value );
 				}

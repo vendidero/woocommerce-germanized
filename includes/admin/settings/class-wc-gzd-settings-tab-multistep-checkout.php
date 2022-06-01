@@ -31,7 +31,12 @@ class WC_GZD_Settings_Tab_Multistep_Checkout extends WC_GZD_Settings_Tab {
 
 	public function get_tab_settings( $current_section = '' ) {
 		return array(
-			array( 'title' => '', 'type' => 'title', 'id' => 'multistep_checkout_options', 'desc' => '' ),
+			array(
+				'title' => '',
+				'type'  => 'title',
+				'id'    => 'multistep_checkout_options',
+				'desc'  => '',
+			),
 
 			array(
 				'title' => '',
@@ -41,7 +46,10 @@ class WC_GZD_Settings_Tab_Multistep_Checkout extends WC_GZD_Settings_Tab {
 				'type'  => 'image',
 			),
 
-			array( 'type' => 'sectionend', 'id' => 'multistep_checkout_options' ),
+			array(
+				'type' => 'sectionend',
+				'id'   => 'multistep_checkout_options',
+			),
 		);
 	}
 

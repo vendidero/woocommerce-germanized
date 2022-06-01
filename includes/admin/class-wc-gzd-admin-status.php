@@ -23,7 +23,7 @@ class WC_GZD_Admin_Status extends WC_Admin_Status {
 	);
 
 	public static function output() {
-		include_once( 'views/html-page-status-germanized.php' );
+		include_once 'views/html-page-status-germanized.php';
 	}
 
 	public static function status_default( $status ) {
@@ -51,7 +51,10 @@ class WC_GZD_Admin_Status extends WC_Admin_Status {
 		);
 
 		foreach ( $pages as $page => $title ) {
-			$return[ $page ] = array( 'title' => $title, 'id' => get_option( 'woocommerce_' . $page . '_page_id' ) );
+			$return[ $page ] = array(
+				'title' => $title,
+				'id'    => get_option( 'woocommerce_' . $page . '_page_id' ),
+			);
 		}
 
 		return $return;
@@ -61,8 +64,9 @@ class WC_GZD_Admin_Status extends WC_Admin_Status {
 		global $wpdb;
 
 		foreach ( self::$tax_tables as $table ) {
+			$table_name = "{$wpdb->prefix}{$table}";
 
-			if ( ! $wpdb->get_var( "SHOW TABLES LIKE '{$wpdb->prefix}{$table}';" ) ) {
+			if ( ! $wpdb->get_var( $wpdb->prepare( 'SHOW TABLES LIKE %s;', $table_name ) ) ) {
 				return false;
 			}
 		}
@@ -75,12 +79,13 @@ class WC_GZD_Admin_Status extends WC_Admin_Status {
 		$missing = array();
 
 		foreach ( self::$tax_tables as $table ) {
-			if ( ! $wpdb->get_var( "SHOW TABLES LIKE '{$wpdb->prefix}{$table}';" ) ) {
+			$table_name = "{$wpdb->prefix}{$table}";
+
+			if ( ! $wpdb->get_var( $wpdb->prepare( 'SHOW TABLES LIKE %s;', $table_name ) ) ) {
 				array_push( $missing, $table );
 			}
 		}
 
 		return $missing;
 	}
-
 }

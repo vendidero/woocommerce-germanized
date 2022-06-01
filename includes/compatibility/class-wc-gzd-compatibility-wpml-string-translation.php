@@ -91,31 +91,34 @@ class WC_GZD_Compatibility_WPML_String_Translation extends WC_GZD_Compatibility 
 		 * @since 2.0.0
 		 *
 		 */
-		return apply_filters( 'woocommerce_gzd_wpml_translatable_options', array(
-			'woocommerce_gzd_small_enterprise_text'               => '',
-			'woocommerce_gzd_differential_taxation_notice_text'   => '',
-			'woocommerce_gzd_shipping_costs_text'                 => '',
-			'woocommerce_gzd_order_submit_btn_text'               => '',
-			'woocommerce_gzd_complaints_procedure_text'           => '',
-			'woocommerce_gzd_delivery_time_text'                  => '',
-			'woocommerce_gzd_price_range_format_text'             => '',
-			'woocommerce_gzd_unit_price_text'                     => '',
-			'woocommerce_gzd_product_units_text'                  => '',
-			'woocommerce_gzd_display_listings_link_details_text'  => '',
-			'woocommerce_gzd_display_digital_delivery_time_text'  => '',
-			'woocommerce_gzd_order_success_text'                  => '',
-			'woocommerce_gzd_customer_account_text'               => '',
-			'woocommerce_gzd_email_order_confirmation_text'       => '',
-			'woocommerce_gzd_alternative_complaints_text_none'    => '',
-			'woocommerce_gzd_alternative_complaints_text_willing' => '',
-			'woocommerce_gzd_alternative_complaints_text_obliged' => '',
-			'woocommerce_gzd_email_title_text'                    => '',
-			'woocommerce_gzd_legal_checkboxes_settings'           => array(
-				'label',
-				'error_message',
-				'confirmation'
-			),
-		) );
+		return apply_filters(
+			'woocommerce_gzd_wpml_translatable_options',
+			array(
+				'woocommerce_gzd_small_enterprise_text'   => '',
+				'woocommerce_gzd_differential_taxation_notice_text' => '',
+				'woocommerce_gzd_shipping_costs_text'     => '',
+				'woocommerce_gzd_order_submit_btn_text'   => '',
+				'woocommerce_gzd_complaints_procedure_text' => '',
+				'woocommerce_gzd_delivery_time_text'      => '',
+				'woocommerce_gzd_price_range_format_text' => '',
+				'woocommerce_gzd_unit_price_text'         => '',
+				'woocommerce_gzd_product_units_text'      => '',
+				'woocommerce_gzd_display_listings_link_details_text' => '',
+				'woocommerce_gzd_display_digital_delivery_time_text' => '',
+				'woocommerce_gzd_order_success_text'      => '',
+				'woocommerce_gzd_customer_account_text'   => '',
+				'woocommerce_gzd_email_order_confirmation_text' => '',
+				'woocommerce_gzd_alternative_complaints_text_none' => '',
+				'woocommerce_gzd_alternative_complaints_text_willing' => '',
+				'woocommerce_gzd_alternative_complaints_text_obliged' => '',
+				'woocommerce_gzd_email_title_text'        => '',
+				'woocommerce_gzd_legal_checkboxes_settings' => array(
+					'label',
+					'error_message',
+					'confirmation',
+				),
+			)
+		);
 	}
 
 	public function get_translatable_admin_options() {
@@ -149,7 +152,6 @@ class WC_GZD_Compatibility_WPML_String_Translation extends WC_GZD_Compatibility 
 
 				wc_gzd_remove_class_filter( 'option_' . $option, 'WPML_Admin_Texts', 'icl_st_translate_admin_string', 10 );
 			}
-
 		} elseif ( ! empty( $admin_strings ) ) {
 
 			foreach ( $admin_strings as $option => $args ) {
@@ -162,7 +164,7 @@ class WC_GZD_Compatibility_WPML_String_Translation extends WC_GZD_Compatibility 
 	protected function enable_option_filters() {
 		$enable = false;
 
-		if ( isset( $_GET['tab'] ) && ( strpos( $_GET['tab'], 'germanized' ) !== false || 'email' === $_GET['tab'] ) ) {
+		if ( isset( $_GET['tab'] ) && ( strpos( $_GET['tab'], 'germanized' ) !== false || 'email' === $_GET['tab'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification,WordPress.Security.ValidatedSanitizedInput
 			$enable = true;
 		}
 
@@ -182,9 +184,9 @@ class WC_GZD_Compatibility_WPML_String_Translation extends WC_GZD_Compatibility 
 			return $string->language;
 		}
 
-		global $WPML_String_Translation;
+		global $WPML_String_Translation; // phpcs:ignore WordPress.NamingConventions.ValidVariableName
 
-		return $WPML_String_Translation->get_current_string_language( $option );
+		return $WPML_String_Translation->get_current_string_language( $option ); // phpcs:ignore WordPress.NamingConventions.ValidVariableName
 	}
 
 	public function get_string_by_id( $string_id ) {
@@ -249,7 +251,7 @@ class WC_GZD_Compatibility_WPML_String_Translation extends WC_GZD_Compatibility 
 		$translations = icl_get_string_translations_by_id( $string_id );
 		$status       = empty( $status ) ? ICL_TM_COMPLETE : $status;
 
-		if ( isset( $translations[ $language ] ) && $translations[ $language ]['status'] == $status ) {
+		if ( isset( $translations[ $language ] ) && $translations[ $language ]['status'] === $status ) {
 			return $translations[ $language ]['value'];
 		}
 
@@ -286,7 +288,7 @@ class WC_GZD_Compatibility_WPML_String_Translation extends WC_GZD_Compatibility 
 			foreach ( $new_value as $id => $options ) {
 
 				foreach ( $options as $key => $value ) {
-					if ( in_array( $key, $args ) ) {
+					if ( in_array( $key, $args ) ) { // phpcs:ignore WordPress.PHP.StrictInArray.MissingTrueStrict
 						$old_value_internal       = isset( $old_value[ $id ][ $key ] ) ? $old_value[ $id ][ $key ] : '';
 						$new_value[ $id ][ $key ] = $this->pre_update_translation( $value, $old_value_internal, "[{$option}][{$id}]{$key}", "admin_texts_{$option}" );
 					}
@@ -372,7 +374,7 @@ class WC_GZD_Compatibility_WPML_String_Translation extends WC_GZD_Compatibility 
 			foreach ( $org_value as $id => $options ) {
 				if ( is_array( $options ) ) {
 					foreach ( $options as $key => $value ) {
-						if ( in_array( $key, $args ) ) {
+						if ( in_array( $key, $args ) ) { // phpcs:ignore WordPress.PHP.StrictInArray.MissingTrueStrict
 							$org_value[ $id ][ $key ] = $this->translate_option( $value, "[{$option}][{$id}]{$key}", "admin_texts_{$option}" );
 						}
 					}
@@ -400,25 +402,5 @@ class WC_GZD_Compatibility_WPML_String_Translation extends WC_GZD_Compatibility 
 		}
 
 		return $org_value;
-	}
-
-	public function translate_option_checkboxes( $org_value, $option ) {
-		if ( ! is_array( $org_value ) ) {
-			$org_value = array();
-		}
-
-		foreach ( $org_value as $checkbox_id => $options ) {
-			foreach ( $options as $option => $value ) {
-				if ( in_array( $option, $this->get_checkbox_translateable_options() ) ) {
-					$org_value[ $checkbox_id ][ $option ] = $this->translate_option( $value, "[woocommerce_gzd_legal_checkboxes_settings][{$checkbox_id}]{$option}", "admin_texts_woocommerce_gzd_legal_checkboxes_settings" );
-				}
-			}
-		}
-
-		return $org_value;
-	}
-
-	public function pre_update_translate_checkboxes( $new_value, $old_value, $option ) {
-		return $new_value;
 	}
 }

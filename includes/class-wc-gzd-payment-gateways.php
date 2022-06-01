@@ -72,7 +72,7 @@ class WC_GZD_Payment_Gateways {
 		$allowed = array( 'edit-shop_order', 'export' );
 		$screen  = get_current_screen();
 
-		if ( $screen && in_array( $screen->id, $allowed ) ) {
+		if ( $screen && in_array( $screen->id, $allowed, true ) ) {
 			$direct_debit = new WC_GZD_Gateway_Direct_Debit();
 		}
 	}
@@ -115,7 +115,7 @@ class WC_GZD_Payment_Gateways {
 		 * @since 2.0.0
 		 *
 		 */
-		return in_array( $id, apply_filters( 'woocommerce_gzd_fee_supporting_gateways', array( 'cod' ) ) ) ? true : false;
+		return in_array( $id, apply_filters( 'woocommerce_gzd_fee_supporting_gateways', array( 'cod' ) ), true ) ? true : false;
 	}
 
 	protected function maybe_force_gateway_button_text( $gateway ) {
@@ -132,7 +132,7 @@ class WC_GZD_Payment_Gateways {
 			 * @since 1.0.0
 			 *
 			 */
-			$gateway->order_button_text = apply_filters( 'woocommerce_gzd_order_button_payment_gateway_text', __( get_option( 'woocommerce_gzd_order_submit_btn_text' ), 'woocommerce-germanized' ), $gateway->id );
+			$gateway->order_button_text = apply_filters( 'woocommerce_gzd_order_button_payment_gateway_text', get_option( 'woocommerce_gzd_order_submit_btn_text', __( 'Buy Now', 'woocommerce-germanized' ) ), $gateway->id );
 		}
 	}
 
@@ -145,7 +145,7 @@ class WC_GZD_Payment_Gateways {
 
 		foreach ( $gateways as $gateway ) {
 
-			if ( $gateway->enabled !== 'yes' ) {
+			if ( 'yes' !== $gateway->enabled ) {
 				continue;
 			}
 
@@ -200,7 +200,7 @@ class WC_GZD_Payment_Gateways {
 					continue;
 				}
 
-				add_filter( 'woocommerce_settings_api_form_fields_' . $gateway->id, array( $this, "set_fields" ) );
+				add_filter( 'woocommerce_settings_api_form_fields_' . $gateway->id, array( $this, 'set_fields' ) );
 			}
 		}
 	}
@@ -211,7 +211,7 @@ class WC_GZD_Payment_Gateways {
 	 * @param array $fields
 	 */
 	public function set_fields( $fields ) {
-		$gateway = isset( $_GET['section'] ) ? wc_clean( $_GET['section'] ) : '';
+		$gateway = isset( $_GET['section'] ) ? wc_clean( wp_unslash( $_GET['section'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 
 		$fields['fee'] = array(
 			'title'       => __( 'Fee', 'woocommerce-germanized' ),
@@ -253,7 +253,7 @@ class WC_GZD_Payment_Gateways {
 
 		$gateway = $gateways[ $key ];
 
-		if ( $gateway->enabled !== 'yes' ) {
+		if ( 'yes' !== $gateway->enabled ) {
 			return;
 		}
 

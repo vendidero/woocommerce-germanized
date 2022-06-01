@@ -20,4 +20,4 @@ $reviews_enabled = get_option( 'woocommerce_gzd_trusted_shops_enable_reviews' );
 
 update_option( 'woocommerce_gzd_trusted_shops_reviews_enable', $reviews_enabled );
 
-?>
+

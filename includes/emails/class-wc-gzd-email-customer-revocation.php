@@ -117,15 +117,18 @@ if ( ! class_exists( 'WC_GZD_Email_Customer_Revocation' ) ) :
 		 * @return string
 		 */
 		public function get_content_html() {
-			return wc_get_template_html( $this->template_html, array(
-				'user'               => $this->object,
-				'email_heading'      => $this->get_heading(),
-				'blogname'           => $this->get_blogname(),
-				'additional_content' => $this->get_additional_content(),
-				'sent_to_admin'      => false,
-				'plain_text'         => false,
-				'email'              => $this
-			) );
+			return wc_get_template_html(
+				$this->template_html,
+				array(
+					'user'               => $this->object,
+					'email_heading'      => $this->get_heading(),
+					'blogname'           => $this->get_blogname(),
+					'additional_content' => $this->get_additional_content(),
+					'sent_to_admin'      => false,
+					'plain_text'         => false,
+					'email'              => $this,
+				)
+			);
 		}
 
 		/**
@@ -135,15 +138,18 @@ if ( ! class_exists( 'WC_GZD_Email_Customer_Revocation' ) ) :
 		 * @return string
 		 */
 		public function get_content_plain() {
-			return wc_get_template_html( $this->template_plain, array(
-				'user'               => $this->object,
-				'email_heading'      => $this->get_heading(),
-				'blogname'           => $this->get_blogname(),
-				'additional_content' => $this->get_additional_content(),
-				'sent_to_admin'      => false,
-				'plain_text'         => true,
-				'email'              => $this
-			) );
+			return wc_get_template_html(
+				$this->template_plain,
+				array(
+					'user'               => $this->object,
+					'email_heading'      => $this->get_heading(),
+					'blogname'           => $this->get_blogname(),
+					'additional_content' => $this->get_additional_content(),
+					'sent_to_admin'      => false,
+					'plain_text'         => true,
+					'email'              => $this,
+				)
+			);
 		}
 
 		/**
@@ -169,16 +175,19 @@ if ( ! class_exists( 'WC_GZD_Email_Customer_Revocation' ) ) :
 
 			parent::init_form_fields();
 
-			$this->form_fields = array_merge( $this->form_fields, array(
-				'admin_email' => array(
-					'title'       => __( 'Admin email', 'woocommerce-germanized' ),
-					'type'        => 'text',
-					'desc_tip'    => true,
-					'description' => __( 'Insert the email address of your shop manager here. A copy of the withdrawal confirmation email is being sent to this address.', 'woocommerce-germanized' ),
-					'placeholder' => '',
-					'default'     => get_bloginfo( 'admin_email' ),
-				),
-			) );
+			$this->form_fields = array_merge(
+				$this->form_fields,
+				array(
+					'admin_email' => array(
+						'title'       => __( 'Admin email', 'woocommerce-germanized' ),
+						'type'        => 'text',
+						'desc_tip'    => true,
+						'description' => __( 'Insert the email address of your shop manager here. A copy of the withdrawal confirmation email is being sent to this address.', 'woocommerce-germanized' ),
+						'placeholder' => '',
+						'default'     => get_bloginfo( 'admin_email' ),
+					),
+				)
+			);
 		}
 	}
 

@@ -66,11 +66,11 @@ add_action( 'woocommerce_before_add_to_cart_form', 'woocommerce_gzd_template_sin
 
 add_filter( 'woocommerce_available_variation', 'woocommerce_gzd_add_variation_options', 5000, 3 );
 
-if ( get_option( 'woocommerce_gzd_display_listings_add_to_cart' ) == 'no' ) {
+if ( 'no' === get_option( 'woocommerce_gzd_display_listings_add_to_cart' ) ) {
 	remove_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart' );
 }
 
-if ( get_option( 'woocommerce_gzd_display_listings_link_details' ) == 'yes' ) {
+if ( 'yes' === get_option( 'woocommerce_gzd_display_listings_link_details' ) ) {
 	add_filter( 'woocommerce_loop_add_to_cart_link', 'woocommerce_gzd_template_loop_add_to_cart', 99, 2 );
 }
 
@@ -79,21 +79,29 @@ if ( get_option( 'woocommerce_gzd_display_listings_link_details' ) == 'yes' ) {
  *
  * @see https://www.haendlerbund.de/de/news/aktuelles/rechtliches/4145-omnibus-rezensionen-gekennzeichnet
  */
-add_action( 'init', function() {
-	if ( apply_filters( 'woocommerce_gzd_enable_rating_authenticity_notices', wc_reviews_enabled() ) ) {
-		if ( 'yes' === get_option( 'woocommerce_gzd_display_rating_authenticity_notice' ) ) {
-			add_filter( 'woocommerce_product_get_rating_html', 'woocommerce_gzd_template_product_rating_authenticity_status_filter', 500 );
-			add_action( 'woocommerce_gzd_after_product_grid_block_after_rating', 'woocommerce_gzd_template_product_rating_authenticity_status_loop', 20 );
-		}
+add_action(
+	'init',
+	function() {
+		if ( apply_filters( 'woocommerce_gzd_enable_rating_authenticity_notices', wc_reviews_enabled() ) ) {
+			if ( 'yes' === get_option( 'woocommerce_gzd_display_rating_authenticity_notice' ) ) {
+				add_filter( 'woocommerce_product_get_rating_html', 'woocommerce_gzd_template_product_rating_authenticity_status_filter', 500 );
+				add_action( 'woocommerce_gzd_after_product_grid_block_after_rating', 'woocommerce_gzd_template_product_rating_authenticity_status_loop', 20 );
+			}
 
-		if ( 'yes' === get_option( 'woocommerce_gzd_display_review_authenticity_notice' ) ) {
-			add_action( 'woocommerce_review_after_comment_text', 'woocommerce_gzd_template_product_review_authenticity_status', 20 );
-			add_filter( 'pre_option_woocommerce_review_rating_verification_label', function() {
-				return 'no';
-			}, 500 );
+			if ( 'yes' === get_option( 'woocommerce_gzd_display_review_authenticity_notice' ) ) {
+				add_action( 'woocommerce_review_after_comment_text', 'woocommerce_gzd_template_product_review_authenticity_status', 20 );
+				add_filter(
+					'pre_option_woocommerce_review_rating_verification_label',
+					function() {
+						return 'no';
+					},
+					500
+				);
+			}
 		}
-	}
-}, 50 );
+	},
+	50
+);
 
 /**
  * Widgets
@@ -106,7 +114,7 @@ add_action( 'woocommerce_widget_product_item_end', 'woocommerce_gzd_template_pro
  */
 add_filter( 'woocommerce_blocks_product_grid_item_html', 'wc_gzd_template_adjust_product_grid_block_html', 1, 3 );
 // Additional product blocks which do not inherit from \Automattic\WooCommerce\Blocks\BlockTypes\AbstractProductGrid
-foreach( array( 'woocommerce/featured-product' ) as $block_type ) {
+foreach ( array( 'woocommerce/featured-product' ) as $block_type ) {
 	add_filter( 'render_block_woocommerce/featured-product', 'wc_gzd_template_adjust_product_block_html', 150, 2 );
 }
 
@@ -203,7 +211,7 @@ foreach ( wc_gzd_get_checkout_shopmarks() as $shopmark ) {
 	$shopmark->execute();
 }
 
-if ( get_option( 'woocommerce_gzd_display_checkout_edit_data_notice' ) == 'yes' ) {
+if ( 'yes' === get_option( 'woocommerce_gzd_display_checkout_edit_data_notice' ) ) {
 	add_action( 'woocommerce_before_order_notes', 'woocommerce_gzd_template_checkout_edit_data_notice', wc_gzd_get_hook_priority( 'checkout_edit_data_notice' ), 1 );
 }
 
@@ -221,11 +229,14 @@ if ( did_action( 'init' ) ) {
 		woocommerce_gzd_checkout_load_ajax_relevant_hooks();
 	}
 } else {
-	add_action( 'init', function() {
-		if ( ! wp_doing_ajax() ) {
-			woocommerce_gzd_checkout_load_ajax_relevant_hooks();
+	add_action(
+		'init',
+		function() {
+			if ( ! wp_doing_ajax() ) {
+				woocommerce_gzd_checkout_load_ajax_relevant_hooks();
+			}
 		}
-	} );
+	);
 }
 
 // Remove WooCommerce Terms checkbox
@@ -285,7 +296,7 @@ add_action( 'woocommerce_thankyou', 'woocommerce_gzd_template_order_item_hooks',
 // Add Hooks to pay form
 add_action( 'before_woocommerce_pay', 'woocommerce_gzd_template_order_item_hooks', 10 );
 
-if ( get_option( 'woocommerce_gzd_hide_order_success_details' ) == 'yes' ) {
+if ( 'yes' === get_option( 'woocommerce_gzd_hide_order_success_details' ) ) {
 	remove_action( 'woocommerce_thankyou', 'woocommerce_order_details_table', WC_GZD_Hook_Priorities::instance()->get_priority( 'woocommerce_thankyou', 'woocommerce_order_details_table' ) );
 }
 
@@ -320,4 +331,4 @@ if ( 'yes' === get_option( 'woocommerce_gzd_display_footer_sale_price_notice' ) 
 	add_action( 'woocommerce_gzd_footer_msg', 'woocommerce_gzd_template_footer_sale_info', wc_gzd_get_hook_priority( 'gzd_footer_sale_info' ) );
 	add_action( 'wp_footer', 'woocommerce_gzd_template_footer_sale_info', wc_gzd_get_hook_priority( 'footer_sale_info' ) );
 }
-?>
+

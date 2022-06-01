@@ -40,7 +40,7 @@ if ( ! class_exists( 'WC_GZD_Email_Customer_Cancelled_Order' ) ) :
 			add_action( 'woocommerce_order_status_processing_to_cancelled_notification', array( $this, 'trigger' ), 10, 1 );
 			add_action( 'woocommerce_order_status_on-hold_to_cancelled_notification', array( $this, 'trigger' ), 10, 1 );
 
-			$this->placeholders   = array(
+			$this->placeholders = array(
 				'{order_date}'   => '',
 				'{order_number}' => '',
 			);
@@ -204,13 +204,13 @@ if ( ! class_exists( 'WC_GZD_Email_Customer_Cancelled_Order' ) ) :
 			/* translators: %s: list of placeholders */
 			$placeholder_text  = sprintf( __( 'Available placeholders: %s', 'woocommerce-germanized' ), '<code>' . esc_html( implode( '</code>, <code>', array_keys( $this->placeholders ) ) ) . '</code>' );
 			$this->form_fields = array(
-				'enabled'     => array(
+				'enabled'            => array(
 					'title'   => __( 'Enable/Disable', 'woocommerce-germanized' ),
 					'type'    => 'checkbox',
 					'label'   => __( 'Enable this email notification', 'woocommerce-germanized' ),
 					'default' => wc_gzd_send_instant_order_confirmation() ? 'yes' : 'no',
 				),
-				'failed_enabled' => array(
+				'failed_enabled'     => array(
 					'title'   => __( 'Enable failed', 'woocommerce-germanized' ),
 					'type'    => 'checkbox',
 					'label'   => __( 'Enable failed order customer notification', 'woocommerce-germanized' ),

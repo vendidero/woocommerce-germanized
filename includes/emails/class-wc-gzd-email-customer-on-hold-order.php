@@ -52,10 +52,9 @@ if ( ! class_exists( 'WC_GZD_Email_Customer_On_Hold_Order' ) ) :
 			try {
 				$method                 = new ReflectionMethod( get_parent_class( $this ), 'trigger' );
 				$num                    = $method->getNumberOfParameters();
-				$requires_two_arguments = ( $num == 2 );
+				$requires_two_arguments = ( 2 === $num );
 
-			} catch ( Exception $e ) {
-
+			} catch ( Exception $e ) { // phpcs:ignore Generic.CodeAnalysis.EmptyStatement.DetectedCatch
 			}
 
 			if ( $requires_two_arguments ) {

@@ -43,7 +43,7 @@ class WC_GZD_Admin_Note_Theme_Supported extends WC_GZD_Admin_Note {
 	public function get_content() {
 		$current_theme = $this->get_current_theme();
 
-		return sprintf( __( 'Your current theme %s needs some adaptions to seamlessly integrate with Germanized. Our Pro Version will <strong>enable support for %s</strong> and makes sure Germanized settings are shown and styled within frontend for a better user experience. A better user experience will help you selling more products.', 'woocommerce-germanized' ), $current_theme->get( 'Name' ), $current_theme->get( 'Name' ) );
+		return sprintf( __( 'Your current theme %1$s needs some adaptions to seamlessly integrate with Germanized. Our Pro Version will <strong>enable support for %2$s</strong> and makes sure Germanized settings are shown and styled within frontend for a better user experience. A better user experience will help you selling more products.', 'woocommerce-germanized' ), $current_theme->get( 'Name' ), $current_theme->get( 'Name' ) );
 	}
 
 	public function get_actions() {

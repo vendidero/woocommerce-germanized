@@ -12,7 +12,7 @@
  *
  * @see https://github.com/vendidero/woocommerce-germanized/wiki/Overriding-Germanized-Templates
  * @package Germanized/Templates
- * @version 2.5.0
+ * @version 2.5.1
  */
 defined( 'ABSPATH' ) || exit;
 
@@ -21,7 +21,7 @@ echo esc_html( wp_strip_all_tags( $email_heading ) );
 echo "\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n\n";
 
 /* translators: %s: Customer first name */
-echo sprintf( esc_html__( 'Hi %s,', 'woocommerce' ), esc_html( $order->get_billing_first_name() ) ) . "\n\n";
+echo sprintf( esc_html__( 'Hi %s,', 'woocommerce' ), esc_html( $order->get_billing_first_name() ) ) . "\n\n"; // phpcs:ignore WordPress.WP.I18n.TextDomainMismatch
 
 if ( ! $has_failed ) :
 	/* translators: %s: Order number */

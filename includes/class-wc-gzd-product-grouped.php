@@ -58,7 +58,7 @@ class WC_GZD_Product_Grouped extends WC_GZD_Product {
 				$products  = array();
 				$sort      = true;
 
-				foreach( $child_prices as $child_id => $price ) {
+				foreach ( $child_prices as $child_id => $price ) {
 					if ( $price <= $min_price ) {
 						$products[] = $child_id;
 					}
@@ -74,11 +74,14 @@ class WC_GZD_Product_Grouped extends WC_GZD_Product {
 			}
 		}
 
-		return array( 'products' => $products, 'sort' => $sort );
+		return array(
+			'products' => $products,
+			'sort'     => $sort,
+		);
 	}
 
 	protected function get_child_unit_data() {
-		if ( is_null( $this->child_prices )  ) {
+		if ( is_null( $this->child_prices ) ) {
 			$min_max            = $this->get_min_max_child_products();
 			$this->child_prices = array();
 
@@ -120,16 +123,22 @@ class WC_GZD_Product_Grouped extends WC_GZD_Product {
 							}
 
 							// Recalculate new prices
-							$prices_incl = wc_gzd_recalculate_unit_price( array(
-								'base'     => $this->child_prices[ $unit ]['base'],
-								'products' => $child->get_unit_product(),
-							), $child );
+							$prices_incl = wc_gzd_recalculate_unit_price(
+								array(
+									'base'     => $this->child_prices[ $unit ]['base'],
+									'products' => $child->get_unit_product(),
+								),
+								$child
+							);
 
-							$prices_excl = wc_gzd_recalculate_unit_price( array(
-								'base'     => $this->child_prices[ $unit ]['base'],
-								'products' => $child->get_unit_product(),
-								'tax_mode' => 'excl',
-							), $child );
+							$prices_excl = wc_gzd_recalculate_unit_price(
+								array(
+									'base'     => $this->child_prices[ $unit ]['base'],
+									'products' => $child->get_unit_product(),
+									'tax_mode' => 'excl',
+								),
+								$child
+							);
 
 							if ( empty( $prices_incl ) || empty( $prices_excl ) ) {
 								$this->has_unit_price = false;

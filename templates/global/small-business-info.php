@@ -12,7 +12,7 @@
  *
  * @see https://github.com/vendidero/woocommerce-germanized/wiki/Overriding-Germanized-Templates
  * @package Germanized/Templates
- * @version 1.0.0
+ * @version 1.0.1
  */
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 ?>
 
 <div class="wc-gzd-additional-wrapper">
-    <p class="wc-gzd-additional-info small-business-info">
-		<?php echo wc_gzd_get_small_business_notice(); ?>
-    </p>
+	<p class="wc-gzd-additional-info small-business-info">
+		<?php echo wp_kses_post( wc_gzd_get_small_business_notice() ); ?>
+	</p>
 </div>

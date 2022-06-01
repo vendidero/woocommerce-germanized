@@ -29,10 +29,10 @@ class WC_GZD_Compatibility_WooCommerce_Composite_Products extends WC_GZD_Compati
 	}
 
 	public function output_composite_shopmarks() {
-		foreach( wc_gzd_get_single_product_shopmarks() as $shopmark ) {
+		foreach ( wc_gzd_get_single_product_shopmarks() as $shopmark ) {
 			$callback = $shopmark->get_callback();
 
-			if ( function_exists( $callback ) && $shopmark->is_enabled() && in_array( $shopmark->get_type(), array( 'unit_price', 'legal', 'tax', 'shipping_costs' ) ) ) {
+			if ( function_exists( $callback ) && $shopmark->is_enabled() && in_array( $shopmark->get_type(), array( 'unit_price', 'legal', 'tax', 'shipping_costs' ), true ) ) {
 				call_user_func( $callback );
 			}
 		}

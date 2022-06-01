@@ -31,7 +31,12 @@ class WC_GZD_Settings_Tab_Invoices extends WC_GZD_Settings_Tab {
 
 	public function get_tab_settings( $current_section = '' ) {
 		return array(
-			array( 'title' => '', 'type' => 'title', 'id' => 'invoice_options', 'desc' => '' ),
+			array(
+				'title' => '',
+				'type'  => 'title',
+				'id'    => 'invoice_options',
+				'desc'  => '',
+			),
 
 			array(
 				'title' => '',
@@ -41,7 +46,10 @@ class WC_GZD_Settings_Tab_Invoices extends WC_GZD_Settings_Tab {
 				'type'  => 'image',
 			),
 
-			array( 'type' => 'sectionend', 'id' => 'invoice_options' ),
+			array(
+				'type' => 'sectionend',
+				'id'   => 'invoice_options',
+			),
 		);
 	}
 
@@ -57,10 +65,10 @@ class WC_GZD_Settings_Tab_Invoices extends WC_GZD_Settings_Tab {
 				<li>✓ <?php _e( 'Export your documents as CSV and ZIP', 'woocommerce-germanized' ); ?></li>
 			</ul>
 			<p>
-                <a class="button button-secondary" href="https://vendidero.de/woocommerce-germanized/features/#accounting"
-                   target="_blank"><?php _e( 'Learn more', 'woocommerce-germanized' ); ?></a>
+				<a class="button button-secondary" href="https://vendidero.de/woocommerce-germanized/features/#accounting"
+				   target="_blank"><?php _e( 'Learn more', 'woocommerce-germanized' ); ?></a>
 				<a class="button button-primary wc-gzd-button" style="margin-left: 5px;" href="https://vendidero.de/woocommerce-germanized"
-			      target="_blank"><?php _e( 'Upgrade now', 'woocommerce-germanized' ); ?></a>
+				  target="_blank"><?php _e( 'Upgrade now', 'woocommerce-germanized' ); ?></a>
 			</p>
 		</div>
 		<?php

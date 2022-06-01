@@ -13,10 +13,10 @@ class WC_GZD_Hook_Priorities {
 	 */
 	protected static $_instance = null;
 
-	public $priorities = array();
+	public $priorities         = array();
 	public $default_priorities = array();
-	public $hooks = array();
-	public $queue = array();
+	public $hooks              = array();
+	public $queue              = array();
 
 	public static function instance() {
 		if ( is_null( self::$_instance ) ) {
@@ -32,7 +32,7 @@ class WC_GZD_Hook_Priorities {
 	 * @since 1.0
 	 */
 	public function __clone() {
-		_doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?', 'woocommerce-germanized' ), '1.0' );
+		_doing_it_wrong( __FUNCTION__, esc_html__( 'Cheating huh?', 'woocommerce-germanized' ), '1.0' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
 
 	/**
@@ -41,7 +41,7 @@ class WC_GZD_Hook_Priorities {
 	 * @since 1.0
 	 */
 	public function __wakeup() {
-		_doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?', 'woocommerce-germanized' ), '1.0' );
+		_doing_it_wrong( __FUNCTION__, esc_html__( 'Cheating huh?', 'woocommerce-germanized' ), '1.0' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
 
 	public function __construct() {
@@ -155,7 +155,11 @@ class WC_GZD_Hook_Priorities {
 		}
 
 		if ( ! did_action( 'after_setup_theme' ) ) {
-			$this->queue[] = array( 'hook' => $hook, 'function' => $function, 'new_prio' => $new_prio );
+			$this->queue[] = array(
+				'hook'     => $hook,
+				'function' => $function,
+				'new_prio' => $new_prio,
+			);
 		} else {
 			remove_action( $hook, $function, $this->get_priority( $hook, $function ) );
 			add_action( $hook, $function, $new_prio );

@@ -51,7 +51,7 @@ class WC_GZD_Admin_Note_Internetmarke_Importer extends WC_GZD_Admin_Note {
 				'title'        => _x( 'Import settings and activate', 'dhl', 'woocommerce-germanized' ),
 				'target'       => '_self',
 				'is_primary'   => true,
-				'nonce_action' => 'woocommerce_gzd_internetmarke_import_nonce'
+				'nonce_action' => 'woocommerce_gzd_internetmarke_import_nonce',
 			),
 			array(
 				'url'        => 'https://vendidero.de/dokument/internetmarke-integration-einrichten',

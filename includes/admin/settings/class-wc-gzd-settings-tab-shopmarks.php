@@ -45,10 +45,13 @@ class WC_GZD_Settings_Tab_Shopmarks extends WC_GZD_Settings_Tab {
 			$sections[ $location ] = $title;
 		}
 
-		$sections = array_merge( $sections, array(
-			'product_widgets' => __( 'Widgets', 'woocommerce-germanized' ),
-			'emails'          => __( 'E-Mails', 'woocommerce-germanized' ),
-		) );
+		$sections = array_merge(
+			$sections,
+			array(
+				'product_widgets' => __( 'Widgets', 'woocommerce-germanized' ),
+				'emails'          => __( 'E-Mails', 'woocommerce-germanized' ),
+			)
+		);
 
 		return $sections;
 	}
@@ -76,8 +79,7 @@ class WC_GZD_Settings_Tab_Shopmarks extends WC_GZD_Settings_Tab {
 						'next_url'     => admin_url( 'admin.php?page=wc-settings&tab=germanized-shopmarks&section=single_product&tutorial=yes' ),
 						'next_trigger' => array(),
 						'options'      => array(
-							'content'  => '<h3>' . esc_html__( 'Shopmark Display', 'woocommerce-germanized' ) . '</h3>' .
-							              '<p>' . esc_html__( 'By adjusting the display settings you might determine where to show or hide your shopmarks e.g. the tax notice on single product pages.', 'woocommerce-germanized' ) . '</p>',
+							'content'  => '<h3>' . esc_html__( 'Shopmark Display', 'woocommerce-germanized' ) . '</h3><p>' . esc_html__( 'By adjusting the display settings you might determine where to show or hide your shopmarks e.g. the tax notice on single product pages.', 'woocommerce-germanized' ) . '</p>',
 							'position' => array(
 								'edge'  => 'top',
 								'align' => 'left',
@@ -95,8 +97,7 @@ class WC_GZD_Settings_Tab_Shopmarks extends WC_GZD_Settings_Tab {
 						'next_url'     => '',
 						'next_trigger' => array(),
 						'options'      => array(
-							'content'  => '<h3>' . esc_html__( 'Location', 'woocommerce-germanized' ) . '</h3>' .
-							              '<p>' . esc_html__( 'Adjust the location of the shopmark by selecting a location from the list. Some Themes might apply the locations at different positions that\'s why the result may differ from Theme to Theme.', 'woocommerce-germanized' ) . '</p>',
+							'content'  => '<h3>' . esc_html__( 'Location', 'woocommerce-germanized' ) . '</h3><p>' . esc_html__( 'Adjust the location of the shopmark by selecting a location from the list. Some Themes might apply the locations at different positions that\'s why the result may differ from Theme to Theme.', 'woocommerce-germanized' ) . '</p>',
 							'position' => array(
 								'edge'  => 'left',
 								'align' => 'left',
@@ -109,8 +110,7 @@ class WC_GZD_Settings_Tab_Shopmarks extends WC_GZD_Settings_Tab {
 						'next_url'     => admin_url( 'admin.php?page=wc-settings&tab=germanized-shopmarks&section=delivery_times&tutorial=yes' ),
 						'next_trigger' => array(),
 						'options'      => array(
-							'content'  => '<h3>' . esc_html__( 'Priority', 'woocommerce-germanized' ) . '</h3>' .
-							              '<p>' . esc_html__( 'Many different information may be attached to the location selected. By adjusting the priority you can choose whether the shopmark gets applied earlier (lower) or later (higher).', 'woocommerce-germanized' ) . '</p>',
+							'content'  => '<h3>' . esc_html__( 'Priority', 'woocommerce-germanized' ) . '</h3><p>' . esc_html__( 'Many different information may be attached to the location selected. By adjusting the priority you can choose whether the shopmark gets applied earlier (lower) or later (higher).', 'woocommerce-germanized' ) . '</p>',
 							'position' => array(
 								'edge'  => 'left',
 								'align' => 'left',
@@ -128,8 +128,7 @@ class WC_GZD_Settings_Tab_Shopmarks extends WC_GZD_Settings_Tab {
 						'next_url'     => '',
 						'next_trigger' => array(),
 						'options'      => array(
-							'content'  => '<h3>' . esc_html__( 'Default Delivery Time', 'woocommerce-germanized' ) . '</h3>' .
-							              '<p>' . esc_html__( 'Choose a delivery time that serves as fallback in case no delivery time was added to the product.', 'woocommerce-germanized' ) . '</p>',
+							'content'  => '<h3>' . esc_html__( 'Default Delivery Time', 'woocommerce-germanized' ) . '</h3><p>' . esc_html__( 'Choose a delivery time that serves as fallback in case no delivery time was added to the product.', 'woocommerce-germanized' ) . '</p>',
 							'position' => array(
 								'edge'  => 'left',
 								'align' => 'left',
@@ -142,8 +141,7 @@ class WC_GZD_Settings_Tab_Shopmarks extends WC_GZD_Settings_Tab {
 						'next_url'     => admin_url( 'admin.php?page=wc-settings&tab=germanized-shopmarks&section=price_labels&tutorial=yes' ),
 						'next_trigger' => array(),
 						'options'      => array(
-							'content'  => '<h3>' . esc_html__( 'Format', 'woocommerce-germanized' ) . '</h3>' .
-							              '<p>' . esc_html__( 'You may want to adjust the delivery time output format. You might use {delivery_time} to output the current product\'s delivery time.', 'woocommerce-germanized' ) . '</p>',
+							'content'  => '<h3>' . esc_html__( 'Format', 'woocommerce-germanized' ) . '</h3><p>' . esc_html__( 'You may want to adjust the delivery time output format. You might use {delivery_time} to output the current product\'s delivery time.', 'woocommerce-germanized' ) . '</p>',
 							'position' => array(
 								'edge'  => 'left',
 								'align' => 'left',
@@ -161,8 +159,7 @@ class WC_GZD_Settings_Tab_Shopmarks extends WC_GZD_Settings_Tab {
 						'next_url'     => admin_url( 'admin.php?page=wc-settings&tab=germanized-button_solution&tutorial=yes' ),
 						'next_trigger' => array(),
 						'options'      => array(
-							'content'  => '<h3>' . esc_html__( 'Default Sale Label', 'woocommerce-germanized' ) . '</h3>' .
-							              '<p>' . esc_html__( 'Price labels are added to sale products to inform the customers of the different prices\' meaning. You may add a fallback label in case a product does not contain a label.', 'woocommerce-germanized' ) . '</p>',
+							'content'  => '<h3>' . esc_html__( 'Default Sale Label', 'woocommerce-germanized' ) . '</h3><p>' . esc_html__( 'Price labels are added to sale products to inform the customers of the different prices\' meaning. You may add a fallback label in case a product does not contain a label.', 'woocommerce-germanized' ) . '</p>',
 							'position' => array(
 								'edge'  => 'left',
 								'align' => 'left',
@@ -217,7 +214,11 @@ class WC_GZD_Settings_Tab_Shopmarks extends WC_GZD_Settings_Tab {
 
 	protected function get_product_widget_settings() {
 		return array(
-			array( 'title' => '', 'type' => 'title', 'id' => 'product_widget_visibility_options' ),
+			array(
+				'title' => '',
+				'type'  => 'title',
+				'id'    => 'product_widget_visibility_options',
+			),
 
 			array(
 				'title'         => __( 'Widgets & Blocks', 'woocommerce-germanized' ),
@@ -257,94 +258,108 @@ class WC_GZD_Settings_Tab_Shopmarks extends WC_GZD_Settings_Tab {
 			),
 
 			array(
-				'desc' 		    => __( 'Deposit', 'woocommerce-germanized' ),
-				'id' 		    => 'woocommerce_gzd_display_product_widget_product_deposit',
+				'desc'          => __( 'Deposit', 'woocommerce-germanized' ),
+				'id'            => 'woocommerce_gzd_display_product_widget_product_deposit',
 				'type'          => 'gzd_toggle',
-				'default'	    => 'yes',
-				'checkboxgroup'	=> '',
+				'default'       => 'yes',
+				'checkboxgroup' => '',
 			),
 
 			array(
-				'desc' 		    => __( 'Deposit Packaging Type', 'woocommerce-germanized' ),
-				'id' 		    => 'woocommerce_gzd_display_product_widget_deposit_packaging_type',
+				'desc'          => __( 'Deposit Packaging Type', 'woocommerce-germanized' ),
+				'id'            => 'woocommerce_gzd_display_product_widget_deposit_packaging_type',
 				'type'          => 'gzd_toggle',
-				'default'	    => 'yes',
-				'checkboxgroup'	=> 'end',
+				'default'       => 'yes',
+				'checkboxgroup' => 'end',
 			),
 
-			array( 'type' => 'sectionend', 'id' => 'product_widget_visibility_options' )
+			array(
+				'type' => 'sectionend',
+				'id'   => 'product_widget_visibility_options',
+			),
 		);
 	}
 
 	protected function get_email_settings() {
 		return array(
-			array( 'title' => '', 'type' => 'title', 'id' => 'email_visibility_options' ),
-
 			array(
-				'title' 	    => __( 'E-Mails', 'woocommerce-germanized' ),
-				'desc' 		    => __( 'Unit Price', 'woocommerce-germanized' ),
-				'id' 		    => 'woocommerce_gzd_display_emails_unit_price',
-				'type'          => 'gzd_toggle',
-				'default'	    => 'yes',
-				'checkboxgroup'	=> 'start',
+				'title' => '',
+				'type'  => 'title',
+				'id'    => 'email_visibility_options',
 			),
 
 			array(
-				'desc' 		    => __( 'Product Units', 'woocommerce-germanized' ),
-				'id' 		    => 'woocommerce_gzd_display_emails_product_units',
+				'title'         => __( 'E-Mails', 'woocommerce-germanized' ),
+				'desc'          => __( 'Unit Price', 'woocommerce-germanized' ),
+				'id'            => 'woocommerce_gzd_display_emails_unit_price',
 				'type'          => 'gzd_toggle',
-				'default'	    => 'yes',
+				'default'       => 'yes',
+				'checkboxgroup' => 'start',
+			),
+
+			array(
+				'desc'          => __( 'Product Units', 'woocommerce-germanized' ),
+				'id'            => 'woocommerce_gzd_display_emails_product_units',
+				'type'          => 'gzd_toggle',
+				'default'       => 'yes',
 				'checkboxgroup' => '',
 			),
 
 			array(
-				'desc' 		    => __( 'Delivery Time Notice', 'woocommerce-germanized' ),
-				'id' 		    => 'woocommerce_gzd_display_emails_delivery_time',
+				'desc'          => __( 'Delivery Time Notice', 'woocommerce-germanized' ),
+				'id'            => 'woocommerce_gzd_display_emails_delivery_time',
 				'type'          => 'gzd_toggle',
-				'default'	    => 'yes',
+				'default'       => 'yes',
 				'checkboxgroup' => '',
 			),
 
 			array(
-				'desc' 		    => __( 'Short Description', 'woocommerce-germanized' ),
-				'id' 		    => 'woocommerce_gzd_display_emails_product_item_desc',
+				'desc'          => __( 'Short Description', 'woocommerce-germanized' ),
+				'id'            => 'woocommerce_gzd_display_emails_product_item_desc',
 				'type'          => 'gzd_toggle',
-				'default'	    => 'yes',
-				'checkboxgroup'	=> '',
+				'default'       => 'yes',
+				'checkboxgroup' => '',
 			),
 
 			array(
-				'desc' 		    => __( 'Defect Description', 'woocommerce-germanized' ),
-				'id' 		    => 'woocommerce_gzd_display_emails_product_defect_description',
+				'desc'          => __( 'Defect Description', 'woocommerce-germanized' ),
+				'id'            => 'woocommerce_gzd_display_emails_product_defect_description',
 				'type'          => 'gzd_toggle',
-				'default'	    => 'yes',
-				'checkboxgroup'	=> '',
+				'default'       => 'yes',
+				'checkboxgroup' => '',
 			),
 
 			array(
-				'desc' 		    => __( 'Deposit', 'woocommerce-germanized' ),
-				'id' 		    => 'woocommerce_gzd_display_emails_product_deposit',
+				'desc'          => __( 'Deposit', 'woocommerce-germanized' ),
+				'id'            => 'woocommerce_gzd_display_emails_product_deposit',
 				'type'          => 'gzd_toggle',
-				'default'	    => 'yes',
-				'checkboxgroup'	=> '',
+				'default'       => 'yes',
+				'checkboxgroup' => '',
 			),
 
 			array(
-				'desc' 		    => __( 'Deposit Packaging Type', 'woocommerce-germanized' ),
-				'id' 		    => 'woocommerce_gzd_display_emails_product_deposit_packaging_type',
+				'desc'          => __( 'Deposit Packaging Type', 'woocommerce-germanized' ),
+				'id'            => 'woocommerce_gzd_display_emails_product_deposit_packaging_type',
 				'type'          => 'gzd_toggle',
-				'default'	    => 'yes',
-				'checkboxgroup'	=> 'end',
+				'default'       => 'yes',
+				'checkboxgroup' => 'end',
 			),
 
-			array( 'type' => 'sectionend', 'id' => 'email_visibility_options' )
+			array(
+				'type' => 'sectionend',
+				'id'   => 'email_visibility_options',
+			),
 		);
 	}
 
 	protected function get_display_settings( $location ) {
 		$title      = Shopmarks::get_location_title( $location );
 		$visibility = array(
-			array( 'title' => '', 'type' => 'title', 'id' => $location . '_visibility_options' )
+			array(
+				'title' => '',
+				'type'  => 'title',
+				'id'    => $location . '_visibility_options',
+			),
 		);
 
 		foreach ( Shopmarks::get( $location ) as $shopmark ) {
@@ -390,7 +405,7 @@ class WC_GZD_Settings_Tab_Shopmarks extends WC_GZD_Settings_Tab {
 				'class'             => 'wc-enhanced-select-nostd',
 				'custom_attributes' => array(
 					'data-show_if_' . $shopmark->get_option_name() => '',
-					'data-placeholder'                             => Shopmarks::get_filter_title( $location, $default_filter ),
+					'data-placeholder' => Shopmarks::get_filter_title( $location, $default_filter ),
 				),
 			);
 
@@ -402,11 +417,17 @@ class WC_GZD_Settings_Tab_Shopmarks extends WC_GZD_Settings_Tab {
 				'default'           => $shopmark->get_default_priority(),
 				'type'              => 'number',
 				'css'               => 'max-width: 60px',
-				'custom_attributes' => array( 'data-show_if_' . $shopmark->get_option_name() => '', 'min' => 0 ),
+				'custom_attributes' => array(
+					'data-show_if_' . $shopmark->get_option_name() => '',
+					'min' => 0,
+				),
 			);
 		}
 
-		$visibility[] = array( 'type' => 'sectionend', 'id' => $location . '_visibility_options' );
+		$visibility[] = array(
+			'type' => 'sectionend',
+			'id'   => $location . '_visibility_options',
+		);
 
 		return $visibility;
 	}
@@ -417,7 +438,7 @@ class WC_GZD_Settings_Tab_Shopmarks extends WC_GZD_Settings_Tab {
 			array(
 				'title' => __( 'Price Ranges', 'woocommerce-germanized' ),
 				'type'  => 'title',
-				'id'    => 'price_range_options'
+				'id'    => 'price_range_options',
 			),
 
 			array(
@@ -429,12 +450,15 @@ class WC_GZD_Settings_Tab_Shopmarks extends WC_GZD_Settings_Tab {
 				'default' => __( '{min_price} &ndash; {max_price}', 'woocommerce-germanized' ),
 			),
 
-			array( 'type' => 'sectionend', 'id' => 'price_range_options' ),
+			array(
+				'type' => 'sectionend',
+				'id'   => 'price_range_options',
+			),
 
 			array(
 				'title' => __( 'Shipping Costs', 'woocommerce-germanized' ),
 				'type'  => 'title',
-				'id'    => 'shipping_costs_options'
+				'id'    => 'shipping_costs_options',
 			),
 
 			array(
@@ -456,8 +480,9 @@ class WC_GZD_Settings_Tab_Shopmarks extends WC_GZD_Settings_Tab {
 				'default'  => '',
 			),
 			array(
-				'title' 	=> __( 'Hide Notice', 'woocommerce-germanized' ),
-				'desc' 		=> __( 'Select product types for which you might want to disable the shipping costs notice.', 'woocommerce-germanized' ),				'desc_tip' => true,
+				'title'    => __( 'Hide Notice', 'woocommerce-germanized' ),
+				'desc'     => __( 'Select product types for which you might want to disable the shipping costs notice.', 'woocommerce-germanized' ),
+				'desc_tip' => true,
 				'id'       => 'woocommerce_gzd_display_shipping_costs_hidden_types',
 				'class'    => 'wc-enhanced-select',
 				'type'     => 'multiselect',
@@ -465,9 +490,16 @@ class WC_GZD_Settings_Tab_Shopmarks extends WC_GZD_Settings_Tab {
 				'default'  => array( 'downloadable', 'external', 'virtual' ),
 			),
 
-			array( 'type' => 'sectionend', 'id' => 'shipping_costs_options' ),
+			array(
+				'type' => 'sectionend',
+				'id'   => 'shipping_costs_options',
+			),
 
-			array( 'title' => __( 'Footer', 'woocommerce-germanized' ), 'type' => 'title', 'id' => 'footer_options' ),
+			array(
+				'title' => __( 'Footer', 'woocommerce-germanized' ),
+				'type'  => 'title',
+				'id'    => 'footer_options',
+			),
 
 			array(
 				'title'         => __( 'Notice', 'woocommerce-germanized' ),
@@ -475,7 +507,7 @@ class WC_GZD_Settings_Tab_Shopmarks extends WC_GZD_Settings_Tab {
 				'id'            => 'woocommerce_gzd_display_footer_vat_notice',
 				'default'       => 'no',
 				'type'          => 'gzd_toggle',
-				'checkboxgroup' => 'start'
+				'checkboxgroup' => 'start',
 			),
 			array(
 				'desc'          => __( 'Attach a global sale price notice to your footer.', 'woocommerce-germanized' ),
@@ -485,7 +517,10 @@ class WC_GZD_Settings_Tab_Shopmarks extends WC_GZD_Settings_Tab {
 				'checkboxgroup' => 'end',
 			),
 
-			array( 'type' => 'sectionend', 'id' => 'footer_options' ),
+			array(
+				'type' => 'sectionend',
+				'id'   => 'footer_options',
+			),
 		);
 
 		return $settings;
@@ -493,11 +528,14 @@ class WC_GZD_Settings_Tab_Shopmarks extends WC_GZD_Settings_Tab {
 
 	protected function get_digital_type_options() {
 		$product_types        = wc_get_product_types();
-		$digital_type_options = array_merge( array(
-			'downloadable' => __( 'Downloadable Product', 'woocommerce-germanized' ),
-			'virtual'      => __( 'Virtual Product', 'woocommerce-germanized' ),
-			'service'      => __( 'Service', 'woocommerce-germanized' )
-		), $product_types );
+		$digital_type_options = array_merge(
+			array(
+				'downloadable' => __( 'Downloadable Product', 'woocommerce-germanized' ),
+				'virtual'      => __( 'Virtual Product', 'woocommerce-germanized' ),
+				'service'      => __( 'Service', 'woocommerce-germanized' ),
+			),
+			$product_types
+		);
 
 		return $digital_type_options;
 	}
@@ -513,7 +551,12 @@ class WC_GZD_Settings_Tab_Shopmarks extends WC_GZD_Settings_Tab {
 		}
 
 		return array(
-			array( 'title' => '', 'type' => 'title', 'id' => 'delivery_time_options', 'desc' => '' ),
+			array(
+				'title' => '',
+				'type'  => 'title',
+				'id'    => 'delivery_time_options',
+				'desc'  => '',
+			),
 
 			array(
 				'title'    => __( 'Fallback', 'woocommerce-germanized' ),
@@ -588,7 +631,10 @@ class WC_GZD_Settings_Tab_Shopmarks extends WC_GZD_Settings_Tab {
 				'default'  => array( 'external', 'virtual' ),
 			),
 
-			array( 'type' => 'sectionend', 'id' => 'delivery_time_options' ),
+			array(
+				'type' => 'sectionend',
+				'id'   => 'delivery_time_options',
+			),
 		);
 	}
 
@@ -596,7 +642,7 @@ class WC_GZD_Settings_Tab_Shopmarks extends WC_GZD_Settings_Tab {
 		$is_saveable     = parent::is_saveable();
 		$current_section = $this->get_current_section();
 
-		if ( in_array( $current_section, array( 'food' ) ) && ! WC_germanized()->is_pro() ) {
+		if ( in_array( $current_section, array( 'food' ), true ) && ! WC_germanized()->is_pro() ) {
 			$is_saveable = false;
 		}
 
@@ -605,38 +651,59 @@ class WC_GZD_Settings_Tab_Shopmarks extends WC_GZD_Settings_Tab {
 
 	protected function get_food_settings() {
 		if ( WC_germanized()->is_pro() ) {
-			$food_settings = array_merge( array( array( 'type' => 'title', 'title' => __( 'Deposit', 'woocommerce-germanized' ), 'id' => 'deposit_options' ), ), apply_filters( 'woocommerce_gzd_food_deposit_settings', array(
+			$food_settings = array_merge(
 				array(
-					'title'    => __( 'Format', 'woocommerce-germanized' ),
-					'desc'     => '<div class="wc-gzd-additional-desc">' . __( 'This text will be used to display the deposit notice. Use {amount} to insert the deposit amount. {type} for the deposit type name, {amount_per_unit} for the deposit amount per unit, {packaging_type} for the packaging type and {quantity} for the deposit quantity.', 'woocommerce-germanized' ) . '</div>',
-					'desc_tip' => false,
-					'id'       => 'woocommerce_gzd_deposit_text',
-					'type'     => 'text',
-					'default'  => __( 'plus {amount} deposit', 'woocommerce-germanized' ),
+					array(
+						'type'  => 'title',
+						'title' => __( 'Deposit', 'woocommerce-germanized' ),
+						'id'    => 'deposit_options',
+					),
 				),
-				array(
-					'title'    => __( 'Packaging Font Size', 'woocommerce-germanized' ),
-					'desc'     => '<span class="unit">em</span><div class="wc-gzd-additional-desc">' . sprintf( __( 'Adjust the packaging type title font size which must <a href="%s" target="_blank">at least correspond to the price labeling</a> for the respective product.', 'woocommerce-germanized' ), 'https://www.it-recht-kanzlei.de/hinweispflichten-einweg-mehrweg-getraenkeverpackungen.html' ) . '</div>',
-					'desc_tip' => false,
-					'id'       => 'woocommerce_gzd_deposit_packaging_type_font_size',
-					'type'     => 'number',
-					'css'      => 'max-width: 100px',
-					'custom_attributes' => array( 'min' => 0, 'step' => 0.01 ),
-					'default'  => '1.25',
-				),
-			) ) );
+				apply_filters(
+					'woocommerce_gzd_food_deposit_settings',
+					array(
+						array(
+							'title'    => __( 'Format', 'woocommerce-germanized' ),
+							'desc'     => '<div class="wc-gzd-additional-desc">' . __( 'This text will be used to display the deposit notice. Use {amount} to insert the deposit amount. {type} for the deposit type name, {amount_per_unit} for the deposit amount per unit, {packaging_type} for the packaging type and {quantity} for the deposit quantity.', 'woocommerce-germanized' ) . '</div>',
+							'desc_tip' => false,
+							'id'       => 'woocommerce_gzd_deposit_text',
+							'type'     => 'text',
+							'default'  => __( 'plus {amount} deposit', 'woocommerce-germanized' ),
+						),
+						array(
+							'title'             => __( 'Packaging Font Size', 'woocommerce-germanized' ),
+							'desc'              => '<span class="unit">em</span><div class="wc-gzd-additional-desc">' . sprintf( __( 'Adjust the packaging type title font size which must <a href="%s" target="_blank">at least correspond to the price labeling</a> for the respective product.', 'woocommerce-germanized' ), 'https://www.it-recht-kanzlei.de/hinweispflichten-einweg-mehrweg-getraenkeverpackungen.html' ) . '</div>',
+							'desc_tip'          => false,
+							'id'                => 'woocommerce_gzd_deposit_packaging_type_font_size',
+							'type'              => 'number',
+							'css'               => 'max-width: 100px',
+							'custom_attributes' => array(
+								'min'  => 0,
+								'step' => 0.01,
+							),
+							'default'           => '1.25',
+						),
+					)
+				)
+			);
 
-			$food_settings[] = array( 'type' => 'sectionend', 'id' => 'deposit_options' );
+			$food_settings[] = array(
+				'type' => 'sectionend',
+				'id'   => 'deposit_options',
+			);
 		} else {
 			$food_settings = array(
 				array(
 					'title' => '',
 					'type'  => 'title',
 					'id'    => 'food_options',
-					'desc'  => '<div class="notice inline notice-warning wc-gzd-premium-overlay"><p>' . sprintf( __( 'Want to sell your food in a legally compliant way? Include nutrients, allergenes, ingredients, the Nutri-Score, deposits and more. %sUpgrade to %spro%s%s', 'woocommerce-germanized' ), '<a style="margin-left: 1em" href="https://vendidero.de/woocommerce-germanized" class="button button-primary wc-gzd-button">', '<span class="wc-gzd-pro">', '</span>', '</a>' ) . '</p></div>'
+					'desc'  => '<div class="notice inline notice-warning wc-gzd-premium-overlay"><p>' . sprintf( __( 'Want to sell your food in a legally compliant way? Include nutrients, allergenes, ingredients, the Nutri-Score, deposits and more. %1$sUpgrade to %2$spro%3$s%4$s', 'woocommerce-germanized' ), '<a style="margin-left: 1em" href="https://vendidero.de/woocommerce-germanized" class="button button-primary wc-gzd-button">', '<span class="wc-gzd-pro">', '</span>', '</a>' ) . '</p></div>',
 				),
 
-				array( 'type' => 'sectionend', 'id' => 'food_options' ),
+				array(
+					'type' => 'sectionend',
+					'id'   => 'food_options',
+				),
 			);
 		}
 
@@ -645,7 +712,11 @@ class WC_GZD_Settings_Tab_Shopmarks extends WC_GZD_Settings_Tab {
 
 	protected function get_unit_price_settings() {
 		return array(
-			array( 'type' => 'title', 'title' => '', 'id' => 'unit_price_options' ),
+			array(
+				'type'  => 'title',
+				'title' => '',
+				'id'    => 'unit_price_options',
+			),
 			array(
 				'title'    => __( 'Format', 'woocommerce-germanized' ),
 				'desc'     => '<div class="wc-gzd-additional-desc">' . __( 'This text will be used to display the unit price. Use {price} to insert the price. If you want to specifically format unit price output use {base}, {unit} and {unit_price} as placeholders.', 'woocommerce-germanized' ) . '</div>',
@@ -669,7 +740,10 @@ class WC_GZD_Settings_Tab_Shopmarks extends WC_GZD_Settings_Tab {
 				'default' => 'yes',
 				'type'    => 'gzd_toggle',
 			),
-			array( 'type' => 'sectionend', 'id' => 'unit_price_options' ),
+			array(
+				'type' => 'sectionend',
+				'id'   => 'unit_price_options',
+			),
 		);
 	}
 
@@ -677,7 +751,11 @@ class WC_GZD_Settings_Tab_Shopmarks extends WC_GZD_Settings_Tab {
 		$labels = array_merge( array( '' => __( 'None', 'woocommerce-germanized' ) ), WC_Germanized()->price_labels->get_labels() );
 
 		return array(
-			array( 'type' => 'title', 'title' => '', 'id' => 'price_label_options' ),
+			array(
+				'type'  => 'title',
+				'title' => '',
+				'id'    => 'price_label_options',
+			),
 			array(
 				'title'   => __( 'Fallback Sale Label', 'woocommerce-germanized' ),
 				'id'      => 'woocommerce_gzd_default_sale_price_label',
@@ -715,7 +793,10 @@ class WC_GZD_Settings_Tab_Shopmarks extends WC_GZD_Settings_Tab {
 				'default' => 'yes',
 			),
 
-			array( 'type' => 'sectionend', 'id' => 'price_label_options' ),
+			array(
+				'type' => 'sectionend',
+				'id'   => 'price_label_options',
+			),
 		);
 	}
 }

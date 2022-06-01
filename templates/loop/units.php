@@ -12,7 +12,7 @@
  *
  * @see https://github.com/vendidero/woocommerce-germanized/wiki/Overriding-Germanized-Templates
  * @package Germanized/Templates
- * @version 3.9.0
+ * @version 3.9.1
  */
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -22,5 +22,5 @@ global $product;
 ?>
 
 <?php if ( wc_gzd_get_product( $product )->has_unit_product() ) : ?>
-    <p class="wc-gzd-additional-info wc-gzd-additional-info-loop product-units-wrapper product-units"><?php echo wc_gzd_get_product( $product )->get_unit_product_html(); ?></p>
+	<p class="wc-gzd-additional-info wc-gzd-additional-info-loop product-units-wrapper product-units"><?php echo wp_kses_post( wc_gzd_get_product( $product )->get_unit_product_html() ); ?></p>
 <?php endif; ?>

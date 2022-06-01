@@ -24,15 +24,25 @@ class WC_GZD_Compatibility_WooCommerce_Product_Bundles extends WC_GZD_Compatibil
 	}
 
 	public function load() {
-		add_filter( 'woocommerce_gzd_cart_item_tax_share_product', array(
-			$this,
-			'switch_bundle_tax_share_product'
-		), 10, 4 );
+		add_filter(
+			'woocommerce_gzd_cart_item_tax_share_product',
+			array(
+				$this,
+				'switch_bundle_tax_share_product',
+			),
+			10,
+			4
+		);
 
-		add_filter( 'woocommerce_gzd_product_types_supporting_unit_prices', array(
-			$this,
-			'enable_unit_prices'
-		), 10, 1 );
+		add_filter(
+			'woocommerce_gzd_product_types_supporting_unit_prices',
+			array(
+				$this,
+				'enable_unit_prices',
+			),
+			10,
+			1
+		);
 
 		/**
 		 * Add tax, unit price shopmarks to bundled item prices
@@ -68,11 +78,17 @@ class WC_GZD_Compatibility_WooCommerce_Product_Bundles extends WC_GZD_Compatibil
 	}
 
 	public function register_script( $suffix, $frontend_script_path, $assets_path ) {
-		wp_register_script( 'wc-gzd-unit-price-observer-bundle', $frontend_script_path . 'unit-price-observer-bundle' . $suffix . '.js', array(
-			'jquery',
-			'wc-gzd-unit-price-observer',
-			'wc-add-to-cart-bundle',
-		), WC_GERMANIZED_VERSION, true );
+		wp_register_script(
+			'wc-gzd-unit-price-observer-bundle',
+			$frontend_script_path . 'unit-price-observer-bundle' . $suffix . '.js',
+			array(
+				'jquery',
+				'wc-gzd-unit-price-observer',
+				'wc-add-to-cart-bundle',
+			),
+			WC_GERMANIZED_VERSION,
+			true
+		);
 
 		if ( is_product() ) {
 			if ( apply_filters( 'woocommerce_gzd_refresh_unit_price_on_price_change', true ) ) {
@@ -91,7 +107,7 @@ class WC_GZD_Compatibility_WooCommerce_Product_Bundles extends WC_GZD_Compatibil
 			$bundled_items          = $product->get_bundled_items();
 			$is_priced_individually = false;
 
-			foreach( $bundled_items as $bundled_item ) {
+			foreach ( $bundled_items as $bundled_item ) {
 				if ( $bundled_item->get_product()->get_id() === $parent->get_id() ) {
 					if ( is_callable( array( $bundled_item, 'is_priced_individually' ) ) && $bundled_item->is_priced_individually() ) {
 						$is_priced_individually = $bundled_item->is_priced_individually();
@@ -104,11 +120,13 @@ class WC_GZD_Compatibility_WooCommerce_Product_Bundles extends WC_GZD_Compatibil
 				/**
 				 * Force recalculating the unit price based on current options data
 				 */
-				$gzd_product->recalculate_unit_price( array(
-					'regular_price' => wc_format_decimal( $options['display_regular_price'], '' ),
-					'price'         => wc_format_decimal( $options['display_price'], '' ),
-					'sale_price'    => wc_format_decimal( $options['display_price'], '' )
-				) );
+				$gzd_product->recalculate_unit_price(
+					array(
+						'regular_price' => wc_format_decimal( $options['display_regular_price'], '' ),
+						'price'         => wc_format_decimal( $options['display_price'], '' ),
+						'sale_price'    => wc_format_decimal( $options['display_price'], '' ),
+					)
+				);
 			}
 		}
 	}
@@ -116,21 +134,21 @@ class WC_GZD_Compatibility_WooCommerce_Product_Bundles extends WC_GZD_Compatibil
 	public function bundled_variation( $product_id, $bundled_item ) {
 		if ( $bundled_product = $bundled_item->get_product() ) {
 			if ( is_callable( array( $bundled_item, 'is_priced_individually' ) ) && $bundled_item->is_priced_individually() ) {
-				foreach( wc_gzd_get_single_product_shopmarks() as $shopmark ) {
+				foreach ( wc_gzd_get_single_product_shopmarks() as $shopmark ) {
 					$callback = $shopmark->get_callback();
 
-					if ( function_exists( $callback ) && $shopmark->is_enabled() && in_array( $shopmark->get_type(), array( 'unit_price', 'legal', 'tax', 'shipping_costs' ) ) ) {
-						switch( $shopmark->get_type() ) {
-							case "unit_price":
+					if ( function_exists( $callback ) && $shopmark->is_enabled() && in_array( $shopmark->get_type(), array( 'unit_price', 'legal', 'tax', 'shipping_costs' ), true ) ) {
+						switch ( $shopmark->get_type() ) {
+							case 'unit_price':
 								echo '<p class="price price-unit smaller wc-gzd-additional-info"></p>';
 								break;
-							case "tax":
+							case 'tax':
 								echo '<p class="wc-gzd-additional-info tax-info"></p>';
 								break;
-							case "shipping_costs":
+							case 'shipping_costs':
 								echo '<p class="wc-gzd-additional-info shipping-costs-info"></p>';
 								break;
-							case "legal":
+							case 'legal':
 								echo '<div class="legal-price-info"><p class="wc-gzd-additional-info"><span class="wc-gzd-additional-info tax-info"></span>&nbsp;<span class="wc-gzd-additional-info shipping-costs-info"></span></p></div>';
 								break;
 						}
@@ -158,10 +176,10 @@ class WC_GZD_Compatibility_WooCommerce_Product_Bundles extends WC_GZD_Compatibil
 	}
 
 	public function output_bundle_shopmarks() {
-		foreach( wc_gzd_get_single_product_shopmarks() as $shopmark ) {
+		foreach ( wc_gzd_get_single_product_shopmarks() as $shopmark ) {
 			$callback = $shopmark->get_callback();
 
-			if ( function_exists( $callback ) && $shopmark->is_enabled() && in_array( $shopmark->get_type(), array( 'unit_price', 'legal', 'tax', 'shipping_costs' ) ) ) {
+			if ( function_exists( $callback ) && $shopmark->is_enabled() && in_array( $shopmark->get_type(), array( 'unit_price', 'legal', 'tax', 'shipping_costs' ), true ) ) {
 				call_user_func( $callback );
 			}
 		}
@@ -201,11 +219,13 @@ class WC_GZD_Compatibility_WooCommerce_Product_Bundles extends WC_GZD_Compatibil
 			 */
 			if ( ! $product->is_type( 'variable' ) && is_callable( array( $org_product, 'is_priced_individually' ) ) && $org_product->is_priced_individually() ) {
 				if ( is_callable( array( $org_product, 'get_raw_price' ) ) && is_callable( array( $org_product, 'get_raw_regular_price' ) ) ) {
-					wc_gzd_get_gzd_product( $product )->recalculate_unit_price( array(
-						'regular_price' => wc_format_decimal( $org_product->get_raw_regular_price(), '' ),
-						'price'         => wc_format_decimal( $org_product->get_raw_price(), '' ),
-						'sale_price'    => wc_format_decimal( $org_product->get_raw_price(), '' )
-					) );
+					wc_gzd_get_gzd_product( $product )->recalculate_unit_price(
+						array(
+							'regular_price' => wc_format_decimal( $org_product->get_raw_regular_price(), '' ),
+							'price'         => wc_format_decimal( $org_product->get_raw_price(), '' ),
+							'sale_price'    => wc_format_decimal( $org_product->get_raw_price(), '' ),
+						)
+					);
 				}
 			}
 
@@ -222,9 +242,9 @@ class WC_GZD_Compatibility_WooCommerce_Product_Bundles extends WC_GZD_Compatibil
 					woocommerce_gzd_template_single_price_unit();
 					$unit = ob_get_clean();
 				} else {
-					$unit  = '';
+					$unit = '';
 					// Make sure the tax-info class is not being replaced by variation data.
-					$legal = str_replace( "tax-info", "tax-info-static", $legal );
+					$legal = str_replace( 'tax-info', 'tax-info-static', $legal );
 				}
 
 				$price = $price . '<span class="wc-gzd-legal-price-info">' . $this->replace_p_tags( $unit ) . $this->replace_p_tags( $legal ) . '</span>';

@@ -3,8 +3,6 @@
 defined( 'ABSPATH' ) || exit;
 
 /**
- * Class WC_GZD_REST_Product_Deposit_Types_Controller
- *
  * @since 3.9.0
  * @author vendidero
  */
@@ -74,13 +72,13 @@ class WC_GZD_REST_Product_Deposit_Types_Controller extends WC_REST_Terms_Control
 			'title'      => $this->taxonomy,
 			'type'       => 'object',
 			'properties' => array(
-				'id'          => array(
+				'id'                   => array(
 					'description' => __( 'Unique identifier for the resource.', 'woocommerce-germanized' ),
 					'type'        => 'integer',
 					'context'     => array( 'view', 'edit' ),
 					'readonly'    => true,
 				),
-				'name'        => array(
+				'name'                 => array(
 					'description' => __( 'Resource name.', 'woocommerce-germanized' ),
 					'type'        => 'string',
 					'context'     => array( 'view', 'edit' ),
@@ -88,7 +86,7 @@ class WC_GZD_REST_Product_Deposit_Types_Controller extends WC_REST_Terms_Control
 						'sanitize_callback' => 'sanitize_text_field',
 					),
 				),
-				'slug'        => array(
+				'slug'                 => array(
 					'description' => __( 'An alphanumeric identifier for the resource unique to its type.', 'woocommerce-germanized' ),
 					'type'        => 'string',
 					'context'     => array( 'view', 'edit' ),
@@ -96,7 +94,7 @@ class WC_GZD_REST_Product_Deposit_Types_Controller extends WC_REST_Terms_Control
 						'sanitize_callback' => 'sanitize_title',
 					),
 				),
-				'description' => array(
+				'description'          => array(
 					'description' => __( 'HTML description of the resource.', 'woocommerce-germanized' ),
 					'type'        => 'string',
 					'context'     => array( 'view', 'edit' ),
@@ -104,13 +102,13 @@ class WC_GZD_REST_Product_Deposit_Types_Controller extends WC_REST_Terms_Control
 						'sanitize_callback' => 'wp_filter_post_kses',
 					),
 				),
-				'count'       => array(
+				'count'                => array(
 					'description' => __( 'Number of published products for the resource.', 'woocommerce-germanized' ),
 					'type'        => 'integer',
 					'context'     => array( 'view', 'edit' ),
 					'readonly'    => true,
 				),
-				'packaging_type'    => array(
+				'packaging_type'       => array(
 					'description' => __( 'The current deposit packaging type.', 'woocommerce-germanized' ),
 					'type'        => 'string',
 					'enum'        => array_keys( WC_germanized()->deposit_types->get_packaging_types() ),
@@ -125,7 +123,7 @@ class WC_GZD_REST_Product_Deposit_Types_Controller extends WC_REST_Terms_Control
 					'context'     => array( 'view', 'edit' ),
 					'readonly'    => true,
 				),
-				'deposit'    => array(
+				'deposit'              => array(
 					'description' => __( 'The current deposit amount.', 'woocommerce-germanized' ),
 					'type'        => 'number',
 					'context'     => array( 'view', 'edit' ),

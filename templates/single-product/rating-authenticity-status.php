@@ -22,5 +22,5 @@ global $product;
 $verified = wc_gzd_product_rating_is_verified( $product->get_id() );
 ?>
 <span class="wc-gzd-additional-info wc-gzd-rating-authenticity-status <?php echo ( $verified ? 'is-verified' : 'is-unverified' ); ?>">
-	<?php echo wc_gzd_get_legal_product_rating_authenticity_notice( $product->get_id() ); ?>
+	<?php echo wp_kses_post( wc_gzd_get_legal_product_rating_authenticity_notice( $product->get_id() ) ); ?>
 </span>

@@ -57,47 +57,82 @@ class WC_GZD_Emails {
 			add_action( 'woocommerce_checkout_order_processed', array( $this, 'register_confirmation_fallback' ), 30 );
 
 			// Send order notice directly after new order is being added - use these filters because order status has to be updated already
-			add_filter( 'woocommerce_payment_successful_result', array(
-				$this,
-				'send_order_confirmation_mails'
-			), 0, 2 );
-			add_filter( 'woocommerce_checkout_no_payment_needed_redirect', array(
-				$this,
-				'send_order_confirmation_mails'
-			), 0, 2 );
+			add_filter(
+				'woocommerce_payment_successful_result',
+				array(
+					$this,
+					'send_order_confirmation_mails',
+				),
+				0,
+				2
+			);
+			add_filter(
+				'woocommerce_checkout_no_payment_needed_redirect',
+				array(
+					$this,
+					'send_order_confirmation_mails',
+				),
+				0,
+				2
+			);
 
 			// Register the woocommerce_gzd_order_confirmation action which will be used as a notification to send the confirmation
-			add_filter( 'woocommerce_email_actions', array(
-				$this,
-				'register_order_confirmation_email_action'
-			), 10, 1 );
+			add_filter(
+				'woocommerce_email_actions',
+				array(
+					$this,
+					'register_order_confirmation_email_action',
+				),
+				10,
+				1
+			);
 
 			// Make sure order confirmation is being sent as soon as the notification fires
-			add_action( 'woocommerce_gzd_order_confirmation_notification', array(
-				$this,
-				'trigger_order_confirmation_emails'
-			), 10, 1 );
+			add_action(
+				'woocommerce_gzd_order_confirmation_notification',
+				array(
+					$this,
+					'trigger_order_confirmation_emails',
+				),
+				10,
+				1
+			);
 		}
 
 		// Disable paid order email for certain gateways (e.g. COD or invoice)
-		add_filter( 'woocommerce_allow_send_queued_transactional_email', array(
-			$this,
-			'maybe_disable_order_paid_email_notification_queued'
-		), 10, 3 );
+		add_filter(
+			'woocommerce_allow_send_queued_transactional_email',
+			array(
+				$this,
+				'maybe_disable_order_paid_email_notification_queued',
+			),
+			10,
+			3
+		);
 
-		add_action( 'woocommerce_order_status_processing', array(
-			$this,
-			'maybe_disable_order_paid_email_notification'
-		), 5, 2 );
+		add_action(
+			'woocommerce_order_status_processing',
+			array(
+				$this,
+				'maybe_disable_order_paid_email_notification',
+			),
+			5,
+			2
+		);
 
 		// Change email template path if is germanized email template
 		add_filter( 'woocommerce_template_directory', array( $this, 'set_woocommerce_template_dir' ), 10, 2 );
 
 		// Map partially refunded order mail template to correct email instance
-		add_filter( 'woocommerce_gzd_email_template_id_comparison', array(
-			$this,
-			'check_for_partial_refund_mail'
-		), 10, 3 );
+		add_filter(
+			'woocommerce_gzd_email_template_id_comparison',
+			array(
+				$this,
+				'check_for_partial_refund_mail',
+			),
+			10,
+			3
+		);
 
 		// Filter customer-processing-order Woo 3.5 payment text
 		add_filter( 'woocommerce_before_template_part', array( $this, 'maybe_set_gettext_email_filter' ), 10, 4 );
@@ -107,10 +142,15 @@ class WC_GZD_Emails {
 
 		// Hide username if an email contains a password or password reset link (TS advises to do so)
 		if ( 'yes' === get_option( 'woocommerce_gzd_hide_username_with_password' ) ) {
-			add_filter( 'woocommerce_before_template_part', array(
-				$this,
-				'maybe_set_gettext_username_filter'
-			), 10, 4 );
+			add_filter(
+				'woocommerce_before_template_part',
+				array(
+					$this,
+					'maybe_set_gettext_username_filter',
+				),
+				10,
+				4
+			);
 		}
 
 		add_action( 'woocommerce_email', array( $this, 'init_bcc_field' ), 10, 1 );
@@ -167,27 +207,27 @@ class WC_GZD_Emails {
 	public function attach_product_warranties( $attachments, $mail_id, $object = false ) {
 		$warranty_email_ids = array_filter( (array) get_option( 'woocommerce_gzd_mail_attach_warranties', array() ) );
 
-		if ( $object && in_array( $mail_id, $warranty_email_ids ) ) {
+		if ( $object && in_array( $mail_id, $warranty_email_ids, true ) ) {
 			$product_ids = array();
 
 			if ( is_a( $object, 'WC_Order' ) ) {
-				foreach( $object->get_items( 'line_item' ) as $item ) {
+				foreach ( $object->get_items( 'line_item' ) as $item ) {
 					$product_ids[] = $item->get_variation_id() ? $item->get_variation_id() : $item->get_product_id();
 				}
 			} elseif ( is_a( $object, '\Vendidero\Germanized\Shipments\Shipment' ) ) {
-				foreach( $object->get_items() as $item ) {
+				foreach ( $object->get_items() as $item ) {
 					$product_ids[] = $item->get_product_id();
 				}
 			}
 
-			$product_ids = apply_filters( "woocommerce_gzd_product_warranties_email_product_ids", $product_ids, $object, $mail_id );
+			$product_ids = apply_filters( 'woocommerce_gzd_product_warranties_email_product_ids', $product_ids, $object, $mail_id );
 			$product_ids = array_filter( array_unique( $product_ids ) );
 
 			if ( ! empty( $product_ids ) ) {
-				foreach( $product_ids as $product_id ) {
+				foreach ( $product_ids as $product_id ) {
 					if ( $gzd_product = wc_gzd_get_gzd_product( $product_id ) ) {
 						if ( $gzd_product->has_warranty() ) {
-							if ( ! in_array( $gzd_product->get_warranty_file(), $attachments ) ) {
+							if ( ! in_array( $gzd_product->get_warranty_file(), $attachments, true ) ) {
 								$attachments[] = $gzd_product->get_warranty_file();
 							}
 						}
@@ -200,9 +240,12 @@ class WC_GZD_Emails {
 	}
 
 	public function register_custom_email_actions( $actions ) {
-		$actions = array_merge( $actions, array(
-			'woocommerce_order_status_pending_to_cancelled',
-		) );
+		$actions = array_merge(
+			$actions,
+			array(
+				'woocommerce_order_status_pending_to_cancelled',
+			)
+		);
 
 		return $actions;
 	}
@@ -293,11 +336,11 @@ class WC_GZD_Emails {
 
 		foreach ( $mails as $mail ) {
 			$mail->form_fields['bcc'] = array(
-				'title'         => __( 'BCC recipients', 'woocommerce-germanized' ),
-				'type'          => 'text',
-				'description'   => __( 'Enter blind-copy recipients (comma separated) for this email.', 'woocommerce-germanized' ),
-				'placeholder'   => '',
-				'default'       => ''
+				'title'       => __( 'BCC recipients', 'woocommerce-germanized' ),
+				'type'        => 'text',
+				'description' => __( 'Enter blind-copy recipients (comma separated) for this email.', 'woocommerce-germanized' ),
+				'placeholder' => '',
+				'default'     => '',
 			);
 		}
 	}
@@ -345,13 +388,12 @@ class WC_GZD_Emails {
 	}
 
 	public function save_confirmation_text_option() {
-
 		if ( ! current_user_can( 'manage_woocommerce' ) ) {
 			return;
 		}
 
-		if ( isset( $_POST['woocommerce_gzd_email_order_confirmation_text'] ) ) {
-			update_option( 'woocommerce_gzd_email_order_confirmation_text', wp_unslash( wp_kses_post( trim( $_POST['woocommerce_gzd_email_order_confirmation_text'] ) ) ) );
+		if ( isset( $_POST['woocommerce_gzd_email_order_confirmation_text'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
+			update_option( 'woocommerce_gzd_email_order_confirmation_text', wp_kses_post( wp_unslash( $_POST['woocommerce_gzd_email_order_confirmation_text'] ) ) ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized,WordPress.Security.NonceVerification.Missing
 		}
 	}
 
@@ -366,14 +408,17 @@ class WC_GZD_Emails {
 			 * @since 1.0.0
 			 *
 			 */
-			$args = apply_filters( 'woocommerce_gzd_admin_email_order_confirmation_text_option', array(
-				'id'                => 'woocommerce_gzd_email_order_confirmation_text',
-				'label'             => __( 'Confirmation text', 'woocommerce-germanized' ),
-				'placeholder'       => __( 'Your order has been received and is now being processed. Your order details are shown below for your reference:', 'woocommerce-germanized' ),
-				'desc'              => __( 'This text will be inserted within the order confirmation email. Use {order_number}, {site_title} or {order_date} as placeholder.', 'woocommerce-germanized' ),
-				'custom_attributes' => array(),
-				'value'             => get_option( 'woocommerce_gzd_email_order_confirmation_text' ),
-			) );
+			$args = apply_filters(
+				'woocommerce_gzd_admin_email_order_confirmation_text_option',
+				array(
+					'id'                => 'woocommerce_gzd_email_order_confirmation_text',
+					'label'             => __( 'Confirmation text', 'woocommerce-germanized' ),
+					'placeholder'       => __( 'Your order has been received and is now being processed. Your order details are shown below for your reference:', 'woocommerce-germanized' ),
+					'desc'              => __( 'This text will be inserted within the order confirmation email. Use {order_number}, {site_title} or {order_date} as placeholder.', 'woocommerce-germanized' ),
+					'custom_attributes' => array(),
+					'value'             => get_option( 'woocommerce_gzd_email_order_confirmation_text' ),
+				)
+			);
 
 			include_once WC_GERMANIZED_ABSPATH . 'includes/admin/views/html-admin-email-text-option.php';
 		}
@@ -423,7 +468,7 @@ class WC_GZD_Emails {
 				'Your order has been received and is now being processed. Your order details are shown below for your reference:',
 			);
 
-			if ( in_array( $original, $search ) ) {
+			if ( in_array( $original, $search, true ) ) {
 				if ( isset( $GLOBALS['wc_gzd_processing_order'] ) ) {
 					$order = $GLOBALS['wc_gzd_processing_order'];
 
@@ -444,7 +489,7 @@ class WC_GZD_Emails {
 					$title_options = array(
 						'{first_name}' => $order->get_billing_first_name(),
 						'{last_name}'  => $order->get_billing_last_name(),
-						'{title}'      => wc_gzd_get_order_customer_title( $order, 'billing' )
+						'{title}'      => wc_gzd_get_order_customer_title( $order, 'billing' ),
 					);
 
 					$title_text = str_replace( array_keys( $title_options ), array_values( $title_options ), $title_text );
@@ -521,10 +566,13 @@ class WC_GZD_Emails {
 
 		// If the password is generated automatically and sent by email, hide the username
 		if ( 'yes' === get_option( 'woocommerce_registration_generate_password' ) ) {
-			$templates = array_merge( $templates, array(
-				'emails/customer-new-account.php'       => 'maybe_hide_username_new_account',
-				'emails/plain/customer-new-account.php' => 'maybe_hide_username_new_account'
-			) );
+			$templates = array_merge(
+				$templates,
+				array(
+					'emails/customer-new-account.php' => 'maybe_hide_username_new_account',
+					'emails/plain/customer-new-account.php' => 'maybe_hide_username_new_account',
+				)
+			);
 		}
 
 		if ( isset( $templates[ $template_name ] ) ) {
@@ -557,7 +605,7 @@ class WC_GZD_Emails {
 	}
 
 	public function check_for_partial_refund_mail( $result, $mail_id, $tpl ) {
-		if ( $mail_id === 'customer_partially_refunded_order' && $tpl === 'customer_refunded_order' ) {
+		if ( 'customer_partially_refunded_order' === $mail_id && 'customer_refunded_order' === $tpl ) {
 			return true;
 		}
 
@@ -585,10 +633,13 @@ class WC_GZD_Emails {
 	public function admin_hooks() {
 		add_filter( 'woocommerce_resend_order_emails_available', array( $this, 'resend_order_emails' ), 0 );
 		add_action( 'woocommerce_email_settings_after', array( $this, 'confirmation_text_option' ), 10, 1 );
-		add_action( 'woocommerce_update_options_email_customer_processing_order', array(
-			$this,
-			'save_confirmation_text_option'
-		) );
+		add_action(
+			'woocommerce_update_options_email_customer_processing_order',
+			array(
+				$this,
+				'save_confirmation_text_option',
+			)
+		);
 
 		add_action( 'woocommerce_order_status_pending_to_processing_notification', array( $this, 'send_manual_order_confirmation' ), 10 );
 		add_action( 'woocommerce_order_status_pending_to_completed_notification', array( $this, 'send_manual_order_confirmation' ), 10 );
@@ -632,10 +683,15 @@ class WC_GZD_Emails {
 
 		if ( ! empty( $mails ) ) {
 			foreach ( $mails as $mail ) {
-				add_action( 'woocommerce_germanized_email_footer_' . $mail->id, array(
-					$this,
-					'hook_mail_footer'
-				), 10, 1 );
+				add_action(
+					'woocommerce_germanized_email_footer_' . $mail->id,
+					array(
+						$this,
+						'hook_mail_footer',
+					),
+					10,
+					1
+				);
 			}
 		}
 
@@ -684,9 +740,9 @@ class WC_GZD_Emails {
 					$method               = $order->get_payment_method();
 					$current_status       = $order->get_status();
 					$disable_for_gateways = $this->get_gateways_disabling_paid_for_order_mail();
-					$disable_notification = ( in_array( $method, $disable_for_gateways ) || $order->get_total() <= 0 ) ? true : false;
+					$disable_notification = ( in_array( $method, $disable_for_gateways, true ) || $order->get_total() <= 0 ) ? true : false;
 
-					if ( $filter === 'woocommerce_order_status_pending_to_processing' && ! apply_filters( 'woocommerce_gzd_disable_paid_for_order_notification', $disable_notification, $order->get_id() ) ) {
+					if ( 'woocommerce_order_status_pending_to_processing' === $filter && ! apply_filters( 'woocommerce_gzd_disable_paid_for_order_notification', $disable_notification, $order->get_id() ) ) {
 						return false;
 					}
 				}
@@ -702,7 +758,7 @@ class WC_GZD_Emails {
 
 				$method               = $order->get_payment_method();
 				$disable_for_gateways = $this->get_gateways_disabling_paid_for_order_mail();
-				$disable_notification = ( in_array( $method, $disable_for_gateways ) || $order->get_total() <= 0 ) ? true : false;
+				$disable_notification = ( in_array( $method, $disable_for_gateways, true ) || $order->get_total() <= 0 ) ? true : false;
 
 				/**
 				 * Filter to adjust whether to disable the paid for order notification based on order data.
@@ -717,10 +773,14 @@ class WC_GZD_Emails {
 
 					if ( isset( $emails['WC_GZD_Email_Customer_Paid_For_Order'] ) ) {
 						// Remove notification
-						remove_action( 'woocommerce_order_status_pending_to_processing_notification', array(
-							$emails['WC_GZD_Email_Customer_Paid_For_Order'],
-							'trigger'
-						), 30 );
+						remove_action(
+							'woocommerce_order_status_pending_to_processing_notification',
+							array(
+								$emails['WC_GZD_Email_Customer_Paid_For_Order'],
+								'trigger',
+							),
+							30
+						);
 					}
 				}
 			}
@@ -760,21 +820,30 @@ class WC_GZD_Emails {
 
 		foreach ( $this->get_confirmation_email_transaction_statuses() as $status ) {
 
-			remove_action( $status . '_notification', array(
-				$this->get_email_instance_by_id( 'customer_processing_order' ),
-				'trigger'
-			) );
+			remove_action(
+				$status . '_notification',
+				array(
+					$this->get_email_instance_by_id( 'customer_processing_order' ),
+					'trigger',
+				)
+			);
 
-			remove_action( $status . '_notification', array(
-				$this->get_email_instance_by_id( 'new_order' ),
-				'trigger'
-			) );
+			remove_action(
+				$status . '_notification',
+				array(
+					$this->get_email_instance_by_id( 'new_order' ),
+					'trigger',
+				)
+			);
 
 			if ( $this->get_email_instance_by_id( 'customer_on_hold_order' ) ) {
-				remove_action( $status . '_notification', array(
-					$this->get_email_instance_by_id( 'customer_on_hold_order' ),
-					'trigger'
-				) );
+				remove_action(
+					$status . '_notification',
+					array(
+						$this->get_email_instance_by_id( 'customer_on_hold_order' ),
+						'trigger',
+					)
+				);
 			}
 		}
 	}
@@ -962,7 +1031,7 @@ class WC_GZD_Emails {
 				 */
 				$notice = apply_filters( 'woocommerce_gzd_differential_taxation_notice_text_email', $mark . wc_gzd_get_differential_taxation_notice_text() );
 
-				echo '<div class="gzd-differential-taxation-notice-email">' . wpautop( $notice ) . '</div>';
+				echo '<div class="gzd-differential-taxation-notice-email">' . wp_kses_post( wpautop( $notice ) ) . '</div>';
 			}
 
 			if ( $this->is_order_confirmation_email( $type->id ) ) {
@@ -978,7 +1047,7 @@ class WC_GZD_Emails {
 					 * @since 1.0.0
 					 *
 					 */
-					echo apply_filters( 'woocommerce_gzd_order_confirmation_digital_notice', '<div class="gzd-digital-notice-text">' . wpautop( $text ) . '</div>', $order );
+					echo wp_kses_post( apply_filters( 'woocommerce_gzd_order_confirmation_digital_notice', '<div class="gzd-digital-notice-text">' . wpautop( $text ) . '</div>', $order ) );
 				}
 
 				if ( $is_service && $text = wc_gzd_get_legal_text_service_email_notice() ) {
@@ -992,7 +1061,7 @@ class WC_GZD_Emails {
 					 * @since 1.0.0
 					 *
 					 */
-					echo apply_filters( 'woocommerce_gzd_order_confirmation_service_notice', '<div class="gzd-service-notice-text">' . wpautop( $text ) . '</div>', $order );
+					echo wp_kses_post( apply_filters( 'woocommerce_gzd_order_confirmation_service_notice', '<div class="gzd-service-notice-text">' . wpautop( $text ) . '</div>', $order ) );
 				}
 			}
 		}
@@ -1023,7 +1092,7 @@ class WC_GZD_Emails {
 	public function email_footer_plain( $text ) {
 		$type = $this->get_current_email_object();
 
-		if ( $type && $type->get_email_type() == 'plain' ) {
+		if ( $type && 'plain' === $type->get_email_type() ) {
 			$this->add_template_footers();
 		}
 
@@ -1182,7 +1251,7 @@ class WC_GZD_Emails {
 			foreach ( $this->footer_attachments as $option_key => $page_option ) {
 				$option = wc_get_page_id( $page_option );
 
-				if ( $option == - 1 || ! get_option( $option_key ) ) {
+				if ( -1 === $option || ! get_option( $option_key ) ) {
 					continue;
 				}
 
@@ -1196,7 +1265,7 @@ class WC_GZD_Emails {
 				 * @since 1.0.0
 				 *
 				 */
-				if ( in_array( $mail->id, get_option( $option_key ) ) && apply_filters( 'woocommerce_gzd_attach_email_footer', true, $mail, $page_option ) ) {
+				if ( in_array( $mail->id, get_option( $option_key ), true ) && apply_filters( 'woocommerce_gzd_attach_email_footer', true, $mail, $page_option ) ) {
 					$this->attach_page_content( $option, $mail, $mail->get_email_type() );
 				}
 			}
@@ -1279,33 +1348,38 @@ class WC_GZD_Emails {
 
 		$template = 'emails/email-footer-attachment.php';
 
-		if ( $email_type == 'plain' ) {
+		if ( 'plain' === $email_type ) {
 			$template = 'emails/plain/email-footer-attachment.php';
 		}
 
 		$content = $this->get_email_plain_content( $page_id );
 
 		if ( ! empty( $content ) ) {
-			$post = get_post( $page_id );
+			$post = get_post( $page_id ); // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
 
 			if ( is_a( $post, 'WP_Post' ) ) {
 				setup_postdata( $post );
 
 				if ( ! empty( $content ) ) {
-					wc_get_template( $template, array(
-						'print_title'  => ( substr( trim( $content ), 0, 2 ) === '<h' ) ? false : true,
-						'post_content' => $content,
-						'post_id'      => $page_id,
-						'post_attach'  => $post,
-					) );
+					wc_get_template(
+						$template,
+						array(
+							'print_title'  => ( substr( trim( $content ), 0, 2 ) === '<h' ) ? false : true,
+							'post_content' => $content,
+							'post_id'      => $page_id,
+							'post_attach'  => $post,
+						)
+					);
 				}
+			}
 
-				/**
-				 * Reset post data to keep global loop valid.
-				 */
-				if ( $reset_post ) {
-					setup_postdata( $reset_post );
-				}
+			/**
+			 * Reset post data to keep global loop valid.
+			 */
+			if ( $reset_post ) {
+				$post = $reset_post; // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
+
+				setup_postdata( $reset_post );
 			}
 		}
 	}

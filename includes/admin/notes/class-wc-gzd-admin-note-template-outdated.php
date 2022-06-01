@@ -54,7 +54,7 @@ class WC_GZD_Admin_Note_Template_Outdated extends WC_GZD_Admin_Note {
 	}
 
 	public function get_content() {
-		$content = __( 'These files may need updating to ensure they are compatible with the current version of Germanized. Suggestions to fix this:', 'woocommerce-germanized' );
+		$content  = __( 'These files may need updating to ensure they are compatible with the current version of Germanized. Suggestions to fix this:', 'woocommerce-germanized' );
 		$content .= '<ol>
 	        <li>' . esc_html__( 'Update your theme to the latest version. If no update is available contact your theme author asking about compatibility with the current Germanized version.', 'woocommerce-germanized' ) . '</li>
 	        <li>' . esc_html__( 'If you copied over a template file to change something, then you will need to copy the new version of the template and apply your changes again.', 'woocommerce-germanized' ) . '</li>

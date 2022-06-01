@@ -14,8 +14,8 @@ defined( 'ABSPATH' ) || exit;
 class WC_GZD_Compatibility_Woo_Poly_Integration extends WC_GZD_Compatibility {
 
 	private $pll_email_instance = null;
-	private $order_emails = array();
-	private $other_emails = array();
+	private $order_emails       = array();
+	private $other_emails       = array();
 
 	public static function get_name() {
 		return 'Hyyan WooCommerce Polylang Integration';
@@ -164,7 +164,7 @@ class WC_GZD_Compatibility_Woo_Poly_Integration extends WC_GZD_Compatibility {
 	}
 
 	public function translate_taxonomies_variations( $from, $to, $from_variable, $to_variable ) {
-		$lang = isset( $_GET['new_lang'] ) ? sanitize_text_field( esc_attr( $_GET['new_lang'] ) ) : pll_get_post_language( $to_variable->get_id() );
+		$lang = isset( $_GET['new_lang'] ) ? wc_clean( wp_unslash( $_GET['new_lang'] ) ) : pll_get_post_language( $to_variable->get_id() ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 
 		$this->translate_product_taxonomies( $from, $to, $lang, pll_get_post_language( $to_variable->get_id() ) );
 	}
@@ -172,7 +172,7 @@ class WC_GZD_Compatibility_Woo_Poly_Integration extends WC_GZD_Compatibility {
 	public function translate_taxonomies( $post_id, $post, $translations ) {
 
 		// Check for post type
-		if ( ! in_array( $post->post_type, array( 'product' ) ) ) {
+		if ( ! in_array( $post->post_type, array( 'product' ), true ) ) {
 			return;
 		}
 
@@ -219,15 +219,17 @@ class WC_GZD_Compatibility_Woo_Poly_Integration extends WC_GZD_Compatibility {
 					if ( $slug ) {
 
 						// Use get_terms because get_term_by is filtered by polylang and won't return translated term id if current language is set
-						$terms = get_terms( array(
-							'get'             => 'all',
-							'number'          => 1,
-							'taxonomy'        => $tax,
-							'orderby'         => 'none',
-							'suppress_filter' => true,
-							'lang'            => $current_lang,
-							'slug'            => $slug,
-						) );
+						$terms = get_terms(
+							array(
+								'get'             => 'all',
+								'number'          => 1,
+								'taxonomy'        => $tax,
+								'orderby'         => 'none',
+								'suppress_filter' => true,
+								'lang'            => $current_lang,
+								'slug'            => $slug,
+							)
+						);
 
 						if ( ! is_wp_error( $terms ) && ! empty( $terms ) ) {
 							$term = array_shift( $terms );
@@ -307,7 +309,7 @@ class WC_GZD_Compatibility_Woo_Poly_Integration extends WC_GZD_Compatibility {
 			'data_security',
 			'imprint',
 			'payment_methods',
-			'shipping_costs'
+			'shipping_costs',
 		);
 
 		return array_merge( $pages, $gzd_pages );

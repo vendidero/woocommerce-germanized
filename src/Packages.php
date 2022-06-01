@@ -27,12 +27,12 @@ class Packages {
 	 *
 	 * @var array Key is the package name/directory, value is the main package class which handles init.
 	 */
-	protected static $packages = [
+	protected static $packages = array(
 		'woocommerce-trusted-shops'        => '\\Vendidero\\TrustedShops\\Package',
 		'woocommerce-germanized-shipments' => '\\Vendidero\\Germanized\\Shipments\\Package',
 		'woocommerce-germanized-dhl'       => '\\Vendidero\\Germanized\\DHL\\Package',
 		'one-stop-shop-woocommerce'        => '\\Vendidero\\OneStopShop\\Package',
-	];
+	);
 
 	/**
 	 * Init the package loader.
@@ -81,8 +81,8 @@ class Packages {
 			 * Prevent calling init twice in case feature plugin is installed
 			 */
 			if ( ! has_action( 'plugins_loaded', array( $package_class, 'init' ) ) ) {
-				call_user_func( [ $package_class, 'init' ] );
-            }
+				call_user_func( array( $package_class, 'init' ) );
+			}
 		}
 	}
 
@@ -105,9 +105,9 @@ class Packages {
 			'admin_notices',
 			function () use ( $package ) {
 				?>
-                <div class="notice notice-error">
-                    <p>
-                        <strong>
+				<div class="notice notice-error">
+					<p>
+						<strong>
 							<?php
 							printf(
 							/* Translators: %s package name. */
@@ -115,8 +115,8 @@ class Packages {
 								'<code>' . esc_html( $package ) . '</code>'
 							);
 							?>
-                        </strong>
-                        <br>
+						</strong>
+						<br>
 						<?php
 						printf(
 						/* translators: 1: is a link to a support document. 2: closing link */
@@ -125,8 +125,8 @@ class Packages {
 							'</a>'
 						);
 						?>
-                    </p>
-                </div>
+					</p>
+				</div>
 				<?php
 			}
 		);

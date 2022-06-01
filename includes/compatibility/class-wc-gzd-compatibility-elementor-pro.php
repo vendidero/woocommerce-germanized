@@ -21,36 +21,52 @@ class WC_GZD_Compatibility_Elementor_Pro extends WC_GZD_Compatibility {
 		 * On Editor - Register Germanized frontend hooks before the Editor init to load checkout adjustments.
 		 */
 		if ( ! empty( $_REQUEST['action'] ) && 'elementor' === $_REQUEST['action'] && is_admin() ) {
-			add_action( 'init', function() {
-				if ( wc_gzd_checkout_adjustments_disabled() ) {
-					return;
-				}
+			add_action(
+				'init',
+				function() {
+					if ( wc_gzd_checkout_adjustments_disabled() ) {
+						return;
+					}
 
-				WC_germanized()->frontend_includes();
-			}, 6 );
+					WC_germanized()->frontend_includes();
+				},
+				6
+			);
 		}
 
-		add_action( 'woocommerce_checkout_init', function() {
-			if ( isset( $_POST['action'], $_POST['editor_post_id'] ) && 'elementor_ajax' === $_POST['action'] ) {
-				if ( wc_gzd_checkout_adjustments_disabled() ) {
-					return;
+		add_action(
+			'woocommerce_checkout_init',
+			function() {
+				if ( isset( $_POST['action'], $_POST['editor_post_id'] ) && 'elementor_ajax' === $_POST['action'] ) {
+					if ( wc_gzd_checkout_adjustments_disabled() ) {
+						return;
+					}
+
+					/**
+					 * woocommerce_review_order_after_payment hooks is not executed during ajax requests (see checkout/payment.php) which will fail loading the hooks accordingly.
+					 * Use a static filter to make sure AJAX hooks are still firing.
+					 */
+					add_action(
+						'woocommerce_checkout_before_order_review',
+						function() {
+							add_filter( 'wp_doing_ajax', array( $this, 'disable_ajax_callback' ), 1000 );
+						},
+						0
+					);
+
+					add_action(
+						'woocommerce_checkout_after_order_review',
+						function() {
+							remove_filter( 'wp_doing_ajax', array( $this, 'disable_ajax_callback' ), 1000 );
+						},
+						5000
+					);
+
+					woocommerce_gzd_checkout_load_ajax_relevant_hooks();
 				}
-
-				/**
-				 * woocommerce_review_order_after_payment hooks is not executed during ajax requests (see checkout/payment.php) which will fail loading the hooks accordingly.
-				 * Use a static filter to make sure AJAX hooks are still firing.
-				 */
-				add_action( 'woocommerce_checkout_before_order_review', function() {
-					add_filter( 'wp_doing_ajax', array( $this, 'disable_ajax_callback' ), 1000 );
-				}, 0 );
-
-				add_action( 'woocommerce_checkout_after_order_review', function() {
-					remove_filter( 'wp_doing_ajax', array( $this, 'disable_ajax_callback' ), 1000 );
-				}, 5000 );
-
-				woocommerce_gzd_checkout_load_ajax_relevant_hooks();
-			}
-		}, 100 );
+			},
+			100
+		);
 	}
 
 	public static function disable_ajax_callback() {
@@ -63,47 +79,59 @@ class WC_GZD_Compatibility_Elementor_Pro extends WC_GZD_Compatibility {
 		/**
 		 * Copy
 		 */
-		add_action(	'elementor/element/parse_css', function( $post_css, $element ) {
-			if ( is_a( $element, '\ElementorPro\Modules\Woocommerce\Widgets\Checkout' ) ) {
-				$rules = $post_css->get_stylesheet()->get_rules();
+		add_action(
+			'elementor/element/parse_css',
+			function( $post_css, $element ) {
+				if ( is_a( $element, '\ElementorPro\Modules\Woocommerce\Widgets\Checkout' ) ) {
+					$rules = $post_css->get_stylesheet()->get_rules();
 
-				foreach( $rules as $query_hash => $inner_rules ) {
-					$query = array();
+					foreach ( $rules as $query_hash => $inner_rules ) {
+						$query = array();
 
-					if ( 'all' !== $query_hash ) {
-						$query_parts = explode( '-', $query_hash );
+						if ( 'all' !== $query_hash ) {
+							$query_parts = explode( '-', $query_hash );
 
-						foreach( $query_parts as $typed_query ) {
-							$inner_parts = explode( '_', $typed_query );
+							foreach ( $query_parts as $typed_query ) {
+								$inner_parts = explode( '_', $typed_query );
 
-							if ( sizeof( $inner_parts ) > 0 ) {
-								$query[ $inner_parts[0] ] = $inner_parts[1];
+								if ( sizeof( $inner_parts ) > 0 ) {
+									$query[ $inner_parts[0] ] = $inner_parts[1];
+								}
+							}
+						}
+
+						foreach ( $inner_rules as $rule_selector => $rule ) {
+							if ( strstr( $rule_selector, '#payment #place_order' ) || strstr( $rule_selector, '#payment .place-order' ) ) {
+								$new_rule_selector = str_replace( '#payment ', '', $rule_selector );
+
+								$post_css->get_stylesheet()->add_rules( $new_rule_selector, $rule, ( ! empty( $query ) ? $query : null ) );
 							}
 						}
 					}
+				}
+			},
+			10,
+			2
+		);
 
-					foreach( $inner_rules as $rule_selector => $rule ) {
-						if ( strstr( $rule_selector, '#payment #place_order' ) || strstr( $rule_selector, '#payment .place-order' ) ) {
-							$new_rule_selector = str_replace( '#payment ', '', $rule_selector );
-
-							$post_css->get_stylesheet()->add_rules( $new_rule_selector, $rule, ( ! empty( $query ) ? $query : null ) );
-						}
+		add_action(
+			'elementor/frontend/widget/before_render',
+			function ( $element ) {
+				if ( is_a( $element, '\ElementorPro\Modules\Woocommerce\Widgets\Checkout' ) ) {
+					if ( ! defined( 'WC_GZD_DISABLE_CHECKOUT_ADJUSTMENTS' ) && apply_filters( 'woocommerce_gzd_elementor_pro_disable_checkout_adjustments', false ) ) {
+						define( 'WC_GZD_DISABLE_CHECKOUT_ADJUSTMENTS', true );
+						wc_gzd_maybe_disable_checkout_adjustments();
 					}
 				}
 			}
-		}, 10, 2 );
+		);
 
-		add_action( 'elementor/frontend/widget/before_render', function ( $element ) {
-			if ( is_a( $element, '\ElementorPro\Modules\Woocommerce\Widgets\Checkout' ) ) {
-				if ( ! defined( 'WC_GZD_DISABLE_CHECKOUT_ADJUSTMENTS' ) && apply_filters( 'woocommerce_gzd_elementor_pro_disable_checkout_adjustments', false ) ) {
-					define( 'WC_GZD_DISABLE_CHECKOUT_ADJUSTMENTS', true );
-					wc_gzd_maybe_disable_checkout_adjustments();
-				}
-			}
-		} );
-
-		add_action( 'elementor/frontend/after_enqueue_styles', function() {
-			wp_add_inline_style( 'elementor-pro', '
+		add_action(
+			'elementor/frontend/after_enqueue_styles',
+			function() {
+				wp_add_inline_style(
+					'elementor-pro',
+					'
 				.elementor-widget-woocommerce-checkout-page .woocommerce table.woocommerce-checkout-review-order-table {
 				    border-radius: var(--sections-border-radius, 3px);
 				    padding: var(--sections-padding, 16px 30px);
@@ -150,8 +178,10 @@ class WC_GZD_Compatibility_Elementor_Pro extends WC_GZD_Compatibility {
 					-o-transition-duration: var(--purchase-button-hover-transition-duration, 0.3s);
 					transition-duration: var(--purchase-button-hover-transition-duration, 0.3s); 
                 }
-			' );
-		} );
+			'
+				);
+			}
+		);
 	}
 
 	public function init_widgets() {
