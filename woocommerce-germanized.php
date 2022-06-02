@@ -46,7 +46,7 @@ if ( version_compare( PHP_VERSION, '5.6.0', '>=' ) ) {
 			<?php
 			printf(
 				/* translators: %s is the word upgrade with a link to a support page about upgrading */
-				__( 'Germanized requires at least PHP 5.6 to work. Please %s your PHP version.', 'woocommerce-germanized' ),
+				esc_html__( 'Germanized requires at least PHP 5.6 to work. Please %s your PHP version.', 'woocommerce-germanized' ),
 				'<a href="https://wordpress.org/support/update-php/">' . esc_html__( 'upgrade', 'woocommerce-germanized' ) . '</a>'
 			);
 			?>
@@ -329,7 +329,7 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 
 			$this->load_plugin_textdomain();
 
-			if ( get_option( 'woocommerce_gzd_display_checkout_fallback' ) == 'yes' ) {
+			if ( 'yes' === get_option( 'woocommerce_gzd_display_checkout_fallback' ) ) {
 				add_filter( 'woocommerce_germanized_filter_template', array( $this, 'set_checkout_fallback' ), 10, 3 );
 			}
 
@@ -382,10 +382,10 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 				return;
 			}
 
-			$deactivate_plugin_url = wp_nonce_url( 'plugins.php?action=deactivate&amp;plugin=' . urlencode( $plugin_file ), 'deactivate-plugin_' . $plugin_file );
+			$deactivate_plugin_url = wp_nonce_url( 'plugins.php?action=deactivate&amp;plugin=' . rawurlencode( $plugin_file ), 'deactivate-plugin_' . $plugin_file );
 			?>
 			<div id="message" class="error">
-				<p><?php printf( __( 'This version of the Corona Helper Plugin includes a bug which could lead to tax rates being added multiple times. Please <a href="%1$s">deactivate</a> the plugin and check our <a href="%2$s" target="_blank">blog post</a>.', 'woocommerce-germanized' ), esc_url( $deactivate_plugin_url ), 'https://vendidero.de/senkung-der-mehrwertsteuer-in-woocommerce-im-rahmen-der-corona-pandemie#update-vom-01-07-20' ); ?></p>
+				<p><?php printf( esc_html__( 'This version of the Corona Helper Plugin includes a bug which could lead to tax rates being added multiple times. Please <a href="%1$s">deactivate</a> the plugin and check our <a href="%2$s" target="_blank">blog post</a>.', 'woocommerce-germanized' ), esc_url( $deactivate_plugin_url ), 'https://vendidero.de/senkung-der-mehrwertsteuer-in-woocommerce-im-rahmen-der-corona-pandemie#update-vom-01-07-20' ); ?></p>
 			</div>
 			<?php
 		}
@@ -444,7 +444,7 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 				'wc_gzd_',
 			);
 
-			$is_match = ( str_replace( $matcher, '', $class ) != $class );
+			$is_match = ( str_replace( $matcher, '', $class ) !== $class );
 
 			if ( ! $is_match ) {
 				return;
@@ -972,7 +972,7 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 			);
 
 			if ( function_exists( 'WC' ) ) {
-				wp_register_script( 'accounting', WC()->plugin_url() . '/assets/js/accounting/accounting' . $suffix . '.js', array( 'jquery' ), '0.4.2' );
+				wp_register_script( 'accounting', WC()->plugin_url() . '/assets/js/accounting/accounting' . $suffix . '.js', array( 'jquery' ), '0.4.2' ); // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.NotInFooter
 			}
 
 			wp_register_script(
@@ -1074,19 +1074,19 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 
 			$custom_css .= '
                 .wc-gzd-nutri-score-value-a {
-                    background: url(' . $this->plugin_url() . '/assets/images/nutri-score-a.svg' . ') no-repeat;
+                    background: url(' . $this->plugin_url() . '/assets/images/nutri-score-a.svg) no-repeat;
                 }
                 .wc-gzd-nutri-score-value-b {
-                    background: url(' . $this->plugin_url() . '/assets/images/nutri-score-b.svg' . ') no-repeat;
+                    background: url(' . $this->plugin_url() . '/assets/images/nutri-score-b.svg) no-repeat;
                 }
                 .wc-gzd-nutri-score-value-c {
-                    background: url(' . $this->plugin_url() . '/assets/images/nutri-score-c.svg' . ') no-repeat;
+                    background: url(' . $this->plugin_url() . '/assets/images/nutri-score-c.svg) no-repeat;
                 }
                 .wc-gzd-nutri-score-value-d {
-                    background: url(' . $this->plugin_url() . '/assets/images/nutri-score-d.svg' . ') no-repeat;
+                    background: url(' . $this->plugin_url() . '/assets/images/nutri-score-d.svg) no-repeat;
                 }
                 .wc-gzd-nutri-score-value-e {
-                    background: url(' . $this->plugin_url() . '/assets/images/nutri-score-e.svg' . ') no-repeat;
+                    background: url(' . $this->plugin_url() . '/assets/images/nutri-score-e.svg) no-repeat;
                 }
             ';
 
@@ -1439,7 +1439,7 @@ endif;
 /**
  * @return WooCommerce_Germanized $plugin instance
  */
-function WC_germanized() {
+function WC_germanized() { // phpcs:ignore WordPress.NamingConventions.ValidFunctionName.FunctionNameInvalid
 	return WooCommerce_Germanized::instance();
 }
 

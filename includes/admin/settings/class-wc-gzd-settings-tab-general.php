@@ -177,7 +177,7 @@ class WC_GZD_Settings_Tab_General extends WC_GZD_Settings_Tab {
 		foreach ( $complaints_pages as $page => $page_id ) {
 			if ( ! WC_GZD_Admin::instance()->is_complaints_shortcode_inserted( $page_id ) ) {
 				$is_complaints_shortcode_inserted = false;
-				array_push( $complaints_shortcode_missing, ( $page === 'terms' ? __( 'Terms & Conditions', 'woocommerce-germanized' ) : __( 'Imprint', 'woocommerce-germanized' ) ) );
+				array_push( $complaints_shortcode_missing, ( 'terms' === $page ? __( 'Terms & Conditions', 'woocommerce-germanized' ) : __( 'Imprint', 'woocommerce-germanized' ) ) );
 			}
 		}
 
@@ -496,8 +496,7 @@ class WC_GZD_Settings_Tab_General extends WC_GZD_Settings_Tab {
 						'next_url'     => '',
 						'next_trigger' => array(),
 						'options'      => array(
-							'content'  => '<h3>' . esc_html__( 'Overview', 'woocommerce-germanized' ) . '</h3>' .
-										  '<p>' . esc_html__( 'You can always return to the settings overview by navigating through the breadcrumb navigation.', 'woocommerce-germanized' ) . '</p>',
+							'content'  => '<h3>' . esc_html__( 'Overview', 'woocommerce-germanized' ) . '</h3><p>' . esc_html__( 'You can always return to the settings overview by navigating through the breadcrumb navigation.', 'woocommerce-germanized' ) . '</p>',
 							'position' => array(
 								'edge'  => 'top',
 								'align' => 'left',
@@ -510,8 +509,7 @@ class WC_GZD_Settings_Tab_General extends WC_GZD_Settings_Tab {
 						'next_url'     => '',
 						'next_trigger' => array(),
 						'options'      => array(
-							'content'  => '<h3>' . esc_html__( 'Sections', 'woocommerce-germanized' ) . '</h3>' .
-										  '<p>' . esc_html__( 'Each setting tab might have sub sections containing more specific options.', 'woocommerce-germanized' ) . '</p>',
+							'content'  => '<h3>' . esc_html__( 'Sections', 'woocommerce-germanized' ) . '</h3><p>' . esc_html__( 'Each setting tab might have sub sections containing more specific options.', 'woocommerce-germanized' ) . '</p>',
 							'position' => array(
 								'edge'  => 'top',
 								'align' => 'left',
@@ -524,8 +522,7 @@ class WC_GZD_Settings_Tab_General extends WC_GZD_Settings_Tab {
 						'next_url'     => admin_url( 'admin.php?page=wc-settings&tab=germanized-shopmarks&tutorial=yes' ),
 						'next_trigger' => array(),
 						'options'      => array(
-							'content'  => '<h3>' . esc_html__( 'Legal Pages', 'woocommerce-germanized' ) . '</h3>' .
-										  '<p>' . esc_html__( 'Adjust legal pages e.g. terms and conditions. These pages are used to add links within checkboxes and text attachments to emails.', 'woocommerce-germanized' ) . '</p>',
+							'content'  => '<h3>' . esc_html__( 'Legal Pages', 'woocommerce-germanized' ) . '</h3><p>' . esc_html__( 'Adjust legal pages e.g. terms and conditions. These pages are used to add links within checkboxes and text attachments to emails.', 'woocommerce-germanized' ) . '</p>',
 							'position' => array(
 								'edge'  => 'left',
 								'align' => 'left',
@@ -559,9 +556,9 @@ class WC_GZD_Settings_Tab_General extends WC_GZD_Settings_Tab {
 
 	protected function before_save( $settings, $current_section = '' ) {
 		if ( 'small_business' === $current_section ) {
-			if ( ! wc_gzd_is_small_business() && ! empty( $_POST['woocommerce_gzd_small_enterprise'] ) ) {
+			if ( ! wc_gzd_is_small_business() && ! empty( $_POST['woocommerce_gzd_small_enterprise'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
 				WC_GZD_Admin::instance()->enable_small_business_options();
-			} elseif ( wc_gzd_is_small_business() && ! isset( $_POST['woocommerce_gzd_small_enterprise'] ) ) {
+			} elseif ( wc_gzd_is_small_business() && ! isset( $_POST['woocommerce_gzd_small_enterprise'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
 				WC_GZD_Admin::instance()->disable_small_business_options();
 			}
 		}

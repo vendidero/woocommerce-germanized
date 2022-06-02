@@ -25,9 +25,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<a href="admin.php?page=wc-settings&amp;tab=germanized-checkboxes&amp;checkbox_id={{ data.id }}">{{
 				data.admin_name }}</a>
 			<div class="row-actions">
-				<a href="admin.php?page=wc-settings&amp;tab=germanized-checkboxes&amp;checkbox_id={{ data.id }}"><?php _e( 'Edit', 'woocommerce-germanized' ); ?></a>
-				<span class="sep">|</span> <a href="#"
-											  class="wc-gzd-legal-checkbox-delete"><?php _e( 'Delete', 'woocommerce-germanized' ); ?></a>
+				<a href="admin.php?page=wc-settings&amp;tab=germanized-checkboxes&amp;checkbox_id={{ data.id }}"><?php esc_html_e( 'Edit', 'woocommerce-germanized' ); ?></a>
+				<span class="sep">|</span> <a href="#" class="wc-gzd-legal-checkbox-delete"><?php esc_html_e( 'Delete', 'woocommerce-germanized' ); ?></a>
 			</div>
 		</td>
 		<td class="wc-gzd-legal-checkbox-desc">

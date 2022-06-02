@@ -79,7 +79,7 @@ class WC_GZD_REST_Products_Controller {
 						'readonly'    => true,
 					),
 					'country' => array(
-						'description' => __( 'ISO code of the country.', 'woocommerce' ),
+						'description' => __( 'ISO code of the country.', 'woocommerce-germanized' ),
 						'type'        => 'string',
 						'context'     => array( 'view', 'edit' ),
 					),

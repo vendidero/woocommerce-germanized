@@ -84,16 +84,16 @@ if ( defined( 'WC_GZD_REMOVE_ALL_DATA' ) && true === WC_GZD_REMOVE_ALL_DATA ) {
 	);
 
 	// Delete gzd meta data
-	$wpdb->query( "DELETE meta FROM {$wpdb->postmeta} meta WHERE meta.meta_key IN ('" . join( "','", $meta_keys ) . "');" );
+	$wpdb->query( "DELETE meta FROM {$wpdb->postmeta} meta WHERE meta.meta_key IN ('" . join( "','", $meta_keys ) . "');" ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
 
 	// Delete terms if > WP 4.2 (term splitting was added in 4.2)
 	if ( version_compare( $wp_version, '4.2', '>=' ) ) {
 		// Delete term taxonomies
-		foreach ( array( 'product_delivery_time', 'product_unit', 'product_price_label', 'product_deposit_type', 'product_nutrient', 'product_allergen' ) as $taxonomy ) {
+		foreach ( array( 'product_delivery_time', 'product_unit', 'product_price_label', 'product_deposit_type', 'product_nutrient', 'product_allergen' ) as $taxonomy_name ) {
 			$wpdb->delete(
 				$wpdb->term_taxonomy,
 				array(
-					'taxonomy' => $taxonomy,
+					'taxonomy' => $taxonomy_name,
 				)
 			);
 		}
@@ -129,7 +129,7 @@ if ( defined( 'WC_GZD_REMOVE_ALL_DATA' ) && true === WC_GZD_REMOVE_ALL_DATA ) {
 	);
 
 	foreach ( $custom_tables as $table ) {
-		$result = $wpdb->query( 'DROP TABLE IF EXISTS ' . $table );
+		$result = $wpdb->query( 'DROP TABLE IF EXISTS ' . $table ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
 	}
 
 	// Clear any cached data that has been removed

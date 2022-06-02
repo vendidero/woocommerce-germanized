@@ -12,7 +12,7 @@
  *
  * @see https://github.com/vendidero/woocommerce-germanized/wiki/Overriding-Germanized-Templates
  * @package Germanized/Templates
- * @version 1.0.2
+ * @version 1.0.3
  */
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -28,7 +28,7 @@ $fields = WC_GZD_Revocation::get_fields();
 	</p>
 	<?php if ( ! empty( $fields ) ) : ?>
 		<?php foreach ( $fields as $name => $field ) : ?>
-			<?php echo ( 'sep' === $name ) ? '<h3>' . esc_html( $field ) . '</h3>' : woocommerce_form_field( $name, $field ); ?>
+			<?php echo ( ( 'sep' === $name ) ? '<h3>' . esc_html( $field ) . '</h3>' : woocommerce_form_field( $name, $field ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 		<?php endforeach; ?>
 	<?php endif; ?>
 
@@ -45,9 +45,6 @@ $fields = WC_GZD_Revocation::get_fields();
 
 	<div class="form-row submit-revocation checkout-btn-wrap">
 		<?php wp_nonce_field( 'woocommerce-revocation' ); ?>
-		<button class="button alt" name="woocommerce_gzd_revocation_submit" id="submit_revocation"
-				value="<?php echo esc_attr( _x( 'Forward Withdrawal', 'revocation-form', 'woocommerce-germanized' ) ); ?>"
-				data-value="<?php echo esc_attr( _x( 'Forward Withdrawal', 'revocation-form', 'woocommerce-germanized' ) ); ?>"><?php echo _x( 'Forward Withdrawal', 'revocation-form', 'woocommerce-germanized' ); ?></button>
+		<button class="button alt" name="woocommerce_gzd_revocation_submit" id="submit_revocation" value="<?php echo esc_attr( _x( 'Forward Withdrawal', 'revocation-form', 'woocommerce-germanized' ) ); ?>" data-value="<?php echo esc_attr( _x( 'Forward Withdrawal', 'revocation-form', 'woocommerce-germanized' ) ); ?>"><?php echo esc_html_x( 'Forward Withdrawal', 'revocation-form', 'woocommerce-germanized' ); ?></button>
 	</div>
-
 </form>

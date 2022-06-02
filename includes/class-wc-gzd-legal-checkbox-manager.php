@@ -254,7 +254,7 @@ class WC_GZD_Legal_Checkbox_Manager {
 		// For validation, refresh and adjustments see WC_GZD_Gateway_Direct_Debit
 		if ( is_array( $direct_debit_settings ) && 'yes' === $direct_debit_settings['enabled'] ) {
 
-			$order_secret = isset( $_GET['key'], $_GET['pay_for_order'] ) ? wc_clean( wp_unslash( $_GET['key'] ) ) : '';
+			$order_secret = isset( $_GET['key'], $_GET['pay_for_order'] ) ? wc_clean( wp_unslash( $_GET['key'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			$ajax_url     = wp_nonce_url(
 				add_query_arg(
 					array(
@@ -557,10 +557,10 @@ class WC_GZD_Legal_Checkbox_Manager {
 				 * Use raw post data in case available as only certain billing/shipping address
 				 * specific data is available during AJAX requests in get_posted_data.
 				 */
-				if ( isset( $_POST['post_data'] ) ) {
+				if ( isset( $_POST['post_data'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
 					$posted = array();
-					parse_str( $_POST['post_data'], $posted );
-					$posted = wc_clean( $posted );
+					parse_str( $_POST['post_data'], $posted ); // phpcs:ignore WordPress.Security.NonceVerification.Missing,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized,WordPress.Security.ValidatedSanitizedInput.MissingUnslash
+					$posted = wc_clean( wp_unslash( $posted ) );
 
 					$posted['createaccount'] = isset( $posted['createaccount'] ) ? true : false;
 				} else {
@@ -731,8 +731,8 @@ class WC_GZD_Legal_Checkbox_Manager {
 		$this->maybe_do_hooks( 'pay_for_order' );
 
 		foreach ( $this->get_checkboxes( array( 'locations' => 'pay_for_order' ) ) as $id => $checkbox ) {
-			$value   = isset( $_POST[ $checkbox->get_html_name() ] ) ? $_POST[ $checkbox->get_html_name() ] : '';
-			$visible = ! empty( $_POST[ $checkbox->get_html_name() . '-field' ] ) ? true : false;
+			$value   = isset( $_POST[ $checkbox->get_html_name() ] ) ? wc_clean( wp_unslash( $_POST[ $checkbox->get_html_name() ] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Missing
+			$visible = ! empty( $_POST[ $checkbox->get_html_name() . '-field' ] ) ? true : false; // phpcs:ignore WordPress.Security.NonceVerification.Missing
 
 			if ( $visible && ! $checkbox->validate( $value, 'pay_for_order' ) ) {
 				wc_add_notice( $checkbox->get_error_message(), 'error' );
@@ -746,15 +746,15 @@ class WC_GZD_Legal_Checkbox_Manager {
 	 */
 	public function validate_checkout( $data, $errors ) {
 
-		if ( isset( $_POST['woocommerce_checkout_update_totals'] ) ) {
+		if ( isset( $_POST['woocommerce_checkout_update_totals'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
 			return;
 		}
 
 		$this->maybe_do_hooks( 'checkout' );
 
 		foreach ( $this->get_checkboxes( array( 'locations' => 'checkout' ) ) as $id => $checkbox ) {
-			$value   = isset( $_POST[ $checkbox->get_html_name() ] ) ? $_POST[ $checkbox->get_html_name() ] : '';
-			$visible = ! empty( $_POST[ $checkbox->get_html_name() . '-field' ] ) ? true : false;
+			$value   = isset( $_POST[ $checkbox->get_html_name() ] ) ? wc_clean( wp_unslash( $_POST[ $checkbox->get_html_name() ] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Missing
+			$visible = ! empty( $_POST[ $checkbox->get_html_name() . '-field' ] ) ? true : false; // phpcs:ignore WordPress.Security.NonceVerification.Missing
 
 			if ( $visible && ! $checkbox->validate( $value, 'checkout' ) ) {
 				$errors->add( 'checkbox', $checkbox->get_error_message() );
@@ -771,8 +771,8 @@ class WC_GZD_Legal_Checkbox_Manager {
 		$this->maybe_do_hooks( 'reviews' );
 
 		foreach ( $this->get_checkboxes( array( 'locations' => 'reviews' ) ) as $id => $checkbox ) {
-			$value   = isset( $_POST[ $checkbox->get_html_name() ] ) ? $_POST[ $checkbox->get_html_name() ] : '';
-			$visible = ! empty( $_POST[ $checkbox->get_html_name() . '-field' ] ) ? true : false;
+			$value   = isset( $_POST[ $checkbox->get_html_name() ] ) ? wc_clean( wp_unslash( $_POST[ $checkbox->get_html_name() ] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Missing
+			$visible = ! empty( $_POST[ $checkbox->get_html_name() . '-field' ] ) ? true : false; // phpcs:ignore WordPress.Security.NonceVerification.Missing
 
 			if ( $visible && ! $checkbox->validate( $value, 'reviews' ) ) {
 				return new WP_Error( $checkbox->get_html_name(), $checkbox->get_error_message(), 409 );
@@ -786,8 +786,8 @@ class WC_GZD_Legal_Checkbox_Manager {
 		$this->maybe_do_hooks( 'register' );
 
 		foreach ( $this->get_checkboxes( array( 'locations' => 'register' ) ) as $id => $checkbox ) {
-			$value   = isset( $_POST[ $checkbox->get_html_name() ] ) ? $_POST[ $checkbox->get_html_name() ] : '';
-			$visible = ! empty( $_POST[ $checkbox->get_html_name() . '-field' ] ) ? true : false;
+			$value   = isset( $_POST[ $checkbox->get_html_name() ] ) ? wc_clean( wp_unslash( $_POST[ $checkbox->get_html_name() ] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Missing
+			$visible = ! empty( $_POST[ $checkbox->get_html_name() . '-field' ] ) ? true : false; // phpcs:ignore WordPress.Security.NonceVerification.Missing
 
 			if ( $visible && ! $checkbox->validate( $value, 'register' ) ) {
 				return new WP_Error( $checkbox->get_html_name(), $checkbox->get_error_message() );
@@ -1008,7 +1008,7 @@ class WC_GZD_Legal_Checkbox_Manager {
 							$matched ++;
 						}
 					} else {
-						if ( $m_value == $obj_value ) {
+						if ( $m_value == $obj_value ) { // phpcs:ignore WordPress.PHP.StrictComparisons.LooseComparison
 							$matched ++;
 						}
 					}
@@ -1016,9 +1016,9 @@ class WC_GZD_Legal_Checkbox_Manager {
 			}
 
 			if (
-				( 'AND' == $operator && $matched == $count ) ||
-				( 'OR' == $operator && $matched > 0 ) ||
-				( 'NOT' == $operator && 0 == $matched )
+				( 'AND' === $operator && $matched === $count ) ||
+				( 'OR' === $operator && $matched > 0 ) ||
+				( 'NOT' === $operator && 0 === $matched )
 			) {
 				$filtered[ $key ] = $obj;
 			}
@@ -1042,17 +1042,18 @@ class WC_GZD_Legal_Checkbox_Manager {
 	}
 
 	protected function sort( $checkboxes = array() ) {
-		uasort( $checkboxes, array( $this, '_uasort_callback' ) );
+		uasort(
+			$checkboxes,
+			function( $checkbox1, $checkbox2 ) {
+				if ( $checkbox1->get_priority() === $checkbox2->get_priority() ) {
+					return 0;
+				}
+
+				return ( $checkbox1->get_priority() < $checkbox2->get_priority() ) ? - 1 : 1;
+			}
+		);
 
 		return $checkboxes;
-	}
-
-	public function _uasort_callback( $checkbox1, $checkbox2 ) {
-		if ( $checkbox1->get_priority() == $checkbox2->get_priority() ) {
-			return 0;
-		}
-
-		return ( $checkbox1->get_priority() < $checkbox2->get_priority() ) ? - 1 : 1;
 	}
 
 	private function maybe_do_hooks( $location = 'checkout' ) {

@@ -20,8 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		Über unsere Oberfläche kannst du einfach eigene Checkboxen anlegen, bearbeiten oder löschen. Zusätzlich fügt
 		Germanized Pro weitere Optionen für die Anpassung der HTML-Elemente hinzu.</p>
 	<div class="wc-gzd-sidebar-action">
-		<a class="button button-primary wc-gzd-button" href="https://vendidero.de/woocommerce-germanized"
-		   target="_blank">jetzt entdecken</a>
+		<a class="button button-primary wc-gzd-button" href="https://vendidero.de/woocommerce-germanized" target="_blank">jetzt entdecken</a>
 		<span class="small">ab 79 € inkl. Mwst. und 1 Jahr Updates & Support!</span>
 	</div>
 </div>

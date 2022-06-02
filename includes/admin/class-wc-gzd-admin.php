@@ -614,9 +614,9 @@ class WC_GZD_Admin {
 			WC_GERMANIZED_VERSION
 		);
 
-		wp_register_script( 'wc-gzd-admin-product', $admin_script_path . 'product' . $suffix . '.js', array( 'wc-admin-product-meta-boxes', 'media-models' ), WC_GERMANIZED_VERSION );
+		wp_register_script( 'wc-gzd-admin-product', $admin_script_path . 'product' . $suffix . '.js', array( 'wc-admin-product-meta-boxes', 'media-models' ), WC_GERMANIZED_VERSION ); // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.NotInFooter
 
-		wp_register_script( 'wc-gzd-admin-product-variations', $admin_script_path . 'product-variations' . $suffix . '.js', array( 'wc-gzd-admin-product', 'wc-admin-variation-meta-boxes' ), WC_GERMANIZED_VERSION );
+		wp_register_script( 'wc-gzd-admin-product-variations', $admin_script_path . 'product-variations' . $suffix . '.js', array( 'wc-gzd-admin-product', 'wc-admin-variation-meta-boxes' ), WC_GERMANIZED_VERSION ); // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.NotInFooter
 
 		wp_localize_script(
 			'wc-gzd-admin-product-variations',
@@ -627,7 +627,7 @@ class WC_GZD_Admin {
 			)
 		);
 
-		wp_register_script(
+		wp_register_script( // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.NotInFooter
 			'wc-gzd-admin-legal-checkboxes',
 			$admin_script_path . 'legal-checkboxes' . $suffix . '.js',
 			array(
@@ -641,7 +641,7 @@ class WC_GZD_Admin {
 			WC_GERMANIZED_VERSION
 		);
 
-		wp_register_script(
+		wp_register_script( // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.NotInFooter
 			'wc-gzd-admin-settings',
 			$assets_path . 'js/admin/settings' . $suffix . '.js',
 			array(

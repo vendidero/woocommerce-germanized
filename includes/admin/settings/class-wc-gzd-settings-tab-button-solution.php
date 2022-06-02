@@ -42,8 +42,7 @@ class WC_GZD_Settings_Tab_Button_Solution extends WC_GZD_Settings_Tab {
 						'next_url'     => '',
 						'next_trigger' => array(),
 						'options'      => array(
-							'content'  => '<h3>' . esc_html__( 'Buy now button', 'woocommerce-germanized' ) . '</h3>' .
-										  '<p>' . esc_html__( 'These settings help you comply to the button solution. The buy now button text is forced and static so that no payment gateway might override it.', 'woocommerce-germanized' ) . '</p>',
+							'content'  => '<h3>' . esc_html__( 'Buy now button', 'woocommerce-germanized' ) . '</h3><p>' . esc_html__( 'These settings help you comply to the button solution. The buy now button text is forced and static so that no payment gateway might override it.', 'woocommerce-germanized' ) . '</p>',
 							'position' => array(
 								'edge'  => 'left',
 								'align' => 'left',
@@ -56,8 +55,7 @@ class WC_GZD_Settings_Tab_Button_Solution extends WC_GZD_Settings_Tab {
 						'next_url'     => admin_url( 'admin.php?page=wc-settings&tab=germanized-shipments&tutorial=yes' ),
 						'next_trigger' => array(),
 						'options'      => array(
-							'content'  => '<h3>' . esc_html__( 'Product table background', 'woocommerce-germanized' ) . '</h3>' .
-										  '<p>' . esc_html__( 'The product table within your checkout should be noticeable for your customers. You might want to choose a different background color for it.', 'woocommerce-germanized' ) . '</p>',
+							'content'  => '<h3>' . esc_html__( 'Product table background', 'woocommerce-germanized' ) . '</h3><p>' . esc_html__( 'The product table within your checkout should be noticeable for your customers. You might want to choose a different background color for it.', 'woocommerce-germanized' ) . '</p>',
 							'position' => array(
 								'edge'  => 'left',
 								'align' => 'left',

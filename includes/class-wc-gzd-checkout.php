@@ -234,7 +234,7 @@ class WC_GZD_Checkout {
 	 * Filter is being remove right after get_cart_tax - check has been finished within cart-totals.php
 	 */
 	public function hide_cart_estimated_text() {
-		if ( get_option( 'woocommerce_gzd_display_hide_cart_tax_estimated' ) == 'yes' ) {
+		if ( 'yes' === get_option( 'woocommerce_gzd_display_hide_cart_tax_estimated' ) ) {
 			add_filter( 'woocommerce_get_cart_tax', array( $this, 'set_cart_tax_zero' ) );
 		}
 	}
@@ -243,7 +243,7 @@ class WC_GZD_Checkout {
 	 * Removes the zero cart tax filter after get_cart_tax has been finished
 	 */
 	public function remove_cart_tax_zero_filter() {
-		if ( get_option( 'woocommerce_gzd_display_hide_cart_tax_estimated' ) == 'yes' ) {
+		if ( 'yes' === get_option( 'woocommerce_gzd_display_hide_cart_tax_estimated' ) ) {
 			remove_filter( 'woocommerce_get_cart_tax', array( $this, 'set_cart_tax_zero' ) );
 		}
 	}
@@ -292,7 +292,7 @@ class WC_GZD_Checkout {
 		if ( wc_gzd_enable_additional_costs_split_tax_calculation() ) {
 			$tax_shares = wc_gzd_get_cart_tax_share( 'shipping', $order->get_items() );
 
-			if ( sizeof( $tax_shares ) > 1 ) {
+			if ( count( $tax_shares ) > 1 ) {
 				$order->update_meta_data( '_has_split_tax', 'yes' );
 			}
 
@@ -361,7 +361,7 @@ class WC_GZD_Checkout {
 
 			$selected = false;
 
-			if ( isset( $_POST[ $checkbox->get_html_name() ] ) ) {
+			if ( isset( $_POST[ $checkbox->get_html_name() ] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
 				$selected = true;
 			} elseif ( $checkbox->hide_input() ) {
 				$selected = true;
@@ -406,7 +406,7 @@ class WC_GZD_Checkout {
 			}
 
 			// Checkbox has not been checked
-			if ( ! isset( $_POST[ $checkbox->get_html_name() ] ) && ! $checkbox->hide_input() ) {
+			if ( ! isset( $_POST[ $checkbox->get_html_name() ] ) && ! $checkbox->hide_input() ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
 				return;
 			}
 
@@ -441,10 +441,10 @@ class WC_GZD_Checkout {
 			return;
 		}
 
-		if ( is_wc_endpoint_url( 'order-pay' ) && isset( $_GET['force_pay_order'] ) ) {
+		if ( is_wc_endpoint_url( 'order-pay' ) && isset( $_GET['force_pay_order'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 
 			// Manipulate $_POST
-			$order_key = isset( $_GET['key'] ) ? wc_clean( wp_unslash( $_GET['key'] ) ) : '';
+			$order_key = isset( $_GET['key'] ) ? wc_clean( wp_unslash( $_GET['key'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			$order_id  = absint( $wp->query_vars['order-pay'] );
 			$order     = wc_get_order( $order_id );
 
@@ -452,7 +452,7 @@ class WC_GZD_Checkout {
 				return;
 			}
 
-			if ( $order->get_order_key() != $order_key ) {
+			if ( $order->get_order_key() !== $order_key ) {
 				return;
 			}
 
@@ -505,7 +505,6 @@ class WC_GZD_Checkout {
 		// Check for cost-free shipping
 		foreach ( $rates as $key => $rate ) {
 			if ( is_a( $rate, 'WC_Shipping_Rate' ) ) {
-
 				/**
 				 * Filter to exclude certain shipping rates from being hidden as soon as free shipping option
 				 * is available.
@@ -524,7 +523,7 @@ class WC_GZD_Checkout {
 					$hide   = true;
 				} elseif ( 'local_pickup' === $rate->method_id ) {
 					$keep[] = $key;
-				} elseif ( $rate->cost == 0 ) {
+				} elseif ( 0.0 === floatval( $rate->cost ) ) {
 					$keep[] = $key;
 				} elseif ( in_array( $key, $excluded ) ) { // phpcs:ignore WordPress.PHP.StrictInArray.MissingTrueStrict
 					$keep[] = $key;
@@ -536,7 +535,6 @@ class WC_GZD_Checkout {
 
 		// Unset all other rates
 		if ( ! empty( $keep ) && $hide ) {
-
 			$chosen_shipping_methods = array();
 
 			// Unset chosen shipping method to avoid key errors
@@ -1046,7 +1044,7 @@ class WC_GZD_Checkout {
 
 			if ( ! empty( $package['rates'] ) ) {
 				foreach ( $package['rates'] as $key => $rate ) {
-					if ( $key != $chosen_method ) {
+					if ( $key !== $chosen_method ) {
 						unset( WC()->shipping->packages[ $i ]['rates'][ $key ] );
 					}
 				}
@@ -1103,13 +1101,13 @@ class WC_GZD_Checkout {
 				if ( in_array( $type, $custom_field['group'], true ) ) {
 					if ( ! empty( $fields ) ) {
 						foreach ( $fields as $name => $field ) {
-							if ( $name == $type . '_' . $custom_field['before'] && ! isset( $custom_field['override'] ) ) {
+							if ( $name === $type . '_' . $custom_field['before'] && ! isset( $custom_field['override'] ) ) {
 								$new[ $type . '_' . $key ] = $custom_field;
 							}
 
 							$new[ $name ] = $field;
 
-							if ( $name == $type . '_' . $key && isset( $custom_field['override'] ) ) {
+							if ( $name === $type . '_' . $key && isset( $custom_field['override'] ) ) {
 								$new[ $name ] = array_merge( $field, $custom_field );
 							}
 						}
@@ -1142,7 +1140,7 @@ class WC_GZD_Checkout {
 
 				if ( ! empty( $fields ) ) {
 					foreach ( $fields as $name => $field ) {
-						if ( $name == $custom_field['before'] && ! isset( $custom_field['override'] ) ) {
+						if ( $name === $custom_field['before'] && ! isset( $custom_field['override'] ) ) {
 							$new[ $key ] = $custom_field;
 						}
 						$new[ $name ] = $field;

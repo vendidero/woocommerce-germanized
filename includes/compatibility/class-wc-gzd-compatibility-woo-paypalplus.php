@@ -32,7 +32,7 @@ class WC_GZD_Compatibility_Woo_PaypalPlus extends WC_GZD_Compatibility {
 	 */
 	public function clear_paypal_session() {
 		$gateways = WC_Payment_Gateways::instance()->get_available_payment_gateways();
-		$current  = empty( $_POST['payment_method'] ) ? '' : wc_clean( $_POST['payment_method'] );
+		$current  = empty( $_POST['payment_method'] ) ? '' : wc_clean( wp_unslash( $_POST['payment_method'] ) ); // phpcs:ignore WordPress.Security.NonceVerification.Missing
 
 		foreach ( $gateways as $gateway ) {
 			if ( $current === $gateway->id && 'paypal_plus' === $gateway->id ) {

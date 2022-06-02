@@ -61,8 +61,8 @@ class WC_Germanized_Meta_Box_Product_Data {
 			<div class="options_group show_if_simple show_if_external show_if_variable">
 				<?php if ( WC_germanized()->is_pro() ) : ?>
 					<p class="wc-gzd-product-settings-subtitle">
-						<?php _e( 'Deposit', 'woocommerce-germanized' ); ?>
-						<a class="page-title-action" href="https://vendidero.de/dokument/lebensmittel-auszeichnen#pfand-berechnen"><?php _e( 'Help', 'woocommerce-germanized' ); ?></a>
+						<?php esc_html_e( 'Deposit', 'woocommerce-germanized' ); ?>
+						<a class="page-title-action" href="https://vendidero.de/dokument/lebensmittel-auszeichnen#pfand-berechnen"><?php esc_html_e( 'Help', 'woocommerce-germanized' ); ?></a>
 					</p>
 
 					<?php
@@ -91,9 +91,9 @@ class WC_Germanized_Meta_Box_Product_Data {
 				<?php else : ?>
 					<div class="wc-gzd-inner-product-pro-tab-wrapper">
 						<div class="wc-gzd-premium-overlay notice notice-warning inline">
-							<h3><?php _e( 'Get Germanized Pro to unlock', 'woocommerce-germanized' ); ?></h3>
-							<p><?php _e( 'Want to sell your food in a legally compliant way? Include nutrients, allergenes, ingredients, the Nutri-Score, deposits and more with Germanized Pro.', 'woocommerce-germanized' ); ?></p>
-							<p><a class="button button-primary wc-gzd-button" href="https://vendidero.de/woocommerce-germanized" target="_blank"><?php _e( 'Upgrade now', 'woocommerce-germanized' ); ?></a></p>
+							<h3><?php esc_html_e( 'Get Germanized Pro to unlock', 'woocommerce-germanized' ); ?></h3>
+							<p><?php esc_html_e( 'Want to sell your food in a legally compliant way? Include nutrients, allergenes, ingredients, the Nutri-Score, deposits and more with Germanized Pro.', 'woocommerce-germanized' ); ?></p>
+							<p><a class="button button-primary wc-gzd-button" href="https://vendidero.de/woocommerce-germanized" target="_blank"><?php esc_html_e( 'Upgrade now', 'woocommerce-germanized' ); ?></a></p>
 						</div>
 					</div>
 				<?php endif; ?>
@@ -128,7 +128,7 @@ class WC_Germanized_Meta_Box_Product_Data {
 	 */
 	public static function quick_edit_save( $product ) {
 		if ( $gzd_product = wc_gzd_get_gzd_product( $product ) ) {
-			$delivery_time = isset( $_REQUEST['_delivery_time'] ) ? wc_clean( $_REQUEST['_delivery_time'] ) : '';
+			$delivery_time = isset( $_REQUEST['_delivery_time'] ) ? wc_clean( wp_unslash( $_REQUEST['_delivery_time'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 
 			if ( ! empty( $delivery_time ) ) {
 				$needs_update = true;
@@ -141,8 +141,8 @@ class WC_Germanized_Meta_Box_Product_Data {
 				$gzd_product->set_default_delivery_time_slug( '' );
 			}
 
-			if ( isset( $_REQUEST['_unit'] ) ) {
-				$unit = wc_clean( $_REQUEST['_unit'] );
+			if ( isset( $_REQUEST['_unit'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+				$unit = wc_clean( wp_unslash( $_REQUEST['_unit'] ) ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 
 				if ( ! empty( $unit ) ) {
 					$needs_update = true;
@@ -193,7 +193,7 @@ class WC_Germanized_Meta_Box_Product_Data {
 				<span class="title"><?php esc_html_e( 'Unit', 'woocommerce-germanized' ); ?></span>
 				<span class="input-text-wrap">
 					<select class="unit" name="_unit">
-						<option value="_no_unit"><?php _e( 'No unit', 'woocommerce-germanized' ); ?></option>
+						<option value="_no_unit"><?php esc_html_e( 'No unit', 'woocommerce-germanized' ); ?></option>
 						<?php
 						foreach ( WC_germanized()->units->get_units() as $key => $value ) {
 							echo '<option value="' . esc_attr( $key ) . '">' . esc_html( $value ) . '</option>';
@@ -209,10 +209,10 @@ class WC_Germanized_Meta_Box_Product_Data {
 	public static function bulk_save( $product ) {
 		if ( $gzd_product = wc_gzd_get_gzd_product( $product ) ) {
 			$needs_update         = false;
-			$change_delivery_time = isset( $_REQUEST['change_delivery_time'] ) ? absint( $_REQUEST['change_delivery_time'] ) : '';
+			$change_delivery_time = isset( $_REQUEST['change_delivery_time'] ) ? absint( $_REQUEST['change_delivery_time'] ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 
 			if ( ! empty( $change_delivery_time ) && in_array( $change_delivery_time, array( 1, 2 ) ) ) { // phpcs:ignore WordPress.PHP.StrictInArray.MissingTrueStrict
-				$delivery_time = isset( $_REQUEST['_delivery_time'] ) ? wc_clean( $_REQUEST['_delivery_time'] ) : '';
+				$delivery_time = isset( $_REQUEST['_delivery_time'] ) ? wc_clean( wp_unslash( $_REQUEST['_delivery_time'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 
 				if ( ! empty( $delivery_time ) && 1 === $change_delivery_time ) {
 					$needs_update = true;
@@ -227,8 +227,8 @@ class WC_Germanized_Meta_Box_Product_Data {
 				}
 			}
 
-			if ( isset( $_REQUEST['_unit'] ) ) {
-				$unit = wc_clean( $_REQUEST['_unit'] );
+			if ( isset( $_REQUEST['_unit'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+				$unit = wc_clean( wp_unslash( $_REQUEST['_unit'] ) ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 
 				if ( ! empty( $unit ) ) {
 					$needs_update = true;
@@ -252,7 +252,7 @@ class WC_Germanized_Meta_Box_Product_Data {
 		?>
 		<div class="inline-edit-group delivery-time">
 			<label class="alignleft">
-				<span class="title"><?php _e( 'Delivery Time', 'woocommerce-germanized' ); ?></span>
+				<span class="title"><?php esc_html_e( 'Delivery Time', 'woocommerce-germanized' ); ?></span>
 				<span class="input-text-wrap">
 						<select class="change_delivery_time change_to" name="change_delivery_time">
 							<?php
@@ -277,11 +277,11 @@ class WC_Germanized_Meta_Box_Product_Data {
 			</label>
 		</div>
 		<label class="alignleft">
-			<span class="title"><?php _e( 'Unit', 'woocommerce-germanized' ); ?></span>
+			<span class="title"><?php esc_html_e( 'Unit', 'woocommerce-germanized' ); ?></span>
 			<span class="input-text-wrap">
 				<select class="unit" name="_unit">
-					<option value=""><?php _e( '— No change —', 'woocommerce-germanized' ); ?></option>
-					<option value="_no_unit"><?php _e( 'No unit', 'woocommerce-germanized' ); ?></option>
+					<option value=""><?php esc_html_e( '— No change —', 'woocommerce-germanized' ); ?></option>
+					<option value="_no_unit"><?php esc_html_e( 'No unit', 'woocommerce-germanized' ); ?></option>
 					<?php
 					foreach ( WC_germanized()->units->get_units() as $key => $value ) {
 						echo '<option value="' . esc_attr( $key ) . '">' . esc_html( $value ) . '</option>';
@@ -410,8 +410,8 @@ class WC_Germanized_Meta_Box_Product_Data {
 		<div class="options_group">
 			<div class="show_if_simple show_if_external show_if_variable">
 				<p class="wc-gzd-product-settings-subtitle">
-					<?php _e( 'Price Labeling', 'woocommerce-germanized' ); ?>
-					<a class="page-title-action" href="https://vendidero.de/dokumentation/woocommerce-germanized/preisauszeichnung"><?php _e( 'Help', 'woocommerce-germanized' ); ?></a>
+					<?php esc_html_e( 'Price Labeling', 'woocommerce-germanized' ); ?>
+					<a class="page-title-action" href="https://vendidero.de/dokumentation/woocommerce-germanized/preisauszeichnung"><?php esc_html_e( 'Help', 'woocommerce-germanized' ); ?></a>
 				</p>
 		<?php
 
@@ -542,14 +542,16 @@ class WC_Germanized_Meta_Box_Product_Data {
 
 		$args['id'] = empty( $args['id'] ) ? $args['name'] : $args['id'];
 		?>
-		<select class="wc-product-search wc-gzd-delivery-time-search" style="<?php echo $args['style']; ?>"
-				id="<?php echo esc_attr( $args['id'] ); ?>" name="<?php echo esc_attr( $args['name'] ); ?>"
-				data-minimum_input_length="1" data-allow_clear="true"
-				data-placeholder="<?php echo esc_attr( $args['placeholder'] ); ?>"
-				data-action="woocommerce_gzd_json_search_delivery_time" data-multiple="false">
+		<select
+			class="wc-product-search wc-gzd-delivery-time-search" style="<?php echo esc_attr( $args['style'] ); ?>"
+			id="<?php echo esc_attr( $args['id'] ); ?>" name="<?php echo esc_attr( $args['name'] ); ?>"
+			data-minimum_input_length="1" data-allow_clear="true"
+			data-placeholder="<?php echo esc_attr( $args['placeholder'] ); ?>"
+			data-action="woocommerce_gzd_json_search_delivery_time" data-multiple="false"
+		>
 			<?php
 			if ( $args['term'] ) {
-				echo '<option value="' . esc_attr( $args['term']->term_id ) . '"' . selected( true, true, false ) . '>' . $args['term']->name . '</option>';
+				echo '<option value="' . esc_attr( $args['term']->term_id ) . '"' . selected( true, true, false ) . '>' . esc_html( $args['term']->name ) . '</option>';
 			}
 			?>
 		</select>
@@ -563,12 +565,12 @@ class WC_Germanized_Meta_Box_Product_Data {
 		$delivery_time = $gzd_product->get_delivery_time( 'edit' );
 		?>
 		<p class="wc-gzd-product-settings-subtitle">
-			<?php _e( 'Delivery Time', 'woocommerce-germanized' ); ?>
-			<a class="page-title-action" href="https://vendidero.de/dokument/lieferzeiten-verwalten"><?php _e( 'Help', 'woocommerce-germanized' ); ?></a>
+			<?php esc_html_e( 'Delivery Time', 'woocommerce-germanized' ); ?>
+			<a class="page-title-action" href="https://vendidero.de/dokument/lieferzeiten-verwalten"><?php esc_html_e( 'Help', 'woocommerce-germanized' ); ?></a>
 		</p>
 
 		<p class="form-field">
-			<label for="delivery_time"><?php _e( 'Delivery Time', 'woocommerce-germanized' ); ?></label>
+			<label for="delivery_time"><?php esc_html_e( 'Delivery Time', 'woocommerce-germanized' ); ?></label>
 			<?php
 				self::output_delivery_time_select2(
 					array(
@@ -598,10 +600,10 @@ class WC_Germanized_Meta_Box_Product_Data {
 		$gzd_product = wc_gzd_get_product( $product_object );
 		?>
 		<p class="form-field wc-gzd-warranty-upload-wrapper">
-			<label for="upload_warranty_button"><?php _e( 'Warranty (PDF)', 'woocommerce-germanized' ); ?></label>
-			<a href="#" class="button upload_warranty_button" data-default-label="<?php echo esc_html__( 'Choose file', 'woocommerce-germanized' ); ?>" data-choose="<?php esc_attr_e( 'Choose file', 'woocommerce-germanized' ); ?>" data-update="<?php esc_attr_e( 'Select warranty file', 'woocommerce-germanized' ); ?>"><?php echo ( $gzd_product->has_warranty() ? $gzd_product->get_warranty_filename() : esc_html__( 'Choose file', 'woocommerce-germanized' ) ); ?></a>
-			<input type="hidden" name="_warranty_attachment_id" value="<?php echo ( $gzd_product->has_warranty() ? $gzd_product->get_warranty_attachment_id() : '' ); ?>" class="wc-gzd-warranty-attachment" />
-			<a href="#" class="wc-gzd-warranty-delete <?php echo ( ! $gzd_product->has_warranty() ? 'file-missing' : '' ); ?>"><?php _e( 'Delete', 'woocommerce-germanized' ); ?></a>
+			<label for="upload_warranty_button"><?php esc_html_e( 'Warranty (PDF)', 'woocommerce-germanized' ); ?></label>
+			<a href="#" class="button upload_warranty_button" data-default-label="<?php echo esc_html__( 'Choose file', 'woocommerce-germanized' ); ?>" data-choose="<?php esc_attr_e( 'Choose file', 'woocommerce-germanized' ); ?>" data-update="<?php esc_attr_e( 'Select warranty file', 'woocommerce-germanized' ); ?>"><?php echo ( $gzd_product->has_warranty() ? esc_html( $gzd_product->get_warranty_filename() ) : esc_html__( 'Choose file', 'woocommerce-germanized' ) ); ?></a>
+			<input type="hidden" name="_warranty_attachment_id" value="<?php echo ( $gzd_product->has_warranty() ? esc_attr( $gzd_product->get_warranty_attachment_id() ) : '' ); ?>" class="wc-gzd-warranty-attachment" />
+			<a href="#" class="wc-gzd-warranty-delete <?php echo ( ! $gzd_product->has_warranty() ? 'file-missing' : '' ); ?>"><?php esc_html_e( 'Delete', 'woocommerce-germanized' ); ?></a>
 		</p>
 		<?php
 	}
@@ -658,7 +660,7 @@ class WC_Germanized_Meta_Box_Product_Data {
 				$countries_left = array_diff_key( $countries_left, array( $country => '' ) );
 				?>
 				<p class="form-field field wc-gzd-country-specific-delivery-time-field _country_specific_delivery_times_-<?php echo esc_attr( $country ); ?>_field">
-					<label for="country_specific_delivery_times-<?php echo esc_attr( $country ); ?>"><?php printf( __( 'Delivery Time (%s)', 'woocommerce-germanized' ), esc_html( self::get_label_by_delivery_time_country( $country ) ) ); ?></label>
+					<label for="country_specific_delivery_times-<?php echo esc_attr( $country ); ?>"><?php esc_html( sprintf( __( 'Delivery Time (%s)', 'woocommerce-germanized' ), self::get_label_by_delivery_time_country( $country ) ) ); ?></label>
 					<?php
 						self::output_delivery_time_select2(
 							array(
@@ -670,7 +672,7 @@ class WC_Germanized_Meta_Box_Product_Data {
 						);
 					?>
 					<span class="description">
-						<a href="#" class="dashicons dashicons-no-alt wc-gzd-remove-country-specific-delivery-time"><?php _e( 'remove', 'woocommerce-germanized' ); ?></a>
+						<a href="#" class="dashicons dashicons-no-alt wc-gzd-remove-country-specific-delivery-time"><?php esc_html_e( 'remove', 'woocommerce-germanized' ); ?></a>
 					</span>
 				</p>
 				<?php
@@ -682,7 +684,7 @@ class WC_Germanized_Meta_Box_Product_Data {
 
 		<p class="form-field wc-gzd-add-country-specific-delivery-time">
 			<label>&nbsp;</label>
-			<a href="#" class="wc-gzd-add-new-country-specific-delivery-time">+ <?php _e( 'Add country specific delivery time', 'woocommerce-germanized' ); ?></a>
+			<a href="#" class="wc-gzd-add-new-country-specific-delivery-time">+ <?php esc_html_e( 'Add country specific delivery time', 'woocommerce-germanized' ); ?></a>
 		</p>
 
 		<?php if ( ! empty( $countries_left ) ) : ?>
@@ -690,7 +692,7 @@ class WC_Germanized_Meta_Box_Product_Data {
 				<p class="form-field wc-gzd-country-specific-delivery-time-field">
 					<label for="country_specific_delivery_times">
 						<select class="enhanced select" name="new_country_specific_delivery_times_countries[]">
-							<option value="" selected="selected"><?php _e( 'Select country', 'woocommerce-germanized' ); ?></option>
+							<option value="" selected="selected"><?php esc_html_e( 'Select country', 'woocommerce-germanized' ); ?></option>
 							<?php
 							foreach ( $countries_left as $country_code => $country_name ) {
 								echo '<option value="' . esc_attr( $country_code ) . '">' . esc_html( $country_name ) . '</option>';
@@ -707,7 +709,7 @@ class WC_Germanized_Meta_Box_Product_Data {
 						);
 					?>
 					<span class="description">
-						<a href="#" class="dashicons dashicons-no-alt wc-gzd-remove-country-specific-delivery-time"><?php _e( 'remove', 'woocommerce-germanized' ); ?></a>
+						<a href="#" class="dashicons dashicons-no-alt wc-gzd-remove-country-specific-delivery-time"><?php esc_html_e( 'remove', 'woocommerce-germanized' ); ?></a>
 					</span>
 				</p>
 			</div>
@@ -759,6 +761,43 @@ class WC_Germanized_Meta_Box_Product_Data {
 		);
 	}
 
+	protected static function get_field_sanitization_type( $field ) {
+		$html_content_fields = array(
+			'_food_description',
+			'_food_distributor',
+			'_food_place_of_origin',
+			'_ingredients',
+			'_defect_description',
+			'_mini_desc',
+		);
+
+		if ( in_array( $field, $html_content_fields, true ) ) {
+			return 'html';
+		} else {
+			return 'string';
+		}
+	}
+
+	/**
+	 * Pre-sanitize field data.
+	 *
+	 * @param $field
+	 * @param $value
+	 *
+	 * @return mixed
+	 */
+	public static function get_sanitized_field_value( $field, $value = null ) {
+		$sanitization_type = self::get_field_sanitization_type( $field );
+
+		if ( 'html' === $sanitization_type ) {
+			$value = null !== $value ? wc_gzd_sanitize_html_text_field( wp_unslash( $value ) ) : null; // phpcs:ignore WordPress.Security.NonceVerification.Missing,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+		} else {
+			$value = null !== $value ? wc_clean( wp_unslash( $value ) ) : null; // phpcs:ignore WordPress.Security.NonceVerification.Missing
+		}
+
+		return $value;
+	}
+
 	public static function save( $product ) {
 		if ( is_numeric( $product ) ) {
 			$product = wc_get_product( $product );
@@ -767,7 +806,7 @@ class WC_Germanized_Meta_Box_Product_Data {
 		$data = self::get_fields();
 
 		foreach ( $data as $k => $v ) {
-			$data[ $k ] = ( isset( $_POST[ $k ] ) ? $_POST[ $k ] : null );
+			$data[ $k ] = self::get_sanitized_field_value( $k, ( isset( $_POST[ $k ] ) ? wp_unslash( $_POST[ $k ] ) : null ) ); // phpcs:ignore WordPress.Security.NonceVerification.Missing,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 		}
 
 		$data['save'] = false;
@@ -819,7 +858,7 @@ class WC_Germanized_Meta_Box_Product_Data {
 		}
 
 		$gzd_product  = wc_gzd_get_product( $product );
-		$product_type = ( ! isset( $data['product-type'] ) || empty( $data['product-type'] ) ) ? 'simple' : sanitize_title( stripslashes( $data['product-type'] ) );
+		$product_type = ( ! isset( $data['product-type'] ) || empty( $data['product-type'] ) ) ? 'simple' : sanitize_title( wp_unslash( $data['product-type'] ) );
 
 		if ( isset( $data['_unit'] ) ) {
 			if ( empty( $data['_unit'] ) || in_array( $data['_unit'], array( 'none', '-1' ) ) ) { // phpcs:ignore WordPress.PHP.StrictInArray.MissingTrueStrict
@@ -830,11 +869,11 @@ class WC_Germanized_Meta_Box_Product_Data {
 		}
 
 		if ( isset( $data['_unit_base'] ) ) {
-			$gzd_product->set_unit_base( $data['_unit_base'] );
+			$gzd_product->set_unit_base( wc_clean( $data['_unit_base'] ) );
 		}
 
 		if ( isset( $data['_unit_product'] ) ) {
-			$gzd_product->set_unit_product( $data['_unit_product'] );
+			$gzd_product->set_unit_product( wc_clean( $data['_unit_product'] ) );
 		}
 
 		$unit_price_auto = 'no';
@@ -851,17 +890,17 @@ class WC_Germanized_Meta_Box_Product_Data {
 		$gzd_product->set_unit_price_auto( $unit_price_auto );
 
 		if ( isset( $data['_unit_price_regular'] ) ) {
-			$gzd_product->set_unit_price_regular( $data['_unit_price_regular'] );
-			$gzd_product->set_unit_price( $data['_unit_price_regular'] );
+			$gzd_product->set_unit_price_regular( wc_clean( $data['_unit_price_regular'] ) );
+			$gzd_product->set_unit_price( wc_clean( $data['_unit_price_regular'] ) );
 		}
 
 		if ( isset( $data['_unit_price_sale'] ) ) {
 			// Unset unit price sale if no product sale price has been defined
-			if ( ! isset( $data['_sale_price'] ) || $data['_sale_price'] === '' ) {
+			if ( ! isset( $data['_sale_price'] ) || '' === $data['_sale_price'] ) {
 				$data['_unit_price_sale'] = '';
 			}
 
-			$gzd_product->set_unit_price_sale( $data['_unit_price_sale'] );
+			$gzd_product->set_unit_price_sale( wc_clean( $data['_unit_price_sale'] ) );
 		}
 
 		// Ignore variable data
@@ -873,29 +912,29 @@ class WC_Germanized_Meta_Box_Product_Data {
 		} else {
 			$date_from  = isset( $data['_sale_price_dates_from'] ) ? wc_clean( $data['_sale_price_dates_from'] ) : '';
 			$date_to    = isset( $data['_sale_price_dates_to'] ) ? wc_clean( $data['_sale_price_dates_to'] ) : '';
-			$is_on_sale = isset( $data['_is_on_sale'] ) ? $data['_is_on_sale'] : null;
+			$is_on_sale = isset( $data['_is_on_sale'] ) ? wc_clean( $data['_is_on_sale'] ) : null;
 
 			// Update price if on sale
 			if ( isset( $data['_unit_price_sale'] ) ) {
 				if ( ! is_null( $is_on_sale ) ) {
 					if ( $is_on_sale ) {
-						$gzd_product->set_unit_price( $data['_unit_price_sale'] );
+						$gzd_product->set_unit_price( wc_clean( $data['_unit_price_sale'] ) );
 					} else {
-						$gzd_product->set_unit_price( $data['_unit_price_regular'] );
+						$gzd_product->set_unit_price( wc_clean( $data['_unit_price_regular'] ) );
 					}
 				} else {
-					if ( '' !== $data['_unit_price_sale'] && '' == $date_to && '' == $date_from ) {
-						$gzd_product->set_unit_price( $data['_unit_price_sale'] );
+					if ( '' !== $data['_unit_price_sale'] && '' === $date_to && '' === $date_from ) {
+						$gzd_product->set_unit_price( wc_clean( $data['_unit_price_sale'] ) );
 					} else {
-						$gzd_product->set_unit_price( $data['_unit_price_regular'] );
+						$gzd_product->set_unit_price( wc_clean( $data['_unit_price_regular'] ) );
 					}
 
-					if ( '' !== $data['_unit_price_sale'] && $date_from && strtotime( $date_from ) < strtotime( 'NOW', current_time( 'timestamp' ) ) ) {
-						$gzd_product->set_unit_price( $data['_unit_price_sale'] );
+					if ( '' !== $data['_unit_price_sale'] && $date_from && strtotime( $date_from ) < strtotime( 'NOW', current_time( 'timestamp' ) ) ) { // phpcs:ignore WordPress.DateTime.CurrentTimeTimestamp.Requested
+						$gzd_product->set_unit_price( wc_clean( $data['_unit_price_sale'] ) );
 					}
 
-					if ( $date_to && strtotime( $date_to ) < strtotime( 'NOW', current_time( 'timestamp' ) ) ) {
-						$gzd_product->set_unit_price( $data['_unit_price_regular'] );
+					if ( $date_to && strtotime( $date_to ) < strtotime( 'NOW', current_time( 'timestamp' ) ) ) { // phpcs:ignore WordPress.DateTime.CurrentTimeTimestamp.Requested
+						$gzd_product->set_unit_price( wc_clean( $data['_unit_price_regular'] ) );
 					}
 				}
 			}
@@ -914,7 +953,7 @@ class WC_Germanized_Meta_Box_Product_Data {
 	 */
 	protected static function save_delivery_times( $gzd_product, $data ) {
 		if ( isset( $data['delivery_time'] ) ) {
-			if ( $slug = wc_gzd_get_valid_product_delivery_time_slugs( $data['delivery_time'] ) ) {
+			if ( $slug = wc_gzd_get_valid_product_delivery_time_slugs( wc_clean( $data['delivery_time'] ) ) ) {
 				$gzd_product->set_default_delivery_time_slug( $slug );
 			} else {
 				$gzd_product->set_default_delivery_time_slug( '' );
@@ -1050,11 +1089,11 @@ class WC_Germanized_Meta_Box_Product_Data {
 		}
 
 		if ( isset( $data['_mini_desc'] ) ) {
-			$gzd_product->set_mini_desc( $data['_mini_desc'] === '' ? '' : wc_gzd_sanitize_html_text_field( $data['_mini_desc'] ) );
+			$gzd_product->set_mini_desc( '' === $data['_mini_desc'] ? '' : wc_gzd_sanitize_html_text_field( $data['_mini_desc'] ) );
 		}
 
 		if ( isset( $data['_defect_description'] ) ) {
-			$gzd_product->set_defect_description( $data['_defect_description'] === '' ? '' : wc_gzd_sanitize_html_text_field( $data['_defect_description'] ) );
+			$gzd_product->set_defect_description( '' === $data['_defect_description'] ? '' : wc_gzd_sanitize_html_text_field( $data['_defect_description'] ) );
 		}
 
 		if ( isset( $data['_nutrient_ids'] ) ) {
@@ -1073,7 +1112,7 @@ class WC_Germanized_Meta_Box_Product_Data {
 		}
 
 		if ( isset( $data['_ingredients'] ) ) {
-			$gzd_product->set_ingredients( $data['_ingredients'] === '' ? '' : wc_gzd_sanitize_html_text_field( $data['_ingredients'] ) );
+			$gzd_product->set_ingredients( '' === $data['_ingredients'] ? '' : wc_gzd_sanitize_html_text_field( $data['_ingredients'] ) );
 		}
 
 		if ( isset( $data['_nutri_score'] ) ) {
@@ -1099,15 +1138,15 @@ class WC_Germanized_Meta_Box_Product_Data {
 		}
 
 		if ( isset( $data['_food_distributor'] ) ) {
-			$gzd_product->set_food_distributor( $data['_food_distributor'] === '' ? '' : wc_gzd_sanitize_html_text_field( $data['_food_distributor'] ) );
+			$gzd_product->set_food_distributor( '' === $data['_food_distributor'] ? '' : wc_gzd_sanitize_html_text_field( $data['_food_distributor'] ) );
 		}
 
 		if ( isset( $data['_food_description'] ) ) {
-			$gzd_product->set_food_description( $data['_food_description'] === '' ? '' : wc_gzd_sanitize_html_text_field( $data['_food_description'] ) );
+			$gzd_product->set_food_description( '' === $data['_food_description'] ? '' : wc_gzd_sanitize_html_text_field( $data['_food_description'] ) );
 		}
 
 		if ( isset( $data['_food_place_of_origin'] ) ) {
-			$gzd_product->set_food_place_of_origin( $data['_food_place_of_origin'] === '' ? '' : wc_gzd_sanitize_html_text_field( $data['_food_place_of_origin'] ) );
+			$gzd_product->set_food_place_of_origin( '' === $data['_food_place_of_origin'] ? '' : wc_gzd_sanitize_html_text_field( $data['_food_place_of_origin'] ) );
 		}
 
 		$warranty_attachment_id = isset( $data['_warranty_attachment_id'] ) ? absint( $data['_warranty_attachment_id'] ) : 0;

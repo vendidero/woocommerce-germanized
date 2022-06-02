@@ -261,15 +261,15 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 			<p class="form-row form-row-full">
 				<label for="delivery_time"><?php esc_html_e( 'Delivery Time', 'woocommerce-germanized' ); ?></label>
 				<?php
-					WC_Germanized_Meta_Box_Product_Data::output_delivery_time_select2(
-						array(
-							'name'        => 'variable_delivery_time[' . $loop . ']',
-							'id'          => 'variable_delivery_time_' . $loop,
-							'placeholder' => __( 'Same as parent', 'woocommerce-germanized' ),
-							'term'        => $delivery_time,
-							'style'       => 'width: 100%',
-						)
-					);
+				WC_Germanized_Meta_Box_Product_Data::output_delivery_time_select2(
+					array(
+						'name'        => 'variable_delivery_time[' . $loop . ']',
+						'id'          => 'variable_delivery_time_' . $loop,
+						'placeholder' => __( 'Same as parent', 'woocommerce-germanized' ),
+						'term'        => $delivery_time,
+						'style'       => 'width: 100%',
+					)
+				);
 				?>
 			</p>
 
@@ -281,15 +281,15 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 					<p class="form-row form-row-full wc-gzd-country-specific-delivery-time-field wc-gzd-country-specific-delivery-time-field-variation">
 						<label for="country_specific_delivery_times-<?php echo esc_attr( $country ); ?>"><?php printf( esc_html__( 'Delivery Time (%s)', 'woocommerce-germanized' ), esc_html( WC_Germanized_Meta_Box_Product_Data::get_label_by_delivery_time_country( $country ) ) ); ?></label>
 						<?php
-							WC_Germanized_Meta_Box_Product_Data::output_delivery_time_select2(
-								array(
-									'name'        => "variable_country_specific_delivery_times[{$loop}][{$country}]",
-									'placeholder' => __( 'Same as parent', 'woocommerce-germanized' ),
-									'term'        => $delivery_times[ $term_slug ],
-									'id'          => "variable_country_specific_delivery_times{$loop}-" . esc_attr( $country ),
-									'style'       => 'width: 100%',
-								)
-							);
+						WC_Germanized_Meta_Box_Product_Data::output_delivery_time_select2(
+							array(
+								'name'        => "variable_country_specific_delivery_times[{$loop}][{$country}]",
+								'placeholder' => __( 'Same as parent', 'woocommerce-germanized' ),
+								'term'        => $delivery_times[ $term_slug ],
+								'id'          => "variable_country_specific_delivery_times{$loop}-" . esc_attr( $country ),
+								'style'       => 'width: 100%',
+							)
+						);
 						?>
 						<span class="description">
 						<a href="#" class="dashicons dashicons-no-alt wc-gzd-remove-country-specific-delivery-time"><?php esc_html_e( 'remove', 'woocommerce-germanized' ); ?></a>
@@ -321,12 +321,12 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 							</select>
 						</label>
 						<?php
-							WC_Germanized_Meta_Box_Product_Data::output_delivery_time_select2(
-								array(
-									'name'        => "variable_new_country_specific_delivery_times_terms[{$loop}][]",
-									'placeholder' => __( 'Search for a delivery time&hellip;', 'woocommerce-germanized' ),
-								)
-							);
+						WC_Germanized_Meta_Box_Product_Data::output_delivery_time_select2(
+							array(
+								'name'        => "variable_new_country_specific_delivery_times_terms[{$loop}][]",
+								'placeholder' => __( 'Search for a delivery time&hellip;', 'woocommerce-germanized' ),
+							)
+						);
 						?>
 						<span class="description">
 							<a href="#" class="dashicons dashicons-no-alt wc-gzd-remove-country-specific-delivery-time"><?php esc_html_e( 'remove', 'woocommerce-germanized' ); ?></a>
@@ -457,12 +457,8 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 		);
 
 		foreach ( $data as $k => $v ) {
-			$data_k = 'variable' . ( substr( $k, 0, 1 ) === '_' ? '' : '_' ) . $k;
-			/**
-			 * Non-sanitized data as some data may be allowed to contain HTML (e.g. textarea).
-			 * Will be sanitized in WC_Germanized_Meta_Box_Product_Data::save_product_data() before saving.
-			 */
-			$data[ $k ] = ( isset( $_POST[ $data_k ][ $i ] ) ? wp_unslash( $_POST[ $data_k ][ $i ] ) : null ); // phpcs:ignore WordPress.Security.NonceVerification.Missing,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+			$data_k     = 'variable' . ( substr( $k, 0, 1 ) === '_' ? '' : '_' ) . $k;
+			$data[ $k ] = WC_Germanized_Meta_Box_Product_Data::get_sanitized_field_value( $k, ( isset( $_POST[ $data_k ][ $i ] ) ? wp_unslash( $_POST[ $data_k ][ $i ] ) : null ) ); // phpcs:ignore WordPress.Security.NonceVerification.Missing,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 		}
 
 		$product            = wc_get_product( $variation_id );

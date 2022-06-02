@@ -22,7 +22,7 @@ echo "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n";
 echo esc_html( wp_strip_all_tags( $email_heading ) );
 echo "\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n\n";
 
-echo sprintf( esc_html__( 'Hi there. Thank you! We have successfully received your payment for order %s. Your order is now being processed.', 'woocommerce-germanized' ), $order->get_order_number() ) . "\n\n";
+echo sprintf( esc_html__( 'Hi there. Thank you! We have successfully received your payment for order %s. Your order is now being processed.', 'woocommerce-germanized' ), esc_html( $order->get_order_number() ) ) . "\n\n";
 
 echo "\n----------------------------------------\n\n";
 

@@ -38,8 +38,7 @@ class WC_GZD_Settings_Tab_Checkboxes extends WC_GZD_Settings_Tab {
 						'next_url'     => admin_url( 'admin.php?page=wc-settings&tab=germanized-checkboxes&checkbox_id=terms&tutorial=yes' ),
 						'next_trigger' => array(),
 						'options'      => array(
-							'content'  => '<h3>' . esc_html__( 'Edit checkbox', 'woocommerce-germanized' ) . '</h3>' .
-										  '<p>' . esc_html__( 'Legal checkboxes help you obtain consent from your customers. You might edit a checkbox\' label and other options by clicking on the link.', 'woocommerce-germanized' ) . '</p>',
+							'content'  => '<h3>' . esc_html__( 'Edit checkbox', 'woocommerce-germanized' ) . '</h3><p>' . esc_html__( 'Legal checkboxes help you obtain consent from your customers. You might edit a checkbox\' label and other options by clicking on the link.', 'woocommerce-germanized' ) . '</p>',
 							'position' => array(
 								'edge'  => 'top',
 								'align' => 'left',
@@ -59,8 +58,7 @@ class WC_GZD_Settings_Tab_Checkboxes extends WC_GZD_Settings_Tab {
 						'pro'          => true,
 						'next_trigger' => array(),
 						'options'      => array(
-							'content'  => '<h3>' . esc_html__( 'Label', 'woocommerce-germanized' ) . '</h3>' .
-										  '<p>' . esc_html__( 'Adjust the label of your checkbox which will be shown within your shop (e.g. checkout). Use placeholders to add links to your legal pages.', 'woocommerce-germanized' ) . '</p>',
+							'content'  => '<h3>' . esc_html__( 'Label', 'woocommerce-germanized' ) . '</h3><p>' . esc_html__( 'Adjust the label of your checkbox which will be shown within your shop (e.g. checkout). Use placeholders to add links to your legal pages.', 'woocommerce-germanized' ) . '</p>',
 							'position' => array(
 								'edge'  => 'bottom',
 								'align' => 'left',
@@ -79,7 +77,7 @@ class WC_GZD_Settings_Tab_Checkboxes extends WC_GZD_Settings_Tab {
 	}
 
 	public function get_current_checkbox_id() {
-		$checkbox_id = isset( $_GET['checkbox_id'] ) && ! empty( $_GET['checkbox_id'] ) ? wc_clean( $_GET['checkbox_id'] ) : false;
+		$checkbox_id = isset( $_GET['checkbox_id'] ) && ! empty( $_GET['checkbox_id'] ) ? wc_clean( wp_unslash( $_GET['checkbox_id'] ) ) : false; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 
 		return $checkbox_id;
 	}
@@ -130,7 +128,7 @@ class WC_GZD_Settings_Tab_Checkboxes extends WC_GZD_Settings_Tab {
 		$new_checkbox_button = ' <a class="page-title-action" href="' . $new_checkbox_link . '" target="' . ( ! WC_germanized()->is_pro() ? '_blank' : '_self' ) . '">' . esc_html__( 'Add checkbox', 'woocommerce-germanized' ) . ' ' . ( ! WC_germanized()->is_pro() ? '<span class="wc-gzd-pro">pro</span>' : '' ) . '</a>';
 
 		if ( empty( $checkbox_id ) ) {
-			$breadcrumb[ sizeof( $breadcrumb ) - 1 ]['title'] = $breadcrumb[ sizeof( $breadcrumb ) - 1 ]['title'] . $new_checkbox_button;
+			$breadcrumb[ count( $breadcrumb ) - 1 ]['title'] = $breadcrumb[ count( $breadcrumb ) - 1 ]['title'] . $new_checkbox_button;
 		}
 
 		return $breadcrumb;
@@ -142,8 +140,8 @@ class WC_GZD_Settings_Tab_Checkboxes extends WC_GZD_Settings_Tab {
 	public function output() {
 		global $hide_save_button;
 
-		if ( isset( $_REQUEST['checkbox_id'] ) ) { // WPCS: input var ok, CSRF ok.
-			$this->edit_screen( wc_clean( wp_unslash( $_REQUEST['checkbox_id'] ) ) ); // WPCS: input var ok, CSRF ok.
+		if ( isset( $_REQUEST['checkbox_id'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			$this->edit_screen( wc_clean( wp_unslash( $_REQUEST['checkbox_id'] ) ) ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		} else {
 			$hide_save_button = true;
 			$this->screen();
@@ -167,9 +165,9 @@ class WC_GZD_Settings_Tab_Checkboxes extends WC_GZD_Settings_Tab {
 		 */
 		$checkbox = apply_filters( 'woocommerce_gzd_admin_legal_checkbox', $checkbox, $checkbox_id );
 
-		if ( ! empty( $_POST['save'] ) ) { // WPCS: input var ok, sanitization ok.
+		if ( ! empty( $_POST['save'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 
-			if ( empty( $_REQUEST['_wpnonce'] ) || ! wp_verify_nonce( wp_unslash( $_REQUEST['_wpnonce'] ), 'woocommerce-settings' ) ) { // WPCS: input var ok, sanitization ok.
+			if ( empty( $_REQUEST['_wpnonce'] ) || ! wp_verify_nonce( wp_unslash( $_REQUEST['_wpnonce'] ), 'woocommerce-settings' ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 				echo '<div class="updated error"><p>' . esc_html__( 'Edit failed. Please try again.', 'woocommerce-germanized' ) . '</p></div>';
 			}
 
@@ -203,7 +201,7 @@ class WC_GZD_Settings_Tab_Checkboxes extends WC_GZD_Settings_Tab {
 		}
 
 		if ( ! $checkbox && ! WC_germanized()->is_pro() ) {
-			wp_die( __( 'Sorry, but this checkbox does not exist.', 'woocommerce-germanized' ) );
+			wp_die( esc_html__( 'Sorry, but this checkbox does not exist.', 'woocommerce-germanized' ) );
 		}
 
 		include_once dirname( __FILE__ ) . '/views/html-admin-page-checkbox.php';

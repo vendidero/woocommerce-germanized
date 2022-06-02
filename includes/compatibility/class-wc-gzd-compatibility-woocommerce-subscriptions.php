@@ -63,7 +63,7 @@ class WC_GZD_Compatibility_WooCommerce_Subscriptions extends WC_GZD_Compatibilit
 		 * Woo Subscription specific payment method change flag.
 		 * Always allow changing payment method for subscriptions.
 		 */
-		if ( isset( $_GET['change_payment_method'] ) ) {
+		if ( isset( $_GET['change_payment_method'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			$redirect = false;
 		}
 
@@ -112,7 +112,6 @@ class WC_GZD_Compatibility_WooCommerce_Subscriptions extends WC_GZD_Compatibilit
 	}
 
 	public function set_tax_notice( $price, $cart ) {
-
 		/**
 		 * Filter that allows disabling tax notice for subscription cart prices.
 		 *
@@ -129,7 +128,7 @@ class WC_GZD_Compatibility_WooCommerce_Subscriptions extends WC_GZD_Compatibilit
 		if ( 'yes' === get_option( 'woocommerce_calc_taxes' ) && 'incl' === wc_gzd_get_cart_tax_display_mode( $cart ) ) {
 			$tax_array = wc_gzd_get_cart_taxes( $cart );
 			ob_start();
-			echo $price;
+			echo wp_kses_post( $price );
 
 			if ( ! empty( $tax_array ) ) {
 				$count = 0;
@@ -139,7 +138,7 @@ class WC_GZD_Compatibility_WooCommerce_Subscriptions extends WC_GZD_Compatibilit
 					?>
 					<small class="wc-gzd-recurring-tax-total">
 						<span class="wc-gzd-recurring-tax-total-label"><?php echo wp_kses_post( $label ); ?>:</span>
-						<span class="wc-gzd-recurring-tax-total-amount"><?php echo wc_price( $tax['amount'] ); ?></span>
+						<span class="wc-gzd-recurring-tax-total-amount"><?php echo wc_price( $tax['amount'] ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
 					</small>
 					<?php
 				}

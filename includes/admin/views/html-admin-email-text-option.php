@@ -18,12 +18,15 @@ if ( ! empty( $args['custom_attributes'] ) && is_array( $args['custom_attributes
 <table class="form-table">
 	<tr valign="top">
 		<th scope="row">
-			<label for="<?php echo esc_attr( $args['id'] ); ?>"><?php echo $args['label']; ?><?php echo wc_help_tip( $args['desc'] ); ?></label>
+			<label for="<?php echo esc_attr( $args['id'] ); ?>"><?php echo esc_html( $args['label'] ); ?><?php echo wc_help_tip( $args['desc'] ); ?></label>
 		</th>
 		<td class="forminp">
-			<textarea id="<?php echo esc_attr( $args['id'] ); ?>" name="<?php echo esc_attr( $args['id'] ); ?>"
-					  style="height: 65px;"
-					  placeholder="<?php echo esc_attr( $args['placeholder'] ); ?>" <?php echo implode( ' ', $custom_attributes ); // WPCS: XSS ok. ?>><?php echo esc_textarea( $args['value'] ); ?></textarea>
+			<textarea
+				id="<?php echo esc_attr( $args['id'] ); ?>"
+				name="<?php echo esc_attr( $args['id'] ); ?>"
+				style="height: 65px;"
+				placeholder="<?php echo esc_attr( $args['placeholder'] ); ?>" <?php echo implode( ' ', $custom_attributes ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+			><?php echo esc_textarea( $args['value'] ); ?></textarea>
 		</td>
 	</tr>
 </table>

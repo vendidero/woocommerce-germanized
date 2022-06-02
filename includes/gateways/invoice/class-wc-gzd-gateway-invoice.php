@@ -77,23 +77,20 @@ class WC_GZD_Gateway_Invoice extends WC_Payment_Gateway {
 		add_action( 'woocommerce_email_before_order_table', array( $this, 'email_instructions' ), 10, 3 );
 	}
 
-	public function admin_options() { ?>
+	public function admin_options() {
+		echo '<h2>' . esc_html( $this->get_method_title() );
+		wc_back_link( __( 'Return to payments', 'woocommerce-germanized' ), admin_url( 'admin.php?page=wc-settings&tab=checkout' ) );
+		echo '</h2>';
+		echo wp_kses_post( wpautop( $this->get_method_description() ) );
 
-		<h3><?php echo ( ! empty( $this->method_title ) ) ? $this->method_title : __( 'Settings', 'woocommerce-germanized' ); ?></h3>
-
-		<?php echo ( ! empty( $this->method_description ) ) ? wpautop( $this->method_description ) : ''; ?>
-
-		<?php if ( ! WC_germanized()->is_pro() ) : ?>
+		if ( ! WC_germanized()->is_pro() ) : ?>
 
 			<div class="wc-gzd-premium-overlay notice notice-warning inline">
-				<h3><?php _e( 'Automatically generate PDF invoices for this gateway?', 'woocommerce-germanized' ); ?></h3>
-				<p><?php _e( 'By upgrading to the professional version you\'ll be able to automatically generate PDF invoices to this payment gateway. Furthermore you\'ll benefit from even more professional features such as a multistep checkout page, legal text generators, B2B VAT settings and premium support!', 'woocommerce-germanized' ); ?></p>
+				<h3><?php esc_html_e( 'Automatically generate PDF invoices for this gateway?', 'woocommerce-germanized' ); ?></h3>
+				<p><?php esc_html_e( 'By upgrading to the professional version you\'ll be able to automatically generate PDF invoices to this payment gateway. Furthermore you\'ll benefit from even more professional features such as a multistep checkout page, legal text generators, B2B VAT settings and premium support!', 'woocommerce-germanized' ); ?></p>
 				<p>
-					<a class="button button-primary" href="https://vendidero.de/woocommerce-germanized"
-					   target="_blank"><?php _e( 'Upgrade now', 'woocommerce-germanized' ); ?></a>
-					<a class="button button-secondary" style="margin-left: 1em"
-					   href="https://vendidero.de/woocommerce-germanized/features#accounting"
-					   target="_blank"><?php _e( 'Learn more about PDF invoicing', 'woocommerce-germanized' ); ?></a>
+					<a class="button button-primary" href="https://vendidero.de/woocommerce-germanized" target="_blank"><?php esc_html_e( 'Upgrade now', 'woocommerce-germanized' ); ?></a>
+					<a class="button button-secondary" style="margin-left: 1em" href="https://vendidero.de/woocommerce-germanized/features#accounting" target="_blank"><?php esc_html_e( 'Learn more about PDF invoicing', 'woocommerce-germanized' ); ?></a>
 				</p>
 			</div>
 
@@ -168,7 +165,7 @@ class WC_GZD_Gateway_Invoice extends WC_Payment_Gateway {
 	 */
 	public function thankyou_page() {
 		if ( $this->instructions ) {
-			echo wpautop( wptexturize( $this->instructions ) );
+			echo wp_kses_post( wpautop( wptexturize( $this->instructions ) ) );
 		}
 	}
 
@@ -185,22 +182,21 @@ class WC_GZD_Gateway_Invoice extends WC_Payment_Gateway {
 		$status = str_replace( 'wc-', '', $this->default_order_status );
 
 		if ( $this->instructions && ! $sent_to_admin && 'invoice' === $order->get_payment_method() && $order->has_status( $status ) ) {
-			echo wpautop( wptexturize( $this->instructions ) ) . PHP_EOL;
+			echo wp_kses_post( wpautop( wptexturize( $this->instructions ) ) ) . PHP_EOL;
 		}
 	}
 
 	public function is_available() {
-		if ( 'yes' != $this->enabled ) {
+		if ( 'yes' !== $this->enabled ) {
 			return false;
 		}
 
 		if ( is_checkout() ) {
-
-			if ( $this->get_option( 'customers_only' ) == 'yes' && ! is_user_logged_in() ) {
+			if ( 'yes' === $this->get_option( 'customers_only' ) && ! is_user_logged_in() ) {
 				return false;
 			}
 
-			if ( $this->get_option( 'customers_completed' ) == 'yes' ) {
+			if ( 'yes' === $this->get_option( 'customers_completed' ) ) {
 				if ( is_user_logged_in() ) {
 					return WC()->customer->get_is_paying_customer() === true;
 				} else {

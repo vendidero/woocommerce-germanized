@@ -15,15 +15,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 } // Exit if accessed directly
 
 return array(
-	'kg'   => __( 'kg', 'woocommerce' ),
-	'g'    => __( 'g', 'woocommerce' ),
-	'lbs'  => __( 'lbs', 'woocommerce' ),
-	'oz'   => __( 'oz', 'woocommerce' ),
-	'm'    => __( 'm', 'woocommerce' ),
-	'cm'   => __( 'cm', 'woocommerce' ),
-	'mm'   => __( 'mm', 'woocommerce' ),
-	'in'   => __( 'in', 'woocommerce' ),
-	'yd'   => __( 'yd', 'woocommerce' ),
+	'kg'   => __( 'kg', 'woocommerce' ), // phpcs:ignore WordPress.WP.I18n.TextDomainMismatch
+	'g'    => __( 'g', 'woocommerce' ), // phpcs:ignore WordPress.WP.I18n.TextDomainMismatch
+	'lbs'  => __( 'lbs', 'woocommerce' ), // phpcs:ignore WordPress.WP.I18n.TextDomainMismatch
+	'oz'   => __( 'oz', 'woocommerce' ),  // phpcs:ignore WordPress.WP.I18n.TextDomainMismatch
+	'm'    => __( 'm', 'woocommerce' ), // phpcs:ignore WordPress.WP.I18n.TextDomainMismatch
+	'cm'   => __( 'cm', 'woocommerce' ), // phpcs:ignore WordPress.WP.I18n.TextDomainMismatch
+	'mm'   => __( 'mm', 'woocommerce' ), // phpcs:ignore WordPress.WP.I18n.TextDomainMismatch
+	'in'   => __( 'in', 'woocommerce' ), // phpcs:ignore WordPress.WP.I18n.TextDomainMismatch
+	'yd'   => __( 'yd', 'woocommerce' ), // phpcs:ignore WordPress.WP.I18n.TextDomainMismatch
 	'ml'   => __( 'ml', 'woocommerce-germanized' ),
 	'l'    => __( 'l', 'woocommerce-germanized' ),
 	'µg'   => __( 'µg', 'woocommerce-germanized' ),

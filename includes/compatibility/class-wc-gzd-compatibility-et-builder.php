@@ -59,7 +59,7 @@ class WC_GZD_Compatibility_ET_Builder extends WC_GZD_Compatibility {
 		add_filter(
 			'woocommerce_gzd_shopmarks_empty_price_html_check_enabled',
 			function( $is_enabled ) {
-				if ( isset( $_GET['et_fb'] ) && ! empty( $_GET['et_fb'] ) ) {
+				if ( isset( $_GET['et_fb'] ) && ! empty( $_GET['et_fb'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 					$is_enabled = false;
 				}
 
@@ -109,10 +109,10 @@ class WC_GZD_Compatibility_ET_Builder extends WC_GZD_Compatibility {
 					/**
 					 * By default, do not re-add default order_review hooks - only in case the module matches
 					 */
-					if ( isset( $_REQUEST['module_type'] ) ) {
-						if ( 'et_pb_wc_checkout_order_details' === $_REQUEST['module_type'] ) {
+					if ( isset( $_REQUEST['module_type'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+						if ( 'et_pb_wc_checkout_order_details' === $_REQUEST['module_type'] ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 							add_action( 'woocommerce_checkout_order_review', 'woocommerce_order_review', 10 );
-						} elseif ( 'et_pb_wc_checkout_payment_info' === $_REQUEST['module_type'] ) {
+						} elseif ( 'et_pb_wc_checkout_payment_info' === $_REQUEST['module_type'] ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 							add_action( 'woocommerce_checkout_order_review', 'woocommerce_checkout_payment', 20 );
 						}
 					}

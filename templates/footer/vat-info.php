@@ -19,7 +19,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 } // Exit if accessed directly
 ?>
 <?php if ( ! wc_gzd_is_small_business() ) : ?>
-	<p class="footer-info vat-info"><?php echo ( 'incl' === get_option( 'woocommerce_tax_display_shop' ) ) ? esc_html__( 'All prices incl. VAT.', 'woocommerce-germanized' ) : esc_html__( 'All prices excl. VAT.', 'woocommerce-germanized' ); ?></p>
+	<p class="footer-info vat-info"><?php echo ( ( 'incl' === get_option( 'woocommerce_tax_display_shop' ) ) ? esc_html__( 'All prices incl. VAT.', 'woocommerce-germanized' ) : esc_html__( 'All prices excl. VAT.', 'woocommerce-germanized' ) ); ?></p>
 <?php else : ?>
 	<p class="footer-info vat-info"><?php echo wp_kses_post( wc_gzd_get_small_business_notice() ); ?></p>
 <?php endif; ?>

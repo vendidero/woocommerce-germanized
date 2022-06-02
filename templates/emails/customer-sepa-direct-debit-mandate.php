@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 ?>
 <?php do_action( 'woocommerce_email_header', $email_heading, $email ); ?>
 
-<p><?php printf( esc_html__( 'Please see the SEPA direct debit mandate for order %s attached to this email.', 'woocommerce-germanized' ), $order->get_order_number() ); ?></p>
+<p><?php printf( esc_html__( 'Please see the SEPA direct debit mandate for order %s attached to this email.', 'woocommerce-germanized' ), esc_html( $order->get_order_number() ) ); ?></p>
 <?php echo wp_kses_post( wptexturize( $gateway->generate_mandate_by_order( $order ) ) ); ?>
 
 <?php

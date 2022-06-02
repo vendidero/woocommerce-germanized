@@ -153,7 +153,7 @@ class WC_GZD_Coupon_Helper {
 		 * the coupon may not be applied.
 		 */
 		if ( $this->coupon_is_voucher( $coupon ) && $coupon->is_type( wc_get_product_coupon_types() ) ) {
-			$stack = debug_backtrace( DEBUG_BACKTRACE_IGNORE_ARGS, 5 );
+			$stack = debug_backtrace( DEBUG_BACKTRACE_IGNORE_ARGS, 5 ); // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_debug_backtrace
 
 			foreach ( $stack as $backtrace ) {
 				if ( ! isset( $backtrace['class'], $backtrace['function'] ) ) {
@@ -438,7 +438,7 @@ class WC_GZD_Coupon_Helper {
 				if ( $discount < 0 || $max_voucher_total > $max_discount ) {
 					$fee_total = $discount;
 
-					if ( $item->get_total() != $fee_total ) {
+					if ( $item->get_total() != $fee_total ) { // phpcs:ignore WordPress.PHP.StrictComparisons.LooseComparison
 						$voucher_item_updated = true;
 						$item->set_total( $fee_total );
 					}
@@ -813,7 +813,11 @@ class WC_GZD_Coupon_Helper {
 			wp_die( - 1 );
 		}
 
-		$order_id = absint( $_POST['order_id'] );
+		$order_id = isset( $_POST['order_id'] ) ? absint( wp_unslash( $_POST['order_id'] ) ) : 0;
+
+		if ( empty( $order_id ) ) {
+			return;
+		}
 
 		// Grab the order and recalc taxes
 		$order = wc_get_order( $order_id );
@@ -827,15 +831,15 @@ class WC_GZD_Coupon_Helper {
 		remove_action( 'wp_ajax_woocommerce_calc_line_taxes', array( 'WC_AJAX', 'calc_line_taxes' ), 10 );
 
 		$calculate_tax_args = array(
-			'country'  => strtoupper( wc_clean( $_POST['country'] ) ),
-			'state'    => strtoupper( wc_clean( $_POST['state'] ) ),
-			'postcode' => strtoupper( wc_clean( $_POST['postcode'] ) ),
-			'city'     => strtoupper( wc_clean( $_POST['city'] ) ),
+			'country'  => isset( $_POST['country'] ) ? strtoupper( wc_clean( wp_unslash( $_POST['country'] ) ) ) : '',
+			'state'    => isset( $_POST['state'] ) ? strtoupper( wc_clean( wp_unslash( $_POST['state'] ) ) ) : '',
+			'postcode' => isset( $_POST['postcode'] ) ? strtoupper( wc_clean( wp_unslash( $_POST['postcode'] ) ) ) : '',
+			'city'     => isset( $_POST['city'] ) ? strtoupper( wc_clean( wp_unslash( $_POST['city'] ) ) ) : '',
 		);
 
 		// Parse the jQuery serialized items
 		$items = array();
-		parse_str( $_POST['items'], $items );
+		parse_str( ( isset( $_POST['items'] ) ? wp_unslash( $_POST['items'] ) : array() ), $items ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized,
 
 		// Save order items first
 		wc_save_order_items( $order_id, $items );
@@ -991,11 +995,11 @@ class WC_GZD_Coupon_Helper {
 			return;
 		}
 
-		if ( isset( $_POST['is_voucher'] ) ) {
+		if ( isset( $_POST['is_voucher'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
 			$this->convert_coupon_to_voucher( $coupon );
 		} else {
-			 $coupon->update_meta_data( 'is_voucher', 'no' );
-			 $coupon->save();
+			$coupon->update_meta_data( 'is_voucher', 'no' );
+			$coupon->save();
 		}
 	}
 }

@@ -75,7 +75,7 @@ class WC_GZD_Legal_Checkbox {
 				} else {
 					$this->settings[ $prop ] = $value;
 				}
-			} catch ( Exception $e ) {
+			} catch ( Exception $e ) { // phpcs:ignore Generic.CodeAnalysis.EmptyStatement.DetectedCatch
 			}
 		}
 	}

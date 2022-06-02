@@ -20,7 +20,7 @@ class WC_GZD_Compatibility_Elementor_Pro extends WC_GZD_Compatibility {
 		/**
 		 * On Editor - Register Germanized frontend hooks before the Editor init to load checkout adjustments.
 		 */
-		if ( ! empty( $_REQUEST['action'] ) && 'elementor' === $_REQUEST['action'] && is_admin() ) {
+		if ( ! empty( $_REQUEST['action'] ) && 'elementor' === $_REQUEST['action'] && is_admin() ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			add_action(
 				'init',
 				function() {
@@ -37,7 +37,7 @@ class WC_GZD_Compatibility_Elementor_Pro extends WC_GZD_Compatibility {
 		add_action(
 			'woocommerce_checkout_init',
 			function() {
-				if ( isset( $_POST['action'], $_POST['editor_post_id'] ) && 'elementor_ajax' === $_POST['action'] ) {
+				if ( isset( $_POST['action'], $_POST['editor_post_id'] ) && 'elementor_ajax' === $_POST['action'] ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
 					if ( wc_gzd_checkout_adjustments_disabled() ) {
 						return;
 					}
@@ -94,7 +94,7 @@ class WC_GZD_Compatibility_Elementor_Pro extends WC_GZD_Compatibility {
 							foreach ( $query_parts as $typed_query ) {
 								$inner_parts = explode( '_', $typed_query );
 
-								if ( sizeof( $inner_parts ) > 0 ) {
+								if ( count( $inner_parts ) > 0 ) {
 									$query[ $inner_parts[0] ] = $inner_parts[1];
 								}
 							}

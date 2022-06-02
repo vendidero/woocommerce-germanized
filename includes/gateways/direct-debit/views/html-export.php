@@ -27,21 +27,21 @@ if ( ! defined( 'ABSPATH' ) ) {
 <p>
 	<label>
 		<input type="radio" name="content" value="sepa" id="sepa"/>
-		<?php _e( 'Direct Debit', 'woocommerce-germanized' ); ?>
+		<?php esc_html_e( 'Direct Debit', 'woocommerce-germanized' ); ?>
 	</label>
 </p>
 <ul id="sepa-filters" class="export-filters">
 	<li>
 		<label>
-			<?php _e( 'Start Date', 'woocommerce-germanized' ); ?>
+			<?php esc_html_e( 'Start Date', 'woocommerce-germanized' ); ?>
 			<input type="date" name="sepa_start_date" value=""/>
 		</label>
 		<label>
-			<?php _e( 'End Date', 'woocommerce-germanized' ); ?>
+			<?php esc_html_e( 'End Date', 'woocommerce-germanized' ); ?>
 			<input type="date" name="sepa_end_date" value=""/>
 		</label>
 		<label>
-			<?php _e( 'Unpaid only', 'woocommerce-germanized' ); ?>
+			<?php esc_html_e( 'Unpaid only', 'woocommerce-germanized' ); ?>
 			<input type="checkbox" name="sepa_unpaid_only" value="1"/>
 		</label>
 	</li>

@@ -44,8 +44,8 @@ class WC_GZD_Settings_Pointers {
 			return;
 		}
 
-		if ( 'woocommerce_page_wc-settings' === $screen->id && isset( $_GET['tab'] ) && strpos( $_GET['tab'], 'germanized' ) !== false && isset( $_GET['tutorial'] ) && current_user_can( 'manage_options' ) ) {
-			$tab       = wc_clean( $_GET['tab'] );
+		if ( 'woocommerce_page_wc-settings' === $screen->id && isset( $_GET['tab'] ) && strpos( wc_clean( wp_unslash( $_GET['tab'] ) ), 'germanized' ) !== false && isset( $_GET['tutorial'] ) && current_user_can( 'manage_options' ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			$tab       = wc_clean( wp_unslash( $_GET['tab'] ) ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			$tab_clean = str_replace( 'germanized-', '', $tab );
 			$pages     = WC_Admin_Settings::get_settings_pages();
 			$settings  = $settings = $this->get_settings();
@@ -75,8 +75,7 @@ class WC_GZD_Settings_Pointers {
 					'next_url'     => '',
 					'next_trigger' => array(),
 					'options'      => array(
-						'content'  => '<h3>' . esc_html__( 'Setting tabs', 'woocommerce-germanized' ) . '</h3>' .
-									  '<p>' . esc_html__( 'To make it more comfortable for you, we\'ve splitted the settings into multiple tabs.', 'woocommerce-germanized' ) . '</p>',
+						'content'  => '<h3>' . esc_html__( 'Setting tabs', 'woocommerce-germanized' ) . '</h3><p>' . esc_html__( 'To make it more comfortable for you, we\'ve splitted the settings into multiple tabs.', 'woocommerce-germanized' ) . '</p>',
 						'position' => array(
 							'edge'  => 'top',
 							'align' => 'left',
@@ -89,8 +88,7 @@ class WC_GZD_Settings_Pointers {
 					'next_url'     => admin_url( 'admin.php?page=wc-settings&tab=germanized-general&tutorial=yes' ),
 					'next_trigger' => array(),
 					'options'      => array(
-						'content'  => '<h3>' . esc_html__( 'Status', 'woocommerce-germanized' ) . '</h3>' .
-									  '<p>' . esc_html__( 'Some features can be switched on or off explicitly by toggling the input.', 'woocommerce-germanized' ) . '</p>',
+						'content'  => '<h3>' . esc_html__( 'Status', 'woocommerce-germanized' ) . '</h3><p>' . esc_html__( 'Some features can be switched on or off explicitly by toggling the input.', 'woocommerce-germanized' ) . '</p>',
 						'position' => array(
 							'edge'  => 'bottom',
 							'align' => 'left',

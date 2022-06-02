@@ -523,8 +523,8 @@ class Shopmarks {
 	 *
 	 * @return int
 	 */
-	protected static function _uasort_callback( $shopmark1, $shopmark2 ) {
-		if ( $shopmark1->get_priority() == $shopmark2->get_priority() ) {
+	protected static function uasort_callback( $shopmark1, $shopmark2 ) {
+		if ( $shopmark1->get_priority() === $shopmark2->get_priority() ) {
 			return 0;
 		}
 

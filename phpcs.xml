@@ -49,6 +49,8 @@
 
     <rule ref="WordPress.Files.FileName.InvalidClassFileName">
         <exclude-pattern>includes/**/abstract-*.php</exclude-pattern>
+        <exclude-pattern>includes/compatibility/elementor/widgets/abstact-class-wc-gzd-elementor-widget.php</exclude-pattern>
+        <exclude-pattern>woocommerce-germanized.php</exclude-pattern>
         <exclude-pattern>tests/</exclude-pattern>
         <exclude-pattern>src/</exclude-pattern>
     </rule>
@@ -67,6 +69,10 @@
     </rule>
 
     <rule ref="PSR2.Classes.PropertyDeclaration.Underscore">
+        <exclude-pattern>*</exclude-pattern>
+    </rule>
+
+    <rule ref="WooCommerce.Functions.InternalInjectionMethod">
         <exclude-pattern>*</exclude-pattern>
     </rule>
 

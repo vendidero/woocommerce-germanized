@@ -33,7 +33,6 @@ class WC_GZD_Customer_Helper {
 	}
 
 	public function __construct() {
-
 		// Send customer account notification
 		add_action( 'woocommerce_email', array( $this, 'email_hooks' ), 0, 1 );
 

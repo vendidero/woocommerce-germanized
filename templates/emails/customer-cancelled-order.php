@@ -24,7 +24,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 do_action( 'woocommerce_email_header', $email_heading, $email ); ?>
 
 <?php /* translators: %s: Customer first name */ ?>
-	<p><?php printf( esc_html__( 'Hi %s,', 'woocommerce' ), esc_html( $order->get_billing_first_name() ) ); ?></p>
+	<p><?php printf( esc_html__( 'Hi %s,', 'woocommerce' ), esc_html( $order->get_billing_first_name() ) ); // phpcs:ignore WordPress.WP.I18n.TextDomainMismatch ?></p>
 
 <?php if ( ! $has_failed ) : ?>
 	<?php /* translators: %s: Order number */ ?>

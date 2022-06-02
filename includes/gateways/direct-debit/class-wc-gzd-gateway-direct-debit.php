@@ -207,26 +207,21 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 		if ( $order->get_payment_method() !== $this->id ) {
 			return;
 		}
+
+		$download_url = add_query_arg(
+			array(
+				'download'      => 'true',
+				'content'       => 'sepa',
+				'sepa_order_id' => $order->get_id(),
+			),
+			admin_url( 'export.php' )
+		);
 		?>
 		<h3 id="gzd-admin-sepa">
-			<?php _e( 'SEPA', 'woocommerce-germanized' ); ?>
+			<?php esc_html_e( 'SEPA', 'woocommerce-germanized' ); ?>
 
 			<?php if ( ! wc_gzd_order_is_anonymized( $order ) ) : ?>
-				<a href="
-				<?php
-				echo esc_url(
-					add_query_arg(
-						array(
-							'download'      => 'true',
-							'content'       => 'sepa',
-							'sepa_order_id' => $order->get_id(),
-						),
-						admin_url( 'export.php' )
-					)
-				);
-				?>
-				" target="_blank"
-				   class="download_sepa_xml"><?php _e( 'SEPA XML', 'woocommerce-germanized' ); ?></a>
+				<a href="<?php echo esc_url( $download_url ); ?>" target="_blank" class="download_sepa_xml"><?php esc_html_e( 'SEPA XML', 'woocommerce-germanized' ); ?></a>
 			<?php endif; ?>
 		</h3>
 
@@ -253,7 +248,7 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 	public function save_debit_fields( $order ) {
 
 		// Check the nonce
-		if ( empty( $_POST['woocommerce_meta_nonce'] ) || ! wp_verify_nonce( $_POST['woocommerce_meta_nonce'], 'woocommerce_save_data' ) ) {
+		if ( empty( $_POST['woocommerce_meta_nonce'] ) || ! wp_verify_nonce( wp_unslash( $_POST['woocommerce_meta_nonce'] ), 'woocommerce_save_data' ) ) { // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 			return;
 		}
 
@@ -267,7 +262,7 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 
 		foreach ( $this->admin_fields as $key => $field ) {
 			if ( isset( $_POST[ $field['id'] ] ) ) {
-				$data = wc_clean( $_POST[ $field['id'] ] );
+				$data = wc_clean( wp_unslash( $_POST[ $field['id'] ] ) );
 
 				if ( ! empty( $data ) && isset( $field['toupper'] ) && $field['toupper'] ) {
 					$data = strtoupper( $data );
@@ -321,15 +316,15 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 	}
 
 	public function export_args( $args = array() ) {
-		if ( 'sepa' === $_GET['content'] ) {
+		if ( isset( $_GET['content'] ) && 'sepa' === wc_clean( wp_unslash( $_GET['content'] ) ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			$args['content'] = 'sepa';
 
-			if ( isset( $_GET['sepa_start_date'] ) || isset( $_GET['sepa_end_date'] ) ) {
-				$args['start_date']  = ( isset( $_GET['sepa_start_date'] ) ? sanitize_text_field( $_GET['sepa_start_date'] ) : '' );
-				$args['end_date']    = ( isset( $_GET['sepa_end_date'] ) ? sanitize_text_field( $_GET['sepa_end_date'] ) : '' );
-				$args['unpaid_only'] = ( isset( $_GET['sepa_unpaid_only'] ) ? 1 : 0 );
-			} elseif ( isset( $_GET['sepa_order_id'] ) ) {
-				$args['order_id'] = absint( $_GET['sepa_order_id'] );
+			if ( isset( $_GET['sepa_start_date'] ) || isset( $_GET['sepa_end_date'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+				$args['start_date']  = ( isset( $_GET['sepa_start_date'] ) ? sanitize_text_field( wp_unslash( $_GET['sepa_start_date'] ) ) : '' ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+				$args['end_date']    = ( isset( $_GET['sepa_end_date'] ) ? sanitize_text_field( wp_unslash( $_GET['sepa_end_date'] ) ) : '' ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+				$args['unpaid_only'] = ( isset( $_GET['sepa_unpaid_only'] ) ? 1 : 0 ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			} elseif ( isset( $_GET['sepa_order_id'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+				$args['order_id'] = absint( $_GET['sepa_order_id'] ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			}
 		}
 
@@ -337,7 +332,7 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 	}
 
 	public function export( $args = array() ) {
-		if ( $args['content'] != 'sepa' ) {
+		if ( 'sepa' !== $args['content'] ) {
 			return;
 		}
 
@@ -352,7 +347,7 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 			),
 		);
 
-		if ( isset( $args['unpaid_only'] ) && $args['unpaid_only'] === 1 ) {
+		if ( isset( $args['unpaid_only'] ) && 1 === $args['unpaid_only'] ) {
 			$meta_query[] = array(
 				'relation' => 'OR',
 				array(
@@ -372,7 +367,7 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 			'post_status' => array_keys( wc_get_order_statuses() ),
 			'orderby'     => 'post_date',
 			'order'       => 'ASC',
-			'meta_query'  => $meta_query,
+			'meta_query'  => $meta_query, // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query
 		);
 
 		if ( isset( $args['order_id'] ) ) {
@@ -431,7 +426,7 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 		 */
 		$filename = apply_filters( 'woocommerce_germanized_direct_debit_export_filename', implode( '-', $parts ) . '.xml', $args );
 
-		$directDebit      = false;
+		$direct_debit     = false;
 		$direct_debit_xml = '';
 
 		if ( $order_query->have_posts() ) {
@@ -444,18 +439,18 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 			 * @since 1.8.5
 			 *
 			 */
-			$msg_id      = apply_filters( 'woocommerce_gzd_direct_debit_sepa_xml_msg_id', $this->company_account_bic . '00' . date( 'YmdHis', time() ) );
-			$directDebit = Digitick\Sepa\TransferFile\Factory\TransferFileFacadeFactory::createDirectDebit( $msg_id, $this->company_account_holder, $this->pain_format );
+			$msg_id       = apply_filters( 'woocommerce_gzd_direct_debit_sepa_xml_msg_id', $this->company_account_bic . '00' . date( 'YmdHis', time() ) ); // phpcs:ignore WordPress.DateTime.RestrictedFunctions.date_date
+			$direct_debit = Digitick\Sepa\TransferFile\Factory\TransferFileFacadeFactory::createDirectDebit( $msg_id, $this->company_account_holder, $this->pain_format );
 
 			/**
 			 * Filter to adjust the direct debit SEPA XML exporter instance.
 			 *
-			 * @param Digitick\Sepa\TransferFile\Facade\CustomerDirectDebitFacade $directDebit Exporter instance.
+			 * @param Digitick\Sepa\TransferFile\Facade\CustomerDirectDebitFacade $direct_debit Exporter instance.
 			 *
 			 * @since 1.8.5
 			 *
 			 */
-			$directDebit = apply_filters( 'woocommerce_gzd_direct_debit_sepa_xml_exporter', $directDebit );
+			$direct_debit = apply_filters( 'woocommerce_gzd_direct_debit_sepa_xml_exporter', $direct_debit );
 
 			// Group orders by their mandate type to only add one payment per mandate type group.
 			$mandate_type_groups = array();
@@ -486,7 +481,7 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 			try {
 				foreach ( $mandate_type_groups as $mandate_type => $orders ) {
 
-					$payment_id = 'PMT-ID-' . date( 'YmdHis', time() ) . '-' . strtolower( $mandate_type );
+					$payment_id = 'PMT-ID-' . date( 'YmdHis', time() ) . '-' . strtolower( $mandate_type );  // phpcs:ignore WordPress.DateTime.RestrictedFunctions.date_date
 
 					/**
 					 * Filter that allows adjusting direct debit SEPA XML Export payment data.
@@ -498,7 +493,7 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 					 * @since 1.8.5
 					 *
 					 */
-					$payment_info = $directDebit->addPaymentInfo(
+					$payment_info = $direct_debit->addPaymentInfo(
 						$payment_id,
 						apply_filters(
 							'woocommerce_gzd_direct_debit_sepa_xml_exporter_payment_args',
@@ -535,7 +530,7 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 						 * @since 1.8.5
 						 *
 						 */
-						$directDebit->addTransfer(
+						$direct_debit->addTransfer(
 							$payment_id,
 							apply_filters(
 								'woocommerce_gzd_direct_debit_sepa_xml_exporter_transfer_args',
@@ -567,9 +562,9 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 				/**
 				 * Generate XML
 				 */
-				$direct_debit_xml = $directDebit->asXML();
+				$direct_debit_xml = $direct_debit->asXML();
 			} catch ( Exception $e ) {
-				wp_die( $e->getMessage() );
+				wp_die( esc_html( $e->getMessage() ) );
 			}
 		}
 
@@ -579,7 +574,7 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 		header( 'Cache-Control: no-cache, no-store, must-revalidate' );
 		header( 'Pragma: no-cache' );
 		header( 'Expires: 0' );
-		echo $direct_debit_xml;
+		echo $direct_debit_xml; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		exit();
 	}
 
@@ -597,7 +592,7 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 			if ( $mandate_id && ! empty( $mandate_id ) ) {
 				$id = $mandate_id;
 			} else {
-				$id = ( $this->generate_mandate_id === 'yes' ? str_replace( '{id}', $order->get_order_number(), $this->mandate_id_format ) : '' );
+				$id = ( 'yes' === $this->generate_mandate_id ? str_replace( '{id}', $order->get_order_number(), $this->mandate_id_format ) : '' );
 			}
 		}
 
@@ -685,7 +680,7 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 			'emails/email-sepa-data.php',
 			array(
 				'fields'                => $sepa_fields,
-				'send_pre_notification' => apply_filters( 'woocommerce_gzd_direct_debit_send_pre_notification', ( $this->enable_pre_notification === 'yes' && ! $sent_to_admin ), $this ),
+				'send_pre_notification' => apply_filters( 'woocommerce_gzd_direct_debit_send_pre_notification', ( 'yes' === $this->enable_pre_notification && ! $sent_to_admin ), $this ),
 				'pre_notification_text' => $pre_notification_text,
 			)
 		);
@@ -736,7 +731,7 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 			return;
 		}
 
-		$payment_method_id = isset( $_POST['payment_method'] ) ? wc_clean( wp_unslash( $_POST['payment_method'] ) ) : false;
+		$payment_method_id = isset( $_POST['payment_method'] ) ? wc_clean( wp_unslash( $_POST['payment_method'] ) ) : false; // phpcs:ignore WordPress.Security.NonceVerification.Missing
 
 		if ( $payment_method_id !== $this->id ) {
 			return;
@@ -770,9 +765,9 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 	 * @param WC_Order $order
 	 */
 	protected function update_order( $order, $save = false ) {
-		$holder  = ( isset( $_POST['direct_debit_account_holder'] ) ? wc_clean( $_POST['direct_debit_account_holder'] ) : '' );
-		$iban    = ( isset( $_POST['direct_debit_account_iban'] ) ? $this->maybe_encrypt( $this->sanitize_iban( $_POST['direct_debit_account_iban'] ) ) : '' );
-		$bic     = ( isset( $_POST['direct_debit_account_bic'] ) ? $this->maybe_encrypt( $this->sanitize_bic( $_POST['direct_debit_account_bic'] ) ) : '' );
+		$holder  = ( isset( $_POST['direct_debit_account_holder'] ) ? wc_clean( wp_unslash( $_POST['direct_debit_account_holder'] ) ) : '' ); // phpcs:ignore WordPress.Security.NonceVerification.Missing
+		$iban    = ( isset( $_POST['direct_debit_account_iban'] ) ? $this->maybe_encrypt( $this->sanitize_iban( wp_unslash( $_POST['direct_debit_account_iban'] ) ) ) : '' ); // phpcs:ignore WordPress.Security.NonceVerification.Missing,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+		$bic     = ( isset( $_POST['direct_debit_account_bic'] ) ? $this->maybe_encrypt( $this->sanitize_bic( wp_unslash( $_POST['direct_debit_account_bic'] ) ) ) : '' ); // phpcs:ignore WordPress.Security.NonceVerification.Missing,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 		$user_id = $order->get_customer_id();
 
 		// Always save account details to order
@@ -807,7 +802,7 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 		 */
 		do_action( 'woocommerce_gzd_direct_debit_order_data_updated', $order, $user_id, $this );
 
-		if ( $this->supports_encryption() && $this->remember === 'yes' && ! empty( $user_id ) && ! empty( $iban ) ) {
+		if ( $this->supports_encryption() && 'yes' === $this->remember && ! empty( $user_id ) && ! empty( $iban ) ) {
 
 			update_user_meta( $user_id, 'direct_debit_holder', $holder );
 			update_user_meta( $user_id, 'direct_debit_iban', $iban );
@@ -855,19 +850,19 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 			exit();
 		}
 
-		if ( ! isset( $_GET['_wpnonce'] ) || ! wp_verify_nonce( $_GET['_wpnonce'], 'show_direct_debit' ) ) {
+		if ( ! isset( $_GET['_wpnonce'] ) || ! wp_verify_nonce( wp_unslash( $_GET['_wpnonce'] ), 'show_direct_debit' ) ) { // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 			exit();
 		}
 
 		$params = array();
 
 		foreach ( array_keys( $this->get_mandate_text_checkout_fields() ) as $field_name ) {
-			$params[ $field_name ] = wc_clean( isset( $_GET[ $field_name ] ) ? $_GET[ $field_name ] : '' );
+			$params[ $field_name ] = wc_clean( isset( $_GET[ $field_name ] ) ? wp_unslash( $_GET[ $field_name ] ) : '' );
 		}
 
-		$params['account_iban']  = $this->sanitize_iban( isset( $_GET['account_iban'] ) ? $_GET['account_iban'] : '' );
-		$params['account_swift'] = $this->sanitize_bic( isset( $_GET['account_swift'] ) ? $_GET['account_swift'] : '' );
-		$params['country']       = ( isset( $_GET['country'] ) && isset( WC()->countries->countries[ $_GET['country'] ] ) ? WC()->countries->countries[ $_GET['country'] ] : '' );
+		$params['account_iban']  = $this->sanitize_iban( isset( $_GET['account_iban'] ) ? wp_unslash( $_GET['account_iban'] ) : '' ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+		$params['account_swift'] = $this->sanitize_bic( isset( $_GET['account_swift'] ) ? wp_unslash( $_GET['account_swift'] ) : '' ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+		$params['country']       = ( isset( $_GET['country'] ) && isset( WC()->countries->countries[ wc_clean( wp_unslash( $_GET['country'] ) ) ] ) ? WC()->countries->countries[ wc_clean( wp_unslash( $_GET['country'] ) ) ] : '' );
 
 		/**
 		 * Filter to adjust the default mandate type text.
@@ -893,7 +888,7 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 			}
 		}
 
-		echo $this->generate_mandate_text( apply_filters( 'woocommerce_gzd_direct_debit_mandate_checkout_placeholders', $params ) );
+		echo wp_kses_post( $this->generate_mandate_text( apply_filters( 'woocommerce_gzd_direct_debit_mandate_checkout_placeholders', $params ) ) );
 		exit();
 	}
 
@@ -945,10 +940,9 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 	}
 
 	public function generate_mandate_text( $args = array() ) {
-
 		// temporarily reset global $post variable if available to ensure Pagebuilder compatibility
 		$tmp_post        = isset( $GLOBALS['post'] ) ? $GLOBALS['post'] : false;
-		$GLOBALS['post'] = false;
+		$GLOBALS['post'] = false; // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
 
 		$args = apply_filters(
 			'woocommerce_gzd_direct_debit_mandate_text_placeholders',
@@ -973,7 +967,7 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 		$content = apply_filters( 'the_content', $text );
 
 		// Enable $post again
-		$GLOBALS['post'] = $tmp_post;
+		$GLOBALS['post'] = $tmp_post; // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
 
 		return apply_filters( 'woocommerce_gzd_direct_debit_mandate_text', $content, $args );
 	}
@@ -1128,7 +1122,7 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 			'bic'    => '',
 		);
 
-		if ( $this->remember !== 'yes' ) {
+		if ( 'yes' !== $this->remember ) {
 			return $data;
 		}
 
@@ -1147,7 +1141,7 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 	public function payment_fields() {
 
 		if ( $description = $this->get_description() ) {
-			echo wpautop( wptexturize( $description ) );
+			echo wp_kses_post( wpautop( wptexturize( $description ) ) );
 		}
 
 		$account_data = $this->get_user_account_data();
@@ -1155,21 +1149,21 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 
 		$fields = array(
 			'account-holder' => '<p class="form-row form-row-wide">
-				<label for="' . esc_attr( $id ) . '-account-holder">' . __( 'Account Holder', 'woocommerce-germanized' ) . ' <span class="required">*</span></label>
-				<input id="' . esc_attr( $id ) . '-account-holder" class="input-text wc-gzd-' . $id . '-account-holder" value="' . esc_attr( $account_data['holder'] ) . '" type="text" autocomplete="off" placeholder="" name="' . str_replace( '-', '_', $id ) . '_account_holder' . '" />
+				<label for="' . esc_attr( $id ) . '-account-holder">' . esc_html__( 'Account Holder', 'woocommerce-germanized' ) . ' <span class="required">*</span></label>
+				<input id="' . esc_attr( $id ) . '-account-holder" class="input-text wc-gzd-' . esc_attr( $id ) . '-account-holder" value="' . esc_attr( $account_data['holder'] ) . '" type="text" autocomplete="off" placeholder="" name="' . esc_attr( str_replace( '-', '_', $id ) ) . '_account_holder" />
 			</p>',
 			'account-iban'   => '<p class="form-row form-row-wide">
-				<label for="' . esc_attr( $id ) . '-account-iban">' . __( 'IBAN', 'woocommerce-germanized' ) . ' <span class="required">*</span></label>
-				<input id="' . esc_attr( $id ) . '-account-iban" class="input-text wc-gzd-' . $id . '-account-iban" type="text" value="' . esc_attr( $account_data['iban'] ) . '" autocomplete="off" placeholder="" name="' . str_replace( '-', '_', $id ) . '_account_iban' . '" />
+				<label for="' . esc_attr( $id ) . '-account-iban">' . esc_html__( 'IBAN', 'woocommerce-germanized' ) . ' <span class="required">*</span></label>
+				<input id="' . esc_attr( $id ) . '-account-iban" class="input-text wc-gzd-' . esc_attr( $id ) . '-account-iban" type="text" value="' . esc_attr( $account_data['iban'] ) . '" autocomplete="off" placeholder="" name="' . esc_attr( str_replace( '-', '_', $id ) ) . '_account_iban" />
 			</p>',
 			'account-bic'    => '<p class="form-row form-row-wide">
-				<label for="' . esc_attr( $id ) . '-account-bic">' . __( 'BIC/SWIFT', 'woocommerce-germanized' ) . ' <span class="required">*</span></label>
-				<input id="' . esc_attr( $id ) . '-account-bic" class="input-text wc-gzd-' . $id . '-account-bic" type="text" value="' . esc_attr( $account_data['bic'] ) . '" autocomplete="off" placeholder="" name="' . str_replace( '-', '_', $id ) . '_account_bic' . '" />
+				<label for="' . esc_attr( $id ) . '-account-bic">' . esc_html__( 'BIC/SWIFT', 'woocommerce-germanized' ) . ' <span class="required">*</span></label>
+				<input id="' . esc_attr( $id ) . '-account-bic" class="input-text wc-gzd-' . esc_attr( $id ) . '-account-bic" type="text" value="' . esc_attr( $account_data['bic'] ) . '" autocomplete="off" placeholder="" name="' . esc_attr( str_replace( '-', '_', $id ) ) . '_account_bic" />
 			</p>',
 		);
 
 		?>
-		<fieldset id="<?php echo $id; ?>-form">
+		<fieldset id="<?php echo esc_attr( $id ); ?>-form">
 			<?php
 			/**
 			 * Before direct debit checkout form.
@@ -1185,7 +1179,7 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 
 			foreach ( $fields as $field ) :
 				?>
-				<?php echo $field; ?>
+				<?php echo wp_kses_post( $field ); ?>
 				<?php
 			endforeach;
 
@@ -1209,14 +1203,14 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 
 	public function validate_fields() {
 
-		if ( ! $this->is_available() || ! isset( $_POST['payment_method'] ) || $_POST['payment_method'] != $this->id ) {
+		if ( ! $this->is_available() || ! isset( $_POST['payment_method'] ) || $_POST['payment_method'] !== $this->id ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
 			return;
 		}
 
-		$iban    = ( isset( $_POST['direct_debit_account_iban'] ) ? $this->sanitize_iban( $_POST['direct_debit_account_iban'] ) : '' );
-		$holder  = ( isset( $_POST['direct_debit_account_holder'] ) ? wc_clean( $_POST['direct_debit_account_holder'] ) : '' );
-		$bic     = ( isset( $_POST['direct_debit_account_bic'] ) ? $this->sanitize_bic( $_POST['direct_debit_account_bic'] ) : '' );
-		$country = ( isset( $_POST['billing_country'] ) ? wc_clean( $_POST['billing_country'] ) : wc_gzd_get_base_country() );
+		$iban    = ( isset( $_POST['direct_debit_account_iban'] ) ? $this->sanitize_iban( wp_unslash( $_POST['direct_debit_account_iban'] ) ) : '' ); // phpcs:ignore WordPress.Security.NonceVerification.Missing,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+		$holder  = ( isset( $_POST['direct_debit_account_holder'] ) ? wc_clean( wp_unslash( $_POST['direct_debit_account_holder'] ) ) : '' ); // phpcs:ignore WordPress.Security.NonceVerification.Missing
+		$bic     = ( isset( $_POST['direct_debit_account_bic'] ) ? $this->sanitize_bic( wp_unslash( $_POST['direct_debit_account_bic'] ) ) : '' ); // phpcs:ignore WordPress.Security.NonceVerification.Missing,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+		$country = ( isset( $_POST['billing_country'] ) ? wc_clean( wp_unslash( $_POST['billing_country'] ) ) : wc_gzd_get_base_country() ); // phpcs:ignore WordPress.Security.NonceVerification.Missing
 
 		if ( empty( $iban ) || empty( $holder ) || empty( $bic ) ) {
 			wc_add_notice( __( 'Please insert your SEPA account data.', 'woocommerce-germanized' ), 'error' );
@@ -1241,7 +1235,7 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 
 		if ( ! $iban_validator->Verify() ) {
 			wc_add_notice( __( 'Your IBAN seems to be invalid.', 'woocommerce-germanized' ), 'error' );
-		} elseif ( $verify_iban_country && $iban_validator->Country() != $country ) {
+		} elseif ( $verify_iban_country && $iban_validator->Country() !== $country ) {
 			wc_add_notice( __( 'Your IBAN\'s country code doesn’t match with your billing country.', 'woocommerce-germanized' ), 'error' );
 		}
 
@@ -1252,7 +1246,7 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 	}
 
 	public function validate_checkbox() {
-		if ( isset( $_POST['payment_method'] ) && $_POST['payment_method'] === $this->id && ( ! isset( $_POST['direct_debit_legal'] ) && empty( $_POST['direct_debit_legal'] ) ) ) {
+		if ( isset( $_POST['payment_method'] ) && $_POST['payment_method'] === $this->id && ( ! isset( $_POST['direct_debit_legal'] ) && empty( $_POST['direct_debit_legal'] ) ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
 			return false;
 		}
 
@@ -1276,7 +1270,7 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 		// Ensure that prettyPhoto is being loaded
 		wp_register_script( 'prettyPhoto_debit', $assets_path . 'js/prettyPhoto/jquery.prettyPhoto' . $suffix . '.js', array( 'jquery' ), '3.1.6', true );
 		wp_enqueue_script( 'prettyPhoto_debit' );
-		wp_register_style( 'woocommerce_prettyPhoto_css_debit', $assets_path . 'css/prettyPhoto.css' );
+		wp_register_style( 'woocommerce_prettyPhoto_css_debit', $assets_path . 'css/prettyPhoto.css', array(), WC_GERMANIZED_VERSION );
 		wp_enqueue_style( 'woocommerce_prettyPhoto_css_debit' );
 
 		wp_register_script( 'wc-gzd-iban', WC_germanized()->plugin_url() . '/includes/gateways/direct-debit/assets/js/iban' . $suffix . '.js', array( 'wc-checkout' ), WC_GERMANIZED_VERSION, true );
@@ -1318,7 +1312,7 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 	 */
 	public function thankyou_page() {
 		if ( $this->instructions ) {
-			echo wpautop( wptexturize( $this->instructions ) );
+			echo wp_kses_post( wpautop( wptexturize( $this->instructions ) ) );
 		}
 	}
 
@@ -1333,7 +1327,7 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 	 */
 	public function email_instructions( $order, $sent_to_admin, $plain_text = false ) {
 		if ( $this->instructions && ! $sent_to_admin && 'direct-debit' === $order->get_payment_method() && $order->has_status( 'processing' ) ) {
-			echo wpautop( wptexturize( $this->instructions ) ) . PHP_EOL;
+			echo wp_kses_post( wpautop( wptexturize( $this->instructions ) ) ) . PHP_EOL;
 		}
 	}
 

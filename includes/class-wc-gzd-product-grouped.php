@@ -19,18 +19,6 @@ class WC_GZD_Product_Grouped extends WC_GZD_Product {
 
 	protected $has_unit_price = false;
 
-	/**
-	 * Callback for array filter to get visible grouped products only.
-	 *
-	 * @param WC_Product $product WC_Product object.
-	 *
-	 * @return bool
-	 * @since  3.1.0
-	 */
-	public function _filter_visible_grouped( $product ) {
-		return $product && is_a( $product, 'WC_GZD_Product' ) && ( 'publish' === $product->get_status() || current_user_can( 'edit_product', $product->get_id() ) );
-	}
-
 	protected function get_min_max_child_products() {
 		$tax_display_mode = get_option( 'woocommerce_tax_display_shop' );
 		$children         = array_filter( array_map( 'wc_get_product', $this->get_wc_product()->get_children() ), 'wc_products_array_filter_visible_grouped' );
@@ -44,8 +32,8 @@ class WC_GZD_Product_Grouped extends WC_GZD_Product {
 		}
 
 		if ( ! empty( $child_prices ) ) {
-			$min_id = array_keys( $child_prices, min( $child_prices ) )[0];
-			$max_id = array_keys( $child_prices, max( $child_prices ) )[0];
+			$min_id = array_keys( $child_prices, min( $child_prices ), true )[0];
+			$max_id = array_keys( $child_prices, max( $child_prices ), true )[0];
 
 			/**
 			 * In case the current price range format includes a starting from price only
@@ -251,7 +239,7 @@ class WC_GZD_Product_Grouped extends WC_GZD_Product {
 	public function has_unit() {
 		$data = $this->get_child_unit_data();
 
-		return $this->has_unit_price && 1 === sizeof( $data );
+		return $this->has_unit_price && 1 === count( $data );
 	}
 
 	/**
