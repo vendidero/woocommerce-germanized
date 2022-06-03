@@ -65,6 +65,15 @@ if ( ! class_exists( 'WC_GZD_Admin_Notices' ) ) :
 			include_once 'notes/class-wc-gzd-admin-note-legal-news.php';
 		}
 
+		/**
+		 * Inform users of possible compatibility conflicts. Append a notice in case of detecting an incompatibility.
+		 *
+		 * @see https://github.com/woocommerce/woocommerce/blob/trunk/plugins/woocommerce/includes/admin/helper/class-wc-helper-updater.php#L25
+		 *
+		 * @param $data
+		 *
+		 * @return mixed
+		 */
 		public function pro_incompatibility_plain_update_message( $data ) {
 			if ( isset( $data->response ) && array_key_exists( 'woocommerce-germanized/woocommerce-germanized.php', $data->response ) && WC_germanized()->is_pro() ) {
 				$plugin_data = $data->response['woocommerce-germanized/woocommerce-germanized.php'];

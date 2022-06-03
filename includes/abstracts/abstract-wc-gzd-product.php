@@ -1212,7 +1212,7 @@ class WC_GZD_Product {
 		 *
 		 * @since 1.0.0
 		 */
-		return apply_filters( 'woocommerce_gzd_product_tax_info', wp_kses_post( $tax_notice ), $this ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		return apply_filters( 'woocommerce_gzd_product_tax_info', $tax_notice, $this );
 	}
 
 	/**

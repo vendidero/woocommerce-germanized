@@ -160,11 +160,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 		?>
 
 		<tr>
-			<td data-export-label="<?php esc_attr( $comp->get_name() ); ?>"><?php echo wp_kses_post( $comp->get_name() ); ?></td>
+			<td data-export-label="<?php esc_attr( $comp->get_name() ); ?>"><?php echo esc_html( $comp->get_name() ); ?></td>
 			<td class="help"><?php echo wc_help_tip( esc_attr( sprintf( esc_html__( 'Checks whether compatibility options for %s are being applied.', 'woocommerce-germanized' ), $comp->get_name() ) ) ); ?></td>
 			<td>
 				<?php echo ( $comp->is_applicable() ? '<mark class="yes"><span class="dashicons dashicons-yes"></span></mark>' : '<mark class="no">&ndash;</mark>' ); ?>
-				<?php echo ( ! $comp->is_supported() ? wp_kses_post( sprintf( __( 'Version %1$s not supported, supporting version %2$s - %3$s', 'woocommerce-germanized' ), $version_data['version'], $version_data['requires_at_least'], $version_data['tested_up_to'] ) ) : '' ); ?>
+				<?php echo ( ! $comp->is_supported() ? sprintf( esc_html__( 'Version %1$s not supported, supporting version %2$s - %3$s', 'woocommerce-germanized' ), esc_html( $version_data['version'] ), esc_html( $version_data['requires_at_least'] ), esc_html( $version_data['tested_up_to'] ) ) : '' ); ?>
 			</td>
 		</tr>
 

@@ -427,7 +427,7 @@ function wc_gzd_get_small_business_notice() {
 	 *
 	 * @since 1.0.0
 	 */
-	return apply_filters( 'woocommerce_gzd_small_business_notice', wp_kses_post( get_option( 'woocommerce_gzd_small_enterprise_text', __( 'Value added tax is not collected, as small businesses according to §19 (1) UStG.', 'woocommerce-germanized' ) ) ) );
+	return apply_filters( 'woocommerce_gzd_small_business_notice', get_option( 'woocommerce_gzd_small_enterprise_text', __( 'Value added tax is not collected, as small businesses according to §19 (1) UStG.', 'woocommerce-germanized' ) ) );
 }
 
 function wc_gzd_get_differential_taxation_mark() {
@@ -674,7 +674,7 @@ function wc_gzd_get_differential_taxation_notice_text() {
 	 *
 	 * @since 1.9.1
 	 */
-	return apply_filters( 'woocommerce_gzd_differential_taxation_notice_text', wp_kses_post( get_option( 'woocommerce_gzd_differential_taxation_notice_text' ) ) );
+	return apply_filters( 'woocommerce_gzd_differential_taxation_notice_text', get_option( 'woocommerce_gzd_differential_taxation_notice_text' ) );
 }
 
 function wc_gzd_get_privacy_policy_page_id() {
@@ -953,7 +953,7 @@ function wc_gzd_replace_label_shortcodes( $html, $replacements ) {
 
 	$shortcode_tags = $original_shortcode_tags; // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
 
-	return wp_kses_post( $html );
+	return $html;
 }
 
 function _wc_gzd_page_shortcode( $atts, $content = '' ) {

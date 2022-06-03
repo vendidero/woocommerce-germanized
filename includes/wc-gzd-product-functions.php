@@ -450,5 +450,5 @@ function wc_gzd_get_legal_product_review_authenticity_notice( $comment_id ) {
 	 *
 	 * @since 3.9.3
 	 */
-	return apply_filters( 'woocommerce_gzd_legal_product_review_authenticity_text', wp_kses_post( $text ), $verified, $comment_id );
+	return apply_filters( 'woocommerce_gzd_legal_product_review_authenticity_text', $text, $verified, $comment_id );
 }

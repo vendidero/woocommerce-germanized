@@ -179,6 +179,7 @@ abstract class WC_GZD_Settings_Tab extends WC_Settings_Page {
 	}
 
 	public function get_description() {
+		return '';
 	}
 
 	protected function get_breadcrumb_label( $label ) {

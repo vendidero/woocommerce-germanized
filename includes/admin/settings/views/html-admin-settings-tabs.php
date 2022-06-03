@@ -9,7 +9,7 @@ defined( 'ABSPATH' ) || exit;
 	<?php esc_html_e( 'Germanized', 'woocommerce-germanized' ); ?>
 
 	<?php if ( ! WC_germanized()->is_pro() ) : ?>
-		<a class="page-title-action" href="https://vendidero.de/woocommerce-germanized" target="_blank"><?php echo wp_kses_post( sprintf( esc_html__( 'Upgrade to %s', 'woocommerce-germanized' ), '<span class="wc-gzd-pro">pro</span>' ) ); ?></a>
+		<a class="page-title-action" href="https://vendidero.de/woocommerce-germanized" target="_blank"><?php echo sprintf( esc_html__( 'Upgrade to %s', 'woocommerce-germanized' ), '<span class="wc-gzd-pro">pro</span>' ); ?></a>
 	<?php elseif ( function_exists( 'VD' ) ) : ?>
 		<a class="page-title-action" href="<?php echo esc_url( is_multisite() ? network_admin_url( 'index.php?page=vendidero' ) : admin_url( 'index.php?page=vendidero' ) ); ?>"><?php esc_html_e( 'Manage license', 'woocommerce-germanized' ); ?></a>
 	<?php endif; ?>
