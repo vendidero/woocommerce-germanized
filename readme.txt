@@ -213,6 +213,7 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 == Changelog ==
 = 3.9.6 =
 * Improvement: PHP code sniffer fixes
+* Fix: IM label settings save
 * Fix: Skip shipment return item in case quantity <= 0
 
 = 3.9.5 =
