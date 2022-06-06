@@ -1179,7 +1179,7 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 
 			foreach ( $fields as $field ) :
 				?>
-				<?php echo wp_kses_post( $field ); ?>
+				<?php echo $field; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 				<?php
 			endforeach;
 
