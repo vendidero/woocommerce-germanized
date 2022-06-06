@@ -1,0 +1,26 @@
+default:
+  suites:
+    packer:
+      paths:
+        - '%paths.base%/features/common'
+      contexts: [ PackerContext ]
+    infallible_packer:
+      paths:
+        - '%paths.base%/features/common'
+        - '%paths.base%/features/infallible'
+      contexts: [ InfalliblePackerContext ]
+
+  extensions:
+    DVDoug\Behat\CodeCoverage\Extension:
+      filter:
+        include:
+          directories:
+            'src': ~
+      reports:
+        clover:
+          target: build/coverage-behat/clover.xml
+        html:
+          target: build/coverage-behat
+        text:
+          showColors: true
+          showUncoveredFiles: true
