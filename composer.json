@@ -15,7 +15,7 @@
     "defuse/php-encryption": "^2.0.0",
     "globalcitizen/php-iban": "^4.0.0",
     "vendidero/woocommerce-trusted-shops": "4.0.15",
-    "vendidero/woocommerce-germanized-dhl": "1.7.0",
+    "vendidero/woocommerce-germanized-dhl": "1.7.1",
     "vendidero/woocommerce-germanized-shipments": "1.7.0",
     "vendidero/one-stop-shop-woocommerce": "1.2.4"
   },
