@@ -8,6 +8,8 @@ if ( ! function_exists( 'wc_create_page' ) ) {
 	include_once WC()->plugin_path() . '/includes/admin/wc-admin-functions.php';
 }
 
+$review_post_status = ( 'yes' === get_option( 'woocommerce_enable_reviews' ) ) ? 'publish' : 'draft';
+
 $pages_data = array(
 	'review_authenticity' => array(
 		'name'    => _x( 'review-authenticity', 'Page slug', 'woocommerce-germanized' ),
@@ -30,7 +32,7 @@ if ( class_exists( 'woocommerce_wpml' ) && class_exists( 'WCML_Store_Pages' ) ) 
 }
 
 foreach ( $pages_data as $key => $page_data ) {
-	wc_create_page( esc_sql( $page_data['name'] ), 'woocommerce_' . $key . '_page_id', $page_data['title'] );
+	wc_create_page( esc_sql( $page_data['name'] ), 'woocommerce_' . $key . '_page_id', $page_data['title'], '', 0, $review_post_status );
 }
 
 /**
