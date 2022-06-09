@@ -244,11 +244,6 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 			$this->product_factory = new WC_GZD_Product_Factory();
 
 			/**
-			 * Prevent major auto updates of Germanized (Pro) e.g. 3.3 -> 4.0
-			 */
-			add_filter( 'auto_update_plugin', array( $this, 'prevent_dangerous_auto_updates' ), 99, 2 );
-
-			/**
 			 * After startup.
 			 *
 			 * This hook fires right after all relevant files for Germanized has been loaded.
@@ -262,46 +257,6 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 			} else {
 				add_action( 'woocommerce_loaded', array( $this, 'woocommerce_loaded_includes' ) );
 			}
-		}
-
-		/**
-		 * Prevent auto-updating Germanized on major releases.
-		 *
-		 * @param  bool   $should_update If should update.
-		 * @param  object $plugin        Plugin data.
-		 * @return bool
-		 */
-		public function prevent_dangerous_auto_updates( $should_update, $plugin ) {
-			if ( ! isset( $plugin->plugin, $plugin->new_version ) ) {
-				return $should_update;
-			}
-
-			$plugins_to_check = array(
-				'woocommerce-germanized/woocommerce-germanized.php' => get_option( 'woocommerce_gzd_version', '1.0' ),
-				'woocommerce-germanized-pro/woocommerce-germanized-pro.php' => get_option( 'woocommerce_gzdp_version', '1.0' ),
-			);
-
-			if ( ! in_array( $plugin->plugin, array_keys( $plugins_to_check ), true ) ) {
-				return $should_update;
-			}
-
-			$current_version = $plugins_to_check[ $plugin->plugin ];
-			$new_version     = wc_clean( $plugin->new_version );
-
-			$new_version_parts = explode( '.', $new_version );
-			$new_major_version = $new_version_parts[0];
-
-			$current_version_parts = explode( '.', $current_version );
-			$current_major_version = $current_version_parts[0];
-
-			/**
-			 * In case the major version has changed (e.g. from 3.3 to 4.0) - disable auto updates
-			 */
-			if ( version_compare( $current_major_version, $new_major_version, '<' ) ) {
-				return false;
-			}
-
-			return $should_update;
 		}
 
 		/**

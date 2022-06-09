@@ -70,7 +70,7 @@ class WC_GZD_Admin_Customer {
 	 * @param object $user
 	 */
 	public function profile_add_activation_field( $user ) {
-		if ( ! current_user_can( 'manage_woocommerce' ) || ! WC_GZD_Customer_Helper::instance()->enable_double_opt_in_for_user( $user ) || 'yes' === get_option( 'woocommerce_gzd_customer_activation' ) ) {
+		if ( ! current_user_can( 'manage_woocommerce' ) || ! WC_GZD_Customer_Helper::instance()->enable_double_opt_in_for_user( $user ) || 'yes' !== get_option( 'woocommerce_gzd_customer_activation' ) ) {
 			return;
 		}
 		if ( current_user_can( 'edit_user', $user->ID ) ) {
