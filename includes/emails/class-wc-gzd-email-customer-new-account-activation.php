@@ -119,14 +119,27 @@ if ( ! class_exists( 'WC_GZD_Email_Customer_New_Account_Activation' ) ) :
 
 			if ( $user_id ) {
 				$this->object              = new WP_User( $user_id );
-				$this->user_pass           = $user_pass;
 				$this->user_activation     = $user_activation;
 				$this->user_activation_url = $user_activation_url;
 				$this->user_login          = stripslashes( $this->object->user_login );
 				$this->user_email          = stripslashes( $this->object->user_email );
 				$this->recipient           = $this->user_email;
+				$this->user_pass           = $user_pass;
 				$this->password_generated  = $password_generated;
-				$this->set_password_url    = $this->generate_set_password_url();
+				$this->set_password_url    = '';
+
+				/**
+				 * Newer versions of Woo send (and are force-generating) a reset password link.
+				 * Do not include a reset password link within the activation mail as this link would get
+				 * invalidated after sending the new customer mail notification.
+				 *
+				 * @see WC_Email_Customer_New_Account::trigger()
+				 */
+				if ( WC_GZD_Customer_Helper::instance()->send_password_reset_link_instead_of_passwords() ) {
+					$this->password_generated = false;
+				} else {
+					$this->set_password_url = $this->generate_set_password_url();
+				}
 			}
 
 			$this->helper->setup_email_locale();

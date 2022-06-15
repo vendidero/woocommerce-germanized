@@ -573,6 +573,10 @@ class WC_GZD_Customer_Helper {
 		}
 	}
 
+	public function send_password_reset_link_instead_of_passwords() {
+		return ( version_compare( WC()->version, '6.0.0', '>=' ) );
+	}
+
 	/**
 	 * Activate customer account based on activation code
 	 *
@@ -650,7 +654,11 @@ class WC_GZD_Customer_Helper {
 					do_action( 'woocommerce_gzd_customer_opted_in', $user );
 					delete_user_meta( $user->ID, '_woocommerce_activation' );
 
-					WC()->mailer()->customer_new_account( $user->ID );
+					if ( $this->send_password_reset_link_instead_of_passwords() ) {
+						WC()->mailer()->customer_new_account( $user->ID, array(), true );
+					} else {
+						WC()->mailer()->customer_new_account( $user->ID );
+					}
 
 					/**
 					 * Filter to optionally disable automatically authenticate activated customers.
@@ -684,7 +692,7 @@ class WC_GZD_Customer_Helper {
 					/**
 					 * Customer activation code expired.
 					 *
-					 * Hook fires whenever a customer tries to acitvate it's account but the activation key
+					 * Hook fires whenever a customer tries to activate his account but the activation key
 					 * has already expired.
 					 *
 					 * @param WP_User $user The user instance.
