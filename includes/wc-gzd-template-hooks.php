@@ -181,7 +181,7 @@ function woocommerce_gzd_maybe_add_small_business_vat_notice() {
 }
 
 // Differential Taxation for cart & order
-if ( get_option( 'woocommerce_gzd_differential_taxation_checkout_notices' ) === 'yes' ) {
+if ( 'yes' === get_option( 'woocommerce_gzd_differential_taxation_checkout_notices' ) ) {
 	add_action( 'woocommerce_cart_totals_after_order_total', 'woocommerce_gzd_template_differential_taxation_notice_cart', wc_gzd_get_hook_priority( 'cart_small_business_info' ) );
 	add_action( 'woocommerce_order_details_after_order_table', 'woocommerce_gzd_template_differential_taxation_notice_order', 10 );
 	add_action( 'woocommerce_pay_order_before_submit', 'woocommerce_gzd_template_differential_taxation_notice_order', 10 );

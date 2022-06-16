@@ -57,7 +57,7 @@ class WC_GZD_Admin_Welcome {
 				$page = add_dashboard_page(
 					$welcome_page_title,
 					$welcome_page_name,
-					'manage_options',
+					'manage_woocommerce',
 					'wc-gzd-about',
 					array(
 						$this,

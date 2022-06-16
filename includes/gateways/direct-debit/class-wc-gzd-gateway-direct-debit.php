@@ -57,7 +57,7 @@ class WC_GZD_Gateway_Direct_Debit extends WC_Payment_Gateway {
 		$this->company_account_holder        = $this->get_option( 'company_account_holder' );
 		$this->company_account_iban          = $this->get_option( 'company_account_iban' );
 		$this->company_account_bic           = $this->get_option( 'company_account_bic' );
-		$this->pain_format                   = $this->get_option( 'pain_format', 'pain.008.001.02' );
+		$this->pain_format                   = $this->get_option( 'pain_format', 'pain.008.003.02' );
 		$this->remember                      = $this->get_option( 'remember', 'no' );
 		$this->mask                          = $this->get_option( 'mask', 'yes' );
 		$this->mandate_text                  = $this->get_option(
@@ -315,6 +315,25 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 		include_once 'views/html-export.php';
 	}
 
+	public function unpaid_order_query( $query, $query_vars ) {
+		if ( isset( $query_vars['unpaid_only'] ) && true === $query_vars['unpaid_only'] ) {
+			$query['meta_query'][] = array(
+				'relation' => 'OR',
+				array(
+					'key'     => '_date_completed',
+					'compare' => 'NOT EXISTS',
+				),
+				array(
+					'key'     => '_date_completed',
+					'compare' => '=',
+					'value'   => '',
+				),
+			);
+		}
+
+		return $query;
+	}
+
 	public function export_args( $args = array() ) {
 		if ( isset( $_GET['content'] ) && 'sepa' === wc_clean( wp_unslash( $_GET['content'] ) ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			$args['content'] = 'sepa';
@@ -336,56 +355,30 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 			return;
 		}
 
-		$filename = '';
-		$parts    = array( 'SEPA-Export' );
-
-		$meta_query = array(
-			array(
-				'key'     => '_payment_method',
-				'value'   => 'direct-debit',
-				'compare' => '=',
-			),
-		);
-
-		if ( isset( $args['unpaid_only'] ) && 1 === $args['unpaid_only'] ) {
-			$meta_query[] = array(
-				'relation' => 'OR',
-				array(
-					'key'     => '_date_completed',
-					'compare' => 'NOT EXISTS',
-				),
-				array(
-					'key'     => '_date_completed',
-					'compare' => '=',
-					'value'   => '',
-				),
-			);
-		}
-
-		$query_args = array(
-			'post_type'   => 'shop_order',
-			'post_status' => array_keys( wc_get_order_statuses() ),
-			'orderby'     => 'post_date',
-			'order'       => 'ASC',
-			'meta_query'  => $meta_query, // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query
-		);
+		$parts  = array( 'SEPA-Export' );
+		$orders = array();
 
 		if ( isset( $args['order_id'] ) ) {
-			$query_args['p'] = absint( $args['order_id'] );
+			if ( $order = wc_get_order( $args['order_id'] ) ) {
+				$orders = array( $order );
+			}
+
 			array_push( $parts, 'order-' . absint( $args['order_id'] ) );
 		} else {
-			$query_args = array_merge(
-				$query_args,
-				array(
-					'showposts'  => - 1,
-					/**
-					* Filter to adjust direct debit export valid order statuses.
-					*
-					* @param array $order_statuses Valid order statuses to be exported.
-					*
-					* @since 1.8.5
-					*/
-				'post_status'    => apply_filters(
+			$query_args = array(
+				'type'           => 'shop_order',
+				'orderby'        => 'date',
+				'order'          => 'ASC',
+				'payment_method' => 'direct-debit',
+				'limit'          => -1,
+				/**
+				 * Filter to adjust direct debit export valid order statuses.
+				 *
+				 * @param array $order_statuses Valid order statuses to be exported.
+				 *
+				 * @since 1.8.5
+				 */
+				'status'         => apply_filters(
 					'woocommerce_gzd_direct_debit_export_order_statuses',
 					array(
 						'wc-pending',
@@ -393,27 +386,27 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 						'wc-on-hold',
 					)
 				),
-					'date_query' => array(
-						array(
-							'after'     => $args['start_date'],
-							'before'    => $args['end_date'],
-							'inclusive' => true,
-						),
-					),
-				)
+				'date_created'   => $args['start_date'] . '...' . $args['end_date'],
 			);
-		}
 
-		/**
-		 * Filter to adjust direct debit export arguments passed to `WP_Query`.
-		 *
-		 * @param array $query_args The query arguments.
-		 * @param array $args Export arguments.
-		 *
-		 * @since 1.8.5
-		 *
-		 */
-		$order_query = new WP_Query( apply_filters( 'woocommerce_gzd_direct_debit_export_query_args', $query_args, $args ) );
+			if ( isset( $args['unpaid_only'] ) && 1 === $args['unpaid_only'] ) {
+				$query_args['unpaid_only'] = true;
+			}
+
+			add_filter( 'woocommerce_order_data_store_cpt_get_orders_query', array( $this, 'unpaid_order_query' ), 10, 2 );
+
+			/**
+			 * Filter to adjust direct debit export arguments passed to `wc_get_orders`.
+			 *
+			 * @param array $query_args The query arguments.
+			 * @param array $args Export arguments.
+			 *
+			 * @since 3.9.8
+			 */
+			$orders = wc_get_orders( apply_filters( 'woocommerce_gzd_direct_debit_export_order_query_args', $query_args, $args ) );
+
+			remove_filter( 'woocommerce_order_data_store_cpt_get_orders_query', array( $this, 'unpaid_order_query' ), 10 );
+		}
 
 		/**
 		 * Filter that allows adjusting the direct debit export filename.
@@ -429,7 +422,7 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 		$direct_debit     = false;
 		$direct_debit_xml = '';
 
-		if ( $order_query->have_posts() ) {
+		if ( ! empty( $orders ) ) {
 
 			/**
 			 * Filter to adjust direct debit SEPA XML message id.
@@ -460,103 +453,98 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 			 */
 			$direct_debit_xml = '';
 
-			while ( $order_query->have_posts() ) {
-
-				$order_query->next_post();
-				$order = wc_get_order( $order_query->post->ID );
-
-				if ( ! $order ) {
-					continue;
-				}
-
-				$mandate_type = $this->get_mandate_type( $order );
-
-				if ( ! array_key_exists( $mandate_type, $mandate_type_groups ) ) {
-					$mandate_type_groups[ $mandate_type ] = array();
-				}
-
-				array_push( $mandate_type_groups[ $mandate_type ], $order );
-			}
-
 			try {
-				foreach ( $mandate_type_groups as $mandate_type => $orders ) {
+				foreach ( $orders as $order ) {
+					$mandate_type = $this->get_mandate_type( $order );
+					$payment_id   = false;
 
-					$payment_id = 'PMT-ID-' . date( 'YmdHis', time() ) . '-' . strtolower( $mandate_type );  // phpcs:ignore WordPress.DateTime.RestrictedFunctions.date_date
-
-					/**
-					 * Filter that allows adjusting direct debit SEPA XML Export payment data.
-					 *
-					 * @param array $args Payment arguments.
-					 * @param WC_GZD_Gateway_Direct_Debit $gateway The gateway instance.
-					 * @param string $mandate_type The mandate type.
-					 *
-					 * @since 1.8.5
-					 *
-					 */
-					$payment_info = $direct_debit->addPaymentInfo(
-						$payment_id,
-						apply_filters(
-							'woocommerce_gzd_direct_debit_sepa_xml_exporter_payment_args',
-							array(
-								'id'                  => $payment_id,
-								'creditorName'        => $this->company_account_holder,
-								'creditorAccountIBAN' => $this->sanitize_iban( $this->company_account_iban ),
-								'creditorAgentBIC'    => $this->sanitize_bic( $this->company_account_bic ),
-								'seqType'             => $mandate_type,
-								'creditorId'          => $this->clean_whitespaces( $this->company_identification_number ),
-								'dueDate'             => date_i18n( 'Y-m-d', $this->get_debit_date( $order ) ),
-							),
-							$this,
-							$mandate_type
-						)
-					);
-
-					$batch_booking = apply_filters( 'woocommerce_gzd_direct_debit_sepa_xml_exporter_batch_booking', null, $this );
-
-					if ( ! is_null( $batch_booking ) ) {
-						$payment_info->setBatchBooking( $batch_booking );
-					}
-
-					foreach ( $orders as $order ) {
-						$amount_in_cents = round( ( $order->get_total() - $order->get_total_refunded() ) * 100 );
+					if ( ! array_key_exists( $mandate_type, $mandate_type_groups ) ) {
+						$payment_id = 'PMT-ID-' . date( 'YmdHis', time() ) . '-' . strtolower( $mandate_type );  // phpcs:ignore WordPress.DateTime.RestrictedFunctions.date_date
 
 						/**
-						 * Filter that allows adjusting direct debit SEPA XML Export transfer data per order.
+						 * Filter that allows adjusting direct debit SEPA XML Export payment data.
 						 *
-						 * @param array $args Transfer data.
+						 * @param array $args Payment arguments.
 						 * @param WC_GZD_Gateway_Direct_Debit $gateway The gateway instance.
-						 * @param WC_Order $order The order object.
+						 * @param string $mandate_type The mandate type.
 						 *
 						 * @since 1.8.5
 						 *
 						 */
-						$direct_debit->addTransfer(
+						$payment_info = $direct_debit->addPaymentInfo(
 							$payment_id,
 							apply_filters(
-								'woocommerce_gzd_direct_debit_sepa_xml_exporter_transfer_args',
+								'woocommerce_gzd_direct_debit_sepa_xml_exporter_payment_args',
 								array(
-									'amount'        => $amount_in_cents,
-									'debtorIban'    => $this->sanitize_iban( $this->maybe_decrypt( $order->get_meta( '_direct_debit_iban' ) ) ),
-									'debtorBic'     => $this->sanitize_bic( $this->maybe_decrypt( $order->get_meta( '_direct_debit_bic' ) ) ),
-									'debtorName'    => $order->get_meta( '_direct_debit_holder' ),
-									'debtorMandate' => $this->get_mandate_id( $order ),
-									'debtorMandateSignDate' => date_i18n( 'Y-m-d', $this->get_mandate_sign_date( $order ) ),
-									/**
-									* Filter that allows adjusting the purpose of a SEPA direct debit.
-									*
-									* @param string $purpose The SEPA purpose.
-									* @param WC_Order $order The order object.
-									*
-									* @since 1.8.5
-									*
-									*/
-									'remittanceInformation' => apply_filters( 'woocommerce_germanized_direct_debit_purpose', sprintf( __( 'Order %s', 'woocommerce-germanized' ), $order->get_order_number() ), $order ),
+									'id'                  => $payment_id,
+									'creditorName'        => $this->company_account_holder,
+									'creditorAccountIBAN' => $this->sanitize_iban( $this->company_account_iban ),
+									'creditorAgentBIC'    => $this->sanitize_bic( $this->company_account_bic ),
+									'seqType'             => $mandate_type,
+									'creditorId'          => $this->clean_whitespaces( $this->company_identification_number ),
+									'dueDate'             => date_i18n( 'Y-m-d', $this->get_debit_date( $order ) ),
 								),
 								$this,
-								$order
+								$mandate_type
 							)
 						);
+
+						$batch_booking = apply_filters( 'woocommerce_gzd_direct_debit_sepa_xml_exporter_batch_booking', null, $this );
+
+						if ( ! is_null( $batch_booking ) ) {
+							$payment_info->setBatchBooking( $batch_booking );
+						}
+
+						$mandate_type_groups[ $mandate_type ] = $payment_id;
+
+					} elseif ( isset( $mandate_type_groups[ $mandate_type ] ) ) {
+						$payment_id = $mandate_type_groups[ $mandate_type ];
 					}
+
+					if ( false === $payment_id ) {
+						continue;
+					}
+
+					$amount_in_cents = round( ( $order->get_total() - $order->get_total_refunded() ) * 100 );
+
+					/**
+					 * Filter that allows adjusting direct debit SEPA XML Export transfer data per order.
+					 *
+					 * @param array $args Transfer data.
+					 * @param WC_GZD_Gateway_Direct_Debit $gateway The gateway instance.
+					 * @param WC_Order $order The order object.
+					 *
+					 * @since 1.8.5
+					 *
+					 */
+					$direct_debit->addTransfer(
+						$payment_id,
+						apply_filters(
+							'woocommerce_gzd_direct_debit_sepa_xml_exporter_transfer_args',
+							array(
+								'amount'                => $amount_in_cents,
+								'debtorIban'            => $this->sanitize_iban( $this->maybe_decrypt( $order->get_meta( '_direct_debit_iban' ) ) ),
+								'debtorBic'             => $this->sanitize_bic( $this->maybe_decrypt( $order->get_meta( '_direct_debit_bic' ) ) ),
+								'debtorName'            => $order->get_meta( '_direct_debit_holder' ),
+								'debtorCountry'         => $order->get_billing_country(),
+								'debtorAdrLine'         => array_filter( array( $order->get_billing_address_1(), $order->get_billing_address_2(), ( $order->get_billing_postcode() . ' ' . $order->get_billing_city() ) ) ),
+								'debtorMandate'         => $this->get_mandate_id( $order ),
+								'debtorMandateSignDate' => date_i18n( 'Y-m-d', $this->get_mandate_sign_date( $order ) ),
+								/**
+								 * Filter that allows adjusting the purpose of a SEPA direct debit.
+								 *
+								 * @param string $purpose The SEPA purpose.
+								 * @param WC_Order $order The order object.
+								 *
+								 * @since 1.8.5
+								 *
+								 */
+								'remittanceInformation' => apply_filters( 'woocommerce_germanized_direct_debit_purpose', sprintf( __( 'Order %s', 'woocommerce-germanized' ), $order->get_order_number() ), $order ),
+							),
+							$this,
+							$order
+						)
+					);
 				}
 
 				/**
@@ -1051,8 +1039,8 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 			'pain_format'                   => array(
 				'title'       => __( 'XML Pain Format', 'woocommerce-germanized' ),
 				'type'        => 'text',
-				'description' => __( 'You may adjust the XML Export Pain Schema to your banks needs. Some banks may require pain.001.003.03.', 'woocommerce-germanized' ),
-				'default'     => 'pain.008.001.02',
+				'description' => __( 'You may adjust the XML Export Pain Schema to your banks needs. Some banks may require pain.001.003.03 or the older pain.008.001.02 format.', 'woocommerce-germanized' ),
+				'default'     => 'pain.008.003.02',
 			),
 			'mandate_id_format'             => array(
 				'title'       => __( 'Mandate ID Format', 'woocommerce-germanized' ),
