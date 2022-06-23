@@ -190,8 +190,12 @@ if ( ! class_exists( 'WC_GZD_Secret_Box_Helper' ) && function_exists( 'sodium_cr
 		 * @return bool
 		 */
 		public static function supports_auto_insert() {
-			$supports          = false;
-			$path_to_wp_config = ABSPATH . '/wp-config.php';
+			$supports = false;
+			/**
+			 * Determine the path to wp-config.php to check whether auto-inserting the encryption key is possible or not.
+			 * Plugin review team: This path is NOT used to include the wp-config.php file.
+			 */
+			$path_to_wp_config = ABSPATH . '/wp-config.php'; // phpcs:ignore
 
 			if ( @file_exists( $path_to_wp_config ) && @is_writeable( $path_to_wp_config ) ) { // phpcs:ignore WordPress.PHP.NoSilencedErrors.Discouraged
 				$supports = true;
@@ -218,7 +222,11 @@ if ( ! class_exists( 'WC_GZD_Secret_Box_Helper' ) && function_exists( 'sodium_cr
 					return false;
 				}
 
-				$path_to_wp_config = ABSPATH . '/wp-config.php';
+				/**
+				 * Determine the path to wp-config.php to auto-insert the encryption key.
+				 * Plugin review team: This path is NOT used to include the wp-config.php file.
+				 */
+				$path_to_wp_config = ABSPATH . '/wp-config.php'; // phpcs:ignore
 
 				if ( @file_exists( $path_to_wp_config ) ) { // phpcs:ignore WordPress.PHP.NoSilencedErrors.Discouraged
 					error_reporting( 0 ); // phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.runtime_configuration_error_reporting,WordPress.PHP.DevelopmentFunctions.prevent_path_disclosure_error_reporting

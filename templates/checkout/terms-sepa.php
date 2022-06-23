@@ -33,12 +33,12 @@ $checkbox_id = $checkbox->get_id();
 do_action( "woocommerce_gzd_before_legal_checkbox_{$checkbox_id}", $checkbox );
 ?>
 
-<p class="<?php $checkbox->render_classes( $checkbox->get_html_wrapper_classes() ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped; ?>" style="<?php echo esc_attr( $checkbox->get_html_style() ); ?>" data-checkbox="<?php echo esc_attr( $checkbox->get_id() ); ?>">
+<p class="<?php esc_attr( wc_gzd_get_html_classes( $checkbox->get_html_wrapper_classes() ) ); ?>" style="<?php echo esc_attr( $checkbox->get_html_style() ); ?>" data-checkbox="<?php echo esc_attr( $checkbox->get_id() ); ?>">
 	<label for="<?php echo esc_attr( $checkbox->get_html_id() ); ?>" class="woocommerce-form__label <?php echo ( ! $checkbox->hide_input() ? 'woocommerce-form__label-for-checkbox checkbox' : '' ); ?>">
 		<?php if ( ! $checkbox->hide_input() ) : ?>
 			<input
 				type="checkbox"
-				class="<?php $checkbox->render_classes( $checkbox->get_html_classes() ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped; ?>"
+				class="<?php esc_attr( wc_gzd_get_html_classes( $checkbox->get_html_classes() ) ); ?>"
 				name="<?php echo esc_attr( $checkbox->get_html_name() ); ?>"
 				id="<?php echo esc_attr( $checkbox->get_html_id() ); ?>"
 			/>

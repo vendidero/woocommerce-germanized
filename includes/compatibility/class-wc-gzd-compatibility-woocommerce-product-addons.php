@@ -32,11 +32,11 @@ class WC_GZD_Compatibility_WooCommerce_Product_Addons extends WC_GZD_Compatibili
 		foreach ( wc_gzd_get_single_product_shopmarks() as $shopmark ) {
 			$callback = $shopmark->get_callback();
 
-			if ( function_exists( $callback ) && $shopmark->is_enabled() && in_array( $shopmark->get_type(), array( 'unit_price', 'legal', 'tax', 'shipping_costs' ), true ) ) {
+			if ( function_exists( $callback ) && $shopmark->is_enabled() ) {
 				call_user_func( $callback );
 			}
 		}
-		$html = ob_get_clean();
+		$html = trim( ob_get_clean() );
 
 		if ( ! empty( $html ) ) {
 			?>

@@ -709,7 +709,7 @@ class WC_GZD_Legal_Checkbox_Manager {
 
 			if ( $checkbox = $this->get_checkbox( $id ) ) {
 				$checkbox->update( $checkbox_args );
-			} elseif ( ! in_array( $id, $this->get_core_checkbox_ids() ) ) { // phpcs:ignore WordPress.PHP.StrictInArray.MissingTrueStrict
+			} elseif ( ! in_array( (string) $id, $this->get_core_checkbox_ids(), true ) ) {
 				$this->register( $id, $checkbox_args );
 			}
 		}

@@ -100,7 +100,7 @@ class WC_GZD_Admin {
 			2
 		);
 
-		add_action( 'woocommerce_admin_field_gzd_toggle', array( $this, 'toggle_input_field' ), 10 );
+		add_action( 'woocommerce_admin_field_gzd_toggle', array( $this, 'toggle_input_field' ), 5 );
 		add_action( 'woocommerce_admin_field_image', array( $this, 'image_field' ), 10, 1 );
 		add_action( 'woocommerce_admin_field_html', array( $this, 'html_field' ), 10, 1 );
 		add_action( 'woocommerce_admin_field_hidden', array( $this, 'hidden_field' ), 10, 1 );
@@ -385,19 +385,8 @@ class WC_GZD_Admin {
 	}
 
 	public function toggle_input_field( $value ) {
-		// Custom attribute handling.
-		$custom_attributes = array();
-
-		if ( ! empty( $value['custom_attributes'] ) && is_array( $value['custom_attributes'] ) ) {
-			foreach ( $value['custom_attributes'] as $attribute => $attribute_value ) {
-				$custom_attributes[] = esc_attr( $attribute ) . '="' . esc_attr( $attribute_value ) . '"';
-			}
-		}
-
 		// Description handling.
-		$field_description = WC_Admin_Settings::get_field_description( $value );
-		$description       = $field_description['description'];
-		$tooltip_html      = $field_description['tooltip_html'];
+		$field_description_data = WC_Admin_Settings::get_field_description( $value );
 
 		if ( ! isset( $value['value'] ) ) {
 			$value['value'] = WC_Admin_Settings::get_option( $value['id'], $value['default'] );
@@ -409,7 +398,7 @@ class WC_GZD_Admin {
 			?>
 			<tr valign="top">
 			<th scope="row" class="titledesc">
-				<span class="wc-gzd-label-wrap"><?php echo esc_html( $value['title'] ); ?><?php echo $tooltip_html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
+				<span class="wc-gzd-label-wrap"><?php echo esc_html( $value['title'] ); ?><?php echo wp_kses_post( $field_description_data['tooltip_html'] ); ?></span>
 			</th>
 			<td class="forminp forminp-<?php echo esc_attr( sanitize_title( $value['type'] ) ); ?>">
 			<fieldset>
@@ -431,8 +420,14 @@ class WC_GZD_Admin {
 		value="1"
 		class="<?php echo esc_attr( $value['class'] ); ?>"
 		<?php checked( $option_value, 'yes' ); ?>
-		<?php echo implode( ' ', $custom_attributes ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-		/><?php echo esc_html( $value['suffix'] ); ?><?php echo $description; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+		<?php
+		if ( ! empty( $value['custom_attributes'] ) && is_array( $value['custom_attributes'] ) ) {
+			foreach ( $value['custom_attributes'] as $attribute => $attribute_value ) {
+				echo esc_attr( $attribute ) . '="' . esc_attr( $attribute_value ) . '" ';
+			}
+		}
+		?>
+		/><?php echo esc_html( $value['suffix'] ); ?><?php echo wp_kses_post( $field_description_data['description'] ); ?>
 
 		</fieldset>
 		<?php

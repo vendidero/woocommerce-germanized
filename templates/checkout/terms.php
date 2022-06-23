@@ -50,14 +50,14 @@ if ( apply_filters( 'woocommerce_germanized_checkout_show_terms', true ) ) :
 	?>
 	<?php do_action( 'woocommerce_checkout_before_terms_and_conditions' ); ?>
 
-	<p class="<?php $checkbox->render_classes( $checkbox->get_html_wrapper_classes() ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped; ?>" data-checkbox="<?php echo esc_attr( $checkbox->get_id() ); ?>">
+	<p class="<?php esc_attr( wc_gzd_get_html_classes( $checkbox->get_html_wrapper_classes() ) ); ?>" data-checkbox="<?php echo esc_attr( $checkbox->get_id() ); ?>">
 		<?php do_action( 'woocommerce_checkout_terms_and_conditions' ); ?>
 
 		<label for="<?php echo esc_attr( $checkbox->get_html_id() ); ?>" class="woocommerce-form__label <?php echo ( ! $checkbox->hide_input() ? 'woocommerce-form__label-for-checkbox checkbox' : '' ); ?>">
 			<?php if ( ! $checkbox->hide_input() ) : ?>
 				<input
 					type="checkbox"
-					class="<?php $checkbox->render_classes( $checkbox->get_html_classes() ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped; ?>"
+					class="<?php esc_attr( wc_gzd_get_html_classes( $checkbox->get_html_classes() ) ); ?>"
 					name="<?php echo esc_attr( $checkbox->get_html_name() ); ?>"
 					id="<?php echo esc_attr( $checkbox->get_html_id() ); ?>"
 				/>

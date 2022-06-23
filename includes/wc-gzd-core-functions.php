@@ -658,7 +658,7 @@ function wc_gzd_get_shipping_costs_text( $product = false ) {
 }
 
 function wc_gzd_sanitize_html_text_field( $value ) {
-	return trim( wp_kses_post( esc_html( wp_unslash( $value ) ) ) );
+	return trim( wp_filter_post_kses( wp_unslash( $value ) ) );
 }
 
 function wc_gzd_convert_coupon_to_voucher( $coupon ) {
@@ -1608,4 +1608,12 @@ function wc_gzd_register_hooks_in_product_block_html( $html, $x_paths, $org_prod
 	}
 
 	return $html;
+}
+
+function wc_gzd_get_html_classes( $classes ) {
+	if ( is_array( $classes ) ) {
+		$classes = implode( ' ', array_map( 'esc_attr', $classes ) );
+	}
+
+	return $classes;
 }

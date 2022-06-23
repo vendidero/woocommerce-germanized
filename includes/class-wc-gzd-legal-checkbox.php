@@ -653,7 +653,7 @@ class WC_GZD_Legal_Checkbox {
 	 * @param $classes
 	 */
 	public function render_classes( $classes ) {
-		echo implode( ' ', array_map( 'esc_attr', $classes ) );
+		echo esc_attr( wc_gzd_get_html_classes( $classes ) );
 	}
 
 	/**
