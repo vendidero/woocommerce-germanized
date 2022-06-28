@@ -1017,11 +1017,11 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 		 */
 		public function add_inline_styles() {
 			$color      = ( get_option( 'woocommerce_gzd_display_checkout_table_color' ) ? get_option( 'woocommerce_gzd_display_checkout_table_color' ) : '#eee' );
-			$custom_css = ".woocommerce-checkout .shop_table { background-color: $color; }";
+			$custom_css = '.woocommerce-checkout .shop_table { background-color: ' . esc_attr( $color ) . '; }';
 
 			$deposit_packaging_type_font_size        = esc_html( ( get_option( 'woocommerce_gzd_deposit_packaging_type_font_size' ) ? wc_format_decimal( get_option( 'woocommerce_gzd_deposit_packaging_type_font_size' ) ) : '1.25' ) );
 			$deposit_packaging_type_font_size_string = apply_filters( 'woocommerce_gzd_deposit_packaging_type_font_size_css', $deposit_packaging_type_font_size . 'em !important' );
-			$custom_css                             .= ".product p.deposit-packaging-type { font-size: {$deposit_packaging_type_font_size_string}; }";
+			$custom_css                             .= ' .product p.deposit-packaging-type { font-size: ' . esc_attr( $deposit_packaging_type_font_size_string ) . '; }';
 
 			if ( 'yes' === get_option( 'woocommerce_gzd_display_hide_cart_tax_estimated' ) ) {
 				$custom_css .= ' p.woocommerce-shipping-destination { display: none; }';
@@ -1029,19 +1029,19 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 
 			$custom_css .= '
                 .wc-gzd-nutri-score-value-a {
-                    background: url(' . $this->plugin_url() . '/assets/images/nutri-score-a.svg) no-repeat;
+                    background: url(' . esc_url( $this->plugin_url() ) . '/assets/images/nutri-score-a.svg) no-repeat;
                 }
                 .wc-gzd-nutri-score-value-b {
-                    background: url(' . $this->plugin_url() . '/assets/images/nutri-score-b.svg) no-repeat;
+                    background: url(' . esc_url( $this->plugin_url() ) . '/assets/images/nutri-score-b.svg) no-repeat;
                 }
                 .wc-gzd-nutri-score-value-c {
-                    background: url(' . $this->plugin_url() . '/assets/images/nutri-score-c.svg) no-repeat;
+                    background: url(' . esc_url( $this->plugin_url() ) . '/assets/images/nutri-score-c.svg) no-repeat;
                 }
                 .wc-gzd-nutri-score-value-d {
-                    background: url(' . $this->plugin_url() . '/assets/images/nutri-score-d.svg) no-repeat;
+                    background: url(' . esc_url( $this->plugin_url() ) . '/assets/images/nutri-score-d.svg) no-repeat;
                 }
                 .wc-gzd-nutri-score-value-e {
-                    background: url(' . $this->plugin_url() . '/assets/images/nutri-score-e.svg) no-repeat;
+                    background: url(' . esc_url( $this->plugin_url() ) . '/assets/images/nutri-score-e.svg) no-repeat;
                 }
             ';
 

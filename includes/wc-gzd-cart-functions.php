@@ -914,6 +914,12 @@ function wc_gzd_cart_remove_shipping_taxes( $taxes, $cart ) {
 	return is_callable( array( $cart, 'set_cart_contents_taxes' ) ) ? $cart->get_cart_contents_taxes() : $cart->taxes;
 }
 
+/**
+ * @param WC_Cart $cart
+ * @param boolean $include_shipping_taxes
+ *
+ * @return mixed
+ */
 function wc_gzd_get_cart_taxes( $cart, $include_shipping_taxes = true ) {
 	$tax_array = array();
 
@@ -962,7 +968,7 @@ function wc_gzd_get_cart_taxes( $cart, $include_shipping_taxes = true ) {
 				$tax_array[] = array(
 					'tax'      => $base_rate,
 					'contains' => array( $base_rate ),
-					'amount'   => WC()->cart->get_taxes_total( true, true ),
+					'amount'   => $cart->get_taxes_total( true, true ),
 				);
 			}
 		}
