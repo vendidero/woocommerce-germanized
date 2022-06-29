@@ -58,6 +58,7 @@ if ( ! class_exists( 'WC_GZD_Admin_Notices' ) ) :
 			include_once 'notes/class-wc-gzd-admin-note-template-outdated.php';
 			include_once 'notes/class-wc-gzd-admin-note-pro.php';
 			include_once 'notes/class-wc-gzd-admin-note-dhl-importer.php';
+			include_once 'notes/class-wc-gzd-admin-note-base-country.php';
 			include_once 'notes/class-wc-gzd-admin-note-internetmarke-importer.php';
 			include_once 'notes/class-wc-gzd-admin-note-shipping-excl-tax.php';
 			include_once 'notes/class-wc-gzd-admin-note-encryption.php';
@@ -166,6 +167,7 @@ if ( ! class_exists( 'WC_GZD_Admin_Notices' ) ) :
 					'WC_GZD_Admin_Note_Template_Outdated',
 					'WC_GZD_Admin_Note_Pro',
 					'WC_GZD_Admin_Note_DHL_Importer',
+					'WC_GZD_Admin_Note_Base_Country',
 					'WC_GZD_Admin_Note_Internetmarke_Importer',
 					'WC_GZD_Admin_Note_Shipping_Excl_Tax',
 					'WC_GZD_Admin_Note_Legal_News',
@@ -183,8 +185,7 @@ if ( ! class_exists( 'WC_GZD_Admin_Notices' ) ) :
 				$this->notes = array();
 
 				foreach ( $notes as $note ) {
-					$note = new $note();
-
+					$note                             = new $note();
 					$this->notes[ $note->get_name() ] = $note;
 				}
 			}

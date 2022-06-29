@@ -211,7 +211,7 @@ class WC_GZD_Compatibility_Elementor_Pro extends WC_GZD_Compatibility {
 		foreach ( $widgets as $widget ) {
 			$classname = 'class-' . str_replace( '_', '-', strtolower( $widget ) ) . '.php';
 
-			include_once 'elementor/widgets/' . $classname;
+			include_once WC_GERMANIZED_ABSPATH . 'includes/compatibility/elementor/widgets/' . $classname;
 			$widget_manager->register_widget_type( new $widget() );
 		}
 	}
