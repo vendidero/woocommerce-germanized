@@ -900,7 +900,7 @@ function wc_gzd_get_cart_tax_share( $type = 'shipping', $cart_contents = array()
 	}
 
 	if ( ! empty( $tax_shares ) ) {
-		$default = ( 0 === $item_totals ? 1 / count( $tax_shares ) : 0 );
+		$default = ( 0.0 === (float) $item_totals ? 1 / count( $tax_shares ) : 0 );
 
 		foreach ( $tax_shares as $key => $class ) {
 			$tax_shares[ $key ]['share'] = ( $item_totals > 0 ? $class['total'] / floatval( $item_totals ) : $default );

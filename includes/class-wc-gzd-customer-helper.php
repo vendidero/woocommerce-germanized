@@ -502,6 +502,7 @@ class WC_GZD_Customer_Helper {
 						 *
 						 */
 						wp_safe_redirect( esc_url_raw( apply_filters( 'woocommerce_gzd_double_opt_in_successful_redirect', $url ) ) );
+						exit();
 					} elseif ( is_wp_error( $result ) && 'expired_key' === $result->get_error_code() ) {
 						wc_add_notice( __( 'This activation code has expired. We have sent you a new activation code via e-mail.', 'woocommerce-germanized' ), 'error' );
 					} else {
