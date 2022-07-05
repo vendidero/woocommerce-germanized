@@ -527,7 +527,7 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 								'debtorBic'             => $this->sanitize_bic( $this->maybe_decrypt( $order->get_meta( '_direct_debit_bic' ) ) ),
 								'debtorName'            => $order->get_meta( '_direct_debit_holder' ),
 								'debtorCountry'         => $order->get_billing_country(),
-								'debtorAdrLine'         => array_filter( array( $order->get_billing_address_1(), $order->get_billing_address_2(), ( $order->get_billing_postcode() . ' ' . $order->get_billing_city() ) ) ),
+								'debtorAdrLine'         => array_filter( array( trim( $order->get_billing_address_1() . ' ' . $order->get_billing_address_2() ), trim( $order->get_billing_postcode() . ' ' . $order->get_billing_city() ) ) ),
 								'debtorMandate'         => $this->get_mandate_id( $order ),
 								'debtorMandateSignDate' => date_i18n( 'Y-m-d', $this->get_mandate_sign_date( $order ) ),
 								/**
