@@ -30,14 +30,23 @@ window.germanized = window.germanized || {};
             $( document.body ).on( 'updated_checkout', this.onUpdateCheckout );
 
             if ( this.params.adjust_heading && ! checkout_adjustments_disabled ) {
-                var $theFirst = $( '.woocommerce-checkout' ).find( '.shop_table, #payment' ).first();
+                if ( ! this.params.custom_heading_container ) {
+                    var $theFirst = $( '.woocommerce-checkout' ).find( '.shop_table, #payment' ).first();
 
-                if ( $( '.woocommerce-checkout' ).find( '#order_review_heading' ).length > 0 )  {
-                    if ( $theFirst.length > 0 && 'payment' === $theFirst.attr( 'id' ) ) {
-                        $( '.woocommerce-checkout' ).find( '#payment' ).after( $( '.woocommerce-checkout' ).find( '#order_review_heading' ) );
+                    if ( $( '.woocommerce-checkout' ).find( '#order_review_heading' ).length > 0 )  {
+                        if ( $theFirst.length > 0 && 'payment' === $theFirst.attr( 'id' ) ) {
+                            $( '.woocommerce-checkout' ).find( '#payment' ).after( $( '.woocommerce-checkout' ).find( '#order_review_heading' ) );
+                        }
+
+                        $( '.woocommerce-checkout' ).find( '#order_review_heading' ).show();
                     }
+                } else {
+                    var $wrapper = $( '.woocommerce-checkout' ).find( this.params.custom_heading_container );
 
-                    $( '.woocommerce-checkout' ).find( '#order_review_heading' ).show();
+                    if ( $wrapper.length > 0 ) {
+                        $wrapper.prepend( $( '.woocommerce-checkout' ).find( '#order_review_heading' ) );
+                        $( '.woocommerce-checkout' ).find( '#order_review_heading' ).show();
+                    }
                 }
             }
 

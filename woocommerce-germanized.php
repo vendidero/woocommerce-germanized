@@ -1253,10 +1253,11 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 					apply_filters(
 						'wc_gzd_checkout_params',
 						array(
-							'adjust_heading'       => true,
-							'checkbox_id'          => $html_id,
-							'checkbox_hidden'      => $hide_input,
-							'has_privacy_checkbox' => $has_privacy_checkbox,
+							'adjust_heading'           => true,
+							'custom_heading_container' => '',
+							'checkbox_id'              => $html_id,
+							'checkbox_hidden'          => $hide_input,
+							'has_privacy_checkbox'     => $has_privacy_checkbox,
 						)
 					)
 				);

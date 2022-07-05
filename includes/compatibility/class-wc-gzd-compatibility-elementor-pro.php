@@ -37,6 +37,18 @@ class WC_GZD_Compatibility_Elementor_Pro extends WC_GZD_Compatibility {
 		add_action(
 			'woocommerce_checkout_init',
 			function() {
+				if ( ! wc_gzd_checkout_adjustments_disabled() ) {
+					add_filter(
+						'wc_gzd_checkout_params',
+						function( $params ) {
+							$params['custom_heading_container'] = apply_filters( 'woocommerce_gzd_elementor_pro_review_order_heading_container', '.e-checkout__order_review-2' );
+
+							return $params;
+						},
+						10
+					);
+				}
+
 				if ( isset( $_POST['action'], $_POST['editor_post_id'] ) && 'elementor_ajax' === $_POST['action'] ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
 					if ( wc_gzd_checkout_adjustments_disabled() ) {
 						return;
