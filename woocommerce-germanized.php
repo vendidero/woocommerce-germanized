@@ -298,6 +298,9 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 			add_action( 'wp_enqueue_scripts', array( $this, 'add_scripts' ), 15 );
 			add_action( 'wp_enqueue_scripts', array( $this, 'add_inline_styles' ), 20 );
 
+			add_action( 'wp_print_scripts', array( $this, 'add_fallback_scripts' ), 4 );
+			add_action( 'wp_print_footer_scripts', array( $this, 'add_fallback_scripts' ), 5 );
+
 			add_action( 'wp_print_scripts', array( $this, 'localize_scripts' ), 5 );
 			add_action( 'wp_print_footer_scripts', array( $this, 'localize_scripts' ), 5 );
 
@@ -1010,6 +1013,26 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 			 *
 			 */
 			do_action( 'woocommerce_gzd_registered_scripts', $suffix, $frontend_script_path, $assets_path );
+		}
+
+		public function add_fallback_scripts() {
+			if ( wp_script_is( 'wc-add-to-cart-variation', 'enqueued' ) ) {
+				global $wp_scripts;
+
+				/**
+				 * Make sure to load the unit price observer after variation script
+				 * because we need to listen to its events.
+				 */
+				$script = $wp_scripts->query( 'wc-gzd-unit-price-observer', 'registered' );
+
+				if ( $script ) {
+					if ( ! in_array( 'wc-gzd-add-to-cart-variation', $script->deps, true ) ) {
+						$script->deps[] = 'wc-gzd-add-to-cart-variation';
+					}
+				}
+
+				wp_enqueue_script( 'wc-gzd-add-to-cart-variation' );
+			}
 		}
 
 		/**
