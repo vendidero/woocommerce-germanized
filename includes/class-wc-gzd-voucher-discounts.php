@@ -78,7 +78,7 @@ class WC_GZD_Voucher_Discounts extends WC_Discounts {
 
 			$item           = new stdClass();
 			$item->key      = 'fee_' . $key;
-			$item->object   = $fee;
+			$item->object   = null;
 			$item->product  = false;
 			$item->quantity = 1;
 			$item->price    = wc_add_number_precision( $fee->amount );
@@ -89,7 +89,7 @@ class WC_GZD_Voucher_Discounts extends WC_Discounts {
 		if ( $this->allow_free_shipping() && $cart->get_shipping_total() > 0 ) {
 			$item           = new stdClass();
 			$item->key      = 'shipping';
-			$item->object   = false;
+			$item->object   = null;
 			$item->product  = false;
 			$item->quantity = 1;
 			$item->price    = wc_add_number_precision( $cart->get_shipping_total() ) + wc_add_number_precision( $cart->get_shipping_tax() );
@@ -128,7 +128,7 @@ class WC_GZD_Voucher_Discounts extends WC_Discounts {
 
 			$item           = new stdClass();
 			$item->key      = $order_item->get_id();
-			$item->object   = $order_item;
+			$item->object   = null;
 			$item->product  = is_callable( $order_item, 'get_product' ) ? $order_item->get_product() : false;
 			$item->quantity = $order_item->get_quantity();
 			$item->price    = wc_add_number_precision_deep( $order_item->get_total() ) + wc_add_number_precision_deep( $order_item->get_total_tax() );
