@@ -1070,7 +1070,7 @@ class WC_GZD_Product {
 		 *
 		 * @since 1.8.5
 		 */
-		return apply_filters( 'woocommerce_gzd_product_virtual_vat_exception', ( ( 'yes' === get_option( 'woocommerce_gzd_enable_virtual_vat' ) || \Vendidero\OneStopShop\Package::oss_procedure_is_enabled() ) && ( $this->is_downloadable() || $this->is_virtual() ) ? true : false ), $this );
+		return apply_filters( 'woocommerce_gzd_product_virtual_vat_exception', ( ( 'yes' === get_option( 'woocommerce_gzd_enable_virtual_vat' ) || \Vendidero\TaxHelper\Package::oss_procedure_is_enabled() ) && ( $this->is_downloadable() || $this->is_virtual() ) ? true : false ), $this );
 	}
 
 	public function add_labels_to_price_html( $price_html ) {

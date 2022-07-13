@@ -1,0 +1,356 @@
+<?php
+
+namespace Vendidero\Germanized;
+
+defined( 'ABSPATH' ) || exit;
+
+if ( ! function_exists( 'get_plugins' ) ) {
+	require_once ABSPATH . 'wp-admin/includes/plugin.php';
+}
+
+/**
+ * Class PluginsHelper
+ */
+class PluginsHelper {
+
+	/**
+	 * Get the path to the plugin file relative to the plugins directory from the plugin slug.
+	 *
+	 * E.g. 'woocommerce' returns 'woocommerce/woocommerce.php'
+	 *
+	 * @param string $slug Plugin slug to get path for.
+	 *
+	 * @return string|false
+	 */
+	public static function get_plugin_path_from_slug( $slug ) {
+		$plugins = get_plugins();
+
+		if ( strstr( $slug, '/' ) ) {
+			// The slug is already a plugin path.
+			return $slug;
+		}
+
+		foreach ( $plugins as $plugin_path => $data ) {
+			$path_parts = explode( '/', $plugin_path );
+			if ( $path_parts[0] === $slug ) {
+				return $plugin_path;
+			}
+		}
+
+		return false;
+	}
+
+	/**
+	 * Get an array of installed plugin slugs.
+	 *
+	 * @return array
+	 */
+	public static function get_installed_plugin_slugs() {
+		return array_map(
+			function( $plugin_path ) {
+				$path_parts = explode( '/', $plugin_path );
+				return $path_parts[0];
+			},
+			array_keys( get_plugins() )
+		);
+	}
+
+	/**
+	 * Get an array of installed plugins with their file paths as a key value pair.
+	 *
+	 * @return array
+	 */
+	public static function get_installed_plugins_paths() {
+		$plugins           = get_plugins();
+		$installed_plugins = array();
+
+		foreach ( $plugins as $path => $plugin ) {
+			$path_parts                 = explode( '/', $path );
+			$slug                       = $path_parts[0];
+			$installed_plugins[ $slug ] = $path;
+		}
+
+		return $installed_plugins;
+	}
+
+	/**
+	 * Get an array of active plugin slugs.
+	 *
+	 * @return array
+	 */
+	public static function get_active_plugin_slugs() {
+		return array_map(
+			function( $plugin_path ) {
+				$path_parts = explode( '/', $plugin_path );
+				return $path_parts[0];
+			},
+			get_option( 'active_plugins', array() )
+		);
+	}
+
+	/**
+	 * Checks if a plugin is installed.
+	 *
+	 * @param string $plugin Path to the plugin file relative to the plugins directory or the plugin directory name.
+	 *
+	 * @return bool
+	 */
+	public static function is_plugin_installed( $plugin ) {
+		$plugin_path = self::get_plugin_path_from_slug( $plugin );
+		return $plugin_path ? array_key_exists( $plugin_path, get_plugins() ) : false;
+	}
+
+	/**
+	 * Checks if a plugin is active.
+	 *
+	 * @param string $plugin Path to the plugin file relative to the plugins directory or the plugin directory name.
+	 *
+	 * @return bool
+	 */
+	public static function is_plugin_active( $plugin ) {
+		$plugin_path = self::get_plugin_path_from_slug( $plugin );
+		return $plugin_path ? in_array( $plugin_path, get_option( 'active_plugins', array() ), true ) : false;
+	}
+
+	/**
+	 * @return bool
+	 */
+	public static function is_oss_plugin_active() {
+		return self::is_plugin_active( 'one-stop-shop-woocommerce' );
+	}
+
+	/**
+	 * @return bool
+	 */
+	public static function is_trusted_shops_plugin_active() {
+		return self::is_plugin_active( 'woocommerce-trusted-shops' );
+	}
+
+	/**
+	 * @return bool
+	 */
+	public static function is_woocommerce_plugin_active() {
+		return apply_filters( 'woocommerce_gzd_is_woocommerce_activated', self::is_plugin_active( 'woocommerce' ) );
+	}
+
+	/**
+	 * Get plugin data.
+	 *
+	 * @param string $plugin Path to the plugin file relative to the plugins directory or the plugin directory name.
+	 *
+	 * @return array|false
+	 */
+	public static function get_plugin_data( $plugin ) {
+		$plugin_path = self::get_plugin_path_from_slug( $plugin );
+		$plugins     = get_plugins();
+
+		return isset( $plugins[ $plugin_path ] ) ? $plugins[ $plugin_path ] : false;
+	}
+
+	/**
+	 * @param $version
+	 *
+	 * @return string
+	 */
+	protected static function parse_version( $version ) {
+		$version = preg_replace( '#(\.0+)+($|-)#', '', $version );
+
+		// Remove/ignore beta, alpha, rc status from version strings
+		$version = trim( preg_replace( '#(beta|alpha|rc)#', ' ', $version ) );
+
+		// Make sure version has at least 2 signs, e.g. 3 -> 3.0
+		if ( strlen( $version ) === 1 ) {
+			$version = $version . '.0';
+		}
+
+		return $version;
+	}
+
+	/**
+	 * This method removes additional accuracy from $ver2 if this version is more accurate than $main_ver.
+	 *
+	 * @param $main_ver
+	 * @param $ver2
+	 * @param $operator
+	 *
+	 * @return bool
+	 */
+	public static function compare_versions( $main_ver, $ver2, $operator ) {
+		$expl_main_ver = explode( '.', $main_ver );
+		$expl_ver2     = explode( '.', $ver2 );
+
+		// Check if ver2 string is more accurate than main_ver
+		if ( 2 === count( $expl_main_ver ) && count( $expl_ver2 ) > 2 ) {
+			$new_ver_2 = array_slice( $expl_ver2, 0, 2 );
+			$ver2      = implode( '.', $new_ver_2 );
+		}
+
+		return version_compare( $main_ver, $ver2, $operator );
+	}
+
+	public static function get_plugin_version( $plugin ) {
+		$data = self::get_plugin_data( $plugin );
+
+		return ( $data && isset( $data['Version'] ) ) ? self::parse_version( $data['Version'] ) : false;
+	}
+
+	/**
+	 * Install an array of plugins.
+	 *
+	 * @param array $plugins Plugins to install.
+	 * @return array|\WP_Error
+	 */
+	public static function install_plugins( $plugins ) {
+		require_once ABSPATH . '/wp-admin/includes/plugin.php';
+		include_once ABSPATH . '/wp-admin/includes/admin.php';
+		include_once ABSPATH . '/wp-admin/includes/plugin-install.php';
+		include_once ABSPATH . '/wp-admin/includes/plugin.php';
+		include_once ABSPATH . '/wp-admin/includes/class-wp-upgrader.php';
+		include_once ABSPATH . '/wp-admin/includes/class-plugin-upgrader.php';
+
+		$existing_plugins  = self::get_installed_plugins_paths();
+		$installed_plugins = array();
+		$results           = array();
+		$time              = array();
+		$errors            = new \WP_Error();
+
+		foreach ( $plugins as $plugin ) {
+			$slug = sanitize_key( $plugin );
+
+			if ( isset( $existing_plugins[ $slug ] ) ) {
+				$installed_plugins[] = $plugin;
+				continue;
+			} elseif ( ! in_array( $plugin, self::get_whitelisted_plugins() ) ) {
+				continue;
+			}
+
+			$start_time = microtime( true );
+
+			$api = plugins_api(
+				'plugin_information',
+				array(
+					'slug'   => $slug,
+					'fields' => array(
+						'sections' => false,
+					),
+				)
+			);
+
+			if ( is_wp_error( $api ) ) {
+				do_action( 'woocommerce_gzd_plugins_install_api_error', $slug, $api );
+
+				$errors->add(
+					$plugin,
+					sprintf(
+					/* translators: %s: plugin slug (example: woocommerce-services) */
+						__( 'The requested plugin `%s` could not be installed. Plugin API call failed.', 'woocommerce-germanized' ),
+						$slug
+					)
+				);
+
+				continue;
+			}
+
+			$upgrader           = new \Plugin_Upgrader( new UpgraderSkin() );
+			$result             = $upgrader->install( $api->download_link );
+			$results[ $plugin ] = $result;
+			$time[ $plugin ]    = round( ( microtime( true ) - $start_time ) * 1000 );
+
+			if ( is_wp_error( $result ) || is_null( $result ) ) {
+				do_action( 'woocommerce_gzd_plugins_install_error', $slug, $api, $result, $upgrader );
+
+				$errors->add(
+					$plugin,
+					sprintf(
+					/* translators: %s: plugin slug (example: woocommerce-services) */
+						__( 'The requested plugin `%s` could not be installed. Upgrader install failed.', 'woocommerce-germanized' ),
+						$slug
+					)
+				);
+				continue;
+			}
+
+			$installed_plugins[] = $plugin;
+		}
+
+		$data = array(
+			'installed' => $installed_plugins,
+			'results'   => $results,
+			'errors'    => $errors,
+			'time'      => $time,
+		);
+
+		return $data;
+	}
+
+	protected static function get_whitelisted_plugins() {
+		return array(
+			'one-stop-shop-woocommerce',
+			'woocommerce-trusted-shops'
+		);
+	}
+
+	/**
+	 * Activate the requested plugins.
+	 *
+	 * @param array $plugins Plugins.
+	 * @return array Plugin Status
+	 */
+	public static function activate_plugins( $plugins ) {
+		require_once ABSPATH . '/wp-admin/includes/plugin.php';
+
+		// the mollie-payments-for-woocommerce plugin calls `WP_Filesystem()` during it's activation hook, which crashes without this include.
+		require_once ABSPATH . '/wp-admin/includes/file.php';
+
+		/**
+		 * Filter the list of plugins to activate.
+		 *
+		 * @param array $plugins A list of the plugins to activate.
+		 */
+		$plugins = apply_filters( 'woocommerce_gzd_admin_plugins_pre_activate', $plugins );
+
+		$plugin_paths      = self::get_installed_plugins_paths();
+		$errors            = new \WP_Error();
+		$activated_plugins = array();
+
+		foreach ( $plugins as $plugin ) {
+			if ( ! in_array( $plugin, self::get_whitelisted_plugins() ) ) {
+				continue;
+			}
+
+			$slug = $plugin;
+			$path = isset( $plugin_paths[ $slug ] ) ? $plugin_paths[ $slug ] : false;
+
+			if ( ! $path ) {
+				$errors->add(
+					$plugin,
+					/* translators: %s: plugin slug (example: woocommerce-services) */
+					sprintf( __( 'The requested plugin `%s`. is not yet installed.', 'woocommerce-germanized' ), $slug )
+				);
+				continue;
+			}
+
+			$result = activate_plugin( $path );
+			if ( ! is_null( $result ) ) {
+				do_action( 'woocommerce_gzd_plugins_activate_error', $slug, $result );
+
+				$errors->add(
+					$plugin,
+					/* translators: %s: plugin slug (example: woocommerce-services) */
+					sprintf( __( 'The requested plugin `%s` could not be activated.', 'woocommerce-germanized' ), $slug )
+				);
+				continue;
+			}
+
+			$activated_plugins[] = $plugin;
+		}
+
+		$data = array(
+			'activated' => $activated_plugins,
+			'active'    => self::get_active_plugin_slugs(),
+			'errors'    => $errors,
+		);
+
+		return $data;
+	}
+}

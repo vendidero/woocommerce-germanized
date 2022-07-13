@@ -40,8 +40,10 @@ add_filter( 'woocommerce_gzd_defect_description', array( $GLOBALS['wp_embed'], '
  * @return WC_GZD_Dependencies
  */
 function wc_gzd_get_dependencies( $instance = null ) {
+	wc_deprecated_function( 'WC_GZD_Dependencies', '4.0.0' );
+
 	/** This filter is documented in woocommerce-germanized.php */
-	return apply_filters( 'woocommerce_gzd_dependencies_instance', WC_GZD_Dependencies::instance( $instance ) );
+	return apply_filters( 'woocommerce_gzd_dependencies_instance', WC_GZD_Dependencies::class );
 }
 
 function wc_gzd_post_has_woocommerce_block( $post_content ) {

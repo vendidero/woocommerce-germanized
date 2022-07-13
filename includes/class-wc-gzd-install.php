@@ -163,7 +163,7 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 
 			load_textdomain( 'woocommerce-germanized', $mofile );
 
-			if ( ! wc_gzd_get_dependencies()->is_woocommerce_activated() || ! function_exists( 'WC' ) ) {
+			if ( ! \Vendidero\Germanized\PluginsHelper::is_woocommerce_plugin_active() || ! function_exists( 'WC' ) ) {
 				deactivate_plugins( WC_GERMANIZED_PLUGIN_FILE );
 				wp_die( esc_html__( 'Please install WooCommerce before installing WooCommerce Germanized. Thank you!', 'woocommerce-germanized' ) );
 			}
@@ -427,10 +427,10 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 		}
 
 		public static function create_tax_rates() {
-			if ( \Vendidero\OneStopShop\Package::oss_procedure_is_enabled() ) {
-				\Vendidero\OneStopShop\Tax::import_oss_tax_rates();
+			if ( \Vendidero\TaxHelper\Package::oss_procedure_is_enabled() ) {
+				\Vendidero\TaxHelper\Tax::import_oss_tax_rates();
 			} else {
-				\Vendidero\OneStopShop\Tax::import_default_tax_rates();
+				\Vendidero\TaxHelper\Tax::import_default_tax_rates();
 			}
 		}
 
@@ -471,7 +471,7 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 				'woocommerce_allowed_countries'          => 'specific',
 				'woocommerce_specific_allowed_countries' => $eu_countries,
 				'woocommerce_default_customer_address'   => 'base',
-				'woocommerce_gzd_hide_tax_rate_shop'     => \Vendidero\OneStopShop\Package::oss_procedure_is_enabled() ? 'yes' : 'no',
+				'woocommerce_gzd_hide_tax_rate_shop'     => \Vendidero\TaxHelper\Package::oss_procedure_is_enabled() ? 'yes' : 'no',
 			);
 
 			if ( ! empty( $options ) ) {

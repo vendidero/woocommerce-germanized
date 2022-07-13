@@ -28,10 +28,8 @@ class Packages {
 	 * @var array Key is the package name/directory, value is the main package class which handles init.
 	 */
 	protected static $packages = array(
-		'woocommerce-trusted-shops'        => '\\Vendidero\\TrustedShops\\Package',
 		'woocommerce-germanized-shipments' => '\\Vendidero\\Germanized\\Shipments\\Package',
-		'woocommerce-germanized-dhl'       => '\\Vendidero\\Germanized\\DHL\\Package',
-		'one-stop-shop-woocommerce'        => '\\Vendidero\\OneStopShop\\Package',
+		'woocommerce-germanized-dhl'       => '\\Vendidero\\Germanized\\DHL\\Package'
 	);
 
 	/**

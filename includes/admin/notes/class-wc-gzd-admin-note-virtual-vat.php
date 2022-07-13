@@ -10,7 +10,7 @@ class WC_GZD_Admin_Note_Virtual_Vat extends WC_GZD_Admin_Note {
 	public function is_disabled() {
 		$has_virtual_vat_legacy_enabled = 'yes' === get_option( 'woocommerce_gzd_enable_virtual_vat' );
 
-		if ( ! $has_virtual_vat_legacy_enabled || \Vendidero\OneStopShop\Package::oss_procedure_is_enabled() ) {
+		if ( ! $has_virtual_vat_legacy_enabled || \Vendidero\TaxHelper\Package::oss_procedure_is_enabled() ) {
 			return true;
 		}
 

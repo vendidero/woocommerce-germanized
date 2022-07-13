@@ -107,7 +107,7 @@ if ( ! class_exists( 'WC_GZD_Admin_Notices' ) ) :
 					 * Explicitly use $max_version_supported as first parameter to make sure
 					 * the more accurate $new_version string is cut if necessary.
 					 */
-					if ( WC_GZD_Dependencies::instance()->compare_versions( $max_version_supported, $new_version, '<' ) ) {
+					if ( \Vendidero\Germanized\PluginsHelper::compare_versions( $max_version_supported, $new_version, '<' ) ) {
 						$is_supported = false;
 					}
 				}
