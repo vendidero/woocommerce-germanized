@@ -31,11 +31,11 @@ output 3 "Updating package textdomains..."
 # Replace text domains within packages with woocommerce
 find ./packages/woocommerce-germanized-shipments -iname '*.php' -exec sed -i.bak -e "s/, 'woocommerce-germanized-shipments'/, 'woocommerce-germanized'/g" {} \;
 find ./packages/woocommerce-germanized-dhl -iname '*.php' -exec sed -i.bak -e "s/, 'woocommerce-germanized-dhl'/, 'woocommerce-germanized'/g" {} \;
-find ./vendor/vendidero/woocommerce-eu-tax-helper -iname '*.php' -exec sed -i.bak -e "s/, 'woocommerce-eu-tax-helper'/, 'woocommerce-germanized'/g" {} \;
+find ./packages/woocommerce-eu-tax-helper -iname '*.php' -exec sed -i.bak -e "s/, 'woocommerce-eu-tax-helper'/, 'woocommerce-germanized'/g" {} \;
 
 rm -rf ./packages/woocommerce-germanized-shipments/vendor
 rm -rf ./packages/woocommerce-germanized-dhl/vendor
-rm -rf ./vendor/vendidero/woocommerce-eu-tax-helper/vendor
+rm -rf ./packages/woocommerce-eu-tax-helper/vendor
 
 output 3 "Clean vendor dirs to save space..."
 
@@ -46,5 +46,4 @@ output 2 "Done!"
 
 # Cleanup backup files
 find ./packages -name "*.bak" -type f -delete
-find ./vendor -name "*.bak" -type f -delete
 output 2 "Done!"

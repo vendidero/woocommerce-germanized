@@ -16,7 +16,7 @@
     "globalcitizen/php-iban": "^4.0.0",
     "vendidero/woocommerce-germanized-dhl": "1.7.2",
     "vendidero/woocommerce-germanized-shipments": "1.7.0",
-    "vendidero/woocommerce-eu-tax-helper": "1.0.0"
+    "vendidero/woocommerce-eu-tax-helper": "1.0.2"
   },
   "require-dev": {
     "myclabs/deep-copy": "^1.7.0",
@@ -80,7 +80,8 @@
   "extra": {
     "installer-paths": {
       "packages/woocommerce-germanized-dhl": ["vendidero/woocommerce-germanized-dhl"],
-      "packages/woocommerce-germanized-shipments": ["vendidero/woocommerce-germanized-shipments"]
+      "packages/woocommerce-germanized-shipments": ["vendidero/woocommerce-germanized-shipments"],
+      "packages/woocommerce-eu-tax-helper": ["vendidero/woocommerce-eu-tax-helper"]
     },
     "scripts-description": {
       "test": "Run unit tests",
