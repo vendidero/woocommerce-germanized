@@ -28,7 +28,8 @@ window.germanized = window.germanized || {};
                 .on( 'click', 'a.woocommerce-gzd-input-toggle-trigger', this.onInputToogleClick )
                 .on( 'change', '.wc-gzd-setting-tabs input.woocommerce-gzd-tab-status-checkbox', this.onChangeTabStatus )
                 .on( 'change gzd_show_or_hide_fields', '.wc-gzd-admin-settings :input', this.onChangeInput )
-                .on( 'change', '.wc-gzd-setting-tab-enabled :input', this.preventWarning );
+                .on( 'change', '.wc-gzd-setting-tab-enabled :input', this.preventWarning )
+                .on( 'click', 'a.wc-gzd-install-extension-btn', this.onInstallExtension )
 
             $( document.body )
                 .on( 'woocommerce_gzd_setting_field_visible', this.onShowField )
@@ -60,6 +61,51 @@ window.germanized = window.germanized || {};
                 'fadeOut': 50,
                 'delay': 200
             });
+        },
+
+        onInstallExtension: function() {
+            var self  = germanized.settings,
+                $this = $( this );
+
+            var data = {
+                action: 'woocommerce_gzd_install_extension',
+                security: self.params.install_extension_nonce,
+                extension: $this.data( 'extension' )
+            };
+
+            $this.addClass( 'wc-gzd-is-loading' );
+            $this.append( '<span class="spinner is-active"></span>' );
+
+            $.ajax( {
+                url: self.params.ajax_url,
+                data: data,
+                dataType: 'json',
+                type: 'POST',
+                success: function( response ) {
+                    $this.find( '.spinner' ).remove();
+                    $this.removeClass( 'wc-gzd-is-loading' );
+
+                    if ( response.success ) {
+                        if ( $this.is("[href]") && '#' !== $this.attr( 'href' ) ) {
+                            window.location.href = $this.attr( 'href' );
+                        }
+                    } else if ( response.hasOwnProperty( 'message' ) ) {
+                        var $wrapper = $( '#wpbody-content' ).find( '.wrap' );
+
+                        if ( $( '.wc-gzd-setting-tabs' ).length > 0 ) {
+                            $wrapper = $( '.wc-gzd-setting-tabs' );
+                        }
+
+                        $wrapper.before( '<div class="error inline" id="message"><p>' + response.message + '</p></div>' );
+
+                        $( 'html, body' ).animate({
+                            scrollTop: ( $( '#message' ).offset().top - 32 )
+                        }, 1000 );
+                    }
+                }
+            } );
+
+            return false;
         },
 
         onChangeTabStatus: function() {

@@ -252,6 +252,8 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 			} else {
 				add_action( 'woocommerce_loaded', array( $this, 'woocommerce_loaded_includes' ) );
 			}
+
+            \Vendidero\Germanized\PluginsHelper::init();
 		}
 
 		/**
@@ -485,7 +487,6 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 		 * Include required core files used in admin and on the frontend.
 		 */
 		private function includes() {
-
 			include_once WC_GERMANIZED_ABSPATH . 'includes/wc-gzd-core-functions.php';
 			include_once WC_GERMANIZED_ABSPATH . 'includes/wc-gzd-cart-functions.php';
 			include_once WC_GERMANIZED_ABSPATH . 'includes/wc-gzd-order-functions.php';
@@ -569,7 +570,7 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 			/**
 			 * Legacy MOSS helper
 			 */
-			if ( 'yes' === get_option( 'woocommerce_gzd_enable_virtual_vat' ) && ! \Vendidero\TaxHelper\Package::oss_procedure_is_enabled() ) {
+			if ( 'yes' === get_option( 'woocommerce_gzd_enable_virtual_vat' ) && ! \Vendidero\EUTaxHelper\Helper::oss_procedure_is_enabled() ) {
 				include_once WC_GERMANIZED_ABSPATH . 'includes/class-wc-gzd-deprecated-virtual-vat-helper.php';
 			}
 		}

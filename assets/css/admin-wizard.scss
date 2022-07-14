@@ -2,7 +2,7 @@
 // See: https://github.com/picturepan2/spectre
 @import '../../node_modules/spectre.css/src/variables';
 
-$primary-color: #0085ba;
+$primary-color: #8865ff;
 $gray-color: #b5b5b5;
 $border-color: #b5b5b5;
 $light-color: #f1f1f1;
@@ -18,19 +18,25 @@ body {
 }
 
 .wc-gzd-setup {
-  .logo-wrapper {
-    display: flex;
-    justify-content: center;
+  .wc-gzd-setup-header {
+    margin-top: 5em;
+    width: 100%;
 
-    .logo {
-      display: inline-block;
-      text-indent: -9999px;
-      width: 298px;
-      vertical-align: top;
-      margin-top: 3rem;
-      height: 89px;
-      background: url(../images/germanized.svg) no-repeat;
-      background-size: 298px auto;
+    .logo-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 1.5em;
+
+      .logo {
+        display: inline-block;
+        text-indent: -9999px;
+        width: 7em;
+        vertical-align: top;
+        height: 7em;
+        background: url(../images/icon-germanized.svg) no-repeat;
+        background-size: contain;
+      }
     }
   }
 }
@@ -53,9 +59,13 @@ body {
   zoom: 1;
   margin-top: 1.5em;
 
+  a {
+    color: $primary-color;
+  }
+
   .error {
     margin: 0;
-    margin-bottom: 1em;
+    margin-bottom: 1.5em;
     box-shadow: none;
   }
 
@@ -65,8 +75,18 @@ body {
   }
 
   .wc-gzd-admin-settings {
+    .woocommerce-input-toggle:not(.woocommerce-input-toggle--disabled) {
+      border-color: $primary-color;
+      background-color: $primary-color;
+    }
+
     .wc-gzd-additional-desc {
-      background: #fffae0;
+      background: rgba($primary-color, .08);
+
+      a {
+        color: $primary-color;
+        text-decoration: none;
+      }
     }
 
     h2 {
@@ -81,7 +101,7 @@ body {
       th {
         position: relative;
         padding: 20px 10px 20px 0;
-        padding-right: 24px;
+        padding-right: 14px;
         padding-top: 14px;
         vertical-align: top;
         text-align: left;
@@ -94,6 +114,10 @@ body {
         padding: 15px 10px;
         line-height: 1.3;
         vertical-align: middle;
+
+        p.description {
+          margin-top: 0;
+        }
       }
       .status-disabled {
         display: inline-block;

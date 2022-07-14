@@ -13,6 +13,10 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 class WC_GZD_Settings_Tab_OSS extends WC_GZD_Settings_Tab {
 
+	public function get_extension_name() {
+		return 'one-stop-shop-woocommerce';
+	}
+
 	public function get_description() {
 		return __( 'Comply with the OSS procedure and conveniently generate tax reports.', 'woocommerce-germanized' );
 	}
@@ -48,7 +52,7 @@ class WC_GZD_Settings_Tab_OSS extends WC_GZD_Settings_Tab {
 	}
 
 	public function is_enabled() {
-		if ( \Vendidero\TaxHelper\Package::enable_auto_observer() || Vendidero\TaxHelper\Package::oss_procedure_is_enabled() ) {
+		if ( \Vendidero\Germanized\PluginsHelper::is_oss_plugin_active() && ( \Vendidero\OneStopShop\Package::oss_procedure_is_enabled() || \Vendidero\OneStopShop\Package::enable_auto_observer() ) ) {
 			return true;
 		}
 

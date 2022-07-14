@@ -17,7 +17,6 @@ class WC_GZD_AJAX {
 	 * Hook in methods
 	 */
 	public static function init() {
-
 		$ajax_events = array(
 			'gzd_revocation'                    => true,
 			'gzd_refresh_unit_price'            => true,
@@ -25,6 +24,7 @@ class WC_GZD_AJAX {
 			'gzd_json_search_delivery_time'     => false,
 			'gzd_legal_checkboxes_save_changes' => false,
 			'gzd_toggle_tab_enabled'            => false,
+			'gzd_install_extension'             => false,
 		);
 
 		foreach ( $ajax_events as $ajax_event => $nopriv ) {
@@ -35,6 +35,37 @@ class WC_GZD_AJAX {
 
 				// WC AJAX can be used for frontend ajax requests.
 				add_action( 'wc_ajax_' . $ajax_event, array( __CLASS__, $ajax_event ) );
+			}
+		}
+	}
+
+	public static function gzd_install_extension() {
+		check_ajax_referer( 'wc_gzd_install_extension_nonce', 'security' );
+
+		if ( ! current_user_can( 'install_plugins' ) || ! isset( $_POST['extension'] ) ) {
+			wp_die( - 1 );
+		}
+
+		$extension = wc_clean( wp_unslash( $_POST['extension'] ) );
+
+		if ( ! empty( $extension ) && \Vendidero\Germanized\PluginsHelper::is_plugin_whitelisted( $extension ) ) {
+			$result = \Vendidero\Germanized\PluginsHelper::install_or_activate_oss();
+
+			if ( \Vendidero\Germanized\PluginsHelper::is_plugin_active( $extension ) ) {
+				wp_send_json(
+					array(
+						'success' => true,
+					)
+				);
+			} else {
+				$plugin_name = \Vendidero\Germanized\PluginsHelper::get_plugin_name( $extension );
+				$message     = sprintf( __( 'There was an error while automatically installing %1$s. %2$s', 'woocommerce-germanized' ), esc_html( $plugin_name ), \Vendidero\Germanized\PluginsHelper::get_plugin_manual_install_message( $extension ) );
+
+				wp_send_json(
+					array(
+						'message' => $message,
+					)
+				);
 			}
 		}
 	}

@@ -590,7 +590,6 @@ class WC_GZD_Admin {
 	}
 
 	public function add_scripts() {
-
 		$screen            = get_current_screen();
 		$suffix            = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 		$assets_path       = WC_germanized()->plugin_url() . '/assets/';
@@ -650,8 +649,9 @@ class WC_GZD_Admin {
 			'wc-gzd-admin-settings',
 			'wc_gzd_admin_settings_params',
 			array(
-				'tab_toggle_nonce' => wp_create_nonce( 'wc_gzd_tab_toggle_nonce' ),
-				'ajax_url'         => admin_url( 'admin-ajax.php' ),
+				'tab_toggle_nonce'        => wp_create_nonce( 'wc_gzd_tab_toggle_nonce' ),
+				'install_extension_nonce' => wp_create_nonce( 'wc_gzd_install_extension_nonce' ),
+				'ajax_url'                => admin_url( 'admin-ajax.php' ),
 			)
 		);
 

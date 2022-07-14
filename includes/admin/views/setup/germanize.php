@@ -17,7 +17,7 @@ $country_name = isset( $countries[ $base_country ] ) ? $countries[ $base_country
 ?>
 <h1><?php esc_html_e( 'Germanize WooCommerce', 'woocommerce-germanized' ); ?></h1>
 
-<p class="headliner"><?php printf( esc_html__( 'Let Germanized help you to adjust your WooCommerce settings for %s.', 'woocommerce-germanized' ), esc_html( $country_name ) ); ?></p>
+<p class="headliner"><?php printf( esc_html__( 'Let Germanized prepare your WooCommerce installation for %s.', 'woocommerce-germanized' ), esc_html( $country_name ) ); ?></p>
 
 <div class="wc-gzd-admin-settings">
 	<?php WC_Admin_Settings::output_fields( $settings ); ?>

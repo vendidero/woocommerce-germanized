@@ -427,11 +427,7 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 		}
 
 		public static function create_tax_rates() {
-			if ( \Vendidero\TaxHelper\Package::oss_procedure_is_enabled() ) {
-				\Vendidero\TaxHelper\Tax::import_oss_tax_rates();
-			} else {
-				\Vendidero\TaxHelper\Tax::import_default_tax_rates();
-			}
+			\Vendidero\EUTaxHelper\Helper::import_tax_rates();
 		}
 
 		/**
@@ -471,7 +467,7 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 				'woocommerce_allowed_countries'          => 'specific',
 				'woocommerce_specific_allowed_countries' => $eu_countries,
 				'woocommerce_default_customer_address'   => 'base',
-				'woocommerce_gzd_hide_tax_rate_shop'     => \Vendidero\TaxHelper\Package::oss_procedure_is_enabled() ? 'yes' : 'no',
+				'woocommerce_gzd_hide_tax_rate_shop'     => \Vendidero\EUTaxHelper\Helper::oss_procedure_is_enabled() ? 'yes' : 'no',
 			);
 
 			if ( ! empty( $options ) ) {

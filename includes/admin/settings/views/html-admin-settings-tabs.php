@@ -38,26 +38,39 @@ defined( 'ABSPATH' ) || exit;
 		}
 		?>
 		<tr>
-			<td class="wc-gzd-setting-tab-name"
-				id="wc-gzd-setting-tab-name-<?php echo esc_attr( $tab->get_name() ); ?>"><a href="<?php echo esc_url( $tab->get_link() ); ?>" class="wc-gzd-setting-tab-link"><?php echo wp_kses_post( $tab->get_label() ); ?></a></td>
+			<td class="wc-gzd-setting-tab-name <?php echo ( $tab->needs_install() ? 'tab-needs-install' : '' ); ?>" id="wc-gzd-setting-tab-name-<?php echo esc_attr( $tab->get_name() ); ?>">
+                <?php if ( $tab->needs_install() ) : ?>
+                    <span class="wc-gzd-settings-tab-name-needs-install"><?php echo wp_kses_post( $tab->get_label() ); ?></span>
+                <?php else: ?>
+                    <a href="<?php echo esc_url( $tab->get_link() ); ?>" class="wc-gzd-setting-tab-link"><?php echo wp_kses_post( $tab->get_label() ); ?></a>
+                <?php endif; ?>
+            </td>
 			<td class="wc-gzd-setting-tab-enabled" id="wc-gzd-setting-tab-enabled-<?php echo esc_attr( $tab->get_name() ); ?>">
-				<?php if ( $tab->supports_disabling() ) : ?>
-					<fieldset>
-						<a class="woocommerce-gzd-input-toggle-trigger" href="#"><span class="woocommerce-gzd-input-toggle woocommerce-input-toggle woocommerce-input-toggle--<?php echo( $tab->is_enabled() ? 'enabled' : 'disabled' ); ?>"><?php echo esc_attr__( 'Yes', 'woocommerce-germanized' ); ?></span></a>
-						<input
-							name="woocommerce_gzd_tab_status_<?php echo esc_attr( $tab->get_name() ); ?>"
-							id="woocommerce-gzd-tab-status-<?php echo esc_attr( $tab->get_name() ); ?>"
-							type="checkbox"
-							data-tab="<?php echo esc_attr( $tab->get_name() ); ?>"
-							style="display: none;"
-							value="1"
-							class="woocommerce-gzd-tab-status-checkbox"
-							<?php checked( $tab->is_enabled() ? 'yes' : 'no', 'yes' ); ?>
-						/>
-					</fieldset>
-				<?php else : ?>
-					<span class="<?php echo( $tab->is_enabled() ? 'status-enabled' : 'status-disabled' ); ?>"><?php echo( $tab->is_enabled() ? esc_attr__( 'Yes', 'woocommerce-germanized' ) : esc_attr__( 'No', 'woocommerce-germanized' ) ); ?></span>
-				<?php endif; ?>
+				<?php if ( $tab->needs_install() ) : ?>
+                    <?php if( current_user_can( 'install_plugins' ) ) : ?>
+                        <a class="button button-secondary wc-gzd-install-extension-btn wc-gzd-ajax-loading-btn" data-extension="<?php echo esc_attr( $tab->get_extension_name() ); ?>" href="<?php echo esc_url( $tab->get_link() ); ?>"><span class="btn-text"><?php esc_html_e( 'Install', 'woocommerce-germanized' ); ?></span></a>
+					<?php else : ?>
+                        <span class="<?php echo( $tab->is_enabled() ? 'status-enabled' : 'status-disabled' ); ?>"><?php echo( $tab->is_enabled() ? esc_attr__( 'Yes', 'woocommerce-germanized' ) : esc_attr__( 'No', 'woocommerce-germanized' ) ); ?></span>
+					<?php endif; ?>
+				<?php else: ?>
+					<?php if ( $tab->supports_disabling() ) : ?>
+                        <fieldset>
+                            <a class="woocommerce-gzd-input-toggle-trigger" href="#"><span class="woocommerce-gzd-input-toggle woocommerce-input-toggle woocommerce-input-toggle--<?php echo( $tab->is_enabled() ? 'enabled' : 'disabled' ); ?>"><?php echo esc_attr__( 'Yes', 'woocommerce-germanized' ); ?></span></a>
+                            <input
+                                    name="woocommerce_gzd_tab_status_<?php echo esc_attr( $tab->get_name() ); ?>"
+                                    id="woocommerce-gzd-tab-status-<?php echo esc_attr( $tab->get_name() ); ?>"
+                                    type="checkbox"
+                                    data-tab="<?php echo esc_attr( $tab->get_name() ); ?>"
+                                    style="display: none;"
+                                    value="1"
+                                    class="woocommerce-gzd-tab-status-checkbox"
+								<?php checked( $tab->is_enabled() ? 'yes' : 'no', 'yes' ); ?>
+                            />
+                        </fieldset>
+					<?php else : ?>
+                        <span class="<?php echo( $tab->is_enabled() ? 'status-enabled' : 'status-disabled' ); ?>"><?php echo( $tab->is_enabled() ? esc_attr__( 'Yes', 'woocommerce-germanized' ) : esc_attr__( 'No', 'woocommerce-germanized' ) ); ?></span>
+					<?php endif; ?>
+                <?php endif; ?>
 			</td>
 			<td class="wc-gzd-setting-tab-desc"><?php echo wp_kses_post( $tab->get_description() ); ?></td>
 			<td class="wc-gzd-setting-tab-actions">
@@ -70,12 +83,21 @@ defined( 'ABSPATH' ) || exit;
 					><?php esc_html_e( 'How to', 'woocommerce-germanized' ); ?></a>
 				<?php endif; ?>
 
+				<?php if ( ! $tab->needs_install() ) : ?>
 				<a
 					class="button button-secondary wc-gzd-dash-button"
 					aria-label="<?php esc_attr_e( 'Manage settings', 'woocommerce-germanized' ); ?>"
 					title="<?php esc_attr_e( 'Manage settings', 'woocommerce-germanized' ); ?>"
 					href="<?php echo esc_url( $tab->get_link() ); ?>"
 				><?php esc_html_e( 'Manage', 'woocommerce-germanized' ); ?></a>
+                <?php elseif( current_user_can( 'install_plugins' ) ): ?>
+                    <a
+                        class="button button-secondary wc-gzd-dash-button wc-gzd-install-extension-btn wc-gzd-ajax-loading-btn install"
+                        title="<?php esc_attr_e( 'Install', 'woocommerce-germanized' ); ?>"
+                        aria-label="<?php esc_attr_e( 'Install', 'woocommerce-germanized' ); ?>"
+                        data-extension="<?php echo esc_attr( $tab->get_extension_name() ); ?>"
+                        href="<?php echo esc_url( $tab->get_link() ); ?>"
+                <?php endif; ?>
 			</td>
 		</tr>
 	<?php endforeach; ?>

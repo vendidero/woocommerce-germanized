@@ -9,9 +9,14 @@ if ( ! function_exists( 'get_plugins' ) ) {
 }
 
 /**
- * Class PluginsHelper
+ * Useful to install standalone plugins associated with Germanized, e.g.
+ * One Stop Shop for WooCommerce.
  */
 class PluginsHelper {
+
+	public static function init() {
+		add_filter( 'all_plugins', array( __CLASS__, 'filter_bundled_plugin_names' ) );
+	}
 
 	/**
 	 * Get the path to the plugin file relative to the plugins directory from the plugin slug.
@@ -134,6 +139,23 @@ class PluginsHelper {
 	}
 
 	/**
+	 * Get plugin name.
+	 *
+	 * @param string $plugin Path to the plugin file relative to the plugins directory or the plugin directory name.
+	 *
+	 * @return array|false
+	 */
+	public static function get_plugin_name( $plugin ) {
+		if ( $plugin_info = self::get_plugin_data( $plugin ) ) {
+			return $plugin_info['Name'];
+		} elseif ( self::is_plugin_whitelisted( $plugin ) ) {
+			return self::get_whitelisted_plugins()[ $plugin ];
+		} else {
+			return ucwords( str_replace( '-', ' ', $plugin ) );
+		}
+	}
+
+	/**
 	 * Get plugin data.
 	 *
 	 * @param string $plugin Path to the plugin file relative to the plugins directory or the plugin directory name.
@@ -195,12 +217,79 @@ class PluginsHelper {
 	}
 
 	/**
+	 * @param $plugin
+	 *
+	 * @return bool
+	 */
+	protected static function install_and_activate_plugin( $plugin ) {
+		$result = array(
+			'errors' => new \WP_Error(),
+		);
+
+		if ( self::is_plugin_installed( $plugin ) ) {
+			$result = self::activate_plugins( $plugin );
+		} elseif ( ! self::is_plugin_installed( $plugin ) ) {
+			$result = self::install_plugins( $plugin );
+
+			if ( ! wc_gzd_wp_error_has_errors( $result['errors'] ) ) {
+				$result = self::activate_plugins( $plugin );
+			}
+		}
+
+		return ( ! wc_gzd_wp_error_has_errors( $result['errors'] ) ? true : false );
+	}
+
+	/**
+	 * @return bool
+	 */
+	public static function install_or_activate_oss() {
+		return self::install_and_activate_plugin( 'one-stop-shop-woocommerce' );
+	}
+
+	public static function get_plugin_manual_install_message( $plugin ) {
+		if ( self::is_plugin_active( $plugin ) || ! self::is_plugin_whitelisted( $plugin ) ) {
+			return '';
+		}
+
+		$install_url = wp_nonce_url(
+			add_query_arg(
+				array(
+					'action' => 'install-plugin',
+					'plugin' => $plugin,
+				),
+				admin_url( 'update.php' )
+			),
+			'install-plugin_' . $plugin
+		);
+
+		if ( self::is_plugin_installed( $plugin ) ) {
+			$plugin_path = self::get_plugin_path_from_slug( $plugin );
+			$install_url = wp_nonce_url(
+				add_query_arg(
+					array(
+						'action' => 'activate',
+						'plugin' => rawurlencode( $plugin_path ),
+					),
+					admin_url( 'plugins.php' )
+				),
+				'activate-plugin_' . $plugin_path
+			);
+		}
+
+		return self::is_plugin_installed( $plugin ) ? sprintf( __( 'Please <a href="%s">activate</a> the plugin.', 'woocommerce-germanized' ), esc_url( $install_url ) ) : sprintf( __( 'Please <a href="%s">install</a> the plugin.', 'woocommerce-germanized' ), esc_url( $install_url ) );
+	}
+
+	/**
 	 * Install an array of plugins.
 	 *
 	 * @param array $plugins Plugins to install.
 	 * @return array|\WP_Error
 	 */
-	public static function install_plugins( $plugins ) {
+	protected static function install_plugins( $plugins ) {
+		if ( ! is_array( $plugins ) ) {
+			$plugins = array( $plugins );
+		}
+
 		require_once ABSPATH . '/wp-admin/includes/plugin.php';
 		include_once ABSPATH . '/wp-admin/includes/admin.php';
 		include_once ABSPATH . '/wp-admin/includes/plugin-install.php';
@@ -220,7 +309,7 @@ class PluginsHelper {
 			if ( isset( $existing_plugins[ $slug ] ) ) {
 				$installed_plugins[] = $plugin;
 				continue;
-			} elseif ( ! in_array( $plugin, self::get_whitelisted_plugins() ) ) {
+			} elseif ( ! self::is_plugin_whitelisted( $plugin ) ) {
 				continue;
 			}
 
@@ -283,10 +372,14 @@ class PluginsHelper {
 		return $data;
 	}
 
+	public static function is_plugin_whitelisted( $plugin ) {
+		return array_key_exists( $plugin, self::get_whitelisted_plugins() );
+	}
+
 	protected static function get_whitelisted_plugins() {
 		return array(
-			'one-stop-shop-woocommerce',
-			'woocommerce-trusted-shops'
+			'one-stop-shop-woocommerce' => __( 'One Stop Shop', 'woocommerce-germanized' ),
+			'woocommerce-trusted-shops' => __( 'Trusted Shops', 'woocommerce-germanized' )
 		);
 	}
 
@@ -296,25 +389,22 @@ class PluginsHelper {
 	 * @param array $plugins Plugins.
 	 * @return array Plugin Status
 	 */
-	public static function activate_plugins( $plugins ) {
+	protected static function activate_plugins( $plugins ) {
+		if ( ! is_array( $plugins ) ) {
+			$plugins = array( $plugins );
+		}
+
 		require_once ABSPATH . '/wp-admin/includes/plugin.php';
 
 		// the mollie-payments-for-woocommerce plugin calls `WP_Filesystem()` during it's activation hook, which crashes without this include.
 		require_once ABSPATH . '/wp-admin/includes/file.php';
-
-		/**
-		 * Filter the list of plugins to activate.
-		 *
-		 * @param array $plugins A list of the plugins to activate.
-		 */
-		$plugins = apply_filters( 'woocommerce_gzd_admin_plugins_pre_activate', $plugins );
 
 		$plugin_paths      = self::get_installed_plugins_paths();
 		$errors            = new \WP_Error();
 		$activated_plugins = array();
 
 		foreach ( $plugins as $plugin ) {
-			if ( ! in_array( $plugin, self::get_whitelisted_plugins() ) ) {
+			if ( ! self::is_plugin_whitelisted( $plugin ) ) {
 				continue;
 			}
 
@@ -352,5 +442,13 @@ class PluginsHelper {
 		);
 
 		return $data;
+	}
+
+	public static function filter_bundled_plugin_names( $plugins ) {
+		if ( array_key_exists( 'one-stop-shop-woocommerce/one-stop-shop-woocommerce.php', $plugins ) ) {
+			$plugins['one-stop-shop-woocommerce/one-stop-shop-woocommerce.php']['Name'] = esc_html__( 'Germanized for WooCommerce: One Stop Shop', 'woocommerce-germanized' );
+		}
+
+		return $plugins;
 	}
 }

@@ -755,12 +755,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/vendidero/woocommerce-eu-tax-helper.git",
-                "reference": "8f637bbc8dc84f301726c40021bcfa59bf2e2743"
+                "reference": "42ebca28566bb2276463c95c5ef8c56b6c8a2ce9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vendidero/woocommerce-eu-tax-helper/zipball/8f637bbc8dc84f301726c40021bcfa59bf2e2743",
-                "reference": "8f637bbc8dc84f301726c40021bcfa59bf2e2743",
+                "url": "https://api.github.com/repos/vendidero/woocommerce-eu-tax-helper/zipball/42ebca28566bb2276463c95c5ef8c56b6c8a2ce9",
+                "reference": "42ebca28566bb2276463c95c5ef8c56b6c8a2ce9",
                 "shasum": ""
             },
             "require": {
@@ -775,7 +775,7 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "Vendidero\\TaxHelper\\": "src/"
+                    "Vendidero\\EUTaxHelper\\": "src/"
                 }
             },
             "scripts": {
@@ -795,13 +795,13 @@
             "license": [
                 "GPL-3.0-or-later"
             ],
-            "description": "OSS EU helper for WooCommerce",
+            "description": "EU tax helper for WooCommerce",
             "homepage": "https://vendidero.de/",
             "support": {
                 "source": "https://github.com/vendidero/woocommerce-eu-tax-helper/tree/1.0.0",
                 "issues": "https://github.com/vendidero/woocommerce-eu-tax-helper/issues"
             },
-            "time": "2022-07-13T12:25:24+00:00"
+            "time": "2022-07-14T08:23:21+00:00"
         },
         {
             "name": "vendidero/woocommerce-germanized-dhl",
