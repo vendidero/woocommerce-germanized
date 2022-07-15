@@ -17,6 +17,10 @@ class WC_GZD_Settings_Tab_OSS extends WC_GZD_Settings_Tab {
 		return 'one-stop-shop-woocommerce';
 	}
 
+	public function needs_install() {
+		return ! \Vendidero\Germanized\PluginsHelper::is_oss_plugin_active();
+	}
+
 	public function get_description() {
 		return __( 'Comply with the OSS procedure and conveniently generate tax reports.', 'woocommerce-germanized' );
 	}

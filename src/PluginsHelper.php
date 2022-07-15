@@ -16,6 +16,21 @@ class PluginsHelper {
 
 	public static function init() {
 		add_filter( 'all_plugins', array( __CLASS__, 'filter_bundled_plugin_names' ) );
+		add_action( 'activated_plugin', array( __CLASS__, 'observe_plugin_activation' ) );
+	}
+
+	/**
+	 * Delete the option which indicates that the OSS plugin needs to be installed
+	 * after a Germanized update.
+	 *
+	 * @param $plugin
+	 *
+	 * @return void
+	 */
+	public static function observe_plugin_activation( $plugin ) {
+		if ( strstr( self::get_plugin_slug( $plugin ), 'one-stop-shop-woocommerce' ) ) {
+			delete_option( 'woocommerce_gzd_is_oss_standalone_update' );
+		}
 	}
 
 	/**
@@ -36,13 +51,18 @@ class PluginsHelper {
 		}
 
 		foreach ( $plugins as $plugin_path => $data ) {
-			$path_parts = explode( '/', $plugin_path );
-			if ( $path_parts[0] === $slug ) {
+			if ( self::get_plugin_slug( $plugin_path ) === $slug ) {
 				return $plugin_path;
 			}
 		}
 
 		return false;
+	}
+
+	protected static function get_plugin_slug( $path ) {
+		$path_parts = explode( '/', $path );
+
+		return $path_parts[0];
 	}
 
 	/**
@@ -51,13 +71,7 @@ class PluginsHelper {
 	 * @return array
 	 */
 	public static function get_installed_plugin_slugs() {
-		return array_map(
-			function( $plugin_path ) {
-				$path_parts = explode( '/', $plugin_path );
-				return $path_parts[0];
-			},
-			array_keys( get_plugins() )
-		);
+		return array_map( array( __CLASS__, 'get_plugin_slug' ), array_keys( get_plugins() ) );
 	}
 
 	/**
@@ -70,9 +84,7 @@ class PluginsHelper {
 		$installed_plugins = array();
 
 		foreach ( $plugins as $path => $plugin ) {
-			$path_parts                 = explode( '/', $path );
-			$slug                       = $path_parts[0];
-			$installed_plugins[ $slug ] = $path;
+			$installed_plugins[ self::get_plugin_slug( $path ) ] = $path;
 		}
 
 		return $installed_plugins;
@@ -84,13 +96,7 @@ class PluginsHelper {
 	 * @return array
 	 */
 	public static function get_active_plugin_slugs() {
-		return array_map(
-			function( $plugin_path ) {
-				$path_parts = explode( '/', $plugin_path );
-				return $path_parts[0];
-			},
-			get_option( 'active_plugins', array() )
-		);
+		return array_map( array( __CLASS__, 'get_plugin_slug' ), get_option( 'active_plugins', array() ) );
 	}
 
 	/**
@@ -122,6 +128,13 @@ class PluginsHelper {
 	 */
 	public static function is_oss_plugin_active() {
 		return self::is_plugin_active( 'one-stop-shop-woocommerce' );
+	}
+
+	/**
+	 * @return bool
+	 */
+	public static function is_oss_plugin_installed() {
+		return self::is_plugin_installed( 'one-stop-shop-woocommerce' );
 	}
 
 	/**
@@ -332,7 +345,7 @@ class PluginsHelper {
 				$errors->add(
 					$plugin,
 					sprintf(
-					/* translators: %s: plugin slug (example: woocommerce-services) */
+						/* translators: %s: plugin slug (example: woocommerce-services) */
 						__( 'The requested plugin `%s` could not be installed. Plugin API call failed.', 'woocommerce-germanized' ),
 						$slug
 					)
@@ -352,7 +365,7 @@ class PluginsHelper {
 				$errors->add(
 					$plugin,
 					sprintf(
-					/* translators: %s: plugin slug (example: woocommerce-services) */
+						/* translators: %s: plugin slug (example: woocommerce-services) */
 						__( 'The requested plugin `%s` could not be installed. Upgrader install failed.', 'woocommerce-germanized' ),
 						$slug
 					)

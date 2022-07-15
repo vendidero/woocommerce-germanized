@@ -34,7 +34,7 @@ abstract class WC_GZD_Settings_Tab extends WC_Settings_Page {
 
 	public function needs_install() {
 		if ( $extension_name = $this->get_extension_name() ) {
-			return ! \Vendidero\Germanized\PluginsHelper::is_plugin_installed( $extension_name ) || ! \Vendidero\Germanized\PluginsHelper::is_plugin_active( $extension_name );
+			return ! \Vendidero\Germanized\PluginsHelper::is_plugin_active( $extension_name );
 		}
 
 		return false;
