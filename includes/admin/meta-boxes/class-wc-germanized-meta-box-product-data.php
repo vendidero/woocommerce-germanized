@@ -519,6 +519,28 @@ class WC_Germanized_Meta_Box_Product_Data {
 			)
 		);
 
+		woocommerce_wp_text_input(
+			array(
+				'id'          => '_gtin',
+				'value'       => $_gzd_product->get_gtin( 'edit' ),
+				'label'       => __( 'GTIN', 'woocommerce-germanized' ),
+				'data_type'   => 'text',
+				'desc_tip'    => true,
+				'description' => __( 'Your product\'s Global Trade Item Number that allows your products to be identified worldwide.', 'woocommerce-germanized' ),
+			)
+		);
+
+		woocommerce_wp_text_input(
+			array(
+				'id'          => '_mpn',
+				'value'       => $_gzd_product->get_mpn( 'edit' ),
+				'label'       => __( 'MPN', 'woocommerce-germanized' ),
+				'data_type'   => 'text',
+				'desc_tip'    => true,
+				'description' => __( 'Your product\'s Manufacturer Part Number.', 'woocommerce-germanized' ),
+			)
+		);
+
 		echo '</div>';
 
 		echo '<div class="options_group show_if_simple show_if_variable show_if_external">';
@@ -733,6 +755,8 @@ class WC_Germanized_Meta_Box_Product_Data {
 			'_mini_desc'                                => '',
 			'_defect_description'                       => '',
 			'_warranty_attachment_id'                   => '',
+			'_gtin'                                     => '',
+			'_mpn'                                      => '',
 			'delivery_time'                             => '',
 			'country_specific_delivery_times'           => '',
 			'new_country_specific_delivery_times_countries' => '',
@@ -1169,6 +1193,16 @@ class WC_Germanized_Meta_Box_Product_Data {
 			$gzd_product->set_min_age( absint( $data['_min_age'] ) );
 		} else {
 			$gzd_product->set_min_age( '' );
+		}
+
+		if ( isset( $data['_gtin'] ) ) {
+			$gzd_product->set_gtin( wc_clean( $data['_gtin'] ) );
+
+		}
+
+		if ( isset( $data['_mpn'] ) ) {
+			$gzd_product->set_mpn( wc_clean( $data['_mpn'] ) );
+
 		}
 
 		self::save_delivery_times( $gzd_product, $data );

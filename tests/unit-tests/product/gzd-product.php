@@ -63,6 +63,9 @@ class WC_GZD_Tests_GZD_Product extends WC_GZD_Unit_Test_Case {
 		$this->assertEquals( '1', $gzd_product->get_unit_product() );
 		$this->assertEquals( 'g', $gzd_product->get_unit() );
 
+		$this->assertEquals( 'gtin', $gzd_product->get_gtin() );
+		$this->assertEquals( 'mpn', $gzd_product->get_mpn() );
+
 		$this->assertEquals( true, $gzd_product->has_unit() );
 		$this->assertEquals( true, $gzd_product->is_on_unit_sale() );
 		$this->assertEquals( true, $gzd_product->has_unit_product() );

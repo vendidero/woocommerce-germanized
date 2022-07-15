@@ -183,11 +183,14 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 			spl_autoload_register( array( $this, 'autoload' ) );
 
 			if ( ! WC_GZD_Dependencies::is_loadable() ) {
-                add_action( 'admin_notices', function() {
-	                if ( current_user_can( 'activate_plugins' ) ) {
-		                include_once WC_GERMANIZED_ABSPATH . 'includes/admin/views/html-notice-dependencies.php';
-	                }
-                } );
+				add_action(
+					'admin_notices',
+					function() {
+						if ( current_user_can( 'activate_plugins' ) ) {
+							include_once WC_GERMANIZED_ABSPATH . 'includes/admin/views/html-notice-dependencies.php';
+						}
+					}
+				);
 
 				return;
 			}
@@ -253,7 +256,7 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 				add_action( 'woocommerce_loaded', array( $this, 'woocommerce_loaded_includes' ) );
 			}
 
-            \Vendidero\Germanized\PluginsHelper::init();
+			\Vendidero\Germanized\PluginsHelper::init();
 		}
 
 		/**

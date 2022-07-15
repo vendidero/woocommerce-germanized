@@ -240,6 +240,18 @@ class WC_GZD_REST_Products_Controller {
 			'default'     => '',
 			'context'     => array( 'view', 'edit' ),
 		);
+		$schema_properties['gtin']                     = array(
+			'description' => __( 'GTIN', 'woocommerce-germanized' ),
+			'type'        => 'string',
+			'default'     => '',
+			'context'     => array( 'view', 'edit' ),
+		);
+		$schema_properties['mpn']                      = array(
+			'description' => __( 'MPN', 'woocommerce-germanized' ),
+			'type'        => 'string',
+			'default'     => '',
+			'context'     => array( 'view', 'edit' ),
+		);
 		$schema_properties['service']                  = array(
 			'description' => __( 'Whether this product is a service or not', 'woocommerce-germanized' ),
 			'type'        => 'boolean',
@@ -530,6 +542,16 @@ class WC_GZD_REST_Products_Controller {
 			'type'        => 'string',
 			'context'     => array( 'view', 'edit' ),
 		);
+		$schema_properties['variations']['items']['properties']['gtin']                     = array(
+			'description' => __( 'GTIN', 'woocommerce-germanized' ),
+			'type'        => 'string',
+			'context'     => array( 'view', 'edit' ),
+		);
+		$schema_properties['variations']['items']['properties']['mpn']                      = array(
+			'description' => __( 'MPN', 'woocommerce-germanized' ),
+			'type'        => 'string',
+			'context'     => array( 'view', 'edit' ),
+		);
 		$schema_properties['variations']['items']['properties']['unit_price']               = array(
 			'description' => __( 'Unit Price', 'woocommerce-germanized' ),
 			'type'        => 'object',
@@ -716,7 +738,15 @@ class WC_GZD_REST_Products_Controller {
 		}
 
 		if ( isset( $request['min_age'] ) ) {
-			$data['_min_age'] = esc_attr( $request['min_age'] );
+			$data['_min_age'] = wc_clean( $request['min_age'] );
+		}
+
+		if ( isset( $request['gtin'] ) ) {
+			$data['_gtin'] = wc_clean( $request['gtin'] );
+		}
+
+		if ( isset( $request['mpn'] ) ) {
+			$data['_mpn'] = wc_clean( $request['mpn'] );
 		}
 
 		/**
@@ -884,6 +914,10 @@ class WC_GZD_REST_Products_Controller {
 
 		// Age verification
 		$data['min_age'] = $gzd_product->get_min_age( $context );
+
+		// GTIN + MPN
+		$data['gtin'] = $gzd_product->get_gtin( $context );
+		$data['mpn']  = $gzd_product->get_mpn( $context );
 
 		// Sale Labels
 		$data['sale_price_label']         = $this->prepare_term( WC_germanized()->price_labels->get_term_object( $gzd_product->get_sale_price_label( $context ) ) );

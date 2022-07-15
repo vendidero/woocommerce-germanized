@@ -74,6 +74,8 @@ class WC_GZD_Helper_Product {
 			'_sale_price_regular_label' => 'old-price',
 			'_mini_desc'                => 'This is a test',
 			'_defect_description'       => 'This is a defect desc',
+			'_ts_gtin'                  => 'gtin',
+			'_ts_mpn'                   => 'mpn',
 			'_free_shipping'            => 'yes',
 			'_service'                  => 'yes',
 			'_used_good'                => 'yes',
@@ -146,6 +148,8 @@ class WC_GZD_Helper_Product {
 				'BG' => '3-4-days',
 				'AT' => '4-5-days'
 			),
+			'_ts_gtin'                  => 'child_gtin',
+			'_ts_mpn'                   => 'child_mpn',
 			'_is_food'      => 'yes',
 			'_deposit_type' => $deposit_type->slug,
 			'_deposit_quantity' => 5,

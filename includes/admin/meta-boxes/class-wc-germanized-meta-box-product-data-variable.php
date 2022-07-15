@@ -205,48 +205,82 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 				<a class="page-title-action" href="https://vendidero.de/dokumentation/woocommerce-germanized/preisauszeichnung"><?php esc_html_e( 'Help', 'woocommerce-germanized' ); ?></a>
 			</p>
 
-			<p class="form-row form-row-first">
-				<label><?php esc_html_e( 'Sale Label', 'woocommerce-germanized' ); ?></label>
-				<select name="variable_sale_price_label[<?php echo esc_attr( $loop ); ?>]">
-					<option value="" <?php selected( empty( $gzd_product->get_sale_price_label( 'edit' ) ), true ); ?>><?php esc_html_e( 'Same as Parent', 'woocommerce-germanized' ); ?></option>
-					<?php foreach ( WC_germanized()->price_labels->get_labels() as $key => $value ) : ?>
-						<option value="<?php echo esc_attr( $key ); ?>" <?php selected( $key === $gzd_product->get_sale_price_label( 'edit' ), true ); ?>><?php echo esc_html( $value ); ?></option>
-					<?php endforeach; ?>
-				</select>
-			</p>
+			<?php
+			woocommerce_wp_select(
+				array(
+					'wrapper_class' => 'form-row form-row-first',
+					'id'            => "variable_sale_price_label_{$loop}",
+					'name'          => "variable_sale_price_label[{$loop}]",
+					'label'         => __( 'Sale Label', 'woocommerce-germanized' ),
+					'value'         => $gzd_product->get_sale_price_label( 'edit' ),
+					'options'       => array( '' => __( 'Same as Parent', 'woocommerce-germanized' ) ) + WC_germanized()->price_labels->get_labels(),
+				)
+			);
 
-			<p class="form-row form-row-last">
-				<label><?php esc_html_e( 'Sale Regular Label', 'woocommerce-germanized' ); ?></label>
-				<select name="variable_sale_price_regular_label[<?php echo esc_attr( $loop ); ?>]">
-					<option value="" <?php selected( empty( $gzd_product->get_sale_price_regular_label( 'edit' ) ), true ); ?>><?php esc_html_e( 'Same as Parent', 'woocommerce-germanized' ); ?></option>
-					<?php foreach ( WC_germanized()->price_labels->get_labels() as $key => $value ) : ?>
-						<option value="<?php echo esc_attr( $key ); ?>" <?php selected( $key === $gzd_product->get_sale_price_regular_label( 'edit' ), true ); ?>><?php echo esc_html( $value ); ?></option>
-					<?php endforeach; ?>
-				</select>
-			</p>
+			woocommerce_wp_select(
+				array(
+					'wrapper_class' => 'form-row form-row-last',
+					'id'            => "variable_sale_price_regular_label_{$loop}",
+					'name'          => "variable_sale_price_regular_label[{$loop}]",
+					'label'         => __( 'Sale Regular Label', 'woocommerce-germanized' ),
+					'value'         => $gzd_product->get_sale_price_regular_label( 'edit' ),
+					'options'       => array( '' => __( 'Same as Parent', 'woocommerce-germanized' ) ) + WC_germanized()->price_labels->get_labels(),
+				)
+			);
+			?>
 		</div>
 
 		<div class="variable_pricing_unit">
-			<p class="form-row form-row-first">
-				<label for="variable_unit_product"><?php echo esc_html__( 'Product Units', 'woocommerce-germanized' ); ?><?php echo wc_help_tip( __( 'Number of units included per default product price. Example: 1000 ml. Leave blank to use parent value.', 'woocommerce-germanized' ) ); ?></label>
-				<input class="input-text wc_input_decimal" size="6" type="text" name="variable_unit_product[<?php echo esc_attr( $loop ); ?>]" value="<?php echo( ! empty( $gzd_product->get_unit_product( 'edit' ) ) ? esc_attr( wc_format_localized_decimal( $gzd_product->get_unit_product( 'edit' ) ) ) : '' ); ?>" placeholder="<?php echo esc_attr( wc_format_localized_decimal( $gzd_parent_product->get_unit_product( 'edit' ) ) ); ?>"/>
-			</p>
-			<p class="form-row form-row-last _unit_price_auto_field">
-				<label for="variable_unit_price_auto_<?php echo esc_attr( $loop ); ?>"><?php echo esc_html__( 'Calculation', 'woocommerce-germanized' ); ?></label>
-				<input class="input-text wc_input_price" id="variable_unit_price_auto_<?php echo esc_attr( $loop ); ?>" type="checkbox" name="variable_unit_price_auto[<?php echo esc_attr( $loop ); ?>]" value="yes" <?php checked( 'yes', $gzd_product->get_unit_price_auto( 'edit' ) ? 'yes' : 'no' ); ?> />
-				<span class="description">
-					<span class="wc-gzd-premium-desc"><?php echo esc_html__( 'Calculate unit prices automatically', 'woocommerce-germanized' ); ?></span>
-					<a href="https://vendidero.de/woocommerce-germanized#upgrade" target="_blank" class="wc-gzd-pro wc-gzd-pro-outlined">pro</a>
-				</span>
-			</p>
-			<p class="form-row form-row-first">
-				<label for="variable_unit_price_regular"><?php echo esc_html__( 'Regular Unit Price', 'woocommerce-germanized' ) . ' (' . esc_html( get_woocommerce_currency_symbol() ) . ')'; ?></label>
-				<input class="input-text wc_input_price" size="5" type="text" name="variable_unit_price_regular[<?php echo esc_attr( $loop ); ?>]" value="<?php echo( ! empty( $gzd_product->get_unit_price_regular( 'edit' ) ) ? esc_attr( wc_format_localized_price( $gzd_product->get_unit_price_regular( 'edit' ) ) ) : '' ); ?>" placeholder=""/>
-			</p>
-			<p class="form-row form-row-last">
-				<label for="variable_unit_price_sale"><?php echo esc_html__( 'Sale Unit Price', 'woocommerce-germanized' ) . ' (' . esc_html( get_woocommerce_currency_symbol() ) . ')'; ?></label>
-				<input class="input-text wc_input_price" size="5" type="text" name="variable_unit_price_sale[<?php echo esc_attr( $loop ); ?>]" value="<?php echo( ! empty( $gzd_product->get_unit_price_sale( 'edit' ) ) ? esc_attr( wc_format_localized_price( $gzd_product->get_unit_price_sale( 'edit' ) ) ) : '' ); ?>" placeholder=""/>
-			</p>
+			<?php
+			woocommerce_wp_text_input(
+				array(
+					'wrapper_class' => 'form-row form-row-first',
+					'id'            => "variable_unit_product_{$loop}",
+					'name'          => "variable_unit_product[{$loop}]",
+					'label'         => __( 'Product Units', 'woocommerce-germanized' ),
+					'data_type'     => 'decimal',
+					'value'         => $gzd_product->get_unit_product( 'edit' ),
+					'placeholder'   => wc_format_localized_decimal( $gzd_parent_product->get_unit_product( 'edit' ) ),
+					'desc_tip'      => true,
+					'description'   => __( 'Number of units included per default product price. Example: 1000 ml.', 'woocommerce-germanized' ),
+				)
+			);
+
+			woocommerce_wp_checkbox(
+				array(
+					'wrapper_class' => 'form-row form-row-last _unit_price_auto_field _variable_unit_price_auto_field',
+					'id'            => "variable_unit_price_auto_{$loop}",
+					'name'          => "variable_unit_price_auto[{$loop}]",
+					'label'         => __( 'Calculation', 'woocommerce-germanized' ),
+					'data_type'     => 'decimal',
+					'value'         => $gzd_product->get_unit_price_auto( 'edit' ) ? 'yes' : 'no',
+					'cbvalue'       => 'yes',
+					'description'   => '<span class="wc-gzd-premium-desc">' . esc_html__( 'Calculate unit prices automatically', 'woocommerce-germanized' ) . '</span><a href="https://vendidero.de/woocommerce-germanized#upgrade" target="_blank" class="wc-gzd-pro wc-gzd-pro-outlined">pro</a>',
+				)
+			);
+
+			woocommerce_wp_text_input(
+				array(
+					'wrapper_class' => 'form-row form-row-first',
+					'id'            => "variable_unit_price_regular_{$loop}",
+					'name'          => "variable_unit_price_regular[{$loop}]",
+					'value'         => $gzd_product->get_unit_price_regular( 'edit' ),
+					'label'         => __( 'Regular Unit Price', 'woocommerce-germanized' ) . ' (' . get_woocommerce_currency_symbol() . ')',
+					'data_type'     => 'price',
+				)
+			);
+
+			woocommerce_wp_text_input(
+				array(
+					'wrapper_class' => 'form-row form-row-last',
+					'id'            => "variable_unit_price_sale_{$loop}",
+					'name'          => "variable_unit_price_sale[{$loop}]",
+					'value'         => $gzd_product->get_unit_price_sale( 'edit' ),
+					'label'         => __( 'Sale Unit Price', 'woocommerce-germanized' ) . ' (' . get_woocommerce_currency_symbol() . ')',
+					'data_type'     => 'price',
+				)
+			);
+			?>
 			<p class="form-row form-row-first wc-gzd-unit-price-disabled-notice notice notice-warning">
 				<?php printf( esc_html__( 'To enable unit prices on variation level please choose a unit and unit price units within %s.', 'woocommerce-germanized' ), '<a href="#general_product_data" class="wc-gzd-general-product-data-tab">' . esc_html__( 'general product data', 'woocommerce-germanized' ) . '</a>' ); ?>
 			</p>
@@ -263,8 +297,8 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 				<?php
 				WC_Germanized_Meta_Box_Product_Data::output_delivery_time_select2(
 					array(
-						'name'        => 'variable_delivery_time[' . $loop . ']',
-						'id'          => 'variable_delivery_time_' . $loop,
+						'name'        => "variable_delivery_time[{$loop}]",
+						'id'          => "variable_delivery_time_{$loop}",
 						'placeholder' => __( 'Same as parent', 'woocommerce-germanized' ),
 						'term'        => $delivery_time,
 						'style'       => 'width: 100%',
@@ -286,7 +320,7 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 								'name'        => "variable_country_specific_delivery_times[{$loop}][{$country}]",
 								'placeholder' => __( 'Same as parent', 'woocommerce-germanized' ),
 								'term'        => $delivery_times[ $term_slug ],
-								'id'          => "variable_country_specific_delivery_times{$loop}-" . esc_attr( $country ),
+								'id'          => "variable_country_specific_delivery_times{$loop}-{$country}",
 								'style'       => 'width: 100%',
 							)
 						);
@@ -336,39 +370,80 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 			<?php endif; ?>
 		</div>
 
-		<div class="variable_min_age">
-			<p class="form-row form-row-full">
-				<label><?php esc_html_e( 'Minimum Age', 'woocommerce-germanized' ); ?></label>
-				<select name="variable_min_age[<?php echo esc_attr( $loop ); ?>]">
-					<option value="" <?php selected( $gzd_product->get_min_age( 'edit' ) === '', true ); ?>><?php esc_html_e( 'Same as Parent', 'woocommerce-germanized' ); ?></option>
-					<?php foreach ( wc_gzd_get_age_verification_min_ages_select() as $key => $value ) : ?>
-						<option value="<?php echo esc_attr( $key ); ?>" <?php selected( $key === (int) $gzd_product->get_min_age( 'edit' ), true ); ?>><?php echo esc_html( $value ); ?></option>
-					<?php endforeach; ?>
-				</select>
+		<div class="variable_additional_fields">
+			<p class="wc-gzd-product-settings-subtitle">
+				<?php esc_html_e( 'Additional Fields', 'woocommerce-germanized' ); ?>
 			</p>
-		</div>
 
-		<div class="variable_warranty_attachment">
-			<p class="form-row form-row-full wc-gzd-warranty-upload-wrapper">
-				<label><?php esc_html_e( 'Warranty (PDF)', 'woocommerce-germanized' ); ?></label>
-				<a href="#" class="button upload_warranty_button" data-default-label="<?php echo esc_html__( 'Same as parent', 'woocommerce-germanized' ); ?>" data-choose="<?php esc_attr_e( 'Choose file', 'woocommerce-germanized' ); ?>" data-update="<?php esc_attr_e( 'Select warranty file', 'woocommerce-germanized' ); ?>"><?php echo ( $gzd_product->has_warranty( 'edit' ) ? esc_html( $gzd_product->get_warranty_filename() ) : esc_html__( 'Same as parent', 'woocommerce-germanized' ) ); ?></a>
-				<input type="hidden" name="variable_warranty_attachment_id[<?php echo esc_attr( $loop ); ?>]" value="<?php echo ( $gzd_product->has_warranty( 'edit' ) ? esc_html( $gzd_product->get_warranty_attachment_id( 'edit' ) ) : '' ); ?>" class="wc-gzd-warranty-attachment" />
-				<a href="#" class="wc-gzd-warranty-delete <?php echo ( ! $gzd_product->has_warranty( 'edit' ) ? 'file-missing' : '' ); ?>"><?php esc_html_e( 'Delete', 'woocommerce-germanized' ); ?></a>
-			</p>
-		</div>
+			<div class="variable_min_age">
+				<?php
+				woocommerce_wp_select(
+					array(
+						'wrapper_class' => 'form-row form-row-full',
+						'id'            => "variable_min_age_{$loop}",
+						'name'          => "variable_min_age[{$loop}]",
+						'label'         => __( 'Minimum Age', 'woocommerce-germanized' ),
+						'value'         => $gzd_product->get_min_age( 'edit' ),
+						'desc_tip'      => true,
+						'description'   => __( 'Adds an age verification checkbox while purchasing this product.', 'woocommerce-germanized' ),
+						'options'       => array( '' => __( 'Same as Parent', 'woocommerce-germanized' ) ) + wc_gzd_get_age_verification_min_ages_select(),
+					)
+				);
+				?>
+			</div>
 
-		<div class="variable_cart_mini_desc">
-			<p class="form-row form-row-full">
-				<label for="variable_mini_desc_<?php echo esc_attr( $loop ); ?>"><?php echo esc_html__( 'Optional Mini Description', 'woocommerce-germanized' ); ?></label>
-				<textarea rows="3" style="width: 100%" name="variable_mini_desc[<?php echo esc_attr( $loop ); ?>]" id="variable_mini_desc_<?php echo esc_attr( $loop ); ?>" class="variable_mini_desc"><?php echo esc_textarea( htmlspecialchars_decode( $gzd_product->get_mini_desc( 'edit' ) ) ); ?></textarea>
-			</p>
-		</div>
+			<?php
+			woocommerce_wp_text_input(
+				array(
+					'wrapper_class' => 'form-row form-row-first',
+					'id'            => "variable_gtin_{$loop}",
+					'name'          => "variable_gtin[{$loop}]",
+					'label'         => __( 'GTIN', 'woocommerce-germanized' ),
+					'data_type'     => 'text',
+					'placeholder'   => $gzd_parent_product->get_gtin( 'edit' ),
+					'value'         => $gzd_product->get_gtin( 'edit' ),
+					'desc_tip'      => true,
+					'description'   => __( 'Your product\'s Global Trade Item Number that allows your products to be identified worldwide.', 'woocommerce-germanized' ),
+				)
+			);
 
-		<div class="variable_cart_defect_description show_if_variation_defective_copy">
-			<p class="form-row form-row-full">
-				<label for="variable_defect_description_<?php echo esc_attr( $loop ); ?>"><?php echo esc_html__( 'Defect Description', 'woocommerce-germanized' ); ?> <?php echo wc_help_tip( __( 'Inform your customers about product defects. This description will be shown on top of your product description and during cart/checkout.', 'woocommerce-germanized' ) ); ?></label>
-				<textarea rows="3" style="width: 100%" name="variable_defect_description[<?php echo esc_attr( $loop ); ?>]" id="variable_defect_description_<?php echo esc_attr( $loop ); ?>" class="variable_defect_description"><?php echo esc_textarea( htmlspecialchars_decode( $gzd_product->get_defect_description( 'edit' ) ) ); ?></textarea>
-			</p>
+			woocommerce_wp_text_input(
+				array(
+					'wrapper_class' => 'form-row form-row-last',
+					'id'            => "variable_mpn_{$loop}",
+					'name'          => "variable_mpn[{$loop}]",
+					'label'         => __( 'MPN', 'woocommerce-germanized' ),
+					'data_type'     => 'text',
+					'placeholder'   => $gzd_parent_product->get_mpn( 'edit' ),
+					'value'         => $gzd_product->get_mpn( 'edit' ),
+					'desc_tip'      => true,
+					'description'   => __( 'Your product\'s Manufacturer Part Number.', 'woocommerce-germanized' ),
+				)
+			);
+			?>
+
+			<div class="variable_warranty_attachment">
+				<p class="form-row form-row-full wc-gzd-warranty-upload-wrapper">
+					<label><?php esc_html_e( 'Warranty (PDF)', 'woocommerce-germanized' ); ?></label>
+					<a href="#" class="button upload_warranty_button" data-default-label="<?php echo esc_html__( 'Same as parent', 'woocommerce-germanized' ); ?>" data-choose="<?php esc_attr_e( 'Choose file', 'woocommerce-germanized' ); ?>" data-update="<?php esc_attr_e( 'Select warranty file', 'woocommerce-germanized' ); ?>"><?php echo ( $gzd_product->has_warranty( 'edit' ) ? esc_html( $gzd_product->get_warranty_filename() ) : esc_html__( 'Same as parent', 'woocommerce-germanized' ) ); ?></a>
+					<input type="hidden" name="variable_warranty_attachment_id[<?php echo esc_attr( $loop ); ?>]" value="<?php echo ( $gzd_product->has_warranty( 'edit' ) ? esc_html( $gzd_product->get_warranty_attachment_id( 'edit' ) ) : '' ); ?>" class="wc-gzd-warranty-attachment" />
+					<a href="#" class="wc-gzd-warranty-delete <?php echo ( ! $gzd_product->has_warranty( 'edit' ) ? 'file-missing' : '' ); ?>"><?php esc_html_e( 'Delete', 'woocommerce-germanized' ); ?></a>
+				</p>
+			</div>
+
+			<div class="variable_cart_mini_desc">
+				<p class="form-row form-row-full">
+					<label for="variable_mini_desc_<?php echo esc_attr( $loop ); ?>"><?php echo esc_html__( 'Optional Mini Description', 'woocommerce-germanized' ); ?></label>
+					<textarea rows="3" style="width: 100%" name="variable_mini_desc[<?php echo esc_attr( $loop ); ?>]" id="variable_mini_desc_<?php echo esc_attr( $loop ); ?>" class="variable_mini_desc"><?php echo esc_textarea( htmlspecialchars_decode( $gzd_product->get_mini_desc( 'edit' ) ) ); ?></textarea>
+				</p>
+			</div>
+
+			<div class="variable_cart_defect_description show_if_variation_defective_copy">
+				<p class="form-row form-row-full">
+					<label for="variable_defect_description_<?php echo esc_attr( $loop ); ?>"><?php echo esc_html__( 'Defect Description', 'woocommerce-germanized' ); ?> <?php echo wc_help_tip( __( 'Inform your customers about product defects. This description will be shown on top of your product description and during cart/checkout.', 'woocommerce-germanized' ) ); ?></label>
+					<textarea rows="3" style="width: 100%" name="variable_defect_description[<?php echo esc_attr( $loop ); ?>]" id="variable_defect_description_<?php echo esc_attr( $loop ); ?>" class="variable_defect_description"><?php echo esc_textarea( htmlspecialchars_decode( $gzd_product->get_defect_description( 'edit' ) ) ); ?></textarea>
+				</p>
+			</div>
 		</div>
 
 		<div class="variable_food show_if_is_food">
@@ -442,6 +517,8 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 			'new_country_specific_delivery_times_countries' => '',
 			'new_country_specific_delivery_times_terms' => '',
 			'_min_age'                                  => '',
+			'_gtin'                                     => '',
+			'_mpn'                                      => '',
 			'_warranty_attachment_id'                   => '',
 			'_nutrient_ids'                             => '',
 			'_nutrient_reference_value'                 => '',

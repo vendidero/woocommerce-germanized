@@ -49,6 +49,10 @@ class WC_GZD_Products_API extends WC_GZD_REST_Unit_Test_Case {
 		$this->assertEquals( '90.0', $product['unit_price']['price_sale'] );
 		$this->assertEquals( 'This is a test', trim( strip_tags( $product['mini_desc'] ) ) );
 		$this->assertEquals( 'This is a defect desc', trim( strip_tags( $product['defect_description'] ) ) );
+
+		$this->assertEquals( 'gtin', $product['gtin'] );
+		$this->assertEquals( 'mpn', $product['mpn'] );
+
 		$this->assertEquals( true, $product['service'] );
 		$this->assertEquals( true, $product['used_good'] );
 		$this->assertEquals( true, $product['defective_copy'] );
@@ -102,6 +106,8 @@ class WC_GZD_Products_API extends WC_GZD_REST_Unit_Test_Case {
 				'regular_price'            => '10',
 				'sale_price'               => '5',
 				'shipping_class'           => 'test',
+				'gtin'                     => 'test_gtin',
+				'mpn'                      => 'test_mpn',
 				'delivery_time'            => array( 'id' => $term['term_id'] ),
 				'country_specific_delivery_times' => array(
 					array(
@@ -151,6 +157,9 @@ class WC_GZD_Products_API extends WC_GZD_REST_Unit_Test_Case {
 		$this->assertEquals( 'test-sale', $data['sale_price_regular_label']['slug'] );
 		$this->assertEquals( '80.0', $data['unit_price']['price_regular'] );
 		$this->assertEquals( '70.0', $data['unit_price']['price_sale'] );
+
+		$this->assertEquals( 'test_gtin', $data['gtin'] );
+		$this->assertEquals( 'test_mpn', $data['mpn'] );
 
 		$this->assertEquals( true, $data['is_food'] );
 		$this->assertEquals( 'can', $data['food']['deposit_type']['slug'] );
@@ -211,6 +220,8 @@ class WC_GZD_Products_API extends WC_GZD_REST_Unit_Test_Case {
 				'unit_price'               => array( 'price_regular' => '80.0', 'price_sale' => '70.0' ),
 				'mini_desc'                => 'This is a test',
 				'defect_description'       => 'This is a defect desc',
+				'gtin'                     => 'test_child_gtin',
+				'mpn'                      => 'test_child_mpn',
 				'sale_price_label'         => array( 'id' => $sale_term['term_id'] ),
 				'sale_price_regular_label' => array( 'id' => $sale_term['term_id'] ),
 				'differential_taxation'    => false,
@@ -242,6 +253,9 @@ class WC_GZD_Products_API extends WC_GZD_REST_Unit_Test_Case {
 		$this->assertEquals( 'test-sale', $variation['sale_price_regular_label']['slug'] );
 		$this->assertEquals( '80.0', $variation['unit_price']['price_regular'] );
 		$this->assertEquals( '70.0', $variation['unit_price']['price_sale'] );
+
+		$this->assertEquals( 'test_child_gtin', $variation['gtin'] );
+		$this->assertEquals( 'test_child_mpn', $variation['mpn'] );
 
 		$this->assertEquals( true, $variation['is_food'] );
 		$this->assertEquals( array(
@@ -288,6 +302,7 @@ class WC_GZD_Products_API extends WC_GZD_REST_Unit_Test_Case {
 			'unit_price'            => array( 'price_regular' => '80.0', 'price_sale' => '70.0' ),
 			'differential_taxation' => false,
 			'is_food'               => false,
+			'gtin'                  => 'new_gtin',
 			'food'                  => array(
 				'ingredients'      => 'testing it',
 				'deposit_quantity' => 7,
@@ -310,6 +325,8 @@ class WC_GZD_Products_API extends WC_GZD_REST_Unit_Test_Case {
 
 		$this->assertEquals( '80.0', $product['unit_price']['price_regular'] );
 		$this->assertEquals( '70.0', $product['unit_price']['price_sale'] );
+
+		$this->assertEquals( 'new_gtin', $product['gtin'] );
 
 		$this->assertEquals( 'new-price', $product['sale_price_label']['slug'] );
 		$this->assertEquals( 'old-price', $product['sale_price_regular_label']['slug'] );

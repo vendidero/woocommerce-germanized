@@ -63,7 +63,7 @@ if ( ! class_exists( 'WC_GZD_Admin_Setup_Wizard' ) ) :
 					'view'    => 'germanize.php',
 					'handler' => array( $this, 'wc_gzd_setup_germanize_save' ),
 					'errors'  => array(
-                        'oss_install' => current_user_can( 'install_plugins' ) ? sprintf( __( 'There was an error while automatically installing %1$s. %2$s', 'woocommerce-germanized' ), esc_html__( 'One Stop Shop', 'woocommerce-germanized' ), \Vendidero\Germanized\PluginsHelper::get_plugin_manual_install_message( 'one-stop-shop-woocommerce' ) ) : '',
+						'oss_install' => current_user_can( 'install_plugins' ) ? sprintf( __( 'There was an error while automatically installing %1$s. %2$s', 'woocommerce-germanized' ), esc_html__( 'One Stop Shop', 'woocommerce-germanized' ), \Vendidero\Germanized\PluginsHelper::get_plugin_manual_install_message( 'one-stop-shop-woocommerce' ) ) : '',
 					),
 					'order'   => 1,
 				),
@@ -92,20 +92,20 @@ if ( ! class_exists( 'WC_GZD_Admin_Setup_Wizard' ) ) :
 			);
 
 			if ( class_exists( 'WC_GZD_Secret_Box_Helper' ) ) {
-                if ( ! WC_GZD_Secret_Box_Helper::has_valid_encryption_key() ) {
-                    $new_key = WC_GZD_Secret_Box_Helper::get_random_encryption_key();
+				if ( ! WC_GZD_Secret_Box_Helper::has_valid_encryption_key() ) {
+					$new_key = WC_GZD_Secret_Box_Helper::get_random_encryption_key();
 
-                    if ( ! is_wp_error( $new_key ) ) {
-                        $default_steps['encrypt'] = array(
-                            'name'        => __( 'Encryption', 'woocommerce-germanized' ),
-                            'view'        => 'encrypt.php',
-                            'handler'     => array( $this, 'wc_gzd_setup_encrypt_save' ),
-                            'order'       => 3,
-                            'errors'      => array(),
-                            'button_next' => ( ! WC_GZD_Secret_Box_Helper::has_valid_encryption_key() && WC_GZD_Secret_Box_Helper::supports_auto_insert() ) ? esc_attr__( 'Insert key', 'woocommerce-germanized' ) : esc_attr__( 'Continue', 'woocommerce-germanized' ),
-                        );
-                    }
-                }
+					if ( ! is_wp_error( $new_key ) ) {
+						$default_steps['encrypt'] = array(
+							'name'        => __( 'Encryption', 'woocommerce-germanized' ),
+							'view'        => 'encrypt.php',
+							'handler'     => array( $this, 'wc_gzd_setup_encrypt_save' ),
+							'order'       => 3,
+							'errors'      => array(),
+							'button_next' => ( ! WC_GZD_Secret_Box_Helper::has_valid_encryption_key() && WC_GZD_Secret_Box_Helper::supports_auto_insert() ) ? esc_attr__( 'Insert key', 'woocommerce-germanized' ) : esc_attr__( 'Continue', 'woocommerce-germanized' ),
+						);
+					}
+				}
 			}
 
 			$this->steps = $default_steps;
@@ -167,12 +167,12 @@ if ( ! class_exists( 'WC_GZD_Admin_Setup_Wizard' ) ) :
 						'default' => 'no',
 						'type'    => 'gzd_toggle',
 					),
-                    array(
-						'title'   => _x( 'OSS observer', 'install', 'woocommerce-germanized' ),
-						'desc'    => __( 'Observe the OSS delivery threshold of the current year.', 'woocommerce-germanized' ) . ( ! \Vendidero\Germanized\PluginsHelper::is_oss_plugin_active() ? '<div class="wc-gzd-additional-desc">' . __( 'Get notified automatically when you are close to reaching the delivery threshold.', 'woocommerce-germanized' ) . ' ' . __( 'Activating this option will automatically install the <a href="https://wordpress.org/plugins/one-stop-shop-woocommerce/" target="_blank">One Stop Shop Plugin</a> developed by us.', 'woocommerce-germanized' ) . '</div>' : '' ),
-						'id'      => 'oss_enable_auto_observation',
-						'default' => 'no',
-						'type'    => 'gzd_toggle',
+					array(
+						'title'             => _x( 'OSS observer', 'install', 'woocommerce-germanized' ),
+						'desc'              => __( 'Observe the OSS delivery threshold of the current year.', 'woocommerce-germanized' ) . ( ! \Vendidero\Germanized\PluginsHelper::is_oss_plugin_active() ? '<div class="wc-gzd-additional-desc">' . __( 'Get notified automatically when you are close to reaching the delivery threshold.', 'woocommerce-germanized' ) . ' ' . __( 'Activating this option will automatically install the <a href="https://wordpress.org/plugins/one-stop-shop-woocommerce/" target="_blank">One Stop Shop Plugin</a> developed by us.', 'woocommerce-germanized' ) . '</div>' : '' ),
+						'id'                => 'oss_enable_auto_observation',
+						'default'           => 'no',
+						'type'              => 'gzd_toggle',
 						'custom_attributes' => array(
 							'data-show_if_oss_use_oss_procedure' => 'no',
 						),
@@ -529,25 +529,25 @@ if ( ! class_exists( 'WC_GZD_Admin_Setup_Wizard' ) ) :
 			$redirect    = $this->get_step_url( $this->get_next_step() );
 			$current_url = $this->get_step_url( $this->step );
 
-            $enable_oss          = isset( $_POST['oss_use_oss_procedure'] ) && ! empty( $_POST['oss_use_oss_procedure'] ); // phpcs:ignore WordPress.Security.NonceVerification.Missing
-            $enable_oss_observer = isset( $_POST['oss_enable_auto_observation'] ) && ! empty( $_POST['oss_enable_auto_observation'] ); // phpcs:ignore WordPress.Security.NonceVerification.Missing
+			$enable_oss          = isset( $_POST['oss_use_oss_procedure'] ) && ! empty( $_POST['oss_use_oss_procedure'] ); // phpcs:ignore WordPress.Security.NonceVerification.Missing
+			$enable_oss_observer = isset( $_POST['oss_enable_auto_observation'] ) && ! empty( $_POST['oss_enable_auto_observation'] ); // phpcs:ignore WordPress.Security.NonceVerification.Missing
 
-            if ( ! \Vendidero\Germanized\PluginsHelper::is_oss_plugin_active() && current_user_can( 'install_plugins' ) ) {
-                if ( $enable_oss || $enable_oss_observer ) {
-				    $result = \Vendidero\Germanized\PluginsHelper::install_or_activate_oss();
+			if ( ! \Vendidero\Germanized\PluginsHelper::is_oss_plugin_active() && current_user_can( 'install_plugins' ) ) {
+				if ( $enable_oss || $enable_oss_observer ) {
+					$result = \Vendidero\Germanized\PluginsHelper::install_or_activate_oss();
 
-                    if ( ! \Vendidero\Germanized\PluginsHelper::is_oss_plugin_active() ) {
-                        wp_safe_redirect( esc_url_raw( add_query_arg( array( 'error' => 'oss_install' ), $current_url ) ) );
-			            exit();
-                    }
-			    }
-            }
+					if ( ! \Vendidero\Germanized\PluginsHelper::is_oss_plugin_active() ) {
+						wp_safe_redirect( esc_url_raw( add_query_arg( array( 'error' => 'oss_install' ), $current_url ) ) );
+						exit();
+					}
+				}
+			}
 
 			if ( $enable_oss ) {
 				update_option( 'oss_use_oss_procedure', 'yes' );
 			}
 
-            if ( $enable_oss_observer ) {
+			if ( $enable_oss_observer ) {
 				update_option( 'oss_enable_auto_observation', 'yes' );
 			}
 

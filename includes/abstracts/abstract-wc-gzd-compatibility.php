@@ -81,8 +81,7 @@ abstract class WC_GZD_Compatibility {
 	public static function is_supported() {
 		$version_data = static::get_version_data();
 
-		return \Vendidero\Germanized\PluginsHelper::compare_versions( $version_data['version'], $version_data['requires_at_least'], '>=' ) &&
-		       \Vendidero\Germanized\PluginsHelper::compare_versions( $version_data['version'], $version_data['tested_up_to'], '<=' );
+		return \Vendidero\Germanized\PluginsHelper::compare_versions( $version_data['version'], $version_data['requires_at_least'], '>=' ) && \Vendidero\Germanized\PluginsHelper::compare_versions( $version_data['version'], $version_data['tested_up_to'], '<=' );
 	}
 
 	abstract public static function get_name();

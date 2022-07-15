@@ -99,6 +99,14 @@ class WC_GZD_Product {
 		return $this->get_prop( 'warranty_attachment_id', $context );
 	}
 
+	public function get_gtin( $context = 'view' ) {
+		return $this->get_prop( 'ts_gtin', $context );
+	}
+
+	public function get_mpn( $context = 'view' ) {
+		return $this->get_prop( 'ts_mpn', $context );
+	}
+
 	public function get_nutrient_ids( $context = 'view' ) {
 		$nutrients = $this->get_prop( 'nutrient_ids', $context );
 
@@ -633,6 +641,14 @@ class WC_GZD_Product {
 	public function set_warranty_attachment_id( $id ) {
 		$this->set_prop( 'warranty_attachment_id', ! empty( $id ) ? absint( $id ) : '' );
 		$this->warranty_attachment = false;
+	}
+
+	public function set_gtin( $gtin ) {
+		$this->set_prop( 'ts_gtin', $gtin );
+	}
+
+	public function set_mpn( $mpn ) {
+		$this->set_prop( 'ts_mpn', $mpn );
 	}
 
 	public function set_nutrient_ids( $ids ) {

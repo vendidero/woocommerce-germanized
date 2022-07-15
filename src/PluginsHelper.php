@@ -251,6 +251,7 @@ class PluginsHelper {
 			return '';
 		}
 
+		$plugin_name = self::get_plugin_name( $plugin );
 		$install_url = wp_nonce_url(
 			add_query_arg(
 				array(
@@ -276,7 +277,7 @@ class PluginsHelper {
 			);
 		}
 
-		return self::is_plugin_installed( $plugin ) ? sprintf( __( 'Please <a href="%s">activate</a> the plugin.', 'woocommerce-germanized' ), esc_url( $install_url ) ) : sprintf( __( 'Please <a href="%s">install</a> the plugin.', 'woocommerce-germanized' ), esc_url( $install_url ) );
+		return self::is_plugin_installed( $plugin ) ? sprintf( __( 'Please <a href="%1$s">activate %2$s &raquo;</a>', 'woocommerce-germanized' ), esc_url( $install_url ), $plugin_name ) : sprintf( __( 'Please <a href="%1$s">install %2$s &raquo;</a>', 'woocommerce-germanized' ), esc_url( $install_url ), $plugin_name );
 	}
 
 	/**
@@ -378,8 +379,9 @@ class PluginsHelper {
 
 	protected static function get_whitelisted_plugins() {
 		return array(
+			'woocommerce'               => __( 'WooCommerce', 'woocommerce-germanized' ),
 			'one-stop-shop-woocommerce' => __( 'One Stop Shop', 'woocommerce-germanized' ),
-			'woocommerce-trusted-shops' => __( 'Trusted Shops', 'woocommerce-germanized' )
+			'woocommerce-trusted-shops' => __( 'Trusted Shops', 'woocommerce-germanized' ),
 		);
 	}
 

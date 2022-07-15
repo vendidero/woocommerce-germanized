@@ -16,7 +16,8 @@
     "globalcitizen/php-iban": "^4.0.0",
     "vendidero/woocommerce-germanized-dhl": "1.7.2",
     "vendidero/woocommerce-germanized-shipments": "1.7.0",
-    "vendidero/woocommerce-eu-tax-helper": "1.0.2"
+    "vendidero/woocommerce-eu-tax-helper": "1.0.2",
+    "vendidero/woocommerce-trusted-shops": "4.0.15"
   },
   "require-dev": {
     "myclabs/deep-copy": "^1.7.0",
@@ -25,6 +26,10 @@
     "woocommerce/woocommerce-sniffs": "^0.1.3"
   },
   "repositories": [
+    {
+      "type": "vcs",
+      "url":  "https://github.com/vendidero/woocommerce-trusted-shops"
+    },
     {
       "type": "vcs",
       "url":  "https://github.com/vendidero/woocommerce-germanized-dhl"
@@ -79,6 +84,7 @@
   },
   "extra": {
     "installer-paths": {
+      "packages/woocommerce-trusted-shops": ["vendidero/woocommerce-trusted-shops"],
       "packages/woocommerce-germanized-dhl": ["vendidero/woocommerce-germanized-dhl"],
       "packages/woocommerce-germanized-shipments": ["vendidero/woocommerce-germanized-shipments"],
       "packages/woocommerce-eu-tax-helper": ["vendidero/woocommerce-eu-tax-helper"]
