@@ -38,7 +38,7 @@
         ).each( function() {
             var $tr = $( this );
 
-            if ( $tr.find( '.woocommerce-product-attributes-item__value' ).is( ':empty' ) ) {
+            if ( $tr.find( '.woocommerce-product-attributes-item__value' ).is( ':empty' ) || $tr.find( '.woocommerce-product-attributes-item__value .wc-gzd-additional-info-placeholder' ).is( ':empty' ) ) {
                 $tr.addClass( 'wc-gzd-additional-info-placeholder' );
             }
         } );
