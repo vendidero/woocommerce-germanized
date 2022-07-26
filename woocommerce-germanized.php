@@ -649,6 +649,7 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 					'addify-role-based-pricing'       => 'WC_GZD_Compatibility_Addify_Role_Based_Pricing',
 					'customer-specific-pricing-for-woocommerce' => 'WC_GZD_Compatibility_Customer_Specific_Pricing_For_WooCommerce',
 					'woocommerce-measurement-price-calculator' => 'WC_GZD_Compatibility_WooCommerce_Measurement_Price_Calculator',
+					'legal-texts-connector-it-recht-kanzlei' => 'WC_GZD_Compatibility_Legal_Texts_Connector_IT_Recht_Kanzlei',
 				)
 			);
 
