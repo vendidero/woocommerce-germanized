@@ -339,7 +339,7 @@ class WC_GZD_REST_Products_Controller {
 				'nutrient_reference_value' => array(
 					'description' => __( 'Nutrient reference value', 'woocommerce-germanized' ),
 					'type'        => 'string',
-					'enum'        => array( '' ) + array_keys( WC_GZD_Food_Helper::get_nutrient_reference_values() ),
+					'enum'        => array_merge( array( '' ), array_keys( WC_GZD_Food_Helper::get_nutrient_reference_values() ) ),
 					'context'     => array( 'view', 'edit' ),
 					'arg_options' => array(
 						'sanitize_callback' => 'sanitize_title',
@@ -348,7 +348,7 @@ class WC_GZD_REST_Products_Controller {
 				'nutri_score'              => array(
 					'description' => __( 'Nutri-Score', 'woocommerce-germanized' ),
 					'type'        => 'string',
-					'enum'        => array( '' ) + array_keys( WC_GZD_Food_Helper::get_nutri_score_values() ),
+					'enum'        => array_merge( array( '' ), array_keys( WC_GZD_Food_Helper::get_nutri_score_values() ) ),
 					'context'     => array( 'view', 'edit' ),
 					'arg_options' => array(
 						'sanitize_callback' => 'sanitize_title',
@@ -400,6 +400,11 @@ class WC_GZD_REST_Products_Controller {
 					'items'       => array(
 						'type'       => 'object',
 						'properties' => array(
+							'term'      => array(
+								'description' => __( 'Nutrient term (slug or term_id)', 'woocommerce-germanized' ),
+								'type'        => array( 'string', 'number' ),
+								'context'     => array( 'view', 'edit' ),
+							),
 							'value'     => array(
 								'description' => __( 'Nutrient value', 'woocommerce-germanized' ),
 								'type'        => 'number',
@@ -823,7 +828,41 @@ class WC_GZD_REST_Products_Controller {
 			}
 
 			if ( isset( $food_data['nutrient_ids'] ) ) {
-				$data['_nutrient_ids'] = wc_clean( $food_data['nutrient_ids'] );
+				$nutrient_ids = array();
+				$raw_data     = wc_clean( $food_data['nutrient_ids'] );
+
+				/**
+				 * Parse nutrients
+				 */
+				foreach ( $raw_data as $nutrient_data ) {
+					$nutrient_data = wp_parse_args(
+						$nutrient_data,
+						array(
+							'term'      => '',
+							'value'     => '',
+							'ref_value' => '',
+						)
+					);
+
+					if ( empty( $nutrient_data['term'] ) ) {
+						continue;
+					} elseif ( ! is_numeric( $nutrient_data['term'] ) ) {
+						$term = WC_germanized()->nutrients->get_nutrient_term( $nutrient_data['term'] );
+
+						if ( ! $term ) {
+							continue;
+						} else {
+							$nutrient_data['term'] = $term->term_id;
+						}
+					}
+
+					$nutrient_ids[ $nutrient_data['term'] ] = array(
+						'value'     => $nutrient_data['value'],
+						'ref_value' => $nutrient_data['ref_value'],
+					);
+				}
+
+				$data['_nutrient_ids'] = $nutrient_ids;
 			}
 
 			if ( isset( $food_data['allergen_ids'] ) ) {
@@ -982,7 +1021,7 @@ class WC_GZD_REST_Products_Controller {
 			'nutri_score'              => $gzd_product->get_nutri_score( $context ),
 			'alcohol_content'          => $gzd_product->get_alcohol_content( $context ),
 			'allergen_ids'             => $gzd_product->get_allergen_ids( $context ),
-			'nutrient_ids'             => $gzd_product->get_nutrient_ids( $context ),
+			'nutrient_ids'             => $this->prepare_nutrients( $gzd_product->get_nutrient_ids( $context ) ),
 			'net_filling_quantity'     => $gzd_product->get_net_filling_quantity( $context ),
 			'drained_weight'           => $gzd_product->get_drained_weight( $context ),
 			'description'              => $gzd_product->get_formatted_food_description( $context ),
@@ -991,6 +1030,28 @@ class WC_GZD_REST_Products_Controller {
 		);
 
 		return $data;
+	}
+
+	protected function prepare_nutrients( $nutrient_ids ) {
+		$obj_nutrient_ids = array();
+
+		foreach ( $nutrient_ids as $term_id => $nutrient ) {
+			$nutrient = wp_parse_args(
+				$nutrient,
+				array(
+					'value'     => '',
+					'ref_value' => '',
+				)
+			);
+
+			$obj_nutrient_ids[] = array(
+				'term'      => $term_id,
+				'value'     => $nutrient['value'],
+				'ref_value' => $nutrient['ref_value'],
+			);
+		}
+
+		return $obj_nutrient_ids;
 	}
 
 	private function prepare_term( $term ) {

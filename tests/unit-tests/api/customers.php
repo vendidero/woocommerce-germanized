@@ -30,8 +30,8 @@ class WC_GZD_Customers_API extends WC_GZD_REST_Unit_Test_Case {
 
 		$this->assertEquals( 200, $response->get_status() );
 
-		$this->assertEquals( 1, $customer['billing']['title'] );
-		$this->assertEquals( 1, $customer['shipping']['title'] );
+		$this->assertEquals( '1', $customer['billing']['title'] );
+		$this->assertEquals( '1', $customer['shipping']['title'] );
 
 		$this->assertEquals( 'Mr.', $customer['billing']['title_formatted'] );
 		$this->assertEquals( 'Mr.', $customer['shipping']['title_formatted'] );
@@ -59,8 +59,8 @@ class WC_GZD_Customers_API extends WC_GZD_REST_Unit_Test_Case {
 		$request = new WP_REST_Request( 'PUT', '/wc/v3/customers/' . $simple->get_id() );
 		$request->set_body_params( array(
 			'direct_debit' => array( 'holder' => 'John Doe', 'iban' => 'AT242424', 'bic' => 'A424242' ),
-			'billing'      => array( 'title' => 2 ),
-			'shipping'     => array( 'title' => 2 ),
+			'billing'      => array( 'title' => '2' ),
+			'shipping'     => array( 'title' => '2' ),
 		) );
 
 		$response = $this->server->dispatch( $request );
@@ -70,8 +70,8 @@ class WC_GZD_Customers_API extends WC_GZD_REST_Unit_Test_Case {
 		$response = $this->server->dispatch( new WP_REST_Request( 'GET', '/wc/v3/customers/' . $simple->get_id() ) );
 		$customer = $response->get_data();
 
-		$this->assertEquals( 2, $customer['billing']['title'] );
-		$this->assertEquals( 2, $customer['shipping']['title'] );
+		$this->assertEquals( '2', $customer['billing']['title'] );
+		$this->assertEquals( '2', $customer['shipping']['title'] );
 
 		$this->assertEquals( 'Ms.', $customer['billing']['title_formatted'] );
 		$this->assertEquals( 'Ms.', $customer['shipping']['title_formatted'] );

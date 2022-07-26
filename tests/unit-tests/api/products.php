@@ -75,9 +75,10 @@ class WC_GZD_Products_API extends WC_GZD_REST_Unit_Test_Case {
 		$this->assertEquals( 15.1, $product['food']['alcohol_content'] );
 		$this->assertEquals( 'b', $product['food']['nutri_score'] );
 		$this->assertEquals( array(
-			$nutrient->term_id => array(
-				'value' => 20.31,
-				'ref_value' => 22.1,
+			array(
+				'term' => $nutrient->term_id,
+				'value' => '20.31',
+				'ref_value' => '22.1',
 			)
 		), $product['food']['nutrient_ids'] );
 
@@ -130,16 +131,18 @@ class WC_GZD_Products_API extends WC_GZD_REST_Unit_Test_Case {
 					'deposit_type' => array( 'slug' => 'can' ),
 					'deposit_quantity' => 3,
 					'nutri_score'  => 'a',
-					'net_filling_quantity' => 3.2,
-					'drained_weight' => 5.4,
-					'alcohol_content' => 1.4,
+					'net_filling_quantity' => '3.2',
+					'drained_weight' => '5.4',
+					'alcohol_content' => '1.4',
 					'nutrient_reference_value' => '100g',
 					'nutrient_ids' => array(
-						$nutrient['term_id'] => array(
-							'value' => 3.2
+						array(
+							'term' => $nutrient['term_id'],
+							'value' => '3.2'
 						),
-						$nutrient_2['term_id'] => array(
-							'value' => 3.5
+						array(
+							'term' => $nutrient_2['term_id'],
+							'value' => '3.5'
 						),
 					),
 					'allergen_ids' => array( $allergen['term_id'] ),
@@ -174,12 +177,14 @@ class WC_GZD_Products_API extends WC_GZD_REST_Unit_Test_Case {
 		$this->assertEquals( 5.4, $data['food']['drained_weight'] );
 		$this->assertEquals( 3.2, $data['food']['net_filling_quantity'] );
 		$this->assertEquals( array(
-			$nutrient['term_id'] => array(
-				'value' => 3.2,
+			array(
+				'term' => $nutrient['term_id'],
+				'value' => '3.2',
 				'ref_value' => '',
 			),
-			$nutrient_2['term_id'] => array(
-				'value' => 3.5,
+			array(
+				'term' => $nutrient_2['term_id'],
+				'value' => '3.5',
 				'ref_value' => '',
 			),
 		), $data['food']['nutrient_ids'] );
@@ -229,8 +234,9 @@ class WC_GZD_Products_API extends WC_GZD_REST_Unit_Test_Case {
 					'deposit_quantity' => 7,
 					'deposit_type' => array( 'slug' => 'can' ),
 					'nutrient_ids' => array(
-						$nutrient['term_id'] => array(
-							'value' => 3.2
+						array(
+							'term'  => $nutrient['term_id'],
+ 							'value' => '3.2'
 						),
 					),
 					'allergen_ids' => array( $allergen['term_id'] ),
@@ -238,7 +244,7 @@ class WC_GZD_Products_API extends WC_GZD_REST_Unit_Test_Case {
 					'distributor' => 'Variation test',
 					'nutri_score' => 'c',
 					'nutrient_reference_value' => '100g',
-					'alcohol_content' => 5.4,
+					'alcohol_content' => '5.40',
 				),
 			)
 		);
@@ -258,10 +264,10 @@ class WC_GZD_Products_API extends WC_GZD_REST_Unit_Test_Case {
 		$this->assertEquals( 'test_child_mpn', $variation['mpn'] );
 
 		$this->assertEquals( true, $variation['is_food'] );
-		$this->assertEquals( array(
-			$nutrient['term_id'] => array(
-				'value' => 3.2,
-				'ref_value' => '',
+		$this->assertEquals( array( array(
+			'term' => $nutrient['term_id'],
+			'value' => '3.2',
+			'ref_value' => '',
 			)
 		), $variation['food']['nutrient_ids'] );
 		$this->assertEquals( array( $allergen['term_id'] ), $variation['food']['allergen_ids'] );
@@ -269,9 +275,9 @@ class WC_GZD_Products_API extends WC_GZD_REST_Unit_Test_Case {
 		$this->assertEquals( '<p>Variation test</p>', trim( $variation['food']['distributor'] ) );
 		$this->assertEquals( 'c', $variation['food']['nutri_score'] );
 		$this->assertEquals( '100g', $variation['food']['nutrient_reference_value'] );
-		$this->assertEquals( 5.4, $variation['food']['alcohol_content'] );
+		$this->assertEquals( '5.40', $variation['food']['alcohol_content'] );
 		$this->assertEquals( 7, $variation['food']['deposit_quantity'] );
-		$this->assertEquals( 1.75, $variation['food']['deposit'] );
+		$this->assertEquals( '1.75', $variation['food']['deposit'] );
 	}
 
 	/**
@@ -453,9 +459,9 @@ class WC_GZD_Products_API extends WC_GZD_REST_Unit_Test_Case {
 					'country' => 'BG'
 				),
 			),
-			'unit_price'            => array( 'price_regular' => '80.0', 'price_sale' => '70.0', 'base' => 20, 'product' => 1 ),
+			'unit_price'            => array( 'price_regular' => '80.0', 'price_sale' => '70.0', 'base' => '20', 'product' => '1' ),
 			'mini_desc'             => 'This is a test',
-			'defective_copy'        => 'yes',
+			'defective_copy'        => true,
 			'defect_description'    => 'This is a defect desc',
 			'differential_taxation' => true,
 			'service'               => false,

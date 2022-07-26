@@ -84,7 +84,6 @@ class WC_GZD_REST_Customers_Controller {
 	 *
 	 */
 	public function insert( $user_data, $request, $creating ) {
-
 		$customer = new WC_Customer( $user_data->ID );
 
 		if ( isset( $request['billing']['title'] ) ) {
@@ -136,7 +135,6 @@ class WC_GZD_REST_Customers_Controller {
 	 *
 	 */
 	public function schema( $schema_properties ) {
-
 		$schema_properties['billing']['properties']['title'] = array(
 			'description' => __( 'Title', 'woocommerce-germanized' ),
 			'type'        => 'string',
@@ -174,7 +172,7 @@ class WC_GZD_REST_Customers_Controller {
 
 		$schema_properties['direct_debit'] = array(
 			'description' => __( 'Direct Debit', 'woocommerce-germanized' ),
-			'type'        => 'array',
+			'type'        => 'object',
 			'context'     => array( 'view', 'edit' ),
 			'properties'  => array(
 				'holder' => array(
