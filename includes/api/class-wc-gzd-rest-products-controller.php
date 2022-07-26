@@ -17,10 +17,11 @@ class WC_GZD_REST_Products_Controller {
 		add_filter( 'woocommerce_rest_pre_insert_product_variation_object', array( $this, 'insert_update' ), 10, 3 );
 
 		add_filter( 'woocommerce_rest_product_schema', array( $this, 'schema' ) );
+		add_filter( 'woocommerce_rest_product_variation_schema', array( $this, 'variation_schema' ) );
 	}
 
 	/**
-	 * Extend schema.
+	 * Extend variation schema.
 	 *
 	 * @wp-hook woocommerce_rest_customer_schema
 	 *
@@ -28,7 +29,15 @@ class WC_GZD_REST_Products_Controller {
 	 *
 	 * @return array
 	 */
-	public function schema( $schema_properties ) {
+	public function variation_schema( $schema_properties ) {
+		$parent_schema    = $this->get_item_schema_properties();
+		$variation_schema = $parent_schema['variations']['items']['properties'];
+
+		return array_merge( $schema_properties, $variation_schema );
+	}
+
+	protected function get_item_schema_properties() {
+		$schema_properties = array();
 
 		$schema_properties['delivery_time'] = array(
 			'description' => __( 'Delivery Time', 'woocommerce-germanized' ),
@@ -598,6 +607,19 @@ class WC_GZD_REST_Products_Controller {
 		);
 
 		return $schema_properties;
+	}
+
+	/**
+	 * Extend schema.
+	 *
+	 * @wp-hook woocommerce_rest_customer_schema
+	 *
+	 * @param array $schema_properties Data used to create the customer.
+	 *
+	 * @return array
+	 */
+	public function schema( $schema_properties ) {
+		return array_merge( $schema_properties, $this->get_item_schema_properties() );
 	}
 
 	public function prepare( $response, $post, $request ) {
