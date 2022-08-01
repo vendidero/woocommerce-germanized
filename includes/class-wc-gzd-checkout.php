@@ -1068,8 +1068,7 @@ class WC_GZD_Checkout {
 		}
 
 		if ( isset( $args['title'] ) ) {
-
-			if ( ! empty( $args['title'] ) ) {
+			if ( '' !== $args['title'] ) {
 				$title = wc_gzd_get_customer_title( $args['title'] );
 
 				/**
