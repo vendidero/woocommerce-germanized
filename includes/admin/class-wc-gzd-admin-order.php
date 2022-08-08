@@ -275,11 +275,14 @@ class WC_GZD_Admin_Order {
 			}
 		}
 
+		/**
+		 * Shipping address data does not exist
+		 */
 		if ( 'shipping' === $tax_based_on && ! $order->get_shipping_country() ) {
 			$tax_based_on = 'billing';
 		}
 
-		$country = $tax_based_on ? $order->get_billing_country() : $order->get_shipping_country();
+		$country = 'shipping' === $tax_based_on ? $order->get_shipping_country() : $order->get_billing_country();
 
 		if ( 'base' !== $tax_based_on && ! empty( $country ) ) {
 			$taxable_address = array(
