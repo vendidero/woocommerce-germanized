@@ -85,6 +85,8 @@ class WC_GZD_Product_Import {
 				'sale_price_regular_label' => array( $this, 'parse_sale_price_label' ),
 				'unit'                     => array( $this, 'parse_unit' ),
 				'warranty_attachment_id'   => 'absint',
+				'gtin'                     => 'wc_clean',
+				'mpn'                      => 'wc_clean',
 				'is_food'                  => array( $this, 'parse_bool_str' ),
 				'alcohol_content'          => 'wc_format_decimal',
 				'drained_weight'           => 'wc_format_decimal',

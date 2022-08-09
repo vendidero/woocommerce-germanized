@@ -19,31 +19,32 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 
 		/** @var array DB updates that need to be run */
 		private static $db_updates = array(
-			'1.0.4' => 'updates/woocommerce-gzd-update-1.0.4.php',
-			'1.4.2' => 'updates/woocommerce-gzd-update-1.4.2.php',
-			'1.4.6' => 'updates/woocommerce-gzd-update-1.4.6.php',
-			'1.5.0' => 'updates/woocommerce-gzd-update-1.5.0.php',
-			'1.6.0' => 'updates/woocommerce-gzd-update-1.6.0.php',
-			'1.6.3' => 'updates/woocommerce-gzd-update-1.6.3.php',
-			'1.8.0' => 'updates/woocommerce-gzd-update-1.8.0.php',
-			'1.8.9' => 'updates/woocommerce-gzd-update-1.8.9.php',
-			'1.9.2' => 'updates/woocommerce-gzd-update-1.9.2.php',
-			'2.0.1' => 'updates/woocommerce-gzd-update-2.0.1.php',
-			'2.2.5' => 'updates/woocommerce-gzd-update-2.2.5.php',
-			'2.3.0' => 'updates/woocommerce-gzd-update-2.3.0.php',
-			'3.0.0' => 'updates/woocommerce-gzd-update-3.0.0.php',
-			'3.0.1' => 'updates/woocommerce-gzd-update-3.0.1.php',
-			'3.0.6' => 'updates/woocommerce-gzd-update-3.0.6.php',
-			'3.0.8' => 'updates/woocommerce-gzd-update-3.0.8.php',
-			'3.1.6' => 'updates/woocommerce-gzd-update-3.1.6.php',
-			'3.1.9' => 'updates/woocommerce-gzd-update-3.1.9.php',
-			'3.3.4' => 'updates/woocommerce-gzd-update-3.3.4.php',
-			'3.3.5' => 'updates/woocommerce-gzd-update-3.3.5.php',
-			'3.4.0' => 'updates/woocommerce-gzd-update-3.4.0.php',
-			'3.7.0' => 'updates/woocommerce-gzd-update-3.7.0.php',
-			'3.8.0' => 'updates/woocommerce-gzd-update-3.8.0.php',
-			'3.9.1' => 'updates/woocommerce-gzd-update-3.9.1.php',
-			'3.9.3' => 'updates/woocommerce-gzd-update-3.9.3.php',
+			'1.0.4'  => 'updates/woocommerce-gzd-update-1.0.4.php',
+			'1.4.2'  => 'updates/woocommerce-gzd-update-1.4.2.php',
+			'1.4.6'  => 'updates/woocommerce-gzd-update-1.4.6.php',
+			'1.5.0'  => 'updates/woocommerce-gzd-update-1.5.0.php',
+			'1.6.0'  => 'updates/woocommerce-gzd-update-1.6.0.php',
+			'1.6.3'  => 'updates/woocommerce-gzd-update-1.6.3.php',
+			'1.8.0'  => 'updates/woocommerce-gzd-update-1.8.0.php',
+			'1.8.9'  => 'updates/woocommerce-gzd-update-1.8.9.php',
+			'1.9.2'  => 'updates/woocommerce-gzd-update-1.9.2.php',
+			'2.0.1'  => 'updates/woocommerce-gzd-update-2.0.1.php',
+			'2.2.5'  => 'updates/woocommerce-gzd-update-2.2.5.php',
+			'2.3.0'  => 'updates/woocommerce-gzd-update-2.3.0.php',
+			'3.0.0'  => 'updates/woocommerce-gzd-update-3.0.0.php',
+			'3.0.1'  => 'updates/woocommerce-gzd-update-3.0.1.php',
+			'3.0.6'  => 'updates/woocommerce-gzd-update-3.0.6.php',
+			'3.0.8'  => 'updates/woocommerce-gzd-update-3.0.8.php',
+			'3.1.6'  => 'updates/woocommerce-gzd-update-3.1.6.php',
+			'3.1.9'  => 'updates/woocommerce-gzd-update-3.1.9.php',
+			'3.3.4'  => 'updates/woocommerce-gzd-update-3.3.4.php',
+			'3.3.5'  => 'updates/woocommerce-gzd-update-3.3.5.php',
+			'3.4.0'  => 'updates/woocommerce-gzd-update-3.4.0.php',
+			'3.7.0'  => 'updates/woocommerce-gzd-update-3.7.0.php',
+			'3.8.0'  => 'updates/woocommerce-gzd-update-3.8.0.php',
+			'3.9.1'  => 'updates/woocommerce-gzd-update-3.9.1.php',
+			'3.9.3'  => 'updates/woocommerce-gzd-update-3.9.3.php',
+			'3.10.0' => 'updates/woocommerce-gzd-update-3.10.0.php',
 		);
 
 		/**
@@ -163,7 +164,7 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 
 			load_textdomain( 'woocommerce-germanized', $mofile );
 
-			if ( ! wc_gzd_get_dependencies()->is_woocommerce_activated() || ! function_exists( 'WC' ) ) {
+			if ( ! \Vendidero\Germanized\PluginsHelper::is_woocommerce_plugin_active() || ! function_exists( 'WC' ) ) {
 				deactivate_plugins( WC_GERMANIZED_PLUGIN_FILE );
 				wp_die( esc_html__( 'Please install WooCommerce before installing WooCommerce Germanized. Thank you!', 'woocommerce-germanized' ) );
 			}
@@ -230,8 +231,6 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 				}
 			}
 
-			$needs_db_update = ! is_null( $current_db_version ) && ! empty( $current_db_version ) && version_compare( $current_db_version, max( array_keys( self::$db_updates ) ), '<' );
-
 			/**
 			 * Decides whether Germanized needs a database update.
 			 *
@@ -240,8 +239,7 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 			 * @since 3.0.0
 			 *
 			 */
-			if ( apply_filters( 'woocommerec_gzd_needs_db_update', $needs_db_update ) ) {
-
+			if ( apply_filters( 'woocommerce_gzd_needs_db_update', self::needs_db_update() ) ) {
 				if ( $note = $notices->get_note( 'update' ) ) {
 					$note->reset();
 				}
@@ -323,6 +321,20 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 			return self::$db_updates;
 		}
 
+		private static function needs_db_update() {
+			$current_db_version = get_option( 'woocommerce_gzd_db_version' );
+
+			if ( ! is_null( $current_db_version ) ) {
+				foreach ( self::$db_updates as $version => $updater ) {
+					if ( version_compare( $current_db_version, $version, '<' ) ) {
+						return true;
+					}
+				}
+			}
+
+			return false;
+		}
+
 		/**
 		 * Handle updates
 		 */
@@ -330,7 +342,6 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 			$current_db_version = get_option( 'woocommerce_gzd_db_version' );
 
 			foreach ( self::$db_updates as $version => $updater ) {
-
 				if ( version_compare( $current_db_version, $version, '<' ) ) {
 					include $updater;
 					self::update_db_version( $version );
@@ -427,11 +438,7 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 		}
 
 		public static function create_tax_rates() {
-			if ( \Vendidero\OneStopShop\Package::oss_procedure_is_enabled() ) {
-				\Vendidero\OneStopShop\Tax::import_oss_tax_rates();
-			} else {
-				\Vendidero\OneStopShop\Tax::import_default_tax_rates();
-			}
+			\Vendidero\EUTaxHelper\Helper::import_tax_rates();
 		}
 
 		/**
@@ -471,7 +478,7 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 				'woocommerce_allowed_countries'          => 'specific',
 				'woocommerce_specific_allowed_countries' => $eu_countries,
 				'woocommerce_default_customer_address'   => 'base',
-				'woocommerce_gzd_hide_tax_rate_shop'     => \Vendidero\OneStopShop\Package::oss_procedure_is_enabled() ? 'yes' : 'no',
+				'woocommerce_gzd_hide_tax_rate_shop'     => \Vendidero\EUTaxHelper\Helper::oss_procedure_is_enabled() ? 'yes' : 'no',
 			);
 
 			if ( ! empty( $options ) ) {

@@ -13,6 +13,14 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 class WC_GZD_Settings_Tab_OSS extends WC_GZD_Settings_Tab {
 
+	public function get_extension_name() {
+		return 'one-stop-shop-woocommerce';
+	}
+
+	public function needs_install() {
+		return ! \Vendidero\Germanized\PluginsHelper::is_oss_plugin_active();
+	}
+
 	public function get_description() {
 		return __( 'Comply with the OSS procedure and conveniently generate tax reports.', 'woocommerce-germanized' );
 	}
@@ -30,32 +38,25 @@ class WC_GZD_Settings_Tab_OSS extends WC_GZD_Settings_Tab {
 	}
 
 	public function get_sections() {
-		return \Vendidero\OneStopShop\Settings::get_sections();
+		if ( \Vendidero\Germanized\PluginsHelper::is_oss_plugin_active() ) {
+			return Vendidero\OneStopShop\Settings::get_sections();
+		} else {
+			return array(
+				'' => __( 'General', 'woocommerce-germanized' ),
+			);
+		}
 	}
 
 	public function get_tab_settings( $current_section = '' ) {
-		$settings = \Vendidero\OneStopShop\Settings::get_settings( $current_section );
-
-		return $settings;
-	}
-
-	protected function before_save( $settings, $current_section = '' ) {
-		\Vendidero\OneStopShop\Settings::before_save();
-
-		parent::before_save( $settings, $current_section );
-	}
-
-	protected function after_save( $settings, $current_section = '' ) {
-		if ( 'yes' === get_option( 'oss_use_oss_procedure' ) ) {
-			// Delete legacy options while migrating to OSS.
-			delete_option( 'woocommerce_gzd_enable_virtual_vat' );
+		if ( \Vendidero\Germanized\PluginsHelper::is_oss_plugin_active() ) {
+			return Vendidero\OneStopShop\Settings::get_settings( $current_section );
+		} else {
+			return array();
 		}
-
-		parent::after_save( $settings, $current_section );
 	}
 
 	public function is_enabled() {
-		if ( \Vendidero\OneStopShop\Package::oss_procedure_is_enabled() || \Vendidero\OneStopShop\Package::enable_auto_observer() ) {
+		if ( \Vendidero\Germanized\PluginsHelper::is_oss_plugin_active() && ( \Vendidero\OneStopShop\Package::oss_procedure_is_enabled() || \Vendidero\OneStopShop\Package::enable_auto_observer() ) ) {
 			return true;
 		}
 

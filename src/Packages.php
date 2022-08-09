@@ -72,6 +72,18 @@ class Packages {
 	 */
 	protected static function load_packages() {
 		foreach ( self::$packages as $package_name => $package_class ) {
+			/**
+			 * Do not load the OSS package in case the separate plugin is active or the default
+			 * option after a bundled-install has not been set.
+			 *
+			 * @TODO remove after removing the package from Germanized core.
+			 */
+			if ( 'one-stop-shop-woocommerce' === $package_name ) {
+				if ( PluginsHelper::is_oss_plugin_active() || ! get_option( 'oss_use_oss_procedure' ) ) {
+					continue;
+				}
+			}
+
 			if ( ! self::package_exists( $package_name ) ) {
 				self::missing_package( $package_name );
 				continue;

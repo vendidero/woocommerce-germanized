@@ -3,13 +3,13 @@
  * Plugin Name: Germanized for WooCommerce
  * Plugin URI: https://www.vendidero.de/woocommerce-germanized
  * Description: Germanized for WooCommerce extends WooCommerce to become a legally compliant store in the german market.
- * Version: 3.9.8
+ * Version: 3.10.0
  * Author: vendidero
  * Author URI: https://vendidero.de
  * Requires at least: 5.4
  * Tested up to: 6.0
  * WC requires at least: 3.9
- * WC tested up to: 6.6
+ * WC tested up to: 6.7
  *
  * Text Domain: woocommerce-germanized
  * Domain Path: /i18n/languages/
@@ -69,7 +69,7 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 		 *
 		 * @var string
 		 */
-		public $version = '3.9.8';
+		public $version = '3.10.0';
 
 		/**
 		 * @var WooCommerce_Germanized $instance of the plugin
@@ -172,7 +172,6 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 		 * adds some initialization hooks and inits WooCommerce Germanized
 		 */
 		public function __construct() {
-
 			// Define constants
 			$this->define_constants();
 
@@ -183,17 +182,16 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 
 			spl_autoload_register( array( $this, 'autoload' ) );
 
-			/**
-			 * Filter the Germanized dependency manager instance.
-			 *
-			 * @param WC_GZD_Dependencies $dependency The dependency manager instance.
-			 *
-			 * @since 1.0.0
-			 *
-			 */
-			$dependencies = apply_filters( 'woocommerce_gzd_dependencies_instance', WC_GZD_Dependencies::instance( $this ) );
+			if ( ! WC_GZD_Dependencies::is_loadable() ) {
+				add_action(
+					'admin_notices',
+					function() {
+						if ( current_user_can( 'activate_plugins' ) ) {
+							include_once WC_GERMANIZED_ABSPATH . 'includes/admin/views/html-notice-dependencies.php';
+						}
+					}
+				);
 
-			if ( ! $dependencies->is_loadable() ) {
 				return;
 			}
 
@@ -257,6 +255,8 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 			} else {
 				add_action( 'woocommerce_loaded', array( $this, 'woocommerce_loaded_includes' ) );
 			}
+
+			\Vendidero\Germanized\PluginsHelper::init();
 		}
 
 		/**
@@ -265,7 +265,7 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 		 * @return boolean
 		 */
 		public function is_pro() {
-			return WC_GZD_Dependencies::instance()->is_plugin_activated( 'woocommerce-germanized-pro/woocommerce-germanized-pro.php' );
+			return \Vendidero\Germanized\PluginsHelper::is_plugin_active( 'woocommerce-germanized-pro' );
 		}
 
 		/**
@@ -490,7 +490,6 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 		 * Include required core files used in admin and on the frontend.
 		 */
 		private function includes() {
-
 			include_once WC_GERMANIZED_ABSPATH . 'includes/wc-gzd-core-functions.php';
 			include_once WC_GERMANIZED_ABSPATH . 'includes/wc-gzd-cart-functions.php';
 			include_once WC_GERMANIZED_ABSPATH . 'includes/wc-gzd-order-functions.php';
@@ -574,7 +573,7 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 			/**
 			 * Legacy MOSS helper
 			 */
-			if ( 'yes' === get_option( 'woocommerce_gzd_enable_virtual_vat' ) && ! \Vendidero\OneStopShop\Package::oss_procedure_is_enabled() ) {
+			if ( 'yes' === get_option( 'woocommerce_gzd_enable_virtual_vat' ) && ! \Vendidero\EUTaxHelper\Helper::oss_procedure_is_enabled() ) {
 				include_once WC_GERMANIZED_ABSPATH . 'includes/class-wc-gzd-deprecated-virtual-vat-helper.php';
 			}
 		}
@@ -650,6 +649,7 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 					'addify-role-based-pricing'       => 'WC_GZD_Compatibility_Addify_Role_Based_Pricing',
 					'customer-specific-pricing-for-woocommerce' => 'WC_GZD_Compatibility_Customer_Specific_Pricing_For_WooCommerce',
 					'woocommerce-measurement-price-calculator' => 'WC_GZD_Compatibility_WooCommerce_Measurement_Price_Calculator',
+					'legal-texts-connector-it-recht-kanzlei' => 'WC_GZD_Compatibility_Legal_Texts_Connector_IT_Recht_Kanzlei',
 				)
 			);
 

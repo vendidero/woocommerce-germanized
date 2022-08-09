@@ -78,6 +78,8 @@ class WC_GZD_Product_Export {
 				'used_good'                => _x( 'Is used good?', 'exporter', 'woocommerce-germanized' ),
 				'defective_copy'           => _x( 'Is defective copy?', 'exporter', 'woocommerce-germanized' ),
 				'warranty_attachment_id'   => _x( 'Warranty attachment id (PDF)', 'exporter', 'woocommerce-germanized' ),
+				'gtin'                     => _x( 'GTIN', 'exporter', 'woocommerce-germanized' ),
+				'mpn'                      => _x( 'MPN', 'exporter', 'woocommerce-germanized' ),
 				'differential_taxation'    => _x( 'Is differential taxed?', 'exporter', 'woocommerce-germanized' ),
 				'free_shipping'            => _x( 'Has free shipping?', 'exporter', 'woocommerce-germanized' ),
 				'unit_price_regular'       => _x( 'Unit price regular', 'exporter', 'woocommerce-germanized' ),

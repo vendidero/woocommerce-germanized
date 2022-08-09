@@ -32,6 +32,18 @@ abstract class WC_GZD_Settings_Tab extends WC_Settings_Page {
 		return $current_section;
 	}
 
+	public function needs_install() {
+		if ( $extension_name = $this->get_extension_name() ) {
+			return ! \Vendidero\Germanized\PluginsHelper::is_plugin_active( $extension_name );
+		}
+
+		return false;
+	}
+
+	public function get_extension_name() {
+		return '';
+	}
+
 	protected function get_pro_content_html() {
 		ob_start();
 		?>

@@ -21,6 +21,7 @@
   padding: 0;
   height: 2em;
   width: 2em;
+  min-height: 25px;
   overflow: hidden;
   vertical-align: middle; }
   .wc-gzd-settings .wc-gzd-dash-button::after {
@@ -43,6 +44,10 @@
     content: "?";
     font-family: inherit;
     font-weight: bold; }
+  .wc-gzd-settings .wc-gzd-dash-button.install::after {
+    content: "\f106"; }
+  .wc-gzd-settings .wc-gzd-dash-button.wc-gzd-is-loading::after {
+    content: ""; }
 
 .wc-gzd-settings .wc-gzd-settings-breadcrumb {
   display: flex;
@@ -89,8 +94,31 @@
   .wc-gzd-settings .wc-gzd-setting-header .page-title-action {
     top: -1px; }
 
+.wc-gzd-settings .wc-gzd-ajax-loading-btn {
+  position: relative;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center; }
+  .wc-gzd-settings .wc-gzd-ajax-loading-btn.wc-gzd-is-loading .btn-text {
+    opacity: .3;
+    z-index: 0; }
+  .wc-gzd-settings .wc-gzd-ajax-loading-btn.wc-gzd-is-loading .spinner {
+    position: absolute;
+    z-index: 5;
+    background-size: 16px 16px;
+    float: none;
+    text-align: center;
+    width: 16px;
+    height: 16px;
+    vertical-align: middle;
+    margin: 0; }
+
 .wc-gzd-settings .wc-gzd-setting-tabs {
   margin-top: 1.5em; }
+  .wc-gzd-settings .wc-gzd-setting-tabs .wc-gzd-setting-tab-enabled .wc-gzd-install-extension-btn {
+    line-height: 26px;
+    min-height: 26px;
+    height: 26px; }
   .wc-gzd-settings .wc-gzd-setting-tabs th, .wc-gzd-settings .wc-gzd-setting-tabs td {
     display: table-cell !important;
     padding: 1em !important;

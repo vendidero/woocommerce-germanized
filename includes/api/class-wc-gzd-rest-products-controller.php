@@ -17,10 +17,11 @@ class WC_GZD_REST_Products_Controller {
 		add_filter( 'woocommerce_rest_pre_insert_product_variation_object', array( $this, 'insert_update' ), 10, 3 );
 
 		add_filter( 'woocommerce_rest_product_schema', array( $this, 'schema' ) );
+		add_filter( 'woocommerce_rest_product_variation_schema', array( $this, 'variation_schema' ) );
 	}
 
 	/**
-	 * Extend schema.
+	 * Extend variation schema.
 	 *
 	 * @wp-hook woocommerce_rest_customer_schema
 	 *
@@ -28,7 +29,15 @@ class WC_GZD_REST_Products_Controller {
 	 *
 	 * @return array
 	 */
-	public function schema( $schema_properties ) {
+	public function variation_schema( $schema_properties ) {
+		$parent_schema    = $this->get_item_schema_properties();
+		$variation_schema = $parent_schema['variations']['items']['properties'];
+
+		return array_merge( $schema_properties, $variation_schema );
+	}
+
+	protected function get_item_schema_properties() {
+		$schema_properties = array();
 
 		$schema_properties['delivery_time'] = array(
 			'description' => __( 'Delivery Time', 'woocommerce-germanized' ),
@@ -240,6 +249,18 @@ class WC_GZD_REST_Products_Controller {
 			'default'     => '',
 			'context'     => array( 'view', 'edit' ),
 		);
+		$schema_properties['gtin']                     = array(
+			'description' => __( 'GTIN', 'woocommerce-germanized' ),
+			'type'        => 'string',
+			'default'     => '',
+			'context'     => array( 'view', 'edit' ),
+		);
+		$schema_properties['mpn']                      = array(
+			'description' => __( 'MPN', 'woocommerce-germanized' ),
+			'type'        => 'string',
+			'default'     => '',
+			'context'     => array( 'view', 'edit' ),
+		);
 		$schema_properties['service']                  = array(
 			'description' => __( 'Whether this product is a service or not', 'woocommerce-germanized' ),
 			'type'        => 'boolean',
@@ -318,7 +339,7 @@ class WC_GZD_REST_Products_Controller {
 				'nutrient_reference_value' => array(
 					'description' => __( 'Nutrient reference value', 'woocommerce-germanized' ),
 					'type'        => 'string',
-					'enum'        => array( '' ) + array_keys( WC_GZD_Food_Helper::get_nutrient_reference_values() ),
+					'enum'        => array_merge( array( '' ), array_keys( WC_GZD_Food_Helper::get_nutrient_reference_values() ) ),
 					'context'     => array( 'view', 'edit' ),
 					'arg_options' => array(
 						'sanitize_callback' => 'sanitize_title',
@@ -327,7 +348,7 @@ class WC_GZD_REST_Products_Controller {
 				'nutri_score'              => array(
 					'description' => __( 'Nutri-Score', 'woocommerce-germanized' ),
 					'type'        => 'string',
-					'enum'        => array( '' ) + array_keys( WC_GZD_Food_Helper::get_nutri_score_values() ),
+					'enum'        => array_merge( array( '' ), array_keys( WC_GZD_Food_Helper::get_nutri_score_values() ) ),
 					'context'     => array( 'view', 'edit' ),
 					'arg_options' => array(
 						'sanitize_callback' => 'sanitize_title',
@@ -379,6 +400,11 @@ class WC_GZD_REST_Products_Controller {
 					'items'       => array(
 						'type'       => 'object',
 						'properties' => array(
+							'term'      => array(
+								'description' => __( 'Nutrient term (slug or term_id)', 'woocommerce-germanized' ),
+								'type'        => array( 'string', 'number' ),
+								'context'     => array( 'view', 'edit' ),
+							),
 							'value'     => array(
 								'description' => __( 'Nutrient value', 'woocommerce-germanized' ),
 								'type'        => 'number',
@@ -530,6 +556,16 @@ class WC_GZD_REST_Products_Controller {
 			'type'        => 'string',
 			'context'     => array( 'view', 'edit' ),
 		);
+		$schema_properties['variations']['items']['properties']['gtin']                     = array(
+			'description' => __( 'GTIN', 'woocommerce-germanized' ),
+			'type'        => 'string',
+			'context'     => array( 'view', 'edit' ),
+		);
+		$schema_properties['variations']['items']['properties']['mpn']                      = array(
+			'description' => __( 'MPN', 'woocommerce-germanized' ),
+			'type'        => 'string',
+			'context'     => array( 'view', 'edit' ),
+		);
 		$schema_properties['variations']['items']['properties']['unit_price']               = array(
 			'description' => __( 'Unit Price', 'woocommerce-germanized' ),
 			'type'        => 'object',
@@ -576,6 +612,19 @@ class WC_GZD_REST_Products_Controller {
 		);
 
 		return $schema_properties;
+	}
+
+	/**
+	 * Extend schema.
+	 *
+	 * @wp-hook woocommerce_rest_customer_schema
+	 *
+	 * @param array $schema_properties Data used to create the customer.
+	 *
+	 * @return array
+	 */
+	public function schema( $schema_properties ) {
+		return array_merge( $schema_properties, $this->get_item_schema_properties() );
 	}
 
 	public function prepare( $response, $post, $request ) {
@@ -716,7 +765,15 @@ class WC_GZD_REST_Products_Controller {
 		}
 
 		if ( isset( $request['min_age'] ) ) {
-			$data['_min_age'] = esc_attr( $request['min_age'] );
+			$data['_min_age'] = wc_clean( $request['min_age'] );
+		}
+
+		if ( isset( $request['gtin'] ) ) {
+			$data['_gtin'] = wc_clean( $request['gtin'] );
+		}
+
+		if ( isset( $request['mpn'] ) ) {
+			$data['_mpn'] = wc_clean( $request['mpn'] );
 		}
 
 		/**
@@ -771,7 +828,41 @@ class WC_GZD_REST_Products_Controller {
 			}
 
 			if ( isset( $food_data['nutrient_ids'] ) ) {
-				$data['_nutrient_ids'] = wc_clean( $food_data['nutrient_ids'] );
+				$nutrient_ids = array();
+				$raw_data     = wc_clean( $food_data['nutrient_ids'] );
+
+				/**
+				 * Parse nutrients
+				 */
+				foreach ( $raw_data as $nutrient_data ) {
+					$nutrient_data = wp_parse_args(
+						$nutrient_data,
+						array(
+							'term'      => '',
+							'value'     => '',
+							'ref_value' => '',
+						)
+					);
+
+					if ( empty( $nutrient_data['term'] ) ) {
+						continue;
+					} elseif ( ! is_numeric( $nutrient_data['term'] ) ) {
+						$term = WC_germanized()->nutrients->get_nutrient_term( $nutrient_data['term'] );
+
+						if ( ! $term ) {
+							continue;
+						} else {
+							$nutrient_data['term'] = $term->term_id;
+						}
+					}
+
+					$nutrient_ids[ $nutrient_data['term'] ] = array(
+						'value'     => $nutrient_data['value'],
+						'ref_value' => $nutrient_data['ref_value'],
+					);
+				}
+
+				$data['_nutrient_ids'] = $nutrient_ids;
 			}
 
 			if ( isset( $food_data['allergen_ids'] ) ) {
@@ -885,6 +976,10 @@ class WC_GZD_REST_Products_Controller {
 		// Age verification
 		$data['min_age'] = $gzd_product->get_min_age( $context );
 
+		// GTIN + MPN
+		$data['gtin'] = $gzd_product->get_gtin( $context );
+		$data['mpn']  = $gzd_product->get_mpn( $context );
+
 		// Sale Labels
 		$data['sale_price_label']         = $this->prepare_term( WC_germanized()->price_labels->get_term_object( $gzd_product->get_sale_price_label( $context ) ) );
 		$data['sale_price_regular_label'] = $this->prepare_term( WC_germanized()->price_labels->get_term_object( $gzd_product->get_sale_price_regular_label( $context ) ) );
@@ -926,7 +1021,7 @@ class WC_GZD_REST_Products_Controller {
 			'nutri_score'              => $gzd_product->get_nutri_score( $context ),
 			'alcohol_content'          => $gzd_product->get_alcohol_content( $context ),
 			'allergen_ids'             => $gzd_product->get_allergen_ids( $context ),
-			'nutrient_ids'             => $gzd_product->get_nutrient_ids( $context ),
+			'nutrient_ids'             => $this->prepare_nutrients( $gzd_product->get_nutrient_ids( $context ) ),
 			'net_filling_quantity'     => $gzd_product->get_net_filling_quantity( $context ),
 			'drained_weight'           => $gzd_product->get_drained_weight( $context ),
 			'description'              => $gzd_product->get_formatted_food_description( $context ),
@@ -935,6 +1030,28 @@ class WC_GZD_REST_Products_Controller {
 		);
 
 		return $data;
+	}
+
+	protected function prepare_nutrients( $nutrient_ids ) {
+		$obj_nutrient_ids = array();
+
+		foreach ( $nutrient_ids as $term_id => $nutrient ) {
+			$nutrient = wp_parse_args(
+				$nutrient,
+				array(
+					'value'     => '',
+					'ref_value' => '',
+				)
+			);
+
+			$obj_nutrient_ids[] = array(
+				'term'      => $term_id,
+				'value'     => $nutrient['value'],
+				'ref_value' => $nutrient['ref_value'],
+			);
+		}
+
+		return $obj_nutrient_ids;
 	}
 
 	private function prepare_term( $term ) {

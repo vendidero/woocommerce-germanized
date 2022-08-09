@@ -62,7 +62,9 @@ if ( ! class_exists( 'WC_GZD_Admin_Setup_Wizard' ) ) :
 					'name'    => __( 'Germanize', 'woocommerce-germanized' ),
 					'view'    => 'germanize.php',
 					'handler' => array( $this, 'wc_gzd_setup_germanize_save' ),
-					'errors'  => array(),
+					'errors'  => array(
+						'oss_install' => current_user_can( 'install_plugins' ) ? sprintf( __( 'There was an error while automatically installing %1$s. %2$s', 'woocommerce-germanized' ), esc_html__( 'One Stop Shop', 'woocommerce-germanized' ), \Vendidero\Germanized\PluginsHelper::get_plugin_manual_install_message( 'one-stop-shop-woocommerce' ) ) : '',
+					),
 					'order'   => 1,
 				),
 				'settings'          => array(
@@ -90,17 +92,19 @@ if ( ! class_exists( 'WC_GZD_Admin_Setup_Wizard' ) ) :
 			);
 
 			if ( class_exists( 'WC_GZD_Secret_Box_Helper' ) ) {
-				$new_key = WC_GZD_Secret_Box_Helper::get_random_encryption_key();
+				if ( ! WC_GZD_Secret_Box_Helper::has_valid_encryption_key() ) {
+					$new_key = WC_GZD_Secret_Box_Helper::get_random_encryption_key();
 
-				if ( ! is_wp_error( $new_key ) ) {
-					$default_steps['encrypt'] = array(
-						'name'        => __( 'Encryption', 'woocommerce-germanized' ),
-						'view'        => 'encrypt.php',
-						'handler'     => array( $this, 'wc_gzd_setup_encrypt_save' ),
-						'order'       => 3,
-						'errors'      => array(),
-						'button_next' => ( ! WC_GZD_Secret_Box_Helper::has_valid_encryption_key() && WC_GZD_Secret_Box_Helper::supports_auto_insert() ) ? esc_attr__( 'Insert key', 'woocommerce-germanized' ) : esc_attr__( 'Continue', 'woocommerce-germanized' ),
-					);
+					if ( ! is_wp_error( $new_key ) ) {
+						$default_steps['encrypt'] = array(
+							'name'        => __( 'Encryption', 'woocommerce-germanized' ),
+							'view'        => 'encrypt.php',
+							'handler'     => array( $this, 'wc_gzd_setup_encrypt_save' ),
+							'order'       => 3,
+							'errors'      => array(),
+							'button_next' => ( ! WC_GZD_Secret_Box_Helper::has_valid_encryption_key() && WC_GZD_Secret_Box_Helper::supports_auto_insert() ) ? esc_attr__( 'Insert key', 'woocommerce-germanized' ) : esc_attr__( 'Continue', 'woocommerce-germanized' ),
+						);
+					}
 				}
 			}
 
@@ -158,10 +162,20 @@ if ( ! class_exists( 'WC_GZD_Admin_Setup_Wizard' ) ) :
 					$pages,
 					array(
 						'title'   => _x( 'OSS status', 'install', 'woocommerce-germanized' ),
-						'desc'    => sprintf( __( 'I\'m participating in the <a href="%s" target="_blank" rel="noopener">One Stop Shop procedure</a>.', 'woocommerce-germanized' ), 'https://ec.europa.eu/taxation_customs/business/vat/oss_de' ),
+						'desc'    => sprintf( __( 'I\'m participating in the <a href="%s" target="_blank" rel="noopener">One Stop Shop (OSS) procedure</a>.', 'woocommerce-germanized' ), 'https://ec.europa.eu/taxation_customs/business/vat/oss_de' ) . ( ! \Vendidero\Germanized\PluginsHelper::is_oss_plugin_active() ? '<div class="wc-gzd-additional-desc">' . __( 'Activating this option will automatically install the <a href="https://wordpress.org/plugins/one-stop-shop-woocommerce/" target="_blank">One Stop Shop Plugin</a> developed by us.', 'woocommerce-germanized' ) . '</div>' : '' ),
 						'id'      => 'oss_use_oss_procedure',
 						'default' => 'no',
 						'type'    => 'gzd_toggle',
+					),
+					array(
+						'title'             => _x( 'OSS observer', 'install', 'woocommerce-germanized' ),
+						'desc'              => __( 'Observe the OSS delivery threshold of the current year.', 'woocommerce-germanized' ) . ( ! \Vendidero\Germanized\PluginsHelper::is_oss_plugin_active() ? '<div class="wc-gzd-additional-desc">' . __( 'Get notified automatically when you are close to reaching the delivery threshold.', 'woocommerce-germanized' ) . ' ' . __( 'Activating this option will automatically install the <a href="https://wordpress.org/plugins/one-stop-shop-woocommerce/" target="_blank">One Stop Shop Plugin</a> developed by us.', 'woocommerce-germanized' ) . '</div>' : '' ),
+						'id'                => 'oss_enable_auto_observation',
+						'default'           => 'no',
+						'type'              => 'gzd_toggle',
+						'custom_attributes' => array(
+							'data-show_if_oss_use_oss_procedure' => 'no',
+						),
 					),
 					array(
 						'title'   => _x( 'VAT', 'install', 'woocommerce-germanized' ),
@@ -447,9 +461,9 @@ if ( ! class_exists( 'WC_GZD_Admin_Setup_Wizard' ) ) :
 					<?php endif; ?>
 
 					<?php if ( isset( $current['button_next_link'] ) && ! empty( $current['button_next_link'] ) ) : ?>
-						<a class="button button-primary wc-gzd-setup-link" href="<?php echo esc_url( $current['button_next_link'] ); ?>"><?php echo isset( $current['button_next'] ) ? esc_attr( $current['button_next'] ) : esc_attr__( 'Continue', 'woocommerce-germanized' ); ?></a>
+						<a class="button button-primary wc-gzd-button wc-gzd-setup-link" href="<?php echo esc_url( $current['button_next_link'] ); ?>"><?php echo isset( $current['button_next'] ) ? esc_attr( $current['button_next'] ) : esc_attr__( 'Continue', 'woocommerce-germanized' ); ?></a>
 					<?php else : ?>
-						<button class="button button-primary wc-gzd-setup-link" type="submit"><?php echo isset( $current['button_next'] ) ? esc_attr( $current['button_next'] ) : esc_attr__( 'Continue', 'woocommerce-germanized' ); ?></button>
+						<button class="button button-primary wc-gzd-setup-link wc-gzd-button" type="submit"><?php echo isset( $current['button_next'] ) ? esc_attr( $current['button_next'] ) : esc_attr__( 'Continue', 'woocommerce-germanized' ); ?></button>
 					<?php endif; ?>
 
 				</div>
@@ -464,135 +478,6 @@ if ( ! class_exists( 'WC_GZD_Admin_Setup_Wizard' ) ) :
 			</body>
 			</html>
 			<?php
-		}
-
-		/**
-		 * Get slug from path and associate it with the path.
-		 *
-		 * @param array  $plugins Associative array of plugin files to paths.
-		 * @param string $key Plugin relative path. Example: woocommerce/woocommerce.php.
-		 */
-		private function associate_plugin_file( $plugins, $key ) {
-			$path                 = explode( '/', $key );
-			$filename             = end( $path );
-			$plugins[ $filename ] = $key;
-			return $plugins;
-		}
-
-		private function install_plugin( $plugin_to_install_id, $plugin_to_install ) {
-
-			if ( ! empty( $plugin_to_install['repo-slug'] ) ) {
-				require_once ABSPATH . 'wp-admin/includes/file.php';
-				require_once ABSPATH . 'wp-admin/includes/plugin-install.php';
-				require_once ABSPATH . 'wp-admin/includes/class-wp-upgrader.php';
-				require_once ABSPATH . 'wp-admin/includes/plugin.php';
-
-				WP_Filesystem();
-
-				$skin              = new Automatic_Upgrader_Skin();
-				$upgrader          = new WP_Upgrader( $skin );
-				$installed_plugins = array_reduce( array_keys( get_plugins() ), array( $this, 'associate_plugin_file' ), array() );
-				$plugin_slug       = $plugin_to_install['repo-slug'];
-				$plugin_file       = isset( $plugin_to_install['file'] ) ? $plugin_to_install['file'] : $plugin_slug . '.php';
-				$installed         = false;
-				$activate          = false;
-
-				// See if the plugin is installed already.
-				if ( isset( $installed_plugins[ $plugin_file ] ) ) {
-					$installed = true;
-					$activate  = ! is_plugin_active( $installed_plugins[ $plugin_file ] );
-				}
-
-				// Install this thing!
-				if ( ! $installed ) {
-					// Suppress feedback.
-					ob_start();
-
-					try {
-						$plugin_information = plugins_api(
-							'plugin_information',
-							array(
-								'slug'   => $plugin_slug,
-								'fields' => array(
-									'short_description' => false,
-									'sections'          => false,
-									'requires'          => false,
-									'rating'            => false,
-									'ratings'           => false,
-									'downloaded'        => false,
-									'last_updated'      => false,
-									'added'             => false,
-									'tags'              => false,
-									'homepage'          => false,
-									'donate_link'       => false,
-									'author_profile'    => false,
-									'author'            => false,
-								),
-							)
-						);
-
-						if ( is_wp_error( $plugin_information ) ) {
-							throw new Exception( $plugin_information->get_error_message() );
-						}
-
-						$package  = $plugin_information->download_link;
-						$download = $upgrader->download_package( $package );
-
-						if ( is_wp_error( $download ) ) {
-							throw new Exception( $download->get_error_message() );
-						}
-
-						$working_dir = $upgrader->unpack_package( $download, true );
-
-						if ( is_wp_error( $working_dir ) ) {
-							throw new Exception( $working_dir->get_error_message() );
-						}
-
-						$result = $upgrader->install_package(
-							array(
-								'source'            => $working_dir,
-								'destination'       => WP_PLUGIN_DIR,
-								'clear_destination' => false,
-								'abort_if_destination_exists' => false,
-								'clear_working'     => true,
-								'hook_extra'        => array(
-									'type'   => 'plugin',
-									'action' => 'install',
-								),
-							)
-						);
-
-						if ( is_wp_error( $result ) ) {
-							throw new Exception( $result->get_error_message() );
-						}
-
-						$activate = true;
-
-					} catch ( Exception $e ) {
-						return false;
-					}
-
-					// Discard feedback.
-					ob_end_clean();
-				}
-
-				wp_clean_plugins_cache();
-
-				// Activate this thing.
-				if ( $activate ) {
-					try {
-						$result = activate_plugin( $installed ? $installed_plugins[ $plugin_file ] : $plugin_slug . '/' . $plugin_file );
-
-						if ( is_wp_error( $result ) ) {
-							throw new Exception( $result->get_error_message() );
-						}
-					} catch ( Exception $e ) {
-						return false;
-					}
-				}
-			}
-
-			return true;
 		}
 
 		public function save() {
@@ -644,8 +529,26 @@ if ( ! class_exists( 'WC_GZD_Admin_Setup_Wizard' ) ) :
 			$redirect    = $this->get_step_url( $this->get_next_step() );
 			$current_url = $this->get_step_url( $this->step );
 
-			if ( isset( $_POST['oss_use_oss_procedure'] ) && ! empty( $_POST['oss_use_oss_procedure'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
+			$enable_oss          = isset( $_POST['oss_use_oss_procedure'] ) && ! empty( $_POST['oss_use_oss_procedure'] ); // phpcs:ignore WordPress.Security.NonceVerification.Missing
+			$enable_oss_observer = isset( $_POST['oss_enable_auto_observation'] ) && ! empty( $_POST['oss_enable_auto_observation'] ); // phpcs:ignore WordPress.Security.NonceVerification.Missing
+
+			if ( ! \Vendidero\Germanized\PluginsHelper::is_oss_plugin_active() && current_user_can( 'install_plugins' ) ) {
+				if ( $enable_oss || $enable_oss_observer ) {
+					$result = \Vendidero\Germanized\PluginsHelper::install_or_activate_oss();
+
+					if ( ! \Vendidero\Germanized\PluginsHelper::is_oss_plugin_active() ) {
+						wp_safe_redirect( esc_url_raw( add_query_arg( array( 'error' => 'oss_install' ), $current_url ) ) );
+						exit();
+					}
+				}
+			}
+
+			if ( $enable_oss ) {
 				update_option( 'oss_use_oss_procedure', 'yes' );
+			}
+
+			if ( $enable_oss_observer ) {
+				update_option( 'oss_enable_auto_observation', 'yes' );
 			}
 
 			if ( isset( $_POST['woocommerce_gzd_germanize_settings'] ) && ! empty( $_POST['woocommerce_gzd_germanize_settings'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing

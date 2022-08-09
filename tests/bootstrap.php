@@ -26,7 +26,6 @@ class WC_GZD_Unit_Tests_Bootstrap {
 	public $packages = array(
 		'woocommerce-germanized-shipments/woocommerce-germanized-shipments.php' => '\Vendidero\Germanized\Shipments',
 		'woocommerce-germanized-dhl/woocommerce-germanized-dhl.php'             => '\Vendidero\Germanized\DHL',
-		'woocommerce-trusted-shops/woocommerce-trusted-shops.php'               => '\Vendidero\TrustedShops'
 	);
 
 	/**
@@ -94,11 +93,8 @@ class WC_GZD_Unit_Tests_Bootstrap {
 		// Give access to tests_add_filter() function.
 		require_once $this->wp_tests_dir . '/includes/functions.php';
 
-		tests_add_filter( 'woocommerce_gzd_dependencies_instance', function () {
-			require_once( $this->tests_dir . '/framework/class-wc-gzd-dependencies-mock.php' );
-
-			return WC_GZD_Dependencies_Mock::instance();
-		} );
+		tests_add_filter( 'woocommerce_gzd_is_loadable', '__return_true' );
+		tests_add_filter( 'woocommerce_gzd_is_woocommerce_activated', '__return_true' );
 
 		// Make sure the DHL Package loads - Base country should equal DE.
 		tests_add_filter( 'woocommerce_gzd_dhl_base_country', function () {

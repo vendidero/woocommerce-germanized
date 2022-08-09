@@ -14,9 +14,10 @@
     "digitick/sepa-xml" : "^2.0.0",
     "defuse/php-encryption": "^2.0.0",
     "globalcitizen/php-iban": "^4.0.0",
-    "vendidero/woocommerce-trusted-shops": "4.0.15",
     "vendidero/woocommerce-germanized-dhl": "1.7.2",
     "vendidero/woocommerce-germanized-shipments": "1.7.0",
+    "vendidero/woocommerce-eu-tax-helper": "1.0.2",
+    "vendidero/woocommerce-trusted-shops": "4.0.15",
     "vendidero/one-stop-shop-woocommerce": "1.2.4"
   },
   "require-dev": {
@@ -41,6 +42,10 @@
     {
       "type": "vcs",
       "url":  "https://github.com/vendidero/one-stop-shop-woocommerce"
+    },
+    {
+      "type": "vcs",
+      "url":  "https://github.com/vendidero/woocommerce-eu-tax-helper"
     }
   ],
   "config": {
@@ -87,6 +92,7 @@
       "packages/woocommerce-trusted-shops": ["vendidero/woocommerce-trusted-shops"],
       "packages/woocommerce-germanized-dhl": ["vendidero/woocommerce-germanized-dhl"],
       "packages/woocommerce-germanized-shipments": ["vendidero/woocommerce-germanized-shipments"],
+      "packages/woocommerce-eu-tax-helper": ["vendidero/woocommerce-eu-tax-helper"],
       "packages/one-stop-shop-woocommerce": ["vendidero/one-stop-shop-woocommerce"]
     },
     "scripts-description": {

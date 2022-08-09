@@ -33,8 +33,8 @@ class WC_GZD_Orders_API extends WC_GZD_REST_Unit_Test_Case {
 
 		$this->assertEquals( 200, $response->get_status() );
 
-		$this->assertEquals( 1, $order['billing']['title'] );
-		$this->assertEquals( 1, $order['shipping']['title'] );
+		$this->assertEquals( '1', $order['billing']['title'] );
+		$this->assertEquals( '1', $order['shipping']['title'] );
 
 		$this->assertEquals( 'Mr.', $order['billing']['title_formatted'] );
 		$this->assertEquals( 'Mr.', $order['shipping']['title_formatted'] );
@@ -65,8 +65,8 @@ class WC_GZD_Orders_API extends WC_GZD_REST_Unit_Test_Case {
 			                         'bic'        => 'A424242',
 			                         'mandate_id' => '123'
 			),
-			'billing'      => array( 'title' => 2 ),
-			'shipping'     => array( 'title' => 2 ),
+			'billing'      => array( 'title' => '2' ),
+			'shipping'     => array( 'title' => '2' ),
 		) );
 
 		$response = $this->server->dispatch( $request );

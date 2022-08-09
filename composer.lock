@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ba793c7b9fef3c101aeeec1fcf3e22aa",
+    "content-hash": "cd5b2357c64006bd3dbe5930264af7ac",
     "packages": [
         {
             "name": "automattic/jetpack-autoloader",
@@ -803,6 +803,61 @@
                 "issues": "https://github.com/vendidero/one-stop-shop-woocommerce/issues"
             },
             "time": "2022-06-03T10:20:26+00:00"
+        },
+        {
+            "name": "vendidero/woocommerce-eu-tax-helper",
+            "version": "1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/vendidero/woocommerce-eu-tax-helper.git",
+                "reference": "89acb5cc1d38f55db56908bc73bd62fd8fc824aa"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/vendidero/woocommerce-eu-tax-helper/zipball/89acb5cc1d38f55db56908bc73bd62fd8fc824aa",
+                "reference": "89acb5cc1d38f55db56908bc73bd62fd8fc824aa",
+                "shasum": ""
+            },
+            "require": {
+                "automattic/jetpack-autoloader": "^2.6.0",
+                "composer/installers": "^1.9.0"
+            },
+            "require-dev": {
+                "myclabs/deep-copy": "^1.7.0",
+                "phpunit/phpunit": "7.5.14",
+                "woocommerce/woocommerce-sniffs": "^0.1.3",
+                "yoast/phpunit-polyfills": "^1.0"
+            },
+            "type": "wordpress-plugin",
+            "autoload": {
+                "psr-4": {
+                    "Vendidero\\EUTaxHelper\\": "src/"
+                }
+            },
+            "scripts": {
+                "test": [
+                    "phpunit"
+                ],
+                "phpcs": [
+                    "phpcs -s -p"
+                ],
+                "phpcs-pre-commit": [
+                    "phpcs -s -p -n"
+                ],
+                "phpcbf": [
+                    "phpcbf -p"
+                ]
+            },
+            "license": [
+                "GPL-3.0-or-later"
+            ],
+            "description": "EU tax helper for WooCommerce",
+            "homepage": "https://vendidero.de/",
+            "support": {
+                "source": "https://github.com/vendidero/woocommerce-eu-tax-helper/tree/1.0.2",
+                "issues": "https://github.com/vendidero/woocommerce-eu-tax-helper/issues"
+            },
+            "time": "2022-07-14T14:37:07+00:00"
         },
         {
             "name": "vendidero/woocommerce-germanized-dhl",

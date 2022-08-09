@@ -123,6 +123,7 @@ class WC_GZD_Admin {
 			'disable_notices',
 			'encryption_key_insert',
 			'enable_debug_mode',
+			'install_oss',
 		);
 
 		if ( current_user_can( 'manage_woocommerce' ) ) {
@@ -149,6 +150,20 @@ class WC_GZD_Admin {
 				}
 			}
 		}
+	}
+
+	protected function check_install_oss() {
+		if ( current_user_can( 'install_plugins' ) ) {
+			\Vendidero\Germanized\PluginsHelper::install_or_activate_oss();
+
+			if ( \Vendidero\Germanized\PluginsHelper::is_oss_plugin_active() ) {
+				wp_safe_redirect( esc_url_raw( admin_url( 'admin.php?page=wc-settings&tab=germanized-oss' ) ) );
+				exit();
+			}
+		}
+
+		wp_safe_redirect( esc_url_raw( admin_url( 'plugin-install.php?s=one+stop+shop+woocommerce&tab=search&type=term' ) ) );
+		exit();
 	}
 
 	protected function check_enable_debug_mode() {
@@ -590,7 +605,6 @@ class WC_GZD_Admin {
 	}
 
 	public function add_scripts() {
-
 		$screen            = get_current_screen();
 		$suffix            = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 		$assets_path       = WC_germanized()->plugin_url() . '/assets/';
@@ -650,8 +664,9 @@ class WC_GZD_Admin {
 			'wc-gzd-admin-settings',
 			'wc_gzd_admin_settings_params',
 			array(
-				'tab_toggle_nonce' => wp_create_nonce( 'wc_gzd_tab_toggle_nonce' ),
-				'ajax_url'         => admin_url( 'admin-ajax.php' ),
+				'tab_toggle_nonce'        => wp_create_nonce( 'wc_gzd_tab_toggle_nonce' ),
+				'install_extension_nonce' => wp_create_nonce( 'wc_gzd_install_extension_nonce' ),
+				'ajax_url'                => admin_url( 'admin-ajax.php' ),
 			)
 		);
 

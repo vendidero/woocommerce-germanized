@@ -99,6 +99,14 @@ class WC_GZD_Product {
 		return $this->get_prop( 'warranty_attachment_id', $context );
 	}
 
+	public function get_gtin( $context = 'view' ) {
+		return $this->get_prop( 'ts_gtin', $context );
+	}
+
+	public function get_mpn( $context = 'view' ) {
+		return $this->get_prop( 'ts_mpn', $context );
+	}
+
 	public function get_nutrient_ids( $context = 'view' ) {
 		$nutrients = $this->get_prop( 'nutrient_ids', $context );
 
@@ -635,6 +643,14 @@ class WC_GZD_Product {
 		$this->warranty_attachment = false;
 	}
 
+	public function set_gtin( $gtin ) {
+		$this->set_prop( 'ts_gtin', $gtin );
+	}
+
+	public function set_mpn( $mpn ) {
+		$this->set_prop( 'ts_mpn', $mpn );
+	}
+
 	public function set_nutrient_ids( $ids ) {
 		$ids = (array) $ids;
 
@@ -1070,7 +1086,7 @@ class WC_GZD_Product {
 		 *
 		 * @since 1.8.5
 		 */
-		return apply_filters( 'woocommerce_gzd_product_virtual_vat_exception', ( ( 'yes' === get_option( 'woocommerce_gzd_enable_virtual_vat' ) || \Vendidero\OneStopShop\Package::oss_procedure_is_enabled() ) && ( $this->is_downloadable() || $this->is_virtual() ) ? true : false ), $this );
+		return apply_filters( 'woocommerce_gzd_product_virtual_vat_exception', ( ( 'yes' === get_option( 'woocommerce_gzd_enable_virtual_vat' ) || \Vendidero\EUTaxHelper\Helper::oss_procedure_is_enabled() ) && ( $this->is_downloadable() || $this->is_virtual() ) ? true : false ), $this );
 	}
 
 	public function add_labels_to_price_html( $price_html ) {

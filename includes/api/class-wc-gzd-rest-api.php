@@ -13,6 +13,8 @@ class WC_GZD_REST_API {
 
 	protected static $_instance = null;
 
+	public static $endpoints = array();
+
 	public static function instance() {
 		if ( is_null( self::$_instance ) ) {
 			self::$_instance = new self();
@@ -22,7 +24,7 @@ class WC_GZD_REST_API {
 	}
 
 	private function __construct() {
-		add_action( 'rest_api_init', array( $this, 'init' ), 20 );
+		add_action( 'rest_api_init', array( $this, 'init' ), 10 );
 	}
 
 	public function init() {
@@ -31,7 +33,6 @@ class WC_GZD_REST_API {
 	}
 
 	public function rest_api_includes() {
-
 		// REST API v1 controllers.
 		include_once dirname( __FILE__ ) . '/v1/class-wc-gzd-rest-product-delivery-times-v1-controller.php';
 		include_once dirname( __FILE__ ) . '/v1/class-wc-gzd-rest-product-price-labels-v1-controller.php';
@@ -55,7 +56,6 @@ class WC_GZD_REST_API {
 	}
 
 	public function register_rest_routes() {
-
 		/**
 		 * Filter to add new REST controller to Germanized.
 		 *
@@ -83,18 +83,17 @@ class WC_GZD_REST_API {
 		);
 
 		foreach ( $controllers as $controller ) {
-			WC()->api->$controller = new $controller();
+			self::$endpoints[ $controller ] = new $controller();
 
-			if ( method_exists( WC()->api->$controller, 'register_routes' ) ) {
-				WC()->api->$controller->register_routes();
+			if ( method_exists( self::$endpoints[ $controller ], 'register_routes' ) ) {
+				self::$endpoints[ $controller ]->register_routes();
 			}
 
-			if ( method_exists( WC()->api->$controller, 'register_fields' ) ) {
-				WC()->api->$controller->register_fields();
+			if ( method_exists( self::$endpoints[ $controller ], 'register_fields' ) ) {
+				self::$endpoints[ $controller ]->register_fields();
 			}
 		}
 	}
-
 }
 
 WC_GZD_REST_API::instance();

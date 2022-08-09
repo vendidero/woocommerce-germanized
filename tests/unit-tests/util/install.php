@@ -27,14 +27,12 @@ class WC_GZD_Tests_Install extends WC_GZD_Unit_Test_Case {
 	 * Test check version.
 	 */
 	public function test_version_compare() {
-		$dep = WC_GZD_Dependencies::instance();
+		$this->assertTrue( \Vendidero\Germanized\PluginsHelper::compare_versions( '3.1.3', '3.1', '>' ) );
+		$this->assertFalse( \Vendidero\Germanized\PluginsHelper::compare_versions( '3.0.9', '3.1', '>' ) );
 
-		$this->assertTrue( $dep->compare_versions( '3.1.3', '3.1', '>' ) );
-		$this->assertFalse( $dep->compare_versions( '3.0.9', '3.1', '>' ) );
-
-		$this->assertTrue( $dep->compare_versions( '2.9.9', '3.0', '<' ) );
-		$this->assertFalse( $dep->compare_versions( '2.9.9', '2.9', '<' ) );
-		$this->assertTrue( $dep->compare_versions( '2.9.9', '3.0', '<' ) );
+		$this->assertTrue( \Vendidero\Germanized\PluginsHelper::compare_versions( '2.9.9', '3.0', '<' ) );
+		$this->assertFalse( \Vendidero\Germanized\PluginsHelper::compare_versions( '2.9.9', '2.9', '<' ) );
+		$this->assertTrue( \Vendidero\Germanized\PluginsHelper::compare_versions( '2.9.9', '3.0', '<' ) );
 	}
 
 	/**
@@ -61,7 +59,6 @@ class WC_GZD_Tests_Install extends WC_GZD_Unit_Test_Case {
 		// Check if package settings are added too (e.g. DHL, Shipments)
 		$this->assertEquals( 'yes', get_option( 'woocommerce_gzd_shipments_auto_enable' ) );
 		$this->assertEquals( 'V01PAK', wc_gzd_get_shipping_provider( 'dhl' )->get_setting( 'label_default_product_dom' ) );
-		$this->assertEquals( 'no', get_option( 'oss_use_oss_procedure' ) );
 
 		// Check if Tables are installed
 		global $wpdb;

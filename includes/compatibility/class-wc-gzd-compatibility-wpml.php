@@ -34,7 +34,7 @@ class WC_GZD_Compatibility_WPML extends WC_GZD_Compatibility {
 	}
 
 	public static function is_activated() {
-		return parent::is_activated() && wc_gzd_get_dependencies()->is_plugin_activated( 'woocommerce-multilingual/wpml-woocommerce.php' );
+		return parent::is_activated() && \Vendidero\Germanized\PluginsHelper::is_plugin_active( 'woocommerce-multilingual' );
 	}
 
 	public function load() {

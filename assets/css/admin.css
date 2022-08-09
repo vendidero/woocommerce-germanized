@@ -150,9 +150,16 @@ a.page-title-action:hover .wc-gzd-pro:not(.wc-gzd-pro-outlined) {
 .tourbus-leg-inner .wc-gzd-pro {
   top: -3px; }
 
+p._variable_unit_price_auto_field input.checkbox {
+  float: none !important;
+  margin-right: 5px !important; }
+
 p._unit_price_auto_field label {
   display: block !important;
   margin-bottom: 5px; }
+
+p._unit_price_auto_field .wc-gzd-premium-desc {
+  margin-right: 5px; }
 
 ._unit_price_auto_field label, ._unit_price_auto_field input, ._unit_price_auto_field .wc-gzd-premium-desc {
   opacity: 0.6; }

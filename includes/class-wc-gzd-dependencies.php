@@ -7,114 +7,28 @@ if ( ! defined( 'ABSPATH' ) ) {
 class WC_GZD_Dependencies {
 
 	/**
-	 * Single instance
-	 *
-	 * @var WC_GZD_Dependencies
-	 */
-	protected static $_instance = null;
-
-	/**
-	 * Whether the plugin is loadable or not.
-	 *
-	 * @var bool
-	 */
-	protected $loadable = true;
-
-	/**
-	 * @var WooCommerce_Germanized|null
-	 */
-	public $plugin = null;
-
-	/**
-	 * Lazy initiated activated plugins list
-	 *
-	 * @var null|array
-	 */
-	protected $active_plugins = null;
-
-	/**
 	 * This is the minimum Woo version supported by Germanized
 	 *
 	 * @var string
 	 */
-	public $wc_minimum_version_required = '3.9';
+	public static $woocommerce_minimum_version_required = '3.9';
 
-	public static function instance( $plugin = null ) {
-		if ( is_null( self::$_instance ) ) {
-			self::$_instance = new self( $plugin );
-		}
-
-		return self::$_instance;
+	public static function is_loadable() {
+		return apply_filters( 'woocommerce_gzd_is_loadable', \Vendidero\Germanized\PluginsHelper::is_woocommerce_plugin_active() && ! self::is_woocommerce_outdated() );
 	}
 
-	/**
-	 * Cloning is forbidden.
-	 *
-	 * @since 1.0
-	 */
-	public function __clone() {
-		_doing_it_wrong( __FUNCTION__, esc_html__( 'Cheating huh?', 'woocommerce-germanized' ), '1.0' );
+	public static function is_woocommerce_outdated() {
+		$woo_version = \Vendidero\Germanized\PluginsHelper::get_plugin_version( 'woocommerce' );
+
+		return \Vendidero\Germanized\PluginsHelper::compare_versions( $woo_version, self::get_woocommerce_min_version_required(), '<' );
 	}
 
-	/**
-	 * Unserializing instances of this class is forbidden.
-	 *
-	 * @since 1.0
-	 */
-	public function __wakeup() {
-		_doing_it_wrong( __FUNCTION__, esc_html__( 'Cheating huh?', 'woocommerce-germanized' ), '1.0' );
-	}
-
-	public function __construct( $plugin = null ) {
-
-		if ( ! $plugin ) {
-			$plugin = WC_germanized();
-		}
-
-		$this->plugin = $plugin;
-
-		// Check if WooCommerce is enabled and does not violate min version.
-		if ( ! $this->is_woocommerce_activated() || $this->is_woocommerce_outdated() ) {
-			$this->loadable = false;
-
-			add_action( 'admin_notices', array( $this, 'dependencies_notice' ) );
-		}
+	public static function get_woocommerce_min_version_required() {
+		return self::$woocommerce_minimum_version_required;
 	}
 
 	public function is_plugin_activated( $plugin_slug ) {
-		if ( is_null( $this->active_plugins ) ) {
-			$this->active_plugins = (array) get_option( 'active_plugins', array() );
-
-			if ( is_multisite() ) {
-				$this->active_plugins = array_merge( $this->active_plugins, get_site_option( 'active_sitewide_plugins', array() ) );
-			}
-		}
-
-		if ( strpos( $plugin_slug, '.php' ) === false ) {
-			$plugin_slug = trailingslashit( $plugin_slug ) . $plugin_slug . '.php';
-		}
-
-		return ( in_array( $plugin_slug, $this->active_plugins, true ) || array_key_exists( $plugin_slug, $this->active_plugins ) );
-	}
-
-	public function is_theme_activated( $theme_slug ) {
-		if ( $current = wp_get_theme() ) {
-			if ( $current->get_template() === $theme_slug ) {
-				return true;
-			}
-		}
-
-		return false;
-	}
-
-	public function get_wc_min_version_required() {
-		return $this->wc_minimum_version_required;
-	}
-
-	public function get_plugin_version( $plugin_slug ) {
-		$version = $this->parse_version( get_option( $plugin_slug . '_version', '1.0' ) );
-
-		return $version;
+		return \Vendidero\Germanized\PluginsHelper::is_plugin_active( $plugin_slug );
 	}
 
 	/**
@@ -153,29 +67,7 @@ class WC_GZD_Dependencies {
 	 * @return boolean true if WooCommerce is activated
 	 */
 	public function is_woocommerce_activated() {
-		return $this->is_plugin_activated( 'woocommerce/woocommerce.php' );
-	}
-
-	public function is_woocommerce_outdated() {
-		$woo_version = get_option( 'woocommerce_db_version' );
-
-		/**
-		 * Fallback to default Woo version to prevent issues
-		 * for installations which failed the last Woo DB update.
-		 */
-		if ( ! $woo_version || empty( $woo_version ) ) {
-			$woo_version = get_option( 'woocommerce_version' );
-		}
-
-		return $this->compare_versions( $this->parse_version( $woo_version ), $this->get_wc_min_version_required(), '<' );
-	}
-
-	public function is_element_pro_activated() {
-		return $this->is_plugin_activated( 'elementor-pro/elementor-pro.php' );
-	}
-
-	public function is_loadable() {
-		return $this->loadable;
+		return $this->is_plugin_activated( 'woocommerce' );
 	}
 
 	public function dependencies_notice() {
