@@ -32,7 +32,8 @@ class WC_GZD_Admin_Order {
 					$this,
 					'adjust_item_taxes',
 				),
-				10
+				10,
+				2
 			);
 
 			add_action(
@@ -41,7 +42,8 @@ class WC_GZD_Admin_Order {
 					$this,
 					'adjust_item_taxes',
 				),
-				10
+				10,
+				2
 			);
 
 			add_action(
@@ -50,7 +52,8 @@ class WC_GZD_Admin_Order {
 					$this,
 					'adjust_item_taxes',
 				),
-				10
+				10,
+				2
 			);
 
 			add_action(
@@ -181,15 +184,16 @@ class WC_GZD_Admin_Order {
 
 	/**
 	 * @param WC_Order_Item $item
-	 * @param $for
+	 * @param array $calculate_tax_for
 	 */
-	public function adjust_item_taxes( $item ) {
+	public function adjust_item_taxes( $item, $calculate_tax_for = array() ) {
 		if ( ! wc_tax_enabled() || ! in_array( $item->get_type(), array( 'fee', 'shipping' ), true ) || apply_filters( 'woocommerce_gzd_skip_order_item_split_tax_calculation', false, $item ) ) {
 			return;
 		}
 
 		if ( $order = $item->get_order() ) {
-			$tax_share_type = 'shipping' === $item->get_type() ? 'shipping' : 'fee';
+			$calculate_tax_for = empty( $calculate_tax_for ) ? $this->get_order_taxable_location( $order ) : $calculate_tax_for;
+			$tax_share_type    = 'shipping' === $item->get_type() ? 'shipping' : 'fee';
 
 			// Calculate tax shares
 			$tax_share = apply_filters( "woocommerce_gzd_{$tax_share_type}_order_tax_shares", $this->get_order_tax_share( $order, $tax_share_type ), $item );
@@ -217,7 +221,13 @@ class WC_GZD_Admin_Order {
 				$taxable_amounts = array();
 
 				foreach ( $tax_share as $tax_class => $class ) {
-					$tax_rates       = WC_Tax::get_rates_from_location( $tax_class, $this->get_order_taxable_location( $order ) );
+					if ( isset( $calculate_tax_for['country'] ) ) {
+						$calculate_tax_for['tax_class'] = $tax_class;
+						$tax_rates                      = \WC_Tax::find_rates( $calculate_tax_for );
+					} else {
+						$tax_rates = \WC_Tax::get_rates_from_location( $tax_class, $calculate_tax_for );
+					}
+
 					$taxable_amount  = $item_total * $class['share'];
 					$tax_class_taxes = WC_Tax::calc_tax( $taxable_amount, $tax_rates, wc_gzd_additional_costs_include_tax() );
 					$net_base        = wc_gzd_additional_costs_include_tax() ? ( $taxable_amount - array_sum( $tax_class_taxes ) ) : $taxable_amount;
