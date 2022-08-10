@@ -184,7 +184,7 @@ class WC_GZD_Admin_Order {
 	 * @param $for
 	 */
 	public function adjust_item_taxes( $item ) {
-		if ( ! wc_tax_enabled() || $item->get_total() <= 0 || ! in_array( $item->get_type(), array( 'fee', 'shipping' ), true ) || apply_filters( 'woocommerce_gzd_skip_order_item_split_tax_calculation', false, $item ) ) {
+		if ( ! wc_tax_enabled() || ! in_array( $item->get_type(), array( 'fee', 'shipping' ), true ) || apply_filters( 'woocommerce_gzd_skip_order_item_split_tax_calculation', false, $item ) ) {
 			return;
 		}
 
@@ -195,7 +195,7 @@ class WC_GZD_Admin_Order {
 			$tax_share = apply_filters( "woocommerce_gzd_{$tax_share_type}_order_tax_shares", $this->get_order_tax_share( $order, $tax_share_type ), $item );
 
 			// Do only adjust taxes if tax share contains more than one tax rate
-			if ( $tax_share && ! empty( $tax_share ) && count( $tax_share ) > 1 ) {
+			if ( $tax_share && ! empty( $tax_share ) ) {
 				$taxes    = array();
 				$old_item = $order->get_item( $item->get_id() );
 
