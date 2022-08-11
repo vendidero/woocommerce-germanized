@@ -1506,14 +1506,8 @@ function wc_gzd_get_base_country() {
 	}
 }
 
-function _wc_gzd_is_admin_order_ajax_request() {
-	$order_actions = array( 'woocommerce_calc_line_taxes', 'woocommerce_save_order_items', 'add_coupon_discount', 'refund_line_items', 'delete_refund' );
-
-	return isset( $_POST['action'], $_POST['order_id'] ) && ( strstr( wc_clean( wp_unslash( $_POST['action'] ) ), '_order_' ) || in_array( $_POST['action'], $order_actions, true ) ); // phpcs:ignore WordPress.Security.NonceVerification.Missing
-}
-
 function wc_gzd_is_admin_order_request() {
-	return is_admin() && current_user_can( 'edit_shop_orders' ) && _wc_gzd_is_admin_order_ajax_request();
+	return \Vendidero\EUTaxHelper\Helper::is_admin_order_request();
 }
 
 function wc_gzd_get_dom_document( $html ) {

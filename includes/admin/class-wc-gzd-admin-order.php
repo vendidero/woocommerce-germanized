@@ -266,44 +266,11 @@ class WC_GZD_Admin_Order {
 
 	/**
 	 * @param WC_Order $order
+	 *
+	 * @return array
 	 */
 	public function get_order_taxable_location( $order ) {
-		$taxable_address = array(
-			WC()->countries->get_base_country(),
-			WC()->countries->get_base_state(),
-			WC()->countries->get_base_postcode(),
-			WC()->countries->get_base_city(),
-		);
-
-		$tax_based_on = get_option( 'woocommerce_tax_based_on' );
-
-		if ( is_a( $order, 'WC_Order_Refund' ) ) {
-			$order = wc_get_order( $order->get_parent_id() );
-
-			if ( ! $order ) {
-				return $taxable_address;
-			}
-		}
-
-		/**
-		 * Shipping address data does not exist
-		 */
-		if ( 'shipping' === $tax_based_on && ! $order->get_shipping_country() ) {
-			$tax_based_on = 'billing';
-		}
-
-		$country = 'shipping' === $tax_based_on ? $order->get_shipping_country() : $order->get_billing_country();
-
-		if ( 'base' !== $tax_based_on && ! empty( $country ) ) {
-			$taxable_address = array(
-				$country,
-				'billing' === $tax_based_on ? $order->get_billing_state() : $order->get_shipping_state(),
-				'billing' === $tax_based_on ? $order->get_billing_postcode() : $order->get_shipping_postcode(),
-				'billing' === $tax_based_on ? $order->get_billing_city() : $order->get_shipping_city(),
-			);
-		}
-
-		return $taxable_address;
+		return \Vendidero\EUTaxHelper\Helper::get_order_taxable_location( $order );
 	}
 
 	/**

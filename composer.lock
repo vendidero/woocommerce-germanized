@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "cd5b2357c64006bd3dbe5930264af7ac",
+    "content-hash": "82b3c0f5f67ef4369d2572bc95adcf7c",
     "packages": [
         {
             "name": "automattic/jetpack-autoloader",
@@ -806,16 +806,16 @@
         },
         {
             "name": "vendidero/woocommerce-eu-tax-helper",
-            "version": "1.0.2",
+            "version": "v1.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vendidero/woocommerce-eu-tax-helper.git",
-                "reference": "89acb5cc1d38f55db56908bc73bd62fd8fc824aa"
+                "reference": "7748aaed604ef337e81a55ce4f08e970c3088c4d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vendidero/woocommerce-eu-tax-helper/zipball/89acb5cc1d38f55db56908bc73bd62fd8fc824aa",
-                "reference": "89acb5cc1d38f55db56908bc73bd62fd8fc824aa",
+                "url": "https://api.github.com/repos/vendidero/woocommerce-eu-tax-helper/zipball/7748aaed604ef337e81a55ce4f08e970c3088c4d",
+                "reference": "7748aaed604ef337e81a55ce4f08e970c3088c4d",
                 "shasum": ""
             },
             "require": {
@@ -854,10 +854,10 @@
             "description": "EU tax helper for WooCommerce",
             "homepage": "https://vendidero.de/",
             "support": {
-                "source": "https://github.com/vendidero/woocommerce-eu-tax-helper/tree/1.0.2",
+                "source": "https://github.com/vendidero/woocommerce-eu-tax-helper/tree/v1.0.4",
                 "issues": "https://github.com/vendidero/woocommerce-eu-tax-helper/issues"
             },
-            "time": "2022-07-14T14:37:07+00:00"
+            "time": "2022-08-10T10:12:00+00:00"
         },
         {
             "name": "vendidero/woocommerce-germanized-dhl",

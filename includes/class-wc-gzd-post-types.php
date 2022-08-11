@@ -35,7 +35,7 @@ class WC_GZD_Post_Types {
 			 * @since 1.0.0
 			 *
 			 */
-			apply_filters( 'woocommerce_germanized_taxonomy_objects_product_delivery_time', array( 'product' ) ),
+			apply_filters( 'woocommerce_germanized_taxonomy_objects_product_delivery_time', array( 'product', 'product_variation' ) ),
 			/**
 			 * Filter to adjust arguments passed to register the `delivery_time` taxonomy.
 			 *
@@ -193,7 +193,7 @@ class WC_GZD_Post_Types {
 			 *
 			 * @since 3.9.0
 			 */
-			apply_filters( 'woocommerce_germanized_taxonomy_objects_product_deposit_type', array( 'product' ) ),
+			apply_filters( 'woocommerce_germanized_taxonomy_objects_product_deposit_type', array( 'product', 'product_variation' ) ),
 			/**
 			 * Filter to adjust arguments passed to register the `product_deposit_type` taxonomy.
 			 *
