@@ -5,7 +5,7 @@ Requires at least: 5.4
 Tested up to: 6.0
 WC requires at least: 3.9
 WC tested up to: 6.6
-Stable tag: 3.9.8
+Stable tag: 3.10.0
 Requires PHP: 5.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -211,6 +211,23 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 6. Edit pdf documents (Pro)
 
 == Changelog ==
+= 3.10.0 =
+* New: REST API endpoint for shipments
+* Improvement: Install helper for additional packages (e.g. OSS)
+* Improvement: Separately install OSS plugin in case needed (notice existing installs)
+* Improvement: Setup wizard styling
+* Improvement: Invalid base country detection notice
+* Improvement: Elementor Pro review order heading
+* Improvement: Moved MPN/GTIN functionality from TS package to core
+* Improvement: Whitelist IT Recht Kanzlei Shortcodes for legal texts
+* Improvement: Apply the same shipping/fee tax calculation within admin order screen
+* Improvement: WPML compatibility with delivery times for variable products
+* Improvement: New manage order column with shipping status
+* Fix: REST API schema
+* Fix: Tax share float check
+* Fix: SEPA XML debtorAdrLine
+* Fix: Taxable order address
+
 = 3.9.8 =
 * Improvement: Add extended support for pain.008.003.02 and mark as new SEPA XML default
 * Improvement: Do not send password reset link with DOI activation email as it gets invalidated after activation
