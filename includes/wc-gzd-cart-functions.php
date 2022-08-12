@@ -1157,17 +1157,8 @@ function wc_gzd_maybe_disable_checkout_adjustments() {
 		remove_action( 'woocommerce_review_order_before_cart_contents', 'woocommerce_gzd_template_checkout_table_content_replacement' );
 		remove_action( 'woocommerce_review_order_after_cart_contents', 'woocommerce_gzd_template_checkout_table_product_hide_filter_removal' );
 
-		remove_action( 'woocommerce_checkout_order_review', 'woocommerce_order_review', 20 );
-		remove_action( 'woocommerce_checkout_order_review', 'woocommerce_checkout_payment', 10 );
-
-		// Restore default hook priorities
-		if ( ! has_action( 'woocommerce_checkout_order_review', 'woocommerce_order_review' ) ) {
-			add_action( 'woocommerce_checkout_order_review', 'woocommerce_order_review', 10 );
-		}
-
-		if ( ! has_action( 'woocommerce_checkout_order_review', 'woocommerce_checkout_payment' ) ) {
-			add_action( 'woocommerce_checkout_order_review', 'woocommerce_checkout_payment', 20 );
-		}
+		WC_GZD_Hook_Priorities::instance()->update_priority( 'woocommerce_checkout_order_review', 'woocommerce_order_review', WC_GZD_Hook_Priorities::instance()->get_priority( 'woocommerce_checkout_order_review', 'woocommerce_order_review', 10, true ) );
+		WC_GZD_Hook_Priorities::instance()->update_priority( 'woocommerce_checkout_order_review', 'woocommerce_checkout_payment', WC_GZD_Hook_Priorities::instance()->get_priority( 'woocommerce_checkout_order_review', 'woocommerce_checkout_payment', 20, true ) );
 
 		remove_action( 'woocommerce_review_order_before_submit', 'woocommerce_gzd_template_set_order_button_remove_filter', 1500 );
 		remove_action( 'woocommerce_review_order_after_submit', 'woocommerce_gzd_template_set_order_button_show_filter', 1500 );

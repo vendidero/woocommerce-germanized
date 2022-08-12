@@ -103,8 +103,8 @@ class WC_GZD_Compatibility_ET_Builder extends WC_GZD_Compatibility {
 			'woocommerce_gzd_disabled_checkout_adjustments',
 			function() {
 				if ( wp_doing_ajax() && function_exists( 'et_builder_is_loading_data' ) && et_builder_is_loading_data() ) {
-					remove_action( 'woocommerce_checkout_order_review', 'woocommerce_order_review', 10 );
-					remove_action( 'woocommerce_checkout_order_review', 'woocommerce_checkout_payment', 20 );
+					remove_action( 'woocommerce_checkout_order_review', 'woocommerce_checkout_payment', WC_GZD_Hook_Priorities::instance()->get_priority( 'woocommerce_checkout_order_review', 'woocommerce_checkout_payment', 10 ) );
+					remove_action( 'woocommerce_checkout_order_review', 'woocommerce_order_review', WC_GZD_Hook_Priorities::instance()->get_priority( 'woocommerce_checkout_order_review', 'woocommerce_order_review', 20 ) );
 
 					/**
 					 * By default, do not re-add default order_review hooks - only in case the module matches
@@ -117,8 +117,8 @@ class WC_GZD_Compatibility_ET_Builder extends WC_GZD_Compatibility {
 						}
 					}
 				} else {
-					remove_action( 'woocommerce_checkout_order_review', 'woocommerce_order_review', 10 );
-					remove_action( 'woocommerce_checkout_order_review', 'woocommerce_checkout_payment', 20 );
+					remove_action( 'woocommerce_checkout_order_review', 'woocommerce_checkout_payment', WC_GZD_Hook_Priorities::instance()->get_priority( 'woocommerce_checkout_order_review', 'woocommerce_checkout_payment', 10, true ) );
+					remove_action( 'woocommerce_checkout_order_review', 'woocommerce_order_review', WC_GZD_Hook_Priorities::instance()->get_priority( 'woocommerce_checkout_order_review', 'woocommerce_order_review', 20, true ) );
 				}
 			}
 		);
