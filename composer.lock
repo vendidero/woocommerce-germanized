@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "82b3c0f5f67ef4369d2572bc95adcf7c",
+    "content-hash": "bf0d9c4a3b4a6b9cec84cf1901d8d950",
     "packages": [
         {
             "name": "automattic/jetpack-autoloader",
@@ -442,17 +442,20 @@
         },
         {
             "name": "globalcitizen/php-iban",
-            "version": "v4.1.0",
+            "version": "v4.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/globalcitizen/php-iban.git",
-                "reference": "5bf5d7df0bd0158460897f2b9c26eda91bbf9b7d"
+                "reference": "4254e1aa0367a04d5ee1a493d49bce2220b8ec18"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/globalcitizen/php-iban/zipball/5bf5d7df0bd0158460897f2b9c26eda91bbf9b7d",
-                "reference": "5bf5d7df0bd0158460897f2b9c26eda91bbf9b7d",
+                "url": "https://api.github.com/repos/globalcitizen/php-iban/zipball/4254e1aa0367a04d5ee1a493d49bce2220b8ec18",
+                "reference": "4254e1aa0367a04d5ee1a493d49bce2220b8ec18",
                 "shasum": ""
+            },
+            "require": {
+                "php": "^5.4 || ^5.5 || ^5.6 || ^7.0 || ^7.4 || ^8.0 || ^8.1"
             },
             "type": "library",
             "autoload": {
@@ -468,9 +471,9 @@
             "description": "php-iban is a library for parsing and validating IBAN (and IIBAN) bank account information.",
             "support": {
                 "issues": "https://github.com/globalcitizen/php-iban/issues",
-                "source": "https://github.com/globalcitizen/php-iban/tree/v4.1.0"
+                "source": "https://github.com/globalcitizen/php-iban/tree/v4.1.1"
             },
-            "time": "2021-07-01T23:55:02+00:00"
+            "time": "2022-08-10T20:06:53+00:00"
         },
         {
             "name": "myclabs/deep-copy",
@@ -751,26 +754,35 @@
         },
         {
             "name": "vendidero/one-stop-shop-woocommerce",
-            "version": "v1.2.4",
+            "version": "v1.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vendidero/one-stop-shop-woocommerce.git",
-                "reference": "e1e1d9c5fed86f9cbc470915dd53bfa661f3332b"
+                "reference": "926b7cd7921845f75625280da47b3d8ff0f6f212"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vendidero/one-stop-shop-woocommerce/zipball/e1e1d9c5fed86f9cbc470915dd53bfa661f3332b",
-                "reference": "e1e1d9c5fed86f9cbc470915dd53bfa661f3332b",
+                "url": "https://api.github.com/repos/vendidero/one-stop-shop-woocommerce/zipball/926b7cd7921845f75625280da47b3d8ff0f6f212",
+                "reference": "926b7cd7921845f75625280da47b3d8ff0f6f212",
                 "shasum": ""
             },
             "require": {
-                "automattic/jetpack-autoloader": "^2.6.0"
+                "automattic/jetpack-autoloader": "^2.6.0",
+                "composer/installers": "^1.9.0",
+                "vendidero/woocommerce-eu-tax-helper": "1.0.4"
             },
             "require-dev": {
                 "phpunit/phpunit": "6.5.14",
                 "woocommerce/woocommerce-sniffs": "^0.1.3"
             },
             "type": "wordpress-plugin",
+            "extra": {
+                "installer-paths": {
+                    "libs/woocommerce-eu-tax-helper": [
+                        "vendidero/woocommerce-eu-tax-helper"
+                    ]
+                }
+            },
             "autoload": {
                 "psr-4": {
                     "Vendidero\\OneStopShop\\": "src"
@@ -778,10 +790,10 @@
             },
             "scripts": {
                 "post-install-cmd": [
-                    "composer dump-autoload"
+                    "sh ./bin/package-update.sh"
                 ],
                 "post-update-cmd": [
-                    "composer dump-autoload"
+                    "sh ./bin/package-update.sh"
                 ],
                 "phpcs": [
                     "phpcs -s -p"
@@ -799,10 +811,10 @@
             "description": "One Stop Shop Helper for WooCommerce",
             "homepage": "https://github.com/vendidero/one-stop-shop-woocommerce",
             "support": {
-                "source": "https://github.com/vendidero/one-stop-shop-woocommerce/tree/v1.2.4",
+                "source": "https://github.com/vendidero/one-stop-shop-woocommerce/tree/v1.3.0",
                 "issues": "https://github.com/vendidero/one-stop-shop-woocommerce/issues"
             },
-            "time": "2022-06-03T10:20:26+00:00"
+            "time": "2022-08-15T09:26:11+00:00"
         },
         {
             "name": "vendidero/woocommerce-eu-tax-helper",
@@ -861,16 +873,16 @@
         },
         {
             "name": "vendidero/woocommerce-germanized-dhl",
-            "version": "v1.7.2",
+            "version": "v1.7.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vendidero/woocommerce-germanized-dhl.git",
-                "reference": "e8350409f252f8e11d16a9b29d715ce09ecb06d4"
+                "reference": "91878fdda582859e1dc122ff7c63493aeb5f62a9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vendidero/woocommerce-germanized-dhl/zipball/e8350409f252f8e11d16a9b29d715ce09ecb06d4",
-                "reference": "e8350409f252f8e11d16a9b29d715ce09ecb06d4",
+                "url": "https://api.github.com/repos/vendidero/woocommerce-germanized-dhl/zipball/91878fdda582859e1dc122ff7c63493aeb5f62a9",
+                "reference": "91878fdda582859e1dc122ff7c63493aeb5f62a9",
                 "shasum": ""
             },
             "require": {
@@ -915,23 +927,23 @@
             "description": "The Germanized DHL implementation.",
             "homepage": "https://github.com/vendidero/woocommerce-germanized-dhl",
             "support": {
-                "source": "https://github.com/vendidero/woocommerce-germanized-dhl/tree/v1.7.2",
+                "source": "https://github.com/vendidero/woocommerce-germanized-dhl/tree/v1.7.3",
                 "issues": "https://github.com/vendidero/woocommerce-germanized-dhl/issues"
             },
-            "time": "2022-06-20T09:01:46+00:00"
+            "time": "2022-08-15T08:47:01+00:00"
         },
         {
             "name": "vendidero/woocommerce-germanized-shipments",
-            "version": "v1.7.0",
+            "version": "v2.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vendidero/woocommerce-germanized-shipments.git",
-                "reference": "fa457c6337524d18234c9cb179d288277145b42b"
+                "reference": "fcee2b5559b5c1ad91936322827edcc62bb212df"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vendidero/woocommerce-germanized-shipments/zipball/fa457c6337524d18234c9cb179d288277145b42b",
-                "reference": "fa457c6337524d18234c9cb179d288277145b42b",
+                "url": "https://api.github.com/repos/vendidero/woocommerce-germanized-shipments/zipball/fcee2b5559b5c1ad91936322827edcc62bb212df",
+                "reference": "fcee2b5559b5c1ad91936322827edcc62bb212df",
                 "shasum": ""
             },
             "require": {
@@ -974,23 +986,23 @@
             "description": "The Germanized Shipments implementation.",
             "homepage": "https://github.com/vendidero/woocommerce-germanized-shipments",
             "support": {
-                "source": "https://github.com/vendidero/woocommerce-germanized-shipments/tree/v1.7.0",
+                "source": "https://github.com/vendidero/woocommerce-germanized-shipments/tree/v2.0.1",
                 "issues": "https://github.com/vendidero/woocommerce-germanized-shipments/issues"
             },
-            "time": "2022-06-03T10:14:42+00:00"
+            "time": "2022-08-15T08:32:35+00:00"
         },
         {
             "name": "vendidero/woocommerce-trusted-shops",
-            "version": "v4.0.15",
+            "version": "v4.0.16",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vendidero/woocommerce-trusted-shops.git",
-                "reference": "3bca4cc94b88fc1b6a1a7416e8b108b7dc8acb81"
+                "reference": "0e5c89a740991c6f51dab2a3089df25047ab3ea8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vendidero/woocommerce-trusted-shops/zipball/3bca4cc94b88fc1b6a1a7416e8b108b7dc8acb81",
-                "reference": "3bca4cc94b88fc1b6a1a7416e8b108b7dc8acb81",
+                "url": "https://api.github.com/repos/vendidero/woocommerce-trusted-shops/zipball/0e5c89a740991c6f51dab2a3089df25047ab3ea8",
+                "reference": "0e5c89a740991c6f51dab2a3089df25047ab3ea8",
                 "shasum": ""
             },
             "require": {
@@ -1029,10 +1041,10 @@
             "description": "Trustbadge Reviews for WooCommerce.",
             "homepage": "https://github.com/vendidero/woocommerce-trusted-shops",
             "support": {
-                "source": "https://github.com/vendidero/woocommerce-trusted-shops/tree/v4.0.15",
+                "source": "https://github.com/vendidero/woocommerce-trusted-shops/tree/v4.0.16",
                 "issues": "https://github.com/vendidero/woocommerce-trusted-shops/issues"
             },
-            "time": "2022-06-03T10:29:50+00:00"
+            "time": "2022-08-15T08:15:17+00:00"
         },
         {
             "name": "wsdltophp/wssecurity",

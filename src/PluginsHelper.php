@@ -290,7 +290,7 @@ class PluginsHelper {
 			);
 		}
 
-		return self::is_plugin_installed( $plugin ) ? sprintf( __( 'Please <a href="%1$s">activate %2$s &raquo;</a>', 'woocommerce-germanized' ), esc_url( $install_url ), $plugin_name ) : sprintf( __( 'Please <a href="%1$s">install %2$s &raquo;</a>', 'woocommerce-germanized' ), esc_url( $install_url ), $plugin_name );
+		return self::is_plugin_installed( $plugin ) ? sprintf( __( 'Please <a href="%1$s">activate the %2$s &raquo;</a> plugin', 'woocommerce-germanized' ), esc_url( $install_url ), $plugin_name ) : sprintf( __( 'Please <a href="%1$s">install the %2$s &raquo;</a> plugin', 'woocommerce-germanized' ), esc_url( $install_url ), $plugin_name );
 	}
 
 	/**
@@ -430,7 +430,7 @@ class PluginsHelper {
 				$errors->add(
 					$plugin,
 					/* translators: %s: plugin slug (example: woocommerce-services) */
-					sprintf( __( 'The requested plugin `%s`. is not yet installed.', 'woocommerce-germanized' ), $slug )
+					sprintf( __( 'The requested plugin `%s` is not yet installed.', 'woocommerce-germanized' ), $slug )
 				);
 				continue;
 			}
