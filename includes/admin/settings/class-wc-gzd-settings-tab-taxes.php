@@ -26,12 +26,19 @@ class WC_GZD_Settings_Tab_Taxes extends WC_GZD_Settings_Tab {
 	}
 
 	public function get_sections() {
-		return array(
+		$sections = array(
 			''                      => __( 'VAT', 'woocommerce-germanized' ),
 			'split_tax'             => __( 'Split-tax', 'woocommerce-germanized' ),
 			'differential_taxation' => __( 'Differential Taxation', 'woocommerce-germanized' ),
-			'oss'                   => __( 'One Stop Shop', 'woocommerce-germanized' ),
 		);
+
+		if ( \Vendidero\Germanized\PluginsHelper::is_oss_plugin_active() ) {
+			$sections = $sections + array(
+				'oss' => __( 'One Stop Shop', 'woocommerce-germanized' ),
+			);
+		}
+
+		return $sections;
 	}
 
 	public function get_help_link() {
