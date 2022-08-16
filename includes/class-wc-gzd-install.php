@@ -211,8 +211,8 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 
 			// Queue messages and notices
 			if ( ! is_null( $current_version ) ) {
-				$major_version     = substr( $current_version, 0, 3 );
-				$new_major_version = substr( WC_germanized()->version, 0, 3 );
+				$major_version     = \Vendidero\Germanized\PluginsHelper::get_major_version( $current_version );
+				$new_major_version = \Vendidero\Germanized\PluginsHelper::get_major_version( WC_germanized()->version );
 
 				// Only on major update
 				if ( version_compare( $new_major_version, $major_version, '>' ) ) {

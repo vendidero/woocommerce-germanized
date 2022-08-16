@@ -104,8 +104,8 @@ class WC_GZD_Admin_Welcome {
 			flush_rewrite_rules();
 		}
 
-		// Drop minor version if 0
-		$major_version = substr( WC_germanized()->version, 0, 3 );
+		// Drop minor version
+		$major_version = \Vendidero\Germanized\PluginsHelper::get_major_version( WC_germanized()->version );
 		?>
 		<style>
 			.wc-gzd-admin-welcome-hide-pro .wc-germanized-welcome-pro, .wc-gzd-admin-welcome-hide-pro .wc-gzd-pro-version {

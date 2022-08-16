@@ -201,6 +201,12 @@ class PluginsHelper {
 		return $version;
 	}
 
+	public static function get_major_version( $version ) {
+		$expl_ver = explode( '.', $version );
+
+		return implode( '.', array_slice( $expl_ver, 0, 2 ) );
+	}
+
 	/**
 	 * This method removes additional accuracy from $ver2 if this version is more accurate than $main_ver.
 	 *

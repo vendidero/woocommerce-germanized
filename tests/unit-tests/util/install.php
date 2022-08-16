@@ -36,6 +36,16 @@ class WC_GZD_Tests_Install extends WC_GZD_Unit_Test_Case {
 	}
 
 	/**
+	 * Test major version
+	 */
+	public function test_major_version() {
+		$this->assertEquals( '3.10', \Vendidero\Germanized\PluginsHelper::get_major_version( '3.10.1' ) );
+		$this->assertEquals( '3.10', \Vendidero\Germanized\PluginsHelper::get_major_version( '3.10' ) );
+		$this->assertEquals( '3.0', \Vendidero\Germanized\PluginsHelper::get_major_version( '3.0.0' ) );
+		$this->assertEquals( '3.1', \Vendidero\Germanized\PluginsHelper::get_major_version( '3.1.8' ) );
+	}
+
+	/**
 	 * Test - install.
 	 */
 	public function test_install() {
