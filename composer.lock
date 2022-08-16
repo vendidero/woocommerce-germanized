@@ -938,12 +938,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/vendidero/woocommerce-germanized-shipments.git",
-                "reference": "fcee2b5559b5c1ad91936322827edcc62bb212df"
+                "reference": "2fbf1a5e7af091e94c8181ad14c8932195de988d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vendidero/woocommerce-germanized-shipments/zipball/fcee2b5559b5c1ad91936322827edcc62bb212df",
-                "reference": "fcee2b5559b5c1ad91936322827edcc62bb212df",
+                "url": "https://api.github.com/repos/vendidero/woocommerce-germanized-shipments/zipball/2fbf1a5e7af091e94c8181ad14c8932195de988d",
+                "reference": "2fbf1a5e7af091e94c8181ad14c8932195de988d",
                 "shasum": ""
             },
             "require": {
@@ -989,7 +989,7 @@
                 "source": "https://github.com/vendidero/woocommerce-germanized-shipments/tree/v2.0.1",
                 "issues": "https://github.com/vendidero/woocommerce-germanized-shipments/issues"
             },
-            "time": "2022-08-15T08:32:35+00:00"
+            "time": "2022-08-16T09:24:00+00:00"
         },
         {
             "name": "vendidero/woocommerce-trusted-shops",

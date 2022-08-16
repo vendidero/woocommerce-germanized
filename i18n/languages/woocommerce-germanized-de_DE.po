@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce Germanized\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-15 15:55+0200\n"
-"PO-Revision-Date: 2022-08-15 15:55+0200\n"
+"POT-Creation-Date: 2022-08-16 11:30+0200\n"
+"PO-Revision-Date: 2022-08-16 11:30+0200\n"
 "Last-Translator: Dennis Nissle <info@vendidero.de>\n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -4003,9 +4003,9 @@ msgstr "Bestellung ansehen"
 # @ woocommerce-germanized
 #: woocommerce-germanized-shipments/src/Admin/Admin.php:100
 #: woocommerce-germanized-shipments/src/Admin/Admin.php:108
-msgctxt "shipments"
-msgid "Shipping"
-msgstr "Versand"
+msgctxt "shipments-order-column-name"
+msgid "Shipping Status"
+msgstr "Versandstatus"
 
 # @ woocommerce-germanized
 #: woocommerce-germanized-shipments/src/Admin/Admin.php:146
@@ -15203,6 +15203,11 @@ msgstr "vendidero"
 #. Author URI of the plugin/theme
 msgid "https://vendidero.de"
 msgstr "https://vendidero.de"
+
+# @ woocommerce-germanized
+#~ msgctxt "shipments"
+#~ msgid "Shipping"
+#~ msgstr "Versand"
 
 # @ woocommerce-germanized
 #~ msgid ""
