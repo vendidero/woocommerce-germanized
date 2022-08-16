@@ -310,6 +310,7 @@ class PluginsHelper {
 		include_once ABSPATH . '/wp-admin/includes/plugin.php';
 		include_once ABSPATH . '/wp-admin/includes/class-wp-upgrader.php';
 		include_once ABSPATH . '/wp-admin/includes/class-plugin-upgrader.php';
+		include_once ABSPATH . '/wp-admin/includes/class-automatic-upgrader-skin.php';
 
 		$existing_plugins  = self::get_installed_plugins_paths();
 		$installed_plugins = array();
@@ -354,7 +355,7 @@ class PluginsHelper {
 				continue;
 			}
 
-			$upgrader           = new \Plugin_Upgrader( new UpgraderSkin() );
+			$upgrader           = new \Plugin_Upgrader( new \Automatic_Upgrader_Skin() );
 			$result             = $upgrader->install( $api->download_link );
 			$results[ $plugin ] = $result;
 			$time[ $plugin ]    = round( ( microtime( true ) - $start_time ) * 1000 );

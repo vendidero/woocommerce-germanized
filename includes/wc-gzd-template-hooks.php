@@ -215,16 +215,19 @@ if ( 'yes' === get_option( 'woocommerce_gzd_display_checkout_edit_data_notice' )
 	add_action( 'woocommerce_before_order_notes', 'woocommerce_gzd_template_checkout_edit_data_notice', wc_gzd_get_hook_priority( 'checkout_edit_data_notice' ), 1 );
 }
 
-WC_GZD_Hook_Priorities::instance()->force_hook_order( 'woocommerce_checkout_order_review', array(
+WC_GZD_Hook_Priorities::instance()->force_hook_order(
+	'woocommerce_checkout_order_review',
 	array(
-		'function'     => 'woocommerce_checkout_payment',
-		'new_priority' => 'woocommerce_order_review',
-	),
-	array(
-		'function'     => 'woocommerce_order_review',
-		'new_priority' => 'woocommerce_checkout_payment',
-	),
-) );
+		array(
+			'function'     => 'woocommerce_checkout_payment',
+			'new_priority' => 'woocommerce_order_review',
+		),
+		array(
+			'function'     => 'woocommerce_order_review',
+			'new_priority' => 'woocommerce_checkout_payment',
+		),
+	)
+);
 
 // Load ajax relevant hooks on init with fallback
 if ( did_action( 'init' ) ) {

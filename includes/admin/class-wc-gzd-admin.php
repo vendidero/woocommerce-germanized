@@ -206,12 +206,12 @@ class WC_GZD_Admin {
 					wp_die( esc_html_x( 'You don\'t have permission to do this.', 'dhl', 'woocommerce-germanized' ) );
 				}
 
-                if ( Importer\DHL::is_available() ) {
-	                $this->import_dhl_settings();
-                }
+				if ( Importer\DHL::is_available() ) {
+					$this->import_dhl_settings();
+				}
 
 				if ( $shipping_provider = Vendidero\Germanized\Shipments\ShippingProvider\Helper::instance()->get_shipping_provider( 'dhl' ) ) {
-                    $shipping_provider->activate();
+					$shipping_provider->activate();
 				}
 
 				deactivate_plugins( 'dhl-for-woocommerce/pr-dhl-woocommerce.php' );

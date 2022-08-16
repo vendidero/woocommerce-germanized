@@ -13,11 +13,11 @@ class WC_GZD_Hook_Priorities {
 	 */
 	protected static $_instance = null;
 
-	public $priorities = array();
-	public $default_priorities = array();
-	public $hooks = array();
-	public $queue = array();
-	protected $hook_order_queue = array();
+	public $priorities             = array();
+	public $default_priorities     = array();
+	public $hooks                  = array();
+	public $queue                  = array();
+	protected $hook_order_queue    = array();
 	protected $original_priorities = array();
 
 	public static function instance() {
@@ -203,11 +203,14 @@ class WC_GZD_Hook_Priorities {
 			'functions' => array(),
 		);
 
-		foreach( $functions as $function ) {
-			$function_arg = wp_parse_args( $function, array(
-				'function'     => '',
-				'new_priority' => 10,
-			) );
+		foreach ( $functions as $function ) {
+			$function_arg = wp_parse_args(
+				$function,
+				array(
+					'function'     => '',
+					'new_priority' => 10,
+				)
+			);
 
 			if ( ! empty( $function_arg['function'] ) ) {
 				$args['functions'][] = $function_arg;
@@ -224,11 +227,11 @@ class WC_GZD_Hook_Priorities {
 	}
 
 	public function force_hook_order_queued() {
-		foreach( $this->hook_order_queue as $queue ) {
+		foreach ( $this->hook_order_queue as $queue ) {
 			$hook            = $queue['hook'];
 			$hooks_to_change = array();
 
-			foreach( $queue['functions'] as $function_data ) {
+			foreach ( $queue['functions'] as $function_data ) {
 				$new_prio  = is_numeric( $function_data['new_priority'] ) ? $function_data['new_priority'] : $this->get_priority( $hook, $function_data['new_priority'] );
 				$old_prio  = $this->get_priority( $hook, $function_data['function'] );
 				$last_hook = isset( $hooks_to_change[ count( $hooks_to_change ) - 1 ] ) ? $hooks_to_change[ count( $hooks_to_change ) - 1 ] : false;

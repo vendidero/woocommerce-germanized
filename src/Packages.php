@@ -81,6 +81,18 @@ class Packages {
 			if ( 'one-stop-shop-woocommerce' === $package_name ) {
 				if ( PluginsHelper::is_oss_plugin_active() || ! get_option( 'oss_use_oss_procedure' ) ) {
 					continue;
+				} elseif ( version_compare( get_option( 'woocommerce_gzd_db_version', '1.0.0' ), '3.10.0', '<' ) ) {
+					/**
+					 * Temp check in case the DB update has not been completed yet. In this special case, check for global OSS activation and load package.
+					 */
+					if ( 'yes' !== get_option( 'oss_use_oss_procedure' ) && 'yes' !== get_option( 'oss_enable_auto_observation' ) ) {
+						continue;
+					}
+				} elseif ( 'yes' !== get_option( 'woocommerce_gzd_is_oss_standalone_update' ) ) {
+					/**
+					 * After the DB update has been completed, check the temp option which indicates the necessity to load the bundled package.
+					 */
+					continue;
 				}
 			}
 
