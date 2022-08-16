@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: WooCommerce Germanized\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-08-16 11:30+0200\n"
-"PO-Revision-Date: 2022-08-16 11:30+0200\n"
+"PO-Revision-Date: 2022-08-16 13:07+0200\n"
 "Last-Translator: Dennis Nissle <info@vendidero.de>\n"
 "Language-Team: \n"
 "Language: de_DE@formal\n"
@@ -6903,7 +6903,7 @@ msgstr "Weiter"
 # @ woocommerce-germanized
 #: woocommerce-germanized/includes/admin/class-wc-gzd-admin-setup-wizard.php:141
 msgid "Pages"
-msgstr "Rechtlich relevante Seiten"
+msgstr "Rechtliche Seiten"
 
 #: woocommerce-germanized/includes/admin/class-wc-gzd-admin-setup-wizard.php:142
 msgid "Create legal pages placeholders e.g. terms & conditions."
@@ -6952,8 +6952,8 @@ msgid ""
 "Get notified automatically when you are close to reaching the delivery "
 "threshold."
 msgstr ""
-"Lassen Sie sich automatisch benachrichtigen, wenn Sie die Lieferschwelle "
-"fast erreichen."
+"Lassen Sie sich automatisch benachrichtigen wenn Sie kurz davor stehen die "
+"Lieferschwelle zu erreichen."
 
 # @ woocommerce-germanized
 #: woocommerce-germanized/includes/admin/class-wc-gzd-admin-setup-wizard.php:181
