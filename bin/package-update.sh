@@ -36,6 +36,8 @@ find ./packages/woocommerce-eu-tax-helper -iname '*.php' -exec sed -i.bak -e "s/
 rm -rf ./packages/woocommerce-germanized-shipments/vendor
 rm -rf ./packages/woocommerce-germanized-dhl/vendor
 rm -rf ./packages/woocommerce-eu-tax-helper/vendor
+rm -rf ./packages/woocommerce-trusted-shops/vendor
+rm -rf ./packages/one-stop-shop-woocommerce/vendor
 
 output 3 "Clean vendor dirs to save space..."
 
