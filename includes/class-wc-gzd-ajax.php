@@ -268,8 +268,8 @@ class WC_GZD_AJAX {
 		}
 
 		$product_id = absint( wp_unslash( $_POST['product_id'] ) );
-		$price      = wc_clean( wp_unslash( $_POST['price'] ) );
-		$price_sale = isset( $_POST['price_sale'] ) ? wc_clean( wp_unslash( $_POST['price_sale'] ) ) : '';
+		$price      = (float) wc_clean( wp_unslash( $_POST['price'] ) );
+		$price_sale = isset( $_POST['price_sale'] ) ? (float) wc_clean( wp_unslash( $_POST['price_sale'] ) ) : '';
 
 		if ( ! $product = wc_gzd_get_product( $product_id ) ) {
 			wp_send_json( array( 'result' => 'failure' ) );
@@ -280,17 +280,17 @@ class WC_GZD_AJAX {
 		 * we will need to manually remove taxes from price before recalculating the unit price.
 		 */
 		if ( wc_tax_enabled() && ! wc_prices_include_tax() && 'incl' === get_option( 'woocommerce_tax_display_shop' ) ) {
-			$price = self::get_price_excluding_tax( $price, $product->get_wc_product() );
+			$price = (float) self::get_price_excluding_tax( $price, $product->get_wc_product() );
 
-			if ( ! empty( $price_sale ) ) {
-				$price_sale = self::get_price_excluding_tax( $price_sale, $product->get_wc_product() );
+			if ( '' !== $price_sale ) {
+				$price_sale = (float) self::get_price_excluding_tax( $price_sale, $product->get_wc_product() );
 			}
 		}
 
 		$args = array(
 			'regular_price' => $price,
-			'sale_price'    => ! empty( $price_sale ) ? $price_sale : $price,
-			'price'         => ! empty( $price_sale ) ? $price_sale : $price,
+			'sale_price'    => '' !== $price_sale ? $price_sale : $price,
+			'price'         => '' !== $price_sale ? $price_sale : $price,
 		);
 
 		$product->recalculate_unit_price( $args );

@@ -19,6 +19,24 @@ abstract class WC_GZD_Elementor_Widget extends ElementorPro\Modules\Woocommerce\
 		return 'woocommerce-gzd-' . str_replace( '_', '-', $this->get_postfix() );
 	}
 
+	public function get_categories() {
+		$categories = array( 'woocommerce-elements', 'woocommerce-elements-single' );
+
+		if ( ! WC_germanized()->is_pro() ) {
+			$categories[] = 'pro-elements';
+		}
+
+		return $categories;
+	}
+
+	public function get_icon() {
+		return 'eicon-woocommerce';
+	}
+
+	public function get_custom_help_url() {
+		return 'https://vendidero.de/dokument/preisauszeichnungen-anpassen';
+	}
+
 	abstract public function get_postfix();
 
 	abstract protected function get_title_raw();

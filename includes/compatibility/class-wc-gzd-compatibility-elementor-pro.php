@@ -86,7 +86,7 @@ class WC_GZD_Compatibility_Elementor_Pro extends WC_GZD_Compatibility {
 	}
 
 	public function load() {
-		add_action( 'elementor/widgets/widgets_registered', array( $this, 'init_widgets' ), 10 );
+		add_action( 'elementor/widgets/register', array( $this, 'init_widgets' ), 10, 1 );
 
 		/**
 		 * Copy
@@ -196,7 +196,7 @@ class WC_GZD_Compatibility_Elementor_Pro extends WC_GZD_Compatibility {
 		);
 	}
 
-	public function init_widgets() {
+	public function init_widgets( $widgets_manager ) {
 		if ( ! class_exists( 'ElementorPro\Modules\Woocommerce\Widgets\Products_Base' ) ) {
 			return;
 		}
@@ -218,13 +218,11 @@ class WC_GZD_Compatibility_Elementor_Pro extends WC_GZD_Compatibility {
 			'WC_GZD_Elementor_Widget_Product_Nutri_Score',
 		);
 
-		$widget_manager = Plugin::$instance->widgets_manager;
-
 		foreach ( $widgets as $widget ) {
 			$classname = 'class-' . str_replace( '_', '-', strtolower( $widget ) ) . '.php';
 
 			include_once WC_GERMANIZED_ABSPATH . 'includes/compatibility/elementor/widgets/' . $classname;
-			$widget_manager->register_widget_type( new $widget() );
+			$widgets_manager->register_widget_type( new $widget() );
 		}
 	}
 }
