@@ -5,7 +5,7 @@ Requires at least: 5.4
 Tested up to: 6.0
 WC requires at least: 3.9
 WC tested up to: 6.6
-Stable tag: 3.10.1
+Stable tag: 3.10.2
 Requires PHP: 5.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -211,6 +211,10 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 6. Edit pdf documents (Pro)
 
 == Changelog ==
+= 3.10.2 =
+* Improvement: Shipments REST API writable attributes
+* Improvement: Elementor Pro 3.7.3 compatibility
+
 = 3.10.1 =
 * New: REST API endpoint for shipments
 * Improvement: Install helper for additional packages (e.g. OSS)
