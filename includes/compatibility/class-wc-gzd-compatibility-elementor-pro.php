@@ -222,7 +222,12 @@ class WC_GZD_Compatibility_Elementor_Pro extends WC_GZD_Compatibility {
 			$classname = 'class-' . str_replace( '_', '-', strtolower( $widget ) ) . '.php';
 
 			include_once WC_GERMANIZED_ABSPATH . 'includes/compatibility/elementor/widgets/' . $classname;
-			$widgets_manager->register_widget_type( new $widget() );
+
+			if ( is_callable( array( $widgets_manager, 'register' ) ) ) {
+				$widgets_manager->register( new $widget() );
+			} else {
+				$widgets_manager->register_widget_type( new $widget() );
+			}
 		}
 	}
 }
