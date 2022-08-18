@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "bf0d9c4a3b4a6b9cec84cf1901d8d950",
+    "content-hash": "bb2b6a8f73ab682f8a83e7d5d7e3ac9f",
     "packages": [
         {
             "name": "automattic/jetpack-autoloader",
@@ -934,16 +934,16 @@
         },
         {
             "name": "vendidero/woocommerce-germanized-shipments",
-            "version": "v2.0.1",
+            "version": "v2.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vendidero/woocommerce-germanized-shipments.git",
-                "reference": "2fbf1a5e7af091e94c8181ad14c8932195de988d"
+                "reference": "4375bc9c19dcbb6e10aabc711f9480267d810415"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vendidero/woocommerce-germanized-shipments/zipball/2fbf1a5e7af091e94c8181ad14c8932195de988d",
-                "reference": "2fbf1a5e7af091e94c8181ad14c8932195de988d",
+                "url": "https://api.github.com/repos/vendidero/woocommerce-germanized-shipments/zipball/4375bc9c19dcbb6e10aabc711f9480267d810415",
+                "reference": "4375bc9c19dcbb6e10aabc711f9480267d810415",
                 "shasum": ""
             },
             "require": {
@@ -986,10 +986,10 @@
             "description": "The Germanized Shipments implementation.",
             "homepage": "https://github.com/vendidero/woocommerce-germanized-shipments",
             "support": {
-                "source": "https://github.com/vendidero/woocommerce-germanized-shipments/tree/v2.0.1",
+                "source": "https://github.com/vendidero/woocommerce-germanized-shipments/tree/v2.0.2",
                 "issues": "https://github.com/vendidero/woocommerce-germanized-shipments/issues"
             },
-            "time": "2022-08-16T09:24:00+00:00"
+            "time": "2022-08-18T13:56:11+00:00"
         },
         {
             "name": "vendidero/woocommerce-trusted-shops",
