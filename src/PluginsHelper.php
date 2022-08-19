@@ -268,6 +268,8 @@ class PluginsHelper {
 	 * @return bool
 	 */
 	protected static function install_and_activate_plugin( $plugin ) {
+		self::clear_cache();
+		
 		$result = array(
 			'errors' => new \WP_Error(),
 		);
@@ -417,6 +419,8 @@ class PluginsHelper {
 			'time'      => $time,
 		);
 
+		self::clear_cache();
+
 		return $data;
 	}
 
@@ -490,6 +494,8 @@ class PluginsHelper {
 			'errors'    => $errors,
 		);
 
+		self::clear_cache();
+
 		return $data;
 	}
 
@@ -499,5 +505,10 @@ class PluginsHelper {
 		}
 
 		return $plugins;
+	}
+
+	public static function clear_cache() {
+		self::$plugins = null;
+		self::$active_plugins = null;
 	}
 }
