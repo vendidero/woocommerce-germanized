@@ -14,6 +14,10 @@ if ( ! function_exists( 'get_plugins' ) ) {
  */
 class PluginsHelper {
 
+	private static $active_plugins = null;
+
+	private static $plugins = null;
+
 	public static function init() {
 		add_filter( 'all_plugins', array( __CLASS__, 'filter_bundled_plugin_names' ) );
 		add_action( 'activated_plugin', array( __CLASS__, 'observe_plugin_activation' ) );
@@ -43,7 +47,7 @@ class PluginsHelper {
 	 * @return string|false
 	 */
 	public static function get_plugin_path_from_slug( $slug ) {
-		$plugins = get_plugins();
+		$plugins = self::get_plugins();
 
 		if ( strstr( $slug, '/' ) ) {
 			// The slug is already a plugin path.
@@ -71,7 +75,7 @@ class PluginsHelper {
 	 * @return array
 	 */
 	public static function get_installed_plugin_slugs() {
-		return array_map( array( __CLASS__, 'get_plugin_slug' ), array_keys( get_plugins() ) );
+		return array_map( array( __CLASS__, 'get_plugin_slug' ), array_keys( self::get_plugins() ) );
 	}
 
 	/**
@@ -80,7 +84,7 @@ class PluginsHelper {
 	 * @return array
 	 */
 	public static function get_installed_plugins_paths() {
-		$plugins           = get_plugins();
+		$plugins           = self::get_plugins();
 		$installed_plugins = array();
 
 		foreach ( $plugins as $path => $plugin ) {
@@ -96,7 +100,7 @@ class PluginsHelper {
 	 * @return array
 	 */
 	public static function get_active_plugin_slugs() {
-		return array_map( array( __CLASS__, 'get_plugin_slug' ), get_option( 'active_plugins', array() ) );
+		return array_map( array( __CLASS__, 'get_plugin_slug' ), self::get_active_plugins() );
 	}
 
 	/**
@@ -108,7 +112,29 @@ class PluginsHelper {
 	 */
 	public static function is_plugin_installed( $plugin ) {
 		$plugin_path = self::get_plugin_path_from_slug( $plugin );
-		return $plugin_path ? array_key_exists( $plugin_path, get_plugins() ) : false;
+		return $plugin_path ? array_key_exists( $plugin_path, self::get_plugins() ) : false;
+	}
+
+	protected static function get_plugins() {
+		if ( is_null( self::$plugins ) ) {
+			self::$plugins = get_plugins();
+		}
+
+		return self::$plugins;
+	}
+
+	protected static function get_active_plugins() {
+		if ( is_null( self::$active_plugins ) ) {
+			$active_plugins = get_option( 'active_plugins', array() );
+
+			if ( is_multisite() ) {
+				$active_plugins = array_merge( $active_plugins, get_site_option( 'active_sitewide_plugins', array() ) );
+			}
+
+			self::$active_plugins = $active_plugins;
+		}
+
+		return self::$active_plugins;
 	}
 
 	/**
@@ -120,7 +146,8 @@ class PluginsHelper {
 	 */
 	public static function is_plugin_active( $plugin ) {
 		$plugin_path = self::get_plugin_path_from_slug( $plugin );
-		return $plugin_path ? in_array( $plugin_path, get_option( 'active_plugins', array() ), true ) : false;
+
+		return $plugin_path ? in_array( $plugin_path, self::get_active_plugins(), true ) : false;
 	}
 
 	/**
@@ -177,7 +204,7 @@ class PluginsHelper {
 	 */
 	public static function get_plugin_data( $plugin ) {
 		$plugin_path = self::get_plugin_path_from_slug( $plugin );
-		$plugins     = get_plugins();
+		$plugins     = self::get_plugins();
 
 		return isset( $plugins[ $plugin_path ] ) ? $plugins[ $plugin_path ] : false;
 	}
