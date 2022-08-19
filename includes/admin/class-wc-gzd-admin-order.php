@@ -211,9 +211,14 @@ class WC_GZD_Admin_Order {
 						$item_total += $old_item->get_total_tax();
 					}
 				} else {
-					$item_total = $item->get_total();
+					$item_total     = $item->get_total();
+					$is_adding_item = wp_doing_ajax() && isset( $_POST['action'] ) && in_array( wp_unslash( $_POST['action'] ), array( 'woocommerce_add_order_fee', 'woocommerce_add_order_shipping' ), true ); // phpcs:ignore WordPress.Security.NonceVerification.Missing
 
-					if ( wc_gzd_additional_costs_include_tax() ) {
+					/**
+					 * When adding a fee through the admin panel, Woo by default calculates taxes
+					 * based on the fee's tax class (which by default is standard). Ignore the tax data on first call.
+					 */
+					if ( ! $is_adding_item && wc_gzd_additional_costs_include_tax() ) {
 						$item_total += $item->get_total_tax();
 					}
 				}
