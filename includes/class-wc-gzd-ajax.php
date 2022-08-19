@@ -269,7 +269,7 @@ class WC_GZD_AJAX {
 
 		$product_id = absint( wp_unslash( $_POST['product_id'] ) );
 		$price      = (float) wc_clean( wp_unslash( $_POST['price'] ) );
-		$price_sale = isset( $_POST['price_sale'] ) ? (float) wc_clean( wp_unslash( $_POST['price_sale'] ) ) : '';
+		$price_sale = isset( $_POST['price_sale'] ) && '' !== wc_clean( wp_unslash( $_POST['price_sale'] ) ) ? (float) wc_clean( wp_unslash( $_POST['price_sale'] ) ) : '';
 
 		if ( ! $product = wc_gzd_get_product( $product_id ) ) {
 			wp_send_json( array( 'result' => 'failure' ) );
