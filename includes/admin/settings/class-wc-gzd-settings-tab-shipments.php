@@ -51,6 +51,12 @@ class WC_GZD_Settings_Tab_Shipments extends WC_GZD_Settings_Tab {
 		}
 	}
 
+	protected function after_save( $settings, $current_section = '' ) {
+		parent::after_save( $settings, $current_section );
+
+		Settings::after_save( $current_section );
+	}
+
 	public function get_pointers() {
 		return Settings::get_pointers( $this->get_current_section() );
 	}
