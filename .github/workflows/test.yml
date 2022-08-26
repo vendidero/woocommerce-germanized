@@ -40,7 +40,9 @@ jobs:
       - name: Install compatibility-with-php8-to-phpunit-7
         if: ${{ matrix.php == '8.0' }}
         run: |
-          composer require --dev --update-with-all-dependencies --prefer-dist phpunit/phpunit:dev-add-compatibility-with-php8-to-phpunit-7
+          composer config --unset platform
+          composer config repositories.0 '{"type":"vcs","url":"https://github.com/woocommerce/phpunit.git"}'
+          composer require --dev --update-with-all-dependencies --ignore-platform-req=php phpunit/phpunit:dev-add-compatibility-with-php8-to-phpunit-7
 
       - name: Install WP Tests
         run: bash tests/bin/install.sh wordpress_test root root 127.0.0.1:${{ job.services.mysql.ports['3306'] }} latest ${{ matrix.woo }} true
