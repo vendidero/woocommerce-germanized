@@ -35,9 +35,7 @@ jobs:
           coverage: xdebug #optional, setup coverage driver
 
       - name: Composer install
-        run: composer config github-oauth.github.com ${{ secrets.GH_TOKEN }} && composer install
-        env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        run: composer install --no-interaction
 
       - name: Install compatibility-with-php8-to-phpunit-7
         if: ${{ matrix.php == '8.0' }}
