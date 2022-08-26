@@ -27,17 +27,16 @@ jobs:
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           php-version: ${{ matrix.php }}
-          tools: composer
           extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, mysql, mysqli, pdo_mysql, bcmath, soap, intl, gd, exif, iconv, imagick
           ini-values: post_max_size=256M, short_open_tag=On #optional, setup php.ini configuration
           coverage: xdebug #optional, setup coverage driver
 
       - name: Composer install
-        run: composer config github-oauth.github.com ${{ secrets.GH_TOKEN }} && composer install
-        env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        run: composer install
 
       - name: Install compatibility-with-php8-to-phpunit-7
         if: ${{ matrix.php == '8.0' }}
