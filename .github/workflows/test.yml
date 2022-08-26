@@ -40,7 +40,7 @@ jobs:
       - name: Install compatibility-with-php8-to-phpunit-7
         if: ${{ matrix.php == '8.0' }}
         run: |
-          composer config repositories.0 '[{"type":"package","package":{"name":"phpunit/phpunit","version":"7.5.999","dist":{"url":"https://github.com/woocommerce/phpunit/archive/add-compatibility-with-php8-to-phpunit-7.zip","type":"zip"},"autoload":{"classmap":["src/"]}}}]'
+          composer config repositories.0 '{"type":"package","package":{"name":"phpunit/phpunit","version":"7.5.999","dist":{"url":"https://github.com/woocommerce/phpunit/archive/add-compatibility-with-php8-to-phpunit-7.zip","type":"zip"},"autoload":{"classmap":["src/"]}}}'
           composer require --dev --update-with-all-dependencies phpunit/phpunit:7.5.999
 
       - name: Install WP Tests
