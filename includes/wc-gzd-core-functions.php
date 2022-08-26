@@ -398,7 +398,7 @@ function wc_gzd_get_page_permalink( $type ) {
 		$page_id = wc_gzd_get_privacy_policy_page_id();
 	}
 
-	$link = $page_id ? get_permalink( $page_id ) : '';
+	$link = ( $page_id > 0 ) ? get_permalink( $page_id ) : '';
 
 	/**
 	 * Filters the page permalink for a certain legal page.
