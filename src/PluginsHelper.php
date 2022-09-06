@@ -21,6 +21,20 @@ class PluginsHelper {
 	public static function init() {
 		add_filter( 'all_plugins', array( __CLASS__, 'filter_bundled_plugin_names' ) );
 		add_action( 'activated_plugin', array( __CLASS__, 'observe_plugin_activation' ) );
+		add_action( 'ts_easy_integration_connected', array( __CLASS__, 'observe_ts_integration_connect' ) );
+	}
+
+	/**
+	 * After the first successful connection to TS new gen has been detected, remove the migration note.
+	 *
+	 * @return void
+	 */
+	public static function observe_ts_integration_connect() {
+		delete_option( 'woocommerce_gzd_is_ts_standalone_update' );
+	}
+
+	public static function needs_trusted_shops_migration() {
+		return get_option( 'woocommerce_gzd_trusted_shops_id' ) && did_action( 'woocommerce_gzd_package_woocommerce-trusted-shops_init' );
 	}
 
 	/**
@@ -168,7 +182,7 @@ class PluginsHelper {
 	 * @return bool
 	 */
 	public static function is_trusted_shops_plugin_active() {
-		return self::is_plugin_active( 'woocommerce-trusted-shops' );
+		return self::is_plugin_active( 'trusted-shops-easy-integration-for-woocommerce' );
 	}
 
 	/**
@@ -269,7 +283,7 @@ class PluginsHelper {
 	 */
 	protected static function install_and_activate_plugin( $plugin ) {
 		self::clear_cache();
-		
+
 		$result = array(
 			'errors' => new \WP_Error(),
 		);
@@ -290,8 +304,26 @@ class PluginsHelper {
 	/**
 	 * @return bool
 	 */
+	public static function install_or_activate_extension( $extension_name ) {
+		if ( self::is_plugin_whitelisted( $extension_name ) ) {
+			return self::install_and_activate_plugin( $extension_name );
+		} else {
+			return false;
+		}
+	}
+
+	/**
+	 * @return bool
+	 */
 	public static function install_or_activate_oss() {
-		return self::install_and_activate_plugin( 'one-stop-shop-woocommerce' );
+		return self::install_or_activate_extension( 'one-stop-shop-woocommerce' );
+	}
+
+	/**
+	 * @return bool
+	 */
+	public static function install_or_activate_trusted_shops() {
+		return self::install_or_activate_extension( 'trusted-shops-easy-integration-for-woocommerce' );
 	}
 
 	public static function get_plugin_manual_install_message( $plugin ) {
@@ -432,7 +464,7 @@ class PluginsHelper {
 		return array(
 			'woocommerce'               => __( 'WooCommerce', 'woocommerce-germanized' ),
 			'one-stop-shop-woocommerce' => __( 'One Stop Shop', 'woocommerce-germanized' ),
-			'woocommerce-trusted-shops' => __( 'Trusted Shops', 'woocommerce-germanized' ),
+			'trusted-shops-easy-integration-for-woocommerce' => __( 'Trusted Shops', 'woocommerce-germanized' ),
 		);
 	}
 
@@ -504,11 +536,15 @@ class PluginsHelper {
 			$plugins['one-stop-shop-woocommerce/one-stop-shop-woocommerce.php']['Name'] = esc_html__( 'Germanized for WooCommerce: One Stop Shop', 'woocommerce-germanized' );
 		}
 
+		if ( array_key_exists( 'trusted-shops-easy-integration-for-woocommerce/trusted-shops-easy-integration-for-woocommerce.php', $plugins ) ) {
+			$plugins['trusted-shops-easy-integration-for-woocommerce/trusted-shops-easy-integration-for-woocommerce.php']['Name'] = esc_html__( 'Germanized for WooCommerce: Trusted Shops', 'woocommerce-germanized' );
+		}
+
 		return $plugins;
 	}
 
 	public static function clear_cache() {
-		self::$plugins = null;
+		self::$plugins        = null;
 		self::$active_plugins = null;
 	}
 }

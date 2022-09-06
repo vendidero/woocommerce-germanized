@@ -3,7 +3,7 @@
  * Plugin Name: Germanized for WooCommerce
  * Plugin URI: https://www.vendidero.de/woocommerce-germanized
  * Description: Germanized for WooCommerce extends WooCommerce to become a legally compliant store in the german market.
- * Version: 3.10.3
+ * Version: 3.10.4
  * Author: vendidero
  * Author URI: https://vendidero.de
  * Requires at least: 5.4
@@ -69,7 +69,7 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 		 *
 		 * @var string
 		 */
-		public $version = '3.10.3';
+		public $version = '3.10.4';
 
 		/**
 		 * @var WooCommerce_Germanized $instance of the plugin
@@ -625,32 +625,32 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 			$plugins = apply_filters(
 				'woocommerce_gzd_compatibilities',
 				array(
-					'wpml'                                        => 'WC_GZD_Compatibility_WPML',
-					'wpml-string-translation'                     => 'WC_GZD_Compatibility_WPML_String_Translation',
-					'polylang'                                    => 'WC_GZD_Compatibility_Polylang',
-					'woo-poly-integration'                        => 'WC_GZD_Compatibility_Woo_Poly_Integration',
-					'woocommerce-dynamic-pricing'                 => 'WC_GZD_Compatibility_WooCommerce_Dynamic_Pricing',
-					'woocommerce-product-bundles'                 => 'WC_GZD_Compatibility_WooCommerce_Product_Bundles',
-					'woocommerce-composite-products'              => 'WC_GZD_Compatibility_WooCommerce_Composite_Products',
-					'woocommerce-product-addons'                  => 'WC_GZD_Compatibility_WooCommerce_Product_Addons',
-					'woocommerce-role-based-prices'               => 'WC_GZD_Compatibility_WooCommerce_Role_Based_Prices',
-					'woo-discount-rules'                          => 'WC_GZD_Compatibility_Woo_Discount_Rules',
+					'wpml'                             => 'WC_GZD_Compatibility_WPML',
+					'wpml-string-translation'          => 'WC_GZD_Compatibility_WPML_String_Translation',
+					'polylang'                         => 'WC_GZD_Compatibility_Polylang',
+					'woo-poly-integration'             => 'WC_GZD_Compatibility_Woo_Poly_Integration',
+					'woocommerce-dynamic-pricing'      => 'WC_GZD_Compatibility_WooCommerce_Dynamic_Pricing',
+					'woocommerce-product-bundles'      => 'WC_GZD_Compatibility_WooCommerce_Product_Bundles',
+					'woocommerce-composite-products'   => 'WC_GZD_Compatibility_WooCommerce_Composite_Products',
+					'woocommerce-product-addons'       => 'WC_GZD_Compatibility_WooCommerce_Product_Addons',
+					'woocommerce-role-based-prices'    => 'WC_GZD_Compatibility_WooCommerce_Role_Based_Prices',
+					'woo-discount-rules'               => 'WC_GZD_Compatibility_Woo_Discount_Rules',
 					'woocommerce-gateway-paypal-express-checkout' => 'WC_GZD_Compatibility_WooCommerce_Gateway_Paypal_Express_Checkout',
-					'woocommerce-subscriptions'                   => 'WC_GZD_Compatibility_WooCommerce_Subscriptions',
-					'woo-paypalplus'                              => 'WC_GZD_Compatibility_Woo_PaypalPlus',
-					'woocommerce-paypal-payments'                 => 'WC_GZD_Compatibility_WooCommerce_PayPal_Payments',
-					'elementor-pro'                               => 'WC_GZD_Compatibility_Elementor_Pro',
-					'elementor'                                   => 'WC_GZD_Compatibility_Elementor',
-					'klarna-checkout-for-woocommerce'             => 'WC_GZD_Compatibility_Klarna_Checkout_For_WooCommerce',
-					'flexible-checkout-fields'                    => 'WC_GZD_Compatibility_Flexible_Checkout_Fields',
-					'woocommerce-all-products-for-subscriptions'  => 'WC_GZD_Compatibility_WooCommerce_All_Products_For_Subscriptions',
-					'b2b-market'                                  => 'WC_GZD_Compatibility_B2B_Market',
-					'woocommerce-memberships'                     => 'WC_GZD_Compatibility_WooCommerce_Memberships',
-					'addify-role-based-pricing'                   => 'WC_GZD_Compatibility_Addify_Role_Based_Pricing',
-					'customer-specific-pricing-for-woocommerce'   => 'WC_GZD_Compatibility_Customer_Specific_Pricing_For_WooCommerce',
-					'woocommerce-measurement-price-calculator'    => 'WC_GZD_Compatibility_WooCommerce_Measurement_Price_Calculator',
-					'legal-texts-connector-it-recht-kanzlei'      => 'WC_GZD_Compatibility_Legal_Texts_Connector_IT_Recht_Kanzlei',
-					'wc-dynamic-pricing-and-discounts'            => 'WC_GZD_Compatibility_WC_Dynamic_Pricing_And_Discounts',
+					'woocommerce-subscriptions'        => 'WC_GZD_Compatibility_WooCommerce_Subscriptions',
+					'woo-paypalplus'                   => 'WC_GZD_Compatibility_Woo_PaypalPlus',
+					'woocommerce-paypal-payments'      => 'WC_GZD_Compatibility_WooCommerce_PayPal_Payments',
+					'elementor-pro'                    => 'WC_GZD_Compatibility_Elementor_Pro',
+					'elementor'                        => 'WC_GZD_Compatibility_Elementor',
+					'klarna-checkout-for-woocommerce'  => 'WC_GZD_Compatibility_Klarna_Checkout_For_WooCommerce',
+					'flexible-checkout-fields'         => 'WC_GZD_Compatibility_Flexible_Checkout_Fields',
+					'woocommerce-all-products-for-subscriptions' => 'WC_GZD_Compatibility_WooCommerce_All_Products_For_Subscriptions',
+					'b2b-market'                       => 'WC_GZD_Compatibility_B2B_Market',
+					'woocommerce-memberships'          => 'WC_GZD_Compatibility_WooCommerce_Memberships',
+					'addify-role-based-pricing'        => 'WC_GZD_Compatibility_Addify_Role_Based_Pricing',
+					'customer-specific-pricing-for-woocommerce' => 'WC_GZD_Compatibility_Customer_Specific_Pricing_For_WooCommerce',
+					'woocommerce-measurement-price-calculator' => 'WC_GZD_Compatibility_WooCommerce_Measurement_Price_Calculator',
+					'legal-texts-connector-it-recht-kanzlei' => 'WC_GZD_Compatibility_Legal_Texts_Connector_IT_Recht_Kanzlei',
+					'wc-dynamic-pricing-and-discounts' => 'WC_GZD_Compatibility_WC_Dynamic_Pricing_And_Discounts',
 				)
 			);
 

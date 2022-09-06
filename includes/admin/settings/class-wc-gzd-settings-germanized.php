@@ -185,6 +185,7 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 		include_once dirname( __FILE__ ) . '/class-wc-gzd-settings-tab-multistep-checkout.php';
 		include_once dirname( __FILE__ ) . '/class-wc-gzd-settings-tab-terms-generator.php';
 		include_once dirname( __FILE__ ) . '/class-wc-gzd-settings-tab-revocation-generator.php';
+		include_once dirname( __FILE__ ) . '/class-wc-gzd-settings-tab-trusted-shops.php';
 
 		if ( class_exists( '\Vendidero\Germanized\Shipments\Package' ) && Package::has_dependencies() ) {
 			include_once dirname( __FILE__ ) . '/class-wc-gzd-settings-tab-shipments.php';
@@ -203,21 +204,22 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 		$tabs = apply_filters(
 			'woocommerce_gzd_admin_settings_tabs',
 			array(
-				'general'              => 'WC_GZD_Settings_Tab_General',
-				'shopmarks'            => 'WC_GZD_Settings_Tab_Shopmarks',
-				'taxes'                => 'WC_GZD_Settings_Tab_Taxes',
-				'button_solution'      => 'WC_GZD_Settings_Tab_Button_Solution',
-				'multistep_checkout'   => 'WC_GZD_Settings_Tab_Multistep_Checkout',
-				'invoices'             => 'WC_GZD_Settings_Tab_Invoices',
-				'shipments'            => 'WC_GZD_Settings_Tab_Shipments',
-				'shipping_provider'    => 'WC_GZD_Settings_Tab_Shipping_Provider',
-				'double_opt_in'        => 'WC_GZD_Settings_Tab_DOI',
-				'emails'               => 'WC_GZD_Settings_Tab_Emails',
-				'checkboxes'           => 'WC_GZD_Settings_Tab_Checkboxes',
-				'contract'             => 'WC_GZD_Settings_Tab_Contract',
-				'terms_generator'      => 'WC_GZD_Settings_Tab_Terms_Generator',
-				'revocation_generator' => 'WC_GZD_Settings_Tab_Revocation_Generator',
-				'oss'                  => 'WC_GZD_Settings_Tab_OSS',
+				'general'                        => 'WC_GZD_Settings_Tab_General',
+				'shopmarks'                      => 'WC_GZD_Settings_Tab_Shopmarks',
+				'taxes'                          => 'WC_GZD_Settings_Tab_Taxes',
+				'button_solution'                => 'WC_GZD_Settings_Tab_Button_Solution',
+				'multistep_checkout'             => 'WC_GZD_Settings_Tab_Multistep_Checkout',
+				'invoices'                       => 'WC_GZD_Settings_Tab_Invoices',
+				'shipments'                      => 'WC_GZD_Settings_Tab_Shipments',
+				'shipping_provider'              => 'WC_GZD_Settings_Tab_Shipping_Provider',
+				'double_opt_in'                  => 'WC_GZD_Settings_Tab_DOI',
+				'emails'                         => 'WC_GZD_Settings_Tab_Emails',
+				'checkboxes'                     => 'WC_GZD_Settings_Tab_Checkboxes',
+				'contract'                       => 'WC_GZD_Settings_Tab_Contract',
+				'terms_generator'                => 'WC_GZD_Settings_Tab_Terms_Generator',
+				'revocation_generator'           => 'WC_GZD_Settings_Tab_Revocation_Generator',
+				'oss'                            => 'WC_GZD_Settings_Tab_OSS',
+				'trusted_shops_easy_integration' => 'WC_GZD_Settings_Tab_Trusted_Shops',
 			)
 		);
 
@@ -225,7 +227,6 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 			$this->tabs = array();
 
 			foreach ( $tabs as $key => $tab ) {
-
 				if ( class_exists( $tab ) ) {
 					$this->tabs[ $key ] = new $tab();
 				}

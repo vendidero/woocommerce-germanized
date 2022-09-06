@@ -49,7 +49,7 @@ class WC_GZD_AJAX {
 		$extension = wc_clean( wp_unslash( $_POST['extension'] ) );
 
 		if ( ! empty( $extension ) && \Vendidero\Germanized\PluginsHelper::is_plugin_whitelisted( $extension ) ) {
-			$result = \Vendidero\Germanized\PluginsHelper::install_or_activate_oss();
+			$result = \Vendidero\Germanized\PluginsHelper::install_or_activate_extension( $extension );
 
 			if ( \Vendidero\Germanized\PluginsHelper::is_plugin_active( $extension ) ) {
 				wp_send_json(

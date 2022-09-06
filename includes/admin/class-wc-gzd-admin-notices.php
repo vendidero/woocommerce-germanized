@@ -65,6 +65,7 @@ if ( ! class_exists( 'WC_GZD_Admin_Notices' ) ) :
 			include_once 'notes/class-wc-gzd-admin-note-virtual-vat.php';
 			include_once 'notes/class-wc-gzd-admin-note-legal-news.php';
 			include_once 'notes/class-wc-gzd-admin-note-oss-install.php';
+			include_once 'notes/class-wc-gzd-admin-note-ts-install.php';
 		}
 
 		/**
@@ -184,6 +185,10 @@ if ( ! class_exists( 'WC_GZD_Admin_Notices' ) ) :
 
 				if ( 'yes' === get_option( 'woocommerce_gzd_is_oss_standalone_update' ) ) {
 					$core_notes[] = 'WC_GZD_Admin_Note_OSS_Install';
+				}
+
+				if ( 'yes' === get_option( 'woocommerce_gzd_is_ts_standalone_update' ) ) {
+					$core_notes[] = 'WC_GZD_Admin_Note_TS_Install';
 				}
 
 				$notes       = apply_filters( 'woocommerce_gzd_admin_notes', $core_notes );

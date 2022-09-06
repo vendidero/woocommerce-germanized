@@ -104,15 +104,13 @@ class WC_GZD_Compatibility_WPML extends WC_GZD_Compatibility {
 	}
 
 	public function filter_product_nutrient_value_term( $term_id, $product, $context ) {
-		if ( 'view' === $context ) {
-			global $sitepress;
+		global $sitepress;
 
-			if ( $sitepress->get_default_language() !== $sitepress->get_current_language() ) {
-				$original_id = (int) apply_filters( 'wpml_object_id', $term_id, 'product_nutrient', false, $sitepress->get_default_language() );
+		if ( $sitepress->get_default_language() !== $sitepress->get_current_language() ) {
+			$original_id = (int) apply_filters( 'wpml_object_id', $term_id, 'product_nutrient', false, $sitepress->get_default_language() );
 
-				if ( ! empty( $original_id ) && $original_id !== $term_id ) {
-					$term_id = $original_id;
-				}
+			if ( ! empty( $original_id ) && $original_id !== $term_id ) {
+				$term_id = $original_id;
 			}
 		}
 

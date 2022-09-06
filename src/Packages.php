@@ -26,6 +26,8 @@ class Packages {
 	 * Array of package names and their main package classes.
 	 *
 	 * @var array Key is the package name/directory, value is the main package class which handles init.
+	 *
+	 * @TODO remove one-stop-shop-woocommerce and woocommerce-trusted-shops after migration period.
 	 */
 	protected static $packages = array(
 		'woocommerce-trusted-shops'        => '\\Vendidero\\TrustedShops\\Package',
@@ -94,6 +96,22 @@ class Packages {
 					 */
 					continue;
 				}
+			} elseif ( 'woocommerce-trusted-shops' === $package_name ) {
+				if ( ( PluginsHelper::is_trusted_shops_plugin_active() && get_option( 'ts_easy_integration_client_id' ) ) || ! get_option( 'woocommerce_gzd_trusted_shops_id' ) ) {
+					continue;
+				} elseif ( version_compare( get_option( 'woocommerce_gzd_db_version', '1.0.0' ), '3.10.4', '<' ) ) {
+					/**
+					 * Temp check in case the DB update has not been completed yet. In this special case, check for global OSS activation and load package.
+					 */
+					if ( ! get_option( 'woocommerce_gzd_trusted_shops_id' ) ) {
+						continue;
+					}
+				} elseif ( 'yes' !== get_option( 'woocommerce_gzd_is_ts_standalone_update' ) ) {
+					/**
+					 * After the DB update has been completed, check the temp option which indicates the necessity to load the bundled package.
+					 */
+					continue;
+				}
 			}
 
 			if ( ! self::package_exists( $package_name ) ) {
@@ -106,6 +124,10 @@ class Packages {
 			 */
 			if ( ! has_action( 'plugins_loaded', array( $package_class, 'init' ) ) ) {
 				call_user_func( array( $package_class, 'init' ) );
+
+				$package_hook_name = sanitize_key( $package_name );
+
+				do_action( "woocommerce_gzd_package_{$package_hook_name}_init" );
 			}
 		}
 	}

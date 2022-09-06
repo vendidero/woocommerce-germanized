@@ -124,6 +124,7 @@ class WC_GZD_Admin {
 			'encryption_key_insert',
 			'enable_debug_mode',
 			'install_oss',
+			'install_ts',
 		);
 
 		if ( current_user_can( 'manage_woocommerce' ) ) {
@@ -163,6 +164,20 @@ class WC_GZD_Admin {
 		}
 
 		wp_safe_redirect( esc_url_raw( admin_url( 'plugin-install.php?s=one+stop+shop+woocommerce&tab=search&type=term' ) ) );
+		exit();
+	}
+
+	protected function check_install_ts() {
+		if ( current_user_can( 'install_plugins' ) ) {
+			\Vendidero\Germanized\PluginsHelper::install_or_activate_trusted_shops();
+
+			if ( \Vendidero\Germanized\PluginsHelper::is_trusted_shops_plugin_active() ) {
+				wp_safe_redirect( esc_url_raw( admin_url( 'admin.php?page=wc-settings&tab=germanized-trusted_shops_easy_integration' ) ) );
+				exit();
+			}
+		}
+
+		wp_safe_redirect( esc_url_raw( admin_url( 'plugin-install.php?s=trusted+shops+easy+integration+for+woocommerce&tab=search&type=term' ) ) );
 		exit();
 	}
 
