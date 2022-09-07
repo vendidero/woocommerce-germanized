@@ -323,9 +323,9 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 		}
 
 		private static function needs_db_update() {
-			$current_db_version = get_option( 'woocommerce_gzd_db_version' );
+			$current_db_version = get_option( 'woocommerce_gzd_db_version', null );
 
-			if ( ! is_null( $current_db_version ) ) {
+			if ( ! is_null( $current_db_version ) && ! empty( $current_db_version ) ) {
 				foreach ( self::$db_updates as $version => $updater ) {
 					if ( version_compare( $current_db_version, $version, '<' ) ) {
 						return true;
@@ -340,12 +340,14 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 		 * Handle updates
 		 */
 		private static function update() {
-			$current_db_version = get_option( 'woocommerce_gzd_db_version' );
+			$current_db_version = get_option( 'woocommerce_gzd_db_version', null );
 
-			foreach ( self::$db_updates as $version => $updater ) {
-				if ( version_compare( $current_db_version, $version, '<' ) ) {
-					include $updater;
-					self::update_db_version( $version );
+			if ( ! is_null( $current_db_version ) && ! empty( $current_db_version ) ) {
+				foreach ( self::$db_updates as $version => $updater ) {
+					if ( version_compare( $current_db_version, $version, '<' ) ) {
+						include $updater;
+						self::update_db_version( $version );
+					}
 				}
 			}
 

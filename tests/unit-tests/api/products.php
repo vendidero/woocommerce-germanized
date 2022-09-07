@@ -117,7 +117,7 @@ class WC_GZD_Products_API extends WC_GZD_REST_Unit_Test_Case {
 					),
 				),
 				'unit_price'               => array( 'price_regular' => '80.0', 'price_sale' => '70.0' ),
-				'mini_desc'                => 'This is a test',
+				'mini_desc'                => 'This is a test "ok"?',
 				'defect_description'       => 'This is a defect desc',
 				'sale_price_label'         => array( 'id' => $sale_term['term_id'] ),
 				'sale_price_regular_label' => array( 'id' => $sale_term['term_id'] ),
@@ -171,6 +171,7 @@ class WC_GZD_Products_API extends WC_GZD_REST_Unit_Test_Case {
 		$this->assertEquals( 'Test', trim( strip_tags( $data['food']['description'] ) ) );
 		$this->assertEquals( 'Test', trim( strip_tags( $data['food']['place_of_origin'] ) ) );
 		$this->assertEquals( 'Test Ltd.', trim( strip_tags( $data['food']['distributor'] ) ) );
+		$this->assertEquals( 'This is a test "ok"?', trim( strip_tags( $data['mini_desc'] ) ) );
 		$this->assertEquals( 'a', $data['food']['nutri_score'] );
 		$this->assertEquals( '100g', $data['food']['nutrient_reference_value'] );
 		$this->assertEquals( 1.4, $data['food']['alcohol_content'] );

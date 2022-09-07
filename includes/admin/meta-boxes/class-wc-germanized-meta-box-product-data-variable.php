@@ -535,7 +535,7 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 
 		foreach ( $data as $k => $v ) {
 			$data_k     = 'variable' . ( substr( $k, 0, 1 ) === '_' ? '' : '_' ) . $k;
-			$data[ $k ] = WC_Germanized_Meta_Box_Product_Data::get_sanitized_field_value( $k, ( isset( $_POST[ $data_k ][ $i ] ) ? wp_unslash( $_POST[ $data_k ][ $i ] ) : null ) ); // phpcs:ignore WordPress.Security.NonceVerification.Missing,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+			$data[ $k ] = WC_Germanized_Meta_Box_Product_Data::get_sanitized_field_value( $k, ( isset( $_POST[ $data_k ][ $i ] ) ? $_POST[ $data_k ][ $i ] : null ) ); // phpcs:ignore WordPress.Security.NonceVerification.Missing,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized,WordPress.Security.ValidatedSanitizedInput.MissingUnslash
 		}
 
 		$product            = wc_get_product( $variation_id );

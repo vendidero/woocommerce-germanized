@@ -659,8 +659,17 @@ function wc_gzd_get_shipping_costs_text( $product = false ) {
 	}
 }
 
+/**
+ * Sanitize html text field, e.g. to be passed to wp_editor.
+ * Be aware that calling update_post_meta with the value returned might
+ * lead to losing slashes as update_post_meta calls wp_unslash itself.
+ *
+ * @param string $value Slashed data expected
+ *
+ * @return string Unslashed HTML
+ */
 function wc_gzd_sanitize_html_text_field( $value ) {
-	return trim( wp_filter_post_kses( wp_unslash( $value ) ) );
+	return trim( wp_unslash( wp_filter_post_kses( addslashes( $value ) ) ) );
 }
 
 function wc_gzd_convert_coupon_to_voucher( $coupon ) {

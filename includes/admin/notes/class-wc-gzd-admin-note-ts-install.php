@@ -30,7 +30,7 @@ class WC_GZD_Admin_Note_TS_Install extends WC_GZD_Admin_Note {
 	}
 
 	public function get_title() {
-		return __( 'New Gen Trusted Shops', 'woocommerce-germanized' );
+		return __( 'New Trusted Shops Integration', 'woocommerce-germanized' );
 	}
 
 	public function get_content() {

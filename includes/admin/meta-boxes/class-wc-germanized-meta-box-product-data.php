@@ -806,7 +806,7 @@ class WC_Germanized_Meta_Box_Product_Data {
 	 * Pre-sanitize field data.
 	 *
 	 * @param $field
-	 * @param $value
+	 * @param mixed $value Possibly slashed data.
 	 *
 	 * @return mixed
 	 */
@@ -830,7 +830,7 @@ class WC_Germanized_Meta_Box_Product_Data {
 		$data = self::get_fields();
 
 		foreach ( $data as $k => $v ) {
-			$data[ $k ] = self::get_sanitized_field_value( $k, ( isset( $_POST[ $k ] ) ? wp_unslash( $_POST[ $k ] ) : null ) ); // phpcs:ignore WordPress.Security.NonceVerification.Missing,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+			$data[ $k ] = self::get_sanitized_field_value( $k, ( isset( $_POST[ $k ] ) ? $_POST[ $k ] : null ) ); // phpcs:ignore WordPress.Security.NonceVerification.Missing,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized,WordPress.Security.ValidatedSanitizedInput.MissingUnslash
 		}
 
 		$data['save'] = false;

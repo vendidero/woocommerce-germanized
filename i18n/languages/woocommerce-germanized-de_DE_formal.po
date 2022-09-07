@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce Germanized\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-06 14:50+0200\n"
-"PO-Revision-Date: 2022-09-06 15:00+0200\n"
+"POT-Creation-Date: 2022-09-07 11:45+0200\n"
+"PO-Revision-Date: 2022-09-07 11:45+0200\n"
 "Last-Translator: Dennis Nissle <info@vendidero.de>\n"
 "Language-Team: \n"
 "Language: de_DE@formal\n"
@@ -1643,7 +1643,7 @@ msgstr "Anpassungen für %s freischalten"
 
 # @ woocommerce-germanized
 #: woocommerce-germanized/includes/admin/notes/class-wc-gzd-admin-note-ts-install.php:33
-msgid "New Gen Trusted Shops"
+msgid "New Trusted Shops Integration"
 msgstr "Neue Trusted Shops Integration"
 
 #: woocommerce-germanized/includes/admin/notes/class-wc-gzd-admin-note-ts-install.php:37
@@ -15433,6 +15433,14 @@ msgstr "vendidero"
 #. Author URI of the plugin/theme
 msgid "https://vendidero.de"
 msgstr "https://vendidero.de"
+
+# @ woocommerce-germanized
+#~ msgid "Trusted Shops new integration"
+#~ msgstr "Neue Trusted Shops Integration"
+
+# @ woocommerce-germanized
+#~ msgid "New Gen Trusted Shops"
+#~ msgstr "Neue Trusted Shops Integration"
 
 # @ woocommerce-germanized
 #~ msgctxt "shipments"

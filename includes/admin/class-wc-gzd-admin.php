@@ -783,7 +783,8 @@ class WC_GZD_Admin {
 		}
 
 		if ( isset( $_POST['_legal_text'] ) && ! empty( $_POST['_legal_text'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
-			update_post_meta( $post_id, '_legal_text', wc_gzd_sanitize_html_text_field( wp_unslash( $_POST['_legal_text'] ) ) ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized,WordPress.Security.NonceVerification.Missing
+			// Addslashes before updating meta data as update_post_meta unslashes the data again
+			update_post_meta( $post_id, '_legal_text', addslashes( wc_gzd_sanitize_html_text_field( wp_unslash( $_POST['_legal_text'] ) ) ) ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized,WordPress.Security.NonceVerification.Missing
 		} else {
 			delete_post_meta( $post_id, '_legal_text' );
 		}
