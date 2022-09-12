@@ -310,6 +310,7 @@ class WC_GZD_Products_API extends WC_GZD_REST_Unit_Test_Case {
 			'differential_taxation' => false,
 			'is_food'               => false,
 			'gtin'                  => 'new_gtin',
+			'min_age'               => '18',
 			'food'                  => array(
 				'ingredients'      => 'testing it',
 				'deposit_quantity' => 7,
@@ -338,6 +339,7 @@ class WC_GZD_Products_API extends WC_GZD_REST_Unit_Test_Case {
 		$this->assertEquals( 'new-price', $product['sale_price_label']['slug'] );
 		$this->assertEquals( 'old-price', $product['sale_price_regular_label']['slug'] );
 		$this->assertEquals( '1', $product['unit_price']['product'] );
+		$this->assertEquals( '18', $product['min_age'] );
 		$this->assertEquals( 'This is a test', trim( strip_tags( $product['mini_desc'] ) ) );
 		$this->assertEquals( 'This is a defect desc', trim( strip_tags( $product['defect_description'] ) ) );
 		$this->assertEquals( true, $product['free_shipping'] );

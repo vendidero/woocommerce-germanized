@@ -239,7 +239,7 @@ class WC_GZD_REST_Products_Controller {
 		$schema_properties['min_age']                  = array(
 			'description' => __( 'Age verification minimum age.', 'woocommerce-germanized' ),
 			'type'        => 'string',
-			'enum'        => array_merge( array( '' ), array_keys( wc_gzd_get_age_verification_min_ages() ) ),
+			'enum'        => array_merge( array( '' ), array_map( 'strval', array_keys( wc_gzd_get_age_verification_min_ages() ) ) ),
 			'default'     => '',
 			'context'     => array( 'view', 'edit' ),
 		);
@@ -548,7 +548,7 @@ class WC_GZD_REST_Products_Controller {
 		$schema_properties['variations']['items']['properties']['min_age']                  = array(
 			'description' => __( 'Age verification minimum age.', 'woocommerce-germanized' ),
 			'type'        => 'string',
-			'enum'        => array_merge( array( '' ), array_keys( wc_gzd_get_age_verification_min_ages() ) ),
+			'enum'        => array_merge( array( '' ), array_map( 'strval', array_keys( wc_gzd_get_age_verification_min_ages() ) ) ),
 			'context'     => array( 'view', 'edit' ),
 		);
 		$schema_properties['variations']['items']['properties']['warranty_attachment_id']   = array(
