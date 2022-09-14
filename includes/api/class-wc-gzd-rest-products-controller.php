@@ -33,7 +33,7 @@ class WC_GZD_REST_Products_Controller {
 		$parent_schema    = $this->get_item_schema_properties();
 		$variation_schema = $parent_schema['variations']['items']['properties'];
 
-		return array_merge( $schema_properties, $variation_schema );
+		return array_merge_recursive( $schema_properties, $variation_schema );
 	}
 
 	protected function get_item_schema_properties() {
@@ -624,7 +624,10 @@ class WC_GZD_REST_Products_Controller {
 	 * @return array
 	 */
 	public function schema( $schema_properties ) {
-		return array_merge( $schema_properties, $this->get_item_schema_properties() );
+		$custom_properties = $this->get_item_schema_properties();
+		unset( $custom_properties['variations'] );
+
+		return array_merge_recursive( $schema_properties, $custom_properties );
 	}
 
 	public function prepare( $response, $post, $request ) {
