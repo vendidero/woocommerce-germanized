@@ -49,7 +49,7 @@ if ( ! function_exists( 'woocommerce_gzd_template_grouped_single_legal_info' ) )
 
 if ( ! function_exists( 'woocommerce_gzd_template_product_review_authenticity_status' ) ) {
 	function woocommerce_gzd_template_product_review_authenticity_status( $comment ) {
-		if ( apply_filters( 'woocommerce_gzd_show_product_review_authenticity_status', true, $comment->comment_ID ) ) {
+		if ( (int) $comment->comment_parent <= 0 && apply_filters( 'woocommerce_gzd_show_product_review_authenticity_status', true, $comment->comment_ID ) ) {
 			wc_get_template( 'single-product/review-authenticity-status.php' );
 		}
 	}

@@ -634,7 +634,7 @@ class WC_GZD_REST_Products_Controller {
 		$product = wc_get_product( $post );
 		$context = ! empty( $request['context'] ) ? $request['context'] : 'view';
 
-		// Add variations to variable products.
+		// Add variations to variable v2 API requests.
 		if ( $product->is_type( 'variable' ) && $product->has_child() ) {
 			$data               = $response->data;
 			$data['variations'] = $this->set_product_variation_fields( $response->data['variations'], $product, $context );

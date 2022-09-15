@@ -376,7 +376,7 @@ if ( ! class_exists( 'WC_GZD_Admin_Setup_Wizard' ) ) :
 		}
 
 		protected function header() {
-			set_current_screen();
+			set_current_screen( 'wc-gzd-setup' );
 			?>
 			<!DOCTYPE html>
 			<html <?php language_attributes(); ?>>
