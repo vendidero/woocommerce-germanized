@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4eb3e7c4eb14acf559414a5230e1424e",
+    "content-hash": "9825e261d49e19baa69d19035a7023df",
     "packages": [
         {
             "name": "automattic/jetpack-autoloader",
@@ -315,16 +315,16 @@
         },
         {
             "name": "digitick/sepa-xml",
-            "version": "2.1.1",
+            "version": "2.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-sepa-xml/php-sepa-xml.git",
-                "reference": "cfab29eefd13a4d94d495bd79bad15fc322c1f47"
+                "reference": "c06d637bcbc58e3b048f048487ac70d126ec1532"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-sepa-xml/php-sepa-xml/zipball/cfab29eefd13a4d94d495bd79bad15fc322c1f47",
-                "reference": "cfab29eefd13a4d94d495bd79bad15fc322c1f47",
+                "url": "https://api.github.com/repos/php-sepa-xml/php-sepa-xml/zipball/c06d637bcbc58e3b048f048487ac70d126ec1532",
+                "reference": "c06d637bcbc58e3b048f048487ac70d126ec1532",
                 "shasum": ""
             },
             "require": {
@@ -365,22 +365,22 @@
             ],
             "support": {
                 "issues": "https://github.com/php-sepa-xml/php-sepa-xml/issues",
-                "source": "https://github.com/php-sepa-xml/php-sepa-xml/tree/2.1.1"
+                "source": "https://github.com/php-sepa-xml/php-sepa-xml/tree/2.2.0"
             },
-            "time": "2022-03-11T13:41:21+00:00"
+            "time": "2022-07-12T12:43:08+00:00"
         },
         {
             "name": "dvdoug/boxpacker",
-            "version": "3.9.4",
+            "version": "3.10.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dvdoug/BoxPacker.git",
-                "reference": "07176158e0ebef29b701852181663ed8b429149f"
+                "reference": "43a42412932404c2e3b2d15b85647486c3367464"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dvdoug/BoxPacker/zipball/07176158e0ebef29b701852181663ed8b429149f",
-                "reference": "07176158e0ebef29b701852181663ed8b429149f",
+                "url": "https://api.github.com/repos/dvdoug/BoxPacker/zipball/43a42412932404c2e3b2d15b85647486c3367464",
+                "reference": "43a42412932404c2e3b2d15b85647486c3367464",
                 "shasum": ""
             },
             "require": {
@@ -391,7 +391,7 @@
             "require-dev": {
                 "behat/behat": "^3.7",
                 "dvdoug/behat-code-coverage": "^5.0.1",
-                "friendsofphp/php-cs-fixer": "^3.0",
+                "friendsofphp/php-cs-fixer": "^3.7",
                 "monolog/monolog": "^1.0||^2.0",
                 "phpunit/phpunit": "^7.5.20||^8.5.21||^9.5.8"
             },
@@ -430,7 +430,7 @@
             ],
             "support": {
                 "issues": "https://github.com/dvdoug/BoxPacker/issues",
-                "source": "https://github.com/dvdoug/BoxPacker/tree/3.9.4"
+                "source": "https://github.com/dvdoug/BoxPacker/tree/3.10.0"
             },
             "funding": [
                 {
@@ -438,7 +438,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-10-21T21:47:05+00:00"
+            "time": "2022-09-10T19:38:53+00:00"
         },
         {
             "name": "globalcitizen/php-iban",
@@ -873,16 +873,16 @@
         },
         {
             "name": "vendidero/woocommerce-germanized-dhl",
-            "version": "v1.7.4",
+            "version": "v1.7.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vendidero/woocommerce-germanized-dhl.git",
-                "reference": "20383825cbf426c4e524464d84f55f89da7c764b"
+                "reference": "d014c622959a02f9876f54dfb4d48132e2da2b0d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vendidero/woocommerce-germanized-dhl/zipball/20383825cbf426c4e524464d84f55f89da7c764b",
-                "reference": "20383825cbf426c4e524464d84f55f89da7c764b",
+                "url": "https://api.github.com/repos/vendidero/woocommerce-germanized-dhl/zipball/d014c622959a02f9876f54dfb4d48132e2da2b0d",
+                "reference": "d014c622959a02f9876f54dfb4d48132e2da2b0d",
                 "shasum": ""
             },
             "require": {
@@ -927,23 +927,23 @@
             "description": "The Germanized DHL implementation.",
             "homepage": "https://github.com/vendidero/woocommerce-germanized-dhl",
             "support": {
-                "source": "https://github.com/vendidero/woocommerce-germanized-dhl/tree/v1.7.4",
+                "source": "https://github.com/vendidero/woocommerce-germanized-dhl/tree/v1.7.5",
                 "issues": "https://github.com/vendidero/woocommerce-germanized-dhl/issues"
             },
-            "time": "2022-09-06T12:38:10+00:00"
+            "time": "2022-09-15T09:20:48+00:00"
         },
         {
             "name": "vendidero/woocommerce-germanized-shipments",
-            "version": "v2.1.0",
+            "version": "v2.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vendidero/woocommerce-germanized-shipments.git",
-                "reference": "38b590d0a91546cafbe72b2cae77010e1f042bce"
+                "reference": "5d331488feb8ca18b150804bedce639bca990500"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vendidero/woocommerce-germanized-shipments/zipball/38b590d0a91546cafbe72b2cae77010e1f042bce",
-                "reference": "38b590d0a91546cafbe72b2cae77010e1f042bce",
+                "url": "https://api.github.com/repos/vendidero/woocommerce-germanized-shipments/zipball/5d331488feb8ca18b150804bedce639bca990500",
+                "reference": "5d331488feb8ca18b150804bedce639bca990500",
                 "shasum": ""
             },
             "require": {
@@ -986,10 +986,10 @@
             "description": "The Germanized Shipments implementation.",
             "homepage": "https://github.com/vendidero/woocommerce-germanized-shipments",
             "support": {
-                "source": "https://github.com/vendidero/woocommerce-germanized-shipments/tree/v2.1.0",
+                "source": "https://github.com/vendidero/woocommerce-germanized-shipments/tree/v2.1.1",
                 "issues": "https://github.com/vendidero/woocommerce-germanized-shipments/issues"
             },
-            "time": "2022-09-06T12:44:44+00:00"
+            "time": "2022-09-15T09:28:27+00:00"
         },
         {
             "name": "vendidero/woocommerce-trusted-shops",
@@ -2210,16 +2210,16 @@
         },
         {
             "name": "sebastian/comparator",
-            "version": "3.0.3",
+            "version": "3.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/comparator.git",
-                "reference": "1071dfcef776a57013124ff35e1fc41ccd294758"
+                "reference": "1dc7ceb4a24aede938c7af2a9ed1de09609ca770"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/comparator/zipball/1071dfcef776a57013124ff35e1fc41ccd294758",
-                "reference": "1071dfcef776a57013124ff35e1fc41ccd294758",
+                "url": "https://api.github.com/repos/sebastianbergmann/comparator/zipball/1dc7ceb4a24aede938c7af2a9ed1de09609ca770",
+                "reference": "1dc7ceb4a24aede938c7af2a9ed1de09609ca770",
                 "shasum": ""
             },
             "require": {
@@ -2272,7 +2272,7 @@
             ],
             "support": {
                 "issues": "https://github.com/sebastianbergmann/comparator/issues",
-                "source": "https://github.com/sebastianbergmann/comparator/tree/3.0.3"
+                "source": "https://github.com/sebastianbergmann/comparator/tree/3.0.5"
             },
             "funding": [
                 {
@@ -2280,7 +2280,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-11-30T08:04:30+00:00"
+            "time": "2022-09-14T12:31:48+00:00"
         },
         {
             "name": "sebastian/diff",
@@ -2413,16 +2413,16 @@
         },
         {
             "name": "sebastian/exporter",
-            "version": "3.1.4",
+            "version": "3.1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/exporter.git",
-                "reference": "0c32ea2e40dbf59de29f3b49bf375176ce7dd8db"
+                "reference": "73a9676f2833b9a7c36968f9d882589cd75511e6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/exporter/zipball/0c32ea2e40dbf59de29f3b49bf375176ce7dd8db",
-                "reference": "0c32ea2e40dbf59de29f3b49bf375176ce7dd8db",
+                "url": "https://api.github.com/repos/sebastianbergmann/exporter/zipball/73a9676f2833b9a7c36968f9d882589cd75511e6",
+                "reference": "73a9676f2833b9a7c36968f9d882589cd75511e6",
                 "shasum": ""
             },
             "require": {
@@ -2478,7 +2478,7 @@
             ],
             "support": {
                 "issues": "https://github.com/sebastianbergmann/exporter/issues",
-                "source": "https://github.com/sebastianbergmann/exporter/tree/3.1.4"
+                "source": "https://github.com/sebastianbergmann/exporter/tree/3.1.5"
             },
             "funding": [
                 {
@@ -2486,7 +2486,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-11-11T13:51:24+00:00"
+            "time": "2022-09-14T06:00:17+00:00"
         },
         {
             "name": "sebastian/global-state",
