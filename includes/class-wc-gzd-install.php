@@ -86,7 +86,6 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 			}
 
 			if ( get_option( '_wc_gzd_setup_wizard_redirect' ) ) {
-
 				// Bail if activating from network, or bulk, or within an iFrame, or AJAX (e.g. plugins screen)
 				if ( is_network_admin() || isset( $_GET['activate-multi'] ) || defined( 'IFRAME_REQUEST' ) || ( defined( 'DOING_AJAX' ) && DOING_AJAX ) ) {
 					return;
@@ -97,9 +96,14 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 				}
 
 				delete_option( '_wc_gzd_setup_wizard_redirect' );
+
+				// Prevent redirect loop in case options fail
+				if ( isset( $_GET['page'] ) && 'wc-gzd-setup' === wc_clean( wp_unslash( $_GET['page'] ) ) ) {
+					return;
+				}
+
 				wp_safe_redirect( esc_url_raw( admin_url( 'admin.php?page=wc-gzd-setup' ) ) );
 				exit();
-
 			} elseif ( get_transient( '_wc_gzd_activation_redirect' ) ) {
 
 				// Delete the redirect transient
@@ -116,6 +120,11 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 				}
 
 				if ( ( isset( $_REQUEST['action'] ) && 'upgrade-plugin' === $_REQUEST['action'] ) && ( isset( $_REQUEST['plugin'] ) && strstr( wc_clean( wp_unslash( $_REQUEST['plugin'] ) ), 'woocommerce-germanized.php' ) ) ) {
+					return;
+				}
+
+				// Prevent redirect loop in case transients fail
+				if ( isset( $_GET['page'] ) && 'wc-gzd-about' === wc_clean( wp_unslash( $_GET['page'] ) ) ) {
 					return;
 				}
 
