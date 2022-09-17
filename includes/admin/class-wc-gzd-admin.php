@@ -820,7 +820,7 @@ class WC_GZD_Admin {
 
 	protected function check_language_install() {
 		require_once ABSPATH . 'wp-admin/includes/translation-install.php';
-		$language = isset( $_GET['install-language'] ) ? sanitize_text_field( wp_unslash( $_GET['install-language'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		$language = isset( $_GET['wc-gzd-check-language_install'] ) ? sanitize_text_field( wp_unslash( $_GET['wc-gzd-check-language_install'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 
 		if ( empty( $language ) ) {
 			return false;
