@@ -207,6 +207,7 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 = 3.10.6 =
 * Improvement: Prevent new account activation email from being sent during DOI process in latest Woo version
 * Improvement: Prevent install redirection loops when transients fail
+* Fix: Formal localized decimal in packaging admin list
 * Fix: Formal language install check
 
 = 3.10.5 =
