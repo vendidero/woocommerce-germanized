@@ -109,7 +109,7 @@ By default, Germanized works with *every WooCommerce theme*. Some themes may nee
 
 = Minimal Requirements =
 
-* WordPress 4.9 or newer
+* WordPress 5.4 or newer
 * WooCommerce 3.9 (newest version recommended)
 * PHP Version 5.6 or newer
 
@@ -160,13 +160,6 @@ Inserts a text that informs the customer about the EU Online Dispute Platform - 
 
 `[gzd_return_request_form]`
 Insert the guest return request form which allows guests to submit [return requests](https://vendidero.de/dokument/retouren-konfigurieren-und-verwalten).
-
-`[trusted_shops_badge]`
-If you are a Trusted Shops Customer, you may insert this shortcode to insert the Trusted Shops Badge at your favourite place.
-By adjusting parameter width=55 (55 means 55px width/height) you may optionally set badge's width.
-
-`[trusted_shops_rich_snippets]`
-If you are using Trusted Shop's review functionality, you may insert a Google Rich Snippet to show your current shop's rating.
 
 = Updating Germanized for WooCommerce =
 

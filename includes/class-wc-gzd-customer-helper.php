@@ -34,7 +34,7 @@ class WC_GZD_Customer_Helper {
 
 	public function __construct() {
 		// Send customer account notification
-		add_action( 'woocommerce_email', array( $this, 'email_hooks' ), 0, 1 );
+		add_action( 'woocommerce_email', array( $this, 'email_hooks' ), 50, 1 );
 
 		// Add Title to user profile
 		add_filter( 'woocommerce_customer_meta_fields', array( $this, 'profile_field_title' ), 10, 1 );
@@ -175,7 +175,7 @@ class WC_GZD_Customer_Helper {
 			$session_user_id = get_current_user_id();
 		}
 
-		if ( $session_user_id && $session_user_id > 0 && ! is_cart() && ! is_checkout() && $this->enable_double_opt_in_for_user( $session_user_id ) && ! wc_gzd_is_customer_activated( $session_user_id ) && ! isset( $_GET['wc-gzd-resent'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		if ( $session_user_id && $session_user_id > 0 && ! is_cart() && ! is_checkout() && $this->enable_double_opt_in_for_user( $session_user_id ) && ! wc_gzd_is_customer_activated( $session_user_id ) && ( ! isset( $_GET['wc-gzd-resent'] ) && ! isset( $_GET['activated'] ) ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			$notice_text = sprintf( __( 'Did not receive the activation email? <a href="%s">Try again</a>.', 'woocommerce-germanized' ), esc_url( $this->get_resend_activation_url() ) );
 
 			if ( ! wc_has_notice( $notice_text, 'notice' ) ) {
@@ -343,8 +343,8 @@ class WC_GZD_Customer_Helper {
 	}
 
 	public function show_disabled_checkout_notice() {
-
 		if ( ! is_user_logged_in() && isset( $_GET['account'] ) && 'activate' === $_GET['account'] ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			wc_clear_notices();
 			wc_add_notice( __( 'Please activate your account through clicking on the activation link received via email.', 'woocommerce-germanized' ), 'notice' );
 
 			return;
@@ -510,6 +510,7 @@ class WC_GZD_Customer_Helper {
 					}
 				}
 			} elseif ( isset( $_GET['activated'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+				wc_clear_notices();
 				wc_add_notice( __( 'Thank you. You have successfully activated your account.', 'woocommerce-germanized' ), 'notice' );
 			}
 		}
@@ -629,9 +630,7 @@ class WC_GZD_Customer_Helper {
 		$expiration_duration = apply_filters( 'woocommerce_germanized_account_activation_expiration', DAY_IN_SECONDS );
 
 		if ( ! empty( $user_query->results ) ) {
-
 			foreach ( $user_query->results as $user ) {
-
 				$expiration_time = false;
 
 				if ( false !== strpos( $activation_code, ':' ) ) {
@@ -640,7 +639,6 @@ class WC_GZD_Customer_Helper {
 				}
 
 				if ( $expiration_time && time() < $expiration_time ) {
-
 					/**
 					 * Customer has opted-in.
 					 *
@@ -655,11 +653,20 @@ class WC_GZD_Customer_Helper {
 					do_action( 'woocommerce_gzd_customer_opted_in', $user );
 					delete_user_meta( $user->ID, '_woocommerce_activation' );
 
+					/**
+					 * Make sure email hooks are loaded before removing the disabled mail filter.
+					 */
+					$mailer = WC()->mailer();
+
+					remove_filter( 'woocommerce_email_enabled_customer_new_account', array( $this, 'disable_new_account_mail_callback' ), 50 );
+
 					if ( $this->send_password_reset_link_instead_of_passwords() ) {
-						WC()->mailer()->customer_new_account( $user->ID, array(), true );
+						$mailer->customer_new_account( $user->ID, array(), true );
 					} else {
-						WC()->mailer()->customer_new_account( $user->ID );
+						$mailer->customer_new_account( $user->ID );
 					}
+
+					add_filter( 'woocommerce_email_enabled_customer_new_account', array( $this, 'disable_new_account_mail_callback' ), 50 );
 
 					/**
 					 * Filter to optionally disable automatically authenticate activated customers.
@@ -746,9 +753,25 @@ class WC_GZD_Customer_Helper {
 	public function email_hooks( $mailer ) {
 		// Add new customer activation
 		if ( $this->is_double_opt_in_enabled() ) {
-			remove_action( 'woocommerce_created_customer_notification', array( $mailer, 'customer_new_account' ), 10 );
 			add_action( 'woocommerce_created_customer_notification', array( $this, 'customer_new_account_activation' ), 9, 3 );
+
+			/**
+			 * The Woo Blocks New Account implementation uses a custom logic
+			 * to send a custom activation email which prevents our remove_action logic to work.
+			 * Add a filter to woocommerce_created_customer_notification and disable the whole email via filter instead.
+			 *
+			 * @see Automattic\WooCommerce\Blocks\Domain\Services\CreateAccount
+			 */
+			add_action( 'woocommerce_created_customer_notification', function() {
+				add_filter( 'woocommerce_email_enabled_customer_new_account', array( $this, 'disable_new_account_mail_callback' ), 50 );
+			}, 1 );
+
+			remove_action( 'woocommerce_created_customer_notification', array( $mailer, 'customer_new_account' ), 10 );
 		}
+	}
+
+	public function disable_new_account_mail_callback() {
+		return false;
 	}
 
 	/**
@@ -767,7 +790,6 @@ class WC_GZD_Customer_Helper {
 		}
 
 		if ( $email = WC_germanized()->emails->get_email_instance_by_id( 'customer_new_account_activation' ) ) {
-
 			if ( $email->is_enabled() ) {
 				$user_pass           = ! empty( $new_customer_data['user_pass'] ) ? $new_customer_data['user_pass'] : '';
 				$user_activation     = $this->get_customer_activation_meta( $customer_id );
