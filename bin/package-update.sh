@@ -48,8 +48,6 @@ output 3 "Clean vendor dirs to save space..."
 
 rm -rf ./vendor/dvdoug/boxpacker/visualiser/*
 rm -rf ./vendor/dvdoug/boxpacker/docs/*
-rm -rf ./vendor/dvdoug/boxpacker/tests/*.php
-rm -rf ./vendor/dvdoug/boxpacker/tests/Test/*.php
 rm -rf ./vendor/dvdoug/boxpacker/tests/data/*
 rm -rf ./vendor/dvdoug/boxpacker/*.md
 rm -rf ./vendor/dvdoug/boxpacker/.github/*
