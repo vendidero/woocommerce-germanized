@@ -293,12 +293,20 @@
              * manually construct wc_variation_form() (e.g. quick view).
              */
             $( document.body ).on( 'wc_variation_form', function( e, variationForm ) {
-                var $form = $( variationForm.$form );
+                var $form;
 
-                if ( ! $form.hasClass( 'has-gzd-variation-form' ) ) {
-                    $form.wc_germanized_variation_form();
-                    // Make sure to reload variation to apply our logic
-                    $form.trigger( 'check_variations' );
+                if ( typeof variationForm === 'undefined' ) {
+                    $form = $( e.target );
+                } else {
+                    $form = $( variationForm.$form );
+                }
+
+                if ( $form.length > 0 ) {
+                    if ( ! $form.hasClass( 'has-gzd-variation-form' ) ) {
+                        $form.wc_germanized_variation_form();
+                        // Make sure to reload variation to apply our logic
+                        $form.trigger( 'check_variations' );
+                    }
                 }
             } );
         }
