@@ -762,9 +762,13 @@ class WC_GZD_Customer_Helper {
 			 *
 			 * @see Automattic\WooCommerce\Blocks\Domain\Services\CreateAccount
 			 */
-			add_action( 'woocommerce_created_customer_notification', function() {
-				add_filter( 'woocommerce_email_enabled_customer_new_account', array( $this, 'disable_new_account_mail_callback' ), 50 );
-			}, 1 );
+			add_action(
+				'woocommerce_created_customer_notification',
+				function() {
+					add_filter( 'woocommerce_email_enabled_customer_new_account', array( $this, 'disable_new_account_mail_callback' ), 50 );
+				},
+				1
+			);
 
 			remove_action( 'woocommerce_created_customer_notification', array( $mailer, 'customer_new_account' ), 10 );
 		}

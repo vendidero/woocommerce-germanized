@@ -1476,6 +1476,11 @@ function wc_gzd_get_post_plain_content( $content_post, $shortcodes_allowed = arr
 		$content = preg_replace( '/<p[^>]*>(?:\s|&nbsp;)*<\/p>/', '', $content );
 		$content = apply_filters( 'the_content', $content );
 
+		/**
+		 * Remove shortcodes which may be added (but not rendered) during the apply_filters call too, e.g. by VC builder.
+		 */
+		$content = preg_replace( '~(?:\[/?)[^/\]]+/?\]~s', '', $content );
+
 		$content = str_replace( ']]>', ']]&gt;', $content );
 
 		do_action( 'woocommerce_gzd_after_get_post_plain_content', $post, $shortcodes_allowed );
