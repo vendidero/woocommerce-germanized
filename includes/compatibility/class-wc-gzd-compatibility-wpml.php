@@ -127,8 +127,7 @@ class WC_GZD_Compatibility_WPML extends WC_GZD_Compatibility {
 
 					if ( $translated_id !== $term->term_id ) {
 						if ( $org_term = WC_germanized()->delivery_times->get_term_object( $translated_id, 'id' ) ) {
-							$delivery_times[ $org_term->slug ] = $org_term;
-
+							$delivery_times[ $org_term->slug ]                       = $org_term;
 							$delivery_times[ $org_term->slug ]->translated_term_id   = $term->term_id;
 							$delivery_times[ $org_term->slug ]->translated_term_slug = $term->slug;
 						}
@@ -163,7 +162,9 @@ class WC_GZD_Compatibility_WPML extends WC_GZD_Compatibility {
 			$delivery_times = $gzd_product->get_delivery_times();
 
 			if ( array_key_exists( $default_delivery_time, $delivery_times ) ) {
-				$default_delivery_time = $delivery_times[ $default_delivery_time ]->translated_term_slug;
+				if ( isset( $delivery_times[ $default_delivery_time ]->translated_term_slug ) ) {
+					$default_delivery_time = $delivery_times[ $default_delivery_time ]->translated_term_slug;
+				}
 			}
 		}
 
