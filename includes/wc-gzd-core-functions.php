@@ -1454,8 +1454,7 @@ function wc_gzd_get_post_plain_content( $content_post, $shortcodes_allowed = arr
 		$post = $content_post; // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
 	}
 
-	$keep_active = implode( '|', $shortcodes_allowed );
-	$content     = '';
+	$content = '';
 
 	if ( is_a( $post, 'WP_Post' ) ) {
 		setup_postdata( $post );
@@ -1464,13 +1463,27 @@ function wc_gzd_get_post_plain_content( $content_post, $shortcodes_allowed = arr
 
 		$content = $post->post_content;
 
-		/**
-		 * Remove non-exempted shortcodes from content
-		 */
-		if ( ! empty( $keep_active ) ) {
-			$content = preg_replace( "~(?:\[/?)(?!(?:$keep_active))[^/\]]+/?\]~s", '', $content );
-		} else {
-			$content = preg_replace( '~(?:\[/?)[^/\]]+/?\]~s', '', $content );
+		// Find all registered tag names in $content.
+		preg_match_all( '@\[([^<>&/\[\]\x00-\x20=]++)@', $content, $matches );
+		$shortcodes_to_remove = array_unique( array_diff( $matches[1], $shortcodes_allowed ) );
+
+		if ( ! empty( $shortcodes_to_remove ) ) {
+			$content = do_shortcodes_in_html_tags( $content, true, $shortcodes_to_remove );
+
+			foreach ( $shortcodes_to_remove as $shortcode_tag ) {
+				$pattern = get_shortcode_regex( array( $shortcode_tag ) );
+				$content = preg_replace_callback(
+					"/$pattern/s",
+					function( $matches ) {
+						if ( ! empty( $matches[5] ) ) {
+							return $matches[5];
+						}
+
+						return '';
+					},
+					$content
+				);
+			}
 		}
 
 		$content = preg_replace( '/<p[^>]*>(?:\s|&nbsp;)*<\/p>/', '', $content );
@@ -1480,7 +1493,7 @@ function wc_gzd_get_post_plain_content( $content_post, $shortcodes_allowed = arr
 		 * Remove shortcodes which may be added (but not rendered) during the apply_filters call too, e.g. by VC builder.
 		 */
 		$content = preg_replace( '~(?:\[/?)[^/\]]+/?\]~s', '', $content );
-
+		$content = unescape_invalid_shortcodes( $content );
 		$content = str_replace( ']]>', ']]&gt;', $content );
 
 		do_action( 'woocommerce_gzd_after_get_post_plain_content', $post, $shortcodes_allowed );
