@@ -257,6 +257,7 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 			}
 
 			\Vendidero\Germanized\PluginsHelper::init();
+            \Vendidero\Germanized\Blocks\Helper::init();
 		}
 
 		/**

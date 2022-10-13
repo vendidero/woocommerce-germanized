@@ -115,7 +115,7 @@ add_action( 'woocommerce_widget_product_item_end', 'woocommerce_gzd_template_pro
 add_filter( 'woocommerce_blocks_product_grid_item_html', 'wc_gzd_template_adjust_product_grid_block_html', 1, 3 );
 // Additional product blocks which do not inherit from \Automattic\WooCommerce\Blocks\BlockTypes\AbstractProductGrid
 foreach ( array( 'woocommerce/featured-product' ) as $block_type ) {
-	add_filter( 'render_block_woocommerce/featured-product', 'wc_gzd_template_adjust_product_block_html', 150, 2 );
+	add_filter( 'render_block_' . $block_type, 'wc_gzd_template_adjust_product_block_html', 150, 2 );
 }
 
 /**
