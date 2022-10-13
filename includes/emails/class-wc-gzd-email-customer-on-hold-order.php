@@ -26,15 +26,9 @@ if ( ! class_exists( 'WC_GZD_Email_Customer_On_Hold_Order' ) ) :
 			wc_gzd_remove_class_action( 'woocommerce_order_status_pending_to_on-hold_notification', 'WC_Email_Customer_On_Hold_Order', 'trigger', 10 );
 			wc_gzd_remove_class_action( 'woocommerce_order_status_failed_to_on-hold_notification', 'WC_Email_Customer_On_Hold_Order', 'trigger', 10 );
 			wc_gzd_remove_class_action( 'woocommerce_order_status_cancelled_to_on-hold_notification', 'WC_Email_Customer_On_Hold_Order', 'trigger', 10 );
-
-			// Triggers for this email.
-			remove_action( 'woocommerce_order_status_pending_to_on-hold_notification', array( $this, 'trigger' ), 10 );
-			remove_action( 'woocommerce_order_status_failed_to_on-hold_notification', array( $this, 'trigger' ), 10 );
-			remove_action( 'woocommerce_order_status_cancelled_to_on-hold_notification', array( $this, 'trigger' ), 10 );
 		}
 
 		public function trigger( $order_id, $order = false ) {
-
 			/**
 			 * Filter that allows re-enabling the on-hold order email which is by default
 			 * replaced by the processing email used as order confirmation.
@@ -43,7 +37,7 @@ if ( ! class_exists( 'WC_GZD_Email_Customer_On_Hold_Order' ) ) :
 			 *
 			 * @since 1.0.0
 			 */
-			if ( apply_filters( 'woocommerce_gzd_disable_on_hold_email', true ) ) {
+			if ( apply_filters( 'woocommerce_gzd_disable_on_hold_email', wc_gzd_send_instant_order_confirmation( ( $order ? $order : $order_id ) ) ) ) {
 				return;
 			}
 

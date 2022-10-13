@@ -206,7 +206,15 @@ function wc_gzd_shopmark_is_enabled( $location, $type ) {
 	return false;
 }
 
-function wc_gzd_send_instant_order_confirmation() {
+/**
+ * @param WC_Order|integer|null $order
+ *
+ * @return bool
+ */
+function wc_gzd_send_instant_order_confirmation( $order = null ) {
+	if ( is_numeric( $order ) ) {
+		$order = wc_get_order( $order );
+	}
 
 	/**
 	 * Filter to enable/disable instant order confirmation.
@@ -222,11 +230,11 @@ function wc_gzd_send_instant_order_confirmation() {
 	 * ```
 	 *
 	 * @param bool $enable Set to `false` to disable instant order confirmation.
+	 * @param WC_Order|null $order The order, if available.
 	 *
 	 * @since 1.0.0
-	 *
 	 */
-	return ( apply_filters( 'woocommerce_gzd_instant_order_confirmation', true ) && ( 'yes' !== get_option( 'woocommerce_gzd_disable_instant_order_confirmation' ) ) );
+	return ( apply_filters( 'woocommerce_gzd_instant_order_confirmation', true, $order ) && ( 'yes' !== get_option( 'woocommerce_gzd_disable_instant_order_confirmation' ) ) );
 }
 
 function wc_gzd_get_legal_product_notice_types() {

@@ -34,12 +34,19 @@ class WC_GZD_Emails {
 	public function __construct() {
 		$this->set_footer_attachments();
 
+		/**
+		 * Late-removal of email notification hooks based on order data to allow conditionally sending or not sending
+		 * the instant order confirmation.
+		 */
+		add_action( 'woocommerce_before_order_object_save', array( $this, 'maybe_prevent_confirmation_email_sending' ), 1 );
+		add_action( 'woocommerce_order_status_changed', array( $this, 'maybe_restore_confirmation_email_sending' ), 1000, 4 );
+		add_filter( 'woocommerce_allow_send_queued_transactional_email', array( $this, 'maybe_prevent_queued_confirmation_email_sending' ), 10, 3 );
+
 		add_action( 'woocommerce_email', array( $this, 'email_hooks' ), 0, 1 );
 		add_filter( 'wc_get_template', array( $this, 'maybe_set_current_email_instance' ), 1000, 3 );
 		add_filter( 'woocommerce_email_actions', array( $this, 'register_custom_email_actions' ), 10 );
 
 		if ( wc_gzd_send_instant_order_confirmation() ) {
-
 			/**
 			 * Support WooCommerce Gutenberg checkout block
 			 */
@@ -75,29 +82,29 @@ class WC_GZD_Emails {
 				0,
 				2
 			);
-
-			// Register the woocommerce_gzd_order_confirmation action which will be used as a notification to send the confirmation
-			add_filter(
-				'woocommerce_email_actions',
-				array(
-					$this,
-					'register_order_confirmation_email_action',
-				),
-				10,
-				1
-			);
-
-			// Make sure order confirmation is being sent as soon as the notification fires
-			add_action(
-				'woocommerce_gzd_order_confirmation_notification',
-				array(
-					$this,
-					'trigger_order_confirmation_emails',
-				),
-				10,
-				1
-			);
 		}
+
+		// Register the woocommerce_gzd_order_confirmation action which will be used as a notification to send the confirmation
+		add_filter(
+			'woocommerce_email_actions',
+			array(
+				$this,
+				'register_order_confirmation_email_action',
+			),
+			10,
+			1
+		);
+
+		// Make sure order confirmation is being sent as soon as the notification fires
+		add_action(
+			'woocommerce_gzd_order_confirmation_notification',
+			array(
+				$this,
+				'trigger_order_confirmation_emails',
+			),
+			10,
+			1
+		);
 
 		// Disable paid order email for certain gateways (e.g. COD or invoice)
 		add_filter(
@@ -647,7 +654,7 @@ class WC_GZD_Emails {
 	}
 
 	public function send_manual_order_confirmation( $order_id ) {
-		if ( ! wc_gzd_send_instant_order_confirmation() ) {
+		if ( ! wc_gzd_send_instant_order_confirmation( $order_id ) ) {
 			return;
 		}
 
@@ -659,12 +666,7 @@ class WC_GZD_Emails {
 	}
 
 	public function email_hooks( $mailer ) {
-
 		$this->set_mailer( $mailer );
-
-		if ( wc_gzd_send_instant_order_confirmation() ) {
-			$this->prevent_confirmation_email_sending();
-		}
 
 		/**
 		 * Use 5 as a priority to hook before global WooCommerce email footer (10)
@@ -709,6 +711,28 @@ class WC_GZD_Emails {
 	}
 
 	/**
+	 * @param WC_Order $order
+	 *
+	 * @return void
+	 */
+	public function maybe_prevent_confirmation_email_sending( $order ) {
+		if ( wc_gzd_send_instant_order_confirmation( $order ) ) {
+			$this->prevent_confirmation_email_sending();
+		}
+	}
+
+	/**
+	 * @param integer $order_id
+	 *
+	 * @return void
+	 */
+	public function maybe_restore_confirmation_email_sending( $order_id, $from, $to, $order ) {
+		if ( wc_gzd_send_instant_order_confirmation( $order ) ) {
+			$this->restore_confirmation_email_sending();
+		}
+	}
+
+	/**
 	 * Add small business global Email Footer
 	 */
 	public function small_business_notice() {
@@ -718,7 +742,6 @@ class WC_GZD_Emails {
 	}
 
 	public function get_gateways_disabling_paid_for_order_mail() {
-
 		/**
 		 * Filters disabled gateway for the paid for order notification.
 		 * By adjusting the filter you may deactivate the paid for order notification for certain gateways.
@@ -731,20 +754,22 @@ class WC_GZD_Emails {
 		return apply_filters( 'woocommerce_gzd_disable_gateways_paid_order_email', array( 'cod', 'invoice' ) );
 	}
 
-	public function maybe_disable_order_paid_email_notification_queued( $send, $filter, $args ) {
+	/**
+	 * Tweak to prevent Woo from sending confirmation emails for queued email tasks.
+	 * We are using this filter to allow late-checking whether the instant order confirmation is enabled
+	 * for this order.
+	 *
+	 * @param boolean $send
+	 * @param $filter
+	 * @param $args
+	 *
+	 * @return boolean
+	 */
+	public function maybe_prevent_queued_confirmation_email_sending( $send, $filter, $args ) {
 		if ( isset( $args[0] ) && is_numeric( $args[0] ) ) {
-
 			if ( $order = wc_get_order( absint( $args[0] ) ) ) {
-
-				if ( is_callable( array( $order, 'get_payment_method' ) ) ) {
-					$method               = $order->get_payment_method();
-					$current_status       = $order->get_status();
-					$disable_for_gateways = $this->get_gateways_disabling_paid_for_order_mail();
-					$disable_notification = ( in_array( $method, $disable_for_gateways, true ) || $order->get_total() <= 0 ) ? true : false;
-
-					if ( 'woocommerce_order_status_pending_to_processing' === $filter && ! apply_filters( 'woocommerce_gzd_disable_paid_for_order_notification', $disable_notification, $order->get_id() ) ) {
-						return false;
-					}
+				if ( wc_gzd_send_instant_order_confirmation( $order ) ) {
+					$this->prevent_confirmation_email_sending();
 				}
 			}
 		}
@@ -752,10 +777,23 @@ class WC_GZD_Emails {
 		return $send;
 	}
 
+	public function maybe_disable_order_paid_email_notification_queued( $send, $filter, $args ) {
+		if ( isset( $args[0] ) && is_numeric( $args[0] ) ) {
+			if ( $order = wc_get_order( absint( $args[0] ) ) ) {
+				$this->maybe_prevent_order_paid_email_notification( $args[0] );
+			}
+		}
+
+		return $send;
+	}
+
 	public function maybe_disable_order_paid_email_notification( $order_id, $order = false ) {
+		$this->maybe_prevent_order_paid_email_notification( $order_id );
+	}
+
+	protected function maybe_prevent_order_paid_email_notification( $order_id ) {
 		if ( $order = wc_get_order( $order_id ) ) {
 			if ( is_callable( array( $order, 'get_payment_method' ) ) ) {
-
 				$method               = $order->get_payment_method();
 				$disable_for_gateways = $this->get_gateways_disabling_paid_for_order_mail();
 				$disable_notification = ( in_array( $method, $disable_for_gateways, true ) || $order->get_total() <= 0 ) ? true : false;
@@ -813,13 +851,15 @@ class WC_GZD_Emails {
 			'woocommerce_order_status_pending_to_completed',
 			'woocommerce_order_status_pending_to_on-hold',
 			'woocommerce_order_status_on-hold_to_processing',
+			'woocommerce_order_status_failed_to_processing',
+			'woocommerce_order_status_cancelled_to_processing',
+			'woocommerce_order_status_cancelled_to_on-hold',
+			'woocommerce_order_status_failed_to_on-hold',
 		);
 	}
 
 	public function prevent_confirmation_email_sending() {
-
 		foreach ( $this->get_confirmation_email_transaction_statuses() as $status ) {
-
 			remove_action(
 				$status . '_notification',
 				array(
@@ -848,11 +888,69 @@ class WC_GZD_Emails {
 		}
 	}
 
+	public function restore_confirmation_email_sending() {
+		foreach ( array(
+			'woocommerce_order_status_cancelled_to_processing',
+			'woocommerce_order_status_failed_to_processing',
+			'woocommerce_order_status_on-hold_to_processing',
+			'woocommerce_order_status_pending_to_processing',
+		) as $status ) {
+			if ( ! has_action( $status . '_notification', array( $this->get_email_instance_by_id( 'customer_processing_order' ), 'trigger' ) ) ) {
+				add_action(
+					$status . '_notification',
+					array(
+						$this->get_email_instance_by_id( 'customer_processing_order' ),
+						'trigger',
+					)
+				);
+			}
+		}
+
+		foreach ( array(
+			'woocommerce_order_status_pending_to_on-hold',
+			'woocommerce_order_status_failed_to_on-hold',
+			'woocommerce_order_status_cancelled_to_on-hold',
+		) as $status ) {
+			if ( $this->get_email_instance_by_id( 'customer_on_hold_order' ) ) {
+				if ( ! has_action( $status . '_notification', array( $this->get_email_instance_by_id( 'customer_on_hold_order' ), 'trigger' ) ) ) {
+					add_action(
+						$status . '_notification',
+						array(
+							$this->get_email_instance_by_id( 'customer_on_hold_order' ),
+							'trigger',
+						)
+					);
+				}
+			}
+		}
+
+		foreach ( array(
+			'woocommerce_order_status_pending_to_processing',
+			'woocommerce_order_status_pending_to_completed',
+			'woocommerce_order_status_pending_to_on-hold',
+			'woocommerce_order_status_failed_to_processing',
+			'woocommerce_order_status_failed_to_completed',
+			'woocommerce_order_status_failed_to_on-hold',
+			'woocommerce_order_status_cancelled_to_processing',
+			'woocommerce_order_status_cancelled_to_completed',
+			'woocommerce_order_status_cancelled_to_on-hold',
+		) as $status ) {
+			if ( ! has_action( $status . '_notification', array( $this->get_email_instance_by_id( 'new_order' ), 'trigger' ) ) ) {
+				add_action(
+					$status . '_notification',
+					array(
+						$this->get_email_instance_by_id( 'new_order' ),
+						'trigger',
+					)
+				);
+			}
+		}
+	}
+
 	/**
 	 * @param WC_Order $order
 	 */
 	public function confirm_order( $order ) {
-
 		if ( ! is_object( $order ) ) {
 			$order = wc_get_order( $order );
 		}
@@ -879,9 +977,8 @@ class WC_GZD_Emails {
 		 * @param WC_Order $order The order object.
 		 *
 		 * @since 1.0.0
-		 *
 		 */
-		if ( ! apply_filters( 'woocommerce_germanized_send_instant_order_confirmation', true, $order ) ) {
+		if ( ! apply_filters( 'woocommerce_germanized_send_instant_order_confirmation', wc_gzd_send_instant_order_confirmation( $order ), $order ) ) {
 			return;
 		}
 
