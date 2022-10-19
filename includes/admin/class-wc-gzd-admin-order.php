@@ -266,6 +266,13 @@ class WC_GZD_Admin_Order {
 			}
 
 			$order->update_meta_data( '_additional_costs_include_tax', wc_bool_to_string( wc_gzd_additional_costs_include_tax() ) );
+
+			/**
+			 * Need to manually call the order save method to make sure
+			 * meta data is persisted as $item->get_order() constructs a fresh order instance which will be lost
+			 * during global save event.
+			 */
+			$order->save();
 		}
 	}
 
