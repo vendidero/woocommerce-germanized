@@ -749,7 +749,7 @@ class WC_GZD_Admin {
 		if ( 'product' === $post_type && $post ) {
 			$product = wc_get_product( $post );
 
-			if ( $product && ( ! $product->is_type( 'variable' ) ) ) {
+			if ( $product ) {
 				add_meta_box(
 					'wc-gzd-product-mini-desc',
 					__( 'Cart description', 'woocommerce-germanized' ),
@@ -762,17 +762,19 @@ class WC_GZD_Admin {
 					'high'
 				);
 
-				add_meta_box(
-					'wc-gzd-product-defect-description',
-					__( 'Defect description', 'woocommerce-germanized' ),
-					array(
-						$this,
-						'init_product_defect_description',
-					),
-					'product',
-					'advanced',
-					'high'
-				);
+				if ( ! $product->is_type( 'variable' ) ) {
+					add_meta_box(
+						'wc-gzd-product-defect-description',
+						__( 'Defect description', 'woocommerce-germanized' ),
+						array(
+							$this,
+							'init_product_defect_description',
+						),
+						'product',
+						'advanced',
+						'high'
+					);
+				}
 			}
 		}
 	}

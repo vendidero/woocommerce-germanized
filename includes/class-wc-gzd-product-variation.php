@@ -26,7 +26,6 @@ class WC_GZD_Product_Variation extends WC_GZD_Product {
 		'service'            => '',
 		'used_good'          => '',
 		'defective_copy'     => '',
-		'mini_desc'          => '',
 		'defect_description' => '',
 	);
 
@@ -58,6 +57,7 @@ class WC_GZD_Product_Variation extends WC_GZD_Product {
 		'food_place_of_origin',
 		'food_description',
 		'is_food',
+		'mini_desc',
 	);
 
 	protected $gzd_variation_prevent_zero_inherit_meta_data = array(

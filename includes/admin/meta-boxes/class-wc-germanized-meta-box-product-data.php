@@ -1245,7 +1245,6 @@ class WC_Germanized_Meta_Box_Product_Data {
 
 		// Ignore variable data
 		if ( in_array( $product_type, array( 'variable', 'grouped' ), true ) && ! $is_variation ) {
-			$gzd_product->set_mini_desc( '' );
 			$gzd_product->set_defect_description( '' );
 		}
 

@@ -62,11 +62,14 @@ class WC_GZD_Compatibility_WooCommerce_PayPal_Payments extends WC_GZD_Compatibil
 		/**
 		 * Disable the paid for order mail for the PP invoice gateway.
 		 */
-		add_filter( 'woocommerce_gzd_disable_gateways_paid_order_email', function( $gateways_disabled ) {
-			$gateways_disabled[] = 'ppcp-pay-upon-invoice-gateway';
+		add_filter(
+			'woocommerce_gzd_disable_gateways_paid_order_email',
+			function( $gateways_disabled ) {
+				$gateways_disabled[] = 'ppcp-pay-upon-invoice-gateway';
 
-			return $gateways_disabled;
-		} );
+				return $gateways_disabled;
+			}
+		);
 	}
 
 	public function move_paypal_payment_button( $filter ) {
