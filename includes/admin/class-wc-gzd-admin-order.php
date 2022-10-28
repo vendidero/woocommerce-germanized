@@ -122,11 +122,14 @@ class WC_GZD_Admin_Order {
 						}
 
 						if ( $item_tax_rounded === $refund_tax_rounded ) {
+							$total_taxes    = array_map( 'floatval', $item->get_taxes()['total'] );
+							$subtotal_taxes = isset( $item->get_taxes()['subtotal'] ) ? array_map( 'floatval', $item->get_taxes()['subtotal'] ) : $total_taxes;
+
 							$needs_save = true;
 							$refunded_item->set_taxes(
 								array(
-									'total'    => array_map( 'wc_format_refund_total', $item->get_taxes()['total'] ),
-									'subtotal' => array_map( 'wc_format_refund_total', isset( $item->get_taxes()['subtotal'] ) ? $item->get_taxes()['subtotal'] : $item->get_taxes()['total'] ),
+									'total'    => array_map( 'wc_format_refund_total', $total_taxes ),
+									'subtotal' => array_map( 'wc_format_refund_total', $subtotal_taxes ),
 								)
 							);
 						}

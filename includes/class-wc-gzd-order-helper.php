@@ -33,7 +33,6 @@ class WC_GZD_Order_Helper {
 	}
 
 	public function __construct() {
-
 		// Add better incl tax display to order totals
 		add_filter( 'woocommerce_get_order_item_totals', array( $this, 'order_item_tax_totals' ), 0, 3 );
 
@@ -76,7 +75,6 @@ class WC_GZD_Order_Helper {
 
 		// Disallow user order cancellation
 		if ( 'yes' === get_option( 'woocommerce_gzd_checkout_stop_order_cancellation' ) ) {
-
 			add_filter( 'woocommerce_get_cancel_order_url', array( $this, 'cancel_order_url' ), 1500, 1 );
 			add_filter( 'woocommerce_get_cancel_order_url_raw', array( $this, 'cancel_order_url' ), 1500, 1 );
 			add_filter( 'user_has_cap', array( $this, 'disallow_user_order_cancellation' ), 15, 3 );
@@ -93,6 +91,72 @@ class WC_GZD_Order_Helper {
 				5,
 				1
 			);
+		}
+
+		/**
+		 * WooCommerce automatically creates a full refund after the order status changes to refunded.
+		 * Make sure to create a refund ourselves before Woo does and include item-related (e.g. taxes) refund data.
+		 * This way accounting and OSS reports are much more precise. Only relevant in case shop owners manually
+		 * mark an order as refunded without doing a refund before.
+		 *
+		 * @see wc_order_fully_refunded
+		 */
+		add_action( 'woocommerce_order_status_refunded', array( $this, 'create_refund_with_items' ), 5 );
+	}
+
+	public function create_refund_with_items( $order_id ) {
+		$order      = wc_get_order( $order_id );
+		$max_refund = wc_format_decimal( $order->get_total() - $order->get_total_refunded() );
+
+		if ( ! $max_refund ) {
+			return;
+		}
+
+		$items_to_refund = array();
+
+		foreach ( $order->get_items( array( 'line_item', 'fee', 'shipping' ) ) as $item ) {
+			$refunded_total = (float) $order->get_total_refunded_for_item( $item->get_id(), $item->get_type() );
+			$total          = (float) $item->get_total();
+			$refunded_qty   = abs( $order->get_qty_refunded_for_item( $item->get_id() ) );
+
+			if ( wc_format_decimal( $refunded_total, '' ) >= wc_format_decimal( $total, '' ) ) {
+				continue;
+			}
+
+			$refund_taxes = array();
+			$item_taxes   = $item->get_taxes();
+
+			foreach ( $item_taxes['total'] as $tax_id => $tax_total ) {
+				$refunded_tax_total = (float) $order->get_tax_refunded_for_item( $item->get_id(), $tax_id, $item->get_type() );
+
+				if ( wc_format_decimal( $refunded_tax_total, '' ) >= wc_format_decimal( $tax_total, '' ) ) {
+					continue;
+				}
+
+				$refund_taxes[ $tax_id ] = (float) $tax_total - $refunded_tax_total;
+			}
+
+			$items_to_refund[ $item->get_id() ] = array(
+				'qty'          => $refunded_qty >= $item->get_quantity() ? 1 : ( (int) $item->get_quantity() - $refunded_qty ),
+				'refund_total' => wc_format_decimal( $total - $refunded_total ),
+				'refund_tax'   => $refund_taxes,
+			);
+		}
+
+		if ( ! empty( $items_to_refund ) ) {
+			// Create the refund object.
+			wc_switch_to_site_locale();
+			wc_create_refund(
+				array(
+					'amount'     => $max_refund,
+					'line_items' => $items_to_refund,
+					'reason'     => __( 'Order fully refunded.', 'woocommerce-germanized' ),
+					'order_id'   => $order_id,
+				)
+			);
+			wc_restore_locale();
+
+			$order->add_order_note( __( 'Order status set to refunded. To return funds to the customer you will need to issue a refund through your payment gateway.', 'woocommerce-germanized' ) );
 		}
 	}
 
