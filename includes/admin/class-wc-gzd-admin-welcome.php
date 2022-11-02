@@ -98,7 +98,6 @@ class WC_GZD_Admin_Welcome {
 	 * @return void
 	 */
 	private function intro() {
-
 		// Flush after upgrades
 		if ( ! empty( $_GET['wc-gzd-updated'] ) || ! empty( $_GET['wc-gzd-installed'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			flush_rewrite_rules();
@@ -140,14 +139,27 @@ class WC_GZD_Admin_Welcome {
 			</p>
 
 			<div class="changelog new-feature">
-				<h3>Achtung: Neue Preisangabeverordnung und Omnibus-Richtlinie ab dem 28.05.22</h3>
-				<p>
-					Ab dem 28.05.2022 gilt eine neue <a href="https://www.it-recht-kanzlei.de/preisangabenverordnung-2022-wichtige-aenderungen.html" target="_blank">Preisangabeverordnung</a>. Bei Grundpreisen ändern sich die zulässigen Einheiten. Ihr solltet also eure in Germanized hinterlegten <a href="https://vendidero.de/dokument/grundpreise-hinterlegen" target="_blank">Grundpreise</a> kontrollieren und ggf. korrigieren.
-					Auch bei Preisermäßigungen gibt es neue Pflichten, die zu beachten sind. Insofern du Lebensmittel mit Pfand verkaufst, muss der Pfand von nun an separat ausgewiesen werden. Das ist mit Germanized <span class="wc-gzd-pro wc-gzd-pro-outlined">pro</span> kein Problem.
-					<br/><br/>
-					Zusätzlich tritt die <a href="https://www.haendlerbund.de/de/news/aktuelles/rechtliches/4145-omnibus-rezensionen-gekennzeichnet" target="_blank">Omnibus-Richtlinie</a> in Kraft. Du musst von nun an Informationen zur Authentizität von Kundenbewertungen bereitstellen. Wenn du deine Kundenbewertungen über die in WooCommerce integrierte Funktion
-					bereitstellst, unterstützt dich Germanized dabei. Wir haben dafür eine neue rechtliche <a target="_blank" href="<?php echo esc_url( wc_gzd_get_page_permalink( 'review_authenticity' ) ); ?>">Hinweisseite</a> angelegt und entsprechende <a href="<?php echo esc_url( admin_url( 'admin.php?page=wc-settings&tab=germanized-general&section=shop' ) ); ?>">Hinweise platziert</a>.
-				</p>
+				<h3>GLS Labels zu Sendungen erstellen <span class="wc-gzd-pro wc-gzd-pro-outlined">pro</span></h3>
+
+				<div class="columns two-col">
+					<div class="col col-center">
+						<img src="<?php echo esc_url( WC_germanized()->plugin_url() ); ?>/assets/images/gls.png" style="max-width: 450px;"/>
+					</div>
+					<div class="col">
+						<p>
+							Neben DHL, Deutsche Post und DPD bietet Germanized Pro nun eine weitere, automatische Integration des Versanddienstleisters GLS an. Über die GLS Schnittstelle <strong>ShipIT</strong> könnt ihr
+							bequem Labels zu Sendungen und Retouren erstellen. Selbstverständlich greifen auch hier die vielfältigen Möglichkeiten der Automatisierung, d.h. ihr könnt von
+							der Erstellung der Sendungen und Zuordnung der passenden Verpackung bis hin zur Label-Erstellung via GLS euren Versandprozess bestmöglich automatisieren.
+						</p>
+
+						<div class="wc-gzd-actions wc-gzd-actions-right">
+							<a href="https://vendidero.de/woocommerce-germanized" target="_blank" class="wc-gzd-pro-version button button-primary wc-gzd-button"><span class="wc-gzd-pro wc-gzd-pro-outlined">pro</span> Version entdecken</a>
+							<a href="https://vendidero.de/dokument/gls-integration-einrichten" class="wc-gzd-default-button button button-primary" target="_blank">Mehr erfahren</a>
+
+							<p class="price smaller wc-gzd-pro-version">ab 79 € inkl. MwSt. - inkl. 1 Jahr Updates & Premium Support!</p>
+						</div>
+					</div>
+				</div>
 			</div>
 
 			<div class="changelog new-feature">
@@ -170,30 +182,6 @@ class WC_GZD_Admin_Welcome {
 					</div>
 					<div class="col col-center">
 						<img src="<?php echo esc_url( WC_germanized()->plugin_url() ); ?>/assets/images/sell-food.png" style="max-width: 450px;"/>
-					</div>
-				</div>
-			</div>
-
-			<div class="changelog new-feature">
-				<h3>DPD Labels zu Sendungen erstellen <span class="wc-gzd-pro wc-gzd-pro-outlined">pro</span></h3>
-
-				<div class="columns two-col">
-					<div class="col col-center">
-						<img src="<?php echo esc_url( WC_germanized()->plugin_url() ); ?>/assets/images/dpd.png" style="max-width: 450px;"/>
-					</div>
-					<div class="col">
-						<p>
-							Neben DHL und Deutsche Post bietet Germanized Pro nun eine weitere, automatische Integration des Versanddienstleisters DPD an. Über die DPD Schnittstelle <strong>DPD Cloud Webservice oder DPD WebConnect</strong> könnt ihr
-							bequem Labels zu Sendungen und Retouren erstellen. Selbstverständlich greifen auch hier die vielfältigen Möglichkeiten der Automatisierung, d.h. ihr könnt von
-							der Erstellung der Sendungen und Zuordnung der passenden Verpackung bis hin zur Label-Erstellung via DPD euren Versandprozess bestmöglich automatisieren.
-						</p>
-
-						<div class="wc-gzd-actions wc-gzd-actions-right">
-							<a href="https://vendidero.de/woocommerce-germanized" target="_blank" class="wc-gzd-pro-version button button-primary wc-gzd-button"><span class="wc-gzd-pro wc-gzd-pro-outlined">pro</span> Version entdecken</a>
-							<a href="https://vendidero.de/dokument/dpd-integration-einrichten" class="wc-gzd-default-button button button-primary" target="_blank">Mehr erfahren</a>
-
-							<p class="price smaller wc-gzd-pro-version">ab 79 € inkl. MwSt. - inkl. 1 Jahr Updates & Premium Support!</p>
-						</div>
 					</div>
 				</div>
 			</div>

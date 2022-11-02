@@ -2,10 +2,10 @@
 Contributors: vendidero, vdwoocommercesupport
 Tags: woocommerce, woocommerce german, woocommerce DE, woocommerce germany, woocommerce deutsch, woo, woocommerce deutschland, woocommerce germanized, woocommerce addon, woocommerce plugin, woocommerce german addon, woocommerce germany addon, woocommerce dhl, dhl, shipments
 Requires at least: 5.4
-Tested up to: 6.0
+Tested up to: 6.1
 WC requires at least: 3.9
-WC tested up to: 6.9
-Stable tag: 3.10.7
+WC tested up to: 7.1
+Stable tag: 3.11.0
 Requires PHP: 5.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -35,7 +35,7 @@ Furthermore we customized the WooCommerce checkout to make your store meet the b
 * *Tax Calculation for Shipping Costs and Fees* - Enable split tax calculation based on your WooCommerce cart taxes.
 * *Legal pages in Email Templates* - Attach legal pages content to certain WooCommerce e-mail templates.
 * *Trusted Shops Integration* - Integrate your Trusted Shops Products within your WooCommerce store
-* *Post, DHL and DPD (Pro) Integration* - Generate labels for shipments and returns right from your backend. Offer preferred delivery services to your customers.
+* *Post, DHL, DPD (Pro) and GLS (Pro) Integration* - Generate labels for shipments and returns right from your backend. Offer preferred delivery services to your customers.
 * *Payment Gateway: SEPA direct debit* - Receive payments via direct debit. We've added a XML export to transfer payments to your bank.
 * *Payment Gateway: Pay by Invoice* - Allow certain customers to pay by invoice. Best integration with our PDF invoices feature (Pro).
 * *Online Revocation Form* - Allow customers to submit revocations by filling out a form on your revocation page.
@@ -72,8 +72,8 @@ You can then manage your shipments and it's statuses independently from your ord
 Managing returns can be a time-consuming challenge. By using Germanized you might let your customers create return requests through their customer panel. All you need to do is confirm the request through your return dashboard and your customers will receive an email containing further steps on how to return their product(s).
 In case you are using our DHL integration you might as well (automatically) create a label to the return which will be attached to the email sent to the customer.
 
-= Post, DHL and DPD (Pro) Integration =
-With the help of our built-in Post, DHL and DPD (Pro) integration you can easily create labels for your shipments and add tracking information to the notification emails. Furthermore you can offer DHL preferred delivery services to your customers including shipping to Packstation or choosing a drop-off location and/or day within the checkout.
+= Post, DHL, DPD (Pro) and GLS (Pro) Integration =
+With the help of our built-in Post, DHL, DPD (Pro) and GLS (Pro) integration you can easily create labels for your shipments and add tracking information to the notification emails. Furthermore you can offer DHL preferred delivery services to your customers including shipping to Packstation or choosing a drop-off location and/or day within the checkout.
 You can even let your shipments and labels be generated automatically by Germanized to avoid further manual work. [Learn more](https://vendidero.de/dokumentation/woocommerce-germanized/versanddienstleister "Post & DHL for WooCommerce") about how our shipping provider integrations work.
 
 = Extended One Stop Shop compliance =
@@ -204,10 +204,21 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 6. Edit pdf documents (Pro)
 
 == Changelog ==
-= 3.10.7 =
+= 3.11.0 =
+* Feature: WP 6.1 compatibility
+* Feature: DHL closest droppoint (CDP) and PDDP support
+* Feature: New DHL unified location finder API
+* Improvement: Allow disabling instant order confirmation on a per-order base
+* Improvement: PayPal Payments Pay upon Invoice compatibility
+* Improvement: Allow providing a cart description for variable parent products as fallback
+* Improvement: Divi checkout builder compatibility
 * Improvement: Add to cart variation script compatibility
 * Improvement: DHL error message for missing product participation numbers
-* Fix: DHL ident check service
+* Improvement: Shipment address UK VAT ID for brexit exports
+* Improvement: DHL pickup address validation
+* Fix: DHL ident check service sync
+* Fix: WPML delivery times compatibility
+* Fix: Localized decimal formatting in settings
 
 = 3.10.6 =
 * Improvement: Prevent new account activation email from being sent during DOI process in latest Woo version

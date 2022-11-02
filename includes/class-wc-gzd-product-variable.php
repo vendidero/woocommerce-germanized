@@ -153,7 +153,6 @@ class WC_GZD_Product_Variable extends WC_GZD_Product {
 		$prices = $this->get_variation_unit_prices( true, $tax_display );
 
 		if ( $this->has_unit() ) {
-
 			$min_price     = current( $prices['price'] );
 			$max_price     = end( $prices['price'] );
 			$min_reg_price = current( $prices['regular_price'] );
@@ -288,6 +287,7 @@ class WC_GZD_Product_Variable extends WC_GZD_Product {
 				 */
 				$allow_sort   = count( $unique_values ) === 1;
 				$is_min_price = woocommerce_gzd_price_range_format_is_min_price();
+				$is_max_price = woocommerce_gzd_price_range_format_is_max_price();
 
 				/**
 				 * In case the current price range format includes a starting from price only
@@ -300,6 +300,15 @@ class WC_GZD_Product_Variable extends WC_GZD_Product {
 
 					foreach ( $variation_prices['price'] as $variation_id => $price ) {
 						if ( $price > $min_price ) {
+							unset( $variation_prices['price'][ $variation_id ] );
+						}
+					}
+				} elseif ( $is_max_price && ! empty( $variation_prices['price'] ) ) {
+					$max_price  = array_values( $variation_prices['price'] )[ count( $variation_prices['price'] ) - 1 ];
+					$allow_sort = true;
+
+					foreach ( $variation_prices['price'] as $variation_id => $price ) {
+						if ( $price < $max_price ) {
 							unset( $variation_prices['price'][ $variation_id ] );
 						}
 					}

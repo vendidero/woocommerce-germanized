@@ -51,6 +51,17 @@ class WC_GZD_Product_Grouped extends WC_GZD_Product {
 						$products[] = $child_id;
 					}
 				}
+			} elseif ( woocommerce_gzd_price_range_format_is_max_price() ) {
+				asort( $child_prices );
+				$max_price = max( $child_prices );
+				$products  = array();
+				$sort      = true;
+
+				foreach ( $child_prices as $child_id => $price ) {
+					if ( $price >= $max_price ) {
+						$products[] = $child_id;
+					}
+				}
 			} elseif ( $min_id === $max_id ) {
 				$products = $children;
 				$sort     = true;

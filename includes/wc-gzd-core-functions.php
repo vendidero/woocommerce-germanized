@@ -1061,6 +1061,10 @@ function woocommerce_gzd_price_range_format_is_min_price() {
 	return strpos( woocommerce_gzd_get_price_range_format(), '{max_price}' ) === false;
 }
 
+function woocommerce_gzd_price_range_format_is_max_price() {
+	return strpos( woocommerce_gzd_get_price_range_format(), '{min_price}' ) === false;
+}
+
 function woocommerce_gzd_get_price_range_format() {
 	return apply_filters( 'woocommerce_gzd_price_range_format', get_option( 'woocommerce_gzd_price_range_format_text', __( '{min_price} &ndash; {max_price}', 'woocommerce-germanized' ) ) );
 }

@@ -106,6 +106,11 @@ class WC_GZD_Admin {
 		add_action( 'woocommerce_admin_field_hidden', array( $this, 'hidden_field' ), 10, 1 );
 
 		add_filter( 'woocommerce_admin_settings_sanitize_option', array( $this, 'save_toggle_input_field' ), 0, 3 );
+		/**
+		 * Woo does not support a decimal field in admin settings by default. In case we do find wc_input_decimal
+		 * as a input class, make sure to format the decimal accordingly while saving.
+		 */
+		add_filter( 'woocommerce_admin_settings_sanitize_option', array( $this, 'save_decimal_field' ), 10, 3 );
 
 		add_action( 'woocommerce_oss_enabled_oss_procedure', array( $this, 'oss_enable_hide_tax_percentage' ), 10 );
 
@@ -193,12 +198,27 @@ class WC_GZD_Admin {
 	 * @param \Vendidero\Germanized\Shipments\Interfaces\ShippingProvider $providers
 	 */
 	public function maybe_register_shipping_providers( $providers ) {
-		if ( ! WC_germanized()->is_pro() && in_array( \Vendidero\Germanized\Shipments\Package::get_base_country(), array( 'DE', 'AT' ), true ) ) {
-			$dpd               = new WC_GZD_Admin_Provider_DPD();
-			$providers['_dpd'] = $dpd;
+		if ( ! WC_germanized()->is_pro() ) {
+			if ( $this->is_dpd_available() ) {
+				$dpd               = new WC_GZD_Admin_Provider_DPD();
+				$providers['_dpd'] = $dpd;
+			}
+
+			if ( $this->is_gls_available() ) {
+				$gls               = new WC_GZD_Admin_Provider_GLS();
+				$providers['_gls'] = $gls;
+			}
 		}
 
 		return $providers;
+	}
+
+	public function is_gls_available() {
+		return in_array( \Vendidero\Germanized\Shipments\Package::get_base_country(), array( 'DE', 'AT', 'CH', 'BE', 'LU', 'FR', 'IE', 'ES' ), true );
+	}
+
+	public function is_dpd_available() {
+		return in_array( \Vendidero\Germanized\Shipments\Package::get_base_country(), array( 'DE', 'AT' ), true );
 	}
 
 	public function oss_enable_hide_tax_percentage() {
@@ -274,6 +294,14 @@ class WC_GZD_Admin {
 
 		update_option( 'woocommerce_gzd_dhl_internetmarke_enable', 'yes' );
 		update_option( 'woocommerce_gzd_internetmarke_import_finished', 'yes' );
+	}
+
+	public function save_decimal_field( $value, $option, $raw_value ) {
+		if ( isset( $option['class'] ) && strstr( $option['class'], 'wc_input_decimal' ) ) {
+			$value = ( '' === $raw_value ) ? '' : wc_format_decimal( trim( stripslashes( $raw_value ) ) );
+		}
+
+		return $value;
 	}
 
 	public function save_toggle_input_field( $value, $option, $raw_value ) {
