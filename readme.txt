@@ -5,7 +5,7 @@ Requires at least: 5.4
 Tested up to: 6.1
 WC requires at least: 3.9
 WC tested up to: 7.1
-Stable tag: 3.11.0
+Stable tag: 3.11.1
 Requires PHP: 5.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -74,7 +74,7 @@ In case you are using our DHL integration you might as well (automatically) crea
 
 = Post, DHL, DPD (Pro) and GLS (Pro) Integration =
 With the help of our built-in Post, DHL, DPD (Pro) and GLS (Pro) integration you can easily create labels for your shipments and add tracking information to the notification emails. Furthermore you can offer DHL preferred delivery services to your customers including shipping to Packstation or choosing a drop-off location and/or day within the checkout.
-You can even let your shipments and labels be generated automatically by Germanized to avoid further manual work. [Learn more](https://vendidero.de/dokumentation/woocommerce-germanized/versanddienstleister "Post & DHL for WooCommerce") about how our shipping provider integrations work.
+You can even let your shipments and labels be generated automatically by Germanized to avoid further manual work. [Learn more](https://vendidero.de/dokument/versanddienstleister-verwalten "Shipping Provider for WooCommerce") about how our shipping provider integrations work.
 
 = Extended One Stop Shop compliance =
 With a little help from our [One Stop Shop compliance plugin for WooCommerce](https://wordpress.org/plugins/one-stop-shop-woocommerce/) bundled within Germanized you'll handle the new EU VAT regulations with ease. Generate new VAT reports for different time frames and let the plugin
@@ -169,7 +169,7 @@ You may of course Update Germanized for WooCommerce automatically through the Wo
 == Frequently Asked Questions ==
 
 = Where can I find the documentation? =
-[Germanized Documentation](https://vendidero.de/dokumentation/woocommerce-germanized)
+[Germanized Documentation](https://vendidero.de/dokument/home-germanized)
 
 = Need help? =
 
@@ -204,6 +204,10 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 6. Edit pdf documents (Pro)
 
 == Changelog ==
+= 3.11.1 =
+* Fix: JS error during label creation
+* Fix: Prevent DHL parcel location finder PHP warning if address_2 field is disabled
+
 = 3.11.0 =
 * Feature: WP 6.1 compatibility
 * Feature: DHL closest droppoint (CDP) and PDDP support
