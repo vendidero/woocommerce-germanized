@@ -41,6 +41,7 @@ class WC_GZD_Product_Export {
 		add_filter( 'woocommerce_product_export_row_data', array( $this, 'export_delivery_times' ), 10, 2 );
 		add_filter( 'woocommerce_product_export_row_data', array( $this, 'export_nutrients' ), 15, 2 );
 		add_filter( 'woocommerce_product_export_column_names', array( $this, 'register_additional_columns' ), 500, 2 );
+		add_filter( 'woocommerce_product_export_skip_meta_keys', array( $this, 'register_core_meta_data' ), 10, 2 );
 
 		if ( ! did_action( 'init' ) ) {
 			add_action( 'init', array( $this, 'register_column_filters' ) );
@@ -110,6 +111,20 @@ class WC_GZD_Product_Export {
 				'food_distributor'         => _x( 'Food Distributor', 'exporter', 'woocommerce-germanized' ),
 			)
 		);
+	}
+
+	public function register_core_meta_data( $meta_keys_to_skip, $product ) {
+		$meta_keys_to_skip = array_merge( $meta_keys_to_skip, array(
+			'_default_delivery_time',
+			'_unit_price',
+			'_gzd_version'
+		) );
+
+		foreach( $this->get_columns() as $key => $title ) {
+			$meta_keys_to_skip[] = "_{$key}";
+		}
+
+		return $meta_keys_to_skip;
 	}
 
 	public function register_additional_columns( $columns ) {
