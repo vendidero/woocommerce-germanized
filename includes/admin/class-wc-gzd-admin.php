@@ -348,7 +348,6 @@ class WC_GZD_Admin {
 	 * Show a notice highlighting bad template files.
 	 */
 	public function get_template_version_check_result() {
-
 		/**
 		 * Filter to include certain packages or plugins while checking for outdated templates.
 		 *
@@ -372,7 +371,6 @@ class WC_GZD_Admin {
 		);
 
 		foreach ( $template_data as $plugin => $path_data ) {
-
 			$path_data = wp_parse_args(
 				$path_data,
 				array(
@@ -425,6 +423,7 @@ class WC_GZD_Admin {
 						}
 
 						$file_data = array(
+							'core_file'     => trailingslashit( $core_path ) . $file,
 							'template'      => $file,
 							'theme_file'    => $theme_file,
 							'theme_version' => $theme_version,

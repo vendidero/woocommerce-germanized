@@ -266,7 +266,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 						<?php printf( '<code>%s</code>', esc_html( str_replace( WP_CONTENT_DIR . '/themes/', '', $file['theme_file'] ) ) ); ?>
 
 						<?php if ( $file['outdated'] ) : ?>
-							<?php printf( esc_html__( 'Version %1$s is out of date. The core version is %2$s.', 'woocommerce-germanized' ), '<span class="red" style="color:red">' . esc_html( $file['theme_version'] ) . '</span>', esc_html( $file['core_version'] ) ); ?>
+							<?php printf( esc_html__( 'Version %1$s is out of date. The core version %2$s is available at: %3$s', 'woocommerce-germanized' ), '<span class="red" style="color:red">' . esc_html( $file['theme_version'] ) . '</span>', esc_html( $file['core_version'] ), '<code>' . esc_html( str_replace( WP_PLUGIN_DIR, '', $file['core_file'] ) ) . '</code>' ); ?>
 						<?php endif; ?>
 
 						<br/>

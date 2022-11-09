@@ -114,13 +114,16 @@ class WC_GZD_Product_Export {
 	}
 
 	public function register_core_meta_data( $meta_keys_to_skip, $product ) {
-		$meta_keys_to_skip = array_merge( $meta_keys_to_skip, array(
-			'_default_delivery_time',
-			'_unit_price',
-			'_gzd_version'
-		) );
+		$meta_keys_to_skip = array_merge(
+			$meta_keys_to_skip,
+			array(
+				'_default_delivery_time',
+				'_unit_price',
+				'_gzd_version',
+			)
+		);
 
-		foreach( $this->get_columns() as $key => $title ) {
+		foreach ( $this->get_columns() as $key => $title ) {
 			$meta_keys_to_skip[] = "_{$key}";
 		}
 
