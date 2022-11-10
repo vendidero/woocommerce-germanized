@@ -867,7 +867,7 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 			$locale = apply_filters( 'plugin_locale', $locale, 'woocommerce-germanized' );
 
 			unload_textdomain( 'woocommerce-germanized' );
-            load_textdomain( 'woocommerce-germanized', trailingslashit( WP_LANG_DIR ) . 'woocommerce-germanized/woocommerce-germanized-' . $locale . '.mo' );
+			load_textdomain( 'woocommerce-germanized', trailingslashit( WP_LANG_DIR ) . 'woocommerce-germanized/woocommerce-germanized-' . $locale . '.mo' );
 			load_plugin_textdomain( 'woocommerce-germanized', false, plugin_basename( dirname( __FILE__ ) ) . '/i18n/languages/' );
 		}
 
