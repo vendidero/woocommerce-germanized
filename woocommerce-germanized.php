@@ -272,7 +272,6 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 		 * Init WooCommerceGermanized when WordPress initializes.
 		 */
 		public function init() {
-
 			/**
 			 * Initialize Germanized
 			 *
@@ -856,6 +855,8 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 		 *        - WP_LANG_DIR/plugins/woocommerce-germanized-LOCALE.mo
 		 */
 		public function load_plugin_textdomain() {
+			add_filter( 'plugin_locale', array( $this, 'support_german_language_variants' ), 10, 2 );
+
 			if ( function_exists( 'determine_locale' ) ) {
 				$locale = determine_locale();
 			} else {
@@ -866,8 +867,16 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 			$locale = apply_filters( 'plugin_locale', $locale, 'woocommerce-germanized' );
 
 			unload_textdomain( 'woocommerce-germanized' );
-			load_textdomain( 'woocommerce-germanized', trailingslashit( WP_LANG_DIR ) . 'woocommerce-germanized/woocommerce-germanized-' . $locale . '.mo' );
+            load_textdomain( 'woocommerce-germanized', trailingslashit( WP_LANG_DIR ) . 'woocommerce-germanized/woocommerce-germanized-' . $locale . '.mo' );
 			load_plugin_textdomain( 'woocommerce-germanized', false, plugin_basename( dirname( __FILE__ ) ) . '/i18n/languages/' );
+		}
+
+		public function support_german_language_variants( $locale, $domain ) {
+			if ( 'woocommerce-germanized' === $domain && apply_filters( 'woocommerce_gzd_force_de_language', in_array( $locale, array( 'de_CH', 'de_AT' ), true ) ) ) {
+				$locale = 'de_DE';
+			}
+
+			return $locale;
 		}
 
 		/**
