@@ -317,12 +317,14 @@ if ( ! class_exists( 'WC_GZD_Admin_Notices' ) ) :
 
 		public function is_theme_supported_by_pro() {
 			$supporting = array(
-				'enfold',
-				'flatsome',
-				'storefront',
 				'virtue',
+				'flatsome',
+				'enfold',
+				'storefront',
 				'shopkeeper',
 				'astra',
+				'twentytwentytwo',
+				'twentytwentythree',
 				'oceanwp',
 			);
 
