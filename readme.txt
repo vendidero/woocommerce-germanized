@@ -5,7 +5,7 @@ Requires at least: 5.4
 Tested up to: 6.1
 WC requires at least: 3.9
 WC tested up to: 7.1
-Stable tag: 3.11.1
+Stable tag: 3.11.2
 Requires PHP: 5.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -204,6 +204,12 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 6. Edit pdf documents (Pro)
 
 == Changelog ==
+= 3.11.2 =
+* Improvement: Switch plugin locale to de_DE when using de_CH or de_AT
+* Improvement: Allow filtering shipment list by provider
+* Fix: Prevent errors caused by WooCommerce PayPal Payments from processing shipments
+* Fix: Postfiliale postNumber field in DHL API
+
 = 3.11.1 =
 * Fix: JS error during label creation
 * Fix: Prevent DHL parcel location finder PHP warning if address_2 field is disabled
