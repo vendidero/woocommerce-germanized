@@ -224,10 +224,10 @@ class WC_GZD_Gateway_Invoice extends WC_Payment_Gateway {
 
 		$order->update_status( $this->default_order_status );
 
-        // Prevent stock reservation for pending invoice orders
-        if ( function_exists( 'wc_release_stock_for_order' ) ) {
-	        wc_release_stock_for_order( $order_id );
-        }
+		// Prevent stock reservation for pending invoice orders
+		if ( function_exists( 'wc_release_stock_for_order' ) ) {
+			wc_release_stock_for_order( $order_id );
+		}
 
 		// Reduce stock level
 		wc_maybe_reduce_stock_levels( $order_id );
