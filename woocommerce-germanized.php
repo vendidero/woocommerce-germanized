@@ -1258,7 +1258,6 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 			}
 
 			if ( wp_script_is( 'wc-gzd-checkout' ) && ! in_array( 'wc-gzd-checkout', $this->localized_scripts, true ) ) {
-
 				$this->localized_scripts[] = 'wc-gzd-checkout';
 				$html_id                   = 'legal';
 				$hide_input                = false;
@@ -1279,7 +1278,6 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 				 * @param array $params Key => value array containing parameter name and value.
 				 *
 				 * @since 1.0.0
-				 *
 				 */
 				wp_localize_script(
 					'wc-gzd-checkout',
@@ -1287,11 +1285,12 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 					apply_filters(
 						'wc_gzd_checkout_params',
 						array(
-							'adjust_heading'           => true,
-							'custom_heading_container' => '',
-							'checkbox_id'              => $html_id,
-							'checkbox_hidden'          => $hide_input,
-							'has_privacy_checkbox'     => $has_privacy_checkbox,
+							'adjust_heading'             => true,
+							'custom_heading_container'   => '',
+							'checkbox_id'                => $html_id,
+							'checkbox_hidden'            => $hide_input,
+							'has_privacy_checkbox'       => $has_privacy_checkbox,
+							'mark_checkout_error_fields' => true,
 						)
 					)
 				);

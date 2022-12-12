@@ -27,7 +27,9 @@ window.germanized = window.germanized || {};
                 $( document.body ).on( 'payment_method_selected', this.triggerCheckoutRefresh );
             }
 
-            $( document.body ).on( 'updated_checkout', this.onUpdateCheckout );
+            $( document.body )
+                .on( 'updated_checkout', this.onUpdateCheckout )
+                .on( 'checkout_error', this.onCheckoutError );
 
             if ( this.params.adjust_heading && ! checkout_adjustments_disabled ) {
                 if ( ! this.params.custom_heading_container ) {
@@ -58,6 +60,37 @@ window.germanized = window.germanized || {};
                 this.maybeSetTermsCheckbox();
             } else {
                 $( document ).on( 'change', 'input#' + this.params.checkbox_id, this.onChangeLegalCheckbox );
+            }
+        },
+
+        onCheckoutError: function( e, errors ) {
+            var self = germanized.checkout;
+
+            if ( ! self.params.mark_checkout_error_fields ) {
+                return;
+            }
+
+            var $checkoutForm = $( 'form.checkout' ),
+                $errorWrapper = $( errors ),
+                $errors       = $errorWrapper.length > 0 ? $errorWrapper.find( '[data-id]' ) : null;
+
+            if ( $errors && $errors.length > 0 ) {
+                $errors.each( function() {
+                    var $el = $( this );
+
+                    if ( $el.data( 'id' ) ) {
+                        var error_id = $el.data( 'id' ),
+                            $input   = $checkoutForm.find( '#' + error_id );
+
+                        if ( $input.length > 0 ) {
+                            var $parent = $input.closest( '.form-row' );
+
+                            if ( $parent.length > 0 ) {
+                                $parent.removeClass( 'woocommerce-validated' ).addClass( 'woocommerce-invalid woocommerce-invalid-required-field' );
+                            }
+                        }
+                    }
+                });
             }
         },
 

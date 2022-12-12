@@ -745,7 +745,6 @@ class WC_GZD_Legal_Checkbox_Manager {
 	 * @param WP_Error $errors
 	 */
 	public function validate_checkout( $data, $errors ) {
-
 		if ( isset( $_POST['woocommerce_checkout_update_totals'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
 			return;
 		}
@@ -757,13 +756,12 @@ class WC_GZD_Legal_Checkbox_Manager {
 			$visible = ! empty( $_POST[ $checkbox->get_html_name() . '-field' ] ) ? true : false; // phpcs:ignore WordPress.Security.NonceVerification.Missing
 
 			if ( $visible && ! $checkbox->validate( $value, 'checkout' ) ) {
-				$errors->add( 'checkbox', $checkbox->get_error_message() );
+				$errors->add( 'checkbox', $checkbox->get_error_message(), array( 'id' => $checkbox->get_html_id() ) );
 			}
 		}
 	}
 
 	public function validate_reviews( $approved, $comment_data ) {
-
 		if ( 'product' !== get_post_type( $comment_data['comment_post_ID'] ) ) {
 			return $approved;
 		}
