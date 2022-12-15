@@ -82,7 +82,6 @@ abstract class WC_GZD_Admin_Note {
 	}
 
 	public function is_disabled() {
-
 		if ( ! $this->enable_notices() && $this->is_dismissable() ) {
 			return true;
 		}
@@ -245,6 +244,14 @@ abstract class WC_GZD_Admin_Note {
 		$note->set_content_data( (object) array() );
 		$note->set_source( 'woocommerce-germanized' );
 
+		if ( is_callable( array( $note, 'set_layout' ) ) ) {
+			try {
+				$note->set_layout( 'banner' );
+			} catch ( \Exception $e ) {
+				$note->set_layout( 'plain' );
+			}
+		}
+
 		$this->register_note_actions( $note );
 		$note->save();
 	}
@@ -304,7 +311,6 @@ abstract class WC_GZD_Admin_Note {
 	}
 
 	public function dismiss( $and_note = true ) {
-
 		if ( $and_note && ( $note = $this->get_note() ) ) {
 			$note->set_status( 'disabled' );
 			$note->save();
@@ -324,7 +330,6 @@ abstract class WC_GZD_Admin_Note {
 	}
 
 	public function deactivate( $and_note = true ) {
-
 		if ( $and_note && ( $note = $this->get_note() ) ) {
 			$note->set_status( 'deactivated' );
 			$note->save();
@@ -362,7 +367,6 @@ abstract class WC_GZD_Admin_Note {
 		}
 
 		if ( $queue ) {
-
 			if ( $note = $this->get_note() ) {
 				$note->set_status( 'unactioned' );
 				$note->save();
@@ -371,7 +375,6 @@ abstract class WC_GZD_Admin_Note {
 			$this->add();
 		} else {
 			if ( $note = $this->get_note() ) {
-
 				if ( 'unactioned' === $note->get_status() ) {
 					$note->set_status( 'actioned' );
 					$note->save();

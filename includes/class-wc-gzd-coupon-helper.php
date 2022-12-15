@@ -59,6 +59,14 @@ class WC_GZD_Coupon_Helper {
 		add_filter( 'woocommerce_update_order_review_fragments', array( $this, 'voucher_fragments' ), 10, 1 );
 
 		/**
+		 * Some plugins, e.g. Gift card plugins may reduce the coupon amount based on the discount total of
+		 * the corresponding WC_Order_Item_Coupon. Temporarily register a filter while adding new items to adjust
+		 * the actual discount amount. This filter cannot be used globally as it would distort the order discount amount.
+		 */
+		add_action( 'woocommerce_new_order_item', array( $this, 'register_coupon_item_discount_total_filter' ), 0, 3 );
+		add_action( 'woocommerce_new_order_item', array( $this, 'unregister_coupon_item_discount_total_filter' ), 1500, 3 );
+
+		/**
 		 * Do only add the discount total filter for the admin edit order view to make
 		 * sure calculating totals does not produce wrong results.
 		 */
@@ -88,6 +96,45 @@ class WC_GZD_Coupon_Helper {
 		 */
 		add_filter( 'woocommerce_gzd_shipments_order_has_voucher', array( $this, 'legacy_shipments_order_has_voucher' ), 10, 2 );
 		add_action( 'wp_ajax_woocommerce_calc_line_taxes', array( $this, 'legacy_before_recalculate_totals' ), 0 );
+	}
+
+	public function register_coupon_item_discount_total_filter( $item_id, $item, $order_id ) {
+		$added_filter = false;
+
+		if ( is_a( $item, 'WC_Order_Item_Coupon' ) ) {
+			if ( $this->order_item_coupon_is_voucher( $item ) ) {
+				if ( $fee = $this->get_order_item_fee_by_coupon( $item, wc_get_order( $order_id ) ) ) {
+					add_filter( 'woocommerce_order_item_get_discount', array( $this, 'item_discount_filter' ), 500, 2 );
+					$added_filter = true;
+				}
+			}
+		}
+
+		if ( ! $added_filter ) {
+			remove_filter( 'woocommerce_order_item_get_discount', array( $this, 'item_discount_filter' ), 500 );
+		}
+	}
+
+	public function unregister_coupon_item_discount_total_filter( $item_id, $item, $order_id ) {
+		remove_filter( 'woocommerce_order_item_get_discount', array( $this, 'item_discount_filter' ), 500 );
+	}
+
+	/**
+	 * @param $value
+	 * @param WC_Order_Item_Coupon $item
+	 *
+	 * @return mixed
+	 */
+	public function item_discount_filter( $value, $item ) {
+		if ( 0.0 === (float) wc_format_decimal( $value ) ) {
+			if ( $order = $item->get_order() ) {
+				if ( $fee = $this->get_order_item_fee_by_coupon( $item, $order ) ) {
+					$value = wc_format_decimal( floatval( $fee->get_total() ) * -1 );
+				}
+			}
+		}
+
+		return $value;
 	}
 
 	/**
