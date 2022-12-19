@@ -13,13 +13,11 @@ window.germanized = window.germanized || {};
         init: function() {
             this.params = wc_gzd_checkout_params;
 
-            var checkout_adjustments_disabled = ! $( 'body' ).hasClass( 'woocommerce-gzd-checkout' ) || $( 'input#wc_gzd_checkout_disabled' ).length > 0;
-
             /**
              * Support lazy-disabling the checkout adjustments e.g. within compatibility scripts.
              * Lazy-loading will lead to the input#wc_gzd_checkout_disabled to be rendered.
              */
-            if ( checkout_adjustments_disabled ) {
+            if ( this.checkoutAdjustmentsDisabled() ) {
                 $( 'body' ).removeClass( 'woocommerce-gzd-checkout' );
             }
 
@@ -31,27 +29,6 @@ window.germanized = window.germanized || {};
                 .on( 'updated_checkout', this.onUpdateCheckout )
                 .on( 'checkout_error', this.onCheckoutError );
 
-            if ( this.params.adjust_heading && ! checkout_adjustments_disabled ) {
-                if ( ! this.params.custom_heading_container ) {
-                    var $theFirst = $( '.woocommerce-checkout' ).find( '.shop_table, #payment' ).first();
-
-                    if ( $( '.woocommerce-checkout' ).find( '#order_review_heading' ).length > 0 )  {
-                        if ( $theFirst.length > 0 && 'payment' === $theFirst.attr( 'id' ) ) {
-                            $( '.woocommerce-checkout' ).find( '#payment' ).after( $( '.woocommerce-checkout' ).find( '#order_review_heading' ) );
-                        }
-
-                        $( '.woocommerce-checkout' ).find( '#order_review_heading' ).show();
-                    }
-                } else {
-                    var $wrapper = $( '.woocommerce-checkout' ).find( this.params.custom_heading_container );
-
-                    if ( $wrapper.length > 0 ) {
-                        $wrapper.prepend( $( '.woocommerce-checkout' ).find( '#order_review_heading' ) );
-                        $( '.woocommerce-checkout' ).find( '#order_review_heading' ).show();
-                    }
-                }
-            }
-
             if ( this.params.has_privacy_checkbox ) {
                 $( document ).on( 'change', 'input#createaccount', this.triggerCheckoutRefresh );
             }
@@ -60,6 +37,47 @@ window.germanized = window.germanized || {};
                 this.maybeSetTermsCheckbox();
             } else {
                 $( document ).on( 'change', 'input#' + this.params.checkbox_id, this.onChangeLegalCheckbox );
+            }
+
+            this.adjustHeading();
+        },
+
+        checkoutAdjustmentsDisabled() {
+            return ! $( 'body' ).hasClass( 'woocommerce-gzd-checkout' ) || $( 'input#wc_gzd_checkout_disabled' ).length > 0;
+        },
+
+        adjustHeading() {
+            var self = germanized.checkout;
+
+            if ( self.params.adjust_heading && ! self.checkoutAdjustmentsDisabled() ) {
+                var $form = $( 'form.checkout:visible' ),
+                    $heading = $form.find( '#order_review_heading:first' );
+
+                if ( $heading ) {
+                    $heading.removeClass( 'wc-gzd-heading-moved' );
+                }
+
+                if ( ! self.params.custom_heading_container ) {
+                    var $theFirst = $form.find( '.shop_table:visible, #payment:visible' ).first();
+
+                    if ( $heading.length > 0 )  {
+                        // Move heading after payment block
+                        if ( $theFirst.length > 0 && 'payment' === $theFirst.attr( 'id' ) ) {
+                            $heading.addClass( 'wc-gzd-heading-moved' );
+                            $theFirst.after( $heading );
+                        }
+
+                        $form.find( '#order_review_heading:first' ).show();
+                    }
+                } else {
+                    var $wrapper = $form.find( this.params.custom_heading_container );
+
+                    if ( $wrapper.length > 0 && $heading.length > 0 ) {
+                        $wrapper.prepend( $heading );
+
+                        $form.find( '#order_review_heading:first' ).show();
+                    }
+                }
             }
         },
 
@@ -123,13 +141,14 @@ window.germanized = window.germanized || {};
 
             if ( self.params.adjust_heading ) {
                 if ( $( '.woocommerce-checkout' ).find( '#order_payment_heading' ).length > 0 ) {
-
                     if ( $( '.woocommerce-checkout' ).find( '.wc_payment_methods' ).length <= 0 ) {
                         $( '.woocommerce-checkout' ).find( '#order_payment_heading' ).hide();
                     } else {
                         $( '.woocommerce-checkout' ).find( '#order_payment_heading' ).show();
                     }
                 }
+
+                self.adjustHeading();
             }
 
             if ( $( '.wc-gzd-place-order' ).length > 0 ) {

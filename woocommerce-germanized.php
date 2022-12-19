@@ -517,11 +517,11 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 			include_once WC_GERMANIZED_ABSPATH . 'includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php';
 
 			if ( $this->is_frontend() ) {
+				/**
+				 * If Pro version is enabled: Make sure we are not including frontend hooks before pro has been loaded.
+				 * This is necessary to enable filters for hook priorities to work while adjusting theme-specific elements.
+				 */
 				if ( did_action( 'woocommerce_loaded' ) ) {
-					/**
-					 * If Pro version is enabled: Make sure we are not including frontend hooks before pro has been loaded.
-					 * This is necessary to enable filters for hook priorities to work while adjusting theme-specific elements.
-					 */
 					if ( $this->is_pro() ) {
 						if ( ! did_action( 'woocommerce_gzdp_loaded' ) ) {
 							add_action( 'woocommerce_gzdp_loaded', array( $this, 'frontend_includes' ), 5 );
@@ -532,7 +532,21 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 						$this->frontend_includes();
 					}
 				} else {
-					add_action( 'woocommerce_loaded', array( $this, 'frontend_includes' ), 5 );
+					add_action(
+						'woocommerce_loaded',
+						function() {
+							if ( $this->is_pro() ) {
+								if ( ! did_action( 'woocommerce_gzdp_loaded' ) ) {
+									add_action( 'woocommerce_gzdp_loaded', array( $this, 'frontend_includes' ), 5 );
+								} else {
+									$this->frontend_includes();
+								}
+							} else {
+								$this->frontend_includes();
+							}
+						},
+						5
+					);
 				}
 			}
 
