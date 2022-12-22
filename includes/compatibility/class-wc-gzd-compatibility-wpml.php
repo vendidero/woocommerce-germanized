@@ -38,7 +38,6 @@ class WC_GZD_Compatibility_WPML extends WC_GZD_Compatibility {
 	}
 
 	public function load() {
-
 		// Support unit price for multiple currencies
 		if ( function_exists( 'wcml_is_multi_currency_on' ) && wcml_is_multi_currency_on() ) {
 			$this->dynamic_unit_pricing = new WC_GZD_Compatibility_Woocommerce_Dynamic_Pricing();
@@ -612,7 +611,6 @@ class WC_GZD_Compatibility_WPML extends WC_GZD_Compatibility {
 	}
 
 	public function filter_page_ids() {
-
 		$woo_pages = array(
 			'revocation_page_id',
 			'data_security_page_id',
@@ -620,6 +618,7 @@ class WC_GZD_Compatibility_WPML extends WC_GZD_Compatibility {
 			'payment_methods_page_id',
 			'shipping_costs_page_id',
 			'terms_page_id',
+			'review_authenticity_page_id'
 		);
 
 		foreach ( $woo_pages as $page ) {
@@ -635,6 +634,6 @@ class WC_GZD_Compatibility_WPML extends WC_GZD_Compatibility {
 			return $id;
 		}
 
-		return apply_filters( 'translate_object_id', $id, 'page', true );
+		return apply_filters( 'wpml_object_id', $id, 'page', true );
 	}
 }
