@@ -618,7 +618,7 @@ class WC_GZD_Compatibility_WPML extends WC_GZD_Compatibility {
 			'payment_methods_page_id',
 			'shipping_costs_page_id',
 			'terms_page_id',
-			'review_authenticity_page_id'
+			'review_authenticity_page_id',
 		);
 
 		foreach ( $woo_pages as $page ) {

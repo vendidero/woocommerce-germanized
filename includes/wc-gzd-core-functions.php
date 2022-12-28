@@ -1566,18 +1566,39 @@ function wc_gzd_get_dom_document( $html ) {
 	$dom->formatOutput        = false; // phpcs:ignore WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase
 	$dom->strictErrorChecking = false; // phpcs:ignore WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase
 
-	// Load without HTML wrappers
-	@$dom->loadHTML( '<?xml version="1.0" encoding="UTF-8"?>' . "\n" . $html ); // phpcs:ignore WordPress.PHP.NoSilencedErrors.Discouraged
+	if ( ! defined( 'LIBXML_HTML_NOIMPLIED' ) ) {
+		return false;
+	}
+
+	/**
+	 * Load without HTML wrappers (html, body). Force UTF-8 encoding.
+	*/
+	@$dom->loadHTML( '<?xml version="1.0" encoding="UTF-8"?>' . "\n" . $html, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD ); // phpcs:ignore WordPress.PHP.NoSilencedErrors.Discouraged
 	// Explicitly force utf-8 encoding
 	$dom->encoding = 'UTF-8';
 
 	libxml_clear_errors();
 
-	if ( ! $dom->getElementsByTagName( 'body' )->item( 0 ) ) {
+	if ( ! $dom->hasChildNodes() ) {
 		return false;
 	}
 
 	return $dom;
+}
+
+/**
+ * @param \DomDocument $dom
+ *
+ * @return string|false
+ */
+function wc_gzd_get_dom_document_html( $dom ) {
+	$html = $dom->saveHTML();
+
+	if ( $html ) {
+		$html = str_replace( '<?xml version="1.0" encoding="UTF-8"?>', '', $html );
+	}
+
+	return $html;
 }
 
 function wc_gzd_register_hooks_in_product_block_html( $html, $x_paths, $org_product, $hook_prefix = 'woocommerce_gzd_after_product_grid_block_after_' ) {
@@ -1622,7 +1643,7 @@ function wc_gzd_register_hooks_in_product_block_html( $html, $x_paths, $org_prod
 			if ( $tmp_dom ) {
 				$fragment = $node->ownerDocument->createDocumentFragment(); // phpcs:ignore WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase
 
-				foreach ( $tmp_dom->getElementsByTagName( 'body' )->item( 0 )->childNodes as $child ) { // phpcs:ignore WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase
+				foreach ( $tmp_dom->childNodes as $child ) { // phpcs:ignore WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase
 					$fragment->appendChild( $fragment->ownerDocument->importNode( $child, true ) ); // phpcs:ignore WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase
 				}
 
@@ -1635,7 +1656,7 @@ function wc_gzd_register_hooks_in_product_block_html( $html, $x_paths, $org_prod
 	}
 
 	if ( $html_updated ) {
-		$new_html = $dom->saveHTML();
+		$new_html = wc_gzd_get_dom_document_html( $dom );
 
 		if ( $new_html ) {
 			$html = $new_html;
