@@ -1613,7 +1613,7 @@ function wc_gzd_register_hooks_in_product_block_html( $html, $x_paths, $org_prod
 		$hook_html = ob_get_clean();
 
 		if ( $old_product ) {
-			$product = $org_product;
+			$product = $old_product;
 		}
 
 		if ( ! empty( $hook_html ) ) {
