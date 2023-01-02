@@ -663,6 +663,7 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 					'customer-specific-pricing-for-woocommerce' => 'WC_GZD_Compatibility_Customer_Specific_Pricing_For_WooCommerce',
 					'woocommerce-measurement-price-calculator' => 'WC_GZD_Compatibility_WooCommerce_Measurement_Price_Calculator',
 					'legal-texts-connector-it-recht-kanzlei' => 'WC_GZD_Compatibility_Legal_Texts_Connector_IT_Recht_Kanzlei',
+					'erecht24'                         => 'WC_GZD_Compatibility_ERecht24',
 					'wc-dynamic-pricing-and-discounts' => 'WC_GZD_Compatibility_WC_Dynamic_Pricing_And_Discounts',
 					'cartflows'                        => 'WC_GZD_Compatibility_Cartflows',
 				)
