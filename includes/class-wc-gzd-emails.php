@@ -659,7 +659,7 @@ class WC_GZD_Emails {
 		}
 
 		if ( $order = wc_get_order( $order_id ) ) {
-			if ( 'admin' === $order->get_created_via() && apply_filters( 'woocommerce_gzd_send_order_confirmation_for_manual_order', true, $order_id ) ) {
+			if ( in_array( $order->get_created_via(), array( 'rest-api', 'admin' ), true ) && apply_filters( 'woocommerce_gzd_send_order_confirmation_for_manual_order', true, $order_id ) ) {
 				$this->confirm_order( $order );
 			}
 		}

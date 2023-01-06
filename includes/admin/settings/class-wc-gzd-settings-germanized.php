@@ -33,9 +33,13 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 	}
 
 	public function add_wc_admin_breadcrumbs( $is_connected, $current_page ) {
-
 		if ( false === $is_connected && false === $current_page && $this->is_active() ) {
-			$page_id = 'wc-settings';
+			$page_id        = 'wc-settings';
+			$has_navigation = is_callable( array( '\Automattic\WooCommerce\Admin\Features\Features', 'get_features' ) ) ? in_array( 'navigation', \Automattic\WooCommerce\Admin\Features\Features::get_features(), true ) : false;
+
+			if ( ! $has_navigation ) {
+				return $is_connected;
+			}
 
 			if ( ! class_exists( 'Automattic\WooCommerce\Admin\PageController' ) ) {
 				return $is_connected;
