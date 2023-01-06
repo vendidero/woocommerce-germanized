@@ -166,6 +166,10 @@ class WC_GZD_Emails {
 
 		add_filter( 'woocommerce_email_attachments', array( $this, 'attach_product_warranties' ), 100, 3 );
 
+		add_action( 'woocommerce_order_status_pending_to_processing_notification', array( $this, 'send_manual_order_confirmation' ), 10 );
+		add_action( 'woocommerce_order_status_pending_to_completed_notification', array( $this, 'send_manual_order_confirmation' ), 10 );
+		add_action( 'woocommerce_order_status_pending_to_on-hold_notification', array( $this, 'send_manual_order_confirmation' ), 10 );
+
 		if ( is_admin() ) {
 			$this->admin_hooks();
 		}
@@ -647,10 +651,6 @@ class WC_GZD_Emails {
 				'save_confirmation_text_option',
 			)
 		);
-
-		add_action( 'woocommerce_order_status_pending_to_processing_notification', array( $this, 'send_manual_order_confirmation' ), 10 );
-		add_action( 'woocommerce_order_status_pending_to_completed_notification', array( $this, 'send_manual_order_confirmation' ), 10 );
-		add_action( 'woocommerce_order_status_pending_to_on-hold_notification', array( $this, 'send_manual_order_confirmation' ), 10 );
 	}
 
 	public function send_manual_order_confirmation( $order_id ) {
@@ -659,7 +659,9 @@ class WC_GZD_Emails {
 		}
 
 		if ( $order = wc_get_order( $order_id ) ) {
-			if ( in_array( $order->get_created_via(), array( 'rest-api', 'admin' ), true ) && apply_filters( 'woocommerce_gzd_send_order_confirmation_for_manual_order', true, $order_id ) ) {
+			if ( 'admin' === $order->get_created_via() && apply_filters( 'woocommerce_gzd_send_order_confirmation_for_manual_order', true, $order_id ) ) {
+				$this->confirm_order( $order );
+			} elseif ( 'rest-api' === $order->get_created_via() && apply_filters( 'woocommerce_gzd_send_order_confirmation_for_rest_api_orders', true, $order_id ) ) {
 				$this->confirm_order( $order );
 			}
 		}
