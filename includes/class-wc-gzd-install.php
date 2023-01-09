@@ -507,7 +507,6 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 		 * @return void
 		 */
 		public static function create_pages() {
-
 			if ( ! function_exists( 'wc_create_page' ) ) {
 				include_once WC()->plugin_path() . '/includes/admin/wc-admin-functions.php';
 			}
@@ -561,6 +560,11 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 				)
 			);
 
+			/**
+			 * During new WP installs, post_name (which wc_create_page uses by default) is not set for automatically created pages - check title instead.
+			 */
+			add_filter( 'woocommerce_create_page_id', array( __CLASS__, 'woo_page_detection_callback' ), 10, 3 );
+
 			foreach ( $pages as $key => $page ) {
 				$page_id = wc_create_page( esc_sql( $page['name'] ), 'woocommerce_' . $key . '_page_id', $page['title'], '', ! empty( $page['parent'] ) ? wc_get_page_id( $page['parent'] ) : '' );
 
@@ -568,6 +572,15 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 					wc_gzd_update_page_content( $page_id, $page['content'] );
 				}
 			}
+		}
+
+		public static function woo_page_detection_callback( $valid_page_found, $slug, $page_content ) {
+			if ( null === $valid_page_found && _x( 'data-security', 'Page slug', 'woocommerce-germanized' ) === $slug ) {
+				global $wpdb;
+				$valid_page_found = $wpdb->get_var( $wpdb->prepare( "SELECT ID FROM $wpdb->posts WHERE post_title LIKE %s AND post_status NOT IN ( 'pending', 'trash', 'future', 'auto-draft' ) LIMIT 1;", _x( 'Privacy Policy', 'Page title', 'woocommerce-germanized' ) ) );
+			}
+
+			return $valid_page_found;
 		}
 
 		/**
