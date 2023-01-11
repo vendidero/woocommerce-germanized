@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce Germanized\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-29 11:58+0100\n"
-"PO-Revision-Date: 2022-11-29 11:58+0100\n"
+"POT-Creation-Date: 2023-01-11 10:32+0100\n"
+"PO-Revision-Date: 2023-01-11 10:32+0100\n"
 "Last-Translator: Dennis Nissle <info@vendidero.de>\n"
 "Language-Team: \n"
 "Language: de_DE@formal\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.1.1\n"
+"X-Generator: Poedit 3.2.2\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
 "esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
@@ -330,9 +330,9 @@ msgid ""
 "include virtual and downloadable products."
 msgstr ""
 "Wählen Sie die Produkttypen aus, für die ein Hinweis für den Verlust des "
-"Widerrufsrechts angezeigt werden soll. Produkttypen wie \"einfaches Produkt"
-"\" können redundant sein, da sie herunterladbare oder virtuelle Produkte "
-"einschließen."
+"Widerrufsrechts angezeigt werden soll. Produkttypen wie \"einfaches "
+"Produkt\" können redundant sein, da sie herunterladbare oder virtuelle "
+"Produkte einschließen."
 
 # @ woocommerce-germanized
 #: woocommerce-germanized/includes/admin/class-wc-gzd-admin-legal-checkboxes.php:149
@@ -455,7 +455,7 @@ msgstr "One Stop Shop"
 # @ woocommerce
 #: woocommerce-germanized/includes/admin/class-wc-gzd-admin-setup-wizard.php:71
 #: woocommerce-germanized/includes/admin/class-wc-gzd-admin-setup-wizard.php:156
-#: woocommerce-germanized/woocommerce-germanized.php:892
+#: woocommerce-germanized/woocommerce-germanized.php:908
 msgid "Settings"
 msgstr "Einstellungen"
 
@@ -513,8 +513,8 @@ msgstr "OSS Status"
 #: woocommerce-germanized/includes/admin/class-wc-gzd-admin-setup-wizard.php:165
 #, php-format
 msgid ""
-"I'm participating in the <a href=\"%s\" target=\"_blank\" rel=\"noopener"
-"\">One Stop Shop (OSS) procedure</a>."
+"I'm participating in the <a href=\"%s\" target=\"_blank\" "
+"rel=\"noopener\">One Stop Shop (OSS) procedure</a>."
 msgstr ""
 "Ich nehme am <a href=\"%s\" target=\"_blank\" rel=\"noopener\">One Stop Shop "
 "Verfahren</a> teil."
@@ -526,9 +526,9 @@ msgid ""
 "wordpress.org/plugins/one-stop-shop-woocommerce/\" target=\"_blank\">One "
 "Stop Shop Plugin</a> developed by us."
 msgstr ""
-"Durch Aktivierung dieser Option wird das von uns entwickelte <a href="
-"\"https://wordpress.org/plugins/one-stop-shop-woocommerce/\" target=\"_blank"
-"\">One Stop Shop</a> Plugin automatisch installiert."
+"Durch Aktivierung dieser Option wird das von uns entwickelte <a "
+"href=\"https://wordpress.org/plugins/one-stop-shop-woocommerce/\" "
+"target=\"_blank\">One Stop Shop</a> Plugin automatisch installiert."
 
 #: woocommerce-germanized/includes/admin/class-wc-gzd-admin-setup-wizard.php:171
 msgctxt "install"
@@ -576,8 +576,8 @@ msgstr "Umsatzsteuerbefreit nach &#167;19 UStG"
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-general.php:259
 #, php-format
 msgid ""
-"Enable this option if you have chosen to apply to <a href=\"%s\" target="
-"\"_blank\">&#167;19 UStG</a>."
+"Enable this option if you have chosen to apply to <a href=\"%s\" "
+"target=\"_blank\">&#167;19 UStG</a>."
 msgstr ""
 "Wählen Sie diese Option aus, falls Sie von der Kleinunternehmerregelung (<a "
 "href=\"%s\" target=\"_blank\">&#167;19 UStG</a>) betroffen sind und davon "
@@ -605,8 +605,8 @@ msgid ""
 msgstr ""
 "Sendet dem Kunden eine E-Mail zur Bestätigung seines Accounts nach der "
 "Registrierung zu. <strong>Standardmäßig werden nicht aktivierte Konten nach "
-"7 Tagen gelöscht</strong>. Die Double-Opt-In <a href=\"%s\" target=\"_blank"
-"\">Einstellungen</a> können nachträglich angepasst werden."
+"7 Tagen gelöscht</strong>. Die Double-Opt-In <a href=\"%s\" "
+"target=\"_blank\">Einstellungen</a> können nachträglich angepasst werden."
 
 #: woocommerce-germanized/includes/admin/class-wc-gzd-admin-setup-wizard.php:250
 #, php-format
@@ -1310,8 +1310,8 @@ msgstr ""
 #: woocommerce-germanized/includes/admin/notes/class-wc-gzd-admin-note-base-country.php:36
 #, php-format
 msgid ""
-"Please check your <a href=\"%1$s\">general settings</a> and your <a href="
-"\"%2$s\">shipment address settings</a>."
+"Please check your <a href=\"%1$s\">general settings</a> and your <a "
+"href=\"%2$s\">shipment address settings</a>."
 msgstr ""
 "Bitte überprüfen Sie Ihre <a href=\"%1$s\">allgemeinen Einstellungen</a> und "
 "die <a href=\"%2$s\">Adress-Einstellungen der Sendungen</a>."
@@ -1718,11 +1718,11 @@ msgstr ""
 msgid "Manage OSS settings"
 msgstr "OSS Einstellungen anpassen"
 
-#: woocommerce-germanized/includes/admin/notes/class-wc-gzd-admin-note.php:261
+#: woocommerce-germanized/includes/admin/notes/class-wc-gzd-admin-note.php:268
 msgid "Not now"
 msgstr "Nicht jetzt"
 
-#: woocommerce-germanized/includes/admin/notes/class-wc-gzd-admin-note.php:265
+#: woocommerce-germanized/includes/admin/notes/class-wc-gzd-admin-note.php:272
 msgid "Deactivate"
 msgstr "Deaktivieren"
 
@@ -2363,7 +2363,7 @@ msgstr "Kleinunternehmer"
 
 # @ woocommerce-germanized
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-general.php:33
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:813
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:811
 #: woocommerce-germanized/src/Shopmarks.php:542
 msgid "Checkout"
 msgstr "Kasse"
@@ -2839,8 +2839,8 @@ msgstr "{link}geprüfte Gesamtbewertungen{/link}"
 #, php-format
 msgid ""
 "Customize the format used to notify customers about the authenticity of the "
-"ratings. Use {link}{/link} as placeholders to link your <a href=\"%1$s"
-"\">review information page</a>."
+"ratings. Use {link}{/link} as placeholders to link your <a "
+"href=\"%1$s\">review information page</a>."
 msgstr ""
 "Passen Sie das Format an, das genutzt wird um Kunden über die Echtheit von "
 "Bewertungen zu informieren. Nutzen Sie {link}{/link} als Platzhalter um Ihre "
@@ -2874,8 +2874,8 @@ msgstr "Verifizierter Kauf. {link}Mehr Informationen{/link}"
 #, php-format
 msgid ""
 "Customize the format used to notify customers about the authenticity of the "
-"review. Use {link}{/link} as placeholders to link your <a href=\"%1$s"
-"\">review information page</a>."
+"review. Use {link}{/link} as placeholders to link your <a "
+"href=\"%1$s\">review information page</a>."
 msgstr ""
 "Passen Sie das Format an, das genutzt wird um Kunden über die Echtheit der "
 "Bewertung zu informieren. Nutzen Sie {link}{/link} als Platzhalter um Ihre "
@@ -2988,7 +2988,7 @@ msgid "Shipments"
 msgstr "Sendungen"
 
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shipments.php:48
-#: woocommerce-germanized/packages/woocommerce-germanized-shipments/includes/admin/views/html-settings-provider-list.php:62
+#: woocommerce-germanized/packages/woocommerce-germanized-shipments/includes/admin/views/html-settings-provider-list.php:70
 msgctxt "shipments"
 msgid "Manage"
 msgstr "Verwalten"
@@ -3459,9 +3459,9 @@ msgstr "Verpackung Schriftgröße"
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:675
 #, php-format
 msgid ""
-"Adjust the packaging type title font size which must <a href=\"%s\" target="
-"\"_blank\">at least correspond to the price labeling</a> for the respective "
-"product."
+"Adjust the packaging type title font size which must <a href=\"%s\" "
+"target=\"_blank\">at least correspond to the price labeling</a> for the "
+"respective product."
 msgstr ""
 "Passen Sie die Schriftgröße für den Verpackungstyp (z.B. Mehrweg) an. Diese "
 "sollte <a href=\"%s\" target=\"_blank\">mindestens der Preisauszeichnung</a> "
@@ -3629,8 +3629,8 @@ msgid ""
 "Reduced Rate). Gross prices will not differ from the prices you have chosen "
 "for affected products. In fact the net price will differ depending on the "
 "VAT rate of your customers' country. Shop settings will be adjusted to show "
-"prices including tax. More information can be found <a href=\"%s\" target="
-"\"_blank\">here</a>."
+"prices including tax. More information can be found <a href=\"%s\" "
+"target=\"_blank\">here</a>."
 msgstr ""
 "Aktiviert die Änderungen der EU-Umsatzsteuerberechnung ab dem 01.01.2015. "
 "Von diesem Zeitpunkt an, muss beim Verkauf von Dienstleistungen (virtuelle, "
@@ -3697,8 +3697,8 @@ msgid ""
 msgstr ""
 "Mit der Auswahl dieser Option werden die Steuern für Versandkosten und "
 "Gebühren basierend auf den Anteilen der Steuersätze der Artikel im Warenkorb "
-"berechnet. Weitere Informationen finden Sie <a href=\"%1$s\" target=\"_blank"
-"\">hier</a>. %2$s"
+"berechnet. Weitere Informationen finden Sie <a href=\"%1$s\" "
+"target=\"_blank\">hier</a>. %2$s"
 
 # @ woocommerce-germanized
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:122
@@ -4224,9 +4224,9 @@ msgid ""
 "Please paste the following line to your <a href=\"%s\" target=\"_blank\">wp-"
 "config.php</a> file or use the insert key button:"
 msgstr ""
-"Bitte fügen Sie den folgenden Code in Ihrer <a href=\"%s\" target=\"_blank"
-"\">wp-config.php</a> Datei hinzu oder nutzen Sie den Schlüssel einfügen "
-"Button:"
+"Bitte fügen Sie den folgenden Code in Ihrer <a href=\"%s\" "
+"target=\"_blank\">wp-config.php</a> Datei hinzu oder nutzen Sie den "
+"Schlüssel einfügen Button:"
 
 #: woocommerce-germanized/includes/admin/views/setup/encrypt.php:31
 #, php-format
@@ -4234,8 +4234,8 @@ msgid ""
 "Please paste the following line to your <a href=\"%s\" target=\"_blank\">wp-"
 "config.php</a> file:"
 msgstr ""
-"Bitte fügen Sie den folgenden Code in ihrer <a href=\"%s\" target=\"_blank"
-"\">wp-config.php</a> Datei hinzu:"
+"Bitte fügen Sie den folgenden Code in ihrer <a href=\"%s\" "
+"target=\"_blank\">wp-config.php</a> Datei hinzu:"
 
 #: woocommerce-germanized/includes/admin/views/setup/encrypt.php:35
 msgid "Perfect! Your key has been placed and is working like a charm!"
@@ -4866,17 +4866,17 @@ msgstr "Datenbank wird aktualisiert"
 msgid "%1$d update functions completed. Database version is %2$s"
 msgstr "%1$d Updates fertiggestellt. Datenbank-Version lautet %2$s"
 
-#: woocommerce-germanized/includes/class-wc-gzd-coupon-helper.php:694
-#: woocommerce-germanized/woocommerce-germanized.php:1245
+#: woocommerce-germanized/includes/class-wc-gzd-coupon-helper.php:741
+#: woocommerce-germanized/woocommerce-germanized.php:1261
 #, php-format
 msgid "Voucher: %1$s"
 msgstr "Wertgutschein: %1$s"
 
-#: woocommerce-germanized/includes/class-wc-gzd-coupon-helper.php:980
+#: woocommerce-germanized/includes/class-wc-gzd-coupon-helper.php:1027
 msgid "Is voucher?"
 msgstr "Wertgutschein?"
 
-#: woocommerce-germanized/includes/class-wc-gzd-coupon-helper.php:981
+#: woocommerce-germanized/includes/class-wc-gzd-coupon-helper.php:1028
 #, php-format
 msgid ""
 "Whether or not this coupon is a voucher which has been sold to a customer "
@@ -4885,8 +4885,8 @@ msgid ""
 msgstr ""
 "Wählen Sie diese Option aus, falls es sich um einen Wertgutschein handelt. "
 "Wertgutscheine wurden ohne MwSt. verkauft und werden erst bei der Einlösung "
-"besteuert. Weitere Informationen finden Sie <a href=\"%s\" target=\"_blank"
-"\">hier</a>."
+"besteuert. Weitere Informationen finden Sie <a href=\"%s\" "
+"target=\"_blank\">hier</a>."
 
 #: woocommerce-germanized/includes/class-wc-gzd-customer-helper.php:166
 #: woocommerce-germanized/includes/class-wc-gzd-customer-helper.php:237
@@ -4969,21 +4969,21 @@ msgctxt "deposit-packaging-type"
 msgid "Disposable"
 msgstr "Einweg"
 
-#: woocommerce-germanized/includes/class-wc-gzd-emails.php:346
+#: woocommerce-germanized/includes/class-wc-gzd-emails.php:350
 msgid "BCC recipients"
 msgstr "BCC Empfänger"
 
-#: woocommerce-germanized/includes/class-wc-gzd-emails.php:348
+#: woocommerce-germanized/includes/class-wc-gzd-emails.php:352
 msgid "Enter blind-copy recipients (comma separated) for this email."
 msgstr ""
 "Fügen Sie Empfänger (kommasepariert) einer Blindkopie für diese E-Mail ein."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-emails.php:422
+#: woocommerce-germanized/includes/class-wc-gzd-emails.php:426
 msgid "Confirmation text"
 msgstr "Bestätigung Text"
 
-#: woocommerce-germanized/includes/class-wc-gzd-emails.php:423
+#: woocommerce-germanized/includes/class-wc-gzd-emails.php:427
 msgid ""
 "Your order has been received and is now being processed. Your order details "
 "are shown below for your reference:"
@@ -4992,7 +4992,7 @@ msgstr ""
 "Ihrer Bestellung können Sie der nachfolgenden Tabelle entnehmen:"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-emails.php:424
+#: woocommerce-germanized/includes/class-wc-gzd-emails.php:428
 msgid ""
 "This text will be inserted within the order confirmation email. Use "
 "{order_number}, {site_title} or {order_date} as placeholder."
@@ -5000,7 +5000,7 @@ msgstr ""
 "Dieser Text wird in die Bestellbestätigung eingefügt. Verwenden Sie "
 "{order_number}, {site_title} oder {order_date} als Platzhalter."
 
-#: woocommerce-germanized/includes/class-wc-gzd-emails.php:544
+#: woocommerce-germanized/includes/class-wc-gzd-emails.php:548
 msgid ""
 "Your order has been received and is now being processed. Your order details "
 "are shown below for your reference."
@@ -5008,17 +5008,17 @@ msgstr ""
 "Ihre Bestellung ist eingegangen und wird nun bearbeitet. Die Einzelheiten "
 "Ihrer Bestellung können Sie der nachfolgenden Tabelle entnehmen."
 
-#: woocommerce-germanized/includes/class-wc-gzd-emails.php:593
+#: woocommerce-germanized/includes/class-wc-gzd-emails.php:597
 msgid "Someone requested a password reset for your account."
 msgstr "Jemand hat das Zurücksetzen des Passworts für Ihren Account beantragt."
 
-#: woocommerce-germanized/includes/class-wc-gzd-emails.php:608
+#: woocommerce-germanized/includes/class-wc-gzd-emails.php:612
 #, php-format
 msgid "Thanks for creating an account on %s."
 msgstr "Danke, dass Sie ein Konto bei %s erstellt haben."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-emails.php:1492
+#: woocommerce-germanized/includes/class-wc-gzd-emails.php:1494
 msgctxt "revocation-form"
 msgid "Forward your withdrawal online"
 msgstr "Widerruf online erklären"
@@ -5137,83 +5137,85 @@ msgstr ""
 "installieren. Vielen Dank!"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-install.php:527
+#: woocommerce-germanized/includes/class-wc-gzd-install.php:526
+#: woocommerce-germanized/includes/class-wc-gzd-install.php:578
 msgctxt "Page slug"
 msgid "data-security"
 msgstr "datenschutzerklaerung"
 
-#: woocommerce-germanized/includes/class-wc-gzd-install.php:528
+#: woocommerce-germanized/includes/class-wc-gzd-install.php:527
+#: woocommerce-germanized/includes/class-wc-gzd-install.php:580
 msgctxt "Page title"
 msgid "Privacy Policy"
 msgstr "Datenschutzerklärung"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-install.php:532
+#: woocommerce-germanized/includes/class-wc-gzd-install.php:531
 msgctxt "Page slug"
 msgid "imprint"
 msgstr "impressum"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-install.php:533
+#: woocommerce-germanized/includes/class-wc-gzd-install.php:532
 msgctxt "Page title"
 msgid "Imprint"
 msgstr "Impressum"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-install.php:537
+#: woocommerce-germanized/includes/class-wc-gzd-install.php:536
 msgctxt "Page slug"
 msgid "terms"
 msgstr "agb"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-install.php:538
+#: woocommerce-germanized/includes/class-wc-gzd-install.php:537
 msgctxt "Page title"
 msgid "Terms & Conditions"
 msgstr "AGB"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-install.php:542
+#: woocommerce-germanized/includes/class-wc-gzd-install.php:541
 msgctxt "Page slug"
 msgid "revocation"
 msgstr "widerrufsbelehrung"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-install.php:543
+#: woocommerce-germanized/includes/class-wc-gzd-install.php:542
 msgctxt "Page title"
 msgid "Cancellation Policy"
 msgstr "Widerrufsbelehrung"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-install.php:547
+#: woocommerce-germanized/includes/class-wc-gzd-install.php:546
 msgctxt "Page slug"
 msgid "shipping-methods"
 msgstr "versandarten"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-install.php:548
+#: woocommerce-germanized/includes/class-wc-gzd-install.php:547
 msgctxt "Page title"
 msgid "Shipping Methods"
 msgstr "Versandarten"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-install.php:552
+#: woocommerce-germanized/includes/class-wc-gzd-install.php:551
 msgctxt "Page slug"
 msgid "payment-methods"
 msgstr "bezahlmoeglichkeiten"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-install.php:553
+#: woocommerce-germanized/includes/class-wc-gzd-install.php:552
 msgctxt "Page title"
 msgid "Payment Methods"
 msgstr "Zahlungsarten"
 
-#: woocommerce-germanized/includes/class-wc-gzd-install.php:557
+#: woocommerce-germanized/includes/class-wc-gzd-install.php:556
 #: woocommerce-germanized/includes/updates/woocommerce-gzd-update-3.9.3.php:15
 msgctxt "Page slug"
 msgid "review-authenticity"
 msgstr "echtheit-von-bewertungen"
 
-#: woocommerce-germanized/includes/class-wc-gzd-install.php:558
+#: woocommerce-germanized/includes/class-wc-gzd-install.php:557
 #: woocommerce-germanized/includes/updates/woocommerce-gzd-update-3.9.3.php:16
 msgctxt "Page title"
 msgid "Review Authenticity"
@@ -5442,30 +5444,30 @@ msgid "Inform customers about product defects."
 msgstr "Informieren Sie Kunden über Produkte mit Mängeln."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:814
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:812
 msgid "Register form"
 msgstr "Registrierung"
 
 # @ woocommerce
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:815
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:813
 msgid "Pay for order"
 msgstr "Bestell-Bezahlseite"
 
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:816
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:814
 msgid "Reviews"
 msgstr "Bewertungen"
 
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:887
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:885
 #, php-format
 msgid "Checkbox location %s does not exist."
 msgstr "Checkbox Ort %s existiert nicht."
 
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:919
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:917
 #, php-format
 msgid "Please make sure to check %s checkbox."
 msgstr "Kontrollieren Sie bitte %s. Hier fehlt eine Einwilligung."
 
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:924
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:922
 #, php-format
 msgid "Checkbox with name %s does already exist."
 msgstr "Eine Checkbox mit dem Namen %s existiert bereits."
@@ -6027,8 +6029,9 @@ msgid ""
 "Please accept our <a href=\"%s\" target=\"_blank\">Privacy Policy</a> so "
 "that we can process your inquiry."
 msgstr ""
-"Bitte akzeptieren Sie unsere <a href=\"%s\" target=\"_blank"
-"\">Datenschutzerklärung</a> damit wir Ihren Widerruf bearbeiten können."
+"Bitte akzeptieren Sie unsere <a href=\"%s\" "
+"target=\"_blank\">Datenschutzerklärung</a> damit wir Ihren Widerruf "
+"bearbeiten können."
 
 #: woocommerce-germanized/includes/class-wc-gzd-secret-box-helper.php:22
 msgid ""
@@ -6047,15 +6050,15 @@ msgid ""
 "Attention! The <em>%1$s</em> (%2$s) constant is missing. Germanized uses a "
 "derived key based on the <em>LOGGED_IN_KEY</em> constant instead. This "
 "constant might change under certain circumstances. To prevent data losses, "
-"please insert the following snippet within your <a href=\"%3$s\" target="
-"\"_blank\">wp-config.php</a> file:"
+"please insert the following snippet within your <a href=\"%3$s\" "
+"target=\"_blank\">wp-config.php</a> file:"
 msgstr ""
 "Achtung! Die <em>%1$s</em> (%2$s) Konstante fehlt. Germanized nutzt einen "
 "abgeleiteten Schlüssel basierend auf der <em>LOGGED_IN_KEY</em> Konstante "
 "stattdessen. Unter bestimmten Umständen kann sich diese Konstante verändern. "
 "Um zu verhindern, dass verschlüsselte Daten nicht mehr entschlüsselt werden "
-"können, fügen Sie bitte folgendes Snippet in Ihre <a href=\"%3$s\" target="
-"\"_blank\">wp-config.php</a> Datei ein:"
+"können, fügen Sie bitte folgendes Snippet in Ihre <a href=\"%3$s\" "
+"target=\"_blank\">wp-config.php</a> Datei ein:"
 
 # @ woocommerce-germanized
 #: woocommerce-germanized/includes/compatibility/class-wc-gzd-compatibility-woo-poly-integration.php:276
@@ -6885,15 +6888,15 @@ msgid ""
 "Please insert the following code in your <a href=\"%s\" target=\"_blank\">wp-"
 "config.php</a> to enable encryption. You may of course choose your own key:"
 msgstr ""
-"Bitte fügen Sie den folgenden Code in ihrer <a href=\"%s\" target=\"_blank"
-"\">wp-config.php</a> Datei hinzu um die Verschlüsselung zu unterstützen. Sie "
-"können natürlich einen eigenen Key vergeben:"
+"Bitte fügen Sie den folgenden Code in ihrer <a href=\"%s\" "
+"target=\"_blank\">wp-config.php</a> Datei hinzu um die Verschlüsselung zu "
+"unterstützen. Sie können natürlich einen eigenen Key vergeben:"
 
 #: woocommerce-germanized/includes/gateways/direct-debit/views/html-encryption-notice.php:24
 #, php-format
 msgid ""
-"Your customers’ account data (IBAN, BIC) will from then on be saved <a href="
-"\"%s\" target=\"_blank\">encrypted</a> within your database."
+"Your customers’ account data (IBAN, BIC) will from then on be saved <a "
+"href=\"%s\" target=\"_blank\">encrypted</a> within your database."
 msgstr ""
 "Die Bankverbindung ihrer Kunden (IBAN, BIC) wird anschließend <a href=\"%s\" "
 "target=\"_blank\">verschlüsselt</a> in der Datenbank gespeichert."
@@ -7203,8 +7206,9 @@ msgid ""
 "target=\"_blank\">report details</a> and take action in case necessary."
 msgstr ""
 "Sie sind kurz davor oder haben bereits die Lieferschwelle für das aktuelle "
-"Jahr überschritten. Bitte prüfen Sie die <a href=\"%s\" target=\"_blank"
-"\">Details des Berichts</a> und unternehmen Sie weitere Schritte."
+"Jahr überschritten. Bitte prüfen Sie die <a href=\"%s\" "
+"target=\"_blank\">Details des Berichts</a> und unternehmen Sie weitere "
+"Schritte."
 
 #: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Admin.php:218
 msgctxt "oss"
@@ -7225,14 +7229,14 @@ msgid "One Stop Shop"
 msgstr "One Stop Shop"
 
 #: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Admin.php:469
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Package.php:365
+#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Package.php:363
 #, php-format
 msgctxt "oss"
 msgid "Q%1$s/%2$s"
 msgstr "Q%1$s/%2$s"
 
 #: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Admin.php:478
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Package.php:370
+#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Package.php:368
 #, php-format
 msgctxt "oss"
 msgid "%1$s/%2$s"
@@ -7415,7 +7419,7 @@ msgctxt "oss"
 msgid "See details"
 msgstr "Details ansehen"
 
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Package.php:178
+#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Package.php:176
 msgctxt "oss"
 msgid ""
 "To use the OSS for WooCommerce plugin please make sure that WooCommerce is "
@@ -7424,66 +7428,66 @@ msgstr ""
 "Um das OSS für WooCommerce Plugin nutzen zu können muss WooCommerce "
 "installiert und aktiviert sein."
 
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Package.php:350
+#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Package.php:348
 #: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/ReportTable.php:40
 msgctxt "oss"
 msgid "Report"
 msgstr "Bericht"
 
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Package.php:374
+#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Package.php:372
 #, php-format
 msgctxt "oss"
 msgid "%1$s"
 msgstr "%1$s"
 
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Package.php:379
+#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Package.php:377
 #, php-format
 msgctxt "oss"
 msgid "%1$s - %2$s"
 msgstr "%1$s - %2$s"
 
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Package.php:384
+#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Package.php:382
 #, php-format
 msgctxt "oss"
 msgid "Observer %1$s"
 msgstr "Beobachter %1$s"
 
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Package.php:636
+#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Package.php:634
 msgctxt "oss"
 msgid "Quarterly"
 msgstr "Quartalsweise"
 
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Package.php:637
+#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Package.php:635
 msgctxt "oss"
 msgid "Yearly"
 msgstr "Jährlich"
 
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Package.php:638
+#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Package.php:636
 msgctxt "oss"
 msgid "Monthly"
 msgstr "Monatlich"
 
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Package.php:639
+#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Package.php:637
 msgctxt "oss"
 msgid "Custom"
 msgstr "Individuell"
 
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Package.php:643
+#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Package.php:641
 msgctxt "oss"
 msgid "Observer"
 msgstr "Beobachter"
 
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Package.php:657
+#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Package.php:655
 msgctxt "oss"
 msgid "Pending"
 msgstr "In Bearbeitung"
 
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Package.php:658
+#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Package.php:656
 msgctxt "oss"
 msgid "Completed"
 msgstr "Fertiggestellt"
 
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Package.php:659
+#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Package.php:657
 msgctxt "oss"
 msgid "Failed"
 msgstr "Fehlgeschlagen"
@@ -7579,12 +7583,12 @@ msgstr "Allgemein"
 msgctxt "oss"
 msgid ""
 "Find useful options regarding the <a href=\"https://ec.europa.eu/"
-"taxation_customs/business/vat/oss_en\" target=\"_blank\" rel=\"noopener"
-"\">One Stop Shop procedure</a> here."
+"taxation_customs/business/vat/oss_en\" target=\"_blank\" "
+"rel=\"noopener\">One Stop Shop procedure</a> here."
 msgstr ""
 "Finden Sie hier nützliche Optionen zum <a href=\"https://ec.europa.eu/"
-"taxation_customs/business/vat/oss_de\" target=\"_blank\" rel=\"noopener"
-"\">One Stop Shop Verfahren</a>."
+"taxation_customs/business/vat/oss_de\" target=\"_blank\" "
+"rel=\"noopener\">One Stop Shop Verfahren</a>."
 
 #: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Settings.php:38
 msgctxt "oss"
@@ -8010,8 +8014,8 @@ msgstr ""
 #, php-format
 msgctxt "dhl"
 msgid ""
-"New to DHL in Germanized? Learn how to <a href=\"%s\" target=\"_blank"
-"\">easily create DHL labels</a> to your shipments."
+"New to DHL in Germanized? Learn how to <a href=\"%s\" "
+"target=\"_blank\">easily create DHL labels</a> to your shipments."
 msgstr ""
 "Sie kennen DHL in Germanized noch nicht? Lernen Sie wie Sie zu Sendungen <a "
 "href=\"%s\" target=\"_blank\">einfach DHL Labels erzeugen</a> können."
@@ -8206,14 +8210,14 @@ msgstr "Internetmarke ist deaktiviert. Bitte aktivieren Sie die Internetmarke."
 #, php-format
 msgctxt "dhl"
 msgid ""
-"To enable communication between your shop and DHL, the PHP <a href=\"%1$s"
-"\">SOAPClient</a> is required. Please contact your host and make sure that "
-"SOAPClient is <a href=\"%2$s\">installed</a>."
+"To enable communication between your shop and DHL, the PHP <a "
+"href=\"%1$s\">SOAPClient</a> is required. Please contact your host and make "
+"sure that SOAPClient is <a href=\"%2$s\">installed</a>."
 msgstr ""
 "Um die Kommunikation zwischen DHL und Ihrem Shop zu ermöglichen, ist der PHP "
 "<a href=\"%1$s\">SOAPClient</a> notwendig. Bitte kontaktieren Sie dazu im "
-"Zweifel Ihren Hoster und stellen Sie sicher, dass der SOAPClient <a href="
-"\"%2$s\">installiert</a> ist."
+"Zweifel Ihren Hoster und stellen Sie sicher, dass der SOAPClient <a "
+"href=\"%2$s\">installiert</a> ist."
 
 #: woocommerce-germanized/packages/woocommerce-germanized-dhl/src/Api/Internetmarke.php:78
 #, php-format
@@ -8299,8 +8303,8 @@ msgstr "Fehler beim Erzeugen der Shop Order Id."
 #, php-format
 msgctxt "dhl"
 msgid ""
-"Error while trying to purchase the stamp. Please manually <a href=\"%s"
-"\">refresh</a> your product database and try again."
+"Error while trying to purchase the stamp. Please manually <a "
+"href=\"%s\">refresh</a> your product database and try again."
 msgstr ""
 "Fehler beim Kauf des Labels. Bitte <a href=\"%s\">aktualisieren</a>Sie die "
 "Produktliste manuell und versuchen Sie es erneut."
@@ -8397,8 +8401,8 @@ msgstr ""
 #, php-format
 msgctxt "dhl"
 msgid ""
-"Your shipper address is incomplete (%1$s). Please validate your <a href="
-"\"%2$s\">settings</a> and try again."
+"Your shipper address is incomplete (%1$s). Please validate your <a "
+"href=\"%2$s\">settings</a> and try again."
 msgstr ""
 "Ihre Absenderadresse ist nicht komplett (%1$s). Bitte prüfen Sie Ihre <a "
 "href=\"%2$s\">Einstellungen</a> und versuchen Sie es erneut."
@@ -9604,15 +9608,15 @@ msgid ""
 "By default the customer email address is only transferred in case explicit "
 "consent has been given via a checkbox during checkout. You may force to "
 "transfer the customer email address during label creation to make sure your "
-"customers receive <a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer"
-"\">email notifications by DHL</a>. Make sure to check your privacy policy "
-"and seek advice by a lawyer in case of doubt."
+"customers receive <a href=\"%s\" target=\"_blank\" rel=\"noopener "
+"noreferrer\">email notifications by DHL</a>. Make sure to check your privacy "
+"policy and seek advice by a lawyer in case of doubt."
 msgstr ""
 "Standardmäßig wird die E-Mail-Adresse des Kunden nur dann an DHL übertragen, "
 "wenn dieser per Checkbox während des Checkouts eingewilligt hat. Sie können "
 "mit Hilfe dieser Option diese Prüfung umgehen und die E-Mail-Adresse immer "
-"übertragen (damit Ihre Kunden z.B. <a href=\"%s\" target=\"_blank\" rel="
-"\"noopener noreferrer\">DHL Paketankündigungen</a> erhalten). Prüfen Sie "
+"übertragen (damit Ihre Kunden z.B. <a href=\"%s\" target=\"_blank\" "
+"rel=\"noopener noreferrer\">DHL Paketankündigungen</a> erhalten). Prüfen Sie "
 "Ihre Datenschutzerklärung und suchen Sie im Zweifel anwaltlichen Rat bevor "
 "Sie diese Option aktivieren."
 
@@ -9631,13 +9635,13 @@ msgstr "Individuelle Absenderreferenz aus dem DHL Geschäftskonto verwenden."
 #, php-format
 msgctxt "dhl"
 msgid ""
-"Choose this option if you want to use a <a href=\"%s\" target=\"_blank"
-"\">custom address</a> profile managed within your DHL business profile as "
-"shipper reference for your labels."
+"Choose this option if you want to use a <a href=\"%s\" "
+"target=\"_blank\">custom address</a> profile managed within your DHL "
+"business profile as shipper reference for your labels."
 msgstr ""
-"Aktivieren Sie diese Option falls Sie eine <a href=\"%s\" target=\"_blank"
-"\">individuelle Absenderreferenz</a> als Referenz beim Erstellen der Labels "
-"verwenden möchten."
+"Aktivieren Sie diese Option falls Sie eine <a href=\"%s\" "
+"target=\"_blank\">individuelle Absenderreferenz</a> als Referenz beim "
+"Erstellen der Labels verwenden möchten."
 
 # @ woocommerce-germanized
 #: woocommerce-germanized/packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1647
@@ -10132,8 +10136,8 @@ msgid ""
 "sure it is up-to-date."
 msgstr ""
 "Wählen Sie die Produkte aus die beim Erzeugen der Labels zur Verfügung "
-"stehen sollen. Sie können die Produktliste auch manuell <a href=\"%s"
-"\">aktualisieren</a>, falls notwendig."
+"stehen sollen. Sie können die Produktliste auch manuell <a "
+"href=\"%s\">aktualisieren</a>, falls notwendig."
 
 #: woocommerce-germanized/packages/woocommerce-germanized-dhl/src/ShippingProvider/DeutschePost.php:285
 msgctxt "dhl"
@@ -10182,8 +10186,8 @@ msgid ""
 "sure the list is up-to-date."
 msgstr ""
 "Wählen Sie ein Seitenformat aus, das für den Druck der Labels standardmäßig "
-"verwendet wird. Sie können die Liste auch manuell <a href=\"%s"
-"\">aktualisieren</a>, falls notwendig."
+"verwendet wird. Sie können die Liste auch manuell <a "
+"href=\"%s\">aktualisieren</a>, falls notwendig."
 
 #: woocommerce-germanized/packages/woocommerce-germanized-dhl/src/ShippingProvider/DeutschePost.php:339
 msgctxt "dhl"
@@ -10581,7 +10585,7 @@ msgid "None"
 msgstr "Keiner"
 
 #: woocommerce-germanized/packages/woocommerce-germanized-shipments/includes/admin/views/html-order-shipment-item.php:41
-#: woocommerce-germanized/packages/woocommerce-germanized-shipments/includes/admin/views/html-settings-provider-list.php:26
+#: woocommerce-germanized/packages/woocommerce-germanized-shipments/includes/admin/views/html-settings-provider-list.php:34
 #: woocommerce-germanized/packages/woocommerce-germanized-shipments/includes/admin/views/label/html-shipment-label.php:38
 msgctxt "shipments"
 msgid "Delete"
@@ -10652,47 +10656,69 @@ msgstr "Speichern"
 
 # @ woocommerce-germanized
 # @ woocommerce
-#: woocommerce-germanized/packages/woocommerce-germanized-shipments/includes/admin/views/html-settings-provider-list.php:11
+#: woocommerce-germanized/packages/woocommerce-germanized-shipments/includes/admin/views/html-settings-provider-list.php:12
 #: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/Admin/ReturnTable.php:23
 #: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/Admin/Table.php:713
-#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/ShippingProvider/Simple.php:808
+#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/ShippingProvider/Simple.php:829
 msgctxt "shipments"
 msgid "Title"
 msgstr "Titel"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/packages/woocommerce-germanized-shipments/includes/admin/views/html-settings-provider-list.php:12
+#: woocommerce-germanized/packages/woocommerce-germanized-shipments/includes/admin/views/html-settings-provider-list.php:13
 #: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/Admin/Admin.php:636
-#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/ShippingProvider/Simple.php:817
+#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/ShippingProvider/Simple.php:838
 msgctxt "shipments"
 msgid "Description"
 msgstr "Beschreibung"
 
-#: woocommerce-germanized/packages/woocommerce-germanized-shipments/includes/admin/views/html-settings-provider-list.php:13
+#: woocommerce-germanized/packages/woocommerce-germanized-shipments/includes/admin/views/html-settings-provider-list.php:14
 msgctxt "shipments"
 msgid "Activated"
 msgstr "Aktiviert"
 
-# @ woocommerce-germanized
 #: woocommerce-germanized/packages/woocommerce-germanized-shipments/includes/admin/views/html-settings-provider-list.php:23
+#, php-format
+msgctxt "shipments"
+msgid "Move the \"%s\" provider up"
+msgstr "Verschiebe „%s“ nach oben"
+
+#: woocommerce-germanized/packages/woocommerce-germanized-shipments/includes/admin/views/html-settings-provider-list.php:23
+msgctxt "shipments"
+msgid "Move up"
+msgstr "Nach oben verschieben"
+
+#: woocommerce-germanized/packages/woocommerce-germanized-shipments/includes/admin/views/html-settings-provider-list.php:24
+#, php-format
+msgctxt "shipments"
+msgid "Move the \"%s\" provider down"
+msgstr "Verschiebe „%s“ nach unten"
+
+#: woocommerce-germanized/packages/woocommerce-germanized-shipments/includes/admin/views/html-settings-provider-list.php:24
+msgctxt "shipments"
+msgid "Move down"
+msgstr "Nach unten verschieben"
+
+# @ woocommerce-germanized
+#: woocommerce-germanized/packages/woocommerce-germanized-shipments/includes/admin/views/html-settings-provider-list.php:31
 msgctxt "shipments"
 msgid "Edit"
 msgstr "Bearbeiten"
 
-#: woocommerce-germanized/packages/woocommerce-germanized-shipments/includes/admin/views/html-settings-provider-list.php:35
+#: woocommerce-germanized/packages/woocommerce-germanized-shipments/includes/admin/views/html-settings-provider-list.php:43
 msgctxt "shipments"
 msgid "Yes"
 msgstr "Ja"
 
-#: woocommerce-germanized/packages/woocommerce-germanized-shipments/includes/admin/views/html-settings-provider-list.php:52
-#: woocommerce-germanized/packages/woocommerce-germanized-shipments/includes/admin/views/html-settings-provider-list.php:53
-#: woocommerce-germanized/packages/woocommerce-germanized-shipments/includes/admin/views/html-settings-provider-list.php:55
+#: woocommerce-germanized/packages/woocommerce-germanized-shipments/includes/admin/views/html-settings-provider-list.php:60
+#: woocommerce-germanized/packages/woocommerce-germanized-shipments/includes/admin/views/html-settings-provider-list.php:61
+#: woocommerce-germanized/packages/woocommerce-germanized-shipments/includes/admin/views/html-settings-provider-list.php:63
 msgctxt "shipments"
 msgid "Help"
 msgstr "Hilfe"
 
-#: woocommerce-germanized/packages/woocommerce-germanized-shipments/includes/admin/views/html-settings-provider-list.php:59
-#: woocommerce-germanized/packages/woocommerce-germanized-shipments/includes/admin/views/html-settings-provider-list.php:60
+#: woocommerce-germanized/packages/woocommerce-germanized-shipments/includes/admin/views/html-settings-provider-list.php:67
+#: woocommerce-germanized/packages/woocommerce-germanized-shipments/includes/admin/views/html-settings-provider-list.php:68
 msgctxt "shipments"
 msgid "Manage shipping provider"
 msgstr "Versanddienstleister verwalten"
@@ -11399,7 +11425,7 @@ msgid "Create report"
 msgstr "Bericht erstellen"
 
 #: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/Admin/Admin.php:555
-#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/Packaging/ReportHelper.php:194
+#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/Packaging/ReportHelper.php:223
 msgctxt "shipments"
 msgid "Report"
 msgstr "Bericht"
@@ -11534,7 +11560,7 @@ msgctxt "shipments"
 msgid "Please save the shipment before creating a new label"
 msgstr "Bitte speichern Sie die Sendung bevor Sie ein neues Label erstellen"
 
-#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/Admin/Admin.php:1067
+#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/Admin/Admin.php:1068
 msgctxt "shipments"
 msgid ""
 "Do you really want to delete the shipping provider? Some of your existing "
@@ -11582,13 +11608,13 @@ msgctxt "shipments"
 msgid "Labels partially generated. %s"
 msgstr "Labels teilweise erzeugt. %s"
 
-#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/Admin/BulkLabel.php:147
+#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/Admin/BulkLabel.php:149
 #, php-format
 msgctxt "shipments"
 msgid "Error while creating label for %1$s: %2$s"
 msgstr "Fehler beim Erstellen des Labels für %1$s: %2$s"
 
-#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/Admin/BulkLabel.php:147
+#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/Admin/BulkLabel.php:149
 #, php-format
 msgctxt "shipments"
 msgid "shipment #%d"
@@ -12001,7 +12027,7 @@ msgstr "Verpackungsbericht"
 # @ woocommerce-germanized
 #: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/Admin/Settings.php:420
 #: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:363
-#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/ShippingProvider/Simple.php:1174
+#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/ShippingProvider/Simple.php:1195
 msgctxt "shipments"
 msgid "General"
 msgstr "Allgemein"
@@ -12083,7 +12109,7 @@ msgstr "Nach Versanddienstleister filtern"
 
 # @ woocommerce-germanized
 #: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/Admin/Table.php:691
-#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/Ajax.php:892
+#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/Ajax.php:919
 #, php-format
 msgctxt "shipments"
 msgid "Order #%s"
@@ -12215,51 +12241,51 @@ msgctxt "shipments"
 msgid "There was an error while trying to delete the shipping provider."
 msgstr "Beim Löschen des Versanddienstleisters trat ein Fehler auf."
 
-#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/Ajax.php:434
+#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/Ajax.php:461
 msgctxt "shipments"
 msgid "There was an error while bulk processing shipments."
 msgstr ""
 "Bei der Verarbeitung der Mehrfachaktionen von Sendungen trat ein Fehler auf."
 
-#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/Ajax.php:557
-#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/Ajax.php:669
-#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/Ajax.php:726
-#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/Ajax.php:763
-#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/Ajax.php:986
-#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/Ajax.php:1032
-#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/Ajax.php:1108
-#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/Ajax.php:1141
-#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/Ajax.php:1194
-#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/Ajax.php:1262
-#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/Ajax.php:1303
-#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/Ajax.php:1358
-#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/Ajax.php:1402
+#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/Ajax.php:584
+#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/Ajax.php:696
+#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/Ajax.php:753
+#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/Ajax.php:790
+#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/Ajax.php:1013
+#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/Ajax.php:1059
+#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/Ajax.php:1135
+#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/Ajax.php:1168
+#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/Ajax.php:1221
+#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/Ajax.php:1289
+#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/Ajax.php:1330
+#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/Ajax.php:1385
+#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/Ajax.php:1429
 msgctxt "shipments"
 msgid "There was an error processing the shipment"
 msgstr "Fehler bei der Verarbeitung der Sendung"
 
-#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/Ajax.php:610
+#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/Ajax.php:637
 msgctxt "shipments"
 msgid "There was an error while adding the shipment"
 msgstr "Beim Hinzufügen der Sendung ist ein Fehler aufgetreten"
 
-#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/Ajax.php:631
+#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/Ajax.php:658
 msgctxt "shipments"
 msgid "This order contains enough shipments already."
 msgstr "Diese Bestellung beinhaltet bereits genug Sendungen."
 
-#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/Ajax.php:688
+#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/Ajax.php:715
 msgctxt "shipments"
 msgid "This order contains enough returns already."
 msgstr "Diese Bestellung beinhaltet bereits genügend Retouren."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/Ajax.php:943
+#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/Ajax.php:970
 msgctxt "shipments"
 msgid "Status:"
 msgstr "Status:"
 
-#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/Ajax.php:948
+#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/Ajax.php:975
 msgctxt "shipments"
 msgid "Customer payment page &rarr;"
 msgstr "Kundenbezahlungsseite &rarr;"
@@ -12296,7 +12322,7 @@ msgctxt "shipments"
 msgid "Invalid shipment item."
 msgstr "Ungültige Sendungsposition."
 
-#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/DataStores/ShippingProvider.php:275
+#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/DataStores/ShippingProvider.php:289
 msgctxt "shipments"
 msgid "Invalid shipping provider."
 msgstr "Versanddienstleister nicht bekannt."
@@ -12471,7 +12497,7 @@ msgctxt "shipments-packaging-title"
 msgid "%1$s (%2$s, %3$s)"
 msgstr "%1$s (%2$s, %3$s)"
 
-#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/Packaging/AsyncReportGenerator.php:124
+#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/Packaging/AsyncReportGenerator.php:125
 msgctxt "shipments"
 msgid "No shipments found."
 msgstr "Keine Sendungen gefunden"
@@ -12497,17 +12523,19 @@ msgid "Cancel"
 msgstr "Abbrechen"
 
 #: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/Packaging/ReportHelper.php:114
+#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/Packaging/ReportHelper.php:145
 #, php-format
 msgctxt "shipments-packaging-report"
 msgid "%d units"
 msgstr "%d Einheiten"
 
-#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/Packaging/ReportHelper.php:131
+#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/Packaging/ReportHelper.php:132
+#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/Packaging/ReportHelper.php:160
 msgctxt "shipments-packaging-title"
 msgid "Unknown"
 msgstr "Unbekannt"
 
-#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/Packaging/ReportHelper.php:143
+#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/Packaging/ReportHelper.php:172
 #, php-format
 msgctxt "shipments"
 msgid ""
@@ -12517,61 +12545,61 @@ msgstr ""
 "Aktuell %1$s Sendungen verarbeitet. Nächster Durchlauf planmäßig am %2$s. <a "
 "href=\"%3$s\">Offene Aktionen finden</a>"
 
-#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/Packaging/ReportHelper.php:143
+#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/Packaging/ReportHelper.php:172
 msgctxt "shipments"
 msgid "Not yet known"
 msgstr "Noch nicht bekannt"
 
-#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/Packaging/ReportHelper.php:209
+#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/Packaging/ReportHelper.php:238
 #, php-format
 msgctxt "shipments"
 msgid "Q%1$s/%2$s"
 msgstr "Q%1$s/%2$s"
 
-#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/Packaging/ReportHelper.php:214
+#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/Packaging/ReportHelper.php:243
 #, php-format
 msgctxt "shipments"
 msgid "%1$s/%2$s"
 msgstr "%1$s/%2$s"
 
-#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/Packaging/ReportHelper.php:218
+#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/Packaging/ReportHelper.php:247
 #, php-format
 msgctxt "shipments"
 msgid "%1$s"
 msgstr "%1$s"
 
-#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/Packaging/ReportHelper.php:223
+#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/Packaging/ReportHelper.php:252
 #, php-format
 msgctxt "shipments"
 msgid "%1$s - %2$s"
 msgstr "%1$s - %2$s"
 
-#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/Packaging/ReportHelper.php:252
+#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/Packaging/ReportHelper.php:281
 msgctxt "shipments"
 msgid "Quarterly"
 msgstr "Quartalsweise"
 
-#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/Packaging/ReportHelper.php:253
+#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/Packaging/ReportHelper.php:282
 msgctxt "shipments"
 msgid "Yearly"
 msgstr "Jährlich"
 
-#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/Packaging/ReportHelper.php:254
+#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/Packaging/ReportHelper.php:283
 msgctxt "shipments"
 msgid "Monthly"
 msgstr "Monatlich"
 
-#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/Packaging/ReportHelper.php:255
+#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/Packaging/ReportHelper.php:284
 msgctxt "shipments"
 msgid "Custom"
 msgstr "Individuell"
 
-#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/Packaging/ReportHelper.php:313
+#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/Packaging/ReportHelper.php:342
 msgctxt "shipments-report-status"
 msgid "Completed"
 msgstr "Fertiggestellt"
 
-#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/Packaging/ReportHelper.php:315
+#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/Packaging/ReportHelper.php:344
 msgctxt "shipments-report-status"
 msgid "Pending"
 msgstr "In Bearbeitung"
@@ -13408,7 +13436,7 @@ msgstr ""
 "Wählen Sie einen Versanddienstleister aus, der standardmäßig für eine "
 "infrage kommende Sendung hinterlegt wird."
 
-#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/ShippingProvider/Simple.php:314
+#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/ShippingProvider/Simple.php:326
 msgctxt "shipments"
 msgid ""
 "Your shipment is being processed by {shipping_provider}. If you want to "
@@ -13422,22 +13450,22 @@ msgstr ""
 "die Paketverfolgungsdaten zum Zeitpunkt des Erhalts dieser E-Mail noch nicht "
 "den neuesten Stand wiedergeben."
 
-#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/ShippingProvider/Simple.php:809
+#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/ShippingProvider/Simple.php:830
 msgctxt "shipments"
 msgid "Choose a title for the shipping provider."
 msgstr "Wählen Sie einen Titel für den Versanddienstleister."
 
-#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/ShippingProvider/Simple.php:818
+#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/ShippingProvider/Simple.php:839
 msgctxt "shipments"
 msgid "Choose a description for the shipping provider."
 msgstr "Wählen Sie eine Beschreibung für den Versanddienstleister."
 
-#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/ShippingProvider/Simple.php:833
+#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/ShippingProvider/Simple.php:854
 msgctxt "shipments"
 msgid "Tracking URL"
 msgstr "Sendungsverfolgung URL"
 
-#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/ShippingProvider/Simple.php:834
+#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/ShippingProvider/Simple.php:855
 #, php-format
 msgctxt "shipments"
 msgid ""
@@ -13451,12 +13479,12 @@ msgstr ""
 "einzufügen: %s"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/ShippingProvider/Simple.php:844
+#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/ShippingProvider/Simple.php:865
 msgctxt "shipments"
 msgid "Tracking description"
 msgstr "Sendungsverfolgung Hinweis"
 
-#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/ShippingProvider/Simple.php:845
+#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/ShippingProvider/Simple.php:866
 #, php-format
 msgctxt "shipments"
 msgid ""
@@ -13471,17 +13499,17 @@ msgstr ""
 "dynamische Daten einzufügen: %s"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/ShippingProvider/Simple.php:1007
+#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/ShippingProvider/Simple.php:1028
 msgctxt "shipments"
 msgid "Customer returns"
 msgstr "Rücksendungen"
 
-#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/ShippingProvider/Simple.php:1008
+#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/ShippingProvider/Simple.php:1029
 msgctxt "shipments"
 msgid "Allow customers to submit return requests to shipments."
 msgstr "Erlauben Sie Kunden eine Rücksendung zu einer Sendung zu beantragen."
 
-#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/ShippingProvider/Simple.php:1008
+#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/ShippingProvider/Simple.php:1029
 #, php-format
 msgctxt "shipments"
 msgid ""
@@ -13495,27 +13523,27 @@ msgstr ""
 "Gästen zu erfahren, lesen Sie bitte die %2$s."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/ShippingProvider/Simple.php:1008
+#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/ShippingProvider/Simple.php:1029
 msgctxt "shipments"
 msgid "Return Dashboard"
 msgstr "Retouren-Dashboard"
 
-#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/ShippingProvider/Simple.php:1008
+#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/ShippingProvider/Simple.php:1029
 msgctxt "shipments"
 msgid "docs"
 msgstr "Dokumentation"
 
-#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/ShippingProvider/Simple.php:1017
+#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/ShippingProvider/Simple.php:1038
 msgctxt "shipments"
 msgid "Guest returns"
 msgstr "Retouren für Gäste"
 
-#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/ShippingProvider/Simple.php:1018
+#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/ShippingProvider/Simple.php:1039
 msgctxt "shipments"
 msgid "Allow guests to submit return requests to shipments."
 msgstr "Erlauben Sie Gästen Rücksendeanträge zu Bestellungen zu beantragen."
 
-#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/ShippingProvider/Simple.php:1018
+#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/ShippingProvider/Simple.php:1039
 #, php-format
 msgctxt "shipments"
 msgid ""
@@ -13529,26 +13557,26 @@ msgstr ""
 "Rücksende-Formular für Gäste auf Ihrer Seite zu platzieren."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/ShippingProvider/Simple.php:1029
+#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/ShippingProvider/Simple.php:1050
 msgctxt "shipments"
 msgid "Manual confirmation"
 msgstr "Manuelle Bestätigung"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/ShippingProvider/Simple.php:1030
+#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/ShippingProvider/Simple.php:1051
 msgctxt "shipments"
 msgid "Return requests need manual confirmation."
 msgstr "Rücksendeanträge benötigen eine manuelle Bestätigung."
 
-#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/ShippingProvider/Simple.php:1030
+#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/ShippingProvider/Simple.php:1051
 msgctxt "shipments"
 msgid ""
 "By default return request need manual confirmation e.g. a shop manager needs "
 "to review return requests which by default are added with the status "
 "\"requested\" after a customer submitted a return request. If you choose to "
-"disable this option, customer return requests will be added as \"processing"
-"\" and an email confirmation including instructions will be sent immediately "
-"to the customer."
+"disable this option, customer return requests will be added as "
+"\"processing\" and an email confirmation including instructions will be sent "
+"immediately to the customer."
 msgstr ""
 "Standardmäßig benötigen Rücksendeanträge eine manuelle Bestätigung durch den "
 "Shopbetreiber, d.h. Rücksendeanträge werden mit dem Status \"angefragt\" "
@@ -13557,12 +13585,12 @@ msgstr ""
 "Mail-Bestätigung samt Retouren-Label."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/ShippingProvider/Simple.php:1042
+#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/ShippingProvider/Simple.php:1063
 msgctxt "shipments"
 msgid "Return instructions"
 msgstr "Rücksende-Anweisungen"
 
-#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/ShippingProvider/Simple.php:1043
+#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/ShippingProvider/Simple.php:1064
 msgctxt "shipments"
 msgid ""
 "Provide your customer with instructions on how to return the shipment after "
@@ -13575,7 +13603,7 @@ msgstr ""
 "kann, sollten Sie Ihre Kunden darüber informieren, woher ein Label für die "
 "Rücksendung bezogen werden kann."
 
-#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/ShippingProvider/Simple.php:1153
+#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/ShippingProvider/Simple.php:1174
 #, php-format
 msgctxt "shipments"
 msgid ""
@@ -13587,12 +13615,12 @@ msgstr ""
 "Einstellungen</a>. Passen Sie diese Einstellungen nur dann an, wenn Sie "
 "explizit Abweichungen speziell für diese Versandmethode konfigurieren wollen."
 
-#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/ShippingProvider/Simple.php:1178
+#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/ShippingProvider/Simple.php:1199
 msgctxt "shipments"
 msgid "Return Requests"
 msgstr "Rücksendeanträge"
 
-#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/ShippingProvider/Simple.php:1205
+#: woocommerce-germanized/packages/woocommerce-germanized-shipments/src/ShippingProvider/Simple.php:1226
 msgctxt "shipments"
 msgid "This shipping provider does not support creating labels."
 msgstr "Dieser Versanddienstleister unterstützt keine Label-Erzeugung."
@@ -15615,7 +15643,7 @@ msgstr ""
 "unserem <a href=\"%2$s\" target=\"_blank\">Blog-Post</a> wie Sie das Plugin "
 "austauschen können."
 
-#: woocommerce-germanized/woocommerce-germanized.php:1228
+#: woocommerce-germanized/woocommerce-germanized.php:1244
 msgid "Pease wait while we are trying to redirect you to the payment provider."
 msgstr "Einen Moment - wir versuchen Sie zum Zahlungsanbieter weiterzuleiten."
 
@@ -16031,17 +16059,17 @@ msgstr "https://vendidero.de"
 #~ "Adjust DHL label settings. Changes override <a href=\"%s\">global "
 #~ "settings</a>."
 #~ msgstr ""
-#~ "DHL Label Einstellungen anpassen. Änderungen überschreiben die <a href="
-#~ "\"%s\">globalen Einstellungen</a>."
+#~ "DHL Label Einstellungen anpassen. Änderungen überschreiben die <a "
+#~ "href=\"%s\">globalen Einstellungen</a>."
 
 #, php-format
 #~ msgctxt "dhl"
 #~ msgid ""
-#~ "Adjust default DHL label service settings. Changes override <a href=\"%s"
-#~ "\">global settings</a>."
+#~ "Adjust default DHL label service settings. Changes override <a "
+#~ "href=\"%s\">global settings</a>."
 #~ msgstr ""
-#~ "DHL Label Services anpassen. Änderungen überschreiben die <a href=\"%s"
-#~ "\">globalen Einstellungen</a>."
+#~ "DHL Label Services anpassen. Änderungen überschreiben die <a "
+#~ "href=\"%s\">globalen Einstellungen</a>."
 
 # @ woocommerce-germanized
 #~ msgctxt "dhl"
@@ -16067,8 +16095,8 @@ msgstr "https://vendidero.de"
 #~ "Adjust preferred service settings. Changes override <a href=\"%s\">global "
 #~ "settings</a>."
 #~ msgstr ""
-#~ "Wunschpaket-Services anpassen. Änderungen überschreiben die <a href=\"%s"
-#~ "\">globalen Einstellungen</a>."
+#~ "Wunschpaket-Services anpassen. Änderungen überschreiben die <a "
+#~ "href=\"%s\">globalen Einstellungen</a>."
 
 #~ msgctxt "dhl"
 #~ msgid "DHL Pickup"
@@ -16091,8 +16119,8 @@ msgstr "https://vendidero.de"
 #, php-format
 #~ msgctxt "dhl"
 #~ msgid ""
-#~ "Adjust Deutsche Post label settings. Changes override <a href=\"%s"
-#~ "\">global settings</a>."
+#~ "Adjust Deutsche Post label settings. Changes override <a "
+#~ "href=\"%s\">global settings</a>."
 #~ msgstr ""
 #~ "Deutsche Post Label Einstellungen anpassen. Änderungen überschreiben die "
 #~ "<a href=\"%s\">globalen Einstellungen</a>."
@@ -16722,8 +16750,8 @@ msgstr "https://vendidero.de"
 #~ "Please choose your data privacy settings from the available options "
 #~ "within <a href=\"%s\">Germanized</a>."
 #~ msgstr ""
-#~ "Bitte tätigen Sie die Datenschutz-Einstellungen in den <a href=\"%s"
-#~ "\">Germanized-Optionen</a>."
+#~ "Bitte tätigen Sie die Datenschutz-Einstellungen in den <a "
+#~ "href=\"%s\">Germanized-Optionen</a>."
 
 # @ woocommerce-germanized
 #~ msgid "General Options"
@@ -16862,16 +16890,17 @@ msgstr "https://vendidero.de"
 
 #, php-format
 #~ msgid ""
-#~ "You may enable this option to add a <a href=\"%s\" target=\"_blank"
-#~ "\">Parcel Shop Finder</a> to your checkout. Adds an link next to the "
-#~ "checkbox. The finder (DHL API) opens in an overlay and lets the customer "
-#~ "find and choose a parcel shop or packing station nearby."
+#~ "You may enable this option to add a <a href=\"%s\" "
+#~ "target=\"_blank\">Parcel Shop Finder</a> to your checkout. Adds an link "
+#~ "next to the checkbox. The finder (DHL API) opens in an overlay and lets "
+#~ "the customer find and choose a parcel shop or packing station nearby."
 #~ msgstr ""
-#~ "Aktivieren Sie diese Option um die <a href=\"%s\" target=\"_blank"
-#~ "\">Standortsuche</a> zu aktivieren. Diese Option fügt einen Link neben "
-#~ "der Checkbox ein bei dessen Klick, die Suche (DHL API) in einer Lightbox "
-#~ "geöffnet wird. Der Kunde kann eine Packstation bzw. einen Paketshop "
-#~ "seiner Nähe auswählen und die Daten automatisch übernehmen."
+#~ "Aktivieren Sie diese Option um die <a href=\"%s\" "
+#~ "target=\"_blank\">Standortsuche</a> zu aktivieren. Diese Option fügt "
+#~ "einen Link neben der Checkbox ein bei dessen Klick, die Suche (DHL API) "
+#~ "in einer Lightbox geöffnet wird. Der Kunde kann eine Packstation bzw. "
+#~ "einen Paketshop seiner Nähe auswählen und die Daten automatisch "
+#~ "übernehmen."
 
 # @ woocommerce-germanized
 #~ msgid ""
@@ -16969,8 +16998,8 @@ msgstr "https://vendidero.de"
 #~ "Please review your checkout page. Some things might look weird because "
 #~ "Germanized had to stop template overriding for legal purposes (Critical "
 #~ "templates: %s). See <a href=\"%s\" target=\"_blank\">making your theme "
-#~ "compatible</a> or check out our Theme <a href=\"%s\" target=\"_blank"
-#~ "\">VendiPro</a> for 100&#37; compatibility."
+#~ "compatible</a> or check out our Theme <a href=\"%s\" "
+#~ "target=\"_blank\">VendiPro</a> for 100&#37; compatibility."
 #~ msgstr ""
 #~ "Es sieht so aus als wenn ihr aktuelles Theme versucht rechtlich relevante "
 #~ "Templates (kritische Templates: %s) zu überschreiben. Bitte überprüfen "
@@ -16991,17 +17020,17 @@ msgstr "https://vendidero.de"
 #~ "It seems like your theme is not yet ready for Germanized. Please check "
 #~ "your theme's styles. Some things might look weird - Germanized can only "
 #~ "offer basic styles. See <a href=\"%s\" target=\"_blank\">making your "
-#~ "theme compatible</a> or check out our Theme <a href=\"%s\" target=\"_blank"
-#~ "\">VendiPro</a> for 100&#37; compatibility."
+#~ "theme compatible</a> or check out our Theme <a href=\"%s\" "
+#~ "target=\"_blank\">VendiPro</a> for 100&#37; compatibility."
 #~ msgstr ""
 #~ "Wir haben festgestellt, dass ihr Theme scheinbar noch nicht für "
 #~ "Germanized optimiert ist. Bitte überprüfen Sie die Style-Angaben des "
 #~ "Themes bzw. das Aussehen ihres Shops. Manche Elemente werden "
 #~ "möglicherweise falsch dargestellt - Germanized kann nur grundlegende "
-#~ "Style-Angaben machen. Lesen Sie sich dazu <a href=\"%s\" target=\"_blank"
-#~ "\">wie mache ich mein Theme kompatibel</a> durch oder nutzen Sie das von "
-#~ "uns entwickelte Theme <a href=\"%s\" target=\"_blank\">VendiPro</a> für "
-#~ "100&#37; Kompatibilität."
+#~ "Style-Angaben machen. Lesen Sie sich dazu <a href=\"%s\" "
+#~ "target=\"_blank\">wie mache ich mein Theme kompatibel</a> durch oder "
+#~ "nutzen Sie das von uns entwickelte Theme <a href=\"%s\" "
+#~ "target=\"_blank\">VendiPro</a> für 100&#37; Kompatibilität."
 
 # @ woocommerce-germanized
 #~ msgid "Settings Tour"
@@ -17318,8 +17347,8 @@ msgstr "https://vendidero.de"
 #~ "Number that associates the product to its manufacturer. If you create "
 #~ "individual products and do not have a GTIN, you can pass the MPN along "
 #~ "with the brand name to use Google Integration. Please choose from the "
-#~ "product attributes which you have manually customized <a href=\"%s"
-#~ "\">here</a>."
+#~ "product attributes which you have manually customized <a "
+#~ "href=\"%s\">here</a>."
 #~ msgstr ""
 #~ "Kennzahl, die das Produkt eindeutig einem bestimmten Hersteller zuordnet. "
 #~ "Wenn sie individuelle Produkte herstellen und keine GTIN haben, können "
@@ -17439,13 +17468,13 @@ msgstr "https://vendidero.de"
 #~ msgctxt "trusted-shops"
 #~ msgid ""
 #~ "<a href=\"%s\" target=\"_blank\">Learn more</a> about <a href=\"%s\" "
-#~ "target=\"_blank\">Trustbadge</a> options and <a href=\"%s\" target="
-#~ "\"_blank\">Product Reviews</a> configuration."
+#~ "target=\"_blank\">Trustbadge</a> options and <a href=\"%s\" "
+#~ "target=\"_blank\">Product Reviews</a> configuration."
 #~ msgstr ""
 #~ "<a href=\"%s\" target=\"_blank\">Erfahre mehr</a> über "
-#~ "Einstellungsmöglichkeiten des <a href=\"%s\" target=\"_blank"
-#~ "\">Trustbadge</a> oder von <a href=\"%s\" target=\"_blank"
-#~ "\">Produktbewertungen</a>."
+#~ "Einstellungsmöglichkeiten des <a href=\"%s\" "
+#~ "target=\"_blank\">Trustbadge</a> oder von <a href=\"%s\" "
+#~ "target=\"_blank\">Produktbewertungen</a>."
 
 # @ woocommerce-germanized
 #~ msgctxt "trusted-shops"

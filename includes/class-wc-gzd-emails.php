@@ -50,7 +50,9 @@ class WC_GZD_Emails {
 			/**
 			 * Support WooCommerce Gutenberg checkout block
 			 */
-			if ( defined( 'WC_VERSION' ) && version_compare( WC_VERSION, '6.0.0', '>=' ) ) {
+			if ( defined( 'WC_VERSION' ) && version_compare( WC_VERSION, '6.4.0', '>=' ) ) {
+				add_action( 'woocommerce_store_api_checkout_order_processed', array( $this, 'confirm_order' ) );
+			} elseif ( defined( 'WC_VERSION' ) && version_compare( WC_VERSION, '6.0.0', '>=' ) ) {
 				add_action( 'woocommerce_blocks_checkout_order_processed', array( $this, 'confirm_order' ) );
 			} else {
 				add_action( '__experimental_woocommerce_blocks_checkout_order_processed', array( $this, 'confirm_order' ) );
