@@ -452,7 +452,13 @@ class WC_GZD_Product {
 	}
 
 	public function has_deposit( $context = 'view' ) {
-		return apply_filters( 'woocommerce_gzd_product_has_deposit', $this->get_deposit_amount_per_unit() > 0, $this, $context );
+		$has_deposit = $this->get_deposit_amount_per_unit() > 0;
+
+		if ( 'view' === $context && ! $this->is_food() ) {
+			$has_deposit = false;
+		}
+
+		return apply_filters( 'woocommerce_gzd_product_has_deposit', $has_deposit, $this, $context );
 	}
 
 	public function get_unit_product( $context = 'view' ) {

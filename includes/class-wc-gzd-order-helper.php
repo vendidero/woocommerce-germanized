@@ -330,16 +330,17 @@ class WC_GZD_Order_Helper {
 				$gzd_item->set_delivery_time( $gzd_product->get_delivery_time_html() );
 				$gzd_item->set_min_age( $gzd_product->get_min_age() );
 
-				$gzd_item->set_deposit_type( $gzd_product->get_deposit_type() );
-				$gzd_item->set_deposit_amount_per_unit( $gzd_product->get_deposit_amount_per_unit( 'view', 'incl' ) );
-				$gzd_item->set_deposit_net_amount_per_unit( $gzd_product->get_deposit_amount_per_unit( 'view', 'excl' ) );
+				if ( $gzd_product->is_food() ) {
+					$gzd_item->set_deposit_type( $gzd_product->get_deposit_type() );
+					$gzd_item->set_deposit_amount_per_unit( $gzd_product->get_deposit_amount_per_unit( 'view', 'incl' ) );
+					$gzd_item->set_deposit_net_amount_per_unit( $gzd_product->get_deposit_amount_per_unit( 'view', 'excl' ) );
 
-				$gzd_item->set_deposit_quantity( $gzd_product->get_deposit_quantity() );
+					$gzd_item->set_deposit_quantity( $gzd_product->get_deposit_quantity() );
+					$gzd_item->set_deposit_amount( $gzd_product->get_deposit_amount( 'view', 'incl' ) );
+					$gzd_item->set_deposit_net_amount( $gzd_product->get_deposit_amount( 'view', 'excl' ) );
 
-				$gzd_item->set_deposit_amount( $gzd_product->get_deposit_amount( 'view', 'incl' ) );
-				$gzd_item->set_deposit_net_amount( $gzd_product->get_deposit_amount( 'view', 'excl' ) );
-
-				$gzd_item->set_deposit_packaging_type( $gzd_product->get_deposit_packaging_type() );
+					$gzd_item->set_deposit_packaging_type( $gzd_product->get_deposit_packaging_type() );
+				}
 
 				/**
 				 * Add order item meta.
