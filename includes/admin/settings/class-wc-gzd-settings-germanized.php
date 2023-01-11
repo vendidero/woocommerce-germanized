@@ -34,10 +34,14 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 
 	public function add_wc_admin_breadcrumbs( $is_connected, $current_page ) {
 		if ( false === $is_connected && false === $current_page && $this->is_active() ) {
-			$page_id        = 'wc-settings';
-			$has_navigation = is_callable( array( '\Automattic\WooCommerce\Admin\Features\Features', 'get_features' ) ) ? in_array( 'navigation', \Automattic\WooCommerce\Admin\Features\Features::get_features(), true ) : false;
+			$page_id = 'wc-settings';
 
-			if ( ! $has_navigation ) {
+			/**
+			 * Check whether Woo Admin is actually loaded, e.g. core pages have been registered before
+			 * registering our page(s). This may not be the case if WC Admin is disabled, e.g. via a
+			 * woocommerce_admin_features filter.
+			 */
+			if ( defined( 'WC_VERSION' ) && version_compare( WC_VERSION, '6.5.0', '>=' ) && ! function_exists( 'wc_admin_connect_core_pages' ) ) {
 				return $is_connected;
 			}
 
