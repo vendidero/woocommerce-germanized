@@ -52,7 +52,7 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 		 * Hook in tabs.
 		 */
 		public function __construct() {
-			add_action( 'admin_init', array( __CLASS__, 'check_version' ), 10 );
+			add_action( 'init', array( __CLASS__, 'check_version' ), 10 );
 			add_action( 'admin_init', array( __CLASS__, 'redirect' ), 15 );
 
 			add_action(
@@ -175,8 +175,12 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 			load_textdomain( 'woocommerce-germanized', $mofile );
 
 			if ( ! \Vendidero\Germanized\PluginsHelper::is_woocommerce_plugin_active() || ! function_exists( 'WC' ) ) {
-				deactivate_plugins( WC_GERMANIZED_PLUGIN_FILE );
-				wp_die( esc_html__( 'Please install WooCommerce before installing WooCommerce Germanized. Thank you!', 'woocommerce-germanized' ) );
+				if ( is_admin() ) {
+					deactivate_plugins( WC_GERMANIZED_PLUGIN_FILE );
+					wp_die( esc_html__( 'Please install WooCommerce before installing WooCommerce Germanized. Thank you!', 'woocommerce-germanized' ) );
+				} else {
+					return;
+				}
 			}
 
 			// Register post types
@@ -193,6 +197,7 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 			// Delete plugin header data for dependency check
 			delete_option( 'woocommerce_gzd_plugin_header_data' );
 
+			include_once WC_GERMANIZED_ABSPATH . 'includes/admin/class-wc-gzd-admin-notices.php';
 			$notices = WC_GZD_Admin_Notices::instance();
 
 			// Refresh notes
@@ -226,7 +231,6 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 
 				// Only on major update
 				if ( version_compare( $new_major_version, $major_version, '>' ) ) {
-
 					if ( $note = $notices->get_note( 'review' ) ) {
 						$note->reset();
 					}
@@ -591,7 +595,6 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 		 * @access public
 		 */
 		public static function create_options() {
-
 			// Include settings so that we can run through defaults
 			include_once WC()->plugin_path() . '/includes/admin/settings/class-wc-settings-page.php';
 
