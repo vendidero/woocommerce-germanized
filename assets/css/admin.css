@@ -390,3 +390,14 @@ table.wc-gzd-tax-example tr th:first-child, table.wc-gzd-tax-example tr td:first
 
 .nutri-score-select-value.nutri-score-select-value-e {
   color: #e63e11; }
+
+.wrap .plugins p.wc-gzd-update-warning {
+  border-top: 1px solid #ffb900;
+  margin-left: -12px;
+  margin-right: -12px;
+  padding: .5em 0;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-left: 12px; }
+  .wrap .plugins p.wc-gzd-update-warning::before {
+    display: none; }
