@@ -1673,3 +1673,24 @@ function wc_gzd_get_html_classes( $classes ) {
 
 	return $classes;
 }
+
+if ( ! function_exists( 'wc_gzd_wp_theme_get_element_class_name' ) ) {
+	/**
+	 * Given an element name, returns a class name.
+	 *
+	 * If the WP-related function is not defined, return empty string.
+	 *
+	 * @param string $element The name of the element.
+	 *
+	 * @return string
+	 */
+	function wc_gzd_wp_theme_get_element_class_name( $element ) {
+		if ( function_exists( 'wc_wp_theme_get_element_class_name' ) ) {
+			return wc_wp_theme_get_element_class_name( $element );
+		} elseif ( function_exists( 'wp_theme_get_element_class_name' ) ) {
+			return wp_theme_get_element_class_name( $element );
+		}
+
+		return '';
+	}
+}

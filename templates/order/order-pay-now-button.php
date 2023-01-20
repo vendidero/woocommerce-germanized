@@ -12,7 +12,7 @@
  *
  * @see https://github.com/vendidero/woocommerce-germanized/wiki/Overriding-Germanized-Templates
  * @package Germanized/Templates
- * @version 1.0.2
+ * @version 1.0.3
  */
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -20,5 +20,5 @@ if ( ! defined( 'ABSPATH' ) ) {
 $order = wc_get_order( $order_id ); // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
 ?>
 <p>
-	<a href="<?php echo esc_url( $url ); ?>" class="button wc-gzdp-order-pay-button"><?php esc_html_e( 'Pay now', 'woocommerce-germanized' ); ?></a>
+	<a href="<?php echo esc_url( $url ); ?>" class="button wc-gzdp-order-pay-button<?php echo esc_attr( wc_gzd_wp_theme_get_element_class_name( 'button' ) ? ' ' . wc_gzd_wp_theme_get_element_class_name( 'button' ) : '' ); ?>"><?php esc_html_e( 'Pay now', 'woocommerce-germanized' ); ?></a>
 </p>
