@@ -312,12 +312,22 @@ class WC_GZD_Order_Helper {
 	}
 
 	public function refresh_item_data( $item ) {
-		if ( is_a( $item, 'WC_Order_Item_Product' ) && ( $product = $item->get_product() ) ) {
-			if ( $gzd_item = wc_gzd_get_order_item( $item ) ) {
-				$tax_display_mode   = get_option( 'woocommerce_tax_display_cart' );
-				$gzd_product        = wc_gzd_get_product( $product );
-				$order              = $item->get_order();
-				$prices_include_tax = $order ? $order->get_prices_include_tax() : wc_prices_include_tax();
+		if ( is_a( $item, 'WC_Order_Item_Product' ) && ( $gzd_item = wc_gzd_get_order_item( $item ) ) ) {
+			/**
+			 * Before adding order item meta.
+			 *
+			 * Fires before Germanized added order item meta.
+			 *
+			 * @param WC_Order_Item $item The order item.
+			 * @param WC_Order $order The order.
+			 * @param WC_GZD_Order_Item $gzd_item The order item object.
+			 *
+			 * @since 3.11.4
+			 */
+			do_action( 'woocommerce_gzd_before_add_order_item_meta', $item, $item->get_order(), $gzd_item );
+
+			if ( $product = $item->get_product() ) {
+				$gzd_product = wc_gzd_get_product( $product );
 
 				$gzd_item->set_unit( $gzd_product->get_unit_name() );
 				$gzd_item->set_unit_base( $gzd_product->get_unit_base() );
@@ -356,6 +366,19 @@ class WC_GZD_Order_Helper {
 				 */
 				do_action( 'woocommerce_gzd_add_order_item_meta', $item, $item->get_order(), $gzd_product, $gzd_item );
 			}
+
+			/**
+			 * After adding order item meta.
+			 *
+			 * Fires after Germanized added order item meta.
+			 *
+			 * @param WC_Order_Item $item The order item.
+			 * @param WC_Order $order The order.
+			 * @param WC_GZD_Order_Item $gzd_item The order item object.
+			 *
+			 * @since 3.11.4
+			 */
+			do_action( 'woocommerce_gzd_after_add_order_item_meta', $item, $item->get_order(), $gzd_item );
 		}
 	}
 

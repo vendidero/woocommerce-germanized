@@ -17,11 +17,9 @@ class WC_GZD_Compatibility_WPML extends WC_GZD_Compatibility {
 
 	protected $new_language = false;
 
-	protected $email_locale = false;
+	protected $original_variation_id = false;
 
-	protected $email_old_lang = false;
-
-	protected $email_lang = false;
+	protected $original_product_id = false;
 
 	protected static $removed_get_term_filter = false;
 
@@ -83,7 +81,12 @@ class WC_GZD_Compatibility_WPML extends WC_GZD_Compatibility {
 		// Add language field to revocation form
 		add_action( 'woocommerce_gzd_after_revocation_form_fields', array( $this, 'set_language_field' ), 10 );
 
+		add_action( 'woocommerce_gzd_before_add_order_item_meta', array( $this, 'maybe_switch_order_meta_language' ), 10, 2 );
+		add_action( 'woocommerce_gzd_after_add_order_item_meta', array( $this, 'maybe_restore_order_meta_language' ), 10, 2 );
+
 		// Setup and restore email customer locale
+		add_action( 'woocommerce_before_resend_order_emails', array( $this, 'force_admin_option_translation' ), 40 );
+		add_filter( 'wcml_get_order_items_language', array( $this, 'maybe_filter_wpml_order_items_language' ), 10, 2 );
 		add_action( 'woocommerce_gzd_switch_email_locale', array( $this, 'setup_email_locale' ), 10, 2 );
 		add_action( 'woocommerce_gzd_restore_email_locale', array( $this, 'restore_email_locale' ), 10, 1 );
 
@@ -100,6 +103,88 @@ class WC_GZD_Compatibility_WPML extends WC_GZD_Compatibility {
 		 * @since 3.0.8
 		 */
 		do_action( 'woocommerce_gzd_wpml_compatibility_loaded', $this );
+	}
+
+	/**
+	 * Make sure to filter order items language in case order details or order confirmation is resent
+	 * during admin edit order requests.
+	 *
+	 * @param string $language
+	 * @param WC_Order $order
+	 *
+	 * @return string
+	 */
+	public function maybe_filter_wpml_order_items_language( $language, $order ) {
+		if ( ! empty( $_POST['wc_order_action'] ) && is_a( $order, 'WC_Order' ) && $order->get_meta( 'wpml_language', true ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
+			$action = wc_clean( wp_unslash( $_POST['wc_order_action'] ) ); // phpcs:ignore WordPress.Security.NonceVerification.Missing
+
+			if ( in_array( $action, apply_filters( 'woocommerce_gzd_wpml_admin_order_items_translatable_actions', array( 'send_order_details', 'order_confirmation' ) ), true ) ) {
+				$language = $order->get_meta( 'wpml_language', true );
+			}
+		}
+
+		return $language;
+	}
+
+	/**
+	 * Maybe translate custom order item product data to make sure delivery time, cart description
+	 * is being stored in the actual user's language.
+	 *
+	 * @param WC_Order_Item_Product $item
+	 * @param WC_Order $order
+	 *
+	 * @return void
+	 */
+	public function maybe_switch_order_meta_language( $item, $order ) {
+		if ( $order ) {
+			$lang = $order->get_meta( 'wpml_language' );
+
+			if ( ! empty( $lang ) ) {
+				$this->switch_lang( $lang );
+
+				$this->original_product_id   = false;
+				$this->original_variation_id = false;
+
+				if ( 'product_variation' === get_post_type( $item->get_product_id() ) ) {
+					$this->original_variation_id = $item->get_variation_id();
+					$translated_product_id       = apply_filters( 'translate_object_id', $this->original_variation_id, 'product_variation', true, $lang );
+
+					$item->set_variation_id( $translated_product_id );
+				} else {
+					$this->original_product_id = $item->get_product_id();
+					$translated_product_id     = apply_filters( 'translate_object_id', $this->original_product_id, 'product', true, $lang );
+
+					$item->set_product_id( $translated_product_id );
+				}
+			}
+		}
+	}
+
+	/**
+	 * Maybe restore the language after updating item meta.
+	 *
+	 * @param WC_Order_Item_Product $item
+	 * @param WC_Order $order
+	 *
+	 * @return void
+	 */
+	public function maybe_restore_order_meta_language( $item, $order ) {
+		if ( $order ) {
+			$lang = $order->get_meta( 'wpml_language' );
+
+			if ( ! empty( $lang ) ) {
+				if ( $this->original_variation_id && 'product_variation' === get_post_type( $item->get_product_id() ) ) {
+					$item->set_variation_id( $this->original_variation_id );
+				} elseif ( $this->original_product_id ) {
+					$item->set_product_id( $this->original_product_id );
+				}
+
+				$this->original_product_id   = false;
+				$this->original_variation_id = false;
+
+				$this->restore_language();
+			}
+		}
 	}
 
 	public function filter_product_nutrient_value_term( $term_id, $product, $context ) {
@@ -175,23 +260,41 @@ class WC_GZD_Compatibility_WPML extends WC_GZD_Compatibility {
 	 *
 	 * @param $lang
 	 */
-	public function switch_email_lang( $lang ) {
-		global $woocommerce_wpml, $sitepress;
+	public function switch_lang( $lang ) {
+		$this->set_language( $lang );
+	}
 
-		$current_language = $sitepress->get_current_language();
-
-		if ( empty( $current_language ) ) {
-			$current_language = $sitepress->get_default_language();
-		}
-
-		$this->email_old_lang = $current_language;
-
-		if ( isset( $woocommerce_wpml->emails ) && is_callable( array( $woocommerce_wpml->emails, 'change_email_language' ) ) ) {
-			$woocommerce_wpml->emails->change_email_language( $lang );
-
-			$this->email_locale = $sitepress->get_locale( $lang );
-			$this->reload_locale();
-		}
+	/**
+	 * Newer version of WPML do not automatically translate string options in admin requests.
+	 * Make sure these Germanized settings are translated during email sending and/or item meta updates.
+	 *
+	 * @return void
+	 */
+	public function force_admin_option_translation() {
+		/**
+		 * Force string translation for Germanized email related strings
+		 */
+		do_action(
+			'wpml_st_force_translate_admin_options',
+			apply_filters(
+				'woocommerce_gzd_wpml_admin_relevant_string_options',
+				array(
+					'woocommerce_gzd_email_order_confirmation_text',
+					'woocommerce_gzd_email_title_text',
+					'woocommerce_gzd_complaints_procedure_text',
+					'woocommerce_gzd_delivery_time_text',
+					'woocommerce_gzd_unit_price_text',
+					'woocommerce_gzd_product_units_text',
+					'woocommerce_gzd_differential_taxation_notice_text',
+					'woocommerce_gzd_small_enterprise_text',
+					'woocommerce_gzd_deposit_text',
+					'woocommerce_gzd_alternative_complaints_text_none',
+					'woocommerce_gzd_alternative_complaints_text_willing',
+					'woocommerce_gzd_alternative_complaints_text_obliged',
+					'woocommerce_gzd_legal_checkboxes_settings',
+				)
+			)
+		);
 	}
 
 	/**
@@ -200,8 +303,8 @@ class WC_GZD_Compatibility_WPML extends WC_GZD_Compatibility {
 	 * @param $lang
 	 */
 	public function filter_email_lang( $p_lang ) {
-		if ( $this->email_lang ) {
-			$p_lang = $this->email_lang;
+		if ( $this->new_language ) {
+			$p_lang = $this->new_language;
 		}
 
 		return $p_lang;
@@ -255,12 +358,9 @@ class WC_GZD_Compatibility_WPML extends WC_GZD_Compatibility {
 		$lang = apply_filters( 'woocommerce_gzd_wpml_email_lang', $lang, $email );
 
 		if ( ! empty( $lang ) ) {
-			$this->email_lang = $lang;
-
-			add_filter( 'plugin_locale', array( $this, 'filter_email_locale' ), 50 );
 			add_filter( 'wcml_email_language', array( $this, 'filter_email_lang' ), 10 );
 
-			$this->switch_email_lang( $lang );
+			$this->switch_lang( $lang );
 
 			/*
 			 * Reload email settings to make sure that translated strings are loaded from DB.
@@ -281,15 +381,17 @@ class WC_GZD_Compatibility_WPML extends WC_GZD_Compatibility {
 				$email->settings['heading'] = $heading;
 			}
 
-			/**
-			 * This action fires as soon as the WPML email language has been switched by the Germanized compatibility script.
-			 *
-			 * @param string   $lang Language e.g. en
-			 * @param WC_Email $email The email instance.
-			 *
-			 * @since 3.1.2
-			 */
-			do_action( 'woocommerce_gzd_wpml_switched_email_language', $this->email_lang, $email );
+			if ( $this->new_language ) {
+				/**
+				 * This action fires as soon as the WPML email language has been switched by the Germanized compatibility script.
+				 *
+				 * @param string   $lang Language e.g. en
+				 * @param WC_Email $email The email instance.
+				 *
+				 * @since 3.1.2
+				 */
+				do_action( 'woocommerce_gzd_wpml_switched_email_language', $lang, $email );
+			}
 		}
 	}
 
@@ -300,45 +402,27 @@ class WC_GZD_Compatibility_WPML extends WC_GZD_Compatibility {
 			return false;
 		}
 
+		if ( ! $this->new_language ) {
+			return false;
+		}
+
 		$domain      = 'admin_texts_woocommerce_' . $email_id . '_settings';
 		$name_prefix = '[woocommerce_' . $email_id . '_settings]';
 
-		return $woocommerce_wpml->emails->wcml_get_translated_email_string( $domain, $name_prefix . $option_name, false, $this->email_lang );
+		return $woocommerce_wpml->emails->wcml_get_translated_email_string( $domain, $name_prefix . $option_name, false, $this->new_language );
 	}
 
 	/**
 	 * Restore email locale after successfully sending the email
 	 */
 	public function restore_email_locale() {
-		global $sitepress;
+		global $wc_gzd_original_lang;
 
-		if ( $this->email_locale ) {
-
-			$old_lang = $this->email_old_lang ? $this->email_old_lang : $sitepress->get_default_language();
-
-			$sitepress->switch_lang( $old_lang );
-			remove_filter( 'plugin_locale', array( $this, 'filter_email_locale' ), 50 );
+		if ( isset( $wc_gzd_original_lang ) && ! empty( $wc_gzd_original_lang ) ) {
 			remove_filter( 'wcml_email_language', array( $this, 'filter_email_lang' ), 10 );
-
-			$this->email_lang     = false;
-			$this->email_old_lang = false;
-			$this->email_locale   = false;
-
-			$this->reload_locale();
-		}
-	}
-
-	/**
-	 * Force the locale to be filtered while changing email language.
-	 *
-	 * @param $locale
-	 */
-	public function filter_email_locale( $locale ) {
-		if ( $this->email_locale && ! empty( $this->email_locale ) ) {
-			$locale = $this->email_locale;
 		}
 
-		return $locale;
+		$this->restore_language();
 	}
 
 	protected function get_emails() {
@@ -548,7 +632,6 @@ class WC_GZD_Compatibility_WPML extends WC_GZD_Compatibility {
 				'get_current_language',
 			)
 		) && is_callable( array( $sitepress, 'switch_lang' ) ) ) {
-
 			if ( $sitepress->get_current_language() !== $lang ) {
 				$this->new_language = $lang;
 			}
@@ -571,6 +654,8 @@ class WC_GZD_Compatibility_WPML extends WC_GZD_Compatibility {
 
 				$this->reload_locale();
 			}
+
+			$this->force_admin_option_translation();
 
 			/**
 			 * WPML language switched.

@@ -46,7 +46,7 @@ class WC_GZD_Email_Helper {
 			wc_gzd_restore_locale();
 		}
 
-		$this->get_email()->setup_locale();
+		$this->get_email()->restore_locale();
 	}
 
 	/**
