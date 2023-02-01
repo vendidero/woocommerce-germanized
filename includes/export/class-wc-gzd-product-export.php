@@ -261,7 +261,29 @@ class WC_GZD_Product_Export {
 		return $description;
 	}
 
-	public function get_column_value_allergen_ids( $product ) {
+	/**
+	 * Get formatted regular unit price.
+	 *
+	 * @param WC_Product $product Product being exported.
+	 *
+	 * @return string
+	 */
+	protected function get_column_value_unit_price_regular( $product ) {
+		return wc_format_localized_price( wc_gzd_get_gzd_product( $product )->get_unit_price_regular() );
+	}
+
+	/**
+	 * Get formatted sale unit price.
+	 *
+	 * @param WC_Product $product Product being exported.
+	 *
+	 * @return string
+	 */
+	protected function get_column_value_unit_price_sale( $product ) {
+		return wc_format_localized_price( wc_gzd_get_gzd_product( $product )->get_unit_price_sale() );
+	}
+
+	protected function get_column_value_allergen_ids( $product ) {
 		$allergenic_list = array();
 
 		foreach ( wc_gzd_get_gzd_product( $product )->get_allergen_ids() as $id ) {
@@ -273,8 +295,7 @@ class WC_GZD_Product_Export {
 		return implode( '|', $allergenic_list );
 	}
 
-	public function get_column_value_sale_price_label( $product ) {
-
+	protected function get_column_value_sale_price_label( $product ) {
 		$term = wc_gzd_get_product( $product )->get_sale_price_label_term();
 
 		if ( is_a( $term, 'WP_Term' ) ) {
@@ -284,8 +305,7 @@ class WC_GZD_Product_Export {
 		return '';
 	}
 
-	public function get_column_value_sale_price_regular_label( $product ) {
-
+	protected function get_column_value_sale_price_regular_label( $product ) {
 		$term = wc_gzd_get_product( $product )->get_sale_price_regular_label_term();
 
 		if ( is_a( $term, 'WP_Term' ) ) {
@@ -295,8 +315,7 @@ class WC_GZD_Product_Export {
 		return '';
 	}
 
-	public function get_column_value_unit( $product ) {
-
+	protected function get_column_value_unit( $product ) {
 		$term = wc_gzd_get_product( $product )->get_unit_term();
 
 		if ( is_a( $term, 'WP_Term' ) ) {
