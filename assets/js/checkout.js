@@ -78,6 +78,8 @@ window.germanized = window.germanized || {};
                         $form.find( '#order_review_heading:first' ).show();
                     }
                 }
+
+                $( document.body ).trigger( 'wc_gzd_updated_checkout_heading' );
             }
         },
 
