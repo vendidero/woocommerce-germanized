@@ -229,6 +229,7 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 
 			add_action( 'plugins_loaded', array( $this, 'setup_compatibility' ), 0 );
 			add_action( 'after_setup_theme', array( $this, 'setup_theme_compatibility' ), 0 );
+			add_action( 'before_woocommerce_init', array( $this, 'declare_feature_compatibility' ) );
 
 			// Set template filter directly after load to ensure wc_get_template finds templates
 			add_filter( 'woocommerce_locate_template', array( $this, 'filter_templates' ), 1500, 3 );
@@ -258,6 +259,12 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 
 			\Vendidero\Germanized\PluginsHelper::init();
 		}
+
+        public function declare_feature_compatibility() {
+            if ( class_exists( '\Automattic\WooCommerce\Utilities\FeaturesUtil' ) ) {
+                \Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility( 'custom_order_tables', __FILE__, true );
+            }
+        }
 
 		/**
 		 * Checks if is pro user
