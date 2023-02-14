@@ -885,6 +885,8 @@ class WC_GZD_Checkout {
 						$rates[ $key ]->set_taxes( $taxes );
 						$rates[ $key ]->add_meta_data( '_split_taxes', $taxable_amounts );
 						$rates[ $key ]->add_meta_data( '_tax_shares', $tax_shares );
+					} elseif ( 0 === WC()->cart->get_total_tax() ) {
+						$rates[ $key ]->set_taxes( array() );
 					} else {
 						$original_tax_rates = array_keys( $original_taxes );
 

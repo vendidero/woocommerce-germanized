@@ -779,19 +779,31 @@ function wc_gzd_cart_get_age_verification_min_age( $items = false ) {
 }
 
 function wc_gzd_item_is_tax_share_exempt( $item, $type = 'shipping', $key = false ) {
-	$exempt     = false;
-	$_product   = false;
-	$is_cart    = false;
-	$tax_class  = '';
-	$tax_status = '';
+	$exempt       = false;
+	$_product     = false;
+	$is_cart      = false;
+	$tax_class    = '';
+	$tax_status   = '';
+	$total_tax    = false;
+	$subtotal_tax = false;
 
 	if ( is_a( $item, 'WC_Order_Item' ) ) {
 		$_product   = $item->get_product();
 		$tax_class  = $item->get_tax_class();
 		$tax_status = $item->get_tax_status();
+
+		if ( is_callable( array( $item, 'get_total_tax' ) ) ) {
+			$total_tax = (float) $item->get_total_tax();
+		}
+
+		if ( is_callable( array( $item, 'get_subtotal_tax' ) ) ) {
+			$subtotal_tax = (float) $item->get_subtotal_tax();
+		}
 	} elseif ( isset( $item['data'] ) ) {
-		$_product = apply_filters( 'woocommerce_cart_item_product', $item['data'], $item, $key );
-		$is_cart  = true;
+		$_product     = apply_filters( 'woocommerce_cart_item_product', $item['data'], $item, $key );
+		$is_cart      = true;
+		$total_tax    = isset( $item['line_tax'] ) ? (float) $item['line_tax'] : 0.0;
+		$subtotal_tax = isset( $item['line_tax'] ) ? (float) $item['line_subtotal_tax'] : 0.0;
 
 		if ( is_a( $_product, 'WC_Product' ) ) {
 			$tax_status = $_product->get_tax_status();
@@ -807,7 +819,7 @@ function wc_gzd_item_is_tax_share_exempt( $item, $type = 'shipping', $key = fals
 		}
 	}
 
-	if ( 'none' === $tax_status || 'zero-rate' === $tax_class ) {
+	if ( 'none' === $tax_status || 'zero-rate' === $tax_class || ( 0.0 === $total_tax && 0.0 === $subtotal_tax ) ) {
 		$exempt = true;
 	}
 
