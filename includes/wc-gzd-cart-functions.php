@@ -819,7 +819,7 @@ function wc_gzd_item_is_tax_share_exempt( $item, $type = 'shipping', $key = fals
 		}
 	}
 
-	if ( 'none' === $tax_status || 'zero-rate' === $tax_class || ( 0.0 === $total_tax && 0.0 === $subtotal_tax ) ) {
+	if ( 'none' === $tax_status ) {
 		$exempt = true;
 	}
 
