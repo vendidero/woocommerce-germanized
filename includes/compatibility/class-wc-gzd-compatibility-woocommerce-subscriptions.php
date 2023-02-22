@@ -89,7 +89,7 @@ class WC_GZD_Compatibility_WooCommerce_Subscriptions extends WC_GZD_Compatibilit
 
 		$shipping_methods = WC()->cart->calculate_shipping();
 		$shipping_total   = wc_format_decimal( array_sum( wp_list_pluck( $shipping_methods, 'cost' ) ) );
-		$total            = max( 0, round( WC()->cart->cart_contents_total + WC()->cart->tax_total + WC()->cart->shipping_tax_total + $shipping_total + WC()->cart->fee_total, WC()->cart->dp ) );
+		$total            = max( 0, round( WC()->cart->cart_contents_total + WC()->cart->tax_total + WC()->cart->shipping_tax_total + (float) $shipping_total + WC()->cart->fee_total, WC()->cart->dp ) );
 
 		return $total;
 	}
