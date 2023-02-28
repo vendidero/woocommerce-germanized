@@ -31,6 +31,12 @@ class WC_GZD_Compatibility_WooCommerce_Subscriptions extends WC_GZD_Compatibilit
 	}
 
 	public function load() {
+		$wcs_core_version = '1.0.0';
+
+		if ( class_exists( 'WC_Subscriptions_Core_Plugin' ) && is_callable( array( WC_Subscriptions_Core_Plugin::instance(), 'get_library_version' ) ) ) {
+			$wcs_core_version = WC_Subscriptions_Core_Plugin::instance()->get_library_version();
+		}
+
 		add_filter( 'wcs_cart_totals_order_total_html', array( $this, 'set_tax_notice' ), 50, 2 );
 		add_filter( 'woocommerce_gzd_product_classname', array( $this, 'product_classname' ), 10, 2 );
 		add_filter(
@@ -50,10 +56,11 @@ class WC_GZD_Compatibility_WooCommerce_Subscriptions extends WC_GZD_Compatibilit
 		 */
 		add_filter( 'woocommerce_subscriptions_calculated_total', array( $this, 'adjust_subscription_rounded_shipping' ), 100, 1 );
 
-		/**
-		 * Exclude certain keys from being copied to renewals
-		 */
-		add_filter( 'wcs_renewal_order_meta', array( $this, 'exclude_meta' ), 10, 3 );
+		if ( version_compare( $wcs_core_version, '5.2.0', '>=' ) ) {
+			add_filter( 'wc_subscriptions_renewal_order_data', array( $this, 'exclude_meta' ), 10 );
+		} else {
+			add_filter( 'wcs_renewal_order_meta', array( $this, 'exclude_meta' ), 10 );
+		}
 
 		add_filter( 'woocommerce_gzd_enable_force_pay_order', array( $this, 'stop_forced_redirect' ), 10, 2 );
 	}
