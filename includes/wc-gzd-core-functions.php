@@ -1507,6 +1507,11 @@ function wc_gzd_get_post_plain_content( $content_post, $shortcodes_allowed = arr
 		$content = preg_replace( '~(?:\[/?)[^/\]]+/?\]~s', '', $content );
 		$content = unescape_invalid_shortcodes( $content );
 		$content = str_replace( ']]>', ']]&gt;', $content );
+		/**
+		 * Remove <style></style> tags, e.g. added by Elementor as those inline styles
+		 * will be escaped by wp_kses_post().
+		 */
+		$content = preg_replace( '/(<(style)\b[^>]*>).*?(<\/\2>)/is', '', $content );
 
 		do_action( 'woocommerce_gzd_after_get_post_plain_content', $post, $shortcodes_allowed );
 	}
