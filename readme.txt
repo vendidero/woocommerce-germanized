@@ -1,6 +1,6 @@
 === Germanized for WooCommerce ===
 Contributors: vendidero, vdwoocommercesupport
-Tags: woocommerce, woocommerce german, woocommerce DE, woocommerce germany, woocommerce deutsch, woo, woocommerce deutschland, woocommerce germanized, woocommerce addon, woocommerce plugin, woocommerce german addon, woocommerce germany addon, woocommerce dhl, dhl, shipments
+Tags: woocommerce, woocommerce german, woocommerce DE, woocommerce germany, woocommerce deutsch, woo, woocommerce deutschland, woocommerce germanized, woocommerce addon, woocommerce plugin, woocommerce german addon, woocommerce germany addon, woocommerce dhl, dhl, shipments, dpd, gls, post
 Requires at least: 5.4
 Tested up to: 6.1
 WC requires at least: 3.9

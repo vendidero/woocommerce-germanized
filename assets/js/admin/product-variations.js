@@ -7,7 +7,7 @@ jQuery( function ( $ ) {
         init: function() {
             this.params = wc_gzd_admin_product_variations_params;
 
-            $( '#woocommerce-product-data' ).on( 'woocommerce_variations_loaded', this.variations_loaded );
+            $( '#woocommerce-product-data' ).on( 'woocommerce_variations_loaded woocommerce_variations_added', this.variations_loaded );
             $( '#woocommerce-product-data' ).on( 'click', '.woocommerce_variation', this.show_or_hide_unit_variation );
             $( '#general_product_data' ).on( 'blur', 'input#_unit_base', this.show_or_hide_unit_variation );
             $( '#general_product_data' ).on( 'change', 'select#_unit', this.show_or_hide_unit_variation );
