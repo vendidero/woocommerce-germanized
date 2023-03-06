@@ -4,8 +4,8 @@ Tags: woocommerce, woocommerce german, woocommerce DE, woocommerce germany, wooc
 Requires at least: 5.4
 Tested up to: 6.1
 WC requires at least: 3.9
-WC tested up to: 7.3
-Stable tag: 3.11.3
+WC tested up to: 7.4
+Stable tag: 3.11.4
 Requires PHP: 5.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -204,6 +204,20 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 6. Edit pdf documents (Pro)
 
 == Changelog ==
+= 3.11.4 =
+* Feature: Support with HPOS WooCommerce feature
+* Improvement: Non-food products should not be able to show a deposit
+* Improvement: Observe version updates during init hook to prevent invalid update states
+* Improvement: WPML email and order item meta translation
+* Improvement: Format unit prices as localized price in CSV export
+* Improvement: Include zero tax class during tax share calculation (e.g. for photovoltaics)
+* Improvement: Remove style-tags from attached email legal texts
+* Improvement: Updated Luxembourg tax rate
+* Improvement: Validate DHL pickup address type in case of delivery to Packstation/Post Office
+* Improvement: Use custom theme button class
+* Improvement: Fallback support for legacy shipping methods that do not support instance settings
+* Fix: DHL Preferred Delivery costs decimal parsing
+
 = 3.11.3 =
 * Feature: Create packaging reports on a per-country base
 * Improvement: Allow sorting shipping providers
