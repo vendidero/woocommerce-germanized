@@ -1,0 +1,40 @@
+{
+    "name": "digitick/sepa-xml",
+    "type": "library",
+    "description": "Creates an XML file for a Single Euro Payments Area (SEPA) Credit Transfer.",
+    "keywords": ["banking", "sepa", "xml"],
+    "license": "LGPL-3.0-or-later",
+    "authors": [
+        {
+            "name": "Ianaré Sévi"
+        },
+        {
+            "name": "Digitick, SA",
+            "email": "info@digitick.net"
+        },
+        {
+            "name": "Sören Rohweder (monofone)",
+            "email": "s.rohweder@blage.net"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Digitick\\Sepa\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Digitick\\Sepa\\Tests\\": "tests/"
+        }
+    },
+    "require": {
+        "ext-dom": "*",
+        "php": ">=7.2"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^8.0 | ^9.0"
+    },
+    "config": {
+        "bin-dir": "bin/"
+    }
+}
