@@ -29,6 +29,8 @@ class WC_GZD_Legal_Checkbox {
 		'priority'             => 10,
 		'locations'            => array(),
 		'supporting_locations' => array(),
+		'show_for_categories'  => array(),
+		'show_for_countries'   => array(),
 	);
 
 	public function __construct( $id, $args = array() ) {
@@ -452,6 +454,40 @@ class WC_GZD_Legal_Checkbox {
 
 	public function set_supporting_locations( $locations ) {
 		$this->settings['supporting_locations'] = $locations;
+	}
+
+	/**
+	 * Product categories to show the checkbox for.
+	 *
+	 * @return array
+	 */
+	public function get_show_for_categories() {
+		return $this->settings['show_for_categories'];
+	}
+
+	public function set_show_for_categories( $category_ids ) {
+		$this->settings['show_for_categories'] = array_map( 'absint', (array) $category_ids );
+	}
+
+	public function show_for_category( $category_id ) {
+		return in_array( absint( $category_id ), $this->get_show_for_categories(), true );
+	}
+
+	/**
+	 * Countries show the checkbox for.
+	 *
+	 * @return array
+	 */
+	public function get_show_for_countries() {
+		return $this->settings['show_for_countries'];
+	}
+
+	public function show_for_country( $country ) {
+		return in_array( $country, $this->get_show_for_countries(), true );
+	}
+
+	public function set_show_for_countries( $countries ) {
+		$this->settings['show_for_countries'] = (array) $countries;
 	}
 
 	/**

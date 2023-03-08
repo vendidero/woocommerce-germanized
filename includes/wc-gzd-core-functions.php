@@ -519,7 +519,6 @@ function wc_gzd_is_parcel_delivery_data_transfer_checkbox_enabled( $rate_ids = a
 	$return = false;
 
 	if ( $checkbox = wc_gzd_get_legal_checkbox( 'parcel_delivery' ) ) {
-
 		if ( $checkbox->is_enabled() ) {
 			$show = $checkbox->show_special;
 

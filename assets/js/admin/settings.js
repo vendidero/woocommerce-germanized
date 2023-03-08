@@ -305,6 +305,8 @@ window.germanized = window.germanized || {};
         },
 
         onEnhancedSelectInit: function() {
+            var self = germanized.settings;
+
             // Tag select
             $( ':input.wc-gzd-enhanced-tags' ).filter( ':not(.enhanced)' ).each( function () {
                 var select2_args = {
@@ -315,6 +317,71 @@ window.germanized = window.germanized || {};
                 };
 
                 $( this ).selectWoo( select2_args ).addClass( 'enhanced' );
+            });
+
+            function display_result( self, select2_args ) {
+                $( self ).selectWoo( select2_args ).addClass( 'enhanced' );
+
+                if ( $( self ).prop( 'multiple' ) ) {
+                    $( self ).on( 'change', function(){
+                        var $children = $( self ).children();
+                        $children.sort(function(a, b){
+                            var atext = a.text.toLowerCase();
+                            var btext = b.text.toLowerCase();
+
+                            if ( atext > btext ) {
+                                return 1;
+                            }
+                            if ( atext < btext ) {
+                                return -1;
+                            }
+                            return 0;
+                        });
+                        $( self ).html( $children );
+                    });
+                }
+            }
+
+            $( ':input.gzd-select-term' ).filter( ':not(.enhanced)' ).each( function() {
+                var select2_args = {
+                    allowClear:  $( this ).data( 'allow_clear' ) ? true : false,
+                    placeholder: $( this ).data( 'placeholder' ),
+                    minimumInputLength: $( this ).data( 'minimum_input_length' ) ? $( this ).data( 'minimum_input_length' ) : '3',
+                    escapeMarkup: function( m ) {
+                        return m;
+                    },
+                    ajax: {
+                        url:         self.params.ajax_url,
+                        dataType:    'json',
+                        delay:       250,
+                        data:        function( params ) {
+                            return {
+                                term         : params.term,
+                                action       : $( this ).data( 'action' ) || 'woocommerce_json_search_taxonomy_terms',
+                                security     : self.params.search_term_nonce,
+                                exclude      : $( this ).data( 'exclude' ),
+                                taxonomy     : $( this ).data( 'taxonomy' ),
+                                limit        : $( this ).data( 'limit' ),
+                            };
+                        },
+                        processResults: function( data ) {
+                            var terms = [];
+                            if ( data && ! data.error ) {
+                                $.each( data, function( index, term ) {
+                                    terms.push( { id: term.term_id, text: term.name } );
+                                } );
+                            }
+                            return {
+                                results: terms
+                            };
+                        },
+                        cache: true
+                    }
+                };
+
+                display_result( this, select2_args );
+
+                //$( this ).selectWoo( select2_args ).addClass( 'enhanced' );
             });
         },
       

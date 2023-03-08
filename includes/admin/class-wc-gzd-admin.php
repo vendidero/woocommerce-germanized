@@ -101,16 +101,11 @@ class WC_GZD_Admin {
 		);
 
 		add_action( 'woocommerce_admin_field_gzd_toggle', array( $this, 'toggle_input_field' ), 5 );
+		add_action( 'woocommerce_admin_field_gzd_select_term', array( $this, 'term_field' ), 5 );
 		add_action( 'woocommerce_admin_field_image', array( $this, 'image_field' ), 10, 1 );
 		add_action( 'woocommerce_admin_field_html', array( $this, 'html_field' ), 10, 1 );
 		add_action( 'woocommerce_admin_field_hidden', array( $this, 'hidden_field' ), 10, 1 );
-
-		add_filter( 'woocommerce_admin_settings_sanitize_option', array( $this, 'save_toggle_input_field' ), 0, 3 );
-		/**
-		 * Woo does not support a decimal field in admin settings by default. In case we do find wc_input_decimal
-		 * as a input class, make sure to format the decimal accordingly while saving.
-		 */
-		add_filter( 'woocommerce_admin_settings_sanitize_option', array( $this, 'save_decimal_field' ), 10, 3 );
+		add_filter( 'woocommerce_admin_settings_sanitize_option', array( $this, 'save_fields' ), 0, 3 );
 
 		add_action( 'woocommerce_oss_enabled_oss_procedure', array( $this, 'oss_enable_hide_tax_percentage' ), 10 );
 
@@ -264,14 +259,12 @@ class WC_GZD_Admin {
 	}
 
 	public function check_internetmarke_import() {
-
 		if ( ! class_exists( '\Vendidero\Germanized\DHL\Admin\Importer\Internetmarke' ) ) {
 			return;
 		}
 
 		if ( Importer\Internetmarke::is_available() ) {
 			if ( isset( $_GET['wc-gzd-internetmarke-import'] ) && isset( $_GET['_wpnonce'] ) ) {
-
 				if ( ! wp_verify_nonce( sanitize_key( wp_unslash( $_GET['_wpnonce'] ) ), 'woocommerce_gzd_internetmarke_import_nonce' ) ) {
 					wp_die( esc_html_x( 'Action failed. Please refresh the page and retry.', 'dhl', 'woocommerce-germanized' ) );
 				}
@@ -294,6 +287,46 @@ class WC_GZD_Admin {
 
 		update_option( 'woocommerce_gzd_dhl_internetmarke_enable', 'yes' );
 		update_option( 'woocommerce_gzd_internetmarke_import_finished', 'yes' );
+	}
+
+	public function save_fields( $value, $option, $raw_value ) {
+		$option = wp_parse_args(
+			$option,
+			array(
+				'type' => '',
+			)
+		);
+
+		if ( 'gzd_toggle' === $option['type'] ) {
+			$value = '1' === $raw_value || 'yes' === $raw_value ? 'yes' : 'no';
+		} elseif ( 'gzd_select_term' === $option['type'] ) {
+			$option = wp_parse_args(
+				$option,
+				array(
+					'multiple' => false,
+				)
+			);
+
+			if ( $option['multiple'] ) {
+				$value = is_array( $value ) ? $value : array( $value );
+				$value = array_map( 'absint', $value );
+				$value = array_filter( $value );
+			} else {
+				if ( is_array( $value ) ) {
+					$value = $value[0];
+				}
+
+				$value = absint( $value );
+			}
+		} elseif ( isset( $option['class'] ) && strstr( $option['class'], 'wc_input_decimal' ) ) {
+			/**
+			 * Woo does not support a decimal field in admin settings by default. In case we do find wc_input_decimal
+			 * as a input class, make sure to format the decimal accordingly while saving.
+			 */
+			$value = ( '' === $raw_value ) ? '' : wc_format_decimal( trim( stripslashes( $raw_value ) ) );
+		}
+
+		return $value;
 	}
 
 	public function save_decimal_field( $value, $option, $raw_value ) {
@@ -498,6 +531,72 @@ class WC_GZD_Admin {
 			</tr>
 			<?php
 		}
+	}
+
+	public function term_field( $value ) {
+		$value = wp_parse_args(
+			$value,
+			array(
+				'multiple' => false,
+				'taxonomy' => 'product_category',
+			)
+		);
+
+		// Description handling.
+		$field_description_data = WC_Admin_Settings::get_field_description( $value );
+
+		if ( ! isset( $value['value'] ) ) {
+			$value['value'] = WC_Admin_Settings::get_option( $value['id'], $value['default'] );
+		}
+
+		$option_value = $value['value'];
+
+		if ( ! is_array( $option_value ) ) {
+			$option_value = array_filter( array( $option_value ) );
+		}
+
+		$options = array();
+
+		foreach ( $option_value as $term_id ) {
+			$term = get_term_by( 'id', $term_id, $value['taxonomy'] );
+
+			if ( $term && ! is_wp_error( $term ) ) {
+				$options[ $term_id ] = $term->name;
+			}
+		}
+		?>
+		<tr valign="top" class="gzd_<?php echo ( $value['multiple'] ? 'multi_' : 'single_' ); ?>select_term gzd_select_term">
+			<th scope="row" class="titledesc">
+				<label for="<?php echo esc_attr( $value['id'] ); ?>"><?php echo esc_html( $value['title'] ); ?> <?php echo wp_kses_post( $field_description_data['tooltip_html'] ); ?></label>
+			</th>
+			<td class="forminp forminp-<?php echo esc_attr( sanitize_title( $value['type'] ) ); ?>">
+				<select
+						name="<?php echo esc_attr( $value['field_name'] ); ?><?php echo ( $value['multiple'] ? '[]' : '' ); ?>"
+						<?php echo ( $value['multiple'] ? 'multiple="multiple"' : '' ); ?>
+						id="<?php echo esc_attr( $value['id'] ); ?>"
+						style="<?php echo esc_attr( $value['css'] ); ?>"
+						class="gzd-<?php echo ( $value['multiple'] ? 'multi-' : 'single-' ); ?>select-term gzd-select-term <?php echo esc_attr( $value['class'] ); ?>"
+						<?php
+						if ( ! empty( $value['custom_attributes'] ) && is_array( $value['custom_attributes'] ) ) {
+							foreach ( $value['custom_attributes'] as $attribute => $attribute_value ) {
+								echo esc_attr( $attribute ) . '="' . esc_attr( $attribute_value ) . '" ';
+							}
+						}
+						?>
+						data-placeholder="<?php esc_attr_e( 'Search for a term&hellip;', 'woocommerce-germanized' ); ?>"
+						data-allow_clear="true"
+						data-taxonomy="<?php echo esc_attr( $value['taxonomy'] ); ?>"
+				>
+					<option value=""></option>
+					<?php foreach ( $options as $term_id => $display_name ) : ?>
+						<option value="<?php echo esc_attr( $term_id ); ?>" selected="selected">
+							<?php echo wp_strip_all_tags( $display_name ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+						</option>
+					<?php endforeach; ?>
+				</select> <?php echo wp_kses_post( $field_description_data['description'] ); ?>
+			</td>
+		</tr>
+		<?php
 	}
 
 	public function pre_update_gzd_privacy_option_page( $new_value, $old_value ) {
@@ -713,6 +812,7 @@ class WC_GZD_Admin {
 				'tab_toggle_nonce'        => wp_create_nonce( 'wc_gzd_tab_toggle_nonce' ),
 				'install_extension_nonce' => wp_create_nonce( 'wc_gzd_install_extension_nonce' ),
 				'ajax_url'                => admin_url( 'admin-ajax.php' ),
+				'search_term_nonce'       => wp_create_nonce( 'search-taxonomy-terms' ),
 			)
 		);
 

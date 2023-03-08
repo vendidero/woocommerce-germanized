@@ -108,7 +108,6 @@ function wc_gzd_is_revocation_exempt( $product, $type = 'digital' ) {
 		$types = apply_filters( 'woocommerce_gzd_digital_product_types', $checkbox->types );
 
 		if ( $checkbox->is_enabled() ) {
-
 			if ( ! empty( $types ) ) {
 				if ( ! is_array( $types ) ) {
 					$types = array( $types );
@@ -127,7 +126,6 @@ function wc_gzd_is_revocation_exempt( $product, $type = 'digital' ) {
 			}
 		}
 	} elseif ( 'service' === $type && ( $checkbox = wc_gzd_get_legal_checkbox( 'service' ) ) ) {
-
 		if ( $checkbox->is_enabled() ) {
 			if ( wc_gzd_get_gzd_product( $product )->is_service() ) {
 				$is_exempt = true;
