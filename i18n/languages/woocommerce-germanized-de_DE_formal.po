@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce Germanized\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-06 16:13+0100\n"
-"PO-Revision-Date: 2023-03-06 16:15+0100\n"
+"POT-Creation-Date: 2023-03-09 11:33+0100\n"
+"PO-Revision-Date: 2023-03-09 11:37+0100\n"
 "Last-Translator: Dennis Nissle <info@vendidero.de>\n"
 "Language-Team: \n"
 "Language: de_DE@formal\n"
@@ -140,7 +140,7 @@ msgstr "Nutri-Score %1$s"
 # @ woocommerce-germanized
 #: woocommerce-germanized/includes/abstracts/abstract-wc-gzd-product.php:1212
 #: woocommerce-germanized/includes/abstracts/abstract-wc-gzd-product.php:1222
-#: woocommerce-germanized/includes/wc-gzd-core-functions.php:574
+#: woocommerce-germanized/includes/wc-gzd-core-functions.php:573
 #: woocommerce-germanized/includes/wc-gzd-template-functions.php:918
 #: woocommerce-germanized/includes/wc-gzd-template-functions.php:925
 msgid "incl. VAT"
@@ -153,7 +153,7 @@ msgstr "exkl. MwSt."
 
 # @ woocommerce-germanized
 #: woocommerce-germanized/includes/abstracts/abstract-wc-gzd-product.php:1214
-#: woocommerce-germanized/includes/wc-gzd-core-functions.php:574
+#: woocommerce-germanized/includes/wc-gzd-core-functions.php:573
 #, php-format
 msgid "incl. %s%% VAT"
 msgstr "inkl. %s %% MwSt."
@@ -165,7 +165,7 @@ msgid "excl. %s%% VAT"
 msgstr "exkl. %s %% MwSt."
 
 #: woocommerce-germanized/includes/admin/class-wc-gzd-admin-customer.php:44
-#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:474
+#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:507
 #: woocommerce-germanized/includes/admin/settings/views/html-admin-settings-tabs.php:53
 #: woocommerce-germanized/includes/admin/settings/views/html-admin-settings-tabs.php:58
 #: woocommerce-germanized/includes/admin/settings/views/html-admin-settings-tabs.php:71
@@ -173,7 +173,7 @@ msgid "Yes"
 msgstr "Ja"
 
 #: woocommerce-germanized/includes/admin/class-wc-gzd-admin-customer.php:46
-#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:474
+#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:507
 #: woocommerce-germanized/includes/admin/settings/views/html-admin-settings-tabs.php:53
 #: woocommerce-germanized/includes/admin/settings/views/html-admin-settings-tabs.php:71
 msgid "No"
@@ -289,7 +289,7 @@ msgstr "Virtuelles Produkt"
 #: woocommerce-germanized/includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:170
 #: woocommerce-germanized/includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:364
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:535
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:182
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:194
 msgid "Service"
 msgstr "Dienstleistung"
 
@@ -382,7 +382,7 @@ msgstr ""
 
 #: woocommerce-germanized/includes/admin/class-wc-gzd-admin-product-categories.php:58
 #: woocommerce-germanized/includes/admin/class-wc-gzd-admin-product-categories.php:79
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:225
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:236
 msgid "Age Verification"
 msgstr "Altersprüfung"
 
@@ -713,46 +713,51 @@ msgstr "Germanized Einstellungen"
 msgid "Cheating huh?"
 msgstr "So geht das leider nicht.."
 
-#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:237
-#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:276
+#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:232
+#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:269
 msgctxt "dhl"
 msgid "Action failed. Please refresh the page and retry."
 msgstr ""
 "Aktion fehlgeschlagen. Bitte aktualisieren Sie die Seite und versuchen es "
 "erneut."
 
-#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:241
-#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:280
+#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:236
+#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:273
 msgctxt "dhl"
 msgid "You don't have permission to do this."
 msgstr "Sie sind leider nicht berechtigt, diese Aktion durchzuführen."
 
 # @ woocommerce-germanized
 #. Plugin Name of the plugin/theme
-#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:363
+#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:396
 msgid "Germanized for WooCommerce"
 msgstr "Germanized für WooCommerce"
 
-#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:561
+# @ woocommerce-germanized
+#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:553
+msgid "Search for a term&hellip;"
+msgstr "Nach einem Begriff suchen&hellip;"
+
+#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:666
 msgid "Paid for order notification manually sent to customer."
 msgstr "Bestellung bezahlt manuell an den Kunden versendet."
 
-#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:581
+#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:686
 msgid "Order confirmation manually sent to customer."
 msgstr "Bestellbestätigung manuell an den Kunden versendet."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:601
+#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:706
 msgid "Resend order confirmation"
 msgstr "Bestellbestätigung erneut versenden"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:602
+#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:707
 msgid "Send paid for order notification"
 msgstr "Bestellung bezahlt manuell versenden"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:612
+#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:717
 #: woocommerce-germanized/includes/admin/settings/abstract-wc-gzd-settings-tab.php:159
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-germanized.php:23
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shipping-provider.php:85
@@ -761,52 +766,52 @@ msgstr "Bestellung bezahlt manuell versenden"
 msgid "Germanized"
 msgstr "Germanized"
 
-#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:625
+#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:730
 msgid "Parcel Delivery Data Transfer:"
 msgstr "Paketdienstleister Datenweitergabe:"
 
-#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:626
+#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:731
 msgid "allowed"
 msgstr "akzeptiert"
 
-#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:626
+#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:731
 msgid "not allowed"
 msgstr "nicht akzeptiert"
 
-#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:680
+#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:785
 msgid "Insert delivery time name, slug or id."
 msgstr "Fügen Sie Lieferzeit, Slug oder eine ID ein."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:681
+#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:786
 msgid "Insert product units amount."
 msgstr "Fügen Sie die Anzahl der Produkteinheiten ein."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:753
+#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:859
 msgid "Optional Email Content"
 msgstr "Optionaler E-Mail Inhalt"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:758
+#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:864
 msgid "Add content which will be replacing default page content within emails."
 msgstr ""
 "Füllen Sie dieses Feld aus um einen abweichenden E-Mail Anhangstext für "
 "diese Seite zu bestimmen."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:782
+#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:888
 msgid "Cart description"
 msgstr "Warenkorbkurzbeschreibung"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:795
+#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:901
 #: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:544
 msgid "Defect description"
 msgstr "Mängelbeschreibung"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:823
+#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:929
 msgid ""
 "This content will be shown as short product description within checkout and "
 "emails."
@@ -814,7 +819,7 @@ msgstr ""
 "Dieser Inhalt wird während des Bezahlvorganges und in den E-Mails als "
 "Produkt Kurzbeschreibung angezeigt."
 
-#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:837
+#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:943
 #: woocommerce-germanized/includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:443
 msgid ""
 "Inform your customers about product defects. This description will be shown "
@@ -865,7 +870,7 @@ msgstr "Lieferzeit festlegen"
 # @ woocommerce-germanized
 #: woocommerce-germanized/includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:154
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-pointers.php:91
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:789
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:825
 msgid "Status"
 msgstr "Status"
 
@@ -916,15 +921,17 @@ msgstr "Preisauszeichnung"
 msgid "Help"
 msgstr "Hilfe"
 
+# @ woocommerce-germanized
 #: woocommerce-germanized/includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:214
 #: woocommerce-germanized/includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:421
-msgid "Sale Label"
-msgstr "Regulärer Preishinweis"
+msgid "Strike Price Label"
+msgstr "Streichpreis Hinweis"
 
+# @ woocommerce-germanized
 #: woocommerce-germanized/includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:225
 #: woocommerce-germanized/includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:431
-msgid "Sale Regular Label"
-msgstr "Neuer Preis Hinweis"
+msgid "Sale Price Label"
+msgstr "Angebotspreis Hinweis"
 
 # @ woocommerce-germanized
 #: woocommerce-germanized/includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:240
@@ -2035,7 +2042,7 @@ msgstr ""
 "Checkbox bearbeiten indem Sie auf den Link klicken."
 
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-checkboxes.php:61
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:825
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:861
 msgid "Label"
 msgstr "Beschriftung"
 
@@ -2363,7 +2370,7 @@ msgstr "Kleinunternehmer"
 
 # @ woocommerce-germanized
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-general.php:33
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:811
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:803
 #: woocommerce-germanized/src/Shopmarks.php:542
 msgid "Checkout"
 msgstr "Kasse"
@@ -2830,7 +2837,7 @@ msgid "Format"
 msgstr "Format"
 
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-general.php:428
-#: woocommerce-germanized/includes/wc-gzd-product-functions.php:408
+#: woocommerce-germanized/includes/wc-gzd-product-functions.php:406
 msgid "{link}Verified overall ratings{/link}"
 msgstr "{link}geprüfte Gesamtbewertungen{/link}"
 
@@ -2847,7 +2854,7 @@ msgstr ""
 "<a href=\"%1$s\">Informationsseite über Bewertungen</a> zu verlinken."
 
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-general.php:440
-#: woocommerce-germanized/includes/wc-gzd-product-functions.php:408
+#: woocommerce-germanized/includes/wc-gzd-product-functions.php:406
 msgid "{link}Unverified overall ratings{/link}"
 msgstr "{link}Ungeprüfte Gesamtbewertungen{/link}"
 
@@ -2865,7 +2872,7 @@ msgid "Verified Format"
 msgstr "Format geprüft"
 
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-general.php:460
-#: woocommerce-germanized/includes/wc-gzd-product-functions.php:433
+#: woocommerce-germanized/includes/wc-gzd-product-functions.php:431
 msgid "Verified purchase. {link}Find out more{/link}"
 msgstr "Verifizierter Kauf. {link}Mehr Informationen{/link}"
 
@@ -2886,7 +2893,7 @@ msgid "Unverified Format"
 msgstr "Format ungeprüft"
 
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-general.php:471
-#: woocommerce-germanized/includes/wc-gzd-product-functions.php:433
+#: woocommerce-germanized/includes/wc-gzd-product-functions.php:431
 msgid "Purchase not verified. {link}Find out more{/link}"
 msgstr "Nicht verifizierter Kauf. {link}Mehr Informationen{/link}"
 
@@ -3132,8 +3139,8 @@ msgstr ""
 
 # @ woocommerce-germanized
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:162
-msgid "Default Sale Label"
-msgstr "Standard-Streichpreis"
+msgid "Default Price Label"
+msgstr "Standard-Preishinweis"
 
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:162
 msgid ""
@@ -3258,8 +3265,8 @@ msgstr ""
 "Platzhalter für den höchsten Preis."
 
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:450
-#: woocommerce-germanized/includes/wc-gzd-core-functions.php:1069
-#: woocommerce-germanized/includes/wc-gzd-core-functions.php:1073
+#: woocommerce-germanized/includes/wc-gzd-core-functions.php:1068
+#: woocommerce-germanized/includes/wc-gzd-core-functions.php:1072
 msgid "{min_price} &ndash; {max_price}"
 msgstr "{min_price} &ndash; {max_price}"
 
@@ -3528,7 +3535,7 @@ msgstr "Aktiviert von-bis-Grundpreise für variable Produkte."
 
 # @ woocommerce-germanized
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:760
-msgid "Fallback Sale Label"
+msgid "Fallback Strike Price Label"
 msgstr "Standard-Streichpreis-Hinweis"
 
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:767
@@ -3538,21 +3545,22 @@ msgstr "Preishinweise verwalten"
 
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:767
 msgid ""
-"Choose whether you would like to have a default sale price label to inform "
+"Choose whether you would like to have a default strike price label to inform "
 "the customer about the regular price (e.g. Recommended Retail Price)."
 msgstr ""
 "Wählen Sie aus, ob Sie einen Standard-Hinweis platzieren möchten, mit dem "
 "Sie den Kunden auf den alten Preis (bei reduzierten Produkten, sog. "
 "Streichpreis) hinweisen (z.B. UVP)."
 
+# @ woocommerce-germanized
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:770
-msgid "Fallback Regular Label"
+msgid "Fallback Sale Price Label"
 msgstr "Standard-Angebotspreis"
 
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:777
 msgid ""
-"Choose whether you would like to have a default sale price regular label to "
-"inform the customer about the sale price (e.g. New Price)."
+"Choose whether you would like to have a default sale price label to inform "
+"the customer about the sale price (e.g. New Price)."
 msgstr ""
 "Wählen Sie aus, ob Sie einen Standard-Hinweis platzieren möchten, mit dem "
 "Sie den Kunden auf den neuen Preis (bei reduzierten Produkten, sog. "
@@ -3593,7 +3601,7 @@ msgstr "Steuern"
 
 # @ woocommerce-germanized
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:30
-#: woocommerce-germanized/includes/wc-gzd-core-functions.php:576
+#: woocommerce-germanized/includes/wc-gzd-core-functions.php:575
 msgid "VAT"
 msgstr "Umsatzsteuer"
 
@@ -3855,14 +3863,14 @@ msgstr ""
 # @ woocommerce-germanized
 #: woocommerce-germanized/includes/admin/settings/views/html-admin-page-checkboxes.php:11
 #: woocommerce-germanized/includes/admin/settings/views/html-admin-settings-tabs.php:27
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:797
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:833
 msgid "Name"
 msgstr "Name"
 
 # @ woocommerce-germanized
 #: woocommerce-germanized/includes/admin/settings/views/html-admin-page-checkboxes.php:12
 #: woocommerce-germanized/includes/admin/settings/views/html-admin-settings-tabs.php:29
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:816
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:852
 #: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:983
 #: woocommerce-germanized/includes/gateways/invoice/class-wc-gzd-gateway-invoice.php:125
 msgid "Description"
@@ -3875,7 +3883,7 @@ msgstr "Aktiviert"
 
 # @ woocommerce-germanized
 #: woocommerce-germanized/includes/admin/settings/views/html-admin-page-checkboxes.php:14
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:853
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:889
 msgid "Mandatory"
 msgstr "Pflichtfeld"
 
@@ -4835,7 +4843,7 @@ msgstr ""
 # @ woocommerce-germanized
 #: woocommerce-germanized/includes/class-wc-gzd-checkout.php:1079
 #: woocommerce-germanized/includes/class-wc-gzd-revocation.php:51
-#: woocommerce-germanized/includes/wc-gzd-core-functions.php:739
+#: woocommerce-germanized/includes/wc-gzd-core-functions.php:738
 msgid "Mr."
 msgstr "Herr"
 
@@ -5222,7 +5230,7 @@ msgid "Review Authenticity"
 msgstr "Echtheit von Bewertungen"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:136
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:148
 msgid ""
 "With your order, you agree to have read and understood our {term_link}Terms "
 "and Conditions{/term_link} and {revocation_link}Cancellation Policy{/"
@@ -5233,7 +5241,7 @@ msgstr ""
 "revocation_link} einverstanden."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:137
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:149
 msgid ""
 "To complete the order you have to accept to our {term_link}Terms and "
 "Conditions{/term_link} and {revocation_link}Cancellation Policy{/"
@@ -5243,17 +5251,17 @@ msgstr ""
 "term_link} und {revocation_link}Widerrufsbestimmungen{/revocation_link}."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:143
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:155
 msgid "Legal"
 msgstr "Allgemein"
 
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:144
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:156
 msgid ""
 "General legal checkbox which shall include terms and cancellation policy."
 msgstr "Allg. Checkbox die AGB und Widerrufsbelehrung enthalten sollte."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:155
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:167
 #: woocommerce-germanized/includes/updates/woocommerce-gzd-update-2.0.1.php:24
 msgid ""
 "For digital products: I strongly agree that the execution of the agreement "
@@ -5265,7 +5273,7 @@ msgstr ""
 "bekannt, dass mit Beginn der Ausführung mein Widerrufsrecht erlischt."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:156
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:168
 #: woocommerce-germanized/includes/updates/woocommerce-gzd-update-2.0.1.php:25
 msgid ""
 "To retrieve direct access to digital content you have to agree to the loss "
@@ -5274,17 +5282,17 @@ msgstr ""
 "Um direkten Zugang zu den digitalen Inhalte zu erhalten, müssen Sie auf das "
 "Widerrufsrecht verzichten."
 
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:162
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:174
 msgid "Digital"
 msgstr "Digital"
 
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:163
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:175
 msgid "Asks the customer to skip revocation period for digital products."
 msgstr ""
 "Ermöglicht die Bereitstellung des Downloads vor Ablauf der Widerrufsfrist."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:175
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:187
 #: woocommerce-germanized/includes/updates/woocommerce-gzd-update-2.0.1.php:31
 msgid ""
 "For services: I demand and acknowledge the immediate performance of the "
@@ -5297,7 +5305,7 @@ msgstr ""
 "vollständiger Erfüllung des Vertrages erlischt."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:176
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:188
 #: woocommerce-germanized/includes/updates/woocommerce-gzd-update-2.0.1.php:32
 msgid ""
 "To allow the immediate performance of the services you have to agree to the "
@@ -5306,12 +5314,12 @@ msgstr ""
 "Bitte stimmen Sie dem Beginn der Dienstleistung vor Ablauf der "
 "Widerrufsfrist zu."
 
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:183
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:195
 msgid "Asks the customer to skip revocation period for services."
 msgstr ""
 "Ermöglicht das Beginnen von Dienstleistungen vor Ablauf der Widerrufsfrist."
 
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:194
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:206
 #: woocommerce-germanized/includes/updates/woocommerce-gzd-update-2.0.1.php:40
 msgid ""
 "Yes, I would like to be reminded via E-mail about parcel delivery "
@@ -5324,37 +5332,37 @@ msgstr ""
 "weitergegeben."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:199
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:211
 msgid "Please accept our parcel delivery agreement"
 msgstr "Bitte akzeptiere die Datenweitergabe an unsere Paketdienstleister"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:204
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:215
 msgid "Parcel Delivery"
 msgstr "Paketdienstleister"
 
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:205
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:216
 msgid ""
 "Asks the customer to hand over data to the parcel delivery service provider."
 msgstr ""
 "Holt die Einwilligung des Kunden zur Übergabe spezieller Daten an den "
 "Paketdienstleister ein."
 
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:217
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:228
 msgid "I hereby confirm that I'm at least {age} years old."
 msgstr "Ich bestätige, dass ich mindestens {age} Jahre alt bin."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:219
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:230
 msgid "Please confirm your age."
 msgstr "Bitte bestätigen Sie Ihr Alter."
 
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:226
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:237
 msgid "Asks the customer to confirm a minimum age."
 msgstr "Lässt den Kunden ein Mindestalter bestätigen."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:238
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:249
 #: woocommerce-germanized/includes/updates/woocommerce-gzd-update-2.0.1.php:44
 msgid ""
 "Yes, I’d like create a new account and have read and understood the "
@@ -5364,45 +5372,45 @@ msgstr ""
 "{data_security_link}Datenschutzerklärung{/data_security_link}."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:241
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:252
 msgid "Please accept our privacy policy to create a new customer account"
 msgstr ""
 "Bitte akzeptieren Sie unsere Datenschutzerklärung, um ein neues Kundenkonto "
 "zu erstellen"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:246
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:256
 msgid "New account"
 msgstr "Neues Kundenkonto"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:247
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:257
 msgid "Let customers accept your privacy policy before creating a new account."
 msgstr ""
 "Lässt Kunden die Datenschutzbestimmungen vor der Registrierung eines Kontos "
 "akzeptieren."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:284
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:293
 msgid "I hereby agree to the {link}direct debit mandate{/link}."
 msgstr "Hiermit erteile ich das {link}SEPA Lastschriftmandat{/link}."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:290
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:299
 msgid "Please accept the direct debit mandate."
 msgstr "Bitte erteilen Sie das SEPA Lastschriftmandat."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:295
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:304
 #: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:221
 msgid "SEPA"
 msgstr "SEPA"
 
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:296
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:305
 msgid "Asks the customer to issue the SEPA mandate."
 msgstr "Lässt den Kunden das SEPA Mandat vor dem Kauf bestätigen."
 
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:308
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:317
 msgid ""
 "For used goods: I have taken note that my warranty period is shortened to 12 "
 "months."
@@ -5410,80 +5418,80 @@ msgstr ""
 "Für Gebrauchtware: Ich bin damit einverstanden, dass die Verjährungsfrist "
 "für die Gewährleistungsansprüche auf 12 Monate verkürzt wird."
 
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:309
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:318
 msgid "Please make sure to check our warranty note on used goods."
 msgstr ""
 "Bitte nehmen Sie unseren Hinweis zur verkürzten Gewährleistungsfrist für "
 "Gebrauchtware zur Kenntnis."
 
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:315
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:324
 msgid "Used Goods"
 msgstr "Gebrauchtwaren"
 
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:316
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:325
 msgid "Inform customers about shortened warranty for used goods."
 msgstr ""
 "Informieren Sie Kunden über eine verkürzte Gewährleistungsfrist für "
 "Gebrauchtware."
 
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:328
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:337
 msgid "I have taken note of the following defects: {defect_descriptions}."
 msgstr ""
 "Ich habe die folgenden Mängel zur Kenntnis genommen: {defect_descriptions}."
 
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:329
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:338
 msgid "Please make sure to check our note on defective copies."
 msgstr "Bitte nehmen Sie unseren Hinweis zu Mängelexemplaren zur Kenntnis."
 
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:335
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:344
 msgid "Defective Copies"
 msgstr "Mängelexemplare"
 
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:336
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:345
 msgid "Inform customers about product defects."
 msgstr "Informieren Sie Kunden über Produkte mit Mängeln."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:812
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:804
 msgid "Register form"
 msgstr "Registrierung"
 
 # @ woocommerce
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:813
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:805
 msgid "Pay for order"
 msgstr "Bestell-Bezahlseite"
 
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:814
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:806
 msgid "Reviews"
 msgstr "Bewertungen"
 
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:885
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:888
 #, php-format
 msgid "Checkbox location %s does not exist."
 msgstr "Checkbox Ort %s existiert nicht."
 
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:917
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:920
 #, php-format
 msgid "Please make sure to check %s checkbox."
 msgstr "Kontrollieren Sie bitte %s. Hier fehlt eine Einwilligung."
 
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:922
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:925
 #, php-format
 msgid "Checkbox with name %s does already exist."
 msgstr "Eine Checkbox mit dem Namen %s existiert bereits."
 
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:346
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:366
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:348
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:368
 #, php-format
 msgid "%s is a mandatory field."
 msgstr "%s ist ein Pflichtfeld."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:792
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:828
 msgid "Enable checkbox"
 msgstr "Checkbox aktivieren"
 
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:801
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:837
 msgid ""
 "Choose a name to identify your checkbox. Upon creating a new checkbox, this "
 "value is being used to generate the Id."
@@ -5491,11 +5499,11 @@ msgstr ""
 "Wähle einen Namen um die Checkbox zu identifizieren. Bei Erstellung einer "
 "neuen Checkbox wird dieser Wert verwendet um eine Id zu erstellen."
 
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:806
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:842
 msgid "Id"
 msgstr "Id"
 
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:810
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:846
 msgid ""
 "The checkbox Id is the unique indentifier which is used to identify the "
 "checkbox within the code. Cannot be edited after creating the checkbox."
@@ -5504,26 +5512,26 @@ msgstr ""
 "Code heraus zugreifbar zu machen. Kann nach dem Erstellen einer Checkbox "
 "nicht mehr verändert werden."
 
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:819
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:855
 msgid "Describe the use case of your checkbox."
 msgstr "Beschreibe hier den Use-Case der Checkbox."
 
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:829
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:865
 msgid "Choose a label to be inserted next to the checkbox."
 msgstr ""
 "Wählen Sie eine Beschriftung aus, die neben der Checkbox platziert wird."
 
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:830
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:840
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:866
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:876
 #, php-format
 msgid "You may use one of the following placeholders within the text: %s"
 msgstr "Sie können einen der folgenden Platzhalter im Text verwenden: %s"
 
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:835
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:871
 msgid "Error Message"
 msgstr "Fehlermeldung"
 
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:839
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:875
 msgid ""
 "Choose an error message to be shown when the user has not confirmed the "
 "checkbox."
@@ -5532,25 +5540,25 @@ msgstr ""
 "Nutzer die Checkbox nicht bestätigt hat."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:845
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:881
 msgid "Hide input"
 msgstr "Ausblenden"
 
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:848
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:884
 msgid "Do only show a label and hide the actual checkbox."
 msgstr ""
 "Zeige lediglich die Beschriftung und entferne die eigentliche Checkbox."
 
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:856
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:892
 msgid "Mark the checkbox as mandatory."
 msgstr "Checkbox zum Pflichtfeld machen."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:861
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:897
 msgid "Locations"
 msgstr "Orte"
 
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:865
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox.php:901
 msgid "Choose where to display your checkbox."
 msgstr "Wählen Sie einen Ort aus, an dem die Checkbox platziert werden soll."
 
@@ -5975,8 +5983,8 @@ msgstr "Anrede"
 
 # @ woocommerce-germanized
 #: woocommerce-germanized/includes/class-wc-gzd-revocation.php:52
-#: woocommerce-germanized/includes/wc-gzd-core-functions.php:740
-#: woocommerce-germanized/includes/wc-gzd-core-functions.php:761
+#: woocommerce-germanized/includes/wc-gzd-core-functions.php:739
+#: woocommerce-germanized/includes/wc-gzd-core-functions.php:760
 msgid "Ms."
 msgstr "Frau"
 
@@ -6411,12 +6419,13 @@ msgstr "Lieferzeit"
 # @ woocommerce-germanized
 #: woocommerce-germanized/includes/export/class-wc-gzd-product-export.php:96
 msgctxt "exporter"
-msgid "Sale price label"
+msgid "Strike Price label"
 msgstr "Streichpreis Hinweis"
 
+# @ woocommerce-germanized
 #: woocommerce-germanized/includes/export/class-wc-gzd-product-export.php:97
 msgctxt "exporter"
-msgid "Sale price regular label"
+msgid "Sale Price label"
 msgstr "Angebotspreis Hinweis"
 
 #: woocommerce-germanized/includes/export/class-wc-gzd-product-export.php:98
@@ -7072,29 +7081,29 @@ msgid "Product Warranties"
 msgstr "Produktgarantien"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/wc-gzd-core-functions.php:576
+#: woocommerce-germanized/includes/wc-gzd-core-functions.php:575
 #, php-format
 msgid "%s%% VAT"
 msgstr "%s %% MwSt."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/wc-gzd-core-functions.php:738
-#: woocommerce-germanized/includes/wc-gzd-core-functions.php:768
+#: woocommerce-germanized/includes/wc-gzd-core-functions.php:737
+#: woocommerce-germanized/includes/wc-gzd-core-functions.php:767
 msgctxt "title-option"
 msgid "None"
 msgstr "Keine"
 
-#: woocommerce-germanized/includes/wc-gzd-core-functions.php:741
-#: woocommerce-germanized/includes/wc-gzd-core-functions.php:768
+#: woocommerce-germanized/includes/wc-gzd-core-functions.php:740
+#: woocommerce-germanized/includes/wc-gzd-core-functions.php:767
 msgid "Mx"
 msgstr "Divers"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/wc-gzd-core-functions.php:1022
+#: woocommerce-germanized/includes/wc-gzd-core-functions.php:1021
 msgid "More variants available"
 msgstr "Weitere Varianten verfügbar"
 
-#: woocommerce-germanized/includes/wc-gzd-core-functions.php:1435
+#: woocommerce-germanized/includes/wc-gzd-core-functions.php:1434
 #, php-format
 msgctxt "defect-descriptions"
 msgid "%1$s (%2$s)"
@@ -15698,6 +15707,23 @@ msgstr "vendidero"
 msgid "https://vendidero.de"
 msgstr "https://vendidero.de"
 
+#~ msgid "Sale Label"
+#~ msgstr "Regulärer Preishinweis"
+
+#~ msgid "Sale Regular Label"
+#~ msgstr "Neuer Preis Hinweis"
+
+# @ woocommerce-germanized
+#~ msgid "Default Sale Label"
+#~ msgstr "Standard-Streichpreis"
+
+#~ msgid "Fallback Regular Label"
+#~ msgstr "Standard-Angebotspreis"
+
+#~ msgctxt "exporter"
+#~ msgid "Sale price regular label"
+#~ msgstr "Angebotspreis Hinweis"
+
 #, php-format
 #~ msgctxt "dhl"
 #~ msgid ""
@@ -16815,10 +16841,6 @@ msgstr "https://vendidero.de"
 # @ woocommerce-germanized
 #~ msgid "Digital Delivery Time Text"
 #~ msgstr "Lieferzeit Digital"
-
-# @ woocommerce-germanized
-#~ msgid "Sale Price Labels"
-#~ msgstr "Preishinweise"
 
 #~ msgid "Default Sale Regular Label"
 #~ msgstr "Standard-Angebotspreis-Hinweis"

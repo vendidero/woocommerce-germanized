@@ -159,7 +159,7 @@ class WC_GZD_Settings_Tab_Shopmarks extends WC_GZD_Settings_Tab {
 						'next_url'     => admin_url( 'admin.php?page=wc-settings&tab=germanized-button_solution&tutorial=yes' ),
 						'next_trigger' => array(),
 						'options'      => array(
-							'content'  => '<h3>' . esc_html__( 'Default Sale Label', 'woocommerce-germanized' ) . '</h3><p>' . esc_html__( 'Price labels are added to sale products to inform the customers of the different prices\' meaning. You may add a fallback label in case a product does not contain a label.', 'woocommerce-germanized' ) . '</p>',
+							'content'  => '<h3>' . esc_html__( 'Default Price Label', 'woocommerce-germanized' ) . '</h3><p>' . esc_html__( 'Price labels are added to sale products to inform the customers of the different prices\' meaning. You may add a fallback label in case a product does not contain a label.', 'woocommerce-germanized' ) . '</p>',
 							'position' => array(
 								'edge'  => 'left',
 								'align' => 'left',
@@ -757,24 +757,24 @@ class WC_GZD_Settings_Tab_Shopmarks extends WC_GZD_Settings_Tab {
 				'id'    => 'price_label_options',
 			),
 			array(
-				'title'   => __( 'Fallback Sale Label', 'woocommerce-germanized' ),
+				'title'   => __( 'Fallback Strike Price Label', 'woocommerce-germanized' ),
 				'id'      => 'woocommerce_gzd_default_sale_price_label',
 				'css'     => 'min-width:250px;',
 				'default' => '',
 				'type'    => 'select',
 				'class'   => 'wc-enhanced-select',
 				'options' => $labels,
-				'desc'    => '<a href="' . esc_url( admin_url( 'edit-tags.php?taxonomy=product_price_label&post_type=product' ) ) . '">' . __( 'Manage Price Labels', 'woocommerce-germanized' ) . '</a><div class="wc-gzd-additional-desc">' . __( 'Choose whether you would like to have a default sale price label to inform the customer about the regular price (e.g. Recommended Retail Price).', 'woocommerce-germanized' ) . '</div>',
+				'desc'    => '<a href="' . esc_url( admin_url( 'edit-tags.php?taxonomy=product_price_label&post_type=product' ) ) . '">' . __( 'Manage Price Labels', 'woocommerce-germanized' ) . '</a><div class="wc-gzd-additional-desc">' . __( 'Choose whether you would like to have a default strike price label to inform the customer about the regular price (e.g. Recommended Retail Price).', 'woocommerce-germanized' ) . '</div>',
 			),
 			array(
-				'title'   => __( 'Fallback Regular Label', 'woocommerce-germanized' ),
+				'title'   => __( 'Fallback Sale Price Label', 'woocommerce-germanized' ),
 				'id'      => 'woocommerce_gzd_default_sale_price_regular_label',
 				'css'     => 'min-width:250px;',
 				'default' => '',
 				'type'    => 'select',
 				'class'   => 'wc-enhanced-select',
 				'options' => $labels,
-				'desc'    => '<a href="' . esc_url( admin_url( 'edit-tags.php?taxonomy=product_price_label&post_type=product' ) ) . '">' . __( 'Manage Price Labels', 'woocommerce-germanized' ) . '</a><div class="wc-gzd-additional-desc">' . __( 'Choose whether you would like to have a default sale price regular label to inform the customer about the sale price (e.g. New Price).', 'woocommerce-germanized' ) . '</div>',
+				'desc'    => '<a href="' . esc_url( admin_url( 'edit-tags.php?taxonomy=product_price_label&post_type=product' ) ) . '">' . __( 'Manage Price Labels', 'woocommerce-germanized' ) . '</a><div class="wc-gzd-additional-desc">' . __( 'Choose whether you would like to have a default sale price label to inform the customer about the sale price (e.g. New Price).', 'woocommerce-germanized' ) . '</div>',
 			),
 
 			array(

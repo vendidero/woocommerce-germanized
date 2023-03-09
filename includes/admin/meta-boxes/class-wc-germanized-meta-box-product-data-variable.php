@@ -211,7 +211,7 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 					'wrapper_class' => 'form-row form-row-first',
 					'id'            => "variable_sale_price_label_{$loop}",
 					'name'          => "variable_sale_price_label[{$loop}]",
-					'label'         => __( 'Sale Label', 'woocommerce-germanized' ),
+					'label'         => __( 'Strike Price Label', 'woocommerce-germanized' ),
 					'value'         => $gzd_product->get_sale_price_label( 'edit' ),
 					'options'       => array( '' => __( 'Same as Parent', 'woocommerce-germanized' ) ) + WC_germanized()->price_labels->get_labels(),
 				)
@@ -222,7 +222,7 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 					'wrapper_class' => 'form-row form-row-last',
 					'id'            => "variable_sale_price_regular_label_{$loop}",
 					'name'          => "variable_sale_price_regular_label[{$loop}]",
-					'label'         => __( 'Sale Regular Label', 'woocommerce-germanized' ),
+					'label'         => __( 'Sale Price Label', 'woocommerce-germanized' ),
 					'value'         => $gzd_product->get_sale_price_regular_label( 'edit' ),
 					'options'       => array( '' => __( 'Same as Parent', 'woocommerce-germanized' ) ) + WC_germanized()->price_labels->get_labels(),
 				)

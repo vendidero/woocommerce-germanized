@@ -418,7 +418,7 @@ class WC_Germanized_Meta_Box_Product_Data {
 		woocommerce_wp_select(
 			array(
 				'id'          => '_sale_price_label',
-				'label'       => __( 'Sale Label', 'woocommerce-germanized' ),
+				'label'       => __( 'Strike Price Label', 'woocommerce-germanized' ),
 				'options'     => array_merge( array( '-1' => __( 'Select Price Label', 'woocommerce-germanized' ) ), WC_germanized()->price_labels->get_labels() ),
 				'desc_tip'    => true,
 				'description' => __( 'If the product is on sale you may want to show a price label right before outputting the old price to inform the customer.', 'woocommerce-germanized' ),
@@ -428,7 +428,7 @@ class WC_Germanized_Meta_Box_Product_Data {
 		woocommerce_wp_select(
 			array(
 				'id'          => '_sale_price_regular_label',
-				'label'       => __( 'Sale Regular Label', 'woocommerce-germanized' ),
+				'label'       => __( 'Sale Price Label', 'woocommerce-germanized' ),
 				'options'     => array_merge( array( '-1' => __( 'Select Price Label', 'woocommerce-germanized' ) ), WC_germanized()->price_labels->get_labels() ),
 				'desc_tip'    => true,
 				'description' => __( 'If the product is on sale you may want to show a price label right before outputting the new price to inform the customer.', 'woocommerce-germanized' ),

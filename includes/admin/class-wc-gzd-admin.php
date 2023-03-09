@@ -550,6 +550,12 @@ class WC_GZD_Admin {
 		}
 
 		$option_value = $value['value'];
+		$placeholder  = __( 'Search for a term&hellip;', 'woocommerce-germanized' );
+
+		if ( $taxonomy = get_taxonomy( $value['taxonomy'] ) ) {
+			$labels      = get_taxonomy_labels( $taxonomy );
+			$placeholder = isset( $labels->search_items ) ? $labels->search_items . '&hellip;' : $placeholder;
+		}
 
 		if ( ! is_array( $option_value ) ) {
 			$option_value = array_filter( array( $option_value ) );
@@ -583,7 +589,7 @@ class WC_GZD_Admin {
 							}
 						}
 						?>
-						data-placeholder="<?php esc_attr_e( 'Search for a term&hellip;', 'woocommerce-germanized' ); ?>"
+						data-placeholder="<?php echo esc_attr( $placeholder ); ?>"
 						data-allow_clear="true"
 						data-taxonomy="<?php echo esc_attr( $value['taxonomy'] ); ?>"
 				>
