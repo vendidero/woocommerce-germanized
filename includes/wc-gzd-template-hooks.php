@@ -189,6 +189,11 @@ if ( 'yes' === get_option( 'woocommerce_gzd_differential_taxation_checkout_notic
 	add_action( 'woocommerce_review_order_after_order_total', 'woocommerce_gzd_template_differential_taxation_notice_cart', wc_gzd_get_hook_priority( 'checkout_small_business_info' ) );
 }
 
+// Photovoltaic systems
+if ( 'yes' === get_option( 'woocommerce_gzd_photovoltaic_systems_checkout_info' ) ) {
+	add_action( 'woocommerce_before_checkout_form', 'woocommerce_gzd_template_photovoltaic_systems_checkout_notice', 20 );
+}
+
 /**
  * Mini Cart
  */

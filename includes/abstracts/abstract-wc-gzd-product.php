@@ -584,7 +584,15 @@ class WC_GZD_Product {
 	}
 
 	public function is_service( $context = 'view' ) {
-		return $this->get_service( $context ) === true;
+		return true === $this->get_service( $context );
+	}
+
+	public function get_photovoltaic_system( $context = 'view' ) {
+		return wc_string_to_bool( $this->get_prop( 'photovoltaic_system', $context ) );
+	}
+
+	public function is_photovoltaic_system( $context = 'view' ) {
+		return true === $this->get_photovoltaic_system( $context );
 	}
 
 	public function get_used_good( $context = 'view' ) {
@@ -763,6 +771,10 @@ class WC_GZD_Product {
 
 	public function set_service( $service ) {
 		$this->set_prop( 'service', wc_bool_to_string( $service ) );
+	}
+
+	public function set_photovoltaic_system( $service ) {
+		$this->set_prop( 'photovoltaic_system', wc_bool_to_string( $service ) );
 	}
 
 	public function set_defective_copy( $is_defective_copy ) {

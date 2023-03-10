@@ -77,6 +77,7 @@ class WC_GZD_Product_Import {
 				'service'                  => array( $this, 'parse_bool_str' ),
 				'used_good'                => array( $this, 'parse_bool_str' ),
 				'defective_copy'           => array( $this, 'parse_bool_str' ),
+				'photovoltaic_system'      => array( $this, 'parse_bool_str' ),
 				'differential_taxation'    => array( $this, 'parse_bool_str' ),
 				'free_shipping'            => array( $this, 'parse_bool_str' ),
 				'delivery_time'            => array( $this, 'parse_delivery_time' ),

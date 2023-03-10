@@ -279,6 +279,12 @@ class WC_GZD_REST_Products_Controller {
 			'default'     => false,
 			'context'     => array( 'view', 'edit' ),
 		);
+		$schema_properties['photovoltaic_system']      = array(
+			'description' => __( 'Whether this product is a photovoltaic system or not', 'woocommerce-germanized' ),
+			'type'        => 'boolean',
+			'default'     => false,
+			'context'     => array( 'view', 'edit' ),
+		);
 		$schema_properties['differential_taxation']    = array(
 			'description' => __( 'Whether this product applies for differential taxation or not', 'woocommerce-germanized' ),
 			'type'        => 'boolean',
@@ -531,6 +537,12 @@ class WC_GZD_REST_Products_Controller {
 		);
 		$schema_properties['variations']['items']['properties']['defective_copy']           = array(
 			'description' => __( 'Whether this product is a defective copy or not', 'woocommerce-germanized' ),
+			'type'        => 'boolean',
+			'default'     => false,
+			'context'     => array( 'view', 'edit' ),
+		);
+		$schema_properties['variations']['items']['properties']['photovoltaic_system']      = array(
+			'description' => __( 'Whether this product is a photovoltaic system or not', 'woocommerce-germanized' ),
 			'type'        => 'boolean',
 			'default'     => false,
 			'context'     => array( 'view', 'edit' ),
@@ -792,7 +804,7 @@ class WC_GZD_REST_Products_Controller {
 			$data['_warranty_attachment_id'] = $gzd_product->get_warranty_attachment_id();
 		}
 
-		foreach ( array( 'free_shipping', 'service', 'differential_taxation', 'used_good', 'defective_copy', 'is_food' ) as $bool_meta ) {
+		foreach ( array( 'free_shipping', 'service', 'differential_taxation', 'used_good', 'defective_copy', 'is_food', 'photovoltaic_system' ) as $bool_meta ) {
 			if ( isset( $request[ $bool_meta ] ) ) {
 				if ( ! empty( $request[ $bool_meta ] ) ) {
 					$data[ "_{$bool_meta}" ] = true;
@@ -1008,6 +1020,9 @@ class WC_GZD_REST_Products_Controller {
 
 		// Is defective copy?
 		$data['defective_copy'] = $gzd_product->is_defective_copy( $context );
+
+		// Is photovoltaic system?
+		$data['photovoltaic_system'] = $gzd_product->is_photovoltaic_system( $context );
 
 		// Differential taxed?
 		$data['differential_taxation'] = $gzd_product->is_differential_taxed( $context );

@@ -583,6 +583,17 @@ if ( ! function_exists( 'woocommerce_gzd_template_checkout_edit_data_notice' ) )
 	}
 }
 
+if ( ! function_exists( 'woocommerce_gzd_template_photovoltaic_systems_checkout_notice' ) ) {
+
+	function woocommerce_gzd_template_photovoltaic_systems_checkout_notice() {
+		if ( wc_gzd_cart_applies_for_photovoltaic_system_vat_exemption() ) {
+			wc_get_template( 'checkout/photovoltaic-systems-notice.php' );
+		} elseif ( wc_gzd_cart_contains_photovoltaic_system() ) {
+			echo '<div class="wc-gzd-photovoltaic-systems-notice"></div>';
+		}
+	}
+}
+
 if ( ! function_exists( 'woocommerce_gzd_template_checkout_back_to_cart' ) ) {
 
 	/**

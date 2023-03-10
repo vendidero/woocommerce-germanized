@@ -20,6 +20,7 @@ class WC_GZD_Legal_Checkbox_Manager {
 		'review_reminder',
 		'used_goods_warranty',
 		'defective_copy',
+		'photovoltaic_systems',
 	);
 
 	public static function instance() {
@@ -115,7 +116,6 @@ class WC_GZD_Legal_Checkbox_Manager {
 	}
 
 	public function get_core_checkbox_ids() {
-
 		/**
 		 * Filter that returns the core checkbox ids.
 		 *
@@ -347,6 +347,27 @@ class WC_GZD_Legal_Checkbox_Manager {
 			)
 		);
 
+		if ( 'DE' === wc_gzd_get_base_country() ) {
+			wc_gzd_register_legal_checkbox(
+				'photovoltaic_systems',
+				array(
+					'html_id'              => 'photovoltaic_systems',
+					'html_name'            => 'photovoltaic_systems',
+					'html_wrapper_classes' => array( 'photovoltaic_systems' ),
+					'hide_input'           => false,
+					'label'                => __( 'I hereby confirm that I am aware of the requirements for VAT exemption (based on §12 paragraph 3 UStG) and that they are met for this order.', 'woocommerce-germanized' ),
+					'error_message'        => '',
+					'is_mandatory'         => false,
+					'is_shown'             => false,
+					'priority'             => 8,
+					'is_core'              => true,
+					'admin_name'           => __( 'Photovoltaic Systems', 'woocommerce-germanized' ),
+					'admin_desc'           => __( 'Let customers confirm that they are aware of the requirements for a VAT exemption.', 'woocommerce-germanized' ),
+					'locations'            => array( 'checkout', 'pay_for_order' ),
+				)
+			);
+		}
+
 		/**
 		 * After core checkbox registration.
 		 *
@@ -390,11 +411,12 @@ class WC_GZD_Legal_Checkbox_Manager {
 
 	protected function get_cart_product_data() {
 		$args = array(
-			'is_downloadable'      => false,
-			'is_service'           => false,
-			'has_defective_copies' => false,
-			'has_used_goods'       => false,
-			'product_category_ids' => array(),
+			'is_downloadable'        => false,
+			'is_service'             => false,
+			'is_photovoltaic_system' => false,
+			'has_defective_copies'   => false,
+			'has_used_goods'         => false,
+			'product_category_ids'   => array(),
 		);
 
 		if ( WC()->cart ) {
@@ -411,6 +433,10 @@ class WC_GZD_Legal_Checkbox_Manager {
 
 				if ( wc_gzd_get_product( $_product )->is_used_good() ) {
 					$args['has_used_goods'] = true;
+				}
+
+				if ( wc_gzd_get_product( $_product )->is_photovoltaic_system() ) {
+					$args['is_photovoltaic_system'] = true;
 				}
 
 				if ( wc_gzd_get_product( $_product )->is_defective_copy() ) {
@@ -435,17 +461,17 @@ class WC_GZD_Legal_Checkbox_Manager {
 			return;
 		}
 
-		$items            = $order->get_items();
-		$billing_country  = $order->get_billing_country();
-		$shipping_country = $order->get_shipping_country();
+		$items = $order->get_items();
 
 		$args = array(
 			'is_downloadable'        => false,
 			'is_service'             => false,
 			'has_defective_copies'   => false,
 			'has_used_goods'         => false,
+			'is_photovoltaic_system' => false,
 			'product_category_ids'   => array(),
-			'country'                => empty( $shipping_country ) ? $billing_country : $shipping_country,
+			'country'                => $order->get_shipping_country() ? $order->get_shipping_country() : $order->get_billing_country(),
+			'company'                => $order->get_shipping_company() ? $order->get_shipping_company() : $order->get_billing_company(),
 			'create_account'         => false,
 			'order'                  => $order,
 			'needs_age_verification' => wc_gzd_order_has_age_verification( $order_id ),
@@ -465,6 +491,10 @@ class WC_GZD_Legal_Checkbox_Manager {
 					$args['has_used_goods'] = true;
 				}
 
+				if ( wc_gzd_get_product( $_product )->is_photovoltaic_system() ) {
+					$args['is_photovoltaic_system'] = true;
+				}
+
 				if ( wc_gzd_get_product( $_product )->is_defective_copy() ) {
 					$args['has_defective_copies'] = true;
 				}
@@ -479,26 +509,10 @@ class WC_GZD_Legal_Checkbox_Manager {
 	}
 
 	public function show_conditionally_checkout() {
-		$billing_country  = WC()->checkout()->get_value( 'billing_country' );
-		$shipping_country = WC()->checkout()->get_value( 'shipping_country' );
-
-		/**
-		 * Use raw post data in case available as only certain billing/shipping address
-		 * specific data is available during AJAX requests in get_posted_data.
-		 */
-		if ( isset( $_POST['post_data'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
-			$posted = array();
-			parse_str( $_POST['post_data'], $posted ); // phpcs:ignore WordPress.Security.NonceVerification.Missing,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized,WordPress.Security.ValidatedSanitizedInput.MissingUnslash
-			$posted = wc_clean( wp_unslash( $posted ) );
-
-			$posted['createaccount'] = isset( $posted['createaccount'] ) ? true : false;
-		} else {
-			$posted = WC()->checkout()->get_posted_data();
-		}
-
 		$args = array(
-			'country'                => empty( $shipping_country ) ? $billing_country : $shipping_country,
-			'create_account'         => isset( $posted['createaccount'] ) ? $posted['createaccount'] : false,
+			'country'                => WC_GZD_Checkout::instance()->get_checkout_value( 'shipping_country' ) ? WC_GZD_Checkout::instance()->get_checkout_value( 'shipping_country' ) : WC_GZD_Checkout::instance()->get_checkout_value( 'billing_country' ),
+			'company'                => WC_GZD_Checkout::instance()->get_checkout_value( 'shipping_company' ) ? WC_GZD_Checkout::instance()->get_checkout_value( 'shipping_company' ) : WC_GZD_Checkout::instance()->get_checkout_value( 'shipping_company' ),
+			'create_account'         => WC_GZD_Checkout::instance()->get_checkout_value( 'createaccount' ) ? WC_GZD_Checkout::instance()->get_checkout_value( 'createaccount' ) : false,
 			'needs_age_verification' => WC()->cart && wc_gzd_cart_needs_age_verification(),
 		);
 
@@ -515,8 +529,10 @@ class WC_GZD_Legal_Checkbox_Manager {
 				'is_service'             => false,
 				'has_defective_copies'   => false,
 				'has_used_goods'         => false,
+				'is_photovoltaic_system' => false,
 				'product_category_ids'   => array(),
 				'country'                => '',
+				'company'                => '',
 				'create_account'         => false,
 				'order'                  => false,
 				'needs_age_verification' => false,
@@ -621,7 +637,14 @@ class WC_GZD_Legal_Checkbox_Manager {
 					}
 				}
 
-				if ( $checkbox->get_show_for_countries() || $checkbox->get_show_for_categories() ) {
+				if ( 'photovoltaic_systems' === $checkbox_id && true === $args['is_photovoltaic_system'] && 'DE' === $args['country'] && empty( $args['company'] ) && 'DE' === wc_gzd_get_base_country() ) {
+					$checkbox_args['is_shown'] = true;
+				}
+
+				/**
+				 * Do only apply global hide/show logic in case the checkbox is visible by default
+				 */
+				if ( $checkbox_args['is_shown'] && ( $checkbox->get_show_for_countries() || $checkbox->get_show_for_categories() ) ) {
 					$show_for_country_is_valid    = $checkbox->get_show_for_countries() ? false : true;
 					$show_for_categories_is_valid = $checkbox->get_show_for_categories() ? false : true;
 

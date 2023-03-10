@@ -54,7 +54,7 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 		} elseif ( 'toggle_' === substr( $bulk_action, 0, 7 ) ) {
 			$type = substr( $bulk_action, 7 );
 
-			if ( in_array( $type, array( 'service', 'used_good', 'defective_copy' ), true ) ) {
+			if ( in_array( $type, array( 'service', 'used_good', 'defective_copy', 'photovoltaic_system' ), true ) ) {
 				self::bulk_action_variable_status_toggle( $variations, $type );
 			}
 		}
@@ -82,6 +82,12 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 						$gzd_variation->set_defective_copy( false );
 					} else {
 						$gzd_variation->set_defective_copy( true );
+					}
+				} elseif ( 'photovoltaic_system' === $type ) {
+					if ( $gzd_variation->is_photovoltaic_system( 'edit' ) ) {
+						$gzd_variation->set_photovoltaic_system( false );
+					} else {
+						$gzd_variation->set_photovoltaic_system( true );
 					}
 				}
 
@@ -155,16 +161,18 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 			<option value="toggle_service"><?php esc_html_e( 'Toggle &quot;Service&quot;', 'woocommerce-germanized' ); ?></option>
 			<option value="toggle_used_good"><?php esc_html_e( 'Toggle &quot;Used Good&quot;', 'woocommerce-germanized' ); ?></option>
 			<option value="toggle_defective_copy"><?php esc_html_e( 'Toggle &quot;Defective Copy&quot;', 'woocommerce-germanized' ); ?></option>
+			<option value="toggle_photovoltaic_system"><?php esc_html_e( 'Toggle &quot;Photovoltaic System&quot;', 'woocommerce-germanized' ); ?></option>
 		</optgroup>
 		<?php
 	}
 
 	public static function product_types( $loop, $variation_data, $variation ) {
-		$_product          = wc_get_product( $variation );
-		$gzd_product       = wc_gzd_get_product( $_product );
-		$is_service        = $gzd_product->get_service( 'edit' );
-		$is_used_good      = $gzd_product->get_used_good( 'edit' );
-		$is_defective_copy = $gzd_product->get_defective_copy( 'edit' );
+		$_product               = wc_get_product( $variation );
+		$gzd_product            = wc_gzd_get_product( $_product );
+		$is_service             = $gzd_product->get_service( 'edit' );
+		$is_used_good           = $gzd_product->get_used_good( 'edit' );
+		$is_defective_copy      = $gzd_product->get_defective_copy( 'edit' );
+		$is_photovoltaic_system = $gzd_product->get_photovoltaic_system( 'edit' );
 		?>
 		<label>
 			<input type="checkbox" class="checkbox variable_service" name="variable_service[<?php echo esc_attr( $loop ); ?>]" <?php checked( $is_service ? 'yes' : 'no', 'yes' ); ?> /> <?php esc_html_e( 'Service', 'woocommerce-germanized' ); ?>
@@ -174,6 +182,9 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 		</label>
 		<label>
 			<input type="checkbox" class="checkbox variable_defective_copy" name="variable_defective_copy[<?php echo esc_attr( $loop ); ?>]" <?php checked( $is_defective_copy ? 'yes' : 'no', 'yes' ); ?> /> <?php esc_html_e( 'Defective Copy', 'woocommerce-germanized' ); ?> <?php echo wc_help_tip( __( 'Product has defects.', 'woocommerce-germanized' ) ); ?>
+		</label>
+		<label>
+			<input type="checkbox" class="checkbox variable_photovoltaic_system" name="variable_photovoltaic_system[<?php echo esc_attr( $loop ); ?>]" <?php checked( $is_photovoltaic_system ? 'yes' : 'no', 'yes' ); ?> /> <?php esc_html_e( 'Photovoltaic System', 'woocommerce-germanized' ); ?> <?php echo wc_help_tip( __( 'Photovoltaic system for which the zero tax rate is available.', 'woocommerce-germanized' ) ); ?>
 		</label>
 		<?php
 	}
@@ -510,6 +521,7 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 			'_mini_desc'                                => '',
 			'_defect_description'                       => '',
 			'_service'                                  => '',
+			'_photovoltaic_system'                      => '',
 			'_used_good'                                => '',
 			'_defective_copy'                           => '',
 			'delivery_time'                             => '',

@@ -398,6 +398,14 @@ class WC_Germanized_Meta_Box_Product_Data {
 			'default'       => 'no',
 		);
 
+		$types['photovoltaic_system'] = array(
+			'id'            => '_photovoltaic_system',
+			'wrapper_class' => 'show_if_simple',
+			'label'         => __( 'Photovoltaic System', 'woocommerce-germanized' ),
+			'description'   => __( 'Photovoltaic system for which the zero tax rate is available.', 'woocommerce-germanized' ),
+			'default'       => 'no',
+		);
+
 		return $types;
 	}
 
@@ -766,6 +774,7 @@ class WC_Germanized_Meta_Box_Product_Data {
 			'_sale_price'                               => '',
 			'_free_shipping'                            => '',
 			'_service'                                  => '',
+			'_photovoltaic_system'                      => '',
 			'_used_good'                                => '',
 			'_defective_copy'                           => '',
 			'_differential_taxation'                    => '',
@@ -1216,6 +1225,9 @@ class WC_Germanized_Meta_Box_Product_Data {
 
 		// Is a service?
 		$gzd_product->set_service( isset( $data['_service'] ) ? 'yes' : 'no' );
+
+		// Is a service?
+		$gzd_product->set_photovoltaic_system( isset( $data['_photovoltaic_system'] ) ? 'yes' : 'no' );
 
 		// Is a used good?
 		$gzd_product->set_used_good( isset( $data['_used_good'] ) ? 'yes' : 'no' );

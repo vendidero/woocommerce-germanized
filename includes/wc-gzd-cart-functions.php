@@ -651,6 +651,66 @@ function wc_gzd_cart_product_units( $title, $cart_item, $cart_item_key = '' ) {
 	return wp_kses_post( $title );
 }
 
+function wc_gzd_cart_applies_for_photovoltaic_system_vat_exemption() {
+	if ( wc_gzd_cart_contains_photovoltaic_system() ) {
+		$country = WC_GZD_Checkout::instance()->get_checkout_value( 'shipping_country' ) ? WC_GZD_Checkout::instance()->get_checkout_value( 'shipping_country' ) : WC_GZD_Checkout::instance()->get_checkout_value( 'billing_country' );
+		$company = WC_GZD_Checkout::instance()->get_checkout_value( 'shipping_company' ) ? WC_GZD_Checkout::instance()->get_checkout_value( 'shipping_company' ) : WC_GZD_Checkout::instance()->get_checkout_value( 'shipping_company' );
+
+		if ( 'DE' === $country && 'DE' === wc_gzd_get_base_country() && empty( $company ) ) {
+			return true;
+		}
+	}
+
+	return false;
+}
+
+function wc_gzd_cart_contains_photovoltaic_system( $items = false ) {
+	$items                   = $items ? (array) $items : WC()->cart->get_cart();
+	$is_cart                 = true;
+	$has_photovoltaic_system = false;
+
+	if ( ! empty( $items ) ) {
+		foreach ( $items as $cart_item_key => $values ) {
+			$_product = false;
+
+			if ( is_a( $values, 'WC_Order_Item_Product' ) ) {
+				$_product = $values->get_product();
+				$is_cart  = false;
+			} elseif ( isset( $values['data'] ) ) {
+				$_product = apply_filters( 'woocommerce_cart_item_product', $values['data'], $values, $cart_item_key );
+			}
+
+			if ( $_product && wc_gzd_get_product( $_product )->is_photovoltaic_system() ) {
+				$has_photovoltaic_system = true;
+				break;
+			}
+		}
+	}
+
+	if ( ! $is_cart ) {
+		/**
+		 * Determines whether a photovoltaic system exists in the current order.
+		 *
+		 * @param bool $has_photovoltaic_system Whether the order includes a photovoltaic system or not.
+		 * @param array $items The order items.
+		 *
+		 * @since 3.12.0
+		 */
+		return apply_filters( 'woocommerce_gzd_order_contains_photovoltaic_system', $has_photovoltaic_system, $items );
+	} else {
+		/**
+		 * Determines whether a photovoltaic system exists in the current cart.
+		 *
+		 * @param bool $has_photovoltaic_system Whether the cart includes a photovoltaic system or not.
+		 * @param array $items The cart items.
+		 *
+		 * @since 3.12.0
+		 *
+		 */
+		return apply_filters( 'woocommerce_gzd_cart_contains_photovoltaic_system', $has_photovoltaic_system, $items );
+	}
+}
+
 function wc_gzd_cart_needs_age_verification( $items = false ) {
 	$items                  = $items ? (array) $items : WC()->cart->get_cart();
 	$is_cart                = true;

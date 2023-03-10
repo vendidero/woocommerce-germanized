@@ -19,7 +19,6 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @return mixed
  */
 function wc_gzd_cart_forwarding_fee_notice_filter( $total_rows, $order ) {
-
 	// Seems like it is a refund order other order type.
 	if ( ! is_callable( array( $order, 'get_payment_method' ) ) ) {
 		return $total_rows;
@@ -42,10 +41,22 @@ function wc_gzd_cart_forwarding_fee_notice_filter( $total_rows, $order ) {
 add_filter( 'woocommerce_get_order_item_totals', 'wc_gzd_cart_forwarding_fee_notice_filter', 1500, 2 );
 
 function wc_gzd_order_supports_parcel_delivery_reminder( $order_id ) {
-	$order = wc_get_order( $order_id );
+	if ( $order = wc_get_order( $order_id ) ) {
+		if ( 'yes' === $order->get_meta( '_parcel_delivery_opted_in', true ) ) {
+			return true;
+		}
+	}
 
-	if ( 'yes' === $order->get_meta( '_parcel_delivery_opted_in', true ) ) {
-		return true;
+	return false;
+}
+
+function wc_gzd_order_applies_for_photovoltaic_system_vat_exemption( $order_id ) {
+	if ( $order = wc_get_order( $order_id ) ) {
+		$country = $order->get_shipping_country() ? $order->get_shipping_country() : $order->get_billing_country();
+
+		if ( 'yes' === $order->get_meta( '_photovoltaic_systems_opted_in', true ) && 'DE' === $country && 'DE' === wc_gzd_get_base_country() ) {
+			return true;
+		}
 	}
 
 	return false;

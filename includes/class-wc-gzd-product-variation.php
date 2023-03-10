@@ -19,14 +19,15 @@ class WC_GZD_Product_Variation extends WC_GZD_Product {
 	protected $parent = null;
 
 	protected $gzd_variation_level_meta = array(
-		'unit_price'         => '',
-		'unit_price_regular' => '',
-		'unit_price_sale'    => '',
-		'unit_price_auto'    => '',
-		'service'            => '',
-		'used_good'          => '',
-		'defective_copy'     => '',
-		'defect_description' => '',
+		'unit_price'          => '',
+		'unit_price_regular'  => '',
+		'unit_price_sale'     => '',
+		'unit_price_auto'     => '',
+		'service'             => '',
+		'photovoltaic_system' => '',
+		'used_good'           => '',
+		'defective_copy'      => '',
+		'defect_description'  => '',
 	);
 
 	protected $gzd_variation_inherited_meta_data = array(

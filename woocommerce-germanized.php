@@ -1122,7 +1122,6 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 			global $wp;
 
 			if ( wp_script_is( 'wc-gzd-revocation' ) && ! in_array( 'wc-gzd-revocation', $this->localized_scripts, true ) && function_exists( 'WC' ) ) {
-
 				$this->localized_scripts[] = 'wc-gzd-revocation';
 				$wc_assets_path            = str_replace( array( 'http:', 'https:' ), '', WC()->plugin_url() ) . '/assets/';
 
@@ -1283,11 +1282,16 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 				$this->localized_scripts[] = 'wc-gzd-checkout';
 				$html_id                   = 'legal';
 				$hide_input                = false;
+				$photovoltaic_systems_id   = 'photovoltaic_systems';
 				$has_privacy_checkbox      = false;
 
 				if ( $checkbox = wc_gzd_get_legal_checkbox( 'terms' ) ) {
 					$html_id    = $checkbox->get_html_id();
 					$hide_input = $checkbox->hide_input();
+				}
+
+				if ( $checkbox = wc_gzd_get_legal_checkbox( 'photovoltaic_systems' ) ) {
+					$photovoltaic_systems_id = $checkbox->get_html_id();
 				}
 
 				if ( $checkbox = wc_gzd_get_legal_checkbox( 'privacy' ) ) {
@@ -1312,6 +1316,7 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 							'checkbox_id'                => $html_id,
 							'checkbox_hidden'            => $hide_input,
 							'has_privacy_checkbox'       => $has_privacy_checkbox,
+							'checkbox_photovoltaic_systems_id' => $photovoltaic_systems_id,
 							'mark_checkout_error_fields' => true,
 						)
 					)

@@ -165,7 +165,6 @@ function wc_gzd_needs_age_verification( $product ) {
  * @return bool
  */
 function wc_gzd_product_matches_extended_type( $types, $product ) {
-
 	if ( empty( $types ) ) {
 		return false;
 	}
@@ -190,6 +189,8 @@ function wc_gzd_product_matches_extended_type( $types, $product ) {
 				$matches_type = wc_gzd_get_product( $product )->is_used_good();
 			} elseif ( 'defective_copy' === $type ) {
 				$matches_type = wc_gzd_get_product( $product )->is_defective_copy();
+			} elseif ( 'photovoltaic_system' === $type ) {
+				$matches_type = wc_gzd_get_product( $product )->is_photovoltaic_system();
 			} else {
 				$getter = 'is_' . $type;
 				try {

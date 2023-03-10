@@ -706,7 +706,6 @@ class WC_GZD_Legal_Checkbox {
 
 		if ( $this->is_validateable() && $this->is_mandatory() ) {
 			if ( has_filter( "woocommerce_gzd_legal_checkbox_{$location}_{$id}_validate" ) ) {
-
 				/**
 				 * Filter whether a certain checkbox `$id` shall be validated for a certain
 				 * location `$location`.
@@ -745,7 +744,6 @@ class WC_GZD_Legal_Checkbox {
 	 * @return array
 	 */
 	public function get_data() {
-
 		$data = array(
 			'id' => $this->get_id(),
 		);

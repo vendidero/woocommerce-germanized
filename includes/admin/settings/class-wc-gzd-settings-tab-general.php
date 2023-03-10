@@ -26,18 +26,28 @@ class WC_GZD_Settings_Tab_General extends WC_GZD_Settings_Tab {
 	}
 
 	public function get_sections() {
-		return array(
+		$sections = array(
 			''               => __( 'Legal Pages', 'woocommerce-germanized' ),
 			'disputes'       => __( 'Dispute Resolution', 'woocommerce-germanized' ),
 			'small_business' => __( 'Small Businesses', 'woocommerce-germanized' ),
 			'checkout'       => __( 'Checkout', 'woocommerce-germanized' ),
 			'shop'           => __( 'Shop', 'woocommerce-germanized' ),
 		);
+
+		if ( 'DE' === wc_gzd_get_base_country() ) {
+			$sections = $sections + array(
+				'photovoltaic_systems' => __( 'Photovoltaic Systems', 'woocommerce-germanized' ),
+			);
+		}
+
+		return $sections;
 	}
 
 	public function get_section_description( $section ) {
 		if ( 'disputes' === $section ) {
 			return sprintf( __( 'Since Feb. 1 2017 regulations regarding alternative dispute resolution take effect. Further information regarding your duty to supply information can be found <a href="%s" target="_blank">here</a>.', 'woocommerce-germanized' ), 'http://shopbetreiber-blog.de/2017/01/05/streitschlichtung-neue-infopflichten-fuer-alle-online-haendler-ab-1-februar/' );
+		} elseif ( 'photovoltaic_systems' === $section ) {
+			return sprintf( __( 'Learn more about the <a href="%s" target="_blank">sale of photovoltaic systems</a> according to §12 paragraph 3 UStG.', 'woocommerce-germanized' ), 'https://www.bundesfinanzministerium.de/Content/DE/FAQ/foerderung-photovoltaikanlagen.html' );
 		}
 
 		return '';
@@ -483,6 +493,59 @@ class WC_GZD_Settings_Tab_General extends WC_GZD_Settings_Tab {
 		);
 	}
 
+	protected function get_photovoltaic_systems_settings() {
+		$settings = array(
+			array(
+				'title' => '',
+				'type'  => 'title',
+				'desc'  => '',
+				'id'    => 'photovoltaic_systems_options',
+			),
+
+			array(
+				'title'   => __( 'Checkout notice', 'woocommerce-germanized' ),
+				'desc'    => __( 'Show a checkout notice in case the current cart contains photovoltaic systems.', 'woocommerce-germanized' ) . '<div class="wc-gzd-additional-desc">' . sprintf( __( 'This note is only displayed if the zero tax rate is available, i.e. a delivery is made within Germany and a photovoltaic system exists in the current shopping cart.', 'woocommerce-germanized' ) ) . '</div>',
+				'id'      => 'woocommerce_gzd_photovoltaic_systems_checkout_info',
+				'default' => 'no',
+				'type'    => 'gzd_toggle',
+			),
+
+			array(
+				'title'   => __( 'Zero tax class', 'woocommerce-germanized' ),
+				'desc'    => '<div class="wc-gzd-additional-desc">' . sprintf( __( 'Choose your zero tax class to be applied for photovoltaic systems in case the customer confirmed the <a href="%s">checkbox</a> related to §12 paragraph 3 UStG.', 'woocommerce-germanized' ), esc_url( admin_url( 'admin.php?page=wc-settings&tab=germanized-checkboxes&checkbox_id=photovoltaic_systems' ) ) ) . '</div>',
+				'id'      => 'woocommerce_gzd_photovoltaic_systems_zero_tax_class',
+				'default' => \Vendidero\EUTaxHelper\Helper::get_tax_class_slugs()['zero'],
+				'type'    => 'select',
+				'options' => wc_get_product_tax_class_options(),
+			),
+		);
+
+		if ( wc_prices_include_tax() ) {
+			$settings = array_merge(
+				$settings,
+				array(
+					array(
+						'title'   => __( 'Net price', 'woocommerce-germanized' ),
+						'desc'    => __( 'Automatically charge the product\'s net price in case the customer is eligible for the zero tax rate.', 'woocommerce-germanized' ),
+						'id'      => 'woocommerce_gzd_photovoltaic_systems_net_price',
+						'default' => 'yes',
+						'type'    => 'gzd_toggle',
+					),
+				)
+			);
+		}
+
+		return array_merge(
+			$settings,
+			array(
+				array(
+					'type' => 'sectionend',
+					'id'   => 'photovoltaic_systems_options',
+				),
+			)
+		);
+	}
+
 	public function get_pointers() {
 		$current  = $this->get_current_section();
 		$pointers = array();
@@ -549,6 +612,8 @@ class WC_GZD_Settings_Tab_General extends WC_GZD_Settings_Tab {
 			$settings = $this->get_checkout_settings();
 		} elseif ( 'shop' === $current_section ) {
 			$settings = $this->get_shop_settings();
+		} elseif ( 'photovoltaic_systems' === $current_section ) {
+			$settings = $this->get_photovoltaic_systems_settings();
 		}
 
 		return $settings;

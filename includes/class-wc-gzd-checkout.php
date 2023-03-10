@@ -11,6 +11,8 @@ class WC_GZD_Checkout {
 
 	protected static $_instance = null;
 
+	protected $checkout_data = null;
+
 	public static function instance() {
 		if ( is_null( self::$_instance ) ) {
 			self::$_instance = new self();
@@ -38,7 +40,6 @@ class WC_GZD_Checkout {
 	}
 
 	public function __construct() {
-
 		add_action( 'init', array( $this, 'init_fields' ), 30 );
 
 		add_filter( 'woocommerce_billing_fields', array( $this, 'set_custom_fields' ), 0, 1 );
@@ -108,7 +109,7 @@ class WC_GZD_Checkout {
 		}
 
 		add_action( 'woocommerce_checkout_create_order', array( $this, 'order_meta' ), 5, 1 );
-		add_action( 'woocommerce_checkout_create_order', array( $this, 'order_parcel_delivery_data_transfer' ), 10, 2 );
+		add_action( 'woocommerce_checkout_create_order', array( $this, 'order_store_checkbox_data' ), 10, 2 );
 		add_action( 'woocommerce_checkout_create_order', array( $this, 'order_age_verification' ), 20, 2 );
 
 		// Make sure that, just like in Woo core, the order submit button gets refreshed
@@ -132,6 +133,110 @@ class WC_GZD_Checkout {
 		if ( 'never' !== get_option( 'woocommerce_gzd_checkout_validate_street_number' ) ) {
 			// Maybe force street number during checkout
 			add_action( 'woocommerce_after_checkout_validation', array( $this, 'maybe_force_street_number' ), 10, 2 );
+		}
+
+		add_action( 'woocommerce_before_calculate_totals', array( $this, 'maybe_adjust_photovoltaic_cart_data' ), 15 );
+		add_filter( 'woocommerce_update_order_review_fragments', array( $this, 'refresh_photovoltaic_systems_notice' ), 10, 1 );
+	}
+
+	public function get_checkout_value( $key ) {
+		$value = null;
+
+		if ( is_null( $this->checkout_data ) ) {
+			/**
+			 * Use raw post data in case available as only certain billing/shipping address
+			 * specific data is available during AJAX requests in get_posted_data.
+			 */
+			if ( isset( $_POST['post_data'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
+				$posted = array();
+				parse_str( $_POST['post_data'], $posted ); // phpcs:ignore WordPress.Security.NonceVerification.Missing,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized,WordPress.Security.ValidatedSanitizedInput.MissingUnslash
+				$this->checkout_data = wc_clean( wp_unslash( $posted ) );
+			} elseif ( isset( $_POST['woocommerce-process-checkout-nonce'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
+				$this->checkout_data = WC()->checkout()->get_posted_data();
+			}
+		}
+
+		/**
+		 * Fallback to customer data (or posted data in case available).
+		 */
+		if ( null === $value ) {
+			$value = WC()->checkout()->get_value( $key );
+		}
+
+		/**
+		 * If checkout data is available - for overriding
+		 */
+		if ( $this->checkout_data ) {
+			$value = isset( $this->checkout_data[ $key ] ) ? $this->checkout_data[ $key ] : null;
+
+			/**
+			 * Do only allow retrieving shipping-related data in case shipping address is activated
+			 */
+			if ( 'shipping_' === substr( $key, 0, 9 ) ) {
+				if ( ! isset( $this->checkout_data['ship_to_different_address'] ) || ! $this->checkout_data['ship_to_different_address'] || wc_ship_to_billing_address_only() ) {
+					$value = null;
+				}
+			}
+		}
+
+		return $value;
+	}
+
+	public function refresh_photovoltaic_systems_notice( $fragments ) {
+		$fragments['.wc-gzd-photovoltaic-systems-notice'] = '';
+
+		if ( 'yes' === get_option( 'woocommerce_gzd_photovoltaic_systems_checkout_info' ) ) {
+			if ( wc_gzd_cart_applies_for_photovoltaic_system_vat_exemption() ) {
+				ob_start();
+				woocommerce_gzd_template_photovoltaic_systems_checkout_notice();
+				$html = ob_get_clean();
+
+				$fragments['.wc-gzd-photovoltaic-systems-notice'] = $html;
+			} elseif ( wc_gzd_cart_contains_photovoltaic_system() ) {
+				$fragments['.wc-gzd-photovoltaic-systems-notice'] = '<div class="wc-gzd-photovoltaic-systems-notice"></div>';
+			}
+		}
+
+		return $fragments;
+	}
+
+	/**
+	 * @param WC_Cart $cart
+	 *
+	 * @return void
+	 */
+	public function maybe_adjust_photovoltaic_cart_data( $cart ) {
+		if ( 'DE' !== wc_gzd_get_base_country() ) {
+			return;
+		}
+
+		if ( $checkbox = wc_gzd_get_legal_checkbox( 'photovoltaic_systems' ) ) {
+			if ( $checkbox->is_enabled() ) {
+				$value   = self::instance()->get_checkout_value( $checkbox->get_html_name() ) ? self::instance()->get_checkout_value( $checkbox->get_html_name() ) : '';
+				$visible = ! empty( self::instance()->get_checkout_value( $checkbox->get_html_name() . '-field' ) ) ? true : false;
+
+				if ( $visible && ! empty( $value ) && wc_gzd_cart_applies_for_photovoltaic_system_vat_exemption() ) {
+					foreach ( $cart->get_cart() as $cart_item_key => $values ) {
+						$_product = apply_filters( 'woocommerce_cart_item_product', $values['data'], $values, $cart_item_key );
+
+						if ( wc_gzd_get_product( $_product )->is_photovoltaic_system() ) {
+							if ( wc_prices_include_tax() && 'yes' === get_option( 'woocommerce_gzd_photovoltaic_systems_net_price' ) ) {
+								$price         = $_product->get_price();
+								$excluding_tax = wc_get_price_excluding_tax(
+									$_product,
+									array(
+										'qty'   => 1,
+										'price' => $price,
+									)
+								);
+								$_product->set_price( $excluding_tax );
+							}
+
+							$_product->set_tax_class( get_option( 'woocommerce_gzd_photovoltaic_systems_zero_tax_class', 'zero-rate' ) );
+						}
+					}
+				}
+			}
 		}
 	}
 
@@ -325,7 +430,6 @@ class WC_GZD_Checkout {
 	}
 
 	public function refresh_order_submit( $fragments ) {
-
 		$args = array(
 			'include_nonce' => false,
 		);
@@ -348,39 +452,53 @@ class WC_GZD_Checkout {
 	 * @param WC_Order $order
 	 * @param $posted
 	 */
-	public function order_parcel_delivery_data_transfer( $order, $posted ) {
+	public function order_store_checkbox_data( $order, $posted ) {
 		if ( $checkbox = wc_gzd_get_legal_checkbox( 'parcel_delivery' ) ) {
+			if ( $checkbox->is_enabled() && $order->has_shipping_address() && wc_gzd_is_parcel_delivery_data_transfer_checkbox_enabled( wc_gzd_get_chosen_shipping_rates( array( 'value' => 'id' ) ) ) ) {
+				$selected = false;
 
-			if ( ! $checkbox->is_enabled() || ! $order->has_shipping_address() ) {
-				return;
+				if ( isset( $_POST[ $checkbox->get_html_name() ] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
+					$selected = true;
+				} elseif ( $checkbox->hide_input() ) {
+					$selected = true;
+				}
+
+				$order->update_meta_data( '_parcel_delivery_opted_in', $selected ? 'yes' : 'no' );
+
+				/**
+				 * Parcel delivery notification.
+				 *
+				 * Execute whenever the parcel delivery notification data is stored for a certain order.
+				 *
+				 * @param int $order_id The order id.
+				 * @param bool $selected True if the checkbox was checked. False otherwise.
+				 *
+				 * @since 1.7.2
+				 */
+				do_action( 'woocommerce_gzd_parcel_delivery_order_opted_in', $order->get_id(), $selected );
 			}
+		}
 
-			if ( ! wc_gzd_is_parcel_delivery_data_transfer_checkbox_enabled( wc_gzd_get_chosen_shipping_rates( array( 'value' => 'id' ) ) ) ) {
-				return;
+		if ( $checkbox = wc_gzd_get_legal_checkbox( 'photovoltaic_systems' ) ) {
+			if ( $checkbox->is_enabled() && wc_gzd_cart_contains_photovoltaic_system() ) {
+				$value   = WC()->checkout()->get_value( $checkbox->get_html_name() );
+				$visible = WC()->checkout()->get_value( $checkbox->get_html_name() . '-field' );
+
+				if ( ! empty( $visible ) && ! empty( $value ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
+					$order->update_meta_data( '_photovoltaic_systems_opted_in', 'yes' );
+
+					/**
+					 * Customer has opted in to the photovoltaic systems' checkbox.
+					 *
+					 * Execute whenever a customer has opted in to the photovoltaic systems' checkbox.
+					 *
+					 * @param int $order_id The order id.
+					 *
+					 * @since 3.12.0
+					 */
+					do_action( 'woocommerce_gzd_photovoltaic_systems_opted_in', $order->get_id() );
+				}
 			}
-
-			$selected = false;
-
-			if ( isset( $_POST[ $checkbox->get_html_name() ] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
-				$selected = true;
-			} elseif ( $checkbox->hide_input() ) {
-				$selected = true;
-			}
-
-			$order->update_meta_data( '_parcel_delivery_opted_in', $selected ? 'yes' : 'no' );
-
-			/**
-			 * Parcel delivery notification.
-			 *
-			 * Execute whenever the parcel delivery notification data is stored for a certain order.
-			 *
-			 * @param int $order_id The order id.
-			 * @param bool $selected True if the checkbox was checked. False otherwise.
-			 *
-			 * @since 1.7.2
-			 *
-			 */
-			do_action( 'woocommerce_gzd_parcel_delivery_order_opted_in', $order->get_id(), $selected );
 		}
 	}
 

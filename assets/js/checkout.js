@@ -33,6 +33,8 @@ window.germanized = window.germanized || {};
                 $( document ).on( 'change', 'input#createaccount', this.triggerCheckoutRefresh );
             }
 
+            $( document ).on( 'change', 'input#' + this.params.checkbox_photovoltaic_systems_id, this.triggerCheckoutRefresh );
+
             if ( this.params.checkbox_hidden ) {
                 this.maybeSetTermsCheckbox();
             } else {
