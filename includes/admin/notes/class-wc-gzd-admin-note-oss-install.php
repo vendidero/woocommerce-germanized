@@ -34,7 +34,7 @@ class WC_GZD_Admin_Note_OSS_Install extends WC_GZD_Admin_Note {
 	}
 
 	public function get_content() {
-		return __( 'We have determined that you either participate in the OSS procedure or have the delivery threshold monitored automatically. In the future, these functions will only be included in our separate One Stop Shop plugin, which you should install. Technically, nothing changes except that this is now a separate plugin that will not be included in future versions of Germanized.', 'woocommerce-germanized' );
+		return __( 'We have determined that you either participate in the OSS procedure or have the delivery threshold monitored automatically. These features are only included in our separate One Stop Shop plugin, which you should install. Technically, nothing changes except that this is now a separate plugin not included in Germanized.', 'woocommerce-germanized' );
 	}
 
 	protected function has_nonce_action() {

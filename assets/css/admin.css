@@ -265,6 +265,13 @@ table.wc-gzd-tax-example tr th:first-child, table.wc-gzd-tax-example tr td:first
     right: 3px;
     height: 36px; }
 
+.wc-gzd-dashicon {
+  text-indent: -9999px;
+  overflow: hidden; }
+  .wc-gzd-dashicon::before {
+    text-indent: 0;
+    display: block; }
+
 .wc-gzd-add-country-specific-delivery-time-template {
   display: none; }
 

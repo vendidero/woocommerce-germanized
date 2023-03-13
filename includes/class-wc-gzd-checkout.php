@@ -111,6 +111,7 @@ class WC_GZD_Checkout {
 		add_action( 'woocommerce_checkout_create_order', array( $this, 'order_meta' ), 5, 1 );
 		add_action( 'woocommerce_checkout_create_order', array( $this, 'order_store_checkbox_data' ), 10, 2 );
 		add_action( 'woocommerce_checkout_create_order', array( $this, 'order_age_verification' ), 20, 2 );
+		add_action( 'woocommerce_checkout_order_created', array( $this, 'add_order_notes' ), 20 );
 
 		// Make sure that, just like in Woo core, the order submit button gets refreshed
 		// Use a high priority to let other plugins do their adjustments beforehand
@@ -152,6 +153,9 @@ class WC_GZD_Checkout {
 				parse_str( $_POST['post_data'], $posted ); // phpcs:ignore WordPress.Security.NonceVerification.Missing,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized,WordPress.Security.ValidatedSanitizedInput.MissingUnslash
 				$this->checkout_data = wc_clean( wp_unslash( $posted ) );
 			} elseif ( isset( $_POST['woocommerce-process-checkout-nonce'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
+				/**
+				 * get_posted_data() does only include core Woo data, no third-party data included.
+				 */
 				$this->checkout_data = WC()->checkout()->get_posted_data();
 			}
 		}
@@ -164,10 +168,14 @@ class WC_GZD_Checkout {
 		}
 
 		/**
-		 * If checkout data is available - for overriding
+		 * If checkout data is available - force overriding
 		 */
 		if ( $this->checkout_data ) {
-			$value = isset( $this->checkout_data[ $key ] ) ? $this->checkout_data[ $key ] : null;
+			if ( isset( $_POST['woocommerce-process-checkout-nonce'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
+				$value = isset( $this->checkout_data[ $key ] ) ? $this->checkout_data[ $key ] : WC()->checkout()->get_value( $key );
+			} else {
+				$value = isset( $this->checkout_data[ $key ] ) ? $this->checkout_data[ $key ] : null;
+			}
 
 			/**
 			 * Do only allow retrieving shipping-related data in case shipping address is activated
@@ -215,7 +223,7 @@ class WC_GZD_Checkout {
 				$value   = self::instance()->get_checkout_value( $checkbox->get_html_name() ) ? self::instance()->get_checkout_value( $checkbox->get_html_name() ) : '';
 				$visible = ! empty( self::instance()->get_checkout_value( $checkbox->get_html_name() . '-field' ) ) ? true : false;
 
-				if ( $visible && ! empty( $value ) && wc_gzd_cart_applies_for_photovoltaic_system_vat_exemption() ) {
+				if ( $visible && ( ! empty( $value ) || $checkbox->hide_input() ) && wc_gzd_cart_applies_for_photovoltaic_system_vat_exemption() ) {
 					foreach ( $cart->get_cart() as $cart_item_key => $values ) {
 						$_product = apply_filters( 'woocommerce_cart_item_product', $values['data'], $values, $cart_item_key );
 
@@ -484,7 +492,7 @@ class WC_GZD_Checkout {
 				$value   = WC()->checkout()->get_value( $checkbox->get_html_name() );
 				$visible = WC()->checkout()->get_value( $checkbox->get_html_name() . '-field' );
 
-				if ( ! empty( $visible ) && ! empty( $value ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
+				if ( $visible && ( ! empty( $value ) || $checkbox->hide_input() ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
 					$order->update_meta_data( '_photovoltaic_systems_opted_in', 'yes' );
 
 					/**
@@ -497,8 +505,29 @@ class WC_GZD_Checkout {
 					 * @since 3.12.0
 					 */
 					do_action( 'woocommerce_gzd_photovoltaic_systems_opted_in', $order->get_id() );
+				} else {
+					$order->update_meta_data( '_photovoltaic_systems_opted_in', 'no' );
 				}
 			}
+		}
+	}
+
+	/**
+	 * @param WC_Order $order
+	 *
+	 * @return void
+	 */
+	public function add_order_notes( $order ) {
+		if ( 'yes' === $order->get_meta( '_parcel_delivery_opted_in' ) ) {
+			$order->add_order_note( __( 'The customer has opted-in to the parcel delivery checkbox.', 'woocommerce-germanized' ) );
+		}
+
+		if ( 'yes' === $order->get_meta( '_photovoltaic_systems_opted_in' ) ) {
+			$order->add_order_note( __( 'This order applies for a photovoltaic systems VAT exemption.', 'woocommerce-germanized' ) );
+		}
+
+		if ( $order->get_meta( '_min_age' ) ) {
+			$order->add_order_note( sprintf( __( 'A minimum age of %s years is required for this order.', 'woocommerce-germanized' ), wc_gzd_get_order_min_age( $order ) ) );
 		}
 	}
 

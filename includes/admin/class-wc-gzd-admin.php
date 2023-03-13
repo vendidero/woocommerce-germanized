@@ -63,7 +63,7 @@ class WC_GZD_Admin {
 			'woocommerce_admin_order_data_after_shipping_address',
 			array(
 				$this,
-				'set_order_parcel_delivery_opted_in',
+				'show_checkbox_status',
 			),
 			10,
 			1
@@ -722,15 +722,18 @@ class WC_GZD_Admin {
 	/**
 	 * @param WC_Order $order
 	 */
-	public function set_order_parcel_delivery_opted_in( $order ) {
-		if ( ! $order->get_meta( '_parcel_delivery_opted_in' ) ) {
-			return;
+	public function show_checkbox_status( $order ) {
+		if ( $order->get_meta( '_parcel_delivery_opted_in' ) ) {
+			?>
+			<p class="parcel-delivery-checkbox-status"><strong><?php esc_html_e( 'Parcel Delivery Data Transfer?', 'woocommerce-germanized' ); ?></strong><span><?php echo( wc_gzd_order_supports_parcel_delivery_reminder( $order->get_id() ) ? '<span class="dashicons dashicons-yes wc-gzd-dashicon">' . esc_html__( 'Allowed', 'woocommerce-germanized' ) . '</span>' : '<span class="dashicons dashicons-no-alt wc-gzd-dashicon">' . esc_html__( 'Not Allowed', 'woocommerce-germanized' ) . '</span>' ); ?></span></p>
+			<?php
 		}
-		?>
-		<p class="parcel-delivery-checkbox-status"><strong style="display: block;"><?php esc_html_e( 'Parcel Delivery Data Transfer:', 'woocommerce-germanized' ); ?></strong>
-			<span><?php echo( wc_gzd_order_supports_parcel_delivery_reminder( $order->get_id() ) ? esc_html__( 'allowed', 'woocommerce-germanized' ) : esc_html__( 'not allowed', 'woocommerce-germanized' ) ); ?></span>
-		</p>
-		<?php
+
+		if ( $order->get_meta( '_photovoltaic_systems_opted_in' ) ) {
+			?>
+			<p class="photovoltaic-systems-checkbox-status"><strong><?php esc_html_e( 'Photovoltaic Systems VAT exemption?', 'woocommerce-germanized' ); ?></strong><span><?php echo( wc_gzd_order_applies_for_photovoltaic_system_vat_exemption( $order->get_id() ) ? '<span class="dashicons dashicons-yes wc-gzd-dashicon">' . esc_html__( 'Allowed', 'woocommerce-germanized' ) . '</span>' : '<span class="dashicons dashicons-no-alt wc-gzd-dashicon">' . esc_html__( 'Not Allowed', 'woocommerce-germanized' ) . '</span>' ); ?></span></p>
+			<?php
+		}
 	}
 
 	public function set_addon( $products, $section_id ) {

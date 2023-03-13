@@ -47,7 +47,7 @@ class WC_GZD_Settings_Tab_General extends WC_GZD_Settings_Tab {
 		if ( 'disputes' === $section ) {
 			return sprintf( __( 'Since Feb. 1 2017 regulations regarding alternative dispute resolution take effect. Further information regarding your duty to supply information can be found <a href="%s" target="_blank">here</a>.', 'woocommerce-germanized' ), 'http://shopbetreiber-blog.de/2017/01/05/streitschlichtung-neue-infopflichten-fuer-alle-online-haendler-ab-1-februar/' );
 		} elseif ( 'photovoltaic_systems' === $section ) {
-			return sprintf( __( 'Learn more about the <a href="%s" target="_blank">sale of photovoltaic systems</a> according to §12 paragraph 3 UStG.', 'woocommerce-germanized' ), 'https://www.bundesfinanzministerium.de/Content/DE/FAQ/foerderung-photovoltaikanlagen.html' );
+			return sprintf( __( 'Learn more about the <a href="%s" target="_blank">sale of photovoltaic systems</a> according to §12 paragraph 3 UStG.', 'woocommerce-germanized' ), 'https://vendidero.de/photovoltaikanlagen-in-woocommerce-verkaufen-so-funktionierts' );
 		}
 
 		return '';

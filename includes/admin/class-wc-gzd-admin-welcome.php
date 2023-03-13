@@ -138,6 +138,29 @@ class WC_GZD_Admin_Welcome {
 				<a href="https://vendidero.de/woocommerce-germanized#upgrade" target="_blank" class="button wc-gzd-button wc-germanized-welcome-pro">Upgrade zur <span class="wc-gzd-pro wc-gzd-pro-outlined">pro</span> Version</a>
 			</p>
 
+			<?php if ( 'DE' === wc_gzd_get_base_country() ) : ?>
+				<div class="changelog new-feature">
+					<h3>Photovoltaikanlagen zum Nullsteuersatz verkaufen</h3>
+
+					<div class="columns two-col">
+						<div class="col">
+							<p>
+								In der neuesten Version von Germanized unterstützen wir dich beim Verkauf von Photovoltaikanlagen nach §12 Absatz 3 UStG. Damit der Nullsteuersatz automatisch
+								für deine Photovoltaikanlage(n) angewendet wird, müssen einige Bedingungen erfüllt sein: Die Lieferung muss innerhalb Deutschlands erfolgen, der Kunde hat keine
+								Firmenanschrift gewählt und die speziell im Checkout hinzugefügte <a href="<?php echo esc_url( admin_url( 'admin.php?page=wc-settings&tab=germanized-checkboxes&checkbox_id=photovoltaic_systems' ) ); ?>">Checkbox</a> muss akzeptiert werden.
+							</p>
+
+							<div class="wc-gzd-actions wc-gzd-actions-right">
+								<a href="https://vendidero.de/photovoltaikanlagen-in-woocommerce-verkaufen-so-funktionierts" target="_blank" class="wc-gzd-button button button-primary">Mehr erfahren</a>
+								<a href="<?php echo esc_url( admin_url( 'admin.php?page=wc-settings&tab=germanized-general&section=photovoltaic_systems' ) ); ?>" class="wc-gzd-default-button button button-primary">Einstellungen anpassen</a>
+							</div>
+						</div>
+						<div class="col col-center">
+							<img src="<?php echo esc_url( WC_germanized()->plugin_url() ); ?>/assets/images/photovoltaic-systems.png" style="max-width: 450px;"/>
+						</div>
+					</div>
+				</div>
+			<?php endif; ?>
 			<div class="changelog new-feature">
 				<h3>GLS Labels zu Sendungen erstellen <span class="wc-gzd-pro wc-gzd-pro-outlined">pro</span></h3>
 

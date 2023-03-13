@@ -466,7 +466,9 @@ class WC_GZD_Legal_Checkbox {
 	}
 
 	public function set_show_for_categories( $category_ids ) {
-		$this->settings['show_for_categories'] = array_map( 'absint', (array) $category_ids );
+		$category_ids = array_map( 'absint', (array) $category_ids );
+
+		$this->settings['show_for_categories'] = array_filter( $category_ids );
 	}
 
 	public function show_for_category( $category_id ) {
@@ -487,7 +489,9 @@ class WC_GZD_Legal_Checkbox {
 	}
 
 	public function set_show_for_countries( $countries ) {
-		$this->settings['show_for_countries'] = (array) $countries;
+		$countries = (array) $countries;
+
+		$this->settings['show_for_countries'] = array_filter( $countries );
 	}
 
 	/**

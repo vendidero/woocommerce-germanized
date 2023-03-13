@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fb8d136817c61cb15ef966b60cb15b0f",
+    "content-hash": "b6f08ff6a6f13e7ade564aebfde49273",
     "packages": [
         {
             "name": "automattic/jetpack-autoloader",
@@ -753,70 +753,6 @@
             "time": "2023-02-09T10:38:43+00:00"
         },
         {
-            "name": "vendidero/one-stop-shop-woocommerce",
-            "version": "1.3.7",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/vendidero/one-stop-shop-woocommerce.git",
-                "reference": "cbe090b13dd9e09504ded9e7ac24f41d6dba430c"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/vendidero/one-stop-shop-woocommerce/zipball/cbe090b13dd9e09504ded9e7ac24f41d6dba430c",
-                "reference": "cbe090b13dd9e09504ded9e7ac24f41d6dba430c",
-                "shasum": ""
-            },
-            "require": {
-                "automattic/jetpack-autoloader": "^2.6.0",
-                "composer/installers": "^1.9.0",
-                "vendidero/woocommerce-eu-tax-helper": "1.0.6"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "6.5.14",
-                "woocommerce/woocommerce-sniffs": "^0.1.3"
-            },
-            "type": "wordpress-plugin",
-            "extra": {
-                "installer-paths": {
-                    "libs/woocommerce-eu-tax-helper": [
-                        "vendidero/woocommerce-eu-tax-helper"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Vendidero\\OneStopShop\\": "src"
-                }
-            },
-            "scripts": {
-                "post-install-cmd": [
-                    "sh ./bin/package-update.sh"
-                ],
-                "post-update-cmd": [
-                    "sh ./bin/package-update.sh"
-                ],
-                "phpcs": [
-                    "phpcs -s -p"
-                ],
-                "phpcs-pre-commit": [
-                    "phpcs -s -p -n"
-                ],
-                "phpcbf": [
-                    "phpcbf -p"
-                ]
-            },
-            "license": [
-                "GPL-3.0-or-later"
-            ],
-            "description": "One Stop Shop Helper for WooCommerce",
-            "homepage": "https://github.com/vendidero/one-stop-shop-woocommerce",
-            "support": {
-                "source": "https://github.com/vendidero/one-stop-shop-woocommerce/tree/v1.3.7",
-                "issues": "https://github.com/vendidero/one-stop-shop-woocommerce/issues"
-            },
-            "time": "2023-03-10T12:49:45+00:00"
-        },
-        {
             "name": "vendidero/woocommerce-eu-tax-helper",
             "version": "1.0.6",
             "source": {
@@ -990,61 +926,6 @@
                 "issues": "https://github.com/vendidero/woocommerce-germanized-shipments/issues"
             },
             "time": "2023-03-06T15:10:23+00:00"
-        },
-        {
-            "name": "vendidero/woocommerce-trusted-shops",
-            "version": "v4.0.16",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/vendidero/woocommerce-trusted-shops.git",
-                "reference": "0e5c89a740991c6f51dab2a3089df25047ab3ea8"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/vendidero/woocommerce-trusted-shops/zipball/0e5c89a740991c6f51dab2a3089df25047ab3ea8",
-                "reference": "0e5c89a740991c6f51dab2a3089df25047ab3ea8",
-                "shasum": ""
-            },
-            "require": {
-                "automattic/jetpack-autoloader": "^2.2.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "6.5.14",
-                "woocommerce/woocommerce-sniffs": "^0.1.3"
-            },
-            "type": "wordpress-plugin",
-            "autoload": {
-                "psr-4": {
-                    "Vendidero\\TrustedShops\\": "src"
-                }
-            },
-            "scripts": {
-                "post-install-cmd": [
-                    "composer dump-autoload"
-                ],
-                "post-update-cmd": [
-                    "composer dump-autoload"
-                ],
-                "phpcs": [
-                    "phpcs -s -p"
-                ],
-                "phpcs-pre-commit": [
-                    "phpcs -s -p -n"
-                ],
-                "phpcbf": [
-                    "phpcbf -p"
-                ]
-            },
-            "license": [
-                "GPL-3.0-or-later"
-            ],
-            "description": "Trustbadge Reviews for WooCommerce.",
-            "homepage": "https://github.com/vendidero/woocommerce-trusted-shops",
-            "support": {
-                "source": "https://github.com/vendidero/woocommerce-trusted-shops/tree/v4.0.16",
-                "issues": "https://github.com/vendidero/woocommerce-trusted-shops/issues"
-            },
-            "time": "2022-08-15T08:15:17+00:00"
         },
         {
             "name": "wsdltophp/wssecurity",

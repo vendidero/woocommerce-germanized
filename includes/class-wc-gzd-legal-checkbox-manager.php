@@ -511,7 +511,7 @@ class WC_GZD_Legal_Checkbox_Manager {
 	public function show_conditionally_checkout() {
 		$args = array(
 			'country'                => WC_GZD_Checkout::instance()->get_checkout_value( 'shipping_country' ) ? WC_GZD_Checkout::instance()->get_checkout_value( 'shipping_country' ) : WC_GZD_Checkout::instance()->get_checkout_value( 'billing_country' ),
-			'company'                => WC_GZD_Checkout::instance()->get_checkout_value( 'shipping_company' ) ? WC_GZD_Checkout::instance()->get_checkout_value( 'shipping_company' ) : WC_GZD_Checkout::instance()->get_checkout_value( 'shipping_company' ),
+			'company'                => WC_GZD_Checkout::instance()->get_checkout_value( 'shipping_company' ) ? WC_GZD_Checkout::instance()->get_checkout_value( 'shipping_company' ) : WC_GZD_Checkout::instance()->get_checkout_value( 'billing_company' ),
 			'create_account'         => WC_GZD_Checkout::instance()->get_checkout_value( 'createaccount' ) ? WC_GZD_Checkout::instance()->get_checkout_value( 'createaccount' ) : false,
 			'needs_age_verification' => WC()->cart && wc_gzd_cart_needs_age_verification(),
 		);

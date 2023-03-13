@@ -34,7 +34,7 @@ class WC_GZD_Admin_Note_TS_Install extends WC_GZD_Admin_Note {
 	}
 
 	public function get_content() {
-		return __( 'You seem to be using our Trusted Shops integration. This integration will no longer be supported by Germanized and will be removed in future updates. Therefor we strongly encourage you to migrate to the new integration. By doing so, we will automatically install the separate Trusted Shops Easy Integration Plugin for WooCommerce.', 'woocommerce-germanized' );
+		return __( 'You seem to be using our Trusted Shops integration. This integration is no longer supported by Germanized. Therefor we strongly encourage you to migrate to the new integration. By doing so, we will automatically install the separate Trusted Shops Easy Integration Plugin for WooCommerce.', 'woocommerce-germanized' );
 	}
 
 	protected function has_nonce_action() {

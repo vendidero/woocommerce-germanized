@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Germanized for WooCommerce 3.3.4\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/woocommerce-germanized\n"
-"POT-Creation-Date: 2023-03-10 13:54+0100\n"
+"POT-Creation-Date: 2023-03-13 11:49+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -231,7 +231,7 @@ msgstr ""
 #: woocommerce-germanized/includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:178
 #: woocommerce-germanized/includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:364
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:535
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:193
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:194
 msgid "Service"
 msgstr ""
 
@@ -285,7 +285,7 @@ msgstr ""
 
 #: woocommerce-germanized/includes/admin/class-wc-gzd-admin-product-categories.php:58
 #: woocommerce-germanized/includes/admin/class-wc-gzd-admin-product-categories.php:79
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:235
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:236
 msgid "Age Verification"
 msgstr ""
 
@@ -638,7 +638,7 @@ msgid "Cart description"
 msgstr ""
 
 #: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:901
-#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:544
+#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:556
 msgid "Defect description"
 msgstr ""
 
@@ -655,7 +655,7 @@ msgstr ""
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:239
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:293
 #: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:180
-#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:570
+#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:582
 #: woocommerce-germanized/includes/compatibility/elementor/widgets/class-wc-gzd-elementor-widget-product-unit-price.php:10
 msgid "Unit Price"
 msgstr ""
@@ -676,7 +676,7 @@ msgstr ""
 #: woocommerce-germanized/includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:598
 #: woocommerce-germanized/includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:603
 #: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:43
-#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:446
+#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:452
 #: woocommerce-germanized/includes/compatibility/elementor/widgets/class-wc-gzd-elementor-widget-product-delivery-time.php:10
 msgid "Delivery Time"
 msgstr ""
@@ -856,7 +856,7 @@ msgstr ""
 #: woocommerce-germanized/includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:412
 #: woocommerce-germanized/includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:534
 #: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:253
-#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:560
+#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:572
 msgid "GTIN"
 msgstr ""
 
@@ -868,7 +868,7 @@ msgstr ""
 #: woocommerce-germanized/includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:426
 #: woocommerce-germanized/includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:545
 #: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:259
-#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:565
+#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:577
 msgid "MPN"
 msgstr ""
 
@@ -911,7 +911,7 @@ msgstr ""
 
 #: woocommerce-germanized/includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:473
 #: woocommerce-germanized/includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:72
-#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:302
+#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:308
 msgid "Deposit Type"
 msgstr ""
 
@@ -1179,7 +1179,7 @@ msgid "OSS plugin is missing"
 msgstr ""
 
 #: woocommerce-germanized/includes/admin/notes/class-wc-gzd-admin-note-oss-install.php:37
-msgid "We have determined that you either participate in the OSS procedure or have the delivery threshold monitored automatically. In the future, these functions will only be included in our separate One Stop Shop plugin, which you should install. Technically, nothing changes except that this is now a separate plugin that will not be included in future versions of Germanized."
+msgid "We have determined that you either participate in the OSS procedure or have the delivery threshold monitored automatically. These features are only included in our separate One Stop Shop plugin, which you should install. Technically, nothing changes except that this is now a separate plugin not included in Germanized."
 msgstr ""
 
 #: woocommerce-germanized/includes/admin/notes/class-wc-gzd-admin-note-oss-install.php:48
@@ -1286,7 +1286,7 @@ msgid "New Trusted Shops Integration"
 msgstr ""
 
 #: woocommerce-germanized/includes/admin/notes/class-wc-gzd-admin-note-ts-install.php:37
-msgid "You seem to be using our Trusted Shops integration. This integration will no longer be supported by Germanized and will be removed in future updates. Therefor we strongly encourage you to migrate to the new integration. By doing so, we will automatically install the separate Trusted Shops Easy Integration Plugin for WooCommerce."
+msgid "You seem to be using our Trusted Shops integration. This integration is no longer supported by Germanized. Therefor we strongly encourage you to migrate to the new integration. By doing so, we will automatically install the separate Trusted Shops Easy Integration Plugin for WooCommerce."
 msgstr ""
 
 #: woocommerce-germanized/includes/admin/notes/class-wc-gzd-admin-note-ts-install.php:48
@@ -1750,7 +1750,7 @@ msgid "Small Businesses"
 msgstr ""
 
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-general.php:33
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:825
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:826
 #: woocommerce-germanized/src/Shopmarks.php:542
 msgid "Checkout"
 msgstr ""
@@ -1760,7 +1760,7 @@ msgid "Shop"
 msgstr ""
 
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-general.php:39
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:363
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:364
 msgid "Photovoltaic Systems"
 msgstr ""
 
@@ -1771,7 +1771,7 @@ msgstr ""
 
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-general.php:50
 #, php-format
-msgid "Learn more about tax measures to promote the expansion of photovoltaic systems <a href=\"%s\" target=\"_blank\">here</a>."
+msgid "Learn more about the <a href=\"%s\" target=\"_blank\">sale of photovoltaic systems</a> according to §12 paragraph 3 UStG."
 msgstr ""
 
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-general.php:74
@@ -2045,7 +2045,7 @@ msgid "Format"
 msgstr ""
 
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-general.php:438
-#: woocommerce-germanized/includes/wc-gzd-product-functions.php:406
+#: woocommerce-germanized/includes/wc-gzd-product-functions.php:407
 msgid "{link}Verified overall ratings{/link}"
 msgstr ""
 
@@ -2056,7 +2056,7 @@ msgid "Customize the format used to notify customers about the authenticity of t
 msgstr ""
 
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-general.php:450
-#: woocommerce-germanized/includes/wc-gzd-product-functions.php:406
+#: woocommerce-germanized/includes/wc-gzd-product-functions.php:407
 msgid "{link}Unverified overall ratings{/link}"
 msgstr ""
 
@@ -2073,7 +2073,7 @@ msgid "Verified Format"
 msgstr ""
 
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-general.php:470
-#: woocommerce-germanized/includes/wc-gzd-product-functions.php:431
+#: woocommerce-germanized/includes/wc-gzd-product-functions.php:432
 msgid "Verified purchase. {link}Find out more{/link}"
 msgstr ""
 
@@ -2088,7 +2088,7 @@ msgid "Unverified Format"
 msgstr ""
 
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-general.php:481
-#: woocommerce-germanized/includes/wc-gzd-product-functions.php:431
+#: woocommerce-germanized/includes/wc-gzd-product-functions.php:432
 msgid "Purchase not verified. {link}Find out more{/link}"
 msgstr ""
 
@@ -2097,7 +2097,11 @@ msgid "Checkout notice"
 msgstr ""
 
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-general.php:507
-msgid "Show a checkout notice in case the current cart contains photovoltaic products."
+msgid "Show a checkout notice in case the current cart contains photovoltaic systems."
+msgstr ""
+
+#: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-general.php:507
+msgid "This note is only displayed if the zero tax rate is available, i.e. a delivery is made within Germany and a photovoltaic system exists in the current shopping cart."
 msgstr ""
 
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-general.php:514
@@ -2105,7 +2109,8 @@ msgid "Zero tax class"
 msgstr ""
 
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-general.php:515
-msgid "Choose your zero tax class to be applied for photovoltaic systems."
+#, php-format
+msgid "Choose your zero tax class to be applied for photovoltaic systems in case the customer confirmed the <a href=\"%s\">checkbox</a> related to §12 paragraph 3 UStG."
 msgstr ""
 
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-general.php:528
@@ -3267,30 +3272,30 @@ msgstr ""
 
 #: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:48
 #: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:80
-#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:451
+#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:457
 msgid "Delivery Time ID"
 msgstr ""
 
 #: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:53
 #: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:85
-#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:456
+#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:462
 msgid "Delivery Time Name"
 msgstr ""
 
 #: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:59
 #: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:96
-#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:462
+#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:468
 msgid "Delivery Time Slug"
 msgstr ""
 
 #: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:64
 #: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:101
-#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:467
+#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:473
 msgid "Delivery Time HTML"
 msgstr ""
 
 #: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:73
-#: woocommerce-germanized/includes/import/class-wc-gzd-product-import.php:181
+#: woocommerce-germanized/includes/import/class-wc-gzd-product-import.php:182
 msgid "Country specific delivery times"
 msgstr ""
 
@@ -3300,30 +3305,30 @@ msgstr ""
 
 #: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:111
 #: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:134
-#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:475
-#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:498
+#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:481
+#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:504
 #: woocommerce-germanized/includes/class-wc-gzd-post-types.php:161
 msgid "Price Label"
 msgstr ""
 
 #: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:116
 #: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:139
-#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:480
-#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:503
+#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:486
+#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:509
 msgid "Price Label ID"
 msgstr ""
 
 #: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:121
 #: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:144
-#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:485
-#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:508
+#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:491
+#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:514
 msgid "Price Label Name"
 msgstr ""
 
 #: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:127
 #: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:150
-#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:491
-#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:514
+#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:497
+#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:520
 msgid "Price Label Slug"
 msgstr ""
 
@@ -3340,42 +3345,42 @@ msgid "Unit Slug"
 msgstr ""
 
 #: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:185
-#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:575
+#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:587
 msgid "Unit Base"
 msgstr ""
 
 #: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:190
-#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:580
+#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:592
 msgid "Unit Product"
 msgstr ""
 
 #: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:195
-#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:585
+#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:597
 msgid "Unit Auto Calculation"
 msgstr ""
 
 #: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:201
-#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:591
+#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:603
 msgid "Current Unit Price"
 msgstr ""
 
 #: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:206
-#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:596
+#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:608
 msgid "Unit Regular Price"
 msgstr ""
 
 #: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:211
-#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:601
+#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:613
 msgid "Unit Sale Price"
 msgstr ""
 
 #: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:216
-#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:606
+#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:618
 msgid "Unit Price HTML"
 msgstr ""
 
 #: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:224
-#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:539
+#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:551
 msgid "Small Cart Product Description"
 msgstr ""
 
@@ -3384,130 +3389,135 @@ msgid "Deactivate the hint for additional shipping costs"
 msgstr ""
 
 #: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:240
-#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:549
+#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:561
 msgid "Age verification minimum age."
 msgstr ""
 
 #: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:247
-#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:555
+#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:567
 msgid "Warranty attachment id (PDF)"
 msgstr ""
 
 #: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:265
-#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:521
+#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:527
 msgid "Whether this product is a service or not"
 msgstr ""
 
 #: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:271
-#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:527
+#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:533
 msgid "Whether this product is a used good or not"
 msgstr ""
 
 #: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:277
-#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:533
+#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:539
 msgid "Whether this product is a defective copy or not"
 msgstr ""
 
 #: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:283
+#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:545
+msgid "Whether this product is a photovoltaic system or not"
+msgstr ""
+
+#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:289
 msgid "Whether this product applies for differential taxation or not"
 msgstr ""
 
-#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:290
+#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:296
 msgid "Whether this product is a food product or not"
 msgstr ""
 
-#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:297
+#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:303
 msgid "Food attributes"
 msgstr ""
 
-#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:307
+#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:313
 msgid "Deposit type ID"
 msgstr ""
 
-#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:312
+#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:318
 msgid "Deposit type name"
 msgstr ""
 
-#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:318
+#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:324
 msgid "Deposit type slug"
 msgstr ""
 
-#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:325
+#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:331
 msgid "Deposit quantity"
 msgstr ""
 
-#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:334
+#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:340
 msgid "Deposit amount"
 msgstr ""
 
-#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:340
+#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:346
 msgid "Nutrient reference value"
 msgstr ""
 
-#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:349
+#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:355
 #: woocommerce-germanized/includes/class-wc-gzd-food-helper.php:45
 #: woocommerce-germanized/includes/compatibility/elementor/widgets/class-wc-gzd-elementor-widget-product-nutri-score.php:10
 msgid "Nutri-Score"
 msgstr ""
 
-#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:358
+#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:364
 #: woocommerce-germanized/includes/class-wc-gzd-food-helper.php:43
 msgid "Drained weight"
 msgstr ""
 
-#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:363
+#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:369
 #: woocommerce-germanized/includes/class-wc-gzd-food-helper.php:44
 msgid "Net filling quantity"
 msgstr ""
 
-#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:368
+#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:374
 #: woocommerce-germanized/includes/class-wc-gzd-food-helper.php:42
 msgid "Alcohol content"
 msgstr ""
 
-#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:373
+#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:379
 #: woocommerce-germanized/includes/class-wc-gzd-food-helper.php:40
 msgctxt "food"
 msgid "Distributor"
 msgstr ""
 
-#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:381
+#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:387
 #: woocommerce-germanized/includes/class-wc-gzd-food-helper.php:41
 msgctxt "food"
 msgid "Place of origin"
 msgstr ""
 
-#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:389
+#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:395
 #: woocommerce-germanized/includes/class-wc-gzd-food-helper.php:39
 msgctxt "food"
 msgid "Description"
 msgstr ""
 
-#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:397
+#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:403
 msgid "Nutrient term ids"
 msgstr ""
 
-#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:404
+#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:410
 msgid "Nutrient term (slug or term_id)"
 msgstr ""
 
-#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:409
+#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:415
 msgid "Nutrient value"
 msgstr ""
 
-#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:414
+#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:420
 msgid "Nutrient reference value (for vitamins & minerals)"
 msgstr ""
 
-#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:422
+#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:428
 msgid "Allergen ids"
 msgstr ""
 
-#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:426
+#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:432
 msgid "Allergen term id"
 msgstr ""
 
-#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:432
+#: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:438
 #: woocommerce-germanized/includes/class-wc-gzd-food-helper.php:36
 #: woocommerce-germanized/includes/compatibility/elementor/widgets/class-wc-gzd-elementor-widget-product-ingredients.php:10
 #: woocommerce-germanized/includes/wc-gzd-template-functions.php:709
@@ -3658,40 +3668,40 @@ msgctxt "deposit-packaging-type"
 msgid "Disposable"
 msgstr ""
 
-#: woocommerce-germanized/includes/class-wc-gzd-emails.php:352
+#: woocommerce-germanized/includes/class-wc-gzd-emails.php:372
 msgid "BCC recipients"
 msgstr ""
 
-#: woocommerce-germanized/includes/class-wc-gzd-emails.php:354
+#: woocommerce-germanized/includes/class-wc-gzd-emails.php:374
 msgid "Enter blind-copy recipients (comma separated) for this email."
 msgstr ""
 
-#: woocommerce-germanized/includes/class-wc-gzd-emails.php:428
+#: woocommerce-germanized/includes/class-wc-gzd-emails.php:448
 msgid "Confirmation text"
 msgstr ""
 
-#: woocommerce-germanized/includes/class-wc-gzd-emails.php:429
+#: woocommerce-germanized/includes/class-wc-gzd-emails.php:449
 msgid "Your order has been received and is now being processed. Your order details are shown below for your reference:"
 msgstr ""
 
-#: woocommerce-germanized/includes/class-wc-gzd-emails.php:430
+#: woocommerce-germanized/includes/class-wc-gzd-emails.php:450
 msgid "This text will be inserted within the order confirmation email. Use {order_number}, {site_title} or {order_date} as placeholder."
 msgstr ""
 
-#: woocommerce-germanized/includes/class-wc-gzd-emails.php:550
+#: woocommerce-germanized/includes/class-wc-gzd-emails.php:570
 msgid "Your order has been received and is now being processed. Your order details are shown below for your reference."
 msgstr ""
 
-#: woocommerce-germanized/includes/class-wc-gzd-emails.php:599
+#: woocommerce-germanized/includes/class-wc-gzd-emails.php:619
 msgid "Someone requested a password reset for your account."
 msgstr ""
 
-#: woocommerce-germanized/includes/class-wc-gzd-emails.php:614
+#: woocommerce-germanized/includes/class-wc-gzd-emails.php:634
 #, php-format
 msgid "Thanks for creating an account on %s."
 msgstr ""
 
-#: woocommerce-germanized/includes/class-wc-gzd-emails.php:1496
+#: woocommerce-germanized/includes/class-wc-gzd-emails.php:1516
 msgctxt "revocation-form"
 msgid "Forward your withdrawal online"
 msgstr ""
@@ -3733,7 +3743,7 @@ msgstr ""
 
 #: woocommerce-germanized/includes/class-wc-gzd-food-helper.php:37
 #: woocommerce-germanized/includes/compatibility/elementor/widgets/class-wc-gzd-elementor-widget-product-nutrients.php:10
-#: woocommerce-germanized/includes/import/class-wc-gzd-product-import.php:182
+#: woocommerce-germanized/includes/import/class-wc-gzd-product-import.php:183
 #: woocommerce-germanized/includes/wc-gzd-template-functions.php:717
 msgid "Nutrients"
 msgstr ""
@@ -3873,180 +3883,180 @@ msgctxt "Page title"
 msgid "Review Authenticity"
 msgstr ""
 
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:147
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:148
 msgid "With your order, you agree to have read and understood our {term_link}Terms and Conditions{/term_link} and {revocation_link}Cancellation Policy{/revocation_link}."
 msgstr ""
 
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:148
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:149
 msgid "To complete the order you have to accept to our {term_link}Terms and Conditions{/term_link} and {revocation_link}Cancellation Policy{/revocation_link}."
 msgstr ""
 
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:154
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:155
 msgid "Legal"
 msgstr ""
 
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:155
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:156
 msgid "General legal checkbox which shall include terms and cancellation policy."
 msgstr ""
 
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:166
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:167
 #: woocommerce-germanized/includes/updates/woocommerce-gzd-update-2.0.1.php:24
 msgid "For digital products: I strongly agree that the execution of the agreement starts before the revocation period has expired. I am aware that my right of withdrawal ceases with the beginning of the agreement."
 msgstr ""
 
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:167
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:168
 #: woocommerce-germanized/includes/updates/woocommerce-gzd-update-2.0.1.php:25
 msgid "To retrieve direct access to digital content you have to agree to the loss of your right of withdrawal."
 msgstr ""
 
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:173
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:174
 msgid "Digital"
 msgstr ""
 
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:174
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:175
 msgid "Asks the customer to skip revocation period for digital products."
 msgstr ""
 
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:186
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:187
 #: woocommerce-germanized/includes/updates/woocommerce-gzd-update-2.0.1.php:31
 msgid "For services: I demand and acknowledge the immediate performance of the service before the expiration of the withdrawal period. I acknowledge that thereby I lose my right to cancel once the service has begun."
 msgstr ""
 
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:187
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:188
 #: woocommerce-germanized/includes/updates/woocommerce-gzd-update-2.0.1.php:32
 msgid "To allow the immediate performance of the services you have to agree to the loss of your right of withdrawal."
 msgstr ""
 
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:194
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:195
 msgid "Asks the customer to skip revocation period for services."
 msgstr ""
 
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:205
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:206
 #: woocommerce-germanized/includes/updates/woocommerce-gzd-update-2.0.1.php:40
 msgid "Yes, I would like to be reminded via E-mail about parcel delivery ({shipping_method_title}). Your E-mail Address will only be transferred to our parcel service provider for that particular reason."
 msgstr ""
 
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:210
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:211
 msgid "Please accept our parcel delivery agreement"
 msgstr ""
 
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:214
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:215
 msgid "Parcel Delivery"
 msgstr ""
 
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:215
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:216
 msgid "Asks the customer to hand over data to the parcel delivery service provider."
 msgstr ""
 
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:227
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:228
 msgid "I hereby confirm that I'm at least {age} years old."
 msgstr ""
 
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:229
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:230
 msgid "Please confirm your age."
 msgstr ""
 
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:236
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:237
 msgid "Asks the customer to confirm a minimum age."
 msgstr ""
 
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:248
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:249
 #: woocommerce-germanized/includes/updates/woocommerce-gzd-update-2.0.1.php:44
 msgid "Yes, I’d like create a new account and have read and understood the {data_security_link}data privacy statement{/data_security_link}."
 msgstr ""
 
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:251
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:252
 msgid "Please accept our privacy policy to create a new customer account"
 msgstr ""
 
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:255
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:256
 msgid "New account"
 msgstr ""
 
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:256
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:257
 msgid "Let customers accept your privacy policy before creating a new account."
 msgstr ""
 
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:292
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:293
 msgid "I hereby agree to the {link}direct debit mandate{/link}."
 msgstr ""
 
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:298
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:299
 msgid "Please accept the direct debit mandate."
 msgstr ""
 
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:303
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:304
 #: woocommerce-germanized/includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:221
 msgid "SEPA"
 msgstr ""
 
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:304
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:305
 msgid "Asks the customer to issue the SEPA mandate."
 msgstr ""
 
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:316
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:317
 msgid "For used goods: I have taken note that my warranty period is shortened to 12 months."
 msgstr ""
 
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:317
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:318
 msgid "Please make sure to check our warranty note on used goods."
 msgstr ""
 
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:323
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:324
 msgid "Used Goods"
 msgstr ""
 
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:324
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:325
 msgid "Inform customers about shortened warranty for used goods."
 msgstr ""
 
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:336
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:337
 msgid "I have taken note of the following defects: {defect_descriptions}."
 msgstr ""
 
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:337
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:338
 msgid "Please make sure to check our note on defective copies."
 msgstr ""
 
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:343
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:344
 msgid "Defective Copies"
 msgstr ""
 
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:344
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:345
 msgid "Inform customers about product defects."
 msgstr ""
 
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:357
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:358
 msgid "I hereby confirm that I am aware of the requirements for VAT exemption (based on §12 paragraph 3 UStG) and that they are met for this order."
 msgstr ""
 
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:364
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:365
 msgid "Let customers confirm that they are aware of the requirements for a VAT exemption."
 msgstr ""
 
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:826
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:827
 msgid "Register form"
 msgstr ""
 
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:827
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:828
 msgid "Pay for order"
 msgstr ""
 
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:828
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:829
 msgid "Reviews"
 msgstr ""
 
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:910
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:911
 #, php-format
 msgid "Checkbox location %s does not exist."
 msgstr ""
 
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:942
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:943
 #, php-format
 msgid "Please make sure to check %s checkbox."
 msgstr ""
 
-#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:947
+#: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:948
 #, php-format
 msgid "Checkbox with name %s does already exist."
 msgstr ""
@@ -4730,166 +4740,171 @@ msgstr ""
 
 #: woocommerce-germanized/includes/export/class-wc-gzd-product-export.php:81
 msgctxt "exporter"
-msgid "Warranty attachment id (PDF)"
+msgid "Is photovoltaic system?"
 msgstr ""
 
 #: woocommerce-germanized/includes/export/class-wc-gzd-product-export.php:82
 msgctxt "exporter"
-msgid "GTIN"
+msgid "Warranty attachment id (PDF)"
 msgstr ""
 
 #: woocommerce-germanized/includes/export/class-wc-gzd-product-export.php:83
 msgctxt "exporter"
-msgid "MPN"
+msgid "GTIN"
 msgstr ""
 
 #: woocommerce-germanized/includes/export/class-wc-gzd-product-export.php:84
 msgctxt "exporter"
-msgid "Is differential taxed?"
+msgid "MPN"
 msgstr ""
 
 #: woocommerce-germanized/includes/export/class-wc-gzd-product-export.php:85
 msgctxt "exporter"
-msgid "Has free shipping?"
+msgid "Is differential taxed?"
 msgstr ""
 
 #: woocommerce-germanized/includes/export/class-wc-gzd-product-export.php:86
 msgctxt "exporter"
-msgid "Unit price regular"
+msgid "Has free shipping?"
 msgstr ""
 
 #: woocommerce-germanized/includes/export/class-wc-gzd-product-export.php:87
 msgctxt "exporter"
-msgid "Unit price sale"
+msgid "Unit price regular"
 msgstr ""
 
 #: woocommerce-germanized/includes/export/class-wc-gzd-product-export.php:88
 msgctxt "exporter"
-msgid "Unit price calculated automatically?"
+msgid "Unit price sale"
 msgstr ""
 
 #: woocommerce-germanized/includes/export/class-wc-gzd-product-export.php:89
 msgctxt "exporter"
-msgid "Unit"
+msgid "Unit price calculated automatically?"
 msgstr ""
 
 #: woocommerce-germanized/includes/export/class-wc-gzd-product-export.php:90
 msgctxt "exporter"
-msgid "Unit base"
+msgid "Unit"
 msgstr ""
 
 #: woocommerce-germanized/includes/export/class-wc-gzd-product-export.php:91
 msgctxt "exporter"
-msgid "Unit product"
+msgid "Unit base"
 msgstr ""
 
 #: woocommerce-germanized/includes/export/class-wc-gzd-product-export.php:92
 msgctxt "exporter"
-msgid "Cart description"
+msgid "Unit product"
 msgstr ""
 
 #: woocommerce-germanized/includes/export/class-wc-gzd-product-export.php:93
 msgctxt "exporter"
-msgid "Minimum age"
+msgid "Cart description"
 msgstr ""
 
 #: woocommerce-germanized/includes/export/class-wc-gzd-product-export.php:94
 msgctxt "exporter"
-msgid "Defect description"
+msgid "Minimum age"
 msgstr ""
 
 #: woocommerce-germanized/includes/export/class-wc-gzd-product-export.php:95
 msgctxt "exporter"
-msgid "Delivery time"
+msgid "Defect description"
 msgstr ""
 
 #: woocommerce-germanized/includes/export/class-wc-gzd-product-export.php:96
 msgctxt "exporter"
-msgid "Strike Price label"
+msgid "Delivery time"
 msgstr ""
 
 #: woocommerce-germanized/includes/export/class-wc-gzd-product-export.php:97
 msgctxt "exporter"
-msgid "Sale Price label"
+msgid "Strike Price label"
 msgstr ""
 
 #: woocommerce-germanized/includes/export/class-wc-gzd-product-export.php:98
 msgctxt "exporter"
-msgid "Is food?"
+msgid "Sale Price label"
 msgstr ""
 
 #: woocommerce-germanized/includes/export/class-wc-gzd-product-export.php:99
 msgctxt "exporter"
-msgid "Nutrients"
+msgid "Is food?"
 msgstr ""
 
 #: woocommerce-germanized/includes/export/class-wc-gzd-product-export.php:100
 msgctxt "exporter"
-msgid "Allergenic"
+msgid "Nutrients"
 msgstr ""
 
 #: woocommerce-germanized/includes/export/class-wc-gzd-product-export.php:101
 msgctxt "exporter"
-msgid "Deposit Type"
+msgid "Allergenic"
 msgstr ""
 
 #: woocommerce-germanized/includes/export/class-wc-gzd-product-export.php:102
 msgctxt "exporter"
-msgid "Deposit Quantity"
+msgid "Deposit Type"
 msgstr ""
 
 #: woocommerce-germanized/includes/export/class-wc-gzd-product-export.php:103
 msgctxt "exporter"
-msgid "Ingredients"
+msgid "Deposit Quantity"
 msgstr ""
 
 #: woocommerce-germanized/includes/export/class-wc-gzd-product-export.php:104
 msgctxt "exporter"
-msgid "Nutrient reference value slug"
+msgid "Ingredients"
 msgstr ""
 
 #: woocommerce-germanized/includes/export/class-wc-gzd-product-export.php:105
 msgctxt "exporter"
-msgid "Alcohol content"
+msgid "Nutrient reference value slug"
 msgstr ""
 
 #: woocommerce-germanized/includes/export/class-wc-gzd-product-export.php:106
 msgctxt "exporter"
-msgid "Drained weight"
+msgid "Alcohol content"
 msgstr ""
 
 #: woocommerce-germanized/includes/export/class-wc-gzd-product-export.php:107
 msgctxt "exporter"
-msgid "Net filling quantity"
+msgid "Drained weight"
 msgstr ""
 
 #: woocommerce-germanized/includes/export/class-wc-gzd-product-export.php:108
 msgctxt "exporter"
-msgid "Nutri-Score"
+msgid "Net filling quantity"
 msgstr ""
 
 #: woocommerce-germanized/includes/export/class-wc-gzd-product-export.php:109
 msgctxt "exporter"
-msgid "Food Description"
+msgid "Nutri-Score"
 msgstr ""
 
 #: woocommerce-germanized/includes/export/class-wc-gzd-product-export.php:110
 msgctxt "exporter"
-msgid "Food Place of Origin"
+msgid "Food Description"
 msgstr ""
 
 #: woocommerce-germanized/includes/export/class-wc-gzd-product-export.php:111
 msgctxt "exporter"
+msgid "Food Place of Origin"
+msgstr ""
+
+#: woocommerce-germanized/includes/export/class-wc-gzd-product-export.php:112
+msgctxt "exporter"
 msgid "Food Distributor"
 msgstr ""
 
-#: woocommerce-germanized/includes/export/class-wc-gzd-product-export.php:165
+#: woocommerce-germanized/includes/export/class-wc-gzd-product-export.php:166
 #: woocommerce-germanized/includes/import/class-wc-gzd-product-import.php:50
 #, php-format
 msgid "Delivery Time: %s"
 msgstr ""
 
-#: woocommerce-germanized/includes/export/class-wc-gzd-product-export.php:193
+#: woocommerce-germanized/includes/export/class-wc-gzd-product-export.php:194
 #: woocommerce-germanized/includes/import/class-wc-gzd-product-import.php:51
 #, php-format
 msgid "Nutrients: %s"
@@ -5305,688 +5320,48 @@ msgstr ""
 msgid "Place order"
 msgstr ""
 
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/libs/woocommerce-eu-tax-helper/src/Helper.php:312
 #: woocommerce-germanized/packages/woocommerce-eu-tax-helper/src/Helper.php:312
 msgid "Reduced rate"
 msgstr ""
 
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/libs/woocommerce-eu-tax-helper/src/Helper.php:313
 #: woocommerce-germanized/packages/woocommerce-eu-tax-helper/src/Helper.php:313
 msgctxt "tax-helper-tax-class-name"
 msgid "Greater reduced rate"
 msgstr ""
 
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/libs/woocommerce-eu-tax-helper/src/Helper.php:314
 #: woocommerce-germanized/packages/woocommerce-eu-tax-helper/src/Helper.php:314
 msgctxt "tax-helper-tax-class-name"
 msgid "Super reduced rate"
 msgstr ""
 
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/libs/woocommerce-eu-tax-helper/src/Helper.php:315
 #: woocommerce-germanized/packages/woocommerce-eu-tax-helper/src/Helper.php:315
 msgid "Zero rate"
 msgstr ""
 
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/libs/woocommerce-eu-tax-helper/src/Helper.php:725
 #: woocommerce-germanized/packages/woocommerce-eu-tax-helper/src/Helper.php:725
 msgctxt "tax-helper"
 msgid "Madeira"
 msgstr ""
 
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/libs/woocommerce-eu-tax-helper/src/Helper.php:732
 #: woocommerce-germanized/packages/woocommerce-eu-tax-helper/src/Helper.php:732
 msgctxt "tax-helper"
 msgid "Acores"
 msgstr ""
 
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/libs/woocommerce-eu-tax-helper/src/Helper.php:768
 #: woocommerce-germanized/packages/woocommerce-eu-tax-helper/src/Helper.php:768
 msgctxt "tax-helper"
 msgid "Northern Ireland"
 msgstr ""
 
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/libs/woocommerce-eu-tax-helper/src/Helper.php:781
 #: woocommerce-germanized/packages/woocommerce-eu-tax-helper/src/Helper.php:781
 msgctxt "tax-helper-rate-import"
 msgid "Exempt"
 msgstr ""
 
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/libs/woocommerce-eu-tax-helper/src/Helper.php:850
 #: woocommerce-germanized/packages/woocommerce-eu-tax-helper/src/Helper.php:850
 #, php-format
 msgctxt "tax-helper-rate-import"
 msgid "VAT %1$s %% %2$s"
-msgstr ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/one-stop-shop-woocommerce.php:44
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/one-stop-shop-woocommerce.php:62
-#, php-format
-msgctxt "oss"
-msgid "Your installation of the One Stop Shop feature plugin is incomplete. Please run %1$s within the %2$s directory."
-msgstr ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Admin.php:78
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Admin.php:79
-msgctxt "oss"
-msgid "Refresh VAT rates (OSS)"
-msgstr ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Admin.php:83
-msgctxt "oss"
-msgid "Note:"
-msgstr ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Admin.php:84
-#, php-format
-msgctxt "oss"
-msgid "This option will delete all of your current EU VAT rates and re-import them based on your current <a href=\"%s\">OSS status</a>."
-msgstr ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Admin.php:214
-#, php-format
-msgctxt "oss"
-msgid "Seems like you have reached (or are close to reaching) the delivery threshold for the current year. Please make sure to check the <a href=\"%s\" target=\"_blank\">report details</a> and take action in case necessary."
-msgstr ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Admin.php:218
-msgctxt "oss"
-msgid "Delivery threshold reached (OSS)"
-msgstr ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Admin.php:448
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/SettingsPage.php:17
-msgctxt "oss"
-msgid "OSS"
-msgstr ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Admin.php:448
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Admin.php:566
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/SettingsPage.php:23
-msgctxt "oss"
-msgid "One Stop Shop"
-msgstr ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Admin.php:469
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Package.php:363
-#, php-format
-msgctxt "oss"
-msgid "Q%1$s/%2$s"
-msgstr ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Admin.php:478
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Package.php:368
-#, php-format
-msgctxt "oss"
-msgid "%1$s/%2$s"
-msgstr ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Admin.php:486
-msgctxt "oss"
-msgid "New Report"
-msgstr ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Admin.php:493
-msgctxt "oss"
-msgid "Type"
-msgstr ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Admin.php:505
-msgctxt "oss"
-msgid "Year"
-msgstr ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Admin.php:517
-msgctxt "oss"
-msgid "Quarter"
-msgstr ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Admin.php:529
-msgctxt "oss"
-msgid "Month"
-msgstr ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Admin.php:541
-msgctxt "oss"
-msgid "Date range"
-msgstr ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Admin.php:553
-msgctxt "oss"
-msgid "Start report"
-msgstr ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Admin.php:567
-msgctxt "oss"
-msgid "New report"
-msgstr ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Admin.php:609
-msgctxt "oss"
-msgid "View"
-msgstr ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Admin.php:613
-msgctxt "oss"
-msgid "Export"
-msgstr ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Admin.php:617
-msgctxt "oss"
-msgid "Export BOP"
-msgstr ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Admin.php:621
-msgctxt "oss"
-msgid "Refresh"
-msgstr ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Admin.php:625
-msgctxt "oss"
-msgid "Delete"
-msgstr ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Admin.php:631
-msgctxt "oss"
-msgid "Cancel"
-msgstr ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Admin.php:669
-msgctxt "oss"
-msgid "Country"
-msgstr ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Admin.php:670
-msgctxt "oss"
-msgid "Tax Rate"
-msgstr ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Admin.php:671
-msgctxt "oss"
-msgid "Net Total"
-msgstr ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Admin.php:672
-msgctxt "oss"
-msgid "Tax Total"
-msgstr ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Admin.php:703
-#, php-format
-msgctxt "oss"
-msgid "%1$s %%"
-msgstr ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Admin.php:716
-#, php-format
-msgctxt "oss"
-msgid "Currently processed %1$s orders. Next iteration is scheduled for %2$s. <a href=\"%3$s\">Find pending actions</a>"
-msgstr ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Admin.php:716
-msgctxt "oss"
-msgid "Not yet known"
-msgstr ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Admin.php:747
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/ReportTable.php:39
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/SettingsPage.php:23
-msgctxt "oss"
-msgid "Reports"
-msgstr ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/AdminNote.php:46
-msgctxt "oss"
-msgid "Dismiss"
-msgstr ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/AsyncReportGenerator.php:258
-msgctxt "oss"
-msgid "No orders found."
-msgstr ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/CSVExporter.php:54
-msgctxt "oss"
-msgid "Country code"
-msgstr ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/CSVExporter.php:55
-msgctxt "oss"
-msgid "Tax rate"
-msgstr ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/CSVExporter.php:56
-msgctxt "oss"
-msgid "Taxable base"
-msgstr ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/CSVExporter.php:57
-msgctxt "oss"
-msgid "Amount"
-msgstr ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/DeliveryThresholdEmailNotification.php:19
-msgctxt "oss"
-msgid "OSS Delivery Threshold Notification"
-msgstr ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/DeliveryThresholdEmailNotification.php:20
-msgctxt "oss"
-msgid "This email notifies shop owners in case the delivery threshold (OSS) is close to being reached."
-msgstr ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/DeliveryThresholdEmailNotification.php:38
-msgctxt "oss"
-msgid "[{site_title}]: OSS delivery threshold reached"
-msgstr ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/DeliveryThresholdEmailNotification.php:48
-msgctxt "oss"
-msgid "OSS delivery threshold reached"
-msgstr ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/DeliveryThresholdEmailNotification.php:124
-msgctxt "oss"
-msgid "Recipient(s)"
-msgstr ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/DeliveryThresholdEmailNotification.php:127
-#, php-format
-msgctxt "oss"
-msgid "Enter recipients (comma separated) for this email. Defaults to %s."
-msgstr ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/DeliveryThresholdWarning.php:14
-msgctxt "oss"
-msgid "See details"
-msgstr ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Package.php:176
-msgctxt "oss"
-msgid "To use the OSS for WooCommerce plugin please make sure that WooCommerce is installed and activated."
-msgstr ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Package.php:348
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/ReportTable.php:40
-msgctxt "oss"
-msgid "Report"
-msgstr ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Package.php:372
-#, php-format
-msgctxt "oss"
-msgid "%1$s"
-msgstr ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Package.php:377
-#, php-format
-msgctxt "oss"
-msgid "%1$s - %2$s"
-msgstr ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Package.php:382
-#, php-format
-msgctxt "oss"
-msgid "Observer %1$s"
-msgstr ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Package.php:634
-msgctxt "oss"
-msgid "Quarterly"
-msgstr ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Package.php:635
-msgctxt "oss"
-msgid "Yearly"
-msgstr ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Package.php:636
-msgctxt "oss"
-msgid "Monthly"
-msgstr ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Package.php:637
-msgctxt "oss"
-msgid "Custom"
-msgstr ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Package.php:641
-msgctxt "oss"
-msgid "Observer"
-msgstr ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Package.php:655
-msgctxt "oss"
-msgid "Pending"
-msgstr ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Package.php:656
-msgctxt "oss"
-msgid "Completed"
-msgstr ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Package.php:657
-msgctxt "oss"
-msgid "Failed"
-msgstr ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/ReportTable.php:124
-#, php-format
-msgctxt "oss"
-msgid "%d report deleted."
-msgid_plural "%d reports deleted."
-msgstr[0] ""
-msgstr[1] ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/ReportTable.php:187
-msgctxt "oss"
-msgid "No reports found"
-msgstr ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/ReportTable.php:228
-#, php-format
-msgctxt "oss"
-msgid "All <span class=\"count\">(%s)</span>"
-msgid_plural "All <span class=\"count\">(%s)</span>"
-msgstr[0] ""
-msgstr[1] ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/ReportTable.php:255
-#, php-format
-msgctxt "oss"
-msgid " <span class=\"count\">(%s)</span>"
-msgid_plural " <span class=\"count\">(%s)</span>"
-msgstr[0] ""
-msgstr[1] ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/ReportTable.php:326
-msgctxt "oss"
-msgid "Filter"
-msgstr ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/ReportTable.php:353
-msgctxt "oss"
-msgid "Title"
-msgstr ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/ReportTable.php:354
-msgctxt "oss"
-msgid "Start"
-msgstr ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/ReportTable.php:355
-msgctxt "oss"
-msgid "End"
-msgstr ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/ReportTable.php:356
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/templates/emails/admin-delivery-threshold.php:25
-msgctxt "oss"
-msgid "Net total"
-msgstr ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/ReportTable.php:357
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/templates/emails/admin-delivery-threshold.php:26
-msgctxt "oss"
-msgid "Tax total"
-msgstr ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/ReportTable.php:358
-msgctxt "oss"
-msgid "Status"
-msgstr ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/ReportTable.php:359
-msgctxt "oss"
-msgid "Actions"
-msgstr ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/ReportTable.php:423
-#, php-format
-msgctxt "oss"
-msgid "Select %s"
-msgstr ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/ReportTable.php:516
-msgctxt "oss"
-msgid "Delete Permanently"
-msgstr ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Settings.php:16
-msgctxt "oss"
-msgid "General"
-msgstr ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Settings.php:21
-msgctxt "oss"
-msgid "Find useful options regarding the <a href=\"https://ec.europa.eu/taxation_customs/business/vat/oss_en\" target=\"_blank\" rel=\"noopener\">One Stop Shop procedure</a> here."
-msgstr ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Settings.php:38
-msgctxt "oss"
-msgid "OSS status"
-msgstr ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Settings.php:39
-msgctxt "oss"
-msgid "Yes, I'm currently participating in the OSS procedure."
-msgstr ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Settings.php:46
-msgctxt "oss"
-msgid "Observation"
-msgstr ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Settings.php:47
-msgctxt "oss"
-msgid "Automatically observe the delivery threshold of the current year."
-msgstr ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Settings.php:47
-msgctxt "oss"
-msgid "This option will automatically calculate the amount applicable for the OSS procedure delivery threshold once per day for the current year. The report will only recalculated for the days which are not yet subject to the observation to save processing time."
-msgstr ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Settings.php:59
-msgctxt "oss"
-msgid "Delivery threshold"
-msgstr ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Settings.php:72
-msgctxt "oss"
-msgid "Participation"
-msgstr ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Settings.php:79
-msgctxt "oss"
-msgid "Report Order Date"
-msgstr ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Settings.php:80
-msgctxt "oss"
-msgid "Select the relevant order date to be used to determine whether to include an order in a report."
-msgstr ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Settings.php:85
-msgctxt "oss"
-msgid "Date paid"
-msgstr ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Settings.php:86
-msgctxt "oss"
-msgid "Date created"
-msgstr ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Settings.php:97
-msgctxt "oss"
-msgid "Fixed gross prices"
-msgstr ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Settings.php:98
-msgctxt "oss"
-msgid "Apply the same gross price regardless of the tax rate for EU countries."
-msgstr ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Settings.php:98
-msgctxt "oss"
-msgid "This option will make sure that your customers pay the same price no matter the tax rate (based on the country chosen) to be applied."
-msgstr ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Settings.php:104
-msgctxt "oss"
-msgid "Third countries"
-msgstr ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Settings.php:105
-msgctxt "oss"
-msgid "Apply the same gross price for third countries too."
-msgstr ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Settings.php:138
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Settings.php:139
-msgctxt "oss"
-msgid "Are you sure? Please backup your tax rates before proceeding."
-msgstr ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Settings.php:138
-msgctxt "oss"
-msgid "End OSS participation"
-msgstr ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Settings.php:138
-msgctxt "oss"
-msgid "Start OSS participation"
-msgstr ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Settings.php:139
-msgctxt "oss"
-msgid "refresh VAT rates"
-msgstr ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Settings.php:140
-msgctxt "oss"
-msgid "learn more"
-msgstr ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Settings.php:142
-msgctxt "oss"
-msgid "Use this option to automatically adjust tax-related options in WooCommerce. Warning: This option will delete your current tax rates and add new tax rates based on your OSS participation status."
-msgstr ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Settings.php:174
-msgctxt "oss"
-msgid "See status"
-msgstr ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Settings.php:174
-msgctxt "oss"
-msgid "Start initial report"
-msgstr ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Settings.php:175
-#, php-format
-msgctxt "oss"
-msgid "Report not yet completed. %s"
-msgstr ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Settings.php:175
-#, php-format
-msgctxt "oss"
-msgid "Report not yet started. %s"
-msgstr ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Settings.php:193
-msgctxt "oss-amounts"
-msgid "of"
-msgstr ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Settings.php:193
-#, php-format
-msgctxt "oss"
-msgid "As of: %s"
-msgstr ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Settings.php:193
-msgctxt "oss"
-msgid "see details"
-msgstr ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Settings.php:194
-#, php-format
-msgctxt "oss"
-msgid "This value indicates your current net total amount applicable for the One Stop Shop procedure delivery threshold of the current year. You should take action in case the delivery threshold is or is close to being exceeded. <a href=\"%s\">Find out more</a> about the calculation."
-msgstr ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/SettingsPage.php:23
-msgctxt "oss"
-msgid "Learn More"
-msgstr ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Tax.php:297
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Tax.php:385
-#, php-format
-msgctxt "oss"
-msgid "Tax class (%s)"
-msgstr ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Tax.php:298
-msgctxt "oss"
-msgid "Same as parent"
-msgstr ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Tax.php:300
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Tax.php:333
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Tax.php:387
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Tax.php:421
-msgctxt "oss"
-msgid "remove"
-msgstr ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Tax.php:310
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Tax.php:398
-msgctxt "oss"
-msgid "Add country specific tax class (OSS)"
-msgstr ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Tax.php:317
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Tax.php:405
-msgctxt "oss"
-msgid "Select country"
-msgstr ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Tax.php:351
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Tax.php:352
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Tax.php:363
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Tax.php:364
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/src/Tax.php:463
-msgctxt "oss"
-msgid "EU-wide"
-msgstr ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/templates/emails/admin-delivery-threshold.php:19
-#, php-format
-msgctxt "oss"
-msgid "Your OSS delivery threshold of %1$s has been reached. Please take action immediately. Visit the <a href=\"%2$s\">OSS Settings Panel</a> for details."
-msgstr ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/templates/emails/admin-delivery-threshold.php:21
-msgctxt "oss"
-msgid "Report Details"
-msgstr ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/templates/emails/admin-delivery-threshold.php:24
-msgctxt "oss"
-msgid "Period"
-msgstr ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/templates/emails/admin-delivery-threshold.php:29
-msgctxt "oss"
-msgid "See report details"
-msgstr ""
-
-#: woocommerce-germanized/packages/one-stop-shop-woocommerce/templates/emails/plain/admin-delivery-threshold.php:17
-#, php-format
-msgctxt "oss"
-msgid "Your OSS delivery threshold of %1$s has been reached. Please take action immediately. Visit the OSS Settings Panel (%2$s) for details."
 msgstr ""
 
 #: woocommerce-germanized/packages/woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:78
@@ -11151,900 +10526,6 @@ msgstr ""
 #, php-format
 msgctxt "shipments"
 msgid "Your installation of the Germanized Shipments feature plugin is incomplete. Please run %1$s within the %2$s directory."
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/admin/settings/class-wc-ts-gzd-settings-tab.php:48
-msgctxt "trusted-shops"
-msgid "Setup your Trusted Shops Integration."
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/admin/settings/class-wc-ts-gzd-settings-tab.php:52
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-ts-settings-handler.php:23
-msgctxt "trusted-shops"
-msgid "Trusted Shops"
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/admin/views/html-notice-dependencies.php:16
-msgctxt "trusted-shops"
-msgid "Dependencies Missing or Outdated"
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/admin/views/html-notice-dependencies.php:26
-msgctxt "trusted-shops"
-msgid "To use WooCommerce Trusted Shops you may at first install the following plugins:"
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/admin/views/html-notice-dependencies.php:30
-#, php-format
-msgctxt "trusted-shops"
-msgid "Install %s"
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/admin/views/html-notice-dependencies.php:39
-msgctxt "trusted-shops"
-msgid "To use WooCommerce Trusted Shops you may at first update the following plugins to a newer version:"
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/admin/views/html-notice-dependencies.php:42
-#, php-format
-msgctxt "trusted-shops"
-msgid "%1$s required in at least version %2$s"
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/admin/views/html-notice-dependencies.php:51
-msgctxt "trusted-shops"
-msgid "Check for Updates"
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/admin/views/html-notice-dependencies.php:52
-msgctxt "trusted-shops"
-msgid "or"
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/admin/views/html-notice-dependencies.php:53
-msgctxt "trusted-shops"
-msgid "Install an older version"
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/admin/views/html-notice-update.php:13
-msgctxt "trusted-shops"
-msgid "<strong>WooCommerce Trusted Shops Data Update Required</strong> &#8211; We just need to update your installation to the latest version"
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/admin/views/html-notice-update.php:14
-msgctxt "trusted-shops"
-msgid "Run the updater"
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/admin/views/html-notice-update.php:18
-msgctxt "trusted-shops"
-msgid "It is strongly recommended that you backup your database before proceeding. Are you sure you wish to run the updater now?"
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/admin/views/html-wpml-notice.php:12
-msgctxt "trusted-shops"
-msgid "WPML Support"
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/admin/views/html-wpml-notice.php:15
-msgctxt "trusted-shops"
-msgid "These settings serve as default settings for all your languages. To adjust the settings for a certain language, please switch your admin language through the WPML language switcher and adjust the corresponding settings."
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/admin/views/html-wpml-notice.php:17
-#, php-format
-msgctxt "trusted-shops"
-msgid "These settings apply for your %s shop. To adjust settings for another language, please switch your admin language through the WPML language switcher."
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:87
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:127
-msgctxt "trusted-shops"
-msgid "GTIN"
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:87
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:131
-msgctxt "trusted-shops"
-msgid "ID that allows your products to be identified worldwide. If you want to display your Trusted Shops Product Reviews in Google Shopping and paid Google adverts, Google needs the GTIN."
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:91
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:140
-msgctxt "trusted-shops"
-msgid "MPN"
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:91
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:144
-msgctxt "trusted-shops"
-msgid "If you don't have a GTIN for your products, you can pass the brand name and the MPN on to Google to use the Trusted Shops Google Integration."
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:170
-msgctxt "trusted-shops"
-msgid "Brand"
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:207
-msgctxt "trusted-shops"
-msgid "This field is mandatory"
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:215
-msgctxt "trusted-shops"
-msgid "Trusted Shops Options"
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:222
-msgctxt "trusted-shops"
-msgid "Arial"
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:223
-msgctxt "trusted-shops"
-msgid "Geneva"
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:224
-msgctxt "trusted-shops"
-msgid "Georgia"
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:225
-msgctxt "trusted-shops"
-msgid "Helvetica"
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:226
-msgctxt "trusted-shops"
-msgid "Sans-serif"
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:227
-msgctxt "trusted-shops"
-msgid "Serif"
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:228
-msgctxt "trusted-shops"
-msgid "Trebuchet MS"
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:229
-msgctxt "trusted-shops"
-msgid "Verdana"
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:252
-msgctxt "trusted-shops"
-msgid "Trusted Shops Integration"
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:253
-#, php-format
-msgctxt "trusted-shops"
-msgid "Do you need help with integrating your Trustbadge? %s"
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:253
-msgctxt "trusted-shops"
-msgid "To the step-by-step instructions"
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:259
-msgctxt "trusted-shops"
-msgid "Trusted Shops ID"
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:260
-msgctxt "trusted-shops"
-msgid "The Trusted Shops ID is a unique identifier for your shop. You can find your Trusted Shops ID in your My Trusted Shops account."
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:269
-msgctxt "trusted-shops"
-msgid "Edit Mode"
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:271
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:335
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:461
-msgctxt "trusted-shops"
-msgid "The advanced configuration is for users with programming skills. Here you can create even more individual settings."
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:275
-msgctxt "trusted-shops"
-msgid "Standard configuration"
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:276
-msgctxt "trusted-shops"
-msgid "Advanced configuration"
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:287
-msgctxt "trusted-shops"
-msgid "Configure your Trustbadge"
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:293
-msgctxt "trusted-shops"
-msgid "Display Trustbadge"
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:295
-msgctxt "trusted-shops"
-msgid "Display the Trustbadge on all the pages of your shop."
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:302
-msgctxt "trusted-shops"
-msgid "Variant"
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:304
-msgctxt "trusted-shops"
-msgid "You can display your Trustbadge with or without Review Stars."
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:308
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:813
-msgctxt "trusted-shops"
-msgid "Display Trustbadge with review stars"
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:309
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:817
-msgctxt "trusted-shops"
-msgid "Display Trustbadge without review stars"
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:315
-msgctxt "trusted-shops"
-msgid "Vertical Offset"
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:316
-msgctxt "trusted-shops"
-msgid "Choose the distance that the Trustbadge will appear from the bottom-right corner of the screen."
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:319
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:533
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:584
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:599
-msgctxt "trusted-shops"
-msgid "px"
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:325
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:540
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:590
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:606
-#, php-format
-msgctxt "trusted-shops"
-msgid "Please choose a non-negative number (at least %d)"
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:331
-msgctxt "trusted-shops"
-msgid "Trustbadge code"
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:346
-msgctxt "trusted-shops"
-msgid "Configure your Shop Reviews"
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:352
-msgctxt "trusted-shops"
-msgid "Display Shop Review Sticker"
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:353
-msgctxt "trusted-shops"
-msgid "To display the Shop Review Sticker, you have to assign the widget \"Trusted Shops Review Sticker\"."
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:354
-#, php-format
-msgctxt "trusted-shops"
-msgid "Assign widget %s"
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:354
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:629
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:953
-msgctxt "trusted-shops"
-msgid "here"
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:362
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:513
-msgctxt "trusted-shops"
-msgid "Background color"
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:363
-msgctxt "trusted-shops"
-msgid "Choose the background color for your Review Sticker."
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:370
-msgctxt "trusted-shops"
-msgid "Font"
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:372
-msgctxt "trusted-shops"
-msgid "Choose the font for your Review Sticker."
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:379
-msgctxt "trusted-shops"
-msgid "Number of reviews displayed"
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:380
-msgctxt "trusted-shops"
-msgid "Display x alternating Shop Reviews in your Shop Review Sticker. You can display between 1 and 5 alternating Shop Reviews."
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:383
-msgctxt "trusted-shops"
-msgid "Show x alternating reviews"
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:390
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:407
-#, php-format
-msgctxt "trusted-shops"
-msgid "Please choose a non-negative number between %1$d and %2$d"
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:396
-msgctxt "trusted-shops"
-msgid "Minimum rating displayed"
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:397
-msgctxt "trusted-shops"
-msgid "Only show Shop Reviews with a minimum rating of x stars. "
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:400
-msgctxt "trusted-shops"
-msgid "Star(s)"
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:413
-msgctxt "trusted-shops"
-msgid "Sticker code"
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:417
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:547
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:612
-msgctxt "trusted-shops"
-msgid "The advanced configuration is for users with programming skills. Here you can perform even more individual settings."
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:423
-msgctxt "trusted-shops"
-msgid "Google Organic Search"
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:424
-msgctxt "trusted-shops"
-msgid "Activate this option to give Google the opportunity to show your Shop Reviews in Google organic search results."
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:425
-msgctxt "trusted-shops"
-msgid "By activating this option, rich snippets will be integrated in the selected pages so your shop review stars may be displayed in Google organic search results. If you use Product Reviews and already activated rich snippets  in expert mode, we recommend integrating rich snippets for Shop Reviews on category pages only."
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:432
-msgctxt "trusted-shops"
-msgid "Activate rich snippets on"
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:433
-msgctxt "trusted-shops"
-msgid "category pages"
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:441
-msgctxt "trusted-shops"
-msgid "product pages"
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:449
-msgctxt "trusted-shops"
-msgid "homepage (not recommended)"
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:457
-msgctxt "trusted-shops"
-msgid "Rich snippets code"
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:472
-msgctxt "trusted-shops"
-msgid "Configure your Product Reviews "
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:473
-#, php-format
-msgctxt "trusted-shops"
-msgid "To use Product Reviews, activate them in your %s first."
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:473
-msgctxt "trusted-shops"
-msgid "Trusted Shops package"
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:479
-msgctxt "trusted-shops"
-msgid "Collect Product Reviews"
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:480
-msgctxt "trusted-shops"
-msgid "Show Product Reviews on the product page in a separate tab, just as shown on the picture on the right."
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:488
-msgctxt "trusted-shops"
-msgid "Reviews"
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:489
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:498
-msgctxt "trusted-shops"
-msgid "You can choose a name for the tab with your Product Reviews."
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:490
-msgctxt "trusted-shops"
-msgid "Show Product Reviews on the product detail page in an additional tab."
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:497
-msgctxt "trusted-shops"
-msgid "Name of Product Reviews tab"
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:501
-msgctxt "trusted-shops"
-msgid "Product reviews"
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:505
-msgctxt "trusted-shops"
-msgid "Border color"
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:506
-msgctxt "trusted-shops"
-msgid "Set the color for the frame around your Product Reviews."
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:514
-msgctxt "trusted-shops"
-msgid "Set the background color for your Product Reviews."
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:521
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:571
-msgctxt "trusted-shops"
-msgid "Star color"
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:522
-msgctxt "trusted-shops"
-msgid "Set the color for the Product Review stars in your Product Reviews tab."
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:529
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:579
-msgctxt "trusted-shops"
-msgid "Star size"
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:534
-msgctxt "trusted-shops"
-msgid "Set the size for the Product Review stars in your Product Reviews tab."
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:545
-msgctxt "trusted-shops"
-msgid "Product Sticker Code"
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:554
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:620
-msgctxt "trusted-shops"
-msgid "jQuerySelector"
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:555
-msgctxt "trusted-shops"
-msgid "Please choose where your Product Reviews shall be displayed on the Product detail page."
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:562
-msgctxt "trusted-shops"
-msgid "Rating stars"
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:563
-msgctxt "trusted-shops"
-msgid "Show star ratings on the product detail page below your product name."
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:564
-msgctxt "trusted-shops"
-msgid "Display Product Review stars on product pages below the product name, just as shown in the picture on the right."
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:573
-msgctxt "trusted-shops"
-msgid "Set the color for the review stars, that are displayed on the product page, below your product name."
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:581
-msgctxt "trusted-shops"
-msgid "Set the size for the review stars that are displayed on the product page, below your product name."
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:595
-msgctxt "trusted-shops"
-msgid "Font size"
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:597
-msgctxt "trusted-shops"
-msgid "Set the font size for the text that goes with your review stars."
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:611
-msgctxt "trusted-shops"
-msgid "Product Review Code"
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:621
-msgctxt "trusted-shops"
-msgid "Please choose where your Product Review Stars shall be displayed on the Product Detail page."
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:628
-msgctxt "trusted-shops"
-msgid "Brand attribute"
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:629
-#, php-format
-msgctxt "trusted-shops"
-msgid "Create brand attribute %s"
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:630
-msgctxt "trusted-shops"
-msgid "Brand name of the product. By passing this information on to Google, you improve your chances of having Google identify your products. Assign your brand attribute. If your products don't have a GTIN, you can pass on the brand name and the MPN to use Google Integration."
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:636
-msgctxt "trusted-shops"
-msgid "None"
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:652
-msgctxt "trusted-shops"
-msgid "Configure your Review Requests"
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:653
-msgctxt "trusted-shops"
-msgid "7 days after an order has been placed, Trusted Shops automatically sends an invite to your customers. If you want to set a different time for sending automatic Review Requests, please activate the option below. If you want to send review requests with legal certainty, you need your customers' consent to receive Review Requests. You also have to include an option to unsubscribe."
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:659
-msgctxt "trusted-shops"
-msgid "Enable Review Requests"
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:668
-msgctxt "trusted-shops"
-msgid "WooCommerce status"
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:669
-msgctxt "trusted-shops"
-msgid "We recommend choosing the order status that you set when your products have been shipped."
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:677
-msgctxt "trusted-shops"
-msgid "Days until Review Request"
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:678
-msgctxt "trusted-shops"
-msgid "Set the number of days to wait after an order has reached the order status you selected above before having a review request sent to your customers."
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:690
-msgctxt "trusted-shops"
-msgid "Permission via checkbox"
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:691
-msgctxt "trusted-shops"
-msgid "If the checkbox is activated, only customers who gave their consent will receive Review Requests."
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:695
-msgctxt "trusted-shops"
-msgid "Edit checkbox"
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:699
-msgctxt "trusted-shops"
-msgid "Unsubscribe via link"
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:700
-msgctxt "trusted-shops"
-msgid "Allows the customer to unsubscribe from Review Requests."
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:805
-msgctxt "trusted-shops"
-msgid "How does Trusted Shops make your shop better?"
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:807
-msgctxt "trusted-shops"
-msgid "Get your account"
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:827
-msgctxt "trusted-shops"
-msgid "Product Reviews on the product detail page in an additional tab"
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:830
-msgctxt "trusted-shops"
-msgid "Show Star-Ratings on the product detail page below your product name"
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:834
-msgctxt "trusted-shops"
-msgid "Please note: If you want to send review requests through WooCommerce, you should deactivate automated review requests through Trusted Shops. To do so, please go to your My Trusted Shops account. Log in and go to Reviews >  Settings and deactivate \"Collect reviews automatically\""
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:835
-msgctxt "trusted-shops"
-msgid "To your My Trusted Shops account"
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:839
-msgctxt "trusted-shops"
-msgid "Export your customer information here and upload it in the Trusted Shops Review Collector. To do so go to your My Trusted Shops account. Log in and go to Reviews > Shop Reviews > Review Collector"
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:840
-msgctxt "trusted-shops"
-msgid "To the Trusted Shops Review Collector"
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:937
-msgctxt "trusted-shops"
-msgid "Review Collector"
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:939
-#, php-format
-msgctxt "trusted-shops"
-msgid "Want to collect reviews for orders that were placed before your Trusted Shops Integration? No problem. Export old orders here and upload them in your %s."
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:939
-msgctxt "trusted-shops"
-msgid "My Trusted Shops account"
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:945
-msgctxt "trusted-shops"
-msgid "Export orders"
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:945
-msgctxt "trusted-shops"
-msgid "Export your customer and order information of the last x days and upload them in your My Trusted Shops Account."
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:949
-msgctxt "trusted-shops"
-msgid "30 days"
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:950
-msgctxt "trusted-shops"
-msgid "60 days"
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:951
-msgctxt "trusted-shops"
-msgid "90 days"
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:953
-#, php-format
-msgctxt "trusted-shops"
-msgid "Upload customer and order information %s."
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:956
-msgctxt "trusted-shops"
-msgid "Days until reminder mail"
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:956
-msgctxt "trusted-shops"
-msgid "Set the number of days to wait after the order date before having a Review Request sent to your customers."
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-admin.php:960
-msgctxt "trusted-shops"
-msgid "Start export"
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-core.php:54
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-core.php:63
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-ts-dependencies.php:41
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-ts-dependencies.php:50
-msgctxt "trusted-shops"
-msgid "Cheating huh?"
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-core.php:215
-msgctxt "trusted-shops"
-msgid "Yes"
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-core.php:215
-msgctxt "trusted-shops"
-msgid "No"
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-core.php:263
-#, php-format
-msgctxt "trusted-shops"
-msgid "If the <strong>App</strong> helped you, please leave a %1$s&#9733;&#9733;&#9733;&#9733;&#9733;%2$s in the WordPress plugin repository."
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-core.php:414
-msgctxt "trusted-shops"
-msgid "Settings"
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-template-hooks.php:124
-#, php-format
-msgctxt "trusted-shops"
-msgid "Your review reminder e-mail has been cancelled successfully. Return to %s."
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-template-hooks.php:124
-msgctxt "trusted-shops"
-msgid "Home"
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-template-hooks.php:211
-msgctxt "trusted-shops"
-msgid "Yes, I would like to be reminded via e-mail after {days} day(s) to review my order. I am able to cancel the reminder at any time by clicking on the \"cancel review reminder\" link within the order confirmation."
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-template-hooks.php:216
-msgctxt "trusted-shops"
-msgid "Please allow us to send a review reminder by e-mail."
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-template-hooks.php:219
-msgctxt "trusted-shops"
-msgid "Review reminder"
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/class-wc-trusted-shops-template-hooks.php:220
-msgctxt "trusted-shops"
-msgid "Asks the customer to receive a Trusted Shops review reminder."
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/emails/class-wc-ts-email-customer-trusted-shops.php:28
-msgctxt "trusted-shops"
-msgid "Trusted Shops Review Reminder"
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/emails/class-wc-ts-email-customer-trusted-shops.php:29
-msgctxt "trusted-shops"
-msgid "This E-Mail is being sent to a customer to remind him about the possibility to leave a review at Trusted Shops."
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/emails/class-wc-ts-email-customer-trusted-shops.php:57
-msgctxt "trusted-shops"
-msgid "Please rate your {site_title} order from {order_date}"
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/emails/class-wc-ts-email-customer-trusted-shops.php:67
-msgctxt "trusted-shops"
-msgid "Please rate your Order"
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/widgets/class-wc-trusted-shops-widget-review-sticker.php:21
-msgctxt "trusted-shops"
-msgid "Show your TS shop review sticker."
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/widgets/class-wc-trusted-shops-widget-review-sticker.php:23
-msgctxt "trusted-shops"
-msgid "Trusted Shops Shop Review Sticker"
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/widgets/class-wc-trusted-shops-widget-review-sticker.php:27
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/widgets/class-wc-trusted-shops-widget-review-sticker.php:48
-msgctxt "trusted-shops"
-msgid "Trusted Shops Reviews"
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/includes/widgets/class-wc-trusted-shops-widget-review-sticker.php:28
-msgctxt "trusted-shops"
-msgid "Title"
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/src/Package.php:58
-msgctxt "trusted-shops"
-msgid "Trustbadge Reviews for WooCommerce needs at least WooCommerce version 3.1 to run."
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/templates/emails/cancel-review-reminder.php:15
-#, php-format
-msgctxt "trusted-shops"
-msgid "If you do not want to receive the review reminder e-mail, please follow the %s link."
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/templates/emails/cancel-review-reminder.php:15
-msgctxt "trusted-shops"
-msgid "cancel review reminder"
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/templates/emails/customer-trusted-shops.php:19
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/templates/emails/plain/customer-trusted-shops.php:16
-#, php-format
-msgctxt "trusted-shops"
-msgid "Dear %1$s %2$s,"
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/templates/emails/customer-trusted-shops.php:20
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/templates/emails/plain/customer-trusted-shops.php:18
-#, php-format
-msgctxt "trusted-shops"
-msgid "You have recently shopped at %s. Thank you! We would be glad if you spent some time to write a review about your order. To do so please follow follow the link."
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/templates/emails/customer-trusted-shops.php:24
-msgctxt "trusted-shops"
-msgid "Rate Order now"
-msgstr ""
-
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/woocommerce-trusted-shops.php:41
-#: woocommerce-germanized/packages/woocommerce-trusted-shops/woocommerce-trusted-shops.php:59
-#, php-format
-msgctxt "trusted-shops"
-msgid "Your installation of the Trustbadge Reviews for WooCommerce plugin is incomplete. Please run %1$s within the %2$s directory."
 msgstr ""
 
 #: woocommerce-germanized/src/Autoloader.php:50
