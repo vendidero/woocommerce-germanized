@@ -200,15 +200,35 @@ class WC_GZD_Emails {
 				$content = wc_gzd_get_post_plain_content( $post, $shortcodes_allowed );
 			} else {
 				/**
+				 * Hook that executes before retrieving legal page content from the optional
+				 * meta field `_legal_text` that may be used to use a differing text as legal attachment.
+				 *
+				 * @param WP_Post $post
+				 *
+				 * @since 3.12.0
+				 */
+				do_action( 'woocommerce_gzd_before_get_email_meta_plain_content', $post );
+
+				/**
 				 * Filter that allows disabling the `the_content` filter for optional legal page content.
 				 *
 				 * @param bool $enable Enable or disable the `the_content` filter.
 				 * @param string $content The content.
 				 */
-				$apply_content_filters = apply_filters( 'woocommerce_gzd_apply_optional_content_filter_email_attachment', true, $content );
+				$apply_content_filters = apply_filters( 'woocommerce_gzd_apply_optional_content_filter_email_attachment', true, $content, $post );
 				$plain_content         = htmlspecialchars_decode( get_post_meta( $post->ID, '_legal_text', true ) );
 				$content               = $apply_content_filters ? apply_filters( 'the_content', $plain_content ) : $plain_content;
 				$content               = str_replace( ']]>', ']]&gt;', $content );
+
+				/**
+				 * Hook that executes after retrieving legal page content from the optional
+				 * meta field `_legal_text` that may be used to use a differing text as legal attachment.
+				 *
+				 * @param WP_Post $post
+				 *
+				 * @since 3.12.0
+				 */
+				do_action( 'woocommerce_gzd_before_get_email_meta_plain_content', $post );
 			}
 
 			add_shortcode( 'revocation_form', 'WC_GZD_Shortcodes::revocation_form' );
