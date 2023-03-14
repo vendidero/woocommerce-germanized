@@ -2,10 +2,10 @@
 Contributors: vendidero, vdwoocommercesupport
 Tags: woocommerce, woocommerce german, woocommerce DE, woocommerce germany, woocommerce deutsch, woo, woocommerce deutschland, woocommerce germanized, woocommerce addon, woocommerce plugin, woocommerce german addon, woocommerce germany addon, woocommerce dhl, dhl, shipments, dpd, gls, post
 Requires at least: 5.4
-Tested up to: 6.1
+Tested up to: 6.2
 WC requires at least: 3.9
 WC tested up to: 7.4
-Stable tag: 3.11.4
+Stable tag: 3.12.0
 Requires PHP: 5.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -40,6 +40,7 @@ Furthermore we customized the WooCommerce checkout to make your store meet the b
 * *Payment Gateway: Pay by Invoice* - Allow certain customers to pay by invoice. Best integration with our PDF invoices feature (Pro).
 * *Online Revocation Form* - Allow customers to submit revocations by filling out a form on your revocation page.
 * *Sale Price Labels* - Prepend your WooCommerce sale prices by certain tags e.g. old price and new price.
+* *Photovoltaic Systems* - Sell photovoltaic systems by applying the zero tax rate for customers who meet the legal requirements
 * *Differential Taxation* - Insert special notices for products which a differential taxed.
 * *Used Goods and Defective Copies* - Show defect descriptions on your product page and during checkout.
 * *WPML Support* - Germanized can be used with WPML.
@@ -204,6 +205,13 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 6. Edit pdf documents (Pro)
 
 == Changelog ==
+= 3.12.0 =
+* Feature: WP 6.2 support
+* Feature: Sell photovoltaic systems by applying zero tax rate for certain customers
+* Improvement: Exclude certain shipping methods from loading shipping provider settings
+* Improvement: Removed legacy built-in packages, e.g. OSS, Trusted Shops which are standalone plugins by now
+* Fix: Prevent Elementor from overriding legal page meta content in emails
+
 = 3.11.4 =
 * Feature: Support with HPOS WooCommerce feature
 * Improvement: Non-food products should not be able to show a deposit

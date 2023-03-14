@@ -887,7 +887,6 @@ class WC_GZD_Checkout {
 	 * @param WC_Cart $cart
 	 */
 	public function fix_cart_shipping_tax_rounding( $taxes, $cart ) {
-
 		if ( ! wc_gzd_additional_costs_include_tax() ) {
 			return $taxes;
 		}

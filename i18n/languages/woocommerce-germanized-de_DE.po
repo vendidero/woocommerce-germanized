@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: WooCommerce Germanized\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-13 14:27+0100\n"
-"PO-Revision-Date: 2023-03-13 14:30+0100\n"
+"PO-Revision-Date: 2023-03-14 13:41+0100\n"
 "Last-Translator: Dennis Nissle <info@vendidero.de>\n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -5556,7 +5556,7 @@ msgid ""
 "exemption."
 msgstr ""
 "Lasse Kunden bestätigen, dass sie die Voraussetzungen für die "
-"Mehrwertsteuerbefreiung kennen und erfüllen."
+"Mehrwertsteuerbefreiung erfüllen."
 
 # @ woocommerce-germanized
 #: woocommerce-germanized/includes/class-wc-gzd-legal-checkbox-manager.php:827
