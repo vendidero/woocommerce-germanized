@@ -29,7 +29,7 @@ class Packages {
 	 */
 	protected static $packages = array(
 		'woocommerce-germanized-shipments' => '\\Vendidero\\Germanized\\Shipments\\Package',
-		'woocommerce-germanized-dhl'       => '\\Vendidero\\Germanized\\DHL\\Package'
+		'woocommerce-germanized-dhl'       => '\\Vendidero\\Germanized\\DHL\\Package',
 	);
 
 	/**

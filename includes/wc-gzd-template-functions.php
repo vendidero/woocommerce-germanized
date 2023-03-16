@@ -738,9 +738,21 @@ if ( ! function_exists( 'woocommerce_gzd_template_loop_add_to_cart' ) ) {
 	 * Custom add to cart button
 	 */
 	function woocommerce_gzd_template_loop_add_to_cart( $text, $product ) {
+		$button_classes = implode(
+			' ',
+			array_filter(
+				array(
+					'button',
+					wc_gzd_wp_theme_get_element_class_name( 'button' ),
+					'product_type_' . $product->get_type(),
+				)
+			)
+		);
+
 		return sprintf(
-			'<a href="%s" class="button">%s</a>',
+			'<a href="%s" class="%s">%s</a>',
 			esc_url( $product->get_permalink() ),
+			esc_attr( $button_classes ),
 			esc_html( get_option( 'woocommerce_gzd_display_listings_link_details_text' ) )
 		);
 	}
