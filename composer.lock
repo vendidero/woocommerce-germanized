@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e05fe33b67d50aea74163f2c9dab94a4",
+    "content-hash": "cff51203d44731a118d6f754c6775f8e",
     "packages": [
         {
             "name": "automattic/jetpack-autoloader",
@@ -870,16 +870,16 @@
         },
         {
             "name": "vendidero/woocommerce-germanized-shipments",
-            "version": "2.2.5",
+            "version": "2.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vendidero/woocommerce-germanized-shipments.git",
-                "reference": "8bf25f8e1f9d06005c0ee221c41f767314ea1f5a"
+                "reference": "7fe4eebd3cd2ef96244a1e9b9081dc970b778fd3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vendidero/woocommerce-germanized-shipments/zipball/8bf25f8e1f9d06005c0ee221c41f767314ea1f5a",
-                "reference": "8bf25f8e1f9d06005c0ee221c41f767314ea1f5a",
+                "url": "https://api.github.com/repos/vendidero/woocommerce-germanized-shipments/zipball/7fe4eebd3cd2ef96244a1e9b9081dc970b778fd3",
+                "reference": "7fe4eebd3cd2ef96244a1e9b9081dc970b778fd3",
                 "shasum": ""
             },
             "require": {
@@ -922,10 +922,10 @@
             "description": "The Germanized Shipments implementation.",
             "homepage": "https://github.com/vendidero/woocommerce-germanized-shipments",
             "support": {
-                "source": "https://github.com/vendidero/woocommerce-germanized-shipments/tree/v2.2.5",
+                "source": "https://github.com/vendidero/woocommerce-germanized-shipments/tree/v2.3.0",
                 "issues": "https://github.com/vendidero/woocommerce-germanized-shipments/issues"
             },
-            "time": "2023-03-14T12:39:21+00:00"
+            "time": "2023-03-20T14:03:01+00:00"
         },
         {
             "name": "wsdltophp/wssecurity",

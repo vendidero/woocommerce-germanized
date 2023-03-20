@@ -5,7 +5,7 @@ Requires at least: 5.4
 Tested up to: 6.2
 WC requires at least: 3.9
 WC tested up to: 7.5
-Stable tag: 3.12.0
+Stable tag: 3.12.1
 Requires PHP: 5.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -205,6 +205,12 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 6. Edit pdf documents (Pro)
 
 == Changelog ==
+= 3.12.1 =
+* Improvement: Add admin description to order confirmation email
+* Improvement: dbDelta schema
+* Improvement: Use null as default mysql datetime fields
+* Fix: Error while removing checkboxes during forced pay for order redirect
+
 = 3.12.0 =
 * Feature: WP 6.2 support
 * Feature: Sell photovoltaic systems by applying zero tax rate for certain customers

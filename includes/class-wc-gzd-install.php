@@ -188,6 +188,14 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 			WC_GZD_Post_types::register_taxonomies();
 
 			self::create_cron_jobs();
+
+			/**
+			 * Enable logging in packages during installation
+			 */
+			add_filter( 'woocommerce_gzd_dhl_enable_logging', '__return_true', 5 );
+			add_filter( 'woocommerce_gzd_shipments_enable_logging', '__return_true', 5 );
+			add_filter( 'oss_woocommerce_enable_extended_logging', '__return_true', 5 );
+
 			self::install_packages();
 
 			self::create_units();
