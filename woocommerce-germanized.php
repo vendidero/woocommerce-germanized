@@ -1232,7 +1232,7 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 				$auto_submit               = true;
 
 				/**
-				 * Filters script localization paramaters for the `wc-gzd-force-pay-order` script.
+				 * Filters script localization arguments for the `wc-gzd-force-pay-order` script.
 				 *
 				 * @param array $params Key => value array containing parameter name and value.
 				 *
@@ -1247,7 +1247,7 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 							'order_id'      => $order_id,
 							'gateway'       => $order ? $order->get_payment_method() : '',
 							'auto_submit'   => $auto_submit,
-							'block_message' => __( 'Pease wait while we are trying to redirect you to the payment provider.', 'woocommerce-germanized' ),
+							'block_message' => __( 'Please wait while we are trying to redirect you to the payment provider.', 'woocommerce-germanized' ),
 						)
 					)
 				);

@@ -87,7 +87,7 @@ class WC_GZD_Legal_Checkbox_Manager {
 		 * Disable terms checkbox on pay for order page in case redirection is forced.
 		 */
 		if ( defined( 'WC_GZD_FORCE_PAY_ORDER' ) && WC_GZD_FORCE_PAY_ORDER ) {
-			foreach ( $this->get_checkboxes( 'pay_for_order' ) as $checkbox_id => $checkbox ) {
+			foreach ( $this->get_checkboxes( array( 'locations' => 'pay_for_order' ) ) as $checkbox_id => $checkbox ) {
 				$locations = array_diff( $checkbox->get_locations(), array( 'pay_for_order' ) );
 				$checkbox->set_locations( $locations );
 			}

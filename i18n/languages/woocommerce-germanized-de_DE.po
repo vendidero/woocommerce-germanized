@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce Germanized\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-13 14:27+0100\n"
-"PO-Revision-Date: 2023-03-14 13:41+0100\n"
+"POT-Creation-Date: 2023-03-20 12:14+0100\n"
+"PO-Revision-Date: 2023-03-20 12:15+0100\n"
 "Last-Translator: Dennis Nissle <info@vendidero.de>\n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -141,8 +141,8 @@ msgstr "Nutri-Score %1$s"
 #: woocommerce-germanized/includes/abstracts/abstract-wc-gzd-product.php:1224
 #: woocommerce-germanized/includes/abstracts/abstract-wc-gzd-product.php:1234
 #: woocommerce-germanized/includes/wc-gzd-core-functions.php:573
-#: woocommerce-germanized/includes/wc-gzd-template-functions.php:929
-#: woocommerce-germanized/includes/wc-gzd-template-functions.php:936
+#: woocommerce-germanized/includes/wc-gzd-template-functions.php:941
+#: woocommerce-germanized/includes/wc-gzd-template-functions.php:948
 msgid "incl. VAT"
 msgstr "inkl. MwSt."
 
@@ -4935,14 +4935,14 @@ msgid "A minimum age of %s years is required for this order."
 msgstr "Für diese Bestellung ist ein Mindestalter von %s Jahren vorgesehen."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-checkout.php:1226
+#: woocommerce-germanized/includes/class-wc-gzd-checkout.php:1225
 #: woocommerce-germanized/includes/class-wc-gzd-revocation.php:51
 #: woocommerce-germanized/includes/wc-gzd-core-functions.php:738
 msgid "Mr."
 msgstr "Herr"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-checkout.php:1227
+#: woocommerce-germanized/includes/class-wc-gzd-checkout.php:1226
 msgctxt "customer-title-male-address"
 msgid "Mr."
 msgstr "Herrn"
@@ -5691,7 +5691,7 @@ msgstr "%s Zahlungsgebühr"
 # @ woocommerce-germanized
 #: woocommerce-germanized/includes/class-wc-gzd-payment-gateways.php:161
 #: woocommerce-germanized/includes/wc-gzd-order-functions.php:34
-#: woocommerce-germanized/includes/wc-gzd-template-functions.php:858
+#: woocommerce-germanized/includes/wc-gzd-template-functions.php:870
 #, php-format
 msgid "Plus %s forwarding fee (charged by the transport agent)"
 msgstr "Zzgl. %s Übermittlungsentgelt (direkt an den Zusteller)"
@@ -6367,12 +6367,21 @@ msgstr "Zahlung erhalten"
 msgid "Order Confirmation"
 msgstr "Bestellbestätigung"
 
-#: woocommerce-germanized/includes/emails/class-wc-gzd-email-customer-processing-order.php:41
+#: woocommerce-germanized/includes/emails/class-wc-gzd-email-customer-processing-order.php:32
+#, php-format
+msgid ""
+"This is the <a href=\"%s\" target=\"_blank\">order confirmation</a> sent to "
+"customers containing order details after clicking the buy now button."
+msgstr ""
+"Das ist die <a href=\"%s\" target=\"_blank\">Bestellbestätigung</a> die an "
+"den Kunden direkt nach dem Klick auf den Kaufen-Button verschickt wird."
+
+#: woocommerce-germanized/includes/emails/class-wc-gzd-email-customer-processing-order.php:42
 msgid "Confirmation of your order {order_number}"
 msgstr "Bestätigung deiner Bestellung {order_number}"
 
 # @ woocommerce
-#: woocommerce-germanized/includes/emails/class-wc-gzd-email-customer-processing-order.php:51
+#: woocommerce-germanized/includes/emails/class-wc-gzd-email-customer-processing-order.php:52
 msgid "Thank you for your order"
 msgstr "Vielen Dank für deine Bestellung"
 
@@ -7230,7 +7239,7 @@ msgid "Choose a Payment Gateway"
 msgstr "Zahlungsart auswählen"
 
 # @ woocommerce
-#: woocommerce-germanized/includes/wc-gzd-template-functions.php:759
+#: woocommerce-germanized/includes/wc-gzd-template-functions.php:771
 msgid "Place order"
 msgstr "Jetzt kaufen"
 
@@ -7252,27 +7261,27 @@ msgstr "Stark reduzierter Preis"
 msgid "Zero rate"
 msgstr ""
 
-#: woocommerce-germanized/packages/woocommerce-eu-tax-helper/src/Helper.php:725
+#: woocommerce-germanized/packages/woocommerce-eu-tax-helper/src/Helper.php:736
 msgctxt "tax-helper"
 msgid "Madeira"
 msgstr "Madeira"
 
-#: woocommerce-germanized/packages/woocommerce-eu-tax-helper/src/Helper.php:732
+#: woocommerce-germanized/packages/woocommerce-eu-tax-helper/src/Helper.php:743
 msgctxt "tax-helper"
 msgid "Acores"
 msgstr "Azoren"
 
-#: woocommerce-germanized/packages/woocommerce-eu-tax-helper/src/Helper.php:768
+#: woocommerce-germanized/packages/woocommerce-eu-tax-helper/src/Helper.php:779
 msgctxt "tax-helper"
 msgid "Northern Ireland"
 msgstr "Nordirland"
 
-#: woocommerce-germanized/packages/woocommerce-eu-tax-helper/src/Helper.php:781
+#: woocommerce-germanized/packages/woocommerce-eu-tax-helper/src/Helper.php:792
 msgctxt "tax-helper-rate-import"
 msgid "Exempt"
 msgstr "Ausnahme"
 
-#: woocommerce-germanized/packages/woocommerce-eu-tax-helper/src/Helper.php:850
+#: woocommerce-germanized/packages/woocommerce-eu-tax-helper/src/Helper.php:863
 #, php-format
 msgctxt "tax-helper-rate-import"
 msgid "VAT %1$s %% %2$s"
@@ -7980,39 +7989,39 @@ msgctxt "dhl"
 msgid "Please provide the shipment start date."
 msgstr "Bitte gib das Startdatum der Sendung an."
 
-#: woocommerce-germanized/packages/woocommerce-germanized-dhl/src/Api/Rest.php:101
+#: woocommerce-germanized/packages/woocommerce-germanized-dhl/src/Api/Rest.php:103
 msgctxt "dhl"
 msgid "400 - "
 msgstr "400 - "
 
-#: woocommerce-germanized/packages/woocommerce-germanized-dhl/src/Api/Rest.php:103
+#: woocommerce-germanized/packages/woocommerce-germanized-dhl/src/Api/Rest.php:105
 msgctxt "dhl"
 msgid ""
 "401 - Unauthorized Access - Invalid token or Authentication Header parameter"
 msgstr ""
 "401 - Unauthorized Access - Invalid token or Authentication Header parameter"
 
-#: woocommerce-germanized/packages/woocommerce-germanized-dhl/src/Api/Rest.php:105
+#: woocommerce-germanized/packages/woocommerce-germanized-dhl/src/Api/Rest.php:107
 msgctxt "dhl"
 msgid "408 - Request Timeout"
 msgstr "408 - Request Timeout"
 
-#: woocommerce-germanized/packages/woocommerce-germanized-dhl/src/Api/Rest.php:107
+#: woocommerce-germanized/packages/woocommerce-germanized-dhl/src/Api/Rest.php:109
 msgctxt "dhl"
 msgid "429 - Too many requests in given amount of time"
 msgstr "429 - Too many requests in given amount of time"
 
-#: woocommerce-germanized/packages/woocommerce-germanized-dhl/src/Api/Rest.php:109
+#: woocommerce-germanized/packages/woocommerce-germanized-dhl/src/Api/Rest.php:111
 msgctxt "dhl"
 msgid "503 - Service Unavailable"
 msgstr "503 - Service Unavailable"
 
-#: woocommerce-germanized/packages/woocommerce-germanized-dhl/src/Api/Rest.php:112
+#: woocommerce-germanized/packages/woocommerce-germanized-dhl/src/Api/Rest.php:116
 msgctxt "dhl"
 msgid "GET error or timeout occured. Please try again later."
 msgstr "GET Fehler oder Zeitüberschreitung. Bitte später erneut versuchen."
 
-#: woocommerce-germanized/packages/woocommerce-germanized-dhl/src/Api/Rest.php:164
+#: woocommerce-germanized/packages/woocommerce-germanized-dhl/src/Api/Rest.php:168
 msgctxt "dhl"
 msgid "POST error or timeout occured. Please try again later."
 msgstr "POST Fehler oder Zeitüberschreitung. Bitte später erneut versuchen."
@@ -8030,13 +8039,13 @@ msgctxt "dhl time-span"
 msgid "%1$s-%2$s"
 msgstr "%1$s - %2$s"
 
-#: woocommerce-germanized/packages/woocommerce-germanized-dhl/src/Legacy/DataStores/Label.php:324
+#: woocommerce-germanized/packages/woocommerce-germanized-dhl/src/Legacy/DataStores/Label.php:333
 msgctxt "dhl"
 msgid "Invalid label."
 msgstr "Ungültiges Label."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/packages/woocommerce-germanized-dhl/src/Package.php:1033
+#: woocommerce-germanized/packages/woocommerce-germanized-dhl/src/Package.php:1031
 msgctxt "dhl"
 msgid "Germany"
 msgstr "Deutschland"
@@ -13408,7 +13417,7 @@ msgstr ""
 "führe %1$s im %2$s Verzeichnis aus."
 
 #: woocommerce-germanized/src/Autoloader.php:50
-#: woocommerce-germanized/src/Packages.php:147
+#: woocommerce-germanized/src/Packages.php:103
 msgid ""
 "Your installation of Germanized is incomplete. If you installed Germanized "
 "from GitHub, please refer to this document to set up your development "
@@ -13421,7 +13430,7 @@ msgstr ""
 "germanized/wiki/How-to-set-up-a-Germanized-development-environment"
 
 #: woocommerce-germanized/src/Autoloader.php:62
-#: woocommerce-germanized/src/Packages.php:169
+#: woocommerce-germanized/src/Packages.php:125
 #, php-format
 msgid ""
 "Your installation of Germanized is incomplete. If you installed Germanized "
@@ -13432,8 +13441,8 @@ msgstr ""
 "GitHub installiert hast, %1$sschaue dir bitte dieses Dokument an%2$s um eine "
 "Entwicklungsumgebung aufzusetzen."
 
-#: woocommerce-germanized/src/Packages.php:145
-#: woocommerce-germanized/src/Packages.php:160
+#: woocommerce-germanized/src/Packages.php:101
+#: woocommerce-germanized/src/Packages.php:116
 #, php-format
 msgid "Missing the Germanized %s package"
 msgstr "Das Germanized %s Paket fehlt"
@@ -13960,7 +13969,8 @@ msgstr ""
 "kannst."
 
 #: woocommerce-germanized/woocommerce-germanized.php:1250
-msgid "Pease wait while we are trying to redirect you to the payment provider."
+msgid ""
+"Please wait while we are trying to redirect you to the payment provider."
 msgstr "Einen Moment - wir versuchen dich zum Zahlungsanbieter weiterzuleiten."
 
 #. Plugin URI of the plugin/theme
