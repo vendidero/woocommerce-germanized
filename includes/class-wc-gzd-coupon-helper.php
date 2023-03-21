@@ -236,6 +236,10 @@ class WC_GZD_Coupon_Helper {
 	}
 
 	public function observe_order_voucher_removal( $and_taxes, $order ) {
+		if ( 'shop_order_refund' === $order->get_type() ) {
+			return;
+		}
+
 		$this->maybe_remove_order_vouchers( $order );
 	}
 

@@ -53,6 +53,10 @@ class WC_Germanized_Meta_Box_Product_Data {
 	}
 
 	public static function food_tab() {
+		if ( ! taxonomy_exists( 'product_nutrient' ) ) {
+			return;
+		}
+
 		global $post, $thepostid, $product_object;
 
 		$_gzd_product = wc_gzd_get_product( $product_object );
@@ -105,18 +109,20 @@ class WC_Germanized_Meta_Box_Product_Data {
 	}
 
 	public static function register_product_tab( $tabs ) {
-		$classes = array( 'show_if_is_food' );
+		if ( taxonomy_exists( 'product_nutrient' ) ) {
+			$classes = array( 'show_if_is_food' );
 
-		if ( ! WC_germanized()->is_pro() ) {
-			$classes[] = 'product_tab_gzd_pro';
+			if ( ! WC_germanized()->is_pro() ) {
+				$classes[] = 'product_tab_gzd_pro';
+			}
+
+			$tabs['food'] = array(
+				'label'    => __( 'Food', 'woocommerce-germanized' ),
+				'target'   => 'food_product_data',
+				'class'    => $classes,
+				'priority' => 35,
+			);
 		}
-
-		$tabs['food'] = array(
-			'label'    => __( 'Food', 'woocommerce-germanized' ),
-			'target'   => 'food_product_data',
-			'class'    => $classes,
-			'priority' => 35,
-		);
 
 		return $tabs;
 	}

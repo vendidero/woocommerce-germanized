@@ -457,7 +457,8 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 			</div>
 		</div>
 
-		<div class="variable_food show_if_is_food">
+		<?php if ( taxonomy_exists( 'product_nutrient' ) ) : ?>
+			<div class="variable_food show_if_is_food">
 			<?php if ( WC_germanized()->is_pro() ) : ?>
 				<p class="wc-gzd-product-settings-subtitle">
 					<?php esc_html_e( 'Deposit', 'woocommerce-germanized' ); ?>
@@ -505,6 +506,7 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 
 			<?php do_action( 'woocommerce_gzd_edit_product_variation_food_wrapper', $loop, $variation_data, $variation ); ?>
 		</div>
+		<?php endif; ?>
 		<?php
 	}
 

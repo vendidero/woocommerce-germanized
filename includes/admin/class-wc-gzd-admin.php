@@ -225,29 +225,26 @@ class WC_GZD_Admin {
 			return;
 		}
 
-		if ( Importer\DHL::is_plugin_enabled() ) {
-			if ( isset( $_GET['wc-gzd-dhl-import'] ) && isset( $_GET['_wpnonce'] ) ) {
-
-				if ( ! wp_verify_nonce( sanitize_key( wp_unslash( $_GET['_wpnonce'] ) ), 'woocommerce_gzd_dhl_import_nonce' ) ) {
-					wp_die( esc_html_x( 'Action failed. Please refresh the page and retry.', 'dhl', 'woocommerce-germanized' ) );
-				}
-
-				if ( ! current_user_can( 'manage_woocommerce' ) ) {
-					wp_die( esc_html_x( 'You don\'t have permission to do this.', 'dhl', 'woocommerce-germanized' ) );
-				}
-
-				if ( Importer\DHL::is_available() ) {
-					$this->import_dhl_settings();
-				}
-
-				if ( $shipping_provider = Vendidero\Germanized\Shipments\ShippingProvider\Helper::instance()->get_shipping_provider( 'dhl' ) ) {
-					$shipping_provider->activate();
-				}
-
-				deactivate_plugins( 'dhl-for-woocommerce/pr-dhl-woocommerce.php' );
-
-				wp_safe_redirect( esc_url_raw( add_query_arg( array( 'has-imported' => 'yes' ), wc_gzd_get_shipping_provider( 'dhl' )->get_edit_link() ) ) );
+		if ( isset( $_GET['wc-gzd-dhl-import'] ) && isset( $_GET['_wpnonce'] ) && Importer\DHL::is_plugin_enabled() ) {
+			if ( ! wp_verify_nonce( sanitize_key( wp_unslash( $_GET['_wpnonce'] ) ), 'woocommerce_gzd_dhl_import_nonce' ) ) {
+				wp_die( esc_html_x( 'Action failed. Please refresh the page and retry.', 'dhl', 'woocommerce-germanized' ) );
 			}
+
+			if ( ! current_user_can( 'manage_woocommerce' ) ) {
+				wp_die( esc_html_x( 'You don\'t have permission to do this.', 'dhl', 'woocommerce-germanized' ) );
+			}
+
+			if ( Importer\DHL::is_available() ) {
+				$this->import_dhl_settings();
+			}
+
+			if ( $shipping_provider = Vendidero\Germanized\Shipments\ShippingProvider\Helper::instance()->get_shipping_provider( 'dhl' ) ) {
+				$shipping_provider->activate();
+			}
+
+			deactivate_plugins( 'dhl-for-woocommerce/pr-dhl-woocommerce.php' );
+
+			wp_safe_redirect( esc_url_raw( add_query_arg( array( 'has-imported' => 'yes' ), wc_gzd_get_shipping_provider( 'dhl' )->get_edit_link() ) ) );
 		}
 	}
 
@@ -263,20 +260,18 @@ class WC_GZD_Admin {
 			return;
 		}
 
-		if ( Importer\Internetmarke::is_available() ) {
-			if ( isset( $_GET['wc-gzd-internetmarke-import'] ) && isset( $_GET['_wpnonce'] ) ) {
-				if ( ! wp_verify_nonce( sanitize_key( wp_unslash( $_GET['_wpnonce'] ) ), 'woocommerce_gzd_internetmarke_import_nonce' ) ) {
-					wp_die( esc_html_x( 'Action failed. Please refresh the page and retry.', 'dhl', 'woocommerce-germanized' ) );
-				}
-
-				if ( ! current_user_can( 'manage_woocommerce' ) ) {
-					wp_die( esc_html_x( 'You don\'t have permission to do this.', 'dhl', 'woocommerce-germanized' ) );
-				}
-
-				$this->import_internetmarke_settings();
-
-				wp_safe_redirect( esc_url_raw( wc_gzd_get_shipping_provider( 'deutsche_post' )->get_edit_link() ) );
+		if ( isset( $_GET['wc-gzd-internetmarke-import'] ) && isset( $_GET['_wpnonce'] ) && Importer\Internetmarke::is_available() ) {
+			if ( ! wp_verify_nonce( sanitize_key( wp_unslash( $_GET['_wpnonce'] ) ), 'woocommerce_gzd_internetmarke_import_nonce' ) ) {
+				wp_die( esc_html_x( 'Action failed. Please refresh the page and retry.', 'dhl', 'woocommerce-germanized' ) );
 			}
+
+			if ( ! current_user_can( 'manage_woocommerce' ) ) {
+				wp_die( esc_html_x( 'You don\'t have permission to do this.', 'dhl', 'woocommerce-germanized' ) );
+			}
+
+			$this->import_internetmarke_settings();
+
+			wp_safe_redirect( esc_url_raw( wc_gzd_get_shipping_provider( 'deutsche_post' )->get_edit_link() ) );
 		}
 	}
 
