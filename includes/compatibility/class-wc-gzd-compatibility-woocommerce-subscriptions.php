@@ -90,7 +90,7 @@ class WC_GZD_Compatibility_WooCommerce_Subscriptions extends WC_GZD_Compatibilit
 	}
 
 	public function adjust_subscription_rounded_shipping( $total ) {
-		if ( ! wc_gzd_enable_additional_costs_split_tax_calculation() ) {
+		if ( ! wc_gzd_enable_additional_costs_split_tax_calculation() && ! wc_gzd_calculate_additional_costs_taxes_based_on_main_service() ) {
 			return $total;
 		}
 

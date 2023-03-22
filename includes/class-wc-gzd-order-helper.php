@@ -70,6 +70,7 @@ class WC_GZD_Order_Helper {
 		add_action( 'woocommerce_checkout_create_order_fee_item', array( $this, 'set_fee_split_tax_meta' ), 10, 4 );
 
 		add_action( 'woocommerce_before_order_object_save', array( $this, 'set_order_version' ), 10 );
+
 		// The woocommerce_before_order_object_save hook might fail in case an order has been created manually
 		add_action( 'woocommerce_new_order', array( $this, 'on_create_order' ), 10 );
 
@@ -102,6 +103,56 @@ class WC_GZD_Order_Helper {
 		 * @see wc_order_fully_refunded
 		 */
 		add_action( 'woocommerce_order_status_refunded', array( $this, 'create_refund_with_items' ), 5 );
+	}
+
+	/**
+	 * @param WC_Order $order
+	 *
+	 * @return boolean
+	 */
+	public function get_order_main_service_tax_class( $order, $type = 'shipping' ) {
+		$main_tax_class = false;
+		$max_total      = 0.0;
+		$detect_by      = wc_gzd_additional_costs_taxes_detect_main_service_by();
+
+		foreach ( $order->get_items( 'line_item' ) as $key => $item ) {
+			if ( wc_gzd_item_is_tax_share_exempt( $item, $type, $key ) ) {
+				continue;
+			}
+
+			$tax_class  = $item->get_tax_class();
+			$item_total = 0.0;
+
+			if ( 'highest_net_amount' === $detect_by ) {
+				$item_total = (float) $item->get_total();
+			} elseif ( 'highest_tax_rate' === $detect_by ) {
+				$taxes = $item->get_taxes();
+
+				if ( isset( $taxes['total'] ) ) {
+					$main_tax_rate_id = 0;
+
+					foreach ( $taxes['total'] as $tax_rate_id => $tax_total ) {
+						if ( empty( $tax_total ) ) {
+							continue;
+						}
+
+						$main_tax_rate_id = $tax_rate_id;
+						break;
+					}
+
+					if ( ! empty( $main_tax_rate_id ) ) {
+						$item_total = wc_gzd_get_order_tax_rate_percentage( $main_tax_rate_id, $order );
+					}
+				}
+			}
+
+			if ( false === $main_tax_class || $item_total > $max_total ) {
+				$main_tax_class = $tax_class;
+				$max_total      = $item_total;
+			}
+		}
+
+		return apply_filters( 'woocommerce_gzd_order_main_service_tax_class', $main_tax_class );
 	}
 
 	public function create_refund_with_items( $order_id ) {

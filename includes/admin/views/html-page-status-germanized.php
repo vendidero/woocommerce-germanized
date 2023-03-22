@@ -86,12 +86,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 	</thead>
 	<tbody>
 	<tr>
-		<td data-export-label="Split Tax"><?php esc_html_e( 'Split-tax', 'woocommerce-germanized' ); ?>:</td>
+		<td data-export-label="Additional costs tax calculation mode"><?php esc_html_e( 'Additional costs tax calculation mode', 'woocommerce-germanized' ); ?>:</td>
 		<td class="help">&nbsp;</td>
-		<td><?php echo ( 'yes' === get_option( 'woocommerce_gzd_shipping_tax' ) ? '<mark class="yes"><span class="dashicons dashicons-yes"></span></mark>' : '<mark class="no">&ndash;</mark>' ); ?></td>
+		<td><?php echo esc_html( wc_gzd_get_additional_costs_tax_calculation_mode() ); ?><?php echo esc_html( ( wc_gzd_calculate_additional_costs_taxes_based_on_main_service() ? ' (' . wc_gzd_additional_costs_taxes_detect_main_service_by() . ')' : '' ) ); ?></td>
 	</tr>
 	<tr>
-		<td data-export-label="Split Tax"><?php esc_html_e( 'Additional costs include taxes', 'woocommerce-germanized' ); ?>:</td>
+		<td data-export-label="Additional costs include taxes"><?php esc_html_e( 'Additional costs include taxes', 'woocommerce-germanized' ); ?>:</td>
 		<td class="help">&nbsp;</td>
 		<td><?php echo ( wc_gzd_additional_costs_include_tax() ? '<mark class="yes"><span class="dashicons dashicons-yes"></span></mark>' : '<mark class="no">&ndash;</mark>' ); ?></td>
 	</tr>
@@ -319,7 +319,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 					var label = jQuery(this).find('td:eq(0)').data('export-label') || jQuery(this).find('td:eq(0)').text();
 					var the_name = jQuery.trim(label).replace(/(<([^>]+)>)/ig, ''); // Remove HTML
-					var the_value = jQuery.trim(jQuery(this).find('td:eq(2)').text());
+
+					var $value_html = jQuery( this ).find( 'td:eq(2)' ).clone();
+					$value_html.find( '.private' ).remove();
+					$value_html.find( '.dashicons-yes' ).replaceWith( '&#10004;' );
+					$value_html.find( '.dashicons-no-alt, .dashicons-warning' ).replaceWith( '&#10060;' );
+
+					// Format value
+					var the_value   = $value_html.text().trim();
 					var value_array = the_value.split(', ');
 
 					if (value_array.length > 1) {

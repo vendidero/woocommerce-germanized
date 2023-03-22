@@ -173,7 +173,8 @@ window.germanized = window.germanized || {};
         },
 
         onChangeInput: function() {
-            var $field = $( this ).parents( 'tr' );
+            var self = germanized.settings,
+                $field = $( this ).parents( 'tr' );
 
             $field.find( ':input:not(.select2-focusser, .select2-input)' ).each( function() {
                 var $input   = $( this ),
@@ -199,7 +200,14 @@ window.germanized = window.germanized || {};
 
                 var $fields = $( '.wc-gzd-admin-settings' ).find( ':input[data-show_if_' + name +  ']' );
 
-                if ( $input.is( ':checkbox' ) ) {
+                if ( $input.is( ':radio' ) ) {
+                    /**
+                     * Do not trigger logic for non-selected radios
+                     */
+                    if ( ! $input.is( ':checked' ) ) {
+                        return;
+                    }
+                } else if ( $input.is( ':checkbox' ) ) {
                     val = $input.is( ':checked' ) ? 'yes' : 'no';
 
                     // Make sure that hidden fields are considered unchecked
@@ -223,9 +231,8 @@ window.germanized = window.germanized || {};
                         if ( data.hasOwnProperty( dataName ) ) {
                             if ( dataName.substring( 0, 8 ) === 'show_if_' ) {
                                 var cleanName       = dataName.replace( 'show_if_', '' );
-                                var $dependendField = $( '.wc-gzd-admin-settings' ).find( ':input#' + cleanName );
+                                var $dependendField = self.getInputByIdOrName( cleanName );
                                 var index           = $dependendField.index( ':input' );
-
                                 deps[ index ] = cleanName;
                             }
                         }
@@ -236,15 +243,16 @@ window.germanized = window.germanized || {};
                     if ( deps.length > 1 ) {
                         if ( ! isFieldVisible ) {
                             var nameToUse = deps.slice(-1)[0];
+                            var $theInput = self.getInputByIdOrName( nameToUse );
 
                             if ( name !== nameToUse ) {
                                 skipField = true;
 
-                                if ( $( ':input#' + nameToUse ).parents( 'tr' ).is( ':visible' ) ) {
-                                    $( '.wc-gzd-admin-settings' ).find( ':input#' + nameToUse ).trigger( 'gzd_show_or_hide_fields' );
+                                if ( $theInput.parents( 'tr' ).is( ':visible' ) ) {
+                                    $theInput.trigger( 'gzd_show_or_hide_fields' );
                                 }
                             } else {
-                                if ( ! $( ':input#' + nameToUse ).parents( 'tr' ).is( ':visible' ) ) {
+                                if ( ! $theInput.parents( 'tr' ).is( ':visible' ) ) {
                                     $field.addClass( 'wc-gzd-setting-invisible' );
                                     $( document.body ).trigger( 'woocommerce_gzd_setting_field_invisible', [ $field, currentName, currentVal ] );
 
@@ -261,7 +269,6 @@ window.germanized = window.germanized || {};
                     $field.removeClass( 'wc-gzd-setting-visible wc-gzd-setting-invisible' );
 
                     if ( ( 'undefined' !== typeof dataValue ) && dataValue.length > 0 ) {
-
                         // Check value
                         if ( val === dataValue ) {
                             $field.addClass( 'wc-gzd-setting-visible' );
@@ -302,6 +309,22 @@ window.germanized = window.germanized || {};
                     $table.show();
                 }
             });
+        },
+
+        /**
+         * Finds the input field by ID or name (some inputs, e.g. radio buttons may not have an id).
+         *
+         * @param cleanName
+         * @returns {*|jQuery}
+         */
+        getInputByIdOrName: function( cleanName ) {
+            var $field = $( '.wc-gzd-admin-settings' ).find( ':input#' + cleanName );
+
+            if ( $field.length <= 0 ) {
+                $field = $( '.wc-gzd-admin-settings' ).find( ':input[name="' + cleanName + '"]' );
+            }
+
+            return $field;
         },
 
         onEnhancedSelectInit: function() {

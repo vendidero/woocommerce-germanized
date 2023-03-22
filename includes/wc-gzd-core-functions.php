@@ -1303,8 +1303,20 @@ function wc_gzd_format_unit_price( $price, $unit, $unit_base, $product_units = '
 	return apply_filters( 'woocommerce_gzd_formatted_unit_price', $html, $price, $unit_base, $unit );
 }
 
+function wc_gzd_get_additional_costs_tax_calculation_mode() {
+	return get_option( 'woocommerce_gzd_tax_mode_additional_costs', 'main_service' );
+}
+
 function wc_gzd_enable_additional_costs_split_tax_calculation() {
-	return 'yes' === get_option( 'woocommerce_gzd_shipping_tax' );
+	return 'split_tax' === wc_gzd_get_additional_costs_tax_calculation_mode();
+}
+
+function wc_gzd_calculate_additional_costs_taxes_based_on_main_service() {
+	return 'main_service' === wc_gzd_get_additional_costs_tax_calculation_mode();
+}
+
+function wc_gzd_additional_costs_taxes_detect_main_service_by() {
+	return wc_gzd_calculate_additional_costs_taxes_based_on_main_service() ? get_option( 'woocommerce_gzd_tax_mode_additional_costs_detect_main_service' ) : false;
 }
 
 function wc_gzd_additional_costs_include_tax() {
@@ -1316,7 +1328,7 @@ function wc_gzd_additional_costs_include_tax() {
 	 *
 	 * @since 3.3.4
 	 */
-	return ( wc_gzd_enable_additional_costs_split_tax_calculation() && apply_filters( 'woocommerce_gzd_additional_costs_include_tax', wc_prices_include_tax() ) );
+	return ( ( wc_gzd_enable_additional_costs_split_tax_calculation() || wc_gzd_calculate_additional_costs_taxes_based_on_main_service() ) && apply_filters( 'woocommerce_gzd_additional_costs_include_tax', wc_prices_include_tax() ) );
 }
 
 function wc_gzd_base_country_is_eu() {

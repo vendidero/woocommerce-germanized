@@ -984,6 +984,44 @@ function wc_gzd_get_cart_tax_share( $type = 'shipping', $cart_contents = array()
 	return $tax_shares;
 }
 
+function wc_gzd_get_cart_main_service_tax_class( $type = 'shipping' ) {
+	$cart           = WC()->cart ? WC()->cart->get_cart_contents() : array();
+	$main_tax_class = false;
+	$max_total      = 0.0;
+	$detect_by      = wc_gzd_additional_costs_taxes_detect_main_service_by();
+
+	foreach ( $cart as $key => $item ) {
+		if ( wc_gzd_item_is_tax_share_exempt( $item, $type, $key ) ) {
+			continue;
+		}
+
+		$_product   = apply_filters( 'woocommerce_cart_item_product', $item['data'], $item, $key );
+		$class      = $_product->get_tax_class();
+		$item_total = 0.0;
+
+		if ( 'highest_net_amount' === $detect_by ) {
+			$item_total = (float) $item['line_total'];
+		} elseif ( 'highest_tax_rate' === $detect_by ) {
+			$rate_id    = ! empty( $item['line_tax_data'] ) ? key( $item['line_tax_data']['total'] ) : null;
+			$rate_id    = apply_filters( 'woocommerce_gzd_tax_share_cart_item_tax_rate', $rate_id, $item, $type );
+			$item_total = 0.0;
+
+			if ( $rate_id ) {
+				if ( $rate = wc_gzd_get_tax_rate( $rate_id ) ) {
+					$item_total = (float) $rate->tax_rate;
+				}
+			}
+		}
+
+		if ( false === $main_tax_class || $item_total > $max_total ) {
+			$main_tax_class = $class;
+			$max_total      = $item_total;
+		}
+	}
+
+	return apply_filters( 'woocommerce_gzd_cart_main_service_tax_class', $main_tax_class );
+}
+
 function wc_gzd_cart_remove_shipping_taxes( $taxes, $cart ) {
 	return is_callable( array( $cart, 'set_cart_contents_taxes' ) ) ? $cart->get_cart_contents_taxes() : $cart->taxes;
 }
@@ -999,7 +1037,6 @@ function wc_gzd_get_cart_taxes( $cart, $include_shipping_taxes = true ) {
 
 	// If prices are tax inclusive, show taxes here
 	if ( 'yes' === get_option( 'woocommerce_calc_taxes' ) && 'incl' === wc_gzd_get_cart_tax_display_mode() ) {
-
 		if ( 'itemized' === get_option( 'woocommerce_tax_total_display' ) ) {
 			if ( ! $include_shipping_taxes ) {
 				add_filter( 'woocommerce_cart_get_taxes', 'wc_gzd_cart_remove_shipping_taxes', 10, 2 );
@@ -1012,7 +1049,6 @@ function wc_gzd_get_cart_taxes( $cart, $include_shipping_taxes = true ) {
 			}
 
 			foreach ( $taxes as $code => $tax ) {
-
 				$rate = wc_gzd_get_tax_rate( $tax->tax_rate_id );
 
 				if ( ! $rate ) {

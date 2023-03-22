@@ -351,12 +351,34 @@ class WC_GZD_Admin {
 	}
 
 	public function html_field( $value ) {
+		$value = wp_parse_args(
+			$value,
+			array(
+				'id'                => '',
+				'custom_attributes' => array(),
+			)
+		);
+
 		?>
 		<tr valign="top">
 			<th class="forminp forminp-html" id="<?php echo esc_attr( $value['id'] ); ?>">
 				<label><?php echo esc_attr( $value['title'] ); ?><?php echo( isset( $value['desc_tip'] ) && ! empty( $value['desc_tip'] ) ? wc_help_tip( $value['desc_tip'] ) : '' ); ?></label>
 			</th>
-			<td class="forminp"><?php echo wp_kses_post( $value['html'] ); ?></td>
+			<td class="forminp">
+				<?php echo wp_kses_post( $value['html'] ); ?>
+				<input
+					type="hidden"
+					name="<?php echo esc_attr( $value['id'] ); ?>"
+					id="<?php echo esc_attr( $value['id'] ); ?>"
+					<?php
+					if ( ! empty( $value['custom_attributes'] ) && is_array( $value['custom_attributes'] ) ) {
+						foreach ( $value['custom_attributes'] as $attribute => $attribute_value ) {
+							echo esc_attr( $attribute ) . '="' . esc_attr( $attribute_value ) . '" ';
+						}
+					}
+					?>
+				/>
+			</td>
 		</tr>
 		<?php
 	}
@@ -1128,7 +1150,7 @@ class WC_GZD_Admin {
 		update_option( 'woocommerce_tax_display_cart', 'incl' );
 		update_option( 'woocommerce_price_display_suffix', '' );
 
-		update_option( 'woocommerce_gzd_shipping_tax', 'no' );
+		update_option( 'woocommerce_gzd_tax_mode_additional_costs', 'none' );
 	}
 
 	protected function check_insert_vat_rates() {
