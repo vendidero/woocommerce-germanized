@@ -1304,7 +1304,13 @@ function wc_gzd_format_unit_price( $price, $unit, $unit_base, $product_units = '
 }
 
 function wc_gzd_get_additional_costs_tax_calculation_mode() {
-	return get_option( 'woocommerce_gzd_tax_mode_additional_costs', 'main_service' );
+	$value = get_option( 'woocommerce_gzd_tax_mode_additional_costs', 'split_tax' );
+
+	if ( ! in_array( $value, array( 'none', 'split_tax', 'main_service' ), true ) ) {
+		$value = 'none';
+	}
+
+	return $value;
 }
 
 function wc_gzd_enable_additional_costs_split_tax_calculation() {
@@ -1316,7 +1322,13 @@ function wc_gzd_calculate_additional_costs_taxes_based_on_main_service() {
 }
 
 function wc_gzd_additional_costs_taxes_detect_main_service_by() {
-	return wc_gzd_calculate_additional_costs_taxes_based_on_main_service() ? get_option( 'woocommerce_gzd_tax_mode_additional_costs_detect_main_service' ) : false;
+	$value = get_option( 'woocommerce_gzd_tax_mode_additional_costs_detect_main_service', 'highest_net_amount' );
+
+	if ( ! in_array( $value, array( 'highest_net_amount', 'highest_tax_rate' ), true ) ) {
+		$value = 'highest_net_amount';
+	}
+
+	return $value;
 }
 
 function wc_gzd_additional_costs_include_tax() {
