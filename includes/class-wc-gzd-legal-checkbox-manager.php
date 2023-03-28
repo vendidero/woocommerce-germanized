@@ -409,6 +409,26 @@ class WC_GZD_Legal_Checkbox_Manager {
 		$this->update_show_conditionally( 'reviews', $args );
 	}
 
+	/**
+	 * @param WC_Product $_product
+	 *
+	 * @return []
+	 */
+	protected function get_product_category_ids( $_product ) {
+		$category_ids = $_product->get_category_ids();
+
+		/**
+		 * Variations do not inherit parent category ids.
+		 */
+		if ( $_product->get_parent_id() > 0 ) {
+			if ( $_parent = wc_get_product( $_product->get_parent_id() ) ) {
+				$category_ids = array_unique( array_merge( $category_ids, $_parent->get_category_ids() ) );
+			}
+		}
+
+		return $category_ids;
+	}
+
 	protected function get_cart_product_data() {
 		$args = array(
 			'is_downloadable'        => false,
@@ -444,7 +464,7 @@ class WC_GZD_Legal_Checkbox_Manager {
 				}
 
 				if ( $_product ) {
-					$args['product_category_ids'] = array_unique( array_merge( $args['product_category_ids'], $_product->get_category_ids() ) );
+					$args['product_category_ids'] = array_unique( array_merge( $args['product_category_ids'], $this->get_product_category_ids( $_product ) ) );
 				}
 			}
 		}
@@ -500,7 +520,7 @@ class WC_GZD_Legal_Checkbox_Manager {
 				}
 
 				if ( $_product ) {
-					$args['product_category_ids'] = array_unique( array_merge( $args['product_category_ids'], $_product->get_category_ids() ) );
+					$args['product_category_ids'] = array_unique( array_merge( $args['product_category_ids'], $this->get_product_category_ids( $_product ) ) );
 				}
 			}
 		}
