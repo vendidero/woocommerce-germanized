@@ -259,9 +259,46 @@ class WC_GZD_Checkout {
 							$_product->set_tax_class( get_option( 'woocommerce_gzd_photovoltaic_systems_zero_tax_class', 'zero-rate' ) );
 						}
 					}
+				} elseif ( empty( $value ) && ( ! $checkbox->hide_input() || ( $checkbox->hide_input() && ! $visible ) ) && wc_gzd_cart_applies_for_photovoltaic_system_vat_exemption() && apply_filters( 'woocommerce_gzd_photovoltaic_systems_checkout_adjust_default_zero_tax_class', true ) ) {
+					foreach ( $cart->get_cart() as $cart_item_key => $values ) {
+						$_product = apply_filters( 'woocommerce_cart_item_product', $values['data'], $values, $cart_item_key );
+
+						if ( wc_gzd_get_product( $_product )->is_photovoltaic_system() ) {
+							$zero_tax_class = get_option( 'woocommerce_gzd_photovoltaic_systems_zero_tax_class', 'zero-rate' );
+
+							/**
+							 * In case the checkbox was not checked but the photovoltaic product has the zero tax class applied
+							 * e.g. to show the zero-taxed price within the shop adjust the tax class and calculate the new gross price.
+							 */
+							if ( $zero_tax_class === $_product->get_tax_class() ) {
+								$_product->set_tax_class( apply_filters( 'woocommerce_gzd_default_photovoltaic_systems_non_exempt_tax_class', '', $_product ) );
+
+								/**
+								 * In case prices include tax treat the zero taxed default price as net price.
+								 */
+								if ( wc_prices_include_tax() ) {
+									$price = $_product->get_price();
+									add_filter( 'woocommerce_prices_include_tax', array( $this, 'prevent_prices_include_tax' ), 999 );
+									$including_tax = wc_get_price_including_tax(
+										$_product,
+										array(
+											'qty'   => 1,
+											'price' => $price,
+										)
+									);
+									remove_filter( 'woocommerce_prices_include_tax', array( $this, 'prevent_prices_include_tax' ), 999 );
+									$_product->set_price( $including_tax );
+								}
+							}
+						}
+					}
 				}
 			}
 		}
+	}
+
+	public function prevent_prices_include_tax() {
+		return false;
 	}
 
 	public static function filter_de_states( $states ) {
