@@ -259,7 +259,7 @@ class WC_GZD_Checkout {
 							$_product->set_tax_class( get_option( 'woocommerce_gzd_photovoltaic_systems_zero_tax_class', 'zero-rate' ) );
 						}
 					}
-				} elseif ( apply_filters( 'woocommerce_gzd_photovoltaic_systems_remove_zero_tax_class_for_non_exemptions', true ) ) {
+				} elseif ( apply_filters( 'woocommerce_gzd_photovoltaic_systems_remove_zero_tax_class_for_non_exemptions', ( ! is_cart() ) ) ) {
 					foreach ( $cart->get_cart() as $cart_item_key => $values ) {
 						$_product = apply_filters( 'woocommerce_cart_item_product', $values['data'], $values, $cart_item_key );
 
@@ -277,7 +277,7 @@ class WC_GZD_Checkout {
 								 * In case prices include tax allow treating the zero taxed default price as net price and add taxes on top
 								 * of the current price.
 								 */
-								if ( wc_prices_include_tax() && apply_filters( 'woocommerce_gzd_photovoltaic_systems_price_excludes_taxes_for_non_exemption', false ) ) {
+								if ( wc_prices_include_tax() && apply_filters( 'woocommerce_gzd_photovoltaic_systems_price_excludes_taxes_for_non_exemption', true ) ) {
 									$price = $_product->get_price();
 									add_filter( 'woocommerce_prices_include_tax', array( $this, 'prevent_prices_include_tax' ), 999 );
 									$including_tax = wc_get_price_including_tax(
