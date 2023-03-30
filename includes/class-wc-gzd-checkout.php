@@ -259,7 +259,7 @@ class WC_GZD_Checkout {
 							$_product->set_tax_class( get_option( 'woocommerce_gzd_photovoltaic_systems_zero_tax_class', 'zero-rate' ) );
 						}
 					}
-				} elseif ( empty( $value ) && ( ! $checkbox->hide_input() || ( $checkbox->hide_input() && ! $visible ) ) && wc_gzd_cart_applies_for_photovoltaic_system_vat_exemption() && apply_filters( 'woocommerce_gzd_photovoltaic_systems_checkout_adjust_default_zero_tax_class', true ) ) {
+				} elseif ( apply_filters( 'woocommerce_gzd_photovoltaic_systems_remove_zero_tax_class_for_non_exemptions', true ) ) {
 					foreach ( $cart->get_cart() as $cart_item_key => $values ) {
 						$_product = apply_filters( 'woocommerce_cart_item_product', $values['data'], $values, $cart_item_key );
 
@@ -268,15 +268,16 @@ class WC_GZD_Checkout {
 
 							/**
 							 * In case the checkbox was not checked but the photovoltaic product has the zero tax class applied
-							 * e.g. to show the zero-taxed price within the shop adjust the tax class and calculate the new gross price.
+							 * e.g. to show the zero-taxed price within the shop adjust the tax class accordingly.
 							 */
 							if ( $zero_tax_class === $_product->get_tax_class() ) {
-								$_product->set_tax_class( apply_filters( 'woocommerce_gzd_default_photovoltaic_systems_non_exempt_tax_class', '', $_product ) );
+								$_product->set_tax_class( apply_filters( 'woocommerce_gzd_default_photovoltaic_systems_non_exemption_tax_class', '', $_product ) );
 
 								/**
-								 * In case prices include tax treat the zero taxed default price as net price.
+								 * In case prices include tax allow treating the zero taxed default price as net price and add taxes on top
+								 * of the current price.
 								 */
-								if ( wc_prices_include_tax() ) {
+								if ( wc_prices_include_tax() && apply_filters( 'woocommerce_gzd_photovoltaic_systems_price_excludes_taxes_for_non_exemption', false ) ) {
 									$price = $_product->get_price();
 									add_filter( 'woocommerce_prices_include_tax', array( $this, 'prevent_prices_include_tax' ), 999 );
 									$including_tax = wc_get_price_including_tax(

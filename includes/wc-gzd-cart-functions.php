@@ -652,18 +652,20 @@ function wc_gzd_cart_product_units( $title, $cart_item, $cart_item_key = '' ) {
 }
 
 function wc_gzd_cart_applies_for_photovoltaic_system_vat_exemption() {
+	return apply_filters( 'woocommerce_gzd_cart_applies_for_photovoltaic_system_vat_exemption', wc_gzd_cart_customer_applies_for_photovoltaic_system_vat_exemption() && wc_gzd_cart_contains_photovoltaic_system() );
+}
+
+function wc_gzd_cart_customer_applies_for_photovoltaic_system_vat_exemption() {
 	$applies_for_photovoltaic_vat_exemption = false;
 
-	if ( wc_gzd_cart_contains_photovoltaic_system() ) {
-		$country = WC_GZD_Checkout::instance()->get_checkout_value( 'shipping_country' ) ? WC_GZD_Checkout::instance()->get_checkout_value( 'shipping_country' ) : WC_GZD_Checkout::instance()->get_checkout_value( 'billing_country' );
-		$company = WC_GZD_Checkout::instance()->get_checkout_value( 'shipping_company' ) ? WC_GZD_Checkout::instance()->get_checkout_value( 'shipping_company' ) : WC_GZD_Checkout::instance()->get_checkout_value( 'billing_company' );
+	$country = WC_GZD_Checkout::instance()->get_checkout_value( 'shipping_country' ) ? WC_GZD_Checkout::instance()->get_checkout_value( 'shipping_country' ) : WC_GZD_Checkout::instance()->get_checkout_value( 'billing_country' );
+	$company = WC_GZD_Checkout::instance()->get_checkout_value( 'shipping_company' ) ? WC_GZD_Checkout::instance()->get_checkout_value( 'shipping_company' ) : WC_GZD_Checkout::instance()->get_checkout_value( 'billing_company' );
 
-		if ( 'DE' === $country && 'DE' === wc_gzd_get_base_country() && empty( $company ) ) {
-			$applies_for_photovoltaic_vat_exemption = true;
-		}
+	if ( 'DE' === $country && 'DE' === wc_gzd_get_base_country() && empty( $company ) ) {
+		$applies_for_photovoltaic_vat_exemption = true;
 	}
 
-	return apply_filters( 'woocommerce_gzd_cart_applies_for_photovoltaic_system_vat_exemption', $applies_for_photovoltaic_vat_exemption );
+	return apply_filters( 'woocommerce_gzd_cart_customer_applies_for_photovoltaic_system_vat_exemption', $applies_for_photovoltaic_vat_exemption );
 }
 
 function wc_gzd_cart_contains_photovoltaic_system( $items = false ) {
