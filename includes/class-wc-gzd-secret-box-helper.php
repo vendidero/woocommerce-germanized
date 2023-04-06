@@ -129,6 +129,10 @@ if ( ! class_exists( 'WC_GZD_Secret_Box_Helper' ) && function_exists( 'sodium_cr
 		 * @return WP_Error|mixed
 		 */
 		public static function decrypt( $cipher, $encryption_type = '' ) {
+			if ( is_null( $cipher ) ) {
+				return null;
+			}
+
 			$decoded = base64_decode( $cipher ); // phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.obfuscation_base64_decode
 			$error   = new \WP_Error();
 
