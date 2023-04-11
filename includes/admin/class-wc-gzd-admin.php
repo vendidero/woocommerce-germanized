@@ -123,6 +123,7 @@ class WC_GZD_Admin {
 			'disable_notices',
 			'encryption_key_insert',
 			'enable_debug_mode',
+			'disable_food_options',
 			'install_oss',
 			'install_ts',
 		);
@@ -186,6 +187,14 @@ class WC_GZD_Admin {
 			update_option( 'woocommerce_gzd_extended_debug_mode', 'no' );
 		} else {
 			update_option( 'woocommerce_gzd_extended_debug_mode', 'yes' );
+		}
+	}
+
+	protected function check_disable_food_options() {
+		if ( 'yes' === get_option( 'woocommerce_gzd_disable_food_options' ) ) {
+			update_option( 'woocommerce_gzd_disable_food_options', 'no' );
+		} else {
+			update_option( 'woocommerce_gzd_disable_food_options', 'yes' );
 		}
 	}
 

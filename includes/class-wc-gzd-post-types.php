@@ -183,7 +183,7 @@ class WC_GZD_Post_Types {
 			)
 		);
 
-		if ( apply_filters( 'woocommerce_gzd_register_food_taxonomies', true ) ) {
+		if ( apply_filters( 'woocommerce_gzd_register_food_taxonomies', ( 'yes' !== get_option( 'woocommerce_gzd_disable_food_options' ) ) ) ) {
 			// Deposit classes
 			register_taxonomy(
 				'product_deposit_type',

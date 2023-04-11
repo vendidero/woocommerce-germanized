@@ -463,6 +463,7 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 				<p class="wc-gzd-product-settings-subtitle">
 					<?php esc_html_e( 'Deposit', 'woocommerce-germanized' ); ?>
 					<a class="page-title-action" href="https://vendidero.de/dokument/lebensmittel-auszeichnen#pfand-berechnen"><?php esc_html_e( 'Help', 'woocommerce-germanized' ); ?></a>
+					<a class="wc-gzd-product-settings-action" target="_blank" href="<?php echo esc_url( admin_url( 'edit-tags.php?taxonomy=product_deposit_type&post_type=product' ) ); ?>"><?php esc_html_e( 'Manage deposit types', 'woocommerce-germanized' ); ?></a>
 				</p>
 
 				<?php

@@ -628,7 +628,6 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 			$checkbox_options = $manager->get_options();
 
 			foreach ( $manager->get_checkboxes( array( 'is_core' => true ) ) as $id => $checkbox ) {
-
 				if ( ! isset( $checkbox_options[ $id ] ) ) {
 					$checkbox_options[ $id ] = array();
 				}
@@ -665,6 +664,8 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 					add_option( $value['id'], $value['default'], '', ( $autoload ? 'yes' : 'no' ) );
 				}
 			}
+
+			add_option( 'woocommerce_gzd_disable_food_options', 'no' );
 		}
 	}
 

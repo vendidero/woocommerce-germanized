@@ -707,7 +707,7 @@ class WC_GZD_Settings_Tab_Shopmarks extends WC_GZD_Settings_Tab {
 			);
 		}
 
-		return $food_settings;
+		return apply_filters( 'woocommerce_gzd_food_settings', $food_settings );
 	}
 
 	protected function get_unit_price_settings() {

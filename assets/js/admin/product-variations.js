@@ -137,18 +137,14 @@ jQuery( function ( $ ) {
 
         show_or_hide_unit_variation: function() {
             if ( wc_gzd_product_variations_actions.is_variable() ) {
-
                 $( '.variable_pricing_unit .form-row' ).hide();
                 $( '.variable_pricing_unit .wc-gzd-unit-price-disabled-notice' ).show();
 
                 if ( ! wc_gzd_product_variations_actions.has_unit_price() && wc_gzd_product_variations_actions.has_unit() ) {
-
                     $( '.variable_pricing_unit .form-row' ).hide();
                     $( '.variable_pricing_unit .wc-gzd-unit-price-disabled-notice' ).show();
                     $( '.variable_pricing_unit' ).find( 'input[name*=variable_unit_product]' ).parents( '.form-row' ).show();
-
                 } else if ( wc_gzd_product_variations_actions.has_unit_price() ) {
-
                     $( '.variable_pricing_unit .form-row' ).show();
                     $( '.variable_pricing_unit .wc-gzd-unit-price-disabled-notice' ).hide();
                 }

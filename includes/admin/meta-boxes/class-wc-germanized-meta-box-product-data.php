@@ -67,6 +67,7 @@ class WC_Germanized_Meta_Box_Product_Data {
 					<p class="wc-gzd-product-settings-subtitle">
 						<?php esc_html_e( 'Deposit', 'woocommerce-germanized' ); ?>
 						<a class="page-title-action" href="https://vendidero.de/dokument/lebensmittel-auszeichnen#pfand-berechnen"><?php esc_html_e( 'Help', 'woocommerce-germanized' ); ?></a>
+						<a class="wc-gzd-product-settings-action" target="_blank" href="<?php echo esc_url( admin_url( 'edit-tags.php?taxonomy=product_deposit_type&post_type=product' ) ); ?>"><?php esc_html_e( 'Manage deposit types', 'woocommerce-germanized' ); ?></a>
 					</p>
 
 					<?php
@@ -396,13 +397,15 @@ class WC_Germanized_Meta_Box_Product_Data {
 			'default'       => 'no',
 		);
 
-		$types['is_food'] = array(
-			'id'            => '_is_food',
-			'wrapper_class' => WC_germanized()->is_pro() ? '' : 'product_type_gzd_pro',
-			'label'         => __( 'Food', 'woocommerce-germanized' ),
-			'description'   => __( 'This product is a food product.', 'woocommerce-germanized' ),
-			'default'       => 'no',
-		);
+		if ( taxonomy_exists( 'product_nutrient' ) ) {
+			$types['is_food'] = array(
+				'id'            => '_is_food',
+				'wrapper_class' => WC_germanized()->is_pro() ? '' : 'product_type_gzd_pro',
+				'label'         => __( 'Food', 'woocommerce-germanized' ),
+				'description'   => __( 'This product is a food product.', 'woocommerce-germanized' ),
+				'default'       => 'no',
+			);
+		}
 
 		$types['photovoltaic_system'] = array(
 			'id'            => '_photovoltaic_system',

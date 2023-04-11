@@ -33,7 +33,7 @@ table.data_table tr td p.form-field {
 .wc-gzd-resend-activation-link {
   margin-top: 1em !important; }
 
-.wc-gzd-unit-price-disabled-notice {
+#variable_product_options .notice.wc-gzd-unit-price-disabled-notice {
   margin: 1em 0 !important;
   box-sizing: border-box;
   display: none;
@@ -303,6 +303,11 @@ table.wc-gzd-tax-example tr th:first-child, table.wc-gzd-tax-example tr td:first
   background: #eee; }
   .wc-metaboxes-wrapper .wc-metabox.woocommerce_variation p.wc-gzd-product-settings-subtitle .page-title-action {
     top: -1px; }
+  .wc-metaboxes-wrapper .wc-metabox.woocommerce_variation p.wc-gzd-product-settings-subtitle .wc-gzd-product-settings-action {
+    float: right;
+    text-decoration: underline;
+    font-weight: normal;
+    margin-left: 1em; }
 
 .woocommerce_options_panel .wc-gzd-inner-product-pro-tab-wrapper {
   padding: 20px; }
@@ -318,6 +323,11 @@ table.wc-gzd-tax-example tr th:first-child, table.wc-gzd-tax-example tr td:first
   margin-top: -1px; }
   .woocommerce_options_panel p.wc-gzd-product-settings-subtitle .page-title-action {
     top: -1px; }
+  .woocommerce_options_panel p.wc-gzd-product-settings-subtitle .wc-gzd-product-settings-action {
+    float: right;
+    text-decoration: underline;
+    font-weight: normal;
+    margin-left: 1em; }
 
 .woocommerce_options_panel .nutrient_vitamins_field {
   width: 50%; }
