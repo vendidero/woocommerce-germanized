@@ -44,9 +44,7 @@ class WC_GZD_Gateway_Direct_Debit_Encryption_Helper {
 	}
 
 	public function get_random_key() {
-		wc_deprecated_function( 'WC_GZD_Gateway_Direct_Debit_Encryption_Helper::get_random_key', '4.0.0' );
-
-		return false;
+		return WC_GZD_Secret_Box_Helper::get_random_encryption_key();
 	}
 
 	public function is_configured() {
