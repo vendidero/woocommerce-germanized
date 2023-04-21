@@ -39,7 +39,6 @@ class WC_GZD_REST_Customers_Controller {
 	 *
 	 */
 	public function prepare( $response, $user_data, $request ) {
-
 		$customer               = new WC_Customer( $user_data->ID );
 		$response_customer_data = $response->get_data();
 
@@ -48,13 +47,14 @@ class WC_GZD_REST_Customers_Controller {
 		$response_customer_data['shipping']['title']           = $customer->get_meta( 'shipping_title' );
 		$response_customer_data['shipping']['title_formatted'] = wc_gzd_get_customer_title( $customer->get_meta( 'shipping_title' ) );
 
-		$holder = $customer->get_meta( 'direct_debit_holder' );
-		$iban   = $customer->get_meta( 'direct_debit_iban' );
-		$bic    = $customer->get_meta( 'direct_debit_bic' );
+		$holder    = $customer->get_meta( 'direct_debit_holder' );
+		$iban      = $customer->get_meta( 'direct_debit_iban' );
+		$bic       = $customer->get_meta( 'direct_debit_bic' );
+		$is_legacy = $customer->get_meta( 'direct_debit_is_sodium_encrypted' ) ? false : true;
 
 		if ( $this->direct_debit_gateway ) {
-			$iban = $this->direct_debit_gateway->maybe_decrypt( $iban );
-			$bic  = $this->direct_debit_gateway->maybe_decrypt( $bic );
+			$iban = $this->direct_debit_gateway->maybe_decrypt( $iban, $is_legacy );
+			$bic  = $this->direct_debit_gateway->maybe_decrypt( $bic, $is_legacy );
 		}
 
 		$response_customer_data['direct_debit'] = array(
@@ -95,16 +95,18 @@ class WC_GZD_REST_Customers_Controller {
 		}
 
 		if ( isset( $request['direct_debit'] ) ) {
-
 			if ( isset( $request['direct_debit']['holder'] ) ) {
 				$customer->update_meta_data( 'direct_debit_holder', wc_clean( $request['direct_debit']['holder'] ) );
 			}
+
+			$has_encrypted = false;
 
 			if ( isset( $request['direct_debit']['iban'] ) ) {
 				$iban = wc_clean( $request['direct_debit']['iban'] );
 
 				if ( $this->direct_debit_gateway ) {
-					$iban = $this->direct_debit_gateway->maybe_encrypt( $iban );
+					$iban          = $this->direct_debit_gateway->maybe_encrypt( $iban );
+					$has_encrypted = true;
 				}
 
 				$customer->update_meta_data( 'direct_debit_iban', $iban );
@@ -114,10 +116,15 @@ class WC_GZD_REST_Customers_Controller {
 				$bic = wc_clean( $request['direct_debit']['bic'] );
 
 				if ( $this->direct_debit_gateway ) {
-					$bic = $this->direct_debit_gateway->maybe_encrypt( $bic );
+					$bic           = $this->direct_debit_gateway->maybe_encrypt( $bic );
+					$has_encrypted = true;
 				}
 
 				$customer->update_meta_data( 'direct_debit_bic', $bic );
+			}
+
+			if ( $has_encrypted ) {
+				$customer->update_meta_data( 'direct_debit_is_sodium_encrypted', 'yes' );
 			}
 		}
 

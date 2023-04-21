@@ -55,10 +55,11 @@ class WC_GZD_REST_Orders_Controller {
 		$iban       = $order->get_meta( '_direct_debit_iban' );
 		$bic        = $order->get_meta( '_direct_debit_bic' );
 		$mandate_id = $order->get_meta( '_direct_debit_mandate_id' );
+		$is_legacy  = $order->get_meta( '_direct_debit_is_sodium_encrypted' ) ? false : true;
 
 		if ( $this->direct_debit_gateway ) {
-			$iban = $this->direct_debit_gateway->maybe_decrypt( $iban );
-			$bic  = $this->direct_debit_gateway->maybe_decrypt( $bic );
+			$iban = $this->direct_debit_gateway->maybe_decrypt( $iban, $is_legacy );
+			$bic  = $this->direct_debit_gateway->maybe_decrypt( $bic, $is_legacy );
 		}
 
 		$response_order_data['direct_debit'] = array(
@@ -99,11 +100,14 @@ class WC_GZD_REST_Orders_Controller {
 				$order->update_meta_data( '_direct_debit_holder', wc_clean( $request['direct_debit']['holder'] ) );
 			}
 
+			$has_encrypted = false;
+
 			if ( isset( $request['direct_debit']['iban'] ) ) {
 				$iban = wc_clean( $request['direct_debit']['iban'] );
 
 				if ( $this->direct_debit_gateway ) {
-					$iban = $this->direct_debit_gateway->maybe_encrypt( $iban );
+					$iban          = $this->direct_debit_gateway->maybe_encrypt( $iban );
+					$has_encrypted = true;
 				}
 
 				$order->update_meta_data( '_direct_debit_iban', $iban );
@@ -113,10 +117,15 @@ class WC_GZD_REST_Orders_Controller {
 				$bic = wc_clean( $request['direct_debit']['bic'] );
 
 				if ( $this->direct_debit_gateway ) {
-					$bic = $this->direct_debit_gateway->maybe_encrypt( $bic );
+					$bic           = $this->direct_debit_gateway->maybe_encrypt( $bic );
+					$has_encrypted = true;
 				}
 
 				$order->update_meta_data( '_direct_debit_bic', $bic );
+			}
+
+			if ( $has_encrypted ) {
+				$order->update_meta_data( '_direct_debit_is_sodium_encrypted', 'yes' );
 			}
 
 			if ( isset( $request['direct_debit']['mandate_id'] ) ) {

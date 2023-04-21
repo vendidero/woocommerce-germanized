@@ -97,16 +97,6 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 			'products',
 		);
 
-		if ( $this->get_option( 'enabled' ) === 'yes' && ! $this->supports_encryption() ) {
-
-			ob_start();
-			include_once 'views/html-encryption-notice.php';
-			$notice = ob_get_clean();
-
-			$this->method_description .= $notice;
-
-		}
-
 		// Force disabling remember account data if encryption is not supported
 		if ( ! $this->supports_encryption() ) {
 			$this->remember = 'no';
@@ -226,8 +216,10 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 		</h3>
 
 		<?php
+		$is_legacy = $this->order_data_may_be_legacy_encrypted( $order );
+
 		foreach ( $this->admin_fields as $key => $field ) :
-			$field['value'] = $this->maybe_decrypt( $order->get_meta( $field['id'] ) );
+			$field['value'] = true === $field['encrypt'] ? $this->maybe_decrypt( $order->get_meta( $field['id'] ), $is_legacy ) : $order->get_meta( $field['id'] );
 
 			switch ( $field['type'] ) {
 				case 'select':
@@ -246,7 +238,6 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 	 * @param WC_Order $order
 	 */
 	public function save_debit_fields( $order ) {
-
 		// Check the nonce
 		if ( empty( $_POST['woocommerce_meta_nonce'] ) || ! wp_verify_nonce( wp_unslash( $_POST['woocommerce_meta_nonce'] ), 'woocommerce_save_data' ) ) { // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 			return;
@@ -259,6 +250,8 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 		if ( $order->get_payment_method() !== $this->id ) {
 			return;
 		}
+
+		$has_encrypted = false;
 
 		foreach ( $this->admin_fields as $key => $field ) {
 			if ( isset( $_POST[ $field['id'] ] ) ) {
@@ -275,11 +268,16 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 				}
 
 				if ( ! empty( $data ) && $field['encrypt'] ) {
-					$data = $this->maybe_encrypt( $data );
+					$has_encrypted = true;
+					$data          = $this->maybe_encrypt( $data );
 				}
 
 				$order->update_meta_data( $field['id'], $data );
 			}
+		}
+
+		if ( $has_encrypted ) {
+			$order->update_meta_data( '_direct_debit_is_sodium_encrypted', 'yes' );
 		}
 	}
 
@@ -505,7 +503,8 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 						continue;
 					}
 
-					$amount_in_cents = round( ( $order->get_total() - $order->get_total_refunded() ) * 100 );
+					$amount_in_cents     = round( ( $order->get_total() - $order->get_total_refunded() ) * 100 );
+					$is_legacy_encrypted = $this->order_data_may_be_legacy_encrypted( $order );
 
 					/**
 					 * Filter that allows adjusting direct debit SEPA XML Export transfer data per order.
@@ -523,8 +522,8 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 							'woocommerce_gzd_direct_debit_sepa_xml_exporter_transfer_args',
 							array(
 								'amount'                => $amount_in_cents,
-								'debtorIban'            => $this->sanitize_iban( $this->maybe_decrypt( $order->get_meta( '_direct_debit_iban' ) ) ),
-								'debtorBic'             => $this->sanitize_bic( $this->maybe_decrypt( $order->get_meta( '_direct_debit_bic' ) ) ),
+								'debtorIban'            => $this->sanitize_iban( $this->maybe_decrypt( $order->get_meta( '_direct_debit_iban' ), $is_legacy_encrypted ) ),
+								'debtorBic'             => $this->sanitize_bic( $this->maybe_decrypt( $order->get_meta( '_direct_debit_bic' ), $is_legacy_encrypted ) ),
 								'debtorName'            => $order->get_meta( '_direct_debit_holder' ),
 								'debtorCountry'         => $order->get_billing_country(),
 								'debtorAdrLine'         => array_filter( array( trim( $order->get_billing_address_1() . ' ' . $order->get_billing_address_2() ), trim( $order->get_billing_postcode() . ' ' . $order->get_billing_city() ) ) ),
@@ -635,15 +634,16 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 	 * @param $plain_text
 	 */
 	public function email_sepa( $order, $sent_to_admin, $plain_text ) {
-
 		if ( $this->id !== $order->get_payment_method() ) {
 			return;
 		}
 
+		$is_legacy_encrypted = $this->order_data_may_be_legacy_encrypted( $order );
+
 		$sepa_fields = array(
 			__( 'Account Holder', 'woocommerce-germanized' ) => $order->get_meta( '_direct_debit_holder' ),
-			__( 'IBAN', 'woocommerce-germanized' )      => $this->mask( $this->maybe_decrypt( $order->get_meta( '_direct_debit_iban' ) ) ),
-			__( 'BIC/SWIFT', 'woocommerce-germanized' ) => $this->maybe_decrypt( $order->get_meta( '_direct_debit_bic' ) ),
+			__( 'IBAN', 'woocommerce-germanized' )      => $this->mask( $this->maybe_decrypt( $order->get_meta( '_direct_debit_iban' ), $is_legacy_encrypted ) ),
+			__( 'BIC/SWIFT', 'woocommerce-germanized' ) => $this->maybe_decrypt( $order->get_meta( '_direct_debit_bic' ), $is_legacy_encrypted ),
 		);
 
 		if ( $sent_to_admin ) {
@@ -762,6 +762,7 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 		$order->update_meta_data( '_direct_debit_holder', $holder );
 		$order->update_meta_data( '_direct_debit_iban', $iban );
 		$order->update_meta_data( '_direct_debit_bic', $bic );
+		$order->update_meta_data( '_direct_debit_is_sodium_encrypted', 'yes' );
 
 		// Generate mandate id if applicable
 		$mandate_id = $this->get_mandate_id( $order );
@@ -791,10 +792,10 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 		do_action( 'woocommerce_gzd_direct_debit_order_data_updated', $order, $user_id, $this );
 
 		if ( $this->supports_encryption() && 'yes' === $this->remember && ! empty( $user_id ) && ! empty( $iban ) ) {
-
 			update_user_meta( $user_id, 'direct_debit_holder', $holder );
 			update_user_meta( $user_id, 'direct_debit_iban', $iban );
 			update_user_meta( $user_id, 'direct_debit_bic', $bic );
+			update_user_meta( $user_id, 'direct_debit_is_sodium_encrypted', 'yes' );
 
 			/**
 			 * Updated direct debit user data.
@@ -881,15 +882,20 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 	}
 
 	public function generate_mandate_by_order( $order ) {
-
 		if ( is_numeric( $order ) ) {
 			$order = wc_get_order( absint( $order ) );
 		}
 
+		if ( ! $order ) {
+			return '';
+		}
+
+		$is_legacy = $this->order_data_may_be_legacy_encrypted( $order );
+
 		$params = array(
 			'account_holder'    => $order->get_meta( '_direct_debit_holder' ),
-			'account_iban'      => $this->mask( $this->maybe_decrypt( $order->get_meta( '_direct_debit_iban' ) ) ),
-			'account_swift'     => $this->maybe_decrypt( $order->get_meta( '_direct_debit_bic' ) ),
+			'account_iban'      => $this->mask( $this->maybe_decrypt( $order->get_meta( '_direct_debit_iban' ), $is_legacy ) ),
+			'account_swift'     => $this->maybe_decrypt( $order->get_meta( '_direct_debit_bic' ), $is_legacy ),
 			'street'            => $order->get_billing_address_1(),
 			'postcode'          => $order->get_billing_postcode(),
 			'city'              => $order->get_billing_city(),
@@ -1099,7 +1105,6 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 	}
 
 	public function get_user_account_data( $user_id = '' ) {
-
 		if ( empty( $user_id ) ) {
 			$user_id = get_current_user_id();
 		}
@@ -1114,10 +1119,12 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 			return $data;
 		}
 
+		$is_legacy = get_user_meta( $user_id, 'direct_debit_is_sodium_encrypted', true ) ? false : true;
+
 		$data = array(
-			'holder' => $this->maybe_decrypt( get_user_meta( $user_id, 'direct_debit_holder', true ) ),
-			'iban'   => $this->sanitize_iban( $this->maybe_decrypt( get_user_meta( $user_id, 'direct_debit_iban', true ) ) ),
-			'bic'    => $this->sanitize_bic( $this->maybe_decrypt( get_user_meta( $user_id, 'direct_debit_bic', true ) ) ),
+			'holder' => get_user_meta( $user_id, 'direct_debit_holder', true ),
+			'iban'   => $this->sanitize_iban( $this->maybe_decrypt( get_user_meta( $user_id, 'direct_debit_iban', true ), $is_legacy ) ),
+			'bic'    => $this->sanitize_bic( $this->maybe_decrypt( get_user_meta( $user_id, 'direct_debit_bic', true ), $is_legacy ) ),
 		);
 
 		return $data;
@@ -1190,7 +1197,6 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 	}
 
 	public function validate_fields() {
-
 		if ( ! $this->is_available() || ! isset( $_POST['payment_method'] ) || $_POST['payment_method'] !== $this->id ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
 			return;
 		}
@@ -1362,21 +1368,63 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 		);
 	}
 
+	/**
+	 * @param $string
+	 *
+	 * @return mixed
+	 */
 	public function maybe_encrypt( $string ) {
 		if ( $this->supports_encryption() ) {
-			return WC_GZD_Gateway_Direct_Debit_Encryption_Helper::instance()->encrypt( $string );
+			$encrypted = WC_GZD_Gateway_Direct_Debit_Encryption_Helper::instance()->encrypt( $string );
+
+			if ( ! is_wp_error( $encrypted ) ) {
+				$string = $encrypted;
+			}
 		}
 
 		return $string;
 	}
 
-	public function maybe_decrypt( $string ) {
-		if ( $this->supports_encryption() ) {
-			$decrypted = WC_GZD_Gateway_Direct_Debit_Encryption_Helper::instance()->decrypt( $string );
+	public function order_data_may_be_legacy_encrypted( $order ) {
+		if ( is_numeric( $order ) ) {
+			$order = wc_get_order( $order );
+		}
 
-			// Maxlength of IBAN is 30 - seems like we have an encrypted string (cannot be decrypted, maybe key changed)
-			if ( strlen( $decrypted ) > 40 ) {
-				return '';
+		if ( ! $order ) {
+			return false;
+		}
+
+		return $order->get_meta( '_direct_debit_is_sodium_encrypted' ) ? false : true;
+	}
+
+	public function customer_data_may_be_legacy_encrypted( $user_id ) {
+		if ( is_a( $user_id, 'WC_Customer' ) ) {
+			$is_legacy = $user_id->get_meta( 'direct_debit_is_sodium_encrypted' ) ? false : true;
+		} else {
+			$is_legacy = get_user_meta( $user_id, 'direct_debit_is_sodium_encrypted', true ) ? false : true;
+		}
+
+		return $is_legacy;
+	}
+
+	public function maybe_decrypt( $string, $is_legacy = false ) {
+		if ( $is_legacy && ! $this->supports_legacy_encryption() ) {
+			return $string;
+		}
+
+		if ( $this->supports_encryption() || $is_legacy ) {
+			$decrypted = WC_GZD_Gateway_Direct_Debit_Encryption_Helper::instance()->decrypt( $string, $is_legacy );
+
+			if ( is_wp_error( $decrypted ) ) {
+				$logger = wc_get_logger();
+
+				if ( ! $logger ) {
+					return false;
+				}
+
+				$logger->error( $decrypted->get_error_message(), array( 'source' => 'wc-gzd-direct-debit-encryption' ) );
+
+				return $string;
 			}
 
 			return $decrypted;
@@ -1386,7 +1434,16 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 	}
 
 	public function supports_encryption() {
+		require_once WC_GERMANIZED_ABSPATH . 'includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit-encryption-helper.php';
 
+		if ( ! WC_GZD_Gateway_Direct_Debit_Encryption_Helper::instance()->is_configured() ) {
+			return false;
+		}
+
+		return true;
+	}
+
+	private function supports_legacy_encryption() {
 		global $wp_version;
 
 		if ( version_compare( phpversion(), '5.4', '<' ) ) {
@@ -1403,11 +1460,10 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 
 		require_once WC_GERMANIZED_ABSPATH . 'includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit-encryption-helper.php';
 
-		if ( ! WC_GZD_Gateway_Direct_Debit_Encryption_Helper::instance()->is_configured() ) {
+		if ( ! defined( 'WC_GZD_DIRECT_DEBIT_KEY' ) ) {
 			return false;
 		}
 
 		return true;
 	}
-
 }

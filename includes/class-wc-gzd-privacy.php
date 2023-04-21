@@ -117,7 +117,6 @@ class WC_GZD_Privacy {
 	}
 
 	public function get_order_data( $data, $order ) {
-
 		/**
 		 * Filter to allow exporting personal data added by Germanized to orders.
 		 *
@@ -142,12 +141,10 @@ class WC_GZD_Privacy {
 		);
 
 		foreach ( $meta_data as $prop => $title ) {
-
 			if ( $value = $order->get_meta( $prop ) ) {
-
 				if ( in_array( $prop, array( '_direct_debit_iban', '_direct_debit_bic' ), true ) ) {
 					// Maybe Decrypt
-					$value = $this->decrypt( $value );
+					$value = $this->decrypt( $value, $order );
 				}
 
 				$data[] = array(
@@ -160,11 +157,17 @@ class WC_GZD_Privacy {
 		return $data;
 	}
 
-	private function decrypt( $data ) {
+	private function decrypt( $data, $object ) {
 		include_once WC_GERMANIZED_ABSPATH . 'includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php';
 		$instance = new WC_GZD_Gateway_Direct_Debit();
 
-		return $instance->maybe_decrypt( $data );
+		if ( is_a( $object, 'WC_Customer' ) ) {
+			$is_legacy = $instance->customer_data_may_be_legacy_encrypted( $object );
+		} else {
+			$is_legacy = $instance->order_data_may_be_legacy_encrypted( $object );
+		}
+
+		return $instance->maybe_decrypt( $data, $is_legacy );
 	}
 
 	public function get_customer_data( $data, $customer ) {
@@ -193,14 +196,13 @@ class WC_GZD_Privacy {
 
 		foreach ( $meta_data as $prop => $title ) {
 			if ( $value = $customer->get_meta( $prop ) ) {
-
 				if ( in_array( $prop, array( 'billing_title', 'shipping_title' ), true ) ) {
 					$value = wc_gzd_get_customer_title( $value );
 				}
 
 				if ( in_array( $prop, array( 'direct_debit_iban', 'direct_debit_bic' ), true ) ) {
 					// Maybe Decrypt
-					$value = $this->decrypt( $value );
+					$value = $this->decrypt( $value, $customer );
 				}
 
 				$data[] = array(
