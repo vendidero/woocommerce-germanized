@@ -144,6 +144,25 @@ class WC_GZD_Checkout {
 
 		add_action( 'woocommerce_before_calculate_totals', array( $this, 'maybe_adjust_photovoltaic_cart_data' ), 15 );
 		add_filter( 'woocommerce_update_order_review_fragments', array( $this, 'refresh_photovoltaic_systems_notice' ), 10, 1 );
+
+		/**
+		 * Other services (e.g. virtual, services) are not taxable in northern ireland
+		 */
+		add_action( 'woocommerce_before_calculate_totals', array( $this, 'maybe_remove_northern_ireland_taxes' ), 15 );
+	}
+
+	public function maybe_remove_northern_ireland_taxes( $cart ) {
+		$tax_location = \Vendidero\EUTaxHelper\Helper::get_taxable_location();
+
+		if ( \Vendidero\EUTaxHelper\Helper::is_northern_ireland( $tax_location[0], $tax_location[2] ) ) {
+			foreach ( $cart->get_cart() as $cart_item_key => $values ) {
+				$_product = apply_filters( 'woocommerce_cart_item_product', $values['data'], $values, $cart_item_key );
+
+				if ( wc_gzd_get_product( $_product )->is_other_service() ) {
+					$_product->set_tax_status( 'none' );
+				}
+			}
+		}
 	}
 
 	public function maybe_adjust_default_shipping_tax_class( $value ) {

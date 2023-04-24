@@ -95,6 +95,11 @@ class WC_GZD_Order_Helper {
 		}
 
 		/**
+		 * Other services (e.g. virtual, services) are not taxable in northern ireland
+		 */
+		add_action( 'woocommerce_order_item_after_calculate_taxes', array( $this, 'maybe_remove_northern_ireland_taxes' ), 10, 2 );
+
+		/**
 		 * WooCommerce automatically creates a full refund after the order status changes to refunded.
 		 * Make sure to create a refund ourselves before Woo does and include item-related (e.g. taxes) refund data.
 		 * This way accounting and OSS reports are much more precise. Only relevant in case shop owners manually
@@ -103,6 +108,18 @@ class WC_GZD_Order_Helper {
 		 * @see wc_order_fully_refunded
 		 */
 		add_action( 'woocommerce_order_status_refunded', array( $this, 'create_refund_with_items' ), 5 );
+	}
+
+	public function maybe_remove_northern_ireland_taxes( $order_item, $calculate_tax_for ) {
+		if ( is_a( $order_item, 'WC_Order_Item_Product' ) ) {
+			if ( \Vendidero\EUTaxHelper\Helper::is_northern_ireland( $calculate_tax_for['country'], $calculate_tax_for['postcode'] ) ) {
+				if ( $product = $order_item->get_product() ) {
+					if ( wc_gzd_get_gzd_product( $product )->is_other_service() ) {
+						$order_item->set_taxes( false );
+					}
+				}
+			}
+		}
 	}
 
 	/**

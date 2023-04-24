@@ -587,6 +587,20 @@ class WC_GZD_Product {
 		return true === $this->get_service( $context );
 	}
 
+	/**
+	 * This method refers to other services in terms of their VAT treatment.
+	 * Services/virtual products may be treated differently.
+	 *
+	 * @see https://www.smartsteuer.de/online/lexikon/s/sonstige-leistung/
+	 *
+	 * @param $context
+	 *
+	 * @return boolean
+	 */
+	public function is_other_service( $context = 'view' ) {
+		return apply_filters( 'woocommerce_gzd_product_is_other_service', ( $this->is_service() || $this->get_wc_product()->is_virtual() ) );
+	}
+
 	public function get_photovoltaic_system( $context = 'view' ) {
 		return wc_string_to_bool( $this->get_prop( 'photovoltaic_system', $context ) );
 	}
