@@ -34,7 +34,7 @@ class WC_GZD_Settings_Tab_General extends WC_GZD_Settings_Tab {
 			'shop'           => __( 'Shop', 'woocommerce-germanized' ),
 		);
 
-		if ( 'DE' === wc_gzd_get_base_country() ) {
+		if ( wc_gzd_base_country_supports_photovoltaic_system_vat_exempt() ) {
 			$sections = $sections + array(
 				'photovoltaic_systems' => __( 'Photovoltaic Systems', 'woocommerce-germanized' ),
 			);

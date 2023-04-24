@@ -347,7 +347,7 @@ class WC_GZD_Legal_Checkbox_Manager {
 			)
 		);
 
-		if ( 'DE' === wc_gzd_get_base_country() ) {
+		if ( wc_gzd_base_country_supports_photovoltaic_system_vat_exempt() ) {
 			wc_gzd_register_legal_checkbox(
 				'photovoltaic_systems',
 				array(
@@ -393,7 +393,8 @@ class WC_GZD_Legal_Checkbox_Manager {
 		$args = $this->get_cart_product_data();
 
 		if ( WC()->customer ) {
-			$args['country'] = WC()->customer->get_shipping_country() ? WC()->customer->get_shipping_country() : WC()->customer->get_billing_country();
+			$args['country']  = WC()->customer->get_shipping_country() ? WC()->customer->get_shipping_country() : WC()->customer->get_billing_country();
+			$args['postcode'] = WC()->customer->get_shipping_postcode() ? WC()->customer->get_shipping_postcode() : WC()->customer->get_billing_postcode();
 		}
 
 		$this->update_show_conditionally( 'register', $args );
@@ -403,7 +404,8 @@ class WC_GZD_Legal_Checkbox_Manager {
 		$args = $this->get_cart_product_data();
 
 		if ( WC()->customer ) {
-			$args['country'] = WC()->customer->get_shipping_country() ? WC()->customer->get_shipping_country() : WC()->customer->get_billing_country();
+			$args['country']  = WC()->customer->get_shipping_country() ? WC()->customer->get_shipping_country() : WC()->customer->get_billing_country();
+			$args['postcode'] = WC()->customer->get_shipping_postcode() ? WC()->customer->get_shipping_postcode() : WC()->customer->get_billing_postcode();
 		}
 
 		$this->update_show_conditionally( 'reviews', $args );
@@ -491,6 +493,7 @@ class WC_GZD_Legal_Checkbox_Manager {
 			'is_photovoltaic_system' => false,
 			'product_category_ids'   => array(),
 			'country'                => $order->get_shipping_country() ? $order->get_shipping_country() : $order->get_billing_country(),
+			'postcode'               => $order->get_shipping_postcode() ? $order->get_shipping_postcode() : $order->get_billing_postcode(),
 			'company'                => $order->get_shipping_company() ? $order->get_shipping_company() : $order->get_billing_company(),
 			'create_account'         => false,
 			'order'                  => $order,
@@ -531,6 +534,7 @@ class WC_GZD_Legal_Checkbox_Manager {
 	public function show_conditionally_checkout() {
 		$args = array(
 			'country'                => WC_GZD_Checkout::instance()->get_checkout_value( 'shipping_country' ) ? WC_GZD_Checkout::instance()->get_checkout_value( 'shipping_country' ) : WC_GZD_Checkout::instance()->get_checkout_value( 'billing_country' ),
+			'postcode'               => WC_GZD_Checkout::instance()->get_checkout_value( 'shipping_postcode' ) ? WC_GZD_Checkout::instance()->get_checkout_value( 'shipping_postcode' ) : WC_GZD_Checkout::instance()->get_checkout_value( 'billing_postcode' ),
 			'company'                => WC_GZD_Checkout::instance()->get_checkout_value( 'shipping_company' ) ? WC_GZD_Checkout::instance()->get_checkout_value( 'shipping_company' ) : WC_GZD_Checkout::instance()->get_checkout_value( 'billing_company' ),
 			'create_account'         => WC_GZD_Checkout::instance()->get_checkout_value( 'createaccount' ) ? WC_GZD_Checkout::instance()->get_checkout_value( 'createaccount' ) : false,
 			'needs_age_verification' => WC()->cart && wc_gzd_cart_needs_age_verification(),
@@ -552,6 +556,7 @@ class WC_GZD_Legal_Checkbox_Manager {
 				'is_photovoltaic_system' => false,
 				'product_category_ids'   => array(),
 				'country'                => '',
+				'postcode'               => '',
 				'company'                => '',
 				'create_account'         => false,
 				'order'                  => false,
@@ -657,7 +662,7 @@ class WC_GZD_Legal_Checkbox_Manager {
 					}
 				}
 
-				if ( 'photovoltaic_systems' === $checkbox_id && true === $args['is_photovoltaic_system'] && 'DE' === $args['country'] && empty( $args['company'] ) && 'DE' === wc_gzd_get_base_country() ) {
+				if ( 'photovoltaic_systems' === $checkbox_id && true === $args['is_photovoltaic_system'] && wc_gzd_customer_applies_for_photovoltaic_system_vat_exemption( $args ) ) {
 					$checkbox_args['is_shown'] = true;
 				}
 

@@ -249,7 +249,7 @@ class WC_GZD_Checkout {
 	 * @return void
 	 */
 	public function maybe_adjust_photovoltaic_cart_data( $cart ) {
-		if ( 'DE' !== wc_gzd_get_base_country() ) {
+		if ( ! wc_gzd_base_country_supports_photovoltaic_system_vat_exempt() ) {
 			return;
 		}
 
