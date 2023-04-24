@@ -16,7 +16,7 @@
     "globalcitizen/php-iban": "^4.0.0",
     "vendidero/woocommerce-germanized-dhl": "1.8.5",
     "vendidero/woocommerce-germanized-shipments": "2.3.0",
-    "vendidero/woocommerce-eu-tax-helper": "1.0.7"
+    "vendidero/woocommerce-eu-tax-helper": "1.0.8"
   },
   "require-dev": {
     "myclabs/deep-copy": "^1.7.0",

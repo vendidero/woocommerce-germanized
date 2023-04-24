@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "cff51203d44731a118d6f754c6775f8e",
+    "content-hash": "6acde591c4200677f67eb202689e31c0",
     "packages": [
         {
             "name": "automattic/jetpack-autoloader",
@@ -754,16 +754,16 @@
         },
         {
             "name": "vendidero/woocommerce-eu-tax-helper",
-            "version": "1.0.7",
+            "version": "1.0.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vendidero/woocommerce-eu-tax-helper.git",
-                "reference": "506b424b51375cfe58b1db9955fc7d46605d0066"
+                "reference": "ee85f77b28b2507cff715797483d1809459f1542"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vendidero/woocommerce-eu-tax-helper/zipball/506b424b51375cfe58b1db9955fc7d46605d0066",
-                "reference": "506b424b51375cfe58b1db9955fc7d46605d0066",
+                "url": "https://api.github.com/repos/vendidero/woocommerce-eu-tax-helper/zipball/ee85f77b28b2507cff715797483d1809459f1542",
+                "reference": "ee85f77b28b2507cff715797483d1809459f1542",
                 "shasum": ""
             },
             "require": {
@@ -802,10 +802,10 @@
             "description": "EU tax helper for WooCommerce",
             "homepage": "https://vendidero.de/",
             "support": {
-                "source": "https://github.com/vendidero/woocommerce-eu-tax-helper/tree/v1.0.7",
+                "source": "https://github.com/vendidero/woocommerce-eu-tax-helper/tree/v1.0.8",
                 "issues": "https://github.com/vendidero/woocommerce-eu-tax-helper/issues"
             },
-            "time": "2023-03-16T14:07:40+00:00"
+            "time": "2023-04-24T10:17:51+00:00"
         },
         {
             "name": "vendidero/woocommerce-germanized-dhl",
@@ -2963,16 +2963,16 @@
         },
         {
             "name": "yoast/phpunit-polyfills",
-            "version": "1.0.4",
+            "version": "1.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Yoast/PHPUnit-Polyfills.git",
-                "reference": "3c621ff5429d2b1ff96dc5808ad6cde99d31ea4c"
+                "reference": "3b59adeef77fb1c03ff5381dbb9d68b0aaff3171"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Yoast/PHPUnit-Polyfills/zipball/3c621ff5429d2b1ff96dc5808ad6cde99d31ea4c",
-                "reference": "3c621ff5429d2b1ff96dc5808ad6cde99d31ea4c",
+                "url": "https://api.github.com/repos/Yoast/PHPUnit-Polyfills/zipball/3b59adeef77fb1c03ff5381dbb9d68b0aaff3171",
+                "reference": "3b59adeef77fb1c03ff5381dbb9d68b0aaff3171",
                 "shasum": ""
             },
             "require": {
@@ -2980,13 +2980,12 @@
                 "phpunit/phpunit": "^4.8.36 || ^5.7.21 || ^6.0 || ^7.0 || ^8.0 || ^9.0"
             },
             "require-dev": {
-                "yoast/yoastcs": "^2.2.1"
+                "yoast/yoastcs": "^2.3.0"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "1.x-dev",
-                    "dev-develop": "1.x-dev"
+                    "dev-main": "2.x-dev"
                 }
             },
             "autoload": {
@@ -3020,7 +3019,7 @@
                 "issues": "https://github.com/Yoast/PHPUnit-Polyfills/issues",
                 "source": "https://github.com/Yoast/PHPUnit-Polyfills"
             },
-            "time": "2022-11-16T09:07:52+00:00"
+            "time": "2023-03-30T23:39:05+00:00"
         }
     ],
     "aliases": [],
