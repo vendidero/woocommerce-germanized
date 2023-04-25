@@ -5,7 +5,7 @@ Requires at least: 5.4
 Tested up to: 6.2
 WC requires at least: 3.9
 WC tested up to: 7.5
-Stable tag: 3.12.1
+Stable tag: 3.12.2
 Requires PHP: 5.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -205,6 +205,14 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 6. Edit pdf documents (Pro)
 
 == Changelog ==
+= 3.12.2 =
+* Feature: Optionally tax additional costs based on the main service instead of splitting taxes
+* Improvement: Support photovoltaic systems containing zero tax class as default option
+* Improvement: Do not calculate taxes for other services (e.g. virtual/service) for northern ireland
+* Improvement: Base country support for photovoltaic systems VAT exemptions
+* Improvement: Transfer the state value as province field to DHL API for third-country deliveries
+* Fix: Retrieving product category ids for variations
+
 = 3.12.1 =
 * Improvement: Add admin description to order confirmation email
 * Improvement: dbDelta schema

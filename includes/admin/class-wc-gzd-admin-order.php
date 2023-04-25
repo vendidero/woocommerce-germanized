@@ -201,9 +201,11 @@ class WC_GZD_Admin_Order {
 		if ( $order = $item->get_order() ) {
 			$item->delete_meta_data( '_split_taxes' );
 			$item->delete_meta_data( '_tax_shares' );
+
 			$order->delete_meta_data( '_has_split_tax' );
 			$order->delete_meta_data( '_additional_costs_taxed_based_on_main_service' );
 			$order->delete_meta_data( '_additional_costs_taxed_based_on_main_service_tax_class' );
+			$order->delete_meta_data( '_additional_costs_taxed_based_on_main_service_by' );
 
 			$calculate_tax_for = empty( $calculate_tax_for ) ? $this->get_order_taxable_location( $order ) : $calculate_tax_for;
 			$tax_type          = 'shipping' === $item->get_type() ? 'shipping' : 'fee';
@@ -287,6 +289,7 @@ class WC_GZD_Admin_Order {
 					}
 
 					$order->update_meta_data( '_additional_costs_taxed_based_on_main_service', 'yes' );
+					$order->update_meta_data( '_additional_costs_taxed_based_on_main_service_by', wc_gzd_additional_costs_taxes_detect_main_service_by() );
 					$order->update_meta_data( '_additional_costs_taxed_based_on_main_service_tax_class', $main_tax_class );
 				}
 			}

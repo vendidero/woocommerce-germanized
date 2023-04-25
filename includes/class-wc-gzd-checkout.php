@@ -487,6 +487,7 @@ class WC_GZD_Checkout {
 			}
 		} elseif ( wc_gzd_calculate_additional_costs_taxes_based_on_main_service() ) {
 			$order->update_meta_data( '_additional_costs_taxed_based_on_main_service', 'yes' );
+			$order->update_meta_data( '_additional_costs_taxed_based_on_main_service_by', wc_gzd_additional_costs_taxes_detect_main_service_by() );
 			$order->update_meta_data( '_additional_costs_taxed_based_on_main_service_tax_class', wc_gzd_get_cart_main_service_tax_class() );
 		}
 	}
