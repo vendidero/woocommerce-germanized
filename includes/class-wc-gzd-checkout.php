@@ -848,9 +848,8 @@ class WC_GZD_Checkout {
 			 * @param int $order_id The order id.
 			 *
 			 * @since 1.9.10
-			 *
 			 */
-			if ( apply_filters( 'woocommerce_gzd_add_force_pay_order_parameter', true, $order_id ) ) {
+			if ( apply_filters( 'woocommerce_gzd_add_force_pay_order_parameter', false, $order_id ) ) {
 				$url = esc_url_raw( add_query_arg( array( 'force_pay_order' => true ), $url ) );
 			}
 

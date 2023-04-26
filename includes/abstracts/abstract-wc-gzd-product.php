@@ -2146,7 +2146,7 @@ class WC_GZD_Product {
 		 */
 		if ( $deposit_type = $this->get_deposit_type_term( 'edit' ) ) {
 			wp_set_post_terms( $this->get_wc_product()->get_id(), array( $deposit_type->slug ), 'product_deposit_type', false );
-		} else {
+		} elseif ( taxonomy_exists( 'product_deposit_type' ) ) {
 			wp_delete_object_term_relationships( $this->get_wc_product()->get_id(), 'product_deposit_type' );
 		}
 	}
