@@ -34,6 +34,7 @@ if ( ! class_exists( 'WC_GZD_Email_Customer_Paid_For_Order' ) ) :
 
 			// Triggers for this email
 			add_action( 'woocommerce_order_status_pending_to_processing_notification', array( $this, 'trigger' ), 30 );
+			add_action( 'woocommerce_order_status_failed_to_processing_notification', array( $this, 'trigger' ), 30 );
 
 			$this->placeholders = array(
 				'{site_title}'   => $this->get_blogname(),

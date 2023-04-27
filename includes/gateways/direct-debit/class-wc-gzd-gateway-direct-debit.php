@@ -881,10 +881,13 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 	}
 
 	public function generate_mandate_by_order( $order ) {
-
 		if ( is_numeric( $order ) ) {
 			$order = wc_get_order( absint( $order ) );
 		}
+
+        if ( ! $order ) {
+            return '';
+        }
 
 		$params = array(
 			'account_holder'    => $order->get_meta( '_direct_debit_holder' ),
