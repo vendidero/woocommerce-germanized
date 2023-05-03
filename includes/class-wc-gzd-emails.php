@@ -29,6 +29,11 @@ class WC_GZD_Emails {
 	private $current_email_instance = false;
 
 	/**
+	 * @var bool|WC_Order
+	 */
+	private $current_order_instance = false;
+
+	/**
 	 * Adds legal page ids to different options and adds a hook to the email footer
 	 */
 	public function __construct() {
@@ -464,11 +469,9 @@ class WC_GZD_Emails {
 	}
 
 	public function maybe_set_gettext_email_filter( $template_name, $template_path, $located, $args ) {
-
 		if ( 'emails/customer-processing-order.php' === $template_name || 'emails/plain/customer-processing-order.php' === $template_name ) {
-			if ( isset( $args['order'] ) ) {
-				$GLOBALS['wc_gzd_processing_order'] = $args['order'];
-
+			if ( isset( $args['order'] ) && is_a( $args['order'], 'WC_Order' ) ) {
+				$this->current_order_instance = $args['order'];
 				add_filter( 'gettext', array( $this, 'replace_processing_email_text' ), 9999, 3 );
 			}
 		}
@@ -484,11 +487,9 @@ class WC_GZD_Emails {
 		 * @param bool $disable Whether to disable email title replacement or not.
 		 *
 		 * @since 3.0.0
-		 *
 		 */
-		if ( strpos( $template_name, 'emails/' ) !== false && isset( $args['order'] ) && get_option( 'woocommerce_gzd_email_title_text' ) && apply_filters( 'woocommerce_gzd_replace_email_titles', true ) ) {
-			$GLOBALS['wc_gzd_email_order'] = $args['order'];
-
+		if ( strpos( $template_name, 'emails/' ) !== false && isset( $args['order'] ) && is_a( $args['order'], 'WC_Order' ) && get_option( 'woocommerce_gzd_email_title_text' ) && apply_filters( 'woocommerce_gzd_replace_email_titles', true ) ) {
+			$this->current_order_instance = $args['order'];
 			add_filter( 'gettext', array( $this, 'replace_title_email_text' ), 9999, 3 );
 		}
 	}
@@ -502,8 +503,8 @@ class WC_GZD_Emails {
 			);
 
 			if ( in_array( $original, $search, true ) ) {
-				if ( isset( $GLOBALS['wc_gzd_processing_order'] ) ) {
-					$order = $GLOBALS['wc_gzd_processing_order'];
+				if ( is_a( $this->current_order_instance, 'WC_Order' ) ) {
+					$order = $this->current_order_instance;
 
 					return $this->get_processing_email_text( $order );
 				}
@@ -514,10 +515,27 @@ class WC_GZD_Emails {
 	}
 
 	public function replace_title_email_text( $translated, $original, $domain ) {
-		if ( 'woocommerce' === $domain ) {
-			if ( 'Hi %s,' === $original ) {
-				if ( isset( $GLOBALS['wc_gzd_email_order'] ) ) {
-					$order         = $GLOBALS['wc_gzd_email_order'];
+		/**
+		 * Filters whether to replace the email title for a given textdomain.
+		 * By default, only email titles from the Woo core are replaced.
+		 *
+		 * @param bool $enable Whether to enable searching or not.
+		 * @param string $domain The textdomain.
+		 *
+		 * @since 3.12.3
+		 */
+		if ( apply_filters( 'woocommerce_gzd_replace_email_title_for_textdomain', ( 'woocommerce' === $domain ), $domain ) ) {
+			/**
+			 * Filters which string to replace with the actual email title.
+			 *
+			 * @param string $search The search phrase to be replaced.
+			 * @param string $domain The textdomain.
+			 *
+			 * @since 3.12.3
+			 */
+			if ( apply_filters( 'woocommerce_gzd_email_title_search_for', 'Hi %s,', $domain ) === $original ) {
+				if ( is_a( $this->current_order_instance, 'WC_Order' ) ) {
+					$order         = $this->current_order_instance;
 					$title_text    = get_option( 'woocommerce_gzd_email_title_text' );
 					$title_options = array(
 						'{first_name}' => $order->get_billing_first_name(),

@@ -49,6 +49,8 @@ class WC_GZD_Compatibility_WooCommerce_Subscriptions extends WC_GZD_Compatibilit
 			1
 		);
 
+		add_filter( 'woocommerce_gzd_replace_email_title_for_textdomain', array( $this, 'replace_email_titles' ), 10, 2 );
+
 		/**
 		 * Subscriptions recalculates the cart total amount by summing up
 		 * all total amounts (including rounded shipping amount). That may lead to
@@ -63,6 +65,14 @@ class WC_GZD_Compatibility_WooCommerce_Subscriptions extends WC_GZD_Compatibilit
 		}
 
 		add_filter( 'woocommerce_gzd_enable_force_pay_order', array( $this, 'stop_forced_redirect' ), 10, 2 );
+	}
+
+	public function replace_email_titles( $replace_title, $textdomain ) {
+		if ( 'woocommerce-subscriptions' === $textdomain ) {
+			$replace_title = true;
+		}
+
+		return $replace_title;
 	}
 
 	public function stop_forced_redirect( $redirect, $order ) {
