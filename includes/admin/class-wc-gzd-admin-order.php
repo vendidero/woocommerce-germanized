@@ -84,6 +84,56 @@ class WC_GZD_Admin_Order {
 				1,
 				2
 			);
+		} else {
+			add_action(
+				'woocommerce_order_item_shipping_after_calculate_taxes',
+				array(
+					$this,
+					'remove_additional_costs_meta',
+				),
+				10,
+				2
+			);
+
+			add_action(
+				'woocommerce_order_item_fee_after_calculate_taxes',
+				array(
+					$this,
+					'remove_additional_costs_meta',
+				),
+				10,
+				2
+			);
+
+			add_action(
+				'woocommerce_order_item_after_calculate_taxes',
+				array(
+					$this,
+					'remove_additional_costs_meta',
+				),
+				10,
+				2
+			);
+		}
+	}
+
+	/**
+	 * @param WC_Order_Item $item
+	 *
+	 * @return void
+	 */
+	public function remove_additional_costs_meta( $item ) {
+		$item->delete_meta_data( '_split_taxes' );
+		$item->delete_meta_data( '_tax_shares' );
+
+		if ( $order = $item->get_order() ) {
+			$order->delete_meta_data( '_has_split_tax' );
+			$order->delete_meta_data( '_additional_costs_include_tax' );
+			$order->delete_meta_data( '_additional_costs_taxed_based_on_main_service' );
+			$order->delete_meta_data( '_additional_costs_taxed_based_on_main_service_tax_class' );
+			$order->delete_meta_data( '_additional_costs_taxed_based_on_main_service_by' );
+
+			$order->save();
 		}
 	}
 
