@@ -123,15 +123,15 @@ window.germanized = window.germanized || {};
 
             if ( $terms.length > 0 ) {
                 if ( self.params.checkbox_hidden || $checkbox.is( ':checked' ) ) {
-                    $terms.prop( 'checked', true ).trigger( 'change' );
+                    $terms.prop( 'checked', true );
                 } else {
-                    $terms.prop( 'checked', false ).trigger( 'change' );
+                    $terms.prop( 'checked', false );
                 }
             }
         },
 
         onChangeLegalCheckbox: function() {
-            var self      = germanized.checkout;
+            var self = germanized.checkout;
 
             self.maybeSetTermsCheckbox();
         },
