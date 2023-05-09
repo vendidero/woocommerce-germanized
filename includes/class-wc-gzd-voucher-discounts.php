@@ -129,7 +129,7 @@ class WC_GZD_Voucher_Discounts extends WC_Discounts {
 			$item           = new stdClass();
 			$item->key      = $order_item->get_id();
 			$item->object   = null;
-			$item->product  = is_callable( $order_item, 'get_product' ) ? $order_item->get_product() : false;
+			$item->product  = is_callable( array( $order_item, 'get_product' ) ) ? $order_item->get_product() : false;
 			$item->quantity = $order_item->get_quantity();
 			$item->price    = wc_add_number_precision_deep( $order_item->get_total() ) + wc_add_number_precision_deep( $order_item->get_total_tax() );
 

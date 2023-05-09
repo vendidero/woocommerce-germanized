@@ -481,10 +481,17 @@ class WC_GZD_Coupon_Helper {
 			$fee_total = (float) $item->get_total() + (float) $item->get_total_tax();
 
 			if ( $this->fee_is_voucher( $item ) && $fee_total < 0 ) {
-				$coupon            = $this->get_order_item_coupon_by_fee( $item, $order );
-				$max_voucher_total = '' !== $item->get_meta( '_voucher_amount' ) ? ( wc_format_decimal( $item->get_meta( '_voucher_amount' ) ) ) : ( (float) $item->get_total() * -1 );
-				$max_discount      = max( 0, NumberUtil::round( ( $order_total_before_vouchers - ( ( $coupon && ! $this->voucher_includes_shipping_costs( $coupon ) ) ? $shipping_total : 0 ) + $voucher_fee_total ), wc_get_price_decimals() ) );
-				$discount          = min( $max_voucher_total, $max_discount ) * -1;
+				$coupon   = $this->get_order_item_coupon_by_fee( $item, $order );
+				$fee_data = $this->get_fee_data_from_coupon( $coupon, $order );
+
+				if ( isset( $fee_data['amount'] ) ) {
+					$max_voucher_total = $fee_data['amount'] * -1;
+				} else {
+					$max_voucher_total = (float) $item->get_total() * -1;
+				}
+
+				$max_discount = max( 0, NumberUtil::round( ( $order_total_before_vouchers - ( ( $coupon && ! $this->voucher_includes_shipping_costs( $coupon ) ) ? $shipping_total : 0 ) + $voucher_fee_total ), wc_get_price_decimals() ) );
+				$discount     = min( $max_voucher_total, $max_discount ) * -1;
 
 				if ( $discount < 0 || $max_voucher_total > $max_discount ) {
 					$fee_total = $discount;
