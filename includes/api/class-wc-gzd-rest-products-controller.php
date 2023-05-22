@@ -1027,6 +1027,8 @@ class WC_GZD_REST_Products_Controller {
 		// Differential taxed?
 		$data['differential_taxation'] = $gzd_product->is_differential_taxed( $context );
 
+		$data['warranty_attachment_id'] = $gzd_product->get_warranty_attachment_id( $context );
+
 		// Is food?
 		$data['is_food'] = $gzd_product->is_food( $context );
 
