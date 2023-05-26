@@ -272,7 +272,7 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 		 * @return boolean
 		 */
 		public function is_pro() {
-			return \Vendidero\Germanized\PluginsHelper::is_plugin_active( 'woocommerce-germanized-pro' );
+			return \Vendidero\Germanized\PluginsHelper::is_pro_version_active();
 		}
 
 		/**

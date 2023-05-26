@@ -61,20 +61,13 @@ class PluginsHelper {
 	 * @return string|false
 	 */
 	public static function get_plugin_path_from_slug( $slug ) {
-		$plugins = self::get_plugins();
-
 		if ( strstr( $slug, '/' ) ) {
-			// The slug is already a plugin path.
-			return $slug;
+			$slug = self::get_plugin_slug( $slug );
 		}
 
-		foreach ( $plugins as $plugin_path => $data ) {
-			if ( self::get_plugin_slug( $plugin_path ) === $slug ) {
-				return $plugin_path;
-			}
-		}
+		$res = preg_grep( self::get_plugin_search_regex( $slug ), array_keys( self::get_plugins() ) );
 
-		return false;
+		return false !== $res && count( $res ) > 0 ? array_values( $res )[0] : false;
 	}
 
 	protected static function get_plugin_slug( $path ) {
@@ -118,6 +111,22 @@ class PluginsHelper {
 	}
 
 	/**
+	 * Use a regex to find the actual plugin. This regex ignores
+	 * plugin path suffixes, e.g. is able to detect plugin paths like woocommerce-2/woocommerce.php
+	 *
+	 * @param $slug
+	 *
+	 * @return string
+	 */
+	private static function get_plugin_search_regex( $slug ) {
+		if ( strstr( $slug, '/' ) ) {
+			$slug = self::get_plugin_slug( $slug );
+		}
+
+		return '/^' . $slug . '.*\/' . $slug . '.php$/';
+	}
+
+	/**
 	 * Checks if a plugin is installed.
 	 *
 	 * @param string $plugin Path to the plugin file relative to the plugins directory or the plugin directory name.
@@ -125,8 +134,9 @@ class PluginsHelper {
 	 * @return bool
 	 */
 	public static function is_plugin_installed( $plugin ) {
-		$plugin_path = self::get_plugin_path_from_slug( $plugin );
-		return $plugin_path ? array_key_exists( $plugin_path, self::get_plugins() ) : false;
+		$res = preg_grep( self::get_plugin_search_regex( $plugin ), array_keys( self::get_plugins() ) );
+
+		return false !== $res && count( $res ) > 0 ? true : false;
 	}
 
 	protected static function get_plugins() {
@@ -159,9 +169,9 @@ class PluginsHelper {
 	 * @return bool
 	 */
 	public static function is_plugin_active( $plugin ) {
-		$plugin_path = self::get_plugin_path_from_slug( $plugin );
+		$res = preg_grep( self::get_plugin_search_regex( $plugin ), self::get_active_plugins() );
 
-		return $plugin_path ? in_array( $plugin_path, self::get_active_plugins(), true ) : false;
+		return false !== $res && count( $res ) > 0 ? true : false;
 	}
 
 	/**
@@ -190,6 +200,13 @@ class PluginsHelper {
 	 */
 	public static function is_woocommerce_plugin_active() {
 		return apply_filters( 'woocommerce_gzd_is_woocommerce_activated', self::is_plugin_active( 'woocommerce' ) );
+	}
+
+	/**
+	 * @return bool
+	 */
+	public static function is_pro_version_active() {
+		return self::is_plugin_active( 'woocommerce-germanized-pro' );
 	}
 
 	/**
