@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 class WC_GZD_Settings_Tab_Invoices extends WC_GZD_Settings_Tab {
 
 	public function get_description() {
-		return __( 'Configure PDF invoices and packing slips.', 'woocommerce-germanized' );
+		return __( 'Create invoices, packing slips & commercial invoices conveniently.', 'woocommerce-germanized' );
 	}
 
 	public function get_label() {

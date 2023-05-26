@@ -42,7 +42,7 @@ class WC_GZD_Compatibility_WooCommerce_Product_Addons extends WC_GZD_Compatibili
 			?>
 			<script type="text/javascript">
 				jQuery( function( $ ) {
-					$( 'form.variations_form' ).on( 'updated_addons', function() {
+					$( 'form.variations_form, form.cart' ).on( 'updated_addons', function() {
 						if ( $( this ).find( '.product-addon-totals:visible' ).length > 0 ) {
 							$( this ).find( '.wc-gzd-product-addons-shopmarks' ).show();
 						} else {
@@ -52,7 +52,7 @@ class WC_GZD_Compatibility_WooCommerce_Product_Addons extends WC_GZD_Compatibili
 				});
 			</script>
 			<style>div.product-addon-totals { border-bottom: none; padding-bottom: 0; } .wc-gzd-product-addons-shopmarks { margin-top: -40px; margin-bottom: 40px; border-bottom: 1px solid #eee; padding-bottom: 20px; font-size: .9em; text-align: right; }</style>
-			<div class="wc-gzd-product-addons-shopmarks" style="<?php echo ( $product->is_type( 'variable' ) ? 'display: none' : '' ); ?>"><?php echo wp_kses_post( $html ); ?></div>
+			<div class="wc-gzd-product-addons-shopmarks" style="display: none"><?php echo wp_kses_post( $html ); ?></div>
 			<?php
 		}
 	}
