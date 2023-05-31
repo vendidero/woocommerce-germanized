@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce Germanized\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-31 13:33+0200\n"
-"PO-Revision-Date: 2023-05-31 13:36+0200\n"
+"POT-Creation-Date: 2023-05-31 15:35+0200\n"
+"PO-Revision-Date: 2023-05-31 15:38+0200\n"
 "Last-Translator: Dennis Nissle <info@vendidero.de>\n"
 "Language-Team: \n"
 "Language: de_DE@formal\n"
@@ -7436,7 +7436,7 @@ msgstr "Delivery Duty Paid"
 #: woocommerce-germanized/packages/woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:109
 msgctxt "dhl"
 msgid "Delivery At Place"
-msgstr "Geliefert benannter Ort"
+msgstr "Delivery At Place"
 
 #: woocommerce-germanized/packages/woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:110
 msgctxt "dhl"
@@ -8886,7 +8886,7 @@ msgid ""
 "numbers</a> in your DHL business portal."
 msgstr ""
 "Finden Sie heraus wie Sie Ihre <a href=\"%1$s\" "
-"target=\"_blank\">Teilnahmenummern</a>im DHL Geschäftskundenportal finden."
+"target=\"_blank\">Teilnahmenummern</a> im DHL Geschäftskundenportal finden."
 
 #: woocommerce-germanized/packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1251
 #: woocommerce-germanized/packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1702
@@ -9234,7 +9234,7 @@ msgstr ""
 #: woocommerce-germanized/packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1648
 msgctxt "dhl"
 msgid "Default Incoterms"
-msgstr "Standard Versandbedingungen"
+msgstr "Versandbedingungen"
 
 #: woocommerce-germanized/packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1653
 msgctxt "dhl"
