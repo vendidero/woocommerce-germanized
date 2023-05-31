@@ -11,7 +11,7 @@ defined( 'ABSPATH' ) || exit;
 	<?php if ( ! WC_germanized()->is_pro() ) : ?>
 		<a class="page-title-action" href="https://vendidero.de/woocommerce-germanized" target="_blank"><?php echo sprintf( esc_html__( 'Upgrade to %s', 'woocommerce-germanized' ), '<span class="wc-gzd-pro">pro</span>' ); ?></a>
 	<?php elseif ( function_exists( 'VD' ) ) : ?>
-		<a class="page-title-action" href="<?php echo esc_url( is_multisite() ? network_admin_url( 'index.php?page=vendidero' ) : admin_url( 'index.php?page=vendidero' ) ); ?>"><?php esc_html_e( 'Manage license', 'woocommerce-germanized' ); ?></a>
+		<a class="page-title-action" href="<?php echo esc_url( admin_url( 'index.php?page=vendidero' ) ); ?>"><?php esc_html_e( 'Manage license', 'woocommerce-germanized' ); ?></a>
 	<?php endif; ?>
 
 	<a class="page-title-action" href="<?php echo esc_url( add_query_arg( array( 'tutorial' => 'yes' ) ) ); ?>"><?php esc_html_e( 'Start tutorial', 'woocommerce-germanized' ); ?></a>

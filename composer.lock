@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fb09222e7ce32a265646a4670472a6a5",
+    "content-hash": "14c409a5f218a2855902a615fe4eb5d5",
     "packages": [
         {
             "name": "automattic/jetpack-autoloader",
@@ -809,16 +809,16 @@
         },
         {
             "name": "vendidero/woocommerce-germanized-dhl",
-            "version": "1.8.6",
+            "version": "2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vendidero/woocommerce-germanized-dhl.git",
-                "reference": "ff58ff09b13dca4d1c402ceef778a193ab640633"
+                "reference": "837e2d03a54859636d83d6edd16ac0b72436ac25"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vendidero/woocommerce-germanized-dhl/zipball/ff58ff09b13dca4d1c402ceef778a193ab640633",
-                "reference": "ff58ff09b13dca4d1c402ceef778a193ab640633",
+                "url": "https://api.github.com/repos/vendidero/woocommerce-germanized-dhl/zipball/837e2d03a54859636d83d6edd16ac0b72436ac25",
+                "reference": "837e2d03a54859636d83d6edd16ac0b72436ac25",
                 "shasum": ""
             },
             "require": {
@@ -863,23 +863,23 @@
             "description": "The Germanized DHL implementation.",
             "homepage": "https://github.com/vendidero/woocommerce-germanized-dhl",
             "support": {
-                "source": "https://github.com/vendidero/woocommerce-germanized-dhl/tree/v1.8.6",
+                "source": "https://github.com/vendidero/woocommerce-germanized-dhl/tree/v2.0.0",
                 "issues": "https://github.com/vendidero/woocommerce-germanized-dhl/issues"
             },
-            "time": "2023-04-25T09:36:13+00:00"
+            "time": "2023-05-30T10:22:04+00:00"
         },
         {
             "name": "vendidero/woocommerce-germanized-shipments",
-            "version": "2.3.1",
+            "version": "2.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vendidero/woocommerce-germanized-shipments.git",
-                "reference": "b759d18b1f088fc4847daaf6a3d29d4d54e2ef84"
+                "reference": "5dcd3c65fb181246e0fd0e37d72fb18301bc97bf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vendidero/woocommerce-germanized-shipments/zipball/b759d18b1f088fc4847daaf6a3d29d4d54e2ef84",
-                "reference": "b759d18b1f088fc4847daaf6a3d29d4d54e2ef84",
+                "url": "https://api.github.com/repos/vendidero/woocommerce-germanized-shipments/zipball/5dcd3c65fb181246e0fd0e37d72fb18301bc97bf",
+                "reference": "5dcd3c65fb181246e0fd0e37d72fb18301bc97bf",
                 "shasum": ""
             },
             "require": {
@@ -922,10 +922,10 @@
             "description": "The Germanized Shipments implementation.",
             "homepage": "https://github.com/vendidero/woocommerce-germanized-shipments",
             "support": {
-                "source": "https://github.com/vendidero/woocommerce-germanized-shipments/tree/v2.3.1",
+                "source": "https://github.com/vendidero/woocommerce-germanized-shipments/tree/v2.4.0",
                 "issues": "https://github.com/vendidero/woocommerce-germanized-shipments/issues"
             },
-            "time": "2023-04-25T09:43:13+00:00"
+            "time": "2023-05-30T09:42:41+00:00"
         },
         {
             "name": "wsdltophp/wssecurity",
@@ -2168,16 +2168,16 @@
         },
         {
             "name": "sebastian/diff",
-            "version": "3.0.3",
+            "version": "3.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/diff.git",
-                "reference": "14f72dd46eaf2f2293cbe79c93cc0bc43161a211"
+                "reference": "6296a0c086dd0117c1b78b059374d7fcbe7545ae"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/diff/zipball/14f72dd46eaf2f2293cbe79c93cc0bc43161a211",
-                "reference": "14f72dd46eaf2f2293cbe79c93cc0bc43161a211",
+                "url": "https://api.github.com/repos/sebastianbergmann/diff/zipball/6296a0c086dd0117c1b78b059374d7fcbe7545ae",
+                "reference": "6296a0c086dd0117c1b78b059374d7fcbe7545ae",
                 "shasum": ""
             },
             "require": {
@@ -2222,7 +2222,7 @@
             ],
             "support": {
                 "issues": "https://github.com/sebastianbergmann/diff/issues",
-                "source": "https://github.com/sebastianbergmann/diff/tree/3.0.3"
+                "source": "https://github.com/sebastianbergmann/diff/tree/3.0.4"
             },
             "funding": [
                 {
@@ -2230,7 +2230,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-11-30T07:59:04+00:00"
+            "time": "2023-05-07T05:30:20+00:00"
         },
         {
             "name": "sebastian/environment",

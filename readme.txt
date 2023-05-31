@@ -4,8 +4,8 @@ Tags: woocommerce, woocommerce german, woocommerce DE, woocommerce germany, wooc
 Requires at least: 5.4
 Tested up to: 6.2
 WC requires at least: 3.9
-WC tested up to: 7.5
-Stable tag: 3.12.2
+WC tested up to: 7.7
+Stable tag: 3.13.0
 Requires PHP: 5.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -205,6 +205,20 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 6. Edit pdf documents (Pro)
 
 == Changelog ==
+= 3.13.0 =
+* Improvement: Refactored shipment modals
+* Improvement: DHL Paket REST API support
+* Improvement: Shipment action GUI adjustments
+* Improvement: Support separate DHL participation number for GoGreen
+* Improvement: Customs description product field
+* Improvement: Send paid for order notification for failed to pending
+* Improvement: Allow filtering other textdomains for email title adjustments, e.g. Woo Subscriptions
+* Improvement: Explicitly recalculate voucher amount while recalculating order totals
+* Improvement: REST API schema
+* Improvement: Product Addons compatibility
+* Fix: Prevent object term relationship deletion when food option is disabled
+* Fix: Do not trigger the change event for the (hidden) WooCommerce core terms
+
 = 3.12.2 =
 * Feature: Optionally tax additional costs based on the main service instead of splitting taxes
 * Improvement: Support photovoltaic systems containing zero tax class as default option
