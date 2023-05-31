@@ -874,12 +874,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/vendidero/woocommerce-germanized-shipments.git",
-                "reference": "5dcd3c65fb181246e0fd0e37d72fb18301bc97bf"
+                "reference": "bb0bae2a66417e96d1b12086b4b7098705c62453"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vendidero/woocommerce-germanized-shipments/zipball/5dcd3c65fb181246e0fd0e37d72fb18301bc97bf",
-                "reference": "5dcd3c65fb181246e0fd0e37d72fb18301bc97bf",
+                "url": "https://api.github.com/repos/vendidero/woocommerce-germanized-shipments/zipball/bb0bae2a66417e96d1b12086b4b7098705c62453",
+                "reference": "bb0bae2a66417e96d1b12086b4b7098705c62453",
                 "shasum": ""
             },
             "require": {
@@ -925,7 +925,7 @@
                 "source": "https://github.com/vendidero/woocommerce-germanized-shipments/tree/v2.4.0",
                 "issues": "https://github.com/vendidero/woocommerce-germanized-shipments/issues"
             },
-            "time": "2023-05-30T09:42:41+00:00"
+            "time": "2023-05-31T13:13:28+00:00"
         },
         {
             "name": "wsdltophp/wssecurity",
