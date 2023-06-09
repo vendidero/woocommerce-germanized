@@ -1142,11 +1142,11 @@ class WC_GZD_Emails {
 						continue;
 					}
 
-					if ( wc_gzd_is_revocation_exempt( $_product ) || apply_filters( 'woocommerce_gzd_product_is_revocation_exception', false, $_product, 'digital' ) ) {
+					if ( wc_gzd_is_revocation_exempt( $_product, 'digital', $item ) || apply_filters( 'woocommerce_gzd_product_is_revocation_exception', false, $_product, 'digital', $item ) ) {
 						$is_downloadable = true;
 					}
 
-					if ( wc_gzd_is_revocation_exempt( $_product, 'service' ) || apply_filters( 'woocommerce_gzd_product_is_revocation_exception', false, $_product, 'service' ) ) {
+					if ( wc_gzd_is_revocation_exempt( $_product, 'service', $item ) || apply_filters( 'woocommerce_gzd_product_is_revocation_exception', false, $_product, 'service', $item ) ) {
 						$is_service = true;
 					}
 

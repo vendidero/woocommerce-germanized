@@ -56,7 +56,7 @@ window.germanized = window.germanized || {};
                     $heading = $form.find( '#order_review_heading:first' );
 
                 if ( $heading ) {
-                    $heading.removeClass( 'wc-gzd-heading-moved' );
+                    $heading.removeClass( 'wc-gzd-heading-moved wc-gzd-maybe-show-heading' );
                 }
 
                 if ( ! self.params.custom_heading_container ) {
@@ -69,7 +69,11 @@ window.germanized = window.germanized || {};
                             $theFirst.after( $heading );
                         }
 
-                        $form.find( '#order_review_heading:first' ).show();
+                        if ( $( '#order_review:visible' ).length > 0 ) {
+                            $form.find( '#order_review_heading:first' ).show();
+                        } else {
+                            $form.find( '#order_review_heading:first' ).addClass( 'wc-gzd-maybe-show-heading' );
+                        }
                     }
                 } else {
                     var $wrapper = $form.find( this.params.custom_heading_container );
@@ -77,7 +81,11 @@ window.germanized = window.germanized || {};
                     if ( $wrapper.length > 0 && $heading.length > 0 ) {
                         $wrapper.prepend( $heading );
 
-                        $form.find( '#order_review_heading:first' ).show();
+                        if ( $wrapper.is( ':visible' ) ) {
+                            $form.find( '#order_review_heading:first' ).show();
+                        } else {
+                            $form.find( '#order_review_heading:first' ).addClass( 'wc-gzd-maybe-show-heading' );
+                        }
                     }
                 }
 

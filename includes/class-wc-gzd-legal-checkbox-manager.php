@@ -445,11 +445,11 @@ class WC_GZD_Legal_Checkbox_Manager {
 			foreach ( WC()->cart->get_cart() as $cart_item_key => $values ) {
 				$_product = apply_filters( 'woocommerce_cart_item_product', $values['data'], $values, $cart_item_key );
 
-				if ( wc_gzd_is_revocation_exempt( $_product ) ) {
+				if ( wc_gzd_is_revocation_exempt( $_product, 'digital', $values ) ) {
 					$args['is_downloadable'] = true;
 				}
 
-				if ( wc_gzd_is_revocation_exempt( $_product, 'service' ) ) {
+				if ( wc_gzd_is_revocation_exempt( $_product, 'service', $values ) ) {
 					$args['is_service'] = true;
 				}
 
@@ -502,11 +502,11 @@ class WC_GZD_Legal_Checkbox_Manager {
 
 		foreach ( $items as $key => $item ) {
 			if ( $item && is_callable( array( $item, 'get_product' ) ) && ( $_product = $item->get_product() ) ) {
-				if ( wc_gzd_is_revocation_exempt( $_product ) ) {
+				if ( wc_gzd_is_revocation_exempt( $_product, 'digital', $item ) ) {
 					$args['is_downloadable'] = true;
 				}
 
-				if ( wc_gzd_is_revocation_exempt( $_product, 'service' ) ) {
+				if ( wc_gzd_is_revocation_exempt( $_product, 'service', $item ) ) {
 					$args['is_service'] = true;
 				}
 

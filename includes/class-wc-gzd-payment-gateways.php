@@ -245,7 +245,7 @@ class WC_GZD_Payment_Gateways {
 	 * Update fee for cart if feeable gateway has been selected as payment method
 	 */
 	public function init_fee() {
-		$gateways = WC()->payment_gateways()->payment_gateways();
+		$gateways = WC()->payment_gateways()->get_available_payment_gateways();
 
 		if ( ! ( $key = WC()->session->get( 'chosen_payment_method' ) ) || ! isset( $gateways[ $key ] ) ) {
 			return;

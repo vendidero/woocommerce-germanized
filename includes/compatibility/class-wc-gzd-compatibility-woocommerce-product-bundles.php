@@ -62,6 +62,32 @@ class WC_GZD_Compatibility_WooCommerce_Product_Bundles extends WC_GZD_Compatibil
 
 		add_action( 'woocommerce_gzd_registered_scripts', array( $this, 'register_script' ), 10, 3 );
 		add_filter( 'woocommerce_gzd_templates_requiring_variation_script', array( $this, 'register_template' ) );
+
+		add_filter( 'woocommerce_gzd_product_is_revocation_exempt', array( $this, 'bundle_revocation_exempt' ), 10, 4 );
+	}
+
+	public function bundle_revocation_exempt( $is_exempt, $product, $type, $item ) {
+		if ( 'digital' === $type && is_a( $product, 'WC_Product_Bundle' ) && ! $product->is_virtual_bundle() ) {
+			$is_exempt = false;
+		}
+
+		if ( $is_exempt && $product->is_virtual() ) {
+			$bundled_item = false;
+
+			if ( is_array( $item ) && isset( $item['bundled_item_id'] ) ) {
+				if ( $bundle_container_item = wc_pb_get_bundled_cart_item_container( $item ) ) {
+					$bundle = $bundle_container_item['data'];
+
+					$bundled_item = $bundle->get_bundled_item( $item['bundled_item_id'] );
+				}
+			}
+
+			if ( $bundled_item && false === $bundled_item->is_shipped_individually() ) {
+				$is_exempt = false;
+			}
+		}
+
+		return $is_exempt;
 	}
 
 	/**
@@ -176,13 +202,30 @@ class WC_GZD_Compatibility_WooCommerce_Product_Bundles extends WC_GZD_Compatibil
 	}
 
 	public function output_bundle_shopmarks() {
-		foreach ( wc_gzd_get_single_product_shopmarks() as $shopmark ) {
-			$callback = $shopmark->get_callback();
+		?>
+		<script type="text/javascript">
+			jQuery( function( $ ) {
+				$( '.bundle_data' ).on( 'woocommerce-product-bundle-updated-totals', function( e, bundle ) {
+					if ( bundle.show_price_html() ) {
+						bundle.$bundle_data.find( '.wc-gzd-bundle-total-shopmarks' ).show();
+					} else {
+						bundle.$bundle_data.find( '.wc-gzd-bundle-total-shopmarks' ).hide();
+					}
+				} );
+			});
+		</script>
+		<div class="wc-gzd-bundle-total-shopmarks" style="display: none;">
+			<?php
+			foreach ( wc_gzd_get_single_product_shopmarks() as $shopmark ) {
+				$callback = $shopmark->get_callback();
 
-			if ( function_exists( $callback ) && $shopmark->is_enabled() && in_array( $shopmark->get_type(), array( 'unit_price', 'legal', 'tax', 'shipping_costs' ), true ) ) {
-				call_user_func( $callback );
+				if ( function_exists( $callback ) && $shopmark->is_enabled() && in_array( $shopmark->get_type(), array( 'unit_price', 'legal', 'tax', 'shipping_costs' ), true ) ) {
+					call_user_func( $callback );
+				}
 			}
-		}
+			?>
+		</div>
+		<?php
 	}
 
 	/**

@@ -91,7 +91,7 @@ function wc_gzd_get_small_business_product_notice() {
 	return apply_filters( 'woocommerce_gzd_small_business_product_notice', wc_gzd_get_small_business_notice() );
 }
 
-function wc_gzd_is_revocation_exempt( $product, $type = 'digital' ) {
+function wc_gzd_is_revocation_exempt( $product, $type = 'digital', $context_object = null ) {
 	$is_exempt = false;
 
 	if ( 'digital' === $type && ( $checkbox = wc_gzd_get_legal_checkbox( 'download' ) ) ) {
@@ -140,10 +140,11 @@ function wc_gzd_is_revocation_exempt( $product, $type = 'digital' ) {
 	 * @param boolean    $is_exempt Whether the product is an exempt or not.
 	 * @param WC_Product $product The product object.
 	 * @param string     $type The exempt type e.g. digital or service.
+	 * @param object     $context_object E.g. the cart item or order item
 	 *
 	 * @since 3.1.5
 	 */
-	return apply_filters( 'woocommerce_gzd_product_is_revocation_exempt', $is_exempt, $product, $type );
+	return apply_filters( 'woocommerce_gzd_product_is_revocation_exempt', $is_exempt, $product, $type, $context_object );
 }
 
 function wc_gzd_needs_age_verification( $product ) {
