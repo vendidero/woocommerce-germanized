@@ -242,6 +242,15 @@ class WC_GZD_AJAX {
 		return $price;
 	}
 
+	protected static function get_price_including_tax( $price, $product ) {
+		// If prices are shown excl. tax, add taxes to match the prices stored in the DB.
+		$tax_rates = WC_Tax::get_rates( $product->get_tax_class() );
+		$taxes     = WC_Tax::calc_tax( $price, $tax_rates, false );
+		$price     = $price + array_sum( $taxes );
+
+		return $price;
+	}
+
 	public static function gzd_refresh_cart_vouchers() {
 		check_ajax_referer( 'wc-gzd-refresh-cart-vouchers', 'security' );
 
@@ -267,23 +276,32 @@ class WC_GZD_AJAX {
 			wp_send_json( array( 'result' => 'failure' ) );
 		}
 
-		$product_id = absint( wp_unslash( $_POST['product_id'] ) );
-		$price      = (float) wc_clean( wp_unslash( $_POST['price'] ) );
-		$price_sale = isset( $_POST['price_sale'] ) && '' !== wc_clean( wp_unslash( $_POST['price_sale'] ) ) ? (float) wc_clean( wp_unslash( $_POST['price_sale'] ) ) : '';
+		$product_id       = absint( wp_unslash( $_POST['product_id'] ) );
+		$price            = (float) wc_clean( wp_unslash( $_POST['price'] ) );
+		$price_sale       = isset( $_POST['price_sale'] ) && '' !== wc_clean( wp_unslash( $_POST['price_sale'] ) ) ? (float) wc_clean( wp_unslash( $_POST['price_sale'] ) ) : '';
+		$tax_display_mode = get_option( 'woocommerce_tax_display_shop' );
 
 		if ( ! $product = wc_gzd_get_product( $product_id ) ) {
 			wp_send_json( array( 'result' => 'failure' ) );
 		}
 
 		/**
-		 * In case net prices are used and prices are being shown including tax
-		 * we will need to manually remove taxes from price before recalculating the unit price.
+		 * If tax display mode differs from the price includes tax setting (e.g. prices displayed excl. tax vs including tax stored in db)
+		 * we'll need to restore the original price before calculating unit prices as taxes may be added/subtracted twice.
 		 */
-		if ( wc_tax_enabled() && ! wc_prices_include_tax() && 'incl' === get_option( 'woocommerce_tax_display_shop' ) ) {
-			$price = (float) self::get_price_excluding_tax( $price, $product->get_wc_product() );
+		if ( wc_tax_enabled() ) {
+			if ( 'excl' === $tax_display_mode && wc_prices_include_tax() ) {
+				$price = (float) self::get_price_including_tax( $price, $product->get_wc_product() );
 
-			if ( '' !== $price_sale ) {
-				$price_sale = (float) self::get_price_excluding_tax( $price_sale, $product->get_wc_product() );
+				if ( '' !== $price_sale ) {
+					$price_sale = (float) self::get_price_including_tax( $price_sale, $product->get_wc_product() );
+				}
+			} elseif ( 'incl' === $tax_display_mode && ! wc_prices_include_tax() ) {
+				$price = (float) self::get_price_excluding_tax( $price, $product->get_wc_product() );
+
+				if ( '' !== $price_sale ) {
+					$price_sale = (float) self::get_price_excluding_tax( $price_sale, $product->get_wc_product() );
+				}
 			}
 		}
 

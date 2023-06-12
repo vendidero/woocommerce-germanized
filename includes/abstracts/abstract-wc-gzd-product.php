@@ -1225,12 +1225,10 @@ class WC_GZD_Product {
 		}
 
 		if ( $this->child->is_taxable() || $this->is_differential_taxed() ) {
-
 			$tax_display_mode = get_option( 'woocommerce_tax_display_shop' );
 			$tax_rates        = WC_Tax::get_rates( $this->child->get_tax_class() );
 
 			if ( ! empty( $tax_rates ) ) {
-
 				$tax_rates = array_values( $tax_rates );
 
 				// If is variable or is virtual vat exception dont show exact tax rate
