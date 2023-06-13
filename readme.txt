@@ -4,8 +4,8 @@ Tags: woocommerce, woocommerce german, woocommerce DE, woocommerce germany, wooc
 Requires at least: 5.4
 Tested up to: 6.2
 WC requires at least: 3.9
-WC tested up to: 7.7
-Stable tag: 3.13.0
+WC tested up to: 7.8
+Stable tag: 3.13.1
 Requires PHP: 5.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -205,6 +205,15 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 6. Edit pdf documents (Pro)
 
 == Changelog ==
+= 3.13.1 =
+* New: Woo 7.8.0 support
+* New: Allow excluding certain products from returns
+* Improvement: Review order heading show/hide logic
+* Improvement: Respect tax display mode while recalculating unit prices
+* Improvement: Product Bundles bundle total price labelling and revocation exempt detection
+* Fix: Do not automatically create shipments for renewal orders unless configured
+* Fix: DHL Paket (new) REST API authentication
+
 = 3.13.0 =
 * Improvement: Refactored shipment modals
 * Improvement: DHL Paket REST API support
