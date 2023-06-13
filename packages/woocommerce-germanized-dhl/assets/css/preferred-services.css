@@ -1,0 +1,156 @@
+#tiptip_holder {
+  display: none;
+  z-index: 8675309;
+  position: absolute;
+  top: 0;
+  /*rtl:ignore*/
+  left: 0; }
+  #tiptip_holder.tip_top {
+    padding-bottom: 5px; }
+    #tiptip_holder.tip_top #tiptip_arrow_inner {
+      margin-top: -7px;
+      margin-left: -6px;
+      border-top-color: #333; }
+  #tiptip_holder.tip_bottom {
+    padding-top: 5px; }
+    #tiptip_holder.tip_bottom #tiptip_arrow_inner {
+      margin-top: -5px;
+      margin-left: -6px;
+      border-bottom-color: #333; }
+  #tiptip_holder.tip_right {
+    padding-left: 5px; }
+    #tiptip_holder.tip_right #tiptip_arrow_inner {
+      margin-top: -6px;
+      margin-left: -5px;
+      border-right-color: #333; }
+  #tiptip_holder.tip_left {
+    padding-right: 5px; }
+    #tiptip_holder.tip_left #tiptip_arrow_inner {
+      margin-top: -6px;
+      margin-left: -7px;
+      border-left-color: #333; }
+
+#tiptip_content {
+  color: #fff;
+  font-size: 0.8em;
+  max-width: 150px;
+  background: #333;
+  text-align: center;
+  border-radius: 3px;
+  padding: 0.618em 1em;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2); }
+  #tiptip_content code {
+    padding: 1px;
+    background: #888; }
+
+#tiptip_arrow,
+#tiptip_arrow_inner {
+  position: absolute;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 6px;
+  height: 0;
+  width: 0; }
+
+.dhl-preferred-service-content {
+  margin-top: 1em; }
+  .dhl-preferred-service-content .dhl-hidden {
+    display: none; }
+  .dhl-preferred-service-content .dhl-preferred-service-cost {
+    font-size: .9em; }
+  .dhl-preferred-service-content .dhl-preferred-service-item {
+    margin-bottom: 1em; }
+    .dhl-preferred-service-content .dhl-preferred-service-item .dhl-preferred-service-logo {
+      margin-bottom: 1em; }
+      .dhl-preferred-service-content .dhl-preferred-service-item .dhl-preferred-service-logo img {
+        margin: 0;
+        padding: 0;
+        max-height: 100px;
+        max-width: 100px;
+        background: #FFCC00; }
+    .dhl-preferred-service-content .dhl-preferred-service-item .dhl-preferred-service-title {
+      font-weight: bold;
+      font-size: 1em;
+      margin-bottom: .5em; }
+    .dhl-preferred-service-content .dhl-preferred-service-item .dhl-preferred-service-cost {
+      margin-bottom: .5em; }
+    .dhl-preferred-service-content .dhl-preferred-service-item .dhl-preferred-service-desc {
+      font-size: .9em;
+      margin-bottom: .5em; }
+    .dhl-preferred-service-content .dhl-preferred-service-item .dhl-preferred-service-times {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      margin: 0;
+      padding: 0; }
+      .dhl-preferred-service-content .dhl-preferred-service-item .dhl-preferred-service-times li {
+        flex-basis: 10%;
+        display: inline-block;
+        text-align: center;
+        padding: 10px 0 0;
+        margin: 0 8px 8px 0;
+        background-color: #e3e3e3; }
+        .dhl-preferred-service-content .dhl-preferred-service-item .dhl-preferred-service-times li label {
+          position: relative;
+          display: flex;
+          flex-direction: column;
+          flex-wrap: wrap;
+          padding: 5px 10px;
+          font-size: .9em;
+          font-weight: bold;
+          background-color: #eef4f2;
+          cursor: pointer;
+          margin: 0;
+          color: #5f7285; }
+          .dhl-preferred-service-content .dhl-preferred-service-item .dhl-preferred-service-times li label .dhl-preferred-time-title {
+            font-size: 1.2em; }
+        .dhl-preferred-service-content .dhl-preferred-service-item .dhl-preferred-service-times li input[type=radio] {
+          opacity: 0;
+          width: 1px;
+          height: 1px;
+          position: absolute; }
+          .dhl-preferred-service-content .dhl-preferred-service-item .dhl-preferred-service-times li input[type=radio]:checked ~ label {
+            background-color: #FFCC00; }
+      .dhl-preferred-service-content .dhl-preferred-service-item .dhl-preferred-service-times.dhl-preferred-service-time li {
+        flex-grow: inherit;
+        flex-basis: inherit; }
+        .dhl-preferred-service-content .dhl-preferred-service-item .dhl-preferred-service-times.dhl-preferred-service-time li label .dhl-preferred-time-title {
+          font-size: 1em; }
+    .dhl-preferred-service-content .dhl-preferred-service-item .dhl-preferred-service-data input[type=text] {
+      width: 100%;
+      margin-bottom: .5em; }
+    .dhl-preferred-service-content .dhl-preferred-service-item .woocommerce-help-tip {
+      background: #ffcc00;
+      display: inline-block;
+      font-size: 1em;
+      font-style: normal;
+      height: 18px;
+      padding: 3px;
+      margin-top: -5px;
+      margin-left: 5px;
+      border-radius: 50%;
+      line-height: 18px;
+      position: relative;
+      vertical-align: middle;
+      width: 18px; }
+      .dhl-preferred-service-content .dhl-preferred-service-item .woocommerce-help-tip::after {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        cursor: help;
+        content: "?"; }
+    .dhl-preferred-service-content .dhl-preferred-service-item .dhl-preferred-location-types, .dhl-preferred-service-content .dhl-preferred-service-item .dhl-preferred-delivery-types {
+      list-style: none;
+      margin: 0;
+      margin-bottom: 1em;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      align-items: center; }
+      .dhl-preferred-service-content .dhl-preferred-service-item .dhl-preferred-location-types li, .dhl-preferred-service-content .dhl-preferred-service-item .dhl-preferred-delivery-types li {
+        margin-right: 1em; }
+    .dhl-preferred-service-content .dhl-preferred-service-item.dhl-preferred-service-header .dhl-preferred-service-title {
+      font-size: 1.1em; }
