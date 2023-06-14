@@ -880,12 +880,14 @@ class WC_GZD_Admin {
 	public function add_legal_page_metabox( $post_type, $post ) {
 		$legal_pages = array();
 
-		foreach ( array_keys( wc_gzd_get_legal_pages( true ) ) as $page ) {
-			$legal_pages[] = wc_get_page_id( $page );
-		}
+		if ( 'page' === $post_type ) {
+			foreach ( array_keys( wc_gzd_get_legal_pages( true ) ) as $page ) {
+				$legal_pages[] = wc_get_page_id( $page );
+			}
 
-		if ( $post && in_array( $post->ID, $legal_pages, true ) ) {
-			add_meta_box( 'wc-gzd-legal-page-email-content', __( 'Optional Email Content', 'woocommerce-germanized' ), array( $this, 'init_legal_page_metabox' ), 'page' );
+			if ( $post && in_array( $post->ID, $legal_pages, true ) ) {
+				add_meta_box( 'wc-gzd-legal-page-email-content', __( 'Optional Email Content', 'woocommerce-germanized' ), array( $this, 'init_legal_page_metabox' ), 'page' );
+			}
 		}
 	}
 
