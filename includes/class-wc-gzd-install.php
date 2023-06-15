@@ -47,6 +47,7 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 			'3.10.0' => 'updates/woocommerce-gzd-update-3.10.0.php',
 			'3.10.4' => 'updates/woocommerce-gzd-update-3.10.4.php',
 			'3.12.2' => 'updates/woocommerce-gzd-update-3.12.2.php',
+			'3.13.2' => 'updates/woocommerce-gzd-update-3.13.2.php',
 		);
 
 		/**
@@ -616,7 +617,21 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 			include_once WC_GERMANIZED_ABSPATH . 'includes/admin/class-wc-gzd-admin-legal-checkboxes.php';
 			include_once WC_GERMANIZED_ABSPATH . 'includes/admin/settings/class-wc-gzd-settings-germanized.php';
 
-			$settings = new WC_GZD_Settings_Germanized();
+			$settings = false;
+
+			if ( is_admin() ) {
+				include_once WC()->plugin_path() . '/includes/admin/class-wc-admin-settings.php';
+
+				foreach ( WC_Admin_Settings::get_settings_pages() as $page ) {
+					if ( is_a( $page, 'WC_GZD_Settings_Germanized' ) ) {
+						$settings = $page;
+					}
+				}
+			}
+
+			if ( ! $settings ) {
+				$settings = new WC_GZD_Settings_Germanized();
+			}
 
 			/**
 			 * Filter to adjust default options to be created on install.
