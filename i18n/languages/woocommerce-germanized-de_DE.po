@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce Germanized\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-13 15:47+0200\n"
-"PO-Revision-Date: 2023-06-13 15:49+0200\n"
+"POT-Creation-Date: 2023-06-15 16:43+0200\n"
+"PO-Revision-Date: 2023-06-15 16:44+0200\n"
 "Last-Translator: Dennis Nissle <info@vendidero.de>\n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -141,8 +141,8 @@ msgstr "Nutri-Score %1$s"
 #: woocommerce-germanized/includes/abstracts/abstract-wc-gzd-product.php:1236
 #: woocommerce-germanized/includes/abstracts/abstract-wc-gzd-product.php:1246
 #: woocommerce-germanized/includes/wc-gzd-core-functions.php:573
-#: woocommerce-germanized/includes/wc-gzd-template-functions.php:941
-#: woocommerce-germanized/includes/wc-gzd-template-functions.php:948
+#: woocommerce-germanized/includes/wc-gzd-template-functions.php:940
+#: woocommerce-germanized/includes/wc-gzd-template-functions.php:947
 msgid "incl. VAT"
 msgstr "inkl. MwSt."
 
@@ -447,7 +447,7 @@ msgstr ""
 #: woocommerce-germanized/includes/admin/class-wc-gzd-admin-setup-wizard.php:66
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-oss.php:29
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:37
-#: woocommerce-germanized/src/PluginsHelper.php:483
+#: woocommerce-germanized/src/PluginsHelper.php:496
 msgid "One Stop Shop"
 msgstr "One Stop Shop"
 
@@ -487,8 +487,8 @@ msgid "Insert key"
 msgstr "Schlüssel einfügen"
 
 #: woocommerce-germanized/includes/admin/class-wc-gzd-admin-setup-wizard.php:105
-#: woocommerce-germanized/includes/admin/class-wc-gzd-admin-setup-wizard.php:464
-#: woocommerce-germanized/includes/admin/class-wc-gzd-admin-setup-wizard.php:466
+#: woocommerce-germanized/includes/admin/class-wc-gzd-admin-setup-wizard.php:465
+#: woocommerce-germanized/includes/admin/class-wc-gzd-admin-setup-wizard.php:467
 msgid "Continue"
 msgstr "Weiter"
 
@@ -505,12 +505,20 @@ msgstr "Lege rechtlich relevante Seiten an, z.B. AGB."
 msgid "Germanize WooCommerce settings (e.g. currency, tax display)."
 msgstr "WooCommerce Einstellungen eindeutschen (z.B. Währung)"
 
-#: woocommerce-germanized/includes/admin/class-wc-gzd-admin-setup-wizard.php:164
+#: woocommerce-germanized/includes/admin/class-wc-gzd-admin-setup-wizard.php:161
+msgid ""
+"In case you've already adjusted your WooCommerce settings (tax display, "
+"currency etc) you should skip this option."
+msgstr ""
+"Wenn du deine WooCommerce Einstellungen (z.B. Steueranzeige, Währung usw.) "
+"bereits angepasst hast, solltest du diese Option deaktivieren."
+
+#: woocommerce-germanized/includes/admin/class-wc-gzd-admin-setup-wizard.php:165
 msgctxt "install"
 msgid "OSS status"
 msgstr "OSS Status"
 
-#: woocommerce-germanized/includes/admin/class-wc-gzd-admin-setup-wizard.php:165
+#: woocommerce-germanized/includes/admin/class-wc-gzd-admin-setup-wizard.php:166
 #, php-format
 msgid ""
 "I'm participating in the <a href=\"%s\" target=\"_blank\" "
@@ -519,8 +527,8 @@ msgstr ""
 "Ich nehme am <a href=\"%s\" target=\"_blank\" rel=\"noopener\">One Stop Shop "
 "Verfahren</a> teil."
 
-#: woocommerce-germanized/includes/admin/class-wc-gzd-admin-setup-wizard.php:165
-#: woocommerce-germanized/includes/admin/class-wc-gzd-admin-setup-wizard.php:172
+#: woocommerce-germanized/includes/admin/class-wc-gzd-admin-setup-wizard.php:166
+#: woocommerce-germanized/includes/admin/class-wc-gzd-admin-setup-wizard.php:173
 msgid ""
 "Activating this option will automatically install the <a href=\"https://"
 "wordpress.org/plugins/one-stop-shop-woocommerce/\" target=\"_blank\">One "
@@ -530,16 +538,16 @@ msgstr ""
 "href=\"https://wordpress.org/plugins/one-stop-shop-woocommerce/\" "
 "target=\"_blank\">One Stop Shop</a> Plugin automatisch installiert."
 
-#: woocommerce-germanized/includes/admin/class-wc-gzd-admin-setup-wizard.php:171
+#: woocommerce-germanized/includes/admin/class-wc-gzd-admin-setup-wizard.php:172
 msgctxt "install"
 msgid "OSS observer"
 msgstr "OSS Beobachter"
 
-#: woocommerce-germanized/includes/admin/class-wc-gzd-admin-setup-wizard.php:172
+#: woocommerce-germanized/includes/admin/class-wc-gzd-admin-setup-wizard.php:173
 msgid "Observe the OSS delivery threshold of the current year."
 msgstr "Überwache die Lieferschwelle des aktuellen Jahres automatisch."
 
-#: woocommerce-germanized/includes/admin/class-wc-gzd-admin-setup-wizard.php:172
+#: woocommerce-germanized/includes/admin/class-wc-gzd-admin-setup-wizard.php:173
 msgid ""
 "Get notified automatically when you are close to reaching the delivery "
 "threshold."
@@ -548,31 +556,31 @@ msgstr ""
 "Lieferschwelle zu erreichen."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/class-wc-gzd-admin-setup-wizard.php:181
+#: woocommerce-germanized/includes/admin/class-wc-gzd-admin-setup-wizard.php:182
 msgctxt "install"
 msgid "VAT"
 msgstr "USt."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/class-wc-gzd-admin-setup-wizard.php:182
+#: woocommerce-germanized/includes/admin/class-wc-gzd-admin-setup-wizard.php:183
 msgid "Let Germanized insert EU VAT rates."
 msgstr "Lasse Germanized EU-Steuersätze importieren."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/class-wc-gzd-admin-setup-wizard.php:201
+#: woocommerce-germanized/includes/admin/class-wc-gzd-admin-setup-wizard.php:202
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-general.php:268
 #: woocommerce-germanized/includes/admin/views/html-page-status-germanized.php:40
 msgid "Small-Enterprise-Regulation"
 msgstr "Kleinunternehmerregelung"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/class-wc-gzd-admin-setup-wizard.php:202
+#: woocommerce-germanized/includes/admin/class-wc-gzd-admin-setup-wizard.php:203
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-general.php:269
 msgid "VAT based on &#167;19 UStG"
 msgstr "Umsatzsteuerbefreit nach &#167;19 UStG"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/class-wc-gzd-admin-setup-wizard.php:202
+#: woocommerce-germanized/includes/admin/class-wc-gzd-admin-setup-wizard.php:203
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-general.php:269
 #, php-format
 msgid ""
@@ -584,18 +592,18 @@ msgstr ""
 "Gebrauch machen willst."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/class-wc-gzd-admin-setup-wizard.php:208
+#: woocommerce-germanized/includes/admin/class-wc-gzd-admin-setup-wizard.php:209
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-doi.php:21
 msgid "Double Opt In"
 msgstr "Double-Opt-In"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/class-wc-gzd-admin-setup-wizard.php:209
+#: woocommerce-germanized/includes/admin/class-wc-gzd-admin-setup-wizard.php:210
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-doi.php:42
 msgid "Enable customer double opt in during registration."
 msgstr "Double-Opt-In Verfahren für Kundenkonten aktivieren."
 
-#: woocommerce-germanized/includes/admin/class-wc-gzd-admin-setup-wizard.php:209
+#: woocommerce-germanized/includes/admin/class-wc-gzd-admin-setup-wizard.php:210
 #, php-format
 msgid ""
 "Sends an email to the customer after registration to verify his account. "
@@ -608,32 +616,32 @@ msgstr ""
 "7 Tagen gelöscht</strong>. Die Double-Opt-In <a href=\"%s\" "
 "target=\"_blank\">Einstellungen</a> können nachträglich angepasst werden."
 
-#: woocommerce-germanized/includes/admin/class-wc-gzd-admin-setup-wizard.php:250
+#: woocommerce-germanized/includes/admin/class-wc-gzd-admin-setup-wizard.php:251
 #, php-format
 msgid "Upgrade to %1$s to activate %2$s integration."
 msgstr "Upgrade auf %1$s um die %2$s Integration zu aktivieren."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/class-wc-gzd-admin-setup-wizard.php:260
+#: woocommerce-germanized/includes/admin/class-wc-gzd-admin-setup-wizard.php:261
 #, php-format
 msgid "Enable %s integration"
 msgstr "%s Integration aktivieren"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/class-wc-gzd-admin-setup-wizard.php:288
+#: woocommerce-germanized/includes/admin/class-wc-gzd-admin-setup-wizard.php:289
 msgid "Setup"
 msgstr "Setup"
 
-#: woocommerce-germanized/includes/admin/class-wc-gzd-admin-setup-wizard.php:386
+#: woocommerce-germanized/includes/admin/class-wc-gzd-admin-setup-wizard.php:387
 msgid "Germanized &rsaquo; Setup Wizard"
 msgstr "Germanized &rsaquo; Setup"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/class-wc-gzd-admin-setup-wizard.php:460
+#: woocommerce-germanized/includes/admin/class-wc-gzd-admin-setup-wizard.php:461
 msgid "Skip Step"
 msgstr "Schritt überspringen"
 
-#: woocommerce-germanized/includes/admin/class-wc-gzd-admin-setup-wizard.php:472
+#: woocommerce-germanized/includes/admin/class-wc-gzd-admin-setup-wizard.php:473
 msgid "Return to WP Admin"
 msgstr "Zurück zu WP Admin"
 
@@ -793,30 +801,30 @@ msgid "Insert product units amount."
 msgstr "Füge die Anzahl der Produkteinheiten ein."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:888
+#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:889
 msgid "Optional Email Content"
 msgstr "Optionaler E-Mail Inhalt"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:893
+#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:895
 msgid "Add content which will be replacing default page content within emails."
 msgstr ""
 "Fülle dieses Feld aus um einen abweichenden E-Mail Anhangstext für diese "
 "Seite zu bestimmen."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:917
+#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:919
 msgid "Cart description"
 msgstr "Warenkorbkurzbeschreibung"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:930
+#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:932
 #: woocommerce-germanized/includes/api/class-wc-gzd-rest-products-controller.php:556
 msgid "Defect description"
 msgstr "Mängelbeschreibung"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:958
+#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:960
 msgid ""
 "This content will be shown as short product description within checkout and "
 "emails."
@@ -824,7 +832,7 @@ msgstr ""
 "Dieser Inhalt wird während des Bezahlvorganges und in den E-Mails als "
 "Produkt Kurzbeschreibung angezeigt."
 
-#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:972
+#: woocommerce-germanized/includes/admin/class-wc-gzd-admin.php:974
 #: woocommerce-germanized/includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:454
 msgid ""
 "Inform your customers about product defects. This description will be shown "
@@ -2273,8 +2281,8 @@ msgstr ""
 #: woocommerce-germanized/includes/api/class-wc-gzd-rest-customers-controller.php:152
 #: woocommerce-germanized/includes/api/class-wc-gzd-rest-orders-controller.php:143
 #: woocommerce-germanized/includes/api/class-wc-gzd-rest-orders-controller.php:156
-#: woocommerce-germanized/includes/class-wc-gzd-checkout.php:876
-#: woocommerce-germanized/includes/class-wc-gzd-checkout.php:889
+#: woocommerce-germanized/includes/class-wc-gzd-checkout.php:875
+#: woocommerce-germanized/includes/class-wc-gzd-checkout.php:888
 #: woocommerce-germanized/includes/class-wc-gzd-customer-helper.php:250
 #: woocommerce-germanized/includes/class-wc-gzd-customer-helper.php:258
 msgid "Title"
@@ -4012,7 +4020,7 @@ msgstr "Trusted Shops Easy Integration"
 
 # @ woocommerce-germanized
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-trusted-shops.php:29
-#: woocommerce-germanized/src/PluginsHelper.php:484
+#: woocommerce-germanized/src/PluginsHelper.php:497
 msgid "Trusted Shops"
 msgstr "Trusted Shops"
 
@@ -5015,7 +5023,7 @@ msgstr ""
 "Bitte prüfe die Angabe der Straße und stelle sicher, dass du deine "
 "Hausnummer angegeben hast."
 
-#: woocommerce-germanized/includes/class-wc-gzd-checkout.php:509
+#: woocommerce-germanized/includes/class-wc-gzd-checkout.php:508
 msgid ""
 "Sorry, but differential taxed products cannot be purchased with normal "
 "products at the same time."
@@ -5023,7 +5031,7 @@ msgstr ""
 "Entschuldigung, differenzbesteuerte Produkte können nicht gemeinsam mit "
 "normalen Produkten gekauft werden."
 
-#: woocommerce-germanized/includes/class-wc-gzd-checkout.php:515
+#: woocommerce-germanized/includes/class-wc-gzd-checkout.php:514
 msgid ""
 "Sorry, but normal products cannot be purchased together with differential "
 "taxed products at the same time."
@@ -5031,32 +5039,32 @@ msgstr ""
 "Entschuldigung, normale Produkte können nicht gemeinsam mit "
 "differenzbesteuerten Produkten gekauft werden."
 
-#: woocommerce-germanized/includes/class-wc-gzd-checkout.php:606
+#: woocommerce-germanized/includes/class-wc-gzd-checkout.php:605
 msgid "The customer has opted-in to the parcel delivery checkbox."
 msgstr ""
 "Der Kunde hat die Checkbox zur Datenweitergabe an den Paketdienstleister "
 "akzeptiert."
 
-#: woocommerce-germanized/includes/class-wc-gzd-checkout.php:610
+#: woocommerce-germanized/includes/class-wc-gzd-checkout.php:609
 msgid "This order applies for a photovoltaic systems VAT exemption."
 msgstr ""
 "Diese Bestellung ist zur Anwendung des Nullsteuersatzes auf "
 "Photovoltaikanlagen vorgesehen."
 
-#: woocommerce-germanized/includes/class-wc-gzd-checkout.php:614
+#: woocommerce-germanized/includes/class-wc-gzd-checkout.php:613
 #, php-format
 msgid "A minimum age of %s years is required for this order."
 msgstr "Für diese Bestellung ist ein Mindestalter von %s Jahren vorgesehen."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-checkout.php:1371
+#: woocommerce-germanized/includes/class-wc-gzd-checkout.php:1370
 #: woocommerce-germanized/includes/class-wc-gzd-revocation.php:51
 #: woocommerce-germanized/includes/wc-gzd-core-functions.php:738
 msgid "Mr."
 msgstr "Herr"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-checkout.php:1372
+#: woocommerce-germanized/includes/class-wc-gzd-checkout.php:1371
 msgctxt "customer-title-male-address"
 msgid "Mr."
 msgstr "Herrn"
@@ -5342,7 +5350,7 @@ msgid "Other Vitamins & Minerals"
 msgstr "Andere Vitamine & Mineralstoffe"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-install.php:181
+#: woocommerce-germanized/includes/class-wc-gzd-install.php:184
 msgid ""
 "Please install WooCommerce before installing WooCommerce Germanized. Thank "
 "you!"
@@ -5351,85 +5359,85 @@ msgstr ""
 "Vielen Dank!"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-install.php:539
-#: woocommerce-germanized/includes/class-wc-gzd-install.php:591
+#: woocommerce-germanized/includes/class-wc-gzd-install.php:544
+#: woocommerce-germanized/includes/class-wc-gzd-install.php:596
 msgctxt "Page slug"
 msgid "data-security"
 msgstr "datenschutzerklaerung"
 
-#: woocommerce-germanized/includes/class-wc-gzd-install.php:540
-#: woocommerce-germanized/includes/class-wc-gzd-install.php:593
+#: woocommerce-germanized/includes/class-wc-gzd-install.php:545
+#: woocommerce-germanized/includes/class-wc-gzd-install.php:598
 msgctxt "Page title"
 msgid "Privacy Policy"
 msgstr "Datenschutzerklärung"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-install.php:544
+#: woocommerce-germanized/includes/class-wc-gzd-install.php:549
 msgctxt "Page slug"
 msgid "imprint"
 msgstr "impressum"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-install.php:545
+#: woocommerce-germanized/includes/class-wc-gzd-install.php:550
 msgctxt "Page title"
 msgid "Imprint"
 msgstr "Impressum"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-install.php:549
+#: woocommerce-germanized/includes/class-wc-gzd-install.php:554
 msgctxt "Page slug"
 msgid "terms"
 msgstr "agb"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-install.php:550
+#: woocommerce-germanized/includes/class-wc-gzd-install.php:555
 msgctxt "Page title"
 msgid "Terms & Conditions"
 msgstr "AGB"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-install.php:554
+#: woocommerce-germanized/includes/class-wc-gzd-install.php:559
 msgctxt "Page slug"
 msgid "revocation"
 msgstr "widerrufsbelehrung"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-install.php:555
+#: woocommerce-germanized/includes/class-wc-gzd-install.php:560
 msgctxt "Page title"
 msgid "Cancellation Policy"
 msgstr "Widerrufsbelehrung"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-install.php:559
+#: woocommerce-germanized/includes/class-wc-gzd-install.php:564
 msgctxt "Page slug"
 msgid "shipping-methods"
 msgstr "versandarten"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-install.php:560
+#: woocommerce-germanized/includes/class-wc-gzd-install.php:565
 msgctxt "Page title"
 msgid "Shipping Methods"
 msgstr "Versandarten"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-install.php:564
+#: woocommerce-germanized/includes/class-wc-gzd-install.php:569
 msgctxt "Page slug"
 msgid "payment-methods"
 msgstr "bezahlmoeglichkeiten"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/includes/class-wc-gzd-install.php:565
+#: woocommerce-germanized/includes/class-wc-gzd-install.php:570
 msgctxt "Page title"
 msgid "Payment Methods"
 msgstr "Zahlungsarten"
 
-#: woocommerce-germanized/includes/class-wc-gzd-install.php:569
+#: woocommerce-germanized/includes/class-wc-gzd-install.php:574
 #: woocommerce-germanized/includes/updates/woocommerce-gzd-update-3.9.3.php:15
 msgctxt "Page slug"
 msgid "review-authenticity"
 msgstr "echtheit-von-bewertungen"
 
-#: woocommerce-germanized/includes/class-wc-gzd-install.php:570
+#: woocommerce-germanized/includes/class-wc-gzd-install.php:575
 #: woocommerce-germanized/includes/updates/woocommerce-gzd-update-3.9.3.php:16
 msgctxt "Page title"
 msgid "Review Authenticity"
@@ -13734,17 +13742,17 @@ msgstr ""
 msgid "Missing the Germanized %s package"
 msgstr "Das Germanized %s Paket fehlt"
 
-#: woocommerce-germanized/src/PluginsHelper.php:377
+#: woocommerce-germanized/src/PluginsHelper.php:390
 #, php-format
 msgid "Please <a href=\"%1$s\">activate the %2$s &raquo;</a> plugin"
 msgstr "Bitte <a href=\"%1$s\">aktiviere das %2$s Plugin &raquo;</a>"
 
-#: woocommerce-germanized/src/PluginsHelper.php:377
+#: woocommerce-germanized/src/PluginsHelper.php:390
 #, php-format
 msgid "Please <a href=\"%1$s\">install the %2$s &raquo;</a> plugin"
 msgstr "Bitte <a href=\"%1$s\">installiere das %2$s Plugin &raquo;</a>"
 
-#: woocommerce-germanized/src/PluginsHelper.php:434
+#: woocommerce-germanized/src/PluginsHelper.php:447
 #, php-format
 msgid ""
 "The requested plugin `%s` could not be installed. Plugin API call failed."
@@ -13752,7 +13760,7 @@ msgstr ""
 "Das Plugin `%s` konnte nicht installiert werden. Die Plugin API erzeugt "
 "einen Fehler."
 
-#: woocommerce-germanized/src/PluginsHelper.php:454
+#: woocommerce-germanized/src/PluginsHelper.php:467
 #, php-format
 msgid ""
 "The requested plugin `%s` could not be installed. Upgrader install failed."
@@ -13761,27 +13769,27 @@ msgstr ""
 "einen Fehler."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/src/PluginsHelper.php:482
+#: woocommerce-germanized/src/PluginsHelper.php:495
 msgid "WooCommerce"
 msgstr "WooCommerce"
 
-#: woocommerce-germanized/src/PluginsHelper.php:520
+#: woocommerce-germanized/src/PluginsHelper.php:533
 #, php-format
 msgid "The requested plugin `%s` is not yet installed."
 msgstr "Das Plugin `%s` ist noch nicht installiert."
 
-#: woocommerce-germanized/src/PluginsHelper.php:532
+#: woocommerce-germanized/src/PluginsHelper.php:545
 #, php-format
 msgid "The requested plugin `%s` could not be activated."
 msgstr "Das Plugin `%s` konnte nicht aktiviert werden."
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/src/PluginsHelper.php:553
+#: woocommerce-germanized/src/PluginsHelper.php:566
 msgid "Germanized for WooCommerce: One Stop Shop"
 msgstr "Germanized für WooCommerce: One Stop Shop"
 
 # @ woocommerce-germanized
-#: woocommerce-germanized/src/PluginsHelper.php:557
+#: woocommerce-germanized/src/PluginsHelper.php:570
 msgid "Germanized for WooCommerce: Trusted Shops"
 msgstr "Germanized für WooCommerce: Trusted Shops"
 

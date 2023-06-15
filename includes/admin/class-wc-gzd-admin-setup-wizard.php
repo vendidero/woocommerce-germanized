@@ -153,11 +153,12 @@ if ( ! class_exists( 'WC_GZD_Admin_Setup_Wizard' ) ) :
 						'id'    => 'germanized_options',
 					),
 					array(
-						'title'   => __( 'Settings', 'woocommerce-germanized' ),
-						'desc'    => __( 'Germanize WooCommerce settings (e.g. currency, tax display).', 'woocommerce-germanized' ),
-						'id'      => 'woocommerce_gzd_germanize_settings',
-						'default' => 'yes',
-						'type'    => 'gzd_toggle',
+						'title'    => __( 'Settings', 'woocommerce-germanized' ),
+						'desc'     => __( 'Germanize WooCommerce settings (e.g. currency, tax display).', 'woocommerce-germanized' ),
+						'id'       => 'woocommerce_gzd_germanize_settings',
+						'default'  => 'yes',
+						'type'     => 'gzd_toggle',
+						'desc_tip' => __( 'In case you\'ve already adjusted your WooCommerce settings (tax display, currency etc) you should skip this option.', 'woocommerce-germanized' ),
 					),
 					$pages,
 					array(

@@ -209,7 +209,6 @@ class Shopmark {
 	}
 
 	public function execute() {
-
 		if ( is_null( $this->get_callback() ) ) {
 			return;
 		}

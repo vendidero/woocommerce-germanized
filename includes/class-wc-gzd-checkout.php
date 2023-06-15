@@ -387,7 +387,6 @@ class WC_GZD_Checkout {
 	 */
 	public function maybe_remove_shopmark_filters() {
 		if ( is_cart() || is_checkout() ) {
-
 			foreach ( wc_gzd_get_checkout_shopmarks() as $shopmark ) {
 				$shopmark->remove();
 			}

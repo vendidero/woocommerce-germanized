@@ -165,6 +165,9 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 				define( 'WC_GZD_INSTALLING', true );
 			}
 
+			$current_version    = get_option( 'woocommerce_gzd_version', null );
+			$current_db_version = get_option( 'woocommerce_gzd_db_version', null );
+
 			// Load Translation for default options
 			$locale = apply_filters( 'plugin_locale', get_locale(), 'woocommerce-germanized' );
 			$mofile = WC_germanized()->plugin_path() . '/i18n/languages/woocommerce-germanized.mo';
@@ -199,8 +202,14 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 
 			self::install_packages();
 
-			self::create_units();
-			self::create_labels();
+			/**
+			 * Do only import default units + label on first install
+			 */
+			if ( is_null( $current_version ) ) {
+				self::create_units();
+				self::create_labels();
+			}
+
 			self::create_options();
 
 			// Delete plugin header data for dependency check
@@ -228,10 +237,6 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 			if ( $note = $notices->get_note( 'internetmarke_importer' ) ) {
 				$note->reset();
 			}
-
-			// Queue upgrades
-			$current_version    = get_option( 'woocommerce_gzd_version', null );
-			$current_db_version = get_option( 'woocommerce_gzd_db_version', null );
 
 			// Queue messages and notices
 			if ( ! is_null( $current_version ) ) {

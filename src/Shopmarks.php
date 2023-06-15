@@ -296,23 +296,23 @@ class Shopmarks {
 					'callback'         => 'wc_gzd_cart_product_unit_price',
 				),
 				'delivery_time'          => array(
-					'default_filter'   => 'woocommerce_cart_item_name',
-					'default_priority' => 10,
+					'default_filter'   => 'woocommerce_after_cart_item_name',
+					'default_priority' => 1,
 					'callback'         => 'wc_gzd_cart_product_delivery_time',
 				),
 				'units'                  => array(
-					'default_filter'   => 'woocommerce_cart_item_name',
-					'default_priority' => 11,
+					'default_filter'   => 'woocommerce_after_cart_item_name',
+					'default_priority' => 2,
 					'callback'         => 'wc_gzd_cart_product_units',
 				),
 				'item_desc'              => array(
-					'default_filter'   => 'woocommerce_cart_item_name',
-					'default_priority' => 12,
+					'default_filter'   => 'woocommerce_after_cart_item_name',
+					'default_priority' => 3,
 					'callback'         => 'wc_gzd_cart_product_item_desc',
 				),
 				'defect_description'     => array(
-					'default_filter'   => 'woocommerce_cart_item_name',
-					'default_priority' => 13,
+					'default_filter'   => 'woocommerce_after_cart_item_name',
+					'default_priority' => 4,
 					'callback'         => 'wc_gzd_cart_product_defect_description',
 				),
 				'deposit'                => array(
@@ -321,8 +321,8 @@ class Shopmarks {
 					'callback'         => 'wc_gzd_cart_product_deposit_amount',
 				),
 				'deposit_packaging_type' => array(
-					'default_filter'   => 'woocommerce_cart_item_name',
-					'default_priority' => 9,
+					'default_filter'   => 'woocommerce_after_cart_item_name',
+					'default_priority' => 5,
 					'callback'         => 'wc_gzd_cart_product_deposit_packaging_type',
 				),
 			)
