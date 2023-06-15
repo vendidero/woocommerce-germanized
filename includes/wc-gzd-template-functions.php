@@ -895,7 +895,6 @@ if ( ! function_exists( 'woocommerce_gzd_template_maybe_hide_shipping_costs' ) )
 		}
 
 		return $hide;
-
 	}
 }
 

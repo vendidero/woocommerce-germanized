@@ -101,119 +101,27 @@
             $priceElement.find( '.price' ).contents().unwrap();
         }
 
-        if ( variation.delivery_time !== '' ) {
-            $wrapper.find( 'p.delivery-time-info' ).wc_gzd_set_content( variation.delivery_time );
-        } else {
-            $wrapper.find( 'p.delivery-time-info' ).wc_gzd_reset_content();
-        }
-
-        if ( variation.defect_description !== '' ) {
-            $wrapper.find( 'p.defect-description' ).wc_gzd_set_content( variation.defect_description );
-        } else {
-            $wrapper.find( 'p.defect-description' ).wc_gzd_reset_content();
-        }
-
-        if ( variation.tax_info !== '' && hasDisplayPrice ) {
-            $wrapper.find( '.tax-info' ).wc_gzd_set_content( variation.tax_info );
-        } else {
-            $wrapper.find( '.tax-info' ).wc_gzd_reset_content();
-        }
-
-        if ( variation.deposit_amount !== '' && hasDisplayPrice ) {
-            $wrapper.find( '.deposit-amount' ).wc_gzd_set_content( variation.deposit_amount );
-        } else {
-            $wrapper.find( '.deposit-amount' ).wc_gzd_reset_content();
-        }
-
-        if ( variation.deposit_packaging_type !== '' && hasDisplayPrice ) {
-            $wrapper.find( '.deposit-packaging-type' ).wc_gzd_set_content( variation.deposit_packaging_type );
-        } else {
-            $wrapper.find( '.deposit-packaging-type' ).wc_gzd_reset_content();
-        }
-
-        if ( variation.food_description !== '' ) {
-            $wrapper.find( '.wc-gzd-food-description' ).wc_gzd_set_content( variation.food_description );
-        } else {
-            $wrapper.find( '.wc-gzd-food-description' ).wc_gzd_reset_content();
-        }
-
-        if ( variation.nutri_score !== '' ) {
-            $wrapper.find( '.wc-gzd-nutri-score' ).wc_gzd_set_content( variation.nutri_score );
-        } else {
-            $wrapper.find( '.wc-gzd-nutri-score' ).wc_gzd_reset_content();
-        }
-
-        if ( variation.food_distributor !== '' ) {
-            $wrapper.find( '.wc-gzd-food-distributor' ).wc_gzd_set_content( variation.food_distributor );
-        } else {
-            $wrapper.find( '.wc-gzd-food-distributor' ).wc_gzd_reset_content();
-        }
-
-        if ( variation.food_place_of_origin !== '' ) {
-            $wrapper.find( '.wc-gzd-food-place-of-origin' ).wc_gzd_set_content( variation.food_place_of_origin );
-        } else {
-            $wrapper.find( '.wc-gzd-food-place-of-origin' ).wc_gzd_reset_content();
-        }
-
-        if ( variation.net_filling_quantity !== '' ) {
-            $wrapper.find( '.wc-gzd-net-filling-quantity' ).wc_gzd_set_content( variation.net_filling_quantity );
-        } else {
-            $wrapper.find( '.wc-gzd-net-filling-quantity' ).wc_gzd_reset_content();
-        }
-
-        if ( variation.drained_weight !== '' ) {
-            $wrapper.find( '.wc-gzd-drained-weight' ).wc_gzd_set_content( variation.drained_weight );
-        } else {
-            $wrapper.find( '.wc-gzd-drained-weight' ).wc_gzd_reset_content();
-        }
-
-        if ( variation.alcohol_content !== '' || 'no' === variation.includes_alcohol ) {
-            $wrapper.find( '.wc-gzd-alcohol-content' ).wc_gzd_set_content( variation.alcohol_content );
-        } else {
-            $wrapper.find( '.wc-gzd-alcohol-content' ).wc_gzd_reset_content();
-        }
-
-        if ( variation.nutrients !== '' ) {
-            $wrapper.find( '.wc-gzd-nutrients' ).wc_gzd_set_content( variation.nutrients );
-            $wrapper.find( '.wc-gzd-nutrients-heading' ).wc_gzd_set_content( variation.nutrients_heading );
-        } else {
-            $wrapper.find( '.wc-gzd-nutrients' ).wc_gzd_reset_content();
-            $wrapper.find( '.wc-gzd-nutrients-heading' ).wc_gzd_reset_content();
-        }
-
-        if ( variation.ingredients !== '' ) {
-            $wrapper.find( '.wc-gzd-ingredients' ).wc_gzd_set_content( variation.ingredients );
-            $wrapper.find( '.wc-gzd-ingredients-heading' ).wc_gzd_set_content( variation.ingredients_heading );
-        } else {
-            $wrapper.find( '.wc-gzd-ingredients' ).wc_gzd_reset_content();
-            $wrapper.find( '.wc-gzd-ingredients-heading' ).wc_gzd_reset_content();
-        }
-
-        if ( variation.allergenic !== '' ) {
-            $wrapper.find( '.wc-gzd-allergenic' ).wc_gzd_set_content( variation.allergenic );
-            $wrapper.find( '.wc-gzd-allergenic-heading' ).wc_gzd_set_content( variation.allergenic_heading );
-        } else {
-            $wrapper.find( '.wc-gzd-allergenic' ).wc_gzd_reset_content();
-            $wrapper.find( '.wc-gzd-allergenic-heading' ).wc_gzd_reset_content();
-        }
-
-        if ( variation.shipping_costs_info !== '' && hasDisplayPrice ) {
-            $wrapper.find( '.shipping-costs-info' ).wc_gzd_set_content( variation.shipping_costs_info );
-        } else {
-            $wrapper.find( '.shipping-costs-info' ).wc_gzd_reset_content();
-        }
-
-        if ( variation.unit_price !== '' && hasDisplayPrice ) {
-            $wrapper.find( '.price-unit' ).wc_gzd_set_content( variation.unit_price );
-        } else {
-            $wrapper.find( '.price-unit' ).wc_gzd_reset_content();
-        }
-
-        if ( variation.product_units !== '' ) {
-            $wrapper.find( '.product-units' ).wc_gzd_set_content( variation.product_units );
-        } else {
-            $wrapper.find( '.product-units' ).wc_gzd_reset_content();
-        }
+        $wrapper.find( 'p.delivery-time-info' ).wc_gzd_set_content( variation.delivery_time );
+        $wrapper.find( 'p.defect-description' ).wc_gzd_set_content( variation.defect_description );
+        $wrapper.find( '.tax-info' ).wc_gzd_set_content( hasDisplayPrice ? variation.tax_info : '' );
+        $wrapper.find( '.deposit-amount' ).wc_gzd_set_content( hasDisplayPrice ? variation.deposit_amount : '' );
+        $wrapper.find( '.deposit-packaging-type' ).wc_gzd_set_content( hasDisplayPrice ? variation.deposit_packaging_type : '' );
+        $wrapper.find( '.wc-gzd-food-description' ).wc_gzd_set_content( variation.food_description );
+        $wrapper.find( '.wc-gzd-nutri-score' ).wc_gzd_set_content( variation.nutri_score );
+        $wrapper.find( '.wc-gzd-food-distributor' ).wc_gzd_set_content( variation.food_distributor );
+        $wrapper.find( '.wc-gzd-food-place-of-origin' ).wc_gzd_set_content( variation.food_place_of_origin );
+        $wrapper.find( '.wc-gzd-net-filling-quantity' ).wc_gzd_set_content( variation.net_filling_quantity );
+        $wrapper.find( '.wc-gzd-drained-weight' ).wc_gzd_set_content( variation.drained_weight );
+        $wrapper.find( '.wc-gzd-alcohol-content' ).wc_gzd_set_content( 'no' === variation.includes_alcohol ? '' : variation.alcohol_content );
+        $wrapper.find( '.wc-gzd-nutrients' ).wc_gzd_set_content( variation.nutrients );
+        $wrapper.find( '.wc-gzd-nutrients-heading' ).wc_gzd_set_content( variation.nutrients_heading );
+        $wrapper.find( '.wc-gzd-ingredients' ).wc_gzd_set_content( variation.ingredients );
+        $wrapper.find( '.wc-gzd-ingredients-heading' ).wc_gzd_set_content( variation.ingredients_heading );
+        $wrapper.find( '.wc-gzd-allergenic' ).wc_gzd_set_content( variation.allergenic );
+        $wrapper.find( '.wc-gzd-allergenic-heading' ).wc_gzd_set_content( variation.allergenic_heading );
+        $wrapper.find( '.shipping-costs-info' ).wc_gzd_set_content( hasDisplayPrice ? variation.shipping_costs_info : '' );
+        $wrapper.find( '.price-unit' ).wc_gzd_set_content( hasDisplayPrice ? variation.unit_price : '' );
+        $wrapper.find( '.product-units' ).wc_gzd_set_content( hasDisplayPrice ? variation.product_units : '' );
 
         form.$form.trigger( 'germanized_variation_data', variation, $wrapper );
     };

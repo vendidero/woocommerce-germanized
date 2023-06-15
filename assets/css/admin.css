@@ -329,6 +329,11 @@ table.wc-gzd-tax-example tr th:first-child, table.wc-gzd-tax-example tr td:first
     font-weight: normal;
     margin-left: 1em; }
 
+.woocommerce_options_panel#food_product_data p.form-field span.description {
+  display: inline;
+  margin-left: 5px;
+  clear: none; }
+
 .woocommerce_options_panel .nutrient_vitamins_field {
   width: 50%; }
   .woocommerce_options_panel .nutrient_vitamins_field .wrap input {

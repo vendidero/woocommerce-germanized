@@ -463,6 +463,16 @@ table.wc-gzd-tax-example tr th:first-child, table.wc-gzd-tax-example tr td:first
     }
   }
 
+  &#food_product_data {
+    p.form-field {
+      span.description {
+        display: inline;
+        margin-left: 5px;
+        clear: none;
+      }
+    }
+  }
+
   .nutrient_vitamins_field {
     width: 50%;
 
