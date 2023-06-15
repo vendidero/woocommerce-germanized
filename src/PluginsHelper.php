@@ -114,16 +114,29 @@ class PluginsHelper {
 	 * Use a regex to find the actual plugin. This regex ignores
 	 * plugin path suffixes, e.g. is able to detect plugin paths like woocommerce-2/woocommerce.php
 	 *
-	 * @param $slug
+	 * @param string $slug May either be a slug-only, e.g. woocommerce or a path like woocommerce-multilingual/wpml-woocommerce.php
 	 *
 	 * @return string
 	 */
 	private static function get_plugin_search_regex( $slug ) {
+		$path_part = $slug;
+		$slug_part = $slug;
+
 		if ( strstr( $slug, '/' ) ) {
-			$slug = self::get_plugin_slug( $slug );
+			$parts = explode( '/', $slug );
+
+			if ( ! empty( $parts ) && 2 === count( $parts ) ) {
+				$path_part = $parts[0];
+				$slug_part = preg_replace( '/\.\w+$/', '', $parts[1] ); // remove .php
+			} else {
+				$slug = self::get_plugin_slug( $slug );
+
+				$path_part = $slug;
+				$slug_part = $slug;
+			}
 		}
 
-		return '/^' . $slug . '.*\/' . $slug . '.php$/';
+		return '/^' . $path_part . '.*\/' . $slug_part . '.php$/';
 	}
 
 	/**
