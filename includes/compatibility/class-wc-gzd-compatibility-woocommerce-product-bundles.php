@@ -67,14 +67,14 @@ class WC_GZD_Compatibility_WooCommerce_Product_Bundles extends WC_GZD_Compatibil
 	}
 
 	public function bundle_revocation_exempt( $is_exempt, $product, $type, $item ) {
-		if ( 'digital' === $type && is_a( $product, 'WC_Product_Bundle' ) && ! $product->is_virtual_bundle() ) {
+		if ( 'digital' === $type && is_a( $product, 'WC_Product_Bundle' ) && is_callable( array( $product, 'is_virtual_bundle' ) ) && ! $product->is_virtual_bundle() ) {
 			$is_exempt = false;
 		}
 
 		if ( $is_exempt && $product->is_virtual() ) {
 			$bundled_item = false;
 
-			if ( is_array( $item ) && isset( $item['bundled_item_id'] ) ) {
+			if ( is_array( $item ) && isset( $item['bundled_item_id'] ) && function_exists( 'wc_pb_get_bundled_cart_item_container' ) ) {
 				if ( $bundle_container_item = wc_pb_get_bundled_cart_item_container( $item ) ) {
 					$bundle = $bundle_container_item['data'];
 

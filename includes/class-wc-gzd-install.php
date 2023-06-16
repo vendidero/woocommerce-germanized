@@ -269,12 +269,16 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 			 *
 			 */
 			if ( apply_filters( 'woocommerce_gzd_needs_db_update', self::needs_db_update() ) ) {
-				if ( $note = $notices->get_note( 'update' ) ) {
-					$note->reset();
-				}
+				if ( apply_filters( 'woocommerce_gzd_enable_auto_update_db', false ) ) {
+					self::update();
+				} else {
+					if ( $note = $notices->get_note( 'update' ) ) {
+						$note->reset();
+					}
 
-				// Update
-				update_option( '_wc_gzd_needs_update', 1 );
+					// Update
+					update_option( '_wc_gzd_needs_update', 1 );
+				}
 			} else {
 				self::update_db_version();
 			}

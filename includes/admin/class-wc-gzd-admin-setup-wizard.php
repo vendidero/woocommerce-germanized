@@ -458,7 +458,7 @@ if ( ! class_exists( 'WC_GZD_Admin_Setup_Wizard' ) ) :
 					<?php wp_nonce_field( 'wc-gzd-setup' ); ?>
 
 					<?php if ( $current['order'] < count( $this->steps ) ) : ?>
-						<a class="wc-gzd-setup-link wc-gzd-setup-link-skip" href="<?php echo esc_url( wp_nonce_url( add_query_arg( array( 'skip' => esc_attr( $this->step ) ), $this->get_step_url( $this->get_next_step() ) ) ), 'wc-gzd-setup-skip' ); ?>"><?php esc_html_e( 'Skip Step', 'woocommerce-germanized' ); ?></a>
+						<a class="wc-gzd-setup-link wc-gzd-setup-link-skip" href="<?php echo esc_url( wp_nonce_url( add_query_arg( array( 'skip' => esc_attr( $this->step ) ), $this->get_step_url( $this->get_next_step() ) ), 'wc-gzd-setup-skip' ) ); ?>"><?php esc_html_e( 'Skip Step', 'woocommerce-germanized' ); ?></a>
 					<?php endif; ?>
 
 					<?php if ( isset( $current['button_next_link'] ) && ! empty( $current['button_next_link'] ) ) : ?>
