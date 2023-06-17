@@ -1269,7 +1269,7 @@ function wc_gzd_maybe_disable_checkout_adjustments() {
 		remove_action( 'woocommerce_checkout_order_review', 'woocommerce_order_review', WC_GZD_Hook_Priorities::instance()->get_priority( 'woocommerce_checkout_order_review', 'woocommerce_order_review', 10 ) );
 		remove_action( 'woocommerce_checkout_order_review', 'woocommerce_checkout_payment', WC_GZD_Hook_Priorities::instance()->get_priority( 'woocommerce_checkout_order_review', 'woocommerce_checkout_payment', 20 ) );
 
-		if ( apply_filters( 'woocommerce_gzd_prevent_checkout_order_review_hook_reset', false ) ) {
+		if ( apply_filters( 'woocommerce_gzd_prevent_checkout_order_review_hook_reset', true ) ) {
 			if ( ! has_action( 'woocommerce_checkout_order_review', 'woocommerce_order_review' ) ) {
 				add_action( 'woocommerce_checkout_order_review', 'woocommerce_order_review', WC_GZD_Hook_Priorities::instance()->get_priority( 'woocommerce_checkout_order_review', 'woocommerce_order_review', 10, true ) );
 			}
