@@ -878,6 +878,7 @@ class WC_GZD_Checkout {
 				'before'   => 'first_name',
 				'group'    => array( 'billing', 'shipping' ),
 				'priority' => 0,
+				'class'    => array( 'form-row-wide' ),
 			);
 
 			$this->custom_fields_admin['title'] = array(
@@ -888,6 +889,7 @@ class WC_GZD_Checkout {
 				'label'    => __( 'Title', 'woocommerce-germanized' ),
 				'show'     => false,
 				'priority' => 0,
+				'class'    => array( 'form-row-wide' ),
 			);
 		}
 
