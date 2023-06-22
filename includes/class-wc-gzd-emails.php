@@ -55,9 +55,29 @@ class WC_GZD_Emails {
 			/**
 			 * Support WooCommerce Gutenberg checkout block
 			 */
-			if ( defined( 'WC_VERSION' ) && version_compare( WC_VERSION, '6.4.0', '>=' ) ) {
+			$wc_version = defined( 'WC_VERSION' ) ? WC_VERSION : false;
+
+			if ( $wc_version && version_compare( $wc_version, '7.0.0', '>=' ) ) {
+				/**
+				 * The issue with the woocommerce_store_api_checkout_order_processed hook is that it is executed
+				 * before updating the order status + payment information. That's why we need to tweak
+				 * ourselves in hooks/filters applied on a later stage based on whether the order needs payment or not.
+				 *
+				 * @see \Automattic\WooCommerce\StoreApi\Routes\V1\Checkout
+				 */
+				add_action(
+					'woocommerce_store_api_checkout_order_processed',
+					function( $order ) {
+						if ( $order->needs_payment() ) {
+							add_action( 'woocommerce_rest_checkout_process_payment_with_context', array( $this, 'checkout_block_payment_context_confirmation_callback' ), 1005, 2 );
+						} else {
+							add_filter( 'woocommerce_get_checkout_order_received_url', array( $this, 'checkout_block_no_payment_context_confirmation_callback' ), 1005, 2 );
+						}
+					}
+				);
+			} elseif ( $wc_version && version_compare( $wc_version, '6.4.0', '>=' ) ) {
 				add_action( 'woocommerce_store_api_checkout_order_processed', array( $this, 'confirm_order' ) );
-			} elseif ( defined( 'WC_VERSION' ) && version_compare( WC_VERSION, '6.0.0', '>=' ) ) {
+			} elseif ( $wc_version && version_compare( $wc_version, '6.0.0', '>=' ) ) {
 				add_action( 'woocommerce_blocks_checkout_order_processed', array( $this, 'confirm_order' ) );
 			} else {
 				add_action( '__experimental_woocommerce_blocks_checkout_order_processed', array( $this, 'confirm_order' ) );
@@ -180,6 +200,21 @@ class WC_GZD_Emails {
 		if ( is_admin() ) {
 			$this->admin_hooks();
 		}
+	}
+
+	public function checkout_block_payment_context_confirmation_callback( $context, $payment_result ) {
+		$order = $context->order;
+		$this->confirm_order( $order );
+
+		remove_action( 'woocommerce_rest_checkout_process_payment_with_context', array( $this, 'checkout_block_payment_context_confirmation_callback' ), 1005 );
+	}
+
+	public function checkout_block_no_payment_context_confirmation_callback( $redirect, $order ) {
+		$this->confirm_order( $order );
+
+		remove_filter( 'woocommerce_get_checkout_order_received_url', array( $this, 'checkout_block_no_payment_context_confirmation_callback' ), 1005 );
+
+		return $redirect;
 	}
 
 	public function register_confirmation_fallback( $order_id ) {
