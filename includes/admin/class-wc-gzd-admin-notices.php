@@ -161,7 +161,6 @@ if ( ! class_exists( 'WC_GZD_Admin_Notices' ) ) :
 		 */
 		public function get_notes() {
 			if ( is_null( $this->notes ) ) {
-
 				$core_notes = array(
 					'WC_GZD_Admin_Note_Theme_Supported',
 					'WC_GZD_Admin_Note_Update',

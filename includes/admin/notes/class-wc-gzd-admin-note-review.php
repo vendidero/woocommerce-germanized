@@ -8,12 +8,7 @@ defined( 'ABSPATH' ) || exit;
 class WC_GZD_Admin_Note_Review extends WC_GZD_Admin_Note {
 
 	public function is_disabled() {
-
-		if ( get_option( '_wc_gzd_disable_review_notice' ) ) {
-			return true;
-		}
-
-		return parent::is_disabled();
+		return true;
 	}
 
 	public function get_name() {
@@ -32,28 +27,7 @@ class WC_GZD_Admin_Note_Review extends WC_GZD_Admin_Note {
 		return true;
 	}
 
-	public function get_days_until_show() {
-		return 3;
-	}
-
 	public function get_deactivate_text() {
 		return __( "I've added my review", 'woocommerce-germanized' );
-	}
-
-	public function get_actions() {
-		return array(
-			array(
-				'url'        => 'https://wordpress.org/support/view/plugin-reviews/woocommerce-germanized?rate=5#postform',
-				'title'      => __( 'Write review now', 'woocommerce-germanized' ),
-				'target'     => '_blank',
-				'is_primary' => true,
-			),
-			array(
-				'url'        => 'https://wordpress.org/support/plugin/woocommerce-germanized',
-				'title'      => __( 'Found Bugs?', 'woocommerce-germanized' ),
-				'target'     => '_blank',
-				'is_primary' => false,
-			),
-		);
 	}
 }

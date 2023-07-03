@@ -340,7 +340,6 @@ abstract class WC_GZD_Admin_Note {
 
 	public function reset() {
 		if ( $note = $this->get_note() ) {
-
 			if ( 'deactivate' !== $note->get_status() ) {
 				$note->delete( true );
 			}

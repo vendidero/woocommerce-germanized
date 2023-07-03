@@ -246,10 +246,6 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 
 				// Only on major update
 				if ( version_compare( $new_major_version, $major_version, '>' ) ) {
-					if ( $note = $notices->get_note( 'review' ) ) {
-						$note->reset();
-					}
-
 					if ( $note = $notices->get_note( 'pro' ) ) {
 						$note->reset();
 					}

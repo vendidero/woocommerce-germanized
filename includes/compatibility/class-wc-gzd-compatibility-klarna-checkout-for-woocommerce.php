@@ -27,6 +27,25 @@ class WC_GZD_Compatibility_Klarna_Checkout_For_WooCommerce extends WC_GZD_Compat
 		add_filter( 'kco_checkout_timeout_duration', array( $this, 'increase_checkout_time' ), 10 );
 
 		add_action( 'kco_wc_after_order_review', array( $this, 'add_checkboxes' ), 5 );
+		add_filter( 'kco_ignored_checkout_fields', array( $this, 'add_checkbox_fields' ) );
+	}
+
+	/**
+	 * Register checkbox (fields) as ignored checkout fields to prevent Klarna from moving them.
+	 *
+	 * @param $fields
+	 *
+	 * @return array
+	 */
+	public function add_checkbox_fields( $fields ) {
+		if ( $this->add_klarna_checkboxes() ) {
+			foreach ( WC_GZD_Legal_Checkbox_Manager::instance()->get_checkboxes( array( 'locations' => 'checkout' ) ) as $checkbox ) {
+				$fields[] = $checkbox->get_html_name();
+				$fields[] = $checkbox->get_html_name() . '-field';
+			}
+		}
+
+		return $fields;
 	}
 
 	public function add_klarna_checkboxes() {
