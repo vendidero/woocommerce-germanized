@@ -1536,6 +1536,11 @@ function wc_gzd_get_post_plain_content( $content_post, $shortcodes_allowed = arr
 		 */
 		$content = preg_replace( '/(<(style)\b[^>]*>).*?(<\/\2>)/is', '', $content );
 
+		/**
+		 * Remove html comments which may be added by certain pagebuilder.
+		 */
+		$content = preg_replace( '/<!--(.*)-->/Uis', '', $content );
+
 		do_action( 'woocommerce_gzd_after_get_post_plain_content', $post, $shortcodes_allowed );
 	}
 

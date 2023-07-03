@@ -80,5 +80,14 @@ class WC_GZD_Tests_Util_Functions extends WC_GZD_Unit_Test_Case {
 		$post_content = wc_gzd_get_post_plain_content( $post_id );
 
 		$this->assertEquals( '<p>Does it work?</p>', $this->clean_newlines( $post_content ) );
+
+		$post_id = wp_insert_post( array(
+			'post_content' => 'test2 <!-- Test comment -->',
+			'post_title'   => 'test',
+		) );
+
+		$post_content = wc_gzd_get_post_plain_content( $post_id );
+
+		$this->assertEquals( '<p>test2 </p>', $this->clean_newlines( $post_content ) );
 	}
 }
