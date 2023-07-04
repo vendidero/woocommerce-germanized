@@ -4,8 +4,8 @@ Tags: woocommerce, woocommerce german, woocommerce DE, woocommerce germany, wooc
 Requires at least: 5.4
 Tested up to: 6.2
 WC requires at least: 3.9
-WC tested up to: 7.8
-Stable tag: 3.13.2
+WC tested up to: 7.9
+Stable tag: 3.13.3
 Requires PHP: 5.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -205,6 +205,17 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 6. Edit pdf documents (Pro)
 
 == Changelog ==
+= 3.13.3 =
+* New: Woo 7.9 support
+* New: DHL Empfängerunterschrift
+* Improvement: DHL REST API street number validation
+* Improvement: DHL REST API shipper contact name
+* Improvement: Order confirmation timing while using checkout block
+* Improvement: Remove HTML comments from plain legal text attachments
+* Improvement: Klarna Checkout ignored fields
+* Fix: Check whether bundle methods exist before usage
+* Fix: EU tax rate to class mapping for english setups
+
 = 3.13.2 =
 * Improvement: Variation content replacement
 * Fix: WPML compatibility loading check
