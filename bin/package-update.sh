@@ -45,6 +45,9 @@ rm -rf ./vendor/dvdoug/boxpacker/tests/data/*
 rm -rf ./vendor/dvdoug/boxpacker/*.md
 rm -rf ./vendor/dvdoug/boxpacker/.github/*
 
+rm -rf ./vendor/setasign/fpdf/tutorial/*
+rm -rf ./vendor/setasign/fpdf/doc/*
+
 output 2 "Done!"
 
 # Cleanup backup files
