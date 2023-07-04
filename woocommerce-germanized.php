@@ -69,7 +69,7 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 		 *
 		 * @var string
 		 */
-		public $version = '3.13.2';
+		public $version = '3.13.3';
 
 		/**
 		 * @var WooCommerce_Germanized $instance of the plugin
