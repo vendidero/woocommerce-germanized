@@ -646,7 +646,6 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 				'woocommerce_gzd_compatibilities',
 				array(
 					'wpml'                             => 'WC_GZD_Compatibility_WPML',
-					'wpml-string-translation'          => 'WC_GZD_Compatibility_WPML_String_Translation',
 					'polylang'                         => 'WC_GZD_Compatibility_Polylang',
 					'woo-poly-integration'             => 'WC_GZD_Compatibility_Woo_Poly_Integration',
 					'woocommerce-dynamic-pricing'      => 'WC_GZD_Compatibility_WooCommerce_Dynamic_Pricing',
