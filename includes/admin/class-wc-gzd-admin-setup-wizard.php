@@ -579,7 +579,7 @@ if ( ! class_exists( 'WC_GZD_Admin_Setup_Wizard' ) ) :
 
 			if ( isset( $_POST['woocommerce_gzd_small_enterprise'] ) && ! empty( $_POST['woocommerce_gzd_small_enterprise'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
 				WC_GZD_Admin::instance()->enable_small_business_options();
-			} else {
+			} elseif ( wc_gzd_is_small_business() ) {
 				WC_GZD_Admin::instance()->disable_small_business_options();
 			}
 
