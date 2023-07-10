@@ -361,7 +361,7 @@
 
     $( function() {
         if ( typeof wc_gzd_unit_price_observer_params !== 'undefined' ) {
-            $( '.variations_form, ' + wc_gzd_unit_price_observer_params.wrapper + ' form.cart' ).each( function() {
+            $( '.variations_form, ' + wc_gzd_unit_price_observer_params.wrapper + ' form.cart, ' + wc_gzd_unit_price_observer_params.wrapper + ' a.ajax_add_to_cart' ).each( function() {
                 $( this ).wc_germanized_unit_price_observer();
             });
         }

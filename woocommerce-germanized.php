@@ -658,6 +658,7 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 					'woocommerce-subscriptions'        => 'WC_GZD_Compatibility_WooCommerce_Subscriptions',
 					'woo-paypalplus'                   => 'WC_GZD_Compatibility_Woo_PaypalPlus',
 					'woocommerce-paypal-payments'      => 'WC_GZD_Compatibility_WooCommerce_PayPal_Payments',
+					'translatepress-multilingual'      => 'WC_GZD_Compatibility_TranslatePress_Multilingual',
 					'elementor-pro'                    => 'WC_GZD_Compatibility_Elementor_Pro',
 					'elementor'                        => 'WC_GZD_Compatibility_Elementor',
 					'klarna-checkout-for-woocommerce'  => 'WC_GZD_Compatibility_Klarna_Checkout_For_WooCommerce',
@@ -1382,7 +1383,6 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 		 * @return array
 		 */
 		public function add_emails( $mails ) {
-
 			foreach ( $this->get_custom_email_ids() as $class_name => $email_id ) {
 				$path = WC_GERMANIZED_ABSPATH . 'includes/emails/';
 				$file = 'class-' . trim( str_replace( '_', '-', strtolower( $class_name ) ) ) . '.php';
