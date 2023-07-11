@@ -1,36 +1,74 @@
 /*global wc_gzd_unit_price_observer_params, accounting */
 ;(function ( $, window, document, undefined ) {
-    var GermanizedUnitPriceObserver = function( $form ) {
+    var GermanizedUnitPriceObserver = function( $wrapper ) {
         var self = this;
 
-        self.$form    = $form;
-        self.params   = wc_gzd_unit_price_observer_params;
-        self.$wrapper = $form.closest( self.params.wrapper );
-        self.$product = $form.closest( '.product' );
-        self.requests = [];
-        self.observer = {};
-        self.timeout  = false;
+        self.params    = wc_gzd_unit_price_observer_params;
+        self.$wrapper  = $wrapper.closest( self.params.wrapper );
+        self.$form     = self.$wrapper.find( '.variations_form, .cart' ).length > 0 ? self.$wrapper.find( '.variations_form, .cart' ) : false;
+        self.isVar     = self.$form ? self.$form.hasClass( 'variations_form' ) : false;
+        self.$product  = self.$wrapper.closest( '.product' );
+        self.requests  = [];
+        self.observer  = {};
+        self.timeout   = false;
+        self.priceData = false;
+        self.productId = 0;
 
         if ( self.$wrapper.length <= 0 ) {
             self.$wrapper = self.$product;
         }
 
+        self.replacePrice = self.$wrapper.hasClass( 'bundled_product' ) ? false : self.params.replace_price;
+
         if ( "MutationObserver" in window || "WebKitMutationObserver" in window || "MozMutationObserver" in window ) {
-            self.$form.addClass( 'has-unit-price-observer' );
-            self.initObserver( self );
+            self.$wrapper.addClass( 'has-unit-price-observer' );
+            self.initObservers( self );
 
-            if ( $form.hasClass( 'variations_form' ) ) {
-                self.productId   = $form.find( 'input[name=product_id]' ).length > 0 ? $form.find( 'input[name=product_id]' ).val() : $form.data( 'product_id' );
-                self.variationId = $form.find( 'input[name=variation_id]' ).length > 0 ? $form.find( 'input[name=variation_id]' ).val() : 0;
+            if ( self.isVar && self.$form ) {
+                self.productId   = parseInt( self.$form.find( 'input[name=product_id]' ).length > 0 ? self.$form.find( 'input[name=product_id]' ).val() : self.$form.data( 'product_id' ) );
+                self.variationId = parseInt( self.$form.find( 'input[name=variation_id]' ).length > 0 ? self.$form.find( 'input[name=variation_id]' ).val() : 0 );
 
-                if ( $form.find( 'input[name=variation_id]' ).length <= 0 ) {
-                    self.variationId = $form.find( 'input.variation_id' ).length > 0 ? $form.find( 'input.variation_id' ).val() : 0;
+                if ( self.$form.find( 'input[name=variation_id]' ).length <= 0 ) {
+                    self.variationId = parseInt( self.$form.find( 'input.variation_id' ).length > 0 ? self.$form.find( 'input.variation_id' ).val() : 0 );
                 }
 
-                $form.on( 'reset_data', { GermanizedUnitPriceObserver: self }, self.onResetVariation );
-                $form.on( 'found_variation.wc-variation-form', { GermanizedUnitPriceObserver: self }, self.onFoundVariation );
+                self.$form.on( 'reset_data.unit-price-observer', { GermanizedUnitPriceObserver: self }, self.onResetVariation );
+                self.$form.on( 'found_variation.unit-price-observer', { GermanizedUnitPriceObserver: self }, self.onFoundVariation );
             } else {
-                self.productId = $form.find( '*[name=add-to-cart][type=submit]' ).length > 0 ? $form.find( '*[name=add-to-cart][type=submit]' ).val() : self.params.product_id;
+                if ( self.$form && self.$form.find( '*[name=add-to-cart][type=submit]' ).length > 0 ) {
+                    self.productId = parseInt( self.$form.find( '*[name=add-to-cart][type=submit]' ).val() );
+                } else if ( self.$form && self.$form.data( 'product_id' ) ) {
+                    self.productId = parseInt( self.$form.data( 'product_id' ) );
+                } else {
+                    var classList = self.$product.attr( 'class' ).split( /\s+/ );
+
+                    /**
+                     * Check whether we may find the post/product by a class added by Woo, e.g. post-64
+                     */
+                    $.each( classList, function( index, item ) {
+                        if ( 'post-' === item.substring( 0, 5 ) ) {
+                            var postId = parseInt( item.substring( 5 ).replace( /[^0-9]/g, '' ) );
+
+                            if ( postId > 0 ) {
+                                self.productId = postId;
+                                return true;
+                            }
+                        }
+                    });
+
+                    /**
+                     * Do only use the add to cart button attribute as fallback as there might be a lot of
+                     * other product/add to cart buttons within a single product main product wrap (e.g. related products).
+                     */
+                    if ( self.productId <= 0 && 1 === self.$product.find( 'a.ajax_add_to_cart[data-product_id], a.add_to_cart_button[data-product_id]' ).length ) {
+                        self.productId = parseInt( self.$product.find( 'a.ajax_add_to_cart, a.add_to_cart_button' ).data( 'product_id' ) );
+                    }
+                }
+            }
+
+            if ( self.productId <= 0 ) {
+                self.destroy( self );
+                return false;
             }
 
             if ( self.params.refresh_on_load ) {
@@ -40,21 +78,40 @@
                         $unitPrice   = self.getUnitPriceNode( self, $price );
 
                     if ( $unitPrice.length > 0 ) {
+                        self.stopObserver( self, priceSelector );
                         self.setUnitPriceLoading( self, $unitPrice );
 
                         setTimeout( function() {
+                            self.stopObserver( self, priceSelector );
+
                             var priceData = self.getCurrentPriceData( self, priceSelector, priceArgs['is_total_price'], isPrimary, priceArgs['quantity_selector'] );
 
                             if ( priceData ) {
-                                self.refreshUnitPrice( self, priceData.price, priceData.unit_price, priceData.sale_price, priceData.quantity );
+                                self.refreshUnitPrice( self, priceData, priceSelector, isPrimary );
                             } else if ( $unitPrice.length > 0 ) {
                                 self.unsetUnitPriceLoading( self, $unitPrice );
                             }
+
+                            self.startObserver( self, priceSelector, isPrimary );
                         }, 250 );
                     }
                 } );
             }
         }
+
+        $wrapper.data( 'unitPriceObserver', self );
+    };
+
+    GermanizedUnitPriceObserver.prototype.destroy = function( self ) {
+        self = self || this;
+
+        self.cancelObservers( self );
+
+        if ( self.$form ) {
+            self.$form.off( '.unit-price-observer' );
+        }
+
+        self.$wrapper.removeClass( 'has-unit-price-observer' );
     };
 
     GermanizedUnitPriceObserver.prototype.getTextWidth = function( $element ) {
@@ -71,10 +128,22 @@
     GermanizedUnitPriceObserver.prototype.getPriceNode = function( self, priceSelector, isPrimarySelector ) {
         isPrimarySelector = ( typeof isPrimarySelector === 'undefined' ) ? false : isPrimarySelector;
 
-        var $node = self.$wrapper.find( priceSelector + ':not(.price-unit):visible:last' );
+        var $node = self.$wrapper.find( priceSelector + ':not(.price-unit):visible' ).not( '.variations_form .single_variation .price' ).first();
 
-        if ( isPrimarySelector && $node.length <= 0 && self.$form.hasClass( 'variations_form' ) ) {
+        if ( isPrimarySelector && self.isVar && ( $node.length <= 0 || ! self.replacePrice ) ) {
             $node = self.$wrapper.find( '.woocommerce-variation-price span.price:not(.price-unit):visible:last' );
+        } else if ( isPrimarySelector && $node.length <= 0 ) {
+            $node = self.$wrapper.find( '.price:not(.price-unit):visible:last' );
+        }
+
+        return $node;
+    };
+
+    GermanizedUnitPriceObserver.prototype.getObserverNode = function( self, priceSelector, isPrimarySelector ) {
+        var $node = self.getPriceNode( self, priceSelector, isPrimarySelector );
+
+        if ( isPrimarySelector && self.isVar && ! self.replacePrice ) {
+            $node = self.$wrapper.find( '.single_variation:last' );
         }
 
         return $node;
@@ -85,23 +154,53 @@
             return [];
         }
 
-        return $price.parents( self.params.wrapper ).find( '.price-unit:not(.wc-gzd-additional-info-placeholder, .wc-gzd-additional-info-loop)' );
+        if ( 'SPAN' === $price[0].tagName ) {
+            return self.$wrapper.find( '.price-unit' );
+        } else {
+            return self.$wrapper.find( '.price-unit:not(.wc-gzd-additional-info-placeholder, .wc-gzd-additional-info-loop)' );
+        }
     };
 
-    GermanizedUnitPriceObserver.prototype.initObserver = function( self ) {
+    GermanizedUnitPriceObserver.prototype.stopObserver = function( self, priceSelector ) {
+        var observer = self.getObserver( self, priceSelector );
+
+        if ( observer ) {
+            observer.disconnect();
+        }
+    };
+
+    GermanizedUnitPriceObserver.prototype.startObserver = function( self, priceSelector, isPrimary ) {
+        var observer = self.getObserver( self, priceSelector ),
+            $node    = self.getObserverNode( self, priceSelector, isPrimary );
+
+        if ( observer ) {
+            self.stopObserver( self, priceSelector );
+
+            if ( $node.length > 0 ) {
+                observer.observe( $node[0], { childList: true, subtree: true, characterData: true } );
+            }
+
+            return true;
+        }
+
+        return false;
+    };
+
+    GermanizedUnitPriceObserver.prototype.initObservers = function(self ) {
         if ( Object.keys( self.observer ).length !== 0 ) {
             return;
         }
 
         $.each( self.params.price_selector, function( priceSelector, priceArgs ) {
             var isPrimary       = priceArgs.hasOwnProperty( 'is_primary_selector' ) ? priceArgs['is_primary_selector'] : false,
-                $node           = self.getPriceNode( self, priceSelector, isPrimary ),
+                $observerNode   = self.getObserverNode( self, priceSelector, isPrimary ),
                 currentObserver = false;
 
-            if ( $node.length > 0 ) {
-
+            if ( $observerNode.length > 0 ) {
                 // Callback function to execute when mutations are observed
                 var callback = function( mutationsList, observer ) {
+                    var $node = self.getPriceNode( self, priceSelector, isPrimary );
+
                     /**
                      * Clear the timeout and abort open AJAX requests as
                      * a new mutation has been observed
@@ -111,8 +210,14 @@
                         self.abortAjaxRequests( self );
                     }
 
+                    if ( $node.length <= 0 ) {
+                        return false;
+                    }
+
                     var $unitPrice   = self.getUnitPriceNode( self, $node ),
                         hasRefreshed = false;
+
+                    self.stopObserver( self, priceSelector );
 
                     if ( $unitPrice.length > 0 ) {
                         self.setUnitPriceLoading( self, $unitPrice );
@@ -123,6 +228,8 @@
                      * has already adjusted the variationId (in case necessary).
                      */
                     self.timeout = setTimeout(function() {
+                        self.stopObserver( self, priceSelector );
+
                         var priceData = self.getCurrentPriceData( self, priceSelector, priceArgs['is_total_price'], isPrimary, priceArgs['quantity_selector'] );
 
                         if ( priceData ) {
@@ -131,13 +238,15 @@
                              */
                             if ( $.active <= 0 ) {
                                 hasRefreshed = true;
-                                self.refreshUnitPrice( self, priceData.price, priceData.unit_price, priceData.sale_price, priceData.quantity );
+                                self.refreshUnitPrice( self, priceData, priceSelector, isPrimary );
                             }
                         }
 
                         if ( ! hasRefreshed && $unitPrice.length > 0 ) {
                             self.unsetUnitPriceLoading( self, $unitPrice );
                         }
+
+                        self.startObserver( self, priceSelector, isPrimary );
                     }, 500 );
                 };
 
@@ -151,19 +260,25 @@
 
                 if ( currentObserver ) {
                     self.observer[ priceSelector ] = currentObserver;
-                    self.observer[ priceSelector ].observe( $node[0], { childList: true, subtree: true, characterData: true } );
+                    self.startObserver( self, priceSelector, isPrimary );
                 }
             }
         });
     };
 
-    GermanizedUnitPriceObserver.prototype.cancelObserver = function( self ) {
-        if ( self.observer.length > 0 ) {
-            for ( var key in self.observer ) {
-                if ( self.observer.hasOwnProperty( key ) ) {
-                    self.observer[ key ].disconnect();
-                    delete self.observer[ key ];
-                }
+    GermanizedUnitPriceObserver.prototype.getObserver = function( self, priceSelector ) {
+        if ( self.observer.hasOwnProperty( priceSelector ) ) {
+            return self.observer[ priceSelector ];
+        }
+
+        return false;
+    };
+
+    GermanizedUnitPriceObserver.prototype.cancelObservers = function( self ) {
+        for ( var key in self.observer ) {
+            if ( self.observer.hasOwnProperty( key ) ) {
+                self.observer[ key ].disconnect();
+                delete self.observer[ key ];
             }
         }
     };
@@ -192,10 +307,10 @@
         var self = event.data.GermanizedUnitPriceObserver;
 
         if ( variation.hasOwnProperty( 'variation_id' ) ) {
-            self.variationId = variation.variation_id;
+            self.variationId = parseInt( variation.variation_id );
         }
 
-        self.initObserver( self );
+        self.initObservers( self );
     };
 
     GermanizedUnitPriceObserver.prototype.getCurrentPriceData = function( self, priceSelector, isTotalPrice, isPrimary, quantitySelector ) {
@@ -308,16 +423,15 @@
     GermanizedUnitPriceObserver.prototype.unsetUnitPriceLoading = function( self, $unit_price, newHtml ) {
         newHtml = newHtml || $unit_price.data( 'org-html' );
 
+        $unit_price.html( newHtml );
+
         if ( $unit_price.hasClass( 'wc-gzd-loading' ) ) {
-            $unit_price.html( newHtml );
             $unit_price.removeClass( 'wc-gzd-loading' ).show();
         }
     };
 
-    GermanizedUnitPriceObserver.prototype.refreshUnitPrice = function( self, price, $unit_price, sale_price, quantity ) {
+    GermanizedUnitPriceObserver.prototype.refreshUnitPrice = function( self, priceData, priceSelector, isPrimary ) {
         self.abortAjaxRequests( self );
-
-        var unitPriceOrgHtml = self.setUnitPriceLoading( self, $unit_price );
 
         self.requests.push( $.ajax({
             type: "POST",
@@ -325,27 +439,33 @@
             data: {
                 'security'  : self.params.refresh_unit_price_nonce,
                 'product_id': self.getCurrentProductId( self ),
-                'price'     : price,
-                'price_sale': sale_price,
-                'quantity'  : quantity,
+                'price'     : priceData.price,
+                'price_sale': priceData.sale_price,
+                'quantity'  : priceData.quantity,
             },
             success: function( data ) {
+                self.stopObserver( self, priceSelector );
+
                 /**
                  * Do only adjust unit price in case current product id has not changed
                  * in the meantime (e.g. variation change).
                  */
                 if ( parseInt( data.product_id ) === self.getCurrentProductId( self ) ) {
                     if ( data.hasOwnProperty( 'unit_price_html' ) ) {
-                        self.unsetUnitPriceLoading( self, $unit_price, data.unit_price_html );
+                        self.unsetUnitPriceLoading( self, priceData.unit_price, data.unit_price_html );
                     } else {
-                        self.unsetUnitPriceLoading( self, $unit_price );
+                        self.unsetUnitPriceLoading( self, priceData.unit_price );
                     }
                 } else {
-                    self.unsetUnitPriceLoading( self, $unit_price );
+                    self.unsetUnitPriceLoading( self, priceData.unit_price );
                 }
+
+                self.startObserver( self, priceSelector, isPrimary );
             },
             error: function( data ) {
-                self.unsetUnitPriceLoading( self, $unit_price );
+                self.stopObserver( self, priceSelector );
+                self.unsetUnitPriceLoading( self, priceData.unit_price );
+                self.startObserver( self, priceSelector, isPrimary );
             },
             dataType: 'json'
         } ) );
@@ -355,13 +475,17 @@
      * Function to call wc_gzd_variation_form on jquery selector.
      */
     $.fn.wc_germanized_unit_price_observer = function() {
+        if ( $( this ).data( 'unitPriceObserver' ) ) {
+            $( this ).data( 'unitPriceObserver' ).destroy();
+        }
+
         new GermanizedUnitPriceObserver( this );
         return this;
     };
 
     $( function() {
         if ( typeof wc_gzd_unit_price_observer_params !== 'undefined' ) {
-            $( '.variations_form, ' + wc_gzd_unit_price_observer_params.wrapper + ' form.cart, ' + wc_gzd_unit_price_observer_params.wrapper + ' a.ajax_add_to_cart' ).each( function() {
+            $( wc_gzd_unit_price_observer_params.wrapper ).each( function() {
                 $( this ).wc_germanized_unit_price_observer();
             });
         }
