@@ -27,13 +27,9 @@ window.germanized = window.germanized || {};
                 .on( 'change', 'input[name=woocommerce_gzd_dispute_resolution_type]', this.onChangeDisputeResolutionType )
                 .on( 'click', 'a.woocommerce-gzd-input-toggle-trigger', this.onInputToogleClick )
                 .on( 'change', '.wc-gzd-setting-tabs input.woocommerce-gzd-tab-status-checkbox', this.onChangeTabStatus )
-                .on( 'change gzd_show_or_hide_fields', '.wc-gzd-admin-settings :input', this.onChangeInput )
                 .on( 'change', '.wc-gzd-setting-tab-enabled :input', this.preventWarning )
                 .on( 'click', 'a.wc-gzd-install-extension-btn', this.onInstallExtension )
-
-            $( document.body )
-                .on( 'woocommerce_gzd_setting_field_visible', this.onShowField )
-                .on( 'woocommerce_gzd_setting_field_invisible', this.onHideField );
+                .on( 'change gzd_show_or_hide_fields', '.wc-gzd-admin-settings :input', this.onChangeInput );
 
             $( '.wc-gzd-admin-settings :input' ).trigger( 'gzd_show_or_hide_fields' );
             $( 'input[name=woocommerce_gzd_dispute_resolution_type]:checked' ).trigger( 'change' );
@@ -156,159 +152,74 @@ window.germanized = window.germanized || {};
             return false;
         },
 
-        onShowField: function( e, $field, name, value ) {
-            var $inputs = $field.parents( 'table' ).find( ':input[data-show_if_' + name + ']' );
-
-            $inputs.each( function() {
-                $( this ).trigger( 'gzd_show_or_hide_fields' );
-            });
-        },
-
-        onHideField: function( e, $field, name, value ) {
-            var $inputs = $field.parents( 'table' ).find( ':input[data-show_if_' + name + ']' );
-
-            $inputs.each( function() {
-                $( this ).trigger( 'gzd_show_or_hide_fields' );
-            });
-        },
-
         onChangeInput: function() {
-            var self = germanized.settings,
-                $field = $( this ).parents( 'tr' );
+            var self             = germanized.settings,
+                $mainInput       = $( this ),
+                mainId           = $mainInput.attr( 'id' ) ? $mainInput.attr( 'id' ) : $mainInput.attr( 'name' ),
+                $dependentFields = $( '.wc-gzd-admin-settings :input[data-show_if_' + mainId + ']' );
 
-            $field.find( ':input:not(.select2-focusser, .select2-input)' ).each( function() {
-                var $input   = $( this ),
-                    checked  = false,
-                    nameOrg = $( this ).attr( 'name' );
+            var $input, $field, data, meetsConditions, cleanName, $dependentField, valueExpected, val, isChecked;
 
-                if ( $input.is( ':checked' ) || $input.is( ':selected' ) ) {
-                    checked = true;
+            $.each( $dependentFields, function () {
+                $input          = $( this );
+                $field          = $input.parents( 'tr' );
+                data            = $input.data();
+                meetsConditions = true;
 
-                    // Make sure that hidden fields are considered unchecked
-                    if ( ! $input.parents( 'tr' ).is( ':visible' ) ) {
-                        checked = false;
-                    }
-                }
+                for ( var dataName in data ) {
+                    if ( data.hasOwnProperty( dataName ) ) {
+                        /**
+                         * Check all the conditions for a dependent field.
+                         */
+                        if ( dataName.substring( 0, 8 ) === 'show_if_' ) {
+                            cleanName       = dataName.replace( 'show_if_', '' );
+                            $dependentField = self.getInputByIdOrName( cleanName );
+                            valueExpected   = $input.data( dataName ) ? $input.data( dataName ).split(',') : [];
 
-                if ( typeof nameOrg === typeof undefined || nameOrg === false ) {
-                    return;
-                }
+                            if ( $dependentField.length > 0 ) {
+                                val       = $dependentField.val();
+                                isChecked = false;
 
-                // Remove square brackets
-                var name    = nameOrg.replace( /[\[\]']+/g, '' );
-                var val     = $input.val();
+                                if ( $dependentField.is( ':radio' ) ) {
+                                    val = $dependentField.parents( 'fieldset' ).find( ':checked' ).length > 0 ? $dependentField.parents( 'fieldset' ).find( ':checked' ).val() : 'no';
 
-                var $fields = $( '.wc-gzd-admin-settings' ).find( ':input[data-show_if_' + name +  ']' );
+                                    if ( 'no' !== val ) {
+                                        isChecked = true;
+                                    }
+                                } else if ( $dependentField.is( ':checkbox' ) ) {
+                                    val = $dependentField.is( ':checked' ) ? 'yes' : 'no';
 
-                if ( $input.is( ':radio' ) ) {
-                    /**
-                     * Do not trigger logic for non-selected radios
-                     */
-                    if ( ! $input.is( ':checked' ) ) {
-                        return;
-                    }
-                } else if ( $input.is( ':checkbox' ) ) {
-                    val = $input.is( ':checked' ) ? 'yes' : 'no';
+                                    if ( 'yes' === val ) {
+                                        isChecked = true;
+                                    }
+                                } else {
+                                    isChecked = undefined !== val && '0' !== val && '' !== val;
+                                }
 
-                    // Make sure that hidden fields are considered unchecked
-                    if ( ! $input.parents( 'tr' ).is( ':visible' ) ) {
-                        val = 'no';
-                    }
-                }
+                                if ( valueExpected && valueExpected.length > 0 ) {
+                                    if ( $.inArray( val, valueExpected ) === -1 ) {
+                                        meetsConditions = false;
+                                    }
+                                } else if ( ! isChecked ) {
+                                    meetsConditions = false;
+                                }
+                            }
 
-                $fields.each( function() {
-                    var dataValue   = $( this ).data( 'show_if_' + name ),
-                        data        = $( this ).data(),
-                        currentVal  = $( this ).val(),
-                        currentName = $( this ).attr( 'name' ).replace( /[\[\]']+/g, '' ),
-                        $field      = $( this ).parents( 'tr' ),
-                        skipField   = false;
-
-                    var isFieldVisible = $field.hasClass( 'wc-gzd-setting-visible' );
-                    var deps           = [];
-
-                    for ( var dataName in data ) {
-                        if ( data.hasOwnProperty( dataName ) ) {
-                            if ( dataName.substring( 0, 8 ) === 'show_if_' ) {
-                                var cleanName       = dataName.replace( 'show_if_', '' );
-                                var $dependendField = self.getInputByIdOrName( cleanName );
-                                var index           = $dependendField.index( ':input' );
-                                deps[ index ] = cleanName;
+                            if ( ! meetsConditions ) {
+                                break;
                             }
                         }
                     }
+                }
 
-                    deps = deps.filter(function(){return true;});
+                $field.removeClass( 'wc-gzd-setting-visible wc-gzd-setting-invisible' );
 
-                    if ( deps.length > 1 ) {
-                        if ( ! isFieldVisible ) {
-                            var nameToUse = deps.slice(-1)[0];
-                            var $theInput = self.getInputByIdOrName( nameToUse );
-
-                            if ( name !== nameToUse ) {
-                                skipField = true;
-
-                                if ( $theInput.parents( 'tr' ).is( ':visible' ) ) {
-                                    $theInput.trigger( 'gzd_show_or_hide_fields' );
-                                }
-                            } else {
-                                if ( ! $theInput.parents( 'tr' ).is( ':visible' ) ) {
-                                    $field.addClass( 'wc-gzd-setting-invisible' );
-                                    $( document.body ).trigger( 'woocommerce_gzd_setting_field_invisible', [ $field, currentName, currentVal ] );
-
-                                    skipField = true;
-                                }
-                            }
-                        }
-                    }
-
-                    if ( skipField ) {
-                        return;
-                    }
-
-                    $field.removeClass( 'wc-gzd-setting-visible wc-gzd-setting-invisible' );
-
-                    if ( ( 'undefined' !== typeof dataValue ) && dataValue.length > 0 ) {
-                        // Check value
-                        if ( val === dataValue ) {
-                            $field.addClass( 'wc-gzd-setting-visible' );
-
-                            $( document.body ).trigger( 'woocommerce_gzd_setting_field_visible', [ $field, currentName, currentVal ] );
-                        } else {
-                            $field.addClass( 'wc-gzd-setting-invisible' );
-
-                            $( document.body ).trigger( 'woocommerce_gzd_setting_field_invisible', [ $field, currentName, currentVal ] );
-                        }
-                    } else if ( checked ) {
-                        $field.addClass( 'wc-gzd-setting-visible' );
-
-                        $( document.body ).trigger( 'woocommerce_gzd_setting_field_visible', [ $field, currentName, currentVal ] );
-
-                    } else {
-                        $field.addClass( 'wc-gzd-setting-invisible' );
-
-                        $( document.body ).trigger( 'woocommerce_gzd_setting_field_invisible', [ $field, currentName, currentVal ] );
-                    }
-                });
-
-                var $table         = $( this ).parents( '.form-table' );
-                var tableIsVisible = false;
-
-                $table.find( 'tr' ).each( function() {
-                    var isVisible = ! $( this ).hasClass( 'wc-gzd-setting-invisible' );
-
-                    if ( isVisible ) {
-                        tableIsVisible = true;
-                        return false;
-                    }
-                });
-
-                if ( ! tableIsVisible ) {
-                    $table.hide();
+                if ( meetsConditions ) {
+                    $field.addClass( 'wc-gzd-setting-visible' );
                 } else {
-                    $table.show();
+                    $field.addClass( 'wc-gzd-setting-invisible' );
                 }
-            });
+            } );
         },
 
         /**
@@ -318,11 +229,17 @@ window.germanized = window.germanized || {};
          * @returns {*|jQuery}
          */
         getInputByIdOrName: function( cleanName ) {
-            var $field = $( '.wc-gzd-admin-settings' ).find( ':input#' + cleanName );
+            cleanName = cleanName.toLowerCase();
 
-            if ( $field.length <= 0 ) {
-                $field = $( '.wc-gzd-admin-settings' ).find( ':input[name="' + cleanName + '"]' );
-            }
+            var $field = $( '.wc-gzd-admin-settings :input' ).filter( function() {
+                var id = $( this ).attr('id' ) ? $( this ).attr('id' ) : $( this ).attr('name' );
+
+                if ( ! id ) {
+                    return false;
+                }
+
+                return id.toLowerCase() === cleanName;
+            });
 
             return $field;
         },

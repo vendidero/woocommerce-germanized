@@ -372,7 +372,6 @@ class WC_GZD_Settings_Tab_General extends WC_GZD_Settings_Tab {
 				'desc'  => '',
 				'id'    => 'shop_options',
 			),
-
 			array(
 				'title'    => __( 'Add to Cart', 'woocommerce-germanized' ),
 				'desc'     => __( 'Show add to cart button on listings.', 'woocommerce-germanized' ),
