@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: WooCommerce Germanized\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-07-04 12:13+0200\n"
-"PO-Revision-Date: 2023-07-04 12:14+0200\n"
+"PO-Revision-Date: 2023-07-25 10:26+0200\n"
 "Last-Translator: Dennis Nissle <info@vendidero.de>\n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -2794,7 +2794,7 @@ msgstr "Verlinkung"
 #: woocommerce-germanized/includes/admin/settings/class-wc-gzd-settings-tab-general.php:386
 msgid "Link to product details page instead of add to cart within listings."
 msgstr ""
-"Ersetze den zum-Warenkorb-Link durch einen Link zur Produktseite in "
+"Ersetze den „zum Warenkorb“ Link durch einen Link zur Produktseite in "
 "Produktlisten."
 
 # @ woocommerce-germanized

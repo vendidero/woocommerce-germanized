@@ -66,7 +66,12 @@ add_action( 'woocommerce_before_add_to_cart_form', 'woocommerce_gzd_template_sin
 
 add_filter( 'woocommerce_available_variation', 'woocommerce_gzd_add_variation_options', 5000, 3 );
 
-if ( 'no' === get_option( 'woocommerce_gzd_display_listings_add_to_cart' ) ) {
+/**
+ * Prevent removing the add to cart loop hook in case the display link should be shown instead
+ * as removing the hook altogether will lead to nothing being shown, as the
+ * woocommerce_loop_add_to_cart_link filter will not be applied.
+ */
+if ( 'no' === get_option( 'woocommerce_gzd_display_listings_add_to_cart' ) && 'yes' !== get_option( 'woocommerce_gzd_display_listings_link_details' ) ) {
 	remove_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart' );
 }
 
