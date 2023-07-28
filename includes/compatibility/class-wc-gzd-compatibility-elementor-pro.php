@@ -86,7 +86,11 @@ class WC_GZD_Compatibility_Elementor_Pro extends WC_GZD_Compatibility {
 	}
 
 	public function load() {
-		add_action( 'elementor/widgets/register', array( $this, 'init_widgets' ), 10, 1 );
+		/*
+		 * Use a higher priority here to prevent other plugins (e.g. The Plus Addons for Elementor) from
+		 * de-registering our widgets.
+		 */
+		add_action( 'elementor/widgets/register', array( $this, 'init_widgets' ), 500, 1 );
 
 		/**
 		 * Copy

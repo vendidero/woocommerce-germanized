@@ -156,7 +156,7 @@ window.germanized = window.germanized || {};
             var self             = germanized.settings,
                 $mainInput       = $( this ),
                 mainId           = $mainInput.attr( 'id' ) ? $mainInput.attr( 'id' ) : $mainInput.attr( 'name' ),
-                $dependentFields = $( '.wc-gzd-admin-settings :input[data-show_if_' + mainId + ']' );
+                $dependentFields = $( '.wc-gzd-admin-settings :input[data-show_if_' + $.escapeSelector( mainId ) + ']' );
 
             var $input, $field, data, meetsConditions, cleanName, $dependentField, valueExpected, val, isChecked;
 
@@ -229,7 +229,8 @@ window.germanized = window.germanized || {};
          * @returns {*|jQuery}
          */
         getInputByIdOrName: function( cleanName ) {
-            cleanName = cleanName.toLowerCase();
+            var self = germanized.settings;
+            cleanName = self.getCleanDataId( cleanName );
 
             var $field = $( '.wc-gzd-admin-settings :input' ).filter( function() {
                 var id = $( this ).attr('id' ) ? $( this ).attr('id' ) : $( this ).attr('name' );
@@ -238,10 +239,18 @@ window.germanized = window.germanized || {};
                     return false;
                 }
 
-                return id.toLowerCase() === cleanName;
+                return self.getCleanDataId( id ) === cleanName;
             });
 
             return $field;
+        },
+
+        /**
+         * Make sure to remove any hyphens as data-attributes are stored
+         * camel case without hyphens in the DOM.
+         */
+        getCleanDataId: function( id ) {
+            return id.toLowerCase().replace( /-/g, '' );
         },
 
         onEnhancedSelectInit: function() {

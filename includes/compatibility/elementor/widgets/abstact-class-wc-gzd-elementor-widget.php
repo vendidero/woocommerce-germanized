@@ -126,6 +126,10 @@ abstract class WC_GZD_Elementor_Widget extends ElementorPro\Modules\Woocommerce\
 	public function render_plain_content() {
 	}
 
+	public function get_group_name() {
+		return 'woocommerce';
+	}
+
 	public function get_preview_content() {
 		return '<p class="wc-gzd-elementor-preview-content-placeholder" style="opacity: .5; margin: 0;">' . $this->get_title() . '</p>';
 	}
