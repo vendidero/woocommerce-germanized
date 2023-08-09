@@ -1105,11 +1105,32 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 		}
 
 		public function get_variation_script_params() {
+			$price_selector = 'p.price';
+
+			if ( is_singular( 'product' ) && function_exists( 'wc_current_theme_is_fse_theme' ) && wc_current_theme_is_fse_theme() && class_exists( '\Automattic\WooCommerce\Blocks\BlockTemplatesController', false ) && class_exists( '\Automattic\WooCommerce\Blocks\Utils\BlockTemplateUtils', false ) ) {
+				try {
+					$instance = \Automattic\WooCommerce\Blocks\Package::container()->get( \Automattic\WooCommerce\Blocks\BlockTemplatesController::class );
+
+					if ( is_callable( array( $instance, 'block_template_is_available' ) ) && method_exists( '\Automattic\WooCommerce\Blocks\Utils\BlockTemplateUtils', 'template_has_legacy_template_block' ) ) {
+						$has_single_product_block_template = $instance->block_template_is_available( 'single-product' );
+
+						if ( $has_single_product_block_template ) {
+							$templates = get_block_templates( array( 'slug__in' => array( 'single-product' ) ) );
+
+							if ( ! isset( $templates[0] ) || ! \Automattic\WooCommerce\Blocks\Utils\BlockTemplateUtils::template_has_legacy_template_block( $templates[0] ) ) {
+								$price_selector = 'div.wc-block-components-product-price';
+							}
+						}
+					}
+				} catch ( Exception $e ) { // phpcs:ignore Generic.CodeAnalysis.EmptyStatement.DetectedCatch
+				}
+			}
+
 			return apply_filters(
 				'woocommerce_gzd_add_to_cart_variation_params',
 				array(
 					'wrapper'        => '.product',
-					'price_selector' => 'p.price',
+					'price_selector' => $price_selector,
 					'replace_price'  => true,
 				)
 			);
