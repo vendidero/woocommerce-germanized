@@ -34,26 +34,26 @@ class WC_GZD_Compatibility_Elementor_Pro extends WC_GZD_Compatibility {
 			);
 		}
 
+		add_filter(
+			'wc_gzd_checkout_params',
+			function( $params ) {
+				if ( ! wc_gzd_checkout_adjustments_disabled() ) {
+					$params['custom_heading_container'] = apply_filters( 'woocommerce_gzd_elementor_pro_review_order_heading_container', '.e-checkout__order_review-2' );
+				}
+
+				return $params;
+			},
+			10
+		);
+
 		add_action(
 			'woocommerce_checkout_init',
 			function() {
-				if ( ! wc_gzd_checkout_adjustments_disabled() ) {
-					add_filter(
-						'wc_gzd_checkout_params',
-						function( $params ) {
-							$params['custom_heading_container'] = apply_filters( 'woocommerce_gzd_elementor_pro_review_order_heading_container', '.e-checkout__order_review-2' );
-
-							return $params;
-						},
-						10
-					);
+				if ( wc_gzd_checkout_adjustments_disabled() ) {
+					return;
 				}
 
 				if ( isset( $_POST['action'], $_POST['editor_post_id'] ) && 'elementor_ajax' === $_POST['action'] ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
-					if ( wc_gzd_checkout_adjustments_disabled() ) {
-						return;
-					}
-
 					/**
 					 * woocommerce_review_order_after_payment hooks is not executed during ajax requests (see checkout/payment.php) which will fail loading the hooks accordingly.
 					 * Use a static filter to make sure AJAX hooks are still firing.
@@ -75,6 +75,17 @@ class WC_GZD_Compatibility_Elementor_Pro extends WC_GZD_Compatibility {
 					);
 
 					woocommerce_gzd_checkout_load_ajax_relevant_hooks();
+				}
+
+				/**
+				 * Move checkboxes right before order summary
+				 */
+				if ( has_action( 'woocommerce_review_order_after_payment', 'woocommerce_gzd_template_render_checkout_checkboxes' ) ) {
+					$has_removed = remove_action( 'woocommerce_review_order_after_payment', 'woocommerce_gzd_template_render_checkout_checkboxes', 10 );
+
+					if ( $has_removed ) {
+						add_action( 'woocommerce_checkout_order_review', 'woocommerce_gzd_template_render_checkout_checkboxes', 19 );
+					}
 				}
 			},
 			100
@@ -121,6 +132,10 @@ class WC_GZD_Compatibility_Elementor_Pro extends WC_GZD_Compatibility {
 								$new_rule_selector = str_replace( '#payment ', '', $rule_selector );
 
 								$post_css->get_stylesheet()->add_rules( $new_rule_selector, $rule, ( ! empty( $query ) ? $query : null ) );
+							} elseif ( strstr( $rule_selector, '.e-checkout__order_review' ) ) {
+								$new_rule_selector = str_replace( '.e-checkout__order_review', '.e-checkout__order_review-2', $rule_selector );
+
+								$post_css->get_stylesheet()->add_rules( $new_rule_selector, $rule, ( ! empty( $query ) ? $query : null ) );
 							}
 						}
 					}
@@ -148,17 +163,19 @@ class WC_GZD_Compatibility_Elementor_Pro extends WC_GZD_Compatibility {
 				wp_add_inline_style(
 					'elementor-pro',
 					'
-				.elementor-widget-woocommerce-checkout-page .woocommerce table.woocommerce-checkout-review-order-table {
+				.elementor-widget-woocommerce-checkout-page .woocommerce .woocommerce-checkout #payment {
+					border: none;
+					padding: 0;
+				}
+				.elementor-widget-woocommerce-checkout-page .woocommerce .e-checkout__order_review-2 {
+					background: var(--sections-background-color, #ffffff);
 				    border-radius: var(--sections-border-radius, 3px);
 				    padding: var(--sections-padding, 16px 30px);
 				    margin: var(--sections-margin, 0 0 24px 0);
 				    border-style: var(--sections-border-type, solid);
-				    border-color: var(--sections-border-color, #D4D4D4);
+				    border-color: var(--sections-border-color, #D5D8DC);
 				    border-width: 1px;
-				}
-				.elementor-widget-woocommerce-checkout-page .woocommerce .woocommerce-checkout #payment {
-					border: none;
-					padding: 0;
+				    display: block;
 				}
 				.elementor-widget-woocommerce-checkout-page .woocommerce-checkout .place-order {
 					display: -webkit-box;
