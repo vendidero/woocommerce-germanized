@@ -46,6 +46,15 @@ class WC_GZD_Product {
 			$product = wc_get_product( $product );
 		}
 
+		$this->set_wc_product( $product );
+	}
+
+	/**
+	 * @param WC_Product $product
+	 *
+	 * @return void
+	 */
+	public function set_wc_product( $product ) {
 		$this->child = $product;
 	}
 

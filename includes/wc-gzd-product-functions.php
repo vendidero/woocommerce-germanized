@@ -71,12 +71,7 @@ function wc_gzd_get_gzd_product( $product ) {
 		return false;
 	}
 
-	if ( ! isset( $product->gzd_product ) || ! is_a( $product->gzd_product, 'WC_GZD_Product' ) ) {
-		$factory              = WC_germanized()->product_factory;
-		$product->gzd_product = $factory->get_gzd_product( $product );
-	}
-
-	return $product->gzd_product;
+	return WC_germanized()->product_factory->get_cached_gzd_product( $product );
 }
 
 function wc_gzd_get_small_business_product_notice() {

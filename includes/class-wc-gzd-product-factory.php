@@ -15,6 +15,8 @@ defined( 'ABSPATH' ) || exit;
  */
 class WC_GZD_Product_Factory {
 
+	private $weak_product_list = null;
+
 	/**
 	 * get_product function.
 	 *
@@ -31,6 +33,46 @@ class WC_GZD_Product_Factory {
 		}
 
 		return $product;
+	}
+
+	/**
+	 * @return WeakMap
+	 */
+	protected function get_product_list() {
+		if ( is_null( $this->weak_product_list ) ) {
+			$this->weak_product_list = new WeakMap();
+		}
+
+		return $this->weak_product_list;
+	}
+
+	/**
+	 * @param WC_Product $product
+	 *
+	 * @return WC_GZD_Product
+	 */
+	public function get_cached_gzd_product( $product ) {
+		/**
+		 * Use WeakMap to build product cache instead of using dynamic class
+		 * properties which are starting to be deprecated in PHP 8.2.
+		 */
+		if ( version_compare( PHP_VERSION, '8.0.0', '>=' ) ) {
+			$product_list = $this->get_product_list();
+
+			if ( ! isset( $product_list[ $product ] ) || ! is_a( $product_list[ $product ], 'WC_GZD_Product' ) ) {
+				$product_list[ $product ] = $this->get_gzd_product( $product );
+			}
+
+			$product_list[ $product ]->set_wc_product( $product );
+
+			return $product_list[ $product ];
+		} else {
+			if ( ! isset( $product->gzd_product ) || ! is_a( $product->gzd_product, 'WC_GZD_Product' ) ) {
+				$product->gzd_product = WC_germanized()->product_factory->get_gzd_product( $product );
+			}
+
+			return $product->gzd_product;
+		}
 	}
 
 	/**
