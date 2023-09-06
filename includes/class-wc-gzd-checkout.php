@@ -889,7 +889,7 @@ class WC_GZD_Checkout {
 				'label'    => __( 'Title', 'woocommerce-germanized' ),
 				'show'     => false,
 				'priority' => 0,
-				'class'    => array( 'form-row-wide' ),
+				'class'    => 'form-row-wide',
 			);
 		}
 
