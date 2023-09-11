@@ -102,7 +102,7 @@
         }
 
         $wrapper.find( 'p.delivery-time-info' ).wc_gzd_set_content( variation.delivery_time );
-        $wrapper.find( 'p.defect-description' ).wc_gzd_set_content( variation.defect_description );
+        $wrapper.find( '.defect-description' ).wc_gzd_set_content( variation.defect_description );
         $wrapper.find( '.tax-info' ).wc_gzd_set_content( hasDisplayPrice ? variation.tax_info : '' );
         $wrapper.find( '.deposit-amount' ).wc_gzd_set_content( hasDisplayPrice ? variation.deposit_amount : '' );
         $wrapper.find( '.deposit-packaging-type' ).wc_gzd_set_content( hasDisplayPrice ? variation.deposit_packaging_type : '' );
