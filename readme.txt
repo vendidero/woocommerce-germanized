@@ -2,9 +2,9 @@
 Contributors: vendidero, vdwoocommercesupport
 Tags: woocommerce, woocommerce german, woocommerce DE, woocommerce germany, woocommerce deutsch, woo, woocommerce deutschland, woocommerce germanized, woocommerce addon, woocommerce plugin, woocommerce german addon, woocommerce germany addon, woocommerce dhl, dhl, shipments, dpd, gls, post
 Requires at least: 5.4
-Tested up to: 6.2
+Tested up to: 6.3
 WC requires at least: 3.9
-WC tested up to: 7.9
+WC tested up to: 8.1
 Stable tag: 3.13.3
 Requires PHP: 5.6
 License: GPLv3
@@ -205,6 +205,9 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 6. Edit pdf documents (Pro)
 
 == Changelog ==
+= 3.13.4 =
+* Improvement: Unit price observer
+
 = 3.13.3 =
 * New: Woo 7.9 support
 * New: DHL Empfängerunterschrift

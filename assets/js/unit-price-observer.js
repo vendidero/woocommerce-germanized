@@ -207,7 +207,6 @@
                      */
                     if ( self.timeout ) {
                         clearTimeout( self.timeout );
-                        self.abortAjaxRequests( self );
                     }
 
                     if ( $node.length <= 0 ) {
@@ -431,44 +430,9 @@
     };
 
     GermanizedUnitPriceObserver.prototype.refreshUnitPrice = function( self, priceData, priceSelector, isPrimary ) {
-        self.abortAjaxRequests( self );
+        // self.abortAjaxRequests( self );
 
-        self.requests.push( $.ajax({
-            type: "POST",
-            url:  self.params.wc_ajax_url.toString().replace( '%%endpoint%%', 'gzd_refresh_unit_price' ),
-            data: {
-                'security'  : self.params.refresh_unit_price_nonce,
-                'product_id': self.getCurrentProductId( self ),
-                'price'     : priceData.price,
-                'price_sale': priceData.sale_price,
-                'quantity'  : priceData.quantity,
-            },
-            success: function( data ) {
-                self.stopObserver( self, priceSelector );
-
-                /**
-                 * Do only adjust unit price in case current product id has not changed
-                 * in the meantime (e.g. variation change).
-                 */
-                if ( parseInt( data.product_id ) === self.getCurrentProductId( self ) ) {
-                    if ( data.hasOwnProperty( 'unit_price_html' ) ) {
-                        self.unsetUnitPriceLoading( self, priceData.unit_price, data.unit_price_html );
-                    } else {
-                        self.unsetUnitPriceLoading( self, priceData.unit_price );
-                    }
-                } else {
-                    self.unsetUnitPriceLoading( self, priceData.unit_price );
-                }
-
-                self.startObserver( self, priceSelector, isPrimary );
-            },
-            error: function( data ) {
-                self.stopObserver( self, priceSelector );
-                self.unsetUnitPriceLoading( self, priceData.unit_price );
-                self.startObserver( self, priceSelector, isPrimary );
-            },
-            dataType: 'json'
-        } ) );
+        germanized.unit_price_observer_queue.add( self, self.getCurrentProductId( self ), priceData, priceSelector, isPrimary );
     };
 
     /**

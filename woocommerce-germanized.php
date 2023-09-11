@@ -3,13 +3,13 @@
  * Plugin Name: Germanized for WooCommerce
  * Plugin URI: https://www.vendidero.de/woocommerce-germanized
  * Description: Germanized for WooCommerce extends WooCommerce to become a legally compliant store in the german market.
- * Version: 3.13.3
+ * Version: 3.13.4
  * Author: vendidero
  * Author URI: https://vendidero.de
  * Requires at least: 5.4
- * Tested up to: 6.2
+ * Tested up to: 6.3
  * WC requires at least: 3.9
- * WC tested up to: 7.9
+ * WC tested up to: 8.1
  *
  * Text Domain: woocommerce-germanized
  * Domain Path: /i18n/languages/
@@ -69,7 +69,7 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 		 *
 		 * @var string
 		 */
-		public $version = '3.13.3';
+		public $version = '3.13.4';
 
 		/**
 		 * @var WooCommerce_Germanized $instance of the plugin
@@ -967,14 +967,23 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 			}
 
 			wp_register_script(
-				'wc-gzd-unit-price-observer',
-				$frontend_script_path . 'unit-price-observer' . $suffix . '.js',
+				'wc-gzd-unit-price-observer-queue',
+				$frontend_script_path . 'unit-price-observer-queue' . $suffix . '.js',
 				array(
 					'jquery',
 					'woocommerce',
-					'accounting',
-					'wc-single-product',
 				),
+				WC_GERMANIZED_VERSION,
+				true
+			);
+
+			wp_register_script(
+				'wc-gzd-unit-price-observer',
+				$frontend_script_path . 'unit-price-observer' . $suffix . '.js',
+				array_merge( is_product() ? array( 'wc-single-product' ) : array(), array(
+					'wc-gzd-unit-price-observer-queue',
+					'accounting',
+				) ),
 				WC_GERMANIZED_VERSION,
 				true
 			);
@@ -1023,10 +1032,10 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 					// Enqueue variation scripts
 					wp_enqueue_script( 'wc-gzd-add-to-cart-variation' );
 				}
+			}
 
-				if ( apply_filters( 'woocommerce_gzd_refresh_unit_price_on_price_change', true ) ) {
-					wp_enqueue_script( 'wc-gzd-unit-price-observer' );
-				}
+			if ( apply_filters( 'woocommerce_gzd_refresh_unit_price_on_price_change', ( is_shop() || is_product() || is_product_category() || is_product_tag() ) ) ) {
+				wp_enqueue_script( 'wc-gzd-unit-price-observer' );
 			}
 
 			wp_register_style( 'woocommerce-gzd-layout', $assets_path . 'css/layout' . $suffix . '.css', array(), WC_GERMANIZED_VERSION );
@@ -1181,6 +1190,18 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 				wp_localize_script( 'wc-gzd-add-to-cart-variation', 'wc_gzd_add_to_cart_variation_params', $this->get_variation_script_params() );
 			}
 
+			if ( wp_script_is( 'wc-gzd-unit-price-observer-queue' ) && ! in_array( 'wc-gzd-unit-price-observer-queue', $this->localized_scripts, true ) ) {
+				$this->localized_scripts[] = 'wc-gzd-unit-price-observer-queue';
+
+				$params = array(
+                    'ajax_url'                 => WC()->ajax_url(),
+                    'wc_ajax_url'              => WC_AJAX::get_endpoint( '%%endpoint%%' ),
+                    'refresh_unit_price_nonce' => wp_create_nonce( 'wc-gzd-refresh-unit-price' ),
+                );
+
+				wp_localize_script( 'wc-gzd-unit-price-observer-queue', 'wc_gzd_unit_price_observer_queue_params', $params );
+			}
+
 			if ( wp_script_is( 'wc-gzd-unit-price-observer' ) && ! in_array( 'wc-gzd-unit-price-observer', $this->localized_scripts, true ) ) {
 				global $post;
 
@@ -1202,7 +1223,7 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 						'price_decimal_sep'        => wc_get_price_decimal_separator(),
 						'price_thousand_sep'       => wc_get_price_thousand_separator(),
 						'qty_selector'             => 'input.quantity, input.qty',
-						'refresh_on_load'          => false,
+						'refresh_on_load'          => true,
 					)
 				);
 

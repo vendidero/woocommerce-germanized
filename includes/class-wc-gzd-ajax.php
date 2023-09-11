@@ -272,31 +272,44 @@ class WC_GZD_AJAX {
 	public static function gzd_refresh_unit_price() {
 		check_ajax_referer( 'wc-gzd-refresh-unit-price', 'security' );
 
-		if ( ! isset( $_POST['product_id'], $_POST['price'] ) ) {
+		if ( ! isset( $_POST['products'] ) ) {
 			wp_send_json( array( 'result' => 'failure' ) );
 		}
 
-		$product_id = absint( wp_unslash( $_POST['product_id'] ) );
+		$products = (array) wc_clean( wp_unslash( $_POST['products'] ) );
+		$response = array();
 
-		if ( ! $product = wc_gzd_get_product( $product_id ) ) {
-			wp_send_json( array( 'result' => 'failure' ) );
+		foreach( $products as $product_data ) {
+			if ( ! isset( $product_data['product_id'], $product_data['price'] ) ) {
+				continue;
+			}
+
+			$product_id = absint( $product_data['product_id'] );
+
+			if ( ! $product = wc_gzd_get_product( $product_id ) ) {
+				continue;
+			}
+
+			$args = self::get_db_prices_by_display_prices(
+				$product,
+				array(
+					'price'      => (float) wc_clean( wp_unslash( $product_data['price'] ) ),
+					'sale_price' => isset( $product_data['price_sale'] ) && '' !== wc_clean( wp_unslash( $product_data['price_sale'] ) ) ? (float) wc_clean( wp_unslash( $product_data['price_sale'] ) ) : '',
+				)
+			);
+
+			$product->recalculate_unit_price( $args );
+
+			$response[ $product_id ] = array(
+				'unit_price_html' => $product->get_unit_price_html(),
+				'product_id'      => $product_id,
+			);
 		}
-
-		$args = self::get_db_prices_by_display_prices(
-			$product,
-			array(
-				'price'      => (float) wc_clean( wp_unslash( $_POST['price'] ) ),
-				'sale_price' => isset( $_POST['price_sale'] ) && '' !== wc_clean( wp_unslash( $_POST['price_sale'] ) ) ? (float) wc_clean( wp_unslash( $_POST['price_sale'] ) ) : '',
-			)
-		);
-
-		$product->recalculate_unit_price( $args );
 
 		wp_send_json(
 			array(
-				'result'          => 'success',
-				'unit_price_html' => $product->get_unit_price_html(),
-				'product_id'      => $product_id,
+				'result'   => 'success',
+				'products' => $response,
 			)
 		);
 	}
