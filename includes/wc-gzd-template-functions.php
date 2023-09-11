@@ -178,6 +178,7 @@ if ( ! function_exists( 'woocommerce_gzd_template_loop_price_unit' ) ) {
 					'simple',
 					'external',
 					'variable',
+					'variation',
 					'grouped',
 				)
 			),
