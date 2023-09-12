@@ -21,16 +21,20 @@ window.germanized = window.germanized || {};
                 data = [],
                 currentQueue = { ...self.queue };
 
-            self.queue = {};
+            self.queue   = {};
             self.timeout = null;
 
-            Object.keys( currentQueue ).forEach( function( key ) {
-                data.push({
-                    'product_id': currentQueue[ key ].productId,
-                    'price'     : currentQueue[ key ].priceData.price,
-                    'price_sale': currentQueue[ key ].priceData.sale_price,
-                    'quantity'  : currentQueue[ key ].priceData.quantity,
-                });
+            /**
+             * Reverse queue
+             */
+            Object.keys( currentQueue ).forEach( function( queueKey ) {
+                data = data.concat( [{
+                    'product_id': currentQueue[ queueKey ].productId,
+                    'price'     : currentQueue[ queueKey ].priceData.price,
+                    'price_sale': currentQueue[ queueKey ].priceData.sale_price,
+                    'quantity'  : currentQueue[ queueKey ].priceData.quantity,
+                    'key'       : queueKey,
+                }] );
             });
 
             self.request = $.ajax({
@@ -107,10 +111,15 @@ window.germanized = window.germanized || {};
             } );
         },
 
-        add: function( observer, productId, priceData, priceSelector, isPrimary ) {
-            var self = germanized.unit_price_observer_queue;
+        getQueueKey: function( productId, selector ) {
+            return ( productId + selector ).replace( /[^a-zA-Z0-9]/g, '' );
+        },
 
-            self.queue[ productId ] = {
+        add: function( observer, productId, priceData, priceSelector, isPrimary ) {
+            var self = germanized.unit_price_observer_queue,
+                queueKey = self.getQueueKey( productId, priceSelector );
+
+            self.queue[ queueKey ] = {
                 'productId'    : productId,
                 'observer'     : observer,
                 'priceData'    : priceData,

@@ -280,11 +280,12 @@ class WC_GZD_AJAX {
 		$response = array();
 
 		foreach ( $products as $product_data ) {
-			if ( ! isset( $product_data['product_id'], $product_data['price'] ) ) {
+			if ( ! isset( $product_data['product_id'], $product_data['price'], $product_data['key'] ) ) {
 				continue;
 			}
 
 			$product_id = absint( $product_data['product_id'] );
+			$key        = wc_clean( wp_unslash( $product_data['key'] ) );
 
 			if ( ! $product = wc_gzd_get_product( $product_id ) ) {
 				continue;
@@ -300,7 +301,7 @@ class WC_GZD_AJAX {
 
 			$product->recalculate_unit_price( $args );
 
-			$response[ $product_id ] = array(
+			$response[ $key ] = array(
 				'unit_price_html' => $product->get_unit_price_html(),
 				'product_id'      => $product_id,
 			);

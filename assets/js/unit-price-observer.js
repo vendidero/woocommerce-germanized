@@ -77,6 +77,13 @@
                         $price       = self.getPriceNode( self, priceSelector, isPrimary ),
                         $unitPrice   = self.getUnitPriceNode( self, $price );
 
+                    /**
+                     * Do only refresh primary price nodes on load.
+                     */
+                    if ( ! isPrimary ) {
+                        return;
+                    }
+
                     if ( $unitPrice.length > 0 ) {
                         self.stopObserver( self, priceSelector );
                         self.setUnitPriceLoading( self, $unitPrice );
