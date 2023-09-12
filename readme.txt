@@ -5,7 +5,7 @@ Requires at least: 5.4
 Tested up to: 6.3
 WC requires at least: 3.9
 WC tested up to: 8.1
-Stable tag: 3.13.3
+Stable tag: 3.13.4
 Requires PHP: 5.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -206,7 +206,19 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 
 == Changelog ==
 = 3.13.4 =
-* Improvement: Unit price observer
+* Improvement: Queue price changes and refresh unit prices via one AJAX request
+* Improvement: Observe price changes within product categories too
+* Improvement: Better FSE support
+* Improvement: Register PayPal Payments carrier detection
+* Improvement: Customs data item weight distribution
+* Improvement: Removed deprecated DHL SOAP API shipping notification attribute
+* Improvement: Added local wsdl files for Internetmarke
+* Fix: Removed legacy WPML string translation compatibility script
+* Fix: Bug in setup wizard which could lead to tax incl option reset
+* Fix: Use WeakMap (>= PHP 8.0) to build product cache instead of dynamic class properties
+* Fix: Variation defect description
+* Fix: Shipping method cache hardening
+* Fix: HPOS bug in conjunction with shipment order status automation
 
 = 3.13.3 =
 * New: Woo 7.9 support

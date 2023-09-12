@@ -42,19 +42,24 @@ class WC_GZD_Compatibility_WooCommerce_PayPal_Payments extends WC_GZD_Compatibil
 			}
 		);
 
-		add_filter( 'woocommerce_paypal_payments_default_gzd_carrier', function( $carrier, $provider ) {
-			if ( strstr( $provider, 'dpd' ) ) {
-				$carrier = 'DPD';
-			} elseif ( strstr( $provider, 'gls' ) ) {
-				$carrier = 'GLS';
-			} elseif ( strstr( $provider, 'hermes' ) ) {
-				$carrier = 'HERMES';
-			} elseif ( strstr( $provider, 'ups' ) ) {
-				$carrier = 'UPS';
-			}
+		add_filter(
+			'woocommerce_paypal_payments_default_gzd_carrier',
+			function( $carrier, $provider ) {
+				if ( strstr( $provider, 'dpd' ) ) {
+					$carrier = 'DPD';
+				} elseif ( strstr( $provider, 'gls' ) ) {
+					$carrier = 'GLS';
+				} elseif ( strstr( $provider, 'hermes' ) ) {
+					$carrier = 'HERMES';
+				} elseif ( strstr( $provider, 'ups' ) ) {
+					$carrier = 'UPS';
+				}
 
-			return $carrier;
-		}, 10, 2 );
+				return $carrier;
+			},
+			10,
+			2
+		);
 	}
 
 	public function after_plugins_loaded() {

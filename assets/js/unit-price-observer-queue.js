@@ -111,11 +111,11 @@ window.germanized = window.germanized || {};
             var self = germanized.unit_price_observer_queue;
 
             self.queue[ productId ] = {
-                'productId': productId,
-                'observer': observer,
-                'priceData': priceData,
+                'productId'    : productId,
+                'observer'     : observer,
+                'priceData'    : priceData,
                 'priceSelector': priceSelector,
-                'isPrimary': isPrimary
+                'isPrimary'    : isPrimary
             };
 
             clearTimeout( self.timeout );

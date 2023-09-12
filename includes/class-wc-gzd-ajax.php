@@ -279,7 +279,7 @@ class WC_GZD_AJAX {
 		$products = (array) wc_clean( wp_unslash( $_POST['products'] ) );
 		$response = array();
 
-		foreach( $products as $product_data ) {
+		foreach ( $products as $product_data ) {
 			if ( ! isset( $product_data['product_id'], $product_data['price'] ) ) {
 				continue;
 			}

@@ -282,17 +282,6 @@
         }
     };
 
-    GermanizedUnitPriceObserver.prototype.abortAjaxRequests = function( self ) {
-        /**
-         * Cancel requests
-         */
-        if ( self.requests.length > 0 ) {
-            for ( var i = 0; i < self.requests.length; i++ ) {
-                self.requests[i].abort();
-            }
-        }
-    };
-
     /**
      * Reset all fields.
      */
@@ -430,8 +419,6 @@
     };
 
     GermanizedUnitPriceObserver.prototype.refreshUnitPrice = function( self, priceData, priceSelector, isPrimary ) {
-        // self.abortAjaxRequests( self );
-
         germanized.unit_price_observer_queue.add( self, self.getCurrentProductId( self ), priceData, priceSelector, isPrimary );
     };
 

@@ -980,10 +980,13 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 			wp_register_script(
 				'wc-gzd-unit-price-observer',
 				$frontend_script_path . 'unit-price-observer' . $suffix . '.js',
-				array_merge( is_product() ? array( 'wc-single-product' ) : array(), array(
-					'wc-gzd-unit-price-observer-queue',
-					'accounting',
-				) ),
+				array_merge(
+					is_product() ? array( 'wc-single-product' ) : array(),
+					array(
+						'wc-gzd-unit-price-observer-queue',
+						'accounting',
+					)
+				),
 				WC_GERMANIZED_VERSION,
 				true
 			);
@@ -1194,10 +1197,10 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 				$this->localized_scripts[] = 'wc-gzd-unit-price-observer-queue';
 
 				$params = array(
-                    'ajax_url'                 => WC()->ajax_url(),
-                    'wc_ajax_url'              => WC_AJAX::get_endpoint( '%%endpoint%%' ),
-                    'refresh_unit_price_nonce' => wp_create_nonce( 'wc-gzd-refresh-unit-price' ),
-                );
+					'ajax_url'                 => WC()->ajax_url(),
+					'wc_ajax_url'              => WC_AJAX::get_endpoint( '%%endpoint%%' ),
+					'refresh_unit_price_nonce' => wp_create_nonce( 'wc-gzd-refresh-unit-price' ),
+				);
 
 				wp_localize_script( 'wc-gzd-unit-price-observer-queue', 'wc_gzd_unit_price_observer_queue_params', $params );
 			}
@@ -1216,14 +1219,11 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 				$params = array_merge(
 					$params,
 					array(
-						'ajax_url'                 => WC()->ajax_url(),
-						'wc_ajax_url'              => WC_AJAX::get_endpoint( '%%endpoint%%' ),
-						'refresh_unit_price_nonce' => wp_create_nonce( 'wc-gzd-refresh-unit-price' ),
 						'product_id'               => $post ? $post->ID : '',
 						'price_decimal_sep'        => wc_get_price_decimal_separator(),
 						'price_thousand_sep'       => wc_get_price_thousand_separator(),
 						'qty_selector'             => 'input.quantity, input.qty',
-						'refresh_on_load'          => true,
+						'refresh_on_load'          => false,
 					)
 				);
 
