@@ -292,7 +292,7 @@ class WC_GZD_Legal_Checkbox_Manager {
 					'html_wrapper_classes' => array( 'legal', 'direct-debit-checkbox' ),
 					'label'                => __( 'I hereby agree to the {link}direct debit mandate{/link}.', 'woocommerce-germanized' ),
 					'label_args'           => array(
-						'{link}'  => '<a href="' . esc_url( $ajax_url ) . '" id="show-direct-debit-trigger" rel="prettyPhoto">',
+						'{link}'  => '<a href="' . esc_url( $ajax_url ) . '" id="show-direct-debit-trigger" rel="prettyPhoto" class="wc-gzd-modal">',
 						'{/link}' => '</a>',
 					),
 					'is_mandatory'         => true,
@@ -431,7 +431,7 @@ class WC_GZD_Legal_Checkbox_Manager {
 		return $category_ids;
 	}
 
-	protected function get_cart_product_data() {
+	public function get_cart_product_data() {
 		$args = array(
 			'is_downloadable'        => false,
 			'is_service'             => false,
@@ -545,7 +545,7 @@ class WC_GZD_Legal_Checkbox_Manager {
 		$this->update_show_conditionally( 'checkout', $args );
 	}
 
-	protected function update_show_conditionally( $location, $args = array() ) {
+	public function update_show_conditionally( $location, $args = array() ) {
 		$args = wp_parse_args(
 			$args,
 			array(
@@ -1027,7 +1027,20 @@ class WC_GZD_Legal_Checkbox_Manager {
 			$this->do_register_action();
 		}
 
-		$checkboxes = $this->filter( $args, 'AND' );
+		$args = wp_parse_args(
+			$args,
+			array(
+				'sort' => false,
+			)
+		);
+
+		$sort        = $args['sort'];
+		$filter_args = array_diff_key( $args, array( 'sort' => '' ) );
+		$checkboxes  = $this->filter( $filter_args, 'AND' );
+
+		if ( $sort ) {
+			$checkboxes = $this->sort( $checkboxes );
+		}
 
 		if ( ! empty( $context ) && 'json' === $context ) {
 			foreach ( $checkboxes as $id => $checkbox ) {

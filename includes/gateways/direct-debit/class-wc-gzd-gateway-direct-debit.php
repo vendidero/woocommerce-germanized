@@ -833,7 +833,6 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 	}
 
 	public function generate_mandate() {
-
 		if ( ! $this->is_available() ) {
 			exit();
 		}
@@ -1193,7 +1192,6 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 	}
 
 	public function validate_fields() {
-
 		if ( ! $this->is_available() || ! isset( $_POST['payment_method'] ) || $_POST['payment_method'] !== $this->id ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
 			return;
 		}

@@ -249,6 +249,28 @@ class WC_GZD_Checkout {
 	}
 
 	/**
+	 * @param WC_GZD_Legal_Checkbox|string $checkbox_id
+	 *
+	 * @return boolean
+	 */
+	public function checkbox_is_checked( $checkbox_id ) {
+		$is_checked = false;
+		$checkbox   = is_a( $checkbox_id, 'WC_GZD_Legal_Checkbox' ) ? $checkbox_id : WC_GZD_Legal_Checkbox_Manager::instance()->get_checkbox( $checkbox_id );
+
+		if ( is_a( $checkbox, 'WC_GZD_Legal_Checkbox' ) ) {
+			$checkbox_id = $checkbox->get_id();
+			$value       = $this->get_checkout_value( $checkbox->get_html_name() ) ? self::instance()->get_checkout_value( $checkbox->get_html_name() ) : '';
+			$visible     = ! empty( $this->get_checkout_value( $checkbox->get_html_name() . '-field' ) ) ? true : false;
+
+			if ( $visible && ( ! empty( $value ) || $checkbox->hide_input() ) ) {
+				$is_checked = true;
+			}
+		}
+
+		return apply_filters( 'woocommerce_gzd_checkout_checkbox_is_checked', $is_checked, $checkbox_id );
+	}
+
+	/**
 	 * @param WC_Cart $cart
 	 *
 	 * @return void
@@ -260,10 +282,7 @@ class WC_GZD_Checkout {
 
 		if ( $checkbox = wc_gzd_get_legal_checkbox( 'photovoltaic_systems' ) ) {
 			if ( $checkbox->is_enabled() ) {
-				$value   = self::instance()->get_checkout_value( $checkbox->get_html_name() ) ? self::instance()->get_checkout_value( $checkbox->get_html_name() ) : '';
-				$visible = ! empty( self::instance()->get_checkout_value( $checkbox->get_html_name() . '-field' ) ) ? true : false;
-
-				if ( $visible && ( ! empty( $value ) || $checkbox->hide_input() ) && wc_gzd_cart_applies_for_photovoltaic_system_vat_exemption() ) {
+				if ( $this->checkbox_is_checked( $checkbox ) && wc_gzd_cart_applies_for_photovoltaic_system_vat_exemption() ) {
 					foreach ( $cart->get_cart() as $cart_item_key => $values ) {
 						$_product = apply_filters( 'woocommerce_cart_item_product', $values['data'], $values, $cart_item_key );
 
