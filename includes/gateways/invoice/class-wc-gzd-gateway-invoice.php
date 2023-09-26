@@ -16,6 +16,12 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 class WC_GZD_Gateway_Invoice extends WC_Payment_Gateway {
 
+    protected $default_order_status;
+
+    protected $customers_only;
+
+    protected $customers_completed;
+
 	/**
 	 * Constructor for the gateway.
 	 */

@@ -18,6 +18,32 @@ class WC_GZD_Gateway_Direct_Debit extends WC_Payment_Gateway {
 
 	public static $has_loaded = false;
 
+    protected $enable_pre_notification;
+
+    protected $debit_days;
+
+    protected $generate_mandate_id;
+
+    protected $mandate_id_format;
+
+    protected $company_info;
+
+    protected $company_identification_number;
+
+    protected $company_account_holder;
+
+    protected $company_account_iban;
+
+    protected $company_account_bic;
+
+    protected $pain_format;
+
+    protected $remember;
+
+    protected $mask;
+
+    protected $mandate_text;
+
 	public $admin_fields = array();
 
 	/**
@@ -98,13 +124,11 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 		);
 
 		if ( $this->get_option( 'enabled' ) === 'yes' && ! $this->supports_encryption() ) {
-
 			ob_start();
 			include_once 'views/html-encryption-notice.php';
 			$notice = ob_get_clean();
 
 			$this->method_description .= $notice;
-
 		}
 
 		// Force disabling remember account data if encryption is not supported
