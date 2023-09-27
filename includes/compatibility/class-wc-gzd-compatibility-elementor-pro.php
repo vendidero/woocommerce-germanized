@@ -163,6 +163,13 @@ class WC_GZD_Compatibility_Elementor_Pro extends WC_GZD_Compatibility {
 				wp_add_inline_style(
 					'elementor-pro',
 					'
+				.elementor-widget-woocommerce-checkout-page .woocommerce table.woocommerce-checkout-review-order-table {
+				    margin: var(--sections-margin, 24px 0 24px 0);
+				    padding: var(--sections-padding, 16px 16px);
+				}
+				.elementor-widget-woocommerce-checkout-page .woocommerce table.woocommerce-checkout-review-order-table .cart_item td.product-name {
+				    padding-right: 20px;
+				}
 				.elementor-widget-woocommerce-checkout-page .woocommerce .woocommerce-checkout #payment {
 					border: none;
 					padding: 0;
