@@ -1034,6 +1034,14 @@ class WC_GZD_Legal_Checkbox_Manager {
 			)
 		);
 
+		if ( 'render' === $context && ! empty( $args['locations'] ) ) {
+			$locations = (array) $args['locations'];
+
+			foreach ( $locations as $location ) {
+				$this->maybe_do_hooks( $location );
+			}
+		}
+
 		$sort        = $args['sort'];
 		$filter_args = array_diff_key( $args, array( 'sort' => '' ) );
 		$checkboxes  = $this->filter( $filter_args, 'AND' );

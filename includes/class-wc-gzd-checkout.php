@@ -115,8 +115,7 @@ class WC_GZD_Checkout {
 		}
 
 		add_action( 'woocommerce_checkout_create_order', array( $this, 'order_meta' ), 5, 1 );
-		add_action( 'woocommerce_checkout_create_order', array( $this, 'order_store_checkbox_data' ), 10, 2 );
-		add_action( 'woocommerce_checkout_create_order', array( $this, 'order_age_verification' ), 20, 2 );
+		add_action( 'woocommerce_checkout_create_order', array( $this, 'order_store_checkbox_data' ), 10, 1 );
 		add_action( 'woocommerce_checkout_order_created', array( $this, 'add_order_notes' ), 20 );
 
 		// Make sure that, just like in Woo core, the order submit button gets refreshed
@@ -227,7 +226,7 @@ class WC_GZD_Checkout {
 			}
 		}
 
-		return $value;
+		return apply_filters( 'woocommerce_gzd_get_checkout_value', $value, $key );
 	}
 
 	public function refresh_photovoltaic_systems_notice( $fragments ) {
@@ -560,41 +559,40 @@ class WC_GZD_Checkout {
 
 	/**
 	 * @param WC_Order $order
-	 * @param $posted
 	 */
-	public function order_store_checkbox_data( $order, $posted ) {
+	public function order_store_checkbox_data( $order ) {
 		if ( $checkbox = wc_gzd_get_legal_checkbox( 'parcel_delivery' ) ) {
-			if ( $checkbox->is_enabled() && $order->has_shipping_address() && wc_gzd_is_parcel_delivery_data_transfer_checkbox_enabled( wc_gzd_get_chosen_shipping_rates( array( 'value' => 'id' ) ) ) ) {
-				$selected = false;
+			if ( $checkbox->is_enabled() && $order->has_shipping_address() ) {
+				$method_ids = array();
+				$items      = $order->get_shipping_methods();
 
-				if ( isset( $_POST[ $checkbox->get_html_name() ] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
-					$selected = true;
-				} elseif ( $checkbox->hide_input() ) {
-					$selected = true;
+				foreach ( $items as $item ) {
+					$method_ids[] = $item->get_method_id();
 				}
 
-				$order->update_meta_data( '_parcel_delivery_opted_in', $selected ? 'yes' : 'no' );
+				if ( wc_gzd_is_parcel_delivery_data_transfer_checkbox_enabled( $method_ids ) ) {
+					$selected = $this->checkbox_is_checked( $checkbox );
 
-				/**
-				 * Parcel delivery notification.
-				 *
-				 * Execute whenever the parcel delivery notification data is stored for a certain order.
-				 *
-				 * @param int $order_id The order id.
-				 * @param bool $selected True if the checkbox was checked. False otherwise.
-				 *
-				 * @since 1.7.2
-				 */
-				do_action( 'woocommerce_gzd_parcel_delivery_order_opted_in', $order->get_id(), $selected );
+					$order->update_meta_data( '_parcel_delivery_opted_in', $selected ? 'yes' : 'no' );
+
+					/**
+					 * Parcel delivery notification.
+					 *
+					 * Execute whenever the parcel delivery notification data is stored for a certain order.
+					 *
+					 * @param int $order_id The order id.
+					 * @param bool $selected True if the checkbox was checked. False otherwise.
+					 *
+					 * @since 1.7.2
+					 */
+					do_action( 'woocommerce_gzd_parcel_delivery_order_opted_in', $order->get_id(), $selected );
+				}
 			}
 		}
 
 		if ( $checkbox = wc_gzd_get_legal_checkbox( 'photovoltaic_systems' ) ) {
 			if ( $checkbox->is_enabled() && wc_gzd_cart_contains_photovoltaic_system() ) {
-				$value   = WC()->checkout()->get_value( $checkbox->get_html_name() );
-				$visible = WC()->checkout()->get_value( $checkbox->get_html_name() . '-field' );
-
-				if ( $visible && ( ! empty( $value ) || $checkbox->hide_input() ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
+				if ( $this->checkbox_is_checked( $checkbox ) ) {
 					$order->update_meta_data( '_photovoltaic_systems_opted_in', 'yes' );
 
 					/**
@@ -612,6 +610,18 @@ class WC_GZD_Checkout {
 				}
 			}
 		}
+
+		if ( $checkbox = wc_gzd_get_legal_checkbox( 'age_verification' ) ) {
+			if ( $checkbox->is_enabled() && wc_gzd_cart_needs_age_verification( $order->get_items() ) ) {
+				if ( $min_age = wc_gzd_cart_get_age_verification_min_age( $order->get_items() ) ) {
+					if ( $this->checkbox_is_checked( $checkbox ) ) {
+						$order->update_meta_data( '_min_age', $min_age );
+					}
+				}
+			}
+		}
+
+		do_action( 'woocommerce_gzd_checkout_store_checkbox_data', $order, $this );
 	}
 
 	/**
@@ -630,36 +640,6 @@ class WC_GZD_Checkout {
 
 		if ( $order->get_meta( '_min_age' ) ) {
 			$order->add_order_note( sprintf( __( 'A minimum age of %s years is required for this order.', 'woocommerce-germanized' ), wc_gzd_get_order_min_age( $order ) ) );
-		}
-	}
-
-	/**
-	 * @param WC_Order $order
-	 * @param $posted
-	 */
-	public function order_age_verification( $order, $posted ) {
-		if ( $checkbox = wc_gzd_get_legal_checkbox( 'age_verification' ) ) {
-
-			if ( ! $checkbox->is_enabled() ) {
-				return;
-			}
-
-			if ( ! wc_gzd_cart_needs_age_verification( $order->get_items() ) ) {
-				return;
-			}
-
-			$min_age = wc_gzd_cart_get_age_verification_min_age( $order->get_items() );
-
-			if ( ! $min_age ) {
-				return;
-			}
-
-			// Checkbox has not been checked
-			if ( ! isset( $_POST[ $checkbox->get_html_name() ] ) && ! $checkbox->hide_input() ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
-				return;
-			}
-
-			$order->update_meta_data( '_min_age', $min_age );
 		}
 	}
 

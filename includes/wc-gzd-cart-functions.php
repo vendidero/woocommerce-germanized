@@ -1210,7 +1210,6 @@ function wc_gzd_get_legal_text_service_email_notice() {
 }
 
 function wc_gzd_get_chosen_shipping_rates( $args = array() ) {
-
 	$args = wp_parse_args(
 		$args,
 		array(

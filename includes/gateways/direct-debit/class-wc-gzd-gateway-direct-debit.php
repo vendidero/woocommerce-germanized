@@ -18,31 +18,31 @@ class WC_GZD_Gateway_Direct_Debit extends WC_Payment_Gateway {
 
 	public static $has_loaded = false;
 
-    protected $enable_pre_notification;
+	protected $enable_pre_notification;
 
-    protected $debit_days;
+	protected $debit_days;
 
-    protected $generate_mandate_id;
+	protected $generate_mandate_id;
 
-    protected $mandate_id_format;
+	protected $mandate_id_format;
 
-    protected $company_info;
+	protected $company_info;
 
-    protected $company_identification_number;
+	protected $company_identification_number;
 
-    protected $company_account_holder;
+	protected $company_account_holder;
 
-    protected $company_account_iban;
+	protected $company_account_iban;
 
-    protected $company_account_bic;
+	protected $company_account_bic;
 
-    protected $pain_format;
+	protected $pain_format;
 
-    protected $remember;
+	protected $remember;
 
-    protected $mask;
+	protected $mask;
 
-    protected $mandate_text;
+	protected $mandate_text;
 
 	public $admin_fields = array();
 

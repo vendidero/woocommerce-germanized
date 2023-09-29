@@ -364,13 +364,13 @@ class WC_GZD_Admin_Order {
 	protected function get_item_total( $item, $old_item = false ) {
 		// Let's grab a fresh copy (loaded from DB) to make sure we are not dependent on Woo's calculated taxes in $item.
 		if ( $old_item ) {
-			$item_total = $old_item->get_total();
+			$item_total = wc_format_decimal( floatval( $old_item->get_total() ) );
 
 			if ( wc_gzd_additional_costs_include_tax() ) {
-				$item_total += $old_item->get_total_tax();
+				$item_total += wc_format_decimal( floatval( $old_item->get_total_tax() ) );
 			}
 		} else {
-			$item_total     = $item->get_total();
+			$item_total     = wc_format_decimal( floatval( $item->get_total() ) );
 			$is_adding_item = wp_doing_ajax() && isset( $_POST['action'] ) && in_array( wp_unslash( $_POST['action'] ), array( 'woocommerce_add_order_fee', 'woocommerce_add_order_shipping' ), true ); // phpcs:ignore WordPress.Security.NonceVerification.Missing
 
 			/**
@@ -378,7 +378,7 @@ class WC_GZD_Admin_Order {
 			 * based on the fee's tax class (which by default is standard). Ignore the tax data on first call.
 			 */
 			if ( ! $is_adding_item && wc_gzd_additional_costs_include_tax() ) {
-				$item_total += $item->get_total_tax();
+				$item_total += wc_format_decimal( floatval( $item->get_total_tax() ) );
 			}
 		}
 
