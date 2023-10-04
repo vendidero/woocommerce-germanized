@@ -444,6 +444,10 @@
     $( function() {
         if ( typeof wc_gzd_unit_price_observer_params !== 'undefined' ) {
             $( wc_gzd_unit_price_observer_params.wrapper ).each( function() {
+                if ( $( this ).is( 'body' ) ) {
+                    return;
+                }
+
                 $( this ).wc_germanized_unit_price_observer();
             });
         }

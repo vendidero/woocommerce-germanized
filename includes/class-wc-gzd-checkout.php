@@ -281,7 +281,7 @@ class WC_GZD_Checkout {
 
 		if ( $checkbox = wc_gzd_get_legal_checkbox( 'photovoltaic_systems' ) ) {
 			if ( $checkbox->is_enabled() ) {
-				if ( $this->checkbox_is_checked( $checkbox ) && wc_gzd_cart_applies_for_photovoltaic_system_vat_exemption() ) {
+				if ( $this->checkbox_is_checked( $checkbox ) && wc_gzd_cart_applies_for_photovoltaic_system_vat_exemption( $cart->get_cart() ) ) {
 					foreach ( $cart->get_cart() as $cart_item_key => $values ) {
 						$_product = apply_filters( 'woocommerce_cart_item_product', $values['data'], $values, $cart_item_key );
 

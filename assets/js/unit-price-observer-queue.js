@@ -50,7 +50,8 @@ window.germanized = window.germanized || {};
                             observer = current.observer,
                             priceData = current.priceData,
                             priceSelector = current.priceSelector,
-                            isPrimary = current.isPrimary;
+                            isPrimary = current.isPrimary,
+                            unitPrices = self.getUnitPricesFromMap( priceData.unit_price );
 
                         if ( observer ) {
                             if ( data.products.hasOwnProperty( queueId ) ) {
@@ -64,30 +65,19 @@ window.germanized = window.germanized || {};
                                  */
                                 if ( parseInt( response.product_id ) === observer.getCurrentProductId( observer ) ) {
                                     if ( response.hasOwnProperty( 'unit_price_html' ) ) {
-                                        observer.unsetUnitPriceLoading( observer, priceData.unit_price, response.unit_price_html );
+                                        observer.unsetUnitPriceLoading( observer, unitPrices, response.unit_price_html );
                                     } else {
-                                        observer.unsetUnitPriceLoading( observer, priceData.unit_price );
+                                        observer.unsetUnitPriceLoading( observer, unitPrices );
                                     }
                                 } else {
-                                    observer.unsetUnitPriceLoading( observer, priceData.unit_price );
+                                    observer.unsetUnitPriceLoading( observer, unitPrices );
                                 }
 
                                 observer.startObserver( observer, priceSelector, isPrimary );
                             } else {
                                 observer.stopObserver( observer, priceSelector );
-                                observer.unsetUnitPriceLoading( observer, priceData.unit_price );
+                                observer.unsetUnitPriceLoading( observer, unitPrices );
                                 observer.startObserver( observer, priceSelector, isPrimary );
-                            }
-                        }
-                    });
-
-                    Object.keys( data.products ).forEach( function( responseProductId ) {
-                        if ( currentQueue.hasOwnProperty( responseProductId ) ) {
-                            var current = currentQueue[ responseProductId ],
-                                $unitPrice = $( current.priceData.unit_price );
-
-                            if ( $unitPrice.data( 'unitPriceObserver' ) ) {
-                                $unitPrice.data( 'unitPriceObserver' )
                             }
                         }
                     });
@@ -98,11 +88,12 @@ window.germanized = window.germanized || {};
                             observer = current.observer,
                             priceData = current.priceData,
                             priceSelector = current.priceSelector,
-                            isPrimary = current.isPrimary;
+                            isPrimary = current.isPrimary,
+                            unitPrices = self.getUnitPricesFromMap( priceData.unit_price );
 
                         if ( observer ) {
                             observer.stopObserver( observer, priceSelector );
-                            observer.unsetUnitPriceLoading( observer, priceData.unit_price );
+                            observer.unsetUnitPriceLoading( observer, unitPrices );
                             observer.startObserver( observer, priceSelector, isPrimary );
                         }
                     });
@@ -111,21 +102,47 @@ window.germanized = window.germanized || {};
             } );
         },
 
-        getQueueKey: function( productId, selector ) {
-            return ( productId + selector ).replace( /[^a-zA-Z0-9]/g, '' );
+        getUnitPricesFromMap: function( unitPriceMap ) {
+            let unitPrices = [];
+
+            unitPriceMap.forEach( function( unitPrice ) {
+                unitPrices = $.merge( unitPrices, $( unitPrice ) );
+            } );
+
+            return $( unitPrices );
+        },
+
+        getQueueKey: function( productId ) {
+            return ( productId + '' ).replace( /[^a-zA-Z0-9]/g, '' );
         },
 
         add: function( observer, productId, priceData, priceSelector, isPrimary ) {
             var self = germanized.unit_price_observer_queue,
-                queueKey = self.getQueueKey( productId, priceSelector );
+                queueKey = self.getQueueKey( productId );
 
-            self.queue[ queueKey ] = {
-                'productId'    : productId,
-                'observer'     : observer,
-                'priceData'    : priceData,
-                'priceSelector': priceSelector,
-                'isPrimary'    : isPrimary
-            };
+            if ( self.queue.hasOwnProperty( queueKey ) ) {
+                priceData['unit_price'].each( function( i, obj ) {
+                    if ( ! self.queue[ queueKey ]['priceData']['unit_price'].has( obj ) ) {
+                        self.queue[ queueKey ]['priceData']['unit_price'].set( obj, obj );
+                    }
+                });
+            } else {
+                var unitPrices = new Map();
+
+                priceData['unit_price'].each( function( i, obj ) {
+                    unitPrices.set( obj, obj );
+                });
+
+                priceData['unit_price'] = unitPrices;
+
+                self.queue[ queueKey ] = {
+                    'productId'    : productId,
+                    'observer'     : observer,
+                    'priceData'    : priceData,
+                    'priceSelector': priceSelector,
+                    'isPrimary'    : isPrimary
+                };
+            }
 
             clearTimeout( self.timeout );
             self.timeout = setTimeout( self.execute, 500 );
