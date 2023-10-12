@@ -918,19 +918,32 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 			);
 		}
 
+		public function get_assets_build_url( $script_or_style ) {
+			$assets_url = $this->plugin_url() . '/build';
+			$is_debug   = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG;
+			$is_style   = '.css' === substr( $script_or_style, -4 );
+			$is_static  = strstr( $script_or_style, 'static/' );
+
+			if ( $is_style && ! strstr( $script_or_style, '-styles' ) ) {
+				$script_or_style = str_replace( '.css', '-styles.css', $script_or_style );
+			}
+
+			if ( $is_debug && $is_static && ! $is_style ) {
+				$assets_url = $this->plugin_url() . '/assets/js';
+			}
+
+			return trailingslashit( $assets_url ) . $script_or_style;
+		}
+
 		/**
 		 * Add Scripts to frontend
 		 */
 		public function add_scripts() {
 			global $post;
 
-			$suffix               = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
-			$assets_path          = WC_germanized()->plugin_url() . '/assets/';
-			$frontend_script_path = $assets_path . 'js/';
-
 			wp_register_script(
 				'wc-gzd-revocation',
-				$frontend_script_path . 'revocation' . $suffix . '.js',
+				$this->get_assets_build_url( 'static/revocation.js' ),
 				array(
 					'jquery',
 					'woocommerce',
@@ -943,7 +956,7 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 
 			wp_register_script(
 				'wc-gzd-checkout',
-				$frontend_script_path . 'checkout' . $suffix . '.js',
+				$this->get_assets_build_url( 'static/checkout.js' ),
 				array(
 					'jquery',
 					'wc-checkout',
@@ -954,7 +967,7 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 
 			wp_register_script(
 				'wc-gzd-cart-voucher',
-				$frontend_script_path . 'cart-voucher' . $suffix . '.js',
+				$this->get_assets_build_url( 'static/cart-voucher.js' ),
 				array(
 					'jquery',
 				),
@@ -963,12 +976,13 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 			);
 
 			if ( function_exists( 'WC' ) ) {
+				$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 				wp_register_script( 'accounting', WC()->plugin_url() . '/assets/js/accounting/accounting' . $suffix . '.js', array( 'jquery' ), '0.4.2' ); // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.NotInFooter
 			}
 
 			wp_register_script(
 				'wc-gzd-unit-price-observer-queue',
-				$frontend_script_path . 'unit-price-observer-queue' . $suffix . '.js',
+				$this->get_assets_build_url( 'static/unit-price-observer-queue.js' ),
 				array(
 					'jquery',
 					'woocommerce',
@@ -979,7 +993,7 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 
 			wp_register_script(
 				'wc-gzd-unit-price-observer',
-				$frontend_script_path . 'unit-price-observer' . $suffix . '.js',
+				$this->get_assets_build_url( 'static/unit-price-observer.js' ),
 				array_merge(
 					is_product() ? array( 'wc-single-product' ) : array(),
 					array(
@@ -993,7 +1007,7 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 
 			wp_register_script(
 				'wc-gzd-add-to-cart-variation',
-				$frontend_script_path . 'add-to-cart-variation' . $suffix . '.js',
+				$this->get_assets_build_url( 'static/add-to-cart-variation.js' ),
 				array(
 					'jquery',
 					'woocommerce',
@@ -1005,7 +1019,7 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 
 			wp_register_script(
 				'wc-gzd-force-pay-order',
-				$frontend_script_path . 'force-pay-order' . $suffix . '.js',
+				$this->get_assets_build_url( 'static/force-pay-order.js' ),
 				array(
 					'jquery',
 					'jquery-blockui',
@@ -1041,7 +1055,7 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 				wp_enqueue_script( 'wc-gzd-unit-price-observer' );
 			}
 
-			wp_register_style( 'woocommerce-gzd-layout', $assets_path . 'css/layout' . $suffix . '.css', array(), WC_GERMANIZED_VERSION );
+			wp_register_style( 'woocommerce-gzd-layout', $this->get_assets_build_url( 'static/layout.css' ), array(), WC_GERMANIZED_VERSION );
 			wp_enqueue_style( 'woocommerce-gzd-layout' );
 
 			/**
@@ -1050,14 +1064,9 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 			 * This hook executes right after Germanized has registered and enqueued relevant scripts and styles for the
 			 * frontend.
 			 *
-			 * @param string $suffix The asset suffix e.g. .min in non-debugging mode.
-			 * @param string $frontend_script_path The absolute URL to the plugins JS files.
-			 * @param string $assets_path The absolute URL to the plugins asset files.
-			 *
 			 * @since 1.0.0
-			 *
 			 */
-			do_action( 'woocommerce_gzd_registered_scripts', $suffix, $frontend_script_path, $assets_path );
+			do_action( 'woocommerce_gzd_registered_scripts' );
 		}
 
 		public function add_fallback_scripts() {

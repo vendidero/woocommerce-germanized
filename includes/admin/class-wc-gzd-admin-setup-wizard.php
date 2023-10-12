@@ -296,15 +296,14 @@ if ( ! class_exists( 'WC_GZD_Admin_Setup_Wizard' ) ) :
 		 */
 		public function enqueue_scripts() {
 			if ( $this->is_setup_wizard() ) {
-				$suffix      = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
-				$assets_path = WC_germanized()->plugin_url() . '/assets/';
+				$gzd = WC_germanized();
 
 				// Register admin styles.
-				wp_register_style( 'woocommerce-gzd-admin-setup-wizard', $assets_path . 'css/admin-wizard' . $suffix . '.css', array( 'wp-admin', 'dashicons', 'install', 'woocommerce-gzd-admin-settings' ), WC_GERMANIZED_VERSION );
+				wp_register_style( 'woocommerce-gzd-admin-setup-wizard', $gzd->get_assets_build_url( 'static/admin-wizard.css' ), array( 'wp-admin', 'dashicons', 'install', 'woocommerce-gzd-admin-settings' ), WC_GERMANIZED_VERSION );
 				wp_enqueue_style( 'woocommerce-gzd-admin-setup-wizard' );
 
-				wp_register_script( 'wc-gzd-admin-settings', $assets_path . 'js/admin/settings' . $suffix . '.js', array(), WC_GERMANIZED_VERSION, true );
-				wp_register_script( 'wc-gzd-admin-setup', $assets_path . 'js/admin/setup' . $suffix . '.js', array( 'jquery', 'wc-gzd-admin-settings', 'jquery-tiptip' ), WC_GERMANIZED_VERSION, true );
+				wp_register_script( 'wc-gzd-admin-settings', $gzd->get_assets_build_url( 'static/admin-settings.js' ), array(), WC_GERMANIZED_VERSION, true );
+				wp_register_script( 'wc-gzd-admin-setup', $gzd->get_assets_build_url( 'static/admin-setup.js' ), array( 'jquery', 'wc-gzd-admin-settings', 'jquery-tiptip' ), WC_GERMANIZED_VERSION, true );
 
 				wp_enqueue_script( 'wc-gzd-admin-setup' );
 			}

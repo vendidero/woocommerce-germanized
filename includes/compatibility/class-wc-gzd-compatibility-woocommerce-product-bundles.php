@@ -60,7 +60,7 @@ class WC_GZD_Compatibility_WooCommerce_Product_Bundles extends WC_GZD_Compatibil
 		add_action( 'woocommerce_bundled_single_variation', array( $this, 'bundled_variation' ), 10, 2 );
 		add_action( 'woocommerce_gzd_before_add_variation_options', array( $this, 'before_bundled_variation_options' ), 10, 3 );
 
-		add_action( 'woocommerce_gzd_registered_scripts', array( $this, 'register_script' ), 10, 3 );
+		add_action( 'woocommerce_gzd_registered_scripts', array( $this, 'register_script' ), 10 );
 		add_filter( 'woocommerce_gzd_templates_requiring_variation_script', array( $this, 'register_template' ) );
 
 		add_filter( 'woocommerce_gzd_product_is_revocation_exempt', array( $this, 'bundle_revocation_exempt' ), 10, 4 );
@@ -103,10 +103,12 @@ class WC_GZD_Compatibility_WooCommerce_Product_Bundles extends WC_GZD_Compatibil
 		return $templates;
 	}
 
-	public function register_script( $suffix, $frontend_script_path, $assets_path ) {
+	public function register_script() {
+		$gzd = WC_germanized();
+
 		wp_register_script(
 			'wc-gzd-unit-price-observer-bundle',
-			$frontend_script_path . 'unit-price-observer-bundle' . $suffix . '.js',
+			$gzd->get_assets_build_url( 'static/unit-price-observer-bundle.js' ),
 			array(
 				'jquery',
 				'wc-gzd-unit-price-observer',

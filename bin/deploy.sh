@@ -5,7 +5,7 @@
 # Variables
 RELEASER_VERSION="1.4.3"
 RELEASER_PATH=$(pwd)
-BUILD_PATH="${RELEASER_PATH}/build"
+BUILD_PATH="${RELEASER_PATH}/deploy"
 PLUGIN_SLUG="woocommerce-germanized"
 GITHUB_ORG="vendidero"
 IS_PRE_RELEASE=false
@@ -62,7 +62,7 @@ copy_dest_files() {
     --exclude=apigen/ \
     --exclude=bin/ \
     --exclude=CHANGELOG.txt \
-    --exclude=Gruntfile.js \
+    --exclude=webpack.config.js \
     --exclude=node_modules/ \
     --exclude=none \
     --exclude=auth.json \
@@ -249,14 +249,14 @@ if ! $SKIP_GH_BUILD; then
   git commit -m "Adding /packages directory to release" --no-verify
 
   # Force vendor directory to be part of release branch
+  git add build/. --force
+  git add .
+  git commit -m "Adding /build directory to release" --no-verify
+
+  # Force vendor directory to be part of release branch
   git add vendor/. --force
   git add .
   git commit -m "Adding /vendor directory to release" --no-verify
-
-  # Force assets directory with compiled and minified files to part of release branch
-  git add assets/. --force
-  git add .
-  git commit -m "Adding /assets directory with compiled and minified files to release" --no-verify
 
   # Push build branch to git
   git push origin $BUILD_BRANCH

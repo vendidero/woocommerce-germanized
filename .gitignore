@@ -27,6 +27,9 @@ Thumbs.db
 /tests/bin/tmp
 /tests/e2e-tests/config/local-*.json
 
+/build
+/deploy
+
 # Logs
 /logs
 

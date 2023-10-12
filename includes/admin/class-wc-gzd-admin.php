@@ -785,17 +785,15 @@ class WC_GZD_Admin {
 	}
 
 	public function add_scripts() {
-		$screen            = get_current_screen();
-		$suffix            = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
-		$assets_path       = WC_germanized()->plugin_url() . '/assets/';
-		$admin_script_path = $assets_path . 'js/admin/';
+		$screen = get_current_screen();
+		$gzd    = WC_germanized();
 
-		wp_register_style( 'woocommerce-gzd-admin', $assets_path . 'css/admin' . $suffix . '.css', false, WC_GERMANIZED_VERSION );
+		wp_register_style( 'woocommerce-gzd-admin', $gzd->get_assets_build_url( 'static/admin.css' ), false, WC_GERMANIZED_VERSION );
 		wp_enqueue_style( 'woocommerce-gzd-admin' );
 
 		wp_register_style(
 			'woocommerce-gzd-admin-settings',
-			$assets_path . 'css/admin-settings' . $suffix . '.css',
+			$gzd->get_assets_build_url( 'static/admin-settings.css' ),
 			array(
 				'woocommerce_admin_styles',
 				'woocommerce-gzd-admin',
@@ -803,9 +801,9 @@ class WC_GZD_Admin {
 			WC_GERMANIZED_VERSION
 		);
 
-		wp_register_script( 'wc-gzd-admin-product', $admin_script_path . 'product' . $suffix . '.js', array( 'wc-admin-product-meta-boxes', 'media-models' ), WC_GERMANIZED_VERSION ); // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.NotInFooter
+		wp_register_script( 'wc-gzd-admin-product', $gzd->get_assets_build_url( 'static/admin-product.js' ), array( 'wc-admin-product-meta-boxes', 'media-models' ), WC_GERMANIZED_VERSION ); // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.NotInFooter
 
-		wp_register_script( 'wc-gzd-admin-product-variations', $admin_script_path . 'product-variations' . $suffix . '.js', array( 'wc-gzd-admin-product', 'wc-admin-variation-meta-boxes' ), WC_GERMANIZED_VERSION ); // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.NotInFooter
+		wp_register_script( 'wc-gzd-admin-product-variations', $gzd->get_assets_build_url( 'static/admin-product-variations.js' ), array( 'wc-gzd-admin-product', 'wc-admin-variation-meta-boxes' ), WC_GERMANIZED_VERSION ); // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.NotInFooter
 
 		wp_localize_script(
 			'wc-gzd-admin-product-variations',
@@ -818,7 +816,7 @@ class WC_GZD_Admin {
 
 		wp_register_script( // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.NotInFooter
 			'wc-gzd-admin-legal-checkboxes',
-			$admin_script_path . 'legal-checkboxes' . $suffix . '.js',
+			$gzd->get_assets_build_url( 'static/admin-legal-checkboxes.js' ),
 			array(
 				'jquery',
 				'wp-util',
@@ -832,7 +830,7 @@ class WC_GZD_Admin {
 
 		wp_register_script( // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.NotInFooter
 			'wc-gzd-admin-settings',
-			$assets_path . 'js/admin/settings' . $suffix . '.js',
+			$gzd->get_assets_build_url( 'static/admin-settings.js' ),
 			array(
 				'jquery',
 				'woocommerce_admin',
@@ -862,13 +860,10 @@ class WC_GZD_Admin {
 		 * This hook fires after Germanized has loaded and enqueued it's admin assets.
 		 *
 		 * @param WC_GZD_Admin $this The admin class.
-		 * @param string $admin_script_path The absolute URL to the plugins admin js scripts.
-		 * @param string $suffix The assets suffix e.g. .min in non-debugging-mode.
 		 *
 		 * @since 1.0.0
-		 *
 		 */
-		do_action( 'woocommerce_gzd_admin_assets', $this, $admin_script_path, $suffix );
+		do_action( 'woocommerce_gzd_admin_assets', $this );
 	}
 
 	/**

@@ -1272,7 +1272,6 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 	 * Outputs scripts used for simplify payment
 	 */
 	public function payment_scripts() {
-
 		if ( ! is_checkout() || ! $this->is_available() ) {
 			return;
 		}
@@ -1286,10 +1285,10 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 		wp_register_style( 'woocommerce_prettyPhoto_css_debit', $assets_path . 'css/prettyPhoto.css', array(), WC_GERMANIZED_VERSION );
 		wp_enqueue_style( 'woocommerce_prettyPhoto_css_debit' );
 
-		wp_register_script( 'wc-gzd-iban', WC_germanized()->plugin_url() . '/includes/gateways/direct-debit/assets/js/iban' . $suffix . '.js', array( 'wc-checkout' ), WC_GERMANIZED_VERSION, true );
+		wp_register_script( 'wc-gzd-iban', WC_germanized()->get_assets_build_url( 'static/iban.js' ), array( 'wc-checkout' ), WC_GERMANIZED_VERSION, true );
 		wp_enqueue_script( 'wc-gzd-iban' );
 
-		wp_register_script( 'wc-gzd-direct-debit', WC_germanized()->plugin_url() . '/includes/gateways/direct-debit/assets/js/direct-debit' . $suffix . '.js', array( 'wc-gzd-iban' ), WC_GERMANIZED_VERSION, true );
+		wp_register_script( 'wc-gzd-direct-debit', WC_germanized()->get_assets_build_url( 'static/direct-debit.js' ), array( 'wc-gzd-iban' ), WC_GERMANIZED_VERSION, true );
 		wp_localize_script(
 			'wc-gzd-direct-debit',
 			'direct_debit_params',

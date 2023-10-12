@@ -11,4 +11,4 @@
 /package.json export-ignore
 /package-lock.json export-ignore
 /none export-ignore
-/Gruntfile.js export-ignore
+/webpack.config.js export-ignore
