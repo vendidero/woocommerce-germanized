@@ -79,10 +79,34 @@ const staticJs = glob.sync('./assets/js/static/*.js').reduce(function(obj, el){
 const staticEntry = { ...staticCss, ...staticJs }
 
 const entries = {
-    'static': staticEntry
+    'static': staticEntry,
+    styling: {
+        // Shared blocks code
+        'wc-gzd-blocks': './assets/js/index.js',
+        ...getBlockEntries( '{index,block,frontend}.{t,j}s{,x}' ),
+    },
+    core: {
+        wcGzdBlocksSettings: './assets/js/settings/index.js',
+    },
+    main: {
+        // Shared blocks code
+        'wc-gzd-blocks': './assets/js/index.js',
+        // Blocks
+        ...getBlockEntries( 'index.{t,j}s{,x}' )
+    },
+    frontend: {
+        // Shared blocks code
+        'wc-gzd-blocks': './assets/js/frontend.js',
+        ...getBlockEntries( 'frontend.{t,j}s{,x}' ),
+    },
+    productElements: {
+        'wc-gzd-blocks-product-elements': './assets/js/blocks/product-elements/index.js',
+    },
+    payments: {
+        'wc-gzd-payment-method-invoice': './assets/js/payment-methods/invoice/index.js',
+        'wc-gzd-payment-method-direct-debit': './assets/js/payment-methods/direct-debit/index.js',
+    },
 };
-
-console.log(entries);
 
 const getEntryConfig = ( type = 'main', exclude = [] ) => {
     return omit( entries[ type ], exclude );
@@ -90,9 +114,25 @@ const getEntryConfig = ( type = 'main', exclude = [] ) => {
 
 const getAlias = ( options = {} ) => {
     return {
-        '@wooshipments/base-components': path.resolve(
+        '@germanized/product-elements': path.resolve(
+            __dirname,
+            `/assets/js/blocks/product-elements/`
+        ),
+        '@germanized/base-components': path.resolve(
             __dirname,
             `/assets/js/base/components/`
+        ),
+        '@germanized/base-hooks': path.resolve(
+            __dirname,
+            `/assets/js/base/hooks/`
+        ),
+        '@germanized/types': path.resolve(
+            __dirname,
+            `/assets/js/types/`
+        ),
+        '@germanized/settings': path.resolve(
+            __dirname,
+            `/assets/js/settings`
         ),
     };
 };
@@ -106,7 +146,8 @@ const wcDepMap = {
     '@woocommerce/shared-hocs': [ 'wc', 'wcBlocksSharedHocs' ],
     '@woocommerce/price-format': [ 'wc', 'priceFormat' ],
     '@woocommerce/blocks-checkout': [ 'wc', 'blocksCheckout' ],
-    '@woocommerce/interactivity': [ 'wc', '__experimentalInteractivity' ]
+    '@woocommerce/interactivity': [ 'wc', '__experimentalInteractivity' ],
+    '@germanized/settings': [ 'wcGzd', 'wcGzdBlocksSettings' ]
 };
 
 const wcHandleMap = {
@@ -118,7 +159,8 @@ const wcHandleMap = {
     '@woocommerce/shared-hocs': 'wc-blocks-shared-hocs',
     '@woocommerce/price-format': 'wc-price-format',
     '@woocommerce/blocks-checkout': 'wc-blocks-checkout',
-    '@woocommerce/interactivity': 'wc-interactivity'
+    '@woocommerce/interactivity': 'wc-interactivity',
+    '@germanized/settings': 'wc-gzd-blocks-settings'
 };
 
 const requestToExternal = ( request ) => {
@@ -131,6 +173,202 @@ const requestToHandle = ( request ) => {
     if ( wcHandleMap[ request ] ) {
         return wcHandleMap[ request ];
     }
+};
+
+const getBaseConfig = ( entry ) => {
+    return {
+        ...defaultConfig,
+        entry: getEntryConfig( entry, [] ),
+        output: {
+            filename: ( chunkData ) => {
+                return `${ paramCase( chunkData.chunk.name ) }.js`;
+            },
+            path: path.resolve( __dirname, 'build/' ),
+            library: [ 'wcGzd', '[name]' ],
+            libraryTarget: 'window',
+            // This fixes an issue with multiple webpack projects using chunking
+            // overwriting each other's chunk loader function.
+            // See https://webpack.js.org/configuration/output/#outputjsonpfunction
+            chunkLoadingGlobal: 'webpackWcGzdBlocksJsonp',
+        },
+        module: {
+            ...defaultConfig.module,
+            rules: [
+                ...defaultRules,
+                {
+                    test: /\.(sc|sa)ss$/,
+                    exclude: /node_modules/,
+                    use: [
+                        MiniCssExtractPlugin.loader,
+                        { loader: 'css-loader', options: { importLoaders: 1 } },
+                        {
+                            loader: 'sass-loader',
+                            options: {
+                                sassOptions: {
+                                    includePaths: [ 'assets/css' ],
+                                },
+                                additionalData: ( content, loaderContext ) => {
+                                    const {
+                                        resourcePath,
+                                        rootContext,
+                                    } = loaderContext;
+                                    const relativePath = path.relative(
+                                        rootContext,
+                                        resourcePath
+                                    );
+
+                                    if (
+                                        relativePath.startsWith( 'assets/css/' )
+                                    ) {
+                                        return content;
+                                    }
+
+                                    // Add code here to prepend to all .scss/.sass files.
+                                    return (
+                                        content
+                                    );
+                                },
+                            },
+                        },
+                    ],
+                },
+            ],
+        },
+        resolve: {
+            alias: getAlias()
+        },
+        plugins: [
+            ...defaultConfig.plugins.filter(
+                ( plugin ) =>
+                    plugin.constructor.name !== 'DependencyExtractionWebpackPlugin'
+            ),
+            new WooCommerceDependencyExtractionWebpackPlugin( {
+                requestToExternal,
+                requestToHandle,
+            } ),
+            new MiniCssExtractPlugin( {
+                filename: `[name].css`,
+            } ),
+        ],
+    };
+};
+
+const CoreConfig = {
+    ...getBaseConfig( 'core' )
+};
+
+const ProductElements = {
+    ...getBaseConfig( 'productElements' )
+};
+
+const PaymentsConfig = {
+    ...getBaseConfig( 'payments' )
+};
+
+const innerMainConfig = getBaseConfig( 'main' );
+
+const MainConfig = {
+    ...innerMainConfig,
+    plugins: [
+        ...innerMainConfig.plugins,
+        new CopyWebpackPlugin( {
+            patterns: [
+                {
+                    from: './assets/js/**/block.json',
+                    to( { absoluteFilename } ) {
+                        /**
+                         * Getting the block name from the JSON metadata is less error prone
+                         * than extracting it from the file path.
+                         */
+                        const JSONFile = fs.readFileSync(
+                            path.resolve( __dirname, absoluteFilename )
+                        );
+                        const metadata = JSON.parse( JSONFile.toString() );
+
+                        const blockName = metadata.name
+                            .split( '/' )
+                            .at( 1 );
+
+                        if ( metadata.parent )
+                            return `./inner-blocks/${ blockName }/block.json`;
+                        return `./${ blockName }/block.json`;
+                    },
+                },
+            ],
+        } ),
+    ],
+};
+
+const FrontendConfig = {
+    ...getBaseConfig( 'frontend' ),
+    output: {
+        devtoolNamespace: 'wcGzd',
+        path: path.resolve( __dirname, 'build/' ),
+        // This is a cache busting mechanism which ensures that the script is loaded via the browser with a ?ver=hash
+        // string. The hash is based on the built file contents.
+        // @see https://github.com/webpack/webpack/issues/2329
+        // Using the ?ver string is needed here so the filename does not change between builds. The WordPress
+        // i18n system relies on the hash of the filename, so changing that frequently would result in broken
+        // translations which we must avoid.
+        // @see https://github.com/Automattic/jetpack/pull/20926
+        chunkFilename: `[name]-frontend.js?ver=[contenthash]`,
+        filename: `[name]-frontend.js`,
+        // This fixes an issue with multiple webpack projects using chunking
+        // overwriting each other's chunk loader function.
+        // See https://webpack.js.org/configuration/output/#outputjsonpfunction
+        // This can be removed when moving to webpack 5:
+        // https://webpack.js.org/blog/2020-10-10-webpack-5-release/#automatic-unique-naming
+        chunkLoadingGlobal: 'webpackWcBlocksJsonp',
+    }
+};
+
+const innerStylingConfig = getBaseConfig( 'styling' );
+
+const StylingConfig = {
+    ...innerStylingConfig,
+    optimization: {
+        splitChunks: {
+            minSize: 0,
+            automaticNameDelimiter: '--',
+            cacheGroups: {
+                editorStyle: {
+                    // Capture all `editor` stylesheets and editor-components stylesheets.
+                    test: ( module = {} ) =>
+                        module.constructor.name === 'CssModule' &&
+                        ( findModuleMatch( module, /editor\.scss$/ ) ||
+                            findModuleMatch(
+                                module,
+                                /[\\/]assets[\\/]js[\\/]editor-components[\\/]/
+                            ) ),
+                    name: 'wc-gzd-blocks-editor-style',
+                    chunks: 'all',
+                    priority: 10,
+                },
+            },
+        },
+    },
+    output: {
+        devtoolNamespace: 'wcGzd',
+        path: path.resolve( __dirname, 'build/' ),
+        filename: `[name]-style.js`,
+        library: [ 'wcGzd', 'blocks', '[name]' ],
+        libraryTarget: 'window',
+        // This fixes an issue with multiple webpack projects using chunking
+        // overwriting each other's chunk loader function.
+        // See https://webpack.js.org/configuration/output/#outputjsonpfunction
+        // This can be removed when moving to webpack 5:
+        // https://webpack.js.org/blog/2020-10-10-webpack-5-release/#automatic-unique-naming
+        chunkLoadingGlobal: 'webpackWcGzdBlocksJsonp'
+    },
+    resolve: {
+        alias: getAlias(),
+        extensions: [ '.js' ],
+    },
+    plugins: [
+        ...innerStylingConfig.plugins,
+        // Remove JS files generated by MiniCssExtractPlugin.
+        new RemoveFilesPlugin( `./build/*style.js` ),
+    ],
 };
 
 const StaticConfig = {
@@ -146,5 +384,11 @@ const StaticConfig = {
 };
 
 module.exports = [
+    CoreConfig,
+    MainConfig,
+    FrontendConfig,
+    ProductElements,
+    PaymentsConfig,
+    StylingConfig,
     StaticConfig
 ];
