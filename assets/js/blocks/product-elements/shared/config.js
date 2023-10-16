@@ -3,6 +3,7 @@
  */
 import { __ } from '@wordpress/i18n';
 import { Icon, grid } from '@wordpress/icons';
+import { __experimentalGetSpacingClassesAndStyles } from '@wordpress/block-editor';
 
 /**
  * Internal dependencies
@@ -26,6 +27,49 @@ const sharedConfig = {
     },
     supports: {
         html: false,
+        color: {
+            text: true,
+            background: true,
+            link: false,
+            __experimentalSkipSerialization: true,
+        },
+        typography: {
+            fontSize: true,
+            lineHeight: true,
+            __experimentalFontFamily: true,
+            __experimentalFontWeight: true,
+            __experimentalFontStyle: true,
+            __experimentalSkipSerialization: true,
+            __experimentalLetterSpacing: true,
+        },
+        ...( typeof __experimentalGetSpacingClassesAndStyles === 'function' && {
+            spacing: {
+                margin: true,
+                padding: true,
+            },
+        } ),
+    },
+    attributes: {
+        productId: {
+            type: 'number',
+            default: 0,
+        },
+        isDescendentOfQueryLoop: {
+            type: 'boolean',
+            default: false,
+        },
+        textAlign: {
+            type: 'string',
+            default: '',
+        },
+        isDescendentOfSingleProductTemplate: {
+            type: 'boolean',
+            default: false,
+        },
+        isDescendentOfSingleProductBlock: {
+            type: 'boolean',
+            default: false,
+        }
     },
     ancestor: [ 'woocommerce/all-products', 'woocommerce/single-product' ],
     save

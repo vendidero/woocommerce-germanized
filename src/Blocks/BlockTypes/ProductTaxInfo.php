@@ -6,17 +6,17 @@ use Automattic\WooCommerce\Blocks\Utils\StyleAttributesUtils;
 /**
  * ProductPrice class.
  */
-class ProductUnitPrice extends AbstractProductElementBlock {
+class ProductTaxInfo extends AbstractProductElementBlock {
 
 	/**
 	 * Block name.
 	 *
 	 * @var string
 	 */
-	protected $block_name = 'product-unit-price';
+	protected $block_name = 'product-tax-info';
 
 	protected function get_label_type() {
-		return 'unit_price';
+		return 'tax_info';
 	}
 
 	/**
@@ -25,10 +25,16 @@ class ProductUnitPrice extends AbstractProductElementBlock {
 	 * @return string
 	 */
 	protected function get_label_content( $product ) {
-		return $product->has_unit() ? $product->get_unit_price_html() : '';
-	}
+		$html = $product->get_tax_info();
 
-	protected function get_additional_classes( $attributes ) {
-		return 'price-unit';
+		if ( ! $html && wc_gzd_is_small_business() ) {
+			$html = wc_gzd_get_small_business_product_notice();
+		}
+
+		if ( false === $html ) {
+			$html = '';
+		}
+
+		return $html;
 	}
 }

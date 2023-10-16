@@ -12,3 +12,21 @@ registerBlockComponent( {
             )
     ),
 } );
+
+registerBlockComponent( {
+    blockName: 'woocommerce-germanized/product-delivery-time',
+    component: lazy( () =>
+        import(
+            /* webpackChunkName: "product-delivery-time" */ './delivery-time/frontend'
+            )
+    ),
+} );
+
+registerBlockComponent( {
+    blockName: 'woocommerce-germanized/product-tax-info',
+    component: lazy( () =>
+        import(
+            /* webpackChunkName: "product-tax-info" */ './tax-info/frontend'
+            )
+    ),
+} );

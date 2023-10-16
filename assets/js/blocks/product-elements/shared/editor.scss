@@ -1,0 +1,12 @@
+.wc-gzd-block-components-product-price-label {
+  display: block;
+}
+
+.wc-gzd-block-components-product-price-label {
+  &.wc-gzd-block-components-product-price-label--align-center {
+    text-align: center;
+  }
+  &.wc-gzd-block-components-product-price-label--align-right {
+    text-align: right;
+  }
+}

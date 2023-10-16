@@ -161,10 +161,16 @@
             return [];
         }
 
+        var isSingleProductBlock = $price.parents( '.wp-block-woocommerce-product-price[data-is-descendent-of-single-product-template]' ).length > 0;
+
         if ( 'SPAN' === $price[0].tagName ) {
             return self.$wrapper.find( '.price-unit' );
         } else {
-            return self.$wrapper.find( '.price-unit:not(.wc-gzd-additional-info-placeholder, .wc-gzd-additional-info-loop)' );
+            if ( isSingleProductBlock ) {
+                return self.$wrapper.find( '.wp-block-woocommerce-gzd-product-unit-price[data-is-descendent-of-single-product-template] .price-unit' );
+            } else {
+                return self.$wrapper.find( '.price-unit:not(.wc-gzd-additional-info-placeholder, .wc-gzd-additional-info-loop)' );
+            }
         }
     };
 

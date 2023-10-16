@@ -16,8 +16,8 @@ const { ancestor, ...configuration } = sharedConfig;
 const blockConfig = {
     ...configuration,
     apiVersion: 2,
-    title: __( 'Unit Price', 'woocommerce-germanized' ),
-    description: __( 'Inserts the product\'s price per unit.', 'woocommerce-germanized' ),
+    title: __( 'Tax Notice', 'woocommerce-germanized' ),
+    description: __( 'Inserts the product\'s tax notice.', 'woocommerce-germanized' ),
     usesContext: [ 'query', 'queryId', 'postId' ],
     icon: { src: <Icon
             icon={ currencyDollar }
@@ -28,10 +28,10 @@ const blockConfig = {
         ...sharedConfig.supports,
         ...( {
             __experimentalSelector:
-                '.wp-block-woocommerce-gzd-product-unit-price .wc-gzd-block-components-product-unit-price',
+                '.wp-block-woocommerce-gzd-product-tax-info .wc-gzd-block-components-product-tax-info',
         } )
     },
     edit,
 };
 
-registerBlockType( 'woocommerce-germanized/product-unit-price', blockConfig );
+registerBlockType( 'woocommerce-germanized/product-tax-info', blockConfig );

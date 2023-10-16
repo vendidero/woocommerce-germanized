@@ -142,40 +142,42 @@ final class Products {
 					$html_formatter = \Automattic\WooCommerce\Blocks\Package::container()->get( \Automattic\WooCommerce\StoreApi\StoreApi::class )->container()->get( ExtendSchema::class )->get_formatter( 'html' );
 
 					return array(
-						'unit_price_html' => $html_formatter->format( $gzd_product->get_unit_price_html() ),
-						'unit_prices'     => (object) $this->get_unit_prices( $gzd_product ),
-						'unit'            => $gzd_product->get_unit(),
-						'unit_base'       => $gzd_product->get_unit_base(),
-						'unit_product'    => $gzd_product->get_unit_product(),
+						'unit_price_html'    => $html_formatter->format( $gzd_product->get_unit_price_html() ),
+						'unit_prices'        => (object) $this->get_unit_prices( $gzd_product ),
+						'unit'               => $gzd_product->get_unit(),
+						'unit_base'          => $gzd_product->get_unit_base(),
+						'unit_product'       => $gzd_product->get_unit_product(),
+						'delivery_time_html' => $html_formatter->format( $gzd_product->get_delivery_time_html() ),
+						'tax_info_html'      => $html_formatter->format( $gzd_product->get_tax_info() ),
 					);
 				},
 				'schema_callback' => function () {
 					return array(
-						'unit'            => array(
+						'unit'               => array(
 							'description' => __( 'The unit for the unit price.', 'woocommerce-germanized' ),
 							'type'        => 'string',
 							'context'     => array( 'view', 'edit' ),
 							'readonly'    => true,
 						),
-						'unit_base'       => array(
+						'unit_base'          => array(
 							'description' => __( 'The unit base.', 'woocommerce-germanized' ),
 							'type'        => 'string',
 							'context'     => array( 'view', 'edit' ),
 							'readonly'    => true,
 						),
-						'unit_product'    => array(
+						'unit_product'       => array(
 							'description' => __( 'The unit product.', 'woocommerce-germanized' ),
 							'type'        => 'string',
 							'context'     => array( 'view', 'edit' ),
 							'readonly'    => true,
 						),
-						'unit_price_html' => array(
+						'unit_price_html'    => array(
 							'description' => __( 'Unit price string formatted as HTML.', 'woocommerce-germanized' ),
 							'type'        => 'string',
 							'context'     => array( 'view', 'edit' ),
 							'readonly'    => true,
 						),
-						'unit_prices'     => array(
+						'unit_prices'        => array(
 							'description' => __( 'Unit price data provided using the smallest unit of the currency.', 'woocommerce-germanized' ),
 							'type'        => 'object',
 							'context'     => array( 'view', 'edit' ),
@@ -220,6 +222,18 @@ final class Products {
 									),
 								),
 							),
+						),
+						'delivery_time_html' => array(
+							'description' => __( 'Delivery time formatted as HTML.', 'woocommerce-germanized' ),
+							'type'        => 'string',
+							'context'     => array( 'view', 'edit' ),
+							'readonly'    => true,
+						),
+						'tax_info_html'      => array(
+							'description' => __( 'Tax notice formatted as HTML.', 'woocommerce-germanized' ),
+							'type'        => 'string',
+							'context'     => array( 'view', 'edit' ),
+							'readonly'    => true,
 						),
 					);
 				},

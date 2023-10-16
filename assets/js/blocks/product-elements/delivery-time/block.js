@@ -3,9 +3,8 @@
  */
 import { withProductDataContext } from '@woocommerce/shared-hocs';
 import PriceLabelBlock from '../shared/price-label-block';
-
 export default ( props ) => {
-    props = { ...props, 'labelType': 'unit-price' };
+    props = { ...props, 'labelType': 'delivery-time' };
 
     // It is necessary because this block has to support serveral contexts:
     // - Inside `All Products Block` -> `withProductDataContext` HOC

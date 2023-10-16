@@ -20,12 +20,21 @@ final class Assets {
 	public function __construct() {
 		add_action( 'init', array( $this, 'register_assets' ) );
 		add_action( is_admin() ? 'admin_print_footer_scripts' : 'wp_print_footer_scripts', array( $this, 'enqueue_asset_data' ), 1 );
+		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_frontend_styles' ), 1000 );
 	}
 
 	public function register_assets() {
 		$this->register_script( 'wc-gzd-blocks', $this->get_block_asset_build_path( 'wc-gzd-blocks' ), array( 'wc-blocks' ), false );
 		$this->register_script( 'wc-gzd-blocks-settings', $this->get_block_asset_build_path( 'wc-gzd-blocks-settings' ), array( 'wc-blocks' ), false );
+
+		$this->register_style( 'wc-gzd-blocks-style', $this->get_block_asset_build_path( 'wc-gzd-blocks', 'css' ), array(), 'all' );
 		$this->register_style( 'wc-gzd-blocks-editor-style', $this->get_block_asset_build_path( 'wc-gzd-blocks-editor-style', 'css' ), array( 'wp-edit-blocks' ), 'all' );
+	}
+
+	public function enqueue_frontend_styles() {
+		if ( wp_style_is( 'wc-blocks-style' ) ) {
+			wp_enqueue_style( 'wc-gzd-blocks-style' );
+		}
 	}
 
 	public function data_exists( $key ) {

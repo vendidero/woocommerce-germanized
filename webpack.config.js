@@ -83,6 +83,7 @@ const entries = {
     styling: {
         // Shared blocks code
         'wc-gzd-blocks': './assets/js/index.js',
+        'wc-gzd-blocks-product-elements': './assets/js/blocks/product-elements/index.js',
         ...getBlockEntries( '{index,block,frontend}.{t,j}s{,x}' ),
     },
     core: {

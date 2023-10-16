@@ -130,7 +130,7 @@ abstract class AbstractBlock {
 	 */
 	protected function register_chunk_translations( $chunks ) {
 		foreach ( $chunks as $chunk ) {
-			$handle = 'wc-germanized-blocks-' . $chunk . '-chunk';
+			$handle = 'wc-gzd-blocks-' . $chunk . '-chunk';
 			$this->assets->register_script( $handle, $this->assets->get_block_asset_build_path( $chunk ), array(), true );
 			wp_add_inline_script(
 				$this->get_block_type_script( 'handle' ),
@@ -263,9 +263,9 @@ abstract class AbstractBlock {
 	 */
 	protected function get_block_type_editor_script( $key = null ) {
 		$script = array(
-			'handle'       => 'wc-germanized-' . $this->block_name . '-block',
+			'handle'       => 'wc-gzd-' . $this->block_name . '-block',
 			'path'         => $this->assets->get_block_asset_build_path( $this->block_name ),
-			'dependencies' => array( 'wc-blocks' ),
+			'dependencies' => array( 'wc-blocks', 'wc-gzd-blocks' ),
 		);
 		return $key ? $script[ $key ] : $script;
 	}
@@ -289,7 +289,7 @@ abstract class AbstractBlock {
 	 */
 	protected function get_block_type_script( $key = null ) {
 		$script = array(
-			'handle'       => 'wc-germanized-' . $this->block_name . '-block-frontend',
+			'handle'       => 'wc-gzd-' . $this->block_name . '-block-frontend',
 			'path'         => $this->assets->get_block_asset_build_path( $this->block_name . '-frontend' ),
 			'dependencies' => array(),
 		);
@@ -302,9 +302,9 @@ abstract class AbstractBlock {
 	 * @return string[]|null
 	 */
 	protected function get_block_type_style() {
-		$this->assets->register_style( 'wc-germanized-blocks-style-' . $this->block_name, $this->assets->get_block_asset_build_path( $this->block_name, 'css' ), array(), 'all', true );
+		$this->assets->register_style( 'wc-gzd-blocks-style-' . $this->block_name, $this->assets->get_block_asset_build_path( $this->block_name, 'css' ), array(), 'all', true );
 
-		return array( 'wc-blocks-style', 'wc-germanized-blocks-style-' . $this->block_name );
+		return array( 'wc-blocks-style', 'wc-gzd-blocks-style', 'wc-gzd-blocks-style-' . $this->block_name );
 	}
 
 	/**

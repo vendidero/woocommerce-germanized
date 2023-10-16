@@ -6,17 +6,17 @@ use Automattic\WooCommerce\Blocks\Utils\StyleAttributesUtils;
 /**
  * ProductPrice class.
  */
-class ProductUnitPrice extends AbstractProductElementBlock {
+class ProductDeliveryTime extends AbstractProductElementBlock {
 
 	/**
 	 * Block name.
 	 *
 	 * @var string
 	 */
-	protected $block_name = 'product-unit-price';
+	protected $block_name = 'product-delivery-time';
 
 	protected function get_label_type() {
-		return 'unit_price';
+		return 'delivery_time';
 	}
 
 	/**
@@ -25,10 +25,6 @@ class ProductUnitPrice extends AbstractProductElementBlock {
 	 * @return string
 	 */
 	protected function get_label_content( $product ) {
-		return $product->has_unit() ? $product->get_unit_price_html() : '';
-	}
-
-	protected function get_additional_classes( $attributes ) {
-		return 'price-unit';
+		return $product->get_delivery_time_html();
 	}
 }

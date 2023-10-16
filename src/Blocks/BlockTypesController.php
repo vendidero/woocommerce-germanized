@@ -43,9 +43,11 @@ final class BlockTypesController {
 	 */
 	protected function get_block_types() {
 		$block_types = array(
-			'ProductUnitPrice',
 			'CheckoutCheckboxes',
 			'CheckoutPhotovoltaicSystemNotice',
+			'ProductUnitPrice',
+			'ProductDeliveryTime',
+			'ProductTaxInfo',
 		);
 
 		return $block_types;
