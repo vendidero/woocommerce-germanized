@@ -2,7 +2,7 @@
  * External dependencies
  */
 import { registerBlockType } from '@wordpress/blocks';
-import { postDate, Icon } from '@wordpress/icons';
+import { button, Icon } from '@wordpress/icons';
 import { __ } from '@wordpress/i18n';
 
 /**
@@ -16,11 +16,11 @@ const { ancestor, ...configuration } = sharedConfig;
 const blockConfig = {
     ...configuration,
     apiVersion: 2,
-    title: __( 'Delivery Time', 'woocommerce-germanized' ),
-    description: __( 'Inserts the product\'s delivery time.', 'woocommerce-germanized' ),
+    title: __( 'Nutri-Score', 'woocommerce-germanized' ),
+    description: __( 'Inserts the product\'s Nutri-Score.', 'woocommerce-germanized' ),
     usesContext: [ 'query', 'queryId', 'postId' ],
     icon: { src: <Icon
-            icon={ postDate }
+            icon={ button }
             className="wc-block-editor-components-block-icon"
         /> },
 
@@ -28,10 +28,10 @@ const blockConfig = {
         ...sharedConfig.supports,
         ...( {
             __experimentalSelector:
-                '.wp-block-woocommerce-gzd-product-delivery-time .wc-gzd-block-components-product-delivery-time',
+                '.wp-block-woocommerce-gzd-product-nutri-score .wc-gzd-block-components-product-nutri-score',
         } )
     },
     edit,
 };
 
-registerBlockType( 'woocommerce-germanized/product-delivery-time', blockConfig );
+registerBlockType( 'woocommerce-germanized/product-nutri-score', blockConfig );

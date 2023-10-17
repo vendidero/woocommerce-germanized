@@ -6,21 +6,21 @@ use Automattic\WooCommerce\Blocks\Utils\StyleAttributesUtils;
 /**
  * ProductPrice class.
  */
-class ProductTaxInfo extends AbstractProductElementBlock {
+class ProductShippingCostsInfo extends AbstractProductElementBlock {
 
 	/**
 	 * Block name.
 	 *
 	 * @var string
 	 */
-	protected $block_name = 'product-tax-info';
+	protected $block_name = 'product-shipping-costs-info';
 
 	protected function get_label_type() {
-		return 'tax_info';
+		return 'shipping_costs_info';
 	}
 
 	protected function get_additional_classes( $attributes ) {
-		return 'tax-info';
+		return 'shipping-costs-info';
 	}
 
 	/**
@@ -29,16 +29,6 @@ class ProductTaxInfo extends AbstractProductElementBlock {
 	 * @return string
 	 */
 	protected function get_label_content( $product ) {
-		$html = $product->get_tax_info();
-
-		if ( ! $html && wc_gzd_is_small_business() ) {
-			$html = wc_gzd_get_small_business_product_notice();
-		}
-
-		if ( false === $html ) {
-			$html = '';
-		}
-
-		return $html;
+		return $product->get_shipping_costs_html();
 	}
 }

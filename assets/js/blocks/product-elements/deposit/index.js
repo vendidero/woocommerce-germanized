@@ -2,7 +2,7 @@
  * External dependencies
  */
 import { registerBlockType } from '@wordpress/blocks';
-import { postDate, Icon } from '@wordpress/icons';
+import { currencyEuro, Icon } from '@wordpress/icons';
 import { __ } from '@wordpress/i18n';
 
 /**
@@ -16,11 +16,11 @@ const { ancestor, ...configuration } = sharedConfig;
 const blockConfig = {
     ...configuration,
     apiVersion: 2,
-    title: __( 'Delivery Time', 'woocommerce-germanized' ),
-    description: __( 'Inserts the product\'s delivery time.', 'woocommerce-germanized' ),
+    title: __( 'Deposit amount', 'woocommerce-germanized' ),
+    description: __( 'Inserts the product\'s deposit amount.', 'woocommerce-germanized' ),
     usesContext: [ 'query', 'queryId', 'postId' ],
     icon: { src: <Icon
-            icon={ postDate }
+            icon={ currencyEuro }
             className="wc-block-editor-components-block-icon"
         /> },
 
@@ -28,10 +28,10 @@ const blockConfig = {
         ...sharedConfig.supports,
         ...( {
             __experimentalSelector:
-                '.wp-block-woocommerce-gzd-product-delivery-time .wc-gzd-block-components-product-delivery-time',
+                '.wp-block-woocommerce-gzd-product-deposit .wc-gzd-block-components-product-deposit',
         } )
     },
     edit,
 };
 
-registerBlockType( 'woocommerce-germanized/product-delivery-time', blockConfig );
+registerBlockType( 'woocommerce-germanized/product-deposit', blockConfig );

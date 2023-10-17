@@ -6,21 +6,21 @@ use Automattic\WooCommerce\Blocks\Utils\StyleAttributesUtils;
 /**
  * ProductPrice class.
  */
-class ProductTaxInfo extends AbstractProductElementBlock {
+class ProductDefectDescription extends AbstractProductElementBlock {
 
 	/**
 	 * Block name.
 	 *
 	 * @var string
 	 */
-	protected $block_name = 'product-tax-info';
+	protected $block_name = 'product-defect-description';
 
 	protected function get_label_type() {
-		return 'tax_info';
+		return 'defect_description';
 	}
 
 	protected function get_additional_classes( $attributes ) {
-		return 'tax-info';
+		return 'defect-description';
 	}
 
 	/**
@@ -29,16 +29,6 @@ class ProductTaxInfo extends AbstractProductElementBlock {
 	 * @return string
 	 */
 	protected function get_label_content( $product ) {
-		$html = $product->get_tax_info();
-
-		if ( ! $html && wc_gzd_is_small_business() ) {
-			$html = wc_gzd_get_small_business_product_notice();
-		}
-
-		if ( false === $html ) {
-			$html = '';
-		}
-
-		return $html;
+		return $product->get_formatted_defect_description();
 	}
 }

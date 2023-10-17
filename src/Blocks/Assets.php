@@ -1,6 +1,8 @@
 <?php
 namespace Vendidero\Germanized\Blocks;
 
+use Vendidero\Germanized\Package;
+
 final class Assets {
 
 	/**
@@ -21,6 +23,31 @@ final class Assets {
 		add_action( 'init', array( $this, 'register_assets' ) );
 		add_action( is_admin() ? 'admin_print_footer_scripts' : 'wp_print_footer_scripts', array( $this, 'enqueue_asset_data' ), 1 );
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_frontend_styles' ), 1000 );
+		add_action( 'enqueue_block_assets', array( $this, 'enqueue_block_styles' ), 500 );
+	}
+
+	public function enqueue_block_styles() {
+		if ( wp_style_is( 'wc-gzd-blocks-editor-style' ) ) {
+			$custom_css = '
+                .wc-gzd-nutri-score-value-a {
+                    background: url(' . esc_url( Package::get_url( '/assets/images/nutri-score-a.svg' ) ) . ') no-repeat;
+                }
+                .wc-gzd-nutri-score-value-b {
+                    background: url(' . esc_url( Package::get_url( '/assets/images/nutri-score-b.svg' ) ) . ') no-repeat;
+                }
+                .wc-gzd-nutri-score-value-c {
+                    background: url(' . esc_url( Package::get_url( '/assets/images/nutri-score-c.svg' ) ) . ') no-repeat;
+                }
+                .wc-gzd-nutri-score-value-d {
+                    background: url(' . esc_url( Package::get_url( '/assets/images/nutri-score-d.svg' ) ) . ') no-repeat;
+                }
+                .wc-gzd-nutri-score-value-e {
+                    background: url(' . esc_url( Package::get_url( '/assets/images/nutri-score-e.svg' ) ) . ') no-repeat;
+                }
+            ';
+
+			wp_add_inline_style( 'wc-gzd-blocks-editor-style', $custom_css );
+		}
 	}
 
 	public function register_assets() {
@@ -33,6 +60,25 @@ final class Assets {
 
 	public function enqueue_frontend_styles() {
 		if ( wp_style_is( 'wc-blocks-style' ) ) {
+			$custom_css = '
+                .wc-gzd-nutri-score-value-a {
+                    background: url(' . esc_url( Package::get_url( '/assets/images/nutri-score-a.svg' ) ) . ') no-repeat;
+                }
+                .wc-gzd-nutri-score-value-b {
+                    background: url(' . esc_url( Package::get_url( '/assets/images/nutri-score-b.svg' ) ) . ') no-repeat;
+                }
+                .wc-gzd-nutri-score-value-c {
+                    background: url(' . esc_url( Package::get_url( '/assets/images/nutri-score-c.svg' ) ) . ') no-repeat;
+                }
+                .wc-gzd-nutri-score-value-d {
+                    background: url(' . esc_url( Package::get_url( '/assets/images/nutri-score-d.svg' ) ) . ') no-repeat;
+                }
+                .wc-gzd-nutri-score-value-e {
+                    background: url(' . esc_url( Package::get_url( '/assets/images/nutri-score-e.svg' ) ) . ') no-repeat;
+                }
+            ';
+
+			wp_add_inline_style( 'wc-gzd-blocks-style', $custom_css );
 			wp_enqueue_style( 'wc-gzd-blocks-style' );
 		}
 	}

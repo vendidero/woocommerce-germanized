@@ -13,7 +13,7 @@ import { useEffect } from '@wordpress/element';
  */
 import Block from './block';
 import { useIsDescendentOfSingleProductTemplate } from '../shared/use-is-descendent-of-single-product-template';
-const UnitPriceEdit = ( {
+const Edit = ( {
     attributes,
     setAttributes,
     context,
@@ -62,4 +62,4 @@ const UnitPriceEdit = ( {
     );
 };
 
-export default UnitPriceEdit;
+export default Edit;

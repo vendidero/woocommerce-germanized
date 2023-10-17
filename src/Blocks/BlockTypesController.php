@@ -48,6 +48,12 @@ final class BlockTypesController {
 			'ProductUnitPrice',
 			'ProductDeliveryTime',
 			'ProductTaxInfo',
+			'ProductShippingCostsInfo',
+			'ProductUnitProduct',
+			'ProductDefectDescription',
+			'ProductDeposit',
+			'ProductDepositPackagingType',
+			'ProductNutriScore',
 		);
 
 		return $block_types;

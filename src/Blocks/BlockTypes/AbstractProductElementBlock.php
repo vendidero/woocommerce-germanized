@@ -90,7 +90,7 @@ abstract class AbstractProductElementBlock extends AbstractBlock {
 	}
 
 	protected function get_additional_classes( $attributes ) {
-		return '';
+		return 'delivery-time-info';
 	}
 
 	/**
@@ -111,28 +111,30 @@ abstract class AbstractProductElementBlock extends AbstractBlock {
 		$post_id = isset( $block->context['postId'] ) ? $block->context['postId'] : '';
 		$product = wc_gzd_get_product( $post_id );
 
-		if ( $product && $product->has_unit() ) {
+		if ( $product ) {
 			$styles_and_classes            = StyleAttributesUtils::get_classes_and_styles_by_attributes( $attributes );
 			$text_align_styles_and_classes = StyleAttributesUtils::get_text_align_class_and_style( $attributes );
 			$margin_styles_and_classes     = StyleAttributesUtils::get_margin_class_and_style( $attributes );
-			$additional_classes            = ( isset( $text_align_styles_and_classes['class'] ) ? $text_align_styles_and_classes['class'] : '' ) . ' ' . $styles_and_classes['classes'];
-			$additional_classes           .= ' ' . $this->get_additional_classes( $attributes );
+			$inner_classes                 = sprintf( 'wc-gzd-block-components-product-%1$s wc-gzd-block-grid__product-%1$s', $this->get_label_type_class() ) . ' ' . ( isset( $text_align_styles_and_classes['class'] ) ? $text_align_styles_and_classes['class'] : '' ) . ' ' . $styles_and_classes['classes'];
+			$inner_classes                .= ' ' . $this->get_additional_classes( $attributes );
 			$html                          = $this->get_label_content( $product );
+			$block_classes                 = 'wp-block-woocommerce-gzd-product-price-label wp-block-woocommerce-gzd-product-' . $this->get_label_type_class() . ' ' . ( isset( $margin_styles_and_classes['class'] ) ? $margin_styles_and_classes['class'] : '' );
 
 			if ( ! $html && $product->is_type( 'variable' ) ) {
-				$additional_classes .= ' wc-gzd-additional-info-placeholder';
+				$inner_classes .= ' wc-gzd-additional-info-placeholder';
+			}
+
+			if ( ! $html ) {
+				$block_classes .= ' wp-block-woocommerce-gzd-product-is-empty';
 			}
 
 			return sprintf(
-				'<div class="wp-block-woocommerce-gzd-product-%1$s %2$s" style="%3$s"><div class="wc-gzd-block-components-product-%1$s wc-gzd-block-grid__product-%1$s %4$s" style="%5$s">
-					%6$s
-				</div></div>',
-				esc_attr( $this->get_label_type_class() ),
-				esc_attr( isset( $margin_styles_and_classes['class'] ) ? $margin_styles_and_classes['class'] : '' ),
+				'<div class="%1$s" style="%2$s"><div class="%3$s" style="%4$s">%5$s</div></div>',
+				esc_attr( trim( $block_classes ) ),
 				esc_attr( isset( $margin_styles_and_classes['style'] ) ? $margin_styles_and_classes['style'] : '' ),
-				esc_attr( trim( $additional_classes ) ),
+				esc_attr( trim( $inner_classes ) ),
 				esc_attr( isset( $styles_and_classes['styles'] ) ? $styles_and_classes['styles'] : '' ),
-				wp_kses_post( $this->get_label_content( $product ) )
+				wp_kses_post( $html )
 			);
 		}
 	}

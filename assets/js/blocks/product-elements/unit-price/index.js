@@ -2,7 +2,7 @@
  * External dependencies
  */
 import { registerBlockType } from '@wordpress/blocks';
-import { currencyDollar, Icon } from '@wordpress/icons';
+import { currencyEuro, Icon } from '@wordpress/icons';
 import { __ } from '@wordpress/i18n';
 
 /**
@@ -20,7 +20,7 @@ const blockConfig = {
     description: __( 'Inserts the product\'s price per unit.', 'woocommerce-germanized' ),
     usesContext: [ 'query', 'queryId', 'postId' ],
     icon: { src: <Icon
-            icon={ currencyDollar }
+            icon={ currencyEuro }
             className="wc-block-editor-components-block-icon"
         /> },
 

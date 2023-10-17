@@ -7,7 +7,7 @@ import {
     useInnerBlockLayoutContext,
     useProductDataContext,
 } from '@woocommerce/shared-context';
-import { __, _x } from '@wordpress/i18n';
+import { __, _x, sprintf } from '@wordpress/i18n';
 import { withProductDataContext } from '@woocommerce/shared-hocs';
 import { useStyleProps } from '@germanized/base-hooks';
 import FormattedMonetaryAmount from '@germanized/base-components/formatted-monetary-amount';
@@ -22,8 +22,21 @@ const getPreviewData = ( labelType, productData, isDescendentOfSingleProductTemp
             'regular_price': 0,
             'sale_price': 0
         },
+        'unit_product': 0,
+        'unit_product_html': '',
         'delivery_time_html': '',
         'tax_info_html': '',
+        'shipping_costs_info_html': '',
+        'defect_description_html': '',
+        'nutri_score': '',
+        'nutri_score_html': '',
+        'deposit_html': '',
+        'deposit_prices': {
+            'price': 0,
+            'quantity': 0,
+            'amount': 0
+        },
+        'deposit_packaging_type_html': '',
     };
 
     const prices            = productData.prices;
@@ -31,7 +44,7 @@ const getPreviewData = ( labelType, productData, isDescendentOfSingleProductTemp
         ? getCurrencyFromPriceResponse()
         : getCurrencyFromPriceResponse( prices );
 
-    const labelTypeData = labelType.replace( '-', '_' );
+    const labelTypeData = labelType.replace( /-/g, '_' );
     const data = gzdData.hasOwnProperty( labelTypeData + '_html' ) ? gzdData[ labelTypeData + '_html' ] : '';
     let formattedPreview  = '';
 
@@ -45,11 +58,32 @@ const getPreviewData = ( labelType, productData, isDescendentOfSingleProductTemp
             </>
         );
     } else if ( 'delivery_time' === labelTypeData ) {
-        formattedPreview = __( 'Delivery time: 2-3 days', 'preview', 'woocommerce-germanized' );
+        formattedPreview = _x( 'Delivery time: 2-3 days', 'preview', 'woocommerce-germanized' );
     } else if ( 'tax_info' === labelTypeData ) {
-        formattedPreview = __( 'incl. 19 % VAT', 'preview', 'woocommerce-germanized' );
-    } else if ( 'shipping_info' === labelTypeData ) {
-        formattedPreview = __( 'plus shipping costs', 'preview', 'woocommerce-germanized' );
+        formattedPreview = _x( 'incl. 19 % VAT', 'preview', 'woocommerce-germanized' );
+    } else if ( 'shipping_costs_info' === labelTypeData ) {
+        formattedPreview = _x( 'plus shipping costs', 'preview', 'woocommerce-germanized' );
+    } else if ( 'unit_product' === labelTypeData ) {
+        formattedPreview = sprintf( _x( 'Product includes: %1$s kg', 'preview', 'woocommerce-germanized' ), 10 );
+    } else if ( 'defect_description' === labelTypeData ) {
+        formattedPreview = _x( 'This product has a serious defect.', 'preview', 'woocommerce-germanized' );
+    } else if ( 'deposit' === labelTypeData ) {
+        formattedPreview = (
+            <>
+                <span className="additional">{ _x( 'Plus', 'preview', 'woocommerce-germanized' ) }</span> <FormattedMonetaryAmount
+                    currency={ currency }
+                    value={ 40 }
+                /> <span className="deposit-notice">{ _x( 'deposit', 'preview', 'woocommerce-germanized' ) }</span>
+            </>
+        );
+    } else if ( 'deposit_packaging_type' === labelTypeData ) {
+        formattedPreview = _x( 'Disposable', 'preview', 'woocommerce-germanized' );
+    } else if ( 'nutri_score' === labelTypeData ) {
+        formattedPreview = (
+            <>
+                <span className="wc-gzd-nutri-score-value wc-gzd-nutri-score-value-a">A</span>
+            </>
+        );
     }
 
     return {

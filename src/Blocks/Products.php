@@ -11,6 +11,24 @@ final class Products {
 	public function __construct() {
 		$this->register_integrations();
 		$this->register_endpoint_data();
+		$this->register_single_product_hook_compatibility();
+	}
+
+	private function register_single_product_hook_compatibility() {
+		add_filter(
+			'woocommerce_blocks_hook_compatibility_additional_data',
+			function( $additional_hook_data ) {
+				foreach ( wc_gzd_get_single_product_shopmarks() as $price_label ) {
+					$additional_hook_data[] = array(
+						'hook'     => $price_label->get_filter(),
+						'function' => $price_label->get_callback(),
+						'priority' => $price_label->get_priority(),
+					);
+				}
+
+				return $additional_hook_data;
+			}
+		);
 	}
 
 	private function register_integrations() {
@@ -88,6 +106,34 @@ final class Products {
 	}
 
 	/**
+	 * @param \WC_GZD_Product $product
+	 * @param string $tax_display_mode
+	 *
+	 * @return array
+	 */
+	private function get_deposit_prices( $product, $tax_display_mode = '' ) {
+		$prices           = array();
+		$tax_display_mode = $this->get_tax_display_mode( $tax_display_mode );
+
+		$amount = $product->get_deposit_amount( 'view', $tax_display_mode );
+		$price  = $product->get_deposit_amount_per_unit( 'view', $tax_display_mode );
+
+		if ( $product->is_food() ) {
+			$prices['amount']   = $this->prepare_money_response( empty( $amount ) ? 0 : $amount, wc_get_price_decimals() );
+			$prices['quantity'] = $product->get_deposit_quantity();
+			$prices['price']    = $this->prepare_money_response( empty( $price ) ? 0 : $price, wc_get_price_decimals() );
+		} else {
+			$prices = array(
+				'amount'   => 0,
+				'quantity' => 0,
+				'price'    => 0,
+			);
+		}
+
+		return $prices;
+	}
+
+	/**
 	 * Get price range from certain product types.
 	 *
 	 * @param \WC_GZD_Product $product Product instance.
@@ -142,42 +188,56 @@ final class Products {
 					$html_formatter = \Automattic\WooCommerce\Blocks\Package::container()->get( \Automattic\WooCommerce\StoreApi\StoreApi::class )->container()->get( ExtendSchema::class )->get_formatter( 'html' );
 
 					return array(
-						'unit_price_html'    => $html_formatter->format( $gzd_product->get_unit_price_html() ),
-						'unit_prices'        => (object) $this->get_unit_prices( $gzd_product ),
-						'unit'               => $gzd_product->get_unit(),
-						'unit_base'          => $gzd_product->get_unit_base(),
-						'unit_product'       => $gzd_product->get_unit_product(),
-						'delivery_time_html' => $html_formatter->format( $gzd_product->get_delivery_time_html() ),
-						'tax_info_html'      => $html_formatter->format( $gzd_product->get_tax_info() ),
+						'unit_price_html'             => $html_formatter->format( $gzd_product->get_unit_price_html() ),
+						'unit_prices'                 => (object) $this->get_unit_prices( $gzd_product ),
+						'unit'                        => $gzd_product->get_unit(),
+						'unit_base'                   => $gzd_product->get_unit_base(),
+						'unit_product'                => $gzd_product->get_unit_product(),
+						'unit_product_html'           => $html_formatter->format( $gzd_product->get_unit_product_html() ),
+						'delivery_time_html'          => $html_formatter->format( $gzd_product->get_delivery_time_html() ),
+						'tax_info_html'               => $html_formatter->format( $gzd_product->get_tax_info() ),
+						'shipping_costs_info_html'    => $html_formatter->format( $gzd_product->get_shipping_costs_html() ),
+						'defect_description_html'     => $html_formatter->format( $gzd_product->get_formatted_defect_description() ),
+						'nutri_score'                 => $gzd_product->get_nutri_score(),
+						'nutri_score_html'            => $html_formatter->format( $gzd_product->get_formatted_nutri_score() ),
+						'deposit_html'                => $html_formatter->format( $gzd_product->get_deposit_amount_html() ),
+						'deposit_prices'              => (object) $this->get_deposit_prices( $gzd_product ),
+						'deposit_packaging_type_html' => $html_formatter->format( $gzd_product->get_deposit_packaging_type_title() ),
 					);
 				},
 				'schema_callback' => function () {
 					return array(
-						'unit'               => array(
+						'unit'                        => array(
 							'description' => __( 'The unit for the unit price.', 'woocommerce-germanized' ),
 							'type'        => 'string',
 							'context'     => array( 'view', 'edit' ),
 							'readonly'    => true,
 						),
-						'unit_base'          => array(
+						'unit_base'                   => array(
 							'description' => __( 'The unit base.', 'woocommerce-germanized' ),
 							'type'        => 'string',
 							'context'     => array( 'view', 'edit' ),
 							'readonly'    => true,
 						),
-						'unit_product'       => array(
+						'unit_product'                => array(
 							'description' => __( 'The unit product.', 'woocommerce-germanized' ),
 							'type'        => 'string',
 							'context'     => array( 'view', 'edit' ),
 							'readonly'    => true,
 						),
-						'unit_price_html'    => array(
+						'unit_product_html'           => array(
+							'description' => __( 'Unit product string formatted as HTML.', 'woocommerce-germanized' ),
+							'type'        => 'string',
+							'context'     => array( 'view', 'edit' ),
+							'readonly'    => true,
+						),
+						'unit_price_html'             => array(
 							'description' => __( 'Unit price string formatted as HTML.', 'woocommerce-germanized' ),
 							'type'        => 'string',
 							'context'     => array( 'view', 'edit' ),
 							'readonly'    => true,
 						),
-						'unit_prices'        => array(
+						'unit_prices'                 => array(
 							'description' => __( 'Unit price data provided using the smallest unit of the currency.', 'woocommerce-germanized' ),
 							'type'        => 'object',
 							'context'     => array( 'view', 'edit' ),
@@ -223,17 +283,79 @@ final class Products {
 								),
 							),
 						),
-						'delivery_time_html' => array(
+						'delivery_time_html'          => array(
 							'description' => __( 'Delivery time formatted as HTML.', 'woocommerce-germanized' ),
 							'type'        => 'string',
 							'context'     => array( 'view', 'edit' ),
 							'readonly'    => true,
 						),
-						'tax_info_html'      => array(
+						'tax_info_html'               => array(
 							'description' => __( 'Tax notice formatted as HTML.', 'woocommerce-germanized' ),
 							'type'        => 'string',
 							'context'     => array( 'view', 'edit' ),
 							'readonly'    => true,
+						),
+						'shipping_costs_info_html'    => array(
+							'description' => __( 'Shipping costs notice formatted as HTML.', 'woocommerce-germanized' ),
+							'type'        => 'string',
+							'context'     => array( 'view', 'edit' ),
+							'readonly'    => true,
+						),
+						'defect_description_html'     => array(
+							'description' => __( 'Defect description formatted as HTML.', 'woocommerce-germanized' ),
+							'type'        => 'string',
+							'context'     => array( 'view', 'edit' ),
+							'readonly'    => true,
+						),
+						'deposit_html'                => array(
+							'description' => __( 'Deposit string formatted as HTML.', 'woocommerce-germanized' ),
+							'type'        => 'string',
+							'context'     => array( 'view', 'edit' ),
+							'readonly'    => true,
+						),
+						'deposit_packaging_type_html' => array(
+							'description' => __( 'Deposit packaging type string formatted as HTML.', 'woocommerce-germanized' ),
+							'type'        => 'string',
+							'context'     => array( 'view', 'edit' ),
+							'readonly'    => true,
+						),
+						'nutri_score_html'            => array(
+							'description' => __( 'Nutri score string formatted as HTML.', 'woocommerce-germanized' ),
+							'type'        => 'string',
+							'context'     => array( 'view', 'edit' ),
+							'readonly'    => true,
+						),
+						'nutri_score'                 => array(
+							'description' => __( 'Nutri score.', 'woocommerce-germanized' ),
+							'type'        => 'string',
+							'context'     => array( 'view', 'edit' ),
+							'readonly'    => true,
+						),
+						'deposit_prices'              => array(
+							'description' => __( 'Deposit price data provided using the smallest unit of the currency.', 'woocommerce-germanized' ),
+							'type'        => 'object',
+							'context'     => array( 'view', 'edit' ),
+							'readonly'    => true,
+							'properties'  => array(
+								'price'    => array(
+									'description' => __( 'Current product deposit per unit.', 'woocommerce-germanized' ),
+									'type'        => 'string',
+									'context'     => array( 'view', 'edit' ),
+									'readonly'    => true,
+								),
+								'amount'   => array(
+									'description' => __( 'Product total deposit amount.', 'woocommerce-germanized' ),
+									'type'        => 'string',
+									'context'     => array( 'view', 'edit' ),
+									'readonly'    => true,
+								),
+								'quantity' => array(
+									'description' => __( 'Product deposit quantity.', 'woocommerce-germanized' ),
+									'type'        => 'string',
+									'context'     => array( 'view', 'edit' ),
+									'readonly'    => true,
+								),
+							),
 						),
 					);
 				},
