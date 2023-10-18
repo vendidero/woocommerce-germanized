@@ -185,7 +185,7 @@ const getBaseConfig = ( entry ) => {
                 return `${ paramCase( chunkData.chunk.name ) }.js`;
             },
             path: path.resolve( __dirname, 'build/' ),
-            library: [ 'wcGzd', '[name]' ],
+            library: [ 'wcGzd', 'blocks', '[name]' ],
             libraryTarget: 'window',
             // This fixes an issue with multiple webpack projects using chunking
             // overwriting each other's chunk loader function.
@@ -381,6 +381,9 @@ const StaticConfig = {
     output: {
         path: path.resolve( __dirname, './build/static/' ),
         filename: "[name].js",
+        devtoolNamespace: 'germanized',
+        library: [ 'germanized', 'static', '[name]' ],
+        libraryTarget: 'window',
     }
 };
 

@@ -1,7 +1,5 @@
 jQuery( function( $ ) {
-
     var wc_gzd_direct_debit = {
-
         $checkoutForm: $( 'form.checkout, form#order_review' ),
         params: {},
 
@@ -59,7 +57,7 @@ jQuery( function( $ ) {
         },
 
         isValidIBAN: function( iban ) {
-            return IBAN.isValid( iban );
+            return window.germanized.static.iban.isValid( iban );
         },
 
         isValidSWIFT: function( swift ) {
