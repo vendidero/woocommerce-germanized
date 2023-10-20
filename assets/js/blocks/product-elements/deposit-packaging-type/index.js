@@ -4,6 +4,7 @@
 import { registerBlockType } from '@wordpress/blocks';
 import { info, Icon } from '@wordpress/icons';
 import { __ } from '@wordpress/i18n';
+import { getSetting } from '@germanized/settings';
 
 /**
  * Internal dependencies
@@ -16,7 +17,7 @@ const { ancestor, ...configuration } = sharedConfig;
 const blockConfig = {
     ...configuration,
     apiVersion: 2,
-    title: __( 'Deposit packaging type', 'woocommerce-germanized' ),
+    title: __( 'Deposit packaging type', 'woocommerce-germanized' ) + ( ! getSetting( 'isPro' ) ? ' (Pro)' : '' ),
     description: __( 'Inserts the product\'s deposit packaging type.', 'woocommerce-germanized' ),
     usesContext: [ 'query', 'queryId', 'postId' ],
     icon: { src: <Icon

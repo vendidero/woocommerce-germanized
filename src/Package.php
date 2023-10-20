@@ -70,4 +70,8 @@ class Package {
 	public static function get_language_path() {
 		return self::$gzd_instance->language_path();
 	}
+
+	public static function is_pro() {
+		return self::$gzd_instance->is_pro();
+	}
 }

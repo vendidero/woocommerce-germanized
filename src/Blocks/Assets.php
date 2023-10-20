@@ -56,6 +56,8 @@ final class Assets {
 
 		$this->register_style( 'wc-gzd-blocks-style', $this->get_block_asset_build_path( 'wc-gzd-blocks', 'css' ), array(), 'all' );
 		$this->register_style( 'wc-gzd-blocks-editor-style', $this->get_block_asset_build_path( 'wc-gzd-blocks-editor-style', 'css' ), array( 'wp-edit-blocks' ), 'all' );
+
+		$this->register_data( 'isPro', Package::is_pro() );
 	}
 
 	public function enqueue_frontend_styles() {

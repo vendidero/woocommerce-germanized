@@ -8,7 +8,6 @@ import {
     useProductDataContext,
 } from '@woocommerce/shared-context';
 import { __, _x, sprintf } from '@wordpress/i18n';
-import { withProductDataContext } from '@woocommerce/shared-hocs';
 import { useStyleProps } from '@germanized/base-hooks';
 import FormattedMonetaryAmount from '@germanized/base-components/formatted-monetary-amount';
 

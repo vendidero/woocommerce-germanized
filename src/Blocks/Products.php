@@ -118,7 +118,7 @@ final class Products {
 		$amount = $product->get_deposit_amount( 'view', $tax_display_mode );
 		$price  = $product->get_deposit_amount_per_unit( 'view', $tax_display_mode );
 
-		if ( $product->is_food() ) {
+		if ( Package::is_pro() && $product->is_food() ) {
 			$prices['amount']   = $this->prepare_money_response( empty( $amount ) ? 0 : $amount, wc_get_price_decimals() );
 			$prices['quantity'] = $product->get_deposit_quantity();
 			$prices['price']    = $this->prepare_money_response( empty( $price ) ? 0 : $price, wc_get_price_decimals() );
@@ -185,6 +185,7 @@ final class Products {
 				'namespace'       => 'woocommerce-germanized',
 				'data_callback'   => function( $product ) {
 					$gzd_product    = wc_gzd_get_product( $product );
+					$is_pro         = Package::is_pro();
 					$html_formatter = \Automattic\WooCommerce\Blocks\Package::container()->get( \Automattic\WooCommerce\StoreApi\StoreApi::class )->container()->get( ExtendSchema::class )->get_formatter( 'html' );
 
 					return array(
@@ -198,11 +199,11 @@ final class Products {
 						'tax_info_html'               => $html_formatter->format( $gzd_product->get_tax_info() ),
 						'shipping_costs_info_html'    => $html_formatter->format( $gzd_product->get_shipping_costs_html() ),
 						'defect_description_html'     => $html_formatter->format( $gzd_product->get_formatted_defect_description() ),
-						'nutri_score'                 => $gzd_product->get_nutri_score(),
-						'nutri_score_html'            => $html_formatter->format( $gzd_product->get_formatted_nutri_score() ),
-						'deposit_html'                => $html_formatter->format( $gzd_product->get_deposit_amount_html() ),
+						'nutri_score'                 => $is_pro ? $gzd_product->get_nutri_score() : '',
+						'nutri_score_html'            => $is_pro ? $html_formatter->format( $gzd_product->get_formatted_nutri_score() ) : '',
+						'deposit_html'                => $is_pro ? $html_formatter->format( $gzd_product->get_deposit_amount_html() ) : '',
 						'deposit_prices'              => (object) $this->get_deposit_prices( $gzd_product ),
-						'deposit_packaging_type_html' => $html_formatter->format( $gzd_product->get_deposit_packaging_type_title() ),
+						'deposit_packaging_type_html' => $is_pro ? $html_formatter->format( $gzd_product->get_deposit_packaging_type_title() ) : '',
 					);
 				},
 				'schema_callback' => function () {
