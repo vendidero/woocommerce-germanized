@@ -5,7 +5,7 @@
 # Variables
 RELEASER_VERSION="1.4.3"
 RELEASER_PATH=$(pwd)
-BUILD_PATH="${RELEASER_PATH}/deploy"
+BUILD_PATH="${RELEASER_PATH}/release"
 PLUGIN_SLUG="woocommerce-germanized"
 GITHUB_ORG="vendidero"
 IS_PRE_RELEASE=false
@@ -235,6 +235,10 @@ composer install --no-dev || exit "$?"
 output 2 "Running JS Build..."
 npm install
 npm run build || exit "$?"
+output 2 "Cleaning up PHP dependencies..."
+composer install --no-dev || exit "$?"
+output 2 "Generate i18n JSON files from PO..."
+wp i18n make-json --no-purge i18n/languages
 
 # Create GH branch with build and commit before doing a GH release
 if ! $SKIP_GH_BUILD; then
@@ -252,6 +256,11 @@ if ! $SKIP_GH_BUILD; then
   git add build/. --force
   git add .
   git commit -m "Adding /build directory to release" --no-verify
+
+  # Force vendor directory to be part of release branch
+  git add i18n/languages/. --force
+  git add .
+  git commit -m "Adding i18n json files to release" --no-verify
 
   # Force vendor directory to be part of release branch
   git add vendor/. --force

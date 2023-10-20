@@ -51,8 +51,8 @@ final class Assets {
 	}
 
 	public function register_assets() {
-		$this->register_script( 'wc-gzd-blocks', $this->get_block_asset_build_path( 'wc-gzd-blocks' ), array( 'wc-blocks' ), false );
-		$this->register_script( 'wc-gzd-blocks-settings', $this->get_block_asset_build_path( 'wc-gzd-blocks-settings' ), array( 'wc-blocks' ), false );
+		$this->register_script( 'wc-gzd-blocks', $this->get_block_asset_build_path( 'wc-gzd-blocks' ), array(), false );
+		$this->register_script( 'wc-gzd-blocks-settings', $this->get_block_asset_build_path( 'wc-gzd-blocks-settings' ), array( 'wc-settings' ), false );
 
 		$this->register_style( 'wc-gzd-blocks-style', $this->get_block_asset_build_path( 'wc-gzd-blocks', 'css' ), array(), 'all' );
 		$this->register_style( 'wc-gzd-blocks-editor-style', $this->get_block_asset_build_path( 'wc-gzd-blocks-editor-style', 'css' ), array( 'wp-edit-blocks' ), 'all' );
@@ -132,7 +132,7 @@ final class Assets {
 
 		if ( $relative_src ) {
 			$src        = $this->get_asset_url( $relative_src );
-			$asset_path = WC_germanized()->plugin_path( str_replace( '.js', '.asset.php', $relative_src ) );
+			$asset_path = Package::get_path( str_replace( '.js', '.asset.php', $relative_src ) );
 
 			if ( file_exists( $asset_path ) ) {
 				// The following require is safe because we are checking if the file exists and it is not a user input.
@@ -161,7 +161,7 @@ final class Assets {
 	 * @return string
 	 */
 	protected function get_asset_url( $relative_path = '' ) {
-		return WC_germanized()->plugin_url( $relative_path );
+		return Package::get_url( $relative_path );
 	}
 
 	/**
@@ -172,11 +172,11 @@ final class Assets {
 	 * @return string The cache buster value to use for the given file.
 	 */
 	protected function get_file_version( $file ) {
-		if ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG && file_exists( WC_germanized()->plugin_path( $file ) ) ) {
-			return filemtime( WC_germanized()->plugin_path( trim( $file, '/' ) ) );
+		if ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG && file_exists( Package::get_path( $file ) ) ) {
+			return filemtime( Package::get_path( trim( $file, '/' ) ) );
 		}
 
-		return WC_germanized()->version;
+		return Package::get_version();
 	}
 
 	/**
@@ -200,7 +200,7 @@ final class Assets {
 		wp_register_script( $handle, $script_data['src'], $script_dependencies, $script_data['version'], true );
 
 		if ( $has_i18n && function_exists( 'wp_set_script_translations' ) ) {
-			wp_set_script_translations( $handle, 'woocommerce-germanized', WC_germanized()->language_path() );
+			wp_set_script_translations( $handle, 'woocommerce-germanized', Package::get_language_path() );
 		}
 	}
 
@@ -224,7 +224,7 @@ final class Assets {
 	 * @return string|boolean False if metadata file is not found for the block.
 	 */
 	public function get_block_metadata_path( $block_name, $path = '' ) {
-		$path_to_metadata_from_plugin_root = WC_germanized()->plugin_path( 'build/' . $path . $block_name . '/block.json' );
+		$path_to_metadata_from_plugin_root = Package::get_path( 'build/' . $path . $block_name . '/block.json' );
 
 		if ( ! file_exists( $path_to_metadata_from_plugin_root ) ) {
 			return false;

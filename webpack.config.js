@@ -148,7 +148,7 @@ const wcDepMap = {
     '@woocommerce/price-format': [ 'wc', 'priceFormat' ],
     '@woocommerce/blocks-checkout': [ 'wc', 'blocksCheckout' ],
     '@woocommerce/interactivity': [ 'wc', '__experimentalInteractivity' ],
-    '@germanized/settings': [ 'wcGzd', 'wcGzdBlocksSettings' ]
+    '@germanized/settings': [ 'wcGzd', 'blocks', 'wcGzdBlocksSettings' ]
 };
 
 const wcHandleMap = {

@@ -9,7 +9,6 @@ import Modal from './modal';
 import LegalCheckbox from "./checkboxes/legal-checkbox";
 import PrivacyCheckbox from "./checkboxes/privacy-checkbox";
 import SepaCheckbox from "./checkboxes/sepa-checkbox";
-
 const Block = ({
    children,
    checkoutExtensionData,
@@ -25,8 +24,6 @@ const Block = ({
 	), {} );
 	const [ checkboxes, setCheckboxes ] = useState( cartCheckboxes );
 	const [ modalUrl, setModalUrl ] = useState( '' );
-
-	console.log(availableCheckboxes);
 	const getExtensionDataFromCheckboxes = ( checkboxes ) => {
 		return Object.values( checkboxes ).filter( ( checkbox ) => {
 			if ( checkbox.checked || ( ! checkbox.has_checkbox && ! checkbox.hidden ) ) {
@@ -141,5 +138,4 @@ const Block = ({
 		</div>
 	);
 };
-
 export default Block;

@@ -33,6 +33,17 @@ find ./packages/woocommerce-germanized-shipments -iname '*.php' -exec sed -i.bak
 find ./packages/woocommerce-germanized-dhl -iname '*.php' -exec sed -i.bak -e "s/, 'woocommerce-germanized-dhl'/, 'woocommerce-germanized'/g" {} \;
 find ./packages/woocommerce-eu-tax-helper -iname '*.php' -exec sed -i.bak -e "s/, 'woocommerce-eu-tax-helper'/, 'woocommerce-germanized'/g" {} \;
 
+output 3 "Updating package JS textdomains..."
+find ./packages/woocommerce-germanized-dhl \( -iname '*.js' -o -iname '*.json' \) -exec sed -i.bak -e "s/'woocommerce-germanized-dhl'/'woocommerce-germanized'/g" -e "s/\"woocommerce-germanized-dhl\"/\"woocommerce-germanized\"/g" {} \;
+
+rm -rf ./i18n/languages/*.json
+
+if [ $COMPOSER_DEV_MODE -eq 0 ]; then
+    output 3 "Removing POT files"
+    rm -f ./packages/woocommerce-germanized-dhl/i18n/woocommerce-germanized-dhl.pot
+    rm -f ./packages/woocommerce-germanized-shipments/i18n/woocommerce-germanized-shipments.pot
+fi
+
 rm -rf ./packages/woocommerce-germanized-shipments/vendor
 rm -rf ./packages/woocommerce-germanized-dhl/vendor
 rm -rf ./packages/woocommerce-eu-tax-helper/vendor

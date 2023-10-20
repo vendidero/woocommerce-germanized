@@ -43,10 +43,15 @@
      }
    }
 
-   .wc-block-checkout.is-mobile {
+   .wc-block-checkout.is-mobile,
+   .wc-block-checkout.is-medium,
+   .wc-block-checkout.is-small {
      flex-direction: column-reverse;
 
      .wc-gzd-checkout-submit {
+       position: relative;
+       padding: 1.5em 0;
+
        .wp-block-woocommerce-checkout-order-summary-block {
          display: none;
        }

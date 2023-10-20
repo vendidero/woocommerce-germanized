@@ -66,4 +66,8 @@ class Package {
 	public static function get_url( $rel_url = '' ) {
 		return self::$gzd_instance->plugin_url( $rel_url );
 	}
+
+	public static function get_language_path() {
+		return self::$gzd_instance->language_path();
+	}
 }

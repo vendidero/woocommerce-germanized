@@ -28,7 +28,10 @@ Thumbs.db
 /tests/e2e-tests/config/local-*.json
 
 /build
-/deploy
+/release
+
+# i18n json files
+/i18n/languages/*.json
 
 # Logs
 /logs

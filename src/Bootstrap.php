@@ -44,6 +44,20 @@ class Bootstrap {
 		$this->register_dependencies();
 		$this->register_payment_methods();
 
+		add_filter(
+			'woocommerce_gzd_dhl_get_i18n_path',
+			function() {
+				return Package::get_language_path();
+			}
+		);
+
+		add_filter(
+			'woocommerce_gzd_dhl_get_i18n_textdomain',
+			function() {
+				return 'woocommerce-germanized';
+			}
+		);
+
 		if ( did_action( 'woocommerce_blocks_loaded' ) ) {
 			$this->load_blocks();
 		} else {
