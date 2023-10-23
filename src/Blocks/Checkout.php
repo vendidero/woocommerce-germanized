@@ -12,9 +12,72 @@ final class Checkout {
 
 	public function __construct() {
 		$this->adjust_checkout_block();
+		$this->register_filters();
 		$this->register_integrations();
 		$this->register_endpoint_data();
 		$this->register_validation_and_storage();
+	}
+
+	private function register_filters() {
+		add_filter(
+			'woocommerce_get_item_data',
+			function( $item_data, $item ) {
+				if ( has_block( 'woocommerce/checkout' ) || has_block( 'woocommerce/cart' ) || WC()->is_rest_api_request() ) {
+					$labels = wc_gzd_get_checkout_shopmarks();
+
+					if ( is_checkout() || has_block( 'woocommerce/checkout' ) ) {
+						$labels = wc_gzd_get_checkout_shopmarks();
+					} elseif ( is_cart() || has_block( 'woocommerce/cart' ) ) {
+						$labels = wc_gzd_get_cart_shopmarks();
+					}
+
+					$label_item_data = array();
+
+					foreach ( $labels as $label ) {
+						$callback  = $label->get_callback();
+						$arg_count = $label->get_number_of_params();
+
+						if ( 'differential_taxation' === $label->get_type() ) {
+							add_filter( 'woocommerce_gzd_differential_taxation_notice_text_mark', '__return_false' );
+							$callback  = 'woocommerce_gzd_template_differential_taxation_notice_cart';
+							$arg_count = 0;
+						}
+
+						$args = array( '', $item, $item['key'] );
+
+						if ( 2 === $arg_count ) {
+							$args = array( $item, $item['key'] );
+						} elseif ( 0 === $arg_count ) {
+							$args = array();
+						}
+
+						ob_start();
+						if ( $label->get_is_action() ) {
+							call_user_func_array( $callback, $args );
+						} else {
+							echo wp_kses_post( call_user_func_array( $callback, $args ) );
+						}
+						$output = trim( ob_get_clean() );
+
+						if ( ! empty( $output ) ) {
+							$label_item_data[] = array(
+								'key'     => 'gzd-' . $label->get_type(),
+								'value'   => $output,
+								'display' => '',
+							);
+						}
+					}
+
+					if ( ! empty( $label_item_data ) ) {
+						$item_data = array_merge( $label_item_data, $item_data );
+					}
+				}
+
+				return $item_data;
+			},
+			10000,
+			2
+		);
 	}
 
 	private function adjust_checkout_block() {

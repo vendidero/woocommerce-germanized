@@ -74,4 +74,10 @@ class Package {
 	public static function is_pro() {
 		return self::$gzd_instance->is_pro();
 	}
+
+	public static function load_blocks() {
+		$woo_version = \Vendidero\Germanized\PluginsHelper::get_plugin_version( 'woocommerce' );
+
+		return version_compare( $woo_version, '8.2.0', '>=' );
+	}
 }

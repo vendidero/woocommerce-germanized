@@ -54,11 +54,14 @@ final class BlockTypesController {
 		);
 
 		if ( \Vendidero\Germanized\Package::is_pro() ) {
-			$block_types = array_merge( $block_types, array(
-				'ProductDeposit',
-				'ProductDepositPackagingType',
-				'ProductNutriScore',
-			) );
+			$block_types = array_merge(
+				$block_types,
+				array(
+					'ProductDeposit',
+					'ProductDepositPackagingType',
+					'ProductNutriScore',
+				)
+			);
 		}
 
 		return $block_types;
