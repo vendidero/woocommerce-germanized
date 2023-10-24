@@ -84,7 +84,14 @@ final class Checkout {
 		add_filter(
 			'render_block',
 			function( $content, $block ) {
-				if ( 'woocommerce/checkout' === $block['blockName'] ) {
+				/**
+				 * Whether to disable the (structural) adjustments applied to the WooCommerce checkout block.
+				 *
+				 * @param boolean Whether to disable the checkout adjustments or not.
+				 *
+				 * @since 3.14.0
+				 */
+				if ( 'woocommerce/checkout' === $block['blockName'] && ! apply_filters( 'woocommerce_gzd_disable_checkout_block_adjustments', false ) ) {
 					$content = str_replace( 'wp-block-woocommerce-checkout ', 'wp-block-woocommerce-checkout wc-gzd-checkout ', $content );
 
 					if ( '</div></div>' === substr( $content, -12 ) ) {
