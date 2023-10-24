@@ -437,8 +437,14 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 		 *
 		 * @return string
 		 */
-		public function plugin_url() {
-			return untrailingslashit( plugins_url( '/', WC_GERMANIZED_PLUGIN_FILE ) );
+		public function plugin_url( $rel_path = '' ) {
+			$url = untrailingslashit( plugins_url( '/', WC_GERMANIZED_PLUGIN_FILE ) );
+
+			if ( ! empty( $rel_path ) ) {
+				$url = trailingslashit( $url ) . $rel_path;
+			}
+
+			return $url;
 		}
 
 		/**
@@ -446,8 +452,14 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 		 *
 		 * @return string
 		 */
-		public function plugin_path() {
-			return untrailingslashit( plugin_dir_path( WC_GERMANIZED_PLUGIN_FILE ) );
+		public function plugin_path( $rel_path = '' ) {
+			$path = untrailingslashit( plugin_dir_path( WC_GERMANIZED_PLUGIN_FILE ) );
+
+			if ( ! empty( $rel_path ) ) {
+				$path = trailingslashit( $path ) . $rel_path;
+			}
+
+			return $path;
 		}
 
 		/**
@@ -596,6 +608,8 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 			if ( 'yes' === get_option( 'woocommerce_gzd_enable_virtual_vat' ) && ! \Vendidero\EUTaxHelper\Helper::oss_procedure_is_enabled() ) {
 				include_once WC_GERMANIZED_ABSPATH . 'includes/class-wc-gzd-deprecated-virtual-vat-helper.php';
 			}
+
+			\Vendidero\Germanized\Package::init( $this );
 		}
 
 		public function woocommerce_loaded_includes() {

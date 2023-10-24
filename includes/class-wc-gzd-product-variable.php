@@ -195,14 +195,13 @@ class WC_GZD_Product_Variable extends WC_GZD_Product {
 	 * @return array() Array of RAW prices, regular prices, and sale prices with keys set to variation ID.
 	 */
 	public function get_variation_unit_prices( $display = false, $tax_display = '' ) {
-
-		if ( ! $this->child->is_type( 'variable' ) ) {
-			return false;
-		}
-
 		// Product doesn't apply for unit pricing
-		if ( ! $this->has_unit_fields() ) {
-			return false;
+		if ( ! $this->child->is_type( 'variable' ) || ! $this->has_unit_fields() ) {
+			return array(
+				'price'         => array(),
+				'regular_price' => array(),
+				'sale_price'    => array(),
+			);
 		}
 
 		global $wp_filter;

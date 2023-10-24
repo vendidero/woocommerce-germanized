@@ -815,7 +815,6 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 		do_action( 'woocommerce_gzd_direct_debit_order_data_updated', $order, $user_id, $this );
 
 		if ( $this->supports_encryption() && 'yes' === $this->remember && ! empty( $user_id ) && ! empty( $iban ) ) {
-
 			update_user_meta( $user_id, 'direct_debit_holder', $holder );
 			update_user_meta( $user_id, 'direct_debit_iban', $iban );
 			update_user_meta( $user_id, 'direct_debit_bic', $bic );
@@ -837,10 +836,9 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 	}
 
 	/**
-	 * @param WC_Order $order
+	 * @param WC_Order|integer $order
 	 */
 	public function set_order_meta( $order ) {
-
 		if ( is_numeric( $order ) ) {
 			$order = wc_get_order( $order );
 		}
@@ -1352,6 +1350,10 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 	 */
 	public function process_payment( $order_id ) {
 		$order = wc_get_order( $order_id );
+
+		if ( apply_filters( 'woocommerce_gzd_direct_debit_store_fields_on_processing', false, $order ) ) {
+			$this->update_order( $order, true );
+		}
 
 		/**
 		 * Filter that allows default direct debit gateway order status.

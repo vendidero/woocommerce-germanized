@@ -1,0 +1,143 @@
+ .wc-gzd-checkout {
+   .wp-block-woocommerce-checkout-fields-block {
+     .wc-block-checkout__actions {
+       display: none;
+     }
+   }
+
+   .is-large {
+     .wc-block-components-totals-wrapper {
+       &.wc-gzd-hide-total-wrapper {
+         display: none;
+       }
+
+       &.wc-gzd-show-total-wrapper {
+         display: block;
+       }
+     }
+
+     .wc-gzd-checkout-submit {
+       .wc-block-components-totals-wrapper {
+         display: none;
+
+         &.wc-gzd-show-total-wrapper {
+           display: block;
+         }
+       }
+
+       position: sticky;
+       top: 0;
+
+       .wc-block-checkout__actions {
+         .wc-block-checkout__actions_row {
+           display: flex;
+           flex-wrap: wrap;
+           flex-direction: column-reverse;
+         }
+
+         .wc-block-components-checkout-place-order-button {
+           width: 100%;
+           margin-bottom: 1em;
+         }
+       }
+     }
+   }
+
+   .wc-block-checkout.is-mobile,
+   .wc-block-checkout.is-medium,
+   .wc-block-checkout.is-small {
+     flex-direction: column-reverse;
+
+     .wc-gzd-checkout-submit {
+       position: relative;
+       padding: 1.5em 0;
+
+       .wp-block-woocommerce-checkout-order-summary-block {
+         display: none;
+       }
+     }
+   }
+
+   .wc-block-components-product-metadata {
+     ul.wc-block-components-product-details:first-child {
+       display: flex;
+       flex-direction: column;
+
+       li {
+         order: 950;
+       }
+
+       li[class*="wc-block-components-product-details__gzd-"] {
+         order: 90;
+         width: 130%;
+       }
+
+       li.wc-block-components-product-details__gzd-unit-price {
+         order: 0;
+       }
+
+       li.wc-block-components-product-details__gzd-deposit-packaging-type {
+         order: 5;
+         font-weight: bold;
+         text-transform: uppercase;
+       }
+
+       li.wc-block-components-product-details__gzd-deposit {
+         order: 10;
+       }
+
+       li.wc-block-components-product-details__gzd-differential-taxation {
+         order: 10;
+       }
+
+       li.wc-block-components-product-details__gzd-delivery-time {
+        order: 20;
+       }
+
+       li.wc-block-components-product-details__gzd-item-desc {
+         order: 100;
+       }
+
+       li.wc-gzd-summary-item-last {
+         margin-bottom: 1em;
+       }
+     }
+   }
+}
+
+ul.wc-block-components-product-details {
+  li[class*="wc-block-components-product-details__gzd-"] {
+    .wc-block-components-product-details__name {
+      display: none;
+    }
+    .wc-block-components-product-details__value {
+      font-size: .8rem;
+      color: #757575;
+    }
+  }
+}
+
+.wc-gzd-small-business-info {
+  font-size: .8rem;
+  color: #757575;
+}
+
+ .wc-gzd-unit-price {
+   font-weight: normal;
+   font-size: .8rem;
+   color: #757575;
+
+   .wc-block-components-product-details__name {
+     display: none;
+   }
+ }
+
+ ul.wc-block-components-product-details {
+   li.wc-block-components-product-details__gzd-unit-price {
+     display: none !important;
+   }
+
+   li.wc-not-gzd-summary-item-first {
+     margin-top: 1em;
+   }
+ }

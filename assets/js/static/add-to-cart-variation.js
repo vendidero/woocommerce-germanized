@@ -22,7 +22,8 @@
             self.$wrapper = self.$product;
         }
 
-        self.replacePrice = self.$wrapper.hasClass( 'bundled_product' ) ? false : wc_gzd_add_to_cart_variation_params.replace_price;
+        self.isBlockLayout = self.$wrapper.find('.wp-block-woocommerce-product-price').length > 0;
+        self.replacePrice  = self.$wrapper.hasClass( 'bundled_product' ) ? false : wc_gzd_add_to_cart_variation_params.replace_price;
 
         $form.on( 'click.wc-gzd-variation-form', '.reset_variations', { GermanizedvariationForm: self }, self.onReset );
         $form.on( 'reset_data.wc-gzd-variation-form', { GermanizedvariationForm: self }, self.onReset );
@@ -70,8 +71,18 @@
         event.data.GermanizedvariationForm.$form.trigger( 'germanized_reset_data' );
     };
 
-    GermanizedVariationForm.prototype.onUpdate = function( event ) {
+    GermanizedVariationForm.prototype.getElementOrBlock = function( self, element, innerElement ) {
+        var $wrapper = self.$wrapper;
+        var blockSearch = '.wp-block-woocommerce-gzd-product-' + element + '[data-is-descendent-of-single-product-template]';
 
+        if ( $wrapper.find( blockSearch ).length > 0 ) {
+            return $wrapper.find( blockSearch + ' ' + innerElement );
+        } else {
+            return $wrapper.find( innerElement );
+        }
+    };
+
+    GermanizedVariationForm.prototype.onUpdate = function( event ) {
         setTimeout( function() {
             if( typeof event.data === 'undefined' || ! event.data.hasOwnProperty( 'GermanizedvariationForm' ) ) {
                 return;
@@ -101,27 +112,28 @@
             $priceElement.find( '.price' ).contents().unwrap();
         }
 
-        $wrapper.find( 'p.delivery-time-info' ).wc_gzd_set_content( variation.delivery_time );
-        $wrapper.find( '.defect-description' ).wc_gzd_set_content( variation.defect_description );
-        $wrapper.find( '.tax-info' ).wc_gzd_set_content( hasDisplayPrice ? variation.tax_info : '' );
-        $wrapper.find( '.deposit-amount' ).wc_gzd_set_content( hasDisplayPrice ? variation.deposit_amount : '' );
-        $wrapper.find( '.deposit-packaging-type' ).wc_gzd_set_content( hasDisplayPrice ? variation.deposit_packaging_type : '' );
-        $wrapper.find( '.wc-gzd-food-description' ).wc_gzd_set_content( variation.food_description );
-        $wrapper.find( '.wc-gzd-nutri-score' ).wc_gzd_set_content( variation.nutri_score );
-        $wrapper.find( '.wc-gzd-food-distributor' ).wc_gzd_set_content( variation.food_distributor );
-        $wrapper.find( '.wc-gzd-food-place-of-origin' ).wc_gzd_set_content( variation.food_place_of_origin );
-        $wrapper.find( '.wc-gzd-net-filling-quantity' ).wc_gzd_set_content( variation.net_filling_quantity );
-        $wrapper.find( '.wc-gzd-drained-weight' ).wc_gzd_set_content( variation.drained_weight );
-        $wrapper.find( '.wc-gzd-alcohol-content' ).wc_gzd_set_content( 'no' === variation.includes_alcohol ? '' : variation.alcohol_content );
-        $wrapper.find( '.wc-gzd-nutrients' ).wc_gzd_set_content( variation.nutrients );
-        $wrapper.find( '.wc-gzd-nutrients-heading' ).wc_gzd_set_content( variation.nutrients_heading );
-        $wrapper.find( '.wc-gzd-ingredients' ).wc_gzd_set_content( variation.ingredients );
-        $wrapper.find( '.wc-gzd-ingredients-heading' ).wc_gzd_set_content( variation.ingredients_heading );
-        $wrapper.find( '.wc-gzd-allergenic' ).wc_gzd_set_content( variation.allergenic );
-        $wrapper.find( '.wc-gzd-allergenic-heading' ).wc_gzd_set_content( variation.allergenic_heading );
-        $wrapper.find( '.shipping-costs-info' ).wc_gzd_set_content( hasDisplayPrice ? variation.shipping_costs_info : '' );
-        $wrapper.find( '.price-unit' ).wc_gzd_set_content( hasDisplayPrice ? variation.unit_price : '' );
-        $wrapper.find( '.product-units' ).wc_gzd_set_content( hasDisplayPrice ? variation.product_units : '' );
+        form.getElementOrBlock( form, 'delivery-time', '.delivery-time-info' ).wc_gzd_set_content( variation.delivery_time );
+        form.getElementOrBlock( form, 'defect-description', '.defect-description' ).wc_gzd_set_content( variation.defect_description );
+        form.getElementOrBlock( form, 'tax-info', '.tax-info' ).wc_gzd_set_content( hasDisplayPrice ? variation.tax_info : '' );
+        form.getElementOrBlock( form, 'deposit', '.deposit-amount' ).wc_gzd_set_content( hasDisplayPrice ? variation.deposit_amount : '' );
+        form.getElementOrBlock( form, 'deposit-packaging-type', '.deposit-packaging-type' ).wc_gzd_set_content( hasDisplayPrice ? variation.deposit_packaging_type : '' );
+        form.getElementOrBlock( form, 'food-description', '.wc-gzd-food-description' ).wc_gzd_set_content( variation.food_description );
+        form.getElementOrBlock( form, 'nutri-score', '.wc-gzd-nutri-score' ).wc_gzd_set_content( variation.nutri_score );
+        form.getElementOrBlock( form, 'food-distributor', '.wc-gzd-food-distributor' ).wc_gzd_set_content( variation.food_distributor );
+        form.getElementOrBlock( form, 'food-place-of-origin', '.wc-gzd-food-place-of-origin' ).wc_gzd_set_content( variation.food_place_of_origin );
+        form.getElementOrBlock( form, 'net-filling-quantity', '.wc-gzd-net-filling-quantity' ).wc_gzd_set_content( variation.net_filling_quantity );
+        form.getElementOrBlock( form, 'drained-weight', '.wc-gzd-drained-weight' ).wc_gzd_set_content( variation.drained_weight );
+        form.getElementOrBlock( form, 'alcohol-content', '.wc-gzd-alcohol-content' ).wc_gzd_set_content( 'no' === variation.includes_alcohol ? '' : variation.alcohol_content );
+        form.getElementOrBlock( form, 'nutrients', '.wc-gzd-nutrients' ).wc_gzd_set_content( variation.nutrients );
+        form.getElementOrBlock( form, 'nutrients-heading', '.wc-gzd-nutrients-heading' ).wc_gzd_set_content( variation.nutrients_heading );
+        form.getElementOrBlock( form, 'ingredients', '.wc-gzd-ingredients' ).wc_gzd_set_content( variation.ingredients );
+        form.getElementOrBlock( form, 'ingredients-heading', '.wc-gzd-ingredients-heading' ).wc_gzd_set_content( variation.ingredients_heading );
+        form.getElementOrBlock( form, 'allergenic', '.wc-gzd-allergenic' ).wc_gzd_set_content( variation.allergenic );
+
+        form.getElementOrBlock( form, 'allergenic-heading', '.wc-gzd-allergenic-heading' ).wc_gzd_set_content( variation.allergenic_heading );
+        form.getElementOrBlock( form, 'shipping-costs-info', '.shipping-costs-info' ).wc_gzd_set_content( hasDisplayPrice ? variation.shipping_costs_info : '' );
+        form.getElementOrBlock( form, 'unit-price', '.price-unit' ).wc_gzd_set_content( hasDisplayPrice ? variation.unit_price : '' );
+        form.getElementOrBlock( form, 'unit-product', '.product-units' ).wc_gzd_set_content( hasDisplayPrice ? variation.product_units : '' );
 
         form.$form.trigger( 'germanized_variation_data', variation, $wrapper );
     };
@@ -149,16 +161,23 @@
         }
 
         $this.html( content );
-
         $this.addClass( 'variation_modified variation_gzd_modified' ).removeClass( 'wc-gzd-additional-info-placeholder' ).show();
 
         if ( $this.is( ':empty' ) ) {
             $this.hide();
 
+            if ( $this.parents( '.wp-block-woocommerce-gzd-product-price-label' ).length > 0 ) {
+                $this.parents( '.wp-block-woocommerce-gzd-product-price-label' ).addClass( 'wp-block-woocommerce-gzd-product-is-empty' );
+            }
+
             if ( $this.parents( '.woocommerce-product-attributes-item' ).length > 0 ) {
                 $this.parents( '.woocommerce-product-attributes-item' ).hide();
             }
         } else {
+            if ( $this.parents( '.wp-block-woocommerce-gzd-product-price-label' ).length > 0 ) {
+                $this.parents( '.wp-block-woocommerce-gzd-product-price-label' ).removeClass( 'wp-block-woocommerce-gzd-product-is-empty' );
+            }
+
             if ( $this.parents( '.woocommerce-product-attributes-item' ).length > 0 ) {
                 $this.parents( '.woocommerce-product-attributes-item' ).show();
             }
@@ -180,10 +199,18 @@
         if ( $this.is( ':empty' ) ) {
             $this.addClass( 'wc-gzd-additional-info-placeholder' ).hide();
 
+            if ( $this.parents( '.wp-block-woocommerce-gzd-product-price-label' ).length > 0 ) {
+                $this.parents( '.wp-block-woocommerce-gzd-product-price-label' ).addClass( 'wp-block-woocommerce-gzd-product-is-empty' );
+            }
+
             if ( $this.parents( '.woocommerce-product-attributes-item' ).length > 0 ) {
                 $this.parents( '.woocommerce-product-attributes-item' ).hide();
             }
         } else {
+            if ( $this.parents( '.wp-block-woocommerce-gzd-product-price-label' ).length > 0 ) {
+                $this.parents( '.wp-block-woocommerce-gzd-product-price-label' ).removeClass( 'wp-block-woocommerce-gzd-product-is-empty' );
+            }
+
             if ( $this.parents( '.woocommerce-product-attributes-item' ).length > 0 ) {
                 $this.parents( '.woocommerce-product-attributes-item' ).show();
             }
