@@ -66,6 +66,7 @@ if ( ! class_exists( 'WC_GZD_Admin_Notices' ) ) :
 			include_once 'notes/class-wc-gzd-admin-note-legal-news.php';
 			include_once 'notes/class-wc-gzd-admin-note-oss-install.php';
 			include_once 'notes/class-wc-gzd-admin-note-ts-install.php';
+			include_once 'notes/class-wc-gzd-admin-note-blocks.php';
 		}
 
 		/**
@@ -172,6 +173,7 @@ if ( ! class_exists( 'WC_GZD_Admin_Notices' ) ) :
 					'WC_GZD_Admin_Note_Internetmarke_Importer',
 					'WC_GZD_Admin_Note_Shipping_Excl_Tax',
 					'WC_GZD_Admin_Note_Legal_News',
+					'WC_GZD_Admin_Note_Blocks',
 				);
 
 				if ( class_exists( 'WC_GZD_Secret_Box_Helper' ) ) {
@@ -258,6 +260,17 @@ if ( ! class_exists( 'WC_GZD_Admin_Notices' ) ) :
 			 * Reset to make sure the note is not dismissed.
 			 */
 			if ( $note = $this->get_note( 'legal_news' ) ) {
+				$note->reset();
+			}
+		}
+
+		public function activate_blocks_note() {
+			update_option( '_wc_gzd_maybe_needs_block_update', 'yes' );
+
+			/**
+			 * Reset to make sure the note is not dismissed.
+			 */
+			if ( $note = $this->get_note( 'blocks' ) ) {
 				$note->reset();
 			}
 		}

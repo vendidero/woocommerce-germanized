@@ -254,6 +254,10 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 						$note->reset();
 					}
 				}
+
+				if ( version_compare( $current_version, '3.14.0', '<' ) && ( wc_gzd_current_theme_is_fse_theme() || wc_gzd_has_checkout_block() ) ) {
+					$notices->activate_blocks_note();
+				}
 			}
 
 			/**

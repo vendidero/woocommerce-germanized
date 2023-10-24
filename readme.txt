@@ -2,10 +2,10 @@
 Contributors: vendidero, vdwoocommercesupport
 Tags: woocommerce, woocommerce german, woocommerce DE, woocommerce germany, woocommerce deutsch, woo, woocommerce deutschland, woocommerce germanized, woocommerce addon, woocommerce plugin, woocommerce german addon, woocommerce germany addon, woocommerce dhl, dhl, shipments, dpd, gls, post
 Requires at least: 5.4
-Tested up to: 6.3
+Tested up to: 6.4
 WC requires at least: 3.9
-WC tested up to: 8.1
-Stable tag: 3.13.5
+WC tested up to: 8.2
+Stable tag: 3.14.0
 Requires PHP: 5.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -205,6 +205,13 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 6. Edit pdf documents (Pro)
 
 == Changelog ==
+= 3.14.0 =
+* New: Support WooCommerce Cart & Checkout Block
+* New: Support Full-Site-Editing, added price label blocks for Single Product Template
+* New: WP 6.4 Support
+* Improvement: Elementor Pro checkout layout
+* Improvement: Unit price recalculation queue
+
 = 3.13.5 =
 * Fix: Local wsdl files naming conventions (Windows issue only)
 

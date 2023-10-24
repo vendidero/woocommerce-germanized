@@ -1741,6 +1741,26 @@ function wc_gzd_base_country_supports_photovoltaic_system_vat_exempt() {
 	return apply_filters( 'woocommerce_gzd_base_country_supports_photovoltaic_system_vat_exempt', $supports_exempt );
 }
 
+function wc_gzd_current_theme_is_fse_theme() {
+	if ( function_exists( 'wc_current_theme_is_fse_theme' ) ) {
+		return wc_current_theme_is_fse_theme();
+	} else {
+		return false;
+	}
+}
+
+function wc_gzd_has_checkout_block() {
+	if ( is_callable( array( WC_Tracker::class, 'get_block_tracker_data' ) ) ) {
+		$info = WC_Tracker::get_block_tracker_data( 'woocommerce/checkout', 'checkout' );
+
+		if ( true === wc_string_to_bool( $info['page_contains_block'] ) ) {
+			return true;
+		}
+	}
+
+	return false;
+}
+
 function wc_gzd_customer_applies_for_photovoltaic_system_vat_exemption( $args = array() ) {
 	$location                               = \Vendidero\EUTaxHelper\Helper::get_taxable_location();
 	$applies_for_photovoltaic_vat_exemption = false;

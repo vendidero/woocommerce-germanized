@@ -76,9 +76,7 @@ class WC_GZD_Admin_Welcome {
 	 * @return void
 	 */
 	public function admin_css() {
-		$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
-
-		wp_enqueue_style( 'woocommerce-gzd-activation', WC_germanized()->plugin_url() . '/assets/css/admin-activation' . $suffix . '.css', array(), WC_GERMANIZED_VERSION );
+		wp_enqueue_style( 'woocommerce-gzd-activation', WC_germanized()->get_assets_build_url( 'static/admin-activation.css' ), array(), WC_GERMANIZED_VERSION );
 	}
 
 	/**
@@ -137,13 +135,42 @@ class WC_GZD_Admin_Welcome {
 				<a href="<?php echo esc_url( admin_url( 'admin.php?page=wc-settings&tab=germanized&tutorial=yes' ) ); ?>" target="_blank" class="wc-gzd-default-button button button-primary">Tutorial</a>
 				<a href="https://vendidero.de/woocommerce-germanized#upgrade" target="_blank" class="button wc-gzd-button wc-germanized-welcome-pro">Upgrade zur <span class="wc-gzd-pro wc-gzd-pro-outlined">pro</span> Version</a>
 			</p>
+
+			<div class="changelog new-feature">
+				<h3>Full-Site-Editing & Checkout-Block Support</h3>
+
+				<div class="columns two-col">
+					<div class="col col-center">
+						<img src="<?php echo esc_url( WC_germanized()->plugin_url() ); ?>/assets/images/checkout-block.png"/>
+					</div>
+					<div class="col">
+						<p>
+							In Germanized 3.14 haben wir uns sehr intensiv mit den neuen Blöcken auseinandergesetzt, die WooCommerce z.B. für eine
+							optimierte Darstellung des <a href="https://woocommerce.com/de-de/checkout-blocks/" target="_blank">Kaufvorgangs</a> bereitstellt. In diesem Zusammenhang haben wir uns neben der Anpassung der neuen Kasse
+							an die Vorgaben der Button-Lösung auch um das Bereitstellen individueller Blöcke (z.B. Checkboxen, Hinweis für Photovoltaikanlagen,
+							USt.-ID Abfrage <span class="wc-gzd-pro wc-gzd-pro-outlined">pro</span>) gekümmert. Insofern du bereits die Block-basierte Kasse nutzt, solltest
+							du das Layout kontrollieren und die von Germanized bereitgestellten Blöcke einfügen.</p>
+
+						<p>Darüber hinaus stellt Germanized nun individuelle Blöcke für die verschiedenen Preisauszeichnungen bereit - diese Blöcke kannst du z.B. bei der Bearbeitung der Vorlage <em>Einzelnes Produkt</em> in WooCommerce verwenden.</p>
+
+						<div class="wc-gzd-actions wc-gzd-actions-right">
+							<a href="https://vendidero.de/germanized-3-14" class="wc-gzd-default-button button button-primary" target="_blank">Mehr erfahren</a>
+
+							<?php if ( wc_gzd_has_checkout_block() ) : ?>
+								<a href="<?php echo esc_url( get_edit_post_link( wc_get_page_id( 'checkout' ) ) ); ?>" class="wc-gzd-default-button button button-primary" target="_blank">Kasse bearbeiten</a>
+							<?php endif; ?>
+							<?php if ( wc_gzd_current_theme_is_fse_theme() ) : ?>
+								<a href="<?php echo esc_url( admin_url( 'site-editor.php?postType=wp_template&postId=woocommerce/woocommerce//single-product&canvas=edit' ) ); ?>" class="wc-gzd-default-button button button-primary" target="_blank">Einzelnes Produkt bearbeiten</a>
+							<?php endif; ?>
+						</div>
+					</div>
+				</div>
+			</div>
+
 			<div class="changelog new-feature">
 				<h3>Handels- bzw. Proformarechnungen erstellen <span class="wc-gzd-pro wc-gzd-pro-outlined">pro</span></h3>
 
 				<div class="columns two-col">
-					<div class="col col-center">
-						<img src="<?php echo esc_url( WC_germanized()->plugin_url() ); ?>/assets/images/commercial-invoice.png" style="max-width: 450px;"/>
-					</div>
 					<div class="col">
 						<p>
 							Erstelle mit Germanized Pro für deine internationale Sendungen bequem eine Handels- bzw. Proformarechnungen um den Zollbestimmungen zu entsprechen.
@@ -158,6 +185,9 @@ class WC_GZD_Admin_Welcome {
 							<p class="price smaller wc-gzd-pro-version">ab 79 € inkl. MwSt. - inkl. 1 Jahr Updates & Premium Support!</p>
 						</div>
 					</div>
+					<div class="col col-center">
+						<img src="<?php echo esc_url( WC_germanized()->plugin_url() ); ?>/assets/images/commercial-invoice.png" style="max-width: 450px;"/>
+					</div>
 				</div>
 			</div>
 
@@ -165,6 +195,9 @@ class WC_GZD_Admin_Welcome {
 				<h3>Photovoltaikanlagen zum Nullsteuersatz verkaufen</h3>
 
 				<div class="columns two-col">
+					<div class="col col-center">
+						<img src="<?php echo esc_url( WC_germanized()->plugin_url() ); ?>/assets/images/photovoltaic-systems.png" style="max-width: 450px;"/>
+					</div>
 					<div class="col">
 						<p>
 							In der neuesten Version von Germanized unterstützen wir dich beim Verkauf von Photovoltaikanlagen nach §12 Absatz 3 UStG. Damit der Nullsteuersatz automatisch
@@ -176,127 +209,6 @@ class WC_GZD_Admin_Welcome {
 							<a href="https://vendidero.de/photovoltaikanlagen-in-woocommerce-verkaufen-so-funktionierts" target="_blank" class="wc-gzd-button button button-primary">Mehr erfahren</a>
 							<a href="<?php echo esc_url( admin_url( 'admin.php?page=wc-settings&tab=germanized-general&section=photovoltaic_systems' ) ); ?>" class="wc-gzd-default-button button button-primary">Einstellungen anpassen</a>
 						</div>
-					</div>
-					<div class="col col-center">
-						<img src="<?php echo esc_url( WC_germanized()->plugin_url() ); ?>/assets/images/photovoltaic-systems.png" style="max-width: 450px;"/>
-					</div>
-				</div>
-			</div>
-			<div class="changelog new-feature">
-				<h3>GLS Labels zu Sendungen erstellen <span class="wc-gzd-pro wc-gzd-pro-outlined">pro</span></h3>
-
-				<div class="columns two-col">
-					<div class="col col-center">
-						<img src="<?php echo esc_url( WC_germanized()->plugin_url() ); ?>/assets/images/gls.png" style="max-width: 450px;"/>
-					</div>
-					<div class="col">
-						<p>
-							Neben DHL, Deutsche Post und DPD bietet Germanized Pro nun eine weitere, automatische Integration des Versanddienstleisters GLS an. Über die GLS Schnittstelle <strong>ShipIT</strong> könnt ihr
-							bequem Labels zu Sendungen und Retouren erstellen. Selbstverständlich greifen auch hier die vielfältigen Möglichkeiten der Automatisierung, d.h. ihr könnt von
-							der Erstellung der Sendungen und Zuordnung der passenden Verpackung bis hin zur Label-Erstellung via GLS euren Versandprozess bestmöglich automatisieren.
-						</p>
-
-						<div class="wc-gzd-actions wc-gzd-actions-right">
-							<a href="https://vendidero.de/woocommerce-germanized" target="_blank" class="wc-gzd-pro-version button button-primary wc-gzd-button"><span class="wc-gzd-pro wc-gzd-pro-outlined">pro</span> Version entdecken</a>
-							<a href="https://vendidero.de/dokument/gls-integration-einrichten" class="wc-gzd-default-button button button-primary" target="_blank">Mehr erfahren</a>
-
-							<p class="price smaller wc-gzd-pro-version">ab 79 € inkl. MwSt. - inkl. 1 Jahr Updates & Premium Support!</p>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="changelog new-feature">
-				<h3>Neu: Verkaufe Lebensmittel rechtssicher <span class="wc-gzd-pro wc-gzd-pro-outlined">pro</span></h3>
-
-				<div class="columns two-col">
-					<div class="col">
-						<p>
-							Mit Germanized Pro verkaufst du nun auch Lebensmittel rechtssicher online. Neben der Lebensmittelkennzeichnung (Nährwerte, Zutaten, Allergene, weitere Pflichtinformationen)
-							kannst du mit Germanized auch den Nutri-Score für deine Lebensmittel anzeigen. Auch dem Thema Pfand haben wir uns intensiv gewidmet. Mit Germanized Pro
-							kannst du nun auch Getränke verkaufen und den Pfand einfach und verlässlich abrechnen. In diesem Fall kümmert sich Germanized auch um die spezielle Kennzeichnung von Mehrweg- bzw. Einweg.
-						</p>
-
-						<div class="wc-gzd-actions">
-							<a href="https://vendidero.de/woocommerce-germanized" target="_blank" class="wc-gzd-pro-version button button-primary wc-gzd-button"><span class="wc-gzd-pro wc-gzd-pro-outlined">pro</span> Version entdecken</a>
-							<a href="https://vendidero.de/dokument/lebensmittel-auszeichnen" class="wc-gzd-default-button button button-primary" target="_blank">Mehr erfahren</a>
-
-							<p class="price smaller wc-gzd-pro-version">ab 79 € inkl. MwSt. - inkl. 1 Jahr Updates & Premium Support!</p>
-						</div>
-					</div>
-					<div class="col col-center">
-						<img src="<?php echo esc_url( WC_germanized()->plugin_url() ); ?>/assets/images/sell-food.png" style="max-width: 450px;"/>
-					</div>
-				</div>
-			</div>
-
-			<div class="changelog new-feature">
-				<h3>PDF-Dokumente visuell bearbeiten <span class="wc-gzd-pro wc-gzd-pro-outlined">pro</span></h3>
-
-				<div class="columns two-col">
-					<div class="col">
-						<p>
-							Endlich ist es soweit: <a href="https://vendidero.de/germanized-pro-3-0" target="_blank">Germanized Pro 3.0</a> wurde veröffentlicht. Mit diesem neuen Update kannst du deine PDF-Dokumente (Rechnungen, Stornierungen, Lieferscheine, rechtl. Hinweisseiten)
-							über den Gutenberg-Editor komplett frei gestalten. Dafür haben wir Gutenberg explizit für PDF-Dokumente vorbereitet und viele individuelle Blöcke hinzugefügt, mit denen du deine PDF-Dokumente an deine Bedürfnisse anpasst. Das Ergebnis siehst du als Live-Vorschau im Browser.
-						</p>
-						<p>
-							Mit dem Dokumenten-Editor in Germanized Pro baust du deine Belege individuell auf. Über die Google Fonts Integration suchst du dir eine passende Schriftart für dein PDF Dokument aus. Auch die Tabelle der Positionen einer Rechnung kannst du individuell gestalten.
-							Wähle aus welche Spalten, mit welcher Breite und welcher Bezeichnung angezeigt werden sollen. Damit hast du die volle Kontrolle.
-						</p>
-
-						<div class="wc-gzd-actions">
-							<a href="https://vendidero.de/woocommerce-germanized" target="_blank" class="wc-gzd-pro-version button button-primary wc-gzd-button"><span class="wc-gzd-pro wc-gzd-pro-outlined">pro</span> Version entdecken</a>
-							<a href="https://vendidero.de/germanized-pro-3-0" class="wc-gzd-default-button button button-primary" target="_blank">Mehr erfahren</a>
-
-							<p class="price smaller wc-gzd-pro-version">ab 79 € inkl. MwSt. - inkl. 1 Jahr Updates & Premium Support!</p>
-						</div>
-					</div>
-					<div class="col col-center">
-						<img src="<?php echo esc_url( WC_germanized()->plugin_url() ); ?>/assets/images/edit-pdf-documents.png"/>
-					</div>
-				</div>
-			</div>
-
-			<div class="changelog new-feature">
-				<h3>Neu: Belege an lexoffice übertagen <span class="wc-gzd-pro">pro</span></h3>
-
-				<div class="columns two-col">
-					<div class="col col-center">
-						<img src="<?php echo esc_url( WC_germanized()->plugin_url() ); ?>/assets/images/lexoffice.png"/>
-					</div>
-					<div class="col">
-						<p>
-							Damit eure Buchhaltung möglichst wenig Arbeit bereitet, haben wir in Germanized Pro 3.0 eine Schnittstelle zu lexoffice für euch parat.
-							Mit der Integration von lexoffice könnt ihr eure Belege ganz einfach per API übertragen. Auf Wunsch geht das auch vollautomatisch, d.h. Germanized
-							überträgt eure Belege nach Erzeugung automatisch an lexoffice. Verringert euren Zeitaufwand bei der Buchhaltung mit Germanized Pro und lexoffice.
-						</p>
-
-						<div class="wc-gzd-actions wc-gzd-actions-right">
-							<a href="https://vendidero.de/woocommerce-germanized" target="_blank" class="wc-gzd-pro-version button button-primary wc-gzd-button"><span class="wc-gzd-pro wc-gzd-pro-outlined">pro</span> Version entdecken</a>
-							<p class="price smaller wc-gzd-pro-version">ab 79 € inkl. MwSt. - inkl. 1 Jahr Updates & Premium Support!</p>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="changelog new-feature">
-				<h3>Neu: sevDesk Integration <span class="wc-gzd-pro">pro</span></h3>
-
-				<div class="columns two-col">
-					<div class="col">
-						<p>
-							Mit sevDesk bieten wir euch eine Schnittstelle zu einer weiteren Cloud-Buchhaltungs-Lösung an. Auch mit unserer
-							sevDesk Integration könnt ihr eure Belege, auf Wunsch vollautomatisch, per API an sevDesk übertragen. Optional
-							habt ihr in den sevDesk Einstellungen die Möglichkeit, falls möglich, die Rechnung direkt mit einer konkreten Transaktion zu verknüpfen.
-						</p>
-
-						<div class="wc-gzd-actions">
-							<a href="https://vendidero.de/woocommerce-germanized" target="_blank" class="wc-gzd-pro-version button button-primary wc-gzd-button"><span class="wc-gzd-pro wc-gzd-pro-outlined">pro</span> Version entdecken</a>
-							<p class="price smaller wc-gzd-pro-version">ab 79 € inkl. MwSt. - inkl. 1 Jahr Updates & Premium Support!</p>
-						</div>
-					</div>
-					<div class="col col-center">
-						<img src="<?php echo esc_url( WC_germanized()->plugin_url() ); ?>/assets/images/sevdesk.png"/>
 					</div>
 				</div>
 			</div>
