@@ -111,7 +111,7 @@ class WC_GZD_Admin {
 
 		add_filter( 'woocommerce_gzd_shipment_admin_provider_list', array( $this, 'maybe_register_shipping_providers' ), 10 );
 
-		$this->wizward = require 'class-wc-gzd-admin-setup-wizard.php';
+		$this->wizard = require 'class-wc-gzd-admin-setup-wizard.php';
 	}
 
 	public function tool_actions() {
