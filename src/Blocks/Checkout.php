@@ -94,9 +94,12 @@ final class Checkout {
 				if ( 'woocommerce/checkout' === $block['blockName'] && ! apply_filters( 'woocommerce_gzd_disable_checkout_block_adjustments', false ) ) {
 					$content = str_replace( 'wp-block-woocommerce-checkout ', 'wp-block-woocommerce-checkout wc-gzd-checkout ', $content );
 
-					if ( '</div></div>' === substr( $content, -12 ) ) {
-						$content = substr( $content, 0, -12 );
-						$content = $content . '<div class="wc-gzd-checkout-submit"><div data-block-name="woocommerce/checkout-order-summary-block" class="wp-block-woocommerce-checkout-order-summary-block"></div><div data-block-name="woocommerce/checkout-actions-block" class="wp-block-woocommerce-checkout-actions-block"></div></div></div></div>';
+					// Find the last 2 closing divs of the checkout block and replace them with our custom submit wrap.
+					preg_match( '/<\/div>(\s*)<\/div>$/', $content, $matches );
+
+					if ( ! empty( $matches ) ) {
+						$replacement = '<div class="wc-gzd-checkout-submit"><div data-block-name="woocommerce/checkout-order-summary-block" class="wp-block-woocommerce-checkout-order-summary-block"></div><div data-block-name="woocommerce/checkout-actions-block" class="wp-block-woocommerce-checkout-actions-block"></div></div></div></div>';
+						$content     = preg_replace( '/<\/div>(\s*)<\/div>$/', $replacement, $content );
 					}
 				}
 

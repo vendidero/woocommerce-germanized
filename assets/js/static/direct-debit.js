@@ -57,7 +57,12 @@ jQuery( function( $ ) {
         },
 
         isValidIBAN: function( iban ) {
-            return window.germanized.static.iban.isValid( iban );
+            // Support legacy, non-bundled module loading
+            if ( window.hasOwnProperty( 'IBAN' ) ) {
+                return window.IBAN.isValid( iban );
+            } else {
+                return window.germanized.static.iban.isValid( iban );
+            }
         },
 
         isValidSWIFT: function( swift ) {
