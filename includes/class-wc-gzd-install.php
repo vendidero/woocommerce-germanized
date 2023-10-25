@@ -332,6 +332,18 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 			foreach ( $notices->get_notes() as $note ) {
 				$note->delete_note();
 			}
+
+			wp_clear_scheduled_hook( 'woocommerce_gzd_customer_cleanup' );
+
+			if ( function_exists( 'as_unschedule_all_actions' ) ) {
+				$hooks = array(
+					'woocommerce_gzd_shipments_daily_cleanup'
+				);
+
+				foreach( $hooks as $hook ) {
+					as_unschedule_all_actions( $hook );
+				}
+			}
 		}
 
 		/**
