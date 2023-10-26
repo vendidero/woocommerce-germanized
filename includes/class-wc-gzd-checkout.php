@@ -1019,14 +1019,63 @@ class WC_GZD_Checkout {
 		 * Prevent shipping methods from individually calculating taxes (e.g. as per custom incl/excl tax settings)
 		 * as Germanized handles tax calculation globally for all shipping methods.
 		 */
-		if ( wc_gzd_enable_additional_costs_split_tax_calculation() ) {
+		if ( 'none' !== wc_gzd_get_additional_costs_tax_calculation_mode() ) {
 			if ( ! empty( $args['taxes'] ) && apply_filters( 'woocommerce_gzd_disable_custom_shipping_method_tax_calculation', true, $method ) ) {
-				$args['cost']  = $args['cost'] + array_sum( $args['taxes'] );
+				$taxes      = $args['taxes'];
+				$total_cost = is_array( $args['cost'] ) ? array_sum( $args['cost'] ) : $args['cost'];
+
+				// Taxes - if not an array and not set to false, calc tax based on cost and passed calc_tax variable. This saves shipping methods having to do complex tax calculations.
+				if ( ! is_array( $taxes ) && false !== $taxes && $total_cost > 0 && $method->is_taxable() ) {
+					$taxes = 'per_item' === $args['calc_tax'] ? $this->get_shipping_taxes_per_item( $args['cost'] ) : WC_Tax::calc_shipping_tax( $total_cost, WC_Tax::get_shipping_tax_rates() );
+				}
+
+				$args['cost']  = $total_cost + ( is_array( $taxes ) ? array_sum( $taxes ) : 0 );
 				$args['taxes'] = '';
 			}
 		}
 
 		return $args;
+	}
+
+	/**
+	 * Calc taxes per item being shipping in costs array.
+	 *
+	 * @since 2.6.0
+	 * @param  array $costs Costs.
+	 * @return array of taxes
+	 */
+	protected function get_shipping_taxes_per_item( $costs ) {
+		$taxes = array();
+
+		// If we have an array of costs we can look up each items tax class and add tax accordingly.
+		if ( is_array( $costs ) ) {
+			$cart = WC()->cart->get_cart();
+
+			foreach ( $costs as $cost_key => $amount ) {
+				if ( ! isset( $cart[ $cost_key ] ) ) {
+					continue;
+				}
+
+				$item_taxes = WC_Tax::calc_shipping_tax( $amount, WC_Tax::get_shipping_tax_rates( $cart[ $cost_key ]['data']->get_tax_class() ) );
+
+				// Sum the item taxes.
+				foreach ( array_keys( $taxes + $item_taxes ) as $key ) {
+					$taxes[ $key ] = ( isset( $item_taxes[ $key ] ) ? $item_taxes[ $key ] : 0 ) + ( isset( $taxes[ $key ] ) ? $taxes[ $key ] : 0 );
+				}
+			}
+
+			// Add any cost for the order - order costs are in the key 'order'.
+			if ( isset( $costs['order'] ) ) {
+				$item_taxes = WC_Tax::calc_shipping_tax( $costs['order'], WC_Tax::get_shipping_tax_rates() );
+
+				// Sum the item taxes.
+				foreach ( array_keys( $taxes + $item_taxes ) as $key ) {
+					$taxes[ $key ] = ( isset( $item_taxes[ $key ] ) ? $item_taxes[ $key ] : 0 ) + ( isset( $taxes[ $key ] ) ? $taxes[ $key ] : 0 );
+				}
+			}
+		}
+
+		return $taxes;
 	}
 
 	/**

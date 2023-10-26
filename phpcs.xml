@@ -10,6 +10,7 @@
     <exclude-pattern>*/vendor/*</exclude-pattern>
     <exclude-pattern>*/packages/*</exclude-pattern>
     <exclude-pattern>*/build/*</exclude-pattern>
+    <exclude-pattern>*/release/*</exclude-pattern>
     <exclude-pattern>lib/</exclude-pattern>
 
     <!-- Show progress, show the error codes for each message (source). -->

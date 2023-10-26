@@ -337,10 +337,10 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 
 			if ( function_exists( 'as_unschedule_all_actions' ) ) {
 				$hooks = array(
-					'woocommerce_gzd_shipments_daily_cleanup'
+					'woocommerce_gzd_shipments_daily_cleanup',
 				);
 
-				foreach( $hooks as $hook ) {
+				foreach ( $hooks as $hook ) {
 					as_unschedule_all_actions( $hook );
 				}
 			}
