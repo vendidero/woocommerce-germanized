@@ -212,6 +212,7 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 * Improvement: Use regex for checkout block markup replacements
 * Fix: Order shipping status in case returns exist
 * Fix: Use a tweak to prevent missing block checkout data error
+* Fix: Type issue when resetting shipping rate taxes
 
 = 3.14.0 =
 * New: Support WooCommerce Cart & Checkout Block
