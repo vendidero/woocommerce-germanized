@@ -256,6 +256,18 @@ function wc_gzd_recalculate_unit_price( $args = array(), $product = false ) {
 			)
 		);
 
+		/**
+		 * WooCommerce updates the product price after triggering the before_product_save hook.
+		 * Make sure to use the current price based on regular/sale price if discrepancies detected.
+		 */
+		if ( $default_args['price'] !== $default_args['regular_price'] && $default_args['price'] !== $default_args['sale_price'] ) {
+			if ( $product->is_on_sale() ) {
+				$default_args['price'] = $default_args['sale_price'];
+			} else {
+				$default_args['price'] = $default_args['regular_price'];
+			}
+		}
+
 		if ( isset( $default_args['tax_mode'] ) && 'incl' === $default_args['tax_mode'] ) {
 			$default_args['regular_price'] = wc_get_price_including_tax( $wc_product, array( 'price' => $default_args['regular_price'] ) );
 			$default_args['sale_price']    = wc_get_price_including_tax( $wc_product, array( 'price' => $default_args['sale_price'] ) );
