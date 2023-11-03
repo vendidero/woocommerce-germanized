@@ -392,7 +392,7 @@ final class Checkout {
 			add_filter(
 				'woocommerce_gzd_checkout_checkbox_is_checked',
 				function( $is_checked, $checkbox_id ) use ( $checkboxes_checked ) {
-					if ( isset( $checkboxes_checked[ $checkbox_id ] ) ) {
+					if ( in_array( $checkbox_id, $checkboxes_checked, true ) ) {
 						$is_checked = true;
 					}
 
