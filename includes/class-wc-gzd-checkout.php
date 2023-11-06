@@ -567,7 +567,13 @@ class WC_GZD_Checkout {
 				$items      = $order->get_shipping_methods();
 
 				foreach ( $items as $item ) {
-					$method_ids[] = $item->get_method_id();
+					$constructed_method_id = $item->get_method_id();
+
+					if ( is_callable( array( $item, 'get_instance_id' ) ) ) {
+						$constructed_method_id .= ':' . $item->get_instance_id();
+					}
+
+					$method_ids[] = $constructed_method_id;
 				}
 
 				if ( wc_gzd_is_parcel_delivery_data_transfer_checkbox_enabled( $method_ids ) ) {
