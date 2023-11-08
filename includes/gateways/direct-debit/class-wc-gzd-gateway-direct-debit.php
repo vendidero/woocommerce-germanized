@@ -20,6 +20,8 @@ class WC_GZD_Gateway_Direct_Debit extends WC_Payment_Gateway {
 
 	protected $enable_pre_notification;
 
+	protected $instructions;
+
 	protected $debit_days;
 
 	protected $generate_mandate_id;
