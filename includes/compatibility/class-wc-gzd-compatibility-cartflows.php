@@ -86,12 +86,6 @@ class WC_GZD_Compatibility_Cartflows extends WC_GZD_Compatibility {
 					remove_action( 'woocommerce_review_order_after_cart_contents', 'woocommerce_gzd_template_checkout_table_product_hide_filter_removal', 10 );
 
 					/**
-					 * Add checkboxes right before the order review table
-					 */
-					remove_action( 'woocommerce_review_order_after_payment', 'woocommerce_gzd_template_render_checkout_checkboxes', 10 );
-					add_action( 'woocommerce_checkout_order_review', 'woocommerce_gzd_template_render_checkout_checkboxes', 1 );
-
-					/**
 					 * Do not render an additional payment selection title
 					 */
 					remove_action( 'woocommerce_review_order_before_payment', 'woocommerce_gzd_template_checkout_payment_title' );

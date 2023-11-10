@@ -13,7 +13,7 @@
 
   }
 
-  ul.subsubsub {
+  ul.subsubsub:not(.list-table-filters) {
     margin-top: 0;
 
     li a {
@@ -245,7 +245,6 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
-  margin-top: 1em;
 
   &.wc-gzd-admin-settings-has-sidebar {
     box-sizing: border-box;
