@@ -228,7 +228,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<td><?php esc_html_e( 'Food Options', 'woocommerce-germanized' ); ?></td>
 		<td class="help"><?php echo wc_help_tip( esc_attr( __( 'Enable/disable product food options.', 'woocommerce-germanized' ) ) ); ?></td>
 		<td>
-			<a href="<?php echo esc_url( wp_nonce_url( add_query_arg( array( 'wc-gzd-check-disable_food_options' => true ) ), 'wc-gzd-check-disable_food_options' ) ); ?>" class="button button-secondary"><?php echo ( 'yes' === get_option( 'woocommerce_gzd_disable_food_options' ) ? esc_html__( 'Enable food options', 'woocommerce-germanized' ) : esc_html__( 'Disable food options', 'woocommerce-germanized' ) ); ?></a>
+			<a href="<?php echo esc_url( wp_nonce_url( add_query_arg( array( 'wc-gzd-check-disable_food_options' => true ) ), 'wc-gzd-check-disable_food_options' ) ); ?>" class="button button-secondary"><?php echo ( ! WC_GZD_Food_Helper::enable_food_options() ? esc_html__( 'Enable food options', 'woocommerce-germanized' ) : esc_html__( 'Disable food options', 'woocommerce-germanized' ) ); ?></a>
 		</td>
 	</tr>
 	<?php if ( class_exists( 'WC_GZD_Secret_Box_Helper' ) && ! WC_GZD_Secret_Box_Helper::has_valid_encryption_key() ) : ?>

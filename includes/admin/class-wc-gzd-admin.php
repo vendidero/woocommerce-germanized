@@ -191,7 +191,7 @@ class WC_GZD_Admin {
 	}
 
 	protected function check_disable_food_options() {
-		if ( 'yes' === get_option( 'woocommerce_gzd_disable_food_options' ) ) {
+		if ( ! WC_GZD_Food_Helper::enable_food_options() ) {
 			update_option( 'woocommerce_gzd_disable_food_options', 'no' );
 		} else {
 			update_option( 'woocommerce_gzd_disable_food_options', 'yes' );

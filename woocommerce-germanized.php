@@ -1118,7 +1118,8 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 				$custom_css .= ' p.woocommerce-shipping-destination { display: none; }';
 			}
 
-			$custom_css .= '
+			if ( WC_GZD_Food_Helper::enable_food_options() ) {
+				$custom_css .= '
                 .wc-gzd-nutri-score-value-a {
                     background: url(' . esc_url( $this->plugin_url() ) . '/assets/images/nutri-score-a.svg) no-repeat;
                 }
@@ -1135,6 +1136,7 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
                     background: url(' . esc_url( $this->plugin_url() ) . '/assets/images/nutri-score-e.svg) no-repeat;
                 }
             ';
+			}
 
 			wp_add_inline_style( 'woocommerce-gzd-layout', $custom_css );
 		}

@@ -8,6 +8,10 @@ class WC_GZD_Food_Helper {
 
 	}
 
+	public static function enable_food_options() {
+		return 'yes' !== get_option( 'woocommerce_gzd_disable_food_options' );
+	}
+
 	public static function get_nutrient_reference_values() {
 		return apply_filters(
 			'woocommerce_gzd_nutrient_reference_values',
