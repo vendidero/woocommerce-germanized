@@ -46,6 +46,8 @@ class WC_GZD_Gateway_Direct_Debit extends WC_Payment_Gateway {
 
 	protected $mandate_text;
 
+	protected $instructions;
+
 	public $admin_fields = array();
 
 	/**
