@@ -59,16 +59,6 @@ class WC_GZD_Admin {
 		add_action( 'admin_init', array( $this, 'check_internetmarke_import' ) );
 
 		add_filter( 'woocommerce_addons_section_data', array( $this, 'set_addon' ), 10, 2 );
-		add_action(
-			'woocommerce_admin_order_data_after_shipping_address',
-			array(
-				$this,
-				'show_checkbox_status',
-			),
-			10,
-			1
-		);
-
 		add_filter( 'woocommerce_order_actions', array( $this, 'order_actions' ), 10, 1 );
 		add_action( 'woocommerce_order_action_order_confirmation', array( $this, 'resend_order_confirmation' ), 10, 1 );
 		add_action(
@@ -529,26 +519,7 @@ class WC_GZD_Admin {
 			<?php
 		}
 		?>
-		<a href="#" class="woocommerce-gzd-input-toggle-trigger">
-			<span id="<?php echo esc_attr( $value['id'] ); ?>-toggle" class="woocommerce-gzd-input-toggle woocommerce-input-toggle woocommerce-input-toggle--<?php echo esc_attr( 'yes' === $option_value ? 'enabled' : 'disabled' ); ?>"><?php echo ( ( 'yes' === $option_value ) ? esc_html__( 'Yes', 'woocommerce-germanized' ) : esc_html__( 'No', 'woocommerce-germanized' ) ); ?></span>
-		</a>
-		<input
-		name="<?php echo esc_attr( $value['id'] ); ?>"
-		id="<?php echo esc_attr( $value['id'] ); ?>"
-		type="checkbox"
-		style="display: none; <?php echo esc_attr( $value['css'] ); ?>"
-		value="1"
-		class="<?php echo esc_attr( $value['class'] ); ?>"
-		<?php checked( $option_value, 'yes' ); ?>
-		<?php
-		if ( ! empty( $value['custom_attributes'] ) && is_array( $value['custom_attributes'] ) ) {
-			foreach ( $value['custom_attributes'] as $attribute => $attribute_value ) {
-				echo esc_attr( $attribute ) . '="' . esc_attr( $attribute_value ) . '" ';
-			}
-		}
-		?>
-		/><?php echo esc_html( $value['suffix'] ); ?><?php echo wp_kses_post( $field_description_data['description'] ); ?>
-
+		<?php $this->render_toggle( $value ); ?>
 		</fieldset>
 		<?php
 		if ( ! isset( $value['checkboxgroup'] ) || 'end' === $value['checkboxgroup'] ) {
@@ -557,6 +528,48 @@ class WC_GZD_Admin {
 			</tr>
 			<?php
 		}
+	}
+
+	public function render_toggle( $args ) {
+		$args          = wp_parse_args(
+			$args,
+			array(
+				'id'                => '',
+				'css'               => '',
+				'value'             => '',
+				'class'             => '',
+				'name'              => '',
+				'suffix'            => '',
+				'desc_tip'          => false,
+				'desc'              => '',
+				'custom_attributes' => array(),
+			)
+		);
+		$args['value'] = wc_bool_to_string( $args['value'] );
+		$args['name']  = empty( $args['name'] ) ? $args['id'] : $args['name'];
+		// Description handling.
+		$field_description_data = WC_Admin_Settings::get_field_description( $args );
+		?>
+		<a href="#" class="woocommerce-gzd-input-toggle-trigger">
+			<span id="<?php echo esc_attr( $args['id'] ); ?>-toggle" class="woocommerce-gzd-input-toggle woocommerce-input-toggle woocommerce-input-toggle--<?php echo esc_attr( 'yes' === $args['value'] ? 'enabled' : 'disabled' ); ?>"><?php echo ( ( 'yes' === $args['value'] ) ? esc_html__( 'Yes', 'woocommerce-germanized' ) : esc_html__( 'No', 'woocommerce-germanized' ) ); ?></span>
+		</a>
+		<input
+		name="<?php echo esc_attr( $args['name'] ); ?>"
+		id="<?php echo esc_attr( $args['id'] ); ?>"
+		type="checkbox"
+		style="display: none; <?php echo esc_attr( $args['css'] ); ?>"
+		value="1"
+		class="<?php echo esc_attr( $args['class'] ); ?>"
+		<?php checked( $args['value'], 'yes' ); ?>
+		<?php
+		if ( ! empty( $args['custom_attributes'] ) && is_array( $args['custom_attributes'] ) ) {
+			foreach ( $args['custom_attributes'] as $attribute => $attribute_value ) {
+				echo esc_attr( $attribute ) . '="' . esc_attr( $attribute_value ) . '" ';
+			}
+		}
+		?>
+		/><?php echo esc_html( $args['suffix'] ); ?><?php echo wp_kses_post( $field_description_data['description'] ); ?>
+		<?php
 	}
 
 	public function term_field( $value ) {
@@ -745,23 +758,6 @@ class WC_GZD_Admin {
 		return $tabs;
 	}
 
-	/**
-	 * @param WC_Order $order
-	 */
-	public function show_checkbox_status( $order ) {
-		if ( $order->get_meta( '_parcel_delivery_opted_in' ) ) {
-			?>
-			<p class="parcel-delivery-checkbox-status"><strong><?php esc_html_e( 'Parcel Delivery Data Transfer?', 'woocommerce-germanized' ); ?></strong><span><?php echo( wc_gzd_order_supports_parcel_delivery_reminder( $order->get_id() ) ? '<span class="dashicons dashicons-yes wc-gzd-dashicon">' . esc_html__( 'Allowed', 'woocommerce-germanized' ) . '</span>' : '<span class="dashicons dashicons-no-alt wc-gzd-dashicon">' . esc_html__( 'Not Allowed', 'woocommerce-germanized' ) . '</span>' ); ?></span></p>
-			<?php
-		}
-
-		if ( $order->get_meta( '_photovoltaic_systems_opted_in' ) ) {
-			?>
-			<p class="photovoltaic-systems-checkbox-status"><strong><?php esc_html_e( 'Photovoltaic Systems VAT exemption?', 'woocommerce-germanized' ); ?></strong><span><?php echo( wc_gzd_order_applies_for_photovoltaic_system_vat_exemption( $order->get_id() ) ? '<span class="dashicons dashicons-yes wc-gzd-dashicon">' . esc_html__( 'Allowed', 'woocommerce-germanized' ) . '</span>' : '<span class="dashicons dashicons-no-alt wc-gzd-dashicon">' . esc_html__( 'Not Allowed', 'woocommerce-germanized' ) . '</span>' ); ?></span></p>
-			<?php
-		}
-	}
-
 	public function set_addon( $products, $section_id ) {
 		if ( 'featured' !== $section_id ) {
 			return $products;
@@ -801,19 +797,9 @@ class WC_GZD_Admin {
 			WC_GERMANIZED_VERSION
 		);
 
+		wp_register_script( 'wc-gzd-admin', $gzd->get_assets_build_url( 'static/admin.js' ), array( 'jquery', 'woocommerce_admin' ), WC_GERMANIZED_VERSION ); // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.NotInFooter
 		wp_register_script( 'wc-gzd-admin-product', $gzd->get_assets_build_url( 'static/admin-product.js' ), array( 'wc-admin-product-meta-boxes', 'media-models' ), WC_GERMANIZED_VERSION ); // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.NotInFooter
-
 		wp_register_script( 'wc-gzd-admin-product-variations', $gzd->get_assets_build_url( 'static/admin-product-variations.js' ), array( 'wc-gzd-admin-product', 'wc-admin-variation-meta-boxes' ), WC_GERMANIZED_VERSION ); // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.NotInFooter
-
-		wp_localize_script(
-			'wc-gzd-admin-product-variations',
-			'wc_gzd_admin_product_variations_params',
-			array(
-				'i18n_set_delivery_time' => __( 'Insert delivery time name, slug or id.', 'woocommerce-germanized' ),
-				'i18n_set_product_unit'  => __( 'Insert product units amount.', 'woocommerce-germanized' ),
-			)
-		);
-
 		wp_register_script( // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.NotInFooter
 			'wc-gzd-admin-legal-checkboxes',
 			$gzd->get_assets_build_url( 'static/admin-legal-checkboxes.js' ),
@@ -827,15 +813,28 @@ class WC_GZD_Admin {
 			),
 			WC_GERMANIZED_VERSION
 		);
-
 		wp_register_script( // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.NotInFooter
 			'wc-gzd-admin-settings',
 			$gzd->get_assets_build_url( 'static/admin-settings.js' ),
-			array(
-				'jquery',
-				'woocommerce_admin',
-			),
+			array( 'wc-gzd-admin' ),
 			WC_GERMANIZED_VERSION
+		);
+
+		wp_localize_script(
+			'wc-gzd-admin-product-variations',
+			'wc_gzd_admin_product_variations_params',
+			array(
+				'i18n_set_delivery_time' => __( 'Insert delivery time name, slug or id.', 'woocommerce-germanized' ),
+				'i18n_set_product_unit'  => __( 'Insert product units amount.', 'woocommerce-germanized' ),
+			)
+		);
+
+		wp_localize_script(
+			'wc-gzd-admin',
+			'wc_gzd_admin_params',
+			array(
+				'ajax_url' => admin_url( 'admin-ajax.php' ),
+			)
 		);
 
 		wp_localize_script(
@@ -852,6 +851,10 @@ class WC_GZD_Admin {
 		if ( in_array( $screen->id, array( 'product', 'edit-product' ), true ) ) {
 			wp_enqueue_script( 'wc-gzd-admin-product' );
 			wp_enqueue_script( 'wc-gzd-admin-product-variations' );
+		}
+
+		if ( function_exists( 'wc_get_screen_ids' ) && in_array( $screen->id, wc_get_screen_ids(), true ) ) {
+			wp_enqueue_script( 'wc-gzd-admin' );
 		}
 
 		/**

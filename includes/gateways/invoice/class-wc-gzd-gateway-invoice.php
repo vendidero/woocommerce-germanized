@@ -23,7 +23,7 @@ class WC_GZD_Gateway_Invoice extends WC_Payment_Gateway {
 	protected $customers_completed;
 
 	protected $instructions;
-	
+
 	/**
 	 * Constructor for the gateway.
 	 */

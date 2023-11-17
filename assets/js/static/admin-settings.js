@@ -7,13 +7,10 @@ window.germanized = window.germanized || {};
      * Order Data Panel
      */
     germanized.settings = {
-
         params: {},
 
         init: function() {
-
             var self = this;
-
             this.params = wc_gzd_admin_settings_params;
 
             try {
@@ -25,7 +22,6 @@ window.germanized = window.germanized || {};
 
             $( document )
                 .on( 'change', 'input[name=woocommerce_gzd_dispute_resolution_type]', this.onChangeDisputeResolutionType )
-                .on( 'click', 'a.woocommerce-gzd-input-toggle-trigger', this.onInputToogleClick )
                 .on( 'change', '.wc-gzd-setting-tabs input.woocommerce-gzd-tab-status-checkbox', this.onChangeTabStatus )
                 .on( 'change', '.wc-gzd-setting-tab-enabled :input', this.preventWarning )
                 .on( 'click', 'a.wc-gzd-install-extension-btn', this.onInstallExtension )
@@ -350,28 +346,6 @@ window.germanized = window.germanized || {};
 
             $( '[id^=woocommerce_gzd_alternative_complaints_text_]' ).parents( 'tr' ).hide();
             $( '#woocommerce_gzd_alternative_complaints_text_' + val ).parents( 'tr' ).show();
-        },
-
-        onInputToogleClick: function() {
-            var $toggle   = $( this ).find( 'span.woocommerce-gzd-input-toggle' ),
-                $row      = $toggle.parents( 'fieldset' ),
-                $checkbox = $row.find( 'input[type=checkbox]' ),
-                $enabled  = $toggle.hasClass( 'woocommerce-input-toggle--enabled' );
-
-            $toggle.removeClass( 'woocommerce-input-toggle--enabled' );
-            $toggle.removeClass( 'woocommerce-input-toggle--disabled' );
-
-            if ( $enabled ) {
-                $checkbox.prop( 'checked', false );
-                $toggle.addClass( 'woocommerce-input-toggle--disabled' );
-            } else {
-                $checkbox.prop( 'checked', true );
-                $toggle.addClass( 'woocommerce-input-toggle--enabled' );
-            }
-
-            $checkbox.trigger( 'change' );
-
-            return false;
         },
 
         initMailSortable: function() {

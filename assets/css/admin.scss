@@ -609,3 +609,22 @@ table.wc-gzd-tax-example tr th:first-child, table.wc-gzd-tax-example tr td:first
     }
   }
 }
+
+.wc-gzd-checkbox-log-list {
+  max-width: 400px;
+
+  .wc-gzd-log-checkbox {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 1em 0;
+
+    p.checkbox-title, p.checkbox-status {
+      margin: 0;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}

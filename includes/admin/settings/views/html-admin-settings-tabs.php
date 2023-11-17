@@ -55,17 +55,18 @@ defined( 'ABSPATH' ) || exit;
 				<?php else : ?>
 					<?php if ( $tab->supports_disabling() ) : ?>
 						<fieldset>
-							<a class="woocommerce-gzd-input-toggle-trigger" href="#"><span class="woocommerce-gzd-input-toggle woocommerce-input-toggle woocommerce-input-toggle--<?php echo( $tab->is_enabled() ? 'enabled' : 'disabled' ); ?>"><?php echo esc_attr__( 'Yes', 'woocommerce-germanized' ); ?></span></a>
-							<input
-									name="woocommerce_gzd_tab_status_<?php echo esc_attr( $tab->get_name() ); ?>"
-									id="woocommerce-gzd-tab-status-<?php echo esc_attr( $tab->get_name() ); ?>"
-									type="checkbox"
-									data-tab="<?php echo esc_attr( $tab->get_name() ); ?>"
-									style="display: none;"
-									value="1"
-									class="woocommerce-gzd-tab-status-checkbox"
-								<?php checked( $tab->is_enabled() ? 'yes' : 'no', 'yes' ); ?>
-							/>
+							<?php
+							WC_GZD_Admin::instance()->render_toggle(
+								array(
+									'id'                => "woocommerce_gzd_tab_status_{$tab->get_name()}",
+									'value'             => $tab->is_enabled(),
+									'custom_attributes' => array(
+										'data-tab' => $tab->get_name(),
+									),
+									'class'             => 'woocommerce-gzd-tab-status-checkbox',
+								)
+							);
+							?>
 						</fieldset>
 					<?php else : ?>
 						<span class="<?php echo( $tab->is_enabled() ? 'status-enabled' : 'status-disabled' ); ?>"><?php echo( $tab->is_enabled() ? esc_attr__( 'Yes', 'woocommerce-germanized' ) : esc_attr__( 'No', 'woocommerce-germanized' ) ); ?></span>

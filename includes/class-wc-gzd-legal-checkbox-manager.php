@@ -1133,6 +1133,147 @@ class WC_GZD_Legal_Checkbox_Manager {
 		return $checkboxes;
 	}
 
+	/**
+	 * @param WC_Data|WP_User|WP_Comment $object
+	 * @param string $location
+	 *
+	 * @return boolean
+	 */
+	public function is_logged( $checkbox_id, $object ) {
+		$cb_value  = $this->get_logged_value( $checkbox_id, $object );
+		$is_logged = ! empty( $cb_value );
+
+		return apply_filters( 'woocommerce_gzd_checkbox_is_logged', $is_logged, $checkbox_id, $object );
+	}
+
+	/**
+	 * @param WC_Data|WP_User|WP_Comment $object
+	 * @param string $location
+	 *
+	 * @return mixed
+	 */
+	protected function get_logged_value( $checkbox_id, $object ) {
+		$meta_key = "_checkbox_{$checkbox_id}";
+		$cb_value = '';
+
+		if ( is_a( $object, 'WC_Order' ) ) {
+			if ( 'parcel_delivery' === $checkbox_id ) {
+				$cb_value = $object->get_meta( '_parcel_delivery_opted_in' );
+			} elseif ( 'photovoltaic_systems' === $checkbox_id ) {
+				$cb_value = $object->get_meta( '_photovoltaic_systems_opted_in' );
+			} else {
+				$cb_value = $object->get_meta( $meta_key );
+			}
+		} elseif ( is_a( $object, 'WP_User' ) ) {
+			$cb_value = get_user_meta( $object->ID, $meta_key, true );
+		} elseif ( is_a( $object, 'WP_Comment' ) ) {
+			$cb_value = get_comment_meta( $object->comment_ID, $meta_key, true );
+		} elseif ( is_callable( array( $object, 'get_meta' ) ) ) {
+			$cb_value = $object->get_meta( $meta_key );
+		}
+
+		return apply_filters( 'woocommerce_gzd_checkbox_value', $cb_value, $checkbox_id, $object );
+	}
+
+	/**
+	 * @param WC_Data|WP_User|WP_Comment $object
+	 * @param string $location
+	 *
+	 * @return boolean
+	 */
+	public function is_checked( $checkbox_id, $object ) {
+		$cb_value   = $this->get_logged_value( $checkbox_id, $object );
+		$is_checked = wc_string_to_bool( $cb_value );
+
+		if ( is_a( $object, 'WC_Order' ) ) {
+			if ( 'parcel_delivery' === $checkbox_id ) {
+				$is_checked = wc_gzd_order_supports_parcel_delivery_reminder( $object->get_id() );
+			} elseif ( 'photovoltaic_systems' === $checkbox_id ) {
+				$is_checked = wc_gzd_order_applies_for_photovoltaic_system_vat_exemption( $object->get_id() );
+			}
+		}
+
+		$is_checked = wc_string_to_bool( $is_checked );
+
+		return apply_filters( 'woocommerce_gzd_checkbox_is_checked', $is_checked, $checkbox_id, $object );
+	}
+
+	/**
+	 * @param $location
+	 *
+	 * @return string[]
+	 */
+	public function get_loggable_checkboxes( $location ) {
+		$checkboxes = apply_filters( 'woocommerce_gzd_loggable_checkboxes', array( 'parcel_delivery', 'photovoltaic_systems' ), $location );
+
+		return $checkboxes;
+	}
+
+	public function get_editable_checkboxes( $location ) {
+		$checkboxes = array();
+
+		if ( 'order' === $location ) {
+			$checkboxes = array( 'parcel_delivery' );
+		}
+
+		$checkboxes = apply_filters( 'woocommerce_gzd_editable_checkboxes', $checkboxes, $location );
+
+		return $checkboxes;
+	}
+
+	/**
+	 * @param WC_Data|WP_User|WP_Comment $object
+	 * @param string $location
+	 *
+	 * @return void
+	 */
+	public function render_checkbox_log( $object, $location = 'order' ) {
+		$checkboxes         = $this->get_loggable_checkboxes( $location );
+		$checkboxes_to_list = array();
+
+		foreach ( $checkboxes as $checkbox_id ) {
+			if ( $checkbox = wc_gzd_get_legal_checkbox( $checkbox_id ) ) {
+				$is_checked = $this->is_checked( $checkbox_id, $object );
+				$is_logged  = $this->is_logged( $checkbox_id, $object );
+
+				if ( $is_logged ) {
+					$checkboxes_to_list[ $checkbox_id ] = $is_checked;
+				}
+			}
+		}
+		?>
+		<?php if ( ! empty( $checkboxes_to_list ) ) : ?>
+			<div class="wc-gzd-checkbox-log-list wc-gzd-checkbox-log-list-<?php echo esc_attr( $location ); ?>">
+				<?php
+				foreach ( $checkboxes_to_list as $checkbox_id => $checkbox_status ) :
+					if ( ! $checkbox = wc_gzd_get_legal_checkbox( $checkbox_id ) ) {
+						continue;
+					}
+					?>
+					<div class="wc-gzd-log-checkbox">
+						<p class="checkbox-title"><?php echo esc_html( $checkbox->get_admin_name() ); ?> <?php echo ( ! empty( $checkbox->get_admin_desc() ) ? wc_help_tip( $checkbox->get_admin_desc() ) : '' ); ?></p>
+						<p class="checkbox-status">
+							<?php if ( in_array( $checkbox_id, $this->get_editable_checkboxes( $location ), true ) ) : ?>
+								<?php
+								WC_GZD_Admin::instance()->render_toggle(
+									array(
+										'id'    => "_checkbox_{$checkbox_id}",
+										'value' => wc_bool_to_string( $checkbox_status ),
+									)
+								);
+								?>
+								<input type="hidden" name="_checkboxes_visible[]" value="<?php echo esc_attr( $checkbox_id ); ?>" />
+							<?php else : ?>
+								<?php echo ( true === $checkbox_status ? '<span class="dashicons dashicons-yes"></span>' : '<span class="dashicons dashicons-no-alt"></span>' ); ?>
+							<?php endif; ?>
+						</p>
+					</div>
+				<?php endforeach; ?>
+			</div>
+			<?php
+		endif;
+	}
+
 	private function maybe_do_hooks( $location = 'checkout' ) {
 		if ( ! did_action( 'woocommerce_gzd_run_legal_checkboxes' ) ) {
 
