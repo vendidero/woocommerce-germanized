@@ -136,13 +136,37 @@ class WC_GZD_Admin_Welcome {
 				<a href="https://vendidero.de/woocommerce-germanized#upgrade" target="_blank" class="button wc-gzd-button wc-germanized-welcome-pro">Upgrade zur <span class="wc-gzd-pro wc-gzd-pro-outlined">pro</span> Version</a>
 			</p>
 
+            <div class="changelog new-feature">
+                <h3>Built-in Versandregeln, automatisches Packen & mehr</h3>
+
+                <div class="columns two-col">
+                    <div class="col col-center">
+                        <img src="<?php echo esc_url( WC_germanized()->plugin_url() ); ?>/assets/images/shipping-rules.png"/>
+                    </div>
+                    <div class="col">
+                        <p>
+                            Germanized 3.15 kommt mit neuen, lang ersehnten Features. Von nun an benötigst du kein separates Plugin mehr um deine Versandregeln zu konfigurieren.
+                            Mit Germanized kannst du nun ganz bequem, je Versanddienstleister, eigene Versandregeln anhand konkreter Bedingungen hinterlegen. Diese Regeln beziehen sich
+                            allesamt auf die von dir hinterlegten Verpackungen. Germanized bestimmt von nun an automatisch im Warenkorb welche Verpackung(en) benötigt werden und berechnet anhand
+                            deiner konfigurierten Regeln die Versandkosten. Das Feature <i>automatisches Packen</i> ist von nun an auch in der Basis-Version von Germanized verfügbar 🎉
+                        </p>
+
+                        <p>
+                            Außerdem kannst du von nun an deine individuellen Konfigurationen für das Erstellen von Labels, z.B. DHL Warenpost + GoGreen direkt an eine Verpackung binden.
+                        </p>
+
+                        <div class="wc-gzd-actions wc-gzd-actions-right">
+                            <a href="https://vendidero.de/germanized-3-15" class="wc-gzd-default-button button button-primary" target="_blank">Mehr erfahren</a>
+                            <a href="<?php echo esc_url( admin_url( 'admin.php?page=wc-settings&tab=shipping' ) ); ?>" class="wc-gzd-default-button button button-primary" target="_blank">Versandarten konfigurieren</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
 			<div class="changelog new-feature">
 				<h3>Full-Site-Editing & Checkout-Block Support</h3>
 
 				<div class="columns two-col">
-					<div class="col col-center">
-						<img src="<?php echo esc_url( WC_germanized()->plugin_url() ); ?>/assets/images/checkout-block.png"/>
-					</div>
 					<div class="col">
 						<p>
 							In Germanized 3.14 haben wir uns sehr intensiv mit den neuen Blöcken auseinandergesetzt, die WooCommerce z.B. für eine
@@ -153,7 +177,7 @@ class WC_GZD_Admin_Welcome {
 
 						<p>Darüber hinaus stellt Germanized nun individuelle Blöcke für die verschiedenen Preisauszeichnungen bereit - diese Blöcke kannst du z.B. bei der Bearbeitung der Vorlage <em>Einzelnes Produkt</em> in WooCommerce verwenden.</p>
 
-						<div class="wc-gzd-actions wc-gzd-actions-right">
+						<div class="wc-gzd-actions">
 							<a href="https://vendidero.de/germanized-3-14" class="wc-gzd-default-button button button-primary" target="_blank">Mehr erfahren</a>
 
 							<?php if ( wc_gzd_has_checkout_block() ) : ?>
@@ -164,6 +188,9 @@ class WC_GZD_Admin_Welcome {
 							<?php endif; ?>
 						</div>
 					</div>
+                    <div class="col col-center">
+                        <img src="<?php echo esc_url( WC_germanized()->plugin_url() ); ?>/assets/images/checkout-block.png"/>
+                    </div>
 				</div>
 			</div>
 
@@ -171,45 +198,23 @@ class WC_GZD_Admin_Welcome {
 				<h3>Handels- bzw. Proformarechnungen erstellen <span class="wc-gzd-pro wc-gzd-pro-outlined">pro</span></h3>
 
 				<div class="columns two-col">
-					<div class="col">
-						<p>
-							Erstelle mit Germanized Pro für deine internationale Sendungen bequem eine Handels- bzw. Proformarechnungen um den Zollbestimmungen zu entsprechen.
-							Alle relevanten Informationen (Gewichte, Herstellerland, Exportgrund usw.) werden für dich automatisch platziert. Wie bei den anderen Dokumenten
-							(Rechnung, Stornierung, Lieferschein) kannst du auch bei der Handelsrechnung das Layout individuell über den integrierten PDF-Editor anpassen.
-						</p>
-
-						<div class="wc-gzd-actions wc-gzd-actions-right">
-							<a href="https://vendidero.de/woocommerce-germanized" target="_blank" class="wc-gzd-pro-version button button-primary wc-gzd-button"><span class="wc-gzd-pro wc-gzd-pro-outlined">pro</span> Version entdecken</a>
-							<a href="https://vendidero.de/dokument/handelsrechnungen-zu-sendungen-erstellen" class="wc-gzd-default-button button button-primary" target="_blank">Mehr erfahren</a>
-
-							<p class="price smaller wc-gzd-pro-version">ab 79 € inkl. MwSt. - inkl. 1 Jahr Updates & Premium Support!</p>
-						</div>
-					</div>
 					<div class="col col-center">
 						<img src="<?php echo esc_url( WC_germanized()->plugin_url() ); ?>/assets/images/commercial-invoice.png" style="max-width: 450px;"/>
 					</div>
-				</div>
-			</div>
+                    <div class="col">
+                        <p>
+                            Erstelle mit Germanized Pro für deine internationale Sendungen bequem eine Handels- bzw. Proformarechnungen um den Zollbestimmungen zu entsprechen.
+                            Alle relevanten Informationen (Gewichte, Herstellerland, Exportgrund usw.) werden für dich automatisch platziert. Wie bei den anderen Dokumenten
+                            (Rechnung, Stornierung, Lieferschein) kannst du auch bei der Handelsrechnung das Layout individuell über den integrierten PDF-Editor anpassen.
+                        </p>
 
-			<div class="changelog new-feature">
-				<h3>Photovoltaikanlagen zum Nullsteuersatz verkaufen</h3>
+                        <div class="wc-gzd-actions wc-gzd-actions-right">
+                            <a href="https://vendidero.de/woocommerce-germanized" target="_blank" class="wc-gzd-pro-version button button-primary wc-gzd-button"><span class="wc-gzd-pro wc-gzd-pro-outlined">pro</span> Version entdecken</a>
+                            <a href="https://vendidero.de/dokument/handelsrechnungen-zu-sendungen-erstellen" class="wc-gzd-default-button button button-primary" target="_blank">Mehr erfahren</a>
 
-				<div class="columns two-col">
-					<div class="col col-center">
-						<img src="<?php echo esc_url( WC_germanized()->plugin_url() ); ?>/assets/images/photovoltaic-systems.png" style="max-width: 450px;"/>
-					</div>
-					<div class="col">
-						<p>
-							In der neuesten Version von Germanized unterstützen wir dich beim Verkauf von Photovoltaikanlagen nach §12 Absatz 3 UStG. Damit der Nullsteuersatz automatisch
-							für deine Photovoltaikanlage(n) angewendet wird, müssen einige Bedingungen erfüllt sein: Die Lieferung muss innerhalb Deutschlands erfolgen, der Kunde hat keine
-							Firmenanschrift gewählt und die speziell im Checkout hinzugefügte <a href="<?php echo esc_url( admin_url( 'admin.php?page=wc-settings&tab=germanized-checkboxes&checkbox_id=photovoltaic_systems' ) ); ?>">Checkbox</a> muss akzeptiert werden.
-						</p>
-
-						<div class="wc-gzd-actions wc-gzd-actions-right">
-							<a href="https://vendidero.de/photovoltaikanlagen-in-woocommerce-verkaufen-so-funktionierts" target="_blank" class="wc-gzd-button button button-primary">Mehr erfahren</a>
-							<a href="<?php echo esc_url( admin_url( 'admin.php?page=wc-settings&tab=germanized-general&section=photovoltaic_systems' ) ); ?>" class="wc-gzd-default-button button button-primary">Einstellungen anpassen</a>
-						</div>
-					</div>
+                            <p class="price smaller wc-gzd-pro-version">ab 79 € inkl. MwSt. - inkl. 1 Jahr Updates & Premium Support!</p>
+                        </div>
+                    </div>
 				</div>
 			</div>
 
@@ -218,18 +223,17 @@ class WC_GZD_Admin_Welcome {
 
 				<div class="three-col columns">
 					<div class="col">
-						<h4><span class="dashicons dashicons-admin-site"></span> Lieferzeiten je Land</h4>
+						<h4><span class="dashicons dashicons-yes-alt"></span> Checkboxen</h4>
 						<p>
-							Mit Germanized 3.7 kannst du jetzt optional abweichende Lieferzeiten je Land hinterlegen. Du kannst
-							ebenfalls Lieferzeiten für alle EU-Länder bzw. Nicht-EU-Länder hinterlegen und <a href="<?php echo esc_url( admin_url( 'admin.php?page=wc-settings&tab=germanized-shopmarks&section=delivery_times' ) ); ?>">individuelle Fallbacks</a> dafür nutzen.
+							Die für eine Bestellung protokollierten Checkboxen, z.B. für die Versanddienstleister-Datenweitergabe, werden von nun an
+                            übersichtlich in der Sidebar unterhalb der Bestellanmerkungen aufgeführt.
 						</p>
 					</div>
 					<div class="col">
-						<h4><span class="dashicons dashicons-admin-generic"></span> Grundpreisberechnung</h4>
+						<h4><span class="dashicons dashicons-admin-generic"></span> Asynchrone Automatisierung</h4>
 						<p>
-							Um Staffelpreise oder Rollen-basierte-Preise besser zu unterstützen, aktualisiert
-							Germanized nun automatisch den Grundpreis wenn sich auf der Produktseite der Preis ändert
-							oder durch ein Plugin dynamisch verändert wird.
+							Um die Performance, z.B. im Checkout, zu verbessern, werden Sendungen, die über die Automatik erstellt werden,
+                            nunmehr über den Woo Action Scheduler asynchron im Hintergrund erstellt.
 						</p>
 					</div>
 					<div class="col">

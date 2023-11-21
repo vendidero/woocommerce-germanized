@@ -631,11 +631,22 @@ class WC_GZD_Legal_Checkbox_Manager {
 
 							foreach ( $rates as $rate ) {
 								array_push( $ids, $rate->id );
-								if ( method_exists( $rate, 'get_label' ) ) {
-									array_push( $titles, $rate->get_label() );
+
+								if ( is_callable( array( $rate, 'get_label' ) ) ) {
+									$title = $rate->get_label();
 								} else {
-									array_push( $titles, $rate->label );
+									$title = $rate->label;
 								}
+
+								if ( function_exists( 'wc_gzd_get_shipping_provider_method' ) ) {
+									if ( $method = wc_gzd_get_shipping_provider_method( $rate ) ) {
+										if ( $provider = $method->get_shipping_provider_instance() ) {
+                                            $title = $provider->get_title();
+										}
+									}
+								}
+
+								array_push( $titles, $title );
 							}
 						}
 					} elseif ( 'pay_for_order' === $location ) {
@@ -644,10 +655,21 @@ class WC_GZD_Legal_Checkbox_Manager {
 							$ids          = array();
 							$items        = $args['order']->get_shipping_methods();
 							$titles       = array();
+                            $needs_title  = true;
+
+							if ( function_exists( 'wc_gzd_get_order_shipping_provider' ) ) {
+								if ( $provider = wc_gzd_get_order_shipping_provider( $args['order'] ) ) {
+									$titles[]    = $provider->get_title();
+									$needs_title = false;
+                                }
+							}
 
 							foreach ( $items as $item ) {
-								$ids[]    = $item->get_method_id();
-								$titles[] = $item->get_method_title();
+								$ids[] = $item->get_method_id();
+
+                                if ( $needs_title ) {
+	                                $titles[] = $item->get_method_title();
+                                }
 							}
 						}
 					}

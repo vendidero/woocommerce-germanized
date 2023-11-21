@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "032b1da615800ab9f055ba9e50c06921",
+    "content-hash": "a4519201e0e078ce4ab09cfa34e16b66",
     "packages": [
         {
             "name": "automattic/jetpack-autoloader",
@@ -810,16 +810,16 @@
         },
         {
             "name": "vendidero/woocommerce-germanized-dhl",
-            "version": "2.1.1",
+            "version": "3.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vendidero/woocommerce-germanized-dhl.git",
-                "reference": "be260b948cee49fa80c4a355bb8c896c8e15f2d0"
+                "reference": "9dd71ebfc09e0e78fad8b19afb641cb3e246a848"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vendidero/woocommerce-germanized-dhl/zipball/be260b948cee49fa80c4a355bb8c896c8e15f2d0",
-                "reference": "be260b948cee49fa80c4a355bb8c896c8e15f2d0",
+                "url": "https://api.github.com/repos/vendidero/woocommerce-germanized-dhl/zipball/9dd71ebfc09e0e78fad8b19afb641cb3e246a848",
+                "reference": "9dd71ebfc09e0e78fad8b19afb641cb3e246a848",
                 "shasum": ""
             },
             "require": {
@@ -864,23 +864,23 @@
             "description": "The Germanized DHL implementation.",
             "homepage": "https://github.com/vendidero/woocommerce-germanized-dhl",
             "support": {
-                "source": "https://github.com/vendidero/woocommerce-germanized-dhl/tree/v2.1.1",
+                "source": "https://github.com/vendidero/woocommerce-germanized-dhl/tree/v3.0.0",
                 "issues": "https://github.com/vendidero/woocommerce-germanized-dhl/issues"
             },
-            "time": "2023-10-25T14:37:33+00:00"
+            "time": "2023-11-21T14:11:51+00:00"
         },
         {
             "name": "vendidero/woocommerce-germanized-shipments",
-            "version": "2.4.4",
+            "version": "3.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vendidero/woocommerce-germanized-shipments.git",
-                "reference": "ae9351f2bfd943971a3e1dba7cc1e4643f970f72"
+                "reference": "a5bec0dae81ae9a3d55d37bf92e158cf1980c7b0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vendidero/woocommerce-germanized-shipments/zipball/ae9351f2bfd943971a3e1dba7cc1e4643f970f72",
-                "reference": "ae9351f2bfd943971a3e1dba7cc1e4643f970f72",
+                "url": "https://api.github.com/repos/vendidero/woocommerce-germanized-shipments/zipball/a5bec0dae81ae9a3d55d37bf92e158cf1980c7b0",
+                "reference": "a5bec0dae81ae9a3d55d37bf92e158cf1980c7b0",
                 "shasum": ""
             },
             "require": {
@@ -923,10 +923,10 @@
             "description": "The Germanized Shipments implementation.",
             "homepage": "https://github.com/vendidero/woocommerce-germanized-shipments",
             "support": {
-                "source": "https://github.com/vendidero/woocommerce-germanized-shipments/tree/v2.4.4",
+                "source": "https://github.com/vendidero/woocommerce-germanized-shipments/tree/v3.0.0",
                 "issues": "https://github.com/vendidero/woocommerce-germanized-shipments/issues"
             },
-            "time": "2023-10-25T14:38:07+00:00"
+            "time": "2023-11-21T14:11:19+00:00"
         },
         {
             "name": "wsdltophp/wssecurity",
@@ -2761,16 +2761,16 @@
         },
         {
             "name": "theseer/tokenizer",
-            "version": "1.2.1",
+            "version": "1.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/theseer/tokenizer.git",
-                "reference": "34a41e998c2183e22995f158c581e7b5e755ab9e"
+                "reference": "b2ad5003ca10d4ee50a12da31de12a5774ba6b96"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/theseer/tokenizer/zipball/34a41e998c2183e22995f158c581e7b5e755ab9e",
-                "reference": "34a41e998c2183e22995f158c581e7b5e755ab9e",
+                "url": "https://api.github.com/repos/theseer/tokenizer/zipball/b2ad5003ca10d4ee50a12da31de12a5774ba6b96",
+                "reference": "b2ad5003ca10d4ee50a12da31de12a5774ba6b96",
                 "shasum": ""
             },
             "require": {
@@ -2799,7 +2799,7 @@
             "description": "A small library for converting tokenized PHP source code into XML and potentially other formats",
             "support": {
                 "issues": "https://github.com/theseer/tokenizer/issues",
-                "source": "https://github.com/theseer/tokenizer/tree/1.2.1"
+                "source": "https://github.com/theseer/tokenizer/tree/1.2.2"
             },
             "funding": [
                 {
@@ -2807,7 +2807,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-07-28T10:34:58+00:00"
+            "time": "2023-11-20T00:12:19+00:00"
         },
         {
             "name": "webmozart/assert",
