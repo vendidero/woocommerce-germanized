@@ -641,7 +641,7 @@ class WC_GZD_Legal_Checkbox_Manager {
 								if ( function_exists( 'wc_gzd_get_shipping_provider_method' ) ) {
 									if ( $method = wc_gzd_get_shipping_provider_method( $rate ) ) {
 										if ( $provider = $method->get_shipping_provider_instance() ) {
-                                            $title = $provider->get_title();
+											$title = $provider->get_title();
 										}
 									}
 								}
@@ -655,21 +655,21 @@ class WC_GZD_Legal_Checkbox_Manager {
 							$ids          = array();
 							$items        = $args['order']->get_shipping_methods();
 							$titles       = array();
-                            $needs_title  = true;
+							$needs_title  = true;
 
 							if ( function_exists( 'wc_gzd_get_order_shipping_provider' ) ) {
 								if ( $provider = wc_gzd_get_order_shipping_provider( $args['order'] ) ) {
 									$titles[]    = $provider->get_title();
 									$needs_title = false;
-                                }
+								}
 							}
 
 							foreach ( $items as $item ) {
 								$ids[] = $item->get_method_id();
 
-                                if ( $needs_title ) {
-	                                $titles[] = $item->get_method_title();
-                                }
+								if ( $needs_title ) {
+									$titles[] = $item->get_method_title();
+								}
 							}
 						}
 					}

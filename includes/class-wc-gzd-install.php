@@ -209,6 +209,7 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 			if ( is_null( $current_version ) ) {
 				self::create_units();
 				self::create_labels();
+				self::adjust_checkout_block();
 			}
 
 			self::create_options();
@@ -480,6 +481,30 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 			if ( ! empty( $labels ) ) {
 				foreach ( $labels as $slug => $unit ) {
 					wp_insert_term( $unit, 'product_price_label', array( 'slug' => $slug ) );
+				}
+			}
+		}
+
+		/**
+		 * Replace core term checkbox with Germanized checkboxes block.
+		 *
+		 * @return void
+		 */
+		public static function adjust_checkout_block() {
+			$page_id = wc_get_page_id( 'checkout' );
+
+			if ( $checkout_post = get_post( $page_id ) ) {
+				if ( function_exists( 'has_block' ) && has_block( 'woocommerce/checkout', $checkout_post ) ) {
+					$post_content = $checkout_post->post_content;
+					$post_content = str_replace( 'woocommerce/checkout-terms-block', 'woocommerce-germanized/checkout-checkboxes', $post_content );
+					$post_content = str_replace( 'wp-block-woocommerce-checkout-terms-block', 'wp-block-woocommerce-germanized-checkout-checkboxes', $post_content );
+
+					wp_update_post(
+						array(
+							'ID'           => $page_id,
+							'post_content' => $post_content,
+						)
+					);
 				}
 			}
 		}
