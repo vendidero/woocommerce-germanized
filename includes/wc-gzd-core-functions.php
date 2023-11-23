@@ -1732,7 +1732,7 @@ function wc_gzd_base_country_supports_photovoltaic_system_vat_exempt() {
 	$base_country    = wc_gzd_get_base_country();
 	$supports_exempt = false;
 
-	if ( 'DE' === $base_country ) {
+	if ( in_array( $base_country, array( 'DE', 'AT' ), true ) ) {
 		$supports_exempt = true;
 	} elseif ( \Vendidero\EUTaxHelper\Helper::is_eu_vat_country( $base_country ) && \Vendidero\EUTaxHelper\Helper::oss_procedure_is_enabled() ) {
 		$supports_exempt = true;
@@ -1793,15 +1793,24 @@ function wc_gzd_customer_applies_for_photovoltaic_system_vat_exemption( $args = 
 	if ( empty( $args['company'] ) || apply_filters( 'woocommerce_gzd_allow_b2b_photovoltaic_system_vat_exemption', false ) ) {
 		/**
 		 * Allow VAT exemption for:
-		 * - shipments to DE (from DE or from another EU country which takes part in OSS procedure).
-		 * - shipments inner EU if base country is DE and not taking part in OSS procedure
+		 * - shipments to a country supporting photovoltaic exempts (from the base country or from another EU country which takes part in OSS procedure).
+		 * - shipments inner EU if base country supports photovoltaic exempts and not taking part in OSS procedure
 		 */
-		if ( wc_gzd_base_country_supports_photovoltaic_system_vat_exempt() && 'DE' === $args['country'] && ! \Vendidero\EUTaxHelper\Helper::is_eu_vat_postcode_exemption( $args['country'], $args['postcode'] ) ) {
+		if ( wc_gzd_base_country_supports_photovoltaic_system_vat_exempt() && wc_gzd_shipping_country_supports_photovoltaic_system_vat_exempt( $args['country'] ) && ! \Vendidero\EUTaxHelper\Helper::is_eu_vat_postcode_exemption( $args['country'], $args['postcode'] ) ) {
 			$applies_for_photovoltaic_vat_exemption = true;
-		} elseif ( 'DE' === wc_gzd_get_base_country() && 'DE' !== $args['country'] && ! \Vendidero\EUTaxHelper\Helper::oss_procedure_is_enabled() && \Vendidero\EUTaxHelper\Helper::is_eu_vat_country( $args['country'], $args['postcode'] ) ) {
+		} elseif ( ! \Vendidero\EUTaxHelper\Helper::oss_procedure_is_enabled() && wc_gzd_base_country_supports_photovoltaic_system_vat_exempt() && \Vendidero\EUTaxHelper\Helper::is_eu_vat_country( $args['country'], $args['postcode'] ) && wc_gzd_get_base_country() !== $args['country'] ) {
 			$applies_for_photovoltaic_vat_exemption = true;
 		}
 	}
 
 	return apply_filters( 'woocommerce_gzd_customer_applies_for_photovoltaic_system_vat_exemption', $applies_for_photovoltaic_vat_exemption, $args );
+}
+
+/**
+ * @param $country
+ *
+ * @return boolean
+ */
+function wc_gzd_shipping_country_supports_photovoltaic_system_vat_exempt( $country ) {
+	return apply_filters( 'woocommerce_gzd_shipping_country_supports_photovoltaic_system_vat_exempt', in_array( $country, array( 'DE', 'AT' ), true ) );
 }
