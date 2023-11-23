@@ -210,8 +210,8 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 * New: Add label configuration sets to packaging options
 * New: Support auto-packing orders based on available packaging options
 * New: Added additional options, e.g. shipping class/provider restrictions to packaging
+* New: Use Woo Action scheduler to automatically create shipments as a background task
 * Improvement: Checkbox status reporting UI (order page sidebar)
-* Improvement: Allow photovoltaic system vat exempts for austria too
 * Fix: Dynamic, missing properties in gateways
 
 = 3.14.1 =
