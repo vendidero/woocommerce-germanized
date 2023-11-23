@@ -205,6 +205,15 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 6. Edit pdf documents (Pro)
 
 == Changelog ==
+= 3.15.0 =
+* New: Custom shipping methods and rule-based shipping for shipping providers
+* New: Add label configuration sets to packaging options
+* New: Support auto-packing orders based on available packaging options
+* New: Added additional options, e.g. shipping class/provider restrictions to packaging
+* Improvement: Checkbox status reporting UI (order page sidebar)
+* Improvement: Allow photovoltaic system vat exempts for austria too
+* Fix: Dynamic, missing properties in gateways
+
 = 3.14.1 =
 * Improvement: Show return address only in case the return is in processing state
 * Improvement: Hide shipping order item shipping provider meta
