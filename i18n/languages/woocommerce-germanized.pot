@@ -2,14 +2,14 @@
 # This file is distributed under the same license as the Germanized for WooCommerce plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Germanized for WooCommerce 3.15.0\n"
+"Project-Id-Version: Germanized for WooCommerce 3.15.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/woocommerce-germanized\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2023-11-23T14:54:03+00:00\n"
+"POT-Creation-Date: 2023-11-28T15:45:02+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.9.0\n"
 
@@ -244,14 +244,14 @@ msgstr ""
 #: src/ShippingProvider/DHL.php:1194
 #: src/ShippingProvider/DHL.php:1473
 #: src/ShippingProvider/Services/PreferredDay.php:16
-#: src/ShippingProvider/Services/PreferredDay.php:45
+#: src/ShippingProvider/Services/PreferredDay.php:44
 #: templates/checkout/dhl/preferred-services.php:37
 #: packages/woocommerce-germanized-dhl/src/Admin/Admin.php:74
 #: packages/woocommerce-germanized-dhl/src/ParcelServices.php:61
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1194
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1473
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/Services/PreferredDay.php:16
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/Services/PreferredDay.php:45
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/Services/PreferredDay.php:44
 #: packages/woocommerce-germanized-dhl/templates/checkout/dhl/preferred-services.php:37
 msgctxt "dhl"
 msgid "Delivery day"
@@ -515,8 +515,8 @@ msgctxt "dhl"
 msgid "Rückschein"
 msgstr ""
 
-#: src/Api/ImProductList.php:330
-#: packages/woocommerce-germanized-dhl/src/Api/ImProductList.php:330
+#: src/Api/ImProductList.php:335
+#: packages/woocommerce-germanized-dhl/src/Api/ImProductList.php:335
 msgctxt "dhl"
 msgid "No Internetmarke product data found."
 msgstr ""
@@ -569,10 +569,10 @@ msgstr ""
 
 #: src/Api/Internetmarke.php:73
 #: src/Api/Soap.php:54
-#: src/Package.php:86
+#: src/Package.php:85
 #: packages/woocommerce-germanized-dhl/src/Api/Internetmarke.php:73
 #: packages/woocommerce-germanized-dhl/src/Api/Soap.php:54
-#: packages/woocommerce-germanized-dhl/src/Package.php:86
+#: packages/woocommerce-germanized-dhl/src/Package.php:85
 msgctxt "dhl"
 msgid "To enable communication between your shop and DHL, the PHP <a href=\"%1$s\">SOAPClient</a> is required. Please contact your host and make sure that SOAPClient is <a href=\"%2$s\">installed</a>."
 msgstr ""
@@ -1083,8 +1083,8 @@ msgctxt "dhl"
 msgid "Invalid label."
 msgstr ""
 
-#: src/Package.php:1087
-#: packages/woocommerce-germanized-dhl/src/Package.php:1087
+#: src/Package.php:1086
+#: packages/woocommerce-germanized-dhl/src/Package.php:1086
 msgctxt "dhl"
 msgid "Germany"
 msgstr ""
@@ -1273,14 +1273,14 @@ msgstr ""
 #: src/ShippingProvider/DHL.php:1141
 #: src/ShippingProvider/DHL.php:1499
 #: src/ShippingProvider/Services/PreferredLocation.php:15
-#: src/ShippingProvider/Services/PreferredLocation.php:43
+#: src/ShippingProvider/Services/PreferredLocation.php:42
 #: templates/checkout/dhl/preferred-services.php:89
 #: packages/woocommerce-germanized-dhl/build/checkout.js:1
 #: packages/woocommerce-germanized-dhl/src/ParcelServices.php:75
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1141
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1499
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/Services/PreferredLocation.php:15
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/Services/PreferredLocation.php:43
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/Services/PreferredLocation.php:42
 #: packages/woocommerce-germanized-dhl/templates/checkout/dhl/preferred-services.php:89
 msgctxt "dhl"
 msgid "Drop-off location"
@@ -1289,14 +1289,14 @@ msgstr ""
 #: src/ParcelServices.php:80
 #: src/ShippingProvider/DHL.php:1150
 #: src/ShippingProvider/Services/PreferredNeighbour.php:15
-#: src/ShippingProvider/Services/PreferredNeighbour.php:43
+#: src/ShippingProvider/Services/PreferredNeighbour.php:42
 #: templates/checkout/dhl/preferred-services.php:82
 #: templates/checkout/dhl/preferred-services.php:98
 #: packages/woocommerce-germanized-dhl/build/checkout.js:1
 #: packages/woocommerce-germanized-dhl/src/ParcelServices.php:80
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1150
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/Services/PreferredNeighbour.php:15
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/Services/PreferredNeighbour.php:43
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/Services/PreferredNeighbour.php:42
 #: packages/woocommerce-germanized-dhl/templates/checkout/dhl/preferred-services.php:82
 #: packages/woocommerce-germanized-dhl/templates/checkout/dhl/preferred-services.php:98
 msgctxt "dhl"
@@ -2565,8 +2565,8 @@ msgctxt "dhl"
 msgid "Either a minimum age or a date of birth is need for the ident check."
 msgstr ""
 
-#: src/ShippingProvider/Services/PreferredDay.php:93
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/Services/PreferredDay.php:93
+#: src/ShippingProvider/Services/PreferredDay.php:92
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/Services/PreferredDay.php:92
 msgctxt "dhl"
 msgid "Please choose a valid preferred delivery day."
 msgstr ""
@@ -3218,12 +3218,12 @@ msgid "Create"
 msgstr ""
 
 #: includes/admin/views/label/html-shipment-label.php:25
-#: includes/wc-gzd-shipment-functions.php:1444
+#: includes/wc-gzd-shipment-functions.php:1445
 #: src/Admin/Table.php:907
 #: src/Ajax.php:354
 #: templates/shipment/shipment-return-instructions.php:29
 #: packages/woocommerce-germanized-shipments/includes/admin/views/label/html-shipment-label.php:25
-#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:1444
+#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:1445
 #: packages/woocommerce-germanized-shipments/src/Admin/Table.php:907
 #: packages/woocommerce-germanized-shipments/src/Ajax.php:354
 #: packages/woocommerce-germanized-shipments/templates/shipment/shipment-return-instructions.php:29
@@ -3827,8 +3827,8 @@ msgctxt "shipments"
 msgid "Actions"
 msgstr ""
 
-#: includes/wc-gzd-shipment-functions.php:1437
-#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:1437
+#: includes/wc-gzd-shipment-functions.php:1438
+#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:1438
 msgctxt "shipments"
 msgid "View"
 msgstr ""
@@ -4340,11 +4340,11 @@ msgstr ""
 #: src/Admin/PackagingSettings.php:140
 #: src/Admin/ProviderSettings.php:91
 #: src/Admin/ProviderSettings.php:145
-#: src/ShippingMethod/MethodHelper.php:385
+#: src/ShippingMethod/MethodHelper.php:382
 #: packages/woocommerce-germanized-shipments/src/Admin/PackagingSettings.php:140
 #: packages/woocommerce-germanized-shipments/src/Admin/ProviderSettings.php:91
 #: packages/woocommerce-germanized-shipments/src/Admin/ProviderSettings.php:145
-#: packages/woocommerce-germanized-shipments/src/ShippingMethod/MethodHelper.php:385
+#: packages/woocommerce-germanized-shipments/src/ShippingMethod/MethodHelper.php:382
 msgctxt "shipments"
 msgid "Shipping Provider"
 msgstr ""
@@ -4956,9 +4956,9 @@ msgid "Filter by shipping provider"
 msgstr ""
 
 #: src/Admin/Table.php:700
-#: src/Ajax.php:943
+#: src/Ajax.php:952
 #: packages/woocommerce-germanized-shipments/src/Admin/Table.php:700
-#: packages/woocommerce-germanized-shipments/src/Ajax.php:943
+#: packages/woocommerce-germanized-shipments/src/Ajax.php:952
 msgctxt "shipments"
 msgid "Order #%s"
 msgstr ""
@@ -5113,31 +5113,31 @@ msgid "There was an error while bulk processing shipments."
 msgstr ""
 
 #: src/Ajax.php:587
-#: src/Ajax.php:712
-#: src/Ajax.php:769
-#: src/Ajax.php:806
-#: src/Ajax.php:1037
-#: src/Ajax.php:1083
-#: src/Ajax.php:1159
-#: src/Ajax.php:1192
-#: src/Ajax.php:1251
-#: src/Ajax.php:1319
-#: src/Ajax.php:1359
-#: src/Ajax.php:1414
-#: src/Ajax.php:1458
+#: src/Ajax.php:721
+#: src/Ajax.php:778
+#: src/Ajax.php:815
+#: src/Ajax.php:1046
+#: src/Ajax.php:1092
+#: src/Ajax.php:1168
+#: src/Ajax.php:1201
+#: src/Ajax.php:1260
+#: src/Ajax.php:1328
+#: src/Ajax.php:1368
+#: src/Ajax.php:1423
+#: src/Ajax.php:1467
 #: packages/woocommerce-germanized-shipments/src/Ajax.php:587
-#: packages/woocommerce-germanized-shipments/src/Ajax.php:712
-#: packages/woocommerce-germanized-shipments/src/Ajax.php:769
-#: packages/woocommerce-germanized-shipments/src/Ajax.php:806
-#: packages/woocommerce-germanized-shipments/src/Ajax.php:1037
-#: packages/woocommerce-germanized-shipments/src/Ajax.php:1083
-#: packages/woocommerce-germanized-shipments/src/Ajax.php:1159
-#: packages/woocommerce-germanized-shipments/src/Ajax.php:1192
-#: packages/woocommerce-germanized-shipments/src/Ajax.php:1251
-#: packages/woocommerce-germanized-shipments/src/Ajax.php:1319
-#: packages/woocommerce-germanized-shipments/src/Ajax.php:1359
-#: packages/woocommerce-germanized-shipments/src/Ajax.php:1414
-#: packages/woocommerce-germanized-shipments/src/Ajax.php:1458
+#: packages/woocommerce-germanized-shipments/src/Ajax.php:721
+#: packages/woocommerce-germanized-shipments/src/Ajax.php:778
+#: packages/woocommerce-germanized-shipments/src/Ajax.php:815
+#: packages/woocommerce-germanized-shipments/src/Ajax.php:1046
+#: packages/woocommerce-germanized-shipments/src/Ajax.php:1092
+#: packages/woocommerce-germanized-shipments/src/Ajax.php:1168
+#: packages/woocommerce-germanized-shipments/src/Ajax.php:1201
+#: packages/woocommerce-germanized-shipments/src/Ajax.php:1260
+#: packages/woocommerce-germanized-shipments/src/Ajax.php:1328
+#: packages/woocommerce-germanized-shipments/src/Ajax.php:1368
+#: packages/woocommerce-germanized-shipments/src/Ajax.php:1423
+#: packages/woocommerce-germanized-shipments/src/Ajax.php:1467
 msgctxt "shipments"
 msgid "There was an error processing the shipment"
 msgstr ""
@@ -5154,20 +5154,20 @@ msgctxt "shipments"
 msgid "This order contains enough shipments already."
 msgstr ""
 
-#: src/Ajax.php:731
-#: packages/woocommerce-germanized-shipments/src/Ajax.php:731
+#: src/Ajax.php:740
+#: packages/woocommerce-germanized-shipments/src/Ajax.php:740
 msgctxt "shipments"
 msgid "This order contains enough returns already."
 msgstr ""
 
-#: src/Ajax.php:994
-#: packages/woocommerce-germanized-shipments/src/Ajax.php:994
+#: src/Ajax.php:1003
+#: packages/woocommerce-germanized-shipments/src/Ajax.php:1003
 msgctxt "shipments"
 msgid "Status:"
 msgstr ""
 
-#: src/Ajax.php:999
-#: packages/woocommerce-germanized-shipments/src/Ajax.php:999
+#: src/Ajax.php:1008
+#: packages/woocommerce-germanized-shipments/src/Ajax.php:1008
 msgctxt "shipments"
 msgid "Customer payment page &rarr;"
 msgstr ""
@@ -5316,50 +5316,50 @@ msgctxt "shipments"
 msgid "There was an error while creating the return. Please contact us for further information."
 msgstr ""
 
-#: src/Install.php:242
-#: packages/woocommerce-germanized-shipments/src/Install.php:242
-msgctxt "shipments"
-msgid "Wrong product or size ordered"
-msgstr ""
-
 #: src/Install.php:247
 #: packages/woocommerce-germanized-shipments/src/Install.php:247
 msgctxt "shipments"
-msgid "Product no longer needed"
+msgid "Wrong product or size ordered"
 msgstr ""
 
 #: src/Install.php:252
 #: packages/woocommerce-germanized-shipments/src/Install.php:252
 msgctxt "shipments"
+msgid "Product no longer needed"
+msgstr ""
+
+#: src/Install.php:257
+#: packages/woocommerce-germanized-shipments/src/Install.php:257
+msgctxt "shipments"
 msgid "Don't like the look"
 msgstr ""
 
-#: src/Install.php:271
-#: packages/woocommerce-germanized-shipments/src/Install.php:271
+#: src/Install.php:276
+#: packages/woocommerce-germanized-shipments/src/Install.php:276
 msgctxt "shipments"
 msgid "Cardboard S"
 msgstr ""
 
-#: src/Install.php:280
-#: packages/woocommerce-germanized-shipments/src/Install.php:280
+#: src/Install.php:285
+#: packages/woocommerce-germanized-shipments/src/Install.php:285
 msgctxt "shipments"
 msgid "Cardboard M"
 msgstr ""
 
-#: src/Install.php:289
-#: packages/woocommerce-germanized-shipments/src/Install.php:289
+#: src/Install.php:294
+#: packages/woocommerce-germanized-shipments/src/Install.php:294
 msgctxt "shipments"
 msgid "Cardboard L"
 msgstr ""
 
-#: src/Install.php:298
-#: packages/woocommerce-germanized-shipments/src/Install.php:298
+#: src/Install.php:303
+#: packages/woocommerce-germanized-shipments/src/Install.php:303
 msgctxt "shipments"
 msgid "Letter C5/6"
 msgstr ""
 
-#: src/Install.php:307
-#: packages/woocommerce-germanized-shipments/src/Install.php:307
+#: src/Install.php:312
+#: packages/woocommerce-germanized-shipments/src/Install.php:312
 msgctxt "shipments"
 msgid "Letter C4"
 msgstr ""
@@ -6377,26 +6377,26 @@ msgctxt "shipments"
 msgid "Label meta data."
 msgstr ""
 
-#: src/ShippingMethod/MethodHelper.php:378
-#: packages/woocommerce-germanized-shipments/src/ShippingMethod/MethodHelper.php:378
+#: src/ShippingMethod/MethodHelper.php:375
+#: packages/woocommerce-germanized-shipments/src/ShippingMethod/MethodHelper.php:375
 msgctxt "shipments"
 msgid "Shipping Provider Settings"
 msgstr ""
 
-#: src/ShippingMethod/MethodHelper.php:382
-#: packages/woocommerce-germanized-shipments/src/ShippingMethod/MethodHelper.php:382
+#: src/ShippingMethod/MethodHelper.php:379
+#: packages/woocommerce-germanized-shipments/src/ShippingMethod/MethodHelper.php:379
 msgctxt "shipments"
 msgid "Adjust shipping provider settings used for managing shipments."
 msgstr ""
 
-#: src/ShippingMethod/MethodHelper.php:397
-#: packages/woocommerce-germanized-shipments/src/ShippingMethod/MethodHelper.php:397
+#: src/ShippingMethod/MethodHelper.php:394
+#: packages/woocommerce-germanized-shipments/src/ShippingMethod/MethodHelper.php:394
 msgctxt "shipments"
 msgid "Choose a shipping provider which will be selected by default for an eligible shipment."
 msgstr ""
 
-#: src/ShippingMethod/MethodHelper.php:562
-#: packages/woocommerce-germanized-shipments/src/ShippingMethod/MethodHelper.php:562
+#: src/ShippingMethod/MethodHelper.php:559
+#: packages/woocommerce-germanized-shipments/src/ShippingMethod/MethodHelper.php:559
 msgctxt "shipments"
 msgid "Override?"
 msgstr ""
@@ -6749,8 +6749,8 @@ msgctxt "shipments"
 msgid "Print Format"
 msgstr ""
 
-#: src/ShippingProvider/Auto.php:855
-#: packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:855
+#: src/ShippingProvider/Auto.php:876
+#: packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:876
 msgctxt "shipments"
 msgid "Error while creating the label."
 msgstr ""
@@ -6773,14 +6773,14 @@ msgctxt "shipments"
 msgid "A product needs an id."
 msgstr ""
 
-#: src/ShippingProvider/Service.php:83
-#: packages/woocommerce-germanized-shipments/src/ShippingProvider/Service.php:83
+#: src/ShippingProvider/Service.php:80
+#: packages/woocommerce-germanized-shipments/src/ShippingProvider/Service.php:80
 msgctxt "shipments"
 msgid "A service needs an id."
 msgstr ""
 
-#: src/ShippingProvider/Service.php:402
-#: packages/woocommerce-germanized-shipments/src/ShippingProvider/Service.php:402
+#: src/ShippingProvider/Service.php:394
+#: packages/woocommerce-germanized-shipments/src/ShippingProvider/Service.php:394
 msgctxt "shipments"
 msgid "Please choose a valid value for the service %1$s: %2$s."
 msgstr ""

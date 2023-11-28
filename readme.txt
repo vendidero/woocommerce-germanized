@@ -5,7 +5,7 @@ Requires at least: 5.4
 Tested up to: 6.4
 WC requires at least: 3.9
 WC tested up to: 8.3
-Stable tag: 3.15.0
+Stable tag: 3.15.1
 Requires PHP: 5.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -205,6 +205,13 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 6. Edit pdf documents (Pro)
 
 == Changelog ==
+= 3.15.1 =
+* Improvement: Remove WSDL library dependency
+* Fix: Issue with the DHL inlay return service
+* Fix: Prevent get_current_screen error with additional check before usage
+* Fix: Use ReturnTypeWillChange to prevent PHP warnings in packing impl
+* Fix: Default shipping provider for orders without shipping method
+
 = 3.15.0 =
 * New: Custom shipping methods and rule-based shipping for shipping providers
 * New: Add label configuration sets to packaging options
