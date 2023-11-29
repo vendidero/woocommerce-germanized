@@ -134,25 +134,7 @@ class WC_GZD_Emails {
 		);
 
 		// Disable paid order email for certain gateways (e.g. COD or invoice)
-		add_filter(
-			'woocommerce_allow_send_queued_transactional_email',
-			array(
-				$this,
-				'maybe_disable_order_paid_email_notification_queued',
-			),
-			10,
-			3
-		);
-
-		add_action(
-			'woocommerce_order_status_processing',
-			array(
-				$this,
-				'maybe_disable_order_paid_email_notification',
-			),
-			5,
-			2
-		);
+		add_filter( 'woocommerce_email_enabled_customer_paid_for_order', array( $this, 'maybe_disable_order_paid_email' ), 10, 2 );
 
 		// Change email template path if is germanized email template
 		add_filter( 'woocommerce_template_directory', array( $this, 'set_woocommerce_template_dir' ), 10, 2 );
@@ -854,52 +836,44 @@ class WC_GZD_Emails {
 		return $send;
 	}
 
-	public function maybe_disable_order_paid_email_notification_queued( $send, $filter, $args ) {
-		if ( isset( $args[0] ) && is_numeric( $args[0] ) ) {
-			if ( $order = wc_get_order( absint( $args[0] ) ) ) {
-				$this->maybe_prevent_order_paid_email_notification( $args[0] );
+	/**
+	 * @param boolean $enable_mail
+	 * @param WC_Order $order
+	 *
+	 * @return boolean
+	 */
+	public function maybe_disable_order_paid_email( $enable_mail, $order ) {
+		if ( is_callable( array( $order, 'get_payment_method' ) ) ) {
+			$method               = $order->get_payment_method();
+			$disable_for_gateways = $this->get_gateways_disabling_paid_for_order_mail();
+			$disable_notification = ( in_array( $method, $disable_for_gateways, true ) || $order->get_total() <= 0 ) ? true : false;
+
+			/**
+			 * Filter to adjust whether to disable the paid for order notification based on order data.
+			 *
+			 * @param bool    $disable Whether to disable notification or not.
+			 * @param integer $order_id The order id.
+			 *
+			 * @since 3.2.3
+			 */
+			if ( apply_filters( 'woocommerce_gzd_disable_paid_for_order_notification', $disable_notification, $order->get_id() ) ) {
+				$enable_mail = false;
 			}
 		}
+
+		return $enable_mail;
+	}
+
+	public function maybe_disable_order_paid_email_notification_queued( $send, $filter, $args ) {
+		wc_deprecated_function( __METHOD__, '3.15.2' );
 
 		return $send;
 	}
 
 	public function maybe_disable_order_paid_email_notification( $order_id, $order = false ) {
-		$this->maybe_prevent_order_paid_email_notification( $order_id );
-	}
+		wc_deprecated_function( __METHOD__, '3.15.2' );
 
-	protected function maybe_prevent_order_paid_email_notification( $order_id ) {
-		if ( $order = wc_get_order( $order_id ) ) {
-			if ( is_callable( array( $order, 'get_payment_method' ) ) ) {
-				$method               = $order->get_payment_method();
-				$disable_for_gateways = $this->get_gateways_disabling_paid_for_order_mail();
-				$disable_notification = ( in_array( $method, $disable_for_gateways, true ) || $order->get_total() <= 0 ) ? true : false;
-
-				/**
-				 * Filter to adjust whether to disable the paid for order notification based on order data.
-				 *
-				 * @param bool    $disable Whether to disable notification or not.
-				 * @param integer $order_id The order id.
-				 *
-				 * @since 3.2.3
-				 */
-				if ( apply_filters( 'woocommerce_gzd_disable_paid_for_order_notification', $disable_notification, $order_id ) ) {
-					$emails = WC()->mailer()->emails;
-
-					if ( isset( $emails['WC_GZD_Email_Customer_Paid_For_Order'] ) ) {
-						// Remove notification
-						remove_action(
-							'woocommerce_order_status_pending_to_processing_notification',
-							array(
-								$emails['WC_GZD_Email_Customer_Paid_For_Order'],
-								'trigger',
-							),
-							30
-						);
-					}
-				}
-			}
-		}
+		return $order_id;
 	}
 
 	public function resend_order_emails( $emails ) {
