@@ -1,0 +1,1 @@
+!function(){var e;e=jQuery,window,document,e((function(){setTimeout((function(){e(".bundled_product").each((function(){e(this).wc_germanized_unit_price_observer()}))}),250)})),window.germanized=window.germanized||{},((window.germanized=window.germanized||{}).static=window.germanized.static||{})["unit-price-observer-bundle"]={}}();
