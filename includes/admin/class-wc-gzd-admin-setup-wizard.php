@@ -253,6 +253,12 @@ if ( ! class_exists( 'WC_GZD_Admin_Setup_Wizard' ) ) :
 							)
 						);
 					} else {
+						$is_active = wc_bool_to_string( $provider->is_activated() );
+
+						if ( 'deutsche_post' === $provider->get_name() && ! $provider->get_id() ) {
+							$is_active = false;
+						}
+
 						$settings = array_merge(
 							$settings,
 							array(
@@ -260,7 +266,7 @@ if ( ! class_exists( 'WC_GZD_Admin_Setup_Wizard' ) ) :
 									'title'   => $title_clean,
 									'desc'    => sprintf( __( 'Enable %s integration', 'woocommerce-germanized' ), $provider->get_title() ),
 									'id'      => 'woocommerce_gzd_' . $provider->get_name() . '_activate',
-									'default' => wc_bool_to_string( $provider->is_activated() ),
+									'default' => wc_bool_to_string( $is_active ),
 									'type'    => 'gzd_toggle',
 								),
 							)
@@ -298,11 +304,15 @@ if ( ! class_exists( 'WC_GZD_Admin_Setup_Wizard' ) ) :
 			if ( $this->is_setup_wizard() ) {
 				$gzd = WC_germanized();
 
+				wp_register_style( 'woocommerce-gzd-admin', $gzd->get_assets_build_url( 'static/admin.css' ), false, WC_GERMANIZED_VERSION );
+				wp_enqueue_style( 'woocommerce-gzd-admin' );
+
 				// Register admin styles.
 				wp_register_style( 'woocommerce-gzd-admin-setup-wizard', $gzd->get_assets_build_url( 'static/admin-wizard.css' ), array( 'wp-admin', 'dashicons', 'install', 'woocommerce-gzd-admin-settings' ), WC_GERMANIZED_VERSION );
 				wp_enqueue_style( 'woocommerce-gzd-admin-setup-wizard' );
 
-				wp_register_script( 'wc-gzd-admin-settings', $gzd->get_assets_build_url( 'static/admin-settings.js' ), array(), WC_GERMANIZED_VERSION, true );
+				wp_register_script( 'wc-gzd-admin', $gzd->get_assets_build_url( 'static/admin.js' ), array( 'jquery' ), WC_GERMANIZED_VERSION ); // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.NotInFooter
+				wp_register_script( 'wc-gzd-admin-settings', $gzd->get_assets_build_url( 'static/admin-settings.js' ), array( 'wc-gzd-admin' ), WC_GERMANIZED_VERSION, true );
 				wp_register_script( 'wc-gzd-admin-setup', $gzd->get_assets_build_url( 'static/admin-setup.js' ), array( 'jquery', 'wc-gzd-admin-settings', 'jquery-tiptip' ), WC_GERMANIZED_VERSION, true );
 
 				wp_enqueue_script( 'wc-gzd-admin-setup' );
