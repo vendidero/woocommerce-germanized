@@ -515,6 +515,8 @@ if ( ! class_exists( 'WC_GZD_Admin_Setup_Wizard' ) ) :
 				if ( isset( $_POST[ "woocommerce_gzd_{$provider->get_name()}_activate" ] ) && 'yes' === wc_bool_to_string( wc_clean( wp_unslash( $_POST[ "woocommerce_gzd_{$provider->get_name()}_activate" ] ) ) ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
 					$provider->activate();
 					update_option( '_wc_gzd_setup_shipping_provider_activated', 'yes' );
+				} else {
+                    $provider->deactivate();
 				}
 			}
 
