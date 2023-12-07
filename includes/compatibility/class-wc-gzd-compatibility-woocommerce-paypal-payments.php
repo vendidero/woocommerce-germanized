@@ -43,22 +43,24 @@ class WC_GZD_Compatibility_WooCommerce_PayPal_Payments extends WC_GZD_Compatibil
 		);
 
 		add_filter(
-			'woocommerce_paypal_payments_default_gzd_carrier',
-			function( $carrier, $provider ) {
-				if ( strstr( $provider, 'dpd' ) ) {
-					$carrier = 'DPD';
-				} elseif ( strstr( $provider, 'gls' ) ) {
-					$carrier = 'GLS';
-				} elseif ( strstr( $provider, 'hermes' ) ) {
-					$carrier = 'HERMES';
-				} elseif ( strstr( $provider, 'ups' ) ) {
-					$carrier = 'UPS';
+			'woocommerce_paypal_payments_tracking_data_before_update',
+			function( $shipment_data ) {
+				if ( isset( $shipment_data['carrier'] ) ) {
+					if ( strstr( $shipment_data['carrier'], 'dpd' ) ) {
+						$shipment_data['carrier'] = 'DPD';
+					} elseif ( strstr( $shipment_data['carrier'], 'gls' ) ) {
+						$shipment_data['carrier'] = 'GLS';
+					} elseif ( strstr( $shipment_data['carrier'], 'hermes' ) ) {
+						$shipment_data['carrier'] = 'HERMES';
+					} elseif ( strstr( $shipment_data['carrier'], 'ups' ) ) {
+						$shipment_data['carrier'] = 'UPS';
+					}
 				}
 
-				return $carrier;
+				return $shipment_data;
 			},
 			10,
-			2
+			1
 		);
 	}
 

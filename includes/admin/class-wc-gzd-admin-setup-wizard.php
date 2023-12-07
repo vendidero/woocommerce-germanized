@@ -516,7 +516,7 @@ if ( ! class_exists( 'WC_GZD_Admin_Setup_Wizard' ) ) :
 					$provider->activate();
 					update_option( '_wc_gzd_setup_shipping_provider_activated', 'yes' );
 				} else {
-                    $provider->deactivate();
+					$provider->deactivate();
 				}
 			}
 
