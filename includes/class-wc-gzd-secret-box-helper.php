@@ -301,7 +301,7 @@ if ( ! class_exists( 'WC_GZD_Secret_Box_Helper' ) && function_exists( 'sodium_cr
 		protected static function log_error( $error ) {
 			update_option( 'woocommerce_gzd_has_encryption_error', 'yes' );
 
-			if ( apply_filters( 'woocommerce_gzd_encryption_enable_logging', false ) && ( $logger = wc_get_logger() ) ) {
+			if ( apply_filters( 'woocommerce_gzd_encryption_enable_logging', wc_gzd_is_extended_debug_mode_enabled() ) && ( $logger = wc_get_logger() ) ) {
 				foreach ( $error->get_error_messages() as $message ) {
 					$logger->error( $message, array( 'source' => apply_filters( 'woocommerce_gzd_encryption_log_context', 'wc-gzd-encryption' ) ) );
 				}

@@ -6,6 +6,7 @@ use Vendidero\Germanized\Blocks\BlockTypesController;
 use Vendidero\Germanized\Blocks\Cart;
 use Vendidero\Germanized\Blocks\Checkout;
 use Vendidero\Germanized\Blocks\Integrations\ProductElements;
+use Vendidero\Germanized\Blocks\MiniCart;
 use Vendidero\Germanized\Blocks\PaymentGateways\DirectDebit;
 use Vendidero\Germanized\Blocks\PaymentGateways\Invoice;
 use Vendidero\Germanized\Blocks\Products;
@@ -86,6 +87,7 @@ class Bootstrap {
 		$this->container->get( Assets::class );
 		$this->container->get( Products::class );
 		$this->container->get( Checkout::class );
+		$this->container->get( MiniCart::class );
 		$this->container->get( Cart::class );
 	}
 
@@ -119,6 +121,13 @@ class Bootstrap {
 			Products::class,
 			function ( $container ) {
 				return new Products();
+			}
+		);
+
+		$this->container->register(
+			MiniCart::class,
+			function ( $container ) {
+				return new MiniCart();
 			}
 		);
 

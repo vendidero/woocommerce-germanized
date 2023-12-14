@@ -1,0 +1,31 @@
+.wc-block-mini-cart__footer-actions {
+  flex-wrap: wrap;
+
+  .wc-gzd-block-mini-cart-notices {
+    justify-content: right;
+    margin-top: -7px;
+    font-size: 0.8rem;
+    color: #757575;
+    flex: 0 0 100%;
+    display: inline-flex;
+    text-align: right;
+    flex-wrap: wrap;
+
+    .wc-gzd-block-mini-cart-notices__notice {
+      &::after {
+        content: "\00a0";
+      }
+
+      &.wc-gzd-block-mini-cart-notices__small-business-notice {
+        flex: 0 0 100%;
+      }
+    }
+
+    .wc-gzd-block-mini-cart-notices__notice-wrap {
+      text-align: left;
+      display: flex;
+      justify-content: right;
+      flex: 0 0 100%;
+    }
+  }
+}

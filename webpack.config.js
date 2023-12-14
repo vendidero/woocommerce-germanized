@@ -46,7 +46,8 @@ const defaultRules = defaultConfig.module.rules.filter( ( rule ) => {
 
 const blocks = {
     'checkout': {},
-    'cart': {}
+    'cart': {},
+    'mini-cart': {},
 };
 
 const getBlockEntries = ( relativePath ) => {

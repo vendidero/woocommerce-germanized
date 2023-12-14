@@ -11,7 +11,7 @@ use Vendidero\Germanized\Package;
 final class Checkout {
 
 	public function __construct() {
-		$this->adjust_checkout_block();
+		$this->adjust_markup();
 		$this->register_filters();
 		$this->register_integrations();
 		$this->register_endpoint_data();
@@ -80,7 +80,7 @@ final class Checkout {
 		);
 	}
 
-	private function adjust_checkout_block() {
+	private function adjust_markup() {
 		add_filter(
 			'render_block',
 			function( $content, $block ) {
@@ -200,6 +200,12 @@ final class Checkout {
 				'type'        => 'boolean',
 				'context'     => array( 'view', 'edit' ),
 			),
+			'shipping_costs_notice'                      => array(
+				'description' => __( 'Cart shipping costs notice.', 'woocommerce-germanized' ),
+				'type'        => 'string',
+				'context'     => array( 'view', 'edit' ),
+				'readonly'    => true,
+			),
 			'checkboxes'                                 => array(
 				'description' => __( 'List of cart checkboxes.', 'woocommerce-germanized' ),
 				'type'        => 'array',
@@ -308,6 +314,7 @@ final class Checkout {
 		return array(
 			'applies_for_photovoltaic_system_vat_exempt' => wc_gzd_cart_applies_for_photovoltaic_system_vat_exemption(),
 			'checkboxes'                                 => $checkboxes_for_api,
+			'shipping_costs_notice'                      => wc_gzd_get_shipping_costs_text(),
 		);
 	}
 
