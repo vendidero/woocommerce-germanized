@@ -1278,6 +1278,7 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 
 		$suffix      = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 		$assets_path = WC()->plugin_url() . '/assets/';
+		$assets      = WC_Germanized();
 
 		// Ensure that prettyPhoto is being loaded
 		wp_register_script( 'prettyPhoto_debit', $assets_path . 'js/prettyPhoto/jquery.prettyPhoto' . $suffix . '.js', array( 'jquery' ), '3.1.6', true );
@@ -1285,10 +1286,10 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 		wp_register_style( 'woocommerce_prettyPhoto_css_debit', $assets_path . 'css/prettyPhoto.css', array(), WC_GERMANIZED_VERSION );
 		wp_enqueue_style( 'woocommerce_prettyPhoto_css_debit' );
 
-		wp_register_script( 'wc-gzd-iban', WC_germanized()->get_assets_build_url( 'static/iban.js' ), array( 'wc-checkout' ), WC_GERMANIZED_VERSION, true );
+		$assets->register_script( 'wc-gzd-iban', 'static/iban.js', array( 'wc-checkout' ) );
 		wp_enqueue_script( 'wc-gzd-iban' );
 
-		wp_register_script( 'wc-gzd-direct-debit', WC_germanized()->get_assets_build_url( 'static/direct-debit.js' ), array( 'wc-gzd-iban' ), WC_GERMANIZED_VERSION, true );
+		$assets->register_script( 'wc-gzd-direct-debit', 'static/direct-debit.js', array( 'wc-gzd-iban' ) );
 		wp_localize_script(
 			'wc-gzd-direct-debit',
 			'direct_debit_params',

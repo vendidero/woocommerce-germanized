@@ -950,44 +950,56 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 			return trailingslashit( $assets_url ) . $script_or_style;
 		}
 
+		public function register_script( $handle, $path, $dep = array(), $ver = '', $in_footer = array( 'strategy' => 'defer' ) ) {
+			global $wp_version;
+
+			if ( version_compare( $wp_version, '6.3', '<' ) ) {
+				$in_footer = true;
+			}
+
+			$ver = empty( $ver ) ? WC_GERMANIZED_VERSION : $ver;
+
+			wp_register_script(
+				$handle,
+				$this->get_assets_build_url( $path ),
+				$dep,
+				$ver,
+				$in_footer
+			);
+		}
+
 		/**
 		 * Add Scripts to frontend
 		 */
 		public function add_scripts() {
 			global $post;
 
-			wp_register_script(
+			$this->register_script(
 				'wc-gzd-revocation',
-				$this->get_assets_build_url( 'static/revocation.js' ),
+				'static/revocation.js',
 				array(
 					'jquery',
 					'woocommerce',
 					'wc-country-select',
 					'wc-address-i18n',
-				),
-				WC_GERMANIZED_VERSION,
-				true
+				)
 			);
 
-			wp_register_script(
+			$this->register_script(
 				'wc-gzd-checkout',
-				$this->get_assets_build_url( 'static/checkout.js' ),
+				'static/checkout.js',
 				array(
 					'jquery',
 					'wc-checkout',
-				),
-				WC_GERMANIZED_VERSION,
-				true
+				)
 			);
 
-			wp_register_script(
+			$this->register_script(
 				'wc-gzd-cart-voucher',
-				$this->get_assets_build_url( 'static/cart-voucher.js' ),
+				'static/cart-voucher.js',
 				array(
 					'jquery',
-				),
-				WC_GERMANIZED_VERSION,
-				true
+				)
 			);
 
 			if ( function_exists( 'WC' ) ) {
@@ -995,52 +1007,44 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 				wp_register_script( 'accounting', WC()->plugin_url() . '/assets/js/accounting/accounting' . $suffix . '.js', array( 'jquery' ), '0.4.2' ); // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.NotInFooter
 			}
 
-			wp_register_script(
+			$this->register_script(
 				'wc-gzd-unit-price-observer-queue',
-				$this->get_assets_build_url( 'static/unit-price-observer-queue.js' ),
+				'static/unit-price-observer-queue.js',
 				array(
 					'jquery',
 					'woocommerce',
-				),
-				WC_GERMANIZED_VERSION,
-				true
+				)
 			);
 
-			wp_register_script(
+			$this->register_script(
 				'wc-gzd-unit-price-observer',
-				$this->get_assets_build_url( 'static/unit-price-observer.js' ),
+				'static/unit-price-observer.js',
 				array_merge(
 					is_product() ? array( 'wc-single-product' ) : array(),
 					array(
 						'wc-gzd-unit-price-observer-queue',
 						'accounting',
 					)
-				),
-				WC_GERMANIZED_VERSION,
-				true
+				)
 			);
 
-			wp_register_script(
+			$this->register_script(
 				'wc-gzd-add-to-cart-variation',
-				$this->get_assets_build_url( 'static/add-to-cart-variation.js' ),
+				'static/add-to-cart-variation.js',
 				array(
 					'jquery',
 					'woocommerce',
 					'wc-add-to-cart-variation',
-				),
-				WC_GERMANIZED_VERSION,
-				true
+				)
 			);
 
-			wp_register_script(
+			$this->register_script(
 				'wc-gzd-force-pay-order',
-				$this->get_assets_build_url( 'static/force-pay-order.js' ),
+				'static/force-pay-order.js',
 				array(
 					'jquery',
 					'jquery-blockui',
-				),
-				WC_GERMANIZED_VERSION,
-				true
+				)
 			);
 
 			if ( is_page() && is_object( $post ) && has_shortcode( $post->post_content, 'revocation_form' ) ) {
@@ -1324,7 +1328,7 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 			/**
 			 * The voucher script should only be localized in footer to make sure cart is fully initialized
 			 */
-			if ( wp_script_is( 'wc-gzd-cart-voucher' ) && ! in_array( 'wc-gzd-cart-voucher', $this->localized_scripts, true ) && doing_action( 'wp_print_footer_scripts' ) ) {
+			if ( wp_script_is( 'wc-gzd-cart-voucher' ) && ! in_array( 'wc-gzd-cart-voucher', $this->localized_scripts, true ) ) {
 				$this->localized_scripts[] = 'wc-gzd-cart-voucher';
 
 				$args = array(
