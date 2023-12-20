@@ -257,6 +257,8 @@ class WC_GZD_Compatibility_WooCommerce_Product_Bundles extends WC_GZD_Compatibil
 
 			if ( $product->is_type( 'variable' ) && self::$variable_has_filtered ) {
 				$add_suffixes = false;
+			} elseif ( strstr( $price, 'wc-gzd-legal-price-info' ) ) {
+				$add_suffixes = false;
 			}
 
 			/**

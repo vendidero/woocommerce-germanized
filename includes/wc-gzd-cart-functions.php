@@ -408,7 +408,9 @@ function wc_gzd_cart_product_unit_price( $price, $cart_item, $cart_item_key = ''
 					)
 				);
 
-				$unit_price = wc_gzd_format_unit_price( wc_price( $prices['unit'] ), $gzd_product->get_unit_html(), $gzd_product->get_unit_base_html() );
+				if ( 0.0 !== $total ) {
+					$unit_price = wc_gzd_format_unit_price( wc_price( $prices['unit'] ), $gzd_product->get_unit_html(), $gzd_product->get_unit_base_html() );
+				}
 			} else {
 				$unit_price = wc_gzd_get_product( $product )->get_unit_price_html( false, $tax_display );
 			}

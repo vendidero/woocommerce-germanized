@@ -1145,24 +1145,24 @@ class WC_GZD_Product {
 			return $price_html;
 		}
 
-		preg_match( '/<del.*>(.*?)<\\/del>/si', $price_html, $match_regular );
-		preg_match( '/<ins.*>(.*?)<\\/ins>/si', $price_html, $match_sale );
-		preg_match( '/<small .*>(.*?)<\\/small>/si', $price_html, $match_suffix );
+		$regular_regex = '/<del([^>]*)>(.*?)<\/del>/is';
+		$sale_regex    = '/<ins([^>]*)>(.*?)<\/ins>/is';
+
+		preg_match( $regular_regex, $price_html, $match_regular );
+		preg_match( $sale_regex, $price_html, $match_sale );
 
 		if ( empty( $match_sale ) || empty( $match_regular ) ) {
 			return $price_html;
 		}
 
-		$new_price_regular = $match_regular[0];
-		$new_price_sale    = $match_sale[0];
-		$new_price_suffix  = ( empty( $match_suffix ) ? '' : ' ' . $match_suffix[0] );
-
 		if ( ! empty( $sale_label ) && isset( $match_regular[1] ) ) {
-			$new_price_regular = '<span class="wc-gzd-sale-price-label">' . $sale_label . '</span> ' . $match_regular[0];
+			// Replace the first occurrence only, e.g. in case unit price is attached to the price html
+			$price_html = preg_replace( $regular_regex, '<span class="wc-gzd-sale-price-label">' . $sale_label . '</span> $0', $price_html, 1 );
 		}
 
 		if ( ! empty( $sale_regular_label ) && isset( $match_sale[1] ) ) {
-			$new_price_sale = '<span class="wc-gzd-sale-price-label wc-gzd-sale-price-regular-label">' . $sale_regular_label . '</span> ' . $match_sale[0];
+			// Replace the first occurrence only, e.g. in case unit price is attached to the price html
+			$price_html = preg_replace( $sale_regex, '<span class="wc-gzd-sale-price-label wc-gzd-sale-price-regular-label">' . $sale_regular_label . '</span> $0', $price_html, 1 );
 		}
 
 		/**
@@ -1173,9 +1173,8 @@ class WC_GZD_Product {
 		 * @param WC_GZD_Product $product The product object.
 		 *
 		 * @since 1.8.5
-		 *
 		 */
-		return apply_filters( 'woocommerce_gzd_product_sale_price_with_labels_html', $new_price_regular . ' ' . $new_price_sale . $new_price_suffix, $org_price_html, $this );
+		return apply_filters( 'woocommerce_gzd_product_sale_price_with_labels_html', $price_html, $org_price_html, $this );
 	}
 
 	public function get_price_html_from_to( $from, $to, $show_labels = true ) {
