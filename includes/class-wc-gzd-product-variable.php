@@ -209,6 +209,7 @@ class WC_GZD_Product_Variable extends WC_GZD_Product {
 		$transient_name    = 'wc_gzd_var_unit_prices_' . $this->child->get_id();
 		$transient_version = WC_Cache_Helper::get_transient_version( 'product' );
 		$tax_display       = $tax_display ? $tax_display : get_option( 'woocommerce_tax_display_shop', 'excl' );
+		$price_hash        = array( false );
 
 		/**
 		 * Create unique cache key based on the tax location (affects displayed/cached prices), product version and active price filters.
@@ -216,9 +217,11 @@ class WC_GZD_Product_Variable extends WC_GZD_Product {
 		 * @var string
 		 */
 		if ( $display && wc_tax_enabled() ) {
-			$price_hash = array( $tax_display, WC_Tax::get_rates() );
-		} else {
-			$price_hash = array( false );
+			$price_hash = array(
+				get_option( 'woocommerce_tax_display_shop', 'excl' ),
+				WC_Tax::get_rates(),
+				empty( WC()->customer ) ? false : WC()->customer->is_vat_exempt(),
+			);
 		}
 
 		$filter_names = array(
@@ -259,18 +262,16 @@ class WC_GZD_Product_Variable extends WC_GZD_Product {
 
 		// If the value has already been generated, we don't need to grab the values again.
 		if ( empty( $this->unit_prices_array[ $price_hash ] ) ) {
-
 			// Get value of transient
 			$this->unit_prices_array = array_filter( (array) json_decode( strval( get_transient( $transient_name ) ), true ) );
 
-			// If the product version has changed, reset cache
-			if ( empty( $this->unit_prices_array['version'] ) || $this->unit_prices_array['version'] !== $transient_version ) {
+			// If the product version has changed since the transient was last saved, reset the transient cache.
+			if ( ! isset( $this->unit_prices_array['version'] ) || $transient_version !== $this->unit_prices_array['version'] ) {
 				$this->unit_prices_array = array( 'version' => $transient_version );
 			}
 
 			// If the prices are not stored for this hash, generate them
 			if ( empty( $this->unit_prices_array[ $price_hash ] ) ) {
-
 				/**
 				 * Use the (already sorted) variation prices of the parent product
 				 * to make sure the right unit price matches min max price ranges.
