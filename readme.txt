@@ -4,8 +4,8 @@ Tags: woocommerce, woocommerce german, woocommerce DE, woocommerce germany, wooc
 Requires at least: 5.4
 Tested up to: 6.4
 WC requires at least: 3.9
-WC tested up to: 8.3
-Stable tag: 3.15.3
+WC tested up to: 8.4
+Stable tag: 3.15.4
 Requires PHP: 5.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -205,6 +205,18 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 6. Edit pdf documents (Pro)
 
 == Changelog ==
+= 3.15.4 =
+* New: Support WooCommerce cart dropdown template block
+* Improvement: Use 1 gram as minimum resolution for label customs data
+* Improvement: Shipping method cart data compatibility with product bundles
+* Improvement: Do not defer label creation in case shipment has already been marked as shipped
+* Improvement: Maybe defer frontend script loading as Woo does starting with 8.4
+* Improvement: Price label replacement within price html
+* Improvement: Do only move checkboxes for elementor in case checkout is built with Elementor Pro
+* Fix: DHL valid address only checkbox
+* Fix: Shipments order item update validation
+* Fix: Shipping method condition field name overrides
+
 = 3.15.3 =
 * Improvement: Deutsche Post available product selection based on shipment dimensions
 * Improvement: Create non auto-packed shipment in case no packaging options are available

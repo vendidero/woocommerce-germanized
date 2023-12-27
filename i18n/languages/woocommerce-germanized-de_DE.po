@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: WooCommerce Germanized\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/woocommerce-"
 "germanized\n"
-"POT-Creation-Date: 2023-11-30T14:52:31+00:00\n"
-"PO-Revision-Date: 2023-11-30 15:54+0100\n"
+"POT-Creation-Date: 2023-12-27T11:16:55+00:00\n"
+"PO-Revision-Date: 2023-12-27 12:18+0100\n"
 "Last-Translator: Dennis Nissle <info@vendidero.de>\n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -662,9 +662,9 @@ msgctxt "dhl"
 msgid "Wrong username or password"
 msgstr "Falscher Benutzername oder Passwort"
 
-#: src/Api/Internetmarke.php:251 src/ShippingProvider/Product.php:277
+#: src/Api/Internetmarke.php:251 src/ShippingProvider/Product.php:281
 #: packages/woocommerce-germanized-dhl/src/Api/Internetmarke.php:251
-#: packages/woocommerce-germanized-shipments/src/ShippingProvider/Product.php:277
+#: packages/woocommerce-germanized-shipments/src/ShippingProvider/Product.php:281
 msgctxt "dhl"
 msgid "until %s"
 msgstr "bis %s"
@@ -722,10 +722,10 @@ msgid "Refund API could not be instantiated"
 msgstr "Die API für Rückerstattungen konnte nicht initialisiert werden"
 
 #: src/Api/Internetmarke.php:686 src/Api/LabelRest.php:109
-#: src/Api/LabelSoap.php:376 src/Api/ReturnRest.php:39
+#: src/Api/LabelSoap.php:375 src/Api/ReturnRest.php:39
 #: packages/woocommerce-germanized-dhl/src/Api/Internetmarke.php:686
 #: packages/woocommerce-germanized-dhl/src/Api/LabelRest.php:109
-#: packages/woocommerce-germanized-dhl/src/Api/LabelSoap.php:376
+#: packages/woocommerce-germanized-dhl/src/Api/LabelSoap.php:375
 #: packages/woocommerce-germanized-dhl/src/Api/ReturnRest.php:39
 msgctxt "dhl"
 msgid "Could not fetch shipment %d."
@@ -765,9 +765,9 @@ msgctxt "dhl"
 msgid "POST error or timeout occurred. Please try again later."
 msgstr "POST Fehler oder Zeitüberschreitung. Bitte später erneut versuchen."
 
-#: src/Api/LabelRest.php:302 src/Api/LabelSoap.php:609
+#: src/Api/LabelRest.php:302 src/Api/LabelSoap.php:608
 #: packages/woocommerce-germanized-dhl/src/Api/LabelRest.php:302
-#: packages/woocommerce-germanized-dhl/src/Api/LabelSoap.php:609
+#: packages/woocommerce-germanized-dhl/src/Api/LabelSoap.php:608
 msgctxt "dhl"
 msgid ""
 "Your shipper address is incomplete (%1$s). Please validate your <a "
@@ -776,9 +776,9 @@ msgstr ""
 "Deine Absenderadresse ist nicht komplett (%1$s). Bitte prüfe deine <a "
 "href=\"%2$s\">Einstellungen</a> und versuche es erneut."
 
-#: src/Api/LabelRest.php:427 src/Api/LabelSoap.php:719
+#: src/Api/LabelRest.php:427 src/Api/LabelSoap.php:718
 #: packages/woocommerce-germanized-dhl/src/Api/LabelRest.php:427
-#: packages/woocommerce-germanized-dhl/src/Api/LabelSoap.php:719
+#: packages/woocommerce-germanized-dhl/src/Api/LabelSoap.php:718
 msgctxt "dhl"
 msgid ""
 "Only %1$s shipment items can be processed, your shipment has %2$s items."
@@ -786,9 +786,9 @@ msgstr ""
 "Es können maximal %1$s Sendungspositionen verarbeitet werden - die "
 "vorliegende Sendung beinhaltet %2$s Positionen."
 
-#: src/Api/LabelRest.php:518 src/Api/LabelSoap.php:219
+#: src/Api/LabelRest.php:518 src/Api/LabelSoap.php:218
 #: packages/woocommerce-germanized-dhl/src/Api/LabelRest.php:518
-#: packages/woocommerce-germanized-dhl/src/Api/LabelSoap.php:219
+#: packages/woocommerce-germanized-dhl/src/Api/LabelSoap.php:218
 msgctxt "dhl"
 msgid ""
 "There was an error generating the label. Please try again or consider "
@@ -809,10 +809,10 @@ msgstr ""
 "Kosten verursacht obwohl der Gesamtbetrag der Sendung 500 Euro nicht "
 "übersteigt. Das Label wurde dennoch erstellt."
 
-#: src/Api/LabelRest.php:605 src/Api/LabelSoap.php:298
+#: src/Api/LabelRest.php:605 src/Api/LabelSoap.php:297
 #: src/Api/ReturnRest.php:189
 #: packages/woocommerce-germanized-dhl/src/Api/LabelRest.php:605
-#: packages/woocommerce-germanized-dhl/src/Api/LabelSoap.php:298
+#: packages/woocommerce-germanized-dhl/src/Api/LabelSoap.php:297
 #: packages/woocommerce-germanized-dhl/src/Api/ReturnRest.php:189
 msgctxt "dhl"
 msgid "Error while creating and uploading the label"
@@ -846,14 +846,14 @@ msgstr ""
 "Bitte fülle die fehlenden DHL Felder (HS Code, Herstellerland) in deinen "
 "Produktdaten unter Versand aus."
 
-#: src/Api/LabelSoap.php:194
-#: packages/woocommerce-germanized-dhl/src/Api/LabelSoap.php:194
+#: src/Api/LabelSoap.php:193
+#: packages/woocommerce-germanized-dhl/src/Api/LabelSoap.php:193
 msgctxt "dhl"
 msgid "There was an error contacting the DHL API: %s."
 msgstr "Beim Aufruf der DHL API gab es einen Fehler: %s."
 
-#: src/Api/LabelSoap.php:197
-#: packages/woocommerce-germanized-dhl/src/Api/LabelSoap.php:197
+#: src/Api/LabelSoap.php:196
+#: packages/woocommerce-germanized-dhl/src/Api/LabelSoap.php:196
 msgctxt "dhl"
 msgid ""
 "An error ocurred while contacting the DHL API. Please consider enabling the "
@@ -862,14 +862,14 @@ msgstr ""
 "Beim Aufruf der DHL API ist ein Fehler aufgetreten. Bitte erwäge den Wechsel "
 "in den Sandbox-Modus."
 
-#: src/Api/LabelSoap.php:342
-#: packages/woocommerce-germanized-dhl/src/Api/LabelSoap.php:342
+#: src/Api/LabelSoap.php:341
+#: packages/woocommerce-germanized-dhl/src/Api/LabelSoap.php:341
 msgctxt "dhl"
 msgid "Could not delete label - %s"
 msgstr "Das Label konnte nicht gelöscht werden - %s"
 
-#: src/Api/LabelSoap.php:679
-#: packages/woocommerce-germanized-dhl/src/Api/LabelSoap.php:679
+#: src/Api/LabelSoap.php:678
+#: packages/woocommerce-germanized-dhl/src/Api/LabelSoap.php:678
 msgctxt "dhl"
 msgid ""
 "Please make sure that the Packstation (or postoffice, parcelshop) exists and "
@@ -1189,8 +1189,8 @@ msgid "Invalid label."
 msgstr "Ungültiges Label."
 
 # @ woocommerce-germanized
-#: src/Package.php:1086
-#: packages/woocommerce-germanized-dhl/src/Package.php:1086
+#: src/Package.php:1104
+#: packages/woocommerce-germanized-dhl/src/Package.php:1104
 msgctxt "dhl"
 msgid "Germany"
 msgstr "Deutschland"
@@ -1604,17 +1604,17 @@ msgctxt "dhl"
 msgid "Refresh available products"
 msgstr "Verfügbare Produkte aktualisieren"
 
-#: src/ShippingProvider/DeutschePost.php:269 src/ShippingProvider/DHL.php:1011
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DeutschePost.php:269
+#: src/ShippingProvider/DeutschePost.php:271 src/ShippingProvider/DHL.php:1011
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DeutschePost.php:271
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1011
 msgctxt "dhl"
 msgid "Tracking"
 msgstr "Sendungsverfolgung"
 
-#: src/ShippingProvider/DeutschePost.php:437
-#: src/ShippingProvider/DeutschePost.php:586
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DeutschePost.php:437
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DeutschePost.php:586
+#: src/ShippingProvider/DeutschePost.php:439
+#: src/ShippingProvider/DeutschePost.php:588
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DeutschePost.php:439
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DeutschePost.php:588
 msgctxt "dhl"
 msgid ""
 "Sorry but none of your selected <a href=\"%s\">Deutsche Post Products</a> is "
@@ -1625,26 +1625,26 @@ msgstr ""
 "Produkte</a> verfügbar für diese Sendung. Bitte prüfe die Sendungsdaten (z."
 "B. Gewicht) und versuche es erneut."
 
-#: src/ShippingProvider/DeutschePost.php:452
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DeutschePost.php:452
+#: src/ShippingProvider/DeutschePost.php:454
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DeutschePost.php:454
 msgctxt "dhl"
 msgid "Print X-Position"
 msgstr "Druckspalte X-Achse"
 
-#: src/ShippingProvider/DeutschePost.php:465
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DeutschePost.php:465
+#: src/ShippingProvider/DeutschePost.php:467
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DeutschePost.php:467
 msgctxt "dhl"
 msgid "Print Y-Position"
 msgstr "Druckspalte Y-Achse"
 
-#: src/ShippingProvider/DeutschePost.php:570
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DeutschePost.php:570
+#: src/ShippingProvider/DeutschePost.php:572
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DeutschePost.php:572
 msgctxt "dhl"
 msgid "The services chosen are not available for the current product."
 msgstr "Die ausgewählten Services sind für dieses Produkt nicht verfügbar."
 
-#: src/ShippingProvider/DeutschePost.php:612
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DeutschePost.php:612
+#: src/ShippingProvider/DeutschePost.php:614
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DeutschePost.php:614
 msgctxt "dhl"
 msgid "Deutsche Post product is missing for %s."
 msgstr "Deutsche Post Produkt fehlt oder ist nicht verfügbar für %s."
@@ -3285,13 +3285,13 @@ msgstr "LxBxH in dezimaler Form."
 # @ woocommerce-germanized
 #: includes/admin/views/html-order-shipment-content.php:51
 #: src/Admin/Admin.php:256 src/Admin/Settings.php:580 src/Admin/Table.php:727
-#: src/Packaging/ReportHelper.php:95 src/ShippingMethod/ShippingMethod.php:892
+#: src/Packaging/ReportHelper.php:95 src/ShippingMethod/ShippingMethod.php:908
 #: packages/woocommerce-germanized-shipments/includes/admin/views/html-order-shipment-content.php:51
 #: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:256
 #: packages/woocommerce-germanized-shipments/src/Admin/Settings.php:580
 #: packages/woocommerce-germanized-shipments/src/Admin/Table.php:727
 #: packages/woocommerce-germanized-shipments/src/Packaging/ReportHelper.php:95
-#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:892
+#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:908
 msgctxt "shipments"
 msgid "Packaging"
 msgstr "Verpackung"
@@ -3299,14 +3299,14 @@ msgstr "Verpackung"
 # @ woocommerce-germanized
 #: includes/admin/views/html-order-shipment-content.php:59
 #: includes/wc-gzd-shipment-functions.php:1192 src/Admin/ReturnTable.php:25
-#: src/Admin/Table.php:724 src/ShippingProvider/Auto.php:281
-#: src/ShippingProvider/Auto.php:314
+#: src/Admin/Table.php:724 src/ShippingProvider/Auto.php:288
+#: src/ShippingProvider/Auto.php:321
 #: packages/woocommerce-germanized-shipments/includes/admin/views/html-order-shipment-content.php:59
 #: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:1192
 #: packages/woocommerce-germanized-shipments/src/Admin/ReturnTable.php:25
 #: packages/woocommerce-germanized-shipments/src/Admin/Table.php:724
-#: packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:281
-#: packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:314
+#: packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:288
+#: packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:321
 msgctxt "shipments"
 msgid "Status"
 msgstr "Status"
@@ -3462,7 +3462,7 @@ msgstr "Position löschen"
 #: includes/wc-gzd-shipment-functions.php:128 src/Admin/Admin.php:241
 #: src/Admin/Admin.php:662 src/Admin/Admin.php:1189 src/Admin/Admin.php:1310
 #: src/Admin/Settings.php:82 src/Admin/Settings.php:237
-#: src/ShippingProvider/Auto.php:306 templates/myaccount/order-shipments.php:41
+#: src/ShippingProvider/Auto.php:313 templates/myaccount/order-shipments.php:41
 #: packages/woocommerce-germanized-shipments/includes/admin/views/html-order-shipment-list.php:24
 #: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:128
 #: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:241
@@ -3471,7 +3471,7 @@ msgstr "Position löschen"
 #: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:1310
 #: packages/woocommerce-germanized-shipments/src/Admin/Settings.php:82
 #: packages/woocommerce-germanized-shipments/src/Admin/Settings.php:237
-#: packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:306
+#: packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:313
 #: packages/woocommerce-germanized-shipments/templates/myaccount/order-shipments.php:41
 msgctxt "shipments"
 msgid "Returns"
@@ -3546,12 +3546,12 @@ msgstr "Speichern"
 # @ woocommerce
 #: includes/admin/views/html-settings-provider-list.php:12
 #: src/Admin/ReturnTable.php:23 src/Admin/Table.php:722
-#: src/ShippingMethod/ShippingMethod.php:161
+#: src/ShippingMethod/ShippingMethod.php:176
 #: src/ShippingProvider/Simple.php:854
 #: packages/woocommerce-germanized-shipments/includes/admin/views/html-settings-provider-list.php:12
 #: packages/woocommerce-germanized-shipments/src/Admin/ReturnTable.php:23
 #: packages/woocommerce-germanized-shipments/src/Admin/Table.php:722
-#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:161
+#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:176
 #: packages/woocommerce-germanized-shipments/src/ShippingProvider/Simple.php:854
 msgctxt "shipments"
 msgid "Title"
@@ -4309,13 +4309,13 @@ msgstr "Sendungsverfolgung"
 # @ woocommerce-germanized
 #: includes/wc-gzd-shipment-functions.php:1194 src/Admin/Admin.php:685
 #: src/Admin/Admin.php:1011 src/Admin/ReturnTable.php:31
-#: src/Admin/Table.php:731 src/ShippingMethod/ShippingMethod.php:901
+#: src/Admin/Table.php:731 src/ShippingMethod/ShippingMethod.php:917
 #: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:1194
 #: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:685
 #: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:1011
 #: packages/woocommerce-germanized-shipments/src/Admin/ReturnTable.php:31
 #: packages/woocommerce-germanized-shipments/src/Admin/Table.php:731
-#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:901
+#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:917
 msgctxt "shipments"
 msgid "Actions"
 msgstr "Aktionen"
@@ -4879,11 +4879,11 @@ msgid "General"
 msgstr "Allgemein"
 
 #: src/Admin/PackagingSettings.php:140 src/Admin/ProviderSettings.php:91
-#: src/Admin/ProviderSettings.php:145 src/ShippingMethod/MethodHelper.php:382
+#: src/Admin/ProviderSettings.php:145 src/ShippingMethod/MethodHelper.php:423
 #: packages/woocommerce-germanized-shipments/src/Admin/PackagingSettings.php:140
 #: packages/woocommerce-germanized-shipments/src/Admin/ProviderSettings.php:91
 #: packages/woocommerce-germanized-shipments/src/Admin/ProviderSettings.php:145
-#: packages/woocommerce-germanized-shipments/src/ShippingMethod/MethodHelper.php:382
+#: packages/woocommerce-germanized-shipments/src/ShippingMethod/MethodHelper.php:423
 msgctxt "shipments"
 msgid "Shipping Provider"
 msgstr "Versanddienstleister"
@@ -4966,9 +4966,9 @@ msgstr ""
 "Button."
 
 # @ woocommerce-germanized
-#: src/Admin/ProviderSettings.php:117 src/ShippingMethod/ShippingMethod.php:917
+#: src/Admin/ProviderSettings.php:117 src/ShippingMethod/ShippingMethod.php:933
 #: packages/woocommerce-germanized-shipments/src/Admin/ProviderSettings.php:117
-#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:917
+#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:933
 msgctxt "shipments"
 msgid "Add new"
 msgstr "Neu hinzufügen"
@@ -5086,11 +5086,11 @@ msgstr ""
 
 # @ woocommerce-germanized
 #: src/Admin/Settings.php:69 src/Admin/Settings.php:175
-#: src/ShippingProvider/Auto.php:261 src/ShippingProvider/Auto.php:540
+#: src/ShippingProvider/Auto.php:268 src/ShippingProvider/Auto.php:547
 #: packages/woocommerce-germanized-shipments/src/Admin/Settings.php:69
 #: packages/woocommerce-germanized-shipments/src/Admin/Settings.php:175
-#: packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:261
-#: packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:540
+#: packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:268
+#: packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:547
 msgctxt "shipments"
 msgid "Automation"
 msgstr "Automatisierung"
@@ -5528,10 +5528,10 @@ msgid "Percentage Buffer"
 msgstr "Prozentualer Puffer"
 
 # @ woocommerce-germanized
-#: src/Admin/Settings.php:579 src/ShippingProvider/Auto.php:511
+#: src/Admin/Settings.php:579 src/ShippingProvider/Auto.php:518
 #: src/ShippingProvider/Simple.php:1127
 #: packages/woocommerce-germanized-shipments/src/Admin/Settings.php:579
-#: packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:511
+#: packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:518
 #: packages/woocommerce-germanized-shipments/src/ShippingProvider/Simple.php:1127
 msgctxt "shipments"
 msgid "General"
@@ -5543,14 +5543,14 @@ msgctxt "shipments"
 msgid "Addresses"
 msgstr "Adressen"
 
-#: src/Admin/Settings.php:727
-#: packages/woocommerce-germanized-shipments/src/Admin/Settings.php:727
+#: src/Admin/Settings.php:732
+#: packages/woocommerce-germanized-shipments/src/Admin/Settings.php:732
 msgctxt "shipments"
 msgid "More services"
 msgstr "Mehr Services"
 
-#: src/Admin/Settings.php:730
-#: packages/woocommerce-germanized-shipments/src/Admin/Settings.php:730
+#: src/Admin/Settings.php:735
+#: packages/woocommerce-germanized-shipments/src/Admin/Settings.php:735
 msgctxt "shipments"
 msgid "Fewer services"
 msgstr "Weniger Services"
@@ -5859,8 +5859,8 @@ msgctxt "shipments"
 msgid "Order is fully shipped."
 msgstr "Bestellung ist vollständig versandt."
 
-#: src/Automation.php:256
-#: packages/woocommerce-germanized-shipments/src/Automation.php:256
+#: src/Automation.php:265
+#: packages/woocommerce-germanized-shipments/src/Automation.php:265
 msgctxt "shipments"
 msgid ""
 "Seems like none of your <a href=\"%1$s\">packaging options</a> is available "
@@ -7102,20 +7102,20 @@ msgctxt "shipments"
 msgid "Label meta data."
 msgstr "Label Meta-Daten."
 
-#: src/ShippingMethod/MethodHelper.php:375
-#: packages/woocommerce-germanized-shipments/src/ShippingMethod/MethodHelper.php:375
+#: src/ShippingMethod/MethodHelper.php:416
+#: packages/woocommerce-germanized-shipments/src/ShippingMethod/MethodHelper.php:416
 msgctxt "shipments"
 msgid "Shipping Provider Settings"
 msgstr "Versanddienstleister Einstellungen"
 
-#: src/ShippingMethod/MethodHelper.php:379
-#: packages/woocommerce-germanized-shipments/src/ShippingMethod/MethodHelper.php:379
+#: src/ShippingMethod/MethodHelper.php:420
+#: packages/woocommerce-germanized-shipments/src/ShippingMethod/MethodHelper.php:420
 msgctxt "shipments"
 msgid "Adjust shipping provider settings used for managing shipments."
 msgstr "Passe Einstellungen zu den Versanddienstleistern für Sendungen an."
 
-#: src/ShippingMethod/MethodHelper.php:394
-#: packages/woocommerce-germanized-shipments/src/ShippingMethod/MethodHelper.php:394
+#: src/ShippingMethod/MethodHelper.php:435
+#: packages/woocommerce-germanized-shipments/src/ShippingMethod/MethodHelper.php:435
 msgctxt "shipments"
 msgid ""
 "Choose a shipping provider which will be selected by default for an eligible "
@@ -7125,8 +7125,8 @@ msgstr ""
 "kommende Sendung hinterlegt wird."
 
 # @ woocommerce-germanized
-#: src/ShippingMethod/MethodHelper.php:559
-#: packages/woocommerce-germanized-shipments/src/ShippingMethod/MethodHelper.php:559
+#: src/ShippingMethod/MethodHelper.php:600
+#: packages/woocommerce-germanized-shipments/src/ShippingMethod/MethodHelper.php:600
 msgctxt "shipments"
 msgid "Override?"
 msgstr "Überschreiben?"
@@ -7150,22 +7150,22 @@ msgstr ""
 "verlässt."
 
 # @ woocommerce-germanized
-#: src/ShippingMethod/ShippingMethod.php:163
-#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:163
+#: src/ShippingMethod/ShippingMethod.php:178
+#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:178
 msgctxt "shipments"
 msgid "This controls the title which the user sees during checkout."
 msgstr "Beschreibungstext, den der Benutzer während des Bezahlvorgangs sieht."
 
 # @ woocommerce-germanized
-#: src/ShippingMethod/ShippingMethod.php:168
-#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:168
+#: src/ShippingMethod/ShippingMethod.php:183
+#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:183
 msgctxt "shipments"
 msgid "Title (free shipping)"
 msgstr "Titel (kostenloser Versand)"
 
 # @ woocommerce-germanized
-#: src/ShippingMethod/ShippingMethod.php:170
-#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:170
+#: src/ShippingMethod/ShippingMethod.php:185
+#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:185
 msgctxt "shipments"
 msgid ""
 "This controls the title which the user sees during checkout in case a free "
@@ -7175,23 +7175,23 @@ msgstr ""
 "insofern ein kostenloser Versand zur Verfügung steht."
 
 # @ woocommerce-germanized
-#: src/ShippingMethod/ShippingMethod.php:171
-#: src/ShippingMethod/ShippingMethod.php:363
-#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:171
-#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:363
+#: src/ShippingMethod/ShippingMethod.php:186
+#: src/ShippingMethod/ShippingMethod.php:378
+#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:186
+#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:378
 msgctxt "shipments"
 msgid "Free shipping (via %1$s)"
 msgstr "Kostenloser Versand (%1$s)"
 
 # @ woocommerce-germanized
-#: src/ShippingMethod/ShippingMethod.php:175
-#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:175
+#: src/ShippingMethod/ShippingMethod.php:190
+#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:190
 msgctxt "shipments"
 msgid "Shipping Rules"
 msgstr "Versandregeln"
 
-#: src/ShippingMethod/ShippingMethod.php:179
-#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:179
+#: src/ShippingMethod/ShippingMethod.php:194
+#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:194
 msgctxt "shipments"
 msgid ""
 "Configure shipping costs per packaging option. Within cart, a rucksack "
@@ -7224,38 +7224,38 @@ msgstr ""
 "existiert, stehen dem Algorithmus nur die Verpackungen mit hinterlegten "
 "Regeln zur Verfügung.</li></ol>"
 
-#: src/ShippingMethod/ShippingMethod.php:182
-#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:182
+#: src/ShippingMethod/ShippingMethod.php:197
+#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:197
 msgctxt "shipments"
 msgid "Multiple packages"
 msgstr "Mehrere Sendungen"
 
-#: src/ShippingMethod/ShippingMethod.php:186
-#: src/ShippingMethod/ShippingMethod.php:197
-#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:186
-#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:197
+#: src/ShippingMethod/ShippingMethod.php:201
+#: src/ShippingMethod/ShippingMethod.php:212
+#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:201
+#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:212
 msgctxt "shipments"
 msgid "Sum all costs"
 msgstr "Kosten addieren"
 
-#: src/ShippingMethod/ShippingMethod.php:187
-#: src/ShippingMethod/ShippingMethod.php:198
-#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:187
-#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:198
+#: src/ShippingMethod/ShippingMethod.php:202
+#: src/ShippingMethod/ShippingMethod.php:213
+#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:202
+#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:213
 msgctxt "shipments"
 msgid "Apply the maximum cost only"
 msgstr "Nur maximale Kosten berechnen"
 
-#: src/ShippingMethod/ShippingMethod.php:188
-#: src/ShippingMethod/ShippingMethod.php:199
-#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:188
-#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:199
+#: src/ShippingMethod/ShippingMethod.php:203
+#: src/ShippingMethod/ShippingMethod.php:214
+#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:203
+#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:214
 msgctxt "shipments"
 msgid "Apply the minimum cost only"
 msgstr "Nur minimale Kosten berechnen"
 
-#: src/ShippingMethod/ShippingMethod.php:190
-#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:190
+#: src/ShippingMethod/ShippingMethod.php:205
+#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:205
 msgctxt "shipments"
 msgid ""
 "The algorithm may detect that multiple packages, with possibly different "
@@ -7265,14 +7265,14 @@ msgstr ""
 "Verpackungen notwendig sind. Entscheide wie die Kosten kalkuliert werden "
 "sollen."
 
-#: src/ShippingMethod/ShippingMethod.php:193
-#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:193
+#: src/ShippingMethod/ShippingMethod.php:208
+#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:208
 msgctxt "shipments"
 msgid "Multiple matching rules"
 msgstr "Mehrere Regeln"
 
-#: src/ShippingMethod/ShippingMethod.php:201
-#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:201
+#: src/ShippingMethod/ShippingMethod.php:216
+#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:216
 msgctxt "shipments"
 msgid ""
 "Decide how costs should add up in case multiple rules per packaging option "
@@ -7281,113 +7281,113 @@ msgstr ""
 "Entscheide wie die Kosten berechnet werden sollen, insofern mehrere Regeln "
 "je Verpackung für den aktuellen Warenkorb zutreffen."
 
-#: src/ShippingMethod/ShippingMethod.php:204
-#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:204
+#: src/ShippingMethod/ShippingMethod.php:219
+#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:219
 msgctxt "shipments"
 msgid "Rules"
 msgstr "Regeln"
 
-#: src/ShippingMethod/ShippingMethod.php:220
-#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:220
+#: src/ShippingMethod/ShippingMethod.php:235
+#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:235
 msgctxt "shipments"
 msgid "is"
 msgstr "ist"
 
 # @ woocommerce-germanized
-#: src/ShippingMethod/ShippingMethod.php:224
-#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:224
+#: src/ShippingMethod/ShippingMethod.php:239
+#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:239
 msgctxt "shipments"
 msgid "is not"
 msgstr "ist nicht"
 
-#: src/ShippingMethod/ShippingMethod.php:228
-#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:228
+#: src/ShippingMethod/ShippingMethod.php:243
+#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:243
 msgctxt "shipments"
 msgid "any of"
 msgstr "eine(r) von"
 
-#: src/ShippingMethod/ShippingMethod.php:232
-#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:232
+#: src/ShippingMethod/ShippingMethod.php:247
+#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:247
 msgctxt "shipments"
 msgid "none of"
 msgstr "keine(r) von"
 
-#: src/ShippingMethod/ShippingMethod.php:244
-#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:244
+#: src/ShippingMethod/ShippingMethod.php:259
+#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:259
 msgctxt "shipments"
 msgid "Always"
 msgstr "Immer"
 
 # @ woocommerce-germanized
-#: src/ShippingMethod/ShippingMethod.php:249
-#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:249
+#: src/ShippingMethod/ShippingMethod.php:264
+#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:264
 msgctxt "shipments"
 msgid "Package weight"
 msgstr "Paketgewicht"
 
-#: src/ShippingMethod/ShippingMethod.php:255
-#: src/ShippingMethod/ShippingMethod.php:274
-#: src/ShippingMethod/ShippingMethod.php:292
-#: src/ShippingMethod/ShippingMethod.php:309
-#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:255
-#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:274
-#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:292
-#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:309
+#: src/ShippingMethod/ShippingMethod.php:270
+#: src/ShippingMethod/ShippingMethod.php:289
+#: src/ShippingMethod/ShippingMethod.php:307
+#: src/ShippingMethod/ShippingMethod.php:324
+#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:270
+#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:289
+#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:307
+#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:324
 msgctxt "shipments"
 msgid "from"
 msgstr "von"
 
-#: src/ShippingMethod/ShippingMethod.php:261
-#: src/ShippingMethod/ShippingMethod.php:280
-#: src/ShippingMethod/ShippingMethod.php:297
-#: src/ShippingMethod/ShippingMethod.php:314
-#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:261
-#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:280
-#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:297
-#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:314
+#: src/ShippingMethod/ShippingMethod.php:276
+#: src/ShippingMethod/ShippingMethod.php:295
+#: src/ShippingMethod/ShippingMethod.php:312
+#: src/ShippingMethod/ShippingMethod.php:329
+#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:276
+#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:295
+#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:312
+#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:329
 msgctxt "shipments"
 msgid "to"
 msgstr "bis"
 
-#: src/ShippingMethod/ShippingMethod.php:268
-#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:268
+#: src/ShippingMethod/ShippingMethod.php:283
+#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:283
 msgctxt "shipments"
 msgid "Cart weight"
 msgstr "Gesamtgewicht"
 
-#: src/ShippingMethod/ShippingMethod.php:287
-#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:287
+#: src/ShippingMethod/ShippingMethod.php:302
+#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:302
 msgctxt "shipments"
 msgid "Package total"
 msgstr "Paketwert"
 
-#: src/ShippingMethod/ShippingMethod.php:304
-#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:304
+#: src/ShippingMethod/ShippingMethod.php:319
+#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:319
 msgctxt "shipments"
 msgid "Cart total"
 msgstr "Gesamtbetrag"
 
 # @ woocommerce-germanized
-#: src/ShippingMethod/ShippingMethod.php:321
-#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:321
+#: src/ShippingMethod/ShippingMethod.php:336
+#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:336
 msgctxt "shipments"
 msgid "Shipping Class"
 msgstr "Versandklasse"
 
-#: src/ShippingMethod/ShippingMethod.php:327
-#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:327
+#: src/ShippingMethod/ShippingMethod.php:342
+#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:342
 msgctxt "shipments"
 msgid "Class"
 msgstr "Klasse"
 
-#: src/ShippingMethod/ShippingMethod.php:734
-#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:734
+#: src/ShippingMethod/ShippingMethod.php:749
+#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:749
 msgctxt "shipments"
 msgid "All remaining packaging"
 msgstr "Andere Verpackungen"
 
-#: src/ShippingMethod/ShippingMethod.php:754
-#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:754
+#: src/ShippingMethod/ShippingMethod.php:769
+#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:769
 msgctxt "shipments"
 msgid ""
 "These rules will be parsed for all remaining, available packaging without "
@@ -7397,114 +7397,114 @@ msgstr ""
 "ohne eigene Regeln und/oder als Fallback angewandt."
 
 # @ woocommerce-germanized
-#: src/ShippingMethod/ShippingMethod.php:895
-#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:895
+#: src/ShippingMethod/ShippingMethod.php:911
+#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:911
 msgctxt "shipments"
 msgid "Conditions"
 msgstr "Bedingungen"
 
-#: src/ShippingMethod/ShippingMethod.php:898
-#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:898
+#: src/ShippingMethod/ShippingMethod.php:914
+#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:914
 msgctxt "shipments"
 msgid "Costs"
 msgstr "Kosten"
 
-#: src/ShippingMethod/ShippingMethod.php:918
-#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:918
+#: src/ShippingMethod/ShippingMethod.php:934
+#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:934
 msgctxt "shipments"
 msgid "Remove selected"
 msgstr "Ausgewählte löschen"
 
-#: src/ShippingMethod/ShippingMethod.php:952
-#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:952
+#: src/ShippingMethod/ShippingMethod.php:968
+#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:968
 msgctxt "shipments"
 msgid "Rule cost is"
 msgstr "Kosten der Regel"
 
-#: src/ShippingMethod/ShippingMethod.php:972
-#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:972
+#: src/ShippingMethod/ShippingMethod.php:988
+#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:988
 msgctxt "shipments"
 msgid "When"
 msgstr "Wenn"
 
 # @ woocommerce-germanized
-#: src/ShippingProvider/Auto.php:205
-#: packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:205
+#: src/ShippingProvider/Auto.php:212
+#: packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:212
 msgctxt "shipments"
 msgid "Label Format"
 msgstr "Label Druckformat"
 
 # @ woocommerce-germanized
-#: src/ShippingProvider/Auto.php:215
-#: packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:215
+#: src/ShippingProvider/Auto.php:222
+#: packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:222
 msgctxt "shipments"
 msgid "Default Format"
 msgstr "Standardformat"
 
-#: src/ShippingProvider/Auto.php:219
-#: packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:219
+#: src/ShippingProvider/Auto.php:226
+#: packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:226
 msgctxt "shipments"
 msgid "Set the default print format for a label."
 msgstr "Wähle das Standard-Druckformat für ein Label aus."
 
 # @ woocommerce-germanized
-#: src/ShippingProvider/Auto.php:236 src/ShippingProvider/Auto.php:237
-#: packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:236
-#: packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:237
+#: src/ShippingProvider/Auto.php:243 src/ShippingProvider/Auto.php:244
+#: packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:243
+#: packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:244
 msgctxt "shipments"
 msgid "Same as default format"
 msgstr "Wie Standardformat"
 
-#: src/ShippingProvider/Auto.php:273 src/ShippingProvider/Auto.php:518
-#: packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:273
-#: packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:518
+#: src/ShippingProvider/Auto.php:280 src/ShippingProvider/Auto.php:525
+#: packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:280
+#: packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:525
 msgctxt "shipments"
 msgid "Labels"
 msgstr "Labels"
 
 # @ woocommerce-germanized
-#: src/ShippingProvider/Auto.php:274
-#: packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:274
+#: src/ShippingProvider/Auto.php:281
+#: packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:281
 msgctxt "shipments"
 msgid "Automatically create labels for shipments."
 msgstr "Automatisch Labels zu Sendungen erstellen."
 
-#: src/ShippingProvider/Auto.php:284
-#: packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:284
+#: src/ShippingProvider/Auto.php:291
+#: packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:291
 msgctxt "shipments"
 msgid "Choose a shipment status which should trigger generation of a label."
 msgstr ""
 "Wähle einen Sendungsstatus aus, der die Erzeugung eines Labels auslösen soll."
 
-#: src/ShippingProvider/Auto.php:284
-#: packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:284
+#: src/ShippingProvider/Auto.php:291
+#: packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:291
 msgctxt "shipments"
 msgid "Your current default shipment status is: <em>%s</em>."
 msgstr "Dein aktueller Standard-Sendungsstatus lautet: <em>%s</em>."
 
 # @ woocommerce-germanized
-#: src/ShippingProvider/Auto.php:292
-#: packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:292
+#: src/ShippingProvider/Auto.php:299
+#: packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:299
 msgctxt "shipments"
 msgid "Shipment Status"
 msgstr "Sendungsstatus"
 
-#: src/ShippingProvider/Auto.php:293
-#: packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:293
+#: src/ShippingProvider/Auto.php:300
+#: packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:300
 msgctxt "shipments"
 msgid "Mark shipment as shipped after label has been created successfully."
 msgstr ""
 "Sendung als versandt markieren, sobald ein Label erfolgreich erstellt wurde."
 
 # @ woocommerce-germanized
-#: src/ShippingProvider/Auto.php:307
-#: packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:307
+#: src/ShippingProvider/Auto.php:314
+#: packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:314
 msgctxt "shipments"
 msgid "Automatically create labels for returns."
 msgstr "Automatisch Retourenlabels zu Retourensendungen erstellen."
 
-#: src/ShippingProvider/Auto.php:317
-#: packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:317
+#: src/ShippingProvider/Auto.php:324
+#: packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:324
 msgctxt "shipments"
 msgid ""
 "Choose a shipment status which should trigger generation of a return label."
@@ -7513,46 +7513,46 @@ msgstr ""
 "auslösen soll."
 
 # @ woocommerce-germanized
-#: src/ShippingProvider/Auto.php:450
-#: packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:450
+#: src/ShippingProvider/Auto.php:457
+#: packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:457
 msgctxt "dhl"
 msgid "Default Service"
 msgstr "Standard-Service"
 
-#: src/ShippingProvider/Auto.php:455
-#: packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:455
+#: src/ShippingProvider/Auto.php:462
+#: packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:462
 msgctxt "shipments"
 msgid "Select the default service for %1$s."
 msgstr "Wähle den Standard-Service für %1$s aus."
 
-#: src/ShippingProvider/Auto.php:518
-#: packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:518
+#: src/ShippingProvider/Auto.php:525
+#: packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:525
 msgctxt "shipments"
 msgid "%1$s labels"
 msgstr "%1$s Labels"
 
-#: src/ShippingProvider/Auto.php:532
-#: packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:532
+#: src/ShippingProvider/Auto.php:539
+#: packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:539
 msgctxt "shipments"
 msgid "Printing"
 msgstr "Druck"
 
 # @ woocommerce-germanized
-#: src/ShippingProvider/Auto.php:606
-#: packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:606
+#: src/ShippingProvider/Auto.php:613
+#: packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:613
 msgctxt "shipments"
 msgid "%s Product"
 msgstr "%s Produkt"
 
 # @ woocommerce-germanized
-#: src/ShippingProvider/Auto.php:630
-#: packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:630
+#: src/ShippingProvider/Auto.php:637
+#: packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:637
 msgctxt "shipments"
 msgid "Print Format"
 msgstr "Druckformat"
 
-#: src/ShippingProvider/Auto.php:900
-#: packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:900
+#: src/ShippingProvider/Auto.php:928
+#: packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:928
 msgctxt "shipments"
 msgid "Error while creating the label."
 msgstr "Fehler beim Erstellen der Label-Instanz."
@@ -7573,8 +7573,8 @@ msgctxt "shipments"
 msgid "A print format needs an id."
 msgstr "Das Druckformat benötigt eine id."
 
-#: src/ShippingProvider/Product.php:79
-#: packages/woocommerce-germanized-shipments/src/ShippingProvider/Product.php:79
+#: src/ShippingProvider/Product.php:83
+#: packages/woocommerce-germanized-shipments/src/ShippingProvider/Product.php:83
 msgctxt "shipments"
 msgid "A product needs an id."
 msgstr "Ein Produkt benötigt eine id."
@@ -8257,27 +8257,35 @@ msgid "Nutri-Score %1$s"
 msgstr "Nutri-Score %1$s"
 
 # @ woocommerce-germanized
-#: includes/abstracts/abstract-wc-gzd-product.php:1245
-#: includes/abstracts/abstract-wc-gzd-product.php:1255
+#: includes/abstracts/abstract-wc-gzd-product.php:1244
+#: includes/abstracts/abstract-wc-gzd-product.php:1254
 #: includes/wc-gzd-core-functions.php:573
-#: includes/wc-gzd-template-functions.php:941
-#: includes/wc-gzd-template-functions.php:948
+#: includes/wc-gzd-template-functions.php:940
+#: includes/wc-gzd-template-functions.php:947
+#: build/mini-cart-blocks/mini-cart-notices-frontend.js:59
+#: build/mini-cart-blocks/mini-cart-notices-style.js:59
+#: build/mini-cart-blocks/mini-cart-notices-frontend.js:55
+#: build/mini-cart-blocks/mini-cart-notices-style.js:55
 msgid "incl. VAT"
 msgstr "inkl. MwSt."
 
 # @ woocommerce-germanized
-#: includes/abstracts/abstract-wc-gzd-product.php:1245
+#: includes/abstracts/abstract-wc-gzd-product.php:1244
+#: build/mini-cart-blocks/mini-cart-notices-frontend.js:59
+#: build/mini-cart-blocks/mini-cart-notices-style.js:59
+#: build/mini-cart-blocks/mini-cart-notices-frontend.js:55
+#: build/mini-cart-blocks/mini-cart-notices-style.js:55
 msgid "excl. VAT"
 msgstr "exkl. MwSt."
 
 # @ woocommerce-germanized
-#: includes/abstracts/abstract-wc-gzd-product.php:1247
+#: includes/abstracts/abstract-wc-gzd-product.php:1246
 #: includes/wc-gzd-core-functions.php:573
 msgid "incl. %s%% VAT"
 msgstr "inkl. %s %% MwSt."
 
 # @ woocommerce-germanized
-#: includes/abstracts/abstract-wc-gzd-product.php:1247
+#: includes/abstracts/abstract-wc-gzd-product.php:1246
 msgid "excl. %s%% VAT"
 msgstr "exkl. %s %% MwSt."
 
@@ -8495,7 +8503,7 @@ msgstr ""
 "(%s) um Kompatibilitätsprobleme zu verhindern."
 
 # @ woocommerce-germanized
-#: includes/admin/class-wc-gzd-admin-order.php:182 build/checkout.js:1
+#: includes/admin/class-wc-gzd-admin-order.php:182 build/checkout.js:374
 #: build/checkout-style.js:308 build/checkout.js:308
 msgid "Checkboxes"
 msgstr "Checkboxen"
@@ -8574,7 +8582,7 @@ msgstr "One Stop Shop"
 # @ woocommerce
 #: includes/admin/class-wc-gzd-admin-setup-wizard.php:71
 #: includes/admin/class-wc-gzd-admin-setup-wizard.php:156
-#: woocommerce-germanized.php:929
+#: woocommerce-germanized.php:930
 msgid "Settings"
 msgstr "Einstellungen"
 
@@ -8936,7 +8944,7 @@ msgstr ""
 #: includes/api/class-wc-gzd-rest-products-controller.php:180
 #: includes/api/class-wc-gzd-rest-products-controller.php:582
 #: includes/compatibility/elementor/widgets/class-wc-gzd-elementor-widget-product-unit-price.php:10
-#: build/wc-gzd-blocks-product-elements.js:1
+#: build/wc-gzd-blocks-product-elements.js:3188
 #: build/wc-gzd-blocks-product-elements-style.js:2442
 #: build/wc-gzd-blocks-product-elements.js:2431
 msgid "Unit Price"
@@ -8963,7 +8971,7 @@ msgstr "Automatische Berechnung an-/ausschalten"
 #: includes/api/class-wc-gzd-rest-products-controller.php:43
 #: includes/api/class-wc-gzd-rest-products-controller.php:452
 #: includes/compatibility/elementor/widgets/class-wc-gzd-elementor-widget-product-delivery-time.php:10
-#: build/wc-gzd-blocks-product-elements.js:1
+#: build/wc-gzd-blocks-product-elements.js:1795
 #: build/wc-gzd-blocks-product-elements-style.js:1340
 #: build/wc-gzd-blocks-product-elements.js:1340
 msgid "Delivery Time"
@@ -9220,7 +9228,7 @@ msgstr "Warenkorb Kurzbeschreibung"
 #: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:325
 #: includes/api/class-wc-gzd-rest-products-controller.php:229
 #: includes/compatibility/elementor/widgets/class-wc-gzd-elementor-widget-product-defect-description.php:10
-#: build/wc-gzd-blocks-product-elements.js:1
+#: build/wc-gzd-blocks-product-elements.js:1627
 #: build/wc-gzd-blocks-product-elements-style.js:1217
 #: build/wc-gzd-blocks-product-elements.js:1217
 msgid "Defect Description"
@@ -12690,8 +12698,8 @@ msgstr "Kontoinhaber"
 #: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:671
 #: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1039
 #: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1170
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1296
-#: build/wc-gzd-payment-method-direct-debit.js:1
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1297
+#: build/wc-gzd-payment-method-direct-debit.js:264
 #: build/wc-gzd-payment-method-direct-debit.js:140
 msgid "IBAN"
 msgstr "IBAN"
@@ -12704,8 +12712,8 @@ msgstr "IBAN"
 #: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:161
 #: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:672
 #: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1174
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1297
-#: build/wc-gzd-payment-method-direct-debit.js:1
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1298
+#: build/wc-gzd-payment-method-direct-debit.js:272
 #: build/wc-gzd-payment-method-direct-debit.js:149
 msgid "BIC/SWIFT"
 msgstr "BIC/SWIFT"
@@ -12967,7 +12975,7 @@ msgstr "Pfand Anzahl"
 
 # @ woocommerce-germanized
 #: includes/api/class-wc-gzd-rest-products-controller.php:340
-#: build/wc-gzd-blocks-product-elements.js:1
+#: build/wc-gzd-blocks-product-elements.js:2137
 #: build/wc-gzd-blocks-product-elements-style.js:1588
 #: build/wc-gzd-blocks-product-elements.js:1588
 msgid "Deposit amount"
@@ -12981,7 +12989,7 @@ msgstr "Nährwert Referenzmenge"
 #: includes/api/class-wc-gzd-rest-products-controller.php:355
 #: includes/class-wc-gzd-food-helper.php:49
 #: includes/compatibility/elementor/widgets/class-wc-gzd-elementor-widget-product-nutri-score.php:10
-#: build/wc-gzd-blocks-product-elements.js:1
+#: build/wc-gzd-blocks-product-elements.js:2308
 #: build/wc-gzd-blocks-product-elements-style.js:1723
 #: build/wc-gzd-blocks-product-elements.js:1712
 msgid "Nutri-Score"
@@ -13161,7 +13169,7 @@ msgstr "Datenbank wird aktualisiert"
 msgid "%1$d update functions completed. Database version is %2$s"
 msgstr "%1$d Updates fertiggestellt. Datenbank-Version lautet %2$s"
 
-#: includes/class-wc-gzd-coupon-helper.php:752 woocommerce-germanized.php:1334
+#: includes/class-wc-gzd-coupon-helper.php:752 woocommerce-germanized.php:1339
 msgid "Voucher: %1$s"
 msgstr "Wertgutschein: %1$s"
 
@@ -14389,7 +14397,7 @@ msgstr "Versandkosten Hinweis"
 
 # @ woocommerce-germanized
 #: includes/compatibility/elementor/widgets/class-wc-gzd-elementor-widget-product-tax-notice.php:10
-#: build/wc-gzd-blocks-product-elements.js:1
+#: build/wc-gzd-blocks-product-elements.js:3020
 #: build/wc-gzd-blocks-product-elements-style.js:2318
 #: build/wc-gzd-blocks-product-elements.js:2307
 msgid "Tax Notice"
@@ -15152,12 +15160,12 @@ msgid "Your BIC seems to be invalid."
 msgstr "Dein BIC/SWIFT scheint nicht gültig zu sein."
 
 # @ woocommerce-germanized
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1298
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1299
 msgid "is invalid"
 msgstr "ist ungültig"
 
 # @ woocommerce-germanized
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1368
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1369
 msgid "Awaiting Direct Debit Payment"
 msgstr "Zahlung per Lastschrift ausstehend"
 
@@ -15207,7 +15215,7 @@ msgstr "Nur unbezahlte"
 # @ woocommerce-germanized
 #: includes/gateways/invoice/class-wc-gzd-gateway-invoice.php:43
 #: includes/gateways/invoice/class-wc-gzd-gateway-invoice.php:129
-#: build/wc-gzd-payment-method-invoice.js:1
+#: build/wc-gzd-payment-method-invoice.js:150
 #: build/wc-gzd-payment-method-invoice.js:64
 msgid "Pay by Invoice"
 msgstr "Rechnung"
@@ -15384,7 +15392,7 @@ msgstr "Divers"
 msgid "More variants available"
 msgstr "Weitere Varianten verfügbar"
 
-#: includes/wc-gzd-core-functions.php:1458
+#: includes/wc-gzd-core-functions.php:1468
 msgctxt "defect-descriptions"
 msgid "%1$s (%2$s)"
 msgstr "%1$s (%2$s)"
@@ -15405,45 +15413,45 @@ msgstr "Zahlungsart auswählen"
 msgid "Place order"
 msgstr "Jetzt kaufen"
 
-#: packages/woocommerce-eu-tax-helper/src/Helper.php:318
+#: packages/woocommerce-eu-tax-helper/src/Helper.php:465
 msgid "Reduced rate"
 msgstr ""
 
-#: packages/woocommerce-eu-tax-helper/src/Helper.php:319
+#: packages/woocommerce-eu-tax-helper/src/Helper.php:466
 msgctxt "tax-helper-tax-class-name"
 msgid "Greater reduced rate"
 msgstr "Zusätzlicher reduzierter Preis"
 
-#: packages/woocommerce-eu-tax-helper/src/Helper.php:320
+#: packages/woocommerce-eu-tax-helper/src/Helper.php:467
 msgctxt "tax-helper-tax-class-name"
 msgid "Super reduced rate"
 msgstr "Stark reduzierter Preis"
 
-#: packages/woocommerce-eu-tax-helper/src/Helper.php:321
+#: packages/woocommerce-eu-tax-helper/src/Helper.php:468
 msgid "Zero rate"
 msgstr ""
 
-#: packages/woocommerce-eu-tax-helper/src/Helper.php:743
+#: packages/woocommerce-eu-tax-helper/src/Helper.php:945
 msgctxt "tax-helper"
 msgid "Madeira"
 msgstr "Madeira"
 
-#: packages/woocommerce-eu-tax-helper/src/Helper.php:750
+#: packages/woocommerce-eu-tax-helper/src/Helper.php:952
 msgctxt "tax-helper"
 msgid "Acores"
 msgstr "Azoren"
 
-#: packages/woocommerce-eu-tax-helper/src/Helper.php:786
+#: packages/woocommerce-eu-tax-helper/src/Helper.php:988
 msgctxt "tax-helper"
 msgid "Northern Ireland"
 msgstr "Nordirland"
 
-#: packages/woocommerce-eu-tax-helper/src/Helper.php:799
+#: packages/woocommerce-eu-tax-helper/src/Helper.php:1022
 msgctxt "tax-helper-rate-import"
 msgid "Exempt"
 msgstr "Ausnahme"
 
-#: packages/woocommerce-eu-tax-helper/src/Helper.php:870
+#: packages/woocommerce-eu-tax-helper/src/Helper.php:1107
 msgctxt "tax-helper-rate-import"
 msgid "VAT %1$s %% %2$s"
 msgstr "MwSt. %1$s %% %2$s"
@@ -15478,55 +15486,60 @@ msgstr ""
 "Photovoltaikanlagen vorgesehen ist oder nicht."
 
 # @ woocommerce-germanized
-#: src/Blocks/Checkout.php:204 src/Blocks/Checkout.php:317
+#: src/Blocks/Checkout.php:204
+msgid "Cart shipping costs notice."
+msgstr "Versandkostenhinweis im Warenkorb."
+
+# @ woocommerce-germanized
+#: src/Blocks/Checkout.php:210 src/Blocks/Checkout.php:324
 msgid "List of cart checkboxes."
 msgstr "Liste der Checkboxen."
 
-#: src/Blocks/Checkout.php:212 src/Blocks/Checkout.php:324
+#: src/Blocks/Checkout.php:218 src/Blocks/Checkout.php:331
 msgid "Unique identifier for the checkbox within the cart."
 msgstr "Eindeutige Bezeichnung der Checkbox innerhalb des Warenkorbs."
 
 # @ woocommerce-germanized
-#: src/Blocks/Checkout.php:218
+#: src/Blocks/Checkout.php:224
 msgid "Checkbox name."
 msgstr "Checkbox Bezeichnung."
 
 # @ woocommerce-germanized
-#: src/Blocks/Checkout.php:224
+#: src/Blocks/Checkout.php:230
 msgid "Checkbox label."
 msgstr "Checkbox Beschriftung."
 
 # @ woocommerce-germanized
-#: src/Blocks/Checkout.php:230 src/Blocks/Checkout.php:330
+#: src/Blocks/Checkout.php:236 src/Blocks/Checkout.php:337
 msgid "Checkbox checked status."
 msgstr "Checkbox Status."
 
 # @ woocommerce-germanized
-#: src/Blocks/Checkout.php:236
+#: src/Blocks/Checkout.php:242
 msgid "Checkbox hidden."
 msgstr "Checkbox versteckt."
 
-#: src/Blocks/Checkout.php:242
+#: src/Blocks/Checkout.php:248
 msgid "Checkbox error message."
 msgstr "Checkbox Fehlermeldung."
 
-#: src/Blocks/Checkout.php:248
+#: src/Blocks/Checkout.php:254
 msgid "Wrapper classes."
 msgstr "Wrapper-Klassen."
 
-#: src/Blocks/Checkout.php:254
+#: src/Blocks/Checkout.php:260
 msgid "Custom styles."
 msgstr "Individuelles Layout."
 
-#: src/Blocks/Checkout.php:260
+#: src/Blocks/Checkout.php:266
 msgid "HTML field id."
 msgstr "HTML Feld ID."
 
-#: src/Blocks/Checkout.php:266
+#: src/Blocks/Checkout.php:272
 msgid "Whether to show a checkbox field or not."
 msgstr "Ob das Checkbox-Feld gezeigt werden soll oder nicht."
 
-#: src/Blocks/Checkout.php:272
+#: src/Blocks/Checkout.php:278
 msgid "Whether the checkbox is required or not."
 msgstr "Ob die Checkbox verpflichtend ist oder nicht."
 
@@ -15659,7 +15672,7 @@ msgstr ""
 "einen Fehler."
 
 # @ woocommerce-germanized
-#: src/PluginsHelper.php:495 build/wc-gzd-blocks-product-elements.js:1
+#: src/PluginsHelper.php:495 build/wc-gzd-blocks-product-elements.js:2396
 #: build/wc-gzd-product-elements.js:196
 #: build/wc-gzd-blocks-product-elements-style.js:1781
 #: build/wc-gzd-blocks-product-elements.js:1770
@@ -15932,10 +15945,10 @@ msgid "Update totals"
 msgstr "Betrag aktualisieren"
 
 #: templates/checkout/photovoltaic-systems-notice.php:23
-#: build/checkout-blocks/checkout-photovoltaic-system-notice-frontend.js:1
-#: build/checkout-blocks/checkout-photovoltaic-system-notice-style.js:1
+#: build/checkout-blocks/checkout-photovoltaic-system-notice-frontend.js:49
+#: build/checkout-blocks/checkout-photovoltaic-system-notice-style.js:49
 #: build/checkout-blocks/checkout-photovoltaic-system-notice.js:49
-#: build/checkout.js:1
+#: build/checkout.js:477
 #: build/checkout-blocks/checkout-photovoltaic-system-notice-frontend.js:36
 #: build/checkout-blocks/checkout-photovoltaic-system-notice-style.js:36
 #: build/checkout-blocks/checkout-photovoltaic-system-notice.js:36
@@ -15944,10 +15957,10 @@ msgid "Your shopping cart is eligible for VAT exemption"
 msgstr "Dein Warenkorb ist für eine Mehrwertsteuerbefreiung berechtigt"
 
 #: templates/checkout/photovoltaic-systems-notice.php:24
-#: build/checkout-blocks/checkout-photovoltaic-system-notice-frontend.js:1
-#: build/checkout-blocks/checkout-photovoltaic-system-notice-style.js:1
+#: build/checkout-blocks/checkout-photovoltaic-system-notice-frontend.js:48
+#: build/checkout-blocks/checkout-photovoltaic-system-notice-style.js:48
 #: build/checkout-blocks/checkout-photovoltaic-system-notice.js:48
-#: build/checkout.js:1
+#: build/checkout.js:476
 #: build/checkout-blocks/checkout-photovoltaic-system-notice-frontend.js:35
 #: build/checkout-blocks/checkout-photovoltaic-system-notice-style.js:35
 #: build/checkout-blocks/checkout-photovoltaic-system-notice.js:35
@@ -16105,7 +16118,7 @@ msgstr "Germanized benötigt mindestens PHP 5.6. Bitte %s deine PHP-Version."
 msgid "upgrade"
 msgstr "Upgrade"
 
-#: woocommerce-germanized.php:352
+#: woocommerce-germanized.php:353
 msgid ""
 "This version of the Corona Helper Plugin includes a bug which could lead to "
 "tax rates being added multiple times. Please <a href=\"%1$s\">deactivate</a> "
@@ -16117,30 +16130,31 @@ msgstr ""
 "href=\"%2$s\" target=\"_blank\">Blog-Post</a> wie du das Plugin austauschen "
 "kannst."
 
-#: woocommerce-germanized.php:1317
+#: woocommerce-germanized.php:1322
 msgid ""
 "Please wait while we are trying to redirect you to the payment provider."
 msgstr "Einen Moment - wir versuchen dich zum Zahlungsanbieter weiterzuleiten."
 
-#: build/checkout.js:1 build/checkout-style.js:295 build/checkout.js:295
+#: build/checkout.js:363 build/checkout-style.js:295 build/checkout.js:295
 msgid "This is a label being printed next to your legal checkbox."
 msgstr "Das ist eine Beschriftung, die neben der Checkbox angezeigt wird."
 
 # @ woocommerce-germanized
-#: build/checkout.js:1 build/checkout-style.js:313 build/checkout.js:313
+#: build/checkout.js:377 build/checkout-style.js:313 build/checkout.js:313
 msgid "Manage checkboxes"
 msgstr "Checkboxen verwalten"
 
 # @ woocommerce
-#: build/product-defect-description-frontend.js:1
-#: build/product-delivery-time-frontend.js:1
-#: build/product-deposit-frontend.js:1
-#: build/product-deposit-packaging-type-frontend.js:1
-#: build/product-nutri-score-frontend.js:1
-#: build/product-shipping-costs-info-frontend.js:1
-#: build/product-tax-info-frontend.js:1 build/product-unit-price-frontend.js:1
-#: build/product-unit-product-frontend.js:1
-#: build/wc-gzd-blocks-product-elements.js:1
+#: build/product-defect-description-frontend.js:528
+#: build/product-delivery-time-frontend.js:528
+#: build/product-deposit-frontend.js:528
+#: build/product-deposit-packaging-type-frontend.js:528
+#: build/product-nutri-score-frontend.js:528
+#: build/product-shipping-costs-info-frontend.js:472
+#: build/product-tax-info-frontend.js:472
+#: build/product-unit-price-frontend.js:472
+#: build/product-unit-product-frontend.js:472
+#: build/wc-gzd-blocks-product-elements.js:2589
 #: build/product-defect-description-frontend.js:474
 #: build/product-delivery-time-frontend.js:474
 #: build/product-deposit-frontend.js:474
@@ -16157,15 +16171,16 @@ msgid "kg"
 msgstr "kg"
 
 # @ woocommerce-germanized
-#: build/product-defect-description-frontend.js:1
-#: build/product-delivery-time-frontend.js:1
-#: build/product-deposit-frontend.js:1
-#: build/product-deposit-packaging-type-frontend.js:1
-#: build/product-nutri-score-frontend.js:1
-#: build/product-shipping-costs-info-frontend.js:1
-#: build/product-tax-info-frontend.js:1 build/product-unit-price-frontend.js:1
-#: build/product-unit-product-frontend.js:1
-#: build/wc-gzd-blocks-product-elements.js:1
+#: build/product-defect-description-frontend.js:530
+#: build/product-delivery-time-frontend.js:530
+#: build/product-deposit-frontend.js:530
+#: build/product-deposit-packaging-type-frontend.js:530
+#: build/product-nutri-score-frontend.js:530
+#: build/product-shipping-costs-info-frontend.js:474
+#: build/product-tax-info-frontend.js:474
+#: build/product-unit-price-frontend.js:474
+#: build/product-unit-product-frontend.js:474
+#: build/wc-gzd-blocks-product-elements.js:2591
 #: build/product-defect-description-frontend.js:478
 #: build/product-delivery-time-frontend.js:478
 #: build/product-deposit-frontend.js:478
@@ -16182,15 +16197,16 @@ msgid "Delivery time: 2-3 days"
 msgstr "Lieferzeit: 2-3 Tage"
 
 # @ woocommerce-germanized
-#: build/product-defect-description-frontend.js:1
-#: build/product-delivery-time-frontend.js:1
-#: build/product-deposit-frontend.js:1
-#: build/product-deposit-packaging-type-frontend.js:1
-#: build/product-nutri-score-frontend.js:1
-#: build/product-shipping-costs-info-frontend.js:1
-#: build/product-tax-info-frontend.js:1 build/product-unit-price-frontend.js:1
-#: build/product-unit-product-frontend.js:1
-#: build/wc-gzd-blocks-product-elements.js:1
+#: build/product-defect-description-frontend.js:532
+#: build/product-delivery-time-frontend.js:532
+#: build/product-deposit-frontend.js:532
+#: build/product-deposit-packaging-type-frontend.js:532
+#: build/product-nutri-score-frontend.js:532
+#: build/product-shipping-costs-info-frontend.js:476
+#: build/product-tax-info-frontend.js:476
+#: build/product-unit-price-frontend.js:476
+#: build/product-unit-product-frontend.js:476
+#: build/wc-gzd-blocks-product-elements.js:2593
 #: build/product-defect-description-frontend.js:480
 #: build/product-delivery-time-frontend.js:480
 #: build/product-deposit-frontend.js:480
@@ -16207,15 +16223,16 @@ msgid "incl. 19 % VAT"
 msgstr "inkl. 19 % MwSt."
 
 # @ woocommerce-germanized
-#: build/product-defect-description-frontend.js:1
-#: build/product-delivery-time-frontend.js:1
-#: build/product-deposit-frontend.js:1
-#: build/product-deposit-packaging-type-frontend.js:1
-#: build/product-nutri-score-frontend.js:1
-#: build/product-shipping-costs-info-frontend.js:1
-#: build/product-tax-info-frontend.js:1 build/product-unit-price-frontend.js:1
-#: build/product-unit-product-frontend.js:1
-#: build/wc-gzd-blocks-product-elements.js:1
+#: build/product-defect-description-frontend.js:534
+#: build/product-delivery-time-frontend.js:534
+#: build/product-deposit-frontend.js:534
+#: build/product-deposit-packaging-type-frontend.js:534
+#: build/product-nutri-score-frontend.js:534
+#: build/product-shipping-costs-info-frontend.js:478
+#: build/product-tax-info-frontend.js:478
+#: build/product-unit-price-frontend.js:478
+#: build/product-unit-product-frontend.js:478
+#: build/wc-gzd-blocks-product-elements.js:2595
 #: build/product-defect-description-frontend.js:482
 #: build/product-delivery-time-frontend.js:482
 #: build/product-deposit-frontend.js:482
@@ -16231,15 +16248,16 @@ msgctxt "preview"
 msgid "plus shipping costs"
 msgstr "zzgl. Versandkosten "
 
-#: build/product-defect-description-frontend.js:1
-#: build/product-delivery-time-frontend.js:1
-#: build/product-deposit-frontend.js:1
-#: build/product-deposit-packaging-type-frontend.js:1
-#: build/product-nutri-score-frontend.js:1
-#: build/product-shipping-costs-info-frontend.js:1
-#: build/product-tax-info-frontend.js:1 build/product-unit-price-frontend.js:1
-#: build/product-unit-product-frontend.js:1
-#: build/wc-gzd-blocks-product-elements.js:1
+#: build/product-defect-description-frontend.js:536
+#: build/product-delivery-time-frontend.js:536
+#: build/product-deposit-frontend.js:536
+#: build/product-deposit-packaging-type-frontend.js:536
+#: build/product-nutri-score-frontend.js:536
+#: build/product-shipping-costs-info-frontend.js:480
+#: build/product-tax-info-frontend.js:480
+#: build/product-unit-price-frontend.js:480
+#: build/product-unit-product-frontend.js:480
+#: build/wc-gzd-blocks-product-elements.js:2597
 #: build/product-defect-description-frontend.js:484
 #: build/product-delivery-time-frontend.js:484
 #: build/product-deposit-frontend.js:484
@@ -16255,15 +16273,16 @@ msgctxt "preview"
 msgid "Product includes: %1$s kg"
 msgstr "Produkt enthält: %1$s kg"
 
-#: build/product-defect-description-frontend.js:1
-#: build/product-delivery-time-frontend.js:1
-#: build/product-deposit-frontend.js:1
-#: build/product-deposit-packaging-type-frontend.js:1
-#: build/product-nutri-score-frontend.js:1
-#: build/product-shipping-costs-info-frontend.js:1
-#: build/product-tax-info-frontend.js:1 build/product-unit-price-frontend.js:1
-#: build/product-unit-product-frontend.js:1
-#: build/wc-gzd-blocks-product-elements.js:1
+#: build/product-defect-description-frontend.js:538
+#: build/product-delivery-time-frontend.js:538
+#: build/product-deposit-frontend.js:538
+#: build/product-deposit-packaging-type-frontend.js:538
+#: build/product-nutri-score-frontend.js:538
+#: build/product-shipping-costs-info-frontend.js:482
+#: build/product-tax-info-frontend.js:482
+#: build/product-unit-price-frontend.js:482
+#: build/product-unit-product-frontend.js:482
+#: build/wc-gzd-blocks-product-elements.js:2599
 #: build/product-defect-description-frontend.js:486
 #: build/product-delivery-time-frontend.js:486
 #: build/product-deposit-frontend.js:486
@@ -16279,15 +16298,16 @@ msgctxt "preview"
 msgid "This product has a serious defect."
 msgstr "Dieses Produkt hat einen echten Mangel."
 
-#: build/product-defect-description-frontend.js:1
-#: build/product-delivery-time-frontend.js:1
-#: build/product-deposit-frontend.js:1
-#: build/product-deposit-packaging-type-frontend.js:1
-#: build/product-nutri-score-frontend.js:1
-#: build/product-shipping-costs-info-frontend.js:1
-#: build/product-tax-info-frontend.js:1 build/product-unit-price-frontend.js:1
-#: build/product-unit-product-frontend.js:1
-#: build/wc-gzd-blocks-product-elements.js:1
+#: build/product-defect-description-frontend.js:542
+#: build/product-delivery-time-frontend.js:542
+#: build/product-deposit-frontend.js:542
+#: build/product-deposit-packaging-type-frontend.js:542
+#: build/product-nutri-score-frontend.js:542
+#: build/product-shipping-costs-info-frontend.js:486
+#: build/product-tax-info-frontend.js:486
+#: build/product-unit-price-frontend.js:486
+#: build/product-unit-product-frontend.js:486
+#: build/wc-gzd-blocks-product-elements.js:2603
 #: build/product-defect-description-frontend.js:490
 #: build/product-delivery-time-frontend.js:490
 #: build/product-deposit-frontend.js:490
@@ -16303,15 +16323,16 @@ msgctxt "preview"
 msgid "Plus"
 msgstr "Zzgl."
 
-#: build/product-defect-description-frontend.js:1
-#: build/product-delivery-time-frontend.js:1
-#: build/product-deposit-frontend.js:1
-#: build/product-deposit-packaging-type-frontend.js:1
-#: build/product-nutri-score-frontend.js:1
-#: build/product-shipping-costs-info-frontend.js:1
-#: build/product-tax-info-frontend.js:1 build/product-unit-price-frontend.js:1
-#: build/product-unit-product-frontend.js:1
-#: build/wc-gzd-blocks-product-elements.js:1
+#: build/product-defect-description-frontend.js:547
+#: build/product-delivery-time-frontend.js:547
+#: build/product-deposit-frontend.js:547
+#: build/product-deposit-packaging-type-frontend.js:547
+#: build/product-nutri-score-frontend.js:547
+#: build/product-shipping-costs-info-frontend.js:491
+#: build/product-tax-info-frontend.js:491
+#: build/product-unit-price-frontend.js:491
+#: build/product-unit-product-frontend.js:491
+#: build/wc-gzd-blocks-product-elements.js:2608
 #: build/product-defect-description-frontend.js:493
 #: build/product-delivery-time-frontend.js:493
 #: build/product-deposit-frontend.js:493
@@ -16328,15 +16349,16 @@ msgid "deposit"
 msgstr "Pfand"
 
 # @ woocommerce-germanized
-#: build/product-defect-description-frontend.js:1
-#: build/product-delivery-time-frontend.js:1
-#: build/product-deposit-frontend.js:1
-#: build/product-deposit-packaging-type-frontend.js:1
-#: build/product-nutri-score-frontend.js:1
-#: build/product-shipping-costs-info-frontend.js:1
-#: build/product-tax-info-frontend.js:1 build/product-unit-price-frontend.js:1
-#: build/product-unit-product-frontend.js:1
-#: build/wc-gzd-blocks-product-elements.js:1
+#: build/product-defect-description-frontend.js:549
+#: build/product-delivery-time-frontend.js:549
+#: build/product-deposit-frontend.js:549
+#: build/product-deposit-packaging-type-frontend.js:549
+#: build/product-nutri-score-frontend.js:549
+#: build/product-shipping-costs-info-frontend.js:493
+#: build/product-tax-info-frontend.js:493
+#: build/product-unit-price-frontend.js:493
+#: build/product-unit-product-frontend.js:493
+#: build/wc-gzd-blocks-product-elements.js:2610
 #: build/product-defect-description-frontend.js:497
 #: build/product-delivery-time-frontend.js:497
 #: build/product-deposit-frontend.js:497
@@ -16352,107 +16374,107 @@ msgctxt "preview"
 msgid "Disposable"
 msgstr "Einweg"
 
-#: build/wc-gzd-blocks-product-elements.js:1
-#: build/wc-gzd-blocks-product-elements-style.js:2443
-#: build/wc-gzd-blocks-product-elements.js:2432
-msgid "Inserts the product's price per unit."
-msgstr "Fügt den Grundpreis des Produkts ein."
-
-# @ woocommerce-germanized
-#: build/wc-gzd-blocks-product-elements.js:1
-#: build/wc-gzd-blocks-product-elements-style.js:1341
-#: build/wc-gzd-blocks-product-elements.js:1341
-msgid "Inserts the product's delivery time."
-msgstr "Fügt die Lieferzeit des Produkts ein."
-
-# @ woocommerce-germanized
-#: build/wc-gzd-blocks-product-elements.js:1
-#: build/wc-gzd-blocks-product-elements-style.js:2319
-#: build/wc-gzd-blocks-product-elements.js:2308
-msgid "Inserts the product's tax notice."
-msgstr "Fügt den Steuerhinweis des Produkts ein."
-
-# @ woocommerce-germanized
-#: build/wc-gzd-blocks-product-elements.js:1
-#: build/wc-gzd-blocks-product-elements-style.js:2195
-#: build/wc-gzd-blocks-product-elements.js:2184
-msgid "Shipping Costs Notice"
-msgstr "Versandkostenhinweis"
-
-# @ woocommerce-germanized
-#: build/wc-gzd-blocks-product-elements.js:1
-#: build/wc-gzd-blocks-product-elements-style.js:2196
-#: build/wc-gzd-blocks-product-elements.js:2185
-msgid "Inserts the product's shipping costs notice."
-msgstr "Fügt den Versandkostenhinweis des Produkts ein."
-
-# @ woocommerce-germanized
-#: build/wc-gzd-blocks-product-elements.js:1
-#: build/wc-gzd-blocks-product-elements-style.js:2565
-#: build/wc-gzd-blocks-product-elements.js:2554
-msgid "Unit products"
-msgstr "Produkteinheiten"
-
-# @ woocommerce-germanized
-#: build/wc-gzd-blocks-product-elements.js:1
-#: build/wc-gzd-blocks-product-elements-style.js:2566
-#: build/wc-gzd-blocks-product-elements.js:2555
-msgid "Inserts the product's units."
-msgstr "Fügt die Produkteinheiten des Produkts ein."
-
-# @ woocommerce-germanized
-#: build/wc-gzd-blocks-product-elements.js:1
-#: build/wc-gzd-blocks-product-elements-style.js:1724
-#: build/wc-gzd-blocks-product-elements.js:1713
-msgid "Inserts the product's Nutri-Score."
-msgstr "Fügt den Nutri-Score des Produkts ein."
-
-# @ woocommerce-germanized
-#: build/wc-gzd-blocks-product-elements.js:1
-#: build/wc-gzd-blocks-product-elements-style.js:1589
-#: build/wc-gzd-blocks-product-elements.js:1589
-msgid "Inserts the product's deposit amount."
-msgstr "Fügt den Pfandbetrag des Produkts ein."
-
-# @ woocommerce-germanized
-#: build/wc-gzd-blocks-product-elements.js:1
-#: build/wc-gzd-blocks-product-elements-style.js:1464
-#: build/wc-gzd-blocks-product-elements.js:1464
-msgid "Deposit packaging type"
-msgstr "Pfand-Verpackungstyp"
-
-#: build/wc-gzd-blocks-product-elements.js:1
-#: build/wc-gzd-blocks-product-elements-style.js:1465
-#: build/wc-gzd-blocks-product-elements.js:1465
-msgid "Inserts the product's deposit packaging type."
-msgstr "Fügt den Verpackungstyp des Produkts ein."
-
-#: build/wc-gzd-blocks-product-elements.js:1
+#: build/wc-gzd-blocks-product-elements.js:1628
 #: build/wc-gzd-blocks-product-elements-style.js:1218
 #: build/wc-gzd-blocks-product-elements.js:1218
 msgid "Inserts the product's defect description."
 msgstr "Fügt die Mängelbeschreibung des Produkts ein."
 
 # @ woocommerce-germanized
-#: build/wc-gzd-payment-method-direct-debit.js:1
+#: build/wc-gzd-blocks-product-elements.js:1796
+#: build/wc-gzd-blocks-product-elements-style.js:1341
+#: build/wc-gzd-blocks-product-elements.js:1341
+msgid "Inserts the product's delivery time."
+msgstr "Fügt die Lieferzeit des Produkts ein."
+
+# @ woocommerce-germanized
+#: build/wc-gzd-blocks-product-elements.js:1966
+#: build/wc-gzd-blocks-product-elements-style.js:1464
+#: build/wc-gzd-blocks-product-elements.js:1464
+msgid "Deposit packaging type"
+msgstr "Pfand-Verpackungstyp"
+
+#: build/wc-gzd-blocks-product-elements.js:1967
+#: build/wc-gzd-blocks-product-elements-style.js:1465
+#: build/wc-gzd-blocks-product-elements.js:1465
+msgid "Inserts the product's deposit packaging type."
+msgstr "Fügt den Verpackungstyp des Produkts ein."
+
+# @ woocommerce-germanized
+#: build/wc-gzd-blocks-product-elements.js:2138
+#: build/wc-gzd-blocks-product-elements-style.js:1589
+#: build/wc-gzd-blocks-product-elements.js:1589
+msgid "Inserts the product's deposit amount."
+msgstr "Fügt den Pfandbetrag des Produkts ein."
+
+# @ woocommerce-germanized
+#: build/wc-gzd-blocks-product-elements.js:2309
+#: build/wc-gzd-blocks-product-elements-style.js:1724
+#: build/wc-gzd-blocks-product-elements.js:1713
+msgid "Inserts the product's Nutri-Score."
+msgstr "Fügt den Nutri-Score des Produkts ein."
+
+# @ woocommerce-germanized
+#: build/wc-gzd-blocks-product-elements.js:2852
+#: build/wc-gzd-blocks-product-elements-style.js:2195
+#: build/wc-gzd-blocks-product-elements.js:2184
+msgid "Shipping Costs Notice"
+msgstr "Versandkostenhinweis"
+
+# @ woocommerce-germanized
+#: build/wc-gzd-blocks-product-elements.js:2853
+#: build/wc-gzd-blocks-product-elements-style.js:2196
+#: build/wc-gzd-blocks-product-elements.js:2185
+msgid "Inserts the product's shipping costs notice."
+msgstr "Fügt den Versandkostenhinweis des Produkts ein."
+
+# @ woocommerce-germanized
+#: build/wc-gzd-blocks-product-elements.js:3021
+#: build/wc-gzd-blocks-product-elements-style.js:2319
+#: build/wc-gzd-blocks-product-elements.js:2308
+msgid "Inserts the product's tax notice."
+msgstr "Fügt den Steuerhinweis des Produkts ein."
+
+#: build/wc-gzd-blocks-product-elements.js:3189
+#: build/wc-gzd-blocks-product-elements-style.js:2443
+#: build/wc-gzd-blocks-product-elements.js:2432
+msgid "Inserts the product's price per unit."
+msgstr "Fügt den Grundpreis des Produkts ein."
+
+# @ woocommerce-germanized
+#: build/wc-gzd-blocks-product-elements.js:3356
+#: build/wc-gzd-blocks-product-elements-style.js:2565
+#: build/wc-gzd-blocks-product-elements.js:2554
+msgid "Unit products"
+msgstr "Produkteinheiten"
+
+# @ woocommerce-germanized
+#: build/wc-gzd-blocks-product-elements.js:3357
+#: build/wc-gzd-blocks-product-elements-style.js:2566
+#: build/wc-gzd-blocks-product-elements.js:2555
+msgid "Inserts the product's units."
+msgstr "Fügt die Produkteinheiten des Produkts ein."
+
+# @ woocommerce-germanized
+#: build/wc-gzd-payment-method-direct-debit.js:202
 #: build/wc-gzd-payment-method-direct-debit.js:75
 msgid "Direct debit"
 msgstr "Lastschrift"
 
 # @ woocommerce-germanized
-#: build/wc-gzd-payment-method-direct-debit.js:1
+#: build/wc-gzd-payment-method-direct-debit.js:256
 #: build/wc-gzd-payment-method-direct-debit.js:131
 msgid "Account holder"
 msgstr "Kontoinhaber"
 
 # @ woocommerce-germanized
-#: build/wc-gzd-payment-method-direct-debit.js:1
+#: build/wc-gzd-payment-method-direct-debit.js:320
 #: build/wc-gzd-payment-method-direct-debit.js:209
 msgid "Please enter a valid BIC/SWIFT"
 msgstr "Bitte prüfe deinen BIC/SWIFT"
 
 # @ woocommerce-germanized
-#: build/wc-gzd-payment-method-direct-debit.js:1
+#: build/wc-gzd-payment-method-direct-debit.js:413
 #: build/wc-gzd-payment-method-direct-debit.js:253
 msgid "Please enter a valid IBAN"
 msgstr "Bitte prüfe deinen IBAN"
@@ -16482,6 +16504,19 @@ msgid ""
 msgstr ""
 "Erinnert deine Kunden über eine mögliche Umsatzsteuerbefreiung für eine "
 "Photovoltaikanlage im Warenkorb."
+
+# @ woocommerce-germanized
+#: build/inner-blocks/mini-cart-legal-notices/block.json
+#: build/inner-blocks/mini-cart-notices/block.json
+msgctxt "block title"
+msgid "Mini cart legal notices"
+msgstr "Warenkorb-Dropdown rechtl. Hinweise"
+
+#: build/inner-blocks/mini-cart-legal-notices/block.json
+#: build/inner-blocks/mini-cart-notices/block.json
+msgctxt "block description"
+msgid "Outputs mini cart legal notices."
+msgstr "Gibt rechtliche Hinweise im Warenkorb-Dropdown Block aus."
 
 #~ msgctxt "shipments full name"
 #~ msgid "%1$s"
@@ -20295,9 +20330,6 @@ msgstr ""
 #~ "Buttons darstellen möchten. Nutze die Platzhalter {term_link}{/"
 #~ "term_link}, {data_security_link}{/data_security_link}, {revocation_link}{/"
 #~ "revocation_link} um die jeweiligen Links zu den Seiten einzufügen."
-
-#~ msgid "Not found within legal notice."
-#~ msgstr "Nicht im rechtlichen Hinweistext gefunden."
 
 # @ woocommerce-germanized
 #~ msgid "Registration"

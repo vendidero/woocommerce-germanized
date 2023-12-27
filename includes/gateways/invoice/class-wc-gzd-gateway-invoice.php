@@ -219,7 +219,7 @@ class WC_GZD_Gateway_Invoice extends WC_Payment_Gateway {
 	public function process_subscription_payment( $order_total, $order_id ) {
 		$this->process_payment( $order_id );
 
-		if ( apply_filters( 'woocommerce_gzd_force_activate_subscription_for_invoice_payments', true, $order_id ) ) {
+		if ( apply_filters( 'woocommerce_gzd_force_activate_subscription_for_invoice_payments', false, $order_id ) ) {
 			if ( class_exists( 'WC_Subscriptions_Manager' ) && is_callable( array( 'WC_Subscriptions_Manager', 'activate_subscriptions_for_order' ) ) ) {
 				WC_Subscriptions_Manager::activate_subscriptions_for_order( $order_id );
 			}
