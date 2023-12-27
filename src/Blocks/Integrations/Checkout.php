@@ -37,7 +37,7 @@ class Checkout implements IntegrationInterface {
 
 		foreach ( $this->get_chunks() as $chunk ) {
 			$handle = 'wc-gzd-blocks-' . $chunk . '-chunk';
-			$this->assets->register_script( $handle, $this->assets->get_block_asset_build_path( $chunk ), array(), true );
+			$this->assets->register_script( $handle, $this->assets->get_block_asset_build_path( 'checkout-blocks' . $chunk ), array(), true );
 
 			wp_add_inline_script(
 				'wc-gzd-blocks-checkout-frontend',
@@ -71,6 +71,13 @@ class Checkout implements IntegrationInterface {
 			return array();
 		}
 		foreach ( new \RecursiveIteratorIterator( new \RecursiveDirectoryIterator( $build_path ) ) as $block_name ) {
+			/**
+			 * Skip additional auto-generated style js files.
+			 */
+			if ( '-style.js' === substr( $block_name, -9 ) ) {
+				continue;
+			}
+
 			$blocks[] = str_replace( $build_path, '', $block_name );
 		}
 

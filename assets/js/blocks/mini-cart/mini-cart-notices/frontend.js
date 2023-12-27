@@ -78,8 +78,6 @@ const Block = ({
         [ displayCartPricesIncludingTax ]
     );
 
-    console.log( cart );
-
     return (
         <div className="wc-gzd-block-mini-cart-notices">
             { isSmallBusiness && smallBusinessNotice && ! showTaxNotice &&

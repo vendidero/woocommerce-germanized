@@ -33,6 +33,19 @@ class MiniCart implements IntegrationInterface {
 		$this->assets->register_script( 'wc-gzd-blocks-mini-cart-frontend', $this->assets->get_block_asset_build_path( 'mini-cart-frontend' ) );
 		$this->assets->register_style( 'wc-gzd-blocks-mini-cart-frontend', $this->assets->get_block_asset_build_path( 'style-mini-cart', 'css' ) );
 
+		foreach ( $this->get_chunks() as $chunk ) {
+			$handle = 'wc-gzd-blocks-' . $chunk . '-chunk';
+			$this->assets->register_script( $handle, $this->assets->get_block_asset_build_path( 'mini-cart-blocks' . $chunk ), array(), true );
+
+			wp_add_inline_script(
+				'wc-gzd-blocks-mini-cart-frontend',
+				wp_scripts()->print_translations( $handle, false ),
+				'before'
+			);
+
+			wp_deregister_script( $handle );
+		}
+
 		add_filter(
 			'render_block',
 			function( $content, $block ) {
@@ -45,6 +58,28 @@ class MiniCart implements IntegrationInterface {
 			5,
 			2
 		);
+	}
+
+	protected function get_chunks() {
+		$build_path = Package::get_path( 'build/mini-cart-blocks' );
+		$blocks     = array();
+
+		if ( ! is_dir( $build_path ) ) {
+			return array();
+		}
+		foreach ( new \RecursiveIteratorIterator( new \RecursiveDirectoryIterator( $build_path ) ) as $block_name ) {
+			/**
+			 * Skip additional auto-generated style js files.
+			 */
+			if ( '-style.js' === substr( $block_name, -9 ) ) {
+				continue;
+			}
+
+			$blocks[] = str_replace( $build_path, '', $block_name );
+		}
+
+		$chunks = preg_filter( '/.js/', '', $blocks );
+		return $chunks;
 	}
 
 	/**
