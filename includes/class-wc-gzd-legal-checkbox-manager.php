@@ -355,7 +355,8 @@ class WC_GZD_Legal_Checkbox_Manager {
 					'html_name'            => 'photovoltaic_systems',
 					'html_wrapper_classes' => array( 'photovoltaic_systems' ),
 					'hide_input'           => false,
-					'label'                => __( 'I hereby confirm that I am aware of the requirements for VAT exemption (based on §12 paragraph 3 UStG) and that they are met for this order.', 'woocommerce-germanized' ),
+					'label_args'           => array( '{legal_text}' => '' ),
+					'label'                => __( 'I hereby confirm that I am aware of the requirements for VAT exemption (based on {legal_text}) and that they are met for this order.', 'woocommerce-germanized' ),
 					'error_message'        => '',
 					'is_mandatory'         => false,
 					'is_shown'             => false,
@@ -685,7 +686,9 @@ class WC_GZD_Legal_Checkbox_Manager {
 				}
 
 				if ( 'photovoltaic_systems' === $checkbox_id && true === $args['is_photovoltaic_system'] && wc_gzd_customer_applies_for_photovoltaic_system_vat_exemption( $args ) ) {
-					$checkbox_args['is_shown'] = true;
+					$law_details                 = wc_gzd_cart_get_photovoltaic_systems_law_details();
+					$checkbox_args['is_shown']   = true;
+					$checkbox_args['label_args'] = array( '{legal_text}' => $law_details['text'] );
 				}
 
 				/**
