@@ -18,7 +18,7 @@ jobs:
       fail-fast: false
       matrix:
         operating-system: [ubuntu-latest]
-        php: ['7.3', '7.4', '8.0']
+        php: [7.4', '8.0', '8.2']
         woo: ['latest']
     name: PHP ${{ matrix.php }} test for Woo ${{ matrix.woo }}
     steps:
