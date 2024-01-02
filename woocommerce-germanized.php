@@ -536,7 +536,10 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 			include_once WC_GERMANIZED_ABSPATH . 'includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php';
 			include_once WC_GERMANIZED_ABSPATH . 'includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php';
 
-			if ( $this->is_frontend() ) {
+			// We load frontend includes in the post editor, because they may be invoked via pre-loading of blocks.
+			$in_post_editor = doing_action( 'load-post.php' ) || doing_action( 'load-post-new.php' );
+
+			if ( $this->is_frontend() || $this->is_rest_api_request() || $in_post_editor ) {
 				/**
 				 * If Pro version is enabled: Make sure we are not including frontend hooks before pro has been loaded.
 				 * This is necessary to enable filters for hook priorities to work while adjusting theme-specific elements.
