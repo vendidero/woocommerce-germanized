@@ -3,7 +3,7 @@
  * Plugin Name: Germanized for WooCommerce
  * Plugin URI: https://www.vendidero.de/woocommerce-germanized
  * Description: Germanized for WooCommerce extends WooCommerce to become a legally compliant store in the german market.
- * Version: 3.15.4
+ * Version: 3.15.5
  * Author: vendidero
  * Author URI: https://vendidero.de
  * Requires at least: 5.4
@@ -69,7 +69,7 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 		 *
 		 * @var string
 		 */
-		public $version = '3.15.4';
+		public $version = '3.15.5';
 
 		/**
 		 * @var WooCommerce_Germanized $instance of the plugin
@@ -536,7 +536,10 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 			include_once WC_GERMANIZED_ABSPATH . 'includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php';
 			include_once WC_GERMANIZED_ABSPATH . 'includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php';
 
-			if ( $this->is_frontend() ) {
+			// We load frontend includes in the post editor, because they may be invoked via pre-loading of blocks.
+			$in_post_editor = doing_action( 'load-post.php' ) || doing_action( 'load-post-new.php' );
+
+			if ( $this->is_frontend() || $this->is_rest_api_request() || $in_post_editor ) {
 				/**
 				 * If Pro version is enabled: Make sure we are not including frontend hooks before pro has been loaded.
 				 * This is necessary to enable filters for hook priorities to work while adjusting theme-specific elements.

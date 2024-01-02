@@ -12,14 +12,15 @@
  *
  * @see https://github.com/vendidero/woocommerce-germanized/wiki/Overriding-Germanized-Templates
  * @package Germanized/Templates
- * @version 1.1.0
+ * @version 2.0.0
  */
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 } // Exit if accessed directly
 
+$law_details = wc_gzd_cart_get_photovoltaic_systems_law_details();
 ?>
 <div class="wc-gzd-photovoltaic-systems-notice woocommerce-info">
 	<h4><?php esc_html_e( 'Your shopping cart is eligible for VAT exemption', 'woocommerce-germanized' ); ?></h4>
-	<p style="margin-bottom: 0"><?php echo wp_kses_post( apply_filters( 'woocommerce_gzd_photovoltaic_systems_vat_exemption_available_notice', sprintf( __( 'To benefit from the tax exemption, please confirm the VAT exemption according to <a href="%s" target="_blank">§12 paragraph 3 UStG</a> by activating the checkbox.', 'woocommerce-germanized' ), 'https://www.gesetze-im-internet.de/ustg_1980/__12.html' ) ) ); ?></p>
+	<p style="margin-bottom: 0"><?php echo wp_kses_post( apply_filters( 'woocommerce_gzd_photovoltaic_systems_vat_exemption_available_notice', sprintf( __( 'To benefit from the tax exemption, please confirm the VAT exemption according to <a href="%1$s" target="_blank">%2$s</a> by activating the checkbox.', 'woocommerce-germanized' ), $law_details['url'], $law_details['text'] ) ) ); ?></p>
 </div>

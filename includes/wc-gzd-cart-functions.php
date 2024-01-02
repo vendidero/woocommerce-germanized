@@ -657,6 +657,31 @@ function wc_gzd_cart_applies_for_photovoltaic_system_vat_exemption( $items = fal
 	return apply_filters( 'woocommerce_gzd_cart_applies_for_photovoltaic_system_vat_exemption', wc_gzd_cart_customer_applies_for_photovoltaic_system_vat_exemption() && wc_gzd_cart_contains_photovoltaic_system( $items ) );
 }
 
+function wc_gzd_cart_get_photovoltaic_systems_law_details( $args = array() ) {
+	$args          = wc_gzd_get_photovoltaic_system_customer_location( $args );
+	$base_country  = wc_gzd_get_base_country();
+	$legal_notices = array(
+		'DE' => array(
+			'text' => __( '§12 paragraph 3 UStG', 'woocommerce-germanized' ),
+			'url'  => 'https://www.gesetze-im-internet.de/ustg_1980/__12.html',
+		),
+		'AT' => array(
+			'text' => __( '§ 28 paragraph 62 UStG 1994', 'woocommerce-germanized' ),
+			'url'  => 'https://www.ris.bka.gv.at/Dokumente/Bundesnormen/NOR40257456/NOR40257456.html',
+		),
+	);
+	$notice_data   = array_key_exists( $base_country, $legal_notices ) ? $legal_notices[ $base_country ] : array(
+		'text' => '',
+		'url'  => '',
+	);
+
+	if ( \Vendidero\EUTaxHelper\Helper::oss_procedure_is_enabled() && array_key_exists( $args['country'], $legal_notices ) ) {
+		$notice_data = $legal_notices[ $args['country'] ];
+	}
+
+	return apply_filters( 'woocommerce_gzd_photovoltaic_systems_vat_exemption_legal_data', $notice_data, $args );
+}
+
 function wc_gzd_cart_customer_applies_for_photovoltaic_system_vat_exemption() {
 	$args = array(
 		'country'  => WC_GZD_Checkout::instance()->get_checkout_value( 'shipping_country' ) ? WC_GZD_Checkout::instance()->get_checkout_value( 'shipping_country' ) : WC_GZD_Checkout::instance()->get_checkout_value( 'billing_country' ),

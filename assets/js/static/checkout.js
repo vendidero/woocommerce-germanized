@@ -60,11 +60,12 @@ window.germanized = window.germanized || {};
                 }
 
                 if ( ! self.params.custom_heading_container ) {
-                    var $theFirst = $form.find( '.shop_table:visible, #payment:visible' ).first();
+                    var $visible = $form.find( '.shop_table:visible, #payment:visible' );
+                    var $theFirst = $visible.first();
 
                     if ( $heading.length > 0 )  {
-                        // Move heading after payment block
-                        if ( $theFirst.length > 0 && 'payment' === $theFirst.attr( 'id' ) ) {
+                        // Move heading after payment block in case both shop table + payment wrap are visible
+                        if ( $theFirst.length > 0 && 2 === $visible.length && 'payment' === $theFirst.attr( 'id' ) ) {
                             $heading.addClass( 'wc-gzd-heading-moved' );
                             $theFirst.after( $heading );
                         }

@@ -12,7 +12,7 @@ export const Edit = ({ attributes, setAttributes }) => {
 	const { text, title } = attributes;
 	const blockProps = useBlockProps();
 
-	const currentText = text || sprintf( __( 'To benefit from the tax exemption, please confirm the VAT exemption according to <a href="%s" target="_blank">§12 paragraph 3 UStG</a> by activating the checkbox.', 'woocommerce-germanized' ), 'https://www.gesetze-im-internet.de/ustg_1980/__12.html' );
+	const currentText = text || sprintf( __( 'To benefit from the tax exemption, please confirm the VAT exemption according to {legal_text} by activating the checkbox.', 'woocommerce-germanized' ) );
 	const currentTitle = title || __( 'Your shopping cart is eligible for VAT exemption', 'woocommerce-germanized' );
 
 	return (

@@ -15,7 +15,8 @@ const Block = ({
 }) => {
     const [ show, setShow ] = useState(false );
     const gzdData = extensions.hasOwnProperty( 'woocommerce-germanized' ) ? extensions['woocommerce-germanized'] : {};
-    const applies = gzdData['applies_for_photovoltaic_system_vat_exempt'];
+    const applies    = gzdData['applies_for_photovoltaic_system_vat_exempt'];
+    const lawDetails = gzdData['photovoltaic_system_law_details'];
 
     useEffect( () => {
         if ( applies ) {
@@ -32,7 +33,7 @@ const Block = ({
         return null;
     }
 
-    const currentText = text || sprintf( __( 'To benefit from the tax exemption, please confirm the VAT exemption according to <a href="%s" target="_blank">§12 paragraph 3 UStG</a> by activating the checkbox.', 'woocommerce-germanized' ), 'https://www.gesetze-im-internet.de/ustg_1980/__12.html' );
+    const currentText = text ? text.replace( '{legal_text}', sprintf( '<a href="%s">%s</a>', lawDetails['url'], lawDetails['text'] ) ) : sprintf( __( 'To benefit from the tax exemption, please confirm the VAT exemption according to <a href="%s" target="_blank">%s</a> by activating the checkbox.', 'woocommerce-germanized' ), lawDetails['url'], lawDetails['text'] );
     const currentTitle = title || __( 'Your shopping cart is eligible for VAT exemption', 'woocommerce-germanized' );
 
     return (

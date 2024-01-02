@@ -199,6 +199,27 @@ final class Checkout {
 				'description' => __( 'Whether the cart applies for a photovoltaic system vat exempt or not.', 'woocommerce-germanized' ),
 				'type'        => 'boolean',
 				'context'     => array( 'view', 'edit' ),
+				'readonly'    => true,
+			),
+			'photovoltaic_system_law_details'            => array(
+				'description' => __( 'The current cart\'s photovoltaic system law details. ', 'woocommerce-germanized' ),
+				'type'        => 'object',
+				'context'     => array( 'view', 'edit' ),
+				'readonly'    => true,
+				'properties'  => array(
+					'text' => array(
+						'description' => __( 'The actual law, e.g. paragraph.', 'woocommerce-germanized' ),
+						'type'        => 'string',
+						'context'     => array( 'view', 'edit' ),
+						'readonly'    => true,
+					),
+					'url'  => array(
+						'description' => __( 'The URL to the law.', 'woocommerce-germanized' ),
+						'type'        => 'string',
+						'context'     => array( 'view', 'edit' ),
+						'readonly'    => true,
+					),
+				),
 			),
 			'shipping_costs_notice'                      => array(
 				'description' => __( 'Cart shipping costs notice.', 'woocommerce-germanized' ),
@@ -313,6 +334,7 @@ final class Checkout {
 
 		return array(
 			'applies_for_photovoltaic_system_vat_exempt' => wc_gzd_cart_applies_for_photovoltaic_system_vat_exemption(),
+			'photovoltaic_system_law_details'            => wc_gzd_cart_get_photovoltaic_systems_law_details(),
 			'checkboxes'                                 => $checkboxes_for_api,
 			'shipping_costs_notice'                      => wc_gzd_get_shipping_costs_text(),
 		);
