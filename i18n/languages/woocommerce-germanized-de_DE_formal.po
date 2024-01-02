@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: WooCommerce Germanized\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/woocommerce-"
 "germanized\n"
-"POT-Creation-Date: 2023-12-27T11:16:55+00:00\n"
-"PO-Revision-Date: 2023-12-27 12:18+0100\n"
+"POT-Creation-Date: 2024-01-02T11:32:42+00:00\n"
+"PO-Revision-Date: 2024-01-02 12:34+0100\n"
 "Last-Translator: Dennis Nissle <info@vendidero.de>\n"
 "Language-Team: \n"
 "Language: de_DE@formal\n"
@@ -4419,7 +4419,7 @@ msgctxt "shipments"
 msgid "This provider does not support adjusting settings related to %1$s"
 msgstr ""
 "Dieser Versanddienstleister unterstützt das Anpassen von Einstellungen für "
-"%1$s nicht."
+"%1$s nicht"
 
 # @ woocommerce-germanized
 #: src/Admin/Admin.php:442 src/Admin/Admin.php:450
@@ -5162,7 +5162,7 @@ msgid ""
 "Shipments will be created automatically based on your available packaging "
 "options."
 msgstr ""
-"Packe Bestellungen automatisch anhand der verfügbaren Verpackungsoptionen"
+"Packe Bestellungen automatisch anhand der verfügbaren Verpackungsoptionen."
 
 #: src/Admin/Settings.php:152
 #: packages/woocommerce-germanized-shipments/src/Admin/Settings.php:152
@@ -6078,7 +6078,7 @@ msgstr "%1$s (%2$s, %3$s)"
 #: packages/woocommerce-germanized-shipments/src/Packaging/AsyncReportGenerator.php:125
 msgctxt "shipments"
 msgid "No shipments found."
-msgstr "Keine Sendungen gefunden"
+msgstr "Keine Sendungen gefunden."
 
 #: src/Packaging/ReportHelper.php:58
 #: packages/woocommerce-germanized-shipments/src/Packaging/ReportHelper.php:58
@@ -8543,7 +8543,7 @@ msgstr "One Stop Shop"
 # @ woocommerce
 #: includes/admin/class-wc-gzd-admin-setup-wizard.php:71
 #: includes/admin/class-wc-gzd-admin-setup-wizard.php:156
-#: woocommerce-germanized.php:930
+#: woocommerce-germanized.php:933
 msgid "Settings"
 msgstr "Einstellungen"
 
@@ -9946,7 +9946,7 @@ msgstr ""
 #: includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:85
 #: includes/class-wc-gzd-payment-gateways.php:137
 #: includes/wc-gzd-template-functions.php:668
-#: src/Blocks/Integrations/Checkout.php:105
+#: src/Blocks/Integrations/Checkout.php:112
 msgid "Buy Now"
 msgstr "Jetzt kaufen"
 
@@ -10480,7 +10480,7 @@ msgstr "Kleinunternehmer"
 
 # @ woocommerce-germanized
 #: includes/admin/settings/class-wc-gzd-settings-tab-general.php:33
-#: includes/class-wc-gzd-legal-checkbox-manager.php:873 src/Shopmarks.php:542
+#: includes/class-wc-gzd-legal-checkbox-manager.php:876 src/Shopmarks.php:542
 msgid "Checkout"
 msgstr "Kasse"
 
@@ -10490,7 +10490,7 @@ msgid "Shop"
 msgstr "Shop"
 
 #: includes/admin/settings/class-wc-gzd-settings-tab-general.php:39
-#: includes/class-wc-gzd-legal-checkbox-manager.php:364
+#: includes/class-wc-gzd-legal-checkbox-manager.php:365
 msgid "Photovoltaic Systems"
 msgstr "Photovoltaikanlagen"
 
@@ -13141,7 +13141,7 @@ msgstr "Datenbank wird aktualisiert"
 msgid "%1$d update functions completed. Database version is %2$s"
 msgstr "%1$d Updates fertiggestellt. Datenbank-Version lautet %2$s"
 
-#: includes/class-wc-gzd-coupon-helper.php:752 woocommerce-germanized.php:1339
+#: includes/class-wc-gzd-coupon-helper.php:752 woocommerce-germanized.php:1342
 msgid "Voucher: %1$s"
 msgstr "Wertgutschein: %1$s"
 
@@ -13395,7 +13395,7 @@ msgid "Other Vitamins & Minerals"
 msgstr "Andere Vitamine & Mineralien"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-install.php:185
+#: includes/class-wc-gzd-install.php:186
 msgid ""
 "Please install WooCommerce before installing WooCommerce Germanized. Thank "
 "you!"
@@ -13404,83 +13404,83 @@ msgstr ""
 "installieren. Vielen Dank!"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-install.php:586 includes/class-wc-gzd-install.php:638
+#: includes/class-wc-gzd-install.php:587 includes/class-wc-gzd-install.php:639
 msgctxt "Page slug"
 msgid "data-security"
 msgstr "datenschutzerklaerung"
 
-#: includes/class-wc-gzd-install.php:587 includes/class-wc-gzd-install.php:640
+#: includes/class-wc-gzd-install.php:588 includes/class-wc-gzd-install.php:641
 msgctxt "Page title"
 msgid "Privacy Policy"
 msgstr "Datenschutzerklärung"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-install.php:591
+#: includes/class-wc-gzd-install.php:592
 msgctxt "Page slug"
 msgid "imprint"
 msgstr "impressum"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-install.php:592
+#: includes/class-wc-gzd-install.php:593
 msgctxt "Page title"
 msgid "Imprint"
 msgstr "Impressum"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-install.php:596
+#: includes/class-wc-gzd-install.php:597
 msgctxt "Page slug"
 msgid "terms"
 msgstr "agb"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-install.php:597
+#: includes/class-wc-gzd-install.php:598
 msgctxt "Page title"
 msgid "Terms & Conditions"
 msgstr "AGB"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-install.php:601
+#: includes/class-wc-gzd-install.php:602
 msgctxt "Page slug"
 msgid "revocation"
 msgstr "widerrufsbelehrung"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-install.php:602
+#: includes/class-wc-gzd-install.php:603
 msgctxt "Page title"
 msgid "Cancellation Policy"
 msgstr "Widerrufsbelehrung"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-install.php:606
+#: includes/class-wc-gzd-install.php:607
 msgctxt "Page slug"
 msgid "shipping-methods"
 msgstr "versandarten"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-install.php:607
+#: includes/class-wc-gzd-install.php:608
 msgctxt "Page title"
 msgid "Shipping Methods"
 msgstr "Versandarten"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-install.php:611
+#: includes/class-wc-gzd-install.php:612
 msgctxt "Page slug"
 msgid "payment-methods"
 msgstr "bezahlmoeglichkeiten"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-install.php:612
+#: includes/class-wc-gzd-install.php:613
 msgctxt "Page title"
 msgid "Payment Methods"
 msgstr "Zahlungsarten"
 
-#: includes/class-wc-gzd-install.php:616
+#: includes/class-wc-gzd-install.php:617
 #: includes/updates/woocommerce-gzd-update-3.9.3.php:15
 msgctxt "Page slug"
 msgid "review-authenticity"
 msgstr "echtheit-von-bewertungen"
 
-#: includes/class-wc-gzd-install.php:617
+#: includes/class-wc-gzd-install.php:618
 #: includes/updates/woocommerce-gzd-update-3.9.3.php:16
 msgctxt "Page title"
 msgid "Review Authenticity"
@@ -13708,16 +13708,16 @@ msgstr "Mängelexemplare"
 msgid "Inform customers about product defects."
 msgstr "Informieren Sie Kunden über Produkte mit Mängeln."
 
-#: includes/class-wc-gzd-legal-checkbox-manager.php:358
+#: includes/class-wc-gzd-legal-checkbox-manager.php:359
 msgid ""
 "I hereby confirm that I am aware of the requirements for VAT exemption "
-"(based on §12 paragraph 3 UStG) and that they are met for this order."
+"(based on {legal_text}) and that they are met for this order."
 msgstr ""
 "Hiermit bestätige ich, dass ich die Voraussetzungen für eine "
-"Mehrwertsteuerbefreiung gemäß §12 Absatz 3 UStG kenne und diese für diese "
+"Mehrwertsteuerbefreiung gemäß {legal_text} kenne und diese für diese "
 "Bestellung erfüllt sind."
 
-#: includes/class-wc-gzd-legal-checkbox-manager.php:365
+#: includes/class-wc-gzd-legal-checkbox-manager.php:366
 msgid ""
 "Let customers confirm that they are aware of the requirements for a VAT "
 "exemption."
@@ -13726,28 +13726,28 @@ msgstr ""
 "Mehrwertsteuerbefreiung erfüllen."
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-legal-checkbox-manager.php:874
+#: includes/class-wc-gzd-legal-checkbox-manager.php:877
 msgid "Register form"
 msgstr "Registrierung"
 
 # @ woocommerce
-#: includes/class-wc-gzd-legal-checkbox-manager.php:875
+#: includes/class-wc-gzd-legal-checkbox-manager.php:878
 msgid "Pay for order"
 msgstr "Bestell-Bezahlseite"
 
-#: includes/class-wc-gzd-legal-checkbox-manager.php:876
+#: includes/class-wc-gzd-legal-checkbox-manager.php:879
 msgid "Reviews"
 msgstr "Bewertungen"
 
-#: includes/class-wc-gzd-legal-checkbox-manager.php:958
+#: includes/class-wc-gzd-legal-checkbox-manager.php:961
 msgid "Checkbox location %s does not exist."
 msgstr "Checkbox Ort %s existiert nicht."
 
-#: includes/class-wc-gzd-legal-checkbox-manager.php:990
+#: includes/class-wc-gzd-legal-checkbox-manager.php:993
 msgid "Please make sure to check %s checkbox."
 msgstr "Kontrollieren Sie bitte %s. Hier fehlt eine Einwilligung."
 
-#: includes/class-wc-gzd-legal-checkbox-manager.php:995
+#: includes/class-wc-gzd-legal-checkbox-manager.php:998
 msgid "Checkbox with name %s does already exist."
 msgstr "Eine Checkbox mit dem Namen %s existiert bereits."
 
@@ -15318,6 +15318,14 @@ msgstr ""
 "term_link}, {revocation_link}Widerrufsbestimmungen{/revocation_link} und "
 "{data_security_link}Datenschutzbestimmungen{/data_security_link}."
 
+#: includes/wc-gzd-cart-functions.php:665
+msgid "§12 paragraph 3 UStG"
+msgstr "§12 Absatz 3 UStG"
+
+#: includes/wc-gzd-cart-functions.php:669
+msgid "§ 28 paragraph 62 UStG 1994"
+msgstr "§ 28 Abs. 62 UStG 1994"
+
 #: includes/wc-gzd-core-functions.php:267
 msgid ">= 12 years"
 msgstr ">= 12 Jahre"
@@ -15392,45 +15400,45 @@ msgstr "Zahlungsart auswählen"
 msgid "Place order"
 msgstr "Jetzt kaufen"
 
-#: packages/woocommerce-eu-tax-helper/src/Helper.php:465
+#: packages/woocommerce-eu-tax-helper/src/Helper.php:469
 msgid "Reduced rate"
 msgstr ""
 
-#: packages/woocommerce-eu-tax-helper/src/Helper.php:466
+#: packages/woocommerce-eu-tax-helper/src/Helper.php:470
 msgctxt "tax-helper-tax-class-name"
 msgid "Greater reduced rate"
 msgstr "Zusätzlicher reduzierter Preis"
 
-#: packages/woocommerce-eu-tax-helper/src/Helper.php:467
+#: packages/woocommerce-eu-tax-helper/src/Helper.php:471
 msgctxt "tax-helper-tax-class-name"
 msgid "Super reduced rate"
 msgstr "Stark reduzierter Preis"
 
-#: packages/woocommerce-eu-tax-helper/src/Helper.php:468
+#: packages/woocommerce-eu-tax-helper/src/Helper.php:472
 msgid "Zero rate"
 msgstr ""
 
-#: packages/woocommerce-eu-tax-helper/src/Helper.php:945
+#: packages/woocommerce-eu-tax-helper/src/Helper.php:958
 msgctxt "tax-helper"
 msgid "Madeira"
 msgstr "Madeira"
 
-#: packages/woocommerce-eu-tax-helper/src/Helper.php:952
+#: packages/woocommerce-eu-tax-helper/src/Helper.php:965
 msgctxt "tax-helper"
 msgid "Acores"
 msgstr "Azoren"
 
-#: packages/woocommerce-eu-tax-helper/src/Helper.php:988
+#: packages/woocommerce-eu-tax-helper/src/Helper.php:1001
 msgctxt "tax-helper"
 msgid "Northern Ireland"
 msgstr "Nordirland"
 
-#: packages/woocommerce-eu-tax-helper/src/Helper.php:1022
+#: packages/woocommerce-eu-tax-helper/src/Helper.php:1035
 msgctxt "tax-helper-rate-import"
 msgid "Exempt"
 msgstr "Ausnahme"
 
-#: packages/woocommerce-eu-tax-helper/src/Helper.php:1107
+#: packages/woocommerce-eu-tax-helper/src/Helper.php:1120
 msgctxt "tax-helper-rate-import"
 msgid "VAT %1$s %% %2$s"
 msgstr "MwSt. %1$s %% %2$s"
@@ -15465,61 +15473,73 @@ msgstr ""
 "Ob dieser Warenkorb für die Anwendung des Nullsteuersatzes auf "
 "Photovoltaikanlagen vorgesehen ist oder nicht."
 
+#: src/Blocks/Checkout.php:205
+msgid "The current cart's photovoltaic system law details."
+msgstr "Details zum Gesetz für Photovoltaikanlagen des aktuellen Warenkorbs."
+
+#: src/Blocks/Checkout.php:211
+msgid "The actual law, e.g. paragraph."
+msgstr "Das eigentliche Gesetz, z.B. Paragraph XY Absatz Z."
+
+#: src/Blocks/Checkout.php:217
+msgid "The URL to the law."
+msgstr "Die URL zum Gesetz."
+
 # @ woocommerce-germanized
-#: src/Blocks/Checkout.php:204
+#: src/Blocks/Checkout.php:225
 msgid "Cart shipping costs notice."
 msgstr "Versandkostenhinweis im Warenkorb."
 
 # @ woocommerce-germanized
-#: src/Blocks/Checkout.php:210 src/Blocks/Checkout.php:324
+#: src/Blocks/Checkout.php:231 src/Blocks/Checkout.php:346
 msgid "List of cart checkboxes."
 msgstr "Liste der Checkboxen."
 
-#: src/Blocks/Checkout.php:218 src/Blocks/Checkout.php:331
+#: src/Blocks/Checkout.php:239 src/Blocks/Checkout.php:353
 msgid "Unique identifier for the checkbox within the cart."
 msgstr "Eindeutige Bezeichnung der Checkbox innerhalb des Warenkorbs."
 
 # @ woocommerce-germanized
-#: src/Blocks/Checkout.php:224
+#: src/Blocks/Checkout.php:245
 msgid "Checkbox name."
 msgstr "Checkbox Bezeichnung."
 
 # @ woocommerce-germanized
-#: src/Blocks/Checkout.php:230
+#: src/Blocks/Checkout.php:251
 msgid "Checkbox label."
 msgstr "Checkbox Beschriftung."
 
 # @ woocommerce-germanized
-#: src/Blocks/Checkout.php:236 src/Blocks/Checkout.php:337
+#: src/Blocks/Checkout.php:257 src/Blocks/Checkout.php:359
 msgid "Checkbox checked status."
 msgstr "Checkbox Status."
 
 # @ woocommerce-germanized
-#: src/Blocks/Checkout.php:242
+#: src/Blocks/Checkout.php:263
 msgid "Checkbox hidden."
 msgstr "Checkbox versteckt."
 
-#: src/Blocks/Checkout.php:248
+#: src/Blocks/Checkout.php:269
 msgid "Checkbox error message."
 msgstr "Checkbox Fehlermeldung."
 
-#: src/Blocks/Checkout.php:254
+#: src/Blocks/Checkout.php:275
 msgid "Wrapper classes."
 msgstr "Wrapper-Klassen."
 
-#: src/Blocks/Checkout.php:260
+#: src/Blocks/Checkout.php:281
 msgid "Custom styles."
 msgstr "Individuelles Layout."
 
-#: src/Blocks/Checkout.php:266
+#: src/Blocks/Checkout.php:287
 msgid "HTML field id."
 msgstr "HTML Feld ID."
 
-#: src/Blocks/Checkout.php:272
+#: src/Blocks/Checkout.php:293
 msgid "Whether to show a checkbox field or not."
 msgstr "Ob das Checkbox-Feld gezeigt werden soll oder nicht."
 
-#: src/Blocks/Checkout.php:278
+#: src/Blocks/Checkout.php:299
 msgid "Whether the checkbox is required or not."
 msgstr "Ob die Checkbox verpflichtend ist oder nicht."
 
@@ -15924,35 +15944,30 @@ msgstr ""
 msgid "Update totals"
 msgstr "Betrag aktualisieren"
 
-#: templates/checkout/photovoltaic-systems-notice.php:23
-#: build/checkout-blocks/checkout-photovoltaic-system-notice-frontend.js:49
-#: build/checkout-blocks/checkout-photovoltaic-system-notice-style.js:49
+#: templates/checkout/photovoltaic-systems-notice.php:24
+#: build/checkout-blocks/checkout-photovoltaic-system-notice-frontend.js:50
+#: build/checkout-blocks/checkout-photovoltaic-system-notice-style.js:50
 #: build/checkout-blocks/checkout-photovoltaic-system-notice.js:49
 #: build/checkout.js:477
-#: build/checkout-blocks/checkout-photovoltaic-system-notice-frontend.js:36
-#: build/checkout-blocks/checkout-photovoltaic-system-notice-style.js:36
+#: build/checkout-blocks/checkout-photovoltaic-system-notice-frontend.js:37
+#: build/checkout-blocks/checkout-photovoltaic-system-notice-style.js:37
 #: build/checkout-blocks/checkout-photovoltaic-system-notice.js:36
 #: build/checkout-style.js:384 build/checkout.js:384
 msgid "Your shopping cart is eligible for VAT exemption"
 msgstr "Ihr Warenkorb ist für eine Mehrwertsteuerbefreiung berechtigt"
 
-#: templates/checkout/photovoltaic-systems-notice.php:24
-#: build/checkout-blocks/checkout-photovoltaic-system-notice-frontend.js:48
-#: build/checkout-blocks/checkout-photovoltaic-system-notice-style.js:48
-#: build/checkout-blocks/checkout-photovoltaic-system-notice.js:48
-#: build/checkout.js:476
-#: build/checkout-blocks/checkout-photovoltaic-system-notice-frontend.js:35
-#: build/checkout-blocks/checkout-photovoltaic-system-notice-style.js:35
-#: build/checkout-blocks/checkout-photovoltaic-system-notice.js:35
-#: build/checkout-style.js:383 build/checkout.js:383
+#: templates/checkout/photovoltaic-systems-notice.php:25
+#: build/checkout-blocks/checkout-photovoltaic-system-notice-frontend.js:49
+#: build/checkout-blocks/checkout-photovoltaic-system-notice-style.js:49
+#: build/checkout-blocks/checkout-photovoltaic-system-notice-frontend.js:36
+#: build/checkout-blocks/checkout-photovoltaic-system-notice-style.js:36
 msgid ""
 "To benefit from the tax exemption, please confirm the VAT exemption "
-"according to <a href=\"%s\" target=\"_blank\">§12 paragraph 3 UStG</a> by "
-"activating the checkbox."
+"according to <a href=\"%1$s\" target=\"_blank\">%2$s</a> by activating the "
+"checkbox."
 msgstr ""
-"Um von der Steuerbefreiung gemäß <a href=\"%s\" target=\"_blank\">§12 Absatz "
-"3 UStG</a> profitieren zu können, bestätigen Sie bitte die entsprechende "
-"Checkbox."
+"Um von der Steuerbefreiung gemäß <a href=\"%1$s\" target=\"_blank\">%2$s</a> "
+"profitieren zu können, bestätigen Sie bitte die entsprechende Checkbox."
 
 #. translators: %s: Order number
 #: templates/emails/customer-cancelled-order.php:31
@@ -16111,10 +16126,21 @@ msgstr ""
 "unserem <a href=\"%2$s\" target=\"_blank\">Blog-Post</a> wie Sie das Plugin "
 "austauschen können."
 
-#: woocommerce-germanized.php:1322
+#: woocommerce-germanized.php:1325
 msgid ""
 "Please wait while we are trying to redirect you to the payment provider."
 msgstr "Einen Moment - wir versuchen Sie zum Zahlungsanbieter weiterzuleiten."
+
+#: build/checkout-blocks/checkout-photovoltaic-system-notice.js:48
+#: build/checkout-blocks/checkout-photovoltaic-system-notice.js:35
+msgid ""
+"To benefit from the tax exemption, please confirm the VAT exemption "
+"according to <a href=\"%s\" target=\"_blank\">§12 paragraph 3 UStG</a> by "
+"activating the checkbox."
+msgstr ""
+"Um von der Steuerbefreiung gemäß <a href=\"%s\" target=\"_blank\">§12 Absatz "
+"3 UStG</a> profitieren zu können, bestätigen Sie bitte die entsprechende "
+"Checkbox."
 
 #: build/checkout.js:363 build/checkout-style.js:295 build/checkout.js:295
 msgid "This is a label being printed next to your legal checkbox."
@@ -16124,6 +16150,14 @@ msgstr "Das ist eine Beschriftung, die neben der Checkbox angezeigt wird."
 #: build/checkout.js:377 build/checkout-style.js:313 build/checkout.js:313
 msgid "Manage checkboxes"
 msgstr "Checkboxen verwalten"
+
+#: build/checkout.js:476 build/checkout-style.js:383 build/checkout.js:383
+msgid ""
+"To benefit from the tax exemption, please confirm the VAT exemption "
+"according to {legal_text} by activating the checkbox."
+msgstr ""
+"Um von der Steuerbefreiung gemäß {legal_text} profitieren zu können, "
+"bestätigen Sie bitte die entsprechende Checkbox."
 
 # @ woocommerce
 #: build/product-defect-description-frontend.js:528
@@ -16498,6 +16532,16 @@ msgstr "Warenkorb-Dropdown rechtl. Hinweise"
 msgctxt "block description"
 msgid "Outputs mini cart legal notices."
 msgstr "Gibt rechtliche Hinweise im Warenkorb-Dropdown Block aus."
+
+#, fuzzy
+#~ msgid ""
+#~ "To benefit from the tax exemption, please confirm the VAT exemption "
+#~ "according to <a href=\"%s\" target=\"_blank\">%s</a> by activating the "
+#~ "checkbox."
+#~ msgstr ""
+#~ "Um von der Steuerbefreiung gemäß <a href=\"%s\" target=\"_blank\">§12 "
+#~ "Absatz 3 UStG</a> profitieren zu können, bestätigen Sie bitte die "
+#~ "entsprechende Checkbox."
 
 #~ msgctxt "shipments full name"
 #~ msgid "%1$s"

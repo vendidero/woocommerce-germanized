@@ -202,7 +202,7 @@ final class Checkout {
 				'readonly'    => true,
 			),
 			'photovoltaic_system_law_details'            => array(
-				'description' => __( 'The current cart\'s photovoltaic system law details. ', 'woocommerce-germanized' ),
+				'description' => __( 'The current cart\'s photovoltaic system law details.', 'woocommerce-germanized' ),
 				'type'        => 'object',
 				'context'     => array( 'view', 'edit' ),
 				'readonly'    => true,

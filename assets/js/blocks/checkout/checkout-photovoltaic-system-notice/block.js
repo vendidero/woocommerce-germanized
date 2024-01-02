@@ -33,7 +33,7 @@ const Block = ({
         return null;
     }
 
-    const currentText = text ? text.replace( '{legal_text}', sprintf( '<a href="%s">%s</a>', lawDetails['url'], lawDetails['text'] ) ) : sprintf( __( 'To benefit from the tax exemption, please confirm the VAT exemption according to <a href="%s" target="_blank">%s</a> by activating the checkbox.', 'woocommerce-germanized' ), lawDetails['url'], lawDetails['text'] );
+    const currentText = text ? text.replace( '{legal_text}', sprintf( '<a href="%s">%s</a>', lawDetails['url'], lawDetails['text'] ) ) : sprintf( __( 'To benefit from the tax exemption, please confirm the VAT exemption according to <a href="%1$s" target="_blank">%2$s</a> by activating the checkbox.', 'woocommerce-germanized' ), lawDetails['url'], lawDetails['text'] );
     const currentTitle = title || __( 'Your shopping cart is eligible for VAT exemption', 'woocommerce-germanized' );
 
     return (
