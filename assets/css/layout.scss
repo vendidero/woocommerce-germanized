@@ -23,6 +23,21 @@ p.wc-gzd-additional-info:empty {
 .woocommerce-checkout .shop_table {
   background-color: #EEE;
 }
+
+/**
+ * Hide (block) price labels added via the woocommerce_get_item_data filter
+ * while displaying classic shortcodes. Fallback-use only.
+ */
+.woocommerce-cart, .woocommerce-checkout {
+  table.shop_table {
+    dl.variation {
+      dt[class*="variation-gzd-"], dd[class*="variation-gzd-"] {
+        display: none;
+      }
+    }
+  }
+}
+
 .includes_tax, .tax_label {
   display: none !important;
 }
