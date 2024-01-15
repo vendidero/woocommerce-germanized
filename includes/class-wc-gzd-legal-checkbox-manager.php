@@ -1254,14 +1254,17 @@ class WC_GZD_Legal_Checkbox_Manager {
 	 */
 	public function render_checkbox_log( $object, $location = 'order' ) {
 		$checkboxes         = $this->get_loggable_checkboxes( $location );
+		$editable           = $this->get_editable_checkboxes( $location );
 		$checkboxes_to_list = array();
 
 		foreach ( $checkboxes as $checkbox_id ) {
 			if ( $checkbox = wc_gzd_get_legal_checkbox( $checkbox_id ) ) {
-				$is_checked = $this->is_checked( $checkbox_id, $object );
-				$is_logged  = $this->is_logged( $checkbox_id, $object );
+				$is_checked  = $this->is_checked( $checkbox_id, $object );
+				$is_logged   = $this->is_logged( $checkbox_id, $object );
+				$is_editable = in_array( $checkbox_id, $editable, true );
+				$is_manual   = is_a( $object, 'WC_Order' ) ? 'admin' === $object->get_created_via() : false;
 
-				if ( $is_logged ) {
+				if ( $is_logged || ( $is_manual && $is_editable ) ) {
 					$checkboxes_to_list[ $checkbox_id ] = $is_checked;
 				}
 			}
@@ -1278,7 +1281,7 @@ class WC_GZD_Legal_Checkbox_Manager {
 					<div class="wc-gzd-log-checkbox">
 						<p class="checkbox-title"><?php echo esc_html( $checkbox->get_admin_name() ); ?> <?php echo ( ! empty( $checkbox->get_admin_desc() ) ? wc_help_tip( $checkbox->get_admin_desc() ) : '' ); ?></p>
 						<p class="checkbox-status">
-							<?php if ( in_array( $checkbox_id, $this->get_editable_checkboxes( $location ), true ) ) : ?>
+							<?php if ( in_array( $checkbox_id, $editable, true ) ) : ?>
 								<?php
 								WC_GZD_Admin::instance()->render_toggle(
 									array(
