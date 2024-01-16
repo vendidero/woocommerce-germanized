@@ -1393,7 +1393,7 @@ class WC_GZD_Checkout {
 
 			if ( ! empty( $package['rates'] ) ) {
 				foreach ( $package['rates'] as $key => $rate ) {
-					if ( $key !== $chosen_method ) {
+					if ( (string) $key !== (string) $chosen_method ) {
 						unset( WC()->shipping->packages[ $i ]['rates'][ $key ] );
 					}
 				}
