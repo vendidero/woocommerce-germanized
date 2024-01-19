@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: WooCommerce Germanized\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/woocommerce-"
 "germanized\n"
-"POT-Creation-Date: 2024-01-02T11:32:42+00:00\n"
+"POT-Creation-Date: 2024-01-18T14:23:56+00:00\n"
 "PO-Revision-Date: 2024-01-02 12:34+0100\n"
 "Last-Translator: Dennis Nissle <info@vendidero.de>\n"
 "Language-Team: \n"
@@ -15487,79 +15487,79 @@ msgstr ""
 "GitHub installiert hast, %1$sschaue dir bitte dieses Dokument an%2$s um eine "
 "Entwicklungsumgebung aufzusetzen."
 
-#: src/Blocks/Checkout.php:199
+#: src/Blocks/Checkout.php:201
 msgid "Whether the cart applies for a photovoltaic system vat exempt or not."
 msgstr ""
 "Ob dieser Warenkorb für die Anwendung des Nullsteuersatzes auf "
 "Photovoltaikanlagen vorgesehen ist oder nicht."
 
-#: src/Blocks/Checkout.php:205
+#: src/Blocks/Checkout.php:207
 msgid "The current cart's photovoltaic system law details."
 msgstr "Details zum Gesetz für Photovoltaikanlagen des aktuellen Warenkorbs."
 
-#: src/Blocks/Checkout.php:211
+#: src/Blocks/Checkout.php:213
 msgid "The actual law, e.g. paragraph."
 msgstr "Das eigentliche Gesetz, z.B. Paragraph XY Absatz Z."
 
-#: src/Blocks/Checkout.php:217
+#: src/Blocks/Checkout.php:219
 msgid "The URL to the law."
 msgstr "Die URL zum Gesetz."
 
 # @ woocommerce-germanized
-#: src/Blocks/Checkout.php:225
+#: src/Blocks/Checkout.php:227
 msgid "Cart shipping costs notice."
 msgstr "Versandkostenhinweis im Warenkorb."
 
 # @ woocommerce-germanized
-#: src/Blocks/Checkout.php:231 src/Blocks/Checkout.php:346
+#: src/Blocks/Checkout.php:233 src/Blocks/Checkout.php:348
 msgid "List of cart checkboxes."
 msgstr "Liste der Checkboxen."
 
-#: src/Blocks/Checkout.php:239 src/Blocks/Checkout.php:353
+#: src/Blocks/Checkout.php:241 src/Blocks/Checkout.php:355
 msgid "Unique identifier for the checkbox within the cart."
 msgstr "Eindeutige Bezeichnung der Checkbox innerhalb des Warenkorbs."
 
 # @ woocommerce-germanized
-#: src/Blocks/Checkout.php:245
+#: src/Blocks/Checkout.php:247
 msgid "Checkbox name."
 msgstr "Checkbox Bezeichnung."
 
 # @ woocommerce-germanized
-#: src/Blocks/Checkout.php:251
+#: src/Blocks/Checkout.php:253
 msgid "Checkbox label."
 msgstr "Checkbox Beschriftung."
 
 # @ woocommerce-germanized
-#: src/Blocks/Checkout.php:257 src/Blocks/Checkout.php:359
+#: src/Blocks/Checkout.php:259 src/Blocks/Checkout.php:361
 msgid "Checkbox checked status."
 msgstr "Checkbox Status."
 
 # @ woocommerce-germanized
-#: src/Blocks/Checkout.php:263
+#: src/Blocks/Checkout.php:265
 msgid "Checkbox hidden."
 msgstr "Checkbox versteckt."
 
-#: src/Blocks/Checkout.php:269
+#: src/Blocks/Checkout.php:271
 msgid "Checkbox error message."
 msgstr "Checkbox Fehlermeldung."
 
-#: src/Blocks/Checkout.php:275
+#: src/Blocks/Checkout.php:277
 msgid "Wrapper classes."
 msgstr "Wrapper-Klassen."
 
-#: src/Blocks/Checkout.php:281
+#: src/Blocks/Checkout.php:283
 msgid "Custom styles."
 msgstr "Individuelles Layout."
 
-#: src/Blocks/Checkout.php:287
+#: src/Blocks/Checkout.php:289
 msgid "HTML field id."
 msgstr "HTML Feld ID."
 
-#: src/Blocks/Checkout.php:293
+#: src/Blocks/Checkout.php:295
 msgid "Whether to show a checkbox field or not."
 msgstr "Ob das Checkbox-Feld gezeigt werden soll oder nicht."
 
-#: src/Blocks/Checkout.php:299
+#: src/Blocks/Checkout.php:301
 msgid "Whether the checkbox is required or not."
 msgstr "Ob die Checkbox verpflichtend ist oder nicht."
 

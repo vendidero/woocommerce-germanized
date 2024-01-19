@@ -319,11 +319,15 @@
         var $price       = self.getPriceNode( self, priceSelector, isPrimary );
 
         if ( $price.length > 0 ) {
+            // Add a tmp hidden class to detect hidden elements in cloned obj
+            $price.find( ':hidden' ).addClass( 'wc-gzd-is-hidden' );
+
             var $unit_price = self.getUnitPriceNode( self, $price ),
                 $priceCloned = $price.clone();
 
-            // Remove price suffix from cloned DOM element to prevent finding the wrong price within suffix
+            // Remove price suffix from cloned DOM element to prevent finding the wrong (sale) price
             $priceCloned.find( '.woocommerce-price-suffix' ).remove();
+            $priceCloned.find( '.wc-gzd-is-hidden' ).remove();
 
             var sale_price  = '',
                 $priceInner = $priceCloned.find( '.amount:first' ),
@@ -357,6 +361,8 @@
 
                 sale_price = self.getRawPrice( $sale_price, self.params.price_decimal_sep );
             }
+
+            $price.find( '.wc-gzd-is-hidden' ).removeClass( 'wc-gzd-is-hidden' );
 
             if ( $unit_price.length > 0 && price ) {
                 if ( isTotalPrice ) {
