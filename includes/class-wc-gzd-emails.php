@@ -827,7 +827,7 @@ class WC_GZD_Emails {
 	public function maybe_prevent_queued_confirmation_email_sending( $send, $filter, $args ) {
 		if ( isset( $args[0] ) && is_numeric( $args[0] ) ) {
 			if ( $order = wc_get_order( absint( $args[0] ) ) ) {
-				if ( wc_gzd_send_instant_order_confirmation( $order ) ) {
+				if ( is_a( $order, 'WC_Order' ) && wc_gzd_send_instant_order_confirmation( $order ) ) {
 					$this->prevent_confirmation_email_sending();
 				}
 			}

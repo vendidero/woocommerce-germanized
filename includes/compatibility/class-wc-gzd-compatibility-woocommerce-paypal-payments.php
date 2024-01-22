@@ -72,7 +72,7 @@ class WC_GZD_Compatibility_WooCommerce_PayPal_Payments extends WC_GZD_Compatibil
 		add_filter(
 			'woocommerce_gzd_instant_order_confirmation',
 			function( $send_confirmation, $order = null ) {
-				if ( $order && 'ppcp-pay-upon-invoice-gateway' === $order->get_payment_method() ) {
+				if ( is_a( $order, 'WC_Order' ) && 'ppcp-pay-upon-invoice-gateway' === $order->get_payment_method() ) {
 					$send_confirmation = false;
 				}
 
