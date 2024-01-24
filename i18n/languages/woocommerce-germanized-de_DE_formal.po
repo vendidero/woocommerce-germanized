@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: WooCommerce Germanized\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/woocommerce-"
 "germanized\n"
-"POT-Creation-Date: 2024-01-18T14:23:56+00:00\n"
-"PO-Revision-Date: 2024-01-02 12:34+0100\n"
+"POT-Creation-Date: 2024-01-24T17:10:08+00:00\n"
+"PO-Revision-Date: 2024-01-24 18:01+0100\n"
 "Last-Translator: Dennis Nissle <info@vendidero.de>\n"
 "Language-Team: \n"
 "Language: de_DE@formal\n"
@@ -15947,11 +15947,9 @@ msgstr "Betrag aktualisieren"
 #: templates/checkout/photovoltaic-systems-notice.php:24
 #: build/checkout-blocks/checkout-photovoltaic-system-notice-frontend.js:50
 #: build/checkout-blocks/checkout-photovoltaic-system-notice-style.js:50
-#: build/checkout-blocks/checkout-photovoltaic-system-notice.js:49
 #: build/checkout.js:477
 #: build/checkout-blocks/checkout-photovoltaic-system-notice-frontend.js:37
 #: build/checkout-blocks/checkout-photovoltaic-system-notice-style.js:37
-#: build/checkout-blocks/checkout-photovoltaic-system-notice.js:36
 #: build/checkout-style.js:384 build/checkout.js:384
 msgid "Your shopping cart is eligible for VAT exemption"
 msgstr "Ihr Warenkorb ist für eine Mehrwertsteuerbefreiung berechtigt"
@@ -16130,17 +16128,6 @@ msgstr ""
 msgid ""
 "Please wait while we are trying to redirect you to the payment provider."
 msgstr "Einen Moment - wir versuchen Sie zum Zahlungsanbieter weiterzuleiten."
-
-#: build/checkout-blocks/checkout-photovoltaic-system-notice.js:48
-#: build/checkout-blocks/checkout-photovoltaic-system-notice.js:35
-msgid ""
-"To benefit from the tax exemption, please confirm the VAT exemption "
-"according to <a href=\"%s\" target=\"_blank\">§12 paragraph 3 UStG</a> by "
-"activating the checkbox."
-msgstr ""
-"Um von der Steuerbefreiung gemäß <a href=\"%s\" target=\"_blank\">§12 Absatz "
-"3 UStG</a> profitieren zu können, bestätigen Sie bitte die entsprechende "
-"Checkbox."
 
 #: build/checkout.js:363 build/checkout-style.js:295 build/checkout.js:295
 msgid "This is a label being printed next to your legal checkbox."
@@ -16532,6 +16519,15 @@ msgstr "Warenkorb-Dropdown rechtl. Hinweise"
 msgctxt "block description"
 msgid "Outputs mini cart legal notices."
 msgstr "Gibt rechtliche Hinweise im Warenkorb-Dropdown Block aus."
+
+#~ msgid ""
+#~ "To benefit from the tax exemption, please confirm the VAT exemption "
+#~ "according to <a href=\"%s\" target=\"_blank\">§12 paragraph 3 UStG</a> by "
+#~ "activating the checkbox."
+#~ msgstr ""
+#~ "Um von der Steuerbefreiung gemäß <a href=\"%s\" target=\"_blank\">§12 "
+#~ "Absatz 3 UStG</a> profitieren zu können, bestätigen Sie bitte die "
+#~ "entsprechende Checkbox."
 
 #, fuzzy
 #~ msgid ""
