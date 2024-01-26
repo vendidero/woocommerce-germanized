@@ -1064,15 +1064,6 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 				}
 			}
 
-			if ( is_product() ) {
-				$product = wc_get_product( $post->ID );
-
-				if ( $product && $product->is_type( 'variable' ) ) {
-					// Enqueue variation scripts
-					wp_enqueue_script( 'wc-gzd-add-to-cart-variation' );
-				}
-			}
-
 			if ( apply_filters( 'woocommerce_gzd_refresh_unit_price_on_price_change', ( is_shop() || is_product() || is_product_category() || is_product_tag() ) ) ) {
 				wp_enqueue_script( 'wc-gzd-unit-price-observer' );
 			}
