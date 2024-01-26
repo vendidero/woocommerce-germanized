@@ -528,7 +528,7 @@ class WC_GZD_Coupon_Helper {
 		} else {
 			$fee_id = isset( $fee->object ) ? $fee->object->id : $fee->id;
 
-			return strstr( $fee_id, 'voucher_' );
+			return strstr( str_replace( '-', '_', $fee_id ), 'voucher_' );
 		}
 	}
 

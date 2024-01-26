@@ -69,7 +69,7 @@ class WC_GZD_Helper_Order {
 				$item->set_props(
 					array(
 						'method_title' => 'shipping',
-						'total'        => 8.403361,
+						'total'        => 10.0, // Germanized, by default, treats those as gross
 					)
 				);
 			} else {

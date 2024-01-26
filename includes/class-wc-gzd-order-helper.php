@@ -326,6 +326,28 @@ class WC_GZD_Order_Helper {
 			return;
 		}
 
+		if ( is_a( $item, 'WC_Order_Item_Fee' ) ) {
+			$fee_props = (object) array(
+				'id'        => '',
+				'name'      => '',
+				'tax_class' => '',
+				'taxable'   => false,
+				'amount'    => 0,
+				'total'     => 0,
+			);
+
+			$fee_props->name      = $item->get_name();
+			$fee_props->tax_class = $item->get_tax_class();
+			$fee_props->taxable   = 'taxable' === $item->get_tax_status();
+			$fee_props->amount    = $item->get_amount();
+			$fee_props->id        = sanitize_title( $fee_props->name );
+			$fee_props->object    = $fee_props;
+
+			if ( ! apply_filters( 'woocommerce_gzd_force_fee_tax_calculation', true, $fee_props ) ) {
+				return;
+			}
+		}
+
 		if ( $order = $item->get_order() ) {
 			$item->delete_meta_data( '_split_taxes' );
 			$item->delete_meta_data( '_tax_shares' );

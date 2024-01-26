@@ -135,7 +135,7 @@ class WC_GZD_Settings_Tab_Taxes extends WC_GZD_Settings_Tab {
 				'desc_tip' => true,
 				'id'       => 'woocommerce_gzd_tax_mode_additional_costs',
 				'type'     => 'radio',
-				'default'  => 'split_tax',
+				'default'  => 'main_service',
 				'options'  => array(
 					'none'         => __( 'WooCommerce default', 'woocommerce-germanized' ),
 					'split_tax'    => __( 'Proportionate', 'woocommerce-germanized' ),

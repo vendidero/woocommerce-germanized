@@ -1304,7 +1304,7 @@ function wc_gzd_format_unit_price( $price, $unit, $unit_base, $product_units = '
 }
 
 function wc_gzd_get_additional_costs_tax_calculation_mode() {
-	$value = get_option( 'woocommerce_gzd_tax_mode_additional_costs', 'split_tax' );
+	$value = get_option( 'woocommerce_gzd_tax_mode_additional_costs', 'main_service' );
 
 	if ( ! in_array( $value, array( 'none', 'split_tax', 'main_service' ), true ) ) {
 		$value = 'none';
