@@ -6,6 +6,8 @@ class WC_GZD_Order_Helper {
 
 	protected static $_instance = null;
 
+	protected $order_item_map = null;
+
 	public static function instance() {
 		if ( is_null( self::$_instance ) ) {
 			self::$_instance = new self();
@@ -51,6 +53,7 @@ class WC_GZD_Order_Helper {
 			0,
 			2
 		);
+
 		add_filter(
 			'woocommerce_order_formatted_shipping_address',
 			array(
@@ -108,6 +111,326 @@ class WC_GZD_Order_Helper {
 		 * @see wc_order_fully_refunded
 		 */
 		add_action( 'woocommerce_order_status_refunded', array( $this, 'create_refund_with_items' ), 5 );
+
+		/**
+		 * Additional costs calculation
+		 */
+		if ( wc_gzd_enable_additional_costs_split_tax_calculation() || wc_gzd_calculate_additional_costs_taxes_based_on_main_service() ) {
+			add_action( 'woocommerce_order_before_calculate_totals', array( $this, 'tmp_store_order_item_copy_before_calculate_totals' ), 500, 2 );
+			add_action(
+				'woocommerce_order_after_calculate_totals',
+				function( $and_taxes, $order ) {
+					if ( $and_taxes ) {
+						$this->order_item_map = null;
+
+						foreach ( $order->get_items( array( 'shipping', 'fee' ) ) as $item ) {
+							$item->delete_meta_data( '_internal_gzd_key' );
+						}
+					}
+				},
+				10,
+				2
+			);
+
+			add_action( 'woocommerce_order_item_shipping_after_calculate_taxes', array( $this, 'adjust_additional_costs_item_taxes' ), 10, 2 );
+			add_action( 'woocommerce_order_item_fee_after_calculate_taxes', array( $this, 'adjust_additional_costs_item_taxes' ), 10, 2 );
+			add_action( 'woocommerce_order_item_after_calculate_taxes', array( $this, 'adjust_additional_costs_item_taxes' ), 10, 2 );
+			add_action(
+				'woocommerce_order_before_calculate_totals',
+				function() {
+					add_filter( 'woocommerce_order_get_shipping_total', array( $this, 'force_shipping_total_exact' ), 10, 2 );
+				},
+				500,
+				2
+			);
+			add_action(
+				'woocommerce_order_after_calculate_totals',
+				function() {
+					remove_filter( 'woocommerce_order_get_shipping_total', array( $this, 'force_shipping_total_exact' ), 10 );
+				},
+				500
+			);
+		} else {
+			add_action( 'woocommerce_order_item_shipping_after_calculate_taxes', array( $this, 'remove_additional_costs_item_meta' ), 10, 2 );
+			add_action( 'woocommerce_order_item_fee_after_calculate_taxes', array( $this, 'remove_additional_costs_item_meta' ), 10, 2 );
+			add_action( 'woocommerce_order_item_after_calculate_taxes', array( $this, 'remove_additional_costs_item_meta' ), 10, 2 );
+		}
+	}
+
+	/**
+	 * @param WC_Order_Item $item
+	 * @param WC_Order_Item|false $old_item
+	 *
+	 * @return float
+	 */
+	protected function get_item_total( $item, $old_item = false ) {
+		// Let's grab a fresh copy (loaded from DB) to make sure we are not dependent on Woo's calculated taxes in $item.
+		if ( $old_item ) {
+			$item_total = wc_format_decimal( floatval( $old_item->get_total() ) );
+
+			if ( wc_gzd_additional_costs_include_tax() ) {
+				$item_total += wc_format_decimal( floatval( $old_item->get_total_tax() ) );
+			}
+		} else {
+			$item_total     = wc_format_decimal( floatval( $item->get_total() ) );
+			$is_adding_item = wp_doing_ajax() && isset( $_POST['action'] ) && in_array( wp_unslash( $_POST['action'] ), array( 'woocommerce_add_order_fee', 'woocommerce_add_order_shipping' ), true ); // phpcs:ignore WordPress.Security.NonceVerification.Missing
+
+			/**
+			 * When adding a fee through the admin panel, Woo by default calculates taxes
+			 * based on the fee's tax class (which by default is standard). Ignore the tax data on first call.
+			 */
+			if ( ! $is_adding_item && wc_gzd_additional_costs_include_tax() ) {
+				$item_total += wc_format_decimal( floatval( $item->get_total_tax() ) );
+			}
+		}
+
+		return $item_total;
+	}
+
+	/**
+	 * @param WC_Order $order
+	 *
+	 * @return array
+	 */
+	public function get_order_taxable_location( $order ) {
+		return \Vendidero\EUTaxHelper\Helper::get_order_taxable_location( $order );
+	}
+
+	/**
+	 * @param WC_Order $order
+	 * @param string $type
+	 *
+	 * @return array
+	 */
+	public function get_order_tax_share( $order, $type = 'shipping' ) {
+		return wc_gzd_get_cart_tax_share( $type, $order->get_items() );
+	}
+
+	/**
+	 * When (re-) calculation order totals Woo does round shipping total to current price decimals.
+	 * That is not the case within cart/checkout and leads to rounding issues. This filter forces recalculating
+	 * the exact shipping total instead of using the already calculated shipping total amount while calculating order totals.
+	 *
+	 * @param $total
+	 * @param WC_Order $order
+	 *
+	 * @see WC_Abstract_Order::calculate_totals()
+	 *
+	 */
+	public function force_shipping_total_exact( $total, $order ) {
+		$total = 0;
+
+		foreach ( $order->get_shipping_methods() as $method ) {
+			$total += floatval( $method->get_total() );
+		}
+
+		return $total;
+	}
+
+	/**
+	 * @param WC_Order_Item $item
+	 *
+	 * @return false|WC_Order_Item_Fee|WC_Order_Item_Shipping
+	 */
+	protected function get_order_item_before_calculate_totals( $item ) {
+		$order    = $item->get_order();
+		$old_item = $order ? $order->get_item( $item->get_id() ) : false;
+		$map      = is_null( $this->order_item_map ) ? array() : $this->order_item_map;
+		$map      = wp_parse_args(
+			$map,
+			array(
+				'shipping' => array(),
+				'fee'      => array(),
+			)
+		);
+
+		$target_map   = array();
+		$internal_key = $item->get_id() > 0 ? $item->get_id() : $item->get_meta( '_internal_gzd_key' );
+
+		if ( is_a( $item, 'WC_Order_Item_Shipping' ) ) {
+			$target_map = $map['shipping'];
+		} elseif ( is_a( $item, 'WC_Order_Item_Fee' ) ) {
+			$target_map = $map['fee'];
+		}
+
+		if ( array_key_exists( $internal_key, $target_map ) ) {
+			$old_item = $target_map[ $internal_key ];
+		}
+
+		return $old_item;
+	}
+
+	/**
+	 * Within the new block-based checkout store API, Woo additionally calls WC_Abstract_Order::calculate_totals() after
+	 * passing line items from the cart. This will recalculate taxes too which conflicts with additional costs calculation.
+	 *
+	 * As a tweak we need to store a cloned copy of the relevant items before (re) calculating taxes to actually determine
+	 * the original shipping/fee total. For existing/persisting orders this may be done by force-reloading the item from DB.
+	 *
+	 * @param $and_taxes
+	 * @param WC_Order $order
+	 *
+	 * @return void
+	 */
+	public function tmp_store_order_item_copy_before_calculate_totals( $and_taxes, $order ) {
+		if ( $and_taxes ) {
+			$this->order_item_map = array(
+				'shipping' => array(),
+				'fee'      => array(),
+			);
+
+			foreach ( $order->get_shipping_methods() as $k => $item ) {
+				$item->update_meta_data( '_internal_gzd_key', $k );
+
+				$this->order_item_map['shipping'][ $k ] = clone $item;
+			}
+
+			foreach ( $order->get_fees() as $k => $item ) {
+				$item->update_meta_data( '_internal_gzd_key', $k );
+
+				$this->order_item_map['fee'][ $k ] = clone $item;
+			}
+		}
+	}
+
+	/**
+	 * @param WC_Order_Item $item
+	 *
+	 * @return void
+	 */
+	public function remove_additional_costs_item_meta( $item ) {
+		$item->delete_meta_data( '_split_taxes' );
+		$item->delete_meta_data( '_tax_shares' );
+
+		if ( $order = $item->get_order() ) {
+			$order->delete_meta_data( '_has_split_tax' );
+			$order->delete_meta_data( '_additional_costs_include_tax' );
+			$order->delete_meta_data( '_additional_costs_taxed_based_on_main_service' );
+			$order->delete_meta_data( '_additional_costs_taxed_based_on_main_service_tax_class' );
+			$order->delete_meta_data( '_additional_costs_taxed_based_on_main_service_by' );
+
+			$order->save();
+		}
+	}
+
+	/**
+	 * @param WC_Order_Item $item
+	 * @param array $calculate_tax_for
+	 */
+	public function adjust_additional_costs_item_taxes( $item, $calculate_tax_for = array() ) {
+		if ( ! wc_tax_enabled() || ! in_array( $item->get_type(), array( 'fee', 'shipping' ), true ) ) {
+			return;
+		}
+
+		if ( apply_filters( 'woocommerce_gzd_skip_order_item_split_tax_calculation', false, $item ) ) {
+			return;
+		}
+
+		if ( $order = $item->get_order() ) {
+			$item->delete_meta_data( '_split_taxes' );
+			$item->delete_meta_data( '_tax_shares' );
+
+			$order->delete_meta_data( '_has_split_tax' );
+			$order->delete_meta_data( '_additional_costs_taxed_based_on_main_service' );
+			$order->delete_meta_data( '_additional_costs_taxed_based_on_main_service_tax_class' );
+			$order->delete_meta_data( '_additional_costs_taxed_based_on_main_service_by' );
+
+			$calculate_tax_for = empty( $calculate_tax_for ) ? $this->get_order_taxable_location( $order ) : $calculate_tax_for;
+			$tax_type          = 'shipping' === $item->get_type() ? 'shipping' : 'fee';
+
+			if ( wc_gzd_enable_additional_costs_split_tax_calculation() ) {
+				// Calculate tax shares
+				$tax_share = apply_filters( "woocommerce_gzd_{$tax_type}_order_tax_shares", $this->get_order_tax_share( $order, $tax_type ), $item );
+
+				// Do only adjust taxes if tax share contains more than one tax rate
+				if ( $tax_share && ! empty( $tax_share ) ) {
+					$taxes           = array();
+					$item_total      = $this->get_item_total( $item, $this->get_order_item_before_calculate_totals( $item ) );
+					$taxable_amounts = array();
+
+					foreach ( $tax_share as $tax_class => $class ) {
+						if ( isset( $calculate_tax_for['country'] ) ) {
+							$calculate_tax_for['tax_class'] = $tax_class;
+							$tax_rates                      = \WC_Tax::find_rates( $calculate_tax_for );
+						} else {
+							$tax_rates = \WC_Tax::get_rates_from_location( $tax_class, $calculate_tax_for );
+						}
+
+						$taxable_amount  = $item_total * $class['share'];
+						$tax_class_taxes = WC_Tax::calc_tax( $taxable_amount, $tax_rates, wc_gzd_additional_costs_include_tax() );
+						$net_base        = wc_gzd_additional_costs_include_tax() ? ( $taxable_amount - array_sum( $tax_class_taxes ) ) : $taxable_amount;
+
+						$taxable_amounts[ $tax_class ] = array(
+							'taxable_amount' => $taxable_amount,
+							'tax_share'      => $class['share'],
+							'tax_rates'      => array_keys( $tax_rates ),
+							'net_amount'     => $net_base,
+							'includes_tax'   => wc_gzd_additional_costs_include_tax(),
+						);
+
+						$taxes = $taxes + $tax_class_taxes;
+					}
+
+					$item->set_taxes( array( 'total' => $taxes ) );
+					$item->update_meta_data( '_split_taxes', $taxable_amounts );
+					$item->update_meta_data( '_tax_shares', $tax_share );
+
+					// The new net total equals old gross total minus new tax totals
+					if ( wc_gzd_additional_costs_include_tax() ) {
+						$item->set_total( $item_total - $item->get_total_tax() );
+					}
+
+					$order->update_meta_data( '_has_split_tax', 'yes' );
+				} else {
+					$item->delete_meta_data( '_split_taxes' );
+					$item->delete_meta_data( '_tax_shares' );
+
+					$order->delete_meta_data( '_has_split_tax' );
+				}
+			} elseif ( wc_gzd_calculate_additional_costs_taxes_based_on_main_service() ) {
+				$taxes          = array();
+				$main_tax_class = self::instance()->get_order_main_service_tax_class( $order, $tax_type );
+
+				if ( false !== $main_tax_class ) {
+					$item_total = $this->get_item_total( $item, $this->get_order_item_before_calculate_totals( $item ) );
+
+					if ( isset( $calculate_tax_for['country'] ) ) {
+						$calculate_tax_for['tax_class'] = $main_tax_class;
+						$tax_rates                      = \WC_Tax::find_rates( $calculate_tax_for );
+					} else {
+						$tax_rates = \WC_Tax::get_rates_from_location( $main_tax_class, $calculate_tax_for );
+					}
+
+					$taxable_amount  = $item_total;
+					$tax_class_taxes = WC_Tax::calc_tax( $taxable_amount, $tax_rates, wc_gzd_additional_costs_include_tax() );
+					$taxes           = $taxes + $tax_class_taxes;
+
+					$item->set_taxes( array( 'total' => $taxes ) );
+
+					if ( is_callable( array( $item, 'set_tax_class' ) ) ) {
+						$item->set_tax_class( $main_tax_class );
+					}
+
+					// The new net total equals old gross total minus new tax totals
+					if ( wc_gzd_additional_costs_include_tax() ) {
+						$item->set_total( $item_total - $item->get_total_tax() );
+					}
+
+					$order->update_meta_data( '_additional_costs_taxed_based_on_main_service', 'yes' );
+					$order->update_meta_data( '_additional_costs_taxed_based_on_main_service_by', wc_gzd_additional_costs_taxes_detect_main_service_by() );
+					$order->update_meta_data( '_additional_costs_taxed_based_on_main_service_tax_class', $main_tax_class );
+				}
+			}
+
+			$order->update_meta_data( '_additional_costs_include_tax', wc_bool_to_string( wc_gzd_additional_costs_include_tax() ) );
+
+			/**
+			 * Need to manually call the order save method to make sure
+			 * meta data is persisted as $item->get_order() constructs a fresh order instance which will be lost
+			 * during global save event.
+			 */
+			$order->save();
+		}
 	}
 
 	public function maybe_remove_northern_ireland_taxes( $order_item, $calculate_tax_for ) {
