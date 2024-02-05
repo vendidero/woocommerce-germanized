@@ -65,7 +65,7 @@ body.theme-astra {
 .woocommerce-cart, .woocommerce-checkout {
   dl.variation {
     dt[class*="variation-gzd-"], dd[class*="variation-gzd-"] {
-      display: none;
+      display: none !important;
     }
   }
 }
