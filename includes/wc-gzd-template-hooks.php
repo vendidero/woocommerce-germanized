@@ -212,8 +212,25 @@ add_action( 'woocommerce_widget_shopping_cart_before_buttons', 'woocommerce_gzd_
 /**
  * Checkout
  */
-add_action( 'woocommerce_review_order_before_cart_contents', 'woocommerce_gzd_template_checkout_table_content_replacement' );
-add_action( 'woocommerce_review_order_after_cart_contents', 'woocommerce_gzd_template_checkout_table_product_hide_filter_removal' );
+add_action(
+	'woocommerce_review_order_before_cart_contents',
+	function() {
+		$path         = wc_locate_template( 'checkout/review-order-product-table.php' );
+		$has_override = ! strstr( $path, WC_germanized()->plugin_path() );
+
+		if ( ! wc_gzd_checkout_adjustments_disabled() ) {
+			if ( apply_filters( 'woocommerce_gzd_checkout_use_legacy_table_replacement_template', $has_override ) ) {
+				add_action( 'woocommerce_review_order_before_cart_contents', 'woocommerce_gzd_template_checkout_table_content_replacement' );
+				add_action( 'woocommerce_review_order_after_cart_contents', 'woocommerce_gzd_template_checkout_table_product_hide_filter_removal' );
+			} elseif ( 'yes' === get_option( 'woocommerce_gzd_display_checkout_thumbnails' ) ) {
+				remove_filter( 'woocommerce_cart_item_name', 'woocommerce_gzd_template_inject_checkout_table_thumbnails', 11 );
+				add_filter( 'woocommerce_cart_item_name', 'woocommerce_gzd_template_inject_checkout_table_thumbnails', 11, 3 );
+				add_filter( 'woocommerce_cart_item_class', 'woocommerce_gzd_template_inject_checkout_table_thumbnails_class', 10, 3 );
+			}
+		}
+	},
+	0
+);
 
 /**
  * Checkout Hooks

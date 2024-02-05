@@ -98,6 +98,14 @@ class WC_GZD_Product_Grouped extends WC_GZD_Product {
 							continue;
 						}
 
+						/**
+						 * Prevent infinite loops with nested grouped products which
+						 * contain the current product as child.
+						 */
+						if ( is_a( $child, 'WC_GZD_Product_Grouped' ) && in_array( $this->get_wc_product()->get_id(), $child->get_children(), true ) ) {
+							continue;
+						}
+
 						if ( $child->has_unit() ) {
 							$unit = $child->get_unit();
 

@@ -33,8 +33,13 @@ class WC_GZD_Compatibility_Cartflows extends WC_GZD_Compatibility {
 				/**
 				 * Make sure AJAX refresh does not contain custom product table
 				 */
-				remove_action( 'woocommerce_review_order_before_cart_contents', 'woocommerce_gzd_template_checkout_table_content_replacement', 10 );
-				remove_action( 'woocommerce_review_order_after_cart_contents', 'woocommerce_gzd_template_checkout_table_product_hide_filter_removal', 10 );
+				add_action(
+					'woocommerce_review_order_before_cart_contents',
+					function() {
+						remove_action( 'woocommerce_review_order_before_cart_contents', 'woocommerce_gzd_template_checkout_table_content_replacement' );
+						remove_action( 'woocommerce_review_order_after_cart_contents', 'woocommerce_gzd_template_checkout_table_product_hide_filter_removal' );
+					}
+				);
 
 				/**
 				 * It's an opt-in
