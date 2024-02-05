@@ -1239,7 +1239,7 @@ class WC_GZD_Product {
 			if ( ! empty( $tax_rates ) ) {
 				$tax_rates = array_values( $tax_rates );
 
-				// If is variable or is virtual vat exception dont show exact tax rate
+				// If is variable or is virtual vat exception don't show exact tax rate
 				if ( $this->is_virtual_vat_exception() || $this->child->is_type( 'variable' ) || $this->child->is_type( 'grouped' ) || get_option( 'woocommerce_gzd_hide_tax_rate_shop' ) === 'yes' ) {
 					$tax_notice = ( 'incl' === $tax_display_mode && ! $is_vat_exempt ? __( 'incl. VAT', 'woocommerce-germanized' ) : __( 'excl. VAT', 'woocommerce-germanized' ) );
 				} else {

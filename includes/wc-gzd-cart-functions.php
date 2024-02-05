@@ -899,11 +899,12 @@ function wc_gzd_item_is_tax_share_exempt( $item, $type = 'shipping', $key = fals
 		}
 	}
 
+	/**
+	 * Exclude virtual items from shipping tax share.
+	 */
 	if ( is_a( $_product, 'WC_Product' ) ) {
-		if ( 'shipping' === $type ) {
-			if ( $_product->is_virtual() || wc_gzd_get_product( $_product )->is_virtual_vat_exception() ) {
-				$exempt = true;
-			}
+		if ( 'shipping' === $type && $_product->is_virtual() ) {
+            $exempt = true;
 		}
 	}
 
