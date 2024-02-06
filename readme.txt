@@ -5,7 +5,7 @@ Requires at least: 5.4
 Tested up to: 6.4
 WC requires at least: 3.9
 WC tested up to: 8.5
-Stable tag: 3.15.5
+Stable tag: 3.15.6
 Requires PHP: 5.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -205,6 +205,21 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 6. Edit pdf documents (Pro)
 
 == Changelog ==
+= 3.15.6 =
+* Improvement: Do not override classic checkout table via template, inject images via filters instead
+* Improvement: Exclude virtual (but not non-virtual download) products from split-tax calculation
+* Improvement: Force showing editable checkboxes for manually created orders
+* Improvement: Hide block-based price labels within classic cart/checkout
+* Improvement: Do only apply buffer in case auto packing shipments is enabled
+* Improvement: Added (optional) packaging inner dimensions
+* Improvement: While packing within cart apply global rules first to exclude certain packaging options
+* Improvement: Added cart-wide shipping class rule type to shipping methods
+* Improvement: Allow users to manually select non-fitting packaging options
+* Improvement: Address split edge-case treatment
+* Fix: Split-tax calculation for block-based Checkouts
+* Fix: PayPal Payments compatibility
+* Fix: DP default tracking URL
+
 = 3.15.5 =
 * New: Photovoltaic system VAT exempts for Austria
 * Improvement: Use placeholders within photovoltaic system legal (checkbox, notice) text to output law details based on country

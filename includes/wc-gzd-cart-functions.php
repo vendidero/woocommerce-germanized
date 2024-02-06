@@ -904,7 +904,7 @@ function wc_gzd_item_is_tax_share_exempt( $item, $type = 'shipping', $key = fals
 	 */
 	if ( is_a( $_product, 'WC_Product' ) ) {
 		if ( 'shipping' === $type && $_product->is_virtual() ) {
-            $exempt = true;
+			$exempt = true;
 		}
 	}
 

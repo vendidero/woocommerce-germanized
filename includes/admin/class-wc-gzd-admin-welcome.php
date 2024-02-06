@@ -137,12 +137,32 @@ class WC_GZD_Admin_Welcome {
 			</p>
 
 			<div class="changelog new-feature">
-				<h3>Built-in Versandregeln, automatisches Packen & mehr</h3>
+				<h3>Block: Mehrstufige Kasse <span class="wc-gzd-pro wc-gzd-pro-outlined">pro</span></h3>
 
 				<div class="columns two-col">
 					<div class="col col-center">
-						<img src="<?php echo esc_url( WC_germanized()->plugin_url() ); ?>/assets/images/shipping-rules.png"/>
+						<img src="<?php echo esc_url( WC_germanized()->plugin_url() ); ?>/assets/images/multilevel-checkout.png" style=""/>
 					</div>
+					<div class="col">
+						<p>
+							Nutzer der Pro-Version haben von nun an Zugriff auf die mehrstufige Kasse speziell entwickelt für die neue, block-basierte Kasse von WooCommerce.
+							Neben Highlights wie einer Breadcrumb-Navigation und Bestätigungsseite, glänzt die neue mehrstufige Kasse beim Thema UX mit einer Anzeige der jeweils für den aktuellen Schritt
+							aktualisierten Zusammenfassung der Benutzereingaben. Natürlich ist die Kasse auch für mobile Endgeräte optimiert. Kleine aber feine Verbesserungen, z.B. das Verschieben der Auswahl
+							einer abweichenden Rechnungsadresse in den Schritt "Zahlung", sorgen für einen optimierten Kaufprozess.
+						</p>
+
+						<div class="wc-gzd-actions wc-gzd-actions-right">
+							<a href="https://vendidero.de/woocommerce-germanized" target="_blank" class="wc-gzd-pro-version button button-primary wc-gzd-button"><span class="wc-gzd-pro wc-gzd-pro-outlined">pro</span> Version entdecken</a>
+							<p class="price smaller wc-gzd-pro-version">ab 79 € inkl. MwSt. - inkl. 1 Jahr Updates & Premium Support!</p>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="changelog new-feature">
+				<h3>Built-in Versandregeln, automatisches Packen & mehr</h3>
+
+				<div class="columns two-col">
 					<div class="col">
 						<p>
 							Germanized 3.15 kommt mit neuen, lang ersehnten Features. Von nun an benötigst du kein separates Plugin mehr um deine Versandregeln zu konfigurieren.
@@ -159,6 +179,9 @@ class WC_GZD_Admin_Welcome {
 							<a href="https://vendidero.de/germanized-3-15" class="wc-gzd-default-button button button-primary" target="_blank">Mehr erfahren</a>
 							<a href="<?php echo esc_url( admin_url( 'admin.php?page=wc-settings&tab=shipping' ) ); ?>" class="wc-gzd-default-button button button-primary" target="_blank">Versandarten konfigurieren</a>
 						</div>
+					</div>
+					<div class="col col-center">
+						<img src="<?php echo esc_url( WC_germanized()->plugin_url() ); ?>/assets/images/shipping-rules.png"/>
 					</div>
 				</div>
 			</div>
