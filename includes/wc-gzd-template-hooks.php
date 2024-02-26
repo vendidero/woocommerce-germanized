@@ -275,10 +275,9 @@ if ( did_action( 'init' ) ) {
 
 // Remove WooCommerce Terms checkbox
 add_filter( 'woocommerce_checkout_show_terms', 'woocommerce_gzd_template_set_wc_terms_hide', 100 );
+add_action( 'woocommerce_review_order_before_submit', 'woocommerce_gzd_template_move_before_submit_hooks', -500 );
+add_action( 'woocommerce_review_order_after_submit', 'woocommerce_gzd_template_move_after_submit_hooks', -500 );
 
-// Temporarily remove order button from payment.php - then add again to show after product table
-add_action( 'woocommerce_review_order_before_submit', 'woocommerce_gzd_template_set_order_button_remove_filter', 1500 );
-add_action( 'woocommerce_review_order_after_submit', 'woocommerce_gzd_template_set_order_button_show_filter', 1500 );
 add_action( 'woocommerce_gzd_review_order_before_submit', 'woocommerce_gzd_template_set_order_button_show_filter', 1500 );
 
 /**

@@ -58,10 +58,20 @@ body.theme-astra {
   }
 }
 
-/**
- * Hide (block) price labels added via the woocommerce_get_item_data filter
- * while displaying classic shortcodes. Fallback-use only.
- */
+.cart_totals {
+  tr.order-total-small-business-notice, tr.order-total-differential-taxation-notice {
+    td {
+      &::before {
+        content: "" !important;
+      }
+    }
+  }
+}
+
+  /**
+   * Hide (block) price labels added via the woocommerce_get_item_data filter
+   * while displaying classic shortcodes. Fallback-use only.
+   */
 .woocommerce-cart, .woocommerce-checkout {
   dl.variation {
     dt[class*="variation-gzd-"], dd[class*="variation-gzd-"] {

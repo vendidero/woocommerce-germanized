@@ -877,6 +877,69 @@ if ( ! function_exists( 'woocommerce_gzd_template_button_temporary_hide' ) ) {
 	}
 }
 
+if ( ! function_exists( 'woocommerce_gzd_template_move_after_submit_hooks' ) ) {
+	function woocommerce_gzd_template_move_after_submit_hooks() {
+		global $wp_filter;
+
+		if ( ! wc_gzd_checkout_adjustments_disabled() ) {
+			$hooks = isset( $wp_filter['woocommerce_review_order_after_submit'] ) ? $wp_filter['woocommerce_review_order_after_submit'] : null;
+
+			if ( null !== $hooks ) {
+				$hooks_to_apply_later = clone $hooks;
+				$hooks_to_apply_later->remove_filter( 'woocommerce_review_order_before_submit', 'woocommerce_review_order_after_submit', -500 );
+
+				$hooks->remove_all_filters();
+
+				add_action(
+					'woocommerce_gzd_review_order_after_submit',
+					function() use ( $hooks_to_apply_later ) {
+						global $wp_filter;
+
+						foreach ( $hooks_to_apply_later as $priority => $filters ) {
+							foreach ( $filters as $filter ) {
+								$wp_filter['woocommerce_gzd_review_order_after_submit']->add_filter( 'woocommerce_gzd_review_order_after_submit', $filter['function'], $priority, $filter['accepted_args'] );
+							}
+						}
+					},
+					-500
+				);
+			}
+		}
+	}
+}
+
+if ( ! function_exists( 'woocommerce_gzd_template_move_before_submit_hooks' ) ) {
+	function woocommerce_gzd_template_move_before_submit_hooks() {
+		global $wp_filter;
+
+		if ( ! wc_gzd_checkout_adjustments_disabled() ) {
+			$hooks = isset( $wp_filter['woocommerce_review_order_before_submit'] ) ? $wp_filter['woocommerce_review_order_before_submit'] : null;
+
+			if ( null !== $hooks ) {
+				$hooks_to_apply_later = clone $hooks;
+				$hooks_to_apply_later->remove_filter( 'woocommerce_review_order_before_submit', 'woocommerce_gzd_template_move_before_submit_hooks', -500 );
+
+				add_filter( 'woocommerce_order_button_html', 'woocommerce_gzd_template_button_temporary_hide', 1500 );
+				$hooks->remove_all_filters();
+
+				add_action(
+					'woocommerce_gzd_review_order_before_submit',
+					function() use ( $hooks_to_apply_later ) {
+						global $wp_filter;
+
+						foreach ( $hooks_to_apply_later as $priority => $filters ) {
+							foreach ( $filters as $filter ) {
+								$wp_filter['woocommerce_gzd_review_order_before_submit']->add_filter( 'woocommerce_gzd_review_order_before_submit', $filter['function'], $priority, $filter['accepted_args'] );
+							}
+						}
+					},
+					-500
+				);
+			}
+		}
+	}
+}
+
 if ( ! function_exists( 'woocommerce_gzd_template_set_order_button_show_filter' ) ) {
 
 	/**
