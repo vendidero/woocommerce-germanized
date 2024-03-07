@@ -35,6 +35,7 @@
             '.woocommerce-product-attributes-item--net_filling_quantity, ' +
             '.woocommerce-product-attributes-item--drained_weight, ' +
             '.woocommerce-product-attributes-item--food_place_of_origin, ' +
+            '.woocommerce-product-attributes-item--nutri_score, ' +
             '.woocommerce-product-attributes-item--food_distributor'
         ).each( function() {
             var $tr = $( this );
