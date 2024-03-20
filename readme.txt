@@ -2,10 +2,10 @@
 Contributors: vendidero, vdwoocommercesupport
 Tags: woocommerce, woocommerce german, woocommerce DE, woocommerce germany, woocommerce deutsch, woo, woocommerce deutschland, woocommerce germanized, woocommerce addon, woocommerce plugin, woocommerce german addon, woocommerce germany addon, woocommerce dhl, dhl, shipments, dpd, gls, post
 Requires at least: 5.4
-Tested up to: 6.4
+Tested up to: 6.5
 WC requires at least: 3.9
-WC tested up to: 8.5
-Stable tag: 3.15.6
+WC tested up to: 8.7
+Stable tag: 3.15.7
 Requires PHP: 5.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -205,6 +205,16 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 6. Edit pdf documents (Pro)
 
 == Changelog ==
+= 3.15.7 =
+* New: WP 6.5 support
+* New: Support deviating shipping dimensions for products
+* Improvement: Introduce cache helpers for shipments and shipment-related objects
+* Improvement: Theme compatibility for woocommerce_review_order_after_submit and woocommerce_review_order_before_submit
+* Improvement: Support dynamically recalculating unit price ranges for variable products
+* Fix: Shipping rules shipping class condition
+* Fix: Shipping rules global packaging filter
+* Fix: Shipment weight check while finding available shipping provider services
+
 = 3.15.6 =
 * Improvement: Do not override classic checkout table via template, inject images via filters instead
 * Improvement: Exclude virtual (but not non-virtual download) products from split-tax calculation

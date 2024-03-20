@@ -3,13 +3,13 @@
  * Plugin Name: Germanized for WooCommerce
  * Plugin URI: https://www.vendidero.de/woocommerce-germanized
  * Description: Germanized for WooCommerce extends WooCommerce to become a legally compliant store in the german market.
- * Version: 3.15.6
+ * Version: 3.15.7
  * Author: vendidero
  * Author URI: https://vendidero.de
  * Requires at least: 5.4
- * Tested up to: 6.4
+ * Tested up to: 6.5
  * WC requires at least: 3.9
- * WC tested up to: 8.5
+ * WC tested up to: 8.7
  *
  * Text Domain: woocommerce-germanized
  * Domain Path: /i18n/languages/
@@ -69,7 +69,7 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 		 *
 		 * @var string
 		 */
-		public $version = '3.15.6';
+		public $version = '3.15.7';
 
 		/**
 		 * @var WooCommerce_Germanized $instance of the plugin
@@ -401,7 +401,6 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 		 * @return void
 		 */
 		public function autoload( $class ) {
-
 			$original_class = $class;
 			$class          = strtolower( $class );
 
@@ -1002,7 +1001,9 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 				'static/cart-voucher.js',
 				array(
 					'jquery',
-				)
+				),
+				'',
+				true
 			);
 
 			if ( function_exists( 'WC' ) ) {
@@ -1322,7 +1323,7 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 			/**
 			 * The voucher script should only be localized in footer to make sure cart is fully initialized
 			 */
-			if ( wp_script_is( 'wc-gzd-cart-voucher' ) && ! in_array( 'wc-gzd-cart-voucher', $this->localized_scripts, true ) ) {
+			if ( doing_action( 'wp_print_footer_scripts' ) && wp_script_is( 'wc-gzd-cart-voucher' ) && ! in_array( 'wc-gzd-cart-voucher', $this->localized_scripts, true ) ) {
 				$this->localized_scripts[] = 'wc-gzd-cart-voucher';
 
 				$args = array(

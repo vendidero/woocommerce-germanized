@@ -715,9 +715,23 @@ class WC_GZD_Coupon_Helper {
 		if ( $coupon_id ) {
 			$coupon_object = new WC_Coupon( $coupon_id );
 		} else {
+			$coupon_info = $item->get_meta( 'coupon_info', true );
+			$coupon_data = (array) $item->get_meta( 'coupon_data', true );
+
+			if ( ! empty( $coupon_info ) ) {
+				$coupon_info = (array) json_decode( $coupon_info );
+				$coupon_data = array(
+					'id'            => $coupon_info[0],
+					'code'          => $coupon_info[1],
+					'discount_type' => $coupon_info[2],
+					'amount'        => $coupon_info[3],
+					'free_shipping' => isset( $coupon_info[4] ) ? wc_string_to_bool( $coupon_info[4] ) : false,
+				);
+			}
+
 			// If we do not have a coupon ID (was it virtual? has it been deleted?) we must create a temporary coupon using what data we have stored during checkout.
 			$coupon_object = new WC_Coupon();
-			$coupon_object->set_props( (array) $item->get_meta( 'coupon_data', true ) );
+			$coupon_object->set_props( $coupon_data );
 			$coupon_object->set_code( $coupon_code );
 			$coupon_object->set_virtual( true );
 		}

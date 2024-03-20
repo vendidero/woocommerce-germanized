@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: WooCommerce Germanized\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/woocommerce-"
 "germanized\n"
-"POT-Creation-Date: 2024-02-06T11:54:45+00:00\n"
-"PO-Revision-Date: 2024-02-06 12:58+0100\n"
+"POT-Creation-Date: 2024-03-20T14:49:32+00:00\n"
+"PO-Revision-Date: 2024-03-20 15:53+0100\n"
 "Last-Translator: Dennis Nissle <info@vendidero.de>\n"
 "Language-Team: \n"
 "Language: de_DE@formal\n"
@@ -143,11 +143,11 @@ msgid "Return shipment #{shipment_id} to order #{order_id}"
 msgstr "Retoure #{shipment_id} zur Bestellung #{order_id}"
 
 # @ woocommerce-germanized
-#: includes/wc-gzd-dhl-core-functions.php:317 src/ParcelLocator.php:1025
+#: includes/wc-gzd-dhl-core-functions.php:317 src/ParcelLocator.php:1027
 #: src/ShippingProvider/DHL.php:1042 src/ShippingProvider/DHL.php:1506
 #: templates/checkout/dhl/parcel-finder.php:37
 #: packages/woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:317
-#: packages/woocommerce-germanized-dhl/src/ParcelLocator.php:1025
+#: packages/woocommerce-germanized-dhl/src/ParcelLocator.php:1027
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1042
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1506
 #: packages/woocommerce-germanized-dhl/templates/checkout/dhl/parcel-finder.php:37
@@ -720,10 +720,10 @@ msgid "Refund API could not be instantiated"
 msgstr "Die API für Rückerstattungen konnte nicht initialisiert werden"
 
 #: src/Api/Internetmarke.php:686 src/Api/LabelRest.php:109
-#: src/Api/LabelSoap.php:375 src/Api/ReturnRest.php:39
+#: src/Api/LabelSoap.php:374 src/Api/ReturnRest.php:39
 #: packages/woocommerce-germanized-dhl/src/Api/Internetmarke.php:686
 #: packages/woocommerce-germanized-dhl/src/Api/LabelRest.php:109
-#: packages/woocommerce-germanized-dhl/src/Api/LabelSoap.php:375
+#: packages/woocommerce-germanized-dhl/src/Api/LabelSoap.php:374
 #: packages/woocommerce-germanized-dhl/src/Api/ReturnRest.php:39
 msgctxt "dhl"
 msgid "Could not fetch shipment %d."
@@ -774,8 +774,8 @@ msgstr ""
 "Ihre Absenderadresse ist nicht komplett (%1$s). Bitte prüfen Sie Ihre <a "
 "href=\"%2$s\">Einstellungen</a> und versuchen Sie es erneut."
 
-#: src/Api/LabelRest.php:427 src/Api/LabelSoap.php:718
-#: packages/woocommerce-germanized-dhl/src/Api/LabelRest.php:427
+#: src/Api/LabelRest.php:422 src/Api/LabelSoap.php:718
+#: packages/woocommerce-germanized-dhl/src/Api/LabelRest.php:422
 #: packages/woocommerce-germanized-dhl/src/Api/LabelSoap.php:718
 msgctxt "dhl"
 msgid ""
@@ -784,8 +784,8 @@ msgstr ""
 "Es können maximal %1$s Sendungspositionen verarbeitet werden - die "
 "vorliegende Sendung beinhaltet %2$s Positionen."
 
-#: src/Api/LabelRest.php:518 src/Api/LabelSoap.php:218
-#: packages/woocommerce-germanized-dhl/src/Api/LabelRest.php:518
+#: src/Api/LabelRest.php:513 src/Api/LabelSoap.php:218
+#: packages/woocommerce-germanized-dhl/src/Api/LabelRest.php:513
 #: packages/woocommerce-germanized-dhl/src/Api/LabelSoap.php:218
 msgctxt "dhl"
 msgid ""
@@ -795,8 +795,8 @@ msgstr ""
 "Beim Erzeugen des Labels gab es einen Fehler. Bitte versuchen Sie es erneut "
 "oder erwägen Sie den Wechsel in den Sandbox-Modus."
 
-#: src/Api/LabelRest.php:596
-#: packages/woocommerce-germanized-dhl/src/Api/LabelRest.php:596
+#: src/Api/LabelRest.php:591
+#: packages/woocommerce-germanized-dhl/src/Api/LabelRest.php:591
 msgctxt "dhl"
 msgid ""
 "You've explicitly booked the additional insurance service resulting in "
@@ -807,17 +807,17 @@ msgstr ""
 "Kosten verursacht obwohl der Gesamtbetrag der Sendung 500 Euro nicht "
 "übersteigt. Das Label wurde dennoch erstellt."
 
-#: src/Api/LabelRest.php:605 src/Api/LabelSoap.php:297
+#: src/Api/LabelRest.php:600 src/Api/LabelSoap.php:296
 #: src/Api/ReturnRest.php:189
-#: packages/woocommerce-germanized-dhl/src/Api/LabelRest.php:605
-#: packages/woocommerce-germanized-dhl/src/Api/LabelSoap.php:297
+#: packages/woocommerce-germanized-dhl/src/Api/LabelRest.php:600
+#: packages/woocommerce-germanized-dhl/src/Api/LabelSoap.php:296
 #: packages/woocommerce-germanized-dhl/src/Api/ReturnRest.php:189
 msgctxt "dhl"
 msgid "Error while creating and uploading the label"
 msgstr "Fehler beim Erstellen und hochladen des Labels"
 
-#: src/Api/LabelRest.php:733 src/Api/LabelSoap.php:110
-#: packages/woocommerce-germanized-dhl/src/Api/LabelRest.php:733
+#: src/Api/LabelRest.php:728 src/Api/LabelSoap.php:110
+#: packages/woocommerce-germanized-dhl/src/Api/LabelRest.php:728
 #: packages/woocommerce-germanized-dhl/src/Api/LabelSoap.php:110
 msgctxt "dhl"
 msgid "Your DHL API credentials seem to be invalid."
@@ -860,8 +860,8 @@ msgstr ""
 "Beim Aufruf der DHL API ist ein Fehler aufgetreten. Bitte erwägen Sie den "
 "Wechsel in den Sandbox-Modus."
 
-#: src/Api/LabelSoap.php:341
-#: packages/woocommerce-germanized-dhl/src/Api/LabelSoap.php:341
+#: src/Api/LabelSoap.php:340
+#: packages/woocommerce-germanized-dhl/src/Api/LabelSoap.php:340
 msgctxt "dhl"
 msgid "Could not delete label - %s"
 msgstr "Das Label konnte nicht gelöscht werden - %s"
@@ -1194,11 +1194,11 @@ msgid "Germany"
 msgstr "Deutschland"
 
 # @ woocommerce-germanized
-#: src/ParcelLocator.php:109 src/ParcelLocator.php:1038
-#: src/ParcelLocator.php:1067
+#: src/ParcelLocator.php:109 src/ParcelLocator.php:1040
+#: src/ParcelLocator.php:1069
 #: packages/woocommerce-germanized-dhl/src/ParcelLocator.php:109
-#: packages/woocommerce-germanized-dhl/src/ParcelLocator.php:1038
-#: packages/woocommerce-germanized-dhl/src/ParcelLocator.php:1067
+#: packages/woocommerce-germanized-dhl/src/ParcelLocator.php:1040
+#: packages/woocommerce-germanized-dhl/src/ParcelLocator.php:1069
 msgctxt "dhl"
 msgid "Address Type"
 msgstr "Adresstyp"
@@ -1279,9 +1279,9 @@ msgstr ""
 "Ihre DHL Kundennummer (Postnummer) wird für den Versand an eine Packstation "
 "benötigt."
 
-#: src/ParcelLocator.php:858 src/ParcelLocator.php:1029
+#: src/ParcelLocator.php:858 src/ParcelLocator.php:1031
 #: packages/woocommerce-germanized-dhl/src/ParcelLocator.php:858
-#: packages/woocommerce-germanized-dhl/src/ParcelLocator.php:1029
+#: packages/woocommerce-germanized-dhl/src/ParcelLocator.php:1031
 msgctxt "dhl"
 msgid "Branch"
 msgstr "Filiale"
@@ -1292,80 +1292,80 @@ msgctxt "dhl"
 msgid "Postnumber "
 msgstr "Postnummer "
 
-#: src/ParcelLocator.php:1004
-#: packages/woocommerce-germanized-dhl/src/ParcelLocator.php:1004
+#: src/ParcelLocator.php:1006
+#: packages/woocommerce-germanized-dhl/src/ParcelLocator.php:1006
 msgctxt "dhl"
 msgid "e.g. %s 456"
 msgstr "z.B. %s 456"
 
-#: src/ParcelLocator.php:1029
-#: packages/woocommerce-germanized-dhl/src/ParcelLocator.php:1029
+#: src/ParcelLocator.php:1031
+#: packages/woocommerce-germanized-dhl/src/ParcelLocator.php:1031
 msgctxt "dhl"
 msgid "Branches"
 msgstr "Filialen"
 
-#: src/ParcelLocator.php:1045 src/ParcelLocator.php:1078
-#: packages/woocommerce-germanized-dhl/src/ParcelLocator.php:1045
-#: packages/woocommerce-germanized-dhl/src/ParcelLocator.php:1078
+#: src/ParcelLocator.php:1047 src/ParcelLocator.php:1080
+#: packages/woocommerce-germanized-dhl/src/ParcelLocator.php:1047
+#: packages/woocommerce-germanized-dhl/src/ParcelLocator.php:1080
 msgctxt "dhl"
 msgid "DHL customer number (Post number)"
 msgstr "DHL Kundennummer (Postnummer)"
 
 # @ woocommerce-germanized
-#: src/ParcelLocator.php:1055
-#: packages/woocommerce-germanized-dhl/src/ParcelLocator.php:1055
+#: src/ParcelLocator.php:1057
+#: packages/woocommerce-germanized-dhl/src/ParcelLocator.php:1057
 msgctxt "dhl"
 msgid "Regular Address"
 msgstr "Normale Adresse"
 
-#: src/ParcelLocator.php:1082
-#: packages/woocommerce-germanized-dhl/src/ParcelLocator.php:1082
+#: src/ParcelLocator.php:1084
+#: packages/woocommerce-germanized-dhl/src/ParcelLocator.php:1084
 msgctxt "dhl"
 msgid "Not yet a DHL customer?"
 msgstr "Noch kein DHL Kunde?"
 
 # @ woocommerce-germanized
-#: src/ParcelLocator.php:1082
-#: packages/woocommerce-germanized-dhl/src/ParcelLocator.php:1082
+#: src/ParcelLocator.php:1084
+#: packages/woocommerce-germanized-dhl/src/ParcelLocator.php:1084
 msgctxt "dhl"
 msgid "Register now"
 msgstr "Jetzt registrieren"
 
 # @ woocommerce-germanized
-#: src/ParcelLocator.php:1140
-#: packages/woocommerce-germanized-dhl/src/ParcelLocator.php:1140
+#: src/ParcelLocator.php:1142
+#: packages/woocommerce-germanized-dhl/src/ParcelLocator.php:1142
 msgctxt "dhl"
 msgid "Search %s"
 msgstr "%s suchen"
 
 # @ woocommerce-germanized
-#: src/ParcelLocator.php:1276 src/ParcelLocator.php:1282
-#: packages/woocommerce-germanized-dhl/src/ParcelLocator.php:1276
-#: packages/woocommerce-germanized-dhl/src/ParcelLocator.php:1282
+#: src/ParcelLocator.php:1278 src/ParcelLocator.php:1284
+#: packages/woocommerce-germanized-dhl/src/ParcelLocator.php:1278
+#: packages/woocommerce-germanized-dhl/src/ParcelLocator.php:1284
 msgctxt "dhl"
 msgid "The pickup location you've chosen cannot be found."
 msgstr "Die von Ihnen gewählte Abholadresse konnte nicht gefunden werden."
 
-#: src/ParcelLocator.php:1292
-#: packages/woocommerce-germanized-dhl/src/ParcelLocator.php:1292
+#: src/ParcelLocator.php:1294
+#: packages/woocommerce-germanized-dhl/src/ParcelLocator.php:1294
 msgctxt "dhl"
 msgid "Your pickup address seems invalid. Did you mean %s?"
 msgstr "Ihre Abholadresse ist nicht bekannt. Meinten Sie %s?"
 
-#: src/ParcelLocator.php:1297
-#: packages/woocommerce-germanized-dhl/src/ParcelLocator.php:1297
+#: src/ParcelLocator.php:1299
+#: packages/woocommerce-germanized-dhl/src/ParcelLocator.php:1299
 msgctxt "dhl"
 msgid "Your pickup city seems invalid. Did you mean %s?"
 msgstr "Die Stadt zu Ihrer Abholadresse ist nicht bekannt. Meinten Sie %s?"
 
-#: src/ParcelLocator.php:1398
-#: packages/woocommerce-germanized-dhl/src/ParcelLocator.php:1398
+#: src/ParcelLocator.php:1400
+#: packages/woocommerce-germanized-dhl/src/ParcelLocator.php:1400
 msgctxt "dhl"
 msgid "No DHL locations found"
 msgstr "Keine DHL Standorte gefunden"
 
-#: src/ParcelLocator.php:1417
-#: packages/woocommerce-germanized-dhl/src/ParcelLocator.php:1417
+#: src/ParcelLocator.php:1419
+#: packages/woocommerce-germanized-dhl/src/ParcelLocator.php:1419
 msgctxt "dhl"
 msgid ""
 "There was an error while communicating with DHL. Please manually find a %1$s "
@@ -1375,14 +1375,14 @@ msgstr ""
 "einen %1$s oder %2$s."
 
 # @ woocommerce-germanized
-#: src/ParcelLocator.php:1417
-#: packages/woocommerce-germanized-dhl/src/ParcelLocator.php:1417
+#: src/ParcelLocator.php:1419
+#: packages/woocommerce-germanized-dhl/src/ParcelLocator.php:1419
 msgctxt "dhl"
 msgid "DHL location"
 msgstr "DHL Standort"
 
-#: src/ParcelLocator.php:1417
-#: packages/woocommerce-germanized-dhl/src/ParcelLocator.php:1417
+#: src/ParcelLocator.php:1419
+#: packages/woocommerce-germanized-dhl/src/ParcelLocator.php:1419
 msgctxt "dhl"
 msgid "retry"
 msgstr "Erneut versuchen"
@@ -3284,25 +3284,25 @@ msgstr "LxBxH in dezimaler Form."
 
 # @ woocommerce-germanized
 #: includes/admin/views/html-order-shipment-content.php:51
-#: src/Admin/Admin.php:382 src/Admin/Settings.php:580 src/Admin/Table.php:727
-#: src/Packaging/ReportHelper.php:95 src/ShippingMethod/ShippingMethod.php:1046
+#: src/Admin/Admin.php:384 src/Admin/Settings.php:580 src/Admin/Table.php:727
+#: src/Packaging/ReportHelper.php:95 src/ShippingMethod/ShippingMethod.php:1057
 #: packages/woocommerce-germanized-shipments/includes/admin/views/html-order-shipment-content.php:51
-#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:382
+#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:384
 #: packages/woocommerce-germanized-shipments/src/Admin/Settings.php:580
 #: packages/woocommerce-germanized-shipments/src/Admin/Table.php:727
 #: packages/woocommerce-germanized-shipments/src/Packaging/ReportHelper.php:95
-#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:1046
+#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:1057
 msgctxt "shipments"
 msgid "Packaging"
 msgstr "Verpackung"
 
 # @ woocommerce-germanized
 #: includes/admin/views/html-order-shipment-content.php:59
-#: includes/wc-gzd-shipment-functions.php:1192 src/Admin/ReturnTable.php:25
+#: includes/wc-gzd-shipment-functions.php:1177 src/Admin/ReturnTable.php:25
 #: src/Admin/Table.php:724 src/ShippingProvider/Auto.php:288
 #: src/ShippingProvider/Auto.php:321
 #: packages/woocommerce-germanized-shipments/includes/admin/views/html-order-shipment-content.php:59
-#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:1192
+#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:1177
 #: packages/woocommerce-germanized-shipments/src/Admin/ReturnTable.php:25
 #: packages/woocommerce-germanized-shipments/src/Admin/Table.php:724
 #: packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:288
@@ -3356,22 +3356,22 @@ msgid "Add Item"
 msgstr "Position hinzufügen"
 
 #: includes/admin/views/html-order-shipment-content.php:207
-#: includes/admin/views/html-order-shipments.php:52 src/Admin/Admin.php:801
+#: includes/admin/views/html-order-shipments.php:52 src/Admin/Admin.php:883
 #: packages/woocommerce-germanized-shipments/includes/admin/views/html-order-shipment-content.php:207
 #: packages/woocommerce-germanized-shipments/includes/admin/views/html-order-shipments.php:52
-#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:801
+#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:883
 msgctxt "shipments"
 msgid "Item"
 msgstr "Position"
 
 #: includes/admin/views/html-order-shipment-content.php:208
-#: includes/admin/views/html-order-shipments.php:53 src/Admin/Admin.php:806
+#: includes/admin/views/html-order-shipments.php:53 src/Admin/Admin.php:888
 #: templates/emails/email-shipment-details.php:55
 #: templates/myaccount/add-return-shipment.php:35
 #: templates/shipment/shipment-details.php:58
 #: packages/woocommerce-germanized-shipments/includes/admin/views/html-order-shipment-content.php:208
 #: packages/woocommerce-germanized-shipments/includes/admin/views/html-order-shipments.php:53
-#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:806
+#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:888
 #: packages/woocommerce-germanized-shipments/templates/emails/email-shipment-details.php:55
 #: packages/woocommerce-germanized-shipments/templates/myaccount/add-return-shipment.php:35
 #: packages/woocommerce-germanized-shipments/templates/shipment/shipment-details.php:58
@@ -3459,16 +3459,16 @@ msgid "Delete item"
 msgstr "Position löschen"
 
 #: includes/admin/views/html-order-shipment-list.php:24
-#: includes/wc-gzd-shipment-functions.php:128 src/Admin/Admin.php:367
-#: src/Admin/Admin.php:788 src/Admin/Admin.php:1315 src/Admin/Admin.php:1436
+#: includes/wc-gzd-shipment-functions.php:113 src/Admin/Admin.php:369
+#: src/Admin/Admin.php:870 src/Admin/Admin.php:1397 src/Admin/Admin.php:1518
 #: src/Admin/Settings.php:82 src/Admin/Settings.php:237
 #: src/ShippingProvider/Auto.php:313 templates/myaccount/order-shipments.php:41
 #: packages/woocommerce-germanized-shipments/includes/admin/views/html-order-shipment-list.php:24
-#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:128
-#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:367
-#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:788
-#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:1315
-#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:1436
+#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:113
+#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:369
+#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:870
+#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:1397
+#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:1518
 #: packages/woocommerce-germanized-shipments/src/Admin/Settings.php:82
 #: packages/woocommerce-germanized-shipments/src/Admin/Settings.php:237
 #: packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:313
@@ -3479,9 +3479,9 @@ msgstr "Retouren"
 
 # @ woocommerce-germanized
 #: includes/admin/views/html-order-shipment-packaging-select.php:23
-#: includes/wc-gzd-packaging-functions.php:52
+#: includes/wc-gzd-packaging-functions.php:51
 #: packages/woocommerce-germanized-shipments/includes/admin/views/html-order-shipment-packaging-select.php:23
-#: packages/woocommerce-germanized-shipments/includes/wc-gzd-packaging-functions.php:52
+#: packages/woocommerce-germanized-shipments/includes/wc-gzd-packaging-functions.php:51
 msgctxt "shipments-packaging"
 msgid "None"
 msgstr "Keine"
@@ -3503,15 +3503,15 @@ msgstr "%1$s #%2$s"
 
 # @ woocommerce-germanized
 #: includes/admin/views/html-order-shipments.php:19
-#: includes/wc-gzd-shipment-functions.php:121 src/Admin/Admin.php:363
-#: src/Admin/Admin.php:1314 src/Admin/Admin.php:1402 src/Admin/Admin.php:1470
+#: includes/wc-gzd-shipment-functions.php:106 src/Admin/Admin.php:365
+#: src/Admin/Admin.php:1396 src/Admin/Admin.php:1484 src/Admin/Admin.php:1552
 #: templates/myaccount/order-shipments.php:20
 #: packages/woocommerce-germanized-shipments/includes/admin/views/html-order-shipments.php:19
-#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:121
-#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:363
-#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:1314
-#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:1402
-#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:1470
+#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:106
+#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:365
+#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:1396
+#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:1484
+#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:1552
 #: packages/woocommerce-germanized-shipments/templates/myaccount/order-shipments.php:20
 msgctxt "shipments"
 msgid "Shipments"
@@ -3559,11 +3559,11 @@ msgstr "Titel"
 
 # @ woocommerce-germanized
 #: includes/admin/views/html-settings-provider-list.php:13
-#: src/Admin/Admin.php:635 src/Admin/Admin.php:1132
+#: src/Admin/Admin.php:703 src/Admin/Admin.php:1214
 #: src/Admin/PackagingSettings.php:125 src/ShippingProvider/Simple.php:862
 #: packages/woocommerce-germanized-shipments/includes/admin/views/html-settings-provider-list.php:13
-#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:635
-#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:1132
+#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:703
+#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:1214
 #: packages/woocommerce-germanized-shipments/src/Admin/PackagingSettings.php:125
 #: packages/woocommerce-germanized-shipments/src/ShippingProvider/Simple.php:862
 msgctxt "shipments"
@@ -3618,9 +3618,9 @@ msgid "Delete"
 msgstr "Löschen"
 
 #: includes/admin/views/html-settings-provider-list.php:43
-#: src/Admin/Admin.php:304
+#: src/Admin/Admin.php:306
 #: packages/woocommerce-germanized-shipments/includes/admin/views/html-settings-provider-list.php:43
-#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:304
+#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:306
 msgctxt "shipments"
 msgid "Yes"
 msgstr "Ja"
@@ -3628,11 +3628,11 @@ msgstr "Ja"
 #: includes/admin/views/html-settings-provider-list.php:60
 #: includes/admin/views/html-settings-provider-list.php:61
 #: includes/admin/views/html-settings-provider-list.php:63
-#: src/Admin/Admin.php:628
+#: src/Admin/Admin.php:696
 #: packages/woocommerce-germanized-shipments/includes/admin/views/html-settings-provider-list.php:60
 #: packages/woocommerce-germanized-shipments/includes/admin/views/html-settings-provider-list.php:61
 #: packages/woocommerce-germanized-shipments/includes/admin/views/html-settings-provider-list.php:63
-#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:628
+#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:696
 msgctxt "shipments"
 msgid "Help"
 msgstr "Hilfe"
@@ -3668,10 +3668,10 @@ msgstr "Erstellen"
 
 # @ woocommerce-germanized
 #: includes/admin/views/label/html-shipment-label.php:25
-#: includes/wc-gzd-shipment-functions.php:1450 src/Admin/Table.php:907
+#: includes/wc-gzd-shipment-functions.php:1436 src/Admin/Table.php:907
 #: src/Ajax.php:354 templates/shipment/shipment-return-instructions.php:29
 #: packages/woocommerce-germanized-shipments/includes/admin/views/label/html-shipment-label.php:25
-#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:1450
+#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:1436
 #: packages/woocommerce-germanized-shipments/src/Admin/Table.php:907
 #: packages/woocommerce-germanized-shipments/src/Ajax.php:354
 #: packages/woocommerce-germanized-shipments/templates/shipment/shipment-return-instructions.php:29
@@ -3885,12 +3885,12 @@ msgid "Text to appear below the main email content."
 msgstr "Text der unterhalb des Inhalts der E-Mail angezeigt werden soll."
 
 #: includes/emails/class-wc-gzd-email-customer-shipment.php:395
-#: includes/wc-gzd-shipment-functions.php:1124
-#: includes/wc-gzd-shipment-functions.php:1154
+#: includes/wc-gzd-shipment-functions.php:1109
+#: includes/wc-gzd-shipment-functions.php:1139
 #: templates/shipment/shipment-details-address.php:28
 #: packages/woocommerce-germanized-shipments/includes/emails/class-wc-gzd-email-customer-shipment.php:395
-#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:1124
-#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:1154
+#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:1109
+#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:1139
 #: packages/woocommerce-germanized-shipments/templates/shipment/shipment-details-address.php:28
 msgctxt "shipments"
 msgid "N/A"
@@ -3962,178 +3962,178 @@ msgctxt "shipments"
 msgid "Letter"
 msgstr "Brief"
 
-#: includes/wc-gzd-shipment-functions.php:73
-#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:73
+#: includes/wc-gzd-shipment-functions.php:58
+#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:58
 msgctxt "shipments"
 msgid "Domestic"
 msgstr "National"
 
-#: includes/wc-gzd-shipment-functions.php:74
-#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:74
+#: includes/wc-gzd-shipment-functions.php:59
+#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:59
 msgctxt "shipments"
 msgid "EU"
 msgstr "EU"
 
 # @ woocommerce-germanized
-#: includes/wc-gzd-shipment-functions.php:75
-#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:75
+#: includes/wc-gzd-shipment-functions.php:60
+#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:60
 msgctxt "shipments"
 msgid "International"
 msgstr "International"
 
 # @ woocommerce-germanized
-#: includes/wc-gzd-shipment-functions.php:88
-#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:88
+#: includes/wc-gzd-shipment-functions.php:73
+#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:73
 msgctxt "shipments-zone-title"
 msgid "%1$s shipments"
 msgstr "Sendungen: %1$s"
 
 # @ woocommerce-germanized
-#: includes/wc-gzd-shipment-functions.php:91
-#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:91
+#: includes/wc-gzd-shipment-functions.php:76
+#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:76
 msgctxt "shipments"
 msgid "Domestic Shipments"
 msgstr "Nationale Sendungen"
 
 # @ woocommerce-germanized
-#: includes/wc-gzd-shipment-functions.php:92
-#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:92
+#: includes/wc-gzd-shipment-functions.php:77
+#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:77
 msgctxt "shipments"
 msgid "EU Shipments"
 msgstr "EU Sendungen"
 
 # @ woocommerce-germanized
-#: includes/wc-gzd-shipment-functions.php:93
-#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:93
+#: includes/wc-gzd-shipment-functions.php:78
+#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:78
 msgctxt "shipments"
 msgid "International Shipments"
 msgstr "Internationale Sendungen"
 
-#: includes/wc-gzd-shipment-functions.php:120
-#: includes/wc-gzd-shipment-functions.php:1190
-#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:120
-#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:1190
+#: includes/wc-gzd-shipment-functions.php:105
+#: includes/wc-gzd-shipment-functions.php:1175
+#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:105
+#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:1175
 msgctxt "shipments"
 msgid "Shipment"
 msgstr "Sendung"
 
-#: includes/wc-gzd-shipment-functions.php:127
-#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:127
+#: includes/wc-gzd-shipment-functions.php:112
+#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:112
 msgctxt "shipments"
 msgid "Return"
 msgstr "Retoure"
 
-#: includes/wc-gzd-shipment-functions.php:155
-#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:155
+#: includes/wc-gzd-shipment-functions.php:140
+#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:140
 msgctxt "shipments"
 msgid "Not shipped"
 msgstr "Nicht versandt"
 
-#: includes/wc-gzd-shipment-functions.php:156
-#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:156
+#: includes/wc-gzd-shipment-functions.php:141
+#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:141
 msgctxt "shipments"
 msgid "Partially shipped"
 msgstr "Teilweise versandt"
 
 # @ woocommerce-germanized
-#: includes/wc-gzd-shipment-functions.php:157
-#: includes/wc-gzd-shipment-functions.php:329 src/Admin/Table.php:898
-#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:157
-#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:329
+#: includes/wc-gzd-shipment-functions.php:142
+#: includes/wc-gzd-shipment-functions.php:314 src/Admin/Table.php:898
+#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:142
+#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:314
 #: packages/woocommerce-germanized-shipments/src/Admin/Table.php:898
 msgctxt "shipments"
 msgid "Shipped"
 msgstr "Versandt"
 
-#: includes/wc-gzd-shipment-functions.php:158
-#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:158
+#: includes/wc-gzd-shipment-functions.php:143
+#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:143
 msgctxt "shipments"
 msgid "Partially delivered"
 msgstr "Teilweise geliefert"
 
 # @ woocommerce-germanized
-#: includes/wc-gzd-shipment-functions.php:159
-#: includes/wc-gzd-shipment-functions.php:330 src/Admin/ReturnTable.php:51
-#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:159
-#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:330
+#: includes/wc-gzd-shipment-functions.php:144
+#: includes/wc-gzd-shipment-functions.php:315 src/Admin/ReturnTable.php:51
+#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:144
+#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:315
 #: packages/woocommerce-germanized-shipments/src/Admin/ReturnTable.php:51
 msgctxt "shipments"
 msgid "Delivered"
 msgstr "Geliefert"
 
-#: includes/wc-gzd-shipment-functions.php:160
-#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:160
+#: includes/wc-gzd-shipment-functions.php:145
+#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:145
 msgctxt "shipments"
 msgid "No shipping needed"
 msgstr "Kein Versand nötig"
 
-#: includes/wc-gzd-shipment-functions.php:177
-#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:177
+#: includes/wc-gzd-shipment-functions.php:162
+#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:162
 msgctxt "shipments"
 msgid "Open"
 msgstr "Offen"
 
-#: includes/wc-gzd-shipment-functions.php:178
-#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:178
+#: includes/wc-gzd-shipment-functions.php:163
+#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:163
 msgctxt "shipments"
 msgid "Partially returned"
 msgstr "Teilweise retourniert"
 
-#: includes/wc-gzd-shipment-functions.php:179
-#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:179
+#: includes/wc-gzd-shipment-functions.php:164
+#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:164
 msgctxt "shipments"
 msgid "Returned"
 msgstr "Retourniert"
 
-#: includes/wc-gzd-shipment-functions.php:327
-#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:327
+#: includes/wc-gzd-shipment-functions.php:312
+#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:312
 msgctxt "shipments"
 msgid "Draft"
 msgstr "Entwurf"
 
-#: includes/wc-gzd-shipment-functions.php:328 src/Admin/Table.php:890
-#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:328
+#: includes/wc-gzd-shipment-functions.php:313 src/Admin/Table.php:890
+#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:313
 #: packages/woocommerce-germanized-shipments/src/Admin/Table.php:890
 msgctxt "shipments"
 msgid "Processing"
 msgstr "In Bearbeitung"
 
-#: includes/wc-gzd-shipment-functions.php:331
-#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:331
+#: includes/wc-gzd-shipment-functions.php:316
+#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:316
 msgctxt "shipments"
 msgid "Requested"
 msgstr "Beantragt"
 
-#: includes/wc-gzd-shipment-functions.php:380
+#: includes/wc-gzd-shipment-functions.php:365
 #: includes/wc-gzd-shipments-template-functions.php:81
 #: includes/wc-gzd-shipments-template-functions.php:139
-#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:380
+#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:365
 #: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipments-template-functions.php:81
 #: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipments-template-functions.php:139
 msgctxt "shipments"
 msgid "Invalid order."
 msgstr "Ungültige Bestellung."
 
-#: includes/wc-gzd-shipment-functions.php:384
-#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:384
+#: includes/wc-gzd-shipment-functions.php:369
+#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:369
 msgctxt "shipments"
 msgid "This order is already fully returned."
 msgstr "Diese Bestellung wurde bereits vollständig zurückgesendet."
 
-#: includes/wc-gzd-shipment-functions.php:398
-#: includes/wc-gzd-shipment-functions.php:441
-#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:398
-#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:441
+#: includes/wc-gzd-shipment-functions.php:383
+#: includes/wc-gzd-shipment-functions.php:426
+#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:383
+#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:426
 msgctxt "shipments"
 msgid "Error while creating the shipment instance"
 msgstr "Fehler beim Erstellen der Sendungsinstanz"
 
-#: includes/wc-gzd-shipment-functions.php:423
-#: includes/wc-gzd-shipment-functions.php:427 src/ReturnShipment.php:259
+#: includes/wc-gzd-shipment-functions.php:408
+#: includes/wc-gzd-shipment-functions.php:412 src/ReturnShipment.php:259
 #: src/ReturnShipment.php:345 src/SimpleShipment.php:118
 #: src/SimpleShipment.php:235
-#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:423
-#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:427
+#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:408
+#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:412
 #: packages/woocommerce-germanized-shipments/src/ReturnShipment.php:259
 #: packages/woocommerce-germanized-shipments/src/ReturnShipment.php:345
 #: packages/woocommerce-germanized-shipments/src/SimpleShipment.php:118
@@ -4142,184 +4142,184 @@ msgctxt "shipments"
 msgid "Invalid shipment order"
 msgstr "Ungültige Bestellung zur Sendung"
 
-#: includes/wc-gzd-shipment-functions.php:459
-#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:459
+#: includes/wc-gzd-shipment-functions.php:444
+#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:444
 msgctxt "shipments"
 msgid "Invalid order item"
 msgstr "Ungültige Bestellposition"
 
-#: includes/wc-gzd-shipment-functions.php:581
-#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:581
+#: includes/wc-gzd-shipment-functions.php:566
+#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:566
 msgctxt "shipments"
 msgid "Invalid shipment item"
 msgstr "Ungültige Sendungsposition"
 
 # @ woocommerce-germanized
-#: includes/wc-gzd-shipment-functions.php:684
-#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:684
+#: includes/wc-gzd-shipment-functions.php:669
+#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:669
 msgctxt "shipments"
 msgid "None"
 msgstr "Keiner"
 
-#: includes/wc-gzd-shipment-functions.php:725
-#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:725
+#: includes/wc-gzd-shipment-functions.php:710
+#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:710
 msgctxt "shipments-shipping-provider"
 msgid "Unknown"
 msgstr "Unbekannt"
 
-#: includes/wc-gzd-shipment-functions.php:774
-#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:774
+#: includes/wc-gzd-shipment-functions.php:759
+#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:759
 msgctxt "shipments"
 msgid "Error while uploading file."
 msgstr "Fehler beim Hochladen der Datei."
 
 # @ woocommerce-germanized
-#: includes/wc-gzd-shipment-functions.php:783
-#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:783
+#: includes/wc-gzd-shipment-functions.php:768
+#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:768
 msgctxt "shipments"
 msgid "First Name"
 msgstr "Vorname"
 
 # @ woocommerce-germanized
-#: includes/wc-gzd-shipment-functions.php:784
-#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:784
+#: includes/wc-gzd-shipment-functions.php:769
+#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:769
 msgctxt "shipments"
 msgid "Last Name"
 msgstr "Nachname"
 
 # @ woocommerce-germanized
-#: includes/wc-gzd-shipment-functions.php:785
-#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:785
+#: includes/wc-gzd-shipment-functions.php:770
+#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:770
 msgctxt "shipments"
 msgid "Full Name"
 msgstr "Vollständiger Name"
 
-#: includes/wc-gzd-shipment-functions.php:786
-#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:786
+#: includes/wc-gzd-shipment-functions.php:771
+#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:771
 msgctxt "shipments"
 msgid "Company"
 msgstr "Firma"
 
-#: includes/wc-gzd-shipment-functions.php:787
-#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:787
+#: includes/wc-gzd-shipment-functions.php:772
+#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:772
 msgctxt "shipments"
 msgid "Address 1"
 msgstr "Adresszeile 1"
 
-#: includes/wc-gzd-shipment-functions.php:788
-#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:788
+#: includes/wc-gzd-shipment-functions.php:773
+#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:773
 msgctxt "shipments"
 msgid "Address 2"
 msgstr "Adresszeile 2"
 
 # @ woocommerce-germanized
-#: includes/wc-gzd-shipment-functions.php:789
-#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:789
+#: includes/wc-gzd-shipment-functions.php:774
+#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:774
 msgctxt "shipments"
 msgid "Street"
 msgstr "Straße"
 
-#: includes/wc-gzd-shipment-functions.php:790
-#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:790
+#: includes/wc-gzd-shipment-functions.php:775
+#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:775
 msgctxt "shipments"
 msgid "House Number"
 msgstr "Hausnummer"
 
 # @ woocommerce-germanized
-#: includes/wc-gzd-shipment-functions.php:791
-#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:791
+#: includes/wc-gzd-shipment-functions.php:776
+#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:776
 msgctxt "shipments"
 msgid "Postcode"
 msgstr "Postleitzahl"
 
 # @ woocommerce-germanized
-#: includes/wc-gzd-shipment-functions.php:792
-#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:792
+#: includes/wc-gzd-shipment-functions.php:777
+#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:777
 msgctxt "shipments"
 msgid "City"
 msgstr "Stadt"
 
-#: includes/wc-gzd-shipment-functions.php:793
-#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:793
+#: includes/wc-gzd-shipment-functions.php:778
+#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:778
 msgctxt "shipments"
 msgid "Country"
 msgstr "Land"
 
 # @ woocommerce-germanized
-#: includes/wc-gzd-shipment-functions.php:794
-#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:794
+#: includes/wc-gzd-shipment-functions.php:779
+#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:779
 msgctxt "shipments"
 msgid "State"
 msgstr "Staat"
 
-#: includes/wc-gzd-shipment-functions.php:795
-#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:795
+#: includes/wc-gzd-shipment-functions.php:780
+#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:780
 msgctxt "shipments"
 msgid "Phone"
 msgstr "Telefon"
 
-#: includes/wc-gzd-shipment-functions.php:796
-#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:796
+#: includes/wc-gzd-shipment-functions.php:781
+#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:781
 msgctxt "shipments"
 msgid "Email"
 msgstr "E-Mail"
 
-#: includes/wc-gzd-shipment-functions.php:797
-#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:797
+#: includes/wc-gzd-shipment-functions.php:782
+#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:782
 msgctxt "shipments"
 msgid "Customs Reference Number"
 msgstr "Identifikationsnummer (Zoll)"
 
-#: includes/wc-gzd-shipment-functions.php:798
-#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:798
+#: includes/wc-gzd-shipment-functions.php:783
+#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:783
 msgctxt "shipments"
 msgid "UK VAT ID (HMRC)"
 msgstr "UK USt.-ID (HMRC)"
 
-#: includes/wc-gzd-shipment-functions.php:848 src/Labels/ReturnLabel.php:141
-#: src/Shipment.php:1161 src/Shipment.php:1432
-#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:848
+#: includes/wc-gzd-shipment-functions.php:833 src/Labels/ReturnLabel.php:141
+#: src/Shipment.php:1169 src/Shipment.php:1440
+#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:833
 #: packages/woocommerce-germanized-shipments/src/Labels/ReturnLabel.php:141
-#: packages/woocommerce-germanized-shipments/src/Shipment.php:1161
-#: packages/woocommerce-germanized-shipments/src/Shipment.php:1432
+#: packages/woocommerce-germanized-shipments/src/Shipment.php:1169
+#: packages/woocommerce-germanized-shipments/src/Shipment.php:1440
 msgctxt "full name"
 msgid "%1$s %2$s"
 msgstr "%1$s %2$s"
 
 # @ woocommerce-germanized
-#: includes/wc-gzd-shipment-functions.php:1191 src/Admin/ReturnTable.php:24
+#: includes/wc-gzd-shipment-functions.php:1176 src/Admin/ReturnTable.php:24
 #: src/Admin/Table.php:723
-#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:1191
+#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:1176
 #: packages/woocommerce-germanized-shipments/src/Admin/ReturnTable.php:24
 #: packages/woocommerce-germanized-shipments/src/Admin/Table.php:723
 msgctxt "shipments"
 msgid "Date"
 msgstr "Datum"
 
-#: includes/wc-gzd-shipment-functions.php:1193
+#: includes/wc-gzd-shipment-functions.php:1178
 #: templates/shipment/shipment-details-tracking.php:23
-#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:1193
+#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:1178
 #: packages/woocommerce-germanized-shipments/templates/shipment/shipment-details-tracking.php:23
 msgctxt "shipments"
 msgid "Tracking"
 msgstr "Sendungsverfolgung"
 
 # @ woocommerce-germanized
-#: includes/wc-gzd-shipment-functions.php:1194 src/Admin/Admin.php:811
-#: src/Admin/Admin.php:1137 src/Admin/ReturnTable.php:31
-#: src/Admin/Table.php:731 src/ShippingMethod/ShippingMethod.php:1055
-#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:1194
-#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:811
-#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:1137
+#: includes/wc-gzd-shipment-functions.php:1179 src/Admin/Admin.php:893
+#: src/Admin/Admin.php:1219 src/Admin/ReturnTable.php:31
+#: src/Admin/Table.php:731 src/ShippingMethod/ShippingMethod.php:1066
+#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:1179
+#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:893
+#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:1219
 #: packages/woocommerce-germanized-shipments/src/Admin/ReturnTable.php:31
 #: packages/woocommerce-germanized-shipments/src/Admin/Table.php:731
-#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:1055
+#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:1066
 msgctxt "shipments"
 msgid "Actions"
 msgstr "Aktionen"
 
-#: includes/wc-gzd-shipment-functions.php:1443
-#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:1443
+#: includes/wc-gzd-shipment-functions.php:1429
+#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:1429
 msgctxt "shipments"
 msgid "View"
 msgstr "Anzeigen"
@@ -4336,9 +4336,9 @@ msgid "My account"
 msgstr "Mein Konto"
 
 #: includes/wc-gzd-shipments-template-functions.php:119
-#: src/DataStores/Shipment.php:360
+#: src/DataStores/Shipment.php:361
 #: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipments-template-functions.php:119
-#: packages/woocommerce-germanized-shipments/src/DataStores/Shipment.php:360
+#: packages/woocommerce-germanized-shipments/src/DataStores/Shipment.php:361
 msgctxt "shipments"
 msgid "Invalid shipment."
 msgstr "Ungültige Sendung."
@@ -4370,48 +4370,48 @@ msgstr ""
 "Die folgenden Produkte können aufgrund ihrer Beschaffenheit nicht "
 "zurückgeschickt werden: %1$s"
 
-#: src/Admin/Admin.php:170 src/Admin/Admin.php:1163 src/Admin/Admin.php:1211
-#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:170
-#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:1163
-#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:1211
+#: src/Admin/Admin.php:172 src/Admin/Admin.php:1245 src/Admin/Admin.php:1293
+#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:172
+#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:1245
+#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:1293
 msgctxt "shipments"
 msgid "Length"
 msgstr "Länge"
 
-#: src/Admin/Admin.php:171 src/Admin/Admin.php:1164 src/Admin/Admin.php:1212
-#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:171
-#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:1164
-#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:1212
+#: src/Admin/Admin.php:173 src/Admin/Admin.php:1246 src/Admin/Admin.php:1294
+#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:173
+#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:1246
+#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:1294
 msgctxt "shipments"
 msgid "Width"
 msgstr "Breite"
 
-#: src/Admin/Admin.php:172 src/Admin/Admin.php:1165 src/Admin/Admin.php:1213
-#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:172
-#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:1165
-#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:1213
+#: src/Admin/Admin.php:174 src/Admin/Admin.php:1247 src/Admin/Admin.php:1295
+#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:174
+#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:1247
+#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:1295
 msgctxt "shipments"
 msgid "Height"
 msgstr "Höhe"
 
-#: src/Admin/Admin.php:304 src/Admin/Admin.php:410
-#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:304
-#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:410
+#: src/Admin/Admin.php:306 src/Admin/Admin.php:412
+#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:306
+#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:412
 msgctxt "shipments"
 msgid "No"
 msgstr "Nein"
 
-#: src/Admin/Admin.php:356 src/Admin/Settings.php:101
-#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:356
+#: src/Admin/Admin.php:358 src/Admin/Settings.php:101
+#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:358
 #: packages/woocommerce-germanized-shipments/src/Admin/Settings.php:101
 msgctxt "shipments"
 msgid "Edit packaging"
 msgstr "Verpackung bearbeiten"
 
 # @ woocommerce-germanized
-#: src/Admin/Admin.php:371 src/Admin/Settings.php:453
+#: src/Admin/Admin.php:373 src/Admin/Settings.php:453
 #: src/Packaging/ReportHelper.php:42
-#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:371
+#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:373
 #: packages/woocommerce-germanized-shipments/src/Admin/Settings.php:453
 #: packages/woocommerce-germanized-shipments/src/Packaging/ReportHelper.php:42
 msgctxt "shipments"
@@ -4419,26 +4419,26 @@ msgid "Packaging Report"
 msgstr "Verpackungsbericht"
 
 # @ woocommerce-germanized
-#: src/Admin/Admin.php:419
-#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:419
+#: src/Admin/Admin.php:421
+#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:421
 msgctxt "shipments"
 msgid "Override defaults?"
 msgstr "Standard überschreiben?"
 
-#: src/Admin/Admin.php:460
-#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:460
+#: src/Admin/Admin.php:462
+#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:462
 msgctxt "shipments"
 msgid "All packaging"
 msgstr "Alle Verpackungen"
 
-#: src/Admin/Admin.php:496
-#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:496
+#: src/Admin/Admin.php:498
+#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:498
 msgctxt "shipments"
 msgid "Save changes"
 msgstr "Änderungen speichern"
 
-#: src/Admin/Admin.php:500
-#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:500
+#: src/Admin/Admin.php:502
+#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:502
 msgctxt "shipments"
 msgid "This provider does not support adjusting settings related to %1$s"
 msgstr ""
@@ -4446,54 +4446,70 @@ msgstr ""
 "%1$s nicht"
 
 # @ woocommerce-germanized
-#: src/Admin/Admin.php:568 src/Admin/Admin.php:576
-#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:568
-#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:576
+#: src/Admin/Admin.php:574 src/Admin/Admin.php:582
+#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:574
+#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:582
 msgctxt "shipments-order-column-name"
 msgid "Shipping Status"
 msgstr "Versandstatus"
 
+#. translators: %s dimension unit
+#. translators: WooCommerce dimension unit
+#: src/Admin/Admin.php:639 src/Admin/Admin.php:669
+#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:639
+#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:669
+msgctxt "shipments"
+msgid "Shipping dimensions (%s)"
+msgstr "Versandmaße (%s)"
+
+#: src/Admin/Admin.php:644 src/Admin/Admin.php:679
+#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:644
+#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:679
+msgctxt "shipments"
+msgid "Length x width x height in decimal form"
+msgstr "Länge x Breite x Höhe in dezimaler Form"
+
 # @ woocommerce-germanized
-#: src/Admin/Admin.php:614
-#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:614
+#: src/Admin/Admin.php:661
+#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:661
 msgctxt "shipments"
 msgid "Select a country"
 msgstr "Land auswählen"
 
-#: src/Admin/Admin.php:619
-#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:619
+#: src/Admin/Admin.php:687
+#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:687
 msgctxt "shipments"
 msgid "Non returnable"
 msgstr "Nicht retournierbar"
 
-#: src/Admin/Admin.php:620
-#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:620
+#: src/Admin/Admin.php:688
+#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:688
 msgctxt "shipments"
 msgid "Exclude product from returns, e.g. pet food."
 msgstr "Verbiete Retouren für dieses Produkt (z.B. Tiernahrung)."
 
-#: src/Admin/Admin.php:626
-#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:626
+#: src/Admin/Admin.php:694
+#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:694
 msgctxt "shipments"
 msgid "Customs"
 msgstr "Zoll"
 
-#: src/Admin/Admin.php:637
-#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:637
+#: src/Admin/Admin.php:705
+#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:705
 msgctxt "shipments"
 msgid "Choose a description to be used for customs documents, e.g. CN23 form."
 msgstr ""
 "Fügen Sie eine Beschreibung speziell für Zollzwecke, z.B. CN23 Formular ein."
 
-#: src/Admin/Admin.php:645 src/Api.php:128
-#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:645
-#: packages/woocommerce-germanized-shipments/src/Api.php:128
+#: src/Admin/Admin.php:713 src/Api.php:155
+#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:713
+#: packages/woocommerce-germanized-shipments/src/Api.php:155
 msgctxt "shipments"
 msgid "HS-Code"
 msgstr "HS-Code"
 
-#: src/Admin/Admin.php:647
-#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:647
+#: src/Admin/Admin.php:715
+#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:715
 msgctxt "shipments"
 msgid ""
 "The HS Code is a number assigned to every possible commodity that can be "
@@ -4503,15 +4519,15 @@ msgstr ""
 "standardisiertes System von Namen und Nummern zur Klassifizierung "
 "gehandelter Produkte."
 
-#: src/Admin/Admin.php:656 src/Api.php:135
-#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:656
-#: packages/woocommerce-germanized-shipments/src/Api.php:135
+#: src/Admin/Admin.php:724 src/Api.php:162
+#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:724
+#: packages/woocommerce-germanized-shipments/src/Api.php:162
 msgctxt "shipments"
 msgid "Country of manufacture"
 msgstr "Herkunftsland"
 
-#: src/Admin/Admin.php:658
-#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:658
+#: src/Admin/Admin.php:726
+#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:726
 msgctxt "shipments"
 msgid ""
 "The country of manufacture is needed for customs of international shipping."
@@ -4519,8 +4535,8 @@ msgstr ""
 "Das Herstellungsland wird für die Zollabwicklung bei internationalen "
 "Sendungen benötigt."
 
-#: src/Admin/Admin.php:702
-#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:702
+#: src/Admin/Admin.php:784
+#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:784
 msgctxt "shipments"
 msgid ""
 "Shipments upload directory missing. Please manually create the folder %s and "
@@ -4530,67 +4546,67 @@ msgstr ""
 "erstellen Sie den Ordner %s manuell und stellen Sie sicher, dass der Ordner "
 "beschreibbar ist."
 
-#: src/Admin/Admin.php:739
-#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:739
+#: src/Admin/Admin.php:821
+#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:821
 msgctxt "shipments"
 msgid "View Shipments"
 msgstr "Sendung anzeigen"
 
-#: src/Admin/Admin.php:740
-#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:740
+#: src/Admin/Admin.php:822
+#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:822
 msgctxt "shipments"
 msgid "Endpoint for the \"My account &rarr; View shipments\" page."
 msgstr "Endpunkt für die „Mein Konto &rarr; Sendungen“ Seite."
 
-#: src/Admin/Admin.php:747
-#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:747
+#: src/Admin/Admin.php:829
+#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:829
 msgctxt "shipments"
 msgid "View shipment"
 msgstr "Sendung anzeigen"
 
-#: src/Admin/Admin.php:748
-#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:748
+#: src/Admin/Admin.php:830
+#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:830
 msgctxt "shipments"
 msgid "Endpoint for the \"My account &rarr; View shipment\" page."
 msgstr "Endpunkt für die „Mein Konto &rarr; Sendung“ Seite."
 
-#: src/Admin/Admin.php:755
-#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:755
+#: src/Admin/Admin.php:837
+#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:837
 msgctxt "shipments"
 msgid "Add Return Shipment"
 msgstr "Rücksendung"
 
-#: src/Admin/Admin.php:756
-#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:756
+#: src/Admin/Admin.php:838
+#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:838
 msgctxt "shipments"
 msgid "Endpoint for the \"My account &rarr; Add return shipment\" page."
 msgstr "Endpunkt für die „Mein Konto &rarr; Rücksendung“ Seite."
 
 # @ woocommerce-germanized
-#: src/Admin/Admin.php:819 src/Admin/Admin.php:955
+#: src/Admin/Admin.php:901 src/Admin/Admin.php:1037
 #: templates/myaccount/add-return-shipment.php:34
-#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:819
-#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:955
+#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:901
+#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:1037
 #: packages/woocommerce-germanized-shipments/templates/myaccount/add-return-shipment.php:34
 msgctxt "shipments"
 msgid "Reason"
 msgstr "Rücksendegrund"
 
 # @ woocommerce-germanized
-#: src/Admin/Admin.php:947
-#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:947
+#: src/Admin/Admin.php:1029
+#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:1029
 msgctxt "shipments"
 msgid "Return reasons"
 msgstr "Rücksendegründe"
 
-#: src/Admin/Admin.php:954
-#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:954
+#: src/Admin/Admin.php:1036
+#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:1036
 msgctxt "shipments"
 msgid "Reason code"
 msgstr "Rücksendegrund (Code)"
 
-#: src/Admin/Admin.php:954
-#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:954
+#: src/Admin/Admin.php:1036
+#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:1036
 msgctxt "shipments"
 msgid "The reason code is used to identify the reason."
 msgstr ""
@@ -4598,34 +4614,34 @@ msgstr ""
 "identifizieren zu können."
 
 # @ woocommerce-germanized
-#: src/Admin/Admin.php:955
-#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:955
+#: src/Admin/Admin.php:1037
+#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:1037
 msgctxt "shipments"
 msgid "Choose a reason text."
 msgstr "Beschreibung für den Grund."
 
 # @ woocommerce-germanized
-#: src/Admin/Admin.php:974
-#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:974
+#: src/Admin/Admin.php:1056
+#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:1056
 msgctxt "shipments"
 msgid "+ Add reason"
 msgstr "+ Grund hinzufügen"
 
-#: src/Admin/Admin.php:974
-#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:974
+#: src/Admin/Admin.php:1056
+#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:1056
 msgctxt "shipments"
 msgid "Remove selected reason(s)"
 msgstr "Ausgewählte Gründe löschen"
 
 # @ woocommerce-germanized
-#: src/Admin/Admin.php:1008
-#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:1008
+#: src/Admin/Admin.php:1090
+#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:1090
 msgctxt "shipments"
 msgid "Packaging Reports"
 msgstr "Berichte zu Verpackungen"
 
-#: src/Admin/Admin.php:1008
-#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:1008
+#: src/Admin/Admin.php:1090
+#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:1090
 msgctxt "shipments"
 msgid ""
 "Generate summary reports which contain information about the amount of "
@@ -4634,92 +4650,92 @@ msgstr ""
 "Erzeuge Zusammenfassungen zur Verpackungsnutzung. Die Berichte helfen z.B. "
 "bei der Verpackungslizenzierung."
 
-#: src/Admin/Admin.php:1044
-#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:1044
+#: src/Admin/Admin.php:1126
+#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:1126
 msgctxt "shipments"
 msgid "Create report"
 msgstr "Bericht erstellen"
 
-#: src/Admin/Admin.php:1051 src/Packaging/ReportHelper.php:225
-#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:1051
+#: src/Admin/Admin.php:1133 src/Packaging/ReportHelper.php:225
+#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:1133
 #: packages/woocommerce-germanized-shipments/src/Packaging/ReportHelper.php:225
 msgctxt "shipments"
 msgid "Report"
 msgstr "Bericht"
 
-#: src/Admin/Admin.php:1052
-#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:1052
+#: src/Admin/Admin.php:1134
+#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:1134
 msgctxt "shipments"
 msgid "Start"
 msgstr "Start"
 
-#: src/Admin/Admin.php:1053
-#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:1053
+#: src/Admin/Admin.php:1135
+#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:1135
 msgctxt "shipments"
 msgid "End"
 msgstr "Ende"
 
-#: src/Admin/Admin.php:1054
-#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:1054
+#: src/Admin/Admin.php:1136
+#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:1136
 msgctxt "shipments"
 msgid "Total weight"
 msgstr "Gesamtgewicht"
 
-#: src/Admin/Admin.php:1055 src/Packaging/ReportHelper.php:97
-#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:1055
+#: src/Admin/Admin.php:1137 src/Packaging/ReportHelper.php:97
+#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:1137
 #: packages/woocommerce-germanized-shipments/src/Packaging/ReportHelper.php:97
 msgctxt "shipments"
 msgid "Count"
 msgstr "Anzahl"
 
-#: src/Admin/Admin.php:1109
-#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:1109
+#: src/Admin/Admin.php:1191
+#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:1191
 msgctxt "shipments"
 msgid "Available packaging"
 msgstr "Verfügbare Verpackungen"
 
-#: src/Admin/Admin.php:1132
-#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:1132
+#: src/Admin/Admin.php:1214
+#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:1214
 msgctxt "shipments"
 msgid "A description to help you identify the packaging."
 msgstr ""
 "Eine Beschreibung die Ihnen dabei hilft Verpackungen zu identifizieren."
 
-#: src/Admin/Admin.php:1133 src/Admin/PackagingSettings.php:132
-#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:1133
+#: src/Admin/Admin.php:1215 src/Admin/PackagingSettings.php:132
+#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:1215
 #: packages/woocommerce-germanized-shipments/src/Admin/PackagingSettings.php:132
 msgctxt "shipments"
 msgid "Type"
 msgstr "Typ"
 
-#: src/Admin/Admin.php:1134
-#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:1134
+#: src/Admin/Admin.php:1216
+#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:1216
 msgctxt "shipments"
 msgid "Weight (%s)"
 msgstr "Gewicht (%s)"
 
-#: src/Admin/Admin.php:1134 src/Admin/PackagingSettings.php:171
-#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:1134
-#: packages/woocommerce-germanized-shipments/src/Admin/PackagingSettings.php:171
+#: src/Admin/Admin.php:1216 src/Admin/PackagingSettings.php:175
+#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:1216
+#: packages/woocommerce-germanized-shipments/src/Admin/PackagingSettings.php:175
 msgctxt "shipments"
 msgid "The weight of the packaging."
 msgstr "Das Gewicht der Verpackung."
 
-#: src/Admin/Admin.php:1135
-#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:1135
+#: src/Admin/Admin.php:1217
+#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:1217
 msgctxt "shipments"
 msgid "Dimensions (LxWxH, %s)"
 msgstr "Abmessungen (LxBxH, %s)"
 
-#: src/Admin/Admin.php:1136
-#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:1136
+#: src/Admin/Admin.php:1218
+#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:1218
 msgctxt "shipments"
 msgid "Load capacity (kg)"
 msgstr "Tragkraft (kg)"
 
-#: src/Admin/Admin.php:1136 src/Admin/PackagingSettings.php:210
-#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:1136
-#: packages/woocommerce-germanized-shipments/src/Admin/PackagingSettings.php:210
+#: src/Admin/Admin.php:1218 src/Admin/PackagingSettings.php:214
+#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:1218
+#: packages/woocommerce-germanized-shipments/src/Admin/PackagingSettings.php:214
 msgctxt "shipments"
 msgid ""
 "The maximum weight this packaging can hold. Leave empty to not restrict "
@@ -4729,72 +4745,72 @@ msgstr ""
 "Gewicht nicht zu begrenzen."
 
 # @ woocommerce-germanized
-#: src/Admin/Admin.php:1172
-#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:1172
+#: src/Admin/Admin.php:1254
+#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:1254
 msgctxt "shipments"
 msgid "Edit packaging configuration"
 msgstr "Verpackungskonfiguration bearbeiten"
 
-#: src/Admin/Admin.php:1182
-#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:1182
+#: src/Admin/Admin.php:1264
+#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:1264
 msgctxt "shipments"
 msgid "+ Add packaging"
 msgstr "+ Verpackung hinzufügen"
 
-#: src/Admin/Admin.php:1182
-#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:1182
+#: src/Admin/Admin.php:1264
+#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:1264
 msgctxt "shipments"
 msgid "Remove selected packaging"
 msgstr "Ausgewählte Verpackung löschen"
 
 # @ woocommerce-germanized
-#: src/Admin/Admin.php:1300
-#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:1300
+#: src/Admin/Admin.php:1382
+#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:1382
 msgctxt "shipments"
 msgid "Create shipments"
 msgstr "Sendungen erstellen"
 
 # @ woocommerce-germanized
-#: src/Admin/Admin.php:1414
-#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:1414
+#: src/Admin/Admin.php:1496
+#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:1496
 msgctxt "shipments"
 msgid "Search shipments"
 msgstr "Sendungen suchen"
 
 # @ woocommerce-germanized
-#: src/Admin/Admin.php:1448
-#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:1448
+#: src/Admin/Admin.php:1530
+#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:1530
 msgctxt "shipments"
 msgid "Search returns"
 msgstr "Retouren suchen"
 
-#: src/Admin/Admin.php:1541
-#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:1541
+#: src/Admin/Admin.php:1623
+#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:1623
 msgctxt "shipments"
 msgid "Do you really want to delete the shipment?"
 msgstr "Möchten Sie die Sendung wirklich löschen?"
 
-#: src/Admin/Admin.php:1553
-#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:1553
+#: src/Admin/Admin.php:1635
+#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:1635
 msgctxt "shipments"
 msgid "Do you really want to delete the label?"
 msgstr "Möchten Sie das Label wirklich löschen?"
 
 # @ woocommerce-germanized
-#: src/Admin/Admin.php:1554
-#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:1554
+#: src/Admin/Admin.php:1636
+#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:1636
 msgctxt "shipments"
 msgid "Please save the shipment first"
 msgstr "Bitte speichern Sie zuerst die Sendung"
 
-#: src/Admin/Admin.php:1596
-#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:1596
+#: src/Admin/Admin.php:1678
+#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:1678
 msgctxt "shipments-close-modal"
 msgid "Close"
 msgstr "Schließen"
 
-#: src/Admin/Admin.php:1620
-#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:1620
+#: src/Admin/Admin.php:1702
+#: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:1702
 msgctxt "shipments"
 msgid ""
 "Do you really want to delete the shipping provider? Some of your existing "
@@ -4873,11 +4889,11 @@ msgid "General"
 msgstr "Allgemein"
 
 #: src/Admin/PackagingSettings.php:140 src/Admin/ProviderSettings.php:91
-#: src/Admin/ProviderSettings.php:145 src/ShippingMethod/MethodHelper.php:423
+#: src/Admin/ProviderSettings.php:145 src/ShippingMethod/MethodHelper.php:424
 #: packages/woocommerce-germanized-shipments/src/Admin/PackagingSettings.php:140
 #: packages/woocommerce-germanized-shipments/src/Admin/ProviderSettings.php:91
 #: packages/woocommerce-germanized-shipments/src/Admin/ProviderSettings.php:145
-#: packages/woocommerce-germanized-shipments/src/ShippingMethod/MethodHelper.php:423
+#: packages/woocommerce-germanized-shipments/src/ShippingMethod/MethodHelper.php:424
 msgctxt "shipments"
 msgid "Shipping Provider"
 msgstr "Versanddienstleister"
@@ -4913,15 +4929,15 @@ msgstr ""
 "Versandklassen."
 
 # @ woocommerce-germanized
-#: src/Admin/PackagingSettings.php:162
-#: packages/woocommerce-germanized-shipments/src/Admin/PackagingSettings.php:162
+#: src/Admin/PackagingSettings.php:166
+#: packages/woocommerce-germanized-shipments/src/Admin/PackagingSettings.php:166
 msgctxt "shipments"
 msgid "All shipping classes"
 msgstr "Alle Versandklassen"
 
-#: src/Admin/PackagingSettings.php:166 src/Admin/ReturnTable.php:28
+#: src/Admin/PackagingSettings.php:170 src/Admin/ReturnTable.php:28
 #: src/Admin/Table.php:728 src/Packaging/ReportHelper.php:96
-#: packages/woocommerce-germanized-shipments/src/Admin/PackagingSettings.php:166
+#: packages/woocommerce-germanized-shipments/src/Admin/PackagingSettings.php:170
 #: packages/woocommerce-germanized-shipments/src/Admin/ReturnTable.php:28
 #: packages/woocommerce-germanized-shipments/src/Admin/Table.php:728
 #: packages/woocommerce-germanized-shipments/src/Packaging/ReportHelper.php:96
@@ -4929,23 +4945,23 @@ msgctxt "shipments"
 msgid "Weight"
 msgstr "Gewicht"
 
-#: src/Admin/PackagingSettings.php:178 src/Admin/ReturnTable.php:29
+#: src/Admin/PackagingSettings.php:182 src/Admin/ReturnTable.php:29
 #: src/Admin/Table.php:729
-#: packages/woocommerce-germanized-shipments/src/Admin/PackagingSettings.php:178
+#: packages/woocommerce-germanized-shipments/src/Admin/PackagingSettings.php:182
 #: packages/woocommerce-germanized-shipments/src/Admin/ReturnTable.php:29
 #: packages/woocommerce-germanized-shipments/src/Admin/Table.php:729
 msgctxt "shipments"
 msgid "Dimensions"
 msgstr "Abmessungen"
 
-#: src/Admin/PackagingSettings.php:189
-#: packages/woocommerce-germanized-shipments/src/Admin/PackagingSettings.php:189
+#: src/Admin/PackagingSettings.php:193
+#: packages/woocommerce-germanized-shipments/src/Admin/PackagingSettings.php:193
 msgctxt "shipments"
 msgid "Inner Dimensions"
 msgstr "Innenmaße"
 
-#: src/Admin/PackagingSettings.php:205
-#: packages/woocommerce-germanized-shipments/src/Admin/PackagingSettings.php:205
+#: src/Admin/PackagingSettings.php:209
+#: packages/woocommerce-germanized-shipments/src/Admin/PackagingSettings.php:209
 msgctxt "shipments"
 msgid "Load Capacity"
 msgstr "Tragkraft"
@@ -4976,9 +4992,9 @@ msgstr ""
 
 # @ woocommerce-germanized
 #: src/Admin/ProviderSettings.php:117
-#: src/ShippingMethod/ShippingMethod.php:1071
+#: src/ShippingMethod/ShippingMethod.php:1082
 #: packages/woocommerce-germanized-shipments/src/Admin/ProviderSettings.php:117
-#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:1071
+#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:1082
 msgctxt "shipments"
 msgid "Add new"
 msgstr "Neu hinzufügen"
@@ -5822,30 +5838,62 @@ msgid "Customer payment page &rarr;"
 msgstr "Kundenbezahlungsseite &rarr;"
 
 # @ woocommerce-germanized
-#: src/Api.php:100 packages/woocommerce-germanized-shipments/src/Api.php:100
+#: src/Api.php:127 packages/woocommerce-germanized-shipments/src/Api.php:127
 msgctxt "shipments"
 msgid "Shipping status"
 msgstr "Versandstatus"
 
 # @ woocommerce-germanized
-#: src/Api.php:121 src/Api.php:155
-#: packages/woocommerce-germanized-shipments/src/Api.php:121
-#: packages/woocommerce-germanized-shipments/src/Api.php:155
+#: src/Api.php:148 src/Api.php:210
+#: packages/woocommerce-germanized-shipments/src/Api.php:148
+#: packages/woocommerce-germanized-shipments/src/Api.php:210
 msgctxt "shipments"
 msgid "Customs description"
 msgstr "Zollbeschreibung"
 
-#: src/Api.php:161 packages/woocommerce-germanized-shipments/src/Api.php:161
+#: src/Api.php:171 src/Api.php:230
+#: packages/woocommerce-germanized-shipments/src/Api.php:171
+#: packages/woocommerce-germanized-shipments/src/Api.php:230
+msgctxt "shipments"
+msgid "Product shipping dimensions."
+msgstr "Versandmaße des Produkts."
+
+# @ woocommerce-germanized
+#. translators: %s: dimension unit
+#: src/Api.php:177 src/Api.php:236
+#: packages/woocommerce-germanized-shipments/src/Api.php:177
+#: packages/woocommerce-germanized-shipments/src/Api.php:236
+msgctxt "shipments"
+msgid "Shipping length (%s)."
+msgstr "Versandlänge (%s)."
+
+#. translators: %s: dimension unit
+#: src/Api.php:183 src/Api.php:242
+#: packages/woocommerce-germanized-shipments/src/Api.php:183
+#: packages/woocommerce-germanized-shipments/src/Api.php:242
+msgctxt "shipments"
+msgid "Shipping width (%s)."
+msgstr "Versandbreite (%s)."
+
+#. translators: %s: dimension unit
+#: src/Api.php:189 src/Api.php:248
+#: packages/woocommerce-germanized-shipments/src/Api.php:189
+#: packages/woocommerce-germanized-shipments/src/Api.php:248
+msgctxt "shipments"
+msgid "Shipping height (%s)."
+msgstr "Versandhöhe (%s)."
+
+#: src/Api.php:216 packages/woocommerce-germanized-shipments/src/Api.php:216
 msgctxt "shipments"
 msgid "HS-Code (Customs)"
 msgstr "Zolltarifnummer (HS-Code, Zoll)"
 
-#: src/Api.php:167 packages/woocommerce-germanized-shipments/src/Api.php:167
+#: src/Api.php:222 packages/woocommerce-germanized-shipments/src/Api.php:222
 msgctxt "shipments"
 msgid "Country of manufacture (Customs)"
 msgstr "Herstellungsland (Zoll)"
 
-#: src/Api.php:208 packages/woocommerce-germanized-shipments/src/Api.php:208
+#: src/Api.php:291 packages/woocommerce-germanized-shipments/src/Api.php:291
 msgctxt "shipments"
 msgid "List of shipments."
 msgstr "Sendungsliste."
@@ -5857,14 +5905,14 @@ msgctxt "shipments"
 msgid "Order is fully shipped."
 msgstr "Bestellung ist vollständig versandt."
 
-#: src/DataStores/Label.php:300
-#: packages/woocommerce-germanized-shipments/src/DataStores/Label.php:300
+#: src/DataStores/Label.php:301
+#: packages/woocommerce-germanized-shipments/src/DataStores/Label.php:301
 msgctxt "shipments"
 msgid "Invalid label."
 msgstr "Ungültiges Label."
 
-#: src/DataStores/Packaging.php:264
-#: packages/woocommerce-germanized-shipments/src/DataStores/Packaging.php:264
+#: src/DataStores/Packaging.php:261
+#: packages/woocommerce-germanized-shipments/src/DataStores/Packaging.php:261
 msgctxt "shipments"
 msgid "Invalid packaging."
 msgstr "Verpackung nicht verfügbar."
@@ -6056,8 +6104,8 @@ msgctxt "shipments"
 msgid "Error while downloading the PDF file."
 msgstr "Fehler beim Download des PDF Labels."
 
-#: src/Order.php:306
-#: packages/woocommerce-germanized-shipments/src/Order.php:306
+#: src/Order.php:308
+#: packages/woocommerce-germanized-shipments/src/Order.php:308
 msgctxt "shipments"
 msgid ""
 "Seems like none of your <a href=\"%1$s\">packaging options</a> is available "
@@ -6067,8 +6115,8 @@ msgstr ""
 "für diese Bestellung verfügbar."
 
 # @ woocommerce-germanized
-#: src/Package.php:102
-#: packages/woocommerce-germanized-shipments/src/Package.php:102
+#: src/Package.php:94
+#: packages/woocommerce-germanized-shipments/src/Package.php:94
 msgctxt "shipments"
 msgid "Sorry, this order is invalid and cannot be returned."
 msgstr "Sorry, diese Bestellung existiert nicht."
@@ -7070,21 +7118,21 @@ msgctxt "shipments"
 msgid "Label meta data."
 msgstr "Label Meta-Daten."
 
-#: src/ShippingMethod/MethodHelper.php:416
-#: packages/woocommerce-germanized-shipments/src/ShippingMethod/MethodHelper.php:416
+#: src/ShippingMethod/MethodHelper.php:417
+#: packages/woocommerce-germanized-shipments/src/ShippingMethod/MethodHelper.php:417
 msgctxt "shipments"
 msgid "Shipping Provider Settings"
 msgstr "Versanddienstleister Einstellungen"
 
-#: src/ShippingMethod/MethodHelper.php:420
-#: packages/woocommerce-germanized-shipments/src/ShippingMethod/MethodHelper.php:420
+#: src/ShippingMethod/MethodHelper.php:421
+#: packages/woocommerce-germanized-shipments/src/ShippingMethod/MethodHelper.php:421
 msgctxt "shipments"
 msgid "Adjust shipping provider settings used for managing shipments."
 msgstr ""
 "Passen Sie Einstellungen zu den Versanddienstleistern für Sendungen an."
 
-#: src/ShippingMethod/MethodHelper.php:435
-#: packages/woocommerce-germanized-shipments/src/ShippingMethod/MethodHelper.php:435
+#: src/ShippingMethod/MethodHelper.php:436
+#: packages/woocommerce-germanized-shipments/src/ShippingMethod/MethodHelper.php:436
 msgctxt "shipments"
 msgid ""
 "Choose a shipping provider which will be selected by default for an eligible "
@@ -7094,8 +7142,8 @@ msgstr ""
 "infrage kommende Sendung hinterlegt wird."
 
 # @ woocommerce-germanized
-#: src/ShippingMethod/MethodHelper.php:600
-#: packages/woocommerce-germanized-shipments/src/ShippingMethod/MethodHelper.php:600
+#: src/ShippingMethod/MethodHelper.php:601
+#: packages/woocommerce-germanized-shipments/src/ShippingMethod/MethodHelper.php:601
 msgctxt "shipments"
 msgid "Override?"
 msgstr "Überschreiben?"
@@ -7358,14 +7406,14 @@ msgctxt "shipments"
 msgid "Package shipping class"
 msgstr "Paket-Versandklasse"
 
-#: src/ShippingMethod/ShippingMethod.php:856
-#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:856
+#: src/ShippingMethod/ShippingMethod.php:867
+#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:867
 msgctxt "shipments"
 msgid "All remaining packaging"
 msgstr "Andere Verpackungen"
 
-#: src/ShippingMethod/ShippingMethod.php:876
-#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:876
+#: src/ShippingMethod/ShippingMethod.php:887
+#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:887
 msgctxt "shipments"
 msgid ""
 "These rules will be parsed for all remaining, available packaging without "
@@ -7375,32 +7423,32 @@ msgstr ""
 "ohne eigene Regeln und/oder als Fallback angewandt."
 
 # @ woocommerce-germanized
-#: src/ShippingMethod/ShippingMethod.php:1049
-#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:1049
+#: src/ShippingMethod/ShippingMethod.php:1060
+#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:1060
 msgctxt "shipments"
 msgid "Conditions"
 msgstr "Bedingungen"
 
-#: src/ShippingMethod/ShippingMethod.php:1052
-#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:1052
+#: src/ShippingMethod/ShippingMethod.php:1063
+#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:1063
 msgctxt "shipments"
 msgid "Costs"
 msgstr "Kosten"
 
-#: src/ShippingMethod/ShippingMethod.php:1072
-#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:1072
+#: src/ShippingMethod/ShippingMethod.php:1083
+#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:1083
 msgctxt "shipments"
 msgid "Remove selected"
 msgstr "Ausgewählte löschen"
 
-#: src/ShippingMethod/ShippingMethod.php:1106
-#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:1106
+#: src/ShippingMethod/ShippingMethod.php:1117
+#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:1117
 msgctxt "shipments"
 msgid "Rule cost is"
 msgstr "Kosten der Regel"
 
-#: src/ShippingMethod/ShippingMethod.php:1126
-#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:1126
+#: src/ShippingMethod/ShippingMethod.php:1137
+#: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:1137
 msgctxt "shipments"
 msgid "When"
 msgstr "Wenn"
@@ -7535,8 +7583,8 @@ msgctxt "shipments"
 msgid "Error while creating the label."
 msgstr "Fehler beim Erstellen der Label-Instanz."
 
-#: src/ShippingProvider/Helper.php:162
-#: packages/woocommerce-germanized-shipments/src/ShippingProvider/Helper.php:162
+#: src/ShippingProvider/Helper.php:166
+#: packages/woocommerce-germanized-shipments/src/ShippingProvider/Helper.php:166
 msgctxt "shipments"
 msgid ""
 "Loading shipping providers should only be triggered after the plugins_loaded "
@@ -8235,8 +8283,8 @@ msgstr "Nutri-Score %1$s"
 #: includes/abstracts/abstract-wc-gzd-product.php:1244
 #: includes/abstracts/abstract-wc-gzd-product.php:1254
 #: includes/wc-gzd-core-functions.php:573
-#: includes/wc-gzd-template-functions.php:987
-#: includes/wc-gzd-template-functions.php:994
+#: includes/wc-gzd-template-functions.php:1050
+#: includes/wc-gzd-template-functions.php:1057
 #: build/mini-cart-blocks/mini-cart-notices-frontend.js:59
 #: build/mini-cart-blocks/mini-cart-notices-style.js:59
 #: build/mini-cart-blocks/mini-cart-notices-frontend.js:55
@@ -8557,7 +8605,7 @@ msgstr "One Stop Shop"
 # @ woocommerce
 #: includes/admin/class-wc-gzd-admin-setup-wizard.php:71
 #: includes/admin/class-wc-gzd-admin-setup-wizard.php:156
-#: woocommerce-germanized.php:933
+#: woocommerce-germanized.php:932
 msgid "Settings"
 msgstr "Einstellungen"
 
@@ -8789,7 +8837,7 @@ msgid "Welcome to Germanized"
 msgstr "Willkommen bei Germanized"
 
 # @ woocommerce-germanized
-#: includes/admin/class-wc-gzd-admin-welcome.php:261
+#: includes/admin/class-wc-gzd-admin-welcome.php:284
 msgid "Go to Germanized Settings"
 msgstr "Germanized Einstellungen"
 
@@ -13155,15 +13203,15 @@ msgstr "Datenbank wird aktualisiert"
 msgid "%1$d update functions completed. Database version is %2$s"
 msgstr "%1$d Updates fertiggestellt. Datenbank-Version lautet %2$s"
 
-#: includes/class-wc-gzd-coupon-helper.php:752 woocommerce-germanized.php:1333
+#: includes/class-wc-gzd-coupon-helper.php:766 woocommerce-germanized.php:1334
 msgid "Voucher: %1$s"
 msgstr "Wertgutschein: %1$s"
 
-#: includes/class-wc-gzd-coupon-helper.php:1038
+#: includes/class-wc-gzd-coupon-helper.php:1052
 msgid "Is voucher?"
 msgstr "Wertgutschein?"
 
-#: includes/class-wc-gzd-coupon-helper.php:1039
+#: includes/class-wc-gzd-coupon-helper.php:1053
 msgid ""
 "Whether or not this coupon is a voucher which has been sold to a customer "
 "without VAT and needs to be taxed as soon as the customer redeems the "
@@ -13867,7 +13915,7 @@ msgstr "%s Zahlungsgebühr"
 # @ woocommerce-germanized
 #: includes/class-wc-gzd-payment-gateways.php:161
 #: includes/wc-gzd-order-functions.php:34
-#: includes/wc-gzd-template-functions.php:918
+#: includes/wc-gzd-template-functions.php:981
 msgid "Plus %s forwarding fee (charged by the transport agent)"
 msgstr "Zzgl. %s Übermittlungsentgelt (direkt an den Zusteller)"
 
@@ -15414,45 +15462,45 @@ msgstr "Zahlungsart auswählen"
 msgid "Place order"
 msgstr "Jetzt kaufen"
 
-#: packages/woocommerce-eu-tax-helper/src/Helper.php:584
+#: packages/woocommerce-eu-tax-helper/src/Helper.php:593
 msgid "Reduced rate"
 msgstr ""
 
-#: packages/woocommerce-eu-tax-helper/src/Helper.php:585
+#: packages/woocommerce-eu-tax-helper/src/Helper.php:594
 msgctxt "tax-helper-tax-class-name"
 msgid "Greater reduced rate"
 msgstr "Zusätzlicher reduzierter Preis"
 
-#: packages/woocommerce-eu-tax-helper/src/Helper.php:586
+#: packages/woocommerce-eu-tax-helper/src/Helper.php:595
 msgctxt "tax-helper-tax-class-name"
 msgid "Super reduced rate"
 msgstr "Stark reduzierter Preis"
 
-#: packages/woocommerce-eu-tax-helper/src/Helper.php:587
+#: packages/woocommerce-eu-tax-helper/src/Helper.php:596
 msgid "Zero rate"
 msgstr ""
 
-#: packages/woocommerce-eu-tax-helper/src/Helper.php:1073
+#: packages/woocommerce-eu-tax-helper/src/Helper.php:1082
 msgctxt "tax-helper"
 msgid "Madeira"
 msgstr "Madeira"
 
-#: packages/woocommerce-eu-tax-helper/src/Helper.php:1080
+#: packages/woocommerce-eu-tax-helper/src/Helper.php:1089
 msgctxt "tax-helper"
 msgid "Acores"
 msgstr "Azoren"
 
-#: packages/woocommerce-eu-tax-helper/src/Helper.php:1116
+#: packages/woocommerce-eu-tax-helper/src/Helper.php:1125
 msgctxt "tax-helper"
 msgid "Northern Ireland"
 msgstr "Nordirland"
 
-#: packages/woocommerce-eu-tax-helper/src/Helper.php:1150
+#: packages/woocommerce-eu-tax-helper/src/Helper.php:1159
 msgctxt "tax-helper-rate-import"
 msgid "Exempt"
 msgstr "Ausnahme"
 
-#: packages/woocommerce-eu-tax-helper/src/Helper.php:1235
+#: packages/woocommerce-eu-tax-helper/src/Helper.php:1244
 msgctxt "tax-helper-rate-import"
 msgid "VAT %1$s %% %2$s"
 msgstr "MwSt. %1$s %% %2$s"
@@ -16138,7 +16186,7 @@ msgstr ""
 "unserem <a href=\"%2$s\" target=\"_blank\">Blog-Post</a> wie Sie das Plugin "
 "austauschen können."
 
-#: woocommerce-germanized.php:1316
+#: woocommerce-germanized.php:1317
 msgid ""
 "Please wait while we are trying to redirect you to the payment provider."
 msgstr "Einen Moment - wir versuchen Sie zum Zahlungsanbieter weiterzuleiten."
