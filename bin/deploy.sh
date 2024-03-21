@@ -326,6 +326,7 @@ if ! $SKIP_SVN; then
   if $UPDATE_SVN_ASSETS; then
     svn propset svn:mime-type image/png assets/*.png
     svn propset svn:mime-type image/jpeg assets/*.jpg
+    svn propset svn:mime-type application/json assets/*.json
   fi
 
   # Copy trunk to tag/$VERSION
