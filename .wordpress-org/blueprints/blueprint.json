@@ -12,6 +12,14 @@
   ],
   "steps": [
     {
+      "step": "setSiteOptions",
+      "options": {
+        "woocommerce_default_country": "DE:BE",
+        "woocommerce_store_city": "Berlin",
+        "woocommerce_store_postcode": "12207"
+      }
+    },
+    {
       "step": "installPlugin",
       "pluginZipFile": {
         "resource": "wordpress.org\/plugins",
