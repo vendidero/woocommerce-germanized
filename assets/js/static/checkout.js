@@ -149,7 +149,7 @@ window.germanized = window.germanized || {};
             $( 'body' ).trigger( 'update_checkout' );
         },
 
-        onUpdateCheckout: function() {
+        onUpdateCheckout: function( e, data ) {
             var self      = germanized.checkout;
 
             if ( self.params.adjust_heading ) {
@@ -171,7 +171,33 @@ window.germanized = window.germanized || {};
                     // Woo 3.4
                     $( '.place-order:not(.wc-gzd-place-order)' ).find( '#woocommerce-process-checkout-nonce' ).appendTo( '.wc-gzd-place-order' );
                 }
+
                 $( '.place-order:not(.wc-gzd-place-order)' ).remove();
+
+                /**
+                 * As a fallback in case the .woocommerce-checkout-payment fragment has not been replaced
+                 * but the wc-gzd-place-order has been replaced (and thus misses a nonce), find the nonce in the fragment and add it.
+                 */
+                if ( ! $( '.wc-gzd-place-order' ).find( '#woocommerce-process-checkout-nonce, #_wpnonce' ).length ) {
+                    if ( data.fragments.hasOwnProperty( '.woocommerce-checkout-payment' ) ) {
+                        $payment_wrap = $( data.fragments['.woocommerce-checkout-payment'] );
+
+                        var $nonce = $payment_wrap.find( '#woocommerce-process-checkout-nonce, #_wpnonce' );
+
+                        if ( $nonce.length > 0 ) {
+                            $( '.wc-gzd-place-order' ).append( $nonce );
+                        }
+                    }
+                }
+
+                var $all_nonces = $( '.wc-gzd-place-order' ).find('#woocommerce-process-checkout-nonce, #_wpnonce' );
+
+                /**
+                 * Keep the latest nonce only
+                 */
+                if ( $all_nonces.length > 1 ) {
+                    $all_nonces.not( ':last' ).remove();
+                }
             }
 
             self.maybeSetTermsCheckbox();
