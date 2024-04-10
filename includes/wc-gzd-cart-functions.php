@@ -1329,3 +1329,9 @@ function wc_gzd_maybe_disable_checkout_adjustments() {
 		do_action( 'woocommerce_gzd_disabled_checkout_adjustments' );
 	}
 }
+
+function woocommerce_gzd_checkout_custom_submit_button_is_shown() {
+	$gzd_submit_button_shown = has_action( 'woocommerce_checkout_order_review', 'woocommerce_gzd_template_order_submit' ) || WC_GZD_Checkout::instance()->get_checkout_value( 'wc_gzd_order_submit_button_shown' );
+
+	return $gzd_submit_button_shown && ! wc_gzd_checkout_adjustments_disabled();
+}

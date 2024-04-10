@@ -34,7 +34,7 @@ class WC_GZD_Compatibility_WooCommerce_PayPal_Payments extends WC_GZD_Compatibil
 		add_action(
 			'woocommerce_review_order_before_submit',
 			function() {
-				if ( wc_gzd_checkout_adjustments_disabled() ) {
+				if ( wc_gzd_checkout_adjustments_disabled() || ! woocommerce_gzd_checkout_custom_submit_button_is_shown() ) {
 					do_action( 'woocommerce_gzd_render_paypal_payments_smart_button' );
 				}
 			}

@@ -922,9 +922,7 @@ if ( ! function_exists( 'woocommerce_gzd_template_move_before_submit_hooks' ) ) 
 		 * Do only move hooks in case checkout adjustments have not been disabled and
 		 * the actual (custom) template for showing the submit button has not been removed by another extension
 		 */
-		$gzd_submit_button_shown = has_action( 'woocommerce_checkout_order_review', 'woocommerce_gzd_template_order_submit' ) || WC_GZD_Checkout::instance()->get_checkout_value( 'wc_gzd_order_submit_button_shown' );
-
-		if ( ! wc_gzd_checkout_adjustments_disabled() && $gzd_submit_button_shown ) {
+		if ( woocommerce_gzd_checkout_custom_submit_button_is_shown() ) {
 			$hooks = isset( $wp_filter['woocommerce_review_order_before_submit'] ) ? $wp_filter['woocommerce_review_order_before_submit'] : null;
 
 			if ( null !== $hooks ) {
