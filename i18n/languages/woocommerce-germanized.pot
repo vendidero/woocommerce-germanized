@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-04-11T09:35:10+00:00\n"
+"POT-Creation-Date: 2024-04-11T10:13:08+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.9.0\n"
 
@@ -3591,12 +3591,11 @@ msgstr ""
 #: src/Blocks/Checkout.php:187
 #: src/Blocks/Checkout.php:320
 #: src/PickupDelivery.php:432
-#: build/checkout-pickup-location-select.js:1
+#: packages/woocommerce-germanized-shipments/build/checkout-pickup-location-select.js:1
 #: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:116
 #: packages/woocommerce-germanized-shipments/src/Blocks/Checkout.php:187
 #: packages/woocommerce-germanized-shipments/src/Blocks/Checkout.php:320
 #: packages/woocommerce-germanized-shipments/src/PickupDelivery.php:432
-#: packages/woocommerce-germanized-shipments/build/checkout-pickup-location-select.js:1
 msgctxt "shipments"
 msgid "Pickup location"
 msgstr ""
@@ -7246,48 +7245,40 @@ msgctxt "shipments"
 msgid "Your installation of the Germanized Shipments feature plugin is incomplete. Please run %1$s within the %2$s directory."
 msgstr ""
 
-#: build/blocks-checkout.js:1
 #: packages/woocommerce-germanized-shipments/build/blocks-checkout.js:1
 msgid "Item selected."
 msgstr ""
 
 #. translators: %d: number of results.
-#: build/blocks-checkout.js:3
 #: packages/woocommerce-germanized-shipments/build/blocks-checkout.js:3
 msgid "%d result found, use up and down arrow keys to navigate."
 msgid_plural "%d results found, use up and down arrow keys to navigate."
 msgstr[0] ""
 msgstr[1] ""
 
-#: build/blocks-checkout.js:3
 #: packages/woocommerce-germanized-shipments/build/blocks-checkout.js:3
 msgid "No results."
 msgstr ""
 
-#: build/blocks-checkout.js:3
 #: packages/woocommerce-germanized-shipments/build/blocks-checkout.js:3
 msgid "Reset"
 msgstr ""
 
-#: build/blocks-checkout.js:3
 #: packages/woocommerce-germanized-shipments/build/blocks-checkout.js:3
 msgctxt "shipments"
 msgid "Please select a valid option"
 msgstr ""
 
-#: build/checkout-pickup-location-select.js:1
 #: packages/woocommerce-germanized-shipments/build/checkout-pickup-location-select.js:1
 msgctxt "shipments"
 msgid "Not at home? Choose a pickup location"
 msgstr ""
 
-#: build/checkout-pickup-location-select.js:1
 #: packages/woocommerce-germanized-shipments/build/checkout-pickup-location-select.js:1
 msgctxt "shipments"
 msgid "Your pickup location chosen is not available any longer. Please review your shipping address."
 msgstr ""
 
-#: build/checkout-pickup-location-select.js:1
 #: packages/woocommerce-germanized-shipments/build/checkout-pickup-location-select.js:1
 msgctxt "shipments"
 msgid "Please review your shipping address."

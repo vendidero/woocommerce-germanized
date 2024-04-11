@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: WooCommerce Germanized\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/woocommerce-"
 "germanized\n"
-"POT-Creation-Date: 2024-04-11T09:35:10+00:00\n"
-"PO-Revision-Date: 2024-04-11 11:35+0200\n"
+"POT-Creation-Date: 2024-04-11T10:13:08+00:00\n"
+"PO-Revision-Date: 2024-04-11 12:13+0200\n"
 "Last-Translator: Dennis Nissle <info@vendidero.de>\n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -4046,12 +4046,11 @@ msgstr ""
 # @ woocommerce-germanized
 #: src/Admin/Admin.php:116 src/Blocks/Checkout.php:187
 #: src/Blocks/Checkout.php:320 src/PickupDelivery.php:432
-#: build/checkout-pickup-location-select.js:1
+#: packages/woocommerce-germanized-shipments/build/checkout-pickup-location-select.js:1
 #: packages/woocommerce-germanized-shipments/src/Admin/Admin.php:116
 #: packages/woocommerce-germanized-shipments/src/Blocks/Checkout.php:187
 #: packages/woocommerce-germanized-shipments/src/Blocks/Checkout.php:320
 #: packages/woocommerce-germanized-shipments/src/PickupDelivery.php:432
-#: packages/woocommerce-germanized-shipments/build/checkout-pickup-location-select.js:1
 msgctxt "shipments"
 msgid "Pickup location"
 msgstr "Abholstation"
@@ -8129,13 +8128,11 @@ msgstr ""
 "Deine Installation des Germanized Shipments Plugins ist unvollständig. Bitte "
 "führe %1$s im %2$s Verzeichnis aus."
 
-#: build/blocks-checkout.js:1
 #: packages/woocommerce-germanized-shipments/build/blocks-checkout.js:1
 msgid "Item selected."
 msgstr "Eintrag ausgewählt."
 
 #. translators: %d: number of results.
-#: build/blocks-checkout.js:3
 #: packages/woocommerce-germanized-shipments/build/blocks-checkout.js:3
 msgid "%d result found, use up and down arrow keys to navigate."
 msgid_plural "%d results found, use up and down arrow keys to navigate."
@@ -8145,29 +8142,24 @@ msgstr[1] ""
 "%d Ergebnisse gefunden, benutze die Pfeile nach oben oder unten zum "
 "Navigieren."
 
-#: build/blocks-checkout.js:3
 #: packages/woocommerce-germanized-shipments/build/blocks-checkout.js:3
 msgid "No results."
 msgstr "Keine Einträge gefunden."
 
-#: build/blocks-checkout.js:3
 #: packages/woocommerce-germanized-shipments/build/blocks-checkout.js:3
 msgid "Reset"
 msgstr "Zurücksetzen"
 
-#: build/blocks-checkout.js:3
 #: packages/woocommerce-germanized-shipments/build/blocks-checkout.js:3
 msgctxt "shipments"
 msgid "Please select a valid option"
 msgstr "Bitte wähle eine gültige Option aus"
 
-#: build/checkout-pickup-location-select.js:1
 #: packages/woocommerce-germanized-shipments/build/checkout-pickup-location-select.js:1
 msgctxt "shipments"
 msgid "Not at home? Choose a pickup location"
 msgstr "Nicht zuhause? Wähle eine Abholstation"
 
-#: build/checkout-pickup-location-select.js:1
 #: packages/woocommerce-germanized-shipments/build/checkout-pickup-location-select.js:1
 msgctxt "shipments"
 msgid ""
@@ -8177,7 +8169,6 @@ msgstr ""
 "Deine Abholstation ist nicht mehr verfügbar. Bitte prüfe deine Lieferadresse."
 
 # @ woocommerce-germanized
-#: build/checkout-pickup-location-select.js:1
 #: packages/woocommerce-germanized-shipments/build/checkout-pickup-location-select.js:1
 msgctxt "shipments"
 msgid "Please review your shipping address."
