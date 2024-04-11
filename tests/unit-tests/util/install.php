@@ -97,6 +97,7 @@ class WC_GZD_Tests_Install extends WC_GZD_Unit_Test_Case {
 
 		include( dirname( dirname( dirname( dirname( __FILE__ ) ) ) ) . '/uninstall.php' );
 
+		update_option( 'woocommerce_gzd_shipments_shipper_address_country', 'AT' );
 		update_option( 'woocommerce_gzd_dhl_version', '1.0' );
 		update_option( 'woocommerce_default_country', 'AT' );
 
