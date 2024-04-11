@@ -49,7 +49,6 @@ class WC_GZD_Tests_Install extends WC_GZD_Unit_Test_Case {
 	 * Test - install.
 	 */
 	public function test_install() {
-
 		// clean existing install first
 		if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 			define( 'WP_UNINSTALL_PLUGIN', true );
@@ -84,6 +83,26 @@ class WC_GZD_Tests_Install extends WC_GZD_Unit_Test_Case {
 		$this->assertEquals( "{$wpdb->prefix}woocommerce_gzd_dhl_im_products", $table_name );
 
 		remove_filter( 'plugin_locale', array( $this, 'set_locale' ), 10 );
+	}
+
+	/**
+	 * Test - install.
+	 */
+	public function test_install_non_built_in_providers() {
+		// clean existing installation first
+		if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
+			define( 'WP_UNINSTALL_PLUGIN', true );
+			define( 'WC_GZD_REMOVE_ALL_DATA', true );
+		}
+
+		include( dirname( dirname( dirname( dirname( __FILE__ ) ) ) ) . '/uninstall.php' );
+
+		update_option( 'woocommerce_gzd_dhl_version', '1.0' );
+		update_option( 'woocommerce_default_country', 'AT' );
+
+		WC_GZD_Install::install();
+
+		$this->assertEquals( false, wc_gzd_get_shipping_provider( 'dhl' ) );
 	}
 
 	public function set_locale( $locale, $textdomain ) {
