@@ -4,7 +4,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/woocommerce-"
 "germanized\n"
 "POT-Creation-Date: 2024-04-11T10:13:08+00:00\n"
-"PO-Revision-Date: 2024-04-11 12:13+0200\n"
+"PO-Revision-Date: 2024-04-11 13:00+0200\n"
 "Last-Translator: Dennis Nissle <info@vendidero.de>\n"
 "Language-Team: \n"
 "Language: de_DE@formal\n"
@@ -5620,13 +5620,13 @@ msgstr "Die von Ihnen ausgewählte Abholstation wird nicht unterstützt."
 msgctxt "shipments"
 msgid "Sorry, your pickup location customer number is invalid."
 msgstr ""
-"Die von Ihnen eingegebene Kundennummer zur Abholstation ist nicht korrekt. "
+"Die von Ihnen eingegebene Kundennummer zur Abholstation ist nicht korrekt."
 
 #: src/Blocks/Checkout.php:204
 #: packages/woocommerce-germanized-shipments/src/Blocks/Checkout.php:204
 msgctxt "shipments"
 msgid "Whether pickup location delivery is available"
-msgstr "Ob die Lieferung an eine Abholstation verfügbar ist."
+msgstr "Ob die Lieferung an eine Abholstation verfügbar ist"
 
 #: src/Blocks/Checkout.php:210
 #: packages/woocommerce-germanized-shipments/src/Blocks/Checkout.php:210
