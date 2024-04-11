@@ -12,10 +12,13 @@
  *
  * @see https://github.com/vendidero/woocommerce-germanized/wiki/Overriding-Germanized-Templates
  * @package Germanized/Templates
- * @version 2.6.0
+ * @version 2.7.0
  */
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
+}
+if ( ! wp_doing_ajax() ) {
+	do_action( 'woocommerce_gzd_before_checkout_order_submit' );
 }
 ?>
 <div class="wc-gzd-order-submit">
@@ -52,3 +55,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<?php do_action( 'woocommerce_gzd_review_order_after_submit' ); ?>
 	</div>
 </div>
+<?php
+if ( ! wp_doing_ajax() ) {
+	do_action( 'woocommerce_gzd_after_checkout_order_submit' );
+}
