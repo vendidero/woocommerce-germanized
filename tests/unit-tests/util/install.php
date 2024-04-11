@@ -104,11 +104,15 @@ class WC_GZD_Tests_Install extends WC_GZD_Unit_Test_Case {
 
 		remove_all_filters( 'woocommerce_gzd_shipping_provider_class_names' );
 
-		Vendidero\Germanized\Shipments\ShippingProvider\Helper::instance()->shipping_providers = null;
-
 		update_option( 'woocommerce_gzd_shipments_shipper_address_country', 'AT' );
 		update_option( 'woocommerce_gzd_dhl_version', '1.0' );
 		update_option( 'woocommerce_default_country', 'AT' );
+
+		foreach( \Vendidero\Germanized\Shipments\ShippingProvider\Helper::instance()->get_shipping_providers() as $provider ) {
+			$provider->delete( true );
+		}
+
+		Vendidero\Germanized\Shipments\ShippingProvider\Helper::instance()->shipping_providers = null;
 
 		var_dump( \Vendidero\Germanized\Shipments\Package::get_base_country() );
 		var_dump( \Vendidero\Germanized\DHL\Package::has_dependencies() );
