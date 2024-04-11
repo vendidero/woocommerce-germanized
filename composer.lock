@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "234ed27d94ec8335b38ef20ec7f0dcce",
+    "content-hash": "5a78b3afc6060197dacfae976b82183f",
     "packages": [
         {
             "name": "automattic/jetpack-autoloader",
@@ -443,16 +443,16 @@
         },
         {
             "name": "globalcitizen/php-iban",
-            "version": "v4.2.1",
+            "version": "v4.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/globalcitizen/php-iban.git",
-                "reference": "148b3c37c81c6bc525705de6dd44ea322963bd10"
+                "reference": "d8d2b7c60ba01286fc625763618760aa3b684c00"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/globalcitizen/php-iban/zipball/148b3c37c81c6bc525705de6dd44ea322963bd10",
-                "reference": "148b3c37c81c6bc525705de6dd44ea322963bd10",
+                "url": "https://api.github.com/repos/globalcitizen/php-iban/zipball/d8d2b7c60ba01286fc625763618760aa3b684c00",
+                "reference": "d8d2b7c60ba01286fc625763618760aa3b684c00",
                 "shasum": ""
             },
             "require": {
@@ -472,9 +472,9 @@
             "description": "php-iban is a library for parsing and validating IBAN (and IIBAN) bank account information.",
             "support": {
                 "issues": "https://github.com/globalcitizen/php-iban/issues",
-                "source": "https://github.com/globalcitizen/php-iban/tree/v4.2.1"
+                "source": "https://github.com/globalcitizen/php-iban/tree/v4.2.3"
             },
-            "time": "2023-01-08T12:29:37+00:00"
+            "time": "2024-03-25T00:37:02+00:00"
         },
         {
             "name": "myclabs/deep-copy",
@@ -810,16 +810,16 @@
         },
         {
             "name": "vendidero/woocommerce-germanized-dhl",
-            "version": "3.0.6",
+            "version": "3.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vendidero/woocommerce-germanized-dhl.git",
-                "reference": "d2749d8bf97dc06cb0a889447ead9e2baefa70f0"
+                "reference": "17e2fb46b6ec103ca0f00fa544edfbc624d8c48d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vendidero/woocommerce-germanized-dhl/zipball/d2749d8bf97dc06cb0a889447ead9e2baefa70f0",
-                "reference": "d2749d8bf97dc06cb0a889447ead9e2baefa70f0",
+                "url": "https://api.github.com/repos/vendidero/woocommerce-germanized-dhl/zipball/17e2fb46b6ec103ca0f00fa544edfbc624d8c48d",
+                "reference": "17e2fb46b6ec103ca0f00fa544edfbc624d8c48d",
                 "shasum": ""
             },
             "require": {
@@ -863,23 +863,23 @@
             "description": "The Germanized DHL implementation.",
             "homepage": "https://github.com/vendidero/woocommerce-germanized-dhl",
             "support": {
-                "source": "https://github.com/vendidero/woocommerce-germanized-dhl/tree/v3.0.6",
+                "source": "https://github.com/vendidero/woocommerce-germanized-dhl/tree/v3.1.0",
                 "issues": "https://github.com/vendidero/woocommerce-germanized-dhl/issues"
             },
-            "time": "2024-03-20T14:10:34+00:00"
+            "time": "2024-04-11T09:05:16+00:00"
         },
         {
             "name": "vendidero/woocommerce-germanized-shipments",
-            "version": "3.1.1",
+            "version": "3.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vendidero/woocommerce-germanized-shipments.git",
-                "reference": "931222359fda7b38694a3d4df5b35e964d8701fa"
+                "reference": "91d19bfbc709de24937e3d72860f2a15606db690"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vendidero/woocommerce-germanized-shipments/zipball/931222359fda7b38694a3d4df5b35e964d8701fa",
-                "reference": "931222359fda7b38694a3d4df5b35e964d8701fa",
+                "url": "https://api.github.com/repos/vendidero/woocommerce-germanized-shipments/zipball/91d19bfbc709de24937e3d72860f2a15606db690",
+                "reference": "91d19bfbc709de24937e3d72860f2a15606db690",
                 "shasum": ""
             },
             "require": {
@@ -922,10 +922,10 @@
             "description": "The Germanized Shipments implementation.",
             "homepage": "https://github.com/vendidero/woocommerce-germanized-shipments",
             "support": {
-                "source": "https://github.com/vendidero/woocommerce-germanized-shipments/tree/v3.1.1",
+                "source": "https://github.com/vendidero/woocommerce-germanized-shipments/tree/v3.2.0",
                 "issues": "https://github.com/vendidero/woocommerce-germanized-shipments/issues"
             },
-            "time": "2024-03-21T14:21:43+00:00"
+            "time": "2024-04-11T09:18:29+00:00"
         }
     ],
     "packages-dev": [
@@ -2631,16 +2631,16 @@
         },
         {
             "name": "squizlabs/php_codesniffer",
-            "version": "3.9.0",
+            "version": "3.9.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHPCSStandards/PHP_CodeSniffer.git",
-                "reference": "d63cee4890a8afaf86a22e51ad4d97c91dd4579b"
+                "reference": "267a4405fff1d9c847134db3a3c92f1ab7f77909"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHPCSStandards/PHP_CodeSniffer/zipball/d63cee4890a8afaf86a22e51ad4d97c91dd4579b",
-                "reference": "d63cee4890a8afaf86a22e51ad4d97c91dd4579b",
+                "url": "https://api.github.com/repos/PHPCSStandards/PHP_CodeSniffer/zipball/267a4405fff1d9c847134db3a3c92f1ab7f77909",
+                "reference": "267a4405fff1d9c847134db3a3c92f1ab7f77909",
                 "shasum": ""
             },
             "require": {
@@ -2707,7 +2707,7 @@
                     "type": "open_collective"
                 }
             ],
-            "time": "2024-02-16T15:06:51+00:00"
+            "time": "2024-03-31T21:03:09+00:00"
         },
         {
             "name": "theseer/tokenizer",
@@ -2914,16 +2914,16 @@
         },
         {
             "name": "yoast/phpunit-polyfills",
-            "version": "1.1.0",
+            "version": "1.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Yoast/PHPUnit-Polyfills.git",
-                "reference": "224e4a1329c03d8bad520e3fc4ec980034a4b212"
+                "reference": "a0f7d708794a738f328d7b6c94380fd1d6c40446"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Yoast/PHPUnit-Polyfills/zipball/224e4a1329c03d8bad520e3fc4ec980034a4b212",
-                "reference": "224e4a1329c03d8bad520e3fc4ec980034a4b212",
+                "url": "https://api.github.com/repos/Yoast/PHPUnit-Polyfills/zipball/a0f7d708794a738f328d7b6c94380fd1d6c40446",
+                "reference": "a0f7d708794a738f328d7b6c94380fd1d6c40446",
                 "shasum": ""
             },
             "require": {
@@ -2931,7 +2931,9 @@
                 "phpunit/phpunit": "^4.8.36 || ^5.7.21 || ^6.0 || ^7.0 || ^8.0 || ^9.0"
             },
             "require-dev": {
-                "yoast/yoastcs": "^2.3.0"
+                "php-parallel-lint/php-console-highlighter": "^1.0.0",
+                "php-parallel-lint/php-parallel-lint": "^1.4.0",
+                "yoast/yoastcs": "^3.1.0"
             },
             "type": "library",
             "extra": {
@@ -2968,9 +2970,10 @@
             ],
             "support": {
                 "issues": "https://github.com/Yoast/PHPUnit-Polyfills/issues",
+                "security": "https://github.com/Yoast/PHPUnit-Polyfills/security/policy",
                 "source": "https://github.com/Yoast/PHPUnit-Polyfills"
             },
-            "time": "2023-08-19T14:25:08+00:00"
+            "time": "2024-04-05T16:01:51+00:00"
         }
     ],
     "aliases": [],
