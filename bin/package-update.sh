@@ -35,6 +35,7 @@ find ./packages/woocommerce-eu-tax-helper -iname '*.php' -exec sed -i.bak -e "s/
 
 output 3 "Updating package JS textdomains..."
 find ./packages/woocommerce-germanized-dhl \( -iname '*.js' -o -iname '*.json' \) -exec sed -i.bak -e "s/'woocommerce-germanized-dhl'/'woocommerce-germanized'/g" -e "s/\"woocommerce-germanized-dhl\"/\"woocommerce-germanized\"/g" {} \;
+find ./packages/woocommerce-germanized-shipments \( -iname '*.js' -o -iname '*.json' \) -exec sed -i.bak -e "s/'woocommerce-germanized-shipments'/'woocommerce-germanized'/g" -e "s/\"woocommerce-germanized-shipments\"/\"woocommerce-germanized\"/g" {} \;
 
 rm -rf ./i18n/languages/*.json
 

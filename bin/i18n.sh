@@ -21,6 +21,7 @@ wp i18n make-pot --ignore-domain ./packages/woocommerce-germanized-shipments ./p
 
 output 3 "Update i18n script paths in POT file to make sure WP is able to load the right translations from packages dir"
 sed -i '' -e "s/\#: build\//\#: packages\/woocommerce-germanized-dhl\/build\//g" ./packages/woocommerce-germanized-dhl/i18n/woocommerce-germanized-dhl.pot
+sed -i '' -e "s/\#: build\//\#: packages\/woocommerce-germanized-shipments\/build\//g" ./packages/woocommerce-germanized-shipments/i18n/woocommerce-germanized-shipments.pot
 output 2 "Done"
 
 # Create Germanized Pro POT file and merge with StoreaBill

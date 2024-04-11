@@ -57,7 +57,21 @@ class Bootstrap {
 		);
 
 		add_filter(
+			'woocommerce_gzd_shipments_get_i18n_path',
+			function() {
+				return Package::get_language_path();
+			}
+		);
+
+		add_filter(
 			'woocommerce_gzd_dhl_get_i18n_textdomain',
+			function() {
+				return 'woocommerce-germanized';
+			}
+		);
+
+		add_filter(
+			'woocommerce_gzd_shipments_get_i18n_textdomain',
 			function() {
 				return 'woocommerce-germanized';
 			}
