@@ -89,6 +89,11 @@ class WC_GZD_Tests_Install extends WC_GZD_Unit_Test_Case {
 	 * Test - install.
 	 */
 	public function test_install_non_built_in_providers() {
+		// Make sure the DHL Package loads - Base country should equal DE.
+		tests_add_filter( 'woocommerce_gzd_dhl_base_country', function () {
+			return 'AT';
+		} );
+
 		// clean existing installation first
 		if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 			define( 'WP_UNINSTALL_PLUGIN', true );
@@ -98,10 +103,6 @@ class WC_GZD_Tests_Install extends WC_GZD_Unit_Test_Case {
 		include( dirname( dirname( dirname( dirname( __FILE__ ) ) ) ) . '/uninstall.php' );
 
 		remove_all_filters( 'woocommerce_gzd_shipping_provider_class_names' );
-
-		update_option( 'woocommerce_gzd_shipments_shipper_address_country', 'AT' );
-		update_option( 'woocommerce_gzd_dhl_version', '1.0' );
-		update_option( 'woocommerce_default_country', 'AT' );
 
 		var_dump( \Vendidero\Germanized\Shipments\Package::get_base_country() );
 		var_dump( \Vendidero\Germanized\DHL\Package::has_dependencies() );
