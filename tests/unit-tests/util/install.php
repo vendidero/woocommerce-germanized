@@ -89,7 +89,7 @@ class WC_GZD_Tests_Install extends WC_GZD_Unit_Test_Case {
 	 * Test - install.
 	 */
 	public function test_install_non_built_in_providers() {
-		// Make sure the DHL Package loads - Base country should equal DE.
+		// Make sure the DHL Package does not load.
 		tests_add_filter( 'woocommerce_gzd_dhl_base_country', function () {
 			return 'AT';
 		} );
@@ -113,11 +113,6 @@ class WC_GZD_Tests_Install extends WC_GZD_Unit_Test_Case {
 		}
 
 		Vendidero\Germanized\Shipments\ShippingProvider\Helper::instance()->shipping_providers = null;
-
-		var_dump( \Vendidero\Germanized\Shipments\Package::get_base_country() );
-		var_dump( \Vendidero\Germanized\DHL\Package::has_dependencies() );
-		var_dump( \Vendidero\Germanized\Shipments\ShippingProvider\Helper::instance()->get_shipping_providers() );
-
 		WC_GZD_Install::install();
 
 		$this->assertEquals( false, wc_gzd_get_shipping_provider( 'dhl' ) );
