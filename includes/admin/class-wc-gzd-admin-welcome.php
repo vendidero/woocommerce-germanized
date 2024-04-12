@@ -277,6 +277,8 @@ class WC_GZD_Admin_Welcome {
 	 * Output the about screen.
 	 */
 	public function about_screen() {
+		// Delete the redirect transient
+		delete_transient( '_wc_gzd_activation_redirect' );
 		?>
 		<div class="wrap about-wrap">
 			<?php $this->intro(); ?>
