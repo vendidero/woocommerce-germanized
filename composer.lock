@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "955325dd75ec35d4a0d50bd345348747",
+    "content-hash": "413b45741fb74d586df560e92a7b2679",
     "packages": [
         {
             "name": "automattic/jetpack-autoloader",
@@ -870,16 +870,16 @@
         },
         {
             "name": "vendidero/woocommerce-germanized-shipments",
-            "version": "3.2.1",
+            "version": "3.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vendidero/woocommerce-germanized-shipments.git",
-                "reference": "02555f1e8b38300068c30c5458ffaa20b459672a"
+                "reference": "c824c6697ed48fe226e19bfdfda0ebabad07d473"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vendidero/woocommerce-germanized-shipments/zipball/02555f1e8b38300068c30c5458ffaa20b459672a",
-                "reference": "02555f1e8b38300068c30c5458ffaa20b459672a",
+                "url": "https://api.github.com/repos/vendidero/woocommerce-germanized-shipments/zipball/c824c6697ed48fe226e19bfdfda0ebabad07d473",
+                "reference": "c824c6697ed48fe226e19bfdfda0ebabad07d473",
                 "shasum": ""
             },
             "require": {
@@ -922,10 +922,10 @@
             "description": "The Germanized Shipments implementation.",
             "homepage": "https://github.com/vendidero/woocommerce-germanized-shipments",
             "support": {
-                "source": "https://github.com/vendidero/woocommerce-germanized-shipments/tree/v3.2.1",
+                "source": "https://github.com/vendidero/woocommerce-germanized-shipments/tree/v3.2.2",
                 "issues": "https://github.com/vendidero/woocommerce-germanized-shipments/issues"
             },
-            "time": "2024-04-12T11:36:54+00:00"
+            "time": "2024-04-15T13:02:57+00:00"
         }
     ],
     "packages-dev": [

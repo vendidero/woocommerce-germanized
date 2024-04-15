@@ -5,7 +5,7 @@ Requires at least: 5.4
 Tested up to: 6.5
 WC requires at least: 3.9
 WC tested up to: 8.7
-Stable tag: 3.16.2
+Stable tag: 3.16.3
 Requires PHP: 5.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -205,6 +205,10 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 6. Edit pdf documents (Pro)
 
 == Changelog ==
+= 3.16.3 =
+* Fix: Prevent duplicate meta entries within shipping provider meta table
+* Fix: Remove duplicate meta entries in update script
+
 = 3.16.2 =
 * Fix: Compatibility issue with PayPal Payments and checkout field registration
 * Fix: DHL shipment zone detection
