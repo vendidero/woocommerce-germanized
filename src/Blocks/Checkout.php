@@ -171,6 +171,50 @@ final class Checkout {
 	}
 
 	private function register_validation_and_storage() {
+		add_action(
+			'__experimental_woocommerce_blocks_validate_location_address_fields',
+			function( $errors, $fields, $group ) {
+				if ( 'never' !== get_option( 'woocommerce_gzd_checkout_validate_street_number' ) && function_exists( 'wc_gzd_split_shipment_street' ) ) {
+					if ( 'billing' === $group && ! apply_filters( 'woocommerce_gzd_checkout_validate_billing_street_number', true ) ) {
+						return $errors;
+					}
+
+					$country   = $fields['country'];
+					$address_1 = $fields['address_1'];
+
+					if ( ! empty( $country ) && ! empty( $address_1 ) && apply_filters( 'woocommerce_gzd_checkout_validate_street_number', true, $fields ) ) {
+						$countries = array();
+
+						if ( 'always' === get_option( 'woocommerce_gzd_checkout_validate_street_number' ) ) {
+							$countries = array_keys( WC()->countries->get_allowed_countries() );
+						} elseif ( 'base_only' === get_option( 'woocommerce_gzd_checkout_validate_street_number' ) ) {
+							$countries = array( wc_gzd_get_base_country() );
+						} elseif ( 'eu_only' === get_option( 'woocommerce_gzd_checkout_validate_street_number' ) ) {
+							$countries = WC()->countries->get_european_union_countries();
+						}
+
+						$is_valid = true;
+
+						if ( in_array( $country, $countries, true ) ) {
+							$address_parts = wc_gzd_split_shipment_street( $address_1 );
+							$is_valid      = empty( $address_parts['number'] ) ? false : true;
+						}
+
+						if ( ! apply_filters( 'woocommerce_gzd_checkout_is_valid_street_number', $is_valid, $fields ) ) {
+							$errors->add(
+								'invalid_address_1',
+								apply_filters( 'woocommerce_gzd_checkout_invalid_street_number_error_message', __( 'Please check the street field and make sure to provide a valid street number.', 'woocommerce-germanized' ), $fields )
+							);
+						}
+					}
+				}
+
+				return $errors;
+			},
+			10,
+			3
+		);
+
 		/**
 		 * This hook does not contain any request data, therefor has only limited value.
 		 */
