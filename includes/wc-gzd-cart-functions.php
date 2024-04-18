@@ -976,7 +976,7 @@ function wc_gzd_get_cart_tax_share( $type = 'shipping', $cart_contents = array()
 			} elseif ( isset( $item['data'] ) ) {
 				$_product   = apply_filters( 'woocommerce_cart_item_product', $item['data'], $item, $key );
 				$class      = $_product->get_tax_class();
-				$line_total = $item['line_total'];
+				$line_total = ! empty( $item['line_total'] ) ? $item['line_total'] : 0.0;
 				$tax_rate   = ! empty( $item['line_tax_data'] ) ? key( $item['line_tax_data']['total'] ) : null;
 
 				$tax_rate = apply_filters( 'woocommerce_gzd_tax_share_cart_item_tax_rate', $tax_rate, $item, $type );
