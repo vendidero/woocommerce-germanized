@@ -116,7 +116,13 @@ class WC_GZD_Compatibility_ET_Builder extends WC_GZD_Compatibility {
 							add_action( 'woocommerce_checkout_order_review', 'woocommerce_checkout_payment', 20 );
 						}
 					}
-				} else {
+				} elseif ( apply_filters( 'woocommerce_gzd_et_builder_legacy_checkout_needs_hook_removal', false ) ) {
+					/**
+					 * In newer Divi versions these additional hook removals are not necessary as Divi
+					 * detaches unnecessary checkout hooks right before output of the actual modul.
+					 *
+					 * @see ET_Builder_Module_Helper_Woocommerce_Modules::detach_wc_checkout_payment()
+					 */
 					remove_action( 'woocommerce_checkout_order_review', 'woocommerce_checkout_payment', WC_GZD_Hook_Priorities::instance()->get_priority( 'woocommerce_checkout_order_review', 'woocommerce_checkout_payment', 10, true ) );
 					remove_action( 'woocommerce_checkout_order_review', 'woocommerce_order_review', WC_GZD_Hook_Priorities::instance()->get_priority( 'woocommerce_checkout_order_review', 'woocommerce_order_review', 20, true ) );
 

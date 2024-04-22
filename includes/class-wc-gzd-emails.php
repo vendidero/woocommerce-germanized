@@ -699,7 +699,6 @@ class WC_GZD_Emails {
 	}
 
 	public function admin_hooks() {
-		add_filter( 'woocommerce_resend_order_emails_available', array( $this, 'resend_order_emails' ), 0 );
 		add_action( 'woocommerce_email_settings_after', array( $this, 'confirmation_text_option' ), 10, 1 );
 		add_action(
 			'woocommerce_update_options_email_customer_processing_order',
@@ -874,18 +873,6 @@ class WC_GZD_Emails {
 		wc_deprecated_function( __METHOD__, '3.15.2' );
 
 		return $order_id;
-	}
-
-	public function resend_order_emails( $emails ) {
-		global $theorder;
-
-		if ( is_null( $theorder ) ) {
-			return $emails;
-		}
-
-		array_push( $emails, 'customer_paid_for_order' );
-
-		return $emails;
 	}
 
 	public function set_woocommerce_template_dir( $dir, $template ) {
