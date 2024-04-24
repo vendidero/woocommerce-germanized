@@ -5,7 +5,7 @@ Requires at least: 5.4
 Tested up to: 6.5
 WC requires at least: 3.9
 WC tested up to: 8.7
-Stable tag: 3.16.4
+Stable tag: 3.16.5
 Requires PHP: 5.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -205,6 +205,12 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 6. Edit pdf documents (Pro)
 
 == Changelog ==
+= 3.16.5 =
+* Fix: Prevent type error when converting cart dimensions
+* Fix: Non-existent pickup locations field hiding logic
+* Improvement: Remove legacy email resend filter
+* Improvement: Divi checkout builder compatibility
+
 = 3.16.4 =
 * Fix: Checkout block prevent multiple refresh leading to react errors
 * Improvement: Pickup location admin fields Woo < 8.6 backwards compatibility

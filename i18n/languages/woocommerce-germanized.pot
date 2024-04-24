@@ -2,14 +2,14 @@
 # This file is distributed under the same license as the Germanized for WooCommerce plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Germanized for WooCommerce 3.16.3\n"
+"Project-Id-Version: Germanized for WooCommerce 3.16.5\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/woocommerce-germanized\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-04-18T11:33:19+00:00\n"
+"POT-Creation-Date: 2024-04-24T14:13:24+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.9.0\n"
 
@@ -2187,8 +2187,8 @@ msgctxt "dhl"
 msgid "This option adds a map overlay view to let your customers choose a DHL location from a map nearby. You'll need a valid Google Maps API key to enable the map view."
 msgstr ""
 
-#: src/ShippingProvider/PickupLocation.php:63
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/PickupLocation.php:63
+#: src/ShippingProvider/PickupLocation.php:65
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/PickupLocation.php:65
 msgctxt "dhl"
 msgid "Customer Number (Post Number)"
 msgstr ""
@@ -4304,11 +4304,11 @@ msgstr ""
 #: src/Admin/Settings.php:69
 #: src/Admin/Settings.php:175
 #: src/ShippingProvider/Auto.php:268
-#: src/ShippingProvider/Auto.php:702
+#: src/ShippingProvider/Auto.php:706
 #: packages/woocommerce-germanized-shipments/src/Admin/Settings.php:69
 #: packages/woocommerce-germanized-shipments/src/Admin/Settings.php:175
 #: packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:268
-#: packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:702
+#: packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:706
 msgctxt "shipments"
 msgid "Automation"
 msgstr ""
@@ -4642,10 +4642,10 @@ msgid "Percentage Buffer"
 msgstr ""
 
 #: src/Admin/Settings.php:579
-#: src/ShippingProvider/Auto.php:673
+#: src/ShippingProvider/Auto.php:677
 #: src/ShippingProvider/Simple.php:1133
 #: packages/woocommerce-germanized-shipments/src/Admin/Settings.php:579
-#: packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:673
+#: packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:677
 #: packages/woocommerce-germanized-shipments/src/ShippingProvider/Simple.php:1133
 msgctxt "shipments"
 msgid "General"
@@ -6728,9 +6728,9 @@ msgid "Same as default format"
 msgstr ""
 
 #: src/ShippingProvider/Auto.php:280
-#: src/ShippingProvider/Auto.php:680
+#: src/ShippingProvider/Auto.php:684
 #: packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:280
-#: packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:680
+#: packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:684
 msgctxt "shipments"
 msgid "Labels"
 msgstr ""
@@ -6777,44 +6777,44 @@ msgctxt "shipments"
 msgid "Choose a shipment status which should trigger generation of a return label."
 msgstr ""
 
-#: src/ShippingProvider/Auto.php:612
-#: packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:612
+#: src/ShippingProvider/Auto.php:616
+#: packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:616
 msgctxt "dhl"
 msgid "Default Service"
 msgstr ""
 
-#: src/ShippingProvider/Auto.php:617
-#: packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:617
+#: src/ShippingProvider/Auto.php:621
+#: packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:621
 msgctxt "shipments"
 msgid "Select the default service for %1$s."
 msgstr ""
 
-#: src/ShippingProvider/Auto.php:680
-#: packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:680
+#: src/ShippingProvider/Auto.php:684
+#: packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:684
 msgctxt "shipments"
 msgid "%1$s labels"
 msgstr ""
 
-#: src/ShippingProvider/Auto.php:694
-#: packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:694
+#: src/ShippingProvider/Auto.php:698
+#: packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:698
 msgctxt "shipments"
 msgid "Printing"
 msgstr ""
 
-#: src/ShippingProvider/Auto.php:768
-#: packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:768
+#: src/ShippingProvider/Auto.php:772
+#: packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:772
 msgctxt "shipments"
 msgid "%s Product"
 msgstr ""
 
-#: src/ShippingProvider/Auto.php:792
-#: packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:792
+#: src/ShippingProvider/Auto.php:796
+#: packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:796
 msgctxt "shipments"
 msgid "Print Format"
 msgstr ""
 
-#: src/ShippingProvider/Auto.php:1083
-#: packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:1083
+#: src/ShippingProvider/Auto.php:1087
+#: packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:1087
 msgctxt "shipments"
 msgid "Error while creating the label."
 msgstr ""
@@ -11062,7 +11062,7 @@ msgstr ""
 msgid "Thanks for creating an account on %s."
 msgstr ""
 
-#: includes/class-wc-gzd-emails.php:1543
+#: includes/class-wc-gzd-emails.php:1530
 msgctxt "revocation-form"
 msgid "Forward your withdrawal online"
 msgstr ""
