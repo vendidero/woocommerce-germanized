@@ -141,6 +141,11 @@ class WC_GZD_Checkout {
 			add_action( 'woocommerce_after_checkout_validation', array( $this, 'maybe_force_street_number' ), 10, 2 );
 		}
 
+		/**
+		 * Use this hook as a tweak to make sure our custom tax class filters
+		 * are applied before (separate, non-total calculation) calls to WC_Cart::calculate_shipping() are made.
+		 */
+		add_action( 'woocommerce_cart_loaded_from_session', array( $this, 'maybe_adjust_photovoltaic_cart_data' ), 15 );
 		add_action( 'woocommerce_before_calculate_totals', array( $this, 'maybe_adjust_photovoltaic_cart_data' ), 15 );
 		add_filter( 'woocommerce_update_order_review_fragments', array( $this, 'refresh_photovoltaic_systems_notice' ), 10, 1 );
 
@@ -288,6 +293,10 @@ class WC_GZD_Checkout {
 	 */
 	public function maybe_adjust_photovoltaic_cart_data( $cart ) {
 		if ( ! wc_gzd_base_country_supports_photovoltaic_system_vat_exempt() ) {
+			return;
+		}
+
+		if ( ! $cart ) {
 			return;
 		}
 
