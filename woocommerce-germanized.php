@@ -896,6 +896,7 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 		 */
 		public function load_plugin_textdomain() {
 			add_filter( 'plugin_locale', array( $this, 'support_german_language_variants' ), 10, 2 );
+			add_filter( 'load_translation_file', array( $this, 'force_load_german_language_variant' ), 10, 2 );
 
 			if ( function_exists( 'determine_locale' ) ) {
 				$locale = determine_locale();
@@ -911,9 +912,40 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 			load_plugin_textdomain( 'woocommerce-germanized', false, plugin_basename( dirname( __FILE__ ) ) . '/i18n/languages/' );
 		}
 
+		/**
+		 * Use a tweak to force loading german language variants in WP 6.5
+		 * as WP does not allow using the plugin_locale filter to load a plugin-specific locale any longer.
+		 *
+		 * @param $file
+		 * @param $domain
+		 *
+		 * @return mixed
+		 */
+		public function force_load_german_language_variant( $file, $domain ) {
+			if ( 'woocommerce-germanized' === $domain && function_exists( 'determine_locale' ) && class_exists( 'WP_Translation_Controller' ) ) {
+				$locale     = determine_locale();
+				$new_locale = $this->get_german_language_variant( $locale );
+
+				if ( $new_locale !== $locale ) {
+					$i18n_controller = WP_Translation_Controller::get_instance();
+					$i18n_controller->load_file( $file, $domain, $locale ); // Force loading the determined file in the original locale.
+				}
+			}
+
+			return $file;
+		}
+
+		protected function get_german_language_variant( $locale ) {
+			if ( apply_filters( 'woocommerce_gzd_force_de_language', in_array( $locale, array( 'de_CH', 'de_CH_informal', 'de_AT' ), true ) ) ) {
+				$locale = apply_filters( 'woocommerce_gzd_german_language_variant_locale', 'de_DE' );
+			}
+
+			return $locale;
+		}
+
 		public function support_german_language_variants( $locale, $domain ) {
-			if ( 'woocommerce-germanized' === $domain && apply_filters( 'woocommerce_gzd_force_de_language', in_array( $locale, array( 'de_CH', 'de_AT' ), true ) ) ) {
-				$locale = 'de_DE';
+			if ( 'woocommerce-germanized' === $domain ) {
+				$locale = $this->get_german_language_variant( $locale );
 			}
 
 			return $locale;
