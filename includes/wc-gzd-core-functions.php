@@ -288,7 +288,7 @@ function wc_gzd_get_age_verification_min_ages_select() {
  * @return string
  */
 function wc_gzd_format_tax_rate_percentage( $rate, $percent = false ) {
-	return str_replace( '.', ',', wc_format_decimal( str_replace( '%', '', $rate ), true, true ) ) . ( $percent ? ' %' : '' );
+	return apply_filters( 'woocommerce_gzd_formatted_tax_rate_percentage', str_replace( '.', ',', wc_format_decimal( str_replace( '%', '', $rate ), true, true ) ) . ( $percent ? ' %' : '' ), $rate, $percent );
 }
 
 function wc_gzd_format_alcohol_content( $alcohol_content ) {
