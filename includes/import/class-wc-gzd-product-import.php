@@ -40,6 +40,7 @@ class WC_GZD_Product_Import {
 		add_filter( 'woocommerce_csv_product_import_mapping_special_columns', array( $this, 'set_special_columns' ), 10 );
 		add_filter( 'woocommerce_product_import_pre_insert_product_object', array( $this, 'import' ), 10, 2 );
 		add_filter( 'woocommerce_product_importer_parsed_data', array( $this, 'parse_data' ), 10, 1 );
+		add_filter( 'woocommerce_product_importer_pre_expand_data', array( $this, 'pre_parse_data' ), 10, 1 );
 	}
 
 	public function get_columns() {
@@ -47,8 +48,9 @@ class WC_GZD_Product_Import {
 	}
 
 	public function set_special_columns( $columns ) {
-		$columns[ __( 'Delivery Time: %s', 'woocommerce-germanized' ) ] = 'delivery_time:';
-		$columns[ __( 'Nutrients: %s', 'woocommerce-germanized' ) ]     = 'nutrients:';
+		$columns[ __( 'Delivery Time: %s', 'woocommerce-germanized' ) ]                = 'delivery_time:';
+		$columns[ __( 'Nutrients: %s', 'woocommerce-germanized' ) ]                    = 'nutrients:';
+		$columns[ __( 'Attribute %d visible in checkout', 'woocommerce-germanized' ) ] = 'attributes:checkout_visible';
 
 		return $columns;
 	}
@@ -103,6 +105,66 @@ class WC_GZD_Product_Import {
 				'nutrient_reference_value' => array( $this, 'parse_nutrient_reference_value' ),
 			)
 		);
+	}
+
+	/**
+	 * Use the pre parse filter to replicate Woo core attribute parsing and inject
+	 * our custom attribute value as there would be no other way to make sure that attribute
+	 * indexes (which are reset) are maintained.
+	 *
+	 * @see WC_Product_CSV_Importer::expand_data()
+	 *
+	 * @param $data
+	 *
+	 * @return array
+	 */
+	public function pre_parse_data( $data ) {
+		$attributes = array();
+
+		foreach ( $data as $key => $value ) {
+			if ( $this->starts_with( $key, 'attributes:name' ) ) {
+				if ( ! empty( $value ) ) {
+					$attributes[ str_replace( 'attributes:name', '', $key ) ]['name'] = $value;
+				}
+				unset( $data[ $key ] );
+
+			} elseif ( $this->starts_with( $key, 'attributes:value' ) ) {
+				$attributes[ str_replace( 'attributes:value', '', $key ) ]['value'] = $value;
+				unset( $data[ $key ] );
+
+			} elseif ( $this->starts_with( $key, 'attributes:taxonomy' ) ) {
+				$attributes[ str_replace( 'attributes:taxonomy', '', $key ) ]['taxonomy'] = wc_string_to_bool( $value );
+				unset( $data[ $key ] );
+
+			} elseif ( $this->starts_with( $key, 'attributes:visible' ) ) {
+				$attributes[ str_replace( 'attributes:visible', '', $key ) ]['visible'] = wc_string_to_bool( $value );
+				unset( $data[ $key ] );
+
+			} elseif ( $this->starts_with( $key, 'attributes:default' ) ) {
+				if ( ! empty( $value ) ) {
+					$attributes[ str_replace( 'attributes:default', '', $key ) ]['default'] = $value;
+				}
+				unset( $data[ $key ] );
+
+			} elseif ( $this->starts_with( $key, 'attributes:checkout_visible' ) ) {
+				$attributes[ str_replace( 'attributes:checkout_visible', '', $key ) ]['checkout_visible'] = wc_string_to_bool( $value );
+				unset( $data[ $key ] );
+
+			}
+		}
+
+		if ( ! empty( $attributes ) ) {
+			// Remove empty attributes and clear indexes.
+			foreach ( $attributes as $attribute ) {
+				if ( empty( $attribute['name'] ) ) {
+					continue;
+				}
+
+				$data['raw_attributes'][] = $attribute;
+			}
+		}
+
+		return $data;
 	}
 
 	public function parse_data( $data ) {
@@ -182,6 +244,17 @@ class WC_GZD_Product_Import {
 		$columns[ "delivery_time:{$country}" ] = __( 'Country specific delivery times', 'woocommerce-germanized' );
 		$columns[ "nutrients:{$nutrient}" ]    = __( 'Nutrients', 'woocommerce-germanized' );
 
+		if ( isset( $columns['attributes'] ) ) {
+			// Get index for special column names.
+			$index = $item;
+
+			if ( preg_match( '/\d+/', $item, $matches ) ) {
+				$index = $matches[0];
+			}
+
+			$columns['attributes']['options'][ 'attributes:checkout_visible' . $index ] = __( 'Attribute checkout visibility', 'woocommerce-germanized' );
+		}
+
 		return $columns;
 	}
 
@@ -198,7 +271,6 @@ class WC_GZD_Product_Import {
 	 * @return mixed|void
 	 */
 	public function import( $product, $data ) {
-		$formattings  = $this->get_formatting_callbacks();
 		$gzd_product  = wc_gzd_get_product( $product );
 		$column_names = array_merge(
 			$this->get_columns(),
@@ -234,6 +306,52 @@ class WC_GZD_Product_Import {
 						$gzd_product->$setter( $value );
 					}
 				}
+			}
+		}
+
+		if ( isset( $data['raw_attributes'] ) ) {
+			$product_attributes     = $product->get_attributes();
+			$has_updated_attributes = false;
+
+			foreach ( $data['raw_attributes'] as $position => $attribute ) {
+				if ( isset( $attribute['checkout_visible'] ) ) {
+					$attribute_id = 0;
+
+					// Get ID if is a global attribute.
+					if ( ! empty( $attribute['taxonomy'] ) ) {
+						$attribute_labels = wp_list_pluck( wc_get_attribute_taxonomies(), 'attribute_label', 'attribute_name' );
+						$attribute_name   = array_search( $attribute['name'], $attribute_labels, true );
+
+						if ( ! $attribute_name ) {
+							$attribute_name = wc_sanitize_taxonomy_name( $attribute['name'] );
+						}
+
+						$attribute_id = wc_attribute_taxonomy_id_by_name( $attribute_name );
+					}
+
+					$is_checkout_visible = $attribute['checkout_visible'];
+
+					// Get name.
+					$attribute_name = $attribute_id ? wc_attribute_taxonomy_name_by_id( $attribute_id ) : $attribute['name'];
+
+					foreach ( $product_attributes as $k => $existing_attribute ) {
+						if ( $existing_attribute->get_name() === $attribute_name ) {
+							$product_attributes[ $k ] = new WC_GZD_Product_Attribute( $existing_attribute );
+							$product_attributes[ $k ]->set_checkout_visible( $is_checkout_visible );
+
+							$has_updated_attributes = true;
+							break;
+						}
+					}
+				}
+			}
+
+			/**
+			 * Update the product attributes to override WC_Product_Attribute with WC_GZD_Product_Attribute
+			 * in case applicable.
+			 */
+			if ( $has_updated_attributes ) {
+				$product->set_attributes( $product_attributes );
 			}
 		}
 

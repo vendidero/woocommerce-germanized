@@ -40,6 +40,7 @@ class WC_GZD_Product_Export {
 		add_filter( 'woocommerce_product_export_product_default_columns', array( $this, 'set_columns' ), 10, 1 );
 		add_filter( 'woocommerce_product_export_row_data', array( $this, 'export_delivery_times' ), 10, 2 );
 		add_filter( 'woocommerce_product_export_row_data', array( $this, 'export_nutrients' ), 15, 2 );
+		add_filter( 'woocommerce_product_export_row_data', array( $this, 'export_product_attribute_data' ), 20, 3 );
 		add_filter( 'woocommerce_product_export_column_names', array( $this, 'register_additional_columns' ), 500, 2 );
 		add_filter( 'woocommerce_product_export_skip_meta_keys', array( $this, 'register_core_meta_data' ), 10, 2 );
 
@@ -192,6 +193,31 @@ class WC_GZD_Product_Export {
 				}
 
 				$this->additional_columns[ $column_key ] = sprintf( __( 'Nutrients: %s', 'woocommerce-germanized' ), $nutrient->name );
+			}
+		}
+
+		return $row;
+	}
+
+	/**
+	 * @param $row
+	 * @param WC_Product $product
+	 * @param WC_Product_CSV_Exporter $exporter
+	 */
+	public function export_product_attribute_data( $row, $product, $exporter ) {
+		if ( $exporter->is_column_exporting( 'attributes' ) ) {
+			$attributes = $product->get_attributes();
+
+			if ( count( $attributes ) ) {
+				$i = 1;
+				foreach ( $attributes as $attribute_name => $attribute ) {
+					/* translators: %s: attribute number */
+					$this->additional_columns[ 'attributes:checkout_visible' . $i ] = sprintf( __( 'Attribute %d visible in checkout', 'woocommerce-germanized' ), $i );
+
+					if ( $gzd_attribute = WC_GZD_Product_Attribute_Helper::instance()->get_attribute( $attribute, $product ) ) {
+						$row[ 'attributes:checkout_visible' . $i ] = $gzd_attribute->get_checkout_visible();
+					}
+				}
 			}
 		}
 

@@ -480,53 +480,53 @@ class WC_GZD_Legal_Checkbox_Manager {
 	 *
 	 * @return void
 	 */
-    public function show_conditionally_order( $order, $location = 'pay_for_order' ) {
-	    $items = $order->get_items();
-	    $args  = array(
-		    'is_downloadable'        => false,
-		    'is_service'             => false,
-		    'has_defective_copies'   => false,
-		    'has_used_goods'         => false,
-		    'is_photovoltaic_system' => false,
-		    'product_category_ids'   => array(),
-		    'country'                => $order->get_shipping_country() ? $order->get_shipping_country() : $order->get_billing_country(),
-		    'postcode'               => $order->get_shipping_postcode() ? $order->get_shipping_postcode() : $order->get_billing_postcode(),
-		    'company'                => $order->get_shipping_company() ? $order->get_shipping_company() : $order->get_billing_company(),
-		    'create_account'         => false,
-		    'order'                  => $order,
-		    'needs_age_verification' => wc_gzd_order_has_age_verification( $order->get_id() ),
-	    );
+	public function show_conditionally_order( $order, $location = 'pay_for_order' ) {
+		$items = $order->get_items();
+		$args  = array(
+			'is_downloadable'        => false,
+			'is_service'             => false,
+			'has_defective_copies'   => false,
+			'has_used_goods'         => false,
+			'is_photovoltaic_system' => false,
+			'product_category_ids'   => array(),
+			'country'                => $order->get_shipping_country() ? $order->get_shipping_country() : $order->get_billing_country(),
+			'postcode'               => $order->get_shipping_postcode() ? $order->get_shipping_postcode() : $order->get_billing_postcode(),
+			'company'                => $order->get_shipping_company() ? $order->get_shipping_company() : $order->get_billing_company(),
+			'create_account'         => false,
+			'order'                  => $order,
+			'needs_age_verification' => wc_gzd_order_has_age_verification( $order->get_id() ),
+		);
 
-	    foreach ( $items as $key => $item ) {
-		    if ( $item && is_callable( array( $item, 'get_product' ) ) && ( $_product = $item->get_product() ) ) {
-			    if ( wc_gzd_is_revocation_exempt( $_product, 'digital', $item ) ) {
-				    $args['is_downloadable'] = true;
-			    }
+		foreach ( $items as $key => $item ) {
+			if ( $item && is_callable( array( $item, 'get_product' ) ) && ( $_product = $item->get_product() ) ) {
+				if ( wc_gzd_is_revocation_exempt( $_product, 'digital', $item ) ) {
+					$args['is_downloadable'] = true;
+				}
 
-			    if ( wc_gzd_is_revocation_exempt( $_product, 'service', $item ) ) {
-				    $args['is_service'] = true;
-			    }
+				if ( wc_gzd_is_revocation_exempt( $_product, 'service', $item ) ) {
+					$args['is_service'] = true;
+				}
 
-			    if ( wc_gzd_get_product( $_product )->is_used_good() ) {
-				    $args['has_used_goods'] = true;
-			    }
+				if ( wc_gzd_get_product( $_product )->is_used_good() ) {
+					$args['has_used_goods'] = true;
+				}
 
-			    if ( wc_gzd_get_product( $_product )->is_photovoltaic_system() ) {
-				    $args['is_photovoltaic_system'] = true;
-			    }
+				if ( wc_gzd_get_product( $_product )->is_photovoltaic_system() ) {
+					$args['is_photovoltaic_system'] = true;
+				}
 
-			    if ( wc_gzd_get_product( $_product )->is_defective_copy() ) {
-				    $args['has_defective_copies'] = true;
-			    }
+				if ( wc_gzd_get_product( $_product )->is_defective_copy() ) {
+					$args['has_defective_copies'] = true;
+				}
 
-			    if ( $_product ) {
-				    $args['product_category_ids'] = array_unique( array_merge( $args['product_category_ids'], $this->get_product_category_ids( $_product ) ) );
-			    }
-		    }
-	    }
+				if ( $_product ) {
+					$args['product_category_ids'] = array_unique( array_merge( $args['product_category_ids'], $this->get_product_category_ids( $_product ) ) );
+				}
+			}
+		}
 
-	    $this->update_show_conditionally( $location, $args, 'order' );
-    }
+		$this->update_show_conditionally( $location, $args, 'order' );
+	}
 
 	public function show_conditionally_pay_for_order() {
 		global $wp;
@@ -537,7 +537,7 @@ class WC_GZD_Legal_Checkbox_Manager {
 			return;
 		}
 
-        $this->show_conditionally_order( $order );
+		$this->show_conditionally_order( $order );
 	}
 
 	public function show_conditionally_checkout() {
@@ -573,11 +573,11 @@ class WC_GZD_Legal_Checkbox_Manager {
 			)
 		);
 
-        if ( empty( $context ) && 'pay_for_order' === $location ) {
-            $context = 'order';
-        }
+		if ( empty( $context ) && 'pay_for_order' === $location ) {
+			$context = 'order';
+		}
 
-        $context = empty( $context ) ? $location : $context;
+		$context = empty( $context ) ? $location : $context;
 
 		foreach ( $this->get_checkboxes( array( 'locations' => $location ) ) as $checkbox_id => $checkbox ) {
 			if ( $checkbox->is_enabled() ) {
@@ -740,7 +740,7 @@ class WC_GZD_Legal_Checkbox_Manager {
 				 * @param WC_GZD_Legal_Checkbox $checkbox Checkbox object.
 				 * @param string $checkbox_id The checkbox id.
 				 * @param WC_GZD_Legal_Checkbox_Manager $instance The checkbox manager instance.
-                 * @param string $context The checkbox context
+				 * @param string $context The checkbox context
 				 *
 				 * @since 3.11.5
 				 */
