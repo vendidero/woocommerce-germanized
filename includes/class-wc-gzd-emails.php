@@ -1122,6 +1122,7 @@ class WC_GZD_Emails {
 		$type = $this->get_current_email_object();
 
 		if ( $type ) {
+			WC_GZD_Legal_Checkbox_Manager::instance()->show_conditionally_order( $order, 'checkout' );
 
 			// Check if order contains digital products
 			$items = $order->get_items();
@@ -1153,7 +1154,6 @@ class WC_GZD_Emails {
 			}
 
 			if ( get_option( 'woocommerce_gzd_differential_taxation_checkout_notices' ) === 'yes' && $is_differential_taxed && apply_filters( 'woocommerce_gzd_show_differential_taxation_in_emails', true, $type ) ) {
-
 				$mark = wc_gzd_get_differential_taxation_mark();
 
 				/**
@@ -1170,8 +1170,7 @@ class WC_GZD_Emails {
 			}
 
 			if ( $this->is_order_confirmation_email( $type->id ) ) {
-
-				if ( $is_downloadable && $text = wc_gzd_get_legal_text_digital_email_notice() ) {
+				if ( $is_downloadable && ( ( $checkbox = wc_gzd_get_legal_checkbox( 'download' ) ) && $checkbox->is_shown() ) && $text = wc_gzd_get_legal_text_digital_email_notice() ) {
 
 					/**
 					 * Filters the order confirmation digital notice text.
@@ -1185,8 +1184,7 @@ class WC_GZD_Emails {
 					echo wp_kses_post( apply_filters( 'woocommerce_gzd_order_confirmation_digital_notice', '<div class="gzd-digital-notice-text">' . wpautop( $text ) . '</div>', $order ) );
 				}
 
-				if ( $is_service && $text = wc_gzd_get_legal_text_service_email_notice() ) {
-
+				if ( $is_service && ( ( $checkbox = wc_gzd_get_legal_checkbox( 'service' ) ) && $checkbox->is_shown() ) && $text = wc_gzd_get_legal_text_service_email_notice() ) {
 					/**
 					 * Filters the order confirmation service notice text.
 					 *

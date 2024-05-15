@@ -196,7 +196,7 @@ window.germanized = window.germanized || {};
                  * Keep the latest nonce only
                  */
                 if ( $all_nonces.length > 1 ) {
-                    $all_nonces.not( ':last' ).remove();
+                    $all_nonces.not( ':not(:first-child):not(:last-child)' ).remove();
                 }
             }
 

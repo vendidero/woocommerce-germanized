@@ -475,6 +475,59 @@ class WC_GZD_Legal_Checkbox_Manager {
 		return $args;
 	}
 
+	/**
+	 * @param WC_Order $order
+	 *
+	 * @return void
+	 */
+    public function show_conditionally_order( $order, $location = 'pay_for_order' ) {
+	    $items = $order->get_items();
+	    $args  = array(
+		    'is_downloadable'        => false,
+		    'is_service'             => false,
+		    'has_defective_copies'   => false,
+		    'has_used_goods'         => false,
+		    'is_photovoltaic_system' => false,
+		    'product_category_ids'   => array(),
+		    'country'                => $order->get_shipping_country() ? $order->get_shipping_country() : $order->get_billing_country(),
+		    'postcode'               => $order->get_shipping_postcode() ? $order->get_shipping_postcode() : $order->get_billing_postcode(),
+		    'company'                => $order->get_shipping_company() ? $order->get_shipping_company() : $order->get_billing_company(),
+		    'create_account'         => false,
+		    'order'                  => $order,
+		    'needs_age_verification' => wc_gzd_order_has_age_verification( $order->get_id() ),
+	    );
+
+	    foreach ( $items as $key => $item ) {
+		    if ( $item && is_callable( array( $item, 'get_product' ) ) && ( $_product = $item->get_product() ) ) {
+			    if ( wc_gzd_is_revocation_exempt( $_product, 'digital', $item ) ) {
+				    $args['is_downloadable'] = true;
+			    }
+
+			    if ( wc_gzd_is_revocation_exempt( $_product, 'service', $item ) ) {
+				    $args['is_service'] = true;
+			    }
+
+			    if ( wc_gzd_get_product( $_product )->is_used_good() ) {
+				    $args['has_used_goods'] = true;
+			    }
+
+			    if ( wc_gzd_get_product( $_product )->is_photovoltaic_system() ) {
+				    $args['is_photovoltaic_system'] = true;
+			    }
+
+			    if ( wc_gzd_get_product( $_product )->is_defective_copy() ) {
+				    $args['has_defective_copies'] = true;
+			    }
+
+			    if ( $_product ) {
+				    $args['product_category_ids'] = array_unique( array_merge( $args['product_category_ids'], $this->get_product_category_ids( $_product ) ) );
+			    }
+		    }
+	    }
+
+	    $this->update_show_conditionally( $location, $args, 'order' );
+    }
+
 	public function show_conditionally_pay_for_order() {
 		global $wp;
 
@@ -484,52 +537,7 @@ class WC_GZD_Legal_Checkbox_Manager {
 			return;
 		}
 
-		$items = $order->get_items();
-
-		$args = array(
-			'is_downloadable'        => false,
-			'is_service'             => false,
-			'has_defective_copies'   => false,
-			'has_used_goods'         => false,
-			'is_photovoltaic_system' => false,
-			'product_category_ids'   => array(),
-			'country'                => $order->get_shipping_country() ? $order->get_shipping_country() : $order->get_billing_country(),
-			'postcode'               => $order->get_shipping_postcode() ? $order->get_shipping_postcode() : $order->get_billing_postcode(),
-			'company'                => $order->get_shipping_company() ? $order->get_shipping_company() : $order->get_billing_company(),
-			'create_account'         => false,
-			'order'                  => $order,
-			'needs_age_verification' => wc_gzd_order_has_age_verification( $order_id ),
-		);
-
-		foreach ( $items as $key => $item ) {
-			if ( $item && is_callable( array( $item, 'get_product' ) ) && ( $_product = $item->get_product() ) ) {
-				if ( wc_gzd_is_revocation_exempt( $_product, 'digital', $item ) ) {
-					$args['is_downloadable'] = true;
-				}
-
-				if ( wc_gzd_is_revocation_exempt( $_product, 'service', $item ) ) {
-					$args['is_service'] = true;
-				}
-
-				if ( wc_gzd_get_product( $_product )->is_used_good() ) {
-					$args['has_used_goods'] = true;
-				}
-
-				if ( wc_gzd_get_product( $_product )->is_photovoltaic_system() ) {
-					$args['is_photovoltaic_system'] = true;
-				}
-
-				if ( wc_gzd_get_product( $_product )->is_defective_copy() ) {
-					$args['has_defective_copies'] = true;
-				}
-
-				if ( $_product ) {
-					$args['product_category_ids'] = array_unique( array_merge( $args['product_category_ids'], $this->get_product_category_ids( $_product ) ) );
-				}
-			}
-		}
-
-		$this->update_show_conditionally( 'pay_for_order', $args );
+        $this->show_conditionally_order( $order );
 	}
 
 	public function show_conditionally_checkout() {
@@ -546,7 +554,7 @@ class WC_GZD_Legal_Checkbox_Manager {
 		$this->update_show_conditionally( 'checkout', $args );
 	}
 
-	public function update_show_conditionally( $location, $args = array() ) {
+	public function update_show_conditionally( $location, $args = array(), $context = '' ) {
 		$args = wp_parse_args(
 			$args,
 			array(
@@ -564,6 +572,12 @@ class WC_GZD_Legal_Checkbox_Manager {
 				'needs_age_verification' => false,
 			)
 		);
+
+        if ( empty( $context ) && 'pay_for_order' === $location ) {
+            $context = 'order';
+        }
+
+        $context = empty( $context ) ? $location : $context;
 
 		foreach ( $this->get_checkboxes( array( 'locations' => $location ) ) as $checkbox_id => $checkbox ) {
 			if ( $checkbox->is_enabled() ) {
@@ -586,9 +600,9 @@ class WC_GZD_Legal_Checkbox_Manager {
 				if ( 'age_verification' === $checkbox_id && $args['needs_age_verification'] ) {
 					$checkbox_args['is_shown'] = true;
 
-					if ( 'checkout' === $location ) {
+					if ( 'checkout' === $context ) {
 						$checkbox_args['label_args'] = array( '{age}' => wc_gzd_cart_get_age_verification_min_age() );
-					} elseif ( 'pay_for_order' === $location ) {
+					} elseif ( 'order' === $context ) {
 						$checkbox_args['label_args'] = array( '{age}' => wc_gzd_get_order_min_age( $args['order'] ) );
 					}
 				}
@@ -596,14 +610,14 @@ class WC_GZD_Legal_Checkbox_Manager {
 				if ( 'defective_copy' === $checkbox_id && $args['has_defective_copies'] ) {
 					$checkbox_args['is_shown'] = true;
 
-					if ( 'checkout' === $location ) {
+					if ( 'checkout' === $context ) {
 						$checkbox_args['label_args'] = array( '{defect_descriptions}' => wc_gzd_print_item_defect_descriptions( wc_gzd_get_cart_defect_descriptions() ) );
-					} elseif ( 'pay_for_order' === $location ) {
+					} elseif ( 'order' === $context ) {
 						$checkbox_args['label_args'] = array( '{defect_descriptions}' => wc_gzd_print_item_defect_descriptions( wc_gzd_get_order_defect_descriptions( $args['order'] ) ) );
 					}
 				}
 
-				if ( 'privacy' === $checkbox_id && 'checkout' === $location ) {
+				if ( 'privacy' === $checkbox_id && 'checkout' === $context ) {
 					$create_account = $args['create_account'];
 
 					/**
@@ -620,10 +634,10 @@ class WC_GZD_Legal_Checkbox_Manager {
 					}
 				}
 
-				if ( 'parcel_delivery' === $checkbox_id && in_array( $location, array( 'checkout', 'pay_for_order' ), true ) ) {
+				if ( 'parcel_delivery' === $checkbox_id && in_array( $context, array( 'checkout', 'order' ), true ) ) {
 					$enable_check = false;
 
-					if ( 'checkout' === $location ) {
+					if ( 'checkout' === $context ) {
 						if ( WC()->cart && WC()->cart->needs_shipping() ) {
 							$enable_check = true;
 							$rates        = wc_gzd_get_chosen_shipping_rates();
@@ -650,7 +664,7 @@ class WC_GZD_Legal_Checkbox_Manager {
 								array_push( $titles, $title );
 							}
 						}
-					} elseif ( 'pay_for_order' === $location ) {
+					} elseif ( 'order' === $context ) {
 						if ( $args['order']->has_shipping_address() ) {
 							$enable_check = true;
 							$ids          = array();
@@ -726,10 +740,11 @@ class WC_GZD_Legal_Checkbox_Manager {
 				 * @param WC_GZD_Legal_Checkbox $checkbox Checkbox object.
 				 * @param string $checkbox_id The checkbox id.
 				 * @param WC_GZD_Legal_Checkbox_Manager $instance The checkbox manager instance.
+                 * @param string $context The checkbox context
 				 *
 				 * @since 3.11.5
 				 */
-				$checkbox_args = apply_filters( "woocommerce_gzd_checkbox_show_conditionally_{$location}_args", $checkbox_args, $checkbox, $checkbox_id, $this );
+				$checkbox_args = apply_filters( "woocommerce_gzd_checkbox_show_conditionally_{$location}_args", $checkbox_args, $checkbox, $checkbox_id, $this, $context );
 
 				wc_gzd_update_legal_checkbox( $checkbox_id, $checkbox_args );
 			}
