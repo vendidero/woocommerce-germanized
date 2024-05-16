@@ -179,8 +179,8 @@ final class Checkout {
 						return $errors;
 					}
 
-					$country   = $fields['country'];
-					$address_1 = $fields['address_1'];
+					$country   = isset( $fields['country'] ) ? $fields['country'] : $fields['shipping_country'];
+					$address_1 = isset( $fields['address_1'] ) ? $fields['address_1'] : $fields['shipping_address_1'];
 
 					if ( ! empty( $country ) && ! empty( $address_1 ) && apply_filters( 'woocommerce_gzd_checkout_validate_street_number', true, $fields ) ) {
 						$countries = array();
