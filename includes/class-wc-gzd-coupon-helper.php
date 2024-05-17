@@ -50,6 +50,25 @@ class WC_GZD_Coupon_Helper {
 		add_action( 'woocommerce_checkout_create_order_fee_item', array( $this, 'fee_item_save' ), 10, 4 );
 
 		add_filter( 'woocommerce_gzd_force_fee_tax_calculation', array( $this, 'exclude_vouchers_from_forced_tax' ), 10, 2 );
+
+		/**
+		 * Use this tweak to make sure fees are sorted deterministically even though
+		 * the amounts (default order) are the same. Germanized explicitly calls WC()->cart->get_fees()
+		 * within woocommerce_cart_totals_get_fees_from_cart_taxes to determine a custom max discount logic.
+		 */
+		add_filter(
+			'woocommerce_sort_fees_callback',
+			function( $compare, $a, $b ) {
+				if ( $a->amount === $b->amount ) {
+					$compare = strcmp( $a->id, $b->id );
+				}
+
+				return $compare;
+			},
+			500,
+			3
+		);
+
 		add_filter( 'woocommerce_cart_totals_get_fees_from_cart_taxes', array( $this, 'remove_taxes_for_vouchers' ), 10, 3 );
 
 		add_action( 'woocommerce_order_item_fee_after_calculate_taxes', array( $this, 'remove_order_item_fee_taxes' ), 10 );
@@ -635,7 +654,7 @@ class WC_GZD_Coupon_Helper {
 					/**
 					 * We've reached the current voucher object
 					 */
-					if ( $fee_object === $fee->object ) {
+					if ( $fee_object->id === $fee->object->id ) {
 						// Make sure the max voucher amount does not exceed the coupon amount
 						$max_voucher_amount = max( wc_add_number_precision_deep( $fee->object->amount ), $max_discount );
 						$fee->total         = $max_voucher_amount;
@@ -652,7 +671,7 @@ class WC_GZD_Coupon_Helper {
 					$fee_running_total += $tmp_fee->total;
 				}
 
-				if ( $fee_object === $fee->object ) {
+				if ( $fee_object->id === $fee->object->id ) {
 					break;
 				}
 			}
