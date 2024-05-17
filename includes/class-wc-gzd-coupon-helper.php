@@ -436,6 +436,7 @@ class WC_GZD_Coupon_Helper {
 					'name'         => esc_attr( $fee->name ),
 					'coupon_name'  => esc_attr( wc_cart_totals_coupon_label( $fee->code, false ) ),
 					'coupon_class' => 'coupon-' . esc_attr( sanitize_title( $fee->code ) ),
+					'code'         => esc_html( $fee->code ),
 				);
 			}
 		}

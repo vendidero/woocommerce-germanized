@@ -113,7 +113,24 @@ window.germanized = window.germanized || {};
         },
 
         get_voucher_fee: function( voucher, $table ) {
-            return $table.find( 'tr.fee th:contains("' + voucher.name + '")' ).parents( 'tr' );
+            var $fee = false;
+
+            $table.find( 'tr.fee' ).each( function() {
+                $tr = $( this );
+
+                var title = $tr.find( 'th' ).text();
+                var maybeVoucherTitle = title.substr( title.length - voucher.code.length );
+
+                if ( maybeVoucherTitle === voucher.code ) {
+                    $fee = $tr;
+                }
+            } );
+
+            if ( ! $fee ) {
+                $fee = $table.find( 'tr.fee th:contains("' + voucher.name + '")' ).parents( 'tr' );
+            }
+
+            return $fee;
         },
 
         get_voucher_coupon: function( voucher, $table ) {
