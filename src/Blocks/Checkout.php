@@ -171,8 +171,15 @@ final class Checkout {
 	}
 
 	private function register_validation_and_storage() {
+		$wc_version = defined( 'WC_VERSION' ) ? WC_VERSION : false;
+		$hook_name  = '__experimental_woocommerce_blocks_validate_location_address_fields';
+
+		if ( $wc_version && version_compare( $wc_version, '8.9.0', '>=' ) ) {
+			$hook_name = 'woocommerce_blocks_validate_location_address_fields';
+		}
+
 		add_action(
-			'__experimental_woocommerce_blocks_validate_location_address_fields',
+			$hook_name,
 			function( $errors, $fields, $group ) {
 				if ( 'never' !== get_option( 'woocommerce_gzd_checkout_validate_street_number' ) && function_exists( 'wc_gzd_split_shipment_street' ) ) {
 					if ( 'billing' === $group && ! apply_filters( 'woocommerce_gzd_checkout_validate_billing_street_number', true ) ) {

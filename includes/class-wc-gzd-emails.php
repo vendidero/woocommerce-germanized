@@ -69,29 +69,9 @@ class WC_GZD_Emails {
 					'woocommerce_store_api_checkout_order_processed',
 					function( $order ) {
 						if ( $order->needs_payment() ) {
-							add_action(
-								'woocommerce_rest_checkout_process_payment_with_context',
-								function( $context, $payment_result ) use ( $order ) {
-									if ( $context->order && $order->get_id() === $context->order->get_id() ) {
-										$this->confirm_order( $context->order );
-									}
-								},
-								1002,
-								2
-							);
+							add_action( 'woocommerce_rest_checkout_process_payment_with_context', array( $this, 'checkout_block_payment_context_confirmation_callback' ), 1005, 2 );
 						} else {
-							add_filter(
-								'woocommerce_get_checkout_order_received_url',
-								function( $redirect, $the_order ) use ( $order ) {
-									if ( $order->get_id() === $the_order->get_id() ) {
-										$this->confirm_order( $the_order->get_id() );
-									}
-
-									return $redirect;
-								},
-								1002,
-								2
-							);
+							add_filter( 'woocommerce_get_checkout_order_received_url', array( $this, 'checkout_block_no_payment_context_confirmation_callback' ), 1005, 2 );
 						}
 					}
 				);
@@ -205,15 +185,16 @@ class WC_GZD_Emails {
 	}
 
 	public function checkout_block_payment_context_confirmation_callback( $context, $payment_result ) {
-		wc_deprecated_function( __METHOD__, '3.16.6' );
-
 		$order = $context->order;
 		$this->confirm_order( $order );
+
+		wc_gzd_remove_all_hooks( 'woocommerce_rest_checkout_process_payment_with_context', 1005 );
 	}
 
 	public function checkout_block_no_payment_context_confirmation_callback( $redirect, $order ) {
-		wc_deprecated_function( __METHOD__, '3.16.6' );
 		$this->confirm_order( $order );
+
+		wc_gzd_remove_all_hooks( 'woocommerce_get_checkout_order_received_url', 1005 );
 
 		return $redirect;
 	}
