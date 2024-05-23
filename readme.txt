@@ -4,8 +4,8 @@ Tags: woocommerce, germany, germany, deutsch, woo
 Requires at least: 5.4
 Tested up to: 6.5
 WC requires at least: 3.9
-WC tested up to: 8.7
-Stable tag: 3.16.5
+WC tested up to: 8.9
+Stable tag: 3.16.6
 Requires PHP: 5.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -205,6 +205,20 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 6. Edit pdf documents (Pro)
 
 == Changelog ==
+= 3.16.6 =
+* Improvement: Pickup location UI in classic checkout and account page
+* Improvement: Support export reference number (mrn) for international shipments
+* Improvement: Allow choosing DHL API type from new option
+* Improvement: Added tax rate percentage formatting filter
+* Improvement: Support checkout visibility product attribute import/export
+* Improvement: Support Austria specific legal title in complaints template
+* Improvement: Support conditional checkbox display, e.g. revocation notice within emails too
+* Fix: Parcel outlet service default booking
+* Fix: Photovoltaic systems custom tax class filters
+* Fix: Language variant fallback support (e.g. CH, AT) for WP >= 6.5
+* Fix: Duplicate nonce removal in classic checkout edge case
+* Fix: Voucher checkout/cart display + calculation
+
 = 3.16.5 =
 * Fix: Prevent type error when converting cart dimensions
 * Fix: Non-existent pickup locations field hiding logic
