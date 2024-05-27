@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: WooCommerce Germanized\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/woocommerce-"
 "germanized\n"
-"POT-Creation-Date: 2024-05-23T12:42:32+00:00\n"
-"PO-Revision-Date: 2024-05-23 14:57+0200\n"
+"POT-Creation-Date: 2024-05-27T13:38:50+00:00\n"
+"PO-Revision-Date: 2024-05-27 15:41+0200\n"
 "Last-Translator: Dennis Nissle <info@vendidero.de>\n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -172,8 +172,8 @@ msgctxt "dhl"
 msgid "Postfiliale"
 msgstr "Postfiliale"
 
-#: includes/wc-gzd-dhl-core-functions.php:638
-#: packages/woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:638
+#: includes/wc-gzd-dhl-core-functions.php:643
+#: packages/woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:643
 msgctxt "dhl"
 msgid ""
 "Either your customer number or the participation number for <strong>%1$s</"
@@ -184,8 +184,8 @@ msgstr ""
 "strong> fehlt. Bitte prüfe deine <a href=\"%2$s\">Einstellungen</a> und "
 "versuche es erneut."
 
-#: includes/wc-gzd-dhl-core-functions.php:643
-#: packages/woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:643
+#: includes/wc-gzd-dhl-core-functions.php:648
+#: packages/woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:648
 msgctxt "dhl"
 msgid "Could not create billing number, participation number is missing."
 msgstr ""
@@ -781,8 +781,8 @@ msgstr ""
 "Deine Absenderadresse ist nicht komplett (%1$s). Bitte prüfe deine <a "
 "href=\"%2$s\">Einstellungen</a> und versuche es erneut."
 
-#: src/Api/LabelRest.php:416 src/Api/LabelSoap.php:712
-#: packages/woocommerce-germanized-dhl/src/Api/LabelRest.php:416
+#: src/Api/LabelRest.php:415 src/Api/LabelSoap.php:712
+#: packages/woocommerce-germanized-dhl/src/Api/LabelRest.php:415
 #: packages/woocommerce-germanized-dhl/src/Api/LabelSoap.php:712
 msgctxt "dhl"
 msgid ""
@@ -791,8 +791,8 @@ msgstr ""
 "Es können maximal %1$s Sendungspositionen verarbeitet werden - die "
 "vorliegende Sendung beinhaltet %2$s Positionen."
 
-#: src/Api/LabelRest.php:512 src/Api/LabelSoap.php:218
-#: packages/woocommerce-germanized-dhl/src/Api/LabelRest.php:512
+#: src/Api/LabelRest.php:511 src/Api/LabelSoap.php:218
+#: packages/woocommerce-germanized-dhl/src/Api/LabelRest.php:511
 #: packages/woocommerce-germanized-dhl/src/Api/LabelSoap.php:218
 msgctxt "dhl"
 msgid ""
@@ -802,8 +802,8 @@ msgstr ""
 "Beim Erzeugen des Labels gab es einen Fehler. Bitte versuche es erneut oder "
 "erwäge den Wechsel in den Sandbox-Modus."
 
-#: src/Api/LabelRest.php:590
-#: packages/woocommerce-germanized-dhl/src/Api/LabelRest.php:590
+#: src/Api/LabelRest.php:589
+#: packages/woocommerce-germanized-dhl/src/Api/LabelRest.php:589
 msgctxt "dhl"
 msgid ""
 "You've explicitly booked the additional insurance service resulting in "
@@ -814,17 +814,17 @@ msgstr ""
 "Kosten verursacht obwohl der Gesamtbetrag der Sendung 500 Euro nicht "
 "übersteigt. Das Label wurde dennoch erstellt."
 
-#: src/Api/LabelRest.php:599 src/Api/LabelSoap.php:296
+#: src/Api/LabelRest.php:598 src/Api/LabelSoap.php:296
 #: src/Api/ReturnRest.php:189
-#: packages/woocommerce-germanized-dhl/src/Api/LabelRest.php:599
+#: packages/woocommerce-germanized-dhl/src/Api/LabelRest.php:598
 #: packages/woocommerce-germanized-dhl/src/Api/LabelSoap.php:296
 #: packages/woocommerce-germanized-dhl/src/Api/ReturnRest.php:189
 msgctxt "dhl"
 msgid "Error while creating and uploading the label"
 msgstr "Fehler beim Erstellen und hochladen des Labels"
 
-#: src/Api/LabelRest.php:727 src/Api/LabelSoap.php:110
-#: packages/woocommerce-germanized-dhl/src/Api/LabelRest.php:727
+#: src/Api/LabelRest.php:726 src/Api/LabelSoap.php:110
+#: packages/woocommerce-germanized-dhl/src/Api/LabelRest.php:726
 #: packages/woocommerce-germanized-dhl/src/Api/LabelSoap.php:110
 msgctxt "dhl"
 msgid "Your DHL API credentials seem to be invalid."
@@ -3936,9 +3936,9 @@ msgid "House Number"
 msgstr "Hausnummer"
 
 # @ woocommerce-germanized
-#: includes/wc-gzd-shipment-functions.php:798 src/PickupDelivery.php:265
+#: includes/wc-gzd-shipment-functions.php:798 src/PickupDelivery.php:267
 #: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:798
-#: packages/woocommerce-germanized-shipments/src/PickupDelivery.php:265
+#: packages/woocommerce-germanized-shipments/src/PickupDelivery.php:267
 msgctxt "shipments"
 msgid "Postcode"
 msgstr "Postleitzahl"
@@ -5683,19 +5683,19 @@ msgctxt "shipments"
 msgid "Order is fully shipped."
 msgstr "Bestellung ist vollständig versandt."
 
-#: src/Blocks/Checkout.php:97 src/PickupDelivery.php:600
+#: src/Blocks/Checkout.php:97 src/PickupDelivery.php:602
 #: packages/woocommerce-germanized-shipments/src/Blocks/Checkout.php:97
-#: packages/woocommerce-germanized-shipments/src/PickupDelivery.php:600
+#: packages/woocommerce-germanized-shipments/src/PickupDelivery.php:602
 msgctxt "shipments"
 msgid "Sorry, your current pickup location is not supported."
 msgstr ""
 "Entschuldige, die von dir ausgewählte Abholstation wird nicht unterstützt."
 
 #: src/Blocks/Checkout.php:103 src/PickupDelivery.php:103
-#: src/PickupDelivery.php:606
+#: src/PickupDelivery.php:608
 #: packages/woocommerce-germanized-shipments/src/Blocks/Checkout.php:103
 #: packages/woocommerce-germanized-shipments/src/PickupDelivery.php:103
-#: packages/woocommerce-germanized-shipments/src/PickupDelivery.php:606
+#: packages/woocommerce-germanized-shipments/src/PickupDelivery.php:608
 msgctxt "shipments"
 msgid "Sorry, your pickup location customer number is invalid."
 msgstr ""
@@ -5704,12 +5704,12 @@ msgstr ""
 
 # @ woocommerce-germanized
 #: src/Blocks/Checkout.php:197 src/Blocks/Checkout.php:330
-#: src/PickupDelivery.php:54 src/PickupDelivery.php:323
+#: src/PickupDelivery.php:54 src/PickupDelivery.php:325
 #: packages/woocommerce-germanized-shipments/build/checkout-pickup-location-select.js:1
 #: packages/woocommerce-germanized-shipments/src/Blocks/Checkout.php:197
 #: packages/woocommerce-germanized-shipments/src/Blocks/Checkout.php:330
 #: packages/woocommerce-germanized-shipments/src/PickupDelivery.php:54
-#: packages/woocommerce-germanized-shipments/src/PickupDelivery.php:323
+#: packages/woocommerce-germanized-shipments/src/PickupDelivery.php:325
 msgctxt "shipments"
 msgid "Pickup location"
 msgstr "Abholstation"
@@ -6175,9 +6175,9 @@ msgctxt "shipments"
 msgid "The number of a valid pickup location."
 msgstr "Die Nummer einer verfügbaren Abholstation."
 
-#: src/PickupDelivery.php:59 src/PickupDelivery.php:331
+#: src/PickupDelivery.php:59 src/PickupDelivery.php:333
 #: packages/woocommerce-germanized-shipments/src/PickupDelivery.php:59
-#: packages/woocommerce-germanized-shipments/src/PickupDelivery.php:331
+#: packages/woocommerce-germanized-shipments/src/PickupDelivery.php:333
 msgctxt "shipments"
 msgid "Pickup customer number"
 msgstr "Abholstation Kundennummer"
@@ -6188,101 +6188,101 @@ msgctxt "shipments"
 msgid "The customer number, if needed, for the pickup location."
 msgstr "Die Kundennummer, falls benötigt, für eine Abholstation."
 
-#: src/PickupDelivery.php:175 src/PickupDelivery.php:399
+#: src/PickupDelivery.php:175 src/PickupDelivery.php:401
 #: src/ShippingProvider/PickupLocation.php:141
 #: packages/woocommerce-germanized-shipments/src/PickupDelivery.php:175
-#: packages/woocommerce-germanized-shipments/src/PickupDelivery.php:399
+#: packages/woocommerce-germanized-shipments/src/PickupDelivery.php:401
 #: packages/woocommerce-germanized-shipments/src/ShippingProvider/PickupLocation.php:141
 msgctxt "shipments"
 msgid "Customer Number"
 msgstr "Kundennummer"
 
-#: src/PickupDelivery.php:241 src/PickupDelivery.php:358
-#: packages/woocommerce-germanized-shipments/src/PickupDelivery.php:241
-#: packages/woocommerce-germanized-shipments/src/PickupDelivery.php:358
+#: src/PickupDelivery.php:243 src/PickupDelivery.php:360
+#: packages/woocommerce-germanized-shipments/src/PickupDelivery.php:243
+#: packages/woocommerce-germanized-shipments/src/PickupDelivery.php:360
 msgctxt "shipments"
 msgid "Choose a pickup location"
 msgstr "Wähle eine Abholstation aus"
 
-#: src/PickupDelivery.php:242
-#: packages/woocommerce-germanized-shipments/src/PickupDelivery.php:242
+#: src/PickupDelivery.php:244
+#: packages/woocommerce-germanized-shipments/src/PickupDelivery.php:244
 msgctxt "shipments"
 msgid "Close modal"
 msgstr "Schließen"
 
 # @ woocommerce-germanized
-#: src/PickupDelivery.php:251
-#: packages/woocommerce-germanized-shipments/src/PickupDelivery.php:251
+#: src/PickupDelivery.php:253
+#: packages/woocommerce-germanized-shipments/src/PickupDelivery.php:253
 msgctxt "shipments"
 msgid "Street address"
 msgstr "Straße"
 
 #. translators: use local order of street name and house number.
-#: src/PickupDelivery.php:253
-#: packages/woocommerce-germanized-shipments/src/PickupDelivery.php:253
+#: src/PickupDelivery.php:255
+#: packages/woocommerce-germanized-shipments/src/PickupDelivery.php:255
 msgctxt "shipments"
 msgid "House number and street name"
 msgstr "Straße und Hausnummer"
 
 # @ woocommerce-germanized
-#: src/PickupDelivery.php:276
-#: packages/woocommerce-germanized-shipments/src/PickupDelivery.php:276
+#: src/PickupDelivery.php:278
+#: packages/woocommerce-germanized-shipments/src/PickupDelivery.php:278
 msgctxt "shipments"
 msgid "Search"
 msgstr "Suchen"
 
-#: src/PickupDelivery.php:295 src/PickupDelivery.php:366
-#: packages/woocommerce-germanized-shipments/src/PickupDelivery.php:295
-#: packages/woocommerce-germanized-shipments/src/PickupDelivery.php:366
+#: src/PickupDelivery.php:297 src/PickupDelivery.php:368
+#: packages/woocommerce-germanized-shipments/src/PickupDelivery.php:297
+#: packages/woocommerce-germanized-shipments/src/PickupDelivery.php:368
 msgctxt "shipments"
 msgid "Remove pickup location"
 msgstr "Abholstation entfernen"
 
-#: src/PickupDelivery.php:296
-#: packages/woocommerce-germanized-shipments/src/PickupDelivery.php:296
+#: src/PickupDelivery.php:298
+#: packages/woocommerce-germanized-shipments/src/PickupDelivery.php:298
 msgctxt "shipments"
 msgid "Choose pickup location"
 msgstr "Abholstation auswählen"
 
-#: src/PickupDelivery.php:357
-#: packages/woocommerce-germanized-shipments/src/PickupDelivery.php:357
+#: src/PickupDelivery.php:359
+#: packages/woocommerce-germanized-shipments/src/PickupDelivery.php:359
 msgctxt "shipments"
 msgid "Not at home?"
 msgstr "Nicht zu Hause?"
 
-#: src/PickupDelivery.php:363
-#: packages/woocommerce-germanized-shipments/src/PickupDelivery.php:363
+#: src/PickupDelivery.php:365
+#: packages/woocommerce-germanized-shipments/src/PickupDelivery.php:365
 msgctxt "shipments"
 msgid "Currently shipping to:"
 msgstr "Versand an:"
 
-#: src/PickupDelivery.php:454
-#: packages/woocommerce-germanized-shipments/src/PickupDelivery.php:454
+#: src/PickupDelivery.php:456
+#: packages/woocommerce-germanized-shipments/src/PickupDelivery.php:456
 msgctxt "shipments"
 msgid "No pickup location found"
 msgstr "Keine Abholstationen gefunden"
 
-#: src/PickupDelivery.php:472
-#: packages/woocommerce-germanized-shipments/src/PickupDelivery.php:472
+#: src/PickupDelivery.php:474
+#: packages/woocommerce-germanized-shipments/src/PickupDelivery.php:474
 msgctxt "shipments"
 msgid "Search pickup locations"
 msgstr "Abholstationen suchen"
 
-#: src/PickupDelivery.php:704
-#: packages/woocommerce-germanized-shipments/src/PickupDelivery.php:704
+#: src/PickupDelivery.php:696
+#: packages/woocommerce-germanized-shipments/src/PickupDelivery.php:696
 msgctxt "shipments"
 msgid "Managed by %1$s"
 msgstr "Von %1$s vorgegeben"
 
 # @ woocommerce-germanized
-#: src/PickupDelivery.php:704
-#: packages/woocommerce-germanized-shipments/src/PickupDelivery.php:704
+#: src/PickupDelivery.php:696
+#: packages/woocommerce-germanized-shipments/src/PickupDelivery.php:696
 msgctxt "shipments"
 msgid "pickup location"
 msgstr "Abholstation"
 
-#: src/PickupDelivery.php:705
-#: packages/woocommerce-germanized-shipments/src/PickupDelivery.php:705
+#: src/PickupDelivery.php:697
+#: packages/woocommerce-germanized-shipments/src/PickupDelivery.php:697
 msgctxt "shipments"
 msgid ""
 "Pickup location delivery is not available any longer. Please review your "
@@ -8808,7 +8808,7 @@ msgstr "One Stop Shop"
 # @ woocommerce
 #: includes/admin/class-wc-gzd-admin-setup-wizard.php:71
 #: includes/admin/class-wc-gzd-admin-setup-wizard.php:156
-#: woocommerce-germanized.php:964
+#: woocommerce-germanized.php:966
 msgid "Settings"
 msgstr "Einstellungen"
 
@@ -9211,7 +9211,7 @@ msgstr "Lieferzeit festlegen"
 # @ woocommerce-germanized
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:160
 #: includes/admin/settings/class-wc-gzd-settings-pointers.php:91
-#: includes/class-wc-gzd-legal-checkbox.php:827
+#: includes/class-wc-gzd-legal-checkbox.php:845
 msgid "Status"
 msgstr "Status"
 
@@ -10418,7 +10418,7 @@ msgstr ""
 "Checkbox bearbeiten indem du auf den Link klickst."
 
 #: includes/admin/settings/class-wc-gzd-settings-tab-checkboxes.php:61
-#: includes/class-wc-gzd-legal-checkbox.php:863
+#: includes/class-wc-gzd-legal-checkbox.php:881
 msgid "Label"
 msgstr "Beschriftung"
 
@@ -10741,7 +10741,7 @@ msgstr "Kleinunternehmer"
 
 # @ woocommerce-germanized
 #: includes/admin/settings/class-wc-gzd-settings-tab-general.php:33
-#: includes/class-wc-gzd-legal-checkbox-manager.php:891 src/Shopmarks.php:542
+#: includes/class-wc-gzd-legal-checkbox-manager.php:906 src/Shopmarks.php:542
 msgid "Checkout"
 msgstr "Kasse"
 
@@ -12345,14 +12345,14 @@ msgstr ""
 # @ woocommerce-germanized
 #: includes/admin/settings/views/html-admin-page-checkboxes.php:11
 #: includes/admin/settings/views/html-admin-settings-tabs.php:27
-#: includes/class-wc-gzd-legal-checkbox.php:835
+#: includes/class-wc-gzd-legal-checkbox.php:853
 msgid "Name"
 msgstr "Name"
 
 # @ woocommerce-germanized
 #: includes/admin/settings/views/html-admin-page-checkboxes.php:12
 #: includes/admin/settings/views/html-admin-settings-tabs.php:29
-#: includes/class-wc-gzd-legal-checkbox.php:854
+#: includes/class-wc-gzd-legal-checkbox.php:872
 #: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1009
 #: includes/gateways/invoice/class-wc-gzd-gateway-invoice.php:133
 msgid "Description"
@@ -12365,7 +12365,7 @@ msgstr "Aktiviert"
 
 # @ woocommerce-germanized
 #: includes/admin/settings/views/html-admin-page-checkboxes.php:14
-#: includes/class-wc-gzd-legal-checkbox.php:891
+#: includes/class-wc-gzd-legal-checkbox.php:909
 msgid "Mandatory"
 msgstr "Pflichtfeld"
 
@@ -13395,7 +13395,7 @@ msgstr "Datenbank wird aktualisiert"
 msgid "%1$d update functions completed. Database version is %2$s"
 msgstr "%1$d Updates fertiggestellt. Datenbank-Version lautet %2$s"
 
-#: includes/class-wc-gzd-coupon-helper.php:786 woocommerce-germanized.php:1366
+#: includes/class-wc-gzd-coupon-helper.php:786 woocommerce-germanized.php:1368
 msgid "Voucher: %1$s"
 msgstr "Wertgutschein: %1$s"
 
@@ -13976,42 +13976,42 @@ msgstr ""
 "Mehrwertsteuerbefreiung erfüllen."
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-legal-checkbox-manager.php:892
+#: includes/class-wc-gzd-legal-checkbox-manager.php:907
 msgid "Register form"
 msgstr "Registrierung"
 
 # @ woocommerce
-#: includes/class-wc-gzd-legal-checkbox-manager.php:893
+#: includes/class-wc-gzd-legal-checkbox-manager.php:908
 msgid "Pay for order"
 msgstr "Bestell-Bezahlseite"
 
-#: includes/class-wc-gzd-legal-checkbox-manager.php:894
+#: includes/class-wc-gzd-legal-checkbox-manager.php:909
 msgid "Reviews"
 msgstr "Bewertungen"
 
-#: includes/class-wc-gzd-legal-checkbox-manager.php:976
+#: includes/class-wc-gzd-legal-checkbox-manager.php:996
 msgid "Checkbox location %s does not exist."
 msgstr "Checkbox Ort %s existiert nicht."
 
-#: includes/class-wc-gzd-legal-checkbox-manager.php:1008
+#: includes/class-wc-gzd-legal-checkbox-manager.php:1028
 msgid "Please make sure to check %s checkbox."
 msgstr "Kontrolliere bitte %s. Hier fehlt eine Einwilligung."
 
-#: includes/class-wc-gzd-legal-checkbox-manager.php:1013
+#: includes/class-wc-gzd-legal-checkbox-manager.php:1033
 msgid "Checkbox with name %s does already exist."
 msgstr "Eine Checkbox mit dem Namen %s existiert bereits."
 
-#: includes/class-wc-gzd-legal-checkbox.php:348
-#: includes/class-wc-gzd-legal-checkbox.php:368
+#: includes/class-wc-gzd-legal-checkbox.php:349
+#: includes/class-wc-gzd-legal-checkbox.php:369
 msgid "%s is a mandatory field."
 msgstr "%s ist ein Pflichtfeld."
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-legal-checkbox.php:830
+#: includes/class-wc-gzd-legal-checkbox.php:848
 msgid "Enable checkbox"
 msgstr "Checkbox aktivieren"
 
-#: includes/class-wc-gzd-legal-checkbox.php:839
+#: includes/class-wc-gzd-legal-checkbox.php:857
 msgid ""
 "Choose a name to identify your checkbox. Upon creating a new checkbox, this "
 "value is being used to generate the Id."
@@ -14019,11 +14019,11 @@ msgstr ""
 "Wähle einen Namen aus, um deine Checkbox zu identifizieren. Bei Erstellung "
 "einer neuen Checkbox wird dieser Wert verwendet um eine Id zu erstellen."
 
-#: includes/class-wc-gzd-legal-checkbox.php:844
+#: includes/class-wc-gzd-legal-checkbox.php:862
 msgid "Id"
 msgstr "Id"
 
-#: includes/class-wc-gzd-legal-checkbox.php:848
+#: includes/class-wc-gzd-legal-checkbox.php:866
 msgid ""
 "The checkbox Id is the unique indentifier which is used to identify the "
 "checkbox within the code. Cannot be edited after creating the checkbox."
@@ -14032,24 +14032,24 @@ msgstr ""
 "Code heraus zugreifbar zu machen. Kann nach dem Erstellen einer Checkbox "
 "nicht mehr verändert werden."
 
-#: includes/class-wc-gzd-legal-checkbox.php:857
+#: includes/class-wc-gzd-legal-checkbox.php:875
 msgid "Describe the use case of your checkbox."
 msgstr "Beschreibe hier den Use-Case deiner Checkbox."
 
-#: includes/class-wc-gzd-legal-checkbox.php:867
+#: includes/class-wc-gzd-legal-checkbox.php:885
 msgid "Choose a label to be inserted next to the checkbox."
 msgstr "Wähle eine Beschriftung aus, die neben der Checkbox platziert wird."
 
-#: includes/class-wc-gzd-legal-checkbox.php:868
-#: includes/class-wc-gzd-legal-checkbox.php:878
+#: includes/class-wc-gzd-legal-checkbox.php:886
+#: includes/class-wc-gzd-legal-checkbox.php:896
 msgid "You may use one of the following placeholders within the text: %s"
 msgstr "Du kannst einen der folgenden Platzhalter in deinem Text verwenden: %s"
 
-#: includes/class-wc-gzd-legal-checkbox.php:873
+#: includes/class-wc-gzd-legal-checkbox.php:891
 msgid "Error Message"
 msgstr "Fehlermeldung"
 
-#: includes/class-wc-gzd-legal-checkbox.php:877
+#: includes/class-wc-gzd-legal-checkbox.php:895
 msgid ""
 "Choose an error message to be shown when the user has not confirmed the "
 "checkbox."
@@ -14058,25 +14058,25 @@ msgstr ""
 "die Checkbox nicht bestätigt hat."
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-legal-checkbox.php:883
+#: includes/class-wc-gzd-legal-checkbox.php:901
 msgid "Hide input"
 msgstr "Ausblenden"
 
-#: includes/class-wc-gzd-legal-checkbox.php:886
+#: includes/class-wc-gzd-legal-checkbox.php:904
 msgid "Do only show a label and hide the actual checkbox."
 msgstr ""
 "Zeige lediglich die Beschriftung und entferne die eigentliche Checkbox."
 
-#: includes/class-wc-gzd-legal-checkbox.php:894
+#: includes/class-wc-gzd-legal-checkbox.php:912
 msgid "Mark the checkbox as mandatory."
 msgstr "Checkbox zum Pflichtfeld machen."
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-legal-checkbox.php:899
+#: includes/class-wc-gzd-legal-checkbox.php:917
 msgid "Locations"
 msgstr "Orte"
 
-#: includes/class-wc-gzd-legal-checkbox.php:903
+#: includes/class-wc-gzd-legal-checkbox.php:921
 msgid "Choose where to display your checkbox."
 msgstr "Wähle einen Ort aus, an dem die Checkbox platziert werden soll."
 
@@ -15747,11 +15747,11 @@ msgid "Cart shipping costs notice."
 msgstr "Versandkostenhinweis im Warenkorb."
 
 # @ woocommerce-germanized
-#: src/Blocks/Checkout.php:284 src/Blocks/Checkout.php:399
+#: src/Blocks/Checkout.php:284 src/Blocks/Checkout.php:414
 msgid "List of cart checkboxes."
 msgstr "Liste der Checkboxen."
 
-#: src/Blocks/Checkout.php:292 src/Blocks/Checkout.php:406
+#: src/Blocks/Checkout.php:292 src/Blocks/Checkout.php:421
 msgid "Unique identifier for the checkbox within the cart."
 msgstr "Eindeutige Bezeichnung der Checkbox innerhalb des Warenkorbs."
 
@@ -15766,36 +15766,40 @@ msgid "Checkbox label."
 msgstr "Checkbox Beschriftung."
 
 # @ woocommerce-germanized
-#: src/Blocks/Checkout.php:310 src/Blocks/Checkout.php:412
+#: src/Blocks/Checkout.php:310 src/Blocks/Checkout.php:427
 msgid "Checkbox checked status."
 msgstr "Checkbox Status."
 
 # @ woocommerce-germanized
 #: src/Blocks/Checkout.php:316
-msgid "Checkbox hidden."
-msgstr "Checkbox versteckt."
+msgid "Checkbox hidden by default."
+msgstr "Checkbox standardmäßig ausgeblendet."
 
 #: src/Blocks/Checkout.php:322
 msgid "Checkbox error message."
 msgstr "Checkbox Fehlermeldung."
 
 #: src/Blocks/Checkout.php:328
+msgid "Show for specific payment methods only."
+msgstr "Nur für spezielle Zahlungsarten anzeigen."
+
+#: src/Blocks/Checkout.php:334
 msgid "Wrapper classes."
 msgstr "Wrapper-Klassen."
 
-#: src/Blocks/Checkout.php:334
+#: src/Blocks/Checkout.php:340
 msgid "Custom styles."
 msgstr "Individuelles Layout."
 
-#: src/Blocks/Checkout.php:340
+#: src/Blocks/Checkout.php:346
 msgid "HTML field id."
 msgstr "HTML Feld ID."
 
-#: src/Blocks/Checkout.php:346
+#: src/Blocks/Checkout.php:352
 msgid "Whether to show a checkbox field or not."
 msgstr "Ob das Checkbox-Feld gezeigt werden soll oder nicht."
 
-#: src/Blocks/Checkout.php:352
+#: src/Blocks/Checkout.php:358
 msgid "Whether the checkbox is required or not."
 msgstr "Ob die Checkbox verpflichtend ist oder nicht."
 
@@ -16388,7 +16392,7 @@ msgstr ""
 "href=\"%2$s\" target=\"_blank\">Blog-Post</a> wie du das Plugin austauschen "
 "kannst."
 
-#: woocommerce-germanized.php:1349
+#: woocommerce-germanized.php:1351
 msgid ""
 "Please wait while we are trying to redirect you to the payment provider."
 msgstr "Einen Moment - wir versuchen dich zum Zahlungsanbieter weiterzuleiten."
