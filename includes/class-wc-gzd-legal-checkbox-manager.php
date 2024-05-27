@@ -985,6 +985,10 @@ class WC_GZD_Legal_Checkbox_Manager {
 			$args['show_for_countries'] = array_filter( array( $args['show_for_countries'] ) );
 		}
 
+		if ( ! is_array( $args['show_for_payment_methods'] ) ) {
+			$args['show_for_payment_methods'] = array_filter( array( $args['show_for_payment_methods'] ) );
+		}
+
 		$args['label_args'] = array_merge( $args['label_args'], $this->get_legal_label_args() );
 
 		foreach ( $args['locations'] as $location ) {
