@@ -636,15 +636,17 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 		}
 
 		public function is_rest_api_request() {
+			$is_rest_api_request = false;
+
 			if ( function_exists( 'WC' ) ) {
 				$wc = WC();
 
 				if ( is_callable( array( $wc, 'is_rest_api_request' ) ) ) {
-					return $wc->is_rest_api_request();
+					$is_rest_api_request = $wc->is_rest_api_request();
 				}
 			}
 
-			return false;
+			return apply_filters( 'woocommerce_gzd_is_rest_api_request', $is_rest_api_request );
 		}
 
 		public function setup_compatibility() {

@@ -7,30 +7,31 @@ class WC_GZD_Legal_Checkbox {
 	private $id = '';
 
 	private $settings = array(
-		'admin_name'           => '',
-		'admin_desc'           => '',
-		'html_id'              => '',
-		'html_name'            => '',
-		'html_classes'         => array(),
-		'html_wrapper_classes' => array(),
-		'html_style'           => '',
-		'hide_input'           => 'no',
-		'is_mandatory'         => 'no',
-		'is_shown'             => 'yes',
-		'is_enabled'           => 'yes',
-		'is_core'              => 'no',
-		'refresh_fragments'    => 'no',
-		'value'                => '1',
-		'label'                => '',
-		'label_args'           => array(),
-		'template_name'        => 'checkboxes/default.php',
-		'template_args'        => array(),
-		'error_message'        => '',
-		'priority'             => 10,
-		'locations'            => array(),
-		'supporting_locations' => array(),
-		'show_for_categories'  => array(),
-		'show_for_countries'   => array(),
+		'admin_name'               => '',
+		'admin_desc'               => '',
+		'html_id'                  => '',
+		'html_name'                => '',
+		'html_classes'             => array(),
+		'html_wrapper_classes'     => array(),
+		'html_style'               => '',
+		'hide_input'               => 'no',
+		'is_mandatory'             => 'no',
+		'is_shown'                 => 'yes',
+		'is_enabled'               => 'yes',
+		'is_core'                  => 'no',
+		'refresh_fragments'        => 'no',
+		'value'                    => '1',
+		'label'                    => '',
+		'label_args'               => array(),
+		'template_name'            => 'checkboxes/default.php',
+		'template_args'            => array(),
+		'error_message'            => '',
+		'priority'                 => 10,
+		'locations'                => array(),
+		'supporting_locations'     => array(),
+		'show_for_categories'      => array(),
+		'show_for_countries'       => array(),
+		'show_for_payment_methods' => array(),
 	);
 
 	public function __construct( $id, $args = array() ) {
@@ -473,6 +474,23 @@ class WC_GZD_Legal_Checkbox {
 
 	public function show_for_category( $category_id ) {
 		return in_array( absint( $category_id ), $this->get_show_for_categories(), true );
+	}
+
+	/**
+	 * Payment methods to show the checkbox for.
+	 *
+	 * @return array
+	 */
+	public function get_show_for_payment_methods() {
+		return $this->settings['show_for_payment_methods'];
+	}
+
+	public function set_show_for_payment_methods( $payment_methods ) {
+		$this->settings['show_for_payment_methods'] = array_filter( (array) $payment_methods );
+	}
+
+	public function show_for_payment_method( $payment_method ) {
+		return in_array( trim( $payment_method ), $this->get_show_for_payment_methods(), true );
 	}
 
 	/**

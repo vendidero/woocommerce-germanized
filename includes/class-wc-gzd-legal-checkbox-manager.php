@@ -495,6 +495,7 @@ class WC_GZD_Legal_Checkbox_Manager {
 			'create_account'         => false,
 			'order'                  => $order,
 			'needs_age_verification' => wc_gzd_order_has_age_verification( $order->get_id() ),
+			'payment_method'         => $order->get_payment_method(),
 		);
 
 		foreach ( $items as $key => $item ) {
@@ -547,6 +548,7 @@ class WC_GZD_Legal_Checkbox_Manager {
 			'company'                => WC_GZD_Checkout::instance()->get_checkout_value( 'shipping_company' ) ? WC_GZD_Checkout::instance()->get_checkout_value( 'shipping_company' ) : WC_GZD_Checkout::instance()->get_checkout_value( 'billing_company' ),
 			'create_account'         => WC_GZD_Checkout::instance()->get_checkout_value( 'createaccount' ) ? WC_GZD_Checkout::instance()->get_checkout_value( 'createaccount' ) : false,
 			'needs_age_verification' => WC()->cart && wc_gzd_cart_needs_age_verification(),
+			'payment_method'         => WC_GZD_Checkout::instance()->get_checkout_value( 'payment_method' ) ? WC_GZD_Checkout::instance()->get_checkout_value( 'payment_method' ) : '',
 		);
 
 		$args = array_merge( $args, $this->get_cart_product_data() );
@@ -570,6 +572,7 @@ class WC_GZD_Legal_Checkbox_Manager {
 				'create_account'         => false,
 				'order'                  => false,
 				'needs_age_verification' => false,
+				'payment_method'         => '',
 			)
 		);
 
@@ -708,12 +711,24 @@ class WC_GZD_Legal_Checkbox_Manager {
 				/**
 				 * Do only apply global hide/show logic in case the checkbox is visible by default
 				 */
-				if ( $checkbox_args['is_shown'] && ( $checkbox->get_show_for_countries() || $checkbox->get_show_for_categories() ) ) {
-					$show_for_country_is_valid    = $checkbox->get_show_for_countries() ? false : true;
-					$show_for_categories_is_valid = $checkbox->get_show_for_categories() ? false : true;
+				if ( $checkbox_args['is_shown'] && ( $checkbox->get_show_for_countries() || $checkbox->get_show_for_categories() || $checkbox->get_show_for_payment_methods() ) ) {
+					$show_for_country_is_valid         = $checkbox->get_show_for_countries() ? false : true;
+					$show_for_categories_is_valid      = $checkbox->get_show_for_categories() ? false : true;
+					$show_for_payment_methods_is_valid = $checkbox->get_show_for_payment_methods() ? false : true;
 
 					if ( $checkbox->get_show_for_countries() && $checkbox->show_for_country( $args['country'] ) ) {
 						$show_for_country_is_valid = true;
+					}
+
+					if ( $checkbox->get_show_for_payment_methods() && $checkbox->show_for_payment_method( $args['payment_method'] ) ) {
+						$show_for_payment_methods_is_valid = true;
+					}
+
+					/**
+					 * Checkout block payment method validation is triggered client-side.
+					 */
+					if ( WC_germanized()->is_rest_api_request() ) {
+						$show_for_payment_methods_is_valid = true;
 					}
 
 					if ( $category_ids = $checkbox->get_show_for_categories() ) {
@@ -724,7 +739,7 @@ class WC_GZD_Legal_Checkbox_Manager {
 						}
 					}
 
-					if ( $show_for_country_is_valid && $show_for_categories_is_valid ) {
+					if ( $show_for_country_is_valid && $show_for_categories_is_valid && $show_for_payment_methods_is_valid ) {
 						$checkbox_args['is_shown'] = true;
 					} else {
 						$checkbox_args['is_shown'] = false;
@@ -921,21 +936,22 @@ class WC_GZD_Legal_Checkbox_Manager {
 		$args = wp_parse_args(
 			$args,
 			array(
-				'html_name'            => '',
-				'html_id'              => '',
-				'is_mandatory'         => false,
-				'locations'            => array(),
-				'supporting_locations' => array(),
-				'html_wrapper_classes' => array(),
-				'html_classes'         => array(),
-				'label_args'           => array(),
-				'hide_input'           => false,
-				'error_message'        => '',
-				'admin_name'           => '',
-				'show_for_categories'  => array(),
-				'show_for_countries'   => array(),
-				'refresh_fragments'    => true,
-				'is_shown'             => true,
+				'html_name'                => '',
+				'html_id'                  => '',
+				'is_mandatory'             => false,
+				'locations'                => array(),
+				'supporting_locations'     => array(),
+				'html_wrapper_classes'     => array(),
+				'html_classes'             => array(),
+				'label_args'               => array(),
+				'hide_input'               => false,
+				'error_message'            => '',
+				'admin_name'               => '',
+				'show_for_categories'      => array(),
+				'show_for_countries'       => array(),
+				'show_for_payment_methods' => array(),
+				'refresh_fragments'        => true,
+				'is_shown'                 => true,
 			)
 		);
 

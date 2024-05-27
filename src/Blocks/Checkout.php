@@ -288,67 +288,73 @@ final class Checkout {
 				'items'       => array(
 					'type'       => 'object',
 					'properties' => array(
-						'id'              => array(
+						'id'                       => array(
 							'description' => __( 'Unique identifier for the checkbox within the cart.', 'woocommerce-germanized' ),
 							'type'        => 'string',
 							'context'     => array( 'view', 'edit' ),
 							'readonly'    => true,
 						),
-						'name'            => array(
+						'name'                     => array(
 							'description' => __( 'Checkbox name.', 'woocommerce-germanized' ),
 							'type'        => 'string',
 							'context'     => array( 'view', 'edit' ),
 							'readonly'    => true,
 						),
-						'label'           => array(
+						'label'                    => array(
 							'description' => __( 'Checkbox label.', 'woocommerce-germanized' ),
 							'type'        => 'string',
 							'context'     => array( 'view', 'edit' ),
 							'readonly'    => true,
 						),
-						'checked'         => array(
+						'default_checked'          => array(
 							'description' => __( 'Checkbox checked status.', 'woocommerce-germanized' ),
 							'type'        => 'boolean',
 							'context'     => array( 'view', 'edit' ),
 							'default'     => false,
 						),
-						'hidden'          => array(
-							'description' => __( 'Checkbox hidden.', 'woocommerce-germanized' ),
+						'default_hidden'           => array(
+							'description' => __( 'Checkbox hidden by default.', 'woocommerce-germanized' ),
 							'type'        => 'boolean',
 							'context'     => array( 'view', 'edit' ),
 							'default'     => false,
 						),
-						'error_message'   => array(
+						'error_message'            => array(
 							'description' => __( 'Checkbox error message.', 'woocommerce-germanized' ),
 							'type'        => 'string',
 							'context'     => array( 'view', 'edit' ),
 							'readonly'    => true,
 						),
-						'wrapper_classes' => array(
+						'show_for_payment_methods' => array(
+							'description' => __( 'Show for specific payment methods only.', 'woocommerce-germanized' ),
+							'type'        => 'array',
+							'context'     => array( 'view', 'edit' ),
+							'readonly'    => true,
+						),
+						'wrapper_classes'          => array(
 							'description' => __( 'Wrapper classes.', 'woocommerce-germanized' ),
 							'type'        => 'array',
 							'context'     => array( 'view', 'edit' ),
 							'readonly'    => true,
 						),
-						'custom_styles'   => array(
+						'custom_styles'            => array(
 							'description' => __( 'Custom styles.', 'woocommerce-germanized' ),
 							'type'        => 'string',
 							'context'     => array( 'view', 'edit' ),
 							'readonly'    => true,
 						),
-						'html_id'         => array(
+						'html_id'                  => array(
 							'description' => __( 'HTML field id.', 'woocommerce-germanized' ),
 							'type'        => 'string',
 							'context'     => array( 'view', 'edit' ),
 							'readonly'    => true,
 						),
-						'has_checkbox'    => array(
+						'has_checkbox'             => array(
 							'description' => __( 'Whether to show a checkbox field or not.', 'woocommerce-germanized' ),
 							'type'        => 'boolean',
 							'context'     => array( 'view', 'edit' ),
 							'readonly'    => true,
 						),
-						'is_required'     => array(
+						'is_required'              => array(
 							'description' => __( 'Whether the checkbox is required or not.', 'woocommerce-germanized' ),
 							'type'        => 'boolean',
 							'context'     => array( 'view', 'edit' ),
@@ -366,22 +372,31 @@ final class Checkout {
 		$customer               = wc()->customer;
 
 		foreach ( $this->get_checkboxes() as $id => $checkbox ) {
+			/**
+			 * Make sure to force render checkboxes conditionally bound to certain
+			 * payment methods only as payment method data is only available client-side.
+			 */
+			if ( $checkbox->is_enabled() && ! empty( $checkbox->get_show_for_payment_methods() ) ) {
+				$checkboxes_force_print[] = $checkbox->get_id();
+			}
+
 			if ( ! $checkbox->is_printable() && ! in_array( $checkbox->get_id(), $checkboxes_force_print, true ) ) {
 				continue;
 			}
 
 			$checkboxes_for_api[] = array(
-				'id'              => $id,
-				'name'            => $checkbox->get_html_name(),
-				'label'           => $checkbox->get_label(),
-				'wrapper_classes' => array_diff( $checkbox->get_html_wrapper_classes(), array( 'validate-required', 'form-row' ) ),
-				'custom_styles'   => $checkbox->get_html_style(),
-				'error_message'   => $checkbox->get_error_message( true ),
-				'html_id'         => $checkbox->get_html_id(),
-				'has_checkbox'    => ! $checkbox->hide_input(),
-				'is_required'     => $checkbox->is_mandatory(),
-				'checked'         => $checkbox->hide_input() ? true : false,
-				'hidden'          => $checkbox->is_hidden(),
+				'id'                       => $id,
+				'name'                     => $checkbox->get_html_name(),
+				'label'                    => $checkbox->get_label(),
+				'wrapper_classes'          => array_diff( $checkbox->get_html_wrapper_classes(), array( 'validate-required', 'form-row' ) ),
+				'custom_styles'            => $checkbox->get_html_style(),
+				'error_message'            => $checkbox->get_error_message( true ),
+				'html_id'                  => $checkbox->get_html_id(),
+				'has_checkbox'             => ! $checkbox->hide_input(),
+				'show_for_payment_methods' => $checkbox->get_show_for_payment_methods(),
+				'is_required'              => $checkbox->is_mandatory(),
+				'default_checked'          => $checkbox->hide_input() ? true : false,
+				'default_hidden'           => $checkbox->is_hidden(),
 			);
 		}
 
@@ -420,6 +435,8 @@ final class Checkout {
 	}
 
 	private function get_checkboxes() {
+		add_filter( 'woocommerce_gzd_is_rest_api_request', '__return_true' );
+
 		add_filter(
 			'woocommerce_gzd_get_checkout_value',
 			function( $value, $key ) {
