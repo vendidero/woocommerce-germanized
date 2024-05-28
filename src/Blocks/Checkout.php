@@ -434,8 +434,10 @@ final class Checkout {
 		);
 	}
 
-	private function get_checkboxes() {
-		add_filter( 'woocommerce_gzd_is_rest_api_request', '__return_true' );
+	private function get_checkboxes( $context = 'view' ) {
+		if ( 'view' === $context ) {
+			add_filter( 'woocommerce_gzd_legal_checkbox_show_for_payment_method', '__return_true' );
+		}
 
 		add_filter(
 			'woocommerce_gzd_get_checkout_value',
@@ -517,7 +519,7 @@ final class Checkout {
 		if ( $this->has_checkout_data( 'checkboxes', $request ) ) {
 			$checkboxes_checked = $this->parse_checkboxes( $data['checkboxes'] );
 
-			foreach ( $this->get_checkboxes() as $id => $checkbox ) {
+			foreach ( $this->get_checkboxes( 'validate' ) as $id => $checkbox ) {
 				if ( ! $checkbox->validate( in_array( $id, $checkboxes_checked, true ) ? 'yes' : '' ) ) {
 					throw new RouteException( "checkbox_{$id}", $checkbox->get_error_message(), 400 );
 				}

@@ -490,7 +490,7 @@ class WC_GZD_Legal_Checkbox {
 	}
 
 	public function show_for_payment_method( $payment_method ) {
-		return in_array( trim( $payment_method ), $this->get_show_for_payment_methods(), true );
+		return apply_filters( 'woocommerce_gzd_legal_checkbox_show_for_payment_method', in_array( trim( $payment_method ), $this->get_show_for_payment_methods(), true ), $payment_method, $this );
 	}
 
 	/**

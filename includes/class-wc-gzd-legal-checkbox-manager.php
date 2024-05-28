@@ -724,13 +724,6 @@ class WC_GZD_Legal_Checkbox_Manager {
 						$show_for_payment_methods_is_valid = true;
 					}
 
-					/**
-					 * Checkout block payment method validation is triggered client-side.
-					 */
-					if ( WC_germanized()->is_rest_api_request() ) {
-						$show_for_payment_methods_is_valid = true;
-					}
-
 					if ( $category_ids = $checkbox->get_show_for_categories() ) {
 						$intersected = array_intersect( $category_ids, $args['product_category_ids'] );
 
