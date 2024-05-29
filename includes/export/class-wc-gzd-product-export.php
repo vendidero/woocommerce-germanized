@@ -217,6 +217,7 @@ class WC_GZD_Product_Export {
 					if ( $gzd_attribute = WC_GZD_Product_Attribute_Helper::instance()->get_attribute( $attribute, $product ) ) {
 						$row[ 'attributes:checkout_visible' . $i ] = $gzd_attribute->get_checkout_visible();
 					}
+					$i++;
 				}
 			}
 		}

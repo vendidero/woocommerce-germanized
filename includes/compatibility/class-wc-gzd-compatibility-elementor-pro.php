@@ -74,7 +74,9 @@ class WC_GZD_Compatibility_Elementor_Pro extends WC_GZD_Compatibility {
 						5000
 					);
 
-					woocommerce_gzd_checkout_load_ajax_relevant_hooks();
+					if ( function_exists( 'woocommerce_gzd_checkout_load_ajax_relevant_hooks' ) ) {
+						woocommerce_gzd_checkout_load_ajax_relevant_hooks();
+					}
 				}
 
 				/**

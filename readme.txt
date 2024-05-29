@@ -5,7 +5,7 @@ Requires at least: 5.4
 Tested up to: 6.5
 WC requires at least: 3.9
 WC tested up to: 8.9
-Stable tag: 3.16.6
+Stable tag: 3.16.7
 Requires PHP: 5.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -205,6 +205,12 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 6. Edit pdf documents (Pro)
 
 == Changelog ==
+= 3.16.7 =
+* Improvement: Pickup location style fallbacks for custom checkouts
+* Fix: Checkout checkboxes block undefined state check
+* Fix: Elementor Pro compatibility with third party addons
+* Fix: Product attribute checkout visibility export
+
 = 3.16.6 =
 * Improvement: Pickup location UI in classic checkout and account page
 * Improvement: Support export reference number (mrn) for international shipments
