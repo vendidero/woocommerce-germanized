@@ -1,0 +1,1 @@
+!function(){var i,e;window.germanized=window.germanized||{},i=jQuery,(e=window.germanized).setup={params:{},init:function(){i(".woocommerce-help-tip").tipTip({attribute:"data-tip",fadeIn:50,fadeOut:50,delay:200})}},i(document).ready((function(){e.setup.init()})),((window.germanized=window.germanized||{}).static=window.germanized.static||{})["admin-setup"]={}}();
