@@ -75,7 +75,7 @@ const Block = ({
 	const onChangeCheckbox = useCallback(
 		( checkbox ) => {
 			setCheckboxes( ( currentCheckboxes ) => {
-				const needsUpdate = currentCheckboxes[ checkbox.id ].checked !== checkbox.checked;
+				const needsUpdate = currentCheckboxes && currentCheckboxes.hasOwnProperty( checkbox.id ) && currentCheckboxes[ checkbox.id ].checked !== checkbox.checked;
 
 				/**
 				 * This is a tweak that overrides current checkbox hidden state
