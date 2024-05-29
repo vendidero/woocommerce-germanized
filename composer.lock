@@ -874,12 +874,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/vendidero/woocommerce-germanized-shipments.git",
-                "reference": "b9914ba345d20e822dd4f9ceef62701346587f33"
+                "reference": "6fb58e7f870e8691a7b2c2041d2f523fd0b486ad"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vendidero/woocommerce-germanized-shipments/zipball/b9914ba345d20e822dd4f9ceef62701346587f33",
-                "reference": "b9914ba345d20e822dd4f9ceef62701346587f33",
+                "url": "https://api.github.com/repos/vendidero/woocommerce-germanized-shipments/zipball/6fb58e7f870e8691a7b2c2041d2f523fd0b486ad",
+                "reference": "6fb58e7f870e8691a7b2c2041d2f523fd0b486ad",
                 "shasum": ""
             },
             "require": {
@@ -925,7 +925,7 @@
                 "source": "https://github.com/vendidero/woocommerce-germanized-shipments/tree/v3.3.1",
                 "issues": "https://github.com/vendidero/woocommerce-germanized-shipments/issues"
             },
-            "time": "2024-05-29T11:50:10+00:00"
+            "time": "2024-05-29T12:34:49+00:00"
         }
     ],
     "packages-dev": [
