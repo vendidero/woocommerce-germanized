@@ -68,7 +68,7 @@ class WC_GZD_Compatibility_ET_Builder extends WC_GZD_Compatibility {
 		);
 
 		add_action(
-			'woocommerce_checkout_init',
+			'woocommerce_before_checkout_form_cart_notices',
 			function() {
 				if ( $this->is_et_builder_checkout() && ! defined( 'WC_GZD_DISABLE_CHECKOUT_ADJUSTMENTS' ) ) {
 					define( 'WC_GZD_DISABLE_CHECKOUT_ADJUSTMENTS', true );
@@ -116,7 +116,7 @@ class WC_GZD_Compatibility_ET_Builder extends WC_GZD_Compatibility {
 							add_action( 'woocommerce_checkout_order_review', 'woocommerce_checkout_payment', 20 );
 						}
 					}
-				} elseif ( apply_filters( 'woocommerce_gzd_et_builder_legacy_checkout_needs_hook_removal', false ) ) {
+				} elseif ( apply_filters( 'woocommerce_gzd_et_builder_legacy_checkout_needs_hook_removal', true ) ) {
 					/**
 					 * In newer Divi versions these additional hook removals are not necessary as Divi
 					 * detaches unnecessary checkout hooks right before output of the actual modul.

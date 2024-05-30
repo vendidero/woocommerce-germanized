@@ -291,7 +291,7 @@ add_filter( 'comment_form_submit_button', 'woocommerce_gzd_template_render_revie
 add_action( 'woocommerce_pay_order_before_submit', 'woocommerce_gzd_template_checkout_set_terms_manually', 0 );
 
 // Maybe remove checkout adjustments during AJAX requests and before rendering checkout
-add_action( 'woocommerce_checkout_init', 'wc_gzd_maybe_disable_checkout_adjustments', 20 );
+add_action( 'woocommerce_before_checkout_form_cart_notices', 'wc_gzd_maybe_disable_checkout_adjustments', 20 );
 add_action( 'woocommerce_checkout_update_order_review', 'wc_gzd_maybe_disable_checkout_adjustments', 20 );
 
 function woocommerce_gzd_checkout_load_ajax_relevant_hooks() {

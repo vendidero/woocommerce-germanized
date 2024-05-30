@@ -1290,6 +1290,13 @@ function wc_gzd_maybe_disable_checkout_adjustments() {
 	}
 
 	if ( wc_gzd_checkout_adjustments_disabled() ) {
+		/**
+		 * Make sure to remove/add hooks only once per request.
+		 */
+		if ( did_action( 'woocommerce_gzd_disabled_checkout_adjustments' ) ) {
+			return;
+		}
+
 		add_action(
 			'woocommerce_review_order_before_cart_contents',
 			function() {
