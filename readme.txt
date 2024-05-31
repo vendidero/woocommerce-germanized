@@ -207,6 +207,7 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 == Changelog ==
 = 3.16.8 =
 * Improvement: Support gateway fee (Nachnahme) in block-based checkout
+* Improvement: DHL SOAP WSDL files update, added optional MRN to SOAP API too
 * Fix: Divi checkout builder compatibility
 
 = 3.16.7 =
