@@ -2,10 +2,8 @@
  * External dependencies
  */
 import { useEffect, useState, useCallback, useRef } from '@wordpress/element';
-import { useSelect } from '@wordpress/data';
 import { extensionCartUpdate } from '@woocommerce/blocks-checkout';
 import _ from 'lodash';
-import { PAYMENT_STORE_KEY } from '@woocommerce/block-data';
 
 import Modal from './modal';
 import LegalCheckbox from "./checkboxes/legal-checkbox";
@@ -32,15 +30,6 @@ const Block = ({
 	const [ modalUrl, setModalUrl ] = useState( '' );
 	const hasRendered = useRef( false );
 
-	const {
-		currentPaymentMethod
-	} = useSelect( ( select ) => {
-		const paymentStore = select( PAYMENT_STORE_KEY );
-
-		return {
-			currentPaymentMethod: paymentStore.getActivePaymentMethod(),
-		}
-	} );
 	const getExtensionDataFromCheckboxes = ( checkboxes ) => {
 		return Object.values( checkboxes ).filter( ( checkbox ) => {
 			if ( checkbox.checked || ( ! checkbox.has_checkbox && ! checkbox.hidden ) ) {
@@ -62,36 +51,10 @@ const Block = ({
 		checkboxes
 	] );
 
-	useEffect( () => {
-		Object.keys( checkboxes ).map( ( checkboxId ) => {
-			if ( checkboxes[ checkboxId ].show_for_payment_methods.length > 0 ) {
-				onChangeCheckbox( checkboxes[ checkboxId ] );
-			}
-		});
-	}, [
-		currentPaymentMethod
-	] );
-
 	const onChangeCheckbox = useCallback(
 		( checkbox ) => {
 			setCheckboxes( ( currentCheckboxes ) => {
 				const needsUpdate = currentCheckboxes && currentCheckboxes.hasOwnProperty( checkbox.id ) && currentCheckboxes[ checkbox.id ].checked !== checkbox.checked;
-
-				/**
-				 * This is a tweak that overrides current checkbox hidden state
-				 * in case the checkbox is conditionally shown for certain payment methods only
-				 * as current payment method is only available client-side.
-				 */
-				if ( checkbox.show_for_payment_methods.length > 0 ) {
-					let isHidden = checkbox.default_hidden;
-
-					if ( ! isHidden ) {
-						checkbox.hidden = ! _.includes( checkbox.show_for_payment_methods, currentPaymentMethod );
-					} else {
-						checkbox.hidden = isHidden;
-					}
-				}
-
 				const updatedCheckboxes = { ...currentCheckboxes, [ checkbox.id ]: { ...checkbox } };
 
 				if ( needsUpdate ) {
@@ -110,8 +73,7 @@ const Block = ({
 			setExtensionData,
 			checkboxes,
 			setCheckboxes,
-			extensionCartUpdate,
-			currentPaymentMethod
+			extensionCartUpdate
 		]
 	);
 
@@ -121,15 +83,14 @@ const Block = ({
 			let newCheckboxes = {};
 
 			Object.keys( cartCheckboxes ).map( ( checkboxId ) => {
-				const currentCheckbox = checkboxes.hasOwnProperty( checkboxId ) ? checkboxes[ checkboxId ] : {};
-				const newCheckbox = checkboxes.hasOwnProperty( checkboxId ) ? { 'checked': checkboxes[ checkboxId ].checked, 'hidden': checkboxes[ checkboxId ].hidden } : {};
+				const currentCheckbox = checkboxes.hasOwnProperty( checkboxId ) ? { 'checked': checkboxes[ checkboxId ].checked, 'hidden': checkboxes[ checkboxId ].hidden } : {};
 
-				newCheckboxes[ checkboxId ] = { ...cartCheckboxes[ checkboxId ], ...newCheckbox };
-
-				if ( newCheckboxes[ checkboxId ] !== currentCheckbox ) {
-					onChangeCheckbox( newCheckboxes[ checkboxId ] );
-				}
+				newCheckboxes[ checkboxId ] = { ...cartCheckboxes[ checkboxId ], ...currentCheckbox }
 			});
+
+			if ( !_.isEqual( newCheckboxes, checkboxes ) ) {
+				setCheckboxes( newCheckboxes );
+			}
 		}
 
 		hasRendered.current = true;

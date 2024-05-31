@@ -193,62 +193,68 @@ class WC_GZD_Checkout {
 	public function get_checkout_value( $key ) {
 		$value = null;
 
-		if ( WC_germanized()->is_rest_api_request() ) {
-			$getter   = "get_{$key}";
-			$customer = WC()->customer;
+		if ( 'payment_method' === $key ) {
+			$value = WC_GZD_Payment_Gateways::instance()->get_current_gateway();
+		}
 
-			if ( $customer && is_callable( array( $customer, $getter ) ) ) {
-				$value = $customer->{ $getter }();
-			}
-		} else {
-			if ( is_null( $this->checkout_data ) ) {
-				/**
-				 * Use raw post data in case available as only certain billing/shipping address
-				 * specific data is available during AJAX requests in get_posted_data.
-				 */
-				if ( isset( $_POST['post_data'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
-					$posted = array();
+		if ( null === $value ) {
+			if ( WC_germanized()->is_rest_api_request() ) {
+				$getter   = "get_{$key}";
+				$customer = WC()->customer;
 
-					if ( is_string( $_POST['post_data'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
-						parse_str( $_POST['post_data'], $posted ); // phpcs:ignore WordPress.Security.NonceVerification.Missing,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized,WordPress.Security.ValidatedSanitizedInput.MissingUnslash
-						$this->checkout_data = wc_clean( wp_unslash( $posted ) );
-					} elseif ( is_array( $_POST['post_data'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
-						$this->checkout_data = wc_clean( wp_unslash( $_POST['post_data'] ) ); // phpcs:ignore WordPress.Security.NonceVerification.Missing
-					}
-				} elseif ( isset( $_POST['woocommerce-process-checkout-nonce'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
+				if ( $customer && is_callable( array( $customer, $getter ) ) ) {
+					$value = $customer->{ $getter }();
+				}
+			} else {
+				if ( is_null( $this->checkout_data ) ) {
 					/**
-					 * get_posted_data() does only include core Woo data, no third-party data included.
-					 * Prevent calling get_posted_data() before fields were loaded to prevent infinite loops.
+					 * Use raw post data in case available as only certain billing/shipping address
+					 * specific data is available during AJAX requests in get_posted_data.
 					 */
-					if ( did_action( 'woocommerce_checkout_fields' ) ) {
-						$this->checkout_data = WC()->checkout()->get_posted_data();
+					if ( isset( $_POST['post_data'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
+						$posted = array();
+
+						if ( is_string( $_POST['post_data'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
+							parse_str( $_POST['post_data'], $posted ); // phpcs:ignore WordPress.Security.NonceVerification.Missing,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized,WordPress.Security.ValidatedSanitizedInput.MissingUnslash
+							$this->checkout_data = wc_clean( wp_unslash( $posted ) );
+						} elseif ( is_array( $_POST['post_data'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
+							$this->checkout_data = wc_clean( wp_unslash( $_POST['post_data'] ) ); // phpcs:ignore WordPress.Security.NonceVerification.Missing
+						}
+					} elseif ( isset( $_POST['woocommerce-process-checkout-nonce'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
+						/**
+						 * get_posted_data() does only include core Woo data, no third-party data included.
+						 * Prevent calling get_posted_data() before fields were loaded to prevent infinite loops.
+						 */
+						if ( did_action( 'woocommerce_checkout_fields' ) ) {
+							$this->checkout_data = WC()->checkout()->get_posted_data();
+						}
 					}
-				}
-			}
-
-			/**
-			 * Fallback to customer data (or posted data in case available).
-			 */
-			if ( null === $value ) {
-				$value = WC()->checkout()->get_value( $key );
-			}
-
-			/**
-			 * If checkout data is available - force overriding
-			 */
-			if ( $this->checkout_data ) {
-				if ( isset( $_POST['woocommerce-process-checkout-nonce'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
-					$value = isset( $this->checkout_data[ $key ] ) ? $this->checkout_data[ $key ] : WC()->checkout()->get_value( $key );
-				} else {
-					$value = isset( $this->checkout_data[ $key ] ) ? $this->checkout_data[ $key ] : null;
 				}
 
 				/**
-				 * Do only allow retrieving shipping-related data in case shipping address is activated
+				 * Fallback to customer data (or posted data in case available).
 				 */
-				if ( 'shipping_' === substr( $key, 0, 9 ) ) {
-					if ( ! isset( $this->checkout_data['ship_to_different_address'] ) || ! $this->checkout_data['ship_to_different_address'] || wc_ship_to_billing_address_only() ) {
-						$value = null;
+				if ( null === $value ) {
+					$value = WC()->checkout()->get_value( $key );
+				}
+
+				/**
+				 * If checkout data is available - force overriding
+				 */
+				if ( $this->checkout_data ) {
+					if ( isset( $_POST['woocommerce-process-checkout-nonce'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
+						$value = isset( $this->checkout_data[ $key ] ) ? $this->checkout_data[ $key ] : WC()->checkout()->get_value( $key );
+					} else {
+						$value = isset( $this->checkout_data[ $key ] ) ? $this->checkout_data[ $key ] : null;
+					}
+
+					/**
+					 * Do only allow retrieving shipping-related data in case shipping address is activated
+					 */
+					if ( 'shipping_' === substr( $key, 0, 9 ) ) {
+						if ( ! isset( $this->checkout_data['ship_to_different_address'] ) || ! $this->checkout_data['ship_to_different_address'] || wc_ship_to_billing_address_only() ) {
+							$value = null;
+						}
 					}
 				}
 			}

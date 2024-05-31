@@ -240,17 +240,29 @@ class WC_GZD_Payment_Gateways {
 		return $fields;
 	}
 
+	public function get_current_gateway() {
+		$current_gateway    = WC()->session ? WC()->session->get( 'chosen_payment_method' ) : '';
+		$has_block_checkout = has_block( 'woocommerce/checkout' ) || has_block( 'woocommerce/cart' ) || WC()->is_rest_api_request();
+
+		if ( $has_block_checkout ) {
+			$current_gateway = WC()->session ? WC()->session->get( 'wc_gzd_blocks_chosen_payment_method', '' ) : '';
+		}
+
+		return $current_gateway;
+	}
+
 	/**
 	 * Update fee for cart if feeable gateway has been selected as payment method
 	 */
 	public function init_fee() {
-		$gateways = WC()->payment_gateways()->get_available_payment_gateways();
+		$gateways        = WC()->payment_gateways()->get_available_payment_gateways();
+		$current_gateway = $this->get_current_gateway();
 
-		if ( ! ( $key = WC()->session->get( 'chosen_payment_method' ) ) || ! isset( $gateways[ $key ] ) ) {
+		if ( ! $current_gateway || ! isset( $gateways[ $current_gateway ] ) ) {
 			return;
 		}
 
-		$gateway = $gateways[ $key ];
+		$gateway = $gateways[ $current_gateway ];
 
 		if ( 'yes' !== $gateway->enabled ) {
 			return;

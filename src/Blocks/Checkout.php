@@ -168,6 +168,17 @@ final class Checkout {
 				},
 			)
 		);
+
+		woocommerce_store_api_register_update_callback(
+			array(
+				'namespace' => 'woocommerce-germanized-set-payment-method',
+				'callback'  => function( $data ) {
+					$active_method = isset( $data['active_method'] ) ? wc_clean( wp_unslash( $data['active_method'] ) ) : '';
+
+					WC()->session->set( 'wc_gzd_blocks_chosen_payment_method', $active_method );
+				},
+			)
+		);
 	}
 
 	private function register_validation_and_storage() {
@@ -372,15 +383,7 @@ final class Checkout {
 		$customer               = wc()->customer;
 
 		foreach ( $this->get_checkboxes() as $id => $checkbox ) {
-			/**
-			 * Make sure to force render checkboxes conditionally bound to certain
-			 * payment methods only as payment method data is only available client-side.
-			 */
-			if ( $checkbox->is_enabled() && ! empty( $checkbox->get_show_for_payment_methods() ) ) {
-				$checkboxes_force_print[] = $checkbox->get_id();
-			}
-
-			if ( ! $checkbox->is_printable() && ! in_array( $checkbox->get_id(), $checkboxes_force_print, true ) ) {
+			if ( ! $checkbox->is_printable() && ! in_array( $checkbox->get_id(), apply_filters( 'woocommerce_gzd_checkout_block_checkboxes_force_print_checkboxes', $checkboxes_force_print ), true ) ) {
 				continue;
 			}
 
@@ -435,10 +438,6 @@ final class Checkout {
 	}
 
 	private function get_checkboxes( $context = 'view' ) {
-		if ( 'view' === $context ) {
-			add_filter( 'woocommerce_gzd_legal_checkbox_show_for_payment_method', '__return_true' );
-		}
-
 		add_filter(
 			'woocommerce_gzd_get_checkout_value',
 			function( $value, $key ) {
