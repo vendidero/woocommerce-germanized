@@ -28,7 +28,6 @@ if ( ! class_exists( 'WC_GZD_Email_Customer_Revocation' ) ) :
 		 * @return void
 		 */
 		public function __construct() {
-
 			$this->id          = 'customer_revocation';
 			$this->title       = __( 'Withdrawal', 'woocommerce-germanized' );
 			$this->description = __( 'Email being sent if a customer fills out the form of withdrawal.', 'woocommerce-germanized' );
@@ -161,7 +160,7 @@ if ( ! class_exists( 'WC_GZD_Email_Customer_Revocation' ) ) :
 		 * @return string
 		 */
 		public function get_additional_content() {
-			if ( is_callable( 'parent::get_additional_content' ) ) {
+			if ( method_exists( get_parent_class( $this ), 'get_additional_content' ) ) {
 				return parent::get_additional_content();
 			}
 

@@ -110,7 +110,7 @@ if ( ! class_exists( 'WC_GZD_Email_Customer_SEPA_Direct_Debit_Mandate' ) ) :
 		 * @return string
 		 */
 		public function get_additional_content() {
-			if ( is_callable( 'parent::get_additional_content' ) ) {
+			if ( method_exists( get_parent_class( $this ), 'get_additional_content' ) ) {
 				return parent::get_additional_content();
 			}
 
