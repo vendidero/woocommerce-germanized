@@ -1,0 +1,30 @@
+{
+	"apiVersion": 2,
+	"name": "woocommerce-germanized/mini-cart-notices",
+	"version": "2.0.0",
+	"title": "Mini cart legal notices",
+	"category": "woocommerce",
+	"description": "Outputs mini cart legal notices.",
+	"supports": {
+		"align": false,
+		"html": false,
+		"multiple": false,
+		"reusable": false,
+		"inserter": true,
+		"color": {
+			"text": true,
+			"background": true
+		}
+	},
+	"parent": [ "woocommerce/mini-cart-footer-block" ],
+	"textdomain": "woocommerce-germanized",
+	"attributes": {
+		"lock": {
+			"type": "object",
+			"default": {
+				"remove": false,
+				"move": false
+			}
+		}
+	}
+}
