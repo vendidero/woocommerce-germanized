@@ -214,9 +214,14 @@ class WC_GZD_Product_Export {
 					/* translators: %s: attribute number */
 					$this->additional_columns[ 'attributes:checkout_visible' . $i ] = sprintf( __( 'Attribute %d visible in checkout', 'woocommerce-germanized' ), $i );
 
-					if ( $gzd_attribute = WC_GZD_Product_Attribute_Helper::instance()->get_attribute( $attribute, $product ) ) {
-						$row[ 'attributes:checkout_visible' . $i ] = $gzd_attribute->get_checkout_visible();
+					if ( is_a( $attribute, 'WC_Product_Attribute' ) ) {
+						if ( $gzd_attribute = WC_GZD_Product_Attribute_Helper::instance()->get_attribute( $attribute, $product ) ) {
+							$row[ 'attributes:checkout_visible' . $i ] = $gzd_attribute->get_checkout_visible();
+						}
+					} else {
+						$row[ 'attributes:checkout_visible' . $i ] = 0;
 					}
+
 					$i++;
 				}
 			}
