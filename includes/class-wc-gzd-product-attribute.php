@@ -24,7 +24,6 @@ class WC_GZD_Product_Attribute extends WC_Product_Attribute {
 	 * @param null WC_Product_Attribute $attribute
 	 */
 	public function __construct( $attribute = null ) {
-
 		if ( ! is_a( $attribute, 'WC_Product_Attribute' ) ) {
 			$attribute = new WC_Product_Attribute();
 		}
