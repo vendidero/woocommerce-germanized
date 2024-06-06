@@ -458,3 +458,24 @@ function wc_gzd_get_legal_product_review_authenticity_notice( $comment_id ) {
 	 */
 	return apply_filters( 'woocommerce_gzd_legal_product_review_authenticity_text', $text, $verified, $comment_id );
 }
+
+/**
+ * @param WC_GZD_Product $product
+ *
+ * @return string
+ */
+function wc_gzd_get_product_delivery_time_classname( $product ) {
+	if ( ! is_a( $product, 'WC_GZD_Product' ) ) {
+		$product = wc_gzd_get_gzd_product( $product );
+	}
+
+	if ( ! $product ) {
+		return '';
+	}
+
+	$delivery_time     = trim( $product->get_delivery_time_html() );
+	$delivery_time_str = str_replace( str_replace( '{delivery_time}', '', get_option( 'woocommerce_gzd_delivery_time_text' ) ), '', $delivery_time );
+	$classname         = strtolower( sanitize_html_class( preg_replace( '#[ -]+#', '-', trim( $delivery_time_str ) ) ) );
+
+	return apply_filters( 'woocommerce_gzd_product_delivery_time_classname', $classname, $product );
+}

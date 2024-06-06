@@ -19,7 +19,7 @@ class ProductNutriScore extends AbstractProductElementBlock {
 		return 'nutri_score';
 	}
 
-	protected function get_additional_classes( $attributes ) {
+	protected function get_additional_classes( $attributes, $product ) {
 		return 'wc-gzd-nutri-score';
 	}
 

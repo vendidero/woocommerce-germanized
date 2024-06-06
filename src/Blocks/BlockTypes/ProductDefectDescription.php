@@ -19,7 +19,7 @@ class ProductDefectDescription extends AbstractProductElementBlock {
 		return 'defect_description';
 	}
 
-	protected function get_additional_classes( $attributes ) {
+	protected function get_additional_classes( $attributes, $product ) {
 		return 'defect-description';
 	}
 

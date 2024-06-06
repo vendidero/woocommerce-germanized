@@ -19,7 +19,7 @@ class ProductDepositPackagingType extends AbstractProductElementBlock {
 		return 'deposit_packaging_type';
 	}
 
-	protected function get_additional_classes( $attributes ) {
+	protected function get_additional_classes( $attributes, $product ) {
 		return 'deposit-packaging-type';
 	}
 

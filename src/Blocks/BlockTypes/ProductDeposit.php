@@ -17,7 +17,7 @@ class ProductDeposit extends AbstractProductElementBlock {
 		return 'deposit';
 	}
 
-	protected function get_additional_classes( $attributes ) {
+	protected function get_additional_classes( $attributes, $product ) {
 		return 'deposit-amount';
 	}
 

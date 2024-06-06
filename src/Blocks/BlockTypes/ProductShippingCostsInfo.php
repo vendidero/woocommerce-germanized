@@ -19,7 +19,7 @@ class ProductShippingCostsInfo extends AbstractProductElementBlock {
 		return 'shipping_costs_info';
 	}
 
-	protected function get_additional_classes( $attributes ) {
+	protected function get_additional_classes( $attributes, $product ) {
 		return 'shipping-costs-info';
 	}
 

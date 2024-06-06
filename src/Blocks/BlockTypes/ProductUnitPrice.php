@@ -28,7 +28,7 @@ class ProductUnitPrice extends AbstractProductElementBlock {
 		return $product->has_unit() ? $product->get_unit_price_html() : '';
 	}
 
-	protected function get_additional_classes( $attributes ) {
+	protected function get_additional_classes( $attributes, $product ) {
 		return 'price-unit';
 	}
 }

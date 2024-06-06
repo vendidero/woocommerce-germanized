@@ -19,7 +19,7 @@ class ProductTaxInfo extends AbstractProductElementBlock {
 		return 'tax_info';
 	}
 
-	protected function get_additional_classes( $attributes ) {
+	protected function get_additional_classes( $attributes, $product ) {
 		return 'tax-info';
 	}
 

@@ -89,7 +89,13 @@ abstract class AbstractProductElementBlock extends AbstractBlock {
 		return array( 'query', 'queryId', 'postId' );
 	}
 
-	protected function get_additional_classes( $attributes ) {
+	/**
+	 * @param array $attributes
+	 * @param \WC_GZD_Product $product
+	 *
+	 * @return string
+	 */
+	protected function get_additional_classes( $attributes, $product ) {
 		return 'delivery-time-info';
 	}
 
@@ -116,7 +122,7 @@ abstract class AbstractProductElementBlock extends AbstractBlock {
 			$text_align_styles_and_classes = StyleAttributesUtils::get_text_align_class_and_style( $attributes );
 			$margin_styles_and_classes     = StyleAttributesUtils::get_margin_class_and_style( $attributes );
 			$inner_classes                 = sprintf( 'wc-gzd-block-components-product-%1$s wc-gzd-block-grid__product-%1$s', $this->get_label_type_class() ) . ' ' . ( isset( $text_align_styles_and_classes['class'] ) ? $text_align_styles_and_classes['class'] : '' ) . ' ' . $styles_and_classes['classes'];
-			$inner_classes                .= ' ' . $this->get_additional_classes( $attributes );
+			$inner_classes                .= ' ' . $this->get_additional_classes( $attributes, $product );
 			$html                          = $this->get_label_content( $product );
 			$block_classes                 = 'wp-block-woocommerce-gzd-product-price-label wp-block-woocommerce-gzd-product-' . $this->get_label_type_class() . ' ' . ( isset( $margin_styles_and_classes['class'] ) ? $margin_styles_and_classes['class'] : '' );
 
