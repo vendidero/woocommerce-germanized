@@ -448,7 +448,7 @@ class WC_GZD_Emails {
 		}
 
 		if ( isset( $_POST['woocommerce_gzd_email_order_confirmation_text'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
-			update_option( 'woocommerce_gzd_email_order_confirmation_text', sanitize_textarea_field( wp_unslash( $_POST['woocommerce_gzd_email_order_confirmation_text'] ) ) ); // phpcs:ignore WordPress.Security.NonceVerification.Missing
+			update_option( 'woocommerce_gzd_email_order_confirmation_text', wp_kses_post( trim( wp_unslash( $_POST['woocommerce_gzd_email_order_confirmation_text'] ) ) ) ); // phpcs:ignore WordPress.Security.NonceVerification.Missing, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 		}
 	}
 
