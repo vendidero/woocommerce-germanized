@@ -190,7 +190,11 @@ window.germanized = window.germanized || {};
                     }
                 }
 
-                var $all_nonces = $( '.wc-gzd-place-order' ).find('#woocommerce-process-checkout-nonce, #_wpnonce' );
+                /**
+                 * Do only look for visible place-order items as some plugins/themes
+                 * may add additional wrappers for mobile/desktop.
+                 */
+                var $all_nonces = $( '.wc-gzd-place-order:visible' ).find('#woocommerce-process-checkout-nonce, #_wpnonce' );
 
                 /**
                  * Keep the latest nonce only
