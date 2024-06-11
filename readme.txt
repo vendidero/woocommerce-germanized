@@ -60,7 +60,7 @@ Of course Trusted Shops customers may embed their quality seals or further Trust
 
 = Pro: WooCommerce PDF invoices & packing slips =
 As a Pro User of Germanized you may automatically or manually create PDF Invoices and Packing Slips for your orders. Adjust your document layout by using the built-in visual document editor.
-Either export your documents (CSV, zip) for your tax consultant manually or use our integrations to transmit your documents to your lexoffice or sevDesk account.
+Either export your documents (CSV, zip) for your tax consultant manually or use our integrations to transmit your documents to your lexoffice or sevdesk account.
 Learn more about [PDF Invoices for WooCommerce](https://vendidero.de/woocommerce-germanized/features#accounting "WooCommerce PDF Invoices")
 
 Furthermore you may attach legally relevant pages (e.g. Terms & Conditions) as PDF documents to specific WooCommerce emails instead of using plain text.

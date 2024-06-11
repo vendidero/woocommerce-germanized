@@ -849,6 +849,7 @@ class WC_GZD_Emails {
 			$method               = $order->get_payment_method();
 			$disable_for_gateways = $this->get_gateways_disabling_paid_for_order_mail();
 			$disable_notification = ( in_array( $method, $disable_for_gateways, true ) || $order->get_total() <= 0 ) ? true : false;
+			$is_manual_request    = doing_action( 'woocommerce_order_action_paid_for_order_notification' );
 
 			/**
 			 * Filter to adjust whether to disable the paid for order notification based on order data.
@@ -858,7 +859,7 @@ class WC_GZD_Emails {
 			 *
 			 * @since 3.2.3
 			 */
-			if ( apply_filters( 'woocommerce_gzd_disable_paid_for_order_notification', $disable_notification, $order->get_id() ) ) {
+			if ( apply_filters( 'woocommerce_gzd_disable_paid_for_order_notification', $disable_notification && ! $is_manual_request, $order->get_id() ) ) {
 				$enable_mail = false;
 			}
 		}

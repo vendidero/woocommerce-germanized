@@ -61,7 +61,7 @@ class WC_GZD_Settings_Tab_Invoices extends WC_GZD_Settings_Tab {
 			<p><?php esc_html_e( 'Generate custom and professional PDF invoices, cancellations, packing slips and commercial invoices automatically with Germanized Pro.', 'woocommerce-germanized' ); ?></p>
 			<ul>
 				<li>✓ <?php esc_html_e( 'Customize your documents with the built-in document editor', 'woocommerce-germanized' ); ?></li>
-				<li>✓ <?php esc_html_e( 'Transfer your documents to your lexoffice and/or sevDesk account', 'woocommerce-germanized' ); ?></li>
+				<li>✓ <?php esc_html_e( 'Transfer your documents to your lexoffice and/or sevdesk account', 'woocommerce-germanized' ); ?></li>
 				<li>✓ <?php esc_html_e( 'Export your documents as CSV and ZIP', 'woocommerce-germanized' ); ?></li>
 			</ul>
 			<p>
