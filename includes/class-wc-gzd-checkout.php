@@ -133,8 +133,13 @@ class WC_GZD_Checkout {
 		add_action( 'template_redirect', array( $this, 'maybe_remove_shopmark_filters' ) );
 		add_action( 'woocommerce_checkout_update_order_review', array( $this, 'maybe_remove_shopmark_filters' ) );
 
-		// Hide the newly introduced state field for Germany since Woo 6.3
-		add_filter( 'woocommerce_states', array( __CLASS__, 'filter_de_states' ) );
+		/**
+		 * Hide the newly introduced state field for Germany since Woo 6.3.
+		 * Use a filter for the customer object to prevent output in formatted addresses within checkout block.
+		 */
+		add_filter( 'woocommerce_states', array( $this, 'filter_de_states' ) );
+		add_filter( 'woocommerce_customer_get_billing_state', array( $this, 'filter_de_states_customer' ), 10, 2 );
+		add_filter( 'woocommerce_customer_get_shipping_state', array( $this, 'filter_de_states_customer' ), 10, 2 );
 
 		if ( 'never' !== get_option( 'woocommerce_gzd_checkout_validate_street_number' ) ) {
 			// Maybe force street number during checkout
@@ -374,8 +379,29 @@ class WC_GZD_Checkout {
 		return false;
 	}
 
-	public static function filter_de_states( $states ) {
-		if ( apply_filters( 'woocommerce_gzd_disable_de_checkout_state_select', ( is_checkout() ) ) && isset( $states['DE'] ) ) {
+	protected function disable_de_state_select() {
+		return apply_filters( 'woocommerce_gzd_disable_de_checkout_state_select', ( is_checkout() || WC_germanized()->is_rest_api_request() ) );
+	}
+
+	/**
+	 * @param string $state
+	 * @param WC_Customer $customer
+	 *
+	 * @return string
+	 */
+	public function filter_de_states_customer( $state, $customer ) {
+		$is_shipping = doing_filter( 'woocommerce_customer_get_shipping_state' ) ? true : false;
+		$country     = $is_shipping && $customer->get_shipping_country() ? $customer->get_shipping_country() : $customer->get_billing_country();
+
+		if ( $this->disable_de_state_select() && 'DE' === $country ) {
+			$state = '';
+		}
+
+		return $state;
+	}
+
+	public function filter_de_states( $states ) {
+		if ( $this->disable_de_state_select() && isset( $states['DE'] ) ) {
 			$states['DE'] = array();
 		}
 
