@@ -290,14 +290,30 @@ class WC_GZD_Checkout {
 		if ( is_a( $checkbox, 'WC_GZD_Legal_Checkbox' ) ) {
 			$checkbox_id = $checkbox->get_id();
 			$value       = $this->get_checkout_value( $checkbox->get_html_name() ) ? self::instance()->get_checkout_value( $checkbox->get_html_name() ) : '';
-			$visible     = ! empty( $this->get_checkout_value( $checkbox->get_html_name() . '-field' ) ) ? true : false;
 
-			if ( $visible && ( ! empty( $value ) || $checkbox->hide_input() ) ) {
+			if ( $this->checkbox_is_visible( $checkbox ) && ( ! empty( $value ) || $checkbox->hide_input() ) ) {
 				$is_checked = true;
 			}
 		}
 
 		return apply_filters( 'woocommerce_gzd_checkout_checkbox_is_checked', $is_checked, $checkbox_id );
+	}
+
+	/**
+	 * @param WC_GZD_Legal_Checkbox|string $checkbox_id
+	 *
+	 * @return boolean
+	 */
+	public function checkbox_is_visible( $checkbox_id ) {
+		$is_visible = false;
+		$checkbox   = is_a( $checkbox_id, 'WC_GZD_Legal_Checkbox' ) ? $checkbox_id : WC_GZD_Legal_Checkbox_Manager::instance()->get_checkbox( $checkbox_id );
+
+		if ( is_a( $checkbox, 'WC_GZD_Legal_Checkbox' ) ) {
+			$checkbox_id = $checkbox->get_id();
+			$is_visible  = ! empty( $this->get_checkout_value( $checkbox->get_html_name() . '-field' ) ) ? true : false;
+		}
+
+		return apply_filters( 'woocommerce_gzd_checkout_checkbox_is_visible', $is_visible, $checkbox_id );
 	}
 
 	/**
@@ -336,7 +352,7 @@ class WC_GZD_Checkout {
 							$_product->set_tax_class( get_option( 'woocommerce_gzd_photovoltaic_systems_zero_tax_class', 'zero-rate' ) );
 						}
 					}
-				} elseif ( apply_filters( 'woocommerce_gzd_photovoltaic_systems_remove_zero_tax_class_for_non_exemptions', ( ! is_cart() ) ) ) {
+				} elseif ( apply_filters( 'woocommerce_gzd_photovoltaic_systems_remove_zero_tax_class_for_non_exemptions', ( is_checkout() || $this->checkbox_is_visible( 'photovoltaic_systems' ) ) ) ) {
 					foreach ( $cart->get_cart() as $cart_item_key => $values ) {
 						$_product = apply_filters( 'woocommerce_cart_item_product', $values['data'], $values, $cart_item_key );
 

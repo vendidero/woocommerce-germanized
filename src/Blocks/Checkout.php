@@ -20,6 +20,40 @@ final class Checkout {
 
 	private function register_filters() {
 		add_filter(
+			'woocommerce_gzd_checkout_checkbox_is_checked',
+			function( $is_checked, $checkbox_id ) {
+				if ( WC_germanized()->is_rest_api_request() ) {
+					$checked = WC()->session ? WC()->session->get( 'checkout_checkboxes_checked', array() ) : array();
+
+					if ( in_array( $checkbox_id, $checked, true ) ) {
+						$is_checked = true;
+					} else {
+						$is_checked = false;
+					}
+				}
+
+				return $is_checked;
+			},
+			10,
+			2
+		);
+
+		add_filter(
+			'woocommerce_gzd_checkout_checkbox_is_visible',
+			function( $is_visible, $checkbox_id ) {
+				if ( 'photovoltaic_systems' === $checkbox_id ) {
+					if ( has_block( 'woocommerce/checkout' ) || ( WC()->session && WC_Germanized()->is_rest_api_request() && WC()->session->get( 'gzd_is_checkout_checkout', false ) ) ) {
+						$is_visible = true;
+					}
+				}
+
+				return $is_visible;
+			},
+			10,
+			2
+		);
+
+		add_filter(
 			'woocommerce_get_item_data',
 			function( $item_data, $item ) {
 				$needs_price_labels = has_block( 'woocommerce/checkout' ) || has_block( 'woocommerce/cart' ) || WC()->is_rest_api_request();
@@ -93,15 +127,26 @@ final class Checkout {
 				 *
 				 * @since 3.14.0
 				 */
-				if ( 'woocommerce/checkout' === $block['blockName'] && ! apply_filters( 'woocommerce_gzd_disable_checkout_block_adjustments', false ) ) {
-					$content = str_replace( 'wp-block-woocommerce-checkout ', 'wp-block-woocommerce-checkout wc-gzd-checkout ', $content );
+				if ( 'woocommerce/checkout' === $block['blockName'] ) {
+					if ( ! apply_filters( 'woocommerce_gzd_disable_checkout_block_adjustments', false ) ) {
+						$content = str_replace( 'wp-block-woocommerce-checkout ', 'wp-block-woocommerce-checkout wc-gzd-checkout ', $content );
 
-					// Find the last 2 closing divs of the checkout block and replace them with our custom submit wrap.
-					preg_match( '/<\/div>(\s*)<\/div>$/', $content, $matches );
+						// Find the last 2 closing divs of the checkout block and replace them with our custom submit wrap.
+						preg_match( '/<\/div>(\s*)<\/div>$/', $content, $matches );
 
-					if ( ! empty( $matches ) ) {
-						$replacement = '<div class="wc-gzd-checkout-submit"><div data-block-name="woocommerce/checkout-order-summary-block" class="wp-block-woocommerce-checkout-order-summary-block"></div><div data-block-name="woocommerce/checkout-actions-block" class="wp-block-woocommerce-checkout-actions-block"></div></div></div></div>';
-						$content     = preg_replace( '/<\/div>(\s*)<\/div>$/', $replacement, $content );
+						if ( ! empty( $matches ) ) {
+							$replacement = '<div class="wc-gzd-checkout-submit"><div data-block-name="woocommerce/checkout-order-summary-block" class="wp-block-woocommerce-checkout-order-summary-block"></div><div data-block-name="woocommerce/checkout-actions-block" class="wp-block-woocommerce-checkout-actions-block"></div></div></div></div>';
+							$content     = preg_replace( '/<\/div>(\s*)<\/div>$/', $replacement, $content );
+						}
+					}
+
+					if ( WC()->session ) {
+						WC()->session->set( 'checkout_checkboxes_checked', array() );
+						WC()->session->set( 'gzd_is_checkout_checkout', true );
+					}
+				} elseif ( 'woocommerce/cart' === $block['blockName'] ) {
+					if ( WC()->session ) {
+						WC()->session->set( 'gzd_is_checkout_checkout', false );
 					}
 				}
 
@@ -466,7 +511,8 @@ final class Checkout {
 	}
 
 	private function parse_checkboxes( $checkboxes ) {
-		$checkbox_manager = \WC_GZD_Legal_Checkbox_Manager::instance();
+		$checkbox_manager   = \WC_GZD_Legal_Checkbox_Manager::instance();
+		$checkboxes_checked = array();
 
 		foreach ( $checkboxes as $checkbox_data ) {
 			$checkbox_data = wp_parse_args(
@@ -488,20 +534,7 @@ final class Checkout {
 			}
 		}
 
-		if ( ! empty( $checkboxes_checked ) ) {
-			add_filter(
-				'woocommerce_gzd_checkout_checkbox_is_checked',
-				function( $is_checked, $checkbox_id ) use ( $checkboxes_checked ) {
-					if ( in_array( $checkbox_id, $checkboxes_checked, true ) ) {
-						$is_checked = true;
-					}
-
-					return $is_checked;
-				},
-				999,
-				2
-			);
-		}
+		WC()->session->set( 'checkout_checkboxes_checked', $checkboxes_checked );
 
 		return $checkboxes_checked;
 	}
@@ -513,6 +546,8 @@ final class Checkout {
 	 * @return void
 	 */
 	private function validate( $order, $request ) {
+		WC()->session->set( 'checkout_checkboxes_checked', array() );
+
 		$data = $this->get_checkout_data_from_request( $request );
 
 		if ( $this->has_checkout_data( 'checkboxes', $request ) ) {
