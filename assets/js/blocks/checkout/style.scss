@@ -8,6 +8,13 @@
    }
 
    .is-large {
+     /**
+      * Somehow setting align-self: start unsets the 100 % sidebar height which disables sticky.
+      */
+     .wc-block-checkout__sidebar {
+       align-self: auto;
+     }
+
      .wc-block-components-totals-wrapper {
        &.wc-gzd-hide-total-wrapper {
          display: none;
@@ -19,8 +26,11 @@
      }
 
      .wc-gzd-checkout-submit {
+       margin-top: 1em;
+
        .wc-block-components-totals-wrapper {
          display: none;
+         border-top: none;
 
          &.wc-gzd-show-total-wrapper {
            display: block;
@@ -31,6 +41,8 @@
        top: 0;
 
        .wc-block-checkout__actions {
+         border-top: none;
+
          .wc-block-checkout__actions_row {
            display: flex;
            flex-wrap: wrap;

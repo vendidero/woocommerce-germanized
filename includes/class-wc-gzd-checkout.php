@@ -138,6 +138,7 @@ class WC_GZD_Checkout {
 		 * Use a filter for the customer object to prevent output in formatted addresses within checkout block.
 		 */
 		add_filter( 'woocommerce_states', array( $this, 'filter_de_states' ) );
+		add_filter( 'woocommerce_get_country_locale', array( $this, 'filter_de_states_locale' ) );
 		add_filter( 'woocommerce_customer_get_billing_state', array( $this, 'filter_de_states_customer' ), 10, 2 );
 		add_filter( 'woocommerce_customer_get_shipping_state', array( $this, 'filter_de_states_customer' ), 10, 2 );
 
@@ -422,6 +423,14 @@ class WC_GZD_Checkout {
 		}
 
 		return $states;
+	}
+
+	public function filter_de_states_locale( $locale ) {
+		if ( $this->disable_de_state_select() && isset( $locale['DE'], $locale['DE']['state'] ) ) {
+			$locale['DE']['state']['hidden'] = true;
+		}
+
+		return $locale;
 	}
 
 	/**
