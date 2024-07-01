@@ -37,6 +37,12 @@
          }
        }
 
+       .wc-block-components-panel__content {
+        .wc-block-components-totals-wrapper {
+          display: block;
+        }
+       }
+
        position: sticky;
        top: 0;
 
@@ -70,6 +76,13 @@
          display: none;
        }
      }
+   }
+
+   /**
+    * Prevent overflows for empty prices with width > 100 % tweak
+    */
+   .wc-block-components-order-summary .wc-block-components-order-summary-item__total-price {
+     min-width: 55px;
    }
 
    .wc-block-components-product-metadata {
