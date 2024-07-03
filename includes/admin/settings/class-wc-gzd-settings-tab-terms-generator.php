@@ -41,7 +41,7 @@ class WC_GZD_Settings_Tab_Terms_Generator extends WC_GZD_Settings_Tab {
 			array(
 				'title' => '',
 				'id'    => 'woocommerce_gzdp_terms_generator',
-				'img'   => WC_Germanized()->plugin_url() . '/assets/images/pro/settings-agbs.png?v=' . WC_germanized()->version,
+				'img'   => WC_Germanized()->plugin_url() . '/assets/images/pro/settings-agb.png?v=' . WC_germanized()->version,
 				'href'  => 'https://vendidero.de/woocommerce-germanized/features#accounting',
 				'type'  => 'image',
 			),

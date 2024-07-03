@@ -65,16 +65,16 @@ class WC_GZD_Compatibility_WooCommerce_Subscriptions extends WC_GZD_Compatibilit
 		}
 
 		add_filter( 'woocommerce_gzd_enable_force_pay_order', array( $this, 'stop_forced_redirect' ), 10, 2 );
-        add_filter( 'wcs_place_subscription_order_text', array( $this, 'override_order_button_text' ), 10 );
+		add_filter( 'wcs_place_subscription_order_text', array( $this, 'override_order_button_text' ), 10 );
 	}
 
-    public function override_order_button_text( $text ) {
-        if ( apply_filters( 'woocommerce_gzd_override_subscriptions_signup_button_text', true ) ) {
-            $text = get_option( 'woocommerce_gzd_order_submit_btn_text', __( 'Buy Now', 'woocommerce-germanized' ) );
-        }
+	public function override_order_button_text( $text ) {
+		if ( apply_filters( 'woocommerce_gzd_override_subscriptions_signup_button_text', true ) ) {
+			$text = get_option( 'woocommerce_gzd_order_submit_btn_text', __( 'Buy Now', 'woocommerce-germanized' ) );
+		}
 
-        return $text;
-    }
+		return $text;
+	}
 
 	public function replace_email_titles( $replace_title, $textdomain ) {
 		if ( 'woocommerce-subscriptions' === $textdomain ) {

@@ -137,6 +137,28 @@ class WC_GZD_Admin_Welcome {
 			</p>
 
 			<div class="changelog new-feature">
+				<h3>E-Rechnungen einfach erstellen (lassen) <span class="wc-gzd-pro wc-gzd-pro-outlined">pro</span></h3>
+
+				<div class="columns two-col">
+					<div class="col">
+						<p>
+							Mit Germanized Pro 4.0 erstellst du nun einfach und bequem E-Rechnungen und bist damit schon jetzt auf die <a href="https://www.ihk.de/darmstadt/produktmarken/recht-und-fair-play/steuerinfo/bmf-plant-verpflichtende-erechnung-und-meldesystem-5784882" target="_blank">neuen Anforderungen</a> 2025 bestens vorbereitet.
+							Vorerst unterstützt Germanized Pro das ZUGFeRD Format und ermöglicht es dir E-Rechnungen in verschiedenen Profilen zu erstellen (z.B. Comfort, Extended, XRechnung) und ist damit mit der EU-Spezifikation EN16931 voll kompatibel. Insofern es das Format hergibt, kannst du deine E-Rechnungen natürlich, wie gewohnt, auch
+							automatisch erstellen lassen und, falls möglich, die PDF-Datei direkt in eine PDF/A überführen, die sowohl die PDF-Datei, als auch die strukturierten Rechnungsdaten enthält.
+						</p>
+
+						<div class="wc-gzd-actions wc-gzd-actions-right">
+							<a href="https://vendidero.de/woocommerce-germanized" target="_blank" class="wc-gzd-pro-version button button-primary wc-gzd-button"><span class="wc-gzd-pro wc-gzd-pro-outlined">pro</span> Version entdecken</a>
+							<p class="price smaller wc-gzd-pro-version">ab 79 € inkl. MwSt. - inkl. 1 Jahr Updates & Premium Support!</p>
+						</div>
+					</div>
+					<div class="col col-center">
+						<img src="<?php echo esc_url( WC_germanized()->plugin_url() ); ?>/assets/images/e-invoice.png" style=""/>
+					</div>
+				</div>
+			</div>
+
+			<div class="changelog new-feature">
 				<h3>Block: Mehrstufige Kasse <span class="wc-gzd-pro wc-gzd-pro-outlined">pro</span></h3>
 
 				<div class="columns two-col">
@@ -278,7 +300,7 @@ class WC_GZD_Admin_Welcome {
 	 */
 	public function about_screen() {
 		// Delete the redirect transient
-		delete_transient( '_wc_gzd_activation_redirect' );
+		delete_option( '_wc_gzd_activation_redirect' );
 		?>
 		<div class="wrap about-wrap">
 			<?php $this->intro(); ?>

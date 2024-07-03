@@ -69,7 +69,7 @@ class WC_GZD_CLI {
 		}
 
 		delete_option( '_wc_gzd_needs_update' );
-		delete_transient( '_wc_gzd_activation_redirect' );
+		delete_option( '_wc_gzd_activation_redirect' );
 
 		/* translators: 1: Number of database updates performed 2: Database version number */
 		WP_CLI::success( sprintf( __( '%1$d update functions completed. Database version is %2$s', 'woocommerce-germanized' ), absint( $update_count ), get_option( 'woocommerce_gzd_db_version' ) ) );

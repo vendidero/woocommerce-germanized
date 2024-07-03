@@ -840,7 +840,6 @@ class WC_GZD_Legal_Checkbox {
 		$options = apply_filters(
 			'woocommerce_gzd_legal_checkbox_fields_before_titles',
 			array(
-
 				array(
 					'title'   => __( 'Status', 'woocommerce-germanized' ),
 					'type'    => 'gzd_toggle',
@@ -848,7 +847,6 @@ class WC_GZD_Legal_Checkbox {
 					'desc'    => __( 'Enable checkbox', 'woocommerce-germanized' ),
 					'default' => wc_bool_to_string( $this->get_is_enabled() ),
 				),
-
 				array(
 					'title'    => __( 'Name', 'woocommerce-germanized' ),
 					'type'     => 'text',
@@ -857,7 +855,6 @@ class WC_GZD_Legal_Checkbox {
 					'desc'     => __( 'Choose a name to identify your checkbox. Upon creating a new checkbox, this value is being used to generate the Id.', 'woocommerce-germanized' ),
 					'default'  => $this->get_admin_name(),
 				),
-
 				array(
 					'title'             => __( 'Id', 'woocommerce-germanized' ),
 					'type'              => 'text',
@@ -867,7 +864,6 @@ class WC_GZD_Legal_Checkbox {
 					'default'           => $this->get_id(),
 					'custom_attributes' => array( 'disabled' => 'disabled' ),
 				),
-
 				array(
 					'title'    => __( 'Description', 'woocommerce-germanized' ),
 					'type'     => 'text',
@@ -876,7 +872,6 @@ class WC_GZD_Legal_Checkbox {
 					'desc_tip' => true,
 					'default'  => $this->get_admin_desc(),
 				),
-
 				array(
 					'title'    => __( 'Label', 'woocommerce-germanized' ),
 					'type'     => 'textarea',
@@ -886,7 +881,6 @@ class WC_GZD_Legal_Checkbox {
 					'desc'     => ! empty( $placeholders ) ? sprintf( __( 'You may use one of the following placeholders within the text: %s', 'woocommerce-germanized' ), '<code>' . $placeholders . '</code>' ) : '',
 					'default'  => $this->get_label( true ),
 				),
-
 				array(
 					'title'    => __( 'Error Message', 'woocommerce-germanized' ),
 					'type'     => 'textarea',
@@ -896,7 +890,6 @@ class WC_GZD_Legal_Checkbox {
 					'desc'     => ! empty( $placeholders ) ? sprintf( __( 'You may use one of the following placeholders within the text: %s', 'woocommerce-germanized' ), '<code>' . $placeholders . '</code>' ) : '',
 					'default'  => $this->get_error_message( true ),
 				),
-
 				array(
 					'title'   => __( 'Hide input', 'woocommerce-germanized' ),
 					'type'    => 'gzd_toggle',
@@ -904,7 +897,6 @@ class WC_GZD_Legal_Checkbox {
 					'desc'    => __( 'Do only show a label and hide the actual checkbox.', 'woocommerce-germanized' ),
 					'default' => wc_bool_to_string( $this->get_hide_input() ),
 				),
-
 				array(
 					'title'   => __( 'Mandatory', 'woocommerce-germanized' ),
 					'type'    => 'gzd_toggle',
@@ -912,7 +904,6 @@ class WC_GZD_Legal_Checkbox {
 					'desc'    => __( 'Mark the checkbox as mandatory.', 'woocommerce-germanized' ),
 					'default' => wc_bool_to_string( $this->get_is_mandatory() ),
 				),
-
 				array(
 					'title'   => __( 'Locations', 'woocommerce-germanized' ),
 					'type'    => 'multiselect',
@@ -922,10 +913,24 @@ class WC_GZD_Legal_Checkbox {
 					'default' => $this->get_locations(),
 					'options' => $supporting_locations,
 				),
-
 			),
 			$this
 		);
+
+		if ( ! WC_germanized()->is_pro() ) {
+			$options = array_merge(
+				$options,
+				array(
+					array(
+						'title' => '',
+						'id'    => 'woocommerce_gzd_checkbox_pro_options',
+						'img'   => WC_Germanized()->plugin_url() . '/assets/images/pro/settings-inline-checkbox.png?v=' . WC_germanized()->version,
+						'href'  => 'https://vendidero.de/woocommerce-germanized#upgrade',
+						'type'  => 'image',
+					),
+				)
+			);
+		}
 
 		$id = $this->get_id();
 
