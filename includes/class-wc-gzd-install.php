@@ -711,10 +711,20 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 			$current_version = get_option( 'woocommerce_gzd_version', null );
 
 			foreach ( $options as $value ) {
-				if ( isset( $value['default'] ) && isset( $value['id'] ) ) {
+				$value = wp_parse_args(
+					$value,
+					array(
+						'id'           => '',
+						'default'      => null,
+						'skip_install' => false,
+						'autoload'     => true,
+					)
+				);
+
+				if ( $value['default'] && ! empty( $value['id'] ) && ! $value['skip_install'] ) {
 					wp_cache_delete( $value['id'], 'options' );
 
-					$autoload = isset( $value['autoload'] ) ? (bool) $value['autoload'] : true;
+					$autoload = (bool) $value['autoload'];
 
 					/**
 					 * Older versions of Germanized did not include a default field for email
