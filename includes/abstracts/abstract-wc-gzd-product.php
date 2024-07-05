@@ -1613,7 +1613,6 @@ class WC_GZD_Product {
 		 * @param WC_GZD_Product $product The product object.
 		 *
 		 * @since 1.0.0
-		 *
 		 */
 		if ( apply_filters( 'woocommerce_gzd_hide_product_units_text', false, $this ) ) {
 

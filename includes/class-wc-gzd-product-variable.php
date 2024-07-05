@@ -17,6 +17,8 @@ class WC_GZD_Product_Variable extends WC_GZD_Product {
 
 	protected $unit_prices_array = array();
 
+	protected $product_units_array = array();
+
 	/**
 	 * Get the min or max variation unit regular price.
 	 *
@@ -283,6 +285,151 @@ class WC_GZD_Product_Variable extends WC_GZD_Product {
 				}
 			}
 		}
+	}
+
+	public function has_unit_product() {
+		if ( $this->show_unit_product_ranges() ) {
+			return $this->get_unit() && ! empty( $this->get_variation_product_units() );
+		}
+
+		return parent::has_unit_product();
+	}
+
+	protected function show_unit_product_ranges() {
+		return apply_filters( 'woocommerce_gzd_product_variable_show_unit_product_ranges', version_compare( $this->get_gzd_version(), '3.17.0', '>=' ), $this );
+	}
+
+	public function get_unit_product_html() {
+		if ( ! $this->show_unit_product_ranges() ) {
+			return parent::get_unit_product_html();
+		}
+
+		/**
+		 * Filter that allows disabling product units output for a specific product.
+		 *
+		 * @param bool $disable Whether to disable or not.
+		 * @param WC_GZD_Product $product The product object.
+		 *
+		 * @since 1.0.0
+		 */
+		if ( apply_filters( 'woocommerce_gzd_hide_product_units_text', false, $this ) ) {
+
+			/**
+			 * Filter that allows adjusting the disabled product units output.
+			 *
+			 * @param string $notice The output.
+			 * @param WC_GZD_Product $product The product object.
+			 *
+			 * @since 1.0.0
+			 *
+			 */
+			return apply_filters( 'woocommerce_germanized_disabled_product_units_text', '', $this );
+		}
+
+		$html = '';
+		$text = get_option( 'woocommerce_gzd_product_units_text' );
+
+		if ( $this->has_unit_product() ) {
+			$product_units = $this->get_variation_product_units();
+			$min_unit      = wc_gzd_format_product_units_decimal( current( $product_units ) );
+			$max_unit      = wc_gzd_format_product_units_decimal( end( $product_units ) );
+
+			$replacements = array(
+				'{product_units}' => $min_unit,
+				'{unit}'          => $this->get_unit_html(),
+				'{unit_price}'    => $this->get_unit_price_html(),
+			);
+
+			if ( $min_unit !== $max_unit ) {
+				$unit_html          = $this->get_unit_html();
+				$variable_format    = apply_filters( 'woocommerce_gzd_product_single_product_unit_format', '{product_units} {unit}', $this );
+				$formatted_min_unit = wc_gzd_replace_label_shortcodes(
+					$variable_format,
+					array(
+						'{product_units}' => $min_unit,
+						'{unit}'          => $unit_html,
+					)
+				);
+				$formatted_max_unit = wc_gzd_replace_label_shortcodes(
+					$variable_format,
+					array(
+						'{product_units}' => $max_unit,
+						'{unit}'          => $unit_html,
+					)
+				);
+				$range              = sprintf( _x( '%1$s &ndash; %2$s', 'Unit product range: from-to', 'woocommerce-germanized' ), $formatted_min_unit, $formatted_max_unit );
+
+				$replacements['{product_units}'] = $range;
+				$replacements['{unit}']          = '';
+			}
+
+			$html = wc_gzd_replace_label_shortcodes( $text, $replacements );
+		}
+
+		/**
+		 * Filter to adjust the product units HTML output.
+		 *
+		 * @param string $html The HTML output.
+		 * @param WC_GZD_Product $product The product object.
+		 *
+		 * @since 1.0.0
+		 *
+		 */
+		return apply_filters( 'woocommerce_gzd_product_units_html', $html, $this );
+	}
+
+	public function get_variation_product_units() {
+		// Product doesn't apply for unit pricing
+		if ( ! $this->child->is_type( 'variable' ) || ! $this->has_unit_fields() ) {
+			return array();
+		}
+
+		$transient_name    = 'wc_gzd_var_product_units_' . $this->child->get_id();
+		$transient_version = WC_Cache_Helper::get_transient_version( 'product' );
+
+		if ( ! isset( $this->product_units_array['version'] ) || $this->product_units_array['version'] !== $transient_version ) {
+			$this->product_units_array = array(
+				'version'       => $transient_version,
+				'product_units' => array(),
+			);
+		}
+
+		// If the value has already been generated, we don't need to grab the values again.
+		if ( empty( $this->product_units_array['product_units'] ) ) {
+			$this->product_units_array = array_filter( (array) json_decode( strval( get_transient( $transient_name ) ), true ) );
+
+			// If the product version has changed since the transient was last saved, reset the transient cache.
+			if ( ! isset( $this->product_units_array['version'] ) || $transient_version !== $this->product_units_array['version'] ) {
+				$this->product_units_array = array( 'version' => $transient_version );
+			}
+
+			if ( ! isset( $this->product_units_array['product_units'] ) ) {
+				$variation_ids = $this->get_wc_product()->get_visible_children();
+				$product_units = array();
+
+				if ( is_callable( '_prime_post_caches' ) ) {
+					_prime_post_caches( $variation_ids );
+				}
+
+				foreach ( $variation_ids as $variation_id ) {
+					if ( $variation = wc_gzd_get_gzd_product( $variation_id ) ) {
+						$product_unit = $variation->get_unit_product();
+
+						if ( ! empty( $product_unit ) ) {
+							$product_units[ $variation_id ] = (float) wc_format_decimal( $product_unit );
+						}
+					}
+				}
+
+				asort( $product_units );
+
+				$this->product_units_array['product_units'] = $product_units;
+
+				set_transient( $transient_name, wp_json_encode( $this->product_units_array ), DAY_IN_SECONDS * 30 );
+			}
+		}
+
+		return $this->product_units_array['product_units'];
 	}
 
 	/**

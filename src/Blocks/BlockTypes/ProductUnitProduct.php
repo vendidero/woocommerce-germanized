@@ -27,4 +27,8 @@ class ProductUnitProduct extends AbstractProductElementBlock {
 	protected function get_label_content( $product ) {
 		return $product->get_unit_product_html();
 	}
+
+	protected function get_additional_classes( $attributes, $product ) {
+		return 'product-units';
+	}
 }

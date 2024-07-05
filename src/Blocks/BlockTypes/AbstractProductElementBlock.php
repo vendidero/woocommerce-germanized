@@ -96,7 +96,7 @@ abstract class AbstractProductElementBlock extends AbstractBlock {
 	 * @return string
 	 */
 	protected function get_additional_classes( $attributes, $product ) {
-		return 'delivery-time-info';
+		return '';
 	}
 
 	/**

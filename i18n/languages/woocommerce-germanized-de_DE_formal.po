@@ -4,7 +4,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/woocommerce-"
 "germanized\n"
 "POT-Creation-Date: 2024-07-04T09:13:13+00:00\n"
-"PO-Revision-Date: 2024-07-04 11:26+0200\n"
+"PO-Revision-Date: 2024-07-04 12:20+0200\n"
 "Last-Translator: Dennis Nissle <info@vendidero.de>\n"
 "Language-Team: \n"
 "Language: de_DE@formal\n"
@@ -3274,7 +3274,7 @@ msgstr "Speichern"
 #: packages/woocommerce-germanized-shipments/includes/admin/views/html-preview-shipment.php:13
 msgctxt "shipments"
 msgid "%1$s %2$d/%3$d to "
-msgstr "%1$s %2$d/%3$d zu  "
+msgstr "%1$s %2$d/%3$d zu "
 
 #: includes/admin/views/html-preview-shipment.php:15
 #: includes/admin/views/html-preview-shipment.php:17
