@@ -357,7 +357,13 @@ class WC_GZD_Product_Variable extends WC_GZD_Product {
 						'{unit}'          => $unit_html,
 					)
 				);
-				$range              = sprintf( _x( '%1$s &ndash; %2$s', 'Unit product range: from-to', 'woocommerce-germanized' ), $formatted_min_unit, $formatted_max_unit );
+				$range              = wc_gzd_replace_label_shortcodes(
+					apply_filters( 'woocommerce_gzd_product_unit_range_format', '{min_units} &ndash; {max_units}', $formatted_min_unit, $formatted_max_unit ),
+					array(
+						'{min_units}' => $formatted_min_unit,
+						'{max_units}' => $formatted_max_unit,
+					)
+				);
 
 				$replacements['{product_units}'] = $range;
 				$replacements['{unit}']          = '';

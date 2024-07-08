@@ -82,58 +82,71 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 					$note->dismiss();
 				}
 
-				delete_option( '_wc_gzd_activation_redirect' );
+				delete_transient( '_wc_gzd_activation_redirect' );
 
 				// What's new redirect
 				wp_safe_redirect( esc_url_raw( admin_url( 'index.php?page=wc-gzd-about&wc-gzd-updated=true' ) ) );
 				exit;
 			}
 
-			if ( get_option( '_wc_gzd_setup_wizard_redirect' ) ) {
+			if ( get_transient( '_wc_gzd_setup_wizard_redirect' ) ) {
+				$do_redirect = true;
+
 				// Bail if activating from network, or bulk, or within an iFrame, or AJAX (e.g. plugins screen)
-				if ( is_network_admin() || isset( $_GET['activate-multi'] ) || defined( 'IFRAME_REQUEST' ) || ( defined( 'DOING_AJAX' ) && DOING_AJAX ) ) {
-					return;
+				if ( is_network_admin() || isset( $_GET['activate-multi'] ) || defined( 'IFRAME_REQUEST' ) || wp_doing_ajax() || ! current_user_can( 'manage_woocommerce' ) ) {
+					$do_redirect = false;
 				}
 
 				if ( ( isset( $_REQUEST['action'] ) && 'upgrade-plugin' === $_REQUEST['action'] ) && ( isset( $_REQUEST['plugin'] ) && strstr( wc_clean( wp_unslash( $_REQUEST['plugin'] ) ), 'woocommerce-germanized.php' ) ) ) {
-					return;
+					$do_redirect = false;
 				}
-
-				delete_option( '_wc_gzd_setup_wizard_redirect' );
 
 				// Prevent redirect loop in case options fail
-				if ( isset( $_GET['page'] ) && 'wc-gzd-setup' === wc_clean( wp_unslash( $_GET['page'] ) ) ) {
-					return;
+				if (
+					apply_filters( 'woocommerce_gzd_disable_setup_redirect', false ) ||
+					( isset( $_GET['page'] ) && 'wc-gzd-setup' === wc_clean( wp_unslash( $_GET['page'] ) ) ) ||
+					isset( $_GET['activate-multi'] )
+				) {
+					$do_redirect = false;
+
+					delete_transient( '_wc_gzd_setup_wizard_redirect' );
 				}
 
-				wp_safe_redirect( esc_url_raw( admin_url( 'admin.php?page=wc-gzd-setup' ) ) );
-				exit();
-			} elseif ( get_option( '_wc_gzd_activation_redirect' ) ) {
+				if ( $do_redirect ) {
+					delete_transient( '_wc_gzd_setup_wizard_redirect' );
 
-				// Delete the redirect transient
-				delete_option( '_wc_gzd_activation_redirect' );
-
-				// Bail if we are waiting to install or update via the interface update/install links
-				if ( 1 === (int) get_option( '_wc_gzd_needs_update' ) ) {
-					return;
+					wp_safe_redirect( esc_url_raw( admin_url( 'admin.php?page=wc-gzd-setup' ) ) );
+					exit;
 				}
+			} elseif ( get_transient( '_wc_gzd_activation_redirect' ) ) {
+				$do_redirect = true;
 
 				// Bail if activating from network, or bulk, or within an iFrame, or AJAX (e.g. plugins screen)
-				if ( is_network_admin() || isset( $_GET['activate-multi'] ) || defined( 'IFRAME_REQUEST' ) || ( defined( 'DOING_AJAX' ) && DOING_AJAX ) ) {
-					return;
+				if ( is_network_admin() || isset( $_GET['activate-multi'] ) || defined( 'IFRAME_REQUEST' ) || wp_doing_ajax() || ! current_user_can( 'manage_woocommerce' ) ) {
+					$do_redirect = false;
 				}
 
 				if ( ( isset( $_REQUEST['action'] ) && 'upgrade-plugin' === $_REQUEST['action'] ) && ( isset( $_REQUEST['plugin'] ) && strstr( wc_clean( wp_unslash( $_REQUEST['plugin'] ) ), 'woocommerce-germanized.php' ) ) ) {
-					return;
+					$do_redirect = false;
 				}
 
-				// Prevent redirect loop in case transients fail
-				if ( isset( $_GET['page'] ) && 'wc-gzd-about' === wc_clean( wp_unslash( $_GET['page'] ) ) ) {
-					return;
+				if (
+					apply_filters( 'woocommerce_gzd_disable_activation_redirect', false ) ||
+					get_option( '_wc_gzd_needs_update' ) ||
+					( isset( $_GET['page'] ) && 'wc-gzd-about' === wc_clean( wp_unslash( $_GET['page'] ) ) ) ||
+					isset( $_GET['activate-multi'] )
+				) {
+					$do_redirect = false;
+
+					delete_transient( '_wc_gzd_activation_redirect' );
 				}
 
-				wp_safe_redirect( esc_url_raw( admin_url( 'index.php?page=wc-gzd-about' ) ) );
-				exit;
+				if ( $do_redirect ) {
+					delete_transient( '_wc_gzd_activation_redirect' );
+
+					wp_safe_redirect( esc_url_raw( admin_url( 'index.php?page=wc-gzd-about' ) ) );
+					exit;
+				}
 			}
 		}
 
@@ -162,8 +175,6 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 		 * Install WC_Germanized
 		 */
 		public static function install() {
-			global $wpdb;
-
 			if ( ! defined( 'WC_GZD_INSTALLING' ) ) {
 				define( 'WC_GZD_INSTALLING', true );
 			}
@@ -296,10 +307,10 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 
 			// Check if pages are needed - start setup
 			if ( wc_get_page_id( 'revocation' ) < 1 ) {
-				update_option( '_wc_gzd_setup_wizard_redirect', 1 );
+				set_transient( '_wc_gzd_setup_wizard_redirect', 1, 60 * 60 );
 			} elseif ( ! defined( 'DOING_AJAX' ) ) {
 				// Redirect to welcome screen
-				update_option( '_wc_gzd_activation_redirect', 1 );
+				set_transient( '_wc_gzd_activation_redirect', 1, 60 * 60 );
 			}
 
 			/**

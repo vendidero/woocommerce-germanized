@@ -335,12 +335,14 @@ class WC_GZD_Product_Import {
 					$attribute_name = $attribute_id ? wc_attribute_taxonomy_name_by_id( $attribute_id ) : $attribute['name'];
 
 					foreach ( $product_attributes as $k => $existing_attribute ) {
-						if ( $existing_attribute->get_name() === $attribute_name ) {
-							$product_attributes[ $k ] = new WC_GZD_Product_Attribute( $existing_attribute );
-							$product_attributes[ $k ]->set_checkout_visible( $is_checkout_visible );
+						if ( is_a( $existing_attribute, 'WC_Product_Attribute' ) ) {
+							if ( $existing_attribute->get_name() === $attribute_name ) {
+								$product_attributes[ $k ] = new WC_GZD_Product_Attribute( $existing_attribute );
+								$product_attributes[ $k ]->set_checkout_visible( $is_checkout_visible );
 
-							$has_updated_attributes = true;
-							break;
+								$has_updated_attributes = true;
+								break;
+							}
 						}
 					}
 				}
