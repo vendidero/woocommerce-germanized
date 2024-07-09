@@ -34,23 +34,72 @@ class WC_GZD_Product_Attribute_Helper {
 
 	public function __construct() {
 		// Make sure Woo uses our implementation when updating the attributes via AJAX
-		add_filter(
-			'woocommerce_admin_meta_boxes_prepare_attribute',
-			array(
-				$this,
-				'prepare_attributes_filter',
-			),
-			10,
-			3
-		);
+		add_filter( 'woocommerce_admin_meta_boxes_prepare_attribute', array( $this, 'prepare_attributes_filter' ), 10, 3 );
+
+		// Prevent losing data on saves
+		add_filter( 'update_post_metadata', array( $this, 'prevent_meta_data_override' ), 10, 5 );
+
 		// This is the only nice way to update attributes after Woo has updated product attributes
-		add_action( 'woocommerce_product_object_updated_props', array( $this, 'update_attributes' ), 10, 2 );
+		add_action( 'woocommerce_product_object_updated_props', array( $this, 'update_attributes' ), 10 );
+
 		// Adjust cart item data to include attributes visible during cart/checkout
 		add_filter( 'woocommerce_get_item_data', array( $this, 'cart_item_data_filter' ), 150, 2 );
 
 		if ( is_admin() ) {
 			add_action( 'woocommerce_after_product_attribute_settings', array( $this, 'attribute_visibility' ), 10, 2 );
 		}
+	}
+
+	/**
+	 * Use this tweak to prevent overriding existing checkout_visibility in case
+	 * product data is being updated without visibility data.
+	 *
+	 * @param null|bool $result
+	 * @param $object_id
+	 * @param $meta_key
+	 * @param $meta_value
+	 * @param $prev_value
+	 *
+	 * @return null|false
+	 */
+	public function prevent_meta_data_override( $result, $object_id, $meta_key, $meta_value, $prev_value ) {
+		if ( '_product_attributes' === $meta_key ) {
+			if ( is_array( $meta_value ) ) {
+				$tmp_result = null;
+
+				/**
+				 * Check whether we need to update checkout_visible with
+				 * existing (prev) data.
+				 */
+				foreach ( $meta_value as $attribute_key => $value ) {
+					if ( ! isset( $value['checkout_visible'] ) ) {
+						$tmp_result = false;
+						break;
+					}
+				}
+
+				if ( false === $tmp_result ) {
+					foreach ( $meta_value as $attribute_key => $value ) {
+						if ( ! isset( $value['checkout_visible'] ) ) {
+							$attribute           = new WC_GZD_Product_Attribute();
+							$is_checkout_visible = $attribute->is_checkout_visible();
+
+							if ( isset( $prev_value[ $attribute_key ] ) && $prev_value[ $attribute_key ]['checkout_visible'] ) {
+								$is_checkout_visible = $prev_value[ $attribute_key ]['checkout_visible'];
+							}
+
+							$meta_value[ $attribute_key ]['checkout_visible'] = $is_checkout_visible;
+						}
+					}
+
+					update_post_meta( $object_id, $meta_key, $meta_value );
+
+					return $tmp_result;
+				}
+			}
+		}
+
+		return $result;
 	}
 
 	public function attribute_visibility( $attribute, $i ) {
@@ -104,7 +153,7 @@ class WC_GZD_Product_Attribute_Helper {
 		return false;
 	}
 
-	public function update_attributes( $product, $updated_props ) {
+	public function update_attributes( $product ) {
 		$attributes = $product->get_attributes();
 		$meta       = get_post_meta( $product->get_id(), '_product_attributes', true );
 
