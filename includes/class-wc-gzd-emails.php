@@ -150,8 +150,9 @@ class WC_GZD_Emails {
 			3
 		);
 
-		// Filter customer-processing-order Woo 3.5 payment text
+		// Filter customer-processing-order Woo 3.5 payment text + email title
 		add_filter( 'woocommerce_before_template_part', array( $this, 'maybe_set_gettext_email_filter' ), 10, 4 );
+		add_action( 'woocommerce_email_footer', array( $this, 'cleanup_gettext_email_filter' ), 9999 );
 
 		// Make sure confirmation emails are not being resent on order-pay
 		add_action( 'woocommerce_before_pay_action', array( $this, 'disable_pay_order_confirmation' ), 10, 1 );
@@ -485,6 +486,13 @@ class WC_GZD_Emails {
 		return $actions;
 	}
 
+	public function cleanup_gettext_email_filter() {
+		remove_filter( 'gettext', array( $this, 'replace_processing_email_text' ), 9999 );
+		remove_action( 'woocommerce_email_order_details', array( $this, 'print_processing_email_text' ), -1000 );
+
+		remove_filter( 'gettext', array( $this, 'replace_title_email_text' ), 9999 );
+	}
+
 	public function maybe_set_gettext_email_filter( $template_name, $template_path, $located, $args ) {
 		if ( 'emails/customer-processing-order.php' === $template_name || 'emails/plain/customer-processing-order.php' === $template_name ) {
 			if ( isset( $args['order'] ) && is_a( $args['order'], 'WC_Order' ) ) {
@@ -492,6 +500,7 @@ class WC_GZD_Emails {
 
 				// Prevent the original text from showing with a gettext filter
 				add_filter( 'gettext', array( $this, 'replace_processing_email_text' ), 9999, 3 );
+
 				// Prepend the custom processing text (to allow formatting) to the woocommerce_email_order_details hook before all other output
 				add_action( 'woocommerce_email_order_details', array( $this, 'print_processing_email_text' ), -1000, 1 );
 			}
