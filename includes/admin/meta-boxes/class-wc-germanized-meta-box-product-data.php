@@ -699,7 +699,7 @@ class WC_Germanized_Meta_Box_Product_Data {
 				$countries_left = array_diff_key( $countries_left, array( $country => '' ) );
 				?>
 				<p class="form-field field wc-gzd-country-specific-delivery-time-field _country_specific_delivery_times_-<?php echo esc_attr( $country ); ?>_field">
-					<label for="country_specific_delivery_times-<?php echo esc_attr( $country ); ?>"><?php esc_html( sprintf( __( 'Delivery Time (%s)', 'woocommerce-germanized' ), self::get_label_by_delivery_time_country( $country ) ) ); ?></label>
+					<label for="country_specific_delivery_times-<?php echo esc_attr( $country ); ?>"><?php echo esc_html( sprintf( __( 'Delivery Time (%s)', 'woocommerce-germanized' ), self::get_label_by_delivery_time_country( $country ) ) ); ?></label>
 					<?php
 						self::output_delivery_time_select2(
 							array(
