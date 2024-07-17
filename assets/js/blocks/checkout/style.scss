@@ -48,6 +48,7 @@
 
        .wc-block-checkout__actions {
          border-top: none;
+         padding: 36px 0;
 
          .wc-block-checkout__actions_row {
            display: flex;
@@ -75,6 +76,10 @@
        .wp-block-woocommerce-checkout-order-summary-block {
          display: none;
        }
+     }
+
+     .wc-gzd-checkboxes {
+       padding-top: 10px;
      }
    }
 
