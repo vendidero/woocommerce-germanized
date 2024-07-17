@@ -560,8 +560,10 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 				'woocommerce_tax_display_shop'           => 'incl',
 				'woocommerce_tax_total_display'          => 'itemized',
 				'woocommerce_tax_based_on'               => 'shipping',
+				'woocommerce_ship_to_countries'          => 'specific',
+				'woocommerce_specific_ship_to_countries' => $eu_countries,
 				'woocommerce_allowed_countries'          => 'specific',
-				'woocommerce_specific_allowed_countries' => $eu_countries,
+				'woocommerce_specific_allowed_countries' => array_merge( $eu_countries, array( 'NO', 'LI', 'IS' ) ), // EWR Geoblocking https://de.wikipedia.org/wiki/Verordnung_(EU)_2018/302_(Geoblocking)
 				'woocommerce_default_customer_address'   => 'base',
 				'woocommerce_gzd_hide_tax_rate_shop'     => \Vendidero\EUTaxHelper\Helper::oss_procedure_is_enabled() ? 'yes' : 'no',
 			);

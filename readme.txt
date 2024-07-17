@@ -5,7 +5,7 @@ Requires at least: 5.4
 Tested up to: 6.6
 WC requires at least: 3.9
 WC tested up to: 9.0
-Stable tag: 3.17.0
+Stable tag: 3.17.1
 Requires PHP: 5.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -205,6 +205,19 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 6. Edit pdf documents (Pro)
 
 == Changelog ==
+= 3.17.1 =
+* Improvement: Support unit product ranges for variable products, e.g. 100 ml - 200 ml
+* Improvement: Use all available (even non-fitting) packaging options in view-mode only
+* Improvement: Prevent (loading, creating) orphan shipment items
+* Improvement: Skip custom shipping address option creation during installation
+* Improvement: Added option to decide whether to use a custom return address or not
+* Fix: FSE theme hook injection fatal error
+* Fix: Revert to using transients (like Woo Core does) instead of options for setup/activation redirection
+* Fix: Support importing checkout visibility attribute for variable products
+* Fix: Re-add missing country-specific delivery time label
+* Fix: Cleanup email gettext filter within email footer
+* Fix: Check for product existence before applying bundle shipments compatibility
+
 = 3.17.0 =
 * New: WP 6.6 compatibility
 * Improvement: Woo 9.0 compatibility

@@ -12,6 +12,28 @@ final class Products {
 		$this->register_integrations();
 		$this->register_endpoint_data();
 		$this->register_single_product_hook_compatibility();
+
+		add_action( 'woocommerce_after_shop_loop_item_title', array( $this, 'maybe_setup_product_data' ), 0 );
+		add_action( 'woocommerce_before_shop_loop_item_title', array( $this, 'maybe_setup_product_data' ), 0 );
+		add_action( 'woocommerce_shop_loop_item_title', array( $this, 'maybe_setup_product_data' ), 0 );
+	}
+
+	/**
+	 * Setup product data in case it is a block theme. Woo injects the default hooks
+	 * to the core/post-title block. This leads to global $product data not being setup which
+	 * leads to fatal errors with default price labels, that rely on global product data being setup.
+	 * Seems to be a bug/shortcoming in Woo core.
+	 *
+	 * @see \Automattic\WooCommerce\Blocks\Templates\ArchiveProductTemplatesCompatibility::set_hook_data()
+	 *
+	 * @return void
+	 */
+	public function maybe_setup_product_data() {
+		global $post, $product;
+
+		if ( ! $product && $post ) {
+			wc_setup_product_data( $post );
+		}
 	}
 
 	private function register_single_product_hook_compatibility() {
