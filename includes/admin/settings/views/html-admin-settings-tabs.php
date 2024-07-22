@@ -10,8 +10,21 @@ defined( 'ABSPATH' ) || exit;
 
 	<?php if ( ! WC_germanized()->is_pro() ) : ?>
 		<a class="page-title-action" href="https://vendidero.de/woocommerce-germanized" target="_blank"><?php echo sprintf( esc_html__( 'Upgrade to %s', 'woocommerce-germanized' ), '<span class="wc-gzd-pro">pro</span>' ); ?></a>
-	<?php elseif ( function_exists( 'VD' ) ) : ?>
-		<a class="page-title-action" href="<?php echo esc_url( admin_url( 'index.php?page=vendidero' ) ); ?>"><?php esc_html_e( 'Manage license', 'woocommerce-germanized' ); ?></a>
+		<?php
+	elseif ( function_exists( 'VD' ) ) :
+		$license_is_valid    = true;
+		$license_has_expired = false;
+
+		if ( function_exists( 'WC_Germanized_Pro' ) ) {
+			$product = is_callable( array( WC_germanized_pro(), 'get_vd_product' ) ) ? WC_germanized_pro()->get_vd_product() : null;
+
+			if ( $product ) {
+				$license_is_valid    = $product->is_registered() && ! $product->has_expired();
+				$license_has_expired = $product->has_expired();
+			}
+		}
+		?>
+		<a class="page-title-action <?php echo esc_attr( ! $license_is_valid ? 'license-invalid invalid' : '' ); ?>" href="<?php echo esc_url( admin_url( 'index.php?page=vendidero' ) ); ?>"><?php echo esc_html( ( $license_has_expired ? esc_html__( 'Check your license', 'woocommerce-germanized' ) : ( $license_is_valid ? esc_html__( 'Manage license', 'woocommerce-germanized' ) : esc_html__( 'Register your license', 'woocommerce-germanized' ) ) ) ); ?></a>
 	<?php endif; ?>
 
 	<a class="page-title-action" href="<?php echo esc_url( add_query_arg( array( 'tutorial' => 'yes' ) ) ); ?>"><?php esc_html_e( 'Start tutorial', 'woocommerce-germanized' ); ?></a>

@@ -242,6 +242,16 @@ a.page-title-action {
     background: #0073aa;
   }
 
+  &.invalid {
+    border-color: #d63638;
+    color: #d63638;
+
+    &:hover {
+      border-color: #b30e10;
+      color: #b30e10;
+    }
+  }
+
   &:hover {
     .wc-gzd-pro:not(.wc-gzd-pro-outlined) {
       background: #0a4b78;

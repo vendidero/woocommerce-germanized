@@ -272,7 +272,6 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 	 * @param WC_Order $order
 	 */
 	public function save_debit_fields( $order ) {
-
 		// Check the nonce
 		if ( empty( $_POST['woocommerce_meta_nonce'] ) || ! wp_verify_nonce( wp_unslash( $_POST['woocommerce_meta_nonce'] ), 'woocommerce_save_data' ) ) { // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 			return;
@@ -316,7 +315,6 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 	 * @return mixed
 	 */
 	public function order_actions( $actions, $order ) {
-
 		if ( ! wc_gzd_order_is_anonymized( $order ) && $order->get_payment_method() === $this->id ) {
 			$actions['download-sepa'] = array(
 				'url'    => esc_url_raw(
