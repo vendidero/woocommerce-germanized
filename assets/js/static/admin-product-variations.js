@@ -148,14 +148,6 @@ jQuery( function ( $ ) {
                     $( '.variable_pricing_unit .form-row' ).show();
                     $( '.variable_pricing_unit .wc-gzd-unit-price-disabled-notice' ).hide();
                 }
-
-                var $last = $( '.variable_pricing_unit .form-row:not(.wc-gzd-unit-price-disabled-notice):visible:last' );
-
-                if ( $last.length > 0 && $last.hasClass( 'form-row-first' ) ) {
-                    $( '.variable_pricing_unit .wc-gzd-unit-price-disabled-notice' ).removeClass( 'form-row-first' ).addClass( 'form-row-last' );
-				} else {
-                    $( '.variable_pricing_unit .wc-gzd-unit-price-disabled-notice' ).removeClass( 'form-row-last' ).addClass( 'form-row-first' );
-                }
             }
         },
 

@@ -659,7 +659,6 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 	 * @param $plain_text
 	 */
 	public function email_sepa( $order, $sent_to_admin, $plain_text ) {
-
 		if ( $this->id !== $order->get_payment_method() ) {
 			return;
 		}

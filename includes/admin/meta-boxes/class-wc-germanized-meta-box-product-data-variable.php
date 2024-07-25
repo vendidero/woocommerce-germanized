@@ -292,7 +292,7 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 				)
 			);
 			?>
-			<p class="form-row form-row-first wc-gzd-unit-price-disabled-notice notice notice-warning">
+			<p class="form-row form-row-full wc-gzd-unit-price-disabled-notice notice notice-warning">
 				<?php printf( esc_html__( 'To enable unit prices on variation level please choose a unit and unit price units within %s.', 'woocommerce-germanized' ), '<a href="#general_product_data" class="wc-gzd-general-product-data-tab">' . esc_html__( 'general product data', 'woocommerce-germanized' ) . '</a>' ); ?>
 			</p>
 		</div>
