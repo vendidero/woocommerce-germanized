@@ -126,7 +126,7 @@ class WC_GZD_Product_Attribute_Helper {
 	public function cart_item_data_filter( $item_data, $cart_item ) {
 		$cart_product = $cart_item['data'];
 
-		if ( ! $cart_product ) {
+		if ( ! $cart_product || null === $item_data ) {
 			return $item_data;
 		}
 
