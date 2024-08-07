@@ -5,7 +5,7 @@ Requires at least: 5.4
 Tested up to: 6.6
 WC requires at least: 3.9
 WC tested up to: 9.0
-Stable tag: 3.17.1
+Stable tag: 3.17.2
 Requires PHP: 5.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -205,6 +205,13 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 6. Edit pdf documents (Pro)
 
 == Changelog ==
+= 3.17.2 =
+* Improvement: Add link to last shipment's tracking url in order shipping status column
+* Improvement: Added new abstraction layer for pickup location provider settings
+* Improvement: Support for specific item based free shipping rules, e.g. based on exact shipping class match or restricted packaging
+* Fix: Variation shipping dimensions
+* Fix: Prevent certain special chars in DHL label references to prevent cryptic inlay label error messages
+
 = 3.17.1 =
 * Improvement: Support unit product ranges for variable products, e.g. 100 ml - 200 ml
 * Improvement: Use all available (even non-fitting) packaging options in view-mode only

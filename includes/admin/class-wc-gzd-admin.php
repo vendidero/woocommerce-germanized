@@ -202,6 +202,11 @@ class WC_GZD_Admin {
 				$gls               = new WC_GZD_Admin_Provider_GLS();
 				$providers['_gls'] = $gls;
 			}
+
+			if ( $this->is_hermes_available() ) {
+				$hermes               = new WC_GZD_Admin_Provider_Hermes();
+				$providers['_hermes'] = $hermes;
+			}
 		}
 
 		return $providers;
@@ -209,6 +214,10 @@ class WC_GZD_Admin {
 
 	public function is_gls_available() {
 		return in_array( \Vendidero\Germanized\Shipments\Package::get_base_country(), array( 'DE', 'AT', 'CH', 'BE', 'LU', 'FR', 'IE', 'ES' ), true );
+	}
+
+	public function is_hermes_available() {
+		return in_array( \Vendidero\Germanized\Shipments\Package::get_base_country(), array( 'DE' ), true );
 	}
 
 	public function is_dpd_available() {

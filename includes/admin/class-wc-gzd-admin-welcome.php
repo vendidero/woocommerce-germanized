@@ -137,6 +137,29 @@ class WC_GZD_Admin_Welcome {
 			</p>
 
 			<div class="changelog new-feature">
+				<h3>Hermes Schnittstelle <span class="wc-gzd-pro wc-gzd-pro-outlined">pro</span></h3>
+
+				<div class="columns two-col">
+					<div class="col col-center">
+						<img src="<?php echo esc_url( WC_germanized()->plugin_url() ); ?>/assets/images/hermes-label.png" style=""/>
+					</div>
+					<div class="col">
+						<p>
+							Erstelle mit Germanized Pro bequem Labels für den Versanddienstleister Hermes. Mit unserer neuen Hermes-Schnittstelle
+							kannst du sowohl normale, als auch Retouren-Labels (auch als QR-Code) erzeugen. Zudem haben wir die Möglichkeit des Versands an
+							Hermes Paketshops an die in Germanized integrierte Abholstationen-Auswahl im Checkout angebunden.
+						</p>
+
+						<div class="wc-gzd-actions wc-gzd-actions-right">
+							<a href="https://vendidero.de/dokument/hermes-integration-einrichten" class="wc-gzd-default-button button button-primary" target="_blank">Mehr erfahren</a>
+							<a href="https://vendidero.de/woocommerce-germanized" target="_blank" class="wc-gzd-pro-version button button-primary wc-gzd-button"><span class="wc-gzd-pro wc-gzd-pro-outlined">pro</span> Version entdecken</a>
+							<p class="price smaller wc-gzd-pro-version">ab 79 € inkl. MwSt. - inkl. 1 Jahr Updates & Premium Support!</p>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="changelog new-feature">
 				<h3>E-Rechnungen einfach erstellen (lassen) <span class="wc-gzd-pro wc-gzd-pro-outlined">pro</span></h3>
 
 				<div class="columns two-col">

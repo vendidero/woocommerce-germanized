@@ -19,7 +19,7 @@ class WC_GZD_Settings_Tab_Shipping_Provider extends WC_GZD_Settings_Tab {
 		$providers = array();
 
 		if ( class_exists( '\Vendidero\Germanized\DHL\Package' ) && \Vendidero\Germanized\DHL\Package::has_dependencies() ) {
-			$providers = array( __( 'DHL', 'woocommerce-germanized' ), __( 'Deutsche Post', 'woocommerce-germanized' ) );
+			$providers = array( __( 'DHL', 'woocommerce-germanized' ) );
 		}
 
 		if ( WC_GZD_Admin::instance()->is_dpd_available() ) {
@@ -28,6 +28,10 @@ class WC_GZD_Settings_Tab_Shipping_Provider extends WC_GZD_Settings_Tab {
 
 		if ( WC_GZD_Admin::instance()->is_gls_available() ) {
 			$providers[] = __( 'GLS', 'woocommerce-germanized' ) . '<span class="wc-gzd-pro wc-gzd-pro-outlined">' . __( 'pro', 'woocommerce-germanized' ) . '</span>';
+		}
+
+		if ( WC_GZD_Admin::instance()->is_hermes_available() ) {
+			$providers[] = __( 'Hermes', 'woocommerce-germanized' ) . '<span class="wc-gzd-pro wc-gzd-pro-outlined">' . __( 'pro', 'woocommerce-germanized' ) . '</span>';
 		}
 
 		return $providers;
