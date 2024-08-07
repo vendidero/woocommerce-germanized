@@ -1,0 +1,24 @@
+.wc-gzd-shipments-components-combobox.has-reset {
+  .components-combobox-control__suggestions-container {
+    > .components-flex {
+      .components-combobox-control__input {
+        padding-right: 50px;
+      }
+
+      .components-flex-item:not(.components-flex-block) {
+        position: absolute;
+        right: 10px;
+
+        button {
+          background: transparent;
+          border: none;
+          cursor: pointer;
+
+          > span {
+            display: none !important;
+          }
+        }
+      }
+    }
+  }
+}
