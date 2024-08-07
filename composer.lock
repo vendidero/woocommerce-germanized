@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5c6a5052c01b8d3850b9f7e80932a2a0",
+    "content-hash": "a55a2e8578b97199d1a2ef015dfc1e70",
     "packages": [
         {
             "name": "automattic/jetpack-autoloader",
@@ -811,16 +811,16 @@
         },
         {
             "name": "vendidero/woocommerce-germanized-dhl",
-            "version": "3.1.7",
+            "version": "3.1.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vendidero/woocommerce-germanized-dhl.git",
-                "reference": "9ebbee0b3e59cf0c6ccf3da77062ccf7c6e87f36"
+                "reference": "45672b3b3abc8610565a0eb38653d85cb1f255c3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vendidero/woocommerce-germanized-dhl/zipball/9ebbee0b3e59cf0c6ccf3da77062ccf7c6e87f36",
-                "reference": "9ebbee0b3e59cf0c6ccf3da77062ccf7c6e87f36",
+                "url": "https://api.github.com/repos/vendidero/woocommerce-germanized-dhl/zipball/45672b3b3abc8610565a0eb38653d85cb1f255c3",
+                "reference": "45672b3b3abc8610565a0eb38653d85cb1f255c3",
                 "shasum": ""
             },
             "require": {
@@ -864,23 +864,23 @@
             "description": "The Germanized DHL implementation.",
             "homepage": "https://github.com/vendidero/woocommerce-germanized-dhl",
             "support": {
-                "source": "https://github.com/vendidero/woocommerce-germanized-dhl/tree/v3.1.7",
+                "source": "https://github.com/vendidero/woocommerce-germanized-dhl/tree/v3.1.8",
                 "issues": "https://github.com/vendidero/woocommerce-germanized-dhl/issues"
             },
-            "time": "2024-07-03T11:32:26+00:00"
+            "time": "2024-08-06T13:07:05+00:00"
         },
         {
             "name": "vendidero/woocommerce-germanized-shipments",
-            "version": "3.4.1",
+            "version": "3.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vendidero/woocommerce-germanized-shipments.git",
-                "reference": "9b5f1deea216a24c2b11f0caaf60cab646868ae0"
+                "reference": "d39c3b64f32297f20cfbb67e5ee305e06a961de7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vendidero/woocommerce-germanized-shipments/zipball/9b5f1deea216a24c2b11f0caaf60cab646868ae0",
-                "reference": "9b5f1deea216a24c2b11f0caaf60cab646868ae0",
+                "url": "https://api.github.com/repos/vendidero/woocommerce-germanized-shipments/zipball/d39c3b64f32297f20cfbb67e5ee305e06a961de7",
+                "reference": "d39c3b64f32297f20cfbb67e5ee305e06a961de7",
                 "shasum": ""
             },
             "require": {
@@ -923,10 +923,10 @@
             "description": "The Germanized Shipments implementation.",
             "homepage": "https://github.com/vendidero/woocommerce-germanized-shipments",
             "support": {
-                "source": "https://github.com/vendidero/woocommerce-germanized-shipments/tree/v3.4.1",
+                "source": "https://github.com/vendidero/woocommerce-germanized-shipments/tree/v3.5.0",
                 "issues": "https://github.com/vendidero/woocommerce-germanized-shipments/issues"
             },
-            "time": "2024-07-17T07:26:06+00:00"
+            "time": "2024-08-06T13:53:38+00:00"
         }
     ],
     "packages-dev": [
@@ -2662,16 +2662,16 @@
         },
         {
             "name": "squizlabs/php_codesniffer",
-            "version": "3.10.1",
+            "version": "3.10.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHPCSStandards/PHP_CodeSniffer.git",
-                "reference": "8f90f7a53ce271935282967f53d0894f8f1ff877"
+                "reference": "86e5f5dd9a840c46810ebe5ff1885581c42a3017"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHPCSStandards/PHP_CodeSniffer/zipball/8f90f7a53ce271935282967f53d0894f8f1ff877",
-                "reference": "8f90f7a53ce271935282967f53d0894f8f1ff877",
+                "url": "https://api.github.com/repos/PHPCSStandards/PHP_CodeSniffer/zipball/86e5f5dd9a840c46810ebe5ff1885581c42a3017",
+                "reference": "86e5f5dd9a840c46810ebe5ff1885581c42a3017",
                 "shasum": ""
             },
             "require": {
@@ -2738,7 +2738,7 @@
                     "type": "open_collective"
                 }
             ],
-            "time": "2024-05-22T21:24:41+00:00"
+            "time": "2024-07-21T23:26:44+00:00"
         },
         {
             "name": "theseer/tokenizer",
