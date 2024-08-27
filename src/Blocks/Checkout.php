@@ -1,6 +1,7 @@
 <?php
 namespace Vendidero\Germanized\Blocks;
 
+use Automattic\WooCommerce\Blocks\Domain\Services\CheckoutFields;
 use Automattic\WooCommerce\StoreApi\Exceptions\RouteException;
 use Automattic\WooCommerce\StoreApi\Schemas\V1\CartSchema;
 use Automattic\WooCommerce\StoreApi\Schemas\V1\CheckoutSchema;
@@ -242,8 +243,17 @@ final class Checkout {
 						return $errors;
 					}
 
-					$country   = isset( $fields['country'] ) ? $fields['country'] : $fields['shipping_country'];
-					$address_1 = isset( $fields['address_1'] ) ? $fields['address_1'] : $fields['shipping_address_1'];
+					$country   = isset( $fields['country'] ) ? $fields['country'] : $fields[ "{$group}_country" ];
+					$address_1 = isset( $fields['address_1'] ) ? $fields['address_1'] : $fields[ "{$group}_address_1" ];
+
+					/**
+					 * Somehow Woo calls the filter differently on my account address save action
+					 * by handing over the registered fields instead of the actual values.
+					 */
+					if ( is_array( $country ) ) {
+						$country   = isset( $_POST[ $group . '_country' ] ) ? wc_clean( wp_unslash( $_POST[ $group . '_country' ] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Missing
+						$address_1 = isset( $_POST[ $group . '_address_1' ] ) ? wc_clean( wp_unslash( $_POST[ $group . '_address_1' ] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Missing
+					}
 
 					if ( ! empty( $country ) && ! empty( $address_1 ) && apply_filters( 'woocommerce_gzd_checkout_validate_street_number', true, $fields ) ) {
 						$countries = array();

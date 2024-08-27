@@ -808,7 +808,7 @@ class WC_GZD_Checkout {
 	}
 
 	public function free_shipping_auto_select( $rates ) {
-		$do_check = is_checkout() || is_cart() || self::$force_free_shipping_filter;
+		$do_check = is_checkout() || is_cart() || WC_germanized()->is_rest_api_request() || self::$force_free_shipping_filter;
 
 		if ( ! $do_check ) {
 			return $rates;
