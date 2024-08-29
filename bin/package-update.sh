@@ -45,6 +45,9 @@ if [ $COMPOSER_DEV_MODE -eq 0 ]; then
     rm -f ./packages/woocommerce-germanized-shipments/i18n/woocommerce-germanized-shipments.pot
 fi
 
+output 3 "Patching libraries..."
+sed -i '' -e 's/get_class()/__CLASS__/g' ./vendor/baltpeter/internetmarke-php/src/baltpeter/Internetmarke/ApiResult.php
+
 rm -rf ./packages/woocommerce-germanized-shipments/vendor
 rm -rf ./packages/woocommerce-germanized-dhl/vendor
 rm -rf ./packages/woocommerce-eu-tax-helper/vendor
