@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a55a2e8578b97199d1a2ef015dfc1e70",
+    "content-hash": "5d51be602a167d04f9935402ef908ef5",
     "packages": [
         {
             "name": "automattic/jetpack-autoloader",
@@ -811,16 +811,16 @@
         },
         {
             "name": "vendidero/woocommerce-germanized-dhl",
-            "version": "3.1.8",
+            "version": "3.1.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vendidero/woocommerce-germanized-dhl.git",
-                "reference": "45672b3b3abc8610565a0eb38653d85cb1f255c3"
+                "reference": "ae27c6a4c73657012e05e0771ceb6c824aaba964"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vendidero/woocommerce-germanized-dhl/zipball/45672b3b3abc8610565a0eb38653d85cb1f255c3",
-                "reference": "45672b3b3abc8610565a0eb38653d85cb1f255c3",
+                "url": "https://api.github.com/repos/vendidero/woocommerce-germanized-dhl/zipball/ae27c6a4c73657012e05e0771ceb6c824aaba964",
+                "reference": "ae27c6a4c73657012e05e0771ceb6c824aaba964",
                 "shasum": ""
             },
             "require": {
@@ -841,11 +841,11 @@
             },
             "scripts": {
                 "post-install-cmd": [
-                    "composer dump-autoload",
+                    "sh ./bin/package-update.sh",
                     "python3 ./bin/update-holidays.py"
                 ],
                 "post-update-cmd": [
-                    "composer dump-autoload",
+                    "sh ./bin/package-update.sh",
                     "python3 ./bin/update-holidays.py"
                 ],
                 "phpcs": [
@@ -864,23 +864,23 @@
             "description": "The Germanized DHL implementation.",
             "homepage": "https://github.com/vendidero/woocommerce-germanized-dhl",
             "support": {
-                "source": "https://github.com/vendidero/woocommerce-germanized-dhl/tree/v3.1.8",
+                "source": "https://github.com/vendidero/woocommerce-germanized-dhl/tree/v3.1.9",
                 "issues": "https://github.com/vendidero/woocommerce-germanized-dhl/issues"
             },
-            "time": "2024-08-06T13:07:05+00:00"
+            "time": "2024-08-29T08:41:15+00:00"
         },
         {
             "name": "vendidero/woocommerce-germanized-shipments",
-            "version": "3.5.0",
+            "version": "3.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vendidero/woocommerce-germanized-shipments.git",
-                "reference": "d39c3b64f32297f20cfbb67e5ee305e06a961de7"
+                "reference": "1765ccbd7a71aa5ebda3565c2b6aeb82ed5b78d3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vendidero/woocommerce-germanized-shipments/zipball/d39c3b64f32297f20cfbb67e5ee305e06a961de7",
-                "reference": "d39c3b64f32297f20cfbb67e5ee305e06a961de7",
+                "url": "https://api.github.com/repos/vendidero/woocommerce-germanized-shipments/zipball/1765ccbd7a71aa5ebda3565c2b6aeb82ed5b78d3",
+                "reference": "1765ccbd7a71aa5ebda3565c2b6aeb82ed5b78d3",
                 "shasum": ""
             },
             "require": {
@@ -923,10 +923,10 @@
             "description": "The Germanized Shipments implementation.",
             "homepage": "https://github.com/vendidero/woocommerce-germanized-shipments",
             "support": {
-                "source": "https://github.com/vendidero/woocommerce-germanized-shipments/tree/v3.5.0",
+                "source": "https://github.com/vendidero/woocommerce-germanized-shipments/tree/v3.5.1",
                 "issues": "https://github.com/vendidero/woocommerce-germanized-shipments/issues"
             },
-            "time": "2024-08-06T13:53:38+00:00"
+            "time": "2024-08-29T08:40:52+00:00"
         }
     ],
     "packages-dev": [

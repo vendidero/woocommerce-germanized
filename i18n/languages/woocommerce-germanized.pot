@@ -2,14 +2,14 @@
 # This file is distributed under the same license as the Germanized for WooCommerce plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Germanized for WooCommerce 3.17.2\n"
+"Project-Id-Version: Germanized for WooCommerce 3.17.3\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/woocommerce-germanized\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-08-07T08:39:52+00:00\n"
+"POT-Creation-Date: 2024-08-29T08:45:46+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.10.0\n"
 
@@ -758,8 +758,8 @@ msgctxt "dhl location name"
 msgid "%1$s %2$s"
 msgstr ""
 
-#: src/Api/LocationFinder.php:126
-#: packages/woocommerce-germanized-dhl/src/Api/LocationFinder.php:126
+#: src/Api/LocationFinder.php:132
+#: packages/woocommerce-germanized-dhl/src/Api/LocationFinder.php:132
 msgctxt "dhl"
 msgid "At least shipping city or zip is required."
 msgstr ""
@@ -3040,12 +3040,12 @@ msgid "Create"
 msgstr ""
 
 #: includes/admin/views/label/html-shipment-label.php:25
-#: includes/wc-gzd-shipment-functions.php:1474
+#: includes/wc-gzd-shipment-functions.php:1477
 #: src/Admin/Table.php:939
 #: src/Ajax.php:389
 #: templates/shipment/shipment-return-instructions.php:29
 #: packages/woocommerce-germanized-shipments/includes/admin/views/label/html-shipment-label.php:25
-#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:1474
+#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:1477
 #: packages/woocommerce-germanized-shipments/src/Admin/Table.php:939
 #: packages/woocommerce-germanized-shipments/src/Ajax.php:389
 #: packages/woocommerce-germanized-shipments/templates/shipment/shipment-return-instructions.php:29
@@ -3440,11 +3440,13 @@ msgid "Requested"
 msgstr ""
 
 #: includes/wc-gzd-shipment-functions.php:387
-#: includes/wc-gzd-shipments-template-functions.php:81
-#: includes/wc-gzd-shipments-template-functions.php:139
+#: includes/wc-gzd-shipments-template-functions.php:80
+#: includes/wc-gzd-shipments-template-functions.php:116
+#: includes/wc-gzd-shipments-template-functions.php:149
 #: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:387
-#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipments-template-functions.php:81
-#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipments-template-functions.php:139
+#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipments-template-functions.php:80
+#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipments-template-functions.php:116
+#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipments-template-functions.php:149
 msgctxt "shipments"
 msgid "Invalid order."
 msgstr ""
@@ -3558,9 +3560,10 @@ msgid "House Number"
 msgstr ""
 
 #: includes/wc-gzd-shipment-functions.php:796
-#: src/PickupDelivery.php:269
+#: src/PickupDelivery.php:273
+#: packages/woocommerce-germanized-shipments/build/checkout-pickup-location-select.js:1
 #: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:796
-#: packages/woocommerce-germanized-shipments/src/PickupDelivery.php:269
+#: packages/woocommerce-germanized-shipments/src/PickupDelivery.php:273
 msgctxt "shipments"
 msgid "Postcode"
 msgstr ""
@@ -3653,44 +3656,46 @@ msgctxt "shipments"
 msgid "Actions"
 msgstr ""
 
-#: includes/wc-gzd-shipment-functions.php:1467
-#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:1467
+#: includes/wc-gzd-shipment-functions.php:1470
+#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:1470
 msgctxt "shipments"
 msgid "View"
 msgstr ""
 
-#: includes/wc-gzd-shipments-template-functions.php:81
-#: includes/wc-gzd-shipments-template-functions.php:119
-#: includes/wc-gzd-shipments-template-functions.php:139
-#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipments-template-functions.php:81
-#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipments-template-functions.php:119
-#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipments-template-functions.php:139
+#: includes/wc-gzd-shipments-template-functions.php:80
+#: includes/wc-gzd-shipments-template-functions.php:116
+#: includes/wc-gzd-shipments-template-functions.php:129
+#: includes/wc-gzd-shipments-template-functions.php:149
+#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipments-template-functions.php:80
+#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipments-template-functions.php:116
+#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipments-template-functions.php:129
+#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipments-template-functions.php:149
 msgctxt "shipments"
 msgid "My account"
 msgstr ""
 
-#: includes/wc-gzd-shipments-template-functions.php:119
+#: includes/wc-gzd-shipments-template-functions.php:129
 #: src/DataStores/Shipment.php:363
-#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipments-template-functions.php:119
+#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipments-template-functions.php:129
 #: packages/woocommerce-germanized-shipments/src/DataStores/Shipment.php:363
 msgctxt "shipments"
 msgid "Invalid shipment."
 msgstr ""
 
-#: includes/wc-gzd-shipments-template-functions.php:144
-#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipments-template-functions.php:144
+#: includes/wc-gzd-shipments-template-functions.php:154
+#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipments-template-functions.php:154
 msgctxt "shipments"
 msgid "Currently you cannot add new return requests to that order. If you have questions regarding the return of that order please contact us for further information."
 msgstr ""
 
-#: includes/wc-gzd-shipments-template-functions.php:144
-#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipments-template-functions.php:144
+#: includes/wc-gzd-shipments-template-functions.php:154
+#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipments-template-functions.php:154
 msgctxt "shipments"
 msgid "View order"
 msgstr ""
 
-#: includes/wc-gzd-shipments-template-functions.php:220
-#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipments-template-functions.php:220
+#: includes/wc-gzd-shipments-template-functions.php:230
+#: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipments-template-functions.php:230
 msgctxt "shipments"
 msgid "The following products cannot be returned due to their nature: %1$s"
 msgstr ""
@@ -4882,15 +4887,18 @@ msgid "Filter by order"
 msgstr ""
 
 #: src/Admin/Table.php:727
+#: packages/woocommerce-germanized-shipments/build/checkout-pickup-location-select.js:1
 #: packages/woocommerce-germanized-shipments/src/Admin/Table.php:727
 msgctxt "shipments"
 msgid "Address"
 msgstr ""
 
 #: src/Admin/Table.php:826
-#: templates/myaccount/shipments.php:69
+#: templates/myaccount/shipments.php:70
+#: templates/myaccount/shipments.php:73
 #: packages/woocommerce-germanized-shipments/src/Admin/Table.php:826
-#: packages/woocommerce-germanized-shipments/templates/myaccount/shipments.php:69
+#: packages/woocommerce-germanized-shipments/templates/myaccount/shipments.php:70
+#: packages/woocommerce-germanized-shipments/templates/myaccount/shipments.php:73
 msgctxt "shipment title"
 msgid "%1$s #%2$s"
 msgstr ""
@@ -5158,11 +5166,11 @@ msgid "Pickup location code"
 msgstr ""
 
 #: src/Api.php:330
-#: src/Blocks/Checkout.php:203
-#: src/Blocks/Checkout.php:337
+#: src/Blocks/Checkout.php:211
+#: src/Blocks/Checkout.php:237
 #: packages/woocommerce-germanized-shipments/src/Api.php:330
-#: packages/woocommerce-germanized-shipments/src/Blocks/Checkout.php:203
-#: packages/woocommerce-germanized-shipments/src/Blocks/Checkout.php:337
+#: packages/woocommerce-germanized-shipments/src/Blocks/Checkout.php:211
+#: packages/woocommerce-germanized-shipments/src/Blocks/Checkout.php:237
 msgctxt "shipments"
 msgid "Pickup location customer number"
 msgstr ""
@@ -5173,135 +5181,164 @@ msgctxt "shipments"
 msgid "Order is fully shipped."
 msgstr ""
 
-#: src/Blocks/Checkout.php:97
-#: src/PickupDelivery.php:611
-#: packages/woocommerce-germanized-shipments/src/Blocks/Checkout.php:97
-#: packages/woocommerce-germanized-shipments/src/PickupDelivery.php:611
+#: src/Blocks/Checkout.php:105
+#: src/PickupDelivery.php:615
+#: packages/woocommerce-germanized-shipments/src/Blocks/Checkout.php:105
+#: packages/woocommerce-germanized-shipments/src/PickupDelivery.php:615
 msgctxt "shipments"
 msgid "Sorry, your current pickup location is not supported."
 msgstr ""
 
-#: src/Blocks/Checkout.php:103
+#: src/Blocks/Checkout.php:111
 #: src/PickupDelivery.php:103
-#: src/PickupDelivery.php:617
-#: packages/woocommerce-germanized-shipments/src/Blocks/Checkout.php:103
+#: src/PickupDelivery.php:621
+#: packages/woocommerce-germanized-shipments/src/Blocks/Checkout.php:111
 #: packages/woocommerce-germanized-shipments/src/PickupDelivery.php:103
-#: packages/woocommerce-germanized-shipments/src/PickupDelivery.php:617
+#: packages/woocommerce-germanized-shipments/src/PickupDelivery.php:621
 msgctxt "shipments"
 msgid "Sorry, your pickup location customer number is invalid."
 msgstr ""
 
-#: src/Blocks/Checkout.php:197
-#: src/Blocks/Checkout.php:330
+#: src/Blocks/Checkout.php:205
+#: src/Blocks/Checkout.php:230
 #: src/PickupDelivery.php:54
-#: src/PickupDelivery.php:328
-#: packages/woocommerce-germanized-shipments/build/checkout-pickup-location-select.js:1
-#: packages/woocommerce-germanized-shipments/src/Blocks/Checkout.php:197
-#: packages/woocommerce-germanized-shipments/src/Blocks/Checkout.php:330
+#: src/PickupDelivery.php:332
+#: packages/woocommerce-germanized-shipments/src/Blocks/Checkout.php:205
+#: packages/woocommerce-germanized-shipments/src/Blocks/Checkout.php:230
 #: packages/woocommerce-germanized-shipments/src/PickupDelivery.php:54
-#: packages/woocommerce-germanized-shipments/src/PickupDelivery.php:328
+#: packages/woocommerce-germanized-shipments/src/PickupDelivery.php:332
 msgctxt "shipments"
 msgid "Pickup location"
 msgstr ""
 
-#: src/Blocks/Checkout.php:214
-#: packages/woocommerce-germanized-shipments/src/Blocks/Checkout.php:214
+#: src/Blocks/Checkout.php:224
+#: packages/woocommerce-germanized-shipments/src/Blocks/Checkout.php:224
 msgctxt "shipments"
 msgid "Whether pickup location delivery is available"
 msgstr ""
 
-#: src/Blocks/Checkout.php:220
-#: packages/woocommerce-germanized-shipments/src/Blocks/Checkout.php:220
+#: src/Blocks/StoreApi/Routes/V1/CartSearchPickupLocations.php:48
+#: packages/woocommerce-germanized-shipments/src/Blocks/StoreApi/Routes/V1/CartSearchPickupLocations.php:48
+msgctxt "shipments"
+msgid "The address to search for."
+msgstr ""
+
+#: src/Blocks/StoreApi/Routes/V1/CartSearchPickupLocations.php:53
+#: packages/woocommerce-germanized-shipments/src/Blocks/StoreApi/Routes/V1/CartSearchPickupLocations.php:53
+msgctxt "shipments"
+msgid "The postcode."
+msgstr ""
+
+#: src/Blocks/StoreApi/Routes/V1/CartSearchPickupLocations.php:58
+#: packages/woocommerce-germanized-shipments/src/Blocks/StoreApi/Routes/V1/CartSearchPickupLocations.php:58
+msgctxt "shipments"
+msgid "The street address."
+msgstr ""
+
+#: src/Blocks/StoreApi/Routes/V1/CartSearchPickupLocations.php:63
+#: packages/woocommerce-germanized-shipments/src/Blocks/StoreApi/Routes/V1/CartSearchPickupLocations.php:63
+msgctxt "shipments"
+msgid "The country code."
+msgstr ""
+
+#: src/Blocks/StoreApi/Routes/V1/CartSearchPickupLocations.php:70
+#: packages/woocommerce-germanized-shipments/src/Blocks/StoreApi/Routes/V1/CartSearchPickupLocations.php:70
+msgctxt "shipments"
+msgid "The shipping provider."
+msgstr ""
+
+#: src/Blocks/StoreApi/Schemas/V1/SearchPickupLocationsSchema.php:34
+#: packages/woocommerce-germanized-shipments/src/Blocks/StoreApi/Schemas/V1/SearchPickupLocationsSchema.php:34
 msgctxt "shipments"
 msgid "Available pickup locations"
 msgstr ""
 
-#: src/Blocks/Checkout.php:228
-#: packages/woocommerce-germanized-shipments/src/Blocks/Checkout.php:228
+#: src/Blocks/StoreApi/Schemas/V1/SearchPickupLocationsSchema.php:42
+#: packages/woocommerce-germanized-shipments/src/Blocks/StoreApi/Schemas/V1/SearchPickupLocationsSchema.php:42
 msgctxt "shipments"
 msgid "The location code."
 msgstr ""
 
-#: src/Blocks/Checkout.php:234
-#: packages/woocommerce-germanized-shipments/src/Blocks/Checkout.php:234
+#: src/Blocks/StoreApi/Schemas/V1/SearchPickupLocationsSchema.php:48
+#: packages/woocommerce-germanized-shipments/src/Blocks/StoreApi/Schemas/V1/SearchPickupLocationsSchema.php:48
 msgctxt "shipments"
 msgid "The location label."
 msgstr ""
 
-#: src/Blocks/Checkout.php:240
-#: packages/woocommerce-germanized-shipments/src/Blocks/Checkout.php:240
+#: src/Blocks/StoreApi/Schemas/V1/SearchPickupLocationsSchema.php:54
+#: packages/woocommerce-germanized-shipments/src/Blocks/StoreApi/Schemas/V1/SearchPickupLocationsSchema.php:54
 msgctxt "shipments"
 msgid "The location latitude."
 msgstr ""
 
-#: src/Blocks/Checkout.php:246
-#: packages/woocommerce-germanized-shipments/src/Blocks/Checkout.php:246
+#: src/Blocks/StoreApi/Schemas/V1/SearchPickupLocationsSchema.php:60
+#: packages/woocommerce-germanized-shipments/src/Blocks/StoreApi/Schemas/V1/SearchPickupLocationsSchema.php:60
 msgctxt "shipments"
 msgid "The location longitude."
 msgstr ""
 
-#: src/Blocks/Checkout.php:252
-#: packages/woocommerce-germanized-shipments/src/Blocks/Checkout.php:252
+#: src/Blocks/StoreApi/Schemas/V1/SearchPickupLocationsSchema.php:66
+#: packages/woocommerce-germanized-shipments/src/Blocks/StoreApi/Schemas/V1/SearchPickupLocationsSchema.php:66
 msgctxt "shipments"
 msgid "Whether the location supports a customer number or not."
 msgstr ""
 
-#: src/Blocks/Checkout.php:259
-#: packages/woocommerce-germanized-shipments/src/Blocks/Checkout.php:259
+#: src/Blocks/StoreApi/Schemas/V1/SearchPickupLocationsSchema.php:73
+#: packages/woocommerce-germanized-shipments/src/Blocks/StoreApi/Schemas/V1/SearchPickupLocationsSchema.php:73
 msgctxt "shipments"
 msgid "Whether the customer number is mandatory or not."
 msgstr ""
 
-#: src/Blocks/Checkout.php:266
-#: packages/woocommerce-germanized-shipments/src/Blocks/Checkout.php:266
+#: src/Blocks/StoreApi/Schemas/V1/SearchPickupLocationsSchema.php:80
+#: packages/woocommerce-germanized-shipments/src/Blocks/StoreApi/Schemas/V1/SearchPickupLocationsSchema.php:80
 msgctxt "shipments"
 msgid "The customer number field label."
 msgstr ""
 
-#: src/Blocks/Checkout.php:272
-#: packages/woocommerce-germanized-shipments/src/Blocks/Checkout.php:272
+#: src/Blocks/StoreApi/Schemas/V1/SearchPickupLocationsSchema.php:86
+#: packages/woocommerce-germanized-shipments/src/Blocks/StoreApi/Schemas/V1/SearchPickupLocationsSchema.php:86
 msgctxt "shipments"
 msgid "The location type, e.g. locker."
 msgstr ""
 
-#: src/Blocks/Checkout.php:278
-#: packages/woocommerce-germanized-shipments/src/Blocks/Checkout.php:278
+#: src/Blocks/StoreApi/Schemas/V1/SearchPickupLocationsSchema.php:92
+#: packages/woocommerce-germanized-shipments/src/Blocks/StoreApi/Schemas/V1/SearchPickupLocationsSchema.php:92
 msgctxt "shipments"
 msgid "The location's formatted address."
 msgstr ""
 
-#: src/Blocks/Checkout.php:284
-#: packages/woocommerce-germanized-shipments/src/Blocks/Checkout.php:284
+#: src/Blocks/StoreApi/Schemas/V1/SearchPickupLocationsSchema.php:98
+#: packages/woocommerce-germanized-shipments/src/Blocks/StoreApi/Schemas/V1/SearchPickupLocationsSchema.php:98
 msgctxt "shipments"
 msgid "The location's address replacements."
 msgstr ""
 
-#: src/Blocks/Checkout.php:292
-#: packages/woocommerce-germanized-shipments/src/Blocks/Checkout.php:292
+#: src/Blocks/StoreApi/Schemas/V1/SearchPickupLocationsSchema.php:106
+#: packages/woocommerce-germanized-shipments/src/Blocks/StoreApi/Schemas/V1/SearchPickupLocationsSchema.php:106
 msgctxt "shipments"
 msgid "The location address."
 msgstr ""
 
-#: src/Blocks/Checkout.php:299
-#: packages/woocommerce-germanized-shipments/src/Blocks/Checkout.php:299
+#: src/Blocks/StoreApi/Schemas/V1/SearchPickupLocationsSchema.php:113
+#: packages/woocommerce-germanized-shipments/src/Blocks/StoreApi/Schemas/V1/SearchPickupLocationsSchema.php:113
 msgctxt "shipments"
 msgid "The location address 2."
 msgstr ""
 
-#: src/Blocks/Checkout.php:306
-#: packages/woocommerce-germanized-shipments/src/Blocks/Checkout.php:306
+#: src/Blocks/StoreApi/Schemas/V1/SearchPickupLocationsSchema.php:120
+#: packages/woocommerce-germanized-shipments/src/Blocks/StoreApi/Schemas/V1/SearchPickupLocationsSchema.php:120
 msgctxt "shipments"
 msgid "The location postcode."
 msgstr ""
 
-#: src/Blocks/Checkout.php:312
-#: packages/woocommerce-germanized-shipments/src/Blocks/Checkout.php:312
+#: src/Blocks/StoreApi/Schemas/V1/SearchPickupLocationsSchema.php:126
+#: packages/woocommerce-germanized-shipments/src/Blocks/StoreApi/Schemas/V1/SearchPickupLocationsSchema.php:126
 msgctxt "shipments"
 msgid "The location city."
 msgstr ""
 
-#: src/Blocks/Checkout.php:318
-#: packages/woocommerce-germanized-shipments/src/Blocks/Checkout.php:318
+#: src/Blocks/StoreApi/Schemas/V1/SearchPickupLocationsSchema.php:132
+#: packages/woocommerce-germanized-shipments/src/Blocks/StoreApi/Schemas/V1/SearchPickupLocationsSchema.php:132
 msgctxt "shipments"
 msgid "The location country."
 msgstr ""
@@ -5324,8 +5361,8 @@ msgctxt "shipments"
 msgid "Invalid shipment item."
 msgstr ""
 
-#: src/DataStores/ShippingProvider.php:289
-#: packages/woocommerce-germanized-shipments/src/DataStores/ShippingProvider.php:289
+#: src/DataStores/ShippingProvider.php:290
+#: packages/woocommerce-germanized-shipments/src/DataStores/ShippingProvider.php:290
 msgctxt "shipments"
 msgid "Invalid shipping provider."
 msgstr ""
@@ -5637,9 +5674,9 @@ msgid "The number of a valid pickup location."
 msgstr ""
 
 #: src/PickupDelivery.php:59
-#: src/PickupDelivery.php:336
+#: src/PickupDelivery.php:340
 #: packages/woocommerce-germanized-shipments/src/PickupDelivery.php:59
-#: packages/woocommerce-germanized-shipments/src/PickupDelivery.php:336
+#: packages/woocommerce-germanized-shipments/src/PickupDelivery.php:340
 msgctxt "shipments"
 msgid "Pickup customer number"
 msgstr ""
@@ -5651,100 +5688,101 @@ msgid "The customer number, if needed, for the pickup location."
 msgstr ""
 
 #: src/PickupDelivery.php:176
-#: src/PickupDelivery.php:406
+#: src/PickupDelivery.php:410
 #: src/ShippingProvider/PickupLocation.php:153
 #: packages/woocommerce-germanized-shipments/src/PickupDelivery.php:176
-#: packages/woocommerce-germanized-shipments/src/PickupDelivery.php:406
+#: packages/woocommerce-germanized-shipments/src/PickupDelivery.php:410
 #: packages/woocommerce-germanized-shipments/src/ShippingProvider/PickupLocation.php:153
 msgctxt "shipments"
 msgid "Customer Number"
 msgstr ""
 
-#: src/PickupDelivery.php:245
-#: src/PickupDelivery.php:363
-#: packages/woocommerce-germanized-shipments/src/PickupDelivery.php:245
-#: packages/woocommerce-germanized-shipments/src/PickupDelivery.php:363
+#: src/PickupDelivery.php:249
+#: src/PickupDelivery.php:367
+#: packages/woocommerce-germanized-shipments/build/checkout-pickup-location-select.js:1
+#: packages/woocommerce-germanized-shipments/src/PickupDelivery.php:249
+#: packages/woocommerce-germanized-shipments/src/PickupDelivery.php:367
 msgctxt "shipments"
 msgid "Choose a pickup location"
 msgstr ""
 
-#: src/PickupDelivery.php:246
-#: packages/woocommerce-germanized-shipments/src/PickupDelivery.php:246
+#: src/PickupDelivery.php:250
+#: packages/woocommerce-germanized-shipments/src/PickupDelivery.php:250
 msgctxt "shipments"
 msgid "Close modal"
 msgstr ""
 
-#: src/PickupDelivery.php:255
-#: packages/woocommerce-germanized-shipments/src/PickupDelivery.php:255
+#: src/PickupDelivery.php:259
+#: packages/woocommerce-germanized-shipments/src/PickupDelivery.php:259
 msgctxt "shipments"
 msgid "Street address"
 msgstr ""
 
 #. translators: use local order of street name and house number.
-#: src/PickupDelivery.php:257
-#: packages/woocommerce-germanized-shipments/src/PickupDelivery.php:257
+#: src/PickupDelivery.php:261
+#: packages/woocommerce-germanized-shipments/src/PickupDelivery.php:261
 msgctxt "shipments"
 msgid "House number and street name"
 msgstr ""
 
-#: src/PickupDelivery.php:280
-#: packages/woocommerce-germanized-shipments/src/PickupDelivery.php:280
+#: src/PickupDelivery.php:284
+#: packages/woocommerce-germanized-shipments/src/PickupDelivery.php:284
 msgctxt "shipments"
 msgid "Search"
 msgstr ""
 
-#: src/PickupDelivery.php:300
-#: src/PickupDelivery.php:373
-#: packages/woocommerce-germanized-shipments/src/PickupDelivery.php:300
-#: packages/woocommerce-germanized-shipments/src/PickupDelivery.php:373
+#: src/PickupDelivery.php:304
+#: src/PickupDelivery.php:377
+#: packages/woocommerce-germanized-shipments/src/PickupDelivery.php:304
+#: packages/woocommerce-germanized-shipments/src/PickupDelivery.php:377
 msgctxt "shipments"
 msgid "Remove pickup location"
 msgstr ""
 
-#: src/PickupDelivery.php:301
-#: packages/woocommerce-germanized-shipments/src/PickupDelivery.php:301
+#: src/PickupDelivery.php:305
+#: packages/woocommerce-germanized-shipments/src/PickupDelivery.php:305
 msgctxt "shipments"
 msgid "Choose pickup location"
 msgstr ""
 
-#: src/PickupDelivery.php:362
-#: packages/woocommerce-germanized-shipments/src/PickupDelivery.php:362
+#: src/PickupDelivery.php:366
+#: packages/woocommerce-germanized-shipments/src/PickupDelivery.php:366
 msgctxt "shipments"
 msgid "Not at home?"
 msgstr ""
 
-#: src/PickupDelivery.php:370
-#: packages/woocommerce-germanized-shipments/src/PickupDelivery.php:370
+#: src/PickupDelivery.php:374
+#: packages/woocommerce-germanized-shipments/src/PickupDelivery.php:374
 msgctxt "shipments"
 msgid "Currently shipping to:"
 msgstr ""
 
-#: src/PickupDelivery.php:464
-#: packages/woocommerce-germanized-shipments/src/PickupDelivery.php:464
+#: src/PickupDelivery.php:468
+#: packages/woocommerce-germanized-shipments/src/PickupDelivery.php:468
 msgctxt "shipments"
 msgid "No pickup location found"
 msgstr ""
 
-#: src/PickupDelivery.php:482
-#: packages/woocommerce-germanized-shipments/src/PickupDelivery.php:482
+#: src/PickupDelivery.php:486
+#: packages/woocommerce-germanized-shipments/src/PickupDelivery.php:486
 msgctxt "shipments"
 msgid "Search pickup locations"
 msgstr ""
 
-#: src/PickupDelivery.php:706
-#: packages/woocommerce-germanized-shipments/src/PickupDelivery.php:706
+#: src/PickupDelivery.php:710
+#: packages/woocommerce-germanized-shipments/src/PickupDelivery.php:710
 msgctxt "shipments"
 msgid "Managed by %1$s"
 msgstr ""
 
-#: src/PickupDelivery.php:706
-#: packages/woocommerce-germanized-shipments/src/PickupDelivery.php:706
+#: src/PickupDelivery.php:710
+#: packages/woocommerce-germanized-shipments/src/PickupDelivery.php:710
 msgctxt "shipments"
 msgid "pickup location"
 msgstr ""
 
-#: src/PickupDelivery.php:707
-#: packages/woocommerce-germanized-shipments/src/PickupDelivery.php:707
+#: src/PickupDelivery.php:711
+#: packages/woocommerce-germanized-shipments/src/PickupDelivery.php:711
 msgctxt "shipments"
 msgid "Pickup location delivery is not available any longer. Please review your shipping address."
 msgstr ""
@@ -7578,8 +7616,8 @@ msgctxt "shipments"
 msgid "Adding return requests to this order is no longer available. You may contact us for further information."
 msgstr ""
 
-#: templates/myaccount/shipments.php:80
-#: packages/woocommerce-germanized-shipments/templates/myaccount/shipments.php:80
+#: templates/myaccount/shipments.php:83
+#: packages/woocommerce-germanized-shipments/templates/myaccount/shipments.php:83
 msgctxt "shipments"
 msgid "track now"
 msgstr ""
@@ -7644,7 +7682,22 @@ msgstr ""
 
 #: packages/woocommerce-germanized-shipments/build/checkout-pickup-location-select.js:1
 msgctxt "shipments"
+msgid "Managed by&nbsp;<a href=\"#current-pickup-location\">pickup location</a>"
+msgstr ""
+
+#: packages/woocommerce-germanized-shipments/build/checkout-pickup-location-select.js:1
+msgctxt "shipments"
+msgid "Currently shipping to: %s"
+msgstr ""
+
+#: packages/woocommerce-germanized-shipments/build/checkout-pickup-location-select.js:1
+msgctxt "shipments"
 msgid "Not at home? Choose a pickup location"
+msgstr ""
+
+#: packages/woocommerce-germanized-shipments/build/checkout-pickup-location-select.js:1
+msgctxt "shipments"
+msgid "Sorry, we did not find any pickup locations nearby."
 msgstr ""
 
 #: packages/woocommerce-germanized-shipments/build/checkout-pickup-location-select.js:1
@@ -11257,7 +11310,7 @@ msgstr ""
 
 #: includes/class-wc-gzd-checkout.php:472
 #: includes/class-wc-gzd-checkout.php:478
-#: src/Blocks/Checkout.php:269
+#: src/Blocks/Checkout.php:279
 msgid "Please check the street field and make sure to provide a valid street number."
 msgstr ""
 
@@ -13091,78 +13144,78 @@ msgstr ""
 msgid "Your installation of Germanized is incomplete. If you installed Germanized from GitHub, %1$splease refer to this document%2$s to set up your development environment."
 msgstr ""
 
-#: src/Blocks/Checkout.php:308
+#: src/Blocks/Checkout.php:318
 msgid "Whether the cart applies for a photovoltaic system vat exempt or not."
 msgstr ""
 
-#: src/Blocks/Checkout.php:314
+#: src/Blocks/Checkout.php:324
 msgid "The current cart's photovoltaic system law details."
 msgstr ""
 
-#: src/Blocks/Checkout.php:320
+#: src/Blocks/Checkout.php:330
 msgid "The actual law, e.g. paragraph."
 msgstr ""
 
-#: src/Blocks/Checkout.php:326
+#: src/Blocks/Checkout.php:336
 msgid "The URL to the law."
 msgstr ""
 
-#: src/Blocks/Checkout.php:334
+#: src/Blocks/Checkout.php:344
 msgid "Cart shipping costs notice."
 msgstr ""
 
-#: src/Blocks/Checkout.php:340
-#: src/Blocks/Checkout.php:462
+#: src/Blocks/Checkout.php:350
+#: src/Blocks/Checkout.php:472
 msgid "List of cart checkboxes."
 msgstr ""
 
-#: src/Blocks/Checkout.php:348
-#: src/Blocks/Checkout.php:469
+#: src/Blocks/Checkout.php:358
+#: src/Blocks/Checkout.php:479
 msgid "Unique identifier for the checkbox within the cart."
 msgstr ""
 
-#: src/Blocks/Checkout.php:354
+#: src/Blocks/Checkout.php:364
 msgid "Checkbox name."
 msgstr ""
 
-#: src/Blocks/Checkout.php:360
+#: src/Blocks/Checkout.php:370
 msgid "Checkbox label."
 msgstr ""
 
-#: src/Blocks/Checkout.php:366
-#: src/Blocks/Checkout.php:475
+#: src/Blocks/Checkout.php:376
+#: src/Blocks/Checkout.php:485
 msgid "Checkbox checked status."
 msgstr ""
 
-#: src/Blocks/Checkout.php:372
+#: src/Blocks/Checkout.php:382
 msgid "Checkbox hidden by default."
 msgstr ""
 
-#: src/Blocks/Checkout.php:378
+#: src/Blocks/Checkout.php:388
 msgid "Checkbox error message."
 msgstr ""
 
-#: src/Blocks/Checkout.php:384
+#: src/Blocks/Checkout.php:394
 msgid "Show for specific payment methods only."
 msgstr ""
 
-#: src/Blocks/Checkout.php:390
+#: src/Blocks/Checkout.php:400
 msgid "Wrapper classes."
 msgstr ""
 
-#: src/Blocks/Checkout.php:396
+#: src/Blocks/Checkout.php:406
 msgid "Custom styles."
 msgstr ""
 
-#: src/Blocks/Checkout.php:402
+#: src/Blocks/Checkout.php:412
 msgid "HTML field id."
 msgstr ""
 
-#: src/Blocks/Checkout.php:408
+#: src/Blocks/Checkout.php:418
 msgid "Whether to show a checkbox field or not."
 msgstr ""
 
-#: src/Blocks/Checkout.php:414
+#: src/Blocks/Checkout.php:424
 msgid "Whether the checkbox is required or not."
 msgstr ""
 
