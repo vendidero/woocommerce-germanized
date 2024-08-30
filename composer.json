@@ -14,7 +14,7 @@
     "digitick/sepa-xml" : "^2.0.0",
     "defuse/php-encryption": "^2.0.0",
     "globalcitizen/php-iban": "^4.0.0",
-    "vendidero/woocommerce-germanized-dhl": "3.1.9",
+    "vendidero/woocommerce-germanized-dhl": "3.2.0",
     "vendidero/woocommerce-germanized-shipments": "3.5.2",
     "vendidero/woocommerce-eu-tax-helper": "2.0.4"
   },

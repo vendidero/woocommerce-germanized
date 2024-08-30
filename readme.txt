@@ -207,6 +207,7 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 == Changelog ==
 = 3.17.4 =
 * Fix: REST API Schema insertion leading to fatal error during cron actions
+* Fix: Patch DHL location finder results when addressLocality is missing
 
 = 3.17.3 =
 * Improvement: Pickup location search in block-based checkout
