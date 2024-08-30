@@ -1,0 +1,1 @@
+(window.wcGzdShipments=window.wcGzdShipments||{})["wc-gzd-shipments-blocks"]={};
