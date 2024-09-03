@@ -202,8 +202,8 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 
 	public static function output( $loop, $variation_data, $variation ) {
 		$_product                  = wc_get_product( $variation );
-		$_parent                   = wc_get_product( $_product->get_parent_id() );
 		$gzd_product               = wc_gzd_get_product( $_product );
+		$_parent                   = wc_get_product( $_product->get_parent_id() );
 		$gzd_parent_product        = wc_gzd_get_product( $_parent );
 		$delivery_time             = $gzd_product->get_delivery_time( 'edit' );
 		$countries_left            = WC_Germanized_Meta_Box_Product_Data::get_available_delivery_time_countries();
@@ -251,7 +251,7 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 					'label'         => __( 'Product Units', 'woocommerce-germanized' ),
 					'data_type'     => 'decimal',
 					'value'         => $gzd_product->get_unit_product( 'edit' ),
-					'placeholder'   => wc_format_localized_decimal( $gzd_parent_product->get_unit_product( 'edit' ) ),
+					'placeholder'   => $gzd_parent_product ? wc_format_localized_decimal( $gzd_parent_product->get_unit_product( 'edit' ) ) : '',
 					'desc_tip'      => true,
 					'description'   => __( 'Number of units included per default product price. Example: 1000 ml.', 'woocommerce-germanized' ),
 				)
@@ -411,7 +411,7 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 					'name'          => "variable_gtin[{$loop}]",
 					'label'         => __( 'GTIN', 'woocommerce-germanized' ),
 					'data_type'     => 'text',
-					'placeholder'   => $gzd_parent_product->get_gtin( 'edit' ),
+					'placeholder'   => $gzd_parent_product ? $gzd_parent_product->get_gtin( 'edit' ) : '',
 					'value'         => $gzd_product->get_gtin( 'edit' ),
 					'desc_tip'      => true,
 					'description'   => __( 'Your product\'s Global Trade Item Number that allows your products to be identified worldwide.', 'woocommerce-germanized' ),
@@ -425,7 +425,7 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 					'name'          => "variable_mpn[{$loop}]",
 					'label'         => __( 'MPN', 'woocommerce-germanized' ),
 					'data_type'     => 'text',
-					'placeholder'   => $gzd_parent_product->get_mpn( 'edit' ),
+					'placeholder'   => $gzd_parent_product ? $gzd_parent_product->get_mpn( 'edit' ) : '',
 					'value'         => $gzd_product->get_mpn( 'edit' ),
 					'desc_tip'      => true,
 					'description'   => __( 'Your product\'s Manufacturer Part Number.', 'woocommerce-germanized' ),
@@ -475,7 +475,7 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 						'label'         => __( 'Deposit Type', 'woocommerce-germanized' ),
 						'options'       => array( '-1' => __( 'Select Deposit Type', 'woocommerce-germanized' ) ) + WC_germanized()->deposit_types->get_deposit_types(),
 						'desc_tip'      => true,
-						'value'         => $gzd_product->get_deposit_type( 'edit' ) ? $gzd_product->get_deposit_type( 'edit' ) : $gzd_parent_product->get_deposit_type(),
+						'value'         => $gzd_product->get_deposit_type( 'edit' ) ? $gzd_product->get_deposit_type( 'edit' ) : ( $gzd_parent_product ? $gzd_parent_product->get_deposit_type() : '' ),
 						'description'   => __( 'In case this product is reusable and has deposits, select the deposit type.', 'woocommerce-germanized' ),
 					)
 				);
@@ -487,7 +487,7 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 						'name'              => "variable_deposit_quantity[{$loop}]",
 						'label'             => __( 'Deposit Quantity', 'woocommerce-germanized' ),
 						'value'             => $gzd_product->get_deposit_quantity( 'edit' ),
-						'placeholder'       => $gzd_parent_product->get_deposit_quantity() ? $gzd_parent_product->get_deposit_quantity() : 1,
+						'placeholder'       => $gzd_parent_product && $gzd_parent_product->get_deposit_quantity() ? $gzd_parent_product->get_deposit_quantity() : 1,
 						'data_type'         => 'number',
 						'custom_attributes' => array( 'min' => 1 ),
 						'description'       => __( 'Number of units included for deposit purposes, e.g. 6 bottles.', 'woocommerce-germanized' ),
@@ -561,9 +561,9 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 		/**
 		 * Parent unit data is passed as global (non-variation-level) data.
 		 */
-		$data['_parent_unit_product'] = isset( $_POST['_unit_product'] ) ? wc_clean( wp_unslash( $_POST['_unit_product'] ) ) : $gzd_parent_product->get_unit_product( 'edit' ); // phpcs:ignore WordPress.Security.NonceVerification.Missing
-		$data['_parent_unit']         = isset( $_POST['_unit'] ) ? wc_clean( wp_unslash( $_POST['_unit'] ) ) : $gzd_parent_product->get_unit( 'edit' ); // phpcs:ignore WordPress.Security.NonceVerification.Missing
-		$data['_parent_unit_base']    = isset( $_POST['_unit_base'] ) ? wc_clean( wp_unslash( $_POST['_unit_base'] ) ) : $gzd_parent_product->get_unit_base( 'edit' ); // phpcs:ignore WordPress.Security.NonceVerification.Missing
+		$data['_parent_unit_product'] = isset( $_POST['_unit_product'] ) ? wc_clean( wp_unslash( $_POST['_unit_product'] ) ) : ( $gzd_parent_product ? $gzd_parent_product->get_unit_product( 'edit' ) : '' ); // phpcs:ignore WordPress.Security.NonceVerification.Missing
+		$data['_parent_unit']         = isset( $_POST['_unit'] ) ? wc_clean( wp_unslash( $_POST['_unit'] ) ) : ( $gzd_parent_product ? $gzd_parent_product->get_unit( 'edit' ) : '' ); // phpcs:ignore WordPress.Security.NonceVerification.Missing
+		$data['_parent_unit_base']    = isset( $_POST['_unit_base'] ) ? wc_clean( wp_unslash( $_POST['_unit_base'] ) ) : ( $gzd_parent_product ? $gzd_parent_product->get_unit_base( 'edit' ) : '' ); // phpcs:ignore WordPress.Security.NonceVerification.Missing
 
 		// Check if parent has unit_base + unit otherwise ignore data
 		if ( empty( $data['_parent_unit'] ) || empty( $data['_parent_unit_base'] ) ) {

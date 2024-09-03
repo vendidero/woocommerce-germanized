@@ -15,8 +15,28 @@ use Vendidero\Germanized\Shipments\Admin\Settings;
  */
 class WC_GZD_Settings_Tab_Shipments extends WC_GZD_Settings_Tab {
 
+	public function __construct() {
+		parent::__construct();
+
+		$this->id = 'shipments';
+
+		add_filter( 'woocommerce_gzd_shipments_settings_main_breadcrumb', array( $this, 'register_main_breadcrumb' ) );
+	}
+
+	public function register_main_breadcrumb( $main_breadcrumb ) {
+		$basic_main_breadcrumb = array(
+			array(
+				'class' => 'main',
+				'href'  => admin_url( 'admin.php?page=wc-settings&tab=germanized' ),
+				'title' => __( 'Germanized', 'woocommerce-germanized' ),
+			),
+		);
+
+		return array_merge( $basic_main_breadcrumb, $main_breadcrumb );
+	}
+
 	public function get_description() {
-		return __( 'Create shipments for your orders and improve default shipment handling.', 'woocommerce-germanized' );
+		return __( 'Create shipments, improve packing and manage available shipping providers.', 'woocommerce-germanized' );
 	}
 
 	public function get_label() {
@@ -32,38 +52,14 @@ class WC_GZD_Settings_Tab_Shipments extends WC_GZD_Settings_Tab {
 	}
 
 	public function get_sections() {
-		return Settings::get_sections();
-	}
-
-	protected function get_additional_breadcrumb_items( $breadcrumb ) {
-		return Settings::get_additional_breadcrumb_items( $breadcrumb );
-	}
-
-	protected function get_breadcrumb_label( $label ) {
-		$current_section = $this->get_current_section();
-
-		$label = parent::get_breadcrumb_label( $label );
-
-		if ( empty( $current_section ) ) {
-			return $label . '<a href="' . esc_url( admin_url( 'admin.php?page=wc-gzd-shipments' ) ) . '" class="page-title-action" target="_blank">' . _x( 'Manage', 'shipments', 'woocommerce-germanized' ) . '</a>';
-		} else {
-			return $label;
-		}
-	}
-
-	protected function after_save( $settings, $current_section = '' ) {
-		parent::after_save( $settings, $current_section );
-
-		Settings::after_save( $current_section );
+		return array();
 	}
 
 	public function get_pointers() {
-		return Settings::get_pointers( $this->get_current_section() );
+		return array();
 	}
 
 	public function get_tab_settings( $current_section = '' ) {
-		$settings = Settings::get_settings( $current_section );
-
-		return $settings;
+		return array();
 	}
 }

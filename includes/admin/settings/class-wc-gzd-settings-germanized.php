@@ -163,11 +163,17 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 	}
 
 	protected function is_active() {
-		if ( isset( $_GET['tab'] ) && strpos( wc_clean( wp_unslash( $_GET['tab'] ) ), 'germanized' ) !== false ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-			return true;
+		$is_active = false;
+
+		if ( isset( $_GET['tab'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			$tab_name = wc_clean( wp_unslash( $_GET['tab'] ) ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+
+			if ( strstr( $tab_name, 'germanized' ) || strstr( $tab_name, 'shipments' ) ) {
+				$is_active = true;
+			}
 		}
 
-		return false;
+		return $is_active;
 	}
 
 	public function add_body_classes( $classes ) {
@@ -197,7 +203,6 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 
 		if ( class_exists( '\Vendidero\Germanized\Shipments\Package' ) && Package::has_dependencies() ) {
 			include_once dirname( __FILE__ ) . '/class-wc-gzd-settings-tab-shipments.php';
-			include_once dirname( __FILE__ ) . '/class-wc-gzd-settings-tab-shipping-provider.php';
 		}
 
 		/**

@@ -99,8 +99,6 @@ class WC_GZD_Admin {
 
 		add_action( 'woocommerce_oss_enabled_oss_procedure', array( $this, 'oss_enable_hide_tax_percentage' ), 10 );
 
-		add_filter( 'woocommerce_gzd_shipment_admin_provider_list', array( $this, 'maybe_register_shipping_providers' ), 10 );
-
 		$this->wizard = require 'class-wc-gzd-admin-setup-wizard.php';
 	}
 
@@ -186,42 +184,6 @@ class WC_GZD_Admin {
 		} else {
 			update_option( 'woocommerce_gzd_disable_food_options', 'yes' );
 		}
-	}
-
-	/**
-	 * @param \Vendidero\Germanized\Shipments\Interfaces\ShippingProvider $providers
-	 */
-	public function maybe_register_shipping_providers( $providers ) {
-		if ( ! WC_germanized()->is_pro() ) {
-			if ( $this->is_dpd_available() ) {
-				$dpd               = new WC_GZD_Admin_Provider_DPD();
-				$providers['_dpd'] = $dpd;
-			}
-
-			if ( $this->is_gls_available() ) {
-				$gls               = new WC_GZD_Admin_Provider_GLS();
-				$providers['_gls'] = $gls;
-			}
-
-			if ( $this->is_hermes_available() ) {
-				$hermes               = new WC_GZD_Admin_Provider_Hermes();
-				$providers['_hermes'] = $hermes;
-			}
-		}
-
-		return $providers;
-	}
-
-	public function is_gls_available() {
-		return in_array( \Vendidero\Germanized\Shipments\Package::get_base_country(), array( 'DE', 'AT', 'CH', 'BE', 'LU', 'FR', 'IE', 'ES' ), true );
-	}
-
-	public function is_hermes_available() {
-		return in_array( \Vendidero\Germanized\Shipments\Package::get_base_country(), array( 'DE' ), true );
-	}
-
-	public function is_dpd_available() {
-		return in_array( \Vendidero\Germanized\Shipments\Package::get_base_country(), array( 'DE', 'AT' ), true );
 	}
 
 	public function oss_enable_hide_tax_percentage() {

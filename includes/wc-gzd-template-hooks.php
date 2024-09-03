@@ -73,6 +73,7 @@ add_filter( 'woocommerce_available_variation', 'woocommerce_gzd_add_variation_op
  */
 if ( 'no' === get_option( 'woocommerce_gzd_display_listings_add_to_cart' ) && 'yes' !== get_option( 'woocommerce_gzd_display_listings_link_details' ) ) {
 	remove_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart' );
+	add_filter( 'woocommerce_loop_add_to_cart_link', '__return_false', 99 ); // Block-based themes
 }
 
 if ( 'yes' === get_option( 'woocommerce_gzd_display_listings_link_details' ) ) {
