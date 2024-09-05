@@ -36,11 +36,11 @@ class WC_GZD_Settings_Tab_Shipments extends WC_GZD_Settings_Tab {
 	}
 
 	public function get_description() {
-		return __( 'Create shipments, improve packing and manage available shipping providers.', 'woocommerce-germanized' );
+		return __( 'Create shipments, improve pick & pack and manage available shipping provider.', 'woocommerce-germanized' );
 	}
 
 	public function get_label() {
-		return __( 'Shipments', 'woocommerce-germanized' );
+		return _x( 'Shipments & Shipping Provider', 'shipments-settings-tab', 'woocommerce-germanized' );
 	}
 
 	public function get_name() {
