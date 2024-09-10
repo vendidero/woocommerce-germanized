@@ -43,8 +43,6 @@ class WC_GZD_Order_Helper {
 		 */
 		add_action( 'woocommerce_order_item_after_calculate_taxes', array( $this, 'recalculate_order_item_unit_price' ), 60, 1 );
 
-		add_filter( 'woocommerce_gzd_shipment_order_supports_email_transmission', array( $this, 'shipment_order_supports_email_transmission' ), 10, 2 );
-
 		// Add Title to billing address format
 		add_filter(
 			'woocommerce_order_formatted_billing_address',
@@ -157,20 +155,6 @@ class WC_GZD_Order_Helper {
 			add_action( 'woocommerce_order_item_fee_after_calculate_taxes', array( $this, 'remove_additional_costs_item_meta' ), 10, 2 );
 			add_action( 'woocommerce_order_item_after_calculate_taxes', array( $this, 'remove_additional_costs_item_meta' ), 10, 2 );
 		}
-	}
-
-	/**
-	 * @param boolean $supports_email_transmission
-	 * @param \Vendidero\Germanized\Shipments\Order $order
-	 *
-	 * @return boolean
-	 */
-	public function shipment_order_supports_email_transmission( $supports_email_transmission, $order ) {
-		if ( wc_gzd_order_supports_parcel_delivery_reminder( $order->get_id() ) ) {
-			$supports_email_transmission = true;
-		}
-
-		return $supports_email_transmission;
 	}
 
 	/**

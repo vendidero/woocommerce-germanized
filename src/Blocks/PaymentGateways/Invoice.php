@@ -29,6 +29,22 @@ final class Invoice extends AbstractPaymentMethodType {
 		$this->assets = $assets;
 	}
 
+	public function get_supported_features() {
+		return array(
+			'products',
+			'subscriptions',
+			'subscription_cancellation',
+			'subscription_suspension',
+			'subscription_reactivation',
+			'subscription_amount_changes',
+			'subscription_date_changes',
+			'subscription_payment_method_change',
+			'subscription_payment_method_change_customer',
+			'subscription_payment_method_change_admin',
+			'multiple_subscriptions',
+		);
+	}
+
 	/**
 	 * Initializes the payment method type.
 	 */

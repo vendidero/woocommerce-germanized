@@ -71,6 +71,10 @@ class Package {
 		return self::$gzd_instance->language_path();
 	}
 
+	public static function get_template_path() {
+		return self::$gzd_instance->template_path();
+	}
+
 	public static function is_pro() {
 		return self::$gzd_instance->is_pro();
 	}

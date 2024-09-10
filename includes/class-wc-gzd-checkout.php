@@ -162,16 +162,6 @@ class WC_GZD_Checkout {
 		 * Other services (e.g. virtual, services) are not taxable in northern ireland
 		 */
 		add_action( 'woocommerce_before_calculate_totals', array( $this, 'maybe_remove_northern_ireland_taxes' ), 15 );
-
-		/**
-		 * Tell the shipment integration whether prices include taxes or not.
-		 */
-		add_filter(
-			'woocommerce_gzd_shipments_additional_costs_include_tax',
-			function() {
-				return wc_gzd_additional_costs_include_tax();
-			}
-		);
 	}
 
 	public function maybe_remove_northern_ireland_taxes( $cart ) {

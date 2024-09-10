@@ -48,6 +48,37 @@ class Bootstrap {
 
 		$this->register_dependencies();
 		$this->register_payment_methods();
+		$this->setup_shipments_integration();
+
+		if ( did_action( 'woocommerce_blocks_loaded' ) ) {
+			$this->load_blocks();
+		} else {
+			add_action(
+				'woocommerce_blocks_loaded',
+				function() {
+					$this->load_blocks();
+				}
+			);
+		}
+	}
+
+	private function setup_shipments_integration() {
+		/**
+		 * Tell the shipment integration whether prices include taxes or not.
+		 */
+		add_filter(
+			'woocommerce_gzd_shipments_additional_costs_include_tax',
+			function() {
+				return wc_gzd_additional_costs_include_tax();
+			}
+		);
+
+		add_filter(
+			'woocommerce_gzd_shipments_template_path',
+			function() {
+				return Package::get_template_path();
+			}
+		);
 
 		add_filter(
 			'woocommerce_gzd_dhl_get_i18n_path',
@@ -77,16 +108,25 @@ class Bootstrap {
 			}
 		);
 
-		if ( did_action( 'woocommerce_blocks_loaded' ) ) {
-			$this->load_blocks();
-		} else {
-			add_action(
-				'woocommerce_blocks_loaded',
-				function() {
-					$this->load_blocks();
+		add_filter(
+			'woocommerce_gzd_shipment_order_supports_email_transmission',
+			function( $supports_email_transmission, $order ) {
+				if ( wc_gzd_order_supports_parcel_delivery_reminder( $order->get_id() ) ) {
+					$supports_email_transmission = true;
 				}
-			);
-		}
+
+				return $supports_email_transmission;
+			},
+			10,
+			2
+		);
+
+		add_filter(
+			'woocommerce_gzd_shipments_last_tutorial_url',
+			function() {
+				return admin_url( 'admin.php?page=wc-settings&tab=germanized-emails&tutorial=yes' );
+			}
+		);
 	}
 
 	protected function load_blocks() {
