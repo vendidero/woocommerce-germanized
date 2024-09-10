@@ -34,6 +34,7 @@ if ( ! class_exists( 'WC_GZD_Email_Customer_Paid_For_Order' ) ) :
 
 			// Triggers for this email
 			add_action( 'woocommerce_order_status_pending_to_processing_notification', array( $this, 'trigger' ), 30 );
+			add_action( 'woocommerce_order_status_pending_to_completed_notification', array( $this, 'trigger' ), 30 );
 			add_action( 'woocommerce_order_status_failed_to_processing_notification', array( $this, 'trigger' ), 30 );
 
 			$this->placeholders = array(
@@ -84,7 +85,6 @@ if ( ! class_exists( 'WC_GZD_Email_Customer_Paid_For_Order' ) ) :
 			$this->helper->setup_email_locale();
 
 			if ( $this->is_enabled() && $this->get_recipient() ) {
-
 				// Make sure gateways do not insert data here
 				remove_all_actions( 'woocommerce_email_before_order_table' );
 
