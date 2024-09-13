@@ -368,7 +368,7 @@
                 if ( isTotalPrice ) {
                     price = parseFloat( price ) / qty;
 
-                    if ( sale_price.length > 0 ) {
+                    if ( sale_price ) {
                         sale_price = parseFloat( sale_price ) / qty;
                     }
                 }

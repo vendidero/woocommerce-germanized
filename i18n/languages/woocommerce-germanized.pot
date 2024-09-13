@@ -2,14 +2,14 @@
 # This file is distributed under the same license as the Germanized for WooCommerce plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Germanized for WooCommerce 3.17.3\n"
+"Project-Id-Version: Germanized for WooCommerce 3.17.4\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/woocommerce-germanized\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-08-30T10:42:10+00:00\n"
+"POT-Creation-Date: 2024-09-10T11:42:07+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.10.0\n"
 
@@ -758,8 +758,8 @@ msgctxt "dhl location name"
 msgid "%1$s %2$s"
 msgstr ""
 
-#: src/Api/LocationFinder.php:132
-#: packages/woocommerce-germanized-dhl/src/Api/LocationFinder.php:132
+#: src/Api/LocationFinder.php:131
+#: packages/woocommerce-germanized-dhl/src/Api/LocationFinder.php:131
 msgctxt "dhl"
 msgid "At least shipping city or zip is required."
 msgstr ""
@@ -3019,7 +3019,6 @@ msgid "Manage shipping provider"
 msgstr ""
 
 #: includes/admin/views/html-settings-provider-list.php:70
-#: includes/admin/settings/class-wc-gzd-settings-tab-shipments.php:48
 #: packages/woocommerce-germanized-shipments/includes/admin/views/html-settings-provider-list.php:70
 msgctxt "shipments"
 msgid "Manage"
@@ -7712,7 +7711,7 @@ msgstr ""
 
 #. Plugin Name of the plugin
 #: woocommerce-germanized.php
-#: includes/admin/class-wc-gzd-admin.php:433
+#: includes/admin/class-wc-gzd-admin.php:395
 msgid "Germanized for WooCommerce"
 msgstr ""
 
@@ -7833,14 +7832,14 @@ msgid "excl. %s%% VAT"
 msgstr ""
 
 #: includes/admin/class-wc-gzd-admin-customer.php:44
-#: includes/admin/class-wc-gzd-admin.php:575
+#: includes/admin/class-wc-gzd-admin.php:537
 #: includes/admin/settings/views/html-admin-settings-tabs.php:66
 #: includes/admin/settings/views/html-admin-settings-tabs.php:85
 msgid "Yes"
 msgstr ""
 
 #: includes/admin/class-wc-gzd-admin-customer.php:46
-#: includes/admin/class-wc-gzd-admin.php:575
+#: includes/admin/class-wc-gzd-admin.php:537
 #: includes/admin/settings/views/html-admin-settings-tabs.php:66
 #: includes/admin/settings/views/html-admin-settings-tabs.php:85
 msgid "No"
@@ -8006,7 +8005,6 @@ msgid "Create DPD labels and return labels conveniently"
 msgstr ""
 
 #: includes/admin/class-wc-gzd-admin-provider-dpd.php:21
-#: includes/admin/settings/class-wc-gzd-settings-tab-shipping-provider.php:26
 msgid "DPD"
 msgstr ""
 
@@ -8017,9 +8015,6 @@ msgstr ""
 #: includes/admin/settings/class-wc-gzd-settings-tab-invoices.php:21
 #: includes/admin/settings/class-wc-gzd-settings-tab-multistep-checkout.php:21
 #: includes/admin/settings/class-wc-gzd-settings-tab-revocation-generator.php:21
-#: includes/admin/settings/class-wc-gzd-settings-tab-shipping-provider.php:26
-#: includes/admin/settings/class-wc-gzd-settings-tab-shipping-provider.php:30
-#: includes/admin/settings/class-wc-gzd-settings-tab-shipping-provider.php:34
 #: includes/admin/settings/class-wc-gzd-settings-tab-terms-generator.php:21
 msgid "pro"
 msgstr ""
@@ -8029,7 +8024,6 @@ msgid "Create GLS labels and return labels conveniently"
 msgstr ""
 
 #: includes/admin/class-wc-gzd-admin-provider-gls.php:21
-#: includes/admin/settings/class-wc-gzd-settings-tab-shipping-provider.php:30
 msgid "GLS"
 msgstr ""
 
@@ -8038,7 +8032,6 @@ msgid "Create Hermes labels and return labels conveniently"
 msgstr ""
 
 #: includes/admin/class-wc-gzd-admin-provider-hermes.php:21
-#: includes/admin/settings/class-wc-gzd-settings-tab-shipping-provider.php:34
 msgid "Hermes"
 msgstr ""
 
@@ -8065,7 +8058,6 @@ msgid "Settings"
 msgstr ""
 
 #: includes/admin/class-wc-gzd-admin-setup-wizard.php:78
-#: includes/admin/settings/class-wc-gzd-settings-tab-shipping-provider.php:103
 msgid "Shipping Provider"
 msgstr ""
 
@@ -8267,77 +8259,77 @@ msgstr ""
 msgid "Cheating huh?"
 msgstr ""
 
-#: includes/admin/class-wc-gzd-admin.php:238
-#: includes/admin/class-wc-gzd-admin.php:285
+#: includes/admin/class-wc-gzd-admin.php:200
+#: includes/admin/class-wc-gzd-admin.php:247
 msgctxt "dhl"
 msgid "Action failed. Please refresh the page and retry."
 msgstr ""
 
-#: includes/admin/class-wc-gzd-admin.php:242
-#: includes/admin/class-wc-gzd-admin.php:289
+#: includes/admin/class-wc-gzd-admin.php:204
+#: includes/admin/class-wc-gzd-admin.php:251
 msgctxt "dhl"
 msgid "You don't have permission to do this."
 msgstr ""
 
-#: includes/admin/class-wc-gzd-admin.php:613
+#: includes/admin/class-wc-gzd-admin.php:575
 msgid "Search for a term&hellip;"
 msgstr ""
 
-#: includes/admin/class-wc-gzd-admin.php:726
+#: includes/admin/class-wc-gzd-admin.php:688
 msgid "Paid for order notification manually sent to customer."
 msgstr ""
 
-#: includes/admin/class-wc-gzd-admin.php:746
+#: includes/admin/class-wc-gzd-admin.php:708
 msgid "Order confirmation manually sent to customer."
 msgstr ""
 
-#: includes/admin/class-wc-gzd-admin.php:766
+#: includes/admin/class-wc-gzd-admin.php:728
 msgid "Resend order confirmation"
 msgstr ""
 
-#: includes/admin/class-wc-gzd-admin.php:767
+#: includes/admin/class-wc-gzd-admin.php:729
 msgid "Send paid for order notification"
 msgstr ""
 
-#: includes/admin/class-wc-gzd-admin.php:777
+#: includes/admin/class-wc-gzd-admin.php:739
 #: includes/admin/settings/abstract-wc-gzd-settings-tab.php:159
 #: includes/admin/settings/class-wc-gzd-settings-germanized.php:23
-#: includes/admin/settings/class-wc-gzd-settings-tab-shipping-provider.php:89
+#: includes/admin/settings/class-wc-gzd-settings-tab-shipments.php:31
 #: includes/admin/settings/views/html-admin-settings-tabs.php:9
 #: includes/admin/views/html-page-status-germanized.php:25
 msgid "Germanized"
 msgstr ""
 
-#: includes/admin/class-wc-gzd-admin.php:848
+#: includes/admin/class-wc-gzd-admin.php:810
 msgid "Insert delivery time name, slug or id."
 msgstr ""
 
-#: includes/admin/class-wc-gzd-admin.php:849
+#: includes/admin/class-wc-gzd-admin.php:811
 msgid "Insert product units amount."
 msgstr ""
 
-#: includes/admin/class-wc-gzd-admin.php:908
+#: includes/admin/class-wc-gzd-admin.php:870
 msgid "Optional Email Content"
 msgstr ""
 
-#: includes/admin/class-wc-gzd-admin.php:914
+#: includes/admin/class-wc-gzd-admin.php:876
 msgid "Add content which will be replacing default page content within emails."
 msgstr ""
 
-#: includes/admin/class-wc-gzd-admin.php:938
+#: includes/admin/class-wc-gzd-admin.php:900
 msgid "Cart description"
 msgstr ""
 
-#: includes/admin/class-wc-gzd-admin.php:951
+#: includes/admin/class-wc-gzd-admin.php:913
 #: includes/api/class-wc-gzd-rest-products-controller.php:556
 msgid "Defect description"
 msgstr ""
 
-#: includes/admin/class-wc-gzd-admin.php:979
+#: includes/admin/class-wc-gzd-admin.php:941
 msgid "This content will be shown as short product description within checkout and emails."
 msgstr ""
 
-#: includes/admin/class-wc-gzd-admin.php:993
+#: includes/admin/class-wc-gzd-admin.php:955
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:454
 msgid "Inform your customers about product defects. This description will be shown on top of your product description and during cart/checkout."
 msgstr ""
@@ -9877,25 +9869,13 @@ msgstr ""
 msgid "Revocation Terms Generator"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shipments.php:19
-msgid "Create shipments for your orders and improve default shipment handling."
+#: includes/admin/settings/class-wc-gzd-settings-tab-shipments.php:39
+msgid "Create shipments, improve pick & pack and manage available shipping provider."
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shipments.php:23
-msgid "Shipments"
-msgstr ""
-
-#: includes/admin/settings/class-wc-gzd-settings-tab-shipping-provider.php:22
-#: includes/admin/views/setup/dhl.php:10
-msgid "DHL"
-msgstr ""
-
-#: includes/admin/settings/class-wc-gzd-settings-tab-shipping-provider.php:47
-msgid "Manage your shipping provider integrations."
-msgstr ""
-
-#: includes/admin/settings/class-wc-gzd-settings-tab-shipping-provider.php:58
-msgid "Manage your shipping provider integrations, e.g. for %s."
+#: includes/admin/settings/class-wc-gzd-settings-tab-shipments.php:43
+msgctxt "shipments-settings-tab"
+msgid "Shipments & Shipping Provider"
 msgstr ""
 
 #: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:20
@@ -10771,6 +10751,10 @@ msgstr ""
 
 #: includes/admin/views/html-page-status-germanized.php:283
 msgid "Learn how to update outdated templates"
+msgstr ""
+
+#: includes/admin/views/setup/dhl.php:10
+msgid "DHL"
 msgstr ""
 
 #: includes/admin/views/setup/dhl.php:12
@@ -12429,11 +12413,11 @@ msgstr ""
 msgid "This E-Mail is being sent to a customer after the order has been paid."
 msgstr ""
 
-#: includes/emails/class-wc-gzd-email-customer-paid-for-order.php:55
+#: includes/emails/class-wc-gzd-email-customer-paid-for-order.php:56
 msgid "Payment received for order {order_number}"
 msgstr ""
 
-#: includes/emails/class-wc-gzd-email-customer-paid-for-order.php:65
+#: includes/emails/class-wc-gzd-email-customer-paid-for-order.php:66
 msgid "Payment received"
 msgstr ""
 
