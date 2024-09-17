@@ -127,6 +127,13 @@ class Bootstrap {
 				return admin_url( 'admin.php?page=wc-settings&tab=germanized-emails&tutorial=yes' );
 			}
 		);
+
+		add_filter(
+			'woocommerce_gzd_shipments_encryption_key_constant',
+			function() {
+				return 'WC_GZD_ENCRYPTION_KEY';
+			}
+		);
 	}
 
 	protected function load_blocks() {
