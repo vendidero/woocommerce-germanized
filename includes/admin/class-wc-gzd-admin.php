@@ -804,6 +804,14 @@ class WC_GZD_Admin {
 		);
 
 		wp_localize_script(
+			'wc-gzd-admin-product',
+			'wc_gzd_admin_product_params',
+			array(
+				'i18n_remove_attachment' => __( 'Remove', 'woocommerce-germanized' ),
+			)
+		);
+
+		wp_localize_script(
 			'wc-gzd-admin-product-variations',
 			'wc_gzd_admin_product_variations_params',
 			array(

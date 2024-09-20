@@ -92,6 +92,11 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 		public $delivery_times = null;
 
 		/**
+		 * @var WC_GZD_Manufacturers|null
+		 */
+		public $manufacturers = null;
+
+		/**
 		 * @var WC_GZD_Deposit_Types|null
 		 */
 		public $deposit_types = null;
@@ -237,6 +242,7 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 			$this->units           = new WC_GZD_Units();
 			$this->price_labels    = new WC_GZD_Price_Labels();
 			$this->delivery_times  = new WC_GZD_Delivery_Times();
+			$this->manufacturers   = new WC_GZD_Manufacturers();
 			$this->deposit_types   = new WC_GZD_Deposit_Types();
 			$this->nutrients       = new WC_GZD_Nutrients();
 			$this->allergenic      = new WC_GZD_Allergenic();
@@ -525,6 +531,7 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 				include_once WC_GERMANIZED_ABSPATH . 'includes/admin/settings/class-wc-gzd-settings-pointers.php';
 				include_once WC_GERMANIZED_ABSPATH . 'includes/admin/class-wc-gzd-admin-product-categories.php';
 				include_once WC_GERMANIZED_ABSPATH . 'includes/admin/class-wc-gzd-admin-deposit-types.php';
+				include_once WC_GERMANIZED_ABSPATH . 'includes/admin/class-wc-gzd-admin-manufacturers.php';
 			}
 
 			if ( is_admin() || defined( 'DOING_CRON' ) ) {

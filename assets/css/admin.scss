@@ -557,17 +557,39 @@ table.wc-gzd-tax-example tr th:first-child, table.wc-gzd-tax-example tr td:first
   }
 }
 
-.wc-gzd-warranty-upload-wrapper {
-  .upload_warranty_button {
-    margin-right: .5em;
+.wc-gzd-product-upload-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+
+  &.wc-gzd-product-upload-wrapper-single {
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+
+    .wc-gzd-product-upload-remove {
+      margin-left: .25em;
+    }
   }
 
-  .wc-gzd-warranty-delete {
-    color: #b32d2e;
+  .wc-gzd-product-single-attachment {
+    display: block;
+  }
 
-    &.file-missing {
-      display: none;
+  .wc-gzd-product-upload-remove {
+    text-indent: 0;
+    overflow: hidden;
+    color: #b32d2e;
+    text-decoration: none;
+    vertical-align: middle;
+    margin-right: 1em;
+
+    &::before {
+      content: "\f335";
     }
+  }
+
+  .wc-gzd-product-upload {
+    display: inline-flex;
+    align-self: flex-start;
   }
 }
 

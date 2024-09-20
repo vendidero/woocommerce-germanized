@@ -130,6 +130,57 @@ class WC_GZD_Post_Types {
 			)
 		);
 
+		// Manufacturer
+		register_taxonomy(
+			'product_manufacturer',
+			/**
+			 * Filter post types which are capable of storing manufacturers.
+			 *
+			 * @param array $post_types The post types to support `manufacturer` taxonomy.
+			 *
+			 * @since 3.18.0
+			 */
+			apply_filters( 'woocommerce_germanized_taxonomy_objects_product_manufacturer', array( 'product', 'product_variation' ) ),
+			/**
+			 * Filter to adjust arguments passed to register the `manufacturer` taxonomy.
+			 *
+			 * @param array $args Arguments passed to `register_taxonomy`.
+			 *
+			 * @since 3.18.0
+			 */
+			apply_filters(
+				'woocommerce_germanized_taxonomy_args_product_manufacturer',
+				array(
+					'hierarchical'          => false,
+					'update_count_callback' => '_wc_term_recount',
+					'label'                 => __( 'Manufacturers', 'woocommerce-germanized' ),
+					'labels'                => array(
+						'name'          => __( 'Manufacturers', 'woocommerce-germanized' ),
+						'singular_name' => __( 'Manufacturer', 'woocommerce-germanized' ),
+						'menu_name'     => _x( 'Manufacturer', 'Admin menu name', 'woocommerce-germanized' ),
+						'search_items'  => __( 'Search Manufacturers', 'woocommerce-germanized' ),
+						'all_items'     => __( 'All Manufacturers', 'woocommerce-germanized' ),
+						'edit_item'     => __( 'Edit Manufacturer', 'woocommerce-germanized' ),
+						'update_item'   => __( 'Update Manufacturer', 'woocommerce-germanized' ),
+						'add_new_item'  => __( 'Add New Manufacturer', 'woocommerce-germanized' ),
+						'new_item_name' => __( 'New Manufacturer Name', 'woocommerce-germanized' ),
+					),
+					'show_ui'               => true,
+					'query_var'             => true,
+					'public'                => false,
+					'capabilities'          => array(
+						'manage_terms' => 'manage_product_terms',
+						'edit_terms'   => 'edit_product_terms',
+						'delete_terms' => 'delete_product_terms',
+						'assign_terms' => 'assign_product_terms',
+					),
+					'rewrite'               => false,
+					'meta_box_cb'           => false,
+					'show_in_quick_edit'    => false,
+				)
+			)
+		);
+
 		// Price labels
 		register_taxonomy(
 			'product_price_label',

@@ -423,148 +423,284 @@ class WC_Germanized_Meta_Box_Product_Data {
 
 		$_gzd_product = wc_gzd_get_product( $product_object );
 		$age_select   = wc_gzd_get_age_verification_min_ages_select();
+		$manufacturer = $_gzd_product->get_manufacturer( 'edit' );
 		?>
-		<div class="options_group">
-			<div class="show_if_simple show_if_external show_if_variable">
-				<p class="wc-gzd-product-settings-subtitle">
-					<?php esc_html_e( 'Price Labeling', 'woocommerce-germanized' ); ?>
-					<a class="page-title-action" href="https://vendidero.de/dokumentation/woocommerce-germanized/preisauszeichnung"><?php esc_html_e( 'Help', 'woocommerce-germanized' ); ?></a>
-				</p>
+		<div class="options_group show_if_simple show_if_external show_if_variable">
+			<p class="wc-gzd-product-settings-subtitle">
+				<?php esc_html_e( 'Price Labeling', 'woocommerce-germanized' ); ?>
+				<a class="page-title-action" href="https://vendidero.de/dokumentation/woocommerce-germanized/preisauszeichnung"><?php esc_html_e( 'Help', 'woocommerce-germanized' ); ?></a>
+			</p>
+			<?php
+			woocommerce_wp_select(
+				array(
+					'id'          => '_sale_price_label',
+					'label'       => __( 'Strike Price Label', 'woocommerce-germanized' ),
+					'options'     => array_merge( array( '-1' => __( 'Select Price Label', 'woocommerce-germanized' ) ), WC_germanized()->price_labels->get_labels() ),
+					'desc_tip'    => true,
+					'description' => __( 'If the product is on sale you may want to show a price label right before outputting the old price to inform the customer.', 'woocommerce-germanized' ),
+				)
+			);
+			?>
+
+			<?php
+			woocommerce_wp_select(
+				array(
+					'id'          => '_sale_price_regular_label',
+					'label'       => __( 'Sale Price Label', 'woocommerce-germanized' ),
+					'options'     => array_merge( array( '-1' => __( 'Select Price Label', 'woocommerce-germanized' ) ), WC_germanized()->price_labels->get_labels() ),
+					'desc_tip'    => true,
+					'description' => __( 'If the product is on sale you may want to show a price label right before outputting the new price to inform the customer.', 'woocommerce-germanized' ),
+				)
+			);
+			?>
+			<?php
+			woocommerce_wp_select(
+				array(
+					'id'          => '_unit',
+					'label'       => __( 'Unit', 'woocommerce-germanized' ),
+					'options'     => array_merge( array( '-1' => __( 'Select unit', 'woocommerce-germanized' ) ), WC_germanized()->units->get_units() ),
+					'desc_tip'    => true,
+					'description' => __( 'Needed if selling on a per unit basis', 'woocommerce-germanized' ),
+				)
+			);
+			?>
+			<?php
+			woocommerce_wp_text_input(
+				array(
+					'id'          => '_unit_product',
+					'label'       => __( 'Product Units', 'woocommerce-germanized' ),
+					'data_type'   => 'decimal',
+					'desc_tip'    => true,
+					'description' => __( 'Number of units included per default product price. Example: 1000 ml.', 'woocommerce-germanized' ),
+				)
+			);
+			?>
+			<?php
+			woocommerce_wp_text_input(
+				array(
+					'id'          => '_unit_base',
+					'label'       => __( 'Unit Price Units', 'woocommerce-germanized' ),
+					'data_type'   => 'decimal',
+					'desc_tip'    => true,
+					'description' => __( 'Unit price units. Example unit price: 0,99 € / 100 ml. Insert 100 as unit price unit amount.', 'woocommerce-germanized' ),
+				)
+			);
+			?>
+		</div>
+		<div class="options_group show_if_simple show_if_external">
+			<?php
+			woocommerce_wp_checkbox(
+				array(
+					'id'          => '_unit_price_auto',
+					'label'       => __( 'Calculation', 'woocommerce-germanized' ),
+					'description' => '<span class="wc-gzd-premium-desc">' . __( 'Calculate unit prices automatically.', 'woocommerce-germanized' ) . '</span> <a href="https://vendidero.de/woocommerce-germanized#upgrade" target="_blank" class="wc-gzd-pro wc-gzd-pro-outlined">pro</a>',
+				)
+			);
+			?>
+			<?php
+			woocommerce_wp_text_input(
+				array(
+					'id'        => '_unit_price_regular',
+					'label'     => __( 'Regular Unit Price', 'woocommerce-germanized' ) . ' (' . get_woocommerce_currency_symbol() . ')',
+					'data_type' => 'price',
+				)
+			);
+			?>
+			<?php
+			woocommerce_wp_text_input(
+				array(
+					'id'        => '_unit_price_sale',
+					'label'     => __( 'Sale Unit Price', 'woocommerce-germanized' ) . ' (' . get_woocommerce_currency_symbol() . ')',
+					'data_type' => 'price',
+				)
+			);
+			?>
+		</div>
+
 		<?php
-
-		woocommerce_wp_select(
-			array(
-				'id'          => '_sale_price_label',
-				'label'       => __( 'Strike Price Label', 'woocommerce-germanized' ),
-				'options'     => array_merge( array( '-1' => __( 'Select Price Label', 'woocommerce-germanized' ) ), WC_germanized()->price_labels->get_labels() ),
-				'desc_tip'    => true,
-				'description' => __( 'If the product is on sale you may want to show a price label right before outputting the old price to inform the customer.', 'woocommerce-germanized' ),
-			)
-		);
-
-		woocommerce_wp_select(
-			array(
-				'id'          => '_sale_price_regular_label',
-				'label'       => __( 'Sale Price Label', 'woocommerce-germanized' ),
-				'options'     => array_merge( array( '-1' => __( 'Select Price Label', 'woocommerce-germanized' ) ), WC_germanized()->price_labels->get_labels() ),
-				'desc_tip'    => true,
-				'description' => __( 'If the product is on sale you may want to show a price label right before outputting the new price to inform the customer.', 'woocommerce-germanized' ),
-			)
-		);
-
-		woocommerce_wp_select(
-			array(
-				'id'          => '_unit',
-				'label'       => __( 'Unit', 'woocommerce-germanized' ),
-				'options'     => array_merge( array( '-1' => __( 'Select unit', 'woocommerce-germanized' ) ), WC_germanized()->units->get_units() ),
-				'desc_tip'    => true,
-				'description' => __( 'Needed if selling on a per unit basis', 'woocommerce-germanized' ),
-			)
-		);
-
-		woocommerce_wp_text_input(
-			array(
-				'id'          => '_unit_product',
-				'label'       => __( 'Product Units', 'woocommerce-germanized' ),
-				'data_type'   => 'decimal',
-				'desc_tip'    => true,
-				'description' => __( 'Number of units included per default product price. Example: 1000 ml.', 'woocommerce-germanized' ),
-			)
-		);
-
-		woocommerce_wp_text_input(
-			array(
-				'id'          => '_unit_base',
-				'label'       => __( 'Unit Price Units', 'woocommerce-germanized' ),
-				'data_type'   => 'decimal',
-				'desc_tip'    => true,
-				'description' => __( 'Unit price units. Example unit price: 0,99 € / 100 ml. Insert 100 as unit price unit amount.', 'woocommerce-germanized' ),
-			)
-		);
-
-		echo '</div>';
-
-		echo '<div class="show_if_simple show_if_external">';
-
-		woocommerce_wp_checkbox(
-			array(
-				'id'          => '_unit_price_auto',
-				'label'       => __( 'Calculation', 'woocommerce-germanized' ),
-				'description' => '<span class="wc-gzd-premium-desc">' . __( 'Calculate unit prices automatically.', 'woocommerce-germanized' ) . '</span> <a href="https://vendidero.de/woocommerce-germanized#upgrade" target="_blank" class="wc-gzd-pro wc-gzd-pro-outlined">pro</a>',
-			)
-		);
-
-		woocommerce_wp_text_input(
-			array(
-				'id'        => '_unit_price_regular',
-				'label'     => __( 'Regular Unit Price', 'woocommerce-germanized' ) . ' (' . get_woocommerce_currency_symbol() . ')',
-				'data_type' => 'price',
-			)
-		);
-
-		woocommerce_wp_text_input(
-			array(
-				'id'        => '_unit_price_sale',
-				'label'     => __( 'Sale Unit Price', 'woocommerce-germanized' ) . ' (' . get_woocommerce_currency_symbol() . ')',
-				'data_type' => 'price',
-			)
-		);
-
-		echo '</div></div>';
-
-		if ( $product_object->is_virtual() ) {
-
+		if ( $product_object->is_virtual() ) :
 			// Show delivery time selection fallback if is virtual but delivery time should be visible on product
 			$types = get_option( 'woocommerce_gzd_display_delivery_time_hidden_types', array() );
 
-			if ( ! in_array( 'virtual', $types, true ) ) {
+			if ( ! in_array( 'virtual', $types, true ) ) :
 				// Remove default delivery time selection - otherwise input would exist 2 times
 				remove_action( 'woocommerce_product_options_shipping', array( __CLASS__, 'output_shipping' ), 10 );
 				self::output_shipping();
+			endif;
+		endif;
+		?>
+
+		<div class="options_group show_if_simple show_if_external show_if_variable show_if_booking">
+			<?php
+			woocommerce_wp_select(
+				array(
+					'id'          => '_min_age',
+					'label'       => __( 'Minimum Age', 'woocommerce-germanized' ),
+					'desc_tip'    => true,
+					'description' => __( 'Adds an age verification checkbox while purchasing this product.', 'woocommerce-germanized' ),
+					'options'     => $age_select,
+				)
+			);
+			?>
+			<?php
+			woocommerce_wp_text_input(
+				array(
+					'id'          => '_gtin',
+					'value'       => $_gzd_product->get_gtin( 'edit' ),
+					'label'       => __( 'GTIN', 'woocommerce-germanized' ),
+					'data_type'   => 'text',
+					'desc_tip'    => true,
+					'description' => __( 'Your product\'s Global Trade Item Number that allows your products to be identified worldwide.', 'woocommerce-germanized' ),
+				)
+			);
+			?>
+			<?php
+			woocommerce_wp_text_input(
+				array(
+					'id'          => '_mpn',
+					'value'       => $_gzd_product->get_mpn( 'edit' ),
+					'label'       => __( 'MPN', 'woocommerce-germanized' ),
+					'data_type'   => 'text',
+					'desc_tip'    => true,
+					'description' => __( 'Your product\'s Manufacturer Part Number.', 'woocommerce-germanized' ),
+				)
+			);
+			?>
+		</div>
+
+		<div class="options_group show_if_simple show_if_variable show_if_external">
+			<p class="form-field" id="warranty_attachment">
+				<label for="upload_warranty_button"><?php esc_html_e( 'Warranty (PDF)', 'woocommerce-germanized' ); ?></label>
+
+				<?php
+				self::upload_field(
+					array(
+						'file_types'     => array( 'application/pdf' ),
+						'name'           => '_warranty_attachment_id',
+						'id'             => 'warrenty_attachment_id',
+						'attachment_ids' => $_gzd_product->get_warranty_attachment_id( 'edit' ),
+						'upload_update'  => __( 'Select warranty file', 'woocommerce-germanized' ),
+					)
+				);
+				?>
+			</p>
+		</div>
+
+		<div class="options_group show_if_simple show_if_variable show_if_external">
+			<p class="wc-gzd-product-settings-subtitle">
+				<?php esc_html_e( 'Product safety', 'woocommerce-germanized' ); ?>
+				<a class="page-title-action" href="https://vendidero.de/dokumentation/woocommerce-germanized/preisauszeichnung"><?php esc_html_e( 'Help', 'woocommerce-germanized' ); ?></a>
+			</p>
+
+			<p class="form-field">
+				<label for="_manufacturer_slug"><?php esc_html_e( 'Manufacturer', 'woocommerce-germanized' ); ?></label>
+				<?php self::manufacturer_select_field( array( 'term' => $manufacturer ) ); ?>
+			</p>
+
+			<p class="form-field wc-gzd-product-upload-wrapper" id="safety_attachments">
+				<label for="upload_safety_attachment_ids"><?php esc_html_e( 'Safety documents', 'woocommerce-germanized' ); ?></label>
+
+				<?php
+				self::upload_field(
+					array(
+						'file_types'     => array( 'application/pdf', 'image' ),
+						'name'           => '_safety_attachment_ids[]',
+						'id'             => 'safety_attachment_ids',
+						'multiple'       => true,
+						'attachment_ids' => $_gzd_product->get_safety_attachment_ids( 'edit' ),
+					)
+				);
+				?>
+			</p>
+		</div>
+		<?php
+	}
+
+	public static function manufacturer_select_field( $args = array() ) {
+		$args       = wp_parse_args(
+			$args,
+			array(
+				'name'        => '_manufacturer_slug',
+				'placeholder' => __( 'Search for a manufacturer&hellip;', 'woocommerce-germanized' ),
+				'term'        => false,
+				'id'          => '',
+				'style'       => 'width: 50%',
+			)
+		);
+		$args['id'] = empty( $args['id'] ) ? $args['name'] : $args['id'];
+		?>
+		<select
+				class="wc-product-search wc-gzd-manufacturer-search" style="<?php echo esc_attr( $args['style'] ); ?>"
+				id="<?php echo esc_attr( $args['id'] ); ?>" name="<?php echo esc_attr( $args['name'] ); ?>"
+				data-minimum_input_length="1" data-allow_clear="true"
+				data-placeholder="<?php echo esc_attr( $args['placeholder'] ); ?>"
+				data-action="woocommerce_gzd_json_search_manufacturer" data-multiple="false"
+		>
+			<?php
+			if ( $args['term'] ) {
+				echo '<option value="' . esc_attr( $args['term']->term_id ) . '"' . selected( true, true, false ) . '>' . esc_html( $args['term']->name ) . '</option>';
 			}
+			?>
+		</select>
+		<?php
+	}
+
+	public static function upload_field( $args = array() ) {
+		$args                   = wp_parse_args(
+			$args,
+			array(
+				'name'                 => '',
+				'attachment_ids'       => array(),
+				'file_types'           => array( 'image' ),
+				'multiple'             => false,
+				'id'                   => '',
+				'upload_default_label' => __( 'Choose file', 'woocommerce-germanized' ),
+				'upload_choose'        => __( 'Choose file', 'woocommerce-germanized' ),
+				'upload_update'        => __( 'Select file', 'woocommerce-germanized' ),
+			)
+		);
+		$args['attachment_ids'] = array_filter( ! is_array( $args['attachment_ids'] ) ? array( $args['attachment_ids'] ) : $args['attachment_ids'] );
+		$args['id']             = empty( $args['id'] ) ? $args['name'] : $args['id'];
+		$attachments            = array();
+
+		foreach ( $args['attachment_ids'] as $attachment_id ) {
+			$filename = __( 'Not available', 'woocommerce-germanized' );
+
+			if ( $file = get_attached_file( $attachment_id ) ) {
+				$filename = basename( $file );
+			}
+
+			$attachments[] = array(
+				'ID'       => $attachment_id,
+				'filename' => $filename,
+			);
 		}
+		?>
+		<span class="wc-gzd-product-upload-wrapper wc-gzd-product-upload-wrapper-<?php echo ( $args['multiple'] ? 'multiple' : 'single' ); ?>">
+			<span class="wc-gzd-product-upload-attachments">
+				<?php foreach ( $attachments as $attachment ) : ?>
+					<span class="wc-gzd-product-single-attachment" data-attachment_id="<?php echo esc_attr( $attachment['ID'] ); ?>">
+						<?php echo esc_html( $args['multiple'] ? $attachment['filename'] : '' ); ?>
+						<input type="hidden" name="<?php echo esc_attr( $args['name'] ); ?>" value="<?php echo esc_attr( $attachment['ID'] ); ?>" />
+						<a href="#" class="dashicons dashicons-no-alt wc-gzd-product-upload-remove"><?php esc_html_e( 'Remove', 'woocommerce-germanized' ); ?></a>
+					</span>
+				<?php endforeach; ?>
+			</span>
 
-		echo '<div class="options_group show_if_simple show_if_external show_if_variable show_if_booking">';
-
-		woocommerce_wp_select(
-			array(
-				'id'          => '_min_age',
-				'label'       => __( 'Minimum Age', 'woocommerce-germanized' ),
-				'desc_tip'    => true,
-				'description' => __( 'Adds an age verification checkbox while purchasing this product.', 'woocommerce-germanized' ),
-				'options'     => $age_select,
-			)
-		);
-
-		woocommerce_wp_text_input(
-			array(
-				'id'          => '_gtin',
-				'value'       => $_gzd_product->get_gtin( 'edit' ),
-				'label'       => __( 'GTIN', 'woocommerce-germanized' ),
-				'data_type'   => 'text',
-				'desc_tip'    => true,
-				'description' => __( 'Your product\'s Global Trade Item Number that allows your products to be identified worldwide.', 'woocommerce-germanized' ),
-			)
-		);
-
-		woocommerce_wp_text_input(
-			array(
-				'id'          => '_mpn',
-				'value'       => $_gzd_product->get_mpn( 'edit' ),
-				'label'       => __( 'MPN', 'woocommerce-germanized' ),
-				'data_type'   => 'text',
-				'desc_tip'    => true,
-				'description' => __( 'Your product\'s Manufacturer Part Number.', 'woocommerce-germanized' ),
-			)
-		);
-
-		echo '</div>';
-
-		echo '<div class="options_group show_if_simple show_if_variable show_if_external">';
-
-		self::output_warranty_upload();
-
-		echo '</div>';
+			<a href="#"
+				class="button wc-gzd-product-upload"
+				id="upload_<?php echo esc_attr( $args['id'] ); ?>"
+				data-multiple="<?php echo esc_attr( $args['multiple'] ); ?>"
+				data-types="<?php echo esc_attr( implode( ',', $args['file_types'] ) ); ?>"
+				data-input_name="<?php echo esc_attr( $args['name'] ); ?>"
+				data-default_label="<?php echo esc_attr( $args['upload_default_label'] ); ?>"
+				data-choose="<?php echo esc_attr( $args['upload_choose'] ); ?>"
+				data-update="<?php echo esc_attr( $args['upload_update'] ); ?>"
+			>
+				<?php echo ( ! $args['multiple'] && ! empty( $attachments ) ? esc_html( $attachments[0]['filename'] ) : ( ! empty( $attachments ) ? esc_html( $args['upload_choose'] ) : esc_html( $args['upload_default_label'] ) ) ); ?>
+			</a>
+		</span>
+		<?php
 	}
 
 	public static function output_delivery_time_select2( $args = array() ) {
@@ -631,20 +767,6 @@ class WC_Germanized_Meta_Box_Product_Data {
 					'description' => __( 'This option disables the "plus shipping costs" notice on product page', 'woocommerce-germanized' ),
 				)
 			);
-	}
-
-	public static function output_warranty_upload() {
-		global $post, $thepostid, $product_object;
-
-		$gzd_product = wc_gzd_get_product( $product_object );
-		?>
-		<p class="form-field wc-gzd-warranty-upload-wrapper">
-			<label for="upload_warranty_button"><?php esc_html_e( 'Warranty (PDF)', 'woocommerce-germanized' ); ?></label>
-			<a href="#" class="button upload_warranty_button" data-default-label="<?php echo esc_html__( 'Choose file', 'woocommerce-germanized' ); ?>" data-choose="<?php esc_attr_e( 'Choose file', 'woocommerce-germanized' ); ?>" data-update="<?php esc_attr_e( 'Select warranty file', 'woocommerce-germanized' ); ?>"><?php echo ( $gzd_product->has_warranty() ? esc_html( $gzd_product->get_warranty_filename() ) : esc_html__( 'Choose file', 'woocommerce-germanized' ) ); ?></a>
-			<input type="hidden" name="_warranty_attachment_id" value="<?php echo ( $gzd_product->has_warranty() ? esc_attr( $gzd_product->get_warranty_attachment_id() ) : '' ); ?>" class="wc-gzd-warranty-attachment" />
-			<a href="#" class="wc-gzd-warranty-delete <?php echo ( ! $gzd_product->has_warranty() ? 'file-missing' : '' ); ?>"><?php esc_html_e( 'Delete', 'woocommerce-germanized' ); ?></a>
-		</p>
-		<?php
 	}
 
 	public static function get_available_delivery_time_countries() {
@@ -766,12 +888,14 @@ class WC_Germanized_Meta_Box_Product_Data {
 			'_unit_price_regular'                       => '',
 			'_unit_price_sale'                          => '',
 			'_deposit_type'                             => '',
+			'_manufacturer_slug'                        => '',
 			'_deposit_quantity'                         => '',
 			'_sale_price_label'                         => '',
 			'_sale_price_regular_label'                 => '',
 			'_mini_desc'                                => '',
 			'_defect_description'                       => '',
 			'_warranty_attachment_id'                   => '',
+			'_safety_attachment_ids'                    => '',
 			'_gtin'                                     => '',
 			'_mpn'                                      => '',
 			'delivery_time'                             => '',
@@ -849,6 +973,13 @@ class WC_Germanized_Meta_Box_Product_Data {
 
 		foreach ( $data as $k => $v ) {
 			$data[ $k ] = self::get_sanitized_field_value( $k, ( isset( $_POST[ $k ] ) ? $_POST[ $k ] : null ) ); // phpcs:ignore WordPress.Security.NonceVerification.Missing,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized,WordPress.Security.ValidatedSanitizedInput.MissingUnslash
+		}
+
+		/**
+		 * Fill missing data in case reset via selection clearance.
+		 */
+		if ( ! isset( $data['_manufacturer_slug'] ) ) {
+			$data['_manufacturer_slug'] = -1;
 		}
 
 		$data['save'] = false;
@@ -1099,9 +1230,14 @@ class WC_Germanized_Meta_Box_Product_Data {
 
 		$gzd_product  = wc_gzd_get_product( $product );
 		$product_type = ( ! isset( $data['product-type'] ) || empty( $data['product-type'] ) ) ? 'simple' : sanitize_title( stripslashes( $data['product-type'] ) );
-		$term_selects = array( '_sale_price_label', '_sale_price_regular_label', '_deposit_type' );
+		$term_selects = array(
+			'_sale_price_label'         => 'product_price_label',
+			'_sale_price_regular_label' => 'product_price_label',
+			'_deposit_type'             => 'product_deposit_type',
+			'_manufacturer_slug'        => 'product_manufacturer',
+		);
 
-		foreach ( $term_selects as $term_select ) {
+		foreach ( $term_selects as $term_select => $taxonomy ) {
 			if ( isset( $data[ $term_select ] ) ) {
 				$setter = "set{$term_select}";
 
@@ -1115,7 +1251,7 @@ class WC_Germanized_Meta_Box_Product_Data {
 						 * Convert term ids to slugs
 						 */
 						if ( is_numeric( $term ) ) {
-							$term_data = get_term_by( 'id', absint( $term ), ( '_deposit_type' === $term_select ? 'product_deposit_type' : 'product_price_label' ) );
+							$term_data = get_term_by( 'id', absint( $term ), $taxonomy );
 
 							if ( ! is_wp_error( $term_data ) ) {
 								$term = $term_data->slug;
@@ -1205,6 +1341,28 @@ class WC_Germanized_Meta_Box_Product_Data {
 			}
 		} else {
 			$gzd_product->set_warranty_attachment_id( 0 );
+		}
+
+		$safety_attachment_ids = isset( $data['_safety_attachment_ids'] ) ? array_map( 'absint', (array) $data['_safety_attachment_ids'] ) : array();
+
+		if ( ! empty( $safety_attachment_ids ) ) {
+			$new_safety_attachment_ids = array();
+
+			foreach ( $safety_attachment_ids as $safety_attachment_id ) {
+				if ( $safety_attachment = get_post( $safety_attachment_id ) ) {
+					if ( $file_url = wp_get_attachment_url( $safety_attachment_id ) ) {
+						$filetype = wp_check_filetype( $file_url );
+
+						if ( 'application/pdf' === $filetype['type'] || str_starts_with( $filetype['type'], 'image/' ) ) {
+							$new_safety_attachment_ids[] = $safety_attachment_id;
+						}
+					}
+				}
+			}
+
+			$gzd_product->set_safety_attachment_ids( $new_safety_attachment_ids );
+		} else {
+			$gzd_product->set_safety_attachment_ids( array() );
 		}
 
 		if ( isset( $data['_min_age'] ) && array_key_exists( (int) $data['_min_age'], wc_gzd_get_age_verification_min_ages() ) ) {

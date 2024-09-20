@@ -22,6 +22,7 @@ class WC_GZD_AJAX {
 			'gzd_refresh_unit_price'            => true,
 			'gzd_refresh_cart_vouchers'         => true,
 			'gzd_json_search_delivery_time'     => false,
+			'gzd_json_search_manufacturer'      => false,
 			'gzd_legal_checkboxes_save_changes' => false,
 			'gzd_toggle_tab_enabled'            => false,
 			'gzd_install_extension'             => false,
@@ -220,6 +221,38 @@ class WC_GZD_AJAX {
 		}
 
 		$query = get_terms( 'product_delivery_time', $args );
+		if ( ! empty( $query ) ) {
+			foreach ( $query as $term ) {
+				$terms[ $term->term_id ] = rawurldecode( $term->name );
+			}
+		} else {
+			$terms[ rawurldecode( $term ) ] = rawurldecode( sprintf( __( '%s [new]', 'woocommerce-germanized' ), $term ) );
+		}
+		wp_send_json( $terms );
+	}
+
+	public static function gzd_json_search_manufacturer() {
+		ob_start();
+
+		check_ajax_referer( 'search-products', 'security' );
+		$term  = isset( $_GET['term'] ) ? (string) wc_clean( wp_unslash( $_GET['term'] ) ) : '';
+		$terms = array();
+
+		if ( empty( $term ) ) {
+			die();
+		}
+
+		$args = array(
+			'hide_empty' => false,
+		);
+
+		if ( is_numeric( $term ) ) {
+			$args['include'] = array( absint( $term ) );
+		} else {
+			$args['name__like'] = (string) $term;
+		}
+
+		$query = get_terms( 'product_manufacturer', $args );
 		if ( ! empty( $query ) ) {
 			foreach ( $query as $term ) {
 				$terms[ $term->term_id ] = rawurldecode( $term->name );

@@ -30,6 +30,13 @@ class WC_GZD_Product {
 
 	protected $warranty_attachment = false;
 
+	protected $safety_attachments = array();
+
+	/**
+	 * @var null|WP_Term
+	 */
+	protected $manufacturer = null;
+
 	protected $allergenic = null;
 
 	protected $nutrients = null;
@@ -301,6 +308,77 @@ class WC_GZD_Product {
 		}
 
 		return $this->deposit_type;
+	}
+
+	/**
+	 * @param $context
+	 *
+	 * @return false|WC_GZD_Manufacturer
+	 */
+	public function get_manufacturer( $context = 'view' ) {
+		if ( is_null( $this->manufacturer ) ) {
+			$this->manufacturer = false;
+			$slug               = $this->get_manufacturer_slug( $context );
+
+			if ( ! empty( $slug ) ) {
+				$this->manufacturer = wc_gzd_get_manufacturer( $slug );
+			}
+		}
+
+		return $this->manufacturer;
+	}
+
+	public function get_manufacturer_slug( $context = 'view' ) {
+		return $this->get_prop( 'manufacturer_slug', $context );
+	}
+
+	public function set_manufacturer_slug( $slug ) {
+		$this->manufacturer = null;
+
+		$this->set_prop( 'manufacturer_slug', $slug );
+	}
+
+	public function get_safety_attachment_ids( $context = 'view' ) {
+		return array_filter( (array) $this->get_prop( 'safety_attachment_ids', $context ) );
+	}
+
+	public function set_safety_attachment_ids( $ids ) {
+		$this->set_prop( 'safety_attachment_ids', array_unique( array_map( 'intval', $ids ) ) );
+		$this->safety_attachments = array();
+	}
+
+	public function get_safety_attachment( $id, $context = 'view' ) {
+		if ( $post = get_post( $id ) ) {
+			$this->safety_attachments[ $id ] = $post;
+
+			return $this->safety_attachments[ $id ];
+		}
+
+		return false;
+	}
+
+	public function get_safety_file( $id, $context = 'view' ) {
+		if ( $attachment = $this->get_safety_attachment( $id, $context ) ) {
+			return get_attached_file( $attachment->ID );
+		}
+
+		return false;
+	}
+
+	public function get_safety_url( $id, $context = 'view' ) {
+		if ( $attachment = $this->get_safety_attachment( $id, $context ) ) {
+			return wp_get_attachment_url( $attachment->ID );
+		}
+
+		return false;
+	}
+
+	public function get_safety_filename( $id, $context = 'view' ) {
+		if ( $file = $this->get_safety_file( $id, $context ) ) {
+			return basename( $file );
+		}
+
+		return false;
 	}
 
 	public function get_deposit_type( $context = 'view' ) {
@@ -2121,8 +2199,7 @@ class WC_GZD_Product {
 
 	public function save() {
 		/**
-		 * Update delivery time term slugs if they have been explicitly set during the
-		 * save request.
+		 * Update delivery time term slugs if they have been explicitly set during the save request.
 		 */
 		$slugs = $this->get_delivery_time_slugs( 'save' );
 		$id    = false;
@@ -2152,6 +2229,41 @@ class WC_GZD_Product {
 			wp_set_post_terms( $this->get_wc_product()->get_id(), array( $deposit_type->slug ), 'product_deposit_type', false );
 		} elseif ( taxonomy_exists( 'product_deposit_type' ) ) {
 			wp_delete_object_term_relationships( $this->get_wc_product()->get_id(), 'product_deposit_type' );
+		}
+
+		/**
+		 * Update manufacturer term relationships, maybe create manufacture if he does not yet exist.
+		 */
+		if ( $manufacturer_slug = $this->get_manufacturer_slug( 'edit' ) ) {
+			wp_set_post_terms( $this->get_wc_product()->get_id(), array( sanitize_title( $manufacturer_slug ) ), 'product_manufacturer', false );
+		} elseif ( taxonomy_exists( 'product_manufacturer' ) ) {
+			wp_delete_object_term_relationships( $this->get_wc_product()->get_id(), 'product_manufacturer' );
+		}
+
+		/**
+		 * Update unit term relationships
+		 */
+		if ( $unit = $this->get_unit_term( 'edit' ) ) {
+			wp_set_post_terms( $this->get_wc_product()->get_id(), array( $unit->slug ), 'product_unit', false );
+		} elseif ( taxonomy_exists( 'product_unit' ) ) {
+			wp_delete_object_term_relationships( $this->get_wc_product()->get_id(), 'product_unit' );
+		}
+
+		$labels = array_filter( array( $this->get_sale_price_label_term( 'edit' ), $this->get_sale_price_regular_label_term( 'edit' ) ) );
+
+		/**
+		 * Update price label term relationships
+		 */
+		if ( ! empty( $labels ) ) {
+			$slugs = array();
+
+			foreach ( $labels as $label ) {
+				$slugs[] = $label->slug;
+			}
+
+			wp_set_post_terms( $this->get_wc_product()->get_id(), $slugs, 'product_price_label', false );
+		} elseif ( taxonomy_exists( 'product_price_label' ) ) {
+			wp_delete_object_term_relationships( $this->get_wc_product()->get_id(), 'product_price_label' );
 		}
 	}
 }

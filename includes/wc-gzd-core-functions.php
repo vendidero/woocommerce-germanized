@@ -47,7 +47,6 @@ function wc_gzd_get_dependencies( $instance = null ) {
 }
 
 function wc_gzd_post_has_woocommerce_block( $post_content ) {
-
 	if ( ! function_exists( 'has_blocks' ) ) {
 		return false;
 	}
@@ -300,6 +299,25 @@ function wc_gzd_format_tax_rate_percentage( $rate, $percent = false ) {
 
 function wc_gzd_format_alcohol_content( $alcohol_content ) {
 	return apply_filters( 'woocommerce_gzd_formatted_alcohol_content', sprintf( '%1$s %% vol', wc_gzd_format_food_attribute_value( $alcohol_content, array( 'attribute_type' => 'alcohol_content' ) ) ) );
+}
+
+/**
+ * @param WP_Term|integer|string $term
+ *
+ * @return WC_GZD_Manufacturer|null
+ */
+function wc_gzd_get_manufacturer( $term ) {
+	if ( is_numeric( $term ) ) {
+		$term = WC_germanized()->manufacturers->get_manufacturer_term( $term, 'id' );
+	} elseif ( is_string( $term ) ) {
+		$term = WC_germanized()->manufacturers->get_manufacturer_term( $term );
+	}
+
+	if ( ! is_a( $term, 'WP_Term' ) || 'product_manufacturer' !== $term->taxonomy ) {
+		return null;
+	}
+
+	return new WC_GZD_Manufacturer( $term );
 }
 
 function wc_gzd_format_food_attribute_value( $decimal, $args = array() ) {

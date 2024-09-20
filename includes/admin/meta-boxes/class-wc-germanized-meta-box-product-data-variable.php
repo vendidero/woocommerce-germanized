@@ -205,6 +205,7 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 		$gzd_product               = wc_gzd_get_product( $_product );
 		$_parent                   = wc_get_product( $_product->get_parent_id() );
 		$gzd_parent_product        = wc_gzd_get_product( $_parent );
+		$manufacturer              = $gzd_product->get_manufacturer( 'edit' );
 		$delivery_time             = $gzd_product->get_delivery_time( 'edit' );
 		$countries_left            = WC_Germanized_Meta_Box_Product_Data::get_available_delivery_time_countries();
 		$delivery_times            = $gzd_product->get_delivery_times( 'edit' );
@@ -381,6 +382,44 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 			<?php endif; ?>
 		</div>
 
+		<div class="variable_product_safety">
+			<p class="wc-gzd-product-settings-subtitle">
+				<?php esc_html_e( 'Product Safety', 'woocommerce-germanized' ); ?>
+			</p>
+
+			<p class="form-row form-row-full">
+				<label for="delivery_time"><?php esc_html_e( 'Manufacturer', 'woocommerce-germanized' ); ?></label>
+				<?php
+				WC_Germanized_Meta_Box_Product_Data::manufacturer_select_field(
+					array(
+						'name'        => "variable_manufacture_slug[{$loop}]",
+						'id'          => "variable_manufacture_slug_{$loop}",
+						'placeholder' => __( 'Same as parent', 'woocommerce-germanized' ),
+						'term'        => $manufacturer,
+						'style'       => 'width: 100%',
+					)
+				);
+				?>
+			</p>
+
+			<p class="form-row form-row-full">
+				<label><?php esc_html_e( 'Safety documents', 'woocommerce-germanized' ); ?></label>
+
+				<?php
+				WC_Germanized_Meta_Box_Product_Data::upload_field(
+					array(
+						'upload_default_label' => __( 'Same as parent', 'woocommerce-germanized' ),
+						'file_types'           => array( 'application/pdf', 'image' ),
+						'multiple'             => true,
+						'name'                 => 'variable_safety_attachment_ids[' . esc_attr( $loop ) . '][]',
+						'id'                   => 'variable_safety_attachment_ids_' . $loop,
+						'attachment_ids'       => $gzd_product->get_safety_attachment_ids( 'edit' ),
+					)
+				);
+				?>
+			</p>
+		</div>
+
 		<div class="variable_additional_fields">
 			<p class="wc-gzd-product-settings-subtitle">
 				<?php esc_html_e( 'Additional Fields', 'woocommerce-germanized' ); ?>
@@ -436,9 +475,19 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 			<div class="variable_warranty_attachment">
 				<p class="form-row form-row-full wc-gzd-warranty-upload-wrapper">
 					<label><?php esc_html_e( 'Warranty (PDF)', 'woocommerce-germanized' ); ?></label>
-					<a href="#" class="button upload_warranty_button" data-default-label="<?php echo esc_html__( 'Same as parent', 'woocommerce-germanized' ); ?>" data-choose="<?php esc_attr_e( 'Choose file', 'woocommerce-germanized' ); ?>" data-update="<?php esc_attr_e( 'Select warranty file', 'woocommerce-germanized' ); ?>"><?php echo ( $gzd_product->has_warranty( 'edit' ) ? esc_html( $gzd_product->get_warranty_filename() ) : esc_html__( 'Same as parent', 'woocommerce-germanized' ) ); ?></a>
-					<input type="hidden" name="variable_warranty_attachment_id[<?php echo esc_attr( $loop ); ?>]" value="<?php echo ( $gzd_product->has_warranty( 'edit' ) ? esc_html( $gzd_product->get_warranty_attachment_id( 'edit' ) ) : '' ); ?>" class="wc-gzd-warranty-attachment" />
-					<a href="#" class="wc-gzd-warranty-delete <?php echo ( ! $gzd_product->has_warranty( 'edit' ) ? 'file-missing' : '' ); ?>"><?php esc_html_e( 'Delete', 'woocommerce-germanized' ); ?></a>
+
+					<?php
+					WC_Germanized_Meta_Box_Product_Data::upload_field(
+						array(
+							'upload_default_label' => __( 'Same as parent', 'woocommerce-germanized' ),
+							'file_types'           => array( 'application/pdf' ),
+							'name'                 => 'variable_warranty_attachment_id[' . esc_attr( $loop ) . ']',
+							'id'                   => 'variable_warranty_attachment_id_' . $loop,
+							'attachment_ids'       => $gzd_product->get_warranty_attachment_id( 'edit' ),
+							'upload_update'        => __( 'Select warranty file', 'woocommerce-germanized' ),
+						)
+					);
+					?>
 				</p>
 			</div>
 
@@ -517,6 +566,7 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 			'_unit_price_auto'                          => '',
 			'_unit_price_regular'                       => '',
 			'_deposit_type'                             => '',
+			'_manufacturer_slug'                        => '',
 			'_deposit_quantity'                         => '',
 			'_sale_price_label'                         => '',
 			'_sale_price_regular_label'                 => '',
@@ -534,6 +584,7 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 			'_min_age'                                  => '',
 			'_gtin'                                     => '',
 			'_mpn'                                      => '',
+			'_safety_attachment_ids'                    => '',
 			'_warranty_attachment_id'                   => '',
 			'_nutrient_ids'                             => '',
 			'_nutrient_reference_value'                 => '',

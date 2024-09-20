@@ -42,6 +42,8 @@ class WC_GZD_Product_Variation extends WC_GZD_Product {
 		'default_delivery_time',
 		'delivery_time_countries',
 		'warranty_attachment_id',
+		'manufacturer_slug',
+		'safety_attachment_ids',
 		'gtin',
 		'mpn',
 		'deposit_type',
