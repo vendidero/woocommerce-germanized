@@ -103,6 +103,8 @@ class WC_GZD_Products_API extends WC_GZD_REST_Unit_Test_Case {
 		$nutrient_2 = wp_insert_term( 'Natrium', 'product_nutrient', array( 'slug' => 'natrium' ) );
 		$allergen   = wp_insert_term( 'Nut', 'product_allergen', array( 'slug' => 'nut' ) );
 
+		var_dump($manufacturer);
+
 		// Create simple.
 		$request = new WP_REST_Request( 'POST', '/wc/v3/products' );
 		$request->set_body_params(
@@ -160,7 +162,9 @@ class WC_GZD_Products_API extends WC_GZD_REST_Unit_Test_Case {
 		);
 
 		$response = $this->server->dispatch( $request );
+		var_dump($response);
 		$data     = $response->get_data();
+		var_dump($data);
 
 		$this->assertEquals( 'test-sale', $data['sale_price_label']['slug'] );
 		$this->assertEquals( '3-4-days', $data['delivery_time']['slug'] );

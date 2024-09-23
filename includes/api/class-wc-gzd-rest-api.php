@@ -75,6 +75,7 @@ class WC_GZD_REST_API {
 				'WC_GZD_REST_Product_Deposit_Types_Controller',
 				'WC_GZD_REST_Product_Units_V1_Controller',
 				'WC_GZD_REST_Product_Units_Controller',
+				'WC_GZD_REST_Product_Manufacturers_Controller',
 				'WC_GZD_REST_Customers_Controller',
 				'WC_GZD_REST_Orders_Controller',
 				'WC_GZD_REST_Products_Controller',

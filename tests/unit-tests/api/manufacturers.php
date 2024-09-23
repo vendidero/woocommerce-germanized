@@ -24,7 +24,7 @@ class WC_GZD_Manufacturers_API extends WC_GZD_REST_Unit_Test_Case {
 	 *
 	 * @since 3.9.0
 	 */
-	public function test_get_deposit_type() {
+	public function test_get_manufacturer() {
 		wp_set_current_user( $this->user );
 
 		$term = wp_insert_term( 'vendidero', 'product_manufacturer' );
