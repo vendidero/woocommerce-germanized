@@ -868,6 +868,19 @@ class WC_GZD_REST_Products_Controller {
 			$data['_warranty_attachment_id'] = $gzd_product->get_warranty_attachment_id();
 		}
 
+		/**
+		 * Do only remove warranty attachment id in case explicitly passed as empty value
+		 */
+		if ( isset( $request['safety_attachment_ids'] ) ) {
+			if ( empty( $request['safety_attachment_ids'] ) ) {
+				$data['_safety_attachment_ids'] = array();
+			} else {
+				$data['_safety_attachment_ids'] = array_filter( array_map( 'absint', (array) $request['safety_attachment_ids'] ) );
+			}
+		} else {
+			$data['_safety_attachment_ids'] = $gzd_product->get_safety_attachment_ids();
+		}
+
 		foreach ( array( 'free_shipping', 'service', 'differential_taxation', 'used_good', 'defective_copy', 'is_food', 'photovoltaic_system' ) as $bool_meta ) {
 			if ( isset( $request[ $bool_meta ] ) ) {
 				if ( ! empty( $request[ $bool_meta ] ) ) {
