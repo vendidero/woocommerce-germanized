@@ -69,7 +69,7 @@ class WC_GZD_Helper_Product {
 		return $term;
 	}
 
-	public static function create_attachment( $name = 'woocommerce-placeholder' ) {
+	public static function create_attachment( $name = 'woocommerce-placeholder', $file_type = '' ) {
 		$attachment = get_page_by_path( $name, 'OBJECT', 'attachment' );
 
 		if ( ! is_a( $attachment, 'WP_Post' ) ) {
@@ -81,10 +81,10 @@ class WC_GZD_Helper_Product {
 				copy( $source, $filename ); // @codingStandardsIgnoreLine.
 			}
 
-			$filetype   = wp_check_filetype( basename( $filename ), null );
+			$filetype   = empty( $file_type ) ? wp_check_filetype( basename( $filename ), null ) : $file_type;
 			$attachment = array(
 				'guid'           => $upload_dir['url'] . '/' . basename( $filename ),
-				'post_mime_type' => $filetype['type'],
+				'post_mime_type' => $filetype,
 				'post_title'     => preg_replace( '/\.[^.]+$/', '', basename( $filename ) ),
 				'post_name'      => $name,
 				'post_content'   => '',
