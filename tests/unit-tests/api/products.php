@@ -103,7 +103,6 @@ class WC_GZD_Products_API extends WC_GZD_REST_Unit_Test_Case {
 		$nutrient_2 = wp_insert_term( 'Natrium', 'product_nutrient', array( 'slug' => 'natrium' ) );
 		$allergen   = wp_insert_term( 'Nut', 'product_allergen', array( 'slug' => 'nut' ) );
 		$attachment_id = WC_GZD_Helper_Product::create_attachment( 'test' );
-		$warranty_attachment_id = WC_GZD_Helper_Product::create_attachment( 'test-pdf', 'application/pdf' );
 
 		// Create simple.
 		$request = new WP_REST_Request( 'POST', '/wc/v3/products' );
@@ -120,7 +119,6 @@ class WC_GZD_Products_API extends WC_GZD_REST_Unit_Test_Case {
 				'delivery_time'            => array( 'id' => $term['term_id'] ),
 				'manufacturer'             => array( 'id' => $manufacturer['term_id'] ),
 				'safety_attachment_ids'    => array( $attachment_id ),
-				'warranty_attachment_id'   => (string) $warranty_attachment_id,
 				'country_specific_delivery_times' => array(
 					array(
 						'slug'    => '4-5-days',
@@ -174,7 +172,6 @@ class WC_GZD_Products_API extends WC_GZD_REST_Unit_Test_Case {
 
 		$this->assertEquals( 'woocommerce', $data['manufacturer']['slug'] );
 		$this->assertEquals( array( $attachment_id ), $data['safety_attachment_ids'] );
-		$this->assertEquals( $warranty_attachment_id, $data['warranty_attachment_id'] );
 
 		$this->assertEquals( 'test_gtin', $data['gtin'] );
 		$this->assertEquals( 'test_mpn', $data['mpn'] );
