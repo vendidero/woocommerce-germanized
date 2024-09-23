@@ -69,7 +69,7 @@ class WC_GZD_Helper_Product {
 		return $term;
 	}
 
-	public static function create_attachment( $name = 'woocommerce-placeholder', $file_type = '' ) {
+	public static function create_attachment( $name = 'woocommerce-placeholder' ) {
 		$attachment = get_page_by_path( $name, 'OBJECT', 'attachment' );
 
 		if ( ! is_a( $attachment, 'WP_Post' ) ) {
@@ -81,7 +81,7 @@ class WC_GZD_Helper_Product {
 				copy( $source, $filename ); // @codingStandardsIgnoreLine.
 			}
 
-			$filetype   = empty( $file_type ) ? wp_check_filetype( basename( $filename ), null ) : $file_type;
+			$filetype   = wp_check_filetype( basename( $filename ), null );
 			$attachment = array(
 				'guid'           => $upload_dir['url'] . '/' . basename( $filename ),
 				'post_mime_type' => $filetype,
@@ -106,7 +106,7 @@ class WC_GZD_Helper_Product {
 		$allergen     = self::create_allergen();
 		$nutrient     = self::create_nutrient();
 		$manufacturer = self::create_manufacturer();
-		// $attachment   = self::create_attachment();
+		$attachment   = self::create_attachment();
 
 		$product = WC_Helper_Product::create_simple_product();
 
@@ -140,6 +140,8 @@ class WC_GZD_Helper_Product {
 			),
 			'_is_food'      => 'yes',
 			'_manufacturer_slug' => $manufacturer->slug,
+			'_product_safety_attachments' => array( $attachment ),
+			'_product_warranty_pdf' => $attachment,
 			'_deposit_type' => $deposit_type->slug,
 			'_deposit_quantity' => 5,
 			'_ingredients' => '<strong>Hazelnut</strong>, Fish',

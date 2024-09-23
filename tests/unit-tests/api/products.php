@@ -61,9 +61,6 @@ class WC_GZD_Products_API extends WC_GZD_REST_Unit_Test_Case {
 		$this->assertEquals( true, $product['free_shipping'] );
 		$this->assertEquals( true, $product['is_food'] );
 
-		// $this->assertEquals( true, ! empty( $product['safety_attachment_ids'] ) );
-	 	// $this->assertEquals( true, ! empty( $product['warranty_attachment_id'] ) );
-
 		$nutrient = get_term_by( 'slug', 'energy', 'product_nutrient' );
 		$allergen = get_term_by( 'slug', 'hazelnut', 'product_allergen' );
 
@@ -101,7 +98,7 @@ class WC_GZD_Products_API extends WC_GZD_REST_Unit_Test_Case {
 		$nutrient   = wp_insert_term( 'Salt', 'product_nutrient', array( 'slug' => 'salt' ) );
 		$nutrient_2 = wp_insert_term( 'Natrium', 'product_nutrient', array( 'slug' => 'natrium' ) );
 		$allergen   = wp_insert_term( 'Nut', 'product_allergen', array( 'slug' => 'nut' ) );
-		// $attachment_id = WC_GZD_Helper_Product::create_attachment( 'test' );
+		$attachment_id = WC_GZD_Helper_Product::create_attachment( 'test' );
 
 		// Create simple.
 		$request = new WP_REST_Request( 'POST', '/wc/v3/products' );
