@@ -69,8 +69,8 @@ class WC_GZD_Helper_Product {
 		return $term;
 	}
 
-	public static function create_attachment( $name = 'woocommerce-placeholder' ) {
-		$attachment = get_page_by_path( $name, 'OBJECT', 'attachment' );
+	public static function create_attachment() {
+		$attachment = get_page_by_path( 'woocommerce-placeholder', 'OBJECT', 'attachment' );
 
 		if ( ! is_a( $attachment, 'WP_Post' ) ) {
 			$upload_dir = wp_upload_dir();
@@ -84,9 +84,8 @@ class WC_GZD_Helper_Product {
 			$filetype   = wp_check_filetype( basename( $filename ), null );
 			$attachment = array(
 				'guid'           => $upload_dir['url'] . '/' . basename( $filename ),
-				'post_mime_type' => $filetype,
+				'post_mime_type' => $filetype['type'],
 				'post_title'     => preg_replace( '/\.[^.]+$/', '', basename( $filename ) ),
-				'post_name'      => $name,
 				'post_content'   => '',
 				'post_status'    => 'inherit',
 			);
@@ -158,6 +157,9 @@ class WC_GZD_Helper_Product {
 					'value'     => 20.31,
 					'ref_value' => 22.1,
 				),
+			),
+			'_safety_attachment_ids' => array(
+				$attachment
 			),
 			'_allergen_ids' => array(
 				$allergen->term_id,
