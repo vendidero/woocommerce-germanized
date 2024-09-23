@@ -80,7 +80,7 @@ class WC_GZD_Product_Attribute_Helper {
 
 				if ( false === $tmp_result ) {
 					foreach ( $meta_value as $attribute_key => $value ) {
-						if ( ! isset( $value['checkout_visible'] ) ) {
+						if ( ! isset( $value['checkout_visible'] ) && is_array( $meta_value[ $attribute_key ] ) ) {
 							$attribute           = new WC_GZD_Product_Attribute();
 							$is_checkout_visible = $attribute->is_checkout_visible();
 
