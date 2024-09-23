@@ -35,6 +35,9 @@ class WC_GZD_Shortcodes {
 			'gzd_product_shipping_notice'        => __CLASS__ . '::gzd_product_shipping_notice',
 			'gzd_product_cart_desc'              => __CLASS__ . '::gzd_product_cart_desc',
 			'gzd_product_defect_description'     => __CLASS__ . '::gzd_product_defect_description',
+			'gzd_product_safety_information'     => __CLASS__ . '::gzd_product_safety_information',
+			'gzd_product_manufacturer'           => __CLASS__ . '::gzd_product_manufacturer',
+			'gzd_product_safety_attachments'     => __CLASS__ . '::gzd_product_safety_attachments',
 			'gzd_product_deposit'                => __CLASS__ . '::gzd_product_deposit',
 			'gzd_product_deposit_packaging_type' => __CLASS__ . '::gzd_product_deposit_packaging_type',
 			'gzd_email_legal_page_attachments'   => __CLASS__ . '::gzd_email_legal_page_attachments',
@@ -72,7 +75,8 @@ class WC_GZD_Shortcodes {
 		$atts = wp_parse_args(
 			$atts,
 			array(
-				'product' => '',
+				'product'     => '',
+				'print_title' => false,
 			)
 		);
 
@@ -82,8 +86,12 @@ class WC_GZD_Shortcodes {
 		}
 
 		if ( $product && is_a( $product, 'WC_Product' ) ) {
+			$args = array(
+				'print_title' => wc_string_to_bool( $atts['print_title'] ),
+			);
+
 			ob_start();
-			call_user_func( $function_name );
+			call_user_func( $function_name, $args );
 			$content = ob_get_clean();
 		}
 
@@ -147,6 +155,42 @@ class WC_GZD_Shortcodes {
 		 *
 		 */
 		return apply_filters( 'woocommerce_gzd_shortcode_product_tax_notice_html', self::get_gzd_product_shortcode( $atts, 'woocommerce_gzd_template_single_tax_info' ), $atts );
+	}
+
+	public static function gzd_product_safety_information( $atts ) {
+		/**
+		 * Filter shortcode product safety information output.
+		 *
+		 * @param string $html The output.
+		 * @param array $atts The shortcode arguments.
+		 *
+		 * @since 3.18.0
+		 */
+		return apply_filters( 'woocommerce_gzd_shortcode_product_safety_information_html', self::get_gzd_product_shortcode( $atts, 'woocommerce_gzd_template_single_product_safety_information' ), $atts );
+	}
+
+	public static function gzd_product_safety_attachments( $atts ) {
+		/**
+		 * Filter shortcode product safety attachments output.
+		 *
+		 * @param string $html The output.
+		 * @param array $atts The shortcode arguments.
+		 *
+		 * @since 3.18.0
+		 */
+		return apply_filters( 'woocommerce_gzd_shortcode_product_safety_attachments_html', self::get_gzd_product_shortcode( $atts, 'woocommerce_gzd_template_single_product_safety_attachments' ), $atts );
+	}
+
+	public static function gzd_product_manufacturer( $atts ) {
+		/**
+		 * Filter shortcode product manufacturer output.
+		 *
+		 * @param string $html The output.
+		 * @param array $atts The shortcode arguments.
+		 *
+		 * @since 3.18.0
+		 */
+		return apply_filters( 'woocommerce_gzd_shortcode_product_manufacturer_html', self::get_gzd_product_shortcode( $atts, 'woocommerce_gzd_template_single_manufacturer' ), $atts );
 	}
 
 	public static function gzd_product_shipping_notice( $atts ) {

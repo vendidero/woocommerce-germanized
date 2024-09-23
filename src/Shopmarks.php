@@ -29,42 +29,52 @@ class Shopmarks {
 		$shopmarks_single_product = apply_filters(
 			'woocommerce_gzd_shopmark_single_product_defaults',
 			array(
-				'unit_price'             => array(
+				'unit_price'                 => array(
 					'default_filter'   => 'woocommerce_single_product_summary',
 					'default_priority' => 11,
 					'callback'         => 'woocommerce_gzd_template_single_price_unit',
 				),
-				'legal'                  => array(
+				'legal'                      => array(
 					'default_filter'   => 'woocommerce_single_product_summary',
 					'default_priority' => 12,
 					'callback'         => 'woocommerce_gzd_template_single_legal_info',
 				),
-				'delivery_time'          => array(
+				'delivery_time'              => array(
 					'default_filter'   => 'woocommerce_single_product_summary',
 					'default_priority' => 27,
 					'callback'         => 'woocommerce_gzd_template_single_delivery_time_info',
 				),
-				'units'                  => array(
+				'units'                      => array(
 					'default_filter'   => 'woocommerce_product_meta_start',
 					'default_priority' => 5,
 					'callback'         => 'woocommerce_gzd_template_single_product_units',
 				),
-				'defect_description'     => array(
+				'manufacturer'               => array(
+					'default_filter'   => 'woocommerce_gzd_single_product_safety_information',
+					'default_priority' => 10,
+					'callback'         => 'woocommerce_gzd_template_single_manufacturer',
+				),
+				'product_safety_attachments' => array(
+					'default_filter'   => 'woocommerce_gzd_single_product_safety_information',
+					'default_priority' => 11,
+					'callback'         => 'woocommerce_gzd_template_single_product_safety_attachments',
+				),
+				'defect_description'         => array(
 					'default_filter'   => 'woocommerce_single_product_summary',
 					'default_priority' => 21,
 					'callback'         => 'woocommerce_gzd_template_single_defect_description',
 				),
-				'deposit'                => array(
+				'deposit'                    => array(
 					'default_filter'   => 'woocommerce_single_product_summary',
 					'default_priority' => 13,
 					'callback'         => 'woocommerce_gzd_template_single_deposit',
 				),
-				'deposit_packaging_type' => array(
+				'deposit_packaging_type'     => array(
 					'default_filter'   => 'woocommerce_single_product_summary',
 					'default_priority' => 10,
 					'callback'         => 'woocommerce_gzd_template_single_deposit_packaging_type',
 				),
-				'nutri_score'            => array(
+				'nutri_score'                => array(
 					'default_filter'   => 'woocommerce_single_product_summary',
 					'default_priority' => 15,
 					'callback'         => 'woocommerce_gzd_template_single_nutri_score',
@@ -598,6 +608,11 @@ class Shopmarks {
 					'is_action'        => true,
 					'number_of_params' => 1,
 				),
+				'woocommerce_gzd_single_product_safety_information' => array(
+					'title'            => __( 'Product safety tab', 'woocommerce-germanized' ),
+					'is_action'        => true,
+					'number_of_params' => 1,
+				),
 			),
 			'single_product_grouped' => array(
 				'woocommerce_grouped_product_list_column_price'    => array(
@@ -749,14 +764,16 @@ class Shopmarks {
 	public static function get_types( $location = 'single_product' ) {
 		$types = array(
 			'single_product'         => array(
-				'unit_price'             => _x( 'Unit Price', 'shopmark', 'woocommerce-germanized' ),
-				'delivery_time'          => _x( 'Delivery Time', 'shopmark', 'woocommerce-germanized' ),
-				'legal'                  => _x( 'General', 'shopmark', 'woocommerce-germanized' ),
-				'units'                  => _x( 'Product Units', 'shopmark', 'woocommerce-germanized' ),
-				'defect_description'     => _x( 'Defect Description', 'shopmark', 'woocommerce-germanized' ),
-				'deposit'                => _x( 'Deposit', 'shopmark', 'woocommerce-germanized' ),
-				'deposit_packaging_type' => _x( 'Type of Packaging', 'shopmark', 'woocommerce-germanized' ),
-				'nutri_score'            => _x( 'Nutri-Score', 'shopmark', 'woocommerce-germanized' ),
+				'unit_price'                 => _x( 'Unit Price', 'shopmark', 'woocommerce-germanized' ),
+				'delivery_time'              => _x( 'Delivery Time', 'shopmark', 'woocommerce-germanized' ),
+				'legal'                      => _x( 'General', 'shopmark', 'woocommerce-germanized' ),
+				'units'                      => _x( 'Product Units', 'shopmark', 'woocommerce-germanized' ),
+				'defect_description'         => _x( 'Defect Description', 'shopmark', 'woocommerce-germanized' ),
+				'deposit'                    => _x( 'Deposit', 'shopmark', 'woocommerce-germanized' ),
+				'deposit_packaging_type'     => _x( 'Type of Packaging', 'shopmark', 'woocommerce-germanized' ),
+				'nutri_score'                => _x( 'Nutri-Score', 'shopmark', 'woocommerce-germanized' ),
+				'manufacturer'               => _x( 'Manufacturer', 'shopmark', 'woocommerce-germanized' ),
+				'product_safety_attachments' => _x( 'Product safety attachments', 'shopmark', 'woocommerce-germanized' ),
 			),
 			'single_product_grouped' => array(
 				'unit_price'             => _x( 'Unit Price', 'shopmark', 'woocommerce-germanized' ),

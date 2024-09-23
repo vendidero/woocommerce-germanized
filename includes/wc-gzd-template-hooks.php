@@ -147,6 +147,11 @@ foreach ( wc_gzd_get_cart_shopmarks() as $shopmark ) {
 	$shopmark->execute();
 }
 
+/**
+ * Product safety tab
+ */
+add_filter( 'woocommerce_product_tabs', 'woocommerce_gzd_template_register_product_tabs', 20 );
+
 // Small enterprises
 if ( wc_gzd_is_small_business() ) {
 	add_action( 'woocommerce_cart_totals_after_order_total', 'woocommerce_gzd_template_checkout_small_business_info', wc_gzd_get_hook_priority( 'cart_small_business_info' ) );

@@ -193,7 +193,7 @@ class WC_GZD_Product_Variable extends WC_GZD_Product {
 		}
 
 		/** This filter is documented in includes/abstract/abstract-wc-gzd-product.php */
-		return apply_filters( 'woocommerce_gzd_unit_price_html', $price, $this );
+		return apply_filters( 'woocommerce_gzd_unit_price_html', $price, $this, $tax_display );
 	}
 
 	protected function get_current_price_from() {

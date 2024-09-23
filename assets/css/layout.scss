@@ -9,6 +9,16 @@ p.wc-gzd-additional-info:empty {
   display: none;
 }
 
+.product-type-variable {
+  div.product {
+    ul.tabs {
+      li.product_safety_tab {
+        display: none;
+      }
+    }
+  }
+}
+
 #order_review .wc-gzd-checkbox-placeholder {
   clear: both;
 

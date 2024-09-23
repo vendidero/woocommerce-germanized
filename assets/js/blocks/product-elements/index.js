@@ -7,5 +7,7 @@ import './nutri-score';
 import './deposit';
 import './deposit-packaging-type';
 import './defect-description';
+import './manufacturer';
+import './product-safety-attachments';
 
 export * from './component-init'

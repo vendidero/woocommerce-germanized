@@ -51,6 +51,8 @@ final class BlockTypesController {
 			'ProductShippingCostsInfo',
 			'ProductUnitProduct',
 			'ProductDefectDescription',
+			'ProductManufacturer',
+			'ProductSafetyAttachments',
 		);
 
 		if ( \Vendidero\Germanized\Package::is_pro() ) {

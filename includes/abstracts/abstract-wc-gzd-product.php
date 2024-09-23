@@ -332,6 +332,10 @@ class WC_GZD_Product {
 		return $this->get_prop( 'manufacturer_slug', $context );
 	}
 
+	public function has_product_safety_information() {
+		return apply_filters( 'woocommerce_gzd_product_has_safety_information', ( $this->get_safety_attachment_ids() || $this->get_manufacturer() ) );
+	}
+
 	public function set_manufacturer_slug( $slug ) {
 		$this->manufacturer = null;
 
@@ -357,7 +361,7 @@ class WC_GZD_Product {
 		return false;
 	}
 
-	public function get_safety_file( $id, $context = 'view' ) {
+	public function get_safety_attachment_file( $id, $context = 'view' ) {
 		if ( $attachment = $this->get_safety_attachment( $id, $context ) ) {
 			return get_attached_file( $attachment->ID );
 		}
@@ -365,7 +369,7 @@ class WC_GZD_Product {
 		return false;
 	}
 
-	public function get_safety_url( $id, $context = 'view' ) {
+	public function get_safety_attachment_url( $id, $context = 'view' ) {
 		if ( $attachment = $this->get_safety_attachment( $id, $context ) ) {
 			return wp_get_attachment_url( $attachment->ID );
 		}
@@ -373,12 +377,70 @@ class WC_GZD_Product {
 		return false;
 	}
 
-	public function get_safety_filename( $id, $context = 'view' ) {
-		if ( $file = $this->get_safety_file( $id, $context ) ) {
+	public function get_safety_attachment_filename( $id, $context = 'view' ) {
+		if ( $file = $this->get_safety_attachment_file( $id, $context ) ) {
 			return basename( $file );
 		}
 
 		return false;
+	}
+
+	public function get_safety_attachment_title( $id, $context = 'view' ) {
+		if ( $file = $this->get_safety_attachment( $id, $context ) ) {
+			return get_the_title( $id );
+		}
+
+		return false;
+	}
+
+	public function get_manufacturer_html( $context = 'view' ) {
+		if ( $manufacturer = $this->get_manufacturer( $context ) ) {
+			$html = $manufacturer->get_html();
+		} else {
+			$html = '';
+		}
+
+		/**
+		 * Filter to adjust product manufacturer html output.
+		 *
+		 * @param string $html The product manufacturer html.
+		 * @param WC_GZD_Product $product The product object.
+		 *
+		 * @since 3.18.0
+		 */
+		return apply_filters( 'woocommerce_gzd_product_manufacturer_html', $html, $this );
+	}
+
+	public function get_product_safety_attachments_html( $context = 'view' ) {
+		$html = '';
+
+		if ( $this->hide_shopmarks_due_to_missing_price() ) {
+			return '';
+		}
+
+		if ( $this->get_safety_attachment_ids( $context ) ) {
+			foreach ( $this->get_safety_attachment_ids() as $attachment_id ) {
+				if ( $attachment = $this->get_safety_attachment( $attachment_id ) ) {
+					$html .= '<li class="wc-gzd-product-safety-attachment"><a href="' . esc_url( $this->get_safety_attachment_url( $attachment_id ) ) . '" target="_blank">' . esc_html( $this->get_safety_attachment_title( $attachment_id ) ) . '</a></li>';
+				}
+			}
+
+			if ( ! empty( $html ) ) {
+				$html = '<ul class="wc-gzd-product-safety-attachments-list">' . $html . '</ul>';
+			}
+		} else {
+			$html = '';
+		}
+
+		/**
+		 * Filter to adjust product safety attachments html output.
+		 *
+		 * @param string $html The product safety attachments html.
+		 * @param WC_GZD_Product $product The product object.
+		 *
+		 * @since 3.18.0
+		 */
+		return apply_filters( 'woocommerce_gzd_product_safety_attachments_html', $html, $this );
 	}
 
 	public function get_deposit_type( $context = 'view' ) {

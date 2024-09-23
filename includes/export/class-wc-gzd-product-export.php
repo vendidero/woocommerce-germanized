@@ -89,6 +89,8 @@ class WC_GZD_Product_Export {
 				'unit_price_sale'          => _x( 'Unit price sale', 'exporter', 'woocommerce-germanized' ),
 				'unit_price_auto'          => _x( 'Unit price calculated automatically?', 'exporter', 'woocommerce-germanized' ),
 				'unit'                     => _x( 'Unit', 'exporter', 'woocommerce-germanized' ),
+				'manufacturer'             => _x( 'Manufacturer', 'exporter', 'woocommerce-germanized' ),
+				'safety_attachment_ids'    => _x( 'Safety attachments ids', 'exporter', 'woocommerce-germanized' ),
 				'unit_base'                => _x( 'Unit base', 'exporter', 'woocommerce-germanized' ),
 				'unit_product'             => _x( 'Unit product', 'exporter', 'woocommerce-germanized' ),
 				'mini_desc'                => _x( 'Cart description', 'exporter', 'woocommerce-germanized' ),
@@ -328,6 +330,31 @@ class WC_GZD_Product_Export {
 		return implode( '|', $allergenic_list );
 	}
 
+	protected function get_column_value_safety_attachment_ids( $product ) {
+		$safety_attachment_ids = wc_gzd_get_gzd_product( $product )->get_safety_attachment_ids();
+
+		return $this->implode_values( $safety_attachment_ids );
+	}
+
+	/**
+	 * Implode CSV cell values using commas by default, and wrapping values
+	 * which contain the separator.
+	 *
+	 * @since  3.2.0
+	 * @param  array $values Values to implode.
+	 * @return string
+	 */
+	protected function implode_values( $values ) {
+		$values_to_implode = array();
+
+		foreach ( $values as $value ) {
+			$value               = (string) is_scalar( $value ) ? html_entity_decode( $value, ENT_QUOTES ) : '';
+			$values_to_implode[] = str_replace( ',', '\\,', $value );
+		}
+
+		return implode( ', ', $values_to_implode );
+	}
+
 	protected function get_column_value_sale_price_label( $product ) {
 		$term = wc_gzd_get_product( $product )->get_sale_price_label_term();
 
@@ -353,6 +380,14 @@ class WC_GZD_Product_Export {
 
 		if ( is_a( $term, 'WP_Term' ) ) {
 			return $term->name;
+		}
+
+		return '';
+	}
+
+	protected function get_column_value_manufacturer( $product ) {
+		if ( $manufacturer = wc_gzd_get_product( $product )->get_manufacturer() ) {
+			return $manufacturer->get_name();
 		}
 
 		return '';

@@ -392,8 +392,8 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 				<?php
 				WC_Germanized_Meta_Box_Product_Data::manufacturer_select_field(
 					array(
-						'name'        => "variable_manufacture_slug[{$loop}]",
-						'id'          => "variable_manufacture_slug_{$loop}",
+						'name'        => "variable_manufacturer_slug[{$loop}]",
+						'id'          => "variable_manufacturer_slug_{$loop}",
 						'placeholder' => __( 'Same as parent', 'woocommerce-germanized' ),
 						'term'        => $manufacturer,
 						'style'       => 'width: 100%',

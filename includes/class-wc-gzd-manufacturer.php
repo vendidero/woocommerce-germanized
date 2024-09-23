@@ -43,16 +43,57 @@ class WC_GZD_Manufacturer {
 		return 'woocommerce_gzd_manufacturer_get';
 	}
 
-	public function get_formatted_address() {
+	public function get_formatted_address( $context = 'view' ) {
 		$formatted_address = get_term_meta( $this->get_id(), 'formatted_address', true );
 
-		return apply_filters( "{$this->get_hook_prefix()}_formatted_address", $formatted_address, $this );
+		if ( 'view' === $context && ! empty( $formatted_address ) ) {
+			$formatted_address = apply_filters( "{$this->get_hook_prefix()}_formatted_address", $this->format_address( $formatted_address ), $this );
+		}
+
+		return $formatted_address;
 	}
 
-	public function get_formatted_eu_address() {
+	private function trim_formatted_address_line( $line ) {
+		return trim( $line, ', ' );
+	}
+
+	protected function format_address( $formatted_address ) {
+		// Clean up white space.
+		$formatted_address = preg_replace( '/  +/', ' ', trim( $formatted_address ) );
+		$formatted_address = preg_replace( '/\n\n+/', "\n", $formatted_address );
+
+		// Break newlines apart and remove empty lines/trim commas and white space.
+		$formatted_address = array_filter( array_map( array( $this, 'trim_formatted_address_line' ), explode( "\n", $formatted_address ) ) );
+
+		// Add html breaks.
+		$formatted_address = implode( '<br/>', $formatted_address );
+
+		return $formatted_address;
+	}
+
+	public function get_formatted_eu_address( $context = 'view' ) {
 		$formatted_address = get_term_meta( $this->get_id(), 'formatted_eu_address', true );
 
-		return apply_filters( "{$this->get_hook_prefix()}_formatted_eu_address", $formatted_address, $this );
+		if ( 'view' === $context && ! empty( $formatted_address ) ) {
+			$formatted_address = apply_filters( "{$this->get_hook_prefix()}_formatted_eu_address", $this->format_address( $formatted_address ), $this );
+		}
+
+		return $formatted_address;
+	}
+
+	public function get_html() {
+		$html = '';
+
+		if ( $this->get_formatted_address() ) {
+			$html .= '<p class="wc-gzd-manufacturer-address">' . wp_kses_post( $this->get_formatted_address() ) . '</p>';
+		}
+
+		if ( $this->has_eu_address() ) {
+			$html .= '<h4 class="wc-gzd-manufacturer-eu-title">' . __( 'Person responsible for the EU', 'woocommerce-germanized' ) . '</h4>';
+			$html .= '<p class="wc-gzd-manufacturer-eu-address">' . wp_kses_post( $this->get_formatted_eu_address() ) . '</p>';
+		}
+
+		return $html;
 	}
 
 	public function has_eu_address() {

@@ -87,6 +87,8 @@ class WC_GZD_Product_Import {
 				'sale_price_label'         => array( $this, 'parse_sale_price_label' ),
 				'sale_price_regular_label' => array( $this, 'parse_sale_price_label' ),
 				'unit'                     => array( $this, 'parse_unit' ),
+				'manufacturer'             => array( $this, 'parse_manufacturer' ),
+				'safety_attachment_ids'    => array( $this, 'parse_safety_attachment_ids' ),
 				'warranty_attachment_id'   => 'absint',
 				'gtin'                     => 'wc_clean',
 				'mpn'                      => 'wc_clean',
@@ -366,6 +368,40 @@ class WC_GZD_Product_Import {
 		return ( $value ? 'yes' : '' );
 	}
 
+	public function parse_safety_attachment_ids( $attachment_ids ) {
+		$attachment_ids = array_filter( array_map( 'absint', $this->explode_values( $attachment_ids ) ) );
+
+		return $attachment_ids;
+	}
+
+	/**
+	 * Explode CSV cell values using commas by default, and handling escaped
+	 * separators.
+	 *
+	 * @since  3.2.0
+	 * @param  string $value     Value to explode.
+	 * @param  string $separator Separator separating each value. Defaults to comma.
+	 * @return array
+	 */
+	protected function explode_values( $value, $separator = ',' ) {
+		$value  = str_replace( '\\,', '::separator::', $value );
+		$values = explode( $separator, $value );
+		$values = array_map( array( $this, 'explode_values_formatter' ), $values );
+
+		return $values;
+	}
+
+	/**
+	 * Remove formatting and trim each value.
+	 *
+	 * @since  3.2.0
+	 * @param  string $value Value to format.
+	 * @return string
+	 */
+	protected function explode_values_formatter( $value ) {
+		return trim( str_replace( '::separator::', ',', $value ) );
+	}
+
 	public function parse_allergenic( $allergenic ) {
 		$allergenic   = array_filter( array_map( 'trim', explode( '|', $allergenic ) ) );
 		$allergen_ids = array();
@@ -409,6 +445,14 @@ class WC_GZD_Product_Import {
 		}
 
 		return $this->parse_term( $name, 'product_unit', 'slug' );
+	}
+
+	public function parse_manufacturer( $name ) {
+		if ( empty( $name ) ) {
+			return 0;
+		}
+
+		return $this->parse_term( $name, 'product_manufacturer', 'slug' );
 	}
 
 	public function parse_sale_price_label( $name ) {

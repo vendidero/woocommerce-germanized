@@ -264,6 +264,13 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 			}
 
 			\Vendidero\Germanized\PluginsHelper::init();
+
+			add_action(
+				'init1',
+				function() {
+					$product = wc_get_product( 4871 );
+				}
+			);
 		}
 
 		public function declare_feature_compatibility() {
@@ -1203,12 +1210,23 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 				}
 			}
 
+			$has_product_safety_information = false;
+
+			if ( is_singular( 'product' ) ) {
+				global $product;
+
+				if ( $product && ( $gzd_product = wc_gzd_get_gzd_product( $product ) ) ) {
+					$has_product_safety_information = $gzd_product->has_product_safety_information();
+				}
+			}
+
 			return apply_filters(
 				'woocommerce_gzd_add_to_cart_variation_params',
 				array(
-					'wrapper'        => '.product',
-					'price_selector' => $price_selector,
-					'replace_price'  => true,
+					'wrapper'                => '.product',
+					'has_safety_information' => $has_product_safety_information,
+					'price_selector'         => $price_selector,
+					'replace_price'          => true,
 				)
 			);
 		}

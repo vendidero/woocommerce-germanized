@@ -36,6 +36,8 @@ const getPreviewData = ( labelType, productData, isDescendentOfSingleProductTemp
             'amount': 0
         },
         'deposit_packaging_type_html': '',
+        'manufacturer_html': '',
+        'product_safety_attachments_html': '',
     };
 
     const prices            = productData.prices;
@@ -81,6 +83,32 @@ const getPreviewData = ( labelType, productData, isDescendentOfSingleProductTemp
         formattedPreview = (
             <>
                 <span className="wc-gzd-nutri-score-value wc-gzd-nutri-score-value-a">A</span>
+            </>
+        );
+    } else if ( 'manufacturer' === labelTypeData ) {
+        formattedPreview = (
+            <>
+                <p>
+                    <stong>{ _x( 'Sample company name', 'preview', 'woocommerce-germanized' ) }</stong><br/>
+                    { _x( 'Sample address', 'preview', 'woocommerce-germanized' ) }<br/>
+                    { _x( '12345 Berlin', 'preview', 'woocommerce-germanized' ) }<br/>
+                    { _x( 'sample@sample.com', 'preview', 'woocommerce-germanized' ) }
+                </p>
+                <h3>{ __( 'Person responsible for the EU', 'woocommerce-germanized' ) }</h3>
+                <p>
+                    <stong>{ _x( 'Sample company name', 'preview', 'woocommerce-germanized' ) }</stong><br/>
+                    { _x( 'Sample address', 'preview', 'woocommerce-germanized' ) }<br/>
+                    { _x( '12345 Berlin', 'preview', 'woocommerce-germanized' ) }<br/>
+                    { _x( 'sample@sample.com', 'preview', 'woocommerce-germanized' ) }
+                </p>
+            </>
+        );
+    } else if ( 'product_safety_attachments' === labelTypeData ) {
+        formattedPreview = (
+            <>
+                <ul>
+                    <li><a href="#">{ _x( 'sample-filename.pdf', 'sample', 'woocommerce-germanized' ) }</a></li>
+                </ul>
             </>
         );
     }
