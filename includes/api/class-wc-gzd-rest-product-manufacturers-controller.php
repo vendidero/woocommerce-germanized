@@ -6,7 +6,7 @@ defined( 'ABSPATH' ) || exit;
  * @since 3.9.0
  * @author vendidero
  */
-class WC_GZD_REST_Product_Manufacturer_Controller extends WC_REST_Terms_Controller {
+class WC_GZD_REST_Product_Manufacturers_Controller extends WC_REST_Terms_Controller {
 
 	/**
 	 * Endpoint namespace.
@@ -20,7 +20,7 @@ class WC_GZD_REST_Product_Manufacturer_Controller extends WC_REST_Terms_Controll
 	 *
 	 * @var string
 	 */
-	protected $rest_base = 'products/manufacturer';
+	protected $rest_base = 'products/manufacturers';
 
 	/**
 	 * Taxonomy.

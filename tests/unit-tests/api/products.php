@@ -44,6 +44,8 @@ class WC_GZD_Products_API extends WC_GZD_REST_Unit_Test_Case {
 		$this->assertEquals( '3-4-days', $country_specific[1]['slug'] );
 		$this->assertEquals( 'BG', $country_specific[1]['country'] );
 
+
+		$this->assertEquals( 'vendidero', $product['manufacturer']['slug'] );
 		$this->assertEquals( '1', $product['unit_price']['product'] );
 		$this->assertEquals( '100.0', $product['unit_price']['price_regular'] );
 		$this->assertEquals( '90.0', $product['unit_price']['price_sale'] );
@@ -59,6 +61,9 @@ class WC_GZD_Products_API extends WC_GZD_REST_Unit_Test_Case {
 		$this->assertEquals( true, $product['differential_taxation'] );
 		$this->assertEquals( true, $product['free_shipping'] );
 		$this->assertEquals( true, $product['is_food'] );
+
+		$this->assertEquals( true, ! empty( $product['safety_attachment_ids'] ) );
+		$this->assertEquals( true, ! empty( $product['warranty_attachment_id'] ) );
 
 		$nutrient = get_term_by( 'slug', 'energy', 'product_nutrient' );
 		$allergen = get_term_by( 'slug', 'hazelnut', 'product_allergen' );
@@ -92,6 +97,7 @@ class WC_GZD_Products_API extends WC_GZD_REST_Unit_Test_Case {
 		WC_GZD_Helper_Product::create_deposit_type();
 
 		$term       = wp_insert_term( '3-4 days', 'product_delivery_time', array( 'slug' => '3-4-days' ) );
+		$manufacturer = wp_insert_term( 'woocommerce', 'product_manufacturer', array( 'slug' => 'woocommerce' ) );
 		$sale_term  = wp_insert_term( 'Test Sale', 'product_price_label', array( 'slug' => 'test-sale' ) );
 		$nutrient   = wp_insert_term( 'Salt', 'product_nutrient', array( 'slug' => 'salt' ) );
 		$nutrient_2 = wp_insert_term( 'Natrium', 'product_nutrient', array( 'slug' => 'natrium' ) );
@@ -110,6 +116,9 @@ class WC_GZD_Products_API extends WC_GZD_REST_Unit_Test_Case {
 				'gtin'                     => 'test_gtin',
 				'mpn'                      => 'test_mpn',
 				'delivery_time'            => array( 'id' => $term['term_id'] ),
+				'manufacturer'             => array( 'id' => $manufacturer['term_id'] ),
+				'safety_attachment_ids'    => array( 123, 1234 ),
+				'warranty_attachment_id'   => 123,
 				'country_specific_delivery_times' => array(
 					array(
 						'slug'    => '4-5-days',
@@ -160,6 +169,10 @@ class WC_GZD_Products_API extends WC_GZD_REST_Unit_Test_Case {
 		$this->assertEquals( 'test-sale', $data['sale_price_regular_label']['slug'] );
 		$this->assertEquals( '80.0', $data['unit_price']['price_regular'] );
 		$this->assertEquals( '70.0', $data['unit_price']['price_sale'] );
+
+		$this->assertEquals( 'woocommerce', $data['manufacturer']['slug'] );
+		$this->assertEquals( array( 123, 1234 ), $data['safety_attachment_ids'] );
+		$this->assertEquals( 123, $data['warranty_attachment_id'] );
 
 		$this->assertEquals( 'test_gtin', $data['gtin'] );
 		$this->assertEquals( 'test_mpn', $data['mpn'] );

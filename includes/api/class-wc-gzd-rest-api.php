@@ -53,6 +53,7 @@ class WC_GZD_REST_API {
 		include_once dirname( __FILE__ ) . '/class-wc-gzd-rest-nutrients-controller.php';
 		include_once dirname( __FILE__ ) . '/class-wc-gzd-rest-allergenic-controller.php';
 		include_once dirname( __FILE__ ) . '/class-wc-gzd-rest-product-deposit-types-controller.php';
+		include_once dirname( __FILE__ ) . '/class-wc-gzd-rest-product-manufacturers-controller.php';
 	}
 
 	public function register_rest_routes() {

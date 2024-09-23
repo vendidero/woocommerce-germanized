@@ -613,6 +613,11 @@ class Shopmarks {
 					'is_action'        => true,
 					'number_of_params' => 1,
 				),
+				'woocommerce_product_additional_information' => array(
+					'title'            => __( 'Additional information tab', 'woocommerce-germanized' ),
+					'is_action'        => true,
+					'number_of_params' => 1,
+				),
 			),
 			'single_product_grouped' => array(
 				'woocommerce_grouped_product_list_column_price'    => array(

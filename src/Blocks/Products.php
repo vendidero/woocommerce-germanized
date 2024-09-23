@@ -44,7 +44,7 @@ final class Products {
 					/**
 					 * Exclude price labels which are attached to the product safety tab
 					 */
-					if ( 'woocommerce_gzd_single_product_safety_information' === $price_label->get_filter() ) {
+					if ( in_array( $price_label->get_filter(), array( 'woocommerce_gzd_single_product_safety_information', 'woocommerce_product_additional_information' ), true ) ) {
 						continue;
 					}
 
