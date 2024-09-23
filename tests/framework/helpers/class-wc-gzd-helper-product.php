@@ -106,7 +106,7 @@ class WC_GZD_Helper_Product {
 		$allergen     = self::create_allergen();
 		$nutrient     = self::create_nutrient();
 		$manufacturer = self::create_manufacturer();
-		$attachment   = self::create_attachment();
+		// $attachment   = self::create_attachment();
 
 		$product = WC_Helper_Product::create_simple_product();
 
@@ -157,10 +157,6 @@ class WC_GZD_Helper_Product {
 					'ref_value' => 22.1,
 				),
 			),
-			'_safety_attachment_ids' => array(
-				$attachment
-			),
-			'_warranty_attachment_id' => $attachment,
 			'_allergen_ids' => array(
 				$allergen->term_id,
 			),
@@ -188,7 +184,6 @@ class WC_GZD_Helper_Product {
 		$allergen     = self::create_allergen();
 		$nutrient     = self::create_nutrient();
 		$manufacturer = self::create_manufacturer();
-		$attachment   = self::create_attachment();
 
 		$data = array(
 			'_unit'                     => 'g',

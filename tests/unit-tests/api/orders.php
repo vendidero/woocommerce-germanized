@@ -17,9 +17,6 @@ class WC_GZD_Orders_API extends WC_GZD_REST_Unit_Test_Case {
 		$this->user     = $this->factory->user->create( array(
 			'role' => 'administrator',
 		) );
-		tests_add_action( 'doing_it_wrong_run', function() {
-			debug_print_backtrace();
-		} );
 	}
 
 	/**
@@ -29,10 +26,6 @@ class WC_GZD_Orders_API extends WC_GZD_REST_Unit_Test_Case {
 	 */
 	public function test_get_order() {
 		wp_set_current_user( $this->user );
-
-		tests_add_action( 'doing_it_wrong_run', function() {
-			debug_print_backtrace();
-		} );
 
 		$order    = WC_GZD_Helper_Order::create_order();
 		$response = $this->server->dispatch( new WP_REST_Request( 'GET', '/wc/v3/orders/' . $order->get_id() ) );
