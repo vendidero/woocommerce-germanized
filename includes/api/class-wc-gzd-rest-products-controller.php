@@ -786,14 +786,16 @@ class WC_GZD_REST_Products_Controller {
 		);
 
 		foreach ( $meta_data as $meta => $taxonomy_obj ) {
-			$current = 0;
-			$getter  = "get_{$meta}";
+			$current      = 0;
+			$getter       = "get_{$meta}";
+			$request_key  = 'manufacturer_slug' === $meta ? 'manufacturer' : $meta;
+			$request_data = isset( $request[ $request_key ] ) ? $request[ $request_key ] : false;
 
 			if ( is_callable( array( $gzd_product, $getter ) ) ) {
 				$current = $gzd_product->$getter( 'edit' );
 			}
 
-			$term_data           = $this->get_term_data( isset( $request[ $meta ] ) ? $request[ $meta ] : false, $current );
+			$term_data           = $this->get_term_data( $request_data, $current );
 			$data[ '_' . $meta ] = '';
 
 			if ( ! empty( $term_data ) ) {
