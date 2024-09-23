@@ -163,7 +163,6 @@ class WC_GZD_Products_API extends WC_GZD_REST_Unit_Test_Case {
 
 		$response = $this->server->dispatch( $request );
 		$data     = $response->get_data();
-		var_dump($data);
 
 		$this->assertEquals( 'test-sale', $data['sale_price_label']['slug'] );
 		$this->assertEquals( '3-4-days', $data['delivery_time']['slug'] );
