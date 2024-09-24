@@ -1248,13 +1248,12 @@ class WC_GZD_Admin {
 		}
 
 		return array_filter( $settings );
-
 	}
 
 	public function insert_setting_after( $settings, $id, $insert = array(), $type = '' ) {
 		$key = $this->get_setting_key_by_id( $settings, $id, $type );
 		if ( is_numeric( $key ) ) {
-			$key ++;
+			++$key;
 			$settings = array_merge( array_merge( array_slice( $settings, 0, $key, true ), $insert ), array_slice( $settings, $key, count( $settings ) - 1, true ) );
 		} else {
 			$settings += $insert;
@@ -1262,7 +1261,6 @@ class WC_GZD_Admin {
 
 		return $settings;
 	}
-
 }
 
 WC_GZD_Admin::instance();

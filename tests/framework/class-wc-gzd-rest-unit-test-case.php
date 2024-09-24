@@ -11,6 +11,10 @@ class WC_GZD_REST_Unit_Test_Case extends WC_GZD_Unit_Test_Case {
 
 	protected $server;
 
+	protected $endpoint;
+
+	protected $user;
+
 	/**
 	 * Setup our test server.
 	 */

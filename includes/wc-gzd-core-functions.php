@@ -39,7 +39,7 @@ add_filter( 'woocommerce_gzd_defect_description', array( $GLOBALS['wp_embed'], '
  *
  * @return WC_GZD_Dependencies
  */
-function wc_gzd_get_dependencies( $instance = null ) {
+function wc_gzd_get_dependencies( $instance = null ) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.Found
 	wc_deprecated_function( 'WC_GZD_Dependencies', '4.0.0' );
 
 	/** This filter is documented in woocommerce-germanized.php */
@@ -776,14 +776,12 @@ function wc_gzd_get_customer_title( $value ) {
 
 	if ( '[deleted]' === $value ) {
 		$title = $value;
-	} else {
-		if ( array_key_exists( $option, $titles ) ) {
+	} elseif ( array_key_exists( $option, $titles ) ) {
 			$title = $titles[ $option ];
-		} elseif ( ! is_numeric( $title ) ) {
-			$title = $option;
-		} else {
-			$title = __( 'Ms.', 'woocommerce-germanized' );
-		}
+	} elseif ( ! is_numeric( $title ) ) {
+		$title = $option;
+	} else {
+		$title = __( 'Ms.', 'woocommerce-germanized' );
 	}
 
 	/**
@@ -1485,7 +1483,7 @@ function wc_gzd_content_has_shortcode( $content, $shortcode ) {
 	return $has_shortcode;
 }
 
-function wc_gzd_print_item_defect_descriptions( $descriptions, $echo = false ) {
+function wc_gzd_print_item_defect_descriptions( $descriptions, $do_echo = false ) {
 	$strings = array();
 
 	foreach ( $descriptions as $name => $description ) {
@@ -1507,7 +1505,7 @@ function wc_gzd_print_item_defect_descriptions( $descriptions, $echo = false ) {
 
 	$string = implode( apply_filters( 'woocommerce_gzd_item_defect_descriptions_separator', '; ' ), $strings );
 
-	if ( $echo ) {
+	if ( $do_echo ) {
 		echo wp_kses_post( $string );
 	}
 
@@ -1544,7 +1542,7 @@ function wc_gzd_get_post_plain_content( $content_post, $shortcodes_allowed = arr
 				$pattern = get_shortcode_regex( array( $shortcode_tag ) );
 				$content = preg_replace_callback(
 					"/$pattern/s",
-					function( $matches ) {
+					function ( $matches ) {
 						if ( ! empty( $matches[5] ) ) {
 							return $matches[5];
 						}

@@ -64,9 +64,14 @@
         <include-pattern>src/</include-pattern>
     </rule>
 
+    <rule ref="Universal.Files.SeparateFunctionsFromOO.Mixed">
+        <exclude-pattern>woocommerce-germanized.php</exclude-pattern>
+    </rule>
+
     <rule ref="WordPress.Files.FileName.NotHyphenatedLowercase">
         <exclude-pattern>i18n/</exclude-pattern>
         <exclude-pattern>src/</exclude-pattern>
+        <exclude-pattern>includes/updates/</exclude-pattern>
     </rule>
 
     <rule ref="PSR2.Classes.PropertyDeclaration.Underscore">
@@ -109,7 +114,29 @@
         <exclude-pattern>*</exclude-pattern>
     </rule>
 
-    <rule ref="WordPress.CodeAnalysis.AssignmentInCondition">
+    <rule ref="Generic.CodeAnalysis.AssignmentInCondition.Found">
         <exclude-pattern>*</exclude-pattern>
+    </rule>
+
+    <rule ref="Generic.CodeAnalysis.UnusedFunctionParameter.FoundAfterLastUsed">
+        <exclude-pattern>*</exclude-pattern>
+    </rule>
+
+    <rule ref="Generic.CodeAnalysis.UnusedFunctionParameter.Found">
+        <exclude-pattern>*</exclude-pattern>
+    </rule>
+
+    <rule ref="Universal.NamingConventions">
+        <exclude-pattern>includes/wc-gzd-legacy-functions.php</exclude-pattern>
+    </rule>
+
+    <rule ref="WordPress.WP.Capabilities">
+        <properties>
+            <property name="custom_capabilities" type="array">
+                <element value="manage_woocommerce" />
+                <element value="pay_for_order" />
+                <element value="edit_shop_orders" />
+            </property>
+        </properties>
     </rule>
 </ruleset>

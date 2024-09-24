@@ -115,5 +115,4 @@ class WC_GZD_Product_Factory {
 
 		return new WC_GZD_Product( $product );
 	}
-
 }

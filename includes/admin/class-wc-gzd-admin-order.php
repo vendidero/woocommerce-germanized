@@ -101,7 +101,7 @@ class WC_GZD_Admin_Order {
 			add_meta_box(
 				'woocommerce-gzd-order-checkboxes',
 				__( 'Checkboxes', 'woocommerce-germanized' ),
-				function( $post ) {
+				function ( $post ) {
 					global $theorder;
 					$this->init_order_object( $post );
 					$order = $theorder;

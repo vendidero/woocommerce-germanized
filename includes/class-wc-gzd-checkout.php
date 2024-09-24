@@ -607,12 +607,10 @@ class WC_GZD_Checkout {
 					wc_add_notice( __( 'Sorry, but differential taxed products cannot be purchased with normal products at the same time.', 'woocommerce-germanized' ), 'error' );
 					$has_passed = false;
 				}
-			} else {
+			} elseif ( $cart_count > 0 && $contains_differential ) {
 
-				if ( $cart_count > 0 && $contains_differential ) {
 					wc_add_notice( __( 'Sorry, but normal products cannot be purchased together with differential taxed products at the same time.', 'woocommerce-germanized' ), 'error' );
 					$has_passed = false;
-				}
 			}
 		}
 

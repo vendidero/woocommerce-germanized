@@ -24,9 +24,9 @@ class WC_GZD_Voucher_Discounts extends WC_Discounts {
 	 */
 	protected $object = null;
 
-	public function __construct( $object, $coupon ) {
+	public function __construct( $cart_or_order, $coupon ) {
 		$this->coupon = $coupon;
-		$this->object = $object;
+		$this->object = $cart_or_order;
 	}
 
 	protected function init() {

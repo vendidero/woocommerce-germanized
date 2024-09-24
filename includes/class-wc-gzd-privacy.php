@@ -212,7 +212,6 @@ class WC_GZD_Privacy {
 
 		return $data;
 	}
-
 }
 
 WC_GZD_Privacy::instance();

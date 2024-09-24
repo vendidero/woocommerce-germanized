@@ -159,7 +159,7 @@ class WC_GZD_Compatibility_WooCommerce_Subscriptions extends WC_GZD_Compatibilit
 			if ( ! empty( $tax_array ) ) {
 				$count = 0;
 				foreach ( $tax_array as $tax ) {
-					$count ++;
+					++$count;
 					$label = wc_gzd_get_tax_rate_label( $tax['tax']->rate );
 					?>
 					<small class="wc-gzd-recurring-tax-total">

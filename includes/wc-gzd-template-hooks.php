@@ -87,7 +87,7 @@ if ( 'yes' === get_option( 'woocommerce_gzd_display_listings_link_details' ) ) {
  */
 add_action(
 	'init',
-	function() {
+	function () {
 		if ( apply_filters( 'woocommerce_gzd_enable_rating_authenticity_notices', wc_reviews_enabled() ) ) {
 			if ( 'yes' === get_option( 'woocommerce_gzd_display_rating_authenticity_notice' ) ) {
 				add_filter( 'woocommerce_product_get_rating_html', 'woocommerce_gzd_template_product_rating_authenticity_status_filter', 500 );
@@ -98,7 +98,7 @@ add_action(
 				add_action( 'woocommerce_review_after_comment_text', 'woocommerce_gzd_template_product_review_authenticity_status', 20 );
 				add_filter(
 					'pre_option_woocommerce_review_rating_verification_label',
-					function() {
+					function () {
 						return 'no';
 					},
 					500
@@ -220,7 +220,7 @@ add_action( 'woocommerce_widget_shopping_cart_before_buttons', 'woocommerce_gzd_
  */
 add_action(
 	'woocommerce_review_order_before_cart_contents',
-	function() {
+	function () {
 		$path         = wc_locate_template( 'checkout/review-order-product-table.php' );
 		$has_override = ! strstr( $path, WC_germanized()->plugin_path() );
 
@@ -271,7 +271,7 @@ if ( did_action( 'init' ) ) {
 } else {
 	add_action(
 		'init',
-		function() {
+		function () {
 			if ( ! wp_doing_ajax() ) {
 				woocommerce_gzd_checkout_load_ajax_relevant_hooks();
 			}
@@ -372,4 +372,3 @@ if ( 'yes' === get_option( 'woocommerce_gzd_display_footer_sale_price_notice' ) 
 	add_action( 'woocommerce_gzd_footer_msg', 'woocommerce_gzd_template_footer_sale_info', wc_gzd_get_hook_priority( 'gzd_footer_sale_info' ) );
 	add_action( 'wp_footer', 'woocommerce_gzd_template_footer_sale_info', wc_gzd_get_hook_priority( 'footer_sale_info' ) );
 }
-

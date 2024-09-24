@@ -204,7 +204,7 @@ class WC_GZD_Settings_Tab_Checkboxes extends WC_GZD_Settings_Tab {
 			wp_die( esc_html__( 'Sorry, but this checkbox does not exist.', 'woocommerce-germanized' ) );
 		}
 
-		include_once dirname( __FILE__ ) . '/views/html-admin-page-checkbox.php';
+		include_once __DIR__ . '/views/html-admin-page-checkbox.php';
 	}
 
 	protected function screen() {
@@ -239,6 +239,6 @@ class WC_GZD_Settings_Tab_Checkboxes extends WC_GZD_Settings_Tab {
 
 		wp_enqueue_script( 'wc-gzd-admin-legal-checkboxes' );
 
-		include_once dirname( __FILE__ ) . '/views/html-admin-page-checkboxes.php';
+		include_once __DIR__ . '/views/html-admin-page-checkboxes.php';
 	}
 }

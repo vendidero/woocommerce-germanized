@@ -23,7 +23,7 @@ class WC_GZD_Compatibility_Elementor_Pro extends WC_GZD_Compatibility {
 		if ( ! empty( $_REQUEST['action'] ) && 'elementor' === $_REQUEST['action'] && is_admin() ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			add_action(
 				'init',
-				function() {
+				function () {
 					if ( wc_gzd_checkout_adjustments_disabled() ) {
 						return;
 					}
@@ -36,7 +36,7 @@ class WC_GZD_Compatibility_Elementor_Pro extends WC_GZD_Compatibility {
 
 		add_filter(
 			'wc_gzd_checkout_params',
-			function( $params ) {
+			function ( $params ) {
 				if ( ! wc_gzd_checkout_adjustments_disabled() ) {
 					$params['custom_heading_container'] = apply_filters( 'woocommerce_gzd_elementor_pro_review_order_heading_container', '.e-checkout__order_review-2' );
 				}
@@ -48,7 +48,7 @@ class WC_GZD_Compatibility_Elementor_Pro extends WC_GZD_Compatibility {
 
 		add_action(
 			'woocommerce_checkout_init',
-			function() {
+			function () {
 				if ( wc_gzd_checkout_adjustments_disabled() ) {
 					return;
 				}
@@ -60,7 +60,7 @@ class WC_GZD_Compatibility_Elementor_Pro extends WC_GZD_Compatibility {
 					 */
 					add_action(
 						'woocommerce_checkout_before_order_review',
-						function() {
+						function () {
 							add_filter( 'wp_doing_ajax', array( $this, 'disable_ajax_callback' ), 1000 );
 						},
 						0
@@ -68,7 +68,7 @@ class WC_GZD_Compatibility_Elementor_Pro extends WC_GZD_Compatibility {
 
 					add_action(
 						'woocommerce_checkout_after_order_review',
-						function() {
+						function () {
 							remove_filter( 'wp_doing_ajax', array( $this, 'disable_ajax_callback' ), 1000 );
 						},
 						5000
@@ -113,7 +113,7 @@ class WC_GZD_Compatibility_Elementor_Pro extends WC_GZD_Compatibility {
 		 */
 		add_action(
 			'elementor/element/parse_css',
-			function( $post_css, $element ) {
+			function ( $post_css, $element ) {
 				if ( is_a( $element, '\ElementorPro\Modules\Woocommerce\Widgets\Checkout' ) ) {
 					$rules = $post_css->get_stylesheet()->get_rules();
 
@@ -164,7 +164,7 @@ class WC_GZD_Compatibility_Elementor_Pro extends WC_GZD_Compatibility {
 
 		add_action(
 			'elementor/frontend/after_enqueue_styles',
-			function() {
+			function () {
 				wp_add_inline_style(
 					'elementor-pro',
 					'

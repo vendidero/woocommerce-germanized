@@ -27,7 +27,7 @@ class WC_GZD_Compatibility_Customer_Specific_Pricing_For_WooCommerce extends WC_
 		 */
 		add_filter(
 			'woocommerce_gzd_unit_price_observer_params',
-			function( $params ) {
+			function ( $params ) {
 				$params['refresh_on_load'] = true;
 
 				$params['price_selector']['div#product_total_price'] = array(

@@ -1,6 +1,6 @@
 <?php
 
-use \Defuse\Crypto;
+use Defuse\Crypto;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
@@ -35,23 +35,23 @@ class WC_GZD_Gateway_Direct_Debit_Encryption_Helper {
 		return ( $this->get_key() ? true : false );
 	}
 
-	public function encrypt( $string ) {
-		if ( empty( $string ) ) {
-			return $string;
+	public function encrypt( $to_encrypt ) {
+		if ( empty( $to_encrypt ) ) {
+			return $to_encrypt;
 		}
 
-		return Crypto\Crypto::encrypt( $string, $this->get_key() );
+		return Crypto\Crypto::encrypt( $to_encrypt, $this->get_key() );
 	}
 
-	public function decrypt( $string ) {
-		if ( empty( $string ) ) {
-			return $string;
+	public function decrypt( $to_decrypt ) {
+		if ( empty( $to_decrypt ) ) {
+			return $to_decrypt;
 		}
 
-		$secret_data = $string;
+		$secret_data = $to_decrypt;
 
 		try {
-			$secret_data = Crypto\Crypto::decrypt( $string, $this->get_key() );
+			$secret_data = Crypto\Crypto::decrypt( $to_decrypt, $this->get_key() );
 		} catch ( Crypto\Exception\WrongKeyOrModifiedCiphertextException $ex ) { // phpcs:ignore Generic.CodeAnalysis.EmptyStatement.DetectedCatch
 		}
 
@@ -69,5 +69,4 @@ class WC_GZD_Gateway_Direct_Debit_Encryption_Helper {
 
 		return false;
 	}
-
 }

@@ -35,7 +35,7 @@ class WC_GZD_Compatibility_ET_Builder extends WC_GZD_Compatibility {
 	public function load() {
 		add_filter(
 			'woocommerce_gzd_update_page_content',
-			function( $new_page_content, $page_id, $content, $original_content, $append, $is_shortcode ) {
+			function ( $new_page_content, $page_id, $content, $original_content, $append, $is_shortcode ) {
 				if ( $append && wc_gzd_content_has_shortcode( $original_content, 'et_pb_section' ) ) {
 					$shortcode_to_replace = 'et_pb_section';
 
@@ -58,7 +58,7 @@ class WC_GZD_Compatibility_ET_Builder extends WC_GZD_Compatibility {
 		 */
 		add_filter(
 			'woocommerce_gzd_shopmarks_empty_price_html_check_enabled',
-			function( $is_enabled ) {
+			function ( $is_enabled ) {
 				if ( isset( $_GET['et_fb'] ) && ! empty( $_GET['et_fb'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 					$is_enabled = false;
 				}
@@ -69,7 +69,7 @@ class WC_GZD_Compatibility_ET_Builder extends WC_GZD_Compatibility {
 
 		add_action(
 			'woocommerce_before_checkout_form_cart_notices',
-			function() {
+			function () {
 				if ( $this->is_et_builder_checkout() && ! defined( 'WC_GZD_DISABLE_CHECKOUT_ADJUSTMENTS' ) ) {
 					define( 'WC_GZD_DISABLE_CHECKOUT_ADJUSTMENTS', true );
 				}
@@ -85,7 +85,7 @@ class WC_GZD_Compatibility_ET_Builder extends WC_GZD_Compatibility {
 		 */
 		add_filter(
 			'et_builder_wc_relocate_single_product_summary_output_priority',
-			function( $output_priority, $callback_name ) {
+			function ( $output_priority, $callback_name ) {
 				if ( strstr( $callback_name, 'woocommerce_gzd_' ) ) {
 					return 5;
 				}
@@ -101,7 +101,7 @@ class WC_GZD_Compatibility_ET_Builder extends WC_GZD_Compatibility {
 		 */
 		add_action(
 			'woocommerce_gzd_disabled_checkout_adjustments',
-			function() {
+			function () {
 				if ( wp_doing_ajax() && function_exists( 'et_builder_is_loading_data' ) && et_builder_is_loading_data() ) {
 					remove_action( 'woocommerce_checkout_order_review', 'woocommerce_checkout_payment', WC_GZD_Hook_Priorities::instance()->get_priority( 'woocommerce_checkout_order_review', 'woocommerce_checkout_payment', 10 ) );
 					remove_action( 'woocommerce_checkout_order_review', 'woocommerce_order_review', WC_GZD_Hook_Priorities::instance()->get_priority( 'woocommerce_checkout_order_review', 'woocommerce_order_review', 20 ) );

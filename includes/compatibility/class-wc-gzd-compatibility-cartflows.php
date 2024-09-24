@@ -25,7 +25,7 @@ class WC_GZD_Compatibility_Cartflows extends WC_GZD_Compatibility {
 		 */
 		add_action(
 			'cartflows_woo_checkout_update_order_review',
-			function( $post_data ) {
+			function ( $post_data ) {
 				if ( ! $this->enable_cartflows_support() ) {
 					return;
 				}
@@ -35,7 +35,7 @@ class WC_GZD_Compatibility_Cartflows extends WC_GZD_Compatibility {
 				 */
 				add_action(
 					'woocommerce_review_order_before_cart_contents',
-					function() {
+					function () {
 						remove_action( 'woocommerce_review_order_before_cart_contents', 'woocommerce_gzd_template_checkout_table_content_replacement' );
 						remove_action( 'woocommerce_review_order_after_cart_contents', 'woocommerce_gzd_template_checkout_table_product_hide_filter_removal' );
 					}
@@ -59,7 +59,7 @@ class WC_GZD_Compatibility_Cartflows extends WC_GZD_Compatibility {
 		 */
 		add_action(
 			'cartflows_checkout_form_before',
-			function( $checkout_id ) {
+			function ( $checkout_id ) {
 				if ( ! $this->enable_cartflows_support() ) {
 					return;
 				}
@@ -105,7 +105,7 @@ class WC_GZD_Compatibility_Cartflows extends WC_GZD_Compatibility {
 		 */
 		add_action(
 			'cartflows_optin_form_before',
-			function( $optin_id ) {
+			function ( $optin_id ) {
 				if ( ! $this->enable_cartflows_support() ) {
 					return;
 				}

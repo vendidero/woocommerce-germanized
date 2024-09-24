@@ -212,6 +212,7 @@ class WC_GZD_AJAX {
 
 		$args = array(
 			'hide_empty' => false,
+			'fields'     => 'id=>name',
 		);
 
 		if ( is_numeric( $term ) ) {
@@ -220,10 +221,11 @@ class WC_GZD_AJAX {
 			$args['name__like'] = (string) $term;
 		}
 
-		$query = get_terms( 'product_delivery_time', $args );
+		$query = WC_germanized()->delivery_times->get_delivery_times( $args );
+
 		if ( ! empty( $query ) ) {
-			foreach ( $query as $term ) {
-				$terms[ $term->term_id ] = rawurldecode( $term->name );
+			foreach ( $query as $term_id => $term_name ) {
+				$terms[ $term_id ] = rawurldecode( $term_name );
 			}
 		} else {
 			$terms[ rawurldecode( $term ) ] = rawurldecode( sprintf( __( '%s [new]', 'woocommerce-germanized' ), $term ) );
@@ -244,6 +246,7 @@ class WC_GZD_AJAX {
 
 		$args = array(
 			'hide_empty' => false,
+			'fields'     => 'id=>name',
 		);
 
 		if ( is_numeric( $term ) ) {
@@ -252,10 +255,11 @@ class WC_GZD_AJAX {
 			$args['name__like'] = (string) $term;
 		}
 
-		$query = get_terms( 'product_manufacturer', $args );
+		$query = WC_germanized()->manufacturers->get_manufacturers( $args );
+
 		if ( ! empty( $query ) ) {
-			foreach ( $query as $term ) {
-				$terms[ $term->term_id ] = rawurldecode( $term->name );
+			foreach ( $query as $term_id => $term_name ) {
+				$terms[ $term_id ] = rawurldecode( $term_name );
 			}
 		} else {
 			$terms[ rawurldecode( $term ) ] = rawurldecode( sprintf( __( '%s [new]', 'woocommerce-germanized' ), $term ) );
@@ -528,10 +532,8 @@ class WC_GZD_AJAX {
 							if ( isset( $field['required'] ) && empty( $_POST[ $key ] ) ) {
 								wc_add_notice( '<strong>' . $field['label'] . '</strong>', 'error' );
 							}
-						} else {
-							if ( isset( $field['required'] ) && empty( $_POST[ $key ] ) ) {
+						} elseif ( isset( $field['required'] ) && empty( $_POST[ $key ] ) ) {
 								wc_add_notice( '<strong>' . $field['label'] . '</strong> ' . _x( 'is not valid.', 'revocation-form', 'woocommerce-germanized' ), 'error' );
-							}
 						}
 					}
 

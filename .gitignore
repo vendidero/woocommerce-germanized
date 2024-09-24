@@ -6,6 +6,8 @@ project.properties
 .project
 .settings*
 .idea
+.phpunit.result.cache
+none
 
 # Grunt
 /node_modules/

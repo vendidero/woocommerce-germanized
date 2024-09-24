@@ -118,26 +118,26 @@ class WC_GZD_Hook_Priorities {
 	 * Returns the priority for critical hooks (see $this->priorities) which may be customized by a theme.
 	 *
 	 * @param $hook
-	 * @param $function
+	 * @param $callback
 	 *
 	 * @return int
 	 */
-	public function get_priority( $hook, $function, $fallback = 10, $force_original = false ) {
+	public function get_priority( $hook, $callback, $fallback = 10, $force_original = false ) {
 		$priority = $fallback;
 
-		if ( isset( $this->priorities[ $hook ][ $function ] ) ) {
-			$priority = $this->priorities[ $hook ][ $function ];
+		if ( isset( $this->priorities[ $hook ][ $callback ] ) ) {
+			$priority = $this->priorities[ $hook ][ $callback ];
 		}
 
-		if ( $force_original && isset( $this->original_priorities[ $hook ][ $function ] ) ) {
-			$priority = $this->original_priorities[ $hook ][ $function ];
+		if ( $force_original && isset( $this->original_priorities[ $hook ][ $callback ] ) ) {
+			$priority = $this->original_priorities[ $hook ][ $callback ];
 		}
 
 		return $priority;
 	}
 
-	public function update_priority( $hook, $function, $new_priority = 10, $old_priority = false, $fallback = 10 ) {
-		$old_priority = is_numeric( $old_priority ) ? $old_priority : $this->get_priority( $hook, $function, $fallback );
+	public function update_priority( $hook, $callback, $new_priority = 10, $old_priority = false, $fallback = 10 ) {
+		$old_priority = is_numeric( $old_priority ) ? $old_priority : $this->get_priority( $hook, $callback, $fallback );
 
 		/**
 		 * Store old priorities to allow restoring the old position.
@@ -146,11 +146,11 @@ class WC_GZD_Hook_Priorities {
 			$this->original_priorities[ $hook ] = array();
 		}
 
-		$this->original_priorities[ $hook ][ $function ] = $old_priority;
+		$this->original_priorities[ $hook ][ $callback ] = $old_priority;
 
-		remove_action( $hook, $function, $old_priority );
+		remove_action( $hook, $callback, $old_priority );
 
-		if ( ! has_action( $hook, $function ) ) {
+		if ( ! has_action( $hook, $callback ) ) {
 			/**
 			 * Update new priorities in the list.
 			 */
@@ -158,9 +158,9 @@ class WC_GZD_Hook_Priorities {
 				$this->priorities[ $hook ] = array();
 			}
 
-			$this->priorities[ $hook ][ $function ] = $new_priority;
+			$this->priorities[ $hook ][ $callback ] = $new_priority;
 
-			add_action( $hook, $function, $new_priority );
+			add_action( $hook, $callback, $new_priority );
 		}
 	}
 
@@ -254,7 +254,7 @@ class WC_GZD_Hook_Priorities {
 		}
 	}
 
-	public function change_priority( $hook, $function, $new_prio ) {
+	public function change_priority( $hook, $callback, $new_prio ) {
 		wc_deprecated_function( 'WC_GZD_Hook_Priorities::change_priority', '3.10.0' );
 	}
 

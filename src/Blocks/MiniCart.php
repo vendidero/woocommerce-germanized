@@ -11,7 +11,7 @@ final class MiniCart {
 	private function adjust_markup() {
 		add_filter(
 			'render_block',
-			function( $content, $block ) {
+			function ( $content, $block ) {
 				/**
 				 * Whether to disable the (structural) adjustments applied to the WooCommerce mini cart block.
 				 *

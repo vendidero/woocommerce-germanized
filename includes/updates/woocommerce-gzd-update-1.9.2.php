@@ -18,5 +18,3 @@ if ( ! empty( $direct_debit_settings ) && ! empty( $direct_debit_settings['manda
 	);
 	update_option( 'woocommerce_direct-debit_settings', $direct_debit_settings );
 }
-
-

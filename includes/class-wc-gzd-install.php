@@ -4,7 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 } // Exit if accessed directly
 
-use \Vendidero\Germanized\Packages;
+use Vendidero\Germanized\Packages;
 
 if ( ! class_exists( 'WC_GZD_Install' ) ) :
 

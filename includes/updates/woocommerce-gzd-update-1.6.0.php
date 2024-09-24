@@ -60,5 +60,3 @@ if ( get_option( 'woocommerce_gzd_display_shipping_costs_virtual' ) === 'yes' ) 
 	$types = array_diff( get_option( 'woocommerce_gzd_display_shipping_costs_hidden_types', array( 'virtual' ) ), array( 'virtual' ) );
 	update_option( 'woocommerce_gzd_display_shipping_costs_hidden_types', $types );
 }
-
-

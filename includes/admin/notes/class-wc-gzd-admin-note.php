@@ -372,12 +372,10 @@ abstract class WC_GZD_Admin_Note {
 			}
 
 			$this->add();
-		} else {
-			if ( $note = $this->get_note() ) {
-				if ( 'unactioned' === $note->get_status() ) {
-					$note->set_status( 'actioned' );
-					$note->save();
-				}
+		} elseif ( $note = $this->get_note() ) {
+			if ( 'unactioned' === $note->get_status() ) {
+				$note->set_status( 'actioned' );
+				$note->save();
 			}
 		}
 	}

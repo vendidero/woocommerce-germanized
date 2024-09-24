@@ -48,7 +48,7 @@ class MiniCart implements IntegrationInterface {
 
 		add_filter(
 			'render_block',
-			function( $content, $block ) {
+			function ( $content, $block ) {
 				if ( ! empty( $block['blockName'] ) && 'woocommerce/mini-cart' === $block['blockName'] ) {
 					wp_enqueue_style( 'wc-gzd-blocks-mini-cart-frontend' );
 				}

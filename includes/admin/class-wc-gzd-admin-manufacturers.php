@@ -23,7 +23,7 @@ class WC_GZD_Admin_Manufacturers {
 
 		add_filter(
 			'woocommerce_screen_ids',
-			function( $screen_ids ) {
+			function ( $screen_ids ) {
 				$screen_ids = array_merge(
 					$screen_ids,
 					array(

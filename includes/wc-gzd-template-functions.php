@@ -970,7 +970,7 @@ if ( ! function_exists( 'woocommerce_gzd_template_move_after_submit_hooks' ) ) {
 
 				add_action(
 					'woocommerce_gzd_review_order_after_submit',
-					function() use ( $hooks_to_apply_later ) {
+					function () use ( $hooks_to_apply_later ) {
 						global $wp_filter;
 
 						foreach ( $hooks_to_apply_later as $priority => $filters ) {
@@ -1006,7 +1006,7 @@ if ( ! function_exists( 'woocommerce_gzd_template_move_before_submit_hooks' ) ) 
 
 				add_action(
 					'woocommerce_gzd_review_order_before_submit',
-					function() use ( $hooks_to_apply_later ) {
+					function () use ( $hooks_to_apply_later ) {
 						global $wp_filter;
 
 						foreach ( $hooks_to_apply_later as $priority => $filters ) {
@@ -1109,7 +1109,6 @@ if ( ! function_exists( 'woocommerce_gzd_template_digital_delivery_time_text' ) 
 		}
 
 		return $text;
-
 	}
 }
 
@@ -1536,5 +1535,3 @@ function wc_gzd_body_class( $classes ) {
 
 	return $classes;
 }
-
-

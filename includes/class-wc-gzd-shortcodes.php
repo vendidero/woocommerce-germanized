@@ -411,7 +411,6 @@ class WC_GZD_Shortcodes {
 		$return = '<div class="woocommerce woocommerce-gzd">' . ob_get_clean() . '</div>';
 
 		return $return;
-
 	}
 
 	/**
@@ -443,5 +442,4 @@ class WC_GZD_Shortcodes {
 
 		return ob_get_clean();
 	}
-
 }

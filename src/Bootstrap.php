@@ -55,7 +55,7 @@ class Bootstrap {
 		} else {
 			add_action(
 				'woocommerce_blocks_loaded',
-				function() {
+				function () {
 					$this->load_blocks();
 				}
 			);
@@ -68,49 +68,49 @@ class Bootstrap {
 		 */
 		add_filter(
 			'woocommerce_gzd_shipments_additional_costs_include_tax',
-			function() {
+			function () {
 				return wc_gzd_additional_costs_include_tax();
 			}
 		);
 
 		add_filter(
 			'woocommerce_gzd_shipments_template_path',
-			function() {
+			function () {
 				return Package::get_template_path();
 			}
 		);
 
 		add_filter(
 			'woocommerce_gzd_dhl_get_i18n_path',
-			function() {
+			function () {
 				return Package::get_language_path();
 			}
 		);
 
 		add_filter(
 			'woocommerce_gzd_shipments_get_i18n_path',
-			function() {
+			function () {
 				return Package::get_language_path();
 			}
 		);
 
 		add_filter(
 			'woocommerce_gzd_dhl_get_i18n_textdomain',
-			function() {
+			function () {
 				return 'woocommerce-germanized';
 			}
 		);
 
 		add_filter(
 			'woocommerce_gzd_shipments_get_i18n_textdomain',
-			function() {
+			function () {
 				return 'woocommerce-germanized';
 			}
 		);
 
 		add_filter(
 			'woocommerce_gzd_shipment_order_supports_email_transmission',
-			function( $supports_email_transmission, $order ) {
+			function ( $supports_email_transmission, $order ) {
 				if ( wc_gzd_order_supports_parcel_delivery_reminder( $order->get_id() ) ) {
 					$supports_email_transmission = true;
 				}
@@ -123,14 +123,14 @@ class Bootstrap {
 
 		add_filter(
 			'woocommerce_gzd_shipments_last_tutorial_url',
-			function() {
+			function () {
 				return admin_url( 'admin.php?page=wc-settings&tab=germanized-emails&tutorial=yes' );
 			}
 		);
 
 		add_filter(
 			'woocommerce_gzd_shipments_encryption_key_constant',
-			function() {
+			function () {
 				return 'WC_GZD_ENCRYPTION_KEY';
 			}
 		);
@@ -139,7 +139,7 @@ class Bootstrap {
 	protected function load_blocks() {
 		add_filter(
 			'__experimental_woocommerce_blocks_add_data_attributes_to_namespace',
-			function( $namespaces ) {
+			function ( $namespaces ) {
 				return array_merge( $namespaces, array( 'woocommerce-germanized', 'woocommerce-germanized-blocks' ) );
 			}
 		);
@@ -213,7 +213,7 @@ class Bootstrap {
 	protected function register_payment_methods() {
 		$this->container->register(
 			Invoice::class,
-			function( $container ) {
+			function ( $container ) {
 				$asset_api = $container->get( Assets::class );
 				return new Invoice( $asset_api );
 			}
@@ -221,7 +221,7 @@ class Bootstrap {
 
 		$this->container->register(
 			DirectDebit::class,
-			function( $container ) {
+			function ( $container ) {
 				$asset_api = $container->get( Assets::class );
 				return new DirectDebit( $asset_api );
 			}

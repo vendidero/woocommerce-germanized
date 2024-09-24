@@ -130,23 +130,23 @@ class WC_GZD_Compatibility_Woo_Poly_Integration extends WC_GZD_Compatibility {
 		}
 	}
 
-	public function translate_order_subject( $subject, $object ) {
+	public function translate_order_subject( $subject, $email ) {
 		$email_id = str_replace( 'woocommerce_email_subject_', '', current_filter() );
 		$instance = $this->get_pll_email_instance();
 
 		if ( is_callable( array( $instance, 'translateEmailStringToObjectLanguage' ) ) ) {
-			return $instance->translateEmailStringToObjectLanguage( $subject, $object, 'subject', $email_id );
+			return $instance->translateEmailStringToObjectLanguage( $subject, $email, 'subject', $email_id );
 		} else {
 			return $subject;
 		}
 	}
 
-	public function translate_order_heading( $heading, $object ) {
+	public function translate_order_heading( $heading, $email ) {
 		$email_id = str_replace( 'woocommerce_email_heading_', '', current_filter() );
 		$instance = $this->get_pll_email_instance();
 
 		if ( is_callable( array( $instance, 'translateEmailStringToObjectLanguage' ) ) ) {
-			return $instance->translateEmailStringToObjectLanguage( $heading, $object, 'heading', $email_id );
+			return $instance->translateEmailStringToObjectLanguage( $heading, $email, 'heading', $email_id );
 		} else {
 			return $heading;
 		}

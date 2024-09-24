@@ -49,7 +49,7 @@ class Cart implements IntegrationInterface {
 
 		add_action(
 			'woocommerce_blocks_enqueue_cart_block_scripts_after',
-			function() {
+			function () {
 				wp_enqueue_style( 'wc-gzd-blocks-cart-frontend' );
 			}
 		);

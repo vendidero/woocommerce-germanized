@@ -334,14 +334,12 @@ class WC_GZD_Compatibility_WPML extends WC_GZD_Compatibility {
 					$lang = $sitepress->get_default_language();
 				}
 			}
-		} else {
-			if ( $object ) {
-				if ( is_a( $object, 'WC_Order' ) ) {
-					$lang = $object->get_meta( 'wpml_language' );
-				} elseif ( is_a( $object, '\Vendidero\Germanized\Shipments\Shipment' ) ) {
-					if ( $order = $object->get_order() ) {
-						$lang = $order->get_meta( 'wpml_language' );
-					}
+		} elseif ( $object ) {
+			if ( is_a( $object, 'WC_Order' ) ) {
+				$lang = $object->get_meta( 'wpml_language' );
+			} elseif ( is_a( $object, '\Vendidero\Germanized\Shipments\Shipment' ) ) {
+				if ( $order = $object->get_order() ) {
+					$lang = $order->get_meta( 'wpml_language' );
 				}
 			}
 		}
@@ -593,7 +591,7 @@ class WC_GZD_Compatibility_WPML extends WC_GZD_Compatibility {
 		}
 	}
 
-	public function language_locale_filter( $default ) {
+	public function language_locale_filter( $default_locale ) {
 		global $sitepress;
 
 		if ( $this->new_language && ! empty( $this->new_language ) ) {
@@ -602,7 +600,7 @@ class WC_GZD_Compatibility_WPML extends WC_GZD_Compatibility {
 			}
 		}
 
-		return $default;
+		return $default_locale;
 	}
 
 	public function language_user_locale_filter( $value, $user_id, $meta_key ) {

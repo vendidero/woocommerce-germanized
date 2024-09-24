@@ -201,7 +201,7 @@ if ( ! class_exists( 'WC_GZD_Secret_Box_Helper' ) && function_exists( 'sodium_cr
 			 */
 			$path_to_wp_config = ABSPATH . '/wp-config.php'; // phpcs:ignore
 
-			if ( @file_exists( $path_to_wp_config ) && @is_writeable( $path_to_wp_config ) ) { // phpcs:ignore WordPress.PHP.NoSilencedErrors.Discouraged
+			if ( @file_exists( $path_to_wp_config ) && @is_writeable( $path_to_wp_config ) ) { // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_is_writeable, WordPress.PHP.NoSilencedErrors.Discouraged
 				$supports = true;
 			}
 
@@ -278,14 +278,14 @@ if ( ! class_exists( 'WC_GZD_Secret_Box_Helper' ) && function_exists( 'sodium_cr
 							array_splice( $config_file, $last_define_line + 1, 0, $to_insert );
 						}
 
-						$handle = fopen( $path_to_wp_config, 'w' ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_read_fopen
+						$handle = fopen( $path_to_wp_config, 'w' ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fopen
 
 						if ( $handle ) {
 							foreach ( $config_file as $line ) {
-								fwrite( $handle, $line ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_read_fwrite
+								fwrite( $handle, $line ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fwrite
 							}
 
-							fclose( $handle ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_read_fclose
+							fclose( $handle ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fclose
 							$updated = true;
 						}
 					}

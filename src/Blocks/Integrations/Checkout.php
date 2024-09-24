@@ -63,7 +63,7 @@ class Checkout implements IntegrationInterface {
 
 		add_action(
 			'woocommerce_blocks_enqueue_checkout_block_scripts_after',
-			function() {
+			function () {
 				wp_enqueue_style( 'wc-gzd-blocks-checkout-frontend' );
 			}
 		);

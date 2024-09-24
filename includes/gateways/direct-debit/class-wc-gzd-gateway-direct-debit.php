@@ -1118,7 +1118,6 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 			);
 
 		}
-
 	}
 
 	public function get_user_account_data( $user_id = '' ) {
@@ -1209,7 +1208,6 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 			<div class="clear"></div>
 		</fieldset>
 		<?php
-
 	}
 
 	public function validate_fields() {
@@ -1388,17 +1386,17 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 		);
 	}
 
-	public function maybe_encrypt( $string ) {
+	public function maybe_encrypt( $to_encrypt ) {
 		if ( $this->supports_encryption() ) {
-			return WC_GZD_Gateway_Direct_Debit_Encryption_Helper::instance()->encrypt( $string );
+			return WC_GZD_Gateway_Direct_Debit_Encryption_Helper::instance()->encrypt( $to_encrypt );
 		}
 
-		return $string;
+		return $to_encrypt;
 	}
 
-	public function maybe_decrypt( $string ) {
+	public function maybe_decrypt( $to_decrypt ) {
 		if ( $this->supports_encryption() ) {
-			$decrypted = WC_GZD_Gateway_Direct_Debit_Encryption_Helper::instance()->decrypt( $string );
+			$decrypted = WC_GZD_Gateway_Direct_Debit_Encryption_Helper::instance()->decrypt( $to_decrypt );
 
 			// Maxlength of IBAN is 30 - seems like we have an encrypted string (cannot be decrypted, maybe key changed)
 			if ( strlen( $decrypted ) > 40 ) {
@@ -1408,7 +1406,7 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 			return $decrypted;
 		}
 
-		return $string;
+		return $to_decrypt;
 	}
 
 	public function supports_encryption() {
@@ -1435,5 +1433,4 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 
 		return true;
 	}
-
 }

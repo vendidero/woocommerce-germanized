@@ -56,7 +56,7 @@ class WC_GZD_CLI {
 		foreach ( $scripts_to_run as $version => $script ) {
 			include $script;
 			WC_GZD_Install::update_db_version( $version );
-			$update_count ++;
+			++$update_count;
 			$progress->tick();
 		}
 

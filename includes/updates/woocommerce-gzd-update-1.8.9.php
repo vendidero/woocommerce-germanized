@@ -32,5 +32,3 @@ if ( class_exists( 'WC_Shipping_Zones' ) ) {
 	update_option( 'woocommerce_gzd_checkout_legal_parcel_delivery_checkbox_methods', $new_options );
 
 }
-
-

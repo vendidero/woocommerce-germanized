@@ -70,5 +70,3 @@ $tour_sections = array(
 foreach ( $tour_sections as $section ) {
 	update_option( 'woocommerce_gzd_hide_tour_' . $section, '1' );
 }
-
-

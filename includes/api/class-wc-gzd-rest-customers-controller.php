@@ -39,7 +39,6 @@ class WC_GZD_REST_Customers_Controller {
 	 *
 	 */
 	public function prepare( $response, $user_data, $request ) {
-
 		$customer               = new WC_Customer( $user_data->ID );
 		$response_customer_data = $response->get_data();
 

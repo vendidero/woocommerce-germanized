@@ -123,26 +123,53 @@ class WC_GZD_Taxonomy {
 	 * @return string[] terms as array
 	 */
 	public function get_terms( $args = array() ) {
+		if ( isset( $args['as'] ) ) {
+			$args['fields'] = $args['as'];
+		}
+
 		$args = wp_parse_args(
 			$args,
 			array(
 				'hide_empty' => false,
-				'as'         => 'slug=>name',
+				'fields'     => 'slug=>name',
+				'taxonomy'   => $this->get_taxonomy(),
 			)
 		);
 
-		$list    = array();
-		$terms   = get_terms( $this->get_taxonomy(), array_diff_key( $args, array( 'as' => '' ) ) );
-		$as_data = array_map( 'trim', explode( '=>', $args['as'] ) );
-		$key     = isset( $as_data[0] ) ? $as_data[0] : 'slug';
-		$value   = isset( $as_data[1] ) ? $as_data[1] : 'name';
+		$fields        = $args['fields'];
+		$is_core_field = in_array( $fields, array( 'all', 'all_with_object_id', 'ids', 'tt_ids', 'names', 'slugs', 'count', 'id=>parent', 'id=>name', 'id=>slug' ), true );
 
-		if ( ! empty( $terms ) && ! is_wp_error( $terms ) ) {
-			foreach ( $terms as $term ) {
-				$list[ ( isset( $term->{$key} ) ? $term->{$key} : $term->slug ) ] = ( isset( $term->{$value} ) ? $term->{$value} : $term->name );
+		if ( ! $is_core_field ) {
+			$args['fields'] = 'all';
+		}
+
+		$list  = array();
+		$terms = get_terms( array_diff_key( $args, array( 'as' => '' ) ) );
+
+		if ( ! $is_core_field ) {
+			$as_data = array_map( 'trim', explode( '=>', $fields ) );
+			$key     = isset( $as_data[0] ) ? $as_data[0] : 'slug';
+			$value   = isset( $as_data[1] ) ? $as_data[1] : 'name';
+
+			if ( ! empty( $terms ) && ! is_wp_error( $terms ) ) {
+				foreach ( $terms as $term ) {
+					$list[ ( isset( $term->{$key} ) ? $term->{$key} : $term->slug ) ] = $this->format_term_value( $value, $term );
+				}
 			}
+		} elseif ( ! is_wp_error( $terms ) ) {
+			$list = $terms;
 		}
 
 		return $list;
+	}
+
+	/**
+	 * @param string $value_to_extract
+	 * @param WP_Term $term
+	 *
+	 * @return mixed
+	 */
+	protected function format_term_value( $value_to_extract, $term ) {
+		return ( isset( $term->{$value_to_extract} ) ? $term->{$value_to_extract} : $term->name );
 	}
 }

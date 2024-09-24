@@ -26,14 +26,14 @@ class WC_GZD_Compatibility_WooCommerce_PayPal_Payments extends WC_GZD_Compatibil
 
 		add_action(
 			'woocommerce_gzd_after_checkout_order_submit',
-			function() {
+			function () {
 				do_action( 'woocommerce_gzd_render_paypal_payments_smart_button' );
 			}
 		);
 
 		add_action(
 			'woocommerce_review_order_after_payment',
-			function() {
+			function () {
 				if ( wc_gzd_checkout_adjustments_disabled() || ! woocommerce_gzd_checkout_custom_submit_button_is_shown() ) {
 					do_action( 'woocommerce_gzd_render_paypal_payments_smart_button' );
 				}
@@ -42,7 +42,7 @@ class WC_GZD_Compatibility_WooCommerce_PayPal_Payments extends WC_GZD_Compatibil
 
 		add_filter(
 			'woocommerce_paypal_payments_tracking_data_before_update',
-			function( $shipment_data ) {
+			function ( $shipment_data ) {
 				if ( isset( $shipment_data['carrier'] ) ) {
 					if ( strstr( $shipment_data['carrier'], 'dpd' ) ) {
 						$shipment_data['carrier'] = 'DPD';
@@ -69,7 +69,7 @@ class WC_GZD_Compatibility_WooCommerce_PayPal_Payments extends WC_GZD_Compatibil
 		 */
 		add_filter(
 			'woocommerce_gzd_instant_order_confirmation',
-			function( $send_confirmation, $order = null ) {
+			function ( $send_confirmation, $order = null ) {
 				if ( is_a( $order, 'WC_Order' ) && 'ppcp-pay-upon-invoice-gateway' === $order->get_payment_method() ) {
 					$send_confirmation = false;
 				}
@@ -85,7 +85,7 @@ class WC_GZD_Compatibility_WooCommerce_PayPal_Payments extends WC_GZD_Compatibil
 		 */
 		add_filter(
 			'woocommerce_gzd_disable_gateways_paid_order_email',
-			function( $gateways_disabled ) {
+			function ( $gateways_disabled ) {
 				$gateways_disabled[] = 'ppcp-pay-upon-invoice-gateway';
 
 				return $gateways_disabled;

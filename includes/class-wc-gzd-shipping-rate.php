@@ -37,4 +37,3 @@ class WC_GZD_Shipping_Rate extends WC_Shipping_Rate {
 		wc_deprecated_function( 'WC_GZD_Shipping_Rate::get_shared_taxes', '3.3.4' );
 	}
 }
-

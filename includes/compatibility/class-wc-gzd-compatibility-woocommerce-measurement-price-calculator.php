@@ -25,7 +25,7 @@ class WC_GZD_Compatibility_WooCommerce_Measurement_Price_Calculator extends WC_G
 		 */
 		add_filter(
 			'woocommerce_gzd_unit_price_observer_price_selectors',
-			function( $price_selectors ) {
+			function ( $price_selectors ) {
 
 				return $price_selectors;
 			}
@@ -33,7 +33,7 @@ class WC_GZD_Compatibility_WooCommerce_Measurement_Price_Calculator extends WC_G
 
 		add_filter(
 			'woocommerce_gzd_unit_price_observer_params',
-			function( $params ) {
+			function ( $params ) {
 				if ( function_exists( 'is_singular' ) && is_singular( 'product' ) ) {
 					global $post;
 
@@ -61,7 +61,7 @@ class WC_GZD_Compatibility_WooCommerce_Measurement_Price_Calculator extends WC_G
 		 */
 		add_filter(
 			'woocommerce_gzd_unit_price_cart_quantity',
-			function( $quantity, $cart_item, $gzd_product ) {
+			function ( $quantity, $cart_item, $gzd_product ) {
 				if ( isset( $cart_item['pricing_item_meta_data'], $cart_item['pricing_item_meta_data']['_measurement_needed'] ) && ! empty( $cart_item['pricing_item_meta_data']['_measurement_needed'] ) ) {
 					$quantity = floatval( $cart_item['pricing_item_meta_data']['_measurement_needed'] ) * floatval( $quantity );
 				}
@@ -77,7 +77,7 @@ class WC_GZD_Compatibility_WooCommerce_Measurement_Price_Calculator extends WC_G
 		 */
 		add_filter(
 			'woocommerce_gzd_order_item_quantity',
-			function( $quantity, $gzd_order_item ) {
+			function ( $quantity, $gzd_order_item ) {
 				if ( $measurement_data = $gzd_order_item->get_meta( '_measurement_data' ) ) {
 					if ( isset( $measurement_data['_measurement_needed'] ) && ! empty( $measurement_data['_measurement_needed'] ) ) {
 						$quantity = floatval( $measurement_data['_measurement_needed'] ) * floatval( $quantity );
@@ -95,7 +95,7 @@ class WC_GZD_Compatibility_WooCommerce_Measurement_Price_Calculator extends WC_G
 		 */
 		add_filter(
 			'woocommerce_gzd_cart_product_units_html',
-			function( $units_html, $cart_item ) {
+			function ( $units_html, $cart_item ) {
 				if ( is_a( $cart_item, 'WC_Order_Item_Product' ) ) {
 					if ( $measurement_data = $cart_item->get_meta( '_measurement_data' ) ) {
 						if ( isset( $measurement_data['_measurement_needed'] ) && ! empty( $measurement_data['_measurement_needed'] ) ) {

@@ -5,7 +5,6 @@ defined( 'ABSPATH' ) || exit;
 class WC_GZD_Food_Helper {
 
 	public static function init() {
-
 	}
 
 	public static function enable_food_options() {

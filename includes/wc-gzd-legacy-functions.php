@@ -134,7 +134,7 @@ function wc_gzd_bool_to_string( $bool ) {
 
 add_action(
 	'init',
-	function() {
+	function () {
 		if ( ! function_exists( 'wc_ts_set_crud_data' ) ) {
 			function wc_ts_set_crud_data( $object, $key, $value ) {
 				wc_deprecated_function( __FUNCTION__, '3.10' );

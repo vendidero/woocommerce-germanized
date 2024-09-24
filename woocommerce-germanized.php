@@ -190,7 +190,7 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 			if ( ! WC_GZD_Dependencies::is_loadable() ) {
 				add_action(
 					'admin_notices',
-					function() {
+					function () {
 						if ( current_user_can( 'activate_plugins' ) ) {
 							include_once WC_GERMANIZED_ABSPATH . 'includes/admin/views/html-notice-dependencies.php';
 						}
@@ -267,7 +267,7 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 
 			add_action(
 				'init1',
-				function() {
+				function () {
 					$product = wc_get_product( 4871 );
 				}
 			);
@@ -409,39 +409,37 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 		/**
 		 * Auto-load WC_Germanized classes on demand to reduce memory consumption.
 		 *
-		 * @param mixed $class
+		 * @param mixed $class_to_load
 		 *
 		 * @return void
 		 */
-		public function autoload( $class ) {
-			$original_class = $class;
-			$class          = strtolower( $class );
+		public function autoload( $class_to_load ) {
+			$original_class = $class_to_load;
+			$class_to_load  = strtolower( $class_to_load );
 
 			$matcher = array(
 				'wc_gzd_',
 			);
 
-			$is_match = ( str_replace( $matcher, '', $class ) !== $class );
+			$is_match = ( str_replace( $matcher, '', $class_to_load ) !== $class_to_load );
 
 			if ( ! $is_match ) {
 				return;
 			}
 
 			$path = $this->plugin_path() . '/includes/';
-			$file = 'class-' . str_replace( '_', '-', $class ) . '.php';
+			$file = 'class-' . str_replace( '_', '-', $class_to_load ) . '.php';
 
-			if ( strpos( $class, 'wc_gzd_admin' ) !== false ) {
+			if ( strpos( $class_to_load, 'wc_gzd_admin' ) !== false ) {
 				$path = $this->plugin_path() . '/includes/admin/';
-			} elseif ( strpos( $class, 'wc_gzd_gateway_' ) !== false ) {
-				$path = $this->plugin_path() . '/includes/gateways/' . substr( str_replace( '_', '-', $class ), 15 ) . '/';
-			} elseif ( strpos( $class, 'wc_gzd_compatibility' ) !== false ) {
+			} elseif ( strpos( $class_to_load, 'wc_gzd_gateway_' ) !== false ) {
+				$path = $this->plugin_path() . '/includes/gateways/' . substr( str_replace( '_', '-', $class_to_load ), 15 ) . '/';
+			} elseif ( strpos( $class_to_load, 'wc_gzd_compatibility' ) !== false ) {
 				$path = $this->plugin_path() . '/includes/compatibility/';
 			}
 
 			if ( $path && is_readable( $path . $file ) ) {
 				include_once $path . $file;
-
-				return;
 			}
 		}
 
@@ -570,7 +568,7 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 				} else {
 					add_action(
 						'woocommerce_loaded',
-						function() {
+						function () {
 							if ( $this->is_pro() ) {
 								if ( ! did_action( 'woocommerce_gzdp_loaded' ) ) {
 									add_action( 'woocommerce_gzdp_loaded', array( $this, 'frontend_includes' ), 5 );
@@ -924,7 +922,7 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 			$locale = apply_filters( 'plugin_locale', $locale, 'woocommerce-germanized' );
 
 			load_textdomain( 'woocommerce-germanized', trailingslashit( WP_LANG_DIR ) . 'woocommerce-germanized/woocommerce-germanized-' . $locale . '.mo' );
-			load_plugin_textdomain( 'woocommerce-germanized', false, plugin_basename( dirname( __FILE__ ) ) . '/i18n/languages/' );
+			load_plugin_textdomain( 'woocommerce-germanized', false, plugin_basename( __DIR__ ) . '/i18n/languages/' );
 		}
 
 		/**
@@ -1570,7 +1568,6 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 			$gateways[] = 'WC_GZD_Gateway_Invoice';
 
 			return $gateways;
-
 		}
 	}
 

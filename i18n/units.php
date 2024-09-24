@@ -30,5 +30,3 @@ return array(
 	'kcal' => __( 'kcal', 'woocommerce-germanized' ),
 	'kj'   => __( 'kJ', 'woocommerce-germanized' ),
 );
-
-

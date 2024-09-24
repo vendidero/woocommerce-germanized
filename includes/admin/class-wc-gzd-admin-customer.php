@@ -111,7 +111,6 @@ class WC_GZD_Admin_Customer {
 			}
 		}
 	}
-
 }
 
 WC_GZD_Admin_Customer::instance();

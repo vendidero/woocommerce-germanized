@@ -113,7 +113,6 @@ class WC_GZD_Unit_Tests_Bootstrap {
 		} );
 
 		tests_add_filter( 'woocommerce_gzd_installed', function () {
-
 			foreach ( $this->packages as $package_slug => $namespace ) {
 				if ( $this->is_separate_package( $package_slug ) ) {
 					$classname = $namespace . '\Package';

@@ -268,7 +268,6 @@ if ( ! class_exists( 'WC_GZD_Email_Customer_Cancelled_Order' ) ) :
 				),
 			);
 		}
-
 	}
 
 endif;

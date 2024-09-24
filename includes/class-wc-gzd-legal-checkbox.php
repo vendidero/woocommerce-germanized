@@ -87,13 +87,13 @@ class WC_GZD_Legal_Checkbox {
 	 * Returns an option of the current checkbox from the database.
 	 *
 	 * @param $key
-	 * @param string $default
+	 * @param string $default_value
 	 *
 	 * @return array|string
 	 */
-	public function get_option( $key, $default = '' ) {
+	public function get_option( $key, $default_value = '' ) {
 		$options = WC_GZD_Legal_Checkbox_Manager::instance()->get_options();
-		$value   = $default;
+		$value   = $default_value;
 
 		if ( isset( $options[ $this->get_id() ] ) && isset( $options[ $this->get_id() ][ $key ] ) ) {
 			$value = $options[ $this->get_id() ][ $key ];
@@ -981,10 +981,10 @@ class WC_GZD_Legal_Checkbox {
 		return $old_value;
 	}
 
-	public function pre_get_option( $value, $name, $default = null ) {
+	public function pre_get_option( $value, $name, $default_value = null ) {
 		$name = str_replace( $this->get_form_field_id_prefix(), '', $name );
 
-		return $this->get_option( $name, $default );
+		return $this->get_option( $name, $default_value );
 	}
 
 	/**
@@ -1033,5 +1033,3 @@ class WC_GZD_Legal_Checkbox {
 		}
 	}
 }
-
-

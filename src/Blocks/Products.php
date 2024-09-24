@@ -39,7 +39,7 @@ final class Products {
 	private function register_single_product_hook_compatibility() {
 		add_filter(
 			'woocommerce_blocks_hook_compatibility_additional_data',
-			function( $additional_hook_data ) {
+			function ( $additional_hook_data ) {
 				foreach ( wc_gzd_get_single_product_shopmarks() as $price_label ) {
 					/**
 					 * Exclude price labels which are attached to the product safety tab
@@ -63,7 +63,7 @@ final class Products {
 	private function register_integrations() {
 		add_action(
 			'woocommerce_blocks_all-products_block_registration',
-			function( $integration_registry ) {
+			function ( $integration_registry ) {
 				$integration_registry->register( Package::container()->get( ProductElements::class ) );
 			}
 		);
@@ -212,7 +212,7 @@ final class Products {
 			array(
 				'endpoint'        => ProductSchema::IDENTIFIER,
 				'namespace'       => 'woocommerce-germanized',
-				'data_callback'   => function( $product ) {
+				'data_callback'   => function ( $product ) {
 					$gzd_product    = wc_gzd_get_product( $product );
 					$is_pro         = Package::is_pro();
 					$html_formatter = \Automattic\WooCommerce\Blocks\Package::container()->get( \Automattic\WooCommerce\StoreApi\StoreApi::class )->container()->get( ExtendSchema::class )->get_formatter( 'html' );

@@ -58,7 +58,7 @@ class WC_GZD_Coupon_Helper {
 		 */
 		add_filter(
 			'woocommerce_sort_fees_callback',
-			function( $compare, $a, $b ) {
+			function ( $compare, $a, $b ) {
 				if ( $a->amount === $b->amount ) {
 					$compare = strcmp( $a->id, $b->id );
 				}
@@ -91,14 +91,14 @@ class WC_GZD_Coupon_Helper {
 		 */
 		add_action(
 			'woocommerce_admin_order_items_after_line_items',
-			function() {
+			function () {
 				add_filter( 'woocommerce_order_item_get_discount', array( $this, 'voucher_discount' ), 10, 2 );
 			}
 		);
 
 		add_action(
 			'woocommerce_admin_order_totals_after_discount',
-			function() {
+			function () {
 				remove_filter( 'woocommerce_order_item_get_discount', array( $this, 'voucher_discount' ), 10 );
 			}
 		);
@@ -453,7 +453,7 @@ class WC_GZD_Coupon_Helper {
 	protected function get_order_fee_total( $order ) {
 		return array_reduce(
 			$order->get_fees(),
-			function( $carry, $item ) {
+			function ( $carry, $item ) {
 				return $carry + ( $item->get_total() + $item->get_total_tax() );
 			}
 		);
@@ -516,7 +516,7 @@ class WC_GZD_Coupon_Helper {
 				if ( $discount < 0 || $max_voucher_total > $max_discount ) {
 					$fee_total = $discount;
 
-					if ( $item->get_total() != $fee_total ) { // phpcs:ignore WordPress.PHP.StrictComparisons.LooseComparison
+					if ( $item->get_total() != $fee_total ) { // phpcs:ignore Universal.Operators.StrictComparisons.LooseNotEqual
 						$voucher_item_updated = true;
 						$item->set_total( $fee_total );
 					}
@@ -764,7 +764,7 @@ class WC_GZD_Coupon_Helper {
 	 *
 	 * @return array
 	 */
-	protected function get_fee_data_from_coupon( $coupon, $object ) {
+	protected function get_fee_data_from_coupon( $coupon, $cart_or_order ) {
 		if ( is_a( $coupon, 'WC_Order_Item_Coupon' ) ) {
 			$coupon = $this->get_voucher_by_coupon_order_item( $coupon );
 		}
@@ -774,7 +774,7 @@ class WC_GZD_Coupon_Helper {
 		}
 
 		$this->unregister_coupon_validation_filters();
-		$discounts = new WC_GZD_Voucher_Discounts( $object, $coupon );
+		$discounts = new WC_GZD_Voucher_Discounts( $cart_or_order, $coupon );
 		$discounts->apply_coupon( $coupon, false );
 		$total_discounts = $discounts->get_discounts_by_coupon();
 		$this->register_coupon_validation_filters();

@@ -56,10 +56,10 @@ class Shopmark {
 		return "woocommerce_gzd_shopmark_{$location}_{$type}_";
 	}
 
-	protected function get_option( $default = '', $suffix = '' ) {
+	protected function get_option( $default_value = '', $suffix = '' ) {
 		$option_name = $this->get_option_name( $suffix );
 
-		return get_option( $option_name, $default );
+		return get_option( $option_name, $default_value );
 	}
 
 	public function get_option_name( $suffix = '' ) {

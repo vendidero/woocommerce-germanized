@@ -20,7 +20,7 @@ class WC_GZD_Compatibility_WC_Dynamic_Pricing_And_Discounts extends WC_GZD_Compa
 	public function load() {
 		add_filter(
 			'woocommerce_gzd_unit_price_observer_params',
-			function( $params ) {
+			function ( $params ) {
 				if ( function_exists( 'is_singular' ) && is_singular( 'product' ) ) {
 					if ( class_exists( 'RP_WCDPD_Settings' ) && '0' !== RP_WCDPD_Settings::get( 'product_pricing_change_display_prices' ) ) {
 						$params['refresh_on_load'] = true;

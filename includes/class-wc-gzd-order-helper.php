@@ -119,7 +119,7 @@ class WC_GZD_Order_Helper {
 			add_action( 'woocommerce_order_before_calculate_totals', array( $this, 'tmp_store_order_item_copy_before_calculate_totals' ), 500, 2 );
 			add_action(
 				'woocommerce_order_after_calculate_totals',
-				function( $and_taxes, $order ) {
+				function ( $and_taxes, $order ) {
 					if ( $and_taxes ) {
 						$this->order_item_map = null;
 
@@ -137,7 +137,7 @@ class WC_GZD_Order_Helper {
 			add_action( 'woocommerce_order_item_after_calculate_taxes', array( $this, 'adjust_additional_costs_item_taxes' ), 10, 2 );
 			add_action(
 				'woocommerce_order_before_calculate_totals',
-				function() {
+				function () {
 					add_filter( 'woocommerce_order_get_shipping_total', array( $this, 'force_shipping_total_exact' ), 10, 2 );
 				},
 				500,
@@ -145,7 +145,7 @@ class WC_GZD_Order_Helper {
 			);
 			add_action(
 				'woocommerce_order_after_calculate_totals',
-				function() {
+				function () {
 					remove_filter( 'woocommerce_order_get_shipping_total', array( $this, 'force_shipping_total_exact' ), 10 );
 				},
 				500

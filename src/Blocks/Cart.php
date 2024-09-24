@@ -26,7 +26,7 @@ final class Cart {
 	private function register_integrations() {
 		add_action(
 			'woocommerce_blocks_cart_block_registration',
-			function( $integration_registry ) {
+			function ( $integration_registry ) {
 				$integration_registry->register( new \Vendidero\Germanized\Blocks\Integrations\Cart() );
 			}
 		);

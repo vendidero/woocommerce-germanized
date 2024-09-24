@@ -67,7 +67,7 @@ class WC_GZD_Emails {
 				 */
 				add_action(
 					'woocommerce_store_api_checkout_order_processed',
-					function( $order ) {
+					function ( $order ) {
 						if ( $order->needs_payment() ) {
 							add_action( 'woocommerce_rest_checkout_process_payment_with_context', array( $this, 'checkout_block_payment_context_confirmation_callback' ), 1005, 2 );
 						} else {
@@ -260,23 +260,23 @@ class WC_GZD_Emails {
 		return apply_filters( 'woocommerce_gzd_email_plain_content', $content );
 	}
 
-	public function attach_product_warranties( $attachments, $mail_id, $object = false ) {
+	public function attach_product_warranties( $attachments, $mail_id, $object_in_email = false ) {
 		$warranty_email_ids = array_filter( (array) get_option( 'woocommerce_gzd_mail_attach_warranties', array() ) );
 
-		if ( $object && in_array( $mail_id, $warranty_email_ids, true ) ) {
+		if ( $object_in_email && in_array( $mail_id, $warranty_email_ids, true ) ) {
 			$product_ids = array();
 
-			if ( is_a( $object, 'WC_Order' ) ) {
-				foreach ( $object->get_items( 'line_item' ) as $item ) {
+			if ( is_a( $object_in_email, 'WC_Order' ) ) {
+				foreach ( $object_in_email->get_items( 'line_item' ) as $item ) {
 					$product_ids[] = $item->get_variation_id() ? $item->get_variation_id() : $item->get_product_id();
 				}
-			} elseif ( is_a( $object, '\Vendidero\Germanized\Shipments\Shipment' ) ) {
-				foreach ( $object->get_items() as $item ) {
+			} elseif ( is_a( $object_in_email, '\Vendidero\Germanized\Shipments\Shipment' ) ) {
+				foreach ( $object_in_email->get_items() as $item ) {
 					$product_ids[] = $item->get_product_id();
 				}
 			}
 
-			$product_ids = apply_filters( 'woocommerce_gzd_product_warranties_email_product_ids', $product_ids, $object, $mail_id );
+			$product_ids = apply_filters( 'woocommerce_gzd_product_warranties_email_product_ids', $product_ids, $object_in_email, $mail_id );
 			$product_ids = array_filter( array_unique( $product_ids ) );
 
 			if ( ! empty( $product_ids ) ) {
@@ -365,12 +365,12 @@ class WC_GZD_Emails {
 	 *
 	 * @param $headers
 	 * @param $id
-	 * @param $object
+	 * @param $object_in_email
 	 * @param null $email
 	 *
 	 * @return string
 	 */
-	public function add_bcc_email_headers( $headers, $id, $object, $email = null ) {
+	public function add_bcc_email_headers( $headers, $id, $object_in_email, $email = null ) {
 		if ( $email && is_a( $email, 'WC_Email' ) ) {
 			$recipients = $email->get_option( 'bcc' );
 
@@ -453,8 +453,8 @@ class WC_GZD_Emails {
 		}
 	}
 
-	public function confirmation_text_option( $object ) {
-		if ( 'customer_processing_order' === $object->id ) {
+	public function confirmation_text_option( $email ) {
+		if ( 'customer_processing_order' === $email->id ) {
 
 			/**
 			 * Filter order confirmation text option field.
@@ -1243,7 +1243,6 @@ class WC_GZD_Emails {
 		}
 
 		return $text;
-
 	}
 
 	public function get_email_instance_by_id( $id ) {

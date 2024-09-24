@@ -1135,12 +1135,10 @@ class WC_GZD_Legal_Checkbox_Manager {
 				if ( ! is_null( $obj_value ) ) {
 					if ( is_array( $obj_value ) && ! is_array( $m_value ) ) {
 						if ( in_array( $m_value, $obj_value ) ) { // phpcs:ignore WordPress.PHP.StrictInArray.MissingTrueStrict
-							$matched ++;
+							++$matched;
 						}
-					} else {
-						if ( $m_value == $obj_value ) { // phpcs:ignore WordPress.PHP.StrictComparisons.LooseComparison
-							$matched ++;
-						}
+					} elseif ( $m_value == $obj_value ) { // phpcs:ignore Universal.Operators.StrictComparisons.LooseEqual
+						++$matched;
 					}
 				}
 			}
@@ -1174,7 +1172,7 @@ class WC_GZD_Legal_Checkbox_Manager {
 	protected function sort( $checkboxes = array() ) {
 		uasort(
 			$checkboxes,
-			function( $checkbox1, $checkbox2 ) {
+			function ( $checkbox1, $checkbox2 ) {
 				if ( $checkbox1->get_priority() === $checkbox2->get_priority() ) {
 					return 0;
 				}
@@ -1187,68 +1185,68 @@ class WC_GZD_Legal_Checkbox_Manager {
 	}
 
 	/**
-	 * @param WC_Data|WP_User|WP_Comment $object
-	 * @param string $location
+	 * @param string $checkbox_id
+	 * @param WC_Data|WP_User|WP_Comment $instance_object
 	 *
 	 * @return boolean
 	 */
-	public function is_logged( $checkbox_id, $object ) {
-		$cb_value  = $this->get_logged_value( $checkbox_id, $object );
+	public function is_logged( $checkbox_id, $instance_object ) {
+		$cb_value  = $this->get_logged_value( $checkbox_id, $instance_object );
 		$is_logged = ! empty( $cb_value );
 
-		return apply_filters( 'woocommerce_gzd_checkbox_is_logged', $is_logged, $checkbox_id, $object );
+		return apply_filters( 'woocommerce_gzd_checkbox_is_logged', $is_logged, $checkbox_id, $instance_object );
 	}
 
 	/**
-	 * @param WC_Data|WP_User|WP_Comment $object
-	 * @param string $location
+	 * @param string $checkbox_id
+	 * @param WC_Data|WP_User|WP_Comment $instance_object
 	 *
 	 * @return mixed
 	 */
-	protected function get_logged_value( $checkbox_id, $object ) {
+	protected function get_logged_value( $checkbox_id, $instance_object ) {
 		$meta_key = "_checkbox_{$checkbox_id}";
 		$cb_value = '';
 
-		if ( is_a( $object, 'WC_Order' ) ) {
+		if ( is_a( $instance_object, 'WC_Order' ) ) {
 			if ( 'parcel_delivery' === $checkbox_id ) {
-				$cb_value = $object->get_meta( '_parcel_delivery_opted_in' );
+				$cb_value = $instance_object->get_meta( '_parcel_delivery_opted_in' );
 			} elseif ( 'photovoltaic_systems' === $checkbox_id ) {
-				$cb_value = $object->get_meta( '_photovoltaic_systems_opted_in' );
+				$cb_value = $instance_object->get_meta( '_photovoltaic_systems_opted_in' );
 			} else {
-				$cb_value = $object->get_meta( $meta_key );
+				$cb_value = $instance_object->get_meta( $meta_key );
 			}
-		} elseif ( is_a( $object, 'WP_User' ) ) {
-			$cb_value = get_user_meta( $object->ID, $meta_key, true );
-		} elseif ( is_a( $object, 'WP_Comment' ) ) {
-			$cb_value = get_comment_meta( $object->comment_ID, $meta_key, true );
-		} elseif ( is_callable( array( $object, 'get_meta' ) ) ) {
-			$cb_value = $object->get_meta( $meta_key );
+		} elseif ( is_a( $instance_object, 'WP_User' ) ) {
+			$cb_value = get_user_meta( $instance_object->ID, $meta_key, true );
+		} elseif ( is_a( $instance_object, 'WP_Comment' ) ) {
+			$cb_value = get_comment_meta( $instance_object->comment_ID, $meta_key, true );
+		} elseif ( is_callable( array( $instance_object, 'get_meta' ) ) ) {
+			$cb_value = $instance_object->get_meta( $meta_key );
 		}
 
-		return apply_filters( 'woocommerce_gzd_checkbox_value', $cb_value, $checkbox_id, $object );
+		return apply_filters( 'woocommerce_gzd_checkbox_value', $cb_value, $checkbox_id, $instance_object );
 	}
 
 	/**
-	 * @param WC_Data|WP_User|WP_Comment $object
-	 * @param string $location
+	 * @param string $checkbox_id
+	 * @param WC_Data|WP_User|WP_Comment $instance_object
 	 *
 	 * @return boolean
 	 */
-	public function is_checked( $checkbox_id, $object ) {
-		$cb_value   = $this->get_logged_value( $checkbox_id, $object );
+	public function is_checked( $checkbox_id, $instance_object ) {
+		$cb_value   = $this->get_logged_value( $checkbox_id, $instance_object );
 		$is_checked = wc_string_to_bool( $cb_value );
 
-		if ( is_a( $object, 'WC_Order' ) ) {
+		if ( is_a( $instance_object, 'WC_Order' ) ) {
 			if ( 'parcel_delivery' === $checkbox_id ) {
-				$is_checked = wc_gzd_order_supports_parcel_delivery_reminder( $object->get_id() );
+				$is_checked = wc_gzd_order_supports_parcel_delivery_reminder( $instance_object->get_id() );
 			} elseif ( 'photovoltaic_systems' === $checkbox_id ) {
-				$is_checked = wc_gzd_order_applies_for_photovoltaic_system_vat_exemption( $object->get_id() );
+				$is_checked = wc_gzd_order_applies_for_photovoltaic_system_vat_exemption( $instance_object->get_id() );
 			}
 		}
 
 		$is_checked = wc_string_to_bool( $is_checked );
 
-		return apply_filters( 'woocommerce_gzd_checkbox_is_checked', $is_checked, $checkbox_id, $object );
+		return apply_filters( 'woocommerce_gzd_checkbox_is_checked', $is_checked, $checkbox_id, $instance_object );
 	}
 
 	/**
@@ -1275,22 +1273,22 @@ class WC_GZD_Legal_Checkbox_Manager {
 	}
 
 	/**
-	 * @param WC_Data|WP_User|WP_Comment $object
+	 * @param WC_Data|WP_User|WP_Comment $instance_object
 	 * @param string $location
 	 *
 	 * @return void
 	 */
-	public function render_checkbox_log( $object, $location = 'order' ) {
+	public function render_checkbox_log( $instance_object, $location = 'order' ) {
 		$checkboxes         = $this->get_loggable_checkboxes( $location );
 		$editable           = $this->get_editable_checkboxes( $location );
 		$checkboxes_to_list = array();
 
 		foreach ( $checkboxes as $checkbox_id ) {
 			if ( $checkbox = wc_gzd_get_legal_checkbox( $checkbox_id ) ) {
-				$is_checked  = $this->is_checked( $checkbox_id, $object );
-				$is_logged   = $this->is_logged( $checkbox_id, $object );
+				$is_checked  = $this->is_checked( $checkbox_id, $instance_object );
+				$is_logged   = $this->is_logged( $checkbox_id, $instance_object );
 				$is_editable = in_array( $checkbox_id, $editable, true );
-				$is_manual   = is_a( $object, 'WC_Order' ) ? 'admin' === $object->get_created_via() : false;
+				$is_manual   = is_a( $instance_object, 'WC_Order' ) ? 'admin' === $instance_object->get_created_via() : false;
 
 				if ( $is_logged || ( $is_manual && $is_editable ) ) {
 					$checkboxes_to_list[ $checkbox_id ] = $is_checked;

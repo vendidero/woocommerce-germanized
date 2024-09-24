@@ -109,7 +109,6 @@ class WC_GZD_Deprecated_Virtual_VAT_Helper {
 
 		return $rates;
 	}
-
 }
 
 return WC_GZD_Deprecated_Virtual_VAT_Helper::instance();

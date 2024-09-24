@@ -1145,16 +1145,14 @@ class WC_Germanized_Meta_Box_Product_Data {
 			// Maybe delete missing country-specific delivery times (e.g. removed by the user)
 			if ( ! isset( $posted[ $country ] ) ) {
 				unset( $country_specific_delivery_times[ $country ] );
-			} else {
-				if ( ! empty( $posted[ $country ] ) ) {
-					if ( $slug = wc_gzd_get_valid_product_delivery_time_slugs( $posted[ $country ] ) ) {
-						$country_specific_delivery_times[ $country ] = $slug;
-					} else {
-						unset( $country_specific_delivery_times[ $country ] );
-					}
+			} elseif ( ! empty( $posted[ $country ] ) ) {
+				if ( $slug = wc_gzd_get_valid_product_delivery_time_slugs( $posted[ $country ] ) ) {
+					$country_specific_delivery_times[ $country ] = $slug;
 				} else {
 					unset( $country_specific_delivery_times[ $country ] );
 				}
+			} else {
+				unset( $country_specific_delivery_times[ $country ] );
 			}
 		}
 

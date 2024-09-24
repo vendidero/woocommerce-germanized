@@ -19,5 +19,3 @@ return array(
 	'new-price' => __( 'New Price: ', 'woocommerce-germanized' ),
 	'old-price' => __( 'Old Price: ', 'woocommerce-germanized' ),
 );
-
-

@@ -304,7 +304,6 @@ class WC_GZD_Customer_Helper {
 		}
 
 		return $redirect;
-
 	}
 
 	public function disable_checkout() {
@@ -764,7 +763,7 @@ class WC_GZD_Customer_Helper {
 			 */
 			add_action(
 				'woocommerce_created_customer_notification',
-				function() {
+				function () {
 					add_filter( 'woocommerce_email_enabled_customer_new_account', array( $this, 'disable_new_account_mail_callback' ), 50 );
 				},
 				1
@@ -871,7 +870,6 @@ class WC_GZD_Customer_Helper {
 		 */
 		return apply_filters( 'woocommerce_gzd_customer_account_cleanup_excluded_user_roles', array( 'administrator', 'editor', 'author', 'shop_manager' ) );
 	}
-
 }
 
 WC_GZD_Customer_Helper::instance();

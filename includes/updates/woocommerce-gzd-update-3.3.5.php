@@ -11,4 +11,3 @@ if ( ! defined( 'ABSPATH' ) ) {
 if ( 'yes' === get_option( 'woocommerce_gzd_checkout_phone_non_required' ) ) {
 	update_option( 'woocommerce_checkout_phone_field', 'optional' );
 }
-

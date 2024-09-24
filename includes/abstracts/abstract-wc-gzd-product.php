@@ -2329,5 +2329,3 @@ class WC_GZD_Product {
 		}
 	}
 }
-
-

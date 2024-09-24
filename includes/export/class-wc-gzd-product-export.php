@@ -224,7 +224,7 @@ class WC_GZD_Product_Export {
 						$row[ 'attributes:checkout_visible' . $i ] = 0;
 					}
 
-					$i++;
+					++$i;
 				}
 			}
 		}

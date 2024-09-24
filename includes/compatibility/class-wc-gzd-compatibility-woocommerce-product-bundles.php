@@ -125,7 +125,7 @@ class WC_GZD_Compatibility_WooCommerce_Product_Bundles extends WC_GZD_Compatibil
 		}
 	}
 
-	public function before_bundled_variation_options( $options, $gzd_product, $parent ) {
+	public function before_bundled_variation_options( $options, $gzd_product, $parent_product ) {
 		global $product;
 
 		/**
@@ -136,7 +136,7 @@ class WC_GZD_Compatibility_WooCommerce_Product_Bundles extends WC_GZD_Compatibil
 			$is_priced_individually = false;
 
 			foreach ( $bundled_items as $bundled_item ) {
-				if ( $bundled_item->get_product()->get_id() === $parent->get_id() ) {
+				if ( $bundled_item->get_product()->get_id() === $parent_product->get_id() ) {
 					if ( is_callable( array( $bundled_item, 'is_priced_individually' ) ) && $bundled_item->is_priced_individually() ) {
 						$is_priced_individually = $bundled_item->is_priced_individually();
 						break;
