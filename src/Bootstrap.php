@@ -62,9 +62,19 @@ class Bootstrap {
 	}
 
 	private function setup_shipments_integration() {
-		/**
-		 * Tell the shipment integration whether prices include taxes or not.
-		 */
+		add_filter(
+			'woocommerce_gzd_shipments_is_provider_integration_active',
+			function ( $is_active, $provider_name ) {
+				if ( in_array( $provider_name, array( 'dhl', 'deutsche_post' ), true ) ) {
+					$is_active = true;
+				}
+
+				return $is_active;
+			},
+			10,
+			2
+		);
+
 		add_filter(
 			'woocommerce_gzd_shipments_additional_costs_include_tax',
 			function () {
