@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: WooCommerce Germanized\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/woocommerce-"
 "germanized\n"
-"POT-Creation-Date: 2024-09-25T12:49:38+00:00\n"
-"PO-Revision-Date: 2024-09-25 14:50+0200\n"
+"POT-Creation-Date: 2024-09-25T14:30:32+00:00\n"
+"PO-Revision-Date: 2024-09-25 16:31+0200\n"
 "Last-Translator: Dennis Nissle <info@vendidero.de>\n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -8203,6 +8203,13 @@ msgid ""
 msgstr ""
 "Das Laden von Versanddienstleistern sollte erst dann ausgelöst werden, wenn "
 "die Aktion plugins_loaded vollständig ausgeführt worden ist"
+
+# @ woocommerce-germanized
+#: src/ShippingProvider/Placeholder.php:55
+#: packages/woocommerce-germanized-shipments/src/ShippingProvider/Placeholder.php:55
+msgctxt "shipments"
+msgid "Conveniently create %1$s labels to your shipments."
+msgstr "Erstelle bequem %1$s Labels zu Sendungen."
 
 #: src/ShippingProvider/PrintFormat.php:52
 #: packages/woocommerce-germanized-shipments/src/ShippingProvider/PrintFormat.php:52

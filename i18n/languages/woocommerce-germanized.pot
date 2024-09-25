@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-09-25T12:49:38+00:00\n"
+"POT-Creation-Date: 2024-09-25T14:30:32+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.11.0\n"
 
@@ -7401,6 +7401,12 @@ msgstr ""
 #: packages/woocommerce-germanized-shipments/src/ShippingProvider/Helper.php:242
 msgctxt "shipments"
 msgid "Loading shipping providers should only be triggered after the plugins_loaded action has fully been executed"
+msgstr ""
+
+#: src/ShippingProvider/Placeholder.php:55
+#: packages/woocommerce-germanized-shipments/src/ShippingProvider/Placeholder.php:55
+msgctxt "shipments"
+msgid "Conveniently create %1$s labels to your shipments."
 msgstr ""
 
 #: src/ShippingProvider/PrintFormat.php:52
