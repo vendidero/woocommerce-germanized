@@ -589,7 +589,7 @@ class WC_Germanized_Meta_Box_Product_Data {
 		<div class="options_group show_if_simple show_if_variable show_if_external">
 			<p class="wc-gzd-product-settings-subtitle">
 				<?php esc_html_e( 'Product safety', 'woocommerce-germanized' ); ?>
-				<a class="page-title-action" href="https://vendidero.de/dokumentation/woocommerce-germanized/preisauszeichnung"><?php esc_html_e( 'Help', 'woocommerce-germanized' ); ?></a>
+				<a class="page-title-action" href="https://vendidero.de/dokument/allgemeine-produktsicherheit-gpsr"><?php esc_html_e( 'Help', 'woocommerce-germanized' ); ?></a>
 			</p>
 
 			<p class="form-field">

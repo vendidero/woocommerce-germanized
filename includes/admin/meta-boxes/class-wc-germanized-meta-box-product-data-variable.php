@@ -384,7 +384,7 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 
 		<div class="variable_product_safety">
 			<p class="wc-gzd-product-settings-subtitle">
-				<?php esc_html_e( 'Product Safety', 'woocommerce-germanized' ); ?>
+				<?php esc_html_e( 'Product safety', 'woocommerce-germanized' ); ?>
 			</p>
 
 			<p class="form-row form-row-full">

@@ -42,23 +42,22 @@ class Bootstrap {
 	 * Init the package - load the blocks library and define constants.
 	 */
 	protected function init() {
-		if ( ! Package::load_blocks() ) {
-			return false;
-		}
-
-		$this->register_dependencies();
-		$this->register_payment_methods();
 		$this->setup_shipments_integration();
 
-		if ( did_action( 'woocommerce_blocks_loaded' ) ) {
-			$this->load_blocks();
-		} else {
-			add_action(
-				'woocommerce_blocks_loaded',
-				function () {
-					$this->load_blocks();
-				}
-			);
+		if ( Package::load_blocks() ) {
+			$this->register_dependencies();
+			$this->register_payment_methods();
+
+			if ( did_action( 'woocommerce_blocks_loaded' ) ) {
+				$this->load_blocks();
+			} else {
+				add_action(
+					'woocommerce_blocks_loaded',
+					function () {
+						$this->load_blocks();
+					}
+				);
+			}
 		}
 	}
 

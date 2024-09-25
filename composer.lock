@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "154f905f12ed95c45ef34094c9f732ba",
+    "content-hash": "0aba7638b78506d6b51f31c0290eff45",
     "packages": [
         {
             "name": "automattic/jetpack-autoloader",
@@ -759,27 +759,25 @@
         },
         {
             "name": "vendidero/woocommerce-eu-tax-helper",
-            "version": "2.0.4",
+            "version": "2.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vendidero/woocommerce-eu-tax-helper.git",
-                "reference": "f965cc34b971c9f5c0a9efd2c5606623f0dc5757"
+                "reference": "75d53618e742125bcaa91bf429590f6091a31183"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vendidero/woocommerce-eu-tax-helper/zipball/f965cc34b971c9f5c0a9efd2c5606623f0dc5757",
-                "reference": "f965cc34b971c9f5c0a9efd2c5606623f0dc5757",
+                "url": "https://api.github.com/repos/vendidero/woocommerce-eu-tax-helper/zipball/75d53618e742125bcaa91bf429590f6091a31183",
+                "reference": "75d53618e742125bcaa91bf429590f6091a31183",
                 "shasum": ""
             },
             "require": {
-                "automattic/jetpack-autoloader": "^2.6.0",
+                "automattic/jetpack-autoloader": "2.11.18",
                 "composer/installers": "^1.9.0"
             },
             "require-dev": {
                 "myclabs/deep-copy": "^1.7.0",
-                "phpunit/phpunit": "7.5.14",
-                "woocommerce/woocommerce-sniffs": "^0.1.3",
-                "yoast/phpunit-polyfills": "^1.0"
+                "woocommerce/woocommerce-sniffs": "^1.0.0"
             },
             "type": "wordpress-plugin",
             "autoload": {
@@ -807,34 +805,33 @@
             "description": "EU tax helper for WooCommerce",
             "homepage": "https://vendidero.de/",
             "support": {
-                "source": "https://github.com/vendidero/woocommerce-eu-tax-helper/tree/v2.0.4",
+                "source": "https://github.com/vendidero/woocommerce-eu-tax-helper/tree/v2.0.5",
                 "issues": "https://github.com/vendidero/woocommerce-eu-tax-helper/issues"
             },
-            "time": "2024-05-23T12:14:54+00:00"
+            "time": "2024-09-25T09:13:19+00:00"
         },
         {
             "name": "vendidero/woocommerce-germanized-dhl",
-            "version": "3.2.0",
+            "version": "3.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vendidero/woocommerce-germanized-dhl.git",
-                "reference": "7498a59eb7072de096810a59aa86e7f6a246a27b"
+                "reference": "e583d636729b48de4bfd5d7c779b17b275179cfb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vendidero/woocommerce-germanized-dhl/zipball/7498a59eb7072de096810a59aa86e7f6a246a27b",
-                "reference": "7498a59eb7072de096810a59aa86e7f6a246a27b",
+                "url": "https://api.github.com/repos/vendidero/woocommerce-germanized-dhl/zipball/e583d636729b48de4bfd5d7c779b17b275179cfb",
+                "reference": "e583d636729b48de4bfd5d7c779b17b275179cfb",
                 "shasum": ""
             },
             "require": {
-                "automattic/jetpack-autoloader": "^2.6.0",
+                "automattic/jetpack-autoloader": "2.11.18",
                 "baltpeter/internetmarke-php": "^0.5.0",
                 "composer/installers": "^1.9.0",
                 "php": ">=5.6|>=7.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "7.5.14",
-                "woocommerce/woocommerce-sniffs": "^0.1.3"
+                "woocommerce/woocommerce-sniffs": "^1.0.0"
             },
             "type": "wordpress-plugin",
             "autoload": {
@@ -867,35 +864,35 @@
             "description": "The Germanized DHL implementation.",
             "homepage": "https://github.com/vendidero/woocommerce-germanized-dhl",
             "support": {
-                "source": "https://github.com/vendidero/woocommerce-germanized-dhl/tree/v3.2.0",
+                "source": "https://github.com/vendidero/woocommerce-germanized-dhl/tree/v3.3.0",
                 "issues": "https://github.com/vendidero/woocommerce-germanized-dhl/issues"
             },
-            "time": "2024-08-30T12:21:46+00:00"
+            "time": "2024-09-25T11:14:46+00:00"
         },
         {
             "name": "vendidero/woocommerce-germanized-shipments",
-            "version": "3.5.2",
+            "version": "4.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vendidero/woocommerce-germanized-shipments.git",
-                "reference": "66245ca83dd7c76568e75ecc944ba867b3ae79e9"
+                "reference": "28db4b8ccadd49cf4946fef91b99e1e273b3ee5a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vendidero/woocommerce-germanized-shipments/zipball/66245ca83dd7c76568e75ecc944ba867b3ae79e9",
-                "reference": "66245ca83dd7c76568e75ecc944ba867b3ae79e9",
+                "url": "https://api.github.com/repos/vendidero/woocommerce-germanized-shipments/zipball/28db4b8ccadd49cf4946fef91b99e1e273b3ee5a",
+                "reference": "28db4b8ccadd49cf4946fef91b99e1e273b3ee5a",
                 "shasum": ""
             },
             "require": {
-                "automattic/jetpack-autoloader": "^2.0.0",
+                "automattic/jetpack-autoloader": "2.11.18",
                 "dvdoug/boxpacker": "^3.9.0",
                 "setasign/fpdf": "^1.8.2",
                 "setasign/fpdi": "^2.3"
             },
             "require-dev": {
-                "phpunit/phpunit": "7.5.14",
-                "woocommerce/woocommerce-sniffs": "^0.1.3",
-                "yoast/phpunit-polyfills": "^1.1.0"
+                "phpunit/phpunit": "^9.0.0",
+                "woocommerce/woocommerce-sniffs": "^1.0.0",
+                "yoast/phpunit-polyfills": "^3.0"
             },
             "type": "wordpress-plugin",
             "autoload": {
@@ -926,10 +923,10 @@
             "description": "The Germanized Shipments implementation.",
             "homepage": "https://github.com/vendidero/woocommerce-germanized-shipments",
             "support": {
-                "source": "https://github.com/vendidero/woocommerce-germanized-shipments/tree/v3.5.2",
+                "source": "https://github.com/vendidero/woocommerce-germanized-shipments/tree/v4.0.0",
                 "issues": "https://github.com/vendidero/woocommerce-germanized-shipments/issues"
             },
-            "time": "2024-08-30T11:14:30+00:00"
+            "time": "2024-09-25T11:13:32+00:00"
         }
     ],
     "packages-dev": [

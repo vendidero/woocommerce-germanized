@@ -5,7 +5,7 @@ Requires at least: 5.4
 Tested up to: 6.6
 WC requires at least: 3.9
 WC tested up to: 9.2
-Stable tag: 3.17.4
+Stable tag: 3.18.0
 Requires PHP: 5.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -205,6 +205,16 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 6. Edit pdf documents (Pro)
 
 == Changelog ==
+= 3.18.0 =
+* New: Compliance with new GPSR regulation
+* Improvement: Refactored shipments integration settings UI
+* Improvement: Store weight/dimension unit in packaging data
+* Improvement: Send order paid mail on pending to completed notification (e.g. virtual items)
+* Fix: Unit price observer sale price
+* Fix: DHL sandbox environment
+* Fix: DHL Warenpost mm bug
+* Fix: Prevent missing items in shipment weight/dimension calculation
+
 = 3.17.4 =
 * Fix: REST API Schema insertion leading to fatal error during cron actions
 * Fix: Patch DHL location finder results when addressLocality is missing

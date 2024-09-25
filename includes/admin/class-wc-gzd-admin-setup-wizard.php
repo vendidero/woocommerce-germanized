@@ -218,7 +218,17 @@ if ( ! class_exists( 'WC_GZD_Admin_Setup_Wizard' ) ) :
 					),
 				);
 			} elseif ( 'shipping_provider' === $step ) {
-				$providers = apply_filters( 'woocommerce_gzd_shipment_admin_provider_list', wc_gzd_get_shipping_providers() );
+				$providers = array();
+
+				if ( class_exists( '\Vendidero\Germanized\Shipments\ShippingProvider\Helper' ) ) {
+					$helper       = \Vendidero\Germanized\Shipments\ShippingProvider\Helper::instance();
+					$providers    = $helper->get_shipping_providers();
+					$integrations = $helper->get_available_shipping_provider_integrations( true );
+
+					foreach ( $integrations as $integration ) {
+						$providers[ $integration->get_name() ] = $integration;
+					}
+				}
 
 				foreach ( $providers as $provider ) {
 					if ( $provider->is_manual_integration() ) {

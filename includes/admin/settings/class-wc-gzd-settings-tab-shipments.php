@@ -36,11 +36,33 @@ class WC_GZD_Settings_Tab_Shipments extends WC_GZD_Settings_Tab {
 	}
 
 	public function get_description() {
-		return __( 'Create shipments, improve pick & pack and manage available shipping provider.', 'woocommerce-germanized' );
+		$description = __( 'Configure shipments and manage shipping providers.', 'woocommerce-germanized' );
+
+		if ( class_exists( '\Vendidero\Germanized\Shipments\ShippingProvider\Helper' ) ) {
+			$integrations  = \Vendidero\Germanized\Shipments\ShippingProvider\Helper::instance()->get_available_shipping_provider_integrations();
+			$provider_list = array();
+
+			foreach ( $integrations as $integration ) {
+				$provider_list[] = $integration->get_title();
+			}
+
+			if ( ! empty( $provider_list ) ) {
+				$provider_list = implode( ', ', $provider_list );
+				$pos           = strrpos( $provider_list, ', ' );
+
+				if ( false !== $pos ) {
+					$provider_list = substr_replace( $provider_list, ' & ', $pos, strlen( ', ' ) );
+				}
+
+				$description = sprintf( __( 'Configure shipments and manage shipping providers, e.g. %s.', 'woocommerce-germanized' ), trim( $provider_list ) );
+			}
+		}
+
+		return $description;
 	}
 
 	public function get_label() {
-		return _x( 'Shipments & Shipping Provider', 'shipments-settings-tab', 'woocommerce-germanized' );
+		return _x( 'Shipments & more', 'shipments-settings-tab', 'woocommerce-germanized' );
 	}
 
 	public function get_name() {

@@ -99,7 +99,7 @@ class WC_GZD_Admin_Manufacturers {
 		foreach ( self::get_fields() as $field_name => $field ) :
 			$label          = $field['label'];
 			$getter         = "get_{$field['id']}";
-			$field['value'] = is_callable( array( $manufacturer, $getter ) ) ? $manufacturer->{ $getter }() : '';
+			$field['value'] = is_callable( array( $manufacturer, $getter ) ) ? $manufacturer->{ $getter }( 'edit' ) : '';
 			$field['label'] = '';
 			?>
 			<tr class="form-field term-deposit-wrap">
