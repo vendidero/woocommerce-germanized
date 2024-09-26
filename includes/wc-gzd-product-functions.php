@@ -67,7 +67,7 @@ function wc_gzd_get_gzd_product( $product ) {
 		return $product;
 	}
 
-	if ( ! $product ) {
+	if ( ! is_a( $product, 'WC_Product' ) ) {
 		return false;
 	}
 

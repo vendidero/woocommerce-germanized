@@ -50,7 +50,7 @@
     };
 
     GermanizedVariationForm.prototype.showOrHideTabs = function( self, has_product_safety_information = undefined ) {
-        has_product_safety_information = undefined === has_product_safety_information ? self.params.has_product_safety_information : has_product_safety_information;
+        has_product_safety_information = undefined === has_product_safety_information ? self.$product.hasClass( 'has-product-safety-information' ) : has_product_safety_information;
 
         if ( has_product_safety_information ) {
             self.$product.find( '.product_safety_tab' ).show().css( 'display', 'inline-block' );

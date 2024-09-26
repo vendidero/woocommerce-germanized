@@ -55,6 +55,19 @@ if ( ! function_exists( 'woocommerce_gzd_template_product_review_authenticity_st
 	}
 }
 
+if ( ! function_exists( 'woocommerce_gzd_template_product_classes' ) ) {
+
+	function woocommerce_gzd_template_product_classes( $classes, $product ) {
+		if ( $gzd_product = wc_gzd_get_gzd_product( $product ) ) {
+			if ( $gzd_product->has_product_safety_information() ) {
+				$classes[] = 'has-product-safety-information';
+			}
+		}
+
+		return $classes;
+	}
+}
+
 if ( ! function_exists( 'woocommerce_gzd_template_register_product_tabs' ) ) {
 
 	function woocommerce_gzd_template_register_product_tabs( $tabs ) {
