@@ -433,7 +433,11 @@
         $unit_price.html( newHtml );
 
         if ( $unit_price.hasClass( 'wc-gzd-loading' ) ) {
-            $unit_price.removeClass( 'wc-gzd-loading' ).show();
+            $unit_price.removeClass( 'wc-gzd-loading' );
+        }
+
+        if ( typeof newHtml === "string" && newHtml.length > 0 ) {
+            $unit_price.show();
         }
     };
 

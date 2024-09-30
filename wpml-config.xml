@@ -32,6 +32,7 @@
         <custom-field action="copy">_service</custom-field>
         <custom-field action="copy">_differential_taxation</custom-field>
         <custom-field action="translate">_warranty_attachment_id</custom-field>
+        <custom-field action="translate">_safety_attachment_ids</custom-field>
         <custom-field action="copy-once">_ts_mpn</custom-field>
         <custom-field action="copy-once">_ts_gtin</custom-field>
         <custom-field action="translate">_legal_text</custom-field>
@@ -46,6 +47,7 @@
         <taxonomy translate="1">product_delivery_time</taxonomy>
         <taxonomy translate="1">product_allergen</taxonomy>
         <taxonomy translate="1">product_nutrient</taxonomy>
+        <taxonomy translate="1">product_manufacturer</taxonomy>
     </taxonomies>
     <admin-texts>
         <key name="woocommerce_gzd_small_enterprise_text" />
