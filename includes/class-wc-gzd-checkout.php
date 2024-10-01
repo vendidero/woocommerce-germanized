@@ -459,14 +459,14 @@ class WC_GZD_Checkout {
 
 				if ( in_array( $shipping_country, $countries, true ) ) {
 					$shipping_parts    = wc_gzd_split_shipment_street( $shipping_address_1 );
-					$is_shipping_valid = empty( $shipping_parts['number'] ) ? false : true;
+					$is_shipping_valid = '' === $shipping_parts['number'] ? false : true; // 0 may be a valid house number
 
 					/**
 					 * In case shipping to another address is chosen make sure to validate the separate billing address as well.
 					 */
 					if ( true === $ship_to_different && isset( $data['billing_address_1'] ) && apply_filters( 'woocommerce_gzd_checkout_validate_billing_street_number', true ) ) {
 						$billing_parts    = wc_gzd_split_shipment_street( $data['billing_address_1'] );
-						$is_billing_valid = empty( $billing_parts['number'] ) ? false : true;
+						$is_billing_valid = '' === $billing_parts['number'] ? false : true; // 0 may be a valid house number
 
 						if ( ! apply_filters( 'woocommerce_gzd_checkout_is_valid_billing_street_number', $is_billing_valid, $data ) ) {
 							$errors->add( 'billing_address_1_validation', apply_filters( 'woocommerce_gzd_checkout_invalid_billing_street_number_error_message', __( 'Please check the street field and make sure to provide a valid street number.', 'woocommerce-germanized' ), $data ), array( 'id' => 'billing_address_1' ) );
