@@ -205,7 +205,7 @@ class WC_GZD_Gateway_Invoice extends WC_Payment_Gateway {
 			}
 
 			if ( 'yes' === $this->get_option( 'customers_completed' ) ) {
-				if ( is_user_logged_in() ) {
+				if ( is_user_logged_in() && WC()->customer ) {
 					return WC()->customer->get_is_paying_customer() === true;
 				} else {
 					return false;
