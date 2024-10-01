@@ -695,7 +695,7 @@ if ( ! function_exists( 'woocommerce_gzd_template_checkout_set_terms_manually' )
 	 * Set terms checkbox manually
 	 */
 	function woocommerce_gzd_template_checkout_set_terms_manually() {
-		echo '<input type="checkbox" name="terms" value="1" style="display: none;" />';
+		echo '<input type="checkbox" name="terms" value="1" aria-hidden="true" style="display: none;" />';
 	}
 }
 
