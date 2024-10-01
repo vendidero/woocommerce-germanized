@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: WooCommerce Germanized\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/woocommerce-"
 "germanized\n"
-"POT-Creation-Date: 2024-09-25T14:30:32+00:00\n"
-"PO-Revision-Date: 2024-09-25 16:31+0200\n"
+"POT-Creation-Date: 2024-10-01T09:30:16+00:00\n"
+"PO-Revision-Date: 2024-10-01 11:30+0200\n"
 "Last-Translator: Dennis Nissle <info@vendidero.de>\n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -8970,8 +8970,8 @@ msgstr "Nutri-Score %1$s"
 #: includes/abstracts/abstract-wc-gzd-product.php:1384
 #: includes/abstracts/abstract-wc-gzd-product.php:1394
 #: includes/wc-gzd-core-functions.php:598
-#: includes/wc-gzd-template-functions.php:1131
-#: includes/wc-gzd-template-functions.php:1138
+#: includes/wc-gzd-template-functions.php:1144
+#: includes/wc-gzd-template-functions.php:1151
 #: src/Blocks/Integrations/Checkout.php:57
 #: build/mini-cart-blocks/mini-cart-notices-frontend.js:59
 #: build/mini-cart-blocks/mini-cart-notices-style.js:59
@@ -9852,7 +9852,7 @@ msgstr "Lieferzeit suchen&hellip;"
 # @ woocommerce-germanized
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:387
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:591
-#: includes/wc-gzd-template-functions.php:66
+#: includes/wc-gzd-template-functions.php:79
 #: templates/single-product/product-safety.php:26
 msgid "Product safety"
 msgstr "Produktsicherheit"
@@ -10712,7 +10712,7 @@ msgstr ""
 #: includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:85
 #: includes/class-wc-gzd-payment-gateways.php:137
 #: includes/compatibility/class-wc-gzd-compatibility-woocommerce-subscriptions.php:73
-#: includes/wc-gzd-template-functions.php:776
+#: includes/wc-gzd-template-functions.php:789
 #: src/Blocks/Integrations/Checkout.php:118
 msgid "Buy Now"
 msgstr "Jetzt kaufen"
@@ -13836,7 +13836,7 @@ msgstr "Allergen term id"
 #: includes/api/class-wc-gzd-rest-products-controller.php:469
 #: includes/class-wc-gzd-food-helper.php:39
 #: includes/compatibility/elementor/widgets/class-wc-gzd-elementor-widget-product-ingredients.php:10
-#: includes/wc-gzd-template-functions.php:821
+#: includes/wc-gzd-template-functions.php:834
 msgid "Ingredients"
 msgstr "Zutaten"
 
@@ -13947,7 +13947,7 @@ msgstr "Datenbank wird aktualisiert"
 msgid "%1$d update functions completed. Database version is %2$s"
 msgstr "%1$d Updates fertiggestellt. Datenbank-Version lautet %2$s"
 
-#: includes/class-wc-gzd-coupon-helper.php:786 woocommerce-germanized.php:1390
+#: includes/class-wc-gzd-coupon-helper.php:786 woocommerce-germanized.php:1379
 msgid "Voucher: %1$s"
 msgstr "Wertgutschein: %1$s"
 
@@ -14132,13 +14132,13 @@ msgstr "E"
 #: includes/class-wc-gzd-food-helper.php:40
 #: includes/compatibility/elementor/widgets/class-wc-gzd-elementor-widget-product-nutrients.php:10
 #: includes/import/class-wc-gzd-product-import.php:247
-#: includes/wc-gzd-template-functions.php:829
+#: includes/wc-gzd-template-functions.php:842
 msgid "Nutrients"
 msgstr "Nährwerte"
 
 #: includes/class-wc-gzd-food-helper.php:41
 #: includes/compatibility/elementor/widgets/class-wc-gzd-elementor-widget-product-allergenic.php:10
-#: includes/wc-gzd-template-functions.php:825
+#: includes/wc-gzd-template-functions.php:838
 msgid "Allergenic"
 msgstr "Allergene"
 
@@ -14679,7 +14679,7 @@ msgstr "%s Zahlungsgebühr"
 # @ woocommerce-germanized
 #: includes/class-wc-gzd-payment-gateways.php:161
 #: includes/wc-gzd-order-functions.php:34
-#: includes/wc-gzd-template-functions.php:1063
+#: includes/wc-gzd-template-functions.php:1076
 msgid "Plus %s forwarding fee (charged by the transport agent)"
 msgstr "Zzgl. %s Übermittlungsentgelt (direkt an den Zusteller)"
 
@@ -16268,30 +16268,30 @@ msgid "%1$s (%2$s)"
 msgstr "%1$s (%2$s)"
 
 # @ woocommerce-germanized
-#: includes/wc-gzd-template-functions.php:665
+#: includes/wc-gzd-template-functions.php:678
 #: templates/checkout/edit-data-notice.php:25
 msgid "Edit Order"
 msgstr "Bestellung bearbeiten"
 
 # @ woocommerce-germanized
-#: includes/wc-gzd-template-functions.php:675
+#: includes/wc-gzd-template-functions.php:688
 msgid "Choose a Payment Gateway"
 msgstr "Zahlungsart auswählen"
 
 # @ woocommerce-germanized
-#: includes/wc-gzd-template-functions.php:833
+#: includes/wc-gzd-template-functions.php:846
 #: templates/single-product/manufacturer.php:26
 msgid "Manufacturer information"
 msgstr "Herstellerinformationen"
 
 # @ woocommerce-germanized
-#: includes/wc-gzd-template-functions.php:837
+#: includes/wc-gzd-template-functions.php:850
 #: templates/single-product/product-safety-attachments.php:26
 msgid "Product safety documents"
 msgstr "Dokumente zur Produktsicherheit"
 
 # @ woocommerce
-#: includes/wc-gzd-template-functions.php:891
+#: includes/wc-gzd-template-functions.php:904
 msgid "Place order"
 msgstr "Jetzt kaufen"
 
@@ -17058,7 +17058,7 @@ msgstr ""
 "href=\"%2$s\" target=\"_blank\">Blog-Post</a> wie du das Plugin austauschen "
 "kannst."
 
-#: woocommerce-germanized.php:1373
+#: woocommerce-germanized.php:1362
 msgid ""
 "Please wait while we are trying to redirect you to the payment provider."
 msgstr "Einen Moment - wir versuchen dich zum Zahlungsanbieter weiterzuleiten."

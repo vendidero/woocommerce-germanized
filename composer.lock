@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8490f84eb55bcbfbab07b95884f29e24",
+    "content-hash": "5951f82e5bf44515875faf58d3dc30fd",
     "packages": [
         {
             "name": "automattic/jetpack-autoloader",
@@ -812,16 +812,16 @@
         },
         {
             "name": "vendidero/woocommerce-germanized-dhl",
-            "version": "3.3.0",
+            "version": "3.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vendidero/woocommerce-germanized-dhl.git",
-                "reference": "e583d636729b48de4bfd5d7c779b17b275179cfb"
+                "reference": "becb6638e4df5c203da4770a77047a9b110c0289"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vendidero/woocommerce-germanized-dhl/zipball/e583d636729b48de4bfd5d7c779b17b275179cfb",
-                "reference": "e583d636729b48de4bfd5d7c779b17b275179cfb",
+                "url": "https://api.github.com/repos/vendidero/woocommerce-germanized-dhl/zipball/becb6638e4df5c203da4770a77047a9b110c0289",
+                "reference": "becb6638e4df5c203da4770a77047a9b110c0289",
                 "shasum": ""
             },
             "require": {
@@ -864,23 +864,23 @@
             "description": "The Germanized DHL implementation.",
             "homepage": "https://github.com/vendidero/woocommerce-germanized-dhl",
             "support": {
-                "source": "https://github.com/vendidero/woocommerce-germanized-dhl/tree/v3.3.0",
+                "source": "https://github.com/vendidero/woocommerce-germanized-dhl/tree/v3.3.1",
                 "issues": "https://github.com/vendidero/woocommerce-germanized-dhl/issues"
             },
-            "time": "2024-09-25T11:14:46+00:00"
+            "time": "2024-10-01T09:28:16+00:00"
         },
         {
             "name": "vendidero/woocommerce-germanized-shipments",
-            "version": "4.0.1",
+            "version": "4.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vendidero/woocommerce-germanized-shipments.git",
-                "reference": "0f7926ca1d85690b9bedd606c1c58a30836ca026"
+                "reference": "a2e34d3d5f131d31da143134f220f8cf5de7b208"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vendidero/woocommerce-germanized-shipments/zipball/0f7926ca1d85690b9bedd606c1c58a30836ca026",
-                "reference": "0f7926ca1d85690b9bedd606c1c58a30836ca026",
+                "url": "https://api.github.com/repos/vendidero/woocommerce-germanized-shipments/zipball/a2e34d3d5f131d31da143134f220f8cf5de7b208",
+                "reference": "a2e34d3d5f131d31da143134f220f8cf5de7b208",
                 "shasum": ""
             },
             "require": {
@@ -923,10 +923,10 @@
             "description": "The Germanized Shipments implementation.",
             "homepage": "https://github.com/vendidero/woocommerce-germanized-shipments",
             "support": {
-                "source": "https://github.com/vendidero/woocommerce-germanized-shipments/tree/v4.0.1",
+                "source": "https://github.com/vendidero/woocommerce-germanized-shipments/tree/v4.0.2",
                 "issues": "https://github.com/vendidero/woocommerce-germanized-shipments/issues"
             },
-            "time": "2024-09-26T14:08:21+00:00"
+            "time": "2024-10-01T09:23:55+00:00"
         }
     ],
     "packages-dev": [
@@ -1080,16 +1080,16 @@
         },
         {
             "name": "nikic/php-parser",
-            "version": "v5.2.0",
+            "version": "v5.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/PHP-Parser.git",
-                "reference": "23c79fbbfb725fb92af9bcf41065c8e9a0d49ddb"
+                "reference": "3abf7425cd284141dc5d8d14a9ee444de3345d1a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/23c79fbbfb725fb92af9bcf41065c8e9a0d49ddb",
-                "reference": "23c79fbbfb725fb92af9bcf41065c8e9a0d49ddb",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/3abf7425cd284141dc5d8d14a9ee444de3345d1a",
+                "reference": "3abf7425cd284141dc5d8d14a9ee444de3345d1a",
                 "shasum": ""
             },
             "require": {
@@ -1132,9 +1132,9 @@
             ],
             "support": {
                 "issues": "https://github.com/nikic/PHP-Parser/issues",
-                "source": "https://github.com/nikic/PHP-Parser/tree/v5.2.0"
+                "source": "https://github.com/nikic/PHP-Parser/tree/v5.3.0"
             },
-            "time": "2024-09-15T16:40:33+00:00"
+            "time": "2024-09-29T13:56:26+00:00"
         },
         {
             "name": "phar-io/manifest",

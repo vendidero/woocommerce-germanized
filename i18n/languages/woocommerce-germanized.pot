@@ -2,14 +2,14 @@
 # This file is distributed under the same license as the Germanized for WooCommerce plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Germanized for WooCommerce 3.18.0\n"
+"Project-Id-Version: Germanized for WooCommerce 3.18.3\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/woocommerce-germanized\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-09-25T14:30:32+00:00\n"
+"POT-Creation-Date: 2024-10-01T09:30:16+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.11.0\n"
 
@@ -8020,8 +8020,8 @@ msgstr ""
 #: includes/abstracts/abstract-wc-gzd-product.php:1384
 #: includes/abstracts/abstract-wc-gzd-product.php:1394
 #: includes/wc-gzd-core-functions.php:598
-#: includes/wc-gzd-template-functions.php:1131
-#: includes/wc-gzd-template-functions.php:1138
+#: includes/wc-gzd-template-functions.php:1144
+#: includes/wc-gzd-template-functions.php:1151
 #: src/Blocks/Integrations/Checkout.php:57
 #: build/mini-cart-blocks/mini-cart-notices-frontend.js:59
 #: build/mini-cart-blocks/mini-cart-notices-style.js:59
@@ -8725,7 +8725,7 @@ msgstr ""
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:387
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:591
-#: includes/wc-gzd-template-functions.php:66
+#: includes/wc-gzd-template-functions.php:79
 #: templates/single-product/product-safety.php:26
 msgid "Product safety"
 msgstr ""
@@ -9315,7 +9315,7 @@ msgstr ""
 #: includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:85
 #: includes/class-wc-gzd-payment-gateways.php:137
 #: includes/compatibility/class-wc-gzd-compatibility-woocommerce-subscriptions.php:73
-#: includes/wc-gzd-template-functions.php:776
+#: includes/wc-gzd-template-functions.php:789
 #: src/Blocks/Integrations/Checkout.php:118
 msgid "Buy Now"
 msgstr ""
@@ -11539,7 +11539,7 @@ msgstr ""
 #: includes/api/class-wc-gzd-rest-products-controller.php:469
 #: includes/class-wc-gzd-food-helper.php:39
 #: includes/compatibility/elementor/widgets/class-wc-gzd-elementor-widget-product-ingredients.php:10
-#: includes/wc-gzd-template-functions.php:821
+#: includes/wc-gzd-template-functions.php:834
 msgid "Ingredients"
 msgstr ""
 
@@ -11625,7 +11625,7 @@ msgid "%1$d update functions completed. Database version is %2$s"
 msgstr ""
 
 #: includes/class-wc-gzd-coupon-helper.php:786
-#: woocommerce-germanized.php:1390
+#: woocommerce-germanized.php:1379
 msgid "Voucher: %1$s"
 msgstr ""
 
@@ -11769,13 +11769,13 @@ msgstr ""
 #: includes/class-wc-gzd-food-helper.php:40
 #: includes/compatibility/elementor/widgets/class-wc-gzd-elementor-widget-product-nutrients.php:10
 #: includes/import/class-wc-gzd-product-import.php:247
-#: includes/wc-gzd-template-functions.php:829
+#: includes/wc-gzd-template-functions.php:842
 msgid "Nutrients"
 msgstr ""
 
 #: includes/class-wc-gzd-food-helper.php:41
 #: includes/compatibility/elementor/widgets/class-wc-gzd-elementor-widget-product-allergenic.php:10
-#: includes/wc-gzd-template-functions.php:825
+#: includes/wc-gzd-template-functions.php:838
 msgid "Allergenic"
 msgstr ""
 
@@ -12184,7 +12184,7 @@ msgstr ""
 
 #: includes/class-wc-gzd-payment-gateways.php:161
 #: includes/wc-gzd-order-functions.php:34
-#: includes/wc-gzd-template-functions.php:1063
+#: includes/wc-gzd-template-functions.php:1076
 msgid "Plus %s forwarding fee (charged by the transport agent)"
 msgstr ""
 
@@ -13406,26 +13406,26 @@ msgctxt "defect-descriptions"
 msgid "%1$s (%2$s)"
 msgstr ""
 
-#: includes/wc-gzd-template-functions.php:665
+#: includes/wc-gzd-template-functions.php:678
 #: templates/checkout/edit-data-notice.php:25
 msgid "Edit Order"
 msgstr ""
 
-#: includes/wc-gzd-template-functions.php:675
+#: includes/wc-gzd-template-functions.php:688
 msgid "Choose a Payment Gateway"
 msgstr ""
 
-#: includes/wc-gzd-template-functions.php:833
+#: includes/wc-gzd-template-functions.php:846
 #: templates/single-product/manufacturer.php:26
 msgid "Manufacturer information"
 msgstr ""
 
-#: includes/wc-gzd-template-functions.php:837
+#: includes/wc-gzd-template-functions.php:850
 #: templates/single-product/product-safety-attachments.php:26
 msgid "Product safety documents"
 msgstr ""
 
-#: includes/wc-gzd-template-functions.php:891
+#: includes/wc-gzd-template-functions.php:904
 msgid "Place order"
 msgstr ""
 
@@ -14111,7 +14111,7 @@ msgstr ""
 msgid "This version of the Corona Helper Plugin includes a bug which could lead to tax rates being added multiple times. Please <a href=\"%1$s\">deactivate</a> the plugin and check our <a href=\"%2$s\" target=\"_blank\">blog post</a>."
 msgstr ""
 
-#: woocommerce-germanized.php:1373
+#: woocommerce-germanized.php:1362
 msgid "Please wait while we are trying to redirect you to the payment provider."
 msgstr ""
 

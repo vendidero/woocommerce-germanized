@@ -5,7 +5,7 @@ Requires at least: 5.4
 Tested up to: 6.6
 WC requires at least: 3.9
 WC tested up to: 9.2
-Stable tag: 3.18.2
+Stable tag: 3.18.3
 Requires PHP: 5.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -205,6 +205,13 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 6. Edit pdf documents (Pro)
 
 == Changelog ==
+= 3.18.3 =
+* Improvement: Allow 0 as valid house number
+* Improvement: Harden invoice gateway customer check to prevent possible error in admin context
+* Improvement: Do not automatically show (a possibly hidden) unit price (e.g. empty) after observer update
+* Fix: Label creation from within the shipments table page
+* Fix: Internetmarke preview in label modal
+
 = 3.18.2 =
 * Fix: Transform packaging dimensions/weight while syncing shipment
 
