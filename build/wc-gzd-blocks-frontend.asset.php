@@ -1,0 +1,1 @@
+<?php return array('dependencies' => array('react', 'wc-blocks-registry', 'wc-blocks-shared-context', 'wc-blocks-shared-hocs', 'wc-price-format', 'wp-element', 'wp-i18n'), 'version' => 'a3d61590c1c5b6fc08c1');
