@@ -212,6 +212,7 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 * Improvement: Do not automatically show (a possibly hidden) unit price (e.g. empty) after observer update
 * Fix: Label creation from within the shipments table page
 * Fix: Internetmarke preview in label modal
+* Fix: Manufacturer import
 
 = 3.18.2 =
 * Fix: Transform packaging dimensions/weight while syncing shipment
