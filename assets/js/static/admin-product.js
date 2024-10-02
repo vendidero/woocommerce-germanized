@@ -120,22 +120,29 @@ jQuery( function ( $ ) {
             if ( $inline_data.find( '.gzd_delivery_time_slug' ).length > 0 ) {
                 var delivery_time      = $inline_data.find( '.gzd_delivery_time_slug' ).text(),
                     delivery_time_name = $inline_data.find( '.gzd_delivery_time_name' ).text(),
+                    manufacturer       = $inline_data.find( '.gzd_manufacturer_slug' ).text(),
+                    manufacturer_name  = $inline_data.find( '.gzd_manufacturer_name' ).text(),
                     unit               = $inline_data.find( '.gzd_unit_slug' ).text();
 
                 $( 'select[name="_unit"] option:selected', '.inline-edit-row' ).attr( 'selected', false ).trigger( 'change' );
                 $( 'select[name="_unit"] option[value="' + unit + '"]' ).attr( 'selected', 'selected' ).trigger( 'change' );
 
                 $( 'select[name="_delivery_time"] option' ).remove().trigger( 'change' );
+                $( 'select[name="_manufacturer"] option' ).remove().trigger( 'change' );
 
                 if ( delivery_time ) {
                     $( 'select[name="_delivery_time"]' ).append( '<option value="' + delivery_time + '" selected="selected">' + delivery_time_name + '</option>' );
+                }
+
+                if ( manufacturer ) {
+                    $( 'select[name="_manufacturer"]' ).append( '<option value="' + manufacturer + '" selected="selected">' + manufacturer_name + '</option>' );
                 }
 
                 /**
                  * Ugly hack to make sure select2 initialization happens after WP cloned the data to the new div
                  */
                 setTimeout( function() {
-                    var $select2 = $( 'tr#edit-' + post_id + ' .wc-gzd-delivery-time-search.enhanced' );
+                    var $select2 = $( 'tr#edit-' + post_id + ' .wc-gzd-term-search-quick-edit.enhanced' );
 
                     /**
                      * Destroy the select2 element from template in case it still exists and has been initialized
@@ -146,6 +153,7 @@ jQuery( function ( $ ) {
                     }
 
                     $( 'tr#edit-' + post_id + ' .wc-gzd-delivery-time-select-placeholder' ).addClass( 'wc-product-search', 'wc-gzd-delivery-time-search' ).removeClass( 'wc-gzd-delivery-time-select-placeholder' );
+                    $( 'tr#edit-' + post_id + ' .wc-gzd-manufacturer-select-placeholder' ).addClass( 'wc-product-search', 'wc-gzd-manufacturer-search' ).removeClass( 'wc-gzd-manufacturer-select-placeholder' );
 
                     $( document.body ).trigger( 'wc-enhanced-select-init' );
                 }, 100 );

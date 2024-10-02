@@ -136,6 +136,7 @@ class WC_Germanized_Meta_Box_Product_Data {
 	public static function quick_edit_save( $product ) {
 		if ( $gzd_product = wc_gzd_get_gzd_product( $product ) ) {
 			$delivery_time = isset( $_REQUEST['_delivery_time'] ) ? wc_clean( wp_unslash( $_REQUEST['_delivery_time'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			$manufacturer  = isset( $_REQUEST['_manufacturer'] ) ? wc_clean( wp_unslash( $_REQUEST['_manufacturer'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 
 			if ( ! empty( $delivery_time ) ) {
 				$needs_update = true;
@@ -146,6 +147,17 @@ class WC_Germanized_Meta_Box_Product_Data {
 			} else {
 				$needs_update = true;
 				$gzd_product->set_default_delivery_time_slug( '' );
+			}
+
+			if ( ! empty( $manufacturer ) ) {
+				$needs_update = true;
+
+				if ( $slug = wc_gzd_get_or_create_product_term_slug( $manufacturer, 'product_manufacturer' ) ) {
+					$gzd_product->set_manufacturer_slug( $slug );
+				}
+			} else {
+				$needs_update = true;
+				$gzd_product->set_manufacturer_slug( '' );
 			}
 
 			if ( isset( $_REQUEST['_unit'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
@@ -173,10 +185,13 @@ class WC_Germanized_Meta_Box_Product_Data {
 		if ( 'product' === $post_type_object->name ) {
 			if ( $gzd_product = wc_gzd_get_product( $post ) ) {
 				$default_delivery_time = $gzd_product->get_default_delivery_time( 'edit' );
+				$manufacturer          = $gzd_product->get_manufacturer( 'edit' );
 
 				echo '
                     <div class="gzd_delivery_time_slug">' . esc_html( $default_delivery_time ? $default_delivery_time->slug : '' ) . '</div>
                     <div class="gzd_delivery_time_name">' . esc_html( $default_delivery_time ? $default_delivery_time->name : '' ) . '</div>
+                    <div class="gzd_manufacturer_slug">' . esc_html( $manufacturer ? $manufacturer->get_slug() : '' ) . '</div>
+                    <div class="gzd_manufacturer_name">' . esc_html( $manufacturer ? $manufacturer->get_name() : '' ) . '</div>
                     <div class="gzd_unit_slug">' . esc_html( $gzd_product->get_unit( 'edit' ) ) . '</div>
                 ';
 			}
@@ -189,11 +204,29 @@ class WC_Germanized_Meta_Box_Product_Data {
 			<label class="gzd_delivery_time_field">
 				<span class="title"><?php esc_html_e( 'Delivery Time', 'woocommerce-germanized' ); ?></span>
 				<span class="input-text-wrap">
-					<select class="wc-gzd-delivery-time-select-placeholder" style="width: 100%; min-width: 150px;" name="_delivery_time"
-							data-minimum_input_length="1" data-allow_clear="true"
-							data-placeholder="<?php echo esc_attr( __( 'Search for a delivery time&hellip;', 'woocommerce-germanized' ) ); ?>"
-							data-action="woocommerce_gzd_json_search_delivery_time" data-multiple="false">
-					</select>
+					<?php
+					self::output_delivery_time_select2(
+						array(
+							'name'    => '_delivery_time',
+							'style'   => 'width: 100%; min-width: 150px;',
+							'classes' => 'wc-gzd-term-search-quick-edit wc-gzd-delivery-time-select-placeholder',
+						)
+					);
+					?>
+				</span>
+			</label>
+			<label class="gzd_manufacturer_field">
+				<span class="title"><?php esc_html_e( 'Manufacturer', 'woocommerce-germanized' ); ?></span>
+				<span class="input-text-wrap">
+					<?php
+					self::manufacturer_select_field(
+						array(
+							'name'    => '_manufacturer',
+							'style'   => 'width: 100%; min-width: 150px;',
+							'classes' => 'wc-gzd-term-search-quick-edit wc-gzd-manufacturer-select-placeholder',
+						)
+					);
+					?>
 				</span>
 			</label>
 			<label class="gzd_unit_field">
@@ -217,6 +250,7 @@ class WC_Germanized_Meta_Box_Product_Data {
 		if ( $gzd_product = wc_gzd_get_gzd_product( $product ) ) {
 			$needs_update         = false;
 			$change_delivery_time = isset( $_REQUEST['change_delivery_time'] ) ? absint( $_REQUEST['change_delivery_time'] ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			$change_manufacturer  = isset( $_REQUEST['change_manufacturer'] ) ? absint( $_REQUEST['change_manufacturer'] ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 
 			if ( ! empty( $change_delivery_time ) && in_array( $change_delivery_time, array( 1, 2 ) ) ) { // phpcs:ignore WordPress.PHP.StrictInArray.MissingTrueStrict
 				$delivery_time = isset( $_REQUEST['_delivery_time'] ) ? wc_clean( wp_unslash( $_REQUEST['_delivery_time'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
@@ -231,6 +265,22 @@ class WC_Germanized_Meta_Box_Product_Data {
 					$needs_update = true;
 
 					$gzd_product->set_default_delivery_time_slug( '' );
+				}
+			}
+
+			if ( ! empty( $change_manufacturer ) && in_array( $change_manufacturer, array( 1, 2 ) ) ) { // phpcs:ignore WordPress.PHP.StrictInArray.MissingTrueStrict
+				$manufacturer_slug = isset( $_REQUEST['_manufacturer'] ) ? wc_clean( wp_unslash( $_REQUEST['_manufacturer'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+
+				if ( ! empty( $manufacturer_slug ) && 1 === $change_manufacturer ) {
+					$needs_update = true;
+
+					if ( $slug = wc_gzd_get_or_create_product_term_slug( $manufacturer_slug, 'product_manufacturer' ) ) {
+						$gzd_product->set_manufacturer_slug( $slug );
+					}
+				} elseif ( 2 === $change_manufacturer ) {
+					$needs_update = true;
+
+					$gzd_product->set_manufacturer_slug( '' );
 				}
 			}
 
@@ -276,11 +326,45 @@ class WC_Germanized_Meta_Box_Product_Data {
 					</span>
 			</label>
 			<label class="change-input">
-				<select class="wc-product-search wc-gzd-delivery-time-search" style="width: 100%; min-width: 150px;" name="_delivery_time"
-						data-minimum_input_length="1" data-allow_clear="true"
-						data-placeholder="<?php echo esc_attr( __( '— No change —', 'woocommerce-germanized' ) ); ?>"
-						data-action="woocommerce_gzd_json_search_delivery_time" data-multiple="false">
-				</select>
+				<?php
+				self::output_delivery_time_select2(
+					array(
+						'name'        => '_delivery_time',
+						'placeholder' => __( '— No change —', 'woocommerce-germanized' ),
+						'style'       => 'width: 100%; min-width: 150px;',
+					)
+				);
+				?>
+			</label>
+		</div>
+		<div class="inline-edit-group manufacturer">
+			<label class="alignleft">
+				<span class="title"><?php esc_html_e( 'Manufacturer', 'woocommerce-germanized' ); ?></span>
+				<span class="input-text-wrap">
+						<select class="change_manufacturer change_to" name="change_manufacturer">
+							<?php
+							$options = array(
+								''  => __( '— No change —', 'woocommerce-germanized' ),
+								'1' => __( 'Change to:', 'woocommerce-germanized' ),
+								'2' => __( 'No manufacturer', 'woocommerce-germanized' ),
+							);
+							foreach ( $options as $key => $value ) {
+								echo '<option value="' . esc_attr( $key ) . '">' . esc_html( $value ) . '</option>';
+							}
+							?>
+						</select>
+					</span>
+			</label>
+			<label class="change-input">
+				<?php
+				self::manufacturer_select_field(
+					array(
+						'name'        => '_manufacturer',
+						'placeholder' => __( '— No change —', 'woocommerce-germanized' ),
+						'style'       => 'width: 100%; min-width: 150px;',
+					)
+				);
+				?>
 			</label>
 		</div>
 		<label class="alignleft">
@@ -623,6 +707,7 @@ class WC_Germanized_Meta_Box_Product_Data {
 				'name'        => '_manufacturer_slug',
 				'placeholder' => __( 'Search for a manufacturer&hellip;', 'woocommerce-germanized' ),
 				'term'        => false,
+				'classes'     => 'wc-product-search wc-gzd-manufacturer-search',
 				'id'          => '',
 				'style'       => 'width: 50%',
 			)
@@ -630,7 +715,7 @@ class WC_Germanized_Meta_Box_Product_Data {
 		$args['id'] = empty( $args['id'] ) ? $args['name'] : $args['id'];
 		?>
 		<select
-				class="wc-product-search wc-gzd-manufacturer-search" style="<?php echo esc_attr( $args['style'] ); ?>"
+				class="<?php echo esc_attr( $args['classes'] ); ?>" style="<?php echo esc_attr( $args['style'] ); ?>"
 				id="<?php echo esc_attr( $args['id'] ); ?>" name="<?php echo esc_attr( $args['name'] ); ?>"
 				data-minimum_input_length="1" data-allow_clear="true"
 				data-placeholder="<?php echo esc_attr( $args['placeholder'] ); ?>"
@@ -710,6 +795,7 @@ class WC_Germanized_Meta_Box_Product_Data {
 				'name'        => 'delivery_time',
 				'placeholder' => __( 'Search for a delivery time&hellip;', 'woocommerce-germanized' ),
 				'term'        => false,
+				'classes'     => 'wc-product-search wc-gzd-delivery-time-search',
 				'id'          => '',
 				'style'       => 'width: 50%',
 			)
@@ -718,7 +804,7 @@ class WC_Germanized_Meta_Box_Product_Data {
 		$args['id'] = empty( $args['id'] ) ? $args['name'] : $args['id'];
 		?>
 		<select
-			class="wc-product-search wc-gzd-delivery-time-search" style="<?php echo esc_attr( $args['style'] ); ?>"
+			class="<?php echo esc_attr( $args['classes'] ); ?>" style="<?php echo esc_attr( $args['style'] ); ?>"
 			id="<?php echo esc_attr( $args['id'] ); ?>" name="<?php echo esc_attr( $args['name'] ); ?>"
 			data-minimum_input_length="1" data-allow_clear="true"
 			data-placeholder="<?php echo esc_attr( $args['placeholder'] ); ?>"
@@ -1245,11 +1331,14 @@ class WC_Germanized_Meta_Box_Product_Data {
 					} else {
 						$term = wc_clean( $data[ $term_select ] );
 
-						/**
-						 * Convert term ids to slugs
-						 */
-						if ( is_numeric( $term ) ) {
-							$term_data = get_term_by( 'id', absint( $term ), $taxonomy );
+						if ( 'product_manufacturer' === $taxonomy ) {
+							$term = wc_gzd_get_or_create_product_term_slug( $term, 'product_manufacturer' );
+
+							if ( ! $term ) {
+								$term = '';
+							}
+						} elseif ( is_numeric( $term ) ) {
+								$term_data = get_term_by( 'id', absint( $term ), $taxonomy );
 
 							if ( ! is_wp_error( $term_data ) ) {
 								$term = $term_data->slug;
