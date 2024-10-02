@@ -52,6 +52,7 @@ Furthermore we customized the WooCommerce checkout to make your store meet the b
 * *Delayed conclusion of contract (Pro)* - By default a contract is concluded right after submitting the WooCommerce checkout. Germanized offers you to delay that contract and manually check the order before concluding the contract.
 * *VAT ID check for WooCommerce (Pro)* - Provide additional fields within checkout, customer account and registration form to automatically validate the VAT ID based on the EU API.
 * *Multistep Checkout (Pro)* - Adjusts the default single-page-checkout within WooCommerce to support a multistep checkout without overriding templates for optimal theme support.
+* *GPSR compliance* - Add manufacturer information and safety documents to your products
 
 = Germanized for WooCommerce is certified by Trusted Shops =
 Germanized has been approved by Trusted Shops and therefor offers best technical conditions to operate a legally binding WooCommerce Shop in Germany.

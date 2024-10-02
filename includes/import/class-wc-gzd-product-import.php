@@ -287,7 +287,6 @@ class WC_GZD_Product_Import {
 				$value = $data[ $column_name ];
 
 				if ( has_filter( "woocommerce_gzd_product_import_column_{$column_name}" ) ) {
-
 					/**
 					 * Filter that allows adjusting product import data for a certain `$column_name`.
 					 *
@@ -295,7 +294,6 @@ class WC_GZD_Product_Import {
 					 * @param mixed $value The import value.
 					 *
 					 * @since 1.8.5
-					 *
 					 */
 					$product = apply_filters( "woocommerce_gzd_product_import_column_{$column_name}", $product, $value );
 				} elseif ( is_callable( array( $this, "set_column_value_{$column_name}" ) ) ) {
@@ -534,7 +532,19 @@ class WC_GZD_Product_Import {
 	 * @param WC_Product $product
 	 * @param $value
 	 *
-	 * @return mixed
+	 * @return WC_Product
+	 */
+	public function set_column_value_manufacturer( $product, $value ) {
+		wc_gzd_get_gzd_product( $product )->set_manufacturer_slug( $value );
+
+		return $product;
+	}
+
+	/**
+	 * @param WC_Product $product
+	 * @param $value
+	 *
+	 * @return WC_Product
 	 */
 	public function set_column_value_delivery_time( $product, $value ) {
 		wc_gzd_get_gzd_product( $product )->set_default_delivery_time_slug( $value );
