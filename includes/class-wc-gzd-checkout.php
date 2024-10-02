@@ -578,20 +578,20 @@ class WC_GZD_Checkout {
 	 * @param WC_Order $order
 	 */
 	public function order_meta( $order ) {
-		if ( wc_gzd_additional_costs_include_tax() ) {
-			$order->update_meta_data( '_additional_costs_include_tax', 'yes' );
-		}
+		if ( wc_gzd_enable_additional_costs_split_tax_calculation() || wc_gzd_calculate_additional_costs_taxes_based_on_main_service() ) {
+			$order->update_meta_data( '_additional_costs_include_tax', wc_bool_to_string( wc_gzd_additional_costs_include_tax() ) );
 
-		if ( wc_gzd_enable_additional_costs_split_tax_calculation() ) {
-			$tax_shares = wc_gzd_get_cart_tax_share( 'shipping', $order->get_items() );
+			if ( wc_gzd_enable_additional_costs_split_tax_calculation() ) {
+				$tax_shares = wc_gzd_get_cart_tax_share( 'shipping', $order->get_items() );
 
-			if ( count( $tax_shares ) > 1 ) {
-				$order->update_meta_data( '_has_split_tax', 'yes' );
+				if ( count( $tax_shares ) > 1 ) {
+					$order->update_meta_data( '_has_split_tax', 'yes' );
+				}
+			} elseif ( wc_gzd_calculate_additional_costs_taxes_based_on_main_service() ) {
+				$order->update_meta_data( '_additional_costs_taxed_based_on_main_service', 'yes' );
+				$order->update_meta_data( '_additional_costs_taxed_based_on_main_service_by', wc_gzd_additional_costs_taxes_detect_main_service_by() );
+				$order->update_meta_data( '_additional_costs_taxed_based_on_main_service_tax_class', wc_gzd_get_cart_main_service_tax_class() );
 			}
-		} elseif ( wc_gzd_calculate_additional_costs_taxes_based_on_main_service() ) {
-			$order->update_meta_data( '_additional_costs_taxed_based_on_main_service', 'yes' );
-			$order->update_meta_data( '_additional_costs_taxed_based_on_main_service_by', wc_gzd_additional_costs_taxes_detect_main_service_by() );
-			$order->update_meta_data( '_additional_costs_taxed_based_on_main_service_tax_class', wc_gzd_get_cart_main_service_tax_class() );
 		}
 	}
 
