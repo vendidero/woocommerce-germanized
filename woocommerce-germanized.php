@@ -264,13 +264,6 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 			}
 
 			\Vendidero\Germanized\PluginsHelper::init();
-
-			add_action(
-				'init1',
-				function () {
-					$product = wc_get_product( 4871 );
-				}
-			);
 		}
 
 		public function declare_feature_compatibility() {

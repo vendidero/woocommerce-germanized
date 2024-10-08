@@ -270,7 +270,7 @@ final class Checkout {
 
 						if ( in_array( $country, $countries, true ) ) {
 							$address_parts = wc_gzd_split_shipment_street( $address_1 );
-							$is_valid      = empty( $address_parts['number'] ) ? false : true;
+							$is_valid      = '' === $address_parts['number'] ? false : true;
 						}
 
 						if ( ! apply_filters( 'woocommerce_gzd_checkout_is_valid_street_number', $is_valid, $fields ) ) {
@@ -286,6 +286,26 @@ final class Checkout {
 			},
 			10,
 			3
+		);
+
+		add_action(
+			'woocommerce_store_api_checkout_update_customer_from_request',
+			function ( $customer, $request ) {
+				if ( 'never' !== get_option( 'woocommerce_gzd_checkout_validate_street_number' ) ) {
+					$billing  = $request['billing_address'];
+					$shipping = $request['shipping_address'];
+
+					if ( ! empty( $billing['address_1'] ) ) {
+						$customer->set_billing_address_1( \WC_GZD_Checkout::instance()->format_address_1( $billing['address_1'] ) );
+					}
+
+					if ( ! empty( $shipping['address_1'] ) ) {
+						$customer->set_shipping_address_1( \WC_GZD_Checkout::instance()->format_address_1( $shipping['address_1'] ) );
+					}
+				}
+			},
+			10,
+			2
 		);
 
 		/**

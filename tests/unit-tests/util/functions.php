@@ -11,6 +11,17 @@ class WC_GZD_Tests_Util_Functions extends WC_GZD_Unit_Test_Case {
 		return str_replace( array( "\r", "\n"), '', $post_content );
 	}
 
+	public function test_format_address_1() {
+		update_option( 'woocommerce_gzd_checkout_validate_street_number', 'always' );
+
+		$checkout = WC_GZD_Checkout::instance();
+
+		$this->assertEquals( 'Bootstr. 12', $checkout->format_address_1( 'Bootstr.12' ) );
+		$this->assertEquals( 'Bootstr. 12', $checkout->format_address_1( 'Bootstr. 12' ) );
+		$this->assertEquals( 'Bootstraße 12', $checkout->format_address_1( 'Bootstraße 12' ) );
+		$this->assertEquals( 'Bootstraße 12', $checkout->format_address_1( 'Bootstraße12' ) );
+	}
+
 	/**
 	 * Tests wc_gzd_get_post_plain_content().
 	 *

@@ -145,6 +145,7 @@ class WC_GZD_Checkout {
 		if ( 'never' !== get_option( 'woocommerce_gzd_checkout_validate_street_number' ) ) {
 			// Maybe force street number during checkout
 			add_action( 'woocommerce_after_checkout_validation', array( $this, 'maybe_force_street_number' ), 10, 2 );
+			add_filter( 'woocommerce_checkout_posted_data', array( $this, 'maybe_format_address_1' ), 10 );
 		}
 
 		/**
@@ -431,6 +432,43 @@ class WC_GZD_Checkout {
 		}
 
 		return $locale;
+	}
+
+	/**
+	 * Enforces whitespace between street name and house number, e.g. typical input issues
+	 * like "Street12" instead of "Street 12".
+	 *
+	 * @param string $address_1
+	 *
+	 * @return string
+	 */
+	public function format_address_1( $address_1 ) {
+		if ( function_exists( 'wc_gzd_split_shipment_street' ) ) {
+			$do_validate = get_option( 'woocommerce_gzd_checkout_validate_street_number' );
+
+			if ( apply_filters( 'woocommerce_gzd_autocorrect_address_1', in_array( $do_validate, array( 'always', 'base_only', 'eu_only' ), true ) ) ) {
+				$parts = wc_gzd_split_shipment_street( $address_1 );
+
+				if ( '' !== $parts['number'] && ! empty( $parts['street'] ) ) {
+					$address_1 = trim( str_replace( $parts['street'], ' ' . $parts['street'] . ' ', $address_1 ) ); // replace the street name tailored with whitespace
+					$address_1 = preg_replace( '/\s+/', ' ', $address_1 ); // Remove duplicate whitespace
+				}
+			}
+		}
+
+		return $address_1;
+	}
+
+	public function maybe_format_address_1( $data ) {
+		if ( ! empty( $data['billing_address_1'] ) ) {
+			$data['billing_address_1'] = $this->format_address_1( $data['billing_address_1'] );
+		}
+
+		if ( ! empty( $data['shipping_address_1'] ) ) {
+			$data['shipping_address_1'] = $this->format_address_1( $data['shipping_address_1'] );
+		}
+
+		return $data;
 	}
 
 	/**
