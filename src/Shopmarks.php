@@ -542,16 +542,31 @@ class Shopmarks {
 	}
 
 	public static function get_locations() {
-		return array(
-			'single_product'         => __( 'Single Product', 'woocommerce-germanized' ),
-			'single_product_grouped' => __( 'Single Product (Grouped)', 'woocommerce-germanized' ),
-			'product_loop'           => __( 'Product Loop', 'woocommerce-germanized' ),
-			'product_block'          => __( 'Blocks', 'woocommerce-germanized' ),
-			'cart'                   => __( 'Cart', 'woocommerce-germanized' ),
-			'mini_cart'              => __( 'Mini Cart', 'woocommerce-germanized' ),
-			'checkout'               => __( 'Checkout', 'woocommerce-germanized' ),
-			'order'                  => __( 'Order', 'woocommerce-germanized' ),
-		);
+		if ( did_action( 'init' ) || doing_action( 'init' ) ) {
+			$locations = array(
+				'single_product'         => __( 'Single Product', 'woocommerce-germanized' ),
+				'single_product_grouped' => __( 'Single Product (Grouped)', 'woocommerce-germanized' ),
+				'product_loop'           => __( 'Product Loop', 'woocommerce-germanized' ),
+				'product_block'          => __( 'Blocks', 'woocommerce-germanized' ),
+				'cart'                   => __( 'Cart', 'woocommerce-germanized' ),
+				'mini_cart'              => __( 'Mini Cart', 'woocommerce-germanized' ),
+				'checkout'               => __( 'Checkout', 'woocommerce-germanized' ),
+				'order'                  => __( 'Order', 'woocommerce-germanized' ),
+			);
+		} else {
+			$locations = array(
+				'single_product'         => 'Single Product',
+				'single_product_grouped' => 'Single Product (Grouped)',
+				'product_loop'           => 'Product Loop',
+				'product_block'          => 'Blocks',
+				'cart'                   => 'Cart',
+				'mini_cart'              => 'Mini Cart',
+				'checkout'               => 'Checkout',
+				'order'                  => 'Order',
+			);
+		}
+
+		return $locations;
 	}
 
 	public static function get_location_title( $location ) {
@@ -566,184 +581,186 @@ class Shopmarks {
 	 * @return string[]
 	 */
 	public static function get_filters( $location = 'single_product' ) {
+		$load_translation = doing_action( 'init' ) || did_action( 'init' );
+
 		$filters = array(
 			'single_product'         => array(
 				'woocommerce_single_product_summary'       => array(
-					'title'            => __( 'Summary', 'woocommerce-germanized' ),
+					'title'            => $load_translation ? __( 'Summary', 'woocommerce-germanized' ) : 'Summary',
 					'is_action'        => true,
 					'number_of_params' => 1,
 				),
 				'woocommerce_product_meta_start'           => array(
-					'title'            => __( 'Meta', 'woocommerce-germanized' ),
+					'title'            => $load_translation ? __( 'Meta', 'woocommerce-germanized' ) : 'Meta',
 					'is_action'        => true,
 					'number_of_params' => 1,
 				),
 				'woocommerce_product_meta_end'             => array(
-					'title'            => __( 'After Meta', 'woocommerce-germanized' ),
+					'title'            => $load_translation ? __( 'After Meta', 'woocommerce-germanized' ) : 'After Meta',
 					'is_action'        => true,
 					'number_of_params' => 1,
 				),
 				'woocommerce_before_add_to_cart_form'      => array(
-					'title'            => __( 'Before add to cart', 'woocommerce-germanized' ),
+					'title'            => $load_translation ? __( 'Before add to cart', 'woocommerce-germanized' ) : 'Before add to cart',
 					'is_action'        => true,
 					'number_of_params' => 1,
 				),
 				'woocommerce_after_add_to_cart_form'       => array(
-					'title'            => __( 'After add to cart', 'woocommerce-germanized' ),
+					'title'            => $load_translation ? __( 'After add to cart', 'woocommerce-germanized' ) : 'After add to cart',
 					'is_action'        => true,
 					'number_of_params' => 1,
 				),
 				'woocommerce_before_add_to_cart_quantity'  => array(
-					'title'            => __( 'Before add to cart quantity', 'woocommerce-germanized' ),
+					'title'            => $load_translation ? __( 'Before add to cart quantity', 'woocommerce-germanized' ) : 'Before add to cart quantity',
 					'is_action'        => true,
 					'number_of_params' => 1,
 				),
 				'woocommerce_after_add_to_cart_quantity'   => array(
-					'title'            => __( 'After add to cart quantity', 'woocommerce-germanized' ),
+					'title'            => $load_translation ? __( 'After add to cart quantity', 'woocommerce-germanized' ) : 'After add to cart quantity',
 					'is_action'        => true,
 					'number_of_params' => 1,
 				),
 				'woocommerce_after_single_product_summary' => array(
-					'title'            => __( 'After Summary', 'woocommerce-germanized' ),
+					'title'            => $load_translation ? __( 'After Summary', 'woocommerce-germanized' ) : 'After Summary',
 					'is_action'        => true,
 					'number_of_params' => 1,
 				),
 				'woocommerce_gzd_single_product_safety_information' => array(
-					'title'            => __( 'Product safety tab', 'woocommerce-germanized' ),
+					'title'            => $load_translation ? __( 'Product safety tab', 'woocommerce-germanized' ) : 'Product safety tab',
 					'is_action'        => true,
 					'number_of_params' => 1,
 				),
 				'woocommerce_product_additional_information' => array(
-					'title'            => __( 'Additional information tab', 'woocommerce-germanized' ),
+					'title'            => $load_translation ? __( 'Additional information tab', 'woocommerce-germanized' ) : 'Additional information tab',
 					'is_action'        => true,
 					'number_of_params' => 1,
 				),
 			),
 			'single_product_grouped' => array(
 				'woocommerce_grouped_product_list_column_price'    => array(
-					'title'            => __( 'Price Column', 'woocommerce-germanized' ),
+					'title'            => $load_translation ? __( 'Price Column', 'woocommerce-germanized' ) : 'Price Column',
 					'is_action'        => false,
 					'number_of_params' => 2,
 				),
 				'woocommerce_grouped_product_list_column_label'    => array(
-					'title'            => __( 'Label Column', 'woocommerce-germanized' ),
+					'title'            => $load_translation ? __( 'Label Column', 'woocommerce-germanized' ) : 'Label Column',
 					'is_action'        => false,
 					'number_of_params' => 2,
 				),
 				'woocommerce_grouped_product_list_column_quantity' => array(
-					'title'            => __( 'Quantity Column', 'woocommerce-germanized' ),
+					'title'            => $load_translation ? __( 'Quantity Column', 'woocommerce-germanized' ) : 'Quantity Column',
 					'is_action'        => false,
 					'number_of_params' => 2,
 				),
 			),
 			'product_loop'           => array(
 				'woocommerce_after_shop_loop_item_title'  => array(
-					'title'            => __( 'After Item Title', 'woocommerce-germanized' ),
+					'title'            => $load_translation ? __( 'After Item Title', 'woocommerce-germanized' ) : 'After Item Title',
 					'is_action'        => true,
 					'number_of_params' => 1,
 				),
 				'woocommerce_before_shop_loop_item_title' => array(
-					'title'            => __( 'Before Item Title', 'woocommerce-germanized' ),
+					'title'            => $load_translation ? __( 'Before Item Title', 'woocommerce-germanized' ) : 'Before Item Title',
 					'is_action'        => true,
 					'number_of_params' => 1,
 				),
 				'woocommerce_shop_loop_item_title'        => array(
-					'title'            => __( 'Item Title', 'woocommerce-germanized' ),
+					'title'            => $load_translation ? __( 'Item Title', 'woocommerce-germanized' ) : 'Item Title',
 					'is_action'        => true,
 					'number_of_params' => 1,
 				),
 				'woocommerce_after_shop_loop_item'        => array(
-					'title'            => __( 'After Item', 'woocommerce-germanized' ),
+					'title'            => $load_translation ? __( 'After Item', 'woocommerce-germanized' ) : 'After Item',
 					'is_action'        => true,
 					'number_of_params' => 1,
 				),
 			),
 			'product_block'          => array(
 				'woocommerce_gzd_after_product_grid_block_after_title'  => array(
-					'title'            => __( 'After Item Title', 'woocommerce-germanized' ),
+					'title'            => $load_translation ? __( 'After Item Title', 'woocommerce-germanized' ) : 'After Item Title',
 					'is_action'        => true,
 					'number_of_params' => 1,
 				),
 				'woocommerce_gzd_after_product_grid_block_after_price' => array(
-					'title'            => __( 'After Item Price', 'woocommerce-germanized' ),
+					'title'            => $load_translation ? __( 'After Item Price', 'woocommerce-germanized' ) : 'After Item Price',
 					'is_action'        => true,
 					'number_of_params' => 1,
 				),
 			),
 			'cart'                   => array(
 				'woocommerce_cart_item_price'      => array(
-					'title'            => __( 'Item Price', 'woocommerce-germanized' ),
+					'title'            => $load_translation ? __( 'Item Price', 'woocommerce-germanized' ) : 'Item Price',
 					'is_action'        => false,
 					'number_of_params' => 3,
 				),
 				'woocommerce_cart_item_name'       => array(
-					'title'            => __( 'Item Name', 'woocommerce-germanized' ),
+					'title'            => $load_translation ? __( 'Item Name', 'woocommerce-germanized' ) : 'Item Name',
 					'is_action'        => false,
 					'number_of_params' => 3,
 				),
 				'woocommerce_after_cart_item_name' => array(
-					'title'            => __( 'After Item Name', 'woocommerce-germanized' ),
+					'title'            => $load_translation ? __( 'After Item Name', 'woocommerce-germanized' ) : 'After Item Name',
 					'is_action'        => true,
 					'number_of_params' => 2,
 				),
 				'woocommerce_cart_item_subtotal'   => array(
-					'title'            => __( 'Subtotal', 'woocommerce-germanized' ),
+					'title'            => $load_translation ? __( 'Subtotal', 'woocommerce-germanized' ) : 'Subtotal',
 					'is_action'        => false,
 					'number_of_params' => 3,
 				),
 			),
 			'mini_cart'              => array(
 				'woocommerce_cart_item_price' => array(
-					'title'            => __( 'Item Price', 'woocommerce-germanized' ),
+					'title'            => $load_translation ? __( 'Item Price', 'woocommerce-germanized' ) : 'Item Price',
 					'is_action'        => false,
 					'number_of_params' => 3,
 				),
 				'woocommerce_cart_item_name'  => array(
-					'title'            => __( 'Item Name', 'woocommerce-germanized' ),
+					'title'            => $load_translation ? __( 'Item Name', 'woocommerce-germanized' ) : 'Item Name',
 					'is_action'        => false,
 					'number_of_params' => 3,
 				),
 			),
 			'checkout'               => array(
 				'woocommerce_cart_item_subtotal'          => array(
-					'title'            => __( 'Subtotal', 'woocommerce-germanized' ),
+					'title'            => $load_translation ? __( 'Subtotal', 'woocommerce-germanized' ) : 'Subtotal',
 					'is_action'        => false,
 					'number_of_params' => 3,
 				),
 				'woocommerce_cart_item_name'              => array(
-					'title'            => __( 'Item Name', 'woocommerce-germanized' ),
+					'title'            => $load_translation ? __( 'Item Name', 'woocommerce-germanized' ) : 'Item Name',
 					'is_action'        => false,
 					'number_of_params' => 3,
 				),
 				'woocommerce_checkout_cart_item_quantity' => array(
-					'title'            => __( 'After Item Quantity', 'woocommerce-germanized' ),
+					'title'            => $load_translation ? __( 'After Item Quantity', 'woocommerce-germanized' ) : 'After Item Quantity',
 					'is_action'        => false,
 					'number_of_params' => 3,
 				),
 			),
 			'order'                  => array(
 				'woocommerce_order_formatted_line_subtotal' => array(
-					'title'            => __( 'Subtotal', 'woocommerce-germanized' ),
+					'title'            => $load_translation ? __( 'Subtotal', 'woocommerce-germanized' ) : 'Subtotal',
 					'is_action'        => false,
 					'number_of_params' => 3,
 				),
 				'woocommerce_order_item_name'          => array(
-					'title'            => __( 'Item Name', 'woocommerce-germanized' ),
+					'title'            => $load_translation ? __( 'Item Name', 'woocommerce-germanized' ) : 'Item Name',
 					'is_action'        => false,
 					'number_of_params' => 3,
 				),
 				'woocommerce_order_item_quantity_html' => array(
-					'title'            => __( 'After Item Quantity', 'woocommerce-germanized' ),
+					'title'            => $load_translation ? __( 'After Item Quantity', 'woocommerce-germanized' ) : 'After Item Quantity',
 					'is_action'        => false,
 					'number_of_params' => 3,
 				),
 				'woocommerce_order_item_meta_end'      => array(
-					'title'            => __( 'After Meta', 'woocommerce-germanized' ),
+					'title'            => $load_translation ? __( 'After Meta', 'woocommerce-germanized' ) : 'After Meta',
 					'is_action'        => true,
 					'number_of_params' => 3,
 				),
 				'woocommerce_order_item_meta_start'    => array(
-					'title'            => __( 'Before Meta', 'woocommerce-germanized' ),
+					'title'            => $load_translation ? __( 'Before Meta', 'woocommerce-germanized' ) : 'Before Meta',
 					'is_action'        => true,
 					'number_of_params' => 3,
 				),
@@ -759,11 +776,11 @@ class Shopmarks {
 		 * shopmark location e.g. single_product
 		 *
 		 * @param array $hook_names Array containing available hook names.
+		 * @param boolean $load_translation Whether to load translations
 		 *
 		 * @since 3.0.0
-		 *
 		 */
-		return apply_filters( "woocommerce_gzd_shopmark_{$location}_filters", $filter_data );
+		return apply_filters( "woocommerce_gzd_shopmark_{$location}_filters", $filter_data, $load_translation );
 	}
 
 	public static function get_types( $location = 'single_product' ) {
@@ -919,7 +936,6 @@ class Shopmarks {
 			$data = array();
 
 			if ( array_key_exists( $location, self::get_locations() ) ) {
-
 				if ( ! isset( self::$shopmarks[ $location ] ) ) {
 					self::register( $location );
 				}
