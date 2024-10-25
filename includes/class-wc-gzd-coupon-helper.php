@@ -357,8 +357,6 @@ class WC_GZD_Coupon_Helper {
 		$fee->update_meta_data( '_voucher_id', $coupon_data['id'] );
 
 		$fee->set_tax_status( 'none' );
-
-		// Add a placeholder negative amount to trigger the recalculation in WC_GZD_Discount_Helper::allow_order_fee_total_incl_tax()
 		$fee->set_total( wc_format_decimal( $coupon_data['amount'] ) );
 		$fee->set_total_tax( 0 );
 

@@ -340,7 +340,7 @@ class WC_GZD_Order_Helper {
 			$fee_props->tax_class = $item->get_tax_class();
 			$fee_props->taxable   = 'taxable' === $item->get_tax_status();
 			$fee_props->amount    = $item->get_amount();
-			$fee_props->id        = sanitize_title( $fee_props->name );
+			$fee_props->id        = $item->get_meta( '_voucher_id' ) ? sanitize_title( $item->get_meta( '_voucher_id' ) ) : sanitize_title( $fee_props->name );
 			$fee_props->object    = $fee_props;
 
 			if ( ! apply_filters( 'woocommerce_gzd_force_fee_tax_calculation', true, $fee_props ) ) {
