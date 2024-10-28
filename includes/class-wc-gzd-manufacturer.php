@@ -67,6 +67,7 @@ class WC_GZD_Manufacturer {
 
 		// Add html breaks.
 		$formatted_address = implode( '<br/>', $formatted_address );
+		$formatted_address = make_clickable( $formatted_address );
 
 		return $formatted_address;
 	}

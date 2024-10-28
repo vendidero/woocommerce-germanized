@@ -386,8 +386,12 @@ class WC_GZD_Product {
 	}
 
 	public function get_safety_attachment_title( $id, $context = 'view' ) {
-		if ( $file = $this->get_safety_attachment( $id, $context ) ) {
-			return get_the_title( $id );
+		if ( $this->get_safety_attachment( $id, $context ) ) {
+			if ( $caption = wp_get_attachment_caption( $id ) ) {
+				return $caption;
+			} else {
+				return get_the_title( $id );
+			}
 		}
 
 		return false;
