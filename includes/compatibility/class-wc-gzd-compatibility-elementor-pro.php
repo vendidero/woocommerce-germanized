@@ -102,6 +102,45 @@ class WC_GZD_Compatibility_Elementor_Pro extends WC_GZD_Compatibility {
 	}
 
 	public function load() {
+		/**
+		 * Dynamically adjust the purchase button selectors by replacing the very restrictive #payment parent
+		 * to allow previewing the pay now button added by Germanized.
+		 */
+		add_action(
+			'elementor/element/after_section_end',
+			function ( $element, $section_id, $args ) {
+				if ( is_a( $element, '\ElementorPro\Modules\Woocommerce\Widgets\Checkout' ) ) {
+					$control = $element->get_controls( 'purchase_button_padding' );
+
+					if ( $control ) {
+						$controls = $element->get_controls();
+
+						foreach ( $controls as $control_id => $control ) {
+							if ( strstr( $control_id, 'purchase_button' ) && array_key_exists( 'selectors', $control ) ) {
+								$new_selectors = $control['selectors'];
+
+								foreach ( $new_selectors as $k => $selector ) {
+									$new_k                   = str_replace( '#payment #place_order', '#place_order', $k );
+									$new_selectors[ $new_k ] = $selector;
+								}
+
+								if ( $new_selectors !== $control['selectors'] ) {
+									$element->update_control(
+										$control_id,
+										array(
+											'selectors' => $new_selectors,
+										)
+									);
+								}
+							}
+						}
+					}
+				}
+			},
+			10,
+			3
+		);
+
 		/*
 		 * Use a higher priority here to prevent other plugins (e.g. The Plus Addons for Elementor) from
 		 * de-registering our widgets.

@@ -67,7 +67,7 @@
    .wc-block-checkout.is-mobile,
    .wc-block-checkout.is-medium,
    .wc-block-checkout.is-small {
-     flex-direction: column-reverse;
+     flex-direction: column-reverse !important;
 
      .wc-gzd-checkout-submit {
        position: relative;
