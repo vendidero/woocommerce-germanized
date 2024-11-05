@@ -2,10 +2,10 @@
 Contributors: vendidero, vdwoocommercesupport
 Tags: woocommerce, germany, germany, deutsch, woo
 Requires at least: 5.4
-Tested up to: 6.6
+Tested up to: 6.7
 WC requires at least: 3.9
-WC tested up to: 9.2
-Stable tag: 3.18.3
+WC tested up to: 9.3
+Stable tag: 3.18.4
 Requires PHP: 5.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -206,6 +206,19 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 6. Edit pdf documents (Pro)
 
 == Changelog ==
+= 3.18.4 =
+* New: WP 6.7 compatibility
+* Improvement: Manufacturer bulk + quick edit support
+* Improvement: Auto correct certain address_1 user input errors, e.g. Bootstr.12 -> Bootstraße 12
+* Improvement: Do not allow pickup location delivery for DHL Warenpost
+* Improvement: Exclude certain gateways from allowing pickup location delivery
+* Improvement: Bundles shipment compatibility
+* Improvement: Added WooCommerce Shipment Tracking fallback compatibility
+* Improvement: Use attachment caption, if available as safety document title
+* Fix: Newest Woo Checkout block HTML structure compatibility
+* Fix: DHL Preferred day lead time calculation
+* Fix: Tax calculation exempt while applying order voucher coupon
+
 = 3.18.3 =
 * Improvement: Allow 0 as valid house number
 * Improvement: Harden invoice gateway customer check to prevent possible error in admin context
