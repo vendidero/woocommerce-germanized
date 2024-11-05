@@ -1,0 +1,65 @@
+.wc-gzd-checkout-dhl {
+  .wc-gzd-dhl-preferred-days,
+  .wc-gzd-dhl-preferred-location {
+    margin-bottom: 1em;
+  }
+
+  .wc-gzd-checkout-dhl-title {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    font-size: 1em;
+
+    .dhl-icon {
+      width: 130px;
+      height: auto;
+      margin-left: auto;
+    }
+  }
+
+  .wc-gzd-dhl-preferred-day-select {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+
+    .wc-gzd-dhl-preferred-day {
+      color: inherit;
+      flex-basis: 10%;
+      flex-grow: 1;
+      text-align: center;
+      padding: 10px 0 0;
+      margin: 0 8px 8px 0;
+      background-color: #e3e3e3;
+      border: none;
+
+      &:last-child {
+        margin-right: 0;
+      }
+
+      .inner {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        padding: 5px 10px;
+        font-size: 1em;
+        background-color: #eef4f2;
+        cursor: pointer;
+        margin: 0;
+        line-height: 1.8em;
+
+        .day {
+          font-size: 1.4em;
+        }
+      }
+
+      &.active {
+        .inner {
+          background-color: #FFCC00;
+        }
+      }
+    }
+  }
+}
