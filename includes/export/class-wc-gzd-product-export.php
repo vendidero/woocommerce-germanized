@@ -214,7 +214,7 @@ class WC_GZD_Product_Export {
 				$i = 1;
 				foreach ( $attributes as $attribute_name => $attribute ) {
 					/* translators: %s: attribute number */
-					$this->additional_columns[ 'attributes:checkout_visible' . $i ] = sprintf( __( 'Attribute %d visible in checkout', 'woocommerce-germanized' ), $i );
+					$this->additional_columns[ 'attributes:checkout_visible' . $i ] = sprintf( __( 'Attribute %d checkout visible', 'woocommerce-germanized' ), $i );
 
 					if ( is_a( $attribute, 'WC_Product_Attribute' ) ) {
 						if ( $gzd_attribute = WC_GZD_Product_Attribute_Helper::instance()->get_attribute( $attribute, $product ) ) {

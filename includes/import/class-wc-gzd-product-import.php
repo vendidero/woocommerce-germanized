@@ -48,9 +48,9 @@ class WC_GZD_Product_Import {
 	}
 
 	public function set_special_columns( $columns ) {
-		$columns[ __( 'Delivery Time: %s', 'woocommerce-germanized' ) ]                = 'delivery_time:';
-		$columns[ __( 'Nutrients: %s', 'woocommerce-germanized' ) ]                    = 'nutrients:';
-		$columns[ __( 'Attribute %d visible in checkout', 'woocommerce-germanized' ) ] = 'attributes:checkout_visible';
+		$columns[ __( 'Delivery Time: %s', 'woocommerce-germanized' ) ]             = 'delivery_time:';
+		$columns[ __( 'Nutrients: %s', 'woocommerce-germanized' ) ]                 = 'nutrients:';
+		$columns[ __( 'Attribute %d checkout visible', 'woocommerce-germanized' ) ] = 'attributes:checkout_visible';
 
 		return $columns;
 	}
