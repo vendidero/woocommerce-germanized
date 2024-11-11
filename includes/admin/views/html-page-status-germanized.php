@@ -218,6 +218,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 		</td>
 	</tr>
 	<tr>
+		<td><?php esc_html_e( 'Update database', 'woocommerce-germanized' ); ?></td>
+		<td class="help"><?php echo wc_help_tip( esc_attr( __( 'Force (re-) running database updates, necessary, e.g. in case your database version differs from the current plugin version.', 'woocommerce-germanized' ) ) ); ?></td>
+		<td>
+			<a href="<?php echo esc_url( wp_nonce_url( add_query_arg( array( 'wc-gzd-check-update_database' => true ) ), 'wc-gzd-check-update_database' ) ); ?>" class="button button-secondary"><?php echo esc_html__( 'Update database', 'woocommerce-germanized' ); ?></a>
+		</td>
+	</tr>
+	<tr>
 		<td><?php esc_html_e( 'Extended debug mode', 'woocommerce-germanized' ); ?></td>
 		<td class="help"><?php echo wc_help_tip( esc_attr( __( 'Enable/disable extended debug mode via log files. Check your logs via WooCommerce > Status > Logs.', 'woocommerce-germanized' ) ) ); ?></td>
 		<td>

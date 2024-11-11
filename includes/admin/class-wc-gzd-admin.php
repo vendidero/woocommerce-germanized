@@ -114,6 +114,7 @@ class WC_GZD_Admin {
 			'disable_food_options',
 			'install_oss',
 			'install_ts',
+			'update_database',
 		);
 
 		if ( current_user_can( 'manage_woocommerce' ) ) {
@@ -1134,6 +1135,10 @@ class WC_GZD_Admin {
 		} else {
 			update_option( 'woocommerce_gzd_disable_notices', 'yes' );
 		}
+	}
+
+	protected function check_update_database() {
+		WC_GZD_Install::update();
 	}
 
 	public function disable_small_business_options() {

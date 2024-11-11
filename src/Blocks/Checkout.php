@@ -8,6 +8,7 @@ use Automattic\WooCommerce\StoreApi\Schemas\V1\CheckoutSchema;
 use Vendidero\Germanized\Blocks\PaymentGateways\DirectDebit;
 use Vendidero\Germanized\Blocks\PaymentGateways\Invoice;
 use Vendidero\Germanized\Package;
+use Vendidero\Germanized\Utilities\CartCheckout;
 
 final class Checkout {
 
@@ -57,7 +58,7 @@ final class Checkout {
 		add_filter(
 			'woocommerce_get_item_data',
 			function ( $item_data, $item ) {
-				$needs_price_labels = has_block( 'woocommerce/checkout' ) || has_block( 'woocommerce/cart' ) || WC()->is_rest_api_request();
+				$needs_price_labels = CartCheckout::uses_checkout_block() || CartCheckout::uses_cart_block() || WC()->is_rest_api_request();
 
 				if ( apply_filters( 'woocommerce_gzd_cart_checkout_needs_block_price_labels', $needs_price_labels ) ) {
 					$labels = wc_gzd_get_checkout_shopmarks();

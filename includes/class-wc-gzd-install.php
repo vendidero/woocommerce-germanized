@@ -397,7 +397,7 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 		/**
 		 * Handle updates
 		 */
-		private static function update() {
+		public static function update() {
 			$current_db_version = get_option( 'woocommerce_gzd_db_version', null );
 
 			if ( ! is_null( $current_db_version ) && ! empty( $current_db_version ) ) {
