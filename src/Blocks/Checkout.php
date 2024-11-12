@@ -72,6 +72,10 @@ final class Checkout {
 					$label_item_data = array();
 
 					foreach ( $labels as $label ) {
+						if ( ! $label->is_enabled() ) {
+							continue;
+						}
+
 						$callback  = $label->get_callback();
 						$arg_count = $label->get_number_of_params();
 
