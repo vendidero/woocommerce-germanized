@@ -246,7 +246,7 @@ abstract class WC_GZD_Admin_Note {
 
 		if ( is_callable( array( $note, 'set_layout' ) ) ) {
 			try {
-				$note->set_layout( 'banner' );
+				$note->set_layout( 'thumbnail' );
 			} catch ( \Exception $e ) {
 				$note->set_layout( 'plain' );
 			}
