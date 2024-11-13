@@ -205,7 +205,7 @@ class WC_GZD_Compatibility_Elementor_Pro extends WC_GZD_Compatibility {
 			'elementor/frontend/after_enqueue_styles',
 			function () {
 				wp_add_inline_style(
-					'elementor-pro',
+					'elementor-frontend',
 					'
 				.elementor-widget-woocommerce-checkout-page .woocommerce table.woocommerce-checkout-review-order-table {
 				    margin: var(--sections-margin, 24px 0 24px 0);

@@ -318,6 +318,7 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 			add_action( 'wp_print_footer_scripts', array( $this, 'localize_scripts' ), 5 );
 
 			add_filter( 'woocommerce_locate_core_template', array( $this, 'email_templates' ), 0, 3 );
+			add_filter( 'woocommerce_structured_data_product', array( $this, 'add_structured_product_data' ), 10, 2 );
 
 			// Payment gateways
 			add_filter( 'woocommerce_payment_gateways', array( $this, 'register_gateways' ) );
@@ -1520,7 +1521,6 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 		 * @return string
 		 */
 		public function email_templates( $core_file, $template, $template_base ) {
-
 			if ( ! file_exists( $template_base . $template ) && file_exists( $this->plugin_path() . '/templates/' . $template ) ) {
 				$core_file = $this->plugin_path() . '/templates/' . $template;
 			}
@@ -1539,7 +1539,6 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 		}
 
 		public function register_gateways( $gateways ) {
-
 			// Do only load gateway for PHP >= 5.3 because of Namespaces
 			if ( version_compare( phpversion(), '5.3', '>=' ) ) {
 				$gateways[] = 'WC_GZD_Gateway_Direct_Debit';
@@ -1548,6 +1547,19 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 			$gateways[] = 'WC_GZD_Gateway_Invoice';
 
 			return $gateways;
+		}
+
+		public function add_structured_product_data( $markup, $product ) {
+			if ( $gzd_product = wc_gzd_get_gzd_product( $product ) ) {
+				if ( $gtin = $gzd_product->get_gtin() ) {
+					$markup['gtin'] = $gtin;
+				}
+				if ( $mpn = $gzd_product->get_mpn() ) {
+					$markup['mpn'] = $mpn;
+				}
+			}
+
+			return $markup;
 		}
 	}
 
