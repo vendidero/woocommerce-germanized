@@ -698,6 +698,7 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 					'erecht24'                         => 'WC_GZD_Compatibility_ERecht24',
 					'wc-dynamic-pricing-and-discounts' => 'WC_GZD_Compatibility_WC_Dynamic_Pricing_And_Discounts',
 					'cartflows'                        => 'WC_GZD_Compatibility_Cartflows',
+					'google-for-woocommerce'           => 'WC_GZD_Compatibility_Google_For_WooCommerce',
 				)
 			);
 
