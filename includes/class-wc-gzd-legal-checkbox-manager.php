@@ -87,7 +87,7 @@ class WC_GZD_Legal_Checkbox_Manager {
 		 * Disable terms checkbox on pay for order page in case redirection is forced.
 		 */
 		if ( defined( 'WC_GZD_FORCE_PAY_ORDER' ) && WC_GZD_FORCE_PAY_ORDER ) {
-			foreach ( $this->get_checkboxes( array( 'locations' => 'pay_for_order' ) ) as $checkbox_id => $checkbox ) {
+			foreach ( $this->get_checkboxes( array( 'locations' => 'pay_for_order' ), 'render' ) as $checkbox_id => $checkbox ) {
 				$locations = array_diff( $checkbox->get_locations(), array( 'pay_for_order' ) );
 				$checkbox->set_locations( $locations );
 			}
@@ -582,180 +582,183 @@ class WC_GZD_Legal_Checkbox_Manager {
 
 		$context = empty( $context ) ? $location : $context;
 
-		foreach ( $this->get_checkboxes( array( 'locations' => $location ) ) as $checkbox_id => $checkbox ) {
-			if ( $checkbox->is_enabled() ) {
-				$checkbox_args = array(
-					'is_shown' => $checkbox->is_shown(),
-				);
+		foreach ( $this->get_checkboxes(
+			array(
+				'locations'  => $location,
+				'is_enabled' => true,
+			)
+		) as $checkbox_id => $checkbox ) {
+			$checkbox_args = array(
+				'is_shown' => $checkbox->is_shown(),
+			);
 
-				if ( 'download' === $checkbox_id && $args['is_downloadable'] ) {
+			if ( 'download' === $checkbox_id && $args['is_downloadable'] ) {
+				$checkbox_args['is_shown'] = true;
+			}
+
+			if ( 'service' === $checkbox_id && $args['is_service'] ) {
+				$checkbox_args['is_shown'] = true;
+			}
+
+			if ( 'used_goods_warranty' === $checkbox_id && $args['has_used_goods'] ) {
+				$checkbox_args['is_shown'] = true;
+			}
+
+			if ( 'age_verification' === $checkbox_id && $args['needs_age_verification'] ) {
+				$checkbox_args['is_shown'] = true;
+
+				if ( 'checkout' === $context ) {
+					$checkbox_args['label_args'] = array( '{age}' => wc_gzd_cart_get_age_verification_min_age() );
+				} elseif ( 'order' === $context ) {
+					$checkbox_args['label_args'] = array( '{age}' => wc_gzd_get_order_min_age( $args['order'] ) );
+				}
+			}
+
+			if ( 'defective_copy' === $checkbox_id && $args['has_defective_copies'] ) {
+				$checkbox_args['is_shown'] = true;
+
+				if ( 'checkout' === $context ) {
+					$checkbox_args['label_args'] = array( '{defect_descriptions}' => wc_gzd_print_item_defect_descriptions( wc_gzd_get_cart_defect_descriptions() ) );
+				} elseif ( 'order' === $context ) {
+					$checkbox_args['label_args'] = array( '{defect_descriptions}' => wc_gzd_print_item_defect_descriptions( wc_gzd_get_order_defect_descriptions( $args['order'] ) ) );
+				}
+			}
+
+			if ( 'privacy' === $checkbox_id && 'checkout' === $context ) {
+				$create_account = $args['create_account'];
+
+				/**
+				 * This option will force creating a user within checkout.
+				 */
+				if ( 'no' === get_option( 'woocommerce_enable_guest_checkout' ) ) {
+					$create_account = true;
+				}
+
+				if ( is_user_logged_in() || ( WC()->checkout() && ! WC()->checkout()->is_registration_enabled() ) || ! $create_account ) {
+					$checkbox_args['is_shown'] = false;
+				} else {
 					$checkbox_args['is_shown'] = true;
 				}
+			}
 
-				if ( 'service' === $checkbox_id && $args['is_service'] ) {
-					$checkbox_args['is_shown'] = true;
-				}
+			if ( 'parcel_delivery' === $checkbox_id && in_array( $context, array( 'checkout', 'order' ), true ) ) {
+				$enable_check = false;
 
-				if ( 'used_goods_warranty' === $checkbox_id && $args['has_used_goods'] ) {
-					$checkbox_args['is_shown'] = true;
-				}
+				if ( 'checkout' === $context ) {
+					if ( WC()->cart && WC()->cart->needs_shipping() ) {
+						$enable_check = true;
+						$rates        = wc_gzd_get_chosen_shipping_rates();
+						$ids          = array();
+						$titles       = array();
 
-				if ( 'age_verification' === $checkbox_id && $args['needs_age_verification'] ) {
-					$checkbox_args['is_shown'] = true;
+						foreach ( $rates as $rate ) {
+							array_push( $ids, $rate->id );
 
-					if ( 'checkout' === $context ) {
-						$checkbox_args['label_args'] = array( '{age}' => wc_gzd_cart_get_age_verification_min_age() );
-					} elseif ( 'order' === $context ) {
-						$checkbox_args['label_args'] = array( '{age}' => wc_gzd_get_order_min_age( $args['order'] ) );
-					}
-				}
+							if ( is_callable( array( $rate, 'get_label' ) ) ) {
+								$title = $rate->get_label();
+							} else {
+								$title = $rate->label;
+							}
 
-				if ( 'defective_copy' === $checkbox_id && $args['has_defective_copies'] ) {
-					$checkbox_args['is_shown'] = true;
-
-					if ( 'checkout' === $context ) {
-						$checkbox_args['label_args'] = array( '{defect_descriptions}' => wc_gzd_print_item_defect_descriptions( wc_gzd_get_cart_defect_descriptions() ) );
-					} elseif ( 'order' === $context ) {
-						$checkbox_args['label_args'] = array( '{defect_descriptions}' => wc_gzd_print_item_defect_descriptions( wc_gzd_get_order_defect_descriptions( $args['order'] ) ) );
-					}
-				}
-
-				if ( 'privacy' === $checkbox_id && 'checkout' === $context ) {
-					$create_account = $args['create_account'];
-
-					/**
-					 * This option will force creating a user within checkout.
-					 */
-					if ( 'no' === get_option( 'woocommerce_enable_guest_checkout' ) ) {
-						$create_account = true;
-					}
-
-					if ( is_user_logged_in() || ( WC()->checkout() && ! WC()->checkout()->is_registration_enabled() ) || ! $create_account ) {
-						$checkbox_args['is_shown'] = false;
-					} else {
-						$checkbox_args['is_shown'] = true;
-					}
-				}
-
-				if ( 'parcel_delivery' === $checkbox_id && in_array( $context, array( 'checkout', 'order' ), true ) ) {
-					$enable_check = false;
-
-					if ( 'checkout' === $context ) {
-						if ( WC()->cart && WC()->cart->needs_shipping() ) {
-							$enable_check = true;
-							$rates        = wc_gzd_get_chosen_shipping_rates();
-							$ids          = array();
-							$titles       = array();
-
-							foreach ( $rates as $rate ) {
-								array_push( $ids, $rate->id );
-
-								if ( is_callable( array( $rate, 'get_label' ) ) ) {
-									$title = $rate->get_label();
-								} else {
-									$title = $rate->label;
-								}
-
-								if ( function_exists( 'wc_gzd_get_shipping_provider_method' ) ) {
-									if ( $method = wc_gzd_get_shipping_provider_method( $rate ) ) {
-										if ( $provider = $method->get_shipping_provider_instance() ) {
-											$title = $provider->get_title();
-										}
+							if ( function_exists( 'wc_gzd_get_shipping_provider_method' ) ) {
+								if ( $method = wc_gzd_get_shipping_provider_method( $rate ) ) {
+									if ( $provider = $method->get_shipping_provider_instance() ) {
+										$title = $provider->get_title();
 									}
 								}
-
-								array_push( $titles, $title );
-							}
-						}
-					} elseif ( 'order' === $context ) {
-						if ( $args['order']->has_shipping_address() ) {
-							$enable_check = true;
-							$ids          = array();
-							$items        = $args['order']->get_shipping_methods();
-							$titles       = array();
-							$needs_title  = true;
-
-							if ( function_exists( 'wc_gzd_get_order_shipping_provider' ) ) {
-								if ( $provider = wc_gzd_get_order_shipping_provider( $args['order'] ) ) {
-									$titles[]    = $provider->get_title();
-									$needs_title = false;
-								}
 							}
 
-							foreach ( $items as $item ) {
-								$ids[] = $item->get_method_id();
-
-								if ( $needs_title ) {
-									$titles[] = $item->get_method_title();
-								}
-							}
+							array_push( $titles, $title );
 						}
 					}
+				} elseif ( 'order' === $context ) {
+					if ( $args['order']->has_shipping_address() ) {
+						$enable_check = true;
+						$ids          = array();
+						$items        = $args['order']->get_shipping_methods();
+						$titles       = array();
+						$needs_title  = true;
 
-					if ( $enable_check ) {
-						$is_enabled = wc_gzd_is_parcel_delivery_data_transfer_checkbox_enabled( $ids );
+						if ( function_exists( 'wc_gzd_get_order_shipping_provider' ) ) {
+							if ( $provider = wc_gzd_get_order_shipping_provider( $args['order'] ) ) {
+								$titles[]    = $provider->get_title();
+								$needs_title = false;
+							}
+						}
 
-						if ( $is_enabled ) {
-							$checkbox_args['is_shown']   = true;
-							$checkbox_args['label_args'] = array( '{shipping_method_title}' => implode( ', ', $titles ) );
+						foreach ( $items as $item ) {
+							$ids[] = $item->get_method_id();
+
+							if ( $needs_title ) {
+								$titles[] = $item->get_method_title();
+							}
 						}
 					}
 				}
 
-				if ( 'photovoltaic_systems' === $checkbox_id && true === $args['is_photovoltaic_system'] && wc_gzd_customer_applies_for_photovoltaic_system_vat_exemption( $args ) ) {
-					$law_details                 = wc_gzd_cart_get_photovoltaic_systems_law_details();
-					$checkbox_args['is_shown']   = true;
-					$checkbox_args['label_args'] = array( '{legal_text}' => $law_details['text'] );
-				}
+				if ( $enable_check ) {
+					$is_enabled = wc_gzd_is_parcel_delivery_data_transfer_checkbox_enabled( $ids );
 
-				/**
-				 * Do only apply global hide/show logic in case the checkbox is visible by default
-				 */
-				if ( $checkbox_args['is_shown'] && ( $checkbox->get_show_for_countries() || $checkbox->get_show_for_categories() || $checkbox->get_show_for_payment_methods() ) ) {
-					$show_for_country_is_valid         = $checkbox->get_show_for_countries() ? false : true;
-					$show_for_categories_is_valid      = $checkbox->get_show_for_categories() ? false : true;
-					$show_for_payment_methods_is_valid = $checkbox->get_show_for_payment_methods() ? false : true;
-
-					if ( $checkbox->get_show_for_countries() && $checkbox->show_for_country( $args['country'] ) ) {
-						$show_for_country_is_valid = true;
-					}
-
-					if ( $checkbox->get_show_for_payment_methods() && $checkbox->show_for_payment_method( $args['payment_method'] ) ) {
-						$show_for_payment_methods_is_valid = true;
-					}
-
-					if ( $category_ids = $checkbox->get_show_for_categories() ) {
-						$intersected = array_intersect( $category_ids, $args['product_category_ids'] );
-
-						if ( ! empty( $intersected ) ) {
-							$show_for_categories_is_valid = true;
-						}
-					}
-
-					if ( $show_for_country_is_valid && $show_for_categories_is_valid && $show_for_payment_methods_is_valid ) {
-						$checkbox_args['is_shown'] = true;
-					} else {
-						$checkbox_args['is_shown'] = false;
+					if ( $is_enabled ) {
+						$checkbox_args['is_shown']   = true;
+						$checkbox_args['label_args'] = array( '{shipping_method_title}' => implode( ', ', $titles ) );
 					}
 				}
-
-				/**
-				 * Filter to adjust conditional arguments passed to checkboxes based on certain locations.
-				 *
-				 * The dynamic portion of the hook name, `$location` refers to the checkbox location, e.g. checkout or pay_for_order.
-				 *
-				 * @param array $checkbox_args Arguments to be passed.
-				 * @param WC_GZD_Legal_Checkbox $checkbox Checkbox object.
-				 * @param string $checkbox_id The checkbox id.
-				 * @param WC_GZD_Legal_Checkbox_Manager $instance The checkbox manager instance.
-				 * @param string $context The checkbox context
-				 *
-				 * @since 3.11.5
-				 */
-				$checkbox_args = apply_filters( "woocommerce_gzd_checkbox_show_conditionally_{$location}_args", $checkbox_args, $checkbox, $checkbox_id, $this, $context );
-
-				wc_gzd_update_legal_checkbox( $checkbox_id, $checkbox_args );
 			}
+
+			if ( 'photovoltaic_systems' === $checkbox_id && true === $args['is_photovoltaic_system'] && wc_gzd_customer_applies_for_photovoltaic_system_vat_exemption( $args ) ) {
+				$law_details                 = wc_gzd_cart_get_photovoltaic_systems_law_details();
+				$checkbox_args['is_shown']   = true;
+				$checkbox_args['label_args'] = array( '{legal_text}' => $law_details['text'] );
+			}
+
+			/**
+			 * Do only apply global hide/show logic in case the checkbox is visible by default
+			 */
+			if ( $checkbox_args['is_shown'] && ( $checkbox->get_show_for_countries() || $checkbox->get_show_for_categories() || $checkbox->get_show_for_payment_methods() ) ) {
+				$show_for_country_is_valid         = $checkbox->get_show_for_countries() ? false : true;
+				$show_for_categories_is_valid      = $checkbox->get_show_for_categories() ? false : true;
+				$show_for_payment_methods_is_valid = $checkbox->get_show_for_payment_methods() ? false : true;
+
+				if ( $checkbox->get_show_for_countries() && $checkbox->show_for_country( $args['country'] ) ) {
+					$show_for_country_is_valid = true;
+				}
+
+				if ( $checkbox->get_show_for_payment_methods() && $checkbox->show_for_payment_method( $args['payment_method'] ) ) {
+					$show_for_payment_methods_is_valid = true;
+				}
+
+				if ( $category_ids = $checkbox->get_show_for_categories() ) {
+					$intersected = array_intersect( $category_ids, $args['product_category_ids'] );
+
+					if ( ! empty( $intersected ) ) {
+						$show_for_categories_is_valid = true;
+					}
+				}
+
+				if ( $show_for_country_is_valid && $show_for_categories_is_valid && $show_for_payment_methods_is_valid ) {
+					$checkbox_args['is_shown'] = true;
+				} else {
+					$checkbox_args['is_shown'] = false;
+				}
+			}
+
+			/**
+			 * Filter to adjust conditional arguments passed to checkboxes based on certain locations.
+			 *
+			 * The dynamic portion of the hook name, `$location` refers to the checkbox location, e.g. checkout or pay_for_order.
+			 *
+			 * @param array $checkbox_args Arguments to be passed.
+			 * @param WC_GZD_Legal_Checkbox $checkbox Checkbox object.
+			 * @param string $checkbox_id The checkbox id.
+			 * @param WC_GZD_Legal_Checkbox_Manager $instance The checkbox manager instance.
+			 * @param string $context The checkbox context
+			 *
+			 * @since 3.11.5
+			 */
+			$checkbox_args = apply_filters( "woocommerce_gzd_checkbox_show_conditionally_{$location}_args", $checkbox_args, $checkbox, $checkbox_id, $this, $context );
+
+			wc_gzd_update_legal_checkbox( $checkbox_id, $checkbox_args );
 		}
 	}
 
@@ -818,9 +821,7 @@ class WC_GZD_Legal_Checkbox_Manager {
 	}
 
 	public function validate_pay_for_order( $order ) {
-		$this->maybe_do_hooks( 'pay_for_order' );
-
-		foreach ( $this->get_checkboxes( array( 'locations' => 'pay_for_order' ) ) as $id => $checkbox ) {
+		foreach ( $this->get_checkboxes( array( 'locations' => 'pay_for_order' ), 'render' ) as $id => $checkbox ) {
 			$value   = isset( $_POST[ $checkbox->get_html_name() ] ) ? wc_clean( wp_unslash( $_POST[ $checkbox->get_html_name() ] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Missing
 			$visible = ! empty( $_POST[ $checkbox->get_html_name() . '-field' ] ) ? true : false; // phpcs:ignore WordPress.Security.NonceVerification.Missing
 
@@ -839,9 +840,7 @@ class WC_GZD_Legal_Checkbox_Manager {
 			return;
 		}
 
-		$this->maybe_do_hooks( 'checkout' );
-
-		foreach ( $this->get_checkboxes( array( 'locations' => 'checkout' ) ) as $id => $checkbox ) {
+		foreach ( $this->get_checkboxes( array( 'locations' => 'checkout' ), 'render' ) as $id => $checkbox ) {
 			$value   = isset( $_POST[ $checkbox->get_html_name() ] ) ? wc_clean( wp_unslash( $_POST[ $checkbox->get_html_name() ] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Missing
 			$visible = ! empty( $_POST[ $checkbox->get_html_name() . '-field' ] ) ? true : false; // phpcs:ignore WordPress.Security.NonceVerification.Missing
 
@@ -856,9 +855,7 @@ class WC_GZD_Legal_Checkbox_Manager {
 			return $approved;
 		}
 
-		$this->maybe_do_hooks( 'reviews' );
-
-		foreach ( $this->get_checkboxes( array( 'locations' => 'reviews' ) ) as $id => $checkbox ) {
+		foreach ( $this->get_checkboxes( array( 'locations' => 'reviews' ), 'render' ) as $id => $checkbox ) {
 			$value   = isset( $_POST[ $checkbox->get_html_name() ] ) ? wc_clean( wp_unslash( $_POST[ $checkbox->get_html_name() ] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Missing
 			$visible = ! empty( $_POST[ $checkbox->get_html_name() . '-field' ] ) ? true : false; // phpcs:ignore WordPress.Security.NonceVerification.Missing
 
@@ -871,9 +868,7 @@ class WC_GZD_Legal_Checkbox_Manager {
 	}
 
 	public function validate_register( $validation_error ) {
-		$this->maybe_do_hooks( 'register' );
-
-		foreach ( $this->get_checkboxes( array( 'locations' => 'register' ) ) as $id => $checkbox ) {
+		foreach ( $this->get_checkboxes( array( 'locations' => 'register' ), 'render' ) as $id => $checkbox ) {
 			$value   = isset( $_POST[ $checkbox->get_html_name() ] ) ? wc_clean( wp_unslash( $_POST[ $checkbox->get_html_name() ] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Missing
 			$visible = ! empty( $_POST[ $checkbox->get_html_name() . '-field' ] ) ? true : false; // phpcs:ignore WordPress.Security.NonceVerification.Missing
 
@@ -1087,11 +1082,21 @@ class WC_GZD_Legal_Checkbox_Manager {
 			)
 		);
 
-		if ( 'render' === $context && ! empty( $args['locations'] ) ) {
-			$locations = (array) $args['locations'];
+		if ( 'render' === $context ) {
+			// In render context, do only retrieve enabled checkboxes
+			$args = wp_parse_args(
+				$args,
+				array(
+					'is_enabled' => true,
+				)
+			);
 
-			foreach ( $locations as $location ) {
-				$this->maybe_do_hooks( $location );
+			if ( ! empty( $args['locations'] ) ) {
+				$locations = (array) $args['locations'];
+
+				foreach ( $locations as $location ) {
+					$this->maybe_do_hooks( $location );
+				}
 			}
 		}
 
@@ -1156,9 +1161,7 @@ class WC_GZD_Legal_Checkbox_Manager {
 	}
 
 	public function render( $location = 'checkout' ) {
-		$this->maybe_do_hooks( $location );
-
-		$checkboxes = $this->get_checkboxes( array( 'locations' => $location ) );
+		$checkboxes = $this->get_checkboxes( array( 'locations' => $location ), 'render' );
 
 		if ( ! empty( $checkboxes ) ) {
 			$checkboxes = $this->sort( $checkboxes );

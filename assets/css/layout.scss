@@ -31,6 +31,10 @@ p.wc-gzd-additional-info:empty {
       display: inline;
     }
   }
+
+  &:empty {
+    display: none;
+  }
 }
 
 .woocommerce-checkout .shop_table {

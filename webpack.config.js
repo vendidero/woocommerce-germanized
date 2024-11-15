@@ -379,6 +379,12 @@ const StaticConfig = {
     resolve: {
         extensions: ['.js', '.css', '.scss']
     },
+    optimization: {
+        minimizer: [
+            new CssMinimizerPlugin(),
+        ],
+        minimize: true,
+    },
     output: {
         path: path.resolve( __dirname, './build/static/' ),
         filename: "[name].js",

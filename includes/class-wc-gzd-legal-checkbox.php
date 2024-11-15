@@ -751,6 +751,10 @@ class WC_GZD_Legal_Checkbox {
 	 * Render the checkbox. Output a wrapper to make the checkbox refreshable even though it is not being printed.
 	 */
 	public function render() {
+		if ( ! $this->is_enabled() ) {
+			return;
+		}
+
 		echo '<div class="wc-gzd-checkbox-placeholder wc-gzd-checkbox-placeholder-' . esc_attr( $this->get_html_id() ) . '" data-checkbox="' . esc_attr( $this->get_id() ) . '">';
 
 		if ( $this->is_printable() ) {
