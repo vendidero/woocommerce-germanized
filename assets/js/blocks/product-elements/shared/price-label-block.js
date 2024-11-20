@@ -38,6 +38,7 @@ const getPreviewData = ( labelType, productData, isDescendentOfSingleProductTemp
         'deposit_packaging_type_html': '',
         'manufacturer_html': '',
         'product_safety_attachments_html': '',
+        'safety_instructions_html': '',
     };
 
     const prices            = productData.prices;
@@ -109,6 +110,14 @@ const getPreviewData = ( labelType, productData, isDescendentOfSingleProductTemp
                 <ul>
                     <li><a href="#">{ _x( 'sample-filename.pdf', 'sample', 'woocommerce-germanized' ) }</a></li>
                 </ul>
+            </>
+        );
+    } else if ( 'safety_instructions' === labelTypeData ) {
+        formattedPreview = (
+            <>
+                <p>
+                    { _x( 'Sample safety instructions for a certain product.', 'preview', 'woocommerce-germanized' ) }<br/>
+                </p>
             </>
         );
     }

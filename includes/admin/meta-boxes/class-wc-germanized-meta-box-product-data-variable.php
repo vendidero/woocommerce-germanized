@@ -403,6 +403,11 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 			</p>
 
 			<p class="form-row form-row-full">
+				<label for="variable_safety_instructions<?php echo esc_attr( $loop ); ?>"><?php echo esc_html__( 'Safety instructions', 'woocommerce-germanized' ); ?></label>
+				<textarea rows="2" style="width: 100%" name="variable_safety_instructions[<?php echo esc_attr( $loop ); ?>]" placeholder="<?php echo esc_attr( $gzd_parent_product ? $gzd_parent_product->get_safety_instructions( 'edit' ) : '' ); ?>" id="variable_safety_instructions<?php echo esc_attr( $loop ); ?>"><?php echo wp_kses_post( htmlspecialchars_decode( $gzd_product->get_safety_instructions( 'edit' ) ) ); ?></textarea>
+			</p>
+
+			<p class="form-row form-row-full">
 				<label><?php esc_html_e( 'Safety documents', 'woocommerce-germanized' ); ?></label>
 
 				<?php
@@ -585,6 +590,7 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 			'_gtin'                                     => '',
 			'_mpn'                                      => '',
 			'_safety_attachment_ids'                    => '',
+			'_safety_instructions'                      => '',
 			'_warranty_attachment_id'                   => '',
 			'_nutrient_ids'                             => '',
 			'_nutrient_reference_value'                 => '',

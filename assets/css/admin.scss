@@ -151,6 +151,25 @@ span.woocommerce-gzd-input-toggle {
   margin-right: 1em;
 }
 
+.product_data .form-field-wc-gzd-wp-editor {
+  display: flex;
+  flex-wrap: wrap;
+  padding-bottom: 1em;
+
+  label {
+    float: none;
+    width: 150px;
+    margin: 0;
+    padding: 12px;
+    padding-right: 0;
+  }
+
+  .wc-gzd-product-editor-wrap {
+    flex-grow: 1;
+    padding-right: 20px;
+  }
+}
+
 .wc-gzd-pro, .product_tab_gzd_pro a::after, .product_type_gzd_pro::after {
   font-size: 9px;
   border-radius: 3px;

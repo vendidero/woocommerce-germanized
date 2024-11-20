@@ -681,6 +681,24 @@ class WC_Germanized_Meta_Box_Product_Data {
 				<?php self::manufacturer_select_field( array( 'term' => $manufacturer ) ); ?>
 			</p>
 
+			<div class="form-field form-field-wc-gzd-wp-editor">
+				<label for="_safety_instructions"><?php esc_html_e( 'Safety instructions', 'woocommerce-germanized' ); ?></label>
+				<div class="wc-gzd-product-editor-wrap">
+					<?php
+					wp_editor(
+						htmlspecialchars_decode( $_gzd_product->get_safety_instructions( 'edit' ) ),
+						'_safety_instructions',
+						array(
+							'textarea_name' => '_safety_instructions',
+							'textarea_rows' => 2,
+							'media_buttons' => false,
+							'teeny'         => apply_filters( 'woocommerce_gzd_product_wp_editor_use_teeny', true ),
+						)
+					);
+					?>
+				</div>
+			</div>
+
 			<p class="form-field wc-gzd-product-upload-wrapper" id="safety_attachments">
 				<label for="upload_safety_attachment_ids"><?php esc_html_e( 'Safety documents', 'woocommerce-germanized' ); ?></label>
 
@@ -982,6 +1000,7 @@ class WC_Germanized_Meta_Box_Product_Data {
 			'_defect_description'                       => '',
 			'_warranty_attachment_id'                   => '',
 			'_safety_attachment_ids'                    => '',
+			'_safety_instructions'                      => '',
 			'_gtin'                                     => '',
 			'_mpn'                                      => '',
 			'delivery_time'                             => '',
@@ -1020,6 +1039,7 @@ class WC_Germanized_Meta_Box_Product_Data {
 			'_food_place_of_origin',
 			'_ingredients',
 			'_defect_description',
+			'_safety_instructions',
 			'_mini_desc',
 		);
 
@@ -1359,6 +1379,10 @@ class WC_Germanized_Meta_Box_Product_Data {
 
 		if ( isset( $data['_defect_description'] ) ) {
 			$gzd_product->set_defect_description( '' === $data['_defect_description'] ? '' : wc_gzd_sanitize_html_text_field( $data['_defect_description'] ) );
+		}
+
+		if ( isset( $data['_safety_instructions'] ) ) {
+			$gzd_product->set_safety_instructions( '' === $data['_safety_instructions'] ? '' : wc_gzd_sanitize_html_text_field( $data['_safety_instructions'] ) );
 		}
 
 		if ( isset( $data['_nutrient_ids'] ) ) {

@@ -227,6 +227,7 @@ final class Products {
 						'delivery_time_html'              => $html_formatter->format( $gzd_product->get_delivery_time_html() ),
 						'manufacturer_html'               => $html_formatter->format( $gzd_product->get_manufacturer_html() ),
 						'product_safety_attachments_html' => $html_formatter->format( $gzd_product->get_product_safety_attachments_html() ),
+						'safety_instructions_html'        => $html_formatter->format( $gzd_product->get_formatted_safety_instructions() ),
 						'tax_info_html'                   => $html_formatter->format( $gzd_product->get_tax_info() ),
 						'shipping_costs_info_html'        => $html_formatter->format( $gzd_product->get_shipping_costs_html() ),
 						'defect_description_html'         => $html_formatter->format( $gzd_product->get_formatted_defect_description() ),
@@ -365,6 +366,12 @@ final class Products {
 						),
 						'product_safety_attachments_html' => array(
 							'description' => __( 'Product safety attachments list formatted as HTML.', 'woocommerce-germanized' ),
+							'type'        => 'string',
+							'context'     => array( 'view', 'edit' ),
+							'readonly'    => true,
+						),
+						'safety_instructions_html'        => array(
+							'description' => __( 'Safety instructions formatted as HTML.', 'woocommerce-germanized' ),
 							'type'        => 'string',
 							'context'     => array( 'view', 'edit' ),
 							'readonly'    => true,

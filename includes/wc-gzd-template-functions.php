@@ -129,6 +129,20 @@ if ( ! function_exists( 'woocommerce_gzd_template_single_manufacturer' ) ) {
 	}
 }
 
+if ( ! function_exists( 'woocommerce_gzd_template_single_safety_instructions' ) ) {
+
+	function woocommerce_gzd_template_single_safety_instructions( $args = array() ) {
+		$args = wp_parse_args(
+			$args,
+			array(
+				'print_title' => true,
+			)
+		);
+
+		wc_get_template( 'single-product/safety-instructions.php', $args );
+	}
+}
+
 if ( ! function_exists( 'woocommerce_gzd_template_product_rating_authenticity_status_loop' ) ) {
 	function woocommerce_gzd_template_product_rating_authenticity_status_loop() {
 		global $product;
@@ -815,6 +829,7 @@ if ( ! function_exists( 'woocommerce_gzd_add_variation_options' ) ) {
 					'product_safety_attachments'     => $gzd_product->get_product_safety_attachments_html(),
 					'has_product_safety_information' => $gzd_product->has_product_safety_information(),
 					'manufacturer'                   => $gzd_product->get_manufacturer_html(),
+					'safety_instructions'            => $gzd_product->get_formatted_safety_instructions(),
 					'is_food'                        => $gzd_product->is_food() ? 'yes' : 'no',
 					'food_description'               => $gzd_product->is_food() ? $gzd_product->get_formatted_food_description() : '',
 					'food_place_of_origin'           => $gzd_product->is_food() ? $gzd_product->get_formatted_food_place_of_origin() : '',
@@ -848,6 +863,10 @@ if ( ! function_exists( 'woocommerce_gzd_add_variation_options' ) ) {
 
 			if ( ! empty( $options['product_safety_attachments'] ) ) {
 				$options['product_safety_attachments_heading'] = esc_html( apply_filters( 'woocommerce_gzd_product_safety_attachments_heading', __( 'Product safety documents', 'woocommerce-germanized' ) ) );
+			}
+
+			if ( $gzd_product->get_safety_instructions() ) {
+				$options['safety_instructions_heading'] = esc_html( apply_filters( 'woocommerce_gzd_product_safety_instructions_heading', __( 'Safety instructions', 'woocommerce-germanized' ) ) );
 			}
 		}
 

@@ -59,6 +59,11 @@ class Shopmarks {
 					'default_priority' => 11,
 					'callback'         => 'woocommerce_gzd_template_single_product_safety_attachments',
 				),
+				'safety_instructions'        => array(
+					'default_filter'   => 'woocommerce_gzd_single_product_safety_information',
+					'default_priority' => 12,
+					'callback'         => 'woocommerce_gzd_template_single_safety_instructions',
+				),
 				'defect_description'         => array(
 					'default_filter'   => 'woocommerce_single_product_summary',
 					'default_priority' => 21,
@@ -796,6 +801,7 @@ class Shopmarks {
 				'nutri_score'                => _x( 'Nutri-Score', 'shopmark', 'woocommerce-germanized' ),
 				'manufacturer'               => _x( 'Manufacturer', 'shopmark', 'woocommerce-germanized' ),
 				'product_safety_attachments' => _x( 'Product safety attachments', 'shopmark', 'woocommerce-germanized' ),
+				'safety_instructions'        => _x( 'Safety instructions', 'shopmark', 'woocommerce-germanized' ),
 			),
 			'single_product_grouped' => array(
 				'unit_price'             => _x( 'Unit Price', 'shopmark', 'woocommerce-germanized' ),

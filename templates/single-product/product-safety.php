@@ -12,24 +12,25 @@
  *
  * @see https://github.com/vendidero/woocommerce-germanized/wiki/Overriding-Germanized-Templates
  * @package Germanized/Templates
- * @version 3.18.0
+ * @version 3.18.5
  */
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 } // Exit if accessed directly
 
 global $product;
+$heading = apply_filters( 'woocommerce_gzd_product_safety_heading', __( 'Product safety', 'woocommerce-germanized' ) );
 ?>
 
 <?php if ( wc_gzd_get_product( $product )->has_product_safety_information() ) : ?>
-	<?php if ( isset( $print_title ) && $print_title ) : ?>
-		<h2 class="wc-gzd-product-safety-heading"><?php echo esc_html( apply_filters( 'woocommerce_gzd_product_safety_heading', __( 'Product safety', 'woocommerce-germanized' ) ) ); ?></h2>
+	<?php if ( isset( $print_title ) && $print_title && $heading ) : ?>
+		<h2 class="wc-gzd-product-safety-heading wc-tab"><?php echo esc_html( $heading ); ?></h2>
 	<?php endif; ?>
 
 	<?php do_action( 'woocommerce_gzd_single_product_safety_information' ); ?>
 <?php elseif ( $product->is_type( 'variable' ) ) : ?>
-	<?php if ( isset( $print_title ) && $print_title ) : ?>
-		<h2 class="wc-gzd-product-safety-heading wc-gzd-additional-info-placeholder"></h2>
+	<?php if ( isset( $print_title ) && $print_title && $heading ) : ?>
+		<h2 class="wc-gzd-product-safety-heading wc-tab wc-gzd-additional-info-placeholder"></h2>
 	<?php endif; ?>
 
 	<?php do_action( 'woocommerce_gzd_single_product_safety_information' ); ?>

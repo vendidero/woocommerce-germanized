@@ -71,6 +71,7 @@ class WC_GZD_Product_Import {
 			array(
 				'mini_desc'                => array( $this, 'parse_html_field' ),
 				'defect_description'       => array( $this, 'parse_html_field' ),
+				'safety_instructions'      => array( $this, 'parse_html_field' ),
 				'unit_price_regular'       => 'wc_format_decimal',
 				'unit_price_sale'          => 'wc_format_decimal',
 				'unit_base'                => 'wc_format_decimal',

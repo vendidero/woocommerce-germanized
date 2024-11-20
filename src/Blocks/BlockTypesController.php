@@ -53,6 +53,7 @@ final class BlockTypesController {
 			'ProductDefectDescription',
 			'ProductManufacturer',
 			'ProductSafetyAttachments',
+			'ProductSafetyInstructions',
 		);
 
 		if ( \Vendidero\Germanized\Package::is_pro() ) {

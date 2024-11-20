@@ -38,6 +38,7 @@ class WC_GZD_Shortcodes {
 			'gzd_product_safety_information'     => __CLASS__ . '::gzd_product_safety_information',
 			'gzd_product_manufacturer'           => __CLASS__ . '::gzd_product_manufacturer',
 			'gzd_product_safety_attachments'     => __CLASS__ . '::gzd_product_safety_attachments',
+			'gzd_product_safety_instructions'    => __CLASS__ . '::gzd_product_safety_instructions',
 			'gzd_product_deposit'                => __CLASS__ . '::gzd_product_deposit',
 			'gzd_product_deposit_packaging_type' => __CLASS__ . '::gzd_product_deposit_packaging_type',
 			'gzd_email_legal_page_attachments'   => __CLASS__ . '::gzd_email_legal_page_attachments',
@@ -179,6 +180,18 @@ class WC_GZD_Shortcodes {
 		 * @since 3.18.0
 		 */
 		return apply_filters( 'woocommerce_gzd_shortcode_product_safety_attachments_html', self::get_gzd_product_shortcode( $atts, 'woocommerce_gzd_template_single_product_safety_attachments' ), $atts );
+	}
+
+	public static function gzd_product_safety_instructions( $atts ) {
+		/**
+		 * Filter shortcode product safety instructions output.
+		 *
+		 * @param string $html The output.
+		 * @param array $atts The shortcode arguments.
+		 *
+		 * @since 3.18.0
+		 */
+		return apply_filters( 'woocommerce_gzd_shortcode_product_safety_instructions_html', self::get_gzd_product_shortcode( $atts, 'woocommerce_gzd_template_single_safety_instructions' ), $atts );
 	}
 
 	public static function gzd_product_manufacturer( $atts ) {

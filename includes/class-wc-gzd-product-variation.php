@@ -44,6 +44,7 @@ class WC_GZD_Product_Variation extends WC_GZD_Product {
 		'warranty_attachment_id',
 		'manufacturer_slug',
 		'safety_attachment_ids',
+		'safety_instructions',
 		'gtin',
 		'mpn',
 		'deposit_type',

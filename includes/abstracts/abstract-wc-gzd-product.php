@@ -333,7 +333,7 @@ class WC_GZD_Product {
 	}
 
 	public function has_product_safety_information() {
-		return apply_filters( 'woocommerce_gzd_product_has_safety_information', ( $this->get_safety_attachment_ids() || $this->get_manufacturer() ) );
+		return apply_filters( 'woocommerce_gzd_product_has_safety_information', ( $this->get_safety_attachment_ids() || $this->get_manufacturer() || $this->get_safety_instructions() ) );
 	}
 
 	public function set_manufacturer_slug( $slug ) {
@@ -666,6 +666,21 @@ class WC_GZD_Product {
 		return $this->get_prop( 'defect_description', $context );
 	}
 
+	public function get_safety_instructions( $context = 'view' ) {
+		return $this->get_prop( 'safety_instructions', $context );
+	}
+
+	/**
+	 * @return string
+	 */
+	public function get_formatted_safety_instructions( $context = 'view' ) {
+		if ( $instructions = $this->get_safety_instructions( $context ) ) {
+			return wpautop( do_shortcode( wp_kses_post( htmlspecialchars_decode( $instructions ) ) ) );
+		}
+
+		return '';
+	}
+
 	public function get_cart_description( $context = 'view' ) {
 		return $this->get_mini_desc();
 	}
@@ -906,6 +921,10 @@ class WC_GZD_Product {
 
 	public function set_food_description( $description ) {
 		$this->set_prop( 'food_description', $description );
+	}
+
+	public function set_safety_instructions( $instructions ) {
+		$this->set_prop( 'safety_instructions', $instructions );
 	}
 
 	public function set_unit_price( $price ) {

@@ -12,25 +12,26 @@
  *
  * @see https://github.com/vendidero/woocommerce-germanized/wiki/Overriding-Germanized-Templates
  * @package Germanized/Templates
- * @version 3.17.5
+ * @version 3.18.5
  */
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 } // Exit if accessed directly
 
 global $product;
+$heading = apply_filters( 'woocommerce_gzd_product_product_safety_attachments_heading', __( 'Product safety documents', 'woocommerce-germanized' ) );
 ?>
 
 <?php if ( wc_gzd_get_product( $product )->get_product_safety_attachments_html() ) : ?>
-	<?php if ( isset( $print_title ) && $print_title ) : ?>
-		<h3 class="wc-gzd-product-safety-attachments-heading"><?php echo esc_html( apply_filters( 'woocommerce_gzd_product_product_safety_attachments_heading', __( 'Product safety documents', 'woocommerce-germanized' ) ) ); ?></h3>
+	<?php if ( isset( $print_title ) && $print_title && $heading ) : ?>
+		<h3 class="wc-gzd-product-safety-attachments-heading"><?php echo esc_html( $heading ); ?></h3>
 	<?php endif; ?>
 
 	<div class="product-safety-attachments wc-gzd-additional-info">
 		<?php echo wp_kses_post( wc_gzd_get_product( $product )->get_product_safety_attachments_html() ); ?>
 	</div>
 <?php elseif ( $product->is_type( 'variable' ) ) : ?>
-	<?php if ( isset( $print_title ) && $print_title ) : ?>
+	<?php if ( isset( $print_title ) && $print_title && $heading ) : ?>
 		<h3 class="wc-gzd-product-safety-attachments-heading wc-gzd-additional-info-placeholder"></h3>
 	<?php endif; ?>
 
