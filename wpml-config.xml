@@ -33,8 +33,6 @@
         <custom-field action="copy">_differential_taxation</custom-field>
         <custom-field action="translate">_warranty_attachment_id</custom-field>
         <custom-field action="translate">_safety_attachment_ids</custom-field>
-        <custom-field action="copy-once">formatted_address</custom-field>
-        <custom-field action="copy-once">formatted_eu_address</custom-field>
         <custom-field action="copy-once">_ts_mpn</custom-field>
         <custom-field action="copy-once">_ts_gtin</custom-field>
         <custom-field action="translate">_legal_text</custom-field>
@@ -43,6 +41,10 @@
         <custom-field action="copy">_rounding_rule</custom-field>
         <custom-field action="copy">_nutrient_type</custom-field>
     </custom-fields>
+    <custom-term-fields>
+		<custom-term-field action="copy-once">formatted_address</custom-term-field>
+		<custom-term-field action="copy-once">formatted_eu_address</custom-term-field>
+	</custom-term-fields>
     <taxonomies>
         <taxonomy translate="1">product_price_label</taxonomy>
         <taxonomy translate="1">product_unit</taxonomy>
