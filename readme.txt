@@ -4,8 +4,8 @@ Tags: woocommerce, germany, germany, deutsch, woo
 Requires at least: 5.4
 Tested up to: 6.7
 WC requires at least: 3.9
-WC tested up to: 9.3
-Stable tag: 3.18.4
+WC tested up to: 9.4
+Stable tag: 3.18.5
 Requires PHP: 5.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -206,6 +206,16 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 6. Edit pdf documents (Pro)
 
 == Changelog ==
+= 3.18.5 =
+* New: Free-text field to output additional product safety information
+* Improvement: Redirect fix after finishing bulk action
+* Improvement: Do not render disabled checkboxes
+* Improvement: Elementor Pro checkout compatibility with latest Elementor version
+* Improvement: Add gtin/mpn to structured product data, if available
+* Improvement: Google for WooCommerce compatibility
+* Fix: Show/hide label services based on selected product
+* Fix: Shopmark enabled/disabled status in checkout/cart blocks
+
 = 3.18.4 =
 * New: WP 6.7 compatibility
 * Improvement: Manufacturer bulk + quick edit support
