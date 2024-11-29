@@ -82,13 +82,21 @@ body.theme-astra {
   }
 }
 
-  /**
-   * Hide (block) price labels added via the woocommerce_get_item_data filter
-   * while displaying classic shortcodes. Fallback-use only.
-   */
+/**
+ * Hide (block) price labels added via the woocommerce_get_item_data filter
+ * while displaying classic shortcodes. Fallback-use only.
+ */
 .woocommerce-cart, .woocommerce-checkout {
   dl.variation {
     dt[class*="variation-gzd-"], dd[class*="variation-gzd-"] {
+      display: none !important;
+    }
+  }
+}
+
+.woocommerce-mini-cart {
+  dl.variation {
+    dt[class*="variation-gzd-"] {
       display: none !important;
     }
   }
