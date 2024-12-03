@@ -1,5 +1,13 @@
 @import '../cart-checkout/items';
 
-.wp-block-woocommerce-mini-cart-contents .wc-block-components-totals-item__description {
-  display: none !important;
+.wp-block-woocommerce-mini-cart-contents {
+  .wc-block-components-totals-item__description {
+    display: none !important;
+  }
+
+  ul.wc-block-components-product-details {
+    li.wc-block-components-product-details__gzd-unit-price {
+      display: block !important;
+    }
+  }
 }

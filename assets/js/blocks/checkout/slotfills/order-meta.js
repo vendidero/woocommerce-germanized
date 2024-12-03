@@ -26,33 +26,38 @@ const DomWatcher = ({
     }, [] );
 
     useEffect(() => {
-        const orderItems = document.getElementsByClassName( 'wc-block-components-order-summary-item' );
+        /**
+         * Use a timeout as tweak to make sure DOM is available.
+         */
+        window.setTimeout( () => {
+            const orderItems = document.getElementsByClassName( 'wc-block-components-order-summary-item' );
 
-        for ( let item of orderItems ) {
-            const unitPrice   = item.getElementsByClassName( "wc-block-components-product-details__gzd-unit-price" )[0];
-            const notGzdElements = item.querySelectorAll( "li:not([class*=__gzd])" )[0];
+            for ( let item of orderItems ) {
+                const unitPrice   = item.getElementsByClassName( "wc-block-components-product-details__gzd-unit-price" )[0];
+                const notGzdElements = item.querySelectorAll( "li:not([class*=__gzd])" )[0];
 
-            if ( notGzdElements ) {
-                notGzdElements.classList.add( "wc-not-gzd-summary-item-first" );
-            }
-
-            if ( unitPrice ) {
-                const priceNode = item.getElementsByClassName( "wc-block-components-order-summary-item__total-price" )[0];
-                const unitPriceNew = priceNode.getElementsByClassName( "wc-gzd-unit-price" )[0];
-
-                if ( unitPriceNew ) {
-                    priceNode.removeChild( unitPriceNew );
+                if ( notGzdElements ) {
+                    notGzdElements.classList.add( "wc-not-gzd-summary-item-first" );
                 }
 
-                const newUnitPrice = document.createElement("div" );
-                newUnitPrice.className = 'wc-gzd-unit-price';
-                newUnitPrice.innerHTML = unitPrice.innerHTML;
+                if ( unitPrice ) {
+                    const priceNode = item.getElementsByClassName( "wc-block-components-order-summary-item__total-price" )[0];
+                    const unitPriceNew = priceNode.getElementsByClassName( "wc-gzd-unit-price" )[0];
 
-                unitPrice.classList.add( "wc-gzd-unit-price-moved" );
+                    if ( unitPriceNew ) {
+                        priceNode.removeChild( unitPriceNew );
+                    }
 
-                priceNode.appendChild( newUnitPrice );
+                    const newUnitPrice = document.createElement("div" );
+                    newUnitPrice.className = 'wc-gzd-unit-price';
+                    newUnitPrice.innerHTML = unitPrice.innerHTML;
+
+                    unitPrice.classList.add( "wc-gzd-unit-price-moved" );
+
+                    priceNode.appendChild( newUnitPrice );
+                }
             }
-        }
+        }, 500 );
     }, [
         cart.cartItems
     ] );
