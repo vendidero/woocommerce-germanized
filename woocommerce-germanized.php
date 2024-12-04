@@ -319,6 +319,8 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 
 			add_filter( 'woocommerce_locate_core_template', array( $this, 'email_templates' ), 0, 3 );
 			add_filter( 'woocommerce_structured_data_product', array( $this, 'add_structured_product_data' ), 10, 2 );
+			add_filter( 'woocommerce_product_get_global_unique_id', array( $this, 'add_gtin_fallback' ), 10, 2 );
+			add_filter( 'woocommerce_product_variation_get_global_unique_id', array( $this, 'add_gtin_fallback' ), 10, 2 );
 
 			// Payment gateways
 			add_filter( 'woocommerce_payment_gateways', array( $this, 'register_gateways' ) );
@@ -1550,13 +1552,32 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 			return $gateways;
 		}
 
+		/**
+		 * @param string $gtin
+		 * @param WC_Product $product
+		 *
+		 * @return string
+		 */
+		public function add_gtin_fallback( $gtin, $product ) {
+			if ( empty( $gtin ) ) {
+				$gtin = wc_gzd_get_gzd_product( $product )->get_gtin( 'edit' );
+			}
+
+			return $gtin;
+		}
+
 		public function add_structured_product_data( $markup, $product ) {
 			if ( $gzd_product = wc_gzd_get_gzd_product( $product ) ) {
-				if ( $gtin = $gzd_product->get_gtin() ) {
-					$markup['gtin'] = $gtin;
-				}
-				if ( $mpn = $gzd_product->get_mpn() ) {
-					$markup['mpn'] = $mpn;
+                if ( ! isset( $markup['gtin'] ) || empty( $markup['gtin'] ) ) {
+	                if ( $gtin = $gzd_product->get_gtin() ) {
+		                $markup['gtin'] = $gtin;
+	                }
+                }
+
+				if ( ! isset( $markup['mpn'] ) || empty( $markup['mpn'] ) ) {
+					if ( $mpn = $gzd_product->get_mpn() ) {
+						$markup['mpn'] = $mpn;
+					}
 				}
 			}
 

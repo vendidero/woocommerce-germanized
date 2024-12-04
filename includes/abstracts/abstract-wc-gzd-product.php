@@ -116,7 +116,20 @@ class WC_GZD_Product {
 	}
 
 	public function get_gtin( $context = 'view' ) {
-		return $this->get_prop( 'ts_gtin', $context );
+		$gtin = $this->get_prop( 'ts_gtin', $context );
+
+		/**
+		 * Prefer using the newly introduced GTIN option from the Woo Core.
+		 */
+		if ( 'view' === $context && is_callable( array( $this->child, 'get_global_unique_id' ) ) ) {
+			$wc_core_gtin = $this->child->get_global_unique_id();
+
+			if ( ! empty( $wc_gtin ) ) {
+				$gtin = $wc_core_gtin;
+			}
+		}
+
+		return $gtin;
 	}
 
 	public function get_mpn( $context = 'view' ) {
