@@ -100,7 +100,7 @@ if ( ! class_exists( 'WC_GZD_Email_Customer_Paid_For_Order' ) ) :
 
 				if ( $gateway ) {
 					if ( $has_removed_hook && is_callable( array( $gateway, 'email_instructions' ) ) ) {
-						add_action( 'woocommerce_email_before_order_table', array( $gateway, 'email_instructions' ) );
+						add_action( 'woocommerce_email_before_order_table', array( $gateway, 'email_instructions' ), 10, 3 );
 					}
 
 					do_action( 'woocommerce_gzd_maybe_add_email_payment_instructions_after_removal', $this->object );

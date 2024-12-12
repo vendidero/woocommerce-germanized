@@ -1568,11 +1568,11 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 
 		public function add_structured_product_data( $markup, $product ) {
 			if ( $gzd_product = wc_gzd_get_gzd_product( $product ) ) {
-                if ( ! isset( $markup['gtin'] ) || empty( $markup['gtin'] ) ) {
-	                if ( $gtin = $gzd_product->get_gtin() ) {
-		                $markup['gtin'] = $gtin;
-	                }
-                }
+				if ( ! isset( $markup['gtin'] ) || empty( $markup['gtin'] ) ) {
+					if ( $gtin = $gzd_product->get_gtin() ) {
+						$markup['gtin'] = $gtin;
+					}
+				}
 
 				if ( ! isset( $markup['mpn'] ) || empty( $markup['mpn'] ) ) {
 					if ( $mpn = $gzd_product->get_mpn() ) {

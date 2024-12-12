@@ -1828,8 +1828,9 @@ function wc_gzd_get_photovoltaic_system_customer_location( $args = array() ) {
 function wc_gzd_customer_applies_for_photovoltaic_system_vat_exemption( $args = array() ) {
 	$args                                   = wc_gzd_get_photovoltaic_system_customer_location( $args );
 	$applies_for_photovoltaic_vat_exemption = false;
+	$is_vat_exempt                          = WC()->customer && WC()->customer->is_vat_exempt();
 
-	if ( empty( $args['company'] ) || apply_filters( 'woocommerce_gzd_allow_b2b_photovoltaic_system_vat_exemption', false ) ) {
+	if ( ! $is_vat_exempt && ( empty( $args['company'] ) || apply_filters( 'woocommerce_gzd_allow_b2b_photovoltaic_system_vat_exemption', false ) ) ) {
 		/**
 		 * Allow VAT exemption for:
 		 * - shipments to a country supporting photovoltaic exempts (from the base country or from another EU country which takes part in OSS procedure).

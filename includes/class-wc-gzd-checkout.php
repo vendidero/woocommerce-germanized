@@ -334,6 +334,8 @@ class WC_GZD_Checkout {
 
 		if ( $checkbox = wc_gzd_get_legal_checkbox( 'photovoltaic_systems' ) ) {
 			if ( $checkbox->is_enabled() ) {
+				$is_vat_exempt = WC()->customer && WC()->customer->is_vat_exempt();
+
 				if ( $this->checkbox_is_checked( $checkbox ) && wc_gzd_cart_applies_for_photovoltaic_system_vat_exemption( $cart->get_cart() ) ) {
 					foreach ( $cart->get_cart() as $cart_item_key => $values ) {
 						$_product = apply_filters( 'woocommerce_cart_item_product', $values['data'], $values, $cart_item_key );
@@ -354,7 +356,7 @@ class WC_GZD_Checkout {
 							$_product->set_tax_class( get_option( 'woocommerce_gzd_photovoltaic_systems_zero_tax_class', 'zero-rate' ) );
 						}
 					}
-				} elseif ( apply_filters( 'woocommerce_gzd_photovoltaic_systems_remove_zero_tax_class_for_non_exemptions', ( is_checkout() || $this->checkbox_is_visible( 'photovoltaic_systems' ) ) ) ) {
+				} elseif ( apply_filters( 'woocommerce_gzd_photovoltaic_systems_remove_zero_tax_class_for_non_exemptions', ( ! $is_vat_exempt && ( is_checkout() || $this->checkbox_is_visible( 'photovoltaic_systems' ) ) ) ) ) {
 					foreach ( $cart->get_cart() as $cart_item_key => $values ) {
 						$_product = apply_filters( 'woocommerce_cart_item_product', $values['data'], $values, $cart_item_key );
 
