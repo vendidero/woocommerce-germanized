@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: WooCommerce Germanized\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/woocommerce-"
 "germanized\n"
-"POT-Creation-Date: 2024-11-25T11:36:42+00:00\n"
-"PO-Revision-Date: 2024-11-25 12:40+0100\n"
+"POT-Creation-Date: 2024-12-30T11:13:08+00:00\n"
+"PO-Revision-Date: 2024-12-30 12:21+0100\n"
 "Last-Translator: Dennis Nissle <info@vendidero.de>\n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -135,12 +135,12 @@ msgstr "Sendung aufgeben"
 
 # @ woocommerce-germanized
 #: includes/wc-gzd-dhl-core-functions.php:320
-#: src/ShippingProvider/DeutschePost.php:673 src/ShippingProvider/DHL.php:1090
-#: src/ShippingProvider/DHL.php:1461
+#: src/ShippingProvider/DeutschePost.php:673 src/ShippingProvider/DHL.php:1099
+#: src/ShippingProvider/DHL.php:1470
 #: packages/woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:320
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DeutschePost.php:673
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1090
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1461
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1099
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1470
 msgctxt "dhl"
 msgid "Packstation"
 msgstr "Packstation"
@@ -208,26 +208,26 @@ msgstr "DHL Warenpost"
 # @ woocommerce-germanized
 #: includes/wc-gzd-dhl-legacy-functions.php:601
 #: includes/wc-gzd-dhl-legacy-functions.php:629
-#: src/ShippingProvider/DHL.php:171
+#: src/ShippingProvider/DHL.php:180
 #: packages/woocommerce-germanized-dhl/includes/wc-gzd-dhl-legacy-functions.php:601
 #: packages/woocommerce-germanized-dhl/includes/wc-gzd-dhl-legacy-functions.php:629
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:171
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:180
 msgctxt "dhl"
 msgid "DHL Paket International"
 msgstr "DHL Paket International"
 
 #: includes/wc-gzd-dhl-legacy-functions.php:602
-#: src/ShippingProvider/DHL.php:163
+#: src/ShippingProvider/DHL.php:172
 #: packages/woocommerce-germanized-dhl/includes/wc-gzd-dhl-legacy-functions.php:602
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:163
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:172
 msgctxt "dhl"
 msgid "DHL Paket Connect"
 msgstr "DHL Paket Connect"
 
 #: includes/wc-gzd-dhl-legacy-functions.php:603
-#: src/ShippingProvider/DHL.php:155
+#: src/ShippingProvider/DHL.php:164
 #: packages/woocommerce-germanized-dhl/includes/wc-gzd-dhl-legacy-functions.php:603
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:155
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:164
 msgctxt "dhl"
 msgid "DHL Europaket (B2B)"
 msgstr "DHL Europaket (B2B)"
@@ -235,10 +235,10 @@ msgstr "DHL Europaket (B2B)"
 # @ woocommerce-germanized
 #: includes/wc-gzd-dhl-legacy-functions.php:607
 #: includes/wc-gzd-dhl-legacy-functions.php:633
-#: src/ShippingProvider/DHL.php:147
+#: src/ShippingProvider/DHL.php:156
 #: packages/woocommerce-germanized-dhl/includes/wc-gzd-dhl-legacy-functions.php:607
 #: packages/woocommerce-germanized-dhl/includes/wc-gzd-dhl-legacy-functions.php:633
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:147
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:156
 msgctxt "dhl"
 msgid "DHL Warenpost International"
 msgstr "DHL Warenpost International"
@@ -271,13 +271,13 @@ msgstr "Wunschtag: %1$s"
 
 # @ woocommerce-germanized
 #: src/Admin/Admin.php:74 src/ParcelServices.php:61
-#: src/ShippingProvider/DHL.php:1202
+#: src/ShippingProvider/DHL.php:1211
 #: src/ShippingProvider/Services/PreferredDay.php:16
 #: src/ShippingProvider/Services/PreferredDay.php:44
 #: templates/checkout/dhl/preferred-services.php:32
 #: packages/woocommerce-germanized-dhl/src/Admin/Admin.php:74
 #: packages/woocommerce-germanized-dhl/src/ParcelServices.php:61
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1202
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1211
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/Services/PreferredDay.php:16
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/Services/PreferredDay.php:44
 #: packages/woocommerce-germanized-dhl/templates/checkout/dhl/preferred-services.php:32
@@ -382,9 +382,9 @@ msgstr ""
 "Teilnahmenummer für das jeweilige Produkt. Die Teilnahmenummern findest du "
 "im Geschäftskundenportal."
 
-#: src/Admin/Admin.php:264 src/ShippingProvider/DHL.php:181
+#: src/Admin/Admin.php:264 src/ShippingProvider/DHL.php:190
 #: packages/woocommerce-germanized-dhl/src/Admin/Admin.php:264
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:181
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:190
 msgctxt "dhl"
 msgid "GoGreen"
 msgstr "GoGreen"
@@ -710,12 +710,12 @@ msgctxt "dhl"
 msgid "Refund API could not be instantiated"
 msgstr "Die API für Rückerstattungen konnte nicht initialisiert werden"
 
-#: src/Api/Internetmarke.php:690 src/Api/LabelRest.php:116
-#: src/Api/LabelSoap.php:375 src/Api/ReturnRest.php:39
+#: src/Api/Internetmarke.php:690 src/Api/LabelRest.php:44
+#: src/Api/LabelSoap.php:375 src/Api/ReturnRest.php:41
 #: packages/woocommerce-germanized-dhl/src/Api/Internetmarke.php:690
-#: packages/woocommerce-germanized-dhl/src/Api/LabelRest.php:116
+#: packages/woocommerce-germanized-dhl/src/Api/LabelRest.php:44
 #: packages/woocommerce-germanized-dhl/src/Api/LabelSoap.php:375
-#: packages/woocommerce-germanized-dhl/src/Api/ReturnRest.php:39
+#: packages/woocommerce-germanized-dhl/src/Api/ReturnRest.php:41
 msgctxt "dhl"
 msgid "Could not fetch shipment %d."
 msgstr "Sendung %d konnte nicht gefunden werden."
@@ -748,14 +748,8 @@ msgctxt "dhl"
 msgid "Invalid stamp response."
 msgstr "Fehlerhafte Label Rückmeldung."
 
-#: src/Api/LabelRest.php:68
-#: packages/woocommerce-germanized-dhl/src/Api/LabelRest.php:68
-msgctxt "dhl"
-msgid "POST error or timeout occurred. Please try again later."
-msgstr "POST Fehler oder Zeitüberschreitung. Bitte später erneut versuchen."
-
-#: src/Api/LabelRest.php:321 src/Api/LabelSoap.php:607
-#: packages/woocommerce-germanized-dhl/src/Api/LabelRest.php:321
+#: src/Api/LabelRest.php:249 src/Api/LabelSoap.php:607
+#: packages/woocommerce-germanized-dhl/src/Api/LabelRest.php:249
 #: packages/woocommerce-germanized-dhl/src/Api/LabelSoap.php:607
 msgctxt "dhl"
 msgid ""
@@ -765,8 +759,8 @@ msgstr ""
 "Deine Absenderadresse ist nicht komplett (%1$s). Bitte prüfe deine <a "
 "href=\"%2$s\">Einstellungen</a> und versuche es erneut."
 
-#: src/Api/LabelRest.php:436 src/Api/LabelSoap.php:713
-#: packages/woocommerce-germanized-dhl/src/Api/LabelRest.php:436
+#: src/Api/LabelRest.php:364 src/Api/LabelSoap.php:713
+#: packages/woocommerce-germanized-dhl/src/Api/LabelRest.php:364
 #: packages/woocommerce-germanized-dhl/src/Api/LabelSoap.php:713
 msgctxt "dhl"
 msgid ""
@@ -775,8 +769,8 @@ msgstr ""
 "Es können maximal %1$s Sendungspositionen verarbeitet werden - die "
 "vorliegende Sendung beinhaltet %2$s Positionen."
 
-#: src/Api/LabelRest.php:532 src/Api/LabelSoap.php:219
-#: packages/woocommerce-germanized-dhl/src/Api/LabelRest.php:532
+#: src/Api/LabelRest.php:465 src/Api/LabelSoap.php:219
+#: packages/woocommerce-germanized-dhl/src/Api/LabelRest.php:465
 #: packages/woocommerce-germanized-dhl/src/Api/LabelSoap.php:219
 msgctxt "dhl"
 msgid ""
@@ -786,8 +780,8 @@ msgstr ""
 "Beim Erzeugen des Labels gab es einen Fehler. Bitte versuche es erneut oder "
 "erwäge den Wechsel in den Sandbox-Modus."
 
-#: src/Api/LabelRest.php:610
-#: packages/woocommerce-germanized-dhl/src/Api/LabelRest.php:610
+#: src/Api/LabelRest.php:543
+#: packages/woocommerce-germanized-dhl/src/Api/LabelRest.php:543
 msgctxt "dhl"
 msgid ""
 "You've explicitly booked the additional insurance service resulting in "
@@ -798,21 +792,27 @@ msgstr ""
 "Kosten verursacht obwohl der Warenwert der Sendung 500 Euro nicht "
 "übersteigt. Das Label wurde dennoch erstellt."
 
-#: src/Api/LabelRest.php:619 src/Api/LabelSoap.php:297
-#: src/Api/ReturnRest.php:189
-#: packages/woocommerce-germanized-dhl/src/Api/LabelRest.php:619
+#: src/Api/LabelRest.php:552 src/Api/LabelSoap.php:297
+#: src/Api/ReturnRest.php:184
+#: packages/woocommerce-germanized-dhl/src/Api/LabelRest.php:552
 #: packages/woocommerce-germanized-dhl/src/Api/LabelSoap.php:297
-#: packages/woocommerce-germanized-dhl/src/Api/ReturnRest.php:189
+#: packages/woocommerce-germanized-dhl/src/Api/ReturnRest.php:184
 msgctxt "dhl"
 msgid "Error while creating and uploading the label"
 msgstr "Fehler beim Erstellen und hochladen des Labels"
 
-#: src/Api/LabelRest.php:752 src/Api/LabelSoap.php:111
-#: packages/woocommerce-germanized-dhl/src/Api/LabelRest.php:752
+#: src/Api/LabelRest.php:687 src/Api/LabelSoap.php:111
+#: packages/woocommerce-germanized-dhl/src/Api/LabelRest.php:687
 #: packages/woocommerce-germanized-dhl/src/Api/LabelSoap.php:111
 msgctxt "dhl"
 msgid "Your DHL API credentials seem to be invalid."
 msgstr "Deine DHL API Zugangsdaten scheinen fehlerhaft zu sein."
+
+#: src/Api/LabelRest.php:692
+#: packages/woocommerce-germanized-dhl/src/Api/LabelRest.php:692
+msgctxt "dhl"
+msgid "Unknown DHL API error."
+msgstr "Unbekannter DHL API Fehler."
 
 #: src/Api/LabelSoap.php:183
 #: packages/woocommerce-germanized-dhl/src/Api/LabelSoap.php:183
@@ -868,6 +868,12 @@ msgstr "%1$s %2$s"
 msgctxt "dhl"
 msgid "At least shipping city or zip is required."
 msgstr "Entweder eine Stadt oder die Postleitzahl wird benötigt."
+
+#: src/Api/OAuthPaket.php:82
+#: packages/woocommerce-germanized-dhl/src/Api/OAuthPaket.php:82
+msgctxt "dhl"
+msgid "Error while authenticating with DHL."
+msgstr "Fehler beim Login via DHL."
 
 # @ woocommerce-germanized
 #: src/Api/Paket.php:70 src/Api/Paket.php:97
@@ -947,6 +953,12 @@ msgstr "Sa"
 msgctxt "dhl"
 msgid "Sun"
 msgstr "So"
+
+#: src/Api/PaketRest.php:62
+#: packages/woocommerce-germanized-dhl/src/Api/PaketRest.php:62
+msgctxt "dhl"
+msgid "POST error or timeout occurred. Please try again later."
+msgstr "POST Fehler oder Zeitüberschreitung. Bitte später erneut versuchen."
 
 #: src/Api/ParcelRest.php:27
 #: packages/woocommerce-germanized-dhl/src/Api/ParcelRest.php:27
@@ -1120,8 +1132,8 @@ msgid "Invalid label."
 msgstr "Ungültiges Label."
 
 # @ woocommerce-germanized
-#: src/Package.php:1164
-#: packages/woocommerce-germanized-dhl/src/Package.php:1164
+#: src/Package.php:1168
+#: packages/woocommerce-germanized-dhl/src/Package.php:1168
 msgctxt "dhl"
 msgid "Germany"
 msgstr "Deutschland"
@@ -1134,13 +1146,13 @@ msgid "Delivery time"
 msgstr "Lieferzeit"
 
 # @ woocommerce-germanized
-#: src/ParcelServices.php:75 src/ShippingProvider/DHL.php:1149
+#: src/ParcelServices.php:75 src/ShippingProvider/DHL.php:1158
 #: src/ShippingProvider/Services/PreferredLocation.php:15
 #: src/ShippingProvider/Services/PreferredLocation.php:42
 #: templates/checkout/dhl/preferred-services.php:84
 #: packages/woocommerce-germanized-dhl/build/checkout.js:1
 #: packages/woocommerce-germanized-dhl/src/ParcelServices.php:75
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1149
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1158
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/Services/PreferredLocation.php:15
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/Services/PreferredLocation.php:42
 #: packages/woocommerce-germanized-dhl/templates/checkout/dhl/preferred-services.php:84
@@ -1148,14 +1160,14 @@ msgctxt "dhl"
 msgid "Drop-off location"
 msgstr "Ablageort"
 
-#: src/ParcelServices.php:80 src/ShippingProvider/DHL.php:1158
+#: src/ParcelServices.php:80 src/ShippingProvider/DHL.php:1167
 #: src/ShippingProvider/Services/PreferredNeighbour.php:15
 #: src/ShippingProvider/Services/PreferredNeighbour.php:42
 #: templates/checkout/dhl/preferred-services.php:77
 #: templates/checkout/dhl/preferred-services.php:93
 #: packages/woocommerce-germanized-dhl/build/checkout.js:1
 #: packages/woocommerce-germanized-dhl/src/ParcelServices.php:80
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1158
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1167
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/Services/PreferredNeighbour.php:15
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/Services/PreferredNeighbour.php:42
 #: packages/woocommerce-germanized-dhl/templates/checkout/dhl/preferred-services.php:77
@@ -1338,9 +1350,9 @@ msgctxt "dhl"
 msgid "Refresh available products"
 msgstr "Verfügbare Produkte aktualisieren"
 
-#: src/ShippingProvider/DeutschePost.php:282 src/ShippingProvider/DHL.php:1056
+#: src/ShippingProvider/DeutschePost.php:282 src/ShippingProvider/DHL.php:1065
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DeutschePost.php:282
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1056
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1065
 msgctxt "dhl"
 msgid "Tracking"
 msgstr "Sendungsverfolgung"
@@ -1383,16 +1395,16 @@ msgctxt "dhl"
 msgid "Deutsche Post product is missing for %s."
 msgstr "Deutsche Post Produkt fehlt oder ist nicht verfügbar für %s."
 
-#: src/ShippingProvider/DeutschePost.php:674 src/ShippingProvider/DHL.php:1091
+#: src/ShippingProvider/DeutschePost.php:674 src/ShippingProvider/DHL.php:1100
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DeutschePost.php:674
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1091
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1100
 msgctxt "dhl"
 msgid "Enable delivery to Packstation."
 msgstr "Aktiviere den Versand an Packstationen."
 
-#: src/ShippingProvider/DeutschePost.php:675 src/ShippingProvider/DHL.php:1092
+#: src/ShippingProvider/DeutschePost.php:675 src/ShippingProvider/DHL.php:1101
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DeutschePost.php:675
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1092
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1101
 msgctxt "dhl"
 msgid "Let customers choose a Packstation as delivery address."
 msgstr "Kunden eine Packstation als Lieferadresse auswählen lassen."
@@ -1439,71 +1451,77 @@ msgctxt "dhl"
 msgid "Return #{shipment_number}, order {order_number}"
 msgstr "Retoure #{shipment_number}, Bestellung {order_number}"
 
-#: src/ShippingProvider/DHL.php:182
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:182
+#: src/ShippingProvider/DHL.php:147
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:147
+msgctxt "dhl"
+msgid "DHL Kleinpaket"
+msgstr "DHL Kleinpaket"
+
+#: src/ShippingProvider/DHL.php:191
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:191
 msgctxt "dhl"
 msgid "Ship your parcels climate friendly."
 msgstr "Versende Pakete klimafreundlich."
 
-#: src/ShippingProvider/DHL.php:197
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:197
+#: src/ShippingProvider/DHL.php:206
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:206
 msgctxt "dhl"
 msgid "No Neighbor"
 msgstr "Keine Nachbarschaftszustellung"
 
-#: src/ShippingProvider/DHL.php:198
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:198
+#: src/ShippingProvider/DHL.php:207
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:207
 msgctxt "dhl"
 msgid "Do not deliver to neighbors."
 msgstr "Schließe eine Ersatzzustellung beim Nachbarn aus."
 
-#: src/ShippingProvider/DHL.php:208
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:208
+#: src/ShippingProvider/DHL.php:217
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:217
 msgctxt "dhl"
 msgid "Recipient signature"
 msgstr "Empfängerunterschrift"
 
-#: src/ShippingProvider/DHL.php:209
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:209
+#: src/ShippingProvider/DHL.php:218
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:218
 msgctxt "dhl"
 msgid "Let recipients sign delivery instead of DHL driver."
 msgstr ""
 "Lasse den Empfänger der Lieferung anstelle des DHL Fahrers unterschreiben."
 
-#: src/ShippingProvider/DHL.php:219
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:219
+#: src/ShippingProvider/DHL.php:228
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:228
 msgctxt "dhl"
 msgid "Named person only"
 msgstr "Persönliche Übergabe"
 
-#: src/ShippingProvider/DHL.php:220
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:220
+#: src/ShippingProvider/DHL.php:229
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:229
 msgctxt "dhl"
 msgid "Do only delivery to named person."
 msgstr ""
 "Lasse Pakete nur an den Empfänger persönlich oder an eine bevollmächtigte "
 "Person übergeben."
 
-#: src/ShippingProvider/DHL.php:232
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:232
+#: src/ShippingProvider/DHL.php:241
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:241
 msgctxt "dhl"
 msgid "Bulky Goods"
 msgstr "Sperrgut"
 
-#: src/ShippingProvider/DHL.php:233
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:233
+#: src/ShippingProvider/DHL.php:242
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:242
 msgctxt "dhl"
 msgid "Deliver as bulky goods."
 msgstr "Sende Pakete als Sperrgut."
 
-#: src/ShippingProvider/DHL.php:241
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:241
+#: src/ShippingProvider/DHL.php:250
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:250
 msgctxt "dhl"
 msgid "Retail Outlet Routing"
 msgstr "Filialrouting"
 
-#: src/ShippingProvider/DHL.php:242
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:242
+#: src/ShippingProvider/DHL.php:251
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:251
 msgctxt "dhl"
 msgid ""
 "Send undeliverable items to nearest retail outlet instead of immediate "
@@ -1512,26 +1530,26 @@ msgstr ""
 "Sende unzustellbare Sendungen in die nächstgelegene Filiale zur Abholung "
 "anstelle diese direkt zurückzusenden."
 
-#: src/ShippingProvider/DHL.php:252
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:252
+#: src/ShippingProvider/DHL.php:261
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:261
 msgctxt "dhl"
 msgid "Premium"
 msgstr "Premium"
 
-#: src/ShippingProvider/DHL.php:253
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:253
+#: src/ShippingProvider/DHL.php:262
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:262
 msgctxt "dhl"
 msgid "Premium delivery for international shipments."
 msgstr "Premium Lieferung für internationale Sendungen."
 
-#: src/ShippingProvider/DHL.php:262
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:262
+#: src/ShippingProvider/DHL.php:271
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:271
 msgctxt "dhl"
 msgid "Endorsement"
 msgstr "Vorabverfügung"
 
-#: src/ShippingProvider/DHL.php:263
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:263
+#: src/ShippingProvider/DHL.php:272
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:272
 msgctxt "dhl"
 msgid ""
 "Select how DHL should handle international shipments that could not be "
@@ -1540,27 +1558,27 @@ msgstr ""
 "Wähle aus wie DHL internationale Sendungen behandeln soll, die nicht "
 "zugestellt werden können."
 
-#: src/ShippingProvider/DHL.php:275
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:275
+#: src/ShippingProvider/DHL.php:284
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:284
 msgctxt "dhl"
 msgid "Economy"
 msgstr "Economy"
 
-#: src/ShippingProvider/DHL.php:276
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:276
+#: src/ShippingProvider/DHL.php:285
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:285
 msgctxt "dhl"
 msgid "Economy delivery for international shipments."
 msgstr "Economy Lieferung für internationale Sendungen."
 
 # @ woocommerce-germanized
-#: src/ShippingProvider/DHL.php:287
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:287
+#: src/ShippingProvider/DHL.php:296
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:296
 msgctxt "dhl"
 msgid "Postal Delivery Duty Paid"
 msgstr "Postal Delivery Duty Paid"
 
-#: src/ShippingProvider/DHL.php:288
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:288
+#: src/ShippingProvider/DHL.php:297
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:297
 msgctxt "dhl"
 msgid ""
 "DHL takes care of customs clearance and export duties (Postal Delivered Duty "
@@ -1570,87 +1588,87 @@ msgstr ""
 "erfolgt über DHL (Postal Delivered Duty Paid)."
 
 # @ woocommerce-germanized
-#: src/ShippingProvider/DHL.php:300
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:300
+#: src/ShippingProvider/DHL.php:309
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:309
 msgctxt "dhl-print-format"
 msgid "Default (User configuration)"
 msgstr "Standard (Benutzerkonfiguration)"
 
-#: src/ShippingProvider/DHL.php:306
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:306
+#: src/ShippingProvider/DHL.php:315
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:315
 msgctxt "dhl-print-format"
 msgid "A4"
 msgstr "A4"
 
-#: src/ShippingProvider/DHL.php:307
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:307
+#: src/ShippingProvider/DHL.php:316
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:316
 msgctxt "dhl-print-format"
 msgid "910-300-700"
 msgstr "910-300-700"
 
-#: src/ShippingProvider/DHL.php:308
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:308
+#: src/ShippingProvider/DHL.php:317
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:317
 msgctxt "dhl-print-format"
 msgid "910-300-700-oZ"
 msgstr "910-300-700-oZ"
 
-#: src/ShippingProvider/DHL.php:309
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:309
+#: src/ShippingProvider/DHL.php:318
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:318
 msgctxt "dhl-print-format"
 msgid "910-300-710"
 msgstr "910-300-710"
 
-#: src/ShippingProvider/DHL.php:310
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:310
+#: src/ShippingProvider/DHL.php:319
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:319
 msgctxt "dhl-print-format"
 msgid "910-300-600"
 msgstr "910-300-600"
 
-#: src/ShippingProvider/DHL.php:311
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:311
+#: src/ShippingProvider/DHL.php:320
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:320
 msgctxt "dhl-print-format"
 msgid "910-300-610"
 msgstr "910-300-610"
 
-#: src/ShippingProvider/DHL.php:312
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:312
+#: src/ShippingProvider/DHL.php:321
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:321
 msgctxt "dhl-print-format"
 msgid "910-300-400"
 msgstr "910-300-400"
 
-#: src/ShippingProvider/DHL.php:313
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:313
+#: src/ShippingProvider/DHL.php:322
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:322
 msgctxt "dhl-print-format"
 msgid "910-300-410"
 msgstr "910-300-410"
 
-#: src/ShippingProvider/DHL.php:314
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:314
+#: src/ShippingProvider/DHL.php:323
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:323
 msgctxt "dhl-print-format"
 msgid "910-300-300"
 msgstr "910-300-300"
 
-#: src/ShippingProvider/DHL.php:315
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:315
+#: src/ShippingProvider/DHL.php:324
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:324
 msgctxt "dhl-print-format"
 msgid "910-300-300-oz"
 msgstr "910-300-300-oz"
 
-#: src/ShippingProvider/DHL.php:331
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:331
+#: src/ShippingProvider/DHL.php:340
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:340
 msgctxt "dhl-print-format"
 msgid "100x70mm"
 msgstr "100x70mm"
 
-#: src/ShippingProvider/DHL.php:362 src/ShippingProvider/DHL.php:369
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:362
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:369
+#: src/ShippingProvider/DHL.php:371 src/ShippingProvider/DHL.php:378
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:371
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:378
 msgctxt "dhl"
 msgid "Retoure"
 msgstr "Retoure"
 
-#: src/ShippingProvider/DHL.php:365
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:365
+#: src/ShippingProvider/DHL.php:374
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:374
 msgctxt "dhl"
 msgid ""
 "Adjust handling of return shipments through the DHL Retoure API. Make sure "
@@ -1660,21 +1678,21 @@ msgstr ""
 "an. Stelle sicher, dass dein %s DHL Retoure Online enthält."
 
 # @ woocommerce-germanized
-#: src/ShippingProvider/DHL.php:365
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:365
+#: src/ShippingProvider/DHL.php:374
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:374
 msgctxt "dhl"
 msgid "contract"
 msgstr "Vertrag"
 
 # @ woocommerce-germanized
-#: src/ShippingProvider/DHL.php:370
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:370
+#: src/ShippingProvider/DHL.php:379
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:379
 msgctxt "dhl"
 msgid "Create retoure labels to return shipments."
 msgstr "Retourenlabels zu Retourensendungen erstellen."
 
-#: src/ShippingProvider/DHL.php:370
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:370
+#: src/ShippingProvider/DHL.php:379
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:379
 msgctxt "dhl"
 msgid ""
 "By enabling this option you might generate retoure labels for return "
@@ -1683,22 +1701,22 @@ msgstr ""
 "Mit der Aktivierung dieser Option kannst du Retourenlabels zu "
 "Retourensendungen erstellen und diese per E-Mail an den Kunden weiterleiten."
 
-#: src/ShippingProvider/DHL.php:410
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:410
+#: src/ShippingProvider/DHL.php:419
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:419
 msgctxt "dhl"
 msgid "Encodable"
 msgstr "Leitcodierbar"
 
-#: src/ShippingProvider/DHL.php:411
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:411
+#: src/ShippingProvider/DHL.php:420
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:420
 msgctxt "dhl"
 msgid "Labels will only be created if an address is encodable by DHL."
 msgstr ""
 "Labels werden nur erstellt wenn die Adresse von DHL erfolgreich geprüft "
 "wurde."
 
-#: src/ShippingProvider/DHL.php:416
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:416
+#: src/ShippingProvider/DHL.php:425
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:425
 msgctxt "dhl"
 msgid ""
 "Choose this option if you want to make sure that by default labels are only "
@@ -1708,22 +1726,22 @@ msgstr ""
 "wenn die dazugehörige Empfängeradresse leitcodierbar ist."
 
 # @ woocommerce-germanized
-#: src/ShippingProvider/DHL.php:420
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:420
+#: src/ShippingProvider/DHL.php:429
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:429
 msgctxt "dhl"
 msgid "Sync (IdentCheck)"
 msgstr "Synchronisation (Ident-Check)"
 
-#: src/ShippingProvider/DHL.php:421
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:421
+#: src/ShippingProvider/DHL.php:430
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:430
 msgctxt "dhl"
 msgid "Verify identity and age if shipment contains applicable items."
 msgstr ""
 "Aktiviere die Identitätsprüfung, falls die Sendung zu prüfende Positionen "
 "beinhaltet."
 
-#: src/ShippingProvider/DHL.php:421
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:421
+#: src/ShippingProvider/DHL.php:430
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:430
 msgctxt "dhl"
 msgid ""
 "Germanized offers an %s to be enabled for certain products and/or product "
@@ -1735,29 +1753,29 @@ msgstr ""
 "Identitätsprüfung automatisch aktiviert, falls eine Sendung zu prüfenden "
 "Produkte beinhaltet."
 
-#: src/ShippingProvider/DHL.php:421 src/ShippingProvider/DHL.php:433
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:421
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:433
+#: src/ShippingProvider/DHL.php:430 src/ShippingProvider/DHL.php:442
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:430
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:442
 msgctxt "dhl"
 msgid "age verification checkbox"
 msgstr "Checkbox zur Altersprüfung"
 
-#: src/ShippingProvider/DHL.php:432
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:432
+#: src/ShippingProvider/DHL.php:441
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:441
 msgctxt "dhl"
 msgid "Sync (Visual Check)"
 msgstr "Synchronisation (Visuell)"
 
-#: src/ShippingProvider/DHL.php:433
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:433
+#: src/ShippingProvider/DHL.php:442
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:442
 msgctxt "dhl"
 msgid "Visually verify age if shipment contains applicable items."
 msgstr ""
 "Aktiviere die Alterssichtprüfung, falls die Sendung zu prüfende Positionen "
 "beinhaltet."
 
-#: src/ShippingProvider/DHL.php:433
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:433
+#: src/ShippingProvider/DHL.php:442
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:442
 msgctxt "dhl"
 msgid ""
 "Germanized offers an %s to be enabled for certain products and/or product "
@@ -1770,65 +1788,65 @@ msgstr ""
 "Produkte beinhaltet."
 
 # @ woocommerce-germanized
-#: src/ShippingProvider/DHL.php:449
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:449
+#: src/ShippingProvider/DHL.php:458
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:458
 msgctxt "dhl"
 msgid "Default Incoterms"
 msgstr "Versandbedingungen"
 
-#: src/ShippingProvider/DHL.php:454
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:454
+#: src/ShippingProvider/DHL.php:463
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:463
 msgctxt "dhl"
 msgid "Please select a default incoterms option."
 msgstr "Bitte wähle eine Standard-Versandbedingung aus."
 
-#: src/ShippingProvider/DHL.php:533
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:533
+#: src/ShippingProvider/DHL.php:542
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:542
 msgctxt "dhl"
 msgid "Preferred delivery"
 msgstr "Wunschzustellung"
 
 # @ woocommerce-germanized
-#: src/ShippingProvider/DHL.php:549
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:549
+#: src/ShippingProvider/DHL.php:558
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:558
 msgctxt "dhl"
 msgid "Receiver"
 msgstr "Empfänger"
 
-#: src/ShippingProvider/DHL.php:577
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:577
+#: src/ShippingProvider/DHL.php:586
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:586
 msgctxt "dhl"
 msgid "Duties"
 msgstr "Zollabgabe"
 
-#: src/ShippingProvider/DHL.php:591
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:591
+#: src/ShippingProvider/DHL.php:600
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:600
 msgctxt "dhl"
 msgid "Valid address only"
 msgstr "Nur valide Adressen"
 
-#: src/ShippingProvider/DHL.php:652
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:652
+#: src/ShippingProvider/DHL.php:661
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:661
 msgctxt "dhl"
 msgid "Receiver is missing or does not exist."
 msgstr "Empfänger fehlt oder existiert nicht."
 
 # @ woocommerce-germanized
-#: src/ShippingProvider/DHL.php:682
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:682
+#: src/ShippingProvider/DHL.php:691
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:691
 msgctxt "dhl"
 msgid "%s duties element does not exist."
 msgstr "%s Zollabgabe existiert nicht."
 
 # @ woocommerce-germanized
-#: src/ShippingProvider/DHL.php:839
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:839
+#: src/ShippingProvider/DHL.php:848
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:848
 msgctxt "dhl"
 msgid "Customer Number (EKP)"
 msgstr "Kundennummer (EKP)"
 
-#: src/ShippingProvider/DHL.php:841
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:841
+#: src/ShippingProvider/DHL.php:850
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:850
 msgctxt "dhl"
 msgid ""
 "Your 10 digits DHL customer number, also called \"EKP\". Find your %s in the "
@@ -1837,26 +1855,26 @@ msgstr ""
 "Deine 10-stellige DHL Kundennummer (EKP). Finde deine %s im DHL "
 "Geschäftskundenportal."
 
-#: src/ShippingProvider/DHL.php:841
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:841
+#: src/ShippingProvider/DHL.php:850
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:850
 msgctxt "dhl"
 msgid "customer number"
 msgstr "Kundennummer"
 
-#: src/ShippingProvider/DHL.php:854
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:854
+#: src/ShippingProvider/DHL.php:863
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:863
 msgctxt "dhl"
 msgid "API"
 msgstr "API"
 
-#: src/ShippingProvider/DHL.php:868
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:868
+#: src/ShippingProvider/DHL.php:877
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:877
 msgctxt "dhl"
 msgid "API Type"
 msgstr "API-Typ"
 
-#: src/ShippingProvider/DHL.php:869
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:869
+#: src/ShippingProvider/DHL.php:878
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:878
 msgctxt "dhl"
 msgid ""
 "Choose the DHL API to use. Please note: The SOAP API is currently in a "
@@ -1865,39 +1883,39 @@ msgstr ""
 "Wähle eine DHL API aus. Bitte beachte: Die SOAP API ist mittlerweile "
 "veraltet und wird in Zukunft durch die REST API ersetzt."
 
-#: src/ShippingProvider/DHL.php:872
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:872
+#: src/ShippingProvider/DHL.php:881
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:881
 msgctxt "dhl"
 msgid "New API (REST)"
 msgstr "Neue API (REST)"
 
-#: src/ShippingProvider/DHL.php:873
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:873
+#: src/ShippingProvider/DHL.php:882
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:882
 msgctxt "dhl"
 msgid "Old API (SOAP)"
 msgstr "Alte API (SOAP)"
 
 # @ woocommerce-germanized
-#: src/ShippingProvider/DHL.php:887
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:887
+#: src/ShippingProvider/DHL.php:896
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:896
 msgctxt "dhl"
 msgid "Enable Sandbox"
 msgstr "Sandbox aktivieren"
 
-#: src/ShippingProvider/DHL.php:888
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:888
+#: src/ShippingProvider/DHL.php:897
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:897
 msgctxt "dhl"
 msgid "Activate Sandbox mode for testing purposes."
 msgstr "Aktiviere den Sandbox Modus."
 
-#: src/ShippingProvider/DHL.php:895
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:895
+#: src/ShippingProvider/DHL.php:904
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:904
 msgctxt "dhl"
 msgid "Live Username"
 msgstr "Benutzer"
 
-#: src/ShippingProvider/DHL.php:897
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:897
+#: src/ShippingProvider/DHL.php:906
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:906
 msgctxt "dhl"
 msgid ""
 "Your username (<strong>not</strong> your email address) to the DHL business "
@@ -1906,25 +1924,25 @@ msgstr ""
 "Dein Benutzername (<strong>nicht</strong> die E-Mail-Adresse) zum DHL "
 "Geschäftskundenportal. Bitte teste deine Zugangsdaten vorab %s."
 
-#: src/ShippingProvider/DHL.php:897 src/ShippingProvider/DHL.php:910
-#: src/ShippingProvider/DHL.php:922 src/ShippingProvider/DHL.php:934
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:897
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:910
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:922
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:934
+#: src/ShippingProvider/DHL.php:906 src/ShippingProvider/DHL.php:919
+#: src/ShippingProvider/DHL.php:931 src/ShippingProvider/DHL.php:943
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:906
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:919
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:931
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:943
 msgctxt "dhl"
 msgid "here"
 msgstr "hier"
 
 # @ woocommerce-germanized
-#: src/ShippingProvider/DHL.php:908
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:908
+#: src/ShippingProvider/DHL.php:917
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:917
 msgctxt "dhl"
 msgid "Live Password"
 msgstr "Passwort"
 
-#: src/ShippingProvider/DHL.php:910
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:910
+#: src/ShippingProvider/DHL.php:919
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:919
 msgctxt "dhl"
 msgid ""
 "Your password to the DHL business customer portal. Please note the new "
@@ -1935,14 +1953,14 @@ msgstr ""
 "Gültigkeit des Passworts nach 3 (Standard-Benutzer) bzw. 12 (System-"
 "Benutzer) Monaten und teste deine Zugangsdaten vorab %s."
 
-#: src/ShippingProvider/DHL.php:920
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:920
+#: src/ShippingProvider/DHL.php:929
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:929
 msgctxt "dhl"
 msgid "Sandbox Username"
 msgstr "Sandbox Benutzername"
 
-#: src/ShippingProvider/DHL.php:922
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:922
+#: src/ShippingProvider/DHL.php:931
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:931
 msgctxt "dhl"
 msgid ""
 "Your username (<strong>not</strong> your email address) to the DHL developer "
@@ -1951,14 +1969,14 @@ msgstr ""
 "Dein Benutzername (<strong>nicht</strong> die E-Mail-Adresse) zum DHL "
 "Entwicklerportal. Bitte teste deine Zugangsdaten vorab %s."
 
-#: src/ShippingProvider/DHL.php:932
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:932
+#: src/ShippingProvider/DHL.php:941
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:941
 msgctxt "dhl"
 msgid "Sandbox Password"
 msgstr "Sandbox Passwort"
 
-#: src/ShippingProvider/DHL.php:934
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:934
+#: src/ShippingProvider/DHL.php:943
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:943
 msgctxt "dhl"
 msgid ""
 "Your password for the DHL developer portal. Please test your access data in "
@@ -1967,14 +1985,14 @@ msgstr ""
 "Dein Passwort zum DHL Entwicklerportal. Bitte teste deine Zugangsdaten vorab "
 "%s."
 
-#: src/ShippingProvider/DHL.php:949
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:949
+#: src/ShippingProvider/DHL.php:958
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:958
 msgctxt "dhl"
 msgid "Products and Participation Numbers"
 msgstr "Produkte und Teilnahmenummern"
 
-#: src/ShippingProvider/DHL.php:952
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:952
+#: src/ShippingProvider/DHL.php:961
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:961
 msgctxt "dhl"
 msgid ""
 "Learn how to <a href=\"%1$s\" target=\"_blank\">find your participation "
@@ -1983,27 +2001,27 @@ msgstr ""
 "Finde heraus wie du deine <a href=\"%1$s\" "
 "target=\"_blank\">Teilnahmenummern</a> im DHL Geschäftskundenportal findest."
 
-#: src/ShippingProvider/DHL.php:957
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:957
+#: src/ShippingProvider/DHL.php:966
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:966
 msgctxt "dhl"
 msgid "Inlay Returns"
 msgstr "Beilageretouren"
 
-#: src/ShippingProvider/DHL.php:982
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:982
+#: src/ShippingProvider/DHL.php:991
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:991
 msgctxt "dhl"
 msgid "Participation Numbers"
 msgstr "Teilnahmenummern"
 
 # @ woocommerce-germanized
-#: src/ShippingProvider/DHL.php:993
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:993
+#: src/ShippingProvider/DHL.php:1002
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1002
 msgctxt "dhl"
 msgid "Bank Account"
 msgstr "Bankkonto"
 
-#: src/ShippingProvider/DHL.php:996
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:996
+#: src/ShippingProvider/DHL.php:1005
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1005
 msgctxt "dhl"
 msgid "Enter your bank details needed for services that use COD."
 msgstr ""
@@ -2011,42 +2029,42 @@ msgstr ""
 "werden sollen."
 
 # @ woocommerce-germanized
-#: src/ShippingProvider/DHL.php:1000
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1000
+#: src/ShippingProvider/DHL.php:1009
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1009
 msgctxt "dhl"
 msgid "Holder"
 msgstr "Kontoinhaber"
 
 # @ woocommerce-germanized
-#: src/ShippingProvider/DHL.php:1008
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1008
+#: src/ShippingProvider/DHL.php:1017
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1017
 msgctxt "dhl"
 msgid "Bank Name"
 msgstr "Name der Bank"
 
 # @ woocommerce-germanized
-#: src/ShippingProvider/DHL.php:1016
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1016
+#: src/ShippingProvider/DHL.php:1025
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1025
 msgctxt "dhl"
 msgid "IBAN"
 msgstr "IBAN"
 
-#: src/ShippingProvider/DHL.php:1024
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1024
+#: src/ShippingProvider/DHL.php:1033
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1033
 msgctxt "dhl"
 msgid "BIC"
 msgstr "BIC"
 
 # @ woocommerce-germanized
-#: src/ShippingProvider/DHL.php:1032
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1032
+#: src/ShippingProvider/DHL.php:1041
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1041
 msgctxt "dhl"
 msgid "Payment Reference"
 msgstr "Zahlungsreferenz"
 
-#: src/ShippingProvider/DHL.php:1037 src/ShippingProvider/DHL.php:1047
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1037
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1047
+#: src/ShippingProvider/DHL.php:1046 src/ShippingProvider/DHL.php:1056
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1046
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1056
 msgctxt "dhl"
 msgid ""
 "Use these placeholders to add info to the payment reference: %s. This text "
@@ -2056,61 +2074,61 @@ msgstr ""
 "%s. Der Text ist auf 35 Zeichen begrenzt."
 
 # @ woocommerce-germanized
-#: src/ShippingProvider/DHL.php:1042
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1042
+#: src/ShippingProvider/DHL.php:1051
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1051
 msgctxt "dhl"
 msgid "Payment Reference 2"
 msgstr "Zahlungsreferenz 2"
 
 # @ woocommerce-germanized
-#: src/ShippingProvider/DHL.php:1100
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1100
+#: src/ShippingProvider/DHL.php:1109
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1109
 msgctxt "dhl"
 msgid "Postoffice"
 msgstr "Postfiliale"
 
-#: src/ShippingProvider/DHL.php:1101
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1101
+#: src/ShippingProvider/DHL.php:1110
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1110
 msgctxt "dhl"
 msgid "Enable delivery to Post Offices."
 msgstr "Aktiviere den Versand an Postfilialen."
 
-#: src/ShippingProvider/DHL.php:1102
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1102
+#: src/ShippingProvider/DHL.php:1111
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1111
 msgctxt "dhl"
 msgid "Let customers choose a Post Office as delivery address."
 msgstr "Kunden eine Postfiliale als Lieferadresse auswählen lassen."
 
-#: src/ShippingProvider/DHL.php:1110
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1110
+#: src/ShippingProvider/DHL.php:1119
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1119
 msgctxt "dhl"
 msgid "Parcel Shop"
 msgstr "Paketshop"
 
-#: src/ShippingProvider/DHL.php:1111
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1111
+#: src/ShippingProvider/DHL.php:1120
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1120
 msgctxt "dhl"
 msgid "Enable delivery to Parcel Shops."
 msgstr "Lieferung an Paketshops aktivieren."
 
-#: src/ShippingProvider/DHL.php:1112
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1112
+#: src/ShippingProvider/DHL.php:1121
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1121
 msgctxt "dhl"
 msgid "Let customers choose a Parcel Shop as delivery address."
 msgstr "Kunden einen Paketshop als Lieferadresse auswählen lassen."
 
 # @ woocommerce-germanized
-#: src/ShippingProvider/DHL.php:1150
+#: src/ShippingProvider/DHL.php:1159
 #: src/ShippingProvider/Services/PreferredLocation.php:16
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1150
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1159
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/Services/PreferredLocation.php:16
 msgctxt "dhl"
 msgid "Enable drop-off location delivery."
 msgstr "Lieferung an einen Ablageort aktivieren."
 
-#: src/ShippingProvider/DHL.php:1150
+#: src/ShippingProvider/DHL.php:1159
 #: src/ShippingProvider/Services/PreferredLocation.php:17
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1150
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1159
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/Services/PreferredLocation.php:17
 msgctxt "dhl"
 msgid ""
@@ -2120,17 +2138,17 @@ msgstr ""
 "Diese Option aktiviert die Auswahl eines Wunschorts durch den Kunden in der "
 "Kasse ."
 
-#: src/ShippingProvider/DHL.php:1159
+#: src/ShippingProvider/DHL.php:1168
 #: src/ShippingProvider/Services/PreferredNeighbour.php:16
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1159
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1168
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/Services/PreferredNeighbour.php:16
 msgctxt "dhl"
 msgid "Enable delivery to a neighbor."
 msgstr "Lieferung an Nachbarn aktivieren."
 
-#: src/ShippingProvider/DHL.php:1159
+#: src/ShippingProvider/DHL.php:1168
 #: src/ShippingProvider/Services/PreferredNeighbour.php:17
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1159
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1168
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/Services/PreferredNeighbour.php:17
 msgctxt "dhl"
 msgid ""
@@ -2141,14 +2159,14 @@ msgstr ""
 "der Kasse."
 
 # @ woocommerce-germanized
-#: src/ShippingProvider/DHL.php:1167
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1167
+#: src/ShippingProvider/DHL.php:1176
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1176
 msgctxt "dhl"
 msgid "Delivery Type (CDP)"
 msgstr "Zustellvariante (CDP)"
 
-#: src/ShippingProvider/DHL.php:1168
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1168
+#: src/ShippingProvider/DHL.php:1177
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1177
 msgctxt "dhl"
 msgid ""
 "Allow your international customers to choose between home and closest "
@@ -2157,8 +2175,8 @@ msgstr ""
 "Erlaube internationalen Kunden zwischen einer Zustellung nach Hause oder "
 "einer Abholstation zu wählen."
 
-#: src/ShippingProvider/DHL.php:1168
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1168
+#: src/ShippingProvider/DHL.php:1177
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1177
 msgctxt "dhl"
 msgid ""
 "Display options for the user to select their preferred delivery type during "
@@ -2169,15 +2187,15 @@ msgstr ""
 "verfügbar."
 
 # @ woocommerce-germanized
-#: src/ShippingProvider/DHL.php:1176
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1176
+#: src/ShippingProvider/DHL.php:1185
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1185
 msgctxt "dhl"
 msgid "Default Delivery Type"
 msgstr "Standard Zustellvariante"
 
 # @ woocommerce-germanized
-#: src/ShippingProvider/DHL.php:1178
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1178
+#: src/ShippingProvider/DHL.php:1187
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1187
 msgctxt "dhl"
 msgid ""
 "Select the default delivery type presented to the customer during checkout."
@@ -2186,14 +2204,14 @@ msgstr ""
 "angeboten wird."
 
 # @ woocommerce-germanized
-#: src/ShippingProvider/DHL.php:1189
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1189
+#: src/ShippingProvider/DHL.php:1198
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1198
 msgctxt "dhl"
 msgid "Home Delivery Fee"
 msgstr "Gebühr Haustürzustellung"
 
-#: src/ShippingProvider/DHL.php:1191
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1191
+#: src/ShippingProvider/DHL.php:1200
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1200
 msgctxt "dhl"
 msgid ""
 "Insert gross value as surcharge for home deliveries for countries which "
@@ -2202,17 +2220,17 @@ msgstr ""
 "Füge einen Bruttopreis als Gebühr für die Lieferung zur Haustür (CDP) hinzu. "
 "Setze den Wert auf 0 um den Service kostenlos anzubieten."
 
-#: src/ShippingProvider/DHL.php:1203
+#: src/ShippingProvider/DHL.php:1212
 #: src/ShippingProvider/Services/PreferredDay.php:17
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1203
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1212
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/Services/PreferredDay.php:17
 msgctxt "dhl"
 msgid "Enable delivery day delivery."
 msgstr "Aktiviere die Lieferung am Liefertag."
 
-#: src/ShippingProvider/DHL.php:1203
+#: src/ShippingProvider/DHL.php:1212
 #: src/ShippingProvider/Services/PreferredDay.php:18
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1203
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1212
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/Services/PreferredDay.php:18
 msgctxt "dhl"
 msgid ""
@@ -2223,14 +2241,14 @@ msgstr ""
 "Kasse."
 
 # @ woocommerce-germanized
-#: src/ShippingProvider/DHL.php:1211
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1211
+#: src/ShippingProvider/DHL.php:1220
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1220
 msgctxt "dhl"
 msgid "Fee"
 msgstr "Gebühr"
 
-#: src/ShippingProvider/DHL.php:1213
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1213
+#: src/ShippingProvider/DHL.php:1222
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1222
 msgctxt "dhl"
 msgid ""
 "Insert gross value as surcharge for delivery day delivery. Insert 0 to offer "
@@ -2239,14 +2257,14 @@ msgstr ""
 "Füge einen Bruttopreis als Gebühr für die Lieferung am Liefertag hinzu. "
 "Setze den Wert auf 0 um den Service kostenlos anzubieten."
 
-#: src/ShippingProvider/DHL.php:1224
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1224
+#: src/ShippingProvider/DHL.php:1233
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1233
 msgctxt "dhl"
 msgid "Cut-off time"
 msgstr "Cut-off-Zeit"
 
-#: src/ShippingProvider/DHL.php:1228
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1228
+#: src/ShippingProvider/DHL.php:1237
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1237
 msgctxt "dhl"
 msgid ""
 "The cut-off time is the latest possible order time up to which the minimum "
@@ -2259,14 +2277,14 @@ msgstr ""
 "Nach Überschreitung dieses Zeitpunktes, wird der früheste verfügbare "
 "Liefertag in der Kasse um einen Tag erhöht (Tag der Bestellung + 3 Werktage)."
 
-#: src/ShippingProvider/DHL.php:1234
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1234
+#: src/ShippingProvider/DHL.php:1243
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1243
 msgctxt "dhl"
 msgid "Preparation days"
 msgstr "Bearbeitungstage"
 
-#: src/ShippingProvider/DHL.php:1238
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1238
+#: src/ShippingProvider/DHL.php:1247
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1247
 msgctxt "dhl"
 msgid ""
 "If you need more time to prepare your shipments you might want to add a "
@@ -2277,63 +2295,63 @@ msgstr ""
 "hier eine statische Anzahl an Tagen hinterlegen, die zum frühesten "
 "auswählbaren Liefertag hinzugefügt werden."
 
-#: src/ShippingProvider/DHL.php:1249
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1249
+#: src/ShippingProvider/DHL.php:1258
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1258
 msgctxt "dhl"
 msgid "Exclude days of transfer"
 msgstr "Übergabetage ausschließen"
 
-#: src/ShippingProvider/DHL.php:1250
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1250
+#: src/ShippingProvider/DHL.php:1259
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1259
 msgctxt "dhl"
 msgid "Monday"
 msgstr "Montag"
 
-#: src/ShippingProvider/DHL.php:1251
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1251
+#: src/ShippingProvider/DHL.php:1260
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1260
 msgctxt "dhl"
 msgid "Exclude days from transferring shipments to DHL."
 msgstr "Schließe bestimmte Wochentage für die Übergabe an DHL aus."
 
-#: src/ShippingProvider/DHL.php:1261
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1261
+#: src/ShippingProvider/DHL.php:1270
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1270
 msgctxt "dhl"
 msgid "Tuesday"
 msgstr "Dienstag"
 
-#: src/ShippingProvider/DHL.php:1271
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1271
+#: src/ShippingProvider/DHL.php:1280
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1280
 msgctxt "dhl"
 msgid "Wednesday"
 msgstr "Mittwoch"
 
-#: src/ShippingProvider/DHL.php:1281
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1281
+#: src/ShippingProvider/DHL.php:1290
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1290
 msgctxt "dhl"
 msgid "Thursday"
 msgstr "Donnerstag"
 
-#: src/ShippingProvider/DHL.php:1291
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1291
+#: src/ShippingProvider/DHL.php:1300
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1300
 msgctxt "dhl"
 msgid "Friday"
 msgstr "Freitag"
 
-#: src/ShippingProvider/DHL.php:1301
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1301
+#: src/ShippingProvider/DHL.php:1310
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1310
 msgctxt "dhl"
 msgid "Saturday"
 msgstr "Samstag"
 
 # @ woocommerce-germanized
-#: src/ShippingProvider/DHL.php:1311
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1311
+#: src/ShippingProvider/DHL.php:1320
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1320
 msgctxt "dhl"
 msgid "Exclude gateways"
 msgstr "Zahlungsarten ausschließen"
 
-#: src/ShippingProvider/DHL.php:1313
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1313
+#: src/ShippingProvider/DHL.php:1322
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1322
 msgctxt "dhl"
 msgid "Select payment gateways to be excluded from showing preferred services."
 msgstr ""
@@ -2341,20 +2359,20 @@ msgstr ""
 "Verfügung stehen sollen."
 
 # @ woocommerce-germanized
-#: src/ShippingProvider/DHL.php:1339
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1339
+#: src/ShippingProvider/DHL.php:1348
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1348
 msgctxt "dhl"
 msgid "Custom shipper"
 msgstr "Individueller Absender"
 
-#: src/ShippingProvider/DHL.php:1340
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1340
+#: src/ShippingProvider/DHL.php:1349
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1349
 msgctxt "dhl"
 msgid "Use a custom shipper address managed within your DHL business profile."
 msgstr "Individuelle Absenderreferenz aus dem DHL Geschäftskonto verwenden."
 
-#: src/ShippingProvider/DHL.php:1340
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1340
+#: src/ShippingProvider/DHL.php:1349
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1349
 msgctxt "dhl"
 msgid ""
 "Choose this option if you want to use a <a href=\"%s\" "
@@ -2366,14 +2384,14 @@ msgstr ""
 "Erstellen der Labels verwenden möchtest."
 
 # @ woocommerce-germanized
-#: src/ShippingProvider/DHL.php:1348
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1348
+#: src/ShippingProvider/DHL.php:1357
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1357
 msgctxt "dhl"
 msgid "Shipper reference"
 msgstr "Absenderreferenz"
 
-#: src/ShippingProvider/DHL.php:1349
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1349
+#: src/ShippingProvider/DHL.php:1358
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1358
 msgctxt "dhl"
 msgid ""
 "Insert the <a href=\"%s\" target=\"_blank\">address reference</a> you have "
@@ -2382,14 +2400,14 @@ msgstr ""
 "Füge hier deine <a href=\"%s\" target=\"_blank\">individuelle "
 "Absenderreferenz</a> aus dem DHL Geschäftskonto ein."
 
-#: src/ShippingProvider/DHL.php:1388
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1388
+#: src/ShippingProvider/DHL.php:1397
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1397
 msgctxt "dhl"
 msgid "Customer Number"
 msgstr "Kundennummer"
 
-#: src/ShippingProvider/DHL.php:1388
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1388
+#: src/ShippingProvider/DHL.php:1397
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1397
 msgctxt "dhl"
 msgid ""
 "Insert your DHL business customer number (EKP) here. If you are not yet a "
@@ -2398,14 +2416,14 @@ msgstr ""
 "Füge hier deine DHL Kundennummer (EKP) ein. Wenn du noch kein Geschäftskunde "
 "bist, solltest du dich zuerst als Geschäftskunde bei DHL registrieren."
 
-#: src/ShippingProvider/DHL.php:1401
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1401
+#: src/ShippingProvider/DHL.php:1410
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1410
 msgctxt "dhl"
 msgid "API Access"
 msgstr "API Zugriff"
 
-#: src/ShippingProvider/DHL.php:1401
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1401
+#: src/ShippingProvider/DHL.php:1410
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1410
 msgctxt "dhl"
 msgid ""
 "To create labels and embed DHL services, our software needs access to the "
@@ -2415,27 +2433,27 @@ msgstr ""
 "Software Zugang zur API. Du solltest hier deine Zugangsdaten zum DHL "
 "Geschäftskundenportal eingeben."
 
-#: src/ShippingProvider/DHL.php:1419
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1419
+#: src/ShippingProvider/DHL.php:1428
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1428
 msgctxt "dhl"
 msgid "Zones"
 msgstr "Zonen"
 
-#: src/ShippingProvider/DHL.php:1419
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1419
+#: src/ShippingProvider/DHL.php:1428
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1428
 msgctxt "dhl"
 msgid "Configure separate service(s) based on your customer's location."
 msgstr "Buche spezielle Services basierend auf dem Ort deiner Kunden."
 
 # @ woocommerce-germanized
-#: src/ShippingProvider/DHL.php:1437
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1437
+#: src/ShippingProvider/DHL.php:1446
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1446
 msgctxt "dhl"
 msgid "Automation"
 msgstr "Automatisierung"
 
-#: src/ShippingProvider/DHL.php:1437
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1437
+#: src/ShippingProvider/DHL.php:1446
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1446
 msgctxt "dhl"
 msgid ""
 "You might want to save some time and generate labels automatically as soon "
@@ -2444,8 +2462,8 @@ msgstr ""
 "Wenn du Administrationsaufwand sparen möchtest, kannst du Labels automatisch "
 "erzeugen lassen, sobald eine Sendung in einen bestimmten Status wechselt."
 
-#: src/ShippingProvider/DHL.php:1461
-#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1461
+#: src/ShippingProvider/DHL.php:1470
+#: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1470
 msgctxt "dhl"
 msgid ""
 "Allow your customers to ship to a packstation (and/or other DHL location "
@@ -4138,9 +4156,9 @@ msgid "My account"
 msgstr "Mein Konto"
 
 #: includes/wc-gzd-shipments-template-functions.php:129
-#: src/DataStores/Shipment.php:364
+#: src/DataStores/Shipment.php:363
 #: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipments-template-functions.php:129
-#: packages/woocommerce-germanized-shipments/src/DataStores/Shipment.php:364
+#: packages/woocommerce-germanized-shipments/src/DataStores/Shipment.php:363
 msgctxt "shipments"
 msgid "Invalid shipment."
 msgstr "Ungültige Sendung."
@@ -5907,6 +5925,18 @@ msgctxt "shipments"
 msgid "Pickup location customer number"
 msgstr "Abholstation Kundennummer"
 
+#: src/API/REST.php:157
+#: packages/woocommerce-germanized-shipments/src/API/REST.php:157
+msgctxt "shipments"
+msgid "Error while trying to perform REST request to %s"
+msgstr "Fehler beim Abruf der REST API %s"
+
+#: src/API/REST.php:171
+#: packages/woocommerce-germanized-shipments/src/API/REST.php:171
+msgctxt "shipments"
+msgid "There was an unknown error calling the API."
+msgstr "Beim Abruf der API gab es einen unerwarteten Fehler."
+
 # @ woocommerce-germanized
 #: src/Automation.php:174
 #: packages/woocommerce-germanized-shipments/src/Automation.php:174
@@ -6380,8 +6410,8 @@ msgctxt "shipments"
 msgid "Sorry, this order is invalid and cannot be returned."
 msgstr "Sorry, diese Bestellung existiert nicht."
 
-#: src/Packaging.php:523
-#: packages/woocommerce-germanized-shipments/src/Packaging.php:523
+#: src/Packaging.php:522
+#: packages/woocommerce-germanized-shipments/src/Packaging.php:522
 msgctxt "shipments-packaging-title"
 msgid "%1$s (%2$s, %3$s)"
 msgstr "%1$s (%2$s, %3$s)"
@@ -8966,17 +8996,17 @@ msgid "kJ"
 msgstr "kJ"
 
 # @ woocommerce-germanized
-#: includes/abstracts/abstract-wc-gzd-product.php:171
+#: includes/abstracts/abstract-wc-gzd-product.php:184
 msgid "Contains: %1$s"
 msgstr "Enthält: %1$s"
 
-#: includes/abstracts/abstract-wc-gzd-product.php:204
+#: includes/abstracts/abstract-wc-gzd-product.php:217
 msgid "Nutri-Score %1$s"
 msgstr "Nutri-Score %1$s"
 
 # @ woocommerce-germanized
-#: includes/abstracts/abstract-wc-gzd-product.php:1407
-#: includes/abstracts/abstract-wc-gzd-product.php:1417
+#: includes/abstracts/abstract-wc-gzd-product.php:1420
+#: includes/abstracts/abstract-wc-gzd-product.php:1430
 #: includes/wc-gzd-core-functions.php:598
 #: includes/wc-gzd-template-functions.php:1163
 #: includes/wc-gzd-template-functions.php:1170
@@ -8989,7 +9019,7 @@ msgid "incl. VAT"
 msgstr "inkl. MwSt."
 
 # @ woocommerce-germanized
-#: includes/abstracts/abstract-wc-gzd-product.php:1407
+#: includes/abstracts/abstract-wc-gzd-product.php:1420
 #: build/mini-cart-blocks/mini-cart-notices-frontend.js:59
 #: build/mini-cart-blocks/mini-cart-notices-style.js:59
 #: build/mini-cart-blocks/mini-cart-notices-frontend.js:55
@@ -8998,13 +9028,13 @@ msgid "excl. VAT"
 msgstr "exkl. MwSt."
 
 # @ woocommerce-germanized
-#: includes/abstracts/abstract-wc-gzd-product.php:1409
+#: includes/abstracts/abstract-wc-gzd-product.php:1422
 #: includes/wc-gzd-core-functions.php:598
 msgid "incl. %s%% VAT"
 msgstr "inkl. %s %% MwSt."
 
 # @ woocommerce-germanized
-#: includes/abstracts/abstract-wc-gzd-product.php:1409
+#: includes/abstracts/abstract-wc-gzd-product.php:1422
 msgid "excl. %s%% VAT"
 msgstr "exkl. %s %% MwSt."
 
@@ -9280,7 +9310,7 @@ msgstr "One Stop Shop"
 # @ woocommerce
 #: includes/admin/class-wc-gzd-admin-setup-wizard.php:71
 #: includes/admin/class-wc-gzd-admin-setup-wizard.php:156
-#: woocommerce-germanized.php:972
+#: woocommerce-germanized.php:974
 msgid "Settings"
 msgstr "Einstellungen"
 
@@ -10028,7 +10058,7 @@ msgstr ""
 #: includes/admin/settings/class-wc-gzd-settings-tab-invoices.php:69
 #: includes/admin/views/html-settings-pro.php:25
 #: includes/admin/views/setup/first-steps.php:30
-#: includes/compatibility/elementor/widgets/abstact-class-wc-gzd-elementor-widget.php:72
+#: includes/compatibility/elementor/widgets/abstact-class-wc-gzd-elementor-widget.php:69
 #: includes/gateways/invoice/class-wc-gzd-gateway-invoice.php:100
 msgid "Upgrade now"
 msgstr "Jetzt upgraden"
@@ -11168,8 +11198,8 @@ msgstr ""
 #: includes/api/class-wc-gzd-rest-customers-controller.php:151
 #: includes/api/class-wc-gzd-rest-orders-controller.php:143
 #: includes/api/class-wc-gzd-rest-orders-controller.php:156
-#: includes/class-wc-gzd-checkout.php:997
-#: includes/class-wc-gzd-checkout.php:1011
+#: includes/class-wc-gzd-checkout.php:999
+#: includes/class-wc-gzd-checkout.php:1013
 #: includes/class-wc-gzd-customer-helper.php:250
 #: includes/class-wc-gzd-customer-helper.php:258
 msgid "Title"
@@ -13917,15 +13947,15 @@ msgstr ""
 "Vielen Dank. Wir haben deinen Widerruf erhalten. Du bekommst in Kürze eine E-"
 "Mail mit deinen Daten als Bestätigung."
 
-#: includes/class-wc-gzd-checkout.php:510
-#: includes/class-wc-gzd-checkout.php:516 src/Blocks/Checkout.php:297
+#: includes/class-wc-gzd-checkout.php:512
+#: includes/class-wc-gzd-checkout.php:518 src/Blocks/Checkout.php:297
 msgid ""
 "Please check the street field and make sure to provide a valid street number."
 msgstr ""
 "Bitte prüfe die Angabe der Straße und stelle sicher, dass du deine "
 "Hausnummer angegeben hast."
 
-#: includes/class-wc-gzd-checkout.php:645
+#: includes/class-wc-gzd-checkout.php:647
 msgid ""
 "Sorry, but differential taxed products cannot be purchased with normal "
 "products at the same time."
@@ -13933,7 +13963,7 @@ msgstr ""
 "Entschuldigung, differenzbesteuerte Produkte können nicht gemeinsam mit "
 "normalen Produkten gekauft werden."
 
-#: includes/class-wc-gzd-checkout.php:650
+#: includes/class-wc-gzd-checkout.php:652
 msgid ""
 "Sorry, but normal products cannot be purchased together with differential "
 "taxed products at the same time."
@@ -13941,31 +13971,31 @@ msgstr ""
 "Entschuldigung, normale Produkte können nicht gemeinsam mit "
 "differenzbesteuerten Produkten gekauft werden."
 
-#: includes/class-wc-gzd-checkout.php:757
+#: includes/class-wc-gzd-checkout.php:759
 msgid "The customer has opted-in to the parcel delivery checkbox."
 msgstr ""
 "Der Kunde hat die Checkbox zur Datenweitergabe an den Paketdienstleister "
 "akzeptiert."
 
-#: includes/class-wc-gzd-checkout.php:761
+#: includes/class-wc-gzd-checkout.php:763
 msgid "This order applies for a photovoltaic systems VAT exemption."
 msgstr ""
 "Diese Bestellung ist zur Anwendung des Nullsteuersatzes auf "
 "Photovoltaikanlagen vorgesehen."
 
-#: includes/class-wc-gzd-checkout.php:765
+#: includes/class-wc-gzd-checkout.php:767
 msgid "A minimum age of %s years is required for this order."
 msgstr "Für diese Bestellung ist ein Mindestalter von %s Jahren vorgesehen."
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-checkout.php:1543
+#: includes/class-wc-gzd-checkout.php:1545
 #: includes/class-wc-gzd-revocation.php:51
 #: includes/wc-gzd-core-functions.php:763
 msgid "Mr."
 msgstr "Herr"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-checkout.php:1544
+#: includes/class-wc-gzd-checkout.php:1546
 msgctxt "customer-title-male-address"
 msgid "Mr."
 msgstr "Herrn"
@@ -13991,7 +14021,7 @@ msgstr "Datenbank wird aktualisiert"
 msgid "%1$d update functions completed. Database version is %2$s"
 msgstr "%1$d Updates fertiggestellt. Datenbank-Version lautet %2$s"
 
-#: includes/class-wc-gzd-coupon-helper.php:784 woocommerce-germanized.php:1372
+#: includes/class-wc-gzd-coupon-helper.php:784 woocommerce-germanized.php:1374
 msgid "Voucher: %1$s"
 msgstr "Wertgutschein: %1$s"
 
@@ -15270,7 +15300,7 @@ msgid ""
 "Sale price labels used to mark old prices (e.g. Recommended Retail Price)"
 msgstr "Preishinweise zur Markierung von Streichpreisen"
 
-#: includes/compatibility/elementor/widgets/abstact-class-wc-gzd-elementor-widget.php:72
+#: includes/compatibility/elementor/widgets/abstact-class-wc-gzd-elementor-widget.php:69
 msgid ""
 "Upgrade to WooCommerce Germanized Pro to use your our custom Elementor "
 "Widgets. %s"
@@ -17113,7 +17143,7 @@ msgstr "Germanized benötigt mindestens PHP 5.6. Bitte %s deine PHP-Version."
 msgid "upgrade"
 msgstr "Upgrade"
 
-#: woocommerce-germanized.php:360
+#: woocommerce-germanized.php:362
 msgid ""
 "This version of the Corona Helper Plugin includes a bug which could lead to "
 "tax rates being added multiple times. Please <a href=\"%1$s\">deactivate</a> "
@@ -17125,7 +17155,7 @@ msgstr ""
 "href=\"%2$s\" target=\"_blank\">Blog-Post</a> wie du das Plugin austauschen "
 "kannst."
 
-#: woocommerce-germanized.php:1355
+#: woocommerce-germanized.php:1357
 msgid ""
 "Please wait while we are trying to redirect you to the payment provider."
 msgstr "Einen Moment - wir versuchen dich zum Zahlungsanbieter weiterzuleiten."
@@ -17668,7 +17698,7 @@ msgstr "sample-filename.pdf"
 #: build/wc-gzd-blocks-product-elements.js:2453
 msgctxt "preview"
 msgid "Sample safety instructions for a certain product."
-msgstr ""
+msgstr "Beispiel-Sicherheitshinweis für ein bestimmtes Produkt."
 
 #: build/wc-gzd-blocks-product-elements.js:1700
 #: build/wc-gzd-blocks-product-elements-style.js:1275
@@ -20782,11 +20812,6 @@ msgstr "Gibt rechtliche Hinweise im Warenkorb-Dropdown Block aus."
 #~ "Bitte wähle das Standard-Produkt für nationale Sendungen aus, das du für "
 #~ "deine Kunden anbietest (du kannst das Produkt für jede einzelne Sendung "
 #~ "nachträglich ändern)."
-
-#, fuzzy
-#~ msgctxt "dhl"
-#~ msgid "Error while during request."
-#~ msgstr "Fehler beim Einlesen der Wunschzeit."
 
 #~ msgctxt "dhl"
 #~ msgid "Harmonized Tariff Schedule (DHL)"

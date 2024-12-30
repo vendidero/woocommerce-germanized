@@ -6,8 +6,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 use Elementor\Controls_Manager;
 use Elementor\Group_Control_Typography;
-use Elementor\Scheme_Color;
-use Elementor\Scheme_Typography;
 
 abstract class WC_GZD_Elementor_Widget extends ElementorPro\Modules\Woocommerce\Widgets\Products_Base {
 
@@ -46,7 +44,6 @@ abstract class WC_GZD_Elementor_Widget extends ElementorPro\Modules\Woocommerce\
 	}
 
 	protected function register_controls() {
-
 		$this->start_controls_section(
 			'section_' . $this->get_postfix() . '_style',
 			array(
@@ -93,7 +90,6 @@ abstract class WC_GZD_Elementor_Widget extends ElementorPro\Modules\Woocommerce\
 	}
 
 	protected function get_title_prefix() {
-
 		/** This filter is documented in includes/compatibility/elementor/widgets/abstract-class-wc-gzd-elementor-widget.php */
 		if ( ! apply_filters( 'woocommerce_gzd_show_elementor_upgrade_notice', true ) ) {
 			return '';
