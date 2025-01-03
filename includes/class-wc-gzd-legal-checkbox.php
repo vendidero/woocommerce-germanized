@@ -450,7 +450,7 @@ class WC_GZD_Legal_Checkbox {
 	 * @return array
 	 */
 	public function get_supporting_locations() {
-		return $this->settings['supporting_locations'];
+		return apply_filters( 'woocommerce_gzd_legal_checkbox_get_supporting_locations', $this->settings['supporting_locations'], $this );
 	}
 
 	public function set_supporting_locations( $locations ) {

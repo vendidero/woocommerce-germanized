@@ -32,7 +32,7 @@ class WC_GZD_Compatibility_WooCommerce_Product_Addons extends WC_GZD_Compatibili
 		foreach ( wc_gzd_get_single_product_shopmarks() as $shopmark ) {
 			$callback = $shopmark->get_callback();
 
-			if ( function_exists( $callback ) && $shopmark->is_enabled() && apply_filters( "woocommerce_gzd_product_addons_embed_price_label", true, $shopmark->get_type(), $shopmark, $product ) ) {
+			if ( function_exists( $callback ) && $shopmark->is_enabled() && apply_filters( 'woocommerce_gzd_product_addons_embed_price_label', true, $shopmark->get_type(), $shopmark, $product ) ) {
 				call_user_func( $callback );
 			}
 		}

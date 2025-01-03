@@ -530,9 +530,8 @@ class WC_GZD_Settings_Tab_Shopmarks extends WC_GZD_Settings_Tab {
 		$product_types        = wc_get_product_types();
 		$digital_type_options = array_merge(
 			array(
-				'downloadable' => __( 'Downloadable Product', 'woocommerce-germanized' ),
-				'virtual'      => __( 'Virtual Product', 'woocommerce-germanized' ),
-				'service'      => __( 'Service', 'woocommerce-germanized' ),
+				'virtual' => __( 'Virtual Product', 'woocommerce-germanized' ),
+				'service' => __( 'Service', 'woocommerce-germanized' ),
 			),
 			$product_types
 		);

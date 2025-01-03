@@ -173,8 +173,9 @@ class WC_GZD_Legal_Checkbox_Manager {
 				'is_shown'             => false,
 				'admin_name'           => __( 'Digital', 'woocommerce-germanized' ),
 				'admin_desc'           => __( 'Asks the customer to skip revocation period for digital products.', 'woocommerce-germanized' ),
-				'locations'            => array( 'checkout' ),
+				'locations'            => array( 'checkout', 'pay_for_order' ),
 				'types'                => array( 'downloadable' ),
+				'supporting_locations' => array( 'checkout', 'pay_for_order' ),
 			)
 		);
 
@@ -193,7 +194,8 @@ class WC_GZD_Legal_Checkbox_Manager {
 				'is_shown'             => false,
 				'admin_name'           => __( 'Service', 'woocommerce-germanized' ),
 				'admin_desc'           => __( 'Asks the customer to skip revocation period for services.', 'woocommerce-germanized' ),
-				'locations'            => array( 'checkout' ),
+				'locations'            => array( 'checkout', 'pay_for_order' ),
+				'supporting_locations' => array( 'checkout', 'pay_for_order' ),
 			)
 		);
 
@@ -211,10 +213,10 @@ class WC_GZD_Legal_Checkbox_Manager {
 				'error_message'        => __( 'Please accept our parcel delivery agreement', 'woocommerce-germanized' ),
 				'is_core'              => true,
 				'is_shown'             => false,
-				'supporting_locations' => array( 'checkout' ),
 				'admin_name'           => __( 'Parcel Delivery', 'woocommerce-germanized' ),
 				'admin_desc'           => __( 'Asks the customer to hand over data to the parcel delivery service provider.', 'woocommerce-germanized' ),
-				'locations'            => array( 'checkout' ),
+				'locations'            => array( 'checkout', 'pay_for_order' ),
+				'supporting_locations' => array( 'checkout', 'pay_for_order' ),
 			)
 		);
 
@@ -235,7 +237,7 @@ class WC_GZD_Legal_Checkbox_Manager {
 				'is_shown'             => false,
 				'admin_name'           => __( 'Age Verification', 'woocommerce-germanized' ),
 				'admin_desc'           => __( 'Asks the customer to confirm a minimum age.', 'woocommerce-germanized' ),
-				'locations'            => array( 'checkout' ),
+				'locations'            => array( 'checkout', 'pay_for_order' ),
 			)
 		);
 
@@ -304,6 +306,7 @@ class WC_GZD_Legal_Checkbox_Manager {
 					'admin_name'           => __( 'SEPA', 'woocommerce-germanized' ),
 					'admin_desc'           => __( 'Asks the customer to issue the SEPA mandate.', 'woocommerce-germanized' ),
 					'locations'            => array( 'checkout', 'pay_for_order' ),
+					'supporting_locations' => array( 'checkout', 'pay_for_order' ),
 				)
 			);
 		}
@@ -323,7 +326,8 @@ class WC_GZD_Legal_Checkbox_Manager {
 				'is_shown'             => false,
 				'admin_name'           => __( 'Used Goods', 'woocommerce-germanized' ),
 				'admin_desc'           => __( 'Inform customers about shortened warranty for used goods.', 'woocommerce-germanized' ),
-				'locations'            => array( 'checkout' ),
+				'locations'            => array( 'checkout', 'pay_for_order' ),
+				'supporting_locations' => array( 'checkout', 'pay_for_order' ),
 			)
 		);
 
@@ -343,7 +347,8 @@ class WC_GZD_Legal_Checkbox_Manager {
 				'is_shown'             => false,
 				'admin_name'           => __( 'Defective Copies', 'woocommerce-germanized' ),
 				'admin_desc'           => __( 'Inform customers about product defects.', 'woocommerce-germanized' ),
-				'locations'            => array( 'checkout' ),
+				'locations'            => array( 'checkout', 'pay_for_order' ),
+				'supporting_locations' => array( 'checkout', 'pay_for_order' ),
 			)
 		);
 
@@ -365,6 +370,7 @@ class WC_GZD_Legal_Checkbox_Manager {
 					'admin_name'           => __( 'Photovoltaic Systems', 'woocommerce-germanized' ),
 					'admin_desc'           => __( 'Let customers confirm that they are aware of the requirements for a VAT exemption.', 'woocommerce-germanized' ),
 					'locations'            => array( 'checkout', 'pay_for_order' ),
+					'supporting_locations' => array( 'checkout', 'pay_for_order' ),
 				)
 			);
 		}
