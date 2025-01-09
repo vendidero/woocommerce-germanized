@@ -463,7 +463,7 @@ class WC_GZD_Legal_Checkbox {
 	 * @return array
 	 */
 	public function get_show_for_categories() {
-		return $this->settings['show_for_categories'];
+		return apply_filters( 'woocommerce_gzd_legal_checkbox_show_for_categories', $this->settings['show_for_categories'], $this );
 	}
 
 	public function set_show_for_categories( $category_ids ) {
