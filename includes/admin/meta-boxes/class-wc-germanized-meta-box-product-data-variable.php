@@ -382,9 +382,47 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 			<?php endif; ?>
 		</div>
 
+		<div class="variable_wireless_electronic_device show_if_wireless_electronic_device">
+			<p class="wc-gzd-product-settings-subtitle">
+				<?php esc_html_e( 'Electronic device (wireless)', 'woocommerce-germanized' ); ?>
+				<a class="page-title-action" href="https://vendidero.de/dokument/allgemeine-produktsicherheit-gpsr"><?php esc_html_e( 'Help', 'woocommerce-germanized' ); ?></a>
+			</p>
+
+			<?php
+				woocommerce_wp_text_input(
+					array(
+						'wrapper_class' => 'form-row form-row-first',
+						'id'            => "variable_device_watt_min_{$loop}",
+						'name'          => "variable_device_watt_min[{$loop}]",
+						'value'         => $gzd_product->get_device_watt_min( 'edit' ),
+						'placeholder'   => $gzd_parent_product ? $gzd_parent_product->get_device_watt_min() : '',
+						'label'         => __( 'Minimum power (Watt)', 'woocommerce-germanized' ),
+						'type'          => 'number',
+						'desc_tip'      => true,
+						'description'   => __( 'Minimum power for charging the device.', 'woocommerce-germanized' ),
+					)
+				);
+
+				woocommerce_wp_text_input(
+					array(
+						'wrapper_class' => 'form-row form-row-last',
+						'id'            => "variable_device_watt_max_{$loop}",
+						'name'          => "variable_device_watt_max[{$loop}]",
+						'value'         => $gzd_product->get_device_watt_max( 'edit' ),
+						'placeholder'   => $gzd_parent_product ? $gzd_parent_product->get_device_watt_max() : '',
+						'label'         => __( 'Maximum power (Watt)', 'woocommerce-germanized' ),
+						'type'          => 'number',
+						'desc_tip'      => true,
+						'description'   => __( 'Power necessary to reach the maximum charging speed of the device.', 'woocommerce-germanized' ),
+					)
+				);
+			?>
+		</div>
+
 		<div class="variable_product_safety">
 			<p class="wc-gzd-product-settings-subtitle">
 				<?php esc_html_e( 'Product safety', 'woocommerce-germanized' ); ?>
+				<a class="page-title-action" href="https://vendidero.de/dokument/allgemeine-produktsicherheit-gpsr"><?php esc_html_e( 'Help', 'woocommerce-germanized' ); ?></a>
 			</p>
 
 			<p class="form-row form-row-full">
@@ -603,6 +641,8 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 			'_food_distributor'                         => '',
 			'_food_place_of_origin'                     => '',
 			'_food_description'                         => '',
+			'_device_watt_min'                          => '',
+			'_device_watt_max'                          => '',
 		);
 
 		foreach ( $data as $k => $v ) {

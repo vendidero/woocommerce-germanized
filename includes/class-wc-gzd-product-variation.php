@@ -62,6 +62,11 @@ class WC_GZD_Product_Variation extends WC_GZD_Product {
 		'food_description',
 		'is_food',
 		'mini_desc',
+		'device_watt_min',
+		'device_watt_max',
+		'wireless_electronic_device',
+		'device_supports_usb_pd',
+		'device_contains_power_supply',
 	);
 
 	protected $gzd_variation_prevent_zero_inherit_meta_data = array(
@@ -74,6 +79,9 @@ class WC_GZD_Product_Variation extends WC_GZD_Product {
 		'free_shipping',
 		'differential_taxation',
 		'is_food',
+		'wireless_electronic_device'   => '',
+		'device_supports_usb_pd'       => '',
+		'device_contains_power_supply' => '',
 	);
 
 	public function get_gzd_parent() {
@@ -140,6 +148,17 @@ class WC_GZD_Product_Variation extends WC_GZD_Product {
 		 *
 		 */
 		return apply_filters( "woocommerce_gzd_get_product_variation_{$prop}", $value, $this, $this->child, $context );
+	}
+
+	public function set_prop( $prop, $value ) {
+		if ( in_array( $prop, array_keys( $this->get_forced_inherited_props() ), true ) ) {
+			if ( $parent = $this->get_gzd_parent() ) {
+				$meta_key = substr( $prop, 0, 1 ) !== '_' ? '_' . $prop : $prop;
+				$value    = $parent->get_wc_product()->get_meta( $meta_key, true, 'edit' );
+			}
+		}
+
+		parent::set_prop( $prop, $value );
 	}
 
 	public function get_unit( $context = 'view' ) {

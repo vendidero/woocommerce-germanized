@@ -1875,3 +1875,47 @@ function wc_gzd_remove_all_hooks( $hook, $priority = 10 ) {
 		}
 	}
 }
+
+function wc_gzd_kses_post_svg( $html ) {
+	$kses_post = wp_kses_allowed_html( 'post' );
+
+	$svg_args = array(
+		'svg'   => array(
+			'class'           => true,
+			'aria-hidden'     => true,
+			'aria-labelledby' => true,
+			'role'            => true,
+			'xmlns'           => true,
+			'width'           => true,
+			'height'          => true,
+			'viewbox'         => true,
+			'text'            => true,
+			'title'           => true,
+		),
+		'line'  => array(
+			'class'        => true,
+			'x1'           => true,
+			'y1'           => true,
+			'x2'           => true,
+			'y2'           => true,
+			'stroke-width' => true,
+			'stroke'       => true,
+		),
+		'g'     => array( 'fill' => true ),
+		'text'  => array(
+			'x'     => true,
+			'y'     => true,
+			'class' => true,
+		),
+		'title' => array( 'title' => true ),
+		'path'  => array(
+			'd'     => true,
+			'fill'  => true,
+			'class' => true,
+		),
+	);
+
+	$kses_post = array_merge( $kses_post, $svg_args );
+
+	return wp_kses( $html, $kses_post );
+}

@@ -236,6 +236,7 @@ final class Products {
 						'deposit_html'                    => $is_pro ? $html_formatter->format( $gzd_product->get_deposit_amount_html() ) : '',
 						'deposit_prices'                  => (object) $this->get_deposit_prices( $gzd_product ),
 						'deposit_packaging_type_html'     => $is_pro ? $html_formatter->format( $gzd_product->get_deposit_packaging_type_title() ) : '',
+						'power_supply_html'               => $html_formatter->format( $gzd_product->get_power_supply_html() ),
 					);
 				},
 				'schema_callback' => function () {
@@ -266,6 +267,12 @@ final class Products {
 						),
 						'unit_price_html'                 => array(
 							'description' => __( 'Unit price string formatted as HTML.', 'woocommerce-germanized' ),
+							'type'        => 'string',
+							'context'     => array( 'view', 'edit' ),
+							'readonly'    => true,
+						),
+						'power_supply_html'               => array(
+							'description' => __( 'Power supply string formatted as HTML.', 'woocommerce-germanized' ),
 							'type'        => 'string',
 							'context'     => array( 'view', 'edit' ),
 							'readonly'    => true,

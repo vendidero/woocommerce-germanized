@@ -40,6 +40,7 @@ class WC_GZD_Shortcodes {
 			'gzd_product_safety_attachments'     => __CLASS__ . '::gzd_product_safety_attachments',
 			'gzd_product_safety_instructions'    => __CLASS__ . '::gzd_product_safety_instructions',
 			'gzd_product_deposit'                => __CLASS__ . '::gzd_product_deposit',
+			'gzd_product_power_supply'           => __CLASS__ . '::gzd_product_power_supply',
 			'gzd_product_deposit_packaging_type' => __CLASS__ . '::gzd_product_deposit_packaging_type',
 			'gzd_email_legal_page_attachments'   => __CLASS__ . '::gzd_email_legal_page_attachments',
 		);
@@ -288,6 +289,18 @@ class WC_GZD_Shortcodes {
 		 * @since 3.9.0
 		 */
 		return apply_filters( 'woocommerce_gzd_shortcode_product_deposit_html', self::get_gzd_product_shortcode( $atts, 'woocommerce_gzd_template_single_deposit' ), $atts );
+	}
+
+	public static function gzd_product_power_supply( $atts ) {
+		/**
+		 * Filter shortcode product power supply.
+		 *
+		 * @param string $html The output.
+		 * @param array $atts The shortcode arguments.
+		 *
+		 * @since 3.9.0
+		 */
+		return apply_filters( 'woocommerce_gzd_shortcode_product_power_supply_html', self::get_gzd_product_shortcode( $atts, 'woocommerce_gzd_template_single_product_power_supply' ), $atts );
 	}
 
 	public static function gzd_product_food( $atts, $content, $tag ) {

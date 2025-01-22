@@ -220,6 +220,16 @@ class WC_GZD_Product {
 		return apply_filters( 'woocommerce_gzd_product_formatted_nutri_score', $nutri_score, $this );
 	}
 
+	public function get_power_supply_html() {
+		$html = '';
+
+		if ( $this->is_wireless_electronic_device() ) {
+			$html = wc_get_template_html( 'global/power-supply.php', array( 'product' => $this->get_wc_product() ) );
+		}
+
+		return apply_filters( 'woocommerce_gzd_product_power_supply_html', $html, $this );
+	}
+
 	public function get_drained_weight( $context = 'view' ) {
 		return $this->get_prop( 'drained_weight', $context );
 	}
@@ -818,6 +828,38 @@ class WC_GZD_Product {
 		return wc_string_to_bool( $this->get_prop( 'defective_copy', $context ) );
 	}
 
+	public function get_wireless_electronic_device( $context = 'view' ) {
+		return wc_string_to_bool( $this->get_prop( 'wireless_electronic_device', $context ) );
+	}
+
+	public function get_device_contains_power_supply( $context = 'view' ) {
+		return wc_string_to_bool( $this->get_prop( 'device_contains_power_supply', $context ) );
+	}
+
+	public function get_device_supports_usb_pd( $context = 'view' ) {
+		return wc_string_to_bool( $this->get_prop( 'device_supports_usb_pd', $context ) );
+	}
+
+	public function get_device_watt_min( $context = 'view' ) {
+		return $this->get_prop( 'device_watt_min', $context );
+	}
+
+	public function get_device_watt_max( $context = 'view' ) {
+		return $this->get_prop( 'device_watt_max', $context );
+	}
+
+	public function is_wireless_electronic_device( $context = 'view' ) {
+		return $this->get_wireless_electronic_device( $context ) === true;
+	}
+
+	public function device_supports_usb_pd( $context = 'view' ) {
+		return $this->get_device_supports_usb_pd( $context ) === true;
+	}
+
+	public function device_contains_power_supply( $context = 'view' ) {
+		return $this->get_device_contains_power_supply( $context ) === true;
+	}
+
 	public function is_defective_copy( $context = 'view' ) {
 		return $this->get_defective_copy( $context ) === true;
 	}
@@ -978,6 +1020,26 @@ class WC_GZD_Product {
 
 	public function set_defective_copy( $is_defective_copy ) {
 		$this->set_prop( 'defective_copy', wc_bool_to_string( $is_defective_copy ) );
+	}
+
+	public function set_wireless_electronic_device( $is_wireless_electronic_device ) {
+		$this->set_prop( 'wireless_electronic_device', wc_bool_to_string( $is_wireless_electronic_device ) );
+	}
+
+	public function set_device_supports_usb_pd( $device_supports_usb_pd ) {
+		$this->set_prop( 'device_supports_usb_pd', wc_bool_to_string( $device_supports_usb_pd ) );
+	}
+
+	public function set_device_contains_power_supply( $device_contains_power_supply ) {
+		$this->set_prop( 'device_contains_power_supply', wc_bool_to_string( $device_contains_power_supply ) );
+	}
+
+	public function set_device_watt_min( $device_watt_min ) {
+		$this->set_prop( 'device_watt_min', absint( $device_watt_min ) );
+	}
+
+	public function set_device_watt_max( $device_watt_max ) {
+		$this->set_prop( 'device_watt_max', absint( $device_watt_max ) );
 	}
 
 	public function set_used_good( $is_used_good ) {

@@ -24,6 +24,7 @@ const getPreviewData = ( labelType, productData, isDescendentOfSingleProductTemp
         'unit_product': 0,
         'unit_product_html': '',
         'delivery_time_html': '',
+        'power_supply_html': '',
         'tax_info_html': '',
         'shipping_costs_info_html': '',
         'defect_description_html': '',

@@ -101,6 +101,13 @@ if ( ! function_exists( 'woocommerce_gzd_template_single_product_safety_informat
 	}
 }
 
+if ( ! function_exists( 'woocommerce_gzd_template_single_product_power_supply' ) ) {
+
+	function woocommerce_gzd_template_single_product_power_supply() {
+		wc_get_template( 'single-product/power-supply.php' );
+	}
+}
+
 if ( ! function_exists( 'woocommerce_gzd_template_single_product_safety_attachments' ) ) {
 
 	function woocommerce_gzd_template_single_product_safety_attachments( $args = array() ) {
@@ -830,6 +837,8 @@ if ( ! function_exists( 'woocommerce_gzd_add_variation_options' ) ) {
 					'has_product_safety_information' => $gzd_product->has_product_safety_information(),
 					'manufacturer'                   => $gzd_product->get_manufacturer_html(),
 					'safety_instructions'            => $gzd_product->get_formatted_safety_instructions(),
+					'wireless_electronic_device'     => $gzd_product->is_wireless_electronic_device() ? 'yes' : 'no',
+					'power_supply'                   => $gzd_product->get_power_supply_html(),
 					'is_food'                        => $gzd_product->is_food() ? 'yes' : 'no',
 					'food_description'               => $gzd_product->is_food() ? $gzd_product->get_formatted_food_description() : '',
 					'food_place_of_origin'           => $gzd_product->is_food() ? $gzd_product->get_formatted_food_place_of_origin() : '',

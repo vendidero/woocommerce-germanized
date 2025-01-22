@@ -150,14 +150,14 @@ function wc_gzd_cart_product_item_desc( $title, $cart_item, $cart_item_key = '' 
 	}
 
 	if ( ! empty( $product_desc ) ) {
-		$title .= '<div class="wc-gzd-cart-info wc-gzd-item-desc item-desc">' . do_shortcode( $product_desc ) . '</div>';
+		$title .= '<div class="wc-gzd-cart-info wc-gzd-item-desc item-desc">' . wp_kses_post( do_shortcode( $product_desc ) ) . '</div>';
 	}
 
 	if ( $echo ) {
 		echo wp_kses_post( $title );
 	}
 
-	return wp_kses_post( $title );
+	return $title;
 }
 
 /**
@@ -200,14 +200,14 @@ function wc_gzd_cart_product_defect_description( $title, $cart_item, $cart_item_
 	}
 
 	if ( ! empty( $product_desc ) ) {
-		$title .= '<div class="wc-gzd-cart-info wc-gzd-item-defect-description item-defect-description">' . do_shortcode( $product_desc ) . '</div>';
+		$title .= '<div class="wc-gzd-cart-info wc-gzd-item-defect-description item-defect-description">' . wp_kses_post( do_shortcode( $product_desc ) ) . '</div>';
 	}
 
 	if ( $echo ) {
 		echo wp_kses_post( $title );
 	}
 
-	return wp_kses_post( $title );
+	return $title;
 }
 
 function wc_gzd_cart_product_attributes( $title, $cart_item, $cart_item_key = '' ) {
@@ -315,14 +315,14 @@ function wc_gzd_cart_product_delivery_time( $title, $cart_item, $cart_item_key =
 	}
 
 	if ( ! empty( $delivery_time ) ) {
-		$title .= '<p class="wc-gzd-cart-info delivery-time-info">' . $delivery_time . '</p>';
+		$title .= '<p class="wc-gzd-cart-info delivery-time-info">' . wp_kses_post( $delivery_time ) . '</p>';
 	}
 
 	if ( $echo ) {
 		echo wp_kses_post( $title );
 	}
 
-	return wp_kses_post( $title );
+	return $title;
 }
 
 /**
@@ -420,14 +420,14 @@ function wc_gzd_cart_product_unit_price( $price, $cart_item, $cart_item_key = ''
 	}
 
 	if ( ! empty( $unit_price ) ) {
-		$price .= ' <span class="wc-gzd-cart-info unit-price unit-price-cart">' . $unit_price . '</span>';
+		$price .= ' <span class="wc-gzd-cart-info unit-price unit-price-cart">' . wp_kses_post( $unit_price ) . '</span>';
 	}
 
 	if ( $echo ) {
 		echo wp_kses_post( $price );
 	}
 
-	return wp_kses_post( $price );
+	return $price;
 }
 
 /**
@@ -521,14 +521,14 @@ function wc_gzd_cart_product_deposit_amount( $price, $cart_item, $cart_item_key 
 	}
 
 	if ( ! empty( $deposit_html ) ) {
-		$price .= ' <span class="wc-gzd-cart-info deposit-amount deposit-amount-cart">' . $deposit_html . '</span>';
+		$price .= ' <span class="wc-gzd-cart-info deposit-amount deposit-amount-cart">' . wp_kses_post( $deposit_html ) . '</span>';
 	}
 
 	if ( $echo ) {
 		echo wp_kses_post( $price );
 	}
 
-	return wp_kses_post( $price );
+	return $price;
 }
 
 /**
@@ -582,14 +582,14 @@ function wc_gzd_cart_product_deposit_packaging_type( $title, $cart_item, $cart_i
 	$packaging_title = apply_filters( 'woocommerce_gzd_cart_product_deposit_packaging_type_html', $packaging_title, $cart_item, $cart_item_key );
 
 	if ( ! empty( $packaging_title ) ) {
-		$title .= '<p class="wc-gzd-cart-info deposit-packaging-type">' . $packaging_title . '</p>';
+		$title .= '<p class="wc-gzd-cart-info deposit-packaging-type">' . wp_kses_post( $packaging_title ) . '</p>';
 	}
 
 	if ( $echo ) {
 		echo wp_kses_post( $title );
 	}
 
-	return wp_kses_post( $title );
+	return $title;
 }
 
 /**
@@ -643,14 +643,14 @@ function wc_gzd_cart_product_units( $title, $cart_item, $cart_item_key = '' ) {
 	$units = apply_filters( 'woocommerce_gzd_cart_product_units_html', $units, $cart_item, $cart_item_key );
 
 	if ( ! empty( $units ) ) {
-		$title .= '<p class="wc-gzd-cart-info units-info">' . $units . '</p>';
+		$title .= '<p class="wc-gzd-cart-info units-info">' . wp_kses_post( $units ) . '</p>';
 	}
 
 	if ( $echo ) {
 		echo wp_kses_post( $title );
 	}
 
-	return wp_kses_post( $title );
+	return $title;
 }
 
 function wc_gzd_cart_applies_for_photovoltaic_system_vat_exemption( $items = false ) {

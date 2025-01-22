@@ -114,7 +114,7 @@ class WC_GZD_Compatibility_Woo_Poly_Integration extends WC_GZD_Compatibility {
 	}
 
 	public function unload_textdomain() {
-		unload_textdomain( 'woocommerce-germanized' );
+		unload_textdomain( 'woocommerce-germanized', true );
 	}
 
 	public function reload_textdomain() {

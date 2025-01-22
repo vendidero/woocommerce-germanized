@@ -486,13 +486,13 @@ class WC_GZD_Compatibility_WPML extends WC_GZD_Compatibility {
 	 * Reload default, WC and WC Germanized locale
 	 */
 	public function reload_locale() {
-		unload_textdomain( 'default' );
-		unload_textdomain( 'woocommerce' );
+		unload_textdomain( 'default', true );
+		unload_textdomain( 'woocommerce', true );
 
 		// Init WC locale.
 		WC()->load_plugin_textdomain();
 
-		unload_textdomain( 'woocommerce-germanized' );
+		unload_textdomain( 'woocommerce-germanized', true );
 		WC_germanized()->load_plugin_textdomain();
 
 		load_default_textdomain( get_locale() );

@@ -68,6 +68,12 @@
         <exclude-pattern>woocommerce-germanized.php</exclude-pattern>
     </rule>
 
+    <rule ref="WordPress.Security.EscapeOutput">
+        <properties>
+            <property name="customEscapingFunctions" type="array" value="wc_gzd_kses_post_svg, wc_help_tip" />
+        </properties>
+    </rule>
+
     <rule ref="WordPress.Files.FileName.NotHyphenatedLowercase">
         <exclude-pattern>i18n/</exclude-pattern>
         <exclude-pattern>src/</exclude-pattern>

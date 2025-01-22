@@ -1,13 +1,13 @@
 @import '../cart-checkout/items';
 
 .wc-gzd-checkout {
-   .wp-block-woocommerce-checkout-fields-block {
+  .wp-block-woocommerce-checkout-fields-block {
      .wc-block-checkout__actions {
        display: none;
      }
    }
 
-   .is-large {
+  .is-large {
      /**
       * Somehow setting align-self: start unsets the 100 % sidebar height which disables sticky.
       */
@@ -27,6 +27,10 @@
 
      .wc-gzd-checkout-submit {
        margin-top: 1em;
+
+       .wc-block-components-checkout-order-summary__title {
+         display: none !important;
+       }
 
        .wc-block-components-totals-wrapper {
          display: none;
@@ -64,75 +68,86 @@
      }
    }
 
-   .wc-block-checkout.is-mobile,
-   .wc-block-checkout.is-medium,
-   .wc-block-checkout.is-small {
-     flex-direction: column-reverse !important;
+  .wc-block-checkout.is-mobile,
+  .wc-block-checkout.is-medium,
+  .wc-block-checkout.is-small {
+    flex-direction: column-reverse !important;
 
-     .wc-gzd-checkout-submit {
-       position: relative;
-       padding: 1.5em 0;
+    .wp-block-woocommerce-checkout-order-summary-block {
+      .wc-block-components-checkout-order-summary__title {
+        .wc-block-components-checkout-order-summary__title-icon {
+          display: none;
+        }
+      }
+      .wc-block-components-checkout-order-summary__content {
+        display: block !important;
+      }
+    }
 
-       .wp-block-woocommerce-checkout-order-summary-block {
-         display: none;
-       }
+    .wc-gzd-checkout-submit {
+      position: relative;
+      padding: 1.5em 0;
+
+      .wp-block-woocommerce-checkout-order-summary-block {
+        display: none;
+      }
+    }
+
+    .wc-gzd-checkboxes {
+      padding-top: 10px;
+    }
+  }
+
+  /**
+  * Prevent overflows for empty prices with width > 100 % tweak
+  */
+  .wc-block-components-order-summary .wc-block-components-order-summary-item__total-price {
+   min-width: 55px;
+  }
+
+  .wc-block-components-product-metadata {
+   ul.wc-block-components-product-details:first-child {
+     display: flex;
+     flex-direction: column;
+
+     li {
+       order: 950;
      }
 
-     .wc-gzd-checkboxes {
-       padding-top: 10px;
+     li[class*="wc-block-components-product-details__gzd-"] {
+       order: 90;
+       width: 130%;
      }
-   }
 
-   /**
-    * Prevent overflows for empty prices with width > 100 % tweak
-    */
-   .wc-block-components-order-summary .wc-block-components-order-summary-item__total-price {
-     min-width: 55px;
-   }
-
-   .wc-block-components-product-metadata {
-     ul.wc-block-components-product-details:first-child {
-       display: flex;
-       flex-direction: column;
-
-       li {
-         order: 950;
-       }
-
-       li[class*="wc-block-components-product-details__gzd-"] {
-         order: 90;
-         width: 130%;
-       }
-
-       li.wc-block-components-product-details__gzd-unit-price {
-         order: 0;
-       }
-
-       li.wc-block-components-product-details__gzd-deposit-packaging-type {
-         order: 5;
-         font-weight: bold;
-         text-transform: uppercase;
-       }
-
-       li.wc-block-components-product-details__gzd-deposit {
-         order: 10;
-       }
-
-       li.wc-block-components-product-details__gzd-differential-taxation {
-         order: 10;
-       }
-
-       li.wc-block-components-product-details__gzd-delivery-time {
-        order: 20;
-       }
-
-       li.wc-block-components-product-details__gzd-item-desc {
-         order: 100;
-       }
-
-       li.wc-gzd-summary-item-last {
-         margin-bottom: 1em;
-       }
+     li.wc-block-components-product-details__gzd-unit-price {
+       order: 0;
      }
-   }
+
+     li.wc-block-components-product-details__gzd-deposit-packaging-type {
+       order: 5;
+       font-weight: bold;
+       text-transform: uppercase;
+     }
+
+     li.wc-block-components-product-details__gzd-deposit {
+       order: 10;
+     }
+
+     li.wc-block-components-product-details__gzd-differential-taxation {
+       order: 10;
+     }
+
+     li.wc-block-components-product-details__gzd-delivery-time {
+      order: 20;
+     }
+
+     li.wc-block-components-product-details__gzd-item-desc {
+       order: 100;
+     }
+
+     li.wc-gzd-summary-item-last {
+       margin-bottom: 1em;
+     }
+    }
+  }
 }

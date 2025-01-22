@@ -288,6 +288,10 @@ class WC_GZD_Compatibility_Elementor_Pro extends WC_GZD_Compatibility {
 			'WC_GZD_Elementor_Widget_Product_Ingredients',
 			'WC_GZD_Elementor_Widget_Product_Allergenic',
 			'WC_GZD_Elementor_Widget_Product_Nutri_Score',
+			'WC_GZD_Elementor_Widget_Product_Power_Supply',
+			'WC_GZD_Elementor_Widget_Product_Manufacturer',
+			'WC_GZD_Elementor_Widget_Product_Safety_Attachments',
+			'WC_GZD_Elementor_Widget_Product_Safety_Instructions',
 		);
 
 		foreach ( $widgets as $widget ) {

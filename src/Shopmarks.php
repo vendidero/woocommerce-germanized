@@ -69,6 +69,11 @@ class Shopmarks {
 					'default_priority' => 21,
 					'callback'         => 'woocommerce_gzd_template_single_defect_description',
 				),
+				'power_supply'               => array(
+					'default_filter'   => 'woocommerce_product_thumbnails',
+					'default_priority' => 11,
+					'callback'         => 'woocommerce_gzd_template_single_product_power_supply',
+				),
 				'deposit'                    => array(
 					'default_filter'   => 'woocommerce_single_product_summary',
 					'default_priority' => 13,
@@ -640,6 +645,11 @@ class Shopmarks {
 					'is_action'        => true,
 					'number_of_params' => 1,
 				),
+				'woocommerce_product_thumbnails'           => array(
+					'title'            => $load_translation ? __( 'After thumbnails', 'woocommerce-germanized' ) : 'After thumbnails',
+					'is_action'        => true,
+					'number_of_params' => 1,
+				),
 			),
 			'single_product_grouped' => array(
 				'woocommerce_grouped_product_list_column_price'    => array(
@@ -802,6 +812,7 @@ class Shopmarks {
 				'manufacturer'               => _x( 'Manufacturer', 'shopmark', 'woocommerce-germanized' ),
 				'product_safety_attachments' => _x( 'Product safety attachments', 'shopmark', 'woocommerce-germanized' ),
 				'safety_instructions'        => _x( 'Safety instructions', 'shopmark', 'woocommerce-germanized' ),
+				'power_supply'               => _x( 'Power supply', 'shopmark', 'woocommerce-germanized' ),
 			),
 			'single_product_grouped' => array(
 				'unit_price'             => _x( 'Unit Price', 'shopmark', 'woocommerce-germanized' ),

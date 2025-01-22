@@ -140,7 +140,7 @@ abstract class AbstractProductElementBlock extends AbstractBlock {
 				esc_attr( isset( $margin_styles_and_classes['style'] ) ? $margin_styles_and_classes['style'] : '' ),
 				esc_attr( trim( $inner_classes ) ),
 				esc_attr( isset( $styles_and_classes['styles'] ) ? $styles_and_classes['styles'] : '' ),
-				wp_kses_post( $html )
+				wc_gzd_kses_post_svg( $html )
 			);
 		}
 	}

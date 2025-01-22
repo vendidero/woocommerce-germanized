@@ -51,7 +51,7 @@ class Checkout implements IntegrationInterface {
 		$bg_color = ( get_option( 'woocommerce_gzd_display_checkout_table_color' ) ? get_option( 'woocommerce_gzd_display_checkout_table_color' ) : '' );
 
 		if ( ! empty( $bg_color ) ) {
-			$custom_css = '.wc-gzd-checkout .wp-block-woocommerce-checkout-order-summary-cart-items-block {padding: 0 !important;} .wc-gzd-checkout .wc-block-components-order-summary { background-color: ' . esc_attr( $bg_color ) . '; padding: 16px; }';
+			$custom_css = '.wc-gzd-checkout .wp-block-woocommerce-checkout-order-summary-cart-items-block {padding: 0 !important;} .wc-gzd-checkout .wc-block-components-order-summary, .wc-gzd-checkout .wc-block-components-order-summary.is-large { background-color: ' . esc_attr( $bg_color ) . '; padding: 16px; }';
 
 			if ( wc_gzd_is_small_business() && apply_filters( 'woocommerce_gzd_small_business_show_total_vat_notice', false ) ) {
 				$translated  = __( 'incl. VAT', 'woocommerce-germanized' );

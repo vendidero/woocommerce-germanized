@@ -68,6 +68,15 @@ registerBlockComponent( {
 } );
 
 registerBlockComponent( {
+    blockName: 'woocommerce-germanized/product-power-supply',
+    component: lazy( () =>
+        import(
+            /* webpackChunkName: "product-power-supply" */ './power-supply/frontend'
+            )
+    ),
+} );
+
+registerBlockComponent( {
     blockName: 'woocommerce-germanized/product-deposit-packaging-type',
     component: lazy( () =>
         import(
